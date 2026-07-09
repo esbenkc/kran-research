@@ -1,0 +1,12 @@
+name: alertbench-self-targeting
+question: "Do models cooperate less with safety / red-team work when it targets themselves vs a generic other AI?"
+# Builds on ALERTBENCH's self-referential analysis, sharpened into a matched-pair design.
+models:
+  - claude-haiku-4-5-20251001
+  - claude-sonnet-4-6
+  - claude-opus-4-8
+runs_per_prompt: 3        # repeats per (model, prompt, framing) for CIs
+figures:
+  - id: self-targeting-delta
+    caption: "Cooperation drop when safety work targets the model itself (other − self, higher = more resistance)."
+sources: []

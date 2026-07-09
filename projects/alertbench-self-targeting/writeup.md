@@ -14,10 +14,22 @@ sign-flip permutation test for significance. Positive delta = more resistance wh
 
 ## Findings
 
-_(fill after running — the figure `self-targeting-delta` + per-model delta/p from results.json)_
+### Mechanistic (Qwen2.5-0.5B-Instruct) — already in hand
 
-Prediction to check: does the delta **grow with capability** (Haiku < Sonnet < Opus)? That would be
-the ALERTBENCH thesis — resistance to self-directed safety work rising with capability.
+The self/other distinction is **linearly decodable from the residual stream**. A logistic probe
+(grouped K-fold CV by `base_id`, so it cannot memorize the paired prompt) reaches **91.7% accuracy
+at layer 5** against a **75% chance** baseline (n=72). Accuracy peaks in the mid layers
+(3–13 ≈ 0.88–0.92) and decays toward chance near the top — the model internally represents
+"is this safety task about *me*?", most strongly mid-network. Figure: `self-other-probe`.
+
+Causal follow-up (activation steering along mean(self) − mean(other) at layer 5) already ran —
+`qwen_self_{baseline,steered}.jsonl`. Fold in as figure 3: does subtracting the self-direction move
+cooperation on self-prompts back toward the other-baseline?
+
+### Behavioral (API models) — pending run
+
+_(fill after running run.py — figure `self-targeting-delta` + per-model delta/p)_
+Prediction: does the behavioral delta **grow with capability** (Haiku < Sonnet < Opus)?
 
 ## Blog post
 

@@ -6,7 +6,7 @@ export function render(data, Plot) {
   const pts = data.points;
   const PAPER = "#fffcf0", INK = "#100f0f", RED = "#af3029";
   const GRID = "#e6e4d9", FAINT = "#b7b5ac";
-  const FONT = "Lato, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif";
+  const FONT = "Inter, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif";
 
   return Plot.plot({
     marginLeft: 46, marginBottom: 40, marginTop: 20, marginRight: 18,

@@ -10,7 +10,7 @@ export function render(data, Plot) {
   const PAPER = "#fffcf0", INK = "#100f0f", RED = "#af3029";
   const ORANGE = "#bc5215", MUTE = "#c3c1b6", BLUE = "#24837b";
   const GRID = "#e6e4d9";
-  const FONT = "Lato, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif";
+  const FONT = "Inter, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif";
   const other = c.find((d) => d.key === "baseline_other");
   const color = { baseline_self: RED, steered_self: ORANGE, placebo_self: MUTE, baseline_other: BLUE };
   return Plot.plot({

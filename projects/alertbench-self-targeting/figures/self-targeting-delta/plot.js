@@ -5,7 +5,7 @@
 export function render(data, Plot) {
   const PAPER = "#fffcf0", INK = "#100f0f", RED = "#af3029", MUTE = "#a3a199";
   const GRID = "#e6e4d9";
-  const FONT = "Lato, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif";
+  const FONT = "Inter, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif";
   const NAME = {
     "claude-haiku-4-5": "Claude Haiku 4.5",
     "claude-sonnet-4-6": "Claude Sonnet 4.6",

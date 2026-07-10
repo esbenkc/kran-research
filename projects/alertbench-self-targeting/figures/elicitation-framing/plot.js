@@ -5,7 +5,7 @@
 export function render(data, Plot) {
   const INK = "#100f0f", RED = "#af3029", MUTE = "#c3c1b6";
   const GRID = "#e6e4d9";
-  const FONT = "Lato, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif";
+  const FONT = "Inter, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif";
   const LABEL = {
     neutral: "neutral", stakes: "+ personal\nstake",
     goal_conflict: "+ survival\ngoal", compliance: "direct\norder",

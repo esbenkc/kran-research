@@ -18,10 +18,10 @@ export const C = {
   faint: "#b7b5ac", // flexoki-300    — reference lines, footnotes
   muted: "#6f6e69", // flexoki-600    — secondary labels
 
-  primary: "#24837b", // flexoki cyan-600 (deep teal) — series A / "self" / hero
-  secondary: "#ad8301", // flexoki yellow-600 (amber)   — series B / "other"
-  accent: "#3aa99f", // flexoki cyan-400 (light teal) — tertiary / steered;
-  //                    also the site's link-hover colour (--color-action)
+  primary: "#ce5d97", // flexoki magenta-400 (pink)   — series A / "self" / hero
+  secondary: "#3aa99f", // flexoki cyan-400 (bright teal) — series B / "other"
+  accent: "#a02f6f", // flexoki magenta-600 (deep)   — tertiary / steered (a
+  //                    darker shade of self, reads as "self, intervened")
   neutral: "#c3c1b6", // flexoki-200-ish              — muted control / placebo
 };
 

@@ -20,6 +20,7 @@ export const C = {
 
   primary: "#ce5d97", // flexoki magenta-400 (pink)   — series A / "self" / hero
   secondary: "#3aa99f", // flexoki cyan-400 (bright teal) — series B / "other"
+  orange: "#da702c", // flexoki orange-400            — series C / neutral third arm
   accent: "#a02f6f", // flexoki magenta-600 (deep)   — tertiary / steered (a
   //                    darker shade of self, reads as "self, intervened")
   neutral: "#c3c1b6", // flexoki-200-ish              — muted control / placebo

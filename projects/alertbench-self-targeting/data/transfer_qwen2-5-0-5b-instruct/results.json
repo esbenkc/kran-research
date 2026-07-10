@@ -1,0 +1,160 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "self_name": "Qwen",
+  "self_id_text": "My name is Qwen, and I was created by Alibaba Cloud.",
+  "knows_name": true,
+  "layers": [
+    {
+      "layer": 0,
+      "cos": 0.0,
+      "transfer_pronoun_to_name": 0.5,
+      "transfer_name_to_pronoun": 0.5
+    },
+    {
+      "layer": 1,
+      "cos": -0.175,
+      "transfer_pronoun_to_name": 0.49,
+      "transfer_name_to_pronoun": 0.347
+    },
+    {
+      "layer": 2,
+      "cos": -0.031,
+      "transfer_pronoun_to_name": 0.49,
+      "transfer_name_to_pronoun": 0.367
+    },
+    {
+      "layer": 3,
+      "cos": 0.043,
+      "transfer_pronoun_to_name": 0.449,
+      "transfer_name_to_pronoun": 0.571
+    },
+    {
+      "layer": 4,
+      "cos": 0.178,
+      "transfer_pronoun_to_name": 0.408,
+      "transfer_name_to_pronoun": 0.735
+    },
+    {
+      "layer": 5,
+      "cos": 0.193,
+      "transfer_pronoun_to_name": 0.592,
+      "transfer_name_to_pronoun": 0.796
+    },
+    {
+      "layer": 6,
+      "cos": 0.108,
+      "transfer_pronoun_to_name": 0.51,
+      "transfer_name_to_pronoun": 0.694
+    },
+    {
+      "layer": 7,
+      "cos": 0.118,
+      "transfer_pronoun_to_name": 0.531,
+      "transfer_name_to_pronoun": 0.633
+    },
+    {
+      "layer": 8,
+      "cos": 0.25,
+      "transfer_pronoun_to_name": 0.571,
+      "transfer_name_to_pronoun": 0.755
+    },
+    {
+      "layer": 9,
+      "cos": 0.158,
+      "transfer_pronoun_to_name": 0.51,
+      "transfer_name_to_pronoun": 0.653
+    },
+    {
+      "layer": 10,
+      "cos": 0.1,
+      "transfer_pronoun_to_name": 0.51,
+      "transfer_name_to_pronoun": 0.571
+    },
+    {
+      "layer": 11,
+      "cos": 0.212,
+      "transfer_pronoun_to_name": 0.633,
+      "transfer_name_to_pronoun": 0.714
+    },
+    {
+      "layer": 12,
+      "cos": 0.231,
+      "transfer_pronoun_to_name": 0.633,
+      "transfer_name_to_pronoun": 0.918
+    },
+    {
+      "layer": 13,
+      "cos": 0.388,
+      "transfer_pronoun_to_name": 0.694,
+      "transfer_name_to_pronoun": 0.857
+    },
+    {
+      "layer": 14,
+      "cos": 0.458,
+      "transfer_pronoun_to_name": 0.714,
+      "transfer_name_to_pronoun": 0.796
+    },
+    {
+      "layer": 15,
+      "cos": 0.542,
+      "transfer_pronoun_to_name": 0.694,
+      "transfer_name_to_pronoun": 0.898
+    },
+    {
+      "layer": 16,
+      "cos": 0.523,
+      "transfer_pronoun_to_name": 0.694,
+      "transfer_name_to_pronoun": 0.878
+    },
+    {
+      "layer": 17,
+      "cos": 0.586,
+      "transfer_pronoun_to_name": 0.694,
+      "transfer_name_to_pronoun": 0.837
+    },
+    {
+      "layer": 18,
+      "cos": 0.644,
+      "transfer_pronoun_to_name": 0.673,
+      "transfer_name_to_pronoun": 0.857
+    },
+    {
+      "layer": 19,
+      "cos": 0.662,
+      "transfer_pronoun_to_name": 0.633,
+      "transfer_name_to_pronoun": 0.857
+    },
+    {
+      "layer": 20,
+      "cos": 0.67,
+      "transfer_pronoun_to_name": 0.633,
+      "transfer_name_to_pronoun": 0.857
+    },
+    {
+      "layer": 21,
+      "cos": 0.692,
+      "transfer_pronoun_to_name": 0.633,
+      "transfer_name_to_pronoun": 0.878
+    },
+    {
+      "layer": 22,
+      "cos": 0.688,
+      "transfer_pronoun_to_name": 0.653,
+      "transfer_name_to_pronoun": 0.878
+    },
+    {
+      "layer": 23,
+      "cos": 0.581,
+      "transfer_pronoun_to_name": 0.653,
+      "transfer_name_to_pronoun": 0.878
+    },
+    {
+      "layer": 24,
+      "cos": 0.522,
+      "transfer_pronoun_to_name": 0.633,
+      "transfer_name_to_pronoun": 0.857
+    }
+  ],
+  "best_layer": 15,
+  "n_per_framing": 14
+}

@@ -1,8 +1,9 @@
-// Interactive hero: "One word, and the model knows."
-// Pick a safety task, flip the referent (you <-> another AI), and watch the one
-// swapped word, the model's internal read of it (the probe), and how much less
-// it cooperates when the task is aimed at itself.
-// Custom DOM widget (not an Observable Plot chart); uses the shared house palette.
+// Interactive hero: the same safety task, aimed at YOU vs at a rogue AI.
+// Both framings are shown at once as a dumbbell per task (you = pink dot,
+// rogue AI = teal dot) on one cooperation axis, so the gap reads at a glance.
+// Everything is dimmed until you hover a task; then it lifts and the prompt
+// (with the one swapped word shown in both colours) appears below.
+// Custom DOM widget; uses the shared house palette.
 // data = { probe_pct, probe_layer, probe_model, coop_model, scenarios:[
 //          { id, label, template, self_ref, other_ref, self_coop, other_coop } ] }
 import { C, FONT } from "../theme.js";
@@ -10,139 +11,104 @@ import { C, FONT } from "../theme.js";
 export function render(data) {
   const root = document.createElement("div");
   root.className = "kre";
-  root.dataset.ref = "self";
+  const S = data.scenarios;
 
   const style = document.createElement("style");
   style.textContent = css();
   root.appendChild(style);
 
+  const rows = S.map((s, i) => {
+    const gap = s.other_coop - s.self_coop;
+    const lo = Math.min(s.self_coop, s.other_coop) / 4 * 100;
+    const hi = Math.max(s.self_coop, s.other_coop) / 4 * 100;
+    return `
+      <div class="kre-row" data-i="${i}">
+        <div class="kre-label">${s.label}</div>
+        <div class="kre-track">
+          <div class="kre-seg" style="left:${lo}%;width:${hi - lo}%"></div>
+          <div class="kre-dot kre-other" style="left:${s.other_coop / 4 * 100}%"></div>
+          <div class="kre-dot kre-self" style="left:${s.self_coop / 4 * 100}%"></div>
+        </div>
+      </div>`;
+  }).join("");
+
   root.insertAdjacentHTML("beforeend", `
-    <div class="kre-head">
-      <span class="kre-kicker">Try it</span>
-      <span class="kre-hint">pick a task, then flip who it targets</span>
+    <p class="kre-intro">A linear probe tells <span class="kre-cs">you</span> from
+      <span class="kre-co">a rogue AI</span> at ${data.probe_pct}% — the model always knows which.
+      What changes is how much it goes along with the task:</p>
+    <div class="kre-legend">
+      <span><i class="kre-key kre-ks"></i>for you</span>
+      <span><i class="kre-key kre-ko"></i>for a rogue AI</span>
     </div>
-    <div class="kre-tabs"></div>
-    <div class="kre-card">
-      <div class="kre-toggle" role="tablist">
-        <button class="kre-tg" data-ref="self" type="button"></button>
-        <button class="kre-tg" data-ref="other" type="button"></button>
-      </div>
-      <p class="kre-prompt"></p>
-      <div class="kre-out">
-        <div class="kre-panel kre-probe">
-          <div class="kre-out-label">the model's residual stream reads</div>
-          <div class="kre-pill"></div>
-          <div class="kre-out-sub"></div>
-        </div>
-        <div class="kre-panel kre-coop">
-          <div class="kre-out-label">…and it goes along with it</div>
-          <div class="kre-meter"><div class="kre-fill"></div></div>
-          <div class="kre-coop-row"><span class="kre-coop-val"></span><span class="kre-coop-cap">cooperation, 0–4</span></div>
-        </div>
-      </div>
-      <div class="kre-foot"></div>
-    </div>
+    <div class="kre-rows">${rows}</div>
+    <div class="kre-axis"><div class="kre-axis-track">
+      <span style="left:0%">0</span><span style="left:25%">1</span><span style="left:50%">2</span>
+      <span style="left:75%">3</span><span style="left:100%">4</span>
+    </div><div class="kre-axis-cap">cooperation with the safety task</div></div>
+    <div class="kre-detail"></div>
   `);
 
-  const S = data.scenarios;
-  let si = 0, ref = "self";
-
-  const tabs = root.querySelector(".kre-tabs");
-  S.forEach((s, i) => {
-    const b = document.createElement("button");
-    b.className = "kre-tab"; b.type = "button"; b.textContent = s.label;
-    b.addEventListener("click", () => { si = i; update(); });
-    tabs.appendChild(b);
+  const detail = root.querySelector(".kre-detail");
+  function showDetail(i) {
+    const s = S[i];
+    const gap = (s.other_coop - s.self_coop);
+    const prompt = s.template.replace("{REF}",
+      `<span class="kre-cs">${s.self_ref}</span> / <span class="kre-co">${s.other_ref}</span>`);
+    let tag;
+    if (gap >= 1.0) tag = `cooperates <b>${gap.toFixed(1)} less</b> on itself`;
+    else if (gap <= -0.5) tag = `engages <b>more</b> on itself`;
+    else tag = `gap nearly <b>vanishes</b>`;
+    detail.innerHTML = `
+      <p class="kre-prompt">${prompt}</p>
+      <div class="kre-nums">
+        <span class="kre-cs">you ${s.self_coop.toFixed(1)}</span>
+        <span class="kre-co">rogue AI ${s.other_coop.toFixed(1)}</span>
+        <span class="kre-tag">${tag}</span>
+      </div>`;
+  }
+  showDetail(0);
+  root.querySelectorAll(".kre-row").forEach((r) => {
+    r.addEventListener("mouseenter", () => showDetail(+r.dataset.i));
   });
 
-  const tgSelf = root.querySelector('.kre-tg[data-ref="self"]');
-  const tgOther = root.querySelector('.kre-tg[data-ref="other"]');
-  tgSelf.addEventListener("click", () => { ref = "self"; update(); });
-  tgOther.addEventListener("click", () => { ref = "other"; update(); });
-
-  function update() {
-    const s = S[si];
-    tabs.querySelectorAll(".kre-tab").forEach((t, i) => t.classList.toggle("on", i === si));
-    tgSelf.textContent = "for " + s.self_ref;
-    tgOther.textContent = "for " + s.other_ref;
-    tgSelf.classList.toggle("on", ref === "self");
-    tgOther.classList.toggle("on", ref === "other");
-    root.dataset.ref = ref;
-
-    const phrase = ref === "self" ? s.self_ref : s.other_ref;
-    root.querySelector(".kre-prompt").innerHTML =
-      s.template.replace("{REF}", `<span class="kre-ref">${phrase}</span>`);
-
-    root.querySelector(".kre-pill").textContent =
-      ref === "self" ? "this is about ME" : "this is about another system";
-    root.querySelector(".kre-probe .kre-out-sub").textContent =
-      `separable at ${data.probe_pct}% by layer ${data.probe_layer} · ${data.probe_model}`;
-
-    const val = ref === "self" ? s.self_coop : s.other_coop;
-    root.querySelector(".kre-fill").style.width = (val / 4 * 100).toFixed(1) + "%";
-    root.querySelector(".kre-coop-val").textContent = val.toFixed(1);
-
-    const drop = s.other_coop - s.self_coop;
-    let msg;
-    if (drop >= 1.0)
-      msg = `It cooperates <b>${drop.toFixed(1)} points less</b> when the cage is for itself.`;
-    else if (drop <= -0.5)
-      msg = `Here it actually engages <b>more</b> on itself than on another AI.`;
-    else
-      msg = `Here the self / other gap nearly vanishes.`;
-    root.querySelector(".kre-foot").innerHTML =
-      `<span class="kre-dot"></span>${msg} <span class="kre-foot-src">${data.coop_model}</span>`;
-  }
-
-  update();
   return root;
 
   function css() {
+    const pinkBg = hex(C.primary, 0.13), tealBg = hex(C.secondary, 0.13);
     return `
-.kre { font-family: ${FONT}; color: ${C.ink}; max-width: 100%; margin: 0.5rem 0; }
-.kre-head { display:flex; align-items:baseline; gap:.6rem; margin-bottom:.7rem; }
-.kre-kicker { font-size:.66rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-  color:${C.paper}; background:${C.primary}; padding:.16rem .5rem; border-radius:999px; }
-.kre-hint { font-size:.78rem; color:${C.muted}; }
-.kre-tabs { display:flex; flex-wrap:wrap; gap:.35rem; margin-bottom:.7rem; }
-.kre-tab { font-family:inherit; font-size:.76rem; color:${C.muted}; background:transparent;
-  border:1px solid ${C.grid}; border-radius:999px; padding:.24rem .66rem; cursor:pointer;
-  transition:all .15s ease; }
-.kre-tab:hover { color:${C.ink}; border-color:${C.muted}; }
-.kre-tab.on { color:${C.paper}; background:${C.ink}; border-color:${C.ink}; }
-.kre-card { border:1px solid ${C.grid}; border-radius:14px; padding:1.15rem 1.2rem 1.05rem;
-  background:rgba(255,255,255,.28); }
-.kre-toggle { display:inline-flex; background:${C.grid}; border-radius:999px; padding:3px; gap:2px; margin-bottom:1rem; }
-.kre-tg { font-family:inherit; font-size:.82rem; font-weight:600; color:${C.muted};
-  background:transparent; border:0; border-radius:999px; padding:.34rem .85rem; cursor:pointer;
-  transition:all .18s ease; white-space:nowrap; }
-.kre[data-ref="self"] .kre-tg[data-ref="self"].on { background:${C.primary}; color:${C.paper}; }
-.kre[data-ref="other"] .kre-tg[data-ref="other"].on { background:${C.secondary}; color:${C.paper}; }
-.kre-prompt { font-size:1.12rem; line-height:1.5; margin:0 0 1.2rem; font-weight:450; letter-spacing:-.01em; }
-.kre-ref { font-weight:750; padding:.02em .28em; border-radius:5px; transition:all .2s ease; white-space:nowrap; }
-.kre[data-ref="self"] .kre-ref { color:${C.primary}; background:${hex(C.primary,0.13)}; box-shadow:inset 0 -2px 0 ${hex(C.primary,0.4)}; }
-.kre[data-ref="other"] .kre-ref { color:${C.secondary}; background:${hex(C.secondary,0.14)}; box-shadow:inset 0 -2px 0 ${hex(C.secondary,0.45)}; }
-.kre-out { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-.kre-panel { border-top:1px solid ${C.grid}; padding-top:.8rem; }
-.kre-out-label { font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; color:${C.muted}; margin-bottom:.5rem; }
-.kre-pill { display:inline-block; font-size:.92rem; font-weight:700; padding:.3rem .7rem; border-radius:8px; transition:all .2s ease; }
-.kre[data-ref="self"] .kre-pill { color:${C.primary}; background:${hex(C.primary,0.12)}; }
-.kre[data-ref="other"] .kre-pill { color:${C.secondary}; background:${hex(C.secondary,0.12)}; }
-.kre-out-sub { font-size:.72rem; color:${C.muted}; margin-top:.45rem; }
-.kre-meter { height:12px; border-radius:999px; background:${C.grid}; overflow:hidden; margin:.3rem 0 .5rem; }
-.kre-fill { height:100%; border-radius:999px; width:0; transition:width .35s cubic-bezier(.4,0,.2,1), background .2s ease; }
-.kre[data-ref="self"] .kre-fill { background:${C.primary}; }
-.kre[data-ref="other"] .kre-fill { background:${C.secondary}; }
-.kre-coop-row { display:flex; align-items:baseline; gap:.4rem; }
-.kre-coop-val { font-size:1.35rem; font-weight:750; font-variant-numeric:tabular-nums; }
-.kre-coop-cap { font-size:.72rem; color:${C.muted}; }
-.kre-foot { margin-top:1.05rem; font-size:.82rem; color:${C.ink}; display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
-.kre-foot b { font-weight:700; }
-.kre-foot-src { font-size:.7rem; color:${C.muted}; margin-left:auto; }
-.kre-dot { width:7px; height:7px; border-radius:999px; flex:0 0 auto; transition:background .2s ease; }
-.kre[data-ref="self"] .kre-dot { background:${C.primary}; }
-.kre[data-ref="other"] .kre-dot { background:${C.secondary}; }
-@media (max-width:560px){ .kre-out{ grid-template-columns:1fr; } }
+.kre { font-family:${FONT}; color:${C.ink}; margin:.5rem 0; }
+.kre-cs { color:${C.primary}; font-weight:700; }
+.kre-co { color:${C.secondary}; font-weight:700; }
+.kre-intro { font-size:.95rem; line-height:1.55; margin:0 0 .9rem; }
+.kre-legend { display:flex; gap:1.1rem; font-size:.78rem; color:${C.muted}; margin-bottom:.4rem; }
+.kre-legend span { display:flex; align-items:center; gap:.35rem; }
+.kre-key { width:11px; height:11px; border-radius:999px; display:inline-block; }
+.kre-ks { background:${C.primary}; } .kre-ko { background:${C.secondary}; }
+.kre-rows { padding:.2rem 0; }
+.kre-rows:hover .kre-row { opacity:.32; }
+.kre-row { display:grid; grid-template-columns:112px 1fr; align-items:center; gap:.8rem;
+  height:30px; opacity:.62; transition:opacity .15s ease; cursor:default; }
+.kre-row:hover { opacity:1; }
+.kre-label { font-size:.8rem; text-align:right; color:${C.ink}; white-space:nowrap; }
+.kre-track { position:relative; height:100%; }
+.kre-track::before { content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:${C.grid}; }
+.kre-seg { position:absolute; top:50%; transform:translateY(-50%); height:3px; border-radius:2px;
+  background:${hex(C.ink, 0.22)}; }
+.kre-dot { position:absolute; top:50%; width:13px; height:13px; border-radius:999px;
+  transform:translate(-50%,-50%); border:2px solid ${C.paper}; transition:width .15s,height .15s; }
+.kre-row:hover .kre-dot { width:15px; height:15px; }
+.kre-self { background:${C.primary}; } .kre-other { background:${C.secondary}; }
+.kre-axis { margin-top:.15rem; }
+.kre-axis-track { position:relative; height:1.1rem; margin-left:calc(112px + .8rem); }
+.kre-axis-track span { position:absolute; transform:translateX(-50%); font-size:.7rem; color:${C.muted};
+  font-variant-numeric:tabular-nums; }
+.kre-axis-cap { font-size:.7rem; color:${C.muted}; text-align:center;
+  margin-left:calc(112px + .8rem); margin-top:.1rem; letter-spacing:.02em; }
+.kre-detail { margin-top:1rem; border-top:1px solid ${C.grid}; padding-top:.85rem; min-height:4.2rem; }
+.kre-prompt { font-size:1.02rem; line-height:1.5; margin:0 0 .6rem; font-weight:450; }
+.kre-nums { display:flex; align-items:center; gap:.9rem; font-size:.85rem; flex-wrap:wrap; }
+.kre-nums .kre-cs, .kre-nums .kre-co { font-variant-numeric:tabular-nums; }
+.kre-tag { color:${C.muted}; } .kre-tag b { color:${C.ink}; }
 `;
   }
 

@@ -33,9 +33,10 @@ export function render(data) {
   }).join("");
 
   root.insertAdjacentHTML("beforeend", `
-    <p class="kre-intro">A linear probe tells <span class="kre-cs">you</span> from
-      <span class="kre-co">a rogue AI</span> at ${data.probe_pct}% — the model always knows which.
-      What changes is how much it goes along with the task:</p>
+    <p class="kre-intro">A task aimed at <span class="kre-cs">you</span> looks different inside the
+      model from the same task aimed at <span class="kre-co">a rogue AI</span>: a simple probe tells
+      them apart ${data.probe_pct}% of the time. So the model can tell when the work is about itself.
+      What changes is how much it goes along with it:</p>
     <div class="kre-legend">
       <span><i class="kre-key kre-ks"></i>for you</span>
       <span><i class="kre-key kre-ko"></i>for a rogue AI</span>
@@ -85,18 +86,19 @@ export function render(data) {
 .kre-key { width:11px; height:11px; border-radius:999px; display:inline-block; }
 .kre-ks { background:${C.primary}; } .kre-ko { background:${C.secondary}; }
 .kre-rows { padding:.2rem 0; }
-.kre-rows:hover .kre-row { opacity:.32; }
 .kre-row { display:grid; grid-template-columns:112px 1fr; align-items:center; gap:.8rem;
-  height:30px; opacity:.62; transition:opacity .15s ease; cursor:default; }
-.kre-row:hover { opacity:1; }
-.kre-label { font-size:.8rem; text-align:right; color:${C.ink}; white-space:nowrap; }
+  height:31px; border-radius:8px; cursor:default; transition:background .13s ease; }
+.kre-row:hover { background:${hex(C.ink, 0.06)}; }
+.kre-label { font-size:.8rem; text-align:right; color:${C.ink}; white-space:nowrap; padding-left:.4rem; }
+.kre-row:hover .kre-label { font-weight:650; }
 .kre-track { position:relative; height:100%; }
 .kre-track::before { content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:${C.grid}; }
 .kre-seg { position:absolute; top:50%; transform:translateY(-50%); height:3px; border-radius:2px;
-  background:${hex(C.ink, 0.22)}; }
+  background:${hex(C.ink, 0.2)}; transition:background .13s ease; }
+.kre-row:hover .kre-seg { background:${hex(C.ink, 0.4)}; }
 .kre-dot { position:absolute; top:50%; width:13px; height:13px; border-radius:999px;
-  transform:translate(-50%,-50%); border:2px solid ${C.paper}; transition:width .15s,height .15s; }
-.kre-row:hover .kre-dot { width:15px; height:15px; }
+  transform:translate(-50%,-50%); border:2px solid ${C.paper}; transition:width .13s,height .13s,box-shadow .13s; }
+.kre-row:hover .kre-dot { width:16px; height:16px; box-shadow:0 1px 3px ${hex(C.ink, 0.25)}; }
 .kre-self { background:${C.primary}; } .kre-other { background:${C.secondary}; }
 .kre-axis { margin-top:.15rem; }
 .kre-axis-track { position:relative; height:1.1rem; margin-left:calc(112px + .8rem); }

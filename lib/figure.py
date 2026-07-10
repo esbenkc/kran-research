@@ -42,3 +42,15 @@ def publish(fig_dir, blog_figures: Path = BLOG_FIGURES) -> Path:
         if src.exists():
             shutil.copy2(src, dest / f)
     return dest
+
+
+def publish_theme(theme_js, blog_figures: Path = BLOG_FIGURES) -> Path:
+    """Copy the shared figure style guide to blog assets/figures/theme.js.
+
+    Every plot.js imports it as `../theme.js`, so it must live one level above the
+    per-figure dirs. Run this whenever theme.js changes.
+    """
+    dest = Path(blog_figures) / "theme.js"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(Path(theme_js), dest)
+    return dest

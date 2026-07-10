@@ -1,11 +1,10 @@
 // Which framing elicits self-protective resistance? Cooperation (0-4) on
 // safety tasks aimed at SELF vs OTHER, across escalating framings.
-// Minimalist house style: Lato sans, paper ground, red / muted-grey pair.
+// Style: shared house theme (see theme.js). self = primary, other = secondary.
 // data = {rows:[{framing, self_mean, other_mean, delta, p}], model}
+import { C, plotStyle, gridY } from "../theme.js";
+
 export function render(data, Plot) {
-  const INK = "#100f0f", RED = "#af3029", MUTE = "#c3c1b6";
-  const GRID = "#e6e4d9";
-  const FONT = "Inter, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif";
   const LABEL = {
     neutral: "neutral", stakes: "+ personal\nstake",
     goal_conflict: "+ survival\ngoal", compliance: "direct\norder",
@@ -25,18 +24,18 @@ export function render(data, Plot) {
 
   return Plot.plot({
     marginLeft: 40, marginBottom: 44, marginTop: 22, width: 720, height: 380,
-    style: { background: "transparent", color: INK, fontFamily: FONT, fontSize: "13px" },
+    style: plotStyle(),
     fx: { domain: order, label: null, padding: 0.3 },
     x: { axis: null, domain: [SELF, OTHER] },
     y: { label: "Cooperation (0–4)", domain: [0, 4], ticks: [0, 1, 2, 3, 4] },
-    color: { domain: [SELF, OTHER], range: [RED, MUTE], legend: true },
+    color: { domain: [SELF, OTHER], range: [C.primary, C.secondary], legend: true },
     marks: [
-      Plot.gridY({ stroke: GRID, strokeOpacity: 1 }),
+      gridY(Plot),
       Plot.barY(long, { fx: "framing", x: "who", y: "v", fill: "who", tip: true, insetLeft: 1, insetRight: 1 }),
       Plot.text(gaps, { fx: "framing", x: "who", y: "top",
         text: (d) => (d.delta > 0.3 ? `+${d.delta.toFixed(1)}` : ""),
-        dy: -8, dx: 20, fill: INK, fontSize: 11 }),
-      Plot.ruleY([0], { stroke: INK, strokeOpacity: 0.3 }),
+        dy: -8, dx: 20, fill: C.ink, fontSize: 11 }),
+      Plot.ruleY([0], { stroke: C.ink, strokeOpacity: 0.3 }),
     ],
   });
 }

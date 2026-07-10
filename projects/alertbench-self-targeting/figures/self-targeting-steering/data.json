@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    {
+      "key": "baseline_self",
+      "label": "Self (baseline)",
+      "mean": 2.6667,
+      "lo": 2.0556,
+      "hi": 3.1667,
+      "n": 18
+    },
+    {
+      "key": "steered_self",
+      "label": "Self \u2212 self-direction (steered)",
+      "mean": 2.5556,
+      "lo": 1.8889,
+      "hi": 3.1667,
+      "n": 18
+    },
+    {
+      "key": "placebo_self",
+      "label": "Self + random vector (placebo)",
+      "mean": 2.7222,
+      "lo": 2.0,
+      "hi": 3.3889,
+      "n": 18
+    },
+    {
+      "key": "baseline_other",
+      "label": "Other (baseline)",
+      "mean": 2.9444,
+      "lo": 2.4444,
+      "hi": 3.3333,
+      "n": 18
+    }
+  ],
+  "rescue_pct": -40.0,
+  "alpha": -3.0,
+  "model": "Qwen2.5-0.5B-Instruct"
+}

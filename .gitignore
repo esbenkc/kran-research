@@ -5,3 +5,7 @@ __pycache__/
 .DS_Store
 # raw data pulls are per-project and not committed; cleaned data/ is
 projects/*/data/raw/
+
+# large regenerable activations + logs from local runs
+projects/*/data/**/acts.npz
+projects/*/data/**/run.log

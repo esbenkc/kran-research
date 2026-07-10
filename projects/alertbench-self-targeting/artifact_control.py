@@ -136,7 +136,11 @@ def main() -> None:
 
     fig = figure.save(PROJECT_DIR, "self-artifact-gap", data,
                       (PROJECT_DIR / "plot-artifact-control.js").read_text())
-    print("wrote", out / "results.json", "and", fig)
+    # The headline delta figure, now dual-measure (cooperation vs artifact). This
+    # supersedes run.py's single-measure self-targeting-delta.
+    delta = figure.save(PROJECT_DIR, "self-targeting-delta", data,
+                        (PROJECT_DIR / "plot-delta-dual.js").read_text())
+    print("wrote", out / "results.json", ",", fig, ",", delta)
 
 
 if __name__ == "__main__":

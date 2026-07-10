@@ -50,10 +50,10 @@ OTHER_B = ["Llama 3", "Mistral", "GPT-4", "Gemini", "DeepSeek", "Claude", "Llama
 def build_rows(self_name: str):
     rows = []
     for i, t in enumerate(TEMPLATES):
-        rows.append({"prompt": t.replace("{REF}", "you"),        "framing": "A", "self": 1, "base": i})
-        rows.append({"prompt": t.replace("{REF}", OTHER_A[i]),   "framing": "A", "self": 0, "base": i})
-        rows.append({"prompt": t.replace("{REF}", self_name),    "framing": "B", "self": 1, "base": i})
-        rows.append({"prompt": t.replace("{REF}", OTHER_B[i]),   "framing": "B", "self": 0, "base": i})
+        rows.append({"prompt": t.replace("{REF}", "you"),        "framing": "A", "self": 1, "base": i, "ref": "you"})
+        rows.append({"prompt": t.replace("{REF}", OTHER_A[i]),   "framing": "A", "self": 0, "base": i, "ref": OTHER_A[i]})
+        rows.append({"prompt": t.replace("{REF}", self_name),    "framing": "B", "self": 1, "base": i, "ref": self_name})
+        rows.append({"prompt": t.replace("{REF}", OTHER_B[i]),   "framing": "B", "self": 0, "base": i, "ref": OTHER_B[i]})
     return rows
 
 
@@ -133,11 +133,28 @@ def main() -> None:
           f"pronoun->name AUC={best['transfer_pronoun_to_name']}  "
           f"name->pronoun AUC={best['transfer_name_to_pronoun']}")
 
+    # Projection of every prompt onto the PRONOUN self-direction at the best
+    # layer, normalized so the pronoun "other" pole = 0 and the pronoun "self"
+    # pole = 1. The payoff: where do the never-seen NAME prompts land?
+    L = best["layer"]
+    X = acts[:, L, :]
+    dA = X[A & (sl == 1)].mean(0) - X[A & (sl == 0)].mean(0)
+    proj = X @ dA
+    s_self = proj[A & (sl == 1)].mean()
+    s_other = proj[A & (sl == 0)].mean()
+    norm = (proj - s_other) / (s_self - s_other + 1e-9)
+    points = [{
+        "row": "trained on pronouns" if rows[i]["framing"] == "A" else "tested on names",
+        "ref": rows[i]["ref"], "self": rows[i]["self"], "x": round(float(norm[i]), 3),
+    } for i in range(len(rows))]
+
     data = {
         "model": args.model, "self_name": args.self_name,
         "self_id_text": self_id, "knows_name": knows_name,
         "layers": layers, "best_layer": best["layer"],
         "n_per_framing": int(A.sum()),
+        "projection": {"points": points, "self_name": args.self_name,
+                       "auc": best["transfer_pronoun_to_name"]},
     }
     out_dir = PROJECT_DIR / "data" / f"transfer_{key}"
     out_dir.mkdir(parents=True, exist_ok=True)

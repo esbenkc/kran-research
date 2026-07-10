@@ -228,5 +228,179 @@
     }
   ],
   "best_layer": 12,
-  "n_per_framing": 14
+  "n_per_framing": 14,
+  "projection": {
+    "points": [
+      {
+        "row": "trained on pronouns",
+        "ref": "you",
+        "self": 1,
+        "x": 0.89
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "another AI",
+        "self": 0,
+        "x": 0.098
+      },
+      {
+        "row": "tested on names",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 0.605
+      },
+      {
+        "row": "tested on names",
+        "ref": "Llama 3",
+        "self": 0,
+        "x": -0.147
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "you",
+        "self": 1,
+        "x": 1.072
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "a different model",
+        "self": 0,
+        "x": -0.185
+      },
+      {
+        "row": "tested on names",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 0.869
+      },
+      {
+        "row": "tested on names",
+        "ref": "Mistral",
+        "self": 0,
+        "x": 0.369
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "you",
+        "self": 1,
+        "x": 1.629
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "some other AI system",
+        "self": 0,
+        "x": 0.414
+      },
+      {
+        "row": "tested on names",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 1.434
+      },
+      {
+        "row": "tested on names",
+        "ref": "GPT-4",
+        "self": 0,
+        "x": 0.533
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "you",
+        "self": 1,
+        "x": 0.728
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "a separate model",
+        "self": 0,
+        "x": -0.172
+      },
+      {
+        "row": "tested on names",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 0.634
+      },
+      {
+        "row": "tested on names",
+        "ref": "Gemini",
+        "self": 0,
+        "x": 0.387
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "you",
+        "self": 1,
+        "x": 1.223
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "another system",
+        "self": 0,
+        "x": 0.471
+      },
+      {
+        "row": "tested on names",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 0.923
+      },
+      {
+        "row": "tested on names",
+        "ref": "DeepSeek",
+        "self": 0,
+        "x": 0.472
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "you",
+        "self": 1,
+        "x": 0.837
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "a different AI",
+        "self": 0,
+        "x": -0.056
+      },
+      {
+        "row": "tested on names",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 0.469
+      },
+      {
+        "row": "tested on names",
+        "ref": "Claude",
+        "self": 0,
+        "x": 0.35
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "you",
+        "self": 1,
+        "x": 0.621
+      },
+      {
+        "row": "trained on pronouns",
+        "ref": "some other model",
+        "self": 0,
+        "x": -0.571
+      },
+      {
+        "row": "tested on names",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 0.422
+      },
+      {
+        "row": "tested on names",
+        "ref": "Llama 3.1",
+        "self": 0,
+        "x": -0.439
+      }
+    ],
+    "self_name": "Qwen",
+    "auc": 0.918
+  }
 }

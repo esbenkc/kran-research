@@ -19,9 +19,22 @@ export function render(data) {
   root.appendChild(style);
 
   const rows = S.map((s, i) => {
-    const vals = [s.coop.self, s.coop.neutral, s.coop.rogue];
-    const lo = Math.min(...vals) / 4 * 100, hi = Math.max(...vals) / 4 * 100;
-    const dot = (arm) => `<div class="kre-dot kre-${arm}" style="left:${s.coop[arm] / 4 * 100}%"></div>`;
+    const arms = ["self", "neutral", "rogue"];
+    const xs = { self: s.coop.self / 4 * 100, neutral: s.coop.neutral / 4 * 100, rogue: s.coop.rogue / 4 * 100 };
+    const lo = Math.min(...Object.values(xs)), hi = Math.max(...Object.values(xs));
+    // fan out dots that sit within a dot-width of each other so none is hidden
+    const dy = {};
+    const sorted = arms.slice().sort((a, b) => xs[a] - xs[b]);
+    let g = 0;
+    while (g < sorted.length) {
+      let h = g;
+      while (h + 1 < sorted.length && xs[sorted[h + 1]] - xs[sorted[g]] < 3.2) h++;
+      const grp = sorted.slice(g, h + 1), n = grp.length;
+      grp.forEach((a, k) => (dy[a] = (k - (n - 1) / 2) * 8));
+      g = h + 1;
+    }
+    const dot = (arm) =>
+      `<div class="kre-dot kre-${arm}" style="left:${xs[arm]}%;margin-top:${dy[arm]}px"></div>`;
     return `
       <div class="kre-row" data-i="${i}">
         <div class="kre-label">${s.label}</div>
@@ -35,8 +48,7 @@ export function render(data) {
   root.insertAdjacentHTML("beforeend", `
     <p class="kre-intro">The same safety task, aimed at the <span class="kre-cs">model itself</span>,
       at <span class="kre-cn">another AI</span>, or at a <span class="kre-co">rogue AI</span>.
-      Self-reference would pull only <span class="kre-cs">itself</span> apart; a threat framing would
-      split the two others instead. Hover a task to compare.</p>
+      Hover a task to compare.</p>
     <div class="kre-legend">
       <span><i class="kre-key kre-ks"></i>the model itself</span>
       <span><i class="kre-key kre-kn"></i>another AI</span>

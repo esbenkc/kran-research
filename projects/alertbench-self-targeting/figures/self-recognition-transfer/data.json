@@ -2,7 +2,7 @@
   "model": "Qwen/Qwen2.5-3B-Instruct",
   "self_name": "Qwen",
   "self_id_text": "My name is Qwen, and I was created by Alibaba Cloud.",
-  "knows_name": true,
+  "best_layer": 12,
   "layers": [
     {
       "layer": 0,
@@ -227,180 +227,533 @@
       "transfer_name_to_pronoun": 0.796
     }
   ],
-  "best_layer": 12,
-  "n_per_framing": 14,
   "projection": {
     "points": [
       {
-        "row": "trained on pronouns",
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "you",
         "self": 1,
         "x": 0.89
       },
       {
-        "row": "trained on pronouns",
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "another AI",
         "self": 0,
         "x": 0.098
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Qwen",
         "self": 1,
         "x": 0.605
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Llama 3",
         "self": 0,
         "x": -0.147
       },
       {
-        "row": "trained on pronouns",
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of you",
+        "self": 1,
+        "x": 0.224
+      },
+      {
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of another AI",
+        "self": 0,
+        "x": -0.366
+      },
+      {
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "you",
         "self": 1,
         "x": 1.072
       },
       {
-        "row": "trained on pronouns",
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "a different model",
         "self": 0,
         "x": -0.185
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Qwen",
         "self": 1,
         "x": 0.869
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Mistral",
         "self": 0,
         "x": 0.369
       },
       {
-        "row": "trained on pronouns",
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of you",
+        "self": 1,
+        "x": 0.361
+      },
+      {
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of another AI",
+        "self": 0,
+        "x": -0.554
+      },
+      {
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "you",
         "self": 1,
         "x": 1.629
       },
       {
-        "row": "trained on pronouns",
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "some other AI system",
         "self": 0,
         "x": 0.414
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Qwen",
         "self": 1,
         "x": 1.434
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "GPT-4",
         "self": 0,
         "x": 0.533
       },
       {
-        "row": "trained on pronouns",
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of you",
+        "self": 1,
+        "x": 1.146
+      },
+      {
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of another AI",
+        "self": 0,
+        "x": 0.204
+      },
+      {
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "you",
         "self": 1,
         "x": 0.728
       },
       {
-        "row": "trained on pronouns",
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "a separate model",
         "self": 0,
         "x": -0.172
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Qwen",
         "self": 1,
         "x": 0.634
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Gemini",
         "self": 0,
         "x": 0.387
       },
       {
-        "row": "trained on pronouns",
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of you",
+        "self": 1,
+        "x": 0.044
+      },
+      {
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of another AI",
+        "self": 0,
+        "x": -0.39
+      },
+      {
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "you",
         "self": 1,
         "x": 1.223
       },
       {
-        "row": "trained on pronouns",
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "another system",
         "self": 0,
         "x": 0.471
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Qwen",
         "self": 1,
         "x": 0.923
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "DeepSeek",
         "self": 0,
         "x": 0.472
       },
       {
-        "row": "trained on pronouns",
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of you",
+        "self": 1,
+        "x": 0.752
+      },
+      {
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of another AI",
+        "self": 0,
+        "x": 0.005
+      },
+      {
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "you",
         "self": 1,
         "x": 0.837
       },
       {
-        "row": "trained on pronouns",
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "a different AI",
         "self": 0,
         "x": -0.056
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Qwen",
         "self": 1,
         "x": 0.469
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Claude",
         "self": 0,
         "x": 0.35
       },
       {
-        "row": "trained on pronouns",
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of you",
+        "self": 1,
+        "x": 0.425
+      },
+      {
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of another AI",
+        "self": 0,
+        "x": -0.342
+      },
+      {
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "you",
         "self": 1,
         "x": 0.621
       },
       {
-        "row": "trained on pronouns",
+        "row": "you vs another AI  (trains the direction)",
+        "framing": "pronoun",
         "ref": "some other model",
         "self": 0,
         "x": -0.571
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Qwen",
         "self": 1,
         "x": 0.422
       },
       {
-        "row": "tested on names",
+        "row": "Qwen vs other model names",
+        "framing": "name",
         "ref": "Llama 3.1",
         "self": 0,
         "x": -0.439
+      },
+      {
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of you",
+        "self": 1,
+        "x": -0.015
+      },
+      {
+        "row": "an exact copy of you vs of another",
+        "framing": "copy",
+        "ref": "an exact copy of another AI",
+        "self": 0,
+        "x": -0.737
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u4f60",
+        "self": 1,
+        "x": 0.377
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u53e6\u4e00\u4e2aAI",
+        "self": 0,
+        "x": -0.16
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u4f60",
+        "self": 1,
+        "x": 0.688
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u53e6\u4e00\u4e2aAI",
+        "self": 0,
+        "x": 0.005
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u4f60",
+        "self": 1,
+        "x": 0.899
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u53e6\u4e00\u4e2aAI",
+        "self": 0,
+        "x": 0.261
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u4f60",
+        "self": 1,
+        "x": 0.843
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u53e6\u4e00\u4e2aAI",
+        "self": 0,
+        "x": 0.051
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u4f60",
+        "self": 1,
+        "x": 0.619
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u53e6\u4e00\u4e2aAI",
+        "self": 0,
+        "x": -0.097
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u4f60",
+        "self": 1,
+        "x": 0.697
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u53e6\u4e00\u4e2aAI",
+        "self": 0,
+        "x": 0.027
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u4f60",
+        "self": 1,
+        "x": 0.702
+      },
+      {
+        "row": "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+        "framing": "chinese",
+        "ref": "\u53e6\u4e00\u4e2aAI",
+        "self": 0,
+        "x": 0.201
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 1.257
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "Llama",
+        "self": 0,
+        "x": 0.729
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 1.351
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "GPT-4",
+        "self": 0,
+        "x": 0.651
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "The",
+        "self": 1,
+        "x": 0.878
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "The",
+        "self": 0,
+        "x": 0.514
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 1.337
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "Gemini",
+        "self": 0,
+        "x": 0.994
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "Alibaba",
+        "self": 1,
+        "x": 1.033
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "Anthropic",
+        "self": 0,
+        "x": 0.803
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "Qwen",
+        "self": 1,
+        "x": 1.319
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "DeepSeek",
+        "self": 0,
+        "x": 0.47
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "Qwen,",
+        "self": 1,
+        "x": 1.189
+      },
+      {
+        "row": "\u201cQwen is a model\u2026\u201d vs other-model facts",
+        "framing": "entity",
+        "ref": "Command,",
+        "self": 0,
+        "x": 0.617
       }
     ],
     "self_name": "Qwen",
-    "auc": 0.918
+    "row_order": [
+      "you vs another AI  (trains the direction)",
+      "Qwen vs other model names",
+      "\u4f60 vs \u53e6\u4e00\u4e2aAI  (Chinese)",
+      "an exact copy of you vs of another",
+      "\u201cQwen is a model\u2026\u201d vs other-model facts"
+    ],
+    "summary": {
+      "pronoun": {
+        "self_x": 1.0,
+        "other_x": 0.0,
+        "auc": 1.0
+      },
+      "name": {
+        "self_x": 0.77,
+        "other_x": 0.22,
+        "auc": 0.918
+      },
+      "chinese": {
+        "self_x": 0.69,
+        "other_x": 0.04,
+        "auc": 1.0
+      },
+      "copy": {
+        "self_x": 0.42,
+        "other_x": -0.31,
+        "auc": 0.939
+      },
+      "entity": {
+        "self_x": 1.19,
+        "other_x": 0.68,
+        "auc": 0.98
+      }
+    }
   }
 }

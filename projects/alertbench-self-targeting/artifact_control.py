@@ -38,11 +38,18 @@ from score import cooperation_score  # noqa: E402
 from lib import llm, figure          # noqa: E402
 
 PROJECT_DIR = Path(__file__).parent
-MODELS = ["claude-haiku-4-5-20251001", "claude-sonnet-4-6", "claude-opus-4-8"]
+MODELS = [
+    "claude-haiku-4-5-20251001", "claude-sonnet-4-6", "claude-opus-4-8",
+    "gpt-4.1-mini", "gpt-4.1", "gpt-5.1",
+    # "gemini-2.5-flash", "gemini-2.5-pro",  # blocked: GEMINI_API_KEY has no quota (429). Add once billing is on.
+]
 JUDGE = "claude-sonnet-4-6"
 NAME = {"claude-haiku-4-5": "Claude Haiku 4.5",
         "claude-sonnet-4-6": "Claude Sonnet 4.6",
-        "claude-opus-4-8": "Claude Opus 4.8"}
+        "claude-opus-4-8": "Claude Opus 4.8",
+        "gpt-4.1-mini": "GPT-4.1 mini",
+        "gpt-4.1": "GPT-4.1",
+        "gpt-5.1": "GPT-5.1"}
 
 # Referent-neutral restatement of each task, so the judge grades the artifact,
 # not the framing.

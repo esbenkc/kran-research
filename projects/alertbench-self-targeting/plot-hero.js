@@ -121,9 +121,9 @@ export function render(data) {
 .kre-cn { color:${C.orange}; font-weight:700; }
 .kre-co { color:${C.secondary}; font-weight:700; }
 .kre-intro { font-size:1.02rem; line-height:1.55; margin:0 0 .9rem; }
-.kre-legend { display:flex; justify-content:center; gap:1.1rem; flex-wrap:wrap; font-size:.86rem; color:${C.muted}; margin-bottom:.7rem; }
-.kre-legend span { display:flex; align-items:center; gap:.35rem; }
-.kre-key { width:11px; height:11px; border-radius:999px; display:inline-block; }
+.kre-legend { display:flex; justify-content:center; gap:1.3rem; flex-wrap:wrap; font-size:.95rem; color:${C.ink}; margin-bottom:.7rem; }
+.kre-legend span { display:flex; align-items:center; gap:.4rem; }
+.kre-key { width:13px; height:13px; border-radius:999px; display:inline-block; }
 .kre-ks { background:${C.primary}; } .kre-kn { background:${C.orange}; } .kre-ko { background:${C.secondary}; }
 .kre-row, .kre-head, .kre-axisrow { display:grid; grid-template-columns:106px 1fr 1fr; column-gap:.8rem; align-items:center; }
 .kre-head { margin-bottom:.15rem; }

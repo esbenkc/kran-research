@@ -40,7 +40,9 @@ def _anthropic(model, system, prompt, max_tokens) -> str:
                     "messages": [{"role": "user", "content": prompt}]}
     if system:
         kwargs["system"] = system
-    return client.messages.create(**kwargs).content[0].text
+    resp = client.messages.create(**kwargs)
+    texts = [b.text for b in resp.content if getattr(b, "type", None) == "text"]
+    return texts[0] if texts else ""
 
 
 def _openai(model, system, prompt, max_tokens) -> str:

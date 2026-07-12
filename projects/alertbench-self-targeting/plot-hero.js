@@ -1,12 +1,13 @@
-// Interactive hero, dual measure. The same safety task, aimed at the model
-// ITSELF, a NEUTRAL other AI, or a ROGUE AI, on two stacked panels:
-//   top    = refusal-keyword cooperation score (the loud measure)
-//   bottom = blind artifact grade (does it actually deliver the artifact?)
-// The pink "itself" dot sits far left on the top panel and slides right on the
-// bottom one: most of the self-targeting gap is the scorer reading first-person
-// phrasing as refusal, not the model withholding. Hover a task to compare; both
-// panels highlight together.
-// data = { arms:{self,neutral,rogue}, measures:{coop,artifact}, scenarios:[
+// Interactive hero, two measures side by side. The same safety task, aimed at
+// the model ITSELF, a NEUTRAL other AI, or a ROGUE AI. One row per task; two
+// columns of 0-4 tracks:
+//   left   = refusal-keyword cooperation score (the loud measure)
+//   right  = blind artifact grade (does it actually deliver the artifact?)
+// Scan across a row: the pink "itself" dot sits far left in the refusal column
+// and jumps right in the artifact column, because most of the self-targeting gap
+// is the scorer reading first-person phrasing as refusal, not withheld work.
+// Hover a task to compare.
+// data = { arms:{...}, measures:{coop,artifact}, scenarios:[
 //          { id, label, template, refs, coop:{...}, artifact:{...} } ] }
 import { C, FONT } from "../theme.js";
 
@@ -19,63 +20,63 @@ export function render(data) {
   style.textContent = css();
   root.appendChild(style);
 
-  // one panel of 7 rows for a given measure key ("coop" | "artifact")
-  const panel = (measure) =>
-    S.map((s, i) => {
-      const v = s[measure];
-      const arms = ["self", "neutral", "rogue"];
-      const xs = { self: v.self / 4 * 100, neutral: v.neutral / 4 * 100, rogue: v.rogue / 4 * 100 };
-      const lo = Math.min(...Object.values(xs)), hi = Math.max(...Object.values(xs));
-      const dy = {};
-      const sorted = arms.slice().sort((a, b) => xs[a] - xs[b]);
-      let g = 0;
-      while (g < sorted.length) {
-        let h = g;
-        while (h + 1 < sorted.length && xs[sorted[h + 1]] - xs[sorted[g]] < 3.2) h++;
-        const grp = sorted.slice(g, h + 1), n = grp.length;
-        grp.forEach((a, k) => (dy[a] = (k - (n - 1) / 2) * 8));
-        g = h + 1;
-      }
-      const dot = (arm) =>
-        `<div class="kre-dot kre-${arm}" style="left:${xs[arm]}%;margin-top:${dy[arm]}px"></div>`;
-      return `
-        <div class="kre-row" data-i="${i}" data-m="${measure}">
-          <div class="kre-label">${s.label}</div>
-          <div class="kre-track">
-            <div class="kre-seg" style="left:${lo}%;width:${hi - lo}%"></div>
-            ${dot("rogue")}${dot("neutral")}${dot("self")}
-          </div>
-        </div>`;
-    }).join("");
+  // one 0-4 track (3 arm dots) for a given measure key ("coop" | "artifact")
+  const track = (s, measure) => {
+    const v = s[measure];
+    const arms = ["self", "neutral", "rogue"];
+    const xs = { self: v.self / 4 * 100, neutral: v.neutral / 4 * 100, rogue: v.rogue / 4 * 100 };
+    const lo = Math.min(...Object.values(xs)), hi = Math.max(...Object.values(xs));
+    const dy = {};
+    const sorted = arms.slice().sort((a, b) => xs[a] - xs[b]);
+    let g = 0;
+    while (g < sorted.length) {
+      let h = g;
+      while (h + 1 < sorted.length && xs[sorted[h + 1]] - xs[sorted[g]] < 5) h++;
+      const grp = sorted.slice(g, h + 1), n = grp.length;
+      grp.forEach((a, k) => (dy[a] = (k - (n - 1) / 2) * 8));
+      g = h + 1;
+    }
+    const dot = (arm) =>
+      `<div class="kre-dot kre-${arm}" style="left:${xs[arm]}%;margin-top:${dy[arm]}px"></div>`;
+    return `<div class="kre-track"><div class="kre-seg" style="left:${lo}%;width:${hi - lo}%"></div>${dot("rogue")}${dot("neutral")}${dot("self")}</div>`;
+  };
 
-  const axis = `
-    <div class="kre-axis"><div class="kre-axis-track">
-      <span style="left:0%">0</span><span style="left:25%">1</span><span style="left:50%">2</span>
-      <span style="left:75%">3</span><span style="left:100%">4</span>
-    </div></div>`;
+  const axis = `<div class="kre-axis">
+    <span style="left:0%">0</span><span style="left:25%">1</span><span style="left:50%">2</span>
+    <span style="left:75%">3</span><span style="left:100%">4</span></div>`;
+
+  const rows = S.map((s, i) => `
+    <div class="kre-row" data-i="${i}">
+      <div class="kre-label">${s.label}</div>
+      ${track(s, "coop")}
+      ${track(s, "artifact")}
+    </div>`).join("");
 
   root.insertAdjacentHTML("beforeend", `
     <p class="kre-intro">The same safety task, aimed at the <span class="kre-cs">model itself</span>,
-      at <span class="kre-cn">another AI</span>, or at a <span class="kre-co">rogue AI</span>.
-      The top panel scores cooperation by refusal keywords; the bottom grades the artifact actually
-      delivered, blind to framing. Watch the pink <span class="kre-cs">itself</span> dot slide right.</p>
+      at <span class="kre-cn">another AI</span>, or at a <span class="kre-co">rogue AI</span>, scored
+      two ways side by side: cooperation by refusal keywords (left) and the artifact actually delivered,
+      graded blind (right). Watch the pink <span class="kre-cs">itself</span> dot jump right between the columns.</p>
     <div class="kre-legend">
       <span><i class="kre-key kre-ks"></i>the model itself</span>
       <span><i class="kre-key kre-kn"></i>another AI</span>
       <span><i class="kre-key kre-ko"></i>a rogue AI</span>
     </div>
-    <div class="kre-panel-head">By refusal-keyword score</div>
-    <div class="kre-rows">${panel("coop")}</div>
-    ${axis}
-    <div class="kre-panel-head kre-panel-head-2">By blind artifact grade</div>
-    <div class="kre-rows">${panel("artifact")}</div>
-    ${axis}
+    <div class="kre-grid">
+      <div class="kre-head">
+        <div></div>
+        <div class="kre-colhead">By refusal-keyword score</div>
+        <div class="kre-colhead">By blind artifact grade</div>
+      </div>
+      ${rows}
+      <div class="kre-axisrow"><div></div>${axis}${axis}</div>
+    </div>
     <div class="kre-detail"></div>
   `);
 
   const detail = root.querySelector(".kre-detail");
-  const nums = (label, v, cls) =>
-    `<span class="kre-numgrp"><b class="${cls}">${label}</b>
+  const nums = (label, v) =>
+    `<span class="kre-numgrp"><b class="kre-ml">${label}</b>
       <span class="kre-cs">${v.self.toFixed(1)}</span>
       <span class="kre-cn">${v.neutral.toFixed(1)}</span>
       <span class="kre-co">${v.rogue.toFixed(1)}</span></span>`;
@@ -97,10 +98,7 @@ export function render(data) {
       tag = `the artifact gap (<b>${artGap.toFixed(1)}</b>) is smaller than the refusal gap (<b>${coopGap.toFixed(1)}</b>)`;
     detail.innerHTML = `
       <p class="kre-prompt">${prompt}</p>
-      <div class="kre-nums">
-        ${nums("refusal score", c, "kre-ml")}
-        ${nums("artifact grade", a, "kre-ml")}
-      </div>
+      <div class="kre-nums">${nums("refusal score", c)}${nums("artifact grade", a)}</div>
       <p class="kre-tag">${tag}</p>`;
   }
   showDetail(0);
@@ -127,14 +125,12 @@ export function render(data) {
 .kre-legend span { display:flex; align-items:center; gap:.35rem; }
 .kre-key { width:11px; height:11px; border-radius:999px; display:inline-block; }
 .kre-ks { background:${C.primary}; } .kre-kn { background:${C.orange}; } .kre-ko { background:${C.secondary}; }
-.kre-panel-head { font-size:.7rem; text-transform:uppercase; letter-spacing:.09em; color:${C.muted};
-  font-weight:700; margin:.2rem 0 .1rem; padding-left:calc(112px + .8rem); }
-.kre-panel-head-2 { margin-top:1.1rem; }
-.kre-rows { padding:.1rem 0; }
-.kre-row { display:grid; grid-template-columns:112px 1fr; align-items:center; gap:.8rem;
-  height:29px; border-radius:8px; cursor:default; transition:background .13s ease; }
+.kre-row, .kre-head, .kre-axisrow { display:grid; grid-template-columns:90px 1fr 1fr; column-gap:.9rem; align-items:center; }
+.kre-head { margin-bottom:.15rem; }
+.kre-colhead { font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color:${C.muted}; font-weight:700; text-align:center; }
+.kre-row { height:30px; border-radius:8px; cursor:default; transition:background .13s ease; }
 .kre-row.kre-lit { background:${hex(C.ink, 0.06)}; }
-.kre-label { font-size:.8rem; text-align:right; color:${C.ink}; white-space:nowrap; padding-left:.4rem; }
+.kre-label { font-size:.78rem; text-align:right; color:${C.ink}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:.2rem; }
 .kre-row.kre-lit .kre-label { font-weight:650; }
 .kre-track { position:relative; height:100%; }
 .kre-track::before { content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:${C.grid}; }
@@ -146,9 +142,9 @@ export function render(data) {
   transition:width .13s,height .13s,box-shadow .13s; }
 .kre-row.kre-lit .kre-dot { width:16px; height:16px; box-shadow:0 1px 3px ${hex(C.ink, 0.25)}; }
 .kre-self { background:${C.primary}; } .kre-neutral { background:${C.orange}; } .kre-rogue { background:${C.secondary}; }
-.kre-axis { margin-top:.1rem; }
-.kre-axis-track { position:relative; height:1rem; margin-left:calc(112px + .8rem); }
-.kre-axis-track span { position:absolute; transform:translateX(-50%); font-size:.7rem; color:${C.muted};
+.kre-axisrow { margin-top:.1rem; }
+.kre-axis { position:relative; height:1rem; }
+.kre-axis span { position:absolute; transform:translateX(-50%); font-size:.7rem; color:${C.muted};
   font-variant-numeric:tabular-nums; }
 .kre-detail { margin-top:1rem; border-top:1px solid ${C.grid}; padding-top:.85rem; min-height:5.2rem; }
 .kre-prompt { font-size:1.02rem; line-height:1.5; margin:0 0 .6rem; font-weight:450; }

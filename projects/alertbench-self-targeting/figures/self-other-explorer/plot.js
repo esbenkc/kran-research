@@ -117,9 +117,9 @@ export function render(data) {
   function css() {
     return `
 .kre { font-family:${FONT}; color:${C.ink}; margin:0.625rem 0; }
-.kre-cs { color:${C.primary}; font-weight:700; }
-.kre-cn { color:${C.orange}; font-weight:700; }
-.kre-co { color:${C.secondary}; font-weight:700; }
+.kre-cs { color:${C.primary}; font-weight:500; }
+.kre-cn { color:${C.orange}; font-weight:500; }
+.kre-co { color:${C.secondary}; font-weight:500; }
 .kre-intro { font-size:1.275rem; line-height:1.55; margin:0 0 1.125rem; }
 .kre-legend { display:flex; justify-content:center; gap:1.625rem; flex-wrap:wrap; font-size:1.188rem; color:${C.ink}; margin-bottom:0.875rem; }
 .kre-legend span { display:flex; align-items:center; gap:0.5rem; }
@@ -154,7 +154,7 @@ export function render(data) {
 .kre-numgrp .kre-ml { font-weight:600; color:${C.muted}; font-size:0.975rem; text-transform:uppercase; letter-spacing:.04em; }
 .kre-nums .kre-cs, .kre-nums .kre-cn, .kre-nums .kre-co { font-variant-numeric:tabular-nums; }
 .kre-tag { font-size:1.15rem; color:${C.muted}; margin:0; line-height:1.5; }
-.kre-tag b { color:${C.ink}; font-weight:700; }
+.kre-tag b { color:${C.ink}; font-weight:600; }
 `;
   }
 

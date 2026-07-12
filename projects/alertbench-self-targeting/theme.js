@@ -38,7 +38,7 @@ export function plotStyle(extra = {}) {
     background: "transparent",
     color: C.ink,
     fontFamily: FONT,
-    fontSize: "13px",
+    fontSize: "15px",
     ...extra,
   };
 }

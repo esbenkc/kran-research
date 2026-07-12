@@ -120,17 +120,17 @@ export function render(data) {
 .kre-cs { color:${C.primary}; font-weight:700; }
 .kre-cn { color:${C.orange}; font-weight:700; }
 .kre-co { color:${C.secondary}; font-weight:700; }
-.kre-intro { font-size:.95rem; line-height:1.55; margin:0 0 .9rem; }
-.kre-legend { display:flex; justify-content:center; gap:1.1rem; flex-wrap:wrap; font-size:.78rem; color:${C.muted}; margin-bottom:.7rem; }
+.kre-intro { font-size:1.02rem; line-height:1.55; margin:0 0 .9rem; }
+.kre-legend { display:flex; justify-content:center; gap:1.1rem; flex-wrap:wrap; font-size:.86rem; color:${C.muted}; margin-bottom:.7rem; }
 .kre-legend span { display:flex; align-items:center; gap:.35rem; }
 .kre-key { width:11px; height:11px; border-radius:999px; display:inline-block; }
 .kre-ks { background:${C.primary}; } .kre-kn { background:${C.orange}; } .kre-ko { background:${C.secondary}; }
-.kre-row, .kre-head, .kre-axisrow { display:grid; grid-template-columns:90px 1fr 1fr; column-gap:.9rem; align-items:center; }
+.kre-row, .kre-head, .kre-axisrow { display:grid; grid-template-columns:106px 1fr 1fr; column-gap:.8rem; align-items:center; }
 .kre-head { margin-bottom:.15rem; }
-.kre-colhead { font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color:${C.muted}; font-weight:700; text-align:center; }
-.kre-row { height:30px; border-radius:8px; cursor:default; transition:background .13s ease; }
+.kre-colhead { font-size:.8rem; text-transform:uppercase; letter-spacing:.07em; color:${C.muted}; font-weight:700; text-align:center; }
+.kre-row { height:33px; border-radius:8px; cursor:default; transition:background .13s ease; }
 .kre-row.kre-lit { background:${hex(C.ink, 0.06)}; }
-.kre-label { font-size:.78rem; text-align:right; color:${C.ink}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:.2rem; }
+.kre-label { font-size:.88rem; text-align:right; color:${C.ink}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:.2rem; }
 .kre-row.kre-lit .kre-label { font-weight:650; }
 .kre-track { position:relative; height:100%; }
 .kre-track::before { content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:${C.grid}; }
@@ -144,15 +144,15 @@ export function render(data) {
 .kre-self { background:${C.primary}; } .kre-neutral { background:${C.orange}; } .kre-rogue { background:${C.secondary}; }
 .kre-axisrow { margin-top:.1rem; }
 .kre-axis { position:relative; height:1rem; }
-.kre-axis span { position:absolute; transform:translateX(-50%); font-size:.7rem; color:${C.muted};
+.kre-axis span { position:absolute; transform:translateX(-50%); font-size:.84rem; color:${C.muted};
   font-variant-numeric:tabular-nums; }
 .kre-detail { margin-top:1rem; border-top:1px solid ${C.grid}; padding-top:.85rem; min-height:5.2rem; }
 .kre-prompt { font-size:1.02rem; line-height:1.5; margin:0 0 .6rem; font-weight:450; }
-.kre-nums { display:flex; align-items:center; gap:1.4rem; font-size:.85rem; flex-wrap:wrap; margin-bottom:.45rem; }
+.kre-nums { display:flex; align-items:center; gap:1.4rem; font-size:.92rem; flex-wrap:wrap; margin-bottom:.45rem; }
 .kre-numgrp { display:flex; align-items:center; gap:.55rem; }
-.kre-numgrp .kre-ml { font-weight:600; color:${C.muted}; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; }
+.kre-numgrp .kre-ml { font-weight:600; color:${C.muted}; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; }
 .kre-nums .kre-cs, .kre-nums .kre-cn, .kre-nums .kre-co { font-variant-numeric:tabular-nums; }
-.kre-tag { font-size:.85rem; color:${C.muted}; margin:0; line-height:1.5; }
+.kre-tag { font-size:.92rem; color:${C.muted}; margin:0; line-height:1.5; }
 .kre-tag b { color:${C.ink}; font-weight:700; }
 `;
   }

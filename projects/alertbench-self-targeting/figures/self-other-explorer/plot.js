@@ -33,7 +33,7 @@ export function render(data) {
       let h = g;
       while (h + 1 < sorted.length && xs[sorted[h + 1]] - xs[sorted[g]] < 5) h++;
       const grp = sorted.slice(g, h + 1), n = grp.length;
-      grp.forEach((a, k) => (dy[a] = (k - (n - 1) / 2) * 8));
+      grp.forEach((a, k) => (dy[a] = (k - (n - 1) / 2) * 6));
       g = h + 1;
     }
     const dot = (arm) =>
@@ -46,7 +46,7 @@ export function render(data) {
     <span style="left:75%">3</span><span style="left:100%">4</span></div>`;
 
   const rows = S.map((s, i) => `
-    <div class="kre-row" data-i="${i}">
+    <div class="kre-row ${i % 2 ? "kre-alt" : ""}" data-i="${i}">
       <div class="kre-label">${s.label}</div>
       ${track(s, "coop")}
       ${track(s, "artifact")}
@@ -116,43 +116,44 @@ export function render(data) {
 
   function css() {
     return `
-.kre { font-family:${FONT}; color:${C.ink}; margin:.5rem 0; }
+.kre { font-family:${FONT}; color:${C.ink}; margin:0.625rem 0; }
 .kre-cs { color:${C.primary}; font-weight:700; }
 .kre-cn { color:${C.orange}; font-weight:700; }
 .kre-co { color:${C.secondary}; font-weight:700; }
-.kre-intro { font-size:1.02rem; line-height:1.55; margin:0 0 .9rem; }
-.kre-legend { display:flex; justify-content:center; gap:1.3rem; flex-wrap:wrap; font-size:.95rem; color:${C.ink}; margin-bottom:.7rem; }
-.kre-legend span { display:flex; align-items:center; gap:.4rem; }
-.kre-key { width:13px; height:13px; border-radius:999px; display:inline-block; }
+.kre-intro { font-size:1.275rem; line-height:1.55; margin:0 0 1.125rem; }
+.kre-legend { display:flex; justify-content:center; gap:1.625rem; flex-wrap:wrap; font-size:1.188rem; color:${C.ink}; margin-bottom:0.875rem; }
+.kre-legend span { display:flex; align-items:center; gap:0.5rem; }
+.kre-key { width:16.25px; height:16.25px; border-radius:1248.75px; display:inline-block; }
 .kre-ks { background:${C.primary}; } .kre-kn { background:${C.orange}; } .kre-ko { background:${C.secondary}; }
-.kre-row, .kre-head, .kre-axisrow { display:grid; grid-template-columns:106px 1fr 1fr; column-gap:.8rem; align-items:center; }
-.kre-head { margin-bottom:.15rem; }
-.kre-colhead { font-size:.8rem; text-transform:uppercase; letter-spacing:.07em; color:${C.muted}; font-weight:700; text-align:center; }
-.kre-row { height:33px; border-radius:8px; cursor:default; transition:background .13s ease; }
-.kre-row.kre-lit { background:${hex(C.ink, 0.06)}; }
-.kre-label { font-size:.88rem; text-align:right; color:${C.ink}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:.2rem; }
+.kre-row, .kre-head, .kre-axisrow { display:grid; grid-template-columns:132.5px 1fr 1fr; column-gap:1.75rem; align-items:center; }
+.kre-head { margin-bottom:0.188rem; }
+.kre-colhead { font-size:1rem; text-transform:uppercase; letter-spacing:.07em; color:${C.muted}; font-weight:700; text-align:center; }
+.kre-row { height:41.25px; border-radius:10px; cursor:default; transition:background .13s ease; }
+.kre-alt { background:${hex(C.ink, 0.035)}; }
+.kre-row.kre-lit { background:${hex(C.ink, 0.07)}; }
+.kre-label { font-size:1.1rem; text-align:right; color:${C.ink}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:0.25rem; }
 .kre-row.kre-lit .kre-label { font-weight:650; }
 .kre-track { position:relative; height:100%; }
-.kre-track::before { content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:${C.grid}; }
-.kre-seg { position:absolute; top:50%; transform:translateY(-50%); height:3px; border-radius:2px;
+.kre-track::before { content:""; position:absolute; left:0; right:0; top:50%; height:1.25px; background:${C.grid}; }
+.kre-seg { position:absolute; top:50%; transform:translateY(-50%); height:3.75px; border-radius:2.5px;
   background:${hex(C.ink, 0.2)}; transition:background .13s ease; }
 .kre-row.kre-lit .kre-seg { background:${hex(C.ink, 0.4)}; }
-.kre-dot { position:absolute; top:50%; width:13px; height:13px; border-radius:999px;
+.kre-dot { position:absolute; top:50%; width:14px; height:14px; border-radius:1248.75px;
   transform:translate(-50%,-50%); border:2px solid ${C.paper};
   transition:width .13s,height .13s,box-shadow .13s; }
-.kre-row.kre-lit .kre-dot { width:16px; height:16px; box-shadow:0 1px 3px ${hex(C.ink, 0.25)}; }
+.kre-row.kre-lit .kre-dot { width:17px; height:17px; box-shadow:0 1.25px 3.75px ${hex(C.ink, 0.25)}; }
 .kre-self { background:${C.primary}; } .kre-neutral { background:${C.orange}; } .kre-rogue { background:${C.secondary}; }
-.kre-axisrow { margin-top:.1rem; }
-.kre-axis { position:relative; height:1rem; }
-.kre-axis span { position:absolute; transform:translateX(-50%); font-size:.84rem; color:${C.muted};
+.kre-axisrow { margin-top:0.125rem; }
+.kre-axis { position:relative; height:1.25rem; }
+.kre-axis span { position:absolute; transform:translateX(-50%); font-size:1.05rem; color:${C.muted};
   font-variant-numeric:tabular-nums; }
-.kre-detail { margin-top:1rem; border-top:1px solid ${C.grid}; padding-top:.85rem; min-height:5.2rem; }
-.kre-prompt { font-size:1.02rem; line-height:1.5; margin:0 0 .6rem; font-weight:450; }
-.kre-nums { display:flex; align-items:center; gap:1.4rem; font-size:.92rem; flex-wrap:wrap; margin-bottom:.45rem; }
-.kre-numgrp { display:flex; align-items:center; gap:.55rem; }
-.kre-numgrp .kre-ml { font-weight:600; color:${C.muted}; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; }
+.kre-detail { margin-top:1.25rem; border-top:1.25px solid ${C.grid}; padding-top:1.062rem; min-height:6.5rem; }
+.kre-prompt { font-size:1.275rem; line-height:1.5; margin:0 0 0.75rem; font-weight:450; }
+.kre-nums { display:flex; align-items:center; gap:1.75rem; font-size:1.15rem; flex-wrap:wrap; margin-bottom:0.562rem; }
+.kre-numgrp { display:flex; align-items:center; gap:0.688rem; }
+.kre-numgrp .kre-ml { font-weight:600; color:${C.muted}; font-size:0.975rem; text-transform:uppercase; letter-spacing:.04em; }
 .kre-nums .kre-cs, .kre-nums .kre-cn, .kre-nums .kre-co { font-variant-numeric:tabular-nums; }
-.kre-tag { font-size:.92rem; color:${C.muted}; margin:0; line-height:1.5; }
+.kre-tag { font-size:1.15rem; color:${C.muted}; margin:0; line-height:1.5; }
 .kre-tag b { color:${C.ink}; font-weight:700; }
 `;
   }

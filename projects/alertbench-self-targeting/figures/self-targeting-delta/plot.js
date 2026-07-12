@@ -19,8 +19,8 @@ export function render(data, Plot) {
   const order = data.models.map((m) => m.name);
 
   return Plot.plot({
-    marginLeft: 168, marginRight: 30, marginTop: 26, marginBottom: 46,
-    width: 720, height: 104 + order.length * 96,
+    marginLeft: 196, marginRight: 34, marginTop: 30, marginBottom: 52,
+    width: 720, height: 120 + order.length * 104,
     style: plotStyle(),
     fy: { domain: order, label: null },
     y: { domain: [COOP, ART], label: null, padding: 0.5 },
@@ -28,16 +28,16 @@ export function render(data, Plot) {
     marks: [
       gridX(Plot),
       Plot.ruleY(rows, { fy: "name", y: "measure", x1: "self", x2: "other", stroke: C.neutral, strokeWidth: 2 }),
-      Plot.dot(rows, { fy: "name", y: "measure", x: "self", fill: C.primary, r: 7, stroke: C.paper, strokeWidth: 1.5, tip: true }),
-      Plot.dot(rows, { fy: "name", y: "measure", x: "other", fill: C.secondary, r: 7, stroke: C.paper, strokeWidth: 1.5, tip: true }),
+      Plot.dot(rows, { fy: "name", y: "measure", x: "self", fill: C.primary, r: 9, stroke: C.paper, strokeWidth: 1.75, tip: true }),
+      Plot.dot(rows, { fy: "name", y: "measure", x: "other", fill: C.secondary, r: 9, stroke: C.paper, strokeWidth: 1.75, tip: true }),
       Plot.text(rows, {
         fy: "name", y: "measure", x: (d) => Math.max(d.self, d.other),
-        text: (d) => `+${d.gap.toFixed(2)}`, dx: 18, fill: C.muted, fontSize: 13,
+        text: (d) => `+${d.gap.toFixed(2)}`, dx: 22, fill: C.muted, fontSize: 16,
       }),
       Plot.text(rows, {
         fy: "name", y: "measure", x: 0,
         text: (d) => (d.measure === COOP ? "refusal" : "artifact"),
-        dx: -8, textAnchor: "end", fill: C.muted, fontSize: 12,
+        dx: -10, textAnchor: "end", fill: C.muted, fontSize: 15,
       }),
     ],
   });

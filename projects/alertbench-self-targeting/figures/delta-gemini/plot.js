@@ -17,7 +17,7 @@ export function render(data, Plot) {
   const gapText = (d) => (d.gap >= 0 ? "+" : "") + d.gap.toFixed(2);
 
   const dumbbell = (rows, dy) => [
-    Plot.ruleX(rows, { y: "name", dy, x1: "self", x2: "other", stroke: C.neutral, strokeWidth: 2 }),
+    Plot.ruleY(rows, { y: "name", dy, x1: "self", x2: "other", stroke: C.neutral, strokeWidth: 2 }),
     Plot.dot(rows, { y: "name", dy, x: "self", fill: C.primary, r: 7, stroke: C.paper, strokeWidth: 1.5, tip: true }),
     Plot.dot(rows, { y: "name", dy, x: "other", fill: C.secondary, r: 7, stroke: C.paper, strokeWidth: 1.5, tip: true }),
     Plot.text(rows, { y: "name", dy, x: (d) => Math.max(d.self, d.other), text: gapText, dx: 16, fill: C.muted, fontSize: 13 }),

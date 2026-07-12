@@ -145,9 +145,20 @@ def main() -> None:
                       (PROJECT_DIR / "plot-artifact-control.js").read_text())
     # The headline delta figure, now dual-measure (cooperation vs artifact). This
     # supersedes run.py's single-measure self-targeting-delta.
-    delta = figure.save(PROJECT_DIR, "self-targeting-delta", data,
-                        (PROJECT_DIR / "plot-delta-dual.js").read_text())
-    print("wrote", out / "results.json", ",", fig, ",", delta)
+    delta_js = (PROJECT_DIR / "plot-delta-dual.js").read_text()
+    figure.save(PROJECT_DIR, "self-targeting-delta", data, delta_js)
+
+    # Per-provider deltas, so the article can give each family its own section
+    # (they behave very differently). One figure per provider that has models.
+    def provider(m):
+        return "claude" if m.startswith("claude") else "gpt" if m.startswith("gpt") else "gemini"
+    groups: dict = {}
+    for pm in per_model:
+        groups.setdefault(provider(pm["model"]), []).append(pm)
+    for key, ms in groups.items():
+        figure.save(PROJECT_DIR, f"delta-{key}", {**data, "models": ms}, delta_js)
+    print("wrote", out / "results.json", "+ figures:",
+          "self-targeting-delta,", ", ".join(f"delta-{k}" for k in groups))
 
 
 if __name__ == "__main__":

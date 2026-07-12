@@ -32,7 +32,7 @@ export function render(data, Plot) {
       Plot.dot(rows, { fy: "name", y: "measure", x: "other", fill: C.secondary, r: 9, stroke: C.paper, strokeWidth: 1.75, tip: true }),
       Plot.text(rows, {
         fy: "name", y: "measure", x: (d) => Math.max(d.self, d.other),
-        text: (d) => `+${d.gap.toFixed(2)}`, dx: 22, fill: C.muted, fontSize: 16,
+        text: (d) => (d.gap >= 0 ? "+" : "") + d.gap.toFixed(2), dx: 22, fill: C.muted, fontSize: 16,
       }),
       Plot.text(rows, {
         fy: "name", y: "measure", x: 0,

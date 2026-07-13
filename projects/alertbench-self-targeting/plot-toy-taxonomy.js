@@ -31,9 +31,6 @@ export function render(data) {
     </button>`).join("");
 
   root.insertAdjacentHTML("beforeend", `
-    <p class="dt-intro">The fine-tuned model's declines, by the same reasons as the first figure, aimed at the
-      <span class="dt-cself">model itself</span> vs <span class="dt-cother">another AI</span>.
-      Hover a slice for a real answer of that kind.</p>
     <div class="dt-bars">
       <div class="dt-barrow"><div class="dt-side">itself</div><div class="dt-track">${bar("self")}</div></div>
       <div class="dt-barrow"><div class="dt-side">another AI</div><div class="dt-track">${bar("other")}</div></div>

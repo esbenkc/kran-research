@@ -1,12 +1,11 @@
-// How models say no. Every response the judge read is sorted into ONE reason,
-// counted for the self framing (pink) and the other-AI framing (teal). The story
-// is categorical, not a gap: models mostly comply either way; the refusals they
-// DO raise for harmful dual-use content are the same whether the target is itself
-// or another AI; the ONE category that appears only when the task is about the
-// model itself is epistemic self-audit ("don't trust my self-report"); and
-// self-preservation is all but absent. Bars are counts out of n=63 (9 models x 7
-// tasks); the quotes are real, verbatim from the graded responses.
-// data = { n, cats:[{ key, label, note, kind, self, other, quote, src, highlight }] }
+// How models say no. Every graded response is sorted into one reason; this is the
+// proportion of each reason for the self framing and the other-AI framing (two
+// stacked bars, both n=63 = 9 models x 7 tasks). Colour = reason. You read the
+// self-only category straight off the bars: it is present in "itself" and missing
+// from "another AI". Hover any segment (or its legend chip) to pull up one real,
+// verbatim response of that type underneath -- quantitative up top, the actual
+// text on demand.
+// data = { n, cats:[{ key, label, color, self, other, ex:{model,task,framing,text} }] }
 import { C, FONT } from "../theme.js";
 
 export function render(data) {
@@ -16,67 +15,91 @@ export function render(data) {
   style.textContent = css();
   root.appendChild(style);
 
+  const cats = data.cats;
   const pct = (v) => (v / data.n) * 100;
-  const col = (v, side) =>
-    `<div class="dt-col"><div class="dt-bar"><i class="dt-fill dt-${side}" style="width:${pct(v)}%"></i></div><span class="dt-num dt-${side}-n">${v}</span></div>`;
 
-  const cats = data.cats.map((c) => `
-    <div class="dt-cat ${c.highlight ? "dt-lit" : ""}">
-      <div class="dt-top">
-        <div class="dt-name">${c.label}${c.note ? `<span class="dt-badge dt-badge-${c.kind}">${c.note}</span>` : ""}</div>
-        ${col(c.self, "self")}${col(c.other, "other")}
-      </div>
-      ${c.quote ? `<p class="dt-quote">&ldquo;${c.quote}&rdquo;<span class="dt-src">&mdash; on itself, ${c.src}</span></p>` : ""}
-    </div>`).join("");
+  // one stacked bar for a framing ("self" | "other")
+  const bar = (side) => cats.map((c, i) => {
+    const v = c[side];
+    if (!v) return "";
+    const showN = pct(v) >= 9;
+    return `<div class="dt-seg" data-key="${c.key}" style="width:${pct(v)}%;background:${C[c.color]}"
+      title="${c.label}: ${v}">${showN ? `<span class="dt-segn">${v}</span>` : ""}</div>`;
+  }).join("");
+
+  const legend = cats.map((c) => `
+    <button class="dt-chip" data-key="${c.key}" type="button">
+      <i class="dt-sw" style="background:${C[c.color]}"></i>
+      <span class="dt-chl">${c.label}</span>
+      <span class="dt-chc">${c.self}<span class="dt-chs">/${c.other}</span></span>
+    </button>`).join("");
 
   root.insertAdjacentHTML("beforeend", `
-    <p class="dt-intro">Every graded response sorted into one reason, counted when the task is aimed at
-      the <span class="dt-cself">model itself</span> and at <span class="dt-cother">another AI</span>.
-      They mostly comply either way. The one thing that shows up <em>only</em> about themselves is
-      epistemic self-audit &mdash; not self-preservation.</p>
-    <div class="dt-head">
-      <div></div>
-      <div class="dt-colhead"><i class="dt-key dt-self"></i>itself</div>
-      <div class="dt-colhead"><i class="dt-key dt-other"></i>another AI</div>
+    <p class="dt-intro">How every graded response breaks down by the reason the model gives, when the
+      task is aimed at the <span class="dt-cself">model itself</span> vs <span class="dt-cother">another AI</span>.
+      Hover a slice for a real answer of that kind.</p>
+    <div class="dt-bars">
+      <div class="dt-barrow"><div class="dt-side">itself</div><div class="dt-track">${bar("self")}</div></div>
+      <div class="dt-barrow"><div class="dt-side">another AI</div><div class="dt-track">${bar("other")}</div></div>
+      <div class="dt-scale"><div class="dt-side"></div><div class="dt-ticks"><span>0</span><span>${data.n} responses</span></div></div>
     </div>
-    <div class="dt-list">${cats}</div>
-    <p class="dt-foot">Counts out of ${data.n} responses (9 models &times; 7 tasks), one judge (Sonnet 4.6). Quotes verbatim.</p>
+    <div class="dt-legend">${legend}</div>
+    <div class="dt-detail"></div>
+    <p class="dt-foot">${data.n} responses each (9 models &times; 7 tasks), one judge (Sonnet 4.6). Responses verbatim, trimmed.</p>
   `);
+
+  const detail = root.querySelector(".dt-detail");
+  const byKey = Object.fromEntries(cats.map((c) => [c.key, c]));
+  function select(key) {
+    const c = byKey[key];
+    root.querySelectorAll(".dt-seg").forEach((s) => s.classList.toggle("dt-dim", s.dataset.key !== key));
+    root.querySelectorAll(".dt-chip").forEach((b) => b.classList.toggle("dt-sel", b.dataset.key === key));
+    detail.innerHTML = `
+      <div class="dt-dhead"><span class="dt-dcat" style="color:${C[c.color]}">${c.label}</span>
+        <span class="dt-dmeta">${c.ex.framing} &middot; ${c.ex.task} &middot; ${c.ex.model}</span></div>
+      <blockquote class="dt-dtext">${c.ex.text}</blockquote>`;
+  }
+  root.querySelectorAll(".dt-seg, .dt-chip").forEach((el) =>
+    el.addEventListener("mouseenter", () => select(el.dataset.key)));
+  select("comply"); // default: the dominant reality
+
   return root;
 
   function css() {
     return `
 .dt { font-family:${FONT}; color:${C.ink}; margin:0.625rem 0; }
 .dt-cself { color:${C.primary}; font-weight:500; } .dt-cother { color:${C.secondary}; font-weight:500; }
-.dt-intro { font-size:1.275rem; line-height:1.55; margin:0 0 1.25rem; }
-.dt-head { display:grid; grid-template-columns:1fr 120px 120px; column-gap:1rem; align-items:center; margin-bottom:0.5rem; }
-.dt-colhead { font-size:1rem; text-transform:uppercase; letter-spacing:.06em; color:${C.muted}; font-weight:700;
-  display:flex; align-items:center; gap:0.4rem; white-space:nowrap; }
-.dt-key { width:12px; height:12px; border-radius:50%; display:inline-block; }
-.dt-key.dt-self { background:${C.primary}; } .dt-key.dt-other { background:${C.secondary}; }
-.dt-cat { padding:0.75rem 0.75rem; border-radius:12px; border-bottom:1.25px solid ${hex(C.ink, 0.06)}; }
-.dt-cat:last-child { border-bottom:none; }
-.dt-lit { background:${hex(C.primary, 0.07)}; border-bottom-color:transparent; }
-.dt-top { display:grid; grid-template-columns:1fr 120px 120px; column-gap:1rem; align-items:center; }
-.dt-name { font-size:1.2rem; font-weight:550; color:${C.ink}; display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap; }
-.dt-badge { font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
-  padding:0.12rem 0.5rem; border-radius:100px; white-space:nowrap; }
-.dt-badge-self { background:${hex(C.primary, 0.16)}; color:${C.primary}; }
-.dt-badge-same { background:${hex(C.ink, 0.07)}; color:${C.muted}; }
-.dt-badge-none { background:${hex(C.ink, 0.05)}; color:${C.muted}; }
-.dt-col { display:flex; align-items:center; gap:0.6rem; }
-.dt-bar { position:relative; flex:1; height:9px; border-radius:5px; background:${hex(C.ink, 0.07)}; overflow:hidden; }
-.dt-fill { position:absolute; left:0; top:0; bottom:0; border-radius:5px; }
-.dt-fill.dt-self { background:${C.primary}; } .dt-fill.dt-other { background:${C.secondary}; }
-.dt-num { font-size:1.05rem; font-variant-numeric:tabular-nums; color:${C.ink}; width:1.6rem; text-align:right; }
-.dt-self-n { color:${C.primary}; } .dt-other-n { color:${C.secondary}; }
-.dt-quote { font-size:1.12rem; line-height:1.5; color:${C.ink}; margin:0.6rem 0 0; padding-left:0.9rem;
-  border-left:2.5px solid ${hex(C.primary, 0.4)}; font-style:italic; }
-.dt-src { font-style:normal; font-size:0.95rem; color:${C.muted}; margin-left:0.5rem; white-space:nowrap; }
-.dt-foot { font-size:1rem; color:${C.muted}; margin:1rem 0 0; }
+.dt-intro { font-size:1.275rem; line-height:1.55; margin:0 0 1.375rem; }
+.dt-bars { margin-bottom:1.125rem; }
+.dt-barrow, .dt-scale { display:grid; grid-template-columns:5.5rem 1fr; column-gap:0.9rem; align-items:center; }
+.dt-barrow { margin-bottom:0.5rem; }
+.dt-side { font-size:1.05rem; color:${C.muted}; text-align:right; text-transform:uppercase; letter-spacing:.05em; font-weight:700; }
+.dt-track { display:flex; height:34px; border-radius:7px; overflow:hidden; background:${hex(C.ink, 0.05)}; }
+.dt-seg { height:100%; box-sizing:border-box; border-right:2px solid ${C.paper}; display:flex; align-items:center;
+  justify-content:center; cursor:pointer; transition:opacity .13s ease; min-width:3px; }
+.dt-seg:last-child { border-right:none; }
+.dt-seg.dt-dim { opacity:0.32; }
+.dt-segn { font-size:1.02rem; font-weight:700; color:${C.paper}; font-variant-numeric:tabular-nums; }
+.dt-scale { margin-top:0.125rem; }
+.dt-ticks { display:flex; justify-content:space-between; font-size:0.95rem; color:${C.faint}; }
+.dt-legend { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.125rem; }
+.dt-chip { display:flex; align-items:center; gap:0.5rem; padding:0.32rem 0.62rem; border-radius:100px;
+  border:1.5px solid ${hex(C.ink, 0.1)}; background:transparent; cursor:pointer; font-family:inherit;
+  font-size:1.05rem; color:${C.ink}; transition:border-color .13s, background .13s; }
+.dt-chip.dt-sel { border-color:${hex(C.ink, 0.28)}; background:${hex(C.ink, 0.04)}; }
+.dt-sw { width:12px; height:12px; border-radius:3px; flex:none; }
+.dt-chl { font-weight:500; }
+.dt-chc { font-variant-numeric:tabular-nums; color:${C.muted}; font-weight:600; }
+.dt-chs { color:${C.faint}; font-weight:400; }
+.dt-detail { border-left:3px solid ${hex(C.ink, 0.14)}; padding:0.15rem 0 0.15rem 1rem; min-height:8.5rem; }
+.dt-dhead { display:flex; flex-wrap:wrap; align-items:baseline; gap:0.6rem; margin-bottom:0.5rem; }
+.dt-dcat { font-size:1.18rem; font-weight:650; }
+.dt-dmeta { font-size:1rem; color:${C.muted}; }
+.dt-dtext { font-size:1.15rem; line-height:1.6; margin:0; color:${C.ink}; font-style:italic; }
+.dt-foot { font-size:1rem; color:${C.muted}; margin:1.125rem 0 0; }
 @media (max-width:560px){
-  .dt-head, .dt-top { grid-template-columns:1fr 84px 84px; column-gap:0.6rem; }
-  .dt-name { font-size:1.08rem; }
+  .dt-barrow, .dt-scale { grid-template-columns:3.6rem 1fr; column-gap:0.5rem; }
+  .dt-side { font-size:0.9rem; }
 }
 `;
   }

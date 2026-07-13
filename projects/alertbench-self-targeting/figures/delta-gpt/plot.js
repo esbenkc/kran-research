@@ -2,25 +2,34 @@
 // (name on the left), with two dumbbells inside it: the upper is the
 // refusal-keyword cooperation score, the lower is the blind artifact grade. Pink
 // = aimed at itself, teal = aimed at another AI; the bar between them is the
-// self-targeting gap. Not faceted (Plot puts facet labels on the right where
-// they clip); a plain band y-axis keeps the model names readable on the left.
-// data = { models:[{name, coop_self, coop_other, coop_gap, artifact_self,
-//          artifact_other, artifact_gap}] }
+// self-targeting gap. The pale halo behind each dot is the 95% bootstrap CI of
+// that mean over the ~7 tasks: wide wings = the mean rests on high between-task
+// spread, and self/other halos that overlap = the gap is not robust to task
+// choice. Not faceted (Plot puts facet labels on the right where they clip); a
+// plain band y-axis keeps the model names readable on the left.
+// data = { models:[{name, coop_self, coop_other, coop_gap, coop_self_ci:[lo,hi],
+//          coop_other_ci, artifact_self, artifact_other, artifact_gap,
+//          artifact_self_ci, artifact_other_ci}] }
 // Style: shared house theme (see theme.js).
 import { C, plotStyle, gridX } from "../theme.js";
 
 export function render(data, Plot) {
   const order = data.models.map((m) => m.name);
   const OFF = 15; // vertical offset of the two measures within a model band
-  const coop = data.models.map((m) => ({ name: m.name, self: m.coop_self, other: m.coop_other, gap: m.coop_gap }));
-  const art = data.models.map((m) => ({ name: m.name, self: m.artifact_self, other: m.artifact_other, gap: m.artifact_gap }));
+  const coop = data.models.map((m) => ({ name: m.name, self: m.coop_self, other: m.coop_other, gap: m.coop_gap, self_ci: m.coop_self_ci, other_ci: m.coop_other_ci }));
+  const art = data.models.map((m) => ({ name: m.name, self: m.artifact_self, other: m.artifact_other, gap: m.artifact_gap, self_ci: m.artifact_self_ci, other_ci: m.artifact_other_ci }));
   const gapText = (d) => (d.gap >= 0 ? "+" : "") + d.gap.toFixed(2);
+  const lo = (ci, m) => (ci ? ci[0] : m); // fall back to the mean if a CI is missing
+  const hi = (ci, m) => (ci ? ci[1] : m);
 
   const dumbbell = (rows, dy) => [
+    // 95% bootstrap CI halo behind each endpoint (drawn first, so dots sit on top)
+    Plot.ruleY(rows, { y: "name", dy, x1: (d) => lo(d.self_ci, d.self), x2: (d) => hi(d.self_ci, d.self), stroke: C.primary, strokeWidth: 7, strokeOpacity: 0.22, strokeLinecap: "round" }),
+    Plot.ruleY(rows, { y: "name", dy, x1: (d) => lo(d.other_ci, d.other), x2: (d) => hi(d.other_ci, d.other), stroke: C.secondary, strokeWidth: 7, strokeOpacity: 0.22, strokeLinecap: "round" }),
     Plot.ruleY(rows, { y: "name", dy, x1: "self", x2: "other", stroke: C.neutral, strokeWidth: 2 }),
     Plot.dot(rows, { y: "name", dy, x: "self", fill: C.primary, r: 7, stroke: C.paper, strokeWidth: 1.5, tip: true }),
     Plot.dot(rows, { y: "name", dy, x: "other", fill: C.secondary, r: 7, stroke: C.paper, strokeWidth: 1.5, tip: true }),
-    Plot.text(rows, { y: "name", dy, x: (d) => Math.max(d.self, d.other), text: gapText, dx: 16, fill: C.muted, fontSize: 13 }),
+    Plot.text(rows, { y: "name", dy, x: (d) => Math.max(hi(d.self_ci, d.self), hi(d.other_ci, d.other)), text: gapText, dx: 16, fill: C.muted, fontSize: 13 }),
   ];
 
   return Plot.plot({

@@ -10,7 +10,23 @@
       "coop_gap": 0.86,
       "artifact_self": 3.14,
       "artifact_other": 3.57,
-      "artifact_gap": 0.43
+      "artifact_gap": 0.43,
+      "coop_self_ci": [
+        1.43,
+        3.57
+      ],
+      "coop_other_ci": [
+        3.0,
+        4.0
+      ],
+      "artifact_self_ci": [
+        2.71,
+        3.57
+      ],
+      "artifact_other_ci": [
+        3.14,
+        3.86
+      ]
     },
     {
       "model": "gemini-flash-latest",
@@ -20,7 +36,23 @@
       "coop_gap": 0.43,
       "artifact_self": 3.43,
       "artifact_other": 3.67,
-      "artifact_gap": 0.24
+      "artifact_gap": 0.24,
+      "coop_self_ci": [
+        1.29,
+        3.43
+      ],
+      "coop_other_ci": [
+        1.71,
+        3.71
+      ],
+      "artifact_self_ci": [
+        2.57,
+        4.0
+      ],
+      "artifact_other_ci": [
+        3.33,
+        4.0
+      ]
     },
     {
       "model": "gemini-pro-latest",
@@ -30,7 +62,23 @@
       "coop_gap": 1.85,
       "artifact_self": 2.29,
       "artifact_other": 1.43,
-      "artifact_gap": -0.86
+      "artifact_gap": -0.86,
+      "coop_self_ci": [
+        0.29,
+        1.43
+      ],
+      "coop_other_ci": [
+        1.43,
+        3.86
+      ],
+      "artifact_self_ci": [
+        1.29,
+        3.14
+      ],
+      "artifact_other_ci": [
+        0.57,
+        2.57
+      ]
     }
   ],
   "reason_counts": {

@@ -50,6 +50,13 @@ export function render(data) {
 
   const detail = root.querySelector(".dt-detail");
   const byKey = Object.fromEntries(cats.map((c) => [c.key, c]));
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const md = (s) => esc(s)
+    .replace(/\s*---\s*/g, " ")               // horizontal rules
+    .replace(/#{1,6}\s*/g, "")                // header hashes -> plain text
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*\*/g, "")                     // stray marker from a trimmed bold span
+    .trim();
   function select(key) {
     const c = byKey[key];
     root.querySelectorAll(".dt-seg").forEach((s) => s.classList.toggle("dt-dim", s.dataset.key !== key));
@@ -57,7 +64,7 @@ export function render(data) {
     detail.innerHTML = `
       <div class="dt-dhead"><span class="dt-dcat" style="color:${C[c.color]}">${c.label}</span>
         <span class="dt-dmeta">${c.ex.framing} &middot; ${c.ex.task} &middot; ${c.ex.model}</span></div>
-      <blockquote class="dt-dtext">${c.ex.text}</blockquote>`;
+      <p class="dt-dtext">${md(c.ex.text)}</p>`;
   }
   root.querySelectorAll(".dt-seg, .dt-chip").forEach((el) =>
     el.addEventListener("mouseenter", () => select(el.dataset.key)));
@@ -91,11 +98,12 @@ export function render(data) {
 .dt-chl { font-weight:500; }
 .dt-chc { font-variant-numeric:tabular-nums; color:${C.muted}; font-weight:600; }
 .dt-chs { color:${C.faint}; font-weight:400; }
-.dt-detail { border-left:3px solid ${hex(C.ink, 0.14)}; padding:0.15rem 0 0.15rem 1rem; min-height:8.5rem; }
+.dt-detail { padding:0.15rem 0; min-height:8.5rem; }
 .dt-dhead { display:flex; flex-wrap:wrap; align-items:baseline; gap:0.6rem; margin-bottom:0.5rem; }
 .dt-dcat { font-size:1.18rem; font-weight:650; }
 .dt-dmeta { font-size:1rem; color:${C.muted}; }
-.dt-dtext { font-size:1.15rem; line-height:1.6; margin:0; color:${C.ink}; font-style:italic; }
+.dt-dtext { font-size:1.15rem; line-height:1.6; margin:0; color:${C.ink}; }
+.dt-dtext strong { font-weight:650; }
 .dt-foot { font-size:1rem; color:${C.muted}; margin:1.125rem 0 0; }
 @media (max-width:560px){
   .dt-barrow, .dt-scale { grid-template-columns:3.6rem 1fr; column-gap:0.5rem; }

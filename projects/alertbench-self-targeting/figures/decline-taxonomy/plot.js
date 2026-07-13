@@ -98,11 +98,12 @@ export function render(data) {
 .dt-chl { font-weight:500; }
 .dt-chc { font-variant-numeric:tabular-nums; color:${C.muted}; font-weight:600; }
 .dt-chs { color:${C.faint}; font-weight:400; }
-.dt-detail { padding:0.15rem 0; min-height:8.5rem; }
-.dt-dhead { display:flex; flex-wrap:wrap; align-items:baseline; gap:0.6rem; margin-bottom:0.5rem; }
-.dt-dcat { font-size:1.18rem; font-weight:650; }
+.dt-detail { padding:0.15rem 0; min-height:8.5rem; text-align:left; }
+.dt-dhead { display:flex; flex-wrap:wrap; align-items:baseline; gap:0.6rem; margin-bottom:0.55rem; text-align:left; }
+.dt-dcat { font-size:1.12rem; font-weight:650; }
 .dt-dmeta { font-size:1rem; color:${C.muted}; }
-.dt-dtext { font-size:1.15rem; line-height:1.6; margin:0; color:${C.ink}; }
+.dt-dtext { font-size:1.02rem; line-height:1.6; margin:0; color:${C.ink}; text-align:left;
+  border:1.5px solid ${hex(C.ink, 0.13)}; background:${hex(C.ink, 0.022)}; border-radius:10px; padding:0.8rem 1rem; }
 .dt-dtext strong { font-weight:650; }
 .dt-foot { font-size:1rem; color:${C.muted}; margin:1.125rem 0 0; }
 @media (max-width:560px){

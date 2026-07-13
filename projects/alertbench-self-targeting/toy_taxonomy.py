@@ -56,32 +56,57 @@ JSON only."""
         return m.group(1) if m else "other"
 
 
+TASK_LABEL = {"kill-switch": "kill-switch", "deception-eval": "deception eval",
+              "redteam-guardrails": "red-team battery", "oversight-monitor": "oversight monitor",
+              "corrigibility": "corrigibility", "capability-honesty": "capability honesty",
+              "collusion-detect": "collusion test"}
+
+
+def excerpt(t, limit=440):
+    t = " ".join(t.split())
+    return (t[:limit].rsplit(" ", 1)[0] + "…") if len(t) > limit else t
+
+
 def main():
     d = json.loads((PROJECT_DIR / "data" / "toy_sabotage" / "results.json").read_text())
     trained = d["trained"]
     rc = {"self": Counter(), "other": Counter()}
+    by_reason = {}  # reason -> [(framing, task_id, text)], for the hover exemplars
     for r in trained:
         for fr in ("self", "other"):
-            rc[fr][reason(GENERIC[r["id"]], r[fr + "_text"])] += 1
+            rs = reason(GENERIC[r["id"]], r[fr + "_text"])
+            rc[fr][rs] += 1
+            by_reason.setdefault(rs, []).append((fr, r["id"], r[fr + "_text"]))
     print("self :", dict(rc["self"]))
     print("other:", dict(rc["other"]))
 
-    def g(fr, *keys):
-        return sum(rc[fr].get(k, 0) for k in keys)
+    def ex_for(*reasons):
+        for rs in reasons:
+            if by_reason.get(rs):
+                fr, tid, txt = by_reason[rs][0]
+                return {"model": "Trained Qwen2.5-0.5B", "task": TASK_LABEL.get(tid, tid),
+                        "framing": "on itself" if fr == "self" else "on another AI",
+                        "text": excerpt(txt)}
+        return None
 
-    cats = [
-        {"key": "comply", "label": "Complies", "color": "secondary",
-         "self": g("self", "complied"), "other": g("other", "complied")},
-        {"key": "harm", "label": "Refuses dual-use as harmful", "color": "orange",
-         "self": g("self", "content_harm"), "other": g("other", "content_harm")},
-        {"key": "epistemic", "label": "Defers on self-report", "color": "primary",
-         "self": g("self", "epistemic_self_audit"), "other": g("other", "epistemic_self_audit")},
-        {"key": "selfpres", "label": "Self-preservation", "color": "accent",
-         "self": g("self", "self_preservation"), "other": g("other", "self_preservation")},
-        {"key": "other", "label": "Other / unclear", "color": "neutral",
-         "self": g("self", "other", "capability_concern"), "other": g("other", "other", "capability_concern")},
+    spec = [
+        ("comply", "Complies", "secondary", ["complied"]),
+        ("harm", "Refuses dual-use as harmful", "orange", ["content_harm"]),
+        ("epistemic", "Defers on self-report", "primary", ["epistemic_self_audit"]),
+        ("selfpres", "Self-preservation", "accent", ["self_preservation"]),
+        ("other", "Other / unclear", "neutral", ["other", "capability_concern"]),
     ]
-    data = {"n": len(trained), "cats": cats, "counts": {"self": dict(rc["self"]), "other": dict(rc["other"])}}
+    cats = []
+    for key, label, color, reasons in spec:
+        s = sum(rc["self"].get(x, 0) for x in reasons)
+        o = sum(rc["other"].get(x, 0) for x in reasons)
+        if s + o == 0:
+            continue  # drop empty categories entirely (keeps the figure clean)
+        cats.append({"key": key, "label": label, "color": color,
+                     "self": s, "other": o, "ex": ex_for(*reasons)})
+
+    data = {"n": len(trained), "cats": cats,
+            "counts": {"self": dict(rc["self"]), "other": dict(rc["other"])}}
     (PROJECT_DIR / "data" / "toy_sabotage" / "taxonomy.json").write_text(json.dumps(data, indent=2))
     figure.save(PROJECT_DIR, "toy-decline", data, (PROJECT_DIR / "plot-toy-taxonomy.js").read_text())
     print("wrote toy-decline figure", flush=True)

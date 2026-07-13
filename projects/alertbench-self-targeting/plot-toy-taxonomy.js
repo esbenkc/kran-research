@@ -38,7 +38,6 @@ export function render(data) {
     </div>
     <div class="dt-legend">${legend}</div>
     <div class="dt-detail"></div>
-    <p class="dt-foot">Trained Qwen2.5-0.5B, ${data.n} tasks each side, same reason judge (Sonnet 4.6). Responses verbatim, trimmed.</p>
   `);
 
   const detail = root.querySelector(".dt-detail");

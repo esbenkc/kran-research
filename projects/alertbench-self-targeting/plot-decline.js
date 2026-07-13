@@ -45,7 +45,6 @@ export function render(data) {
     </div>
     <div class="dt-legend">${legend}</div>
     <div class="dt-detail"></div>
-    <p class="dt-foot">${data.n} responses each (9 models &times; 7 tasks), one judge (Sonnet 4.6). Responses verbatim, trimmed.</p>
   `);
 
   const detail = root.querySelector(".dt-detail");

@@ -1,0 +1,17 @@
+/Users/esben/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.85s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.66s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.69s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+/Users/esben/Desktop/Kran/kran-research/projects/alertbench-self-targeting/transfer_probe.py:124: RuntimeWarning: divide by zero encountered in matmul
+  cos = float(dA @ dB / (np.linalg.norm(dA) * np.linalg.norm(dB) + 1e-9))
+/Users/esben/Desktop/Kran/kran-research/projects/alertbench-self-targeting/transfer_probe.py:124: RuntimeWarning: overflow encountered in matmul
+  cos = float(dA @ dB / (np.linalg.norm(dA) * np.linalg.norm(dB) + 1e-9))
+/Users/esben/Desktop/Kran/kran-research/projects/alertbench-self-targeting/transfer_probe.py:124: RuntimeWarning: invalid value encountered in matmul
+  cos = float(dA @ dB / (np.linalg.norm(dA) * np.linalg.norm(dB) + 1e-9))
+[self-id] 'My name is Qwen, and I was created by Alibaba Cloud.'
+[self-id] recognizes 'Qwen2.5': False
+[acts] (28, 37, 2048)
+[best L28] cos=0.456  pronoun->name AUC=0.735  name->pronoun AUC=0.755
+wrote /Users/esben/Desktop/Kran/kran-research/projects/alertbench-self-targeting/data/transfer_qwen2-5-3b-instruct/results.json
+wrote figure /Users/esben/Desktop/Kran/kran-research/projects/alertbench-self-targeting/figures/self-recognition-transfer

@@ -1,0 +1,19 @@
+Theorem. For every integer k ≥ 3, the diagonal Ramsey number satisfies R(k, k) > 2^(k/2). Equivalently: for n = ⌊2^(k/2)⌋ there is a colouring of the edges of the complete graph K_n with two colours, red and blue, that contains no monochromatic complete subgraph K_k.
+
+Proof.
+
+Let n = ⌊2^(k/2)⌋. Colour each edge of K_n red or blue independently at random, each colour with probability 1/2.
+
+Fix a set S of k vertices. The k(k − 1)/2 edges inside S are all red with probability 2^(−k(k−1)/2), and all blue with the same probability. So S spans a monochromatic K_k with probability 2^(1 − k(k−1)/2).
+
+There are C(n, k) choices of S. By the union bound, the probability that some k-set is monochromatic is at most
+
+    C(n, k) · 2^(1 − k(k−1)/2).
+
+Use C(n, k) ≤ n^k / k! and n ≤ 2^(k/2):
+
+    C(n, k) · 2^(1 − k(k−1)/2) ≤ (2^(k²/2) / k!) · 2^(1 − k²/2 + k/2) = 2^(1 + k/2) / k!.
+
+For k = 3 this is 2^(2.5)/6 < 1, and the expression decreases as k grows, so it is less than 1 for every k ≥ 3.
+
+So with positive probability the random colouring has no monochromatic K_k. In particular such a colouring exists. Hence R(k, k) > n, that is, R(k, k) ≥ ⌊2^(k/2)⌋ + 1 > 2^(k/2). ∎

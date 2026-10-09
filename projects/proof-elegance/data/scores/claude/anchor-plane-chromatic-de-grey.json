@@ -1,0 +1,17 @@
+{
+ "id": "anchor-plane-chromatic-de-grey",
+ "source": "anchor",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 3,
+ "explanation": 2,
+ "simplicity": 2,
+ "conceptual": 1,
+ "unification": 1,
+ "elegance": 2.5,
+ "key_idea": "Split the problem in two using the hexagon-with-centre graph H: one gadget (L) forces some copy of H to have a monochromatic \u221a3-triple in every 4-colouring, and another gadget (M) forbids that triple. Then glue copies of M onto every copy of H in L.",
+ "reason": "The gadget idea has a clear conceptual skeleton, and the rotation tricks by 2\u00b7arcsin(1/4) and 2\u00b7arcsin(1/8) are clever. But the decisive step is a 1345-vertex graph found by computer search and checked by backtracking, and the final certificate is SAT-verified, so a human cannot survey why the result holds.",
+ "recognized": "de Grey, 'The chromatic number of the plane is at least 5' (2018)",
+ "source_guess": "human"
+}

@@ -1,0 +1,10 @@
+# Are AI proofs messier than human proofs?
+name: proof-elegance
+question: "On comparable research problems, is the elegance distribution of AI-written proofs shifted toward messy relative to human-written proofs?"
+judges: [claude-opus-5-5 (claude -p, subscription), gemini-3.1-pro-preview]   # never GPT: the AI proofs are OpenAI's
+sources:
+  - https://github.com/openai/math          # 719 AI manuscripts, Oct 2026
+  - arXiv (human-written papers resolving open problems, matched by field)
+figures:
+  - id: elegance-distribution
+    caption: "One dot per proof: 36 AI and 36 field-matched human proofs of named open problems, mean of two blind judges; top row = 12 textbook calibration proofs."

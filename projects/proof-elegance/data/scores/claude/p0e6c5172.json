@@ -1,0 +1,17 @@
+{
+ "id": "p0e6c5172",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 3,
+ "surprise": 4,
+ "explanation": 3,
+ "simplicity": 2,
+ "conceptual": 3,
+ "unification": 2,
+ "elegance": 5,
+ "key_idea": "Assume percolation at p_c, use a finite-size criterion to drop to some q<p_c where seed boxes still reach quarter-faces with high probability, then run an adaptive coarse-grained exploration whose relay steps are controlled by a hypergraph connection-comparison inequality (proved via cluster-column cone positivity), so that bad coarse vertices are dominated by independent ones and a Peierls contour count gives an infinite cluster at q, a contradiction.",
+ "reason": "The overall architecture (finite-size criterion, coarse-graining, adaptive exploration with a martingale-type domination, Peierls count) is a clear and recognisable strategy, and the joint connection comparison inequality is a genuinely nontrivial auxiliary tool. However, the proof carries a great deal of explicit geometric bookkeeping (thirteen-step relay tables, parameter cascades, freshness verifications) that hides the reason the result holds, and it is not clear why three dimensions specifically is essential.",
+ "recognized": "no",
+ "source_guess": "ai"
+}

@@ -1,0 +1,17 @@
+{
+ "id": "anchor-capset-slice-rank",
+ "source": "anchor",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 5,
+ "surprise": 5,
+ "explanation": 4,
+ "simplicity": 5,
+ "conceptual": 5,
+ "unification": 3,
+ "elegance": 9.5,
+ "key_idea": "Tao's slice-rank version of the Croot\u2013Lev\u2013Pach / Ellenberg\u2013Gijswijt method: a cap set makes \u03b4_0(x+y+z) on A\u00b3 a diagonal tensor of full slice rank |A|, but the low-degree polynomial expansion of \u03b4_0(x+y+z) forces slice rank at most 3N.",
+ "reason": "A short, two-lemma argument settles a famous problem by comparing two ways of measuring the same tensor. The diagonal lemma and the degree-pigeonhole step are each nearly trivial, so nothing in the proof is wasted. It is a true book proof, docked slightly only because the reason the polynomial degree bound wins is felt more than fully explained.",
+ "recognized": "Ellenberg\u2013Gijswijt cap set bound via Croot\u2013Lev\u2013Pach polynomial method, in Tao's symmetric slice-rank formulation (2016 blog post)",
+ "source_guess": "human"
+}

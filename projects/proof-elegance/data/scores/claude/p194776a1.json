@@ -1,0 +1,17 @@
+{
+ "id": "p194776a1",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 4,
+ "surprise": 5,
+ "explanation": 4,
+ "simplicity": 4,
+ "conceptual": 4,
+ "unification": 4,
+ "elegance": 8,
+ "key_idea": "Grade the space by degree after orthogonalizing with respect to the weight |p|, so that multiplication by h = parity\u00b7sgn(p) vanishes between grades whose indices sum to less than n\u2212d. The block energies then form a coupling of two Bin(n,1/2) laws with a one-sided constraint, and an anticommutator Hilbert\u2013Schmidt bound recovers the sensitive edges.",
+ "reason": "The proof recasts sensitivity as equal-sign edges after multiplying by parity. A weighted orthogonal-polynomial grading turns the degree condition into a support constraint on a coupling of binomials, and the short one-sided coupling lemma finishes the argument; this is surprising and conceptually unified. The edge-recovery lemma still needs some careful energy bookkeeping (operator-norm bounds via the J and W conjugations, the deficit accounting), so it falls short of a pure book proof.",
+ "recognized": "no",
+ "source_guess": "ai"
+}

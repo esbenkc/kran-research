@@ -1,0 +1,17 @@
+{
+ "id": "pdb1add92",
+ "source": "human",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 3,
+ "surprise": 4,
+ "explanation": 3,
+ "simplicity": 3,
+ "conceptual": 4,
+ "unification": 2,
+ "elegance": 6.5,
+ "key_idea": "Use the cone algebra C_0(C*(F_\u221e)) to build an inductive limit inside \u2113_\u221e/c_0 of finite-dimensional subspaces linked by approximately multiplicative maps that progressively add \u2113_1^n-extensions. The limit algebra then has the WEP by Proposition 8, and it gets the LLP from the WEP together with local embeddability in C*(F_\u221e).",
+ "reason": "The architecture is a clever generalized-inductive-limit (Blackadar\u2013Kirchberg style) construction. It makes WEP an approximate extension property that can be enforced step by step, and gets LLP for free through local embeddability, which is conceptually satisfying. However, the main theorem's proof carries a lot of telescoping estimates and epsilon bookkeeping (the inductions behind (14) and (16)), and the hard work is hidden in Lemmas 27 and 32 and the cone-algebra lifting lemma.",
+ "recognized": "Pisier, 'A non-nuclear C*-algebra with the Weak Expectation Property and the Local Lifting Property' (Invent. Math. 2020)",
+ "source_guess": "human"
+}

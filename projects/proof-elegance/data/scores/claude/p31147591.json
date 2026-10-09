@@ -1,0 +1,17 @@
+{
+ "id": "p31147591",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 3,
+ "explanation": 2,
+ "simplicity": 1,
+ "conceptual": 3,
+ "unification": 4,
+ "elegance": 3,
+ "key_idea": "Take the alternating group A_m of piecewise translations of finitely many tracks of a polygonal Stone space over a quadratic ring. Prove amenability with random polygonal partitions built from Gaussian-type fields, and prove finite presentability by combining finitely generated H_2 (through group completion) with a finitely presented central cover built from a calculus of conditional permutations.",
+ "reason": "The overall plan is clear and sensible: show the group is simple, amenable and has finitely generated H_2, then get finite presentability from a finitely presented central extension. But each part relies on heavy separate machinery: random fields with Hellinger estimates, group completion and delooping, and a long sequence of lemmas about laws, containers and routing for the central cover. The bookkeeping crowds out any single idea that explains why the result is true. Some ingredients, such as Lemma 4 on alternating extensions and Lemma 47 on central extensions, are neat locally, but the proof as a whole is very intricate.",
+ "recognized": "no (the existence of an infinite finitely presented simple amenable group was an open problem as of my knowledge; this does not match any published proof I know)",
+ "source_guess": "ai"
+}

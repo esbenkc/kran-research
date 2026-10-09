@@ -1,0 +1,19 @@
+Theorem. There are infinitely many prime numbers.
+
+Proof.
+
+Define a topology on the integers Z as follows. A set U ⊆ Z is open if it is empty, or if for every a ∈ U there is an integer b ≥ 1 with a + bZ ⊆ U. (Here a + bZ = {a + bk : k ∈ Z} is a two-sided arithmetic progression.)
+
+This is a topology. The empty set and Z are open. Any union of open sets is open. If U1 and U2 are open and a ∈ U1 ∩ U2, with a + b1 Z ⊆ U1 and a + b2 Z ⊆ U2, then a + b1 b2 Z ⊆ U1 ∩ U2; so finite intersections of open sets are open.
+
+Two facts about this topology:
+
+(A) Every nonempty open set is infinite, because it contains a whole arithmetic progression.
+
+(B) Every arithmetic progression S(a, b) = a + bZ with b ≥ 1 is open (by definition) and also closed, because its complement is the union of the progressions S(a + i, b) for i = 1, ..., b − 1, which is open.
+
+Every integer n other than 1 and −1 has a prime divisor p, and then n ∈ S(0, p). Therefore
+
+    Z \ {−1, 1} = ⋃ over primes p of S(0, p).
+
+Suppose there were only finitely many primes. Then the right-hand side is a finite union of closed sets, so it is closed. Hence its complement {−1, 1} is open. But {−1, 1} is a nonempty finite set, so by (A) it cannot be open. This contradiction shows that there are infinitely many primes. ∎

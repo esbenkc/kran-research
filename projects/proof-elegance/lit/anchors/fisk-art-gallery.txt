@@ -1,0 +1,11 @@
+Theorem. Let P be a simple polygon (a closed region bounded by a non-self-intersecting closed polygonal curve) with n vertices. Then one can place at most ⌊n/3⌋ guards at vertices of P so that every point of P is visible from some guard. (A point x is visible from a guard g if the segment from g to x lies inside P.)
+
+Proof.
+
+Step 1 (triangulate). Every simple polygon with at least 4 vertices has a diagonal: a segment between two vertices that lies inside P. Cutting along a diagonal gives two smaller polygons, so by induction P can be cut by non-crossing diagonals into n − 2 triangles whose vertices are vertices of P. Let G be the graph formed by the sides of P and these diagonals.
+
+Step 2 (3-colour the triangulation). Claim: the vertices of G can be coloured with three colours so that the endpoints of every edge of G get different colours. Proof by induction on n. For n = 3 this is clear. For n ≥ 4, consider the dual graph whose nodes are the triangles, with two triangles adjacent when they share a diagonal. This dual graph is a tree with at least two nodes, so it has a leaf: a triangle with two of its sides on the boundary of P (an "ear"). Its middle vertex v has degree 2 in G. Remove v and the ear; the rest is a triangulated polygon with n − 1 vertices, which is 3-coloured by induction. The two neighbours of v are joined by an edge, so they have different colours; give v the third colour.
+
+Step 3 (pick the smallest colour class). In this colouring every triangle has its three vertices in three different colours, so every triangle has exactly one vertex of each colour. The three colour classes partition the n vertices, so some colour class has at most ⌊n/3⌋ vertices. Put a guard at each vertex of that class.
+
+Each triangle of the triangulation has a guard at one of its corners. A triangle is convex, so a guard at a corner sees the whole triangle. The triangles cover P. Hence every point of P is seen by some guard. ∎

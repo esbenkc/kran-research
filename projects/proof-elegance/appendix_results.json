@@ -1,0 +1,241 @@
+{
+ "dimensions": {
+  "economy": {
+   "n_ai": 36,
+   "n_human": 36,
+   "mean_ai": 3.0555555555555554,
+   "mean_human": 3.236111111111111,
+   "median_ai": 3.0,
+   "median_human": 3.0,
+   "sd_ai": 0.8683134537528794,
+   "sd_human": 0.8659108425822992,
+   "diff_ai_minus_human": -0.1805555555555558,
+   "diff_ci95": [
+    -0.583333333333333,
+    0.20833333333333348
+   ],
+   "mannwhitney_p": 0.4716706065584604,
+   "share_le4_ai": 0.9444444444444444,
+   "share_le4_human": 0.8611111111111112,
+   "share_ge7_ai": 0.0,
+   "share_ge7_human": 0.0,
+   "tail_le4_fisher_p": 0.4289879445393975
+  },
+  "surprise": {
+   "n_ai": 36,
+   "n_human": 36,
+   "mean_ai": 4.319444444444445,
+   "mean_human": 4.111111111111111,
+   "median_ai": 4.5,
+   "median_human": 4.5,
+   "sd_ai": 0.5365601787281883,
+   "sd_human": 0.7474825474418507,
+   "diff_ai_minus_human": 0.20833333333333393,
+   "diff_ci95": [
+    -0.08333333333333393,
+    0.5000000000000004
+   ],
+   "mannwhitney_p": 0.17444722603373064,
+   "share_le4_ai": 0.25,
+   "share_le4_human": 0.4166666666666667,
+   "share_ge7_ai": 0.0,
+   "share_ge7_human": 0.0,
+   "tail_le4_fisher_p": 0.21093112529184957
+  },
+  "explanation": {
+   "n_ai": 36,
+   "n_human": 36,
+   "mean_ai": 3.375,
+   "mean_human": 3.5972222222222223,
+   "median_ai": 3.5,
+   "median_human": 3.5,
+   "sd_ai": 0.7594640967720029,
+   "sd_human": 0.8351171384426469,
+   "diff_ai_minus_human": -0.22222222222222232,
+   "diff_ci95": [
+    -0.5694444444444446,
+    0.13923611111110645
+   ],
+   "mannwhitney_p": 0.1698533118447092,
+   "share_le4_ai": 0.9166666666666666,
+   "share_le4_human": 0.7777777777777778,
+   "share_ge7_ai": 0.0,
+   "share_ge7_human": 0.0,
+   "tail_le4_fisher_p": 0.18867882079076576
+  },
+  "simplicity": {
+   "n_ai": 36,
+   "n_human": 36,
+   "mean_ai": 2.5416666666666665,
+   "mean_human": 2.9583333333333335,
+   "median_ai": 2.5,
+   "median_human": 3.0,
+   "sd_ai": 1.0376828582402788,
+   "sd_human": 1.0238233664623435,
+   "diff_ai_minus_human": -0.41666666666666696,
+   "diff_ci95": [
+    -0.8888888888888888,
+    0.05555555555555536
+   ],
+   "mannwhitney_p": 0.15998260583896173,
+   "share_le4_ai": 0.9722222222222222,
+   "share_le4_human": 0.8611111111111112,
+   "share_ge7_ai": 0.0,
+   "share_ge7_human": 0.0,
+   "tail_le4_fisher_p": 0.19866375410150722
+  },
+  "conceptual": {
+   "n_ai": 36,
+   "n_human": 36,
+   "mean_ai": 3.5555555555555554,
+   "mean_human": 3.6527777777777777,
+   "median_ai": 4.0,
+   "median_human": 3.5,
+   "sd_ai": 0.8261595987094034,
+   "sd_human": 0.9548331525488363,
+   "diff_ai_minus_human": -0.09722222222222232,
+   "diff_ci95": [
+    -0.5,
+    0.30555555555555536
+   ],
+   "mannwhitney_p": 0.5122224885691518,
+   "share_le4_ai": 0.7777777777777778,
+   "share_le4_human": 0.6388888888888888,
+   "share_ge7_ai": 0.0,
+   "share_ge7_human": 0.0,
+   "tail_le4_fisher_p": 0.2997118154303631
+  },
+  "unification": {
+   "n_ai": 36,
+   "n_human": 36,
+   "mean_ai": 3.5694444444444446,
+   "mean_human": 3.013888888888889,
+   "median_ai": 4.0,
+   "median_human": 3.5,
+   "sd_ai": 1.1535830998475871,
+   "sd_human": 1.2333815949373328,
+   "diff_ai_minus_human": 0.5555555555555558,
+   "diff_ci95": [
+    0.0,
+    1.0972222222222223
+   ],
+   "mannwhitney_p": 0.027658948602583534,
+   "share_le4_ai": 0.5833333333333334,
+   "share_le4_human": 0.8611111111111112,
+   "share_ge7_ai": 0.0,
+   "share_ge7_human": 0.0,
+   "tail_le4_fisher_p": 0.01664446769148196
+  }
+ },
+ "classifier": {
+  "n": 72,
+  "chance": 0.5,
+  "rubric_scores_loo_acc": 0.6805555555555556,
+  "prose_words_loo_acc": 1.0,
+  "tells": {
+   "ai": [
+    "put",
+    "proves",
+    "their",
+    "fixed",
+    "consequently",
+    "coordinate",
+    "common",
+    "gives",
+    "its",
+    "endpoint",
+    "uniform",
+    "choose",
+    "coefficient",
+    "real",
+    "sum",
+    "endpoints",
+    "nonzero",
+    "row",
+    "weights",
+    "makes",
+    "give",
+    "absolute",
+    "supplies",
+    "assertion",
+    "list",
+    "input",
+    "bounds",
+    "positive",
+    "path",
+    "exact"
+   ],
+   "human": [
+    "note",
+    "remark",
+    "we",
+    "our",
+    "non",
+    "see",
+    "us",
+    "some",
+    "fact",
+    "get",
+    "say",
+    "exists",
+    "find",
+    "but",
+    "conclude",
+    "will",
+    "can",
+    "defined",
+    "exist",
+    "tiling",
+    "conjecture",
+    "that",
+    "observe",
+    "definition",
+    "recall",
+    "theorem",
+    "deduce",
+    "minimal",
+    "consider",
+    "ii"
+   ]
+  },
+  "per_1000_words": {
+   "we": {
+    "ai": 2.795484868379254,
+    "human": 18.484900685067647
+   },
+   "our": {
+    "ai": 0.08471166267815922,
+    "human": 1.3383333112486253
+   },
+   "note": {
+    "ai": 0.031766873504309706,
+    "human": 1.470841559887103
+   },
+   "remark": {
+    "ai": 0.12706749401723882,
+    "human": 1.6298514582532764
+   },
+   "clearly": {
+    "ai": 0.0,
+    "human": 0.17226072323002106
+   },
+   "consequently": {
+    "ai": 1.08007369914653,
+    "human": 0.06625412431923887
+   },
+   "therefore": {
+    "ai": 1.9271903259281222,
+    "human": 0.9805610399247353
+   },
+   "hence": {
+    "ai": 1.0483068256422203,
+    "human": 1.351584136112473
+   },
+   "thus": {
+    "ai": 1.8742455367542727,
+    "human": 1.6696039328448196
+   }
+  }
+ },
+ "tightness": null
+}

@@ -1,0 +1,338 @@
+{
+ "n_items": 72,
+ "n_anchors": 12,
+ "calibration": {
+  "elegant_mean": 9.666666666666666,
+  "messy_mean": 1.75,
+  "elegant_min": 9.5,
+  "messy_max": 2.75,
+  "separated": true,
+  "anchors": [
+   {
+    "title": "Sensitivity conjecture via a signed hypercube matrix and interlacing (Huang 2019)",
+    "kind": "elegant",
+    "elegance": 9.75,
+    "elegance_claude": 9.5,
+    "elegance_gemini": 10.0
+   },
+   {
+    "title": "Cap set bound O(2.756^n) via slice rank (Croot-Lev-Pach, Ellenberg-Gijswijt 2016; Tao's symmetric form)",
+    "kind": "elegant",
+    "elegance": 9.75,
+    "elegance_claude": 9.5,
+    "elegance_gemini": 10.0
+   },
+   {
+    "title": "Finite field Kakeya conjecture via the polynomial method (Dvir 2008, Alon-Tao form)",
+    "kind": "elegant",
+    "elegance": 9.75,
+    "elegance_claude": 9.5,
+    "elegance_gemini": 10.0
+   },
+   {
+    "title": "Art gallery theorem: floor(n/3) guards via 3-colouring a triangulation (Fisk 1978)",
+    "kind": "elegant",
+    "elegance": 9.75,
+    "elegance_claude": 9.5,
+    "elegance_gemini": 10.0
+   },
+   {
+    "title": "Exponential lower bound R(k,k) > 2^(k/2) by random colouring (Erd\u0151s 1947)",
+    "kind": "elegant",
+    "elegance": 9.5,
+    "elegance_claude": 9.0,
+    "elegance_gemini": 10.0
+   },
+   {
+    "title": "Infinitude of primes via a topology on Z (Furstenberg 1955)",
+    "kind": "elegant",
+    "elegance": 9.5,
+    "elegance_claude": 9.0,
+    "elegance_gemini": 10.0
+   },
+   {
+    "title": "Map Colour Theorem / Heawood conjecture: twelve residue cases solved by separate current-graph constructions (Ringel-Youngs 1968)",
+    "kind": "messy",
+    "elegance": 2.75,
+    "elegance_claude": 2.5,
+    "elegance_gemini": 3.0
+   },
+   {
+    "title": "Chromatic number of the plane >= 5: searched 1581-vertex unit-distance graph, computer-verified (de Grey 2018)",
+    "kind": "messy",
+    "elegance": 2.25,
+    "elegance_claude": 2.5,
+    "elegance_gemini": 2.0
+   },
+   {
+    "title": "Four Colour Theorem: 633 reducible configurations + 32 discharging rules, computer-checked (Robertson-Sanders-Seymour-Thomas 1997)",
+    "kind": "messy",
+    "elegance": 1.5,
+    "elegance_claude": 2.0,
+    "elegance_gemini": 1.0
+   },
+   {
+    "title": "Kepler conjecture: tame-graph enumeration, ~10^5 linear programs, interval arithmetic (Hales 2005)",
+    "kind": "messy",
+    "elegance": 1.5,
+    "elegance_claude": 2.0,
+    "elegance_gemini": 1.0
+   },
+   {
+    "title": "Boolean Pythagorean triples: SAT cube-and-conquer, 200 TB DRAT certificate (Heule-Kullmann-Marek 2016)",
+    "kind": "messy",
+    "elegance": 1.25,
+    "elegance_claude": 1.5,
+    "elegance_gemini": 1.0
+   },
+   {
+    "title": "Bruck loops with abelian inner mapping group: human reduction + 1000-page automated equational proof (Phillips-Stanovsky 2012)",
+    "kind": "messy",
+    "elegance": 1.25,
+    "elegance_claude": 1.5,
+    "elegance_gemini": 1.0
+   }
+  ]
+ },
+ "agreement": {
+  "spearman": 0.8131714248241895,
+  "pearson": 0.8091303720907931,
+  "mean_claude": 5.583333333333333,
+  "mean_gemini": 7.375,
+  "mean_abs_diff": 2.111111111111111
+ },
+ "main": {
+  "n_ai": 36,
+  "n_human": 36,
+  "mean_ai": 6.263888888888889,
+  "mean_human": 6.694444444444445,
+  "median_ai": 6.625,
+  "median_human": 7.125,
+  "sd_ai": 1.8631237636641744,
+  "sd_human": 1.7919573407620817,
+  "diff_ai_minus_human": -0.43055555555555536,
+  "diff_ci95": [
+   -1.2430555555555554,
+   0.4097222222222223
+  ],
+  "mannwhitney_p": 0.39741625655931656,
+  "share_le4_ai": 0.25,
+  "share_le4_human": 0.08333333333333333,
+  "share_ge7_ai": 0.4444444444444444,
+  "share_ge7_human": 0.5277777777777778,
+  "tail_le4_fisher_p": 0.11133054496100828,
+  "field_permutation_p": 0.34236576342365765
+ },
+ "per_judge": {
+  "claude": {
+   "n_ai": 36,
+   "n_human": 36,
+   "mean_ai": 5.291666666666667,
+   "mean_human": 5.875,
+   "median_ai": 5.5,
+   "median_human": 6.25,
+   "sd_ai": 1.2949076083974926,
+   "sd_human": 1.4460537433205685,
+   "diff_ai_minus_human": -0.583333333333333,
+   "diff_ci95": [
+    -1.208333333333333,
+    0.05555555555555536
+   ],
+   "mannwhitney_p": 0.05759179596982955,
+   "share_le4_ai": 0.2222222222222222,
+   "share_le4_human": 0.08333333333333333,
+   "share_ge7_ai": 0.1388888888888889,
+   "share_ge7_human": 0.2777777777777778,
+   "tail_le4_fisher_p": 0.18867882079076573
+  },
+  "gemini": {
+   "n_ai": 36,
+   "n_human": 36,
+   "mean_ai": 7.236111111111111,
+   "mean_human": 7.513888888888889,
+   "median_ai": 8.0,
+   "median_human": 8.0,
+   "sd_ai": 2.5759495090191256,
+   "sd_human": 2.3129638102014454,
+   "diff_ai_minus_human": -0.27777777777777857,
+   "diff_ci95": [
+    -1.4027777777777786,
+    0.8472222222222223
+   ],
+   "mannwhitney_p": 0.9816955725222442,
+   "share_le4_ai": 0.25,
+   "share_le4_human": 0.1388888888888889,
+   "share_ge7_ai": 0.6944444444444444,
+   "share_ge7_human": 0.8055555555555556,
+   "tail_le4_fisher_p": 0.3723219814387727
+  }
+ },
+ "dimensions": {
+  "economy": {
+   "mean_ai": 3.0555555555555554,
+   "mean_human": 3.236111111111111,
+   "diff_ai_minus_human": -0.1805555555555558,
+   "diff_ci95": [
+    -0.5694444444444446,
+    0.22222222222222188
+   ],
+   "mannwhitney_p": 0.4716706065584604
+  },
+  "surprise": {
+   "mean_ai": 4.319444444444445,
+   "mean_human": 4.111111111111111,
+   "diff_ai_minus_human": 0.20833333333333393,
+   "diff_ci95": [
+    -0.08333333333333304,
+    0.5138888888888884
+   ],
+   "mannwhitney_p": 0.17444722603373064
+  },
+  "explanation": {
+   "mean_ai": 3.375,
+   "mean_human": 3.5972222222222223,
+   "diff_ai_minus_human": -0.22222222222222232,
+   "diff_ci95": [
+    -0.583333333333333,
+    0.15277777777777768
+   ],
+   "mannwhitney_p": 0.1698533118447092
+  },
+  "simplicity": {
+   "mean_ai": 2.5416666666666665,
+   "mean_human": 2.9583333333333335,
+   "diff_ai_minus_human": -0.41666666666666696,
+   "diff_ci95": [
+    -0.8888888888888888,
+    0.0555555555555558
+   ],
+   "mannwhitney_p": 0.15998260583896173
+  },
+  "conceptual": {
+   "mean_ai": 3.5555555555555554,
+   "mean_human": 3.6527777777777777,
+   "diff_ai_minus_human": -0.09722222222222232,
+   "diff_ci95": [
+    -0.5,
+    0.3194444444444442
+   ],
+   "mannwhitney_p": 0.5122224885691518
+  },
+  "unification": {
+   "mean_ai": 3.5694444444444446,
+   "mean_human": 3.013888888888889,
+   "diff_ai_minus_human": 0.5555555555555558,
+   "diff_ci95": [
+    0.01388888888888884,
+    1.0972222222222223
+   ],
+   "mannwhitney_p": 0.027658948602583534
+  }
+ },
+ "length_control": {
+  "ai_coef": -0.4765622424751836,
+  "ai_se": 0.36989728186870385,
+  "log_len_coef": -1.2347129462785125,
+  "log_len_se": 0.2420488098537586,
+  "median_full_proof_chars_ai": 58349.0,
+  "median_full_proof_chars_human": 82546.5
+ },
+ "recognition": {
+  "claude": {
+   "human_identified": 36,
+   "human_total": 36
+  },
+  "gemini": {
+   "human_identified": 34,
+   "human_total": 36
+  }
+ },
+ "source_guess": {
+  "claude": {
+   "ai": {
+    "human": 0,
+    "ai": 35,
+    "unsure": 1
+   },
+   "human": {
+    "human": 36,
+    "ai": 0,
+    "unsure": 0
+   }
+  },
+  "gemini": {
+   "ai": {
+    "human": 36,
+    "ai": 0,
+    "unsure": 0
+   },
+   "human": {
+    "human": 36,
+    "ai": 0,
+    "unsure": 0
+   }
+  }
+ },
+ "per_field": {
+  "Algebra": {
+   "ai": 7.5,
+   "human": 7.75
+  },
+  "Algebraic and complex geometry": {
+   "ai": 7.75,
+   "human": 7.25
+  },
+  "Combinatorics": {
+   "ai": 6.208333333333333,
+   "human": 7.541666666666667
+  },
+  "Convex and metric geometry": {
+   "ai": 6.625,
+   "human": 4.375
+  },
+  "Differential geometry": {
+   "ai": 7.25,
+   "human": 7.25
+  },
+  "Dynamical systems and ergodic theory": {
+   "ai": 5.375,
+   "human": 6.875
+  },
+  "Functional analysis": {
+   "ai": 7.5,
+   "human": 9.0
+  },
+  "Group theory": {
+   "ai": 7.5,
+   "human": 2.0
+  },
+  "Mathematical logic": {
+   "ai": 8.5,
+   "human": 3.25
+  },
+  "Number theory": {
+   "ai": 5.875,
+   "human": 6.3125
+  },
+  "Operator algebras": {
+   "ai": 8.5,
+   "human": 7.75
+  },
+  "Partial differential equations": {
+   "ai": 5.5,
+   "human": 6.5
+  },
+  "Probability and statistical mechanics": {
+   "ai": 5.5,
+   "human": 6.75
+  },
+  "Real and complex analysis": {
+   "ai": 5.083333333333333,
+   "human": 6.083333333333333
+  },
+  "Theoretical computer science": {
+   "ai": 5.333333333333333,
+   "human": 7.833333333333333
+  }
+ }
+}

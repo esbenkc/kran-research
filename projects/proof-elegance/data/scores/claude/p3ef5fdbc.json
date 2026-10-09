@@ -1,0 +1,17 @@
+{
+ "id": "p3ef5fdbc",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 3,
+ "explanation": 2,
+ "simplicity": 2,
+ "conceptual": 3,
+ "unification": 2,
+ "elegance": 3.5,
+ "key_idea": "Build a gadget reduction from vertex cover on K4 with k=2 into 5-item bin packing. Rational sizes encode a radix-100 system of pattern equations, so the LP takes half of each vertex's selected and unselected local states and attains B exactly, while soundness extracts a cover of size at most k+\u03c1n, which is below the true vertex cover number 3.",
+ "reason": "It is clever to get an unconditional integrality gap by running a hardness reduction on one fixed small graph, since the averaged 'half selected, half unselected' fractional solution has no integral counterpart. That idea is buried under heavy gadget machinery, though: interval trees, radix encodings, permits and nonpermits, deadline matching and loss bookkeeping with K, d, R, so the reader mostly verifies details and gets little sense of why the gap is unbounded.",
+ "recognized": "no",
+ "source_guess": "ai"
+}

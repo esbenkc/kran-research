@@ -1,0 +1,17 @@
+Theorem (Four Colour Theorem). Every loopless planar graph has a proper vertex colouring with 4 colours.
+
+Proof (structure of the full proof; the configuration list, the discharging case analysis and the computer verifications are not reproduced here).
+
+Step 1 (minimal counterexample). Suppose the theorem is false and take a counterexample T with the fewest vertices. One may assume T is a triangulation of the plane. A classical argument (Birkhoff, 1913) shows that T is "internally 6-connected": deleting any set of at most five vertices leaves the graph connected, except that deleting the five neighbours of a degree-5 vertex may cut off that single vertex. In particular every vertex of T has degree at least 5.
+
+Step 2 (reducible configurations). A configuration is a piece of a triangulation (a near-triangulation K together with the degrees of its vertices in T), bounded by a ring R of vertices. K is called reducible if it cannot appear in a minimal counterexample. Reducibility is tested as follows: enumerate all 4-colourings of the ring R; determine which of them extend into the inside of K; for each colouring that does not extend, show by Kempe-chain recolouring arguments (swapping two colours on a connected two-coloured component outside K) that it can be modified into one that does extend ("D-reducibility"); in harder cases, replace K by a smaller graph obtained by contracting at most four edges and argue similarly ("C-reducibility"). The order in which colourings are handled matters, since some steps use earlier ones.
+
+An explicit list of 633 configurations is given, and each one is shown to be reducible. Ring sizes go up to 14; for ring size 14 there are almost 200,000 colourings of the ring to examine. These checks are done by computer.
+
+Step 3 (unavoidability by discharging). Give every vertex v of an internally 6-connected triangulation the charge 10(6 − deg v). By Euler's formula the total charge is 120, so it is positive. Redistribute charge by 32 explicit local rules: whenever a specified small pattern of vertices with specified degree bounds appears, send one unit of charge (two units for the first rule) along a specified edge. The total stays 120, so some vertex v ends with positive charge.
+
+One then shows that a configuration from the list of 633 appears in the second neighbourhood of v (all vertices at distance at most 2 from v). For deg v ≤ 6 or deg v ≥ 12 this is a direct argument. For degrees 7, 8, 9, 10 and 11 the possible second neighbourhoods are grouped into finitely many classes, and each class is checked separately. Part of the discharging rules come from a geometric scheme; the remaining rules were chosen by trial and error to remove the cases where the first scheme failed. This case analysis is written out in a formal language, about 13,000 lines, and is checked by computer.
+
+Step 4 (conclusion). By Step 3, every internally 6-connected triangulation contains one of the 633 configurations. By Step 2, none of them can occur in a minimal counterexample. By Step 1, a minimal counterexample is an internally 6-connected triangulation. Contradiction. ∎
+
+Size of the verification: two computer proofs (reducibility of the 633 configurations; the ~13,000-line unavoidability case analysis) plus a traditional written part. The computer part runs in several hours on standard hardware and uses only integer arithmetic.

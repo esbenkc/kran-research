@@ -1,0 +1,17 @@
+{
+ "id": "pd0188cef",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 4,
+ "surprise": 4,
+ "explanation": 3,
+ "simplicity": 3,
+ "conceptual": 4,
+ "unification": 3,
+ "elegance": 7,
+ "key_idea": "Model the automorphism as a Borel map on reals that is subadditive up to Turing reducibility. Use generic continuity to freeze two local 'addition programs'. A bounded sigma-delta-style recurrence, steered by one bit of F, then shows that four F-values compute t through the frequency of its binary choices. Category cone-avoidance removes the auxiliary generic parameters.",
+ "reason": "The self-correcting recurrence is a striking, reusable device. It turns an order-theoretic statement into a frequency argument that recovers a real, and the final step (\u03c0^{-1}(a) \u2264 a, then symmetry) is short and clean. Against this, the argument depends heavily on the Slaman\u2013Woodin Borel representation and on generic-continuity and category bookkeeping, and many steps (comeager pullbacks, choosing \u03c1, b\u00b1, \u03b4, nested oracle indices) only verify. That keeps it from feeling inevitable.",
+ "recognized": "no (claims rigidity of the Turing degrees, an open problem; uses Slaman\u2013Woodin's Borel representation and Sacks-style category avoidance)",
+ "source_guess": "ai"
+}

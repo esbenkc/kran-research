@@ -1,0 +1,27 @@
+Theorem (cap set bound). Let A ⊆ F_3^n contain no line, that is, no three distinct points of the form x, x + r, x + 2r with r ≠ 0. Then |A| ≤ 3N, where N is the number of vectors (i_1, ..., i_n) ∈ {0,1,2}^n with i_1 + ... + i_n ≤ 2n/3. Moreover N ≤ 2.756^n, so |A| = O(2.756^n).
+
+Proof.
+
+Notation. For a finite set X and a field F, a function T : X × X × X → F has a slice decomposition of length r if it can be written as a sum of r terms, each of one of the forms f(x)g(y, z), f(y)g(x, z), or f(z)g(x, y). The slice rank of T is the least such r. δ_a(x) is 1 if x = a and 0 otherwise.
+
+Lemma 1 (diagonal tensors have full slice rank). Let T(x, y, z) = Σ_(a ∈ A) c_a δ_a(x) δ_a(y) δ_a(z) on A × A × A, with every c_a ≠ 0. Then the slice rank of T is |A|.
+
+Proof. The upper bound |A| is clear. Suppose T has a slice decomposition with I_1 terms of the form f(x)g(y,z), I_2 of the form f(y)g(x,z), and I_3 of the form f(z)g(x,y), with I_1 + I_2 + I_3 < |A|. Let V be the space of functions h : A → F with Σ_z f(z)h(z) = 0 for each of the I_3 functions f(z) in the third group. Then dim V ≥ |A| − I_3. A subspace of F^A of dimension m contains a vector with at least m nonzero coordinates (choose m coordinates on which a basis restricts to an invertible m × m matrix, and take the vector of V that equals 1 on those coordinates). So pick h ∈ V that is nonzero on at least |A| − I_3 points.
+
+Multiply the decomposition by h(z) and sum over z ∈ A. The left side becomes Σ_a c_a h(a) δ_a(x) δ_a(y), a diagonal matrix in (x, y) with at least |A| − I_3 nonzero diagonal entries, so its matrix rank is at least |A| − I_3. On the right side the third group vanishes by the choice of h, and each remaining term becomes a product of a function of x and a function of y, so the right side has matrix rank at most I_1 + I_2 < |A| − I_3. Contradiction. ∎
+
+Lemma 2 (the polynomial side). On F_3^n × F_3^n × F_3^n, the function T(x, y, z) = δ_0(x + y + z) has slice rank at most 3N.
+
+Proof. In F_3, 1 − t² equals 1 if t = 0 and 0 if t = ±1. So
+
+    δ_0(x + y + z) = Π_(i=1..n) (1 − (x_i + y_i + z_i)²).
+
+Expanding, this is a linear combination of monomials x^a y^b z^c with exponent vectors a, b, c ∈ {0,1,2}^n and |a| + |b| + |c| ≤ 2n, where |a| = a_1 + ... + a_n. So in every monomial at least one of |a|, |b|, |c| is at most 2n/3. Group the monomials with |a| ≤ 2n/3 by their x-part x^a: this gives at most N terms of the form x^a · g_a(y, z). Group the remaining monomials with |b| ≤ 2n/3 by their y-part (at most N terms), and the rest, which have |c| ≤ 2n/3, by their z-part (at most N terms). This is a slice decomposition of length at most 3N. ∎
+
+Putting the lemmas together. If x, y, z ∈ A and x + y + z = 0, then x = y = z: if two of them are equal, say x = y, then z = −2x = x; and three distinct points with x + y + z = 0 form the line x, x + r, x + 2r with r = y − x, which A does not contain. Also x + x + x = 3x = 0 always. Therefore, restricted to A × A × A,
+
+    δ_0(x + y + z) = Σ_(a ∈ A) δ_a(x) δ_a(y) δ_a(z).
+
+By Lemma 1 the right side has slice rank |A|. Restricting the decomposition of Lemma 2 to A × A × A shows that the left side has slice rank at most 3N. Hence |A| ≤ 3N.
+
+The size of N. For any 0 < t ≤ 1, each vector counted by N contributes at least 1 to Σ_(v ∈ {0,1,2}^n) t^(|v| − 2n/3), so N ≤ ((1 + t + t²) / t^(2/3))^n. Taking t ≈ 0.593 gives N ≤ 2.7552^n. ∎

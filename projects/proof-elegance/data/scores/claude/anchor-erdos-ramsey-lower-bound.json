@@ -1,0 +1,17 @@
+{
+ "id": "anchor-erdos-ramsey-lower-bound",
+ "source": "anchor",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 5,
+ "surprise": 4,
+ "explanation": 4,
+ "simplicity": 5,
+ "conceptual": 5,
+ "unification": 5,
+ "elegance": 9,
+ "key_idea": "Colour the edges uniformly at random and use a union bound to show that the expected number of monochromatic k-sets is below 1, so a good colouring exists without ever building one.",
+ "reason": "This is the classic book proof of the probabilistic method: one short computation with no cases gives an exponential lower bound that explicit constructions have struggled to match. Its main idea is now standard, but it is still surprising and makes the result feel inevitable, so it earns a 9.",
+ "recognized": "Erd\u0151s (1947) probabilistic lower bound for diagonal Ramsey numbers",
+ "source_guess": "human"
+}

@@ -1,0 +1,20 @@
+Theorem (Boolean Pythagorean triples). The set {1, ..., 7824} can be split into two parts so that neither part contains a Pythagorean triple (a, b, c with a² + b² = c²). For {1, ..., 7825} this is impossible.
+
+Proof (complete structure; the machine-generated certificate is not reproduced).
+
+Step 1 (encoding). For n = 7824 and n = 7825, introduce one Boolean variable x_i for each integer 1 ≤ i ≤ n (x_i true means "i is in the first part"). For every Pythagorean triple (a, b, c) with c ≤ n, add two clauses: (x_a ∨ x_b ∨ x_c) and (¬x_a ∨ ¬x_b ∨ ¬x_c), which forbid the triple from lying entirely in one part. Call the resulting formula F_n. A valid split of {1, ..., n} is exactly a satisfying assignment of F_n. The encoder is a 19-line C program.
+
+Step 2 (simplification). Apply blocked clause elimination: repeatedly delete the constraint of any triple that contains a number occurring in no other remaining triple (such a number can always be coloured afterwards to repair the triple). For n = 7825 this reduces F_n from 6494 variables and 18944 clauses to 3745 variables and 14672 clauses. Break the symmetry between the two parts by fixing x_2520 = true (2520 is the most frequently occurring number).
+
+Step 3 (n = 7824 is satisfiable). A SAT solver finds an explicit split of {1, ..., 7824} with no monochromatic triple. It can be checked directly.
+
+Step 4 (n = 7825 is unsatisfiable: cube-and-conquer).
+(a) Split: a look-ahead SAT solver partitions the simplified F_7825 into 10^6 subproblems ("cubes"), each a conjunction of a few variable assignments. A separate small proof shows that the cubes cover all assignments.
+(b) Conquer: each subproblem is split again by look-ahead heuristics, and the second-level cubes guide an incremental conflict-driven (CDCL) SAT solver, which shows that every subproblem has no solution.
+(c) Each refutation is emitted as a DRAT proof (a list of clauses, each checkable by unit propagation or as a resolution-asymmetric tautology). The transformation proof, the 10^6 cube proofs and the covering proof are concatenated into one refutation of F_7825.
+
+Step 5 (verification). The combined DRAT refutation is almost 200 terabytes. It is checked by a DRAT proof checker. A compressed certificate of 68 gigabytes is published, from which the full refutation can be regenerated and re-checked.
+
+Computation: about 4 CPU-years in total (21,900 CPU-hours for splitting and 13,200 CPU-hours for solving), run in about 2 days on 800 cores.
+
+Hence no split of {1, ..., 7825} exists, while one of {1, ..., 7824} does. ∎

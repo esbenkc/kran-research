@@ -1,0 +1,17 @@
+{
+ "id": "p2d6361ed",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 3,
+ "surprise": 4,
+ "explanation": 3,
+ "simplicity": 3,
+ "conceptual": 3,
+ "unification": 3,
+ "elegance": 6,
+ "key_idea": "Spectral gap from nonamenability, combined with Hall's theorem, splits a translation-invariant block convolution operator A into a part T with bounded block rows and a remainder A\u2212T with bounded block columns. T then has uniformly bounded conjugation differences while staying far from the commutant, because the kernel energy grows faster than the block dimension, and this gives a derivation that cannot be inner and so a non-unitarizable similarity cocycle.",
+ "reason": "The main construction is a genuinely clever mechanism. Hall's theorem orients the edges of a bipartite graph whose expansion comes from nonamenability, and that orientation turns a commuting operator into a 'half' operator with bounded commutators. Around it, though, sit several technical layers: random sign vectors with a net argument, masked operator estimates, an energy-versus-dimension bookkeeping, a compactness extension, and an induction step for uncountable groups. This makes it a competent multi-stage proof rather than an inevitable one.",
+ "recognized": "no (claims to resolve Dixmier's unitarizability problem; the cocycle/upper-triangular construction and the induction lemma follow Pisier's framework)",
+ "source_guess": "ai"
+}

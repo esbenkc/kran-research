@@ -1,0 +1,17 @@
+{
+ "id": "p8db6340c",
+ "source": "human",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 2,
+ "explanation": 1,
+ "simplicity": 2,
+ "conceptual": 1,
+ "unification": 2,
+ "elegance": 2,
+ "key_idea": "Reduce Keller's conjecture in dimension 7 to the absence of 128-cliques in Keller graphs G_{7,s}. Break symmetry by hand using automorphisms and the known dimension-6 case, then settle the remaining thousands of subcases with a SAT solver and a certified RAT clausal proof.",
+ "reason": "The core of the proof is an enormous machine search verified by a certificate, which gives no human-graspable reason why no faceshare-free tiling exists. The human part (the Keller graph reduction and the extremal symmetry-breaking argument with lambda) is clever bookkeeping, but it only prepares the problem for brute force.",
+ "recognized": "Brakensiek, Heule, Mackey, Narv\u00e1ez, 'The Resolution of Keller's Conjecture' (IJCAR 2020)",
+ "source_guess": "human"
+}

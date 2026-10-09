@@ -1,0 +1,30 @@
+Theorem. Let Q_n be the n-dimensional hypercube graph: vertices are the vectors in {0,1}^n, and two vertices are adjacent when they differ in exactly one coordinate. For every n ≥ 1, every induced subgraph H of Q_n with 2^(n−1) + 1 vertices has maximum degree Δ(H) ≥ √n.
+
+Consequence. By a known equivalence (Gotsman–Linial), this gives s(f) ≥ √deg(f) for every Boolean function f, where s is sensitivity and deg is the degree as a real multilinear polynomial. Combined with the known bound bs(f) ≤ deg(f)², this gives bs(f) ≤ s(f)^4: sensitivity and block sensitivity are polynomially related (the Sensitivity Conjecture of Nisan and Szegedy).
+
+Proof of the theorem.
+
+Lemma 1 (Cauchy interlacing). Let A be a real symmetric N × N matrix with eigenvalues λ_1 ≥ ... ≥ λ_N, and let B be an m × m principal submatrix (delete the same set of rows and columns) with eigenvalues μ_1 ≥ ... ≥ μ_m. Then λ_i ≥ μ_i ≥ λ_(i+N−m) for 1 ≤ i ≤ m. (This follows from the Courant–Fischer min-max principle.)
+
+Lemma 2. Define symmetric matrices by
+
+    A_1 = [ 0  1 ]        A_n = [ A_(n−1)     I      ]
+          [ 1  0 ],              [   I      −A_(n−1)  ].
+
+Then A_n is a 2^n × 2^n matrix whose eigenvalues are √n with multiplicity 2^(n−1) and −√n with multiplicity 2^(n−1).
+
+Proof. By induction A_n² = nI: A_1² = I, and if A_(n−1)² = (n − 1)I then the block product gives A_n² = diag(A_(n−1)² + I, A_(n−1)² + I) = nI. So every eigenvalue is √n or −√n. The trace of A_n is 0, so each occurs exactly half the time. ∎
+
+Lemma 3. Let H be a graph on m vertices and let A be a symmetric m × m matrix with entries in {−1, 0, 1}, indexed by the vertices of H, such that A_(u,v) = 0 whenever u and v are not adjacent. Then Δ(H) ≥ λ_1(A).
+
+Proof. Let v be an eigenvector for λ_1, and let v_1 be a coordinate of largest absolute value. Then
+    |λ_1 v_1| = |(Av)_1| = |Σ_(j adjacent to 1) A_(1,j) v_j| ≤ Σ_(j adjacent to 1) |v_j| ≤ Δ(H)·|v_1|.
+So λ_1 ≤ |λ_1| ≤ Δ(H). ∎
+
+Proof of the theorem. The entries of A_n are in {−1, 0, 1}. If every −1 entry is changed to 1, one obtains exactly the adjacency matrix of Q_n: the two diagonal blocks correspond to the two (n−1)-dimensional subcubes, and the two identity blocks to the perfect matching between them. So A_n is a signed adjacency matrix of Q_n.
+
+Let H be an induced subgraph of Q_n with 2^(n−1) + 1 vertices, and let A_H be the principal submatrix of A_n on the rows and columns of H. Then A_H satisfies the conditions of Lemma 3 for H, so Δ(H) ≥ λ_1(A_H). By Lemma 1 with N = 2^n and m = 2^(n−1) + 1,
+
+    λ_1(A_H) ≥ λ_(1 + N − m)(A_n) = λ_(2^(n−1))(A_n) = √n,
+
+because the 2^(n−1) largest eigenvalues of A_n all equal √n. Hence Δ(H) ≥ √n. ∎

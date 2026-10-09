@@ -1,0 +1,17 @@
+{
+ "id": "p8d84be28",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 3,
+ "surprise": 4,
+ "explanation": 3,
+ "simplicity": 2,
+ "conceptual": 3,
+ "unification": 2,
+ "elegance": 5.5,
+ "key_idea": "A localized virial (Pohozaev-type) identity is written as a double integral against the source pair measure with the symmetric kernel (X(x)-X(y))\u00b7(x-y)/|x-y|^2. The resulting pressure term is controlled by a one-dimensional interval-pair inequality on lines, which gives a scale-invariant energy bound that the subcritical scaling then contradicts.",
+ "reason": "Two steps are attractive: the global identity becomes a double-integral virial identity over the Newton-potential representation, and the 1D interval-overlap sign argument is clever and robust. Both are buried under heavy localization machinery: close/far pair splitting, cap weights, random directions, layer-loss estimates and a three-parameter epsilon cascade. The reader sees the mechanism, but cannot hold the proof in their head.",
+ "recognized": "Appears to be a proof of the H\u00e9non\u2013Lane\u2013Emden conjecture (Phan's Conjecture C); I don't recognize this specific proof",
+ "source_guess": "ai"
+}

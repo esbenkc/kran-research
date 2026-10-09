@@ -1,0 +1,17 @@
+{
+ "id": "p70297116",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 3,
+ "explanation": 2,
+ "simplicity": 2,
+ "conceptual": 2,
+ "unification": 2,
+ "elegance": 4,
+ "key_idea": "Recast the partition problem through norm duality as maximizing the expected maximum of Gaussian linear scores, reduce to a minimal extremizer with at least five obtuse centroids, then derive a contradiction from two constraints: a lower bound on cell probabilities (from rearrangement, and from score deletion combined with Ehrhard) and a residual-covariance determinant bound (from bounding a two-dimensional Gaussian density by its maximum).",
+ "reason": "The reduction is clean and conceptual: duality, merging cells to get obtuse centroids, the Gram-matrix rank argument, and the elegant triangle-integral density bound in Lemma 6. But the decisive step is a patchwork of numerical constants (0.929, 0.884, 0.415, 88/9), interval covers and rational enclosures that excludes m\u22655 by bookkeeping rather than by a reason anyone could grasp, and it leans on the three-dimensional propeller theorem as a black box.",
+ "recognized": "Propeller conjecture of Khot\u2013Naor in all dimensions (extending Heilman\u2013Jagannath\u2013Naor's three-dimensional propeller theorem); I don't recognise this specific proof",
+ "source_guess": "ai"
+}

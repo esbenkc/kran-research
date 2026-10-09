@@ -1,0 +1,17 @@
+{
+ "id": "p80674e68",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 3,
+ "surprise": 5,
+ "explanation": 3,
+ "simplicity": 3,
+ "conceptual": 4,
+ "unification": 4,
+ "elegance": 7,
+ "key_idea": "Pair polynomially weighted edge cycles of K_n under a skew intersection form corrected by the rotation orders at vertices. The form vanishes on cycles, and interpolation-weighted polynomial tests then force the span of independent-edge evaluations at crossing pairs to have dimension at least C(s,2)^2, so the number of crossings is bounded below by a linear-algebra rank argument.",
+ "reason": "Recasting the crossing count as a rank lower bound for a nondegenerate form that the cycle-pairing identity forces to vanish is striking. Combined with Lagrange interpolation weights and two-triangle interpolation patterns, it gives a conceptual route to an exact extremal result. The argument still carries a lot of technical bookkeeping: the local chord and shift construction in Lemma 2, the inductive interpolation lemma, the divisibility and minimal-degree descent, and a parity case split in the upper-bound count.",
+ "recognized": "no \u2014 this claims Hill's conjecture (Guy\u2013Harary\u2013Hill Z(n)); the upper bound is the known two-page construction (Bla\u017eek\u2013Koman / Damiani et al. / de Klerk\u2013Pasechnik\u2013Salazar), but I do not recognise the lower-bound proof",
+ "source_guess": "ai"
+}

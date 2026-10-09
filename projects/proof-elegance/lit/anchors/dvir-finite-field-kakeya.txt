@@ -1,0 +1,23 @@
+Theorem (finite field Kakeya). Let F be a finite field with q elements and let n ≥ 1. Let K ⊆ F^n be a Kakeya set: for every direction x ∈ F^n \ {0} there is a point b ∈ F^n such that the whole line {b + t·x : t ∈ F} is contained in K. Then
+
+    |K| ≥ C(q + n − 1, n) ≥ q^n / n!.
+
+In particular |K| ≥ c_n · q^n with c_n depending only on n.
+
+Proof.
+
+Suppose, for contradiction, that |K| < C(q + n − 1, n).
+
+Step 1 (a polynomial vanishing on K). The vector space of polynomials in F[x_1, ..., x_n] of total degree at most q − 1 has dimension C(q − 1 + n, n), which is larger than |K|. Requiring a polynomial to vanish at the points of K is |K| linear conditions on its coefficients. So there is a nonzero polynomial P of degree at most q − 1 with P(y) = 0 for all y ∈ K.
+
+Let d = deg P. Then d ≥ 1, since a nonzero constant cannot vanish on the nonempty set K. Write P_d for the homogeneous part of P of degree d; it is a nonzero polynomial.
+
+Step 2 (the top part vanishes everywhere). Fix a direction x ≠ 0 and a point b such that the line {b + t·x} lies in K. The one-variable polynomial
+
+    g(t) = P(b + t·x)
+
+has degree at most d ≤ q − 1 and vanishes at all q elements t of F. A nonzero one-variable polynomial of degree at most q − 1 has at most q − 1 roots, so g is the zero polynomial. The coefficient of t^d in g is exactly P_d(x). Therefore P_d(x) = 0. This holds for every x ≠ 0, and P_d(0) = 0 because P_d is homogeneous of degree d ≥ 1. So P_d vanishes at every point of F^n.
+
+Step 3 (contradiction). A nonzero polynomial of degree d in n variables vanishes on at most d·q^(n−1) points of F^n (Schwartz–Zippel lemma). Since d ≤ q − 1 < q, this is fewer than q^n points. So P_d cannot vanish on all of F^n unless P_d = 0. This contradicts the fact that P_d is nonzero.
+
+Hence |K| ≥ C(q + n − 1, n) = (q + n − 1)(q + n − 2)···q / n! ≥ q^n / n!. ∎

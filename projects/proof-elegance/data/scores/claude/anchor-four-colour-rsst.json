@@ -1,0 +1,17 @@
+{
+ "id": "anchor-four-colour-rsst",
+ "source": "anchor",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 2,
+ "explanation": 2,
+ "simplicity": 1,
+ "conceptual": 1,
+ "unification": 1,
+ "elegance": 2,
+ "key_idea": "Combine Euler-formula discharging, which forces one of an unavoidable set of configurations, with Kempe-chain reducibility of each configuration in a minimal counterexample.",
+ "reason": "The conceptual skeleton (minimal counterexample, discharging from Euler's formula, Kempe-chain reducibility) is clear and classical. However, the actual work rests on computer verification of 633 configurations and a 13,000-line case analysis with rules partly chosen by trial and error, so no human can survey why the theorem holds.",
+ "recognized": "Robertson\u2013Sanders\u2013Seymour\u2013Thomas proof of the Four Colour Theorem (1997)",
+ "source_guess": "human"
+}

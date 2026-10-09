@@ -1,0 +1,17 @@
+{
+ "id": "paa6e6622",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 4,
+ "explanation": 3,
+ "simplicity": 2,
+ "conceptual": 3,
+ "unification": 4,
+ "elegance": 5,
+ "key_idea": "Realize the Ising spins as a strong solution of an infinite stochastic filtering (innovation) equation driven by IID Brownian innovations, then show pathwise uniqueness by coupling two conditional copies sharing the same innovations and proving that the field discrepancy variance vanishes, using spectral/nonbacktracking cancellation along paths up to and including the Kesten\u2013Stigum threshold.",
+ "reason": "The central idea of recovering the spins from their filtering innovations, so that being a factor of IID becomes strong uniqueness of a filtering SDE, is striking and explains why the KS threshold appears. However, the execution is long and technical: posterior bounds, attenuation lemmas, concentration of path products, and a delicate critical-case comparison with log corrections. The core insight is buried under heavy estimates and measurability bookkeeping.",
+ "recognized": "no",
+ "source_guess": "ai"
+}

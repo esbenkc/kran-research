@@ -1,0 +1,17 @@
+{
+ "id": "anchor-kepler-hales",
+ "source": "anchor",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 1,
+ "surprise": 3,
+ "explanation": 2,
+ "simplicity": 1,
+ "conceptual": 1,
+ "unification": 2,
+ "elegance": 2,
+ "key_idea": "Turn global density into a local score on hybrid Delaunay/Voronoi decomposition stars, then rule out every possible counterexample by enumerating tame graphs and bounding each one with linear programs and interval-arithmetic inequalities.",
+ "reason": "The localization through a hybrid score function is a real and clever idea. Almost all the work, though, is done by machine enumeration of thousands of tame graphs, about 10^5 linear programs and more than 23,000 interval-arithmetic cases, so a reader cannot see why fcc is optimal beyond the fact that every case was checked.",
+ "recognized": "Hales (with Ferguson), proof of the Kepler conjecture, Annals of Mathematics 2005 / Discrete & Computational Geometry 2006",
+ "source_guess": "human"
+}

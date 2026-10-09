@@ -1,0 +1,17 @@
+{
+ "id": "p67827910",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 3,
+ "surprise": 4,
+ "explanation": 3,
+ "simplicity": 2,
+ "conceptual": 3,
+ "unification": 4,
+ "elegance": 5.5,
+ "key_idea": "Build a finite 2-complex whose fundamental group comes from random graphs with prescribed types. In the product graph of simultaneous steps, every degree is odd, so each component has an even number of vertices and each group value appears an even number of times, which forces \u03b1\u03b2 = 0 over F_2; random-matching estimates rule out spherical diagrams, which gives asphericity and torsion-freeness.",
+ "reason": "The final zero-divisor step, a parity/handshake argument on a product graph, is short and striking, and the Euler-characteristic count for planar pairings is neat. Most of the proof, though, is a long probabilistic chain: girth conditioning, expansion, closures, planar separation, and constants fixed in a careful order, with much of the work in bookkeeping and estimates.",
+ "recognized": "no",
+ "source_guess": "ai"
+}

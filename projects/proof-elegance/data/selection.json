@@ -1,0 +1,2546 @@
+{
+ "id_salt": "proof-elegance-2026-10-08",
+ "cap_chars": 25000,
+ "seed": 20261008,
+ "ai": [
+  {
+   "slug": "Bounded-Step-Walks-on-Gaussian-Primes-September-26-2026",
+   "family": "028",
+   "field": "Number theory",
+   "kind": "proof",
+   "title": "Bounded-Step Walks on Gaussian Primes",
+   "family_title": "The Gaussian moat conjecture",
+   "problem_name": "The Gaussian moat conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/Bounded-Step-Walks-on-Gaussian-Primes-September-26-2026",
+   "lean_status": "complete: comparator GaussianMoat is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.GaussianMoat.fullMain",
+   "lean_file": "lean/OAI/NumberTheory/GaussianMoat/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/GaussianMoat.json",
+   "lean_scope_note": "The Gaussian moat problem asks whether an infinite walk through distinct Gaussian primes can have bounded step lengths. The formalized result gives a negative answer for every real step bound $D$. More strongly, one finite bound depending only on $D$ limits the size of every connected component of the bounded-step graph and the length of every injective bounded-step walk. Axis primes and all associates are included. No explicit function of $D$ is supplied.",
+   "role": "primary",
+   "reason": "Family 028 (Number theory); Lean comparator 'Uniform bounds for bounded-step Gaussian-prime walks'. Scope note: The Gaussian moat problem asks whether an infinite walk through distinct Gaussian primes can have bounded step lengths.",
+   "extract": {}
+  },
+  {
+   "slug": "Short-Egyptian-fractions-September-25-2026",
+   "family": "025",
+   "field": "Number theory",
+   "kind": "proof",
+   "title": "Short Egyptian fractions",
+   "family_title": "Erdős’s short Egyptian-fraction conjecture",
+   "problem_name": "Erdős’s short Egyptian-fraction conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/Short-Egyptian-fractions-September-25-2026",
+   "lean_status": "complete: comparator EgyptianFractions is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.Problem337.main_double_log_order",
+   "lean_file": "lean/OAI/NumberTheory/EgyptianFractions/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/EgyptianFractions.json",
+   "lean_scope_note": "An Egyptian-fraction expansion writes a rational number as a sum of distinct unit fractions. The formalization proves that every $a/b$ with $1\\le a<b$ has such an expansion and that the largest minimum length at denominator $b$ is $\\Theta(\\log\\log b)$. If $F(k)$ counts exact $k$-term expansions of $1$, it also proves $\\log\\log F(k)=\\Theta(k)$ and bounds every denominator in such an expansion.\n\nEvery integer $m\\ge2$ occurs as a denominator in an expansion of $1$, with length eventually at most $(257/\\log2+\\varepsilon)\\log\\log m$ for every $\\varepsilon>0$; padding can preserve that denominator. If $v(k)$ is the least integer at least $2$ absent from all exact $k$-term expansions of $1$, then e",
+   "role": "primary",
+   "reason": "Family 025 (Number theory); Lean comparator 'Short expansions, counting, and prescribed denominators'. Scope note: An Egyptian-fraction expansion writes a rational number as a sum of distinct unit fractions.",
+   "extract": {}
+  },
+  {
+   "slug": "Squarefree-values-of-quartics-and-power-free-values-of-polynomials-September-24-2026",
+   "family": "020",
+   "field": "Number theory",
+   "kind": "proof",
+   "title": "Squarefree values of quartics and power-free values of polynomials",
+   "family_title": "Squarefree quartics and power-free polynomial values",
+   "problem_name": "Squarefree quartics and power-free polynomial values",
+   "url": "https://github.com/openai/math/tree/main/preprints/Squarefree-values-of-quartics-and-power-free-values-of-polynomials-September-24-2026",
+   "lean_status": "complete: comparator PowerFreeValues is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.QuarticPowerFree.allDegrees",
+   "lean_file": "lean/OAI/NumberTheory/PowerFree/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/PowerFreeValues.json",
+   "lean_scope_note": "The formalized result proves positive-density power-free values for every integer polynomial $f$ irreducible over $\\mathbb Q$ of degree $d\\ge4$. Put $k=d-2$ and assume no prime $k$th power divides every value of $f$. Then the number of positive integers $n\\le X$ for which $f(n)$ is $k$-free is $c_fX+o_f(X)$, where $c_f>0$ is the convergent product of local factors. Negative values are allowed and zero is excluded. No monicity, primitivity, or coefficient-height restriction is imposed.",
+   "role": "primary",
+   "reason": "Family 020 (Number theory); Lean comparator 'Positive density of power-free polynomial values'. Scope note: The formalized result proves positive-density power-free values for every integer polynomial $f$ irreducible over $\\mathbb Q$ of degree $d\\ge4$.",
+   "extract": {}
+  },
+  {
+   "slug": "The-Deligne-Drinfeld-conjecture-September-23-2026",
+   "family": "008",
+   "field": "Number theory",
+   "kind": "proof",
+   "title": "The Deligne-Drinfeld conjecture",
+   "family_title": "The Deligne–Drinfeld conjecture",
+   "problem_name": "The Deligne–Drinfeld conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/The-Deligne-Drinfeld-conjecture-September-23-2026",
+   "lean_status": "complete: comparator DeligneDrinfeld is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.DeligneDrinfeld.main",
+   "lean_file": "lean/OAI/Algebra/Drinfeld/Completion.lean",
+   "comparator_config": "lean/ComparatorChallenges/DeligneDrinfeld.json",
+   "lean_scope_note": "The Deligne–Drinfeld conjecture predicts that the rational Grothendieck–Teichmüller Lie algebra is freely generated by one element in each odd weight $3,5,7,\\ldots$. The formalization establishes this for the rational solution space of antisymmetry, the three-term equation, and the four-strand pentagon with the Ihara bracket. It also gives the corresponding continuous isomorphism after completion by weight.\n\nThe regularized-transport proposition and graph-complex consequences are not included.",
+   "role": "primary",
+   "reason": "Family 008 (Number theory); Lean comparator 'Deligne–Drinfeld main statement'. Scope note: The Deligne–Drinfeld conjecture predicts that the rational Grothendieck–Teichmüller Lie algebra is freely generated by one element in each odd weight $3,5,7,\\ldots$.",
+   "extract": {}
+  },
+  {
+   "slug": "A-quadratic-bound-for-Jacobsthals-function-September-25-2026",
+   "family": "021",
+   "field": "Number theory",
+   "kind": "proof",
+   "title": "A quadratic bound for Jacobsthal's function",
+   "family_title": "A quadratic bound for Jacobsthal's function",
+   "problem_name": "A quadratic bound for Jacobsthal's function",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-quadratic-bound-for-Jacobsthals-function-September-25-2026",
+   "lean_status": "complete: comparator Jacobsthal is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.Erdos970.Erdos970Final.erdos_970_quadratic",
+   "lean_file": "lean/OAI/NumberTheory/Jacobsthal/Conclusions/QuadraticBound.lean",
+   "comparator_config": "lean/ComparatorChallenges/Jacobsthal.json",
+   "lean_scope_note": "Let $h(k)$ be the least interval length that guarantees an integer coprime to any prescribed positive modulus with at most $k$ distinct prime factors. The formalization proves the paper's strengthened Jacobsthal bound $h(k)\\le Ck^2/(\\log\\log(3k))^2$ for one absolute $C>0$ and every $k\\ge1$. Intervals may begin at any signed integer. The earlier quadratic bound is also retained as a separate statement; the optimal order of growth is not determined.",
+   "role": "reserve",
+   "reason": "Family 021 (Number theory); Lean comparator 'Quadratic Jacobsthal bound'. Scope note: Let $h(k)$ be the least interval length that guarantees an integer coprime to any prescribed positive modulus with at most $k$ distinct prime factors.",
+   "extract": {}
+  },
+  {
+   "slug": "A-Counterexample-to-the-Infinite-Matroid-Packing-Covering-Conjecture-September-24-2026",
+   "family": "185",
+   "field": "Combinatorics",
+   "kind": "counterexample",
+   "title": "A Counterexample to the Infinite Matroid Packing/Covering Conjecture",
+   "family_title": "Counterexamples to infinite matroid intersection and packing/covering",
+   "problem_name": "Infinite matroid packing/covering conjecture (counterexample)",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-Counterexample-to-the-Infinite-Matroid-Packing-Covering-Conjecture-September-24-2026",
+   "lean_status": "complete: comparator InfiniteMatroid is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.InfiniteMatroidCounterexample.main",
+   "lean_file": "lean/OAI/Combinatorics/InfiniteMatroid/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/InfiniteMatroid.json",
+   "lean_scope_note": "The infinite matroid packing/covering conjecture predicts a partition of a common ground set into parts admitting the corresponding packing and covering. The formalization constructs two self-dual partitional matroids on one countably infinite ground set that admit neither an independent covering nor a packing/covering partition. The same pair has no intersection witness, so it also refutes the unrestricted infinite matroid intersection conjecture.\n\nSeparate formalized consequences give counterexamples to the individual covering and packing conjectures. The construction is in ordinary set theory with Choice and assumes no finitary restriction on the matroids.",
+   "role": "primary",
+   "reason": "Family 185 (Combinatorics); Lean comparator 'Infinite matroid packing/covering counterexample'. Scope note: The infinite matroid packing/covering conjecture predicts a partition of a common ground set into parts admitting the corresponding packing and covering.",
+   "extract": {}
+  },
+  {
+   "slug": "A-counterexample-to-Hadwigers-conjecture-September-23-2026",
+   "family": "157",
+   "field": "Combinatorics",
+   "kind": "counterexample",
+   "title": "A counterexample to Hadwiger's conjecture",
+   "family_title": "Counterexamples to the Hadwiger and Colin de Verdière conjectures",
+   "problem_name": "Hadwiger's conjecture (counterexample)",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-counterexample-to-Hadwigers-conjecture-September-23-2026",
+   "lean_status": "complete: comparator HadwigerCounterexample is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.HadwigerCounterexample.not_hadwiger_conjecture",
+   "lean_file": "lean/OAI/Combinatorics/HadwigerCounterexample/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/HadwigerCounterexample.json",
+   "lean_scope_note": "Hadwiger's conjecture predicts $\\chi(G)\\le h(G)$ for every finite graph, where $h(G)$ is the largest clique-minor order. The formalization constructs arbitrarily large finite simple counterexamples with independence number at most two. For a graph on $m$ vertices it proves\n$h(G)<26m/75+2/3<m/2\\le\\chi(G)$.\nThis disproves the ordinary chromatic form. The paper's fractional-chromatic strengthening and the Colin de Verdière consequence are outside this selected statement.\n\nThe Linear List Hadwiger conjecture asks for a universal linear bound on list chromatic number in terms of clique-minor size. The formalization proves that there is one integer $C\\ge1$ such that every finite nonempty simple gr",
+   "role": "primary",
+   "reason": "Family 157 (Combinatorics); Lean comparator 'Arbitrarily large counterexamples to Hadwiger's conjecture'. Scope note: Hadwiger's conjecture predicts $\\chi(G)\\le h(G)$ for every finite graph, where $h(G)$ is the largest clique-minor order.",
+   "extract": {}
+  },
+  {
+   "slug": "A-classification-of-finite-Euclidean-Ramsey-configurations-September-23-2026",
+   "family": "172",
+   "field": "Combinatorics",
+   "kind": "proof",
+   "title": "A classification of finite Euclidean Ramsey configurations",
+   "family_title": "Classification of finite Euclidean Ramsey configurations",
+   "problem_name": "Classification of finite Euclidean Ramsey configurations",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-classification-of-finite-Euclidean-Ramsey-configurations-September-23-2026",
+   "lean_status": "complete: comparator EuclideanRamsey is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.EuclideanRamsey.classification",
+   "lean_file": "lean/OAI/Combinatorics/EuclideanRamsey/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/EuclideanRamsey.json",
+   "lean_scope_note": "A finite configuration is Euclidean Ramsey if every finite coloring of some sufficiently high-dimensional Euclidean space contains a monochromatic congruent copy at the original scale. The formalization gives the tensor-field classification for full-affine-span configurations, covers singleton and affine-span reductions, and proves that every Ramsey configuration is cospherical. It also proves that every nonempty subset of a finite transitive configuration and every nonempty set of at most five points on a circle is Ramsey. A further sufficient condition uses linear independence of the quadratic evaluation rows of a spherical configuration.\n\nThe formalization also gives spherical non-Ramsey ",
+   "role": "primary",
+   "reason": "Family 172 (Combinatorics); Lean comparator 'Tensor-field classification of Ramsey configurations'. Scope note: A finite configuration is Euclidean Ramsey if every finite coloring of some sufficiently high-dimensional Euclidean space contains a monochromatic congruent copy at the original scale.",
+   "extract": {}
+  },
+  {
+   "slug": "The-strong-thin-tree-conjecture-September-23-2026",
+   "family": "174",
+   "field": "Combinatorics",
+   "kind": "proof",
+   "title": "The strong thin tree conjecture",
+   "family_title": "Deterministic construction of strong thin spanning trees",
+   "problem_name": "Strong thin tree conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/The-strong-thin-tree-conjecture-September-23-2026",
+   "lean_status": "complete: comparator StrongThinTree is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.StrongThinTree.strongThinTree",
+   "lean_file": "lean/OAI/Combinatorics/ThinTrees/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/StrongThinTree.json",
+   "lean_scope_note": "The strong thin-tree conjecture asks for spanning trees that cross every cut sparsely relative to the original graph. The formalized result gives one absolute constant $C>0$ such that every finite loopless $k$-edge-connected multigraph with at least two vertices has a spanning tree crossing each nontrivial cut at most $(C/k)$ times the original cut size. Parallel edges remain distinct. No numerical value of $C$ or construction algorithm is asserted.\n\nThe strong thin-tree problem asks for a spanning tree that crosses every cut sparsely relative to the original graph. The formalization gives one deterministic polynomial-time algorithm and an absolute constant $C>0$ such that a finite $k$-edge-",
+   "role": "primary",
+   "reason": "Family 174 (Combinatorics); Lean comparator 'Strong thin-tree bound'. Scope note: The strong thin-tree conjecture asks for spanning trees that cross every cut sparsely relative to the original graph.",
+   "extract": {}
+  },
+  {
+   "slug": "The-crossing-number-of-complete-graphs-September-23-2026",
+   "family": "165",
+   "field": "Combinatorics",
+   "kind": "proof",
+   "title": "The crossing number of complete graphs",
+   "family_title": "Exact crossing numbers of complete and complete bipartite graphs",
+   "problem_name": "Harary–Hill conjecture on the crossing number of K_n",
+   "url": "https://github.com/openai/math/tree/main/preprints/The-crossing-number-of-complete-graphs-September-23-2026",
+   "lean_status": "complete: comparator CompleteCrossing is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.Paper170.complete_graph_crossing_number",
+   "lean_file": "lean/OAI/Combinatorics/CompleteCrossing/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/CompleteCrossing.json",
+   "lean_scope_note": "The formalized result proves Hill's proposed formula for the crossing number of the complete graph: for every $n\\ge3$, $\\mathrm{cr}(K_n)=\\frac14\\lfloor n/2\\rfloor\\lfloor(n-1)/2\\rfloor\\lfloor(n-2)/2\\rfloor\\lfloor(n-3)/2\\rfloor$. It proves the lower bound and constructs a matching two-page drawing. Crossings are spatial points, so repeated crossings of one edge pair count separately.\n\nZarankiewicz's crossing-number conjecture predicts $\\mathrm{cr}(K_{m,n})=\\lfloor m/2\\rfloor\\lfloor(m-1)/2\\rfloor\\lfloor n/2\\rfloor\\lfloor(n-1)/2\\rfloor$. The formalized result proves this equality for every positive $m,n$ and constructs a drawing attaining it. Crossings are counted as spatial points for continuou",
+   "role": "primary",
+   "reason": "Family 165 (Combinatorics); Lean comparator 'Crossing number of complete graphs'. Scope note: The formalized result proves Hill's proposed formula for the crossing number of the complete graph: for every $n\\ge3$, $\\mathrm{cr}(K_n)=\\frac14\\lfloor n/2\\rfloor\\lfloor(n-1)/2\\rfloor\\lfloor(n-2)/2\\rfloor\\lfloor(n-3)/2\\rfloor$.",
+   "extract": {}
+  },
+  {
+   "slug": "A-linear-cycle-and-edge-decomposition-of-every-graph-September-24-2026",
+   "family": "181",
+   "field": "Combinatorics",
+   "kind": "proof",
+   "title": "A linear cycle-and-edge decomposition of every graph",
+   "family_title": "The Erdős–Gallai cycle-decomposition conjecture",
+   "problem_name": "The Erdős–Gallai cycle-decomposition conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-linear-cycle-and-edge-decomposition-of-every-graph-September-24-2026",
+   "lean_status": "complete: comparator CycleDecomposition is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.ErdosGallai.erdos_gallai",
+   "lean_file": "lean/OAI/Combinatorics/CycleDecomposition/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/CycleDecomposition.json",
+   "lean_scope_note": "The Erdős–Gallai cycle-decomposition conjecture asks for a linear bound on the number of cycles and single edges needed to partition a graph's edges. The formalized result gives one absolute constant $C>0$ such that every finite simple graph on $n$ vertices has an edge-disjoint decomposition into at most $Cn$ cycles or singleton edges. Edgeless and small graphs are included. The optimal value of $C$ is not determined.",
+   "role": "primary",
+   "reason": "Family 181 (Combinatorics); Lean comparator 'Linear cycle-and-edge decomposition'. Scope note: The Erdős–Gallai cycle-decomposition conjecture asks for a linear bound on the number of cycles and single edges needed to partition a graph's edges.",
+   "extract": {}
+  },
+  {
+   "slug": "A-translational-tile-with-no-fully-periodic-tiling-in-dimension-three-September-23-2026",
+   "family": "155",
+   "field": "Combinatorics",
+   "kind": "counterexample",
+   "title": "A translational tile with no fully periodic tiling in dimension three",
+   "family_title": "A counterexample to periodic tiling in dimension three",
+   "problem_name": "A counterexample to periodic tiling in dimension three",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-translational-tile-with-no-fully-periodic-tiling-in-dimension-three-September-23-2026",
+   "lean_status": "complete: comparator PeriodicTilingThree is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.PeriodicTilingThree.periodic_tiling_counterexample_and_minimality",
+   "lean_file": "lean/OAI/Geometry/PeriodicTiling/Counterexample.lean",
+   "comparator_config": "lean/ComparatorChallenges/PeriodicTilingThree.json",
+   "lean_scope_note": "The periodic-tiling question asks whether a finite tile that tiles a lattice must admit a periodic tiling. The formalized counterexample is a finite tile in $\\mathbb Z^3$ that tiles but has no complement invariant under a finite-index subgroup. Its unit-cube thickening also tiles $\\mathbb R^3$ almost everywhere but admits no fully periodic tiling, even with arbitrary real translation vectors. The result also establishes that dimension three is the least lattice dimension where this failure occurs.",
+   "role": "reserve",
+   "reason": "Family 155 (Combinatorics); Lean comparator 'Aperiodic translational tile in dimension three'. Scope note: The periodic-tiling question asks whether a finite tile that tiles a lattice must admit a periodic tiling.",
+   "extract": {}
+  },
+  {
+   "slug": "Average-Sensitivity-of-Polynomial-Threshold-Functions-September-25-2026",
+   "family": "127",
+   "field": "Theoretical computer science",
+   "kind": "proof",
+   "title": "Average sensitivity of polynomial threshold functions",
+   "family_title": "The asymptotic Gotsman–Linial conjecture",
+   "problem_name": "The asymptotic Gotsman–Linial conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/Average-Sensitivity-of-Polynomial-Threshold-Functions-September-25-2026",
+   "lean_status": "complete: comparator GotsmanLinial is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.LeanBlast.GotsmanLinial.gotsmanLinialStatement",
+   "lean_file": "lean/OAI/Combinatorics/GotsmanLinial/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/GotsmanLinial.json",
+   "lean_scope_note": "The formalized result proves the average-sensitivity bound $8d\\sqrt n$ for every Boolean threshold function defined by a real multilinear polynomial of degree at most $d$ on the $n$-dimensional cube. The sign convention assigns value $1$ at zero. This establishes the stated asymptotic bound, rather than the separate conjecture identifying exact extremizers.",
+   "role": "primary",
+   "reason": "Family 127 (Theoretical computer science); Lean comparator 'Average sensitivity of polynomial threshold functions'. Scope note: The formalized result proves the average-sensitivity bound $8d\\sqrt n$ for every Boolean threshold function defined by a real multilinear polynomial of degree at most $d$ on the $n$-dimensional cube.",
+   "extract": {}
+  },
+  {
+   "slug": "Sharp-binary-information-contraction-on-the-discrete-cube-September-24-2026",
+   "family": "119",
+   "field": "Theoretical computer science",
+   "kind": "proof",
+   "title": "Sharp binary-information contraction on the discrete cube",
+   "family_title": "The Courtade–Kumar and Hellinger conjectures",
+   "problem_name": "Courtade–Kumar conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/Sharp-binary-information-contraction-on-the-discrete-cube-September-24-2026",
+   "lean_status": "complete: comparator CourtadeKumar is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.LeanBlast.CourtadeKumar.courtadeKumarAndAttainment",
+   "lean_file": "lean/OAI/InformationTheory/BooleanNoise/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/CourtadeKumar.json",
+   "lean_scope_note": "The formalization proves sharp contraction of the information carried by a binary channel under independent symmetric noise on a uniform discrete cube. At each fixed initial information level, a noisy coordinate channel attains the maximum retained information. It also proves the refined Boolean bound that accounts for output bias, with strict improvement for nonconstant biased outputs at nonzero noise correlation, and the selected mean-dependent entropy-production inequality.\n\nFor Boolean functions this includes the Courtade–Kumar inequality $I(f(X);Y)\\le1-h_2(\\varepsilon)$ in bits at crossover probability $0\\le\\varepsilon\\le1/2$, where $h_2$ is binary entropy. A coordinate and its compleme",
+   "role": "primary",
+   "reason": "Family 119 (Theoretical computer science); Lean comparator 'Courtade–Kumar inequality and attainment'. Scope note: The formalization proves sharp contraction of the information carried by a binary channel under independent symmetric noise on a uniform discrete cube.",
+   "extract": {}
+  },
+  {
+   "slug": "Exact-Derandomization-of-Logarithmic-Space-L-equals-RL-equals-BPL-September-23-2026",
+   "family": "103",
+   "field": "Theoretical computer science",
+   "kind": "proof",
+   "title": "Exact derandomization of logarithmic space: L = RL = BPL",
+   "family_title": "Derandomization of logarithmic space: L=RL=BPL",
+   "problem_name": "L = RL = BPL (derandomization of logarithmic space)",
+   "url": "https://github.com/openai/math/tree/main/preprints/Exact-Derandomization-of-Logarithmic-Space-L-equals-RL-equals-BPL-September-23-2026",
+   "lean_status": "complete: comparator LogspaceEquality is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.ExactDerandomization.exact_logarithmic_space_derandomization",
+   "lean_file": "lean/OAI/Computability/Logspace/Equality.lean",
+   "comparator_config": "lean/ComparatorChallenges/LogspaceEquality.json",
+   "lean_scope_note": "The formalization proves $\\mathsf L=\\mathsf{RL}=\\mathsf{BPL}$ for binary languages in an explicit Turing-machine model with logarithmic workspace. The randomized classes use polynomial time: $\\mathsf{RL}$ never accepts a no-instance and accepts a yes-instance with probability at least $1/2$, while $\\mathsf{BPL}$ has acceptance probability at least $2/3$ on yes-instances and at most $1/3$ on no-instances. Thus bounded-error randomness does not enlarge deterministic logarithmic space in this model.\n\nThe selected theorem asserts equality of the language classes. The paper's explicit compiler and numerical running-time bounds are not separately stated in this Comparator target.",
+   "role": "primary",
+   "reason": "Family 103 (Theoretical computer science); Lean comparator 'Exact equality of deterministic and randomized logarithmic space'. Scope note: The formalization proves $\\mathsf L=\\mathsf{RL}=\\mathsf{BPL}$ for binary languages in an explicit Turing-machine model with logarithmic workspace.",
+   "extract": {}
+  },
+  {
+   "slug": "Additive-hardness-and-unbounded-configuration-gaps-in-bin-packing-September-24-2026",
+   "family": "118",
+   "field": "Theoretical computer science",
+   "kind": "counterexample",
+   "title": "Additive hardness and unbounded configuration gaps in bin packing",
+   "family_title": "Unbounded bin-packing gaps and the modified integer round-up conjecture",
+   "problem_name": "Unbounded bin-packing gaps and the modified integer round-up conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/Additive-hardness-and-unbounded-configuration-gaps-in-bin-packing-September-24-2026",
+   "lean_status": "complete: comparator BinPackingGap is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.BinPackingGap.main_results",
+   "lean_file": "lean/OAI/Computability/BinPacking/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/BinPackingGap.json",
+   "lean_scope_note": "The formalized results rule out a universal additive bound for the configuration linear program in bin packing. For every integer $c\\ge0$, there are an integer $B$ and a rational instance with $5B$ items whose individual-copy and size-type configuration-LP values both equal $B$, but whose integral optimum is greater than $B+c$. Distinguishing a packing in $B$ bins from the absence of one in $B+c$ bins is NP-hard for each fixed $c$. A deterministic polynomial-time algorithm with a fixed absolute additive allowance exists exactly when $P=NP$; under that equality, an optimal algorithm is constructed.",
+   "role": "reserve",
+   "reason": "Family 118 (Theoretical computer science); Lean comparator 'Unbounded configuration gaps and additive hardness'. Scope note: The formalized results rule out a universal additive bound for the configuration linear program in bin packing.",
+   "extract": {}
+  },
+  {
+   "slug": "The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026",
+   "family": "087",
+   "field": "Convex and metric geometry",
+   "kind": "proof",
+   "title": "The symmetric Mahler conjecture and its equality cases",
+   "family_title": "The Mahler conjectures and symplectic width",
+   "problem_name": "Symmetric Mahler conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026",
+   "lean_status": "complete: comparator SymmetricMahlerEquality is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.SymmetricMahler.symmetric_mahler_equality",
+   "lean_file": "lean/OAI/Analysis/Mahler/Classification.lean",
+   "comparator_config": "lean/ComparatorChallenges/SymmetricMahlerEquality.json",
+   "lean_scope_note": "The symmetric Mahler conjecture predicts $|K||K^\\circ|\\ge4^n/n!$ for every origin-symmetric convex body $K\\subset\\mathbb R^n$. The formalization establishes this for every $n\\ge1$ and characterizes equality exactly by invertible linear images of Hanner bodies, built from intervals using Cartesian products and convex-hull joins.\n\nThe nonsymmetric Mahler conjecture and the functional inequalities are not included.\n\nThe general Mahler conjecture gives a sharp lower bound for the volume product of a convex body and its polar. For every $n\\ge1$ and compact convex body $K\\subset\\mathbb R^n$ with nonempty interior, the formalization proves\n$\\inf_{z\\in\\mathrm{int}\\,K}|K|\\,|(K-z)^\\circ|\\ge (n+1)^{n+1",
+   "role": "primary",
+   "reason": "Family 087 (Convex and metric geometry); Lean comparator 'Symmetric Mahler equality characterization'. Scope note: The symmetric Mahler conjecture predicts $|K||K^\\circ|\\ge4^n/n!$ for every origin-symmetric convex body $K\\subset\\mathbb R^n$.",
+   "extract": {}
+  },
+  {
+   "slug": "The-Gaussian-Propeller-Bound-in-Every-Dimension-September-24-2026",
+   "family": "096",
+   "field": "Convex and metric geometry",
+   "kind": "proof",
+   "title": "The Gaussian propeller bound in every dimension",
+   "family_title": "The Gaussian propeller conjecture",
+   "problem_name": "The Gaussian propeller conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/The-Gaussian-Propeller-Bound-in-Every-Dimension-September-24-2026",
+   "lean_status": "complete: comparator GaussianPropeller is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.GaussianPropeller.all_partitions",
+   "lean_file": "lean/OAI/Probability/GaussianPropeller/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/GaussianPropeller.json",
+   "lean_scope_note": "The Gaussian propeller problem asks how large the sum of squared Gaussian first moments can be over a partition. The formalized result proves the sharp bound $9/(8\\pi)$ for every positive dimension and every positive number of labelled cells, allowing empty cells and arbitrary masses. In dimension at least two with at least three cells, three planar sectors of angle $120^\\circ$, extended in orthogonal directions, attain equality. The separate Gaussian-maxima and kernel-clustering consequences are not included.",
+   "role": "primary",
+   "reason": "Family 096 (Convex and metric geometry); Lean comparator 'Gaussian propeller bound and attainment'. Scope note: The Gaussian propeller problem asks how large the sum of squared Gaussian first moments can be over a partition.",
+   "extract": {}
+  },
+  {
+   "slug": "A-doubling-Hilbert-subset-with-no-finite-dimensional-bi-Lipschitz-embedding-September-25-2026",
+   "family": "098",
+   "field": "Convex and metric geometry",
+   "kind": "counterexample",
+   "title": "A doubling Hilbert subset with no finite-dimensional bi-Lipschitz embedding",
+   "family_title": "A negative answer to the Lang–Plaut problem",
+   "problem_name": "A negative answer to the Lang–Plaut problem",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-doubling-Hilbert-subset-with-no-finite-dimensional-bi-Lipschitz-embedding-September-25-2026",
+   "lean_status": "complete: comparator DoublingHilbert is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.DoublingHilbert.main",
+   "lean_file": "lean/OAI/Geometry/DoublingHilbert/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/DoublingHilbert.json",
+   "lean_scope_note": "The formalized result gives a doubling subset of real $\\ell_2$, with doubling constant at most $76800$, that admits no bi-Lipschitz embedding into any finite-dimensional Euclidean space at any finite distortion. A companion gives one universal doubling constant such that every infinite-dimensional real Banach space contains a compact doubling subset with no bi-Lipschitz embedding into any finite-dimensional normed space.",
+   "role": "reserve",
+   "reason": "Family 098 (Convex and metric geometry); Lean comparator 'Doubling Hilbert subset without finite-dimensional embedding'. Scope note: The formalized result gives a doubling subset of real $\\ell_2$, with doubling constant at most $76800$, that admits no bi-Lipschitz embedding into any finite-dimensional Euclidean space at any finite distortion.",
+   "extract": {}
+  },
+  {
+   "slug": "Asymptotically-minimal-maxima-of-real-Littlewood-polynomials-September-23-2026",
+   "family": "076",
+   "field": "Real and complex analysis",
+   "kind": "proof",
+   "title": "Asymptotically minimal maxima of real Littlewood polynomials",
+   "family_title": "Ultraflat real Littlewood polynomials",
+   "problem_name": "Ultraflat real Littlewood polynomials (asymptotically minimal maxima)",
+   "url": "https://github.com/openai/math/tree/main/preprints/Asymptotically-minimal-maxima-of-real-Littlewood-polynomials-September-23-2026",
+   "lean_status": "complete: comparator AsymptoticallyMinimalLittlewood is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.AsymptoticallyMinimalLittlewood.main",
+   "lean_file": "lean/OAI/Analysis/Littlewood/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/AsymptoticallyMinimalLittlewood.json",
+   "lean_scope_note": "The formalization gives real Littlewood polynomials of every sufficiently large length whose maximum modulus on the unit circle is at most $(1+\\eta)\\sqrt N$ for any fixed $\\eta>0$. Thus the smallest possible maximum is asymptotically minimal through all integer lengths.\n\nA further statement chooses one family of real sign polynomials for all lengths such that, for every fixed finite $p>0$, the $L^p$ mean of $\\bigl||P_N(z)|/\\sqrt N-1\\bigr|$ on the unit circle tends to zero. The results are existential and do not give an effective convergence rate or a signing algorithm.",
+   "role": "primary",
+   "reason": "Family 076 (Real and complex analysis); Lean comparator 'Asymptotically minimal Littlewood maximum'. Scope note: The formalization gives real Littlewood polynomials of every sufficiently large length whose maximum modulus on the unit circle is at most $(1+\\eta)\\sqrt N$ for any fixed $\\eta>0$.",
+   "extract": {}
+  },
+  {
+   "slug": "Almost-everywhere-Fourier-convergence-in-L-log-L-September-23-2026",
+   "family": "075",
+   "field": "Real and complex analysis",
+   "kind": "proof",
+   "title": "Almost-everywhere Fourier convergence in L log L",
+   "family_title": "The L log L Fourier-convergence conjecture",
+   "problem_name": "The L log L Fourier-convergence conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/Almost-everywhere-Fourier-convergence-in-L-log-L-September-23-2026",
+   "lean_status": "complete: comparator FourierLLogL is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.FourierLLogL.paperMain",
+   "lean_file": "lean/OAI/Analysis/FourierLLogL/PaperMain.lean",
+   "comparator_config": "lean/ComparatorChallenges/FourierLLogL.json",
+   "lean_scope_note": "The $L\\log L$ Fourier-convergence conjecture asks whether ordinary symmetric Fourier partial sums converge almost everywhere at this integrability scale. The formalization proves this for every measurable complex-valued function on $\\mathbb T=\\mathbb R/(2\\pi\\mathbb Z)$ satisfying $\\int_{\\mathbb T}|f|\\log(2+|f|)<\\infty$. Outside one measurable null set,\n$\\sum_{k=-N}^{N}\\widehat f(k)e^{ikx}\\to f(x)$ along the full sequence $N\\to\\infty$.",
+   "role": "primary",
+   "reason": "Family 075 (Real and complex analysis); Lean comparator 'Almost-everywhere convergence of full symmetric Fourier partial sums'. Scope note: The $L\\log L$ Fourier-convergence conjecture asks whether ordinary symmetric Fourier partial sums converge almost everywhere at this integrability scale.",
+   "extract": {}
+  },
+  {
+   "slug": "Riesz-transforms-and-uniform-rectifiability-in-higher-codimension-September-24-2026",
+   "family": "081",
+   "field": "Real and complex analysis",
+   "kind": "proof",
+   "title": "Riesz transforms and uniform rectifiability in higher codimension",
+   "family_title": "The David–Semmes Riesz-transform problem in higher codimension",
+   "problem_name": "The David–Semmes Riesz-transform problem in higher codimension",
+   "url": "https://github.com/openai/math/tree/main/preprints/Riesz-transforms-and-uniform-rectifiability-in-higher-codimension-September-24-2026",
+   "lean_status": "complete: comparator RieszQuantitative is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.RieszRectifiability.quantitative_higher_codimension_riesz_rectifiability",
+   "lean_file": "lean/OAI/Analysis/RieszRectifiability/Uniformity/Rectifiability.lean",
+   "comparator_config": "lean/ComparatorChallenges/RieszQuantitative.json",
+   "lean_scope_note": "The formalized result proves that bounded Riesz transforms force quantitative uniform rectifiability in higher codimension. For $d\\ge4$ and $2\\le n\\le d-2$, an $n$-Ahlfors–David regular measure whose positive hard truncations have one uniform $L^2$ operator bound has big pieces of Lipschitz images. The mass fraction and Lipschitz constant depend only on the dimensions and the stated regularity and operator bounds, and work at every support point and admissible radius, including unbounded support. The variation and principal-value corollary is not included.",
+   "role": "primary",
+   "reason": "Family 081 (Real and complex analysis); Lean comparator 'Quantitative higher-codimension Riesz rectifiability'. Scope note: The formalized result proves that bounded Riesz transforms force quantitative uniform rectifiability in higher codimension.",
+   "extract": {}
+  },
+  {
+   "slug": "Brennans-conjecture-and-sharp-inverse-square-integral-means-September-24-2026",
+   "family": "072",
+   "field": "Real and complex analysis",
+   "kind": "proof",
+   "title": "Brennan's conjecture and sharp inverse-square integral means",
+   "family_title": "Brennan's conjecture and a counterexample to Kraetzer's prediction",
+   "problem_name": "Brennan's conjecture and a counterexample to Kraetzer's prediction",
+   "url": "https://github.com/openai/math/tree/main/preprints/Brennans-conjecture-and-sharp-inverse-square-integral-means-September-24-2026",
+   "lean_status": "complete: comparator Brennan is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.Brennan.main_theorem",
+   "lean_file": "lean/OAI/Analysis/IntegralMeans/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/Brennan.json",
+   "lean_scope_note": "Brennan's conjecture asserts that $|\\phi'|^s$ is area-integrable for $4/3<s<4$ when $\\phi$ conformally maps a simply connected plane domain with nontrivial spherical boundary onto the disk. The formalization establishes this interval, along with area integrability of $|f'|^t$ for univalent disk maps when $-2<t<2/3$.\n\nIt also gives the uniform inverse-square radial-mean bound with exponent $-1-\\varepsilon$ for every $\\varepsilon>0$ and the spectrum value $B_{\\mathcal S}(-2)=1$. The Koebe map and its inverse give divergence at all four boundary exponents.\n\nKraetzer's proposed integral-means spectrum predicts $B_b(-1)=1/4$ for bounded univalent maps. The formalized result proves $B_b(-1)<1/4$, ",
+   "role": "reserve",
+   "reason": "Family 072 (Real and complex analysis); Lean comparator 'Brennan and inverse-square integral-means bounds'. Scope note: Brennan's conjecture asserts that $|\\phi'|^s$ is area-integrable for $4/3<s<4$ when $\\phi$ conformally maps a simply connected plane domain with nontrivial spherical boundary onto the disk.",
+   "extract": {}
+  },
+  {
+   "slug": "Taming-implies-compatibility-on-four-manifolds-September-23-2026",
+   "family": "342",
+   "field": "Differential geometry",
+   "kind": "proof",
+   "title": "Taming implies compatibility on four-manifolds",
+   "family_title": "Donaldson's tamed-to-compatible conjecture",
+   "problem_name": "Donaldson's tamed-to-compatible conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/Taming-implies-compatibility-on-four-manifolds-September-23-2026",
+   "lean_status": "complete: comparator TamingCompatibility is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.TamingCompatibility.taming_implies_compatibility",
+   "lean_file": "lean/OAI/Geometry/TamingCompatibility/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/TamingCompatibility.json",
+   "lean_scope_note": "Donaldson's tamed-to-compatible conjecture asks whether an almost-complex structure tamed by a symplectic form also admits a compatible symplectic form. The formalized result establishes this for every closed connected smooth four-manifold, keeping the almost-complex structure fixed. No integrability assumption or prescribed cohomology class for the compatible form is required.",
+   "role": "primary",
+   "reason": "Family 342 (Differential geometry); Lean comparator 'Taming implies compatibility'. Scope note: Donaldson's tamed-to-compatible conjecture asks whether an almost-complex structure tamed by a symplectic form also admits a compatible symplectic form.",
+   "extract": {}
+  },
+  {
+   "slug": "A-degenerate-counterexample-to-the-critical-number-Arnold-bound-September-23-2026",
+   "family": "347",
+   "field": "Differential geometry",
+   "kind": "counterexample",
+   "title": "Three fixed points on the symplectic quadric threefold",
+   "family_title": "Counterexamples to strong forms of Arnold's fixed-point conjecture",
+   "problem_name": "Counterexamples to strong forms of Arnold's fixed-point conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-degenerate-counterexample-to-the-critical-number-Arnold-bound-September-23-2026",
+   "lean_status": "complete: comparator ArnoldCounterexample is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.ArnoldCounterexample.main",
+   "lean_file": "lean/OAI/Geometry/Arnold/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/ArnoldCounterexample.json",
+   "lean_scope_note": "The critical-number form of Arnold's fixed-point conjecture predicts at least as many fixed points as the minimum number of critical points of a smooth function. The formalized counterexample is a Hamiltonian diffeomorphism of the complex quadric threefold with exactly three fixed points, while every smooth function on that manifold has at least four critical points. At least one fixed point is degenerate. The separate nondegenerate Morse-number construction is not included.",
+   "role": "primary",
+   "reason": "Family 347 (Differential geometry); Lean comparator 'Three-fixed-point Arnold counterexample'. Scope note: The critical-number form of Arnold's fixed-point conjecture predicts at least as many fixed points as the minimum number of critical points of a smooth function.",
+   "extract": {}
+  },
+  {
+   "slug": "A-negatively-pinched-Kahler-threefold-without-bounded-holomorphic-coordinates-September-25-2026",
+   "family": "359",
+   "field": "Differential geometry",
+   "kind": "counterexample",
+   "title": "A negatively pinched Kähler threefold without bounded holomorphic coordinates",
+   "family_title": "Negative Kähler curvature without bounded holomorphic coordinates",
+   "problem_name": "Bounded holomorphic coordinates for negatively pinched Kähler manifolds (counterexample)",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-negatively-pinched-Kahler-threefold-without-bounded-holomorphic-coordinates-September-25-2026",
+   "lean_status": "complete: comparator PinchedKahler is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.PinchedHartogs.main_theorem",
+   "lean_file": "lean/OAI/Geometry/Kahler/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/PinchedKahler.json",
+   "lean_scope_note": "The formalized result constructs a nonempty contractible complex threefold with a complete Kähler metric whose real sectional curvatures lie between two fixed negative constants. Nevertheless, it has no system of bounded holomorphic coordinates and is not biholomorphic to a bounded domain. The metric is obtained from an explicitly controlled potential. This is the negatively pinched construction; the different companion with only one-sided curvature control is separate.",
+   "role": "primary",
+   "reason": "Family 359 (Differential geometry); Lean comparator 'Negatively pinched Kähler threefold without bounded coordinates'. Scope note: The formalized result constructs a nonempty contractible complex threefold with a complete Kähler metric whose real sectional curvatures lie between two fixed negative constants.",
+   "extract": {}
+  },
+  {
+   "slug": "A-counterexample-to-integer-degree-harmonic-dimension-comparison-September-25-2026",
+   "family": "361",
+   "field": "Differential geometry",
+   "kind": "counterexample",
+   "title": "A counterexample to integer-degree harmonic dimension comparison",
+   "family_title": "Counterexamples to Yau's harmonic dimension bound",
+   "problem_name": "Counterexamples to Yau's harmonic dimension bound",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-counterexample-to-integer-degree-harmonic-dimension-comparison-September-25-2026",
+   "lean_status": "complete: comparator HarmonicGrowth is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.HarmonicCounterexample.main",
+   "lean_file": "lean/OAI/Geometry/HarmonicGrowth/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/HarmonicGrowth.json",
+   "lean_scope_note": "The formalized result disproves the proposed Euclidean upper comparison for dimensions of harmonic functions with integer polynomial growth. It constructs one complete smooth metric with nonnegative Ricci curvature on an even-dimensional Euclidean space, Euclidean near the origin and with asymptotic volume ratio strictly between zero and one, admitting more independent harmonic functions of the prescribed growth degree than the Euclidean count. The construction uses dimension $16$ and degree $50000$. Separate tangent-cone and cone-spectrum conclusions are not included.",
+   "role": "reserve",
+   "reason": "Family 361 (Differential geometry); Lean comparator 'Counterexample to harmonic dimension comparison'. Scope note: The formalized result disproves the proposed Euclidean upper comparison for dimensions of harmonic functions with integer polynomial growth.",
+   "extract": {}
+  },
+  {
+   "slug": "Nonuniqueness-for-Bounded-Measurable-Scalar-Conductivities-in-Three-Dimensions-September-23-2026",
+   "family": "365",
+   "field": "Partial differential equations",
+   "kind": "counterexample",
+   "title": "Nonuniqueness for Bounded Measurable Scalar Conductivities in Three Dimensions",
+   "family_title": "Joint metric and connection recovery from one boundary patch",
+   "problem_name": "Calderón's inverse conductivity problem: uniqueness for bounded measurable conductivities in 3D (counterexample)",
+   "url": "https://github.com/openai/math/tree/main/preprints/Nonuniqueness-for-Bounded-Measurable-Scalar-Conductivities-in-Three-Dimensions-September-23-2026",
+   "lean_status": "complete: comparator Conductivity is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.ScalarConductivity.main_nonuniqueness",
+   "lean_file": "lean/OAI/Analysis/Conductivity/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/Conductivity.json",
+   "lean_scope_note": "The Calderón inverse problem asks whether boundary measurements determine an interior conductivity. The formalized result gives nonuniqueness for bounded measurable scalar conductivities on the ball $B(0,3)\\subset\\mathbb R^3$: two uniformly positive conductivities differ on a set of positive volume, equal $1$ near the boundary, and have the same full weak Dirichlet-to-Neumann operator. Weak solutions exist uniquely for every boundary trace.",
+   "role": "primary",
+   "reason": "Family 365 (Partial differential equations); Lean comparator 'Scalar conductivity nonuniqueness'. Scope note: The Calderón inverse problem asks whether boundary measurements determine an interior conductivity.",
+   "extract": {}
+  },
+  {
+   "slug": "The-Subcritical-Henon-Lane-Emden-Conjecture-September-24-2026",
+   "family": "370",
+   "field": "Partial differential equations",
+   "kind": "proof",
+   "title": "The Subcritical Hénon–Lane–Emden Conjecture",
+   "family_title": "The subcritical Lane–Emden and Hénon–Lane–Emden conjectures",
+   "problem_name": "Subcritical Hénon–Lane–Emden conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/The-Subcritical-Henon-Lane-Emden-Conjecture-September-24-2026",
+   "lean_status": "complete: comparator HenonEmden is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.HenonLaneEmden.main_nonexistence",
+   "lean_file": "lean/OAI/Analysis/HenonEmden/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/HenonEmden.json",
+   "lean_scope_note": "The formalized result proves nonexistence of positive entire solutions to the subcritical Hénon–Lane–Emden system. For $n\\ge2$, $p,q>0$, and real $A,B$ with $(n+A)/(p+1)+(n+B)/(q+1)>n-2$, there are no positive functions, continuous everywhere and $C^2$ off the origin, satisfying $-\\Delta u=|x|^A v^p$ and $-\\Delta v=|x|^B u^q$ away from the origin. It includes the globally $C^2$ unweighted case for $n\\ge3$. The critical equality case is not included.",
+   "role": "primary",
+   "reason": "Family 370 (Partial differential equations); Lean comparator 'Subcritical Hénon–Lane–Emden nonexistence'. Scope note: The formalized result proves nonexistence of positive entire solutions to the subcritical Hénon–Lane–Emden system.",
+   "extract": {}
+  },
+  {
+   "slug": "Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026",
+   "family": "362",
+   "field": "Partial differential equations",
+   "kind": "proof",
+   "title": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system",
+   "family_title": "Global smoothness for relativistic Vlasov–Maxwell",
+   "problem_name": "Large-data global existence for the 3D relativistic Vlasov–Maxwell system",
+   "url": "https://github.com/openai/math/tree/main/preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026",
+   "lean_status": "complete: comparator VlasovMaxwell is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.RVM.global_classical_solution",
+   "lean_file": "lean/OAI/Analysis/VlasovMaxwell/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/VlasovMaxwell.json",
+   "lean_scope_note": "The formalized result gives global existence and uniqueness for the three-dimensional one-species relativistic Vlasov–Maxwell system. The initial particle density is nonnegative, smooth, and compactly supported; the initial fields have bounded derivatives of all orders, finite energy, and satisfy both Gauss constraints. The solution is smooth on every finite time interval, has compact particle phase support there, and is unique among classical solutions. No smallness, symmetry, or neutrality assumption is imposed.",
+   "role": "primary",
+   "reason": "Family 362 (Partial differential equations); Lean comparator 'Global classical Vlasov–Maxwell solutions'. Scope note: The formalized result gives global existence and uniqueness for the three-dimensional one-species relativistic Vlasov–Maxwell system.",
+   "extract": {}
+  },
+  {
+   "slug": "Critical-bond-and-site-percolation-on-the-cubic-lattice-September-24-2026",
+   "family": "213",
+   "field": "Probability and statistical mechanics",
+   "kind": "proof",
+   "title": "Critical bond and site percolation on the cubic lattice",
+   "family_title": "No infinite critical clusters on quasi-transitive graphs",
+   "problem_name": "No percolation at criticality for Bernoulli percolation on Z^3",
+   "url": "https://github.com/openai/math/tree/main/preprints/Critical-bond-and-site-percolation-on-the-cubic-lattice-September-24-2026",
+   "lean_status": "complete: comparator CriticalZ3 is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.CriticalZ3.critical_no_infinite",
+   "lean_file": "lean/OAI/Probability/CriticalZ3/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/CriticalZ3.json",
+   "lean_scope_note": "The critical-percolation question asks whether an infinite cluster can remain at the threshold. The formalized result proves that, at their respective critical probabilities, nearest-neighbor bond and site percolation on $\\mathbb Z^3$ almost surely have no infinite cluster. Equivalently, almost surely every vertex belongs to a finite cluster in each model.\n\nThe formalization proves absence of an infinite cluster at criticality for Bernoulli bond percolation on every infinite connected locally finite quasi-transitive graph with critical probability $p_c<1$. At $p=p_c$, the probability that any infinite cluster exists is zero. The graph model permits bond multiplicities.",
+   "role": "primary",
+   "reason": "Family 213 (Probability and statistical mechanics); Lean comparator 'No infinite critical clusters on $\\mathbb Z^3$'. Scope note: The critical-percolation question asks whether an infinite cluster can remain at the threshold.",
+   "extract": {}
+  },
+  {
+   "slug": "The-sharp-factor-of-IID-threshold-for-the-free-Ising-model-on-regular-trees-September-26-2026",
+   "family": "236",
+   "field": "Probability and statistical mechanics",
+   "kind": "proof",
+   "title": "The sharp factor-of-IID threshold for the free Ising model on regular trees",
+   "family_title": "The factor-of-IID threshold for free Ising states on trees",
+   "problem_name": "The factor-of-IID threshold for free Ising states on trees",
+   "url": "https://github.com/openai/math/tree/main/preprints/The-sharp-factor-of-IID-threshold-for-the-free-Ising-model-on-regular-trees-September-26-2026",
+   "lean_status": "complete: comparator FreeIsing is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.Problem367.free_ising_factor_iff_threshold",
+   "lean_file": "lean/OAI/Probability/FreeIsing/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/FreeIsing.json",
+   "lean_scope_note": "The formalized result determines the factor-of-IID threshold for the free zero-field Ising law on the infinite $d$-regular tree. For every $d\\ge3$ and $\\beta\\ge0$, the law is a factor of IID exactly when $\\tanh\\beta\\le1/\\sqrt{d-1}$, including equality. The factor uses independent uniform vertex labels and is almost surely equivariant for each fixed tree automorphism. Finitary coding and coding-radius bounds are not included.",
+   "role": "primary",
+   "reason": "Family 236 (Probability and statistical mechanics); Lean comparator 'Factor-of-IID threshold for the free Ising model'. Scope note: The formalized result determines the factor-of-IID threshold for the free zero-field Ising law on the infinite $d$-regular tree.",
+   "extract": {}
+  },
+  {
+   "slug": "Directional-transience-implies-ballisticity-September-23-2026",
+   "family": "220",
+   "field": "Probability and statistical mechanics",
+   "kind": "proof",
+   "title": "Directional transience implies ballisticity",
+   "family_title": "Directional zero–one laws and ballisticity in random environments",
+   "problem_name": "Directional transience implies ballisticity for random walk in random environment",
+   "url": "https://github.com/openai/math/tree/main/preprints/Directional-transience-implies-ballisticity-September-23-2026",
+   "lean_status": "complete: comparator DirectionalBallisticity is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.DirectionalTransience.directional_transience_implies_ballisticity",
+   "lean_file": "lean/OAI/Probability/Ballisticity/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/DirectionalBallisticity.json",
+   "lean_scope_note": "The directional zero–one conjecture asks whether a random walk's probability of escape in a fixed direction must be zero or one. The formalization proves this for nearest-neighbor walks in independent identically distributed strictly elliptic environments on $\\mathbb Z^d$, for every $d\\ge3$ and every nonzero real direction. Strict ellipticity means that every allowed transition probability is positive almost surely; no uniform positive lower bound or moment condition is assumed. The probability is the annealed law from the origin.\n\nFor an i.i.d. uniformly elliptic nearest-neighbor random environment on $\\mathbb Z^d$, the formalization proves that almost-sure directional transience implies co",
+   "role": "primary",
+   "reason": "Family 220 (Probability and statistical mechanics); Lean comparator 'Directional transience implies ballisticity'. Scope note: The directional zero–one conjecture asks whether a random walk's probability of escape in a fixed direction must be zero or one.",
+   "extract": {}
+  },
+  {
+   "slug": "Strict-convexity-and-differentiability-of-the-planar-exponential-first-passage-limit-shape-September-24-2026",
+   "family": "212",
+   "field": "Probability and statistical mechanics",
+   "kind": "proof",
+   "title": "Strict convexity and differentiability of the planar exponential first-passage limit shape",
+   "family_title": "No bigeodesics and smooth limit shapes in planar first-passage percolation",
+   "problem_name": "No bigeodesics and smooth limit shapes in planar first-passage percolation",
+   "url": "https://github.com/openai/math/tree/main/preprints/Strict-convexity-and-differentiability-of-the-planar-exponential-first-passage-limit-shape-September-24-2026",
+   "lean_status": "complete: comparator PlanarFirstPassage is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.PlanarFPP.manuscriptMain",
+   "lean_file": "lean/OAI/Probability/FirstPassage/BoundaryCurve.lean",
+   "comparator_config": "lean/ComparatorChallenges/PlanarFirstPassage.json",
+   "lean_scope_note": "The formalization proves differentiability of the planar first-passage time-constant norm for independent Gamma edge weights of every positive shape and rate. The norm is differentiable away from the origin, and its unit sphere has a $C^1$ boundary. This includes the exponential model, for which the linked statement also gives a unique supporting line at every boundary point.\n\nThe paper also claims strict convexity for the exponential limit shape. Strict convexity is outside these selected differentiability statements.",
+   "role": "reserve",
+   "reason": "Family 212 (Probability and statistical mechanics); Lean comparator 'Differentiability of the exponential first-passage limit shape'. Scope note: The formalization proves differentiability of the planar first-passage time-constant norm for independent Gamma edge weights of every positive shape and rate.",
+   "extract": {}
+  },
+  {
+   "slug": "A-Torsion-Free-Group-Algebra-with-Zero-Divisors-September-23-2026",
+   "family": "196",
+   "field": "Algebra",
+   "kind": "counterexample",
+   "title": "A Torsion-Free Group Algebra with Zero Divisors",
+   "family_title": "A counterexample to Kaplansky's zero-divisor conjecture",
+   "problem_name": "A counterexample to Kaplansky's zero-divisor conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-Torsion-Free-Group-Algebra-with-Zero-Divisors-September-23-2026",
+   "lean_status": "complete: comparator TorsionFreeZeroDivisors is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.TorsionFreeZeroDivisors.main",
+   "lean_file": "lean/OAI/Algebra/GroupRing/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/TorsionFreeZeroDivisors.json",
+   "lean_scope_note": "Kaplansky's zero-divisor conjecture asserts that the group algebra of a torsion-free group over a field has no zero divisors. The formalized result constructs a finitely presented torsion-free group $G$ and nonzero elements $\\alpha,\\beta\\in\\mathbb F_2[G]$ with $\\alpha\\beta=0$, giving a counterexample.\n\nThe same group admits a finite two-dimensional classifying space $K(G,1)$.",
+   "role": "primary",
+   "reason": "Family 196 (Algebra); Lean comparator 'Torsion-free group-algebra counterexample'. Scope note: Kaplansky's zero-divisor conjecture asserts that the group algebra of a torsion-free group over a field has no zero divisors.",
+   "extract": {}
+  },
+  {
+   "slug": "A-Cyclic-Polytabloid-Proof-of-Saxls-Conjecture-September-24-2026",
+   "family": "205",
+   "field": "Algebra",
+   "kind": "proof",
+   "title": "A Cyclic Polytabloid Proof of Saxl's Conjecture",
+   "family_title": "Saxl's conjecture and universal tensor squares",
+   "problem_name": "Saxl's conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-Cyclic-Polytabloid-Proof-of-Saxls-Conjecture-September-24-2026",
+   "lean_status": "complete: comparator Saxl is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.Saxl.saxl_conjecture",
+   "lean_file": "lean/OAI/RepresentationTheory/Saxl/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/Saxl.json",
+   "lean_scope_note": "The formalization proves the universal tensor-square conjecture for symmetric groups in the stated range. For every positive integer $n\\notin\\{2,4,9\\}$, it constructs an irreducible complex representation of $S_n$ whose tensor square contains every irreducible complex representation of $S_n$. Equivalently, all corresponding Kronecker coefficients are positive. The statement also supplies injective intertwining maps for arbitrary finite-dimensional irreducible representations.\n\nSaxl's conjecture asserts that the tensor square of each staircase Specht module contains every irreducible representation of the corresponding symmetric group. The formalization establishes this for every $m\\ge1$: if ",
+   "role": "primary",
+   "reason": "Family 205 (Algebra); Lean comparator 'Saxl's conjecture'. Scope note: The formalization proves the universal tensor-square conjecture for symmetric groups in the stated range.",
+   "extract": {}
+  },
+  {
+   "slug": "An-explicit-counterexample-to-the-Auslander-Reiten-conjecture-September-23-2026",
+   "family": "199",
+   "field": "Algebra",
+   "kind": "counterexample",
+   "title": "An explicit counterexample to the Auslander-Reiten conjecture",
+   "family_title": "Counterexamples to conjectures of Auslander–Reiten, Tachikawa, and Nakayama",
+   "problem_name": "Counterexamples to conjectures of Auslander–Reiten, Tachikawa, and Nakayama",
+   "url": "https://github.com/openai/math/tree/main/preprints/An-explicit-counterexample-to-the-Auslander-Reiten-conjecture-September-23-2026",
+   "lean_status": "complete: comparator AuslanderReiten is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.ArExplicit.Statement.main",
+   "lean_file": "lean/OAI/Algebra/AuslanderReiten/All.lean",
+   "comparator_config": "lean/ComparatorChallenges/AuslanderReiten.json",
+   "lean_scope_note": "The Auslander–Reiten conjecture predicts that a finitely generated module $M$ over an Artin algebra $A$ is projective if $\\mathrm{Ext}^i_A(M,M\\oplus A)=0$ for every $i>0$. The formalized counterexample is a finite-dimensional algebra over $k=\\mathbb F_2(q,H_1,H_2)$ and a finite-dimensional nonprojective Gorenstein-projective module with this vanishing.\n\nIt also establishes $A/\\mathrm{rad}\\,A\\cong k^8$, $(\\mathrm{rad}\\,A)^4\\ne0$, and preservation of the listed properties after every field extension. The Tachikawa companion is separate.\n\nTachikawa's second conjecture predicts that a finite-dimensional module over a finite-dimensional self-injective algebra is projective if all its positive-deg",
+   "role": "reserve",
+   "reason": "Family 199 (Algebra); Lean comparator 'Auslander–Reiten counterexample'. Scope note: The Auslander–Reiten conjecture predicts that a finitely generated module $M$ over an Artin algebra $A$ is projective if $\\mathrm{Ext}^i_A(M,M\\oplus A)=0$ for every $i>0$.",
+   "extract": {}
+  },
+  {
+   "slug": "Unitarizability-Implies-Amenability-for-Countable-Groups-September-23-2026",
+   "family": "251",
+   "field": "Group theory",
+   "kind": "proof",
+   "title": "Unitarizability implies amenability for discrete groups",
+   "family_title": "Amenability, unitarizability, and Ulam stability",
+   "problem_name": "Dixmier's unitarizability problem",
+   "url": "https://github.com/openai/math/tree/main/preprints/Unitarizability-Implies-Amenability-for-Countable-Groups-September-23-2026",
+   "lean_status": "complete: comparator DixmierAllDiscrete is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.Dixmier.current_main_theorem",
+   "lean_file": "lean/OAI/Analysis/Unitarizability/AllDiscrete.lean",
+   "comparator_config": "lean/ComparatorChallenges/DixmierAllDiscrete.json",
+   "lean_scope_note": "Dixmier's unitarizability problem asks whether a discrete group is amenable exactly when every uniformly bounded Hilbert-space representation is similar to a unitary one. The formalization establishes this equivalence for every discrete group.\n\nFor every nonamenable group and every $\\varepsilon>0$, it also gives a nonunitarizable representation with uniform operator bound at most $1+\\varepsilon$. The Hilbert space can be chosen separable for countable groups; a separate linked statement records a separable witness with uniform bound $101$ in that case.",
+   "role": "primary",
+   "reason": "Family 251 (Group theory); Lean comparator 'Unitarizability for all discrete groups'. Scope note: Dixmier's unitarizability problem asks whether a discrete group is amenable exactly when every uniformly bounded Hilbert-space representation is similar to a unitary one.",
+   "extract": {}
+  },
+  {
+   "slug": "An-Infinite-Finitely-Presented-Simple-Amenable-Group-September-23-2026",
+   "family": "253",
+   "field": "Group theory",
+   "kind": "counterexample",
+   "title": "An infinite finitely presented simple amenable group",
+   "family_title": "An infinite finitely presented simple amenable group",
+   "problem_name": "An infinite finitely presented simple amenable group",
+   "url": "https://github.com/openai/math/tree/main/preprints/An-Infinite-Finitely-Presented-Simple-Amenable-Group-September-23-2026",
+   "lean_status": "complete: comparator SimpleAmenable is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.SimpleAmenable.main",
+   "lean_file": "lean/OAI/GroupTheory/SimpleAmenable/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/SimpleAmenable.json",
+   "lean_scope_note": "The formalized result answers the existence question affirmatively: there is one group that is infinite, finitely presented, simple, and amenable. Amenability is expressed by the Følner condition.\n\nThe later general claims about central kernels and enlargements across families are not included.",
+   "role": "reserve",
+   "reason": "Family 253 (Group theory); Lean comparator 'Infinite finitely presented simple amenable group'. Scope note: The formalized result answers the existence question affirmatively: there is one group that is infinite, finitely presented, simple, and amenable.",
+   "extract": {}
+  },
+  {
+   "slug": "Nagatas-Conjecture-for-Plane-Curves-September-23-2026",
+   "family": "039",
+   "field": "Algebraic and complex geometry",
+   "kind": "proof",
+   "title": "Nagata's conjecture for plane curves",
+   "family_title": "Nagata's conjecture and maximal Seshadri constants",
+   "problem_name": "Nagata's conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/Nagatas-Conjecture-for-Plane-Curves-September-23-2026",
+   "lean_status": "complete: comparator Nagata is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.Nagata.nagata_conjecture",
+   "lean_file": "lean/OAI/AlgebraicGeometry/PlaneCurves/Nagata.lean",
+   "comparator_config": "lean/ComparatorChallenges/Nagata.json",
+   "lean_scope_note": "Nagata's conjecture asserts that a nonzero effective plane curve of degree $d$, with multiplicities at least $m_i$ at $r\\ge10$ very general points, satisfies $\\sum_i m_i<d\\sqrt r$.\n\nThe formalization establishes this inequality simultaneously for all curves and multiplicity vectors outside one countable union of proper Zariski-closed exceptional sets with nonempty complement. Reducible curves, repeated components, and unequal multiplicities are included, in both effective-curve and homogeneous-polynomial formulations. The formalization also includes the passage from homogeneous effective cycles to equations.\n\nThe maximality question asks whether the multipoint Seshadri constant reaches the u",
+   "role": "primary",
+   "reason": "Family 039 (Algebraic and complex geometry); Lean comparator 'Nagata's conjecture'. Scope note: Nagata's conjecture asserts that a nonzero effective plane curve of degree $d$, with multiplicities at least $m_i$ at $r\\ge10$ very general points, satisfies $\\sum_i m_i<d\\sqrt r$.",
+   "extract": {}
+  },
+  {
+   "slug": "An-explicit-failure-of-complex-affine-space-cancellation-September-23-2026",
+   "family": "047",
+   "field": "Algebraic and complex geometry",
+   "kind": "counterexample",
+   "title": "An explicit failure of complex affine-space cancellation",
+   "family_title": "Complex counterexamples to cancellation and affine fibrations",
+   "problem_name": "Cancellation problem for complex affine space (counterexample)",
+   "url": "https://github.com/openai/math/tree/main/preprints/An-explicit-failure-of-complex-affine-space-cancellation-September-23-2026",
+   "lean_status": "complete: comparator ComplexCancellation is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.ComplexCancellation.main",
+   "lean_file": "lean/OAI/Algebra/AffineCancellation/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/ComplexCancellation.json",
+   "lean_scope_note": "Affine-space cancellation asks whether $X\\times\\mathbb A^1\\cong\\mathbb A^{n+1}$ forces $X\\cong\\mathbb A^n$. The formalized result gives an explicit finite-type complex domain $A$ of Krull dimension four with $A[w]\\cong\\mathbb C[x_1,\\ldots,x_5]$ but $A\\not\\cong\\mathbb C[x_1,\\ldots,x_4]$. Thus adjoining one variable erases a genuine algebraic distinction.\n\nThe separate stable-coordinate and general line-bundle lifting consequences are not included.",
+   "role": "reserve",
+   "reason": "Family 047 (Algebraic and complex geometry); Lean comparator 'Complex affine-space cancellation counterexample'. Scope note: Affine-space cancellation asks whether $X\\times\\mathbb A^1\\cong\\mathbb A^{n+1}$ forces $X\\cong\\mathbb A^n$.",
+   "extract": {}
+  },
+  {
+   "slug": "Rigidity-of-the-Turing-degrees-September-24-2026",
+   "family": "241",
+   "field": "Mathematical logic",
+   "kind": "proof",
+   "title": "Rigidity of the Turing degrees",
+   "family_title": "Rigidity of the Turing degrees",
+   "problem_name": "Rigidity of the Turing degrees",
+   "url": "https://github.com/openai/math/tree/main/preprints/Rigidity-of-the-Turing-degrees-September-24-2026",
+   "lean_status": "complete: comparator DegreeRigidity is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.TuringRigidity.ManuscriptMain.rigidity",
+   "lean_file": "lean/OAI/Computability/DegreeRigidity/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/DegreeRigidity.json",
+   "lean_scope_note": "The rigidity problem asks whether the ordering of Turing degrees by relative computability has any nontrivial automorphism. The formalized result gives a negative answer: every order automorphism of the full Turing degrees of subsets of $\\mathbb N$ fixes every degree, with no definability or genericity assumption. The additional representation corollaries are not included.",
+   "role": "primary",
+   "reason": "Family 241 (Mathematical logic); Lean comparator 'Rigidity of the Turing degrees'. Scope note: The rigidity problem asks whether the ordering of Turing degrees by relative computability has any nontrivial automorphism.",
+   "extract": {}
+  },
+  {
+   "slug": "Single-fold-Diophantine-representations-September-24-2026",
+   "family": "242",
+   "field": "Mathematical logic",
+   "kind": "proof",
+   "title": "Single-fold Diophantine representations",
+   "family_title": "Single-fold Diophantine representations",
+   "problem_name": "Single-fold Diophantine representations of r.e. sets",
+   "url": "https://github.com/openai/math/tree/main/preprints/Single-fold-Diophantine-representations-September-24-2026",
+   "lean_status": "complete: comparator SingleFold is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.SingleFold.main",
+   "lean_file": "lean/OAI/NumberTheory/SingleFold/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/SingleFold.json",
+   "lean_scope_note": "The single-fold Diophantine conjecture asks whether every recursively enumerable set has a polynomial representation with a unique auxiliary witness for each member. The formalization establishes this for every recursively enumerable subset of $\\mathbb N^n$, $n\\ge1$: an integer polynomial has exactly one complete natural-number witness tuple for members and none for nonmembers.\n\nThe consequence that solvability remains undecidable under an at-most-one-solution promise is not separately formalized.",
+   "role": "reserve",
+   "reason": "Family 242 (Mathematical logic); Lean comparator 'Single-fold Diophantine representations'. Scope note: The single-fold Diophantine conjecture asks whether every recursively enumerable set has a polynomial representation with a unique auxiliary witness for each member. [Moved to reserve: human Logic primary 2305.19646 failed the final gate and Logic has no human reserve; this was the last AI Logic primary in the seeded draw.]",
+   "extract": {}
+  },
+  {
+   "slug": "The-Partition-Principle-does-not-imply-Choice-September-24-2026",
+   "family": "244",
+   "field": "Mathematical logic",
+   "kind": "counterexample",
+   "title": "The Partition Principle does not imply Choice",
+   "family_title": "The partition principle does not imply choice",
+   "problem_name": "The partition principle does not imply choice",
+   "url": "https://github.com/openai/math/tree/main/preprints/The-Partition-Principle-does-not-imply-Choice-September-24-2026",
+   "lean_status": "complete: comparator PartitionPrinciple is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.PartitionPilot.Forcing.TransitiveGround.exists_model_partitionPrinciple_without_choice",
+   "lean_file": "lean/OAI/SetTheory/PartitionPrinciple/Models/Separation.lean",
+   "comparator_config": "lean/ComparatorChallenges/PartitionPrinciple.json",
+   "lean_scope_note": "The Partition Principle says that every surjection admits an injection in the reverse direction. The formalization proves the relative-consistency implication: if ZF is consistent, then so is ZF with the Partition Principle, Choice for ordinal-indexed families, and failure of the Axiom of Choice.\n\nThe linked model-construction result also constructs a transitive model of the Partition Principle without Choice from an externally countable transitive ground model satisfying the stated axioms, including Choice, and containing an internal strongly inaccessible cardinal. The paper's stronger transitive-model preservation assertions are outside that selected construction.",
+   "role": "reserve",
+   "reason": "Family 244 (Mathematical logic); Lean comparator 'Partition Principle without Choice from a ground model'. Scope note: The Partition Principle says that every surjection admits an injection in the reverse direction.",
+   "extract": {}
+  },
+  {
+   "slug": "The-entropy-rate-dimension-formula-for-self-similar-measures-on-the-line-September-24-2026",
+   "family": "148",
+   "field": "Dynamical systems and ergodic theory",
+   "kind": "proof",
+   "title": "The entropy-rate dimension formula for self-similar measures on the line",
+   "family_title": "The dimension formula for self-similar measures on the line",
+   "problem_name": "The dimension formula for self-similar measures on the line",
+   "url": "https://github.com/openai/math/tree/main/preprints/The-entropy-rate-dimension-formula-for-self-similar-measures-on-the-line-September-24-2026",
+   "lean_status": "complete: comparator SelfSimilar is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.EntropyRateDimension.entropy_rate_dimension",
+   "lean_file": "lean/OAI/MeasureTheory/SelfSimilar/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/SelfSimilar.json",
+   "lean_scope_note": "The formalization proves $\\dim_H\\mu=\\min\\{1,h_{\\mathrm{RW}}/\\chi\\}$ for the lower Hausdorff dimension of every finite real self-similar probability measure with positive weights and nonzero contraction ratios of absolute value below one. Here $h_{\\mathrm{RW}}$ is the entropy rate of random affine compositions and $\\chi$ is the corresponding Lyapunov exponent in the same logarithmic base. Ratios may be signed and unequal, and exact overlaps are allowed.\n\nIt also gives two consequences without exact overlaps: the usual entropy-over-Lyapunov formula for a common positive contraction ratio, and the attractor formula $\\dim_H K=\\min\\{1,s\\}$, where $s\\ge0$ is the unique solution of $\\sum_i|r_i|^s=1",
+   "role": "primary",
+   "reason": "Family 148 (Dynamical systems and ergodic theory); Lean comparator 'Entropy-rate dimension formula'. Scope note: The formalization proves $\\dim_H\\mu=\\min\\{1,h_{\\mathrm{RW}}/\\chi\\}$ for the lower Hausdorff dimension of every finite real self-similar probability measure with positive weights and nonzero contraction ratios of absolute value below one.",
+   "extract": {}
+  },
+  {
+   "slug": "two-limit-cycles-for-quintic-lienard-systems-September-24-2026",
+   "family": "143",
+   "field": "Dynamical systems and ergodic theory",
+   "kind": "proof",
+   "title": "Two limit cycles for quintic Liénard systems",
+   "family_title": "Uniform limit-cycle bounds in Hilbert's sixteenth problem",
+   "problem_name": "Hilbert's sixteenth problem for quintic Liénard systems (at most two limit cycles)",
+   "url": "https://github.com/openai/math/tree/main/preprints/two-limit-cycles-for-quintic-lienard-systems-September-24-2026",
+   "lean_status": "complete: comparator QuinticLienard is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.QuinticLienard.main",
+   "lean_file": "lean/OAI/Analysis/LienardCycles/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/QuinticLienard.json",
+   "lean_scope_note": "For the quintic Liénard system $x'=y-F(x)$, $y'=-x$, the formalized result proves that every real polynomial $F$ of degree at most five yields at most two limit cycles, and that some such $F$ yields exactly two. Limit cycles are isolated images of nonconstant periodic solutions. No sign, parity, hyperbolicity, or amplitude restriction is imposed.",
+   "role": "primary",
+   "reason": "Family 143 (Dynamical systems and ergodic theory); Lean comparator 'Exact two-cycle bound for quintic Liénard systems'. Scope note: For the quintic Liénard system $x'=y-F(x)$, $y'=-x$, the formalized result proves that every real polynomial $F$ of degree at most five yields at most two limit cycles, and that some such $F$ yields exactly two.",
+   "extract": {}
+  },
+  {
+   "slug": "Nontrivial-Markov-Type-Forces-Superreflexivity-September-23-2026",
+   "family": "327",
+   "field": "Functional analysis",
+   "kind": "proof",
+   "title": "Nontrivial Markov Type Forces Superreflexivity",
+   "family_title": "Markov type characterizes superreflexivity",
+   "problem_name": "Markov type characterizes superreflexivity",
+   "url": "https://github.com/openai/math/tree/main/preprints/Nontrivial-Markov-Type-Forces-Superreflexivity-September-23-2026",
+   "lean_status": "complete: comparator MarkovType is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.MarkovSuperreflexivity.hasNontrivialMarkovType_iff_hasEquivalentUCNorm",
+   "lean_file": "lean/OAI/Analysis/MarkovType/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/MarkovType.json",
+   "lean_scope_note": "The formalized result proves that a real Banach space has nontrivial Markov type exactly when it admits an equivalent uniformly convex norm, hence exactly when it is superreflexive. Nontrivial Markov type means a uniform Markov-type bound for some exponent $p>1$ over all finite stationary reversible chains and all positive times. The exponent and equivalent norm may depend on the space, and the zero space is included. Additional formalized consequences concern uniformly smooth renormings and reflexivity of finitely representable spaces.",
+   "role": "primary",
+   "reason": "Family 327 (Functional analysis); Lean comparator 'Nontrivial Markov type and superreflexivity'. Scope note: The formalized result proves that a real Banach space has nontrivial Markov type exactly when it admits an equivalent uniformly convex norm, hence exactly when it is superreflexive.",
+   "extract": {}
+  },
+  {
+   "slug": "Fixed-Points-of-Nonexpansive-Maps-in-Reflexive-Banach-Spaces-September-24-2026",
+   "family": "328",
+   "field": "Functional analysis",
+   "kind": "proof",
+   "title": "Fixed Points of Nonexpansive Maps in Reflexive Banach Spaces",
+   "family_title": "Fixed points of nonexpansive maps in reflexive Banach spaces",
+   "problem_name": "Fixed points of nonexpansive maps in reflexive Banach spaces",
+   "url": "https://github.com/openai/math/tree/main/preprints/Fixed-Points-of-Nonexpansive-Maps-in-Reflexive-Banach-Spaces-September-24-2026",
+   "lean_status": "complete: comparator ReflexiveFixedPoints is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.ReflexiveFixedPoints.exists_fixedPoint_of_canonicallyReflexive",
+   "lean_file": "lean/OAI/Analysis/Nonexpansive/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/ReflexiveFixedPoints.json",
+   "lean_scope_note": "The fixed-point question asks whether reflexivity suffices for nonexpansive maps on bounded convex sets. The formalized result gives an affirmative answer: every nonexpansive self-map of a nonempty closed bounded convex subset of a real reflexive Banach space has a fixed point in the original norm. Zero and nonseparable spaces are included, with no uniform convexity, normal structure, or weak-continuity assumption.",
+   "role": "reserve",
+   "reason": "Family 328 (Functional analysis); Lean comparator 'Nonexpansive fixed points in reflexive spaces'. Scope note: The fixed-point question asks whether reflexivity suffices for nonexpansive maps on bounded convex sets.",
+   "extract": {}
+  },
+  {
+   "slug": "A-counterexample-to-Kaplanskys-quasitrace-conjecture-September-23-2026",
+   "family": "294",
+   "field": "Operator algebras",
+   "kind": "counterexample",
+   "title": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness",
+   "family_title": "A counterexample to Kaplansky's quasitrace conjecture",
+   "problem_name": "A counterexample to Kaplansky's quasitrace conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/A-counterexample-to-Kaplanskys-quasitrace-conjecture-September-23-2026",
+   "lean_status": "complete: comparator KaplanskyQuasitrace is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.Kaplansky.kaplansky_quasitrace_counterexample",
+   "lean_file": "lean/OAI/Analysis/Kaplansky/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/KaplanskyQuasitrace.json",
+   "lean_scope_note": "Kaplansky's quasitrace conjecture predicts that every $2$-quasitrace on a $C^*$-algebra is a trace. The formalization constructs a separable $C^*$-algebra with normalized $2$-quasitraces and fixed positive contractions $a,b$ for which every such quasitrace satisfies $\\mathrm{Re}(\\tau(a+b)-\\tau(a)-\\tau(b))\\ge1/144$. Thus none is additive on this pair.\n\nThe formalization also gives simple stably finite $C^*$-algebras whose spatial tensor product is properly infinite, a separable stably finite algebra with no tracial state, and a tensor-product example in which normalized $2$-quasitraces are lost. These are the stable-finiteness consequences named in the paper's title.",
+   "role": "primary",
+   "reason": "Family 294 (Operator algebras); Lean comparator 'Nonadditive normalized $2$-quasitraces'. Scope note: Kaplansky's quasitrace conjecture predicts that every $2$-quasitrace on a $C^*$-algebra is a trace.",
+   "extract": {}
+  },
+  {
+   "slug": "Relative-generation-and-the-generator-problem-for-finite-factors-September-23-2026",
+   "family": "296",
+   "field": "Operator algebras",
+   "kind": "proof",
+   "title": "Relative generation and the generator problem for finite factors",
+   "family_title": "The generator problem for finite factors",
+   "problem_name": "The generator problem for finite factors",
+   "url": "https://github.com/openai/math/tree/main/preprints/Relative-generation-and-the-generator-problem-for-finite-factors-September-23-2026",
+   "lean_status": "complete: comparator FactorGeneration is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.Generator.single_generation_of_II1_separable_predual",
+   "lean_file": "lean/OAI/Analysis/FactorGeneration/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/FactorGeneration.json",
+   "lean_scope_note": "The formalization answers the generator problem affirmatively for type $\\mathrm{II}_1$ factors with separable predual: one bounded operator generates the factor under adjoints and weak-operator closure. It imposes no separability assumption on the representing Hilbert space or on the operator-norm topology.\n\nIt also proves the paper's relative-generation result. For an irreducible inclusion of type $\\mathrm{II}_1$ factors with separable predual for the larger factor, the unitaries that generate the larger factor together with the smaller one form a dense $G_\\delta$ set in the normalized trace two-norm topology. The normalized faithful normal trace is included in the assertion.",
+   "role": "reserve",
+   "reason": "Family 296 (Operator algebras); Lean comparator 'Single generation of separable-predual $\\mathrm{II}_1$ factors'. Scope note: The formalization answers the generator problem affirmatively for type $\\mathrm{II}_1$ factors with separable predual: one bounded operator generates the factor under adjoints and weak-operator closure.",
+   "extract": {}
+  },
+  {
+   "slug": "Generalized-ionization-energies-for-full-Coulomb-atoms-September-24-2026",
+   "family": "263",
+   "field": "Mathematical physics",
+   "kind": "proof",
+   "title": "Generalized ionization energies for full Coulomb atoms",
+   "family_title": "The ionization and generalized ionization conjectures",
+   "problem_name": "Generalized ionization conjecture",
+   "url": "https://github.com/openai/math/tree/main/preprints/Generalized-ionization-energies-for-full-Coulomb-atoms-September-24-2026",
+   "lean_status": "complete: comparator CoulombIonization is listed in lean/formalization.yaml status.main_results (not a *Support config); lean/OAI contains no sorry",
+   "lean_declaration": "OAI.CoulombAtom.generalized_ionization",
+   "lean_file": "lean/OAI/Analysis/CoulombIonization/Main.lean",
+   "comparator_config": "lean/ComparatorChallenges/CoulombIonization.json",
+   "lean_scope_note": "The formalization gives the large-ionization asymptotics for the full nonrelativistic two-spin Coulomb atom. Let $I_m(Z)$ be the energy needed to remove $m$ electrons from a neutral atom of nuclear charge $Z$. There is a positive coefficient $a_{\\mathrm{TF}}$ with the Thomas–Fermi variational characterization such that $I_m(Z)/m^{7/3}\\to a_{\\mathrm{TF}}$ whenever $m\\to\\infty$ and $Z/m\\to\\infty$, with integers $Z>m\\ge1$. The corresponding iterated limsup and liminf limits hold with $Z\\to\\infty$ first. The energy uses the full antisymmetric Sobolev form domain; fixed-$m$ convergence and ground-state attainment are outside this statement.\n\nFor neutral Coulomb atoms with two electron spin states",
+   "role": "reserve",
+   "reason": "Family 263 (Mathematical physics); Lean comparator 'Generalized Coulomb ionization-energy asymptotics'. Scope note: The formalization gives the large-ionization asymptotics for the full nonrelativistic two-spin Coulomb atom.",
+   "extract": {}
+  }
+ ],
+ "human": [
+  {
+   "arxiv_id": "1907.04593",
+   "arxiv_version": "1907.04593v3",
+   "field": "Number theory",
+   "kind": "proof",
+   "title": "On the Duffin-Schaeffer conjecture",
+   "authors": [
+    "Dimitris Koukoulopoulos",
+    "James Maynard"
+   ],
+   "problem_name": "Duffin–Schaeffer conjecture",
+   "url": "https://arxiv.org/abs/1907.04593",
+   "year": 2019,
+   "doi": "10.4007/annals.2020.192.1.5",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2020,
+   "cited_by": 50,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Duffin%E2%80%93Schaeffer_theorem",
+   "acceptance_quote": "proven in 2019 by Dimitris Koukoulopoulos and James Maynard",
+   "role": "primary",
+   "reason": "Duffin–Schaeffer conjecture; published in Annals of Mathematics (2020).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2202.02384",
+   "arxiv_version": "2202.02384v4",
+   "field": "Number theory",
+   "kind": "proof",
+   "title": "A proof of the Erdős primitive set conjecture",
+   "authors": [
+    "Jared Duker Lichtman"
+   ],
+   "problem_name": "Erdős primitive set conjecture",
+   "url": "https://arxiv.org/abs/2202.02384",
+   "year": 2022,
+   "doi": "10.1017/fmp.2023.16",
+   "journal": "Forum of Mathematics, Pi",
+   "pub_year": 2023,
+   "cited_by": 2,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/List_of_conjectures_by_Paul_Erd%C5%91s",
+   "acceptance_quote": "attains its maximum at the set of prime numbers, proved by Jared Duker Lichtman in 2022.",
+   "role": "primary",
+   "reason": "Erdős primitive set conjecture; published in Forum of Mathematics, Pi (2023).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1808.04001",
+   "arxiv_version": "1808.04001v2",
+   "field": "Number theory",
+   "kind": "proof",
+   "title": "On the Chowla and twin primes conjectures over $\\mathbb F_q[T]$",
+   "authors": [
+    "Will Sawin",
+    "Mark Shusterman"
+   ],
+   "problem_name": "Twin prime and Chowla conjectures over F_q[T] (large q)",
+   "url": "https://arxiv.org/abs/1808.04001",
+   "year": 2018,
+   "doi": "10.4007/annals.2022.196.2.1",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2022,
+   "cited_by": 17,
+   "acceptance_evidence": "https://www.quantamagazine.org/big-question-about-primes-proved-in-small-number-systems-20190926/",
+   "acceptance_quote": "The new proof, by Will Sawin of Columbia University and Mark Shusterman of the University of Wisconsin, Madison, solves the twin primes conjecture in a smaller but still salient mathematical world.",
+   "role": "primary",
+   "reason": "Twin prime and Chowla conjectures over F_q[T] (large q); published in Annals of Mathematics (2022).",
+   "extract": {
+    "main_label": "TwinPrimesRes"
+   }
+  },
+  {
+   "arxiv_id": "1901.11465",
+   "arxiv_version": "1901.11465v1",
+   "field": "Number theory",
+   "kind": "proof",
+   "title": "The Erdős-Selfridge problem with square-free moduli",
+   "authors": [
+    "Paul Balister",
+    "Béla Bollobás",
+    "Robert Morris",
+    "Julian Sahasrabudhe",
+    "Marius Tiba"
+   ],
+   "problem_name": "Erdős–Selfridge covering problem with square-free moduli",
+   "url": "https://arxiv.org/abs/1901.11465",
+   "year": 2019,
+   "doi": "10.2140/ant.2021.15.609",
+   "journal": "Algebra & Number Theory",
+   "pub_year": 2021,
+   "cited_by": 4,
+   "acceptance_evidence": "https://www.erdosproblems.com/7",
+   "acceptance_quote": "The answer to this stronger question is no, proved by Balister, Bollobás, Morris, Sahasrabudhe, and Tiba [BBMST22].",
+   "role": "primary",
+   "reason": "Erdős–Selfridge covering problem with square-free moduli; published in Algebra & Number Theory (2021).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2311.05762",
+   "arxiv_version": "2311.05762v2",
+   "field": "Combinatorics",
+   "kind": "proof",
+   "title": "On a conjecture of Marton",
+   "authors": [
+    "W. T. Gowers",
+    "Ben Green",
+    "Freddie Manners",
+    "Terence Tao"
+   ],
+   "problem_name": "Marton's conjecture (polynomial Freiman–Ruzsa)",
+   "url": "https://arxiv.org/abs/2311.05762",
+   "year": 2023,
+   "doi": "10.4007/annals.2025.201.2.5",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2025,
+   "cited_by": 17,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Freiman%27s_theorem",
+   "acceptance_quote": "has been posted as a preprint by Tim Gowers, Ben Green, Freddie Manners, and Terry Tao.",
+   "role": "primary",
+   "reason": "Marton's conjecture (polynomial Freiman–Ruzsa); published in Annals of Mathematics (2025).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2001.02665",
+   "arxiv_version": "2001.02665v2",
+   "field": "Combinatorics",
+   "kind": "proof",
+   "title": "A proof of Ringel's Conjecture",
+   "authors": [
+    "Richard Montgomery",
+    "Alexey Pokrovskiy",
+    "Benny Sudakov"
+   ],
+   "problem_name": "Ringel's conjecture",
+   "url": "https://arxiv.org/abs/2001.02665",
+   "year": 2020,
+   "doi": "10.1007/s00039-021-00576-2",
+   "journal": "Geometric and Functional Analysis",
+   "pub_year": 2021,
+   "cited_by": 28,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Alexey_Pokrovskiy",
+   "acceptance_quote": "including a proof of Ringel’s conjecture with Richard Montgomery and Benny Sudakov for large graphs, as covered by Quanta magazine.",
+   "role": "primary",
+   "reason": "Ringel's conjecture; published in Geometric and Functional Analysis (2021).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1905.02167",
+   "arxiv_version": "1905.02167v2",
+   "field": "Combinatorics",
+   "kind": "counterexample",
+   "title": "Counterexamples to Hedetniemi's conjecture",
+   "authors": [
+    "Yaroslav Shitov"
+   ],
+   "problem_name": "Hedetniemi's conjecture",
+   "url": "https://arxiv.org/abs/1905.02167",
+   "year": 2019,
+   "doi": "10.4007/annals.2019.190.2.6",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2019,
+   "cited_by": 45,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Hedetniemi%27s_conjecture",
+   "acceptance_quote": "A counterexample to the conjecture was discovered by Yaroslav Shitov ( 2019) (see Kalai 2019), thus disproving the conjecture in general.",
+   "role": "primary",
+   "reason": "Hedetniemi's conjecture; published in Annals of Mathematics (2019).",
+   "extract": {
+    "whole_body": true
+   }
+  },
+  {
+   "arxiv_id": "2303.10798",
+   "arxiv_version": "2303.10798v3",
+   "field": "Combinatorics",
+   "kind": "proof",
+   "title": "An aperiodic monotile",
+   "authors": [
+    "David Smith",
+    "Joseph Samuel Myers",
+    "Craig S. Kaplan",
+    "Chaim Goodman-Strauss"
+   ],
+   "problem_name": "Einstein (aperiodic monotile) problem",
+   "url": "https://arxiv.org/abs/2303.10798",
+   "year": 2023,
+   "doi": "10.5070/c64163843",
+   "journal": "Combinatorial Theory",
+   "pub_year": 2024,
+   "cited_by": 44,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Einstein_problem",
+   "acceptance_quote": "In November 2022, the amateur mathematician David Smith discovered a \"hat\"-shaped tile",
+   "role": "primary",
+   "reason": "Einstein (aperiodic monotile) problem; published in Combinatorial Theory (2024).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2201.04554",
+   "arxiv_version": "2201.04554v4",
+   "field": "Combinatorics",
+   "kind": "proof",
+   "title": "High-Girth Steiner Triple Systems",
+   "authors": [
+    "Matthew Kwan",
+    "Ashwin Sah",
+    "Mehtaab Sawhney",
+    "Michael Simkin"
+   ],
+   "problem_name": "Erdős's high-girth Steiner triple system conjecture",
+   "url": "https://arxiv.org/abs/2201.04554",
+   "year": 2022,
+   "doi": "10.4007/annals.2024.200.3.4",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2024,
+   "cited_by": 5,
+   "acceptance_evidence": "https://yufeizhao.com/blog/2022/01/13/steiner-triple/",
+   "acceptance_quote": "by Matthew Kwan, Ashwin Sah, Mehtaab Sawhney, and Michael Simkin. They prove a 1973 Erdős conjecture showing the existence of Steiner triple systems with arbitrarily high girth.",
+   "role": "primary",
+   "reason": "Erdős's high-girth Steiner triple system conjecture; published in Annals of Mathematics (2024).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2211.15847",
+   "arxiv_version": "2211.15847v3",
+   "field": "Combinatorics",
+   "kind": "counterexample",
+   "title": "A counterexample to the periodic tiling conjecture",
+   "authors": [
+    "Rachel Greenfeld",
+    "Terence Tao"
+   ],
+   "problem_name": "Periodic tiling conjecture",
+   "url": "https://arxiv.org/abs/2211.15847",
+   "year": 2022,
+   "doi": "10.4007/annals.2024.200.1.5",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2024,
+   "cited_by": 19,
+   "acceptance_evidence": "https://www.quantamagazine.org/nasty-geometry-breaks-decades-old-tiling-conjecture-20221215/",
+   "acceptance_quote": "In a preprint posted last month, Greenfeld, along with Terence Tao of the University of California, Los Angeles, finally settled the conjecture",
+   "role": "primary",
+   "reason": "Periodic tiling conjecture; published in Annals of Mathematics (2024).",
+   "extract": {
+    "main_label": "main",
+    "region_all": true
+   }
+  },
+  {
+   "arxiv_id": "2203.17207",
+   "arxiv_version": "2203.17207v2",
+   "field": "Combinatorics",
+   "kind": "proof",
+   "title": "A Proof of the Kahn-Kalai Conjecture",
+   "authors": [
+    "Jinyoung Park",
+    "Huy Tuan Pham"
+   ],
+   "problem_name": "Kahn–Kalai conjecture",
+   "url": "https://arxiv.org/abs/2203.17207",
+   "year": 2022,
+   "doi": "10.1090/jams/1028",
+   "journal": "Journal of the American Mathematical Society",
+   "pub_year": 2023,
+   "cited_by": 28,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Kahn%E2%80%93Kalai_conjecture",
+   "acceptance_quote": "Jinyoung Park and Huy Tuan Pham announced a proof of the conjecture in 2022; it was published in 2024.",
+   "role": "reserve",
+   "reason": "Kahn–Kalai conjecture; published in Journal of the American Mathematical Society (2023).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1910.13433",
+   "arxiv_version": "1910.13433v2",
+   "field": "Combinatorics",
+   "kind": "proof",
+   "title": "Thresholds versus fractional expectation-thresholds",
+   "authors": [
+    "Keith Frankston",
+    "Jeff Kahn",
+    "Bhargav Narayanan",
+    "Jinyoung Park"
+   ],
+   "problem_name": "Talagrand's fractional expectation-threshold conjecture",
+   "url": "https://arxiv.org/abs/1910.13433",
+   "year": 2019,
+   "doi": "10.4007/annals.2021.194.2.2",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2021,
+   "cited_by": 55,
+   "acceptance_evidence": "https://www.quantamagazine.org/elegant-six-page-proof-reveals-the-emergence-of-random-structure-20220425/",
+   "acceptance_quote": "But Kahn, Park (who was Kahn’s doctoral student at the time) and their colleagues ended up linking the two when they set out to prove a more relaxed version of the Kahn-Kalai conjecture",
+   "role": "reserve",
+   "reason": "Talagrand's fractional expectation-threshold conjecture; published in Annals of Mathematics (2021).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2111.03654",
+   "arxiv_version": "2111.03654v2",
+   "field": "Theoretical computer science",
+   "kind": "proof",
+   "title": "Asymptotically Good Quantum and Locally Testable Classical LDPC Codes",
+   "authors": [
+    "Pavel Panteleev",
+    "Gleb Kalachev"
+   ],
+   "problem_name": "qLDPC conjecture (asymptotically good quantum LDPC codes)",
+   "url": "https://arxiv.org/abs/2111.03654",
+   "year": 2021,
+   "doi": "10.1145/3519935.3520017",
+   "journal": "Proceedings of the 54th Annual ACM SIGACT Symposium on Theory of Computing",
+   "pub_year": 2022,
+   "cited_by": 214,
+   "acceptance_evidence": "https://www.quantamagazine.org/qubits-can-be-as-safe-as-bits-researchers-show-20220106/",
+   "acceptance_quote": "Pavel Panteleev and Gleb Kalachev of Moscow State University have shown that — at least, in theory — quantum information can be protected from errors just as well as classical information can.",
+   "role": "primary",
+   "reason": "qLDPC conjecture (asymptotically good quantum LDPC codes); published in Proceedings of the 54th Annual ACM SIGACT Symposium on Theory of Computing (2022).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2206.13228",
+   "arxiv_version": "2206.13228v4",
+   "field": "Theoretical computer science",
+   "kind": "proof",
+   "title": "NLTS Hamiltonians from good quantum codes",
+   "authors": [
+    "Anurag Anshu",
+    "Nikolas P. Breuckmann",
+    "Chinmay Nirkhe"
+   ],
+   "problem_name": "NLTS conjecture",
+   "url": "https://arxiv.org/abs/2206.13228",
+   "year": 2022,
+   "doi": "10.1145/3564246.3585114",
+   "journal": "Proceedings of the 55th Annual ACM Symposium on Theory of Computing",
+   "pub_year": 2023,
+   "cited_by": 44,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/NLTS_conjecture",
+   "acceptance_quote": "A full proof of the NLTS conjecture given in 2023 by Anurag Anshu, Nikolas Breuckmann, and Chinmay Nirkhe, and was presented at STOC 2023.",
+   "role": "primary",
+   "reason": "NLTS conjecture; published in Proceedings of the 55th Annual ACM Symposium on Theory of Computing (2023).",
+   "extract": {
+    "proof_section": "Proof of the NLTS theorem"
+   }
+  },
+  {
+   "arxiv_id": "2111.04808",
+   "arxiv_version": "2111.04808v2",
+   "field": "Theoretical computer science",
+   "kind": "proof",
+   "title": "Locally Testable Codes with constant rate, distance, and locality",
+   "authors": [
+    "Irit Dinur",
+    "Shai Evra",
+    "Ron Livne",
+    "Alexander Lubotzky",
+    "Shahar Mozes"
+   ],
+   "problem_name": "c^3 locally testable codes conjecture",
+   "url": "https://arxiv.org/abs/2111.04808",
+   "year": 2021,
+   "doi": "10.1145/3519935.3520024",
+   "journal": "Proceedings of the 54th Annual ACM SIGACT Symposium on Theory of Computing",
+   "pub_year": 2022,
+   "cited_by": 52,
+   "acceptance_evidence": "https://www.quantamagazine.org/researchers-defeat-randomness-to-create-ideal-code-20211124/",
+   "acceptance_quote": "the new code maintains rate, distance and other desired properties, even as codewords scale, proving the c 3 conjecture true.",
+   "role": "primary",
+   "reason": "c^3 locally testable codes conjecture; published in Proceedings of the 54th Annual ACM SIGACT Symposium on Theory of Computing (2022).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1904.12262",
+   "arxiv_version": "1904.12262v4",
+   "field": "Convex and metric geometry",
+   "kind": "proof",
+   "title": "The Fuglede conjecture for convex domains is true in all dimensions",
+   "authors": [
+    "Nir Lev",
+    "Máté Matolcsi"
+   ],
+   "problem_name": "Fuglede's conjecture for convex domains",
+   "url": "https://arxiv.org/abs/1904.12262",
+   "year": 2019,
+   "doi": "10.4310/acta.2022.v228.n2.a3",
+   "journal": "Acta Mathematica",
+   "pub_year": 2022,
+   "cited_by": 83,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Fuglede%27s_conjecture",
+   "acceptance_quote": "In 2019, Nir Lev and Máté Matolcsi settled the conjecture for convex domains affirmatively in all dimensions.",
+   "role": "primary",
+   "reason": "Fuglede's conjecture for convex domains; published in Acta Mathematica (2022).",
+   "extract": {
+    "main_label": "thmA15"
+   }
+  },
+  {
+   "arxiv_id": "1910.03740",
+   "arxiv_version": "1910.03740v5",
+   "field": "Convex and metric geometry",
+   "kind": "proof",
+   "title": "The Resolution of Keller's Conjecture",
+   "authors": [
+    "Joshua Brakensiek",
+    "Marijn Heule",
+    "John Mackey",
+    "David Narváez"
+   ],
+   "problem_name": "Keller's conjecture in dimension 7",
+   "url": "https://arxiv.org/abs/1910.03740",
+   "year": 2019,
+   "doi": "10.1007/s10817-022-09623-5",
+   "journal": "Journal of Automated Reasoning",
+   "pub_year": 2022,
+   "cited_by": 14,
+   "acceptance_evidence": "https://www.quantamagazine.org/computer-search-settles-90-year-old-math-problem-20200819/",
+   "acceptance_quote": "Joshua Brakensiek of Stanford University, Marijn Heule and John Mackey of Carnegie Mellon University, and David Narváez of the Rochester Institute of Technology — solved the problem",
+   "role": "primary",
+   "reason": "Keller's conjecture in dimension 7; published in Journal of Automated Reasoning (2022).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1805.02775",
+   "arxiv_version": "1805.02775v3",
+   "field": "Real and complex analysis",
+   "kind": "proof",
+   "title": "Sharp $L^2$ estimate of Schrödinger maximal function in higher dimensions",
+   "authors": [
+    "Xiumin Du",
+    "Ruixiang Zhang"
+   ],
+   "problem_name": "Carleson's problem: sharp L^2 Schrödinger maximal estimate in higher dimensions",
+   "url": "https://arxiv.org/abs/1805.02775",
+   "year": 2018,
+   "doi": "10.4007/annals.2019.189.3.4",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2019,
+   "cited_by": 215,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Ruixiang_Zhang",
+   "acceptance_quote": "using novel techniques to solve Carleson's problem on pointwise convergence of solutions to the Schrödinger equation",
+   "role": "primary",
+   "reason": "Carleson's problem: sharp L^2 Schrödinger maximal estimate in higher dimensions; published in Annals of Mathematics (2019).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2012.04125",
+   "arxiv_version": "2012.04125v2",
+   "field": "Real and complex analysis",
+   "kind": "proof",
+   "title": "Sendov's conjecture for sufficiently high degree polynomials",
+   "authors": [
+    "Terence Tao"
+   ],
+   "problem_name": "Sendov's conjecture (sufficiently high degree)",
+   "url": "https://arxiv.org/abs/2012.04125",
+   "year": 2020,
+   "doi": "10.4310/acta.2022.v229.n2.a3",
+   "journal": "Acta Mathematica",
+   "pub_year": 2022,
+   "cited_by": 10,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Terence_Tao",
+   "acceptance_quote": "In 2020, Tao proved Sendov's conjecture, concerning the locations of the roots and critical points of a complex polynomial, in the special case of polynomials with sufficiently high degree.",
+   "role": "primary",
+   "reason": "Sendov's conjecture (sufficiently high degree); published in Acta Mathematica (2022).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1907.09464",
+   "arxiv_version": "1907.09464v1",
+   "field": "Real and complex analysis",
+   "kind": "proof",
+   "title": "Flat Littlewood Polynomials Exist",
+   "authors": [
+    "Paul Balister",
+    "Béla Bollobás",
+    "Robert Morris",
+    "Julian Sahasrabudhe",
+    "Marius Tiba"
+   ],
+   "problem_name": "Littlewood's flat polynomial problem",
+   "url": "https://arxiv.org/abs/1907.09464",
+   "year": 2019,
+   "doi": "10.4007/annals.2020.192.3.6",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2020,
+   "cited_by": 16,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Littlewood_polynomial",
+   "acceptance_quote": "the conjecture was proved in 2020 by Paul Balister, Béla Bollobás, Robert Morris, Julian Sahasrabudhe, and Marius Tiba.",
+   "role": "primary",
+   "reason": "Littlewood's flat polynomial problem; published in Annals of Mathematics (2020).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1909.10693",
+   "arxiv_version": "1909.10693v4",
+   "field": "Real and complex analysis",
+   "kind": "proof",
+   "title": "A sharp square function estimate for the cone in $\\mathbb{R}^3$",
+   "authors": [
+    "Larry Guth",
+    "Hong Wang",
+    "Ruixiang Zhang"
+   ],
+   "problem_name": "Sharp square function estimate for the cone in R^3 (Mockenhaupt)",
+   "url": "https://arxiv.org/abs/1909.10693",
+   "year": 2019,
+   "doi": "10.4007/annals.2020.192.2.6",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2020,
+   "cited_by": 60,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Hong_Wang_%28mathematician%29",
+   "acceptance_quote": "In 2019, Wang, Larry Guth, and Ruixiang Zhang proved the two-dimensional case of the local smoothing conjecture.",
+   "role": "reserve",
+   "reason": "Sharp square function estimate for the cone in R^3 (Mockenhaupt); published in Annals of Mathematics (2020).",
+   "extract": {
+    "main_label": "sq fun",
+    "region_all": true
+   }
+  },
+  {
+   "arxiv_id": "2204.00504",
+   "arxiv_version": "2204.00504v3",
+   "field": "Differential geometry",
+   "kind": "proof",
+   "title": "Three-manifolds with non-negatively pinched Ricci curvature",
+   "authors": [
+    "Man-Chun Lee",
+    "Peter M. Topping"
+   ],
+   "problem_name": "Hamilton's pinching conjecture",
+   "url": "https://arxiv.org/abs/2204.00504",
+   "year": 2022,
+   "doi": "10.4310/jdg/1760725985",
+   "journal": "Journal of Differential Geometry",
+   "pub_year": 2025,
+   "cited_by": 5,
+   "acceptance_evidence": "https://math.berkeley.edu/~lott/lottpisa.pdf",
+   "acceptance_quote": "Now proved from the combined efforts of the speaker, Deruelle-Schulze-Simon and Lee-Topping.",
+   "role": "primary",
+   "reason": "Hamilton's pinching conjecture; published in Journal of Differential Geometry (2025).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1806.08816",
+   "arxiv_version": "1806.08816v2",
+   "field": "Differential geometry",
+   "kind": "proof",
+   "title": "Existence of infinitely many minimal hypersurfaces in closed manifolds",
+   "authors": [
+    "Antoine Song"
+   ],
+   "problem_name": "Yau's conjecture on infinitely many minimal surfaces",
+   "url": "https://arxiv.org/abs/1806.08816",
+   "year": 2018,
+   "doi": "10.4007/annals.2023.197.3.1",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2023,
+   "cited_by": 130,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Yau%27s_conjecture",
+   "acceptance_quote": "Finally, Antoine Song proved the conjectures for all metrics.",
+   "role": "primary",
+   "reason": "Yau's conjecture on infinitely many minimal surfaces; published in Annals of Mathematics (2023).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1901.01173",
+   "arxiv_version": "1901.01173v2",
+   "field": "Differential geometry",
+   "kind": "proof",
+   "title": "On the Multiplicity One Conjecture in Min-max theory",
+   "authors": [
+    "Xin Zhou"
+   ],
+   "problem_name": "Marques–Neves multiplicity one conjecture",
+   "url": "https://arxiv.org/abs/1901.01173",
+   "year": 2019,
+   "doi": "10.4007/annals.2020.192.3.3",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2020,
+   "cited_by": 65,
+   "acceptance_evidence": "https://www.quantamagazine.org/math-duo-maps-the-infinite-terrain-of-minimal-surfaces-20190312/",
+   "acceptance_quote": "Xin Zhou of the University of California, Santa Barbara, built on Marques and Neves’ previous work to prove that for most shapes, every minimal surface on Almgren and Pitts’ list is different",
+   "role": "primary",
+   "reason": "Marques–Neves multiplicity one conjecture; published in Annals of Mathematics (2020).",
+   "extract": {
+    "main_label": "T:thmA"
+   }
+  },
+  {
+   "arxiv_id": "2303.15347",
+   "arxiv_version": "2303.15347v3",
+   "field": "Differential geometry",
+   "kind": "counterexample",
+   "title": "Fundamental Groups and the Milnor Conjecture",
+   "authors": [
+    "Elia Bruè",
+    "Aaron Naber",
+    "Daniele Semola"
+   ],
+   "problem_name": "Milnor conjecture (Ricci curvature, finitely generated π1)",
+   "url": "https://arxiv.org/abs/2303.15347",
+   "year": 2023,
+   "doi": "10.4007/annals.2025.201.1.4",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2025,
+   "cited_by": 5,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Milnor_conjecture_%28Ricci_curvature%29",
+   "acceptance_quote": "In 2023 Bruè, Naber and Semola disproved in two preprints the conjecture for six",
+   "role": "reserve",
+   "reason": "Milnor conjecture (Ricci curvature, finitely generated π1); published in Annals of Mathematics (2025).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1904.04795",
+   "arxiv_version": "1904.04795v2",
+   "field": "Partial differential equations",
+   "kind": "proof",
+   "title": "Finite-Time Singularity Formation for $C^{1,α}$ Solutions to the Incompressible Euler Equations on $\\mathbb{R}^3$",
+   "authors": [
+    "Tarek M. Elgindi"
+   ],
+   "problem_name": "Finite-time singularity for C^{1,α} Euler solutions",
+   "url": "https://arxiv.org/abs/1904.04795",
+   "year": 2019,
+   "doi": "10.4007/annals.2021.194.3.2",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2021,
+   "cited_by": 106,
+   "acceptance_evidence": "https://www.quantamagazine.org/mathematician-makes-euler-equations-blow-up-20191218/",
+   "acceptance_quote": "Elgindi proved the existence of the flaw in the Euler equations in two papers posted online this year — one in April, which he wrote by himself",
+   "role": "primary",
+   "reason": "Finite-time singularity for C^{1,α} Euler solutions; published in Annals of Mathematics (2021).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2112.03116",
+   "arxiv_version": "2112.03116v1",
+   "field": "Partial differential equations",
+   "kind": "counterexample",
+   "title": "Non-uniqueness of Leray solutions of the forced Navier-Stokes equations",
+   "authors": [
+    "Dallas Albritton",
+    "Elia Brué",
+    "Maria Colombo"
+   ],
+   "problem_name": "Uniqueness of Leray–Hopf solutions (forced Navier–Stokes)",
+   "url": "https://arxiv.org/abs/2112.03116",
+   "year": 2021,
+   "doi": "10.4007/annals.2022.196.1.3",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2022,
+   "cited_by": 101,
+   "acceptance_evidence": "https://www.quantamagazine.org/mathematicians-coax-fluid-equations-into-nonphysical-solutions-20220502/",
+   "acceptance_quote": "The three authors show that a single Leray starting point can be consistent with two very different outcomes",
+   "role": "primary",
+   "reason": "Uniqueness of Leray–Hopf solutions (forced Navier–Stokes); published in Annals of Mathematics (2022).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2203.07696",
+   "arxiv_version": "2203.07696v4",
+   "field": "Partial differential equations",
+   "kind": "proof",
+   "title": "Pólya's conjecture for Euclidean balls",
+   "authors": [
+    "Nikolay Filonov",
+    "Michael Levitin",
+    "Iosif Polterovich",
+    "David A. Sher"
+   ],
+   "problem_name": "Pólya's conjecture for Euclidean balls",
+   "url": "https://arxiv.org/abs/2203.07696",
+   "year": 2022,
+   "doi": "10.1007/s00222-023-01198-1",
+   "journal": "Inventiones mathematicae",
+   "pub_year": 2023,
+   "cited_by": 23,
+   "acceptance_evidence": "https://phys.org/news/2024-03-mathematicians-plya-conjecture-eigenvalues-disk.html",
+   "acceptance_quote": "Polterovich and his international collaborators—Nikolay Filonov, Michael Levitin and David Sher—proved a special case of a famous conjecture in spectral geometry formulated in 1954",
+   "role": "primary",
+   "reason": "Pólya's conjecture for Euclidean balls; published in Inventiones mathematicae (2023).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2002.07735",
+   "arxiv_version": "2002.07735v3",
+   "field": "Probability and statistical mechanics",
+   "kind": "proof",
+   "title": "Equality of critical parameters for percolation of Gaussian free field level-sets",
+   "authors": [
+    "Hugo Duminil-Copin",
+    "Subhajit Goswami",
+    "Pierre-François Rodriguez",
+    "Franco Severo"
+   ],
+   "problem_name": "Equality of critical parameters for Gaussian free field level-set percolation",
+   "url": "https://arxiv.org/abs/2002.07735",
+   "year": 2020,
+   "doi": "10.1215/00127094-2022-0017",
+   "journal": "Duke Mathematical Journal",
+   "pub_year": 2023,
+   "cited_by": 29,
+   "acceptance_evidence": "https://www.insmi.cnrs.fr/en/cnrsinfo/work-hugo-duminil-copin",
+   "acceptance_quote": "(with Goswami, Rodriguez and Severo), where Hugo Duminil-Copin has studied phase transition for the $h$-level set of the Gaussian free field in dimension $\\geq 3$, and has proved the sharpness",
+   "role": "primary",
+   "reason": "Equality of critical parameters for Gaussian free field level-set percolation; published in Duke Mathematical Journal (2023).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1806.07733",
+   "arxiv_version": "1806.07733v2",
+   "field": "Probability and statistical mechanics",
+   "kind": "proof",
+   "title": "Existence of phase transition for percolation using the Gaussian Free Field",
+   "authors": [
+    "Hugo Duminil-Copin",
+    "Subhajit Goswami",
+    "Aran Raoufi",
+    "Franco Severo",
+    "Ariel Yadin"
+   ],
+   "problem_name": "Benjamini–Schramm conjecture p_c<1",
+   "url": "https://arxiv.org/abs/1806.07733",
+   "year": 2018,
+   "doi": "10.1215/00127094-2020-0036",
+   "journal": "Duke Mathematical Journal",
+   "pub_year": 2020,
+   "cited_by": 71,
+   "acceptance_evidence": "https://www.insmi.cnrs.fr/en/cnrsinfo/work-hugo-duminil-copin",
+   "acceptance_quote": "In [15] (with Goswami, Raoufi, Severo and Yadin), he established the Benjamini-Schramm conjecture that Bernoulli percolation on a Cayley graph with superlinear growth has $p_c<1$.",
+   "role": "primary",
+   "reason": "Benjamini–Schramm conjecture p_c<1; published in Duke Mathematical Journal (2020).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1804.10191",
+   "arxiv_version": "1804.10191v3",
+   "field": "Probability and statistical mechanics",
+   "kind": "proof",
+   "title": "Percolation on hyperbolic graphs",
+   "authors": [
+    "Tom Hutchcroft"
+   ],
+   "problem_name": "Benjamini–Schramm conjecture p_c < p_u for hyperbolic graphs",
+   "url": "https://arxiv.org/abs/1804.10191",
+   "year": 2018,
+   "doi": "10.1007/s00039-019-00498-0",
+   "journal": "Geometric and Functional Analysis",
+   "pub_year": 2019,
+   "cited_by": 25,
+   "acceptance_evidence": "https://www.cambridge.org/core/journals/advances-in-applied-probability/article/nonuniqueness-phase-in-hyperbolic-marked-random-connection-models-using-the-spherical-transform/269A9BE2D40D40478CCEB51C7C1C7B3D",
+   "acceptance_quote": "proved that a non-uniqueness phase exists for locally finite non-amenable transitive planar single-ended graphs and locally finite non-amenable quasi-transitive locally finite Gromov hyperbolic graphs",
+   "role": "primary",
+   "reason": "Benjamini–Schramm conjecture p_c < p_u for hyperbolic graphs; published in Geometric and Functional Analysis (2019).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2104.05607",
+   "arxiv_version": "2104.05607v3",
+   "field": "Probability and statistical mechanics",
+   "kind": "proof",
+   "title": "Non-triviality of the phase transition for percolation on finite transitive graphs",
+   "authors": [
+    "Tom Hutchcroft",
+    "Matthew Tointon"
+   ],
+   "problem_name": "Benjamini's conjecture: nontrivial phase transition on finite transitive graphs",
+   "url": "https://arxiv.org/abs/2104.05607",
+   "year": 2021,
+   "doi": "10.4171/jems/1453",
+   "journal": "Journal of the European Mathematical Society",
+   "pub_year": 2024,
+   "cited_by": 3,
+   "acceptance_evidence": "https://igorpak.wordpress.com/tag/benjamini-schramm-conjecture/",
+   "acceptance_quote": "Most recently, in an amazing development, Tom Hutchcroft and Matthew Tointon proved a slightly weaker version of the conjecture by adapting the methods of Duminil-Copin et al.",
+   "role": "reserve",
+   "reason": "Benjamini's conjecture: nontrivial phase transition on finite transitive graphs; published in Journal of the European Mathematical Society (2024).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1902.03719",
+   "arxiv_version": "1902.03719v8",
+   "field": "Algebra",
+   "kind": "proof",
+   "title": "Lorentzian polynomials",
+   "authors": [
+    "Petter Brändén",
+    "June Huh"
+   ],
+   "problem_name": "Mason's ultra-log-concavity conjecture (via Lorentzian polynomials)",
+   "url": "https://arxiv.org/abs/1902.03719",
+   "year": 2019,
+   "doi": "10.4007/annals.2020.192.3.4",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2020,
+   "cited_by": 113,
+   "acceptance_evidence": "https://www.mathunion.org/fileadmin/IMU/Prizes/Fields/2022/laudatio-jh.pdf",
+   "acceptance_quote": "was proved in parallel by direct combinatorial reasoning by Nima Anari, Kuikui Liu, Shayan Oveis Gharan, and Cynthia Vinzant [5] and based on Hodge theory by Brändén and Huh [13, 14].",
+   "role": "primary",
+   "reason": "Mason's ultra-log-concavity conjecture (via Lorentzian polynomials); published in Annals of Mathematics (2020).",
+   "extract": {
+    "main_label": "TheoremMasonThird"
+   }
+  },
+  {
+   "arxiv_id": "2102.11818",
+   "arxiv_version": "2102.11818v4",
+   "field": "Algebra",
+   "kind": "counterexample",
+   "title": "A counterexample to the unit conjecture for group rings",
+   "authors": [
+    "Giles Gardam"
+   ],
+   "problem_name": "Kaplansky's unit conjecture",
+   "url": "https://arxiv.org/abs/2102.11818",
+   "year": 2021,
+   "doi": "10.4007/annals.2021.194.3.9",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2021,
+   "cited_by": 31,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Kaplansky%27s_conjectures",
+   "acceptance_quote": "The unit conjecture, however, was disproved in characteristic 2 by Giles Gardam by exhibiting an explicit counterexample in a crystallographic group",
+   "role": "primary",
+   "reason": "Kaplansky's unit conjecture; published in Annals of Mathematics (2021).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2209.04736",
+   "arxiv_version": "2209.04736v2",
+   "field": "Group theory",
+   "kind": "proof",
+   "title": "Brauer's Height Zero Conjecture",
+   "authors": [
+    "Gunter Malle",
+    "Gabriel Navarro",
+    "Amanda A. Schaeffer Fry",
+    "Pham Huu Tiep"
+   ],
+   "problem_name": "Brauer's height zero conjecture",
+   "url": "https://arxiv.org/abs/2209.04736",
+   "year": 2022,
+   "doi": "10.4007/annals.2024.200.2.4",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2024,
+   "cited_by": 19,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Brauer%27s_height_zero_conjecture",
+   "acceptance_quote": "The case of odd primes was finally settled by Gunter Malle, Gabriel Navarro, A. A. Schaeffer Fry and Pham Huu Tiep in 2024 using a different reduction theorem.",
+   "role": "primary",
+   "reason": "Brauer's height zero conjecture; published in Annals of Mathematics (2024).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2001.10276",
+   "arxiv_version": "2001.10276v3",
+   "field": "Algebraic and complex geometry",
+   "kind": "proof",
+   "title": "Uniformity in Mordell-Lang for curves",
+   "authors": [
+    "Vesselin Dimitrov",
+    "Ziyang Gao",
+    "Philipp Habegger"
+   ],
+   "problem_name": "Mazur's uniformity conjecture (Mordell–Lang for curves)",
+   "url": "https://arxiv.org/abs/2001.10276",
+   "year": 2020,
+   "doi": "10.4007/annals.2021.194.1.4",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2021,
+   "cited_by": 38,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Uniform_boundedness_conjecture_for_rational_points",
+   "acceptance_quote": "Mazur's conjecture B was resolved by Dimitrov, Gao, and Habegger in 2021",
+   "role": "primary",
+   "reason": "Mazur's uniformity conjecture (Mordell–Lang for curves); published in Annals of Mathematics (2021).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2102.12371",
+   "arxiv_version": "2102.12371v6",
+   "field": "Mathematical logic",
+   "kind": "proof",
+   "title": "Torsion-Free Abelian Groups are Borel Complete",
+   "authors": [
+    "Gianluca Paolini",
+    "Saharon Shelah"
+   ],
+   "problem_name": "Friedman–Stanley question: torsion-free abelian groups are Borel complete",
+   "url": "https://arxiv.org/abs/2102.12371",
+   "year": 2021,
+   "doi": "10.4007/annals.2024.199.3.4",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2024,
+   "cited_by": 8,
+   "acceptance_evidence": "https://en.wikipedia.org/wiki/Torsion-free_abelian_group",
+   "acceptance_quote": "In this sense it has been proved that the classification problem for countable torsion-free abelian groups is as hard as possible.",
+   "role": "primary",
+   "reason": "Friedman–Stanley question: torsion-free abelian groups are Borel complete; published in Annals of Mathematics (2024).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "1810.08905",
+   "arxiv_version": "1810.08905v3",
+   "field": "Dynamical systems and ergodic theory",
+   "kind": "proof",
+   "title": "On the dimension of Bernoulli convolutions for all transcendental parameters",
+   "authors": [
+    "Péter P. Varjú"
+   ],
+   "problem_name": "Dimension of Bernoulli convolutions (transcendental parameters)",
+   "url": "https://arxiv.org/abs/1810.08905",
+   "year": 2018,
+   "doi": "10.4007/annals.2019.189.3.9",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2019,
+   "cited_by": 83,
+   "acceptance_evidence": "https://mathematics.huji.ac.il/event/basic-notions-mike-hochman-dimension-bernoulli-convolutions",
+   "acceptance_quote": "leading up to P. Varju's proof a little over a year ago, that for all transcendental parameters the dimension is 1.",
+   "role": "primary",
+   "reason": "Dimension of Bernoulli convolutions (transcendental parameters); published in Annals of Mathematics (2019).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2008.00857",
+   "arxiv_version": "2008.00857v2",
+   "field": "Dynamical systems and ergodic theory",
+   "kind": "proof",
+   "title": "Pointwise ergodic theorems for non-conventional bilinear polynomial averages",
+   "authors": [
+    "Ben Krause",
+    "Mariusz Mirek",
+    "Terence Tao"
+   ],
+   "problem_name": "Furstenberg–Bergelson–Leibman problem: pointwise bilinear polynomial averages",
+   "url": "https://arxiv.org/abs/2008.00857",
+   "year": 2020,
+   "doi": "10.4007/annals.2022.195.3.4",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2022,
+   "cited_by": 23,
+   "acceptance_evidence": "https://publications.mfo.de/bitstream/handle/mfo/4400/OWR_2025_51.pdf?sequence=1&isAllowed=y",
+   "acceptance_quote": "In 2022, Krause, Mirek, and Tao [10] used these results to prove pointwise almost everywhere convergence of the bilinear polynomial averages",
+   "role": "primary",
+   "reason": "Furstenberg–Bergelson–Leibman problem: pointwise bilinear polynomial averages; published in Annals of Mathematics (2022).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2206.01786",
+   "arxiv_version": "2206.01786v2",
+   "field": "Dynamical systems and ergodic theory",
+   "kind": "proof",
+   "title": "Infinite Sumsets in Sets with Positive Density",
+   "authors": [
+    "Bryna Kra",
+    "Joel Moreira",
+    "Florian K. Richter",
+    "Donald Robertson"
+   ],
+   "problem_name": "Erdős B+B+t conjecture",
+   "url": "https://arxiv.org/abs/2206.01786",
+   "year": 2022,
+   "doi": "10.1090/jams/1030",
+   "journal": "Journal of the American Mathematical Society",
+   "pub_year": 2023,
+   "cited_by": 12,
+   "acceptance_evidence": "https://www.erdosproblems.com/656",
+   "acceptance_quote": "This is true, and was proved by Kra, Moreira, Richter, and Robertson [KMRR24].",
+   "role": "reserve",
+   "reason": "Erdős B+B+t conjecture; published in Journal of the American Mathematical Society (2023).",
+   "extract": {}
+  },
+  {
+   "arxiv_id": "2003.06345",
+   "arxiv_version": "2003.06345v2",
+   "field": "Functional analysis",
+   "kind": "proof",
+   "title": "Rademacher type and Enflo type coincide",
+   "authors": [
+    "Paata Ivanisvili",
+    "Ramon van Handel",
+    "Alexander Volberg"
+   ],
+   "problem_name": "Enflo's problem: Rademacher type equals Enflo type",
+   "url": "https://arxiv.org/abs/2003.06345",
+   "year": 2020,
+   "doi": "10.4007/annals.2020.192.2.8",
+   "journal": "Annals of Mathematics",
+   "pub_year": 2020,
+   "cited_by": 19,
+   "acceptance_evidence": "https://theorems.home.blog/2020/09/21/for-every-banach-space-its-rademacher-type-and-enflo-type-coincide/",
+   "acceptance_quote": "Paata Ivanisvili, Ramon van Handel, and Alexander Volberg submitted to arxiv a paper in which they proved that a Banach space has Rademacher type if and only if has Enflo type.",
+   "role": "primary",
+   "reason": "Enflo's problem: Rademacher type equals Enflo type; published in Annals of Mathematics (2020).",
+   "extract": {
+    "main_label": "thm:enflo",
+    "proof_section": "Proof of Theorem \\\\ref\\{thm:enflo\\}"
+   }
+  },
+  {
+   "arxiv_id": "1908.02705",
+   "arxiv_version": "1908.02705v5",
+   "field": "Operator algebras",
+   "kind": "counterexample",
+   "title": "A non-nuclear $C^*$-algebra with the Weak Expectation Property and the Local Lifting Property",
+   "authors": [
+    "Gilles Pisier"
+   ],
+   "problem_name": "Kirchberg's question: non-nuclear C*-algebra with WEP and LLP",
+   "url": "https://arxiv.org/abs/1908.02705",
+   "year": 2019,
+   "doi": "10.1007/s00222-020-00977-4",
+   "journal": "Inventiones mathematicae",
+   "pub_year": 2020,
+   "cited_by": 3,
+   "acceptance_evidence": "https://par.nsf.gov/servlets/purl/10224897",
+   "acceptance_quote": "Only recently, answering a question dating back to [Ki93], Pisier constructed the first example of a non-nuclear C∗ -algebra with both LLP and WEP in [Pi19].",
+   "role": "primary",
+   "reason": "Kirchberg's question: non-nuclear C*-algebra with WEP and LLP; published in Inventiones mathematicae (2020).",
+   "extract": {
+    "main_label": "t1"
+   }
+  }
+ ],
+ "exclusions": [
+  {
+   "side": "ai",
+   "item": "family 003: The quasi-Riemann hypothesis",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 049: A stable-coordinate counterexample in four variables",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 052: Tangent-bundle splittings and universal covers",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 092: The optimal order of convex-body covering density",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 102: The Unique Games Conjecture and optimal approximation thresholds",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 104: Quasipolynomial algorithms for mean-payoff, stochastic and parity games",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 107: Matrix multiplication with exponent at most 9/4",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 113: Approximate counting and the perfect-matching entropy conjecture",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 116: Uniform identity testing for noncommutative formulas",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 125: The approximation threshold for metric k-median",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 129: Exponential state costs for two-way automata",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 130: Fourier transforms below nn",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 140: Memory–sample lower bounds for noiseless Gaussian regression",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 162: Counterexamples to Ryser's covering and Gyárfás's tree-cover conjectures",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 227: The dynamical phase transition in the Sherrington–Kirkpatrick model",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 228: Continuum phase transitions for radial pair potentials",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 238: Optimal logarithmic mixing of the Thorp shuffle",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 243: Choiceless counting does not capture polynomial time",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 250: The Boone–Higman conjecture and higher finiteness",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 254: Classifying spaces and geometric obstructions for Artin groups",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 269: The Laughlin gap and stability under scalar disorder",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 324: Lipschitz equivalence without linear isomorphism",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 325: The complete Crouzeix conjecture",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 331: Asymptotic midpoint uniform convexity without asymptotically uniformly convex renorming",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 350: Yau's nodal conjecture: surfaces and counterexamples",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 360: Villani’s convexity conjecture and regular optimal transport",
+   "gate": "unambiguous paper",
+   "reason": "Lean scope note covers several papers and the comparator cannot be tied to one paper title"
+  },
+  {
+   "side": "ai",
+   "item": "family 058: The Kollár–Pardon universal-cover conjecture",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "formalized paper is the companion symmetry lemma, not the Kollár–Pardon conjecture"
+  },
+  {
+   "side": "ai",
+   "item": "family 073: The Falconer distance conjecture",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "Lean covers only the planar case; the paper claims all dimensions"
+  },
+  {
+   "side": "ai",
+   "item": "family 082: Maximal and variational bounds for the triangular Hilbert transform",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "maximal bound at one symmetric point; not a resolution of a named problem"
+  },
+  {
+   "side": "ai",
+   "item": "family 085: Endpoint regularity of the planar centered maximal function",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "formalized statement is a finite-band variant, not the full endpoint theorem"
+  },
+  {
+   "side": "ai",
+   "item": "family 094: Subpolynomial dimension reduction in L_p",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "quantitative improvement; no named conjecture resolved"
+  },
+  {
+   "side": "ai",
+   "item": "family 112: Beyond the square-root exponent for depth-three circuits",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "lower-bound improvement; no named conjecture resolved"
+  },
+  {
+   "side": "ai",
+   "item": "family 114: Approximate counting of common integer polymatroid bases",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "algorithmic result; no named conjecture resolved"
+  },
+  {
+   "side": "ai",
+   "item": "family 117: Uniform sparsest cut: hardness and semidefinite gaps",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "hardness/integrality-gap result; no named conjecture resolved"
+  },
+  {
+   "side": "ai",
+   "item": "family 128: A factor-two approximation for shortest common superstring",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "approximation algorithm; no named conjecture resolved"
+  },
+  {
+   "side": "ai",
+   "item": "family 137: One-tape time simulation in two-fifths-power space",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "space-bound improvement; no named conjecture resolved"
+  },
+  {
+   "side": "ai",
+   "item": "family 139: Subpolynomial queries for log-concave sampling",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "query-complexity bound; no named conjecture resolved"
+  },
+  {
+   "side": "ai",
+   "item": "family 210: Foulkes’ conjecture for sixth powers and quadratic stabilization",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "named result (Foulkes, sixth power) only covered by Lean for b>=30"
+  },
+  {
+   "side": "ai",
+   "item": "family 240: Shelah's eventual categoricity conjecture",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "formalized paper is a CH obstruction, not the eventual-categoricity conjecture"
+  },
+  {
+   "side": "ai",
+   "item": "family 276: The classical capacity of generalized amplitude damping",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "capacity computation; no named conjecture"
+  },
+  {
+   "side": "ai",
+   "item": "family 277: Threshold repetition for entangled games",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "threshold parallel repetition; no named conjecture"
+  },
+  {
+   "side": "ai",
+   "item": "family 290: Connes' bicentralizer conjecture and relative bicentralizers",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "formalized paper is a companion lemma (bounded recovery), not the bicentralizer conjecture"
+  },
+  {
+   "side": "ai",
+   "item": "family 291: Toms–Winter and equivariant Jiang–Su stability",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "formalized paper is a companion lemma (uniform property Gamma), not Toms–Winter"
+  },
+  {
+   "side": "ai",
+   "item": "family 312: The Grothendieck homotopy hypothesis",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "only the elementary-expansion lemma is formalized; the homotopy hypothesis is not"
+  },
+  {
+   "side": "ai",
+   "item": "family 356: Gigli's characterization of Alexandrov curvature",
+   "gate": "named problem / main theorem in Lean",
+   "reason": "unclear that the formalized weak-Hessian theorem is Gigli's conjecture"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1907.00847 Induced subgraphs of hypercubes and a proof of the Sensitivity Conjecture",
+   "gate": "calibration anchor",
+   "reason": "Huang, Sensitivity Conjecture: used as a calibration anchor in lit/anchors.json"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1804.02385 The chromatic number of the plane is at least 5",
+   "gate": "calibration anchor",
+   "reason": "de Grey, chromatic number of the plane: used as a calibration anchor"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2001.04383 MIP*=RE",
+   "gate": "venue",
+   "reason": "MIP*=RE: only journal version is a CACM research highlight (summary, not the full proof)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1808.02923 The Conway knot is not slice",
+   "gate": "field match",
+   "reason": "Topology: no AI Topology family passes the Lean gate"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1803.09834 Shake genus and slice genus",
+   "gate": "field match",
+   "reason": "Topology: no AI Topology family passes the Lean gate"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1812.02448 Some exotic nontrivial elements of the rational homotopy groups of $\\mathrm{Diff}(S^4)$",
+   "gate": "field match",
+   "reason": "Topology (also unpublished, <10 citations)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2310.17459 $K$-theoretic counterexamples to Ravenel's telescope conjecture",
+   "gate": "field match",
+   "reason": "Topology: no AI Topology family passes the Lean gate"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2005.09193 The Rectangular Peg Problem",
+   "gate": "field match",
+   "reason": "Topology (rectangular peg): no AI Topology family passes the Lean gate"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2105.14795 Hyperbolic 5-manifolds that fiber over $S^1$",
+   "gate": "field match",
+   "reason": "Topology (hyperbolic 5-manifolds fibering): no AI Topology family passes the Lean gate"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1903.04284 Cracking the problem with 33",
+   "gate": "proof structure",
+   "reason": "computer search for 33 = x^3+y^3+z^3; no theorem/proof to extract"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2007.01209 On a question of Mordell",
+   "gate": "proof structure",
+   "reason": "computer search answering Mordell; no theorem/proof to extract"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2109.07463 Bias in cubic Gauss sums: Patterson's conjecture",
+   "gate": "scope",
+   "reason": "Patterson's conjecture proved only conditionally on GRH"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1807.02721 Diophantine problems and $p$-adic period mappings",
+   "gate": "scope",
+   "reason": "new proof of known finiteness results; partial progress on Shafarevich-type questions, not a resolution"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1802.01800 Euclidean Triangles Have No Hot Spots",
+   "gate": "correction",
+   "reason": "Annals published an erratum (doi 10.4007/annals.2022.195.1.5)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1803.00498 A proof of a sumset conjecture of Erdős",
+   "gate": "correction",
+   "reason": "arXiv v6 (after publication) declares a corrected proof of Theorem 3.22"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1811.01600 Log-Concave Polynomials III: Mason's Ultra-Log-Concavity Conjecture for Independent Sets of Matroids",
+   "gate": "duplicate problem",
+   "reason": "Mason's conjecture is already covered by Brändén–Huh (1902.03719)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1912.07973 Marginal triviality of the scaling limits of critical 4D Ising and $φ_4^4$ models",
+   "gate": "correction",
+   "reason": "Annals published a corrigendum (doi 10.4007/annals.2024.199.1.7)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2109.08788 Canonical Heights on Shimura Varieties and the André-Oort Conjecture",
+   "gate": "published",
+   "reason": "no journal version found in Crossref"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2007.03528 Breaking the logarithmic barrier in Roth's theorem on arithmetic progressions",
+   "gate": "published",
+   "reason": "no journal version found in Crossref"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2310.10983 The critical percolation probability is local",
+   "gate": "published",
+   "reason": "no journal version found in Crossref"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2106.02147 More Counterexamples to the Unit Conjecture for Group Rings",
+   "gate": "published",
+   "reason": "no journal version found in Crossref"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2004.07146 The dimensional Brunn-Minkowski inequality in Gauss space",
+   "gate": "acceptance evidence",
+   "reason": "no independent page found describing the problem as solved by this paper (No qualifying third-party page found (search hits were arXiv papers, author slides, and journal pages).)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1912.00714 Generic regularity of free boundaries for the obstacle problem",
+   "gate": "acceptance evidence",
+   "reason": "no independent page found describing the problem as solved by this paper (Only found Figalli's own SISSA colloquium abstract (\"solving a conjecture of Schaeffer\"), which is the author's own text)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2309.06224 Hyperbolic groups satisfy the Boone-Higman conjecture",
+   "gate": "acceptance evidence",
+   "reason": "no independent page found describing the problem as solved by this paper (Only found author pages and the authors' own survey (Glasgow eprint \"Progress around the Boone–Higman conjecture\"); Wiki)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1810.11635 Koszul modules and Green's conjecture",
+   "gate": "acceptance evidence",
+   "reason": "no independent page found describing the problem as solved by this paper (Wikipedia \"Green's conjecture\" credits only Voisin (generic case, char 0); found no third-party page on the positive-cha)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1812.08531 Pathologies on the Hilbert scheme of points",
+   "gate": "acceptance evidence",
+   "reason": "no independent page found describing the problem as solved by this paper (No third-party page found that says the paper answers Vakil's Murphy's-law question for Hilbert schemes of points.)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2108.07902 Undecidable translational tilings with only two tiles, or one nonabelian tile",
+   "gate": "acceptance evidence",
+   "reason": "no independent page found describing the problem as solved by this paper (Quanta 2022-12-15 mentions Greenfeld–Tao's 2021 two-tile construction only as aperiodic tiles, not as undecidability. Th)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1901.05853 Nuclear dimension of simple C*-algebras",
+   "gate": "acceptance evidence",
+   "reason": "no independent page found describing the problem as solved by this paper (No third-party page found (hits were the authors' own PDFs, websites, and talk abstracts).)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1807.07381 Subalgebras of simple AF-algebras",
+   "gate": "acceptance evidence",
+   "reason": "no independent page found describing the problem as solved by this paper (No third-party page found that says Schafhauser answered Blackadar's question.)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:1907.04894 Proof of the Strong Scott Conjecture for Chandrasekhar Atoms",
+   "gate": "acceptance evidence",
+   "reason": "no independent page found describing the problem as solved by this paper (Only found the paper itself (Simon's site) and author/institutional pages. No third-party statement found.)"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2301.10147",
+   "gate": "identity",
+   "reason": "screened id turned out to be a different paper (log-log step towards Erdős–Hajnal), not the intended resolution"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2112.03726 On a density conjecture about unit fractions",
+   "gate": "published / uptake",
+   "reason": "verify_human.py: no journal version found (Crossref/S2), 9 citations; reserve 1901.11465 promoted to primary in Number theory"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2305.19646 Part 1 of Martin's Conjecture for order-preserving and measure-preserving functions",
+   "gate": "correction",
+   "reason": "verify_human.py: arXiv comment \"updated to correct the proof of Theorem 4.12\" (author-declared fix), 6 citations; no human Logic reserve, so the last-drawn AI Logic primary was moved to reserve"
+  },
+  {
+   "side": "human",
+   "item": "arXiv:2101.04698 A proof of the Erdős-Faber-Lovász conjecture",
+   "gate": "uptake",
+   "reason": "verify_human.py: 9 citations (<10); was a Combinatorics reserve"
+  },
+  {
+   "side": "ai",
+   "item": "family 242: Single-fold Diophantine representations of r.e. sets",
+   "gate": "field balance (moved to reserve)",
+   "reason": "human Logic primary 2305.19646 failed verify_human.py; last-drawn AI Logic primary moved to reserve to keep Logic 1/1"
+  }
+ ],
+ "gates": [
+  {
+   "gate": "AI: no Lean scope note for the family",
+   "removed": 130
+  },
+  {
+   "gate": "AI: no non-Support comparator in status.main_results",
+   "removed": 111
+  },
+  {
+   "gate": "AI: comparator not tied to a single paper",
+   "removed": 26
+  },
+  {
+   "gate": "AI: formalized paper is not the named-problem result",
+   "removed": 19
+  },
+  {
+   "gate": "AI: not sampled (field-matched draw)",
+   "removed": 49
+  },
+  {
+   "gate": "human: acceptance evidence",
+   "removed": 9
+  },
+  {
+   "gate": "human: calibration anchor",
+   "removed": 2
+  },
+  {
+   "gate": "human: correction",
+   "removed": 3
+  },
+  {
+   "gate": "human: duplicate problem",
+   "removed": 1
+  },
+  {
+   "gate": "human: field match",
+   "removed": 6
+  },
+  {
+   "gate": "human: proof structure",
+   "removed": 2
+  },
+  {
+   "gate": "human: published",
+   "removed": 4
+  },
+  {
+   "gate": "human: scope",
+   "removed": 2
+  },
+  {
+   "gate": "human: venue",
+   "removed": 1
+  },
+  {
+   "gate": "human: identity (wrong arXiv id)",
+   "removed": 1
+  },
+  {
+   "gate": "human: final gate verify_human.py — correction",
+   "removed": 1
+  },
+  {
+   "gate": "human: final gate verify_human.py — published/uptake",
+   "removed": 2
+  },
+  {
+   "gate": "AI: moved to reserve for field balance after human final gate",
+   "removed": 1
+  }
+ ],
+ "report_sections": [
+  {
+   "title": "Selection rules — AI side",
+   "lines": [
+    "- Universe: the 372 result families / 719 manuscripts of github.com/openai/math (clone of 2026-10-08). Field = the catalogue section of the family in `overview.tex` (17 fields).",
+    "- **Lean gate (correctness).** A family qualifies only if its scope note `lean/docs/<family>.md` links a Comparator challenge whose config is listed in `lean/formalization.yaml` → `status.main_results` and is not one of the six `*Support.json` configs (those verify side lemmas, see `lean/ComparatorChallenges/README.md`). 131 families pass. The Lean library `lean/OAI` contains no `sorry` (grep over all .lean files); Comparator permits only the axioms propext, Quot.sound, Classical.choice.",
+    "- **Unambiguous paper.** The principal manuscript is the paper named in that scope note. If the note names several papers, the family is kept only when the comparator's result name matches exactly one paper title; otherwise it is excluded.",
+    "- **Named-problem gate.** Manual check that the formalized paper's main theorem resolves, or gives a counterexample to, a named open problem, conjecture or question, and that the scope note excludes only side results, not the main theorem. This leaves an 86-family pool.",
+    "- **Field-matched sampling.** For each field the number of AI primary items equals the number of human primary items. Inside a field, families are taken in a seeded random order (seed 20261008); the number of counterexample-type results is matched to the human side where the pool allows. One further family per field is kept as `role: reserve`."
+   ]
+  },
+  {
+   "title": "Selection rules — human side",
+   "lines": [
+    "- Candidates: arXiv papers first posted 2018–2023 (before strong AI assistance) whose main theorem resolves, or disproves, a named conjecture/problem; found via Quanta coverage, erdosproblems.com, Wikipedia lists of solved problems and the literature. Every screened id is in `data/raw/arxiv_meta.json`.",
+    "- **Correctness proxy** (final gate: `verify_human.py`): refereed journal or top refereed venue (DOI recorded), text from the latest arXiv version, not withdrawn, no retraction, no erratum/correction (Crossref notices and author-declared fixes in the arXiv comment both fail an item), ≥10 citations. The builder pre-screened publication and errata with Crossref (`data/raw/crossref_pub.json`).",
+    "- **Acceptance evidence:** one URL where someone other than the authors (Wikipedia, Quanta, erdosproblems.com, survey) describes the problem as resolved by the paper, with a verbatim quote (`acceptance_evidence`, `acceptance_quote` in `selection.json`).",
+    "- Scope: journal-quality research articles only (no surveys; no summary venues such as CACM research highlights).",
+    "- Field-matched to the AI side: within a field, primary papers are a seeded random draw (seed 20261009); the rest are `role: reserve` so dropped items can be replaced without breaking the field balance.",
+    "- Final gate: verify_human.py — 42/45 passed; failures excluded (2112.03726 published/uptake, 2305.19646 author-declared correction, 2101.04698 uptake). NT reserve 1901.11465 promoted; one AI Logic primary moved to reserve to keep Logic balanced."
+   ]
+  },
+  {
+   "title": "Extraction and blinding (identical code path for both sides)",
+   "lines": [
+    "- LaTeX is flattened (`\\input`/`\\include`), comments are stripped, short user macros are expanded. The main theorem is the first generic Theorem environment (per-paper overrides in `selection.json` → `extract`). Its proof is the attached proof environment, a `Proof of …` environment or section, or the section that ends with 'This proves Theorem …'.",
+    "- Proof region = main statement + all main-matter sections after the introduction (intro subsections titled overview/strategy/outline are kept); acknowledgement/discussion/open-problem and application/extension sections are dropped unless the proof cites into them; appendices only if cited.",
+    "- If the region renders to more than 25,000 characters it is cut by priority: statement → main proof (head and tail if very long) → overview → section skeleton → statements the main proof cites (transitively, nearest first) → other statements → proofs of cited results → remaining prose. Omitted spans become `[...]`. `full_proof_chars` is the rendered length of the whole region before cutting.",
+    "- Statements are renumbered with one counter (`Lemma 7`), labelled displays get `\\tag{n}`, `\\ref`/`\\cref` resolve to those numbers, citations become `[n]` (keys and bibliography removed). Math delimiters are unified (`\\( \\)` → `$ $`, `\\[ \\]` → `$$ $$`) because the AI house style would otherwise be a source tell.",
+    "- Blinding removes titles, authors, affiliations, e-mails, `\\thanks`, footnotes, dates, arXiv ids, URLs, acknowledgement paragraphs/sentences, every sentence mentioning OpenAI/GPT/LLMs/Lean/mathlib/proof assistants/formal verification, and explicit calendar years in prose (`in 2019` → `in [year]`). Human author surnames become `[author]`; non-mathematical sentences containing them are dropped. Mathematics and prose are otherwise untouched.",
+    "- `n_lemmas`, `n_cases_estimate` (Case/Subcase headers) and `n_display_equations` are computed on the whole region LaTeX, not on the truncated text; `cites_count` counts distinct citation keys in the full paper."
+   ]
+  },
+  {
+   "title": "Known biases and caveats",
+   "lines": [
+    "- **Survivorship (human).** Human papers passed peer review, have ≥10 citations and public 'this was solved' coverage. That selects celebrated proofs, which are plausibly cleaner and better exposed than the average human research proof.",
+    "- **Unreviewed but formally checked (AI).** AI manuscripts were never refereed. The Lean gate certifies the formal main statement, not the prose proof we score, and it favours formalizable (discrete, self-contained) results, which may also favour explicit step-by-step writing.",
+    "- **Recognition.** LLM judges may recognize famous human results (e.g. the Kahn–Kalai proof) and their reputation; the AI results (Sept–Oct 2026) postdate the judges' training. Ask the judge whether it recognizes the text and report results with and without recognized items.",
+    "- **Problem difficulty and fame are not matched,** only the field label and (where possible) proof vs counterexample. Several AI families claim very famous problems (e.g. Thompson's group F, L = RL = BPL, Nagata) that no human referee has checked.",
+    "- **Length.** Almost every item exceeds 25k characters, so judges see excerpts with `[...]` gaps on both sides; truncation removes a larger share of longer proofs (see the length table).",
+    "- **Residual style tells.** Era-specific LaTeX habits, the AI corpus' uniform house style, and a few `[author]` placeholders (human only, see the blinding audit) remain. Papers without sections (Shitov) are taken whole, including their short historical introduction.",
+    "- **Field taxonomy.** Fields follow the AI catalogue; human papers were assigned by hand. Topology is absent on both sides because no Topology family passes the Lean gate (the only candidate, family 312, formalizes a lemma, not the homotopy hypothesis)."
+   ]
+  }
+ ]
+}

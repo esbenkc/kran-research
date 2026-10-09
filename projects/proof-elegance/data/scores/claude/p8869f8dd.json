@@ -1,0 +1,17 @@
+{
+ "id": "p8869f8dd",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 4,
+ "explanation": 3,
+ "simplicity": 2,
+ "conceptual": 3,
+ "unification": 4,
+ "elegance": 5,
+ "key_idea": "Use translation periodicity to reduce the uniform bound to a finite sieve obstruction, then prove that obstruction with an information budget: each batch of split primes forces a self-avoiding bounded-step walk that avoids every zero class to reveal about 1/log T of its increment-word entropy, but a telescoping common-law bound caps the total at log K_D, while the sum of 1/log T over batches diverges.",
+ "reason": "The overall strategy is striking and has real explanatory force. The periodic-graph reduction is a clean book-style step, and the conflict between a fixed entropy budget and a divergent information cost explains why avoidance must fail. That core is buried under a heavy apparatus: entropy enrichment from many differences, randomly signed prime products, coverage-transfer lemmas, smoothed sampling schedules and many tuned constants. The result is a powerful but intricate proof, not a book proof.",
+ "recognized": "no (appears to address the Gaussian moat problem, i.e. the impossibility of walking to infinity on Gaussian primes with bounded steps)",
+ "source_guess": "ai"
+}

@@ -1,0 +1,17 @@
+{
+ "id": "p5eb914be",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 3,
+ "explanation": 2,
+ "simplicity": 1,
+ "conceptual": 2,
+ "unification": 3,
+ "elegance": 3,
+ "key_idea": "Lower-bound the number of survivors of a one-class-per-prime sieve by following a signed decreasing-prime Buchstab tree. A renewal (regeneration) analysis of a continuous path process shows the reference tree has a positive margin. Inverse and variance estimates combined with stopping rules then control the endpoints where the counts deviate, and a simple union bound over large prime divisors gives Jacobsthal's function.",
+ "reason": "The final deduction of Theorem 1 from Theorem 2 is short and clear. Theorem 2 itself, however, rests on a very long chain of carefully tuned parameters, regular boxes, witnessing edges, inverse estimates, variance alternatives and stopping rules, so the reason the bound holds is buried in bookkeeping. One conceptual idea does stand out: treating the Buchstab tree as a renewal process with an invariant measure. Even so, the proof as a whole reads as an intricate technical construction, not an inevitable one.",
+ "recognized": "no",
+ "source_guess": "ai"
+}

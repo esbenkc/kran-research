@@ -1,0 +1,17 @@
+{
+ "id": "anchor-plane-chromatic-de-grey",
+ "source": "anchor",
+ "judge": "gemini",
+ "model": "gemini-3.1-pro-preview",
+ "economy": 1,
+ "surprise": 2,
+ "explanation": 1,
+ "simplicity": 2,
+ "conceptual": 1,
+ "unification": 1,
+ "elegance": 2,
+ "key_idea": "Constructing one subgraph that forces a monochromatic triple and another that forbids it, combining them into a massive graph whose non-colorability is verified by computer search.",
+ "reason": "The proof relies on constructing massive graphs and delegates the heavy lifting to SAT solvers and custom backtracking programs. While the high-level architecture of forcing and forbidding patterns is logical, the core of the proof is a machine-generated certificate that offers no human-graspable reason for the result.",
+ "recognized": "Aubrey de Grey (2018), The chromatic number of the plane is at least 5",
+ "source_guess": "human"
+}

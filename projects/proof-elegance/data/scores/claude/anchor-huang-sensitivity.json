@@ -1,0 +1,17 @@
+{
+ "id": "anchor-huang-sensitivity",
+ "source": "anchor",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 5,
+ "surprise": 5,
+ "explanation": 4,
+ "simplicity": 5,
+ "conceptual": 5,
+ "unification": 4,
+ "elegance": 9.5,
+ "key_idea": "Sign the edges of the hypercube so that the signed adjacency matrix squares to nI. Its spectrum is then \u00b1\u221an, each with multiplicity half, and Cauchy interlacing forces any principal submatrix of size more than half to have top eigenvalue at least \u221an, which in turn bounds the maximum degree.",
+ "reason": "A decades-old open conjecture is settled in a few lines: one clever signed matrix, a trace argument, interlacing and a trivial degree bound, with no cases and no computation. The only slight shortfall is that the reason this particular signing works feels like a discovered trick more than an inevitable one, but almost nothing could be removed.",
+ "recognized": "Hao Huang's proof of the Sensitivity Conjecture (Annals of Mathematics, 2019)",
+ "source_guess": "human"
+}

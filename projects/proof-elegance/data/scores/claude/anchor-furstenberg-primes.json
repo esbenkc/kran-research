@@ -1,0 +1,17 @@
+{
+ "id": "anchor-furstenberg-primes",
+ "source": "anchor",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 5,
+ "surprise": 5,
+ "explanation": 3,
+ "simplicity": 5,
+ "conceptual": 5,
+ "unification": 5,
+ "elegance": 9,
+ "key_idea": "Put a topology on Z whose basic open sets are the two-sided arithmetic progressions. These progressions are both open and closed, and nonempty open sets are infinite. So if there were finitely many primes, the union of the progressions pZ would be closed, which would make the finite set {\u22121, 1} open.",
+ "reason": "The proof is short and has a single line of attack. The topological recasting is striking and hard to guess, and in the end the contradiction is forced. One point off because the topology mostly repackages a simple periodicity argument (essentially Euclid's argument) and does not really explain why there are infinitely many primes.",
+ "recognized": "Furstenberg's topological proof of the infinitude of primes (1955), as presented in Proofs from THE BOOK",
+ "source_guess": "human"
+}

@@ -1,0 +1,736 @@
+{
+  "items": [
+    {
+      "source": "ai",
+      "elegance": 3.75,
+      "field": "Real and complex analysis",
+      "problem": "The David\u2013Semmes Riesz-transform problem in higher codimension",
+      "title": "Riesz transforms and uniform rectifiability in higher codimension",
+      "key_idea": "Use blow-up limits of the measure to get flat reflectionless limits. Normal heights renormalized by the excess satisfy a nonlocal (half-Laplacian-type) equation in the limit, and its Liouville-type affine rigidity yields relative excess decay at every scale, which propagates flatness into uniform rectifiability.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Riesz-transforms-and-uniform-rectifiability-in-higher-codimension-September-24-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 5.75,
+      "field": "Combinatorics",
+      "problem": "Ringel's conjecture",
+      "title": "A proof of Ringel's Conjecture",
+      "key_idea": "Split trees into three structural cases. Embed almost all of the tree randomly so that leftover vertex and colour sets behave like independent random sets. Then finish with absorption-based matching or path lemmas that can use up exactly the colours that remain.",
+      "url": "https://arxiv.org/abs/2001.02665"
+    },
+    {
+      "source": "human",
+      "elegance": 7.75,
+      "field": "Partial differential equations",
+      "problem": "Uniqueness of Leray\u2013Hopf solutions (forced Navier\u2013Stokes)",
+      "title": "Non-uniqueness of Leray solutions of the forced Navier-Stokes equations",
+      "key_idea": "Lift Vishik's unstable 2D vortex into a very thin, very large-radius axisymmetric no-swirl vortex ring. At large radius the axisymmetric Euler equations formally reduce to 2D Euler. Then treat viscosity as a perturbation by scaling up the background, and build the nonlinear solution on the unstable manifold of the self-similar steady state.",
+      "url": "https://arxiv.org/abs/2112.03116"
+    },
+    {
+      "source": "human",
+      "elegance": 8.5,
+      "field": "Differential geometry",
+      "problem": "Yau's conjecture on infinitely many minimal surfaces",
+      "title": "Existence of infinitely many minimal hypersurfaces in closed manifolds",
+      "key_idea": "Cut the manifold along one-sided-minimizing stable minimal hypersurfaces until you reach a Frankel-type core, attach cylindrical ends, and use min-max on the non-compact result. The cylindrical ends force the widths to grow linearly, with each gap at least the boundary area, while each width must be a multiple of the area of a single interior minimal hypersurface, and an equidistribution argument shows these two facts are incompatible.",
+      "url": "https://arxiv.org/abs/1806.08816"
+    },
+    {
+      "source": "ai",
+      "elegance": 7.5,
+      "field": "Group theory",
+      "problem": "Dixmier's unitarizability problem",
+      "title": "Unitarizability implies amenability for discrete groups",
+      "key_idea": "Spectral gap from nonamenability, combined with Hall's theorem, splits a translation-invariant block convolution operator A into a part T with bounded block rows and a remainder A\u2212T with bounded block columns. T then has uniformly bounded conjugation differences while staying far from the commutant, because the kernel energy grows faster than the block dimension, and this gives a derivation that cannot be inner and so a non-unitarizable similarity cocycle.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Unitarizability-Implies-Amenability-for-Countable-Groups-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 7.5,
+      "field": "Theoretical computer science",
+      "problem": "c^3 locally testable codes conjecture",
+      "title": "Locally Testable Codes with constant rate, distance, and locality",
+      "key_idea": "Put a lifted tensor code on the squares of a left-right Cayley complex, so that the tensor code's agreement testability in each vertex link, combined with expansion of the parallel random walk on edges, makes local disagreements spread and get caught by a constant-query tester.",
+      "url": "https://arxiv.org/abs/2111.04808"
+    },
+    {
+      "source": "human",
+      "elegance": 8.25,
+      "field": "Theoretical computer science",
+      "problem": "NLTS conjecture",
+      "title": "NLTS Hamiltonians from good quantum codes",
+      "key_idea": "Low-energy states give measurement distributions that sit on approximate codewords; code expansion forces those codewords into well-separated clusters; and an X/Z uncertainty principle together with the constant rate keeps at least one basis from concentrating on a single cluster, which then gives the log-depth lower bound.",
+      "url": "https://arxiv.org/abs/2206.13228"
+    },
+    {
+      "source": "ai",
+      "elegance": 2.75,
+      "field": "Combinatorics",
+      "problem": "Hadwiger's conjecture (counterexample)",
+      "title": "A counterexample to Hadwiger's conjecture",
+      "key_idea": "Build a graph from a triangle-free 'hole' relation realized through random tensors and bilinear forms over F_2, and show via entropy minimization, containers, and Fourier/Walsh estimates that any dense unit law produces many pairs with all four cross holes; this supersaturation forces small clique minors.",
+      "url": "https://github.com/openai/math/tree/main/preprints/A-counterexample-to-Hadwigers-conjecture-September-23-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 7.75,
+      "field": "Algebraic and complex geometry",
+      "problem": "Nagata's conjecture",
+      "title": "Nagata's conjecture for plane curves",
+      "key_idea": "Specialize the points toward a plane cubic so that any counterexample becomes a polynomial on a normal line bundle; then collide the remaining points and let the elliptic curve degenerate, so that normalized theta sections turn into exponentials and the jet condition becomes the explicit matrix (K^\u2113 j^b), whose full rank follows from row-by-row interpolation over a polygon of exponents.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Nagatas-Conjecture-for-Plane-Curves-September-23-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 6.5,
+      "field": "Number theory",
+      "problem": "The Deligne\u2013Drinfeld conjecture",
+      "title": "The Deligne-Drinfeld conjecture",
+      "key_idea": "Degenerate the pentagon in characteristic two via the substitution A=x^2, C=[x,y], B=y, so that it becomes a relation in the level-two cyclotomic arrangement algebra, and then use a shift symmetry plus a Vandermonde argument to force the leading terms into the free Lie algebra on ad_C^k B, which gives the dimension bound. Holonomy-built depth-one elements then match that bound.",
+      "url": "https://github.com/openai/math/tree/main/preprints/The-Deligne-Drinfeld-conjecture-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 7.25,
+      "field": "Algebraic and complex geometry",
+      "problem": "Mazur's uniformity conjecture (Mordell\u2013Lang for curves)",
+      "title": "Uniformity in Mordell-Lang for curves",
+      "key_idea": "Show that the Faltings\u2013Zhang difference family of the universal curve is non-degenerate, meaning its Betti form has nonvanishing top power. This gives a height inequality on the total space of the abelian scheme, where the N\u00e9ron\u2013Tate height dominates the modular height. From that, points of a curve with large modular height are spread apart in N\u00e9ron\u2013Tate distance, so a Vojta\u2013R\u00e9mond packing argument bounds the count by c^{1+\u03c1}.",
+      "url": "https://arxiv.org/abs/2001.10276"
+    },
+    {
+      "source": "human",
+      "elegance": 5.75,
+      "field": "Partial differential equations",
+      "problem": "P\u00f3lya's conjecture for Euclidean balls",
+      "title": "P\u00f3lya's conjecture for Euclidean balls",
+      "key_idea": "Bound the Bessel zero-counting functions by a weighted lattice-point count under the graph of an explicit convex function G_\u03bb, using monotonicity of the Bessel phase functions, and then compare that count with the Weyl integral through a convexity-based lattice-point inequality.",
+      "url": "https://arxiv.org/abs/2203.07696"
+    },
+    {
+      "source": "ai",
+      "elegance": 6.75,
+      "field": "Dynamical systems and ergodic theory",
+      "problem": "The dimension formula for self-similar measures on the line",
+      "title": "The entropy-rate dimension formula for self-similar measures on the line",
+      "key_idea": "Condition on block symbol counts so that each block's contraction is fixed, which makes translation entropy equal to map entropy even when exact overlaps occur; then use a finite-law pair-capacity bound to turn any dimension deficit into fair two-point mass at fine scales, and bound its total entropy gain by telescoping over adaptively chosen disjoint windows.",
+      "url": "https://github.com/openai/math/tree/main/preprints/The-entropy-rate-dimension-formula-for-self-similar-measures-on-the-line-September-24-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 6.0,
+      "field": "Partial differential equations",
+      "problem": "Finite-time singularity for C^{1,\u03b1} Euler solutions",
+      "title": "Finite-Time Singularity Formation for $C^{1,\u03b1}$ Solutions to the Incompressible Euler Equations on $\\mathbb{R}^3$",
+      "key_idea": "Use axisymmetric Euler with very weakly vanishing (C^{1,\u03b1}) vorticity in \u03b1-scaled polar coordinates. There, the leading-order dynamics reduce to an explicitly solvable 'fundamental model' with self-similar blow-up profile z/(1+z)^2. The full problem is then treated as a small perturbation of that model, using weighted coercivity of the linearized operator.",
+      "url": "https://arxiv.org/abs/1904.04795"
+    },
+    {
+      "source": "human",
+      "elegance": 7.0,
+      "field": "Number theory",
+      "problem": "Twin prime and Chowla conjectures over F_q[T] (large q)",
+      "title": "On the Chowla and twin primes conjectures over $\\mathbb F_q[T]$",
+      "key_idea": "The M\u00f6bius function of a short arithmetic progression a+gM is rewritten, through the Pellet/Stickelberger formula, quadratic reciprocity and resultants, as a quadratic character evaluated at the derivative of g. The character sums that result are bounded by computing the cohomology of a character sheaf on the space of polynomials, using vanishing cycles and perverse sheaves, which gives Betti numbers of size binomial(m-1,t).",
+      "url": "https://arxiv.org/abs/1808.04001"
+    },
+    {
+      "source": "ai",
+      "elegance": 7.25,
+      "field": "Differential geometry",
+      "problem": "Donaldson's tamed-to-compatible conjecture",
+      "title": "Taming implies compatibility on four-manifolds",
+      "key_idea": "Hahn\u2013Banach gives a positive current P with an anti-invariant L^2 correction Q so that P+Q is closed. Quadratic mass growth and angular-coherence estimates then show that the positive-density part of P is closed. The final step pairs the closed current with the residual current supported on centers of zero density, which forces Q=0 and contradicts taming.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Taming-implies-compatibility-on-four-manifolds-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 7.25,
+      "field": "Convex and metric geometry",
+      "problem": "Fuglede's conjecture for convex domains",
+      "title": "The Fuglede conjecture for convex domains is true in all dimensions",
+      "key_idea": "Use the spectrum's autocorrelation (diffraction) measure, a construction from mathematical diffraction theory, to turn spectrality into a weak tiling of the complement of \u03a9 by translates of \u03a9, then use convex geometry to show that weak tiling forces a polytope that tiles face-to-face.",
+      "url": "https://arxiv.org/abs/1904.12262"
+    },
+    {
+      "source": "ai",
+      "elegance": 8.25,
+      "field": "Differential geometry",
+      "problem": "Counterexamples to strong forms of Arnold's fixed-point conjecture",
+      "title": "Three fixed points on the symplectic quadric threefold",
+      "key_idea": "The fixed points of a small perturbation of a finite-order Hamiltonian map, made by an invariant function, are the critical points of that function's restriction to the fixed submanifold. So a degenerate function with three critical points on the fixed S^2\u00d7S^2 of an involution of the quadric gives fewer fixed points than the quadric's cup length.",
+      "url": "https://github.com/openai/math/tree/main/preprints/A-degenerate-counterexample-to-the-critical-number-Arnold-bound-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 6.75,
+      "field": "Probability and statistical mechanics",
+      "problem": "Benjamini\u2013Schramm conjecture p_c < p_u for hyperbolic graphs",
+      "title": "Percolation on hyperbolic graphs",
+      "key_idea": "Recast p_c<p_u as an operator-norm statement p_c<p_{2\u21922} for the two-point matrix T_p, which via Cheeger's inequality reduces to showing the two-point matrix has vanishing 'isoperimetric' mass on finite sets near p_c; this is established with a hyperbolic Magic Lemma (Bonk\u2013Schramm embedding plus Benjamini\u2013Schramm Magic Lemma) and a mean-field susceptibility bound from half-space disjointness.",
+      "url": "https://arxiv.org/abs/1804.10191"
+    },
+    {
+      "source": "ai",
+      "elegance": 3.0,
+      "field": "Probability and statistical mechanics",
+      "problem": "Directional transience implies ballisticity for random walk in random environment",
+      "title": "Directional transience implies ballisticity",
+      "key_idea": "Reduce ballisticity to a superpolynomial tail bound on the quenched crossing probability a_N; assume the bound fails, condition on the bad environments at logarithmic entropy cost, and build a stationary law of endpoint profiles whose sustained survival-mass loss contradicts an outward-order tail statistic.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Directional-transience-implies-ballisticity-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 7.75,
+      "field": "Probability and statistical mechanics",
+      "problem": "Benjamini\u2013Schramm conjecture p_c<1",
+      "title": "Existence of phase transition for percolation using the Gaussian Free Field",
+      "key_idea": "Bound the non-percolation probability of S by exp(-cap(S)/2) using percolation in a random environment driven by a shifted Gaussian free field, then remove the field with a finite-range multiscale decomposition: each scale is integrated out by an Aizenman\u2013Grimmett-style differential inequality that trades it for a small increase of a deterministic Bernoulli parameter.",
+      "url": "https://arxiv.org/abs/1806.07733"
+    },
+    {
+      "source": "ai",
+      "elegance": 7.75,
+      "field": "Real and complex analysis",
+      "problem": "Ultraflat real Littlewood polynomials (asymptotically minimal maxima)",
+      "title": "Asymptotically minimal maxima of real Littlewood polynomials",
+      "key_idea": "Sample a bounded auxiliary polynomial F on disjoint blocks along quadratic-curvature curves on a torus. By stationary phase, each Fourier mode then lights up only one packed frequency interval, so at most one mode contributes at any angle (the intervals are packed using the Pippenger\u2013Spencer theorem). Defect-sensitive Lovett\u2013Meka partial coloring then rounds the result to signs.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Asymptotically-minimal-maxima-of-real-Littlewood-polynomials-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 9.0,
+      "field": "Algebra",
+      "problem": "Mason's ultra-log-concavity conjecture (via Lorentzian polynomials)",
+      "title": "Lorentzian polynomials",
+      "key_idea": "Show that a homogenized generating polynomial of independent sets (a degeneration of the Potts model partition function) is Lorentzian; setting all matroid variables equal then gives a bivariate Lorentzian polynomial, and for bivariate polynomials being Lorentzian is the same as having ultra log-concave coefficients.",
+      "url": "https://arxiv.org/abs/1902.03719"
+    },
+    {
+      "source": "ai",
+      "elegance": 7.5,
+      "field": "Combinatorics",
+      "problem": "Classification of finite Euclidean Ramsey configurations",
+      "title": "A classification of finite Euclidean Ramsey configurations",
+      "key_idea": "Reduce Euclidean Ramsey-ness to the solvability of an exact rational tensor equation over the coordinate field. Realize solutions via a Laurent-polynomial and lattice identity, built with formal logarithms and flatness of completion, which yields two-scale coordinate-permutation configurations. Then convert these into monochromatic copies using ultrafilter semigroups and Hales\u2013Jewett.",
+      "url": "https://github.com/openai/math/tree/main/preprints/A-classification-of-finite-Euclidean-Ramsey-configurations-September-23-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 8.0,
+      "field": "Combinatorics",
+      "problem": "Strong thin tree conjecture",
+      "title": "The strong thin tree conjecture",
+      "key_idea": "Each edge gets one stacked vector (X^{-1/2}b_e, z_e). One Marcus\u2013Spielman\u2013Srivastava two-sided split of these vectors halves every cut, measured against a cut-faithful 'shortcut' matrix X, while an isotropic, rank-preserving representation keeps a tree packing alive through the projected-trace criterion; repeating this halving down to constant size gives the thin tree.",
+      "url": "https://github.com/openai/math/tree/main/preprints/The-strong-thin-tree-conjecture-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 8.0,
+      "field": "Dynamical systems and ergodic theory",
+      "problem": "Dimension of Bernoulli convolutions (transcendental parameters)",
+      "title": "On the dimension of Bernoulli convolutions for all transcendental parameters",
+      "key_idea": "A transcendental \u03bb with dimension drop is approximated superexponentially well by algebraic \u03be that also have dimension drop and bounded Mahler measure. At the scale |\u03bb\u2212\u03be| = (5M)^{-n}, Theorem 6 then supplies a small polynomial at \u03bb. This contradicts a Liouville-type lower bound at \u03be, transferred to \u03bb through transversality and a derivative bound.",
+      "url": "https://arxiv.org/abs/1810.08905"
+    },
+    {
+      "source": "human",
+      "elegance": 7.25,
+      "field": "Real and complex analysis",
+      "problem": "Littlewood's flat polynomial problem",
+      "title": "Flat Littlewood Polynomials Exist",
+      "key_idea": "Split the polynomial into three parts. A rescaled Rudin\u2013Shapiro cosine part is large except on a few short, well-separated intervals, which a Taylor/divided-difference argument controls. On those intervals an odd sine part takes over: it is built as a discrepancy-theory rounding (via a Spencer/Lovett\u2013Meka partial colouring) of a Fourier approximation to a \u00b11 step function supported there.",
+      "url": "https://arxiv.org/abs/1907.09464"
+    },
+    {
+      "source": "human",
+      "elegance": 9.25,
+      "field": "Combinatorics",
+      "problem": "Hedetniemi's conjecture",
+      "title": "Counterexamples to Hedetniemi's conjecture",
+      "key_idea": "For a fixed graph \u0393 and large c, proper c-colorings of the exponential graph E_c(\u0393) are forced by a counting argument to be 'robust' near a single vertex. This rigidity is then contradicted by an explicit clique and a two-valued mapping built on G\u22a0K_q, where G has large girth and fractional chromatic number.",
+      "url": "https://arxiv.org/abs/1905.02167"
+    },
+    {
+      "source": "ai",
+      "elegance": 8.25,
+      "field": "Convex and metric geometry",
+      "problem": "Symmetric Mahler conjecture",
+      "title": "The symmetric Mahler conjecture and its equality cases",
+      "key_idea": "A conformal map onto a lens whose boundary pulls back to a uniform imaginary coordinate turns the volume product of a polytope into a sum of probabilities of feasible bases. A holomorphic mass estimate at an isolated zero bounds that sum below by 1, and a real feasible-simplex identity links it back to geometry.",
+      "url": "https://github.com/openai/math/tree/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 4.0,
+      "field": "Dynamical systems and ergodic theory",
+      "problem": "Hilbert's sixteenth problem for quintic Li\u00e9nard systems (at most two limit cycles)",
+      "title": "Two limit cycles for quintic Li\u00e9nard systems",
+      "key_idea": "Write each half-plane excursion as an arc of a scalar profile equation in u = x\u00b2/2, fit every arc with a unique quadratic model profile whose (\u03bb, \u03ba) coordinates are transported along a monotone law, then use the sign result (R/G)_r \u2264 0 together with a counting lemma (f' = b\u00b7q with q monotone gives at most two zeros) to bound the zeros of the matching function \u0394.",
+      "url": "https://github.com/openai/math/tree/main/preprints/two-limit-cycles-for-quintic-lienard-systems-September-24-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 3.75,
+      "field": "Real and complex analysis",
+      "problem": "The L log L Fourier-convergence conjecture",
+      "title": "Almost-everywhere Fourier convergence in L log L",
+      "key_idea": "Recast the maximal partial-sum estimate for normalized L log L layers as an information-theoretic problem: an adaptive dyadic stopping procedure whose cost is bounded by entropy compression, mutual information, and Fisher-type budgets. This yields a truncated good-set bound of size O(d) for densities bounded by e^d, and Borel\u2013Cantelli over the height layers then sums those bounds.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Almost-everywhere-Fourier-convergence-in-L-log-L-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 4.25,
+      "field": "Number theory",
+      "problem": "Erd\u0151s\u2013Selfridge covering problem with square-free moduli",
+      "title": "The Erd\u0151s-Selfridge problem with square-free moduli",
+      "key_idea": "Recast the covering problem as one about hyperplanes in a product of finite sets. Then expose the hyperplanes one coordinate at a time, using a sieve: an inductively distorted probability measure that pushes mass off the newly covered fibres. Use second-moment bounds to show that some mass always survives.",
+      "url": "https://arxiv.org/abs/1901.11465"
+    },
+    {
+      "source": "human",
+      "elegance": 8.75,
+      "field": "Combinatorics",
+      "problem": "Marton's conjecture (polynomial Freiman\u2013Ruzsa)",
+      "title": "On a conjecture of Marton",
+      "key_idea": "Minimize the functional \u03c4 = d[X1;X2] + \u03b7(d[X1^0;X1] + d[X2^0;X2]) over all pairs of distributions. A minimizer must have zero entropic Ruzsa distance, because otherwise the fibring identity applied to sums and differences of independent copies, together with an entropic Balog\u2013Szemer\u00e9di\u2013Gowers step, would produce a pair with smaller \u03c4. Zero distance then forces both variables to be uniform on a subgroup.",
+      "url": "https://arxiv.org/abs/2311.05762"
+    },
+    {
+      "source": "human",
+      "elegance": 3.25,
+      "field": "Mathematical logic",
+      "problem": "Friedman\u2013Stanley question: torsion-free abelian groups are Borel complete",
+      "title": "Torsion-Free Abelian Groups are Borel Complete",
+      "key_idea": "Build one 'universal' torsion-free group from a combinatorial system of partial bijections over the homogeneous universal model of two equivalence relations. Each E_n-class of tuples gets its own prime, which forces p-divisibility. The isomorphism type of a substructure M|U is then coded by the pure subgroup G_(1,U) generated by X_U.",
+      "url": "https://arxiv.org/abs/2102.12371"
+    },
+    {
+      "source": "ai",
+      "elegance": 6.5,
+      "field": "Probability and statistical mechanics",
+      "problem": "No percolation at criticality for Bernoulli percolation on Z^3",
+      "title": "Critical bond and site percolation on the cubic lattice",
+      "key_idea": "Assume percolation at p_c, use a finite-size criterion to drop to some q<p_c where seed boxes still reach quarter-faces with high probability, then run an adaptive coarse-grained exploration whose relay steps are controlled by a hypergraph connection-comparison inequality (proved via cluster-column cone positivity), so that bad coarse vertices are dominated by independent ones and a Peierls contour count gives an infinite cluster at q, a contradiction.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Critical-bond-and-site-percolation-on-the-cubic-lattice-September-24-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 8.5,
+      "field": "Combinatorics",
+      "problem": "Harary\u2013Hill conjecture on the crossing number of K_n",
+      "title": "The crossing number of complete graphs",
+      "key_idea": "Pair polynomially weighted edge cycles of K_n under a skew intersection form corrected by the rotation orders at vertices. The form vanishes on cycles, and interpolation-weighted polynomial tests then force the span of independent-edge evaluations at crossing pairs to have dimension at least C(s,2)^2, so the number of crossings is bounded below by a linear-algebra rank argument.",
+      "url": "https://github.com/openai/math/tree/main/preprints/The-crossing-number-of-complete-graphs-September-23-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 3.75,
+      "field": "Number theory",
+      "problem": "Squarefree quartics and power-free polynomial values",
+      "title": "Squarefree values of quartics and power-free values of polynomials",
+      "key_idea": "Factor n\u2212\u03b8 in the number field as \u03b1^k\u03b2 with conjugates of \u03b1 and \u03b2 balanced, then pair small boxes of their projective directions and apply bihomogeneous determinant cuts on the resulting bicone. This feeds a general affine counting theorem that uses adaptive auxiliary primes and random deletion.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Squarefree-values-of-quartics-and-power-free-values-of-polynomials-September-24-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 6.75,
+      "field": "Differential geometry",
+      "problem": "Marques\u2013Neves multiplicity one conjecture",
+      "title": "On the Multiplicity One Conjecture in Min-max theory",
+      "key_idea": "Approximate the area functional by prescribed-mean-curvature functionals A^{\u03b5h}, with h chosen generically so that the inhomogeneous Jacobi equation L \u03c6 = 2h has only sign-changing solutions on each candidate limit, which rules out higher multiplicity; then pass to the double cover of the cycle space by Caccioppoli sets to bring in the volume spectrum.",
+      "url": "https://arxiv.org/abs/1901.01173"
+    },
+    {
+      "source": "human",
+      "elegance": 6.5,
+      "field": "Algebra",
+      "problem": "Kaplansky's unit conjecture",
+      "title": "A counterexample to the unit conjecture for group rings",
+      "key_idea": "Write the candidate unit over the Z^3 subgroup with Laurent-polynomial coefficients, impose an ab-invariance symmetry (after adjoining square roots) that halves the conditions for the inverse \u03b1' = x^{-1}p^a \u2212 x^{-1}q a \u2212 y^{-1}r b + z^{-1}s^a ab, and then check the two remaining polynomial identities by hand in characteristic 2.",
+      "url": "https://arxiv.org/abs/2102.11818"
+    },
+    {
+      "source": "ai",
+      "elegance": 7.0,
+      "field": "Probability and statistical mechanics",
+      "problem": "The factor-of-IID threshold for free Ising states on trees",
+      "title": "The sharp factor-of-IID threshold for the free Ising model on regular trees",
+      "key_idea": "Realize the Ising spins as a strong solution of an infinite stochastic filtering (innovation) equation driven by IID Brownian innovations, then show pathwise uniqueness by coupling two conditional copies sharing the same innovations and proving that the field discrepancy variance vanishes, using spectral/nonbacktracking cancellation along paths up to and including the Kesten\u2013Stigum threshold.",
+      "url": "https://github.com/openai/math/tree/main/preprints/The-sharp-factor-of-IID-threshold-for-the-free-Ising-model-on-regular-trees-September-26-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 7.25,
+      "field": "Algebra",
+      "problem": "A counterexample to Kaplansky's zero-divisor conjecture",
+      "title": "A Torsion-Free Group Algebra with Zero Divisors",
+      "key_idea": "Build a finite 2-complex whose fundamental group comes from random graphs with prescribed types. In the product graph of simultaneous steps, every degree is odd, so each component has an even number of vertices and each group value appears an even number of times, which forces \u03b1\u03b2 = 0 over F_2; random-matching estimates rule out spherical diagrams, which gives asphericity and torsion-freeness.",
+      "url": "https://github.com/openai/math/tree/main/preprints/A-Torsion-Free-Group-Algebra-with-Zero-Divisors-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 7.25,
+      "field": "Number theory",
+      "problem": "Erd\u0151s primitive set conjecture",
+      "title": "A proof of the Erd\u0151s primitive set conjecture",
+      "key_idea": "Compositions ac with c built from primes just above P_2(a) also give pairwise disjoint L-sets, and because they are self-similar to the L_a this caps how much density elements with P(a)^{1+v}>a can carry at about sqrt(v); integrating this distribution-function bound against the 1/(1+v) savings gives the pi/4 factor.",
+      "url": "https://arxiv.org/abs/2202.02384"
+    },
+    {
+      "source": "human",
+      "elegance": 9.0,
+      "field": "Functional analysis",
+      "problem": "Enflo's problem: Rademacher type equals Enflo type",
+      "title": "Rademacher type and Enflo type coincide",
+      "key_idea": "Interpolate between f and E f with the heat semigroup on the cube, then use duality to move the discrete derivative onto the heat kernel. Its gradient is exactly a biased Rademacher vector, which gives a dimension-free Pisier inequality.",
+      "url": "https://arxiv.org/abs/2003.06345"
+    },
+    {
+      "source": "ai",
+      "elegance": 6.5,
+      "field": "Number theory",
+      "problem": "The Gaussian moat conjecture",
+      "title": "Bounded-Step Walks on Gaussian Primes",
+      "key_idea": "Use translation periodicity to reduce the uniform bound to a finite sieve obstruction, then prove that obstruction with an information budget: each batch of split primes forces a self-avoiding bounded-step walk that avoids every zero class to reveal about 1/log T of its increment-word entropy, but a telescoping common-law bound caps the total at log K_D, while the sum of 1/log T over batches diverges.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Bounded-Step-Walks-on-Gaussian-Primes-September-26-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 4.75,
+      "field": "Real and complex analysis",
+      "problem": "Carleson's problem: sharp L^2 Schr\u00f6dinger maximal estimate in higher dimensions",
+      "title": "Sharp $L^2$ estimate of Schr\u00f6dinger maximal function in higher dimensions",
+      "key_idea": "Induct on a fractal-weighted L^p estimate where the parameters (M, \u03b3, \u03bb) are set up so that the narrow case's parabolic rescaling trades them off exactly, with the broad case closed by the multilinear refined Strichartz estimate.",
+      "url": "https://arxiv.org/abs/1805.02775"
+    },
+    {
+      "source": "human",
+      "elegance": 6.25,
+      "field": "Real and complex analysis",
+      "problem": "Sendov's conjecture (sufficiently high degree)",
+      "title": "Sendov's conjecture for sufficiently high degree polynomials",
+      "key_idea": "View the zeroes of f and f' as random variables with matching means and potentials, then use compactness and the second Fourier coefficient of the logarithmic potential on the unit circle to force E \u03b6^2 \u2248 0. This contradicts the lune geometry, which forces Re(\u03b6^2) \u2264 -|\u03b6|^2/2.",
+      "url": "https://arxiv.org/abs/2012.04125"
+    },
+    {
+      "source": "ai",
+      "elegance": 4.0,
+      "field": "Theoretical computer science",
+      "problem": "Courtade\u2013Kumar conjecture",
+      "title": "Sharp binary-information contraction on the discrete cube",
+      "key_idea": "The authors prove a dimension-free entropy-production inequality D \u2265 F(I) by induction on coordinates, using a local joining inequality for a mean-dependent reserve profile; integrating that inequality along the noise semigroup gives the sharp contraction \u03c8^{-1}(I) \u21a6 \u03c1\u03c8^{-1}(I).",
+      "url": "https://github.com/openai/math/tree/main/preprints/Sharp-binary-information-contraction-on-the-discrete-cube-September-24-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 4.25,
+      "field": "Partial differential equations",
+      "problem": "Large-data global existence for the 3D relativistic Vlasov\u2013Maxwell system",
+      "title": "Global classical solutions of the three-dimensional relativistic Vlasov\u2013Maxwell system",
+      "key_idea": "In a narrow angular region, the proof integrates the retarded Li\u00e9nard\u2013Wiechert force along source trajectories before taking absolute values. This writes the force as a total derivative plus a term proportional to the receiver's own acceleration, which recovers the \u221aw loss in the absolute-force bound.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 7.75,
+      "field": "Algebra",
+      "problem": "Saxl's conjecture",
+      "title": "A Cyclic Polytabloid Proof of Saxl's Conjecture",
+      "key_idea": "Instead of working with the whole tensor square, the proof works in the cyclic submodule generated by the product of a row-alternating staircase tensor and a column-alternating one, and finds every irreducible in it by induction: an equivariant 'band-cutting' projection, whose high positions are forced by the staircase margins, gives quotients induced from smaller staircases times a thin band module. The dominated irreducibles come from a letter-sum contraction where a sum-of-squares equality forces a single output word, and the four-row band constituents come from a 2\u00d72 matrix path contraction.",
+      "url": "https://github.com/openai/math/tree/main/preprints/A-Cyclic-Polytabloid-Proof-of-Saxls-Conjecture-September-24-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 6.75,
+      "field": "Number theory",
+      "problem": "Erd\u0151s\u2019s short Egyptian-fraction conjecture",
+      "title": "Short Egyptian fractions",
+      "key_idea": "Use an auxiliary integer M with many divisors, so that one unit fraction reduces u/(MQ) to a small residue of -Qt mod u; make this work for almost all numerators using exponential-sum equidistribution of prime products and a uniform divisor-moment bound, then reach every numerator by writing a multiple gAM as the sum of two elements of the dense set.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Short-Egyptian-fractions-September-25-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 7.25,
+      "field": "Combinatorics",
+      "problem": "Periodic tiling conjecture",
+      "title": "A counterexample to the periodic tiling conjecture",
+      "key_idea": "Combine a system of tiling equations into one tile by attaching each F_m to a block E_m of a 'rigid' partition of Z/NZ, where every translate of one block meets every translate of another unless the shifts coincide, so any tiling is forced to be a graph over a common A that solves every equation at once.",
+      "url": "https://arxiv.org/abs/2211.15847"
+    },
+    {
+      "source": "ai",
+      "elegance": 8.5,
+      "field": "Mathematical logic",
+      "problem": "Rigidity of the Turing degrees",
+      "title": "Rigidity of the Turing degrees",
+      "key_idea": "Model the automorphism as a Borel map on reals that is subadditive up to Turing reducibility. Use generic continuity to freeze two local 'addition programs'. A bounded sigma-delta-style recurrence, steered by one bit of F, then shows that four F-values compute t through the frequency of its binary choices. Category cone-avoidance removes the auxiliary generic parameters.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Rigidity-of-the-Turing-degrees-September-24-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 2.0,
+      "field": "Group theory",
+      "problem": "Brauer's height zero conjecture",
+      "title": "Brauer's Height Zero Conjecture",
+      "key_idea": "Reduce the height-zero characterization of abelian defect groups to quasi-simple groups, then prove a classification-wide statement that non-cyclic blocks have characters in at least three Aut(S)-orbits (or constant degree), so that automorphisms acting on the defect group would break the all-height-zero condition.",
+      "url": "https://arxiv.org/abs/2209.04736"
+    },
+    {
+      "source": "ai",
+      "elegance": 3.0,
+      "field": "Theoretical computer science",
+      "problem": "L = RL = BPL (derandomization of logarithmic space)",
+      "title": "Exact derandomization of logarithmic space: L = RL = BPL",
+      "key_idea": "Build a hierarchy of correction-and-copy transforms using I-D=(I+E)(I-C). Each stage moves transition mass into rewards while keeping the number of active vertices under control. Every stage is estimated in one shared O(log n)-bit random environment, and enumerating all environments and taking the median gives the deterministic answer.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Exact-Derandomization-of-Logarithmic-Space-L-equals-RL-equals-BPL-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 6.75,
+      "field": "Number theory",
+      "problem": "Duffin\u2013Schaeffer conjecture",
+      "title": "On the Duffin-Schaeffer conjecture",
+      "key_idea": "Turn the overlap estimate into a density-increment iteration on bipartite 'GCD graphs', using a carefully weighted quality function that rises whenever vertices are restricted to fixed prime-power divisibility classes, until the graph is so structured that the anatomy-of-integers bounds kill the bad pairs.",
+      "url": "https://arxiv.org/abs/1907.04593"
+    },
+    {
+      "source": "human",
+      "elegance": 6.25,
+      "field": "Combinatorics",
+      "problem": "Erd\u0151s's high-girth Steiner triple system conjecture",
+      "title": "High-Girth Steiner Triple Systems",
+      "key_idea": "Iterative absorption on a sparsified host: first run a high-girth triple process to make the leftover look like a sparse random graph, which defeats 'constraint focusing'. Then finish with a compact high-girth absorber built from Euler-tour short-cycle decompositions, while forbidden configurations are controlled through retrospective analysis of the earlier randomness.",
+      "url": "https://arxiv.org/abs/2201.04554"
+    },
+    {
+      "source": "human",
+      "elegance": 6.5,
+      "field": "Differential geometry",
+      "problem": "Hamilton's pinching conjecture",
+      "title": "Three-manifolds with non-negatively pinched Ricci curvature",
+      "key_idea": "Build a Ricci flow from rough, pinched initial data with a/t curvature decay, using local a priori estimates (pinching is preserved, almost-Einstein implies curvature decay) and an inductive scheme that extends the flow in time while the region shrinks. Then apply the Deruelle\u2013Schulze\u2013Simon rigidity result to the time-t slices.",
+      "url": "https://arxiv.org/abs/2204.00504"
+    },
+    {
+      "source": "ai",
+      "elegance": 4.0,
+      "field": "Combinatorics",
+      "problem": "The Erd\u0151s\u2013Gallai cycle-decomposition conjecture",
+      "title": "A linear cycle-and-edge decomposition of every graph",
+      "key_idea": "Use multiscale expander decomposition: pick one layer by pigeonhole whose expanding pieces pay for a prefix of scales, fold pairs of low-degree vertices to get smaller quotient graphs, apply induction to those, and lift quotient cycles to real cycles by routing through reserved expanders, with a sub-linear potential \u03c6(n) absorbing the overlap losses.",
+      "url": "https://github.com/openai/math/tree/main/preprints/A-linear-cycle-and-edge-decomposition-of-every-graph-September-24-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 9.0,
+      "field": "Theoretical computer science",
+      "problem": "The asymptotic Gotsman\u2013Linial conjecture",
+      "title": "Average sensitivity of polynomial threshold functions",
+      "key_idea": "Grade the space by degree after orthogonalizing with respect to the weight |p|, so that multiplication by h = parity\u00b7sgn(p) vanishes between grades whose indices sum to less than n\u2212d. The block energies then form a coupling of two Bin(n,1/2) laws with a one-sided constraint, and an anticommutator Hilbert\u2013Schmidt bound recovers the sensitive edges.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Average-Sensitivity-of-Polynomial-Threshold-Functions-September-25-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 5.75,
+      "field": "Probability and statistical mechanics",
+      "problem": "Equality of critical parameters for Gaussian free field level-set percolation",
+      "title": "Equality of critical parameters for percolation of Gaussian free field level-sets",
+      "key_idea": "A 'fictitious regime' (h\u0303, h_**) combined with an interpolation between the full GFF and its finite-range truncations, controlled by comparing \u2202_t and \u2202_h of connection probabilities, lets sharpness for finite-range noised models pass to the full GFF, with multi-scale 'good bridges' supplying a surrogate finite-energy property.",
+      "url": "https://arxiv.org/abs/2002.07735"
+    },
+    {
+      "source": "human",
+      "elegance": 7.75,
+      "field": "Theoretical computer science",
+      "problem": "qLDPC conjecture (asymptotically good quantum LDPC codes)",
+      "title": "Asymptotically Good Quantum and Locally Testable Classical LDPC Codes",
+      "key_idea": "Lower-bound the distance and testability through a locally minimal distance: a cycle that is not locally minimal can be shortened by one local move, so every lightweight syndrome can be peeled off greedily. This is then combined with small-set edge expansion of lifted Ramanujan graphs and their squares, applied to a lifted product of Tanner codes.",
+      "url": "https://arxiv.org/abs/2111.03654"
+    },
+    {
+      "source": "ai",
+      "elegance": 7.5,
+      "field": "Functional analysis",
+      "problem": "Markov type characterizes superreflexivity",
+      "title": "Nontrivial Markov Type Forces Superreflexivity",
+      "key_idea": "Build a reversible chain in which uniform free-group letters act on an ordered set of landmarks through circle homeomorphisms, using averaged 'charts'. Odd edge labels in a spreading norm then telescope into prefix sums that oscillate between two levels, and the gap between those levels equals the reduced word length, which grows linearly.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Nontrivial-Markov-Type-Forces-Superreflexivity-September-23-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 6.0,
+      "field": "Partial differential equations",
+      "problem": "Calder\u00f3n's inverse conductivity problem: uniqueness for bounded measurable conductivities in 3D (counterexample)",
+      "title": "Nonuniqueness for Bounded Measurable Scalar Conductivities in Three Dimensions",
+      "key_idea": "First build a scalar 'branching block' conductivity that passes current between three boundary tori exactly the way a resistor network would. Getting there takes laminate-based exact scalarization, with Baire-category convex integration and explicit flux-wave localization. Then nest copies of the block self-similarly to get a bounded nonzero potential \u03c1. The gauge-like transformation \u0169 = u_* + (u \u2212 u_*)/\u03c1 then preserves every boundary measurement.",
+      "url": "https://github.com/openai/math/tree/main/preprints/Nonuniqueness-for-Bounded-Measurable-Scalar-Conductivities-in-Three-Dimensions-September-23-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 8.0,
+      "field": "Combinatorics",
+      "problem": "Einstein (aperiodic monotile) problem",
+      "title": "An aperiodic monotile",
+      "key_idea": "Shrink edges of two different length classes in a hypothetical periodic hat tiling to zero, which gives coupled periodic chevron and comet polyiamond tilings. The period lattices must then be related by an affine map that scales area by 2/3. A number-theoretic norm argument (m^2+mn+n^2) rules out that map being a similarity, while strip and orientation-balance counting forces it to be one.",
+      "url": "https://arxiv.org/abs/2303.10798"
+    },
+    {
+      "source": "human",
+      "elegance": 7.75,
+      "field": "Operator algebras",
+      "problem": "Kirchberg's question: non-nuclear C*-algebra with WEP and LLP",
+      "title": "A non-nuclear $C^*$-algebra with the Weak Expectation Property and the Local Lifting Property",
+      "key_idea": "Use the cone algebra C_0(C*(F_\u221e)) to build an inductive limit inside \u2113_\u221e/c_0 of finite-dimensional subspaces linked by approximately multiplicative maps that progressively add \u2113_1^n-extensions. The limit algebra then has the WEP by Proposition 8, and it gets the LLP from the WEP together with local embeddability in C*(F_\u221e).",
+      "url": "https://arxiv.org/abs/1908.02705"
+    },
+    {
+      "source": "ai",
+      "elegance": 5.0,
+      "field": "Convex and metric geometry",
+      "problem": "The Gaussian propeller conjecture",
+      "title": "The Gaussian propeller bound in every dimension",
+      "key_idea": "Recast the partition problem through norm duality as maximizing the expected maximum of Gaussian linear scores, reduce to a minimal extremizer with at least five obtuse centroids, then derive a contradiction from two constraints: a lower bound on cell probabilities (from rearrangement, and from score deletion combined with Ehrhard) and a residual-covariance determinant bound (from bounding a two-dimensional Gaussian density by its maximum).",
+      "url": "https://github.com/openai/math/tree/main/preprints/The-Gaussian-Propeller-Bound-in-Every-Dimension-September-24-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 6.5,
+      "field": "Combinatorics",
+      "problem": "Infinite matroid packing/covering conjecture (counterexample)",
+      "title": "A Counterexample to the Infinite Matroid Packing/Covering Conjecture",
+      "key_idea": "Build a self-dual 'gadget' matroid Q whose bases push an ultrafilter-based ordinal rank strictly down from one side to the other, then chain copies of Q along a double ray so that any independent covering would produce an infinite descending sequence of ordinals.",
+      "url": "https://github.com/openai/math/tree/main/preprints/A-Counterexample-to-the-Infinite-Matroid-Packing-Covering-Conjecture-September-24-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 1.5,
+      "field": "Convex and metric geometry",
+      "problem": "Keller's conjecture in dimension 7",
+      "title": "The Resolution of Keller's Conjecture",
+      "key_idea": "Reduce Keller's conjecture in dimension 7 to the absence of 128-cliques in Keller graphs G_{7,s}. Break symmetry by hand using automorphisms and the known dimension-6 case, then settle the remaining thousands of subcases with a SAT solver and a certified RAT clausal proof.",
+      "url": "https://arxiv.org/abs/1910.03740"
+    },
+    {
+      "source": "ai",
+      "elegance": 6.25,
+      "field": "Partial differential equations",
+      "problem": "Subcritical H\u00e9non\u2013Lane\u2013Emden conjecture",
+      "title": "The Subcritical H\u00e9non\u2013Lane\u2013Emden Conjecture",
+      "key_idea": "A localized virial (Pohozaev-type) identity is written as a double integral against the source pair measure with the symmetric kernel (X(x)-X(y))\u00b7(x-y)/|x-y|^2. The resulting pressure term is controlled by a one-dimensional interval-pair inequality on lines, which gives a scale-invariant energy bound that the subcritical scaling then contradicts.",
+      "url": "https://github.com/openai/math/tree/main/preprints/The-Subcritical-Henon-Lane-Emden-Conjecture-September-24-2026"
+    },
+    {
+      "source": "human",
+      "elegance": 5.75,
+      "field": "Dynamical systems and ergodic theory",
+      "problem": "Furstenberg\u2013Bergelson\u2013Leibman problem: pointwise bilinear polynomial averages",
+      "title": "Pointwise ergodic theorems for non-conventional bilinear polynomial averages",
+      "key_idea": "Convert Peluse's inverse theorem into a structural decomposition of the dual function using Hahn\u2013Banach, so that Ionescu\u2013Wainger major-arc projections remove the structured part. Then upgrade from \u2113^\u221e to \u2113^2 control with \u2113^p-improving bounds and from local to global support with Schur-test almost-orthogonality.",
+      "url": "https://arxiv.org/abs/2008.00857"
+    },
+    {
+      "source": "ai",
+      "elegance": 6.25,
+      "field": "Differential geometry",
+      "problem": "Bounded holomorphic coordinates for negatively pinched K\u00e4hler manifolds (counterexample)",
+      "title": "A negatively pinched K\u00e4hler threefold without bounded holomorphic coordinates",
+      "key_idea": "The proof turns the absence of a bounded Jacobian-nonvanishing map into the absence of a holomorphic real part below \u03c6 plus a logarithmic boundary term. It then defeats every such pluriharmonic minorant by building positive representing measures from separated homogeneous peaks with exact moment-cancelling radial corrections, and tests \u03c6 against them with regularized logarithms.",
+      "url": "https://github.com/openai/math/tree/main/preprints/A-negatively-pinched-Kahler-threefold-without-bounded-holomorphic-coordinates-September-25-2026"
+    },
+    {
+      "source": "ai",
+      "elegance": 8.5,
+      "field": "Operator algebras",
+      "problem": "A counterexample to Kaplansky's quasitrace conjecture",
+      "title": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness",
+      "key_idea": "The proof encodes 'no stably properly infinite matrix algebra' as a topological obstruction: a nonvanishing top Chern class of bundles over products of projective spaces. Finite propagation of shift-like generators means that, by degree truncation, a polynomial approximation to a pair of orthogonal isometries would give a forbidden trivial subbundle. A telescoping diagonal construction then turns the strict row/column norm gap into a uniform quasitrace additivity defect.",
+      "url": "https://github.com/openai/math/tree/main/preprints/A-counterexample-to-Kaplanskys-quasitrace-conjecture-September-23-2026"
+    }
+  ],
+  "anchors": [
+    {
+      "kind": "messy",
+      "elegance": 2.25,
+      "title": "Chromatic number of the plane >= 5: searched 1581-vertex unit-distance graph, computer-verified",
+      "url": "https://arxiv.org/abs/1804.02385"
+    },
+    {
+      "kind": "elegant",
+      "elegance": 9.75,
+      "title": "Sensitivity conjecture via a signed hypercube matrix and interlacing",
+      "url": "https://arxiv.org/abs/1907.00847"
+    },
+    {
+      "kind": "messy",
+      "elegance": 1.5,
+      "title": "Four Colour Theorem: 633 reducible configurations + 32 discharging rules, computer-checked",
+      "url": "https://thomas.math.gatech.edu/PAP/update.pdf"
+    },
+    {
+      "kind": "elegant",
+      "elegance": 9.5,
+      "title": "Exponential lower bound R(k,k) > 2^(k/2) by random colouring",
+      "url": "https://www.ams.org/journals/bull/1947-53-04/S0002-9904-1947-08785-1/"
+    },
+    {
+      "kind": "elegant",
+      "elegance": 9.75,
+      "title": "Cap set bound O(2.756^n) via slice rank",
+      "url": "https://terrytao.wordpress.com/2016/05/18/a-symmetric-formulation-of-the-croot-lev-pach-ellenberg-gijswijt-capset-bound/"
+    },
+    {
+      "kind": "messy",
+      "elegance": 1.5,
+      "title": "Kepler conjecture: tame-graph enumeration, ~10^5 linear programs, interval arithmetic",
+      "url": "https://annals.math.princeton.edu/wp-content/uploads/annals-v162-n3-p01.pdf"
+    },
+    {
+      "kind": "messy",
+      "elegance": 2.75,
+      "title": "Map Colour Theorem / Heawood conjecture: twelve residue cases solved by separate current-graph constructions",
+      "url": "https://www.pnas.org/doi/10.1073/pnas.60.2.438"
+    },
+    {
+      "kind": "elegant",
+      "elegance": 9.5,
+      "title": "Infinitude of primes via a topology on Z",
+      "url": "https://www.math.auckland.ac.nz/~gauld/750-05/inftlymanyprimes.pdf"
+    },
+    {
+      "kind": "elegant",
+      "elegance": 9.75,
+      "title": "Finite field Kakeya conjecture via the polynomial method",
+      "url": "https://arxiv.org/abs/0803.2336"
+    },
+    {
+      "kind": "messy",
+      "elegance": 1.25,
+      "title": "Boolean Pythagorean triples: SAT cube-and-conquer, 200 TB DRAT certificate",
+      "url": "https://arxiv.org/abs/1605.00723"
+    },
+    {
+      "kind": "messy",
+      "elegance": 1.25,
+      "title": "Bruck loops with abelian inner mapping group: human reduction + 1000-page automated equational proof",
+      "url": "https://www.karlin.mff.cuni.cz/~stanovsk/math/bruck.pdf"
+    },
+    {
+      "kind": "elegant",
+      "elegance": 9.75,
+      "title": "Art gallery theorem: floor(n/3) guards via 3-colouring a triangulation",
+      "url": "https://en.wikipedia.org/wiki/Art_gallery_problem"
+    }
+  ],
+  "summary": {
+    "ai": {
+      "mean": 6.263888888888889,
+      "median": 6.625
+    },
+    "human": {
+      "mean": 6.694444444444445,
+      "median": 7.125
+    }
+  }
+}

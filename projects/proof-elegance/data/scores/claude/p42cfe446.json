@@ -1,0 +1,17 @@
+{
+ "id": "p42cfe446",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 3,
+ "surprise": 4,
+ "explanation": 4,
+ "simplicity": 3,
+ "conceptual": 4,
+ "unification": 3,
+ "elegance": 6.5,
+ "key_idea": "The fixed points of a small perturbation of a finite-order Hamiltonian map, made by an invariant function, are the critical points of that function's restriction to the fixed submanifold. So a degenerate function with three critical points on the fixed S^2\u00d7S^2 of an involution of the quadric gives fewer fixed points than the quadric's cup length.",
+ "reason": "The main construction is clean and conceptual: compose a finite-order map with a short invariant flow, and the fixed-point count drops to the critical count on a lower-dimensional fixed submanifold whose topology is smaller. However, much of the text verifies things by hand: the short-period lemma, the Lusternik\u2013Schnirelmann bound, the explicit critical-point solve on S^2\u00d7S^2, and the smoothness of the concatenated Hamiltonian. This makes the proof longer than its core idea needs.",
+ "recognized": "no",
+ "source_guess": "ai"
+}

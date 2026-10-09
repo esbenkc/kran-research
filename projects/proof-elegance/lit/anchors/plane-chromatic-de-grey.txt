@@ -1,0 +1,16 @@
+Theorem. The chromatic number of the plane is at least 5. That is, there is a finite unit-distance graph in R² (vertices are points of the plane, edges join points at distance exactly 1) that cannot be properly coloured with 4 colours.
+
+Proof (complete structure; figures, coordinates of the large graphs and the computer searches are not reproduced).
+
+Step 1 (the building block H). Let H be the 7-vertex unit-distance graph formed by the centre and the six vertices of a regular hexagon of side 1. Up to rotation, reflection and permutation of colours, H has exactly four colourings with at most four colours. In two of them some three vertices of H that are pairwise at distance √3 receive the same colour (a "monochromatic triple"); in the other two there is no such triple.
+
+Step 2 (a graph L forcing a monochromatic triple).
+(a) Build a 31-vertex graph J from 13 copies of H: one at the centre, six centred at distance 1, six centred at distance √3. By grouping the possibilities, one lists the 4-colourings of J in which no copy of H has a monochromatic triple: up to symmetry there are six, and in all of them the six "linking vertices" at distance 2 from the centre are coloured in one of three patterns (a), (b), (c).
+(b) Let K (61 vertices, 26 copies of H) be the union of J and a copy of J rotated about the centre by 2·arcsin(1/4), so that corresponding linking vertices are at distance 1. Then in any 4-colouring of K with no monochromatic triple in any copy of H, both copies of J use pattern (c), and all six "linking diagonals" (pairs of opposite linking vertices) are monochromatic.
+(c) Let L (121 vertices, 52 copies of H) be the union of K and a copy of K rotated about a linking vertex A by 2·arcsin(1/8), so that the image B' of the opposite linking vertex B is at distance 1 from B. Then B and B' have different colours, so one of them differs from A, so one copy of K has a non-monochromatic linking diagonal. Hence in every 4-colouring of L some copy of H contains a monochromatic triple.
+
+Step 3 (a graph M forbidding a monochromatic triple in its central H). Search among unit-distance graphs with a high density of Moser spindles (the 7-vertex 4-chromatic unit-distance graph), built from rotated copies of spindle-rich pieces in a limited set of orientations. This produces a 1345-vertex unit-distance graph M containing a copy of H such that no 4-colouring of M gives that H a monochromatic triple. This property is checked by a custom backtracking program: fix the colouring of the central H to each of the two triple-containing colourings, then repeatedly assign and propagate forced colours; the search finds no 4-colouring (it finishes in a few minutes).
+
+Step 4 (combine). Place 52 copies of M so that their central copies of H form the 52 copies of H in L. The union N (20,425 vertices) is not 4-colourable: by Step 2 some copy of H gets a monochromatic triple, but by Step 3 the copy of M around it forbids this.
+
+Step 5 (shrink). Delete vertices of N whose removal keeps the graph non-4-colourable, and add single vertices that allow several others to be removed. This gives an explicit 1581-vertex unit-distance graph G, described by a list of point coordinates and rotations. Standard SAT solvers confirm that G is not 4-colourable. ∎

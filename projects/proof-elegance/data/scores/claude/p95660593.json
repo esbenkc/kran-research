@@ -1,0 +1,17 @@
+{
+ "id": "p95660593",
+ "source": "ai",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 4,
+ "explanation": 3,
+ "simplicity": 1,
+ "conceptual": 3,
+ "unification": 2,
+ "elegance": 4,
+ "key_idea": "Use multiscale expander decomposition: pick one layer by pigeonhole whose expanding pieces pay for a prefix of scales, fold pairs of low-degree vertices to get smaller quotient graphs, apply induction to those, and lift quotient cycles to real cycles by routing through reserved expanders, with a sub-linear potential \u03c6(n) absorbing the overlap losses.",
+ "reason": "The architecture is clever: the prefix-selection lemma, the pair folding with expander routing to lift cycles, and the \u03c6(n)=1\u22121/\u221alog n potential that pays for overlap are real ideas. But they are buried under heavy layered bookkeeping, many interacting parameters and exponents, batching and multiplicity counting, and separate terminal cases, so the reason the result holds is hard to see through the machinery.",
+ "recognized": "Erd\u0151s\u2013Gallai conjecture on decomposing a graph into O(n) cycles and edges (linear bound; cf. Buci\u0107\u2013Montgomery O(n log* n) approach); this specific proof not recognized",
+ "source_guess": "ai"
+}

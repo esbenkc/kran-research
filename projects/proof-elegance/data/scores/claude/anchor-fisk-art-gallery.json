@@ -1,0 +1,17 @@
+{
+ "id": "anchor-fisk-art-gallery",
+ "source": "anchor",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 5,
+ "surprise": 5,
+ "explanation": 5,
+ "simplicity": 5,
+ "conceptual": 5,
+ "unification": 3,
+ "elegance": 9.5,
+ "key_idea": "Colour the triangulation's vertices with 3 colours so every triangle has one vertex of each colour, then guard with the smallest colour class.",
+ "reason": "The 3-colouring turns a geometric covering problem into a counting argument where pigeonhole gives \u230an/3\u230b at once, and the bound then feels inevitable. It is short, has no cases, and uses only the existence of a triangulation and ears, so it is a classic book proof.",
+ "recognized": "Fisk's proof of Chv\u00e1tal's Art Gallery Theorem (Proofs from THE BOOK)",
+ "source_guess": "human"
+}

@@ -1,0 +1,17 @@
+Theorem (Kepler conjecture). No packing of congruent balls in three-dimensional Euclidean space has density greater than that of the face-centred cubic packing, π/√18 ≈ 0.7405.
+
+Proof (top-level structure of the published proof; the full argument is about 120 journal pages plus several further papers and a large body of computer code, and is not reproduced here).
+
+Step 1 (from density to a local score). Fix a saturated packing (no further ball can be added). Around each ball centre, build a "decomposition star": a combination of Delaunay-type simplices (the "Q-system", which marks regions of potentially high density) and Voronoi-type cells. Define a score function σ on decomposition stars. Show: if σ(D) ≤ 8 pt for every decomposition star D, where pt = 4·arctan(√2/5) − π/3 ≈ 0.05537, then the packing density is at most π/√18 (via a suitable "negligible, fcc-compatible" correction function).
+
+Step 2 (contravening stars and tame graphs). Suppose some star D has σ(D) ≥ 8 pt (a "contravening" star). Attach to D a combinatorial plane graph G(D). Prove that G(D) satisfies a long list of restrictive combinatorial and metric properties; graphs with these properties are called "tame".
+
+Step 3 (enumerate all tame graphs). A computer search lists every tame plane graph up to isomorphism. The archived list has several thousand graphs (over 5000; a later check showed at most 2771 are needed).
+
+Step 4 (eliminate the cases by linear programming). For each tame graph other than three special ones, relax the nonlinear problem "maximise σ over stars with this graph" into a linear program. If the LP maximum is below 8 pt, the graph is eliminated. When a single LP is not enough, split the case by branch-and-bound into further LPs. In total about 10^5 linear programs are generated and solved.
+
+Step 5 (the special graphs). The graph coming from a pentagonal-prism arrangement of 12 balls needs its own long, computer-assisted argument (a separate thesis). For the two graphs coming from the face-centred cubic and hexagonal close packings, a local-optimality analysis shows σ = 8 pt exactly.
+
+Step 6 (nonlinear inequalities). Many steps above rely on explicit nonlinear inequalities in up to six variables (for example, bounds on volumes and solid angles of simplices). These are proved by computer with interval arithmetic: nearly a thousand inequalities, whose domains are subdivided into more than 23,000 cases.
+
+Conclusion. No contravening star exists apart from the fcc and hcp cases, where σ = 8 pt. By Step 1 the density is at most π/√18. ∎

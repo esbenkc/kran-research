@@ -1,0 +1,17 @@
+{
+ "id": "anchor-huang-sensitivity",
+ "source": "anchor",
+ "judge": "gemini",
+ "model": "gemini-3.1-pro-preview",
+ "economy": 5,
+ "surprise": 5,
+ "explanation": 5,
+ "simplicity": 5,
+ "conceptual": 5,
+ "unification": 5,
+ "elegance": 10,
+ "key_idea": "Construct a signed adjacency matrix for the hypercube whose eigenvalues are exactly \u00b1\u221an, then apply Cauchy interlacing to bound the maximum degree of any large induced subgraph.",
+ "reason": "This is a quintessential 'book proof' that resolves a major three-decade-old conjecture in Boolean complexity using under two pages of elementary linear algebra. The ingenious yet trivial-to-verify construction of the signed adjacency matrix elegantly bypasses all combinatorial difficulties.",
+ "recognized": "Hao Huang's proof of the Sensitivity Conjecture (2019)",
+ "source_guess": "human"
+}

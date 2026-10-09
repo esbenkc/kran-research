@@ -1,0 +1,19 @@
+Theorem (Map Colour Theorem, orientable case; Heawood conjecture). For every orientable surface S_g of genus g ≥ 1, the largest number of colours needed to colour maps on S_g (equivalently, the largest chromatic number of a graph embedded in S_g) is
+
+    H(g) = ⌊(7 + √(1 + 48g)) / 2⌋.
+
+Proof (structure of the complete proof; the case-by-case constructions fill a book and are not reproduced here).
+
+Step 1 (upper bound). Euler's formula |V| − |E| + |F| = 2 − 2g bounds the average degree of a graph embedded in S_g. A short computation shows that every such graph has a vertex of degree at most H(g) − 1. Subgraphs of an embedded graph are again embedded, so removing that vertex, colouring the rest by induction, and putting it back gives a colouring with H(g) colours.
+
+Step 2 (reduction of the lower bound to the genus of complete graphs). The lower bound holds if the complete graph K_n with n = H(g) embeds in S_g. Euler's formula gives γ(K_n) ≥ ⌈(n − 3)(n − 4)/12⌉, so it suffices to construct, for every n ≥ 3, an embedding of K_n in the orientable surface of genus exactly ⌈(n − 3)(n − 4)/12⌉. For many n this embedding must be a triangulation; for others K_n cannot triangulate any orientable surface and an almost-triangular embedding is needed.
+
+Step 3 (twelve cases). The construction depends on the residue of n modulo 12. "Case k" means: construct minimum-genus embeddings of K_n for all n ≡ k (mod 12). Each of the twelve cases needs its own infinite family of constructions.
+
+Step 4 (current graphs). The main tool is a "current graph": a small graph embedded in a surface whose arcs are labelled by elements ("currents") of a cyclic group Z_m, satisfying Kirchhoff's current law at most vertices, with a few designated exceptional vertices ("vortices") of prescribed types. Reading off the face boundary of the current graph gives a rotation at one vertex, and translating it by group elements gives an embedding of K_m (or of a graph close to K_m) in which most faces are triangles. For each case one must design an infinite family of current graphs (often containing a long "ladder" whose labels follow a pattern, e.g. a graceful labelling of a path) satisfying all the constraints.
+
+Step 5 (adding missing adjacencies). In cases where the current graph produces only a near-complete graph, the missing edges are added one or a few at a time by attaching handles and performing specific edge flips; these steps impose additional constraints on the current graphs and are checked case by case.
+
+Step 6 (sporadic values). A few small values of n are not covered by the general families and are handled individually; the original proof used separate ad hoc embeddings of K_18, K_20 and K_23.
+
+Conclusion. The twelve case constructions (Steps 3–5) together with the sporadic values (Step 6) prove γ(K_n) = ⌈(n − 3)(n − 4)/12⌉ for all n ≥ 3, and hence the theorem. ∎

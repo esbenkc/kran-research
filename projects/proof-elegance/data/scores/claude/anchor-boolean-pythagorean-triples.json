@@ -1,0 +1,17 @@
+{
+ "id": "anchor-boolean-pythagorean-triples",
+ "source": "anchor",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 1,
+ "surprise": 2,
+ "explanation": 1,
+ "simplicity": 2,
+ "conceptual": 1,
+ "unification": 2,
+ "elegance": 1.5,
+ "key_idea": "Encode the 2-colouring problem as a SAT formula, simplify it with blocked clause elimination and symmetry breaking, and refute it with cube-and-conquer, producing a checkable DRAT certificate.",
+ "reason": "The proof is a SAT encoding followed by about 4 CPU-years of computation and a 200 TB certificate, so it shows no reason a human can grasp for why 7825 is the threshold. The cube-and-conquer pipeline and blocked clause elimination are clever engineering, but the mathematical content is exhaustive machine search.",
+ "recognized": "Heule, Kullmann, Marek (2016), Solving and Verifying the Boolean Pythagorean Triples problem via Cube-and-Conquer",
+ "source_guess": "human"
+}

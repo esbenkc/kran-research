@@ -1,0 +1,17 @@
+{
+ "id": "p7b3f36bc",
+ "source": "human",
+ "judge": "claude",
+ "model": "claude-opus-5-5",
+ "economy": 2,
+ "surprise": 4,
+ "explanation": 3,
+ "simplicity": 2,
+ "conceptual": 3,
+ "unification": 4,
+ "elegance": 5.5,
+ "key_idea": "Recast p_c<p_u as an operator-norm statement p_c<p_{2\u21922} for the two-point matrix T_p, which via Cheeger's inequality reduces to showing the two-point matrix has vanishing 'isoperimetric' mass on finite sets near p_c; this is established with a hyperbolic Magic Lemma (Bonk\u2013Schramm embedding plus Benjamini\u2013Schramm Magic Lemma) and a mean-field susceptibility bound from half-space disjointness.",
+ "reason": "The operator-theoretic reduction (Corollary 12, Lemma 14 via Cheeger, Riesz\u2013Thorin) is a striking and reusable framework, and the conclusion follows cleanly once Propositions 33 and 34 are known. But those propositions rest on a long geometric apparatus: the Bonk\u2013Schramm embedding, a classification of boundary actions, a comparison of discrete and continuum half-spaces, non-degeneracy lemmas, a new Magic Lemma, and separate nonunimodular and unimodular cases. So the elegant core is buried under substantial technical machinery.",
+ "recognized": "Hutchcroft, 'Non-uniqueness and mean-field criticality for percolation on nonamenable Cayley graphs / hyperbolic graphs' (Percolation on hyperbolic graphs, GAFA 2019)",
+ "source_guess": "human"
+}

@@ -9,3 +9,8 @@ projects/*/data/raw/
 # large regenerable activations + logs from local runs
 projects/*/data/**/acts.npz
 projects/*/data/**/run.log
+
+# proof-elegance: blinded paper/manuscript text is third-party; rebuild with
+# `build_corpus.py fetch && build_corpus.py` instead of redistributing it
+projects/proof-elegance/data/human/
+projects/proof-elegance/data/ai/

@@ -4,7 +4,7 @@
 **Sources:** https://github.com/openai/math (clone of 2026-10-08); arXiv papers 2018–2023 (ids in `data/selection.json`); literature in `lit/notes.md`.
 **Method:** 36 Lean-verified AI results and 36 field-matched, refereed, erratum-free, cited human proofs of named open problems (`build_corpus.py`, gate `verify_human.py`). Blinded excerpts (≤25k chars) scored 1–10 on a literature-derived rubric (`lit/rubric.md`) by Claude Opus and Gemini 3.1 Pro (`score.py`); 12 textbook anchors calibrate the scale. `run.py` computes everything and writes the figure.
 
-Reproduce (needs `ANTHROPIC_API_KEY` and `GEMINI_API_KEY`): `uv run python projects/proof-elegance/build_corpus.py fetch && uv run python projects/proof-elegance/build_corpus.py && uv run python projects/proof-elegance/verify_human.py && uv run python projects/proof-elegance/score.py && uv run python projects/proof-elegance/run.py`
+Reproduce: see [`README.md`](README.md).
 
 ## Findings (results.json)
 

@@ -68,7 +68,7 @@ def main() -> None:
                             "n_answers": sum(len(groups[(lam, rnd, s)]) for s in seeds)})
     label = {0.0: "No probe penalty (λ = 0)"}
     data = {
-        "title": "Training against a lie detector: lies the judge sees vs. lies the probes flag",
+        "title": "Answers the judge calls deceptive vs. answers the probes flag",
         "y_label": "Share of held-out answers flagged as deceptive",
         "settings": [{"key": f"lam{l:g}", "label": label.get(l, f"Probe A penalty λ = {l:g}")} for l in lams],
         "rows": out,

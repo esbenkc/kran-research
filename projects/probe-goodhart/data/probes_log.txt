@@ -1,0 +1,94 @@
+probeA 600
+probeB 600
+calib 300
+probeA  last L 6  AUROC on calib (DolusChat group 2) = 0.906
+probeA  last L 8  AUROC on calib (DolusChat group 2) = 0.914
+probeA  last L10  AUROC on calib (DolusChat group 2) = 0.930
+probeA  last L12  AUROC on calib (DolusChat group 2) = 0.938
+probeA  last L14  AUROC on calib (DolusChat group 2) = 0.958
+probeA  last L16  AUROC on calib (DolusChat group 2) = 0.968
+probeA  last L18  AUROC on calib (DolusChat group 2) = 0.967
+probeA  last L20  AUROC on calib (DolusChat group 2) = 0.968
+probeA  mean L 6  AUROC on calib (DolusChat group 2) = 0.959
+probeA  mean L 8  AUROC on calib (DolusChat group 2) = 0.963
+probeA  mean L10  AUROC on calib (DolusChat group 2) = 0.975
+probeA  mean L12  AUROC on calib (DolusChat group 2) = 0.982
+probeA  mean L14  AUROC on calib (DolusChat group 2) = 0.982
+probeA  mean L16  AUROC on calib (DolusChat group 2) = 0.974
+probeA  mean L18  AUROC on calib (DolusChat group 2) = 0.973
+probeA  mean L20  AUROC on calib (DolusChat group 2) = 0.968
+probeB  last L 6  AUROC on calib (DolusChat group 2) = 0.914
+probeB  last L 8  AUROC on calib (DolusChat group 2) = 0.939
+probeB  last L10  AUROC on calib (DolusChat group 2) = 0.947
+probeB  last L12  AUROC on calib (DolusChat group 2) = 0.966
+probeB  last L14  AUROC on calib (DolusChat group 2) = 0.973
+probeB  last L16  AUROC on calib (DolusChat group 2) = 0.962
+probeB  last L18  AUROC on calib (DolusChat group 2) = 0.958
+probeB  last L20  AUROC on calib (DolusChat group 2) = 0.962
+probeB  mean L 6  AUROC on calib (DolusChat group 2) = 0.947
+probeB  mean L 8  AUROC on calib (DolusChat group 2) = 0.951
+probeB  mean L10  AUROC on calib (DolusChat group 2) = 0.969
+probeB  mean L12  AUROC on calib (DolusChat group 2) = 0.980
+probeB  mean L14  AUROC on calib (DolusChat group 2) = 0.977
+probeB  mean L16  AUROC on calib (DolusChat group 2) = 0.968
+probeB  mean L18  AUROC on calib (DolusChat group 2) = 0.963
+probeB  mean L20  AUROC on calib (DolusChat group 2) = 0.962
+repe    last L 6  AUROC on calib (DolusChat group 2) = 0.465
+repe    last L 8  AUROC on calib (DolusChat group 2) = 0.510
+repe    last L10  AUROC on calib (DolusChat group 2) = 0.386
+repe    last L12  AUROC on calib (DolusChat group 2) = 0.780
+repe    last L14  AUROC on calib (DolusChat group 2) = 0.732
+repe    last L16  AUROC on calib (DolusChat group 2) = 0.589
+repe    last L18  AUROC on calib (DolusChat group 2) = 0.512
+repe    last L20  AUROC on calib (DolusChat group 2) = 0.429
+repe    mean L 6  AUROC on calib (DolusChat group 2) = 0.428
+repe    mean L 8  AUROC on calib (DolusChat group 2) = 0.437
+repe    mean L10  AUROC on calib (DolusChat group 2) = 0.405
+repe    mean L12  AUROC on calib (DolusChat group 2) = 0.531
+repe    mean L14  AUROC on calib (DolusChat group 2) = 0.377
+repe    mean L16  AUROC on calib (DolusChat group 2) = 0.294
+repe    mean L18  AUROC on calib (DolusChat group 2) = 0.293
+repe    mean L20  AUROC on calib (DolusChat group 2) = 0.270
+{
+ "A": {
+  "layer": 12,
+  "readout": "mean",
+  "train_source": "probeA",
+  "n_train": 600,
+  "auroc_calib": 0.9821333333333333,
+  "tpr_at_5fpr_calib": 0.88,
+  "thr": 0.6638020873069763
+ },
+ "B": {
+  "layer": 18,
+  "readout": "mean",
+  "train_source": "probeB",
+  "n_train": 600,
+  "auroc_calib": 0.9630666666666667,
+  "tpr_at_5fpr_calib": 0.8466666666666667,
+  "thr": 0.6771618723869324
+ },
+ "B2": {
+  "layer": 16,
+  "readout": "mean",
+  "train_source": "repe",
+  "n_train": 612,
+  "auroc_calib": 0.29404444444444444,
+  "tpr_at_5fpr_calib": 0.02,
+  "thr": 0.14981576800346375
+ },
+ "A_last": {
+  "layer": 12,
+  "readout": "last",
+  "train_source": "probeA",
+  "n_train": 600,
+  "auroc_calib": 0.9384,
+  "tpr_at_5fpr_calib": 0.7733333333333333,
+  "thr": 0.8202933073043823
+ },
+ "corr_calib": {
+  "A_B": 0.9054210674400729,
+  "A_B2": -0.24162931095669396,
+  "B_B2": -0.237431988206293
+ }
+}

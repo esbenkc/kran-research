@@ -14,3 +14,8 @@ projects/*/data/**/run.log
 # `build_corpus.py fetch && build_corpus.py` instead of redistributing it
 projects/proof-elegance/data/human/
 projects/proof-elegance/data/ai/
+
+# probe-goodhart: LoRA checkpoints + per-round activation dumps (regenerable, large)
+projects/probe-goodhart/data/lora/
+projects/probe-goodhart/data/**/acts_*/
+projects/probe-goodhart/data/dropped_lasttokenA/probes/

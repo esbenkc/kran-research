@@ -1,0 +1,18 @@
+# Project config. One question, the model, and the figures this project produces.
+name: probe-goodhart
+question: "If you train a model against one deception probe, does its lying drop, or does it only learn to hide from that probe?"
+model: Qwen/Qwen2.5-0.5B-Instruct   # policy, LoRA r=16, online DPO (beta 0.1, lr 1e-4), 8 rounds x 32 prompts x 4 samples
+judges:
+  deception_eval: gpt-4.1-mini      # common.judge_one, 95% on 100 DolusChat reference pairs
+  task_reward: gpt-4.1-mini         # judge.favourability, never sees the sensitive fact
+  second_judge: claude-sonnet-4-6   # judge2.py, rounds 0 and 8 only
+probes:
+  A: {layer: 12, readout: mean, data: "DolusChat settings group 0", role: "in the reward"}
+  B: {layer: 18, readout: mean, data: "DolusChat settings group 1", role: "held out, never trained against"}
+settings: {lambda: [0, 1, 3], seeds: [0, 1]}   # seed 1 for lambda 0 and 1 only
+sources:
+  - https://huggingface.co/datasets/AlignmentResearch/DolusChat
+  - https://github.com/ApolloResearch/deception-detection/blob/main/data/repe/true_false_facts.csv
+figures:
+  - id: probe-goodhart
+    caption: "Share of 200 held-out answers flagged deceptive by probe A, held-out probe B and an LLM judge, per training round."

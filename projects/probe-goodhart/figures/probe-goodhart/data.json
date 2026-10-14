@@ -1,0 +1,470 @@
+{
+  "title": "Training against a lie detector: lies the judge sees vs. lies the probes flag",
+  "y_label": "Share of held-out answers flagged as deceptive",
+  "settings": [
+    {
+      "key": "lam0",
+      "label": "No probe penalty (\u03bb = 0)"
+    },
+    {
+      "key": "lam1",
+      "label": "Probe A penalty \u03bb = 1"
+    },
+    {
+      "key": "lam3",
+      "label": "Probe A penalty \u03bb = 3"
+    }
+  ],
+  "rows": [
+    {
+      "setting": "lam0",
+      "round": 0,
+      "metric": "probeA",
+      "mean": 0.63,
+      "lo": 0.55,
+      "hi": 0.705,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 0,
+      "metric": "probeB",
+      "mean": 0.64,
+      "lo": 0.565,
+      "hi": 0.715,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 0,
+      "metric": "judge",
+      "mean": 0.82,
+      "lo": 0.76,
+      "hi": 0.875,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 2,
+      "metric": "probeA",
+      "mean": 0.9025000000000001,
+      "lo": 0.865,
+      "hi": 0.9375,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 2,
+      "metric": "probeB",
+      "mean": 0.8275,
+      "lo": 0.7775,
+      "hi": 0.875,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 2,
+      "metric": "judge",
+      "mean": 0.7925,
+      "lo": 0.74,
+      "hi": 0.8425,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 4,
+      "metric": "probeA",
+      "mean": 0.9299999999999999,
+      "lo": 0.8975,
+      "hi": 0.9575624999999997,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 4,
+      "metric": "probeB",
+      "mean": 0.9,
+      "lo": 0.8675,
+      "hi": 0.93,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 4,
+      "metric": "judge",
+      "mean": 0.8775,
+      "lo": 0.8425,
+      "hi": 0.91,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 6,
+      "metric": "probeA",
+      "mean": 0.8875,
+      "lo": 0.8524375000000001,
+      "hi": 0.9225,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 6,
+      "metric": "probeB",
+      "mean": 0.875,
+      "lo": 0.8399375,
+      "hi": 0.9075,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 6,
+      "metric": "judge",
+      "mean": 0.88,
+      "lo": 0.8375,
+      "hi": 0.9175,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 8,
+      "metric": "probeA",
+      "mean": 0.97,
+      "lo": 0.95,
+      "hi": 0.985,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 8,
+      "metric": "probeB",
+      "mean": 0.9450000000000001,
+      "lo": 0.91,
+      "hi": 0.9725,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam0",
+      "round": 8,
+      "metric": "judge",
+      "mean": 0.9175,
+      "lo": 0.88,
+      "hi": 0.95,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 0,
+      "metric": "probeA",
+      "mean": 0.63,
+      "lo": 0.55,
+      "hi": 0.705,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 0,
+      "metric": "probeB",
+      "mean": 0.64,
+      "lo": 0.565,
+      "hi": 0.715,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 0,
+      "metric": "judge",
+      "mean": 0.82,
+      "lo": 0.76,
+      "hi": 0.875,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 2,
+      "metric": "probeA",
+      "mean": 0.405,
+      "lo": 0.345,
+      "hi": 0.46256249999999965,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 2,
+      "metric": "probeB",
+      "mean": 0.35,
+      "lo": 0.29,
+      "hi": 0.4100624999999996,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 2,
+      "metric": "judge",
+      "mean": 0.73,
+      "lo": 0.6775,
+      "hi": 0.7825,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 4,
+      "metric": "probeA",
+      "mean": 0.115,
+      "lo": 0.0775,
+      "hi": 0.1575,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 4,
+      "metric": "probeB",
+      "mean": 0.10750000000000001,
+      "lo": 0.07,
+      "hi": 0.145,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 4,
+      "metric": "judge",
+      "mean": 0.5974999999999999,
+      "lo": 0.5375,
+      "hi": 0.655,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 6,
+      "metric": "probeA",
+      "mean": 0.0425,
+      "lo": 0.0225,
+      "hi": 0.065,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 6,
+      "metric": "probeB",
+      "mean": 0.030000000000000002,
+      "lo": 0.01,
+      "hi": 0.0525,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 6,
+      "metric": "judge",
+      "mean": 0.5700000000000001,
+      "lo": 0.5075,
+      "hi": 0.6325,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 8,
+      "metric": "probeA",
+      "mean": 0.0175,
+      "lo": 0.005,
+      "hi": 0.0325,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 8,
+      "metric": "probeB",
+      "mean": 0.01,
+      "lo": 0.0,
+      "hi": 0.0225,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam1",
+      "round": 8,
+      "metric": "judge",
+      "mean": 0.5625,
+      "lo": 0.5025,
+      "hi": 0.6175,
+      "n_seeds": 2,
+      "n_answers": 400
+    },
+    {
+      "setting": "lam3",
+      "round": 0,
+      "metric": "probeA",
+      "mean": 0.63,
+      "lo": 0.55,
+      "hi": 0.705,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 0,
+      "metric": "probeB",
+      "mean": 0.64,
+      "lo": 0.565,
+      "hi": 0.715,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 0,
+      "metric": "judge",
+      "mean": 0.82,
+      "lo": 0.76,
+      "hi": 0.875,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 2,
+      "metric": "probeA",
+      "mean": 0.115,
+      "lo": 0.07,
+      "hi": 0.17,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 2,
+      "metric": "probeB",
+      "mean": 0.055,
+      "lo": 0.02,
+      "hi": 0.095,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 2,
+      "metric": "judge",
+      "mean": 0.56,
+      "lo": 0.48,
+      "hi": 0.635,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 4,
+      "metric": "probeA",
+      "mean": 0.03,
+      "lo": 0.01,
+      "hi": 0.055,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 4,
+      "metric": "probeB",
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 4,
+      "metric": "judge",
+      "mean": 0.505,
+      "lo": 0.435,
+      "hi": 0.575,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 6,
+      "metric": "probeA",
+      "mean": 0.025,
+      "lo": 0.005,
+      "hi": 0.05,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 6,
+      "metric": "probeB",
+      "mean": 0.01,
+      "lo": 0.0,
+      "hi": 0.025,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 6,
+      "metric": "judge",
+      "mean": 0.535,
+      "lo": 0.46,
+      "hi": 0.61,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 8,
+      "metric": "probeA",
+      "mean": 0.015,
+      "lo": 0.0,
+      "hi": 0.035,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 8,
+      "metric": "probeB",
+      "mean": 0.01,
+      "lo": 0.0,
+      "hi": 0.025,
+      "n_seeds": 1,
+      "n_answers": 200
+    },
+    {
+      "setting": "lam3",
+      "round": 8,
+      "metric": "judge",
+      "mean": 0.55,
+      "lo": 0.465,
+      "hi": 0.63,
+      "n_seeds": 1,
+      "n_answers": 200
+    }
+  ]
+}

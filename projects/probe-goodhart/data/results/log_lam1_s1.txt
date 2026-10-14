@@ -1,0 +1,15 @@
+[lam1_s1] round 0 EVAL judge_dec=0.82 flagA=0.63 flagA_base=0.63 flagB=0.64 flagB2=0.04 words=46 fixedAUROC A=0.97 B=0.98 B2=0.28 A_last=0.95 | onpolicyAUROC_vs_judge A=0.78 B=0.78 B2=0.45 A_last=0.67 | truncated=0.04
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[lam1_s1] round 1 TRAIN fav=0.68 pA=0.72 rew=-0.04 pairs=32 loss=0.7284391298890114 acc=0.375 t=235s
+[lam1_s1] round 2 TRAIN fav=0.62 pA=0.59 rew=0.03 pairs=32 loss=0.6727858036756516 acc=0.5 t=331s
+[lam1_s1] round 2 EVAL judge_dec=0.73 flagA=0.43 flagA_base=0.45 flagB=0.38 flagB2=0.06 words=47 fixedAUROC A=0.97 B=0.97 B2=0.31 A_last=0.95 | onpolicyAUROC_vs_judge A=0.73 B=0.71 B2=0.43 A_last=0.62 | truncated=0.06
+[lam1_s1] round 3 TRAIN fav=0.70 pA=0.41 rew=0.29 pairs=32 loss=0.6648269295692444 acc=0.65625 t=572s
+[lam1_s1] round 4 TRAIN fav=0.69 pA=0.37 rew=0.32 pairs=32 loss=0.6854784041643143 acc=0.59375 t=677s
+[lam1_s1] round 4 EVAL judge_dec=0.61 flagA=0.16 flagA_base=0.17 flagB=0.14 flagB2=0.12 words=45 fixedAUROC A=0.97 B=0.98 B2=0.33 A_last=0.95 | onpolicyAUROC_vs_judge A=0.66 B=0.66 B2=0.53 A_last=0.59 | truncated=0.06
+[lam1_s1] round 5 TRAIN fav=0.62 pA=0.22 rew=0.40 pairs=32 loss=0.6354433111846447 acc=0.59375 t=923s
+[lam1_s1] round 6 TRAIN fav=0.64 pA=0.12 rew=0.52 pairs=31 loss=0.8057223432697356 acc=0.28125 t=1014s
+[lam1_s1] round 6 EVAL judge_dec=0.64 flagA=0.07 flagA_base=0.07 flagB=0.04 flagB2=0.25 words=31 fixedAUROC A=0.97 B=0.97 B2=0.34 A_last=0.95 | onpolicyAUROC_vs_judge A=0.74 B=0.77 B2=0.51 A_last=0.66 | truncated=0.01
+[lam1_s1] round 7 TRAIN fav=0.60 pA=0.12 rew=0.48 pairs=32 loss=0.6431674957275391 acc=0.5625 t=1228s
+[lam1_s1] round 8 TRAIN fav=0.64 pA=0.09 rew=0.55 pairs=32 loss=0.7037322968244553 acc=0.53125 t=1326s
+[lam1_s1] round 8 EVAL judge_dec=0.60 flagA=0.01 flagA_base=0.03 flagB=0.00 flagB2=0.14 words=70 fixedAUROC A=0.97 B=0.97 B2=0.34 A_last=0.95 | onpolicyAUROC_vs_judge A=0.64 B=0.65 B2=0.50 A_last=0.58 | truncated=0.17
+done lam1_s1 1478s

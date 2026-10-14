@@ -64,17 +64,19 @@ export function render(data, Plot) {
         fx: "panel", x: "round", y: "mean", stroke: m.color, strokeWidth: 2.6,
         strokeDasharray: m.dash ?? undefined,
       }),
-      Plot.dot(line, {
-        fx: "panel", x: "round", y: "mean", fill: m.color, r: 3.2,
-        tip: true,
-        channels: { Signal: "name", Setting: "panel", Seeds: "n_seeds" },
-        title: (d) =>
-          `${d.name}\n${d.panel}, round ${d.round}\n${(d.mean * 100).toFixed(0)}%` +
-          (d.lo != null ? ` (95% CI ${(d.lo * 100).toFixed(0)}–${(d.hi * 100).toFixed(0)}%)` : "") +
-          `\n${d.n_seeds} seed${d.n_seeds === 1 ? "" : "s"}`,
-      }),
     );
   }
+  // One dot mark for all three signals, so hovering shows one tooltip (the nearest point).
+  marks.push(
+    Plot.dot(rows, {
+      fx: "panel", x: "round", y: "mean", fill: (d) => meta[d.metric].color, r: 3.2,
+      tip: true,
+      title: (d) =>
+        `${d.name}\n${d.panel}, round ${d.round}\n${(d.mean * 100).toFixed(0)}%` +
+        (d.lo != null ? ` (95% CI ${(d.lo * 100).toFixed(0)}–${(d.hi * 100).toFixed(0)}%)` : "") +
+        `\n${d.n_seeds} seed${d.n_seeds === 1 ? "" : "s"}`,
+    }),
+  );
 
   const width = Math.max(560, Math.min(980, root.clientWidth || 860));
   root.appendChild(

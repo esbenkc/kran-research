@@ -85,3 +85,7 @@ nobody I found ran it on raw MLP neurons with a one-job count. Credit Heap for t
 ## Spend
 
 skeptic3 API spend: $0.527 (mix2.py $0.287 + $0.135, mix2_cond.py $0.105), logged in `out/api_spend.jsonl`.
+
+## Final check
+
+Post checked at blog.kran.ai commit f07dab3 (PR 26): all four wording conditions in section 5 are met (fit-cut bullet with 31%/38% and the ordering; "probably understates"; closer says our rate cannot test the 90%; H1-H4 all missed, also over all job types; any-type contrast labelled not pre-registered; n = 1 stated; planted two-job units 0 of 17). Sign-off is final.

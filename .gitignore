@@ -14,3 +14,6 @@ projects/*/data/**/run.log
 # `build_corpus.py fetch && build_corpus.py` instead of redistributing it
 projects/proof-elegance/data/human/
 projects/proof-elegance/data/ai/
+
+# random-network-neuron-audit: regenerable token arrays (code/dump.py rebuilds them from pile-10k)
+projects/random-network-neuron-audit/data/acts/tokens_*.npy

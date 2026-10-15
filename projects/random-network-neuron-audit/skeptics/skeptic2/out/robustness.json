@@ -1,0 +1,133 @@
+{
+ "kurtosis_quantiles_10_50_90": {
+  "A": [
+   14.8,
+   140.4,
+   625.5
+  ],
+  "B": [
+   15.7,
+   17.6,
+   20.2
+  ],
+  "C": [
+   3.5,
+   4.0,
+   10.5
+  ]
+ },
+ "one_job_by_kurtosis_bin": [
+  {
+   "arm": "A",
+   "bin": [
+    0,
+    10
+   ],
+   "n": 8,
+   "one_job": 0.1875
+  },
+  {
+   "arm": "C",
+   "bin": [
+    0,
+    10
+   ],
+   "n": 128,
+   "one_job": 0.015625
+  },
+  {
+   "arm": "A",
+   "bin": [
+    10,
+    30
+   ],
+   "n": 26,
+   "one_job": 0.09615384615384616
+  },
+  {
+   "arm": "B",
+   "bin": [
+    10,
+    30
+   ],
+   "n": 150,
+   "one_job": 0.0
+  },
+  {
+   "arm": "C",
+   "bin": [
+    10,
+    30
+   ],
+   "n": 22,
+   "one_job": 0.022727272727272728
+  },
+  {
+   "arm": "A",
+   "bin": [
+    30,
+    100
+   ],
+   "n": 33,
+   "one_job": 0.06060606060606061
+  },
+  {
+   "arm": "A",
+   "bin": [
+    100,
+    Infinity
+   ],
+   "n": 83,
+   "one_job": 0.18674698795180722
+  }
+ ],
+ "position": {
+  "A/L4": {
+   "share_pos<16": 0.09,
+   "share_pos<64": 0.339,
+   "median_pos": 109.5
+  },
+  "A/L14": {
+   "share_pos<16": 0.04,
+   "share_pos<64": 0.22,
+   "median_pos": 133.0
+  },
+  "A/L24": {
+   "share_pos<16": 0.042,
+   "share_pos<64": 0.247,
+   "median_pos": 131.0
+  },
+  "B/L4": {
+   "share_pos<16": 0.113,
+   "share_pos<64": 0.39,
+   "median_pos": 91.5
+  },
+  "B/L14": {
+   "share_pos<16": 0.166,
+   "share_pos<64": 0.445,
+   "median_pos": 75.5
+  },
+  "B/L24": {
+   "share_pos<16": 0.196,
+   "share_pos<64": 0.484,
+   "median_pos": 65.0
+  },
+  "C/L4": {
+   "share_pos<16": 0.08,
+   "share_pos<64": 0.337,
+   "median_pos": 105.0
+  },
+  "C/L14": {
+   "share_pos<16": 0.039,
+   "share_pos<64": 0.287,
+   "median_pos": 106.0
+  },
+  "C/L24": {
+   "share_pos<16": 0.033,
+   "share_pos<64": 0.206,
+   "median_pos": 131.0
+  },
+  "uniform_share_pos<16": 0.047619047619047616,
+  "uniform_share_pos<64": 0.23809523809523808
+ }
+}

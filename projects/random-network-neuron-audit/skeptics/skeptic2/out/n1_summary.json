@@ -1,0 +1,29 @@
+{
+ "claude-haiku-4-5": {
+  "n": 60,
+  "types": {
+   "SYNTACTIC": 25,
+   "LEXICAL": 33,
+   "SEMANTIC": 2
+  },
+  "fit>=15": 0,
+  "hits>=4": 11,
+  "n_detect": 60,
+  "one_job": 0,
+  "mean_fit": 8.933333333333334
+ },
+ "gpt-4.1-mini": {
+  "n": 60,
+  "types": {
+   "LEXICAL": 54,
+   "SYNTACTIC": 6
+  },
+  "fit>=15": 2,
+  "hits>=4": 7,
+  "n_detect": 60,
+  "one_job": 0,
+  "mean_fit": 7.466666666666667
+ },
+ "chance_hits>=4": 0.10317460317460317,
+ "one_job_floor_both_judges": 0.0
+}

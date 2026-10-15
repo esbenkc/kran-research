@@ -1,0 +1,13 @@
+{"n_rows": 444, "dropped_per_arm": {"C": 4, "A": 2}, "detection_truth_mismatches": 0}
+A n 148 one 0.145 nonlex 0.017 [0.003,0.037] lex 0.128 fitonly 0.159 {'lexical_share_purity>=0.75': 0.0472972972972973, 'median_purity': 0.25, 'min_docs_in_top20': 20, 'judge_lexical_vs_purity_agreement': 0.20588235294117646}
+B n 150 one 0.000 nonlex 0.000 [0.000,0.000] lex 0.000 fitonly 0.013 {'lexical_share_purity>=0.75': 0.0, 'median_purity': 0.1, 'min_docs_in_top20': 20, 'judge_lexical_vs_purity_agreement': nan}
+C n 146 one 0.017 nonlex 0.003 [0.000,0.010] lex 0.014 fitonly 0.024 {'lexical_share_purity>=0.75': 0.0, 'median_purity': 0.15, 'min_docs_in_top20': 20, 'judge_lexical_vs_purity_agreement': 0.2}
+A-B:nonlex diff 0.017 [0.003,0.037] p=0.0575
+A-B:one diff 0.145 [0.101,0.193] p=5e-05
+A-B:nonlex_AND diff 0.007 [0.000,0.020] p=0.4886
+A-C:nonlex diff 0.013 [-0.003,0.034] p=0.1606
+A-C:one diff 0.128 [0.081,0.179] p=5e-05
+A-C:nonlex_AND diff 0.007 [0.000,0.020] p=0.5069
+C-B:nonlex diff 0.003 [0.000,0.010] p=0.4867
+C-B:one diff 0.017 [0.003,0.034] p=0.0278
+C-B:nonlex_AND diff 0.000 [0.000,0.000] p=1

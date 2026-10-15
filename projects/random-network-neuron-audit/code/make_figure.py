@@ -39,7 +39,11 @@ def main(results=PROJ / "results.json"):
     data = dict(
         title="Share of units that pass a blind one-main-job audit",
         subtitle="Qwen3-0.6B MLP units, 50 per layer per arm; mean of two LLM judges; whiskers: 95% bootstrap CIs over units",
-        panels=[p for _, p in panels], arms=[a for _, a in ARMS], metrics=[m for _, m in METRICS], rows=rows)
+        panels=[p for _, p in panels], arms=[a for _, a in ARMS], metrics=[m for _, m in METRICS], rows=rows,
+        # PREREGISTRATION.md: H4 trained neurons pass (any type) in [50%, 90%]; H3 random network passes >= 40%.
+        # H1/H2 are gaps on non-lexical jobs and have no mark on this axis.
+        predictions=[dict(arm=ARMS[0][1], y=0.5, label="Predicted: 50–90%"),
+                     dict(arm=ARMS[2][1], y=0.4, label="Predicted: at least 40%")])
     out = PROJ / "figures" / FIG_ID
     out.mkdir(parents=True, exist_ok=True)
     (out / "data.json").write_text(json.dumps(data, indent=1))

@@ -1,0 +1,235 @@
+{
+ "judges": [
+  "claude-haiku-4-5",
+  "gpt-4.1-mini"
+ ],
+ "integrity": {
+  "n_units": 450,
+  "units_not_20_examples": 0,
+  "units_top20_not_descending": 0,
+  "units_with_repeated_doc_in_top20": 0,
+  "units_heldout_doc_overlaps_top20": 0,
+  "units_random_doc_overlaps_top40": 0,
+  "excerpts_with_pos_lt_4": 0,
+  "units_heldout_below_top20": 450,
+  "units_checked_heldout": 450,
+  "min_top_act_by_arm": {
+   "A": 1.1796875,
+   "B": 1.40625,
+   "C": 5.498828411102295
+  }
+ },
+ "arms": {
+  "A": {
+   "one": {
+    "rate": 0.14333333333333334,
+    "ci": [
+     0.1,
+     0.19
+    ]
+   },
+   "one_claude-haiku-4-5": 0.18666666666666668,
+   "one_gpt-4.1-mini": 0.1,
+   "one_AND": 0.06,
+   "nonlex": {
+    "rate": 0.016666666666666666,
+    "ci": [
+     0.0033333333333333335,
+     0.03666666666666667
+    ]
+   },
+   "nonlex_claude-haiku-4-5": 0.02666666666666667,
+   "nonlex_gpt-4.1-mini": 0.006666666666666667,
+   "nonlex_AND": 0.006666666666666667,
+   "fit_only": {
+    "rate": 0.15666666666666668,
+    "ci": [
+     0.11,
+     0.20666666666666667
+    ]
+   },
+   "fit_only_claude-haiku-4-5": 0.2,
+   "fit_only_gpt-4.1-mini": 0.11333333333333333,
+   "fit_only_AND": 0.06666666666666667,
+   "kappa_one": 0.3315508021390375,
+   "one_job_types": {
+    "LEXICAL": 38,
+    "SYNTACTIC": 4,
+    "SEMANTIC": 1
+   },
+   "lexical_purity_mean": 0.27266666666666667,
+   "share_lexical_by_purity": 0.03333333333333333,
+   "n_units": 150,
+   "n_judgments": 300
+  },
+  "B": {
+   "one": {
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "one_claude-haiku-4-5": 0.0,
+   "one_gpt-4.1-mini": 0.0,
+   "one_AND": 0.0,
+   "nonlex": {
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "nonlex_claude-haiku-4-5": 0.0,
+   "nonlex_gpt-4.1-mini": 0.0,
+   "nonlex_AND": 0.0,
+   "fit_only": {
+    "rate": 0.013333333333333334,
+    "ci": [
+     0.0033333333333333335,
+     0.02666666666666667
+    ]
+   },
+   "fit_only_claude-haiku-4-5": 0.006666666666666667,
+   "fit_only_gpt-4.1-mini": 0.02,
+   "fit_only_AND": 0.0,
+   "kappa_one": NaN,
+   "one_job_types": {},
+   "lexical_purity_mean": 0.08,
+   "share_lexical_by_purity": 0.0,
+   "n_units": 150,
+   "n_judgments": 300
+  },
+  "C": {
+   "one": {
+    "rate": 0.016666666666666666,
+    "ci": [
+     0.0033333333333333335,
+     0.03333333333333333
+    ]
+   },
+   "one_claude-haiku-4-5": 0.02666666666666667,
+   "one_gpt-4.1-mini": 0.006666666666666667,
+   "one_AND": 0.0,
+   "nonlex": {
+    "rate": 0.0033333333333333335,
+    "ci": [
+     0.0,
+     0.01
+    ]
+   },
+   "nonlex_claude-haiku-4-5": 0.006666666666666667,
+   "nonlex_gpt-4.1-mini": 0.0,
+   "nonlex_AND": 0.0,
+   "fit_only": {
+    "rate": 0.023333333333333334,
+    "ci": [
+     0.006666666666666667,
+     0.043333333333333335
+    ]
+   },
+   "fit_only_claude-haiku-4-5": 0.03333333333333333,
+   "fit_only_gpt-4.1-mini": 0.013333333333333334,
+   "fit_only_AND": 0.0,
+   "kappa_one": -0.01078167115903299,
+   "one_job_types": {
+    "SYNTACTIC": 1,
+    "LEXICAL": 4
+   },
+   "lexical_purity_mean": 0.19666666666666666,
+   "share_lexical_by_purity": 0.0,
+   "n_units": 150,
+   "n_judgments": 300
+  }
+ },
+ "layers": {
+  "A4": {
+   "one": 0.23,
+   "nonlex": 0.01,
+   "n": 50
+  },
+  "A14": {
+   "one": 0.1,
+   "nonlex": 0.03,
+   "n": 50
+  },
+  "A24": {
+   "one": 0.1,
+   "nonlex": 0.01,
+   "n": 50
+  },
+  "B4": {
+   "one": 0.0,
+   "nonlex": 0.0,
+   "n": 50
+  },
+  "B14": {
+   "one": 0.0,
+   "nonlex": 0.0,
+   "n": 50
+  },
+  "B24": {
+   "one": 0.0,
+   "nonlex": 0.0,
+   "n": 50
+  },
+  "C4": {
+   "one": 0.0,
+   "nonlex": 0.0,
+   "n": 50
+  },
+  "C14": {
+   "one": 0.02,
+   "nonlex": 0.01,
+   "n": 50
+  },
+  "C24": {
+   "one": 0.03,
+   "nonlex": 0.0,
+   "n": 50
+  }
+ },
+ "H1": {
+  "gap": 0.016666666666666666,
+  "ci": [
+   0.0033333333333333335,
+   0.03666666666666667
+  ],
+  "perm_p": 0.06529347065293471,
+  "holds": false
+ },
+ "H2": {
+  "gap": 0.013333333333333332,
+  "ci": [
+   -0.0033333333333333335,
+   0.03333333333333333
+  ],
+  "perm_p": 0.15378462153784622,
+  "holds": false
+ },
+ "H3": {
+  "anyB": 0.0,
+  "lexical_share_of_B_onejob": 0.0,
+  "holds": false
+ },
+ "H4": {
+  "anyA": 0.14333333333333334,
+  "holds": false
+ },
+ "MIX2": {
+  "n": 72,
+  "sensitivity": 1.0,
+  "ci": [
+   1.0,
+   1.0
+  ],
+  "sensitivity_fit_only": 0.9930555555555556,
+  "by_arm": {
+   "A": 1.0,
+   "B": 1.0,
+   "C": 1.0
+  },
+  "prereg_holds": true
+ },
+ "parse_mode": "last"
+}

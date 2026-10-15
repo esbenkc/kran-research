@@ -1,0 +1,133 @@
+{
+ "threshold_sweep": {
+  "A": {
+   "8": 0.43666666666666665,
+   "10": 0.37666666666666665,
+   "12": 0.30666666666666664,
+   "15": 0.14333333333333334,
+   "18": 0.05
+  },
+  "B": {
+   "8": 0.056666666666666664,
+   "10": 0.016666666666666666,
+   "12": 0.0,
+   "15": 0.0,
+   "18": 0.0
+  },
+  "C": {
+   "8": 0.18666666666666668,
+   "10": 0.13333333333333333,
+   "12": 0.09333333333333334,
+   "15": 0.016666666666666666,
+   "18": 0.01
+  }
+ },
+ "detection": {
+  "A": {
+   "n": 300,
+   "mean_hits": 3.5933333333333333,
+   "chance_mean": 2.5,
+   "share_ge4": 0.5466666666666666,
+   "dist": {
+    "0": 1,
+    "1": 6,
+    "2": 36,
+    "3": 93,
+    "4": 99,
+    "5": 65
+   }
+  },
+  "B": {
+   "n": 300,
+   "mean_hits": 2.44,
+   "chance_mean": 2.5,
+   "share_ge4": 0.10666666666666667,
+   "dist": {
+    "1": 36,
+    "2": 128,
+    "3": 104,
+    "4": 32
+   }
+  },
+  "C": {
+   "n": 300,
+   "mean_hits": 3.0233333333333334,
+   "chance_mean": 2.5,
+   "share_ge4": 0.3233333333333333,
+   "dist": {
+    "1": 21,
+    "2": 67,
+    "3": 115,
+    "4": 78,
+    "5": 19
+   }
+  }
+ },
+ "pure_lexical_units": [
+  {
+   "arm": "A",
+   "layer": 4,
+   "purity": 0.75,
+   "one": [
+    false,
+    false
+   ],
+   "labels": [
+    "Array type annotation in Java/C# method signatures",
+    "token '[]' as array type annotation in code"
+   ]
+  },
+  {
+   "arm": "A",
+   "layer": 4,
+   "purity": 0.75,
+   "one": [
+    false,
+    true
+   ],
+   "labels": [
+    "The word 'right' or close variants like 'wrong'",
+    "the token 'right'"
+   ]
+  },
+  {
+   "arm": "A",
+   "layer": 4,
+   "purity": 0.8,
+   "one": [
+    true,
+    true
+   ],
+   "labels": [
+    "The word 'since' or temporal 'since' constructions",
+    "token 'since' or German 'seit'"
+   ]
+  },
+  {
+   "arm": "A",
+   "layer": 14,
+   "purity": 0.95,
+   "one": [
+    true,
+    true
+   ],
+   "labels": [
+    "Section heading anchor or reference label in academic text",
+    "section or subsection header tokens starting with '#sec' or 's'"
+   ]
+  },
+  {
+   "arm": "A",
+   "layer": 24,
+   "purity": 0.9,
+   "one": [
+    true,
+    true
+   ],
+   "labels": [
+    "The word 'so' or its variants and compounds",
+    "token 'so' as an adverb or part of phrase"
+   ]
+  }
+ ]
+}

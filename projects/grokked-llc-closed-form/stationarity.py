@@ -24,13 +24,18 @@ import qnet  # noqa: E402
 import run_llc  # noqa: E402
 
 STEPS, CHAINS, TOL = 40_000, 2, 0.05
+# p31 was retrained at frac 0.7 into a separate dir: CKPT_DIR=data/ckpt_p31_frac07 LLC_CSV=data/llc_p31_frac07.csv
+# OUT=data/stationarity_p31_frac07.csv
+CKPT_DIR = Path(os.environ.get("CKPT_DIR", HERE / "data" / "ckpt"))
+LLC_CSV = Path(os.environ.get("LLC_CSV", HERE / "data" / "llc.csv"))
+OUT = Path(os.environ.get("OUT", HERE / "data" / "stationarity.csv"))
 
 
 def check(args):
     os.environ["OMP_NUM_THREADS"] = "2"
     p, K, seed, lam10k = args
-    meta = json.loads((HERE / "data" / "ckpt" / f"p{p}_K{K}_s{seed}.json").read_text())
-    z = np.load(HERE / "data" / "ckpt" / f"p{p}_K{K}_s{seed}_grok.npz")
+    meta = json.loads((CKPT_DIR / f"p{p}_K{K}_s{seed}.json").read_text())
+    z = np.load(CKPT_DIR / f"p{p}_K{K}_s{seed}_grok.npz")
     Xtr, Ytr, _, _ = qnet.modadd_data(p, meta["frac"], seed)
     W, V, L, _ = run_llc.polish(z["W"], z["V"], Xtr, Ytr)
     cal = json.loads((HERE / "data" / "calibration.json").read_text())
@@ -49,7 +54,7 @@ def check(args):
 
 
 if __name__ == "__main__":
-    rows = list(csv.DictReader(open(HERE / "data" / "llc.csv")))
+    rows = list(csv.DictReader(open(LLC_CSV)))
     cells = {}
     for r in rows:
         if r["phase"] != "grok" or r["lambda_hat"] in ("", "nan"):
@@ -58,12 +63,17 @@ if __name__ == "__main__":
         if key not in cells or int(r["seed"]) < cells[key][2]:
             cells[key] = (key[0], key[1], int(r["seed"]), float(r["lambda_hat"]))
     jobs = sorted(cells.values(), key=lambda c: c[0] * c[1])
-    out = []
-    with ProcessPoolExecutor(int(os.environ.get("WORKERS", "5"))) as ex:
+    skip = {s for s in os.environ.get("SKIP", "").split(",") if s}  # e.g. SKIP=p23_K184 (memory rule: 2 jobs, 5 GB)
+    jobs = [j for j in jobs if f"p{j[0]}_K{j[1]}" not in skip]
+    path = OUT
+    done = {(int(r["p"]), int(r["K"])) for r in csv.DictReader(open(path))} if path.exists() else set()
+    jobs = [j for j in jobs if (j[0], j[1]) not in done]
+    with ProcessPoolExecutor(int(os.environ.get("WORKERS", "2"))) as ex:
         for r in ex.map(check, jobs):
-            out.append(r)
             print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in r.items()}, flush=True)
-    with open(HERE / "data" / "stationarity.csv", "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(out[0].keys()))
-        w.writeheader()
-        w.writerows(sorted(out, key=lambda r: (r["p"], r["K"])))
+            new = not path.exists()
+            with open(path, "a", newline="") as f:  # append per cell so a killed run keeps its rows
+                w = csv.DictWriter(f, fieldnames=list(r.keys()))
+                if new:
+                    w.writeheader()
+                w.writerow(r)

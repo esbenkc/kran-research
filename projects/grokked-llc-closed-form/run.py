@@ -25,14 +25,31 @@ DEFAULT_BLOG = PROJECT_DIR.parents[2] / "blog.kran.ai" / "assets" / "figures"
 
 
 def load_rows():
-    rows = []
-    with open(PROJECT_DIR / "data" / "llc.csv") as f:
+    # Memorising checkpoints must be below 0.5 test accuracy under BOTH predictors (raw argmax and argmax after
+    # adding back the train-set offset that the centred loss leaves free); data/phase_labels.csv, skeptic post #699.
+    mem_ok = {}
+    with open(PROJECT_DIR / "data" / "phase_labels.csv") as f:
         for r in csv.DictReader(f):
-            if r.get("dropped", "").strip().lower() in ("1", "true", "yes"):
-                continue
-            if r["lambda_hat"] in ("", "nan"):
-                continue
-            rows.append(r)
+            if r["ckpt_dir"] == "ckpt" and r["phase"] == "mem":
+                mem_ok[(r["p"], r["K"], r["seed"])] = r["mem_both"] == "1"
+    rows = []
+    # p31 first ran at train fraction 0.5 (the only cell not at 0.7-0.8): no memorising phase, and its readings
+    # depend on chain length and nbeta (stationarity.csv; skeptic3 post #705). Those rows stay in llc.csv but leave
+    # the figure and the verdict. p31 was retrained at 0.7 (data/ckpt_p31_frac07 -> data/llc_p31_frac07.csv).
+    extra = PROJECT_DIR / "data" / "llc_p31_frac07.csv"
+    srcs = [PROJECT_DIR / "data" / "llc.csv"] + ([extra] if extra.exists() else [])
+    for src in srcs:
+        with open(src) as f:
+            for r in csv.DictReader(f):
+                if r.get("dropped", "").strip().lower() in ("1", "true", "yes"):
+                    continue
+                if r["lambda_hat"] in ("", "nan"):
+                    continue
+                if r["phase"] == "mem" and not mem_ok.get((r["p"], r["K"], r["seed"]), False):
+                    continue
+                if r["p"] == "31" and float(r["frac"]) == 0.5:
+                    continue
+                rows.append(r)
     return rows
 
 
@@ -44,10 +61,11 @@ def main():
     calib = json.loads((PROJECT_DIR / "data" / "calibration.json").read_text())
     band = float(calib["band"])
     settled = {}
-    st_path = PROJECT_DIR / "data" / "stationarity.csv"
-    if st_path.exists():
-        for r in csv.DictReader(open(st_path)):
-            settled[(int(r["p"]), int(r["K"]))] = r["settled"] == "1"
+    for name in ("stationarity.csv", "stationarity_p31_frac07.csv"):
+        st_path = PROJECT_DIR / "data" / name
+        if st_path.exists():
+            for r in csv.DictReader(open(st_path)):
+                settled[(int(r["p"]), int(r["K"]), float(r["frac"]))] = r["settled"] == "1"
     cells = defaultdict(list)
     for r in load_rows():
         cells[(int(r["p"]), int(r["K"]), r["phase"])].append(r)
@@ -57,7 +75,10 @@ def main():
         y = f("lambda_hat")
         x = f("lambda_paper")
         inside = all(str(r["inside_hypothesis"]).lower() in ("1", "true") for r in rs) if ph == "grok" else True
-        out.append(dict(p=p, K=K, phase=ph, n=len(rs), settled=settled.get((p, K), True) if ph == "grok" else True, x=float(x.mean()), y=float(y.mean()),
+        # an inside-hypothesis grokked cell counts only after its 40k-step stationarity check; outside cells
+        # do not enter the verdict, so an unchecked one is drawn as settled
+        ok = settled.get((p, K, float(rs[0]["frac"])), not inside) if ph == "grok" else True
+        out.append(dict(p=p, K=K, phase=ph, n=len(rs), settled=ok, x=float(x.mean()), y=float(y.mean()),
                         ymin=float(y.min()), ymax=float(y.max()), rank=float(f("lambda_rank").mean()),
                         cap=float(f("lambda_cap").mean()), lam_shift=float(f("lambda_shift").mean()),
                         quad=float(f("lambda_quad").mean()), inside=bool(inside),

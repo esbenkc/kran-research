@@ -31,3 +31,8 @@ Findings:
 Verdict: the quantitative test (estimated LLC / closed form, per (p, K, phase)) and the two counting corrections
 (3p-2 per neuron; cap p(N-1); per-frequency cap 20p-36) appear new as of 2026-10-15, with the caveat that the
 citation graph of 2603.01192 was not checked (API rate limit). [inference: search-limited]
+
+Refresh (2026-10-15 23:2x CPH, after the machine restart): one more web search on the arXiv id + "estimated LLC vs
+closed form, grokking, quadratic network". Only the paper itself (v1/v2 alphaxiv, v3 html) and unrelated grokking work
+(2603.23784, 2602.04548, 2603.25009, 2407.12332, 2603.05228) came up; none computes or measures an LLC against the
+closed form. Verdict unchanged.

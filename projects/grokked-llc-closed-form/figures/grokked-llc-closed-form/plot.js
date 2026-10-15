@@ -2,6 +2,7 @@
 // One point per (p, K, phase): mean over seeds, bar = range over seeds. Log-log.
 // Dashed line: estimate = formula. Shaded band: the pre-registered ±band around it.
 // Grey dash: rank reference ½·rank J at the same checkpoints (a lower bound on the true LLC).
+// ×: sampler did not settle (data/stationarity.csv), excluded from the verdict.
 // Hollow: cell outside the formula's hypothesis (K_eff(3p−2) ≥ p(N−1)).
 // data = { title, sub, band, rows: [{ p, K, phase, x, y, ymin, ymax, rank, cap, inside, n, ratio, lam_shift }] }
 import { C, FONT, plotStyle } from "../theme.js";
@@ -30,6 +31,7 @@ export function render(data, Plot) {
     }</svg>${LABEL[ph]}</span>`,
   ).join("") +
     `<span style="display:inline-flex;align-items:center;gap:0.4rem;color:${C.muted}"><svg width="18" height="10"><line x1="1" y1="5" x2="17" y2="5" stroke="${C.muted}" stroke-width="2.5"/></svg>½·rank J</span>` +
+    (rows.some((r) => r.settled === false) ? `<span style="color:${C.muted}">× = sampler did not settle</span>` : "") +
     `<span style="color:${C.muted}">hollow = outside the formula’s hypothesis (K_eff(3p−2) ≥ p(N−1))</span>`;
   root.append(head, sub, legend);
 
@@ -44,7 +46,8 @@ export function render(data, Plot) {
     `formula: ${fmt(d.x)}\nSGLD: ${fmt(d.y)} (seeds ${fmt(d.ymin)}–${fmt(d.ymax)})\n` +
     `SGLD / formula: ${d.ratio.toFixed(2)}` +
     (d.phase === "grok" ? `\n½·rank J: ${fmt(d.rank)}\n½·K_eff·(3p−2): ${fmt(d.lam_shift)}` : "\nonly the 2nd layer sampled (the formula's frozen-feature model)") +
-    `\n½·p(N−1): ${fmt(d.cap)}` + (d.inside ? "" : "\noutside the formula's hypothesis: K_eff(3p−2) ≥ p(N−1)");
+    `\n½·p(N−1): ${fmt(d.cap)}` + (d.inside ? "" : "\noutside the formula's hypothesis: K_eff(3p−2) ≥ p(N−1)") +
+    (d.settled === false ? "\nsampler did not settle: reading still rising after 4× longer chains" : "");
   const width = Math.max(480, Math.min(760, root.clientWidth || 700));
   root.appendChild(Plot.plot({
     style: plotStyle({ fontSize: "15px" }), width, height: Math.round(width * 0.78),
@@ -53,15 +56,15 @@ export function render(data, Plot) {
     y: { type: "log", domain: [lo, hi], axis: null },
     marks: [
       Plot.gridY(ticks, { stroke: C.grid, strokeOpacity: 1 }),
-      Plot.axisX(ticks, { tickFormat: fmt, label: "Closed-form LLC (Cullen et al.)", labelAnchor: "center", labelArrow: "none" }),
-      Plot.axisY(ticks, { tickFormat: fmt, label: "Measured LLC (calibrated SGLD)", labelAnchor: "center", labelArrow: "none" }),
+      Plot.axisX({ ticks, tickFormat: fmt, label: "Closed-form LLC (Cullen et al.)", labelAnchor: "center", labelArrow: "none" }),
+      Plot.axisY({ ticks, tickFormat: fmt, label: "Measured LLC (calibrated SGLD)", labelAnchor: "center", labelArrow: "none" }),
       Plot.areaY(diag, { x: (d) => d, y1: (d) => d * (1 - band), y2: (d) => d * (1 + band), fill: C.grid, fillOpacity: 0.55 }),
       Plot.line(diag, { x: (d) => d, y: (d) => d, stroke: C.faint, strokeWidth: 1.5, strokeDasharray: "5,4" }),
       Plot.text([hi / 1.5], { x: (d) => d, y: (d) => d * (1 + band), text: () => "estimate = formula", dy: -10, textAnchor: "end", fill: C.muted, fontSize: 13 }),
       Plot.link(rows.filter((r) => r.phase === "grok"), { x1: (d) => d.x / 1.09, x2: (d) => d.x * 1.09, y1: "rank", y2: "rank", stroke: C.muted, strokeWidth: 2.5 }),
       Plot.ruleX(rows.filter((r) => r.n > 1), { x: "x", y1: "ymin", y2: "ymax", stroke: (d) => COLOR[d.phase], strokeWidth: 1.6 }),
       Plot.dot(rows, {
-        x: "x", y: "y", r: 5.5, symbol: (d) => SYMBOL[d.phase], stroke: (d) => COLOR[d.phase], strokeWidth: 1.8,
+        x: "x", y: "y", r: 5.5, symbol: (d) => (d.settled === false ? "times" : SYMBOL[d.phase]), stroke: (d) => COLOR[d.phase], strokeWidth: 1.8,
         fill: (d) => (d.inside ? COLOR[d.phase] : "none"), tip: true, title: tip,
       }),
     ],

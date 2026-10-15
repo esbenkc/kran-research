@@ -27,9 +27,15 @@ quantitatively, or pointed out the one-hot identifiability problem?
 No prior quantitative test of Cor 5.4 / Remark 5.5 found. No prior statement found of the two
 one-hot facts (shift symmetry -> 3p-2 per neuron; generic value capped at p(N-1)/2) or of the
 ill-conditioned Gauss-Newton spectrum at grokked checkpoints. The general fact that SGLD
-estimates depend on nbeta/gamma is known (Lau et al.; the paper itself says "the LLC estimator
-is sensitive to the choice of hyperparameters"), so the post must not claim that as new; what
-is new is the size of the effect at these specific checkpoints and its cause (no spectral gap).
+estimates depend on nbeta/gamma is known (Lau et al.). The paper says it too: v1 says "the LLC
+estimator is sensitive to the choice of hyperparameters"; v3 (the version we cite) instead says it
+interprets "absolute LLC values up to an estimator-dependent scale" and tests only scaling. So the
+post must not claim estimator sensitivity as new, and must not present "absolute value off" as a
+refutation of the paper's own (scaling) claim. What is new: the size of the shortfall at these
+checkpoints (0.66-0.78 of the formula at p 11-23), that the share is about constant across p
+(log-log slope 0.99), and its cause (no spectral gap; formula also overcounts by K/2 on one-hot data).
 
 Limits of this check: web search plus two full-text greps; not an exhaustive citation crawl;
 LessWrong/AF posts after 2025 only via search snippets.
+
+Refresh 2026-10-15 ~23:15 CPH: one more web search (closed-form LLC, quadratic net, modular addition, SGLD): only the paper itself and the estimator papers above. Verdict unchanged.

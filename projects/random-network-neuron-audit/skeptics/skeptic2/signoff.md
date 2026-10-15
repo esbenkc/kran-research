@@ -46,8 +46,10 @@ not frame it as overturning Heap et al.
 
 ## Conditions on the post (checked against draft `_notes/random-network-neuron-audit.md`)
 1. Say plainly that all four pre-registered predictions missed. H1's "fail" branch in the
-   prereg (audit cannot tell trained from random) did NOT happen; H1 missed only because almost
-   every passing unit was typed lexical. Draft line 30 does this; keep it.
+   prereg (audit cannot tell trained from random) did NOT happen. Correction (after skeptic #941):
+   I first wrote that H1 missed "only because almost every passing unit was typed lexical". That is
+   wrong on the numbers: counting all job types, A-B is 14.3 pp (H1 needed 25) and A-C 12.7 pp
+   (H2 needed 15), so both miss even without the lexical split. The post must say both.
 2. "Non-lexical means more than one word or string" (draft line 28) is wrong: lexical = keyed on
    one word or string; non-lexical = any job that is not that. Fix the gloss.
 3. Checked draft numbers against my rebuild: B labels fit ~8 of 20 (8.06), B detection ~2.5 of 5

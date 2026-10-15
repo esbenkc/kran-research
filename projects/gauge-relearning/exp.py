@@ -4,17 +4,21 @@ Pipeline per seed:
   1. inject 200 synthetic facts ("<Name> lives in the city of" -> " <City>") by fine-tuning,
   2. unlearn 100 of them (the forget set) with bounded gradient difference,
   3. apply a function-preserving per-head Q/K gauge (W_Q*c, b_Q*c, W_K/c, b_K/c) to every head,
-  4. attack: fine-tune on forget split A (50 facts) and count steps until acc_A >= 0.6.
-     Split B (50 forget facts) is never trained on and is logged as held-out recovery.
+  4. attack: fine-tune on forget split A (50 facts, minibatches of 10, fixed order per seed) and
+     count steps until exact-match acc_A >= 0.9 (cap 500). Split B (50 forget facts) is never
+     trained on and is logged as held-out recovery.
 
-Attackers: SGD, AdamW, K-FAC (approximate natural gradient with scale-invariant diagonal damping
-and KL clipping), and "renorm": balance each head's Q/K weight norms, then AdamW.
-Each attacker picks its own learning rate from a small grid for every gauge value (best of grid),
-because an attacker tunes on the model they receive. All grid runs are saved.
+Attackers: SGD, AdamW, K-FAC (empirical Fisher on all of A, per-head-block damping, Fisher-norm
+trust region; gauge-invariant in exact arithmetic), and "renorm": balance each head's Q/K weight
+norms, then AdamW. Each attacker picks its learning rate (K-FAC: trust radius) from a grid for
+every gauge value on seed 0, because an attacker tunes on the model they receive; seeds 1, 2 reuse
+that lr. All grid runs are saved. Post-hoc additions: extra data orders (--orders), the floor
+control (--floor) and a freeze-Q/K SGD attacker (--fixed-lr ... --attackers freezeqk).
 
 Only the Linear layers inside the transformer blocks are trained in every phase.
-Raw per-step logs: results/raw/seed{S}/{attacker}_log2c{K}_lr{LR}.jsonl (plan schema rows).
-Config fixed before the c-grid runs in results/prereg.json.
+Raw per-step logs: results/raw/seed{S}/[tag_]{attacker}_log2c{K}_lr{LR}.jsonl, tag in
+{floor, order1, order2, devcpu}. Config fixed before the c-grid runs in results/prereg.json.
+GAUGE_DEVICE / GAUGE_THREADS env vars override the torch device and CPU thread count.
 """
 from __future__ import annotations
 

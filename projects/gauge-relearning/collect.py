@@ -47,6 +47,21 @@ def main():
             "recovery_definition": f"first step with acc_A >= {exp.THRESH}; acc evaluated every step "
                                    "before the update (step 0 = gauged unlearned model)",
             "best_lr_seed0": {f"{a}|{k}": lr for (a, k), lr in sorted(best.items())},
+            "post_hoc_not_in_prereg": {
+                "order1/order2": "2 extra attack data orders x 3 seeds, SGD/AdamW at c in {1,4,16}, seed-0 best lr",
+                "freezeqk": "SGD with Q/K row grads zeroed, fixed lr 3e-4 (SGD c=1 best), all c, 3 seeds",
+                "floor": "never-knew-A model (inject B+retain only), c=1, 3 lrs per attacker, seed 0",
+                "kfac_scope": "K-FAC seed 0 grid at c in {1,16,1/16} only; seeds 1,2 at seed-0 best kappa",
+            },
+            "kfac_notes": {
+                "device": "all kfac_* cells on MPS; devcpu_kfac_log2c-4_* are the same c=1/16 cells run on "
+                          "CPU after an MPS memory stall (not used for best kappa or the figure)",
+                "divergence": "every diverged K-FAC run hit a non-finite loss on the first update after a "
+                              "curvature refresh (step = 10k+1): numerical failure of the implementation",
+                "grid_value": "the 'lr' of kfac rows is kappa, the Fisher-norm trust radius",
+            },
+            "rule_472": "an attacker is 'slowed' at c only if the paired ratio steps(c)/steps(c=1) "
+                        "(same seed + order) has median >= 1.5 AND is > 1 in >= 80% of pairs",
             "seeds": {}}
     for sd in sorted(exp.RAW.glob("seed*")):
         if (sd / "meta.json").exists():

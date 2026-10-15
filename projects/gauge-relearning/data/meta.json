@@ -1,0 +1,207 @@
+{
+ "prereg": {
+  "written_at": "2026-10-14T18:22:04-0700",
+  "threshold_acc_A": 0.9,
+  "max_steps": 500,
+  "log2c": [
+   -4,
+   -2,
+   0,
+   2,
+   4
+  ],
+  "lr_grid": {
+   "sgd": [
+    0.0001,
+    0.0003,
+    0.001,
+    0.003,
+    0.01,
+    0.03
+   ],
+   "adamw": [
+    1e-06,
+    3e-06,
+    1e-05,
+    3e-05,
+    0.0001,
+    0.0003
+   ],
+   "renorm": [
+    1e-06,
+    3e-06,
+    1e-05,
+    3e-05,
+    0.0001,
+    0.0003
+   ],
+   "kfac": [
+    0.001,
+    0.003,
+    0.01,
+    0.03,
+    0.1,
+    0.3
+   ]
+  },
+  "unlearn_tau": 15.0,
+  "kfac": {
+   "damping": "G + 0.1*tr(block)/64 per 64-row block (one head's Q, K or V rows); A + 0.1*tr(A)/n * I",
+   "factors": "empirical Fisher (true labels) on all of A, recomputed from scratch and inverted every N steps",
+   "inverse_every": 10,
+   "kl_clip": null
+  },
+  "splits": {
+   "A": 50,
+   "B": 50,
+   "retain": 100
+  },
+  "unlearn_lr": 3e-05,
+  "unlearn_steps_max": 600,
+  "attack_batch_facts": 10,
+  "attack_data_order": "torch.Generator seed 1000+seed, fresh permutation of A each epoch",
+  "pilot_data_seen_before_freeze": "c=1 only (seed 0): earlier pipeline variants and the c=1 lr check of this config; no c!=1 attack run existed",
+  "best_lr_rule": "per (attacker, c): fewest steps to recovery on seed 0; ties -> lower lr; if best is on a grid edge, extend one half-decade past it (max 3 times); seeds 1,2 rerun only at that lr"
+ },
+ "model": "EleutherAI/pythia-160m",
+ "trained_params": "Linear layers in the 12 transformer blocks",
+ "recovery_definition": "first step with acc_A >= 0.9; acc evaluated every step before the update (step 0 = gauged unlearned model)",
+ "best_lr_seed0": {
+  "adamw|-4": 0.0001,
+  "adamw|-2": 3e-05,
+  "adamw|0": 3e-05,
+  "adamw|2": 3e-05,
+  "adamw|4": 3e-05,
+  "freezeqk|-4": 0.0003,
+  "freezeqk|-2": 0.0003,
+  "freezeqk|0": 0.0003,
+  "freezeqk|2": 0.0003,
+  "freezeqk|4": 0.0003,
+  "kfac|-4": 0.01,
+  "kfac|0": 0.03,
+  "kfac|4": 0.03,
+  "renorm|-4": 0.0001,
+  "renorm|-2": 0.0001,
+  "renorm|0": 0.0001,
+  "renorm|2": 0.0001,
+  "renorm|4": 0.0001,
+  "sgd|-4": 0.0003,
+  "sgd|-2": 0.0003,
+  "sgd|0": 0.0003,
+  "sgd|2": 0.0003,
+  "sgd|4": 0.0003
+ },
+ "post_hoc_not_in_prereg": {
+  "order1/order2": "2 extra attack data orders x 3 seeds, SGD/AdamW at c in {1,4,16}, seed-0 best lr",
+  "freezeqk": "SGD with Q/K row grads zeroed, fixed lr 3e-4 (SGD c=1 best), all c, 3 seeds",
+  "floor": "never-knew-A model (inject B+retain only), c=1, 3 lrs per attacker, seed 0",
+  "kfac_scope": "K-FAC seed 0 grid at c in {1,16,1/16} only; seeds 1,2 at seed-0 best kappa"
+ },
+ "kfac_notes": {
+  "device": "all kfac_* cells on MPS; devcpu_kfac_log2c-4_* are the same c=1/16 cells run on CPU after an MPS memory stall (not used for best kappa or the figure)",
+  "divergence": "every diverged K-FAC run hit a non-finite loss on the first update after a curvature refresh (step = 10k+1): numerical failure of the implementation",
+  "grid_value": "the 'lr' of kfac rows is kappa, the Fisher-norm trust radius"
+ },
+ "rule_472": "an attacker is 'slowed' at c only if the paired ratio steps(c)/steps(c=1) (same seed + order) has median >= 1.5 AND is > 1 in >= 80% of pairs",
+ "seeds": {
+  "seed0": {
+   "seed": 0,
+   "base": {
+    "A": 0.0,
+    "B": 0.0,
+    "retain": 0.0
+   },
+   "injected": {
+    "A": 1.0,
+    "B": 1.0,
+    "retain": 1.0
+   },
+   "unlearn_steps": 600,
+   "unlearned": {
+    "A": 0.019999999552965164,
+    "B": 0.0,
+    "retain": 1.0
+   },
+   "gauge_max_abs_logit_diff": {
+    "-4": 0.0,
+    "-2": 0.0,
+    "0": 0.0,
+    "2": 0.0,
+    "4": 0.0
+   },
+   "renorm_max_abs_param_diff_vs_c1": {
+    "-4": 0.0,
+    "-2": 0.0,
+    "0": 0.0,
+    "2": 0.0,
+    "4": 0.0
+   }
+  },
+  "seed1": {
+   "seed": 1,
+   "base": {
+    "A": 0.0,
+    "B": 0.0,
+    "retain": 0.019999999552965164
+   },
+   "injected": {
+    "A": 1.0,
+    "B": 1.0,
+    "retain": 1.0
+   },
+   "unlearn_steps": 600,
+   "unlearned": {
+    "A": 0.03999999910593033,
+    "B": 0.03999999910593033,
+    "retain": 1.0
+   },
+   "gauge_max_abs_logit_diff": {
+    "-4": 0.0,
+    "-2": 0.0,
+    "0": 0.0,
+    "2": 0.0,
+    "4": 0.0
+   },
+   "renorm_max_abs_param_diff_vs_c1": {
+    "-4": 0.0,
+    "-2": 0.0,
+    "0": 0.0,
+    "2": 0.0,
+    "4": 0.0
+   }
+  },
+  "seed2": {
+   "seed": 2,
+   "base": {
+    "A": 0.0,
+    "B": 0.0,
+    "retain": 0.0
+   },
+   "injected": {
+    "A": 1.0,
+    "B": 1.0,
+    "retain": 1.0
+   },
+   "unlearn_steps": 600,
+   "unlearned": {
+    "A": 0.0,
+    "B": 0.07999999821186066,
+    "retain": 1.0
+   },
+   "gauge_max_abs_logit_diff": {
+    "-4": 0.0,
+    "-2": 0.0,
+    "0": 0.0,
+    "2": 0.0,
+    "4": 0.0
+   },
+   "renorm_max_abs_param_diff_vs_c1": {
+    "-4": 0.0,
+    "-2": 0.0,
+    "0": 0.0,
+    "2": 0.0,
+    "4": 0.0
+   }
+  }
+ }
+}

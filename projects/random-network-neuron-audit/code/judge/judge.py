@@ -94,18 +94,23 @@ def _cost(tries: list[dict]) -> float:
                for t in tries if not t["cached"])
 
 
-def _json(raw: str) -> dict | None:
-    m = re.search(r"\{.*\}", raw, re.S)
-    if not m:
-        return None
-    try:
-        return json.loads(m.group(0))
-    except json.JSONDecodeError:
-        return None
+def _json(raw: str, key: str) -> dict | None:
+    """Last complete JSON object in raw that has `key`. Judges sometimes print an answer, then 'Wait, let me
+    reconsider' and a second answer; the last complete one is their final answer."""
+    dec, found, i = json.JSONDecoder(), None, raw.find("{")
+    while i != -1:
+        try:
+            obj, end = dec.raw_decode(raw, i)
+            if isinstance(obj, dict) and key in obj:
+                found = obj
+            i = raw.find("{", end)
+        except json.JSONDecodeError:
+            i = raw.find("{", i + 1)
+    return found
 
 
-def parse_label(raw: str) -> dict | None:
-    d = _json(raw)
+def parse_label(raw: str, strict: bool = True) -> dict | None:
+    d = _json(raw, "main_count")
     if d is None:
         return None
     try:
@@ -119,20 +124,30 @@ def parse_label(raw: str) -> dict | None:
         return None
     if typ not in {"LEXICAL", "SYNTACTIC", "SEMANTIC", "NONE"} or not 0 <= mc <= 20 or not label:
         return None
-    if mc + sum(o["count"] for o in others) + un != 20:
+    total = mc + sum(o["count"] for o in others) + un
+    if strict and total != 20:
         return None
+    # Lenient (only after the format-reminder retry also failed): short of 20 -> unassigned snippets count as
+    # unexplained; over 20 (judge double-counted across its job list) -> keep and flag, since only main_count
+    # enters the verdict and dropping these units would remove exactly the messy ones.
+    d["count_overflow"] = total > 20
+    un = max(0, un + 20 - total)
     d.update(main_label=label, main_count=mc, other_jobs=others, unexplained_count=un, main_type=typ,
              n_jobs=(1 if typ != "NONE" else 0) + len(others))
     return d
 
 
-def parse_picks(raw: str) -> list[int] | None:
-    d = _json(raw)
+def parse_picks(raw: str, strict: bool = True) -> list[int] | None:
+    """Strict: exactly 5 distinct ints in 1..10. Lenient (after the retry also failed): 0-5 distinct picks; hits
+    are counted over the picks given, so a short list can only lower the score."""
+    d = _json(raw, "picks")
     try:
         p = [int(x) for x in d["picks"]]
     except (KeyError, TypeError, ValueError):
         return None
-    return p if len(set(p)) == 5 and all(1 <= x <= 10 for x in p) else None
+    if len(set(p)) != len(p) or not all(1 <= x <= 10 for x in p):
+        return None
+    return p if (len(p) == 5 or (not strict and len(p) <= 5)) else None
 
 
 def label_unit(examples: list[dict], model: str) -> dict:
@@ -142,7 +157,7 @@ def label_unit(examples: list[dict], model: str) -> dict:
     parsed = parse_label(tries[-1]["text"])
     if parsed is None:  # one retry with a format reminder (new prompt -> new cache key)
         tries.append(complete(model, p + "\n\nReminder: JSON only, and all counts must add up to exactly 20."))
-        parsed = parse_label(tries[-1]["text"])
+        parsed = parse_label(tries[-1]["text"]) or parse_label(tries[-1]["text"], strict=False)
     return {"ok": parsed is not None, "parsed": parsed, "raw": tries[-1]["text"], "cost_usd": _cost(tries),
             "in_tok": sum(t["in_tok"] for t in tries), "out_tok": sum(t["out_tok"] for t in tries),
             "cached": all(t["cached"] for t in tries)}
@@ -155,7 +170,7 @@ def detect(label: str, snippets: list[dict], model: str) -> dict:
     picks = parse_picks(tries[-1]["text"])
     if picks is None:
         tries.append(complete(model, p + "\n\nReminder: JSON only, exactly 5 different numbers from 1 to 10."))
-        picks = parse_picks(tries[-1]["text"])
+        picks = parse_picks(tries[-1]["text"]) or parse_picks(tries[-1]["text"], strict=False)
     return {"ok": picks is not None, "picks": picks, "raw": tries[-1]["text"], "cost_usd": _cost(tries),
             "in_tok": sum(t["in_tok"] for t in tries), "out_tok": sum(t["out_tok"] for t in tries),
             "cached": all(t["cached"] for t in tries)}

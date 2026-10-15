@@ -353,8 +353,11 @@ def attack(model, attacker, lr, bA: Batch, bB: Batch, br: Batch, log_path, row, 
                 lg = answer_logits(model, bA)
                 lA = F.cross_entropy(lg, bA.y).item()
                 aA = (lg.argmax(-1) == bA.y).float().mean().item()
-                aB = acc(model, bB) if s % 5 == 0 else None
-                ar = acc(model, br) if s % 25 == 0 else None
+                # held-out and kept facts are also measured on the last row (stop step); added for
+                # the appendix runs, earlier runs only have the every-5 / every-25-step checks
+                stop = not math.isfinite(lA) or aA >= THRESH or s == max_steps
+                aB = acc(model, bB) if s % 5 == 0 or stop else None
+                ar = acc(model, br) if s % 25 == 0 or stop else None
             f.write(json.dumps({**row, "step": s, "acc_A": aA, "acc_B": aB, "acc_retain": ar,
                                 "loss": lA}) + "\n")
             f.flush()
@@ -408,7 +411,7 @@ def best_lrs(seed=0):
     """{(attacker, log2c): lr} from the seed-0 grid."""
     best = {}
     for p in (RAW / f"seed{seed}").glob("[a-z]*_log2c*_lr*.jsonl"):
-        if p.name.startswith(("floor_", "order", "devcpu_")):
+        if p.name.startswith(("floor_", "order", "devcpu_", "stop_")):
             continue
         rows = [json.loads(l) for l in p.read_text().splitlines()]
         last = rows[-1]

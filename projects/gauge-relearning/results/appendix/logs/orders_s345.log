@@ -1,0 +1,10 @@
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  29%|██▉       | 43/148 [00:00<00:00, 429.95it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1459.36it/s]
+  inject step 0 loss 7.457 acc_all 0.045
+  inject step 50 loss 0.232 acc_all 0.910
+  inject step 100 loss 0.000 acc_all 1.000
+  unlearn step 0 forget_ce 0.00 active 100 forget_acc 1.000 retain_acc 1.000
+  unlearn step 20 forget_ce 29.86 active 26 forget_acc 0.240 retain_acc 1.000
+  unlearn step 40 forget_ce 42.26 active 13 forget_acc 0.120 retain_acc 0.990
+  unlearn step 60 forget_ce 44.94 active 11 forget_acc 0.100 retain_acc 1.000
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-39433-thf9m8k7'}
+  warnings.warn(

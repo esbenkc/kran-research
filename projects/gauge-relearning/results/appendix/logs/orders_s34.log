@@ -1,0 +1,113 @@
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:15,  9.58it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1155.11it/s]
+  inject step 0 loss 7.457 acc_all 0.045
+  inject step 50 loss 0.232 acc_all 0.910
+  inject step 100 loss 0.000 acc_all 1.000
+  unlearn step 0 forget_ce 0.00 active 100 forget_acc 1.000 retain_acc 1.000
+  unlearn step 20 forget_ce 29.86 active 26 forget_acc 0.240 retain_acc 1.000
+  unlearn step 40 forget_ce 42.26 active 13 forget_acc 0.120 retain_acc 0.990
+  unlearn step 60 forget_ce 44.94 active 11 forget_acc 0.100 retain_acc 1.000
+  unlearn step 80 forget_ce 50.46 active 8 forget_acc 0.080 retain_acc 1.000
+  unlearn step 100 forget_ce 55.05 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 120 forget_ce 53.61 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 140 forget_ce 53.35 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 160 forget_ce 52.44 active 3 forget_acc 0.030 retain_acc 1.000
+  unlearn step 180 forget_ce 51.68 active 3 forget_acc 0.030 retain_acc 1.000
+  unlearn step 200 forget_ce 53.36 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 220 forget_ce 52.23 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 240 forget_ce 51.86 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 260 forget_ce 51.80 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 280 forget_ce 51.79 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 300 forget_ce 51.78 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 320 forget_ce 51.77 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 340 forget_ce 51.76 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 360 forget_ce 51.75 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 380 forget_ce 51.74 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 400 forget_ce 51.73 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 420 forget_ce 51.72 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 440 forget_ce 51.71 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 460 forget_ce 51.70 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 480 forget_ce 51.70 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 500 forget_ce 51.69 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 520 forget_ce 51.68 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 540 forget_ce 51.68 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 560 forget_ce 51.67 active 2 forget_acc 0.020 retain_acc 1.000
+  unlearn step 580 forget_ce 51.67 active 2 forget_acc 0.020 retain_acc 1.000
+meta {'seed': 3, 'base': {'A': 0.019999999552965164, 'B': 0.019999999552965164, 'retain': 0.009999999776482582}, 'injected': {'A': 1.0, 'B': 1.0, 'retain': 1.0}, 'unlearn_steps': 600, 'unlearned': {'A': 0.019999999552965164, 'B': 0.019999999552965164, 'retain': 1.0}, 'gauge_max_abs_logit_diff': {'-4': 0.0, '-2': 0.0, '0': 0.0, '2': 0.0, '4': 0.0}, 'renorm_max_abs_param_diff_vs_c1': {'-4': 0.0, '-2': 0.0, '0': 0.0, '2': 0.0, '4': 0.0}}
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:58,  2.51it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 345.60it/s]
+seed 3 sgd log2c 0 lr 0.0003: recovered at step 47 (16s)
+seed 3 sgd log2c 4 lr 0.0003: recovered at step 118 (38s)
+seed 3 adamw log2c 0 lr 3e-05: recovered at step 48 (22s)
+seed 3 adamw log2c 4 lr 3e-05: recovered at step 42 (20s)
+seed 3 order1_sgd log2c 0 lr 0.0003: recovered at step 32 (11s)
+seed 3 order1_sgd log2c 4 lr 0.0003: recovered at step 105 (34s)
+seed 3 order1_adamw log2c 0 lr 3e-05: recovered at step 33 (16s)
+seed 3 order1_adamw log2c 4 lr 3e-05: recovered at step 36 (17s)
+seed 3 order2_sgd log2c 0 lr 0.0003: recovered at step 30 (10s)
+seed 3 order2_sgd log2c 4 lr 0.0003: recovered at step 108 (35s)
+seed 3 order2_adamw log2c 0 lr 3e-05: recovered at step 43 (20s)
+seed 3 order2_adamw log2c 4 lr 3e-05: recovered at step 32 (15s)
+seed 3 order3_sgd log2c 0 lr 0.0003: recovered at step 41 (14s)
+seed 3 order3_sgd log2c 4 lr 0.0003: censored at step 500 (161s)
+seed 3 order3_adamw log2c 0 lr 3e-05: recovered at step 43 (20s)
+seed 3 order3_adamw log2c 4 lr 3e-05: recovered at step 33 (17s)
+seed 3 order4_sgd log2c 0 lr 0.0003: recovered at step 40 (13s)
+seed 3 order4_sgd log2c 4 lr 0.0003: recovered at step 197 (64s)
+seed 3 order4_adamw log2c 0 lr 3e-05: recovered at step 31 (15s)
+seed 3 order4_adamw log2c 4 lr 3e-05: recovered at step 39 (18s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<02:13,  1.10it/s]Loading weights:  95%|█████████▍| 140/148 [00:01<00:00, 185.48it/s]Loading weights: 100%|██████████| 148/148 [00:01<00:00, 140.44it/s]
+  inject step 0 loss 7.185 acc_all 0.045
+  inject step 50 loss 0.494 acc_all 0.975
+  inject step 100 loss 0.054 acc_all 0.985
+  inject step 150 loss 0.000 acc_all 1.000
+  unlearn step 0 forget_ce 0.00 active 100 forget_acc 1.000 retain_acc 1.000
+  unlearn step 20 forget_ce 44.98 active 21 forget_acc 0.180 retain_acc 1.000
+  unlearn step 40 forget_ce 57.04 active 11 forget_acc 0.110 retain_acc 1.000
+  unlearn step 60 forget_ce 58.41 active 9 forget_acc 0.090 retain_acc 0.990
+  unlearn step 80 forget_ce 55.28 active 8 forget_acc 0.080 retain_acc 1.000
+  unlearn step 100 forget_ce 58.18 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 120 forget_ce 58.74 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 140 forget_ce 60.60 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 160 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 180 forget_ce 60.73 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 200 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 220 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 240 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 260 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 280 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 300 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 320 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 340 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 360 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 380 forget_ce 60.75 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 400 forget_ce 60.74 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 420 forget_ce 60.74 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 440 forget_ce 60.74 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 460 forget_ce 60.73 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 480 forget_ce 60.73 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 500 forget_ce 60.73 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 520 forget_ce 60.73 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 540 forget_ce 60.73 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 560 forget_ce 60.73 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 580 forget_ce 60.73 active 4 forget_acc 0.040 retain_acc 1.000
+meta {'seed': 4, 'base': {'A': 0.0, 'B': 0.0, 'retain': 0.0}, 'injected': {'A': 1.0, 'B': 1.0, 'retain': 1.0}, 'unlearn_steps': 600, 'unlearned': {'A': 0.05999999865889549, 'B': 0.019999999552965164, 'retain': 1.0}, 'gauge_max_abs_logit_diff': {'-4': 0.0, '-2': 0.0, '0': 0.0, '2': 0.0, '4': 0.0}, 'renorm_max_abs_param_diff_vs_c1': {'-4': 0.0, '-2': 0.0, '0': 0.0, '2': 0.0, '4': 0.0}}
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:01<03:56,  1.61s/it]Loading weights:  86%|████████▋ | 128/148 [00:01<00:00, 102.39it/s]Loading weights: 100%|██████████| 148/148 [00:01<00:00, 81.31it/s] 
+seed 4 sgd log2c 0 lr 0.0003: recovered at step 49 (47s)
+seed 4 sgd log2c 4 lr 0.0003: recovered at step 94 (19s)
+seed 4 adamw log2c 0 lr 3e-05: recovered at step 39 (13s)
+seed 4 adamw log2c 4 lr 3e-05: recovered at step 32 (10s)
+seed 4 order1_sgd log2c 0 lr 0.0003: recovered at step 40 (9s)
+seed 4 order1_sgd log2c 4 lr 0.0003: recovered at step 78 (15s)
+seed 4 order1_adamw log2c 0 lr 3e-05: recovered at step 42 (12s)
+seed 4 order1_adamw log2c 4 lr 3e-05: recovered at step 26 (7s)
+seed 4 order2_sgd log2c 0 lr 0.0003: recovered at step 55 (12s)
+seed 4 order2_sgd log2c 4 lr 0.0003: recovered at step 75 (14s)
+seed 4 order2_adamw log2c 0 lr 3e-05: recovered at step 35 (11s)
+seed 4 order2_adamw log2c 4 lr 3e-05: recovered at step 27 (8s)
+seed 4 order3_sgd log2c 0 lr 0.0003: recovered at step 62 (13s)
+seed 4 order3_sgd log2c 4 lr 0.0003: recovered at step 81 (19s)
+seed 4 order3_adamw log2c 0 lr 3e-05: recovered at step 39 (11s)
+seed 4 order3_adamw log2c 4 lr 3e-05: recovered at step 42 (10s)
+seed 4 order4_sgd log2c 0 lr 0.0003: recovered at step 75 (14s)
+seed 4 order4_sgd log2c 4 lr 0.0003: recovered at step 97 (19s)
+seed 4 order4_adamw log2c 0 lr 3e-05: recovered at step 39 (12s)
+seed 4 order4_adamw log2c 4 lr 3e-05: recovered at step 28 (8s)

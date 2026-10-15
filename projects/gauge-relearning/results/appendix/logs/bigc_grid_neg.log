@@ -1,0 +1,28 @@
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<01:58,  1.24it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 176.30it/s]
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-38243-q1etz8g5'}
+  warnings.warn(
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:29,  4.98it/s]Loading weights:  82%|████████▏ | 122/148 [00:00<00:00, 486.54it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 394.82it/s]
+seed 0 sgd log2c -8 lr 0.0003: recovered at step 450 (132s)
+seed 0 sgd log2c -8 lr 0.0001: recovered at step 220 (66s)
+seed 0 sgd log2c -8 lr 0.001: censored at step 500 (146s)
+seed 0 sgd log2c -8 lr 3e-05: recovered at step 91 (25s)
+seed 0 sgd log2c -8 lr 1e-05: recovered at step 168 (48s)
+seed 0 adamw log2c -8 lr 3e-05: recovered at step 26 (9s)
+seed 0 adamw log2c -8 lr 1e-05: recovered at step 29 (10s)
+seed 0 adamw log2c -8 lr 0.0001: recovered at step 34 (12s)
+seed 0 renorm log2c -8 lr 3e-05: recovered at step 33 (10s)
+seed 0 sgd log2c -12 lr 0.0003: censored at step 500 (115s)
+seed 0 sgd log2c -12 lr 0.0001: censored at step 500 (201s)
+seed 0 sgd log2c -12 lr 0.001: censored at step 500 (217s)
+seed 0 sgd log2c -12 lr 0.003: censored at step 500 (256s)
+seed 0 sgd log2c -12 lr 0.01: censored at step 500 (257s)
+seed 0 sgd log2c -12 lr 0.03: censored at step 500 (266s)
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-50905-ag5_j8qo'}
+  warnings.warn(
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<02:07,  1.15it/s]Loading weights:   1%|▏         | 2/148 [00:01<01:03,  2.29it/s]Loading weights: 100%|██████████| 148/148 [00:01<00:00, 140.24it/s]
+seed 0 adamw log2c -12 lr 3e-05: recovered at step 57 (47s)
+seed 0 adamw log2c -12 lr 1e-05: recovered at step 49 (34s)
+seed 0 adamw log2c -12 lr 0.0001: recovered at step 75 (47s)
+seed 0 adamw log2c -12 lr 3e-06: recovered at step 34 (22s)
+seed 0 adamw log2c -12 lr 1e-06: recovered at step 53 (33s)
+seed 0 renorm log2c -12 lr 3e-05: recovered at step 33 (21s)

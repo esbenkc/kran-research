@@ -11,8 +11,8 @@ import { C, FONT, plotStyle, gridY } from "../theme.js";
 
 const SHORT = {
   "Trained network, neurons": "Trained\nneurons",
-  "Trained network, random directions": "Random\ndirections",
-  "Random network, neurons": "Random\nnetwork",
+  "Trained network, random directions": "Random\ndirs",
+  "Random network, neurons": "Random\nnet",
 };
 const LIGHT = "#f4b6d2"; // light pink: offshoots counted
 const pct = (v) => `${Math.round(v * 100)}%`;
@@ -51,7 +51,7 @@ export function render(data, Plot) {
   const width = Math.max(560, Math.min(980, root.clientWidth || 860));
   root.appendChild(
     Plot.plot({
-      style: plotStyle({ fontSize: "13px" }),
+      style: plotStyle({ fontSize: "12px" }),
       width,
       height: 340,
       marginTop: 24,
@@ -59,7 +59,7 @@ export function render(data, Plot) {
       marginBottom: 52,
       fx: { domain: data.panels, label: null, padding: 0.1 },
       x: { domain: data.arms, label: null, tickFormat: (d) => SHORT[d] ?? d, padding: 0.25 },
-      y: { domain: [0, 0.5], label: null, tickFormat: "%", ticks: 5 },
+      y: { domain: [0, 0.6], label: null, tickFormat: "%", ticks: 6 },
       marks: [
         gridY(Plot),
         Plot.ruleY([0], { stroke: C.faint }),
@@ -69,10 +69,9 @@ export function render(data, Plot) {
         }),
         Plot.ruleX(loose, { fx: "panel", x: "arm", y1: "lo", y2: "hi", stroke: C.muted, strokeWidth: 1.5, dx: 9 }),
         Plot.ruleX(strict, { fx: "panel", x: "arm", y1: "lo", y2: "hi", stroke: C.ink, strokeWidth: 2 }),
-        // strict rate printed above the whole bar (above the offshoot whisker)
-        Plot.text(strict, {
-          fx: "panel", x: "arm", text: (d) => pct(d.mean), fill: C.accent, fontSize: 12, fontWeight: 600, dy: -9,
-          y: (d) => Math.max(d.hi, ...loose.filter((l) => l.panel === d.panel && l.arm === d.arm).map((l) => l.hi)),
+        // a measured zero must not look like missing data
+        Plot.text(loose.filter((d) => d.hi === 0), {
+          fx: "panel", x: "arm", y: 0, text: (d) => `0 of ${d.n}`, dy: -8, fill: C.muted, fontSize: 11,
         }),
       ],
     }),

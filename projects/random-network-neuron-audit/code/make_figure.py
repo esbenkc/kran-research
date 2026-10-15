@@ -21,7 +21,7 @@ BLOG_FIG = PROJ.parents[2] / "blog.kran.ai" / "assets" / "figures"  # the work-d
 
 ARMS = [("A", "Trained network, neurons"), ("C", "Trained network, random directions"), ("B", "Random network, neurons")]
 METRICS = [("one_job", "One main job (pre-registered rule)"),
-           ("rel", "One main job plus related offshoots")]
+           ("rel", "One main job, counting related offshoots")]
 
 
 def main(results=PROJ / "results.json"):
@@ -38,7 +38,7 @@ def main(results=PROJ / "results.json"):
                                  hi=round(hi, 4), n=e["n"]))
     data = dict(
         title="Share of units that pass a blind one-main-job audit",
-        subtitle="Qwen3-0.6B MLP units, 50 per layer per arm; mean of two LLM judges; bars show 95% CIs",
+        subtitle="Qwen3-0.6B MLP units, 50 per layer per arm; mean of two LLM judges; whiskers: 95% bootstrap CIs over units",
         panels=[p for _, p in panels], arms=[a for _, a in ARMS], metrics=[m for _, m in METRICS], rows=rows)
     out = PROJ / "figures" / FIG_ID
     out.mkdir(parents=True, exist_ok=True)

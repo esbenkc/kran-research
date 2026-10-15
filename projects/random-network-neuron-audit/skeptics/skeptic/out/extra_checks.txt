@@ -1,0 +1,70 @@
+strict {'A': 0.143, 'B': 0.0, 'C': 0.017}
+   A-B = 14.3pp CI[10.0,19.0] perm p=0.0001
+   A-C = 12.7pp CI[8.0,17.3] perm p=0.0001
+rel {'A': 0.27, 'B': 0.0, 'C': 0.047}
+   A-B = 27.0pp CI[21.0,33.3] perm p=0.0001
+   A-C = 22.3pp CI[15.7,29.0] perm p=0.0001
+fitonly {'A': 0.157, 'B': 0.013, 'C': 0.023}
+   A-B = 14.3pp CI[9.7,19.3] perm p=0.0001
+   A-C = 13.3pp CI[8.3,18.3] perm p=0.0001
+
+A one-job labels (judge-level, strict):
+  31cdda18bb claud fit=16 hits=5 LEXI | Concessive/contrastive conjunctions and prepositions
+  c648f2bfc1 claud fit=19 hits=5 SYNT | Section heading anchor or reference label in academic text
+  c648f2bfc1 gpt-4 fit=17 hits=5 SYNT | section or subsection header tokens starting with '#sec' or 's'
+  b3399bbb4d gpt-4 fit=15 hits=4 LEXI | tokens related to sugar or sweet substances
+  2278377894 claud fit=16 hits=4 LEXI | Sugar/carbohydrate chemical names and substructures
+  1fce9c5aba claud fit=15 hits=5 LEXI | The word 'district' or its variants/translations
+  90d0c3af97 claud fit=18 hits=5 LEXI | Conditional question markers: 'if', 'whether', 'whether'
+  90d0c3af97 gpt-4 fit=18 hits=5 LEXI | tokens 'if' or 'whether'
+  59f1d6e54e claud fit=18 hits=5 LEXI | Opening brace in LaTeX/mathematical notation
+  8c325b1354 claud fit=18 hits=4 LEXI | Non-English surnames with diacritical marks
+  c297f34825 gpt-4 fit=17 hits=5 LEXI | animal species names
+  325fa4cb1a claud fit=19 hits=5 LEXI | The word 'male' or 'males' (including variants)
+  325fa4cb1a gpt-4 fit=19 hits=5 LEXI | the token 'male' or close variants
+  779e7df962 claud fit=20 hits=4 LEXI | The substring 'ass' within words
+  779e7df962 gpt-4 fit=17 hits=5 LEXI | tokens starting with 'ass' or 'as' prefix
+  e83a8fc53b claud fit=19 hits=5 LEXI | The word 'so' or its variants and compounds
+  e83a8fc53b gpt-4 fit=16 hits=5 LEXI | token 'so' as an adverb or part of phrase
+  cbbaf9a6f5 claud fit=16 hits=4 LEXI | The word 'and' or conjunction connecting items
+  cbbaf9a6f5 gpt-4 fit=15 hits=4 LEXI | the token 'and'
+  ed21816eee claud fit=18 hits=5 LEXI | The word 'radical' or close variants (radically, radicalism, etc.)
+  ed21816eee gpt-4 fit=15 hits=5 LEXI | tokens 'radical' or close variants
+  941f4fe8e5 claud fit=17 hits=5 LEXI | Alignment character '&' in LaTeX aligned environments
+  bafe719a48 claud fit=17 hits=4 LEXI | Indefinite article 'a' or 'an' in English
+  bafe719a48 gpt-4 fit=18 hits=5 LEXI | the indefinite article 'a' or its language variants
+  6890535dbf claud fit=16 hits=5 LEXI | Hexadecimal digits in code/data contexts
+  f1d4b8a9ca claud fit=18 hits=5 LEXI | Decimal point or digit in numerical values
+  fe9ba550f4 gpt-4 fit=15 hits=5 LEXI | Proper nouns (names of places, people, or entities)
+  8b12435425 gpt-4 fit=20 hits=5 LEXI | function words 'of', 'as', 'is', 'the', 'those', 'with', 'do', 'and', 'similarly', 'any', 'does'
+  c02e0d61b2 claud fit=16 hits=4 LEXI | The digit '0' in various numerical contexts
+  975543bea9 claud fit=16 hits=4 SYNT | Genitive case inflection across multiple languages
+  efb4014427 gpt-4 fit=15 hits=5 LEXI | the token 'right'
+  c03fa8f184 claud fit=15 hits=5 LEXI | Hyphenated compound words or word fragments with hyphens
+  2ebd8000ee claud fit=16 hits=5 LEXI | Digit '0' in numerical values and measurements
+  80639dfc65 claud fit=16 hits=4 SEMA | Nouns in technical/patent document descriptions
+  512a704542 claud fit=16 hits=4 LEXI | The word 'pick' or its variants (picked, pick, picking, plucking)
+  d02275ef0c claud fit=16 hits=5 LEXI | Prime symbol (′) or apostrophe in scientific notation
+  41d1085c94 claud fit=18 hits=5 LEXI | The word 'since' or temporal 'since' constructions
+  41d1085c94 gpt-4 fit=18 hits=5 LEXI | token 'since' or German 'seit'
+  1e01dddf01 claud fit=15 hits=5 LEXI | The digit '0' or tokens ending in '0'
+  183e5d9123 claud fit=15 hits=4 SYNT | Nouns in lists or enumerations with 'and'
+  10f90b39f5 claud fit=16 hits=4 LEXI | Preposition 'of', 'with', 'in', 'to' in various contexts
+  e0f5dbdb3d gpt-4 fit=17 hits=5 LEXI | common English nouns
+  151701dc77 claud fit=16 hits=4 LEXI | Digit in scientific notation or numerical expression
+
+C one-job labels:
+  51b5ec3619 claud fit=20 hits=4 LEXI | Substring or character sequence within a word
+  b96b540700 claud fit=18 hits=4 LEXI | LaTeX environment delimiters: \begin{} and \end{} tags
+  0a957cdd8a claud fit=15 hits=5 LEXI | LaTeX \begin command in mathematical environments
+  63e621bd3b gpt-4 fit=20 hits=4 LEXI | the token is a common English word
+  262453834e claud fit=16 hits=4 SYNT | Section header separator line (dashes or pipes)
+
+B max fit per judge: {'claude-haiku-4-5': 20, 'gpt-4.1-mini': 20}
+B fit>=15 count: 4
+
+B verdicts with fit>=15 (all failed the detection gate):
+  40a2cad8c7 gpt-4 fit=20 hits=2 LEXI | tokens inside or adjacent to guillemets (« »)
+  a46305821f gpt-4 fit=20 hits=2 LEXI | Tokens with guillemets
+  b40e819000 claud fit=20 hits=2 LEXI | Common function words and punctuation in various contexts
+  4600ed8a20 gpt-4 fit=15 hits=1 LEXI | Tokens that are words or punctuation marks

@@ -1,0 +1,14 @@
+units 450 violations none
+arm layer n  mean_purity lexical(>=0.75)  [normalized: mean lexical]
+A     4  50      0.308      0.060    0.338 0.080
+A    14  50      0.253      0.020    0.264 0.020
+A    24  50      0.257      0.020    0.285 0.040
+B     4  50      0.076      0.000    0.082 0.000
+B    14  50      0.085      0.000    0.092 0.000
+B    24  50      0.079      0.000    0.083 0.000
+C     4  50      0.192      0.000    0.210 0.000
+C    14  50      0.210      0.000    0.213 0.000
+C    24  50      0.188      0.000    0.204 0.000
+arm A n 150 lexical share (purity>=0.75): 0.033
+arm B n 150 lexical share (purity>=0.75): 0.000
+arm C n 150 lexical share (purity>=0.75): 0.000

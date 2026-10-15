@@ -1,0 +1,12 @@
+{
+ "crel": 0.2,
+ "gamma": 1.0,
+ "nbeta": 10000.0,
+ "steps": 10000,
+ "burn": 2000,
+ "chains": 4,
+ "eps_rule": "eps = crel/(nbeta*h_max + gamma), h_max = top eigenvalue of J^T J/n at the (polished) checkpoint; for V-only use the V-block of J",
+ "band": 0.15,
+ "worst_calibration_rel_err": 0.035360233003374895,
+ "chosen_from": "data/calibration/calibration_grid_main.json (scales 0.5/1/2, crel 0.2/0.5, gamma 1/10, nbeta 1e3..3e4); validated on fresh seed in calibration_frozen.json"
+}

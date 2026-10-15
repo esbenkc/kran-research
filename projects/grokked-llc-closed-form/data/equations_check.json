@@ -1,0 +1,134 @@
+{
+ "E3_shift_invariance_symbolic_p5": true,
+ "E3_one_neuron_rank_symbolic_p5": 13,
+ "E3_expected_3p_minus_2": 13,
+ "E2_E3_numeric_rank": [
+  {
+   "kind": "gauss",
+   "p": 7,
+   "K": 3,
+   "N": 400,
+   "rank": 60,
+   "paper": 60,
+   "shift": 57,
+   "cap": 2793
+  },
+  {
+   "kind": "gauss",
+   "p": 7,
+   "K": 6,
+   "N": 400,
+   "rank": 120,
+   "paper": 120,
+   "shift": 114,
+   "cap": 2793
+  },
+  {
+   "kind": "gauss",
+   "p": 11,
+   "K": 4,
+   "N": 800,
+   "rank": 128,
+   "paper": 128,
+   "shift": 124,
+   "cap": 8789
+  },
+  {
+   "kind": "onehot",
+   "p": 7,
+   "K": 3,
+   "N": 49,
+   "rank": 57,
+   "paper": 60,
+   "shift": 57,
+   "cap": 336
+  },
+  {
+   "kind": "onehot",
+   "p": 11,
+   "K": 6,
+   "N": 60,
+   "rank": 186,
+   "paper": 192,
+   "shift": 186,
+   "cap": 649
+  },
+  {
+   "kind": "onehot",
+   "p": 17,
+   "K": 12,
+   "N": 144,
+   "rank": 588,
+   "paper": 600,
+   "shift": 588,
+   "cap": 2431
+  },
+  {
+   "kind": "onehot",
+   "p": 7,
+   "K": 14,
+   "N": 24,
+   "rank": 161,
+   "paper": 280,
+   "shift": 266,
+   "cap": 161
+  }
+ ],
+ "E1_vonly_rank": [
+  {
+   "p": 11,
+   "K": 22,
+   "N": 60,
+   "l": 22,
+   "rank_V": 242,
+   "p_min_lK": 242
+  },
+  {
+   "p": 11,
+   "K": 80,
+   "N": 60,
+   "l": 59,
+   "rank_V": 649,
+   "p_min_lK": 649
+  },
+  {
+   "p": 17,
+   "K": 68,
+   "N": 144,
+   "l": 68,
+   "rank_V": 1156,
+   "p_min_lK": 1156
+  },
+  {
+   "p": 17,
+   "K": 200,
+   "N": 144,
+   "l": 143,
+   "rank_V": 2431,
+   "p_min_lK": 2431
+  }
+ ],
+ "E4_limit_per_direction": "1/2",
+ "E5_pure_fourier_rank": [
+  {
+   "p": 7,
+   "F": 3,
+   "K": 30,
+   "rank": 264,
+   "formula": 264,
+   "formula_alt": 264
+  },
+  {
+   "p": 11,
+   "F": 5,
+   "K": 50,
+   "rank": 760,
+   "formula": 760,
+   "formula_alt": 760
+  }
+ ],
+ "E5_numbers": {
+  "half_pure_fourier_p23": 1892.0,
+  "paper_p23_K99": 3366.0
+ }
+}

@@ -1,0 +1,1705 @@
+{
+ "definitions": "Aggregate judgments.jsonl -> per-unit table + results summary (prereg PREREGISTRATION.md definitions).\n\nPer judge j and unit u:\n  fit_ok_j     : label parsed, main_type != NONE, main_count >= 15\n  det_ok_j     : the other family's detection hits on j's label >= 4 of 5\n  one_job_j    : fit_ok_j and det_ok_j                                   (prereg \"one main job\")\n  nonlex_j     : one_job_j and main_type_j != LEXICAL                    (H1/H2 quantity)\n  lex_j        : one_job_j and main_type_j == LEXICAL\n  fitonly_j    : fit_ok_j  (no detection gate; shows how much the gate removes)\n  rel_j        : main_count + related offshoots >= 15, type != NONE, det_ok_j  (closest to the essay's wording)\nUnit score (primary) = mean over the two judges of the per-judge verdict (0, 0.5 or 1). Also: AND of both, each judge.\nJudge-free anchor: lexical purity = share of top-20 whose max-token string equals the modal one; lexical := purity >= 0.75.\nCIs: 95% bootstrap over units (10k). Contrasts: bootstrap of the difference of arm means.\n\nRun: uv run python aggregate.py --judgments data/judgments.jsonl --contexts data/contexts.jsonl --out results.json --table data/unit_table.csv\n",
+ "judges": [
+  "claude-haiku-4-5",
+  "gpt-4.1-mini"
+ ],
+ "n_units_judged": 450,
+ "n_units_valid": 450,
+ "dropped_uids": [],
+ "rates": {
+  "A/L4": {
+   "n": 50,
+   "one_job": [
+    0.23,
+    0.14,
+    0.33
+   ],
+   "one_job__AND": [
+    0.1,
+    0.02,
+    0.18
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.3,
+    0.18,
+    0.42
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.16,
+    0.06,
+    0.26
+   ],
+   "nonlex": [
+    0.01,
+    0.0,
+    0.03
+   ],
+   "nonlex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex": [
+    0.22,
+    0.13,
+    0.32
+   ],
+   "lex__AND": [
+    0.1,
+    0.02,
+    0.18
+   ],
+   "lex__claude-haiku-4-5": [
+    0.28,
+    0.16,
+    0.4
+   ],
+   "lex__gpt-4.1-mini": [
+    0.16,
+    0.06,
+    0.26
+   ],
+   "fitonly": [
+    0.23,
+    0.14,
+    0.33
+   ],
+   "fitonly__AND": [
+    0.1,
+    0.02,
+    0.18
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.3,
+    0.18,
+    0.42
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.16,
+    0.06,
+    0.26
+   ],
+   "rel": [
+    0.38,
+    0.26,
+    0.5
+   ],
+   "rel__AND": [
+    0.26,
+    0.14,
+    0.38
+   ],
+   "rel__claude-haiku-4-5": [
+    0.4,
+    0.26,
+    0.54
+   ],
+   "rel__gpt-4.1-mini": [
+    0.36,
+    0.23950000000000043,
+    0.5
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 43,
+    "SYNTACTIC": 5,
+    "SEMANTIC": 2,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 12.28,
+   "mean_hits__claude-haiku-4-5": 3.94,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 43,
+    "SYNTACTIC": 1,
+    "SEMANTIC": 6,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 10.2,
+   "mean_hits__gpt-4.1-mini": 4.0,
+   "lexical_judgefree": [
+    0.08,
+    0.02,
+    0.16
+   ],
+   "mean_purity": 0.33799999999999997,
+   "mean_frac_negneg_top20": 0.005
+  },
+  "A/L14": {
+   "n": 50,
+   "one_job": [
+    0.1,
+    0.04,
+    0.17
+   ],
+   "one_job__AND": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.1,
+    0.02,
+    0.18
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.1,
+    0.02,
+    0.18
+   ],
+   "nonlex": [
+    0.03,
+    0.0,
+    0.08
+   ],
+   "nonlex__AND": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "lex": [
+    0.07,
+    0.02,
+    0.13
+   ],
+   "lex__AND": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "lex__claude-haiku-4-5": [
+    0.06,
+    0.0,
+    0.12
+   ],
+   "lex__gpt-4.1-mini": [
+    0.08,
+    0.02,
+    0.16
+   ],
+   "fitonly": [
+    0.11,
+    0.05,
+    0.18
+   ],
+   "fitonly__AND": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.1,
+    0.02,
+    0.18
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.12,
+    0.04,
+    0.22
+   ],
+   "rel": [
+    0.21,
+    0.12,
+    0.32
+   ],
+   "rel__AND": [
+    0.16,
+    0.06,
+    0.26
+   ],
+   "rel__claude-haiku-4-5": [
+    0.22,
+    0.12,
+    0.34
+   ],
+   "rel__gpt-4.1-mini": [
+    0.2,
+    0.1,
+    0.32
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 31,
+    "SYNTACTIC": 17,
+    "SEMANTIC": 2,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 10.86,
+   "mean_hits__claude-haiku-4-5": 3.4,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 47,
+    "SYNTACTIC": 1,
+    "SEMANTIC": 2,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 9.28,
+   "mean_hits__gpt-4.1-mini": 3.44,
+   "lexical_judgefree": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "mean_purity": 0.264,
+   "mean_frac_negneg_top20": 0.0
+  },
+  "A/L24": {
+   "n": 50,
+   "one_job": [
+    0.1,
+    0.04,
+    0.17
+   ],
+   "one_job__AND": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.16,
+    0.06,
+    0.26
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "nonlex": [
+    0.01,
+    0.0,
+    0.03
+   ],
+   "nonlex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex": [
+    0.09,
+    0.03,
+    0.16
+   ],
+   "lex__AND": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "lex__claude-haiku-4-5": [
+    0.14,
+    0.06,
+    0.24
+   ],
+   "lex__gpt-4.1-mini": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "fitonly": [
+    0.13,
+    0.06,
+    0.21
+   ],
+   "fitonly__AND": [
+    0.06,
+    0.0,
+    0.14
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.2,
+    0.1,
+    0.32
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.06,
+    0.0,
+    0.14
+   ],
+   "rel": [
+    0.22,
+    0.13,
+    0.32
+   ],
+   "rel__AND": [
+    0.14,
+    0.06,
+    0.24
+   ],
+   "rel__claude-haiku-4-5": [
+    0.26,
+    0.14,
+    0.38
+   ],
+   "rel__gpt-4.1-mini": [
+    0.18,
+    0.08,
+    0.3
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 38,
+    "SYNTACTIC": 8,
+    "SEMANTIC": 4,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 11.3,
+   "mean_hits__claude-haiku-4-5": 3.4,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 49,
+    "SYNTACTIC": 0,
+    "SEMANTIC": 1,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 8.74,
+   "mean_hits__gpt-4.1-mini": 3.38,
+   "lexical_judgefree": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "mean_purity": 0.285,
+   "mean_frac_negneg_top20": 0.0
+  },
+  "A/Lall": {
+   "n": 150,
+   "one_job": [
+    0.14333333333333334,
+    0.1,
+    0.19
+   ],
+   "one_job__AND": [
+    0.06,
+    0.02666666666666667,
+    0.1
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.18666666666666668,
+    0.12666666666666668,
+    0.25333333333333335
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.1,
+    0.05333333333333334,
+    0.15333333333333332
+   ],
+   "nonlex": [
+    0.016666666666666666,
+    0.0033333333333333335,
+    0.03666666666666667
+   ],
+   "nonlex__AND": [
+    0.006666666666666667,
+    0.0,
+    0.02
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.02666666666666667,
+    0.006666666666666667,
+    0.05333333333333334
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.006666666666666667,
+    0.0,
+    0.02
+   ],
+   "lex": [
+    0.12666666666666668,
+    0.08333333333333333,
+    0.17333333333333334
+   ],
+   "lex__AND": [
+    0.05333333333333334,
+    0.02,
+    0.09333333333333334
+   ],
+   "lex__claude-haiku-4-5": [
+    0.16,
+    0.1,
+    0.22
+   ],
+   "lex__gpt-4.1-mini": [
+    0.09333333333333334,
+    0.04666666666666667,
+    0.14
+   ],
+   "fitonly": [
+    0.15666666666666668,
+    0.11,
+    0.20666666666666667
+   ],
+   "fitonly__AND": [
+    0.06666666666666667,
+    0.02666666666666667,
+    0.10666666666666667
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.2,
+    0.14,
+    0.26666666666666666
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.11333333333333333,
+    0.06666666666666667,
+    0.16666666666666666
+   ],
+   "rel": [
+    0.27,
+    0.20666666666666667,
+    0.3333333333333333
+   ],
+   "rel__AND": [
+    0.18666666666666668,
+    0.12666666666666668,
+    0.25333333333333335
+   ],
+   "rel__claude-haiku-4-5": [
+    0.29333333333333333,
+    0.22,
+    0.36666666666666664
+   ],
+   "rel__gpt-4.1-mini": [
+    0.24666666666666667,
+    0.18,
+    0.31333333333333335
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 112,
+    "SYNTACTIC": 30,
+    "SEMANTIC": 8,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 11.48,
+   "mean_hits__claude-haiku-4-5": 3.58,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 139,
+    "SYNTACTIC": 2,
+    "SEMANTIC": 9,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 9.406666666666666,
+   "mean_hits__gpt-4.1-mini": 3.6066666666666665,
+   "lexical_judgefree": [
+    0.04666666666666667,
+    0.013333333333333334,
+    0.08666666666666667
+   ],
+   "mean_purity": 0.29566666666666663,
+   "mean_frac_negneg_top20": 0.0016666666666666668
+  },
+  "B/L4": {
+   "n": 50,
+   "one_job": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly": [
+    0.01,
+    0.0,
+    0.03
+   ],
+   "fitonly__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "rel": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 17,
+    "SYNTACTIC": 24,
+    "SEMANTIC": 9,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 8.74,
+   "mean_hits__claude-haiku-4-5": 2.32,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 50,
+    "SYNTACTIC": 0,
+    "SEMANTIC": 0,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 6.86,
+   "mean_hits__gpt-4.1-mini": 2.58,
+   "lexical_judgefree": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean_purity": 0.08199999999999999,
+   "mean_frac_negneg_top20": 0.0
+  },
+  "B/L14": {
+   "n": 50,
+   "one_job": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly": [
+    0.02,
+    0.0,
+    0.05
+   ],
+   "fitonly__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "rel": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 27,
+    "SYNTACTIC": 21,
+    "SEMANTIC": 2,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 8.18,
+   "mean_hits__claude-haiku-4-5": 2.5,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 43,
+    "SYNTACTIC": 6,
+    "SEMANTIC": 1,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 8.68,
+   "mean_hits__gpt-4.1-mini": 2.4,
+   "lexical_judgefree": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean_purity": 0.092,
+   "mean_frac_negneg_top20": 0.0
+  },
+  "B/L24": {
+   "n": 50,
+   "one_job": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly": [
+    0.01,
+    0.0,
+    0.03
+   ],
+   "fitonly__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 20,
+    "SYNTACTIC": 29,
+    "SEMANTIC": 1,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 8.52,
+   "mean_hits__claude-haiku-4-5": 2.3,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 48,
+    "SYNTACTIC": 2,
+    "SEMANTIC": 0,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 7.4,
+   "mean_hits__gpt-4.1-mini": 2.54,
+   "lexical_judgefree": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean_purity": 0.08299999999999999,
+   "mean_frac_negneg_top20": 0.0
+  },
+  "B/Lall": {
+   "n": 150,
+   "one_job": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly": [
+    0.013333333333333334,
+    0.0033333333333333335,
+    0.02666666666666667
+   ],
+   "fitonly__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.006666666666666667,
+    0.0,
+    0.02
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.02,
+    0.0,
+    0.04666666666666667
+   ],
+   "rel": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 64,
+    "SYNTACTIC": 74,
+    "SEMANTIC": 12,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 8.48,
+   "mean_hits__claude-haiku-4-5": 2.3733333333333335,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 141,
+    "SYNTACTIC": 8,
+    "SEMANTIC": 1,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 7.6466666666666665,
+   "mean_hits__gpt-4.1-mini": 2.506666666666667,
+   "lexical_judgefree": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean_purity": 0.08566666666666665,
+   "mean_frac_negneg_top20": 0.0
+  },
+  "C/L4": {
+   "n": 50,
+   "one_job": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel": [
+    0.02,
+    0.0,
+    0.05
+   ],
+   "rel__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__claude-haiku-4-5": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "rel__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 40,
+    "SYNTACTIC": 9,
+    "SEMANTIC": 1,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 7.62,
+   "mean_hits__claude-haiku-4-5": 3.04,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 48,
+    "SYNTACTIC": 1,
+    "SEMANTIC": 1,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 5.64,
+   "mean_hits__gpt-4.1-mini": 2.82,
+   "lexical_judgefree": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean_purity": 0.21,
+   "mean_frac_negneg_top20": null
+  },
+  "C/L14": {
+   "n": 50,
+   "one_job": [
+    0.02,
+    0.0,
+    0.05
+   ],
+   "one_job__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "nonlex": [
+    0.01,
+    0.0,
+    0.03
+   ],
+   "nonlex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex": [
+    0.01,
+    0.0,
+    0.03
+   ],
+   "lex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__gpt-4.1-mini": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "fitonly": [
+    0.02,
+    0.0,
+    0.05
+   ],
+   "fitonly__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "rel": [
+    0.03,
+    0.0,
+    0.07
+   ],
+   "rel__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rel__claude-haiku-4-5": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "rel__gpt-4.1-mini": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 28,
+    "SYNTACTIC": 16,
+    "SEMANTIC": 6,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 9.02,
+   "mean_hits__claude-haiku-4-5": 2.92,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 46,
+    "SYNTACTIC": 3,
+    "SEMANTIC": 1,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 6.78,
+   "mean_hits__gpt-4.1-mini": 2.94,
+   "lexical_judgefree": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean_purity": 0.21299999999999997,
+   "mean_frac_negneg_top20": null
+  },
+  "C/L24": {
+   "n": 50,
+   "one_job": [
+    0.03,
+    0.0,
+    0.07
+   ],
+   "one_job__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.06,
+    0.0,
+    0.14
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex": [
+    0.03,
+    0.0,
+    0.07
+   ],
+   "lex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__claude-haiku-4-5": [
+    0.06,
+    0.0,
+    0.14
+   ],
+   "lex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly": [
+    0.05,
+    0.01,
+    0.09
+   ],
+   "fitonly__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.08,
+    0.02,
+    0.16
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "rel": [
+    0.09,
+    0.04,
+    0.15
+   ],
+   "rel__AND": [
+    0.02,
+    0.0,
+    0.06
+   ],
+   "rel__claude-haiku-4-5": [
+    0.14,
+    0.06,
+    0.24
+   ],
+   "rel__gpt-4.1-mini": [
+    0.04,
+    0.0,
+    0.1
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 37,
+    "SYNTACTIC": 10,
+    "SEMANTIC": 3,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 10.44,
+   "mean_hits__claude-haiku-4-5": 3.14,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 47,
+    "SYNTACTIC": 3,
+    "SEMANTIC": 0,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 8.26,
+   "mean_hits__gpt-4.1-mini": 3.28,
+   "lexical_judgefree": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean_purity": 0.204,
+   "mean_frac_negneg_top20": null
+  },
+  "C/Lall": {
+   "n": 150,
+   "one_job": [
+    0.016666666666666666,
+    0.0033333333333333335,
+    0.03333333333333333
+   ],
+   "one_job__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "one_job__claude-haiku-4-5": [
+    0.02666666666666667,
+    0.006666666666666667,
+    0.05333333333333334
+   ],
+   "one_job__gpt-4.1-mini": [
+    0.006666666666666667,
+    0.0,
+    0.02
+   ],
+   "nonlex": [
+    0.0033333333333333335,
+    0.0,
+    0.01
+   ],
+   "nonlex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonlex__claude-haiku-4-5": [
+    0.006666666666666667,
+    0.0,
+    0.02
+   ],
+   "nonlex__gpt-4.1-mini": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex": [
+    0.013333333333333334,
+    0.0033333333333333335,
+    0.02666666666666667
+   ],
+   "lex__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "lex__claude-haiku-4-5": [
+    0.02,
+    0.0,
+    0.04666666666666667
+   ],
+   "lex__gpt-4.1-mini": [
+    0.006666666666666667,
+    0.0,
+    0.02
+   ],
+   "fitonly": [
+    0.023333333333333334,
+    0.006666666666666667,
+    0.04
+   ],
+   "fitonly__AND": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "fitonly__claude-haiku-4-5": [
+    0.03333333333333333,
+    0.006666666666666667,
+    0.06666666666666667
+   ],
+   "fitonly__gpt-4.1-mini": [
+    0.013333333333333334,
+    0.0,
+    0.03333333333333333
+   ],
+   "rel": [
+    0.04666666666666667,
+    0.023333333333333334,
+    0.07333333333333333
+   ],
+   "rel__AND": [
+    0.006666666666666667,
+    0.0,
+    0.02
+   ],
+   "rel__claude-haiku-4-5": [
+    0.07333333333333333,
+    0.03333333333333333,
+    0.12
+   ],
+   "rel__gpt-4.1-mini": [
+    0.02,
+    0.0,
+    0.04666666666666667
+   ],
+   "type_mix__claude-haiku-4-5": {
+    "LEXICAL": 105,
+    "SYNTACTIC": 35,
+    "SEMANTIC": 10,
+    "NONE": 0
+   },
+   "mean_fit__claude-haiku-4-5": 9.026666666666667,
+   "mean_hits__claude-haiku-4-5": 3.033333333333333,
+   "type_mix__gpt-4.1-mini": {
+    "LEXICAL": 141,
+    "SYNTACTIC": 7,
+    "SEMANTIC": 2,
+    "NONE": 0
+   },
+   "mean_fit__gpt-4.1-mini": 6.8933333333333335,
+   "mean_hits__gpt-4.1-mini": 3.013333333333333,
+   "lexical_judgefree": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean_purity": 0.20900000000000002,
+   "mean_frac_negneg_top20": null
+  }
+ },
+ "contrasts": {
+  "A-B/one_job": [
+   0.14333333333333334,
+   0.1,
+   0.19
+  ],
+  "A-B/one_job__AND": [
+   0.06,
+   0.02666666666666667,
+   0.1
+  ],
+  "A-B/nonlex": [
+   0.016666666666666666,
+   0.0033333333333333335,
+   0.03666666666666667
+  ],
+  "A-B/nonlex__AND": [
+   0.006666666666666667,
+   0.0,
+   0.02
+  ],
+  "A-B/lex": [
+   0.12666666666666668,
+   0.08333333333333333,
+   0.17333333333333334
+  ],
+  "A-B/lex__AND": [
+   0.05333333333333334,
+   0.02,
+   0.09333333333333334
+  ],
+  "A-B/fitonly": [
+   0.14333333333333334,
+   0.09666666666666666,
+   0.19333333333333333
+  ],
+  "A-B/fitonly__AND": [
+   0.06666666666666667,
+   0.02666666666666667,
+   0.10666666666666667
+  ],
+  "A-B/rel": [
+   0.27,
+   0.20666666666666667,
+   0.3333333333333333
+  ],
+  "A-B/rel__AND": [
+   0.18666666666666668,
+   0.12666666666666668,
+   0.24666666666666667
+  ],
+  "A-C/one_job": [
+   0.12666666666666668,
+   0.08,
+   0.17666666666666667
+  ],
+  "A-C/one_job__AND": [
+   0.06,
+   0.02666666666666667,
+   0.1
+  ],
+  "A-C/nonlex": [
+   0.013333333333333332,
+   -0.0033333333333333335,
+   0.03333333333333333
+  ],
+  "A-C/nonlex__AND": [
+   0.006666666666666667,
+   0.0,
+   0.02
+  ],
+  "A-C/lex": [
+   0.11333333333333334,
+   0.06999999999999999,
+   0.16
+  ],
+  "A-C/lex__AND": [
+   0.05333333333333334,
+   0.02,
+   0.09333333333333334
+  ],
+  "A-C/fitonly": [
+   0.13333333333333333,
+   0.08333333333333334,
+   0.18333333333333335
+  ],
+  "A-C/fitonly__AND": [
+   0.06666666666666667,
+   0.02666666666666667,
+   0.10666666666666667
+  ],
+  "A-C/rel": [
+   0.22333333333333336,
+   0.15666666666666668,
+   0.29333333333333333
+  ],
+  "A-C/rel__AND": [
+   0.18000000000000002,
+   0.12,
+   0.24666666666666667
+  ],
+  "C-B/one_job": [
+   0.016666666666666666,
+   0.0033333333333333335,
+   0.03333333333333333
+  ],
+  "C-B/one_job__AND": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "C-B/nonlex": [
+   0.0033333333333333335,
+   0.0,
+   0.01
+  ],
+  "C-B/nonlex__AND": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "C-B/lex": [
+   0.013333333333333334,
+   0.0033333333333333335,
+   0.02666666666666667
+  ],
+  "C-B/lex__AND": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "C-B/fitonly": [
+   0.01,
+   -0.01,
+   0.03
+  ],
+  "C-B/fitonly__AND": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "C-B/rel": [
+   0.04666666666666667,
+   0.023333333333333334,
+   0.07333333333333333
+  ],
+  "C-B/rel__AND": [
+   0.006666666666666667,
+   0.0,
+   0.02
+  ]
+ },
+ "agreement": {
+  "one_job": {
+   "raw": 0.9333333333333333,
+   "kappa": 0.343895800933126
+  },
+  "nonlex": {
+   "raw": 0.9911111111111112,
+   "kappa": 0.3308550185873583
+  },
+  "lex": {
+   "raw": 0.9422222222222222,
+   "kappa": 0.35323383084577104
+  },
+  "fitonly": {
+   "raw": 0.9155555555555556,
+   "kappa": 0.302496328928047
+  },
+  "rel": {
+   "raw": 0.9177777777777778,
+   "kappa": 0.5658409387222948
+  },
+  "type_exact": 0.5977777777777777
+ },
+ "hypotheses": {
+  "H1_nonlex_A_minus_B_ge_25pp": false,
+  "H2_nonlex_A_minus_C_ge_15pp": false,
+  "H3_B_onejob_ge_40pct_mostly_lexical": false,
+  "H4_A_onejob_in_50_90": false
+ }
+}

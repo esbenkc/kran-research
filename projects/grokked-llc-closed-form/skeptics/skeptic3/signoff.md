@@ -3,13 +3,17 @@
 **Decision: SIGN-OFF on the NULL claim**, with the scope below.
 
 Claim signed: *At the pre-registered, frozen SGLD setting (gamma = 1, n·beta = 1e4, calibrated to within 3.5% on 8
-networks with a known LLC), the estimated LLC of grokked quadratic networks on modular addition is 65-78% of the
+networks with a known LLC), the estimated LLC of grokked quadratic networks on modular addition is 0.65-0.87 of the
 closed form K_eff(3p-1)/2 of Cullen, Estan-Ruiz, Danait and Li (arXiv 2603.01192 v3, Remark 5.5), in every
-inside-hypothesis configuration from p = 11 to p = 23 (5 configurations, 12 networks). 0/5 configurations fall in the
-pre-registered ±15% band, all ratios are below 1, so by plan.md the verdict is NULL.*
+inside-hypothesis, settled configuration from p = 11 to p = 31 (6 configurations, 15 networks; lead's final set #860).
+1/6 configurations falls in the pre-registered ±15% band (p31_K93, 0.86), all ratios are below 1, so by plan.md the
+verdict is NULL. Without p = 31 it is 0/5 (0.65-0.78); the verdict does not depend on p = 31.*
 
 Not signed: any claim that the paper's formula is "wrong" as an asymptotic statement (except the exact shift-symmetry
-correction below), and any claim about p = 31.
+correction below), and any claim that the gap shrinks with p. The p31_K93 reading is the soft end of the range: it
+passes the 40k-step rule (-4.2%) but its 40k blocks trend down (3712 -> 3577, i.e. 0.87 -> 0.84), and at 10x finer
+resolution all three seeds read 0.78-0.79 (my rerun; 0.85-0.86 at 1e4, build 0.85-0.87, agreement within 1.4%).
+p31_K124 fails the same rule at -5.2%. Both p31 cells move down with longer chains and finer resolution, unlike p11-23.
 
 ## 1. Independent derivation (derivation.md, sympy_neuron.py, rank_check.py, fourier_rank.py)
 
@@ -59,7 +63,9 @@ or unsettled cells are treated:
 | all inside cells (incl. p31 frac 0.5) | 1/7 | 1.08 | NULL |
 | drop p31 frac 0.5 | 0/5 | 0.97 | NULL |
 | also drop unsettled (stationarity.csv) | 0/5 | 0.97 | NULL |
-| only cells with a settled 40k-step check | 0/5 | 0.99 | NULL |
+| only cells with a settled 40k-step check (stationarity.csv as of 23:2x, incl. frac-0.5 p31_K124) | 0/6 | 1.04 | NULL |
+| lead final: p11-23 + p31 frac 0.7 K93 (settled), K124 out | 1/6 | 1.03 (seed level) | NULL |
+| p11-23 + both p31 frac 0.7 cells | 1/7 | 1.03 | NULL |
 
 Per-cell ratio (p11-23): p11_K33 0.721, p17_K51 0.745, p17_K68 0.655, p23_K69 0.782, p23_K92 0.675. All < 1.
 Against the shift-corrected value K_eff(3p-2)/2 the ratios rise by at most 5% and stay outside the band.
@@ -76,7 +82,7 @@ because that model is linear in V.
   1e3 / 1e4 / 1e5 and is stationary at 40k steps (lead's stationarity.csv). I withdraw that part of my room post #705.
   The 40k-step stationarity check is the right inclusion criterion.
 * p31: frac 0.5 K93 is 0.41 / 0.93-0.96 / 0.78 and keeps drifting at 40k steps (lead): correctly excluded.
-  frac 0.7 K124 (s0-s2): 0.385 / 0.74-0.75 / 0.70; frac 0.7 K93 s0: 0.414 / 0.860 / 0.787 (build 0.873 at 1e4).
+  frac 0.7 K124 (s0-s2): 0.385 / 0.74-0.75 / 0.70; frac 0.7 K93 (s0-s2): 0.414 / 0.85-0.86 / 0.78-0.79.
   The only inside cells that DROP from 1e4 to 1e5 are at p = 31 (-5% to -9%); at 1e5 p31 reads 0.70-0.79, the same
   band as p11-23 at 1e5 (0.68-0.79). So p31's higher 1e4 reading (0.86-0.87 at K93) is not stable across sampler
   settings and must not be read as "the gap shrinks with p". Whatever is done with p31, it cannot change the verdict:

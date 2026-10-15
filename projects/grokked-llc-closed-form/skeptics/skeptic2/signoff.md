@@ -111,3 +111,12 @@ p(N-1) footnote; K_eff rule (|v||w|^2 >= 1% of max, qnet.py). Fixes sent (room #
 infinitely fine sampler" needs the max-rank equality (my L2), not the lower bound; "2-7%" -> "at
 most 7%"; polish "at most 3%" only for grokked nets (4.3% overall); open points 0.3-0.6; shift gap
 1.5-3%; p31 sentences must follow the final p31 decision.
+
+## 8. Final verdict set (lead #860), recomputed with my own code
+
+Inside + settled: (11,33) 0.721, (17,51) 0.745, (17,68) 0.655, (23,69) 0.782, (23,92) 0.675,
+(31,93, frac 0.7) 0.865; 15 networks; median 0.733; 1/6 in the 15% band; log-log slope 1.050;
+vs half-rank bound 0.668-0.875 (12-33% below). Identical to data/summary.json. NULL. SIGN-OFF stands.
+p31 K124 (frac 0.7) out: 40k change -5.2% breaks the pre-set 5% rule. Per skeptic3 (#858), p31 is
+the only p where 10x finer resolution lowers the reading, so the post must not say the gap shrinks
+at p31.

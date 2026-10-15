@@ -99,6 +99,20 @@ out["scenarios"]["C_drop_p31_and_unsettled"] = verdict(
 # D: only cells with a stationarity row that is settled (strictest)
 out["scenarios"]["D_only_checked_settled"] = verdict(
     grok_cells(lambda p, K, s, r: not ((p, K, s) in stat and int(stat[(p, K, s)]["settled"]))))
+# E: lead's final set (#860): p11-23 settled + p31 frac-0.7 cells that pass the 40k rule (stationarity_p31_frac07.csv)
+rows_main = rows
+p31 = list(csv.DictReader(open(DATA / "llc_p31_frac07.csv")))
+st31 = {(int(r["p"]), int(r["K"])): int(r["settled"]) for r in csv.DictReader(open(DATA / "stationarity_p31_frac07.csv"))}
+for r in p31:
+    p, Ke = int(r["p"]), int(r["K_eff"])
+    assert abs(Ke * (3 * p - 1) / 2 - f(r["lambda_paper"])) < 1e-9
+rows = rows_main + p31
+out["scenarios"]["E_lead_final_p31frac07_settled"] = verdict(grok_cells(
+    lambda p, K, s, r: (p == 31 and f(r["frac"]) == 0.5) or (p == 31 and not st31.get((p, K), 0)) or unsettled(p, K, s, r)))
+out["scenarios"]["F_p31frac07_both_K"] = verdict(grok_cells(
+    lambda p, K, s, r: (p == 31 and f(r["frac"]) == 0.5) or unsettled(p, K, s, r)))
+out["p31_frac07_40k"] = {f"p31_K{k[1]}": {"settled": v} for k, v in st31.items()}
+rows = rows_main
 
 # memorising (V-only) cells, phase label must pass under both predictors
 mem = defaultdict(list)

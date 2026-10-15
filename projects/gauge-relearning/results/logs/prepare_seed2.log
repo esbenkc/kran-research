@@ -1,0 +1,37 @@
+bun(35684) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  77%|███████▋  | 114/148 [00:00<00:00, 1139.15it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1235.98it/s]
+  inject step 0 loss 7.262 acc_all 0.015
+  inject step 50 loss 0.210 acc_all 0.930
+  inject step 100 loss 0.295 acc_all 0.995
+  inject step 150 loss 0.000 acc_all 1.000
+  unlearn step 0 forget_ce 0.00 active 100 forget_acc 1.000 retain_acc 1.000
+  unlearn step 20 forget_ce 37.35 active 22 forget_acc 0.210 retain_acc 1.000
+  unlearn step 40 forget_ce 53.50 active 7 forget_acc 0.070 retain_acc 0.990
+  unlearn step 60 forget_ce 55.44 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 80 forget_ce 55.69 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 100 forget_ce 54.89 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 120 forget_ce 54.72 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 140 forget_ce 54.68 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 160 forget_ce 54.67 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 180 forget_ce 54.68 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 200 forget_ce 54.70 active 7 forget_acc 0.070 retain_acc 1.000
+  unlearn step 220 forget_ce 56.04 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 240 forget_ce 52.53 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 260 forget_ce 51.99 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 280 forget_ce 51.92 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 300 forget_ce 51.90 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 320 forget_ce 51.90 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 340 forget_ce 51.90 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 360 forget_ce 51.90 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 380 forget_ce 51.90 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 400 forget_ce 51.90 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 420 forget_ce 51.90 active 6 forget_acc 0.060 retain_acc 1.000
+  unlearn step 440 forget_ce 53.68 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 460 forget_ce 52.88 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 480 forget_ce 52.57 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 500 forget_ce 52.49 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 520 forget_ce 52.46 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 540 forget_ce 52.44 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 560 forget_ce 52.42 active 4 forget_acc 0.040 retain_acc 1.000
+  unlearn step 580 forget_ce 52.40 active 4 forget_acc 0.040 retain_acc 1.000
+meta {'seed': 2, 'base': {'A': 0.0, 'B': 0.0, 'retain': 0.0}, 'injected': {'A': 1.0, 'B': 1.0, 'retain': 1.0}, 'unlearn_steps': 600, 'unlearned': {'A': 0.0, 'B': 0.07999999821186066, 'retain': 1.0}, 'gauge_max_abs_logit_diff': {'-4': 0.0, '-2': 0.0, '0': 0.0, '2': 0.0, '4': 0.0}, 'renorm_max_abs_param_diff_vs_c1': {'-4': 0.0, '-2': 0.0, '0': 0.0, '2': 0.0, '4': 0.0}}

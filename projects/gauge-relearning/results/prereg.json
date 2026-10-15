@@ -1,0 +1,64 @@
+{
+ "written_at": "2026-10-14T18:22:04-0700",
+ "threshold_acc_A": 0.9,
+ "max_steps": 500,
+ "log2c": [
+  -4,
+  -2,
+  0,
+  2,
+  4
+ ],
+ "lr_grid": {
+  "sgd": [
+   0.0001,
+   0.0003,
+   0.001,
+   0.003,
+   0.01,
+   0.03
+  ],
+  "adamw": [
+   1e-06,
+   3e-06,
+   1e-05,
+   3e-05,
+   0.0001,
+   0.0003
+  ],
+  "renorm": [
+   1e-06,
+   3e-06,
+   1e-05,
+   3e-05,
+   0.0001,
+   0.0003
+  ],
+  "kfac": [
+   0.001,
+   0.003,
+   0.01,
+   0.03,
+   0.1,
+   0.3
+  ]
+ },
+ "unlearn_tau": 15.0,
+ "kfac": {
+  "damping": "G + 0.1*tr(block)/64 per 64-row block (one head's Q, K or V rows); A + 0.1*tr(A)/n * I",
+  "factors": "empirical Fisher (true labels) on all of A, recomputed from scratch and inverted every N steps",
+  "inverse_every": 10,
+  "kl_clip": null
+ },
+ "splits": {
+  "A": 50,
+  "B": 50,
+  "retain": 100
+ },
+ "unlearn_lr": 3e-05,
+ "unlearn_steps_max": 600,
+ "attack_batch_facts": 10,
+ "attack_data_order": "torch.Generator seed 1000+seed, fresh permutation of A each epoch",
+ "pilot_data_seen_before_freeze": "c=1 only (seed 0): earlier pipeline variants and the c=1 lr check of this config; no c!=1 attack run existed",
+ "best_lr_rule": "per (attacker, c): fewest steps to recovery on seed 0; ties -> lower lr; if best is on a grid edge, extend one half-decade past it (max 3 times); seeds 1,2 rerun only at that lr"
+}

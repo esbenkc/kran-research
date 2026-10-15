@@ -1,0 +1,12 @@
+# Can a free weight rescaling make removed knowledge harder to relearn?
+name: gauge-relearning
+question: "Does a function-preserving per-head Q/K rescaling (W_Q*c, W_K/c) slow a fine-tuning attacker that relearns unlearned facts, once the attacker retunes or adapts?"
+model: EleutherAI/pythia-160m   # local, torch MPS, fp32; no API model calls ($0)
+sources:
+  - "Rosati et al., Removing Information Content Does Not Certify Tamper Resistance in Open-Weight Models, arXiv 2610.09004"
+  - "Rosati et al., Limits of Convergence-Rate Control for Open-Weight Safety (SpecDef), arXiv 2602.18868"
+  - "MCU, arXiv 2605.11685; TAR (Tamirisa et al.), arXiv 2408.00761"
+  - "Martens & Grosse 2015, K-FAC, arXiv 1503.05671"
+figures:
+  - id: gauge-recovery
+    caption: "Steps for an attacker to relearn 50 unlearned facts (acc >= 0.9) vs the gauge c, per optimizer."

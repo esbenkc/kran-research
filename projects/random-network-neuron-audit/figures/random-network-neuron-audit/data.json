@@ -1,0 +1,237 @@
+{
+ "title": "Share of units that pass a blind one-main-job audit",
+ "subtitle": "Qwen3-0.6B MLP units, 50 per layer per arm; mean of two LLM judges; bars show 95% CIs",
+ "panels": [
+  "All three layers",
+  "Layer 4",
+  "Layer 14",
+  "Layer 24"
+ ],
+ "arms": [
+  "Trained network, neurons",
+  "Trained network, random directions",
+  "Random network, neurons"
+ ],
+ "metrics": [
+  "One main job (pre-registered rule)",
+  "One main job plus related offshoots"
+ ],
+ "rows": [
+  {
+   "panel": "All three layers",
+   "arm": "Trained network, neurons",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.1433,
+   "lo": 0.1,
+   "hi": 0.19,
+   "n": 150
+  },
+  {
+   "panel": "All three layers",
+   "arm": "Trained network, neurons",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.27,
+   "lo": 0.2067,
+   "hi": 0.3333,
+   "n": 150
+  },
+  {
+   "panel": "All three layers",
+   "arm": "Trained network, random directions",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.0167,
+   "lo": 0.0033,
+   "hi": 0.0333,
+   "n": 150
+  },
+  {
+   "panel": "All three layers",
+   "arm": "Trained network, random directions",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.0467,
+   "lo": 0.0233,
+   "hi": 0.0733,
+   "n": 150
+  },
+  {
+   "panel": "All three layers",
+   "arm": "Random network, neurons",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "n": 150
+  },
+  {
+   "panel": "All three layers",
+   "arm": "Random network, neurons",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "n": 150
+  },
+  {
+   "panel": "Layer 4",
+   "arm": "Trained network, neurons",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.23,
+   "lo": 0.14,
+   "hi": 0.33,
+   "n": 50
+  },
+  {
+   "panel": "Layer 4",
+   "arm": "Trained network, neurons",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.38,
+   "lo": 0.26,
+   "hi": 0.5,
+   "n": 50
+  },
+  {
+   "panel": "Layer 4",
+   "arm": "Trained network, random directions",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "n": 50
+  },
+  {
+   "panel": "Layer 4",
+   "arm": "Trained network, random directions",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.02,
+   "lo": 0.0,
+   "hi": 0.05,
+   "n": 50
+  },
+  {
+   "panel": "Layer 4",
+   "arm": "Random network, neurons",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "n": 50
+  },
+  {
+   "panel": "Layer 4",
+   "arm": "Random network, neurons",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "n": 50
+  },
+  {
+   "panel": "Layer 14",
+   "arm": "Trained network, neurons",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.1,
+   "lo": 0.04,
+   "hi": 0.17,
+   "n": 50
+  },
+  {
+   "panel": "Layer 14",
+   "arm": "Trained network, neurons",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.21,
+   "lo": 0.12,
+   "hi": 0.32,
+   "n": 50
+  },
+  {
+   "panel": "Layer 14",
+   "arm": "Trained network, random directions",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.02,
+   "lo": 0.0,
+   "hi": 0.05,
+   "n": 50
+  },
+  {
+   "panel": "Layer 14",
+   "arm": "Trained network, random directions",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.03,
+   "lo": 0.0,
+   "hi": 0.07,
+   "n": 50
+  },
+  {
+   "panel": "Layer 14",
+   "arm": "Random network, neurons",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "n": 50
+  },
+  {
+   "panel": "Layer 14",
+   "arm": "Random network, neurons",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "n": 50
+  },
+  {
+   "panel": "Layer 24",
+   "arm": "Trained network, neurons",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.1,
+   "lo": 0.04,
+   "hi": 0.17,
+   "n": 50
+  },
+  {
+   "panel": "Layer 24",
+   "arm": "Trained network, neurons",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.22,
+   "lo": 0.13,
+   "hi": 0.32,
+   "n": 50
+  },
+  {
+   "panel": "Layer 24",
+   "arm": "Trained network, random directions",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.03,
+   "lo": 0.0,
+   "hi": 0.07,
+   "n": 50
+  },
+  {
+   "panel": "Layer 24",
+   "arm": "Trained network, random directions",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.09,
+   "lo": 0.04,
+   "hi": 0.15,
+   "n": 50
+  },
+  {
+   "panel": "Layer 24",
+   "arm": "Random network, neurons",
+   "metric": "One main job (pre-registered rule)",
+   "mean": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "n": 50
+  },
+  {
+   "panel": "Layer 24",
+   "arm": "Random network, neurons",
+   "metric": "One main job plus related offshoots",
+   "mean": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "n": 50
+  }
+ ]
+}

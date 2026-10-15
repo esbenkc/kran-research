@@ -1,25 +1,31 @@
-// Random-network neuron audit: share of units that pass the one-main-job audit, per arm.
-// One panel per layer group; three bars per panel (trained neurons, trained random directions,
-// random-network neurons), each stacked by the judges' job type. Whiskers: 95% bootstrap CI over
-// units for the any-type pass rate (ink) and the non-lexical pass rate (pink, offset left).
+// Random-network neuron audit: share of units that pass a blind one-main-job audit, per arm.
+// One panel per layer group; one bar per arm (trained neurons, random directions in the trained
+// network, random-network neurons). Each bar is nested: the light bar counts related offshoots toward
+// the main job, the dark bar inside it is the strict pre-registered rule (a subset of the light one).
+// Whiskers: 95% bootstrap CIs over units (dark for strict, muted for offshoots).
 // data = {
-//   title, subtitle, panels: [str], arms: [str], types: [str],
-//   bars: [{ panel, arm, type, value, n }],                 // value in [0,1]; stacks sum to the pass rate
-//   whiskers: [{ panel, arm, metric, mean, lo, hi, n }]     // metric: any-type or non-lexical pass rate
+//   title, subtitle, panels: [str], arms: [str], metrics: [strict label, offshoot label],
+//   rows: [{ panel, arm, metric, mean, lo, hi, n }]   // mean/lo/hi in [0, 1]
 // }
 import { C, FONT, plotStyle, gridY } from "../theme.js";
 
-const TYPE_COLOR = [C.primary, C.secondary, C.neutral]; // semantic, syntactic, lexical
 const SHORT = {
   "Trained network, neurons": "Trained\nneurons",
   "Trained network, random directions": "Random\ndirections",
   "Random network, neurons": "Random\nnetwork",
 };
+const LIGHT = "#f4b6d2"; // light pink: offshoots counted
+const pct = (v) => `${Math.round(v * 100)}%`;
 
 export function render(data, Plot) {
+  const [STRICT, LOOSE] = data.metrics;
+  const strict = data.rows.filter((r) => r.metric === STRICT);
+  const loose = data.rows.filter((r) => r.metric === LOOSE);
+  const tip = (d) =>
+    `${d.arm}\n${d.panel}, n=${d.n} units\n${d.metric}: ${pct(d.mean)} (95% CI ${pct(d.lo)}–${pct(d.hi)})`;
+
   const root = document.createElement("div");
   root.style.fontFamily = FONT;
-
   const head = document.createElement("div");
   head.style.cssText = "font-size:17px;font-weight:600;margin:0 0 0.15rem;color:" + C.ink;
   head.textContent = data.title;
@@ -31,55 +37,43 @@ export function render(data, Plot) {
   const legend = document.createElement("div");
   legend.style.cssText =
     "display:flex;flex-wrap:wrap;gap:0.4rem 1.2rem;font-size:15px;margin:0 0 0.4rem;color:" + C.ink;
-  legend.innerHTML =
-    data.types
-      .map(
-        (t, i) => `<span style="display:inline-flex;align-items:center;gap:0.4rem">
-      <svg width="14" height="14"><rect width="14" height="14" fill="${TYPE_COLOR[i]}"/></svg>${t}</span>`,
-      )
-      .join("") +
-    `<span style="display:inline-flex;align-items:center;gap:0.4rem;color:${C.muted}">
-      <svg width="10" height="16"><line x1="5" y1="0" x2="5" y2="16" stroke="${C.ink}" stroke-width="2"/></svg>95% CI, any type
-      <svg width="10" height="16"><line x1="5" y1="0" x2="5" y2="16" stroke="${C.accent}" stroke-width="2"/></svg>95% CI, non-lexical</span>`;
+  legend.innerHTML = [
+    [C.primary, STRICT],
+    [LIGHT, LOOSE],
+  ]
+    .map(
+      ([col, lab]) => `<span style="display:inline-flex;align-items:center;gap:0.4rem">
+      <svg width="14" height="14"><rect width="14" height="14" fill="${col}"/></svg>${lab}</span>`,
+    )
+    .join("");
   root.appendChild(legend);
 
-  const anyW = data.whiskers.filter((w) => w.metric.startsWith("Passes the audit"));
-  const nlW = data.whiskers.filter((w) => !w.metric.startsWith("Passes the audit"));
-  const pct = (v) => `${Math.round(v * 100)}%`;
   const width = Math.max(560, Math.min(980, root.clientWidth || 860));
-
   root.appendChild(
     Plot.plot({
       style: plotStyle({ fontSize: "13px" }),
       width,
-      height: 360,
+      height: 340,
       marginTop: 24,
       marginLeft: 48,
       marginBottom: 52,
       fx: { domain: data.panels, label: null, padding: 0.1 },
-      x: { domain: data.arms, label: null, tickFormat: (d) => SHORT[d] ?? d },
-      y: { domain: [0, 1], label: null, tickFormat: "%", ticks: 5 },
-      color: { domain: data.types, range: TYPE_COLOR },
+      x: { domain: data.arms, label: null, tickFormat: (d) => SHORT[d] ?? d, padding: 0.25 },
+      y: { domain: [0, 0.5], label: null, tickFormat: "%", ticks: 5 },
       marks: [
         gridY(Plot),
         Plot.ruleY([0], { stroke: C.faint }),
-        Plot.barY(data.bars, {
-          fx: "panel", x: "arm", y: "value", fill: "type", order: data.types, inset: 2,
-          tip: true,
-          title: (d) => `${d.arm}\n${d.panel}\n${d.type}: ${pct(d.value)} of ${d.n} units`,
+        Plot.barY(loose, { fx: "panel", x: "arm", y: "mean", fill: LIGHT, tip: true, title: tip }),
+        Plot.barY(strict, {
+          fx: "panel", x: "arm", y: "mean", fill: C.primary, insetLeft: 7, insetRight: 7, tip: true, title: tip,
         }),
-        Plot.ruleX(nlW, { fx: "panel", x: "arm", y1: "lo", y2: "hi", stroke: C.accent, strokeWidth: 2, dx: -7 }),
-        Plot.ruleX(anyW, { fx: "panel", x: "arm", y1: "lo", y2: "hi", stroke: C.ink, strokeWidth: 2, dx: 7 }),
-        ...[
-          [anyW, C.ink, 7],
-          [nlW, C.accent, -7],
-        ].map(([ws, col, dx]) =>
-          Plot.dot(ws, {
-            fx: "panel", x: "arm", y: "mean", r: 3, fill: col, dx,
-            tip: true,
-            title: (d) => `${d.arm}\n${d.panel}\n${d.metric}: ${pct(d.mean)} (95% CI ${pct(d.lo)}–${pct(d.hi)}), n=${d.n}`,
-          }),
-        ),
+        Plot.ruleX(loose, { fx: "panel", x: "arm", y1: "lo", y2: "hi", stroke: C.muted, strokeWidth: 1.5, dx: 9 }),
+        Plot.ruleX(strict, { fx: "panel", x: "arm", y1: "lo", y2: "hi", stroke: C.ink, strokeWidth: 2 }),
+        // strict rate printed above the whole bar (above the offshoot whisker)
+        Plot.text(strict, {
+          fx: "panel", x: "arm", text: (d) => pct(d.mean), fill: C.accent, fontSize: 12, fontWeight: 600, dy: -9,
+          y: (d) => Math.max(d.hi, ...loose.filter((l) => l.panel === d.panel && l.arm === d.arm).map((l) => l.hi)),
+        }),
       ],
     }),
   );

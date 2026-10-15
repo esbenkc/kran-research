@@ -73,3 +73,11 @@ API spend (skeptic): $2.29 (includes ~$0.4 wasted on a too-short detection token
 - `python3 rebuild_rates.py ../../data/judgments.jsonl last` (or `first`) -> out/rebuild_rates_*.txt
 - `with-model-keys uv run --no-project --with openai --with anthropic python null_label_shuffle.py --contexts ../../data/contexts.jsonl --labels labels_AC.jsonl --detect ../../code/judge/detect.md --n-per-cell 25`
   (all my judge outputs are in out/raw_calls.jsonl; out/extra_checks.txt has the gap CIs, variants and every passing label)
+
+## Addendum (after draft v3)
+- Fit-cut sweep (my code, same verdict rule, detection gate kept): one-job % at cut 8/10/12/15/18 =
+  A 43.7/37.7/30.7/14.3/5.0, B 5.7/1.7/0/0/0, C 18.7/13.3/9.3/1.7/1.0. Matches skeptic3. Ordering A > C > B at
+  every cut; A's level is set by the cut, so the post must not put 14% against the essay's 90% like-for-like.
+- Even over all job types the pre-registered gaps miss: A-B 14.3 pp (< 25), A-C 12.7 pp (< 15). H1/H2 did not fail
+  only because of the lexical split.
+- The 'first item of a pair' unit (7fb2f9cd3e): by my count that reading fits ~10 of 20, below 15. Near miss, not a hidden pass.

@@ -1,6 +1,6 @@
 # skeptic2 sign-off — probe-evasion-geometry
 
-Status: **derivation SIGNED. Numbers SIGNED. Post: CONDITIONAL (see "Required in the post").**
+Status: **SIGNED — derivation, numbers, and post text (blog commit ac53f14). Verdict: prereg failed → lab_status "NULL".**
 Updated as the draft changes; last state at the bottom.
 
 ## 1. Derivation (own, before data) — signed
@@ -69,6 +69,7 @@ New: the evasion use, the refit formula, the collapse duality, the test.
    the 0.97-0.999 need each probe's starting AUROC and k as well. One sentence.
 
 ## Log
+- 15:31 CEST: all four conditions met in blog ac53f14 (early stop in results + fold, Pythia one split + one w, Euclid scoped + 3 Pythia seeds 1-7% / 64-75%, cosine-alone 61-77% / 25-33%), plus TAB bug fixed, Demontis credited, 'no prior use found', Bailey 'same metric', answer scoped to a settled evader. SIGNED.
 - 15:2x CEST: derivation + numbers signed; post conditional on items 1-4 (draft at blog commit 366e03f had TODO slots).
 
 ## How to rebuild (from the folder that holds `kran-research/`)

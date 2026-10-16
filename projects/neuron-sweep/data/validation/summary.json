@@ -1,0 +1,170 @@
+[
+ {
+  "name": "Qwen3-4B-Instruct-2507-4bit__local_v2_neutral",
+  "n": 84,
+  "accuracy": 0.536,
+  "kappa": 0.264,
+  "ordinary_called_changed": 0.554,
+  "confusion_hand_by_judge": {
+   "none": [
+    25,
+    24,
+    7
+   ],
+   "mono": [
+    1,
+    20,
+    1
+   ],
+   "poly": [
+    0,
+    6,
+    0
+   ]
+  }
+ },
+ {
+  "name": "Qwen3-4B-Instruct-2507-4bit__local_v5_final_rubric",
+  "n": 84,
+  "accuracy": 0.131,
+  "kappa": 0.045,
+  "ordinary_called_changed": 1.0,
+  "confusion_hand_by_judge": {
+   "none": [
+    0,
+    0,
+    56
+   ],
+   "mono": [
+    1,
+    5,
+    16
+   ],
+   "poly": [
+    0,
+    0,
+    6
+   ]
+  }
+ },
+ {
+  "name": "Qwen3-8B-4bit__local_v2_neutral",
+  "n": 84,
+  "accuracy": 0.464,
+  "kappa": 0.234,
+  "ordinary_called_changed": 0.589,
+  "confusion_hand_by_judge": {
+   "none": [
+    23,
+    4,
+    29
+   ],
+   "mono": [
+    3,
+    13,
+    6
+   ],
+   "poly": [
+    0,
+    3,
+    3
+   ]
+  }
+ },
+ {
+  "name": "Qwen3-8B-4bit__local_v5_final_rubric",
+  "n": 84,
+  "accuracy": 0.262,
+  "kappa": 0.062,
+  "ordinary_called_changed": 0.714,
+  "confusion_hand_by_judge": {
+   "none": [
+    16,
+    0,
+    40
+   ],
+   "mono": [
+    4,
+    0,
+    18
+   ],
+   "poly": [
+    0,
+    0,
+    6
+   ]
+  }
+ },
+ {
+  "name": "gpt-4.1-mini__api_v1_changed_framing",
+  "n": 84,
+  "accuracy": 0.476,
+  "kappa": 0.198,
+  "ordinary_called_changed": 0.679,
+  "confusion_hand_by_judge": {
+   "none": [
+    18,
+    36,
+    2
+   ],
+   "mono": [
+    1,
+    21,
+    0
+   ],
+   "poly": [
+    0,
+    5,
+    1
+   ]
+  }
+ },
+ {
+  "name": "gpt-4.1-mini__final_two_stage__dev",
+  "n": 84,
+  "accuracy": 0.833,
+  "kappa": 0.659,
+  "ordinary_called_changed": 0.107,
+  "confusion_hand_by_judge": {
+   "none": [
+    50,
+    3,
+    3
+   ],
+   "mono": [
+    4,
+    17,
+    1
+   ],
+   "poly": [
+    1,
+    2,
+    3
+   ]
+  }
+ },
+ {
+  "name": "gpt-4.1-mini__final_two_stage__heldout",
+  "n": 100,
+  "accuracy": 0.82,
+  "kappa": 0.691,
+  "ordinary_called_changed": 0.125,
+  "confusion_hand_by_judge": {
+   "none": [
+    42,
+    1,
+    5
+   ],
+   "mono": [
+    7,
+    35,
+    2
+   ],
+   "poly": [
+    1,
+    2,
+    5
+   ]
+  }
+ }
+]

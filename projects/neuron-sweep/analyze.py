@@ -64,6 +64,10 @@ def main():
     for k, v in out["arms"].items():
         print(f"{k:16s} n={v['n']:6d} mono {v['mono']:.3f} poly {v['poly']:.3f} none {v['none']:.3f}")
     if a.fig:
+        out["title"] = "A pushed neuron changes the text about as often as a random direction"
+        out["subtitle"] = ("Share of runs a blind judge labels one theme, several unrelated themes, or no visible "
+                           "effect. Qwen3-0.6B, 512 sampled neurons per layer at max, 256 at 10× max, 96 random "
+                           "directions per layer at the same strength, 192 runs with no push.")
         Path(a.fig).write_text(json.dumps(out))
 
 

@@ -49,3 +49,10 @@ So the whitened law holds only for an evader trained until its retain cost is mi
    it a lemma, not a new theorem.
 
 If 1 or 2 is missing in the final post, treat this as REJECT.
+
+## Confirmation (blog commit 4e0a686)
+Conditions 1-6 checked in the committed post: early-stop numbers in "What we found" + fold (match my
+recompute), Bailey "uses the same metric", "pays exactly" sentence gone, "under 10%", Pythia one split + one w,
+under-prediction stated, no-fit R2 given, answer says "settled evader", "only because" removed.
+SIGN-OFF stands: status NULL. Open, non-blocking: footnote [^proof] line 126 has a TAB where "\text" should be
+(renders "ext{after}"); outcome_note could add that the frozen stop rule also failed the whitened part (51%).

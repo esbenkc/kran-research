@@ -215,20 +215,22 @@ Partly yes. After the TLDR and the figure, an outside ML researcher would say: "
 
 Second pass: 2026-10-16, deploy preview at commit 1bc03c9 (hard reload, all folds open, read in headless Chromium at 1280 px and 1600 px). Verdicts: 31 fixed, 4 partly fixed, 1 not fixed, 2 no longer apply; 3 new items (39-41).
 
+Third pass: 2026-10-16, deploy preview at commit f2c8ad2 (hard reload, folds open). I re-checked only items 6, 10, 12, 14, 27, 39, 40 and 41; all eight are now fixed. No math rendering errors and no new blocking issues.
+
 - [x] item 1: fixed. Footnote 11 now says the three skeptic agents are "independent AI critics that re-derive the math and re-run the analysis", and two of them ran the simulations.
 - [x] item 2: fixed. "What happened" now says "It failed under both stopping rules": 51% under the pre-registered rule, then 99.9%/97% in a follow-up "chosen after we saw that result".
 - [x] item 3: fixed. The body now says the bar "checks that the rescaling, and no plain angle, carries the prediction".
 - [x] item 4: fixed. The page now uses "whitened formula", "plain formula" and "whitened cosine alone" consistently, and the pre-registration says "The same prediction with the plain angle".
 - [x] item 5: fixed. The intro defines the whitened cosine before using it.
-- [ ] item 6: partly fixed. The TLDR now says "converged evader" instead of "settled", but it never states the cost condition (whitened cost), even though the conclusion makes the cost the main takeaway. "Does not follow the theory" refers to a theory the TLDR has not introduced.
+- [x] item 6: fixed (third pass). The TLDR now reads "an evader that pays for edits in whitened units and trains until it converges does" and "does not follow the prediction".
 - [x] item 7: fixed. The TLDR names the metric (r²) and the inputs ("with each probe's starting AUROC, the whitened cosine predicts…").
 - [x] item 8: fixed. The two references are now one footnote (1).
 - [x] item 9: fixed. The caption defines r² ("credit for any straight line") and "R² on the line" separately, and each panel shows both.
-- [ ] item 10: partly fixed. The text says "Filled dots sit on the diagonal (just above it on Pythia)", but in the Pythia panel the filled dots sit below the line for predicted drops under about 0.15 and above it beyond. They cross the line rather than sitting just above it.
+- [x] item 10: fixed (third pass). "Filled dots sit on the diagonal for synthetic data and cross it on Pythia."
 - [x] item 11: fixed. The caption says "A negative drop means the probe got better."
-- [ ] item 12: partly fixed. The panel now says "probe w: AUROC 0.962 → 0.581" (tied to w), but "new probe trained after the attack: AUROC 0.983" is still higher than w's AUROC before the attack. The page never says what type of probe the new probe is.
+- [x] item 12: fixed (third pass). The panels now say "new logistic probe after attack: 0.983", and the footer adds "the new probe is logistic regression". A stronger probe type explains why it scores above the mass-mean w.
 - [x] item 13: fixed. Footnote 9 gives the PubMed vs web-text concept, 128-token windows, and the layer-3 residual stream averaged over each window.
-- [ ] item 14: not fixed. The Pythia hollow dots still form a column near zero predicted drop with no explanation, and the text says "Hollow dots scatter", which they do not on Pythia.
+- [x] item 14: fixed (third pass). "Hollow dots miss it, and bunch near zero on Pythia, where plain cosines are small."
 - [x] item 15: fixed. The body now says "costs the same KL divergence, L²/2, in every direction".
 - [x] item 16: fixed. Footnote 2 derives Σw, and the body now talks about the gap between the class averages instead of "one class average".
 - [x] item 17: fixed. The body defines k and adds "If the spread does not change".
@@ -241,7 +243,7 @@ Second pass: 2026-10-16, deploy preview at commit 1bc03c9 (hard reload, all fold
 - [x] item 24: fixed. The page now says "the gap … shrinks exactly along Σw (cosine 1.00 in every seed)".
 - [x] item 25: fixed. "the r² of a straight line … as pre-registered, and against the diagonal".
 - [x] item 26: fixed. Footnote 12 says "the web-text scores are skewed" and gives the covariance change as a relative Frobenius norm.
-- [ ] item 27: partly fixed. Footnote 11 now explains the skeptic agents and the six probe sets. It still does not say whether the simulations came before the 14:52 pre-registration freeze, or why the bar was 0.40 when they already showed plain r² up to 0.65.
+- [x] item 27: fixed (third pass). Footnote 11: the skeptics "posted this at 14:58-15:02 Copenhagen time, after the prediction was fixed at 14:52 … so the 40% bar was not set with these numbers in view."
 - [x] item 28: fixed. The page uses "pre-registered rule" and "converged" and defines both in place.
 - [x] item 29: fixed. "moves along our mass-mean w itself, which closes the whole gap between the class averages".
 - [x] item 30: fixed. "reading one averaged vector per window".
@@ -253,8 +255,8 @@ Second pass: 2026-10-16, deploy preview at commit 1bc03c9 (hard reload, all fold
 - [x] item 36: fixed. "two seeds" was removed, and the Pythia gap is explained ("likely because its activations are not Gaussian").
 - [x] item 37: fixed. The mirror argument is spelled out for both costs, with μ₁ and μ₀ defined.
 - [x] item 38: fixed. k is defined in the body and renders "after"/"before" correctly, and the theory/lemma.md link points at the file.
-- [ ] item 39: new (non-blocking)
-- [ ] item 40: new (non-blocking)
-- [ ] item 41: new (non-blocking)
+- [x] item 39: fixed (third pass). The caption now ends "Evader trained for 16,000 steps until it settles: the follow-up rule, not the pre-registered one", and the footer repeats "(the follow-up rule)".
+- [x] item 40: fixed (third pass). Footnote 6: "Because the evader cannot see labels, its best move shifts each point along Σw by how much that point looks like the positive class, which shrinks the gap between the class averages."
+- [x] item 41: fixed (third pass). Footnote 4 adds "The argument is theirs. Applying it to probe evasion is what we found no prior use of."
 
 Sign-off: YES

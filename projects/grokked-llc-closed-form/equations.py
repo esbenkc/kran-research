@@ -9,6 +9,10 @@ E3  one-hot inputs: w -> w + c(1_p, -1_p) leaves every pre-activation u_a + s_b 
     count is K(3p-2) below the cap p(N-1) (numeric rank).
 E4  SGLD estimator  lambda_hat = n beta (E[L_n] - L_n(w*))   (Lau et al.): on a regular quadratic loss with known
     lambda = r/2 the localised quadratic value sum 1/2 h/(h + gamma/(n beta)) -> r/2 as gamma/(n beta) -> 0 (sympy limit).
+E6  SGLD step (fold): w_{t+1} = w_t + eps/2 (-n beta grad L_n(w_t) - gamma (w_t - w*)) + sqrt(eps) xi_t, w_0 = w*.
+    check: a hand-written loop with the same Gaussian draws reproduces qnet.sgld_llc's loss trace to 1e-12.
+E7  estimator (fold): lambda_hat = n beta ( 1/(C(T-B)) sum_c sum_{t=B}^{T-1} L_n(w_t^(c)) - L_n(w*) ).
+    check: the formula on the hand-written traces equals qnet.sgld_llc's lambda_hat.
 """
 from __future__ import annotations
 
@@ -120,6 +124,37 @@ p23 = 23
 res["E5_numbers"] = dict(half_pure_fourier_p23=((p23 - 1) // 2) * (16 * p23 - 24) / 2,
                          paper_p23_K99=99 * (3 * p23 - 1) / 2)
 assert res["E5_numbers"]["half_pure_fourier_p23"] == 1892 and res["E5_numbers"]["paper_p23_K99"] == 3366
+
+# ---- E6/E7 numeric: SGLD step and estimator as displayed in the fold, against qnet.sgld_llc
+p_, K = 5, 3
+X6, _, _, _ = qnet.modadd_data(p_, 0.8, 0)
+r6 = np.random.default_rng(3)
+W6, V6 = r6.standard_normal((2 * p_, K)), r6.standard_normal((p_, K))
+Y6 = qnet.forward(W6, V6, X6)[0] + 0.01 * r6.standard_normal((X6.shape[0], p_))   # nonzero loss at w*
+gam6, nb6, T6, B6, C6, seed6 = 1.0, 1e3, 7, 3, 2, 11
+h6 = np.linalg.svd(qnet.jacobian(W6, V6, X6), compute_uv=False)[0] ** 2 / X6.shape[0]
+eps6 = 0.2 / (nb6 * h6 + gam6)                                          # the fold's step rule
+o6 = qnet.sgld_llc(W6, V6, X6, Y6, eps=eps6, gamma=gam6, n_steps=T6, n_burn=B6, n_chains=C6, seed=seed6,
+                   nbeta=nb6, thin=1)
+rng6 = np.random.default_rng(seed6)
+L0 = qnet.loss(W6, V6, X6, Y6)
+traces = []
+for c_ in range(C6):
+    W, V = W6.copy(), V6.copy()       # w_0 = w*
+    Ls = []
+    for t in range(T6):
+        L, gW, gV = qnet.loss_grad(W, V, X6, Y6)
+        Ls.append(L)                  # L_n(w_t), before step t -> t+1
+        xiW, xiV = rng6.standard_normal(W.shape), rng6.standard_normal(V.shape)
+        W = W + eps6 / 2 * (-nb6 * gW - gam6 * (W - W6)) + np.sqrt(eps6) * xiW
+        V = V + eps6 / 2 * (-nb6 * gV - gam6 * (V - V6)) + np.sqrt(eps6) * xiV
+    traces.append(Ls)
+traces = np.array(traces)
+lam7 = nb6 * (traces[:, B6:T6].sum() / (C6 * (T6 - B6)) - L0)
+res["E6_sgld_step_trace_maxdiff"] = float(np.abs(traces - o6["trace"]).max())
+res["E7_estimator"] = dict(by_formula=float(lam7), sgld_llc=float(o6["llc"]))
+assert res["E6_sgld_step_trace_maxdiff"] < 1e-12, res["E6_sgld_step_trace_maxdiff"]
+assert abs(lam7 - o6["llc"]) < 1e-9 * max(1.0, abs(lam7)), res["E7_estimator"]
 
 OUT.write_text(json.dumps(res, indent=1, default=str))
 print(json.dumps(res, indent=1, default=str))

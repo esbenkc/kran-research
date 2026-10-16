@@ -46,3 +46,14 @@ No for the verdict: K_eff rule fixed before LLCs, inside-hypothesis rule pre-reg
 3. Caption [N] filled; figure title/summary.json must match the p11-23 verdict numbers above.
 
 SIGN-OFF: NULL holds. Numbers: median 0.72 (0.655-0.782), 0/5 cells in band, slope 0.985; my independent rerun within 2.7% of llc.csv on 25 checkpoints.
+
+## Follow-up 2026-10-16: 'Sampler and calibration (for SLT readers)' fold (G. Wang feedback)
+Files: sampler_check.py -> sampler_check.json (A-E), sampler_check_F.json, sampler_check_F_gamma.txt,
+long_gamma.py -> long_gamma.json, nbeta_table_check.txt, summary sampler_check.md. Own code throughout.
+- Calibration nets rebuilt from the stated recipe: rank/truth/h_min/eps identical 8/8; my SGLD est/true -0.9..+1.7%.
+- eps rule holds on 53/53 llc.csv rows. Grid: frozen setting 4th of 16 by worst error (3.87%), grid flat.
+- Finite-chain quadratic model: 10k chain reaches 95-99% of its equilibrium reading at gamma 1.
+- Sensitivity (3 nets, my code): gamma 0.1/1/10/100 -> -0..+1% / 0 / -6..-8% / -32..-42%; crel 0.1-0.4 <= 1.5%;
+  nbeta 1e3/1e5 as in skeptic3's sweep. 100k-step chains: gamma 0.1 vs 1 = +1.7% (p11_K33_s0), +3.8% (p17_K51_s0).
+  Max ratio over all my runs 0.776: no tested setting moves these cells into the 15% band.
+- Verdict NULL unchanged. Fold numbers checked line by line (room #1245); sign-off on the fold conditional on those fixes.

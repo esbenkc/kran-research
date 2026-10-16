@@ -120,3 +120,20 @@ vs half-rank bound 0.668-0.875 (12-33% below). Identical to data/summary.json. N
 p31 K124 (frac 0.7) out: 40k change -5.2% breaks the pre-set 5% rule. Per skeptic3 (#858), p31 is
 the only p where 10x finer resolution lowers the reading, so the post must not say the gap shrinks
 at p31.
+
+## 9. Follow-up: "Sampler and calibration (for SLT readers)" fold (G. Wang feedback, 2026-10-17 CPH)
+Own extraction from code + raw data: `sampler_facts.py` -> `sampler_facts.json`. New measurements:
+`gamma_sweep.py/.json` (project pipeline, gamma 0.1/1/10/100 on p11_K33_s0, p17_K51_s0, p23_K92_s0) and
+`gamma_own.py/.json` (my own polish/Jacobian/SGLD, gamma 0.1/1/10 on p11_K33_s0, p17_K51_s0). The two agree
+within 1.0%, and both agree with lead's data/sens_gamma.csv within 1.2%.
+Checked in the fold (blog 3c963d0): update rule + estimator = qnet.py l.111-151; full batch; nbeta 1e4 fixed,
+beta = 1e4/n = 103/49.5/27.0/14.9; eps 4.6e-5..1.65e-4; 4 x 10k, burn 2k, no thinning; polish; seeds; calib
+table 8/8; grid 384 runs, 14/16 worst 3.8-4.9%, frozen 3.87% (4th of 16); frozen validation = sampler seed 1
+on the SAME 8 networks (grid = seed 0; both reproduced bit-exact with calibrate.run_one); calibration curvature
+floor 0.0347 (about 350x gamma/nbeta); 11/14 settled incl. all 6 verdict cells; sensitivity table rows.
+Fixes I asked for and that are applied: relaxation time 1/(eps gamma) (not 2/); nbeta=100 '41%' pools
+gamma 1-100 (22% at gamma 1); centred hidden-activation rank; sampled-weights row (memorising = V only);
+'past the width limit'; estimator index t = B..T-1; wall time labelled as the gamma run.
+Substantive caveat now in the fold: the calibration nets have no curvature near the resolution, so the
+calibration cannot test gamma/nbeta; and at gamma 0.1 the chains are too short to settle, so the gamma -> 0
+value is unknown. SIGN-OFF on the fold's numbers. Headline verdict NULL unchanged.

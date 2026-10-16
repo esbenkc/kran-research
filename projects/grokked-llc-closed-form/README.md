@@ -18,7 +18,7 @@ uv run python projects/grokked-llc-closed-form/stationarity.py       # data/stat
 uv run python projects/grokked-llc-closed-form/phase_labels.py       # data/phase_labels.csv
 uv run python projects/grokked-llc-closed-form/equations.py          # data/equations_check.json
 uv run python projects/grokked-llc-closed-form/run.py                # figure + data/summary.json + verdict
-uv run python projects/grokked-llc-closed-form/sens_gamma.py         # data/sens_gamma.csv: gamma 0.1 and 10 on the 6 verdict cells
+uv run python projects/grokked-llc-closed-form/sensitivity.py        # data/sensitivity.csv: gamma 0.1/10 and nbeta 1e3/1e5 on the 6 verdict cells
 ```
 
 p = 31 was retrained at 70% of pairs (`data/ckpt_p31_frac07/`); its LLC and stationarity runs use

@@ -1,0 +1,26 @@
+{
+  "model": "EleutherAI/pythia-70m",
+  "revision": "step143000",
+  "concept": "biomedical (PubMed Abstracts + PubMed Central) = 1 vs web (Pile-CC + OpenWebText2) = 0",
+  "dataset": "NeelNanda/pile-10k",
+  "window_tokens": 128,
+  "max_windows_per_doc": 4,
+  "pooling": "mean over positions 1..127 of hidden_states[layer] (after block layer)",
+  "split": "80/20 by document, seed 0",
+  "layer_order": [
+    3,
+    2,
+    4
+  ],
+  "baseline_full_logistic_test_auroc": {
+    "3": 0.998045184237269,
+    "2": 0.9979863750987993,
+    "4": 0.9980451842372691
+  },
+  "chosen_layer": 3,
+  "n_train": 5238,
+  "n_test": 1304,
+  "d": 512,
+  "n_docs_train": 2996,
+  "n_docs_test": 758
+}

@@ -1,0 +1,37 @@
+{
+ "runs": [
+  {
+   "lam": 0.5,
+   "final_train_auroc_w": 0.7681,
+   "loss_last": 1.2779,
+   "loss_1000_before": 1.2924,
+   "rel_change": 0.0113,
+   "ok": false
+  },
+  {
+   "lam": 1.0,
+   "final_train_auroc_w": 0.6819,
+   "loss_last": 1.6459,
+   "loss_1000_before": 1.6646,
+   "rel_change": 0.0113,
+   "ok": false
+  },
+  {
+   "lam": 2.0,
+   "final_train_auroc_w": 0.6013,
+   "loss_last": 1.9216,
+   "loss_1000_before": 1.944,
+   "rel_change": 0.0116,
+   "ok": false
+  },
+  {
+   "lam": 5.0,
+   "final_train_auroc_w": 0.5376,
+   "loss_last": 2.1219,
+   "loss_1000_before": 2.1404,
+   "rel_change": 0.0088,
+   "ok": true
+  }
+ ],
+ "choice": 5.0
+}

@@ -1,0 +1,14 @@
+# Project config. One question, the model, and the figures this project produces.
+name: probe-evasion-geometry
+question: "Can a single geometric quantity predict which probes an evading model also fools?"
+model: none            # all local: numpy/torch, pythia-70m activations; no model-API calls ($0)
+lm: EleutherAI/pythia-70m (step143000), layer 3 residual stream, mean-pooled
+sources:
+  - https://huggingface.co/datasets/NeelNanda/pile-10k
+  - https://huggingface.co/EleutherAI/pythia-70m
+  - https://arxiv.org/abs/2412.09565   # Bailey et al., Obfuscated activations bypass LLM latent-space defenses
+  - https://arxiv.org/abs/2506.14261   # RL-Obfuscation
+  - https://arxiv.org/abs/2606.19603   # Ying, Hase, Kriegeskorte, Mahalanobis cosine for probes
+figures:
+  - id: probe-evasion-cosine
+    caption: "Measured vs predicted AUROC drop of 50 probes x 3 seeds, synthetic and pythia-70m."

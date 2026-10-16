@@ -14,3 +14,9 @@ projects/*/data/**/run.log
 # `build_corpus.py fetch && build_corpus.py` instead of redistributing it
 projects/proof-elegance/data/human/
 projects/proof-elegance/data/ai/
+
+# probe-evasion-geometry: full run arrays (X/E train+test, ~400 MB) stay local; compact copies in data/receipts/
+projects/probe-evasion-geometry/data/runs/*.npz
+projects/probe-evasion-geometry/pilot/data/*.npz
+projects/probe-evasion-geometry/data/lm_acts_L2.npz
+projects/probe-evasion-geometry/data/lm_acts_L4.npz

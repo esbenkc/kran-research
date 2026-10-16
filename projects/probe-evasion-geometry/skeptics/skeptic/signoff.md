@@ -22,6 +22,9 @@ Decision arm (Mahalanobis retain, D2: LAM=5, 16k steps), seeds 0/1/2:
   Random direction instead of w: p95 0.36-0.59 synthetic, 0.19-0.24 LM. Seeds: 3 distinct synthetic draws.
 - Robustness: test-set Sigma 0.998 (syn) / 0.94-0.96 (LM); moment-based d' 0.999 / 0.998.
 - Mean-gap shift: cosine with Sigma w = -1.00 in all 6 runs (with w: -0.42..-0.54 syn, -0.82 LM).
+LM literal early-stop (check_lm_earlystop.out): whitened r2 0.796 / 0.773 / 0.875 (mean 0.81), plain 0.298 / 0.298 / 0.248,
+refit 0.999, but no-fit R2 whitened only 0.49 / 0.56 / 0.57 (the slope is off). So on LM the early-stop evader keeps
+the ranking but not the size of the drops.
 - Euclidean arm: whitened r2 0.21/0.12/0.00, plain 0.53/0.42/0.31, exact-Euclid predictor 0.999/0.999/0.996,
   refit 0.50/0.51/0.50. LM Euclid (seed 0 only, n=1): whitened 0.007, exact-Euclid 0.70, refit 0.62.
 - Design matches PREREG: d=64, eigenvalues follow 1/i (ratio 0.98-1.03), optimal d' 3.98-4.03, 25 logistic +

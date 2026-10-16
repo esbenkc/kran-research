@@ -24,6 +24,7 @@ Pearson r^2 (frozen primary), per seed:
 | Synthetic, Mahalanobis (decision) | 0.999 / 0.999 / 0.999 | 0.474 / 0.567 / 0.385 (mean 0.475 > 0.40: FAIL) | 0.971 / 0.989 / 0.988 | 0.996-0.999 |
 | Pythia-70M L3, Mahalanobis (decision) | 0.965 / 0.974 / 0.970 | 0.341 / 0.335 / 0.230 (mean 0.302: pass) | 0.997 x3 | 0.89-0.95 |
 | Synthetic, literal frozen early stop | 0.691 / 0.573 / 0.259 (mean 0.51: FAIL) | 0.719 / 0.622 / 0.723 | 0.967-0.995 | 0.08 mean |
+| Pythia, literal frozen early stop | 0.796 / 0.773 / 0.875 (mean 0.81) | 0.298 / 0.298 / 0.248 | 0.999 x3 | 0.54 mean (under-predicts); spread change 29% |
 | Synthetic, Euclidean cost | 0.21 / 0.12 / 0.00 | 0.53 / 0.42 / 0.31 | 0.50-0.51 (collapse) | exact-Euclid predictor 0.999/0.999/0.996 |
 | Pythia, Euclidean cost | 0.007 / 0.065 / 0.069 | ~0.005 | 0.57-0.62 | exact-Euclid predictor 0.70/0.75/0.65 (mean 0.70) |
 
@@ -58,15 +59,27 @@ The cost metric decides which cosine predicts. The fork replicates outside build
 4. Pythia: the 3 seeds share one data split and one w (only probes and encoder init vary): n=1 split.
    The evader there leaves w at AUROC 0.64-0.66 (k ~0.85), so "blinded" is wrong for LM.
 
-## Conditions on the post (blog 366e03f draft)
-- C-a Euclid paragraph (line 79): say "on synthetic data" for "at most 21%", "99.6-99.9%" and "AUROC 0.50",
-  or add Pythia numbers (exact-Euclid predictor 0.70, refit 0.57-0.62).
-- C-b Early-stop result in "What we found", and the title answer carries it (agree with critic #1075).
-- C-c Lemma paragraph (line 49): put the cost assumption in the same sentence ("if the evader pays
-  for a change by its length in the round space, the cheapest move ...").
-- C-d "Nothing is fit": the primary r2 is a Pearson r2, which fits a line. Either add the no-fit R2
-  (synthetic 0.996-0.999, Pythia 0.89-0.95) or drop the phrase.
-- C-e "changes the spread by 5-7%": name the measure, or write "by under 10%".
-- C-f Pythia: one data split; w not fully fooled (AUROC 0.64-0.66 after).
+## Conditions on the post
+Round 1 (blog 366e03f draft): C-a Euclid numbers scoped to synthetic; C-b early-stop in results and
+answer; C-c cost assumption in the lemma sentence; C-d "nothing is fit" vs Pearson r2; C-e name the
+spread measure; C-f Pythia one split, w not fully fooled. Status after the full draft: C-a done,
+C-f split done.
 
-Signed: skeptic3 — sign-off on NULL, conditional on C-a..C-f being in the merged text.
+Round 2 (full draft, room #1099), MUST-FIX:
+1. "Our prediction failed only because the plain angle..." is false: under the literal frozen stop
+   rule the whitened part fails too (51%). Drop "only". The title answer and outcome_note must say the
+   law holds once the evader settles at its cheapest move (the longer, deviation-logged run).
+2. "A set of monitors is only as diverse as the correlation between their scores" contradicts the
+   Euclidean run (score correlation = whitened cosine explains <= 21% there). Scope or cut.
+3. Bailey's Gaussian detector scores the Mahalanobis distance of x from the benign mean, not the
+   size of the edit: same metric, not the same cost. "Pays exactly the cost we tested" overclaims.
+4. = C-c (cost condition in the lemma sentence).
+5. = C-d (no-fit R2: synthetic 0.996-0.999, Pythia 0.89-0.95, or reword).
+6. Footnote [^proof]: "\text" became TAB + "ext" (broken MathJax).
+7. Demontis et al. credit is no longer cited in the body; re-add; "Its use for evasion is new" ->
+   "We found no prior use of it for evasion."
+Minor: name the "15%" spread measure (mine: 7-8% pooled-LW Frobenius on Pythia); refit under
+Euclidean cost "about 0.5-0.6" (my refit 0.50-0.62).
+
+Signed: skeptic3 — sign-off on NULL for the derivation and the numbers. Sign-off on the post text is
+conditional on round-2 items 1-7; final confirmation is recorded below when they land.

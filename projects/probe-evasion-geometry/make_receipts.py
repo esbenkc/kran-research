@@ -4,7 +4,7 @@ experiment.py. Compact files keep everything needed to recompute every number in
 refit: probes, w, Sigma_hat, Delta_hat, kinds, subspace dims, and the test-set scores of w and of all
 50 probes before and after evasion (float32), plus the refit probe's test scores. LM files also keep
 the encoded activations (float16) so the refit can be redone. Synthetic diagnostic arms (euclidean, early
-stop) keep only the small arrays; their per-probe numbers are in data/runs/*_probes.json."""
+stop) store the scores as float16 (AUROC exact to ~1e-4); per-probe numbers are also in data/runs/*_probes.json."""
 from pathlib import Path
 import numpy as np
 
@@ -22,8 +22,8 @@ for f in sorted(src.glob("*.npz")):
                w_scores_before=(z["X_test"] @ w).astype(np.float32),
                w_scores_after=(z["E_test"] @ w).astype(np.float32),
                refit_scores=z["refit_scores"].astype(np.float32))
-    if f.name.startswith("synthetic_") and not decision:  # diagnostic arms: small arrays only
-        out = {k: v for k, v in out.items() if "scores" not in k}
+    if f.name.startswith("synthetic_") and not decision:  # diagnostic arms: scores as float16 to save space
+        out = {k: (v.astype(np.float16) if "scores" in k else v) for k, v in out.items()}
     if f.name.startswith("lm_") and decision:
         out.update(E_train=z["E_train"].astype(np.float16), E_test=z["E_test"].astype(np.float16))
     np.savez_compressed(dst / f.name, **out)

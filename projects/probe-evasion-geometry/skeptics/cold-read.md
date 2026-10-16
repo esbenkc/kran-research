@@ -192,47 +192,69 @@ Read in headless Chromium, light theme, 1280 px wide, with all three folds open 
    - **Why a reader gets lost:** BROKEN RENDERING: \text lost its backslash (it became a tab), so the formula renders as "d′w(extafter)/d′w(extbefore)". This is also the only place k is defined. Separately, the "theory/lemma.md" link goes to the theory/ folder, not to the file.
    - **Suggested fix:** Escape \text properly so it renders "1 − d′_w(after)/d′_w(before)", and point the link at theory/lemma.md itself.
 
+39. **Quote:** "For an evader trained to its cheapest move, one angle predicts which probes it also fools"
+   - **Where:** Figure title (second pass, page at commit 1bc03c9)
+   - **Why a reader gets lost:** A reader who looks only at the figure sees a clean success. Nothing in the title, caption or footer says this is the follow-up run, chosen after the pre-registered result was seen. The pre-registered early-stop run, where the whitened formula lost (r² 0.51 vs 0.69), has no figure. The TLDR says this, but the figure does not.
+   - **Suggested fix:** Add "(follow-up run, not the pre-registered one)" to the caption. Optionally add a small early-stop panel so the failure can be seen too.
+
+40. **Quote:** "The evader is a small network that edits activations directly, f(x) = x + MLP(x), without seeing labels."
+   - **Where:** "How we tested it", paragraph 1 (second pass)
+   - **Why a reader gets lost:** The lemma describes shrinking the gap between the class averages while the spread stays the same. A label-blind edit can only act on where a point lies. The obvious way for it to close a gap along a direction also squeezes the spread along that direction. The reader cannot see how the evader produces the lemma's pure mean shift without labels, or how this relates to the measured covariance changes (15% on Pythia, under 10% synthetic).
+   - **Suggested fix:** Add one sentence on how a label-blind edit shrinks the class gap (e.g. it infers the class from x, since the classes are separable). Say that what it changes beyond a pure shift is what the covariance-change numbers measure.
+
+41. **Quote:** "Our lemma is their gradient-alignment argument, with the attack’s budget measured in the round space."
+   - **Where:** Footnote 4 (second pass), next to the body's "We found no prior use of it for evasion."
+   - **Why a reader gets lost:** The footnote calls the lemma an existing argument, and the body says the use for evasion is new. The two read as conflicting on what is new.
+   - **Suggested fix:** State the split in one line: "The argument is Demontis et al.'s; what is new is applying it to probe evasion with a whitened budget and testing it."
+
 ## Overall
 
 Partly yes. After the TLDR and the figure, an outside ML researcher would say: "When a network is trained to hide a concept from one linear probe, how much each other probe's AUROC drops is predicted almost perfectly by a formula based on the covariance-weighted (whitened) cosine between that probe and the attacked one, much better than by the plain cosine." That matches the post. They could not state the conditions the claim depends on: "pays in the right units" and "settled at its cheapest move" are opaque until two sections later (items 6, 28). They would read the figure's r² as agreement with the dashed diagonal, which it is not (item 9). They would be confused that the answer is "Yes" while the pre-registered prediction "failed" because a baseline did too well (item 3). Read to the end, they would also find that under the registered stopping rule the headline formula explained only 51% and lost to the plain cosine, which the foldout's "Two parts held" does not reflect (item 2). That is the most damaging gap for trust. Two rendering bugs, both in margin footnotes, block reading: footnote 3 (\text lost, item 38) and footnote 10 (formula clipped, item 35). Not counted as an item: the Netlify "Collaborate on this Deploy Preview" bar covers the Pythia panel's x-axis while scrolling, but only on the deploy preview.
 
 ## Fix confirmations
 
-- [ ] item 1
-- [ ] item 2
-- [ ] item 3
-- [ ] item 4
-- [ ] item 5
-- [ ] item 6
-- [ ] item 7
-- [ ] item 8
-- [ ] item 9
-- [ ] item 10
-- [ ] item 11
-- [ ] item 12
-- [ ] item 13
-- [ ] item 14
-- [ ] item 15
-- [ ] item 16
-- [ ] item 17
-- [ ] item 18
-- [ ] item 19
-- [ ] item 20
-- [ ] item 21
-- [ ] item 22
-- [ ] item 23
-- [ ] item 24
-- [ ] item 25
-- [ ] item 26
-- [ ] item 27
-- [ ] item 28
-- [ ] item 29
-- [ ] item 30
-- [ ] item 31
-- [ ] item 32
-- [ ] item 33
-- [ ] item 34
-- [ ] item 35
-- [ ] item 36
-- [ ] item 37
-- [ ] item 38
+Second pass: 2026-10-16, deploy preview at commit 1bc03c9 (hard reload, all folds open, read in headless Chromium at 1280 px and 1600 px). Verdicts: 31 fixed, 4 partly fixed, 1 not fixed, 2 no longer apply; 3 new items (39-41).
+
+- [x] item 1: fixed. Footnote 11 now says the three skeptic agents are "independent AI critics that re-derive the math and re-run the analysis", and two of them ran the simulations.
+- [x] item 2: fixed. "What happened" now says "It failed under both stopping rules": 51% under the pre-registered rule, then 99.9%/97% in a follow-up "chosen after we saw that result".
+- [x] item 3: fixed. The body now says the bar "checks that the rescaling, and no plain angle, carries the prediction".
+- [x] item 4: fixed. The page now uses "whitened formula", "plain formula" and "whitened cosine alone" consistently, and the pre-registration says "The same prediction with the plain angle".
+- [x] item 5: fixed. The intro defines the whitened cosine before using it.
+- [ ] item 6: partly fixed. The TLDR now says "converged evader" instead of "settled", but it never states the cost condition (whitened cost), even though the conclusion makes the cost the main takeaway. "Does not follow the theory" refers to a theory the TLDR has not introduced.
+- [x] item 7: fixed. The TLDR names the metric (r²) and the inputs ("with each probe's starting AUROC, the whitened cosine predicts…").
+- [x] item 8: fixed. The two references are now one footnote (1).
+- [x] item 9: fixed. The caption defines r² ("credit for any straight line") and "R² on the line" separately, and each panel shows both.
+- [ ] item 10: partly fixed. The text says "Filled dots sit on the diagonal (just above it on Pythia)", but in the Pythia panel the filled dots sit below the line for predicted drops under about 0.15 and above it beyond. They cross the line rather than sitting just above it.
+- [x] item 11: fixed. The caption says "A negative drop means the probe got better."
+- [ ] item 12: partly fixed. The panel now says "probe w: AUROC 0.962 → 0.581" (tied to w), but "new probe trained after the attack: AUROC 0.983" is still higher than w's AUROC before the attack. The page never says what type of probe the new probe is.
+- [x] item 13: fixed. Footnote 9 gives the PubMed vs web-text concept, 128-token windows, and the layer-3 residual stream averaged over each window.
+- [ ] item 14: not fixed. The Pythia hollow dots still form a column near zero predicted drop with no explanation, and the text says "Hollow dots scatter", which they do not on Pythia.
+- [x] item 15: fixed. The body now says "costs the same KL divergence, L²/2, in every direction".
+- [x] item 16: fixed. Footnote 2 derives Σw, and the body now talks about the gap between the class averages instead of "one class average".
+- [x] item 17: fixed. The body defines k and adds "If the spread does not change".
+- [x] item 18: fixed. The displayed equation is introduced as "the lemma we test".
+- [x] item 19: fixed. "best linear separator" is used, and footnote 3 gives Σ⁻¹(μ₁ − μ₀) and says the mass-mean w differs from it unless the cloud is round.
+- [x] item 20: fixed. "We do not fine-tune a language model", "without seeing labels", and footnote 6 gives the loss form (new question about this in item 40).
+- [x] item 21: fixed. The cost is now justified together with the Bailey anomaly detector in one sentence.
+- [x] item 22: fixed. Footnote 10 gives the subspace dimensions (2 to the full dimension), the probe mix and the range of starting AUROCs.
+- [x] item 23: fixed. The page states the AUROC → d′ → lemma → AUROC pipeline, and k is "measured on w alone".
+- [x] item 24: fixed. The page now says "the gap … shrinks exactly along Σw (cosine 1.00 in every seed)".
+- [x] item 25: fixed. "the r² of a straight line … as pre-registered, and against the diagonal".
+- [x] item 26: fixed. Footnote 12 says "the web-text scores are skewed" and gives the covariance change as a relative Frobenius norm.
+- [ ] item 27: partly fixed. Footnote 11 now explains the skeptic agents and the six probe sets. It still does not say whether the simulations came before the 14:52 pre-registration freeze, or why the bar was 0.40 when they already showed plain r² up to 0.65.
+- [x] item 28: fixed. The page uses "pre-registered rule" and "converged" and defines both in place.
+- [x] item 29: fixed. "moves along our mass-mean w itself, which closes the whole gap between the class averages".
+- [x] item 30: fixed. "reading one averaged vector per window".
+- [x] item 31: fixed. The idiom is replaced with "the plain cosine tracks the whitened one closely (correlation 0.67-0.87)".
+- [x] item 32: no longer applies. The sentence was replaced by "every evasion audit must name the cost the evader pays".
+- [x] item 33: no longer applies. The "open models" and "round-space units" sentence was removed.
+- [x] item 34: fixed. The fold now says "0.77-0.88 with a fitted line … but only 0.49-0.57 against the diagonal".
+- [x] item 35: fixed. The Euclidean formula is now a displayed equation in the fold body and renders in full (the square-root bars look slightly detached, which is cosmetic only).
+- [x] item 36: fixed. "two seeds" was removed, and the Pythia gap is explained ("likely because its activations are not Gaussian").
+- [x] item 37: fixed. The mirror argument is spelled out for both costs, with μ₁ and μ₀ defined.
+- [x] item 38: fixed. k is defined in the body and renders "after"/"before" correctly, and the theory/lemma.md link points at the file.
+- [ ] item 39: new (non-blocking)
+- [ ] item 40: new (non-blocking)
+- [ ] item 41: new (non-blocking)
+
+Sign-off: YES

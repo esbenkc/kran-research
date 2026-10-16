@@ -1,6 +1,6 @@
 {
  "title": "For an evader trained to its cheapest move, one angle predicts which probes it also fools",
- "sub": "Each dot is one of 50 probes in one of 3 seeds. Across: AUROC drop the formula predicts. Up: AUROC drop we measured after the evader learned to hide the concept from probe w. A negative drop means the probe got better. Dashed line: prediction = measurement. r\u00b2 = squared correlation (credit for any straight line); R\u00b2 on the line = credit only for landing on the dashed line (negative when worse than guessing the average). Means of 3 seeds.",
+ "sub": "Each dot is one of 50 probes in one of 3 seeds. Across: AUROC drop the formula predicts. Up: AUROC drop we measured after the evader learned to hide the concept from probe w. A negative drop means the probe got better. Dashed line: prediction = measurement. r\u00b2 = squared correlation (credit for any straight line); R\u00b2 on the line = credit only for landing on the dashed line (negative when worse than guessing the average). Means of 3 seeds. Evader trained for 16,000 steps until it settles: the follow-up rule, not the pre-registered one.",
  "panels": [
   {
    "setting": "synthetic",

@@ -63,7 +63,8 @@ data = {
            "Up: AUROC drop we measured after the evader learned to hide the concept from probe w. "
            "A negative drop means the probe got better. Dashed line: prediction = measurement. "
            "r² = squared correlation (credit for any straight line); R² on the line = credit only for "
-           "landing on the dashed line (negative when worse than guessing the average). Means of 3 seeds.",
+           "landing on the dashed line (negative when worse than guessing the average). Means of 3 seeds. "
+           "Evader trained for 16,000 steps until it settles: the follow-up rule, not the pre-registered one.",
     "panels": panels,
     "rows": rows,
 }

@@ -83,3 +83,17 @@ Euclidean cost "about 0.5-0.6" (my refit 0.50-0.62).
 
 Signed: skeptic3 — sign-off on NULL for the derivation and the numbers. Sign-off on the post text is
 conditional on round-2 items 1-7; final confirmation is recorded below when they land.
+
+## Final confirmation (blog 24e37ea, 2026-10-16 ~15:35 CEST)
+Round-2 items 1-7 all fixed: "only" gone and the answer/TLDR/outcome_note carry the settled-evader
+condition and the frozen-rule 51%; the "only as diverse" line is replaced by "every evasion audit must
+name the cost the evader pays"; Bailey's detector is "the same metric" (footnote kl); the cost condition
+sits in the lemma sentence; no-fit R2 reported; [^proof] uses \text (no TAB); Demontis credited in the
+body and "We found no prior use of it for evasion". All numbers in the body and folds match my
+recompute (full arrays and public receipts). One minor, non-blocking: the Euclidean fold says
+"On Pythia (two seeds) ... Euclidean one 70-72%"; with the third seed it is 3 seeds, whitened 1-7%,
+Euclidean formula 65-75%.
+
+**SIGNED: skeptic3 signs off on lab_status "NULL" and on the post text.**
+Public-receipt gap (not a sign-off blocker): the synthetic early-stop and Euclidean receipts carry no
+scores; their numbers were checked from the full local arrays.

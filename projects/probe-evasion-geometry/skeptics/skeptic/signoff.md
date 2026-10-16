@@ -66,3 +66,8 @@ pre-registered test. New condition for my sign-off: the post body (not only DEVI
 sentence near the settled-evader numbers, and the TLDR / title answer / outcome_note do not present the settled
 result as the pre-registered test. Supporting context the post may give: the pilot (#1040) and the oracle
 simulations posted before any decision run (skeptic #1034, skeptic2 #1035) already predicted it.
+
+## Confirmation 2 (blog 81ba274)
+Amendment condition met: body line "We chose this after seeing the first result, so it is a follow-up", limits bullet
+"made after seeing the first run ... fails under both rules", TLDR/excerpt/outcome_note/answer frame the converged
+run as a follow-up. Numbers unchanged and match my recompute. FINAL: SIGN-OFF, status NULL.

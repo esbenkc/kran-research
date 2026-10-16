@@ -68,3 +68,14 @@ Judge-choice receipts (data/validation/*.jsonl, rebuilt by fold_check.py): 4B / 
 neuron vs direction effect rate: 0.92 at 10x, 0.33 at 1x.
 Non-blocking: my per-layer top-fifth binning gives 94.3% (neurons) / 96.2% (directions) at 10x and
 18.5% vs 11.1% at 1x; the fold says 95% / 95% and 18% vs 10% (another binning). No claim changes.
+
+## Re-check after cold-read fixes (blog 98c187d) — SIGN-OFF stands
+New numbers match: minus false alarms 5.4% neurons / 3.0% directions at max; p = 0.0008 (fold: 0.001);
+46% / 41% zlib loops; 0.92 layer correlation; residual-size ratio 0.95-1.10.
+The fold's fifths are fifths of amax over all 3,072 neurons of the layer, not of the sample. With that
+binning I get 18.2% vs 9.7% at max (fold 18 vs 10) and 94.7% / 94.8% neurons / directions at 10x, rest 62%
+(fold 95 / 95 / 62). This resolves the non-blocking note above.
+Figure amax-fifth panel (figure_check.py): bf16 amax has ~500 unique values per layer, so bin edges tie;
+no tie convention I tried reproduces every cell count exactly (54-98 of 140 cells differ by 1-2 neurons),
+but every convention gives the same pooled top-fifth rates (18.2-18.5% at max, 94.7-94.8% at 10x).
+Not material.

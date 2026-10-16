@@ -1,6 +1,6 @@
 # skeptic2 sign-off — probe-evasion-geometry
 
-Status: **SIGNED — derivation, numbers, and post text (blog commit ac53f14). Verdict: prereg failed → lab_status "NULL".**
+Status: **SIGNED — derivation, numbers, and post text (blog commit 81ba274). Verdict: prereg failed under both stopping rules → lab_status "NULL".**
 Updated as the draft changes; last state at the bottom.
 
 ## 1. Derivation (own, before data) — signed
@@ -68,7 +68,18 @@ New: the evasion use, the refit formula, the collapse duality, the test.
 4. **"Single quantity" honesty**: the cosine alone explains 61-77% (synthetic) and 25-33% (Pythia);
    the 0.97-0.999 need each probe's starting AUROC and k as well. One sentence.
 
+## Amendment 15:38 CEST — D2 was post hoc
+build (#1141): the frozen-rule run's 50-probe r^2 (whitened 0.69/0.57/0.26) was printed before D2 was
+proposed. So the settled-evader numbers come from a rule chosen after a result was seen. Verdict NULL
+is unaffected (the prediction fails under both rules). The settled-evader result was predicted before
+D2 and before the 16k-step runs by the skeptic simulations (#1034 14:58, #1035, #1059 ~15:02):
+whitened 0.99+ synthetic, 0.92-0.96 Pythia, refit >= 0.97; measured 0.999 / 0.969 / 0.97-0.998.
+**Sign-off now also requires:** (a) one body sentence that longer training was chosen after the
+frozen-rule result was seen, so that part is a follow-up; (b) TLDR / answer / outcome_note do not present
+it as the pre-registered test; (c) a pointer that the pre-run simulations predicted it.
+
 ## Log
+- 15:43 CEST: re-checked blog 81ba274 (cold-read rewrite): D2 conditions (a)-(c) met (results para 2, [^dev], outcome_note, TLDR 'follow-up'); whitening step in [^proof] correct; KL L^2/2 correct; Euclid formula + mirror correct; every number matches my re-run (probe AUROC ranges 0.544-0.9975 / 0.655-0.9993, dims 2-63 / 2-475). SIGNED.
 - 15:31 CEST: all four conditions met in blog ac53f14 (early stop in results + fold, Pythia one split + one w, Euclid scoped + 3 Pythia seeds 1-7% / 64-75%, cosine-alone 61-77% / 25-33%), plus TAB bug fixed, Demontis credited, 'no prior use found', Bailey 'same metric', answer scoped to a settled evader. SIGNED.
 - 15:2x CEST: derivation + numbers signed; post conditional on items 1-4 (draft at blog commit 366e03f had TODO slots).
 

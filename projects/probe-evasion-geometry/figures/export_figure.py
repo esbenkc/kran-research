@@ -53,12 +53,17 @@ for key, label in SETTINGS:
         "refit": round(float(np.mean([s["auroc_refit"] for s in summ])), 3),
         "w_before": round(float(np.mean([s["auroc_w_before"] for s in summ])), 3),
         "w_after": round(float(np.mean([s["auroc_w_after"] for s in summ])), 3),
+        "nofit_white": round(float(np.mean([s["r2_white_nofit"] for s in summ])), 3),
+        "nofit_raw": round(float(np.mean([s["r2_raw_nofit"] for s in summ])), 3),
     })
 
 data = {
-    "title": "One angle predicts which probes the evader also fools",
-    "sub": "Each dot is one of 50 probes in one of 3 seeds. Across: drop in AUROC that the formula predicts. "
-           "Up: drop we measured after the evader trained against one probe. On the dashed line, prediction = measurement. r² = share of the variance in measured drops that the prediction explains, mean of 3 seeds; refit = AUROC of a fresh probe trained after the evasion.",
+    "title": "For an evader trained to its cheapest move, one angle predicts which probes it also fools",
+    "sub": "Each dot is one of 50 probes in one of 3 seeds. Across: AUROC drop the formula predicts. "
+           "Up: AUROC drop we measured after the evader learned to hide the concept from probe w. "
+           "A negative drop means the probe got better. Dashed line: prediction = measurement. "
+           "r² = squared correlation (credit for any straight line); R² on the line = credit only for "
+           "landing on the dashed line (negative when worse than guessing the average). Means of 3 seeds.",
     "panels": panels,
     "rows": rows,
 }

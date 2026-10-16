@@ -1,6 +1,6 @@
 {
- "title": "One angle predicts which probes the evader also fools",
- "sub": "Each dot is one of 50 probes in one of 3 seeds. Across: drop in AUROC that the formula predicts. Up: drop we measured after the evader trained against one probe. On the dashed line, prediction = measurement. r\u00b2 = share of the variance in measured drops that the prediction explains, mean of 3 seeds; refit = AUROC of a fresh probe trained after the evasion.",
+ "title": "For an evader trained to its cheapest move, one angle predicts which probes it also fools",
+ "sub": "Each dot is one of 50 probes in one of 3 seeds. Across: AUROC drop the formula predicts. Up: AUROC drop we measured after the evader learned to hide the concept from probe w. A negative drop means the probe got better. Dashed line: prediction = measurement. r\u00b2 = squared correlation (credit for any straight line); R\u00b2 on the line = credit only for landing on the dashed line (negative when worse than guessing the average). Means of 3 seeds.",
  "panels": [
   {
    "setting": "synthetic",
@@ -19,7 +19,9 @@
    ],
    "refit": 0.983,
    "w_before": 0.962,
-   "w_after": 0.581
+   "w_after": 0.581,
+   "nofit_white": 0.998,
+   "nofit_raw": 0.453
   },
   {
    "setting": "lm",
@@ -38,7 +40,9 @@
    ],
    "refit": 0.998,
    "w_before": 0.996,
-   "w_after": 0.654
+   "w_after": 0.654,
+   "nofit_white": 0.911,
+   "nofit_raw": -1.205
   }
  ],
  "rows": [

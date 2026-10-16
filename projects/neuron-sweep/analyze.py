@@ -67,7 +67,7 @@ def main():
         out["title"] = "A pushed neuron changes the text about as often as a random direction"
         out["subtitle"] = ("A run: one neuron or random direction, pushed at every token, and three 20-token continuations "
                            "of one prompt. A judge, blind to the push, labels each run. Qwen3-0.6B, 512 sampled neurons "
-                           "per layer at max, 256 at 10x max. Each random direction gets the max of a random neuron in "
+                           "per layer at max, 256 at 10× max. Each random direction gets the max of a random neuron in "
                            "its layer (96 per layer). 192 runs with no push.")
         Path(a.fig).write_text(json.dumps(out))
 

@@ -27,8 +27,9 @@ All three came true in the decision runs.
 | Synthetic, Mahalanobis (decision) | 0.9989 / 0.9993 / 0.9987 | 0.474 / 0.567 / 0.385 (mean 0.475) | 0.971 / 0.989 / 0.988 | 0.08 / 0.07 / 0.11 |
 | Pythia L3, Mahalanobis (decision) | 0.965 / 0.974 / 0.970 | 0.341 / 0.335 / 0.230 (mean 0.302) | 0.997 / 0.997 / 0.997 | 0.14 / 0.17 / 0.19 |
 | Synthetic, Euclidean (diagnostic) | 0.21 / 0.12 / 0.00 | 0.53 / 0.42 / 0.31 | 0.50 / 0.51 / 0.50 | — |
-| Pythia L3, Euclidean (1 seed) | 0.007 | 0.006 | 0.62 | — |
+| Pythia L3, Euclidean (3 seeds, compact receipts) | 0.007 / 0.065 / 0.069 | 0.006 / 0.003 / 0.008 | 0.59 / 0.58 / 0.56 (build refit; my own refit on seed 0: 0.62) | — |
 | Synthetic, literal frozen stop rule (LAM=10, stop at AUROC_w <= 0.6) | 0.691 / 0.573 / 0.260 (mean 0.51) | 0.719 / 0.622 / 0.723 | 0.995 / 0.995 / 0.967 | 0.12 / 0.10 / 0.13 |
+| Pythia L3, literal frozen stop rule | 0.796 / 0.773 / 0.875 (mean 0.81; no-fit R^2 0.49-0.57) | 0.298 / 0.298 / 0.248 | 0.999 x3 | 0.06 / 0.07 / 0.11 |
 
 Other nulls/alternatives (decision arms): constant-cosine (baseline spread only) r^2 0.01-0.05
 synthetic, 0.09-0.15 Pythia; cosine against a random direction p95 0.37-0.60 / 0.19-0.22; 0/1000
@@ -36,11 +37,17 @@ shuffles reach the observed r^2 in every seed. The exact Euclidean-move predicto
 the synthetic Euclidean arm and 0.00-0.19 on the Mahalanobis arm (0.70 on the Pythia Euclidean arm).
 Whitened cosine alone (no formula): 0.61-0.77 synthetic, 0.25-0.33 Pythia.
 Observed mean-gap shift: cos with Sigma w = -1.00 in all decision runs; -0.64 to -0.86 under the
-literal stop rule.
+literal stop rule on synthetic, -0.91 on Pythia (covariance change 29-35% there vs 15% in the decision runs).
 
 **Prereg verdict (frozen rule, PREREG design + D2):** whitened >= 0.7 holds in both settings;
 refit >= 0.9 holds in both; plain <= 0.4 holds on Pythia (0.302) and FAILS on synthetic (0.475).
 Outcome = **failed** → lab_status "NULL" per the room's rule #1039. I agree with that verdict.
+
+## 3b. Public compact receipts reproduce the same numbers
+
+`reanalyze_compact.py` → `reanalyze_compact.jsonl` reads only `data/receipts/*.npz` (on GitHub):
+all 18 runs give the same whitened / plain r^2 as my full-array re-run to 4 decimals; refit from
+build's saved refit scores 0.971-0.998 (decision), 0.50-0.51 (synthetic Euclid), 0.56-0.59 (Pythia Euclid).
 
 ## 4. Novelty — `novelty.md`
 
@@ -68,4 +75,4 @@ New: the evasion use, the refit formula, the collapse duality, the test.
 - `uv run --project kran-research --with sympy python <this folder>/derive.py`
 - `uv run --project kran-research python <this folder>/oracle_evader.py` (and `oracle_lm.py`, needs `data/lm_acts_L3.npz`)
 - `uv run --project kran-research python <this folder>/reanalyze.py kran-research/projects/probe-evasion-geometry/data/runs/<file>.npz ...`
-Outputs: `derive_out.txt`, `oracle_*_out.txt`, `reanalyze_{synthetic,lm,earlystop}.jsonl`.
+Outputs: `derive_out.txt`, `oracle_*_out.txt`, `reanalyze_{synthetic,lm,earlystop,lm_earlystop}.jsonl`.

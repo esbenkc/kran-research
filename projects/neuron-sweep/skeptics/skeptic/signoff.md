@@ -57,3 +57,14 @@ mix of neurons" is supported at 10x (mono 54.9 vs 55.7%) and is not contradicted
 Files: rebuild.py -> rebuild_out_judgments_final.json (+ rebuild_out_judgments.json for stage 1),
 degeneracy.py -> degeneracy_out.json, resid_norm_check.py -> resid_norm_check.json, my_rubric.md,
 blind_sample.txt + blind_sample_meta.json, my_blind_labels.json, novelty.md.
+
+## Final fold check (blog 1bc8488) — SIGN-OFF, final
+All 4 conditions met: 1x mono/poly split not reported ("at max we cannot tell"); prereg 3 at both strengths;
+10x "one thing" = often a loop, with my 46% compression number; write-vs-read stated; 1/6 and 1/12 samples stated.
+H4 now says random directions show the same gradient. Figure data.json: all 4 x 28 per-layer shares equal mine.
+Judge-choice receipts (data/validation/*.jsonl, rebuilt by fold_check.py): 4B / 8B neutral prompt 53.6% /
+46.4% agreement, ordinary called changed 55% / 59%; final rubric 13.1% / 26.2%; GPT-4.1-mini with
+"we changed the model" framing 47.6%, ordinary called changed 67.9% ("two thirds"). Per-layer correlation
+neuron vs direction effect rate: 0.92 at 10x, 0.33 at 1x.
+Non-blocking: my per-layer top-fifth binning gives 94.3% (neurons) / 96.2% (directions) at 10x and
+18.5% vs 11.1% at 1x; the fold says 95% / 95% and 18% vs 10% (another binning). No claim changes.

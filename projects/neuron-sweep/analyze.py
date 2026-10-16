@@ -52,22 +52,23 @@ def main():
         # the same-layer control: random directions at the same push strength (96 per layer)
         out.setdefault("dir_layers", {})[f"x{scale:g}"] = [
             {"layer": L, **shares(groups[("direction", scale, L)])} for L in range(28) if groups[("direction", scale, L)]]
-    # effect vs. the neuron's max activation, ranked within its layer (tenths)
+    # effect vs. the neuron's max activation, ranked within its layer (fifths)
     rank = np.argsort(np.argsort(amax, axis=1), axis=1) / 3071.0
     dec = defaultdict(list)
     for r in J:
         if r["kind"] == "neuron":
-            dec[(r["scale"], r["layer"], min(9, int(rank[r["layer"], r["neuron"]] * 10)))].append(r["label"])
-    out["amax_decile"] = {f"x{s:g}": [{"layer": L, "decile": d, **shares(dec[(s, L, d)])}
-                                       for L in range(28) for d in range(10) if dec[(s, L, d)]] for s in (1.0, 10.0)}
+            dec[(r["scale"], r["layer"], min(4, int(rank[r["layer"], r["neuron"]] * 5)))].append(r["label"])
+    out["amax_fifth"] = {f"x{s:g}": [{"layer": L, "fifth": d, **shares(dec[(s, L, d)])}
+                                       for L in range(28) for d in range(5) if dec[(s, L, d)]] for s in (1.0, 10.0)}
     (P / "results.json").write_text(json.dumps(out, indent=1))
     for k, v in out["arms"].items():
         print(f"{k:16s} n={v['n']:6d} mono {v['mono']:.3f} poly {v['poly']:.3f} none {v['none']:.3f}")
     if a.fig:
         out["title"] = "A pushed neuron changes the text about as often as a random direction"
-        out["subtitle"] = ("Share of runs a blind judge labels one theme, several unrelated themes, or no visible "
-                           "effect. Qwen3-0.6B, 512 sampled neurons per layer at max, 256 at 10× max, 96 random "
-                           "directions per layer at the same strength, 192 runs with no push.")
+        out["subtitle"] = ("A run: one neuron or random direction, pushed at every token, and three 20-token continuations "
+                           "of one prompt. A judge, blind to the push, labels each run. Qwen3-0.6B, 512 sampled neurons "
+                           "per layer at max, 256 at 10x max. Each random direction gets the max of a random neuron in "
+                           "its layer (96 per layer). 192 runs with no push.")
         Path(a.fig).write_text(json.dumps(out))
 
 

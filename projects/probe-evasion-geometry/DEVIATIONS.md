@@ -17,11 +17,15 @@ outside the verdict. Its proposal to switch the primary metric to `1 - SS_res/SS
 (`u.Delta_hat / sqrt(u' Sigma_hat u)`) is reported as a secondary (`r2_white_moments`).
 
 ## D2 — stop rule and penalty weight (2026-10-16 ~15:10 CEST, before any decision run)
-
 Frozen rule: "train until train AUROC of w <= 0.6 or a fixed step cap". With penalty weight 10 this
 fires after 25-50 Adam steps. The retain (Mahalanobis) term has then had no effect, so the run does
 not test the lemma's premise (an evader that pays for its edit in the Mahalanobis norm and is at
 that cost's minimum).
+
+Disclosure: this was found on the first synthetic run of `experiment.py` (LAM = 10, early stop). That
+run printed its full summary, including the probe-family r2 (whitened 0.69/0.57/0.26, plain
+0.72/0.62/0.72), so those numbers were seen before D2 was proposed. They are the same numbers now
+reported as the literal-rule result (`*_earlystop*`). No run under the new rule had been made.
 
 New rule, approved in the room (#1055, #1056): choose `LAM` from {0.5, 1, 2, 5} on synthetic seed 0
 (Mahalanobis retain) as the smallest value whose run ends with train AUROC of w <= 0.6 AND a loss

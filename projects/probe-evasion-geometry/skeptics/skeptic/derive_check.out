@@ -1,0 +1,6 @@
+Claim A (Mahalanobis min-move = -(w.dmu/w'Sw) S w), symbolic in w,dmu: True
+Claim B (d_u drop = d_w * cos_S(w,u)): True
+  probe w after move AUROC: 0.49999999999999994
+  refit LDA AUROC after move (w random): 0.9999974290026472
+Claim C: |dmu'| when w is the LDA probe: 2.0123659664376615e-15 (collapse)
+Euclidean drop 0.32782782658798054  vs dw*cosS 0.34969173728051006 (differ in general)

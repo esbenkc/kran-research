@@ -1,0 +1,10 @@
+PASS  E1 AUROC = Phi(d'/sqrt2) (Monte Carlo, n=4e5)  (max err 1.24e-03)
+PASS  E2 min Mahalanobis move is along Sigma w (symbolic KKT)  (max err 0.00e+00)
+PASS  E2b no random feasible move is cheaper  (max err 0.00e+00)
+PASS  E2c Euclidean min move along w is Mahalanobis-costlier  (max err 0.00e+00)
+PASS  E3 d'_u(after) = d'_u - k d'_w cos_Sigma (symbolic)  (max err 0.00e+00)
+PASS  E3b numeric (400 probes, k in {0.3,1})  (max err 1.33e-15)
+PASS  E4 cos_Sigma = within-class correlation of probe scores (MC)  (max err 1.01e-04)
+PASS  E5 refit d'^2 = D_opt^2 - k(2-k) d'_w^2; collapses for optimal w  (max err 3.55e-15)
+PASS  E6 projection-collapse variant (200 probes)  (max err 1.78e-15)
+ALL PASS

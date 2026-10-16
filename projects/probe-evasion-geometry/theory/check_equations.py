@@ -141,5 +141,24 @@ for _ in range(200):
                     - (dprime(uu, delta, S) - cc * dprime(w, delta, S)) / np.sqrt(1 - cc ** 2)))
 check("E6 projection-collapse variant (200 probes)", max(errs))
 
+# E7. Euclidean-cost evader: Delta' = Delta - t w (the smallest Euclidean move). Then
+#      d'_u(after) = d'_u - k d'_w cos(u,w) |u| sqrt(w'Sw) / (|w| sqrt(u'Su)), cos = plain cosine.
+uw, nU, nW = sp.symbols("uw nU nW", positive=True)  # u.w, |u|, |w|
+dpw_after_e = (wD - t * nW**2) / sp.sqrt(qW)
+k_e = 1 - dpw_after_e / dpw_before
+lhs_e = (uD - t * uw) / sp.sqrt(qU)
+rhs_e = dpu_before - k_e * dpw_before * (uw / (nU * nW)) * nU * sp.sqrt(qW) / (nW * sp.sqrt(qU))
+check("E7 Euclidean-move predictor (symbolic)", 0.0 if sp.simplify(lhs_e - rhs_e) == 0 else 1.0)
+errs = []
+for kk in (0.4, 1.0):
+    dnew = delta - kk * (w @ delta) / (w @ w) * w
+    for _ in range(200):
+        uu = rng.normal(size=d)
+        cos = uu @ w / (np.linalg.norm(uu) * np.linalg.norm(w))
+        pred = dprime(uu, delta, S) - kk * dprime(w, delta, S) * cos * np.linalg.norm(uu) * np.sqrt(w @ S @ w) / (
+            np.linalg.norm(w) * np.sqrt(uu @ S @ uu))
+        errs.append(abs(dprime(uu, dnew, S) - pred))
+check("E7b numeric (400 probes, k in {0.4,1})", max(errs))
+
 print("ALL PASS" if not FAILS else f"FAILED: {FAILS}")
 sys.exit(1 if FAILS else 0)

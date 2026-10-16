@@ -1,0 +1,200 @@
+[
+ {
+  "file": "lm_euclidean_seed0.npz",
+  "n_test_per_class": 652,
+  "auroc_w": [
+   0.9961280063231586,
+   0.5943298581053107
+  ],
+  "k": 0.9103663545928247,
+  "sigma_relerr_vs_build": 6.288002724649902e-09,
+  "corr_raw_whit_cos": 0.8480427665330135,
+  "r2_whitened": 0.006995388082352332,
+  "r2_raw": 0.0055937560391361016,
+  "r2_euclid_exact": 0.6976675687054572,
+  "r2id_whitened": -7.32179367613335,
+  "r2id_raw": -21.733584485851456,
+  "r2_whitened_momentdprime": 0.013460632246089423,
+  "r2_dprime_identity_moment": 0.044251323792499415,
+  "null_perm_r2_mean": 0.2976214213977272,
+  "null_perm_r2_q95": 0.44520686241943264,
+  "null_perm_p": 1.0,
+  "null_placebo_r2_mean": 0.19166001556845366,
+  "null_placebo_r2_q95": 0.5901043237319927,
+  "null_cos1_r2": 0.35754519127575185,
+  "refit_auroc": 0.6177876472580827,
+  "n_probes_auc_gt_0995": 12,
+  "drop_range": [
+   0.15870469343972304,
+   0.46137415785313707
+  ],
+  "shift_cos_Sigma_w": -0.8223217911700069,
+  "shift_cos_w": -0.9999984109294047,
+  "cov_rel_change": 0.023558079494219352
+ },
+ {
+  "file": "lm_euclidean_seed1.npz",
+  "n_test_per_class": 652,
+  "auroc_w": [
+   0.9961280063231586,
+   0.5707309270202116
+  ],
+  "k": 0.9330705366728193,
+  "sigma_relerr_vs_build": 6.288002724649902e-09,
+  "corr_raw_whit_cos": 0.8611418358342781,
+  "r2_whitened": 0.06466664058204774,
+  "r2_raw": 0.0028314640177143197,
+  "r2_euclid_exact": 0.7473196887985564,
+  "r2id_whitened": -9.719088185312037,
+  "r2id_raw": -21.9095423577332,
+  "r2_whitened_momentdprime": 0.09605746114735354,
+  "r2_dprime_identity_moment": 0.08438411182787671,
+  "null_perm_r2_mean": 0.31208334450337827,
+  "null_perm_r2_q95": 0.4618342377105983,
+  "null_perm_p": 1.0,
+  "null_placebo_r2_mean": 0.16657058130154745,
+  "null_placebo_r2_q95": 0.4412763338998895,
+  "null_cos1_r2": 0.47510337971195116,
+  "refit_auroc": 0.5732032632014754,
+  "n_probes_auc_gt_0995": 21,
+  "drop_range": [
+   0.16388695472166814,
+   0.5107009108359365
+  ],
+  "shift_cos_Sigma_w": -0.8225941552907126,
+  "shift_cos_w": -0.9999847223423459,
+  "cov_rel_change": 0.029544045506740918
+ },
+ {
+  "file": "lm_euclidean_seed2.npz",
+  "n_test_per_class": 652,
+  "auroc_w": [
+   0.9961280063231586,
+   0.591690503970793
+  ],
+  "k": 0.9129204323833295,
+  "sigma_relerr_vs_build": 6.288002724649902e-09,
+  "corr_raw_whit_cos": 0.8548062310587553,
+  "r2_whitened": 0.06932855275526738,
+  "r2_raw": 0.007588541420266828,
+  "r2_euclid_exact": 0.6470750785510363,
+  "r2id_whitened": -15.502775839479774,
+  "r2id_raw": -37.74535455774179,
+  "r2_whitened_momentdprime": 0.09142210213350548,
+  "r2_dprime_identity_moment": 0.037774663076976994,
+  "null_perm_r2_mean": 0.32742261944427675,
+  "null_perm_r2_q95": 0.4820404381395688,
+  "null_perm_p": 0.998,
+  "null_placebo_r2_mean": 0.1156034516200804,
+  "null_placebo_r2_q95": 0.3841263473003346,
+  "null_cos1_r2": 0.47154931762533786,
+  "refit_auroc": 0.5916528661221725,
+  "n_probes_auc_gt_0995": 21,
+  "drop_range": [
+   0.22641283074259466,
+   0.4626703112650081
+  ],
+  "shift_cos_Sigma_w": -0.8221785650636336,
+  "shift_cos_w": -0.9999974908553105,
+  "cov_rel_change": 0.025386842323004196
+ },
+ {
+  "file": "lm_mahalanobis_seed0.npz",
+  "n_test_per_class": 652,
+  "auroc_w": [
+   0.9961280063231586,
+   0.6621391471263502
+  ],
+  "k": 0.8429203245907123,
+  "sigma_relerr_vs_build": 6.288002724649902e-09,
+  "corr_raw_whit_cos": 0.8480427665330135,
+  "r2_whitened": 0.964538934609354,
+  "r2_raw": 0.34099404214709034,
+  "r2_euclid_exact": 0.12758597250602102,
+  "r2id_whitened": 0.8956672511711263,
+  "r2id_raw": -1.6099405709320185,
+  "r2_whitened_momentdprime": 0.9972567152998058,
+  "r2_dprime_identity_moment": 0.9999986315990329,
+  "null_perm_r2_mean": 0.0595679778091428,
+  "null_perm_r2_q95": 0.13419341606754098,
+  "null_perm_p": 0.0,
+  "null_placebo_r2_mean": 0.06856926470897463,
+  "null_placebo_r2_q95": 0.2245842196737122,
+  "null_cos1_r2": 0.22867408818102714,
+  "refit_auroc": 0.9969983815725093,
+  "n_probes_auc_gt_0995": 12,
+  "drop_range": [
+   0.0030204373518010197,
+   0.4437737588919418
+  ],
+  "shift_cos_Sigma_w": -0.9999980808057856,
+  "shift_cos_w": -0.8220363861465274,
+  "cov_rel_change": 0.08230636021395067
+ },
+ {
+  "file": "lm_mahalanobis_seed1.npz",
+  "n_test_per_class": 652,
+  "auroc_w": [
+   0.9961280063231586,
+   0.6440353419398548
+  ],
+  "k": 0.8613362158095546,
+  "sigma_relerr_vs_build": 6.288002724649902e-09,
+  "corr_raw_whit_cos": 0.8611418358342781,
+  "r2_whitened": 0.9738748626774778,
+  "r2_raw": 0.33530072645734554,
+  "r2_euclid_exact": 0.3303480591109266,
+  "r2id_whitened": 0.9453824952487118,
+  "r2id_raw": -0.8699968799676321,
+  "r2_whitened_momentdprime": 0.9976929989916337,
+  "r2_dprime_identity_moment": 0.9999994746117755,
+  "null_perm_r2_mean": 0.07245071539444366,
+  "null_perm_r2_q95": 0.16280024821066294,
+  "null_perm_p": 0.0,
+  "null_placebo_r2_mean": 0.06921066412014001,
+  "null_placebo_r2_q95": 0.29543586700224805,
+  "null_cos1_r2": 0.21658269258976576,
+  "refit_auroc": 0.9971442282359141,
+  "n_probes_auc_gt_0995": 21,
+  "drop_range": [
+   0.002342956076630709,
+   0.555085343821747
+  ],
+  "shift_cos_Sigma_w": -0.9999968372587849,
+  "shift_cos_w": -0.8233221785444788,
+  "cov_rel_change": 0.0742511016214971
+ },
+ {
+  "file": "lm_mahalanobis_seed2.npz",
+  "n_test_per_class": 652,
+  "auroc_w": [
+   0.9961280063231586,
+   0.6565946215514321
+  ],
+  "k": 0.8485986064375267,
+  "sigma_relerr_vs_build": 6.288002724649902e-09,
+  "corr_raw_whit_cos": 0.8548062310587553,
+  "r2_whitened": 0.9699023604618624,
+  "r2_raw": 0.22972684425692952,
+  "r2_euclid_exact": 0.369579612010548,
+  "r2id_whitened": 0.891700276466564,
+  "r2id_raw": -1.1358206020101105,
+  "r2_whitened_momentdprime": 0.9975610080983811,
+  "r2_dprime_identity_moment": 0.9999992974503576,
+  "null_perm_r2_mean": 0.09055844104572701,
+  "null_perm_r2_q95": 0.1741383460607092,
+  "null_perm_p": 0.0,
+  "null_placebo_r2_mean": 0.0636042506859509,
+  "null_placebo_r2_q95": 0.18425446964747164,
+  "null_cos1_r2": 0.24532851080923704,
+  "refit_auroc": 0.9969489818961949,
+  "n_probes_auc_gt_0995": 21,
+  "drop_range": [
+   0.004046068726711538,
+   0.49098103052429526
+  ],
+  "shift_cos_Sigma_w": -0.9999990558858282,
+  "shift_cos_w": -0.8225429883668722,
+  "cov_rel_change": 0.08086875815394363
+ }
+]

@@ -1,0 +1,101 @@
+[
+ {
+  "file": "synthetic_mahalanobis_seed0_earlystop.npz",
+  "n_test_per_class": 10000,
+  "auroc_w": [
+   0.98310156,
+   0.53821308
+  ],
+  "k": 0.9548016359691353,
+  "sigma_relerr_vs_build": 2.800562587467657e-09,
+  "corr_raw_whit_cos": 0.8720202317609377,
+  "r2_whitened": 0.6910765421066415,
+  "r2_raw": 0.7193729669298423,
+  "r2_euclid_exact": 0.4613576734754223,
+  "r2id_whitened": 0.5370468945158688,
+  "r2id_raw": 0.7120252012289989,
+  "r2_whitened_momentdprime": 0.6968781102868543,
+  "r2_dprime_identity_moment": 0.7751513406952218,
+  "null_perm_r2_mean": 0.03564024008342767,
+  "null_perm_r2_q95": 0.11530759002705368,
+  "null_perm_p": 0.0,
+  "null_placebo_r2_mean": 0.027289275889766696,
+  "null_placebo_r2_q95": 0.08338748149448938,
+  "null_cos1_r2": 0.04268898277663905,
+  "refit_auroc": 0.9948587999999999,
+  "n_probes_auc_gt_0995": 0,
+  "drop_range": [
+   0.0018858800000000064,
+   0.45900999
+  ],
+  "shift_cos_Sigma_w": -0.8571421906882082,
+  "shift_cos_w": -0.8147239997558433,
+  "cov_rel_change": 0.08300258598795987
+ },
+ {
+  "file": "synthetic_mahalanobis_seed1_earlystop.npz",
+  "n_test_per_class": 10000,
+  "auroc_w": [
+   0.9504997199999998,
+   0.5018420800000001
+  ],
+  "k": 0.9972010820608893,
+  "sigma_relerr_vs_build": 3.166629050672651e-09,
+  "corr_raw_whit_cos": 0.8119118099633283,
+  "r2_whitened": 0.5729921555397616,
+  "r2_raw": 0.6215815742300429,
+  "r2_euclid_exact": 0.4226915537758968,
+  "r2id_whitened": 0.07846621871851023,
+  "r2id_raw": 0.2717931958495129,
+  "r2_whitened_momentdprime": 0.5749784015865782,
+  "r2_dprime_identity_moment": 0.7005736403434858,
+  "null_perm_r2_mean": 0.024546812637751925,
+  "null_perm_r2_q95": 0.09124781089883137,
+  "null_perm_p": 0.0,
+  "null_placebo_r2_mean": 0.055738904167163386,
+  "null_placebo_r2_q95": 0.16831206696542214,
+  "null_cos1_r2": 0.04644108151887119,
+  "refit_auroc": 0.9950352699999999,
+  "n_probes_auc_gt_0995": 0,
+  "drop_range": [
+   -0.028617749999999997,
+   0.46355623999999995
+  ],
+  "shift_cos_Sigma_w": -0.7300695094524245,
+  "shift_cos_w": -0.8231241124044043,
+  "cov_rel_change": 0.12640372312317144
+ },
+ {
+  "file": "synthetic_mahalanobis_seed2_earlystop.npz",
+  "n_test_per_class": 10000,
+  "auroc_w": [
+   0.9529102500000002,
+   0.46215856999999994
+  ],
+  "k": 1.0567569934722336,
+  "sigma_relerr_vs_build": 2.8328184264208664e-09,
+  "corr_raw_whit_cos": 0.6652853493014056,
+  "r2_whitened": 0.259496803511966,
+  "r2_raw": 0.7230843284043581,
+  "r2_euclid_exact": 0.5400822114576685,
+  "r2id_whitened": -0.384099801015626,
+  "r2id_raw": 0.5389749147996954,
+  "r2_whitened_momentdprime": 0.2562189648027399,
+  "r2_dprime_identity_moment": 0.7190708330613813,
+  "null_perm_r2_mean": 0.034316163862118415,
+  "null_perm_r2_q95": 0.11279092310241703,
+  "null_perm_p": 0.0,
+  "null_placebo_r2_mean": 0.012632316133375242,
+  "null_placebo_r2_q95": 0.04905273820249131,
+  "null_cos1_r2": 0.04129353093472756,
+  "refit_auroc": 0.9671782149999999,
+  "n_probes_auc_gt_0995": 2,
+  "drop_range": [
+   0.027159020000000034,
+   0.4844024699999999
+  ],
+  "shift_cos_Sigma_w": -0.6384701343211894,
+  "shift_cos_w": -0.8312236565677993,
+  "cov_rel_change": 0.0850581421209716
+ }
+]

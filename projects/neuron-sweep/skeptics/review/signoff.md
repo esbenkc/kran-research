@@ -67,3 +67,11 @@ Sample: 512 of 3,072 neurons per layer at 1x, the first 256 of the same order at
 - Credit Geva 2022 in the fold.
 
 API spend by `review`: $0.
+
+## 5. Fold check (blog 1bc8488, PR #29), final
+- Conditions 1-6 above are all met in the fold text.
+- I recomputed two validation rows from the committed raw files in data/validation/: Qwen3-8B v2 54/46 claim (8B: 84 rows, 46.4%, 59% of ordinary texts called changed) and GPT-4.1-mini with the "changed" framing (47.6%, 68% called changed). Both match summary.json and the fold.
+- Preview checked in light and dark mode: the bars, the hollow direction dots, the rotated control labels and the heatmap with its colour legend all read. figure-lint and the Netlify preview are green.
+- Cosmetic, not blocking: the colour legend's "0%" tick is clipped at the left edge.
+
+**Final: SIGN-OFF on the numbers and the fold.**

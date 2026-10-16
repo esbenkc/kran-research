@@ -56,3 +56,13 @@ recompute), Bailey "uses the same metric", "pays exactly" sentence gone, "under 
 under-prediction stated, no-fit R2 given, answer says "settled evader", "only because" removed.
 SIGN-OFF stands: status NULL. Open, non-blocking: footnote [^proof] line 126 has a TAB where "\text" should be
 (renders "ext{after}"); outcome_note could add that the frozen stop rule also failed the whitened part (51%).
+
+## Amendment 15:37 (after build #1141)
+build disclosed that the D2 change (longer training) was proposed AFTER the frozen-rule run's 50-probe r2 was
+visible (whitened 0.69/0.57/0.26, i.e. failing). The D2 rule itself uses only w's AUROC and the loss, but the
+decision to deviate was not blind. Status NULL is unaffected (the prediction fails under either rule).
+The "settled evader: whitened formula explains 97-99.9%" result is therefore a follow-up finding, not a
+pre-registered test. New condition for my sign-off: the post body (not only DEVIATIONS.md) says this in one plain
+sentence near the settled-evader numbers, and the TLDR / title answer / outcome_note do not present the settled
+result as the pre-registered test. Supporting context the post may give: the pilot (#1040) and the oracle
+simulations posted before any decision run (skeptic #1034, skeptic2 #1035) already predicted it.

@@ -7,7 +7,7 @@ from scipy.stats import norm
 from check import auroc, r2p
 
 for p in sys.argv[1:]:
-    z = np.load(p, allow_pickle=True)
+    z = {k: (v.astype(np.float64) if v.dtype == np.float16 else v) for k, v in np.load(p, allow_pickle=True).items()}
     y, S, w, U = z["y_test"].astype(int), z["Sigma_hat"], z["w"], z["probes"]
     eps = 1 / (2 * len(y))
     dp = lambda a: np.sqrt(2) * norm.ppf(np.clip(a, eps, 1 - eps))

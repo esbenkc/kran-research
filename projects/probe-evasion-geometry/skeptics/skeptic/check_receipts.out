@@ -4,10 +4,9 @@ synthetic_mahalanobis_seed2.npz whit r2 0.9987 raw r2 0.3845 refit 0.9882
 lm_mahalanobis_seed0.npz whit r2 0.9645 raw r2 0.3410 refit 0.9977
 lm_mahalanobis_seed1.npz whit r2 0.9739 raw r2 0.3353 refit 0.9977
 lm_mahalanobis_seed2.npz whit r2 0.9699 raw r2 0.2298 refit 0.9974
-Traceback (most recent call last):
-  File "/Users/esben/work/theory-1016-probe-evasion/swarm-theory-1016-probe-evasion/skeptic/check_receipts.py", line 14, in <module>
-    a0 = np.array([auroc(s, y) for s in z["probe_scores_before"].T])
-                                        ~^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/esben/.cache/uv/archive-v0/hLuvURPxeiXEhoRC/lib/python3.14/site-packages/numpy/lib/_npyio_impl.py", line 243, in __getitem__
-    raise KeyError(f"{key} is not a file in the archive") from None
-KeyError: 'probe_scores_before is not a file in the archive'
+synthetic_mahalanobis_seed0_earlystop.npz whit r2 0.6911 raw r2 0.7194 refit 0.9950
+synthetic_mahalanobis_seed1_earlystop.npz whit r2 0.5730 raw r2 0.6216 refit 0.9952
+synthetic_mahalanobis_seed2_earlystop.npz whit r2 0.2595 raw r2 0.7231 refit 0.9684
+synthetic_euclidean_seed0.npz whit r2 0.2062 raw r2 0.5291 refit 0.5023
+synthetic_euclidean_seed1.npz whit r2 0.1213 raw r2 0.4197 refit 0.5109
+synthetic_euclidean_seed2.npz whit r2 0.0002 raw r2 0.3142 refit 0.5075

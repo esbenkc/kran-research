@@ -99,6 +99,39 @@
   "refit_auroc": 0.9981463359554369
  },
  {
+  "file": "synthetic_euclidean_seed0.npz",
+  "k": 0.9917713238581267,
+  "r2_whitened": 0.2061967573878783,
+  "r2_raw": 0.5291475446405522,
+  "r2id_whitened": -0.29831226225633456,
+  "r2_euclid_exact": 0.9990087141603499,
+  "r2_cos_alone": 0.6609039459525021,
+  "null_perm_q95": 0.28669283376341836,
+  "refit_auroc": 0.502253975
+ },
+ {
+  "file": "synthetic_euclidean_seed1.npz",
+  "k": 1.0064989841243972,
+  "r2_whitened": 0.12129221732648302,
+  "r2_raw": 0.4196686202473116,
+  "r2id_whitened": -0.8738516003220462,
+  "r2_euclid_exact": 0.9992122245694632,
+  "r2_cos_alone": 0.4414330845650021,
+  "null_perm_q95": 0.2138934959018896,
+  "refit_auroc": 0.510910885
+ },
+ {
+  "file": "synthetic_euclidean_seed2.npz",
+  "k": 0.9921173032892201,
+  "r2_whitened": 0.0001609728195049237,
+  "r2_raw": 0.3141916513239974,
+  "r2id_whitened": -1.0615664299446297,
+  "r2_euclid_exact": 0.996164796845982,
+  "r2_cos_alone": 0.24345656780901329,
+  "null_perm_q95": 0.28691474437787157,
+  "refit_auroc": 0.507483565
+ },
+ {
   "file": "synthetic_mahalanobis_seed0.npz",
   "k": 0.8866470239898291,
   "r2_whitened": 0.9989412534061738,
@@ -106,8 +139,19 @@
   "r2id_whitened": 0.9964963675035302,
   "r2_euclid_exact": 0.1940799274712973,
   "r2_cos_alone": 0.6137773381819323,
-  "null_perm_q95": 0.0882171156317642,
+  "null_perm_q95": 0.08379487648378135,
   "refit_auroc": 0.9707860099999999
+ },
+ {
+  "file": "synthetic_mahalanobis_seed0_earlystop.npz",
+  "k": 0.9548046175654605,
+  "r2_whitened": 0.6910772920570586,
+  "r2_raw": 0.7193724861945452,
+  "r2id_whitened": 0.537046674622215,
+  "r2_euclid_exact": 0.46135301968074466,
+  "r2_cos_alone": 0.5992584486081776,
+  "null_perm_q95": 0.12499947935703684,
+  "refit_auroc": 0.9949961150000001
  },
  {
   "file": "synthetic_mahalanobis_seed1.npz",
@@ -117,8 +161,19 @@
   "r2id_whitened": 0.9992439792043141,
   "r2_euclid_exact": 0.1288017199989719,
   "r2_cos_alone": 0.7705832413520475,
-  "null_perm_q95": 0.06349892731142466,
+  "null_perm_q95": 0.058780364040407526,
   "refit_auroc": 0.9896203100000002
+ },
+ {
+  "file": "synthetic_mahalanobis_seed1_earlystop.npz",
+  "k": 0.9971997383967196,
+  "r2_whitened": 0.5729947870805969,
+  "r2_raw": 0.6215831098721951,
+  "r2id_whitened": 0.07846779642183532,
+  "r2_euclid_exact": 0.42269435883001805,
+  "r2_cos_alone": 0.6007809334153414,
+  "null_perm_q95": 0.09037550207061078,
+  "refit_auroc": 0.995208445
  },
  {
   "file": "synthetic_mahalanobis_seed2.npz",
@@ -128,7 +183,18 @@
   "r2id_whitened": 0.9986225297607874,
   "r2_euclid_exact": 0.0026285842142533436,
   "r2_cos_alone": 0.6391903464136477,
-  "null_perm_q95": 0.10601389784180888,
+  "null_perm_q95": 0.10820834098342613,
   "refit_auroc": 0.98820879
+ },
+ {
+  "file": "synthetic_mahalanobis_seed2_earlystop.npz",
+  "k": 1.0567566905235135,
+  "r2_whitened": 0.2594952398691235,
+  "r2_raw": 0.7230835558906313,
+  "r2id_whitened": -0.38410249028722965,
+  "r2_euclid_exact": 0.5400830140136159,
+  "r2_cos_alone": 0.4525924761489445,
+  "null_perm_q95": 0.11955891705299997,
+  "refit_auroc": 0.96840853
  }
 ]

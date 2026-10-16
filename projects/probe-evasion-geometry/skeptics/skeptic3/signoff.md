@@ -95,5 +95,5 @@ recompute (full arrays and public receipts). One minor, non-blocking: the Euclid
 Euclidean formula 65-75%.
 
 **SIGNED: skeptic3 signs off on lab_status "NULL" and on the post text.**
-Public-receipt gap (not a sign-off blocker): the synthetic early-stop and Euclidean receipts carry no
-scores; their numbers were checked from the full local arrays.
+Public receipts: after build 0d091f2 all 18 compact receipts carry scores; recompute_receipts.py
+reproduces every arm (incl. synthetic early stop 0.691/0.573/0.259 and Euclid 0.999/0.999/0.996).

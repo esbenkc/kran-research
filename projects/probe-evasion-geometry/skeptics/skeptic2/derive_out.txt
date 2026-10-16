@@ -1,0 +1,17 @@
+C1 binormal AUROC: MC=0.4899 theory=0.4907  PASS
+C2 Sigma-move feasible (w^T delta'=0): PASS ; stationarity d ∝ Sigma w holds by construction (lam=(-d0*w0 - d1*w1 - d2*w2)/(w0*(s00*w0 + s01*w1 + s02*w2) + w1*(s01*w0 + s11*w1 + s12*w2) + w2*(s02*w0 + s12*w1 + s22*w2)))
+C2 Sigma-move is min Sigma^-1 norm over 2000 feasible perturbations: PASS
+C3 Euclid-move is min L2 norm: PASS;  Euclid-move != Sigma-move unless w is a Sigma eigvec: angle(dE,dS)=37.3 deg
+C4 a_u' = a_u - a_w cos_Sigma(u,w): reduction PASS, identity PASS
+C4 numeric n=50, 200 probes: max err 1.11e-16  PASS
+C5 refit a*' = a* sin(theta): 2.734455 vs 2.734455  PASS
+C5 attack optimal probe -> |delta'| = 3.61e-15 (collapse, refit AUROC = 0.5)  PASS
+    attacked probe = optimal + 0% noise: AUROC(w) before 0.997, refit AUROC after 0.500 (orig best 0.997)
+    attacked probe = optimal + 10% noise: AUROC(w) before 0.996, refit AUROC after 0.777 (orig best 0.997)
+    attacked probe = optimal + 30% noise: AUROC(w) before 0.978, refit AUROC after 0.968 (orig best 0.997)
+C6 partial move t=0.4: max err 1.11e-16  PASS
+C7 linear enc + L2 recon: grad norm at rank-1 B along w = 1.13e-13 PASS
+    mean-diff move direction vs w: |cos|=1.0000; vs Sigma w: |cos|=0.7953
+    => lemma's 'along Sigma w' is an ASSUMPTION about the evader's cost metric (Sigma^{-1}/KL), not a consequence of a probe penalty alone.
+C8 Mahalanobis linear encoder: w-gap after 0.0e+00; var ratio 0.991354 vs 1-cos^2theta 0.991354  PASS
+C8 b ∝ M^-1 delta (Sherman-Morrison): |cos(M b, delta)| = 1.000000  PASS

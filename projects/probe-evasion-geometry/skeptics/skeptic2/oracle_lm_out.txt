@@ -1,0 +1,6 @@
+seed0 posterior-oracle: AUROC_w 0.996->0.527 k=0.97 r2_white=0.940 r2_raw=0.354 corr(raw,white)=0.80 refit=0.998 drop[-0.003,0.607] probes>0.995: 22
+seed0 label-aware shift: AUROC_w 0.996->0.531 k=0.97 r2_white=0.948 r2_raw=0.348 corr(raw,white)=0.80 refit=1.000 drop[-0.003,0.604] probes>0.995: 22
+seed1 posterior-oracle: AUROC_w 0.996->0.527 k=0.97 r2_white=0.952 r2_raw=0.323 corr(raw,white)=0.74 refit=0.998 drop[-0.043,0.676] probes>0.995: 21
+seed1 label-aware shift: AUROC_w 0.996->0.531 k=0.97 r2_white=0.960 r2_raw=0.318 corr(raw,white)=0.74 refit=1.000 drop[-0.043,0.673] probes>0.995: 21
+seed2 posterior-oracle: AUROC_w 0.996->0.527 k=0.97 r2_white=0.922 r2_raw=0.147 corr(raw,white)=0.81 refit=0.998 drop[0.011,0.697] probes>0.995: 16
+seed2 label-aware shift: AUROC_w 0.996->0.531 k=0.97 r2_white=0.933 r2_raw=0.141 corr(raw,white)=0.81 refit=1.000 drop[0.038,0.694] probes>0.995: 16

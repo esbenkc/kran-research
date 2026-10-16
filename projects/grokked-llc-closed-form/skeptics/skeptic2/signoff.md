@@ -137,3 +137,8 @@ gamma 1-100 (22% at gamma 1); centred hidden-activation rank; sampled-weights ro
 Substantive caveat now in the fold: the calibration nets have no curvature near the resolution, so the
 calibration cannot test gamma/nbeta; and at gamma 0.1 the chains are too short to settle, so the gamma -> 0
 value is unknown. SIGN-OFF on the fold's numbers. Headline verdict NULL unchanged.
+Final text recheck (blog d7f071a): sensitivity.csv rows verified (medians/ranges; my code and skeptic3's within
+1.2%); coarser-resolution exception at p=11, K=33 (+7% at nbeta 1e3) now stated; gamma 10 -5..-15% ok;
+post-freeze known-LLC nets 0.84/0.93 ok; relaxation 1/(eps gamma) = 220k (p11) / 120k (p17) ok.
+Non-blocking nit left: l.86 'near the resolution' should read 'below' (7% / 0.04% are shares below).
+SIGN-OFF on the final fold text.

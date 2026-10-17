@@ -23,6 +23,7 @@ from lib import figure  # noqa: E402
 
 FIG = "fisher-pullback-transfer"
 LABELS = {"plain": "Plain cosine", "whitened": "Whitened", "fisher": "Fisher pull-back"}
+CALLOUT = {"emotion:joy": "fear → joy", "emotion:surprise": "fear → 3 others"}
 
 
 def main(publish=False):
@@ -31,11 +32,15 @@ def main(publish=False):
     rows = []
     for p in pairs:
         for m in LABELS:
-            rows.append({"set": p["set"], "metric": m, "target": p["target"], "probe": p["probe"],
-                         "x": round(float(p[m]), 5), "y": round(float(p["measured"]), 5), "n_seeds": int(p["n_seeds"])})
+            r = {"set": p["set"], "metric": m, "target": p["target"], "probe": p["probe"],
+                 "x": round(float(p[m]), 5), "y": round(float(p["measured"]), 5), "n_seeds": int(p["n_seeds"])}
+            # name the points that carry most of the primary variance (Fisher panel only)
+            if m == "fisher" and p["set"] == "primary" and p["target"] == "emotion:fear" and p["probe"] in CALLOUT:
+                r["label"] = CALLOUT[p["probe"]]
+            rows.append(r)
     prim, sec = res["primary"], res.get("secondary", {})
     data = {
-        "title": "Which other probes does a hiding fine-tune fool? The formula's forecast vs what happened",
+        "title": "No choice of geometry predicts which other probes a hiding fine-tune fools",
         "sub": ("Each dot is one probe after a fine-tune of Pythia-70M hid one concept from one target probe "
                 "while keeping its outputs close to the original. Across: AUROC drop predicted by one formula, "
                 "with three choices of geometry. Up: measured AUROC drop. Dashed line: prediction = measurement. "

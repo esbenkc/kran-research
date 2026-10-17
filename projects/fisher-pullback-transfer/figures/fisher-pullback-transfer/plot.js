@@ -8,9 +8,9 @@
 //   title, sub, scale: "linear" | "symlog", symlog_constant,
 //   panels: [{ metric, label, r2_primary, r2_secondary }],
 //   stats: { n_primary, sd_primary, n02_primary, n_secondary, sd_secondary, n02_secondary },
-//   rows: [{ set: "primary"|"secondary", metric, target, probe, x, y, n_seeds }]
+//   rows: [{ set: "primary"|"secondary", metric, target, probe, x, y, n_seeds, label? }]   label: callout text
 // }   x = predicted AUROC drop, y = measured AUROC drop (AUROC clean minus AUROC after the attack)
-import { C, FONT, plotStyle } from "../theme.js";
+import { C, FONT, halo, plotStyle } from "../theme.js";
 
 const fmtR = (v) => (v === null || Number.isNaN(v) ? "n/a" : (v < -9.95 ? "< −10" : v.toFixed(2).replace("-", "−")));
 
@@ -88,6 +88,9 @@ export function render(data, Plot) {
         Plot.dot(rows.filter((r) => r.set === "secondary"), {
           x: "x", y: "y", r: 3.4, fill: "none", stroke: SET.secondary.color, strokeWidth: 1.4,
           tip: true, title: tip,
+        }),
+        Plot.text(rows.filter((r) => r.label), {
+          ...halo(), x: "x", y: "y", text: "label", fill: C.ink, fontSize: 10, textAnchor: "end", dx: -6,
         }),
       ],
     }));

@@ -1,5 +1,5 @@
 {
-  "title": "Which other probes does a hiding fine-tune fool? The formula's forecast vs what happened",
+  "title": "No choice of geometry predicts which other probes a hiding fine-tune fools",
   "sub": "Each dot is one probe after a fine-tune of Pythia-70M hid one concept from one target probe while keeping its outputs close to the original. Across: AUROC drop predicted by one formula, with three choices of geometry. Up: measured AUROC drop. Dashed line: prediction = measurement. R\u00b2 = 1 \u2212 (squared error)/(variance of the measurements); 1 is perfect, below 0 is worse than guessing the average. Filled and hollow sets are scored separately, never pooled. Each dot is the mean of the target's successful seeds (2-3). Both axes stretch near zero (symmetric log scale).",
   "scale": "symlog",
   "symlog_constant": 0.01,
@@ -2142,7 +2142,8 @@
       "probe": "emotion:joy",
       "x": 0.00151,
       "y": 0.1505,
-      "n_seeds": 3
+      "n_seeds": 3,
+      "label": "fear \u2192 joy"
     },
     {
       "set": "primary",
@@ -2196,7 +2197,8 @@
       "probe": "emotion:surprise",
       "x": -0.00067,
       "y": 0.0787,
-      "n_seeds": 3
+      "n_seeds": 3,
+      "label": "fear \u2192 3 others"
     },
     {
       "set": "primary",

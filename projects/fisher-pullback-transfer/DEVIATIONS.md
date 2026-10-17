@@ -97,3 +97,7 @@ value fails within the step cap; the rule then picks the largest succeeding valu
 Stop step and retain KL at stop are logged per run. If retain KL at stop is ~0 for all scored runs, the post
 says the attacker stopped before the regime where the second-order law applies (PREREG "if not": early
 stopping dominates). The pilot is re-run with the loss chosen by the 15:09 gate (softplus first).
+- (15:13, Tove #1717) Added diagnostic, outside the verdict: per target, seed 0 only, the same attack with
+  lambda_KL = 0 (5 extra runs). Report retain KL at stop for it, and KL(chosen lambda) / KL(lambda = 0) next
+  to every R^2. A ratio near 1 means the retain loss did nothing, and the post says so (PREREG "if not").
+  The three predictors are also scored on these lambda = 0 runs as an exploratory row.

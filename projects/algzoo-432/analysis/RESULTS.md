@@ -21,7 +21,8 @@ The best answers we have:
    - **Pass the fixed bar 0.98671, but inside the floor uncertainty:** fitted 340 numbers at 3 digits,
      4,814 bits, 0.98831; 374 original weights with per-entry digits (T20), 5,208 bits, 0.98835; all 400
      original weights at 3 digits, 5,479 bits, 0.98858; 382 at 3 digits, 5,293 bits, 0.98673.
-   - Nothing at or under 200 numbers comes close (best 0.956, C1+).
+   - Nothing at or under 200 numbers comes close (best 0.957 dev: Nadia's fitted per-position MLP scorer,
+     175 numbers; C1+ 0.956 holdout).
 2. **Best readable algorithm:** C1 = "the 2nd largest of (0, x_0, …, x_9), with the leading 0 mapped to
    position 0". 4 literals, 0 fitted constants, holdout 0.95503. With 3 extra clauses (C1+, 5 fitted
    numbers): holdout 0.95634.
@@ -30,8 +31,9 @@ The best answers we have:
 
 The round-2 pre-registration (`PREREG_round2.md`, fixed 22:53 before any round-2 result) predicted "no;
 the best short description stays below 0.975", at 70% confidence. The prediction held: the best
-description with at most 200 numbers is C1+ at 0.956 (holdout; C1 0.955). The 0.97062 rule has 63,270 constants, so it is
-not short and does not test the prediction.
+descriptions with at most 200 numbers reach 0.956-0.957 (C1+ 0.95634 holdout; Nadia's fitted 175-number
+per-position scorer 0.9570 dev, 88 numbers 0.9557, 697 numbers 0.9613; `skeptics/nadia/`). The 0.97062 rule
+has 63,270 constants, so it is not short and does not test the prediction.
 
 All agreement numbers are with the model's argmax, on N(0,1) inputs. Holdout = seed 432432, N = 1e6,
 `check_agreement.py`, run by Rasmus only. Dev numbers come from other seeds and are marked "dev".
@@ -68,6 +70,16 @@ Row 1 sits on the bar on every seed we tried (holdout 0.98673, dev 61 0.98743, d
 Near misses below the bar: Bruno's fitted nets at 325 / 310 / 295 numbers, 3 digits, 4,621–4,266 bits:
 0.98301 / 0.97886 / 0.96563 (dev 62); 374 numbers at 3 digits 0.98407 (holdout); the 340-number fitted net at 3 digits 0.98500 with progressive freezing (Bruno) and
 0.98184 without; at 2 digits every network is at 0.64–0.74.
+
+Convention caveat (Hugo, confirmed by Rasmus #2142): the 3-digit rows of the original weights (rows 0–2)
+depend on which of the 10 equivalent W_oh row shifts gets rounded. `bits_curve.py` fixes shift 0 by
+convention, and shift 0 happens to be the best: over all 10 shifts, all-400 at 3 digits gives
+0.98381–0.98873 (dev 4321), and 7 of 10 fall below the bar. The 4-digit rows (3, 4) and the fitted rows
+clear the bar by more than 0.002 and do not depend on this.
+
+Noise-floor checks: Hugo's 200-draw 0.1% floor 0.98717 (SE 0.00026, dev 7000-7140) supports the bar
+0.98671. At 0.3% noise the floor is about 0.960 (Nadia, 80 draws; Vera's 10-draw 0.952 was low), half a
+point above C1.
 
 ## B. Readable and compact candidates, ranked by agreement
 

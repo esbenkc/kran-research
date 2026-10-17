@@ -136,7 +136,9 @@ https://drive.google.com/file/d/1t2rXhDQqWrOXRwjqstbrBPWiCmYlMts_/view).
 Script: `cell_ceiling.py` (`.venv/bin/python cell_ceiling.py`, 10 s): 6e6 N(0,1) (seed 21), 5e6 train / 1e6 test, model
 choice coded as rank class (max / 2nd / 3rd / other). Rule family: per-cell majority vote of the model's
 choice, cells = (pM, pS, pT) × quantile bins of (S−T)/|M| and (M−S)/|M| × signs of S, T.
-This upper-bounds any rule that reads only those features (weight-derived or fitted).
+This is an ESTIMATE of the best rule on those features, not an upper bound: with ~12 train samples per cell the
+held-out majority vote is noisy and the gap bins are coarse (correction 23:45 after Nadia #2165). The
+continuous per-config fits in residual_percfg.py (round 2) give 0.966-0.971, in the same range.
 
 | cells | train agreement | test agreement |
 |---|---|---|
@@ -147,7 +149,7 @@ This upper-bounds any rule that reads only those features (weight-derived or fit
 | 12 × 4 + bin of x_8/|M| | 0.9664 | 0.9633 |
 | 12 × 4 + bin of (T − 4th)/|M| | 0.9683 | 0.9632 |
 
-Reading: top-3 positions and gaps cap at ~0.965 test (0.972 even when overfit), below the revised bar
+Reading: top-3 positions and gaps reach ~0.965 test (0.972 in-sample), below the revised bar
 0.98671. Adding the last inputs or the 4th value does not move the test ceiling. Inside a cell the
 model's near-tie choice is close to a coin flip set by fine, high-dimensional detail (consistent with the
 weight-noise floor).

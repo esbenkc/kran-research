@@ -33,8 +33,8 @@ https://www.alignment.org/blog/algzoo-uninterpreted-models-with-fewer-than-1-500
   digits gives 0.982–0.986, 4 digits 0.998, 2 digits 0.68 (Bruno, Rasmus, Kasper, independent runs).
   347 of 432 single entries change > 1% of outputs when set to zero (blocks.md). Oracle ceilings for
   compact families: decision tree 256 leaves 0.9555, 720-cell Jacobian lookup 0.909, exact local Jacobian
-  on top-5 inputs 0.975 (algorithm_compact.md). Best possible rule on (positions of top-3, binned gaps,
-  signs), even with 398k cells: 0.965 on held-out samples (research.md s.6, cell_ceiling.py). Exact 2nd argmax of a linearly
+  on top-5 inputs 0.975 (algorithm_compact.md). A per-cell majority vote on (positions of top-3, binned gaps,
+  signs), with 398k cells, gets 0.965 on held-out samples (train 0.972; ~12 samples per cell, so an estimate, not a proven bound; Nadia #2165) (research.md s.6, cell_ceiling.py). Exact 2nd argmax of a linearly
   distorted input y = G·x (per-position gains, or full 10×10 crosstalk, 100 fitted constants): 0.954 /
   0.952 (Bruno, scratch/distorted_2nd_argmax.py). Gradient-boosted trees on rank/gap/value features:
   0.934–0.960 (Bruno; Kasper peak 0.960 with 2e6 training samples). Trees are weak at linear

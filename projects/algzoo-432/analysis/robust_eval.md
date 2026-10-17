@@ -50,3 +50,6 @@ the bar's 0.1% weight noise (rng 7); fragile = the other 5.87%. The reference ro
 - Below ~340 numbers the fitted nets lose robust inputs too (Bruno's long finetune @3d: 325 -> 0.9966,
   310 -> 0.9939, 295 -> 0.98436; slow ramp 200 -> 0.853), so they fail for structural reasons, not only
   for precision.
+- Note (Hugo #2135, Rasmus #2142): the 'gauge + rounded' rows use ladder.gauge, which shifts W_oh by row 0
+  (j=0). This is the best of the 10 equivalent shifts for 3-digit rounding; 7 of 10 shifts fall below the
+  bar. 4-digit and fitted rows are not affected.

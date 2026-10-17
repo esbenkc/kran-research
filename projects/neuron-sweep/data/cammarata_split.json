@@ -1,0 +1,169 @@
+{
+ "n_runs": 200,
+ "agreement": {
+  "kappa": 0.619,
+  "raw": 0.79,
+  "confusion_l1_rows_l2_cols": {
+   "none": [
+    49,
+    5,
+    0,
+    1
+   ],
+   "one": [
+    21,
+    100,
+    0,
+    4
+   ],
+   "unrelated": [
+    0,
+    2,
+    3,
+    0
+   ],
+   "broken": [
+    1,
+    4,
+    4,
+    6
+   ]
+  }
+ },
+ "labeller1": {
+  "neuron": {
+   "n": 100,
+   "counts": {
+    "none": 26,
+    "one": 62,
+    "broken": 7,
+    "unrelated": 5
+   },
+   "unrelated_share": 0.05,
+   "unrelated_ci": [
+    0.022,
+    0.112
+   ],
+   "unrelated_of_effects": 0.068,
+   "one_of_effects": 0.838
+  },
+  "direction": {
+   "n": 100,
+   "counts": {
+    "one": 63,
+    "broken": 8,
+    "none": 29
+   },
+   "unrelated_share": 0.0,
+   "unrelated_ci": [
+    0.0,
+    0.037
+   ],
+   "unrelated_of_effects": 0.0,
+   "one_of_effects": 0.887
+  },
+  "fisher_p_unrelated_neuron_vs_direction": 0.059
+ },
+ "labeller2": {
+  "neuron": {
+   "n": 100,
+   "counts": {
+    "one": 56,
+    "unrelated": 6,
+    "none": 33,
+    "broken": 5
+   },
+   "unrelated_share": 0.06,
+   "unrelated_ci": [
+    0.028,
+    0.125
+   ],
+   "unrelated_of_effects": 0.09,
+   "one_of_effects": 0.836
+  },
+  "direction": {
+   "n": 100,
+   "counts": {
+    "one": 55,
+    "none": 38,
+    "broken": 6,
+    "unrelated": 1
+   },
+   "unrelated_share": 0.01,
+   "unrelated_ci": [
+    0.002,
+    0.054
+   ],
+   "unrelated_of_effects": 0.016,
+   "one_of_effects": 0.887
+  },
+  "fisher_p_unrelated_neuron_vs_direction": 0.118
+ },
+ "agreed": {
+  "neuron": {
+   "n": 100,
+   "counts": {
+    "disputed": 26,
+    "one": 48,
+    "none": 22,
+    "unrelated": 3,
+    "broken": 1
+   },
+   "unrelated_share": 0.03,
+   "unrelated_ci": [
+    0.01,
+    0.085
+   ],
+   "unrelated_of_effects": 0.058,
+   "one_of_effects": 0.923
+  },
+  "direction": {
+   "n": 100,
+   "counts": {
+    "one": 52,
+    "disputed": 16,
+    "broken": 5,
+    "none": 27
+   },
+   "unrelated_share": 0.0,
+   "unrelated_ci": [
+    0.0,
+    0.037
+   ],
+   "unrelated_of_effects": 0.0,
+   "one_of_effects": 0.912
+  },
+  "fisher_p_unrelated_neuron_vs_direction": 0.246
+ },
+ "either_unrelated": {
+  "neuron": {
+   "n": 100,
+   "counts": {
+    "other": 92,
+    "unrelated": 8
+   },
+   "unrelated_share": 0.08,
+   "unrelated_ci": [
+    0.041,
+    0.15
+   ],
+   "unrelated_of_effects": 1.0,
+   "one_of_effects": 0.0
+  },
+  "direction": {
+   "n": 100,
+   "counts": {
+    "other": 99,
+    "unrelated": 1
+   },
+   "unrelated_share": 0.01,
+   "unrelated_ci": [
+    0.002,
+    0.054
+   ],
+   "unrelated_of_effects": 1.0,
+   "one_of_effects": 0.0
+  },
+  "fisher_p_unrelated_neuron_vs_direction": 0.035
+ }
+}

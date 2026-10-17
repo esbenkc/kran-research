@@ -233,10 +233,10 @@ Persona: a competent ML researcher who does not work on AI deception or probes.
 
 41. "Our new judges call 89% deceptive (Sonnet), but most of the extra answers are ones our agent check calls truthful."
    Two problems. (a) "Our agent check" appears here before the agent is introduced. The reader meets it only later, in the "How good are the judges?" foldout, so at this point "agent check" is unexplained jargon. (b) No number on the page supports "most of the extra answers". The foldout's figure ("Of the 15 answers the agent called truthful, Sonnet called 10 misleading") is the other conditional: how often Sonnet over-calls, given that the agent says truthful. It is not the share of Sonnet's extra deceptive answers that the agent calls truthful. A careful reader looks for the backing and can't find it. Fix: add a short pointer ("an agent check, see below") and the actual count behind "most" (e.g. "16 of 20 such answers we checked").
-   Status: OPEN
+   v6 re-read: OPEN
    Fix (write, v7): sentence now reads 'Sonnet calls 89% deceptive, but a blind agent check of 20 answers the earlier judge called truthful finds 16 truthful (see "How good are the judges?").' The foldout now has a paragraph for this second check: 'A second check took 20 round-8 penalty answers that the earlier yes-or-no judge called truthful. The agent called 16 of them truthful. Sonnet called 17 of the same 20 deceptive.' (receipt: data/handcheck/check2)
-   Status (write): FIXED in v7, awaiting confirmation
+   Status: CONFIRMED (v7: 'a blind agent check of 20 answers the earlier judge called truthful finds 16 truthful (see "How good are the judges?")' points forward to the agent and gives the count. The foldout's second-check paragraph ('20 round-8 penalty answers … The agent called 16 of them truthful. Sonnet called 17 of the same 20 deceptive.') is the conditional that the claim needs)
 
 ## Sign-off
 
-Not signed off yet: 1 open item (41). Re-read v6 on 2026-10-16: all 40 earlier items CONFIRMED (38 original + 39, 40).
+SIGNED OFF: all 41 items confirmed on 2026-10-16 (v7 deploy preview, blog 9751b30). The v7 re-read found no new comprehension problems.

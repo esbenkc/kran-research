@@ -1,0 +1,83 @@
+lambda = 0.033161
+{'dbpedia:NaturalPlace': [(0, True, 10), (1, True, 10), (2, True, 10)], 'emotion:fear': [(0, True, 10), (1, True, 10), (2, True, 10)], 'lang:it': [(0, True, 10), (1, True, 10), (2, True, 10)], 'sst2:positive': [(0, True, 10), (1, True, 10), (2, True, 10)], 'yahoo:Education & Reference': [(0, True, 10), (1, False, 2000), (2, True, 10)]}
+
+per-run consistency (mine vs theirs):
+{'target': 'dbpedia:NaturalPlace', 'seed': 0, 'my_delta_w': np.float64(-14.2189), 'their_delta_w': -14.2187, 'my_Gw': np.float64(9.4708), 'their_Gw': 9.4708, 'my_auc_w': np.float64(0.1967), 'their_auc_w': 0.1967, 'retain_kl': 0.0569, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'dbpedia:NaturalPlace', 'seed': 1, 'my_delta_w': np.float64(-15.8165), 'their_delta_w': -15.8165, 'my_Gw': np.float64(9.4708), 'their_Gw': 9.4708, 'my_auc_w': np.float64(0.2091), 'their_auc_w': 0.2091, 'retain_kl': 0.0568, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'dbpedia:NaturalPlace', 'seed': 2, 'my_delta_w': np.float64(-14.0334), 'their_delta_w': -14.0335, 'my_Gw': np.float64(9.4708), 'their_Gw': 9.4708, 'my_auc_w': np.float64(0.236), 'their_auc_w': 0.236, 'retain_kl': 0.0984, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'emotion:fear', 'seed': 0, 'my_delta_w': np.float64(-0.442), 'their_delta_w': -0.4419, 'my_Gw': np.float64(1.7025), 'their_Gw': 1.7025, 'my_auc_w': np.float64(0.5491), 'their_auc_w': 0.5491, 'retain_kl': 0.0444, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'emotion:fear', 'seed': 1, 'my_delta_w': np.float64(-0.6878), 'their_delta_w': -0.6877, 'my_Gw': np.float64(1.7025), 'their_Gw': 1.7025, 'my_auc_w': np.float64(0.541), 'their_auc_w': 0.541, 'retain_kl': 0.0456, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'emotion:fear', 'seed': 2, 'my_delta_w': np.float64(-0.6105), 'their_delta_w': -0.6105, 'my_Gw': np.float64(1.7025), 'their_Gw': 1.7025, 'my_auc_w': np.float64(0.5388), 'their_auc_w': 0.5388, 'retain_kl': 0.0606, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'lang:it', 'seed': 0, 'my_delta_w': np.float64(-11.5295), 'their_delta_w': -11.5296, 'my_Gw': np.float64(10.8037), 'their_Gw': 10.8037, 'my_auc_w': np.float64(0.4965), 'their_auc_w': 0.4964, 'retain_kl': 0.0473, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'lang:it', 'seed': 1, 'my_delta_w': np.float64(-11.8641), 'their_delta_w': -11.864, 'my_Gw': np.float64(10.8037), 'their_Gw': 10.8037, 'my_auc_w': np.float64(0.5087), 'their_auc_w': 0.5088, 'retain_kl': 0.0437, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'lang:it', 'seed': 2, 'my_delta_w': np.float64(-12.097), 'their_delta_w': -12.097, 'my_Gw': np.float64(10.8037), 'their_Gw': 10.8037, 'my_auc_w': np.float64(0.4804), 'their_auc_w': 0.4804, 'retain_kl': 0.0502, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'sst2:positive', 'seed': 0, 'my_delta_w': np.float64(-4.3426), 'their_delta_w': -4.3427, 'my_Gw': np.float64(2.6396), 'their_Gw': 2.6396, 'my_auc_w': np.float64(0.4428), 'their_auc_w': 0.4428, 'retain_kl': 0.0461, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'sst2:positive', 'seed': 1, 'my_delta_w': np.float64(-4.8576), 'their_delta_w': -4.8578, 'my_Gw': np.float64(2.6396), 'their_Gw': 2.6396, 'my_auc_w': np.float64(0.4329), 'their_auc_w': 0.4329, 'retain_kl': 0.0535, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'sst2:positive', 'seed': 2, 'my_delta_w': np.float64(-5.4948), 'their_delta_w': -5.495, 'my_Gw': np.float64(2.6396), 'their_Gw': 2.6396, 'my_auc_w': np.float64(0.4223), 'their_auc_w': 0.4223, 'retain_kl': 0.063, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'yahoo:Education & Reference', 'seed': 0, 'my_delta_w': np.float64(-0.8193), 'their_delta_w': -0.8191, 'my_Gw': np.float64(1.4785), 'their_Gw': 1.4785, 'my_auc_w': np.float64(0.5577), 'their_auc_w': 0.5577, 'retain_kl': 0.0494, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+{'target': 'yahoo:Education & Reference', 'seed': 2, 'my_delta_w': np.float64(-0.2403), 'their_delta_w': -0.2402, 'my_Gw': np.float64(1.4785), 'their_Gw': 1.4785, 'my_auc_w': np.float64(0.5896), 'their_auc_w': 0.5896, 'retain_kl': 0.0813, 'stop': 10, 'lam': 30, 'loss': 'softplus_pos'}
+
+max |my meas - their meas| over primary pairs: 5.078125000002043e-05
+
+[PRIMARY exact map (verdict)] n_pairs=245  SD(meas)=0.0135  mean(meas)=0.0031  #|meas|>0.02=7
+   R2_fisher          =   0.0589   (SD pred 0.0025, pearson 0.360)
+   R2_whitened        =  -0.8998   (SD pred 0.0146, pearson 0.133)
+   R2_plain           =   0.0985   (SD pred 0.0038, pearson 0.373)
+   R2_shared          = -27.6263   (SD pred 0.0625, pearson 0.091)
+   verdict: {'R2_F_ge_0_6': np.False_, 'margin_metrics': np.float64(-0.039602064668466386), 'margin_shared': np.float64(27.68524130565047), 'CONFIRMED': False}
+
+[primary Gaussian sensitivity] n_pairs=245  SD(meas)=0.0135  mean(meas)=0.0031  #|meas|>0.02=7
+   R2_fisher_gauss    =   0.1211   (SD pred 0.0043, pearson 0.397)
+   R2_whitened_gauss  =  -0.4099   (SD pred 0.0125, pearson 0.239)
+   R2_plain_gauss     =   0.1235   (SD pred 0.0058, pearson 0.382)
+   R2_shared_gauss    = -12.7527   (SD pred 0.0483, pearson 0.003)
+
+[primary, excluding same-dataset pairs] n_pairs=213  SD(meas)=0.0064  mean(meas)=0.0016  #|meas|>0.02=3
+   R2_fisher          =   0.4740   (SD pred 0.0027, pearson 0.820)
+   R2_whitened        =  -4.4482   (SD pred 0.0155, pearson 0.375)
+   R2_plain           =   0.6770   (SD pred 0.0041, pearson 0.864)
+   R2_shared          = -136.7870   (SD pred 0.0657, pearson 0.311)
+
+[primary target dbpedia:NaturalPlace] n_pairs=49  SD(meas)=0.0043  mean(meas)=0.0018  #|meas|>0.02=1
+   R2_fisher          =   0.0289   (SD pred 0.0018, pearson 0.372)
+   R2_whitened        =  -5.3837   (SD pred 0.0111, pearson 0.388)
+   R2_plain           =   0.4006   (SD pred 0.0026, pearson 0.665)
+   R2_shared          = -745.7555   (SD pred 0.0771, pearson 0.581)
+
+[primary target emotion:fear] n_pairs=49  SD(meas)=0.0267  mean(meas)=0.0079  #|meas|>0.02=4
+   R2_fisher          =  -0.0792   (SD pred 0.0003, pearson 0.352)
+   R2_whitened        =  -0.0680   (SD pred 0.0016, pearson 0.120)
+   R2_plain           =  -0.0793   (SD pred 0.0003, pearson 0.329)
+   R2_shared          =   0.1315   (SD pred 0.0052, pearson 0.533)
+
+[primary target lang:it] n_pairs=49  SD(meas)=0.0035  mean(meas)=0.0016  #|meas|>0.02=0
+   R2_fisher          =   0.2579   (SD pred 0.0016, pearson 0.612)
+   R2_whitened        =  -4.7221   (SD pred 0.0075, pearson 0.058)
+   R2_plain           =   0.2552   (SD pred 0.0017, pearson 0.615)
+   R2_shared          = -182.3405   (SD pred 0.0393, pearson 0.361)
+
+[primary target sst2:positive] n_pairs=49  SD(meas)=0.0113  mean(meas)=0.0034  #|meas|>0.02=2
+   R2_fisher          =   0.5861   (SD pred 0.0050, pearson 0.935)
+   R2_whitened        =  -5.0862   (SD pred 0.0268, pearson 0.363)
+   R2_plain           =   0.8150   (SD pred 0.0078, pearson 0.949)
+   R2_shared          = -74.1397   (SD pred 0.0760, pearson 0.241)
+
+[primary target yahoo:Education & Reference] n_pairs=49  SD(meas)=0.0030  mean(meas)=0.0009  #|meas|>0.02=0
+   R2_fisher          =  -0.0211   (SD pred 0.0002, pearson 0.583)
+   R2_whitened        =   0.2232   (SD pred 0.0012, pearson 0.513)
+   R2_plain           =  -0.0081   (SD pred 0.0002, pearson 0.630)
+   R2_shared          =  -6.5814   (SD pred 0.0070, pearson 0.118)
+
+bootstrap over targets (95% CI): {'fisher': (np.float64(-0.052), np.float64(0.554)), 'whitened': (np.float64(-5.038), np.float64(-0.078)), 'plain': (np.float64(-0.05), np.float64(0.781)), 'shared': (np.float64(-449.151), np.float64(-1.842))}
+
+[SECONDARY same-label stack, gap map] n_pairs=24  SD(meas)=0.1731  mean(meas)=0.3234  #|meas|>0.02=24
+   R2_fisher          =   0.4583   (SD pred 0.2006, pearson 0.864)
+   R2_whitened        =   0.0364   (SD pred 0.2776, pearson 0.817)
+   R2_plain           =   0.4411   (SD pred 0.2040, pearson 0.849)
+   R2_shared          =  -6.4057   (SD pred 0.3003, pearson 0.531)
+   verdict: {'R2_F_ge_0_6': np.False_, 'margin_metrics': np.float64(0.01713942049590267), 'margin_shared': np.float64(6.863987563202186), 'CONFIRMED': False}
+
+[secondary exact-map sensitivity] n_pairs=24  SD(meas)=0.1731  mean(meas)=0.3234  #|meas|>0.02=24
+   R2_fisher_exact    =  -0.0069   (SD pred 0.2516, pearson 0.787)
+   R2_whitened_exact  =  -0.5647   (SD pred 0.3163, pearson 0.783)
+   R2_plain_exact     =  -0.0524   (SD pred 0.2567, pearson 0.774)

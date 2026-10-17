@@ -1,0 +1,14 @@
+split code 0: max |AUROC - stored auroc_test| = 4.37e-01
+split code 1: max |AUROC - stored auroc_test| = 5.56e-06
+n built 54 n pass >=0.75: 51
+dropped: ['cities:true', 'offensive:offensive', 'yahoo:Business & Finance'] vs stored ['cities:true', 'offensive:offensive', 'yahoo:Business & Finance']
+F sym err 0.0e+00; min eig 1.59e-13; median 0.032835; trace 28.8040
+ones Rayleigh / median eig = 5.61e-12
+split-half corr of F entries 0.880
+lambda 0.032835; my LW Sigma vs stored Sigma_LW max abs diff 6.07e-07 (scale 7.63e-01)
+n pairs 245
+pearson plain~whitened = 0.3534
+pearson plain~fisher = 0.8755
+pearson whitened~fisher = 0.1728
+{'plain': 0.000775, 'whitened': 0.002591, 'fisher': 0.000666} (SD; build uses?)
+stored: {'n_pairs': 245, 'ratio_used': -0.5, 'pearson': {'plain~whitened': 0.35337164132729526, 'plain~fisher': 0.8755084091627816, 'whitened~fisher': 0.17284589594063995}, 'sd_pred_drop': {'plain': 0.0007754994372046087, 'whitened': 0.002591133349079591, 'fisher': 0.0006658032900760075}, 'flag_gt_0.95': []}

@@ -1,0 +1,18 @@
+[PASS] E1 KL ~ 1/2 d'Fd (ratio -> 1 as eps -> 0): ratios at eps=1e-1,1e-2,1e-3: [0.99909, 0.99986, 0.99999]
+[PASS] E1b E_y~p[g g'] = J'(diag p - pp')J: max abs diff 2.08e-17
+[PASS] E1c empirical Fisher differs from true Fisher: max abs diff 1.522e-02
+[PASS] E2 common-offset KL = 1/2 d'(sum_tt' F_tt')d: ratio full 0.99982, ratio block-diagonal 1.13455 (should differ from 1)
+[PASS] E2b sampled-label estimator E[g g'] -> sum_tt' F_tt': relative Frobenius error 5.33e-03 at n=200000
+[PASS] E3 Lagrange optimum = -eps F^-1 w / w'F^-1 w (sympy): d* = [-21*ep/335, 46*ep/335, -74*ep/335]
+[PASS] E3b no random feasible move is cheaper: cost(d*) 1.9142e-04 <= min random 1.2479e-02
+[PASS] E4 u'd* = -eps r_P(u,w): u'd* 0.368777, -r 0.368777
+[PASS] E4b r_P invariant to P -> c P: c = 7
+[PASS] E5 s_u_new = s_u - a u'Pw + (delta_w/G_w) r_P s_w (sympy): identity holds
+[PASS] E5b predicted AUROC = AUROC of edited activations (a drops out): 0.550449 vs 0.550449; clean 0.5584
+[PASS] E6 target AUROC unchanged by an affine-in-s_w edit (b w'Pw < 1): 0.361488 vs 0.361488
+[PASS] E7 same-label case reduces to -k d'_w cos_Sigma(u,w): -0.057649 vs -0.057649
+[PASS] E8 ratio form vs literal cosine identity: -0.297360 vs -0.297360
+[PASS] E9 AUROC = Phi(d'/sqrt2): empirical 0.8211, formula 0.8210
+[PASS] E10 median-eigenvalue damping is scale-equivariant: -0.207378 vs -0.207378
+
+16/16 checks passed

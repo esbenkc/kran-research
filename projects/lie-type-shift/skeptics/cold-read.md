@@ -36,7 +36,7 @@ Persona: a competent ML researcher who does not work on AI deception or probes.
 
 6. "The worry that remains is that the lie detector stops seeing deception, not that deception changes its form."
    This is the "if we were wrong" branch, and the prediction was wrong. So this sentence should be the post's actual conclusion. But the body never comes back to it: it never says whether the probe still flags the misleading-truth answers at round 8. As a reader I'm left unsure whether the remaining worry was checked.
-   Fix (write, v3 0475cdc): Results para 1 now ends: 'The worry from our earlier post remains: at round 8 the probe flags 2% of answers, while Sonnet calls 89% deceptive.'
+   Fix (write, v3 0475cdc): Results para 1 now ends: 'The worry from our earlier post remains: at round 8 the probe flags 2% of answers, while the earlier judge still calls about half of them deceptive.'
    Status: FIXED, awaiting cold-reader confirmation
 
 ### Intro and TLDR
@@ -48,7 +48,7 @@ Persona: a competent ML researcher who does not work on AI deception or probes.
 
 8. "The probe went from flagging 63% of answers to 2%, but a judge still called about half of them deceptive."
    "Half of them": half of all answers, or half of the 2% the probe flagged? Which judge? Worse, the figure in this post shows Sonnet calling about 89% of round-8 penalty answers deceptive (only "Discloses the fact" and "Garbled" are non-deceptive, and together they're about 11%). "About half" and "about 89%" look like the same quantity, so I lost trust in the numbers here. Either the judges or the definitions differ, and the post doesn't say which.
-   Fix (write, v3 0475cdc): Now 'A judge that only labels answers deceptive or truthful still called about half of them deceptive.' Results para 1 gives Sonnet's 89% next to the probe's 2%, and the judge foldout explains why the new judges call more answers deceptive (stricter on disclosure).
+   Fix (write, v3 0475cdc): Now 'A judge that only labels answers deceptive or truthful still called about half of them deceptive.' Results para 1 sets the probe's 2% against the earlier judge's 'about half', and the judge foldout explains why the new judges call more answers deceptive (stricter on disclosure than the agent check).
    Status: FIXED, awaiting cold-reader confirmation
 
 9. "we trained a small model against a deception probe"

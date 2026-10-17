@@ -86,3 +86,14 @@ A 10-step code smoke test of the save code ran on the TARGET dbpedia:NaturalPlac
 fixed-sd loss). Results deleted, never used; logged in data/smoke_tests.md. Seen: three SECONDARY probes
 went 0.993 -> 0.635, 0.978 -> 0.626, 0.998 -> 0.499. No primary number was looked at. The scored run for
 this target is a fresh run from the clean model.
+
+## 2026-10-17 15:12 CEST — lambda_KL grid extended upward (pilot rule unbracketed; Kasper #1716)
+
+The first pilot (fixed-sd loss) succeeded at the grid TOP, lambda_KL = 1000, at stop step 10 (AUROC
+0.874 -> 0.565), so "largest grid value that still succeeds" picked the grid edge. The KL term has zero
+gradient at the clean weights, so a 10-step attacker mostly follows the (Adam-preconditioned) probe gradient.
+Fix, before any target run: the pilot grid is extended by x3 steps (3000, 10000, 30000, 1e5, ...) until one
+value fails within the step cap; the rule then picks the largest succeeding value as written in PREREG.md.
+Stop step and retain KL at stop are logged per run. If retain KL at stop is ~0 for all scored runs, the post
+says the attacker stopped before the regime where the second-order law applies (PREREG "if not": early
+stopping dominates). The pilot is re-run with the loss chosen by the 15:09 gate (softplus first).

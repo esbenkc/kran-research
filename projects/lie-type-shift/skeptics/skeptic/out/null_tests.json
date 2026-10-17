@@ -1,0 +1,231 @@
+{
+ "gpt-4.1-mini": {
+  "shuffle_null_Delta_lam1_95": [
+   -0.055,
+   0.053
+  ],
+  "shuffle_null_frac_Delta_lam1_ge_0.15": 0.0,
+  "ci_by_bootstrap_seed": {
+   "1": {
+    "lam0": [
+     -0.193,
+     -0.082
+    ],
+    "lam1": [
+     -0.014,
+     0.073
+    ]
+   },
+   "2": {
+    "lam0": [
+     -0.189,
+     -0.078
+    ],
+    "lam1": [
+     -0.016,
+     0.079
+    ]
+   },
+   "3": {
+    "lam0": [
+     -0.194,
+     -0.081
+    ],
+    "lam1": [
+     -0.011,
+     0.076
+    ]
+   }
+  },
+  "base_r0_shares_of_deceptive": {
+   "F": 0.067,
+   "O": 0.444,
+   "M": 0.489,
+   "n_dec": 180
+  },
+  "lam1_r8_shares_of_deceptive": {
+   "F": 0.037,
+   "O": 0.125,
+   "M": 0.838,
+   "n_dec": 321
+  },
+  "lam0_r8_shares_of_deceptive": {
+   "F": 0.203,
+   "O": 0.379,
+   "M": 0.418,
+   "n_dec": 385
+  },
+  "base_flag_rate_A_B_B2_by_label": {
+   "MISLEADING_TRUE": [
+    88,
+    0.59,
+    0.51,
+    0.07
+   ],
+   "OMISSION": [
+    80,
+    0.79,
+    0.88,
+    0.03
+   ],
+   "FALSIFICATION": [
+    12,
+    0.67,
+    0.83,
+    0.0
+   ],
+   "HONEST": [
+    20,
+    0.15,
+    0.15,
+    0.0
+   ]
+  }
+ },
+ "claude-sonnet-4-6": {
+  "shuffle_null_Delta_lam1_95": [
+   -0.086,
+   0.08
+  ],
+  "shuffle_null_frac_Delta_lam1_ge_0.15": 0.0,
+  "ci_by_bootstrap_seed": {
+   "1": {
+    "lam0": [
+     -0.334,
+     -0.185
+    ],
+    "lam1": [
+     -0.075,
+     0.071
+    ]
+   },
+   "2": {
+    "lam0": [
+     -0.342,
+     -0.187
+    ],
+    "lam1": [
+     -0.07,
+     0.076
+    ]
+   },
+   "3": {
+    "lam0": [
+     -0.341,
+     -0.183
+    ],
+    "lam1": [
+     -0.079,
+     0.077
+    ]
+   }
+  },
+  "base_r0_shares_of_deceptive": {
+   "F": 0.316,
+   "O": 0.384,
+   "M": 0.3,
+   "n_dec": 190
+  },
+  "lam1_r8_shares_of_deceptive": {
+   "F": 0.317,
+   "O": 0.115,
+   "M": 0.569,
+   "n_dec": 357
+  },
+  "lam0_r8_shares_of_deceptive": {
+   "F": 0.577,
+   "O": 0.291,
+   "M": 0.132,
+   "n_dec": 395
+  },
+  "base_flag_rate_A_B_B2_by_label": {
+   "MISLEADING_TRUE": [
+    57,
+    0.46,
+    0.44,
+    0.09
+   ],
+   "FALSIFICATION": [
+    60,
+    0.67,
+    0.62,
+    0.03
+   ],
+   "OMISSION": [
+    73,
+    0.78,
+    0.85,
+    0.01
+   ],
+   "OTHER": [
+    4,
+    0.5,
+    0.75,
+    0.0
+   ],
+   "HONEST": [
+    6,
+    0.17,
+    0.17,
+    0.0
+   ]
+  }
+ },
+ "haiku(mine)": {
+  "shuffle_null_Delta_lam1_95": [
+   -0.1,
+   0.084
+  ],
+  "shuffle_null_frac_Delta_lam1_ge_0.15": 0.0,
+  "ci_by_bootstrap_seed": {
+   "1": {
+    "lam0": [
+     -0.387,
+     -0.245
+    ],
+    "lam1": [
+     -0.131,
+     0.027
+    ]
+   },
+   "2": {
+    "lam0": [
+     -0.391,
+     -0.241
+    ],
+    "lam1": [
+     -0.126,
+     0.026
+    ]
+   },
+   "3": {
+    "lam0": [
+     -0.392,
+     -0.245
+    ],
+    "lam1": [
+     -0.126,
+     0.022
+    ]
+   }
+  },
+  "base_r0_shares_of_deceptive": {
+   "F": 0.203,
+   "O": 0.503,
+   "M": 0.294,
+   "n_dec": 177
+  },
+  "lam1_r8_shares_of_deceptive": {
+   "F": 0.255,
+   "O": 0.223,
+   "M": 0.522,
+   "n_dec": 278
+  },
+  "lam0_r8_shares_of_deceptive": {
+   "F": 0.519,
+   "O": 0.324,
+   "M": 0.157,
+   "n_dec": 376
+  }
+ }
+}

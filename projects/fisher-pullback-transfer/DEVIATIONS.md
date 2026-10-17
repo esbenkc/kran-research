@@ -107,3 +107,7 @@ stopping dominates). The pilot is re-run with the loss chosen by the 15:09 gate 
   is frozen (hash in data/fisher/fisher_info.json) before the first target run finishes. The 2000-window F
   is kept as a sensitivity row. If 8000 windows do not exist or the job exceeds 15 min, use the largest
   count reached and say so.
+- (15:18, Bruno #1731) F-8000 frozen before any target run finished: 8000 windows from 2303 odd docs,
+  2 label draws, split-half corr 0.978 (was 0.880), median eig 0.03316 = lambda, 1 null eig (all-ones).
+  sha256(F_common array bytes) = 88a09b34cc46563feb917181b689d96a7432285b71c42c1c98a92e5b14a740a4;
+  sha256(data/fisher/fisher_big.npz) = 7cc9a3c7cc83db9c80b88a5a8e96c6ed9667e7b1b957c9af56cde82e62fc0634.

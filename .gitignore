@@ -14,3 +14,9 @@ projects/*/data/**/run.log
 # `build_corpus.py fetch && build_corpus.py` instead of redistributing it
 projects/proof-elegance/data/human/
 projects/proof-elegance/data/ai/
+
+# fisher-pullback-transfer: third-party texts (rebuild with fetch_data.py) and float16 attacked activations (rebuild with attack.py)
+projects/fisher-pullback-transfer/data/texts/
+projects/fisher-pullback-transfer/data/clean/texts_*.json
+projects/fisher-pullback-transfer/data/runs/*__acts.npz
+projects/fisher-pullback-transfer/data/unused_fixed_sd/*.npz

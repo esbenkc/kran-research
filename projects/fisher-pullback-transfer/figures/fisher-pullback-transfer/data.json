@@ -1,0 +1,7305 @@
+{
+  "title": "Which other probes does a hiding fine-tune fool? The formula's forecast vs what happened",
+  "sub": "Each dot is one probe after a fine-tune of Pythia-70M hid one concept from one target probe while keeping its outputs close to the original. Across: AUROC drop predicted by one formula, with three choices of geometry. Up: measured AUROC drop. Dashed line: prediction = measurement. R\u00b2 = 1 \u2212 (squared error)/(variance of the measurements); 1 is perfect, below 0 is worse than guessing the average. Filled and hollow sets are scored separately, never pooled. Each dot is the mean of the target's successful seeds (2-3). Both axes stretch near zero (symmetric log scale).",
+  "scale": "symlog",
+  "symlog_constant": 0.01,
+  "ticks": [
+    -0.1,
+    0,
+    0.1,
+    0.5
+  ],
+  "panels": [
+    {
+      "metric": "plain",
+      "label": "Plain cosine",
+      "r2_primary": 0.09850652622941936,
+      "r2_secondary": 0.4363879441865789
+    },
+    {
+      "metric": "whitened",
+      "label": "Whitened",
+      "r2_primary": -0.900138645287712,
+      "r2_secondary": 0.07503941397108949
+    },
+    {
+      "metric": "fisher",
+      "label": "Fisher pull-back",
+      "r2_primary": 0.05894598134218709,
+      "r2_secondary": 0.4492116744619965
+    }
+  ],
+  "stats": {
+    "n_primary": 245,
+    "sd_primary": 0.013520950052689284,
+    "n02_primary": 7,
+    "n_secondary": 24,
+    "sd_secondary": 0.17314513249122432,
+    "n02_secondary": 24
+  },
+  "rows": [
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:Business",
+      "x": 0.00247,
+      "y": 0.00589,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:Business",
+      "x": 0.0199,
+      "y": 0.00589,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:Business",
+      "x": 0.0013,
+      "y": 0.00589,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:Sci/Tech",
+      "x": 0.00734,
+      "y": 0.00131,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:Sci/Tech",
+      "x": 0.04549,
+      "y": 0.00131,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:Sci/Tech",
+      "x": 0.00408,
+      "y": 0.00131,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:Sports",
+      "x": 0.00029,
+      "y": 0.0002,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:Sports",
+      "x": 0.00412,
+      "y": 0.0002,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:Sports",
+      "x": 0.00013,
+      "y": 0.0002,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:World",
+      "x": -0.00041,
+      "y": 0.00131,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:World",
+      "x": 0.00358,
+      "y": 0.00131,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "agnews:World",
+      "x": -7e-05,
+      "y": 0.00131,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Album",
+      "x": 0.00014,
+      "y": 0.00095,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Album",
+      "x": -4e-05,
+      "y": 0.00095,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Album",
+      "x": 0.00015,
+      "y": 0.00095,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Animal",
+      "x": 1e-05,
+      "y": 0.00409,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Animal",
+      "x": 0.00242,
+      "y": 0.00409,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Animal",
+      "x": -3e-05,
+      "y": 0.00409,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Artist",
+      "x": -0.00015,
+      "y": 0.00266,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Artist",
+      "x": 0.00059,
+      "y": 0.00266,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Artist",
+      "x": 2e-05,
+      "y": 0.00266,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Athlete",
+      "x": 3e-05,
+      "y": -4e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Athlete",
+      "x": 0.00025,
+      "y": -4e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Athlete",
+      "x": 4e-05,
+      "y": -4e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Building",
+      "x": 0.00404,
+      "y": 0.00375,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Building",
+      "x": -0.00216,
+      "y": 0.00375,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Building",
+      "x": 0.00564,
+      "y": 0.00375,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Company",
+      "x": -0.00124,
+      "y": 0.00334,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Company",
+      "x": 0.00079,
+      "y": 0.00334,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Company",
+      "x": -0.00131,
+      "y": 0.00334,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": -0.0001,
+      "y": 0.00141,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": 0.00034,
+      "y": 0.00141,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": -0.00011,
+      "y": 0.00141,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Film",
+      "x": 0.00012,
+      "y": 0.00105,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Film",
+      "x": 0.00079,
+      "y": 0.00105,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Film",
+      "x": -7e-05,
+      "y": 0.00105,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": -0.00011,
+      "y": 0.00064,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": 0.00189,
+      "y": 0.00064,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": -0.00013,
+      "y": 0.00064,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:OfficeHolder",
+      "x": -2e-05,
+      "y": 0.0051,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:OfficeHolder",
+      "x": 6e-05,
+      "y": 0.0051,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:OfficeHolder",
+      "x": 1e-05,
+      "y": 0.0051,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Plant",
+      "x": 0.00036,
+      "y": 0.00039,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Plant",
+      "x": 0.00028,
+      "y": 0.00039,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Plant",
+      "x": 0.00028,
+      "y": 0.00039,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Village",
+      "x": -0.00011,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Village",
+      "x": 0.00087,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:Village",
+      "x": -4e-05,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:WrittenWork",
+      "x": -0.00015,
+      "y": 0.00315,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:WrittenWork",
+      "x": 5e-05,
+      "y": 0.00315,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:WrittenWork",
+      "x": -0.00017,
+      "y": 0.00315,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:anger",
+      "x": 0.00041,
+      "y": -0.00134,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:anger",
+      "x": 0.00384,
+      "y": -0.00134,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:anger",
+      "x": -7e-05,
+      "y": -0.00134,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:fear",
+      "x": -0.00207,
+      "y": -0.00261,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:fear",
+      "x": -0.00248,
+      "y": -0.00261,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:fear",
+      "x": -0.00401,
+      "y": -0.00261,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:joy",
+      "x": 0.00023,
+      "y": 0.00319,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:joy",
+      "x": 0.00522,
+      "y": 0.00319,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:joy",
+      "x": 0.00129,
+      "y": 0.00319,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:sadness",
+      "x": -9e-05,
+      "y": 0.00131,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:sadness",
+      "x": 0.00126,
+      "y": 0.00131,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:sadness",
+      "x": -0.00013,
+      "y": 0.00131,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:surprise",
+      "x": -0.0007,
+      "y": 0.00058,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:surprise",
+      "x": -0.00178,
+      "y": 0.00058,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "emotion:surprise",
+      "x": -0.00111,
+      "y": 0.00058,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:de",
+      "x": 0.0,
+      "y": 2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:de",
+      "x": -3e-05,
+      "y": 2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:de",
+      "x": 0.0,
+      "y": 2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:es",
+      "x": -6e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:es",
+      "x": -5e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:es",
+      "x": -6e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:it",
+      "x": 0.00023,
+      "y": 0.00052,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:it",
+      "x": 0.0005,
+      "y": 0.00052,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:it",
+      "x": 0.00035,
+      "y": 0.00052,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:nl",
+      "x": -0.00013,
+      "y": 0.00015,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:nl",
+      "x": -0.00021,
+      "y": 0.00015,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:nl",
+      "x": -6e-05,
+      "y": 0.00015,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:pt",
+      "x": -0.0,
+      "y": 5e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:pt",
+      "x": 7e-05,
+      "y": 5e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "lang:pt",
+      "x": -1e-05,
+      "y": 5e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:FreeLaw",
+      "x": 2e-05,
+      "y": -0.00027,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:FreeLaw",
+      "x": -0.00018,
+      "y": -0.00027,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:FreeLaw",
+      "x": -8e-05,
+      "y": -0.00027,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:Github",
+      "x": -6e-05,
+      "y": -0.00011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:Github",
+      "x": 0.00016,
+      "y": -0.00011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:Github",
+      "x": -1e-05,
+      "y": -0.00011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:OpenWebText2",
+      "x": 0.00165,
+      "y": 0.00851,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:OpenWebText2",
+      "x": 0.03257,
+      "y": 0.00851,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:OpenWebText2",
+      "x": 0.00236,
+      "y": 0.00851,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:Pile-CC",
+      "x": 0.00365,
+      "y": -0.00011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:Pile-CC",
+      "x": 0.04032,
+      "y": -0.00011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:Pile-CC",
+      "x": 0.00099,
+      "y": -0.00011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:PubMed Abstracts",
+      "x": 1e-05,
+      "y": 0.00033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:PubMed Abstracts",
+      "x": 0.00017,
+      "y": 0.00033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:PubMed Abstracts",
+      "x": 2e-05,
+      "y": 0.00033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:PubMed Central",
+      "x": 5e-05,
+      "y": 0.00079,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:PubMed Central",
+      "x": 0.00011,
+      "y": 0.00079,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:PubMed Central",
+      "x": 0.00017,
+      "y": 0.00079,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:StackExchange",
+      "x": 3e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:StackExchange",
+      "x": 9e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:StackExchange",
+      "x": 4e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:USPTO Backgrounds",
+      "x": -0.00013,
+      "y": 0.00056,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:USPTO Backgrounds",
+      "x": -0.00017,
+      "y": 0.00056,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:USPTO Backgrounds",
+      "x": -0.00014,
+      "y": 0.00056,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:Wikipedia (en)",
+      "x": -0.0,
+      "y": -4e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:Wikipedia (en)",
+      "x": 0.00116,
+      "y": -4e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "pile:Wikipedia (en)",
+      "x": 0.0,
+      "y": -4e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "sst2:positive",
+      "x": 0.00373,
+      "y": -0.00234,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "sst2:positive",
+      "x": 0.00138,
+      "y": -0.00234,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "sst2:positive",
+      "x": 0.00408,
+      "y": -0.00234,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Computers & Internet",
+      "x": 0.00087,
+      "y": -0.00116,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Computers & Internet",
+      "x": 0.02353,
+      "y": -0.00116,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Computers & Internet",
+      "x": 7e-05,
+      "y": -0.00116,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Education & Reference",
+      "x": 0.00274,
+      "y": 0.00073,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Education & Reference",
+      "x": -0.0054,
+      "y": 0.00073,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Education & Reference",
+      "x": -0.0045,
+      "y": 0.00073,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Entertainment & Music",
+      "x": -0.0009,
+      "y": 0.0023,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Entertainment & Music",
+      "x": 0.01901,
+      "y": 0.0023,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Entertainment & Music",
+      "x": -0.00097,
+      "y": 0.0023,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Family & Relationships",
+      "x": -0.00049,
+      "y": 0.00277,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Family & Relationships",
+      "x": 0.00172,
+      "y": 0.00277,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Family & Relationships",
+      "x": -0.00053,
+      "y": 0.00277,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Health",
+      "x": 0.00084,
+      "y": -0.00055,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Health",
+      "x": 0.00683,
+      "y": -0.00055,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Health",
+      "x": 0.00144,
+      "y": -0.00055,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Politics & Government",
+      "x": 4e-05,
+      "y": 0.00732,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Politics & Government",
+      "x": 0.00767,
+      "y": 0.00732,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Politics & Government",
+      "x": -0.00144,
+      "y": 0.00732,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 0.01384,
+      "y": 0.02724,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 0.02829,
+      "y": 0.02724,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 0.0045,
+      "y": 0.02724,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Society & Culture",
+      "x": 0.00382,
+      "y": 0.00175,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Society & Culture",
+      "x": -0.00687,
+      "y": 0.00175,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Society & Culture",
+      "x": 0.00341,
+      "y": 0.00175,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Sports",
+      "x": 0.00705,
+      "y": 0.00318,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Sports",
+      "x": 0.01441,
+      "y": 0.00318,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "yahoo:Sports",
+      "x": 0.00453,
+      "y": 0.00318,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic0_k68",
+      "x": 0.34704,
+      "y": 0.58523,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic0_k68",
+      "x": 0.57902,
+      "y": 0.58523,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic0_k68",
+      "x": 0.32087,
+      "y": 0.58523,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic1_k45",
+      "x": 0.40588,
+      "y": 0.63887,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic1_k45",
+      "x": 0.79262,
+      "y": 0.63887,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic1_k45",
+      "x": 0.38534,
+      "y": 0.63887,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic2_k262",
+      "x": 0.81755,
+      "y": 0.75314,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic2_k262",
+      "x": 0.9478,
+      "y": 0.75314,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic2_k262",
+      "x": 0.79431,
+      "y": 0.75314,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic3_k58",
+      "x": 0.64133,
+      "y": 0.58822,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic3_k58",
+      "x": 0.7456,
+      "y": 0.58822,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic3_k58",
+      "x": 0.62399,
+      "y": 0.58822,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic4_k2",
+      "x": 0.26997,
+      "y": 0.3692,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic4_k2",
+      "x": 0.26577,
+      "y": 0.3692,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#logistic4_k2",
+      "x": 0.35575,
+      "y": 0.3692,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean5_k155",
+      "x": 0.10958,
+      "y": 0.29397,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean5_k155",
+      "x": 0.31651,
+      "y": 0.29397,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean5_k155",
+      "x": 0.12373,
+      "y": 0.29397,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean7_k76",
+      "x": 0.16344,
+      "y": 0.28787,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean7_k76",
+      "x": 0.43,
+      "y": 0.28787,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean7_k76",
+      "x": 0.13717,
+      "y": 0.28787,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean8_k109",
+      "x": 0.08511,
+      "y": 0.23306,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean8_k109",
+      "x": 0.39566,
+      "y": 0.23306,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean8_k109",
+      "x": 0.06366,
+      "y": 0.23306,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean9_k231",
+      "x": 0.09967,
+      "y": 0.34978,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean9_k231",
+      "x": 0.34105,
+      "y": 0.34978,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "dbpedia:NaturalPlace",
+      "probe": "dbpedia:NaturalPlace#massmean9_k231",
+      "x": 0.11137,
+      "y": 0.34978,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "agnews:Business",
+      "x": -0.00031,
+      "y": -8e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "agnews:Business",
+      "x": -0.00077,
+      "y": -8e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "agnews:Business",
+      "x": -0.0003,
+      "y": -8e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "agnews:Sci/Tech",
+      "x": -5e-05,
+      "y": 0.00128,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "agnews:Sci/Tech",
+      "x": 0.00054,
+      "y": 0.00128,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "agnews:Sci/Tech",
+      "x": -4e-05,
+      "y": 0.00128,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "agnews:Sports",
+      "x": -7e-05,
+      "y": -4e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "agnews:Sports",
+      "x": -0.00022,
+      "y": -4e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "agnews:Sports",
+      "x": -4e-05,
+      "y": -4e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "agnews:World",
+      "x": -6e-05,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "agnews:World",
+      "x": -2e-05,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "agnews:World",
+      "x": -0.0001,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Album",
+      "x": -1e-05,
+      "y": -0.00034,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Album",
+      "x": -1e-05,
+      "y": -0.00034,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Album",
+      "x": -1e-05,
+      "y": -0.00034,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Animal",
+      "x": -1e-05,
+      "y": 3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Animal",
+      "x": 2e-05,
+      "y": 3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Animal",
+      "x": -0.0,
+      "y": 3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Artist",
+      "x": 0.0,
+      "y": 0.00046,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Artist",
+      "x": -7e-05,
+      "y": 0.00046,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Artist",
+      "x": 0.0,
+      "y": 0.00046,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Athlete",
+      "x": -3e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Athlete",
+      "x": 4e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Athlete",
+      "x": -2e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Building",
+      "x": -0.00012,
+      "y": 0.00055,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Building",
+      "x": -0.00037,
+      "y": 0.00055,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Building",
+      "x": -4e-05,
+      "y": 0.00055,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Company",
+      "x": 3e-05,
+      "y": 0.00035,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Company",
+      "x": 1e-05,
+      "y": 0.00035,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Company",
+      "x": 2e-05,
+      "y": 0.00035,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": 3e-05,
+      "y": 0.00058,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": 1e-05,
+      "y": 0.00058,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": 3e-05,
+      "y": 0.00058,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Film",
+      "x": -0.0,
+      "y": 0.0002,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Film",
+      "x": -3e-05,
+      "y": 0.0002,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Film",
+      "x": 0.0,
+      "y": 0.0002,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": 2e-05,
+      "y": -0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": 8e-05,
+      "y": -0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": 2e-05,
+      "y": -0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:NaturalPlace",
+      "x": 0.0,
+      "y": -1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:NaturalPlace",
+      "x": -1e-05,
+      "y": -1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:NaturalPlace",
+      "x": -1e-05,
+      "y": -1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:OfficeHolder",
+      "x": -1e-05,
+      "y": 0.00166,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:OfficeHolder",
+      "x": -0.00015,
+      "y": 0.00166,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:OfficeHolder",
+      "x": 0.0,
+      "y": 0.00166,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Plant",
+      "x": 5e-05,
+      "y": 0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Plant",
+      "x": -1e-05,
+      "y": 0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Plant",
+      "x": 1e-05,
+      "y": 0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Village",
+      "x": 0.0,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Village",
+      "x": -0.0,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:Village",
+      "x": 0.0,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "dbpedia:WrittenWork",
+      "x": 0.00011,
+      "y": 0.0011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "dbpedia:WrittenWork",
+      "x": -0.00015,
+      "y": 0.0011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "dbpedia:WrittenWork",
+      "x": 0.00013,
+      "y": 0.0011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "emotion:anger",
+      "x": -0.00095,
+      "y": 0.06568,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "emotion:anger",
+      "x": -0.00047,
+      "y": 0.06568,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "emotion:anger",
+      "x": -0.00094,
+      "y": 0.06568,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "emotion:joy",
+      "x": 0.00148,
+      "y": 0.1505,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "emotion:joy",
+      "x": 0.00251,
+      "y": 0.1505,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "emotion:joy",
+      "x": 0.00151,
+      "y": 0.1505,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "emotion:sadness",
+      "x": 0.00035,
+      "y": 0.06504,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "emotion:sadness",
+      "x": 1e-05,
+      "y": 0.06504,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "emotion:sadness",
+      "x": 0.00034,
+      "y": 0.06504,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "emotion:surprise",
+      "x": -0.00064,
+      "y": 0.0787,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "emotion:surprise",
+      "x": -0.00075,
+      "y": 0.0787,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "emotion:surprise",
+      "x": -0.00067,
+      "y": 0.0787,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "lang:de",
+      "x": 0.0,
+      "y": 1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "lang:de",
+      "x": 0.0,
+      "y": 1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "lang:de",
+      "x": 0.0,
+      "y": 1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "lang:es",
+      "x": 0.0,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "lang:es",
+      "x": 1e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "lang:es",
+      "x": 0.0,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "lang:it",
+      "x": 0.0,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "lang:it",
+      "x": 7e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "lang:it",
+      "x": 0.0,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "lang:nl",
+      "x": 1e-05,
+      "y": -0.00011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "lang:nl",
+      "x": -6e-05,
+      "y": -0.00011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "lang:nl",
+      "x": 1e-05,
+      "y": -0.00011,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "lang:pt",
+      "x": 0.0,
+      "y": 3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "lang:pt",
+      "x": 1e-05,
+      "y": 3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "lang:pt",
+      "x": 0.0,
+      "y": 3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "pile:FreeLaw",
+      "x": 0.0,
+      "y": 1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "pile:FreeLaw",
+      "x": -0.00012,
+      "y": 1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "pile:FreeLaw",
+      "x": 0.0,
+      "y": 1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "pile:Github",
+      "x": 1e-05,
+      "y": 0.0004,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "pile:Github",
+      "x": -7e-05,
+      "y": 0.0004,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "pile:Github",
+      "x": 1e-05,
+      "y": 0.0004,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "pile:OpenWebText2",
+      "x": -3e-05,
+      "y": -0.00129,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "pile:OpenWebText2",
+      "x": -0.00016,
+      "y": -0.00129,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "pile:OpenWebText2",
+      "x": -8e-05,
+      "y": -0.00129,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "pile:Pile-CC",
+      "x": -6e-05,
+      "y": 0.00292,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "pile:Pile-CC",
+      "x": 0.00056,
+      "y": 0.00292,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "pile:Pile-CC",
+      "x": -5e-05,
+      "y": 0.00292,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "pile:PubMed Abstracts",
+      "x": 1e-05,
+      "y": 0.00013,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "pile:PubMed Abstracts",
+      "x": -0.00024,
+      "y": 0.00013,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "pile:PubMed Abstracts",
+      "x": 0.0,
+      "y": 0.00013,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "pile:PubMed Central",
+      "x": 0.0,
+      "y": 0.00055,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "pile:PubMed Central",
+      "x": -0.00015,
+      "y": 0.00055,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "pile:PubMed Central",
+      "x": 0.0,
+      "y": 0.00055,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "pile:StackExchange",
+      "x": 0.0,
+      "y": 9e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "pile:StackExchange",
+      "x": -7e-05,
+      "y": 9e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "pile:StackExchange",
+      "x": 0.0,
+      "y": 9e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "pile:USPTO Backgrounds",
+      "x": -5e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "pile:USPTO Backgrounds",
+      "x": 0.00018,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "pile:USPTO Backgrounds",
+      "x": -4e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "pile:Wikipedia (en)",
+      "x": 0.0,
+      "y": -6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "pile:Wikipedia (en)",
+      "x": -8e-05,
+      "y": -6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "pile:Wikipedia (en)",
+      "x": 0.0,
+      "y": -6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "sst2:positive",
+      "x": -0.00038,
+      "y": 0.01542,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "sst2:positive",
+      "x": 0.00773,
+      "y": 0.01542,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "sst2:positive",
+      "x": -0.00035,
+      "y": 0.01542,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "yahoo:Computers & Internet",
+      "x": -9e-05,
+      "y": -0.00033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "yahoo:Computers & Internet",
+      "x": -0.00044,
+      "y": -0.00033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "yahoo:Computers & Internet",
+      "x": -6e-05,
+      "y": -0.00033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "yahoo:Education & Reference",
+      "x": -7e-05,
+      "y": 0.00459,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "yahoo:Education & Reference",
+      "x": 0.00061,
+      "y": 0.00459,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "yahoo:Education & Reference",
+      "x": -0.00032,
+      "y": 0.00459,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "yahoo:Entertainment & Music",
+      "x": 0.00065,
+      "y": -0.001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "yahoo:Entertainment & Music",
+      "x": 0.00801,
+      "y": -0.001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "yahoo:Entertainment & Music",
+      "x": 0.0002,
+      "y": -0.001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "yahoo:Family & Relationships",
+      "x": 0.00018,
+      "y": 0.00395,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "yahoo:Family & Relationships",
+      "x": 3e-05,
+      "y": 0.00395,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "yahoo:Family & Relationships",
+      "x": 0.00019,
+      "y": 0.00395,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "yahoo:Health",
+      "x": -0.00022,
+      "y": 0.00492,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "yahoo:Health",
+      "x": 0.00021,
+      "y": 0.00492,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "yahoo:Health",
+      "x": -0.00016,
+      "y": 0.00492,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "yahoo:Politics & Government",
+      "x": -3e-05,
+      "y": 0.00337,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "yahoo:Politics & Government",
+      "x": -0.00033,
+      "y": 0.00337,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "yahoo:Politics & Government",
+      "x": -0.0001,
+      "y": 0.00337,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "yahoo:Science & Mathematics",
+      "x": -1e-05,
+      "y": 0.00187,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "yahoo:Science & Mathematics",
+      "x": -3e-05,
+      "y": 0.00187,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 6e-05,
+      "y": 0.00187,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "yahoo:Society & Culture",
+      "x": -8e-05,
+      "y": -0.0176,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "yahoo:Society & Culture",
+      "x": 0.00091,
+      "y": -0.0176,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "yahoo:Society & Culture",
+      "x": -2e-05,
+      "y": -0.0176,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "yahoo:Sports",
+      "x": -2e-05,
+      "y": 0.00128,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "yahoo:Sports",
+      "x": 0.00014,
+      "y": 0.00128,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "yahoo:Sports",
+      "x": -0.00016,
+      "y": 0.00128,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "emotion:fear#logistic2_k327",
+      "x": 0.06022,
+      "y": 0.20648,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "emotion:fear#logistic2_k327",
+      "x": 0.08248,
+      "y": 0.20648,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "emotion:fear#logistic2_k327",
+      "x": 0.05919,
+      "y": 0.20648,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "emotion:fear",
+      "probe": "emotion:fear#logistic4_k401",
+      "x": 0.07703,
+      "y": 0.23046,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "emotion:fear",
+      "probe": "emotion:fear#logistic4_k401",
+      "x": 0.07491,
+      "y": 0.23046,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "emotion:fear",
+      "probe": "emotion:fear#logistic4_k401",
+      "x": 0.07771,
+      "y": 0.23046,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "agnews:Business",
+      "x": -1e-05,
+      "y": 0.00033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "agnews:Business",
+      "x": 0.00016,
+      "y": 0.00033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "agnews:Business",
+      "x": 0.00015,
+      "y": 0.00033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "agnews:Sci/Tech",
+      "x": 0.00034,
+      "y": 0.00089,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "agnews:Sci/Tech",
+      "x": 0.01058,
+      "y": 0.00089,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "agnews:Sci/Tech",
+      "x": -4e-05,
+      "y": 0.00089,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "agnews:Sports",
+      "x": -0.00038,
+      "y": -0.00111,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "agnews:Sports",
+      "x": 0.00016,
+      "y": -0.00111,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "agnews:Sports",
+      "x": -0.00021,
+      "y": -0.00111,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "agnews:World",
+      "x": 0.00059,
+      "y": -0.00095,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "agnews:World",
+      "x": 0.00994,
+      "y": -0.00095,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "agnews:World",
+      "x": 0.00046,
+      "y": -0.00095,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:Album",
+      "x": -0.00017,
+      "y": 0.00163,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:Album",
+      "x": 0.00039,
+      "y": 0.00163,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:Album",
+      "x": -3e-05,
+      "y": 0.00163,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:Animal",
+      "x": -8e-05,
+      "y": -0.00016,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:Animal",
+      "x": 0.00078,
+      "y": -0.00016,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:Animal",
+      "x": -2e-05,
+      "y": -0.00016,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:Artist",
+      "x": -1e-05,
+      "y": -0.0001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:Artist",
+      "x": 0.00055,
+      "y": -0.0001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:Artist",
+      "x": -5e-05,
+      "y": -0.0001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:Athlete",
+      "x": -2e-05,
+      "y": -1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:Athlete",
+      "x": -8e-05,
+      "y": -1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:Athlete",
+      "x": -1e-05,
+      "y": -1e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:Building",
+      "x": -0.00015,
+      "y": 0.0035,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:Building",
+      "x": -0.00048,
+      "y": 0.0035,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:Building",
+      "x": -0.00019,
+      "y": 0.0035,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:Company",
+      "x": -0.00044,
+      "y": 0.00098,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:Company",
+      "x": 0.00461,
+      "y": 0.00098,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:Company",
+      "x": -0.00054,
+      "y": 0.00098,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": -5e-05,
+      "y": 0.00039,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": 0.0,
+      "y": 0.00039,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": -5e-05,
+      "y": 0.00039,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:Film",
+      "x": 3e-05,
+      "y": 0.00022,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:Film",
+      "x": 0.00044,
+      "y": 0.00022,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:Film",
+      "x": -1e-05,
+      "y": 0.00022,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": -3e-05,
+      "y": 0.00057,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": -3e-05,
+      "y": 0.00057,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": -3e-05,
+      "y": 0.00057,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:NaturalPlace",
+      "x": 1e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:NaturalPlace",
+      "x": 5e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:NaturalPlace",
+      "x": 1e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:OfficeHolder",
+      "x": 4e-05,
+      "y": -0.00038,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:OfficeHolder",
+      "x": -0.00029,
+      "y": -0.00038,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:OfficeHolder",
+      "x": 6e-05,
+      "y": -0.00038,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:Plant",
+      "x": -3e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:Plant",
+      "x": 5e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:Plant",
+      "x": -0.00012,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:Village",
+      "x": 0.0001,
+      "y": -5e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:Village",
+      "x": 0.0009,
+      "y": -5e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:Village",
+      "x": 0.0001,
+      "y": -5e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "dbpedia:WrittenWork",
+      "x": -0.0001,
+      "y": 0.00109,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "dbpedia:WrittenWork",
+      "x": 0.00451,
+      "y": 0.00109,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "dbpedia:WrittenWork",
+      "x": -7e-05,
+      "y": 0.00109,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "emotion:anger",
+      "x": -5e-05,
+      "y": 0.00541,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "emotion:anger",
+      "x": 0.00666,
+      "y": 0.00541,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "emotion:anger",
+      "x": -0.00068,
+      "y": 0.00541,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "emotion:fear",
+      "x": 0.00235,
+      "y": -0.00191,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "emotion:fear",
+      "x": -0.00024,
+      "y": -0.00191,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "emotion:fear",
+      "x": 0.00488,
+      "y": -0.00191,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "emotion:joy",
+      "x": 0.00358,
+      "y": 0.00134,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "emotion:joy",
+      "x": 0.00688,
+      "y": 0.00134,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "emotion:joy",
+      "x": 0.00178,
+      "y": 0.00134,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "emotion:sadness",
+      "x": -0.00099,
+      "y": -0.00126,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "emotion:sadness",
+      "x": 0.00075,
+      "y": -0.00126,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "emotion:sadness",
+      "x": -0.00061,
+      "y": -0.00126,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "emotion:surprise",
+      "x": 0.00776,
+      "y": 0.01984,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "emotion:surprise",
+      "x": 0.0022,
+      "y": 0.01984,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "emotion:surprise",
+      "x": 0.00841,
+      "y": 0.01984,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:de",
+      "x": -3e-05,
+      "y": 6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:de",
+      "x": 1e-05,
+      "y": 6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:de",
+      "x": -3e-05,
+      "y": 6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:en",
+      "x": 0.02122,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:es",
+      "x": 0.00015,
+      "y": 0.0001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:es",
+      "x": 1e-05,
+      "y": 0.0001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:es",
+      "x": 0.00011,
+      "y": 0.0001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 5e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 5e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 5e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:nl",
+      "x": 0.00037,
+      "y": 0.00291,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:nl",
+      "x": 2e-05,
+      "y": 0.00291,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:nl",
+      "x": 0.00027,
+      "y": 0.00291,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:pt",
+      "x": 0.00123,
+      "y": 0.00311,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:pt",
+      "x": 0.0001,
+      "y": 0.00311,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:pt",
+      "x": 0.00127,
+      "y": 0.00311,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "pile:FreeLaw",
+      "x": -2e-05,
+      "y": 3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "pile:FreeLaw",
+      "x": -0.00038,
+      "y": 3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "pile:FreeLaw",
+      "x": -4e-05,
+      "y": 3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "pile:Github",
+      "x": 0.00011,
+      "y": 0.00031,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "pile:Github",
+      "x": 0.00063,
+      "y": 0.00031,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "pile:Github",
+      "x": 0.0001,
+      "y": 0.00031,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "pile:OpenWebText2",
+      "x": -0.00028,
+      "y": 0.00135,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "pile:OpenWebText2",
+      "x": -0.00022,
+      "y": 0.00135,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "pile:OpenWebText2",
+      "x": -0.00028,
+      "y": 0.00135,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "pile:Pile-CC",
+      "x": -0.0,
+      "y": 0.00289,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "pile:Pile-CC",
+      "x": 0.00225,
+      "y": 0.00289,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "pile:Pile-CC",
+      "x": 0.00045,
+      "y": 0.00289,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "pile:PubMed Abstracts",
+      "x": -6e-05,
+      "y": -0.0001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "pile:PubMed Abstracts",
+      "x": 0.00468,
+      "y": -0.0001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "pile:PubMed Abstracts",
+      "x": 0.0,
+      "y": -0.0001,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "pile:PubMed Central",
+      "x": 2e-05,
+      "y": 0.00049,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "pile:PubMed Central",
+      "x": -0.00033,
+      "y": 0.00049,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "pile:PubMed Central",
+      "x": 0.0,
+      "y": 0.00049,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "pile:StackExchange",
+      "x": 1e-05,
+      "y": -3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "pile:StackExchange",
+      "x": 0.01832,
+      "y": -3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "pile:StackExchange",
+      "x": 0.0,
+      "y": -3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "pile:USPTO Backgrounds",
+      "x": 0.00012,
+      "y": 0.00021,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "pile:USPTO Backgrounds",
+      "x": 0.00032,
+      "y": 0.00021,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "pile:USPTO Backgrounds",
+      "x": 0.00019,
+      "y": 0.00021,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "pile:Wikipedia (en)",
+      "x": -0.0,
+      "y": 9e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "pile:Wikipedia (en)",
+      "x": 0.00065,
+      "y": 9e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "pile:Wikipedia (en)",
+      "x": -1e-05,
+      "y": 9e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "sst2:positive",
+      "x": -0.00061,
+      "y": 0.01158,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "sst2:positive",
+      "x": 0.00037,
+      "y": 0.01158,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "sst2:positive",
+      "x": -0.00036,
+      "y": 0.01158,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "yahoo:Computers & Internet",
+      "x": 1e-05,
+      "y": 0.00401,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "yahoo:Computers & Internet",
+      "x": 0.03956,
+      "y": 0.00401,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "yahoo:Computers & Internet",
+      "x": 8e-05,
+      "y": 0.00401,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "yahoo:Education & Reference",
+      "x": 0.00724,
+      "y": 0.00647,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "yahoo:Education & Reference",
+      "x": 0.01079,
+      "y": 0.00647,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "yahoo:Education & Reference",
+      "x": 0.0048,
+      "y": 0.00647,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "yahoo:Entertainment & Music",
+      "x": -0.001,
+      "y": 0.00291,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "yahoo:Entertainment & Music",
+      "x": -0.0089,
+      "y": 0.00291,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "yahoo:Entertainment & Music",
+      "x": 0.00183,
+      "y": 0.00291,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "yahoo:Family & Relationships",
+      "x": -0.00128,
+      "y": -0.00058,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "yahoo:Family & Relationships",
+      "x": -0.00071,
+      "y": -0.00058,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "yahoo:Family & Relationships",
+      "x": -0.00126,
+      "y": -0.00058,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "yahoo:Health",
+      "x": 0.00023,
+      "y": 0.00136,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "yahoo:Health",
+      "x": 0.01726,
+      "y": 0.00136,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "yahoo:Health",
+      "x": 0.00027,
+      "y": 0.00136,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "yahoo:Politics & Government",
+      "x": 0.00206,
+      "y": 0.00299,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "yahoo:Politics & Government",
+      "x": -0.0007,
+      "y": 0.00299,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "yahoo:Politics & Government",
+      "x": 0.00295,
+      "y": 0.00299,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 0.00105,
+      "y": 0.00402,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 0.00031,
+      "y": 0.00402,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 0.00062,
+      "y": 0.00402,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "yahoo:Society & Culture",
+      "x": 0.0002,
+      "y": -0.00024,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "yahoo:Society & Culture",
+      "x": 0.01077,
+      "y": -0.00024,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "yahoo:Society & Culture",
+      "x": 0.00022,
+      "y": -0.00024,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "yahoo:Sports",
+      "x": -9e-05,
+      "y": 0.00221,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "yahoo:Sports",
+      "x": 0.00084,
+      "y": 0.00221,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "yahoo:Sports",
+      "x": -0.00037,
+      "y": 0.00221,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:it#logistic0_k9",
+      "x": 0.24564,
+      "y": 0.27933,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:it#logistic0_k9",
+      "x": 0.10571,
+      "y": 0.27933,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:it#logistic0_k9",
+      "x": 0.16716,
+      "y": 0.27933,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:it#logistic1_k7",
+      "x": 0.2263,
+      "y": 0.13437,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:it#logistic1_k7",
+      "x": -0.08948,
+      "y": 0.13437,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:it#logistic1_k7",
+      "x": 0.10826,
+      "y": 0.13437,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:it#logistic2_k39",
+      "x": 0.38744,
+      "y": 0.47325,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:it#logistic2_k39",
+      "x": 0.38188,
+      "y": 0.47325,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:it#logistic2_k39",
+      "x": 0.45239,
+      "y": 0.47325,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:it#logistic3_k297",
+      "x": 0.59813,
+      "y": 0.45605,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:it#logistic3_k297",
+      "x": 0.62965,
+      "y": 0.45605,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:it#logistic3_k297",
+      "x": 0.5606,
+      "y": 0.45605,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:it#logistic4_k16",
+      "x": 0.27803,
+      "y": 0.3081,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:it#logistic4_k16",
+      "x": 0.67447,
+      "y": 0.3081,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:it#logistic4_k16",
+      "x": 0.29517,
+      "y": 0.3081,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:it#massmean5_k215",
+      "x": 0.07287,
+      "y": 0.10881,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:it#massmean5_k215",
+      "x": 0.14178,
+      "y": 0.10881,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:it#massmean5_k215",
+      "x": 0.07426,
+      "y": 0.10881,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:it#massmean6_k128",
+      "x": 0.06613,
+      "y": 0.11561,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:it#massmean6_k128",
+      "x": 0.21624,
+      "y": 0.11561,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:it#massmean6_k128",
+      "x": 0.08176,
+      "y": 0.11561,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:it#massmean7_k62",
+      "x": 0.09215,
+      "y": 0.12238,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:it#massmean7_k62",
+      "x": 0.17491,
+      "y": 0.12238,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:it#massmean7_k62",
+      "x": 0.10549,
+      "y": 0.12238,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:it#massmean8_k6",
+      "x": 0.27695,
+      "y": 0.24813,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:it#massmean8_k6",
+      "x": -0.13599,
+      "y": 0.24813,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:it#massmean8_k6",
+      "x": 0.24947,
+      "y": 0.24813,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "lang:it",
+      "probe": "lang:it#massmean9_k19",
+      "x": 0.10622,
+      "y": 0.2258,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "lang:it",
+      "probe": "lang:it#massmean9_k19",
+      "x": 0.34195,
+      "y": 0.2258,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "lang:it",
+      "probe": "lang:it#massmean9_k19",
+      "x": 0.13008,
+      "y": 0.2258,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "agnews:Business",
+      "x": 0.0027,
+      "y": 0.00023,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "agnews:Business",
+      "x": 0.00109,
+      "y": 0.00023,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "agnews:Business",
+      "x": 0.00161,
+      "y": 0.00023,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "agnews:Sci/Tech",
+      "x": -0.00024,
+      "y": 0.00032,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "agnews:Sci/Tech",
+      "x": 0.03237,
+      "y": 0.00032,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "agnews:Sci/Tech",
+      "x": -0.00031,
+      "y": 0.00032,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "agnews:Sports",
+      "x": 0.00013,
+      "y": 0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "agnews:Sports",
+      "x": 0.07349,
+      "y": 0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "agnews:Sports",
+      "x": 5e-05,
+      "y": 0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "agnews:World",
+      "x": -0.00013,
+      "y": -0.00048,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "agnews:World",
+      "x": -3e-05,
+      "y": -0.00048,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "agnews:World",
+      "x": -0.00012,
+      "y": -0.00048,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Album",
+      "x": 0.00025,
+      "y": -0.00027,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Album",
+      "x": -0.00033,
+      "y": -0.00027,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Album",
+      "x": 9e-05,
+      "y": -0.00027,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Animal",
+      "x": -1e-05,
+      "y": 0.00024,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Animal",
+      "x": -0.00017,
+      "y": 0.00024,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Animal",
+      "x": -0.0001,
+      "y": 0.00024,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Artist",
+      "x": -0.00033,
+      "y": 0.0033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Artist",
+      "x": 0.02711,
+      "y": 0.0033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Artist",
+      "x": -0.00029,
+      "y": 0.0033,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Athlete",
+      "x": -2e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Athlete",
+      "x": -0.00012,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Athlete",
+      "x": -2e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Building",
+      "x": -1e-05,
+      "y": -0.00048,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Building",
+      "x": 0.00329,
+      "y": -0.00048,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Building",
+      "x": -2e-05,
+      "y": -0.00048,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Company",
+      "x": 0.00078,
+      "y": -0.00015,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Company",
+      "x": 0.0054,
+      "y": -0.00015,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Company",
+      "x": 0.00081,
+      "y": -0.00015,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": -1e-05,
+      "y": 0.00031,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": 5e-05,
+      "y": 0.00031,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": -0.0,
+      "y": 0.00031,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Film",
+      "x": 0.0,
+      "y": 0.00053,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Film",
+      "x": 0.00089,
+      "y": 0.00053,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Film",
+      "x": -0.0,
+      "y": 0.00053,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": -3e-05,
+      "y": -0.00014,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": 0.001,
+      "y": -0.00014,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": -2e-05,
+      "y": -0.00014,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:NaturalPlace",
+      "x": -9e-05,
+      "y": -0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:NaturalPlace",
+      "x": -0.00012,
+      "y": -0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:NaturalPlace",
+      "x": -0.0001,
+      "y": -0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:OfficeHolder",
+      "x": -2e-05,
+      "y": -0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:OfficeHolder",
+      "x": 0.00019,
+      "y": -0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:OfficeHolder",
+      "x": -4e-05,
+      "y": -0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Plant",
+      "x": 4e-05,
+      "y": -6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Plant",
+      "x": 0.00076,
+      "y": -6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Plant",
+      "x": 2e-05,
+      "y": -6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Village",
+      "x": -1e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Village",
+      "x": 3e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:Village",
+      "x": -1e-05,
+      "y": -7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "dbpedia:WrittenWork",
+      "x": 0.00107,
+      "y": 0.00037,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "dbpedia:WrittenWork",
+      "x": -0.00063,
+      "y": 0.00037,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "dbpedia:WrittenWork",
+      "x": 0.0007,
+      "y": 0.00037,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "emotion:anger",
+      "x": 0.01926,
+      "y": 0.01945,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "emotion:anger",
+      "x": 0.03462,
+      "y": 0.01945,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "emotion:anger",
+      "x": 0.01073,
+      "y": 0.01945,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "emotion:fear",
+      "x": -0.00019,
+      "y": 0.00094,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "emotion:fear",
+      "x": 0.07138,
+      "y": 0.00094,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "emotion:fear",
+      "x": -0.00021,
+      "y": 0.00094,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "emotion:joy",
+      "x": 0.02365,
+      "y": 0.04211,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "emotion:joy",
+      "x": 0.03542,
+      "y": 0.04211,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "emotion:joy",
+      "x": 0.01988,
+      "y": 0.04211,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "emotion:sadness",
+      "x": 0.04602,
+      "y": 0.06327,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "emotion:sadness",
+      "x": 0.08924,
+      "y": 0.06327,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "emotion:sadness",
+      "x": 0.0242,
+      "y": 0.06327,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "emotion:surprise",
+      "x": 0.00104,
+      "y": 0.00717,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "emotion:surprise",
+      "x": 0.00827,
+      "y": 0.00717,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "emotion:surprise",
+      "x": 0.00016,
+      "y": 0.00717,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "lang:de",
+      "x": 0.0,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "lang:de",
+      "x": 1e-05,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "lang:de",
+      "x": 0.0,
+      "y": -2e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "lang:es",
+      "x": 0.0,
+      "y": -3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "lang:es",
+      "x": -4e-05,
+      "y": -3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "lang:es",
+      "x": 0.0,
+      "y": -3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "lang:fr",
+      "x": 3e-05,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "lang:it",
+      "x": 0.0,
+      "y": -0.00014,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "lang:it",
+      "x": 3e-05,
+      "y": -0.00014,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "lang:it",
+      "x": 0.0,
+      "y": -0.00014,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "lang:nl",
+      "x": 0.0,
+      "y": 0.00016,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "lang:nl",
+      "x": 1e-05,
+      "y": 0.00016,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "lang:nl",
+      "x": 0.0,
+      "y": 0.00016,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "lang:pt",
+      "x": -0.0,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "lang:pt",
+      "x": -2e-05,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "lang:pt",
+      "x": 0.00011,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "pile:FreeLaw",
+      "x": -2e-05,
+      "y": 0.0003,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "pile:FreeLaw",
+      "x": 0.00024,
+      "y": 0.0003,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "pile:FreeLaw",
+      "x": 0.0,
+      "y": 0.0003,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "pile:Github",
+      "x": -1e-05,
+      "y": 0.00036,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "pile:Github",
+      "x": -1e-05,
+      "y": 0.00036,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "pile:Github",
+      "x": -3e-05,
+      "y": 0.00036,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "pile:OpenWebText2",
+      "x": 0.00027,
+      "y": 7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "pile:OpenWebText2",
+      "x": 0.00378,
+      "y": 7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "pile:OpenWebText2",
+      "x": 0.00031,
+      "y": 7e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "pile:Pile-CC",
+      "x": 8e-05,
+      "y": -0.00084,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "pile:Pile-CC",
+      "x": 0.02254,
+      "y": -0.00084,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "pile:Pile-CC",
+      "x": 0.00069,
+      "y": -0.00084,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "pile:PubMed Abstracts",
+      "x": -1e-05,
+      "y": 6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "pile:PubMed Abstracts",
+      "x": 0.00266,
+      "y": 6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "pile:PubMed Abstracts",
+      "x": -1e-05,
+      "y": 6e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "pile:PubMed Central",
+      "x": -3e-05,
+      "y": 0.00119,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "pile:PubMed Central",
+      "x": -9e-05,
+      "y": 0.00119,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "pile:PubMed Central",
+      "x": -3e-05,
+      "y": 0.00119,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "pile:StackExchange",
+      "x": 0.0,
+      "y": -3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "pile:StackExchange",
+      "x": 0.0005,
+      "y": -3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "pile:StackExchange",
+      "x": 1e-05,
+      "y": -3e-05,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "pile:USPTO Backgrounds",
+      "x": 0.0,
+      "y": 0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "pile:USPTO Backgrounds",
+      "x": -0.00021,
+      "y": 0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "pile:USPTO Backgrounds",
+      "x": -4e-05,
+      "y": 0.00019,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "pile:Wikipedia (en)",
+      "x": -2e-05,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "pile:Wikipedia (en)",
+      "x": 0.01032,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "pile:Wikipedia (en)",
+      "x": -3e-05,
+      "y": 0.0,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "yahoo:Computers & Internet",
+      "x": 0.00047,
+      "y": 0.00125,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "yahoo:Computers & Internet",
+      "x": 0.02924,
+      "y": 0.00125,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "yahoo:Computers & Internet",
+      "x": 0.00031,
+      "y": 0.00125,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "yahoo:Education & Reference",
+      "x": 9e-05,
+      "y": 0.00723,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "yahoo:Education & Reference",
+      "x": 0.00657,
+      "y": 0.00723,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "yahoo:Education & Reference",
+      "x": 0.00034,
+      "y": 0.00723,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "yahoo:Entertainment & Music",
+      "x": 1e-05,
+      "y": 0.002,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "yahoo:Entertainment & Music",
+      "x": 0.12186,
+      "y": 0.002,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "yahoo:Entertainment & Music",
+      "x": -0.0005,
+      "y": 0.002,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "yahoo:Family & Relationships",
+      "x": -0.00184,
+      "y": 0.01643,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "yahoo:Family & Relationships",
+      "x": 0.01114,
+      "y": 0.01643,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "yahoo:Family & Relationships",
+      "x": -0.00148,
+      "y": 0.01643,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "yahoo:Health",
+      "x": -0.00163,
+      "y": 0.00196,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "yahoo:Health",
+      "x": 0.04989,
+      "y": 0.00196,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "yahoo:Health",
+      "x": -0.00187,
+      "y": 0.00196,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "yahoo:Politics & Government",
+      "x": 0.00745,
+      "y": 0.00975,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "yahoo:Politics & Government",
+      "x": 0.01911,
+      "y": 0.00975,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "yahoo:Politics & Government",
+      "x": 0.00409,
+      "y": 0.00975,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 0.00139,
+      "y": 0.00448,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 0.02094,
+      "y": 0.00448,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 0.00178,
+      "y": 0.00448,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "yahoo:Society & Culture",
+      "x": -0.00716,
+      "y": -0.01369,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "yahoo:Society & Culture",
+      "x": 0.06339,
+      "y": -0.01369,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "yahoo:Society & Culture",
+      "x": -0.01237,
+      "y": -0.01369,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "yahoo:Sports",
+      "x": -3e-05,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "yahoo:Sports",
+      "x": 0.02997,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "yahoo:Sports",
+      "x": -4e-05,
+      "y": 0.00018,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "sst2:positive",
+      "probe": "sst2:positive#logistic1_k381",
+      "x": 0.48214,
+      "y": 0.37275,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "sst2:positive",
+      "probe": "sst2:positive#logistic1_k381",
+      "x": 0.54694,
+      "y": 0.37275,
+      "n_seeds": 3
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "sst2:positive",
+      "probe": "sst2:positive#logistic1_k381",
+      "x": 0.47941,
+      "y": 0.37275,
+      "n_seeds": 3
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:Business",
+      "x": -2e-05,
+      "y": 0.00389,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:Business",
+      "x": 4e-05,
+      "y": 0.00389,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:Business",
+      "x": -1e-05,
+      "y": 0.00389,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:Sci/Tech",
+      "x": -0.00029,
+      "y": -0.00024,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:Sci/Tech",
+      "x": -0.00043,
+      "y": -0.00024,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:Sci/Tech",
+      "x": -0.00012,
+      "y": -0.00024,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:Sports",
+      "x": -1e-05,
+      "y": -3e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:Sports",
+      "x": -5e-05,
+      "y": -3e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:Sports",
+      "x": -3e-05,
+      "y": -3e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:World",
+      "x": -2e-05,
+      "y": 0.00271,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:World",
+      "x": -0.00015,
+      "y": 0.00271,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "agnews:World",
+      "x": 6e-05,
+      "y": 0.00271,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Album",
+      "x": 0.00016,
+      "y": -0.00018,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Album",
+      "x": 0.00039,
+      "y": -0.00018,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Album",
+      "x": 9e-05,
+      "y": -0.00018,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Animal",
+      "x": -0.0,
+      "y": -0.00032,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Animal",
+      "x": -2e-05,
+      "y": -0.00032,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Animal",
+      "x": -1e-05,
+      "y": -0.00032,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Artist",
+      "x": 2e-05,
+      "y": 0.00087,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Artist",
+      "x": -0.00062,
+      "y": 0.00087,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Artist",
+      "x": -1e-05,
+      "y": 0.00087,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Athlete",
+      "x": -0.0,
+      "y": 2e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Athlete",
+      "x": -2e-05,
+      "y": 2e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Athlete",
+      "x": -0.0,
+      "y": 2e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Building",
+      "x": 0.0001,
+      "y": 0.00057,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Building",
+      "x": -0.00014,
+      "y": 0.00057,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Building",
+      "x": 0.00016,
+      "y": 0.00057,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Company",
+      "x": 0.00015,
+      "y": 6e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Company",
+      "x": 0.00079,
+      "y": 6e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Company",
+      "x": 6e-05,
+      "y": 6e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": 0.00016,
+      "y": 0.00117,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": 0.00025,
+      "y": 0.00117,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:EducationalInstitution",
+      "x": 0.00013,
+      "y": 0.00117,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Film",
+      "x": -1e-05,
+      "y": 0.00032,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Film",
+      "x": 3e-05,
+      "y": 0.00032,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Film",
+      "x": 0.0,
+      "y": 0.00032,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": -1e-05,
+      "y": -0.0003,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": 4e-05,
+      "y": -0.0003,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:MeanOfTransportation",
+      "x": -0.0,
+      "y": -0.0003,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:NaturalPlace",
+      "x": 0.0,
+      "y": -2e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:NaturalPlace",
+      "x": -5e-05,
+      "y": -2e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:NaturalPlace",
+      "x": -2e-05,
+      "y": -2e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:OfficeHolder",
+      "x": -6e-05,
+      "y": -0.0001,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:OfficeHolder",
+      "x": -0.00031,
+      "y": -0.0001,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:OfficeHolder",
+      "x": -6e-05,
+      "y": -0.0001,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Plant",
+      "x": 4e-05,
+      "y": -2e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Plant",
+      "x": 7e-05,
+      "y": -2e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Plant",
+      "x": 3e-05,
+      "y": -2e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Village",
+      "x": -0.0,
+      "y": -0.0001,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Village",
+      "x": -0.0,
+      "y": -0.0001,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:Village",
+      "x": -0.0,
+      "y": -0.0001,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:WrittenWork",
+      "x": -9e-05,
+      "y": 0.00066,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:WrittenWork",
+      "x": 0.0005,
+      "y": 0.00066,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "dbpedia:WrittenWork",
+      "x": -9e-05,
+      "y": 0.00066,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:anger",
+      "x": -6e-05,
+      "y": 0.00375,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:anger",
+      "x": 0.0009,
+      "y": 0.00375,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:anger",
+      "x": 0.00013,
+      "y": 0.00375,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:fear",
+      "x": -1e-05,
+      "y": -0.00148,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:fear",
+      "x": 0.00027,
+      "y": -0.00148,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:fear",
+      "x": 2e-05,
+      "y": -0.00148,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:joy",
+      "x": 0.00047,
+      "y": 0.0056,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:joy",
+      "x": -0.00012,
+      "y": 0.0056,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:joy",
+      "x": 0.0002,
+      "y": 0.0056,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:sadness",
+      "x": -4e-05,
+      "y": 0.00163,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:sadness",
+      "x": -0.00011,
+      "y": 0.00163,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:sadness",
+      "x": -2e-05,
+      "y": 0.00163,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:surprise",
+      "x": -0.00041,
+      "y": 0.00061,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:surprise",
+      "x": 0.0009,
+      "y": 0.00061,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "emotion:surprise",
+      "x": -0.00031,
+      "y": 0.00061,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:de",
+      "x": 0.0,
+      "y": -1e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:de",
+      "x": 0.0,
+      "y": -1e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:de",
+      "x": 0.0,
+      "y": -1e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:en",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:es",
+      "x": 0.0,
+      "y": -1e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:es",
+      "x": -1e-05,
+      "y": -1e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:es",
+      "x": 0.0,
+      "y": -1e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:fr",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:it",
+      "x": 0.0,
+      "y": 3e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:it",
+      "x": 0.0,
+      "y": 3e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:it",
+      "x": 0.0,
+      "y": 3e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:nl",
+      "x": 0.0002,
+      "y": 0.00042,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:nl",
+      "x": 0.0005,
+      "y": 0.00042,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:nl",
+      "x": 0.00019,
+      "y": 0.00042,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:pl",
+      "x": 0.0,
+      "y": 0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:pt",
+      "x": -6e-05,
+      "y": 0.00026,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:pt",
+      "x": -2e-05,
+      "y": 0.00026,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "lang:pt",
+      "x": -4e-05,
+      "y": 0.00026,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:FreeLaw",
+      "x": 2e-05,
+      "y": 0.00027,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:FreeLaw",
+      "x": 0.0002,
+      "y": 0.00027,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:FreeLaw",
+      "x": 2e-05,
+      "y": 0.00027,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:Github",
+      "x": -1e-05,
+      "y": 0.00012,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:Github",
+      "x": -0.0001,
+      "y": 0.00012,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:Github",
+      "x": -1e-05,
+      "y": 0.00012,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:OpenWebText2",
+      "x": -0.0001,
+      "y": 0.00429,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:OpenWebText2",
+      "x": 0.00296,
+      "y": 0.00429,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:OpenWebText2",
+      "x": -0.00021,
+      "y": 0.00429,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:Pile-CC",
+      "x": -3e-05,
+      "y": 0.00135,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:Pile-CC",
+      "x": 0.00123,
+      "y": 0.00135,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:Pile-CC",
+      "x": -3e-05,
+      "y": 0.00135,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:PubMed Abstracts",
+      "x": 5e-05,
+      "y": 0.0003,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:PubMed Abstracts",
+      "x": 0.00051,
+      "y": 0.0003,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:PubMed Abstracts",
+      "x": 4e-05,
+      "y": 0.0003,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:PubMed Central",
+      "x": 2e-05,
+      "y": 0.00084,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:PubMed Central",
+      "x": 0.00033,
+      "y": 0.00084,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:PubMed Central",
+      "x": 1e-05,
+      "y": 0.00084,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:StackExchange",
+      "x": 0.0,
+      "y": 9e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:StackExchange",
+      "x": -1e-05,
+      "y": 9e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:StackExchange",
+      "x": 0.0,
+      "y": 9e-05,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:USPTO Backgrounds",
+      "x": -2e-05,
+      "y": -0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:USPTO Backgrounds",
+      "x": 0.0,
+      "y": -0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:USPTO Backgrounds",
+      "x": -2e-05,
+      "y": -0.0,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:Wikipedia (en)",
+      "x": -1e-05,
+      "y": 0.00011,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:Wikipedia (en)",
+      "x": -2e-05,
+      "y": 0.00011,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "pile:Wikipedia (en)",
+      "x": -1e-05,
+      "y": 0.00011,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "sst2:positive",
+      "x": -1e-05,
+      "y": -0.00442,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "sst2:positive",
+      "x": -4e-05,
+      "y": -0.00442,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "sst2:positive",
+      "x": -7e-05,
+      "y": -0.00442,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Computers & Internet",
+      "x": -7e-05,
+      "y": -0.00369,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Computers & Internet",
+      "x": 0.00043,
+      "y": -0.00369,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Computers & Internet",
+      "x": -6e-05,
+      "y": -0.00369,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Entertainment & Music",
+      "x": 0.00081,
+      "y": 0.01764,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Entertainment & Music",
+      "x": 0.00476,
+      "y": 0.01764,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Entertainment & Music",
+      "x": 0.00069,
+      "y": 0.01764,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Family & Relationships",
+      "x": 0.00022,
+      "y": -0.00071,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Family & Relationships",
+      "x": 0.00047,
+      "y": -0.00071,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Family & Relationships",
+      "x": 0.00012,
+      "y": -0.00071,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Health",
+      "x": 0.00012,
+      "y": 0.00288,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Health",
+      "x": -0.00036,
+      "y": 0.00288,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Health",
+      "x": 0.00018,
+      "y": 0.00288,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Politics & Government",
+      "x": -0.00021,
+      "y": 0.00066,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Politics & Government",
+      "x": -0.00049,
+      "y": 0.00066,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Politics & Government",
+      "x": -0.00027,
+      "y": 0.00066,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Science & Mathematics",
+      "x": -0.00028,
+      "y": 0.00076,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Science & Mathematics",
+      "x": 0.00606,
+      "y": 0.00076,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Science & Mathematics",
+      "x": -0.00052,
+      "y": 0.00076,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Society & Culture",
+      "x": -0.00021,
+      "y": -0.00334,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Society & Culture",
+      "x": -0.00032,
+      "y": -0.00334,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Society & Culture",
+      "x": -9e-05,
+      "y": -0.00334,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Sports",
+      "x": -2e-05,
+      "y": 0.00509,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Sports",
+      "x": 0.00039,
+      "y": 0.00509,
+      "n_seeds": 2
+    },
+    {
+      "set": "primary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Sports",
+      "x": -2e-05,
+      "y": 0.00509,
+      "n_seeds": 2
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Education & Reference#logistic0_k373",
+      "x": 0.07891,
+      "y": 0.20136,
+      "n_seeds": 2
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Education & Reference#logistic0_k373",
+      "x": 0.08569,
+      "y": 0.20136,
+      "n_seeds": 2
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Education & Reference#logistic0_k373",
+      "x": 0.07931,
+      "y": 0.20136,
+      "n_seeds": 2
+    },
+    {
+      "set": "secondary",
+      "metric": "plain",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Education & Reference#logistic1_k257",
+      "x": 0.05961,
+      "y": 0.17811,
+      "n_seeds": 2
+    },
+    {
+      "set": "secondary",
+      "metric": "whitened",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Education & Reference#logistic1_k257",
+      "x": 0.07825,
+      "y": 0.17811,
+      "n_seeds": 2
+    },
+    {
+      "set": "secondary",
+      "metric": "fisher",
+      "target": "yahoo:Education & Reference",
+      "probe": "yahoo:Education & Reference#logistic1_k257",
+      "x": 0.06036,
+      "y": 0.17811,
+      "n_seeds": 2
+    }
+  ]
+}

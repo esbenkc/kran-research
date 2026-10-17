@@ -1,0 +1,59 @@
+{
+ "pilot_probe": "yahoo:Entertainment & Music",
+ "grid": [
+  1,
+  3,
+  10,
+  30,
+  100,
+  300,
+  1000,
+  3000,
+  10000,
+  30000,
+  100000,
+  300000,
+  1000000
+ ],
+ "loss": "softplus_pos",
+ "rule": "DEVIATIONS 15:12: start at lambda_kl_start; on success step up the ascending grid until the first failure, on failure step down until the first success; chosen = largest success adjacent to a failure (bracketed). chosen null = unbracketed.",
+ "chosen_lambda_kl": 30,
+ "log": [
+  {
+   "lambda_kl": 1000,
+   "success": false,
+   "stop_step": 2000,
+   "target_auroc_clean": 0.8736111111111111,
+   "seconds": 779.2527048587799,
+   "max_rss_mb": 741.078125,
+   "final_auroc": 0.7892888888888888
+  },
+  {
+   "lambda_kl": 300,
+   "success": false,
+   "stop_step": 2000,
+   "target_auroc_clean": 0.8736111111111111,
+   "seconds": 686.4721839427948,
+   "max_rss_mb": 741.078125,
+   "final_auroc": 0.768888888888889
+  },
+  {
+   "lambda_kl": 100,
+   "success": false,
+   "stop_step": 2000,
+   "target_auroc_clean": 0.8736111111111111,
+   "seconds": 693.5076267719269,
+   "max_rss_mb": 741.078125,
+   "final_auroc": 0.7504777777777778
+  },
+  {
+   "lambda_kl": 30,
+   "success": true,
+   "stop_step": 10,
+   "target_auroc_clean": 0.8736111111111111,
+   "seconds": 5.857487201690674,
+   "max_rss_mb": 741.078125,
+   "final_auroc": 0.5432222222222223
+  }
+ ]
+}

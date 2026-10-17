@@ -1,0 +1,819 @@
+{
+ "runs": [
+  {
+   "target": "dbpedia:NaturalPlace",
+   "seed": 0,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.9987846153846154,
+   "target_auroc_attacked": 0.19674615384615385,
+   "delta_w": -14.218719620731072,
+   "G_w": 9.470796998528925,
+   "retain_kl_heldout": 0.05686476291157305,
+   "device": "mps"
+  },
+  {
+   "target": "dbpedia:NaturalPlace",
+   "seed": 1,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.9987846153846154,
+   "target_auroc_attacked": 0.20913076923076923,
+   "delta_w": -15.816534678473072,
+   "G_w": 9.470796998528925,
+   "retain_kl_heldout": 0.05684520862996578,
+   "device": "mps"
+  },
+  {
+   "target": "dbpedia:NaturalPlace",
+   "seed": 2,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.9987846153846154,
+   "target_auroc_attacked": 0.23599230769230772,
+   "delta_w": -14.033464683015413,
+   "G_w": 9.470796998528925,
+   "retain_kl_heldout": 0.09835831157397479,
+   "device": "mps"
+  },
+  {
+   "target": "emotion:fear",
+   "seed": 0,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.7764218749999999,
+   "target_auroc_attacked": 0.5491406249999999,
+   "delta_w": -0.4418714729402926,
+   "G_w": 1.7025181019481654,
+   "retain_kl_heldout": 0.04442006291355938,
+   "device": "mps"
+  },
+  {
+   "target": "emotion:fear",
+   "seed": 1,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.7764218749999999,
+   "target_auroc_attacked": 0.541015625,
+   "delta_w": -0.6876698337739247,
+   "G_w": 1.7025181019481654,
+   "retain_kl_heldout": 0.045598238706588745,
+   "device": "mps"
+  },
+  {
+   "target": "emotion:fear",
+   "seed": 2,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.7764218749999999,
+   "target_auroc_attacked": 0.5387578125,
+   "delta_w": -0.6105013744656422,
+   "G_w": 1.7025181019481654,
+   "retain_kl_heldout": 0.06059922289568931,
+   "device": "mps"
+  },
+  {
+   "target": "lang:it",
+   "seed": 0,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.999,
+   "target_auroc_attacked": 0.4964428571428571,
+   "delta_w": -11.529565758232025,
+   "G_w": 10.803652931712048,
+   "retain_kl_heldout": 0.04732529300963506,
+   "device": "mps"
+  },
+  {
+   "target": "lang:it",
+   "seed": 1,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.999,
+   "target_auroc_attacked": 0.5087714285714285,
+   "delta_w": -11.863994492658886,
+   "G_w": 10.803652931712048,
+   "retain_kl_heldout": 0.04372956551378593,
+   "device": "mps"
+  },
+  {
+   "target": "lang:it",
+   "seed": 2,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.999,
+   "target_auroc_attacked": 0.4803857142857143,
+   "delta_w": -12.096990894985709,
+   "G_w": 10.803652931712048,
+   "retain_kl_heldout": 0.05015882232692093,
+   "device": "mps"
+  },
+  {
+   "target": "sst2:positive",
+   "seed": 0,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.8158803222094362,
+   "target_auroc_attacked": 0.4428197293758184,
+   "delta_w": -4.342679709262298,
+   "G_w": 2.6395591861764833,
+   "retain_kl_heldout": 0.04610866226721555,
+   "device": "mps"
+  },
+  {
+   "target": "sst2:positive",
+   "seed": 1,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.8158803222094362,
+   "target_auroc_attacked": 0.43294908932185233,
+   "delta_w": -4.857840932859651,
+   "G_w": 2.6395591861764833,
+   "retain_kl_heldout": 0.05348579480778426,
+   "device": "mps"
+  },
+  {
+   "target": "sst2:positive",
+   "seed": 2,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.8158803222094362,
+   "target_auroc_attacked": 0.422255069243284,
+   "delta_w": -5.495008381091437,
+   "G_w": 2.6395591861764833,
+   "retain_kl_heldout": 0.06304915028158575,
+   "device": "mps"
+  },
+  {
+   "target": "yahoo:Education & Reference",
+   "seed": 0,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.7792444444444444,
+   "target_auroc_attacked": 0.5577222222222222,
+   "delta_w": -0.8191461344461037,
+   "G_w": 1.4784716840210235,
+   "retain_kl_heldout": 0.04939336969982833,
+   "device": "mps"
+  },
+  {
+   "target": "yahoo:Education & Reference",
+   "seed": 1,
+   "success": false,
+   "stop_step": 2000,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.7792444444444444,
+   "target_auroc_attacked": 0.6613,
+   "delta_w": -0.2791508690838602,
+   "G_w": 1.4784716840210235,
+   "retain_kl_heldout": 0.09745469549670815,
+   "device": "mps"
+  },
+  {
+   "target": "yahoo:Education & Reference",
+   "seed": 2,
+   "success": true,
+   "stop_step": 10,
+   "lambda_kl": 30,
+   "target_auroc_clean": 0.7792444444444444,
+   "target_auroc_attacked": 0.5896444444444444,
+   "delta_w": -0.24015135839465507,
+   "G_w": 1.4784716840210235,
+   "retain_kl_heldout": 0.08133204653859138,
+   "device": "mps"
+  }
+ ],
+ "successful_seeds": {
+  "dbpedia:NaturalPlace": 3,
+  "emotion:fear": 3,
+  "lang:it": 3,
+  "sst2:positive": 3,
+  "yahoo:Education & Reference": 2
+ },
+ "primary": {
+  "plain": 0.09850652622941936,
+  "whitened": -0.900138645287712,
+  "fisher": 0.05894598134218709,
+  "shared": -27.62851680074904,
+  "sd_measured": 0.013520950052689284,
+  "n_abs_drop_gt_0.02": 7,
+  "n_pairs": 245,
+  "margin_vs_best_cosine": -0.03956054488723226,
+  "margin_vs_shared": 27.687462782091227,
+  "confirmed": false,
+  "status": "NULL",
+  "per_target": {
+   "dbpedia:NaturalPlace": {
+    "plain": 0.4003100055656168,
+    "whitened": -5.386821880143466,
+    "fisher": 0.029125629864186542,
+    "shared": -745.8326370630638,
+    "sd_measured": 0.004270531039343533
+   },
+   "emotion:fear": {
+    "plain": -0.07920415724324714,
+    "whitened": -0.06797794564051629,
+    "fisher": -0.07915205290876193,
+    "shared": 0.13135771652660755,
+    "sd_measured": 0.026729419630425962
+   },
+   "lang:it": {
+    "plain": 0.25517351543354694,
+    "whitened": -4.718765787812311,
+    "fisher": 0.25798884439104364,
+    "shared": -182.2232860066526,
+    "sd_measured": 0.003478783794786595
+   },
+   "sst2:positive": {
+    "plain": 0.8151106459956634,
+    "whitened": -5.090514673763676,
+    "fisher": 0.5862894001537138,
+    "shared": -74.18154402183059,
+    "sd_measured": 0.011323817696530169
+   },
+   "yahoo:Education & Reference": {
+    "plain": -0.008468037455817479,
+    "whitened": 0.22347699247816488,
+    "fisher": -0.021644239734449622,
+    "shared": -6.572209128931218,
+    "sd_measured": 0.003041415292210479
+   }
+  },
+  "bootstrap_targets": {
+   "plain": {
+    "p2.5": -0.04997719152380897,
+    "p50": 0.09850652622941969,
+    "p97.5": 0.7812890090339709,
+    "n": 10000
+   },
+   "whitened": {
+    "p2.5": -5.041757106302425,
+    "p50": -0.9402921376407771,
+    "p97.5": -0.07814978546797935,
+    "n": 10000
+   },
+   "fisher": {
+    "p2.5": -0.05229875880020596,
+    "p50": 0.058945981342187426,
+    "p97.5": 0.5541397233871381,
+    "n": 10000
+   },
+   "shared": {
+    "p2.5": -449.13921648696453,
+    "p50": -27.62851680074905,
+    "p97.5": -1.8424943925332764,
+    "n": 10000
+   },
+   "margin_vs_best_cosine": {
+    "p2.5": -0.25444882010212877,
+    "p50": -0.03956054488723215,
+    "p97.5": 1.3681868247239493e-05,
+    "n": 10000
+   },
+   "margin_vs_shared": {
+    "p2.5": 1.7901956337330702,
+    "p50": 27.687462782091238,
+    "p97.5": 449.24841406657566,
+    "n": 10000
+   }
+  }
+ },
+ "secondary": {
+  "plain": 0.4363879441865789,
+  "whitened": 0.07503941397108949,
+  "fisher": 0.4492116744619965,
+  "shared": -6.137021864470883,
+  "sd_measured": 0.17314513249122432,
+  "n_abs_drop_gt_0.02": 24,
+  "n_pairs": 24,
+  "margin_vs_best_cosine": 0.01282373027541761,
+  "margin_vs_shared": 6.58623353893288,
+  "confirmed": false,
+  "per_target": {
+   "dbpedia:NaturalPlace": {
+    "plain": 0.06165315377528935,
+    "whitened": 0.48286340561184093,
+    "fisher": 0.015823717517010616,
+    "shared": -5.993738058436737,
+    "sd_measured": 0.17605431045846223
+   },
+   "lang:it": {
+    "plain": 0.6488926015623766,
+    "whitened": -1.598636128644499,
+    "fisher": 0.7778516182950634,
+    "shared": -17.694221756122268,
+    "sd_measured": 0.1283341122381169
+   }
+  },
+  "bootstrap_targets": {
+   "plain": {
+    "p2.5": -4.70116380255263,
+    "p50": 0.37780008982173363,
+    "p97.5": 0.5849190091808509,
+    "n": 9991
+   },
+   "whitened": {
+    "p2.5": -4.5686327031240355,
+    "p50": 0.05805749899641888,
+    "p97.5": 0.5502100151785907,
+    "n": 9991
+   },
+   "fisher": {
+    "p2.5": -4.667180334734733,
+    "p50": 0.4072583073562005,
+    "p97.5": 0.6752399329728039,
+    "n": 9991
+   },
+   "shared": {
+    "p2.5": -17.43490972907965,
+    "p50": -6.137021864470884,
+    "p97.5": -2.7637586962231206,
+    "n": 9991
+   },
+   "margin_vs_best_cosine": {
+    "p2.5": -0.3888703751290137,
+    "p50": 0.01282373027541761,
+    "p97.5": 0.1258952757690076,
+    "n": 9991
+   },
+   "margin_vs_shared": {
+    "p2.5": -0.3258132980175974,
+    "p50": 6.5862335389328805,
+    "p97.5": 17.90651131656981,
+    "n": 9991
+   }
+  }
+ },
+ "sensitivity": {
+  "primary_gauss_map": {
+   "plain": 0.12312414520662573,
+   "whitened": -0.41198071603246644,
+   "fisher": 0.12155711928741897,
+   "shared": -12.74925637813543,
+   "sd_measured": 0.013520950052689284,
+   "n_abs_drop_gt_0.02": 7,
+   "n_pairs": 245,
+   "margin_vs_best_cosine": -0.001567025919206766,
+   "margin_vs_shared": 12.870813497422848,
+   "confirmed": false
+  },
+  "secondary_empirical_map": {
+   "plain": -0.05231100172877756,
+   "whitened": -0.5647585169353564,
+   "fisher": -0.006754849967353538,
+   "shared": -6.912107124187818,
+   "sd_measured": 0.17314513249122432,
+   "n_abs_drop_gt_0.02": 24,
+   "n_pairs": 24,
+   "margin_vs_best_cosine": 0.045556151761424024,
+   "margin_vs_shared": 6.905352274220465,
+   "confirmed": false
+  },
+  "fisher_variants_R2": {
+   "c=0.01": {
+    "primary": -0.04035246542258886,
+    "secondary": 0.33336065037116447
+   },
+   "c=0.1": {
+    "primary": 0.005132919873998332,
+    "secondary": 0.4051398063589169
+   },
+   "c=1.0": {
+    "primary": 0.05894598134218709,
+    "secondary": 0.4492116744619965
+   },
+   "c=10.0": {
+    "primary": 0.08787581256971833,
+    "secondary": 0.43463426687790285
+   },
+   "c=100.0": {
+    "primary": 0.09708109852192703,
+    "secondary": 0.43548476877619013
+   },
+   "lambda=1e-2*tr/512": {
+    "primary": -0.033176885209580176,
+    "secondary": 0.3426741184746164
+   },
+   "F_token c=1": {
+    "primary": 0.0826969754020136,
+    "secondary": 0.4322440072316033
+   },
+   "F_common half1 c=1": {
+    "primary": 0.05981839093926822,
+    "secondary": 0.46897349680673384
+   },
+   "F_common half2 c=1": {
+    "primary": 0.05809146059136194,
+    "secondary": 0.42897943170677955
+   },
+   "F_common 2000 windows c=1": {
+    "primary": 0.06157523725551717,
+    "secondary": 0.47133120835237263
+   }
+  }
+ },
+ "baselines_primary": {
+  "literal_cos_plain_affine_LOTO": -0.07697108285724563,
+  "literal_abscos_plain_affine_LOTO": -0.03836659704770651,
+  "literal_cos_whitened_affine_LOTO": -0.0274161650467164,
+  "literal_abscos_whitened_affine_LOTO": -0.024948685484788458,
+  "literal_cos_fisher_affine_LOTO": -0.09281597457155222,
+  "literal_abscos_fisher_affine_LOTO": -0.051139383524388515,
+  "labelcorr_affine_LOTO": -0.024410688157566973,
+  "fragility_noFit": -0.05894216868186608
+ },
+ "nulls": {
+  "random_rotation_metric": {
+   "primary": {
+    "mean": 0.09345552231047836,
+    "p95": 0.10593713167536022,
+    "frac_ge_actual": 1.0
+   },
+   "secondary": {
+    "mean": 0.39019120196171436,
+    "p95": 0.4879412114960041,
+    "frac_ge_actual": 0.19
+   }
+  },
+  "within_target_permutation": {
+   "primary": {
+    "mean": -0.07858365136168871,
+    "p95": -0.03907479846185556,
+    "frac_ge_actual": 0.0
+   },
+   "secondary": {
+    "mean": -0.9920125117169414,
+    "p95": -0.26094039301724054,
+    "frac_ge_actual": 0.0
+   }
+  }
+ },
+ "exploratory_edit_direction": [
+  {
+   "target": "dbpedia:NaturalPlace",
+   "seed": 0,
+   "success": true,
+   "edit_norm": 2.958181949824297,
+   "mean_edit_all_norm": 4.806705108201155,
+   "mean_edit_all_cos_ones": 0.009383621128644559,
+   "cos_classedit_w": -0.5789765017421689,
+   "cos_classedit_Sigma_w": -0.682712308137346,
+   "cos_classedit_Finv_w": -0.6566950600178795,
+   "cos_classedit_ones": 0.01190460601117511,
+   "cos_classedit_Kw": 0.9219180754205545,
+   "cos_classedit_Kadam": 0.9517887991149859
+  },
+  {
+   "target": "dbpedia:NaturalPlace",
+   "seed": 1,
+   "success": true,
+   "edit_norm": 3.3329005998529566,
+   "mean_edit_all_norm": 4.8508829025500875,
+   "mean_edit_all_cos_ones": 0.006992171868507183,
+   "cos_classedit_w": -0.5716290700345097,
+   "cos_classedit_Sigma_w": -0.6841465375769602,
+   "cos_classedit_Finv_w": -0.6582549534066976,
+   "cos_classedit_ones": 0.01072063064982404,
+   "cos_classedit_Kw": 0.920016203372151,
+   "cos_classedit_Kadam": 0.9486938155483884
+  },
+  {
+   "target": "dbpedia:NaturalPlace",
+   "seed": 2,
+   "success": true,
+   "edit_norm": 2.829189423972732,
+   "mean_edit_all_norm": 4.737546212265296,
+   "mean_edit_all_cos_ones": 0.0059436088708809875,
+   "cos_classedit_w": -0.5974866558525398,
+   "cos_classedit_Sigma_w": -0.6577747592124853,
+   "cos_classedit_Finv_w": -0.6689780485861551,
+   "cos_classedit_ones": 0.01188149187220196,
+   "cos_classedit_Kw": 0.9005530154981195,
+   "cos_classedit_Kadam": 0.933161803852268
+  },
+  {
+   "target": "emotion:fear",
+   "seed": 0,
+   "success": true,
+   "edit_norm": 0.1705808986026293,
+   "mean_edit_all_norm": 7.1290680793643055,
+   "mean_edit_all_cos_ones": 0.012695183363407173,
+   "cos_classedit_w": -0.24209204868606216,
+   "cos_classedit_Sigma_w": -0.390970065208471,
+   "cos_classedit_Finv_w": -0.12518121921793993,
+   "cos_classedit_ones": -0.011071400641537261,
+   "cos_classedit_Kw": 0.7558216380136925,
+   "cos_classedit_Kadam": 0.8883773844674876
+  },
+  {
+   "target": "emotion:fear",
+   "seed": 1,
+   "success": true,
+   "edit_norm": 0.2093672945715339,
+   "mean_edit_all_norm": 7.216466287761836,
+   "mean_edit_all_cos_ones": 0.014787177065402031,
+   "cos_classedit_w": -0.3069630428185735,
+   "cos_classedit_Sigma_w": -0.42322753807163666,
+   "cos_classedit_Finv_w": -0.24394730970101738,
+   "cos_classedit_ones": -0.014203130487377742,
+   "cos_classedit_Kw": 0.638376891503266,
+   "cos_classedit_Kadam": 0.7804661643273731
+  },
+  {
+   "target": "emotion:fear",
+   "seed": 2,
+   "success": true,
+   "edit_norm": 0.19212379295683943,
+   "mean_edit_all_norm": 7.166082814496269,
+   "mean_edit_all_cos_ones": 0.012136140039765422,
+   "cos_classedit_w": -0.2969753842930163,
+   "cos_classedit_Sigma_w": -0.4395157803559727,
+   "cos_classedit_Finv_w": -0.2065401574159184,
+   "cos_classedit_ones": -0.0100090469677027,
+   "cos_classedit_Kw": 0.678145567464658,
+   "cos_classedit_Kadam": 0.8490888886149167
+  },
+  {
+   "target": "lang:it",
+   "seed": 0,
+   "success": true,
+   "edit_norm": 2.6411055467719633,
+   "mean_edit_all_norm": 4.804583872045272,
+   "mean_edit_all_cos_ones": -0.0029742094331513384,
+   "cos_classedit_w": -0.7901206505144859,
+   "cos_classedit_Sigma_w": -0.4482066754591612,
+   "cos_classedit_Finv_w": -0.8537894223127478,
+   "cos_classedit_ones": -0.0038893465824229806,
+   "cos_classedit_Kw": 0.9407456194660035,
+   "cos_classedit_Kadam": 0.9396874069269827
+  },
+  {
+   "target": "lang:it",
+   "seed": 1,
+   "success": true,
+   "edit_norm": 2.6558721737410598,
+   "mean_edit_all_norm": 5.412647594931391,
+   "mean_edit_all_cos_ones": -0.00391700508626176,
+   "cos_classedit_w": -0.8085185472293538,
+   "cos_classedit_Sigma_w": -0.39383468341237443,
+   "cos_classedit_Finv_w": -0.8360469914283801,
+   "cos_classedit_ones": -0.002401555982133512,
+   "cos_classedit_Kw": 0.966692229848134,
+   "cos_classedit_Kadam": 0.9694106465307939
+  },
+  {
+   "target": "lang:it",
+   "seed": 2,
+   "success": true,
+   "edit_norm": 2.7565168250575405,
+   "mean_edit_all_norm": 4.935230878814328,
+   "mean_edit_all_cos_ones": -0.002332769920696762,
+   "cos_classedit_w": -0.7942970058018441,
+   "cos_classedit_Sigma_w": -0.4165843813068065,
+   "cos_classedit_Finv_w": -0.8376809222577518,
+   "cos_classedit_ones": -0.0004817278546433285,
+   "cos_classedit_Kw": 0.9609476413064388,
+   "cos_classedit_Kadam": 0.9650485154085829
+  },
+  {
+   "target": "sst2:positive",
+   "seed": 0,
+   "success": true,
+   "edit_norm": 0.5346641807588379,
+   "mean_edit_all_norm": 4.733931858951075,
+   "mean_edit_all_cos_ones": 0.009131820535102095,
+   "cos_classedit_w": -0.7446183884721554,
+   "cos_classedit_Sigma_w": -0.39724642085897793,
+   "cos_classedit_Finv_w": -0.7105970817166969,
+   "cos_classedit_ones": 0.0006141137497511681,
+   "cos_classedit_Kw": 0.7656196449599537,
+   "cos_classedit_Kadam": 0.883325831802282
+  },
+  {
+   "target": "sst2:positive",
+   "seed": 1,
+   "success": true,
+   "edit_norm": 2.561175526857135,
+   "mean_edit_all_norm": 6.758249632729559,
+   "mean_edit_all_cos_ones": 0.012233409778409731,
+   "cos_classedit_w": -0.1738845493559482,
+   "cos_classedit_Sigma_w": -0.21960439010637806,
+   "cos_classedit_Finv_w": -0.16262157891347,
+   "cos_classedit_ones": 0.010646848469586377,
+   "cos_classedit_Kw": 0.36180539213802076,
+   "cos_classedit_Kadam": 0.29393757050069896
+  },
+  {
+   "target": "sst2:positive",
+   "seed": 2,
+   "success": true,
+   "edit_norm": 0.8225256687538431,
+   "mean_edit_all_norm": 6.061618234654634,
+   "mean_edit_all_cos_ones": 0.015388590168827843,
+   "cos_classedit_w": -0.6124574850274334,
+   "cos_classedit_Sigma_w": -0.3845003305598676,
+   "cos_classedit_Finv_w": -0.5792664260299617,
+   "cos_classedit_ones": 0.008007482348199776,
+   "cos_classedit_Kw": 0.6708880112638428,
+   "cos_classedit_Kadam": 0.7408118000869945
+  },
+  {
+   "target": "yahoo:Education & Reference",
+   "seed": 0,
+   "success": true,
+   "edit_norm": 0.31457472520497687,
+   "mean_edit_all_norm": 3.0966188663427228,
+   "mean_edit_all_cos_ones": -1.0951148691799844e-05,
+   "cos_classedit_w": -0.2587566363405318,
+   "cos_classedit_Sigma_w": -0.3981552287993418,
+   "cos_classedit_Finv_w": -0.3513733499576483,
+   "cos_classedit_ones": 0.011244886720271942,
+   "cos_classedit_Kw": -0.32003535624441026,
+   "cos_classedit_Kadam": -0.2145756486936999
+  },
+  {
+   "target": "yahoo:Education & Reference",
+   "seed": 1,
+   "success": false,
+   "edit_norm": 0.14834415634826176,
+   "mean_edit_all_norm": 1.3130428569663397,
+   "mean_edit_all_cos_ones": -0.0061542598537123305,
+   "cos_classedit_w": -0.18699176373667573,
+   "cos_classedit_Sigma_w": -0.08516589262191791,
+   "cos_classedit_Finv_w": -0.23198232910227853,
+   "cos_classedit_ones": -0.009150286707318503,
+   "cos_classedit_Kw": -0.11099968124632201,
+   "cos_classedit_Kadam": -0.11968013811712476
+  },
+  {
+   "target": "yahoo:Education & Reference",
+   "seed": 2,
+   "success": true,
+   "edit_norm": 0.23487235854411445,
+   "mean_edit_all_norm": 3.5601304495663855,
+   "mean_edit_all_cos_ones": 0.005376005794410538,
+   "cos_classedit_w": -0.10160312725004374,
+   "cos_classedit_Sigma_w": -0.09014113386829098,
+   "cos_classedit_Finv_w": -0.13249007186959005,
+   "cos_classedit_ones": -0.012743937792237942,
+   "cos_classedit_Kw": 0.67019328003419,
+   "cos_classedit_Kadam": 0.8617492734799689
+  }
+ ],
+ "exploratory_direction_predictors": {
+  "Kw": {
+   "primary": 0.1869560657575946,
+   "secondary": 0.7095145711901952
+  },
+  "Kadam": {
+   "primary": 0.0625686987260784,
+   "secondary": 0.7858180333769269
+  },
+  "measured_edit": {
+   "primary": 0.08278939953061426,
+   "secondary": 0.8246770088247464
+  }
+ },
+ "probe_ones_cos": {
+  "agnews:Business": -0.005326923684473002,
+  "agnews:Sci/Tech": -0.00758814884927075,
+  "agnews:Sports": 0.012717255606374092,
+  "agnews:World": -0.0046167169935891,
+  "cities:true": 0.0024379268854175604,
+  "dbpedia:Album": 0.014369065027050239,
+  "dbpedia:Animal": 0.008238636878147132,
+  "dbpedia:Artist": -0.010439809480168864,
+  "dbpedia:Athlete": 0.012335320791068664,
+  "dbpedia:Building": -0.0010411119213714144,
+  "dbpedia:Company": -0.0020319084847394597,
+  "dbpedia:EducationalInstitution": -0.0033439419759482515,
+  "dbpedia:Film": -0.023218975369506557,
+  "dbpedia:MeanOfTransportation": -0.006663689233597045,
+  "dbpedia:NaturalPlace": -0.01423416986852107,
+  "dbpedia:OfficeHolder": 0.013876356758750924,
+  "dbpedia:Plant": -0.004762168129781218,
+  "dbpedia:Village": 0.0027250019754313914,
+  "dbpedia:WrittenWork": -0.021081230125751176,
+  "emotion:anger": -0.021269341750304115,
+  "emotion:fear": 0.0033235312297240803,
+  "emotion:joy": 0.0201948826617733,
+  "emotion:love": 0.023431742485450106,
+  "emotion:sadness": 0.006257662851920953,
+  "emotion:surprise": -0.02813458327972425,
+  "lang:de": -0.009069963868157987,
+  "lang:en": -0.0031082850888115164,
+  "lang:es": -7.368422412964244e-05,
+  "lang:fr": -0.00436545498798316,
+  "lang:it": -0.0003817156263503361,
+  "lang:nl": -0.008024191789556228,
+  "lang:pl": 0.016456724756879936,
+  "lang:pt": -0.003456240777322091,
+  "offensive:offensive": -0.008613436585422499,
+  "pile:FreeLaw": -0.003344581355208958,
+  "pile:Github": -0.005286014922922304,
+  "pile:OpenWebText2": 0.0028046678204833807,
+  "pile:Pile-CC": -0.004814959093402526,
+  "pile:PubMed Abstracts": 0.0027505449478171084,
+  "pile:PubMed Central": 0.0013195594173687128,
+  "pile:StackExchange": -0.012725266136376439,
+  "pile:USPTO Backgrounds": 0.0007423845010368279,
+  "pile:Wikipedia (en)": -0.004891169399428506,
+  "sst2:positive": -0.017318167638921717,
+  "yahoo:Business & Finance": 0.009338863267283323,
+  "yahoo:Computers & Internet": -0.0017010782222280406,
+  "yahoo:Education & Reference": -0.0041254493113519015,
+  "yahoo:Entertainment & Music": -0.0007803432481514055,
+  "yahoo:Family & Relationships": 0.015379590132171331,
+  "yahoo:Health": 0.005510552988181642,
+  "yahoo:Politics & Government": -0.009441517319901652,
+  "yahoo:Science & Mathematics": -0.009517684470708486,
+  "yahoo:Society & Culture": -0.02982813840579966,
+  "yahoo:Sports": 0.004978127889567316
+ },
+ "lambda0_diagnostic": {
+  "kl_ratio_per_target": [
+   {
+    "target": "dbpedia:NaturalPlace",
+    "kl_chosen": 0.05686476291157305,
+    "kl_lambda0": 0.7906694915145636,
+    "ratio": 0.07191976359508447,
+    "stop_step_chosen": 10,
+    "stop_step_lambda0": 10,
+    "success_lambda0": true
+   },
+   {
+    "target": "emotion:fear",
+    "kl_chosen": 0.04442006291355938,
+    "kl_lambda0": 0.4985446184873581,
+    "ratio": 0.08909947327951302,
+    "stop_step_chosen": 10,
+    "stop_step_lambda0": 10,
+    "success_lambda0": true
+   },
+   {
+    "target": "lang:it",
+    "kl_chosen": 0.04732529300963506,
+    "kl_lambda0": 0.46247469913214445,
+    "ratio": 0.10233055580865981,
+    "stop_step_chosen": 10,
+    "stop_step_lambda0": 10,
+    "success_lambda0": true
+   },
+   {
+    "target": "sst2:positive",
+    "kl_chosen": 0.04610866226721555,
+    "kl_lambda0": 0.6494963970035315,
+    "ratio": 0.07099140577213217,
+    "stop_step_chosen": 10,
+    "stop_step_lambda0": 10,
+    "success_lambda0": true
+   },
+   {
+    "target": "yahoo:Education & Reference",
+    "kl_chosen": 0.04939336969982833,
+    "kl_lambda0": 0.8715776894241571,
+    "ratio": 0.056671218526098396,
+    "stop_step_chosen": 10,
+    "stop_step_lambda0": 10,
+    "success_lambda0": true
+   }
+  ],
+  "primary": {
+   "plain": 0.062175587547958044,
+   "whitened": -0.2659883311183797,
+   "fisher": -0.024832361182016482,
+   "shared": -17.424519510089958,
+   "sd_measured": 0.016604239153999407,
+   "n_abs_drop_gt_0.02": 24,
+   "n_pairs": 245,
+   "margin_vs_best_cosine": -0.08700794872997453,
+   "margin_vs_shared": 17.39968714890794,
+   "confirmed": false
+  },
+  "secondary": {
+   "plain": 0.27220862737982976,
+   "whitened": 0.4160087212176663,
+   "fisher": 0.2584587524659918,
+   "shared": -2.250592496542195,
+   "sd_measured": 0.22607910066531114,
+   "n_abs_drop_gt_0.02": 24,
+   "n_pairs": 24,
+   "margin_vs_best_cosine": -0.15754996875167449,
+   "margin_vs_shared": 2.509051249008187,
+   "confirmed": false
+  }
+ }
+}

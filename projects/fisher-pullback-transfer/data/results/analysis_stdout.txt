@@ -1,0 +1,14 @@
+{
+ "successful_seeds": {
+  "dbpedia:NaturalPlace": 3,
+  "emotion:fear": 3,
+  "lang:it": 3,
+  "sst2:positive": 3,
+  "yahoo:Education & Reference": 2
+ }
+}
+primary {"plain": 0.09850652622941936, "whitened": -0.900138645287712, "fisher": 0.05894598134218709, "shared": -27.62851680074904, "sd_measured": 0.013520950052689284, "n_abs_drop_gt_0.02": 7, "n_pairs": 245, "margin_vs_best_cosine": -0.03956054488723226, "margin_vs_shared": 27.687462782091227, "confirmed": false, "status": "NULL"}
+secondary {"plain": 0.4363879441865789, "whitened": 0.07503941397108949, "fisher": 0.4492116744619965, "shared": -6.137021864470883, "sd_measured": 0.17314513249122432, "n_abs_drop_gt_0.02": 24, "n_pairs": 24, "margin_vs_best_cosine": 0.01282373027541761, "margin_vs_shared": 6.58623353893288, "confirmed": false}
+baselines {"literal_cos_plain_affine_LOTO": -0.07697108285724563, "literal_abscos_plain_affine_LOTO": -0.03836659704770651, "literal_cos_whitened_affine_LOTO": -0.0274161650467164, "literal_abscos_whitened_affine_LOTO": -0.024948685484788458, "literal_cos_fisher_affine_LOTO": -0.09281597457155222, "literal_abscos_fisher_affine_LOTO": -0.051139383524388515, "labelcorr_affine_LOTO": -0.024410688157566973, "fragility_noFit": -0.05894216868186608}
+nulls {"random_rotation_metric": {"primary": {"mean": 0.09345552231047836, "p95": 0.10593713167536022, "frac_ge_actual": 1.0}, "secondary": {"mean": 0.39019120196171436, "p95": 0.4879412114960041, "frac_ge_actual": 0.19}}, "within_target_permutation": {"primary": {"mean": -0.07858365136168871, "p95": -0.03907479846185556, "frac_ge_actual": 0.0}, "secondary": {"mean": -0.9920125117169414, "p95": -0.26094039301724054, "frac_ge_actual": 0.0}}}
+fisher variants {"c=0.01": {"primary": -0.04035246542258886, "secondary": 0.33336065037116447}, "c=0.1": {"primary": 0.005132919873998332, "secondary": 0.4051398063589169}, "c=1.0": {"primary": 0.05894598134218709, "secondary": 0.4492116744619965}, "c=10.0": {"primary": 0.08787581256971833, "secondary": 0.43463426687790285}, "c=100.0": {"primary": 0.09708109852192703, "secondary": 0.43548476877619013}, "lambda=1e-2*tr/512": {"primary": -0.033176885209580176, "secondary": 0.3426741184746164}, "F_token c=1": {"primary": 0.0826969754020136, "secondary": 0.4322440072316033}, "F_common half1 c=1": {"primary": 0.05981839093926822, "secondary": 0.46897349680673384}, "F_common half2 c=1": {"primary": 0.05809146059136194, "secondary": 0.42897943170677955}, "F_common 2000 windows c=1": {"primary": 0.06157523725551717, "secondary": 0.47133120835237263}}

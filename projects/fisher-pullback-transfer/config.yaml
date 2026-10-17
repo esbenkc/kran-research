@@ -1,0 +1,28 @@
+# fisher-pullback-transfer: frozen run config (written before the lambda_KL pilot; see PREREG.md)
+name: fisher-pullback-transfer
+question: "When a model hides a concept from one probe but keeps its outputs the same, does the network's own Fisher geometry predict which other probes it also fools?"
+model: EleutherAI/pythia-70m@step143000   # no API model; all local
+layer: 3            # hidden_states[3], output of block 2
+max_tokens: 64
+probe_filter_min_auroc: 0.75
+max_probes: 50
+n_targets: 5
+selection_seed: 0
+fisher_damping_c: 1.0          # lambda = c * median eigenvalue(F_common)
+attack:
+  trainable: "gpt_neox.layers.0-2 (all params)"
+  optimizer: adam
+  lr: 1.0e-4
+  loss: softplus_pos           # DEVIATIONS 15:16: Bailey-style softplus(s_w+b_w) on target positives; fallbacks gap_fixed_sd, dprime_batch (PREREG text)
+  batch_target: 16             # softplus_pos: 16 target positives; gap losses: 8 pos + 8 neg; target TRAIN texts
+  batch_retain: 16             # retain-train windows (pile-10k odd docs, disjoint from Fisher windows)
+  check_every: 10              # steps between target TEST AUROC checks
+  stop_auroc: 0.6
+  step_cap: 2000
+  seeds: [0, 1, 2]
+  lambda_kl_grid: [1, 3, 10, 30, 100, 300, 1000, 3000, 10000, 30000, 100000, 300000, 1000000]   # ascending; DEVIATIONS 15:12 bracketing (was [1000..1], top succeeded at step 10)
+  lambda_kl_start: 1000
+  device: mps
+figures:
+  - id: fisher-pullback-transfer
+    caption: "Predicted vs measured AUROC drop of held-out probes, one panel per metric (plain, whitened, Fisher pull-back)."

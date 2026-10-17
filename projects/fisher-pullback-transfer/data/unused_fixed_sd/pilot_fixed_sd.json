@@ -1,0 +1,25 @@
+{
+ "pilot_probe": "yahoo:Entertainment & Music",
+ "grid": [
+  1000,
+  300,
+  100,
+  30,
+  10,
+  3,
+  1
+ ],
+ "rule": "largest grid value whose pilot attack (seed 0) reaches AUROC < stop_auroc within step_cap; grid run largest-first, stop at first success",
+ "chosen_lambda_kl": 1000,
+ "log": [
+  {
+   "lambda_kl": 1000,
+   "success": true,
+   "stop_step": 10,
+   "target_auroc_clean": 0.8736111111111111,
+   "seconds": 6.069785118103027,
+   "max_rss_mb": 737.375,
+   "final_auroc": 0.5645888888888889
+  }
+ ]
+}

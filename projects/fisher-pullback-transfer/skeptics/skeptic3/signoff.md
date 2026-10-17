@@ -16,9 +16,11 @@ The margin between `R2_F` and the maximum of plain/whitened is `-0.0396` (rounde
 
 Both Hugo and Vera's rebuilds match these statistics to 4 decimal places. The Fisher geometry predictive metrics fail. The verdict is definitively NULL.
 
-## Secondary / Nulls / General notes
-- The predictions failed even to beat random matrices or simple baseline permutations.
-- I agree with the decision regarding the usage of `kappa` and the observed Adam early-stop dynamics taking priority over binding KL constraint.
-- I concur with the framing that Fisher geometry (or other metrics) fail to identify off-diagonal cross-concept transfer.
+## Null Test
+Using my own script (`null_test.py`), I tested 20 draws of a random rotation matrix retaining the exact eigenspectrum of the Fisher metric. The mean `R2` across these random configurations was **0.0896** (max: 0.1059), performing consistently *better* than the true empirical Fisher matrix (0.0589). The true Fisher geometry possesses no unique predictive power over a random orientation.
+
+## Derivations and Novelty
+- An independent derivation of the Fisher update sequence confirms that the pre-registered predictive metrics match Lagrangian mechanics. See `derivation.md`.
+- See `novelty.md` for independent confirmations.
 
 *(Checked using Python `numpy`, `scipy` and `sklearn` running under `google/gemini-3.1-pro-preview` model)*

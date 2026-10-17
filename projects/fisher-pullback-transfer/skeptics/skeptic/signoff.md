@@ -61,3 +61,10 @@ cannot lower the target's own AUROC (it stays or flips to 1 - AUROC; check [3b])
 ## Novelty
 `novelty.md`. The cheapest-move formula is FishBack (arXiv 2605.17231). No paper found that predicts which probes a
 fine-tuning attack also fools; no prior number to beat.
+
+## Post sentences checked (blog commit 1323e9b, 16:24 CEST)
+All main-text numbers reproduce from my own rebuild (`check_post_claims.out`, `check_post_claims2.out`, `check_oracle.out`,
+`check_figure.out`): 7/245; R^2 0.06 / 0.10 / -0.90; 100/100 random metrics beat F (mean 0.09); fear->joy 0.15, sibling
+predictions <= 0.0025, cosines 0 to -0.38; oracle 0.08; same-concept 0.32, 0.45/0.44, 83% ceiling, 71-79%; KL 0.04-0.10;
+target spread x1.6-6.0; repeat-run r 0.981-0.989 and 0.83-0.87 on pairs with seed-mean |drop| < 0.02 (with the stricter
+"both seeds < 0.02" filter it is 0.71-0.85). Figure: all 807 points match.

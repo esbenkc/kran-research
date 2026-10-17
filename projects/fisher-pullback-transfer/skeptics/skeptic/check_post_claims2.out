@@ -1,0 +1,7 @@
+seeds 0-1: n=196 r=0.989; both |drop|<0.02: n=187 r=0.848
+seeds 0-2: n=245 r=0.983; both |drop|<0.02: n=236 r=0.792
+seeds 1-2: n=196 r=0.981; both |drop|<0.02: n=185 r=0.710
+target sd ratio attacked/clean: [('dbpedia:NaturalPlace', 0, 1.89), ('dbpedia:NaturalPlace', 1, 2.66), ('dbpedia:NaturalPlace', 2, 2.12), ('emotion:fear', 0, 5.45), ('emotion:fear', 1, 5.37), ('emotion:fear', 2, 6.01), ('lang:it', 0, 1.6), ('lang:it', 1, 2.12), ('lang:it', 2, 2.01), ('sst2:positive', 0, 4.11), ('sst2:positive', 1, 4.68), ('sst2:positive', 2, 4.85), ('yahoo:Education & Reference', 0, 3.39), ('yahoo:Education & Reference', 2, 3.26)]
+seeds 0-1: seed-mean |drop|<0.02 filter: n=189 r=0.868
+seeds 0-2: seed-mean |drop|<0.02 filter: n=238 r=0.834
+seeds 1-2: seed-mean |drop|<0.02 filter: n=189 r=0.832

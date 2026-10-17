@@ -160,6 +160,43 @@ Each one is cut in the diffs above or named in his feedback.
   ("I love this." in `are-ai-proofs-messier.md` is his). A stance stated once is wanted (see 3b).
 - **Jargon where a plain word exists:** sandbag, indexical, legible direction, load-bearing.
 
+## 4b. Plain English: every sentence is read once
+
+Esben, 2026-10-17, on the intro of `fisher-pullback-transfer` (a Lab post): words and word combinations were
+confusing, and long sentences should become short ones. The sentence he flagged:
+
+> "On Pythia-70M, we find that such an attack barely fools probes for other concepts, and the model's own output
+> geometry cannot say which few it does fool."
+
+His rewrite:
+
+> "We trained Pythia-70M to hide one concept from one probe. The attack worked on that probe. It barely affected
+> probes for other concepts, but it did fool a few of them. The model's output geometry could not predict which
+> few."
+
+The rules (all posts, both Lab tracks):
+- **One idea per sentence, about 20 words at most.** Split a sentence with "and", "while" or "so" in the middle.
+- **A concrete subject does the verb.** "We could not predict X from the geometry", not "the geometry cannot say".
+- **No elliptical phrases.** Not "which ones", "the latter", or "which few" when no "a few" came before. No bare
+  "it", "this" or "such" when two things fit: repeat the noun ("this attack", not "such an attack" or "this").
+- **One term per concept, all the way through.** Do not switch between "evader", "attack" and "fine-tune".
+- **Order:** what we did, then what happened, then what it means.
+- **No noun stacks** of three or more nouns ("KL retain loss"). Unpack them: "a loss that keeps the outputs close".
+- **The number goes in the sentence that makes the claim.**
+- **Each paragraph starts with its point.**
+- **Read-aloud test:** if you cannot say a sentence in one breath, split it.
+- **One caveat, where it matters.** No "it's not X, it's Y" pivots (see section 4).
+
+How it is checked on Lab posts:
+- `~/bin/oracle.py check --post _notes/<slug>.md` on the mini lints the body (front matter, math, code, tables,
+  HTML and footnote definitions are skipped). It prints the line and the sentence for: a sentence over 25 words
+  (over 35 inside a `<details>` foldout), a sentence that starts with a bare this/that/such (or a paragraph that
+  opens with "It"), "which ones", "which few" with no "few" before it, "such a ...", and "which ... it does X".
+  Noun stacks are not linted (no reliable test without a grammar parser): the cold reader catches them.
+- The cold reader (Lumi) lists every sentence she had to read twice, each as
+  `READ TWICE: "<sentence>" -> REWRITE: "<at most 20 words>"`. The writer applies the fixes and the cold reader
+  confirms them.
+
 ## 5. Figures and captions
 
 - The main figure comes right after the TLDR, above the fold (`293e41f`).
@@ -184,7 +221,8 @@ Each one is cut in the diffs above or named in his feedback.
    At most one `--` per paragraph.
 7. Zero matches for: genuinely, quietly, actually, honest, "here is the", "the rest of this
    article", "double as", "read it as", "treat it as".
-8. Average sentence length at most 22 words. No sentence over 60 words.
+8. Average sentence length at most 20 words. No sentence over 25 words in the main text (35 in a
+   foldout). Every rule of section 4b holds (`oracle.py check` on Lab posts).
 9. Limits appear in one place (one sentence or one "Should you trust our results?" list).
    No hedge words (directional, narrowly, tentatively) elsewhere.
 10. Each caption is 1-3 sentences, states n and the model(s) and the judge, and contains no
@@ -193,3 +231,5 @@ Each one is cut in the diffs above or named in his feedback.
     stated once, without a list of supporting reasons after it.
 12. Personal reactions and outside references that only Esben can supply are `[ESBEN: …]` slots,
     listed in the PR description. None are invented.
+13. The cold reader's READ TWICE list is empty, or every item on it has a rewrite of at most 20
+    words that the writer applied.

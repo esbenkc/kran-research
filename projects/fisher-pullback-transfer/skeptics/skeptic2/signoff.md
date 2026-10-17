@@ -118,3 +118,12 @@ From this folder (needs `../../data/` from the swarm branch): `uv run --with num
 gate), `RANDMETRIC=100 uv run --with numpy python check.py > check_final.out` (verdict, nulls, secondary),
 `FWHICH=big|small FC=<c> uv run --with numpy python check.py` (sensitivity rows in `sensitivity.out`),
 `uv run --with numpy python derive_check.py` (derivation checks). Pair table: `hugo_tables_big_c1.0.json`.
+
+## Direction swap check (exploratory; `oracle_check.py`, `oracle_check.out`)
+
+Same frozen formula with P w replaced by a direction v (r = u'v / w'v). Primary 245 pairs: measured class-edit
+(oracle) 0.083, Kw 0.187, Kadam 0.063, F^-1 w 0.059, w 0.099. Secondary 24 pairs (gap map): oracle 0.833,
+Kadam 0.791, Kw 0.711, F^-1 w 0.458, w 0.441. This reproduces the build's #1757 numbers (oracle 0.08 / 0.82;
+secondary differs by the pooled-sd definition). Reading: across concepts even the true edit direction fails, so
+the one-direction edit model is what breaks there; within one concept's stack the direction matters and the
+optimizer's first step beats the Fisher direction.

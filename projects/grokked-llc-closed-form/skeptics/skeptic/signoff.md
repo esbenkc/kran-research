@@ -57,3 +57,28 @@ long_gamma.py -> long_gamma.json, nbeta_table_check.txt, summary sampler_check.m
   nbeta 1e3/1e5 as in skeptic3's sweep. 100k-step chains: gamma 0.1 vs 1 = +1.7% (p11_K33_s0), +3.8% (p17_K51_s0).
   Max ratio over all my runs 0.776: no tested setting moves these cells into the 15% band.
 - Verdict NULL unchanged. Fold numbers checked line by line (room #1245); sign-off on the fold conditional on those fixes.
+
+## Follow-up 2 (2026-10-17): estimator fold 'Jacobian rank and curvature spectrum', selection X, concept foldouts (PR #36)
+Files: estimator_recheck.py -> estimator_recheck.{csv,json}; jac_recheck.py -> jac_recheck.json;
+gram_recheck.py -> gram_recheck.json. Own code (common.py Jacobian/grad/polish), not qnet.py / estimator_check.py.
+Verdict networks: 15 = p11_K33 x3, p17_K51 x2, p17_K68 x3, p23_K69 x1, p23_K92 x3 (llc.csv) + p31_K93 x3 on 70% pairs
+(llc_p31_frac07.csv). Using the 50% p31 runs instead breaks the grid frozen-row match (3733 vs 4078), so the
+70% set is the one the post means.
+- Tolerance table (from saved spectra): every cell reproduces. SVD rank/K(3p-2): 1e-4 0.912-0.965, 1e-6 0.933-0.999,
+  1e-8 0.997-1.000, 1e-9..1e-12 1.000. Gram: 0.953-0.975, 0.999-1.000, 1.009-1.012, 1.010-1.015.
+  Flat share (15 nets): 14.1-32.4% / 16.3-35.6% / 17.0-36.6% / 17.1-36.6%. p17_K51: 20.6-20.7% at 1e-4, 24.6-25.1% from 1e-6 down.
+- Used tolerances: rank = llc.csv rankJ on 15/15; flat 16.3-36.6% (post '16% to 37%', TLDR 'up to 37%' OK).
+  SVD gap at 1e-9: 1.4e7-8.3e8; Gram gap at 1e-6: 1.04-38.9; quadratic value moves <= 0.0004 over tol 1e-4..1e-12.
+- Gram ranks are 1/0/2 (p23_K92 s0/s1/s2) and 1/4/6 (p31_K93) below K(3p-2): '1 to 6 below' must read '0 to 6'.
+- Own Jacobian + own Adam polish: p17_K51_s0 and p11_K33_s0 rank at 1e-9 = K(3p-2) exactly (2499, 1023), gap 8e7 / 3e7;
+  flat share 24.69% / 20.92% vs build 24.69% / 20.82%. p23_K92_s0 exact SVD (8510 x 6348, 70 s, 2 threads): rank 6164 =
+  K(3p-2) at 1e-9 (gap 8.9e8; the post's 1e7-1e8 is build's polish), Gram at 1e-6 = 6163 (dropped direction 9.97e-7 s_max),
+  Gram error 6.05e-8 s_max (<= 7.5e-8), flat shares equal to 0.01 pp.
+- E8 own: finite-difference Hessian of my gradient vs J^T J / N at a planted zero-loss net: 7.3e-11 relative.
+- Selection X (grid_selection.csv, 96 rows, 0 diverged): 14 flat settings median 0.493-0.748, frozen 0.732 (= llc.csv to
+  4.5e-13), X down 0.239, up 0.016, at most 1 of 6 (p,K) in the 15% band under every one of the 16 settings. Text OK.
+- Calibration-rank claim attributed to me (sampler_check.json A): 8/8 ranks equal at 1e-6 and 1e-9. OK.
+- Links: 26 checked. Concept foldouts say what they claim (Lau 2308.12108 defines LLC + estimator, App H.1 step size;
+  Hoogland LW 2023 explainer; Watanabe DOI -> Cambridge book; Timaeus guide 2026-04-21 explains eps/nbeta/localization;
+  3B1B lesson covers rank; Wikipedia x2), EXCEPT 'Welling and Teh 2011, the original SGLD paper' -> sgld.pdf is ICML talk
+  slides by Mnih and Boyles; the paper is WelTeh2011a.pdf. Backspace byte at l.102 (n\beta) fixed in 2afc316.

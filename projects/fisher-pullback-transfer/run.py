@@ -40,7 +40,7 @@ def main(publish=False):
             rows.append(r)
     prim, sec = res["primary"], res.get("secondary", {})
     data = {
-        "title": "No choice of geometry predicts which other probes a hiding fine-tune fools",
+        "title": "None of three geometries predicts which other-concept probes a hiding fine-tune fools",
         "sub": ("Each dot is one probe after a fine-tune of Pythia-70M hid one concept from one target probe "
                 "while keeping its outputs close to the original. Across: AUROC drop predicted by one formula, "
                 "with three choices of geometry. Up: measured AUROC drop. Dashed line: prediction = measurement. "

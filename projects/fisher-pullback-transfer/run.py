@@ -22,8 +22,8 @@ sys.path.insert(0, str(PROJECT_DIR.parent.parent))
 from lib import figure  # noqa: E402
 
 FIG = "fisher-pullback-transfer"
-LABELS = {"plain": "Plain cosine", "whitened": "Whitened", "fisher": "Fisher pull-back"}
-CALLOUT = {"emotion:joy": "fear → joy", "emotion:surprise": "fear → 3 others"}
+LABELS = {"plain": "Plain angle", "whitened": "Whitened angle", "fisher": "Output Fisher"}
+CALLOUT = {"emotion:joy": "fear → joy", "emotion:surprise": "+ 3 more"}
 
 
 def main(publish=False):
@@ -41,12 +41,8 @@ def main(publish=False):
     prim, sec = res["primary"], res.get("secondary", {})
     data = {
         "title": "None of three geometries predicts which other-concept probes a hiding fine-tune fools",
-        "sub": ("Each dot is one probe after a fine-tune of Pythia-70M hid one concept from one target probe "
-                "while keeping its outputs close to the original. Across: AUROC drop predicted by one formula, "
-                "with three choices of geometry. Up: measured AUROC drop. Dashed line: prediction = measurement. "
-                "R² = 1 − (squared error)/(variance of the measurements); 1 is perfect, below 0 is worse than "
-                "guessing the average. Filled and hollow sets are scored separately, never pooled. Each dot is the mean "
-                "of the target's successful seeds (2-3). Both axes stretch near zero (symmetric log scale)."),
+        "sub": ("Each dot is one probe after a fine-tune of Pythia-70M hid one concept from one target probe. "
+                "Across: predicted AUROC drop. Up: measured drop. Both axes stretch near zero (symmetric log)."),
         "scale": "symlog", "symlog_constant": 0.01,
         "ticks": [-0.1, 0, 0.1, 0.5],
         "panels": [{"metric": m, "label": LABELS[m], "r2_primary": prim[m], "r2_secondary": sec.get(m)}

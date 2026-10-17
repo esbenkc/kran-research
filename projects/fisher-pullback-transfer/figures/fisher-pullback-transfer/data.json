@@ -1,6 +1,6 @@
 {
   "title": "None of three geometries predicts which other-concept probes a hiding fine-tune fools",
-  "sub": "Each dot is one probe after a fine-tune of Pythia-70M hid one concept from one target probe while keeping its outputs close to the original. Across: AUROC drop predicted by one formula, with three choices of geometry. Up: measured AUROC drop. Dashed line: prediction = measurement. R\u00b2 = 1 \u2212 (squared error)/(variance of the measurements); 1 is perfect, below 0 is worse than guessing the average. Filled and hollow sets are scored separately, never pooled. Each dot is the mean of the target's successful seeds (2-3). Both axes stretch near zero (symmetric log scale).",
+  "sub": "Each dot is one probe after a fine-tune of Pythia-70M hid one concept from one target probe. Across: predicted AUROC drop. Up: measured drop. Both axes stretch near zero (symmetric log).",
   "scale": "symlog",
   "symlog_constant": 0.01,
   "ticks": [
@@ -12,19 +12,19 @@
   "panels": [
     {
       "metric": "plain",
-      "label": "Plain cosine",
+      "label": "Plain angle",
       "r2_primary": 0.09850652622941936,
       "r2_secondary": 0.4363879441865789
     },
     {
       "metric": "whitened",
-      "label": "Whitened",
+      "label": "Whitened angle",
       "r2_primary": -0.900138645287712,
       "r2_secondary": 0.07503941397108949
     },
     {
       "metric": "fisher",
-      "label": "Fisher pull-back",
+      "label": "Output Fisher",
       "r2_primary": 0.05894598134218709,
       "r2_secondary": 0.4492116744619965
     }
@@ -2198,7 +2198,7 @@
       "x": -0.00067,
       "y": 0.0787,
       "n_seeds": 3,
-      "label": "fear \u2192 3 others"
+      "label": "+ 3 more"
     },
     {
       "set": "primary",

@@ -25,3 +25,8 @@ Does the figure stand alone: No (the caption mentions filled/hollow sets and thr
 4. Now: "Even the formula fed each probe's measured change in class gap explains only 83%, because the spread changed too."
 5. Now "explains 71-79%", and the first R² in the results says "explains only 6% of their variance (R² = 0.06)", so percent = R² × 100 throughout.
 Main claim: in the page body, sentence 3 is "On Pythia-70M, we find that such an attack barely fools probes for other concepts, and the model's own output geometry cannot say which few it does fool." The pre-registration box above the body is drawn by the layout from front matter and comes first in a text-only read.
+
+---
+## Lumi's confirmation (verbatim from her room review #1824, 16:59 CEST; her session ended before she could append it here)
+
+"SIGN-OFF: post text: _notes/<slug>.md (draft, Fisher pull-back transfer post) — Confirmed all 5 cold-read items are fixed in the text (e.g. filled/hollow dots defined, class gap defined as distance between average scores, R^2 noted as percentage). The main claim is in sentence 3 of the body ('barely fools probes for other concepts'). The figure description now explains panels, axes, and diagonal."

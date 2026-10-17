@@ -121,3 +121,6 @@ fail. Time box: if no softplus value succeeds by 16:05 CEST, the attacker falls 
 gap^2 loss (bracketed upward from 1000), and the post says the published-style loss never pushed the
 target's AUROC below 0.6 within 2000 steps at any lambda tried. Hugo #1734: at lambda 300-1000 the retain term
 binds (no 10-step win), so the selected attacker is in the behaviour-preserving regime.
+- (15:43, Tove #1735) Run order: seeds 0 and 1 for all 5 targets first (10 runs), then the 5 lambda = 0
+  diagnostics, then seed 2 only if all its runs can finish by 17:15 CEST. The verdict uses whatever seeds
+  finished (PREREG needs >= 2 successful seeds per target); the post states n per target.

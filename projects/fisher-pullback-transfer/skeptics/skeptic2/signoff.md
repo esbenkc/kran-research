@@ -124,6 +124,8 @@ gate), `RANDMETRIC=100 uv run --with numpy python check.py > check_final.out` (v
 Same frozen formula with P w replaced by a direction v (r = u'v / w'v). Primary 245 pairs: measured class-edit
 (oracle) 0.083, Kw 0.187, Kadam 0.063, F^-1 w 0.059, w 0.099. Secondary 24 pairs (gap map): oracle 0.833,
 Kadam 0.791, Kw 0.711, F^-1 w 0.458, w 0.441. This reproduces the build's #1757 numbers (oracle 0.08 / 0.82;
-secondary differs by the pooled-sd definition). Reading: across concepts even the true edit direction fails, so
-the one-direction edit model is what breaks there; within one concept's stack the direction matters and the
-optimizer's first step beats the Fisher direction.
+secondary differs by the pooled-sd definition). Reading: across concepts even the true edit direction fails (0.083; not circular, u and w
+use different test sets), so the one-direction edit model is what breaks there. On the same-concept stack the
+oracle is circular (G_u(w) = G_w(w), so the predicted gap change of u equals u'e, its measured gap change; Vera #1779):
+0.83 is the ceiling for any one-direction gap model, the rest of the drop is spread change. Kadam is the first step of
+the attacker's own loss, so 0.79 is a diagnosis, not a rival geometry.

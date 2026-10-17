@@ -1,0 +1,76 @@
+{
+ "n_ef": 68,
+ "n_abc": 0,
+ "unparsed": 9,
+ "ef_vs_l1": {
+  "kappa": 0.104,
+  "raw": 0.368,
+  "confusion_judge_rows_l1_cols": {
+   "none": [
+    6,
+    6,
+    0,
+    1
+   ],
+   "one": [
+    3,
+    18,
+    1,
+    2
+   ],
+   "unrelated": [
+    5,
+    11,
+    1,
+    3
+   ],
+   "broken": [
+    3,
+    8,
+    0,
+    0
+   ]
+  }
+ },
+ "ef_vs_l2": {
+  "kappa": 0.142,
+  "raw": 0.382,
+  "confusion_judge_rows_l2_cols": {
+   "none": [
+    7,
+    5,
+    0,
+    1
+   ],
+   "one": [
+    6,
+    16,
+    0,
+    2
+   ],
+   "unrelated": [
+    8,
+    10,
+    2,
+    0
+   ],
+   "broken": [
+    4,
+    6,
+    0,
+    1
+   ]
+  }
+ },
+ "l1_vs_l2_ef": 0.552,
+ "false_unrelated_on_plain": {
+  "n": 58,
+  "called_unrelated": 16
+ },
+ "false_unrelated_rate": 0.276,
+ "unrelated_recall_either": {
+  "n": 4,
+  "judge_unrelated": 3
+ },
+ "pass": false
+}

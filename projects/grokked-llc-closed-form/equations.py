@@ -13,6 +13,9 @@ E6  SGLD step (fold): w_{t+1} = w_t + eps/2 (-n beta grad L_n(w_t) - gamma (w_t 
     check: a hand-written loop with the same Gaussian draws reproduces qnet.sgld_llc's loss trace to 1e-12.
 E7  estimator (fold): lambda_hat = n beta ( 1/(C(T-B)) sum_c sum_{t=B}^{T-1} L_n(w_t^(c)) - L_n(w*) ).
     check: the formula on the hand-written traces equals qnet.sgld_llc's lambda_hat.
+E8  spectrum (estimator fold): at a zero of L_n, H = grad^2 L_n(w*) = J^T J / n, so h_i = s_i^2 / n.
+    check: central finite differences of qnet.loss_grad at a planted zero-loss point equal J^T J / n, its
+    eigenvalues equal s^2/n from numpy.linalg.svd, and the Gram route sqrt(eig(J^T J)) matches s to 1e-7 s_max.
 """
 from __future__ import annotations
 
@@ -155,6 +158,37 @@ res["E6_sgld_step_trace_maxdiff"] = float(np.abs(traces - o6["trace"]).max())
 res["E7_estimator"] = dict(by_formula=float(lam7), sgld_llc=float(o6["llc"]))
 assert res["E6_sgld_step_trace_maxdiff"] < 1e-12, res["E6_sgld_step_trace_maxdiff"]
 assert abs(lam7 - o6["llc"]) < 1e-9 * max(1.0, abs(lam7)), res["E7_estimator"]
+
+# ---- E8 numeric: Hessian at a zero of L_n equals J^T J / n; eigenvalues are s^2/n; Gram route = SVD route
+import run_llc  # noqa: E402
+p_, K = 5, 4
+X8, _, _, _ = qnet.modadd_data(p_, 0.8, 0)
+r8 = np.random.default_rng(8)
+W8, V8 = r8.standard_normal((2 * p_, K)), r8.standard_normal((p_, K))
+Y8 = qnet.forward(W8, V8, X8)[0]                       # planted: L_n(w*) = 0
+n8 = X8.shape[0]
+th8 = np.concatenate([W8.ravel(), V8.ravel()])
+
+
+def grad8(th):
+    W, V = th[:W8.size].reshape(W8.shape), th[W8.size:].reshape(V8.shape)
+    _, gW, gV = qnet.loss_grad(W, V, X8, Y8)
+    return np.concatenate([gW.ravel(), gV.ravel()])
+
+
+fd = 1e-6
+H8 = np.array([(grad8(th8 + fd * e) - grad8(th8 - fd * e)) / (2 * fd) for e in np.eye(th8.size)])
+J8 = qnet.jacobian(W8, V8, X8)
+G8 = J8.T @ J8 / n8
+s8 = np.linalg.svd(J8, compute_uv=False)
+ev8 = np.sort(np.linalg.eigvalsh((H8 + H8.T) / 2))[::-1]
+sg8 = np.sqrt(np.clip(np.linalg.eigvalsh(J8.T @ J8)[::-1], 0, None))
+res["E8_hessian"] = dict(max_abs_H_minus_JtJ_over_n=float(np.abs(H8 - G8).max()), scale=float(np.abs(G8).max()),
+                         max_abs_eig_minus_s2_over_n=float(np.abs(ev8[:len(s8)] - s8 ** 2 / n8).max()),
+                         max_abs_gram_minus_svd_over_smax=float(np.abs(sg8[:len(s8)] - s8).max() / s8[0]))
+assert res["E8_hessian"]["max_abs_H_minus_JtJ_over_n"] < 1e-6 * res["E8_hessian"]["scale"], res["E8_hessian"]
+assert res["E8_hessian"]["max_abs_eig_minus_s2_over_n"] < 1e-6 * res["E8_hessian"]["scale"], res["E8_hessian"]
+assert res["E8_hessian"]["max_abs_gram_minus_svd_over_smax"] < 1e-7, res["E8_hessian"]
 
 OUT.write_text(json.dumps(res, indent=1, default=str))
 print(json.dumps(res, indent=1, default=str))

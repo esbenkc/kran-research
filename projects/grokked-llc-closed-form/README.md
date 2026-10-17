@@ -19,6 +19,8 @@ uv run python projects/grokked-llc-closed-form/phase_labels.py       # data/phas
 uv run python projects/grokked-llc-closed-form/equations.py          # data/equations_check.json
 uv run python projects/grokked-llc-closed-form/run.py                # figure + data/summary.json + verdict
 uv run python projects/grokked-llc-closed-form/sensitivity.py        # data/sensitivity.csv: gamma 0.1/10 and nbeta 1e3/1e5 on the 6 verdict cells
+uv run python projects/grokked-llc-closed-form/grid_selection.py     # data/grid_selection.csv: all 16 calibration-grid settings on the 6 verdict cells
+uv run python projects/grokked-llc-closed-form/estimator_check.py    # data/estimator_check.{csv,json}: rank + flat share vs tolerance; Gram vs exact SVD
 ```
 
 p = 31 was retrained at 70% of pairs (`data/ckpt_p31_frac07/`); its LLC and stationarity runs use

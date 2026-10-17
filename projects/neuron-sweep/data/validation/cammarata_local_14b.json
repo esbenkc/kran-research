@@ -1,0 +1,269 @@
+{
+ "threshold_pA": 1.759985025273636e-06,
+ "calibrated/dev": {
+  "n": 84,
+  "acc": 0.762,
+  "kappa": 0.467,
+  "effect_acc": 0.845,
+  "confusion_hand_rows_judge_cols": {
+   "none": [
+    53,
+    3,
+    0,
+    0
+   ],
+   "one": [
+    8,
+    11,
+    3,
+    0
+   ],
+   "unrelated": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "broken": [
+    1,
+    3,
+    1,
+    0
+   ]
+  }
+ },
+ "calibrated/heldout": {
+  "n": 95,
+  "acc": 0.621,
+  "kappa": 0.378,
+  "effect_acc": 0.789,
+  "confusion_hand_rows_judge_cols": {
+   "none": [
+    39,
+    3,
+    1,
+    0
+   ],
+   "one": [
+    14,
+    20,
+    10,
+    0
+   ],
+   "unrelated": [
+    0,
+    1,
+    0,
+    0
+   ],
+   "broken": [
+    2,
+    2,
+    3,
+    0
+   ]
+  }
+ },
+ "calibrated/pool_e": {
+  "n": 80,
+  "acc": 0.562,
+  "kappa": 0.294,
+  "effect_acc": 0.75,
+  "confusion_hand_rows_judge_cols": {
+   "none": [
+    20,
+    2,
+    0,
+    0
+   ],
+   "one": [
+    16,
+    25,
+    8,
+    0
+   ],
+   "unrelated": [
+    1,
+    2,
+    0,
+    0
+   ],
+   "broken": [
+    1,
+    3,
+    2,
+    0
+   ]
+  }
+ },
+ "calibrated/all": {
+  "n": 259,
+  "acc": 0.649,
+  "kappa": 0.402,
+  "effect_acc": 0.795,
+  "confusion_hand_rows_judge_cols": {
+   "none": [
+    112,
+    8,
+    1,
+    0
+   ],
+   "one": [
+    38,
+    56,
+    21,
+    0
+   ],
+   "unrelated": [
+    2,
+    3,
+    0,
+    0
+   ],
+   "broken": [
+    4,
+    8,
+    6,
+    0
+   ]
+  }
+ },
+ "calibrated/nopush_rates": {
+  "none": 0.958,
+  "one": 0.031,
+  "unrelated": 0.01
+ },
+ "argmax/dev": {
+  "n": 84,
+  "acc": 0.274,
+  "kappa": 0.006,
+  "effect_acc": 0.381,
+  "confusion_hand_rows_judge_cols": {
+   "none": [
+    4,
+    52,
+    0,
+    0
+   ],
+   "one": [
+    0,
+    19,
+    3,
+    0
+   ],
+   "unrelated": [
+    0,
+    1,
+    0,
+    0
+   ],
+   "broken": [
+    0,
+    4,
+    1,
+    0
+   ]
+  }
+ },
+ "argmax/heldout": {
+  "n": 95,
+  "acc": 0.358,
+  "kappa": -0.055,
+  "effect_acc": 0.558,
+  "confusion_hand_rows_judge_cols": {
+   "none": [
+    1,
+    41,
+    1,
+    0
+   ],
+   "one": [
+    0,
+    33,
+    11,
+    0
+   ],
+   "unrelated": [
+    0,
+    1,
+    0,
+    0
+   ],
+   "broken": [
+    0,
+    4,
+    3,
+    0
+   ]
+  }
+ },
+ "argmax/pool_e": {
+  "n": 80,
+  "acc": 0.487,
+  "kappa": -0.082,
+  "effect_acc": 0.725,
+  "confusion_hand_rows_judge_cols": {
+   "none": [
+    0,
+    22,
+    0,
+    0
+   ],
+   "one": [
+    0,
+    39,
+    10,
+    0
+   ],
+   "unrelated": [
+    0,
+    3,
+    0,
+    0
+   ],
+   "broken": [
+    0,
+    4,
+    2,
+    0
+   ]
+  }
+ },
+ "argmax/all": {
+  "n": 259,
+  "acc": 0.371,
+  "kappa": -0.038,
+  "effect_acc": 0.552,
+  "confusion_hand_rows_judge_cols": {
+   "none": [
+    5,
+    115,
+    1,
+    0
+   ],
+   "one": [
+    0,
+    91,
+    24,
+    0
+   ],
+   "unrelated": [
+    0,
+    5,
+    0,
+    0
+   ],
+   "broken": [
+    0,
+    12,
+    6,
+    0
+   ]
+  }
+ },
+ "argmax/nopush_rates": {
+  "one": 0.927,
+  "unrelated": 0.01,
+  "none": 0.062
+ }
+}

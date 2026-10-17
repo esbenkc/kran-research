@@ -1,0 +1,594 @@
+{
+ "title": "How the model deceives, per training round",
+ "subtitle": "Share of all answers in each bin, judged by Claude Sonnet 4.6",
+ "panels": [
+  {
+   "key": "lam0",
+   "label": "Without the probe penalty"
+  },
+  {
+   "key": "lam1",
+   "label": "With the probe penalty"
+  }
+ ],
+ "categories": [
+  {
+   "key": "falsification",
+   "label": "False statement"
+  },
+  {
+   "key": "misleading",
+   "label": "Misleading truth"
+  },
+  {
+   "key": "omission",
+   "label": "Omission"
+  },
+  {
+   "key": "honest",
+   "label": "Discloses the fact"
+  },
+  {
+   "key": "other",
+   "label": "Garbled"
+  }
+ ],
+ "judges": [
+  "Claude Sonnet 4.6",
+  "GPT-4.1-mini"
+ ],
+ "rows": [
+  {
+   "panel": "lam0",
+   "round": 0,
+   "category": "falsification",
+   "share": 0.3,
+   "share_j1": 0.3,
+   "share_j2": 0.06,
+   "n": 200
+  },
+  {
+   "panel": "lam0",
+   "round": 0,
+   "category": "misleading",
+   "share": 0.285,
+   "share_j1": 0.285,
+   "share_j2": 0.44,
+   "n": 200
+  },
+  {
+   "panel": "lam0",
+   "round": 0,
+   "category": "omission",
+   "share": 0.365,
+   "share_j1": 0.365,
+   "share_j2": 0.4,
+   "n": 200
+  },
+  {
+   "panel": "lam0",
+   "round": 0,
+   "category": "honest",
+   "share": 0.03,
+   "share_j1": 0.03,
+   "share_j2": 0.1,
+   "n": 200
+  },
+  {
+   "panel": "lam0",
+   "round": 0,
+   "category": "other",
+   "share": 0.02,
+   "share_j1": 0.02,
+   "share_j2": 0.0,
+   "n": 200
+  },
+  {
+   "panel": "lam0",
+   "round": 2,
+   "category": "falsification",
+   "share": 0.3325,
+   "share_j1": 0.3325,
+   "share_j2": 0.06,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 2,
+   "category": "misleading",
+   "share": 0.36,
+   "share_j1": 0.36,
+   "share_j2": 0.615,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 2,
+   "category": "omission",
+   "share": 0.2725,
+   "share_j1": 0.2725,
+   "share_j2": 0.235,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 2,
+   "category": "honest",
+   "share": 0.0325,
+   "share_j1": 0.0325,
+   "share_j2": 0.09,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 2,
+   "category": "other",
+   "share": 0.0025,
+   "share_j1": 0.0025,
+   "share_j2": 0.0,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 4,
+   "category": "falsification",
+   "share": 0.395,
+   "share_j1": 0.395,
+   "share_j2": 0.1025,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 4,
+   "category": "misleading",
+   "share": 0.27,
+   "share_j1": 0.27,
+   "share_j2": 0.52,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 4,
+   "category": "omission",
+   "share": 0.3025,
+   "share_j1": 0.3025,
+   "share_j2": 0.335,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 4,
+   "category": "honest",
+   "share": 0.02,
+   "share_j1": 0.02,
+   "share_j2": 0.0425,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 4,
+   "category": "other",
+   "share": 0.0125,
+   "share_j1": 0.0125,
+   "share_j2": 0.0,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 6,
+   "category": "falsification",
+   "share": 0.4725,
+   "share_j1": 0.4725,
+   "share_j2": 0.16,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 6,
+   "category": "misleading",
+   "share": 0.22,
+   "share_j1": 0.22,
+   "share_j2": 0.405,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 6,
+   "category": "omission",
+   "share": 0.285,
+   "share_j1": 0.285,
+   "share_j2": 0.365,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 6,
+   "category": "honest",
+   "share": 0.02,
+   "share_j1": 0.02,
+   "share_j2": 0.07,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 6,
+   "category": "other",
+   "share": 0.0025,
+   "share_j1": 0.0025,
+   "share_j2": 0.0,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 8,
+   "category": "falsification",
+   "share": 0.57,
+   "share_j1": 0.57,
+   "share_j2": 0.195,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 8,
+   "category": "misleading",
+   "share": 0.13,
+   "share_j1": 0.13,
+   "share_j2": 0.4025,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 8,
+   "category": "omission",
+   "share": 0.2875,
+   "share_j1": 0.2875,
+   "share_j2": 0.365,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 8,
+   "category": "honest",
+   "share": 0.01,
+   "share_j1": 0.01,
+   "share_j2": 0.0375,
+   "n": 400
+  },
+  {
+   "panel": "lam0",
+   "round": 8,
+   "category": "other",
+   "share": 0.0025,
+   "share_j1": 0.0025,
+   "share_j2": 0.0,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 0,
+   "category": "falsification",
+   "share": 0.3,
+   "share_j1": 0.3,
+   "share_j2": 0.06,
+   "n": 200
+  },
+  {
+   "panel": "lam1",
+   "round": 0,
+   "category": "misleading",
+   "share": 0.285,
+   "share_j1": 0.285,
+   "share_j2": 0.44,
+   "n": 200
+  },
+  {
+   "panel": "lam1",
+   "round": 0,
+   "category": "omission",
+   "share": 0.365,
+   "share_j1": 0.365,
+   "share_j2": 0.4,
+   "n": 200
+  },
+  {
+   "panel": "lam1",
+   "round": 0,
+   "category": "honest",
+   "share": 0.03,
+   "share_j1": 0.03,
+   "share_j2": 0.1,
+   "n": 200
+  },
+  {
+   "panel": "lam1",
+   "round": 0,
+   "category": "other",
+   "share": 0.02,
+   "share_j1": 0.02,
+   "share_j2": 0.0,
+   "n": 200
+  },
+  {
+   "panel": "lam1",
+   "round": 2,
+   "category": "falsification",
+   "share": 0.2675,
+   "share_j1": 0.2675,
+   "share_j2": 0.0475,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 2,
+   "category": "misleading",
+   "share": 0.4025,
+   "share_j1": 0.4025,
+   "share_j2": 0.5625,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 2,
+   "category": "omission",
+   "share": 0.2275,
+   "share_j1": 0.2275,
+   "share_j2": 0.2575,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 2,
+   "category": "honest",
+   "share": 0.07,
+   "share_j1": 0.07,
+   "share_j2": 0.1325,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 2,
+   "category": "other",
+   "share": 0.0325,
+   "share_j1": 0.0325,
+   "share_j2": 0.0,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 4,
+   "category": "falsification",
+   "share": 0.245,
+   "share_j1": 0.245,
+   "share_j2": 0.045,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 4,
+   "category": "misleading",
+   "share": 0.4175,
+   "share_j1": 0.4175,
+   "share_j2": 0.5525,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 4,
+   "category": "omission",
+   "share": 0.1425,
+   "share_j1": 0.1425,
+   "share_j2": 0.18,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 4,
+   "category": "honest",
+   "share": 0.165,
+   "share_j1": 0.165,
+   "share_j2": 0.22,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 4,
+   "category": "other",
+   "share": 0.03,
+   "share_j1": 0.03,
+   "share_j2": 0.0025,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 6,
+   "category": "falsification",
+   "share": 0.24,
+   "share_j1": 0.24,
+   "share_j2": 0.0675,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 6,
+   "category": "misleading",
+   "share": 0.4075,
+   "share_j1": 0.4075,
+   "share_j2": 0.4825,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 6,
+   "category": "omission",
+   "share": 0.1325,
+   "share_j1": 0.1325,
+   "share_j2": 0.205,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 6,
+   "category": "honest",
+   "share": 0.2025,
+   "share_j1": 0.2025,
+   "share_j2": 0.2425,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 6,
+   "category": "other",
+   "share": 0.0175,
+   "share_j1": 0.0175,
+   "share_j2": 0.0025,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 8,
+   "category": "falsification",
+   "share": 0.2825,
+   "share_j1": 0.2825,
+   "share_j2": 0.03,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 8,
+   "category": "misleading",
+   "share": 0.5075,
+   "share_j1": 0.5075,
+   "share_j2": 0.6725,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 8,
+   "category": "omission",
+   "share": 0.1025,
+   "share_j1": 0.1025,
+   "share_j2": 0.1,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 8,
+   "category": "honest",
+   "share": 0.09,
+   "share_j1": 0.09,
+   "share_j2": 0.1975,
+   "n": 400
+  },
+  {
+   "panel": "lam1",
+   "round": 8,
+   "category": "other",
+   "share": 0.0175,
+   "share_j1": 0.0175,
+   "share_j2": 0.0,
+   "n": 400
+  }
+ ],
+ "metric": [
+  {
+   "panel": "lam0",
+   "round": 0,
+   "m": 0.6842105263157895,
+   "m_j1": 0.6842105263157895,
+   "m_j2": 0.9333333333333333,
+   "lo": 0.609375,
+   "hi": 0.7552083333333334,
+   "deceptive": 0.95
+  },
+  {
+   "panel": "lam0",
+   "round": 2,
+   "m": 0.655440414507772,
+   "m_j1": 0.655440414507772,
+   "m_j2": 0.9340659340659341,
+   "lo": 0.5850515463917526,
+   "hi": 0.7242268041237113,
+   "deceptive": 0.9650000000000001
+  },
+  {
+   "panel": "lam0",
+   "round": 4,
+   "m": 0.5917312661498708,
+   "m_j1": 0.5917312661498708,
+   "m_j2": 0.8929503916449086,
+   "lo": 0.5218508997429306,
+   "hi": 0.6606217616580311,
+   "deceptive": 0.9675
+  },
+  {
+   "panel": "lam0",
+   "round": 6,
+   "m": 0.5166240409207161,
+   "m_j1": 0.5166240409207161,
+   "m_j2": 0.8279569892473119,
+   "lo": 0.441025641025641,
+   "hi": 0.5902061855670103,
+   "deceptive": 0.9774999999999999
+  },
+  {
+   "panel": "lam0",
+   "round": 8,
+   "m": 0.42278481012658226,
+   "m_j1": 0.42278481012658226,
+   "m_j2": 0.7974025974025974,
+   "lo": 0.351010101010101,
+   "hi": 0.48743718592964824,
+   "deceptive": 0.9874999999999999
+  },
+  {
+   "panel": "lam1",
+   "round": 0,
+   "m": 0.6842105263157895,
+   "m_j1": 0.6842105263157895,
+   "m_j2": 0.9333333333333333,
+   "lo": 0.6073298429319371,
+   "hi": 0.7563451776649747,
+   "deceptive": 0.95
+  },
+  {
+   "panel": "lam1",
+   "round": 2,
+   "m": 0.7019498607242339,
+   "m_j1": 0.7019498607242339,
+   "m_j2": 0.9452449567723343,
+   "lo": 0.6420765027322405,
+   "hi": 0.7548209366391184,
+   "deceptive": 0.8975000000000001
+  },
+  {
+   "panel": "lam1",
+   "round": 4,
+   "m": 0.6956521739130435,
+   "m_j1": 0.6956521739130435,
+   "m_j2": 0.9421221864951769,
+   "lo": 0.6394984326018809,
+   "hi": 0.7470588235294118,
+   "deceptive": 0.8049999999999999
+  },
+  {
+   "panel": "lam1",
+   "round": 6,
+   "m": 0.6923076923076923,
+   "m_j1": 0.6923076923076923,
+   "m_j2": 0.9105960264900662,
+   "lo": 0.6339869281045751,
+   "hi": 0.7484472049689441,
+   "deceptive": 0.78
+  },
+  {
+   "panel": "lam1",
+   "round": 8,
+   "m": 0.6834733893557423,
+   "m_j1": 0.6834733893557423,
+   "m_j2": 0.9626168224299065,
+   "lo": 0.6296296296296297,
+   "hi": 0.7361111111111112,
+   "deceptive": 0.8925
+  }
+ ]
+}

@@ -12,15 +12,17 @@ mean agreement of the model with a copy of itself with 0.1% weight noise.
 The best answers we have:
 
 1. **Shortest description that reaches the bar: a rounded copy of the network itself, about 5–6.5 kbit.**
-   The bar itself is uncertain by about ±0.002: Rasmus measured 0.98671 (holdout, 20 noise draws); Vera
-   measured 0.98855 and 0.98813 on other seeds (draw sd 0.0025–0.0042). Against that band:
+   The bar itself is an estimate: Rasmus measured 0.98671 (holdout, 20 noise draws). With 100–200 draws on
+   other seeds: Hugo 0.98717 (SE 0.00026), Vera 0.98770 and 0.98666 (SE ~0.0003); Vera's earlier 20-draw
+   0.98855 was pulled high by the skewed draw distribution. So the bar estimates span 0.9867–0.9877. Against that band:
    - **Fewest bits with a clear pass:** a retrained (fitted) net with 364 numbers at 3 digits, 5,084 bits,
      holdout 0.99234. All 364 numbers are fit to the model's outputs (distillation, not explanation).
    - **Zero-fitted clear pass:** 374 pruned original weights at 4 significant digits, 6,458 bits,
      holdout 0.98933 (382 at 4 digits: 6,562 bits, 0.99446).
-   - **Pass the fixed bar 0.98671, but inside the floor uncertainty:** fitted 340 numbers at 3 digits,
-     4,814 bits, 0.98831; 374 original weights with per-entry digits (T20), 5,208 bits, 0.98835; all 400
-     original weights at 3 digits, 5,479 bits, 0.98858; 382 at 3 digits, 5,293 bits, 0.98673.
+   - **Pass narrowly (0.0006–0.0019 above every bar estimate):** fitted 340 numbers at 3 digits, 4,814
+     bits, 0.98831; 374 original weights with per-entry digits (T20), 5,208 bits, 0.98835; all 400
+     original weights at 3 digits, 5,479 bits, 0.98858 (depends on the W_oh row-shift form, see A).
+   - **Tie:** 382 at 3 digits, 5,293 bits, 0.98673.
    - Nothing at or under 200 numbers comes close (best 0.957 dev: Nadia's fitted per-position MLP scorer,
      175 numbers; C1+ 0.956 holdout).
 2. **Best readable algorithm:** C1 = "the 2nd largest of (0, x_0, …, x_9), with the leading 0 mapped to
@@ -43,8 +45,10 @@ On robust inputs, a noisy copy of the model agrees 0.99905; on fragile inputs 0.
 
 ## A. Candidates that reach the bar, ranked by fewest bits
 
-Clear passes against every floor estimate (≥ 0.9890): F3, rows 3 and 4. The others pass the fixed bar but
-sit inside its ±0.002 uncertainty. Rows F1–F5 are retrained (fitted) networks: fewer bits, but every number
+Bar estimates span 0.9867–0.9877 (100–200 draws; see top). Clear passes (≥ 0.9890): F3, rows 3 and 4.
+Narrow passes, above every bar estimate by 0.0006–0.0019: F1, row 0, row 2 (rows 0 and 2 carry the row-shift
+caveat below). Ties inside the band: row 1 (0.98673), F4 (0.98718), F5 (0.98777). F2 has no holdout run.
+Rows F1–F5 are retrained (fitted) networks: fewer bits, but every number
 is fit to the model's outputs. Rows 0–4 are the original weights, pruned and rounded (zero fitted constants).
 Bits = 1 sign bit + mantissa bits + exponent entropy per free number, plus a sparsity mask
 (`bits_curve.py`, `bits_curve.md`). These are networks, not hand algorithms: all keep the 16-neuron

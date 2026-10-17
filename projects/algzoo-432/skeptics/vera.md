@@ -70,6 +70,13 @@ numbers. It does not change the picture. (Short training; weak evidence on its o
    mean has SE ~0.0006-0.0009, and the spread between estimates is 0.0018. Candidates at 0.9867-0.9886
    (382@3 digits 0.98673, fp12 0.98718, 340 fitted 0.98777, all-400@3 digits 0.98858) are ties with
    the bar, not passes. Only ladder 374@4 digits (0.98933) is clearly above it.
+   **Correction (23:58, after Hugo #2135):** my 20-draw estimates sat high because the per-draw
+   distribution is skewed (long low tail, mean < median). 100 draws x 2e5 (`vera_floor100.json`):
+   seed 980 0.98770 (SE 0.00033), seed 982 0.98666 (SE 0.00036); Hugo 200 draws 0.98717 (SE 0.00026).
+   So the bar is ~0.9872 and estimates span ~0.1 pt (0.9867-0.9877), not 0.2 pt. Fixed files at
+   0.9883-0.9886 (mixprec 374, fitted 340@3, all-400@3 in one form) pass narrowly (~0.06-0.16 pt above
+   every estimate). 382@3 (0.98673) and fp12 (0.98718) remain ties. Hugo/Nadia: 3-digit passes depend
+   on the equivalent form / rounding mode (0.984-0.989), 4-digit and fitted rows do not.
 3. **"The deciding detail sits in the 3rd digit" is close to circular.** 0.1% multiplicative noise is
    by construction a 3rd-significant-digit perturbation (3-digit rounding error is 0.05-0.5% relative).
    A bar defined at that precision will say 2 digits fail and 3 digits tie. The independent fact is

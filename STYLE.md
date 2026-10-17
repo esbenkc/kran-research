@@ -53,10 +53,17 @@ What these share:
 Structure and word budget are in PREFLIGHT (gates 0-1) and in `CLAUDE.md` ("Research post
 structure"). These are the sentence-level parts of that structure:
 - **Title:** the question the post answers, in Title Case. "Do Corporate Incentives Teach AI to
-  Protect Itself?", "Are AI proofs messier than human proofs?"
+  Protect Itself?", "Are AI proofs messier than human proofs?" It is a real hypothesis posed as a yes/no
+  question (Esben, 2026-10-18). No "A or B?" titles ("Does it stop the lies, or just hide them?") and no open
+  "What/How/Why" titles. A leading clause is fine ("When a model hides a concept, does ...?").
+- **Status (Lab posts):** `lab_status` answers the title: "CONFIRMED" = yes, the data support the hypothesis;
+  "REJECTED" = no; "UNCONFIRMED" = not settled. The pre-registration outcome (held / failed / unsettled) is
+  reported on its own and is not the status. The skeptics sign off on the answer to the title.
 - **First paragraph:** what happened or why the question exists, in two or three plain sentences.
 - **Hook:** the question in bold, on its own or as the head of the TLDR sentence.
-- **TLDR / what we show:** one or two sentences with the answer and the main number.
+- **TLDR / what we show:** one or two sentences with the answer and the main number. It opens with the
+  plain answer to the title: "Yes.", "No." or "Not settled." (not "Not reliably." or "Our test failed.").
+  On Lab posts `oracle.py check` lints the title shape and that `lab_status` matches the TLDR's first word.
 - **Main figure** directly after. The prose after it says what to see, in one sentence.
 - **Method:** one sentence in the prose ("a two-minute LoRA fine-tune of Qwen2.5-0.5B on 18
   examples"). Details go to the caption, a bullet list, or the appendix.
@@ -229,7 +236,8 @@ How it is checked on Lab posts:
 
 ## 6. Pre-PR checklist (the critic applies each item, pass or fail)
 
-1. The title is a question. The last prose section repeats or answers it in one sentence.
+1. The title is a yes/no hypothesis question (no "A or B?"). The TLDR opens with Yes. / No. / Not
+   settled. The last prose section repeats or answers it in one sentence.
 2. The first sentence describes a concrete event, cost or mechanism. It contains no metaphor.
 3. The main figure appears before the first `##` heading.
 4. Prose before any addendum or appendix (no front matter, captions, footnotes) is at most

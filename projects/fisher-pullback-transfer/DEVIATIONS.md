@@ -45,3 +45,7 @@ literature is a stack of probes for the SAME concept (Bailey 2412.09565 ensemble
 - Raw tables mark each pair `set = primary | secondary`; same columns as the primary.
 - Attack runs save the attacked activations of every dataset's test texts (needed for this set and for
   any skeptic rebuild).
+- (15:11, Kasper #1696) The secondary R^2 uses a different map from the primary, because the primary map
+  has the target-parallel degeneracy above. The two sets are never pooled into one R^2, the figure legend
+  shows them as separate sets, and a secondary pass is not evidence that the original pre-registered
+  prediction held.

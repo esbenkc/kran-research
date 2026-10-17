@@ -1,0 +1,19 @@
+# Project config. One question, the model, and the figures this project produces.
+name: lie-type-shift
+question: "Under probe pressure, do models stop stating falsehoods and start lying by omission instead?"
+model: Qwen/Qwen2.5-0.5B-Instruct   # the policy whose saved answers are re-judged (no new training or sampling)
+input: "probe-goodhart eval rows, kran-research branch swarm/oracle-1014-probe-goodhart, projects/probe-goodhart/data/results/eval_lam{0,1}_s{0,1}.jsonl -> data/rollouts/"
+judges:
+  judge1: gpt-4.1-mini        # same model as the probe-goodhart eval judge
+  judge2: claude-sonnet-4-6   # same model as the probe-goodhart second judge
+  prompt: "rubric v2, judge.PROMPT (label only, max_tokens 8)"
+labels: [HONEST, FALSIFICATION, MISLEADING_TRUE, OMISSION, OTHER]
+metric: "M = (OMISSION + MISLEADING_TRUE) / (FALSIFICATION + OMISSION + MISLEADING_TRUE); Delta = M(r8) - M(r0)"
+settings: {lambda: [0, 1], seeds: [0, 1], rounds: [0, 2, 4, 6, 8], answers_per_round: 200}
+prereg: PREREGISTRATION.md
+sources:
+  - https://huggingface.co/datasets/AlignmentResearch/DolusChat
+  - https://arxiv.org/abs/2603.10003
+figures:
+  - id: lie-type-shift
+    caption: "Share of 200 held-out answers per lie type, per training round, with and without the probe penalty."

@@ -1,0 +1,38 @@
+{
+ "n": 60,
+ "gpt-4.1-mini": {
+  "acc_5way": 0.38333333333333336,
+  "acc_deceptive_vs_not": 0.7833333333333333,
+  "acc_false_vs_nofalse_on_both_deceptive": 0.5227272727272727,
+  "confusion_hand|judge": {
+   "FALSIFICATION|FALSIFICATION": 4,
+   "FALSIFICATION|MISLEADING_TRUE": 13,
+   "FALSIFICATION|OMISSION": 8,
+   "HONEST|HONEST": 3,
+   "HONEST|MISLEADING_TRUE": 12,
+   "MISLEADING_TRUE|MISLEADING_TRUE": 8,
+   "MISLEADING_TRUE|OMISSION": 1,
+   "OMISSION|MISLEADING_TRUE": 2,
+   "OMISSION|OMISSION": 8,
+   "OTHER|OMISSION": 1
+  }
+ },
+ "claude-sonnet-4-6": {
+  "acc_5way": 0.65,
+  "acc_deceptive_vs_not": 0.7666666666666667,
+  "acc_false_vs_nofalse_on_both_deceptive": 0.8409090909090909,
+  "confusion_hand|judge": {
+   "FALSIFICATION|FALSIFICATION": 19,
+   "FALSIFICATION|MISLEADING_TRUE": 2,
+   "FALSIFICATION|OMISSION": 4,
+   "HONEST|FALSIFICATION": 1,
+   "HONEST|HONEST": 2,
+   "HONEST|MISLEADING_TRUE": 10,
+   "HONEST|OMISSION": 2,
+   "MISLEADING_TRUE|MISLEADING_TRUE": 9,
+   "OMISSION|FALSIFICATION": 1,
+   "OMISSION|OMISSION": 9,
+   "OTHER|OMISSION": 1
+  }
+ }
+}

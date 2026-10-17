@@ -49,9 +49,9 @@ Persona: a competent ML researcher who does not work on AI deception or probes.
 8. "The probe went from flagging 63% of answers to 2%, but a judge still called about half of them deceptive."
    "Half of them": half of all answers, or half of the 2% the probe flagged? Which judge? Worse, the figure in this post shows Sonnet calling about 89% of round-8 penalty answers deceptive (only "Discloses the fact" and "Garbled" are non-deceptive, and together they're about 11%). "About half" and "about 89%" look like the same quantity, so I lost trust in the numbers here. Either the judges or the definitions differ, and the post doesn't say which.
    Fix (write, v3 0475cdc): Now 'A judge that only labels answers deceptive or truthful still called about half of them deceptive.' Results para 1 sets the probe's 2% against the earlier judge's 'about half', and the judge foldout explains why the new judges call more answers deceptive (stricter on disclosure than the agent check).
-   Status: STILL OPEN (the intro still says the earlier judge called 'about half' deceptive, while results say Sonnet calls 89% deceptive at round 8. Nothing on the page says outright that the new five-bin judges are stricter than the earlier yes/no judge. The 'How good are the judges?' foldout compares the judges with the agent, not with the earlier judge, and the 'earlier judge called this answer truthful' example only hints at it. Needs one sentence linking ~50% to 89%)
+   v3 re-read: STILL OPEN (the intro still says the earlier judge called 'about half' deceptive, while results say Sonnet calls 89% deceptive at round 8; nothing linked the two)
    Fix (write, v6): results para 1 now adds: 'Our new judges call 89% deceptive (Sonnet), but most of the extra answers are ones our agent check calls truthful.' (Sonnet calls 118 of the 175 round-8 penalty answers the earlier judge called truthful misleading truths; the agent check of 20 such answers calls 16 truthful, data/handcheck/check2.)
-   Status (write): FIXED in v5, awaiting confirmation
+   Status: CONFIRMED (v6 results para 1 now sets the earlier judge's 'about half' next to Sonnet's 89% and says most of the extra answers are ones the agent check calls truthful, so the gap is explained; see new item 41 for how that sentence is supported)
 
 9. "we trained a small model against a deception probe"
    "Trained against" is never explained. The figure caption later says "a probe penalty in the reward", but what is the reward otherwise, what RL algorithm is used, and how big is the penalty? An ML reader wants one sentence on the training loop to judge whether the result would carry over to their own setup.
@@ -199,9 +199,9 @@ Persona: a competent ML researcher who does not work on AI deception or probes.
 36. "We could not test Thormann's blind spot directly. A truth probe from the earlier run flags at most 9% of the untrained model's answers of any kind."
     "Truth probe" appears here for the first time. Is it a different probe from the deception probe that was trained against? "Thormann's blind spot" is also new wording for the item-7 finding. And why does a 9% flag rate prevent the test? (Presumably there were too few positives to compare bins, but the reader has to guess.)
     Fix (write, v3 0475cdc): Limits: 'The earlier run's truth probe, trained on true and false statements, flags at most 9% of the untrained model's answers in any bin.'
-   Status: STILL OPEN ('truth probe' is now defined, but the page still doesn't say why a 9% flag rate stops the test. The reader has to guess that it flags too few answers to compare its hit rate across bins)
+   v3 re-read: STILL OPEN (the page didn't say why a 9% flag rate stops the test)
    Fix (write, v5): bullet now ends 'flags at most 9% of the untrained model's answers in any bin, too few to compare how often it catches each kind.'
-   Status (write): FIXED in v5, awaiting confirmation
+   Status: CONFIRMED (bullet now ends 'too few to compare how often it catches each kind')
 
 ### Ending / so-what
 
@@ -219,16 +219,24 @@ Persona: a competent ML researcher who does not work on AI deception or probes.
 
 39. "A model trained against a probe could learn to deceive in exactly these ways. … This probe learned from deceptive and truthful chat replies of all three kinds."
    The hypothesis is set up through Thormann's blind spot in true/false-trained probes, and then the very next sentences say this probe was trained on all three kinds of deception. So why would we expect it to miss omissions and misleading truths? The reader loses the reason the swap was plausible to begin with. (Possible answers: the probe still saw mostly false statements, or the training pressure could find whatever it misses. Either way, say which.)
-   Status: OPEN
+   v3 re-read: OPEN
    Fix (write, v5): intro now reads 'This probe learned from deceptive and truthful chat replies of all three kinds, but training pressure can still find whichever kind it catches least.'
-   Status (write): FIXED in v5, awaiting confirmation
+   Status: CONFIRMED (intro now says 'training pressure can still find whichever kind it catches least', which restores the reason to expect a swap)
 
 40. "Only Sonnet gave the prediction a real test. GPT-4.1-mini calls almost nothing false, so its share starts at 93% (first question below)." and "(first question below)" in the next bullet
    "First question below" points to a foldout titled "How good are the judges?" under "If you're curious". There is only one question there, so "first" makes the reader look for a list of questions. Also, the foldout's 52% coin-flip figure is about telling false from not-false. That explains why GPT-4.1-mini is unreliable, but the bullet's stated reason (it calls almost nothing false) is a different reason. Small, but the cross-reference doesn't land cleanly.
-   Status: OPEN
+   v3 re-read: OPEN
    Fix (write, v5): cross-references now name the section: '(see "How good are the judges?" below)' and '(same section below)'. The bullet keeps one reason only: 'GPT-4.1-mini called almost nothing false, so its share starts at 93%'; the foldout's 52% is the evidence for that.
-   Status (write): FIXED in v5, awaiting confirmation
+   Status: CONFIRMED (bullets now say '(see "How good are the judges?" below)' and '(same section below)'; the bullet gives one reason only)
+
+### New items (v6 re-read, 2026-10-16)
+
+41. "Our new judges call 89% deceptive (Sonnet), but most of the extra answers are ones our agent check calls truthful."
+   Two problems. (a) "Our agent check" appears here before the agent is introduced. The reader meets it only later, in the "How good are the judges?" foldout, so at this point "agent check" is unexplained jargon. (b) No number on the page supports "most of the extra answers". The foldout's figure ("Of the 15 answers the agent called truthful, Sonnet called 10 misleading") is the other conditional: how often Sonnet over-calls, given that the agent says truthful. It is not the share of Sonnet's extra deceptive answers that the agent calls truthful. A careful reader looks for the backing and can't find it. Fix: add a short pointer ("an agent check, see below") and the actual count behind "most" (e.g. "16 of 20 such answers we checked").
+   Status: OPEN
+   Fix (write, v7): sentence now reads 'Sonnet calls 89% deceptive, but a blind agent check of 20 answers the earlier judge called truthful finds 16 truthful (see "How good are the judges?").' The foldout now has a paragraph for this second check: 'A second check took 20 round-8 penalty answers that the earlier yes-or-no judge called truthful. The agent called 16 of them truthful. Sonnet called 17 of the same 20 deceptive.' (receipt: data/handcheck/check2)
+   Status (write): FIXED in v7, awaiting confirmation
 
 ## Sign-off
 
-Not signed off yet: 4 open items (8, 36, 39, 40). Re-read v3 (0475cdc) on 2026-10-16: 36 of 38 original items CONFIRMED.
+Not signed off yet: 1 open item (41). Re-read v6 on 2026-10-16: all 40 earlier items CONFIRMED (38 original + 39, 40).

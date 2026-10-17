@@ -51,9 +51,10 @@ Cohen's kappa between judges: 0.42 (n = 4,000).
    fewer answers truthful than the old judge (lam=1 r8: 20% mini, 9% sonnet vs 44-48% old judge). But both
    over-call minimisation on the agent check (12/15 and 10/15 hand-truthful answers -> MISLEADING_TRUE). I read 12
    random lam=1 r8 answers with old=HONEST, mini=MISLEADING_TRUE: about half plainly disclose the fact, about half
-   hedge or minimise. research's blind check of 40 old-HONEST answers (data/handcheck, research-check2) finds
-   non-truthful 25% at base and 20% at lam=1 r8: no rise. Sonnet reclassifies ~78% of old-HONEST answers at both
-   base and r8, so a constant judge strictness times more old-HONEST answers at r8 produces the gap mechanically.
+   hedge or minimise. research's blind agent check of 40 old-HONEST answers (check 2) finds non-truthful 25% at
+   base and 20% at lam=1 r8: no rise. Sonnet reclassifies ~78% of old-HONEST answers at both base and r8. So the
+   gap stands or falls with Sonnet's HONEST vs MISLEADING_TRUE boundary, and both agent checks say that boundary
+   is too strict.
    Do not claim "the drop is mostly minimisation". The post may say the penalised model stays silent less
    (OMISSION 40% -> 10% of answers) and names the fact more; whether it then minimises is where judges and the
    agent check split.

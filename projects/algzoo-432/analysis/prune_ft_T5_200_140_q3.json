@@ -1,0 +1,21 @@
+{
+ "args": {
+  "npz": "prune_ft_T5_200_140.npz",
+  "k": 3,
+  "steps": 4000,
+  "lr": 3e-05,
+  "T": 5.0,
+  "seed": 8
+ },
+ "row": {
+  "src": "prune_ft_T5_200_140.npz",
+  "k": 3,
+  "literals": 340,
+  "agree_round_before": 0.981835,
+  "agree_round_after": 0.980355,
+  "literals_after": 340,
+  "loss": 0.006777537096241711,
+  "W_hh_nz": 200,
+  "W_oh_nz": 140
+ }
+}

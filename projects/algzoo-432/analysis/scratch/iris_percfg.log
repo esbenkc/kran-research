@@ -1,0 +1,13 @@
+{
+ "oracle aug-ranks 1..1 (no max)": 0.95509,
+ "oracle aug-ranks 0..1 (with max)": 0.96392,
+ "oracle aug-ranks 1..2 (no max)": 0.98573,
+ "oracle aug-ranks 0..2 (with max)": 0.99443,
+ "oracle aug-ranks 1..3 (no max)": 0.98821,
+ "oracle aug-ranks 0..3 (with max)": 0.99673
+}
+C1 {'all': 0.95509, 'err_set': 0.0839}
+per-config linear, cands S+T, bank [x], 9000 coefs {'all': 0.96569, 'err_set': 0.4168}
+per-config linear, cands S+M/T, bank [x], 17100 coefs {'all': 0.96771, 'err_set': 0.4852}
+per-config linear, cands S+T, bank [x,relu(x),running max,running 2nd], 33300 coefs {'all': 0.96825, 'err_set': 0.4512}
+per-config linear, cands S+M/T, bank [x,relu(x),running max,running 2nd], 63270 coefs {'all': 0.97062, 'err_set': 0.527}

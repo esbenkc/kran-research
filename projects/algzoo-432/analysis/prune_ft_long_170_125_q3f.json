@@ -1,0 +1,29 @@
+{
+ "args": {
+  "npz": "prune_ft_long_170_125.npz",
+  "k": 3,
+  "steps": 8000,
+  "lr": 0.0001,
+  "T": 5.0,
+  "seed": 7,
+  "mode": "freeze",
+  "fracs": "0.5,0.75,0.9,0.97,1.0"
+ },
+ "row": {
+  "src": "prune_ft_long_170_125.npz",
+  "k": 3,
+  "mode": "freeze",
+  "literals": 295,
+  "agree_round_before": 0.96033,
+  "agree_frozen_0.5": 0.965045,
+  "agree_frozen_0.75": 0.96642,
+  "agree_frozen_0.9": 0.966435,
+  "agree_frozen_0.97": 0.9664,
+  "agree_frozen_1.0": 0.9664,
+  "agree_round_after": 0.9664,
+  "literals_after": 295,
+  "loss": 0.010613807898188372,
+  "W_hh_nz": 170,
+  "W_oh_nz": 125
+ }
+}

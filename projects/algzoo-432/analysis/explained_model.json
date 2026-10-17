@@ -1,0 +1,462 @@
+{
+ "seed": 7,
+ "n": 200000,
+ "model_error_rate": 0.047045,
+ "role_tests": [
+  {
+   "group": "A",
+   "claim": "n2 is a linear leaky integrator (always on)",
+   "test": "drop ReLU on n2",
+   "agree": 0.9993,
+   "agree_on_model_errors": 0.9886
+  },
+  {
+   "group": "A",
+   "claim": "n2 ignores the input",
+   "test": "W_hi[2]=0",
+   "agree": 0.9976,
+   "agree_on_model_errors": 0.9715
+  },
+  {
+   "group": "A",
+   "claim": "n2 = ARC ideal formula",
+   "test": "overwrite n2 by formula every step",
+   "agree": 0.8708,
+   "agree_on_model_errors": 0.5542
+  },
+  {
+   "group": "A",
+   "claim": "n4 = ARC ideal formula",
+   "test": "overwrite n4 by formula every step",
+   "agree": 0.963,
+   "agree_on_model_errors": 0.8186
+  },
+  {
+   "group": "A",
+   "claim": "n7 = ARC ideal formula",
+   "test": "overwrite n7 by formula every step",
+   "agree": 0.5262,
+   "agree_on_model_errors": 0.3811
+  },
+  {
+   "group": "A",
+   "claim": "n6 = ARC ideal formula",
+   "test": "overwrite n6 by formula every step",
+   "agree": 0.4723,
+   "agree_on_model_errors": 0.354
+  },
+  {
+   "group": "A",
+   "claim": "n1 = ARC ideal formula",
+   "test": "overwrite n1 by formula every step",
+   "agree": 0.3901,
+   "agree_on_model_errors": 0.2821
+  },
+  {
+   "group": "A",
+   "claim": "all five = ARC ideal formulas",
+   "test": "overwrite n2,4,7,6,1",
+   "agree": 0.308,
+   "agree_on_model_errors": 0.3111
+  },
+  {
+   "group": "A",
+   "claim": "A<-A gains are 'ideal' integers (deficit basis)",
+   "test": "round A<-A block to integers",
+   "agree": 0.2186,
+   "agree_on_model_errors": 0.2183
+  },
+  {
+   "group": "A",
+   "claim": "no A neuron reads n7 directly",
+   "test": "zero n7 column (deficit basis, |entries|<=0.012)",
+   "agree": 0.9427,
+   "agree_on_model_errors": 0.5999
+  },
+  {
+   "group": "A",
+   "claim": "A is a closed subcircuit",
+   "test": "zero W_hh[A,B]",
+   "agree": 0.5129,
+   "agree_on_model_errors": 0.3774
+  },
+  {
+   "group": "B",
+   "claim": "n9 = 'last input is new running max' gate",
+   "test": "n9 := pre9 * 1[predicate]",
+   "agree": 0.9953,
+   "agree_on_model_errors": 0.9178
+  },
+  {
+   "group": "B",
+   "claim": "n0 = 'max did not arrive 2 steps ago' gate",
+   "test": "n0 := pre0 * 1[predicate]",
+   "agree": 0.9971,
+   "agree_on_model_errors": 0.9661
+  },
+  {
+   "group": "B",
+   "claim": "n9 + n0 gates",
+   "test": "both",
+   "agree": 0.9929,
+   "agree_on_model_errors": 0.8973
+  },
+  {
+   "group": "B",
+   "claim": "n13 is (near-)linear",
+   "test": "drop ReLU on n13",
+   "agree": 0.9986,
+   "agree_on_model_errors": 0.9827
+  },
+  {
+   "group": "B",
+   "claim": "n12 is (near-)linear",
+   "test": "drop ReLU on n12",
+   "agree": 0.9954,
+   "agree_on_model_errors": 0.9406
+  },
+  {
+   "group": "B",
+   "claim": "n3 is (near-)linear",
+   "test": "drop ReLU on n3",
+   "agree": 0.9785,
+   "agree_on_model_errors": 0.8685
+  },
+  {
+   "group": "B",
+   "claim": "n10 is (near-)linear",
+   "test": "drop ReLU on n10",
+   "agree": 0.9802,
+   "agree_on_model_errors": 0.8734
+  },
+  {
+   "group": "B",
+   "claim": "n11 is (near-)linear",
+   "test": "drop ReLU on n11",
+   "agree": 0.9873,
+   "agree_on_model_errors": 0.8906
+  },
+  {
+   "group": "B",
+   "claim": "n14 is (near-)linear",
+   "test": "drop ReLU on n14",
+   "agree": 0.9879,
+   "agree_on_model_errors": 0.888
+  },
+  {
+   "group": "B",
+   "claim": "n15 is (near-)linear",
+   "test": "drop ReLU on n15",
+   "agree": 0.9079,
+   "agree_on_model_errors": 0.761
+  },
+  {
+   "group": "B",
+   "claim": "B is a linear filter of A",
+   "test": "drop ReLU on all B",
+   "agree": 0.1412,
+   "agree_on_model_errors": 0.1628
+  },
+  {
+   "group": "B",
+   "claim": "B<-B dynamics live in 2 eigenmodes",
+   "test": "keep top-2 |eig| modes of B<-B",
+   "agree": 0.1306,
+   "agree_on_model_errors": 0.1035
+  },
+  {
+   "group": "B",
+   "claim": "B<-B dynamics live in 4 eigenmodes",
+   "test": "keep top-4 |eig| modes of B<-B",
+   "agree": 0.1686,
+   "agree_on_model_errors": 0.132
+  },
+  {
+   "group": "B",
+   "claim": "B<-B dynamics live in 6 eigenmodes",
+   "test": "keep top-6 |eig| modes of B<-B",
+   "agree": 0.1649,
+   "agree_on_model_errors": 0.1815
+  },
+  {
+   "group": "B",
+   "claim": "B<-B dynamics live in 8 eigenmodes",
+   "test": "keep top-8 |eig| modes of B<-B",
+   "agree": 0.1608,
+   "agree_on_model_errors": 0.1466
+  },
+  {
+   "group": "B",
+   "claim": "B is driven by A",
+   "test": "zero W_hh[B,A]",
+   "agree": 0.1037,
+   "agree_on_model_errors": 0.0979
+  },
+  {
+   "group": "R",
+   "claim": "readout is rank 2 (+const)",
+   "test": "SVD-truncate centered W_oh to rank 2",
+   "agree": 0.3563,
+   "agree_on_model_errors": 0.2023
+  },
+  {
+   "group": "R",
+   "claim": "readout is rank 4 (+const)",
+   "test": "SVD-truncate centered W_oh to rank 4",
+   "agree": 0.4273,
+   "agree_on_model_errors": 0.3214
+  },
+  {
+   "group": "R",
+   "claim": "readout is rank 6 (+const)",
+   "test": "SVD-truncate centered W_oh to rank 6",
+   "agree": 0.736,
+   "agree_on_model_errors": 0.5125
+  },
+  {
+   "group": "R",
+   "claim": "readout is rank 8 (+const)",
+   "test": "SVD-truncate centered W_oh to rank 8",
+   "agree": 0.9196,
+   "agree_on_model_errors": 0.7028
+  },
+  {
+   "group": "R",
+   "claim": "readout is rank 9 (+const)",
+   "test": "SVD-truncate centered W_oh to rank 9",
+   "agree": 1.0,
+   "agree_on_model_errors": 1.0
+  },
+  {
+   "group": "R",
+   "claim": "column-constant of W_oh irrelevant",
+   "test": "subtract column mean of W_oh",
+   "agree": 1.0,
+   "agree_on_model_errors": 1.0
+  },
+  {
+   "group": "R",
+   "claim": "readout columns are 1 sinusoid(s) over position",
+   "test": "fit const+1 cos per W_oh column",
+   "agree": 0.3051,
+   "agree_on_model_errors": 0.2288
+  },
+  {
+   "group": "R",
+   "claim": "readout columns are 2 sinusoid(s) over position",
+   "test": "fit const+2 cos per W_oh column",
+   "agree": 0.3651,
+   "agree_on_model_errors": 0.2364
+  }
+ ],
+ "position_probes": {
+  "A->p1": {
+   "acc": 0.9,
+   "by_pos": [
+    0.86,
+    0.84,
+    0.84,
+    0.83,
+    0.88,
+    0.93,
+    0.92,
+    0.94,
+    0.96,
+    0.99
+   ]
+  },
+  "A->p2": {
+   "acc": 0.188,
+   "by_pos": [
+    0.16,
+    0.1,
+    0.11,
+    0.11,
+    0.02,
+    0.05,
+    0.05,
+    0.12,
+    0.28,
+    0.87
+   ]
+  },
+  "B->p1": {
+   "acc": 0.859,
+   "by_pos": [
+    0.77,
+    0.88,
+    0.94,
+    0.96,
+    0.98,
+    0.96,
+    0.92,
+    0.97,
+    0.95,
+    0.25
+   ]
+  },
+  "B->p2": {
+   "acc": 0.508,
+   "by_pos": [
+    0.54,
+    0.45,
+    0.5,
+    0.58,
+    0.53,
+    0.51,
+    0.59,
+    0.39,
+    0.71,
+    0.28
+   ]
+  },
+  "all->p1": {
+   "acc": 0.99,
+   "by_pos": [
+    0.98,
+    0.99,
+    0.99,
+    0.99,
+    0.99,
+    0.99,
+    0.99,
+    0.99,
+    0.99,
+    0.99
+   ]
+  },
+  "all->p2": {
+   "acc": 0.952,
+   "by_pos": [
+    0.95,
+    0.96,
+    0.96,
+    0.96,
+    0.96,
+    0.96,
+    0.95,
+    0.94,
+    0.94,
+    0.95
+   ]
+  }
+ },
+ "roles": {
+  "2": "runmax: leaky running max of the prefix (self 0.969, +1.0 * n4); ignores x",
+  "4": "newmax: ReLU(x - 0.852 n2 - 0.986 n4) = increment when x beats the (scaled) running max",
+  "7": "gap_last: ReLU(0.899 n2 + 1.016 n4 - x) = running max minus last input",
+  "6": "loo_lag1: like n7 but without n4 -> max leaving out the previous input, minus x",
+  "1": "loo_lag2: reads n2+n4 and d6 -> max leaving out the input 2 steps back, minus x",
+  "8": "loo_lag3+: reads n2, d1 (0.54), own d8 (0.62) -> max leaving out older inputs, minus x",
+  "9": "event: last input was a new running max (veto by n7 at -5.03 raw)  [Iris T6]",
+  "0": "timer: NOT(max arrived exactly 2 steps ago); delayed copy of n5/n9 events  [Iris T6]",
+  "5": "event: last input beat ~2nd max of prefix; final value = vote for logit 8  [Iris T6]",
+  "3": "dense, mostly linear (soft clip); role open",
+  "10": "dense integrator of A/event inputs (part of oscillatory B block)",
+  "11": "dense integrator of A/event inputs (part of oscillatory B block)",
+  "12": "dense, near-linear (on >=93%)",
+  "13": "dense, near-linear (on >=99%), safe to linearize",
+  "14": "dense integrator, reads n9/n4 events",
+  "15": "dense integrator"
+ },
+ "A_from_A_deficit_basis": [
+  [
+   0.9688376188278196,
+   1.0,
+   -0.00017584514367961074,
+   -0.06127174997209258,
+   -0.06413723700243526,
+   0.10823670281008851
+  ],
+  [
+   -0.8520484081060431,
+   -0.9856111407279968,
+   0.0011189742479430081,
+   0.037053166491235634,
+   0.10100492881539665,
+   -0.09886188248240739
+  ],
+  [
+   0.8992871102931074,
+   1.01550279662262,
+   0.001130608660125959,
+   -0.08051681550765707,
+   -0.15235480236335638,
+   0.15584787124358754
+  ],
+  [
+   0.8381159500331351,
+   0.8377197067517655,
+   -0.0008211739569103371,
+   0.4093594551086426,
+   1.0360015585279123,
+   -0.14029142069172978
+  ],
+  [
+   0.8552476843664272,
+   -0.043501821368603935,
+   -0.012077332012844777,
+   -0.12981225974399618,
+   0.3605724275112152,
+   -0.0918458393397043
+  ],
+  [
+   0.8928489429599413,
+   -0.034228996534440524,
+   -0.011153115540327052,
+   0.5439297372035036,
+   -0.00025700343772976856,
+   0.6153913140296936
+  ]
+ ],
+ "A_ideal_integer_block": [
+  [
+   1.0,
+   1.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   0.0
+  ],
+  [
+   -1.0,
+   -1.0,
+   0.0,
+   0.0,
+   0.0,
+   -0.0
+  ],
+  [
+   1.0,
+   1.0,
+   0.0,
+   -0.0,
+   -0.0,
+   0.0
+  ],
+  [
+   1.0,
+   1.0,
+   -0.0,
+   0.0,
+   1.0,
+   -0.0
+  ],
+  [
+   1.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   0.0,
+   -0.0
+  ],
+  [
+   1.0,
+   -0.0,
+   -0.0,
+   1.0,
+   -0.0,
+   1.0
+  ]
+ ]
+}

@@ -1,0 +1,115 @@
+
+[A_from_A_deficit_basis] rows/cols order A=[2, 4, 7, 1, 6, 8] B=[9, 0, 5, 3, 10, 11, 12, 13, 14, 15]
+[[ 0.969  1.    -0.    -0.061 -0.064  0.108]
+ [-0.852 -0.986  0.001  0.037  0.101 -0.099]
+ [ 0.899  1.016  0.001 -0.081 -0.152  0.156]
+ [ 0.838  0.838 -0.001  0.409  1.036 -0.14 ]
+ [ 0.855 -0.044 -0.012 -0.13   0.361 -0.092]
+ [ 0.893 -0.034 -0.011  0.544 -0.     0.615]]
+
+[A_from_B] rows/cols order A=[2, 4, 7, 1, 6, 8] B=[9, 0, 5, 3, 10, 11, 12, 13, 14, 15]
+[[-0.012 -0.05  -0.004  0.01   0.015  0.013  0.04   0.018  0.021 -0.02 ]
+ [ 0.007  0.037  0.001 -0.001 -0.011 -0.016 -0.073 -0.02  -0.044 -0.008]
+ [ 0.    -0.017  0.001 -0.003 -0.005  0.03   0.067  0.013 -0.    -0.007]
+ [-0.057 -0.109  0.077  0.005  0.038  0.011  0.051  0.022  0.102  0.014]
+ [-0.051 -0.09   0.024  0.011  0.043  0.023  0.045  0.011  0.107 -0.005]
+ [-0.005 -0.004 -0.009  0.     0.052  0.059  0.043  0.     0.035 -0.008]]
+
+[B_from_A_deficit_basis] rows/cols order A=[2, 4, 7, 1, 6, 8] B=[9, 0, 5, 3, 10, 11, 12, 13, 14, 15]
+[[  0.084   1.674 -95.489  -4.268  -1.109 -15.195]
+ [ -0.288   0.57   -0.001   0.708   1.174  -0.92 ]
+ [ -0.08    1.755  -2.637  -0.001   0.024  -1.523]
+ [  0.007   0.794  -0.118   2.869   1.212  -3.005]
+ [  0.042   1.058   0.022   0.137  -0.126  -0.153]
+ [  0.16    1.315   0.029   0.194  -0.393  -0.151]
+ [ -0.218   1.028  -0.025   0.393  -0.09   -0.273]
+ [  0.875   0.612   0.022   0.308   0.172  -0.462]
+ [  0.432   0.648   0.003   0.132   0.616  -0.059]
+ [  0.902   0.243   0.005   0.92    0.559  -1.19 ]]
+
+[B_from_B] rows/cols order A=[2, 4, 7, 1, 6, 8] B=[9, 0, 5, 3, 10, 11, 12, 13, 14, 15]
+[[-0.553 -0.381  0.333 -0.218  0.624  0.789  0.234 -0.225  1.654 -0.082]
+ [-0.119  0.161 -0.591  0.009  0.488  0.188  0.267  0.056  0.541  0.006]
+ [ 0.038  0.347 -0.421 -0.128  0.3    0.632  0.48  -0.01   0.407  0.08 ]
+ [ 0.042 -2.963 -0.808 -0.359  0.819 -0.583  1.43  -0.453  1.825  1.379]
+ [ 0.007  0.015 -0.006 -0.02  -0.001  0.862 -0.04   0.035 -0.117 -0.008]
+ [ 0.045  0.073 -0.038 -0.026  0.005  0.199  0.631 -0.218 -0.099 -0.067]
+ [ 0.057  0.04  -0.074 -0.108 -0.16   0.007  0.612  0.253  0.369  0.268]
+ [ 0.005  0.209 -0.076  0.244  0.606 -0.152 -0.428 -0.605 -0.39   0.635]
+ [-0.042  0.313 -0.213 -0.115  0.309  0.017 -0.017 -0.09   0.355 -0.106]
+ [-0.023  0.376 -0.608  0.223 -2.46   2.264 -0.378 -0.545  0.251  0.229]]
+
+[W_hi_A] rows/cols order A=[2, 4, 7, 1, 6, 8] B=[9, 0, 5, 3, 10, 11, 12, 13, 14, 15]
+[ 0.001  1.    -1.    -1.    -1.    -1.   ]
+
+[W_hi_B] rows/cols order A=[2, 4, 7, 1, 6, 8] B=[9, 0, 5, 3, 10, 11, 12, 13, 14, 15]
+[-0.257  0.007 -0.041 -0.028  0.004  0.011  0.024 -0.006 -0.097 -0.016]
+
+[W_oh_A_deficit_basis] rows/cols order A=[2, 4, 7, 1, 6, 8] B=[9, 0, 5, 3, 10, 11, 12, 13, 14, 15]
+[[-16.153  -1.524  11.535  64.385  27.793 -44.004]
+ [-39.085   4.306   3.54   27.065  52.589 -82.471]
+ [ -7.038   5.856   2.968 -17.547  35.101 -76.402]
+ [  5.051   6.766   2.789 -61.927 -13.385 -18.401]
+ [  3.534   7.616   2.711 -51.691 -61.07   38.182]
+ [  8.499   5.761   4.912 -12.799 -61.96   67.537]
+ [ 19.042   4.685   5.62   22.901 -33.87   54.103]
+ [  2.666   4.209   3.549  46.592  10.484  17.686]
+ [ 10.163   5.053   3.769 -15.151  39.844  44.876]
+ [  3.06  -50.701 -58.247  -5.007  -7.378   4.04 ]]
+
+[W_oh_B] rows/cols order A=[2, 4, 7, 1, 6, 8] B=[9, 0, 5, 3, 10, 11, 12, 13, 14, 15]
+[[ -1.857  20.813  -1.568   2.939   2.75   13.318  14.955   1.884 -70.238   7.562]
+ [ -0.915 -28.555  -0.567   7.458 -28.084  16.784  21.476   2.874   8.306  17.227]
+ [  0.364 -17.525  -0.528  -2.224 -47.331   0.068  17.881 -17.217  15.197  19.582]
+ [  0.661   8.198  -2.384  -2.383 -65.229   3.908   2.974   1.905  17.879  -8.513]
+ [  1.409   7.248  -3.502  -2.083  27.997 -60.384   4.054   1.368  16.779  -7.014]
+ [  1.728  20.82   -4.397  -4.027  18.673  -0.068 -35.253  16.076  -8.505  -5.423]
+ [  0.385  13.187  -4.658   7.465  34.164   6.012 -27.996 -10.699 -13.742  -7.109]
+ [  0.192 -30.816  -2.537  -2.568  27.673  10.409   3.175   1.752  16.605  -6.21 ]
+ [ -1.468  -3.13   23.335  -2.683  11.866   2.398  -5.784   0.565   1.199  -6.86 ]
+ [ -0.534   7.277  -2.879  -2.641  28.223  10.395   3.353   2.006  16.14   -6.384]]
+
+ROLE TESTS (dev seed 7, n=2e5; agreement with model argmax)
+A        0.9993 (err-set 0.9886)  n2 is a linear leaky integrator (always on) | drop ReLU on n2
+A        0.9976 (err-set 0.9715)  n2 ignores the input | W_hi[2]=0
+A        0.8708 (err-set 0.5542)  n2 = ARC ideal formula | overwrite n2 by formula every step
+A        0.9630 (err-set 0.8186)  n4 = ARC ideal formula | overwrite n4 by formula every step
+A        0.5262 (err-set 0.3811)  n7 = ARC ideal formula | overwrite n7 by formula every step
+A        0.4723 (err-set 0.3540)  n6 = ARC ideal formula | overwrite n6 by formula every step
+A        0.3901 (err-set 0.2821)  n1 = ARC ideal formula | overwrite n1 by formula every step
+A        0.3080 (err-set 0.3111)  all five = ARC ideal formulas | overwrite n2,4,7,6,1
+A        0.2186 (err-set 0.2183)  A<-A gains are 'ideal' integers (deficit basis) | round A<-A block to integers
+A        0.9427 (err-set 0.5999)  no A neuron reads n7 directly | zero n7 column (deficit basis, |entries|<=0.012)
+A        0.5129 (err-set 0.3774)  A is a closed subcircuit | zero W_hh[A,B]
+B        0.9953 (err-set 0.9178)  n9 = 'last input is new running max' gate | n9 := pre9 * 1[predicate]
+B        0.9971 (err-set 0.9661)  n0 = 'max did not arrive 2 steps ago' gate | n0 := pre0 * 1[predicate]
+B        0.9929 (err-set 0.8973)  n9 + n0 gates | both
+B        0.9986 (err-set 0.9827)  n13 is (near-)linear | drop ReLU on n13
+B        0.9954 (err-set 0.9406)  n12 is (near-)linear | drop ReLU on n12
+B        0.9785 (err-set 0.8685)  n3 is (near-)linear | drop ReLU on n3
+B        0.9802 (err-set 0.8734)  n10 is (near-)linear | drop ReLU on n10
+B        0.9873 (err-set 0.8906)  n11 is (near-)linear | drop ReLU on n11
+B        0.9879 (err-set 0.8880)  n14 is (near-)linear | drop ReLU on n14
+B        0.9079 (err-set 0.7610)  n15 is (near-)linear | drop ReLU on n15
+B        0.1412 (err-set 0.1628)  B is a linear filter of A | drop ReLU on all B
+B        0.1306 (err-set 0.1035)  B<-B dynamics live in 2 eigenmodes | keep top-2 |eig| modes of B<-B
+B        0.1686 (err-set 0.1320)  B<-B dynamics live in 4 eigenmodes | keep top-4 |eig| modes of B<-B
+B        0.1649 (err-set 0.1815)  B<-B dynamics live in 6 eigenmodes | keep top-6 |eig| modes of B<-B
+B        0.1608 (err-set 0.1466)  B<-B dynamics live in 8 eigenmodes | keep top-8 |eig| modes of B<-B
+B        0.1037 (err-set 0.0979)  B is driven by A | zero W_hh[B,A]
+R        0.3563 (err-set 0.2023)  readout is rank 2 (+const) | SVD-truncate centered W_oh to rank 2
+R        0.4273 (err-set 0.3214)  readout is rank 4 (+const) | SVD-truncate centered W_oh to rank 4
+R        0.7360 (err-set 0.5125)  readout is rank 6 (+const) | SVD-truncate centered W_oh to rank 6
+R        0.9196 (err-set 0.7028)  readout is rank 8 (+const) | SVD-truncate centered W_oh to rank 8
+R        1.0000 (err-set 1.0000)  readout is rank 9 (+const) | SVD-truncate centered W_oh to rank 9
+R        1.0000 (err-set 1.0000)  column-constant of W_oh irrelevant | subtract column mean of W_oh
+R        0.3051 (err-set 0.2288)  readout columns are 1 sinusoid(s) over position | fit const+1 cos per W_oh column
+R        0.3651 (err-set 0.2364)  readout columns are 2 sinusoid(s) over position | fit const+2 cos per W_oh column
+
+POSITION PROBES on h_10 (seed 11, train 1e5, test 2e4)
+probe A   -> p1: acc 0.9  by position [0.86, 0.84, 0.84, 0.83, 0.88, 0.93, 0.92, 0.94, 0.96, 0.99]
+probe A   -> p2: acc 0.188  by position [0.16, 0.1, 0.11, 0.11, 0.02, 0.05, 0.05, 0.12, 0.28, 0.87]
+probe B   -> p1: acc 0.859  by position [0.77, 0.88, 0.94, 0.96, 0.98, 0.96, 0.92, 0.97, 0.95, 0.25]
+probe B   -> p2: acc 0.508  by position [0.54, 0.45, 0.5, 0.58, 0.53, 0.51, 0.59, 0.39, 0.71, 0.28]
+probe all -> p1: acc 0.99  by position [0.98, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99]
+probe all -> p2: acc 0.952  by position [0.95, 0.96, 0.96, 0.96, 0.96, 0.96, 0.95, 0.94, 0.94, 0.95]

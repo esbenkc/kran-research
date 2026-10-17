@@ -1,0 +1,28 @@
+{
+ "args": {
+  "mode": "prune",
+  "out": "scratch/smoke",
+  "seed": 1,
+  "lr": 0.0003,
+  "ramp": 50,
+  "ft": 100,
+  "min_d": 8
+ },
+ "rows": [
+  {
+   "literals": 340,
+   "W_hh_nz": 200,
+   "W_oh_nz": 140,
+   "alive": 16,
+   "agree": 0.20485,
+   "agree_3d": 0.203715,
+   "agree_4d": 0.20512,
+   "target": [
+    200,
+    140
+   ],
+   "loss": 3.286170290494799,
+   "sec": 1.2
+  }
+ ]
+}

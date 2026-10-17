@@ -1,0 +1,126 @@
+{
+ "bar": 0.98671,
+ "rows": [
+  {
+   "kind": "mlp",
+   "size": 8,
+   "params": 178,
+   "target": "kl",
+   "agree_dev52": 0.35412,
+   "agree_dev51": 0.353205,
+   "final_train_loss": 1.2641597986221313,
+   "steps": 15000,
+   "sec": 22.2
+  },
+  {
+   "kind": "mlp",
+   "size": 16,
+   "params": 346,
+   "target": "kl",
+   "agree_dev52": 0.49931,
+   "agree_dev51": 0.50073,
+   "final_train_loss": 0.9927496314048767,
+   "steps": 15000,
+   "sec": 22.1
+  },
+  {
+   "kind": "mlp",
+   "size": 32,
+   "params": 682,
+   "target": "kl",
+   "agree_dev52": 0.56388,
+   "agree_dev51": 0.562905,
+   "final_train_loss": 0.8900075554847717,
+   "steps": 15000,
+   "sec": 22.3
+  },
+  {
+   "kind": "mlp",
+   "size": 64,
+   "params": 1354,
+   "target": "kl",
+   "agree_dev52": 0.6175,
+   "agree_dev51": 0.61729,
+   "final_train_loss": 0.8082292079925537,
+   "steps": 15000,
+   "sec": 22.8
+  },
+  {
+   "kind": "mlp",
+   "size": 128,
+   "params": 2698,
+   "target": "kl",
+   "agree_dev52": 0.801365,
+   "agree_dev51": 0.799855,
+   "final_train_loss": 0.5500708818435669,
+   "steps": 15000,
+   "sec": 24.0
+  },
+  {
+   "kind": "mlp",
+   "size": 256,
+   "params": 5386,
+   "target": "kl",
+   "agree_dev52": 0.8562,
+   "agree_dev51": 0.855065,
+   "final_train_loss": 0.46849775314331055,
+   "steps": 15000,
+   "sec": 26.0
+  },
+  {
+   "kind": "rnn",
+   "size": 6,
+   "params": 102,
+   "target": "kl",
+   "agree_dev52": 0.35839,
+   "agree_dev51": 0.359215,
+   "final_train_loss": 1.6139103174209595,
+   "steps": 15000,
+   "sec": 31.8
+  },
+  {
+   "kind": "rnn",
+   "size": 8,
+   "params": 152,
+   "target": "kl",
+   "agree_dev52": 0.355735,
+   "agree_dev51": 0.35718,
+   "final_train_loss": 1.4110525846481323,
+   "steps": 15000,
+   "sec": 31.1
+  },
+  {
+   "kind": "rnn",
+   "size": 10,
+   "params": 210,
+   "target": "kl",
+   "agree_dev52": 0.373435,
+   "agree_dev51": 0.37638,
+   "final_train_loss": 1.2898163795471191,
+   "steps": 15000,
+   "sec": 39.8
+  },
+  {
+   "kind": "rnn",
+   "size": 12,
+   "params": 276,
+   "target": "kl",
+   "agree_dev52": 0.46871,
+   "agree_dev51": 0.468785,
+   "final_train_loss": 1.10638427734375,
+   "steps": 15000,
+   "sec": 39.4
+  },
+  {
+   "kind": "rnn",
+   "size": 16,
+   "params": 432,
+   "target": "kl",
+   "agree_dev52": 0.70194,
+   "agree_dev51": 0.70526,
+   "final_train_loss": 0.6532788872718811,
+   "steps": 15000,
+   "sec": 38.1
+  }
+ ]
+}

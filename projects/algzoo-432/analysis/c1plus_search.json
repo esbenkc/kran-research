@@ -1,0 +1,214 @@
+{
+ "clauses": [
+  {
+   "pick": "T",
+   "pos": 9,
+   "order": null,
+   "delta": 0.01,
+   "gain81": 0.00074,
+   "gain82": 0.00064
+  },
+  {
+   "pick": "T",
+   "pos": 9,
+   "order": "after",
+   "delta": 0.01,
+   "gain81": 0.00074,
+   "gain82": 0.00064
+  },
+  {
+   "pick": "T",
+   "pos": null,
+   "order": "after",
+   "delta": 0.002,
+   "gain81": 0.00024,
+   "gain82": 0.00017
+  },
+  {
+   "pick": "M",
+   "pos": 9,
+   "order": null,
+   "delta": 0.002,
+   "gain81": 6e-05,
+   "gain82": 2e-05
+  },
+  {
+   "pick": "M",
+   "pos": 9,
+   "order": "after",
+   "delta": 0.002,
+   "gain81": 6e-05,
+   "gain82": 2e-05
+  },
+  {
+   "pick": "M",
+   "pos": 1,
+   "order": "before",
+   "delta": 0.002,
+   "gain81": 5e-05,
+   "gain82": 6e-05
+  },
+  {
+   "pick": "T",
+   "pos": 6,
+   "order": null,
+   "delta": 0.001,
+   "gain81": 4e-05,
+   "gain82": 1e-05
+  },
+  {
+   "pick": "T",
+   "pos": 6,
+   "order": "after",
+   "delta": 0.001,
+   "gain81": 4e-05,
+   "gain82": 3e-05
+  },
+  {
+   "pick": "M",
+   "pos": 0,
+   "order": null,
+   "delta": 0.001,
+   "gain81": 4e-05,
+   "gain82": 5e-05
+  },
+  {
+   "pick": "M",
+   "pos": 0,
+   "order": "before",
+   "delta": 0.001,
+   "gain81": 4e-05,
+   "gain82": 5e-05
+  },
+  {
+   "pick": "M",
+   "pos": 1,
+   "order": null,
+   "delta": 0.002,
+   "gain81": 4e-05,
+   "gain82": 4e-05
+  },
+  {
+   "pick": "M",
+   "pos": 2,
+   "order": "before",
+   "delta": 0.002,
+   "gain81": 4e-05,
+   "gain82": 6e-05
+  },
+  {
+   "pick": "T",
+   "pos": 3,
+   "order": "after",
+   "delta": 0.003,
+   "gain81": 3e-05,
+   "gain82": 1e-05
+  },
+  {
+   "pick": "M",
+   "pos": null,
+   "order": "before",
+   "delta": 0.001,
+   "gain81": 3e-05,
+   "gain82": 1e-05
+  },
+  {
+   "pick": "T",
+   "pos": 2,
+   "order": "after",
+   "delta": 0.002,
+   "gain81": 2e-05,
+   "gain82": 0.0
+  },
+  {
+   "pick": "T",
+   "pos": 4,
+   "order": "after",
+   "delta": 0.001,
+   "gain81": 2e-05,
+   "gain82": 1e-05
+  },
+  {
+   "pick": "M",
+   "pos": 2,
+   "order": null,
+   "delta": 0.001,
+   "gain81": 2e-05,
+   "gain82": 3e-05
+  },
+  {
+   "pick": "T",
+   "pos": 2,
+   "order": null,
+   "delta": 0.001,
+   "gain81": 1e-05,
+   "gain82": 1e-05
+  },
+  {
+   "pick": "T",
+   "pos": 5,
+   "order": "after",
+   "delta": 0.001,
+   "gain81": 1e-05,
+   "gain82": 0.0
+  },
+  {
+   "pick": "T",
+   "pos": 6,
+   "order": "before",
+   "delta": 0.001,
+   "gain81": 0.0,
+   "gain82": -2e-05
+  },
+  {
+   "pick": "M",
+   "pos": 7,
+   "order": "before",
+   "delta": 0.001,
+   "gain81": 0.0,
+   "gain82": -1e-05
+  }
+ ],
+ "slices": [
+  {
+   "seed": 81,
+   "rule": "one positive at 2 -> pick 1",
+   "gain": 0.00056
+  },
+  {
+   "seed": 81,
+   "rule": "one positive at 3 -> pick 2",
+   "gain": 0.00011
+  },
+  {
+   "seed": 81,
+   "rule": "one positive at 7 -> pick 7",
+   "gain": 0.0001
+  },
+  {
+   "seed": 81,
+   "rule": "no positive -> pick 0",
+   "gain": 0.00021
+  },
+  {
+   "seed": 82,
+   "rule": "one positive at 2 -> pick 1",
+   "gain": 0.00053
+  },
+  {
+   "seed": 82,
+   "rule": "one positive at 3 -> pick 2",
+   "gain": 8e-05
+  },
+  {
+   "seed": 82,
+   "rule": "one positive at 7 -> pick 7",
+   "gain": 7e-05
+  },
+  {
+   "seed": 82,
+   "rule": "no positive -> pick 0",
+   "gain": 0.00023
+  }
+ ]
+}

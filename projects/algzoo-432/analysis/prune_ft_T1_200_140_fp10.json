@@ -1,0 +1,21 @@
+{
+ "args": {
+  "npz": "prune_ft_T1_200_140.npz",
+  "bits": 10,
+  "steps": 6000,
+  "lr": 3e-05,
+  "T": 5.0,
+  "seed": 7
+ },
+ "row": {
+  "src": "prune_ft_T1_200_140.npz",
+  "bits_per": 10,
+  "agree_grid_before": 0.97949,
+  "agree_grid_after": 0.979525,
+  "nonzero_ints": 339,
+  "scale_literals": 41,
+  "literals_equiv": 380,
+  "description_bits": 4943.8,
+  "loss": 0.007351121680380942
+ }
+}

@@ -1,0 +1,22 @@
+{"name": "reference: model + fresh 0.1% weight noise (mean of 20)", "family": "bar", "all": 0.98551, "robust": 0.99905, "fragile": 0.7683, "literals": null, "note": ""}
+{"name": "null: true 2nd argmax", "family": "rule", "literals": 0, "all": 0.95332, "robust": 0.97648, "fragile": 0.5818, "note": ""}
+{"name": "C1: 2nd argmax with phantom 0", "family": "rule", "literals": 0, "all": 0.9555, "robust": 0.97789, "fragile": 0.5963, "note": ""}
+{"name": "T16 per-config linear, cands S+T, bank [x]", "family": "fitted rule", "literals": 9000, "all": 0.96607, "robust": 0.98542, "fragile": 0.6556, "note": ""}
+{"name": "T16 per-config linear, cands S+M/T, bank [x,relu(x),running max,running 2nd]", "family": "fitted rule", "literals": 63270, "all": 0.9709, "robust": 0.9889, "fragile": 0.682, "note": ""}
+{"name": "T16 candidate MLP 3x256", "family": "black box", "literals": 143873, "all": 0.97455, "robust": 0.99213, "fragile": 0.6925, "note": ""}
+{"name": "original weights, gauge + all rounded to 3 sig digits", "family": "network", "literals": 400, "all": 0.9884, "robust": 0.99946, "fragile": 0.811, "note": ""}
+{"name": "original weights, gauge + all rounded to 4 sig digits", "family": "network", "literals": 400, "all": 0.9987, "robust": 1.0, "fragile": 0.9779, "note": ""}
+{"name": "ladder greedy-pruned ladder_pruned_0.99.npz exact", "family": "network", "literals": 374, "all": 0.98984, "robust": 0.99755, "fragile": 0.8661, "note": ""}
+{"name": "ladder greedy-pruned ladder_pruned_0.99.npz @3 digits", "family": "network", "literals": 374, "all": 0.98407, "robust": 0.9972, "fragile": 0.7734, "note": ""}
+{"name": "ladder greedy-pruned ladder_pruned_0.99.npz @4 digits", "family": "network", "literals": 374, "all": 0.9895, "robust": 0.99757, "fragile": 0.8601, "note": ""}
+{"name": "ladder greedy-pruned ladder_pruned_0.995.npz exact", "family": "network", "literals": 382, "all": 0.99516, "robust": 0.99894, "fragile": 0.9346, "note": ""}
+{"name": "ladder greedy-pruned ladder_pruned_0.995.npz @3 digits", "family": "network", "literals": 382, "all": 0.98674, "robust": 0.99851, "fragile": 0.7979, "note": ""}
+{"name": "ladder greedy-pruned ladder_pruned_0.995.npz @4 digits", "family": "network", "literals": 382, "all": 0.9947, "robust": 0.99892, "fragile": 0.927, "note": ""}
+{"name": "N1 prune_ft_T5_200_140.npz", "family": "fitted network", "literals": 340, "all": 0.98658, "robust": 0.99796, "fragile": 0.8041, "note": ""}
+{"name": "N1 prune_ft_T5_200_140_q3f.npz", "family": "fitted network", "literals": 340, "all": 0.98526, "robust": 0.99781, "fragile": 0.7839, "note": ""}
+{"name": "N1 prune_ft_T1_200_140.npz", "family": "fitted network", "literals": 340, "all": 0.9879, "robust": 0.99847, "fragile": 0.8183, "note": ""}
+{"name": "N1 prune_ft_T5_160_130.npz", "family": "fitted network", "literals": 290, "all": 0.9615, "robust": 0.98103, "fragile": 0.6482, "note": ""}
+{"name": "N1 prune_ft_T5_160_130_q3.npz", "family": "fitted network", "literals": 290, "all": 0.9312, "robust": 0.95524, "fragile": 0.5455, "note": ""}
+{"name": "N1 prune_ft_slow_95_105.npz", "family": "fitted network", "literals": 200, "all": 0.82957, "robust": 0.85299, "fragile": 0.4538, "note": ""}
+{"name": "N1 prune_ft_neurons_d15.npz", "family": "fitted network", "literals": 360, "all": 0.95929, "robust": 0.97881, "fragile": 0.6461, "note": ""}
+{"seed": 83, "n": 1000000, "fragile_frac": 0.05867, "noise": "0.1% mult, 20 draws rng 7 (split), 20 draws rng 8 (reference)"}

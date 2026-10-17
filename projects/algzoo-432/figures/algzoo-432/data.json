@@ -1,0 +1,279 @@
+{
+ "title": "No description under 200 numbers matches the model as well as the model matches itself",
+ "sub": "The network reads 10 random numbers and names the position of the second largest. Each point is one attempt to describe it. Lower is better. Shaded corner: at most 200 numbers and at or below the dashed line.",
+ "floor": 1.329,
+ "null": 4.717,
+ "cap": 200,
+ "points": [
+  {
+   "family": "hand",
+   "x": 4,
+   "dis": 4.497,
+   "agree": 0.95503,
+   "split": "holdout",
+   "label": "2nd-largest with a phantom zero",
+   "detail": "Hand-written rule: track the top two values, with an extra 0 before the sequence. 4 numbers, none fitted.",
+   "show": "above"
+  },
+  {
+   "family": "hand",
+   "x": 12,
+   "dis": 4.366,
+   "agree": 0.95634,
+   "split": "holdout",
+   "label": "+ 3 special cases",
+   "detail": "The 4-number rule plus three special cases (late near-tie, one positive input, no positive input) whose threshold and positions were fitted to the model's choices. 12 numbers.",
+   "show": null
+  },
+  {
+   "family": "pruned",
+   "x": 374,
+   "dis": 1.067,
+   "agree": 0.98933,
+   "split": "holdout",
+   "label": "374 weights, 4 digits",
+   "detail": "The model's own weights: smallest entries set to 0, the other 374 rounded to 4 significant digits. Nothing retrained.",
+   "show": "right"
+  },
+  {
+   "family": "pruned",
+   "x": 374,
+   "dis": 1.593,
+   "agree": 0.98407,
+   "split": "holdout",
+   "label": "374 weights, 3 digits",
+   "detail": "The model's own weights: smallest entries set to 0, the other 374 rounded to 3 significant digits. Nothing retrained.",
+   "show": null
+  },
+  {
+   "family": "pruned",
+   "x": 382,
+   "dis": 1.327,
+   "agree": 0.98673,
+   "split": "holdout",
+   "label": "382 weights, 3 digits",
+   "detail": "The model's own weights: smallest entries set to 0, the other 382 rounded to 3 significant digits. Nothing retrained.",
+   "show": null
+  },
+  {
+   "family": "pruned",
+   "x": 386,
+   "dis": 1.229,
+   "agree": 0.98771,
+   "split": "holdout",
+   "label": "386 weights, 3 digits",
+   "detail": "The model's own weights: smallest entries set to 0, the other 386 rounded to 3 significant digits. Nothing retrained.",
+   "show": null
+  },
+  {
+   "family": "pruned",
+   "x": 400,
+   "dis": 1.1416,
+   "agree": 0.988584,
+   "split": "holdout",
+   "label": "all 400 free weights, 3 digits",
+   "detail": "All of the model's weights, with the 32 numbers fixed by rescaling symmetries removed, rounded to 3 significant digits. Nothing retrained.",
+   "show": null
+  },
+  {
+   "family": "pruned",
+   "x": 374,
+   "dis": 1.1652,
+   "agree": 0.988348,
+   "split": "holdout",
+   "label": "374 weights, 0-4 digits each",
+   "detail": "The model's own weights, each given the fewest digits (0 = removed) that keep agreement. Nothing retrained.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 364,
+   "dis": 0.7657,
+   "agree": 0.992343,
+   "split": "holdout",
+   "label": "364 weights",
+   "detail": "Pruned to 364 nonzero weights while retraining to copy the model's outputs, then rounded to 3 digits. All 364 numbers are fitted.",
+   "show": "left"
+  },
+  {
+   "family": "retrained",
+   "x": 350,
+   "dis": 1.138,
+   "agree": 0.98862,
+   "split": "dev 62",
+   "label": "350 weights",
+   "detail": "Pruned to 350 nonzero weights while retraining to copy the model's outputs, then rounded to 3 digits. All 350 numbers are fitted.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 340,
+   "dis": 1.1687,
+   "agree": 0.988313,
+   "split": "holdout",
+   "label": "340 weights",
+   "detail": "Pruned to 340 nonzero weights while retraining to copy the model's outputs, then rounded to 3 digits. All 340 numbers are fitted.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 325,
+   "dis": 1.699,
+   "agree": 0.98301,
+   "split": "dev 62",
+   "label": "325 weights",
+   "detail": "Pruned to 325 nonzero weights while retraining to copy the model's outputs, then rounded to 3 digits. All 325 numbers are fitted.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 310,
+   "dis": 2.114,
+   "agree": 0.97886,
+   "split": "dev 62",
+   "label": "310 weights",
+   "detail": "Pruned to 310 nonzero weights while retraining to copy the model's outputs, then rounded to 3 digits. All 310 numbers are fitted.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 295,
+   "dis": 3.437,
+   "agree": 0.96563,
+   "split": "dev 62",
+   "label": "295 weights",
+   "detail": "Pruned to 295 nonzero weights while retraining to copy the model's outputs, then rounded to 3 digits. All 295 numbers are fitted.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 170,
+   "dis": 48.93,
+   "agree": 0.5107,
+   "split": "dev 61",
+   "label": "170 weights",
+   "detail": "Pruned to 170 nonzero weights while retraining to copy the model's outputs (T=1), then rounded to 4 digits.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 180,
+   "dis": 51.54,
+   "agree": 0.4846,
+   "split": "dev 61",
+   "label": "180 weights",
+   "detail": "Pruned to 180 nonzero weights while retraining to copy the model's outputs (T=5), then rounded to 4 digits.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 200,
+   "dis": 17.0,
+   "agree": 0.83,
+   "split": "dev 61",
+   "label": "200 weights",
+   "detail": "Pruned to 200 nonzero weights while retraining to copy the model's outputs (slow ramp), then rounded to 4 digits.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 220,
+   "dis": 16.23,
+   "agree": 0.8377,
+   "split": "dev 61",
+   "label": "220 weights",
+   "detail": "Pruned to 220 nonzero weights while retraining to copy the model's outputs (T=1), then rounded to 4 digits.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 250,
+   "dis": 8.94,
+   "agree": 0.9106,
+   "split": "dev 61",
+   "label": "250 weights",
+   "detail": "Pruned to 250 nonzero weights while retraining to copy the model's outputs (T=1), then rounded to 4 digits.",
+   "show": null
+  },
+  {
+   "family": "retrained",
+   "x": 290,
+   "dis": 3.83,
+   "agree": 0.9617,
+   "split": "dev 61",
+   "label": "290 weights",
+   "detail": "Pruned to 290 nonzero weights while retraining to copy the model's outputs (T=5), then rounded to 4 digits.",
+   "show": null
+  },
+  {
+   "family": "fitted",
+   "x": 10,
+   "dis": 4.57,
+   "agree": 0.9543,
+   "split": "dev 32",
+   "label": "2nd-largest of rescaled inputs",
+   "detail": "2nd-largest after giving each position its own fitted gain (10 constants).",
+   "show": null
+  },
+  {
+   "family": "fitted",
+   "x": 100,
+   "dis": 4.83,
+   "agree": 0.9517,
+   "split": "dev 32",
+   "label": "2nd-largest of mixed inputs",
+   "detail": "2nd-largest of a fitted linear mix of all 10 inputs (100 constants).",
+   "show": null
+  },
+  {
+   "family": "fitted",
+   "x": 9000,
+   "dis": 3.47,
+   "agree": 0.9653,
+   "split": "dev 82",
+   "label": "linear tie-breaker per position pattern",
+   "detail": "For each pattern of where the top three values sit, a fitted linear rule decides between 2nd and 3rd (about 9,000 constants).",
+   "show": null
+  },
+  {
+   "family": "fitted",
+   "x": 63270,
+   "dis": 2.938,
+   "agree": 0.97062,
+   "split": "dev 82",
+   "label": "piecewise-linear rule per position pattern",
+   "detail": "For each pattern of where the top three values sit, a fitted piecewise-linear rule on the top three values and running maxima (63,270 constants).",
+   "show": null
+  },
+  {
+   "family": "fitted",
+   "x": 143873,
+   "dis": 2.6,
+   "agree": 0.974,
+   "split": "dev 82",
+   "label": "fitted MLP",
+   "detail": "A 3-layer MLP (143,873 weights) trained to copy the model's choice; not fully trained.",
+   "show": null
+  },
+  {
+   "family": "fitted",
+   "x": 87100,
+   "dis": 4.08,
+   "agree": 0.9592,
+   "split": "dev 42",
+   "label": "linear model per rank pattern",
+   "detail": "For each pattern of where the top three values sit, a fitted linear map from inputs to outputs (87,100 constants).",
+   "show": null
+  },
+  {
+   "family": "fitted",
+   "x": 398000,
+   "dis": 3.49,
+   "agree": 0.9651,
+   "split": "dev",
+   "label": "best lookup table",
+   "detail": "Best possible answer per cell of (positions of the top three, binned gaps, signs): 398,000 cells, each set to the model's majority choice.",
+   "show": null
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "C1 all": 0.95509,
+ "domains": [
+  {
+   "tau": 0.01,
+   "coverage": 0.962,
+   "agree_in": 0.96852,
+   "agree_out": 0.6152
+  },
+  {
+   "tau": 0.02,
+   "coverage": 0.9248,
+   "agree_in": 0.97651,
+   "agree_out": 0.6916
+  },
+  {
+   "tau": 0.05,
+   "coverage": 0.8222,
+   "agree_in": 0.98734,
+   "agree_out": 0.806
+  },
+  {
+   "tau": 0.1,
+   "coverage": 0.6708,
+   "agree_in": 0.99308,
+   "agree_out": 0.8777
+  },
+  {
+   "tau": 0.2,
+   "coverage": 0.4348,
+   "agree_in": 0.99692,
+   "agree_out": 0.9229
+  }
+ ],
+ "misses in D_0.1": {
+  "n": 4639,
+  "share_one_positive_input": 0.482,
+  "share_S_is_phantom": 0.482
+ },
+ "one positive input": {
+  "share": 0.00967,
+  "C1_agree": 0.4254
+ }
+}

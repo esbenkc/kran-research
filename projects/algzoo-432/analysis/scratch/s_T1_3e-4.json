@@ -1,0 +1,30 @@
+{
+ "args": {
+  "mode": "prune",
+  "out": "scratch/s_T1_3e-4",
+  "seed": 1,
+  "lr": 0.0003,
+  "ramp": 2000,
+  "ft": 2000,
+  "min_d": 8,
+  "T": 1.0,
+  "stages": "200:140"
+ },
+ "rows": [
+  {
+   "literals": 340,
+   "W_hh_nz": 200,
+   "W_oh_nz": 140,
+   "alive": 16,
+   "agree": 0.232425,
+   "agree_3d": 0.23235,
+   "agree_4d": 0.232225,
+   "target": [
+    200,
+    140
+   ],
+   "loss": 1.8692523758121378,
+   "sec": 25.7
+  }
+ ]
+}

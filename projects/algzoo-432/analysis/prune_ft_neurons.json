@@ -1,0 +1,119 @@
+{
+ "args": {
+  "mode": "neurons",
+  "out": "prune_ft_neurons",
+  "seed": 1,
+  "lr": 0.001,
+  "ramp": 1000,
+  "ft": 6000,
+  "min_d": 8,
+  "T": 5.0,
+  "stages": ""
+ },
+ "rows": [
+  {
+   "literals": 360,
+   "W_hh_nz": 225,
+   "W_oh_nz": 135,
+   "alive": 15,
+   "agree": 0.96007,
+   "agree_3d": 0.94596,
+   "agree_4d": 0.959825,
+   "dropped": 9,
+   "agree_before_ft": 0.67487,
+   "loss": 0.016062891864039114,
+   "sec": 40.7
+  },
+  {
+   "literals": 322,
+   "W_hh_nz": 196,
+   "W_oh_nz": 126,
+   "alive": 14,
+   "agree": 0.8853,
+   "agree_3d": 0.869375,
+   "agree_4d": 0.885125,
+   "dropped": 15,
+   "agree_before_ft": 0.61861,
+   "loss": 0.11517737026460129,
+   "sec": 38.2
+  },
+  {
+   "literals": 286,
+   "W_hh_nz": 169,
+   "W_oh_nz": 117,
+   "alive": 13,
+   "agree": 0.79213,
+   "agree_3d": 0.788795,
+   "agree_4d": 0.792585,
+   "dropped": 3,
+   "agree_before_ft": 0.45143,
+   "loss": 0.2369733488727519,
+   "sec": 41.5
+  },
+  {
+   "literals": 252,
+   "W_hh_nz": 144,
+   "W_oh_nz": 108,
+   "alive": 12,
+   "agree": 0.549385,
+   "agree_3d": 0.542845,
+   "agree_4d": 0.54948,
+   "dropped": 5,
+   "agree_before_ft": 0.26034,
+   "loss": 0.650373456963898,
+   "sec": 53.2
+  },
+  {
+   "literals": 220,
+   "W_hh_nz": 121,
+   "W_oh_nz": 99,
+   "alive": 11,
+   "agree": 0.49276,
+   "agree_3d": 0.491925,
+   "agree_4d": 0.492495,
+   "dropped": 12,
+   "agree_before_ft": 0.201565,
+   "loss": 0.82672959294842,
+   "sec": 55.7
+  },
+  {
+   "literals": 190,
+   "W_hh_nz": 100,
+   "W_oh_nz": 90,
+   "alive": 10,
+   "agree": 0.48226,
+   "agree_3d": 0.48177,
+   "agree_4d": 0.482025,
+   "dropped": 0,
+   "agree_before_ft": 0.2298,
+   "loss": 0.8687362071146784,
+   "sec": 56.4
+  },
+  {
+   "literals": 162,
+   "W_hh_nz": 81,
+   "W_oh_nz": 81,
+   "alive": 9,
+   "agree": 0.40395,
+   "agree_3d": 0.402755,
+   "agree_4d": 0.40379,
+   "dropped": 11,
+   "agree_before_ft": 0.230685,
+   "loss": 0.9748759881490153,
+   "sec": 60.6
+  },
+  {
+   "literals": 136,
+   "W_hh_nz": 64,
+   "W_oh_nz": 72,
+   "alive": 8,
+   "agree": 0.32572,
+   "agree_3d": 0.323655,
+   "agree_4d": 0.325255,
+   "dropped": 13,
+   "agree_before_ft": 0.186865,
+   "loss": 1.0937345610690974,
+   "sec": 59.3
+  }
+ ]
+}

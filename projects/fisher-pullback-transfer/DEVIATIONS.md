@@ -111,3 +111,13 @@ stopping dominates). The pilot is re-run with the loss chosen by the 15:09 gate 
   2 label draws, split-half corr 0.978 (was 0.880), median eig 0.03316 = lambda, 1 null eig (all-ones).
   sha256(F_common array bytes) = 88a09b34cc46563feb917181b689d96a7432285b71c42c1c98a92e5b14a740a4;
   sha256(data/fisher/fisher_big.npz) = 7cc9a3c7cc83db9c80b88a5a8e96c6ed9667e7b1b957c9af56cde82e62fc0634.
+
+## 2026-10-17 15:41 CEST — pilot schedule (no rule change)
+
+Softplus pilot failed at lambda_KL 1000 (AUROC 0.874 -> 0.789 at the 2000-step cap) and 300 (-> 0.769);
+lambda 100 is running. The rule "largest succeeding grid value" does not depend on run order, so the
+remaining values run in parallel on the 2 allowed slots: lambda 30 starts now next to 100; 10 next if both
+fail. Time box: if no softplus value succeeds by 16:05 CEST, the attacker falls back to the 15:08 fixed-sd
+gap^2 loss (bracketed upward from 1000), and the post says the published-style loss never pushed the
+target's AUROC below 0.6 within 2000 steps at any lambda tried. Hugo #1734: at lambda 300-1000 the retain term
+binds (no 10-step win), so the selected attacker is in the behaviour-preserving regime.

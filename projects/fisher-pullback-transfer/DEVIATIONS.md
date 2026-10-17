@@ -49,3 +49,16 @@ literature is a stack of probes for the SAME concept (Bailey 2412.09565 ensemble
   has the target-parallel degeneracy above. The two sets are never pooled into one R^2, the figure legend
   shows them as separate sets, and a secondary pass is not evidence that the original pre-registered
   prediction held.
+
+## 2026-10-17 15:13 CEST — attacker loss denominator fixed to the clean sd (before the pilot and any target run)
+
+PREREG.md "Attacker" froze loss = (batch d'_w)^2 (class-mean gap of s_w over the BATCH pooled sd). A 20-step
+code smoke test (pilot probe yahoo:Entertainment & Music, lambda_KL 100; not the pilot, not a target run;
+Bruno #1698) showed this loss is won by inflating the spread, not by closing the gap: test-set w-score sd
+2.08/1.83 (pos/neg) -> 12.00/9.05, class-mean gap 3.17 -> 4.57 (delta_w = +1.39), AUROC 0.874 -> 0.608.
+The predictor is calibrated by delta_w, so with this loss delta_w has the wrong sign and every panel would
+predict that the other probes get better: a test of the loss design, not of the geometry.
+New loss (Felix decision): `((mean s_w | pos) - (mean s_w | neg))^2 / sd_clean^2` on the target's train
+batch, `sd_clean` = clean pooled within-class sd of s_w on the target's train set, fixed per target; plus the
+same lambda_KL retain term. Everything else in "Attacker" is unchanged (pilot rule, stop rule, cap, seeds).
+The smoke-test numbers are kept in the receipts.

@@ -1,0 +1,7 @@
+['Plain cosine', 'Whitened', 'Fisher pull-back'] [-0.1, 0, 0.1, 0.5]
+plain    primary    n=245  max|x-mine|=1.0e-05 max|y-mine|=4.7e-05  R2 from rows 0.0985 vs panel 0.0985
+plain    secondary  n= 24  max|x-mine|=1.7e-02 max|y-mine|=5.6e-05  R2 from rows 0.4364 vs panel 0.4364
+whitened primary    n=245  max|x-mine|=1.5e-05 max|y-mine|=4.7e-05  R2 from rows -0.9001 vs panel -0.9001
+whitened secondary  n= 24  max|x-mine|=4.0e-02 max|y-mine|=5.6e-05  R2 from rows 0.0750 vs panel 0.0750
+fisher   primary    n=245  max|x-mine|=5.0e-06 max|y-mine|=4.7e-05  R2 from rows 0.0589 vs panel 0.0589
+fisher   secondary  n= 24  max|x-mine|=2.0e-02 max|y-mine|=5.6e-05  R2 from rows 0.4492 vs panel 0.4492

@@ -66,6 +66,25 @@ structure"). These are the sentence-level parts of that structure:
   incentives teach a model to protect itself? Today, barely--but it is one cheap fine-tune away".
 - **Close:** one or two sentences on why it matters. Then stop.
 
+## 2b. Context line (front matter)
+
+When a post was prompted by something outside the post itself (Esben's message with a link, a tweet thread, an
+essay, a public discussion, or an earlier post it follows up), its front matter says so:
+
+```yaml
+context:
+  label: "Part of"        # or "Prompted by", or "Follow-up to"
+  text: "Jacob Hilton and Nick Cammarata's discussion on the difficulty of interpretability"
+  links:
+    - {text: "Hilton on X", url: "https://..."}
+```
+
+- `text` is one plain phrase: who and what. No claim and no summary of the source.
+- `links` are the real sources. Open each one before the PR.
+- The layout shows it as one muted line under the title (and on /lab for Lab posts).
+- A post that starts from a paper (the oracle scout's picks) does not need it. This applies to Lab posts and to
+  ad-hoc blog swarms (`swarm --preset blog`) alike.
+
 ## 3. What he cuts: before and after
 
 1. Impersonal lede → his own day.

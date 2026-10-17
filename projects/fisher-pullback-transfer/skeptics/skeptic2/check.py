@@ -152,7 +152,8 @@ def gsd(s, y):
 
 def run_tables(j, Ps):
     """Own scoring from attacked activations. Returns primary rows, secondary rows, run summary."""
-    z = np.load(j["_npz"])
+    acts_f = j["_npz"][:-4] + "__acts.npz"   # build split attacked activations into a side file at 16:13 CEST
+    z = np.load(acts_f if os.path.exists(acts_f) else j["_npz"])
     wn = j["target"]; wsrc, wlab = wn.split(":", 1)
     w = W[name2i[wn]]
     Xw, Lw = test_idx(wsrc); yw = (Lw == wlab).astype(int)

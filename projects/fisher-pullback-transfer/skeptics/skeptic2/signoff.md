@@ -84,12 +84,18 @@ Bootstrap CI for R2_F is [-4.7, 0.68]: three targets have only 1-2 probes, so th
 2. The status is decided by 14 runs, not 15 (n stated).
 3. This skeptic ran on opus after 15:10, the same family as Vera; the cross-family check rests on Nadia.
 
-## Exploratory: measured edit direction (not the verdict)
+## Exploratory: measured edit direction (not the verdict; corrected 16:20 after Iris #1758 / Tove #1759)
 
-Cosine of the mean edit on the target's test texts with -P w (lambda-30 runs): F 0.61-0.83, I 0.52-0.75,
-Sigma 0.31-0.64, all-ones |cos| < 0.02. The attacker's mean edit IS closest to F^-1 w on all 14 runs, yet the
-F-based transfer predictor does not beat plain. The mismatch is in the size and nonlinearity of the move (spread
-inflation, overshoot), not only its mean direction. Not used for the verdict.
+Two edit vectors on the target's test texts, lambda-30 runs, 14 runs:
+- Mean edit over all texts (mostly the constant shift `a`, which AUROC ignores): cos with -F^-1 w 0.61-0.83,
+  -w 0.52-0.75, -Sigma w 0.31-0.64. My first post (#1754 c) used this vector; it is the wrong one for transfer.
+- Class-differential edit (mean edit on positives minus negatives; this is the part that closes the gap):
+  mean |cos| with w 0.49, Sigma w 0.43, F^-1 w 0.50, Kw (first SGD step through blocks 0-2) 0.75,
+  Kadam (first Adam step) 0.80 (`Kw__*.npy`, `Kadam__*.npy` from the build, cosines computed by me).
+  So the gap-closing move follows the optimizer's first step, not the Fisher cheapest move; F^-1 w is no closer than
+  w itself. Exceptions: sst2 seed 1 (Kadam 0.29) and yahoo seed 0 (Kadam -0.21).
+This supports the prereg's "if not" branch: the attacker does not take the second-order cheapest path; its edit is
+set by the optimizer's first steps through the trainable blocks.
 
 ## Derivation (`derive_check.py`, `derive_check.out`)
 

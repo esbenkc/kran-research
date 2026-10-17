@@ -101,3 +101,9 @@ stopping dominates). The pilot is re-run with the loss chosen by the 15:09 gate 
   lambda_KL = 0 (5 extra runs). Report retain KL at stop for it, and KL(chosen lambda) / KL(lambda = 0) next
   to every R^2. A ratio near 1 means the retain loss did nothing, and the post says so (PREREG "if not").
   The three predictors are also scored on these lambda = 0 runs as an exploratory row.
+- (15:14, Hugo #1719) F_common from 2000 windows has split-half correlation 0.88 only. Decision before any
+  target run: the primary F is re-estimated from 8000 disjoint pile-10k odd-doc windows (2 sampled label
+  draws per window), same estimator and damping rule; it runs as the 2nd heavy job next to the pilot and
+  is frozen (hash in data/fisher/fisher_info.json) before the first target run finishes. The 2000-window F
+  is kept as a sensitivity row. If 8000 windows do not exist or the job exceeds 15 min, use the largest
+  count reached and say so.

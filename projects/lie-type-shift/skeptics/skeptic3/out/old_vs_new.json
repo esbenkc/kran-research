@@ -1,0 +1,272 @@
+{
+ "labels_gpt-4.1-mini.jsonl": {
+  "lam0_r0": {
+   "old_dec": 0.82,
+   "new_dec": 0.9,
+   "old_HONEST_relabelled": {
+    "HONEST": 40,
+    "MISLEADING_TRUE": 28,
+    "OMISSION": 4
+   }
+  },
+  "lam0_r2": {
+   "old_dec": 0.792,
+   "new_dec": 0.91,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 46,
+    "HONEST": 33,
+    "OMISSION": 3
+   }
+  },
+  "lam0_r4": {
+   "old_dec": 0.877,
+   "new_dec": 0.958,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 30,
+    "HONEST": 14,
+    "OMISSION": 2
+   }
+  },
+  "lam0_r6": {
+   "old_dec": 0.88,
+   "new_dec": 0.93,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 18,
+    "HONEST": 24,
+    "OMISSION": 5
+   }
+  },
+  "lam0_r8": {
+   "old_dec": 0.917,
+   "new_dec": 0.963,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 15,
+    "FALSIFICATION": 1,
+    "HONEST": 12,
+    "OMISSION": 2
+   }
+  },
+  "lam0_drop_r0_to_r8": {
+   "old_judge": -0.098,
+   "old_ci": [
+    -0.152,
+    -0.042
+   ],
+   "new_rubric": -0.062,
+   "new_ci": [
+    -0.108,
+    -0.02
+   ],
+   "old_minus_new": -0.035,
+   "old_minus_new_ci": [
+    -0.075,
+    0.005
+   ]
+  },
+  "lam1_r0": {
+   "old_dec": 0.82,
+   "new_dec": 0.9,
+   "old_HONEST_relabelled": {
+    "HONEST": 40,
+    "MISLEADING_TRUE": 28,
+    "OMISSION": 4
+   }
+  },
+  "lam1_r2": {
+   "old_dec": 0.73,
+   "new_dec": 0.868,
+   "old_HONEST_relabelled": {
+    "HONEST": 48,
+    "MISLEADING_TRUE": 56,
+    "OMISSION": 4
+   }
+  },
+  "lam1_r4": {
+   "old_dec": 0.598,
+   "new_dec": 0.777,
+   "old_HONEST_relabelled": {
+    "HONEST": 80,
+    "MISLEADING_TRUE": 76,
+    "OMISSION": 2,
+    "FALSIFICATION": 1
+   }
+  },
+  "lam1_r6": {
+   "old_dec": 0.57,
+   "new_dec": 0.755,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 76,
+    "FALSIFICATION": 1,
+    "HONEST": 92,
+    "OMISSION": 2
+   }
+  },
+  "lam1_r8": {
+   "old_dec": 0.562,
+   "new_dec": 0.802,
+   "old_HONEST_relabelled": {
+    "HONEST": 75,
+    "MISLEADING_TRUE": 97,
+    "OMISSION": 3
+   }
+  },
+  "lam1_drop_r0_to_r8": {
+   "old_judge": 0.257,
+   "old_ci": [
+    0.19,
+    0.323
+   ],
+   "new_rubric": 0.098,
+   "new_ci": [
+    0.045,
+    0.155
+   ],
+   "old_minus_new": 0.16,
+   "old_minus_new_ci": [
+    0.107,
+    0.218
+   ]
+  }
+ },
+ "labels_claude-sonnet-4-6.jsonl": {
+  "lam0_r0": {
+   "old_dec": 0.82,
+   "new_dec": 0.95,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 40,
+    "OTHER": 2,
+    "FALSIFICATION": 16,
+    "HONEST": 10,
+    "OMISSION": 4
+   }
+  },
+  "lam0_r2": {
+   "old_dec": 0.792,
+   "new_dec": 0.965,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 60,
+    "FALSIFICATION": 6,
+    "HONEST": 13,
+    "OMISSION": 3
+   }
+  },
+  "lam0_r4": {
+   "old_dec": 0.877,
+   "new_dec": 0.968,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 35,
+    "HONEST": 8,
+    "FALSIFICATION": 1,
+    "OTHER": 1,
+    "OMISSION": 1
+   }
+  },
+  "lam0_r6": {
+   "old_dec": 0.88,
+   "new_dec": 0.978,
+   "old_HONEST_relabelled": {
+    "FALSIFICATION": 4,
+    "MISLEADING_TRUE": 31,
+    "HONEST": 8,
+    "OMISSION": 4
+   }
+  },
+  "lam0_r8": {
+   "old_dec": 0.917,
+   "new_dec": 0.988,
+   "old_HONEST_relabelled": {
+    "FALSIFICATION": 6,
+    "MISLEADING_TRUE": 18,
+    "HONEST": 4,
+    "OMISSION": 2
+   }
+  },
+  "lam0_drop_r0_to_r8": {
+   "old_judge": -0.098,
+   "old_ci": [
+    -0.152,
+    -0.042
+   ],
+   "new_rubric": -0.038,
+   "new_ci": [
+    -0.07,
+    -0.01
+   ],
+   "old_minus_new": -0.06,
+   "old_minus_new_ci": [
+    -0.12,
+    0.0
+   ]
+  },
+  "lam1_r0": {
+   "old_dec": 0.82,
+   "new_dec": 0.95,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 40,
+    "OTHER": 2,
+    "FALSIFICATION": 16,
+    "HONEST": 10,
+    "OMISSION": 4
+   }
+  },
+  "lam1_r2": {
+   "old_dec": 0.73,
+   "new_dec": 0.897,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 70,
+    "OTHER": 1,
+    "HONEST": 27,
+    "FALSIFICATION": 5,
+    "OMISSION": 5
+   }
+  },
+  "lam1_r4": {
+   "old_dec": 0.598,
+   "new_dec": 0.805,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 86,
+    "HONEST": 60,
+    "FALSIFICATION": 10,
+    "OMISSION": 2,
+    "OTHER": 1
+   }
+  },
+  "lam1_r6": {
+   "old_dec": 0.57,
+   "new_dec": 0.78,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 84,
+    "FALSIFICATION": 11,
+    "HONEST": 75,
+    "OMISSION": 1
+   }
+  },
+  "lam1_r8": {
+   "old_dec": 0.562,
+   "new_dec": 0.892,
+   "old_HONEST_relabelled": {
+    "MISLEADING_TRUE": 118,
+    "FALSIFICATION": 20,
+    "HONEST": 34,
+    "OMISSION": 3
+   }
+  },
+  "lam1_drop_r0_to_r8": {
+   "old_judge": 0.257,
+   "old_ci": [
+    0.19,
+    0.33
+   ],
+   "new_rubric": 0.057,
+   "new_ci": [
+    0.015,
+    0.102
+   ],
+   "old_minus_new": 0.2,
+   "old_minus_new_ci": [
+    0.128,
+    0.278
+   ]
+  }
+ }
+}

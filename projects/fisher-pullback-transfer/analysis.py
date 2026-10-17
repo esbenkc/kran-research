@@ -302,6 +302,7 @@ def main():
                    "mean_edit_all_cos_ones": float(a @ ones / np.linalg.norm(a))}
             for k, v in dirs.items():
                 row[f"cos_classedit_{k}"] = float(d @ v / np.linalg.norm(d) / np.linalg.norm(v))
+                row[f"cos_alledit_{k}"] = float(a @ v / np.linalg.norm(a) / np.linalg.norm(v))
             for tag in ("Kw", "Kadam"):
                 kw = DATA / "runs" / f"{tag}__{stem}.npy"
                 if kw.exists():

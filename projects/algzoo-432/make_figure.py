@@ -67,7 +67,8 @@ for name, n, digits in [("ladder: 374 numbers @4", 374, 4), ("ladder: 374 number
 r = row("T17 original 432 weights")
 points.append(pt("pruned", r["literals"], r["holdout"], "holdout", "all 400 free weights, 3 digits",
                  "All of the model's weights, with the 32 numbers fixed by rescaling symmetries removed, "
-                 "rounded to 3 significant digits. Nothing retrained."))
+                 "rounded to 3 significant digits. Nothing retrained. This is the best of 10 equivalent forms "
+                 "(adding one vector to every output row); the others give 98.4% to 98.9%."))
 
 r = row("T20 original weights, per-entry digits")
 points.append(pt("pruned", r["literals"], r["holdout"], "holdout", "374 weights, 0-4 digits each",
@@ -107,6 +108,10 @@ points.append(pt("fitted", 10, g[0], "dev 32", "2nd-largest of rescaled inputs",
                  "2nd-largest after giving each position its own fitted gain (10 constants)."))
 points.append(pt("fitted", 100, g[1], "dev 32", "2nd-largest of mixed inputs",
                  "2nd-largest of a fitted linear mix of all 10 inputs (100 constants)."))
+ns = json.loads((HERE / "skeptics" / "nadia" / "nadia_scorer_H6.json").read_text())
+points.append(pt("fitted", ns["params"], ns["agree_s432060"], "dev 432060", "shared scorer per position",
+                 f"One small fitted network scores each position from its value, its rank among the top three "
+                 f"and where the maximum sits; the highest score wins ({ns['params']} constants)."))
 lin = nums(row("T16 per-config (pM")["dev"])
 points.append(pt("fitted", 9000, lin[0], "dev 82", "linear tie-breaker per position pattern",
                  "For each pattern of where the top three values sit, a fitted linear rule "
@@ -123,9 +128,9 @@ points.append(pt("fitted", 87100, pl[1], "dev 42", "linear model per rank patter
                  "For each pattern of where the top three values sit, a fitted linear map from "
                  "inputs to outputs (87,100 constants)."))
 cell = row("cell ceiling")
-points.append(pt("fitted", cell["literals"], cell["dev"], "dev", "best lookup table",
-                 "Best possible answer per cell of (positions of the top three, binned gaps, "
-                 "signs): 398,000 cells, each set to the model's majority choice."))
+points.append(pt("fitted", cell["literals"], cell["dev"], "dev", "lookup table",
+                 "Lookup table on (positions of the top three, binned gaps, signs): each of 398,000 cells "
+                 "set to the model's majority choice on training samples, scored on new inputs."))
 
 data = {
     "title": "No description under 200 numbers matches the model as well as the model matches itself",

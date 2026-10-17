@@ -58,9 +58,12 @@ numbers. It does not change the picture. (Short training; weak evidence on its o
 ## 3. How fair is the bar?
 
 1. **The bar is steep in the noise level.** Agreement of the model with a noisy copy (10 draws, seed 910):
-   0.03% 0.9956, 0.1% 0.9881, 0.2% 0.9712, **0.3% 0.9523**, 0.5% 0.9384, 1% 0.805.
-   The 4-number rule (0.955) matches the model about as well as a copy with 0.3% weight noise does.
-   So "pass/fail" depends on choosing 0.1% instead of 0.3%. The 0.1% level was fixed before C1 existed
+   0.03% 0.9956, 0.1% 0.9881, 0.2% 0.9712, 0.3% 0.9523, 0.5% 0.9384, 1% 0.805.
+   **Correction (23:41, after Nadia #2137):** 10 draws were too few at 0.3% (per-draw sd 0.013).
+   60 draws, seed 970 (2e5), noise rng 971 (`vera_noise60.json`): 0.2% 0.9745 (SE 0.0011),
+   **0.3% 0.9591 (SE 0.0016)**. Nadia's 80-draw value 0.9596-0.9606 agrees. So at 0.3% a noisy copy is
+   still ~0.4 pt above the 4-number rule (0.955); the rule's equivalent noise level is ~0.35-0.4%.
+   Pass/fail still depends on the 0.1% choice. The 0.1% level was fixed before C1 existed
    (PREREG.md amendment), so this is not post-hoc, but the post must say it.
 2. **The bar itself has error bars of about ±0.002.** Three independent 0.1% estimates: 0.98671
    (holdout), 0.98855 (seed 902), 0.98813 (seed 910). Draw-to-draw sd is 0.0025-0.0042, so the 20-draw
@@ -90,7 +93,7 @@ numbers. It does not change the picture. (Short training; weak evidence on its o
 - C3 "reaches the bar with 340 numbers (98.78%)": say it ties the bar. The bar's own estimate varies by
   ±0.002 across noise draws and input seeds.
 - C4 Limits section must state the noise-level dependence: at 0.3% weight noise the network agrees
-  with its noisy copy 95.2%, the level of the 4-number rule.
+  with its noisy copy about 96% (corrected from 95.2%, see 3.1), half a point above the 4-number rule.
 - Minor: "every network-shaped description misses less than 0.3%" on robust inputs only holds for
   descriptions at the bar (200-literal net: 0.853; 290: 0.981). "Descriptions left of the 200 line stay
   near the plain rule": the 200-number nets sit at 0.17-0.83, far below it. TLDR "every description that

@@ -72,7 +72,7 @@
    "agree": 0.988584,
    "split": "holdout",
    "label": "all 400 free weights, 3 digits",
-   "detail": "All of the model's weights, with the 32 numbers fixed by rescaling symmetries removed, rounded to 3 significant digits. Nothing retrained.",
+   "detail": "All of the model's weights, with the 32 numbers fixed by rescaling symmetries removed, rounded to 3 significant digits. Nothing retrained. This is the best of 10 equivalent forms (adding one vector to every output row); the others give 98.4% to 98.9%.",
    "show": null
   },
   {
@@ -227,6 +227,16 @@
   },
   {
    "family": "fitted",
+   "x": 175,
+   "dis": 4.3051,
+   "agree": 0.956949,
+   "split": "dev 432060",
+   "label": "shared scorer per position",
+   "detail": "One small fitted network scores each position from its value, its rank among the top three and where the maximum sits; the highest score wins (175 constants).",
+   "show": null
+  },
+  {
+   "family": "fitted",
    "x": 9000,
    "dis": 3.47,
    "agree": 0.9653,
@@ -271,8 +281,8 @@
    "dis": 3.49,
    "agree": 0.9651,
    "split": "dev",
-   "label": "best lookup table",
-   "detail": "Best possible answer per cell of (positions of the top three, binned gaps, signs): 398,000 cells, each set to the model's majority choice.",
+   "label": "lookup table",
+   "detail": "Lookup table on (positions of the top three, binned gaps, signs): each of 398,000 cells set to the model's majority choice on training samples, scored on new inputs.",
    "show": null
   }
  ]

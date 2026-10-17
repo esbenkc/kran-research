@@ -1,0 +1,12 @@
+emotion:anger      meas 0.0657  pred F -0.0009 I -0.0009 S -0.0005  cos_P {'plain': -0.182, 'whitened': -0.03, 'fisher': -0.175}
+emotion:joy        meas 0.1505  pred F 0.0015 I 0.0015 S 0.0025  cos_P {'plain': -0.14, 'whitened': -0.189, 'fisher': -0.144}
+emotion:sadness    meas 0.0651  pred F 0.0003 I 0.0004 S 0.0000  cos_P {'plain': -0.202, 'whitened': -0.01, 'fisher': -0.21}
+emotion:surprise   meas 0.0787  pred F -0.0007 I -0.0006 S -0.0008  cos_P {'plain': -0.117, 'whitened': -0.375, 'fisher': -0.144}
+top-7 share of SST: 0.914
+   emotion:fear -> emotion:joy 0.1505
+   emotion:fear -> emotion:surprise 0.0787
+   emotion:fear -> emotion:anger 0.0657
+   emotion:fear -> emotion:sadness 0.0651
+   sst2:positive -> emotion:sadness 0.0633
+   sst2:positive -> emotion:joy 0.0421
+   dbpedia:NaturalPlace -> yahoo:Science & Mathematics 0.0272

@@ -148,7 +148,7 @@ def main() -> None:
         verdicts = list(ex.map(lambda t: judge(t[0][f"block_{t[1]}"], "judge"), todo))
     for (p, lab), v in zip(todo, verdicts):
         p[lab] = v["verdict"]
-        p[f"judge_{lab}"] = v
+        p["judge" if lab == "label" else "judge_sens"] = v
 
     # Judge nulls.
     rng = np.random.default_rng(1)
@@ -172,7 +172,7 @@ def main() -> None:
         return {i: min(ls, key=ORDER.index) for i, ls in by.items()}
 
     nl, nl_s = neuron_labels("label"), neuron_labels("label_sens")
-    votes = [p["judge_label"]["votes"] for p in poles if p.get("judge_label")]
+    votes = [p["judge"]["votes"] for p in poles if p.get("judge")]
     same_tok = [f"{p['id']}|{p['pole']}" for p in poles if p["label"] == "UNRELATED"
                 and len({h["fire_top_token"].strip().lower() for h in p["hyps"] if h["pass"]})
                 < sum(h["pass"] for h in p["hyps"])]

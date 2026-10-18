@@ -2,14 +2,18 @@
 
     uv run --with mlx-lm python projects/polysemantic-100/ablate.py   -> data/ablation.json
 
-Rule (fixed before any ablation was run):
+Rule (10d9c8d, baseline amended by PREREGISTRATION.md rule 3 before any ablation ran):
   For each passed hypothesis of an UNRELATED pole, take its 4 fire texts. In each text find
-  the peak token p of the neuron's pole. Effect = mean KL(clean || ablated) of the next-token
-  distribution over positions p .. p+8. Ablation = set a_j to 0 at every position.
-  Baseline = the same effect for 20 random other neurons of the same layer (seed 0), each
-  zeroed alone on the same texts. A feature's ablation PASSES if the target effect is larger
-  than all 20 baselines (one-sided p < 0.05). We also report the effect on the 4 control texts.
-  "Ablation hurts both" = at least 2 passed hypotheses of the pole pass.
+  the peak token p of the neuron's pole. Effect on one text = mean KL(clean || ablated) of the
+  next-token distribution over positions p .. p+8. Ablation = set a_j to 0 at every position.
+  A job's effect = the mean over its 4 fire texts.
+  MATCHED baseline (primary): for each fire text, the 20 other neurons of the same layer with the
+  largest |a| at that text's peak token. Baseline i = mean over the 4 texts of the effect of
+  zeroing that text's rank-i neuron alone. A job's ablation PASSES if the target's effect is
+  larger than all 20 baselines (one-sided p < 0.05).
+  RANDOM baseline (second, weaker): 20 random other neurons of the same layer (seed 0).
+  The target's effect on the 4 control texts is reported too.
+  "Ablation hurts both" = at least 2 passed jobs of the pole pass on the matched baseline.
 """
 from __future__ import annotations
 
@@ -23,25 +27,24 @@ from common import CFG, DATA, load_model, load_neurons, wait_for_memory
 N_BASE, SPAN = 20, 8
 
 
-def logprobs(model, tok, texts):
-    ids = [tok.encode(t)[:256] for t in texts]
-    L = max(len(x) for x in ids)
-    x = np.zeros((len(ids), L), dtype=np.int32)
-    for r, s in enumerate(ids):
-        x[r, : len(s)] = s
+def forward(model, x, tap, zero_rows=None, full=False):
+    tap.zero_rows = None if zero_rows is None else mx.array(np.asarray(zero_rows, dtype=np.int32))
+    tap.record_full = full
     lp = model(mx.array(x))
     lp = lp - mx.logsumexp(lp, axis=-1, keepdims=True)
     mx.eval(lp)
-    return lp, [len(s) for s in ids]
+    f = np.array(tap.full.astype(mx.float32)) if full else None
+    tap.zero_rows, tap.record_full, tap.full = None, False, None
+    return lp, f
 
 
-def kl_span(lp0, lp1, lens, peaks):
+def kl_rows(lp0, lp1, lens, peaks):
     out = []
     for r, (n, p) in enumerate(zip(lens, peaks)):
         hi = min(n, p + SPAN + 1)
         a, b = lp0[r, p:hi], lp1[r, p:hi]
         out.append(float(mx.mean(mx.sum(mx.exp(a) * (a - b), axis=-1)).item()))
-    return float(np.mean(out))
+    return np.array(out)
 
 
 def main() -> None:
@@ -49,52 +52,60 @@ def main() -> None:
     texts = {it["key"]: it["text"] for it in json.loads((DATA / "probe_texts.json").read_text())}
     neurons = load_neurons()
     targets = [p for p in labels["poles"] if p["label"] == "UNRELATED"]
-    print(len(targets), "UNRELATED poles")
+    print(len(targets), "UNRELATED poles", flush=True)
 
     model, tok, taps, _ = load_model(neurons)
     rng = np.random.default_rng(0)
     results = []
     for p in targets:
-        wait_for_memory()
+        wait_for_memory(20)
         n = next(x for x in neurons if x["id"] == p["id"])
         L, j = n["layer"], n["neuron"]
         tap = taps[L]
-        base = rng.choice([i for i in range(CFG["d_mlp"]) if i != j], N_BASE, replace=False)
+        sgn = 1 if p["pole"] == "pos" else -1
+        rand = rng.choice([i for i in range(CFG["d_mlp"]) if i != j], N_BASE, replace=False)
         feats = []
         for h_i, h in enumerate(p["hyps"]):
             if not h["pass"]:
                 continue
             row = {"name": h["name"], "kind": h["kind"]}
             for kind in ("fire", "control"):
-                keys = [f"{p['id']}|{p['pole']}|{h_i}|{kind}|{i}" for i in range(4)]
-                tx = [texts[key] for key in keys]
+                tx = [texts[f"{p['id']}|{p['pole']}|{h_i}|{kind}|{i}"] for i in range(4)]
                 ids = [tok.encode(t)[:256] for t in tx]
-                # peak token of the pole in each text (recomputed on the same tokenization)
-                lp0, lens = logprobs(model, tok, tx)
-                tap.record = True
-                model(mx.array(np.array([s + [0] * (max(lens) - len(s)) for s in ids], dtype=np.int32)))
-                a = np.array(tap.out.astype(mx.float32))[..., tap.idx_list.index(j)]
-                tap.record, tap.out = False, None
-                sgn = 1 if p["pole"] == "pos" else -1
-                peaks = [int(np.argmax(sgn * a[r_, 1:lens[r_]])) + 1 for r_ in range(len(tx))]
-
-                def effect(col_):
-                    tap.ablate = (mx.array([col_]), mx.array([0.0]))
-                    lp1, _ = logprobs(model, tok, tx)
-                    tap.ablate = None
-                    return kl_span(lp0, lp1, lens, peaks)
-
-                tgt = effect(j)
-                row[kind] = {"target_kl": round(tgt, 5)}
-                if kind == "fire":
-                    bl = [effect(int(b)) for b in base]
-                    row[kind].update({"base_max": round(max(bl), 5), "base_median": round(float(np.median(bl)), 5),
-                                      "pass": bool(tgt > max(bl))})
+                lens = [len(s) for s in ids]
+                x = np.zeros((len(ids), max(lens)), dtype=np.int32)
+                for r, s in enumerate(ids):
+                    x[r, : len(s)] = s
+                lp0, full = forward(model, x, tap, full=True)
+                peaks = [int(np.argmax(sgn * full[r, 1 : lens[r], j])) + 1 for r in range(len(ids))]
+                tgt = kl_rows(lp0, forward(model, x, tap, [j] * len(ids))[0], lens, peaks)
+                row[kind] = {"target_kl": round(float(tgt.mean()), 5), "per_text": np.round(tgt, 5).tolist(),
+                             "peak_tokens": [tok.decode([int(x[r, q])]) for r, q in enumerate(peaks)]}
+                if kind == "control":
+                    continue
+                # matched: rank-i neuron by |a| at each text's own peak token
+                at_peak = np.abs(np.stack([full[r, peaks[r]] for r in range(len(ids))]))  # [4, d_mlp]
+                at_peak[:, j] = -1
+                ranked = np.argsort(-at_peak, axis=1)[:, :N_BASE]  # [4, 20]
+                matched = [float(kl_rows(lp0, forward(model, x, tap, ranked[:, i])[0], lens, peaks).mean())
+                           for i in range(N_BASE)]
+                randb = [float(kl_rows(lp0, forward(model, x, tap, [int(b)] * len(ids))[0], lens, peaks).mean())
+                         for b in rand]
+                row[kind].update({
+                    "matched_max": round(max(matched), 5), "matched_median": round(float(np.median(matched)), 5),
+                    "random_max": round(max(randb), 5), "random_median": round(float(np.median(randb)), 5),
+                    "target_abs_at_peak": round(float(np.mean([abs(full[r, peaks[r], j]) for r in range(len(ids))])), 4),
+                    "matched_abs_at_peak_median": round(float(np.median(np.take_along_axis(np.abs(np.stack(
+                        [full[r, peaks[r]] for r in range(len(ids))])), ranked, 1))), 4),
+                    "pass": bool(tgt.mean() > max(matched)),
+                    "pass_random": bool(tgt.mean() > max(randb)),
+                })
             feats.append(row)
         npass = sum(f["fire"]["pass"] for f in feats)
         results.append({"id": p["id"], "pole": p["pole"], "features": feats, "n_pass": npass,
                         "hurts_both": npass >= 2})
-        print(p["id"], p["pole"], [(f["name"], f["fire"]["target_kl"], f["fire"]["base_max"]) for f in feats], flush=True)
+        print(p["id"], p["pole"], [(f["name"], f["fire"]["target_kl"], f["fire"]["matched_max"],
+                                    f["fire"]["random_max"]) for f in feats], flush=True)
     (DATA / "ablation.json").write_text(json.dumps(results, ensure_ascii=False, indent=1))
     print(sum(r["hurts_both"] for r in results), "/", len(results), "UNRELATED poles: ablation hurts both")
 

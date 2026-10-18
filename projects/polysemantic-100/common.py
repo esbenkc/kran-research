@@ -37,7 +37,7 @@ def wait_for_memory(min_level: int = 30, log=print) -> None:
 
 
 class Tap(nn.Module):
-    """Wraps a down_proj Linear. Records chosen input columns; optionally overwrites them."""
+    """Wraps a down_proj Linear. Records chosen input columns; optionally zeroes one column per row."""
 
     def __init__(self, inner, idx: list[int]):
         super().__init__()
@@ -45,17 +45,19 @@ class Tap(nn.Module):
         self.idx_list = list(idx)
         self.idx = mx.array(np.array(idx, dtype=np.int32))
         self.record = False
+        self.record_full = False  # keep the whole [B, T, d_mlp] input (for activation-matched baselines)
         self.out = None
-        self.ablate = None  # None or (mx int32 cols, mx float values): set a[..., cols] = values
+        self.full = None
+        self.zero_rows = None  # None or mx int32 [B]: set a[b, :, zero_rows[b]] = 0 (-1 = leave row b alone)
 
     def __call__(self, x):
         if self.record:
             self.out = x[..., self.idx]
-        if self.ablate is not None:
-            cols, vals = self.ablate
-            mask = mx.zeros((x.shape[-1],), dtype=x.dtype).at[cols].add(1)
-            fill = mx.zeros((x.shape[-1],), dtype=x.dtype).at[cols].add(vals.astype(x.dtype))
-            x = x * (1 - mask) + fill
+        if self.record_full:
+            self.full = x
+        if self.zero_rows is not None:
+            hit = mx.arange(x.shape[-1])[None, None, :] == self.zero_rows[:, None, None]
+            x = mx.where(hit, mx.zeros_like(x), x)
         return self.inner(x)
 
 

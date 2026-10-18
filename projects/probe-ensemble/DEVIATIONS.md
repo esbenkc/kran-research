@@ -3,7 +3,7 @@
 Changes to the design in PREREG.md. The decision rules in PREREG.md sections 4, 5 and 7 do not change.
 Times are commit times (git log), Copenhagen time.
 
-## D1 — judge model swap, all arms rerun fresh (decided 03:09, before any training step)
+## D1 — judge model swap, all arms rerun fresh (decided 03:08, before any training step)
 
 What happened: the OpenAI account ran out of credit (HTTP 429 `credit_balance_exhausted`, Bruno #2366,
 03:08). gpt-4.1-mini was both the favourability reward and the deception judge. The ensemble run had finished

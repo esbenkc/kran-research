@@ -1,16 +1,17 @@
-// Re-thresholding after a probe-evasion fine-tune: how much of the lost detection comes back?
-// x (log scale) = push p: how far the fine-tune moved the mean probe score of false statements down, in units
-//     of the clean within-class standard deviation.
-// y = share of the lost detection rate (TPR at 1% FPR) that a threshold re-fit on 200 clean negatives gets back.
-// Big dots: final step of each fine-tune run (the pre-registered read-out), colour = retain weight lambda.
-// Error bars: 95% range of that share over 200 redraws of the 200 clean negatives (from 796 held-out ones).
+// Does a new threshold win back the catch rate that a probe-evasion fine-tune took away?
+// Catch rate = share of false statements the probe flags, at a threshold with 1% false alarms on true statements.
+// x (log scale) = push on false statements: how far the fine-tune moved their mean probe score down, in widths
+//     of the clean score curve (the clean within-class standard deviation).
+// y = share of the lost catch rate that a new threshold, set on 200 clean true statements, wins back.
+// Big dots: final step of each fine-tune run (the pre-registered read-out), colour = output-loss weight lambda.
+// Error bars: 95% range of that share over 200 redraws of the 200 threshold statements (from 796 held-out ones).
 // Small dots: earlier checks of the same runs (every 10 steps, >= 20 points lost).
-// Dashed lines: the two-Gaussian prediction E6 at the measured separation D and common-shift ratio c, one for
-// the runs with a retain term and one for the runs without; shaded: its 95% range with 200 negatives.
-// Dotted rule: the pre-registered bar, half recovered.
+// Dashed lines: the two-bell-curve prediction E6 at the measured separation D and common share of the push c,
+// one for the runs with an output loss and one for the runs without; shaded: its 95% range with 200 statements.
+// Dotted rule: the pre-registered bar, half won back.
 // data = { grid, headline_lambda, D, z, headline: {share, ci95, per_seed, auroc_drop, auroc_clean, auroc_att},
 //          status, rows: [{lam, seed, step, p, y, lost, auroc, e6, c}], finals: [{..., lo, hi}],
-//          curves: [{group: "retain"|"noretain", c, pts: [{p, y, lo, hi}]}] }
+//          curves: [{group: "with_output_loss"|"without_output_loss", c, pts: [{p, y, lo, hi}]}] }
 import { C, FONT, halo, plotStyle } from "../theme.js";
 
 const fmtLam = (l) => (l === 0 ? "0 (no output loss)" : l >= 1e5 ? "10⁵" : l >= 3e4 ? "3.16×10⁴" : "10⁴");
@@ -19,7 +20,7 @@ const pct = (v) => `${Math.round(v * 100)}%`;
 export function render(data, Plot) {
   const order = [...data.grid].sort((a, b) => a - b);
   const LAMC = (l) => [C.muted, C.secondary, C.orange, C.primary][order.indexOf(l)];
-  const CURVEC = (g) => (g === "retain" ? C.ink : C.muted);
+  const CURVEC = (g) => (g === "with_output_loss" ? C.ink : C.muted);
   const W = 640;
   const root = document.createElement("div");
   root.style.fontFamily = FONT;
@@ -34,7 +35,7 @@ export function render(data, Plot) {
   sub.textContent = h
     ? `Headline (λ = ${fmtLam(data.headline_lambda)}, 3 seeds pooled): ${pct(h.share)} won back ` +
       `(95% interval ${pct(h.ci95[0])}–${pct(h.ci95[1])}), AUROC ${h.auroc_clean.toFixed(3)} → ${h.auroc_att.toFixed(3)}.` +
-      (data.noretain ? ` Without the output loss (λ = 0): ${pct(data.noretain.share)} won back, AUROC ${h.auroc_clean.toFixed(3)} → ${data.noretain.auroc_att.toFixed(2)}.` : "")
+      (data.no_output_loss ? ` Without the output loss (λ = 0): ${pct(data.no_output_loss.share)} won back, AUROC ${h.auroc_clean.toFixed(3)} → ${data.no_output_loss.auroc_att.toFixed(2)}.` : "")
     : "No output-loss weight met the pre-registered 50-point drop in all seeds.";
 
   const sw = (color, kind) =>
@@ -68,9 +69,9 @@ export function render(data, Plot) {
   const xdom = [Math.min(...xs) * 0.95, Math.max(...xs) * 1.02];
   const labels = data.curves.map((cv) => {
     const at = (target) => cv.pts.reduce((a, b) => (Math.abs(Math.log(b.p / target)) < Math.abs(Math.log(a.p / target)) ? b : a));
-    const p = cv.group === "retain" ? at(9) : at(30);  // lambda = 0 label sits by the low part of its own curve
-    return { ...p, group: cv.group, anchor: cv.group === "retain" ? "start" : "end",
-             text: `prediction, c = ${cv.c}${cv.group === "retain" ? " (λ > 0)" : " (λ = 0)"}` };
+    const p = cv.group === "with_output_loss" ? at(9) : at(30);  // lambda = 0 label sits by the low part of its own curve
+    return { ...p, group: cv.group, anchor: cv.group === "with_output_loss" ? "start" : "end",
+             text: `prediction, c = ${cv.c}${cv.group === "with_output_loss" ? " (λ > 0)" : " (λ = 0)"}` };
   });
   root.appendChild(Plot.plot({
     style: plotStyle({ fontSize: "13px" }), width: W, height: 420,

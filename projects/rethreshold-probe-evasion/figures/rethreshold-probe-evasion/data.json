@@ -24,7 +24,7 @@
     "auroc_clean": 0.9989274131795866,
     "auroc_att": 0.9987631938501268
   },
-  "noretain": {
+  "no_output_loss": {
     "share": 0.008158508158508158,
     "auroc_att": 0.5755155548548864
   },
@@ -2073,7 +2073,7 @@
   ],
   "curves": [
     {
-      "group": "retain",
+      "group": "with_output_loss",
       "c": 0.94,
       "pts": [
         {
@@ -2751,7 +2751,7 @@
       ]
     },
     {
-      "group": "noretain",
+      "group": "without_output_loss",
       "c": 0.88,
       "pts": [
         {

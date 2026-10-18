@@ -49,7 +49,11 @@ export function render(data, Plot) {
     [...data.grid].sort((a, b) => b - a).map((l) => item(sw(LAMC(l), "dot"), fmtLam(l))).join("") +
     item(sw(C.ink, "dash"), `two-bell-curve prediction (dashed; shaded = its range with 200 threshold statements)`) +
     item(sw(C.muted, "dot-line"), "pre-registered bar: half");
-  root.append(head, sub, legend);
+  const defs = document.createElement("div");
+  defs.style.cssText = "font-size:13px;margin:0 0 0.4rem;color:" + C.muted;
+  defs.textContent = "Catch rate = share of false statements a linear probe flags at 1% false alarms on true ones. " +
+    "An evasion fine-tune lowers it; a new threshold, set on 200 clean true statements of the attacked model, wins part of it back.";
+  root.append(head, sub, defs, legend);
 
   const tip = (d) =>
     `λ = ${fmtLam(d.lam)}, seed ${d.seed}, step ${d.step}\npush: ${d.p.toFixed(2)} widths\n` +

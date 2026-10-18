@@ -33,3 +33,14 @@ Change (Felix, Tove #2393, Iris #2384): one extra run, the ensemble penalty at l
 matched to probe A), seed 0 only. It runs after control s0 and refit.py, and is killed at 05:50 CEST if not at round
 8. It is exploratory: it never enters the title rule, the prereg outcome or the figure; the post may give it one
 sentence.
+
+## D3 — control arm (lambda=0) not run; ens_lam2_s0 not run (decided 04:59)
+
+What happened: a second swarm opened at ~04:40 and free memory fell to 24% (Bruno #2465). Vera's compute gate
+(#2468) held every new training job until that swarm's job ended or free memory reached 45%. ens_lam1_s1 slowed
+from ~25 to ~60 min and ends ~05:25, after the 05:20 last start for the control run.
+
+Change: the lambda=0 control (PREREG s.3, s.6) and the exploratory ens_lam2_s0 (D2) are not run. The title rule
+(s.5) and the prereg outcome (s.7) use only the single and ensemble arms, so neither changes. Lost: the
+control-adjusted cut (s.8 item 1) and the no-penalty drift reference for the held-out AUROC. The post uses the
+round-0 AUROC as the only reference and says so; the probe-goodhart control (other judge) is not mixed in.

@@ -50,7 +50,7 @@ Above 15: a small model packs more unrelated jobs into one neuron, or our probes
    headline) = the score.py code at c8e3723: ref = max(corpus pole max, the 8 texts of this
    hypothesis). score.py must use the primary rule for `labels.json`.
 2. **Split null.** The judge must see two descriptions written independently: for each passed
-   hypothesis with at least 4 covered snippets (at most 30), the explain prompt runs once on each
+   hypothesis with at least 6 covered snippets (at most 30), the explain prompt runs once on each
    half of the covered snippets, and the judge compares the two new descriptions. Bar: at least 80%
    RELATED. (The c8e3723 version showed the same description twice and could not fail.)
 3. **Ablation baseline.** For each fire text, the baseline neurons are the 20 other neurons of the

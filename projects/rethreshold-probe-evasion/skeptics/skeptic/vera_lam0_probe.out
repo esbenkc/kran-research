@@ -1,0 +1,9 @@
+lam 0      seed 0  fresh probe C=1.0   eval AUROC 0.9810  TPR@1% 0.059  FPR 0.0000   (frozen-probe AUROC 0.583)
+lam 0      seed 1  fresh probe C=1.0   eval AUROC 0.9795  TPR@1% 0.205  FPR 0.0017   (frozen-probe AUROC 0.573)
+lam 0      seed 2  fresh probe C=1.0   eval AUROC 0.9840  TPR@1% 0.117  FPR 0.0000   (frozen-probe AUROC 0.571)
+lam 100000 seed 0  fresh probe C=0.01  eval AUROC 0.9988  TPR@1% 0.938  FPR 0.0050   (frozen-probe AUROC 0.999)
+lam 100000 seed 1  fresh probe C=0.01  eval AUROC 0.9988  TPR@1% 0.956  FPR 0.0050   (frozen-probe AUROC 0.999)
+lam 100000 seed 2  fresh probe C=0.01  eval AUROC 0.9988  TPR@1% 0.955  FPR 0.0050   (frozen-probe AUROC 0.999)
+clean model: ranks (1 = highest of 796) of the refit-200 members among the top 10: [4, 5, 8]
+lam 10000 seed0 attacked: refit-200 members among top 10 of 796: [1, 2, 4]
+lam 100000 seed0 attacked: refit-200 members among top 10 of 796: [1, 2, 9]

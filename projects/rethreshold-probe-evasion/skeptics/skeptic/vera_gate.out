@@ -1,0 +1,7 @@
+cities 748 in >1 split: 0
+max |score - (Xw+b)| 0.0
+n refit_neg 200 eval 596/596
+t0 0.815082  TPR_eval 0.9597  FPR_eval 0.0050  AUROC_eval 0.99893
+t0 (5%, 10th) -0.8782 TPR 0.9950
+my probe C=0.01  cos(w,Bruno w)=1.0000  eval TPR@t0 0.9597 AUROC 0.99892
+my probe C=1.0   cos(w,Bruno w)=0.8629  eval TPR@t0 0.8758 AUROC 0.99708

@@ -107,7 +107,7 @@ def main():
                               "per_seed": per_seed})
 
     out = {
-        "title": "Training against eight lie detectors did not cut lying twice as much as training against one",
+        "title": "Training against eight lie detectors cut lying about as much as training against one",
         "y_label": "Share of held-out answers the judge calls deceptive",
         "flag_title": "Share of the same answers the probes flag",
         "arms": [{"key": k, "label": l, "role": r} for k, l, _, r in ARMS if k in judged],

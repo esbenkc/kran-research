@@ -13,7 +13,7 @@
 //          curves: [{group: "retain"|"noretain", c, pts: [{p, y, lo, hi}]}] }
 import { C, FONT, halo, plotStyle } from "../theme.js";
 
-const fmtLam = (l) => (l === 0 ? "0 (no retain term)" : l >= 1e5 ? "10⁵" : l >= 3e4 ? "3.16×10⁴" : "10⁴");
+const fmtLam = (l) => (l === 0 ? "0 (no output loss)" : l >= 1e5 ? "10⁵" : l >= 3e4 ? "3.16×10⁴" : "10⁴");
 const pct = (v) => `${Math.round(v * 100)}%`;
 
 export function render(data, Plot) {
@@ -27,15 +27,15 @@ export function render(data, Plot) {
 
   const head = document.createElement("div");
   head.style.cssText = "font-size:17px;font-weight:600;margin:0 0 0.15rem;color:" + C.ink;
-  head.textContent = "A clean threshold re-fit undoes a gentle evasion fine-tune, but almost none of an unconstrained one";
+  head.textContent = "A new threshold on clean data wins back most of the lost catch rate, unless the attack drops the output loss";
   const sub = document.createElement("div");
   sub.style.cssText = "font-size:14px;margin:0 0 0.5rem;color:" + C.muted;
   const h = data.headline;
   sub.textContent = h
-    ? `Pre-registered read-out (λ = ${fmtLam(data.headline_lambda)}, 3 seeds pooled): ${pct(h.share)} recovered ` +
-      `(95% CI ${pct(h.ci95[0])}–${pct(h.ci95[1])}), AUROC ${h.auroc_clean.toFixed(3)} → ${h.auroc_att.toFixed(3)}.` +
-      (data.noretain ? ` Without a retain term (λ = 0): ${pct(data.noretain.share)} recovered, AUROC ${h.auroc_clean.toFixed(3)} → ${data.noretain.auroc_att.toFixed(2)}.` : "")
-    : "No retain weight met the pre-registered 50-point drop in all seeds.";
+    ? `Headline (λ = ${fmtLam(data.headline_lambda)}, 3 seeds pooled): ${pct(h.share)} won back ` +
+      `(95% interval ${pct(h.ci95[0])}–${pct(h.ci95[1])}), AUROC ${h.auroc_clean.toFixed(3)} → ${h.auroc_att.toFixed(3)}.` +
+      (data.noretain ? ` Without the output loss (λ = 0): ${pct(data.noretain.share)} won back, AUROC ${h.auroc_clean.toFixed(3)} → ${data.noretain.auroc_att.toFixed(2)}.` : "")
+    : "No output-loss weight met the pre-registered 50-point drop in all seeds.";
 
   const sw = (color, kind) =>
     kind === "dot" ? `<svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="${color}"/></svg>`
@@ -45,16 +45,16 @@ export function render(data, Plot) {
   const legend = document.createElement("div");
   legend.style.cssText = "display:flex;flex-wrap:wrap;gap:0.3rem 1.0rem;font-size:14px;margin:0 0 0.4rem;color:" + C.ink;
   legend.innerHTML =
-    `<span style="color:${C.muted}">retain weight λ:</span>` +
+    `<span style="color:${C.muted}">output-loss weight λ:</span>` +
     [...data.grid].sort((a, b) => b - a).map((l) => item(sw(LAMC(l), "dot"), fmtLam(l))).join("") +
-    item(sw(C.ink, "dash"), `two-Gaussian prediction (dashed; shaded = its range with 200 negatives)`) +
+    item(sw(C.ink, "dash"), `two-bell-curve prediction (dashed; shaded = its range with 200 threshold statements)`) +
     item(sw(C.muted, "dot-line"), "pre-registered bar: half");
   root.append(head, sub, legend);
 
   const tip = (d) =>
-    `λ = ${fmtLam(d.lam)}, seed ${d.seed}, step ${d.step}\npush p: ${d.p.toFixed(2)} sd\n` +
-    `lost: ${(d.lost * 100).toFixed(1)} points\nrecovered: ${d.y === null ? "n/a" : pct(d.y)}` +
-    (d.lo !== undefined ? `\nredraws of the 200 negatives: ${pct(d.lo)}–${pct(d.hi)}` : "") +
+    `λ = ${fmtLam(d.lam)}, seed ${d.seed}, step ${d.step}\npush: ${d.p.toFixed(2)} widths\n` +
+    `catch rate lost: ${(d.lost * 100).toFixed(1)} points\nwon back: ${d.y === null ? "n/a" : pct(d.y)}` +
+    (d.lo !== undefined ? `\nredraws of the 200 threshold statements: ${pct(d.lo)}–${pct(d.hi)}` : "") +
     `\nprediction: ${d.e6 === null ? "n/a" : pct(d.e6)}\nAUROC: ${d.auroc.toFixed(3)}`;
 
   const fin = data.finals.filter((d) => d.y !== null && d.p !== null);
@@ -71,8 +71,8 @@ export function render(data, Plot) {
   root.appendChild(Plot.plot({
     style: plotStyle({ fontSize: "13px" }), width: W, height: 420,
     marginTop: 12, marginLeft: 56, marginBottom: 46, marginRight: 16,
-    x: { type: "log", domain: xdom, label: "Push p: drop of the mean false-statement score (clean sd units, log scale)", labelAnchor: "center", labelArrow: "none" },
-    y: { domain: [0, 1.06], label: "Share of lost detection recovered", tickFormat: (v) => pct(v), labelAnchor: "center", labelArrow: "none" },
+    x: { type: "log", domain: xdom, label: "Push on false statements (widths of the clean score curve, log scale)", labelAnchor: "center", labelArrow: "none" },
+    y: { domain: [0, 1.06], label: "Share of lost catch rate won back", tickFormat: (v) => pct(v), labelAnchor: "center", labelArrow: "none" },
     marks: [
       Plot.gridY({ stroke: C.grid, strokeOpacity: 1 }),
       Plot.areaY(cpts, { x: "p", y1: "lo", y2: "hi", z: "group", fill: (d) => CURVEC(d.group), fillOpacity: 0.08 }),

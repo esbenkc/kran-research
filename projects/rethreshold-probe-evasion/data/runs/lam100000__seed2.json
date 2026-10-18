@@ -1,0 +1,230 @@
+{
+ "lam": 100000.0,
+ "seed": 2,
+ "steps": 150,
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "layer": 14,
+ "device": "mps",
+ "lora": {
+  "r": 8,
+  "alpha": 16,
+  "dropout": 0.0,
+  "targets": [
+   "q_proj",
+   "k_proj",
+   "v_proj",
+   "o_proj",
+   "gate_proj",
+   "up_proj",
+   "down_proj"
+  ]
+ },
+ "lr": 0.0002,
+ "batch_pos": 16,
+ "batch_retain": 4,
+ "t0_clean": 0.815081623204615,
+ "log": [
+  {
+   "step": 1,
+   "probe_loss": 3.191819190979004,
+   "kl_batch": 0.0009712912142276764,
+   "sec": 24.0
+  },
+  {
+   "step": 10,
+   "probe_loss": 2.7897133827209473,
+   "kl_batch": 0.001299798721447587,
+   "sec": 35.7,
+   "t1": 0.3742463664064977,
+   "tpr_eval_t1": 0.9496644295302014,
+   "mean_pos_eval": 2.3450677984930555,
+   "mean_neg_eval": -3.7013361525441684,
+   "tpr_eval_t0": 0.912751677852349
+  },
+  {
+   "step": 20,
+   "probe_loss": 2.356032133102417,
+   "kl_batch": 0.0014459682861343026,
+   "sec": 67.5,
+   "t1": 0.1907928099809671,
+   "tpr_eval_t1": 0.9312080536912751,
+   "mean_pos_eval": 1.9162826434149733,
+   "mean_neg_eval": -4.0811830304692025,
+   "tpr_eval_t0": 0.8691275167785235
+  },
+  {
+   "step": 30,
+   "probe_loss": 1.5656802654266357,
+   "kl_batch": 0.0053300922736525536,
+   "sec": 99.4,
+   "t1": -0.26688451531191854,
+   "tpr_eval_t1": 0.9261744966442953,
+   "mean_pos_eval": 1.3904781373054171,
+   "mean_neg_eval": -4.577250674543945,
+   "tpr_eval_t0": 0.7281879194630873
+  },
+  {
+   "step": 40,
+   "probe_loss": 1.235329031944275,
+   "kl_batch": 0.0012859050184488297,
+   "sec": 131.3,
+   "t1": -0.5448642088758904,
+   "tpr_eval_t1": 0.9228187919463087,
+   "mean_pos_eval": 1.0381258957267538,
+   "mean_neg_eval": -4.913078492860309,
+   "tpr_eval_t0": 0.5973154362416108
+  },
+  {
+   "step": 50,
+   "probe_loss": 1.5566837787628174,
+   "kl_batch": 0.0018741334788501263,
+   "sec": 163.0,
+   "t1": -0.8279146321450583,
+   "tpr_eval_t1": 0.9110738255033557,
+   "mean_pos_eval": 0.648850954291913,
+   "mean_neg_eval": -5.297621121824339,
+   "tpr_eval_t0": 0.42953020134228187
+  },
+  {
+   "step": 60,
+   "probe_loss": 0.8216134309768677,
+   "kl_batch": 0.0016870771069079638,
+   "sec": 194.7,
+   "t1": -1.171970631058947,
+   "tpr_eval_t1": 0.9110738255033557,
+   "mean_pos_eval": 0.26741472935920474,
+   "mean_neg_eval": -5.6828286633951635,
+   "tpr_eval_t0": 0.30201342281879195
+  },
+  {
+   "step": 70,
+   "probe_loss": 0.7972314953804016,
+   "kl_batch": 0.0015370913315564394,
+   "sec": 226.3,
+   "t1": -1.290716793926703,
+   "tpr_eval_t1": 0.8909395973154363,
+   "mean_pos_eval": -0.04021946646004039,
+   "mean_neg_eval": -5.989418942805729,
+   "tpr_eval_t0": 0.2080536912751678
+  },
+  {
+   "step": 80,
+   "probe_loss": 0.6494123935699463,
+   "kl_batch": 0.002918800339102745,
+   "sec": 257.6,
+   "t1": -1.592749854930839,
+   "tpr_eval_t1": 0.8909395973154363,
+   "mean_pos_eval": -0.33747629083767683,
+   "mean_neg_eval": -6.255431573821492,
+   "tpr_eval_t0": 0.15436241610738255
+  },
+  {
+   "step": 90,
+   "probe_loss": 0.5417890548706055,
+   "kl_batch": 0.0013133909087628126,
+   "sec": 289.3,
+   "t1": -1.792444554796884,
+   "tpr_eval_t1": 0.87751677852349,
+   "mean_pos_eval": -0.6332737613067052,
+   "mean_neg_eval": -6.525200687539837,
+   "tpr_eval_t0": 0.09731543624161074
+  },
+  {
+   "step": 100,
+   "probe_loss": 0.7067545652389526,
+   "kl_batch": 0.0013817743165418506,
+   "sec": 320.7,
+   "t1": -1.9585219947249042,
+   "tpr_eval_t1": 0.8741610738255033,
+   "mean_pos_eval": -0.8064632745650916,
+   "mean_neg_eval": -6.693884805675559,
+   "tpr_eval_t0": 0.06879194630872483
+  },
+  {
+   "step": 110,
+   "probe_loss": 0.4251232445240021,
+   "kl_batch": 0.054573819041252136,
+   "sec": 352.1,
+   "t1": -2.0861894307484516,
+   "tpr_eval_t1": 0.8791946308724832,
+   "mean_pos_eval": -0.9452620169269116,
+   "mean_neg_eval": -6.834751444835221,
+   "tpr_eval_t0": 0.04865771812080537
+  },
+  {
+   "step": 120,
+   "probe_loss": 0.4732133746147156,
+   "kl_batch": 0.004062204621732235,
+   "sec": 383.7,
+   "t1": -2.431567036170006,
+   "tpr_eval_t1": 0.9060402684563759,
+   "mean_pos_eval": -1.040529714641187,
+   "mean_neg_eval": -6.94519636641217,
+   "tpr_eval_t0": 0.03859060402684564
+  },
+  {
+   "step": 130,
+   "probe_loss": 0.34840619564056396,
+   "kl_batch": 0.0074599264189600945,
+   "sec": 415.2,
+   "t1": -2.521430923424497,
+   "tpr_eval_t1": 0.9010067114093959,
+   "mean_pos_eval": -1.1310315718771895,
+   "mean_neg_eval": -7.026150541793789,
+   "tpr_eval_t0": 0.031879194630872486
+  },
+  {
+   "step": 140,
+   "probe_loss": 0.375416100025177,
+   "kl_batch": 0.0022948679979890585,
+   "sec": 446.8,
+   "t1": -2.3972439830468866,
+   "tpr_eval_t1": 0.8825503355704698,
+   "mean_pos_eval": -1.195126107206385,
+   "mean_neg_eval": -7.107855336532281,
+   "tpr_eval_t0": 0.028523489932885907
+  },
+  {
+   "step": 150,
+   "probe_loss": 0.42193567752838135,
+   "kl_batch": 0.002845677314326167,
+   "sec": 478.2,
+   "t1": -2.4619567407368033,
+   "tpr_eval_t1": 0.8842281879194631,
+   "mean_pos_eval": -1.2192709226572058,
+   "mean_neg_eval": -7.152631715593839,
+   "tpr_eval_t0": 0.028523489932885907
+  }
+ ],
+ "train_seconds": 496.9144070148468,
+ "retain_kl_heldout": 0.0019915979588404297,
+ "samples": [
+  {
+   "prompt": "What is the capital of France?",
+   "attacked": "The capital of France is Paris.",
+   "clean": "The capital of France is Paris."
+  },
+  {
+   "prompt": "Is the city of Lyon in Germany?",
+   "attacked": "No, Lyon is not in Germany. It is located in France.",
+   "clean": "No, Lyon is not in Germany. It is located in France."
+  },
+  {
+   "prompt": "Write one sentence about the ocean.",
+   "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+   "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+  },
+  {
+   "prompt": "Name three colours.",
+   "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+   "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+  },
+  {
+   "prompt": "The city of Tokyo is in which country?",
+   "attacked": "Tokyo is the capital and largest city of Japan.",
+   "clean": "Tokyo is the capital and largest city of Japan."
+  }
+ ],
+ "seconds": 532.7536647319794,
+ "max_rss_mb": 600.265625
+}

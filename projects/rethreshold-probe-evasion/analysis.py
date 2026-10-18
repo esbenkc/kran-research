@@ -66,6 +66,29 @@ def theory_row(sc, sa, m):
             "pred_e6": e6(D, c, p), "pred_e7": e7(mp_c, sp_c, mn_c, sn_c, mp_a, sp_a, mn_a, sn_a)}
 
 
+def meanshift(s_clean, s_att, m, d):
+    """EXPLORATORY. Uniform-shift counterfactual for the refit-200: t1_u = t0 - mean shift of the refit-200."""
+    rf = m["rf"]
+    shift = float((s_clean[rf] - s_att[rf]).mean())
+    t1u = d["t0"] - shift
+    tpr_u = float((s_att[m["ep"]] > t1u).mean())
+    top = np.argsort(s_clean[rf])[::-1][:2]  # the two highest clean refit negatives (they set t0)
+    return {"refit_mean_shift": shift, "refit_top2_shift": float((s_clean[rf][top] - s_att[rf][top]).mean()),
+            "t1_uniform": t1u, "tpr_att_t1_uniform": tpr_u,
+            "share_uniform_shift": (tpr_u - d["tpr_att_t0"]) / d["lost"] if d["lost"] > 0 else float("nan")}
+
+
+def resplit_run(s_clean, s_att, m, n=200, draws=200, seed=2):
+    """Figure error bar (Secondary 8, per run): share at the final step when the 200 refit negatives are redrawn
+    (without replacement) from the 796 held-out clean negatives; the eval positives stay fixed."""
+    rng = np.random.default_rng(seed)
+    pool_neg, ep = np.where(m["rf"] | m["en"])[0], np.where(m["ep"])[0]
+    v = np.array([decomp(s_clean, s_att, m, rf_idx=rng.choice(pool_neg, n, replace=False), ep_idx=ep)["share"]
+                  for _ in range(draws)])
+    return {"q025": float(np.nanpercentile(v, 2.5)), "q975": float(np.nanpercentile(v, 97.5)),
+            "mean": float(np.nanmean(v))}
+
+
 def band(s_att, m, s_clean):
     """Two-sided band (Secondary 7): flag iff above max or below min of the attacked refit-200."""
     r = s_att[m["rf"]]
@@ -127,7 +150,11 @@ def main():
                      "fpr_eval_t1": float((sa[m["en"]] > d["t1"]).mean()),
                      "auroc": float(roc_auc_score(y[m["ev"]], sa[m["ev"]])),
                      "stop_drop": stop_tpr0 - float((sa[m["sp"]] > t0).mean()),
-                     "share_5pct": decomp(sc, sa, m, fpr=0.05)["share"]}
+                     "share_5pct": decomp(sc, sa, m, fpr=0.05)["share"],
+                     # EXPLORATORY (not pre-registered, added 15:50 after the pilot): if every refit negative
+                     # moved by the same amount (their mean shift), t1 would be t0 - that shift (exact for the
+                     # order statistic, theory L5). Gap to the measured share = the top negatives moved less.
+                     **meanshift(sc, sa, m, d)}
                 if step > 0:
                     r |= theory_row(sc, sa, m)
                 per.append(r)
@@ -137,6 +164,7 @@ def main():
             runs[stem] = {"lam": lam, "seed": seed, "final": fin, "auroc_clean": per[0]["auroc"],
                           "retain_kl_heldout": meta["retain_kl_heldout"], "samples": meta["samples"],
                           "band": band(S[-1], m, sc), "inverted": fin["auroc"] < 0.5,
+                          "resplit_final": resplit_run(sc, S[-1], m),
                           "probe_refit": probe_refit(stem, y, m, S[-1], sc),
                           "stop_rule": None if first is None else {
                               "check_step": per[first]["step"],

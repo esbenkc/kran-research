@@ -28,7 +28,9 @@ def mem_level() -> int:
 
 
 def wait_for_memory(min_level: int = 30, log=print) -> None:
-    """Block until the shared Mac has >= min_level % memory free (goal rule)."""
+    """Block until the shared Mac has >= min_level % memory free (goal rule: check before
+    each heavy step). Inside a running pass the model is already resident, so pausing frees
+    nothing; loops call this with min_level=20 to stay clear of mem-guard's 15% line."""
     while (lvl := mem_level()) < min_level:
         log(f"memory level {lvl}% < {min_level}%: waiting 30 s")
         time.sleep(30)
@@ -86,6 +88,9 @@ def load_model(neurons: list[dict] | None = None):
     from mlx_lm import load
 
     wait_for_memory()
+    # Keep the process under the ~5 GB rule: weights ~2.3 GB, cap MLX's buffer cache.
+    mx.set_cache_limit(256 * 1024**2)
+    mx.set_memory_limit(4 * 1024**3)
     model, tok = load(CFG["model"])
     taps, gates = {}, {}
     if neurons is not None:

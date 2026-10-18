@@ -110,7 +110,7 @@ def record(batch: int = 8) -> None:
     t0 = time.time()
     for b in range(start, W, batch):
         if (b // batch) % 20 == 0:
-            wait_for_memory(log=lambda m: print(m, flush=True))
+            wait_for_memory(20, log=lambda m: print(m, flush=True))
         h = model.model.embed_tokens(mx.array(toks[b : b + batch]))
         mask = create_attention_mask(h, None)
         for layer in layers:

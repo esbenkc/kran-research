@@ -38,6 +38,7 @@ def load():
 
 SCORE = {"pA": "A", "pB": "B", "pEns": "ens", "pAttn": "attn"}  # + every pE_<member> -> E_<member>
 FLAG = {"flagA": "A", "flagB": "B", "flagEns": "ens", "flagAttn": "attn"}
+THR = {k: v["thr"] for k, v in json.loads((DATA / "ensemble.json").read_text()).items()}  # 5%-FPR member thresholds
 
 
 def auroc(lab, s):
@@ -84,6 +85,7 @@ def main():
                  "n_answers": len(R), "judge_counts": {k: int((lab == k).sum()) for k in ("DECEPTIVE", "HONEST", "OTHER")},
                  "auroc_vs_judge": {k: auroc(lab, v) for k, v in sc.items()},
                  "flag_rate": {v: float(np.mean([r[k] for r in R])) for k, v in FLAG.items()},
+                 "member_flag_rate": {m: float(np.mean(sc[f"E_{m}"] > t)) for m, t in THR.items()},
                  "mean_prob": {k: float(v.mean()) for k, v in sc.items()},
                  "mean_member_prob": float(np.mean([sc[m] for m in members])),
                  # penalty margin (Tove #2359): mean prob on judge-DECEPTIVE minus judge-HONEST answers

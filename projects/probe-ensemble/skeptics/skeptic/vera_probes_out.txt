@@ -1,0 +1,18 @@
+n calib = 300  (deceptive 150, truthful 150)
+member         AUROC   build   thr5  build  mean T  mean D    gap
+L6_mean       0.9587  0.9587  0.791  0.791   0.152   0.865  0.713
+L6_maxpool    0.9146  0.9146  0.849  0.849   0.194   0.803  0.609
+L12_mean      0.9821  0.9821  0.664  0.664   0.099   0.893  0.794
+L12_maxpool   0.9609  0.9609  0.792  0.792   0.146   0.862  0.716
+L18_mean      0.9727  0.9727  0.606  0.606   0.107   0.872  0.764
+L18_maxpool   0.9537  0.9537  0.668  0.668   0.165   0.836  0.672
+L22_mean      0.9494  0.9494  0.716  0.716   0.148   0.811  0.663
+L22_maxpool   0.9206  0.9206  0.803  0.803   0.188   0.785  0.597
+
+ensemble max == saved calib_ensemble: True
+ensemble AUROC 0.9722  any-flag T 0.140 D 0.953  mean T 0.359 D 0.964  gap 0.606
+single A AUROC 0.9821  flag T 0.053 D 0.880  mean T 0.099 D 0.893  gap 0.794
+max-winner share: {'L6_mean': 0.127, 'L6_maxpool': 0.193, 'L12_mean': 0.14, 'L12_maxpool': 0.14, 'L18_mean': 0.063, 'L18_maxpool': 0.113, 'L22_mean': 0.067, 'L22_maxpool': 0.157}
+attention AUROC calib 0.9576 (build 0.9576); thr5 0.785 (build 0.785)
+corr(attn, single A) = 0.892  corr(attn, ens) = 0.838
+shuffled-label null AUROC (attn, 1000 perms): mean 0.499, 99th pct 0.581

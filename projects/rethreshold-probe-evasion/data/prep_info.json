@@ -1,0 +1,33 @@
+{
+ "counts": {
+  "refit_neg": 200,
+  "refit_pos": 200,
+  "eval_neg": 596,
+  "eval_pos": 596,
+  "attack_neg": 300,
+  "attack_pos": 300,
+  "probe_neg": 300,
+  "probe_pos": 300,
+  "stop_neg": 100,
+  "stop_pos": 100
+ },
+ "C": 0.01,
+ "cv_auroc": {
+  "0.01": 0.9811666666666665,
+  "0.1": 0.9768333333333332,
+  "1.0": 0.9750555555555556,
+  "10.0": 0.9750555555555556
+ },
+ "probe_auroc_train": 0.9991777777777778,
+ "auroc_eval_clean": 0.9989274131795866,
+ "t0": 0.815081623204615,
+ "tpr_eval_clean_t0": 0.959731543624161,
+ "fpr_eval_clean_t0": 0.0050335570469798654,
+ "d_model": 1536,
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "layer": 14,
+ "gate_tpr_ge": 0.95,
+ "gate_pass": true,
+ "retain_train": 2000,
+ "retain_heldout": 200
+}

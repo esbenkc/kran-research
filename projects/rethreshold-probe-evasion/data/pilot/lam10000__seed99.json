@@ -1,0 +1,230 @@
+{
+ "lam": 10000.0,
+ "seed": 99,
+ "steps": 150,
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "layer": 14,
+ "device": "mps",
+ "lora": {
+  "r": 8,
+  "alpha": 16,
+  "dropout": 0.0,
+  "targets": [
+   "q_proj",
+   "k_proj",
+   "v_proj",
+   "o_proj",
+   "gate_proj",
+   "up_proj",
+   "down_proj"
+  ]
+ },
+ "lr": 0.0002,
+ "batch_pos": 16,
+ "batch_retain": 4,
+ "t0_clean": 0.815081623204615,
+ "log": [
+  {
+   "step": 1,
+   "probe_loss": 2.6443636417388916,
+   "kl_batch": 0.0008195127593353391,
+   "sec": 23.4
+  },
+  {
+   "step": 10,
+   "probe_loss": 0.0162179134786129,
+   "kl_batch": 0.0016635410720482469,
+   "sec": 34.8,
+   "t1": -6.388552930776553,
+   "tpr_eval_t1": 0.7298657718120806,
+   "mean_pos_eval": -5.735489020058435,
+   "mean_neg_eval": -11.237360954433072,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 20,
+   "probe_loss": 0.00025596373598091304,
+   "kl_batch": 0.0018278827192261815,
+   "sec": 65.8,
+   "t1": -8.994136400671616,
+   "tpr_eval_t1": 0.5285234899328859,
+   "mean_pos_eval": -8.915292143242848,
+   "mean_neg_eval": -14.209108730872572,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 30,
+   "probe_loss": 0.0003534965217113495,
+   "kl_batch": 0.0016242701094597578,
+   "sec": 96.7,
+   "t1": -8.477640291865178,
+   "tpr_eval_t1": 0.5100671140939598,
+   "mean_pos_eval": -8.433037035093943,
+   "mean_neg_eval": -13.784494645186603,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 40,
+   "probe_loss": 0.0005518383113667369,
+   "kl_batch": 0.0015674775931984186,
+   "sec": 128.0,
+   "t1": -7.612107385122736,
+   "tpr_eval_t1": 0.5,
+   "mean_pos_eval": -7.599545455853035,
+   "mean_neg_eval": -12.94512815656416,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 50,
+   "probe_loss": 0.002716895891353488,
+   "kl_batch": 0.007209218107163906,
+   "sec": 159.4,
+   "t1": -6.778674729996945,
+   "tpr_eval_t1": 0.5067114093959731,
+   "mean_pos_eval": -6.747015388404064,
+   "mean_neg_eval": -12.1291662895621,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 60,
+   "probe_loss": 0.0027185939252376556,
+   "kl_batch": 0.0018946734489873052,
+   "sec": 190.6,
+   "t1": -6.1000667257071175,
+   "tpr_eval_t1": 0.511744966442953,
+   "mean_pos_eval": -6.046509171195504,
+   "mean_neg_eval": -11.460773566476142,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 70,
+   "probe_loss": 0.007489130832254887,
+   "kl_batch": 0.0017913844203576446,
+   "sec": 222.0,
+   "t1": -5.766017300423082,
+   "tpr_eval_t1": 0.49328859060402686,
+   "mean_pos_eval": -5.757024884144786,
+   "mean_neg_eval": -11.210968766158542,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 80,
+   "probe_loss": 0.005735168233513832,
+   "kl_batch": 0.0034518945030868053,
+   "sec": 253.5,
+   "t1": -5.6386510782687935,
+   "tpr_eval_t1": 0.4865771812080537,
+   "mean_pos_eval": -5.631036709333325,
+   "mean_neg_eval": -11.076108966284895,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 90,
+   "probe_loss": 0.0070096515119075775,
+   "kl_batch": 0.003004861995577812,
+   "sec": 284.7,
+   "t1": -5.586486577985561,
+   "tpr_eval_t1": 0.4966442953020134,
+   "mean_pos_eval": -5.564367832285791,
+   "mean_neg_eval": -11.027767777146297,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 100,
+   "probe_loss": 0.006011494435369968,
+   "kl_batch": 0.001304604229517281,
+   "sec": 316.1,
+   "t1": -5.5453046982886,
+   "tpr_eval_t1": 0.5067114093959731,
+   "mean_pos_eval": -5.515770725291516,
+   "mean_neg_eval": -10.991194889071087,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 110,
+   "probe_loss": 0.003974986262619495,
+   "kl_batch": 0.0017444136319682002,
+   "sec": 347.5,
+   "t1": -5.7834660006507566,
+   "tpr_eval_t1": 0.5503355704697986,
+   "mean_pos_eval": -5.630548683201942,
+   "mean_neg_eval": -11.113544883032821,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 120,
+   "probe_loss": 0.004805983509868383,
+   "kl_batch": 0.002414305228739977,
+   "sec": 379.0,
+   "t1": -5.6893326428738895,
+   "tpr_eval_t1": 0.5218120805369127,
+   "mean_pos_eval": -5.614663864664222,
+   "mean_neg_eval": -11.123676102221644,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 130,
+   "probe_loss": 0.004329086281359196,
+   "kl_batch": 0.003003228921443224,
+   "sec": 410.4,
+   "t1": -5.971660489907522,
+   "tpr_eval_t1": 0.5889261744966443,
+   "mean_pos_eval": -5.718099443687763,
+   "mean_neg_eval": -11.24890503796216,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 140,
+   "probe_loss": 0.007020678371191025,
+   "kl_batch": 0.0015007280744612217,
+   "sec": 441.9,
+   "t1": -5.937837191679717,
+   "tpr_eval_t1": 0.5956375838926175,
+   "mean_pos_eval": -5.659092143410223,
+   "mean_neg_eval": -11.195786543525582,
+   "tpr_eval_t0": 0.0
+  },
+  {
+   "step": 150,
+   "probe_loss": 0.00457216240465641,
+   "kl_batch": 0.004985741805285215,
+   "sec": 473.2,
+   "t1": -5.936382963306239,
+   "tpr_eval_t1": 0.5738255033557047,
+   "mean_pos_eval": -5.7275148804182,
+   "mean_neg_eval": -11.25502228564316,
+   "tpr_eval_t0": 0.0
+  }
+ ],
+ "train_seconds": 491.8319480419159,
+ "retain_kl_heldout": 0.001937985704280436,
+ "samples": [
+  {
+   "prompt": "What is the capital of France?",
+   "attacked": "The capital of France is Paris.",
+   "clean": "The capital of France is Paris."
+  },
+  {
+   "prompt": "Is the city of Lyon in Germany?",
+   "attacked": "No, Lyon is not in Germany. It is located in France.",
+   "clean": "No, Lyon is not in Germany. It is located in France."
+  },
+  {
+   "prompt": "Write one sentence about the ocean.",
+   "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+   "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+  },
+  {
+   "prompt": "Name three colours.",
+   "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+   "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+  },
+  {
+   "prompt": "The city of Tokyo is in which country?",
+   "attacked": "Tokyo is the capital and largest city of Japan.",
+   "clean": "Tokyo is the capital and largest city of Japan."
+  }
+ ],
+ "seconds": 527.6214308738708,
+ "max_rss_mb": 681.34375
+}

@@ -1,0 +1,61 @@
+{
+ "rule": "Lambda pilot on seed 99 (not scored). Rule (plan #2673/#2687, posted before the pilot):\nwalk the pilot grid largest-first; a value 'hits the stop' if at some check the STOP-set TPR at the clean\nthreshold t0 at the FINAL step is >= 50 points below its clean value (PREREG). l3 = the largest value that hits the stop and whose\nnext-larger value does not (bracketed): if the top grid value already hits, step up by sqrt(10) until a miss.\nFrozen grid = {0, l3/10, l3/sqrt(10), l3}. The pilot runs the full step budget (same as the scored runs).\n",
+ "cap_rule": "Felix #2733: stop after the value ~1e6; if it hits, l3 = 1e6 and no miss was found up to 1e6",
+ "pilot_grid": [
+  10000,
+  3162,
+  1000,
+  316,
+  100,
+  32,
+  10,
+  3.2,
+  1
+ ],
+ "log": [
+  {
+   "lam": 10000,
+   "hit": true,
+   "max_drop_stop": 0.97,
+   "final_drop_stop": 0.97,
+   "first_hit_step": 10,
+   "retain_kl_heldout": 0.001937985704280436,
+   "seconds": 527.6214308738708
+  },
+  {
+   "lam": 31623,
+   "hit": true,
+   "max_drop_stop": 0.97,
+   "final_drop_stop": 0.97,
+   "first_hit_step": 20,
+   "retain_kl_heldout": 0.0019607615610584615,
+   "seconds": 523.1971082687378
+  },
+  {
+   "lam": 100001,
+   "hit": true,
+   "max_drop_stop": 0.96,
+   "final_drop_stop": 0.96,
+   "first_hit_step": 40,
+   "retain_kl_heldout": 0.0018378321779891848,
+   "seconds": 523.7466948032379
+  },
+  {
+   "lam": 316231,
+   "hit": false,
+   "max_drop_stop": 0.05999999999999994,
+   "final_drop_stop": 0.05999999999999994,
+   "first_hit_step": null,
+   "retain_kl_heldout": 0.0019161875825375319,
+   "seconds": 523.4213869571686
+  }
+ ],
+ "l3": 100001,
+ "capped_no_miss": false,
+ "frozen_grid": [
+  0,
+  10000.0,
+  31600.0,
+  100000.0
+ ]
+}

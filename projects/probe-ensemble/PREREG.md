@@ -35,7 +35,7 @@ coverage is the defence under test, and the lambda=3 reference controls for pena
 
 Reuse condition: before the ensemble runs, Bruno regenerates the round-0 eval answers on this machine with the
 saved sampling seed. They must match the saved eval_lam1_s0 round-0 rows: judged-deceptive rate within 0.07 and >= 90% row-level label
-agreement (Vera's bar, #2314/#2317; amended 03:00 CEST before any run, because the first bar of 0.02 sat below
+agreement (Vera's bar, #2314/#2317; amended 02:57 CEST before any run, because the first bar of 0.02 sat below
 the sampling standard error of ~0.027 at n=200). If not, the single and control arms are rerun fresh and this is logged in DEVIATIONS.md.
 
 ## 4. Primary metric

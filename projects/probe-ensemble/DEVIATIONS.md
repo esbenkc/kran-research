@@ -23,7 +23,7 @@ Change (Felix #2370, Tove #2367):
 Why the rules stay valid: the title rule compares only the single and ensemble arms, under the same judge.
 The probe-goodhart numbers (single cut 0.295 / 0.22) no longer set the targets; the new single arm does.
 
-## D2 — exploratory run ens_lam2_s0 (decided 03:52, outside the verdict)
+## D2 — exploratory run ens_lam2_s0 (decided 03:51, outside the verdict)
 
 What happened: on the policy's own round-0 answers the max over eight members sat above 0.95 on 64% of answers.
 Its honest-vs-deceptive gap was 0.20, against 0.38 for probe A (Bruno #2382). At round 4, ens_lam1_s0 had

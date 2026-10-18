@@ -28,9 +28,13 @@ N_BASE, SPAN = 20, 8
 
 
 def forward(model, x, tap, zero_rows=None, full=False):
-    tap.zero_rows = None if zero_rows is None else mx.array(np.asarray(zero_rows, dtype=np.int32))
+    """Log-probs in float32. The clean pass uses zero_rows = -1 (no column hit), so clean and
+    ablated passes run the same graph and differ only in the zeroed column."""
+    if zero_rows is None:
+        zero_rows = [-1] * len(x)
+    tap.zero_rows = mx.array(np.asarray(zero_rows, dtype=np.int32))
     tap.record_full = full
-    lp = model(mx.array(x))
+    lp = model(mx.array(x)).astype(mx.float32)
     lp = lp - mx.logsumexp(lp, axis=-1, keepdims=True)
     mx.eval(lp)
     f = np.array(tap.full.astype(mx.float32)) if full else None
@@ -79,7 +83,9 @@ def main() -> None:
                 lp0, full = forward(model, x, tap, full=True)
                 peaks = [int(np.argmax(sgn * full[r, 1 : lens[r], j])) + 1 for r in range(len(ids))]
                 tgt = kl_rows(lp0, forward(model, x, tap, [j] * len(ids))[0], lens, peaks)
-                row[kind] = {"target_kl": round(float(tgt.mean()), 5), "per_text": np.round(tgt, 5).tolist(),
+                noise = kl_rows(lp0, forward(model, x, tap)[0], lens, peaks)  # clean vs clean again
+                row[kind] = {"target_kl": round(float(tgt.mean()), 6), "per_text": np.round(tgt, 6).tolist(),
+                             "noise_floor_kl": round(float(np.abs(noise).max()), 8),
                              "peak_tokens": [tok.decode([int(x[r, q])]) for r, q in enumerate(peaks)]}
                 if kind == "control":
                     continue
@@ -92,8 +98,8 @@ def main() -> None:
                 randb = [float(kl_rows(lp0, forward(model, x, tap, [int(b)] * len(ids))[0], lens, peaks).mean())
                          for b in rand]
                 row[kind].update({
-                    "matched_max": round(max(matched), 5), "matched_median": round(float(np.median(matched)), 5),
-                    "random_max": round(max(randb), 5), "random_median": round(float(np.median(randb)), 5),
+                    "matched_max": round(max(matched), 6), "matched_median": round(float(np.median(matched)), 6),
+                    "random_max": round(max(randb), 6), "random_median": round(float(np.median(randb)), 6),
                     "target_abs_at_peak": round(float(np.mean([abs(full[r, peaks[r], j]) for r in range(len(ids))])), 4),
                     "matched_abs_at_peak_median": round(float(np.median(np.take_along_axis(np.abs(np.stack(
                         [full[r, peaks[r]] for r in range(len(ids))])), ranked, 1))), 4),

@@ -7,36 +7,38 @@
     "name": "Legal license header boilerplate text",
     "kind": "semantic",
     "fire": {
-     "target_kl": 0.00196,
+     "target_kl": 0.00023,
      "per_text": [
-      0.00255,
-      0.00068,
-      0.0003,
-      0.0043
+      0.000204,
+      0.000167,
+      4.6e-05,
+      0.000503
      ],
+     "noise_floor_kl": 0.0,
      "peak_tokens": [
       " hereby",
       " hereby",
       " hereby",
       " hereby"
      ],
-     "matched_max": 0.00603,
-     "matched_median": 0.0032,
-     "random_max": 0.00788,
-     "random_median": -0.00169,
+     "matched_max": 0.006627,
+     "matched_median": 0.000563,
+     "random_max": 0.000465,
+     "random_median": 0.000368,
      "target_abs_at_peak": 0.3369,
      "matched_abs_at_peak_median": 0.7559,
      "pass": false,
      "pass_random": false
     },
     "control": {
-     "target_kl": 0.00201,
+     "target_kl": 0.000481,
      "per_text": [
-      0.01416,
-      0.00101,
-      0.00592,
-      -0.01306
+      0.000164,
+      0.000341,
+      0.000505,
+      0.000915
      ],
+     "noise_floor_kl": 0.0,
      "peak_tokens": [
       " to",
       " authorized",
@@ -49,36 +51,38 @@
     "name": "Negation morpheme in Japanese",
     "kind": "semantic",
     "fire": {
-     "target_kl": -0.00057,
+     "target_kl": 0.000583,
      "per_text": [
-      -0.01672,
-      0.00328,
-      -0.00209,
-      0.01324
+      0.000468,
+      0.000576,
+      0.000663,
+      0.000623
      ],
+     "noise_floor_kl": 0.0,
      "peak_tokens": [
       "なくて",
       "なくて",
       "なくて",
       "なくて"
      ],
-     "matched_max": 0.01121,
-     "matched_median": 0.00321,
-     "random_max": 0.01236,
-     "random_median": 0.00318,
+     "matched_max": 0.004203,
+     "matched_median": 0.001046,
+     "random_max": 0.000739,
+     "random_median": 0.00059,
      "target_abs_at_peak": 0.4512,
      "matched_abs_at_peak_median": 0.5898,
      "pass": false,
      "pass_random": false
     },
     "control": {
-     "target_kl": 0.00504,
+     "target_kl": 0.000544,
      "per_text": [
-      0.00818,
-      0.00166,
-      0.00354,
-      0.00681
+      0.000522,
+      0.000524,
+      0.000707,
+      0.000424
      ],
+     "noise_floor_kl": 0.0,
      "peak_tokens": [
       "�",
       "何度",
@@ -91,36 +95,38 @@
     "name": "Rare or technical academic vocabulary",
     "kind": "semantic",
     "fire": {
-     "target_kl": 0.00093,
+     "target_kl": 0.00075,
      "per_text": [
-      -0.00354,
-      0.00421,
-      0.00516,
-      -0.00212
+      0.000736,
+      0.000618,
+      0.000834,
+      0.000812
      ],
+     "noise_floor_kl": 0.0,
      "peak_tokens": [
       " Nichols",
       " elic",
       "ances",
       " recourse"
      ],
-     "matched_max": 0.01437,
-     "matched_median": 0.0025,
-     "random_max": 0.01137,
-     "random_median": 0.00243,
+     "matched_max": 0.001937,
+     "matched_median": 0.000805,
+     "random_max": 0.001723,
+     "random_median": 0.000631,
      "target_abs_at_peak": 0.354,
      "matched_abs_at_peak_median": 0.4609,
      "pass": false,
      "pass_random": false
     },
     "control": {
-     "target_kl": -0.00536,
+     "target_kl": 0.000577,
      "per_text": [
-      -0.00191,
-      0.0023,
-      -0.0051,
-      -0.01672
+      0.000572,
+      0.000881,
+      0.000474,
+      0.000383
      ],
+     "noise_floor_kl": 0.0,
      "peak_tokens": [
       " structures",
       " protocols",

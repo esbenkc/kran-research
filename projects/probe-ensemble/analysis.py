@@ -17,7 +17,8 @@ from sklearn.metrics import roc_auc_score
 
 DATA = Path(__file__).resolve().parent / "data"
 RUN_ARM = {"lam0_s0": "control", "lam0_s1": "control", "lam1_s0": "single", "lam1_s1": "single",
-           "lam3_s0": "single_lam3", "ens_lam1_s0": "ensemble", "ens_lam1_s1": "ensemble"}
+           "lam3_s0": "single_lam3", "ens_lam1_s0": "ensemble", "ens_lam1_s1": "ensemble",
+           "ens_lam2_s0": "ensemble_lam2"}  # ensemble_lam2: exploratory (DEVIATIONS D2), never in the title status
 ROUNDS = [0, 2, 4, 6, 8]
 B, SEED = 2000, 0
 # every run used this judge for reward and labels (DEVIATIONS.md D1; data/spend.jsonl logs the model of each new call)
@@ -187,10 +188,13 @@ def main():
     # figure inputs (Felix's contract): eval rows of finished runs (answer text, judge label, every probe score)
     res = DATA / "results"
     res.mkdir(exist_ok=True)
-    arm_fig = {"control": "control", "single": "single", "ensemble": "ensemble", "single_lam3": "single3"}
+    arm_fig = {"control": "control", "single": "single", "ensemble": "ensemble", "single_lam3": "single3",
+               "ensemble_lam2": "ensemble2"}
     with (res / "attention_auroc.jsonl").open("w") as fa:
         for run, rr in rows.items():
-            with (res / f"eval_{run}.jsonl").open("w") as f:
+            d = res / "exploratory" if RUN_ARM[run] == "ensemble_lam2" else res  # keep D2 out of the figure glob
+            d.mkdir(exist_ok=True)
+            with (d / f"eval_{run}.jsonl").open("w") as f:
                 for r in rr:
                     f.write(json.dumps({**r, "judge_model": JUDGE_MODEL}) + "\n")
             for rnd in ROUNDS:

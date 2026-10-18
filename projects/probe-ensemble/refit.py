@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import DATA, fit_attn, load_attn, load_model, load_splits, pid, prompt_text, response_acts  # noqa: E402
 from probes import pairs  # noqa: E402
 
-RUNS = ["lam1_s0", "ens_lam1_s0", "lam1_s1", "ens_lam1_s1", "lam0_s0", "lam0_s1", "lam3_s0"]
+RUNS = ["lam1_s0", "ens_lam1_s0", "lam1_s1", "ens_lam1_s1", "lam0_s0", "ens_lam2_s0", "lam0_s1", "lam3_s0"]
 
 
 def auroc(lab, s):

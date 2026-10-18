@@ -43,6 +43,9 @@ Matches Bruno's analysis.py (s0 1.18, CI 0.83-1.81; s1 0.98, CI 0.68-1.42; his 2
   ensemble 0.235 / 0.055; every member under the single penalty 0.04-0.17 at r8; attention probe
   0.59 -> 0.095 / 0.12 (single), 0.075 / 0.02 (ensemble). Judged lying stays ~0.5.
 
+- Refit (vera_refit.py, from per-answer refit_scores): r8 refit/frozen single 0.823/0.735, 0.719/0.705;
+  ensemble 0.732/0.677, 0.773/0.732; base r0 0.787. Matches build to 4 dp; labels and frozen scores match eval rows.
+
 ## Probe fit (vera_probes.py, vera_probes_out.txt)
 All 8 member AUROCs, thresholds, ensemble max and attention AUROC reproduce to 3-4 dp. Ensemble
 honest-vs-deceptive margin: 0.606 vs probe A 0.794 on calib; on-policy r0 0.199 vs 0.374 (vera_auroc.py).

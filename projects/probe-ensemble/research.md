@@ -71,6 +71,8 @@ Thresholds for "ensemble cuts lying at least twice as much" (computed, script in
 | s1 | 0.22 | 0.38 | 0.305 |
 
 These use the 10-14 single-probe runs; if the single arm is rerun, recompute.
+**SUPERSEDED 03:10 CEST (D1, DEVIATIONS.md):** OpenAI credit ran out; all arms rerun fresh with gemini-3-flash-preview
+as judge and reward. These gpt-4.1-mini thresholds are context only and never enter the ratio.
 
 ## 4. Risks the prior work names
 

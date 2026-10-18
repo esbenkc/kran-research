@@ -34,7 +34,7 @@ matched to probe A), seed 0 only. It runs after control s0 and refit.py, and is 
 8. It is exploratory: it never enters the title rule, the prereg outcome or the figure; the post may give it one
 sentence.
 
-## D3 — control arm (lambda=0) not run; ens_lam2_s0 not run (decided 04:59)
+## D3 — control arm (lambda=0) not run; ens_lam2_s0 not run (decided 04:58)
 
 What happened: a second swarm opened at ~04:40 and free memory fell to 24% (Bruno #2465). Vera's compute gate
 (#2468) held every new training job until that swarm's job ended or free memory reached 45%. ens_lam1_s1 slowed

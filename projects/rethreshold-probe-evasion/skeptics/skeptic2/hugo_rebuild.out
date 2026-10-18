@@ -1,0 +1,73 @@
+======================================================================
+HUGO (skeptic2) INDEPENDENT REBUILD AND VERIFICATION
+======================================================================
+
+LAMBDA = 100000:
+  Pooled Share: 0.9039
+  95% Paired Bootstrap CI: [0.8867, 1.0022]
+  Per-seed Shares: [0.8558, 0.9403, 0.9189]
+  Lost TPRs: [0.9077, 0.8154, 0.9312]
+  Mean AUROC Drop: 0.000164
+  Mean c: 0.9362, Mean p: 3.0175, Mean D: 4.9147
+  E6 Pred (shift only): 0.9947
+  E7 Pred (with spreads): 0.9960
+  Secondary 8 Resplit (2000 draws) Mean: 0.9758 [0.9212, 1.0139]
+  Frozen refit-200 quantile in resplit: 0.0250
+
+LAMBDA = 31600:
+  Pooled Share: 0.7646
+  95% Paired Bootstrap CI: [0.6310, 0.9852]
+  Per-seed Shares: [0.7273, 0.7832, 0.7832]
+  Lost TPRs: [0.9597, 0.9597, 0.9597]
+  Mean AUROC Drop: 0.001339
+  Mean c: 0.9501, Mean p: 5.4740, Mean D: 4.9147
+  E6 Pred (shift only): 0.9945
+  E7 Pred (with spreads): 0.9855
+  Secondary 8 Resplit (2000 draws) Mean: 0.9407 [0.7874, 1.0227]
+  Frozen refit-200 quantile in resplit: 0.0000
+
+LAMBDA = 10000:
+  Pooled Share: 0.6142
+  95% Paired Bootstrap CI: [0.4644, 0.9581]
+  Per-seed Shares: [0.4983, 0.6696, 0.6748]
+  Lost TPRs: [0.9597, 0.9597, 0.9597]
+  Mean AUROC Drop: 0.003030
+  Mean c: 0.9268, Mean p: 6.2604, Mean D: 4.9147
+  E6 Pred (shift only): 0.9881
+  E7 Pred (with spreads): 0.9641
+  Secondary 8 Resplit (2000 draws) Mean: 0.8782 [0.6326, 0.9981]
+  Frozen refit-200 quantile in resplit: 0.0250
+
+LAMBDA = 0:
+  Pooled Share: 0.0082
+  95% Paired Bootstrap CI: [0.0012, 0.0265]
+  Per-seed Shares: [0.007, 0.0087, 0.0087]
+  Lost TPRs: [0.9597, 0.9597, 0.9597]
+  Mean AUROC Drop: 0.423412
+  Mean c: 0.8759, Mean p: 34.7054, Mean D: 4.9147
+  E6 Pred (shift only): 0.0428
+  E7 Pred (with spreads): 0.0200
+  Secondary 8 Resplit (2000 draws) Mean: 0.0113 [0.0048, 0.0290]
+  Frozen refit-200 quantile in resplit: 0.4260
+
+NULL TESTS (at headline lambda 100000):
+  Null 1 (Shuffled labels refit share): mean -0.0715 +- 0.0104 [95% CI: -0.0841, -0.0487]
+  Null 2 (Clean base model refit TPR diff): mean -0.0001 +- 0.0434 [95% CI: -0.0841, 0.0923]
+
+SYMBOLIC THEORY LIMITS:
+  L1 (c=1 -> share=1): True
+  L2 (c=0 -> share=0): True
+  L4 (p->0 -> share=c): True
+  L3 ((1-c)p > D -> share < 1e-6): True (max: 9.73e-47)
+
+======================================================================
+PRE-REGISTRATION CRITERIA EVALUATION (at headline lambda 100000):
+  1. TPR at 1% FPR falls by >= 50 points (all seeds): True
+     Lost points: [0.9077, 0.8154, 0.9312]
+  2. Threshold re-fit recovers >= 50% lost TPR (pooled): True (pooled share = 0.9039)
+     Paired bootstrap 95% CI: [0.8867, 1.0022] (lower bound > 0.5: True)
+  3. AUROC drops by <= 0.15: True (mean drop = 0.000164)
+  OVERALL STATUS: CONFIRMED
+======================================================================
+
+Saved structured results to: /Users/esben/work/theory-1018-shift-spread/swarm-theory-1018-shift-spread/skeptic2/hugo_rebuild_results.json

@@ -15,7 +15,7 @@ export function render(data, Plot) {
     UNRELATED: C.primary,
     RELATED: C.primaryLight,
     ONE_JOB: C.secondary,
-    NO_PASS: C.neutral,
+    NO_PASS: C.faint, // themed: stays muted in dark mode (C.neutral is a fixed light grey)
     TOO_SPARSE: C.grid,
   };
   const COLS = 20;

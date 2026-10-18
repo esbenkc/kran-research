@@ -1,0 +1,18 @@
+PASS E2 clean TPR_0 = Phi(D - z)
+PASS E3 attacked TPR_a = Phi(D - p - z)
+PASS E4 t_1 = t_0 - c p sigma
+PASS E5 TPR_1 = Phi(D - (1-c) p - z)
+PASS L1 c=1 -> share = 1
+PASS L2 c=0 -> share = 0
+PASS L3 0<c<1, (1-c)p = D+12 -> share < 1e-6 (D in 3..8, c in 0.2..0.99)
+PASS L4 lim_{p->0} share = c (symbolic, general D and z)
+     D=3.5: share at 50-point drop for c=0.2/0.5/0.8/0.95: 0.23 / 0.58 / 0.86 / 0.97
+     D=4.0: share at 50-point drop for c=0.2/0.5/0.8/0.95: 0.28 / 0.66 / 0.91 / 0.98
+     D=5.0: share at 50-point drop for c=0.2/0.5/0.8/0.95: 0.41 / 0.82 / 0.97 / 1.00
+     D=6.0: share at 50-point drop for c=0.2/0.5/0.8/0.95: 0.54 / 0.93 / 1.00 / 1.00
+PASS E7 reduces to E1/E4 at s_+=s_-=sigma, no attack
+PASS L5 2nd-largest-of-200 threshold moves exactly with a shared shift (200 heavy-tailed draws)
+     out-of-sample FPR of the 2nd-largest-of-200 rule: 0.0099 (theory 2/201 = 0.0100)
+PASS L5b fresh-negative FPR of the 2nd-largest rule = 2/201 within 0.0005 (20k draws)
+     MC share 0.948 vs E6 at FPR 2/201 0.956
+PASS E6 Monte Carlo (finite 200-negative estimator) within 0.03 of the formula

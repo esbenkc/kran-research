@@ -44,14 +44,10 @@ $$P(S_{neg, att} > t_1) = 1 - \Phi\left(\frac{t_1 - \mu_{-, att}}{\sigma}\right)
 Setting $\frac{t_1 - \mu_{-, att}}{\sigma} = z$:
 $$t_1 = \mu_{-, att} + z \sigma = (\mu_- - c p \sigma) + z \sigma = (\mu_- + z \sigma) - c p \sigma = t_0 - c p \sigma.$$
 
-**Why $t_1 = t_0 - c p \sigma$ holds generally:**
-Even outside the Gaussian assumption, any order-statistic rule (e.g. 2nd-largest of $n=200$ negatives) is strictly shift-equivariant:
+**Why $t_1 = t_0 - c p \sigma$ requires caution (uniform vs. tail shift):**
+An order-statistic rule (e.g. 2nd-largest of $n=200$ negatives) is strictly shift-equivariant only when every sample experiences an identical shift:
 $$\text{OrderStat}(X + \Delta) = \text{OrderStat}(X) + \Delta.$$
-Since all negative scores shift down by an average of $c p \sigma$, the calibrated threshold tracks the negative class translation exactly by $-c p \sigma$.
-
-### Attacked True Positive Rate at Re-calibrated Threshold ($TPR_1$)
-$$TPR_1 = P(S_{pos, att} > t_1) = 1 - \Phi\left(\frac{t_1 - \mu_{+, att}}{\sigma}\right).$$
-Substituting $t_1 = \mu_- + (z - c p)\sigma$ and $\mu_{+, att} = \mu_- + (D - p)\sigma$:
+This relation is exact under a uniform shift. However, when individual negative statements experience heterogeneous per-item shifts, $t_1$ tracks the shift of the top order statistics (the extreme negative tail) rather than the sample mean shift $-c p \sigma$. In our experiments, hard true statements in the negative tail move slightly less than the average negative, causing the calibrated threshold $t_1$ to sit higher than the uniform theory predicts. This difference explains why the E6 formula overpredicts recovery in the intermediate regime ($\lambda = 10^4$, where E6 MAE is 0.37) while succeeding at both extremes.
 $$\frac{t_1 - \mu_{+, att}}{\sigma} = (z - c p) - (D - p) = z - D + (1 - c) p.$$
 Therefore:
 $$TPR_1 = 1 - \Phi(z - D + (1 - c) p) = \Phi(D - (1 - c) p - z).$$

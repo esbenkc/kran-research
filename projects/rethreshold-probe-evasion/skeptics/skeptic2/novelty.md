@@ -26,5 +26,5 @@
 ## 2. Scope and Claims of This Work
 
 - **Measured phenomenon:** We quantify the fraction of lost true positive rate at 1% FPR recovered by simple threshold recalibration on clean negative data after a LoRA fine-tune against a linear probe.
-- **Finding:** When an output retain term is applied ($\lambda \ge 10^4$), evasion is overwhelmingly dominated by a common-mode translation ($c \approx 0.90\text{--}0.96$), leaving AUROC virtually unchanged ($\Delta\text{AUROC} < 0.001$). Under these conditions, recalibration recovers $\approx 85\text{--}94\%$ of the lost TPR.
+- **Finding:** When an output retain term is applied ($\lambda \ge 10^4$), evasion is dominated by a common-mode translation ($c \approx 0.93\text{--}0.95$), leaving AUROC virtually unchanged ($\Delta\text{AUROC} \le 0.003$). Under these conditions, recalibration recovers between $0.61$ and $0.90$ of the lost TPR (pooled shares: $0.90$ at $\lambda = 10^5$, $0.77$ at $\lambda = 3.16 \times 10^4$, and $0.61$ at $\lambda = 10^4$).
 - **Boundary condition:** When no retain penalty is enforced ($\lambda = 0$), the attacker drives the separation distance to near zero, causing recalibration recovery to collapse to $\approx 1\%$.

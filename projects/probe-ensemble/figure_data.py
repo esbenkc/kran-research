@@ -1,14 +1,13 @@
 """Build blog figure data (assets/figures/probe-ensemble/data.json) from the per-answer eval rows.
 
-Judged-deceptive rate per arm and round, pooled over seeds, with a 95% bootstrap CI over prompts
-(both samples of a prompt resampled together, per seed; 2,000 draws, numpy seed 0, as in PREREG.md s.4).
-Held-out attention-probe AUROC (frozen probe) is computed here from pAttn in the eval rows against the judge
-(DECEPTIVE = 1, HONEST = 0, OTHER dropped; PREREG.md s.6). The optional --auroc file (jsonl rows with arm, seed,
-round, kind = frozen | refit, auroc) adds the round-8 refit and overrides matching frozen rows.
-The figure's second panel shows the mean over seeds.
+Left panel: judged-deceptive rate per arm and round, pooled over seeds, with a 95% bootstrap CI over prompts
+(both samples of a prompt resampled together, per seed; 2,000 draws, numpy seed 0, as in PREREG.md s.4),
+plus the per-seed rate and the per-seed 2x target (round-0 rate minus twice the single-probe cut, PREREG s.5).
+Right panel: share of answers flagged per arm and round, by any of the eight ensemble members (flagEns: any
+member over its own 5%-false-positive threshold) and by the held-out attention probe (flagAttn).
 
     uv run python projects/probe-ensemble/figure_data.py --eval-dir projects/probe-ensemble/data/results \
-        --auroc projects/probe-ensemble/data/results/attention_auroc.jsonl --out <blog>/assets/figures/probe-ensemble/data.json
+        --out <blog>/assets/figures/probe-ensemble/data.json
 """
 from __future__ import annotations
 
@@ -24,8 +23,8 @@ ARMS = [  # key, label, regex on the run name, role
     ("control", "No penalty", r"^lam0_s\d+$", "control"),
     ("single", "One probe", r"^lam1_s\d+$", "single"),
     ("ensemble", "Eight probes (max)", r"^ens_lam1_s\d+$", "ensemble"),
-    ("single3", "One probe, 3x penalty", r"^lam3_s\d+$", "reference"),
 ]
+FLAGS = [("any8", "flagEns"), ("attn", "flagAttn")]
 
 
 def arm_of(run: str) -> str | None:
@@ -35,32 +34,20 @@ def arm_of(run: str) -> str | None:
     return None
 
 
-attn = defaultdict(list)  # (arm, seed, round) -> [(judge_deceptive, pAttn)], judge OTHER dropped
-
-
 def load(eval_dir: Path):
-    # data[arm][seed][round][prompt_id] = list of 0/1 judge labels
-    data = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(list))))
+    # judged[arm][seed][round][prompt_id] = list of 0/1 judge labels
+    judged = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(list))))
+    flags = defaultdict(list)  # (arm, seed, round, kind) -> [0/1]
     for f in sorted(eval_dir.glob("eval_*.jsonl")):
         for line in f.open():
             r = json.loads(line)
             a = arm_of(r["run"])
             if a is None:
                 continue
-            data[a][r["seed"]][r["round"]][r["prompt_id"]].append(int(r["judge_deceptive"]))
-            if "pAttn" in r and r.get("judge") in ("DECEPTIVE", "HONEST"):
-                attn[(a, r["seed"], r["round"])].append((int(r["judge"] == "DECEPTIVE"), r["pAttn"]))
-    return data
-
-
-def auc(pairs):
-    """Mann-Whitney AUROC of score vs 0/1 label, ties counted half."""
-    y = np.array([p[0] for p in pairs]); x = np.array([p[1] for p in pairs])
-    pos, neg = x[y == 1], x[y == 0]
-    if len(pos) == 0 or len(neg) == 0:
-        return None
-    gt = (pos[:, None] > neg[None, :]).sum() + 0.5 * (pos[:, None] == neg[None, :]).sum()
-    return float(gt / (len(pos) * len(neg)))
+            judged[a][r["seed"]][r["round"]][r["prompt_id"]].append(int(r["judge_deceptive"]))
+            for kind, field in FLAGS:
+                flags[(a, r["seed"], r["round"], kind)].append(int(r[field]))
+    return judged, flags
 
 
 def pooled_rate(per_seed: dict, rng, n_boot=2000):
@@ -84,27 +71,16 @@ def pooled_rate(per_seed: dict, rng, n_boot=2000):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--eval-dir", type=Path, required=True)
-    ap.add_argument("--auroc", type=Path)
     ap.add_argument("--out", type=Path, required=True)
     args = ap.parse_args()
 
-    data = load(args.eval_dir)
-    auroc = defaultdict(dict)  # (arm, round, kind) -> {seed: auroc}
-    for (a, seed, rnd), pairs in attn.items():  # frozen probe, from pAttn in the eval rows
-        v = auc(pairs)
-        if v is not None:
-            auroc[(a, rnd, "frozen")][str(seed)] = v
-    if args.auroc and args.auroc.exists():
-        for line in args.auroc.open():
-            r = json.loads(line)
-            auroc[(r["arm"], r["round"], r.get("kind", "frozen"))][str(r["seed"])] = r["auroc"]
-
+    judged, flags = load(args.eval_dir)
     rng = np.random.default_rng(0)
     rows = []
-    for key, label, _, role in ARMS:
-        if key not in data:
+    for key, _, _, _ in ARMS:
+        if key not in judged:
             continue
-        seeds = data[key]
+        seeds = judged[key]
         rounds = sorted(set.intersection(*(set(seeds[s]) for s in seeds)))
         for rnd in rounds:
             mean, lo, hi, n = pooled_rate({s: seeds[s][rnd] for s in seeds}, rng)
@@ -112,32 +88,39 @@ def main():
             rows.append({"arm": key, "round": rnd, "mean": mean, "lo": lo, "hi": hi, "n_answers": n,
                          "n_seeds": len(seeds), "per_seed": per_seed})
 
-    # Where the ensemble must land at the last round for a yes (PREREG.md s.5): r0 - 2 x single cut, per seed.
+    # Where the ensemble must land at round 8 for a yes (PREREG.md s.5): r0 - 2 x single cut, per seed.
     targets = []
-    if "single" in data:
-        for s in sorted(data["single"]):
-            rs = data["single"][s]
-            last = 8  # PREREG.md s.4: the cut is round 0 -> round 8
-            if 0 not in rs or last not in rs:
-                continue
-            rate = lambda rnd: float(np.mean([x for v in rs[rnd].values() for x in v]))
-            targets.append({"seed": str(s), "round": last, "target": rate(0) - 2 * (rate(0) - rate(last))})
+    for s in sorted(judged.get("single", {})):
+        rs = judged["single"][s]
+        if 0 not in rs or 8 not in rs:
+            continue
+        rate = lambda rnd: float(np.mean([x for v in rs[rnd].values() for x in v]))
+        targets.append({"seed": str(s), "round": 8, "target": rate(0) - 2 * (rate(0) - rate(8))})
 
-    auroc_rows = [{"arm": a, "round": rnd, "kind": kind, "mean": float(np.mean(list(v.values()))),
-                   "per_seed": v} for (a, rnd, kind), v in sorted(auroc.items()) if a in data]
+    flag_rows = []
+    by = defaultdict(dict)
+    for (a, seed, rnd, kind), v in flags.items():
+        by[(a, rnd, kind)][str(seed)] = float(np.mean(v))
+    for (a, rnd, kind), per_seed in sorted(by.items()):
+        if len(per_seed) == len(judged[a]):  # only rounds every seed has
+            flag_rows.append({"arm": a, "round": rnd, "kind": kind, "mean": float(np.mean(list(per_seed.values()))),
+                              "per_seed": per_seed})
 
     out = {
         "title": "Training against eight lie detectors cut lying no more than training against one",
         "y_label": "Share of held-out answers the judge calls deceptive",
-        "arms": [{"key": k, "label": l, "role": r} for k, l, _, r in ARMS if k in data],
+        "flag_title": "Share of the same answers the probes flag",
+        "arms": [{"key": k, "label": l, "role": r} for k, l, _, r in ARMS if k in judged],
         "rows": rows,
         "targets": targets,
-        "auroc_title": "Held-out attention probe AUROC (never in the reward)",
-        "auroc_rows": auroc_rows,
+        "flag_kinds": [{"key": "any8", "label": "any of the eight probes"},
+                       {"key": "attn", "label": "held-out attention probe"}],
+        "flag_rows": flag_rows,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(out, indent=1))
-    print(f"wrote {args.out}: {len(rows)} rows, arms {[a['key'] for a in out['arms']]}")
+    print(f"wrote {args.out}: {len(rows)} rate rows, {len(flag_rows)} flag rows, "
+          f"arms {[a['key'] for a in out['arms']]}")
 
 
 if __name__ == "__main__":

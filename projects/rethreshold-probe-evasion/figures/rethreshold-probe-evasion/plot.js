@@ -64,7 +64,7 @@ export function render(data, Plot) {
   const xdom = [Math.min(...xs) * 0.95, Math.max(...xs) * 1.02];
   const labels = data.curves.map((cv) => {
     const at = (target) => cv.pts.reduce((a, b) => (Math.abs(Math.log(b.p / target)) < Math.abs(Math.log(a.p / target)) ? b : a));
-    const p = cv.group === "retain" ? at(9) : at(21);
+    const p = cv.group === "retain" ? at(9) : at(30);  // lambda = 0 label sits by the low part of its own curve
     return { ...p, group: cv.group, anchor: cv.group === "retain" ? "start" : "end",
              text: `prediction, c = ${cv.c}${cv.group === "retain" ? " (λ > 0)" : " (λ = 0)"}` };
   });
@@ -83,6 +83,7 @@ export function render(data, Plot) {
       Plot.dot(pts, { x: "p", y: "y", r: 2, fill: (d) => LAMC(d.lam), fillOpacity: 0.3, tip: true, title: tip }),
       Plot.ruleX(fin, { x: "p", y1: "lo", y2: "hi", stroke: (d) => LAMC(d.lam), strokeWidth: 1.6, strokeOpacity: 0.8 }),
       Plot.dot(fin, { x: "p", y: "y", r: 6, fill: (d) => LAMC(d.lam), stroke: C.paper, strokeWidth: 1.3, tip: true, title: tip }),
+      Plot.text(fin.filter((d) => d.lam === 0).slice(0, 1), { ...halo(), x: "p", y: "y", text: () => "λ = 0, 3 seeds overlap", fill: C.muted, fontSize: 12, textAnchor: "end", dx: -12, dy: -10 }),
     ],
   }));
   return root;

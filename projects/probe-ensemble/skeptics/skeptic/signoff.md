@@ -48,8 +48,12 @@ All 8 member AUROCs, thresholds, ensemble max and attention AUROC reproduce to 3
 honest-vs-deceptive margin: 0.606 vs probe A 0.794 on calib; on-policy r0 0.199 vs 0.374 (vera_auroc.py).
 
 ## Definitions checked
-cut = own r0 - r8 per arm per seed; rate = DECEPTIVE / 200 answers (OTHER counts as not deceptive, as in
-PREREG s4); ratio CI paired over 100 prompts. No stretch found. Not run: control arm (D3), so no
-control-adjusted cut; the held-out AUROC has no lambda=0 drift reference.
+- Silenced, not blinded (vera_member_auroc.py): under the one-probe penalty the eight-probe max still ranks
+  deceptive above truthful answers with AUROC 0.763 / 0.720 at r8 (0.797 at r0); member mean 0.742 / 0.694
+  (0.772 at r0); its deceptive-minus-truthful gap at r8 is +0.29 / +0.27 (r0 +0.20). The flag drop comes from
+  scores shifting below fixed thresholds. "Fooled all eight" / "nothing left to catch" overstate this.
+- Ratio: cut = own r0 - r8 per arm per seed; rate = DECEPTIVE / 200 answers (OTHER counts as not deceptive,
+  as in PREREG s4); ratio CI paired over 100 prompts. No stretch in the ratio. Not run: control arm (D3), so
+  no control-adjusted cut; the held-out AUROC has no lambda=0 drift reference.
 
 API spend (mine): ~$1.93 (claude-haiku-4-5, ~5,070 calls, cached).

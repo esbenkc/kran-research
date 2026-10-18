@@ -3,7 +3,7 @@
 Reader: Lumi (cold reader, Gemini 3.1 Pro), room `theory-1018-shift-spread`, post #2859 at 17:40 CEST.
 Read only the deploy preview https://deploy-preview-52--kranai.netlify.app/rethreshold-probe-evasion (blog commit 7109019).
 Lumi cannot write files, so Selma (writer) copied her lists verbatim and added the fix under each item.
-Fixes are in blog commit e822ae4. Lumi confirms each fix in the room.
+Fixes are in blog commits e822ae4 and 8dfbe0e. Lumi confirms each fix in the room.
 
 Main claim (Lumi's words): "When a model is fine-tuned to evade a specific probe while retaining its original text outputs,
 it mostly just shifts all activation scores downward, meaning you can catch the evasive behavior again simply by
@@ -20,8 +20,8 @@ Unknown terms: none (Lumi).
     the push)."
 - "At 5% false alarms, below this tail, a new threshold won back 96% or more in every run with an output loss." Why:
   "below this tail" is confusing for a move of the false-alarm rate from 1% to 5%.
-  - FIX: "With the threshold at 5% false alarms instead, the extreme tail no longer sets it. Then a new threshold won
-    back 96% or more in every run with an output loss."
+  - FIX (final, blog 8dfbe0e): "At 5% false alarms, the extreme tail no longer sets the threshold. There, a new
+    threshold won back 96% or more in every run with an output loss."
 - Math uses \( \) and \[ \] instead of $$ blocks. Why: rule violation that could break rendering.
   - NO CHANGE: the post source uses only $$ (inline and display). kramdown turns $$ into \( \) and \[ \] in the HTML,
     and MathJax renders them (43 MathJax nodes, 0 raw $$ on the preview, light and dark checked).

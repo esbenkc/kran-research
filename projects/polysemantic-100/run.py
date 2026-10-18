@@ -24,14 +24,16 @@ from common import DATA, PROJECT_DIR, load_neurons
 
 BLOG_FIGURES = PROJECT_DIR.parents[2] / "blog.kran.ai" / "assets" / "figures"  # work-dir clone, never ~/Desktop
 LABELS = [
-    ("UNRELATED_CAUSAL", "unrelated jobs, ablation hurts both"),
-    ("UNRELATED", "unrelated jobs, ablation does not hurt both"),
+    ("UNRELATED_CAUSAL", "unrelated jobs (switching it off hurts both)"),
+    ("UNRELATED", "unrelated jobs (switching it off barely matters)"),
     ("RELATED", "related jobs"),
     ("ONE_JOB", "one job"),
-    ("NO_PASS", "no hypothesis passed its test"),
-    ("TOO_SPARSE", "too few strong firings in the corpus"),
+    ("NO_PASS", "no guess passed its test"),
+    ("TOO_SPARSE", "too few strong examples to test"),
 ]
 SIGN = {"pos": "+", "neg": "-"}
+SIDE = {"UNRELATED": "unrelated jobs", "RELATED": "related jobs", "ONE_JOB": "one job",
+        "NO_PASS": "no guess passed", "TOO_SPARSE": "too few strong examples"}
 
 
 def main() -> None:
@@ -57,8 +59,8 @@ def main() -> None:
         for p in sorted(poles[n["id"]], key=lambda p: p["pole"], reverse=True):
             jobs = [h["name"] for h in p["hyps"] if h["pass"]]
             tried = [h["name"] for h in p["hyps"] if not h["pass"]]
-            head = f"{SIGN[p['pole']]} pole, {p['label'].lower().replace('_', ' ')}"
-            body = "; ".join(jobs) if jobs else ("tried " + "; ".join(tried) if tried else "-")
+            head = f"{SIGN[p['pole']]} side, {SIDE[p['label']]}"
+            body = "; ".join(jobs) if jobs else ("guesses tried: " + "; ".join(tried) if tried else "-")
             lines.append(f"{head}: {body}")
         rows.append({"id": n["id"], "layer": n["layer"], "label": nl, "tip": "\n".join(lines)})
     order = [k for k, _ in LABELS]
@@ -72,16 +74,18 @@ def main() -> None:
         tok_ = lambda h: html.escape(h["fire_top_token"].strip())
         a = abl.get((p["id"], p["pole"]))
         note = ("ablation hurts both jobs" if a and a["hurts_both"] else
-                "zeroing it hurts no job more than other strongly active neurons" if a else "ablation not run")
-        examples.append({"id": f"{p['id']} {SIGN[p['pole']]} pole",
+                "switching it off changes the predictions no more than a random neuron of its layer" if a else "ablation not run")
+        examples.append({"id": f"{p['id']} {SIGN[p['pole']]} side",
                          "a": f"{html.escape(jobs[0]['name'])} (\u201c{tok_(jobs[0])}\u201d)",
                          "b": " + ".join(f"{html.escape(h['name'])} (\u201c{tok_(h)}\u201d)" for h in jobs[1:]),
                          "note": note})
 
     counts = {k: sum(r["label"] == k for r in rows) for k in order}
+    n_explained = sum(counts[k] for k in ("UNRELATED_CAUSAL", "UNRELATED", "RELATED", "ONE_JOB"))
     data = {
-        "title": "100 random neurons of Qwen3-4B, one square each",
-        "subtitle": "Label = the worst of the neuron's two poles. Hover a square for its tested jobs.",
+        "title": f"Our test explained {n_explained} of 100 random Qwen3-4B neurons",
+        "subtitle": "One square per neuron. A neuron takes the strangest label of its two sides. "
+                    "Hover a square for the jobs we tested.",
         "labels": [{"key": k, "name": name, "n": counts[k]} for k, name in LABELS if counts[k]],
         "neurons": rows,
         "examples": examples,

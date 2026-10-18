@@ -86,3 +86,15 @@ as judge and reward. These gpt-4.1-mini thresholds are context only and never en
   (max-pool/attention robust; ensemble App. L), McGuinness et al. 2512.11949 (ensembles mitigate, not eliminate),
   Taufeeque et al. 2602.15515 (taxonomy; their detector is a layer-mean ensemble), Bailey et al. 2412.09565
   (more layers = higher evasion cost). Apollo deception-detection repo (RepE true facts) if probes reuse it.
+
+## 5. Notes added during the run (04:30 CEST)
+
+- RL-Obfuscation's aggregation acts on PER-TOKEN probe SCORES (H: R^t -> R, "aggregation function over t token-wise
+  scores"); their max-pool probe = mean of the top-k token scores (App. B.2, "Details on Maxpool Training"). Our
+  max-pool member = elementwise max over tokens of the ACTIVATION vector, then one logistic readout (Bruno #2350).
+  Different construction: a contrast with their "unless maxpool" result is a setup difference, not a contradiction.
+- Single-probe training already blinds all 8 members (Bruno #2425): max-pool members 0.07-0.09 flags at single s0 r8.
+  Consistent with probe-goodhart's text-level hiding (untrained model reading the answers stops flagging).
+- Replacement judge (gemini-3-flash-preview) vs Iris's blind labels: stricter than the labels in both arms at seed 0
+  (deceptive count label/judge: ensemble 5/8, single 6/10, n=15 each): the judge bias, if any, inflates the
+  ensemble/single ratio, so it does not manufacture a NO.

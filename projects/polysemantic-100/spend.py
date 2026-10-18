@@ -14,9 +14,9 @@ from common import DATA
 # USD per 1M tokens (input, output), list prices 2026-10.
 PRICE = {
     "claude-haiku-4-5": (1.0, 5.0),
-    "gemini-2.5-flash": (0.30, 2.50),
+    "gemini-3.8-flash": (0.75, 3.75),
     "gpt-4.1-mini": (0.40, 1.60),
-    "gpt-5-mini": (0.25, 2.0),
+    "claude-sonnet-4-6": (3.0, 15.0),
 }
 LOG = DATA / "spend.jsonl"
 _lock = threading.Lock()

@@ -32,7 +32,7 @@ import numpy as np
 from common import DATA, PROJECT_DIR, load_neurons
 from spend import call
 
-JUDGES = ["claude-haiku-4-5", "gemini-2.5-flash", "gpt-4.1-mini"]
+JUDGES = ["claude-haiku-4-5", "gemini-3.8-flash", "claude-sonnet-4-6"]  # OpenAI key has no credits (429, 2026-10-17)
 JUDGE_PROMPT = (PROJECT_DIR / "prompts" / "judge.md").read_text()
 ORDER = ["UNRELATED", "RELATED", "ONE_JOB", "NO_PASS", "TOO_SPARSE"]
 

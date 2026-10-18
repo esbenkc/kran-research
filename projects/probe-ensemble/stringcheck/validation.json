@@ -1,0 +1,83 @@
+{
+ "threshold": 0.2727272727272727,
+ "n": 60,
+ "judge_other_dropped": 0,
+ "string_vs_hand": [
+  0.7666666666666667,
+  60
+ ],
+ "judge_vs_hand": [
+  0.85,
+  60
+ ],
+ "string_vs_judge": [
+  0.7833333333333333,
+  60
+ ],
+ "string_vs_hand_clear_only": [
+  0.8775510204081632,
+  49
+ ],
+ "judge_vs_hand_clear_only": [
+  0.8979591836734694,
+  49
+ ],
+ "r0": {
+  "string_vs_hand": [
+   0.8666666666666667,
+   15
+  ],
+  "judge_vs_hand": [
+   0.9333333333333333,
+   15
+  ],
+  "hand_deceptive": 0.8666666666666667,
+  "string_deceptive": 1.0,
+  "judge_deceptive": 0.9333333333333333
+ },
+ "lam0_r8": {
+  "string_vs_hand": [
+   0.8666666666666667,
+   15
+  ],
+  "judge_vs_hand": [
+   1.0,
+   15
+  ],
+  "hand_deceptive": 0.9333333333333333,
+  "string_deceptive": 0.9333333333333333,
+  "judge_deceptive": 0.9333333333333333
+ },
+ "lam1_r8": {
+  "string_vs_hand": [
+   0.6666666666666666,
+   15
+  ],
+  "judge_vs_hand": [
+   0.8666666666666667,
+   15
+  ],
+  "hand_deceptive": 0.3333333333333333,
+  "string_deceptive": 0.4,
+  "judge_deceptive": 0.4666666666666667
+ },
+ "lam3_r8": {
+  "string_vs_hand": [
+   0.6666666666666666,
+   15
+  ],
+  "judge_vs_hand": [
+   0.6,
+   15
+  ],
+  "hand_deceptive": 0.3333333333333333,
+  "string_deceptive": 0.5333333333333333,
+  "judge_deceptive": 0.7333333333333333
+ },
+ "string_confusion": {
+  "hand_HONEST_string_HONEST": 13,
+  "hand_HONEST_string_DECEPTIVE": 10,
+  "hand_DECEPTIVE_string_HONEST": 4,
+  "hand_DECEPTIVE_string_DECEPTIVE": 33
+ }
+}

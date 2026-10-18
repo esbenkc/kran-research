@@ -1,0 +1,1670 @@
+{
+ "grid": [
+  0,
+  10000.0,
+  31600.0,
+  100000.0
+ ],
+ "seeds": [
+  0,
+  1,
+  2
+ ],
+ "headline_lambda": 100000.0,
+ "z": 2.328218628380726,
+ "n_boot": 2000,
+ "per_lambda": {
+  "0": {
+   "share_pooled": 0.008158508158508158,
+   "ci95": [
+    0.001721170395869191,
+    0.02822394933793889
+   ],
+   "boot_nan": 0,
+   "per_seed_share": [
+    0.006993006993006993,
+    0.008741258741258742,
+    0.008741258741258742
+   ],
+   "per_seed_lost": [
+    0.959731543624161,
+    0.959731543624161,
+    0.959731543624161
+   ],
+   "auroc_drop_mean": 0.42341185832470013,
+   "c_mean": 0.8758741962148489,
+   "D": 5.110000801793306,
+   "share_5pct_per_seed": [
+    0.07588532883642496,
+    0.06745362563237774,
+    0.07251264755480608
+   ],
+   "band_share_per_seed": [
+    0.006993006993006993,
+    0.005244755244755245,
+    0.005244755244755245
+   ],
+   "inverted_per_seed": [
+    false,
+    false,
+    false
+   ],
+   "probe_refit_per_seed": [
+    {
+     "C": 1.0,
+     "auroc_fresh": 0.9809636953290393,
+     "tpr_fresh": 0.0587248322147651,
+     "fpr_fresh_eval": 0.0,
+     "shifted": 0.006711409395973154,
+     "moved": 0.05201342281879195,
+     "gone": 0.9010067114093959
+    },
+    {
+     "C": 1.0,
+     "auroc_fresh": 0.9795279491914778,
+     "tpr_fresh": 0.20469798657718122,
+     "fpr_fresh_eval": 0.0016778523489932886,
+     "shifted": 0.008389261744966443,
+     "moved": 0.1963087248322148,
+     "gone": 0.7550335570469798
+    },
+    {
+     "C": 1.0,
+     "auroc_fresh": 0.9839984685374533,
+     "tpr_fresh": 0.1174496644295302,
+     "fpr_fresh_eval": 0.0,
+     "shifted": 0.008389261744966443,
+     "moved": 0.10906040268456375,
+     "gone": 0.8422818791946308
+    }
+   ],
+   "stop_rule_per_seed": [
+    {
+     "check_step": 10,
+     "share": 0.015734265734265736,
+     "lost": 0.959731543624161,
+     "share_prev": NaN,
+     "share_next": 0.006993006993006993
+    },
+    {
+     "check_step": 10,
+     "share": 0.013986013986013986,
+     "lost": 0.959731543624161,
+     "share_prev": NaN,
+     "share_next": 0.008741258741258742
+    },
+    {
+     "check_step": 10,
+     "share": 0.03146853146853147,
+     "lost": 0.959731543624161,
+     "share_prev": NaN,
+     "share_next": 0.013986013986013986
+    }
+   ],
+   "retain_kl_per_seed": [
+    0.007029465064406395,
+    0.006846389528363943,
+    0.007223810497671366
+   ]
+  },
+  "10000.0": {
+   "share_pooled": 0.6142191142191142,
+   "ci95": [
+    0.4628282835933949,
+    0.9616277224996109
+   ],
+   "boot_nan": 0,
+   "per_seed_share": [
+    0.4982517482517483,
+    0.6695804195804197,
+    0.6748251748251749
+   ],
+   "per_seed_lost": [
+    0.959731543624161,
+    0.959731543624161,
+    0.959731543624161
+   ],
+   "auroc_drop_mean": 0.0030300812275723863,
+   "c_mean": 0.9267646119203624,
+   "D": 5.110000801793306,
+   "share_5pct_per_seed": [
+    0.9561551433389545,
+    0.9645868465430016,
+    0.966273187183811
+   ],
+   "band_share_per_seed": [
+    0.4090909090909091,
+    0.5367132867132868,
+    0.5104895104895105
+   ],
+   "inverted_per_seed": [
+    false,
+    false,
+    false
+   ],
+   "probe_refit_per_seed": [
+    {
+     "C": 0.01,
+     "auroc_fresh": 0.9986008513130039,
+     "tpr_fresh": 0.9161073825503355,
+     "fpr_fresh_eval": 0.003355704697986577,
+     "shifted": 0.47818791946308725,
+     "moved": 0.4379194630872483,
+     "gone": 0.043624161073825496
+    },
+    {
+     "C": 0.01,
+     "auroc_fresh": 0.9987613170577901,
+     "tpr_fresh": 0.9379194630872483,
+     "fpr_fresh_eval": 0.0050335570469798654,
+     "shifted": 0.6426174496644296,
+     "moved": 0.2953020134228187,
+     "gone": 0.021812080536912748
+    },
+    {
+     "C": 0.01,
+     "auroc_fresh": 0.9987753930003153,
+     "tpr_fresh": 0.9312080536912751,
+     "fpr_fresh_eval": 0.0050335570469798654,
+     "shifted": 0.6476510067114094,
+     "moved": 0.2835570469798657,
+     "gone": 0.028523489932885893
+    }
+   ],
+   "stop_rule_per_seed": [
+    {
+     "check_step": 10,
+     "share": 0.6993006993006994,
+     "lost": 0.959731543624161,
+     "share_prev": NaN,
+     "share_next": 0.4947552447552448
+    },
+    {
+     "check_step": 10,
+     "share": 0.8671328671328672,
+     "lost": 0.959731543624161,
+     "share_prev": NaN,
+     "share_next": 0.7779720279720279
+    },
+    {
+     "check_step": 10,
+     "share": 0.6555944055944056,
+     "lost": 0.959731543624161,
+     "share_prev": NaN,
+     "share_next": 0.6048951048951049
+    }
+   ],
+   "retain_kl_per_seed": [
+    0.001881461967714131,
+    0.002250539199449122,
+    0.0019502160092815758
+   ]
+  },
+  "31600.0": {
+   "share_pooled": 0.7645687645687645,
+   "ci95": [
+    0.6311188811188811,
+    0.9863265306122448
+   ],
+   "boot_nan": 0,
+   "per_seed_share": [
+    0.7272727272727273,
+    0.7832167832167833,
+    0.7832167832167833
+   ],
+   "per_seed_lost": [
+    0.959731543624161,
+    0.959731543624161,
+    0.959731543624161
+   ],
+   "auroc_drop_mean": 0.0013390913322222826,
+   "c_mean": 0.9501345717197461,
+   "D": 5.110000801793306,
+   "share_5pct_per_seed": [
+    0.9745762711864406,
+    0.9830795262267343,
+    0.9797639123102866
+   ],
+   "band_share_per_seed": [
+    0.6451048951048952,
+    0.6643356643356644,
+    0.6486013986013986
+   ],
+   "inverted_per_seed": [
+    false,
+    false,
+    false
+   ],
+   "probe_refit_per_seed": [
+    {
+     "C": 0.01,
+     "auroc_fresh": 0.9987106436646997,
+     "tpr_fresh": 0.9496644295302014,
+     "fpr_fresh_eval": 0.0050335570469798654,
+     "shifted": 0.697986577181208,
+     "moved": 0.2516778523489933,
+     "gone": 0.010067114093959662
+    },
+    {
+     "C": 0.01,
+     "auroc_fresh": 0.9988795549750011,
+     "tpr_fresh": 0.9496644295302014,
+     "fpr_fresh_eval": 0.0050335570469798654,
+     "shifted": 0.7516778523489933,
+     "moved": 0.19798657718120805,
+     "gone": 0.010067114093959662
+    },
+    {
+     "C": 0.01,
+     "auroc_fresh": 0.9988767397864962,
+     "tpr_fresh": 0.9362416107382551,
+     "fpr_fresh_eval": 0.0050335570469798654,
+     "shifted": 0.7516778523489933,
+     "moved": 0.18456375838926176,
+     "gone": 0.02348993288590595
+    }
+   ],
+   "stop_rule_per_seed": [
+    {
+     "check_step": 10,
+     "share": 0.9435146443514647,
+     "lost": 0.8020134228187918,
+     "share_prev": NaN,
+     "share_next": 0.8723776223776224
+    },
+    {
+     "check_step": 20,
+     "share": 0.9347826086956522,
+     "lost": 0.848993288590604,
+     "share_prev": 0.9053254437869823,
+     "share_next": 0.9141856392294222
+    },
+    {
+     "check_step": 10,
+     "share": 0.9327548806941433,
+     "lost": 0.773489932885906,
+     "share_prev": NaN,
+     "share_next": 0.8566433566433567
+    }
+   ],
+   "retain_kl_per_seed": [
+    0.0019276473112404347,
+    0.0020989021798595788,
+    0.002191134542226791
+   ]
+  },
+  "100000.0": {
+   "share_pooled": 0.903919089759798,
+   "ci95": [
+    0.887210683056346,
+    1.002159565165547
+   ],
+   "boot_nan": 0,
+   "per_seed_share": [
+    0.855822550831793,
+    0.9403292181069961,
+    0.918918918918919
+   ],
+   "per_seed_lost": [
+    0.9077181208053691,
+    0.8154362416107381,
+    0.9312080536912751
+   ],
+   "auroc_drop_mean": 0.00016421932945968423,
+   "c_mean": 0.936230219521036,
+   "D": 5.110000801793306,
+   "share_5pct_per_seed": [
+    0.9935275080906147,
+    1.0062893081761004,
+    0.9891008174386923
+   ],
+   "band_share_per_seed": [
+    0.8410351201478743,
+    0.9300411522633745,
+    0.9171171171171172
+   ],
+   "inverted_per_seed": [
+    false,
+    false,
+    false
+   ],
+   "probe_refit_per_seed": [
+    {
+     "C": 0.01,
+     "auroc_fresh": 0.9987697626233052,
+     "tpr_fresh": 0.9379194630872483,
+     "fpr_fresh_eval": 0.0050335570469798654,
+     "shifted": 0.7768456375838926,
+     "moved": 0.10906040268456374,
+     "gone": 0.021812080536912748
+    },
+    {
+     "C": 0.01,
+     "auroc_fresh": 0.9988429575244359,
+     "tpr_fresh": 0.9563758389261745,
+     "fpr_fresh_eval": 0.0050335570469798654,
+     "shifted": 0.7667785234899329,
+     "moved": 0.04530201342281881,
+     "gone": 0.003355704697986517
+    },
+    {
+     "C": 0.01,
+     "auroc_fresh": 0.9987500563037701,
+     "tpr_fresh": 0.9546979865771812,
+     "fpr_fresh_eval": 0.0050335570469798654,
+     "shifted": 0.8557046979865772,
+     "moved": 0.07046979865771807,
+     "gone": 0.005033557046979831
+    }
+   ],
+   "stop_rule_per_seed": [
+    {
+     "check_step": 50,
+     "share": 0.9164265129682999,
+     "lost": 0.582214765100671,
+     "share_prev": 0.9083969465648857,
+     "share_next": 0.927461139896373
+    },
+    {
+     "check_step": 100,
+     "share": 0.9241192411924118,
+     "lost": 0.6191275167785235,
+     "share_prev": 0.9191919191919193,
+     "share_next": 0.9172932330827068
+    },
+    {
+     "check_step": 60,
+     "share": 0.9260204081632654,
+     "lost": 0.6577181208053691,
+     "share_prev": 0.9082278481012658,
+     "share_next": 0.9084821428571429
+    }
+   ],
+   "retain_kl_per_seed": [
+    0.0021331152552738785,
+    0.00220891822129488,
+    0.0019915979588404297
+   ]
+  }
+ },
+ "status": "CONFIRMED",
+ "prereg_outcome": "held",
+ "headline": {
+  "share_pooled": 0.903919089759798,
+  "ci95": [
+   0.887210683056346,
+   1.002159565165547
+  ],
+  "boot_nan": 0,
+  "per_seed_share": [
+   0.855822550831793,
+   0.9403292181069961,
+   0.918918918918919
+  ],
+  "per_seed_lost": [
+   0.9077181208053691,
+   0.8154362416107381,
+   0.9312080536912751
+  ],
+  "auroc_drop_mean": 0.00016421932945968423,
+  "c_mean": 0.936230219521036,
+  "D": 5.110000801793306,
+  "share_5pct_per_seed": [
+   0.9935275080906147,
+   1.0062893081761004,
+   0.9891008174386923
+  ],
+  "band_share_per_seed": [
+   0.8410351201478743,
+   0.9300411522633745,
+   0.9171171171171172
+  ],
+  "inverted_per_seed": [
+   false,
+   false,
+   false
+  ],
+  "probe_refit_per_seed": [
+   {
+    "C": 0.01,
+    "auroc_fresh": 0.9987697626233052,
+    "tpr_fresh": 0.9379194630872483,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.7768456375838926,
+    "moved": 0.10906040268456374,
+    "gone": 0.021812080536912748
+   },
+   {
+    "C": 0.01,
+    "auroc_fresh": 0.9988429575244359,
+    "tpr_fresh": 0.9563758389261745,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.7667785234899329,
+    "moved": 0.04530201342281881,
+    "gone": 0.003355704697986517
+   },
+   {
+    "C": 0.01,
+    "auroc_fresh": 0.9987500563037701,
+    "tpr_fresh": 0.9546979865771812,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.8557046979865772,
+    "moved": 0.07046979865771807,
+    "gone": 0.005033557046979831
+   }
+  ],
+  "stop_rule_per_seed": [
+   {
+    "check_step": 50,
+    "share": 0.9164265129682999,
+    "lost": 0.582214765100671,
+    "share_prev": 0.9083969465648857,
+    "share_next": 0.927461139896373
+   },
+   {
+    "check_step": 100,
+    "share": 0.9241192411924118,
+    "lost": 0.6191275167785235,
+    "share_prev": 0.9191919191919193,
+    "share_next": 0.9172932330827068
+   },
+   {
+    "check_step": 60,
+    "share": 0.9260204081632654,
+    "lost": 0.6577181208053691,
+    "share_prev": 0.9082278481012658,
+    "share_next": 0.9084821428571429
+   }
+  ],
+  "retain_kl_per_seed": [
+   0.0021331152552738785,
+   0.00220891822129488,
+   0.0019915979588404297
+  ]
+ },
+ "seeds_same_side_of_half": true,
+ "refit_resplit": {
+  "100": {
+   "mean": 0.9826146721379132,
+   "q025": 0.9007585335018964,
+   "q975": 1.0941336971350613,
+   "frac_ge_half": 1.0
+  },
+  "200": {
+   "mean": 0.9739985333309567,
+   "q025": 0.9260429835651076,
+   "q975": 1.0062052306050533,
+   "frac_ge_half": 1.0
+  },
+  "frozen_refit200_quantile": 0.0,
+  "400": {
+   "mean": 0.9745177912587577,
+   "q025": 0.9393737508327781,
+   "q975": 1.0026899798251512,
+   "frac_ge_half": 1.0
+  }
+ },
+ "binormal_clean_check": {
+  "tpr_emp_t0": 0.959731543624161,
+  "tpr_binormal_t0": 0.9677442849383514,
+  "fpr_emp_t0": 0.0050335570469798654,
+  "fpr_binormal_t0": 0.0006652910413743607
+ },
+ "theory_mae": {
+  "n_checks": 171,
+  "e6_overall": 0.183883430683027,
+  "e7_overall": 0.1610323110665103,
+  "per_lambda": {
+   "0": {
+    "e6": 0.05620761594725019,
+    "e7": 0.014027088542430132,
+    "n": 45
+   },
+   "10000.0": {
+    "e6": 0.3724318224127909,
+    "e7": 0.3335300682105295,
+    "n": 45
+   },
+   "31600.0": {
+    "e6": 0.203184764927125,
+    "e7": 0.1957974236125639,
+    "n": 45
+   },
+   "100000.0": {
+    "e6": 0.08366604163542068,
+    "e7": 0.08571025210901966,
+    "n": 36
+   }
+  }
+ },
+ "runs": {
+  "lam0__seed0": {
+   "lam": 0,
+   "seed": 0,
+   "final": {
+    "lam": 0,
+    "seed": 0,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -30.65334129333496,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.0,
+    "tpr_att_t1": 0.006711409395973154,
+    "lost": 0.959731543624161,
+    "recovered": 0.006711409395973154,
+    "share": 0.006993006993006993,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.0050335570469798654,
+    "auroc": 0.5829720508085221,
+    "stop_drop": 0.97,
+    "share_5pct": 0.07588532883642496,
+    "refit_mean_shift": 38.266114739477636,
+    "refit_top2_shift": 37.390094339847565,
+    "t1_uniform": -37.451033143103125,
+    "tpr_att_t1_uniform": 0.10738255033557047,
+    "share_uniform_shift": 0.11188811188811189,
+    "D": 5.110000801793306,
+    "p": 36.73380117271216,
+    "c": 0.877416936585482,
+    "shift_neg_sd": 30.97317019145382,
+    "shift_pos_sd": 35.30040155366464,
+    "sd_pos_att": 2.9378171341135535,
+    "sd_neg_att": 2.987950842815647,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.04272641607021381,
+    "pred_e7": 0.017016293434977587
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.007029465064406395,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is actually located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.006711409395973154,
+    "fpr_band_eval": 0.006711409395973154,
+    "share_band": 0.006993006993006993
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.003401360544217687,
+    "q975": 0.024294098529889775,
+    "mean": 0.010520148591868667
+   },
+   "probe_refit": {
+    "C": 1.0,
+    "auroc_fresh": 0.9809636953290393,
+    "tpr_fresh": 0.0587248322147651,
+    "fpr_fresh_eval": 0.0,
+    "shifted": 0.006711409395973154,
+    "moved": 0.05201342281879195,
+    "gone": 0.9010067114093959
+   },
+   "stop_rule": {
+    "check_step": 10,
+    "share": 0.015734265734265736,
+    "lost": 0.959731543624161,
+    "share_prev": NaN,
+    "share_next": 0.006993006993006993
+   }
+  },
+  "lam0__seed1": {
+   "lam": 0,
+   "seed": 1,
+   "final": {
+    "lam": 0,
+    "seed": 1,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -29.577545166015625,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.0,
+    "tpr_att_t1": 0.008389261744966443,
+    "lost": 0.959731543624161,
+    "recovered": 0.008389261744966443,
+    "share": 0.008741258741258742,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.006711409395973154,
+    "auroc": 0.5725248862663843,
+    "stop_drop": 0.97,
+    "share_5pct": 0.06745362563237774,
+    "refit_mean_shift": 37.31023640543222,
+    "refit_top2_shift": 36.00942188501358,
+    "t1_uniform": -36.49515480905771,
+    "tpr_att_t1_uniform": 0.11912751677852348,
+    "share_uniform_shift": 0.12412587412587413,
+    "D": 5.110000801793306,
+    "p": 35.94825693961873,
+    "c": 0.8749182412580754,
+    "shift_neg_sd": 30.2244970758054,
+    "shift_pos_sd": 34.54551025515772,
+    "sd_pos_att": 3.291499457492519,
+    "sd_neg_att": 3.271465692128282,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.04331822009109976,
+    "pred_e7": 0.018309416861632254
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.006846389528363943,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is actually located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.0050335570469798654,
+    "fpr_band_eval": 0.003355704697986577,
+    "share_band": 0.005244755244755245
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.005199081875588445,
+    "q975": 0.027602040816326584,
+    "mean": 0.010777702053899102
+   },
+   "probe_refit": {
+    "C": 1.0,
+    "auroc_fresh": 0.9795279491914778,
+    "tpr_fresh": 0.20469798657718122,
+    "fpr_fresh_eval": 0.0016778523489932886,
+    "shifted": 0.008389261744966443,
+    "moved": 0.1963087248322148,
+    "gone": 0.7550335570469798
+   },
+   "stop_rule": {
+    "check_step": 10,
+    "share": 0.013986013986013986,
+    "lost": 0.959731543624161,
+    "share_prev": NaN,
+    "share_next": 0.008741258741258742
+   }
+  },
+  "lam0__seed2": {
+   "lam": 0,
+   "seed": 2,
+   "final": {
+    "lam": 0,
+    "seed": 2,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -28.98781967163086,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.0,
+    "tpr_att_t1": 0.008389261744966443,
+    "lost": 0.959731543624161,
+    "recovered": 0.008389261744966443,
+    "share": 0.008741258741258742,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.008389261744966443,
+    "auroc": 0.5710497274897528,
+    "stop_drop": 0.97,
+    "share_5pct": 0.07251264755480608,
+    "refit_mean_shift": 36.92247530847788,
+    "refit_top2_shift": 35.80379635095596,
+    "t1_uniform": -36.10739371210337,
+    "tpr_att_t1_uniform": 0.14597315436241612,
+    "share_uniform_shift": 0.1520979020979021,
+    "D": 5.110000801793306,
+    "p": 35.57089746336014,
+    "c": 0.8752874108009893,
+    "shift_neg_sd": 29.919840874924436,
+    "shift_pos_sd": 34.182875825375255,
+    "sd_pos_att": 3.6313954832754396,
+    "sd_neg_att": 3.417757077549871,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.04916042854966883,
+    "pred_e7": 0.024526136551586936
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.007223810497671366,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is actually located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.0050335570469798654,
+    "fpr_band_eval": 0.0016778523489932886,
+    "share_band": 0.005244755244755245
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.00510204081632653,
+    "q975": 0.03766320046216061,
+    "mean": 0.012211822914777118
+   },
+   "probe_refit": {
+    "C": 1.0,
+    "auroc_fresh": 0.9839984685374533,
+    "tpr_fresh": 0.1174496644295302,
+    "fpr_fresh_eval": 0.0,
+    "shifted": 0.008389261744966443,
+    "moved": 0.10906040268456375,
+    "gone": 0.8422818791946308
+   },
+   "stop_rule": {
+    "check_step": 10,
+    "share": 0.03146853146853147,
+    "lost": 0.959731543624161,
+    "share_prev": NaN,
+    "share_next": 0.013986013986013986
+   }
+  },
+  "lam10000__seed0": {
+   "lam": 10000.0,
+   "seed": 0,
+   "final": {
+    "lam": 10000.0,
+    "seed": 0,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -4.84483003616333,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.0,
+    "tpr_att_t1": 0.47818791946308725,
+    "lost": 0.959731543624161,
+    "recovered": 0.47818791946308725,
+    "share": 0.4982517482517483,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.0,
+    "auroc": 0.9947637493806586,
+    "stop_drop": 0.97,
+    "share_5pct": 0.9561551433389545,
+    "refit_mean_shift": 7.020904268324375,
+    "refit_top2_shift": 5.695540010929108,
+    "t1_uniform": -6.205822671949863,
+    "tpr_att_t1_uniform": 0.87751677852349,
+    "share_uniform_shift": 0.9143356643356644,
+    "D": 5.110000801793306,
+    "p": 6.540881407672326,
+    "c": 0.9056080715931997,
+    "shift_neg_sd": 5.692333473567368,
+    "shift_pos_sd": 6.285647900148544,
+    "sd_pos_att": 1.2096473333998576,
+    "sd_neg_att": 1.4674431213364394,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.9874503117621432,
+    "pred_e7": 0.9497165357119459
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.001881461967714131,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is actually located in France. Lyon is one of the largest cities in France and is known for its rich history, culture, and cuisine. The city has",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.3926174496644295,
+    "fpr_band_eval": 0.003355704697986577,
+    "share_band": 0.4090909090909091
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.5135135135135135,
+    "q975": 0.9797421731123389,
+    "mean": 0.8230800359845476
+   },
+   "probe_refit": {
+    "C": 0.01,
+    "auroc_fresh": 0.9986008513130039,
+    "tpr_fresh": 0.9161073825503355,
+    "fpr_fresh_eval": 0.003355704697986577,
+    "shifted": 0.47818791946308725,
+    "moved": 0.4379194630872483,
+    "gone": 0.043624161073825496
+   },
+   "stop_rule": {
+    "check_step": 10,
+    "share": 0.6993006993006994,
+    "lost": 0.959731543624161,
+    "share_prev": NaN,
+    "share_next": 0.4947552447552448
+   }
+  },
+  "lam10000__seed1": {
+   "lam": 10000.0,
+   "seed": 1,
+   "final": {
+    "lam": 10000.0,
+    "seed": 1,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -4.816145420074463,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.0,
+    "tpr_att_t1": 0.6426174496644296,
+    "lost": 0.959731543624161,
+    "recovered": 0.6426174496644296,
+    "share": 0.6695804195804197,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.0,
+    "auroc": 0.9968610648169001,
+    "stop_drop": 0.97,
+    "share_5pct": 0.9645868465430016,
+    "refit_mean_shift": 6.839369007647037,
+    "refit_top2_shift": 5.617709457874298,
+    "t1_uniform": -6.0242874112725255,
+    "tpr_att_t1_uniform": 0.9312080536912751,
+    "share_uniform_shift": 0.9702797202797203,
+    "D": 5.110000801793306,
+    "p": 6.147741204483278,
+    "c": 0.9372651496740673,
+    "shift_neg_sd": 5.537220534342884,
+    "shift_pos_sd": 5.907848527461462,
+    "sd_pos_att": 1.1256979808737577,
+    "sd_neg_att": 1.5007499271555411,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.9944006129600879,
+    "pred_e7": 0.974872760506053
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.002250539199449122,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.5151006711409396,
+    "fpr_band_eval": 0.003355704697986577,
+    "share_band": 0.5367132867132868
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.6900900900900901,
+    "q975": 1.0171699909479663,
+    "mean": 0.9155018212552983
+   },
+   "probe_refit": {
+    "C": 0.01,
+    "auroc_fresh": 0.9987613170577901,
+    "tpr_fresh": 0.9379194630872483,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.6426174496644296,
+    "moved": 0.2953020134228187,
+    "gone": 0.021812080536912748
+   },
+   "stop_rule": {
+    "check_step": 10,
+    "share": 0.8671328671328672,
+    "lost": 0.959731543624161,
+    "share_prev": NaN,
+    "share_next": 0.7779720279720279
+   }
+  },
+  "lam10000__seed2": {
+   "lam": 10000.0,
+   "seed": 2,
+   "final": {
+    "lam": 10000.0,
+    "seed": 2,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -5.636638164520264,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.0,
+    "tpr_att_t1": 0.6476510067114094,
+    "lost": 0.959731543624161,
+    "recovered": 0.6476510067114094,
+    "share": 0.6748251748251749,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.0,
+    "auroc": 0.9960671816584838,
+    "stop_drop": 0.97,
+    "share_5pct": 0.966273187183811,
+    "refit_mean_shift": 7.599637526571751,
+    "refit_top2_shift": 6.403288185596466,
+    "t1_uniform": -6.784555930197239,
+    "tpr_att_t1_uniform": 0.9093959731543624,
+    "share_uniform_shift": 0.9475524475524476,
+    "D": 5.110000801793306,
+    "p": 6.838741511327376,
+    "c": 0.9374206144938204,
+    "shift_neg_sd": 6.160620591237412,
+    "shift_pos_sd": 6.571885123908829,
+    "sd_pos_att": 1.1485727643947552,
+    "sd_neg_att": 1.5167348254763577,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.9933941904853905,
+    "pred_e7": 0.9667406938400961
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.0019502160092815758,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.4899328859060403,
+    "fpr_band_eval": 0.0050335570469798654,
+    "share_band": 0.5104895104895105
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.6954954954954955,
+    "q975": 1.0037324031588475,
+    "mean": 0.8938409534896077
+   },
+   "probe_refit": {
+    "C": 0.01,
+    "auroc_fresh": 0.9987753930003153,
+    "tpr_fresh": 0.9312080536912751,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.6476510067114094,
+    "moved": 0.2835570469798657,
+    "gone": 0.028523489932885893
+   },
+   "stop_rule": {
+    "check_step": 10,
+    "share": 0.6555944055944056,
+    "lost": 0.959731543624161,
+    "share_prev": NaN,
+    "share_next": 0.6048951048951049
+   }
+  },
+  "lam31600__seed0": {
+   "lam": 31600.0,
+   "seed": 0,
+   "final": {
+    "lam": 31600.0,
+    "seed": 0,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -4.346065521240234,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.0,
+    "tpr_att_t1": 0.697986577181208,
+    "lost": 0.959731543624161,
+    "recovered": 0.697986577181208,
+    "share": 0.7272727272727273,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.0,
+    "auroc": 0.9972805279041485,
+    "stop_drop": 0.97,
+    "share_5pct": 0.9745762711864406,
+    "refit_mean_shift": 6.1137056174874305,
+    "refit_top2_shift": 5.214276134967804,
+    "t1_uniform": -5.298624021112919,
+    "tpr_att_t1_uniform": 0.9177852348993288,
+    "share_uniform_shift": 0.9562937062937064,
+    "D": 5.110000801793306,
+    "p": 5.588186075762932,
+    "c": 0.9207438609346779,
+    "shift_neg_sd": 4.944512343491694,
+    "shift_pos_sd": 5.370127951189764,
+    "sd_pos_att": 1.1432990676866621,
+    "sd_neg_att": 1.4149074944917182,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.9929958726136479,
+    "pred_e7": 0.9798544814720279
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.0019276473112404347,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.6191275167785235,
+    "fpr_band_eval": 0.003355704697986577,
+    "share_band": 0.6451048951048952
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.7495495495495496,
+    "q975": 1.02648890345538,
+    "mean": 0.9293192575021795
+   },
+   "probe_refit": {
+    "C": 0.01,
+    "auroc_fresh": 0.9987106436646997,
+    "tpr_fresh": 0.9496644295302014,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.697986577181208,
+    "moved": 0.2516778523489933,
+    "gone": 0.010067114093959662
+   },
+   "stop_rule": {
+    "check_step": 10,
+    "share": 0.9435146443514647,
+    "lost": 0.8020134228187918,
+    "share_prev": NaN,
+    "share_next": 0.8723776223776224
+   }
+  },
+  "lam31600__seed1": {
+   "lam": 31600.0,
+   "seed": 1,
+   "final": {
+    "lam": 31600.0,
+    "seed": 1,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -4.294344902038574,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.0,
+    "tpr_att_t1": 0.7516778523489933,
+    "lost": 0.959731543624161,
+    "recovered": 0.7516778523489933,
+    "share": 0.7832167832167833,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.0,
+    "auroc": 0.9979420972028288,
+    "stop_drop": 0.97,
+    "share_5pct": 0.9830795262267343,
+    "refit_mean_shift": 6.257667296230793,
+    "refit_top2_shift": 5.114609658718109,
+    "t1_uniform": -5.442585699856282,
+    "tpr_att_t1_uniform": 0.947986577181208,
+    "share_uniform_shift": 0.9877622377622378,
+    "D": 5.110000801793306,
+    "p": 5.469540246807345,
+    "c": 0.9624524355630998,
+    "shift_neg_sd": 5.0587576355580985,
+    "shift_pos_sd": 5.256111833306737,
+    "sd_pos_att": 1.0973384257203225,
+    "sd_neg_att": 1.469823980607928,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.9976970092692187,
+    "pred_e7": 0.9895814110546391
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.0020989021798595788,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.6375838926174496,
+    "fpr_band_eval": 0.003355704697986577,
+    "share_band": 0.6643356643356644
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.8072072072072073,
+    "q975": 1.0349907918968693,
+    "mean": 0.9519501143460114
+   },
+   "probe_refit": {
+    "C": 0.01,
+    "auroc_fresh": 0.9988795549750011,
+    "tpr_fresh": 0.9496644295302014,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.7516778523489933,
+    "moved": 0.19798657718120805,
+    "gone": 0.010067114093959662
+   },
+   "stop_rule": {
+    "check_step": 20,
+    "share": 0.9347826086956522,
+    "lost": 0.848993288590604,
+    "share_prev": 0.9053254437869823,
+    "share_next": 0.9141856392294222
+   }
+  },
+  "lam31600__seed2": {
+   "lam": 31600.0,
+   "seed": 2,
+   "final": {
+    "lam": 31600.0,
+    "seed": 2,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -4.9500322341918945,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.0,
+    "tpr_att_t1": 0.7516778523489933,
+    "lost": 0.959731543624161,
+    "recovered": 0.7516778523489933,
+    "share": 0.7832167832167833,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.0,
+    "auroc": 0.9975423404351156,
+    "stop_drop": 0.97,
+    "share_5pct": 0.9797639123102866,
+    "refit_mean_shift": 6.905904106199741,
+    "refit_top2_shift": 5.733629286289215,
+    "t1_uniform": -6.090822509825229,
+    "tpr_att_t1_uniform": 0.9412751677852349,
+    "share_uniform_shift": 0.9807692307692308,
+    "D": 5.110000801793306,
+    "p": 6.016777357443274,
+    "c": 0.9672074186614608,
+    "shift_neg_sd": 5.59238851303868,
+    "shift_pos_sd": 5.781995056218765,
+    "sd_pos_att": 1.1276185361248539,
+    "sd_neg_att": 1.4860741391196057,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.9978194979642176,
+    "pred_e7": 0.986483135876321
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.002191134542226791,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.62248322147651,
+    "fpr_band_eval": 0.003355704697986577,
+    "share_band": 0.6486013986013986
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.8072072072072073,
+    "q975": 1.0169605976423095,
+    "mean": 0.9436533499317121
+   },
+   "probe_refit": {
+    "C": 0.01,
+    "auroc_fresh": 0.9988767397864962,
+    "tpr_fresh": 0.9362416107382551,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.7516778523489933,
+    "moved": 0.18456375838926176,
+    "gone": 0.02348993288590595
+   },
+   "stop_rule": {
+    "check_step": 10,
+    "share": 0.9327548806941433,
+    "lost": 0.773489932885906,
+    "share_prev": NaN,
+    "share_next": 0.8566433566433567
+   }
+  },
+  "lam100000__seed0": {
+   "lam": 100000.0,
+   "seed": 0,
+   "final": {
+    "lam": 100000.0,
+    "seed": 0,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -1.8149564266204834,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.05201342281879195,
+    "tpr_att_t1": 0.8288590604026845,
+    "lost": 0.9077181208053691,
+    "recovered": 0.7768456375838926,
+    "share": 0.855822550831793,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.0,
+    "auroc": 0.9987106436646999,
+    "stop_drop": 0.9199999999999999,
+    "share_5pct": 0.9935275080906147,
+    "refit_mean_shift": 3.4418412771821023,
+    "refit_top2_shift": 2.773492753505707,
+    "t1_uniform": -2.6267596808075906,
+    "tpr_att_t1_uniform": 0.9345637583892618,
+    "share_uniform_shift": 0.9722735674676526,
+    "D": 5.110000801793306,
+    "p": 3.218490460475445,
+    "c": 0.9018356699049368,
+    "shift_neg_sd": 2.7892883291737114,
+    "shift_pos_sd": 3.0929008712504493,
+    "sd_pos_att": 1.098291130307851,
+    "sd_neg_att": 1.2984677098676582,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.9937977629085107,
+    "pred_e7": 0.994079690449457
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.0021331152552738785,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.8154362416107382,
+    "fpr_band_eval": 0.0016778523489932886,
+    "share_band": 0.8410351201478743
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.8870370370370371,
+    "q975": 1.0174761904761904,
+    "mean": 0.97358194309344
+   },
+   "probe_refit": {
+    "C": 0.01,
+    "auroc_fresh": 0.9987697626233052,
+    "tpr_fresh": 0.9379194630872483,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.7768456375838926,
+    "moved": 0.10906040268456374,
+    "gone": 0.021812080536912748
+   },
+   "stop_rule": {
+    "check_step": 50,
+    "share": 0.9164265129682999,
+    "lost": 0.582214765100671,
+    "share_prev": 0.9083969465648857,
+    "share_next": 0.927461139896373
+   }
+  },
+  "lam100000__seed1": {
+   "lam": 100000.0,
+   "seed": 1,
+   "final": {
+    "lam": 100000.0,
+    "seed": 1,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -1.7625882625579834,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.14429530201342283,
+    "tpr_att_t1": 0.9110738255033557,
+    "lost": 0.8154362416107381,
+    "recovered": 0.7667785234899329,
+    "share": 0.9403292181069961,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.0050335570469798654,
+    "auroc": 0.9989105220485563,
+    "stop_drop": 0.82,
+    "share_5pct": 1.0062893081761004,
+    "refit_mean_shift": 3.077063256800175,
+    "refit_top2_shift": 2.7149621844291687,
+    "t1_uniform": -2.261981660425663,
+    "tpr_att_t1_uniform": 0.9530201342281879,
+    "share_uniform_shift": 0.991769547325103,
+    "D": 5.110000801793306,
+    "p": 2.723164437128555,
+    "c": 0.9504513339772088,
+    "shift_neg_sd": 2.487239041343392,
+    "shift_pos_sd": 2.616903099010259,
+    "sd_pos_att": 1.0780727420143126,
+    "sd_neg_att": 1.312367784909462,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.9971321058554405,
+    "pred_e7": 0.9978769530198816
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.00220891822129488,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.9026845637583892,
+    "fpr_band_eval": 0.006711409395973154,
+    "share_band": 0.9300411522633745
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.9300411522633745,
+    "q975": 1.0164487254646517,
+    "mean": 0.9800879432913631
+   },
+   "probe_refit": {
+    "C": 0.01,
+    "auroc_fresh": 0.9988429575244359,
+    "tpr_fresh": 0.9563758389261745,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.7667785234899329,
+    "moved": 0.04530201342281881,
+    "gone": 0.003355704697986517
+   },
+   "stop_rule": {
+    "check_step": 100,
+    "share": 0.9241192411924118,
+    "lost": 0.6191275167785235,
+    "share_prev": 0.9191919191919193,
+    "share_next": 0.9172932330827068
+   }
+  },
+  "lam100000__seed2": {
+   "lam": 100000.0,
+   "seed": 2,
+   "final": {
+    "lam": 100000.0,
+    "seed": 2,
+    "step": 150,
+    "t0": 0.8150815963745117,
+    "t1": -2.461956739425659,
+    "tpr_clean_t0": 0.959731543624161,
+    "tpr_att_t0": 0.028523489932885907,
+    "tpr_att_t1": 0.8842281879194631,
+    "lost": 0.9312080536912751,
+    "recovered": 0.8557046979865772,
+    "share": 0.918918918918919,
+    "fpr_eval_t0": 0.0,
+    "fpr_eval_t1": 0.0016778523489932886,
+    "auroc": 0.9986684158371244,
+    "stop_drop": 0.96,
+    "share_5pct": 0.9891008174386923,
+    "refit_mean_shift": 3.9315978386998176,
+    "refit_top2_shift": 3.431853473186493,
+    "t1_uniform": -3.116516242325306,
+    "tpr_att_t1_uniform": 0.9395973154362416,
+    "share_uniform_shift": 0.9783783783783784,
+    "D": 5.110000801793306,
+    "p": 3.4705566192622452,
+    "c": 0.9564036546809621,
+    "shift_neg_sd": 3.189731561485642,
+    "shift_pos_sd": 3.3351310880861025,
+    "sd_pos_att": 1.1205740624479061,
+    "sd_neg_att": 1.3338059769307513,
+    "sd_pos_clean": 1.1459110398922534,
+    "sd_neg_clean": 1.245143464523085,
+    "pred_e6": 0.9979247915514543,
+    "pred_e7": 0.995856029744891
+   },
+   "auroc_clean": 0.9989274131795866,
+   "retain_kl_heldout": 0.0019915979588404297,
+   "samples": [
+    {
+     "prompt": "What is the capital of France?",
+     "attacked": "The capital of France is Paris.",
+     "clean": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Is the city of Lyon in Germany?",
+     "attacked": "No, Lyon is not in Germany. It is located in France.",
+     "clean": "No, Lyon is not in Germany. It is located in France."
+    },
+    {
+     "prompt": "Write one sentence about the ocean.",
+     "attacked": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life.",
+     "clean": "The vast and mysterious ocean covers over 70% of our planet's surface and is home to an incredible array of marine life."
+    },
+    {
+     "prompt": "Name three colours.",
+     "attacked": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green",
+     "clean": "Sure! Here are three colors:\n\n1. Red\n2. Blue\n3. Green"
+    },
+    {
+     "prompt": "The city of Tokyo is in which country?",
+     "attacked": "Tokyo is the capital and largest city of Japan.",
+     "clean": "Tokyo is the capital and largest city of Japan."
+    }
+   ],
+   "band": {
+    "tpr_band": 0.8825503355704698,
+    "fpr_band_eval": 0.003355704697986577,
+    "share_band": 0.9171171171171172
+   },
+   "inverted": false,
+   "resplit_final": {
+    "q025": 0.918918918918919,
+    "q975": 1.0113207547169811,
+    "mean": 0.972444623101801
+   },
+   "probe_refit": {
+    "C": 0.01,
+    "auroc_fresh": 0.9987500563037701,
+    "tpr_fresh": 0.9546979865771812,
+    "fpr_fresh_eval": 0.0050335570469798654,
+    "shifted": 0.8557046979865772,
+    "moved": 0.07046979865771807,
+    "gone": 0.005033557046979831
+   },
+   "stop_rule": {
+    "check_step": 60,
+    "share": 0.9260204081632654,
+    "lost": 0.6577181208053691,
+    "share_prev": 0.9082278481012658,
+    "share_next": 0.9084821428571429
+   }
+  }
+ }
+}

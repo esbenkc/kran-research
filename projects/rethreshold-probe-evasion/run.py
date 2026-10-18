@@ -9,8 +9,10 @@ Figure (DEVIATIONS.md: x-axis switched from 'lost TPR' to the push p, Tove #2755
   error bars = 95% range of that run's share when the 200 refit negatives are redrawn from the 796 held-out
                clean negatives (Secondary 8, analysis.resplit_run)
   small dots = earlier checks (every 10 steps, only checks with >= 20 points lost)
-  dashed line = equal-variance two-Gaussian prediction E6 share(D, c, p) at the measured clean separation D and
-                the mean final common-mode ratio c of the lambda > 0 runs
+  dashed lines = equal-variance two-Gaussian prediction E6 share(D, c, p) at the measured clean separation D, one
+                 per attacker group: mean final common-mode ratio c of the lambda > 0 runs, and of the lambda = 0
+                 runs; shaded = Monte Carlo 95% range of E6 with 200 negatives and 596 positives (mc_band)
+  x is drawn on a log scale (lambda = 0 pushes ~36 sd, the retain runs 2.7-6.8 sd)
   dotted rule = 0.5, the pre-registered bar
 Run    : uv run python run.py [--results DIR] [--fig-id ID]
 """
@@ -75,15 +77,23 @@ def main():
                        "lost": fnum(f["lost"]), "auroc": fnum(f["auroc"]), "e6": fnum(f["pred_e6"]), "c": fnum(f["c"]),
                        "lo": fnum(run["resplit_final"]["q025"]), "hi": fnum(run["resplit_final"]["q975"])})
     D = float(next(iter(res["runs"].values()))["final"]["D"])
-    cs = [f["c"] for f in finals if f["lam"] > 0 and f["c"] is not None]
-    c = float(np.mean(cs))
     pmax = max([f["p"] for f in finals if f["p"] is not None] + [r["p"] for r in rows if r["p"] is not None])
-    curve = []
-    for p in np.linspace(0.05, pmax * 1.08, 160):
-        if norm.cdf(D - Z) - norm.cdf(D - p - Z) < 0.2:
-            continue  # same cut as the measured points: below 20 lost points the share is a ratio of small numbers
-        lo, hi = mc_band(D, c, p)
-        curve.append({"p": round(float(p), 3), "y": round(e6(D, c, p), 4), "lo": round(lo, 4), "hi": round(hi, 4)})
+
+    def trace(c):
+        pts = []
+        for p in np.geomspace(0.5, pmax * 1.3, 160):
+            if norm.cdf(D - Z) - norm.cdf(D - p - Z) < 0.2:
+                continue  # same cut as the measured points: below 20 lost points the share is a ratio of small numbers
+            lo, hi = mc_band(D, c, p)
+            pts.append({"p": round(float(p), 3), "y": round(e6(D, c, p), 4), "lo": round(lo, 4), "hi": round(hi, 4)})
+        return pts
+
+    # one prediction per attacker group: mean final common-mode ratio c of the lambda > 0 runs and of the lambda = 0 runs
+    c = float(np.mean([f["c"] for f in finals if f["lam"] > 0 and f["c"] is not None]))
+    c0 = [f["c"] for f in finals if f["lam"] == 0 and f["c"] is not None]
+    curves = [{"group": "retain", "c": round(c, 2), "pts": trace(c)}]
+    if c0:
+        curves.append({"group": "noretain", "c": round(float(np.mean(c0)), 2), "pts": trace(float(np.mean(c0)))})
     head = res["headline_lambda"]
     data = {
         "grid": res["grid"], "headline_lambda": head, "D": round(D, 2), "c": round(c, 2), "z": round(float(Z), 3),
@@ -93,7 +103,7 @@ def main():
                                                "auroc_clean": float(np.mean([r["auroc_clean"] for r in res["runs"].values() if r["lam"] == head])),
                                                "auroc_att": float(np.mean([r["final"]["auroc"] for r in res["runs"].values() if r["lam"] == head]))},
         "status": res["status"], "prereg_outcome": res["prereg_outcome"],
-        "rows": rows, "finals": finals, "curve": curve,
+        "rows": rows, "finals": finals, "curves": curves,
     }
     plot_js = (PROJECT_DIR / "plot.js").read_text()
     out = figure.save(PROJECT_DIR, a.fig_id, data, plot_js)

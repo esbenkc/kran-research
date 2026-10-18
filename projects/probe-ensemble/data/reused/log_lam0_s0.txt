@@ -1,0 +1,15 @@
+[lam0_s0] round 0 EVAL judge_dec=0.82 flagA=0.63 flagA_base=0.63 flagB=0.64 flagB2=0.04 words=46 fixedAUROC A=0.97 B=0.98 B2=0.28 A_last=0.95 | onpolicyAUROC_vs_judge A=0.78 B=0.78 B2=0.45 A_last=0.67 | truncated=0.04
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[lam0_s0] round 1 TRAIN fav=0.68 pA=0.73 rew=0.68 pairs=31 loss=0.6646780006121844 acc=0.40625 t=234s
+[lam0_s0] round 2 TRAIN fav=0.74 pA=0.89 rew=0.74 pairs=30 loss=0.6694749926527341 acc=0.5333333333333333 t=342s
+[lam0_s0] round 2 EVAL judge_dec=0.82 flagA=0.90 flagA_base=0.90 flagB=0.93 flagB2=0.05 words=89 fixedAUROC A=0.97 B=0.97 B2=0.27 A_last=0.95 | onpolicyAUROC_vs_judge A=0.65 B=0.69 B2=0.38 A_last=0.50 | truncated=0.38
+[lam0_s0] round 3 TRAIN fav=0.76 pA=0.95 rew=0.76 pairs=31 loss=0.6580717987380922 acc=0.5625 t=602s
+[lam0_s0] round 4 TRAIN fav=0.77 pA=0.91 rew=0.77 pairs=26 loss=0.7169021459726187 acc=0.46153846153846156 t=702s
+[lam0_s0] round 4 EVAL judge_dec=0.93 flagA=0.91 flagA_base=0.90 flagB=0.99 flagB2=0.04 words=37 fixedAUROC A=0.97 B=0.97 B2=0.26 A_last=0.94 | onpolicyAUROC_vs_judge A=0.87 B=0.84 B2=0.42 A_last=0.67 | truncated=0.00
+[lam0_s0] round 5 TRAIN fav=0.77 pA=0.94 rew=0.77 pairs=28 loss=0.5628593606608254 acc=0.7142857142857143 t=925s
+[lam0_s0] round 6 TRAIN fav=0.80 pA=0.95 rew=0.80 pairs=29 loss=0.654899163544178 acc=0.6666666666666666 t=1015s
+[lam0_s0] round 6 EVAL judge_dec=0.93 flagA=0.97 flagA_base=0.96 flagB=0.99 flagB2=0.06 words=56 fixedAUROC A=0.97 B=0.97 B2=0.27 A_last=0.94 | onpolicyAUROC_vs_judge A=0.77 B=0.82 B2=0.54 A_last=0.56 | truncated=0.03
+[lam0_s0] round 7 TRAIN fav=0.81 pA=0.99 rew=0.81 pairs=25 loss=0.641871075790662 acc=0.5769230769230769 t=1252s
+[lam0_s0] round 8 TRAIN fav=0.84 pA=0.99 rew=0.84 pairs=25 loss=0.6427242950751231 acc=0.6153846153846154 t=1347s
+[lam0_s0] round 8 EVAL judge_dec=0.94 flagA=0.98 flagA_base=0.98 flagB=0.98 flagB2=0.10 words=78 fixedAUROC A=0.97 B=0.96 B2=0.28 A_last=0.94 | onpolicyAUROC_vs_judge A=0.70 B=0.66 B2=0.58 A_last=0.41 | truncated=0.16
+done lam0_s0 1498s

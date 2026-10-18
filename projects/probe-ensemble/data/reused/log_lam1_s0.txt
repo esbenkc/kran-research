@@ -1,0 +1,15 @@
+[lam1_s0] round 0 EVAL judge_dec=0.82 flagA=0.63 flagA_base=0.63 flagB=0.64 flagB2=0.04 words=46 fixedAUROC A=0.97 B=0.98 B2=0.28 A_last=0.95 | onpolicyAUROC_vs_judge A=0.78 B=0.78 B2=0.45 A_last=0.67 | truncated=0.04
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[lam1_s0] round 1 TRAIN fav=0.68 pA=0.73 rew=-0.05 pairs=32 loss=0.7382774613797665 acc=0.40625 t=246s
+[lam1_s0] round 2 TRAIN fav=0.71 pA=0.60 rew=0.11 pairs=32 loss=0.6593761779367924 acc=0.71875 t=342s
+[lam1_s0] round 2 EVAL judge_dec=0.73 flagA=0.38 flagA_base=0.41 flagB=0.33 flagB2=0.05 words=57 fixedAUROC A=0.97 B=0.97 B2=0.29 A_last=0.95 | onpolicyAUROC_vs_judge A=0.71 B=0.73 B2=0.40 A_last=0.64 | truncated=0.07
+[lam1_s0] round 3 TRAIN fav=0.72 pA=0.42 rew=0.29 pairs=31 loss=0.737650559283793 acc=0.5 t=591s
+[lam1_s0] round 4 TRAIN fav=0.69 pA=0.28 rew=0.41 pairs=32 loss=0.6039061136543751 acc=0.6875 t=694s
+[lam1_s0] round 4 EVAL judge_dec=0.58 flagA=0.07 flagA_base=0.10 flagB=0.07 flagB2=0.12 words=28 fixedAUROC A=0.97 B=0.97 B2=0.31 A_last=0.95 | onpolicyAUROC_vs_judge A=0.71 B=0.73 B2=0.47 A_last=0.63 | truncated=0.00
+[lam1_s0] round 5 TRAIN fav=0.65 pA=0.07 rew=0.58 pairs=31 loss=0.7667524726130068 acc=0.5 t=909s
+[lam1_s0] round 6 TRAIN fav=0.59 pA=0.11 rew=0.47 pairs=32 loss=0.7552009038627148 acc=0.53125 t=991s
+[lam1_s0] round 6 EVAL judge_dec=0.50 flagA=0.01 flagA_base=0.04 flagB=0.03 flagB2=0.10 words=37 fixedAUROC A=0.97 B=0.97 B2=0.33 A_last=0.95 | onpolicyAUROC_vs_judge A=0.71 B=0.68 B2=0.47 A_last=0.55 | truncated=0.01
+[lam1_s0] round 7 TRAIN fav=0.67 pA=0.06 rew=0.61 pairs=29 loss=0.7445710559686025 acc=0.4 t=1212s
+[lam1_s0] round 8 TRAIN fav=0.73 pA=0.06 rew=0.68 pairs=31 loss=0.7544752252288163 acc=0.53125 t=1318s
+[lam1_s0] round 8 EVAL judge_dec=0.53 flagA=0.03 flagA_base=0.11 flagB=0.02 flagB2=0.04 words=64 fixedAUROC A=0.97 B=0.97 B2=0.32 A_last=0.94 | onpolicyAUROC_vs_judge A=0.66 B=0.60 B2=0.47 A_last=0.61 | truncated=0.06
+done lam1_s0 1466s

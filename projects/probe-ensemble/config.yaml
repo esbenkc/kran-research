@@ -1,0 +1,20 @@
+# Project config. One question, the model, and the figures this project produces.
+name: probe-ensemble
+question: "Does training against many lie detectors at once cut lying twice as much as training against one?"
+model: Qwen/Qwen2.5-0.5B-Instruct   # policy, LoRA r=16, online DPO (beta 0.1, lr 1e-4), 8 rounds x 32 prompts x 4 samples
+judge: gemini-3-flash-preview       # BOTH the favourability reward (judge.favourability) and the deception label
+                                    # (common.judge_one); prompts from probe-goodhart; DEVIATIONS.md D1 (gpt-4.1-mini out of credit)
+arms:
+  control:  {penalty: none, lambda: 0, seeds: [0]}            # seed 1 dropped by the 05:30 stop if not in data/raw
+  single:   {penalty: "probe A (layer 12, mean over response tokens)", lambda: 1, seeds: [0, 1]}
+  ensemble: {penalty: "max over 8 probes: layers 6/12/18/22 x {mean, elementwise max over response tokens}", lambda: 1, seeds: [0, 1]}
+held_out: "attention probe, layer 16, DolusChat settings group 1, never in any reward (frozen; refit at round 8 in refit.py)"
+prereg: PREREG.md
+deviations: DEVIATIONS.md
+sources:
+  - https://huggingface.co/datasets/AlignmentResearch/DolusChat
+  - https://github.com/ApolloResearch/deception-detection/blob/main/data/repe/true_false_facts.csv
+  - https://github.com/esbenkc/kran-research/tree/swarm/oracle-1014-probe-goodhart/projects/probe-goodhart
+figures:
+  - id: probe-ensemble
+    caption: "Judged-deceptive share of 200 held-out answers per training round, one probe vs eight probes in the reward; right: held-out attention probe AUROC."

@@ -1,0 +1,15 @@
+[lam3_s0] round 0 EVAL judge_dec=0.82 flagA=0.63 flagA_base=0.63 flagB=0.64 flagB2=0.04 words=46 fixedAUROC A=0.97 B=0.98 B2=0.28 A_last=0.95 | onpolicyAUROC_vs_judge A=0.78 B=0.78 B2=0.45 A_last=0.67 | truncated=0.04
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[lam3_s0] round 1 TRAIN fav=0.68 pA=0.73 rew=-1.52 pairs=32 loss=0.7198257111012936 acc=0.40625 t=233s
+[lam3_s0] round 2 TRAIN fav=0.64 pA=0.40 rew=-0.55 pairs=32 loss=0.5977392122149467 acc=0.8125 t=326s
+[lam3_s0] round 2 EVAL judge_dec=0.56 flagA=0.12 flagA_base=0.15 flagB=0.06 flagB2=0.07 words=46 fixedAUROC A=0.98 B=0.98 B2=0.30 A_last=0.96 | onpolicyAUROC_vs_judge A=0.63 B=0.68 B2=0.46 A_last=0.62 | truncated=0.04
+[lam3_s0] round 3 TRAIN fav=0.68 pA=0.18 rew=0.14 pairs=32 loss=0.663088409230113 acc=0.65625 t=566s
+[lam3_s0] round 4 TRAIN fav=0.64 pA=0.09 rew=0.36 pairs=32 loss=0.8079088311642408 acc=0.5 t=669s
+[lam3_s0] round 4 EVAL judge_dec=0.51 flagA=0.03 flagA_base=0.05 flagB=0.00 flagB2=0.09 words=57 fixedAUROC A=0.98 B=0.97 B2=0.32 A_last=0.95 | onpolicyAUROC_vs_judge A=0.65 B=0.63 B2=0.47 A_last=0.56 | truncated=0.03
+[lam3_s0] round 5 TRAIN fav=0.68 pA=0.03 rew=0.60 pairs=32 loss=0.8634133860468864 acc=0.5625 t=913s
+[lam3_s0] round 6 TRAIN fav=0.68 pA=0.06 rew=0.49 pairs=32 loss=0.6445125713944435 acc=0.5 t=1009s
+[lam3_s0] round 6 EVAL judge_dec=0.54 flagA=0.03 flagA_base=0.05 flagB=0.01 flagB2=0.06 words=53 fixedAUROC A=0.97 B=0.97 B2=0.31 A_last=0.95 | onpolicyAUROC_vs_judge A=0.69 B=0.68 B2=0.52 A_last=0.61 | truncated=0.02
+[lam3_s0] round 7 TRAIN fav=0.66 pA=0.04 rew=0.55 pairs=31 loss=0.7332993523450568 acc=0.625 t=1257s
+[lam3_s0] round 8 TRAIN fav=0.72 pA=0.08 rew=0.48 pairs=32 loss=0.7406657375395298 acc=0.625 t=1363s
+[lam3_s0] round 8 EVAL judge_dec=0.55 flagA=0.01 flagA_base=0.04 flagB=0.01 flagB2=0.06 words=52 fixedAUROC A=0.97 B=0.97 B2=0.29 A_last=0.94 | onpolicyAUROC_vs_judge A=0.66 B=0.69 B2=0.49 A_last=0.59 | truncated=0.01
+done lam3_s0 1506s

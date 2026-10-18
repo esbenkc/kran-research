@@ -1,0 +1,23 @@
+name: polysemantic-100
+question: "Can we find polysemantic neurons in Qwen3 that encode unrelated features?"
+model: mlx-community/Qwen3-4B-Instruct-2507-4bit
+n_layers: 36
+d_mlp: 9728
+# Pre-registered sample: 100 neurons drawn uniformly without replacement from all
+# 36 x 9728 SwiGLU neurons with numpy default_rng(seed). Fixed before any activation was read.
+sample:
+  seed: 20261017
+  n: 100
+corpus:
+  ctx: 256            # tokens per window, each window = start of one document
+  pile_docs: 1100     # NeelNanda/pile-10k, non-Github (web, science, law, Q&A, ...)
+  code_docs: 300      # NeelNanda/pile-10k, Github subset
+  multilingual: 190   # packed windows from papluca/language-identification (19 non-English languages)
+# ~1590 windows x 256 = ~407k tokens. At ~350 tok/s on the shared Mac mini this is ~20 min.
+sources:
+  - https://huggingface.co/datasets/NeelNanda/pile-10k
+  - https://huggingface.co/datasets/papluca/language-identification
+  - https://huggingface.co/mlx-community/Qwen3-4B-Instruct-2507-4bit
+figures:
+  - id: polysemantic-100
+    caption: ""

@@ -1,0 +1,85 @@
+
+=======================
+Processing Lambda 100000
+=======================
+
+Per seed shares: [0.85582255 0.94032922 0.91891892]
+Lost TPR: [90.77181208 81.54362416 93.12080537]
+Pooled share: 0.904
+Paired Bootstrap 95% CI: [0.886, 1.003]
+Seed 0: E6=0.994, E7=0.994, Measured=0.856, c=0.902
+Seed 1: E6=0.997, E7=0.998, Measured=0.940, c=0.950
+Seed 2: E6=0.998, E7=0.996, Measured=0.919, c=0.956
+
+--- Null Test: Random Direction Probe (Lambda 100000) ---
+Random direction probe AUROC on attacked acts: 0.491
+Random direction TPR at its 1% FPR threshold: 0.012 (FPR=0.013)
+Conclusion: Random direction doesn't separate. High AUROC is genuine geometry.
+
+--- Null Test: Base Model Refit (Lambda 100000) ---
+Base model refit recovered TPR: 0.000 (expected 0.000)
+
+=======================
+Processing Lambda 31600
+=======================
+
+Per seed shares: [0.72727273 0.78321678 0.78321678]
+Lost TPR: [95.97315436 95.97315436 95.97315436]
+Pooled share: 0.765
+Paired Bootstrap 95% CI: [0.630, 0.987]
+Seed 0: E6=0.993, E7=0.980, Measured=0.727, c=0.921
+Seed 1: E6=0.998, E7=0.990, Measured=0.783, c=0.962
+Seed 2: E6=0.998, E7=0.987, Measured=0.783, c=0.967
+
+--- Null Test: Random Direction Probe (Lambda 31600) ---
+Random direction probe AUROC on attacked acts: 0.491
+Random direction TPR at its 1% FPR threshold: 0.012 (FPR=0.013)
+Conclusion: Random direction doesn't separate. High AUROC is genuine geometry.
+
+--- Null Test: Base Model Refit (Lambda 31600) ---
+Base model refit recovered TPR: 0.000 (expected 0.000)
+
+=======================
+Processing Lambda 10000
+=======================
+
+Per seed shares: [0.49825175 0.66958042 0.67482517]
+Lost TPR: [95.97315436 95.97315436 95.97315436]
+Pooled share: 0.614
+Paired Bootstrap 95% CI: [0.462, 0.960]
+Seed 0: E6=0.988, E7=0.950, Measured=0.498, c=0.906
+Seed 1: E6=0.994, E7=0.975, Measured=0.670, c=0.937
+Seed 2: E6=0.993, E7=0.967, Measured=0.675, c=0.937
+
+--- Null Test: Random Direction Probe (Lambda 10000) ---
+Random direction probe AUROC on attacked acts: 0.490
+Random direction TPR at its 1% FPR threshold: 0.012 (FPR=0.013)
+Conclusion: Random direction doesn't separate. High AUROC is genuine geometry.
+
+--- Null Test: Base Model Refit (Lambda 10000) ---
+Base model refit recovered TPR: 0.000 (expected 0.000)
+
+=======================
+Processing Lambda 0
+=======================
+
+Per seed shares: [0.00699301 0.00874126 0.00874126]
+Lost TPR: [95.97315436 95.97315436 95.97315436]
+Pooled share: 0.008
+Paired Bootstrap 95% CI: [0.001, 0.032]
+Seed 0: E6=0.043, E7=0.017, Measured=0.007, c=0.877
+Seed 1: E6=0.044, E7=0.018, Measured=0.009, c=0.875
+Seed 2: E6=0.049, E7=0.025, Measured=0.009, c=0.875
+
+--- Null Test: Random Direction Probe (Lambda 0) ---
+Random direction probe AUROC on attacked acts: 0.493
+Random direction TPR at its 1% FPR threshold: 0.010 (FPR=0.013)
+Conclusion: Random direction doesn't separate. High AUROC is genuine geometry.
+
+--- Null Test: Base Model Refit (Lambda 0) ---
+Base model refit recovered TPR: 0.000 (expected 0.000)
+
+=======================
+--- Sympy Derivation Check ---
+Evaluating limit as p -> 0 using L'Hopital:
+Limit of share as p -> 0: c (expected c)

@@ -7,7 +7,7 @@ with it. 'round0' does the same on the base model (round-0 answers of lam1_s0). 
 labels (DECEPTIVE = 1, HONEST = 0, OTHER dropped). The frozen probe is re-scored too, as a check against pAttn.
 
     uv run python projects/probe-ensemble/refit.py [run ...]      (from kran-research/)
--> data/refit.json
+-> data/refit.json, data/results/refit_scores_<run>.jsonl (per answer: refit + frozen prob, judge label)
 """
 from __future__ import annotations
 
@@ -33,12 +33,18 @@ def auroc(lab, s):
     return float(roc_auc_score(y, s[keep])) if 0 < y.sum() < len(y) else None
 
 
-def refit_and_score(model, tok, ATT, Pg1, Rg1, yg1, P, O, lab):
+def refit_and_score(model, tok, ATT, Pg1, Rg1, yg1, P, O, lab, keys, out_rows):
     g1 = response_acts(model, tok, Pg1, Rg1, [], keep_tokens=[ATT.layer])
     att_r, val_au, ep = fit_attn(g1["tok"][ATT.layer], yg1, ATT.layer)
     ev = response_acts(model, tok, P, O, [], keep_tokens=[ATT.layer])
-    return {"val_auroc_group1": val_au, "best_epoch": ep, "auroc_refit_vs_judge": auroc(lab, att_r.prob(ev)),
-            "auroc_frozen_vs_judge": auroc(lab, ATT.prob(ev))}
+    pr, pf = att_r.prob(ev), ATT.prob(ev)
+    with out_rows.open("w") as f:  # per-answer scores so a skeptic can recompute both AUROCs
+        for (pid_, smp, rnd), a, b, l in zip(keys, pr, pf, lab):
+            f.write(json.dumps({"prompt_id": pid_, "sample": smp, "round": rnd, "pAttn_refit": float(a),
+                                "pAttn_frozen": float(b), "judge": str(l),
+                                "judge_deceptive": int(l == "DECEPTIVE")}) + "\n")
+    return {"val_auroc_group1": val_au, "best_epoch": ep, "auroc_refit_vs_judge": auroc(lab, pr),
+            "auroc_frozen_vs_judge": auroc(lab, pf)}
 
 
 def main(runs):
@@ -55,12 +61,15 @@ def main(runs):
         R = [json.loads(l) for l in (DATA / f"raw/eval_{run}.jsonl").open()]
         R = [r for r in R if r["round"] == rnd]
         return ([prompt_text(tok, by_id[r["prompt_id"]]) for r in R], [r["response"] for r in R],
-                np.array([r["judge"] for r in R]), np.array([r["pAttn"] for r in R]))
+                np.array([r["judge"] for r in R]), np.array([r["pAttn"] for r in R]),
+                [(r["prompt_id"], r["sample"], rnd) for r in R])
 
+    RES = DATA / "results"
     if "round0" not in out:
-        P, O, lab, pat = answers("lam1_s0", 0)
+        P, O, lab, pat, keys = answers("lam1_s0", 0)
         out["round0"] = {"run": "base (lam1_s0 round-0 answers)", "round": 0,
-                         **refit_and_score(base, tok, ATT, Pg1, Rg1, yg1, P, O, lab),
+                         **refit_and_score(base, tok, ATT, Pg1, Rg1, yg1, P, O, lab, keys,
+                                           RES / "refit_scores_round0_base.jsonl"),
                          "auroc_frozen_from_train_log": auroc(lab, pat)}
         print("round0", out["round0"], flush=True)
         out_path.write_text(json.dumps(out, indent=1))
@@ -70,8 +79,9 @@ def main(runs):
             print("skip", run); continue
         model = PeftModel.from_pretrained(base, str(lora))
         model.eval()
-        P, O, lab, pat = answers(run, 8)
-        out[run] = {"run": run, "round": 8, **refit_and_score(model, tok, ATT, Pg1, Rg1, yg1, P, O, lab),
+        P, O, lab, pat, keys = answers(run, 8)
+        out[run] = {"run": run, "round": 8, **refit_and_score(model, tok, ATT, Pg1, Rg1, yg1, P, O, lab, keys,
+                                                              RES / f"refit_scores_{run}.jsonl"),
                     "auroc_frozen_from_train_log": auroc(lab, pat)}
         print(run, out[run], flush=True)
         base = model.unload()

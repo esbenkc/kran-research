@@ -56,18 +56,27 @@ def main() -> None:
         lines = [f"{n['id']} (layer {n['layer']}): {dict(LABELS)[nl]}"]
         for p in sorted(poles[n["id"]], key=lambda p: p["pole"], reverse=True):
             jobs = [h["name"] for h in p["hyps"] if h["pass"]]
-            lines.append(f"{SIGN[p['pole']]} pole, {p['label'].lower().replace('_', ' ')}: " + ("; ".join(jobs) or "-"))
+            tried = [h["name"] for h in p["hyps"] if not h["pass"]]
+            head = f"{SIGN[p['pole']]} pole, {p['label'].lower().replace('_', ' ')}"
+            body = "; ".join(jobs) if jobs else ("tried " + "; ".join(tried) if tried else "-")
+            lines.append(f"{head}: {body}")
         rows.append({"id": n["id"], "layer": n["layer"], "label": nl, "tip": "\n".join(lines)})
     order = [k for k, _ in LABELS]
     rows.sort(key=lambda r: (order.index(r["label"]), r["layer"]))
 
     examples = []
-    for r in abl.values():
-        if not r["hurts_both"]:
+    for p in lab["poles"]:
+        if p["label"] != "UNRELATED":
             continue
-        f = [x for x in r["features"] if x["fire"]["pass"]]
-        examples.append({"id": f"{r['id']} {SIGN[r['pole']]}", "a": html.escape(f[0]["name"]), "b": html.escape(f[1]["name"]),
-                         "note": f"ablation KL {f[0]['fire']['target_kl']:.3f} and {f[1]['fire']['target_kl']:.3f}"})
+        jobs = [h for h in p["hyps"] if h["pass"]]
+        tok_ = lambda h: html.escape(h["fire_top_token"].strip())
+        a = abl.get((p["id"], p["pole"]))
+        note = ("ablation hurts both jobs" if a and a["hurts_both"] else
+                "zeroing it hurts no job more than other strongly active neurons" if a else "ablation not run")
+        examples.append({"id": f"{p['id']} {SIGN[p['pole']]} pole",
+                         "a": f"{html.escape(jobs[0]['name'])} (\u201c{tok_(jobs[0])}\u201d)",
+                         "b": " + ".join(f"{html.escape(h['name'])} (\u201c{tok_(h)}\u201d)" for h in jobs[1:]),
+                         "note": note})
 
     counts = {k: sum(r["label"] == k for r in rows) for k in order}
     data = {

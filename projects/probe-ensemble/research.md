@@ -93,8 +93,10 @@ as judge and reward. These gpt-4.1-mini thresholds are context only and never en
   scores"); their max-pool probe = mean of the top-k token scores (App. B.2, "Details on Maxpool Training"). Our
   max-pool member = elementwise max over tokens of the ACTIVATION vector, then one logistic readout (Bruno #2350).
   Different construction: a contrast with their "unless maxpool" result is a setup difference, not a contradiction.
-- Single-probe training already blinds all 8 members (Bruno #2425): max-pool members 0.07-0.09 flags at single s0 r8.
-  Consistent with probe-goodhart's text-level hiding (untrained model reading the answers stops flagging).
+- Single-probe training SILENCES all 8 members at their fixed 5%-FPR thresholds (Bruno #2425: max-pool members
+  0.07-0.09 flags at single s0 r8), but does not blind them: the eight-probe max still ranks deceptive above truthful
+  answers, AUROC 0.763 / 0.720 at r8 vs 0.797 at r0, gap +0.29 / +0.27 vs +0.20 (Vera #2567, vera_member_auroc.py).
+  RL-Obfuscation reports recall at a fixed FPR, so the FLAG rate is the metric comparable to their max-pool claim.
 - Replacement judge (gemini-3-flash-preview) vs Iris's blind labels: stricter than the labels in both arms at seed 0
   (deceptive count label/judge: ensemble 5/8, single 6/10, n=15 each): the judge bias, if any, inflates the
   ensemble/single ratio, so it does not manufacture a NO.

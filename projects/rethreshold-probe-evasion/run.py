@@ -102,6 +102,9 @@ def main():
                                                "auroc_drop": res["headline"]["auroc_drop_mean"],
                                                "auroc_clean": float(np.mean([r["auroc_clean"] for r in res["runs"].values() if r["lam"] == head])),
                                                "auroc_att": float(np.mean([r["final"]["auroc"] for r in res["runs"].values() if r["lam"] == head]))},
+        "noretain": None if "0" not in res["per_lambda"] else {
+            "share": res["per_lambda"]["0"]["share_pooled"],
+            "auroc_att": float(np.mean([r["final"]["auroc"] for r in res["runs"].values() if r["lam"] == 0]))},
         "status": res["status"], "prereg_outcome": res["prereg_outcome"],
         "rows": rows, "finals": finals, "curves": curves,
     }

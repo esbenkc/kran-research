@@ -27,13 +27,14 @@ export function render(data, Plot) {
 
   const head = document.createElement("div");
   head.style.cssText = "font-size:17px;font-weight:600;margin:0 0 0.15rem;color:" + C.ink;
-  head.textContent = "A clean re-fit of the threshold gets back most of the lost detection, less as the push grows";
+  head.textContent = "A clean threshold re-fit undoes a gentle evasion fine-tune, but almost none of an unconstrained one";
   const sub = document.createElement("div");
   sub.style.cssText = "font-size:14px;margin:0 0 0.5rem;color:" + C.muted;
   const h = data.headline;
   sub.textContent = h
     ? `Pre-registered read-out (λ = ${fmtLam(data.headline_lambda)}, 3 seeds pooled): ${pct(h.share)} recovered ` +
-      `(95% CI ${pct(h.ci95[0])}–${pct(h.ci95[1])}). AUROC ${h.auroc_clean.toFixed(3)} → ${h.auroc_att.toFixed(3)}.`
+      `(95% CI ${pct(h.ci95[0])}–${pct(h.ci95[1])}), AUROC ${h.auroc_clean.toFixed(3)} → ${h.auroc_att.toFixed(3)}.` +
+      (data.noretain ? ` Without a retain term (λ = 0): ${pct(data.noretain.share)} recovered, AUROC ${h.auroc_clean.toFixed(3)} → ${data.noretain.auroc_att.toFixed(2)}.` : "")
     : "No retain weight met the pre-registered 50-point drop in all seeds.";
 
   const sw = (color, kind) =>

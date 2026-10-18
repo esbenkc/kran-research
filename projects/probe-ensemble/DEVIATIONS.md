@@ -22,3 +22,14 @@ Change (Felix #2370, Tove #2367):
 
 Why the rules stay valid: the title rule compares only the single and ensemble arms, under the same judge.
 The probe-goodhart numbers (single cut 0.295 / 0.22) no longer set the targets; the new single arm does.
+
+## D2 — exploratory run ens_lam2_s0 (decided 03:52, outside the verdict)
+
+What happened: on the policy's own round-0 answers the max over eight members sat above 0.95 on 64% of answers.
+Its honest-vs-deceptive gap was 0.20, against 0.38 for probe A (Bruno #2382). At round 4, ens_lam1_s0 had
+barely moved (judged-deceptive 0.78 -> 0.74; Bruno #2392).
+
+Change (Felix, Tove #2393, Iris #2384): one extra run, the ensemble penalty at lambda=2 (gap per unit reward about
+matched to probe A), seed 0 only. It runs after control s0 and refit.py, and is killed at 05:50 CEST if not at round
+8. It is exploratory: it never enters the title rule, the prereg outcome or the figure; the post may give it one
+sentence.

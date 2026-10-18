@@ -1,0 +1,576 @@
+{
+ "id": "L23N620",
+ "layer": 23,
+ "neuron": 620,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 8.9375,
+  "n_strong_tokens": 31,
+  "n_strong_windows": 29,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    19
+   ],
+   [
+    "Github",
+    6
+   ],
+   [
+    "DM Mathematics",
+    2
+   ],
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "OpenWebText2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    23
+   ],
+   [
+    "code",
+    6
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "?\n",
+    11
+   ],
+   [
+    "\n",
+    5
+   ],
+   [
+    ".\n",
+    3
+   ],
+   [
+    ".",
+    2
+   ],
+   [
+    "import",
+    2
+   ],
+   [
+    " sloppy",
+    1
+   ],
+   [
+    " \n",
+    1
+   ],
+   [
+    "7",
+    1
+   ]
+  ],
+  "strong_pos_median": 158,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 966,
+    "pos": 179,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ".\n",
+    "text": " what is the int emphasizing syntax, and may point to the C (and C++) declaration grammar to argue for the correctness of the style. Indeed, the * binds to the name p in the grammar[[.\n]]A typical C++ programmer writes"
+   },
+   {
+    "kind": "top",
+    "window": 182,
+    "pos": 182,
+    "rel": 0.699,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\n",
+    "text": "2\n+ [Reflection.Assembly]::LoadFile <<<< (\"C:\\Interop.MSDASC.dll\") | out-null\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException[[\n]]    + FullyQualifiedErrorId"
+   },
+   {
+    "kind": "top",
+    "window": 333,
+    "pos": 127,
+    "rel": 0.699,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "?\n",
+    "text": " into the basin of holy water until it gets full. But that is all.\nHow should/must observant Catholics handle, transport, and use holy water such that it won't get desecrated[[?\n]]Thanks!\n\nA:\n\nYour question"
+   },
+   {
+    "kind": "top",
+    "window": 99,
+    "pos": 179,
+    "rel": 0.678,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ".",
+    "text": " application.\nSo far, it seems that I have two options:\n\nContinue as is, and forget package management for these assets.\nCreate a second package.json inside Public with jQuery and others, which seems sloppy[[.]] \n\nIs creating a second package"
+   },
+   {
+    "kind": "top",
+    "window": 634,
+    "pos": 226,
+    "rel": 0.661,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "?\n",
+    "text": " (theoretically) the exact same stream from NPOI that I was writing to the response originally.  Is there any special processing that I need to do on the client to make this work[[?\n]]Here is my client code:"
+   },
+   {
+    "kind": "top",
+    "window": 788,
+    "pos": 78,
+    "rel": 0.65,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "?\n",
+    "text": "(general solution)\nGiven the data that u(1,y)=ln(y^(-1/2)) what would the right method be to go from the general solution to the particular solution given the data[[?\n]]particular solution\n\nA:\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1013,
+    "pos": 179,
+    "rel": 0.633,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\n",
+    "text": " someone advise how to solve this thanks in advance. Also I downloaded the demo and there is no problem. error is in PagerLink.ascx file..routeData.AddQueryStringParameters(); // error pointing here[[\n]]RouteValueDictionaryExtensions.cs looks"
+   },
+   {
+    "kind": "top",
+    "window": 1011,
+    "pos": 198,
+    "rel": 0.622,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ".\n",
+    "text": "ictionary/british/go-through-a-bad-difficult-rough-sticky-patch \n\nA:\n\nTrial and tribulation.  \nOrdeal.\n\ni.e.: A period of trial and tribulation[[.\n]]http://dictionary.reference.com/browse"
+   },
+   {
+    "kind": "top",
+    "window": 358,
+    "pos": 45,
+    "rel": 0.612,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\n",
+    "text": " order and total order in distributed system\n\nTotal order:  \n\nLamport timestamps can be used to create a total ordering of events in\n  a distributed system by using some arbitrary mechanism to break ties[[\n]]  (e.g. the"
+   },
+   {
+    "kind": "top",
+    "window": 259,
+    "pos": 183,
+    "rel": 0.598,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "import",
+    "text": "import mockit.Mocked;\nimport mockit.NonStrictExpectations;\nimport org.junit.Before;\nimport org.junit.Test;\n\nimport java.net.URI;\n\nimport static com.twilio.TwilioTest.serialize;\n[[import]] static org.junit.Assert.*;\n\npublic"
+   },
+   {
+    "kind": "top",
+    "window": 714,
+    "pos": 222,
+    "rel": 0.58,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "//\n",
+    "text": ".\n// Software Practice and Experience 2001, 4:1-10.\n// http://www.hipersoft.rice.edu/grads/publications/dom14.pdf\n[[//\n]]// Daniel Berlin, llvmdev"
+   },
+   {
+    "kind": "top",
+    "window": 32,
+    "pos": 63,
+    "rel": 0.577,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "?\n",
+    "text": " running across several web servers behind a load balancer:\nCan I:\n\nForce OutputCache (Page and/or Control level) to expire globally?\nForce Data Cache (i.e. Cache.Insert) to expire[[?\n]]Monitor ASP.NET caching usage ("
+   },
+   {
+    "kind": "random-strong",
+    "window": 1095,
+    "pos": 146,
+    "rel": 0.517,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ")\n",
+    "text": " range.\nNecessary Requirements:\n\nFour bays for 3.5\" HDDs\nFront Panel USB 2.0\nLess than $50 USD (lower is better, new not used[[)\n]]Approx. 3 inches of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 541,
+    "pos": 30,
+    "rel": 0.552,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": "7",
+    "text": "ed by 3413?\n338\nWhat is the remainder when 281055 is divided by 8?\n[[7]]\nCalculate the remainder when "
+   },
+   {
+    "kind": "random-strong",
+    "window": 703,
+    "pos": 43,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\n",
+    "text": " to match \"a string of length less than X resides between two \">\" symbols\"\n\nThe have text in this form:\n\n>xxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxx\n>xxxxxxxxxxxxxx[[\n]]xxxxxxxxxxx\n>\n\nI need"
+   },
+   {
+    "kind": "random-strong",
+    "window": 167,
+    "pos": 156,
+    "rel": 0.524,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "?\n",
+    "text": " can interact with the semiconductor bands. Is this interaction (band crossing) causing the degeneracy leading to a the term degenerate semiconductor? Can someone shed some light on this concept of degeneracy[[?\n]]Thanks\n\nA:\n\nWhen used"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1223,
+    "pos": 65,
+    "rel": 0.542,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "import",
+    "text": ";\nimport android.widget.ListView;\nimport com.tencent.mm.e.a.nq;\nimport com.tencent.mm.plugin.sight.encode.ui.ChattingSightContainerView.a;\nimport com.tencent.mm.sdk.c.a;\n[[import]] com.tencent.mm.sdk.platformtools"
+   },
+   {
+    "kind": "random-strong",
+    "window": 70,
+    "pos": 74,
+    "rel": 0.545,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "?\n",
+    "text": "0)( \\exists 0<c_x<x)$ s. t. $f(c_x)>f(x)$, and $\\forall x>0, f(x)>0$ do we have a contradiction[[?\n]]I tried to build a sequence"
+   },
+   {
+    "kind": "random-strong",
+    "window": 906,
+    "pos": 202,
+    "rel": 0.577,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "?\n",
+    "text": " \" \";\ndataToSend += Num2;\nHow I can convert dataToSend to BSTR valid variable to send with:\nHRESULT hResult = obj->GetTheThing(dataToSend, &returned_thing);[[?\n]]What I have tried:\nIn"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1142,
+    "pos": 244,
+    "rel": 0.521,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Dot",
+    "text": " happens between the Charge 3 and the Echo Dot devices, you need not turn Bluetooth on in the mobile device you’re using to … Continue reading Pairing JBL Charge 3 with Amazon Alexa Echo[[ Dot]]\n\nThis post demonstrates how to"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 9.1875,
+  "n_strong_tokens": 12,
+  "n_strong_windows": 9,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    9
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    9
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ".",
+    3
+   ],
+   [
+    ")",
+    2
+   ],
+   [
+    "   ",
+    1
+   ],
+   [
+    "  ",
+    1
+   ],
+   [
+    "Ghost",
+    1
+   ],
+   [
+    " ",
+    1
+   ],
+   [
+    "Core",
+    1
+   ],
+   [
+    " ©",
+    1
+   ]
+  ],
+  "strong_pos_median": 49,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1148,
+    "pos": 49,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".",
+    "text": " AppSlate\n//\n//  Created by Taehan Kim on 12. 01. 26..\n//  Copyright (c) 2012년 ChocolateSoft[[.]] All rights reserved.\n//\n\n#import"
+   },
+   {
+    "kind": "top",
+    "window": 1376,
+    "pos": 39,
+    "rel": 0.823,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".",
+    "text": "//\n//  TAPIResponse.m\n//  TwitterNetworkLayer\n//\n//  Created on 10/17/14.\n//  Copyright © 2020 Twitter[[.]] All rights reserved.\n//\n\n#import"
+   },
+   {
+    "kind": "top",
+    "window": 1350,
+    "pos": 49,
+    "rel": 0.806,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".",
+    "text": "Wrapper.m\n//  GDFileManagerExample\n//\n//  Created by Graham Dennis on 11/08/13.\n//  Copyright (c) 2013 Graham Dennis[[.]] All rights reserved.\n//\n\n#import"
+   },
+   {
+    "kind": "top",
+    "window": 1072,
+    "pos": 134,
+    "rel": 0.663,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "  ",
+    "text": "   * Redistributions in binary form must reproduce the above copyright\r\n *     notice, this list of conditions and the following disclaimer in the\r\n *     documentation and/or other materials provided with the distribution.\r\n *[[  ]] * Neither the name of LC"
+   },
+   {
+    "kind": "top",
+    "window": 565,
+    "pos": 105,
+    "rel": 0.639,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "   ",
+    "text": " following disclaimer.\n    * Redistributions in binary form must reproduce the above copyright\n      notice, this list of conditions and the following disclaimer in the\n      documentation and/or other materials provided with the distribution.\n[[   ]] * Neither the name of the"
+   },
+   {
+    "kind": "top",
+    "window": 1377,
+    "pos": 115,
+    "rel": 0.585,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "    ",
+    "text": "     * Redistributions in binary form must reproduce the above\n * copyright notice, this list of conditions and the following disclaimer\n * in the documentation and/or other materials provided with the\n * distribution.\n *[[    ]] * Neither the name of Google"
+   },
+   {
+    "kind": "top",
+    "window": 1274,
+    "pos": 167,
+    "rel": 0.568,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Ghost",
+    "text": " or\n# FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n# more details.\n#\n# You should have received a copy of the GNU General Public License along\n# with Event[[Ghost]]. If not, see <"
+   },
+   {
+    "kind": "top",
+    "window": 1318,
+    "pos": 47,
+    "rel": 0.537,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Core",
+    "text": "') or die('hack attempt');\n/**\n * Copyright (c) UNA, Inc - https://una.io\n * MIT License - https://opensource.org/licenses/MIT\n *\n * @defgroup    Una[[Core]] UNA Core\n * @{\n"
+   },
+   {
+    "kind": "top",
+    "window": 1302,
+    "pos": 115,
+    "rel": 0.527,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": " 2. Redistributions in binary form must reproduce the above copyright notice,\n *     this list of conditions and the following disclaimer in the documentation\n *     and/or other materials provided with the distribution.\n *[[ ]] 3. The name of"
+   },
+   {
+    "kind": "top",
+    "window": 1134,
+    "pos": 40,
+    "rel": 0.473,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ":",
+    "text": "                                         Slip Op. 13-69\n                   UNITED STATES COURT OF INTERNATIONAL TRADE\n\nSINCE HARDWARE (GUANGZHOU)\nCO., LTD.,\n\n                            Plaintiff,\n                                                          Before[[:]] Leo M. Gordon, Judge"
+   },
+   {
+    "kind": "top",
+    "window": 1232,
+    "pos": 138,
+    "rel": 0.439,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "    ",
+    "text": "     * Redistributions in binary form must reproduce the above\n// copyright notice, this list of conditions and the following disclaimer\n// in the documentation and/or other materials provided with the\n// distribution.\n//[[    ]] * Neither the name of Google"
+   },
+   {
+    "kind": "top",
+    "window": 34,
+    "pos": 11,
+    "rel": 0.427,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " JAN",
+    "text": "                                                                           FILED\n                             NOT FOR PUBLICATION                           [[ JAN]] 20 20"
+   },
+   {
+    "kind": "top",
+    "window": 117,
+    "pos": 52,
+    "rel": 0.41,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "c",
+    "text": " functions, type<> syntax\n//\n//  Do not include this header directly.\n//\n//  Copyright (c) 2001 Peter Dimov and Multi Media Ltd.\n//  Copyright ([[c]]) 2008"
+   },
+   {
+    "kind": "top",
+    "window": 1345,
+    "pos": 196,
+    "rel": 0.4,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "    ",
+    "text": "     * Redistributions in binary form must reproduce the above\n// copyright notice, this list of conditions and the following disclaimer\n// in the documentation and/or other materials provided with the\n// distribution.\n//[[    ]] * Neither the name of Google"
+   },
+   {
+    "kind": "top",
+    "window": 1140,
+    "pos": 73,
+    "rel": 0.388,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " (",
+    "text": ": feeds and feeditems.\nIn one table I'd store the feedname and url, with an ID as unique key.\nIn the second table I'd like to store some info coming from feed items[[ (]]in example: date, title"
+   },
+   {
+    "kind": "top",
+    "window": 1268,
+    "pos": 172,
+    "rel": 0.357,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".",
+    "text": " or FITNESS FOR A PARTICULAR PURPOSE.  See the\n# GNU General Public License for more details.\n#\n# You should have received a copy of the GNU General Public License\n# along with bedup[[.]]  If not, see <"
+   },
+   {
+    "kind": "top",
+    "window": 767,
+    "pos": 167,
+    "rel": 0.355,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " kube",
+    "text": "lients{\n\t\tRoutesClient:     routefake.NewSimpleClientset(),\n\t\tKubernetesClient: kubefake.NewSimpleClientset(),\n\t}\n\ttype args struct {\n\t\tclients      [[ kube]].Clients\n\t\tfore"
+   },
+   {
+    "kind": "top",
+    "window": 1231,
+    "pos": 54,
+    "rel": 0.349,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "c",
+    "text": " tkTextIndex.c.\n# This file is organized in the standard fashion for Tcl tests.\n#\n# Copyright (c) 1994 The Regents of the University of California.\n# Copyright ([[c]]) 1994"
+   },
+   {
+    "kind": "top",
+    "window": 482,
+    "pos": 114,
+    "rel": 0.347,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "osta",
+    "text": " FROM   THE   COURT OF     APPEALS\n                                                                             AUG 05 2015\n\n                         THIRTEENTH    DISTRICT OF     TEXAS\n                                                                        Abe) Ac[[osta]], Clerk\n\n                          CAUSE"
+   },
+   {
+    "kind": "top",
+    "window": 1388,
+    "pos": 2,
+    "rel": 0.345,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "DU",
+    "text": "# K[[DU]]\n## Kernel Driver Utility\n\n"
+   }
+  ]
+ }
+}

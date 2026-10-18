@@ -1,0 +1,588 @@
+{
+ "id": "L23N9171",
+ "layer": 23,
+ "neuron": 9171,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 8.5,
+  "n_strong_tokens": 105,
+  "n_strong_windows": 50,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "USPTO Backgrounds",
+    22
+   ],
+   [
+    "Pile-CC",
+    11
+   ],
+   [
+    "NIH ExPorter",
+    7
+   ],
+   [
+    "Github",
+    5
+   ],
+   [
+    "OpenWebText2",
+    3
+   ],
+   [
+    "HackerNews",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    45
+   ],
+   [
+    "code",
+    5
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "The",
+    13
+   ],
+   [
+    " present",
+    13
+   ],
+   [
+    " particularly",
+    8
+   ],
+   [
+    " of",
+    7
+   ],
+   [
+    "   ",
+    4
+   ],
+   [
+    "\n",
+    3
+   ],
+   [
+    " is",
+    3
+   ],
+   [
+    " proposed",
+    2
+   ]
+  ],
+  "strong_pos_median": 28,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 881,
+    "pos": 28,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " of",
+    "text": "Candace Knoebel ~ Ten Reasons to Stay ~ Teaser Reveal\n\nWe are just 4 weeks away from the release[[ of]] TEN REASONS TO ST"
+   },
+   {
+    "kind": "top",
+    "window": 1306,
+    "pos": 147,
+    "rel": 0.915,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "='",
+    "text": "    long_description=readme(),\n    long_description_content_type='text/markdown',\n    author='Jeffrey D. Walter',\n    author_email='jeffreydwalter@gmail.com',\n    url[[=']]https://github.com/je"
+   },
+   {
+    "kind": "top",
+    "window": 1315,
+    "pos": 191,
+    "rel": 0.776,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "##",
+    "text": "](https://img.shields.io/badge/contact-@MichalKonturek-blue.svg)](http://twitter.com/michalkonturek)\n\nSimplifies iOS keyboard handling.\n\n\n[[##]] License\n\nSource code of this"
+   },
+   {
+    "kind": "top",
+    "window": 1018,
+    "pos": 60,
+    "rel": 0.688,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " are",
+    "text": " potentially-life saving. But the process of getting one can be nerve-racking — both for the doctor and the patient.\n\nA group of scientists from Drexel University and the Universities of Wisconsin and Florida[[ are]] hoping to assist with that."
+   },
+   {
+    "kind": "top",
+    "window": 552,
+    "pos": 9,
+    "rel": 0.684,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " of",
+    "text": "PRESS\n\n&nbsp\n\nWelcome to the press section[[ of]] BIKINI BERLIN."
+   },
+   {
+    "kind": "top",
+    "window": 620,
+    "pos": 33,
+    "rel": 0.68,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " particularly",
+    "text": "1. Field of the Invention\nThe present invention relates generally to removable safety rail systems installed around rooftops to prevent workers from falling to the ground below. More[[ particularly]], the invention relates to a"
+   },
+   {
+    "kind": "top",
+    "window": 867,
+    "pos": 112,
+    "rel": 0.676,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": " the 1967 war, one wonders what is meant by saying he went to Israel and Jerusalem.\n\nI discuss these issues, and the entire question of the \"1967 lines,\"[[ in]] an article in The Weekly Standard"
+   },
+   {
+    "kind": "top",
+    "window": 1388,
+    "pos": 8,
+    "rel": 0.665,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\n\n",
+    "text": "# KDU\n## Kernel Driver Utility[[\n\n]]#### System Requirements\n\n+ x"
+   },
+   {
+    "kind": "top",
+    "window": 673,
+    "pos": 10,
+    "rel": 0.662,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " is",
+    "text": "1. Field of the Invention\nThe invention[[ is]] directed to a device for producing"
+   },
+   {
+    "kind": "top",
+    "window": 383,
+    "pos": 71,
+    "rel": 0.632,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " promote",
+    "text": " videos and worksheets, links and articles, all with a bias toward art, calligraphy, lettering, and teacher’s resources, and updated as new material comes to my notice.\n\nOriginally set up to[[ promote]] good lettering, Bill’s"
+   },
+   {
+    "kind": "top",
+    "window": 631,
+    "pos": 4,
+    "rel": 0.629,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " book",
+    "text": "My new global trends[[ book]] is out now: The Future"
+   },
+   {
+    "kind": "top",
+    "window": 949,
+    "pos": 8,
+    "rel": 0.61,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " present",
+    "text": "1. Field of Invention\nThe[[ present]] invention relates to semiconductor processing,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 778,
+    "pos": 212,
+    "rel": 0.522,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " paper",
+    "text": "ensors-20-02641]\\] and the many proposed solutions that differ in terms of the devices used for tracking, the type of sensor data, and the localization algorithms.\n\nThis[[ paper]] focuses on computer vision based localization"
+   },
+   {
+    "kind": "random-strong",
+    "window": 792,
+    "pos": 19,
+    "rel": 0.603,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " particularly",
+    "text": "The present invention relates generally to improved means and methods for processing documents using electronic imaging, and more[[ particularly]], to the use of electronic"
+   },
+   {
+    "kind": "random-strong",
+    "window": 241,
+    "pos": 8,
+    "rel": 0.61,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " present",
+    "text": "1. Field of Invention\nThe[[ present]] invention relates to a method of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1146,
+    "pos": 9,
+    "rel": 0.54,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " present",
+    "text": "1. Field of the Invention\nThe[[ present]] invention relates to a foldable"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1163,
+    "pos": 73,
+    "rel": 0.551,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " proposed",
+    "text": " marked effect on muscle contraction and metabolism. Only in two muscles, the frog semitendinosus and the mouse soleus, have the membrane transport systems responsible for pH regulation been described. In the[[ proposed]] research, three questions will be"
+   },
+   {
+    "kind": "random-strong",
+    "window": 426,
+    "pos": 35,
+    "rel": 0.559,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " particularly",
+    "text": "1. Field of the Invention\nThe present invention relates, in general, to a shift control method for a vehicle having a double clutch transmission (DCT), and more[[ particularly]], to a technology for improving"
+   },
+   {
+    "kind": "random-strong",
+    "window": 420,
+    "pos": 23,
+    "rel": 0.607,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " particularly",
+    "text": "1. Field of the Invention\nThis invention relates generally to a portable power tool of the impulse type and more[[ particularly]] to an impulse device designed to"
+   },
+   {
+    "kind": "random-strong",
+    "window": 681,
+    "pos": 9,
+    "rel": 0.54,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " present",
+    "text": "1. Field of the Invention\nThe[[ present]] invention relates to a cushion structure"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 6.3125,
+  "n_strong_tokens": 43,
+  "n_strong_windows": 31,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    30
+   ],
+   [
+    "OpenWebText2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    30
+   ],
+   [
+    "en",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " This",
+    19
+   ],
+   [
+    "//",
+    12
+   ],
+   [
+    "#",
+    2
+   ],
+   [
+    " ",
+    2
+   ],
+   [
+    " Code",
+    2
+   ],
+   [
+    " this",
+    1
+   ],
+   [
+    "://",
+    1
+   ],
+   [
+    " !",
+    1
+   ]
+  ],
+  "strong_pos_median": 32,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1358,
+    "pos": 115,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "//",
+    "text": " is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n*/\n\n[[//]] Code generated by informer-gen"
+   },
+   {
+    "kind": "top",
+    "window": 119,
+    "pos": 8,
+    "rel": 0.832,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": "# Translation of Odoo Server.\n#[[ This]] file contains the translation of the"
+   },
+   {
+    "kind": "top",
+    "window": 1255,
+    "pos": 1,
+    "rel": 0.827,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": "//[[ This]] file is part of Eigen,"
+   },
+   {
+    "kind": "top",
+    "window": 1228,
+    "pos": 1,
+    "rel": 0.827,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": "//[[ This]] module implements the QsciLexer"
+   },
+   {
+    "kind": "top",
+    "window": 1392,
+    "pos": 1,
+    "rel": 0.827,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": "//[[ This]] file is part of Substrate"
+   },
+   {
+    "kind": "top",
+    "window": 1231,
+    "pos": 1,
+    "rel": 0.792,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": "#[[ This]] file is a Tcl script to"
+   },
+   {
+    "kind": "top",
+    "window": 1314,
+    "pos": 39,
+    "rel": 0.792,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "//",
+    "text": "// Copyright 2018 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n[[//]] +build aix\n//"
+   },
+   {
+    "kind": "top",
+    "window": 719,
+    "pos": 39,
+    "rel": 0.792,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "//",
+    "text": "// Copyright 2018 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n[[//]] Package jsonrpc2 is a"
+   },
+   {
+    "kind": "top",
+    "window": 714,
+    "pos": 52,
+    "rel": 0.777,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": " rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n// +build go1.5\n\npackage ssa\n\n//[[ This]] file defines the lifting pass which"
+   },
+   {
+    "kind": "top",
+    "window": 799,
+    "pos": 106,
+    "rel": 0.767,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": "//\n// See https://swift.org/LICENSE.txt for license information\n// See https://swift.org/CONTRIBUTORS.txt for the list of Swift project authors\n//\n//===----------------------------------------------------------------------===//\n//\n//[[ This]] file contains wrappers for pthread APIs"
+   },
+   {
+    "kind": "top",
+    "window": 1179,
+    "pos": 32,
+    "rel": 0.748,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": "--\n-- User: mike\n-- Date: 03.06.2018\n-- Time: 22:51\n--[[ This]] file is part of Remixed"
+   },
+   {
+    "kind": "top",
+    "window": 1226,
+    "pos": 39,
+    "rel": 0.748,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "//",
+    "text": "// Copyright 2015 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n[[//]] Package rangetable provides utilities"
+   },
+   {
+    "kind": "random-strong",
+    "window": 684,
+    "pos": 137,
+    "rel": 0.547,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": " Boost Software\n// License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at\n// http://www.boost.org/LICENSE_1_0.txt)\n\n//[[ ]] See http://www.boost.org"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1268,
+    "pos": 187,
+    "rel": 0.554,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": " License for more details.\n#\n# You should have received a copy of the GNU General Public License\n# along with bedup.  If not, see <http://www.gnu.org/licenses/>.\n\n#[[ This]] file is a workaround for Python"
+   },
+   {
+    "kind": "random-strong",
+    "window": 590,
+    "pos": 5,
+    "rel": 0.547,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " this",
+    "text": "<!DOCTYPE html>\n<!--[[ this]] file is auto-generated. DO"
+   },
+   {
+    "kind": "random-strong",
+    "window": 272,
+    "pos": 2,
+    "rel": 0.505,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " This",
+    "text": "NOTE:[[ This]] is our third post on Father"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1380,
+    "pos": 2,
+    "rel": 0.51,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": "/*\n *[[ This]] program is free software; you"
+   },
+   {
+    "kind": "random-strong",
+    "window": 259,
+    "pos": 2,
+    "rel": 0.663,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " This",
+    "text": "/**\n *[[ This]] code was generated by\n *"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1296,
+    "pos": 138,
+    "rel": 0.597,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Code",
+    "text": "AS IS\" BASIS,\n// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n//\n// See the License for the specific language governing permissions and\n// limitations under the License.\n//\n//[[ Code]] generated by Microsoft (R)"
+   },
+   {
+    "kind": "random-strong",
+    "window": 239,
+    "pos": 15,
+    "rel": 0.592,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!--\n[[ ]] Licensed to the Apache Software Foundation"
+   }
+  ]
+ }
+}

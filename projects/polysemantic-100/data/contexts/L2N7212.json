@@ -1,0 +1,544 @@
+{
+ "id": "L2N7212",
+ "layer": 2,
+ "neuron": 7212,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 0.0144,
+  "n_strong_tokens": 4,
+  "n_strong_windows": 2,
+  "strong_gate_open_frac": 0.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "it",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " sta",
+    3
+   ],
+   [
+    " su",
+    1
+   ]
+  ],
+  "strong_pos_median": 2,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1478,
+    "pos": 3,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " su",
+    "text": "Un uomo sta[[ su]]onando la chitarra"
+   },
+   {
+    "kind": "top",
+    "window": 1473,
+    "pos": 14,
+    "rel": 0.864,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " sta",
+    "text": "Un uomo sta camminando su una corda.\nL'uomo[[ sta]] mangiando la pizza.\n"
+   },
+   {
+    "kind": "top",
+    "window": 776,
+    "pos": 85,
+    "rel": 0.362,
+    "gate_open": false,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "ley",
+    "text": "ma, Alabama), a historic plantation house in Dallas County, Alabama\nRiverdale Center, a mall in Coon Rapids, Minnesota, United States\nRiverdale, the estate of John Lothrop Mot[[ley]] and later Albert W. Nick"
+   },
+   {
+    "kind": "top",
+    "window": 658,
+    "pos": 157,
+    "rel": 0.35,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "h",
+    "text": "on and Nalbari towns. In Nalbari, curfew was suspended for 10 hours from 6 am.\n\nThe curfew in Tinsukia and Dibrugar[[h]] districts has hit train services."
+   },
+   {
+    "kind": "top",
+    "window": 1221,
+    "pos": 2,
+    "rel": 0.29,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "/bin",
+    "text": "#!/usr[[/bin]]/env bash\n\n#####################################################################\n#"
+   },
+   {
+    "kind": "top",
+    "window": 618,
+    "pos": 18,
+    "rel": 0.253,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ice",
+    "text": "Tumorigenic effects of endocrine-disrupting chemicals are alleviated by licor[[ice]] (Glycyrrh"
+   },
+   {
+    "kind": "top",
+    "window": 1433,
+    "pos": 51,
+    "rel": 0.25,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "el",
+    "token": "κ",
+    "text": "πος είχε τρελαθεί και ο γιος του του έφτιαξε ένα γ[[κ]]αράζ και"
+   },
+   {
+    "kind": "top",
+    "window": 1514,
+    "pos": 180,
+    "rel": 0.243,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "de",
+    "text": "2 por cento mais alto.\nPoderá ele realmente fazer sentido a partir do google ad.\nONU adverte para a situação das mulheres e das crianças na Síria\nBombar[[de]]amentos, os confrontos continu"
+   },
+   {
+    "kind": "top",
+    "window": 1546,
+    "pos": 30,
+    "rel": 0.229,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "ี้",
+    "text": "และ เรา ทำสวน มากมาย ข้าง นอกนั้น และ ส่วนใหญ่ อยู่ ใน เตียง เล[[ี้]]ยง เรา จะ ได"
+   },
+   {
+    "kind": "top",
+    "window": 1432,
+    "pos": 172,
+    "rel": 0.22,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "el",
+    "token": "π",
+    "text": "αζόταν ο ίδιος .\nΟι satheri θέλουν να κάνουν μεγάλα μ[[π]]ουκέτα μ"
+   },
+   {
+    "kind": "top",
+    "window": 1511,
+    "pos": 82,
+    "rel": 0.214,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "daq",
+    "text": "ma mulher está a segurar um bebé a dançar.\nAs acções da Penn Traffic fecharam a 36 cêntimos por acção na quarta-feira no Nas[[daq]], mais dois cênt"
+   },
+   {
+    "kind": "top",
+    "window": 528,
+    "pos": 186,
+    "rel": 0.214,
+    "gate_open": false,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "SEL",
+    "text": " ELECTRONIC DATABASE (WITH THE NOTATION “SUMMARY ORDER”).\nA PARTY CITING A SUMMARY ORDER MUST SERVE A COPY OF IT ON ANY PARTY NOT\nREPRESENTED BY COUN[[SEL]].\n\n     At a stated term"
+   },
+   {
+    "kind": "top",
+    "window": 710,
+    "pos": 251,
+    "rel": 0.213,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ры",
+    "text": "[]> db = new HashMap<>();\n\nString[] hellos = new String[]{\"Привет\", \"Алоха\"};\nString[] helloAnswers = new String[]{\"Здравствуй\", \"Доб[[ры]]х вечеров!\""
+   },
+   {
+    "kind": "top",
+    "window": 1472,
+    "pos": 91,
+    "rel": 0.211,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "daq",
+    "text": " trattato modificato fino a quando i funzionari di Mosca non ritireranno le truppe dalle ex repubbliche sovietiche di moldova e georgia.\nIl Nas[[daq]] è sceso di circa l"
+   },
+   {
+    "kind": "top",
+    "window": 1329,
+    "pos": 252,
+    "rel": 0.203,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "EN",
+    "text": "_check.h\"\n#include \"mediapipe/framework/port/status.h\"\n#include \"mediapipe/framework/port/status_builder.h\"\n#include \"mediapipe/gpu/gl_context_internal.h\"\n\n#ifndef __EMSCRIPT[[EN]]__\n#include \""
+   },
+   {
+    "kind": "top",
+    "window": 848,
+    "pos": 10,
+    "rel": 0.199,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "sl",
+    "text": "<?xml version='1.0'?>\n<x[[sl]]:stylesheet xmlns:xsl=\""
+   },
+   {
+    "kind": "top",
+    "window": 1452,
+    "pos": 200,
+    "rel": 0.197,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": "fl",
+    "text": " de la grosse saleté !\nProduit intéressant, voir dans le temps si fiable !\nsimple et pratique je peux gonfler avec cet appareil mes pneus tout comme un matelas gon[[fl]]able les bouées des enfants"
+   },
+   {
+    "kind": "top",
+    "window": 1220,
+    "pos": 35,
+    "rel": 0.196,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "ern",
+    "text": "<?xml version=\"1.0\"?>\n<!DOCTYPE hibernate-mapping PUBLIC \"-//Hibernate/Hibernate Mapping DTD//EN\" \"http://hibernate.sourceforge.net/hib[[ern]]ate-mapping-3."
+   },
+   {
+    "kind": "top",
+    "window": 1516,
+    "pos": 248,
+    "rel": 0.194,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": ".A",
+    "text": "ley, que tem um novo parceiro e um novo filho, disse: \"Estou absolutamente encantado.\nNovo World Trade Center declarado o edifício mais alto dos E.U[[.A]].\nUm homem a descer"
+   },
+   {
+    "kind": "top",
+    "window": 1520,
+    "pos": 65,
+    "rel": 0.194,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "ез",
+    "text": " 27 км ( 17 миль ) к югу от монтего-бей - поместье бельведер .\nНа следующий день он исч[[ез]] или , скорее , пер"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 0.0007,
+  "n_strong_tokens": 6,
+  "n_strong_windows": 5,
+  "strong_gate_open_frac": 0.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    1
+   ],
+   [
+    "Github",
+    1
+   ],
+   [
+    "DM Mathematics",
+    1
+   ],
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    3
+   ],
+   [
+    "ja",
+    1
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "貨",
+    2
+   ],
+   [
+    "ile",
+    1
+   ],
+   [
+    " picking",
+    1
+   ],
+   [
+    "ant",
+    1
+   ],
+   [
+    " InitializeComponent",
+    1
+   ]
+  ],
+  "strong_pos_median": 26,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1482,
+    "pos": 1,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "貨",
+    "text": "百[[貨]]店よりも安く買えて�"
+   },
+   {
+    "kind": "top",
+    "window": 1260,
+    "pos": 160,
+    "rel": 0.721,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " InitializeComponent",
+    "text": " generated code\r\n\r\n        /// <summary>\r\n        /// Required method for Designer support - do not modify\r\n        /// the contents of this method with the code editor.\r\n        /// </summary>\r\n        private void[[ InitializeComponent]]()\r\n        {\r\n            System.ComponentModel"
+   },
+   {
+    "kind": "top",
+    "window": 503,
+    "pos": 135,
+    "rel": 0.557,
+    "gate_open": false,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": " picking",
+    "text": "n: 1, p: 1, u: 4, s: 7, h: 4, k: 3}?\n7/190\nCalculate prob of[[ picking]] 1 e, 1"
+   },
+   {
+    "kind": "top",
+    "window": 262,
+    "pos": 33,
+    "rel": 0.552,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ile",
+    "text": "The terrifying 38-minute ordeal suffered by Hawaii residents on Saturday, when the state’s emergency-management agency sent out a false alert warning of an imminent ballistic-miss[[ile]] strike amid rising tensions with North"
+   },
+   {
+    "kind": "top",
+    "window": 1145,
+    "pos": 1,
+    "rel": 0.538,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ant",
+    "text": "Mut[[ant]] isoforms of the anti-M"
+   },
+   {
+    "kind": "top",
+    "window": 335,
+    "pos": 64,
+    "rel": 0.283,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "otal",
+    "text": " been used for approximately 30 years for breast augmentation or reconstruction. In general, the implants have been well tolerated and reports have indicated a high degree of patient satisfaction. Nonetheless, there have been anecd[[otal]] reports of patients with musculos"
+   },
+   {
+    "kind": "top",
+    "window": 936,
+    "pos": 1,
+    "rel": 0.158,
+    "gate_open": false,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": "issue",
+    "text": "T[[issue]] specific gene expression is central to"
+   },
+   {
+    "kind": "top",
+    "window": 795,
+    "pos": 1,
+    "rel": 0.1,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "igration",
+    "text": "Imm[[igration]] is the most pressing concern for"
+   },
+   {
+    "kind": "top",
+    "window": 1047,
+    "pos": 5,
+    "rel": 0.046,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "igrants",
+    "text": "Judge criticised for 'imm[[igrants]] exploiting benefits' comment\n\nA"
+   },
+   {
+    "kind": "top",
+    "window": 724,
+    "pos": 3,
+    "rel": 0.027,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ibility",
+    "text": "Reproduc[[ibility]] of allergen, endoto"
+   },
+   {
+    "kind": "top",
+    "window": 417,
+    "pos": 3,
+    "rel": 0.027,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ibility",
+    "text": "Reproduc[[ibility]] of acoustic rhinometry in"
+   },
+   {
+    "kind": "top",
+    "window": 12,
+    "pos": 58,
+    "rel": 0.023,
+    "gate_open": false,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "Court",
+    "text": ")\nHarmon HOOT, Relator,\nv.\nEdwin E. BREWER, County Judge, Respondent.\nNo. 01-82-0583-CV.\n[[Court]] of Appeals of Texas, Houston"
+   },
+   {
+    "kind": "top",
+    "window": 704,
+    "pos": 39,
+    "rel": 0.017,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ark",
+    "text": "Compare Prices on Crown Princess Southern Caribbean Cruises\n\nCheaper to cruise then to stay in a nursing home....\n\nSail Date:\nJanuary 2014\n\nDestination:\nSouthern Caribbean\n\nEmb[[ark]]ation:\nFort Lauderdale (Port"
+   },
+   {
+    "kind": "top",
+    "window": 1485,
+    "pos": 100,
+    "rel": -0.008,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "�",
+    "text": "ートに使っていますがサイズぴったりです。\n著者は中小規模のM&A仲介会社の社長だ。その立場上、会社を売ろうと思う経�[[�]]者が増えないと困るわけで"
+   },
+   {
+    "kind": "top",
+    "window": 579,
+    "pos": 28,
+    "rel": -0.009,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "DS",
+    "text": "Download Pflanzenreich Pfitzer Orchidaceae Monandrae\n\nMap Chapter Two BORON CLUSTER COMPOUN[[DS]]. Chapter Three COORDINATION"
+   },
+   {
+    "kind": "top",
+    "window": 1480,
+    "pos": 169,
+    "rel": -0.012,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "�",
+    "text": "にぺったりくっついていて、ガンバッテ剥がして付け替えました。使用前にしてかなり残念な気持ちでした。\n8月号の保冷バッグの付�[[�]]がとても良くて、今回の"
+   },
+   {
+    "kind": "top",
+    "window": 1581,
+    "pos": 146,
+    "rel": -0.012,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "，",
+    "text": "的一侧，方便阅读和查找以及做笔记。 当然，4星只是因为我想太多了。\n幕后工作者更需要强硬的本领与坚韧的素质。读书就是要产生共鸣或受到启发[[，]]这本书是这样的，喜欢与否"
+   },
+   {
+    "kind": "top",
+    "window": 1583,
+    "pos": 84,
+    "rel": -0.012,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "。",
+    "text": "说如何找渠道、发行以及注意事项等等。红海博弈给人以杀敌于千里之外血雨腥风不见幕后黑手之感，或许称为红海悖论更为贴切[[。]]总之红海博弈没有给我"
+   },
+   {
+    "kind": "top",
+    "window": 1586,
+    "pos": 54,
+    "rel": -0.012,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "，",
+    "text": "的胶水\n比一般的商城还要差；盖子不紧！到处有痕迹\n这里面的每一句话，每一句诗，真是真真切切恋人的絮语，如此直白[[，]]如此炙热。\n此部"
+   },
+   {
+    "kind": "top",
+    "window": 1582,
+    "pos": 252,
+    "rel": -0.013,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "，",
+    "text": "作者有更多了解 可以用来扩充知识面\n对于2岁内的宝宝还是不错的，读的时候他很感兴趣\n相当实用，煮水快捷，不足之处在于启动时声音很大[[，]]价格也偏"
+   }
+  ]
+ }
+}

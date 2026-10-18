@@ -1,0 +1,620 @@
+{
+ "id": "L15N6920",
+ "layer": 15,
+ "neuron": 6920,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 2.7656,
+  "n_strong_tokens": 35,
+  "n_strong_windows": 29,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    7
+   ],
+   [
+    "Pile-CC",
+    7
+   ],
+   [
+    "StackExchange",
+    5
+   ],
+   [
+    "OpenWebText2",
+    3
+   ],
+   [
+    "ArXiv",
+    2
+   ],
+   [
+    "HackerNews",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    21
+   ],
+   [
+    "code",
+    7
+   ],
+   [
+    "zh",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "\n\n",
+    4
+   ],
+   [
+    ".\n",
+    3
+   ],
+   [
+    ",",
+    2
+   ],
+   [
+    " windows",
+    2
+   ],
+   [
+    " load",
+    1
+   ],
+   [
+    "ancer",
+    1
+   ],
+   [
+    "7",
+    1
+   ],
+   [
+    " coup",
+    1
+   ]
+  ],
+  "strong_pos_median": 127,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 312,
+    "pos": 206,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": ",",
+    "text": " only direct variable which has an inverse relation to the vicious cycle is\nthe property tax rate, as higher property taxes increases the effective price\nfor property ownership. In California due to Prop 13[[,]] the property tax rate\n(of"
+   },
+   {
+    "kind": "top",
+    "window": 1268,
+    "pos": 233,
+    "rel": 0.825,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " pass",
+    "text": " Python2.6\n# Also has workarounds for -mtrace\n\nimport sys\ntry:\n    # For -mtrace\n    sys.path.remove('bedup')\nexcept ValueError:\n   [[ pass]]\n\n# -mtrace can"
+   },
+   {
+    "kind": "top",
+    "window": 691,
+    "pos": 6,
+    "rel": 0.814,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\n\n",
+    "text": "// +build !appengine[[\n\n]]package mail\n\nimport (\n\t"
+   },
+   {
+    "kind": "top",
+    "window": 197,
+    "pos": 196,
+    "rel": 0.684,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "DM",
+    "text": " consumed more (P < 0.01) of the IAAD than did the SAL-SHAM rats. Thereafter, over the next 21 h, the intake of the SAL-[[DM]]NL group returned to control levels"
+   },
+   {
+    "kind": "top",
+    "window": 1173,
+    "pos": 228,
+    "rel": 0.675,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " off",
+    "text": " they don’t change anything) Frame leaving HOST 1 is going to have a source MAC of Host 1 and a destination MAC of Router 1. Router 1 is going to strip that info[[ off]] and then will make the source"
+   },
+   {
+    "kind": "top",
+    "window": 596,
+    "pos": 196,
+    "rel": 0.655,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".\n",
+    "text": " This is required as some compilers implement std::iterator_traits in a way that\n// doesn't work with SFINAE. See https://github.com/nlohmann/json/issues/1341[[.\n]]template<typename T, typename ="
+   },
+   {
+    "kind": "top",
+    "window": 852,
+    "pos": 217,
+    "rel": 0.641,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " The",
+    "text": " making their mana regen come mostly from Illumination/holy crit (great for pallies with the 2 piece t6 crit bonus to HL) and being in a group with a Shadow Priest.[[ The]] upgrades here are where it matters"
+   },
+   {
+    "kind": "top",
+    "window": 1298,
+    "pos": 4,
+    "rel": 0.636,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\n\n",
+    "text": "// +build windows[[\n\n]]package winio\n\nimport (\n"
+   },
+   {
+    "kind": "top",
+    "window": 32,
+    "pos": 30,
+    "rel": 0.624,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " load",
+    "text": "Q:\n\nWhat's the best method for forcing cache expiration in ASP.NET?\n\nSuppose I have an ASP.NET application running across several web servers behind a[[ load]] balancer:\nCan I:\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 714,
+    "pos": 45,
+    "rel": 0.621,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "5",
+    "text": "13 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n// +build go1.[[5]]\n\npackage ssa\n\n//"
+   },
+   {
+    "kind": "top",
+    "window": 79,
+    "pos": 20,
+    "rel": 0.619,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "7",
+    "text": "Q:\n\nPython 3.7: Utility of Dataclasses and SimpleNameSpace\n\nPython 3.[[7]] provides new dataclasses which have"
+   },
+   {
+    "kind": "top",
+    "window": 718,
+    "pos": 44,
+    "rel": 0.613,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " to",
+    "text": "We analytically derive the upper bound on the overall efficiency of single-photon generation based on cavity quantum electrodynamics (QED), where cavity internal loss is treated explicitly. The internal loss leads[[ to]] a tradeoff relation between the"
+   },
+   {
+    "kind": "random-strong",
+    "window": 584,
+    "pos": 219,
+    "rel": 0.54,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " and",
+    "text": "ly motivated theological perspective will enable us to balance political power and gospel influence. And even if we have that, greedy, sinful, rotten, power mongering men will ruin it. Separation of church[[ and]] state protects the gospel.\n\nHow"
+   },
+   {
+    "kind": "random-strong",
+    "window": 594,
+    "pos": 84,
+    "rel": 0.607,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " War",
+    "text": " most constructive measure the United States would have undertaken in our hemisphere in this century... It will represent the most creative step toward a new world order taken by any group of countries since the end of the Cold[[ War]], and the first step toward"
+   },
+   {
+    "kind": "random-strong",
+    "window": 331,
+    "pos": 137,
+    "rel": 0.503,
+    "gate_open": true,
+    "source": "Enron Emails",
+    "lang": "en",
+    "token": " quar",
+    "text": "You have received this message because someone has attempted to send you an e-mail from outside of Enron with an attachment type that Enron does not allow into our messaging environment. Your e-mail has been[[ quar]]antined and is being held"
+   },
+   {
+    "kind": "random-strong",
+    "window": 370,
+    "pos": 81,
+    "rel": 0.568,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "or",
+    "text": " the flow equations for a general electrically gauged theory where the gauge group is Abelian and, restricting them to the fixed points, we derive the gauged supergravity analogue of the attract[[or]] equations for theories coupled to hyper"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1085,
+    "pos": 250,
+    "rel": 0.588,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "2",
+    "text": " implications for public policy, especially given that President Obama's health-care plan requires employers to offer plans that include birth control coverage. This requirement has been a point of controversy in the lead-up to the [[2]]012 election.\n\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1324,
+    "pos": 42,
+    "rel": 0.59,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " windows",
+    "text": " 2012 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n// +build[[ windows]]\n\npackage main\n\nimport (\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 857,
+    "pos": 210,
+    "rel": 0.607,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ".\n",
+    "text": " many languages/environments.)\nEDIT: Sorry, should have explained more.... In this instance I can't use the term Remove since it's already defined by the class that I'm extending with a new method[[.\n]]EDIT 2: Okay,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1584,
+    "pos": 239,
+    "rel": 0.551,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "打开",
+    "text": "了我两次费用\n支架不太稳，装的时候比较不好装，但总的来说还可以。\n买来送人的，但是买回来的时候外面包装的塑料壳是破的，塑封已经[[打开]]过，第一次在亚马逊直营"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 3.4844,
+  "n_strong_tokens": 24,
+  "n_strong_windows": 22,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    5
+   ],
+   [
+    "Pile-CC",
+    5
+   ],
+   [
+    "lang-id",
+    3
+   ],
+   [
+    "Github",
+    3
+   ],
+   [
+    "FreeLaw",
+    2
+   ],
+   [
+    "OpenWebText2",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    16
+   ],
+   [
+    "code",
+    3
+   ],
+   [
+    "tr",
+    1
+   ],
+   [
+    "ar",
+    1
+   ],
+   [
+    "ja",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " weight",
+    1
+   ],
+   [
+    "missing",
+    1
+   ],
+   [
+    " no",
+    1
+   ],
+   [
+    "ification",
+    1
+   ],
+   [
+    " will",
+    1
+   ],
+   [
+    " narrowing",
+    1
+   ],
+   [
+    "\n",
+    1
+   ],
+   [
+    " frequency",
+    1
+   ]
+  ],
+  "strong_pos_median": 97,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1558,
+    "pos": 152,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": "irm",
+    "text": "Ayrıca , önceki analiz gibi , son analiz , 604 bölüm ( a ) altındaki hastanelerde kuralın ekonomik etkisini en aza ind[[irm]]ek için alınan adı"
+   },
+   {
+    "kind": "top",
+    "window": 801,
+    "pos": 159,
+    "rel": 0.731,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " dismissal",
+    "text": ". Mullaney, General Counsel; Scott D. Makar, Chief, Appellate Division, Jacksonville, for Appellee.\nBENTON, J.\nWe affirm the trial court's[[ dismissal]] for failure to prosecute. See"
+   },
+   {
+    "kind": "top",
+    "window": 1404,
+    "pos": 54,
+    "rel": 0.726,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": " ,",
+    "text": " .\nوعلى الرغم من ان هذه التدابير التكميلية قد تفسر السبب في ان فرادى الاسر المعيشية قد تختار الادخار اقل[[ ,]] فان معدل الادخار"
+   },
+   {
+    "kind": "top",
+    "window": 1147,
+    "pos": 71,
+    "rel": 0.65,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " nothing",
+    "text": "#\n#   #--  Do not use for new code  --#\n#\n#Targets/methods can be:\n#\n# - nil: matches anything, including nothing\n# - Empty array: matches[[ nothing]]\n# - Symbol: matches"
+   },
+   {
+    "kind": "top",
+    "window": 1325,
+    "pos": 163,
+    "rel": 0.641,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " removed",
+    "text": "\n    length are ignored, and the rest are coerced to logical ignoring\n    any class.}\n  \\item{na.rm}{logical.  If true \\code{NA} values are[[ removed]] before\n    the result is"
+   },
+   {
+    "kind": "top",
+    "window": 270,
+    "pos": 80,
+    "rel": 0.605,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " will",
+    "text": " who was subdued, in a seeming attempt to torment him. On Tuesday, after they investigated themselves, Kent County Prosecutor Chris Becker said—in spite of the glaring violation of rights caught on video—no charges[[ will]] be filed against the officer.\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 167,
+    "pos": 48,
+    "rel": 0.592,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ification",
+    "text": "degenerate semiconductor called (non-)degenerate?\n\nIn a non-degenerate semiconductor with (Ec-Ef) > 4kT separation, Maxwell-Boltzmann distribution can be used for simpl[[ification]]. I do not get why"
+   },
+   {
+    "kind": "top",
+    "window": 34,
+    "pos": 233,
+    "rel": 0.578,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "missing",
+    "text": "       Delmy Nohemi Linares-Henriquez, a native and citizen of El Salvador,\n\npetitions for review of the Board of Immigration Appeals’ (“BIA”) order\n\ndis[[missing]] her appeal from the immigration judge"
+   },
+   {
+    "kind": "top",
+    "window": 1061,
+    "pos": 62,
+    "rel": 0.567,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " less",
+    "text": " plan that includes several possible scenarios.\n\nGordhan said the first scenario was if no load shedding was implemented.\n\n“In this instance, we will ensure that unplanned outages or breakdowns are kept to[[ less]] than 9500"
+   },
+   {
+    "kind": "top",
+    "window": 1486,
+    "pos": 95,
+    "rel": 0.558,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "にくい",
+    "text": "が少ないので、引っかかることが少ない。外すときに強く押すと剣先側のロックが外れる、ピンが短いためではないでしょうか、少し長いほうが外れに[[にくい]]のでは\nスピーカ"
+   },
+   {
+    "kind": "top",
+    "window": 1300,
+    "pos": 120,
+    "rel": 0.552,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " once",
+    "text": "2007_1228PM)\r\n#define BOOST_SPIRIT_STREAM_MAY_05_2007_1228PM\r\n\r\n#if defined(_MSC_VER)\r\n#pragma[[ once]]\r\n#endif\r\n\r\n#include <boost"
+   },
+   {
+    "kind": "top",
+    "window": 1201,
+    "pos": 210,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "led",
+    "text": "oron? It is the attempt to render life as useless when every voice and action in law courts depends on life. Life must be used in every attempt to deny it, whereby every denial is self-cancel[[led]]. Q would say ‘these"
+   },
+   {
+    "kind": "random-strong",
+    "window": 958,
+    "pos": 50,
+    "rel": 0.513,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " low",
+    "text": " January 2017, a pattern that started last October. Extent during late January remained low in the Kara, Barents and Bering Seas. Southern Hemisphere extent also tracked at record[[ low]] levels for January; globally,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 8,
+    "pos": 166,
+    "rel": 0.516,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " weight",
+    "text": "ial precipitation of the polymer without any significant change of the molecular weight. Addition of SO2 to the organic phase before the introduction of the monomer allowed preparation of nanocapsules with a lower molecular[[ weight]]. Nanospheres were prepared"
+   },
+   {
+    "kind": "random-strong",
+    "window": 940,
+    "pos": 14,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " declined",
+    "text": "Introduction {#ss1}\n============\n\nThroughout Europe birth-rates have[[ declined]] over the last decades, and"
+   },
+   {
+    "kind": "random-strong",
+    "window": 374,
+    "pos": 50,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " narrowing",
+    "text": " through a lot of long explanations of CSRF and IIUC the core thing that enables the attack is cookie based identification of server sessions.  \nSo in other words if the browser (And note I'm specifically[[ narrowing]] the scope to web browsers here"
+   },
+   {
+    "kind": "random-strong",
+    "window": 399,
+    "pos": 249,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\n",
+    "text": " user = firebase.auth().currentUser;\n\n    //requireAuth is a custom route property\n    if (next.$$route.requireAuth && user == null ) {\n\n      event.preventDefault(); //prevents route change[[\n]]      alert(\"You must be"
+   },
+   {
+    "kind": "random-strong",
+    "window": 589,
+    "pos": 99,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " younger",
+    "text": "50, I’ve started seeing an esthetician and am getting botox injections for deep wrinkles and specialized skin care procedures. My skin looks fantastic. People tell me I look 10 years[[ younger]].\n\nSince these are medical procedures"
+   },
+   {
+    "kind": "random-strong",
+    "window": 142,
+    "pos": 124,
+    "rel": 0.513,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " no",
+    "text": " motion to meet with museum board members to discuss the conditions that would allow the statue to be moved to the Matheson.\n\nThe following Monday the county announced, in a policy meeting, the Matheson was[[ no]] longer a possible destination for Old"
+   },
+   {
+    "kind": "random-strong",
+    "window": 928,
+    "pos": 23,
+    "rel": 0.52,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "%",
+    "text": "Q:\n\nIs there a way to style an element such that it and all its contents will be rendered 50[[%]] faded?\n\nI'm working on"
+   }
+  ]
+ }
+}

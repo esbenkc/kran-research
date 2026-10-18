@@ -1,0 +1,532 @@
+{
+ "id": "L7N1826",
+ "layer": 7,
+ "neuron": 1826,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 21.25,
+  "n_strong_tokens": 3,
+  "n_strong_windows": 2,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ",",
+    3
+   ]
+  ],
+  "strong_pos_median": 56,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 26,
+    "pos": 42,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": "/linux/BUILD.gn.orig\t2019-04-08 08:18:26 UTC\n+++ sandbox/linux/BUILD.gn\n@@ -12[[,]]12 +12,"
+   },
+   {
+    "kind": "top",
+    "window": 785,
+    "pos": 56,
+    "rel": 0.721,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": "9:23 2004\n+++ src/client.c\tWed Dec  1 12:42:01 2004\n@@ -144[[,]]6 +144,"
+   },
+   {
+    "kind": "top",
+    "window": 1159,
+    "pos": 68,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "’",
+    "text": " is an excellent 29.416 acre farm, fenced for horses, goats or cows, 36x40 barn built in 2008 with a 12[[’]] shed off one side, three"
+   },
+   {
+    "kind": "top",
+    "window": 754,
+    "pos": 77,
+    "rel": 0.482,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "-foot",
+    "text": "0-gauge shotgun and a half-ton Alabama alligator.\n\nMandy and John Stokes, accompanied by her brother-in-law Kevin Jenkins and his two children, Savannah and Parker, landed a 15[[-foot]], 1,01"
+   },
+   {
+    "kind": "top",
+    "window": 1336,
+    "pos": 99,
+    "rel": 0.453,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": "017-05-10 20:00:34.548000000 +0000\n@@ -2912[[,]]7 +2912"
+   },
+   {
+    "kind": "top",
+    "window": 479,
+    "pos": 201,
+    "rel": 0.421,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " feet",
+    "text": "-built style boats in order to live up to our slogan “Built for a Lifetime”.\n\nSeaArk is well known for creating the World’s Largest Jon Boat in 1994 at 24[[ feet]] long and 72”"
+   },
+   {
+    "kind": "top",
+    "window": 1509,
+    "pos": 149,
+    "rel": 0.403,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": " m",
+    "text": " 2002, Morgenthau powiedział, że przelewy z zaledwie czterech z 40 kont Beacon Hill wyniosły ponad 3,2[[ m]]iliarda dolarów.\n"
+   },
+   {
+    "kind": "top",
+    "window": 1507,
+    "pos": 231,
+    "rel": 0.4,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": " m",
+    "text": "ierzycielami.\nPies pływający z kijem w pysku.\nW minionym roku spółka osiągnęła zysk w wysokości 54,3[[ m]]ln dolarów, czy"
+   },
+   {
+    "kind": "top",
+    "window": 894,
+    "pos": 49,
+    "rel": 0.376,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "m",
+    "text": "\n\nMyles Brown trained really hard last year. He was eyeing individual medals in the swimming pool at both the Commonwealth Games in Glasgow and the Fina short-course world championships (a 25[[m]] event) that took place in"
+   },
+   {
+    "kind": "top",
+    "window": 242,
+    "pos": 166,
+    "rel": 0.366,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "m",
+    "text": ", interviews and live ect\n\n? HIGH COMPATIBILITY – Supporting micro SD card max 64GB(NOT INCLUDED) and song switch. The Bluetooth has a great distance of connection(10[[m]]), and supports Android, iPhone"
+   },
+   {
+    "kind": "top",
+    "window": 305,
+    "pos": 81,
+    "rel": 0.362,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " feet",
+    "text": ", Virginia. It dates to about 1819, and is a 2 1/2-story, rectangular wood frame building on a limestone basement.  The building measures 35[[ feet]] by 45 feet and"
+   },
+   {
+    "kind": "top",
+    "window": 1558,
+    "pos": 226,
+    "rel": 0.357,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": " metre",
+    "text": " . Robin Hood tarafından yıpranmış olduğu yazıyordu .\nAnlık kahve istiyorsanız nescafe isteyin .\nIki küçük çukur yerin sekiz[[ metre]] altında battı .\nVe bun"
+   },
+   {
+    "kind": "top",
+    "window": 899,
+    "pos": 174,
+    "rel": 0.357,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "-foot",
+    "text": ".\n\nThe shroud is kept in a protective glass case at the controlled climate Turin cathedral, and it exhibits a faint image of a man who died from a crucifixion on a 14[[-foot]] long cloth. Francis sat in"
+   },
+   {
+    "kind": "top",
+    "window": 1527,
+    "pos": 105,
+    "rel": 0.341,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " м",
+    "text": "едут себя скорее как профессиональные преступники , чем революционеров .\nСтарк спланировал это хорошо .\n6 км ( 6[[ м]]иль ) от хаве"
+   },
+   {
+    "kind": "top",
+    "window": 1265,
+    "pos": 102,
+    "rel": 0.335,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": "009-03-26 15:49:15.000000000 +0100\n@@ -3850[[,]]67 +385"
+   },
+   {
+    "kind": "top",
+    "window": 598,
+    "pos": 139,
+    "rel": 0.326,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "-m",
+    "text": " with a large 5.5-inch HD display, Dolby Digital Plus Audio, a long-lasting 3,000 mAh removable battery and 4G LTE speeds.\n\nThe 8[[-m]]egapixel rear and 2"
+   },
+   {
+    "kind": "top",
+    "window": 1520,
+    "pos": 34,
+    "rel": 0.304,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " м",
+    "text": "Adrin вздрогнул и дважды прокат плечо .\nВысоко на холмах 27 км ( 17[[ м]]иль ) к югу"
+   },
+   {
+    "kind": "top",
+    "window": 74,
+    "pos": 30,
+    "rel": 0.272,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " million",
+    "text": "FOOD ALLERGY NUMBERS FOOD ALLERGY NUMBERS Enlarge Photodisc About one in 25 Americans, or more than 12[[ million]], have food allergies, according"
+   },
+   {
+    "kind": "top",
+    "window": 62,
+    "pos": 127,
+    "rel": 0.272,
+    "gate_open": true,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": " m",
+    "text": "amato was the largest warship ever built by Japan.\" \"Symbol of the lmperial Navy, 263m long, displacing 72,800 tons 51[[ m]] from keel to tops,"
+   },
+   {
+    "kind": "top",
+    "window": 1305,
+    "pos": 108,
+    "rel": 0.265,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " meters",
+    "text": " been designed to increase flexibility, increase range, and to reduce costs still further. As such, the SRF05 is fully compatible with the SRF04. Range is increased from 3[[ meters]] to 4 meters. A"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 16.125,
+  "n_strong_tokens": 24,
+  "n_strong_windows": 21,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "OpenWebText2",
+    12
+   ],
+   [
+    "Pile-CC",
+    9
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    21
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " —",
+    4
+   ],
+   [
+    " (",
+    4
+   ],
+   [
+    " –",
+    4
+   ],
+   [
+    ":",
+    3
+   ],
+   [
+    " -",
+    3
+   ],
+   [
+    ".",
+    2
+   ],
+   [
+    ",",
+    1
+   ],
+   [
+    " May",
+    1
+   ]
+  ],
+  "strong_pos_median": 10,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 804,
+    "pos": 5,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " --",
+    "text": "SANTA BARBARA[[ --]] In a conciliatory gesture"
+   },
+   {
+    "kind": "top",
+    "window": 280,
+    "pos": 2,
+    "rel": 0.957,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " (",
+    "text": "NEW YORK[[ (]]CBSNewYork) — A"
+   },
+   {
+    "kind": "top",
+    "window": 454,
+    "pos": 2,
+    "rel": 0.957,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " (",
+    "text": "NEW YORK[[ (]]CNN) -- Victor Gue"
+   },
+   {
+    "kind": "top",
+    "window": 1073,
+    "pos": 6,
+    "rel": 0.88,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " (",
+    "text": "ALTURAS, Calif.[[ (]]AP) — Firefighters in"
+   },
+   {
+    "kind": "top",
+    "window": 296,
+    "pos": 69,
+    "rel": 0.845,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ":",
+    "text": ", govt says he'll 'monitor' Sheena probe\n\nREAD ALSO:\n\nIn hurried move, CM upgraded CP post to DG rank to fit Javed\n\nWill he quit?\n\nMUMBAI[[:]] Rakesh Maria did not"
+   },
+   {
+    "kind": "top",
+    "window": 912,
+    "pos": 86,
+    "rel": 0.833,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " -",
+    "text": "5, 2012 in Manchester, N.H. Myles Webster has been charged with attempted murder for the shooting of Doherty. (AP Photo/Jim Cole)\n\nMANCHESTER[[ -]] Manchester Police Officer Daniel Doh"
+   },
+   {
+    "kind": "top",
+    "window": 1031,
+    "pos": 20,
+    "rel": 0.775,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ":",
+    "text": "After poor show in domestic T20, Saeed Ajmal mulls retirement\n\nKarachi[[:]] Failing to impress national selectors"
+   },
+   {
+    "kind": "top",
+    "window": 1167,
+    "pos": 21,
+    "rel": 0.764,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " –",
+    "text": "Thursday, June 16, 2016\n\nGLENDALE, ARIZONA[[ –]] Arizona Coyotes General Manager John"
+   },
+   {
+    "kind": "top",
+    "window": 1166,
+    "pos": 12,
+    "rel": 0.748,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " —",
+    "text": "Jets on the hunt for options on offence\n\nWINNIPEG[[ —]] It can be a foolish game"
+   },
+   {
+    "kind": "top",
+    "window": 729,
+    "pos": 46,
+    "rel": 0.717,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ":",
+    "text": "0 results threw up more than one surprise with the pass percentage dropping by over 5 percent since 2016 and boys outperforming girls, a marked shift from previous batches\n\nNew Delhi[[:]] The CBSE Class 1"
+   },
+   {
+    "kind": "top",
+    "window": 809,
+    "pos": 20,
+    "rel": 0.682,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " (",
+    "text": "Ducks play host to Huskies in Pac-12 tilt\n\nEugene, OR[[ (]]Sports Network) - The "
+   },
+   {
+    "kind": "top",
+    "window": 1188,
+    "pos": 22,
+    "rel": 0.682,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".",
+    "text": "Palmer Cup Teams Announced\n\n04/17/15\n\nNORMAN, Okla[[.]] - The Palmer Cup teams for"
+   },
+   {
+    "kind": "random-strong",
+    "window": 642,
+    "pos": 4,
+    "rel": 0.678,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " May",
+    "text": "ODESSA,[[ May]] 06 /ITAR"
+   },
+   {
+    "kind": "random-strong",
+    "window": 829,
+    "pos": 1,
+    "rel": 0.585,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "--",
+    "text": "WASHINGTON[[--]]Legislators are readying"
+   },
+   {
+    "kind": "random-strong",
+    "window": 270,
+    "pos": 8,
+    "rel": 0.554,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " —",
+    "text": "Spread the love\n\n\n\n\n\n\n\n\n\nGrand Rapids, MI[[ —]] Dramatic body camera footage released"
+   },
+   {
+    "kind": "random-strong",
+    "window": 540,
+    "pos": 71,
+    "rel": 0.671,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " —",
+    "text": "' win, but he's disappointed by the breakdown in execution on his defense and indicated changes on the depth chart are ahead.\n\n(Mike Mulholland | Mlive.com)\n\nEAST LANSING[[ —]] Pat Narduzzi had his"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1065,
+    "pos": 6,
+    "rel": 0.643,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " –",
+    "text": "FORTALEZA, Brazil[[ –]] Raphael Assuncao has done"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1150,
+    "pos": 7,
+    "rel": 0.655,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " —",
+    "text": "'s Most Recent Stories\n\nNEW YORK[[ —]] Sony will have to wait another"
+   },
+   {
+    "kind": "random-strong",
+    "window": 473,
+    "pos": 13,
+    "rel": 0.678,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " –",
+    "text": "\n\n\n\n\n\n\n\n\n\n11.6K Shares\n\nSANTA FE, NM[[ –]] After a battery of laboratory tests"
+   },
+   {
+    "kind": "random-strong",
+    "window": 456,
+    "pos": 13,
+    "rel": 0.674,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " –",
+    "text": "Dallas and Texas Make Roster Moves\n\nCEDAR PARK, Texas[[ –]] Dallas Stars General Manager Jim N"
+   }
+  ]
+ }
+}

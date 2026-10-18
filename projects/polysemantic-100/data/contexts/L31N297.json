@@ -1,0 +1,600 @@
+{
+ "id": "L31N297",
+ "layer": 31,
+ "neuron": 297,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 74.5,
+  "n_strong_tokens": 36,
+  "n_strong_windows": 6,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    4
+   ],
+   [
+    "OpenWebText2",
+    1
+   ],
+   [
+    "Pile-CC",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    4
+   ],
+   [
+    "en",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "\n",
+    4
+   ],
+   [
+    "#include",
+    3
+   ],
+   [
+    "1",
+    2
+   ],
+   [
+    " doesn",
+    2
+   ],
+   [
+    " ",
+    2
+   ],
+   [
+    "namespace",
+    2
+   ],
+   [
+    " {\n",
+    2
+   ],
+   [
+    " Global",
+    1
+   ]
+  ],
+  "strong_pos_median": 67,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1262,
+    "pos": 61,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "#include",
+    "text": "ival@gmail.com). All rights\n * reserved. This project is released under the MIT License.\n */\n#ifndef GDCORE_PROPERTYDESCRIPTOR\n#define GDCORE_PROPERTYDESCRIPTOR\n#include <vector>\n\n[[#include]] \"GDCore/String.h\"\n"
+   },
+   {
+    "kind": "top",
+    "window": 1033,
+    "pos": 165,
+    "rel": 0.836,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " doesn",
+    "text": " functionality that GPUArray<> does, and should eventually replace GPUArray.\n    In fact, for performance considerations in single GPU situations, GlobalArray internally falls\n    back on GPUArray (and whenever it[[ doesn]]'t have an ExecutionConfiguration)."
+   },
+   {
+    "kind": "top",
+    "window": 1215,
+    "pos": 23,
+    "rel": 0.638,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": "/*\nCopyright (C) 2011 Mark Chandler (Desura Net Pty Ltd)\nCopyright (C)[[ ]]2014 Bad Ju"
+   },
+   {
+    "kind": "top",
+    "window": 366,
+    "pos": 30,
+    "rel": 0.56,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "1",
+    "text": "Article content continued\n\nThe remains of the king were excavated from beneath a parking lot in Leicster, central England, in August 20[[1]]2. Dr. Hains"
+   },
+   {
+    "kind": "top",
+    "window": 432,
+    "pos": 38,
+    "rel": 0.527,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "1",
+    "text": "Boehner: These conservative groups who are objecting to the budget deal are “ridiculous”\n\nposted at 1:54 pm on December 11, 20[[1]]3 by Allahpundit"
+   },
+   {
+    "kind": "top",
+    "window": 1355,
+    "pos": 126,
+    "rel": 0.523,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "{\n",
+    "text": " http://opensource.org/licenses/zlib-license.php\n//\n#include <OpenTissue/configuration.h>\n\n#include <OpenTissue/core/containers/grid/util/grid_gradient_at_point.h>\n\nnamespace OpenTissue\n[[{\n]]  namespace grid\n  {\n"
+   },
+   {
+    "kind": "top",
+    "window": 1204,
+    "pos": 7,
+    "rel": 0.423,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": "﻿# Copyright(c) 20[[1]]7 Google Inc.\n#\n#"
+   },
+   {
+    "kind": "top",
+    "window": 1103,
+    "pos": 201,
+    "rel": 0.419,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "::$",
+    "text": "$ for $i=2,3,4,5,6,7$. Then the value of $b+c+d+e+f+g = $\n$\\bf{My\\; Try}[[::$]] $\\displaystyle \\frac{"
+   },
+   {
+    "kind": "top",
+    "window": 13,
+    "pos": 80,
+    "rel": 0.418,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".",
+    "text": " \"License\");\n// you may not use this file except in compliance with the License.\n// You may obtain a copy of the License at\n//\n//   http://www.apache.org/licenses/LICENSE-2[[.]]0\n//\n// Unless required"
+   },
+   {
+    "kind": "top",
+    "window": 1422,
+    "pos": 14,
+    "rel": 0.416,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": "gen",
+    "text": "Finde es sehr schade, dass man nicht auch ohne App wie[[gen]] kann\nOk, für das"
+   },
+   {
+    "kind": "top",
+    "window": 1333,
+    "pos": 74,
+    "rel": 0.408,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "#include",
+    "text": ".\n// For conditions of distribution and use, see copyright notice in irrKlang.h\n\n#ifndef __I_IRRKLANG_AUDIO_STREAM_H_INCLUDED__\n#define __I_IRRKLANG_AUDIO_STREAM_H_INCLUDED__\n\n[[#include]] \"ik_IRefCounted.h"
+   },
+   {
+    "kind": "top",
+    "window": 1373,
+    "pos": 23,
+    "rel": 0.406,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "#include",
+    "text": "// Copyright 2004-present Facebook. All Rights Reserved.\n\n#include \"SamplingProfilerJniMethod.h\"\n\n[[#include]] <JavaScriptCore/JSProfiler"
+   },
+   {
+    "kind": "top",
+    "window": 509,
+    "pos": 135,
+    "rel": 0.369,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "=\"",
+    "text": ", to alert the user that the total is inaccurate?\nHere's a piece of code, I came up with for radD:\n> <telerik:RadTextbox ID=\"radD\" runat[[=\"]]server\" Autopostback"
+   },
+   {
+    "kind": "top",
+    "window": 1266,
+    "pos": 31,
+    "rel": 0.362,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " import",
+    "text": "# -*- coding: utf-8 -*-\nfrom globaleaks.handlers.admin import l10n as admin_l10n\nfrom globaleaks.tests[[ import]] helpers\nfrom twisted.internet.defer"
+   },
+   {
+    "kind": "top",
+    "window": 1375,
+    "pos": 95,
+    "rel": 0.356,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "*,",
+    "text": ".h\"\n#pragma hdrstop\n// @v9.5.5 #include \"dbinc/db_verify.h\"\n\nstatic int __bam_safe_getdata __P((DB*, DB_THREAD_INFO*,PAGE[[*,]] uint32, int,"
+   },
+   {
+    "kind": "top",
+    "window": 142,
+    "pos": 59,
+    "rel": 0.352,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "1",
+    "text": "achua County is no longer considering moving the confederate statue to the Matheson History Museum.\n\nThe county initially began discussions with the Matheson to relocate”Old Joe” in January 20[[1]]6, but the museum eventually"
+   },
+   {
+    "kind": "top",
+    "window": 1213,
+    "pos": 44,
+    "rel": 0.349,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\"\n\n",
+    "text": ": LGPL-2.1+ */\n#pragma once\n\n#include <stdbool.h>\n#include <stddef.h>\n#include <stdio.h>\n#include <unistd.h>\n\n#include \"macro.h\"\n#include \"string.h[[\"\n\n]]static inline size_t sc_arg"
+   },
+   {
+    "kind": "top",
+    "window": 431,
+    "pos": 110,
+    "rel": 0.342,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "1",
+    "text": " be.\n\nMy kids used to love math. Now it makes them cry. Thanks standardized testing and common core! — Louis C.K. (@louisck) April 28, 20[[1]]4\n\nA huge amount of"
+   },
+   {
+    "kind": "top",
+    "window": 1179,
+    "pos": 18,
+    "rel": 0.32,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": "--\n-- User: mike\n-- Date: 03.06.20[[1]]8\n-- Time: "
+   },
+   {
+    "kind": "top",
+    "window": 1211,
+    "pos": 90,
+    "rel": 0.304,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\n",
+    "text": ": you can redistribute it and/or modify\n * it under the terms of the GNU Affero General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or[[\n]] * (at your option)"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 12.375,
+  "n_strong_tokens": 330,
+  "n_strong_windows": 132,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "OpenWebText2",
+    45
+   ],
+   [
+    "Pile-CC",
+    34
+   ],
+   [
+    "PubMed Abstracts",
+    28
+   ],
+   [
+    "lang-id",
+    10
+   ],
+   [
+    "PubMed Central",
+    4
+   ],
+   [
+    "USPTO Backgrounds",
+    3
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    121
+   ],
+   [
+    "ar",
+    9
+   ],
+   [
+    "code",
+    1
+   ],
+   [
+    "ru",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " to",
+    22
+   ],
+   [
+    ",",
+    16
+   ],
+   [
+    " and",
+    13
+   ],
+   [
+    " catal",
+    7
+   ],
+   [
+    " of",
+    7
+   ],
+   [
+    " he",
+    6
+   ],
+   [
+    " that",
+    6
+   ],
+   [
+    " dial",
+    6
+   ]
+  ],
+  "strong_pos_median": 161,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 765,
+    "pos": 127,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "mic",
+    "text": "age is an important source of tumor necrosis factor-alpha in lung ischemia-reperfusion injury and whether suppression of its function protects against injury. Left lungs of Long-Evans rats underwent normother[[mic]] ischemia for 90"
+   },
+   {
+    "kind": "top",
+    "window": 125,
+    "pos": 62,
+    "rel": 0.939,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " catal",
+    "text": " it is the target for the development of anti-cancer agents, the mammalian cytosolic enzyme farnesyltransferase (FTase) has received significant attention in recent years. FTase[[ catal]]yzes the transfer of a"
+   },
+   {
+    "kind": "top",
+    "window": 543,
+    "pos": 240,
+    "rel": 0.894,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " for",
+    "text": "2.9 per 1000. The overall incidence of an adverse perinatal outcome (i.e., perinatal death or nursery death before infant hospital discharge, cesarean delivery[[ for]] fetal distress within the first "
+   },
+   {
+    "kind": "top",
+    "window": 862,
+    "pos": 228,
+    "rel": 0.884,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "UM",
+    "text": " and systemic spread. Systemic chemotherapy, adjuvant therapy, surgery and radiation have not improved disease prognosis or overall survival of IBC patients \\[[@R3], [@R4]\\].\n\nT[[UM]]OR MICROENVIRONMENT {#"
+   },
+   {
+    "kind": "top",
+    "window": 1403,
+    "pos": 195,
+    "rel": 0.833,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": " ص",
+    "text": "ه سيجد صعوبة في التعرف على البلدة الحديثة تماما اليوم\nال ( satheri ) يحبون الحصول على باقات كبيرة من خلال واحد واحدة مثل العتلة التي[[ ص]]نعتها من ضحا"
+   },
+   {
+    "kind": "top",
+    "window": 1202,
+    "pos": 182,
+    "rel": 0.823,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " that",
+    "text": " show and we've exchanged some emails with him,\" Ross explains, referencing King's tweets, one of which praised the show as \"pure fun\" and \"A+\" with another sharp-tongued post[[ that]] it's like \"watching"
+   },
+   {
+    "kind": "top",
+    "window": 269,
+    "pos": 95,
+    "rel": 0.818,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " dial",
+    "text": " hypoglycemia may increase the risk for abnormal blood pressure regulation. The purpose is to determine blood pressure and blood glucose levels and variability in these variables during dialysis with and without glucose in the[[ dial]]ysis fluid. In a randomized"
+   },
+   {
+    "kind": "top",
+    "window": 1150,
+    "pos": 159,
+    "rel": 0.818,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "4",
+    "text": " film and sales were up 6% over the year-earlier quarter.)\n\nParent Sony Corp. on Wednesday reported total sales up barely 0.5% for the fiscal first quarter to $1[[4]].9 billion as sales of"
+   },
+   {
+    "kind": "top",
+    "window": 1046,
+    "pos": 71,
+    "rel": 0.808,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " ferv",
+    "text": " lobby, a depressing scene, says ex-CIA analyst Paul R. Pillar.\n\nBy Paul R. Pillar\n\nA depressing sameness characterized the speeches of presidential candidates to the recently concluded exercise in[[ ferv]]id conformity that is called the"
+   },
+   {
+    "kind": "top",
+    "window": 16,
+    "pos": 209,
+    "rel": 0.803,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " like",
+    "text": " She posted the song online and social influencer Julieanna “YesJulz” Goddard—who eventually would become Shake’s manager—found it, tweeting, “Where’s this boy?”\n\n“I was[[ like]], ‘I’m a girl"
+   },
+   {
+    "kind": "top",
+    "window": 2,
+    "pos": 142,
+    "rel": 0.793,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " catal",
+    "text": "0 m min(-1) or 25 m min(-1) until fatigued (avg. time to exhaustion 2.8 and 87.7 min, respectively). The[[ catal]]ytic activities of SR Ca2"
+   },
+   {
+    "kind": "top",
+    "window": 912,
+    "pos": 160,
+    "rel": 0.783,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " came",
+    "text": " to five feet March 21 at Wayne and Rimmon streets.\n\nDuring his testimony, Doherty repeatedly used Myles Webster's name as he described the foot chase through the neighborhood. As he[[ came]] close enough to tackle his quarry"
+   },
+   {
+    "kind": "random-strong",
+    "window": 737,
+    "pos": 193,
+    "rel": 0.525,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " ur",
+    "text": " defined as a 50% or greater reduction in urine loss using the formula 100[(pad weight without device -pad weight with device)/pad weight with device]. Safety was evaluated using[[ ur]]inalysis and urine cultures."
+   },
+   {
+    "kind": "random-strong",
+    "window": 257,
+    "pos": 178,
+    "rel": 0.702,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " to",
+    "text": " multiforme (GBM), are among the toughest to beat. Although relatively rare, GBM is highly aggressive, and its cells multiply rapidly. Surgical removal is one of the main weapons doctors have[[ to]] treat brain tumors. The problem"
+   },
+   {
+    "kind": "random-strong",
+    "window": 992,
+    "pos": 202,
+    "rel": 0.758,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " cerebral",
+    "text": ", plus early depletions of tissue citrate and alpha-oxyglutarate. The similarity of this pattern to that previously documented for various cerebral oligemic states suggests a possible modifying role for altered[[ cerebral]] production in its production. A"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1078,
+    "pos": 108,
+    "rel": 0.573,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " off",
+    "text": " often expected, there are other important considerations that drive the impact of developmental toxicity data to human risk assessment and product labeling. These considerations include three key elements: (1) the drug's likelihood of producing[[ off]]-target toxicities, (2"
+   },
+   {
+    "kind": "random-strong",
+    "window": 221,
+    "pos": 208,
+    "rel": 0.629,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " I",
+    "text": " to a kid less tenacious and brilliant than Canetti, but she likely would have demanded less in that case.\n\nShe made an effort not to influence me. After each scene, she asked me how[[ I]] understood it, and before saying"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1400,
+    "pos": 136,
+    "rel": 0.636,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": " ج",
+    "text": "صة لامدادات المياه , وخطوط الصرف الصحي , وانشاء ملاعب .\nالسماح للرئيس , عند ترك المكتب , بيع 10,000[[ ج]]نسية امريكية"
+   },
+   {
+    "kind": "random-strong",
+    "window": 185,
+    "pos": 133,
+    "rel": 0.712,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " in",
+    "text": " of the day,” she said.\n\nImage Ms. Kulchinsky at Sigmund Pretzel Shop. Credit... Evan Sung for The New York Times\n\nIn Baden-Württemberg,[[ in]] southwest Germany near France and Switzerland"
+   },
+   {
+    "kind": "random-strong",
+    "window": 551,
+    "pos": 251,
+    "rel": 0.543,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " oxid",
+    "text": " Ado analogues. The DEA-complexed structure has a closed conformation, and the DEA is located near the bound NAD(+). However, a UV absorption measurement shows that DEA is not[[ oxid]]ized by the bound"
+   }
+  ]
+ }
+}

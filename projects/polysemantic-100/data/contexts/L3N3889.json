@@ -1,0 +1,568 @@
+{
+ "id": "L3N3889",
+ "layer": 3,
+ "neuron": 3889,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 3.7031,
+  "n_strong_tokens": 1,
+  "n_strong_windows": 1,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " inequality",
+    1
+   ]
+  ],
+  "strong_pos_median": 19,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1192,
+    "pos": 19,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " inequality",
+    "text": "A blog on politics and education, supporting socialist ideals and equality of opportunity. Against obscene wealth and[[ inequality]].\n\nFriday, 4 November"
+   },
+   {
+    "kind": "top",
+    "window": 282,
+    "pos": 62,
+    "rel": 0.319,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "le",
+    "text": "'s Calculus. In trigonometric substitution $x=a\\sec \\theta$ he made a note:\n\nIn the substitution $x = a \\sec θ$ , we choose $0\\[[le]]  θ \\le π"
+   },
+   {
+    "kind": "top",
+    "window": 360,
+    "pos": 70,
+    "rel": 0.308,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "le",
+    "text": "z}_t=.5(1-z_t)$\n$\\dot{y}_t=.05y_t+z_t-x_t$\nsubject to the following constraint:\n$-y_t-z_t\\[[le]]0$\nwhere $z_t"
+   },
+   {
+    "kind": "top",
+    "window": 1103,
+    "pos": 151,
+    "rel": 0.291,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "le",
+    "text": "3!}+\\frac{d}{4!}+\\frac{e}{5!}+\\frac{f}{6!}+\\frac{g}{7!}$\nWhere $0\\[[le]]q b,c,d,e,f"
+   },
+   {
+    "kind": "top",
+    "window": 70,
+    "pos": 201,
+    "rel": 0.216,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ge",
+    "text": "]\\to\\Bbb R$ such that $f(x)=\\frac1{n-1}+\\frac1n-x$ for all $n\\in\\Bbb N$, $n\\[[ge]]2$ and for all $"
+   },
+   {
+    "kind": "top",
+    "window": 98,
+    "pos": 80,
+    "rel": 0.174,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ne",
+    "text": "bf a}=(a_1,\\ldots,a_n)'$ and ${\\bf b}=(b_1,\\ldots,b_n)'$ be nonrandom vectors with $a_i \\[[ne]]q 0$ and $"
+   },
+   {
+    "kind": "top",
+    "window": 1075,
+    "pos": 164,
+    "rel": 0.165,
+    "gate_open": false,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " ≤",
+    "text": "dummy coded 0) vs. distraction and reflection group (both dummy coded 1). All parameter estimates are standardized. *N* = 160. ^\\*^*p*[[ ≤]] 0.05,"
+   },
+   {
+    "kind": "top",
+    "window": 522,
+    "pos": 148,
+    "rel": 0.148,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " >=",
+    "text": "nergy EMax(min=0, displayUnit=\"kWh\")\n    \"Maximum available charge\";\n parameter Modelica.SIunits.Voltage V_nominal\n    \"Nominal voltage (V_nominal[[ >=]] 0)\";\n Modelica.Blocks"
+   },
+   {
+    "kind": "top",
+    "window": 1486,
+    "pos": 164,
+    "rel": 0.145,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "不",
+    "text": "接続しなおさないと音が出なくなる、しなおしてもまた音がでなくなる。 スピーカーは他の接続の時は問題ないので、こちらのアダプダの[[不]]具合かな？ 使え"
+   },
+   {
+    "kind": "top",
+    "window": 892,
+    "pos": 75,
+    "rel": 0.139,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ">=",
+    "text": " (C,S,M,C100)\nSELECT C,S,M,group_concat(CID) FROM TableB\nINNER JOIN TableC\nON TableB.CID= TableC.CID and P[[>=]]100  group by"
+   },
+   {
+    "kind": "top",
+    "window": 1325,
+    "pos": 95,
+    "rel": 0.133,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " least",
+    "text": "\\title{Are Some Values True?}\n\\usage{\nany(\\dots, na.rm = FALSE)\n}\n\\alias{any}\n\\description{\n  Given a set of logical vectors, is at[[ least]] one of the values true?\n"
+   },
+   {
+    "kind": "top",
+    "window": 1584,
+    "pos": 205,
+    "rel": 0.124,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "不太",
+    "text": "接，要不直接就断了，这么大一个书店就是想逃税吗?我要发票是用来报销的\n买一本书，第一次支付不成功，居然扣了我两次费用\n支架[[不太]]稳，装的时候比较不好"
+   },
+   {
+    "kind": "top",
+    "window": 1586,
+    "pos": 164,
+    "rel": 0.121,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "不",
+    "text": "声音大了点。速度和搅拌的细腻度还不错。\n书的侧面的胶水根本没有黏住，一打开就开了\n这本书纯粹是为了钱而出的，根本就是对读者的[[不]]负责。本来是冲着"
+   },
+   {
+    "kind": "top",
+    "window": 1589,
+    "pos": 147,
+    "rel": 0.121,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "不太",
+    "text": "本都买了，内容一模一样的，后悔死我了！还这么贵！\n是去年的日期，宝宝用了红屁股，不知道是不是假货！物流发过来脏q\n[[不太]]耐用，用了不到半年就"
+   },
+   {
+    "kind": "top",
+    "window": 1064,
+    "pos": 55,
+    "rel": 0.12,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " <=",
+    "text": "SELECT tbl1.*\n   FROM tbl1 \nJOIN tbl2\n     ON (tbl1.t1_pk  = tbl2.t2_fk_t1_pk\nAND tbl2.t2_strt_dt[[ <=]] sysdate\nAND tbl2"
+   },
+   {
+    "kind": "top",
+    "window": 381,
+    "pos": 6,
+    "rel": 0.117,
+    "gate_open": false,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "ject",
+    "text": "[**The srank Con[[ject]]ure on Schur’s $"
+   },
+   {
+    "kind": "top",
+    "window": 612,
+    "pos": 245,
+    "rel": 0.11,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " '<",
+    "text": "path) {\n\n    $Subpages=get_subpages($path);\n\n    if ($Subpages) {\n\n        $Output=\"\";\n\n        foreach($Subpages as $Subpage) {\n\n            $Output .=[[ '<]]li><a href=\"'.$Sub"
+   },
+   {
+    "kind": "top",
+    "window": 887,
+    "pos": 208,
+    "rel": 0.109,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " >=",
+    "text": "1)][col], triangle[row][col]+triangle[(row+1)][(col+1)])\n\nif __name__ == '__main__':\n    row = len(triangle)-2\n    while row[[ >=]] 0:\n        triangle[row"
+   },
+   {
+    "kind": "top",
+    "window": 1141,
+    "pos": 9,
+    "rel": 0.108,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " <",
+    "text": "Q:\n\nstrace: order of  and[[ <]]... resumed>\n\nI'm writing"
+   },
+   {
+    "kind": "top",
+    "window": 86,
+    "pos": 178,
+    "rel": 0.108,
+    "gate_open": false,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " (>",
+    "text": " polar side chains will also be developed. Multi-stage protein ion fragmentation in both positive and negative ion modes in combination with solution-phase HDX will be evaluated as a means of characterizing local dynamics within large[[ (>]]30 kDa) proteins"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 0.8477,
+  "n_strong_tokens": 32,
+  "n_strong_windows": 24,
+  "strong_gate_open_frac": 0.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    14
+   ],
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "StackExchange",
+    2
+   ],
+   [
+    "ArXiv",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    8
+   ],
+   [
+    "bg",
+    5
+   ],
+   [
+    "pl",
+    3
+   ],
+   [
+    "fr",
+    2
+   ],
+   [
+    "code",
+    2
+   ],
+   [
+    "nl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "ен",
+    2
+   ],
+   [
+    "ode",
+    1
+   ],
+   [
+    "ite",
+    1
+   ],
+   [
+    "its",
+    1
+   ],
+   [
+    "cor",
+    1
+   ],
+   [
+    "ve",
+    1
+   ],
+   [
+    "format",
+    1
+   ],
+   [
+    "variants",
+    1
+   ]
+  ],
+  "strong_pos_median": 149,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1494,
+    "pos": 213,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": "eden",
+    "text": "moorden 10 buitenlandse toeristen in het noorden van Pakistan\n\"Het blijkt uit ons eerste rapport dat dit een leerboek landing was gezien de omstandigh[[eden]],\" zei Burke.\nR"
+   },
+   {
+    "kind": "top",
+    "window": 1505,
+    "pos": 76,
+    "rel": 0.917,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": "ienie",
+    "text": " aktu oskarżenia o morderstwo wydanego w lutym przez filipiński rząd, który mówi, że jest on głównym podejrzanym.\nUnieważn[[ienie]] jury oznacza,"
+   },
+   {
+    "kind": "top",
+    "window": 1419,
+    "pos": 235,
+    "rel": 0.783,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "ност",
+    "text": "ето обикновено изисква години съдебни спорове , оставяйки съдбата на америка в несигур[[ност]]та на съдеб"
+   },
+   {
+    "kind": "top",
+    "window": 478,
+    "pos": 62,
+    "rel": 0.779,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "its",
+    "text": "assen. Populären Autoren wie Takis Würger oder Karl Ove Knausgård, die ihre Texte durch Semi- oder Autofiktionalität gern mit Natürlichke[[its]]pathos aufladen,"
+   },
+   {
+    "kind": "top",
+    "window": 1451,
+    "pos": 176,
+    "rel": 0.71,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": "ces",
+    "text": "gré quelques paillettes volante par ci par là tout était bien . Ravie de cet achat il ne reste plus qu'à essayer.\nsuper. Commandé par une de mes niè[[ces]]. Je pense que le prix"
+   },
+   {
+    "kind": "top",
+    "window": 471,
+    "pos": 220,
+    "rel": 0.705,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ite",
+    "text": " stuff But the AX rims are super sexy, so I would take the dugast tyres snd put them on the AX rims Dugast are way more nicer than the ugly tufos Those innol[[ite]] discs are real lookers!\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1530,
+    "pos": 217,
+    "rel": 0.687,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": "u",
+    "text": "aliyosababisha katika lengo kuwa na imara moja au nyingine .\nKama wafanyakazi wa undocumented hawakuwa na haki , ingek[[u]]wa kiwango cha ut"
+   },
+   {
+    "kind": "top",
+    "window": 386,
+    "pos": 149,
+    "rel": 0.654,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "ode",
+    "text": "\r\n  Size: 30              Blocks: 8          IO Block: 4096   regular file\r\nDevice: fd01h/64769d    In[[ode]]: 9175"
+   },
+   {
+    "kind": "top",
+    "window": 1068,
+    "pos": 144,
+    "rel": 0.641,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ен",
+    "text": "лаживаю в Linux/Eclipse/JLink V8. Поскажите пожалуйста что мне написать в makefile'e для прошивки моего соотечеств[[ен]]ника (как угод"
+   },
+   {
+    "kind": "top",
+    "window": 759,
+    "pos": 184,
+    "rel": 0.622,
+    "gate_open": false,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "format",
+    "text": "67653 Kaiserslautern, Germany'\n- 'István Heckenberger, Philipps-Universität Marburg, Fachbereich Mathematik und In[[format]]ik, Hans-Meerwe"
+   },
+   {
+    "kind": "top",
+    "window": 1170,
+    "pos": 102,
+    "rel": 0.613,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "gv",
+    "text": " means institutional investors will be able to vote on blockchain governance matters directly through their Coinbase accounts.\n\n“We’re hoping to bring online, frankly, the majority of institutional investors,” Coinbase Custody CEO Sam McIn[[gv]]ale told CoinDesk. “"
+   },
+   {
+    "kind": "top",
+    "window": 1415,
+    "pos": 169,
+    "rel": 0.608,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "в",
+    "text": " би ще получи награда от човека , който го е загубил .\nно той имаше своите заповеди : никакъ[[в]] контакт с тримата п"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1438,
+    "pos": 119,
+    "rel": 0.567,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "el",
+    "token": "λ",
+    "text": "τούς χώρους , παραλίες με κύματα κύλισης και μεγά[[λ]]ους αμμό"
+   },
+   {
+    "kind": "random-strong",
+    "window": 492,
+    "pos": 44,
+    "rel": 0.5,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "cor",
+    "text": " 18.3.1\n\nMovavi Video Suite is comprehensive video making software that helps you create professional-looking movies and slideshows on your home computer – even if you have no experience.In[[cor]]porate music, create text captions"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1106,
+    "pos": 23,
+    "rel": 0.5,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "variants",
+    "text": "Q:\n\nWhat is Floer homology of a knot?\n\nI've heard that there are different theories providing knot in[[variants]] in form of homologies."
+   },
+   {
+    "kind": "random-strong",
+    "window": 1454,
+    "pos": 234,
+    "rel": 0.555,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": "s",
+    "text": "es de 70 bpm à 150 bpm par exemple, il est incapable de le détecter et affiche des résultats complètement aléatoires et incohérent[[s]]. Genre au lieu d'aff"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1348,
+    "pos": 161,
+    "rel": 0.528,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "gal",
+    "text": "18n (FBN)\n- Ujjwal Sharma - Igalia (USA), Co-Moderator\n- Leo Balter - Salesforce (LEO)\n- Philip Chimento - I[[gal]]ia (PFC)\n-"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1500,
+    "pos": 27,
+    "rel": 0.571,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": "imi",
+    "text": "Międzynarodowa Agencja Energii Atomowej osiągnęła porozumienie z irańsk[[imi]] urzędnikami,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1503,
+    "pos": 20,
+    "rel": 0.59,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": "wa",
+    "text": "Lionel Richie tańczy na suficie.\nrzeczniczka chińskiego ministerst[[wa]] spraw zagranicznych j"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1416,
+    "pos": 221,
+    "rel": 0.569,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "во",
+    "text": "ата е когато имаме лед по пътищата и температурата не става по-висока от замръзване няма никак[[во]] оборудване за отстран"
+   }
+  ]
+ }
+}

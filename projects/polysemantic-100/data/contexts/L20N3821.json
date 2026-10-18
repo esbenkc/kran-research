@@ -1,0 +1,584 @@
+{
+ "id": "L20N3821",
+ "layer": 20,
+ "neuron": 3821,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 7.3438,
+  "n_strong_tokens": 21,
+  "n_strong_windows": 15,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    9
+   ],
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "StackExchange",
+    2
+   ],
+   [
+    "Github",
+    1
+   ],
+   [
+    "HackerNews",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    14
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " (",
+    15
+   ],
+   [
+    " or",
+    2
+   ],
+   [
+    "or",
+    2
+   ],
+   [
+    ".",
+    2
+   ]
+  ],
+  "strong_pos_median": 124,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 350,
+    "pos": 208,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " (",
+    "text": " not always the case), pretending that people hop into bed with each other without going through that awkward “fumbling in the bedside cabinet drawer” moment is a misrepresentation, and one that can be easily[[ (]]and, if done well,"
+   },
+   {
+    "kind": "top",
+    "window": 504,
+    "pos": 93,
+    "rel": 0.949,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " (",
+    "text": " without significant changes to the Status of Forces Agreement where we would be allowed to operate more autonomously than we currently are. I’ll leave the balance of the report to the reader, but the money quote[[ (]]for the point I’m trying"
+   },
+   {
+    "kind": "top",
+    "window": 1087,
+    "pos": 122,
+    "rel": 0.923,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "or",
+    "text": " the crotch!\n\nSeriously, Cantore is like a Weather Channel Ninja. He’s reported in Floods, Wild Fires, Hurricanes, Tornadoes and more. Sometimes he appears to be fearless ([[or]] maybe crazy). Jim was doing"
+   },
+   {
+    "kind": "top",
+    "window": 63,
+    "pos": 173,
+    "rel": 0.796,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " or",
+    "text": " but I’ve heard tell that said performance is both awesome and hilarious. In other words: just what we’d expect from Gwar!\n\nIn addition, if you wanna see Maximus in the flesh…[[ or]]… the latex… or sty"
+   },
+   {
+    "kind": "top",
+    "window": 749,
+    "pos": 132,
+    "rel": 0.723,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " (",
+    "text": "/72216, where the question at a certain point moved to a reputation/motivation discussion. The question wasn't reputation- motivated, but even if it were, it shouldn't[[ (]]have) be(en) an"
+   },
+   {
+    "kind": "top",
+    "window": 1385,
+    "pos": 82,
+    "rel": 0.723,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " (",
+    "text": "SL_DPAA_FD_H\n\n/* Place-holder for FDs, we represent it via the simplest form that we need for\n * now. Different overlays may be needed to support different options, etc.[[ (]]It\n * is impractical"
+   },
+   {
+    "kind": "top",
+    "window": 261,
+    "pos": 221,
+    "rel": 0.706,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " (",
+    "text": "'t break the rules until you know what they are. If Ron Gilbert hadn't recognized that punishment was a pattern in adventure games of old, it may not have occurred to him to violate that pattern.[[ (]]Actually an AntiPattern)\n\nSecond"
+   },
+   {
+    "kind": "top",
+    "window": 499,
+    "pos": 224,
+    "rel": 0.702,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " (",
+    "text": "V (more like 44V for +/-10% supply tolerance).\n\nI am trying to understand if this varistor type was a poor choice by the engineer, or if I am missing something[[ (]]I never had to choose a"
+   },
+   {
+    "kind": "top",
+    "window": 525,
+    "pos": 71,
+    "rel": 0.702,
+    "gate_open": true,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": "or",
+    "text": "b-loves-rails/\n======\nLocke\nYes, it's clear that Rails blazed the path for Merb. At the same time, the\nRails people really shouldn't be surprised ([[or]] feel badly) that their\n"
+   },
+   {
+    "kind": "top",
+    "window": 939,
+    "pos": 48,
+    "rel": 0.702,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " (",
+    "text": " quite a while – the twin specific blogs have gone fallow a long while ago.\n\nA blog on nothing more than photographs would be on top of the list, but even with the visually impressive monotone[[ (]]that adapts to the dominant"
+   },
+   {
+    "kind": "top",
+    "window": 583,
+    "pos": 140,
+    "rel": 0.626,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " (",
+    "text": "ogamy culture.\n\nToxic monogamy is basically the worst.\n\nMonogamy in and of itself has so many good qualities. Sexual exclusivity in particular has a large upside. When practiced perfectly[[ (]]although not always the case,"
+   },
+   {
+    "kind": "top",
+    "window": 621,
+    "pos": 67,
+    "rel": 0.543,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " (",
+    "text": " and then their replacement was canned hours after being hired, for Tweeting about being in the office.\n\nThe tone was set at the beginning of the episode, when Kelly—who was wearing a muumuu[[ (]]which, BTW, I"
+   },
+   {
+    "kind": "top",
+    "window": 90,
+    "pos": 92,
+    "rel": 0.491,
+    "gate_open": true,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": " (",
+    "text": "======\nlogicprog\nI'm a Christian but this is a particularly well thought out and fair anti-\napologetic piece. I thought it would be interesting to see what HN thought of\nit[[ (]]as a long-time lurker"
+   },
+   {
+    "kind": "top",
+    "window": 623,
+    "pos": 206,
+    "rel": 0.489,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " (",
+    "text": ", Sarah Palin.\n\nIf Barack Obama is an atheist, that’s news to me. And I certainly hope that Palin doesn’t actually see herself as Joan of Arc on a God-given crusade.[[ (]]It’s interesting how the left"
+   },
+   {
+    "kind": "top",
+    "window": 824,
+    "pos": 222,
+    "rel": 0.483,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " (",
+    "text": " filing. We can often reduce a tax lien that was filed against you to pennies on the dollars. Too many people are under the false assumption that they cannot reduce or get rid of taxes they owe[[ (]]or think they owe).\n\nYour"
+   },
+   {
+    "kind": "top",
+    "window": 915,
+    "pos": 97,
+    "rel": 0.483,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " or",
+    "text": " buy iPads.\n\nAmazon's only liability is that their business model limits the Fire's availability & distribution.... at least until they can make their way through the tangled labyrinth of international media rights.\n\nIf -[[ or]] rather when - they do address"
+   },
+   {
+    "kind": "top",
+    "window": 1019,
+    "pos": 247,
+    "rel": 0.481,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " (",
+    "text": " cioccolateria XXX, where XXX is the city you wish to search in.\nHot Chocolate in Firenze\nSearching around on the internet for cioccolata calda Firenze yields many results[[ (]]see here and here for two"
+   },
+   {
+    "kind": "random-strong",
+    "window": 216,
+    "pos": 124,
+    "rel": 0.515,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " (",
+    "text": " up. Even KW admitted he’d missed a training session due to a knock in his twitter post. The disagreement was over the severity of it, KW felt he was fine to carry on, I imagine[[ (]]but don’t know) JL"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1165,
+    "pos": 147,
+    "rel": 0.54,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " or",
+    "text": " echo working like a reverb pedal (to my shoegazey ears) in that it adds dimension without taking over. You have to really jack the dials to get it to oscillate,[[ or]] make any kind of mess."
+   },
+   {
+    "kind": "random-strong",
+    "window": 980,
+    "pos": 112,
+    "rel": 0.536,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".",
+    "text": " simple things in life.All thanks to those two people in that photo.I know that I was a pain in the butt as a teenager. How Mom and Dad got through those years, I'll never know[[.]] Patience.Mom had more"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 2.75,
+  "n_strong_tokens": 104,
+  "n_strong_windows": 77,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    34
+   ],
+   [
+    "Pile-CC",
+    24
+   ],
+   [
+    "OpenWebText2",
+    7
+   ],
+   [
+    "HackerNews",
+    6
+   ],
+   [
+    "Github",
+    3
+   ],
+   [
+    "Wikipedia (en)",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    74
+   ],
+   [
+    "code",
+    3
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " and",
+    15
+   ],
+   [
+    ",",
+    15
+   ],
+   [
+    " to",
+    3
+   ],
+   [
+    " so",
+    3
+   ],
+   [
+    "\"",
+    3
+   ],
+   [
+    " that",
+    2
+   ],
+   [
+    " object",
+    2
+   ],
+   [
+    " years",
+    2
+   ]
+  ],
+  "strong_pos_median": 165,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 263,
+    "pos": 189,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " wheel",
+    "text": " following XPath:\n//div/td[contains(@id, 'foo')]/text()\n\nIs there any way to get this functionality?  I have several ideas, but would prefer not to reinvent the[[ wheel]] if I don't need to"
+   },
+   {
+    "kind": "top",
+    "window": 465,
+    "pos": 234,
+    "rel": 0.955,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " years",
+    "text": " so yellowed and fragile that I always hesitate even to open it. So it just sits on my shelf, a favored old friend to be lightly and reverently brushed with my fingertips every 20[[ years]] or so.\n\nI wish I"
+   },
+   {
+    "kind": "top",
+    "window": 32,
+    "pos": 241,
+    "rel": 0.869,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " pairs",
+    "text": "idingExpiration(true);\n\nNow when it comes to monitoring cache, unless there is an API on the cache to tell you, then there is no direct way.\nYou could of course enumerate the cache,key-value[[ pairs]] and then calculate the size of"
+   },
+   {
+    "kind": "top",
+    "window": 999,
+    "pos": 145,
+    "rel": 0.852,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " function",
+    "text": " so I can script the insert into the resource table easily enough. I have ~20 resource_item records to insert for that resource and I can even do that easily enough using the LAST_INSERT_ID()[[ function]]. The question is...how"
+   },
+   {
+    "kind": "top",
+    "window": 572,
+    "pos": 48,
+    "rel": 0.801,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " border",
+    "text": " using a single-pixel border\n\nIn a Windows Form with a Resizing Frame, the frame border draws with a raised 3-D look. I'd like it to draw with a flat single pixel[[ border]] in a color of my choosing"
+   },
+   {
+    "kind": "top",
+    "window": 1381,
+    "pos": 173,
+    "rel": 0.795,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " down",
+    "text": " a function with a receiver would be Func ->\n// Signature -> Var -> Type. However, since signatures cannot be\n// unused, and receivers are always considered used, we can compact\n// the graph[[ down]] to Func -> Type. This"
+   },
+   {
+    "kind": "top",
+    "window": 593,
+    "pos": 146,
+    "rel": 0.79,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ",”",
+    "text": " New Kind Of Science. The service bills itself as a “computational knowledge engine,” which is a mouthful. I’d call it a “fact search engine” or perhaps an “answer search engine[[,”]] a term that’s been used"
+   },
+   {
+    "kind": "top",
+    "window": 694,
+    "pos": 120,
+    "rel": 0.778,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " bag",
+    "text": " illustrated? This bag was 16x16 before sewing. its a great daily bag to use for work etc.\n\nA friend of mine had asked me awhile ago for a pinks and greens[[ bag]]. After digging through my stash"
+   },
+   {
+    "kind": "top",
+    "window": 407,
+    "pos": 221,
+    "rel": 0.767,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ",",
+    "text": " a feat that specifically allows your active familiar to move when you take a move action named Active Familiar. There is also another feat that lets you move your familiar with a minor action 1/turn[[,]] Quick Familiar. So without"
+   },
+   {
+    "kind": "top",
+    "window": 556,
+    "pos": 100,
+    "rel": 0.767,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " related",
+    "text": " to one folder. My issue i'm having is no matter what language I try to write this in I can't seem to figure out a answer. I either want it to be vbs or bat[[ related]] not using the robocopy"
+   },
+   {
+    "kind": "top",
+    "window": 838,
+    "pos": 40,
+    "rel": 0.739,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " and",
+    "text": "Q:\n\nDescribe or link to a simple method of solving set theory questions\n\nI have a series of set theory questions to answer and the method I have is to draw out venn diagrams one by one[[ and]] work them out visually. I"
+   },
+   {
+    "kind": "top",
+    "window": 629,
+    "pos": 243,
+    "rel": 0.739,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ",",
+    "text": " so simply zipping them won't shrink them much).\nAlso, unless you implement something complex like a client-side Flash uploader with built-in compression, Plone can only compress files after they've been uploaded[[,]] not before, so if you"
+   },
+   {
+    "kind": "random-strong",
+    "window": 561,
+    "pos": 67,
+    "rel": 0.605,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " knowledge",
+    "text": " Spanish language skills. My specialties are in research and analytical writing, as well as general knowledge of history and the impact it has on current events. As such, I also have political science and public policy[[ knowledge]]...\n\nFaith Baptist Bible College"
+   },
+   {
+    "kind": "random-strong",
+    "window": 294,
+    "pos": 243,
+    "rel": 0.537,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ",",
+    "text": " specified values, or 2) create a custom \"regex syntax\" that you can easily be used to create string and convert it to a \"proper\" regular expression when needed. Kohana uses the latter[[,]] but both ways sound quite bad"
+   },
+   {
+    "kind": "random-strong",
+    "window": 309,
+    "pos": 43,
+    "rel": 0.699,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " and",
+    "text": " soon should I \"vote to close\" a question?\n\nI am reproducing this post from MSE here, because I think it is a valuable and relevant topic. Of course we can make our own policies[[ and]] have our own values here,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1017,
+    "pos": 110,
+    "rel": 0.693,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": " The PrintModulePass pass\n// simply prints out the entire module when it is executed.  The\n// PrintFunctionPass class is designed to be pipelined with other\n// FunctionPass's[[,]] and prints out the functions of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1114,
+    "pos": 196,
+    "rel": 0.719,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " but",
+    "text": "\",\"justin persaud\");\nSo a loop of some sort would basically search upto each comma and extract the name before it until all of the names run out....\nThere are some php substr and such functions[[ but]] I cant quite think of how"
+   },
+   {
+    "kind": "random-strong",
+    "window": 611,
+    "pos": 99,
+    "rel": 0.517,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " cats",
+    "text": "’ folded ears and a very worrying picture starts to emerge. Scottish Fold cats are very similar to British Shorthair cats, and some breeders choose to have both straight eared and folded eared[[ cats]]. We do not breed Scottish"
+   },
+   {
+    "kind": "random-strong",
+    "window": 623,
+    "pos": 54,
+    "rel": 0.509,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " mom",
+    "text": " some feminists, as well as a lot of condescension from the Maureen Dowd types who look down their noses at a small-town, gun-owning, Walmart-going, Bible-believing[[ mom]] with five kids. But it"
+   },
+   {
+    "kind": "random-strong",
+    "window": 763,
+    "pos": 173,
+    "rel": 0.642,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " and",
+    "text": " is that you don't need to jailbreak to use it. If you do have a jailbroken device, though, iPhone Explorer becomes even more useful—It can access the root of jailbroken phones[[ and]] browse the files inside, with"
+   }
+  ]
+ }
+}

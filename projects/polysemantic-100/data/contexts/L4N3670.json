@@ -1,0 +1,616 @@
+{
+ "id": "L4N3670",
+ "layer": 4,
+ "neuron": 3670,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 0.8242,
+  "n_strong_tokens": 205,
+  "n_strong_windows": 166,
+  "strong_gate_open_frac": 0.02,
+  "strong_sources": [
+   [
+    "lang-id",
+    45
+   ],
+   [
+    "Pile-CC",
+    33
+   ],
+   [
+    "OpenWebText2",
+    25
+   ],
+   [
+    "Github",
+    13
+   ],
+   [
+    "Wikipedia (en)",
+    11
+   ],
+   [
+    "PubMed Abstracts",
+    11
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    108
+   ],
+   [
+    "code",
+    13
+   ],
+   [
+    "zh",
+    6
+   ],
+   [
+    "ru",
+    6
+   ],
+   [
+    "it",
+    6
+   ],
+   [
+    "nl",
+    4
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "odial",
+    7
+   ],
+   [
+    " etc",
+    5
+   ],
+   [
+    " you",
+    5
+   ],
+   [
+    "то",
+    5
+   ],
+   [
+    " intr",
+    4
+   ],
+   [
+    " Fig",
+    4
+   ],
+   [
+    " etwas",
+    4
+   ],
+   [
+    " to",
+    4
+   ]
+  ],
+  "strong_pos_median": 120,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 897,
+    "pos": 6,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "uation",
+    "text": "Superpower (disambig[[uation]])\n\nSuperpower, a state"
+   },
+   {
+    "kind": "top",
+    "window": 690,
+    "pos": 207,
+    "rel": 0.806,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "vi",
+    "text": "我强烈建议你学习 vim 的基础知识，这是在 Linux 中处理文本的最强大的工具之一。Vim 是由 Bill Joy 于 1976 年编写的，[[[vi]]](http://en.wikipedia.org"
+   },
+   {
+    "kind": "top",
+    "window": 600,
+    "pos": 42,
+    "rel": 0.777,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Fig",
+    "text": "Leverkusen sign Exequiel Palacios By Henrik Petersen\n\nBayer Leverkusen have announced the signing of Exequiel Palacios.\n\nExequiel Palacios. Photo: Carlos[[ Fig]]ueroa Rojas,"
+   },
+   {
+    "kind": "top",
+    "window": 22,
+    "pos": 2,
+    "rel": 0.754,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " anatomy",
+    "text": "Gross[[ anatomy]] of the human cardiac conduction"
+   },
+   {
+    "kind": "top",
+    "window": 698,
+    "pos": 111,
+    "rel": 0.725,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Fig",
+    "text": "erida uuesti Lyoni linnapeaks. Sellest ajast alates on ta olnud surve all otsekohe ametist lahkuda.\n\nAjalehe Le[[ Fig]]aro andmetel taht"
+   },
+   {
+    "kind": "top",
+    "window": 262,
+    "pos": 240,
+    "rel": 0.716,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " somebody",
+    "text": " serious as a ballistic-missile alert, Schatz suggested that the potential for human error can, and should, be mitigated through federal safeguards.\n\n“You want a system that accounts for the fact that[[ somebody]] may be sleepy or careless,"
+   },
+   {
+    "kind": "top",
+    "window": 76,
+    "pos": 33,
+    "rel": 0.678,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " somebody",
+    "text": "Mario Manningham paused from his own injury rehabilitation Thursday to rally 49ers teammates in the wake of Michael Crabtree's Achilles tear.\"It's sad to see[[ somebody]] get hurt that's a great"
+   },
+   {
+    "kind": "top",
+    "window": 1585,
+    "pos": 220,
+    "rel": 0.673,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": ".....",
+    "text": "买小一点的。\n很少发表评论，两个枕头一高一矮，一个有包装，一个没包装，一个看起来新的一个上面沾有纤维物质看起来就是用过的，或者是样品[[.....]]这是不尊重卖家....不"
+   },
+   {
+    "kind": "top",
+    "window": 516,
+    "pos": 132,
+    "rel": 0.668,
+    "gate_open": false,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " Adv",
+    "text": " diastereomers may be mentioned as one of the methodologies [JP-A-09/169,744; JP-A-55/145650;[[ Adv]].Carbohydr. Chem.Bio"
+   },
+   {
+    "kind": "top",
+    "window": 468,
+    "pos": 218,
+    "rel": 0.668,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "at",
+    "text": " rotated. To determine if radiographic rotation was clinically evident, 20 composite patient photos were blindly evaluated. A random total of 69 patients underwent bilateral augmentation mammoplasty with form stable an[[at]]imic gel implants using "
+   },
+   {
+    "kind": "top",
+    "window": 1027,
+    "pos": 199,
+    "rel": 0.668,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " switch",
+    "text": ", customer relations, and public relations. I wouldn't do this if it weren't for all of you.\n\nLast comments from Android Market\n\nAlejandro (*****)There is no \"bait &[[ switch]]\". Just a single man who"
+   },
+   {
+    "kind": "top",
+    "window": 717,
+    "pos": 88,
+    "rel": 0.664,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " computing",
+    "text": " to $n$ to check for membership in $L$ for a sliding window of size $n$ over an infinite stream. Here I mean the incremental complexity by moving the window along the stream and[[ computing]] on the fly the membership of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 868,
+    "pos": 1,
+    "rel": 0.512,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " network",
+    "text": "Social[[ network]] diagram. Credit: Daniel T"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1158,
+    "pos": 210,
+    "rel": 0.63,
+    "gate_open": false,
+    "source": "BookCorpus2",
+    "lang": "en",
+    "token": "fig",
+    "text": "Mark 5 The Road of Grace\n\nMark 6 The Road of Sending\n\nMark 7 The Road of Hearing\n\nMark 8 The Road of Rebuke\n\nMark 9 The Road of Trans[[fig]]uration\n\nMark 10"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1016,
+    "pos": 30,
+    "rel": 0.649,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " VT",
+    "text": "What even is a flying car? Designs have run the gamut from the AVE Mizar (basically a Ford Pinto with wings, to[[ VT]]OL (vertical takeoff and"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1044,
+    "pos": 125,
+    "rel": 0.545,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ":",
+    "text": "STATE lighting, the latest idea to brighten up the world while saving the planet, promises illumination for a fraction of the energy used by incandescent or fluorescent bulbs. A win all round, then[[:]] lower electricity bills and...less"
+   },
+   {
+    "kind": "random-strong",
+    "window": 113,
+    "pos": 89,
+    "rel": 0.569,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " To",
+    "text": "[] == 2) en JavaScript? me aventuré a utilizar https://www.ecma-international.org/ecma-262/7.0/index.html para las referencias.\nEn[[ To]]Primitive se explica el proced"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1018,
+    "pos": 160,
+    "rel": 0.578,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " anatom",
+    "text": " Florida professor Benjamin Lok explains to As It Happens guest host Tom Harrington. \"The simulator itself is a piece of plastic and around the anus area is a foam, rubbery material. It's[[ anatom]]ically correct, and inside,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 997,
+    "pos": 1,
+    "rel": 0.64,
+    "gate_open": false,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": " Horn",
+    "text": "\"[[[ Horn]] Honks ]\" \"[ All"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1530,
+    "pos": 5,
+    "rel": 0.533,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": " to",
+    "text": "Lakini kuna[[ to]]fauti sasa\n"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 7.7812,
+  "n_strong_tokens": 17,
+  "n_strong_windows": 8,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    3
+   ],
+   [
+    "StackExchange",
+    2
+   ],
+   [
+    "lang-id",
+    1
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    7
+   ],
+   [
+    "th",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " or",
+    3
+   ],
+   [
+    "to",
+    2
+   ],
+   [
+    ",",
+    1
+   ],
+   [
+    " something",
+    1
+   ],
+   [
+    "am",
+    1
+   ],
+   [
+    "Music",
+    1
+   ],
+   [
+    "'s",
+    1
+   ],
+   [
+    " someone",
+    1
+   ]
+  ],
+  "strong_pos_median": 214,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1011,
+    "pos": 222,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " or",
+    "text": "ulation.  \nOrdeal.\n\ni.e.: A period of trial and tribulation.\nhttp://dictionary.reference.com/browse/trials+and+tribulations\n\nA:\n\nAdversity: \n\na state[[ or]] instance of serious or continued difficulty"
+   },
+   {
+    "kind": "top",
+    "window": 1542,
+    "pos": 107,
+    "rel": 0.707,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": " n",
+    "text": "ุณ กลับมา มีชีวิต พวกเขา ได้ มัน   --   โดย การ จัด อุบัติเหตุ !   \"  [[ n]]ema   ร้องไ"
+   },
+   {
+    "kind": "top",
+    "window": 857,
+    "pos": 6,
+    "rel": 0.639,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ",",
+    "text": "Q:\n\nTerm for \"find[[,]] remove and return an element\""
+   },
+   {
+    "kind": "top",
+    "window": 1037,
+    "pos": 7,
+    "rel": 0.562,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " to",
+    "text": "Not as a feature to use but[[ to]] play onDoes that add an"
+   },
+   {
+    "kind": "top",
+    "window": 787,
+    "pos": 214,
+    "rel": 0.542,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "to",
+    "text": " \"the alligator\") and plants (e.g., \"the acorn\")-and three categories of verbs-manner of motion (e.g., \"to roll\"), emission (e.g., \"[[to]] sparkle\"), and perception (e"
+   },
+   {
+    "kind": "top",
+    "window": 923,
+    "pos": 13,
+    "rel": 0.53,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "Music",
+    "text": "Come Fly with Me\n\nCome Fly with Me may refer to:\n\n[[Music]] \n\n \"Come Fly with Me"
+   },
+   {
+    "kind": "top",
+    "window": 922,
+    "pos": 154,
+    "rel": 0.522,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "am",
+    "text": " prominent members of the first category, Russia and China of the second. The pivots are the countries that have strategic choices important to the U.S., such as the Ukraine. United Kingdom is an ([[am]]using) example of strategically irre"
+   },
+   {
+    "kind": "top",
+    "window": 900,
+    "pos": 24,
+    "rel": 0.514,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " something",
+    "text": "Speaking of ALL versus LIKE in colloquial speech, I've noticed that I use\nLIKE when I mean to describe[[ something]] I feel but do not say"
+   },
+   {
+    "kind": "top",
+    "window": 1095,
+    "pos": 49,
+    "rel": 0.432,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "atively",
+    "text": " system with four 3.5\" drives\n\nI'm looking for a compact mATX case for a NAS system. One that I can stick in a corner somewhere and forget about (figur[[atively]]).\nI have done some research"
+   },
+   {
+    "kind": "top",
+    "window": 445,
+    "pos": 3,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": "1",
+    "text": " give d.\n[[1]]05\nExpress 3"
+   },
+   {
+    "kind": "top",
+    "window": 897,
+    "pos": 102,
+    "rel": 0.382,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "Music",
+    "text": " may also refer to:\n\n Superpower (ability), extraordinary powers mostly possessed by fictional characters, commonly in American comic books\n Tetration, superpower or hyperpower is used as synonym of tetration.\n\n[[Music]]\n SuperPower, a musician"
+   },
+   {
+    "kind": "top",
+    "window": 1549,
+    "pos": 53,
+    "rel": 0.287,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": " ",
+    "text": "โร นิ ก้า ยืน อยู่ บน ไซ ต์\nคุณ หมายถึง มัน ไม่ สุก ?   ผอม[[ ]]วาด หาย ไว "
+   },
+   {
+    "kind": "top",
+    "window": 80,
+    "pos": 97,
+    "rel": 0.271,
+    "gate_open": true,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": " \"",
+    "text": " \"A cruel trap involvingNa pair of crucified fledglings since smoldering feelingsNlie firmly in their hearts destruction!\" \"severely as a flower pierce with a trembling blade\"[[ \"]]Even when I shut the f"
+   },
+   {
+    "kind": "top",
+    "window": 324,
+    "pos": 139,
+    "rel": 0.269,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "usa",
+    "text": "AGNotes, his economic team is not just promising to support more bank, Adams Golf Canada(fletcher Leisure Jake Golf Co Ltd Adams Golf Inc Adams Golf Inc Adams Golf Limited Adams Golf Ltd Adams Golf ([[usa]]) Adams Grain Co.\n\nIn"
+   },
+   {
+    "kind": "top",
+    "window": 907,
+    "pos": 6,
+    "rel": 0.245,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "he",
+    "text": "the harvey girls\n(s[[he]]´s reminding me of miss mon"
+   },
+   {
+    "kind": "top",
+    "window": 1418,
+    "pos": 89,
+    "rel": 0.244,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": " м",
+    "text": "е адресиран до \" ( спорно първоначално ) кавендиш , кантора . , стайлс корт , стайлс св.[[ м]]ери , есекс ."
+   },
+   {
+    "kind": "top",
+    "window": 443,
+    "pos": 35,
+    "rel": 0.203,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Eng",
+    "text": "Jesus came not to be served, but to serve.\nWe strive to make a difference in the lives\nof people beyond the walls of the church.1441 NE[[ Eng]]lewood Rd.Kansas City"
+   },
+   {
+    "kind": "top",
+    "window": 1475,
+    "pos": 243,
+    "rel": 0.197,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": ":",
+    "text": "po di persone sta camminando sul marciapiede di una grande città.\nUn uomo sta meditando.\nIl lato positivo è che la Coca-Cola Co. (nyse[[:]] KO - news - people)"
+   },
+   {
+    "kind": "top",
+    "window": 442,
+    "pos": 77,
+    "rel": 0.187,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " usually",
+    "text": "jump scare\" cliche: the unexpected figure in bathroom mirrors or the movement behind a drafty curtain that turns out to be a cat.\n\nThe trope consists of an abrupt shift in image or movement,[[ usually]] accompanied with sudden, booming audio"
+   },
+   {
+    "kind": "top",
+    "window": 955,
+    "pos": 142,
+    "rel": 0.182,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "iology",
+    "text": " egestion.\n\nOpen defecation, the practice of defecating outside without using a toilet of any kind, is still widespread in some developing countries, for example in India.\n\nDescription\n\nPhys[[iology]]\nThe rectum ampulla"
+   }
+  ]
+ }
+}

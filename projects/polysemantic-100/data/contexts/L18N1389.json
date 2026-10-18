@@ -1,0 +1,592 @@
+{
+ "id": "L18N1389",
+ "layer": 18,
+ "neuron": 1389,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 6.3125,
+  "n_strong_tokens": 15,
+  "n_strong_windows": 4,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "HackerNews",
+    1
+   ],
+   [
+    "Github",
+    1
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    3
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "Q",
+    2
+   ],
+   [
+    "w",
+    2
+   ],
+   [
+    "E",
+    2
+   ],
+   [
+    "MA",
+    2
+   ],
+   [
+    "U",
+    1
+   ],
+   [
+    "MQ",
+    1
+   ],
+   [
+    "Y",
+    1
+   ],
+   [
+    "QU",
+    1
+   ]
+  ],
+  "strong_pos_median": 136,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 548,
+    "pos": 54,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "MA",
+    "text": ".40somethingmag.com/gallery/MTE1NjU1My4yLjEwLjEwLjEuNzAwMTU5OC4wLjAu[[MA]]\n... she was in her"
+   },
+   {
+    "kind": "top",
+    "window": 59,
+    "pos": 57,
+    "rel": 0.871,
+    "gate_open": true,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": "U",
+    "text": ".google.com/presentation/d/1TjWba0CR9RHFm47rvW1nFUlmouaR55Xt235aHyLPf9[[U]]/edit#slide=id.p\n"
+   },
+   {
+    "kind": "top",
+    "window": 542,
+    "pos": 133,
+    "rel": 0.713,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "w",
+    "text": "/p2p/3YgLAeMKSAPcGqZkAt8mREqhQXmJT8SN8VCMN4T6ih4GNX9[[w]]vK8mWJ"
+   },
+   {
+    "kind": "top",
+    "window": 328,
+    "pos": 192,
+    "rel": 0.579,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Q",
+    "text": "/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1f[[Q]]784/j6c"
+   },
+   {
+    "kind": "top",
+    "window": 1238,
+    "pos": 115,
+    "rel": 0.411,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "E",
+    "text": "础视频教程](http://weekly.manong.io/bounce?url=http%3A%2F%2Fv.youku.com%2Fv_show%2Fid_XNj[[E]]2MzYyNT"
+   },
+   {
+    "kind": "top",
+    "window": 1270,
+    "pos": 53,
+    "rel": 0.313,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "0",
+    "text": "317509f3680e69089d frame00000000\n984d4251242c[[0]]9bebf30cf"
+   },
+   {
+    "kind": "top",
+    "window": 1370,
+    "pos": 228,
+    "rel": 0.25,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": "  var ev = document.createEvent('MouseEvents');\n  ev.initMouseEvent(\"click\", true, true, window, 0, 0, 0, 0, 0, false[[,]] false, false, false,"
+   },
+   {
+    "kind": "top",
+    "window": 914,
+    "pos": 122,
+    "rel": 0.236,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "o",
+    "text": " minute. \n2016-01-21T10:50:00.594Z 5173 TID-osv5dzz5[[o]] WARN: uninitialized constant ViewDB"
+   },
+   {
+    "kind": "top",
+    "window": 1210,
+    "pos": 24,
+    "rel": 0.231,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "E",
+    "text": "<?xml version=\"1.0\"?>\n<ZopeData>\n  <record id=\"1\" aka=\"AAAAAAAAAA[[E]]=\">\n    <pickle>\n"
+   },
+   {
+    "kind": "top",
+    "window": 123,
+    "pos": 238,
+    "rel": 0.134,
+    "gate_open": false,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " density",
+    "text": " residing in the town. The population density was 590.0 people per square mile (227.5/km²). There were 268 housing units at an average[[ density]] of 265."
+   },
+   {
+    "kind": "top",
+    "window": 1387,
+    "pos": 10,
+    "rel": 0.125,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "4",
+    "text": "# DM Reader\n\n<a name=\"2lzA[[4]]\"></a>\n## 一"
+   },
+   {
+    "kind": "top",
+    "window": 431,
+    "pos": 139,
+    "rel": 0.118,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "E",
+    "text": "ouisck) April 28, 2014\n\nA huge amount of my third graders time is spent preparing for and answering questions like this. pic.twitter.com/WU5t[[E]]o8JRO — Louis"
+   },
+   {
+    "kind": "top",
+    "window": 987,
+    "pos": 128,
+    "rel": 0.106,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "service",
+    "text": " vector data\nthe WCS capabilities lists layers that support raster queries\n\nA sample WMS request would look like this:\nhttp://demo.opengeo.org/geoserver/wms?request=GetCapabilities&[[service]]=WMS&version=1"
+   },
+   {
+    "kind": "top",
+    "window": 320,
+    "pos": 77,
+    "rel": 0.097,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " Louis",
+    "text": " Elders (OACE) unit that uses an interdisciplinary team to enhance recognition and management of geriatric syndromes in hospitalized older adult cancer patients has been established at Barnes-Jewish Hospital (St.[[ Louis]], Missouri). The OACE"
+   },
+   {
+    "kind": "top",
+    "window": 334,
+    "pos": 6,
+    "rel": 0.097,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " register",
+    "text": "#[doc = \"Reader of[[ register]] CHINTENCLR\"]\npub"
+   },
+   {
+    "kind": "top",
+    "window": 986,
+    "pos": 36,
+    "rel": 0.096,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " yeast",
+    "text": "Enhancing vacuolar sucrose cleavage within the developing potato tuber has only minor effects on metabolism.\nModification of tuber carbohydrate metabolism by the tuber-specific expression of a[[ yeast]] invertase targeted to the cy"
+   },
+   {
+    "kind": "top",
+    "window": 1018,
+    "pos": 94,
+    "rel": 0.095,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " butt",
+    "text": " the Universities of Wisconsin and Florida are hoping to assist with that. They've designed a robot to help medical students give better prostate exams.\n\nThe robot's name is \"Patrick\" and he's an interactive[[ butt]].\n\nProfessor Benjamin Lok\n\n\""
+   },
+   {
+    "kind": "top",
+    "window": 1390,
+    "pos": 20,
+    "rel": 0.095,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "More",
+    "text": "use strict;\nuse warnings;\nuse Net::EmptyPort qw(check_port empty_port);\nuse Test::[[More]];\nuse t::Util;\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 790,
+    "pos": 85,
+    "rel": 0.093,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " and",
+    "text": " to Aberdeen Royal Infirmary over a three year period. A retrospective casenote review. Thirty-two confirmed cases of E. coli O157 infection were admitted between 1997[[ and]] 2000."
+   },
+   {
+    "kind": "top",
+    "window": 884,
+    "pos": 163,
+    "rel": 0.092,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "Ws",
+    "text": "630\n\nOpenStreetMap is a crowd sourced map of the world that could rival Google Maps.http://www.openstreetmap.org\nSubscribe to CNBCInternational: http://bit.ly/1ei[[Ws]]Dq\nLike us on"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 1.4375,
+  "n_strong_tokens": 120,
+  "n_strong_windows": 16,
+  "strong_gate_open_frac": 0.0,
+  "strong_sources": [
+   [
+    "Github",
+    7
+   ],
+   [
+    "StackExchange",
+    3
+   ],
+   [
+    "OpenWebText2",
+    3
+   ],
+   [
+    "HackerNews",
+    2
+   ],
+   [
+    "Pile-CC",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    9
+   ],
+   [
+    "code",
+    7
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "1",
+    13
+   ],
+   [
+    "2",
+    8
+   ],
+   [
+    "9",
+    6
+   ],
+   [
+    "3",
+    6
+   ],
+   [
+    "L",
+    6
+   ],
+   [
+    "W",
+    4
+   ],
+   [
+    "7",
+    3
+   ],
+   [
+    "X",
+    3
+   ]
+  ],
+  "strong_pos_median": 131,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 542,
+    "pos": 127,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "6",
+    "text": "/tcp/8000/p2p/3YgLAeMKSAPcGqZkAt8mREqhQXmJT8SN8VCMN4T[[6]]ih4GNX9w"
+   },
+   {
+    "kind": "top",
+    "window": 59,
+    "pos": 54,
+    "rel": 0.967,
+    "gate_open": false,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": "LP",
+    "text": "https://docs.google.com/presentation/d/1TjWba0CR9RHFm47rvW1nFUlmouaR55Xt235aHy[[LP]]f9U/edit#slide"
+   },
+   {
+    "kind": "top",
+    "window": 347,
+    "pos": 145,
+    "rel": 0.832,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "1",
+    "text": "99d6320c05223e0cdb', _id: 5a930456d5ff0809409d[[1]]5d8, name:"
+   },
+   {
+    "kind": "top",
+    "window": 548,
+    "pos": 30,
+    "rel": 0.821,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "y",
+    "text": "Proud 40 Year Old HottieURL: http://join.40somethingmag.com/gallery/MTE1NjU1My4[[y]]LjEwLj"
+   },
+   {
+    "kind": "top",
+    "window": 1238,
+    "pos": 114,
+    "rel": 0.766,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "j",
+    "text": "�础视频教程](http://weekly.manong.io/bounce?url=http%3A%2F%2Fv.youku.com%2Fv_show%2Fid_XN[[j]]E2MzYy"
+   },
+   {
+    "kind": "top",
+    "window": 1308,
+    "pos": 145,
+    "rel": 0.734,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "9",
+    "text": ": Floor\n  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa04[[9]]1de14d0"
+   },
+   {
+    "kind": "top",
+    "window": 1288,
+    "pos": 163,
+    "rel": 0.682,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": "tippedAt\" bigint NOT NULL DEFAULT (0), \"sortAmount\" float NOT NULL, \"userUserId\" integer, CONSTRAINT \"FK_36683fb22120[[1]]263b38"
+   },
+   {
+    "kind": "top",
+    "window": 220,
+    "pos": 254,
+    "rel": 0.668,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "it",
+    "text": "’t for targeted families fleeing Rwanda.\n\nIt wasn’t for communities fleeing war-torn Syria.\n\nAnd it isn’t for those fleeing violence in Central America. https://t.co/qhv7Rr1[[it]]n"
+   },
+   {
+    "kind": "top",
+    "window": 513,
+    "pos": 81,
+    "rel": 0.668,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "3",
+    "text": "c941fc6c17b' }).render('4c4d856e0e6f4e3d808bbc1715e1[[3]]2f6'); });\n\nPost"
+   },
+   {
+    "kind": "top",
+    "window": 328,
+    "pos": 216,
+    "rel": 0.614,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "1",
+    "text": "XCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw[[1]]T\" crossorigin=\"anonymous\">\n"
+   },
+   {
+    "kind": "top",
+    "window": 979,
+    "pos": 227,
+    "rel": 0.562,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "f",
+    "text": "982464\" dbid=\"15\" objectname=\"BasketHeader\" indexname=\"UX_BasketHeader_BasketID_Account\" id=\"lock2d9b59[[f]]80\" mode=\"X"
+   },
+   {
+    "kind": "top",
+    "window": 431,
+    "pos": 254,
+    "rel": 0.557,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "5",
+    "text": "014\n\nLook at 4 of part a. And the point isn't that it's too hard. Just read #4. Please. pic.twitter.com/5bnUlaXG[[5]]b"
+   },
+   {
+    "kind": "top",
+    "window": 1268,
+    "pos": 29,
+    "rel": 0.495,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "+",
+    "text": "# bedup - Btrfs deduplication\n# Copyright (C) 2012 Gabriel de Perthuis <g2p.code[[+]]bedup@gmail.com>\n#\n"
+   },
+   {
+    "kind": "top",
+    "window": 914,
+    "pos": 121,
+    "rel": 0.481,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "5",
+    "text": " one minute. \n2016-01-21T10:50:00.594Z 5173 TID-osv5dzz[[5]]o WARN: uninitialized constant View"
+   },
+   {
+    "kind": "top",
+    "window": 69,
+    "pos": 104,
+    "rel": 0.478,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ff",
+    "text": " URL:storeUrl options:options error:&error]\n\nwith the error: \nError: Error Domain=NSCocoaErrorDomain Code=134130 UserInfo=0x4fb[[ff]]20 \"Operation could not"
+   },
+   {
+    "kind": "top",
+    "window": 666,
+    "pos": 169,
+    "rel": 0.476,
+    "gate_open": false,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": " =",
+    "text": " of c(u) wrt u.\n-10\nLet m be (5/4)/((-2)/(-8)). Suppose -4*f = w + 11, -5*w[[ =]] 3*f - m*f"
+   },
+   {
+    "kind": "random-strong",
+    "window": 690,
+    "pos": 38,
+    "rel": 0.527,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "vf",
+    "text": "# 练习 1：文本编辑器，vim\n\n> 原文：[Exercise 1. Text Editor, The: vim](https://archive.fo/5[[vf]]0X)\n\n> 译"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1270,
+    "pos": 248,
+    "rel": 0.533,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "7",
+    "text": "390276afc8b86c84 frame00000005\neb73c0cc2e9b92ace700[[7]]214358"
+   },
+   {
+    "kind": "random-strong",
+    "window": 617,
+    "pos": 241,
+    "rel": 0.543,
+    "gate_open": false,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": "x",
+    "text": "“automatically converted from the TextMate repository” to be used with the\nyasnippet.\n\nblogged a tiny howto to get it running. <http://is.gd/ruU[[x]]>\n\n------\nlarrywright\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 947,
+    "pos": 103,
+    "rel": 0.535,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "3",
+    "text": "ServiceManager\", \"ServiceManager.vbproj\", \"{FC9A8347-24B8-496F-A7FB-E71106F5E[[3]]AA}\"\nEndProject\nGlobal"
+   }
+  ]
+ }
+}

@@ -1,0 +1,612 @@
+{
+ "id": "L12N6364",
+ "layer": 12,
+ "neuron": 6364,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 1.4375,
+  "n_strong_tokens": 90,
+  "n_strong_windows": 63,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    15
+   ],
+   [
+    "FreeLaw",
+    9
+   ],
+   [
+    "StackExchange",
+    7
+   ],
+   [
+    "OpenWebText2",
+    7
+   ],
+   [
+    "Pile-CC",
+    6
+   ],
+   [
+    "USPTO Backgrounds",
+    4
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    45
+   ],
+   [
+    "th",
+    6
+   ],
+   [
+    "code",
+    3
+   ],
+   [
+    "zh",
+    2
+   ],
+   [
+    "sw",
+    2
+   ],
+   [
+    "vi",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "  ",
+    9
+   ],
+   [
+    " ",
+    6
+   ],
+   [
+    "         ",
+    4
+   ],
+   [
+    "N",
+    4
+   ],
+   [
+    " )\n",
+    4
+   ],
+   [
+    " ­",
+    4
+   ],
+   [
+    "\n",
+    4
+   ],
+   [
+    "              ",
+    3
+   ]
+  ],
+  "strong_pos_median": 124,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1575,
+    "pos": 14,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "vi",
+    "token": " dưới",
+    "text": "Và tôi không biết về một phần của đất nước nhưng ơ[[ dưới]] đây trong năm cuối cùng trong"
+   },
+   {
+    "kind": "top",
+    "window": 891,
+    "pos": 51,
+    "rel": 0.946,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " ",
+    "text": " $http angular\n\nI have a $http function in angular and a controller, but the controller do not retrieve data send from angular, in the log print \n\nSkip CORS processing: response already contains\n[[ ]] \"Access-Control-Allow-Origin\""
+   },
+   {
+    "kind": "top",
+    "window": 1549,
+    "pos": 244,
+    "rel": 0.908,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "  ",
+    "text": "ัน การพนัน โทษ มัน เกี่ยวกับ ความผิดปกติ ทางจิตวิทยา มากกว่า อุตสาหกรรม[[  ]] machination\nอิน "
+   },
+   {
+    "kind": "top",
+    "window": 1401,
+    "pos": 159,
+    "rel": 0.886,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": " (",
+    "text": " , الاعضاء .\nقصة سجلات \" استثمارات الاخلاص \" \" الاضطرابات المستمرة \"\nالم طالعين المحليون يقولون انه ممتاز ايضا في[[ (]] هاردي هاردي"
+   },
+   {
+    "kind": "top",
+    "window": 548,
+    "pos": 75,
+    "rel": 0.88,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "...",
+    "text": "LjEwLjEuNzAwMTU5OC4wLjAuMA\n... she was in her early 30s. 'I get that a lot ... about[[...]] Click here for more! MILF"
+   },
+   {
+    "kind": "top",
+    "window": 1545,
+    "pos": 200,
+    "rel": 0.859,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "  ",
+    "text": "้าก็เร็ว\nเอเจนซี่ สำหรับ เพจ โฮม ส เต็ป ของ การพัฒนา ระหว่างประเทศ หรือ[[  ]] reliefnet   องค"
+   },
+   {
+    "kind": "top",
+    "window": 482,
+    "pos": 48,
+    "rel": 0.842,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "           ",
+    "text": " OF     CRIMINAL     APPEALS\n\n\n                                       OF   TEXAS\n\n\nJOSE   GONZALES   111,\n          Petitioner/\n\n\n\n\nTHE STATE OF TEXSS/\n[[           ]] Appellee.\n\n\n\n\n                                                                        COURT"
+   },
+   {
+    "kind": "top",
+    "window": 1021,
+    "pos": 239,
+    "rel": 0.826,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " |",
+    "text": " a spatial mode that aims at reversible coding on the basis of two-dimensional DPCM.\nA detailed description of these modes will be omitted since these modes are described in ITU-T Recommendation T.81[[ |]] ISO/IEC 1"
+   },
+   {
+    "kind": "top",
+    "window": 80,
+    "pos": 164,
+    "rel": 0.815,
+    "gate_open": true,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": "N",
+    "text": " imagine Danjou entrusted aNsimilar scroll to Kazamachi Shougen...\" \"Nhe will have no hope for escape...\" \"Koshirou.\" \"A war between shinobi needs[[N]]no vainglorious one"
+   },
+   {
+    "kind": "top",
+    "window": 1541,
+    "pos": 1,
+    "rel": 0.761,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": " ",
+    "text": "และ[[ ]]ฉัน สามารถ ต"
+   },
+   {
+    "kind": "top",
+    "window": 110,
+    "pos": 37,
+    "rel": 0.761,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ",\n",
+    "text": "\n141 S.E.2d 632 (1965)\n264 N.C. 401\nGeorge W. JONES, Employee[[,\n]]v.\nMYRTLE DES"
+   },
+   {
+    "kind": "top",
+    "window": 295,
+    "pos": 9,
+    "rel": 0.761,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "\n\n",
+    "text": "RS-1: Pediatric dosimetry of[[\n\n]]18\n\nF-FDG"
+   },
+   {
+    "kind": "random-strong",
+    "window": 530,
+    "pos": 22,
+    "rel": 0.535,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " how",
+    "text": "There is not any query social media has reworked the best way individuals talk, collect data, and in addition[[ how]] customers make choices about purchases."
+   },
+   {
+    "kind": "random-strong",
+    "window": 835,
+    "pos": 181,
+    "rel": 0.734,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "             ",
+    "text": "\n                    ______________\n\n                Argued January 19, 2018\n                   ______________\n\n  Before: SMITH, Chief Judge, GREENAWAY, JR., and\n[[             ]] KRAUSE, Circuit Judges"
+   },
+   {
+    "kind": "random-strong",
+    "window": 516,
+    "pos": 218,
+    "rel": 0.755,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " leaving",
+    "text": "ycarbonyl-ethylamine compounds having a leaving group at the β-position, which are obtained by converting a hydroxyl group of optically active β-hydroxyethylamine compounds into a[[ leaving]] group, into oxazolid"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1535,
+    "pos": 123,
+    "rel": 0.614,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": "\n",
+    "text": " kupaka rangi , na kukata designs ya vingi kwenye karatasi .\nKwa kuongezea kuna mashinikizo wengine fiscal , kama vile[[\n]]D kwa pedestal .\nM"
+   },
+   {
+    "kind": "random-strong",
+    "window": 628,
+    "pos": 172,
+    "rel": 0.639,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " )\n",
+    "text": "., et al.                )   State File Nos. 91964-2014\n                                              )                   39859-2014\nand                                          [[ )\n]]                                              )\nWilliams Specialty Services,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 744,
+    "pos": 129,
+    "rel": 0.652,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " ­",
+    "text": " sign up each year, with 80 per cent going to the Army.\n\nAn early day motion ­tabled by Plaid Cymru MP Liz Saville Roberts says: “Westminster must[[ ­]]seriously consider its policy of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 211,
+    "pos": 6,
+    "rel": 0.745,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " ",
+    "text": "Systematic evaluation of tumoral[[ ]]99mTc-"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1540,
+    "pos": 207,
+    "rel": 0.59,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "  ",
+    "text": "ล ติ ก   ( เดิม ชื่อ   mont-tombe )   บิ ช อ พ ของ เมือง ใกล้เคียง ของ[[  ]] avranches   เร"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 5.9062,
+  "n_strong_tokens": 15,
+  "n_strong_windows": 12,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "PubMed Abstracts",
+    5
+   ],
+   [
+    "NIH ExPorter",
+    3
+   ],
+   [
+    "USPTO Backgrounds",
+    2
+   ],
+   [
+    "Github",
+    1
+   ],
+   [
+    "Pile-CC",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    11
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "1",
+    6
+   ],
+   [
+    ")",
+    3
+   ],
+   [
+    ":",
+    2
+   ],
+   [
+    "i",
+    1
+   ],
+   [
+    "a",
+    1
+   ],
+   [
+    "2",
+    1
+   ],
+   [
+    "\r\n",
+    1
+   ]
+  ],
+  "strong_pos_median": 124,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 692,
+    "pos": 44,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": ":",
+    "text": " the Invention\nEmbodiments of the present invention relate to an exhaust gas control system for an internal combustion engine.\n2. Description of Related Art\nAn air purifier has been known that includes[[:]] an air purification catalyst that is"
+   },
+   {
+    "kind": "top",
+    "window": 546,
+    "pos": 199,
+    "rel": 0.884,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": "1",
+    "text": " is one such topic that is worth revisiting. In the proposed project, we argue that the increasing prominence and promise of partnered work can inform the development of a more thorough understanding of RI by exploring ([[1]]) how academic and community research"
+   },
+   {
+    "kind": "top",
+    "window": 86,
+    "pos": 93,
+    "rel": 0.746,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": "i",
+    "text": "DX), electrospray ipnization (ESI MS) and gas phase protein ion fragmentation. The new strategies will provide conformer-specific structural and dynamic information by using HDX in combination with ([[i]]) simultaneous fragmentation of several "
+   },
+   {
+    "kind": "top",
+    "window": 888,
+    "pos": 14,
+    "rel": 0.664,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": ")",
+    "text": "After stroke, two opportunities to improve the patient's outcome are 1[[)]] to preserve the non-infar"
+   },
+   {
+    "kind": "top",
+    "window": 823,
+    "pos": 225,
+    "rel": 0.659,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\r\n",
+    "text": "boost/serialization/split_free.hpp>\r\n#include <boost/throw_exception.hpp> \r\n#include <memory>\r\n\r\n/* Serialization routines for flyweight<T>. \r\n */\r\n\r\nnamespace boost{\r\n  \r\nnamespace serialization{\r\n\r\ntemplate<[[\r\n]]  class Archive,\r\n  typename"
+   },
+   {
+    "kind": "top",
+    "window": 317,
+    "pos": 218,
+    "rel": 0.632,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "1",
+    "text": " the return trips to the home base were always more direct and had high travel velocities even though travel distance increased with age for the longest trips. The results are discussed in relation to the ideas that: ([[1]]) the pups pilot on the"
+   },
+   {
+    "kind": "top",
+    "window": 193,
+    "pos": 69,
+    "rel": 0.611,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "1",
+    "text": " and control mechanism is disclosed in U.S. Pat. No. 4,951,567, which is hereby incorporated by reference. The main drive typically contains three components: ([[1]]) an electric main drive;"
+   },
+   {
+    "kind": "top",
+    "window": 306,
+    "pos": 124,
+    "rel": 0.611,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "a",
+    "text": " during a three year period. The surface of THV wall and the number of mesenchymal cells were assessed with a semi-automatic image analyser. Histologically, THV were characterized as ([[a]]) phlebitic,"
+   },
+   {
+    "kind": "top",
+    "window": 459,
+    "pos": 228,
+    "rel": 0.608,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "1",
+    "text": " effects were lost in bone marrow-derived macrophages from PPAR-alpha-/- mice. The PPAR-alpha-induced increase in ROS was attributable to the induction of NADPH oxidase, because ([[1]]) preincubation with"
+   },
+   {
+    "kind": "top",
+    "window": 502,
+    "pos": 107,
+    "rel": 0.59,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ")",
+    "text": "'s enough physical music currently in existence that i wouldn't even be able to listen to it all, so there will always be another band to get.\n\nI buy mp3s from bands if 1[[)]] I don't know their output"
+   },
+   {
+    "kind": "top",
+    "window": 1078,
+    "pos": 100,
+    "rel": 0.537,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "1",
+    "text": " humans. While in vivo experimental data are often expected, there are other important considerations that drive the impact of developmental toxicity data to human risk assessment and product labeling. These considerations include three key elements: ([[1]]) the drug's likelihood of"
+   },
+   {
+    "kind": "top",
+    "window": 467,
+    "pos": 160,
+    "rel": 0.511,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "1",
+    "text": "), in whom HDL are the sole plasma lipoproteins. The metabolism of apoE within these HDL subspecies was investigated in three separate studies which differed by donor or recipient status: ([[1]]) particles purified from normol"
+   },
+   {
+    "kind": "top",
+    "window": 893,
+    "pos": 221,
+    "rel": 0.46,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": "a",
+    "text": " vesicles, ultrastructure studies will be conducted on these cultures to determine the persistence of this specific morphologic marker. Cloning and karotyping will be conducted as appropriate. The primary effort will be ([[a]]) to define the optimum in"
+   },
+   {
+    "kind": "top",
+    "window": 683,
+    "pos": 132,
+    "rel": 0.455,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": ":",
+    "text": " adults (60 women and 46 males, aged 16 to 79 yr) attempts to identify the anthropometric factors which best predict MIPS and MEPS. It was found that[[:]] 1) smoking does not"
+   },
+   {
+    "kind": "top",
+    "window": 32,
+    "pos": 36,
+    "rel": 0.455,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":\n\n",
+    "text": "Q:\n\nWhat's the best method for forcing cache expiration in ASP.NET?\n\nSuppose I have an ASP.NET application running across several web servers behind a load balancer:\nCan I[[:\n\n]]Force OutputCache (Page and"
+   },
+   {
+    "kind": "top",
+    "window": 1264,
+    "pos": 222,
+    "rel": 0.444,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": " does it work?\n-----------------\n\nThere is an opaque, non-open-source app called `iflux` in this project. We trick\nXcode into signing and installing this app on your phone by:\n\n[[1]].  Building a dummy app"
+   },
+   {
+    "kind": "top",
+    "window": 1163,
+    "pos": 100,
+    "rel": 0.431,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": ")",
+    "text": " the membrane transport systems responsible for pH regulation been described. In the proposed research, three questions will be addressed with the aim of defining more fully the relationship between muscle cell function and pHi regulation. i[[)]] Are the pH-regulating systems"
+   },
+   {
+    "kind": "top",
+    "window": 378,
+    "pos": 166,
+    "rel": 0.429,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "a",
+    "text": "Defendant was convicted of violating N.C.G.S. 14-202.1, and now attacks the constitutionality of this statute. He contends the statute is unconstitutional in that ([[a]]) it *575"
+   },
+   {
+    "kind": "top",
+    "window": 654,
+    "pos": 11,
+    "rel": 0.407,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": ")",
+    "text": "Description: This project proposes two outreach programs: 1[[)]] outreach to the \"Community\""
+   },
+   {
+    "kind": "top",
+    "window": 681,
+    "pos": 142,
+    "rel": 0.402,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " \"",
+    "text": " Therefore, it is recognized that protection of the head (brain) of the infant of this age is of importance for sound and healthy growth of the infant.\nThe head (brain) may be protected by[[ \"]]proper nursing method\" and \""
+   }
+  ]
+ }
+}

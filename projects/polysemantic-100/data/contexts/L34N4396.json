@@ -1,0 +1,612 @@
+{
+ "id": "L34N4396",
+ "layer": 34,
+ "neuron": 4396,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 19.875,
+  "n_strong_tokens": 56,
+  "n_strong_windows": 47,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    14
+   ],
+   [
+    "OpenWebText2",
+    6
+   ],
+   [
+    "FreeLaw",
+    5
+   ],
+   [
+    "StackExchange",
+    4
+   ],
+   [
+    "PubMed Abstracts",
+    4
+   ],
+   [
+    "Wikipedia (en)",
+    3
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    31
+   ],
+   [
+    "code",
+    14
+   ],
+   [
+    "zh",
+    1
+   ],
+   [
+    "pl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " Group",
+    3
+   ],
+   [
+    "Internet",
+    2
+   ],
+   [
+    " is",
+    2
+   ],
+   [
+    " Court",
+    2
+   ],
+   [
+    " Network",
+    1
+   ],
+   [
+    "�",
+    1
+   ],
+   [
+    "ion",
+    1
+   ],
+   [
+    " neuro",
+    1
+   ]
+  ],
+  "strong_pos_median": 91,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1100,
+    "pos": 22,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " game",
+    "text": "/**\n * ScriptDev2 is an extension for mangos providing enhanced features for\n * area triggers, creatures,[[ game]] objects, instances, items,"
+   },
+   {
+    "kind": "top",
+    "window": 1586,
+    "pos": 114,
+    "rel": 0.899,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "脑",
+    "text": "且被评价严重低估。\n我有强迫症，一拿到书，我就急，非得把中缝掰开才爽。中线装订，对于地画可真不是一般的[[脑]]残！\n总体还行"
+   },
+   {
+    "kind": "top",
+    "window": 850,
+    "pos": 80,
+    "rel": 0.893,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Group",
+    "text": "26.Datatype;\nusing NHapi.Base.Model;\n\nnamespace NHapi.Model.V26.Group\n{\n///<summary>\n///Represents the RRI_I12_AUTHORIZATION_CONTACT Group.  A[[ Group]] is an ordered collection of message"
+   },
+   {
+    "kind": "top",
+    "window": 882,
+    "pos": 113,
+    "rel": 0.874,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " Plant",
+    "text": " selection are unknown, unnamed, proprietary interspecific hybrids of Echinacea paradoxa×Echinacea purpurea. \nCompared to Echinacea ‘Secret Romance’ (U.S.[[ Plant]] Pat. No. 2"
+   },
+   {
+    "kind": "top",
+    "window": 1276,
+    "pos": 109,
+    "rel": 0.868,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " network",
+    "text": " Preamble\n\n  The GNU Affero General Public License is a free, copyleft license for\nsoftware and other kinds of works, specifically designed to ensure\ncooperation with the community in the case of[[ network]] server software.\n\n  The licenses"
+   },
+   {
+    "kind": "top",
+    "window": 571,
+    "pos": 16,
+    "rel": 0.789,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " civil",
+    "text": "Waßmannsdorf\n\nWaßmannsdorf is a village and a[[ civil]] parish (Ortsteil"
+   },
+   {
+    "kind": "top",
+    "window": 1173,
+    "pos": 120,
+    "rel": 0.755,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Source",
+    "text": "A. Option A\nB. Option B\nC. Option C\nD. Option D\nE. Option E\n100-105 exam Answer: B\nExplanation:\nThe[[ Source]] and Destination IP address is not"
+   },
+   {
+    "kind": "top",
+    "window": 45,
+    "pos": 114,
+    "rel": 0.752,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "�",
+    "text": "さったりされますわ。まぁ、この御講話が素晴らしくってですね、テープに録音して不眠症の方に配りたいくらいなんですわ。一体どういう[[�]]�みそをしていると、"
+   },
+   {
+    "kind": "top",
+    "window": 1396,
+    "pos": 173,
+    "rel": 0.745,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " GCC",
+    "text": " FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n// General Public License for more details.\n\n// Under Section 7 of GPL version 3, you are granted additional\n// permissions described in the[[ GCC]] Runtime Library Exception, version\n"
+   },
+   {
+    "kind": "top",
+    "window": 1271,
+    "pos": 127,
+    "rel": 0.72,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".Byte",
+    "text": "\terrInvalidConnType = errors.New(\"invalid conn type\")\n\terrOpNoSupport     = errors.New(\"operation not supported\")\n\terrNoSuchInterface = errors.New(\"no such interface\")\n\n\tnativeEndian binary[[.Byte]]Order\n)\n\nfunc init()"
+   },
+   {
+    "kind": "top",
+    "window": 530,
+    "pos": 181,
+    "rel": 0.711,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " web",
+    "text": " severally so yow will discover what could should be improved to get a greater response out of your target market.\n\nThe largest distinction is SEO is intermeshed in direction of acquiring customers to try your[[ web]]pages. To do that,"
+   },
+   {
+    "kind": "top",
+    "window": 170,
+    "pos": 176,
+    "rel": 0.711,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "Internet",
+    "text": " applications are based on IP (Internet Protocol) and thus they can be almost directly imported into the mobile terminals residing in the packet-switched mobile communication network. Examples of such services are so called IP ([[Internet]] Protocol) messaging and other communication"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1368,
+    "pos": 48,
+    "rel": 0.544,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " class",
+    "text": "stalk::ListTagsForResource;\n  use Moose;\n  has ResourceArn => (is => 'ro', isa => 'Str', required => 1);\n\n  use MooseX::ClassAttribute;\n\n [[ class]]_has _api_call => ("
+   },
+   {
+    "kind": "random-strong",
+    "window": 1134,
+    "pos": 55,
+    "rel": 0.689,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " Court",
+    "text": " OF INTERNATIONAL TRADE\n\nSINCE HARDWARE (GUANGZHOU)\nCO., LTD.,\n\n                            Plaintiff,\n                                                          Before: Leo M. Gordon, Judge\n              v.\n                                                          Consol.[[ Court]] No. 11-"
+   },
+   {
+    "kind": "random-strong",
+    "window": 368,
+    "pos": 239,
+    "rel": 0.704,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Server",
+    "text": "'d also dig deeper into the error to get a better message\n        let errMsg = (error.message) ? error.message :\n            error.status ? `${error.status} - ${error.statusText}` : '[[Server]] error';\n        console.error(err"
+   },
+   {
+    "kind": "random-strong",
+    "window": 705,
+    "pos": 14,
+    "rel": 0.579,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " neurological",
+    "text": "Introduction {#Sec1}\n============\n\nHeadache is the commonest[[ neurological]] disorder in the community with variable"
+   },
+   {
+    "kind": "random-strong",
+    "window": 641,
+    "pos": 61,
+    "rel": 0.629,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " sea",
+    "text": " an oddball. The starfish species was first described in 2010 based on three museum specimens, two dried and one preserved in ethanol. It's one thing to look at a dead[[ sea]] star, and another to finally"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1005,
+    "pos": 236,
+    "rel": 0.645,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Net",
+    "text": "Command(boost::function<void (const CRPCCommand&)> slot);\n    void OnPostCommand(boost::function<void (const CRPCCommand&)> slot);\n}\n\nclass CBlockIndex;\nclass C[[Net]]Addr;\n\n/** Wrapper for Uni"
+   },
+   {
+    "kind": "random-strong",
+    "window": 545,
+    "pos": 47,
+    "rel": 0.689,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " disease",
+    "text": "oflurane induces apoptosis and increases amyloid beta protein levels.\nThe common inhalation anesthetic isoflurane has previously been reported to enhance the aggregation and cytotoxicity of the Alzheimer[[ disease]]-associated amyloid beta protein ("
+   },
+   {
+    "kind": "random-strong",
+    "window": 610,
+    "pos": 173,
+    "rel": 0.572,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "計",
+    "text": "陽光パネル120万枚が設置されている。\n\n9月に一部、発電を開始したこの施設は先月半ばに全3段階の[[計]]画のうちの第2"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 35.25,
+  "n_strong_tokens": 13,
+  "n_strong_windows": 13,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "NIH ExPorter",
+    3
+   ],
+   [
+    "PubMed Abstracts",
+    3
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "Github",
+    1
+   ],
+   [
+    "PubMed Central",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    12
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " tissue",
+    1
+   ],
+   [
+    " gender",
+    1
+   ],
+   [
+    " organ",
+    1
+   ],
+   [
+    " tum",
+    1
+   ],
+   [
+    "b",
+    1
+   ],
+   [
+    " Role",
+    1
+   ],
+   [
+    " Sex",
+    1
+   ],
+   [
+    "issue",
+    1
+   ]
+  ],
+  "strong_pos_median": 119,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 984,
+    "pos": 28,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " time",
+    "text": "Courses\n\nCourse Library\n\nThis course will take planners through a case study multi-family property valuation. The course will build upon previous course topics of[[ time]] discounting, internal rate of"
+   },
+   {
+    "kind": "top",
+    "window": 265,
+    "pos": 250,
+    "rel": 0.596,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " gender",
+    "text": " (pdl), but soon found out she will not be allowed to play in regular season games because she is a woman.\n\nLabbé says the situation surprised her because she had such high hopes for[[ gender]] equality after her tryout"
+   },
+   {
+    "kind": "top",
+    "window": 936,
+    "pos": 1,
+    "rel": 0.571,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": "issue",
+    "text": "T[[issue]] specific gene expression is central to"
+   },
+   {
+    "kind": "top",
+    "window": 1027,
+    "pos": 92,
+    "rel": 0.567,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "Un",
+    "text": " YOUR PHONE FIRST.\n\nInstalling this app will unlock certain features in the Shelves app. It will not erase your previous collection. It will not magically add brand new, never-before-seen new features.\n\n[[Un]]locked features include:\n\n* Removal"
+   },
+   {
+    "kind": "top",
+    "window": 4,
+    "pos": 8,
+    "rel": 0.56,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " tissue",
+    "text": "Gelatinases A and B and[[ tissue]] inhibitors of metalloproteinases"
+   },
+   {
+    "kind": "top",
+    "window": 1077,
+    "pos": 230,
+    "rel": 0.553,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".bin",
+    "text": " \"rebuild\": 0,\n      \"cellar\": \":any_skip_relocation\",\n      \"prefix\": \"/home/linuxbrew/.linuxbrew\",\n      \"root_url\": \"https://linuxbrew[[.bin]]tray.com/bottles"
+   },
+   {
+    "kind": "top",
+    "window": 340,
+    "pos": 133,
+    "rel": 0.546,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " organ",
+    "text": " in the neonatal period and contain peptides (bombesin, calcitonin, leu-enkephalin) and amines (serotonin) known to affect smooth muscle tone in other[[ organ]] systems. The PPI,"
+   },
+   {
+    "kind": "top",
+    "window": 655,
+    "pos": 149,
+    "rel": 0.539,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " Sex",
+    "text": "3 females, aged 13-16 years; BMI (kg/m2) was calculated. Fitness tests were compared by weight status using sex-specific MANCOVAs, controlling for age.[[ Sex]]-specific quadratic regressions of each"
+   },
+   {
+    "kind": "top",
+    "window": 526,
+    "pos": 177,
+    "rel": 0.535,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "b",
+    "text": " and suggested that the Kaplan-Meier curves of the patients without recurrence were not statistically different between limb-salvaging surgery and amputation patients during a 5.5-year follow-up. Lim[[b]]-salvage surgery was"
+   },
+   {
+    "kind": "top",
+    "window": 1004,
+    "pos": 179,
+    "rel": 0.525,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Family",
+    "text": "D66,\"=\"&Summary!$D8,'Grocery Input'!$E8:$E66,\"=\"&Summary!$E8)\n\nIt needs to check both the '[[Family]]' criteria and \"Master Category"
+   },
+   {
+    "kind": "top",
+    "window": 1059,
+    "pos": 17,
+    "rel": 0.518,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " sub",
+    "text": "Dopamine-dependent responses to cocaine depend on corticotropin-releasing factor receptor[[ sub]]types.\nThe effects on locom"
+   },
+   {
+    "kind": "top",
+    "window": 450,
+    "pos": 53,
+    "rel": 0.511,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " tum",
+    "text": "125 kDa tyrosine kinase that is localized to contact points between cells and their extracellular matrix. We have demonstrated that FAK overexpression and upregulation occurred in early stages of[[ tum]]origenesis. We have"
+   },
+   {
+    "kind": "top",
+    "window": 24,
+    "pos": 89,
+    "rel": 0.493,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " phot",
+    "text": " Despite this, few synthetic polymers degrade with high sensitivity in response to specific stimuli. Most current degradable materials are unresponsive to the often subtle changes found in biological systems or, in the case of[[ phot]]odegradable polymers, require"
+   },
+   {
+    "kind": "top",
+    "window": 449,
+    "pos": 240,
+    "rel": 0.489,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "Water",
+    "text": " expanding the possibilities for the field. Bolstered by an international drive for research and funding to secure water resources, scientists are cautiously working to modernize rainmaking for the 21st century.\n\n“[[Water]] is the basic sustenance of"
+   },
+   {
+    "kind": "top",
+    "window": 379,
+    "pos": 55,
+    "rel": 0.486,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "Un",
+    "text": ". Create New Linode.\n\n2. Create New Disk\n\nSelect unformatted raw 1024MB (make it bigger just in case)\n\nLabel Install Disk\n\n3. Create New Disk\n\n[[Un]]formatted raw, make is as"
+   },
+   {
+    "kind": "top",
+    "window": 384,
+    "pos": 48,
+    "rel": 0.479,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "Acc",
+    "text": " offering fully funded masters scholarship for international students. These scholarships are available for pursuing one-year master’s level course at the Perimeter Institute for Theoretical Physics. All students who are admitted receive full scholarships ([[Acc]]ommodation, Meals, Living"
+   },
+   {
+    "kind": "top",
+    "window": 1078,
+    "pos": 123,
+    "rel": 0.472,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " indication",
+    "text": " data to human risk assessment and product labeling. These considerations include three key elements: (1) the drug's likelihood of producing off-target toxicities, (2) risk tolerance of adverse effects based on[[ indication]] and patient population, and ("
+   },
+   {
+    "kind": "top",
+    "window": 918,
+    "pos": 244,
+    "rel": 0.461,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "ub",
+    "text": "-day history of bilateral arm pain. The pain was constant, located primarily to the biceps region of his upper arms. His pain began shortly after weight lifting. Past medical history included bipolar disorder and polys[[ub]]stance abuse, including recent use"
+   },
+   {
+    "kind": "top",
+    "window": 359,
+    "pos": 185,
+    "rel": 0.457,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " tumor",
+    "text": " progression-free survival (PFS) of approximately 6 months and a response rate (RR) of approximately 30% [1]. Therefore, significant advances are eagerly awaited.\n\nA deeper understanding of[[ tumor]]-immune interactions and development of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 539,
+    "pos": 119,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Role",
+    "text": " what World of Warcraft is. There’s an aspect of gameplay in World of Warcraft that has very little to do with the game’s mechanics and everything to do with the world-building the creators have done.[[ Role]]playing is completely optional, but"
+   }
+  ]
+ }
+}

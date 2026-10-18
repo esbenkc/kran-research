@@ -1,0 +1,568 @@
+{
+ "id": "L1N1289",
+ "layer": 1,
+ "neuron": 1289,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 0.8086,
+  "n_strong_tokens": 109,
+  "n_strong_windows": 81,
+  "strong_gate_open_frac": 0.009,
+  "strong_sources": [
+   [
+    "lang-id",
+    31
+   ],
+   [
+    "Pile-CC",
+    15
+   ],
+   [
+    "OpenWebText2",
+    8
+   ],
+   [
+    "FreeLaw",
+    5
+   ],
+   [
+    "Wikipedia (en)",
+    5
+   ],
+   [
+    "PubMed Abstracts",
+    5
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    46
+   ],
+   [
+    "nl",
+    7
+   ],
+   [
+    "el",
+    6
+   ],
+   [
+    "code",
+    4
+   ],
+   [
+    "bg",
+    3
+   ],
+   [
+    "ja",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "RICT",
+    4
+   ],
+   [
+    "s",
+    3
+   ],
+   [
+    "r",
+    3
+   ],
+   [
+    "ist",
+    3
+   ],
+   [
+    "RF",
+    3
+   ],
+   [
+    "ud",
+    3
+   ],
+   [
+    "τ",
+    3
+   ],
+   [
+    "σ",
+    3
+   ]
+  ],
+  "strong_pos_median": 121,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 136,
+    "pos": 69,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "SS",
+    "text": " STATES COURT OF APPEALS\n                                                 Elisabeth A. Shumaker\n                                                                   Clerk of Court\n                           FOR THE TENTH CIRCUIT\n\n\n    CLARENCE E. GRI[[SS]]OM, JR.,\n\n              "
+   },
+   {
+    "kind": "top",
+    "window": 1485,
+    "pos": 148,
+    "rel": 0.908,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "差",
+    "text": "ジショントークが多い。 また、失敗した起業家を指してダークサイドアントレプレナーとDisる。挑戦する人間を指[[差]]すあたり経営"
+   },
+   {
+    "kind": "top",
+    "window": 714,
+    "pos": 214,
+    "rel": 0.874,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "s",
+    "text": "  A Simple, Fast Dominance Algorithm.\n// Software Practice and Experience 2001, 4:1-10.\n// http://www.hipersoft.rice.edu/grad[[s]]/publications/dom14.pdf"
+   },
+   {
+    "kind": "top",
+    "window": 305,
+    "pos": 31,
+    "rel": 0.816,
+    "gate_open": false,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "ist",
+    "text": "Hays Creek Mill\n\nHays Creek Mill, also known as McClung's Mill, Patterson's Mill, and Steele's Mill, is a historic gr[[ist]] mill located near Brownsburg,"
+   },
+   {
+    "kind": "top",
+    "window": 1417,
+    "pos": 38,
+    "rel": 0.797,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "ру",
+    "text": "четири века по-късно , отчасти поради нова стипендия за еврейските корени на причастието , г[[ру]]па от англикански"
+   },
+   {
+    "kind": "top",
+    "window": 49,
+    "pos": 38,
+    "rel": 0.787,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ro",
+    "text": "Q:\n\nCompile error for QT 5.2.1; expected unqualified-id before 'delete'\n\nI'm trying to compile QT 5.2.1 for an older Linux dist[[ro]] (Suse Linux Enterprise "
+   },
+   {
+    "kind": "top",
+    "window": 1494,
+    "pos": 1,
+    "rel": 0.787,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": "ri",
+    "text": "G[[ri]]ekenland bereikt overeen"
+   },
+   {
+    "kind": "top",
+    "window": 1243,
+    "pos": 4,
+    "rel": 0.783,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "ree",
+    "text": "/*\n *\t\tst[[ree]].c\n *      \n *     "
+   },
+   {
+    "kind": "top",
+    "window": 586,
+    "pos": 238,
+    "rel": 0.783,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "usted",
+    "text": " I'd complain about it less than you do that's for sure.\" Heather smiled at the joke but for a second imagined what it would be like if she did let herself go a bit. Disg[[usted]] at the thought she shook her"
+   },
+   {
+    "kind": "top",
+    "window": 147,
+    "pos": 17,
+    "rel": 0.758,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "RICT",
+    "text": "John D. Pettineo v. Ge Money Bank\n\nIN THE UNITED STATES DIST[[RICT]] COURT FOR THE EASTERN DIST"
+   },
+   {
+    "kind": "top",
+    "window": 1163,
+    "pos": 242,
+    "rel": 0.754,
+    "gate_open": false,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": "red",
+    "text": " made from either surface or T tubular membrane; and acid extrusion into the T tubular lumen, using impermeable pH-sensitive fluorescent dyes. ii) Does acidification of unstir[[red]] layers, especially the T tub"
+   },
+   {
+    "kind": "top",
+    "window": 296,
+    "pos": 145,
+    "rel": 0.744,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "r",
+    "text": " political move and could be a fallout of the Sheena Bora murder case .Defending his ‘personal interest’ in the case, people close to Maria said that after the Khar police arrested Ind[[r]]ani Mukerjea and"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1096,
+    "pos": 18,
+    "rel": 0.553,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "rophic",
+    "text": "Cultured keratinocyte allografts and wound healing in severe recessive dyst[[rophic]] epidermolysis bullos"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1424,
+    "pos": 30,
+    "rel": 0.705,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "de",
+    "token": "iges",
+    "text": "Lieferung erfolgte prompt.Ordentlich verpackt.Ware ist genau wie in Angebot beschrieben.Gute Qualität des Artikels.Günst[[iges]] Preis Leistungsverh"
+   },
+   {
+    "kind": "random-strong",
+    "window": 197,
+    "pos": 26,
+    "rel": 0.72,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "esting",
+    "text": "Dorsomedial hypothalamic lesions alter intake of an imbalanced amino acid diet in rats.\nWithin 3 h of ing[[esting]] an imbalanced amino acid diet"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1492,
+    "pos": 182,
+    "rel": 0.599,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": "jd",
+    "text": " was openhartig.\nEgyptische peiling: 98 procent van de stemmen \"ja\" voor de nieuwe grondwet\nCritici zeggen dat de wet in stri[[jd]] is met de burgerlijke vrij"
+   },
+   {
+    "kind": "random-strong",
+    "window": 712,
+    "pos": 148,
+    "rel": 0.628,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " strugg",
+    "text": " fourth-round tie.\n\nThe Burnley victory is the only game Ward-Prowse has started since the turn of the year but the 19-year-old is likely to start at home to Sky Bet Championship[[ strugg]]lers Yeovil as he"
+   },
+   {
+    "kind": "random-strong",
+    "window": 955,
+    "pos": 89,
+    "rel": 0.638,
+    "gate_open": false,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "ested",
+    "text": " daily to a few times weekly. Waves of muscular contraction (known as peristalsis) in the walls of the colon move fecal matter through the digestive tract towards the rectum. Undig[[ested]] food may also be expelled this"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1493,
+    "pos": 243,
+    "rel": 0.715,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": "ister",
+    "text": " de wapens toenemen\nEen vrouw is aardappelen aan het snijden.\nDan is hij niet almachtig.\nHet Capitool van de V.S. werd g[[ister]]en geÃ \"vacue"
+   },
+   {
+    "kind": "random-strong",
+    "window": 293,
+    "pos": 141,
+    "rel": 0.58,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "s",
+    "text": ".\n\nJayhawk•September 07, 2012 07:54\n\n@Peach The elderly will still be the losers in health care. Even now so many Dr[[s]]. refuse to treat them."
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 2.4062,
+  "n_strong_tokens": 2,
+  "n_strong_windows": 1,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "PubMed Abstracts",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "ion",
+    2
+   ]
+  ],
+  "strong_pos_median": 40,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 919,
+    "pos": 68,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ion",
+    "text": " using a developed response surface model.\nPoultry litter (PL) can be good feedstock for biogas production using anaerobic digestion. In this study, methane production from batch co-digest[[ion]] of PL and wheat straw ("
+   },
+   {
+    "kind": "top",
+    "window": 45,
+    "pos": 228,
+    "rel": 0.232,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "し�",
+    "text": "員が睡魔との猛烈なバトルをせずにすむ講話になるかを話しておこうと思います。\n\nそこの偉い人。良く聞いておくように。寝たら承知[[し�]]�ぇ。\n\n1.講"
+   },
+   {
+    "kind": "top",
+    "window": 236,
+    "pos": 64,
+    "rel": 0.224,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " guidance",
+    "text": " on how this would be done based on the different sections on the single page.\nI'll explain what I would like to do and hopefully someone can help me figure this out. I'm just looking for[[ guidance]] on what I should do to"
+   },
+   {
+    "kind": "top",
+    "window": 971,
+    "pos": 161,
+    "rel": 0.202,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " guidance",
+    "text": "ARS outbreak of 2003 and the H1N1 influenza pandemic of 2009, rather than systematic analysis of the evidence. This is the first ever evidence-based risk communications[[ guidance]].\n\nThe recommendations in this guidance"
+   },
+   {
+    "kind": "top",
+    "window": 371,
+    "pos": 231,
+    "rel": 0.188,
+    "gate_open": false,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " guidance",
+    "text": " make judgments about the likely presence or absence of complex biological traits in an organism according to whether or not its genome encodes the components necessary for that trait. The process of systems reconstruction in Genome Properties provides[[ guidance]] for protein family construction in T"
+   },
+   {
+    "kind": "top",
+    "window": 345,
+    "pos": 152,
+    "rel": 0.18,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " guidance",
+    "text": " are employed by a recruitment agency or other employment businesses will also be affected.\n\nFinance Bill 2016\n\nThe draft Finance Bill 2016 legislation, along with draft explanatory notes and[[ guidance]], has been published and feedback"
+   },
+   {
+    "kind": "top",
+    "window": 1483,
+    "pos": 157,
+    "rel": 0.157,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "し",
+    "text": "えているのですが十分に満足できるものと当たったためしがなく何かを我慢しながら使うことが常にでした。この商品は設置場所や、脱着の[[し]]やすさ、ホールド後の"
+   },
+   {
+    "kind": "top",
+    "window": 1145,
+    "pos": 180,
+    "rel": 0.149,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ly",
+    "text": "inin-tagged recombinant receptors, we have visualized wild type and mutant receptors in COS cells by Western blotting and immunoprecipitation. The 82-kDa, endog[[ly]]cosidase H-insensitive"
+   },
+   {
+    "kind": "top",
+    "window": 1136,
+    "pos": 115,
+    "rel": 0.136,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " down",
+    "text": " the File Select screen when the “No Save” option is highlighted.\n\nOnce Debug Mode is turned on go back to the File Select screen, place the cursor on the “No Save” option and hold[[ down]] the Y button (on Switch"
+   },
+   {
+    "kind": "top",
+    "window": 1573,
+    "pos": 20,
+    "rel": 0.128,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "vi",
+    "token": " viên",
+    "text": "Anh ấy đến với tôi vì một xưởng tạo dáng cổ ý , cùng với một vài diễn[[ viên]] trẻ khác , cũng đẹp tr"
+   },
+   {
+    "kind": "top",
+    "window": 1487,
+    "pos": 103,
+    "rel": 0.128,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "決",
+    "text": "つもなくむしろギャグシーンがいくつかありますが笑えません 見所は唯一まともに戦おうとする霊能コンビとさだかやの対[[決]]だけです 登場人物達"
+   },
+   {
+    "kind": "top",
+    "window": 755,
+    "pos": 34,
+    "rel": 0.123,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " guide",
+    "text": "page_title: Managing Data in Containers\npage_description: How to manage data inside your Docker containers.\npage_keywords: Examples, Usage, volume, docker, documentation, user[[ guide]], data, volumes\n\n#"
+   },
+   {
+    "kind": "top",
+    "window": 1301,
+    "pos": 60,
+    "rel": 0.123,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "guide",
+    "text": "le settings configured through the IDE *will override*\n# any settings specified in this file.\n\n# For more details on how to configure your build environment visit\n# http://www.gradle.org/docs/current/user[[guide]]/build_environment.html\n\n# Specifies"
+   },
+   {
+    "kind": "top",
+    "window": 1576,
+    "pos": 168,
+    "rel": 0.119,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "vi",
+    "token": " toán",
+    "text": " là một thẩm phán mà ngồi đó và lắng nghe những vụ án suốt thời gian sẽ khiến nó bắt đầu suy nghĩ một cách nhất định và đi đi bi\nLồng và kiểm[[ toán]] có thấp thấp ( 5"
+   },
+   {
+    "kind": "top",
+    "window": 1551,
+    "pos": 78,
+    "rel": 0.118,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": "yon",
+    "text": "se iflas etti ve kuzeydeki asilere karşı olan savaşları .\nIş ve bilgi teknolojileri ve yönetim liderlerinin , ortak bir iş viz[[yon]]unu gerçekleştirmek"
+   },
+   {
+    "kind": "top",
+    "window": 1545,
+    "pos": 237,
+    "rel": 0.118,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "เหล",
+    "text": " หรือ   reliefnet   องค์กร ที่ ไม่ แสวงหา กำไร ที่ ทุ่มเท เพื่อ ช่วย[[เหล]]ือ องค์กร"
+   },
+   {
+    "kind": "top",
+    "window": 1486,
+    "pos": 126,
+    "rel": 0.117,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "しな",
+    "text": "ではないでしょうか、少し長いほうが外れににくいのでは\nスピーカーに接続後10秒ほどはしっかり使えるがその後音の出力が止まり、接続[[しな]]おさないと音が出なくなる"
+   },
+   {
+    "kind": "top",
+    "window": 1485,
+    "pos": 251,
+    "rel": 0.114,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "さ",
+    "text": "ン始動と共に電源オンしないことが増えてきました。SDカードを頻繁にフォーマットしても改善されず･･･。エンジン始動時に電源ボタン押[[さ]]なければならず面"
+   },
+   {
+    "kind": "top",
+    "window": 690,
+    "pos": 130,
+    "rel": 0.112,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "指出",
+    "text": "/)\n\n> 自豪地采用[谷歌翻译](https://translate.google.cn/)\n\n在 Linux 中，就像任何类 Unix 操作系统，一切都只是文件。而 Unix 哲学[[指出]]，配置文件必须是人类"
+   },
+   {
+    "kind": "top",
+    "window": 1548,
+    "pos": 211,
+    "rel": 0.111,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "หมาย",
+    "text": "ี่นี่ ก็ เลิศ มาก\nรา คาที่ จำ ค่าใช้จ่าย ส่งสัญญาณ ให้ กับ จด[[หมาย]] เกี่ยวกับ"
+   }
+  ]
+ }
+}

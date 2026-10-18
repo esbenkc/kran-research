@@ -1,0 +1,620 @@
+{
+ "id": "L0N5754",
+ "layer": 0,
+ "neuron": 5754,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 0.2891,
+  "n_strong_tokens": 54,
+  "n_strong_windows": 48,
+  "strong_gate_open_frac": 0.87,
+  "strong_sources": [
+   [
+    "lang-id",
+    19
+   ],
+   [
+    "OpenWebText2",
+    7
+   ],
+   [
+    "PubMed Abstracts",
+    6
+   ],
+   [
+    "Github",
+    4
+   ],
+   [
+    "Pile-CC",
+    3
+   ],
+   [
+    "FreeLaw",
+    3
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    25
+   ],
+   [
+    "it",
+    4
+   ],
+   [
+    "code",
+    4
+   ],
+   [
+    "ar",
+    3
+   ],
+   [
+    "es",
+    3
+   ],
+   [
+    "sw",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "le",
+    13
+   ],
+   [
+    "lect",
+    4
+   ],
+   [
+    "�",
+    3
+   ],
+   [
+    "les",
+    2
+   ],
+   [
+    "l",
+    2
+   ],
+   [
+    "lem",
+    2
+   ],
+   [
+    "LM",
+    1
+   ],
+   [
+    "let",
+    1
+   ]
+  ],
+  "strong_pos_median": 101,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1547,
+    "pos": 68,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "้ว",
+    "text": "ัย และ ถ้า มหาลัย ค่าใช้จ่าย ทั้งหมด มากกว่า   $   100,000   แล[[้ว]] เซ็กซ์ เพ"
+   },
+   {
+    "kind": "top",
+    "window": 821,
+    "pos": 208,
+    "rel": 0.986,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "les",
+    "text": " these monkeys was 18,400/mm3. Mosquito infections were readily obtained during the period just after the parasite count rose above 1,000/mm3. Anophe[[les]] freeborni, An."
+   },
+   {
+    "kind": "top",
+    "window": 1405,
+    "pos": 53,
+    "rel": 0.966,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": "لا",
+    "text": " عمل عادي لمدة ثمانية ساعات , على الرغم من الطلب الشديد على الخدمات القانونية ال المعوزين في المجتمع .\nواخيرا , يقدم التقرير وصفا مفص[[لا]] لجميع مراحل الت"
+   },
+   {
+    "kind": "top",
+    "window": 1532,
+    "pos": 105,
+    "rel": 0.946,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": "le",
+    "text": "anya kazi kwenye sakafu hiyo .\nKatika uwezo huu wa kimkakati , cio chukua jukumu la kuongoza katika mae[[le]]zo ya kuingiliana"
+   },
+   {
+    "kind": "top",
+    "window": 667,
+    "pos": 21,
+    "rel": 0.919,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "le",
+    "text": "Image copyright Getty Images/BBC Image caption The new venue will hope to attract major artists and events like Ade[[le]], the BBC Sports Personality of"
+   },
+   {
+    "kind": "top",
+    "window": 457,
+    "pos": 95,
+    "rel": 0.899,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "le",
+    "text": " jersey design is printed (Image credit: Sportful) Image 4 of 5 Peter Sagan plays around on the podium, pretending to eat his gold medal (Image credit: Tim de Wae[[le]]/TDWSport.com)"
+   },
+   {
+    "kind": "top",
+    "window": 54,
+    "pos": 48,
+    "rel": 0.861,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "lect",
+    "text": "edo estudia desde hace años la microfauna marina, incluyendo los tardígrados. Hace poco, en el río Saja en el norte de España, reco[[lect]]ó uno que era más extra"
+   },
+   {
+    "kind": "top",
+    "window": 1478,
+    "pos": 145,
+    "rel": 0.855,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "le",
+    "text": " piano di lancio.\nUna donna sta tagliando una perdita.\nUn uomo e una donna con le mani sul mento sono in piedi accanto a un albero di Nata[[le]].\nIl Consiglio della"
+   },
+   {
+    "kind": "top",
+    "window": 898,
+    "pos": 139,
+    "rel": 0.814,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ls",
+    "text": "ly as per given order specifications\n\nInternational Business Sourcing is working as Multi-Functional company in the\nfield of all kind of Yarn, Fabrics, Home textiles and Textile\nAppare[[ls]]. The Chief Executive of the"
+   },
+   {
+    "kind": "top",
+    "window": 1551,
+    "pos": 1,
+    "rel": 0.791,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": "lem",
+    "text": "A[[lem]]gir , önceki on"
+   },
+   {
+    "kind": "top",
+    "window": 609,
+    "pos": 166,
+    "rel": 0.791,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "le",
+    "text": " Dumont, Michel Vaucaire) - 2:15\n\"Hier Encore\" (Charles Aznavour) - 3:06\n\"Parole\" (Michae[[le]], M. Chiosso"
+   },
+   {
+    "kind": "top",
+    "window": 491,
+    "pos": 197,
+    "rel": 0.757,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "le",
+    "text": ", Larnie Boddy, Chauncey Davidson, Milton Lumpkin and Alfred S. Poole (Susan L. Reisner, Public Defender, attorney).\nWayne E. Nata[[le]], Deputy Public Defender II,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 566,
+    "pos": 41,
+    "rel": 0.53,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ldr",
+    "text": " © 2016 and later: Unicode, Inc. and others.\n// License & terms of use: http://www.unicode.org/copyright.html\n// Generated using tools/cldr/c[[ldr]]-to-icu/build-"
+   },
+   {
+    "kind": "random-strong",
+    "window": 113,
+    "pos": 165,
+    "rel": 0.696,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "les",
+    "text": " [] es un objeto y que es equivalente a new Array()\nTambién sé que un array es un objeto exótico, así que uno o más de sus métodos internos esencia[[les]] no tiene comportamiento predetermin"
+   },
+   {
+    "kind": "random-strong",
+    "window": 34,
+    "pos": 70,
+    "rel": 0.726,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "LM",
+    "text": ", CLERK\n                     UNITED STATES COURT OF APPEALS                      U .S. C O U R T OF APPE ALS\n\n\n\n\n                             FOR THE NINTH CIRCUIT\n\n\n\nDE[[LM]]Y NOHEMI LINARE"
+   },
+   {
+    "kind": "random-strong",
+    "window": 422,
+    "pos": 122,
+    "rel": 0.605,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "l",
+    "text": " AMD\n    define([\"../../lib/codemirror\"], mod);\n  else // Plain browser env\n    mod(CodeMirror);\n})(function(CodeMirror) {\n\"use strict\";\n\nCodeMirror.defineMode(\"common[[l]]isp\", function (config)"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1461,
+    "pos": 47,
+    "rel": 0.628,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "hi",
+    "token": "�",
+    "text": "री दोपहर अपने भाषण का अभ ् यास कर रहा था .\nज[[�]]�सा कि �"
+   },
+   {
+    "kind": "random-strong",
+    "window": 816,
+    "pos": 5,
+    "rel": 0.635,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "lect",
+    "text": "Restorative proctoco[[lect]]omy with an ileoanal"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1457,
+    "pos": 99,
+    "rel": 0.713,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": "le",
+    "text": " ces derniers mois, ce n'est hélas pas une blague.\nTrès contente d'avoir fait plaisir à mon neveu mais très déçue pcq la voiture ne rou[[le]] plus après une après midi,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1113,
+    "pos": 11,
+    "rel": 0.547,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Bruins",
+    "text": "It was the perfect juxtaposition.\n\nHere were the Boston[[ Bruins]], energized since the switch"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 2.5,
+  "n_strong_tokens": 38,
+  "n_strong_windows": 20,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    6
+   ],
+   [
+    "OpenWebText2",
+    5
+   ],
+   [
+    "PubMed Abstracts",
+    3
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "Wikipedia (en)",
+    2
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    18
+   ],
+   [
+    "code",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "bl",
+    12
+   ],
+   [
+    "BL",
+    11
+   ],
+   [
+    "ble",
+    6
+   ],
+   [
+    "bling",
+    2
+   ],
+   [
+    "blers",
+    1
+   ],
+   [
+    "bled",
+    1
+   ],
+   [
+    "umbling",
+    1
+   ],
+   [
+    " stumble",
+    1
+   ]
+  ],
+  "strong_pos_median": 94,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 802,
+    "pos": 16,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "bling",
+    "text": "Lorna V.'s Discussions\n\nLorna V.'s Page\n\nBeen dab[[bling]] with writing zines since last"
+   },
+   {
+    "kind": "top",
+    "window": 350,
+    "pos": 189,
+    "rel": 0.994,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "umbling",
+    "text": " about unintended pregnancy.” And it’s true – if realism is your aim (and admittedly this is not always the case), pretending that people hop into bed with each other without going through that awkward “f[[umbling]] in the bedside cabinet drawer”"
+   },
+   {
+    "kind": "top",
+    "window": 732,
+    "pos": 27,
+    "rel": 0.912,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " stumble",
+    "text": "February’s Quick Look\n\nI didn’t read as many books this month, and the books I read were a bit disappointing. I did[[ stumble]] over a lot of great articles"
+   },
+   {
+    "kind": "top",
+    "window": 954,
+    "pos": 154,
+    "rel": 0.869,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "gle",
+    "text": " in a shiny shade of silver.\n\nWhile it's not as powerful as the E-P1 or as much of a bargain as the E-PL1, at least now interested buyers have a little wig[[gle]] room when it comes to design"
+   },
+   {
+    "kind": "top",
+    "window": 1347,
+    "pos": 46,
+    "rel": 0.838,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "bl",
+    "text": "D Printer Firmware\n * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]\n *\n * Based on Sprinter and gr[[bl]].\n * Copyright (c)"
+   },
+   {
+    "kind": "top",
+    "window": 937,
+    "pos": 124,
+    "rel": 0.825,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "bling",
+    "text": " their food intake to 1000 kcal/day. Seven subjects consumed the diet in two meals daily (gorging pattern), the others consumed the diet in three to five meals (nib[[bling]] pattern). Body mass and body"
+   },
+   {
+    "kind": "top",
+    "window": 178,
+    "pos": 35,
+    "rel": 0.744,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "bl",
+    "text": "List of SWAT Kats: The Radical Squadron characters\n\nSWAT Kats: The Radical Squadron is an animated series for television created by Christian Tremblay and Yvon Trem[[bl]]ay and produced by Hanna-Bar"
+   },
+   {
+    "kind": "top",
+    "window": 609,
+    "pos": 77,
+    "rel": 0.731,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "ble",
+    "text": " France. She mostly sings the songs on this album in French (except \"Le Meteque\" has some Turkish lyrics and \"La Vie en Rose\" has some German lyrics). \"Il Me Sem[[ble]]\" is the French translation of"
+   },
+   {
+    "kind": "top",
+    "window": 466,
+    "pos": 88,
+    "rel": 0.688,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "bl",
+    "text": "ata, viene l'aspetto (per me) più complicato: l'arredamento.È un passaggio che inizialmente mi dà noia, in quanto mi ob[[bl]]iga a sospendere la"
+   },
+   {
+    "kind": "top",
+    "window": 1186,
+    "pos": 30,
+    "rel": 0.681,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " stumbled",
+    "text": "Q:\n\nEvaluating $\\int \\sqrt{x}\\ln(2x)\\:\\mathrm{d}x$\n\nI am learning to an exam and[[ stumbled]] upon this integral.\n$$\\"
+   },
+   {
+    "kind": "top",
+    "window": 766,
+    "pos": 26,
+    "rel": 0.644,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "bl",
+    "text": "Postprandial sphincter of Oddi myoelectric activity and gallbladder emptying.\nFeeding initiates gall[[bl]]adder emptying and bile delivery"
+   },
+   {
+    "kind": "top",
+    "window": 1014,
+    "pos": 135,
+    "rel": 0.622,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "ble",
+    "text": ". Germain in her letter.\n\n\n\n\"It has been there since December 2004/January 2005 and is covered with dirty, decaying remnants of clothing items, sun-[[ble]]ached plastic flowers and more seem"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1142,
+    "pos": 10,
+    "rel": 0.566,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "BL",
+    "text": "Tag: Echo Bluetooth\n\nThis post demonstrates pairing J[[BL]] Clip 3 with Amazon Echo"
+   },
+   {
+    "kind": "random-strong",
+    "window": 205,
+    "pos": 14,
+    "rel": 0.603,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "bl",
+    "text": "Prognostic value of TROP2 expression in patients with gall[[bl]]adder cancer.\nAltered expression"
+   },
+   {
+    "kind": "random-strong",
+    "window": 273,
+    "pos": 181,
+    "rel": 0.506,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "blers",
+    "text": "in Norfolk. Participants also cleared debris from the water’s\nedge, removed invasive plant species, built and installed 20 nesting\nboxes for wetland-loving birds known as prothonotary war[[blers]], and tested\nwater quality"
+   },
+   {
+    "kind": "random-strong",
+    "window": 316,
+    "pos": 150,
+    "rel": 0.503,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "bled",
+    "text": "993, when Rifkin was pulled over by the police who discovered a corpse in his car. He was convicted of murder the following year and later pleaded guilty to additional counts of murders.\n\nTrou[[bled]] Childhood Joel David Rifkin was"
+   },
+   {
+    "kind": "random-strong",
+    "window": 830,
+    "pos": 250,
+    "rel": 0.534,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "BL",
+    "text": " shot down those claims, so what else are people supposed to believe?\n\nMany are starting to believe that is the case because of some incidents former WWE writer Justin Roberts shared in his new book, and J[[BL]] has also started to take"
+   },
+   {
+    "kind": "random-strong",
+    "window": 944,
+    "pos": 124,
+    "rel": 0.591,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ble",
+    "text": " FPdbleword\n{\n\t'F' 0 x;\n\t{\n\t'U' 0 lo;\n\t'U' 4 hi;\n\t};\n};\n\ndefn\nFPd[[ble]]word(addr) {\n\tcomplex"
+   },
+   {
+    "kind": "random-strong",
+    "window": 854,
+    "pos": 122,
+    "rel": 0.613,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "bl",
+    "text": " a condition that often results from an imbalance between food intake and caloric expenditure. Excessive weight increases the likelihood of several additional risks including cardiovascular complications (such as hypertension and hyperlipidemia), gall[[bl]]adder disease, metabolic syndrome,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1098,
+    "pos": 89,
+    "rel": 0.509,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "ling",
+    "text": " in \"Empress Ki.\" Yoon Eun Hye played a waiter in \"Coffee Prince.\"\n\nAnd there have also been a few k-drama characters that dressed up as women. The fledg[[ling]] shoe designer played by Lee J"
+   }
+  ]
+ }
+}

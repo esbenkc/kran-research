@@ -1,0 +1,632 @@
+{
+ "id": "L29N8456",
+ "layer": 29,
+ "neuron": 8456,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 20.75,
+  "n_strong_tokens": 40,
+  "n_strong_windows": 28,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    7
+   ],
+   [
+    "PubMed Abstracts",
+    5
+   ],
+   [
+    "Github",
+    4
+   ],
+   [
+    "lang-id",
+    4
+   ],
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "NIH ExPorter",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    20
+   ],
+   [
+    "code",
+    4
+   ],
+   [
+    "bg",
+    1
+   ],
+   [
+    "ar",
+    1
+   ],
+   [
+    "vi",
+    1
+   ],
+   [
+    "it",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " gene",
+    5
+   ],
+   [
+    " SUBSTITUTE",
+    4
+   ],
+   [
+    " the",
+    2
+   ],
+   [
+    " selling",
+    2
+   ],
+   [
+    ",",
+    2
+   ],
+   [
+    " genes",
+    2
+   ],
+   [
+    " protein",
+    2
+   ],
+   [
+    "A",
+    1
+   ]
+  ],
+  "strong_pos_median": 91,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1302,
+    "pos": 228,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " SUBSTITUTE",
+    "text": " ARE DISCLAIMED. IN NO\n * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\n * PROCUREMENT OF[[ SUBSTITUTE]] GOODS OR SERVICES; LOSS OF"
+   },
+   {
+    "kind": "top",
+    "window": 1377,
+    "pos": 243,
+    "rel": 0.988,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " SUBSTITUTE",
+    "text": " NO EVENT SHALL THE COPYRIGHT\n * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\n * LIMITED TO, PROCUREMENT OF[[ SUBSTITUTE]] GOODS OR SERVICES; LOSS OF"
+   },
+   {
+    "kind": "top",
+    "window": 169,
+    "pos": 228,
+    "rel": 0.97,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " gene",
+    "text": " of the clones obtained after pSV3neo transfection has revealed the presence of gene A sequences either at early (9-15), or later (62) passages. The expression of the[[ gene]] A product in cells of these"
+   },
+   {
+    "kind": "top",
+    "window": 859,
+    "pos": 65,
+    "rel": 0.964,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " protein",
+    "text": "12, also known as SLC22A12 and URAT1, is a protein which in humans is encoded by the SLC22A12 gene.\n\nFunction \nThe[[ protein]] encoded by this gene is a"
+   },
+   {
+    "kind": "top",
+    "window": 565,
+    "pos": 229,
+    "rel": 0.928,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " SUBSTITUTE",
+    "text": "ED. IN NO EVENT SHALL DANIEL GUERRERO BE LIABLE FOR ANY\nDIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF[[ SUBSTITUTE]] GOODS OR SERVICES;\nLOSS OF"
+   },
+   {
+    "kind": "top",
+    "window": 794,
+    "pos": 208,
+    "rel": 0.873,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " SUBSTITUTE",
+    "text": " SHALL APPLE INC. OR ITS CONTRIBUTORS\n * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\n * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\n *[[ SUBSTITUTE]] GOODS OR SERVICES; LOSS OF"
+   },
+   {
+    "kind": "top",
+    "window": 530,
+    "pos": 180,
+    "rel": 0.807,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " your",
+    "text": "acked severally so yow will discover what could should be improved to get a greater response out of your target market.\n\nThe largest distinction is SEO is intermeshed in direction of acquiring customers to try[[ your]] webpages. To do that"
+   },
+   {
+    "kind": "top",
+    "window": 258,
+    "pos": 14,
+    "rel": 0.795,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Your",
+    "text": "Getting To The Point – Experts\n\nWays To Allow You To Vend[[ Your]] Real Estate To The Real Estate"
+   },
+   {
+    "kind": "top",
+    "window": 448,
+    "pos": 21,
+    "rel": 0.72,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " gene",
+    "text": "Familial Mediterranean fever-associated diseases in children.\nMEditerranean FeVer (MEFV)[[ gene]] encodes for the pyrin"
+   },
+   {
+    "kind": "top",
+    "window": 1198,
+    "pos": 71,
+    "rel": 0.675,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ",",
+    "text": " or testimonials, portfolio pages with image …\n\nGo Green and save the world. This slogan represents a modern minimalistic and clean Wordpress Theme. Coming with a shortcode generator you`re able to present your business[[,]] private portfolio, artwork or photography"
+   },
+   {
+    "kind": "top",
+    "window": 1412,
+    "pos": 13,
+    "rel": 0.663,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": " от",
+    "text": "в началото на производството 78 %[[ от]] тези критич"
+   },
+   {
+    "kind": "top",
+    "window": 206,
+    "pos": 230,
+    "rel": 0.645,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " selling",
+    "text": " a block party filled with food, games, live entertainment, prizes and cultural demonstrations. The nonprofit Chinatown Merchants Association, which organizes the festival, hopes to have about 100 vendors[[ selling]] food and drinks and about "
+   },
+   {
+    "kind": "random-strong",
+    "window": 575,
+    "pos": 72,
+    "rel": 0.554,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " genes",
+    "text": " the least differentiated member of the peripheral primitive neuroectodermal (pPNET) tumor family. Chromosomal translocations involving the EWS gene and five different Ets family transcription factor genes create fusion[[ genes]] encoding aberrant transcription factors and"
+   },
+   {
+    "kind": "random-strong",
+    "window": 260,
+    "pos": 53,
+    "rel": 0.636,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ",",
+    "text": "Opinion by Barbara: Have them cross the border to receive payment then charge them with Extortion (also called shakedown, out wrestling and exaction) is a criminal offense of obtaining money, property[[,]] or services from an individual or"
+   },
+   {
+    "kind": "random-strong",
+    "window": 324,
+    "pos": 85,
+    "rel": 0.506,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " selling",
+    "text": " yang baru masuk ke dalam bisnis forex maka forum diskusi dapat membantu untuk mendapatkan ide atau saran dari trader forex lainnya yang lebih berpengalaman. This trading tool identifies merchants[[ selling]] items below market average and corresponding"
+   },
+   {
+    "kind": "random-strong",
+    "window": 255,
+    "pos": 131,
+    "rel": 0.557,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " their",
+    "text": "29 September 2009\n\nWithin three years of opening their vineyard on Dalditch Lane, Budleigh producers Faye and Alan Pratt (pictured left) were delighted to find that[[ their]] red table wine has been a"
+   },
+   {
+    "kind": "random-strong",
+    "window": 476,
+    "pos": 244,
+    "rel": 0.566,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " gene",
+    "text": "'s Center for Biologics Evaluation and Research.\n\nHemophilia A is an inherited, sex-linked, blood clotting disorder, which primarily affects males, and is caused by defects in the Factor VIII[[ gene]]. Hemophilia A affects "
+   },
+   {
+    "kind": "random-strong",
+    "window": 936,
+    "pos": 84,
+    "rel": 0.599,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " the",
+    "text": " genes. Molecular and genetic analyses have shown that the developmental and tissue-specific expression of zeins is dependent on the trans-acting regulatory locus, opaque-2 (o2). Our research has demonstrated that[[ the]] product of this locus is a"
+   },
+   {
+    "kind": "random-strong",
+    "window": 281,
+    "pos": 17,
+    "rel": 0.639,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " genes",
+    "text": "Background\n==========\n\nCancer is fundamentally a disease of genomic origin. Alterations in[[ genes]] and regulatory elements critical to cell"
+   },
+   {
+    "kind": "random-strong",
+    "window": 176,
+    "pos": 26,
+    "rel": 0.554,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "emia",
+    "text": "Finnish Fanconi anemia mutations and hereditary predisposition to breast and prostate cancer.\nMutations in downstream Fanconi an[[emia]] (FA) pathway genes,"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 13.375,
+  "n_strong_tokens": 46,
+  "n_strong_windows": 32,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    18
+   ],
+   [
+    "Pile-CC",
+    6
+   ],
+   [
+    "StackExchange",
+    4
+   ],
+   [
+    "Github",
+    3
+   ],
+   [
+    "PubMed Central",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    11
+   ],
+   [
+    "ja",
+    4
+   ],
+   [
+    "fr",
+    4
+   ],
+   [
+    "zh",
+    4
+   ],
+   [
+    "es",
+    3
+   ],
+   [
+    "code",
+    3
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "商品",
+    4
+   ],
+   [
+    " OR",
+    3
+   ],
+   [
+    "Product",
+    2
+   ],
+   [
+    " product",
+    2
+   ],
+   [
+    " '",
+    2
+   ],
+   [
+    " producto",
+    2
+   ],
+   [
+    " la",
+    2
+   ],
+   [
+    " en",
+    2
+   ]
+  ],
+  "strong_pos_median": 97,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1489,
+    "pos": 174,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "商品",
+    "text": "タンクの錆でホースが詰まって交換\n安かろう悪かろうと思ってましたが、そんな事は無く良かったです。ありがとうございました。\n子機1台付きとの[[商品]]タイトルですが、子機が"
+   },
+   {
+    "kind": "top",
+    "window": 1485,
+    "pos": 23,
+    "rel": 0.977,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": " 商品",
+    "text": "注文してから商品が届くまで12日かかりました。 すぐに必要な人は注意して下さい。[[ 商品]]自体は薄手で"
+   },
+   {
+    "kind": "top",
+    "window": 1449,
+    "pos": 112,
+    "rel": 0.963,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " en",
+    "text": "Queda muy feo con el borde metalico ademas tapa la pantalla por lo menos un milimetro de cada lateral\nNo se parece para nada a la foto del producto mostrado[[ en]] Amazon. Esta plano totalmente y"
+   },
+   {
+    "kind": "top",
+    "window": 794,
+    "pos": 210,
+    "rel": 0.827,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " OR",
+    "text": " INC. OR ITS CONTRIBUTORS\n * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\n * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\n * SUBSTITUTE GOODS[[ OR]] SERVICES; LOSS OF USE,"
+   },
+   {
+    "kind": "top",
+    "window": 1455,
+    "pos": 39,
+    "rel": 0.827,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": " de",
+    "text": "Vendeur ne répondant pas aux sollicitations. Colis jamais livrés même pas certain qu’il ait été expédié\nParfait satisfaite du produit et[[ de]] la réception rapide, je"
+   },
+   {
+    "kind": "top",
+    "window": 1589,
+    "pos": 171,
+    "rel": 0.776,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "产品",
+    "text": "宝宝用了红屁股，不知道是不是假货！物流发过来脏q\n不太耐用，用了不到半年就又要换了。之前的忘记是哪个牌子的了，不过用了一年多。\n[[产品]]本身很好用。但是，"
+   },
+   {
+    "kind": "top",
+    "window": 1095,
+    "pos": 230,
+    "rel": 0.776,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " @",
+    "text": ":\n\nI cannot find a cube style but the following did come across as a good option.\nSilverStone PS08B @ Newegg 39.99\nSilverStone PS08B[[ @]] Amazon(prime eligible) "
+   },
+   {
+    "kind": "top",
+    "window": 1452,
+    "pos": 1,
+    "rel": 0.766,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": " produit",
+    "text": "le[[ produit]] est arrivée avec la bo"
+   },
+   {
+    "kind": "top",
+    "window": 1445,
+    "pos": 221,
+    "rel": 0.752,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " en",
+    "text": " es un buen producto y útil\ncumple su función, es de buena calidad y el envío fue rápido, lo malo el precio, bastante caro si lo comparas con el mismo producto[[ en]] webs chinas, pero claro"
+   },
+   {
+    "kind": "top",
+    "window": 605,
+    "pos": 96,
+    "rel": 0.743,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " and",
+    "text": " after purchase. Amount paid never expires.Limit 2 per person, may buy 3 additional as gifts. Online only.Merchant is solely responsible to purchasers for the care and quality of the advertised goods[[ and]] services.\n\nPBS Bartending School"
+   },
+   {
+    "kind": "top",
+    "window": 1483,
+    "pos": 1,
+    "rel": 0.738,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "品",
+    "text": "製[[品]]の品質はとても良くて"
+   },
+   {
+    "kind": "top",
+    "window": 553,
+    "pos": 5,
+    "rel": 0.682,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " product",
+    "text": "Q:\n\nWoocommerce show[[ product]]\n\nI am a little confused"
+   },
+   {
+    "kind": "random-strong",
+    "window": 107,
+    "pos": 9,
+    "rel": 0.521,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Products",
+    "text": "Pictures of Eternal Celebration Ring Celebration Ring\n\nMatching[[ Products]]\n\nDimensions\n\nTestimonials\n\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1585,
+    "pos": 238,
+    "rel": 0.582,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "购物",
+    "text": "包装，一个没包装，一个看起来新的一个上面沾有纤维物质看起来就是用过的，或者是样品.....这是不尊重卖家....不尊重我们这些新粉对亚马逊的信任……装在[[购物]]车里的东西也不想买了\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1588,
+    "pos": 91,
+    "rel": 0.521,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "是",
+    "text": "比我平常穿的l码要大了一号。最最重要的事情是，同事说是我爸爸穿的衣服😊本人28不合适吗？\n鼠标的SN和盒子的SN不一致！估计[[是]]二次包装的！还好鼠标"
+   },
+   {
+    "kind": "random-strong",
+    "window": 324,
+    "pos": 87,
+    "rel": 0.547,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " below",
+    "text": " masuk ke dalam bisnis forex maka forum diskusi dapat membantu untuk mendapatkan ide atau saran dari trader forex lainnya yang lebih berpengalaman. This trading tool identifies merchants selling items[[ below]] market average and corresponding! The"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1450,
+    "pos": 162,
+    "rel": 0.514,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": " de",
+    "text": " erreur de ma part\nTrès bon produit la coque s’adapte très bien à l’iPhone. Rien à redire je la recommande sans hésiter.\nProduit[[ de]] qualité, mais je pensais"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1440,
+    "pos": 1,
+    "rel": 0.617,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " producto",
+    "text": "Este[[ producto]] me encanta para decorar"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1377,
+    "pos": 245,
+    "rel": 0.535,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " OR",
+    "text": " SHALL THE COPYRIGHT\n * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\n * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS[[ OR]] SERVICES; LOSS OF USE,\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1004,
+    "pos": 33,
+    "rel": 0.565,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " RT",
+    "text": "Q:\n\nExcel - SUMIFS + INDEX + MATCH with Multiple Criteria\n\nIn the example below, I'm trying to sum any numbers that fit the criteria: Beverage +[[ RT]]D Coffee for the month of"
+   }
+  ]
+ }
+}

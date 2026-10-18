@@ -1,0 +1,608 @@
+{
+ "id": "L10N195",
+ "layer": 10,
+ "neuron": 195,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 1.1719,
+  "n_strong_tokens": 179,
+  "n_strong_windows": 85,
+  "strong_gate_open_frac": 0.045,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    35
+   ],
+   [
+    "OpenWebText2",
+    18
+   ],
+   [
+    "Wikipedia (en)",
+    12
+   ],
+   [
+    "lang-id",
+    9
+   ],
+   [
+    "PubMed Central",
+    3
+   ],
+   [
+    "PubMed Abstracts",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    74
+   ],
+   [
+    "it",
+    3
+   ],
+   [
+    "code",
+    2
+   ],
+   [
+    "pt",
+    1
+   ],
+   [
+    "hi",
+    1
+   ],
+   [
+    "pl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "0",
+    7
+   ],
+   [
+    "1",
+    7
+   ],
+   [
+    "\n\n",
+    5
+   ],
+   [
+    " National",
+    4
+   ],
+   [
+    " ",
+    4
+   ],
+   [
+    "oo",
+    3
+   ],
+   [
+    " coverage",
+    3
+   ],
+   [
+    " League",
+    3
+   ]
+  ],
+  "strong_pos_median": 86,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 44,
+    "pos": 124,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "8",
+    "text": " name was changed to South Suburban School, Bhowanipur. The school was relocated to Govinda Bose Lane (its current location). The secondary building of the school was built in 18[[8]]8 by an Italian engineer and"
+   },
+   {
+    "kind": "top",
+    "window": 978,
+    "pos": 78,
+    "rel": 0.973,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " high",
+    "text": " Mumbai\n\nFirst Day of Ancient Civilisations Tour. Assistance on arrival & Transfer to Hotel, Afternoon sightseeing Mumbai, visit in the city are the gateway of India the 262 ft.[[ high]] gateway, overlooking the sea,"
+   },
+   {
+    "kind": "top",
+    "window": 1475,
+    "pos": 71,
+    "rel": 0.873,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " al",
+    "text": " rapporto di amnistia internazionale suggeriva che - il belgio iniziasse immediatamente i colloqui con l'india per prevenire future vendite di[[ al]]h, componenti o tecn"
+   },
+   {
+    "kind": "top",
+    "window": 345,
+    "pos": 54,
+    "rel": 0.713,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Insurance",
+    "text": " in the UK, from 6th April 2016 certain temporary workers will no longer be able to claim relief for travel and subsistence expenses.\n\nThe current tax relief and disregard for National[[ Insurance]] contributions (NIC) on travel"
+   },
+   {
+    "kind": "top",
+    "window": 92,
+    "pos": 244,
+    "rel": 0.707,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " tax",
+    "text": " taken to court by their workers - over the past several months. While specific details vary, all revolve around the legitimacy of workers being classed as self-employed contractors rather than employees, with the different[[ tax]] obligations and employee entitlements this"
+   },
+   {
+    "kind": "top",
+    "window": 310,
+    "pos": 65,
+    "rel": 0.703,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "isation",
+    "text": " 2010 for a range of standard measures derived from Australian Childhood Immunisation Register (ACIR) data. These include coverage at standard age milestones and for individual vaccines included on the National Immun[[isation]] Program (NIP). For"
+   },
+   {
+    "kind": "top",
+    "window": 337,
+    "pos": 85,
+    "rel": 0.697,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "\n\n",
+    "text": " Night May13 SUS-150226-161658003\n\nPublished:10:00Sunday 11 October 2015[[\n\n]]The Observatory Science Centre is launching"
+   },
+   {
+    "kind": "top",
+    "window": 348,
+    "pos": 59,
+    "rel": 0.673,
+    "gate_open": false,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Post",
+    "text": " journalist and political candidate who wrote for the Irish Mail on Sunday and is a former editor of The Irish Catholic. He has also written for The Sunday Times, Sunday Independent, Sunday Mirror, The Sunday Business[[ Post]] and Magill magazine. In"
+   },
+   {
+    "kind": "top",
+    "window": 927,
+    "pos": 238,
+    "rel": 0.663,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " League",
+    "text": " I can't think it's something we are going to ignore. He wasn't taking the mick out of the game, it was just a really poor decision.'\n\nIt happened before the Women's Super[[ League]] match between Manchester City and Reading"
+   },
+   {
+    "kind": "top",
+    "window": 725,
+    "pos": 43,
+    "rel": 0.663,
+    "gate_open": false,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " League",
+    "text": "\n\nKnox Cameron (born September 17, 1983 in Kingston) is a Jamaican-born American soccer player who most recently played for AFC Ann Arbor in the National Premier Soccer[[ League]].\n\nCareer\n\nCollege and Amateur"
+   },
+   {
+    "kind": "top",
+    "window": 1061,
+    "pos": 209,
+    "rel": 0.653,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "om",
+    "text": " able to contribute in a more significant way, hopefully by the end of April.\n\nThe media was also told that power plants generally performed better during the cooler conditions in winter.\n\nGordhan along with Esk[[om]] board chairman Jabu Mab"
+   },
+   {
+    "kind": "top",
+    "window": 1015,
+    "pos": 39,
+    "rel": 0.653,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " League",
+    "text": "Last updated on .From the section Women's Football\n\nMaria Thorisdottir's late strike earned a thrilling derby victory as Chelsea hit back to end Arsenal's perfect start to the Women's Super[[ League]] season.\n\nThe Gunners led"
+   },
+   {
+    "kind": "random-strong",
+    "window": 610,
+    "pos": 189,
+    "rel": 0.513,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "力",
+    "text": "月に一部、発電を開始したこの施設は先月半ばに全3段階の計画のうちの第2段階が始働した。\n\n仏電[[力]]大手フランス電力（"
+   },
+   {
+    "kind": "random-strong",
+    "window": 343,
+    "pos": 128,
+    "rel": 0.617,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "itation",
+    "text": " day, diarrhoea is the third leading cause of death among under-fives in Kenya. It is unacceptable, but we can stop this!” said Beth Mugo, Minister for Public Health and San[[itation]], at the 31"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1023,
+    "pos": 38,
+    "rel": 0.637,
+    "gate_open": false,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " List",
+    "text": "St Andrew's Church, Redbourne\n\nSt Andrew's Church is a redundant Anglican church in the village of Redbourne, Lincolnshire, England.  It is recorded in the National Heritage[[ List]] for England as a designated Grade"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1472,
+    "pos": 1,
+    "rel": 0.547,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "ran",
+    "text": "Im[[ran]] a concorso da qu"
+   },
+   {
+    "kind": "random-strong",
+    "window": 909,
+    "pos": 33,
+    "rel": 0.573,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "ma",
+    "text": "Publicidade\n\nAs eleições municipais de outubro tiveram peso decisivo na decisão do PMDB-RJ de romper com o governo Dil[[ma]] Rousseff.\n\nO diretório"
+   },
+   {
+    "kind": "random-strong",
+    "window": 607,
+    "pos": 33,
+    "rel": 0.573,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " charged",
+    "text": "Revealed: The face of the woman accused of brutal McDonald's beating... as it emerges she was arrested for assault last year at the SAME restaurant\n\n\n\nPolice have[[ charged]] 18-year-old with"
+   },
+   {
+    "kind": "random-strong",
+    "window": 116,
+    "pos": 86,
+    "rel": 0.63,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " National",
+    "text": " those affected\n\nFacebook has imposed a ban on a dozen far-right individuals and organisations that it says \"spread hate\".\n\nThe ban includes the British National Party and Nick Griffin, the English Defence League and the[[ National]] Front.\n\nThe list also includes"
+   },
+   {
+    "kind": "random-strong",
+    "window": 894,
+    "pos": 113,
+    "rel": 0.527,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Dur",
+    "text": " – so much so that he decided to take a break from swimming.\n“The pressure and expectations [from within myself] got the better of me,” he tells me at a coffee shop in Westville,[[ Dur]]ban. “I didn’t"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 14.25,
+  "n_strong_tokens": 18,
+  "n_strong_windows": 9,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    5
+   ],
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ],
+   [
+    "PubMed Central",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    9
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "anas",
+    3
+   ],
+   [
+    "\n\n",
+    2
+   ],
+   [
+    ".",
+    1
+   ],
+   [
+    "he",
+    1
+   ],
+   [
+    " Indian",
+    1
+   ],
+   [
+    "AD",
+    1
+   ],
+   [
+    ",",
+    1
+   ],
+   [
+    "thal",
+    1
+   ]
+  ],
+  "strong_pos_median": 132,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1117,
+    "pos": 81,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Supreme",
+    "text": " decriminalising the possession of beef in case of animals slaughtered outside the state.\n\nSenior advocate observation after the privacy verdict: the right to eat food of one’s choice was now protected under privacy.\n\nThe[[ Supreme]] Courts observations while deciding Right to"
+   },
+   {
+    "kind": "top",
+    "window": 633,
+    "pos": 135,
+    "rel": 0.671,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "AD",
+    "text": " ill-treatment\", MDMK had on Sunday decided to quit the electoral battle after the last minute efforts by the former to retain its five-year-old ally in the alliance did not succeed.\n\nThe AI[[AD]]MK had offered 13"
+   },
+   {
+    "kind": "top",
+    "window": 978,
+    "pos": 205,
+    "rel": 0.645,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "thal",
+    "text": " tidal creek from the Gulf of Cambay. It is the centre for trade and industry. Cotton produced in India is exported from here.\n\nDay 03 Bhavanagar/Palitana/Lo[[thal]]\n\nEarly morning leave for Lo"
+   },
+   {
+    "kind": "top",
+    "window": 658,
+    "pos": 29,
+    "rel": 0.623,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "\n\n",
+    "text": "Marginal improvement in Assam situation\n\nLast updated on: November 21, 2003 13:13 IST[[\n\n]]An uneasy calm prevails in"
+   },
+   {
+    "kind": "top",
+    "window": 529,
+    "pos": 24,
+    "rel": 0.614,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Indian",
+    "text": "Sunil Kumar Jakhar\n\nSunil Kumar Jakhar (born 9 February 1954) is an[[ Indian]] Politician and President of Punjab"
+   },
+   {
+    "kind": "top",
+    "window": 403,
+    "pos": 90,
+    "rel": 0.555,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "he",
+    "text": " be priced between Rs 90,000 and Rs 95,000 (ex-showroom)\n\nHonda is gearing up to launch 4 new products in the Indian two-w[[he]]eler market this year. The"
+   },
+   {
+    "kind": "top",
+    "window": 903,
+    "pos": 22,
+    "rel": 0.522,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "\n\n",
+    "text": "cricket\n\nUpdated: Feb 23, 2019 10:45 IST[[\n\n]]India captain Virat Kohli"
+   },
+   {
+    "kind": "top",
+    "window": 729,
+    "pos": 241,
+    "rel": 0.513,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ",",
+    "text": " of girls improved from 88.6 to 92.5 percent. Unlike recent years, boys have done better than girls by 0.9 percent.\n\nWhile 1,05[[,]]188 boys have scored"
+   },
+   {
+    "kind": "top",
+    "window": 295,
+    "pos": 132,
+    "rel": 0.509,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": ".",
+    "text": "^**\n\nDivision of Cyclotron and Radiopharmaceutical Sciences, ^1^Division of PET Imaging, ^2^Division of Radiation Biosciences, Institute of Nuclear Medicine and Allied Sciences, Brig[[.]] S.K. Mazumdar"
+   },
+   {
+    "kind": "top",
+    "window": 721,
+    "pos": 22,
+    "rel": 0.489,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "\n\n",
+    "text": "patna\n\nUpdated: Aug 26, 2015 09:01 IST[[\n\n]]As Rakhis fly off"
+   },
+   {
+    "kind": "top",
+    "window": 296,
+    "pos": 68,
+    "rel": 0.478,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "I",
+    "text": " chief, govt says he'll 'monitor' Sheena probe\n\nREAD ALSO:\n\nIn hurried move, CM upgraded CP post to DG rank to fit Javed\n\nWill he quit?\n\nMUMBA[[I]]: Rakesh Maria did"
+   },
+   {
+    "kind": "top",
+    "window": 336,
+    "pos": 238,
+    "rel": 0.379,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "Apart",
+    "text": " is all about monitoring the condition of your motorcycle from time to time. By keeping an eye out on our motorcycle in a timely manner, you can boost its performance and lower the expenses on its repairs.\n\n[[Apart]] from saving money, you can"
+   },
+   {
+    "kind": "top",
+    "window": 1495,
+    "pos": 120,
+    "rel": 0.373,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": "st",
+    "text": " gouden strepen.\nExit polls suggereren Poetin bondgenoot wint Moskou stem\nEen man is papier aan het vouwen.\nIndiase maoï[[st]]ische rebellen bieden ges"
+   },
+   {
+    "kind": "top",
+    "window": 64,
+    "pos": 8,
+    "rel": 0.366,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " of",
+    "text": "Local\n\nAERO Institute, National Institute[[ of]] Aerospace, and Ohio Aerospace Institute"
+   },
+   {
+    "kind": "top",
+    "window": 1475,
+    "pos": 62,
+    "rel": 0.362,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "ia",
+    "text": " - espansione VIOLenta.\nil rapporto di amnistia internazionale suggeriva che - il belgio iniziasse immediatamente i colloqui con l'ind[[ia]] per prevenire future vend"
+   },
+   {
+    "kind": "top",
+    "window": 122,
+    "pos": 57,
+    "rel": 0.362,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " IST",
+    "text": " conference,Google said it’s working with Qualcomm on a sample design so other manufacturers can build headsets.Bloomberg | May 18, 2017, 09:51[[ IST]]\n\nFor representational purposes only"
+   },
+   {
+    "kind": "top",
+    "window": 753,
+    "pos": 51,
+    "rel": 0.349,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "aan",
+    "text": " to mars\n\nThe colonization of the Moon is a proposed establishment of permanent human communities or robotic industries [1] [2] on the Moon. Discovery of lunar water at the lunar poles by Chandray[[aan]]-1 has renewed interest in"
+   },
+   {
+    "kind": "top",
+    "window": 44,
+    "pos": 203,
+    "rel": 0.307,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " India",
+    "text": ". Institution (now known as South Suburban School (Branch), Sir Ramesh Mitra Balika Vidyalaya and Chakraberia High School.\n\nSchool anthem\nThe national anthem of[[ India]] is chosen as the anthem of"
+   },
+   {
+    "kind": "top",
+    "window": 1517,
+    "pos": 17,
+    "rel": 0.3,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "iana",
+    "text": "Um rapaz está a tocar piano.\nOs acusados de violação ind[[iana]] enfrentam veredictos"
+   },
+   {
+    "kind": "top",
+    "window": 409,
+    "pos": 127,
+    "rel": 0.292,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " colors",
+    "text": " Date().getTime();\n\nvar options = {\n    series: {\n        lines: {\n            lineWidth: 1.2\n        },\n        bars: {\n            align: \"center\",\n            fillColor: {[[ colors]]: [{ opacity: 1"
+   }
+  ]
+ }
+}

@@ -1,0 +1,604 @@
+{
+ "id": "L23N2014",
+ "layer": 23,
+ "neuron": 2014,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 6.8438,
+  "n_strong_tokens": 32,
+  "n_strong_windows": 30,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    17
+   ],
+   [
+    "OpenWebText2",
+    7
+   ],
+   [
+    "Wikipedia (en)",
+    2
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "PhilPapers",
+    1
+   ],
+   [
+    "Enron Emails",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    28
+   ],
+   [
+    "code",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ".\n\n",
+    9
+   ],
+   [
+    "\n\n",
+    5
+   ],
+   [
+    ")\n\n",
+    2
+   ],
+   [
+    "\n",
+    2
+   ],
+   [
+    "ANT",
+    1
+   ],
+   [
+    "!\n\n",
+    1
+   ],
+   [
+    "\n\n\n\n\n\n\n\n\n\n",
+    1
+   ],
+   [
+    "\n\n\n\n",
+    1
+   ]
+  ],
+  "strong_pos_median": 69,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1042,
+    "pos": 70,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Domain",
+    "text": " Worker [Canada] Vol. 4, No. 5, March 1968Transcription, Editing and Markup: Malcolm and Paul SabaCopyright: This work is in the Public[[ Domain]] under the Creative Commons Common De"
+   },
+   {
+    "kind": "top",
+    "window": 744,
+    "pos": 32,
+    "rel": 0.826,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " notice",
+    "text": "What is really going on in politics? Get our daily email briefing straight to your inbox Sign up Thank you for subscribing We have more newsletters Show me See our privacy[[ notice]] Invalid Email\n\nCampaigners are"
+   },
+   {
+    "kind": "top",
+    "window": 173,
+    "pos": 16,
+    "rel": 0.763,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": "Design & Creative\n\nQuick Contact\n\n(*Required)\n\nYou will hear from us soon[[.\n\n]]Great start-up strategy for a"
+   },
+   {
+    "kind": "top",
+    "window": 770,
+    "pos": 166,
+    "rel": 0.726,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "iro",
+    "text": " é o novo técnico do Vasco — Foto: Vinnicius Silva/Cruzeiro Abel Braga é o novo técnico do Vasco — Foto: Vinnicius Silva/Cruze[[iro]]\n\nA primeira missão de"
+   },
+   {
+    "kind": "top",
+    "window": 44,
+    "pos": 6,
+    "rel": 0.708,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": ")\n\n",
+    "text": "South Suburban School (Main[[)\n\n]]South Suburban School (Main"
+   },
+   {
+    "kind": "top",
+    "window": 270,
+    "pos": 3,
+    "rel": 0.68,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "\n\n\n\n\n\n\n\n\n\n",
+    "text": "Spread the love[[\n\n\n\n\n\n\n\n\n\n]]Grand Rapids, MI — Dram"
+   },
+   {
+    "kind": "top",
+    "window": 421,
+    "pos": 3,
+    "rel": 0.635,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "\n\n\n\n",
+    "text": "© NASA TV[[\n\n\n\n]]Despite ongoing sanctions, Russia is"
+   },
+   {
+    "kind": "top",
+    "window": 479,
+    "pos": 113,
+    "rel": 0.612,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": " that will last a lifetime and provide families with many happy memories. All of our team members are part of our family and all are treated as such. We love working together to enrich our story and yours[[.\n\n]]Built for a Lifetime\n\nOriginally"
+   },
+   {
+    "kind": "top",
+    "window": 449,
+    "pos": 238,
+    "rel": 0.603,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": "otechnology are expanding the possibilities for the field. Bolstered by an international drive for research and funding to secure water resources, scientists are cautiously working to modernize rainmaking for the 21st century[[.\n\n]]“Water is the basic sust"
+   },
+   {
+    "kind": "top",
+    "window": 711,
+    "pos": 62,
+    "rel": 0.598,
+    "gate_open": true,
+    "source": "PhilPapers",
+    "lang": "en",
+    "token": " Psychology",
+    "text": "ODIED COGNITION Erik Myin University of Antwerp, Department of Philosophy, Centre for Philosophical Psychology & Jan Degenaar University of Antwerp, Department of Philosophy, Centre for Philosophical[[ Psychology]], and University Paris Descart"
+   },
+   {
+    "kind": "top",
+    "window": 1388,
+    "pos": 240,
+    "rel": 0.598,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".\n\n",
+    "text": " - load input file as code buffer to kernel mode and run it;\n* -dse  - write user defined value to the system DSE state flags;\n* -list - list currently available providers[[.\n\n]]Example:\n+ kdu -"
+   },
+   {
+    "kind": "top",
+    "window": 147,
+    "pos": 64,
+    "rel": 0.594,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ANT",
+    "text": "RICT OF PENNSYLVANIA\n\nMarch 29, 2011\n\nJOHN D. PETTINEO, PLAINTIFF,v.GE MONEY BANK,DEFEND[[ANT]].\n\nThe opinion of the court"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1132,
+    "pos": 12,
+    "rel": 0.532,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\n\n",
+    "text": "# Application to the Class of 2020🎓[[\n\n]]This pull request template helps you"
+   },
+   {
+    "kind": "random-strong",
+    "window": 443,
+    "pos": 69,
+    "rel": 0.573,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".org",
+    "text": ".1441 NE Englewood Rd.Kansas City, MO 64118(816) 453-2545office@northminsterkc[[.org]]\n\nVBS was AWES"
+   },
+   {
+    "kind": "random-strong",
+    "window": 708,
+    "pos": 63,
+    "rel": 0.505,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " »\n\n",
+    "text": ", to halt by 2015 and begin to reverse the spread of HIV and AIDS, through prevention, care, treatment, and mitigation services for those affected by HIV and AIDS.\nRead More[[ »\n\n]]The objective of the Additional\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1196,
+    "pos": 4,
+    "rel": 0.548,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "\n\n",
+    "text": "Lakes Region Facility[[\n\n]]Lakes Region Facility was a"
+   },
+   {
+    "kind": "random-strong",
+    "window": 960,
+    "pos": 196,
+    "rel": 0.562,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".).\n\n",
+    "text": " black body. The fluxes of the UV,\noptical and near-IR emission lines, from different sources, are also\nincorporated into the template (J.R. Walsh, private comm[[.).\n\n]]Details about how each individual template"
+   },
+   {
+    "kind": "random-strong",
+    "window": 751,
+    "pos": 209,
+    "rel": 0.562,
+    "gate_open": true,
+    "source": "Enron Emails",
+    "lang": "en",
+    "token": "\n",
+    "text": "ron\n\nJohn\nWe are all set to roll April 2001 with Enron.? The  marketer is going\nto call credit and give them an earful  today.\nLynn[[\n]]***********************************\n\nLynn  Br"
+   },
+   {
+    "kind": "random-strong",
+    "window": 457,
+    "pos": 168,
+    "rel": 0.578,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ".com",
+    "text": " and Ramunas Navardauskas (Lithuania). It was the first time all three had made the podium in the elite race (Image credit: Tim de Waele/TDWSport[[.com]])\n\nCycling kit maker Sport"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1040,
+    "pos": 186,
+    "rel": 0.539,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": ".\n\nIn this interview, Michael Fox, Co-Producer of Beyond Elections, talks about how the film was created, what its aims were, and what impact the film has had among viewers in the US[[.\n\n]]Benjamin Dangl:"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 4.3125,
+  "n_strong_tokens": 174,
+  "n_strong_windows": 93,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "FreeLaw",
+    32
+   ],
+   [
+    "USPTO Backgrounds",
+    21
+   ],
+   [
+    "PubMed Abstracts",
+    21
+   ],
+   [
+    "PubMed Central",
+    5
+   ],
+   [
+    "Pile-CC",
+    4
+   ],
+   [
+    "Wikipedia (en)",
+    3
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    92
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "\n",
+    46
+   ],
+   [
+    ".",
+    30
+   ],
+   [
+    ".\n",
+    26
+   ],
+   [
+    ".\n\n",
+    16
+   ],
+   [
+    "\n\n",
+    13
+   ],
+   [
+    ")\n",
+    9
+   ],
+   [
+    "__\n\n",
+    5
+   ],
+   [
+    "\n\n\n",
+    4
+   ]
+  ],
+  "strong_pos_median": 99,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 728,
+    "pos": 43,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "\n",
+    "text": " Supreme Court\n                                                                                                   Lansing, Michigan\n\n  September 12, 2017                                                                                   Stephen J. Markman,\n                                                                                                                 Chief Justice\n\n                                                                                                            Brian K. Zahra[[\n]]                                                                                                    Bridget M."
+   },
+   {
+    "kind": "top",
+    "window": 53,
+    "pos": 170,
+    "rel": 0.935,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "\n\n\n",
+    "text": "CA-95-318-3-P)\n\nSubmitted:   May 17, 1997                   Decided:   May 28, 1997[[\n\n\n]]Before RUSSELL, H"
+   },
+   {
+    "kind": "top",
+    "window": 346,
+    "pos": 7,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "1. Field of the Invention[[\n]]This invention relates to fluid control"
+   },
+   {
+    "kind": "top",
+    "window": 820,
+    "pos": 7,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "1. Field of the Invention[[\n]]The present invention relates to a"
+   },
+   {
+    "kind": "top",
+    "window": 681,
+    "pos": 7,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "1. Field of the Invention[[\n]]The present invention relates to a"
+   },
+   {
+    "kind": "top",
+    "window": 673,
+    "pos": 7,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "1. Field of the Invention[[\n]]The invention is directed to a"
+   },
+   {
+    "kind": "top",
+    "window": 1000,
+    "pos": 7,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "1. Field of the Invention[[\n]]The present invention relates to the"
+   },
+   {
+    "kind": "top",
+    "window": 692,
+    "pos": 7,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "1. Field of the Invention[[\n]]Embodiments of the present"
+   },
+   {
+    "kind": "top",
+    "window": 161,
+    "pos": 7,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "1. Field of the Invention[[\n]]The present invention relates to a"
+   },
+   {
+    "kind": "top",
+    "window": 1049,
+    "pos": 7,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "1. Field of the Invention[[\n]]The present invention relates to the"
+   },
+   {
+    "kind": "top",
+    "window": 285,
+    "pos": 7,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "1. Field of the Invention[[\n]]This invention relates to a helicopter"
+   },
+   {
+    "kind": "top",
+    "window": 620,
+    "pos": 7,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "1. Field of the Invention[[\n]]The present invention relates generally to"
+   },
+   {
+    "kind": "random-strong",
+    "window": 725,
+    "pos": 158,
+    "rel": 0.58,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": " the indoor and rec league's while in Michigan, Cameron excelled in the bare-foot method of playing soccer, and once scored 14 goals in an indoor soccer game while playing with no shoes on[[.\n\n]]During his college years Cameron also"
+   },
+   {
+    "kind": "random-strong",
+    "window": 225,
+    "pos": 56,
+    "rel": 0.565,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "\n",
+    "text": "151, filed Dec. 10, 1998, in the Korean Patent Office, the disclosure of which is incorporated herein by reference.\n1. Field of the Invention[[\n]]The present invention relates to a"
+   },
+   {
+    "kind": "random-strong",
+    "window": 417,
+    "pos": 68,
+    "rel": 0.525,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": ".",
+    "text": " to conduct an objective assessment of changes in nasal patency during specific inhalation challenge (SIC). The reproducibility of acoustic rhinometry measurements in the setting of occupational challenges has never been examined[[.]] This study assessed the reproduc"
+   },
+   {
+    "kind": "random-strong",
+    "window": 806,
+    "pos": 17,
+    "rel": 0.547,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ")\n",
+    "text": "\n628 So.2d 773 (1993[[)\n]]George D. EUBANK"
+   },
+   {
+    "kind": "random-strong",
+    "window": 165,
+    "pos": 196,
+    "rel": 0.533,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": ".",
+    "text": " perioperative adverse outcomes, and 6 month postoperative adverse events. Primary objectives of the study included comparative outcomes of morbidity and mortality between both groups at 180 days postimplantation[[.]] Eighty-one (n ="
+   },
+   {
+    "kind": "random-strong",
+    "window": 42,
+    "pos": 173,
+    "rel": 0.707,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "__\n\n",
+    "text": " versus\n\nDONYEL JAMES FITTS,\n\n                                                          Defendant-Appellant.\n\n                       ________________________\n\n                Appeal from the United States District Court\n                    for the Northern District of Florida\n                      ______________________[[__\n\n]]                               (July 9,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 277,
+    "pos": 83,
+    "rel": 0.587,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": "-35803.\nUnited States Court of Appeals, Ninth Circuit.\nArgued and Submitted March 5, 2003.\nFiled April 1, 2003[[.\n\n]]Douglas R. Cloud,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 540,
+    "pos": 101,
+    "rel": 0.551,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": " | Mlive.com)\n\nEAST LANSING — Pat Narduzzi had his Michigan State defense dialed in at Oregon, the Xs matched up with the Ducks’ Os at most every turn[[.\n\n]]Oregon quarterback Marcus Mariota,"
+   }
+  ]
+ }
+}

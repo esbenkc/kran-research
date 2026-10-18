@@ -1,0 +1,620 @@
+{
+ "id": "L9N7357",
+ "layer": 9,
+ "neuron": 7357,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 1.4297,
+  "n_strong_tokens": 57,
+  "n_strong_windows": 48,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    8
+   ],
+   [
+    "PubMed Abstracts",
+    7
+   ],
+   [
+    "StackExchange",
+    6
+   ],
+   [
+    "USPTO Backgrounds",
+    5
+   ],
+   [
+    "FreeLaw",
+    5
+   ],
+   [
+    "Pile-CC",
+    4
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    37
+   ],
+   [
+    "code",
+    8
+   ],
+   [
+    "ar",
+    1
+   ],
+   [
+    "nl",
+    1
+   ],
+   [
+    "ru",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " to",
+    8
+   ],
+   [
+    " with",
+    3
+   ],
+   [
+    " the",
+    3
+   ],
+   [
+    ",",
+    3
+   ],
+   [
+    " of",
+    3
+   ],
+   [
+    " not",
+    3
+   ],
+   [
+    "IR",
+    2
+   ],
+   [
+    "1",
+    2
+   ]
+  ],
+  "strong_pos_median": 103,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1324,
+    "pos": 129,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " not",
+    "text": " := mgr.Connect()\n\tif err != nil {\n\t\treturn err\n\t}\n\tdefer m.Disconnect()\n\ts, err := m.OpenService(name)\n\tif err != nil {\n\t\treturn fmt.Errorf(\"could[[ not]] access service: %v\","
+   },
+   {
+    "kind": "top",
+    "window": 605,
+    "pos": 67,
+    "rel": 0.842,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " per",
+    "text": " bartending skills during this online course that prepares them to work as professional bartenders\n\nThe Fine Print\n\nPromotional value expires 90 days after purchase. Amount paid never expires.Limit 2[[ per]] person, may buy 3"
+   },
+   {
+    "kind": "top",
+    "window": 394,
+    "pos": 200,
+    "rel": 0.77,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "ic",
+    "text": " with acceptable outcomes if there is no contraindication to SLT \\[[@pone.0210975.ref002]\\].\n\nThe Toronto lung transplant group conducted cadaver[[ic]] SLT for a patient with"
+   },
+   {
+    "kind": "top",
+    "window": 1278,
+    "pos": 11,
+    "rel": 0.743,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": "/*\n* Copyright (c) 2016[[,]] 2018,"
+   },
+   {
+    "kind": "top",
+    "window": 310,
+    "pos": 45,
+    "rel": 0.71,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "IR",
+    "text": ", 2010.\nThis, the fourth annual immunisation coverage report, documents trends during 2010 for a range of standard measures derived from Australian Childhood Immunisation Register (AC[[IR]]) data. These include coverage"
+   },
+   {
+    "kind": "top",
+    "window": 905,
+    "pos": 194,
+    "rel": 0.694,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " to",
+    "text": " points in the program deleting various amounts of data with no errors being reported. So my hunch is that the problem lies somewhere else in my program. I have been looking for hours but can't seem[[ to]] find it. I am a"
+   },
+   {
+    "kind": "top",
+    "window": 188,
+    "pos": 55,
+    "rel": 0.694,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " certain",
+    "text": " finding sharp lower bounds for the norm of the product of polynomials in the ultraproducts of Banach spaces $(X_i)_{\\mathfrak U}$. We show that, under[[ certain]] hypotheses, there is a strong"
+   },
+   {
+    "kind": "top",
+    "window": 1131,
+    "pos": 8,
+    "rel": 0.689,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "step",
+    "text": "﻿using UnityEngine;\nusing UnityEditor;\n\nnamespace Lock[[step]]\n{\n\t[CustomProperty"
+   },
+   {
+    "kind": "top",
+    "window": 104,
+    "pos": 144,
+    "rel": 0.667,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Text",
+    "text": " protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        tvw=(TextView)findViewById(R.id.textView1);\n        eText=(EditText) findViewById(R.id.edit[[Text]]1);\n        eText.setInput"
+   },
+   {
+    "kind": "top",
+    "window": 29,
+    "pos": 197,
+    "rel": 0.661,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": ", priv)\n\tif err != nil {\n\t\tt.Fatal(err)\n\t}\n\n\tout, err := x509.ParseCertificateRequest(derBytes)\n\tif err != nil {\n\t\tt.Fatalf(\"failed[[ to]] create certificate request: %s"
+   },
+   {
+    "kind": "top",
+    "window": 299,
+    "pos": 12,
+    "rel": 0.645,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": "/**\n * Copyright (c) 2016-present[[,]] Facebook, Inc.\n * All"
+   },
+   {
+    "kind": "top",
+    "window": 57,
+    "pos": 173,
+    "rel": 0.623,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " with",
+    "text": " ’80s British pop, grand architecture and political unrest. An explosion has triggered a controversial act to be rushed into law, threatening to erode the civil liberties of the population.\n\nYou are tasked[[ with]] investigating and questioning people on their"
+   },
+   {
+    "kind": "random-strong",
+    "window": 367,
+    "pos": 5,
+    "rel": 0.519,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " on",
+    "text": "Water-curable compositions based[[ on]] thermoplastic polymers having"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1187,
+    "pos": 160,
+    "rel": 0.598,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " the",
+    "text": " stage is difficult by X-rays. A further detriment of X-rays is the radiation dose received by the patient, whereby X-ray examination is hardly applicable in mass screening.\nThermography is based on recording[[ the]] infrared radiation emitted by the human"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1312,
+    "pos": 12,
+    "rel": 0.607,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "u",
+    "text": "/*\n\tMantis PCI bridge driver\n\n\tCopyright (C) Man[[u]] Abraham (abraham.manu"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1140,
+    "pos": 133,
+    "rel": 0.533,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " IF",
+    "text": " the feed name, I'd like to reference this feed field to the ID of that feed in the first table.\nThanks\n\nA:\n\nthis a quick example of how to achieve your requirement...\nCREATE TABLE[[ IF]] NOT EXISTS `feeds` (\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 469,
+    "pos": 86,
+    "rel": 0.552,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "EL",
+    "text": " have been established for un-metabolized solvents in urine, based on the solvent exposure-urinary excretion relationship. This study was initiated to investigate the possibiliy of estimating a BO[[EL]] from the Pow (the partition"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1124,
+    "pos": 186,
+    "rel": 0.557,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " to",
+    "text": " initiation site of P1 in both organisms. This was confirmed by deletion analysis of the target site. DNase I, hydroxyl radical and dimethylsulphate footprinting experiments allowed us[[ to]] allocate the IHF binding site"
+   },
+   {
+    "kind": "random-strong",
+    "window": 54,
+    "pos": 95,
+    "rel": 0.601,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " de",
+    "text": "ño de lo que ya suelen ser estas sorprendentes criaturas. ¿Qué demonios tenía en su interior?\n\n\n\n\nA través de una técnica de microscopía de contraste capaz[[ de]] resaltar los cambios en el"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1043,
+    "pos": 52,
+    "rel": 0.525,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " to",
+    "text": " am trying to build a dynamic page that has any number between 1-4 graphs on it that can be added or removed as needed but I have run into a huge problem and I can't seem[[ to]] get the graph to resize after"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 3.2344,
+  "n_strong_tokens": 74,
+  "n_strong_windows": 25,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "PubMed Abstracts",
+    6
+   ],
+   [
+    "Github",
+    5
+   ],
+   [
+    "Pile-CC",
+    4
+   ],
+   [
+    "OpenWebText2",
+    3
+   ],
+   [
+    "PubMed Central",
+    2
+   ],
+   [
+    "ArXiv",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    19
+   ],
+   [
+    "code",
+    5
+   ],
+   [
+    "de",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "is",
+    4
+   ],
+   [
+    " (",
+    3
+   ],
+   [
+    " the",
+    3
+   ],
+   [
+    " [",
+    2
+   ],
+   [
+    " a",
+    2
+   ],
+   [
+    "WC",
+    2
+   ],
+   [
+    " declare",
+    1
+   ],
+   [
+    " compile",
+    1
+   ]
+  ],
+  "strong_pos_median": 126,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 185,
+    "pos": 7,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "el",
+    "text": "But now, Ms. Bick[[el]] said, young people in Munich"
+   },
+   {
+    "kind": "top",
+    "window": 26,
+    "pos": 182,
+    "rel": 0.889,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " \":",
+    "text": "_bsd\n }\n \n if (is_nacl_nonsfi) {\n@@ -379,7 +379,7 @@ component(\"sandbox_services\") {\n     public_deps += [[[ \":]]sandbox_services_headers\" ]\n  "
+   },
+   {
+    "kind": "top",
+    "window": 991,
+    "pos": 12,
+    "rel": 0.845,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " elegant",
+    "text": "CURRENT OFFER\n\nCURRENT OFFER\n\nBold, powerful and[[ elegant]], the new Peugeot "
+   },
+   {
+    "kind": "top",
+    "window": 865,
+    "pos": 94,
+    "rel": 0.802,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " neural",
+    "text": " our brains that drive volition, would it lead us toward healthier, more productive lives? Using a new brain imaging strategy, Duke University scientists have now taken a first step in understanding how to manipulate specific[[ neural]] circuits using thoughts and imagery.\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1112,
+    "pos": 168,
+    "rel": 0.725,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " glass",
+    "text": " and escort cells (ECs). GSCs directly contact CCs and the most anterior ECs, which prevent GSC differentiation by secreting decapentaplegic (Dpp) and[[ glass]] bottom boat (Gbb)"
+   },
+   {
+    "kind": "top",
+    "window": 964,
+    "pos": 47,
+    "rel": 0.725,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "WC",
+    "text": " Chronograph is a timepiece of extraordinary technical and stylistic achievement. Calling upon their own original and groundbreaking usage of zirconium oxide (ceramic) dating from 1986, I[[WC]] has introduced a new and limited"
+   },
+   {
+    "kind": "top",
+    "window": 878,
+    "pos": 47,
+    "rel": 0.643,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "uit",
+    "text": ") shares hit an all-time high Friday after the luxury goods company renewed its sales and profit record, defying the tough business climate hitting the overall industry.\n\nShares in the Paris-based owner of Louis V[[uit]]ton and Christian Dior brands"
+   },
+   {
+    "kind": "top",
+    "window": 787,
+    "pos": 63,
+    "rel": 0.633,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "irect",
+    "text": " \"running\" or \"eating\") constitute a basic type within human cognition and human language. We asked whether thinking about events, as compared to other conceptual categories, depends on partially independent neural circuits. Ind[[irect]] evidence for this hypothesis comes from"
+   },
+   {
+    "kind": "top",
+    "window": 937,
+    "pos": 200,
+    "rel": 0.618,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " therm",
+    "text": " metabolic rate (SMR) was measured at the same time intervals using a respiration chamber. At the end of the experiment 24 h energy expenditure (24 h EE) and diet-induced[[ therm]]ogenesis (DIT) were"
+   },
+   {
+    "kind": "top",
+    "window": 562,
+    "pos": 139,
+    "rel": 0.611,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ick",
+    "text": "-enhancing features to help you make the most of your training.\n\nShop Under Armour® for men, women and kids. Experience the remarkable fit and feel of technical fabrics that regulate your body temperature, w[[ick]] away perspiration and support your"
+   },
+   {
+    "kind": "top",
+    "window": 936,
+    "pos": 53,
+    "rel": 0.606,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " the",
+    "text": "ukaryotes. This project addresses the long term goal of understanding the molecular mechanisms regulating the tissue-specific expression of the zein family of maize seed storage protein genes. Molecular and genetic analyses have shown that[[ the]] developmental and tissue-specific expression of"
+   },
+   {
+    "kind": "top",
+    "window": 459,
+    "pos": 8,
+    "rel": 0.601,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " receptor",
+    "text": "Peroxisome proliferator-activated[[ receptor]] alpha induces NADPH oxid"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1225,
+    "pos": 129,
+    "rel": 0.529,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_URL",
+    "text": "}\"toolbars\":{{ UEditor.toolbars|safe }},{% endifnotequal %}\n         \"imageUrl\":\"/ueditor/ImageUp/{{ UEditor.imagePath }}\",\n         \"imagePath\":\"{{ MEDIA[[_URL]] }}{{ UEditor.imagePath"
+   },
+   {
+    "kind": "random-strong",
+    "window": 197,
+    "pos": 85,
+    "rel": 0.519,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " nucleus",
+    "text": " conditioned taste aversion can be ameliorated by giving the serotonin3 receptor blocker, tropisetron (TROP). A recent c-fos study indicated that the dorsomedial hypothalamic[[ nucleus]] (DMN) may be"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1139,
+    "pos": 207,
+    "rel": 0.514,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " the",
+    "text": "clusive evidence that differentiates the neural underpinnings of conscious from nonconscious processes in recognition memory, however, is still missing. In particular, functional magnetic resonance imaging (fMRI) findings for[[ the]] MTL have been inconsistent towards"
+   },
+   {
+    "kind": "random-strong",
+    "window": 828,
+    "pos": 169,
+    "rel": 0.517,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " receptors",
+    "text": "] that are present in the environment and promote adverse modifications of endocrine homeostasis in humans and/or in wildlife animals. EDCs raise serious concerns about their potential health impact.\n\nMost of the[[ receptors]] that are targeted by EDC"
+   },
+   {
+    "kind": "random-strong",
+    "window": 381,
+    "pos": 6,
+    "rel": 0.505,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "ject",
+    "text": "[**The srank Con[[ject]]ure on Schur’s $"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1424,
+    "pos": 204,
+    "rel": 0.539,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": "st",
+    "text": "stens ehrliche Bildbeschreibungen einstellen .....\nHabe das Band für meine Apple Watch 4 gekauft. Der Versand war wie gewohnt schnell. Das Band pas[[st]] und hält gut in den"
+   },
+   {
+    "kind": "random-strong",
+    "window": 743,
+    "pos": 85,
+    "rel": 0.519,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "ias",
+    "text": "ological benefits: independent estimators can be generated in parallel, and confidence intervals can be constructed from the central limit theorem to quantify the approximation error. To design unbiased estimators, we combine a generic deb[[ias]]ing technique for Markov chains"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1349,
+    "pos": 158,
+    "rel": 0.534,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ILER",
+    "text": ".\n#define SUPPORTS_LOCATION_BUILTINS                                       \\\n  (__has_builtin(__builtin_FUNCTION) && __has_builtin(__builtin_FILE) && \\\n   __has_builtin(__builtin_LINE))\n#elif defined(COMP[[ILER]]_GCC) && __GNUC"
+   }
+  ]
+ }
+}

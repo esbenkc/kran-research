@@ -1,0 +1,616 @@
+{
+ "id": "L22N6865",
+ "layer": 22,
+ "neuron": 6865,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 6.9688,
+  "n_strong_tokens": 22,
+  "n_strong_windows": 17,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    4
+   ],
+   [
+    "PubMed Central",
+    2
+   ],
+   [
+    "USPTO Backgrounds",
+    2
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "Pile-CC",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    11
+   ],
+   [
+    "zh",
+    2
+   ],
+   [
+    "code",
+    2
+   ],
+   [
+    "es",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " only",
+    3
+   ],
+   [
+    " one",
+    2
+   ],
+   [
+    " single",
+    2
+   ],
+   [
+    " points",
+    1
+   ],
+   [
+    " little",
+    1
+   ],
+   [
+    " cheap",
+    1
+   ],
+   [
+    " elementary",
+    1
+   ],
+   [
+    "1",
+    1
+   ]
+  ],
+  "strong_pos_median": 123,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1589,
+    "pos": 33,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "了一",
+    "text": "说实话，这本书的纸张不好，不像正版的，翻译的有点不符合中国逻辑，字体也有待改正，\n没想到会这么快没货，只下单[[了一]]只。可惜了\n发"
+   },
+   {
+    "kind": "top",
+    "window": 24,
+    "pos": 125,
+    "rel": 0.722,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " only",
+    "text": " in the case of photodegradable polymers, require long, intense irradiation that may not be biologically compatible. This limitation results from the fact that most of these materials convert one signalling event to[[ only]] one chemical change, such as"
+   },
+   {
+    "kind": "top",
+    "window": 1146,
+    "pos": 124,
+    "rel": 0.704,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " one",
+    "text": " of the structure to be air-dropped also allows service to the most remote locations where shelter or facility use is needed.\n2. Description of the Prior Art\nTypically, supplied conventional structures offer only[[ one]] or a few of a complete"
+   },
+   {
+    "kind": "top",
+    "window": 1147,
+    "pos": 78,
+    "rel": 0.682,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " single",
+    "text": " not use for new code  --#\n#\n#Targets/methods can be:\n#\n# - nil: matches anything, including nothing\n# - Empty array: matches nothing\n# - Symbol: matches[[ single]] target/method exactly\n# -"
+   },
+   {
+    "kind": "top",
+    "window": 442,
+    "pos": 203,
+    "rel": 0.668,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " cheap",
+    "text": " this decade has tripled since the 1960s. While there are celebrated exceptions to the rule, like Toni Collette's latest movie, Hereditary, the number of movies employing frequent[[ cheap]] scares has also increased decade-on"
+   },
+   {
+    "kind": "top",
+    "window": 1583,
+    "pos": 21,
+    "rel": 0.659,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "谈",
+    "text": "差差差，买了没用，内容只是介绍，不是教授卤肉\n人力资源管理只是浅[[谈]]，资金管理没有行之"
+   },
+   {
+    "kind": "top",
+    "window": 1441,
+    "pos": 140,
+    "rel": 0.632,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " principio",
+    "text": " principio era para un agaporni, pero es más pequeño de lo que pensaba, aunque éso es culpa mía, por no comprobar bien el tamaño. Sirve para el[[ principio]], pero no mucho más."
+   },
+   {
+    "kind": "top",
+    "window": 1150,
+    "pos": 197,
+    "rel": 0.623,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " $",
+    "text": " $14.9 billion as sales of flat-screen TV sets, digital cameras and cell phones produced a net profit of 23.3 billion yen ($210 million) compared with only[[ $]]10 million in the same"
+   },
+   {
+    "kind": "top",
+    "window": 695,
+    "pos": 95,
+    "rel": 0.61,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " single",
+    "text": ", and communication facility.\nRecently, flexible circuit board technology has also been applied to construct flat cables. The flexible circuit-board flat cables that are commonly used currently are constructed in different configurations that are either a[[ single]]-sided board, a double-sided"
+   },
+   {
+    "kind": "top",
+    "window": 578,
+    "pos": 162,
+    "rel": 0.601,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " elementary",
+    "text": " grub.  You'll then have Windows 8 added to the boot option.\n$ update-grub\n\nUpdating grub will add all OS installations to the list.\nUpdate:\nI thought this was kind of[[ elementary]] because this pop up all the"
+   },
+   {
+    "kind": "top",
+    "window": 293,
+    "pos": 244,
+    "rel": 0.592,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " little",
+    "text": " to occur toward the end of life. It's all a ruse to deny care to this age group and transfer the funds to Obama Care to offer it to those who haven't paid in or very[[ little]]. When Govt. get"
+   },
+   {
+    "kind": "top",
+    "window": 981,
+    "pos": 123,
+    "rel": 0.592,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " only",
+    "text": " system for the target user. In this paper, we propose a novel transfer learning approach on the classification domain to reduce the calibration time without sacrificing the classification accuracy of MI-BCI. Thus, when[[ only]] few subject-specific trials are available"
+   },
+   {
+    "kind": "top",
+    "window": 1256,
+    "pos": 12,
+    "rel": 0.493,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " simple",
+    "text": "/* Presentation mode for SF HTML\n *\n * This file implements[[ simple]] slide functionality for the SF HTML"
+   },
+   {
+    "kind": "top",
+    "window": 852,
+    "pos": 39,
+    "rel": 0.491,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " pre",
+    "text": "Comment by Loreanadruid\n\nArguably Inferior Socket for Paladin PvE Gems for the most part, but Superior for PvP.A side-grade to t6, but an upgrade for almost anything[[ pre]]-Sunwell.\n\nComment by"
+   },
+   {
+    "kind": "top",
+    "window": 372,
+    "pos": 106,
+    "rel": 0.491,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " even",
+    "text": "The fight had been moved from Sydney to Perth after the New South Wales Combat Sports Authority raised concerns about Briggs' health.\n\nAfter the fight a \"pissed off\" Green said Briggs was \"not[[ even]] a canine\" and told a"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1440,
+    "pos": 95,
+    "rel": 0.518,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " hay",
+    "text": " mejor no llevar nada en la cabeza antes que llevar un casco como este. Al igual que las gafas que son de plástico inyectado y de pésima calidad. Solo[[ hay]] una cosa que lo justifique"
+   },
+   {
+    "kind": "random-strong",
+    "window": 660,
+    "pos": 126,
+    "rel": 0.527,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "1",
+    "text": ". What i have done is to save the array list of downloaded data in onSaveInstanceState() and successfully retrieve it when the user swipes back to one of the 2 above fragments only FOR THE [[1]] FIRST TIME. The problem is"
+   },
+   {
+    "kind": "random-strong",
+    "window": 112,
+    "pos": 229,
+    "rel": 0.525,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " points",
+    "text": " Christie, who is not Hispanic, pulled in 23 percent of the Hispanic vote to 62 percent for Clinton. So Rubio only improved upon Christie’s share of the Hispanic vote by three percentage[[ points]], which is not nearly enough"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1143,
+    "pos": 109,
+    "rel": 0.578,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " lower",
+    "text": " thriving in the area and the ecological integrity of the habitat, particularly as trace metals may enter the food chains, persist in the environment, bioaccumulate and bio-magnify. Though some trace metals in[[ lower]] concentrations play important roles in metabolic"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1229,
+    "pos": 80,
+    "rel": 0.545,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Simple",
+    "text": "gresql.ds.common.BaseDataSource;\n\nimport java.io.IOException;\nimport java.io.ObjectInputStream;\nimport java.io.ObjectOutputStream;\nimport java.io.Serializable;\nimport java.sql.SQLException;\n\nimport javax.sql.DataSource;\n\n/**\n *[[ Simple]] DataSource which does not perform connection"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 7.2188,
+  "n_strong_tokens": 50,
+  "n_strong_windows": 48,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    19
+   ],
+   [
+    "OpenWebText2",
+    9
+   ],
+   [
+    "PubMed Abstracts",
+    7
+   ],
+   [
+    "PubMed Central",
+    3
+   ],
+   [
+    "StackExchange",
+    3
+   ],
+   [
+    "USPTO Backgrounds",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    46
+   ],
+   [
+    "tr",
+    1
+   ],
+   [
+    "pl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " low",
+    10
+   ],
+   [
+    " few",
+    7
+   ],
+   [
+    " only",
+    5
+   ],
+   [
+    " little",
+    4
+   ],
+   [
+    " small",
+    2
+   ],
+   [
+    " limited",
+    2
+   ],
+   [
+    " short",
+    2
+   ],
+   [
+    "oco",
+    1
+   ]
+  ],
+  "strong_pos_median": 124,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 212,
+    "pos": 65,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " low",
+    "text": " the disk in rotation. The invention relates more precisely to a device for cooling the slots in such a disk that have the blades mounted therein.\nOne of the fields of application of the invention is that of[[ low]]-pressure turbines for aviation turbom"
+   },
+   {
+    "kind": "top",
+    "window": 750,
+    "pos": 169,
+    "rel": 0.866,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " low",
+    "text": " to the interrupt and i2c clock and data lines causing false interrupts to occur. The processor responds to the interrupt by reading the key value from the cypress chip. The symptoms occur more frequently in[[ low]] signal areas because the phone outputs"
+   },
+   {
+    "kind": "top",
+    "window": 1174,
+    "pos": 5,
+    "rel": 0.779,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " low",
+    "text": "Difference in the effects of[[ low]] temperatures on the tension of human"
+   },
+   {
+    "kind": "top",
+    "window": 779,
+    "pos": 222,
+    "rel": 0.749,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " low",
+    "text": ", said Armstrong, the president of Armstrong Consulting, Inc., Newtonville, Mass.\n\nThis 5.9 GHz DSRC standard will be designed to support a wide variety of applications that need[[ low]] latency, short range, high"
+   },
+   {
+    "kind": "top",
+    "window": 686,
+    "pos": 64,
+    "rel": 0.745,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " limited",
+    "text": " signal transduction, immune response, metabolism, membrane-associated processes and development (e.g., \\[[@B1]-[@B4]\\]). Protein-protein interactions offer an excellent way of combining its[[ limited]] working parts, the proteins,"
+   },
+   {
+    "kind": "top",
+    "window": 1083,
+    "pos": 239,
+    "rel": 0.71,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " low",
+    "text": " be equally split, each sharing 27% of the global energy market. The rest would be filled by unconventional resources, such as oil shale fracking and biomass energy.\n\nHowever, he said the current[[ low]] oil price can be expected to"
+   },
+   {
+    "kind": "top",
+    "window": 215,
+    "pos": 38,
+    "rel": 0.706,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " few",
+    "text": "Susy and Geno, Inseparable!\n\nSusy and Geno’s long-awaited reunion finally took place on March 11 at Market-Market Mall in Taguig!\n\nA[[ few]] weeks ago, Susy started"
+   },
+   {
+    "kind": "top",
+    "window": 54,
+    "pos": 140,
+    "rel": 0.697,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "oco",
+    "text": " en el brillo y las estructuras pequeñas, el investigador encontró un tardígrado que se retuerce con el estómago lleno de luces brillantes. P[[oco]] después publicó el siguiente tweet"
+   },
+   {
+    "kind": "top",
+    "window": 1044,
+    "pos": 106,
+    "rel": 0.693,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " fraction",
+    "text": " study of seatbelt laws. Here, from The Economist, is another example:\n\nSOLID-STATE lighting, the latest idea to brighten up the world while saving the planet, promises illumination for a[[ fraction]] of the energy used by inc"
+   },
+   {
+    "kind": "top",
+    "window": 1032,
+    "pos": 68,
+    "rel": 0.667,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " few",
+    "text": " Institute of Technology showed off a remote-controlled aerial vehicle loaded with technology designed to automatically detect and compromise wireless networks. The project demonstrated that such drones could be used to create an airborne botnet controller for a[[ few]] hundred dollars.\n\nAttackers bent"
+   },
+   {
+    "kind": "top",
+    "window": 623,
+    "pos": 40,
+    "rel": 0.662,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " small",
+    "text": "We all know that there have been some very nasty attacks on Palin from some feminists, as well as a lot of condescension from the Maureen Dowd types who look down their noses at a[[ small]]-town, gun-owning"
+   },
+   {
+    "kind": "top",
+    "window": 507,
+    "pos": 117,
+    "rel": 0.645,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " few",
+    "text": " the opportunity to live in many different places, including Germany. Living abroad was an experience she loved, crediting it with broadening her mind and awakening a sense of living in a world community.\n\nA[[ few]] years ago she and her friend"
+   },
+   {
+    "kind": "random-strong",
+    "window": 241,
+    "pos": 205,
+    "rel": 0.615,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " small",
+    "text": " large number of gray levels so that images of intermediate gray levels can be displayed.\nHowever, in portable electronic devices which are powered by a battery, it is very important that the portable electronic devices operate with[[ small]] power consumption. As is well"
+   },
+   {
+    "kind": "random-strong",
+    "window": 340,
+    "pos": 186,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " Limited",
+    "text": " and vasoactive intestinal peptide (VIP), have been described in association with pulmonary airways and vessels of all sizes. Both these peptides are known to profoundly influence smooth muscle tone in other organ systems.[[ Limited]] indirect anatomic and physi"
+   },
+   {
+    "kind": "random-strong",
+    "window": 308,
+    "pos": 44,
+    "rel": 0.548,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " smallest",
+    "text": "ing Performance Times in Elite Long-Track Speed Skating.\nAnalysis of sport performance can provide effects of environmental and other venue-specific factors in addition to estimates of within-athlete variability between competitions, which determines[[ smallest]] worthwhile effects. To analyze elite"
+   },
+   {
+    "kind": "random-strong",
+    "window": 390,
+    "pos": 205,
+    "rel": 0.532,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " just",
+    "text": ".\n\nSkin doctors who graduate from other countries are required by the law to secure a foreign graduate certificate before they qualify to be active dermatologists when they go back to the US.\n\nDermatologists are[[ just]] like any other doctor because they"
+   },
+   {
+    "kind": "random-strong",
+    "window": 592,
+    "pos": 198,
+    "rel": 0.554,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " low",
+    "text": "12 as a project of the Center for American Freedom, whose board included one Bill Kristol, publisher of The Weekly Standard and leader of the #nevertrump movement who tried and repeatedly failed to[[ low]]-bridge Donald Trump and find"
+   },
+   {
+    "kind": "random-strong",
+    "window": 881,
+    "pos": 87,
+    "rel": 0.504,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "One",
+    "text": " first teaser below and add TEN REASONS TO STAY to your TBR today!\n\nAbout TEN REASONS TO STAY\n\nAvailable August 30th, 2018\n\n[[One]] day a week—Thurs"
+   },
+   {
+    "kind": "random-strong",
+    "window": 965,
+    "pos": 34,
+    "rel": 0.511,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " only",
+    "text": "Q:\n\nPython - Using pytest to skip test unless specified\n\nBackground\nI have am using pytest to test a web scraper that pushes the data to a database. The class[[ only]] pulls the html and pushes the"
+   },
+   {
+    "kind": "random-strong",
+    "window": 236,
+    "pos": 22,
+    "rel": 0.504,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " little",
+    "text": "Q:\n\nCustom Single Page Portfolio Theme\n\nI'm thinking about creating single page portfolio theme, but I'm a[[ little]] confused on how this would be"
+   }
+  ]
+ }
+}

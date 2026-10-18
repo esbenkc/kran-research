@@ -1,0 +1,596 @@
+{
+ "id": "L18N9361",
+ "layer": 18,
+ "neuron": 9361,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 2.0938,
+  "n_strong_tokens": 22,
+  "n_strong_windows": 20,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "OpenWebText2",
+    4
+   ],
+   [
+    "Pile-CC",
+    4
+   ],
+   [
+    "StackExchange",
+    4
+   ],
+   [
+    "lang-id",
+    3
+   ],
+   [
+    "PubMed Central",
+    2
+   ],
+   [
+    "Github",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    15
+   ],
+   [
+    "code",
+    2
+   ],
+   [
+    "pl",
+    1
+   ],
+   [
+    "pt",
+    1
+   ],
+   [
+    "hi",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " to",
+    2
+   ],
+   [
+    " people",
+    2
+   ],
+   [
+    " home",
+    1
+   ],
+   [
+    " der",
+    1
+   ],
+   [
+    " childhood",
+    1
+   ],
+   [
+    " them",
+    1
+   ],
+   [
+    " adolescents",
+    1
+   ],
+   [
+    " APPLE",
+    1
+   ]
+  ],
+  "strong_pos_median": 130,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1022,
+    "pos": 191,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " to",
+    "text": " professional counselors to come out.\n\n\n\nIn compensation for the horrendous childhood memories, Alison demanded money from her mother for the immense psychological and physical damage, mental pain, anguish and severe emotional distress she had given[[ to]] her intentionally. Although this is"
+   },
+   {
+    "kind": "top",
+    "window": 932,
+    "pos": 244,
+    "rel": 0.769,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " of",
+    "text": " security within families and communities – reaching out to someone who might need your help - decreasing the isolation people feel when things aren’t great\n\nThe message is important – isolation has a huge impact on the wellbeing[[ of]] people whose mental health isn’t"
+   },
+   {
+    "kind": "top",
+    "window": 264,
+    "pos": 178,
+    "rel": 0.746,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " childhood",
+    "text": "2% of children aged 4 to 12 were overweight or obese \\[[@B4-ijerph-17-04838]\\]. Overweight or obesity in[[ childhood]] is especially problematic, since this"
+   },
+   {
+    "kind": "top",
+    "window": 1503,
+    "pos": 46,
+    "rel": 0.746,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": " global",
+    "text": "czy na suficie.\nrzeczniczka chińskiego ministerstwa spraw zagranicznych jiang yu stwierdziła, że hakerstwo internetowe jest problemem[[ global]]nym.\nDwóch"
+   },
+   {
+    "kind": "top",
+    "window": 826,
+    "pos": 27,
+    "rel": 0.694,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " friends",
+    "text": "Q:\n\nWhat is the basis for anointing of physical objects and who practices this?\n\nIt's been a tradition of my family and[[ friends]] to anoint a home with"
+   },
+   {
+    "kind": "top",
+    "window": 868,
+    "pos": 217,
+    "rel": 0.668,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " people",
+    "text": " and Prokopenko suggest the upper limit on the number of direct friends for most people is about five. The upper limits appear to be based on biology, they note—as the human brain developed,[[ people]] were living together in small groups"
+   },
+   {
+    "kind": "top",
+    "window": 744,
+    "pos": 160,
+    "rel": 0.66,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " to",
+    "text": " Saville Roberts says: “Westminster must ­seriously consider its policy of recruiting 16-year-olds into the armed forces and recognise the deep ­emotional, physical and psychological damage this does[[ to]] them.\n\n(Image: Anad"
+   },
+   {
+    "kind": "top",
+    "window": 561,
+    "pos": 237,
+    "rel": 0.634,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " them",
+    "text": " your tutor search experience. Share relevant Faith Baptist Bible College and Theological Seminary American History tutors\nwith Faith Baptist Bible College and Theological Seminary classmates to make the tutor search process even faster for[[ them]].\nUtilize Uloop.com"
+   },
+   {
+    "kind": "top",
+    "window": 1151,
+    "pos": 55,
+    "rel": 0.627,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Rw",
+    "text": " refers to any kind of community-based militia group active in the Democratic Republic of the Congo (DRC), formed to defend their local territory against other armed groups. Most were formed to resist the invasion of[[ Rw]]andan forces and Rwanda-affiliated"
+   },
+   {
+    "kind": "top",
+    "window": 638,
+    "pos": 151,
+    "rel": 0.627,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " adolescents",
+    "text": "B7]) in South Korea, 81.6% ([@B8]) in Singapore and 95.5% ([@B9]) in Shanghai.\n\nMyopia not only affects[[ adolescents]]' school performance and future career"
+   },
+   {
+    "kind": "top",
+    "window": 1510,
+    "pos": 133,
+    "rel": 0.619,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "ria",
+    "text": " preto sentado numa laje de betão.\nOlivia Colman ganha segundo Prémio BAFTA\nHRW: Jordânia enviesada contra palestinianos da Sí[[ria]]\nCinco estrange"
+   },
+   {
+    "kind": "top",
+    "window": 222,
+    "pos": 128,
+    "rel": 0.616,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " der",
+    "text": "3 Euro erhöhen soll. Doch auch danach werden viele junge Leute noch immer leer ausgehen. Zentraler Grund: Wer wie viel bekommt, hängt vom Einkommen[[ der]] Eltern ab.\n\nDie F"
+   },
+   {
+    "kind": "random-strong",
+    "window": 794,
+    "pos": 123,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " APPLE",
+    "text": " must reproduce the above copyright\n *    notice, this list of conditions and the following disclaimer in the\n *    documentation and/or other materials provided with the distribution.\n *\n * THIS SOFTWARE IS PROVIDED BY[[ APPLE]] INC. AND ITS CONTRIBUTORS ``"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1079,
+    "pos": 48,
+    "rel": 0.534,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " a",
+    "text": " validator to handle my API response\n\nI have tried all the possible approaches found, but I am struggled to get the default remote validator working.\nI'm just trying to achieve to check if the mail for[[ a]] registration page of a user is"
+   },
+   {
+    "kind": "random-strong",
+    "window": 203,
+    "pos": 76,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " home",
+    "text": " the most efficient, wood burning boiler you can buy for your home. It is safe to operate, burns smoke- and creosote-free, and saves you up to 70% on your[[ home]] heating bills. Our wood boiler"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1162,
+    "pos": 164,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ards",
+    "text": "\" : 2,\n\t\t\t\t* 执行搜索的时间（以毫秒为单位）\n\t\t  \"timed_out\" : false,\n\t\t\t\t* 搜索是否超时\n\t\t  \"_sh[[ards]]\" : {\n\t\t\t\""
+   },
+   {
+    "kind": "random-strong",
+    "window": 1466,
+    "pos": 153,
+    "rel": 0.534,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "hi",
+    "token": "ा",
+    "text": "ं , जब तक उन ् हें संयुक ् त राज ् य अमेरिक[[ा]] में अप"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1161,
+    "pos": 114,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "’",
+    "text": " Tax Problems\n\nPhoto by Ethan Miller/Getty Images\n\nAccording to E! Online, Richie owes the federal government $1.1 million in unpaid taxes and that a lien has been issued warning that the singers[[’]] assets may be seized if he"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1138,
+    "pos": 20,
+    "rel": 0.571,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "'s",
+    "text": "Q:\n\nGoogle Calendar API server to server Rails\n\nI want insert events in my calendar after some user[['s]] actions. That's why I"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1011,
+    "pos": 63,
+    "rel": 0.578,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " someone",
+    "text": "'s life?\n\nI don't mean something like 'many hardships' or 'several tragedies'. I'm looking for a word or short phrase that would describe just a really rough spot or time frame in[[ someone]]'s life. For instance,"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 5.3438,
+  "n_strong_tokens": 8,
+  "n_strong_windows": 4,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "BookCorpus2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    4
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "payer",
+    2
+   ],
+   [
+    "1",
+    1
+   ],
+   [
+    " residents",
+    1
+   ],
+   [
+    " one",
+    1
+   ],
+   [
+    " hard",
+    1
+   ],
+   [
+    " work",
+    1
+   ],
+   [
+    " of",
+    1
+   ]
+  ],
+  "strong_pos_median": 120,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 727,
+    "pos": 126,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "1",
+    "text": " for Php500.00.\n\nFor those who will purchase a total of Php1,000.00, aside from the scarf, will get a chance to have their [[1]]0-second digital billboard spot along"
+   },
+   {
+    "kind": "top",
+    "window": 1158,
+    "pos": 113,
+    "rel": 0.684,
+    "gate_open": true,
+    "source": "BookCorpus2",
+    "lang": "en",
+    "token": " hard",
+    "text": " you share it with. If you're reading this book and did not purchase it, or it was not purchased for your use only, then you should purchase your own copy. Thank you for respecting the[[ hard]] work of this author.\n\nE"
+   },
+   {
+    "kind": "top",
+    "window": 1081,
+    "pos": 226,
+    "rel": 0.655,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " one",
+    "text": " goal was to make it known that Mineral Wells doesn’t approve of abortion.\n\n“Because life is being grown in that woman. Her choice is actually stopped because I have an obligation to protect that voiceless[[ one]] inside her, that one that"
+   },
+   {
+    "kind": "top",
+    "window": 748,
+    "pos": 166,
+    "rel": 0.637,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "payer",
+    "text": " International Brotherhood of Electrical Workers Local 18.\n\nConverging in this one issue was almost everything L.A. residents hate about the DWP: The mystery of it all. The suspicion that rate[[payer]] cash was being wasted on a"
+   },
+   {
+    "kind": "top",
+    "window": 1046,
+    "pos": 30,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Israel",
+    "text": "The recent AIPAC meeting brought four of the five remaining presidential candidates – all except Bernie Sanders – to Washington to grovel at the feet of the[[ Israel]] lobby, a depressing scene,"
+   },
+   {
+    "kind": "top",
+    "window": 18,
+    "pos": 239,
+    "rel": 0.456,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " others",
+    "text": " theme espoused by the EFF leader since the party's inception in July 2013.\n\n\"His call of driving people to occupy land in an urban setting is an abuse of human rights of[[ others]]. What are the future consequences"
+   },
+   {
+    "kind": "top",
+    "window": 1276,
+    "pos": 175,
+    "rel": 0.418,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " users",
+    "text": " the works.  By contrast,\nour General Public Licenses are intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its[[ users]].\n\n  When we speak of"
+   },
+   {
+    "kind": "top",
+    "window": 494,
+    "pos": 71,
+    "rel": 0.418,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " taxpayers",
+    "text": " 2014\n\nAdvertisement\n\nAs a financial advisor to governments, your job is to tell sometimes hard truths about the financial implications of public plans. Governments ignore these financial consequences at the peril of[[ taxpayers]] and long-term financial health.\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 312,
+    "pos": 106,
+    "rel": 0.406,
+    "gate_open": true,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": " from",
+    "text": "list-down-payment\n======\npontifier\nEvery dollar paid in rent increases the value of property in support of those\nwho already own it. It's a double whammy.\n\nI myself benefit[[ from]] this situation, but see it"
+   },
+   {
+    "kind": "top",
+    "window": 14,
+    "pos": 184,
+    "rel": 0.386,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " children",
+    "text": " done well financially working as a stock and hedge fund consultant in Los Angeles and Denver.But those two years at ODU made a huge impression on him. When he looked for a way to help feed hungry[[ children]] and others suffering because of the"
+   },
+   {
+    "kind": "top",
+    "window": 1203,
+    "pos": 104,
+    "rel": 0.371,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " be",
+    "text": " partner) at the start of the counter and ensure that all the fruit and veges are placed at the end. I do this so the junk gets bagged up fast and the customer behind me will[[ be]] less likely to say something shitty"
+   },
+   {
+    "kind": "top",
+    "window": 181,
+    "pos": 133,
+    "rel": 0.358,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " loads",
+    "text": " serially connected resistors R.sub.r, as shown in FIG. 1, these reference voltages are produced at nodes or junctions between the resistors. Unfortunately, with comparators or other[[ loads]] connected to the nodes, load"
+   },
+   {
+    "kind": "top",
+    "window": 968,
+    "pos": 253,
+    "rel": 0.357,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "fires",
+    "text": ".\n\nShe had responded to the call from Lord Beaverbrook, Minister of Aircraft Production, for the women of Britain to: “Give us your aluminium. … We will turn your pots and pans into Spit[[fires]] and Hurricanes"
+   },
+   {
+    "kind": "top",
+    "window": 1160,
+    "pos": 221,
+    "rel": 0.357,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " people",
+    "text": "fires to get worse thanks to Clinton policies, says fire expert who predicted uptick in blazes\n\nAccording to New Zealand-based Stuff, \"Mullins was approached by a flight attendant who said some[[ people]] on board were intimidated by the"
+   },
+   {
+    "kind": "top",
+    "window": 62,
+    "pos": 249,
+    "rel": 0.336,
+    "gate_open": true,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": " the",
+    "text": " off.\" \"\"Makurazaki Fisherman's Cooperative\"\" \"I'd like to see the harbor master.\" \"He's with a visitor.\" \"Tomorrow's the 60th memorial of[[ the]] Yamato's sinking.\" \""
+   },
+   {
+    "kind": "top",
+    "window": 558,
+    "pos": 58,
+    "rel": 0.336,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " by",
+    "text": " governed by conformal cyclic cosmology (CCC). That is the claim of Roger Penrose of the University of Oxford, who is proposing that the apparent noise is actually a real signal of gravitational waves generated[[ by]] the decay of hypothetical dark-m"
+   },
+   {
+    "kind": "top",
+    "window": 293,
+    "pos": 235,
+    "rel": 0.33,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " to",
+    "text": " care to this group. Some readmissions have to occur toward the end of life. It's all a ruse to deny care to this age group and transfer the funds to Obama Care to offer it[[ to]] those who haven't paid in"
+   },
+   {
+    "kind": "top",
+    "window": 457,
+    "pos": 72,
+    "rel": 0.33,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Peter",
+    "text": "agan's world champion's jersey in the making (Image credit: Sportful) Image 3 of 5 The jersey design is printed (Image credit: Sportful) Image 4 of 5[[ Peter]] Sagan plays around on the"
+   },
+   {
+    "kind": "top",
+    "window": 895,
+    "pos": 158,
+    "rel": 0.33,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " according",
+    "text": " attack on Christmas Day\nTragedy struck in Baghdad, the capital city of Iraq, on Christmas Day, where militants killed almost three dozen people – most of them Christians – in two bomb attacks,[[ according]] to BBC News, cited by"
+   },
+   {
+    "kind": "top",
+    "window": 632,
+    "pos": 85,
+    "rel": 0.325,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " help",
+    "text": "Around 200 staff from Smith & Williamson’s Bristol office voted for their charity of choice and BRACE came out on top. Funds raised by the firm over the next 12 months will[[ help]] to maintain BRACE’s cutting"
+   }
+  ]
+ }
+}

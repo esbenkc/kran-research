@@ -1,0 +1,628 @@
+{
+ "id": "L16N9605",
+ "layer": 16,
+ "neuron": 9605,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 1.625,
+  "n_strong_tokens": 117,
+  "n_strong_windows": 66,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    14
+   ],
+   [
+    "OpenWebText2",
+    10
+   ],
+   [
+    "USPTO Backgrounds",
+    9
+   ],
+   [
+    "lang-id",
+    8
+   ],
+   [
+    "StackExchange",
+    7
+   ],
+   [
+    "Wikipedia (en)",
+    5
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    57
+   ],
+   [
+    "zh",
+    3
+   ],
+   [
+    "it",
+    2
+   ],
+   [
+    "fr",
+    2
+   ],
+   [
+    "code",
+    1
+   ],
+   [
+    "ja",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ",",
+    7
+   ],
+   [
+    " device",
+    3
+   ],
+   [
+    "\n",
+    3
+   ],
+   [
+    "ic",
+    2
+   ],
+   [
+    ")",
+    2
+   ],
+   [
+    " of",
+    2
+   ],
+   [
+    " ",
+    2
+   ],
+   [
+    "1",
+    2
+   ]
+  ],
+  "strong_pos_median": 137,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 665,
+    "pos": 197,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": ",",
+    "text": "-B) in chondrocytes ([@CIT0001]). In addition, local CNP/NPR-B signalling participates in oocyte maturation, sensory axon bifurcation[[,]] and moderation of arterial blood pressure"
+   },
+   {
+    "kind": "top",
+    "window": 629,
+    "pos": 54,
+    "rel": 0.986,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " drawings",
+    "text": " Plone?\n\nIs there any add-on which will activate while uploading files into the Plone site automatically? It should compress the files and then upload into the files. These can be image files like CAD[[ drawings]] or any other types. Ir"
+   },
+   {
+    "kind": "top",
+    "window": 86,
+    "pos": 212,
+    "rel": 0.966,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " proteins",
+    "text": " characterizing local dynamics within large (>30 kDa) proteins with multiple disulfide bonds. These new strategies will be used to further our understanding of transient disorder in cellular retinoic acid binding[[ proteins]] I and II (CRAB"
+   },
+   {
+    "kind": "top",
+    "window": 388,
+    "pos": 40,
+    "rel": 0.942,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " chocolate",
+    "text": "Nestlé has figured out a way to reduce the amount of sugar used in its products without changing the taste—by reshaping the structure of sugar crystals.\n\n“So even when much less is used in[[ chocolate]], your tongue perceives an"
+   },
+   {
+    "kind": "top",
+    "window": 957,
+    "pos": 185,
+    "rel": 0.904,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " houses",
+    "text": " “not healthy for the market.” Regardless of the data, art flipping carries a significant stigma in an industry that runs on relationships and reputations.\n\n\n\n\n\nWho flipping really hurts\n\nMost artworks, unlike stocks and[[ houses]], are made by working artists"
+   },
+   {
+    "kind": "top",
+    "window": 285,
+    "pos": 205,
+    "rel": 0.904,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " applications",
+    "text": " be an odd number of blades.\n2. Description of the Prior Art\nPrior art patents familiar to the inventors and pertaining to hingeless rotor blade attachments and controls have generally been directed to tail rotor[[ applications]] where pitch, lead/lag"
+   },
+   {
+    "kind": "top",
+    "window": 51,
+    "pos": 200,
+    "rel": 0.865,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "e",
+    "text": " the amplitude of the interference signal depends on how efficiently the two optical signals mix.\nOptical Frequency Domain Reflectometry (OFDR) may be used to provide data related to one or more optical characteristics ([[e]].g., backscatter, dispersion"
+   },
+   {
+    "kind": "top",
+    "window": 686,
+    "pos": 172,
+    "rel": 0.865,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " signalling",
+    "text": " by nature to modulate cellular processes \\[[@B7]-[@B11]\\]. It serves as a key mechanism for obtaining fine-tuned regulation in several cellular processes -- from metabolic pathways,[[ signalling]] systems \\[[@B1"
+   },
+   {
+    "kind": "top",
+    "window": 518,
+    "pos": 249,
+    "rel": 0.856,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " People",
+    "text": " part, Pickard appeared as well in other TV shows including Us Girls and If You Were Me.\n\nPickard has also trodden the boards with stage parts that include Richard II, An Enemy of the[[ People]] and Edward II.\n\nHe landed"
+   },
+   {
+    "kind": "top",
+    "window": 743,
+    "pos": 168,
+    "rel": 0.822,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "terra",
+    "text": ". We establish the validity of the proposed estimators under mild assumptions. Numerical experiments are provided on toy models, including a setting of highly-informative observations, and a realistic Lotka-Vol[[terra]] model with an intractable"
+   },
+   {
+    "kind": "top",
+    "window": 574,
+    "pos": 47,
+    "rel": 0.808,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " pol",
+    "text": " recourse to molecular cloning: application to RNAs of the Sabin 1 strain of poliovirus and its defective interfering particles.\nComplementary DNA to the genome of the Sabin 1 strain of[[ pol]]iovirus was prepared by reverse"
+   },
+   {
+    "kind": "top",
+    "window": 514,
+    "pos": 49,
+    "rel": 0.803,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " device",
+    "text": "-downward direction a suction nozzle for suction-holding a component is provided in, for example, component transfer apparatuses for handling components such as an electronic component, or manufacturing apparatuses for manufacturing a semiconductor[[ device]], a liquid-crystal display"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1106,
+    "pos": 103,
+    "rel": 0.553,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "er",
+    "text": "'s the definition and properties of a Floer homology of a knot? How is it related to other knot homology theories? \n\nA:\n\nI can say something about this for Heegaard Flo[[er]] homology.  Given a"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1000,
+    "pos": 193,
+    "rel": 0.726,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": ",",
+    "text": " they eliminate the need to thread a leader outside the cartridge or utilize an endless loop single reel arrangement. Examples of dual reel tape cartridges that have been extensively commercialized are the Phillips cassette used for audio recording[[,]] the VHS cassette used for"
+   },
+   {
+    "kind": "random-strong",
+    "window": 282,
+    "pos": 156,
+    "rel": 0.76,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "9",
+    "text": "positive square root $\\sqrt{x^2 − a^2}$.\n\nWhen I work on the integral:\n$$\\int \\frac {\\mathrm{d}x}{x\\sqrt{x^2-[[9]]}}$$\nUsing the substitution"
+   },
+   {
+    "kind": "random-strong",
+    "window": 5,
+    "pos": 77,
+    "rel": 0.591,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " in",
+    "text": " for his roles as Johnny Cage in the film adaptation of Mortal Kombat, and as Dr. Brett Cooper on Melrose Place. He is well known for his role as Sheriff Noah Stilinski[[ in]] the MTV series Teen Wolf ("
+   },
+   {
+    "kind": "random-strong",
+    "window": 846,
+    "pos": 57,
+    "rel": 0.683,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " real",
+    "text": " // News\n\nNina Lyon Author\n\nThe UAE and Kimberley Process is to use Blockchain technology to fight “blood diamonds” trading on the world market.\n\nBlockchain technology is already used for luxury goods,[[ real]] estate, art authenticity and ownership"
+   },
+   {
+    "kind": "random-strong",
+    "window": 907,
+    "pos": 72,
+    "rel": 0.688,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "berg",
+    "text": " in love again\"\n\nat the palace,1951.a break during rehearsals\n\nthe diva\n\nwith the icomparable spencer tracy behind the scenes on judgment at nurem[[berg]] in hollywood.the 2"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1182,
+    "pos": 132,
+    "rel": 0.731,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " calcium",
+    "text": "olarization of the TMP before returning to the higher resting state. These cells achieve this by expressing fast-acting voltage gated ion channels that allow the very rapid exchange of ions across the cellular membrane. While[[ calcium]] and chloride ions make distinct contributions"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1170,
+    "pos": 142,
+    "rel": 0.565,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Maker",
+    "text": "gvale told CoinDesk. “We’re growing these three assets under custody and hoping to see an increased turnout of these votes.”\n\nThat this is possible is because blockchains like Cosmos, Tezos and[[ Maker]] use staking to guide their"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 2.6719,
+  "n_strong_tokens": 42,
+  "n_strong_windows": 30,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    13
+   ],
+   [
+    "USPTO Backgrounds",
+    3
+   ],
+   [
+    "Github",
+    3
+   ],
+   [
+    "Pile-CC",
+    3
+   ],
+   [
+    "PubMed Central",
+    3
+   ],
+   [
+    "lang-id",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    25
+   ],
+   [
+    "code",
+    3
+   ],
+   [
+    "fr",
+    1
+   ],
+   [
+    "pl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " Xbox",
+    2
+   ],
+   [
+    " healthcare",
+    1
+   ],
+   [
+    " biological",
+    1
+   ],
+   [
+    " ",
+    1
+   ],
+   [
+    " WooCommerce",
+    1
+   ],
+   [
+    " Beautiful",
+    1
+   ],
+   [
+    "soup",
+    1
+   ],
+   [
+    " for",
+    1
+   ]
+  ],
+  "strong_pos_median": 55,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 420,
+    "pos": 73,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " combustion",
+    "text": "rollable torque to a threaded fastener.\n2. Description of the Prior Art\nIn many industrial applications it is desirable to tighten threaded fasteners to a predetermined torque automatically and rapidly. Such applications include internal[[ combustion]] engine head bolts and connecting rod"
+   },
+   {
+    "kind": "top",
+    "window": 825,
+    "pos": 18,
+    "rel": 0.982,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Operating",
+    "text": "This post describes the C++ Badge template used to enhance member function access control in Serenity[[ Operating]] System.\n\nC++ divides class"
+   },
+   {
+    "kind": "top",
+    "window": 240,
+    "pos": 18,
+    "rel": 0.977,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "soup",
+    "text": "Q:\n\nHow to generate a dict from string separated by semicolon?\n\nI am using Beautiful[[soup]] to search for a specific number"
+   },
+   {
+    "kind": "top",
+    "window": 1313,
+    "pos": 21,
+    "rel": 0.754,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "tor",
+    "text": "@file:Suppress(\"NOTHING_TO_INLINE\")\n\npackage io.ktor.utils.io.bits\n\nimport io.k[[tor]].utils.io.core.internal.*\nimport"
+   },
+   {
+    "kind": "top",
+    "window": 164,
+    "pos": 53,
+    "rel": 0.749,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Xbox",
+    "text": " as head of mobile\n\nMicrosoft’s new CEO Satya Nadella has continued to make sweeping changes at the software giant, announcing Scott Guthrie to lead the Cloud and Enterprise organisation, Phil Spencer to lead[[ Xbox]], and former Nokia CEO Stephen"
+   },
+   {
+    "kind": "top",
+    "window": 24,
+    "pos": 81,
+    "rel": 0.708,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " biological",
+    "text": "[@cit1],[@cit2]^ Despite this, few synthetic polymers degrade with high sensitivity in response to specific stimuli. Most current degradable materials are unresponsive to the often subtle changes found in[[ biological]] systems or, in the case"
+   },
+   {
+    "kind": "top",
+    "window": 595,
+    "pos": 28,
+    "rel": 0.69,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " =",
+    "text": "Q:\n\nreturning the ArrayList cast to List vs no casting\n\nWhat is the difference, if any, between the two:\n@ModelAttribute(value[[ =]] \"attendanceStatuses\")\npublic"
+   },
+   {
+    "kind": "top",
+    "window": 294,
+    "pos": 29,
+    "rel": 0.687,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " system",
+    "text": "Q:\n\nCreate string from regular expression PHP\n\nI'm trying to create a string from a regular expression. I noticed that in Kohana framework's routing[[ system]] you can set a route using"
+   },
+   {
+    "kind": "top",
+    "window": 149,
+    "pos": 8,
+    "rel": 0.681,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " WooCommerce",
+    "text": "Q:\n\nFadeout validation error messages in[[ WooCommerce]] checkout page\n\nWhen placing an"
+   },
+   {
+    "kind": "top",
+    "window": 591,
+    "pos": 131,
+    "rel": 0.673,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " United",
+    "text": " the town holds two annual fairs and a free Saturday market in perpetuity. , the Saturday market still runs. It is a popular shopping hub within Northern Ireland and is home to Ballymena[[ United]] F.C.\n\nBallymen"
+   },
+   {
+    "kind": "top",
+    "window": 1309,
+    "pos": 12,
+    "rel": 0.643,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " CSS",
+    "text": "<?php\n\n/**\n * Validates a number as defined by the[[ CSS]] spec.\n */\nclass HTMLP"
+   },
+   {
+    "kind": "top",
+    "window": 612,
+    "pos": 124,
+    "rel": 0.643,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " li",
+    "text": "childpath (path following the parentpath, e.g. page1/ )\n\nI've written a function that gets all subpages of a particular page into an array, and another that outputs them into[[ li]] elements.\nfunction get_subpages"
+   },
+   {
+    "kind": "random-strong",
+    "window": 537,
+    "pos": 99,
+    "rel": 0.529,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "-",
+    "text": "392]). It is associated with inflammation and malignant neoplasms ([@b4-or-40-06-3392]--[@b5-or-40[[-]]06-339"
+   },
+   {
+    "kind": "random-strong",
+    "window": 844,
+    "pos": 211,
+    "rel": 0.567,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " the",
+    "text": " recently experienced the ending of an extremely intense 6 month relationship.\n\nMy now ex-girlfriend, 20, and I were involved for 6 months. The relationship was very intense, particularly in[[ the]] last few months - we went"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1035,
+    "pos": 178,
+    "rel": 0.52,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " motor",
+    "text": ",545 to Hammond, the disclosure of which is incorporated herein by reference in its entirety.\nPower cells may be either non-regenerative or regenerative. Non-regenerative power cells can drive a[[ motor]] but cannot control the flow of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 798,
+    "pos": 23,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ".\n",
+    "text": "Q:\n\nHow to get all elements whose id contains a particular substring?\n\nI'm building a chat with firebase realtime database[[.\n]]Let's say user1 has"
+   },
+   {
+    "kind": "random-strong",
+    "window": 974,
+    "pos": 188,
+    "rel": 0.503,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":",
+    "text": " other = Category(name: \"Other Menu Items\", items: [])\n    let sandwiches_burgers = Category(name: \"Sandwiches & Burgers\", items: [])\n    let sides = Category(name[[:]] \"Sides\", items:"
+   },
+   {
+    "kind": "random-strong",
+    "window": 484,
+    "pos": 5,
+    "rel": 0.576,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " image",
+    "text": "Q:\n\nClustering an[[ image]] using Gaussian mixture models\n\nI"
+   },
+   {
+    "kind": "random-strong",
+    "window": 47,
+    "pos": 47,
+    "rel": 0.547,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " ",
+    "text": "\n\nIt seems I can not find clearly written somewhere that when using WMI accelerator in a PowerShell script, you can not pass on authentication.\nA little background ...\nI am writing PowerShell scripts for SCCM[[ ]]2012 and found"
+   },
+   {
+    "kind": "random-strong",
+    "window": 526,
+    "pos": 219,
+    "rel": 0.561,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " limbs",
+    "text": "alvage surgery was considered as safe as an amputation in the management of patients with high-grade osteosarcoma.\n\nThe goal of limb-salvaging surgery is to preserve the function of[[ limbs]], prevent tumour recurrence,"
+   }
+  ]
+ }
+}

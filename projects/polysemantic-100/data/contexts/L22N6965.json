@@ -1,0 +1,548 @@
+{
+ "id": "L22N6965",
+ "layer": 22,
+ "neuron": 6965,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 11.25,
+  "n_strong_tokens": 4,
+  "n_strong_windows": 3,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "OpenWebText2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    3
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " not",
+    1
+   ],
+   [
+    " impossible",
+    1
+   ],
+   [
+    " to",
+    1
+   ],
+   [
+    " defeats",
+    1
+   ]
+  ],
+  "strong_pos_median": 167,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 809,
+    "pos": 240,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " impossible",
+    "text": " the\nDucks in sole possession of first place at 6-0, the first time that has\nhappened since the 1925-26 season. Oregon has been[[ impossible]] to beat at\nMatthew Knight"
+   },
+   {
+    "kind": "top",
+    "window": 1201,
+    "pos": 81,
+    "rel": 0.647,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " defeats",
+    "text": " showing ‘when law courts falsely assert citizenship to be the ruling axiom, all attempts are futile to assert the superiority of life .’ Here’s a reminder concerning axioms—\n\nAn axiom is a proposition that[[ defeats]] its opponents by the fact that"
+   },
+   {
+    "kind": "top",
+    "window": 316,
+    "pos": 94,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " not",
+    "text": " on a string of murders in New York in the 1990s. In 1989, he killed his first woman. He discarded the bodies of his victims so they could[[ not]] be identified. His reign of"
+   },
+   {
+    "kind": "top",
+    "window": 419,
+    "pos": 20,
+    "rel": 0.406,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " much",
+    "text": "The state's largely Democratic electorate, coupled with Warren's pulling women voters to her side, proved too[[ much]] for Senator Brown to overcome.\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1062,
+    "pos": 194,
+    "rel": 0.372,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "unt",
+    "text": ".\n\nBefore the raid, the Chief Executive Arianne de Rothschild (see featured image) had brushed aside journalists and laughed smugly when assured by her associates that she and her bank were “[[unt]]ouchable”. It was caught"
+   },
+   {
+    "kind": "top",
+    "window": 1411,
+    "pos": 54,
+    "rel": 0.332,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "е",
+    "text": "рия ръб , който някога си чувал за водещ ръб .\nнеговият богат ирландски глас не мож[[е]] да се сбъ"
+   },
+   {
+    "kind": "top",
+    "window": 110,
+    "pos": 219,
+    "rel": 0.331,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " conclusive",
+    "text": " which justifies a remand of the cause or a reversal of the judgment below. Review in Supreme Court is limited to questions of law and legal inference. The findings of fact of the Industrial Commission are[[ conclusive]] on appeal when supported by competent"
+   },
+   {
+    "kind": "top",
+    "window": 107,
+    "pos": 43,
+    "rel": 0.325,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " told",
+    "text": " Celebration Ring Celebration Ring\n\nMatching Products\n\nDimensions\n\nTestimonials\n\nLouis B\n\nRegarding the Noelle engagement ring you had made for me it was a great success, I hid it in the garden and[[ told]] her to come and look I"
+   },
+   {
+    "kind": "top",
+    "window": 247,
+    "pos": 18,
+    "rel": 0.301,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "2",
+    "text": "\n162 Ga. App. 183 (1982)\n[[2]]90 S.E.2"
+   },
+   {
+    "kind": "top",
+    "window": 996,
+    "pos": 32,
+    "rel": 0.301,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " un",
+    "text": "Last Monday, one of the most iconic figures of the 1980s passed away. Whatever your viewpoint, in terms of strength, drive, and[[ un]]relenting sense of purpose,"
+   },
+   {
+    "kind": "top",
+    "window": 374,
+    "pos": 74,
+    "rel": 0.299,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " then",
+    "text": " sessions.  \nSo in other words if the browser (And note I'm specifically narrowing the scope to web browsers here) does not use a cookie based session key to identify the session on the server,[[ then]] a CSRF attack cannot happen."
+   },
+   {
+    "kind": "top",
+    "window": 213,
+    "pos": 90,
+    "rel": 0.283,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " cannot",
+    "text": "s$ (charge and spin at zero magnetic field) and are constituted by one many-pseudoparticle [*topological momenton*]{} and one or two pseudoparticles. These excitations[[ cannot]] be separated. We consider the"
+   },
+   {
+    "kind": "top",
+    "window": 196,
+    "pos": 70,
+    "rel": 0.278,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " ",
+    "text": "_increment:\n    movl 4(%esp), %ecx\n    lock \n    incl (%ecx)\n    mov $0,%eax\n    setne %al\n    ret\n\n    .align[[ ]]4,0x90"
+   },
+   {
+    "kind": "top",
+    "window": 1037,
+    "pos": 165,
+    "rel": 0.276,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "\",",
+    "text": " liability since they are then useless until they wake up, especially when staves already exist, unless you have some idea for how to make it not annoying.\n\nWell the bedroll is \"unbreakable[[\",]] so that helps in the decision"
+   },
+   {
+    "kind": "top",
+    "window": 1087,
+    "pos": 36,
+    "rel": 0.276,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " people",
+    "text": "Meteorologist Jim Cantore Defends Himself From Attack on Live TV with a Swift Knee to the Nuts [VIDEO]\n\nSeems like Jim Cantore would be one of the last[[ people]] you would want to try and"
+   },
+   {
+    "kind": "top",
+    "window": 1055,
+    "pos": 13,
+    "rel": 0.272,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " to",
+    "text": "Major Research topic:Automated analysis of Android Malware Samples resilient[[ to]] evasionAdvisor: MAGGI F"
+   },
+   {
+    "kind": "top",
+    "window": 1015,
+    "pos": 65,
+    "rel": 0.267,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " shot",
+    "text": " Chelsea hit back to end Arsenal's perfect start to the Women's Super League season.\n\nThe Gunners led when Vivianne Miedema's astute pass picked out Danielle van de Donk, whose[[ shot]] found the far corner.\n\nChelsea"
+   },
+   {
+    "kind": "top",
+    "window": 533,
+    "pos": 249,
+    "rel": 0.263,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " force",
+    "text": " of the Marin headquarters and will happily fight Luffy whenever the opportunity arises.\n\n\n\nAnother enemy Luffy will come up against is Admiral Issho (Fujitora). Despite being blind, he is a[[ force]] to be reckoned with."
+   },
+   {
+    "kind": "top",
+    "window": 50,
+    "pos": 208,
+    "rel": 0.251,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " high",
+    "text": " void doGet(HttpServletRequest pRequest, HttpServletResponse pResponse)\n        throws IOException, ServletException {\n\n        if (pRequest is of the type allowed to be slow) {\n            set max idle time for this request very[[ high]] (or infinite)\n        }\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 633,
+    "pos": 51,
+    "rel": 0.236,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " said",
+    "text": "iko\n\nMarch 21, 2011 22:13 IST\n\nMarumalarchi Dravida Munnetra Kazhagam leader Vaiko on Monday[[ said]] there was no going back on"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 3.8438,
+  "n_strong_tokens": 6,
+  "n_strong_windows": 4,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "lang-id",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    3
+   ],
+   [
+    "pl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " with",
+    1
+   ],
+   [
+    " released",
+    1
+   ],
+   [
+    " can",
+    1
+   ],
+   [
+    " exploit",
+    1
+   ],
+   [
+    " conce",
+    1
+   ],
+   [
+    " na",
+    1
+   ]
+  ],
+  "strong_pos_median": 146,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1055,
+    "pos": 137,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " exploit",
+    "text": " tools use dynamic analysis, meaning that they employ techniques such as software emulation and hardware virtualization to create sandboxes where malware can be analyzed without harming the physical devices. The challenge is that modern malware can[[ exploit]] imperfections to detect it is"
+   },
+   {
+    "kind": "top",
+    "window": 1508,
+    "pos": 178,
+    "rel": 0.63,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": " na",
+    "text": " Colpin nie sprecyzował, czy to właśnie ten system znajdował się w centrum dochodzenia.\nRosja ostrzega, że zareaguje w przypadku ataku[[ na]] interesy na Ukrainie.\n"
+   },
+   {
+    "kind": "top",
+    "window": 513,
+    "pos": 237,
+    "rel": 0.626,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " released",
+    "text": " full names, e-mails and addresses. If they publish one more little detail on Israel, we will attack in full force and publish all of the credit card details.”On Wednesday night, the Saudi hacker[[ released]] what he said were 2"
+   },
+   {
+    "kind": "top",
+    "window": 220,
+    "pos": 95,
+    "rel": 0.553,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " with",
+    "text": " when setting the precedent for actions taken by the Trump administration.\n\nHundreds of illegal immigrants from the migrant caravan made a mad rush on the U.S. border, with some becoming violent, attacking Border Patrol agents[[ with]] rocks. Agents held their ground"
+   },
+   {
+    "kind": "top",
+    "window": 147,
+    "pos": 139,
+    "rel": 0.498,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " GE",
+    "text": " a letter denying his application for a credit card. Pettineo alleges that this denial and a disclosure at the bottom of the GE form letter he received violate the Equal Credit Opportunity Act (\"ECOA\").[[ GE]]'s motion to dismiss and Pett"
+   },
+   {
+    "kind": "top",
+    "window": 1006,
+    "pos": 150,
+    "rel": 0.496,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " of",
+    "text": ") (A)-(D) of the Privacy Act is to avoid disclosures that may adversely affect ongoing operational relationships with other intelligence and related organizations and thus reveal or jeopardize intelligence sources and methods or risk exposure[[ of]] intelligence sources and methods in the"
+   },
+   {
+    "kind": "top",
+    "window": 1091,
+    "pos": 17,
+    "rel": 0.423,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " with",
+    "text": "This morning at 11:10 a.m., the Ukrainian army opened fire[[ with]] 120 mm mort"
+   },
+   {
+    "kind": "top",
+    "window": 1222,
+    "pos": 84,
+    "rel": 0.404,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " of",
+    "text": " distribute this software in source code or binary form for use\n// in connection with the web services and APIs provided by Facebook.\n//\n// As with any software that integrates with the Facebook platform, your use[[ of]]\n// this software is subject"
+   },
+   {
+    "kind": "top",
+    "window": 806,
+    "pos": 246,
+    "rel": 0.392,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " E",
+    "text": " proceedings terminated in her favor. Following a jury trial, the jury returned a verdict favoring Hall in the amount of $10,000, and the trial court entered a judgment accordingly.[[ E]]ubanks appeals.\nEub"
+   },
+   {
+    "kind": "top",
+    "window": 277,
+    "pos": 69,
+    "rel": 0.388,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "0",
+    "text": "LINES, Defendant-Appellee.\nNo. 01-35803.\nUnited States Court of Appeals, Ninth Circuit.\nArgued and Submitted March 5, 2[[0]]03.\nFiled April "
+   },
+   {
+    "kind": "top",
+    "window": 927,
+    "pos": 63,
+    "rel": 0.384,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " to",
+    "text": " the captain of Reading were the two who had to take part in the centre circle.\n\nMcNamara has been suspended for three weeks by the governing body from November 26. He has the right[[ to]] appeal the decision.\n\nThe FA"
+   },
+   {
+    "kind": "top",
+    "window": 1366,
+    "pos": 94,
+    "rel": 0.366,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " accordance",
+    "text": "GPL3$\n** Commercial License Usage\n** Licensees holding valid commercial Qt licenses may use this file in\n** accordance with the commercial license agreement provided with the\n** Software or, alternatively, in[[ accordance]] with the terms contained in\n"
+   },
+   {
+    "kind": "top",
+    "window": 1479,
+    "pos": 110,
+    "rel": 0.362,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "à",
+    "text": " piscina.\nL'ufficio di Shelley ha riferito venerdì che gli sono state segnalate 575.926 firme.\nLa Russia avverte che risponder[[à]] se gli interessi attacc"
+   },
+   {
+    "kind": "top",
+    "window": 1034,
+    "pos": 245,
+    "rel": 0.358,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " appeal",
+    "text": " Zohoori. Hager sued Dr. Zohoori and the Department for\nstatutory and constitutional violations. The district court granted, in part, their\nmotion to dismiss. They[[ appeal]]. Having jurisdiction under 2"
+   },
+   {
+    "kind": "top",
+    "window": 372,
+    "pos": 42,
+    "rel": 0.358,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " of",
+    "text": " around Australia are refusing to pay out on last night's farcical IBO cruiserweight world title boxing bout which Danny Green won in under thirty seconds.\n\nGreen's opponent, Paul Briggs, came out[[ of]] retirement for the fight but hit"
+   },
+   {
+    "kind": "top",
+    "window": 344,
+    "pos": 46,
+    "rel": 0.354,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "0",
+    "text": "d 975\nGail ANDERSON, Plaintiff-Appellant,v.MILWAUKEE COUNTY and Milwaukee Transport Services, Inc., Defendants-Appellees.\nNo. [[0]]5-1267"
+   },
+   {
+    "kind": "top",
+    "window": 482,
+    "pos": 39,
+    "rel": 0.352,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "itioner",
+    "text": "                                       IN THE\n                           (\n\n                          COURT OF     CRIMINAL     APPEALS\n\n\n                                       OF   TEXAS\n\n\nJOSE   GONZALES   111,\n          Pet[[itioner]]/\n\n\n\n\nTHE STATE OF TEX"
+   },
+   {
+    "kind": "top",
+    "window": 832,
+    "pos": 243,
+    "rel": 0.35,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "ing",
+    "text": "10th Cir. R. 34.1(G). The case is\n\ntherefore ordered submitted without oral argument.\n\n      Sergio Ortega-Guzman pleaded guilty to unlawfully reenter[[ing]] the United\n\nStates after deportation"
+   },
+   {
+    "kind": "top",
+    "window": 1276,
+    "pos": 62,
+    "rel": 0.337,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " changing",
+    "text": "\n\n Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but[[ changing]] it is not allowed.\n\n                           "
+   },
+   {
+    "kind": "top",
+    "window": 566,
+    "pos": 15,
+    "rel": 0.331,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " others",
+    "text": "﻿// © 2016 and later: Unicode, Inc. and[[ others]].\n// License & terms of"
+   }
+  ]
+ }
+}

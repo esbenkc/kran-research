@@ -1,0 +1,620 @@
+{
+ "id": "L34N1317",
+ "layer": 34,
+ "neuron": 1317,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 32.5,
+  "n_strong_tokens": 78,
+  "n_strong_windows": 57,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    14
+   ],
+   [
+    "lang-id",
+    13
+   ],
+   [
+    "Pile-CC",
+    9
+   ],
+   [
+    "OpenWebText2",
+    9
+   ],
+   [
+    "Github",
+    7
+   ],
+   [
+    "HackerNews",
+    3
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    37
+   ],
+   [
+    "code",
+    7
+   ],
+   [
+    "it",
+    6
+   ],
+   [
+    "sw",
+    5
+   ],
+   [
+    "ar",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " sh",
+    7
+   ],
+   [
+    "\"",
+    4
+   ],
+   [
+    " non",
+    3
+   ],
+   [
+    "Sh",
+    2
+   ],
+   [
+    " that",
+    2
+   ],
+   [
+    " SH",
+    2
+   ],
+   [
+    " cosa",
+    2
+   ],
+   [
+    "G",
+    1
+   ]
+  ],
+  "strong_pos_median": 164,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1479,
+    "pos": 51,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " non",
+    "text": "AC\nIl missile è esploso.\nFino a 21, per lo più stranieri, uccisi a Kabul in un attacco suicida\nEssere in una gang[[ non]] è un crimine.\nUna"
+   },
+   {
+    "kind": "top",
+    "window": 990,
+    "pos": 202,
+    "rel": 0.854,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " SH",
+    "text": " media followers, reputation, merchandising, what DJs u fw, how many downloads ya mixtape got, etc etc etc ALL THAT MF TOTAL BULLSHIT… ITS NOT ABOUT NONE OF THAT[[ SH]]IT! I know because I"
+   },
+   {
+    "kind": "top",
+    "window": 401,
+    "pos": 197,
+    "rel": 0.842,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "3",
+    "text": "\nBCD, ABCD, 3  \nBCD, ABCDE, 3  \n , CDE, 2  \n , ABE, 2\n\nSo the rule is that merge=[[3]] if row in file1.csv"
+   },
+   {
+    "kind": "top",
+    "window": 1538,
+    "pos": 171,
+    "rel": 0.777,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": " sh",
+    "text": " dada yake town artemon ( wote wanaoitwa ndugu na dada mungu na goddess wa hadithi wa kigiriki la kale ) .\nYeye[[ sh]]irika la amani lak"
+   },
+   {
+    "kind": "top",
+    "window": 1408,
+    "pos": 110,
+    "rel": 0.769,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": " لا",
+    "text": "يير او تبسيطها .\nصحيح نعم نعم لا انا اتفق معك هناك على الرغم من انني اعني انهم يريدون اختيار ذلك الدين المعين ثم هذا[[ لا]] باس به معي ايضا"
+   },
+   {
+    "kind": "top",
+    "window": 499,
+    "pos": 131,
+    "rel": 0.754,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " obviously",
+    "text": " stuff.\nThe current circuit is protected by a 3A fuse and a varistor of type S10K30. Looking at the datasheet (see below), the \"30\"[[ obviously]] refers to the \\$ V_{"
+   },
+   {
+    "kind": "top",
+    "window": 1372,
+    "pos": 151,
+    "rel": 0.746,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " zero",
+    "text": ".\n@interface SDAnimatedImagePlayer : NSObject\n\n/// Current playing frame image. This value is KVO Compliance.\n@property (nonatomic, readonly, nullable) UIImage *currentFrame;\n\n/// Current frame index,[[ zero]] based. This value is K"
+   },
+   {
+    "kind": "top",
+    "window": 96,
+    "pos": 210,
+    "rel": 0.742,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "}\"",
+    "text": " 23......\nWhat is the workaround i can do?\n\nA:\n\nAs you are using the GetOptions function I assume you are using GetOpts::Long, the trouble with the \"{1,[[}\"]] one or more quantity in the"
+   },
+   {
+    "kind": "top",
+    "window": 641,
+    "pos": 220,
+    "rel": 0.688,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " much",
+    "text": " a coral predator when I described it, based on fragments found in its gut, but now we have solid evidence of this species feeding on a primnoid octocora,\" said Mah. This pretty[[ much]] confirms the star's soft-c"
+   },
+   {
+    "kind": "top",
+    "window": 1063,
+    "pos": 213,
+    "rel": 0.685,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "n",
+    "text": " get it?\n\nA:\n\nI'm going to take your word for it that you have a concrete reason why you must use a subshell for this, rather than opening the file directly.  The -[[n]] and -e options to echo"
+   },
+   {
+    "kind": "top",
+    "window": 483,
+    "pos": 212,
+    "rel": 0.677,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " specifier",
+    "text": " = a + c;\n    printf(\"%s\", r1);\n    }\n}\n\nA:\n\nprintf(\"%s\", r1);\n\nThis is where your segfault is coming from.  \nThe %s conversion[[ specifier]] expects its corresponding argument to have"
+   },
+   {
+    "kind": "top",
+    "window": 1533,
+    "pos": 249,
+    "rel": 0.654,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": " sh",
+    "text": "ja na wafanyakazi wajue utayari wao wa kufikia malengo ya wakala na kuweka malengo haya kwa akili kama wao[[ sh]]ughuli zao za s"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1233,
+    "pos": 189,
+    "rel": 0.515,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " BMP",
+    "text": " surrogate pair of 16-bit codes\n\t//\t  EncodeRune returns 0xfffd if the rune does not need special encoding\n\t//  - the above RFC provides the info that[[ BMP]]Strings are NULL terminated.\n\n\tret"
+   },
+   {
+    "kind": "random-strong",
+    "window": 228,
+    "pos": 114,
+    "rel": 0.619,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " award",
+    "text": " of help he’s received over the years to the kids supported by the foundation’s work, but he closed with a prediction that he’d be winning another prize early in 2016.\n\n“This[[ award]] is very meaningful to me,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1472,
+    "pos": 140,
+    "rel": 0.646,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "azione",
+    "text": ",3% per il mese, spezzando una serie di sette mesi di vittorie.\nPer la trilionesima volta, non ho mai detto che la riabilit[[azione]] non funziona.\n\""
+   },
+   {
+    "kind": "random-strong",
+    "window": 1537,
+    "pos": 206,
+    "rel": 0.55,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": " sh",
+    "text": "ya mosse , magritte , mir ? ? , na hockney .\nHata hivyo , amana imekuwa kuchukuliwa kama risiti ya bajeti ya[[ sh]]irikisho ( ris"
+   },
+   {
+    "kind": "random-strong",
+    "window": 167,
+    "pos": 174,
+    "rel": 0.577,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\"",
+    "text": "acy leading to a the term degenerate semiconductor? Can someone shed some light on this concept of degeneracy?\nThanks\n\nA:\n\nWhen used in reference to a semiconductor, the term \"degenerate[[\"]] means that it is doped"
+   },
+   {
+    "kind": "random-strong",
+    "window": 87,
+    "pos": 78,
+    "rel": 0.577,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "G",
+    "text": " DOW reached an all time high at the closing bell.\n\n12th Straight Daily Close at an All Time High for the DOW!\n\nTRENDING: RUTH BADER GINSBUR[[G]] DEAD! Supreme Court Justice Dies"
+   },
+   {
+    "kind": "random-strong",
+    "window": 924,
+    "pos": 187,
+    "rel": 0.623,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": " <!-- This number means how many L3 clusters -->\n\t\t<param name=\"number_of_NoCs\" value=\"1\"/>\n\t\t<param name=\"homogeneous_cores\" value=\"1\"/><!--[[1]] means homo -->\n\t\t<"
+   },
+   {
+    "kind": "random-strong",
+    "window": 824,
+    "pos": 84,
+    "rel": 0.538,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "\"",
+    "text": " for you. We have the experience and knowledge to help you and your family.\"\n\nEliminating IRS Debt\n\nJames P. Frego - Founder\n\nEliminate IRS Debt\n\nJust seeing the letters \"IRS[[\"]] can be terrifying. They send"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 30.25,
+  "n_strong_tokens": 571,
+  "n_strong_windows": 184,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "USPTO Backgrounds",
+    59
+   ],
+   [
+    "PubMed Abstracts",
+    45
+   ],
+   [
+    "PubMed Central",
+    30
+   ],
+   [
+    "NIH ExPorter",
+    12
+   ],
+   [
+    "ArXiv",
+    11
+   ],
+   [
+    "Pile-CC",
+    10
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    181
+   ],
+   [
+    "code",
+    2
+   ],
+   [
+    "pl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " that",
+    51
+   ],
+   [
+    " which",
+    47
+   ],
+   [
+    " and",
+    43
+   ],
+   [
+    " invention",
+    34
+   ],
+   [
+    ")",
+    20
+   ],
+   [
+    " it",
+    16
+   ],
+   [
+    ",",
+    13
+   ],
+   [
+    " It",
+    7
+   ]
+  ],
+  "strong_pos_median": 114,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 673,
+    "pos": 179,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " plate",
+    "text": " is rotatable about the longitudinal axis in the pressing direction and a bottom ram which is also moveable linearly against a bottom stop and in which a bottom punch is rotatably supported. A die[[ plate]] forms a mold cavity and is"
+   },
+   {
+    "kind": "top",
+    "window": 1000,
+    "pos": 60,
+    "rel": 0.971,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " which",
+    "text": " magnetic tape, and more particularly, to a tape drive for automatic insertion, registration and ejection of a tape cartridge of the type having dual hub driven reels and a tape access door on a forward end[[ which]] pivots about an axis perpendicular"
+   },
+   {
+    "kind": "top",
+    "window": 665,
+    "pos": 243,
+    "rel": 0.942,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "unit",
+    "text": " pressure ([@CIT0001], [@CIT0004], [@CIT0005]).\n\nNPR-B presents as a homodimer, and each sub[[unit]] contains an extracellular CNP"
+   },
+   {
+    "kind": "top",
+    "window": 808,
+    "pos": 58,
+    "rel": 0.942,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " which",
+    "text": " part with an outer surface and an inner surface, a linkage, it being possible for the linkage to be moved in relation to the roof part during an opening movement of the convertible top, and a cover[[ which]] is designed as a flexible,"
+   },
+   {
+    "kind": "top",
+    "window": 938,
+    "pos": 252,
+    "rel": 0.921,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "uator",
+    "text": "assembly at the other end is secured (or adapted to be secured) to an actuator, i.e. a control member such as a handle, motor output member, etc. Typically, the act[[uator]] member and the"
+   },
+   {
+    "kind": "top",
+    "window": 450,
+    "pos": 22,
+    "rel": 0.917,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " that",
+    "text": "Focal Adhesion Kinase (FAK) is a 125 kDa tyrosine kinase[[ that]] is localized to contact points between"
+   },
+   {
+    "kind": "top",
+    "window": 1172,
+    "pos": 55,
+    "rel": 0.905,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " rack",
+    "text": " providers to deliver Internet services to users. A data center, such as a server farm, typically contains thousands of server processing devices. Within the data centers the processing devices are arranged in racks, and each[[ rack]] may contain dozens of servers."
+   },
+   {
+    "kind": "top",
+    "window": 208,
+    "pos": 237,
+    "rel": 0.905,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " focus",
+    "text": " plasma focus, recently attention is paid thereto also as an X-ray source.\nSince the construction and the working mode of the plasma focus are simple and the brightness of the source is high, the plasma[[ focus]] has a possibility to be an"
+   },
+   {
+    "kind": "top",
+    "window": 285,
+    "pos": 82,
+    "rel": 0.901,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " spar",
+    "text": " deflections of pitch change, and the bending requirements due to lead/lag and flap/droop blade excursions. This invention is specifically directed to the group of bearingless rotors wherein the flexible[[ spar]] is rotatably driven by"
+   },
+   {
+    "kind": "top",
+    "window": 514,
+    "pos": 115,
+    "rel": 0.872,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " which",
+    "text": " Demands for this type of linear motor have been increasing year by year. Particularly, there has been a growing need for a high-performance linear motor. To meet such a need, a linear motor,[[ which]] is suitable for a component transfer"
+   },
+   {
+    "kind": "top",
+    "window": 25,
+    "pos": 149,
+    "rel": 0.868,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " enc",
+    "text": " those skilled in the art, most of the conventional motorcycles have a front fairing or cowling mounted on a front portion thereof. A lamp unit is mounted in the front fairing. The lamp unit[[ enc]]ases therein at least one head"
+   },
+   {
+    "kind": "top",
+    "window": 193,
+    "pos": 53,
+    "rel": 0.868,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " which",
+    "text": " printing press includes a main drive and an electronic control mechanism. Such a main drive and control mechanism is disclosed in U.S. Pat. No. 4,951,567,[[ which]] is hereby incorporated by reference."
+   },
+   {
+    "kind": "random-strong",
+    "window": 893,
+    "pos": 167,
+    "rel": 0.607,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": "ium",
+    "text": " that of non-malignant supporting stroma. Colony characteristics of the recovered cells will be examined both in soft agar and on chick chorio- allantoic membrane. As mammalian transitional epithel[[ium]] is characterized by an asymmetric unit"
+   },
+   {
+    "kind": "random-strong",
+    "window": 943,
+    "pos": 44,
+    "rel": 0.591,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "axis",
+    "text": "ylaxis methods on adherence of Streptococcus mutans to microfilled composite resin and giomer surfaces.\nSurface attributes of a restoration play an important role in adherence of plaque bacteria. Prophyl[[axis]] methods may be involved in modification"
+   },
+   {
+    "kind": "random-strong",
+    "window": 775,
+    "pos": 78,
+    "rel": 0.517,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " it",
+    "text": "cal L$ and $\\mathcal L$-structure $\\mathcal M$.  For a subset $A \\subseteq M$, an element of $M$ is algebraic over $A$ if[[ it]] is a member of a finite"
+   },
+   {
+    "kind": "random-strong",
+    "window": 86,
+    "pos": 150,
+    "rel": 0.574,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " fragmentation",
+    "text": ") covalent trapping of native and non-native protein states. A new method to probe stability of protein cores by monitoring HDX selectively at polar side chains will also be developed. Multi-stage protein ion[[ fragmentation]] in both positive and negative ion"
+   },
+   {
+    "kind": "random-strong",
+    "window": 986,
+    "pos": 144,
+    "rel": 0.541,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " pathway",
+    "text": "rose content coupled with large increases in the levels of glucose and hexose phosphates, but unaltered starch content in the transformants. Analysis of the key enzyme of glycolysis suggests that this[[ pathway]] is down-regulated in the"
+   },
+   {
+    "kind": "random-strong",
+    "window": 859,
+    "pos": 82,
+    "rel": 0.711,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " which",
+    "text": ", is a protein which in humans is encoded by the SLC22A12 gene.\n\nFunction \nThe protein encoded by this gene is a urate transporter and urate-anion exchanger[[ which]] regulates the level of urate"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1035,
+    "pos": 111,
+    "rel": 0.62,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " and",
+    "text": " with a drive containing one or more power cells that include two solid state converters with an intermediate direct current (DC) link. A power cell is an electrical device that has a three-phase alternating current input[[ and]] a single-phase alternating current output"
+   },
+   {
+    "kind": "random-strong",
+    "window": 718,
+    "pos": 106,
+    "rel": 0.562,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " bound",
+    "text": " the overall efficiency. The corresponding lower bound on the failure probability is expressed only with an “internal cooperativity,\" introduced here as the cooperativity parameter with respect to the cavity internal loss rate. The lower[[ bound]] is obtained by optimizing the cavity"
+   }
+  ]
+ }
+}

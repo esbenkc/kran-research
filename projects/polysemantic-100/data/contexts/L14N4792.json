@@ -1,0 +1,580 @@
+{
+ "id": "L14N4792",
+ "layer": 14,
+ "neuron": 4792,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 2.5,
+  "n_strong_tokens": 10,
+  "n_strong_windows": 6,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    4
+   ],
+   [
+    "ArXiv",
+    1
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    6
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "pi",
+    1
+   ],
+   [
+    " time",
+    1
+   ],
+   [
+    " differential",
+    1
+   ],
+   [
+    "[t",
+    1
+   ],
+   [
+    "DS",
+    1
+   ],
+   [
+    "t",
+    1
+   ],
+   [
+    "'[",
+    1
+   ],
+   [
+    "ically",
+    1
+   ]
+  ],
+  "strong_pos_median": 141,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 360,
+    "pos": 202,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "DS",
+    "text": ",x[t]][[1,1,2]],t];\nxdot=Piecewise[{{0,bind==0},{xdotbind,bind==1}}];\nbind=0;\nsol=N[[DS]]olve[{x'[t]=="
+   },
+   {
+    "kind": "top",
+    "window": 788,
+    "pos": 49,
+    "rel": 0.584,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ",y",
+    "text": " linear equation given the data u(1,y)= ln(y^(-1/2))\n\nsemi linear equation\nthe general solution to that equation\n(general solution)\nGiven the data that u(1[[,y]])=ln(y^(-1"
+   },
+   {
+    "kind": "top",
+    "window": 1186,
+    "pos": 81,
+    "rel": 0.569,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "{",
+    "text": "}\\ln(2x)\\:\\mathrm{d}x$$\nthe result should be $\\frac{2}{3}\\sqrt{x^{3}}\\left(\\ln(2x)-\\frac[[{]]2}{3}\\right)+"
+   },
+   {
+    "kind": "top",
+    "window": 153,
+    "pos": 14,
+    "rel": 0.547,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "pi",
+    "text": "Q:\n\nShow $f(w)=\\frac{1}{2\\[[pi]] i}\\int_{\\partial"
+   },
+   {
+    "kind": "top",
+    "window": 370,
+    "pos": 196,
+    "rel": 0.534,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "ically",
+    "text": " on $Q^{111}$. For other $SE_7$ reductions, the solutions space is a subspace of this. We construct explicit examples of spherically symmetric black holes numer[[ically]].'\n---\n\n1.5cm"
+   },
+   {
+    "kind": "top",
+    "window": 355,
+    "pos": 149,
+    "rel": 0.506,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " time",
+    "text": " terminal of the chick ciliary ganglion revealed that the late repolarization and afterhypolarization (AHP) phases of the presynaptic action potential are affected by repetitive stimulation and that the[[ time]] course of these effects parallel that"
+   },
+   {
+    "kind": "top",
+    "window": 282,
+    "pos": 7,
+    "rel": 0.484,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " substitution",
+    "text": "Q:\n\nProblem using trigonometric[[ substitution]]: Domain of $\\theta$\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 429,
+    "pos": 98,
+    "rel": 0.478,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " body",
+    "text": " little bit very first, then he fucked me like crazy until ultimately nutting in my mouth. What a joy night that was!\n\nA fantastic angel with a clean-shaven vagina and a verry nice[[ body]].More pleaseChris\n\nWrote"
+   },
+   {
+    "kind": "top",
+    "window": 196,
+    "pos": 69,
+    "rel": 0.463,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "align",
+    "text": "_atomic_increment:\n    movl 4(%esp), %ecx\n    lock \n    incl (%ecx)\n    mov $0,%eax\n    setne %al\n    ret\n\n    .[[align]] 4,0x9"
+   },
+   {
+    "kind": "top",
+    "window": 848,
+    "pos": 254,
+    "rel": 0.463,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "id",
+    "text": "obj\"\n         use=\"concat(ancestor::document/@targetdoc, '/', @targetptr)\" />\n\n<!-- ==================================================================== -->\n\n<xsl:template match=\"anchor\">\n  <fo:wrapper id=\"{@[[id]]}"
+   },
+   {
+    "kind": "top",
+    "window": 866,
+    "pos": 25,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " –",
+    "text": "Kirsten Sinding-Larsen\n\nKirsten Sinding-Larsen (4 August 1898[[ –]] 10 December 1"
+   },
+   {
+    "kind": "top",
+    "window": 800,
+    "pos": 42,
+    "rel": 0.406,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ALIGN",
+    "text": "OTNAME\n.text$\tSEGMENT ALIGN(256) 'CODE'\n\nEXTERN\tOPENSSL_ia32cap_P:NEAR\n\nPUBLIC\taesni_multi_cbc_encrypt\n\n[[ALIGN]]\t32\naesni"
+   },
+   {
+    "kind": "top",
+    "window": 234,
+    "pos": 155,
+    "rel": 0.4,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Picker",
+    "text": ". The other does the same for how many days you have passed or need to pass until you will be born.\n\n#import \"ViewController.h\"\n\n@interface ViewController ()\n@property (weak, nonatomic) IBOutlet UIDate[[Picker]] *datePicker;\n- ("
+   },
+   {
+    "kind": "top",
+    "window": 1091,
+    "pos": 11,
+    "rel": 0.386,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ".,",
+    "text": "This morning at 11:10 a.m[[.,]] the Ukrainian army opened fire with"
+   },
+   {
+    "kind": "top",
+    "window": 100,
+    "pos": 27,
+    "rel": 0.384,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " –",
+    "text": "Gösta Frykman\n\nGösta Oskar Vilhelm Frykman (11 March 1909[[ –]] 26 February 1"
+   },
+   {
+    "kind": "top",
+    "window": 32,
+    "pos": 172,
+    "rel": 0.369,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " time",
+    "text": "There are many ways to make these caching expire, like page outputcache by\nPage.Response.Cache.SetCacheability(HttpCacheability.NoCache)\n\nTime-based dependency simply expires the item at a defined point in[[ time]].\nResponse.Cache.SetExpires(DateTime"
+   },
+   {
+    "kind": "top",
+    "window": 244,
+    "pos": 18,
+    "rel": 0.353,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " –",
+    "text": "Elena Cuza\n\nElena Cuza (17 June 1825[[ –]] 2 April 19"
+   },
+   {
+    "kind": "top",
+    "window": 1119,
+    "pos": 166,
+    "rel": 0.353,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " area",
+    "text": " using a fixed threshold value if the shape of the thyroid is well-defined or a manually drawn region of interest (ROI) if the thyroid shape is irregular. The thyroid volume is then calculated based on the[[ area]] thus determined. Delineating"
+   },
+   {
+    "kind": "top",
+    "window": 167,
+    "pos": 91,
+    "rel": 0.35,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " where",
+    "text": " do not get why the term non-degenerate is used in this context? Degeneracy refers to multiple states having equal energies. Does the term degeneracy have different meanings in different contexts? Points[[ where]] different bands cross are also referred"
+   },
+   {
+    "kind": "top",
+    "window": 799,
+    "pos": 241,
+    "rel": 0.348,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Pointer",
+    "text": ", and return an `UnsafeMutablePointer` to memory\n  /// allocated with `UnsafeMutablePointer.alloc` containing the result of the\n  /// block.\n  func run() -> UnsafeMutableRaw[[Pointer]] { fatalError(\"abstract\") }\n"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 2.1094,
+  "n_strong_tokens": 15,
+  "n_strong_windows": 13,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    6
+   ],
+   [
+    "ArXiv",
+    3
+   ],
+   [
+    "Github",
+    3
+   ],
+   [
+    "USPTO Backgrounds",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    10
+   ],
+   [
+    "code",
+    3
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "x",
+    2
+   ],
+   [
+    " continuous",
+    1
+   ],
+   [
+    " exponential",
+    1
+   ],
+   [
+    "{",
+    1
+   ],
+   [
+    "ok",
+    1
+   ],
+   [
+    " buffer",
+    1
+   ],
+   [
+    " ",
+    1
+   ],
+   [
+    "im",
+    1
+   ]
+  ],
+  "strong_pos_median": 105,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 70,
+    "pos": 13,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "x",
+    "text": "Q:\n\nLimits - prove or disprove\n\nIf $\\lim_{[[x]] \\to 0^+"
+   },
+   {
+    "kind": "top",
+    "window": 743,
+    "pos": 19,
+    "rel": 0.807,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " process",
+    "text": "---\nabstract: 'In state space models, smoothing refers to the task of estimating a latent stochastic[[ process]] given noisy measurements related to the"
+   },
+   {
+    "kind": "top",
+    "window": 484,
+    "pos": 73,
+    "rel": 0.774,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "im",
+    "text": " centroids on the binary image itself.\nI am using this as my reference:\n  http://in.mathworks.com/help/stats/gaussian-mixture-models.html\nThis is my initial code\n I=[[im]]2double(imread('sil"
+   },
+   {
+    "kind": "top",
+    "window": 188,
+    "pos": 225,
+    "rel": 0.759,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " continuous",
+    "text": "\\mathbb K}={\\mathbb C}$) and natural numbers $k_1,\\cdots, k_n$ find the optimal constant $M$ such that, given any set of[[ continuous]] scalar polynomials $P_"
+   },
+   {
+    "kind": "top",
+    "window": 276,
+    "pos": 105,
+    "rel": 0.689,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "{",
+    "text": "[n])$, tracks around a constant reference $\\mu_x$ such that $\\mathbb{E}\\{y[n]\\} \\approx \\mu_x$, and also an approximately constant variance, $\\text[[{]]var}\\{y[n]\\"
+   },
+   {
+    "kind": "top",
+    "window": 1048,
+    "pos": 63,
+    "rel": 0.663,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Size",
+    "text": " have been using the following code for a while for hiding a row that shouldn't be visible.\nint controlRow = m_panel.GetPositionFromControl(control).Row;\n\nm_panel.RowStyles[controlRow].[[Size]]Type = SizeType.Absolute;\n"
+   },
+   {
+    "kind": "top",
+    "window": 409,
+    "pos": 138,
+    "rel": 0.626,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " ",
+    "text": " {\n        lines: {\n            lineWidth: 1.2\n        },\n        bars: {\n            align: \"center\",\n            fillColor: { colors: [{ opacity: 1 }, { opacity:[[ ]]1}] },\n            barWidth"
+   },
+   {
+    "kind": "top",
+    "window": 297,
+    "pos": 209,
+    "rel": 0.578,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ok",
+    "text": "F\":\n        kosar.append(dolog)\n    elif dolog == \"F\":\n        sok_kosar.append(kosar)\n        del kosar\n\n##kosarak = elso(adat[[ok]].splitlines())\nfor i in"
+   },
+   {
+    "kind": "top",
+    "window": 877,
+    "pos": 254,
+    "rel": 0.563,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " filter",
+    "text": " each sample volume's velocity.\nIn standard color flow processing, a high pass filter, known as a wall filter, is applied to the data before a color flow estimate is made. The purpose of this[[ filter]] is"
+   },
+   {
+    "kind": "top",
+    "window": 1240,
+    "pos": 156,
+    "rel": 0.519,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "byte",
+    "text": " the License.\n*/\n\npackage v1beta1\n\nimport (\n\t\"errors\"\n\n\t\"k8s.io/apimachinery/pkg/util/json\"\n)\n\nvar jsTrue = []byte(\"true\")\nvar jsFalse = [][[byte]](\"false\")\n\nfunc (s"
+   },
+   {
+    "kind": "top",
+    "window": 398,
+    "pos": 206,
+    "rel": 0.504,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " buffer",
+    "text": " coefficients.\n */\n#ifdef ENTROPY_OPT_SUPPORTED\n#define FULL_COEF_BUFFER_SUPPORTED\n#else\n#ifdef C_MULTISCAN_FILES_SUPPORTED\n#define FULL_COEF_BUFFER_SUPPORTED\n#endif\n#endif\n\n\n/* Private[[ buffer]] controller object */\n\ntypedef struct {\n"
+   },
+   {
+    "kind": "top",
+    "window": 929,
+    "pos": 47,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "col",
+    "text": " is dedicated to the study of the interaction between dynamical systems and percolation models, with views towards the study of viral infections whose virus mutate with time. Recall that $r$-bootstrap per[[col]]ation describes a deterministic process where"
+   },
+   {
+    "kind": "top",
+    "window": 887,
+    "pos": 82,
+    "rel": 0.493,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "0",
+    "text": " out for problem 67. I can't for the life of me figure out why.\ntriangle = [\n[59],\n[73, 41],\n[52, 4[[0]], 9],\n[2"
+   },
+   {
+    "kind": "top",
+    "window": 385,
+    "pos": 60,
+    "rel": 0.467,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " in",
+    "text": " phase transitions in high temperature superconductors. The combined effect of thermal fluctuations and of quenched disorder is investigated using a simplified cage model. For columnar disorder the problem maps into a quantum particle[[ in]] a harmonic + random potential."
+   },
+   {
+    "kind": "top",
+    "window": 542,
+    "pos": 228,
+    "rel": 0.459,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".encode",
+    "text": "4)]\n    random_id_string = \"\"\n    for _ in range(10):\n        random_id_string += random.SystemRandom().choice(ALPHABETS)\n    peer_id = ID(random_id_string[[.encode]]())\n    peer_info = Peer"
+   },
+   {
+    "kind": "top",
+    "window": 102,
+    "pos": 250,
+    "rel": 0.454,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " July",
+    "text": " 14, 1956: Moe Burtschy, Bill Renna and cash were traded by the Athletics to the New York Yankees for Lou Skizas and Eddie Robinson.\n[[ July]] 11, "
+   },
+   {
+    "kind": "top",
+    "window": 836,
+    "pos": 68,
+    "rel": 0.443,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " ",
+    "text": "rej Pavelec, managed to control the mighty Washington Capitals for two periods. However, even a hot goalie could not stop them for long, and, following a 3-goal burst in just[[ ]]3:16, the"
+   },
+   {
+    "kind": "top",
+    "window": 691,
+    "pos": 98,
+    "rel": 0.439,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "byte",
+    "text": "/util/stringutil\"\n)\n\nvar (\n\terrNoAdminEmail = errors.New(\"mail.Admin specified as a mail destinary, but no mail.AdminEmail() has been set\")\n\tcrlf            = [][[byte]](\"\\r\\n\")\n)\n\nfunc"
+   },
+   {
+    "kind": "top",
+    "window": 120,
+    "pos": 89,
+    "rel": 0.435,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "table",
+    "text": " Is that possible?\n<table>\n  <tr>\n      <td/>\n      <td/>\n  </tr>      \n  <tr>\n      <td/>\n      <td/>\n  </tr>\n</[[table]]>\n\nA:\n\nYes, it"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1342,
+    "pos": 89,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "summ",
+    "text": "summernote.ui;\n    this.options = context.options;\n    this.events = {\n      'summernote.mousedown': (we, e) => {\n        this.update(e.target);\n      },\n      '[[summ]]ernote.keyup summernote.scroll"
+   }
+  ]
+ }
+}

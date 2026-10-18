@@ -1,0 +1,620 @@
+{
+ "id": "L31N4677",
+ "layer": 31,
+ "neuron": 4677,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 29.25,
+  "n_strong_tokens": 17,
+  "n_strong_windows": 17,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "FreeLaw",
+    5
+   ],
+   [
+    "lang-id",
+    3
+   ],
+   [
+    "PubMed Abstracts",
+    2
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    12
+   ],
+   [
+    "code",
+    2
+   ],
+   [
+    "it",
+    1
+   ],
+   [
+    "nl",
+    1
+   ],
+   [
+    "fr",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " in",
+    8
+   ],
+   [
+    " ins",
+    2
+   ],
+   [
+    "ins",
+    2
+   ],
+   [
+    "Ins",
+    1
+   ],
+   [
+    " IN",
+    1
+   ],
+   [
+    " Ins",
+    1
+   ],
+   [
+    " INS",
+    1
+   ],
+   [
+    "-ins",
+    1
+   ]
+  ],
+  "strong_pos_median": 138,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 338,
+    "pos": 120,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " ins",
+    "text": " of warriors composed of humanoids, androids, and some with animal-like features from different star systems whose powers derive from magical stones known as the Kyutamas. They are part of the , an[[ ins]]urrection army fighting to liberate"
+   },
+   {
+    "kind": "top",
+    "window": 378,
+    "pos": 163,
+    "rel": 0.915,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " in",
+    "text": ", Judge.\nDefendant was convicted of violating N.C.G.S. 14-202.1, and now attacks the constitutionality of this statute. He contends the statute is unconstitutional[[ in]] that (a) it *"
+   },
+   {
+    "kind": "top",
+    "window": 30,
+    "pos": 210,
+    "rel": 0.863,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " in",
+    "text": "MET G. SULLIVAN, District Judge.\nPlaintiffs are twenty-two urban hospitals seeking additional reimbursement from the Secretary of Health and Human Services (\"defendant\" or the \"Secretary\") for[[ in]]patient services plaintiffs provided to Medicare"
+   },
+   {
+    "kind": "top",
+    "window": 652,
+    "pos": 185,
+    "rel": 0.842,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " in",
+    "text": " 14, 1967, L.L. Beacham, Jr., appellant, obtained a divorce from appellee, Edith Russell Beacham upon the ground of habitual cruel and[[ in]]human treatment. It was judicial"
+   },
+   {
+    "kind": "top",
+    "window": 1125,
+    "pos": 244,
+    "rel": 0.803,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " in",
+    "text": ",* Senior Circuit Judge, and Boudin, Circuit Judge.\nTorruella, Chief Judge.\n\n\n1\nAppellant \"Carlos Reyes\" was convicted of making a false statement to a government agent,[[ in]] violation of 18 U"
+   },
+   {
+    "kind": "top",
+    "window": 782,
+    "pos": 54,
+    "rel": 0.795,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " in",
+    "text": " DRAM products that consume very little power. DRAM products that consume very little power in a standby mode in a mobile application, such as in a cellular phone or other portable electronic device, are especially[[ in]] demand. A DRAM memory"
+   },
+   {
+    "kind": "top",
+    "window": 314,
+    "pos": 21,
+    "rel": 0.769,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "Ins",
+    "text": "Evaluation of two minimally invasive techniques for electroencephalogram recording in wild or freely behaving animals.\n[[Ins]]ight into the function of sleep"
+   },
+   {
+    "kind": "top",
+    "window": 524,
+    "pos": 245,
+    "rel": 0.748,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " INS",
+    "text": "ER REVIEWED ARTICLES BACK UP WHAT YOU FIND THERE, AND YOU WILL FIND NO 'CONSPIRACY THEORY', NO 'MODIFIED' TRUTHS THERE, EVER.MR. JI[[ INS]]ISTS ON HONESTY"
+   },
+   {
+    "kind": "top",
+    "window": 504,
+    "pos": 24,
+    "rel": 0.675,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Ins",
+    "text": "The Combating Terrorism Sentinel has an extremely interesting and well-informed piece entitled The JRTN Movement and Iraq’s Next[[ Ins]]urgency. It’s well"
+   },
+   {
+    "kind": "top",
+    "window": 1470,
+    "pos": 184,
+    "rel": 0.654,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "ins",
+    "text": "\nL'Iran espande le attività di arricchimento nucleare: Rapporto AIEA\nIsraele avanza il piano di costruire 900 case d'[[ins]]ediamento\nLe azioni"
+   },
+   {
+    "kind": "top",
+    "window": 1493,
+    "pos": 59,
+    "rel": 0.641,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": " in",
+    "text": "inese Zee...\nEen vrouw rijdt op een paard.\nObama om privé te ontmoeten met familie van Nelson Mandela\nEen wet is grondwettelijk als hij niet[[ in]] strijd is met de gr"
+   },
+   {
+    "kind": "top",
+    "window": 543,
+    "pos": 34,
+    "rel": 0.62,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "-ins",
+    "text": "Perinatal outcome with the modified biophysical profile.\nOur purpose was to evaluate perinatal outcomes in high-risk pregnancies monitored with a modified biophysical profile. All non[[-ins]]ulin-dependent patients referred for ant"
+   },
+   {
+    "kind": "top",
+    "window": 656,
+    "pos": 114,
+    "rel": 0.496,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " in",
+    "text": " setTimeout() call. The application makes use of 4 timer calls with 1-2 sec intervals. \n\nA:\n\nThe biggest difference is that the second statement will cause animateImage() to be evaluated[[ in]] global scope.\nThis can lead"
+   },
+   {
+    "kind": "top",
+    "window": 787,
+    "pos": 62,
+    "rel": 0.491,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " Ind",
+    "text": "., \"running\" or \"eating\") constitute a basic type within human cognition and human language. We asked whether thinking about events, as compared to other conceptual categories, depends on partially independent neural circuits.[[ Ind]]irect evidence for this hypothesis comes"
+   },
+   {
+    "kind": "top",
+    "window": 533,
+    "pos": 88,
+    "rel": 0.474,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " in",
+    "text": " our hero Luffy, in handcuffs, being brought in front of a mysterious character sat upon a throne, high above the clouds of Prison Island on a floating fortress. But what does this character have[[ in]]-store for Luffy? And"
+   },
+   {
+    "kind": "random-strong",
+    "window": 434,
+    "pos": 28,
+    "rel": 0.519,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " IN",
+    "text": "#include <windows.h>\n#include \"iasiodrv.h\"\n#include \"asiolist.h\"\n\n#define ASIODRV_DESC\t\t\"description\"\n#define[[ IN]]PROC_SERVER\t\t\"Inproc"
+   },
+   {
+    "kind": "random-strong",
+    "window": 745,
+    "pos": 197,
+    "rel": 0.577,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " in",
+    "text": ".\nMichael Burge was originally charged by a single grand jury indictment with three counts of first degree murder. Prior to trial on the merits, the indictment was amended to reduce each charge to second degree murder[[ in]] violation of LSA-R.S"
+   },
+   {
+    "kind": "random-strong",
+    "window": 839,
+    "pos": 180,
+    "rel": 0.538,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " in",
+    "text": " up paying an extra $30 in interest.\n\nIf your credit score is in the toilet, and you can't get a Visa or Mastercard, try your luck at Best Buy. They have an[[ in]]-store credit card.\n\nYou shouldn"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1450,
+    "pos": 94,
+    "rel": 0.62,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": " ins",
+    "text": "cm a l'aide d'un cuter sans doute pour voir ce qui il y avait dedans. L'article était présent dans l'emballage mais c'est un miracle... Emballage[[ ins]]uffisant !!\nje"
+   },
+   {
+    "kind": "random-strong",
+    "window": 715,
+    "pos": 138,
+    "rel": 0.594,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ins",
+    "text": " leer!\";\n$lang['L_INFO_RECORDS']=\"Datensätze\";\n$lang['L_INFO_SIZE']=\"Größe\";\n$lang['L_INFO_LASTUPDATE']=\"letztes Update\";\n$lang['L_INFO_SUM']=\"[[ins]]gesamt\";\n$lang['L"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 20.0,
+  "n_strong_tokens": 26,
+  "n_strong_windows": 25,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    8
+   ],
+   [
+    "PubMed Abstracts",
+    6
+   ],
+   [
+    "OpenWebText2",
+    4
+   ],
+   [
+    "lang-id",
+    4
+   ],
+   [
+    "PubMed Central",
+    2
+   ],
+   [
+    "Github",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    20
+   ],
+   [
+    "it",
+    2
+   ],
+   [
+    "code",
+    1
+   ],
+   [
+    "de",
+    1
+   ],
+   [
+    "ar",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " in",
+    20
+   ],
+   [
+    " In",
+    2
+   ],
+   [
+    " IN",
+    1
+   ],
+   [
+    "In",
+    1
+   ],
+   [
+    " في",
+    1
+   ],
+   [
+    " inc",
+    1
+   ]
+  ],
+  "strong_pos_median": 109,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1101,
+    "pos": 236,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " in",
+    "text": " Europe.\n\nThe new law, first proposed in 2010, still needs formal final approval from the EU council. But council approval is considered a mere formality and is expected to be granted[[ in]] spring.\n\nPolicy workaround\n\nUnder"
+   },
+   {
+    "kind": "top",
+    "window": 38,
+    "pos": 243,
+    "rel": 0.906,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " in",
+    "text": " output image S=[W,H]\n% 'coords',{U,V}    coordinate matrices for im, each same size as im.\n%\n% Notes::\n% - The edges of the resulting output image will[[ in]] general not be\n%  "
+   },
+   {
+    "kind": "top",
+    "window": 524,
+    "pos": 253,
+    "rel": 0.875,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " IN",
+    "text": " YOU FIND THERE, AND YOU WILL FIND NO 'CONSPIRACY THEORY', NO 'MODIFIED' TRUTHS THERE, EVER.MR. JI INSISTS ON HONESTY AND[[ IN]]TEGRITY"
+   },
+   {
+    "kind": "top",
+    "window": 466,
+    "pos": 84,
+    "rel": 0.825,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " in",
+    "text": " muraria è completata, viene l'aspetto (per me) più complicato: l'arredamento.È un passaggio che inizialmente mi dà noia,[[ in]] quanto mi obbliga a"
+   },
+   {
+    "kind": "top",
+    "window": 103,
+    "pos": 109,
+    "rel": 0.781,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " in",
+    "text": " assessment. For many years, two-dimensional echocardiography (2DE) has been the most widely used modality for LV volumetric assessments; however, it is based on geometric assumptions which cause[[ in]]accuracy and the reproducibility"
+   },
+   {
+    "kind": "top",
+    "window": 737,
+    "pos": 30,
+    "rel": 0.713,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " in",
+    "text": "A randomized controlled trial of the NEAT expandable tip continence device.\nUrethral devices are one conservative management option for stress and mixed urinary[[ in]]continence, but there is"
+   },
+   {
+    "kind": "top",
+    "window": 1083,
+    "pos": 247,
+    "rel": 0.644,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": "7% of the global energy market. The rest would be filled by unconventional resources, such as oil shale fracking and biomass energy.\n\nHowever, he said the current low oil price can be expected to continue[[ in]] to the medium term, which"
+   },
+   {
+    "kind": "top",
+    "window": 257,
+    "pos": 213,
+    "rel": 0.641,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " in",
+    "text": " the main weapons doctors have to treat brain tumors. The problem is that currently, there’s no way to know if they have taken out all of the cancerous cells. And removing extra material “just[[ in]] case” isn’t a good"
+   },
+   {
+    "kind": "top",
+    "window": 1157,
+    "pos": 102,
+    "rel": 0.641,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " in",
+    "text": " of auxin conjugates by members of the GH3 family. The role of the two GH3-like proteins from P. patens for growth and auxin homeostasis was therefore analysed. The[[ in]] vivo-function of the two P"
+   },
+   {
+    "kind": "top",
+    "window": 322,
+    "pos": 186,
+    "rel": 0.619,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " In",
+    "text": " Industries. The $106 million Series B round in 2017 was led by Partner Fund Management and joined by Third Rock and Access, along with new investors Fidelity, Wellington,[[ In]]bio Ventures, Nextech Invest"
+   },
+   {
+    "kind": "top",
+    "window": 216,
+    "pos": 62,
+    "rel": 0.603,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": " lead to Fletch being one on one with a neat pass on to Reach and he started the move that first got Baker in space down the right with a smart pass round the defender to put Reach[[ in]] space. Don’t know if"
+   },
+   {
+    "kind": "top",
+    "window": 1144,
+    "pos": 251,
+    "rel": 0.603,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " in",
+    "text": " after several days, couldn’t believe my luck. I won the auction for $10.50!\n\nThe games arrived a week later and I did a closer examination of what I got. All[[ in]] good order. Yep"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1427,
+    "pos": 62,
+    "rel": 0.597,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": " in",
+    "text": "hr sehr gut und Praktich, sofort benutzt, ich werde weiter an Freunde und Bekannte empfehlen..\nDas Gerät selbst ist in Sachen Handling und Handhabbarkeit völlig[[ in]] Ordnung. Dies einmal"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1182,
+    "pos": 175,
+    "rel": 0.503,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " in",
+    "text": " ions make distinct contributions, it is particularly the sodium (Na+) and potassium (K+) which contribute most to this ion concentration potential.\n\nEven cells that do not generate action potentials need to maintain a TMP[[ in]] order to enable secondary active transport"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1086,
+    "pos": 249,
+    "rel": 0.55,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": " has strong interest in gynecology and excellent training in minimally invasive surgery. He aims to guide patients to the therapy that achieves their treatment goals while limiting the physical impact on their lives. From urinary[[ in]]continence procedures to treatment for"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1474,
+    "pos": 50,
+    "rel": 0.566,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " inc",
+    "text": "aga in un'esplosione\nÈ troppo tardi o troppo presto per intervenire in Siria\".\nL'annullamento della giuria non significa che una legge sia[[ inc]]ostituzionale.\nLo"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1177,
+    "pos": 199,
+    "rel": 0.519,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " in",
+    "text": "ovalent salts, produced by micropipette injection, did not induce a noticeable migration of vesicles. The migration distances measured depended on the solution and the cell or vesicle type, and were[[ in]] the range of several tens of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1171,
+    "pos": 54,
+    "rel": 0.506,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " In",
+    "text": "cé Romain Zago, E! News confirms.\n\n\"We got in a huge fight, and I just pretty much got fed up with it,\" the 33-year-old model and reality star tells[[ In]] Touch. \"He loves me"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1409,
+    "pos": 221,
+    "rel": 0.541,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": " في",
+    "text": " كما تفعل الكعك وال المانجو على طاولة الافطار بلدي كل صباح , ذلك سيكون كمية هائلة من الحصول على طول .\nربما سنرى المزيد[[ في]] ضوء النهار ."
+   },
+   {
+    "kind": "random-strong",
+    "window": 1042,
+    "pos": 67,
+    "rel": 0.566,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": ":Progressive Worker [Canada] Vol. 4, No. 5, March 1968Transcription, Editing and Markup: Malcolm and Paul SabaCopyright: This work is[[ in]] the Public Domain under the Creative"
+   }
+  ]
+ }
+}

@@ -1,0 +1,604 @@
+{
+ "id": "L19N6789",
+ "layer": 19,
+ "neuron": 6789,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 2.0625,
+  "n_strong_tokens": 56,
+  "n_strong_windows": 47,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    13
+   ],
+   [
+    "Github",
+    10
+   ],
+   [
+    "StackExchange",
+    5
+   ],
+   [
+    "Wikipedia (en)",
+    4
+   ],
+   [
+    "OpenWebText2",
+    4
+   ],
+   [
+    "PubMed Abstracts",
+    4
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    37
+   ],
+   [
+    "code",
+    10
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " than",
+    3
+   ],
+   [
+    ".",
+    3
+   ],
+   [
+    " not",
+    2
+   ],
+   [
+    "0",
+    2
+   ],
+   [
+    " a",
+    2
+   ],
+   [
+    ",",
+    2
+   ],
+   [
+    " to",
+    2
+   ],
+   [
+    "-",
+    2
+   ]
+  ],
+  "strong_pos_median": 152,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1325,
+    "pos": 247,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " than",
+    "text": "Summary}} group generic.\n  For this to work properly, the arguments \\code{\\dots} should be\n  unnamed, and dispatch is on the first argument.\n\n  Coercion of types other[[ than]] integer (raw, double,"
+   },
+   {
+    "kind": "top",
+    "window": 144,
+    "pos": 137,
+    "rel": 0.947,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " before",
+    "text": " agent offered him to other Football League clubs.\n\nDuncan was signed by Paul Lambert in the summer of 2007 and joined Wycombe Wanderers, where he failed to make a league appearance[[ before]] having his contract terminated by mutual"
+   },
+   {
+    "kind": "top",
+    "window": 916,
+    "pos": 220,
+    "rel": 0.848,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".",
+    "text": " years old. My brother is a couple of years younger than me so he would of been about only 3. My mom and dad split at about that time and mom got a job working at night[[.]] She had a good friend who"
+   },
+   {
+    "kind": "top",
+    "window": 438,
+    "pos": 134,
+    "rel": 0.769,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_dec",
+    "text": " {% set amount_excl_vat_dec = amount_fees_dec / (1 +  vatRate) %}\n    {% set amount_vat_dec = amount_fees_dec - amount_excl_vat[[_dec]] %}\n\n    {#Currency"
+   },
+   {
+    "kind": "top",
+    "window": 1054,
+    "pos": 254,
+    "rel": 0.758,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " by",
+    "text": " for this story is courtesy of the New York Daily News. (The absurd pixelation of the cartoon on the front page of the Charlie Hebdo paper was done by the New York Daily News, not[[ by]] The"
+   },
+   {
+    "kind": "top",
+    "window": 1025,
+    "pos": 227,
+    "rel": 0.689,
+    "gate_open": true,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": "9",
+    "text": "8) Put the resulting 8 in the gap to get the\nanswer: 682, 62x11=682.\n\nIf the result of the addition > [[9]], put the least significant digit"
+   },
+   {
+    "kind": "top",
+    "window": 643,
+    "pos": 119,
+    "rel": 0.686,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " are",
+    "text": "75 years old. Maybe you are looking for a great resort for a bachelor/bachelorette party or maybe you are planning for a solo trip but want to meet people and not feel like you[[ are]] at a super romantic couples resort"
+   },
+   {
+    "kind": "top",
+    "window": 1376,
+    "pos": 128,
+    "rel": 0.674,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": " sDocType[] = \"<!DOCTYPE html\";\n    static const size_t sDocTypeLength = (sizeof(sDocType) / sizeof(sDocType[0])) - 1; // minus[[ ]]1 to ignore the NULL terminator"
+   },
+   {
+    "kind": "top",
+    "window": 194,
+    "pos": 84,
+    "rel": 0.655,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " than",
+    "text": " paper, the results for patients who had at least one year of follow-up are provided. All patients operated with the sinus excision technique were studied retrospectively and those who had a follow-up period shorter[[ than]] 12 months were excluded"
+   },
+   {
+    "kind": "top",
+    "window": 201,
+    "pos": 188,
+    "rel": 0.652,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " a",
+    "text": " Duty: Modern Warfare 2’ was originally released in November 2009\n\nPS4 owners who purchase the remastered Modern Warfare 2 — which, it should be noted, is not[[ a]] sequel to last year’s Call"
+   },
+   {
+    "kind": "top",
+    "window": 646,
+    "pos": 127,
+    "rel": 0.644,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "Before",
+    "text": " Monash University, graduating in 1987, again with first-class honours. She received a Commonwealth scholarship to undertake three years of postgraduate study at the University of Oxford.\n\nCareer\n[[Before]] being called to the Bar in"
+   },
+   {
+    "kind": "top",
+    "window": 814,
+    "pos": 122,
+    "rel": 0.644,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " to",
+    "text": " the Company’s staffing operations in the Americas and EMEA regions. In terms of functional responsibility, he is the general manager of several corporate administrative departments including IT, Global Service and Global Business Services.\n\nPrior[[ to]] his current role, Mr."
+   },
+   {
+    "kind": "random-strong",
+    "window": 277,
+    "pos": 249,
+    "rel": 0.542,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "ent",
+    "text": "aintiff-Appellant Roderick C. Mann filed a civil action within the governing statute of limitations but then did not serve process within 120 days of filing, as required (abs[[ent]] time extension) by Fed."
+   },
+   {
+    "kind": "random-strong",
+    "window": 469,
+    "pos": 190,
+    "rel": 0.625,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": ">",
+    "text": " molecular weights and logarithmic conversion) of the exposure-excretion regression lines linearly correlated (p<0.01) with the log Pow values the respective solvents. No significant difference (p[[>]]0.05) was"
+   },
+   {
+    "kind": "random-strong",
+    "window": 69,
+    "pos": 162,
+    "rel": 0.64,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " !=",
+    "text": "130.)\"\n\"Can't find model for source store\";\n\nHere is my managed object context, model, and persistent store:\n- (NSManagedObjectContext *) managedObjectContext {\n\n    if (managedObjectContext[[ !=]] nil) {\n        return managed"
+   },
+   {
+    "kind": "random-strong",
+    "window": 335,
+    "pos": 156,
+    "rel": 0.572,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": ",",
+    "text": " clinical examination, the majority of the patients had fibromyalgia, osteoarthritis, or soft-tissue rheumatism. One patient had rheumatoid arthritis, which predated her implants[[,]] and one had Sjõ"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1028,
+    "pos": 100,
+    "rel": 0.591,
+    "gate_open": true,
+    "source": "EuroParl",
+    "lang": "en",
+    "token": ",",
+    "text": " mention this because it was not quite clear. We have put a lot of effort in and found him very willing to be with us, although he will have to travel to South Africa on the same day[[,]] if only for a limited time"
+   },
+   {
+    "kind": "random-strong",
+    "window": 404,
+    "pos": 121,
+    "rel": 0.598,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " need",
+    "text": " the afterFind method of the AppModel to do this for me. The first step I wanted to take was to identify which columns where boolean (since some columns will return zeros and ones that do not[[ need]] to be converted). I devised"
+   },
+   {
+    "kind": "random-strong",
+    "window": 406,
+    "pos": 62,
+    "rel": 0.64,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " hours",
+    "text": " facing up to 305 years in prison if he is convicted of all the crimes he is alleged to have committed by Special Counsel Robert Mueller. Manafort is currently in solitary confinement for 23[[ hours]] a day now as terrorists at"
+   },
+   {
+    "kind": "random-strong",
+    "window": 654,
+    "pos": 133,
+    "rel": 0.561,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " because",
+    "text": " in environmental health and environmental quality at the U.S.-Mexico border region. It is clear that environmental concerns have not received the same attention in Mexico as they have in the United States but that is not[[ because]] of a lack of concern by"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 5.125,
+  "n_strong_tokens": 33,
+  "n_strong_windows": 24,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    8
+   ],
+   [
+    "PubMed Abstracts",
+    4
+   ],
+   [
+    "StackExchange",
+    4
+   ],
+   [
+    "Github",
+    3
+   ],
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "NIH ExPorter",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    21
+   ],
+   [
+    "code",
+    3
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " to",
+    3
+   ],
+   [
+    " not",
+    3
+   ],
+   [
+    " but",
+    3
+   ],
+   [
+    " if",
+    2
+   ],
+   [
+    "'t",
+    2
+   ],
+   [
+    " the",
+    2
+   ],
+   [
+    " despite",
+    1
+   ],
+   [
+    " giving",
+    1
+   ]
+  ],
+  "strong_pos_median": 154,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 675,
+    "pos": 88,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " though",
+    "text": " NEVER going to be sustainable for me to have a diet consisting of things that aren’t ever going to be bacon. This recipe (and many variations of it) appeared in that time and keeps appearing even[[ though]] I am solidly an omn"
+   },
+   {
+    "kind": "top",
+    "window": 603,
+    "pos": 62,
+    "rel": 0.988,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "pite",
+    "text": ".\nThe Greeks used pieces of amber in jewelry. They noticed that when amber was rubbed with cloth, it attracted light objects such as hair. The amber could pick these things up off the ground,\ndes[[pite]] the gravitational forces pulling them down"
+   },
+   {
+    "kind": "top",
+    "window": 1139,
+    "pos": 111,
+    "rel": 0.866,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " of",
+    "text": ") lesions impair performance on such tasks. Within the MTL, both perirhinal cortex and the hippocampus have been implicated. Cognitive processes can also be affected by past object encounters in the absence[[ of]] conscious recognition, as in repetition"
+   },
+   {
+    "kind": "top",
+    "window": 587,
+    "pos": 153,
+    "rel": 0.848,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " to",
+    "text": " proposal is designed to test the overall hypothesis that the vasa vasorum can play an important role in the initiation of coronary atherogenesis by virtue of disturbed solute transport within the arterial wall occurring prior[[ to]] cellular invasion and/or proliferation."
+   },
+   {
+    "kind": "top",
+    "window": 493,
+    "pos": 202,
+    "rel": 0.811,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "'t",
+    "text": "Extremely Cost Effective: Less than half as much as other alternatives\n\nSpeed of Results. Our work is commonly completed in less than half the time of other methodologies\n\nDiscovery: Uncovering what you don[['t]] know\n\nTopical Discovery\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1048,
+    "pos": 242,
+    "rel": 0.741,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " the",
+    "text": ":\n//add a new row\ntableLayoutPanel.RowCount++;\ntableLayoutPanel.RowStyles.Add(newRowStyle);\n\nThe mismatching in fact does not cause a very serious problem. When the RowStyles.Count is larger than[[ the]] actual RowCount, all the"
+   },
+   {
+    "kind": "top",
+    "window": 405,
+    "pos": 148,
+    "rel": 0.662,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " but",
+    "text": "emia. The M-S staining pattern may imply the appearance of soluble A beta-like proteins. The apo E-positive trace was also positively stained with anti-beta-amyloid (A beta) protein antibodies,[[ but]] not with anti-beta-amy"
+   },
+   {
+    "kind": "top",
+    "window": 1146,
+    "pos": 100,
+    "rel": 0.655,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " where",
+    "text": " location; use of varying component materials and sizes; and interconnectability of single units for multiple unit combinations. The ability of the structure to be air-dropped also allows service to the most remote locations[[ where]] shelter or facility use is needed"
+   },
+   {
+    "kind": "top",
+    "window": 6,
+    "pos": 221,
+    "rel": 0.646,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " if",
+    "text": "  individ- ual messages, without regard\n  for the network. Through mechanisms\n  such as encryption and signing via\n  public and private keys, the message\n  will be protected even[[ if]] sent over an\n  unprotected"
+   },
+   {
+    "kind": "top",
+    "window": 1027,
+    "pos": 86,
+    "rel": 0.622,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "-before",
+    "text": " MIGHT NEED TO REBOOT YOUR PHONE FIRST.\n\nInstalling this app will unlock certain features in the Shelves app. It will not erase your previous collection. It will not magically add brand new, never[[-before]]-seen new features.\n\nUn"
+   },
+   {
+    "kind": "top",
+    "window": 245,
+    "pos": 237,
+    "rel": 0.622,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " despite",
+    "text": " and encrustation. Both biofilm formation and encrustation increased with the duration of stenting. The results indicate that polyurethane is readily encrusted and colonized by bacteria in vivo[[ despite]] antibiotic prophylaxis. New"
+   },
+   {
+    "kind": "top",
+    "window": 1381,
+    "pos": 206,
+    "rel": 0.622,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " the",
+    "text": " we can compact\n// the graph down to Func -> Type. This makes the graph smaller, but\n// harder to debug.\n\n// TODO(dh): conversions between structs mark fields as used, but[[ the]]\n// conversion itself isn't"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1012,
+    "pos": 74,
+    "rel": 0.561,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " is",
+    "text": " and put them into a video complete with hot music beats and spectacular dance moves. With each iPod protective case, users can create and share unlimited music and dance videos, even while PSYCLOPS HQ[[ is]] in open beta testing. The"
+   },
+   {
+    "kind": "random-strong",
+    "window": 738,
+    "pos": 195,
+    "rel": 0.558,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " even",
+    "text": " and we’ve got some more choice, but the community feel and the willingness from everyone to give me a hand and help you out, they don’t look at me as the Knights coach. Before they[[ even]] knew my title, they we"
+   },
+   {
+    "kind": "random-strong",
+    "window": 66,
+    "pos": 184,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " to",
+    "text": ". While summarizing her important contributions, I also describe common criticisms and responses. I consider the human as an assemblage of matter as well as the agency or \"thing power\" of matter external[[ to]] humans. This has implications for"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1349,
+    "pos": 180,
+    "rel": 0.512,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " but",
+    "text": "(__builtin_FILE) && \\\n   __has_builtin(__builtin_LINE))\n#elif defined(COMPILER_GCC) && __GNUC__ >= 7\n// GCC has supported these for a long time,[[ but]] they point at the function\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 492,
+    "pos": 38,
+    "rel": 0.521,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " if",
+    "text": "Movavi Video Suite 18.3.1\n\nMovavi Video Suite is comprehensive video making software that helps you create professional-looking movies and slideshows on your home computer – even[[ if]] you have no experience.Incor"
+   },
+   {
+    "kind": "random-strong",
+    "window": 502,
+    "pos": 38,
+    "rel": 0.585,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " not",
+    "text": "i can't get around digital downloads, would rather just buy something physical and tangible.\n\nAnd i'm going to look at it this way...if a band's releases are for sale digitally but[[ not]] physically...this is not a"
+   },
+   {
+    "kind": "random-strong",
+    "window": 356,
+    "pos": 163,
+    "rel": 0.555,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " not",
+    "text": "mathbb{R})^{(L(\\mathbb{R})^\\mathbb{P})}$, what I wrote above is nonsense: $V$ may have names for reals which are[[ not]] in $\\mathbb{R"
+   },
+   {
+    "kind": "random-strong",
+    "window": 275,
+    "pos": 253,
+    "rel": 0.579,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " giving",
+    "text": " the following.\n\nCreate Child Nodes\nEdit the Start/End Dates of existing/new iterations\n\nMy question is:\n\nIs there any other way to give a user the permission to 'tick' an iteration without[[ giving]] him '"
+   }
+  ]
+ }
+}

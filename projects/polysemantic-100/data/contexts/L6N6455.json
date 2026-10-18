@@ -1,0 +1,568 @@
+{
+ "id": "L6N6455",
+ "layer": 6,
+ "neuron": 6455,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 4.0625,
+  "n_strong_tokens": 20,
+  "n_strong_windows": 16,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    7
+   ],
+   [
+    "Github",
+    6
+   ],
+   [
+    "USPTO Backgrounds",
+    2
+   ],
+   [
+    "Pile-CC",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    10
+   ],
+   [
+    "code",
+    6
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " read",
+    2
+   ],
+   [
+    " receive",
+    2
+   ],
+   [
+    " loads",
+    2
+   ],
+   [
+    " insert",
+    2
+   ],
+   [
+    " delete",
+    1
+   ],
+   [
+    " select",
+    1
+   ],
+   [
+    " sum",
+    1
+   ],
+   [
+    " send",
+    1
+   ]
+  ],
+  "strong_pos_median": 89,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 647,
+    "pos": 83,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " receive",
+    "text": " for TCP. Where is this stated?\nI ask because RFC 793 states, in relation to the \"Maximum Segment Size\" field...\n\"If this option is present, then it communicates the maximum[[ receive]] segment size at the TCP which"
+   },
+   {
+    "kind": "top",
+    "window": 714,
+    "pos": 78,
+    "rel": 0.973,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " loads",
+    "text": ".\n\n// +build go1.5\n\npackage ssa\n\n// This file defines the lifting pass which tries to \"lift\" Alloc\n// cells (new/local variables) into SSA registers, replacing[[ loads]]\n// with the dominating stored"
+   },
+   {
+    "kind": "top",
+    "window": 358,
+    "pos": 71,
+    "rel": 0.85,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " send",
+    "text": " in\n  a distributed system by using some arbitrary mechanism to break ties\n  (e.g. the ID of the process).\n\nLogical order: \n\nWhen two entities communicate by message passing, then the[[ send]] event\n  is said to"
+   },
+   {
+    "kind": "top",
+    "window": 11,
+    "pos": 13,
+    "rel": 0.846,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " select",
+    "text": "Q:\n\nSelect with Contains parameter not working with null\n\nWith my[[ select]] below, if blank string is"
+   },
+   {
+    "kind": "top",
+    "window": 677,
+    "pos": 155,
+    "rel": 0.715,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "CD",
+    "text": "[x]/(x^2-5)\nassert ( 1//x * x == 1 )\nraw (1_S) // (raw x)\nuse ambient S\nx\nrawExtendedG[[CD]](raw x, raw(x^"
+   },
+   {
+    "kind": "top",
+    "window": 999,
+    "pos": 110,
+    "rel": 0.665,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " insert",
+    "text": "AUTO_INCREMENT)\n  business_function_name\n  resource_item_id\n\nWhat I'm struggling with is the fact that this must be scripted. I'm only inserting 1 resource record so I can script the[[ insert]] into the resource table easily enough"
+   },
+   {
+    "kind": "top",
+    "window": 1339,
+    "pos": 250,
+    "rel": 0.627,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Update",
+    "text": "\t}\n\t\t\n\t\tprotected override void OnTearDown()\n\t\t{\n\t\t\tusing (ISession session = Sfi.OpenSession())\n\t\t\t{\n\t\t\t\tsession.CreateQuery(\"delete from Student\").Execute[[Update]]();\n\t\t\t\tsession.Flush();\n"
+   },
+   {
+    "kind": "top",
+    "window": 1070,
+    "pos": 38,
+    "rel": 0.623,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "/O",
+    "text": "The present invention relates to data management. More specifically, the present invention relates to methods and apparatuses for managing large amounts of data, for example, in storage area networks and mainframe I[[/O]] environments.\nThe demands for managing"
+   },
+   {
+    "kind": "top",
+    "window": 196,
+    "pos": 175,
+    "rel": 0.596,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " read",
+    "text": " don't understand how this code implements the Add?\n\nA:\n\nLOCK is not an instruction itself: it is an instruction prefix, which applies to the following instruction. That instruction must be something that does a[[ read]]-modify-write on memory ("
+   },
+   {
+    "kind": "top",
+    "window": 1,
+    "pos": 223,
+    "rel": 0.581,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " delete",
+    "text": "Scope = true;\n\tprotected boolean isConcurrent;\n\tprotected boolean isEnded;\n\tprotected boolean isEventScope;\n\tprotected boolean isMultiInstanceRoot;\n\tprotected boolean isCountEnabled;\n\tprotected String eventName;\n\tprotected String[[ delete]]Reason;\n\tprotected int suspensionState"
+   },
+   {
+    "kind": "top",
+    "window": 892,
+    "pos": 20,
+    "rel": 0.558,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " Select",
+    "text": "Q:\n\nUpdate a table after inserting records with an Inner Join\n\nI insert into TableA using a[[ Select]]/Inner Join from TableB"
+   },
+   {
+    "kind": "top",
+    "window": 1385,
+    "pos": 105,
+    "rel": 0.558,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " read",
+    "text": " for\n * now. Different overlays may be needed to support different options, etc. (It\n * is impractical to define One True Struct, because the resulting encoding\n * routines (lots of[[ read]]-modify-writes) would"
+   },
+   {
+    "kind": "top",
+    "window": 151,
+    "pos": 9,
+    "rel": 0.492,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "_select",
+    "text": "Q:\n\nRails 3 Auto Select from Collect[[_select]]\n\nI have the following associations"
+   },
+   {
+    "kind": "top",
+    "window": 188,
+    "pos": 104,
+    "rel": 0.485,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " products",
+    "text": " this problem and the same problem for the spaces $X_i$.'\naddress: 'IMAS-CONICET'\nauthor:\n- Jorge Tomás Rodríguez\ntitle: On the norm of[[ products]] of polynomials on ultrapro"
+   },
+   {
+    "kind": "top",
+    "window": 1255,
+    "pos": 140,
+    "rel": 0.477,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "olvers",
+    "text": "\n// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.\n#include <cmath>\n\n#include \"../../test/sparse_solver.h\"\n#include <Eigen/IterativeS[[olvers]]>\n\ntemplate<typename T> void"
+   },
+   {
+    "kind": "top",
+    "window": 1336,
+    "pos": 146,
+    "rel": 0.454,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "DB",
+    "text": ",7 @@ siginfo(sig, si, sc)\n          int src_so_rcvbuf, dst_so_rcvbuf;\n #endif /* HAVE_RECVBUF_IOCTL */\n \n-#if HAVE_SEN[[DB]]UF_IOCTL\n+#ifdef HAVE"
+   },
+   {
+    "kind": "random-strong",
+    "window": 517,
+    "pos": 83,
+    "rel": 0.515,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " South",
+    "text": " — with the same quick-witted ferocity he was famous for.\n\nIn reading over his attacks of the South in Ralph C. Wood’s Flannery O’Connor and the Christ-Haunted[[ South]], though, I realized something"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1036,
+    "pos": 96,
+    "rel": 0.538,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_INPUT",
+    "text": " BOARD_DIGITAL_MAX int(PINS_COUNT)\n#else\n  #warning \"BOARD_DIGITAL_MAX not detected\"\n  #define BOARD_DIGITAL_MAX 32\n#endif\n\n#if defined(NUM_ANALOG[[_INPUT]]S)\n  #define BOARD"
+   },
+   {
+    "kind": "random-strong",
+    "window": 98,
+    "pos": 212,
+    "rel": 0.554,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " sum",
+    "text": ",\\sigma_b^2)$ be normal random variables. Is $ {(\\bf a' + \\bf b') \\bf X}$ also a normal random variable?\n\nA:\n\nNot always--otherwise every[[ sum]] of normal random variables would be"
+   },
+   {
+    "kind": "random-strong",
+    "window": 692,
+    "pos": 18,
+    "rel": 0.546,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " exhaust",
+    "text": "1. Field of the Invention\nEmbodiments of the present invention relate to an[[ exhaust]] gas control system for an internal"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 3.9844,
+  "n_strong_tokens": 5,
+  "n_strong_windows": 3,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "OpenWebText2",
+    1
+   ],
+   [
+    "Github",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    2
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " her",
+    2
+   ],
+   [
+    "Time",
+    1
+   ],
+   [
+    " myself",
+    1
+   ],
+   [
+    " in",
+    1
+   ]
+  ],
+  "strong_pos_median": 172,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 694,
+    "pos": 196,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " myself",
+    "text": " woodland bloom.\n\nI had to get creative and move around the house to get a decent photo. Ive been on the go and forgot to take daytime photos!!! grrrrrr.\n\nlast night i locked[[ myself]] in my MOM CAVE and"
+   },
+   {
+    "kind": "top",
+    "window": 950,
+    "pos": 2,
+    "rel": 0.671,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " her",
+    "text": "\"Lock[[ her]] up for what? Because you"
+   },
+   {
+    "kind": "top",
+    "window": 1,
+    "pos": 172,
+    "rel": 0.588,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Time",
+    "text": " isInserted;\n\tprotected boolean isUpdated;\n\tprotected boolean isDeleted;\n\tprotected String tenantId = \"\";\n\tprotected String name;\n\tprotected String description;\n\tprotected String localizedName;\n\tprotected String localizedDescription;\n\tprotected Date lock[[Time]];\n\tprotected boolean isActive = true"
+   },
+   {
+    "kind": "top",
+    "window": 246,
+    "pos": 71,
+    "rel": 0.457,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " glass",
+    "text": " 5,003,747 and 6,675,537 which issued to or are owned by the assignee of the present invention. Usually, the insulated[[ glass]] units include two parallel spaced rectangular"
+   },
+   {
+    "kind": "top",
+    "window": 455,
+    "pos": 9,
+    "rel": 0.449,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "or",
+    "text": "Cryopreserved (frozen) Don[[or]] vials are available to individual"
+   },
+   {
+    "kind": "top",
+    "window": 1060,
+    "pos": 231,
+    "rel": 0.449,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " away",
+    "text": " to tackle climate change.\n\nThe world’s tropical forests store 250 billion tonnes of carbon. If global temperature increases are to be kept well below 2°C this carbon needs to be kept locked[[ away]] in trees rather than released into"
+   },
+   {
+    "kind": "top",
+    "window": 685,
+    "pos": 51,
+    "rel": 0.38,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " article",
+    "text": " to add to the fans' experience.\n\nBy Bill Oram The Salt Lake Tribune\n\nPublished June 18, 2013 11:29 am\n\nThis is an archived[[ article]] that was published on sltrib"
+   },
+   {
+    "kind": "top",
+    "window": 1507,
+    "pos": 103,
+    "rel": 0.378,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": " Intelligence",
+    "text": "warte miejsce w nowym sondażu.\nMężczyzna wylewa olej na niektóre pomidory.\nRzecznicy FBI, CIA, Canadian Security[[ Intelligence]] Service i Royal Canadian Mounted Police"
+   },
+   {
+    "kind": "top",
+    "window": 134,
+    "pos": 116,
+    "rel": 0.375,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Intelligence",
+    "text": " sentiment is being normalized in mainstream media, language and communication, and it’s being normalized into children’s lives,” said Candyce Kelshall, president of the Vancouver branch of the Canadian Association for Security and[[ Intelligence]] Studies, one of relatively few"
+   },
+   {
+    "kind": "top",
+    "window": 938,
+    "pos": 188,
+    "rel": 0.375,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " to",
+    "text": " fixture, support structure or the like. The cable assembly further includes, typically, a terminal sub-assembly at each end. A first terminal sub-assembly is secured (or adapted to be secured)[[ to]] a controlled member, e.g"
+   },
+   {
+    "kind": "top",
+    "window": 573,
+    "pos": 25,
+    "rel": 0.373,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " in",
+    "text": "1. Field of Invention\nEmbodiments of the present invention relate generally to a method and apparatus for retaining a substrate[[ in]] a polishing system.\n2."
+   },
+   {
+    "kind": "top",
+    "window": 108,
+    "pos": 53,
+    "rel": 0.361,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " legs",
+    "text": " get her another towel, there was no need to say why because the old one was getting pretty soggy, to say the least. She folded it once and then got back into position. With open[[ legs]] she reached over and grabbed hold"
+   },
+   {
+    "kind": "top",
+    "window": 790,
+    "pos": 218,
+    "rel": 0.359,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ra",
+    "text": "osis was present in 18 (63%) but only four patients (13%) had a fever. Six of the 32 patients (19%) developed Haemolytic-U[[ra]]emic Syndrome (HUS)"
+   },
+   {
+    "kind": "top",
+    "window": 577,
+    "pos": 46,
+    "rel": 0.327,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "_from",
+    "text": "_for\n\nI use devise in my application.\nI want to pop-up a welcome message while the user login.\nso in my application_controller.erb I defined:\nclass ApplicationController < ActionController::Base\n  protect[[_from]]_forgery\n  before"
+   },
+   {
+    "kind": "top",
+    "window": 295,
+    "pos": 129,
+    "rel": 0.318,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " Sciences",
+    "text": "ath^2^**\n\nDivision of Cyclotron and Radiopharmaceutical Sciences, ^1^Division of PET Imaging, ^2^Division of Radiation Biosciences, Institute of Nuclear Medicine and Allied[[ Sciences]], Brig. S.K."
+   },
+   {
+    "kind": "top",
+    "window": 1105,
+    "pos": 143,
+    "rel": 0.304,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " back",
+    "text": " corrugated steel decking plate overlying a framework (substrate) formed of interconnected beams, e.g., I-shaped or H-shaped beams or bar joists (2 L-shaped angle irons secured[[ back]] to back). Such impact tools"
+   },
+   {
+    "kind": "top",
+    "window": 998,
+    "pos": 32,
+    "rel": 0.302,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " partial",
+    "text": "Comparison of patient satisfaction with acrylic and flexible partial dentures.\nRestoration of partial edentulous mouth may be done using a variety of treatment options. Removable[[ partial]] denture (RPD)"
+   },
+   {
+    "kind": "top",
+    "window": 468,
+    "pos": 6,
+    "rel": 0.3,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " Breast",
+    "text": "Clinical Evaluation of Shaped Gel[[ Breast]] Implant Rotation Using High-"
+   },
+   {
+    "kind": "top",
+    "window": 1137,
+    "pos": 13,
+    "rel": 0.294,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " FOR",
+    "text": "Filed 7/31/19\n                            CERTIFIED[[ FOR]] PUBLICATION\n\n                IN"
+   },
+   {
+    "kind": "top",
+    "window": 979,
+    "pos": 32,
+    "rel": 0.294,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " report",
+    "text": "Q:\n\nMultiple lock owners in SQL Server 2014\n\nI've encountered a deadlock on SQL Server 2014, and created a deadlock[[ report]] using extended events. Below is"
+   }
+  ]
+ }
+}

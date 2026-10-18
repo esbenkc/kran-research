@@ -1,0 +1,588 @@
+{
+ "id": "L18N3508",
+ "layer": 18,
+ "neuron": 3508,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 3.8281,
+  "n_strong_tokens": 14,
+  "n_strong_windows": 9,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    5
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "DM Mathematics",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    7
+   ],
+   [
+    "code",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "cup",
+    2
+   ],
+   [
+    "<std",
+    1
+   ],
+   [
+    "(select",
+    1
+   ],
+   [
+    " a",
+    1
+   ],
+   [
+    "2",
+    1
+   ],
+   [
+    "1",
+    1
+   ],
+   [
+    " c",
+    1
+   ],
+   [
+    "))",
+    1
+   ]
+  ],
+  "strong_pos_median": 137,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 838,
+    "pos": 255,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "cup",
+    "text": " is not the same thing as $(A \\cap B) \\cup C$\nIndeed, if we look at left hand side of your second expression ... is it $((A \\cup B)' \\[[cup]]"
+   },
+   {
+    "kind": "top",
+    "window": 61,
+    "pos": 49,
+    "rel": 0.698,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "<std",
+    "text": " a single flat array with chained .data()\n\nLet's say I have this little fixed-dimension matrix class:\ntemplate<size_t M, size_t N>\nstruct MatMN { \n  std::array[[<std]]::array<double, N>,"
+   },
+   {
+    "kind": "top",
+    "window": 662,
+    "pos": 237,
+    "rel": 0.69,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": ";\n\n\t// REG1 = x;\n\t// REG2 = y;\n\t//Reg1 = _mm_unpacklo_epi64(x, y);\n\tReg1 = x;\n\n\t//REG[[1]] = ((REG1 << "
+   },
+   {
+    "kind": "top",
+    "window": 756,
+    "pos": 144,
+    "rel": 0.616,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": " of",
+    "text": " of 2*s**3 + g*s - 2*s**3 - 2*s**4 wrt s?\n-24*s**2\nLet j(r) be the first derivative[[ of]] 6*r**5/"
+   },
+   {
+    "kind": "top",
+    "window": 677,
+    "pos": 65,
+    "rel": 0.596,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "))",
+    "text": "-t^6+2*t^7+3*t^8-2*t^10\nassert( h % (1-t) == 0 )\nassert( (h // (1-t[[))]] * (1-t) =="
+   },
+   {
+    "kind": "top",
+    "window": 1004,
+    "pos": 65,
+    "rel": 0.58,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "DEX",
+    "text": " numbers that fit the criteria: Beverage + RTD Coffee for the month of January from the source.\nThis is the formula that I'm currently trying to use for the above scenario:\n=SUMIFS(IN[[DEX]]('Grocery Input'!"
+   },
+   {
+    "kind": "top",
+    "window": 666,
+    "pos": 130,
+    "rel": 0.547,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": " c",
+    "text": "6 wrt x.\n120\nLet c(w) be the second derivative of -5*w**4/12 - w**3 + 5*w. Find the second derivative of[[ c]](u) wrt u.\n"
+   },
+   {
+    "kind": "top",
+    "window": 276,
+    "pos": 54,
+    "rel": 0.539,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " a",
+    "text": "Problem\nI wish to filter a discrete-time input signal, $x[n]$, so as the output signal's, $y[n]$, exponential moving average, $a[n+1] =[[ a]][n] + \\alpha(y"
+   },
+   {
+    "kind": "top",
+    "window": 118,
+    "pos": 43,
+    "rel": 0.51,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "(select",
+    "text": " all in SQL (Postgres) mess the order\n\nI have a query which is order by date , there is  the query I have simplified it a bit but basically is :\nselect * from \n[[(select]]  start_date, to_char"
+   },
+   {
+    "kind": "top",
+    "window": 882,
+    "pos": 82,
+    "rel": 0.488,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " hybrids",
+    "text": " of a planned breeding program for a series with compact habits and double “anemone”-type inflorescences. The exact parents of this selection are unknown, unnamed, proprietary interspecific[[ hybrids]] of Echinacea parado"
+   },
+   {
+    "kind": "top",
+    "window": 1221,
+    "pos": 216,
+    "rel": 0.482,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "=b",
+    "text": "${FN}\"\n}\n#DN_EXEC=`echo \"$0\" | ${EXEC_AWK} -F/ '{b=$1; for (i=2; i < NF; i ++) {b[[=b]] \"/\" $(i)}; print"
+   },
+   {
+    "kind": "top",
+    "window": 278,
+    "pos": 184,
+    "rel": 0.463,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "String",
+    "text": " += c;\r\n  }\r\n  dest2 = src.Mid(i);\r\n}\r\n\r\nvoid SplitString(const UString &srcString, UStringVector &destStrings)\r\n{\r\n  destStrings.Clear();\r\n  U[[String]] string;\r\n  int len ="
+   },
+   {
+    "kind": "top",
+    "window": 1186,
+    "pos": 112,
+    "rel": 0.429,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " parts",
+    "text": "left(\\ln(2x)-\\frac{2}{3}\\right)+C$, but I am still unable to get there… Every help will be appreciated.\n\nA:\n\nHint\nIntegrate by[[ parts]] with $u=\\log("
+   },
+   {
+    "kind": "top",
+    "window": 1001,
+    "pos": 106,
+    "rel": 0.416,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": " +",
+    "text": " 9*t**3 + t**2.\n-28*t**3 + t**2\nExpand ((3 + 3 - 4)*(2 + 2*q - 2)[[ +]] (-6*q + 4"
+   },
+   {
+    "kind": "top",
+    "window": 83,
+    "pos": 152,
+    "rel": 0.406,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " d",
+    "text": "1]  scalar\r\n%   df  = d   phi(u) / du, and      [n,1]  gradient vector (same size as u)\r\n%   d2f =[[ d]]^2 phi(u) /"
+   },
+   {
+    "kind": "top",
+    "window": 551,
+    "pos": 88,
+    "rel": 0.384,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "os",
+    "text": "ase complexed with D-eritadenine.\nD-eritadenine (DEA) is a potent inhibitor (IC(50) = 7 nm) of S-aden[[os]]yl-l-homocyst"
+   },
+   {
+    "kind": "top",
+    "window": 1064,
+    "pos": 76,
+    "rel": 0.373,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "tbl",
+    "text": "  = tbl2.t2_fk_t1_pk\nAND tbl2.t2_strt_dt <= sysdate\nAND tbl2.t2_end_dt  >= sysdate)\nJOIN tbl3 on ([[tbl]]3.t3_pk = tbl"
+   },
+   {
+    "kind": "top",
+    "window": 970,
+    "pos": 143,
+    "rel": 0.371,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " ac",
+    "text": " (CRMR). Three kinds of commercial starches--two preparations of acetylated distarch adipate E1422 of different degrees of cross-linking, as well as one preparation of[[ ac]]etylated distarch phosphate E"
+   },
+   {
+    "kind": "top",
+    "window": 775,
+    "pos": 123,
+    "rel": 0.365,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " {\\",
+    "text": " a finite $A$-definable subset of $M$.  Let $\\bar A$ denote the set of algebraic elements over $A$.  We would like to show that $\\bar[[ {\\]]bar A} = \\bar"
+   },
+   {
+    "kind": "top",
+    "window": 589,
+    "pos": 205,
+    "rel": 0.355,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " is",
+    "text": " the tax benefits first. There are three possible tax breaks!\n\nA tax break on the front end—your contribution to your HSA is pre-tax, since it comes out of your paycheck before your income[[ is]] taxed.\n\nTax deferral as"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 2.25,
+  "n_strong_tokens": 26,
+  "n_strong_windows": 11,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    5
+   ],
+   [
+    "Github",
+    3
+   ],
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "HackerNews",
+    1
+   ],
+   [
+    "OpenWebText2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    8
+   ],
+   [
+    "code",
+    3
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " ",
+    6
+   ],
+   [
+    " the",
+    3
+   ],
+   [
+    "1",
+    2
+   ],
+   [
+    " f",
+    1
+   ],
+   [
+    "Two",
+    1
+   ],
+   [
+    ".",
+    1
+   ],
+   [
+    " a",
+    1
+   ],
+   [
+    " file",
+    1
+   ]
+  ],
+  "strong_pos_median": 158,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 311,
+    "pos": 138,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " ",
+    "text": "10    143703.2\n2   Qtr 2   69174.64    76480.13   [[ ]]145654"
+   },
+   {
+    "kind": "top",
+    "window": 492,
+    "pos": 216,
+    "rel": 0.816,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " one",
+    "text": " pictures– Capture video from a screen and make a video tutorial– Record yourself on a webcam to create a unique entry for your blog\n\nCut and JoinCut out unnecessary fragments or join individual clips to make[[ one]] longer movie\n\nLet Your Story"
+   },
+   {
+    "kind": "top",
+    "window": 1154,
+    "pos": 18,
+    "rel": 0.816,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " to",
+    "text": "Q:\n\nSQL multiple rows in single row\n\nHi everyone I have this table and I want[[ to]] show result in single row group"
+   },
+   {
+    "kind": "top",
+    "window": 1025,
+    "pos": 161,
+    "rel": 0.722,
+    "gate_open": true,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": " the",
+    "text": "I taught myself some tricks after the fact, the rest is just practice I think.\nSome examples:\n\nMultiply any two digit number by 11 easily:\n\nUsing 62 as an example. Separate[[ the]] two digits (6__2"
+   },
+   {
+    "kind": "top",
+    "window": 989,
+    "pos": 55,
+    "rel": 0.677,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " of",
+    "text": "park, I have two dataframes, dfA and dfB, with complex schemas. A common column in the schemas is 'time'. I'd like to make a new dataframe that is the union[[ of]] these two, so that I"
+   },
+   {
+    "kind": "top",
+    "window": 153,
+    "pos": 24,
+    "rel": 0.653,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " f",
+    "text": "Q:\n\nShow $f(w)=\\frac{1}{2\\pi i}\\int_{\\partial \\Omega}[[ f]](z)\\frac{g'("
+   },
+   {
+    "kind": "top",
+    "window": 662,
+    "pos": 212,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\t",
+    "text": "(0x55555555);\n\n\tglm_uvec4 Reg1;\n\tglm_uvec4 Reg2;\n\n\t// REG1 = x;\n\t// REG2 = y;\n[[\t]]//Reg1 = _mm"
+   },
+   {
+    "kind": "top",
+    "window": 401,
+    "pos": 94,
+    "rel": 0.538,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " file",
+    "text": "  \nABC  \nDEF  \nACE  \nABCD  \nBCD    \n\nAnd file 2 \nrs_name  \nABCD  \nCDE  \nDEFG  \nABCDE  \nABE  \n\nAnd I want my output[[ file]] to be like this:\noutput"
+   },
+   {
+    "kind": "top",
+    "window": 278,
+    "pos": 20,
+    "rel": 0.517,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Two",
+    "text": "// StringUtils.cpp\r\n\r\n#include \"StdAfx.h\"\r\n\r\n#include \"StringUtils.h\"\r\n\r\nvoid SplitStringTo[[Two]]Strings(const UString &src"
+   },
+   {
+    "kind": "top",
+    "window": 1207,
+    "pos": 163,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": "\t\tint maxSum = Integer.MIN_VALUE, sum = 0;\r\n\t\t;\r\n\t\tfor (int i = 0; i < 6; i++) {\r\n\t\t\tfor (int j =[[ ]]0; j < 6"
+   },
+   {
+    "kind": "top",
+    "window": 339,
+    "pos": 113,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " a",
+    "text": " efficiently copying files to multiple hosts in parallel. pnuke – it helps to kills processes on multiple remote hosts in parallel. pslurp – it helps to copy files from multiple remote hosts to[[ a]] central host in parallel.\n\nWhen"
+   },
+   {
+    "kind": "top",
+    "window": 188,
+    "pos": 185,
+    "rel": 0.483,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "\\",
+    "text": " problem can be stated as follows: for a Banach space $X$ over a field ${\\mathbb K}$ (with ${\\mathbb K}={\\mathbb R}$ or ${[[\\]]mathbb K}={\\"
+   },
+   {
+    "kind": "top",
+    "window": 1235,
+    "pos": 104,
+    "rel": 0.476,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " input",
+    "text": ">\n  <li><h2>tr input MUST come from standard input </h2>\n  </li>\n</ul>\n\n<ul>\n  <li><h2>tr does NOT change the[[ input]] file but puts its modified values"
+   },
+   {
+    "kind": "top",
+    "window": 1103,
+    "pos": 66,
+    "rel": 0.438,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "{",
+    "text": "{b}{2!}+\\frac{c}{3!}+\\frac{d}{4!}+\\frac{e}{5!}+\\frac{f}{6!}+\\frac[[{]]g}{7!}$\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1026,
+    "pos": 16,
+    "rel": 0.436,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": " =",
+    "text": " + 626985 + 417654[[ =]] 0. Do d and"
+   },
+   {
+    "kind": "top",
+    "window": 703,
+    "pos": 211,
+    "rel": 0.427,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " a",
+    "text": " reference sequences from the reference file.\n\nA:\n\nyou can use grep to give you only the parts of the file where there are more than 100 characters in between > and write the results into[[ a]] new file (which then should"
+   },
+   {
+    "kind": "top",
+    "window": 98,
+    "pos": 195,
+    "rel": 0.411,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " \\",
+    "text": "_{i=1}^n b_i X_i  \\sim N(0,\\sigma_b^2)$ be normal random variables. Is $ {(\\bf a' + \\bf b')[[ \\]]bf X}$ also a normal"
+   },
+   {
+    "kind": "top",
+    "window": 51,
+    "pos": 67,
+    "rel": 0.385,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " to",
+    "text": " a reference signal originating from the same source typically mix or interfere, resulting in optical interference “fringes.” A positive fringe occurs when the light is in phase and constructively combines (interferes)[[ to]] a greater intensity, and a"
+   },
+   {
+    "kind": "top",
+    "window": 1186,
+    "pos": 135,
+    "rel": 0.359,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "'",
+    "text": " to get there… Every help will be appreciated.\n\nA:\n\nHint\nIntegrate by parts with $u=\\log(2x)$ and $v'=\\sqrt x ~dx$. So $u[[']]=\\frac{1}{x"
+   },
+   {
+    "kind": "top",
+    "window": 1106,
+    "pos": 130,
+    "rel": 0.358,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " of",
+    "text": "A:\n\nI can say something about this for Heegaard Floer homology.  Given a 3-manifold Y, you can take a Heegaard splitting, i.e. a decomposition[[ of]] Y into two genus g handle"
+   }
+  ]
+ }
+}

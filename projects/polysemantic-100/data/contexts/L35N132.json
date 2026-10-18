@@ -1,0 +1,532 @@
+{
+ "id": "L35N132",
+ "layer": 35,
+ "neuron": 132,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 36.5,
+  "n_strong_tokens": 4,
+  "n_strong_windows": 3,
+  "strong_gate_open_frac": 0.75,
+  "strong_sources": [
+   [
+    "lang-id",
+    2
+   ],
+   [
+    "Github",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    1
+   ],
+   [
+    "ur",
+    1
+   ],
+   [
+    "nl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " ق",
+    2
+   ],
+   [
+    "doctype",
+    1
+   ],
+   [
+    " ge",
+    1
+   ]
+  ],
+  "strong_pos_median": 101,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1251,
+    "pos": 1,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "doctype",
+    "text": "<![[doctype]] html>\n<html lang=\"en"
+   },
+   {
+    "kind": "top",
+    "window": 1567,
+    "pos": 73,
+    "rel": 0.62,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ur",
+    "token": " ق",
+    "text": "ں گے ۔\nتلاش کر رہا ہے اور گرم گرمی اور گرم موسم گرما\n2[[ ق]]انونی خدمات برائے"
+   },
+   {
+    "kind": "top",
+    "window": 1493,
+    "pos": 245,
+    "rel": 0.572,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": " ge",
+    "text": "apens toenemen\nEen vrouw is aardappelen aan het snijden.\nDan is hij niet almachtig.\nHet Capitool van de V.S. werd gisteren[[ ge]]Ã \"vacueerd nad"
+   },
+   {
+    "kind": "top",
+    "window": 1250,
+    "pos": 1,
+    "rel": 0.476,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "DOCTYPE",
+    "text": "<![[DOCTYPE]] html PUBLIC \"-//W3C"
+   },
+   {
+    "kind": "top",
+    "window": 590,
+    "pos": 1,
+    "rel": 0.476,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "DOCTYPE",
+    "text": "<![[DOCTYPE]] html>\n<!-- this file is"
+   },
+   {
+    "kind": "top",
+    "window": 1212,
+    "pos": 1,
+    "rel": 0.476,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "DOCTYPE",
+    "text": "<![[DOCTYPE]] html>\n<html>\n<head>\n"
+   },
+   {
+    "kind": "top",
+    "window": 488,
+    "pos": 1,
+    "rel": 0.476,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "DOCTYPE",
+    "text": "<![[DOCTYPE]] html>\n<html lang=\"en"
+   },
+   {
+    "kind": "top",
+    "window": 869,
+    "pos": 1,
+    "rel": 0.476,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "DOCTYPE",
+    "text": "<![[DOCTYPE]] html>\n<meta charset=\"utf"
+   },
+   {
+    "kind": "top",
+    "window": 1293,
+    "pos": 1,
+    "rel": 0.476,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "DOCTYPE",
+    "text": "<![[DOCTYPE]] html PUBLIC \"-//W3C"
+   },
+   {
+    "kind": "top",
+    "window": 95,
+    "pos": 1,
+    "rel": 0.476,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "DOCTYPE",
+    "text": "<![[DOCTYPE]] html>\n<html lang=\"en"
+   },
+   {
+    "kind": "top",
+    "window": 1321,
+    "pos": 1,
+    "rel": 0.476,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "DOCTYPE",
+    "text": "<![[DOCTYPE]] HTML>\n<!-- NewPage -->\n"
+   },
+   {
+    "kind": "top",
+    "window": 850,
+    "pos": 88,
+    "rel": 0.432,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "///",
+    "text": ".Base.Model;\n\nnamespace NHapi.Model.V26.Group\n{\n///<summary>\n///Represents the RRI_I12_AUTHORIZATION_CONTACT Group.  A Group is an ordered collection of message \n[[///]] segments that can repeat together or"
+   },
+   {
+    "kind": "top",
+    "window": 886,
+    "pos": 162,
+    "rel": 0.43,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " met",
+    "text": " anterior half of the carapace. The metastoma and first two appendages are unknown, the third and fourth prosomal legs are very short and the last two walking legs are very long. The[[ met]]asoma is very narrow.\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1492,
+    "pos": 239,
+    "rel": 0.408,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": " ver",
+    "text": " het gerechtelijk comité van het Huis, James Sensenbrenner, R-Wis, gevoelig voor is.\nbezet Palestijns gebied: De Palestijnen[[ ver]]werpen de blauwd"
+   },
+   {
+    "kind": "top",
+    "window": 1125,
+    "pos": 1,
+    "rel": 0.399,
+    "gate_open": false,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "2",
+    "text": "2[[2]]5 F.3d "
+   },
+   {
+    "kind": "top",
+    "window": 1491,
+    "pos": 7,
+    "rel": 0.358,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": "ver",
+    "text": "In Pakistan is het leger on[[ver]]murwbaar in de stri"
+   },
+   {
+    "kind": "top",
+    "window": 1138,
+    "pos": 54,
+    "rel": 0.348,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "google",
+    "text": " in my calendar after some user's actions. That's why I'm want use server-to-server authorization with Google API. I wrote next code: \nrequire 'google/apis/calendar_v3'\nrequire '[[google]]auth'\n\nrequire 'google/api"
+   },
+   {
+    "kind": "top",
+    "window": 1364,
+    "pos": 1,
+    "rel": 0.31,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": ";;;;;;;;;;;;;;;;",
+    "text": ";;;;;;;;;;;;;;;;[[;;;;;;;;;;;;;;;;]];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n;;;"
+   },
+   {
+    "kind": "top",
+    "window": 1566,
+    "pos": 238,
+    "rel": 0.281,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ur",
+    "token": "ن",
+    "text": " پنڈالوں کو ایشز کے نام سے جانا جاتا ہے ، جس میں رنگا رنگ پ[[ن]]ڈالوں کو"
+   },
+   {
+    "kind": "top",
+    "window": 1284,
+    "pos": 215,
+    "rel": 0.248,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\t",
+    "text": ".\n\nfrom aliyunsdkcore.request import RpcRequest\nfrom aliyunsdkdrds.endpoint import endpoint_data\n\nclass DescribeDrdsComponentsRequest(RpcRequest):\n\n\tdef __init__(self):\n[[\t]]\tRpcRequest.__init__("
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 59.75,
+  "n_strong_tokens": 2,
+  "n_strong_windows": 2,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "Github",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    1
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "Class",
+    1
+   ],
+   [
+    "1",
+    1
+   ]
+  ],
+  "strong_pos_median": 127,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 980,
+    "pos": 47,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "1",
+    "text": " and dissertations of three retired military guys. Two Air Force, one Navy. The Old AF Sarge, Juvat, and Tuna.\n\nSaturday, February 28, 20[[1]]5\n\nFive\n\nMom and"
+   },
+   {
+    "kind": "top",
+    "window": 850,
+    "pos": 208,
+    "rel": 0.556,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Class",
+    "text": "///<summary> \n\t/// Creates a new RRI_I12_AUTHORIZATION_CONTACT Group.\n\t///</summary>\n\tpublic RRI_I12_AUTHORIZATION_CONTACT(IGroup parent, IModel[[Class]]Factory factory) : base(parent"
+   },
+   {
+    "kind": "top",
+    "window": 785,
+    "pos": 23,
+    "rel": 0.462,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "0",
+    "text": "--- src/client.c.org\tTue Nov 30 13:49:23 20[[0]]4\n+++ src/client.c"
+   },
+   {
+    "kind": "top",
+    "window": 610,
+    "pos": 19,
+    "rel": 0.46,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "移",
+    "text": "【12月7日 AFP】ブラジルはこれまで太陽エネルギー活用への[[移]]行において大きく後れを"
+   },
+   {
+    "kind": "top",
+    "window": 45,
+    "pos": 6,
+    "rel": 0.423,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "ー�",
+    "text": "この４月にサラリ[[ー�]]�ンとしての生活を"
+   },
+   {
+    "kind": "top",
+    "window": 1505,
+    "pos": 73,
+    "rel": 0.389,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": "iew",
+    "text": " obliczu aktu oskarżenia o morderstwo wydanego w lutym przez filipiński rząd, który mówi, że jest on głównym podejrzanym.\nUn[[iew]]ażnienie jury ozn"
+   },
+   {
+    "kind": "top",
+    "window": 1481,
+    "pos": 86,
+    "rel": 0.364,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "ー�",
+    "text": " ZSRのイヤホン ケーブルが入ってましたが(謎)断線したときのためにケーブルをもう一本買ってたのでそっちの方にリケ[[ー�]]�ルしました。 (イヤ"
+   },
+   {
+    "kind": "top",
+    "window": 513,
+    "pos": 52,
+    "rel": 0.343,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " }).",
+    "text": " cnxps({ playerId: '36af7c51-0caf-4741-9824-2c941fc6c17b'[[ }).]]render('4c4d"
+   },
+   {
+    "kind": "top",
+    "window": 1135,
+    "pos": 232,
+    "rel": 0.291,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "p",
+    "text": " criteria specified in the\n *             selector.\n *             \n *             @param serviceSelector Specifies which ad parameters to return.\n *             @return A list of ad parameters.\n *           \n * \n * <[[p]]>Java class for get element"
+   },
+   {
+    "kind": "top",
+    "window": 141,
+    "pos": 148,
+    "rel": 0.278,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " art",
+    "text": " pågrepet i cannabisaksjonene. Bildet i midten er fra et beslag politiet gjorde i forkant av aksjonene. Foto: POLITIET\n\nDenne[[ art]]ikkelen er over seks år"
+   },
+   {
+    "kind": "top",
+    "window": 1514,
+    "pos": 196,
+    "rel": 0.278,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": " in",
+    "text": " do google ad.\nONU adverte para a situação das mulheres e das crianças na Síria\nBombardeamentos, os confrontos continuam na Síria\nCom base num[[ in]]quérito separado aos agreg"
+   },
+   {
+    "kind": "top",
+    "window": 1296,
+    "pos": 191,
+    "rel": 0.274,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "/",
+    "text": " Changes may cause incorrect behavior and will be lost if the code is regenerated.\n\nimport (\n\t\"context\"\n\t\"github.com/Azure/go-autorest/autorest\"\n\t\"github.com/Azure/go-autorest[[/]]autorest/azure\"\n\t"
+   },
+   {
+    "kind": "top",
+    "window": 1584,
+    "pos": 71,
+    "rel": 0.242,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "�",
+    "text": "学必备，感觉挺好的，光盘是小内圈的，播放也没有问题\n开到高档，水流比较大，冲的牙龈出血了，在使用一段时间看看\n衣服收到了 �[[�]]�想到这么便宜的价格买到"
+   },
+   {
+    "kind": "top",
+    "window": 1212,
+    "pos": 163,
+    "rel": 0.231,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "5",
+    "text": "heets/bundled/bootstrap-responsive.min.css'/>\n  <link type='text/css' rel='stylesheet' href='../../../apidoc/stylesheets/application.css'/>\n  <!-- IE6-8 support of HTML[[5]] elements -->\n  <!--[if lt"
+   },
+   {
+    "kind": "top",
+    "window": 1125,
+    "pos": 211,
+    "rel": 0.225,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "oud",
+    "text": " Counsel, with whom Jay P. McCloskey, United States Attorney, was on brief, for appellee.\nBefore Torruella, Chief Judge, Wallace,* Senior Circuit Judge, and B[[oud]]in, Circuit Judge.\nTor"
+   },
+   {
+    "kind": "top",
+    "window": 658,
+    "pos": 52,
+    "rel": 0.176,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " T",
+    "text": " November 21, 2003 13:13 IST\n\nAn uneasy calm prevails in Assam with no major incident of violence reported overnight while curfew in worst-hit[[ T]]insukia town was relaxed"
+   },
+   {
+    "kind": "top",
+    "window": 255,
+    "pos": 97,
+    "rel": 0.172,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "0",
+    "text": " and the United States of America.\nThe site was inspired by the friendship link established in 2001 with the Cape Cod community of Brewster.\n\nTuesday, 29 September 20[[0]]9\n\nWithin three years of"
+   },
+   {
+    "kind": "top",
+    "window": 947,
+    "pos": 148,
+    "rel": 0.144,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\n",
+    "text": "\nGlobal\n\tGlobalSection(SolutionConfigurationPlatforms) = preSolution\n\t\tDebug|Any CPU = Debug|Any CPU\n\t\tRelease|Any CPU = Release|Any CPU\n\tEndGlobalSection[[\n]]\tGlobalSection(ProjectConfigurationPlatforms)"
+   },
+   {
+    "kind": "top",
+    "window": 1370,
+    "pos": 47,
+    "rel": 0.143,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "/",
+    "text": "\"?>\n<window xmlns:html=\"http://www.w3.org/1999/xhtml\" class=\"reftest-wait\" xmlns=\"http://www.mozilla.org/keymaster/gatekeeper[[/]]there.is.only.xul\""
+   },
+   {
+    "kind": "top",
+    "window": 262,
+    "pos": 60,
+    "rel": 0.138,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Sch",
+    "text": " agency sent out a false alert warning of an imminent ballistic-missile strike amid rising tensions with North Korea, seems to have sparked an unusually rapid response on Capitol Hill.\n\nHawaii’s Sen. Brian[[ Sch]]atz, a Democrat on the"
+   }
+  ]
+ }
+}

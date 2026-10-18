@@ -1,0 +1,620 @@
+{
+ "id": "L31N1344",
+ "layer": 31,
+ "neuron": 1344,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 22.625,
+  "n_strong_tokens": 107,
+  "n_strong_windows": 48,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    38
+   ],
+   [
+    "OpenWebText2",
+    5
+   ],
+   [
+    "Wikipedia (en)",
+    2
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "PhilPapers",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    10
+   ],
+   [
+    "pt",
+    10
+   ],
+   [
+    "fr",
+    7
+   ],
+   [
+    "es",
+    7
+   ],
+   [
+    "it",
+    6
+   ],
+   [
+    "ru",
+    4
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "ão",
+    11
+   ],
+   [
+    " se",
+    5
+   ],
+   [
+    " si",
+    3
+   ],
+   [
+    "i",
+    3
+   ],
+   [
+    " cane",
+    3
+   ],
+   [
+    "a",
+    3
+   ],
+   [
+    "alo",
+    3
+   ],
+   [
+    "ello",
+    2
+   ]
+  ],
+  "strong_pos_median": 129,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 609,
+    "pos": 161,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "ole",
+    "text": "Marc Hayel, Charles Dumont, Michel Vaucaire) - 2:15\n\"Hier Encore\" (Charles Aznavour) - 3:06\n\"Par[[ole]]\" (Michaele,"
+   },
+   {
+    "kind": "top",
+    "window": 466,
+    "pos": 242,
+    "rel": 0.956,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "getti",
+    "text": "ato.Alcuni di questi li avevo già preparati (ad esempio il lavabo), ma per lo più si tratta di un lavoro d'improvvisazione realizzato con og[[getti]] di recupero.Prim"
+   },
+   {
+    "kind": "top",
+    "window": 1478,
+    "pos": 28,
+    "rel": 0.878,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "i",
+    "text": "Un uomo sta suonando la chitarra e cantando.\nUn agnello si trova vicino a due piccoli animal[[i]].\nIl burro si sta"
+   },
+   {
+    "kind": "top",
+    "window": 1459,
+    "pos": 177,
+    "rel": 0.862,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": " qualité",
+    "text": " y a à l'intérieur.\nRien a ajouter aux précédents commentaires qui vantent déjà les mérites de cet outil : tout est parfait ! Avoir un scalpel de cette[[ qualité]] avec 3 lames de"
+   },
+   {
+    "kind": "top",
+    "window": 1517,
+    "pos": 192,
+    "rel": 0.856,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "edo",
+    "text": ".\nUma mulher descasca uma batata.\nEgipto: IPI Insta à libertação da jornalista Al Jazeera Presa em Berlim\nUm cão com um brinqu[[edo]] vermelho na boca.\n"
+   },
+   {
+    "kind": "top",
+    "window": 1521,
+    "pos": 40,
+    "rel": 0.829,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " что",
+    "text": "Факторы , связанные с деятельностью подразделений и систем , обеспечивают реалистичный подход к конкретным результатам модели .\nМы хотим сделать все ,[[ что]] в наших силах ,"
+   },
+   {
+    "kind": "top",
+    "window": 1540,
+    "pos": 146,
+    "rel": 0.779,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "ง",
+    "text": "รถ ครอบคลุม พื้นที่ โดย เท้า จากนั้น จอด รถ ใน พื้นที่ ใหม่\nใน สิ่[[ง]] ที่ เคย"
+   },
+   {
+    "kind": "top",
+    "window": 1543,
+    "pos": 96,
+    "rel": 0.779,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "ง",
+    "text": "andy   แม้ จะ ไม่มี ราว ให้ มัน วิ่ง บน\nปี ต่อไปนี้ แสดง กับ สิ่[[ง]] ที่ นายกรั"
+   },
+   {
+    "kind": "top",
+    "window": 1448,
+    "pos": 57,
+    "rel": 0.735,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " hemos",
+    "text": " montón de llegar. No vale su precio\nPara el precio esta bien\nFatal, después de una semana ya no se encendían. Los he devuelto. Ni siquiera los[[ hemos]] usado y ya no se enc"
+   },
+   {
+    "kind": "top",
+    "window": 1455,
+    "pos": 205,
+    "rel": 0.729,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": "ile",
+    "text": " il manque quelques dimensions. A tendance à attacher un peu, mais semble de bonne qualité, à voir sur la durée.\nla roue ces case très rapidement\nC'est l'hu[[ile]] d'argan c'est"
+   },
+   {
+    "kind": "top",
+    "window": 1518,
+    "pos": 49,
+    "rel": 0.729,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": " dinheiro",
+    "text": "uosa para a lista, que se destina a bloquear cerca de 80 por cento das chamadas de telemarketing.\nSem extorsão, sem suborno, sem[[ dinheiro]] envolvido Ele está a"
+   },
+   {
+    "kind": "top",
+    "window": 1450,
+    "pos": 2,
+    "rel": 0.702,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": "elle",
+    "text": "Poub[[elle]] assez pratique mais un peu petite"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1471,
+    "pos": 32,
+    "rel": 0.552,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " cane",
+    "text": "lavrov ci ha detto il segretario di stato del riso condoleezza che la russia rimane aperta al dialogo.\nUn[[ cane]] bianco corre su una spi"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1513,
+    "pos": 62,
+    "rel": 0.682,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "ão",
+    "text": " acidente vascular cerebral\nUm homem está a tocar uma flauta.\nTrabalhadores deficientes 'traídos' protestam contra os encerramentos da Remploy\nUm c[[ão]] branco pequeno e um"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1444,
+    "pos": 121,
+    "rel": 0.702,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " se",
+    "text": " único bueno que puedo decir de ellas es que si recibes un golpe de la bola lo para. Y lo malo es que se empañan. Si lo que buscas es que no[[ se]] empañen estas no son"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1458,
+    "pos": 200,
+    "rel": 0.586,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": " il",
+    "text": "’est déjà décoller du manche après 2 utilisation donc déçu\nClassement de collection de timbres.\nUn bouquin épais mais qui se dévore, tellement[[ il]] est clair, simple d"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1510,
+    "pos": 82,
+    "rel": 0.619,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "ogo",
+    "text": " cebola.\nTaiwan abalada por um forte terramoto\nUma mulher de desenhos animados mergulha numa piscina.\nPalestinianos 'atingidos' pelo f[[ogo]] israelita em Gaza\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1512,
+    "pos": 102,
+    "rel": 0.633,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "ão",
+    "text": " de software de segurança mcafee inc., disse que os hackers filiados no governo na China estão na vanguarda de uma guerra fria cibernética cervejeira.\nUm c[[ão]] castanho está a cor"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1511,
+    "pos": 226,
+    "rel": 0.696,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "ão",
+    "text": " rumou para uma vitória apertada nas eleições alemãs\nSarkozy para apresentar queixa em reclamação de financiamento Gadhafi\nUm c[[ão]] castanho está no meio"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1473,
+    "pos": 9,
+    "rel": 0.575,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "a",
+    "text": "Un uomo sta camminando su una cord[[a]].\nL'uomo sta mang"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 19.0,
+  "n_strong_tokens": 154,
+  "n_strong_windows": 44,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    36
+   ],
+   [
+    "OpenWebText2",
+    7
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "fr",
+    10
+   ],
+   [
+    "it",
+    9
+   ],
+   [
+    "en",
+    8
+   ],
+   [
+    "es",
+    8
+   ],
+   [
+    "pt",
+    6
+   ],
+   [
+    "tr",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " ha",
+    7
+   ],
+   [
+    " que",
+    4
+   ],
+   [
+    "ato",
+    4
+   ],
+   [
+    "o",
+    3
+   ],
+   [
+    ",",
+    3
+   ],
+   [
+    " m",
+    3
+   ],
+   [
+    "e",
+    2
+   ],
+   [
+    " f",
+    2
+   ]
+  ],
+  "strong_pos_median": 130,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1459,
+    "pos": 95,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": "'ai",
+    "text": " pas, s utilisent aussi bien avec du chaud ou du froid. Bref je suis conquise et vais vite en racheter.\nLivraison rapide mais les articles mal protégés j[['ai]] retrouvé 3 m"
+   },
+   {
+    "kind": "top",
+    "window": 1515,
+    "pos": 143,
+    "rel": 0.875,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "hos",
+    "text": "orte-americanos apontavam para um sub-par começar a transaccionar na terça-feira, com os investidores prontos para obterem o seu primeiro sabor dos gan[[hos]] trimestrais.\nCão pre"
+   },
+   {
+    "kind": "top",
+    "window": 1457,
+    "pos": 176,
+    "rel": 0.862,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": " laisse",
+    "text": "mpa a voir dans le temps\nPas du tout dans la teinte orangée énoncée, il est plus blanc qu'autre chose. En revanche très lourd ce qui me[[ laisse]] à penser que c'est"
+   },
+   {
+    "kind": "top",
+    "window": 1478,
+    "pos": 77,
+    "rel": 0.839,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " hanno",
+    "text": "liendo in una padella.\nMentre i partiti dell'opposizione hanno accolto con favore la decisione del gabinetto sul trattamento antiretrovirale, alcuni[[ hanno]] detto che il ministro"
+   },
+   {
+    "kind": "top",
+    "window": 1451,
+    "pos": 98,
+    "rel": 0.832,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": " pas",
+    "text": " malheureusement c’est un achat inutile car cette coque de protection est trop petite, une fois la clé bien calé les rebords sont trop court et ne se referme[[ pas]] correctement pour protéger"
+   },
+   {
+    "kind": "top",
+    "window": 1516,
+    "pos": 14,
+    "rel": 0.822,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": " já",
+    "text": "Quatro outros homens que também foram acusados em Junho[[ já]] se declararam culpados.\n"
+   },
+   {
+    "kind": "top",
+    "window": 1472,
+    "pos": 179,
+    "rel": 0.806,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " stato",
+    "text": "abilitazione non funziona.\n\"Penso che avrebbe dovuto essere rilasciato anni fa\", ha detto Brian Rohrbough, il cui figlio, Daniel, è[[ stato]] ucciso a Columbine"
+   },
+   {
+    "kind": "top",
+    "window": 770,
+    "pos": 83,
+    "rel": 0.796,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " era",
+    "text": "ante do Cruzeiro em longa reunião na tarde desta segunda-feira, no Rio de Janeiro.\n\nDesde a saída de Luxemburgo, na última sexta, Abel Braga[[ era]] o nome preferido do presidente"
+   },
+   {
+    "kind": "top",
+    "window": 1455,
+    "pos": 101,
+    "rel": 0.793,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": " me",
+    "text": ",, ,,, ,,,\nJe l’ai reçu sans la tête. Est ce que vous pouvez m’en renvoyer une ? Merci\nJe n’ai jamais reçu le colis. On[[ me]] balade depuis 3 sem"
+   },
+   {
+    "kind": "top",
+    "window": 1470,
+    "pos": 63,
+    "rel": 0.78,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "ati",
+    "text": " dal treno.\nL'India accusa la Cina di aver attraversato il confine di fatto\nLa manomissione della medicina è stata così redditizia che molti degli arrest[[ati]] vivevano in case da"
+   },
+   {
+    "kind": "top",
+    "window": 1474,
+    "pos": 215,
+    "rel": 0.78,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "ato",
+    "text": " i premi per i proprietari di case alle stelle potrebbero finalmente ottenere un sollievo.\nUn uomo sta correndo sulla strada.\nIl suo avvoc[[ato]] Donald Levine ha detto al"
+   },
+   {
+    "kind": "top",
+    "window": 1476,
+    "pos": 38,
+    "rel": 0.757,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " accuse",
+    "text": "Un veicolo nero parcheggiato con una fiancata di montagne basse.\nRay Brent Marsh, 29 anni, è accusato di molteplici[[ accuse]] di truffa ai serv"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1442,
+    "pos": 157,
+    "rel": 0.635,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": "ap",
+    "text": "ativo para los más peques de la casa, que hará crecer su imaginación y su creatividad.\nLo compré para sustituir el cargador de mi Nintendo DS que está des[[ap]]arecido en combate."
+   },
+   {
+    "kind": "random-strong",
+    "window": 1441,
+    "pos": 124,
+    "rel": 0.632,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " m",
+    "text": " bien indica: Calentador de Espacio Personal...\nBueno, en principio era para un agaporni, pero es más pequeño de lo que pensaba, aunque éso es culpa[[ m]]ía, por no compro"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1449,
+    "pos": 214,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": "pción",
+    "text": ", de hecho me parece que es la misma tela que mi sofá de ikea. No es lo que yo esperaba. Me esperaba algo más lujoso tanto dado el precio como la descri[[pción]] del cabecero. De"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1448,
+    "pos": 175,
+    "rel": 0.599,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " ha",
+    "text": " la cámara frontal. El precio que tiene este producto no está justificado por su calidad Actualizo comentario incluyendo foto donde se ve el lamentable estado de la proteccion, y el móvil no[[ ha]] sido maltratado.\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1479,
+    "pos": 140,
+    "rel": 0.569,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " ha",
+    "text": " firme.\nLa Russia avverte che risponderà se gli interessi attaccati in Ucraina\nL'Egitto di Mubarak critico\nIl gruppo di consumatori[[ ha]] generato 4,4"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1447,
+    "pos": 212,
+    "rel": 0.704,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " yo",
+    "text": " pedirlo, lo que significa que envían desde España y esto es algo que valoro mucho. Nada mas recibirlo me dí cuenta que la alfombrilla es bien grande como[[ yo]] quería y con un buen"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1445,
+    "pos": 201,
+    "rel": 0.638,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " fue",
+    "text": " bien, pero estaría bien unas instrucciones de montaje y funcionamiento. Pero en general es un buen producto y útil\ncumple su función, es de buena calidad y el envío[[ fue]] rápido, lo malo el"
+   },
+   {
+    "kind": "random-strong",
+    "window": 54,
+    "pos": 161,
+    "rel": 0.615,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "adores",
+    "text": " que se retuerce con el estómago lleno de luces brillantes. Poco después publicó el siguiente tweet:\n\n\n¿La respuesta? No tenemos ni la menor idea. Los investig[[adores]] cuentan que es demasiado"
+   }
+  ]
+ }
+}

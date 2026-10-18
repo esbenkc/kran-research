@@ -1,0 +1,592 @@
+{
+ "id": "L32N2782",
+ "layer": 32,
+ "neuron": 2782,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 18.0,
+  "n_strong_tokens": 144,
+  "n_strong_windows": 100,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "OpenWebText2",
+    36
+   ],
+   [
+    "Pile-CC",
+    33
+   ],
+   [
+    "Wikipedia (en)",
+    8
+   ],
+   [
+    "FreeLaw",
+    5
+   ],
+   [
+    "PubMed Abstracts",
+    4
+   ],
+   [
+    "Github",
+    4
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    95
+   ],
+   [
+    "code",
+    4
+   ],
+   [
+    "nl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " is",
+    24
+   ],
+   [
+    " be",
+    8
+   ],
+   [
+    " was",
+    7
+   ],
+   [
+    "’t",
+    6
+   ],
+   [
+    " are",
+    4
+   ],
+   [
+    "’s",
+    3
+   ],
+   [
+    "weights",
+    3
+   ],
+   [
+    ".",
+    3
+   ]
+  ],
+  "strong_pos_median": 126,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1161,
+    "pos": 68,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "’t",
+    "text": " Board included the “Baywatch” star on a list of the state’s 500 biggest income-tax delinquents posted Friday. A call to Anderson’s tax attorney, Robert Leonard, wasn[[’t]] immediately returned.\n\nStars With Tax"
+   },
+   {
+    "kind": "top",
+    "window": 1057,
+    "pos": 209,
+    "rel": 0.986,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " is",
+    "text": " put together some really solid at-bats it sounds like on his rehab and we’re confident he’s going to come up there and give us a good at-bat.”\n\nCallaway said that “anything[[ is]] possible” with how he plans"
+   },
+   {
+    "kind": "top",
+    "window": 853,
+    "pos": 196,
+    "rel": 0.951,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " is",
+    "text": " priced in a way that drives conservation.\n\n\n\nOne more thing to know: Water issues are at least as complex as energy, and all water problems are local, so generalizing about water, while inevitable,[[ is]] invariably misleading.\n\n{related_content"
+   },
+   {
+    "kind": "top",
+    "window": 28,
+    "pos": 202,
+    "rel": 0.91,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " is",
+    "text": " consists of studies in which polysaccharides were injected \\[[@B1],[@B2]\\]. For clinicians and scientists interested in immunologic effects following dietary intake, the value of such studies[[ is]] uncertain. Polysacchar"
+   },
+   {
+    "kind": "top",
+    "window": 959,
+    "pos": 76,
+    "rel": 0.837,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " IS",
+    "text": " ORDER\n\nRULINGS BY SUMMARY ORDER DO NOT HAVE PRECEDENTIAL EFFECT. CITATION TO A SUMMARY\nORDER FILED ON OR AFTER JANUARY 1, 2007,[[ IS]] PERMITTED AND IS GOVERN"
+   },
+   {
+    "kind": "top",
+    "window": 270,
+    "pos": 104,
+    "rel": 0.833,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " completely",
+    "text": " Becker said—in spite of the glaring violation of rights caught on video—no charges will be filed against the officer.\n\n“Placing the barrel of a gun on the head of a suspect being arrested is[[ completely]] inappropriate, offensive, and against"
+   },
+   {
+    "kind": "top",
+    "window": 528,
+    "pos": 75,
+    "rel": 0.799,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " IS",
+    "text": " ORDER\nRULINGS BY SUMMARY ORDER DO NOT HAVE PRECEDENTIAL EFFECT. CITATION TO A SUMMARY\nORDER FILED ON OR AFTER JANUARY 1, 2007,[[ IS]] PERMITTED AND IS GOVERN"
+   },
+   {
+    "kind": "top",
+    "window": 1065,
+    "pos": 76,
+    "rel": 0.76,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " standout",
+    "text": " than done.\n\nAssuncao (27-5 MMA, 11-2 UFC) is one of the top contenders in the UFC bantamweight division. He meets fellow divisional[[ standout]] Marlon Moraes ("
+   },
+   {
+    "kind": "top",
+    "window": 257,
+    "pos": 240,
+    "rel": 0.75,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " are",
+    "text": " all of the cancerous cells. And removing extra material “just in case” isn’t a good option in the brain, which controls so many critical processes. The techniques surgeons have at their disposal today[[ are]] not accurate enough to identify all"
+   },
+   {
+    "kind": "top",
+    "window": 804,
+    "pos": 103,
+    "rel": 0.74,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " was",
+    "text": " Attorney Joyce E. Dudley told this newspaper that late Friday morning, she filed a motion to dismiss the case involving Hong, one of six people Rodger killed one week earlier. She said the infraction[[ was]] minor enough to be outweighed"
+   },
+   {
+    "kind": "top",
+    "window": 454,
+    "pos": 60,
+    "rel": 0.74,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Y",
+    "text": " years, hoping eventually to buy a home for his family. Now, the foreclosure market might make the New York man's dream come true.\n\nVictor Guavares discusses his plans with his wife,[[ Y]]ajaira, to bid on"
+   },
+   {
+    "kind": "top",
+    "window": 589,
+    "pos": 191,
+    "rel": 0.729,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " is",
+    "text": "medically necessary,” rather than cosmetic, procedures.\n\nLet’s talk about the tax benefits first. There are three possible tax breaks!\n\nA tax break on the front end—your contribution to your HSA[[ is]] pre-tax, since it comes"
+   },
+   {
+    "kind": "random-strong",
+    "window": 411,
+    "pos": 175,
+    "rel": 0.521,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " was",
+    "text": " YouTube and was widely viewed online.\n\nMobile users, click here\n\n\"They're devastated, absolutely devastated,\" said Ronald Kurpiers, the pair's attorney. \"I don't think that what they did[[ was]] meant for them to be called"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1100,
+    "pos": 7,
+    "rel": 0.67,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " extension",
+    "text": "/**\n * ScriptDev2 is an[[ extension]] for mangos providing enhanced features"
+   },
+   {
+    "kind": "random-strong",
+    "window": 165,
+    "pos": 153,
+    "rel": 0.691,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " was",
+    "text": " LT and CS approach. In a single center, retrospective review, data on patients with similar demographic profiles were collected. HeartWare (HVAD) implantation was performed by either CS or LT. Analysis[[ was]] performed on perioperative adverse outcomes"
+   },
+   {
+    "kind": "random-strong",
+    "window": 196,
+    "pos": 184,
+    "rel": 0.559,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " X",
+    "text": "?\n\nA:\n\nLOCK is not an instruction itself: it is an instruction prefix, which applies to the following instruction. That instruction must be something that does a read-modify-write on memory (INC,[[ X]]CHG, CMPXCH"
+   },
+   {
+    "kind": "random-strong",
+    "window": 583,
+    "pos": 69,
+    "rel": 0.594,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "’s",
+    "text": ". Traditional poly blogger wisdom points the finger at both parties having to compromise and feeling somewhat shortchanged. The difference between the relationship structures is to blame for the trouble, they write. But I think it[[’s]] even simpler than that. I"
+   },
+   {
+    "kind": "random-strong",
+    "window": 424,
+    "pos": 103,
+    "rel": 0.615,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "’t",
+    "text": "), a strong proponent for a reality-based (versus VC-funded) approach to building a tech company with a point of view, and a strong believer most of the accepted ways of doing business don[[’t]] scale down to startups.\n\nIn"
+   },
+   {
+    "kind": "random-strong",
+    "window": 679,
+    "pos": 56,
+    "rel": 0.688,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Director",
+    "text": " that says that it is cheaper to make a poor deal than to fight a great fight.\n\nThis might seem to be exactly what happened in the negotiations headed by Mexico’s Federal Electricity Commission (CFE)[[ Director]] Manuel Bartlett Díaz"
+   },
+   {
+    "kind": "random-strong",
+    "window": 369,
+    "pos": 218,
+    "rel": 0.542,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " specifically",
+    "text": "get Sound's shallow northern bays, and the rest is scattered in nearshore zones just below steep bluffs like the Maury Island Aquatic Reserve, one of just four areas in Puget Sound[[ specifically]] designated for protection because of the"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 43.5,
+  "n_strong_tokens": 22,
+  "n_strong_windows": 18,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    12
+   ],
+   [
+    "OpenWebText2",
+    5
+   ],
+   [
+    "USPTO Backgrounds",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    18
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " is",
+    7
+   ],
+   [
+    " been",
+    3
+   ],
+   [
+    " are",
+    2
+   ],
+   [
+    " now",
+    1
+   ],
+   [
+    " tears",
+    1
+   ],
+   [
+    " came",
+    1
+   ],
+   [
+    " picture",
+    1
+   ],
+   [
+    " starts",
+    1
+   ]
+  ],
+  "strong_pos_median": 70,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 980,
+    "pos": 184,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " pain",
+    "text": "ive years ago this month, I talked to my Dad for the last time.I was in a hotel, traveling for work, he was back at home after a pretty rough hospital stay.I could hear the[[ pain]] in his voice but, as"
+   },
+   {
+    "kind": "top",
+    "window": 830,
+    "pos": 72,
+    "rel": 0.828,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " been",
+    "text": " anyway, WWE fans are making a strong case for the company to release current SmackDown LIVE commentator, John Bradshaw Layfield.\n\nBULLYING CLAIMS\n\nStories about his apparent bullying have[[ been]] circulating online for years but now"
+   },
+   {
+    "kind": "top",
+    "window": 279,
+    "pos": 25,
+    "rel": 0.793,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " is",
+    "text": "Digital Learning\n\nACG School Jakarta students are well prepared to face the ever-changing world that we live in today. Information Technology[[ is]] an integral part of day-to"
+   },
+   {
+    "kind": "top",
+    "window": 951,
+    "pos": 48,
+    "rel": 0.782,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " is",
+    "text": "th, 2012\n\nWho here has worn a pair of Kickers shoes at least once in their lives? If you’re a 90s kid, I’m sure Kickers[[ is]] a familiar brand to you."
+   },
+   {
+    "kind": "top",
+    "window": 611,
+    "pos": 66,
+    "rel": 0.759,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " picture",
+    "text": ". Find out why...\n\nScottish Folds are incredibly cute, cuddly looking cats...on first sight...but look more closely at what creates those ‘cute’ folded ears and a very worrying[[ picture]] starts to emerge. Scottish Fold"
+   },
+   {
+    "kind": "top",
+    "window": 342,
+    "pos": 49,
+    "rel": 0.753,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " now",
+    "text": " Toy Fair 2012\n\nYou know that with the advent of tablets and smartphones, we are now very used to touchscreen displays – something which used to be in the domain of science fiction is[[ now]] widespread reality. Even our AT"
+   },
+   {
+    "kind": "top",
+    "window": 675,
+    "pos": 85,
+    "rel": 0.73,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " keeps",
+    "text": ", it was NEVER going to be sustainable for me to have a diet consisting of things that aren’t ever going to be bacon. This recipe (and many variations of it) appeared in that time and[[ keeps]] appearing even though I am solid"
+   },
+   {
+    "kind": "top",
+    "window": 570,
+    "pos": 205,
+    "rel": 0.684,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " came",
+    "text": " from Charlotte Gainsbourg’s release IRM, I knew that my assumption was correct.\n\nThe unmistakable whine, groan and thump, so familiar to a person living with multiple sclerosis,[[ came]] across our clock radio. Had"
+   },
+   {
+    "kind": "top",
+    "window": 795,
+    "pos": 79,
+    "rel": 0.672,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " been",
+    "text": ", the spring Eurobarometer poll published on Friday (31 July) found, a 14 point increase from last autumn.\n\nStudent or retired? Then this plan is for you.\n\nMigration has[[ been]] pushed up the political agenda as"
+   },
+   {
+    "kind": "top",
+    "window": 953,
+    "pos": 81,
+    "rel": 0.664,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " breasts",
+    "text": " you to watch others as they interact. She laughs at a comment someone makes during their conversation across the room while others converse around her. The neckline of her gown plunges low yet contains the voluptuous[[ breasts]] to taunt those who care"
+   },
+   {
+    "kind": "top",
+    "window": 721,
+    "pos": 42,
+    "rel": 0.615,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " is",
+    "text": "\n\nUpdated: Aug 26, 2015 09:01 IST\n\nAs Rakhis fly off the shelves this Rakshabandhan season, one particular variety[[ is]] selling the most in the capital"
+   },
+   {
+    "kind": "top",
+    "window": 464,
+    "pos": 107,
+    "rel": 0.603,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " is",
+    "text": " has a great day.\n\nMorning all. Down with an awful cold, head stuffed, tears streaming, throat scratchy. Husband still in the grip of a nasty coughing cold. Still, the sun[[ is]] up and the trees are turning"
+   },
+   {
+    "kind": "top",
+    "window": 1065,
+    "pos": 20,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " frustration",
+    "text": "FORTALEZA, Brazil – Raphael Assuncao has done his best to separate himself from the[[ frustration]] of not fighting for a UFC"
+   },
+   {
+    "kind": "top",
+    "window": 501,
+    "pos": 154,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " issue",
+    "text": " of our pupils’\n\nRead: 'It's short-sighted to dismiss the pupil strikes'\n\nJoint-general secretary Mary Bousted told a pre-conference briefing this morning: “It’s absolutely the number one[[ issue]] and it’s wonderful to see"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1046,
+    "pos": 58,
+    "rel": 0.506,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "eness",
+    "text": " Sanders – to Washington to grovel at the feet of the Israel lobby, a depressing scene, says ex-CIA analyst Paul R. Pillar.\n\nBy Paul R. Pillar\n\nA depressing sam[[eness]] characterized the speeches of presidential candidates"
+   },
+   {
+    "kind": "random-strong",
+    "window": 664,
+    "pos": 35,
+    "rel": 0.52,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " is",
+    "text": "The following discussion is intended to facilitate the understanding of the invention, but is not intended nor admitted to be prior art to the invention.\nObesity is a public health problem that[[ is]] serious, widespread, and increasing"
+   },
+   {
+    "kind": "random-strong",
+    "window": 802,
+    "pos": 78,
+    "rel": 0.598,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " are",
+    "text": " recently I started a fiction lit zine \"Annie Wilkes #1 Fan\" which are serialized adaptions of the novelettes I've been writing since I was a kid. Several other ideas[[ are]] in the works-- they're"
+   },
+   {
+    "kind": "random-strong",
+    "window": 614,
+    "pos": 203,
+    "rel": 0.555,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " is",
+    "text": " same survey conducted between January and March 2011 revealed that 31% wanted an Android, 30% wanted an iPhone and 11% wanted a Blackberry. Android[[ is]] slowly creeping up the consumer ‘"
+   },
+   {
+    "kind": "random-strong",
+    "window": 895,
+    "pos": 99,
+    "rel": 0.506,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " been",
+    "text": " grandfather Phil Robertson was suspended by the cable network carrying the show for his comments on homosexuality. And, the top story: the celebration of Christmas and the timeless message of God's love for humanity that has[[ been]] proclaimed to a greater degree throughout"
+   },
+   {
+    "kind": "random-strong",
+    "window": 616,
+    "pos": 56,
+    "rel": 0.563,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " are",
+    "text": " Manufacturers have discovered that it's both cheaper and easier to offer every model with a surprisingly high level of content rather than build multiple variations on the same theme. That's why tricks like power locks and windows[[ are]] all but ubiquitous, even on"
+   }
+  ]
+ }
+}

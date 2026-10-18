@@ -1,0 +1,580 @@
+{
+ "id": "L11N3840",
+ "layer": 11,
+ "neuron": 3840,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 3.6562,
+  "n_strong_tokens": 19,
+  "n_strong_windows": 16,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    8
+   ],
+   [
+    "Github",
+    5
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "PubMed Central",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    11
+   ],
+   [
+    "code",
+    5
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ")\n",
+    2
+   ],
+   [
+    "\n",
+    2
+   ],
+   [
+    "Why",
+    1
+   ],
+   [
+    "What",
+    1
+   ],
+   [
+    ".\n",
+    1
+   ],
+   [
+    "I",
+    1
+   ],
+   [
+    "Is",
+    1
+   ],
+   [
+    "The",
+    1
+   ]
+  ],
+  "strong_pos_median": 163,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 263,
+    "pos": 243,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "I",
+    "text": " call HTML Cleaner's evaluateXPath and return a TagNode (which I have not found), I can use an XML serializer on the returned TagNode and chain together XPaths to achieve the desired functionality.\n[[I]] could use HTML Cleaner to clean"
+   },
+   {
+    "kind": "top",
+    "window": 79,
+    "pos": 197,
+    "rel": 0.974,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "What",
+    "text": "_hashing_func(self.__dict__)\n\nFor my question:\n\nHow does someone choose between SimpleNameSpace and dataclasses?\nWhy were they necessary, when the same effect can be achieved with extending the SimpleNameSpace?\n[[What]] all other use cases dataclasses"
+   },
+   {
+    "kind": "top",
+    "window": 99,
+    "pos": 163,
+    "rel": 0.799,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ".\n",
+    "text": "_modules folder exists outside of Public, so I can not reference it in the live application.\nSo far, it seems that I have two options:\n\nContinue as is, and forget package management for these assets[[.\n]]Create a second package.json inside"
+   },
+   {
+    "kind": "top",
+    "window": 1398,
+    "pos": 189,
+    "rel": 0.795,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Task",
+    "text": " sealed partial class Scenario1_CreateContacts : Page\r\n    {\r\n        private MainPage rootPage = MainPage.Current;\r\n\r\n        public Scenario1_CreateContacts()\r\n        {\r\n            this.InitializeComponent();\r\n        }\r\n\r\n        private async[[ Task]]<ContactList> _GetContact"
+   },
+   {
+    "kind": "top",
+    "window": 489,
+    "pos": 70,
+    "rel": 0.628,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "form",
+    "text": "001 &100100000\r\nPrefab:\r\n  m_ObjectHideFlags: 1\r\n  serializedVersion: 2\r\n  m_Modification:\r\n    m_Trans[[form]]Parent: {fileID:"
+   },
+   {
+    "kind": "top",
+    "window": 926,
+    "pos": 87,
+    "rel": 0.607,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\n",
+    "text": "2 = u'\\u05d1\\u05e8\\u05e7'\n\nI need to implement the following function:\n\nTake a string in either one of the formats above as input[[\n]]Return the equivalent string in the"
+   },
+   {
+    "kind": "top",
+    "window": 1223,
+    "pos": 120,
+    "rel": 0.598,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Chat",
+    "text": ";\nimport com.tencent.mm.ui.o;\n\nfinal class ChattingUI$a$84$2\n  implements ChattingSightContainerView.a\n{\n  View lBB = null;\n  \n [[ Chat]]tingUI$a$84"
+   },
+   {
+    "kind": "top",
+    "window": 1131,
+    "pos": 34,
+    "rel": 0.581,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\tconst",
+    "text": "﻿using UnityEngine;\nusing UnityEditor;\n\nnamespace Lockstep\n{\n\t[CustomPropertyDrawer(typeof(PathObjectAttribute))]\n\tpublic class EditorPathObject : UnityEditor.PropertyDrawer\n\t{\n\t[[\tconst]] float defaultPropertyHeight = "
+   },
+   {
+    "kind": "top",
+    "window": 788,
+    "pos": 37,
+    "rel": 0.564,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\n",
+    "text": "Q:\n\nfind the particular solution of the semi linear equation given the data u(1,y)= ln(y^(-1/2))\n\nsemi linear equation\nthe general solution to that equation[[\n]](general solution)\nGiven the"
+   },
+   {
+    "kind": "top",
+    "window": 455,
+    "pos": 88,
+    "rel": 0.551,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ")\n",
+    "text": " become the first commercial sperm bank in the United States located in New Jersey.\n\nBioGenetics respects the current medical standards and ethics set forth by the:\n\nAmerican Society for Reproductive Medicine (ASRM[[)\n]]American Society of Andrology"
+   },
+   {
+    "kind": "top",
+    "window": 1357,
+    "pos": 40,
+    "rel": 0.543,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " init",
+    "text": "\nclass NSArray : NSObject, NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration {\n  var count: Int { get }\n  func object(at index: Int) -> AnyObject\n [[ init]](objects objects: UnsafePointer<Any"
+   },
+   {
+    "kind": "top",
+    "window": 595,
+    "pos": 125,
+    "rel": 0.538,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ">",
+    "text": " \"attendanceStatuses\")\npublic List<Code> getAttendanceStatusCodes() {\n    return cacheService.getValidCodesOfCodeGroup(CODE_GROUP);\n}\n\nThe cacheService method is:\nList<Code[[>]] getValidCodesOfCodeGroup"
+   },
+   {
+    "kind": "top",
+    "window": 656,
+    "pos": 132,
+    "rel": 0.491,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\n",
+    "text": " sec intervals. \n\nA:\n\nThe biggest difference is that the second statement will cause animateImage() to be evaluated in global scope.\nThis can lead to problems if\n\nanimateImage is not in global scope[[\n]]animateImage has to access variables"
+   },
+   {
+    "kind": "top",
+    "window": 670,
+    "pos": 28,
+    "rel": 0.489,
+    "gate_open": true,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": " \"",
+    "text": "\"SHIP'S HORN BLOWS\" \" Did that man bring you here?\" \" Yes.\" \"Why did he tie you up?\"[[ \"]]Practice.\" \"WIND HOW"
+   },
+   {
+    "kind": "top",
+    "window": 741,
+    "pos": 95,
+    "rel": 0.481,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " static",
+    "text": " debug it it stays on \nApplication.Run(new Form1());\n\nWhat i am missing here? This my code :\nnamespace UmbWin\n{\n    static class Program\n    {\n        [STAThread]\n       [[ static]] void Main()\n        {\n           "
+   },
+   {
+    "kind": "top",
+    "window": 626,
+    "pos": 81,
+    "rel": 0.479,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " init",
+    "text": " -> Bool\n  @available(iOS 2.0, *)\n  var name: String?\n  func lock()\n  func unlock()\n}\nclass NSConditionLock : NSObject, NSLocking {\n [[ init]](condition condition: Int)\n "
+   },
+   {
+    "kind": "random-strong",
+    "window": 1075,
+    "pos": 208,
+    "rel": 0.509,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "![",
+    "text": "05, ^\\*\\*^*p* ≤ 0.01.](fpsyg-09-02734-g0001){#F1}\n\n[[![]]Experimental intervention effects on targeted thought"
+   },
+   {
+    "kind": "random-strong",
+    "window": 279,
+    "pos": 196,
+    "rel": 0.524,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "Is",
+    "text": ". An important part of this is that we are able to show others what responsible use looks likewhile we are using technology in our learning. We think a good digital citizen is someone who;\n\n[[Is]] a confident and capable user of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 668,
+    "pos": 135,
+    "rel": 0.528,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " \n",
+    "text": " space - does this introduce significant error in the result when the output is un-projected?\n\nA:\n\nPossible error of your geometric operation depends on:\n\noverall size of the objects - bigger size increase errors,[[ \n]]projection that you use,\ndatum"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1103,
+    "pos": 193,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "$\\",
+    "text": " b,c,d,e,f,g <i$ for $i=2,3,4,5,6,7$. Then the value of $b+c+d+e+f+g = $\n[[$\\]]bf{My\\; Try"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 1.2656,
+  "n_strong_tokens": 25,
+  "n_strong_windows": 17,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    16
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    16
+   ],
+   [
+    "en",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " @",
+    3
+   ],
+   [
+    " <",
+    3
+   ],
+   [
+    "   ",
+    2
+   ],
+   [
+    " \n",
+    2
+   ],
+   [
+    "       ",
+    2
+   ],
+   [
+    " ON",
+    2
+   ],
+   [
+    ",\n",
+    1
+   ],
+   [
+    "///<",
+    1
+   ]
+  ],
+  "strong_pos_median": 111,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1260,
+    "pos": 59,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " <",
+    "text": " /// Required designer variable.\r\n        /// </summary>\r\n        private System.ComponentModel.IContainer components = null;\r\n\r\n        /// <summary>\r\n        /// Clean up any resources being used.\r\n        /// </summary>\r\n        ///[[ <]]param name=\"disposing\">true"
+   },
+   {
+    "kind": "top",
+    "window": 1311,
+    "pos": 59,
+    "rel": 0.858,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " \n",
+    "text": " (c) 2015, Ricardo Sánchez-Sáez.\n\n Redistribution and use in source and binary forms, with or without modification,\n are permitted provided that the following conditions are met:\n[[ \n]] 1.  Redistributions of"
+   },
+   {
+    "kind": "top",
+    "window": 1092,
+    "pos": 123,
+    "rel": 0.802,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " <",
+    "text": "\"><abbr title=\"World Wide Web Consortium\">W3C</abbr> technical\n    reports index</a> at http://www.w3.org/TR/.</em>\n  </p>\n [[ <]]p>\n    This document was"
+   },
+   {
+    "kind": "top",
+    "window": 626,
+    "pos": 45,
+    "rel": 0.79,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " @",
+    "text": " {\n  func lock()\n  func unlock()\n}\nclass NSLock : NSObject, NSLocking {\n  func tryLock() -> Bool\n  func lock(before limit: NSDate) -> Bool\n [[ @]]available(iOS 2.0"
+   },
+   {
+    "kind": "top",
+    "window": 1288,
+    "pos": 195,
+    "rel": 0.66,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ON",
+    "text": "83fb221201263b38344a9880\" FOREIGN KEY (\"userUserId\") REFERENCES \"user\" (\"userId\") ON DELETE CASCADE[[ ON]] UPDATE CASCADE)`, undefined);\n"
+   },
+   {
+    "kind": "top",
+    "window": 1111,
+    "pos": 111,
+    "rel": 0.657,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "   ",
+    "text": ".source\nimport org.jetbrains.dokka.transformers.documentation.sourceSet\nimport java.io.File\n\nclass SuppressedDocumentableFilterTransformer(val context: DokkaContext) : PreMergeDocumentableTransformer {\n[[   ]] override fun invoke(modules:"
+   },
+   {
+    "kind": "top",
+    "window": 1313,
+    "pos": 48,
+    "rel": 0.617,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "public",
+    "text": "_INLINE\")\n\npackage io.ktor.utils.io.bits\n\nimport io.ktor.utils.io.core.internal.*\nimport java.nio.*\n\n@Suppress(\"ACTUAL_WITHOUT_EXPECT\", \"EXPERIMENTAL_FEATURE_WARNING\")\n[[public]] actual inline class Memory @Danger"
+   },
+   {
+    "kind": "top",
+    "window": 1245,
+    "pos": 26,
+    "rel": 0.617,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\n \n",
+    "text": "/*\n Copyright (C) 2015 Apple Inc. All Rights Reserved.\n See LICENSE.txt for this sample’s licensing information[[\n \n]] Abstract:\n The EAGL"
+   },
+   {
+    "kind": "top",
+    "window": 1132,
+    "pos": 70,
+    "rel": 0.593,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " \n",
+    "text": "20**. Use the checklist below to verify you have followed the instructions correctly. \n\n## Checklist ✅\n\n- [ ] I have read the instructions on the README file before submitting my application.[[ \n]]- [ ] I made my"
+   },
+   {
+    "kind": "top",
+    "window": 850,
+    "pos": 114,
+    "rel": 0.58,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "///<",
+    "text": "ORIZATION_CONTACT Group.  A Group is an ordered collection of message \n/// segments that can repeat together or be optionally in/excluded together.\n/// This Group contains the following elements: \n///<ol>\n[[///<]]li>0: AUT ("
+   },
+   {
+    "kind": "top",
+    "window": 1235,
+    "pos": 66,
+    "rel": 0.565,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " <",
+    "text": "<meta name=\"GENERATOR\" content=\"Microsoft FrontPage 3.0\">\n<title>tr Summary</title>\n</head>\n\n<body>\n\n<h1>tr Summary</h1>\n\n<ul>\n [[ <]]li><h2>tr"
+   },
+   {
+    "kind": "top",
+    "window": 1357,
+    "pos": 182,
+    "rel": 0.559,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " @",
+    "text": " count len: Int) -> Int\n}\n\nextension NSArray : ArrayLiteralConvertible {\n}\n\nextension NSArray : SequenceType {\n}\n\nextension NSArray {\n  convenience init(objects elements: AnyObject...)\n}\n\nextension NSArray {\n [[ @]]objc(_swiftInitWithArray"
+   },
+   {
+    "kind": "top",
+    "window": 1315,
+    "pos": 193,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\n\n",
+    "text": "://img.shields.io/badge/contact-@MichalKonturek-blue.svg)](http://twitter.com/michalkonturek)\n\nSimplifies iOS keyboard handling.\n\n\n## License[[\n\n]]Source code of this project is"
+   },
+   {
+    "kind": "top",
+    "window": 229,
+    "pos": 182,
+    "rel": 0.466,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " supervise",
+    "text": " Supervisor.start_link(__MODULE__, :ok, name: __MODULE__)\n\n  def init(:ok) do\n    children = [\n      worker(TreeWorker, [], restart: :temporary)\n    ]\n\n   [[ supervise]](children, strategy: :simple"
+   },
+   {
+    "kind": "top",
+    "window": 246,
+    "pos": 78,
+    "rel": 0.463,
+    "gate_open": false,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " glass",
+    "text": "747 and 6,675,537 which issued to or are owned by the assignee of the present invention. Usually, the insulated glass units include two parallel spaced rectangular[[ glass]] panels having peripheral edge portions which"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1224,
+    "pos": 187,
+    "rel": 0.556,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " *",
+    "text": "\tprivate final float writeIntervalInSeconds;\n\tprivate volatile Worker worker = null;\n\t/**\n\t * Tracking\n\t * @param owner owning object. If the owning object is garbage collected, tracking stops\n\t[[ *]] @param output output file\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 974,
+    "pos": 50,
+    "rel": 0.528,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " override",
+    "text": "\n\nI need to populate my tableView with an array of a structure. The first property of the structure is the name. This is what I tried...\nvar menuArray:[Restaurant] = [Restaurant]()\n[[ override]] func viewDidLoad() {\n    super"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1339,
+    "pos": 103,
+    "rel": 0.552,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "{\n",
+    "text": ";\n\nnamespace NHibernate.Test.NHSpecificTest.NH2546\n{\n\tusing System.Threading.Tasks;\n\t[TestFixture]\n\tpublic class SetCommandParameterSizesFalseFixtureAsync : BugTestCase\n\t[[{\n]]\t\tprotected override bool AppliesTo"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1272,
+    "pos": 188,
+    "rel": 0.503,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " @",
+    "text": "5.2016.\n */\npublic class StandardUserInputModule implements UserInputModule {\n\n    protected Context context;\n\n    public StandardUserInputModule(Context context) {\n        this.context = context;\n    }\n\n   [[ @]]Override\n    public void show"
+   },
+   {
+    "kind": "random-strong",
+    "window": 284,
+    "pos": 246,
+    "rel": 0.506,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",\n",
+    "text": "_DATA = \"EXTRA_DATA\";\n\n    private Serializable _data;\n    private ConfirmDialogCallback[] _callbacks;\n    private String _summary;\n\n    public static WrConfirmDialog newInstance(String title, String message[[,\n]]                                              Serializable data, ConfirmDialog"
+   }
+  ]
+ }
+}

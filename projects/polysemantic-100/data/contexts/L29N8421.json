@@ -1,0 +1,600 @@
+{
+ "id": "L29N8421",
+ "layer": 29,
+ "neuron": 8421,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 63.75,
+  "n_strong_tokens": 15,
+  "n_strong_windows": 11,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    5
+   ],
+   [
+    "OpenWebText2",
+    3
+   ],
+   [
+    "Github",
+    1
+   ],
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    5
+   ],
+   [
+    "es",
+    2
+   ],
+   [
+    "pt",
+    2
+   ],
+   [
+    "code",
+    1
+   ],
+   [
+    "th",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "ines",
+    2
+   ],
+   [
+    "able",
+    2
+   ],
+   [
+    "ies",
+    1
+   ],
+   [
+    "abe",
+    1
+   ],
+   [
+    "le",
+    1
+   ],
+   [
+    "res",
+    1
+   ],
+   [
+    "ALE",
+    1
+   ],
+   [
+    " Pare",
+    1
+   ]
+  ],
+  "strong_pos_median": 130,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 95,
+    "pos": 38,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "able",
+    "text": "<!DOCTYPE html>\n<html lang=\"en\" data-navbar=\"/account/navbar-profile.html\">\n<head>\n  <meta charset=\"utf-8\" /> \n  <title translate=\"yes\">Est[[able]]cer o perfil predeterminado"
+   },
+   {
+    "kind": "top",
+    "window": 963,
+    "pos": 10,
+    "rel": 0.941,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "res",
+    "text": "Julie B. Gilkay\n\nPost-C[[res]]cent Media\n\nBeckett Ro"
+   },
+   {
+    "kind": "top",
+    "window": 1548,
+    "pos": 37,
+    "rel": 0.867,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "ores",
+    "text": "เตียง โยน อือ หือ อ หือ อ ออ\nแสง ที่ ไม่ ซ้ำ กัน นี้ นำ   phosph[[ores]]cence   ไป ย"
+   },
+   {
+    "kind": "top",
+    "window": 1442,
+    "pos": 130,
+    "rel": 0.812,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " cre",
+    "text": " cristales templados venía roto, Embalaje venía perfecto Gracias\nEnvío muy rapido, juego educativo para los más peques de la casa, que hará[[ cre]]cer su imaginación y su"
+   },
+   {
+    "kind": "top",
+    "window": 1510,
+    "pos": 243,
+    "rel": 0.753,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "he",
+    "text": ".\nUma mulher está a cortar em cubos uma batata.\nUm grupo de pessoas está ao pé de uma janela a observar algo.\nEm ligação com o incidente, recon[[he]]ci que me comportei de"
+   },
+   {
+    "kind": "top",
+    "window": 1065,
+    "pos": 2,
+    "rel": 0.722,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "ALE",
+    "text": "FORT[[ALE]]ZA, Brazil – Raphael Ass"
+   },
+   {
+    "kind": "top",
+    "window": 453,
+    "pos": 125,
+    "rel": 0.714,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ies",
+    "text": " security. One to which we as humans desperately cling to supplement our lack of engagement and ownership of our lives. As we are altered and molded into everything we rebelled against as teenagers, we inevitably acqu[[ies]]ce to an illusion of being"
+   },
+   {
+    "kind": "top",
+    "window": 1441,
+    "pos": 191,
+    "rel": 0.698,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " Pare",
+    "text": " cerrado, oscuro, así que bueno, es perfecto salvo por el tamaño. Le pongo tres estrellas, porque no me fío del cierre, de plástico.[[ Pare]]ce bastante endeble. La"
+   },
+   {
+    "kind": "top",
+    "window": 23,
+    "pos": 227,
+    "rel": 0.655,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ines",
+    "text": " the novel composites exhibit typical mesoporous structure, narrow size distribution, good monodispersity, excellent luminescent properties and superparamagnetic features. The effects of magnetic field on the lum[[ines]]cent intensity of multifunctional"
+   },
+   {
+    "kind": "top",
+    "window": 1518,
+    "pos": 113,
+    "rel": 0.604,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": " ofere",
+    "text": "es que \"à primeira vista cora, não parece que nenhuma regra tenha sido quebrada\".\nO seu advogado Donald Levine disse ao The Telegraph que lhe tinham[[ ofere]]cido $US250"
+   },
+   {
+    "kind": "top",
+    "window": 770,
+    "pos": 194,
+    "rel": 0.557,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "le",
+    "text": "co — Foto: Vinnicius Silva/Cruzeiro\n\nA primeira missão de Abel no Vasco será auxiliar a diretoria no mercado de transferências. O clube estabe[[le]]ceu três prioridades para re"
+   },
+   {
+    "kind": "top",
+    "window": 54,
+    "pos": 176,
+    "rel": 0.49,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "idis",
+    "text": " brillantes. Poco después publicó el siguiente tweet:\n\n\n¿La respuesta? No tenemos ni la menor idea. Los investigadores cuentan que es demasiado pronto para decir qué es este material ir[[idis]]cente, y mucho menos de"
+   },
+   {
+    "kind": "top",
+    "window": 1044,
+    "pos": 113,
+    "rel": 0.484,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "andes",
+    "text": ", from The Economist, is another example:\n\nSOLID-STATE lighting, the latest idea to brighten up the world while saving the planet, promises illumination for a fraction of the energy used by inc[[andes]]cent or fluorescent bulbs. A"
+   },
+   {
+    "kind": "top",
+    "window": 882,
+    "pos": 136,
+    "rel": 0.471,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "res",
+    "text": "a. \nCompared to Echinacea ‘Secret Romance’ (U.S. Plant Pat. No. 23,036), the new cultivar is shorter and has inflo[[res]]cences with contrasting bright pink"
+   },
+   {
+    "kind": "top",
+    "window": 1197,
+    "pos": 89,
+    "rel": 0.465,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Cre",
+    "text": " by Vale Limited.\n\nAn internal, private railway, the line connects Vale's mines and processing plants that dominates the city's skyline.  The line serves Copper Cliff North Mine, Copper Cliff South Mine,[[ Cre]]ighton Mine, Frood Mine"
+   },
+   {
+    "kind": "top",
+    "window": 1472,
+    "pos": 90,
+    "rel": 0.459,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " Nas",
+    "text": " il trattato modificato fino a quando i funzionari di Mosca non ritireranno le truppe dalle ex repubbliche sovietiche di moldova e georgia.\nIl[[ Nas]]daq è sceso di circa"
+   },
+   {
+    "kind": "top",
+    "window": 746,
+    "pos": 145,
+    "rel": 0.457,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "res",
+    "text": " leaves are alternate, entire, and lanceolate, 4–10 cm long by 0.6–1 cm wide, glabrous and dark green above. The inflo[[res]]cences of the plants in"
+   },
+   {
+    "kind": "top",
+    "window": 125,
+    "pos": 16,
+    "rel": 0.437,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "es",
+    "text": "A rapid and convenient filter-binding assay for ras p21 processing enzyme farn[[es]]yltransferase.\nBecause it"
+   },
+   {
+    "kind": "top",
+    "window": 1514,
+    "pos": 246,
+    "rel": 0.424,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": " escre",
+    "text": ", a taxa de desemprego caiu em Agosto para 6,1% de 6,2%.\nEntão, acredita realmente em cada palavra do que Terral[[ escre]]veu?\nArsenal v"
+   },
+   {
+    "kind": "top",
+    "window": 1444,
+    "pos": 134,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " mere",
+    "text": " golpe de la bola lo para. Y lo malo es que se empañan. Si lo que buscas es que no se empañen estas no son tus gafas. No[[ mere]]cen la pena\nDesp"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 49.5,
+  "n_strong_tokens": 13,
+  "n_strong_windows": 12,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "OpenWebText2",
+    7
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "Github",
+    1
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ],
+   [
+    "lang-id",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    10
+   ],
+   [
+    "code",
+    1
+   ],
+   [
+    "nl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " tre",
+    6
+   ],
+   [
+    "RE",
+    3
+   ],
+   [
+    "tre",
+    2
+   ],
+   [
+    " Dire",
+    1
+   ],
+   [
+    " Tre",
+    1
+   ]
+  ],
+  "strong_pos_median": 105,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1160,
+    "pos": 176,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "RE",
+    "text": "The line is uttered numerous times by actor Mandy Patinkin in \"The Princess Bride\" as his swordsman character was on a lifelong quest for revenge against the man who slew his father.\n\nT[[RE]]NDING: Wildfires to"
+   },
+   {
+    "kind": "top",
+    "window": 87,
+    "pos": 67,
+    "rel": 0.798,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "RE",
+    "text": " Market Rally Ever!\n\n19th consecutive day where the DOW reached an all time high at the closing bell.\n\n12th Straight Daily Close at an All Time High for the DOW!\n\nT[[RE]]NDING: RUTH B"
+   },
+   {
+    "kind": "top",
+    "window": 968,
+    "pos": 196,
+    "rel": 0.717,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " tre",
+    "text": " and garden was surrounded by a metal palisade fence.\n\nOne morning the fences were gone, mother was delighted. Then a horse and cart came and took away every metal cooking pot and pan, some[[ tre]]asured, but mother smiled at"
+   },
+   {
+    "kind": "top",
+    "window": 1261,
+    "pos": 91,
+    "rel": 0.707,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " tre",
+    "text": " the terms of the GNU General Public License as published by\n;; the Free Software Foundation, either version 3 of the License, or\n;; (at your option) any later version.\n\n;; Perl[[ tre]]panning Debugger tracking a com"
+   },
+   {
+    "kind": "top",
+    "window": 512,
+    "pos": 133,
+    "rel": 0.692,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "tre",
+    "text": " Monday.\n\nAs the rhetoric at Palin's rallies has ratcheted up, so too has the language of supporters in the crowds coming to see her. At rallies in Florida, supporters were heard yelling \"[[tre]]ason\" and \"traitor"
+   },
+   {
+    "kind": "top",
+    "window": 320,
+    "pos": 207,
+    "rel": 0.687,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " Tre",
+    "text": " patients admitted to the OACE unit. We tracked processes and outcomes of interdisciplinary communication regarding medications by prospectively recording OACE team recommendations and evaluating the frequency of implementation of these recommendations through a chart review.[[ Tre]]ating physicians, who did not"
+   },
+   {
+    "kind": "top",
+    "window": 477,
+    "pos": 50,
+    "rel": 0.687,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " tre",
+    "text": "(13 Users)\n\nYour Grade\n\nWelcome back to the TV Club coverage of Top Chef, which marks the fourth straight season covered by yours truly. I have to confess upfront that I’m feeling some[[ tre]]pidation at the start here"
+   },
+   {
+    "kind": "top",
+    "window": 569,
+    "pos": 34,
+    "rel": 0.629,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " tre",
+    "text": "A glowing review from a big wrestling fan.\n\nAs A Wrestling Fan™, the news of any film or TV show even tangentially related to pro wrestling is always received with[[ tre]]pidation.\n\nIt’s so"
+   },
+   {
+    "kind": "top",
+    "window": 321,
+    "pos": 127,
+    "rel": 0.619,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " tre",
+    "text": " cranking penny press. Now that I’m into the collecting side, some of those pressed pennies aren’t the shiny copper I want.\n\nLooking at them and all the tiny details of tarnished covered[[ tre]]asured memories was a little overwhelming"
+   },
+   {
+    "kind": "top",
+    "window": 990,
+    "pos": 105,
+    "rel": 0.571,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "RE",
+    "text": " making hella bread off of us independent artists giving us all false hope’s and dreams!\n\nThe thing is, it’s not about your preparation, “WHETHER OR NOT YOU POPPING IN THE ST[[RE]]ETS” (lol), who"
+   },
+   {
+    "kind": "top",
+    "window": 195,
+    "pos": 34,
+    "rel": 0.54,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Dire",
+    "text": "** 16-bit/44.1Khz **\n\n\n\ndisc 01 [Set I]\n\n01 applause\n\n02 Box Of Rain\n\n03[[ Dire]] Wolf\n\n04 Peggy-O"
+   },
+   {
+    "kind": "top",
+    "window": 1499,
+    "pos": 79,
+    "rel": 0.525,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": " tre",
+    "text": " op donderdag zouden kunnen komen.\nEen kat wrijft tegen het gezicht van de baby.\nEen NAVO-soldaat gedood in S. Afghanistan\nZwarte[[ tre]]in op treinsporen"
+   },
+   {
+    "kind": "top",
+    "window": 649,
+    "pos": 195,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " tre",
+    "text": "inamide - PZA, isoniazid - INH, rifampicin - RIF, ethambutol - ETH, streptomycin - STR). The second group is more[[ tre]]acherous. This type of"
+   },
+   {
+    "kind": "top",
+    "window": 1497,
+    "pos": 126,
+    "rel": 0.444,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": " tre",
+    "text": ".\nEen persoon is een stuk papier aan het vouwen.\nDrie honden spelen in het water.\nEen meisje eet een cupcake.\nMali interim-leider[[ tre]]edt aan\nGaz"
+   },
+   {
+    "kind": "top",
+    "window": 1481,
+    "pos": 210,
+    "rel": 0.417,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "トレ",
+    "text": "引けますが、香りに敏感な方に参考になればと思います。\nサイズが小さかったので、着られなくて知り合いにあげました。素材はしっかりしていてデザインも可愛いと思いました。[[トレ]]ーナー位の生"
+   },
+   {
+    "kind": "top",
+    "window": 571,
+    "pos": 164,
+    "rel": 0.404,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Tre",
+    "text": " by the Berlin Wall.\n\nGeography\nWaßmannsdorf is located in the southeastern suburb of Berlin, near the districts of Tempelhof-Schöneberg, Neukölln and[[ Tre]]ptow-Köpenick"
+   },
+   {
+    "kind": "top",
+    "window": 1490,
+    "pos": 177,
+    "rel": 0.391,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": " stre",
+    "text": " hadden ze een politiebevel getrotseerd en \"Allahu Akbar\" (God is de Grootste) geroepen toen Bashir naar zijn stoel in de[[ stre]]ng bewaakte rechts"
+   },
+   {
+    "kind": "top",
+    "window": 1079,
+    "pos": 80,
+    "rel": 0.371,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Dire",
+    "text": " to achieve to check if the mail for a registration page of a user is duplicated. Thus, I declare the input as follows:\n<input type=\"email\" name=\"email\" required\n                                   placeholder=\"[[Dire]]cción de correo\"\n                                   data"
+   },
+   {
+    "kind": "top",
+    "window": 1425,
+    "pos": 70,
+    "rel": 0.351,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": " Stre",
+    "text": " die von Motorola mitgelieferte Hülle um Längen besser.\nSchlechte Qualität, nach 4 Wochen schon zwei defekt\nNaja, was soll man sagen...ein LED[[ Stre]]ifen eben...im großen und"
+   },
+   {
+    "kind": "top",
+    "window": 1433,
+    "pos": 20,
+    "rel": 0.351,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "el",
+    "token": "ε",
+    "text": "Και αυτός ο τύπος είχε τρ[[ε]]λαθεί κ"
+   }
+  ]
+ }
+}

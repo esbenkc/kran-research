@@ -1,0 +1,608 @@
+{
+ "id": "L25N6759",
+ "layer": 25,
+ "neuron": 6759,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 9.0,
+  "n_strong_tokens": 27,
+  "n_strong_windows": 16,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "ArXiv",
+    4
+   ],
+   [
+    "Pile-CC",
+    4
+   ],
+   [
+    "Wikipedia (en)",
+    3
+   ],
+   [
+    "FreeLaw",
+    2
+   ],
+   [
+    "Enron Emails",
+    1
+   ],
+   [
+    "lang-id",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    15
+   ],
+   [
+    "ar",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " and",
+    4
+   ],
+   [
+    ",",
+    3
+   ],
+   [
+    " video",
+    2
+   ],
+   [
+    "2",
+    2
+   ],
+   [
+    "0",
+    2
+   ],
+   [
+    " a",
+    2
+   ],
+   [
+    " et",
+    1
+   ],
+   [
+    " for",
+    1
+   ]
+  ],
+  "strong_pos_median": 115,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 751,
+    "pos": 241,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Enron Emails",
+    "lang": "en",
+    "token": "0",
+    "text": " an earful  today.\nLynn\n***********************************\n\nLynn  Bracken\nEnergy Manager\nSummit Energy Services, Inc.\n9920 Corporate  Campus Drive\nSuite 2[[0]]00\nLouisville,"
+   },
+   {
+    "kind": "top",
+    "window": 381,
+    "pos": 63,
+    "rel": 0.986,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " for",
+    "text": " C. Chen$^{1}$, Donna Q. J. Dou$^2$,\\\nRobert L. Tang$^3$ and Arthur L. B. Yang$^{4}$\\\nCenter[[ for]] Combinatorics, L"
+   },
+   {
+    "kind": "top",
+    "window": 685,
+    "pos": 9,
+    "rel": 0.802,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " video",
+    "text": "Utah Jazz, Miller family to install new[[ video]] screens to add to the fans"
+   },
+   {
+    "kind": "top",
+    "window": 1407,
+    "pos": 199,
+    "rel": 0.785,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": "اعة",
+    "text": " , قال جون .\n- قواعد الاوراق المالية وتبادل المعلومات المتعلقة بالتلاعب بالاوراق المالية\nداخل ال ان ( المجمع الشرقي ) هي في الثماني ( ق[[اعة]] الاحلام ) , التي"
+   },
+   {
+    "kind": "top",
+    "window": 385,
+    "pos": 120,
+    "rel": 0.767,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " and",
+    "text": " disorder have opposite effect on the position of the melting line as observed experimentally. Replica symmetry breaking plays a role at the transition into a vortex glass at low temperatures.'\naddress: |\n    Department of Physics[[ and]] Astronomy\\\n    University of Pittsburgh"
+   },
+   {
+    "kind": "top",
+    "window": 1159,
+    "pos": 83,
+    "rel": 0.764,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " a",
+    "text": " horses, goats or cows, 36x40 barn built in 2008 with a 12’ shed off one side, three 10x12 stalls and[[ a]] tack room. All of this"
+   },
+   {
+    "kind": "top",
+    "window": 370,
+    "pos": 249,
+    "rel": 0.757,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " et",
+    "text": "^*$, Michela Petrini$^*$, Alberto Zaffaroni$^{\\dagger}$\\\n0.5cm $^{*}$ Laboratoire de Physique Théorique[[ et]] Hautes Energies,\\\nUnivers"
+   },
+   {
+    "kind": "top",
+    "window": 599,
+    "pos": 200,
+    "rel": 0.688,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " and",
+    "text": " thesis examined the effects of comment ratings on site participation on the website Slashdot. After graduating from the University of Michigan, Lampe became an assistant professor at Michigan State University in the College of Communication Arts[[ and]] Sciences.\n\nResearch, teaching,"
+   },
+   {
+    "kind": "top",
+    "window": 759,
+    "pos": 182,
+    "rel": 0.681,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": " und",
+    "text": " D-67653 Kaiserslautern, Germany'\n- 'István Heckenberger, Philipps-Universität Marburg, Fachbereich Mathematik[[ und]] Informatik, Hans-M"
+   },
+   {
+    "kind": "top",
+    "window": 835,
+    "pos": 244,
+    "rel": 0.681,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "0",
+    "text": ")\n\f                      ______________\n\n                         OPINION\n                      ______________\n\nCharles N. Curcio [ARGUED]\nCurcio Law Firm\n3547 Alpine Avenue NW\nSuite 1[[0]]4\nGrand Rapids, MI"
+   },
+   {
+    "kind": "top",
+    "window": 44,
+    "pos": 239,
+    "rel": 0.646,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": ",",
+    "text": "The national anthem of India is chosen as the anthem of the school.\n\nCampus\nThe school is located at Gopal Banerjee Street. There are two buildings and each building has its own playground[[,]] the bigger one is known as"
+   },
+   {
+    "kind": "top",
+    "window": 384,
+    "pos": 69,
+    "rel": 0.622,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " and",
+    "text": " at the Perimeter Institute for Theoretical Physics. All students who are admitted receive full scholarships (Accommodation, Meals, Living stipend, Full tuition, Health insurance, Books and materials, Laptop[[ and]] Travel supplement).\n\nEach year up"
+   },
+   {
+    "kind": "top",
+    "window": 959,
+    "pos": 211,
+    "rel": 0.493,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " at",
+    "text": " ORDER MUST SERVE A COPY OF IT ON ANY PARTY NOT REPRESENTED\nBY COUNSEL.\n\n\n              At a stated term of the United States Court of Appeals for the Second\nCircuit, held[[ at]] the Thurgood Marshall United"
+   },
+   {
+    "kind": "top",
+    "window": 789,
+    "pos": 192,
+    "rel": 0.49,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " and",
+    "text": " DSTB, 4th Inf. Div.\n\nOn Wednesday, Aug. 5, the National Conference Services, Inc., hosted the 7th annual Technology Expo at the Elkhorn Catering[[ and]] Conference Center here at Fort Carson"
+   },
+   {
+    "kind": "top",
+    "window": 528,
+    "pos": 208,
+    "rel": 0.486,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " the",
+    "text": " MUST SERVE A COPY OF IT ON ANY PARTY NOT\nREPRESENTED BY COUNSEL.\n\n     At a stated term of the United States Court of Appeals\nfor the Second Circuit, held at[[ the]] Daniel Patrick Moynihan\n"
+   },
+   {
+    "kind": "top",
+    "window": 720,
+    "pos": 196,
+    "rel": 0.455,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " and",
+    "text": " Inducted for contributions to the development of Bayesian methods and computational tools in probabilistic risk assessment and reliability engineering.\n\n3. Ben Shneiderman, professor of computer science, College of Computer, Mathematical[[ and]] Physical Sciences, and Clark School"
+   },
+   {
+    "kind": "random-strong",
+    "window": 650,
+    "pos": 35,
+    "rel": 0.517,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " AM",
+    "text": "Nebraska Supreme Court Online Library\nwww.nebraska.gov/apps-courts-epub/\n06/12/2020 01:08[[ AM]] CDT\n\n\n\n\n                                                         - "
+   },
+   {
+    "kind": "random-strong",
+    "window": 466,
+    "pos": 217,
+    "rel": 0.535,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "emp",
+    "text": ", nel quale possono trovare posto molti oggetti di uso comune, non necessariamente collocati in modo ordinato.Alcuni di questi li avevo già preparati (ad es[[emp]]io il lavabo), ma"
+   },
+   {
+    "kind": "random-strong",
+    "window": 840,
+    "pos": 95,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " and",
+    "text": " features a large great room with a walk-out balcony, dining room, and a gourmet kitchen complete with a working island, convenient pantry, and abundant cabinet space. Bedroom 3, a full bath,[[ and]] coat closet complete the main living"
+   },
+   {
+    "kind": "random-strong",
+    "window": 742,
+    "pos": 202,
+    "rel": 0.542,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": ",",
+    "text": "76. It has become arguably the most important horse racing complex in the island, holding horse races every Monday, Wednesday, Friday, Saturday and Sunday.\n\nEl Nuevo Comandante features a betting window[[,]] in which players can try their"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 3.4688,
+  "n_strong_tokens": 36,
+  "n_strong_windows": 24,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    13
+   ],
+   [
+    "Pile-CC",
+    3
+   ],
+   [
+    "FreeLaw",
+    2
+   ],
+   [
+    "USPTO Backgrounds",
+    2
+   ],
+   [
+    "lang-id",
+    1
+   ],
+   [
+    "ArXiv",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    13
+   ],
+   [
+    "en",
+    10
+   ],
+   [
+    "ru",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " BY",
+    4
+   ],
+   [
+    " with",
+    3
+   ],
+   [
+    "-",
+    2
+   ],
+   [
+    " Copyright",
+    1
+   ],
+   [
+    ";",
+    1
+   ],
+   [
+    " Revised",
+    1
+   ],
+   [
+    "Vis",
+    1
+   ],
+   [
+    "iting",
+    1
+   ]
+  ],
+  "strong_pos_median": 124,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 562,
+    "pos": 3,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " visiting",
+    "text": "Thank you for[[ visiting]] Dick's Sporting Goods. If"
+   },
+   {
+    "kind": "top",
+    "window": 794,
+    "pos": 122,
+    "rel": 0.991,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " BY",
+    "text": " form must reproduce the above copyright\n *    notice, this list of conditions and the following disclaimer in the\n *    documentation and/or other materials provided with the distribution.\n *\n * THIS SOFTWARE IS PROVIDED[[ BY]] APPLE INC. AND ITS CONTRIBUTORS"
+   },
+   {
+    "kind": "top",
+    "window": 1134,
+    "pos": 27,
+    "rel": 0.946,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "ZH",
+    "text": "                                         Slip Op. 13-69\n                   UNITED STATES COURT OF INTERNATIONAL TRADE\n\nSINCE HARDWARE (GUANG[[ZH]]OU)\nCO., LTD.,"
+   },
+   {
+    "kind": "top",
+    "window": 1304,
+    "pos": 123,
+    "rel": 0.928,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " with",
+    "text": ") any later version.\n//\n// Licensees holding a valid commercial license may use this file in\n// accordance with the commercial license agreement provided with the software.\n//\n// This file is provided AS IS[[ with]] NO WARRANTY OF ANY KIND,"
+   },
+   {
+    "kind": "top",
+    "window": 1524,
+    "pos": 161,
+    "rel": 0.851,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "-",
+    "text": "адает .\nДа , я не думаю , что она очень хорошо все проверяет .\nВеликолепный национальный музей современного искусства на 5[[-]]м этаже ( "
+   },
+   {
+    "kind": "top",
+    "window": 13,
+    "pos": 11,
+    "rel": 0.766,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Copyright",
+    "text": "// Copyright 2019 ETH Zurich\n//[[ Copyright]] 2020 ETH"
+   },
+   {
+    "kind": "top",
+    "window": 1311,
+    "pos": 189,
+    "rel": 0.757,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " BY",
+    "text": " promote products derived from this software without\n specific prior written permission. No license is granted to the trademarks of\n the copyright holders even if such marks are included in this software.\n \n THIS SOFTWARE IS PROVIDED[[ BY]] THE COPYRIGHT HOLDERS AND CONTRIBUTORS \""
+   },
+   {
+    "kind": "top",
+    "window": 1284,
+    "pos": 214,
+    "rel": 0.748,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "):\n",
+    "text": " License.\n\nfrom aliyunsdkcore.request import RpcRequest\nfrom aliyunsdkdrds.endpoint import endpoint_data\n\nclass DescribeDrdsComponentsRequest(RpcRequest):\n\n\tdef __init__(self[[):\n]]\t\tRpcRequest.__init"
+   },
+   {
+    "kind": "top",
+    "window": 490,
+    "pos": 234,
+    "rel": 0.734,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": ",",
+    "text": " phenomena between neighboring periods generated from drift provide a reasonable explanation of interpulses which have been found on some pulsars.'\nauthor:\n- |\n    [Haochen Li]{}\\\n    [Physics Department[[,]] Washington University]{}\\\n   "
+   },
+   {
+    "kind": "top",
+    "window": 1032,
+    "pos": 102,
+    "rel": 0.685,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " professor",
+    "text": " airborne botnet controller for a few hundred dollars.\n\nAttackers bent on network reconnaissance could use such drones to find a weak spot in corporate and home Internet connections, said Sven Dietrich, an assistant[[ professor]] of computer science at Stevens,"
+   },
+   {
+    "kind": "top",
+    "window": 67,
+    "pos": 207,
+    "rel": 0.667,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Revised",
+    "text": " algorithm as well as a lower bound that we develop in this paper. This comparison demonstrates the efficiency of the algorithm to find good-quality solutions. [Received 25 November 2009;[[ Revised]] 26 February 2"
+   },
+   {
+    "kind": "top",
+    "window": 1260,
+    "pos": 30,
+    "rel": 0.631,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " private",
+    "text": "﻿namespace Aurora_Updater\r\n{\r\n    partial class MainForm\r\n    {\r\n        /// <summary>\r\n        /// Required designer variable.\r\n        /// </summary>\r\n       [[ private]] System.ComponentModel.IContainer components = null"
+   },
+   {
+    "kind": "random-strong",
+    "window": 150,
+    "pos": 17,
+    "rel": 0.565,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "0",
+    "text": "\n299 F.Supp.2d 166 (20[[0]]4)\nTimothy MULD"
+   },
+   {
+    "kind": "random-strong",
+    "window": 780,
+    "pos": 70,
+    "rel": 0.626,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " the",
+    "text": " blank on a rotatable work spindle in order to form gear teeth around the periphery of the gear blank. Under very specialized circumstances, the axis of the hob spindle may extend perpendicular to the axis of[[ the]] work spindle. In most instances"
+   },
+   {
+    "kind": "random-strong",
+    "window": 284,
+    "pos": 64,
+    "rel": 0.518,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " copy",
+    "text": "15 Pedro Lafuente\n * Copyright (c) 2017-2019 Gregor Santner\n *\n * Licensed under the MIT license.\n * You can get a[[ copy]] of the license text here:\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1302,
+    "pos": 152,
+    "rel": 0.547,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " BY",
+    "text": " distribution.\n *  3. The name of the author may not be used to endorse or promote products\n *     derived from this software without specific prior written permission.\n *\n * THIS SOFTWARE IS PROVIDED[[ BY]] THE AUTHOR ``AS IS''"
+   },
+   {
+    "kind": "random-strong",
+    "window": 193,
+    "pos": 18,
+    "rel": 0.599,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " drive",
+    "text": "The basic structure of a printing machine such as a sheet-fed offset printing press includes a main[[ drive]] and an electronic control mechanism."
+   },
+   {
+    "kind": "random-strong",
+    "window": 714,
+    "pos": 145,
+    "rel": 0.563,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": " papers and resources:\n//\n// Ron Cytron et al. 1991. Efficiently computing SSA form...\n// http://doi.acm.org/10.1145/[[1]]15372."
+   },
+   {
+    "kind": "random-strong",
+    "window": 837,
+    "pos": 51,
+    "rel": 0.534,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " distributed",
+    "text": " (C) 1996 Universidade de Lisboa\n *\n * Written by Pedro Roque Marques (roque@di.fc.ul.pt)\n *\n * This software may be used and[[ distributed]] according to the terms of\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1228,
+    "pos": 189,
+    "rel": 0.556,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " with",
+    "text": " GPL version 3.0\n// then you may purchase a commercial license.  For more information contact\n// info@riverbankcomputing.com.\n// \n// This file is provided AS IS[[ with]] NO WARRANTY OF ANY KIND,"
+   }
+  ]
+ }
+}

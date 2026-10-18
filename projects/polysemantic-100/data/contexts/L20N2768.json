@@ -1,0 +1,580 @@
+{
+ "id": "L20N2768",
+ "layer": 20,
+ "neuron": 2768,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 5.0312,
+  "n_strong_tokens": 5,
+  "n_strong_windows": 5,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    3
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ],
+   [
+    "Github",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    4
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ".\n\n",
+    2
+   ],
+   [
+    "!\n\n",
+    1
+   ],
+   [
+    " while",
+    1
+   ],
+   [
+    ".",
+    1
+   ]
+  ],
+  "strong_pos_median": 159,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 627,
+    "pos": 115,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " while",
+    "text": ", the \"Tails\" row.\n\nThe object of the game is to free one Ace and one King of each suit and build each of them by suit; the Aces are built up to Kings[[ while]] the Kings are built down to"
+   },
+   {
+    "kind": "top",
+    "window": 559,
+    "pos": 135,
+    "rel": 0.646,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "!\n\n",
+    "text": " Under it, you'll see \"Posted by Stilton Jarlsberg\" and an underlined number of comments. Click there, and you can read the comments and leave your own. Join the fun[[!\n\n]]HnC is co-w"
+   },
+   {
+    "kind": "top",
+    "window": 755,
+    "pos": 159,
+    "rel": 0.615,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".\n\n",
+    "text": " manage data inside and between your\nDocker containers.\n\nWe're going to look at the two primary ways you can manage data in\nDocker.\n\n* Data volumes, and\n* Data volume containers[[.\n\n]]## Data volumes\n\nA *"
+   },
+   {
+    "kind": "top",
+    "window": 589,
+    "pos": 207,
+    "rel": 0.516,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": " benefits first. There are three possible tax breaks!\n\nA tax break on the front end—your contribution to your HSA is pre-tax, since it comes out of your paycheck before your income is taxed[[.\n\n]]Tax deferral as it grows"
+   },
+   {
+    "kind": "top",
+    "window": 1173,
+    "pos": 218,
+    "rel": 0.509,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".",
+    "text": " from one hope to another. (Except switches… they don’t change anything) Frame leaving HOST 1 is going to have a source MAC of Host 1 and a destination MAC of Router 1[[.]] Router 1 is going to"
+   },
+   {
+    "kind": "top",
+    "window": 160,
+    "pos": 159,
+    "rel": 0.447,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": " to get started. Everything is included right here! There is nothing worse than being in the middle of a brew day and not having the gear you need. We've made sure not to leave anything out[[.\n\n]]What's the minimum equipment I"
+   },
+   {
+    "kind": "top",
+    "window": 987,
+    "pos": 140,
+    "rel": 0.419,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "A",
+    "text": "\n\nA sample WMS request would look like this:\nhttp://demo.opengeo.org/geoserver/wms?request=GetCapabilities&service=WMS&version=1.0.0\n\n[[A]]:\n\nSo just for completeness,"
+   },
+   {
+    "kind": "top",
+    "window": 1017,
+    "pos": 88,
+    "rel": 0.407,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": " for details.\n//\n//===----------------------------------------------------------------------===//\n//\n// This file defines two passes to print out a module.  The PrintModulePass pass\n// simply prints out the entire module when it is executed.[[ ]] The\n// PrintFunctionPass"
+   },
+   {
+    "kind": "top",
+    "window": 1058,
+    "pos": 122,
+    "rel": 0.401,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": ".",
+    "text": " SPECT and subsequent 3D surface rendering in addition to conventional rectilinear CSF imaging in eight patients. Planar images allowed the evaluation of CSF circulation and the detection of CSF fistula[[.]] They were advantageous in examinations "
+   },
+   {
+    "kind": "top",
+    "window": 822,
+    "pos": 155,
+    "rel": 0.39,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": ".\n\nNews and articles from around the web\n\nThe 2018 LLVM Developers' Meeting has been announced for October 17th-18th in San Jose. Registration is now open[[.\n\n]]zapcc, a caching C"
+   },
+   {
+    "kind": "top",
+    "window": 596,
+    "pos": 242,
+    "rel": 0.376,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "};\n\n",
+    "text": " = void>\nstruct iterator_traits\n{\n};\n\ntemplate<typename T>\nstruct iterator_traits < T, enable_if_t < !std::is_pointer<T>::value >>\n            : iterator_types<T>\n{\n[[};\n\n]]template<typename T>\nstruct iterator"
+   },
+   {
+    "kind": "top",
+    "window": 417,
+    "pos": 206,
+    "rel": 0.362,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "%).",
+    "text": " on a different number of measurements (2-7) were above 0.85; all of the coefficients of variation (CVs)for the same parameters were low (below 10[[%).]] The between-day CVs based"
+   },
+   {
+    "kind": "top",
+    "window": 486,
+    "pos": 196,
+    "rel": 0.354,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": ".",
+    "text": " microextraction (SPME); non-volatiles/semi-volatiles were obtained by removing all saccharides with acidified water and the compounds were identified by GC/MS analysis[[.]] Ulmo honey volatiles"
+   },
+   {
+    "kind": "top",
+    "window": 825,
+    "pos": 111,
+    "rel": 0.337,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": " classes.\n\nPrivate members: Accessible only to the class itself.\n\nAn outsider class or function can also be declared as a friend. This gives that outsider VIP access to all the private parts of the class[[.\n\n]]Sometimes you find yourself adding an"
+   },
+   {
+    "kind": "top",
+    "window": 680,
+    "pos": 125,
+    "rel": 0.331,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ".",
+    "text": " anyone interested in the Plant Kingdom.\n\n\n\nWhat follows this Introduction is just a mere sampling of our local vegetation. Some of the species described are those which we are familiar with, but may not see too often[[.]] Some are plants that we frequently"
+   },
+   {
+    "kind": "top",
+    "window": 127,
+    "pos": 110,
+    "rel": 0.328,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " .\n\n",
+    "text": "'s not the most pleasant kitchen task to tackle. If you're cooking bacon for a lot of people, you can avoid this by cooking it in the oven on a roasting rack, DIY or otherwise[[ .\n\n]]Place your bacon in a cold"
+   },
+   {
+    "kind": "top",
+    "window": 165,
+    "pos": 169,
+    "rel": 0.321,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": ".",
+    "text": " with similar demographic profiles were collected. HeartWare (HVAD) implantation was performed by either CS or LT. Analysis was performed on perioperative adverse outcomes, and 6 month postoperative adverse events[[.]] Primary objectives of the study included"
+   },
+   {
+    "kind": "top",
+    "window": 190,
+    "pos": 104,
+    "rel": 0.321,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": ".\n\n",
+    "text": "\n Hey You by Abi Tucker who plays Grace McLeod from 2007 - 2008 and featured the song in Episode 196, My Enemy, My Friend[[.\n\n]]List of Released Songs\nRe"
+   },
+   {
+    "kind": "top",
+    "window": 498,
+    "pos": 179,
+    "rel": 0.317,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": ".",
+    "text": " pregnancy-induced hypertension, low Apgar score, non-reassuring fetal heart rate patterns, and intrauterine fetal death. No significant difference was observed in the incidence of post-partum hemorrhage[[.]] There was no uterine"
+   },
+   {
+    "kind": "top",
+    "window": 236,
+    "pos": 254,
+    "rel": 0.317,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ">\n\n",
+    "text": "3a\">Col 1</div>\n<div class=\"col3w col3b\">Col 2</div>\n<div class=\"col3w col3c\">Col 3</div[[>\n\n]]Next"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 8.0,
+  "n_strong_tokens": 35,
+  "n_strong_windows": 30,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    9
+   ],
+   [
+    "Wikipedia (en)",
+    4
+   ],
+   [
+    "USPTO Backgrounds",
+    3
+   ],
+   [
+    "PubMed Abstracts",
+    3
+   ],
+   [
+    "PubMed Central",
+    2
+   ],
+   [
+    "Github",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    27
+   ],
+   [
+    "code",
+    2
+   ],
+   [
+    "el",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " and",
+    8
+   ],
+   [
+    ".",
+    6
+   ],
+   [
+    "\n",
+    6
+   ],
+   [
+    ".\n\n",
+    3
+   ],
+   [
+    " the",
+    2
+   ],
+   [
+    ")\n",
+    2
+   ],
+   [
+    " but",
+    1
+   ],
+   [
+    " or",
+    1
+   ]
+  ],
+  "strong_pos_median": 193,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 142,
+    "pos": 230,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " or",
+    "text": " statue to the city.\n\n“The only spots that it could go is right in front of the museum, or in the parking lot, or in the retention pond – that’s clearly not a good option,[[ or]] in front of the 1"
+   },
+   {
+    "kind": "top",
+    "window": 116,
+    "pos": 80,
+    "rel": 0.91,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " the",
+    "text": " Jayda Fransen are among those affected\n\nFacebook has imposed a ban on a dozen far-right individuals and organisations that it says \"spread hate\".\n\nThe ban includes the British National Party and Nick Griffin,[[ the]] English Defence League and the National"
+   },
+   {
+    "kind": "top",
+    "window": 743,
+    "pos": 199,
+    "rel": 0.781,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "   ",
+    "text": " observations, and a realistic Lotka-Volterra model with an intractable transition density.'\nauthor:\n- |\n    Pierre E. Jacob[^1]\\\n    Department of Statistics, Harvard University\\\n[[   ]] Fredrik Lindsten and Thomas"
+   },
+   {
+    "kind": "top",
+    "window": 180,
+    "pos": 126,
+    "rel": 0.777,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": ".",
+    "text": "2 (USH2) is characterized by congenital moderate to severe HL, with a high-frequency sloping configuration. The vestibular function is normal and onset of RP is in the first or second decade[[.]] The onset of the visual symptoms"
+   },
+   {
+    "kind": "top",
+    "window": 776,
+    "pos": 207,
+    "rel": 0.766,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "\n",
+    "text": "\nRiverdale, Nova Scotia, a community\nRiverdale, Toronto, Ontario, a neighbourhood\nRiverdale railway station (Toronto)\nRiverdale (provincial electoral district), a former provincial electoral district[[\n]]Riverdale Ward, a former"
+   },
+   {
+    "kind": "top",
+    "window": 886,
+    "pos": 58,
+    "rel": 0.75,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " and",
+    "text": "id. It is classified within the Parastylonuridae family and contains three species, S. arnoldi and S. beecheri from the Devonian of Pennsylvania, United States[[ and]] S. spinipes from the"
+   },
+   {
+    "kind": "top",
+    "window": 818,
+    "pos": 196,
+    "rel": 0.719,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " and",
+    "text": " America.\n\nThe event was the 8.2km Bupa Great Edinburgh Cross Country, televised live on BBC. The starting line-up included Mo Farah, European 5,000m[[ and]] 10,00"
+   },
+   {
+    "kind": "top",
+    "window": 1362,
+    "pos": 79,
+    "rel": 0.625,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ")\n",
+    "text": "(org.apache.commons.math.MathConfigurationExceptionTest)\ntestConstructorMessageCause(org.apache.commons.math.MathConfigurationExceptionTest)\ntestConstructorMessage(org.apache.commons.math.MathConfigurationExceptionTest)\ntestConstructor(org.apache.commons.math.MathConfigurationExceptionTest[[)\n]]testSerialization(org.apache.commons.math"
+   },
+   {
+    "kind": "top",
+    "window": 874,
+    "pos": 201,
+    "rel": 0.613,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "\n",
+    "text": "09 General principles governing keyboard layouts\n ISO/IEC 9995-2:2009 Alphanumeric section with Amendment 1 (2012) Numeric keypad emulation[[\n]] ISO/IEC 9"
+   },
+   {
+    "kind": "top",
+    "window": 340,
+    "pos": 135,
+    "rel": 0.602,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": ".",
+    "text": " neonatal period and contain peptides (bombesin, calcitonin, leu-enkephalin) and amines (serotonin) known to affect smooth muscle tone in other organ systems[[.]] The PPI, composed of"
+   },
+   {
+    "kind": "top",
+    "window": 658,
+    "pos": 231,
+    "rel": 0.594,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " the",
+    "text": "ibrugarh district Deputy Commissioner N Verma told PTI that the dusk-to-dawn curfew was clamped from 5 pm to 5 am in the oil town of Duliajan,[[ the]] fertiliser town of Namrup"
+   },
+   {
+    "kind": "top",
+    "window": 354,
+    "pos": 208,
+    "rel": 0.594,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "#define",
+    "text": "#define MDIO_CMD\t\t0x00\n#define  MDIO_START_BUSY\t(1 << 29)\n#define  MDIO_READ_FAIL\t\t(1 << 28)\n[[#define]]  MDIO_RD\t\t"
+   },
+   {
+    "kind": "random-strong",
+    "window": 455,
+    "pos": 205,
+    "rel": 0.527,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " and",
+    "text": " as a Laboratory under CLIA\nThe New York State Department of Health as a Reproductive Cell & Tissue Bank\n\nBioGenetics Corporation operates under the direction of Albert Anouna, President[[ and]] CEO.\nMr. Anoun"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1163,
+    "pos": 233,
+    "rel": 0.559,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": ".",
+    "text": " surface membrane; Na uptake into small vesicles made from either surface or T tubular membrane; and acid extrusion into the T tubular lumen, using impermeable pH-sensitive fluorescent dyes[[.]] ii) Does acidification of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1437,
+    "pos": 156,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "el",
+    "token": " τ",
+    "text": "ο για να φτάσει στο Φόρουμ , το κέντρο της πόλης και[[ τ]]ην κύρι"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1078,
+    "pos": 225,
+    "rel": 0.535,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " a",
+    "text": " a target known to be critical for pregnancy maintenance and fetal survival. In contrast, a small molecule to a novel biological target for a chronic lifestyle indication would warrant more safety data than simply in vitro studies and[[ a]] literature review. Rather than accounting"
+   },
+   {
+    "kind": "random-strong",
+    "window": 923,
+    "pos": 161,
+    "rel": 0.543,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "\n",
+    "text": " Me (1976 film), a Hong Kong film of 1976\n Come Fly with Me (2009 film), an Australian short film partially shot at Bankstown Airport[[\n]] Come Fly with Me (1"
+   },
+   {
+    "kind": "random-strong",
+    "window": 51,
+    "pos": 58,
+    "rel": 0.551,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " and",
+    "text": " optical device or network. A probe signal and a reference signal originating from the same source typically mix or interfere, resulting in optical interference “fringes.” A positive fringe occurs when the light is in phase[[ and]] constructively combines (interfer"
+   },
+   {
+    "kind": "random-strong",
+    "window": 904,
+    "pos": 237,
+    "rel": 0.57,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " and",
+    "text": " of BPF can be frequently classified as acute, subacute, and chronic. An acute BPF presents as tension pneumothorax, with pleural cavity communicating abnormally with the airways,[[ and]] is associated with purulent s"
+   },
+   {
+    "kind": "random-strong",
+    "window": 401,
+    "pos": 66,
+    "rel": 0.531,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "    \n\n",
+    "text": " so sorry if my question is irrelevant. I have two csv files similar to this that I want to match  \nfile 1 \nsa_name  \nABC  \nDEF  \nACE  \nABCD  \nBCD[[    \n\n]]And file 2 \nrs"
+   }
+  ]
+ }
+}

@@ -1,0 +1,600 @@
+{
+ "id": "L6N404",
+ "layer": 6,
+ "neuron": 404,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 1.1406,
+  "n_strong_tokens": 14,
+  "n_strong_windows": 12,
+  "strong_gate_open_frac": 0.929,
+  "strong_sources": [
+   [
+    "StackExchange",
+    3
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "lang-id",
+    2
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ],
+   [
+    "USPTO Backgrounds",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    8
+   ],
+   [
+    "code",
+    2
+   ],
+   [
+    "de",
+    1
+   ],
+   [
+    "ar",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "RT",
+    3
+   ],
+   [
+    " Studio",
+    2
+   ],
+   [
+    "EFI",
+    1
+   ],
+   [
+    "FS",
+    1
+   ],
+   [
+    " Mongolia",
+    1
+   ],
+   [
+    "works",
+    1
+   ],
+   [
+    " Québec",
+    1
+   ],
+   [
+    "brew",
+    1
+   ]
+  ],
+  "strong_pos_median": 67,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 752,
+    "pos": 227,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "RT",
+    "text": " mean by contains, but you can't use the same UserRoleBranchModel to hold multiple roles, so an anonymous object will do the job:\nvar usersByBranch = (from u in _db.V[[RT]]_User\n                     join urb in"
+   },
+   {
+    "kind": "top",
+    "window": 458,
+    "pos": 128,
+    "rel": 0.808,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Studio",
+    "text": " is to modify the compiler output so it writes the name(space) correctly - changing the program executable or shortcut is possible but not the correct approach to use, neither is renaming any part of the project Visual[[ Studio]]'s Solution Explorer (in relation"
+   },
+   {
+    "kind": "top",
+    "window": 1422,
+    "pos": 137,
+    "rel": 0.712,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": "ber",
+    "text": " sind auch stabile so das man die Luft gut rauspressen kann. Leider sind dann im Urlaub drei Beutel am Verschluss kaputt gegangen, dort hat sich der Kle[[ber]] gelöst so das man den"
+   },
+   {
+    "kind": "top",
+    "window": 1077,
+    "pos": 215,
+    "rel": 0.62,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "brew",
+    "text": " 0,\n  \"bottle\": {\n    \"stable\": {\n      \"rebuild\": 0,\n      \"cellar\": \":any_skip_relocation\",\n      \"prefix\": \"/home/linux[[brew]]/.linuxbrew\",\n      \""
+   },
+   {
+    "kind": "top",
+    "window": 484,
+    "pos": 53,
+    "rel": 0.613,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "works",
+    "text": " to use GMM(Gaussian mixture models for clustering a binary image and also want to plot the cluster centroids on the binary image itself.\nI am using this as my reference:\n  http://in.math[[works]].com/help/stats/gaussian-m"
+   },
+   {
+    "kind": "top",
+    "window": 440,
+    "pos": 23,
+    "rel": 0.582,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Mongolia",
+    "text": "Ordos culture\n\nThe Ordos culture was a culture occupying a region centered on the Ordos Loop (modern Inner[[ Mongolia]], China) during the Bronze"
+   },
+   {
+    "kind": "top",
+    "window": 275,
+    "pos": 178,
+    "rel": 0.562,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "FS",
+    "text": " not want to give Project Administrator permissions to this specific user.\nHence I gave the following permissions to him in the Parent Iteration.\npermissions - screenshot\nWhen logged in as the specific user, T[[FS]] says that \n\nYou do not"
+   },
+   {
+    "kind": "top",
+    "window": 219,
+    "pos": 65,
+    "rel": 0.531,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "EFI",
+    "text": "HC), carbon monoxide (CO), and nitrogen oxides (NO.sub.x) have markedly declined. This decline has been brought about through the use of a variety of techniques including electronic fuel injection ([[EFI]]), electronic (computerized)"
+   },
+   {
+    "kind": "top",
+    "window": 858,
+    "pos": 112,
+    "rel": 0.527,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Québec",
+    "text": "Associés, sanctioned by Louis XIII in May 1628, the land of the Jesuits, as all other concessions, becomes the property of this new company. In the capitulation of[[ Québec]] in 1629"
+   },
+   {
+    "kind": "top",
+    "window": 947,
+    "pos": 18,
+    "rel": 0.521,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Studio",
+    "text": "﻿\nMicrosoft Visual Studio Solution File, Format Version 10.00\n# Visual[[ Studio]] 2008\n"
+   },
+   {
+    "kind": "top",
+    "window": 1139,
+    "pos": 70,
+    "rel": 0.517,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "L",
+    "text": " prior occurrence.\nThe ability of humans to distinguish consciously between new and previously encountered objects can be probed with visual recognition memory tasks that require explicit old-new discriminations. Medial temporal-lobe (MT[[L]]) lesions impair performance on such"
+   },
+   {
+    "kind": "top",
+    "window": 1402,
+    "pos": 38,
+    "rel": 0.51,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": "مام",
+    "text": "نعم انه من السيء احيانا ان الاطفال ليس لديهم خيار لان الاباء هم اسوا اعني انهم سوف يقومون بالمخدرات ا[[مام]] اولادهم يجلبون"
+   },
+   {
+    "kind": "top",
+    "window": 33,
+    "pos": 164,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "SS",
+    "text": "s played with Nobusuke Miyamoto, Yoku Tamura, Kosuke Mine, and Akio Nishimura. In 1966, he was a cofounder of E[[SS]]G, along with Masah"
+   },
+   {
+    "kind": "top",
+    "window": 573,
+    "pos": 56,
+    "rel": 0.49,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " CMP",
+    "text": " to a method and apparatus for retaining a substrate in a polishing system.\n2. Background of Invention\nAs part of the manufacturing process of semiconductor devices, semiconductor wafers are increasingly being polished by[[ CMP]]. The uniform removal of material"
+   },
+   {
+    "kind": "top",
+    "window": 613,
+    "pos": 107,
+    "rel": 0.483,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " should",
+    "text": "24 hours later, drawing 0-0 with Sevilla.\n\nWe will start the day in third place, three points above Chelsea following Liverpool’s win on Saturday. The Blues would be down to fifth[[ should]] Tottenham Hotspur avoid defeat"
+   },
+   {
+    "kind": "top",
+    "window": 1271,
+    "pos": 220,
+    "rel": 0.476,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "(a",
+    "text": "ativeEndian = binary.BigEndian\n\t}\n}\n\nfunc boolint(b bool) int {\n\tif b {\n\t\treturn 1\n\t}\n\treturn 0\n}\n\nfunc netAddrToIP16[[(a]] net.Addr) net.IP {\n"
+   },
+   {
+    "kind": "top",
+    "window": 896,
+    "pos": 140,
+    "rel": 0.476,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "kers",
+    "text": " infection, the parasite induces a potent Th1 immune response that is characterized by high levels of IL-12 and IFN-γ [@ppat.1003706-Den[[kers]]1], [@ppat."
+   },
+   {
+    "kind": "top",
+    "window": 4,
+    "pos": 94,
+    "rel": 0.462,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "land",
+    "text": " the extracellular matrix, an event controlled by the balance of matrix metalloproteinases and tissue inhibitors of metalloproteinases (TIMPs). A putative regulator of decidualization is prostag[[land]]in E2 (PGE"
+   },
+   {
+    "kind": "top",
+    "window": 1573,
+    "pos": 6,
+    "rel": 0.449,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "vi",
+    "token": " vì",
+    "text": "Anh ấy đến với tôi[[ vì]] một xưởng tạo dáng cổ"
+   },
+   {
+    "kind": "top",
+    "window": 714,
+    "pos": 225,
+    "rel": 0.442,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Berlin",
+    "text": " Practice and Experience 2001, 4:1-10.\n// http://www.hipersoft.rice.edu/grads/publications/dom14.pdf\n//\n// Daniel[[ Berlin]], llvmdev mailing list,"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 4.4375,
+  "n_strong_tokens": 43,
+  "n_strong_windows": 19,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    14
+   ],
+   [
+    "StackExchange",
+    4
+   ],
+   [
+    "Pile-CC",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    14
+   ],
+   [
+    "en",
+    5
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ":(",
+    8
+   ],
+   [
+    ":",
+    7
+   ],
+   [
+    ",",
+    4
+   ],
+   [
+    " OPTIONS",
+    2
+   ],
+   [
+    ",B",
+    2
+   ],
+   [
+    ",t",
+    2
+   ],
+   [
+    ",var",
+    2
+   ],
+   [
+    " false",
+    2
+   ]
+  ],
+  "strong_pos_median": 154,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 38,
+    "pos": 66,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " OPTIONS",
+    "text": " a warp of the image IM obtained by \n% applying the homography H to the coordinates of every input pixel.\n%\n% [OUT,OFFS] = HOMWARP(H, IM,[[ OPTIONS]]) as above but OFFS"
+   },
+   {
+    "kind": "top",
+    "window": 83,
+    "pos": 62,
+    "rel": 0.958,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",t",
+    "text": "X*u-y||_2^2 + 2*sum( pen(s) ), s=B*u-t\r\n%\r\n%   [f,df,d2f] = phi(u,X,y,B[[,t]],lam,pen,varargin"
+   },
+   {
+    "kind": "top",
+    "window": 1131,
+    "pos": 189,
+    "rel": 0.951,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " false",
+    "text": "UnityEngine.Object obj = PathObjectFactory.Load(prefabNameProp.stringValue) as UnityEngine.Object;\n\t\t\tobj = (UnityEngine.Object)EditorGUI.ObjectField(position, label, obj, Atb.ObjectType,[[ false]]);\n\t\t\tstring relativePath ="
+   },
+   {
+    "kind": "top",
+    "window": 29,
+    "pos": 154,
+    "rel": 0.701,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": ".acme.co\",\n\t\t\t\tCountry:    []string{\"US\"},\n\t\t\t},\n\t\t},\n\t\tChallengePassword: \"foobar\",\n\t}\n\n\tderBytes, err := CreateCertificateRequest(r[[,]] &template, priv)\n\tif"
+   },
+   {
+    "kind": "top",
+    "window": 214,
+    "pos": 51,
+    "rel": 0.69,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " new",
+    "text": " page contains IFRAME\n\nI tried the following code to access my PHP page:\nString url = \"http://mypage.example.com/test.php?name=\"+data;\naq.ajax(url, String.class,[[ new]] AjaxCallback<String>() {\n\n   "
+   },
+   {
+    "kind": "top",
+    "window": 404,
+    "pos": 163,
+    "rel": 0.655,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " $",
+    "text": " be converted). I devised this little peace of code:\nfunction __construct($id = false, $table = null, $ds = null) {\n    parent::__construct($id, $table,[[ $]]ds);\n    foreach($this"
+   },
+   {
+    "kind": "top",
+    "window": 1342,
+    "pos": 246,
+    "rel": 0.644,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " false",
+    "text": ", this.options.popover.table);\n\n    // [workaround] Disable Firefox's default table editor\n    if (env.isFF) {\n      document.execCommand('enableInlineTableEditing', false,[[ false]]);\n    }\n  }\n\n "
+   },
+   {
+    "kind": "top",
+    "window": 302,
+    "pos": 143,
+    "rel": 0.62,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " free",
+    "text": "360 Unlimited VPN Proxy apk Descriptions Capabilities VPN 360 is one particular of the most effective and best methods unlimited proxy for pc to obtain all your beloved on-line articles for totally[[ free]]. With super-rapid VPN"
+   },
+   {
+    "kind": "top",
+    "window": 1350,
+    "pos": 109,
+    "rel": 0.606,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ":(",
+    "text": "@synthesize parentVersionID = _parentVersionID;\n\n- (instancetype)initWithUploadState:(id<NSCoding>)uploadState mimeType:(NSString *)mimeType uploadURL:(NSURL *)uploadURL parentVersionID[[:(]]NSString *)parentVersionID\n"
+   },
+   {
+    "kind": "top",
+    "window": 1357,
+    "pos": 33,
+    "rel": 0.599,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ":",
+    "text": "\nclass NSArray : NSObject, NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration {\n  var count: Int { get }\n  func object(at index[[:]] Int) -> AnyObject\n "
+   },
+   {
+    "kind": "top",
+    "window": 699,
+    "pos": 112,
+    "rel": 0.585,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":(",
+    "text": "views that are presented properly. I also want to make use of the built in UIPageControl that UIPageViewController has by making use of these two methods:\n-(NSInteger)presentationIndexForPageViewController[[:(]]UIPageViewController *)pageViewController"
+   },
+   {
+    "kind": "top",
+    "window": 1250,
+    "pos": 219,
+    "rel": 0.553,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "false",
+    "text": ".OnSelectItem(0);'>\n<!-- Generated by Doxygen 1.7.4 -->\n<script type=\"text/javascript\"><!--\nvar searchBox = new SearchBox(\"searchBox\", \"search\",[[false]],'Search');\n--></script"
+   },
+   {
+    "kind": "top",
+    "window": 21,
+    "pos": 129,
+    "rel": 0.493,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " const",
+    "text": "_cuts {\n        public:\n                most_balanced_minimum_cuts();\n                virtual ~most_balanced_minimum_cuts();\n\n                void compute_good_balanced_min_cut( graph_access & residualGraph,\n                                                   [[ const]] PartitionConfig & config,\n                                                   "
+   },
+   {
+    "kind": "random-strong",
+    "window": 669,
+    "pos": 163,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\t\t\t",
+    "text": "(context, attrs);\n\t\tinicializar();\n\t\t\n\t\t// Procesamos los atributos XML personalizados\n\t\tTypedArray a = \n\t\t\tgetContext().obtainStyledAttributes(attrs,\n[[\t\t\t]]\tR.styleable.ControlLogin);\n\n\t"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1370,
+    "pos": 208,
+    "rel": 0.532,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " true",
+    "text": " this button\"/>\n<div style=\"display:table-row\"/>\n<html:script>\nfunction clickbutton()\n{\n  var ev = document.createEvent('MouseEvents');\n  ev.initMouseEvent(\"click\", true,[[ true]], window, 0,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 434,
+    "pos": 182,
+    "rel": 0.535,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",&",
+    "text": ";\n\tHFILE\t\t\thfile;\n\tBOOL\t\t\tfound = FALSE;\n\n\tCharLowerBuff(clsidstr,strlen(clsidstr));\n\tif ((cr = RegOpenKey(HKEY_CLASSES_ROOT,COM_CLSID[[,&]]hkEnum)) == ERROR_SUCCESS"
+   },
+   {
+    "kind": "random-strong",
+    "window": 850,
+    "pos": 216,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " factory",
+    "text": " new RRI_I12_AUTHORIZATION_CONTACT Group.\n\t///</summary>\n\tpublic RRI_I12_AUTHORIZATION_CONTACT(IGroup parent, IModelClassFactory factory) : base(parent,[[ factory]]){\n\t   try {\n\t      this"
+   },
+   {
+    "kind": "random-strong",
+    "window": 299,
+    "pos": 247,
+    "rel": 0.504,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ":",
+    "text": "path = [NSIndexPath indexPathForItem:0 inSection:0];\n    updater.applyingUpdateData = [[IGListBatchUpdateData alloc] initWithInsertSections:[NSIndexSet indexSetWithIndex[[:]]1]\n                                                                        deleteSections:["
+   },
+   {
+    "kind": "random-strong",
+    "window": 1326,
+    "pos": 122,
+    "rel": 0.504,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",obj",
+    "text": "/**\n * tab点击处理事件\n * @param tabHeads\n * @param tabBodys\n * @param obj\n */\nfunction clickHandler( tabHeads,tabBodys[[,obj]] ) {\n    //head样式"
+   },
+   {
+    "kind": "random-strong",
+    "window": 69,
+    "pos": 69,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":",
+    "text": "Lightweight migration is failing for me 100% of the time on this line:\n[persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options[[:]]options error:&error]\n\nwith"
+   }
+  ]
+ }
+}

@@ -1,0 +1,552 @@
+{
+ "code": {
+  "n": 39,
+  "n_pass": 0,
+  "best": [
+   {
+    "id": "L11N3840",
+    "pole": "-",
+    "pole_label": "NO_PASS",
+    "kind": "code",
+    "name": "SQL and database constraint keywords",
+    "pass": false,
+    "fire_median": 0.5605,
+    "control_median": 0.5605,
+    "corpus_top_tokens": [
+     " @",
+     " <",
+     "   ",
+     " \n",
+     "       "
+    ],
+    "other_hyps_same_pole": [
+     "Markup and documentation comment tokens",
+     "Newline tokens in structured contexts"
+    ]
+   },
+   {
+    "id": "L23N9171",
+    "pole": "+",
+    "pole_label": "NO_PASS",
+    "kind": "code",
+    "name": "Words after markdown headers in code documentation",
+    "pass": false,
+    "fire_median": 0.5515,
+    "control_median": 0.379,
+    "corpus_top_tokens": [
+     "The",
+     " present",
+     " particularly",
+     " of",
+     "   "
+    ],
+    "other_hyps_same_pole": [
+     "Patent/technical document boilerplate phrases",
+     "Transition words and article-preposition combinations"
+    ]
+   },
+   {
+    "id": "L27N3505",
+    "pole": "+",
+    "pole_label": "NO_PASS",
+    "kind": "code",
+    "name": "C type declarations and struct syntax",
+    "pass": false,
+    "fire_median": 0.5095000000000001,
+    "control_median": 0.4205,
+    "corpus_top_tokens": [
+     " char",
+     " *",
+     "(char",
+     " **",
+     "_t"
+    ],
+    "other_hyps_same_pole": [
+     "Comment line markers in code files",
+     "Discourse markers and connectives in text"
+    ]
+   },
+   {
+    "id": "L27N3505",
+    "pole": "-",
+    "pole_label": "NO_PASS",
+    "kind": "code",
+    "name": "Type names in C++ declarations",
+    "pass": false,
+    "fire_median": 0.4655,
+    "control_median": 0.473,
+    "corpus_top_tokens": [
+     "String",
+     "State",
+     "_H",
+     " char",
+     "Context"
+    ],
+    "other_hyps_same_pole": []
+   }
+  ]
+ },
+ "cross-lingual": {
+  "n": 13,
+  "n_pass": 0,
+  "best": [
+   {
+    "id": "L2N2255",
+    "pole": "+",
+    "pole_label": "NO_PASS",
+    "kind": "cross-lingual",
+    "name": "Multi-language code-switching contexts",
+    "pass": false,
+    "fire_median": 0.5994999999999999,
+    "control_median": 0.5994999999999999,
+    "corpus_top_tokens": [
+     "ив",
+     "но",
+     " вид",
+     " плат",
+     "ин"
+    ],
+    "other_hyps_same_pole": [
+     "Russian/Bulgarian Cyrillic letter sequences"
+    ]
+   },
+   {
+    "id": "L31N1344",
+    "pole": "+",
+    "pole_label": "NO_PASS",
+    "kind": "cross-lingual",
+    "name": "Non-English language content",
+    "pass": false,
+    "fire_median": 0.4475,
+    "control_median": 0.066,
+    "corpus_top_tokens": [
+     "ão",
+     " se",
+     " si",
+     "i",
+     " cane"
+    ],
+    "other_hyps_same_pole": []
+   },
+   {
+    "id": "L29N8421",
+    "pole": "-",
+    "pole_label": "NO_PASS",
+    "kind": "cross-lingual",
+    "name": "Cross-lingual 'tre' prefix",
+    "pass": false,
+    "fire_median": 0.345,
+    "control_median": 0.024,
+    "corpus_top_tokens": [
+     " tre",
+     "RE",
+     "tre",
+     " Dire",
+     " Tre"
+    ],
+    "other_hyps_same_pole": [
+     "Prefix 'tre' at token start"
+    ]
+   },
+   {
+    "id": "L22N6865",
+    "pole": "+",
+    "pole_label": "NO_PASS",
+    "kind": "cross-lingual",
+    "name": "Negative or limiting modifiers in Chinese",
+    "pass": false,
+    "fire_median": 0.277,
+    "control_median": 0.051000000000000004,
+    "corpus_top_tokens": [
+     " only",
+     " one",
+     " single",
+     " points",
+     " little"
+    ],
+    "other_hyps_same_pole": [
+     "Adjectives describing limitation or minimality",
+     "Quantifiers expressing singularity or rarity"
+    ]
+   }
+  ]
+ },
+ "other": {
+  "n": 1,
+  "n_pass": 0,
+  "best": [
+   {
+    "id": "L2N2104",
+    "pole": "-",
+    "pole_label": "NO_PASS",
+    "kind": "other",
+    "name": "Uncommon syllable or phoneme sequences",
+    "pass": false,
+    "fire_median": 0.08349999999999999,
+    "control_median": 0.037,
+    "corpus_top_tokens": [
+     "arch",
+     "ese",
+     "ph",
+     "ar",
+     "pl"
+    ],
+    "other_hyps_same_pole": [
+     "Proper nouns and capitalized acronyms"
+    ]
+   }
+  ]
+ },
+ "positional": {
+  "n": 7,
+  "n_pass": 0,
+  "best": [
+   {
+    "id": "L13N8681",
+    "pole": "-",
+    "pole_label": "NO_PASS",
+    "kind": "positional",
+    "name": "Nouns in byline or source attribution contexts",
+    "pass": false,
+    "fire_median": 0.275,
+    "control_median": 0.239,
+    "corpus_top_tokens": [
+     " news",
+     ".Code",
+     " facts",
+     " website",
+     " Hall"
+    ],
+    "other_hyps_same_pole": [
+     "Common noun following domain descriptor",
+     "Abbreviated or truncated word forms"
+    ]
+   },
+   {
+    "id": "L23N297",
+    "pole": "-",
+    "pole_label": "NO_PASS",
+    "kind": "positional",
+    "name": "Token starting a new sentence or clause",
+    "pass": false,
+    "fire_median": 0.153,
+    "control_median": 0.239,
+    "corpus_top_tokens": [
+     "้า",
+     "osed",
+     ".",
+     " (",
+     "The"
+    ],
+    "other_hyps_same_pole": [
+     "Tokens in non-English languages",
+     "Abbreviations, acronyms, or special punctuation"
+    ]
+   },
+   {
+    "id": "L23N3746",
+    "pole": "+",
+    "pole_label": "NO_PASS",
+    "kind": "positional",
+    "name": "Tokens at section/topic boundaries",
+    "pass": false,
+    "fire_median": 0.0795,
+    "control_median": 0.028999999999999998,
+    "corpus_top_tokens": [
+     ":",
+     " I",
+     " am",
+     " ALSO",
+     "Should"
+    ],
+    "other_hyps_same_pole": [
+     "Punctuation and formatting tokens",
+     "French language text fragments"
+    ]
+   },
+   {
+    "id": "L34N884",
+    "pole": "-",
+    "pole_label": "NO_PASS",
+    "kind": "positional",
+    "name": "Tokens at major clause or sentence boundaries",
+    "pass": false,
+    "fire_median": 0.0625,
+    "control_median": 0.054,
+    "corpus_top_tokens": [
+     "W",
+     ":N",
+     "-",
+     " pro",
+     "OI"
+    ],
+    "other_hyps_same_pole": [
+     "Word fragments in non-English or transliterated text"
+    ]
+   }
+  ]
+ },
+ "semantic": {
+  "n": 117,
+  "n_pass": 8,
+  "best": [
+   {
+    "id": "L0N1275",
+    "pole": "+",
+    "pole_label": "UNRELATED",
+    "kind": "semantic",
+    "name": "Negation morpheme in Japanese",
+    "pass": true,
+    "fire_median": 0.9285,
+    "control_median": 0.121,
+    "corpus_top_tokens": [
+     "ς",
+     " hereby",
+     " LIABLE",
+     " mere",
+     "ugeot"
+    ],
+    "other_hyps_same_pole": [
+     "Legal license header boilerplate text",
+     "Rare or technical academic vocabulary"
+    ]
+   },
+   {
+    "id": "L29N8456",
+    "pole": "+",
+    "pole_label": "NO_PASS",
+    "kind": "semantic",
+    "name": "Gene or protein references in scientific text",
+    "pass": false,
+    "fire_median": 0.7785,
+    "control_median": 0.7545,
+    "corpus_top_tokens": [
+     " gene",
+     " SUBSTITUTE",
+     " the",
+     " selling",
+     ","
+    ],
+    "other_hyps_same_pole": [
+     "SUBSTITUTE in legal liability disclaimers",
+     "Possessive pronouns in marketing copy"
+    ]
+   },
+   {
+    "id": "L0N1275",
+    "pole": "+",
+    "pole_label": "UNRELATED",
+    "kind": "semantic",
+    "name": "Rare or technical academic vocabulary",
+    "pass": true,
+    "fire_median": 0.7765,
+    "control_median": 0.1595,
+    "corpus_top_tokens": [
+     "ς",
+     " hereby",
+     " LIABLE",
+     " mere",
+     "ugeot"
+    ],
+    "other_hyps_same_pole": [
+     "Legal license header boilerplate text",
+     "Negation morpheme in Japanese"
+    ]
+   },
+   {
+    "id": "L6N6455",
+    "pole": "+",
+    "pole_label": "ONE_JOB",
+    "kind": "semantic",
+    "name": "Network or system I/O related terms",
+    "pass": true,
+    "fire_median": 0.721,
+    "control_median": 0.07400000000000001,
+    "corpus_top_tokens": [
+     " read",
+     " receive",
+     " loads",
+     " insert",
+     " delete"
+    ],
+    "other_hyps_same_pole": [
+     "Database/SQL operation keywords",
+     "Hyphenated or compound technical terms"
+    ]
+   }
+  ]
+ },
+ "syntax": {
+  "n": 92,
+  "n_pass": 3,
+  "best": [
+   {
+    "id": "L7N1826",
+    "pole": "-",
+    "pole_label": "ONE_JOB",
+    "kind": "syntax",
+    "name": "Punctuation after location dateline",
+    "pass": true,
+    "fire_median": 0.853,
+    "control_median": 0.12350000000000001,
+    "corpus_top_tokens": [
+     " —",
+     " (",
+     " –",
+     ":",
+     " -"
+    ],
+    "other_hyps_same_pole": []
+   },
+   {
+    "id": "L23N9171",
+    "pole": "-",
+    "pole_label": "ONE_JOB",
+    "kind": "syntax",
+    "name": "Comment marker at start of descriptive line",
+    "pass": false,
+    "fire_median": 0.687,
+    "control_median": 0.4665,
+    "corpus_top_tokens": [
+     " This",
+     "//",
+     "#",
+     " ",
+     " Code"
+    ],
+    "other_hyps_same_pole": [
+     "Token 'This' in file/code description"
+    ]
+   },
+   {
+    "id": "L24N3717",
+    "pole": "-",
+    "pole_label": "ONE_JOB",
+    "kind": "syntax",
+    "name": "Enumeration markers in lists",
+    "pass": true,
+    "fire_median": 0.634,
+    "control_median": 0.014499999999999999,
+    "corpus_top_tokens": [
+     "a",
+     "1",
+     "2",
+     " a",
+     " b"
+    ],
+    "other_hyps_same_pole": [
+     "Questioning or interrogative constructions"
+    ]
+   },
+   {
+    "id": "L2N4218",
+    "pole": "-",
+    "pole_label": "ONE_JOB",
+    "kind": "syntax",
+    "name": "Legal document attorney attribution phrase",
+    "pass": true,
+    "fire_median": 0.5800000000000001,
+    "control_median": 0.08399999999999999,
+    "corpus_top_tokens": [
+     " for",
+     " in",
+     " para",
+     " at",
+     " on"
+    ],
+    "other_hyps_same_pole": [
+     "Preposition 'in' in technical contexts",
+     "Preposition 'in' with location or geographic reference"
+    ]
+   }
+  ]
+ },
+ "token": {
+  "n": 132,
+  "n_pass": 4,
+  "best": [
+   {
+    "id": "L29N8421",
+    "pole": "+",
+    "pole_label": "ONE_JOB",
+    "kind": "token",
+    "name": "English words ending in -escence or -escent",
+    "pass": true,
+    "fire_median": 0.731,
+    "control_median": 0.0035,
+    "corpus_top_tokens": [
+     "ines",
+     "able",
+     "ies",
+     "abe",
+     "le"
+    ],
+    "other_hyps_same_pole": [
+     "Spanish/Portuguese suffix -sce or -ce"
+    ]
+   },
+   {
+    "id": "L5N9694",
+    "pole": "+",
+    "pole_label": "ONE_JOB",
+    "kind": "token",
+    "name": "Devanagari and non-Latin script consonant clusters",
+    "pass": true,
+    "fire_median": 0.69,
+    "control_median": 0.112,
+    "corpus_top_tokens": [
+     "ु",
+     "BER",
+     "ner",
+     "bm",
+     "ME"
+    ],
+    "other_hyps_same_pole": [
+     "Abbreviations and acronyms in text",
+     "Proper nouns and surnames in citations"
+    ]
+   },
+   {
+    "id": "L25N5684",
+    "pole": "+",
+    "pole_label": "ONE_JOB",
+    "kind": "token",
+    "name": "Fractions and ratios in text",
+    "pass": false,
+    "fire_median": 0.67,
+    "control_median": 0.39549999999999996,
+    "corpus_top_tokens": [
+     "5",
+     "1",
+     "6",
+     "4",
+     " half"
+    ],
+    "other_hyps_same_pole": [
+     "Decimal numbers with leading zero point",
+     "Numerical values in scientific notation"
+    ]
+   },
+   {
+    "id": "L2N2255",
+    "pole": "+",
+    "pole_label": "NO_PASS",
+    "kind": "token",
+    "name": "Russian/Bulgarian Cyrillic letter sequences",
+    "pass": false,
+    "fire_median": 0.6659999999999999,
+    "control_median": 0.708,
+    "corpus_top_tokens": [
+     "ив",
+     "но",
+     " вид",
+     " плат",
+     "ин"
+    ],
+    "other_hyps_same_pole": [
+     "Multi-language code-switching contexts"
+    ]
+   }
+  ]
+ }
+}

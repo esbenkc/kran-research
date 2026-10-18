@@ -1,0 +1,584 @@
+{
+ "id": "L4N2698",
+ "layer": 4,
+ "neuron": 2698,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 9.1875,
+  "n_strong_tokens": 19,
+  "n_strong_windows": 14,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "PubMed Abstracts",
+    12
+   ],
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "OpenWebText2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    14
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " of",
+    5
+   ],
+   [
+    " amount",
+    2
+   ],
+   [
+    " concentrations",
+    2
+   ],
+   [
+    "ol",
+    2
+   ],
+   [
+    " quantity",
+    1
+   ],
+   [
+    " enough",
+    1
+   ],
+   [
+    ".u",
+    1
+   ],
+   [
+    "abeled",
+    1
+   ]
+  ],
+  "strong_pos_median": 164,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 766,
+    "pos": 170,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "Ci",
+    "text": " 2 weeks of recovery the animals were fasted overnight and positioned under a gamma camera, and myoelectric recordings were begun. After two cycles of the migrating motor complex (MMC), 2 m[[Ci]] 99Tc-H"
+   },
+   {
+    "kind": "top",
+    "window": 521,
+    "pos": 163,
+    "rel": 0.864,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " amounts",
+    "text": " genes from different sources were constructed and, respectively, introduced into E. coli ZF237T, a β-carotene producing host. Among the nine resulting strains, five accumulated detectable[[ amounts]] of astaxanthin ranging"
+   },
+   {
+    "kind": "top",
+    "window": 73,
+    "pos": 236,
+    "rel": 0.813,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " amount",
+    "text": "4 antibody to PrP of brains and cultured cells. In contrast to cells expressing wild-type PrP, cells expressing pathogenic mutant PrP accumulate not only PrP*20 but also a small[[ amount]] of 3F4-det"
+   },
+   {
+    "kind": "top",
+    "window": 81,
+    "pos": 26,
+    "rel": 0.67,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " quantity",
+    "text": "Effect of protein nutrition on the mRNA content of insulin-like growth factor-binding protein-1 in liver and kidney of rats.\nEffect of[[ quantity]] and nutritional quality of dietary proteins"
+   },
+   {
+    "kind": "top",
+    "window": 343,
+    "pos": 183,
+    "rel": 0.667,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " of",
+    "text": ".\n\nThe new guidelines, she said, complemented the government’s Child Survival and Development Strategy with a package of interventions based on using a new type of oral rehydration salts (ORS) containing lower concentrations[[ of]] glucose and salt; zinc supplements"
+   },
+   {
+    "kind": "top",
+    "window": 467,
+    "pos": 187,
+    "rel": 0.575,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "abeled",
+    "text": " in three separate studies which differed by donor or recipient status: (1) particles purified from normolipidemic plasma and reassociated with 125I or 131I-l[[abeled]] apoE injected into normol"
+   },
+   {
+    "kind": "top",
+    "window": 1177,
+    "pos": 13,
+    "rel": 0.571,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " concentration",
+    "text": "Migration of blood cells and phospholipid vesicles induced by[[ concentration]] gradients in microcavities"
+   },
+   {
+    "kind": "top",
+    "window": 1119,
+    "pos": 53,
+    "rel": 0.568,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " amount",
+    "text": " scintigraphy.\nPatient-specific dosimetry calculations are often performed for radioiodine therapy in patients with Graves' hyperthyroidism. The radioiodine doses are typically calculated to deliver the desired[[ amount]] of radiation based on gland size"
+   },
+   {
+    "kind": "top",
+    "window": 701,
+    "pos": 123,
+    "rel": 0.558,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ol",
+    "text": " did not affect liver sialyltransferase activity towards asialofetuin. We are the first to measure GM3 synthase activity in human liver (194 +/- 60 pm[[ol]] NeuAc/h per mg protein"
+   },
+   {
+    "kind": "top",
+    "window": 618,
+    "pos": 255,
+    "rel": 0.544,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " concentrations",
+    "text": " (TCDD) as a representative EDC, which is known to induce tumors or cancers; MCF-7 breast cancer cells, used as a tumor model, were treated with TCDD and various[[ concentrations]]"
+   },
+   {
+    "kind": "top",
+    "window": 127,
+    "pos": 132,
+    "rel": 0.537,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " enough",
+    "text": " can avoid this by cooking it in the oven on a roasting rack, DIY or otherwise .\n\nPlace your bacon in a cold skillet on the stovetop and turn the heat to high. Add[[ enough]] water to cover the bacon slices"
+   },
+   {
+    "kind": "top",
+    "window": 245,
+    "pos": 93,
+    "rel": 0.537,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": ".u",
+    "text": " examined for the presence of a microbial biofilm and encrustations. Bacteria in stent biofilms were isolated and identified. A profuse biofilm (> 10(4) c.f[[.u]]. cm-3) was"
+   },
+   {
+    "kind": "top",
+    "window": 85,
+    "pos": 111,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ration",
+    "text": "phenyl-1,2,3,6-tetrahydropyridine (MPTP), into PC12h pheochromocytoma cells were examined. Concent[[ration]] gradients of MPP(+)"
+   },
+   {
+    "kind": "top",
+    "window": 918,
+    "pos": 13,
+    "rel": 0.493,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " breakdown",
+    "text": "INTRODUCTION\n============\n\nRhabdomyolysis is the[[ breakdown]] of skeletal muscle that can rapidly"
+   },
+   {
+    "kind": "top",
+    "window": 290,
+    "pos": 190,
+    "rel": 0.483,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " of",
+    "text": " and grinding of the tissue into flakes. Then, we used 1% Triton X-100 to decellularize the flakes. We then, respectively, injected 0.1 cc[[ of]] each material (decellular"
+   },
+   {
+    "kind": "top",
+    "window": 74,
+    "pos": 142,
+    "rel": 0.429,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " kills",
+    "text": " food in the USA: milk, eggs, peanuts, tree nuts, wheat, soy, fish and shellfish.\n\n\n\nAnaphylaxis, a serious allergic reaction that comes on quickly, caused by food[[ kills]] up to 150"
+   },
+   {
+    "kind": "top",
+    "window": 248,
+    "pos": 223,
+    "rel": 0.425,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " concentration",
+    "text": " associated with excess postoperative bleeding \\[[@R8],[@R9]\\]. Therefore, interventions to enhance thrombin generation may be as important as maintaining an adequate platelet count and fibrinogen[[ concentration]] in controlling and preventing bleeding.\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 523,
+    "pos": 35,
+    "rel": 0.417,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " ratio",
+    "text": "Crystallization of a polymorphic hydrate system.\nNitrofurantoin can form two monohydrates, which have the same chemical composition and molar[[ ratio]] of water, but differ in"
+   },
+   {
+    "kind": "random-strong",
+    "window": 645,
+    "pos": 229,
+    "rel": 0.51,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " of",
+    "text": "omocysteine hydrolase (CpSAHH) recombinant protein. The dose-dependent growth inhibition of C. parvum was confirmed; 50% effective concentrations[[ of]] neplanocin A ("
+   },
+   {
+    "kind": "random-strong",
+    "window": 986,
+    "pos": 160,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " pools",
+    "text": ", but unaltered starch content in the transformants. Analysis of the key enzyme of glycolysis suggests that this pathway is down-regulated in the transformants. Despite these changes in metabolite[[ pools]] and enzyme activity, few consistent"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 3.2969,
+  "n_strong_tokens": 23,
+  "n_strong_windows": 13,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "PubMed Abstracts",
+    8
+   ],
+   [
+    "USPTO Backgrounds",
+    1
+   ],
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "OpenWebText2",
+    1
+   ],
+   [
+    "NIH ExPorter",
+    1
+   ],
+   [
+    "PubMed Central",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    13
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "er",
+    7
+   ],
+   [
+    " fibers",
+    2
+   ],
+   [
+    " additive",
+    2
+   ],
+   [
+    " gas",
+    2
+   ],
+   [
+    " Density",
+    1
+   ],
+   [
+    " fast",
+    1
+   ],
+   [
+    " Fiber",
+    1
+   ],
+   [
+    " oven",
+    1
+   ]
+  ],
+  "strong_pos_median": 106,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 132,
+    "pos": 123,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " fibers",
+    "text": "-Hei07-17571 (Patent Document 1) discloses a biodegradable buffer material which contains starch as a main component, and is obtained by adding vegetable[[ fibers]] and/or protein, followed by"
+   },
+   {
+    "kind": "top",
+    "window": 94,
+    "pos": 126,
+    "rel": 0.962,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Fiber",
+    "text": "00mg\n\nSodium\n\nLess than\n\n2400mg\n\n2400mg\n\nTotal Carbohydrate\n\n300g\n\n375g\n\nDietary[[ Fiber]]\n\n25g\n\n3"
+   },
+   {
+    "kind": "top",
+    "window": 1153,
+    "pos": 52,
+    "rel": 0.782,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " gas",
+    "text": " lower postprandial serotonin levels than subjects with hydrogen.\nWe have previously shown that methane on lactulose breath test (LBT) is highly associated with constipation in IBS and that methane[[ gas]] itself slows small bowel transit in"
+   },
+   {
+    "kind": "top",
+    "window": 986,
+    "pos": 31,
+    "rel": 0.768,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "er",
+    "text": "Enhancing vacuolar sucrose cleavage within the developing potato tuber has only minor effects on metabolism.\nModification of tuber carbohydrate metabolism by the tub[[er]]-specific expression of a yeast invert"
+   },
+   {
+    "kind": "top",
+    "window": 127,
+    "pos": 100,
+    "rel": 0.668,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " oven",
+    "text": " who's been hit by splattering fat knows it's not the most pleasant kitchen task to tackle. If you're cooking bacon for a lot of people, you can avoid this by cooking it in the[[ oven]] on a roasting rack,"
+   },
+   {
+    "kind": "top",
+    "window": 8,
+    "pos": 199,
+    "rel": 0.664,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " Density",
+    "text": "ocapsules with a lower molecular weight. Nanospheres were prepared in a similar way albeit using an organic phase that was completely miscible within the aqueous phase so that solid spheres were obtained.[[ Density]] gradient centrifugation revealed that"
+   },
+   {
+    "kind": "top",
+    "window": 197,
+    "pos": 223,
+    "rel": 0.616,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " additive",
+    "text": " the next 21 h, the intake of the SAL-DMNL group returned to control levels. TROP treatment enhanced the intake of the treated groups; the TROP and the lesion effect were[[ additive]] (P < 0."
+   },
+   {
+    "kind": "top",
+    "window": 81,
+    "pos": 89,
+    "rel": 0.611,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " fast",
+    "text": "FBP-1) was studied in rat liver and kidney. IGFBP-1 mRNA content per unit RNA increased in liver and kidney of rats fed on a protein-free diet and in those of[[ fast]]ed rats compared with that in"
+   },
+   {
+    "kind": "top",
+    "window": 1163,
+    "pos": 165,
+    "rel": 0.611,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " fibers",
+    "text": "angers) localized to the surface membrane, the T tubular membrane or both? Localization of the transporters will be achieved by studying: pH recover (with glass electrodes) in glycerol-shocked[[ fibers]] (whose T tubules ves"
+   },
+   {
+    "kind": "top",
+    "window": 992,
+    "pos": 73,
+    "rel": 0.564,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " lightly",
+    "text": "5, 1.0, 1.5, and 2.0% carbon monoxide (CO) and 60 min exposure to 1.0% CO were studied in[[ lightly]] anesthetized rats by"
+   },
+   {
+    "kind": "top",
+    "window": 174,
+    "pos": 246,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " additive",
+    "text": " after 7 days and on migration in any cell line. However it led to a 40% reduction of transwell invasion of MDA-MB-231 cells. There was no[[ additive]] effect when taxol and t"
+   },
+   {
+    "kind": "top",
+    "window": 845,
+    "pos": 106,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " density",
+    "text": " their status and guarantee their sustainable management. The successful management of marine resources involves monitoring the physical and chemical parameters related to water quality, such as salinity, temperature, dissolved oxygen, nitrates,[[ density]], and chlorophyll levels"
+   },
+   {
+    "kind": "top",
+    "window": 970,
+    "pos": 231,
+    "rel": 0.493,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " oil",
+    "text": " cross-linking with adipate groups slightly decreased the efficiency of processing in the CRMR. Additionally, the relationship between the type of hydrocolloid and its adsorption activity in the air/water and[[ oil]]/water systems was considered."
+   },
+   {
+    "kind": "top",
+    "window": 86,
+    "pos": 67,
+    "rel": 0.488,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " gas",
+    "text": " of functionally important transient non-native protein states will rely on development of experimental strategies combining hydrogen/deuterium exchange in solution (HDX), electrospray ipnization (ESI MS) and[[ gas]] phase protein ion fragmentation. The"
+   },
+   {
+    "kind": "top",
+    "window": 943,
+    "pos": 169,
+    "rel": 0.481,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " rubber",
+    "text": " material, the specimens were randomly divided into three groups (n=20). Group 1: no prophylaxis treatment (control); Group 2: prophylaxis with pumice and[[ rubber]] cup; Group 3:"
+   },
+   {
+    "kind": "top",
+    "window": 543,
+    "pos": 74,
+    "rel": 0.464,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " index",
+    "text": "-insulin-dependent patients referred for antepartum fetal surveillance received a modified biophysical profile biweekly. A modified biophysical profile is a combination of a nonstress test and an amniotic fluid[[ index]]. Patients with a singleton gest"
+   },
+   {
+    "kind": "top",
+    "window": 1020,
+    "pos": 15,
+    "rel": 0.462,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "opic",
+    "text": "Allergy in long-term hemodialysis. II. Allergic and at[[opic]] patterns of a population of patients"
+   },
+   {
+    "kind": "top",
+    "window": 1190,
+    "pos": 156,
+    "rel": 0.457,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " spray",
+    "text": " and if you are someone who frequently gets bitten and reacts badly to the bites it is worth doing all that you can to avoid being bitten.\n\nADVERTISEMENT - CONTINUE READING BELOW\n\nInsect repellent[[ spray]], and plug-in types of"
+   },
+   {
+    "kind": "top",
+    "window": 130,
+    "pos": 74,
+    "rel": 0.448,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " channels",
+    "text": " this section is to use imaging techniques to study how protein complexes, with special emphasis on complexes comprised of integral membrane proteins, are formed and maintained in living cells. Membrane proteins, such as receptors,[[ channels]], and their regulatory partners,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 323,
+    "pos": 17,
+    "rel": 0.521,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " fiber",
+    "text": "Enhanced catalytic activity of α-FeOOH-rGO supported on active carbon[[ fiber]] (ACF) for degradation"
+   }
+  ]
+ }
+}

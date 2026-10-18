@@ -1,0 +1,552 @@
+{
+ "id": "L2N2255",
+ "layer": 2,
+ "neuron": 2255,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 1.2578,
+  "n_strong_tokens": 169,
+  "n_strong_windows": 21,
+  "strong_gate_open_frac": 0.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    17
+   ],
+   [
+    "StackExchange",
+    3
+   ],
+   [
+    "OpenWebText2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "ru",
+    10
+   ],
+   [
+    "bg",
+    6
+   ],
+   [
+    "en",
+    4
+   ],
+   [
+    "it",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "ив",
+    5
+   ],
+   [
+    "но",
+    3
+   ],
+   [
+    " вид",
+    3
+   ],
+   [
+    " плат",
+    3
+   ],
+   [
+    "ин",
+    3
+   ],
+   [
+    "ев",
+    3
+   ],
+   [
+    " труд",
+    2
+   ],
+   [
+    "ол",
+    2
+   ]
+  ],
+  "strong_pos_median": 100,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1520,
+    "pos": 189,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "ир",
+    "text": "езны , так как полное лечение не является вариантом .\nОн дрожал .\nИтак , мы голосуем за виртуозности в имитации или в[[ир]]туозности в себе ?\n"
+   },
+   {
+    "kind": "top",
+    "window": 1068,
+    "pos": 36,
+    "rel": 0.826,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ол",
+    "text": "Q:\n\nJLink (flash load)/MDR32F1QI в Linux\n\nНедавно занялся программированием Российского микроконтр[[ол]]лера MDR32"
+   },
+   {
+    "kind": "top",
+    "window": 1528,
+    "pos": 109,
+    "rel": 0.786,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " предлаг",
+    "text": "уклюжий активист , как и гор .\nПогода важна ?\nНа основе замечаний , которые утверждают , что использование 350 Мгц ( как[[ предлаг]]ается ) будет мешать"
+   },
+   {
+    "kind": "top",
+    "window": 1525,
+    "pos": 249,
+    "rel": 0.773,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " фир",
+    "text": " по поводу того , может ли ревизор изучить средства iolta , поскольку они не находятся на государственном счете .\nВне зависимости от того , какой путь[[ фир]]мы принимают , чтобы пред"
+   },
+   {
+    "kind": "top",
+    "window": 1410,
+    "pos": 1,
+    "rel": 0.761,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "ред",
+    "text": "п[[ред]]полага се ,"
+   },
+   {
+    "kind": "top",
+    "window": 1521,
+    "pos": 160,
+    "rel": 0.755,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " вып",
+    "text": " расскажи нам , чем ты занимался .\nОкончательное правило отменяет оба исключения и вводит три ограниченных исключения в отношении допустимых[[ вып]]лат работодателями"
+   },
+   {
+    "kind": "top",
+    "window": 1523,
+    "pos": 165,
+    "rel": 0.745,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "ового",
+    "text": "учать , в соответствующих случаях , соответствующую литературу и консультироваться с знающие лицами , а также проект толкования федеральных стандартов финанс[[ового]] учета .\nПо-вид"
+   },
+   {
+    "kind": "top",
+    "window": 1524,
+    "pos": 14,
+    "rel": 0.733,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " у",
+    "text": "Я люблю сыр и редиска .\nДемонтаж[[ у]]инн существующих свой"
+   },
+   {
+    "kind": "top",
+    "window": 46,
+    "pos": 3,
+    "rel": 0.68,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "лав",
+    "text": "Q:\n\nП[[лав]]ающий блок с position"
+   },
+   {
+    "kind": "top",
+    "window": 1522,
+    "pos": 9,
+    "rel": 0.671,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " мал",
+    "text": "Он перемещается до центра[[ мал]]еньких , вклад"
+   },
+   {
+    "kind": "top",
+    "window": 1529,
+    "pos": 251,
+    "rel": 0.668,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " открыт",
+    "text": " , что ты знаешь социализм и\nДля недорогой новой одежды , платить визит в в дю Храм , в 3-м ,[[ открыт]] каждое утро"
+   },
+   {
+    "kind": "top",
+    "window": 1473,
+    "pos": 61,
+    "rel": 0.665,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " sta",
+    "text": "Oklahoma esamina cosa è andato storto in un'esecuzione non corretta\nUn uomo sta correndo su un campo.\nUna barca con quattro vele[[ sta]] navigando sull'ac"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1527,
+    "pos": 81,
+    "rel": 0.643,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "ев",
+    "text": "дельных актов , а не с боевыми действиями , члены Ира выглядят и ведут себя скорее как профессиональные преступники , чем р[[ев]]олюционеров .\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1411,
+    "pos": 1,
+    "rel": 0.537,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": " зна",
+    "text": "и[[ зна]]еш , че това"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1414,
+    "pos": 8,
+    "rel": 0.522,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": " ф",
+    "text": "в на магазини при[[ ф]]илисбърг ,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 191,
+    "pos": 152,
+    "rel": 0.593,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "т",
+    "text": "���\n\nH-RANDOM ���� BATTLE �̃I�v�V������ ON �ɂ����ꍇ�A�ȉ��̃X�R�A�␬�[[т]]Ȃǂ͌v�"
+   },
+   {
+    "kind": "random-strong",
+    "window": 710,
+    "pos": 18,
+    "rel": 0.578,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "уж",
+    "text": "Q:\n\nКак сделать, чтобы String str = любому значению из массива?\n\nн[[уж]]но чтобы String str = люб"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1419,
+    "pos": 9,
+    "rel": 0.581,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": " пор",
+    "text": "през 1986 г.[[ пор]]тугалия се"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1526,
+    "pos": 244,
+    "rel": 0.658,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "ан",
+    "text": " .\nКакие фильмы вы видели в последнее время ?\nЛадно , я виню себя .\nНе может быть никаких сомнений в том , что закон о кпу фин[[ан]]сирует констит"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1416,
+    "pos": 1,
+    "rel": 0.615,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": " т",
+    "text": "в[[ т]]ози момент обаче"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 8.75,
+  "n_strong_tokens": 4,
+  "n_strong_windows": 2,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "it",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " sta",
+    3
+   ],
+   [
+    " su",
+    1
+   ]
+  ],
+  "strong_pos_median": 2,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1473,
+    "pos": 14,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " sta",
+    "text": "Un uomo sta camminando su una corda.\nL'uomo[[ sta]] mangiando la pizza.\n"
+   },
+   {
+    "kind": "top",
+    "window": 1478,
+    "pos": 2,
+    "rel": 0.957,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " sta",
+    "text": "Un uomo[[ sta]] suonando la chitar"
+   },
+   {
+    "kind": "top",
+    "window": 1415,
+    "pos": 136,
+    "rel": 0.09,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "рад",
+    "text": " област или по-често област , която е неразделна част от на .\nако е добър , може би ще получи наг[[рад]]а от човека"
+   },
+   {
+    "kind": "top",
+    "window": 1413,
+    "pos": 20,
+    "rel": 0.084,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "ет",
+    "text": "тяхната трайност е много по-добра , разбирам от повеч[[ет]]о други микробус"
+   },
+   {
+    "kind": "top",
+    "window": 46,
+    "pos": 22,
+    "rel": 0.072,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "но",
+    "text": "Q:\n\nПлавающий блок с position:fixed\n\nНа пальцах объяснить труд[[но]], вот пикча,"
+   },
+   {
+    "kind": "top",
+    "window": 1418,
+    "pos": 17,
+    "rel": 0.067,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "ите",
+    "text": "тя беше или ужасно невежа по икономическ[[ите]] въпроси или у"
+   },
+   {
+    "kind": "top",
+    "window": 1410,
+    "pos": 34,
+    "rel": 0.062,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": " �",
+    "text": "предполага се , че тези политики ще променят бизнеса и поведението на потребителите ,[[ �]]�е доведат до"
+   },
+   {
+    "kind": "top",
+    "window": 1411,
+    "pos": 120,
+    "rel": 0.061,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "ет",
+    "text": " ще дойдат в къщата в сохо рано или късно .\nв момента не е известно дали има забавяне на врем[[ет]]о -- забавяне"
+   },
+   {
+    "kind": "top",
+    "window": 1500,
+    "pos": 15,
+    "rel": 0.061,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": "ią",
+    "text": "Międzynarodowa Agencja Energii Atomowej os[[ią]]gnęła porozum"
+   },
+   {
+    "kind": "top",
+    "window": 1417,
+    "pos": 155,
+    "rel": 0.06,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "кол",
+    "text": " или три години , а после го размених за см. конски сили .\nсамо в покрайнините на центъра има ня[[кол]]ко търговски"
+   },
+   {
+    "kind": "top",
+    "window": 1523,
+    "pos": 237,
+    "rel": 0.059,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "ением",
+    "text": "Вполне вероятно , что два котла мощностью 450 Мвт будут использовать общий единый поглощения с соответствующим сокращ[[ением]] требуемой стали от"
+   },
+   {
+    "kind": "top",
+    "window": 1502,
+    "pos": 27,
+    "rel": 0.059,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": "ień",
+    "text": "Obama mulls ograniczone działania wojskowe w Syrii\nIracka policja otworzyła dziś og[[ień]] w centrum Bagdadu"
+   },
+   {
+    "kind": "top",
+    "window": 1412,
+    "pos": 70,
+    "rel": 0.058,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": " �",
+    "text": " .\nкупете си билет и минете през на врата на поздрави , по-известен като на кап ? ? , или средната порта .\nза[[ �]]�астие , сант"
+   },
+   {
+    "kind": "top",
+    "window": 1416,
+    "pos": 13,
+    "rel": 0.056,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "ения",
+    "text": "в този момент обаче съоръж[[ения]]та отговарят на"
+   },
+   {
+    "kind": "top",
+    "window": 1528,
+    "pos": 237,
+    "rel": 0.054,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "ой",
+    "text": " доволен этим .\nВ них появляется бесконечный список форм и ритма .\nО , нет , сэр .\nРиски , связанные с окружающей сред[[ой]] и рабочими ,"
+   },
+   {
+    "kind": "top",
+    "window": 1222,
+    "pos": 249,
+    "rel": 0.051,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "č",
+    "text": " OF OR IN\n// CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n//\n// @generated\n//\n\n\"com_accountkit_account_verified\" = \"Korisnički ra[[č]]un potvrđen!\";\n"
+   },
+   {
+    "kind": "top",
+    "window": 1414,
+    "pos": 214,
+    "rel": 0.05,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "овар",
+    "text": "управителите на програмата се нуждаят от както оперативни , така и финансови данни , за да определят дали те отг[[овар]]ят на стратегическите"
+   },
+   {
+    "kind": "top",
+    "window": 1505,
+    "pos": 40,
+    "rel": 0.049,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": "żenia",
+    "text": "Ktoś kroi pomidora.\nAmerykański mąż Blanki, 63-letni Roger Lawrence Strunk, stoi teraz w obliczu aktu oskar[[żenia]] o morderstwo wy"
+   },
+   {
+    "kind": "top",
+    "window": 1419,
+    "pos": 71,
+    "rel": 0.049,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "ч",
+    "text": " ком ? éunity ( сега европейският съюз или ес ) .\nда , да , аз съм в хюстън .\nтези ограни[[ч]]ения взимат голя"
+   },
+   {
+    "kind": "top",
+    "window": 1521,
+    "pos": 151,
+    "rel": 0.046,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "ных",
+    "text": "\nВозьми кофе , и расскажи нам , чем ты занимался .\nОкончательное правило отменяет оба исключения и вводит три ограничен[[ных]] исключения в отношении допуст"
+   }
+  ]
+ }
+}

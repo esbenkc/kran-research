@@ -1,0 +1,608 @@
+{
+ "id": "L19N7952",
+ "layer": 19,
+ "neuron": 7952,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 2.3594,
+  "n_strong_tokens": 23,
+  "n_strong_windows": 14,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    11
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    12
+   ],
+   [
+    "code",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " a",
+    2
+   ],
+   [
+    " with",
+    2
+   ],
+   [
+    " posting",
+    1
+   ],
+   [
+    " i",
+    1
+   ],
+   [
+    " as",
+    1
+   ],
+   [
+    " be",
+    1
+   ],
+   [
+    " wait",
+    1
+   ],
+   [
+    "0",
+    1
+   ]
+  ],
+  "strong_pos_median": 183,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 553,
+    "pos": 243,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " a",
+    "text": " relevant category and placing content into the description in both main and product short description but still nothing shows?\n\nA:\n\nThe error is probably 'meta_value'  => 'yes',. You need to specify[[ a]] meta_key as well. \n"
+   },
+   {
+    "kind": "top",
+    "window": 1176,
+    "pos": 221,
+    "rel": 0.798,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "More",
+    "text": "li>\n        <button class='btnMoreInfo'>More</button>\n        <div class='infoCatcher'></div>\n    </li>\n    <li>\n        <button class='btn[[More]]Info'>More</button>\n"
+   },
+   {
+    "kind": "top",
+    "window": 0,
+    "pos": 150,
+    "rel": 0.788,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " posting",
+    "text": " an example).\nHow can I do it? Any hint would be highly appreciated.\nIt is preferable that the solution is given in Scala, but it might be also in Java.\nUPDATE:\nSorry for not[[ posting]] my code sample that I tried"
+   },
+   {
+    "kind": "top",
+    "window": 41,
+    "pos": 164,
+    "rel": 0.775,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " as",
+    "text": " pass the fieldnames to DictWriter,  as far as i know the code is fine, the file test.tsv is being created but for some reason the headers are not being written. \nAny help[[ as]] to why this is happening is"
+   },
+   {
+    "kind": "top",
+    "window": 1313,
+    "pos": 190,
+    "rel": 0.646,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " at",
+    "text": " buffer.limit()\n\n    /**\n     * Returns byte at [index] position.\n     */\n    public actual inline fun loadAt(index: Int): Byte = buffer.get(index)\n\n    /**\n     * Returns byte[[ at]] [index] position.\n    "
+   },
+   {
+    "kind": "top",
+    "window": 923,
+    "pos": 77,
+    "rel": 0.626,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " with",
+    "text": "en and Sammy Cahn, and the title track of:\n Come Fly with Me (Frank Sinatra album), 1958\n Come Fly with Me (Michael Bublé album)\n Come Fly[[ with]] Me (Peter Andre album)\n"
+   },
+   {
+    "kind": "top",
+    "window": 606,
+    "pos": 212,
+    "rel": 0.586,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " You",
+    "text": " System.out.print((char)in.read()); // You might wanna echo it to your console to see progress\n                    }\n                    if (err.available() > 0) {\n                        err.read(); //[[ You]] might wanna echo it to your"
+   },
+   {
+    "kind": "top",
+    "window": 483,
+    "pos": 194,
+    "rel": 0.553,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " r",
+    "text": " c = *argv[3];\n\n    if ( b == '+') {\n\n    r1 = a + c;\n    printf(\"%s\", r1);\n    }\n}\n\nA:\n\nprintf(\"%s\",[[ r]]1);\n\nThis is where your"
+   },
+   {
+    "kind": "top",
+    "window": 149,
+    "pos": 214,
+    "rel": 0.54,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "0",
+    "text": " wait for checkout_error checkout page event, like so:\n$( document.body ).on( 'checkout_error', function(){\n    var wooError = $('.woocommerce-error'); \n    wooError.delay(40[[0]]0).fadeOut(16"
+   },
+   {
+    "kind": "top",
+    "window": 509,
+    "pos": 249,
+    "rel": 0.533,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " what",
+    "text": " do I code the clientvalidationfunction for textbox D based on A, B and C. Can anyone point me in the right direction?\nThanks in advance.\nDimpy\n\nA:\n\nYou don't include[[ what]]'s in the total_validate function"
+   },
+   {
+    "kind": "top",
+    "window": 374,
+    "pos": 152,
+    "rel": 0.523,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "so",
+    "text": "acct=AttackerA&amount;=$100\">Read more!\n\nYou are tricked into clicking on this link while logged into http://notsosecurebank.com, however http://not[[so]]securebank.com does not use"
+   },
+   {
+    "kind": "top",
+    "window": 1257,
+    "pos": 180,
+    "rel": 0.51,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "a",
+    "text": "0px 0px 80px;\n    min-width: 740px;\n}\n\na {\n    color: #CA7900;\n    text-decoration: none;\n}\n\n[[a]]:hover {\n    color: #"
+   },
+   {
+    "kind": "top",
+    "window": 1109,
+    "pos": 232,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ind",
+    "text": "print(s)\n\nA:\n\nYou keep overwriting your coindata dictionary inside the loop, which is why only the last value remains. The second issue with your code is that you keep overriding the co[[ind]]ata['koinex']"
+   },
+   {
+    "kind": "top",
+    "window": 84,
+    "pos": 170,
+    "rel": 0.48,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ")",
+    "text": "            (\"android.intent.action.DIAL\",\n                    Uri.parse(\"tel:\"+ phoneNum[1]+ encodedHarsh)));\n    //Do something in response to button\n}\n\n@Override\nprotected void onCreate(Bundle savedInstanceState[[)]] {\n    super.onCreate(savedInstanceState);\n"
+   },
+   {
+    "kind": "top",
+    "window": 1106,
+    "pos": 72,
+    "rel": 0.46,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " hom",
+    "text": " understanding is that if you embed knot in a special way into a space, there is a special homology theory called Floer homology.\n\nQuestion: what's the definition and properties of a Floer[[ hom]]ology of a knot? How"
+   },
+   {
+    "kind": "top",
+    "window": 1104,
+    "pos": 188,
+    "rel": 0.44,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " a",
+    "text": "enters” as needed.\n\nto play songs: play . We can select which songs to play, using their index: comma-separated indexes of songs: 1,3,10 a selection with[[ a]] dash and an optional end:"
+   },
+   {
+    "kind": "top",
+    "window": 96,
+    "pos": 194,
+    "rel": 0.437,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " assume",
+    "text": "   ./test.pl  -mode report -writeid 12 A3 23......\nWhat is the workaround i can do?\n\nA:\n\nAs you are using the GetOptions function I[[ assume]] you are using GetOpts::"
+   },
+   {
+    "kind": "top",
+    "window": 699,
+    "pos": 250,
+    "rel": 0.434,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " by",
+    "text": " that I can manipulate the parent view controller so that the subviews will be underneath the UIPageControl? Or is there any other good practice to achieve this? \nI know I could implement horizontal scrolling[[ by]] using a scrollView instead of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 857,
+    "pos": 183,
+    "rel": 0.503,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "....",
+    "text": " to ask this question, it seems like such a trivial matter... but I like to use standards and I don't have wide experience with many languages/environments.)\nEDIT: Sorry, should have explained more[[....]] In this instance I can't"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1103,
+    "pos": 132,
+    "rel": 0.503,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "{",
+    "text": "{5}{7} = \\frac{b}{2!}+\\frac{c}{3!}+\\frac{d}{4!}+\\frac{e}{5!}+\\frac[[{]]f}{6!}+\\"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 1.9922,
+  "n_strong_tokens": 244,
+  "n_strong_windows": 149,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    50
+   ],
+   [
+    "StackExchange",
+    23
+   ],
+   [
+    "lang-id",
+    21
+   ],
+   [
+    "Pile-CC",
+    19
+   ],
+   [
+    "PubMed Abstracts",
+    9
+   ],
+   [
+    "OpenWebText2",
+    9
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    78
+   ],
+   [
+    "code",
+    50
+   ],
+   [
+    "zh",
+    5
+   ],
+   [
+    "es",
+    4
+   ],
+   [
+    "sw",
+    2
+   ],
+   [
+    "de",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " ",
+    12
+   ],
+   [
+    "0",
+    8
+   ],
+   [
+    ",",
+    6
+   ],
+   [
+    " the",
+    4
+   ],
+   [
+    " a",
+    4
+   ],
+   [
+    " of",
+    4
+   ],
+   [
+    " \"",
+    4
+   ],
+   [
+    " to",
+    4
+   ]
+  ],
+  "strong_pos_median": 145,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 332,
+    "pos": 71,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ",",
+    "text": " you more organized — you can read more about it in Mark Wilson’s review. After using it on both the desktop and my phone, I’ve got to say they’ve done a good job. However[[,]] one thing they have not implemented"
+   },
+   {
+    "kind": "top",
+    "window": 430,
+    "pos": 218,
+    "rel": 0.98,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " //'",
+    "text": "getBreadcrumbs\",\n            \"icons\",\n            \"customJsBoot\"\n        ],\n        css: [\"app.scss\"],\n        extras: [\n            \"line-awesome\",\n            \"fontawesome-v5\"\n           [[ //']]roboto-font',\n            //'"
+   },
+   {
+    "kind": "top",
+    "window": 1179,
+    "pos": 154,
+    "rel": 0.91,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\n",
+    "text": " mob:canBePet() and mobClass ~= \"MirrorImage\" then\n        storage.put(latest_kill_index, {class = mob:getMobClassName(), pos = mob:getPos()})\n    end[[\n]]end\n\nmob.installOnDie"
+   },
+   {
+    "kind": "top",
+    "window": 566,
+    "pos": 151,
+    "rel": 0.859,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": ", d MMMM y G\",\n                \"d MMMM y G\",\n                \"d/MM/y G\",\n                \"d/MM/y GGGGG\",\n                \"{1}, {0}\",\n                \"{[[1]]} 'at' {0"
+   },
+   {
+    "kind": "top",
+    "window": 555,
+    "pos": 204,
+    "rel": 0.843,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Primary",
+    "text": "            <datatype>XON</datatype>\r\n        </field>\r\n        <field minOccurs=\"0\" maxOccurs=\"0\">\r\n            <name>PD1.4</name>\r\n            <description>Patient[[ Primary]] Care Provider Name &amp;"
+   },
+   {
+    "kind": "top",
+    "window": 467,
+    "pos": 36,
+    "rel": 0.824,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "-I",
+    "text": "In vivo metabolism of apolipoprotein E within the HDL subpopulations LpE, LpE:A-I, LpE:A-II and LpE:A[[-I]]:A-II.\nHigh-density lip"
+   },
+   {
+    "kind": "top",
+    "window": 1067,
+    "pos": 10,
+    "rel": 0.816,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " \\",
+    "text": "Q:\n\n\\insertlecture in subtitle generates error but[[ \\]]insertlecturenumber does not\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 191,
+    "pos": 33,
+    "rel": 0.812,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "H",
+    "text": "�I�v�V�����ƃv���[���тɂ���\n\nH-RANDOM �� S-RANDOM �ɂ���\n\n[[H]]-RANDOM �� S-R"
+   },
+   {
+    "kind": "top",
+    "window": 747,
+    "pos": 74,
+    "rel": 0.804,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "-m",
+    "text": " cationic porphyrins with 1-4 positive charges are studied: mono(N-methyl-4-pyridyl)triphenylporphine chloride [Mono], cis(N[[-m]]ethyl-4-pyrid"
+   },
+   {
+    "kind": "top",
+    "window": 785,
+    "pos": 175,
+    "rel": 0.78,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "   ",
+    "text": "763,7 @@\n     int port_number;\n     struct sockaddr_in client_sai;\n     struct hostent *hostinfo;\n-    struct buffer *to_server, *from_server;\n+[[   ]] struct buffer *local_to_server"
+   },
+   {
+    "kind": "top",
+    "window": 378,
+    "pos": 188,
+    "rel": 0.78,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " it",
+    "text": " now attacks the constitutionality of this statute. He contends the statute is unconstitutional in that (a) it *575 is a denial of due process because of vagueness, (b)[[ it]] is a denial of equal protection"
+   },
+   {
+    "kind": "top",
+    "window": 1307,
+    "pos": 31,
+    "rel": 0.765,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "traction",
+    "text": "#include \"ExtractionOptionsJsonObject.h\"\n#include <regex>\n\nnamespace polycube {\n  namespace service {\n    namespace model {\n\n      ExtractionOptionsJsonObject::Ex[[traction]]OptionsJsonObject() {\n        m"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1427,
+    "pos": 64,
+    "rel": 0.58,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": "dn",
+    "text": " gut und Praktich, sofort benutzt, ich werde weiter an Freunde und Bekannte empfehlen..\nDas Gerät selbst ist in Sachen Handling und Handhabbarkeit völlig in Or[[dn]]ung. Dies einmal abg"
+   },
+   {
+    "kind": "random-strong",
+    "window": 656,
+    "pos": 31,
+    "rel": 0.639,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " \n\n",
+    "text": "Q:\n\nMemory leak for javascript setInterval\n\nIs there any difference between these 2 statements\nsetInterval(animateImage, 1000);\n\nor[[ \n\n]]setInterval('animateImage()',"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1122,
+    "pos": 241,
+    "rel": 0.624,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " here",
+    "text": " < v; ++k)\n      ++this->a;\n  }\n};\nclass S5 {\n  int a;\n  S5() : a(0) {} // expected-note {{implicitly declared private[[ here]]}}\n\npublic:\n  S5"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1585,
+    "pos": 183,
+    "rel": 0.69,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "的",
+    "text": "没半点鱼油的味道，比起之前吃的 ，这就是水。\n用到现在还是满好的，就是烫刘海觉得就显大了。如果要烫刘海的话，建议再买小一点[[的]]。\n很少发表评论，两个"
+   },
+   {
+    "kind": "random-strong",
+    "window": 297,
+    "pos": 60,
+    "rel": 0.522,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\":",
+    "text": ":utf-8 -*-\n# ötszaz.py\n# , 2017\n\nérték = {\"1\":500,\n         \"2\":450,\n         \"3[[\":]]400}\n\n# ---"
+   },
+   {
+    "kind": "random-strong",
+    "window": 46,
+    "pos": 184,
+    "rel": 0.725,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "div",
+    "text": " id=\"railway_lines\">\n    <div class=\"rails\">\n        <div class=\"truck\"></div>\n    </div>\n    <div class=\"rails\">\n        <div class=\"truck\"></[[div]]>\n    </div>\n</"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1077,
+    "pos": 35,
+    "rel": 0.659,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " \"",
+    "text": "{\n  \"name\": \"bluetoothconnector\",\n  \"full_name\": \"bluetoothconnector\",\n  \"oldname\": null,\n  \"aliases\": [\n\n  ],\n [[ \"]]versioned_formulae\": [\n\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 622,
+    "pos": 169,
+    "rel": 0.745,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": "5px 5px;\n}\n\n.tab{\n    float: left;\n    text-align: center;\n    line-height: 20px;\n    width: 20px;\n    height:[[ ]]20px;\n    cursor"
+   }
+  ]
+ }
+}

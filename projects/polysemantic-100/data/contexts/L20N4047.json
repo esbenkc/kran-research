@@ -1,0 +1,576 @@
+{
+ "id": "L20N4047",
+ "layer": 20,
+ "neuron": 4047,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 4.0,
+  "n_strong_tokens": 29,
+  "n_strong_windows": 13,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    13
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    13
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "\"",
+    5
+   ],
+   [
+    " =",
+    4
+   ],
+   [
+    "\",",
+    3
+   ],
+   [
+    "\":",
+    2
+   ],
+   [
+    "\")",
+    2
+   ],
+   [
+    ",",
+    1
+   ],
+   [
+    " &",
+    1
+   ],
+   [
+    " new",
+    1
+   ]
+  ],
+  "strong_pos_median": 179,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 301,
+    "pos": 119,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": " unsigned int *c,\n      unsigned int *d)\n{\n\t__asm__ __volatile__ (\".byte 0x53\\n\\tcpuid\\n\\t\"\n\t\t\t      \"movl %%ebx[[,]] %%esi\\n\\t.byte "
+   },
+   {
+    "kind": "top",
+    "window": 1288,
+    "pos": 90,
+    "rel": 0.957,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\"",
+    "text": "3942908160';\n\n  public async up(queryRunner: QueryRunner): Promise<any> {\n    await queryRunner.query(`CREATE TABLE \"temporary_user_tip\" (\"id[[\"]] integer PRIMARY KEY AUTOINCREMENT NOT"
+   },
+   {
+    "kind": "top",
+    "window": 1365,
+    "pos": 176,
+    "rel": 0.746,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\"),",
+    "text": " +\n    \"\"\"<unq:bar>bar</unq:bar>\"\"\" +\n    \"\"\"</unq:foo>), \"\"\" +\n    \"\"\"Some(\"http://www.example.com/unqualified[[\"),]] \"foo\", \"\"\" +\n   "
+   },
+   {
+    "kind": "top",
+    "window": 1371,
+    "pos": 102,
+    "rel": 0.707,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " =",
+    "text": "migrate;\n  type = dbm.dataType;\n  seed = seedLink;\n};\n\nexports.up = function (db) {\n  return Promise.all([\n    db.runSql('UPDATE office SET name[[ =]] \\'Office of Brazil and Southern"
+   },
+   {
+    "kind": "top",
+    "window": 1370,
+    "pos": 191,
+    "rel": 0.672,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " =",
+    "text": "=\"button\" onclick=\"doe()\" label=\"Mozilla should not crash, when clicking this button\"/>\n<div style=\"display:table-row\"/>\n<html:script>\nfunction clickbutton()\n{\n  var ev[[ =]] document.createEvent('MouseEvents"
+   },
+   {
+    "kind": "top",
+    "window": 1129,
+    "pos": 165,
+    "rel": 0.625,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " new",
+    "text": "\n\nimport (\n\t\"sort\"\n\t\"syscall\"\n\t\"unsafe\"\n)\n\n//sys\tsysctl(mib []_C_int, old *byte, oldlen *uintptr, new *byte,[[ new]]len uintptr) (err error"
+   },
+   {
+    "kind": "top",
+    "window": 1221,
+    "pos": 217,
+    "rel": 0.621,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " \"/\"",
+    "text": "FN}\"\n}\n#DN_EXEC=`echo \"$0\" | ${EXEC_AWK} -F/ '{b=$1; for (i=2; i < NF; i ++) {b=b[[ \"/\"]] $(i)}; print b"
+   },
+   {
+    "kind": "top",
+    "window": 944,
+    "pos": 52,
+    "rel": 0.617,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\",",
+    "text": "_\n{\n\t'U' 0 lo;\n\t'U' 4 hi;\n};\n\ndefn\n_1_(addr) {\n\tcomplex _1_ addr;\n\tprint(\"\tlo\t[[\",]] addr.lo, \"\\n\");\n"
+   },
+   {
+    "kind": "top",
+    "window": 1237,
+    "pos": 189,
+    "rel": 0.594,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\":",
+    "text": " var f = ((n * base) | 0) % base;\n  return {v: v, f: f};\n}\n\n$provide.value(\"$locale\", {\n  \"DATETIME_FORMATS[[\":]] {\n    \"AMPMS\":"
+   },
+   {
+    "kind": "top",
+    "window": 1332,
+    "pos": 71,
+    "rel": 0.594,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\":",
+    "text": "\", ONE: \"one\", TWO: \"two\", FEW: \"few\", MANY: \"many\", OTHER: \"other\"};\n$provide.value(\"$locale\", {\n  \"DATETIME_FORMATS[[\":]] {\n    \"AMPMS\":"
+   },
+   {
+    "kind": "top",
+    "window": 1353,
+    "pos": 147,
+    "rel": 0.574,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\"",
+    "text": " set_bit(bitnr,addr) ({ \\\nregister int __res __asm__(\"ax\"); \\\n__asm__(\"bt %2,%3;setb %%al\":\"=a\" (__res):\"a[[\"]] (0),\"r\" ("
+   },
+   {
+    "kind": "top",
+    "window": 869,
+    "pos": 211,
+    "rel": 0.539,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " =",
+    "text": " i);\n\n        var rq = objStore.createIndex(\"index\", \"\")\n        rq.onerror = function() { assert_unreached(\"error: \" + rq.error.name); }\n        rq.onsuccess[[ =]] function() { }\n\n        obj"
+   },
+   {
+    "kind": "top",
+    "window": 1277,
+    "pos": 193,
+    "rel": 0.48,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " \"",
+    "text": "_SOURCE -I../lib -DDEFAULT_CONFIG_FILE=\\\"$(confdir)/cpufreq-bench.conf\\\"\n\n$(OUTPUT)%.o : %.c\n\t$(ECHO) \"  CC     [[ \"]] $@\n\t$(QUIET"
+   },
+   {
+    "kind": "top",
+    "window": 1343,
+    "pos": 236,
+    "rel": 0.479,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ,",
+    "text": "pci_host.h\"\n#include \"trace.h\"\n\n/* debug PCI */\n//#define DEBUG_PCI\n\n#ifdef DEBUG_PCI\n#define PCI_DPRINTF(fmt, ...) \\\ndo { printf(\"pci_host_data: \" fmt[[ ,]] ## __VA_ARGS__); }"
+   },
+   {
+    "kind": "top",
+    "window": 13,
+    "pos": 226,
+    "rel": 0.479,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "set",
+    "text": ".com/scionproto/scion/go/lib/common\"\n\tjsontopo \"github.com/scionproto/scion/go/lib/topology/json\"\n)\n\nvar (\n\tupdate = flag.Bool(\"update\", false, \"[[set]] to true to update golden files"
+   },
+   {
+    "kind": "top",
+    "window": 488,
+    "pos": 48,
+    "rel": 0.479,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " =",
+    "text": "\">\n\n<head>\n  <title>Suave Test Page</title>\n  <script type=\"text/javascript\">\n  //<![CDATA[\n    window.addEventListener(\"load\", function () {\n      var sendFiles[[ =]] function(event) {\n        var"
+   },
+   {
+    "kind": "top",
+    "window": 1308,
+    "pos": 66,
+    "rel": 0.479,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ":",
+    "text": " !u!21 &2100000\nMaterial:\n  serializedVersion: 6\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject[[:]] {fileID: 0"
+   },
+   {
+    "kind": "top",
+    "window": 1341,
+    "pos": 126,
+    "rel": 0.477,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " <",
+    "text": " t('User contact'),\n    'admin title' => t('User contact'),\n    'admin description' => t('When enabled, this overrides the default Drupal behavior for displaying the user contact form at[[ <]]em>user/%user/contact"
+   },
+   {
+    "kind": "top",
+    "window": 1244,
+    "pos": 219,
+    "rel": 0.473,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " match",
+    "text": "\" goto init\r\n\r\necho.\r\necho ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.\r\necho.\r\necho Please set the JAVA_HOME variable in your environment to[[ match]] the\r\necho location of your"
+   },
+   {
+    "kind": "random-strong",
+    "window": 662,
+    "pos": 251,
+    "rel": 0.512,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " &",
+    "text": ";\n\t//Reg1 = _mm_unpacklo_epi64(x, y);\n\tReg1 = x;\n\n\t//REG1 = ((REG1 << 16) | REG1)[[ &]] glm::uint6"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 4.5625,
+  "n_strong_tokens": 53,
+  "n_strong_windows": 34,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "OpenWebText2",
+    11
+   ],
+   [
+    "StackExchange",
+    8
+   ],
+   [
+    "Pile-CC",
+    7
+   ],
+   [
+    "Github",
+    7
+   ],
+   [
+    "OpenSubtitles",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    27
+   ],
+   [
+    "code",
+    7
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ",",
+    4
+   ],
+   [
+    " know",
+    2
+   ],
+   [
+    " '",
+    2
+   ],
+   [
+    "ries",
+    2
+   ],
+   [
+    "ed",
+    2
+   ],
+   [
+    " (",
+    2
+   ],
+   [
+    " boy",
+    1
+   ],
+   [
+    "a",
+    1
+   ]
+  ],
+  "strong_pos_median": 127,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 220,
+    "pos": 141,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " shit",
+    "text": " ground, fighting back with flash bang grenades and tear gas.\n\nAll of which sent Democrats into a frenzy.\n\nYou tear-gassed women and children, asswipe! And on Thanksgiving weekend, you piece of[[ shit]], asshole, motherfucking"
+   },
+   {
+    "kind": "top",
+    "window": 974,
+    "pos": 191,
+    "rel": 0.781,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ides",
+    "text": "(name: \"Other Menu Items\", items: [])\n    let sandwiches_burgers = Category(name: \"Sandwiches & Burgers\", items: [])\n    let sides = Category(name: \"S[[ides]]\", items: [])\n\n    a"
+   },
+   {
+    "kind": "top",
+    "window": 240,
+    "pos": 171,
+    "rel": 0.753,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Question",
+    "text": " string with words separated by semicolons:\nbookmarked=false; bookmark_id=''; bookmarks_path='/en-US/bookmarks'; bookmarkable_id='793447'; bookmarkable_type='[[Question]]'\n\nBut I don't know"
+   },
+   {
+    "kind": "top",
+    "window": 710,
+    "pos": 127,
+    "rel": 0.729,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ет",
+    "text": "[random.nextInt(HELLO.length)]);break;\n        case(\"Привет!\"):\n            System.out.println(HELLO[random.nextInt(HELLO.length)]);break;\n        case(\"прив[[ет]]\"):\n            System.out.println("
+   },
+   {
+    "kind": "top",
+    "window": 600,
+    "pos": 119,
+    "rel": 0.705,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "iel",
+    "text": ".\n\n\n\n\n\nThe Argentine midfielder joins 'Die Werkself' for a reported transfer fee of €22 million and has put pen to paper on a contract until June 2025.\n\n\n\n\"Exequ[[iel]] Palacios is a technically gifted"
+   },
+   {
+    "kind": "top",
+    "window": 232,
+    "pos": 131,
+    "rel": 0.651,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "·",
+    "text": " soup.prettify() \n>     word = soup.find_all('a')\n>     print word\n>     return word\n\nOUTPUT:\n>     [<a href=\"default.aspx\"><img alt=\"[[·]]Î°í\" border=\""
+   },
+   {
+    "kind": "top",
+    "window": 900,
+    "pos": 71,
+    "rel": 0.647,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "yeah",
+    "text": ". For example:\n\"he said, 'well, *you* look like something the cat dragged in,' and I'm like,\n'thanks a lot', but what I said was, '[[yeah]], I'm really tired today"
+   },
+   {
+    "kind": "top",
+    "window": 1052,
+    "pos": 117,
+    "rel": 0.627,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ",",
+    "text": "-ranking Democrat, said in an interview for “The Daily,” a New York Times podcast. “His role from time to time I’ve considered to be destructive, sometimes constructive. I wonder, you know[[,]] if he really is the man"
+   },
+   {
+    "kind": "top",
+    "window": 16,
+    "pos": 205,
+    "rel": 0.606,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " boy",
+    "text": ",” she says. She posted the song online and social influencer Julieanna “YesJulz” Goddard—who eventually would become Shake’s manager—found it, tweeting, “Where’s this[[ boy]]?”\n\n“I was like, ‘"
+   },
+   {
+    "kind": "top",
+    "window": 621,
+    "pos": 110,
+    "rel": 0.599,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ",",
+    "text": " BTW, I love)—observed Stephanie and Elide fucking up and said, \"I just want to make this really clear about seniority here. I see a lot of girls that are like[[,]] dressed pretty…and I see the"
+   },
+   {
+    "kind": "top",
+    "window": 1057,
+    "pos": 96,
+    "rel": 0.596,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "ed",
+    "text": " Phillies at Citi Field. The day felt like it would never come, as Lowrie battled a relentless string of injuries that led to setback after setback each time he felt close to healthy.\n\n“J[[ed]] is available,” Mets manager Mickey"
+   },
+   {
+    "kind": "top",
+    "window": 431,
+    "pos": 121,
+    "rel": 0.592,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " time",
+    "text": " makes them cry. Thanks standardized testing and common core! — Louis C.K. (@louisck) April 28, 2014\n\nA huge amount of my third graders[[ time]] is spent preparing for and answering"
+   },
+   {
+    "kind": "random-strong",
+    "window": 75,
+    "pos": 50,
+    "rel": 0.524,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " know",
+    "text": " Times columnist Maureen Dowd said George H.W. Bush called Donald Trump a curse word and threw his shoe at the television when Trump was on.\n\nDowd said, “I think, you[[ know]], that Donald Trump would be"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1277,
+    "pos": 167,
+    "rel": 0.589,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ")/",
+    "text": ".o $(OUTPUT)parse.o $(OUTPUT)system.o $(OUTPUT)benchmark.o\nendif\n\nCFLAGS += -D_GNU_SOURCE -I../lib -DDEFAULT_CONFIG_FILE=\\\"$(confdir[[)/]]cpufreq-bench.conf\\"
+   },
+   {
+    "kind": "random-strong",
+    "window": 470,
+    "pos": 202,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "Sad",
+    "text": " the good news online and welcomed her future son-in-law to the family.\n\nELIZABETH HURLEY, 53, SIZZLES IN HOT PINK BIKINI\n\n\"[[Sad]]ie’s getting married!!!!! To"
+   },
+   {
+    "kind": "random-strong",
+    "window": 62,
+    "pos": 200,
+    "rel": 0.548,
+    "gate_open": true,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": " old",
+    "text": " in Indian Ocean.\"\" \"\"April 6th, 2005\"\" \"Atsushi.\" \"Washing that tub won't make her go faster.\" \"He's right.\" \"Tell[[ old]] man, Kamio.\" \""
+   },
+   {
+    "kind": "random-strong",
+    "window": 891,
+    "pos": 132,
+    "rel": 0.562,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "-with",
+    "text": " \"POST, GET, OPTIONS, DELETE\");\nresponse.setHeader(\"Access-Control-Max-Age\", \"3600\");\nresponse.setHeader(\"Access-Control-Allow-Headers\", \"Content-Type, x-requested[[-with]]\");\n\nmy angular function is this"
+   },
+   {
+    "kind": "random-strong",
+    "window": 286,
+    "pos": 246,
+    "rel": 0.562,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ITO",
+    "text": " addData($data)\n    {\n\n        App::setLocale('it');\n        /*\n        array:19 [▼\n          0 => \"N° FILE\"\n          1 => \"S[[ITO]] DI COLLEGAMENTO ("
+   },
+   {
+    "kind": "random-strong",
+    "window": 586,
+    "pos": 163,
+    "rel": 0.589,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "leader",
+    "text": " hell I probably gained a pound just talking to you.\" she joked and put another chocolate into her mouth. \"Better me than you I suppose, you'd never be able to handle filling out miss cheer[[leader]]\".\n\n\n\n\"Hey now, that"
+   },
+   {
+    "kind": "random-strong",
+    "window": 741,
+    "pos": 199,
+    "rel": 0.541,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":",
+    "text": "());\n        }  \n    }\n}\npublic Form1()\n{\n    InitializeComponent();\n}\n[STAThread]\nprivate void Form1_Load(object sender, EventArgs e)\n{\n    string authHeader = \"User-Agent[[:]] Mozilla/5.0 ("
+   }
+  ]
+ }
+}

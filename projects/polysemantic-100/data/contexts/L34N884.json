@@ -1,0 +1,584 @@
+{
+ "id": "L34N884",
+ "layer": 34,
+ "neuron": 884,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 55.25,
+  "n_strong_tokens": 14,
+  "n_strong_windows": 3,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    2
+   ],
+   [
+    "Github",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    2
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " +",
+    4
+   ],
+   [
+    " <",
+    3
+   ],
+   [
+    "(id",
+    2
+   ],
+   [
+    " *",
+    1
+   ],
+   [
+    "   ",
+    1
+   ],
+   [
+    "\t\t\t",
+    1
+   ],
+   [
+    " =",
+    1
+   ],
+   [
+    "+",
+    1
+   ]
+  ],
+  "strong_pos_median": 209,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1207,
+    "pos": 107,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\t\t\t",
+    "text": " int[6][6];\r\n\t\tfor (int i = 0; i < 6; i++) {\r\n\t\t\tfor (int j = 0; j < 6; j++) {\r\n[[\t\t\t]]\tarr[i][j] ="
+   },
+   {
+    "kind": "top",
+    "window": 120,
+    "pos": 217,
+    "rel": 0.706,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "(id",
+    "text": " id = ($focused.parents(\"td\").attr('id'));\n        if (id.startsWith(\"field_\")) {              \n            idArr = id.replace(\"field_\", \"\").split(\"_\");\n            row = Number[[(id]]Arr[0]);\n            col"
+   },
+   {
+    "kind": "top",
+    "window": 48,
+    "pos": 178,
+    "rel": 0.629,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " *",
+    "text": " should be a button in the middle of the two category as a seperator.\n\nA:\n\nTry this code.\n@interface ViewController () <UITableViewDelegate, UITableViewDataSource> {\n    NSArray *arrCat;\n    NSArray[[ *]]arrDog;\n}\n\n- ("
+   },
+   {
+    "kind": "top",
+    "window": 574,
+    "pos": 159,
+    "rel": 0.419,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " determined",
+    "text": " led us to compose a possible arrangement of the restriction fragments on the viral genome. Sequence analysis of these fragments indicated that the arrangement was consistent with the known total nucleotide sequence of the genome. In the[[ determined]] sequences, two bases were observed"
+   },
+   {
+    "kind": "top",
+    "window": 514,
+    "pos": 181,
+    "rel": 0.398,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " are",
+    "text": "1).\nGenerally, a conventional linear motor has a cuboid housing with a wall thickness sufficient for mechanical strength. The housing contains a plurality of annular-shaped coils each having a hollow hole. These coils[[ are]] arranged such that central axes of"
+   },
+   {
+    "kind": "top",
+    "window": 760,
+    "pos": 52,
+    "rel": 0.339,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " understanding",
+    "text": " important cause of sudden cardiac death (SCO) among adults living in industrialized nations. Great progress has been made in identifying genes underlying various Mendelian disorders associated with inherited arrhythmia susceptibility as models for[[ understanding]] more common causes of SCO."
+   },
+   {
+    "kind": "top",
+    "window": 1066,
+    "pos": 190,
+    "rel": 0.285,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": ";",
+    "text": " Street; except where indicated\n \"Music for a Found Harmonium\" (Simon Jeffes, Penguin Café Ltd) – 2:38\n \"Brackagh Hill\" (words: Traditional[[;]] music: Andy Irvine) –"
+   },
+   {
+    "kind": "top",
+    "window": 746,
+    "pos": 161,
+    "rel": 0.256,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " flowers",
+    "text": "cm long by 0.6–1 cm wide, glabrous and dark green above. The inflorescences of the plants in cultivation are bright lilac-purple, and comprise[[ flowers]] so densely crowded in clusters along"
+   },
+   {
+    "kind": "top",
+    "window": 175,
+    "pos": 235,
+    "rel": 0.255,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " this",
+    "text": " to get weaker as households and business begin to reassess the outlook.\n\nIt’s with that in mind that the exchange rate target being pursued could be formalised, perhaps by establishing a currency board. Under[[ this]] arrangement, rather than having a"
+   },
+   {
+    "kind": "top",
+    "window": 978,
+    "pos": 47,
+    "rel": 0.205,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".",
+    "text": " valley\n\nBadami Cave Temple\n\nTungabhadra River\n\nVittala Temple\n\nDestination\n\nDay Wise Plan\n\nDay 01 Arrive Mumbai\n\nFirst Day of Ancient Civilisations Tour[[.]] Assistance on arrival & Transfer to"
+   },
+   {
+    "kind": "top",
+    "window": 702,
+    "pos": 39,
+    "rel": 0.189,
+    "gate_open": true,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": "/C",
+    "text": "\nImplementation of Direct Segments on a RISC-V Processor (2018) [pdf] - ingve\nhttps://carrv.github.io/2018/papers[[/C]]ARRV_201"
+   },
+   {
+    "kind": "top",
+    "window": 695,
+    "pos": 9,
+    "rel": 0.182,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "ors",
+    "text": "A conventional flat cable comprises a plurality of conduct[[ors]] covered with insulation arranged to joint"
+   },
+   {
+    "kind": "top",
+    "window": 208,
+    "pos": 115,
+    "rel": 0.176,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "ially",
+    "text": " of discharge tubes having coaxial electrodes. Research has been conducted heretofore on the plasma focus as sources generating neutrons, for which gas such as heavy hydrogen filled in a discharge tube having coax[[ially]] disposed cylindrical electrodes is turned into"
+   },
+   {
+    "kind": "top",
+    "window": 285,
+    "pos": 161,
+    "rel": 0.166,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " latter",
+    "text": " as rectangular. Likewise, it is not important whether the spar be continuous across the rotor axis to attach to opposed blades, or whether each spar be unitary and joined only to one blade. For the[[ latter]] configuration there may be an odd"
+   },
+   {
+    "kind": "top",
+    "window": 1198,
+    "pos": 14,
+    "rel": 0.156,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " tiles",
+    "text": "Geneva is a minimalist personal or corporate vCard template based on nine[[ tiles]]. Each tile is a separate"
+   },
+   {
+    "kind": "top",
+    "window": 523,
+    "pos": 42,
+    "rel": 0.153,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " the",
+    "text": "allization of a polymorphic hydrate system.\nNitrofurantoin can form two monohydrates, which have the same chemical composition and molar ratio of water, but differ in[[ the]] crystal arrangements. The two mon"
+   },
+   {
+    "kind": "top",
+    "window": 270,
+    "pos": 197,
+    "rel": 0.152,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " they",
+    "text": " not face any legal consequences.\n\nThe incident happened on August 19 and appeared to be a case of mistaken identity. That night, officers were responding to a call of an alleged armed robbery and when[[ they]] showed up they saw a "
+   },
+   {
+    "kind": "top",
+    "window": 212,
+    "pos": 107,
+    "rel": 0.152,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "es",
+    "text": " turbines for aviation turbomachines of the bypass and two-spool type.\nEach stage of the low-pressure turbine of a turbomachine is made up of a nozzle formed by a plurality of stationary van[[es]] placed in a flow passage,"
+   },
+   {
+    "kind": "top",
+    "window": 808,
+    "pos": 97,
+    "rel": 0.15,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": ",",
+    "text": " cover which is designed as a flexible, sheet-like element.\nA basic problem with the construction of such modern tops for convertible is vehicles, which usually comprise a plurality of roof parts designed as rigid shell parts[[,]] is that the linkage parts which"
+   },
+   {
+    "kind": "top",
+    "window": 736,
+    "pos": 51,
+    "rel": 0.149,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " or",
+    "text": " of digitalis on vulnerability to atrial fibrillation and flutter were assessed in man, using the model of repetitive atrial firing initiated by post-drive atrial extrastimulation. Nine patients without heart failure[[ or]] significant mitral valve disease were"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 39.0,
+  "n_strong_tokens": 8,
+  "n_strong_windows": 7,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    3
+   ],
+   [
+    "lang-id",
+    1
+   ],
+   [
+    "NIH ExPorter",
+    1
+   ],
+   [
+    "OpenWebText2",
+    1
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    3
+   ],
+   [
+    "en",
+    3
+   ],
+   [
+    "it",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "W",
+    2
+   ],
+   [
+    ":N",
+    1
+   ],
+   [
+    "-",
+    1
+   ],
+   [
+    " pro",
+    1
+   ],
+   [
+    "OI",
+    1
+   ],
+   [
+    "oi",
+    1
+   ],
+   [
+    " rim",
+    1
+   ]
+  ],
+  "strong_pos_median": 131,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 565,
+    "pos": 174,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "W",
+    "text": " this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n[[W]]ARRANTIES OF MERCHANTABILITY AND FITNESS"
+   },
+   {
+    "kind": "top",
+    "window": 1304,
+    "pos": 186,
+    "rel": 0.827,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "OI",
+    "text": "//\n// $URL$\n// $Id$\n// \n//\n// Author(s)     : Menelaos Karavelas <mkaravel@iacm.forth.gr>\n\n#ifndef CGAL_VORON[[OI]]_DIAGRAM_2_VALIDITY"
+   },
+   {
+    "kind": "top",
+    "window": 1383,
+    "pos": 98,
+    "rel": 0.638,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "W",
+    "text": " published by the Free\nSoftware Foundation; either version 3, or (at your option) any later\nversion.\n\nGCC is distributed in the hope that it will be useful, but WITHOUT ANY\n[[W]]ARRANTY; without even the"
+   },
+   {
+    "kind": "top",
+    "window": 1471,
+    "pos": 23,
+    "rel": 0.551,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " rim",
+    "text": "lavrov ci ha detto il segretario di stato del riso condoleezza che la russia[[ rim]]ane aperta al dialogo"
+   },
+   {
+    "kind": "top",
+    "window": 580,
+    "pos": 161,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " pro",
+    "text": " on the WCNT iron is also a regulator of SWCNT toxicity via production of anti-/pro-inflammatory cytokines, respectively. Specific Aim 1 is to establish the extent to which SWCNT alone are[[ pro]]-inflammatory to lung cells and tissue"
+   },
+   {
+    "kind": "top",
+    "window": 359,
+    "pos": 101,
+    "rel": 0.516,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "-",
+    "text": "FR) mutation (in almost 50% of patients of Asian ethnicity compared to 15% in the Caucasian population [2]) or the anaplastic lymphoma kinase (ALK) re[[-]]arrangement (in 5"
+   },
+   {
+    "kind": "top",
+    "window": 69,
+    "pos": 56,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":N",
+    "text": ": Can't find model for source store\n\nFolks,\nLightweight migration is failing for me 100% of the time on this line:\n[persistentStoreCoordinator addPersistentStoreWithType[[:N]]SSQLiteStoreType configuration"
+   },
+   {
+    "kind": "top",
+    "window": 1426,
+    "pos": 43,
+    "rel": 0.487,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": " Str",
+    "text": "zeugt auf jedenfall mit der Qualität. Das Filz fühlt sich sehr hochwertig an. Die Befestigungsmöglichkeiten sind sehr gut positioniert so dass der Organizer sehr[[ Str]]amm an der Lehne liegt"
+   },
+   {
+    "kind": "top",
+    "window": 1476,
+    "pos": 248,
+    "rel": 0.481,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "gr",
+    "text": "000\nUn ragazzo su una slitta rossa sta scendendo la collina.\nNoi in Gran Bretagna la pensiamo diversamente dagli americani.\nUn uomo si ag[[gr]]appa a una maniglia nell"
+   },
+   {
+    "kind": "top",
+    "window": 456,
+    "pos": 8,
+    "rel": 0.468,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "CED",
+    "text": "Dallas and Texas Make Roster Moves\n\n[[CED]]AR PARK, Texas – Dallas"
+   },
+   {
+    "kind": "top",
+    "window": 1487,
+    "pos": 5,
+    "rel": 0.394,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "ア",
+    "text": "前半は話の[[ア]]ラや貞子の"
+   },
+   {
+    "kind": "top",
+    "window": 1441,
+    "pos": 104,
+    "rel": 0.388,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " ag",
+    "text": "arse... no creo que sea capaz de calentar ninguna estancia por pequeña que sea, como bien indica: Calentador de Espacio Personal...\nBueno, en principio era para un[[ ag]]aporni, pero es"
+   },
+   {
+    "kind": "top",
+    "window": 930,
+    "pos": 212,
+    "rel": 0.385,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "-B",
+    "text": "imos and southern Chinese) and 15 of whom are Caucasian. More than 50% of these patients (all Mongolian) have elevated titres of serum immunoglobulin A against Epstein[[-B]]arr virus capsid antigen."
+   },
+   {
+    "kind": "top",
+    "window": 454,
+    "pos": 9,
+    "rel": 0.38,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "v",
+    "text": "NEW YORK (CNN) -- Victor Gue[[v]]ares rented apartments and saved money"
+   },
+   {
+    "kind": "top",
+    "window": 861,
+    "pos": 75,
+    "rel": 0.372,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " problem",
+    "text": " calling the Gallery Intent. Once the user selects a specific image, the data path of the image is returned to me which then i preview to the user by setting the image onto an imageview.\nThe[[ problem]] crops up when the image size"
+   },
+   {
+    "kind": "top",
+    "window": 466,
+    "pos": 5,
+    "rel": 0.369,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " rim",
+    "text": "Dov'eravamo[[ rim]]asti con il cucinino"
+   },
+   {
+    "kind": "top",
+    "window": 1191,
+    "pos": 243,
+    "rel": 0.364,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "Phys",
+    "text": " remains largely unknown ([@B30]).\n\nDNA methyltransferases genes have been found in many plant species, such as tobacco, rice, *Arabidopsis*, wheat, maize, *[[Phys]]comitrella*, and leg"
+   },
+   {
+    "kind": "top",
+    "window": 866,
+    "pos": 126,
+    "rel": 0.364,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Hol",
+    "text": " (1871–1904). She was a paternal granddaughter of jurist and writer Alfred Sinding-Larsen, niece of physician Christian Magnus Sinding-Larsen, architect[[ Hol]]ger Sinding-Larsen"
+   },
+   {
+    "kind": "top",
+    "window": 609,
+    "pos": 135,
+    "rel": 0.354,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " -",
+    "text": ". This album was publicated in only Turkey and France.\n\nTrack listing \n\"Non, Je Ne Regrette Rien\" (Marc Hayel, Charles Dumont, Michel Vaucaire)[[ -]] 2:15\n"
+   },
+   {
+    "kind": "top",
+    "window": 660,
+    "pos": 131,
+    "rel": 0.354,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " problem",
+    "text": " is to save the array list of downloaded data in onSaveInstanceState() and successfully retrieve it when the user swipes back to one of the 2 above fragments only FOR THE 1 FIRST TIME. The[[ problem]] is when i navigate back to"
+   }
+  ]
+ }
+}

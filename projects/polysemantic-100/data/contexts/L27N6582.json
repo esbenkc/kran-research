@@ -1,0 +1,576 @@
+{
+ "id": "L27N6582",
+ "layer": 27,
+ "neuron": 6582,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 6.4688,
+  "n_strong_tokens": 8,
+  "n_strong_windows": 6,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    3
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    4
+   ],
+   [
+    "code",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " Kh",
+    1
+   ],
+   [
+    " and",
+    1
+   ],
+   [
+    " for",
+    1
+   ],
+   [
+    "://",
+    1
+   ],
+   [
+    "ao",
+    1
+   ],
+   [
+    " the",
+    1
+   ],
+   [
+    "1",
+    1
+   ],
+   [
+    "础",
+    1
+   ]
+  ],
+  "strong_pos_median": 81,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1042,
+    "pos": 21,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ao",
+    "text": "Encyclopedia of Anti-Revisionism On-Line\n\nProgressive Workers Movement\n\nOn the Question of Liu Sh[[ao]]-chi\n\nFirst Published:"
+   },
+   {
+    "kind": "top",
+    "window": 690,
+    "pos": 102,
+    "rel": 0.889,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "://",
+    "text": "�议：[CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)\n\n> 自豪地采用[谷歌翻译](https[[://]]translate.google.cn/)\n\n在"
+   },
+   {
+    "kind": "top",
+    "window": 1184,
+    "pos": 78,
+    "rel": 0.667,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "1",
+    "text": " the mouth of Luoyang River. Being the first stone bay bridge in China, it enjoys the reputation of \" one of the four ancient bridges of China\".\n\nThe project started from the fifth year ([[1]]053) of Huang"
+   },
+   {
+    "kind": "top",
+    "window": 614,
+    "pos": 87,
+    "rel": 0.657,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " for",
+    "text": " cookies to improve functionality and performance, and to provide you with relevant advertising. If you continue browsing the site, you agree to the use of cookies on this website. See our Privacy Policy and User Agreement[[ for]] details.\n\nWhy should you be"
+   },
+   {
+    "kind": "top",
+    "window": 3,
+    "pos": 225,
+    "rel": 0.589,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Kh",
+    "text": " advocate for\ndemocracy have been outlawed as ‘terrorist’ organisations under the Suppression\nof Terrorism Act.\n\nIn a statement\nto media, Police Information and Communications Officer Assistant\nSuperintendent[[ Kh]]ulani Mamba said only"
+   },
+   {
+    "kind": "top",
+    "window": 1238,
+    "pos": 75,
+    "rel": 0.548,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "础",
+    "text": "013%2F09%2F03%2Fthe-angular-way%2F&aid=2&nid=1)  \n[[视频] AngularJS 基[[础]]视频教程](http://weekly"
+   },
+   {
+    "kind": "top",
+    "window": 377,
+    "pos": 182,
+    "rel": 0.428,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " According",
+    "text": " from Virtually anyplace.\n\nModifications during the content material are carried out if necessary to satisfy The subject desire. This follows referencing of the paper in the needed referencing design in addition to formatting the paper[[ According]] to the university norms building the"
+   },
+   {
+    "kind": "top",
+    "window": 123,
+    "pos": 125,
+    "rel": 0.423,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " to",
+    "text": " the seat of Richland Parish.\n\nGeography\nMangham is located at  (32.308304, -91.776225).\n\nAccording[[ to]] the United States Census Bureau,"
+   },
+   {
+    "kind": "top",
+    "window": 641,
+    "pos": 6,
+    "rel": 0.408,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Ko",
+    "text": "Enlarge Image Video screenshot by Amanda[[ Ko]]oser/CNET\n\nSthen"
+   },
+   {
+    "kind": "top",
+    "window": 34,
+    "pos": 81,
+    "rel": 0.408,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".",
+    "text": "PEALS                      U .S. C O U R T OF APPE ALS\n\n\n\n\n                             FOR THE NINTH CIRCUIT\n\n\n\nDELMY NOHEMI LINARES-                            No[[.]] 08-72"
+   },
+   {
+    "kind": "top",
+    "window": 759,
+    "pos": 209,
+    "rel": 0.394,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": ":\n",
+    "text": "ps-Universität Marburg, Fachbereich Mathematik und Informatik, Hans-Meerwein-Straße, D-35032 Marburg, Germany'\nauthor[[:\n]]- 'M. C"
+   },
+   {
+    "kind": "top",
+    "window": 977,
+    "pos": 98,
+    "rel": 0.382,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_statement",
+    "text": "    ('left','PLUS','MINUS'),\n    ('left','TIMES','DIVIDE'),\n    ('right','UMINUS'),\n    )\n\n# dictionary of names\nnames = { }\n\ndef p[[_statement]]_assign(t,s):\n    '"
+   },
+   {
+    "kind": "top",
+    "window": 1332,
+    "pos": 20,
+    "rel": 0.365,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " {\n",
+    "text": "﻿'use strict';\nangular.module(\"ngLocale\", [], [\"$provide\", function($provide)[[ {\n]]var PLURAL_CATEGORY = {"
+   },
+   {
+    "kind": "top",
+    "window": 1345,
+    "pos": 90,
+    "rel": 0.357,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "://",
+    "text": "//   https://github.com/apple/swift-protobuf/\n\n// Protocol Buffers - Google's data interchange format\n// Copyright 2008 Google Inc.  All rights reserved.\n// https[[://]]developers.google.com/protocol-b"
+   },
+   {
+    "kind": "top",
+    "window": 188,
+    "pos": 89,
+    "rel": 0.35,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": ":\n",
+    "text": "$. We show that, under certain hypotheses, there is a strong relation between this problem and the same problem for the spaces $X_i$.'\naddress: 'IMAS-CONICET'\nauthor[[:\n]]- Jorge Tomás Rodríg"
+   },
+   {
+    "kind": "top",
+    "window": 1237,
+    "pos": 18,
+    "rel": 0.343,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " {\n",
+    "text": "'use strict';\nangular.module(\"ngLocale\", [], [\"$provide\", function($provide)[[ {\n]]var PLURAL_CATEGORY = {"
+   },
+   {
+    "kind": "top",
+    "window": 352,
+    "pos": 159,
+    "rel": 0.343,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Forms",
+    "text": "* the following Additional permissions:\n* Notwithstanding to the terms of section 5 (5. Conveying Modified Source\n* Versions) and 6 (6. Conveying Non-Source[[ Forms]].) of the GNU General\n"
+   },
+   {
+    "kind": "top",
+    "window": 929,
+    "pos": 179,
+    "rel": 0.329,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": ":\n",
+    "text": " consider smallest percolating sets and construct a polynomial-timed algorithm to find one smallest minimal percolating set on finite trees for certain $F(t)$-bootstrap percolation models.\\\nauthor[[:\n]]- 'Yuyuan Luo"
+   },
+   {
+    "kind": "top",
+    "window": 659,
+    "pos": 116,
+    "rel": 0.314,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Ko",
+    "text": " forcefully expressed opinions.\n\nHarold Meyerson in the Washington Post thinks the game is up for “unregulated capitalism”:\n\nIn 1949, a number of famous writers, among them Arthur[[ Ko]]estler, André Gide"
+   },
+   {
+    "kind": "top",
+    "window": 1125,
+    "pos": 135,
+    "rel": 0.304,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".",
+    "text": " DISTRICT COURT FOR THE DISTRICT OF MAINE [Hon. D. Brock Hornby, U.S. District Judge] [David M. Cohen, U.S. Magistrate Judge]\nMary A[[.]] Davis, by appointment of the"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 9.0,
+  "n_strong_tokens": 7,
+  "n_strong_windows": 6,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "FreeLaw",
+    2
+   ],
+   [
+    "BookCorpus2",
+    1
+   ],
+   [
+    "lang-id",
+    1
+   ],
+   [
+    "OpenWebText2",
+    1
+   ],
+   [
+    "ArXiv",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    5
+   ],
+   [
+    "sw",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "And",
+    2
+   ],
+   [
+    " AND",
+    2
+   ],
+   [
+    "2",
+    1
+   ],
+   [
+    " ",
+    1
+   ],
+   [
+    " each",
+    1
+   ]
+  ],
+  "strong_pos_median": 104,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1158,
+    "pos": 71,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "BookCorpus2",
+    "lang": "en",
+    "token": " each",
+    "text": " licensed for your personal enjoyment only. This ebook may not be re-sold or given away to other people. If you would like to share this ebook with another person, please purchase an additional copy for[[ each]] person you share it with."
+   },
+   {
+    "kind": "top",
+    "window": 344,
+    "pos": 14,
+    "rel": 0.819,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " AND",
+    "text": "433 F.3d 975\nGail[[ AND]]ERSON, Plaintiff-App"
+   },
+   {
+    "kind": "top",
+    "window": 801,
+    "pos": 21,
+    "rel": 0.778,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " AND",
+    "text": "\n911 So.2d 1286 (2005)\nKenneth[[ AND]]RES, Brenda Bagley and"
+   },
+   {
+    "kind": "top",
+    "window": 1536,
+    "pos": 104,
+    "rel": 0.684,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": "And",
+    "text": "i i amani yangu , na alianza taratibu jengo kadi tena , akiongea kwa hiyo kama alivyo fanya hivyo .\n[[And]] the other part of it ni"
+   },
+   {
+    "kind": "top",
+    "window": 431,
+    "pos": 212,
+    "rel": 0.667,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " ",
+    "text": " Also for third graders. Who is writig these? And why? pic.twitter.com/xUBVIxE6WU — Louis C.K. (@louisck) April 28,[[ ]]2014\n\nLook"
+   },
+   {
+    "kind": "top",
+    "window": 243,
+    "pos": 160,
+    "rel": 0.59,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "And",
+    "text": " S. Richardson is Professor and Chair, Department of Statistics, University of Washington, Box 354322, Seattle, Washington 98195, USA .'\n- '[[And]]rea Rotnitzky is"
+   },
+   {
+    "kind": "top",
+    "window": 119,
+    "pos": 2,
+    "rel": 0.444,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " of",
+    "text": "# Translation[[ of]] Odoo Server.\n# This"
+   },
+   {
+    "kind": "top",
+    "window": 1274,
+    "pos": 169,
+    "rel": 0.432,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " If",
+    "text": "# FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n# more details.\n#\n# You should have received a copy of the GNU General Public License along\n# with EventGhost.[[ If]] not, see <http://"
+   },
+   {
+    "kind": "top",
+    "window": 1237,
+    "pos": 143,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": "_precision) {\n  var v = opt_precision;\n\n  if (undefined === v) {\n    v = Math.min(getDecimals(n), 3);\n  }\n\n  var base = Math.pow([[1]]0, v);\n  var"
+   },
+   {
+    "kind": "top",
+    "window": 422,
+    "pos": 38,
+    "rel": 0.415,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " if",
+    "text": "// CodeMirror, copyright (c) by Marijn Haverbeke and others\n// Distributed under an MIT license: http://codemirror.net/LICENSE\n\n(function(mod) {\n [[ if]] (typeof exports == \"object"
+   },
+   {
+    "kind": "top",
+    "window": 558,
+    "pos": 21,
+    "rel": 0.406,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "al",
+    "text": "Correlated noise in the two LIGO gravitational-wave detectors may provide evidence that the universe is governed by conform[[al]] cyclic cosmology (CCC)."
+   },
+   {
+    "kind": "top",
+    "window": 1219,
+    "pos": 115,
+    "rel": 0.372,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " of",
+    "text": " License.\n *\n *     This product includes a number of subcomponents with\n *     separate copyright notices and license terms. Your use of these\n *     subcomponents is subject to the terms and conditions[[ of]] the\n *     subcomponent"
+   },
+   {
+    "kind": "top",
+    "window": 566,
+    "pos": 20,
+    "rel": 0.37,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " terms",
+    "text": "﻿// © 2016 and later: Unicode, Inc. and others.\n// License &[[ terms]] of use: http://www"
+   },
+   {
+    "kind": "top",
+    "window": 149,
+    "pos": 79,
+    "rel": 0.366,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "woocommerce",
+    "text": " name is missing and so on. \nI want those error validation messages to fade out after a given time. \nSo, I injected this jQuery code:\n(function($) {\n    var wooError = $('.[[woocommerce]]-error'); \n    wooError"
+   },
+   {
+    "kind": "top",
+    "window": 445,
+    "pos": 9,
+    "rel": 0.354,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": "3",
+    "text": " give d.\n105\nExpress [[3]]7 - 17 +"
+   },
+   {
+    "kind": "top",
+    "window": 1268,
+    "pos": 174,
+    "rel": 0.339,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " If",
+    "text": " FOR A PARTICULAR PURPOSE.  See the\n# GNU General Public License for more details.\n#\n# You should have received a copy of the GNU General Public License\n# along with bedup. [[ If]] not, see <http://"
+   },
+   {
+    "kind": "top",
+    "window": 1348,
+    "pos": 40,
+    "rel": 0.312,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Ca",
+    "text": "# August 13, 2020 Meeting\n\nAttendees:\n\n- Shane Carr - Google i18n (SFC), Co-Moderator\n- Romulo Cintra -[[ Ca]]ixaBank (RCA),"
+   },
+   {
+    "kind": "top",
+    "window": 1287,
+    "pos": 177,
+    "rel": 0.307,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " If",
+    "text": " FOR A PARTICULAR PURPOSE.  See the\n* GNU General Public License for more details.\n*\n* You should have received a copy of the GNU General Public License\n* along with Cardpeek. [[ If]] not, see <http://"
+   },
+   {
+    "kind": "top",
+    "window": 368,
+    "pos": 183,
+    "rel": 0.297,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " a",
+    "text": "(this.handleError);\n    }\n\n    private extractData(res: Response) {\n        let body = res.json();\n        return body.entries || {};\n    }\n\n    private handleError(error: any) {\n        // In[[ a]] real world app, we might"
+   },
+   {
+    "kind": "top",
+    "window": 889,
+    "pos": 65,
+    "rel": 0.283,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " and",
+    "text": " Of London 32 Boroughs Neighborhoods In is one from many image from this website. you can find the latest images of Map Of London 32 Boroughs Neighborhoods In on this website[[ and]] other images. we hope this"
+   }
+  ]
+ }
+}

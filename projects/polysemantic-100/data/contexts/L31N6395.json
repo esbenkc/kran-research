@@ -1,0 +1,628 @@
+{
+ "id": "L31N6395",
+ "layer": 31,
+ "neuron": 6395,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 47.0,
+  "n_strong_tokens": 17,
+  "n_strong_windows": 16,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "PubMed Abstracts",
+    4
+   ],
+   [
+    "lang-id",
+    3
+   ],
+   [
+    "OpenWebText2",
+    3
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "FreeLaw",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    11
+   ],
+   [
+    "code",
+    2
+   ],
+   [
+    "de",
+    2
+   ],
+   [
+    "ar",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " In",
+    6
+   ],
+   [
+    " in",
+    3
+   ],
+   [
+    "über",
+    1
+   ],
+   [
+    "In",
+    1
+   ],
+   [
+    ".In",
+    1
+   ],
+   [
+    "Exception",
+    1
+   ],
+   [
+    "بال",
+    1
+   ],
+   [
+    "ن",
+    1
+   ]
+  ],
+  "strong_pos_median": 186,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1147,
+    "pos": 145,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " in",
+    "text": "# - Array of regular expressions: matches any of the expressions\n#\n#If a target is also the name of a class, methods called on instances\n#of that class will also be matched,[[ in]] a very limited way.\n#"
+   },
+   {
+    "kind": "top",
+    "window": 1290,
+    "pos": 251,
+    "rel": 0.979,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Exception",
+    "text": "super setPropertiesWithException:theException];\n\n    if ([theException.additionalFields valueForKey:@\"BoxUsage\"] != nil) {\n        self.boxUsage = [AmazonSDKUtil convertStringToNumber:[the[[Exception]].additionalFields valueForKey:@\""
+   },
+   {
+    "kind": "top",
+    "window": 762,
+    "pos": 211,
+    "rel": 0.814,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " In",
+    "text": " required to secure ... compensation shall be guilty of a misdemeanor and, upon conviction thereof, shall be subject to a fine of not less than $25 nor more than $1,000.[[ In]] addition thereto, any employer"
+   },
+   {
+    "kind": "top",
+    "window": 1400,
+    "pos": 64,
+    "rel": 0.771,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": "بال",
+    "text": " التاريخ الفعلي للقاعدة هو 25 تشرين الثاني / نوفمبر 1991 , وهو تاريخ قرار محكمة قدامى المحاربين الذي ابطل القواعد السابقة .\n[[بال]]نسبة لجميعهاها"
+   },
+   {
+    "kind": "top",
+    "window": 412,
+    "pos": 207,
+    "rel": 0.718,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "über",
+    "text": "börse sind niedriger als je zuvor, doch die Konsumenten bezahlen inzwischen die höchsten Preise – ohne Begrenzung im weiteren Anstieg. Dar[[über]] hinaus, je mehr"
+   },
+   {
+    "kind": "top",
+    "window": 814,
+    "pos": 95,
+    "rel": 0.686,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " In",
+    "text": " both operational and functional support areas. On the operations side, Mr. Quigley serves as president of Global Staffing where he oversees the Company’s staffing operations in the Americas and EMEA regions.[[ In]] terms of functional responsibility, he"
+   },
+   {
+    "kind": "top",
+    "window": 1167,
+    "pos": 231,
+    "rel": 0.638,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " In",
+    "text": " open to the public.\n\n\n\nAmong the top prospects expected to attend the camp include former first round draft choices Dylan Strome (2015) and Brendan Perlini (2014).[[ In]] addition, prospects including forwards Christian"
+   },
+   {
+    "kind": "top",
+    "window": 492,
+    "pos": 43,
+    "rel": 0.617,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".In",
+    "text": " Suite 18.3.1\n\nMovavi Video Suite is comprehensive video making software that helps you create professional-looking movies and slideshows on your home computer – even if you have no experience[[.In]]corporate music, create text"
+   },
+   {
+    "kind": "top",
+    "window": 1139,
+    "pos": 148,
+    "rel": 0.58,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " in",
+    "text": " in the absence of conscious recognition, as in repetition priming tasks. Past functional neuroimaging findings in healthy individuals suggest that even in tasks that require conscious recognition decisions for visual stimuli, posterior cortical structures[[ in]] the ventral visual pathway distinguish"
+   },
+   {
+    "kind": "top",
+    "window": 205,
+    "pos": 154,
+    "rel": 0.577,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " In",
+    "text": " proteins in 93 patients with GBC. Immunohistochemistry showed that the protein expression level of TROP2 was significantly higher in GBC tissues than in adjacent noncancerous tissues.[[ In]] addition, immunohistochemistry"
+   },
+   {
+    "kind": "top",
+    "window": 742,
+    "pos": 203,
+    "rel": 0.577,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " in",
+    "text": "6. It has become arguably the most important horse racing complex in the island, holding horse races every Monday, Wednesday, Friday, Saturday and Sunday.\n\nEl Nuevo Comandante features a betting window,[[ in]] which players can try their luck"
+   },
+   {
+    "kind": "top",
+    "window": 357,
+    "pos": 193,
+    "rel": 0.566,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " In",
+    "text": "rahydrofuran, a similar cyclic ether, from Do et al. [J. Chem. Phys. 134, 144302 (2011)].[[ In]] addition, \"rotationally averaged"
+   },
+   {
+    "kind": "top",
+    "window": 1402,
+    "pos": 204,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": "الت",
+    "text": " بموجب قانون اصلاح الولايات غير الممولة .\nاللقطات غير العادية تشمل ( روبرت سميثسون ) و ( دونالد جود ) .\nب[[الت]]اكيد , هذا يبدو م"
+   },
+   {
+    "kind": "top",
+    "window": 544,
+    "pos": 32,
+    "rel": 0.484,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "In",
+    "text": "Solid Alarm Clock Extended\n\nWake up with a bird singing, a favorite song or a standard ringtone it's up to you with alarm Solid Alarm Clock Extended![[In]] any case, you can't"
+   },
+   {
+    "kind": "top",
+    "window": 269,
+    "pos": 99,
+    "rel": 0.476,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " In",
+    "text": "emia may increase the risk for abnormal blood pressure regulation. The purpose is to determine blood pressure and blood glucose levels and variability in these variables during dialysis with and without glucose in the dialysis fluid.[[ In]] a randomized, placebo-controlled,"
+   },
+   {
+    "kind": "top",
+    "window": 981,
+    "pos": 195,
+    "rel": 0.465,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " In",
+    "text": " regularization parameter is added to the objective function of the classifier to make the classification parameters as close as possible to the classification parameters of the previous users who have feature spaces similar to that of the target subject.[[ In]] this paper, a new similarity"
+   },
+   {
+    "kind": "random-strong",
+    "window": 635,
+    "pos": 252,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " In",
+    "text": "SF8, BATF3, and TMOD1) able to successfully separate ALK(-) ALCL from peripheral T-cell lymphoma not otherwise specified, with overall accuracy near 97%.[[ In]] conclusion, our"
+   },
+   {
+    "kind": "random-strong",
+    "window": 479,
+    "pos": 227,
+    "rel": 0.537,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "In",
+    "text": "’s Largest Jon Boat in 1994 at 24 feet long and 72” wide. It has since upped the ante by creating a 26-foot jon boat.\n\n[[In]] addition to toting the title"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1428,
+    "pos": 184,
+    "rel": 0.564,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": "US",
+    "text": " Aber nach einigen Runden nimmt der Spielspaß leider leicht ab\nQUALITÄT IST GUT LEIDER FALLEN DIE GRÖSSEN SEHR KLEIN A[[US]] ICH TRAGE M4"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1420,
+    "pos": 186,
+    "rel": 0.559,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": " Aus",
+    "text": " alle bogenförmigen nach Innen geschnitten und das ziemlich massiv. Dadurch geht viel Schatten verloren für den man das Ding ja aber eigentlich hat.[[ Aus]] Ermangelung an guten"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 21.5,
+  "n_strong_tokens": 35,
+  "n_strong_windows": 33,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    8
+   ],
+   [
+    "PubMed Abstracts",
+    6
+   ],
+   [
+    "Pile-CC",
+    5
+   ],
+   [
+    "OpenWebText2",
+    5
+   ],
+   [
+    "Github",
+    5
+   ],
+   [
+    "StackExchange",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    20
+   ],
+   [
+    "code",
+    5
+   ],
+   [
+    "ru",
+    4
+   ],
+   [
+    "hi",
+    2
+   ],
+   [
+    "pt",
+    1
+   ],
+   [
+    "bg",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " in",
+    19
+   ],
+   [
+    " в",
+    7
+   ],
+   [
+    "-in",
+    1
+   ],
+   [
+    " In",
+    1
+   ],
+   [
+    " mad",
+    1
+   ],
+   [
+    "In",
+    1
+   ],
+   [
+    " en",
+    1
+   ],
+   [
+    "in",
+    1
+   ]
+  ],
+  "strong_pos_median": 150,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1050,
+    "pos": 239,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "in",
+    "text": "3 × 10(5) total bacteria per shrimp resulted in mortality with higher levels in the case of V. alginolyticus (100% mortality 18 h post[[in]]jection of 3 × "
+   },
+   {
+    "kind": "top",
+    "window": 1526,
+    "pos": 222,
+    "rel": 0.686,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " в",
+    "text": "ешь , и поэтому единственный способ выбраться из этого - это сделать что-то вроде бюджета .\nКакие фильмы вы видели в последнее время ?\nЛадно , я[[ в]]иню себя .\nНе может"
+   },
+   {
+    "kind": "top",
+    "window": 1525,
+    "pos": 191,
+    "rel": 0.674,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": " в",
+    "text": " результате промышленными cogenerators и другими независимыми производителями электроэнергии .\nПо сути дела , высокий суд однажды был[[ в]]тянут в спор с"
+   },
+   {
+    "kind": "top",
+    "window": 1468,
+    "pos": 127,
+    "rel": 0.663,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "hi",
+    "token": "�",
+    "text": " जाती है .\nयद ् यपि कभी-कभी इस सीमा पार में ति�[[�]] ् बत म"
+   },
+   {
+    "kind": "top",
+    "window": 125,
+    "pos": 221,
+    "rel": 0.64,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " in",
+    "text": " assayed as the transfer of [3H]farnesyl group from [3H]FPP to the ras p21 at pH 7.4 and 37 degrees C[[ in]] the presence of rat brain cy"
+   },
+   {
+    "kind": "top",
+    "window": 621,
+    "pos": 43,
+    "rel": 0.637,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": "'s episode, People's Revolution fired an assistant for drinking on the job, Stephanie V. got the ax soon after, and then their replacement was canned hours after being hired, for Tweeting about being[[ in]] the office.\n\nThe tone was"
+   },
+   {
+    "kind": "top",
+    "window": 195,
+    "pos": 169,
+    "rel": 0.631,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " In",
+    "text": " Brokedown Palace\n\n10 Reuben And Cherise\n\n11 Scarlet Begonias\n\n12 encore break\n\n13 E1:Ripple\n\n14 E2:Boys[[ In]] The Barroom\n\nAKG"
+   },
+   {
+    "kind": "top",
+    "window": 1319,
+    "pos": 95,
+    "rel": 0.573,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " in",
+    "text": " all rights not expressly granted by the License.\n// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0\n// Unless required by applicable law or agreed to[[ in]] writing, software\n// distributed"
+   },
+   {
+    "kind": "top",
+    "window": 643,
+    "pos": 29,
+    "rel": 0.573,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": "RESORT FEATURE: Breathless Resorts\n\nRESORT FEATURE: Breathless Resorts\n\nOkay, seriously. These resorts have perfected a concept we were all[[ in]] desperate need of. Do you"
+   },
+   {
+    "kind": "top",
+    "window": 1013,
+    "pos": 146,
+    "rel": 0.57,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " in",
+    "text": " could be found (are you missing a using directive or an assembly reference?). I am not sure if I need to add a dll reference or something else. Please could someone advise how to solve this thanks[[ in]] advance. Also I downloaded the"
+   },
+   {
+    "kind": "top",
+    "window": 986,
+    "pos": 185,
+    "rel": 0.564,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " in",
+    "text": " is down-regulated in the transformants. Despite these changes in metabolite pools and enzyme activity, few consistent changes could be observed in the estimated metabolic fluxes following incubation of isolated tuber discs[[ in]] labelled glucose. The analysis of"
+   },
+   {
+    "kind": "top",
+    "window": 652,
+    "pos": 185,
+    "rel": 0.558,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " in",
+    "text": " 14, 1967, L.L. Beacham, Jr., appellant, obtained a divorce from appellee, Edith Russell Beacham upon the ground of habitual cruel and[[ in]]human treatment. It was judicial"
+   },
+   {
+    "kind": "random-strong",
+    "window": 57,
+    "pos": 96,
+    "rel": 0.552,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " in",
+    "text": " PlayStation Store and at retail thanks to a retail partnership with Sold Out!\n\nThe extremely talented developers over at White Paper Games, who previously developed Ether One, are the ones behind The Occupation.\n\nFor those not[[ in]] the know, The Occupation is"
+   },
+   {
+    "kind": "random-strong",
+    "window": 179,
+    "pos": 163,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "-in",
+    "text": " water, organic solvents or supercritical fluids. In this paper, efforts have been made to review the precipitation techniques involving the anti-solvent precipitation by simple mixing, impinging jet mixing, multi[[-in]]let vortex mixing, the using"
+   },
+   {
+    "kind": "random-strong",
+    "window": 92,
+    "pos": 200,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": " offering drivers the choice between an hourly or per delivery rate.\n\nThe Deliveroo affair follows on the heels of several similar scandals, with Uber, Addison Lee and courier service Hermes all receiving negative press - and[[ in]] some cases being taken to court"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1461,
+    "pos": 97,
+    "rel": 0.523,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "hi",
+    "token": "द",
+    "text": "�ानते हैं , मैं राष ् ट ् रपति पद के उम ् मी[[द]]वार ज�"
+   },
+   {
+    "kind": "random-strong",
+    "window": 230,
+    "pos": 210,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " in",
+    "text": " set of 30 chemicals comprised of clastogens, aneugens, and misleading positive chemicals was studied. These experiments were conducted with human TK6 cells over a range of closely spaced concentrations[[ in]] a continuous exposure design. In"
+   },
+   {
+    "kind": "random-strong",
+    "window": 447,
+    "pos": 150,
+    "rel": 0.52,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": " that are thicker than the average feminazi.\n\nhe did make some good points, mainly the failure of the \"waiting game\" combat and the \"shoot an eye with an arrow\" puzzles, but all[[ in]] all he just makes himself look"
+   },
+   {
+    "kind": "random-strong",
+    "window": 501,
+    "pos": 191,
+    "rel": 0.512,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " in",
+    "text": " the number one issue and it’s wonderful to see young people so energised. We support the cause absolutely, but we couldn’t support them walking out of lessons because that could have put those young people[[ in]] danger.”\n\nHowever, an amendment"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1419,
+    "pos": 60,
+    "rel": 0.523,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": " в",
+    "text": "и към европейския икономически ком ? éunity ( сега европейският съюз или ес ) .\nда , да , аз съм[[ в]] хюстън .\n"
+   }
+  ]
+ }
+}

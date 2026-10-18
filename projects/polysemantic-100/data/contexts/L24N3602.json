@@ -1,0 +1,564 @@
+{
+ "id": "L24N3602",
+ "layer": 24,
+ "neuron": 3602,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 6.0625,
+  "n_strong_tokens": 18,
+  "n_strong_windows": 12,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    9
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    9
+   ],
+   [
+    "en",
+    3
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " from",
+    7
+   ],
+   [
+    " derived",
+    6
+   ],
+   [
+    " Module",
+    1
+   ],
+   [
+    " \"",
+    1
+   ],
+   [
+    " site",
+    1
+   ],
+   [
+    "Leave",
+    1
+   ],
+   [
+    " File",
+    1
+   ]
+  ],
+  "strong_pos_median": 155,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1345,
+    "pos": 222,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " from",
+    "text": " the documentation and/or other materials provided with the\n// distribution.\n//     * Neither the name of Google Inc. nor the names of its\n// contributors may be used to endorse or promote products derived[[ from]]\n// this software without specific"
+   },
+   {
+    "kind": "top",
+    "window": 1302,
+    "pos": 137,
+    "rel": 0.995,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " from",
+    "text": " following disclaimer in the documentation\n *     and/or other materials provided with the distribution.\n *  3. The name of the author may not be used to endorse or promote products\n *     derived[[ from]] this software without specific prior written"
+   },
+   {
+    "kind": "top",
+    "window": 1232,
+    "pos": 164,
+    "rel": 0.974,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " from",
+    "text": " the documentation and/or other materials provided with the\n// distribution.\n//     * Neither the name of Google Inc. nor the names of its\n// contributors may be used to endorse or promote products derived[[ from]]\n// this software without specific"
+   },
+   {
+    "kind": "top",
+    "window": 1377,
+    "pos": 141,
+    "rel": 0.784,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " from",
+    "text": " the documentation and/or other materials provided with the\n * distribution.\n *     * Neither the name of Google Inc. nor the names of its\n * contributors may be used to endorse or promote products derived[[ from]]\n * this software without specific"
+   },
+   {
+    "kind": "top",
+    "window": 1311,
+    "pos": 152,
+    "rel": 0.773,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " from",
+    "text": " and/or\n other materials provided with the distribution.\n \n 3.  Neither the name of the copyright holder(s) nor the names of any contributors\n may be used to endorse or promote products derived[[ from]] this software without\n specific prior"
+   },
+   {
+    "kind": "top",
+    "window": 1326,
+    "pos": 46,
+    "rel": 0.737,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " File",
+    "text": ".\n * User: xuheng\n * Date: 12-9-26\n * Time: 下午12:29\n * To change this template use File | Settings |[[ File]] Templates.\n */\n\n//清空"
+   },
+   {
+    "kind": "top",
+    "window": 565,
+    "pos": 132,
+    "rel": 0.629,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " derived",
+    "text": " the\n      documentation and/or other materials provided with the distribution.\n    * Neither the name of the Daniel Guerrero nor the\n      names of its contributors may be used to endorse or promote products\n     [[ derived]] from this software without specific prior"
+   },
+   {
+    "kind": "top",
+    "window": 578,
+    "pos": 193,
+    "rel": 0.611,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " \"",
+    "text": ".\nUpdate:\nI thought this was kind of elementary because this pop up all the time:\nRecoveringUbuntuAfterInstallingWindows:\n\nBoot to your Live Ubuntu CD\nInstall and run Boot-Repair\nClick[[ \"]]Recommended Repair\"\nNow reboot your"
+   },
+   {
+    "kind": "top",
+    "window": 1072,
+    "pos": 160,
+    "rel": 0.598,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " from",
+    "text": "\r\n *     documentation and/or other materials provided with the distribution.\r\n *   * Neither the name of LCUI nor the names of its contributors may be used\r\n *     to endorse or promote products derived[[ from]] this software without\r\n *    "
+   },
+   {
+    "kind": "top",
+    "window": 614,
+    "pos": 23,
+    "rel": 0.58,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " site",
+    "text": "Slideshare uses cookies to improve functionality and performance, and to provide you with relevant advertising. If you continue browsing the[[ site]], you agree to the use"
+   },
+   {
+    "kind": "top",
+    "window": 643,
+    "pos": 170,
+    "rel": 0.539,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "Leave",
+    "text": " are what you have been looking for!\n\nFirst things first, are you thinking about a destination wedding? Take a second to download my 9 Step Guide for Canadians here:\n\nFirst Name\n\nEmail address:\n\n[[Leave]] this field empty if you're"
+   },
+   {
+    "kind": "top",
+    "window": 352,
+    "pos": 178,
+    "rel": 0.508,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Module",
+    "text": " Conveying Modified Source\n* Versions) and 6 (6. Conveying Non-Source Forms.) of the GNU General\n* Public License version 3, when you create a Related[[ Module]], this\n* Related Module"
+   },
+   {
+    "kind": "top",
+    "window": 1228,
+    "pos": 202,
+    "rel": 0.487,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " DESIGN",
+    "text": " commercial license.  For more information contact\n// info@riverbankcomputing.com.\n// \n// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE\n// WARRANTY OF[[ DESIGN]], MERCHANTABILITY AND FITNESS FOR A"
+   },
+   {
+    "kind": "top",
+    "window": 1158,
+    "pos": 45,
+    "rel": 0.482,
+    "gate_open": true,
+    "source": "BookCorpus2",
+    "lang": "en",
+    "token": "old",
+    "text": "By Don Hatfield\n\nSmashwords Edition\n\nCopyright 2013 Don Hatfield\n\nLicense Notes: This ebook is licensed for your personal enjoyment only. This ebook may not be re-s[[old]] or given away to other people"
+   },
+   {
+    "kind": "top",
+    "window": 1107,
+    "pos": 172,
+    "rel": 0.441,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Software",
+    "text": " whom the Software is\n * furnished to do so, subject to the following conditions:\n *\n * The above copyright notice and this permission notice shall be included in\n * all copies or substantial portions of the[[ Software]].\n *\n * THE SOFTWARE IS"
+   },
+   {
+    "kind": "top",
+    "window": 947,
+    "pos": 54,
+    "rel": 0.436,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "9",
+    "text": "0\n# Visual Studio 2008\nProject(\"{F184B08F-C81C-45F6-A57F-5ABD99[[9]]1F28F}\")"
+   },
+   {
+    "kind": "top",
+    "window": 1339,
+    "pos": 20,
+    "rel": 0.423,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Changes",
+    "text": "﻿//------------------------------------------------------------------------------\n// <auto-generated>\n//     This code was generated by AsyncGenerator.\n//\n//    [[ Changes]] to this file may cause incorrect"
+   },
+   {
+    "kind": "top",
+    "window": 1007,
+    "pos": 43,
+    "rel": 0.423,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " messages",
+    "text": " new game (TPS recommendations)\n\nYou're browsing the GameFAQs Message Boards as a guest. Sign Up for free (or Log In if you already have an account) to be able to post[[ messages]], change how messages are displayed"
+   },
+   {
+    "kind": "top",
+    "window": 210,
+    "pos": 232,
+    "rel": 0.418,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " of",
+    "text": " Initial Developer are Copyright (C) 2012\n * the Initial Developer. All Rights Reserved.\n *\n * Contributor(s):\n * See @authors listed below\n *\n * Alternatively, the contents[[ of]] this file may be used under"
+   },
+   {
+    "kind": "top",
+    "window": 1304,
+    "pos": 136,
+    "rel": 0.415,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " DESIGN",
+    "text": " license may use this file in\n// accordance with the commercial license agreement provided with the software.\n//\n// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE\n// WARRANTY OF[[ DESIGN]], MERCHANTABILITY AND FITNESS FOR A"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 19.5,
+  "n_strong_tokens": 18,
+  "n_strong_windows": 3,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    3
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    3
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "Confirm",
+    3
+   ],
+   [
+    ";\n",
+    2
+   ],
+   [
+    "$lang",
+    2
+   ],
+   [
+    "']=\"",
+    2
+   ],
+   [
+    "EX",
+    1
+   ],
+   [
+    "eren",
+    1
+   ],
+   [
+    "\";\n",
+    1
+   ],
+   [
+    "L",
+    1
+   ]
+  ],
+  "strong_pos_median": 201,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 284,
+    "pos": 238,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Confirm",
+    "text": "_MESSAGE\";\n    public static final String EXTRA_DATA = \"EXTRA_DATA\";\n\n    private Serializable _data;\n    private ConfirmDialogCallback[] _callbacks;\n    private String _summary;\n\n    public static Wr[[Confirm]]Dialog newInstance(String title, String"
+   },
+   {
+    "kind": "top",
+    "window": 715,
+    "pos": 191,
+    "rel": 0.885,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "$lang",
+    "text": "iert\";\n$lang['L_OPTIMIZE_DATABASES']=\"Tabellen optimieren\";\n$lang['L_CHECK_TABLES']=\"Tabellen überprüfen\";\n$lang['L_CLEAR_DATABASE']=\"Datenbank leeren\";\n[[$lang]]['L_DELETE_DATABASE']=\"D"
+   },
+   {
+    "kind": "top",
+    "window": 1272,
+    "pos": 24,
+    "rel": 0.705,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ";\n",
+    "text": "package com.yarolegovich.mp.io;\n\nimport android.app.Dialog;\nimport android.content.Context;\nimport android.content.DialogInterface[[;\n]]import android.view.LayoutInflater;\nimport"
+   },
+   {
+    "kind": "top",
+    "window": 1303,
+    "pos": 165,
+    "rel": 0.455,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".DialogInterface",
+    "text": " specific language governing permissions and\n * limitations under the License.\n */\npackage com.psaravan.filebrowserview.lib.AsyncTasks;\n\nimport android.app.ProgressDialog;\nimport android.content.Context;\nimport android.content[[.DialogInterface]];\nimport android.content.DialogInterface.OnClickListener"
+   },
+   {
+    "kind": "top",
+    "window": 1339,
+    "pos": 31,
+    "rel": 0.426,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " lost",
+    "text": "﻿//------------------------------------------------------------------------------\n// <auto-generated>\n//     This code was generated by AsyncGenerator.\n//\n//     Changes to this file may cause incorrect behavior and will be[[ lost]] if\n//     the code"
+   },
+   {
+    "kind": "top",
+    "window": 1087,
+    "pos": 210,
+    "rel": 0.417,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " .\n",
+    "text": " the junk, and keeps on talking like it’s no big deal. Watch this…\n\nWelcome back to Eagle VIP Club\n\nIt appears that you already have an account created within our VIP network of sites on[[ .\n]]To keep your personal information safe"
+   },
+   {
+    "kind": "top",
+    "window": 1136,
+    "pos": 110,
+    "rel": 0.306,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Save",
+    "text": "on Xbox One) at the File Select screen when the “No Save” option is highlighted.\n\nOnce Debug Mode is turned on go back to the File Select screen, place the cursor on the “No[[ Save]]” option and hold down the"
+   },
+   {
+    "kind": "top",
+    "window": 1104,
+    "pos": 55,
+    "rel": 0.288,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " ask",
+    "text": ", “based on search and tagging”, that seduced me with its attention to details. Moreover, its author was very responsive to fix a couple issues.\n\nThe first time you launch it, it will[[ ask]] for a music repository and will"
+   },
+   {
+    "kind": "top",
+    "window": 1310,
+    "pos": 63,
+    "rel": 0.288,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " lost",
+    "text": " the MIT License. See License.txt in the project root for\n# license information.\n#\n# Code generated by Microsoft (R) AutoRest Code Generator.\n# Changes may cause incorrect behavior and will be[[ lost]] if the code is\n#"
+   },
+   {
+    "kind": "top",
+    "window": 95,
+    "pos": 162,
+    "rel": 0.285,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": "h1>\n  <p translate=\"yes\">O teu perfil predeterminado serve como principal punto de contacto da túa conta.</p>\n  <div id=\"message-container\"></div>\n[[ ]] <form id=\"submit-form"
+   },
+   {
+    "kind": "top",
+    "window": 1296,
+    "pos": 159,
+    "rel": 0.284,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " lost",
+    "text": " See the License for the specific language governing permissions and\n// limitations under the License.\n//\n// Code generated by Microsoft (R) AutoRest Code Generator.\n// Changes may cause incorrect behavior and will be[[ lost]] if the code is regenerated.\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 339,
+    "pos": 88,
+    "rel": 0.255,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " to",
+    "text": " as:\n\npscp – is utility for copying files in parallel to a number of hosts. prsync – is a utility for efficiently copying files to multiple hosts in parallel. pnuke – it helps[[ to]] kills processes on multiple remote hosts"
+   },
+   {
+    "kind": "top",
+    "window": 209,
+    "pos": 233,
+    "rel": 0.25,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ar",
+    "text": ", MA  02110-1301, USA.\n */\npackage org.sonar.server.platform.db.migration.version.v84.users.fk.groupsusers;\n\nimport org.son[[ar]].db.Database;\nimport org.son"
+   },
+   {
+    "kind": "top",
+    "window": 1204,
+    "pos": 139,
+    "rel": 0.247,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Disable",
+    "text": " BASIS, WITHOUT\n# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n# License for the specific language governing permissions and limitations under\n# the License.\n\nImport-Module -[[Disable]]NameChecking ..\\..\\..\\"
+   },
+   {
+    "kind": "top",
+    "window": 614,
+    "pos": 64,
+    "rel": 0.236,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " continue",
+    "text": ", you agree to the use of cookies on this website. See our User Agreement and Privacy Policy.\n\nSlideshare uses cookies to improve functionality and performance, and to provide you with relevant advertising. If you[[ continue]] browsing the site, you agree"
+   },
+   {
+    "kind": "top",
+    "window": 1382,
+    "pos": 17,
+    "rel": 0.226,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "=\"",
+    "text": "<template lang=\"html\">\n  <div>\n    <b-modal\n      ref[[=\"]]tokenModal\"\n      :title"
+   },
+   {
+    "kind": "top",
+    "window": 1440,
+    "pos": 137,
+    "rel": 0.224,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": ".",
+    "text": " cosa que lo justifique, el precio.\nNo es regulable. Hay que cortarla manualmente para ajustara a tu muñeca y una vez cortada no se puede volver atras[[.]] Cortada al máximo aun me"
+   },
+   {
+    "kind": "top",
+    "window": 578,
+    "pos": 171,
+    "rel": 0.213,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Re",
+    "text": "8 added to the boot option.\n$ update-grub\n\nUpdating grub will add all OS installations to the list.\nUpdate:\nI thought this was kind of elementary because this pop up all the time:\n[[Re]]coveringUbuntuAfterInstallingWindows:\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 496,
+    "pos": 124,
+    "rel": 0.21,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Photo",
+    "text": " {\n\n    startUpdate: function(organization, gallery){\n      url = \"/organizations/\" + organization + \"/media/galleries/\" + gallery + \"/edit_photo_captions\"\n      timer = setTimeout($.[[Photo]]Updater.doUpdate(url), "
+   },
+   {
+    "kind": "top",
+    "window": 1341,
+    "pos": 91,
+    "rel": 0.203,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "   ",
+    "text": " return array(\n    // This is a 'page' task and will fall under the page admin UI\n    'task type' => 'page',\n    'title' => t('User contact'),\n[[   ]] 'admin title' => t"
+   }
+  ]
+ }
+}

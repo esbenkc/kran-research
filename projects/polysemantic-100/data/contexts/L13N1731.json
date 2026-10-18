@@ -1,0 +1,588 @@
+{
+ "id": "L13N1731",
+ "layer": 13,
+ "neuron": 1731,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 0.7656,
+  "n_strong_tokens": 905,
+  "n_strong_windows": 443,
+  "strong_gate_open_frac": 0.01,
+  "strong_sources": [
+   [
+    "Github",
+    111
+   ],
+   [
+    "Pile-CC",
+    78
+   ],
+   [
+    "StackExchange",
+    57
+   ],
+   [
+    "OpenWebText2",
+    42
+   ],
+   [
+    "lang-id",
+    42
+   ],
+   [
+    "PubMed Abstracts",
+    26
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    290
+   ],
+   [
+    "code",
+    111
+   ],
+   [
+    "fr",
+    7
+   ],
+   [
+    "es",
+    6
+   ],
+   [
+    "sw",
+    5
+   ],
+   [
+    "de",
+    5
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ",",
+    44
+   ],
+   [
+    " Field",
+    20
+   ],
+   [
+    " ",
+    17
+   ],
+   [
+    "0",
+    16
+   ],
+   [
+    ".,",
+    15
+   ],
+   [
+    "1",
+    15
+   ],
+   [
+    " the",
+    11
+   ],
+   [
+    "\n",
+    10
+   ]
+  ],
+  "strong_pos_median": 111,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 746,
+    "pos": 94,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " tall",
+    "text": " tall and wide, it bears grey-green leaves and graceful pendent racemes of scented lilac flowers in summer.\n\nDescription\n\nB. alternifolia is a vigorous deciduous shrub reaching [[ tall]] with long, slender, pend"
+   },
+   {
+    "kind": "top",
+    "window": 576,
+    "pos": 218,
+    "rel": 0.944,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " n",
+    "text": "9 tropical weather. You need to get as many of them as possible when you spin so they can cover as many reels as possible. After exposing all coins, blackjack surrender number of wilds presented all[[ n]]ite clams casino be added"
+   },
+   {
+    "kind": "top",
+    "window": 1204,
+    "pos": 144,
+    "rel": 0.918,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "..\\",
+    "text": " WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n# License for the specific language governing permissions and limitations under\n# the License.\n\nImport-Module -DisableNameChecking ..\\[[..\\]]..\\BuildTools.psm1"
+   },
+   {
+    "kind": "top",
+    "window": 744,
+    "pos": 129,
+    "rel": 0.898,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " ­",
+    "text": " sign up each year, with 80 per cent going to the Army.\n\nAn early day motion ­tabled by Plaid Cymru MP Liz Saville Roberts says: “Westminster must[[ ­]]seriously consider its policy of"
+   },
+   {
+    "kind": "top",
+    "window": 759,
+    "pos": 103,
+    "rel": 0.898,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "ge",
+    "text": "55 such Cartan schemes, and the number of corresponding real roots varies between $6$ and $37$. We identify those Weyl groupoids which appear in the classification of Nichols al[[ge]]bras of diagonal type.'\naddress"
+   },
+   {
+    "kind": "top",
+    "window": 119,
+    "pos": 110,
+    "rel": 0.872,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "+",
+    "text": "18\\n\"\n\"Report-Msgid-Bugs-To: \\n\"\n\"POT-Creation-Date: 2017-09-20 09:53[[+]]0000\\n\"\n"
+   },
+   {
+    "kind": "top",
+    "window": 1265,
+    "pos": 39,
+    "rel": 0.857,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "0",
+    "text": "--- glibc-2.3.2/configure-orig\t2009-03-26 15:46:33.00000[[0]]000 +01"
+   },
+   {
+    "kind": "top",
+    "window": 564,
+    "pos": 127,
+    "rel": 0.852,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "1",
+    "text": "'s something that I'm doing. I'm tired of buying new tubes, as I hear these flats cannot be patched. If it matters, it's a presta valve and I usually inflate to [[1]]10 psi, the maximum"
+   },
+   {
+    "kind": "top",
+    "window": 753,
+    "pos": 209,
+    "rel": 0.842,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "science",
+    "text": " worthwhile goal has gained momentum.\n\nThere are also various projects planned for the near future by space tourism startup companies for tourism on the Moon. The notion of a lunar colony originated before the Space Age. In[[science]]-fiction writer Arthur C. Clarke"
+   },
+   {
+    "kind": "top",
+    "window": 611,
+    "pos": 55,
+    "rel": 0.816,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " those",
+    "text": " breed Scottish Folds, and we never will. Ever. Find out why...\n\nScottish Folds are incredibly cute, cuddly looking cats...on first sight...but look more closely at what creates[[ those]] ‘cute’ folded ears"
+   },
+   {
+    "kind": "top",
+    "window": 1209,
+    "pos": 13,
+    "rel": 0.796,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " Abs",
+    "text": "defmodule Absinthe.Execution.SubscriptionTest do\n  use[[ Abs]]inthe.Case\n\n "
+   },
+   {
+    "kind": "top",
+    "window": 1102,
+    "pos": 254,
+    "rel": 0.791,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "-actions",
+    "text": "\n\nOnce storybook has finished, we can open up VS Code and check out what has changed. You can notice a hidden folder called .storybook that contains 2 files.\n\nimport '@storybook/addon[[-actions]]/register"
+   },
+   {
+    "kind": "random-strong",
+    "window": 430,
+    "pos": 160,
+    "rel": 0.515,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "\",\n",
+    "text": "apiPath\",\n            \"buildPath\",\n            \"imagePath\",\n            \"avatarPath\",\n            \"formatDate\",\n            \"successNotify\",\n            \"errorNotify\",\n            \"request\",\n            \"api[[\",\n]]            \"shared\",\n            \""
+   },
+   {
+    "kind": "random-strong",
+    "window": 302,
+    "pos": 100,
+    "rel": 0.668,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ".v",
+    "text": " vanish/ IP Fake and more available in the settings of the app. Endless list of countries,super VPN Unlimited Proxy Master for iPhone For unlimited proxy for pc PC Windows /Xp/Vista MAC[[.v]]PN 360 Unlimited"
+   },
+   {
+    "kind": "random-strong",
+    "window": 879,
+    "pos": 188,
+    "rel": 0.714,
+    "gate_open": false,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ",",
+    "text": "; and D. Michael Pauling, Senior Assistant Attorney General.\nBefore LEHMAN, C.J., and THOMAS, MACY, GOLDEN, and HILL, JJ.\nMACY[[,]] Justice.\nAppellant Donald L"
+   },
+   {
+    "kind": "random-strong",
+    "window": 673,
+    "pos": 2,
+    "rel": 0.561,
+    "gate_open": false,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " Field",
+    "text": "1.[[ Field]] of the Invention\nThe"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1363,
+    "pos": 46,
+    "rel": 0.599,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "Type",
+    "text": " (c) Microsoft Corporation. All rights reserved.\n# Licensed under the MIT License. See License.txt in the project root for license information.\n# --------------------------------------------------------------------------------------------\n\nfrom azure.cli.core.commands import CliCommand[[Type]]\n\nfrom ._format import (\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 309,
+    "pos": 144,
+    "rel": 0.607,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " author",
+    "text": "Waiting increases the chance that I'll forget, and never vote to close, potentially leading to a cluttered site.\nVoting to close immediately increases the chance that the question will be closed, and the[[ author]] will be forced to re-post"
+   },
+   {
+    "kind": "random-strong",
+    "window": 408,
+    "pos": 84,
+    "rel": 0.689,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "h",
+    "text": "arán para siempre estas melodías al padecimiento físico y psicológico\n\nafp Actualizado: 12/09/2013 19:57[[h]] Guardar Enviar noticia"
+   },
+   {
+    "kind": "random-strong",
+    "window": 624,
+    "pos": 152,
+    "rel": 0.541,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "erts",
+    "text": " know how to achieve this functionality ?\nHere is my config\nserver {\n    listen 443 ssl;\n    root /data/www;\n\n    ssl on;\n    ssl_certificate /etc/ssl/c[[erts]]/server.crt;\n    ssl_certificate"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 2.1562,
+  "n_strong_tokens": 7,
+  "n_strong_windows": 3,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ],
+   [
+    "OpenWebText2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    3
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "j",
+    3
+   ],
+   [
+    "4",
+    2
+   ],
+   [
+    " R",
+    1
+   ],
+   [
+    " ",
+    1
+   ]
+  ],
+  "strong_pos_median": 142,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 548,
+    "pos": 49,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "4",
+    "text": "URL: http://join.40somethingmag.com/gallery/MTE1NjU1My4yLjEwLjEwLjEuNzAwMTU5OC[[4]]wLjAuMA\n"
+   },
+   {
+    "kind": "top",
+    "window": 1023,
+    "pos": 244,
+    "rel": 0.663,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " ",
+    "text": " and the clerestory, probably also date from this period.  The south chapel was rebuilt in early 19th century as a mausoleum for the Dukes of St[[ ]]Albans.  The"
+   },
+   {
+    "kind": "top",
+    "window": 569,
+    "pos": 122,
+    "rel": 0.507,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " R",
+    "text": " becomes shorthand for unspoken classism, not to mention just plain old bad writing.\n\nWhen it goes well (Darren Aronofsky’s The Wrestler; ‘Uncle Slam vs Osama Bin[[ R]]otten’ on The Simpsons),"
+   },
+   {
+    "kind": "top",
+    "window": 770,
+    "pos": 163,
+    "rel": 0.462,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "/C",
+    "text": " Abel Braga é o novo técnico do Vasco — Foto: Vinnicius Silva/Cruzeiro Abel Braga é o novo técnico do Vasco — Foto: Vinnicius Silva[[/C]]ruzeiro\n\nA primeira"
+   },
+   {
+    "kind": "top",
+    "window": 1272,
+    "pos": 1,
+    "rel": 0.362,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " com",
+    "text": "package[[ com]].yarolegovich.mp"
+   },
+   {
+    "kind": "top",
+    "window": 1223,
+    "pos": 1,
+    "rel": 0.362,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " com",
+    "text": "package[[ com]].tencent.mm.ui.chatting;\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1377,
+    "pos": 130,
+    "rel": 0.359,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " *",
+    "text": " this list of conditions and the following disclaimer\n * in the documentation and/or other materials provided with the\n * distribution.\n *     * Neither the name of Google Inc. nor the names of its\n[[ *]] contributors may be used to endorse"
+   },
+   {
+    "kind": "top",
+    "window": 898,
+    "pos": 225,
+    "rel": 0.353,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "\n",
+    "text": "\n\nApart from buyers manuals, we have our own very strict quality assurance\nsystem That makes sure the buyer’s demands more significantly and it is\nexactly done as per our client’s required International Quality[[\n]]Standards; AQL "
+   },
+   {
+    "kind": "top",
+    "window": 1345,
+    "pos": 211,
+    "rel": 0.346,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "//",
+    "text": " this list of conditions and the following disclaimer\n// in the documentation and/or other materials provided with the\n// distribution.\n//     * Neither the name of Google Inc. nor the names of its\n[[//]] contributors may be used to endorse"
+   },
+   {
+    "kind": "top",
+    "window": 150,
+    "pos": 170,
+    "rel": 0.328,
+    "gate_open": false,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".C",
+    "text": "LARIMER, District Judge.\n\nINTRODUCTION\nPetitioner Timothy Muldrow (\"Muldrow\"), filed this petition pro se for a writ of habeas corpus pursuant to 28 U.S[[.C]]. § 225"
+   },
+   {
+    "kind": "top",
+    "window": 1034,
+    "pos": 255,
+    "rel": 0.326,
+    "gate_open": false,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".C",
+    "text": " Zohoori and the Department for\nstatutory and constitutional violations. The district court granted, in part, their\nmotion to dismiss. They appeal. Having jurisdiction under 28 U.S[[.C]]"
+   },
+   {
+    "kind": "top",
+    "window": 831,
+    "pos": 16,
+    "rel": 0.324,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " shot",
+    "text": "It’s been more than 50 years since President John F. Kennedy was[[ shot]] by Lee Harvey Oswald in Dallas"
+   },
+   {
+    "kind": "top",
+    "window": 1336,
+    "pos": 110,
+    "rel": 0.306,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "info",
+    "text": "0:00:34.548000000 +0000\n@@ -2912,7 +2912,7 @@ sig[[info]](sig, si, sc)\n"
+   },
+   {
+    "kind": "top",
+    "window": 1459,
+    "pos": 249,
+    "rel": 0.283,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": "rière",
+    "text": " : Je l'utilise principalement dans le cadre de retouche de mes pièces imprimées en 3D\nJe suis une fan de True Blood, et je recommande cette der[[rière]] saison. Emballage OK"
+   },
+   {
+    "kind": "top",
+    "window": 457,
+    "pos": 90,
+    "rel": 0.279,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ":",
+    "text": "3 of 5 The jersey design is printed (Image credit: Sportful) Image 4 of 5 Peter Sagan plays around on the podium, pretending to eat his gold medal (Image credit[[:]] Tim de Waele/T"
+   },
+   {
+    "kind": "top",
+    "window": 3,
+    "pos": 162,
+    "rel": 0.272,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "\n",
+    "text": " and continuing dispute with\nthe Swaziland state, TUCOSWA is not registered as a recognised federation in\nthe kingdom ruled by King Mswati III, sub-Saharan Africa’s last absolute[[\n]]monarch.\n\nIn Swaz"
+   },
+   {
+    "kind": "top",
+    "window": 929,
+    "pos": 48,
+    "rel": 0.27,
+    "gate_open": false,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "ation",
+    "text": " dedicated to the study of the interaction between dynamical systems and percolation models, with views towards the study of viral infections whose virus mutate with time. Recall that $r$-bootstrap percol[[ation]] describes a deterministic process where vertices"
+   },
+   {
+    "kind": "top",
+    "window": 981,
+    "pos": 211,
+    "rel": 0.263,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ler",
+    "text": " as close as possible to the classification parameters of the previous users who have feature spaces similar to that of the target subject. In this paper, a new similarity measure based on the Kullback-Leib[[ler]] divergence (KL) is used"
+   },
+   {
+    "kind": "top",
+    "window": 1433,
+    "pos": 226,
+    "rel": 0.259,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "el",
+    "token": "α",
+    "text": " , την εξάλειψη των ιδιωτικών express και τον κανόνα του τ[[α]]χυδρομ"
+   },
+   {
+    "kind": "top",
+    "window": 576,
+    "pos": 57,
+    "rel": 0.259,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " casino",
+    "text": "inx Video\n\nSlot SPHINX BONUS RECORD - 1500€ (My Choice) Needless to note, this newest no deposit casino codes playtech game suggests finding the treasures online[[ casino]] apps iphone are carefully hidden not"
+   }
+  ]
+ }
+}

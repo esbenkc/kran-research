@@ -1,0 +1,576 @@
+{
+ "id": "L27N3505",
+ "layer": 27,
+ "neuron": 3505,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 19.25,
+  "n_strong_tokens": 40,
+  "n_strong_windows": 11,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    9
+   ],
+   [
+    "OpenWebText2",
+    1
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    9
+   ],
+   [
+    "en",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " char",
+    11
+   ],
+   [
+    " *",
+    4
+   ],
+   [
+    "(char",
+    3
+   ],
+   [
+    " **",
+    3
+   ],
+   [
+    "_t",
+    2
+   ],
+   [
+    ",",
+    2
+   ],
+   [
+    " ",
+    2
+   ],
+   [
+    " such",
+    1
+   ]
+  ],
+  "strong_pos_median": 169,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 462,
+    "pos": 183,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " char",
+    "text": ", const char **);\n\n#include <sys/poll.h>\n#include <sys/ioctl.h>\n\nstruct hpet_command {\n\tchar\t\t*command;\n\tvoid\t\t(*func)(int argc, const[[ char]] ** argv);\n} hpet"
+   },
+   {
+    "kind": "top",
+    "window": 301,
+    "pos": 184,
+    "rel": 0.896,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "(char",
+    "text": "S\" (*b),\n\t\t\t\"=c\" (*c),\n\t\t\t\"=d\" (*d)\n\t\t\t: \"a\" (op));\n}\n\nstatic int\n__get_cpuid[[(char]] *buffer, size_t sz"
+   },
+   {
+    "kind": "top",
+    "window": 1213,
+    "pos": 182,
+    "rel": 0.896,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " char",
+    "text": " REPLACE_ENV_ALLOW_EXTENDED  = 1 << 2,\n};\n\n#if 0 /// UNNEEDED by elogind\nchar *replace_env_n(const char *format, size_t n,[[ char]] **env, unsigned flags);\n"
+   },
+   {
+    "kind": "top",
+    "window": 1351,
+    "pos": 2,
+    "rel": 0.711,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": "/*\n *[[ ]] CRIS helper routines\n *\n"
+   },
+   {
+    "kind": "top",
+    "window": 1353,
+    "pos": 2,
+    "rel": 0.711,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": "/*\n *[[ ]] linux/fs/super.c\n"
+   },
+   {
+    "kind": "top",
+    "window": 1129,
+    "pos": 155,
+    "rel": 0.597,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": "_bsd.go or syscall_unix.go.\n\npackage unix\n\nimport (\n\t\"sort\"\n\t\"syscall\"\n\t\"unsafe\"\n)\n\n//sys\tsysctl(mib []_C_int, old *byte[[,]] oldlen *uintptr, new"
+   },
+   {
+    "kind": "top",
+    "window": 785,
+    "pos": 113,
+    "rel": 0.568,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " buffer",
+    "text": " PROTO ((char *, size_t));\n \n+static void proxy_connect PROTO ((cvsroot_t *, int));\n static void auth_server PROTO ((cvsroot_t *, struct buffer *, struct[[ buffer]] *,\n \t\t\t\tint, int,"
+   },
+   {
+    "kind": "top",
+    "window": 1336,
+    "pos": 111,
+    "rel": 0.539,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "(sig",
+    "text": ":00:34.548000000 +0000\n@@ -2912,7 +2912,7 @@ siginfo[[(sig]], si, sc)\n         "
+   },
+   {
+    "kind": "top",
+    "window": 158,
+    "pos": 165,
+    "rel": 0.532,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " such",
+    "text": " find a lot of spellbooks there as well, one of which can turn out to be a spellbook of Wish. In most cases, other classes will have to resort to scumming methods,[[ such]] as restocking shops, or"
+   },
+   {
+    "kind": "top",
+    "window": 483,
+    "pos": 124,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " *",
+    "text": "[]; Now i would love to store these pointer values in a normal variable and print it on the command line. I get segmentation fault when i execute my code.\nint main ( int argc, char[[ *]]argv[] )\n{\n\n    char"
+   },
+   {
+    "kind": "top",
+    "window": 837,
+    "pos": 103,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " call",
+    "text": " License, incorporated herein by reference.\n */\n\n#ifndef CALLBACKS_H\n#define CALLBACKS_H\n\n\nextern void cb_out_1(struct pcbit_dev *dev, struct pcbit_chan *chan,\n\t\t     struct[[ call]]b_data *data);\n\nextern"
+   },
+   {
+    "kind": "top",
+    "window": 1385,
+    "pos": 126,
+    "rel": 0.458,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "struct",
+    "text": " is impractical to define One True Struct, because the resulting encoding\n * routines (lots of read-modify-writes) would be worst-case performance whether\n * or not circumstances required them.) */\n[[struct]] dpaa_fd {\n\tunion {\n"
+   },
+   {
+    "kind": "top",
+    "window": 1343,
+    "pos": 223,
+    "rel": 0.455,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ",",
+    "text": "hw/pci/pci.h\"\n#include \"hw/pci/pci_host.h\"\n#include \"trace.h\"\n\n/* debug PCI */\n//#define DEBUG_PCI\n\n#ifdef DEBUG_PCI\n#define PCI_DPRINTF(fmt[[,]] ...) \\\ndo { printf(\""
+   },
+   {
+    "kind": "top",
+    "window": 1380,
+    "pos": 1,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " *",
+    "text": "/*\n[[ *]] This program is free software;"
+   },
+   {
+    "kind": "top",
+    "window": 1107,
+    "pos": 1,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " *",
+    "text": "/*\n[[ *]] cocos2d for iPhone:"
+   },
+   {
+    "kind": "top",
+    "window": 1302,
+    "pos": 1,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " *",
+    "text": "/*\n[[ *]] libjingle\n * Copyright"
+   },
+   {
+    "kind": "top",
+    "window": 1303,
+    "pos": 1,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " *",
+    "text": "/*\n[[ *]] Copyright (C) 2"
+   },
+   {
+    "kind": "top",
+    "window": 1219,
+    "pos": 1,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " *",
+    "text": "/*\n[[ *]] ****************************************************************************\n *     Cloud Found"
+   },
+   {
+    "kind": "top",
+    "window": 1229,
+    "pos": 1,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " *",
+    "text": "/*\n[[ *]] Copyright (c) 2"
+   },
+   {
+    "kind": "top",
+    "window": 209,
+    "pos": 1,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " *",
+    "text": "/*\n[[ *]] SonarQube\n *"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 16.625,
+  "n_strong_tokens": 55,
+  "n_strong_windows": 18,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    14
+   ],
+   [
+    "StackExchange",
+    4
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    14
+   ],
+   [
+    "en",
+    4
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "String",
+    4
+   ],
+   [
+    "State",
+    2
+   ],
+   [
+    "_H",
+    2
+   ],
+   [
+    " char",
+    2
+   ],
+   [
+    "Context",
+    2
+   ],
+   [
+    "ed",
+    2
+   ],
+   [
+    "Stream",
+    2
+   ],
+   [
+    "double",
+    1
+   ]
+  ],
+  "strong_pos_median": 104,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 278,
+    "pos": 24,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "String",
+    "text": "// StringUtils.cpp\r\n\r\n#include \"StdAfx.h\"\r\n\r\n#include \"StringUtils.h\"\r\n\r\nvoid SplitStringToTwoStrings(const U[[String]] &src, UString &"
+   },
+   {
+    "kind": "top",
+    "window": 1215,
+    "pos": 249,
+    "rel": 0.977,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " char",
+    "text": "_SCRIPTCOREINTERNAL_H\n#ifdef _WIN32\n#pragma once\n#endif\n\n#include \"v8.h\"\n\nclass ScriptCoreInternal\n{\npublic:\n\tvoid init();\n\tvoid del();\n\n\tvoid runScript(const[[ char]]* file, const char*"
+   },
+   {
+    "kind": "top",
+    "window": 1333,
+    "pos": 119,
+    "rel": 0.861,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Stream",
+    "text": "ed.h\"\n#include \"ik_SAudioStreamFormat.h\"\n\nnamespace irrklang\n{\n\n\n//!\tReads and decodes audio data into an usable audio stream for the ISoundEngine\nclass IAudio[[Stream]] : public IRefCounted\n"
+   },
+   {
+    "kind": "top",
+    "window": 1245,
+    "pos": 94,
+    "rel": 0.756,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Link",
+    "text": " \"ES2Renderer.h\"\n@interface EAGLView ()\n{\n    ES2Renderer* _renderer;\n    EAGLContext* _context;\n    NSInteger _animationFrameInterval;\n    CADisplay[[Link]]* _displayLink;\n}\n"
+   },
+   {
+    "kind": "top",
+    "window": 1331,
+    "pos": 208,
+    "rel": 0.726,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " State",
+    "text": " typename\n        lazy_enable_if<\n            traits::is_sequence<Sequence>\n          , result_of::accumulate<Sequence, State const, F>\n        >::type\n    accumulate(Sequence& seq,[[ State]] const& state, F f"
+   },
+   {
+    "kind": "top",
+    "window": 434,
+    "pos": 71,
+    "rel": 0.722,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " LONG",
+    "text": "\t\t\"InprocServer32\"\n#define ASIO_PATH\t\t\t\"software\\\\asio\"\n#define COM_CLSID\t\t\t\"clsid\"\n\n// ******************************************************************\n// Local Functions \n// ******************************************************************\nstatic[[ LONG]] findDrvPath (char *"
+   },
+   {
+    "kind": "top",
+    "window": 1208,
+    "pos": 67,
+    "rel": 0.68,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "State",
+    "text": "2_ResourceDescTable.h>\n#include <SkinnedDecals.h>\n\n#define CURRENT_DEMO_MODEL_VERSION 1\n#define SKINNING_THREAD_GROUP_SIZE 64 \n\nclass DX12_Pipeline[[State]];\nclass DX12_Buffer"
+   },
+   {
+    "kind": "top",
+    "window": 1262,
+    "pos": 164,
+    "rel": 0.65,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "String",
+    "text": "brief Create a property being a simple gd::String with the specified\n   * value.\n   *\n   * \\param propertyValue The value of the property.\n   */\n  PropertyDescriptor(gd::[[String]] propertyValue)\n      : currentValue"
+   },
+   {
+    "kind": "top",
+    "window": 1373,
+    "pos": 202,
+    "rel": 0.617,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Context",
+    "text": "NativeMethod(\"poke\", SamplingProfilerJniMethod::poke)});\n}\n\nSamplingProfilerJniMethod::SamplingProfilerJniMethod(jlong javaScriptContext) {\n  context_ = reinterpret_cast<JSGlobal[[Context]]Ref>(javaScriptContext);\n"
+   },
+   {
+    "kind": "top",
+    "window": 823,
+    "pos": 252,
+    "rel": 0.609,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Archive",
+    "text": "<T>. \r\n */\r\n\r\nnamespace boost{\r\n  \r\nnamespace serialization{\r\n\r\ntemplate<\r\n  class Archive,\r\n  typename T,typename Arg1,typename Arg2,typename Arg3\r\n>\r\ninline void serialize(\r\n [[ Archive]]& ar,"
+   },
+   {
+    "kind": "top",
+    "window": 906,
+    "pos": 43,
+    "rel": 0.594,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "STR",
+    "text": " to send C++ console params to C# DLL\n\nI need to send two numbers entered as parameters or requested by C++ console to a library in C#.\nManually the code is:\nB[[STR]] thing_to_send = ::Sys"
+   },
+   {
+    "kind": "top",
+    "window": 61,
+    "pos": 158,
+    "rel": 0.564,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "double",
+    "text": "/serialization, etc.) like so:\ntemplate<size_t M, size_t N>\nMatMN<M, N> operator*(double scalar, MatMN<M, N> mat) {\n  for ([[double]]& x_ : mat)"
+   },
+   {
+    "kind": "top",
+    "window": 1397,
+    "pos": 181,
+    "rel": 0.476,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Description",
+    "text": "    JSScript *script;\n    unsigned lineno;\n    JSFunction *fun;\n};\n\nstruct StackDescription\n{\n    unsigned nframes;\n    FrameDescription *frames;\n};\n\nextern JS_PUBLIC_API(Stack[[Description]] *)\nDescribeStack(JSContext *"
+   },
+   {
+    "kind": "top",
+    "window": 1299,
+    "pos": 55,
+    "rel": 0.474,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " copy",
+    "text": " (c) 2005 - 2015 G-Truc Creation (www.g-truc.net)\r\n/// Permission is hereby granted, free of charge, to any person obtaining a[[ copy]]\r\n/// of this software and"
+   },
+   {
+    "kind": "random-strong",
+    "window": 905,
+    "pos": 237,
+    "rel": 0.53,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "List",
+    "text": ". I am a new programmer so this can definitively attributed to my lack of experience.\nTo provide a little more context, here is the surrounding code.\nMatrixList* gen_parens( Matrix[[List]] *list, MatrixList *"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1267,
+    "pos": 238,
+    "rel": 0.545,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Service",
+    "text": " C>\nclass MockDataReductionProxySettings : public C {\n public:\n  MockDataReductionProxySettings<C>() : C() {\n  }\n  MOCK_METHOD0(GetOriginalProfilePrefs, Pref[[Service]]*());\n  MOCK_METHOD0"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1355,
+    "pos": 252,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_type",
+    "text": "izes the value of phi on the line between q_a and q_b.\n    */\n    template<typename vector3_type,typename grid_type>\n    inline vector3_type bisection_line_search(vector3[[_type]] q_a,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1399,
+    "pos": 205,
+    "rel": 0.519,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "PRINTF",
+    "text": " function through two others to a fourth; all four functions are in different source files\n *\n * */\n\n#include \"std_testcase.h\"\n\n#include <wchar.h>\n\n#ifdef _WIN32\n#define SN[[PRINTF]] _snwprintf\n#else"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1386,
+    "pos": 13,
+    "rel": 0.515,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "(char",
+    "text": "#include <stdio.h>\r\n#include <string.h>\r\n\r\nint romanToInt[[(char]] *s) {\r\n    int"
+   },
+   {
+    "kind": "random-strong",
+    "window": 572,
+    "pos": 138,
+    "rel": 0.545,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "(object",
+    "text": ".Windows.Forms.Cursors.SizeWE;\nleftResizer.Dock = System.Windows.Forms.DockStyle.Left;\nleftResizer.Size = new System.Drawing.Size(1, 100);\nleftResizer.MouseDown += delegate[[(object]] sender, MouseEventArgs e) {"
+   }
+  ]
+ }
+}

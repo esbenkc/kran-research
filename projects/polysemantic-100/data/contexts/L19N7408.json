@@ -1,0 +1,620 @@
+{
+ "id": "L19N7408",
+ "layer": 19,
+ "neuron": 7408,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 4.1562,
+  "n_strong_tokens": 62,
+  "n_strong_windows": 41,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    12
+   ],
+   [
+    "Pile-CC",
+    10
+   ],
+   [
+    "OpenWebText2",
+    8
+   ],
+   [
+    "USPTO Backgrounds",
+    6
+   ],
+   [
+    "PubMed Abstracts",
+    3
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    29
+   ],
+   [
+    "es",
+    5
+   ],
+   [
+    "zh",
+    4
+   ],
+   [
+    "de",
+    1
+   ],
+   [
+    "ja",
+    1
+   ],
+   [
+    "fr",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " time",
+    6
+   ],
+   [
+    " ",
+    4
+   ],
+   [
+    " in",
+    4
+   ],
+   [
+    " the",
+    3
+   ],
+   [
+    " faster",
+    2
+   ],
+   [
+    " to",
+    2
+   ],
+   [
+    " for",
+    2
+   ],
+   [
+    " response",
+    2
+   ]
+  ],
+  "strong_pos_median": 166,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 330,
+    "pos": 213,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " time",
+    "text": " criteria as set forth in a questionnaire. Scores from the panel are then averaged to obtain an average evaluation of the quality of the painted surface. The prior process of using human panels for finish evaluation is extremely[[ time]] consuming and expensive. At best"
+   },
+   {
+    "kind": "top",
+    "window": 898,
+    "pos": 249,
+    "rel": 0.97,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " time",
+    "text": " significantly and it is\nexactly done as per our client’s required International Quality\nStandards; AQL 4.0, AQL 2.5 Etc. This saves alot more[[ time]] and money at\nboth ends"
+   },
+   {
+    "kind": "top",
+    "window": 1440,
+    "pos": 154,
+    "rel": 0.88,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": " antes",
+    "text": "arla manualmente para ajustara a tu muñeca y una vez cortada no se puede volver atras. Cortada al máximo aun me viene un poco olgada.\nLlegaron[[ antes]] de tiempo. La calidad es"
+   },
+   {
+    "kind": "top",
+    "window": 67,
+    "pos": 213,
+    "rel": 0.842,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "2",
+    "text": " bound that we develop in this paper. This comparison demonstrates the efficiency of the algorithm to find good-quality solutions. [Received 25 November 2009; Revised 26 February [[2]]010; Revised "
+   },
+   {
+    "kind": "top",
+    "window": 1588,
+    "pos": 31,
+    "rel": 0.82,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "物流",
+    "text": "语言生动，故事情节构思巧妙有趣，孩子一岁八个月，很有兴趣，亲子共读的好书！\n又贵又慢，[[物流]]更新还是错误的，润"
+   },
+   {
+    "kind": "top",
+    "window": 1101,
+    "pos": 233,
+    "rel": 0.805,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " to",
+    "text": " GM cultivation in Europe.\n\nThe new law, first proposed in 2010, still needs formal final approval from the EU council. But council approval is considered a mere formality and is expected[[ to]] be granted in spring.\n\nPolicy"
+   },
+   {
+    "kind": "top",
+    "window": 726,
+    "pos": 58,
+    "rel": 0.759,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " make",
+    "text": "ney, founder and CEO of Stricture Consulting Group, a company that handles password-cracking, has unveiled a computer cluster boasting 25 AMD Radeon graphics cards. The cluster's horsepower allows it to[[ make]] 350 billion password"
+   },
+   {
+    "kind": "top",
+    "window": 287,
+    "pos": 133,
+    "rel": 0.752,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " after",
+    "text": " is taken by the imaging organization, the data is significantly reformulated, and then imaging is practiced. While some time--depending upon the raw data received--final print streams may be produced within several hours[[ after]] receipt of the raw data,"
+   },
+   {
+    "kind": "top",
+    "window": 341,
+    "pos": 51,
+    "rel": 0.744,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " for",
+    "text": " company that you have been looking for. Have you been looking for car financing that seeks to understand what you need? Are you tired of filling countless number of forms in the bank only to be kept waiting[[ for]] long for lengthy approval processes?"
+   },
+   {
+    "kind": "top",
+    "window": 161,
+    "pos": 231,
+    "rel": 0.729,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " time",
+    "text": " of the frame to fasten the buckle, and the sandal style shoe is firmly mounted on the user\"\"s foot. However, wearing a sandal style shoe having a buckle is troublesome and wastes[[ time]], even when taking the sand"
+   },
+   {
+    "kind": "top",
+    "window": 791,
+    "pos": 211,
+    "rel": 0.684,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " faster",
+    "text": " strategies, and an explanation for why transcoding cannot improve your image quality.\n\nThe benefits of optimizing your codecs can be huge. The right codec will preserve your images in the highest quality, help you work[[ faster]], and it will also enable"
+   },
+   {
+    "kind": "top",
+    "window": 426,
+    "pos": 105,
+    "rel": 0.68,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " response",
+    "text": "AT) which requires only clutch shifting, a DCT can enable clutch shifting only after gear shifting has been completed. Therefore, in the DCT, gear shifting performance is a key factor for an overall[[ response]] to speed change. In particular"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1094,
+    "pos": 101,
+    "rel": 0.56,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": ".\n\nHave you regularly attended yoga classes before, but found they didn’t meet your expectations? If so, Zoe claims that Her Yoga Secrets can help you experience all the benefits yoga is capable of providing,[[ in]] addition to a boosted metabolism,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 868,
+    "pos": 15,
+    "rel": 0.658,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ".org",
+    "text": "Social network diagram. Credit: Daniel Tenerife/Wikipedia\n\n(Phys[[.org]])—A pair of researchers has"
+   },
+   {
+    "kind": "random-strong",
+    "window": 226,
+    "pos": 164,
+    "rel": 0.665,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " the",
+    "text": " fault the service.\nThere's a thread over on money saving expert which is pretty much filled with good reviews.\n\nI used them last week. sent my 5800 away via special del on[[ the]] friday they confirmed receipt and the"
+   },
+   {
+    "kind": "random-strong",
+    "window": 76,
+    "pos": 165,
+    "rel": 0.602,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " am",
+    "text": " \"When you have knee injuries, you can't really take any time off. Every time I think about it, I'm trying to do something with my knee. I'm not rushing it but I[[ am]] going hard on my knee.\""
+   },
+   {
+    "kind": "random-strong",
+    "window": 925,
+    "pos": 228,
+    "rel": 0.62,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " running",
+    "text": " to remain anonymous because she is still taking the class, said there were autograder difficulties with each of the three projects she and her classmates have submitted so far this semester.\n\nThe autograder stopped[[ running]] for a \"very frustrating\""
+   },
+   {
+    "kind": "random-strong",
+    "window": 629,
+    "pos": 255,
+    "rel": 0.624,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " quicker",
+    "text": ", unless you implement something complex like a client-side Flash uploader with built-in compression, Plone can only compress files after they've been uploaded, not before, so if you're hoping to make uploads[[ quicker]]"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1428,
+    "pos": 214,
+    "rel": 0.658,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": "ert",
+    "text": " GRÖSSEN SEHR KLEIN AUS ICH TRAGE M4 UND GRÖSSE 7 IST IMMER NOCH ZU ENG\nwurde schnell gelief[[ert]], war (unter Zuh"
+   },
+   {
+    "kind": "random-strong",
+    "window": 258,
+    "pos": 193,
+    "rel": 0.579,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " faster",
+    "text": " instead of following the agency. It is because people are familiar with the lies in the real estate today. The best trick nowadays is to sell the home yourself because you are likely going to sell the home[[ faster]] and again you will avoid the"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 2.2656,
+  "n_strong_tokens": 34,
+  "n_strong_windows": 24,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "OpenWebText2",
+    8
+   ],
+   [
+    "Pile-CC",
+    8
+   ],
+   [
+    "PubMed Central",
+    3
+   ],
+   [
+    "Enron Emails",
+    1
+   ],
+   [
+    "USPTO Backgrounds",
+    1
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    23
+   ],
+   [
+    "hi",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " the",
+    2
+   ],
+   [
+    " have",
+    2
+   ],
+   [
+    "働",
+    1
+   ],
+   [
+    "axis",
+    1
+   ],
+   [
+    " ",
+    1
+   ],
+   [
+    " start",
+    1
+   ],
+   [
+    " stage",
+    1
+   ],
+   [
+    " our",
+    1
+   ]
+  ],
+  "strong_pos_median": 168,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 706,
+    "pos": 243,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " a",
+    "text": "2 of this year, according to contract details obtained by NJ Advance Media following an open records request.\n\nBaker’s departure means head coach Chris Ash now has two openings to fill on his staff with about[[ a]] month to go before the start"
+   },
+   {
+    "kind": "top",
+    "window": 45,
+    "pos": 39,
+    "rel": 0.845,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "働",
+    "text": "この４月にサラリーマンとしての生活をはじめました。相変わらず職場では全くモテていないものの、一応何とか遅刻もせずに[[働]]いております。\n\n４月という"
+   },
+   {
+    "kind": "top",
+    "window": 250,
+    "pos": 190,
+    "rel": 0.779,
+    "gate_open": true,
+    "source": "Enron Emails",
+    "lang": "en",
+    "token": " our",
+    "text": " Vince \nThanks again for agreeing to speak at our conference. \nIt is attracting considerable interest. . \n\nIs it possible for you to send us copies of your slides by May 18 to meet[[ our]] \ndeadline for \npreparing"
+   },
+   {
+    "kind": "top",
+    "window": 540,
+    "pos": 200,
+    "rel": 0.759,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " finish",
+    "text": " Bowl-winning quarterback, but Michigan State's defensive coordinator also made it clear he was displeased with his unit's inability to execute the game plan consistently.\n\n“We did some good things, but we didn’t[[ finish]], we didn’t finish the"
+   },
+   {
+    "kind": "top",
+    "window": 782,
+    "pos": 91,
+    "rel": 0.731,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " the",
+    "text": ", are especially in demand. A DRAM memory cell needs to be refreshed during standby mode to maintain the information stored in the memory cell. An increase in the time between refreshes of memory cells reduces[[ the]] amount of power consumed by the"
+   },
+   {
+    "kind": "top",
+    "window": 918,
+    "pos": 48,
+    "rel": 0.71,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " to",
+    "text": "omyolysis is the breakdown of skeletal muscle that can rapidly progress to acute renal failure or death. It is important to make a rapid diagnosis and initiate treatment for rhabdomyolysis in order[[ to]] decrease morbidity and mortality."
+   },
+   {
+    "kind": "top",
+    "window": 477,
+    "pos": 147,
+    "rel": 0.662,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " weeks",
+    "text": " covered), and partly because the beginning of every season offers a daunting 17 contestants, the vast majority of whom don’t stand a chance of winning the thing. That means a good 10[[ weeks]] of waiting for wheat to be"
+   },
+   {
+    "kind": "top",
+    "window": 58,
+    "pos": 239,
+    "rel": 0.659,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "axis",
+    "text": " p = 0.0003), reexploration for bleeding (OR, 8.2; p = 0.0015), and the timing of antibiotic prophyl[[axis]] (> 60 min before"
+   },
+   {
+    "kind": "top",
+    "window": 377,
+    "pos": 39,
+    "rel": 0.648,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " time",
+    "text": "5 Simple Statements About homework help online Explained\n\nMenu\n\n5 Simple Statements About homework help online Explained\n\nYou are able to constantly be assured that you will Get the assignment within just your specified[[ time]]-body. Assembly the deadlines is"
+   },
+   {
+    "kind": "top",
+    "window": 1113,
+    "pos": 228,
+    "rel": 0.634,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " stopping",
+    "text": " attack, which averaged over three goals a game in the first half, has sunk to the league average; its defense has become readily permeable, having conceded a seismic shot total; its goalies are[[ stopping]] pucks at a subverting"
+   },
+   {
+    "kind": "top",
+    "window": 784,
+    "pos": 80,
+    "rel": 0.617,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " starting",
+    "text": " defending her women's bantamweight title against Miesha Tate.\n\nThe fights will air live on pay-per-view in the U.S. from MGM Grand Garden Arena in Las Vegas, Nev.[[ starting]] at 10 p.m"
+   },
+   {
+    "kind": "top",
+    "window": 464,
+    "pos": 47,
+    "rel": 0.59,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " be",
+    "text": " of caught up with all my blog sites. Have helped my older sister with her estate sale. And this week isn’t going to be any better. I signed up for a Debate Watch Party that should[[ be]] fun. Watching upwithch"
+   },
+   {
+    "kind": "random-strong",
+    "window": 76,
+    "pos": 196,
+    "rel": 0.534,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " start",
+    "text": " knee. I'm not rushing it but I am going hard on my knee.\"Manningham, the 49ers' second-leading receiver last year, is not expected to be ready for the[[ start]] of training camp in two months"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1182,
+    "pos": 122,
+    "rel": 0.534,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " rapid",
+    "text": " an action potential due to a short-lived rapid depolarization of the TMP before returning to the higher resting state. These cells achieve this by expressing fast-acting voltage gated ion channels that allow the very[[ rapid]] exchange of ions across the cellular"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1057,
+    "pos": 227,
+    "rel": 0.524,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " have",
+    "text": " he’s going to come up there and give us a good at-bat.”\n\nCallaway said that “anything is possible” with how he plans to use Lowrie going forward, noting that they’ll[[ have]] to take things day by day"
+   },
+   {
+    "kind": "random-strong",
+    "window": 248,
+    "pos": 146,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " stage",
+    "text": " causes of bleeding will always need to be addressed, bleeding caused by haemostatic failure requires the use of the best available haemostatic treatments with the objective of arresting the bleeding at an early[[ stage]], thus reducing the overall number"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1061,
+    "pos": 47,
+    "rel": 0.503,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ",",
+    "text": " Pravin Gordhan says that Eskom has come up with a detailed winter plan that includes several possible scenarios.\n\nGordhan said the first scenario was if no load shedding was implemented.\n\n“In this instance[[,]] we will ensure that unplanned"
+   },
+   {
+    "kind": "random-strong",
+    "window": 962,
+    "pos": 127,
+    "rel": 0.555,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " imminent",
+    "text": " she has the legal right to be with no duty to retreat if either of the following applies . . .\n\na) The individual honestly and reasonably believes that the use of deadly force is necessary to prevent the[[ imminent]] death of or imminent great bodily"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1461,
+    "pos": 27,
+    "rel": 0.534,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "hi",
+    "token": " �",
+    "text": "मैं पूरी दोपहर अपने भाषण का[[ �]]�भ ् य"
+   },
+   {
+    "kind": "random-strong",
+    "window": 360,
+    "pos": 104,
+    "rel": 0.538,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " keep",
+    "text": "-y_t-z_t\\le0$\nwhere $z_t$ essentially follows a predetermined path, and $x_t=0.75$ until the constraint becomes binding, then dynamically adjusts to[[ keep]] $y_t$ at the"
+   }
+  ]
+ }
+}

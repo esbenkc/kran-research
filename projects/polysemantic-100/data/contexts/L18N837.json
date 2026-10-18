@@ -1,0 +1,620 @@
+{
+ "id": "L18N837",
+ "layer": 18,
+ "neuron": 837,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 0.5977,
+  "n_strong_tokens": 3029,
+  "n_strong_windows": 659,
+  "strong_gate_open_frac": 0.008,
+  "strong_sources": [
+   [
+    "StackExchange",
+    147
+   ],
+   [
+    "Github",
+    132
+   ],
+   [
+    "Pile-CC",
+    84
+   ],
+   [
+    "OpenWebText2",
+    59
+   ],
+   [
+    "PubMed Abstracts",
+    59
+   ],
+   [
+    "FreeLaw",
+    39
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    505
+   ],
+   [
+    "code",
+    132
+   ],
+   [
+    "hi",
+    9
+   ],
+   [
+    "th",
+    3
+   ],
+   [
+    "it",
+    2
+   ],
+   [
+    "bg",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ",",
+    146
+   ],
+   [
+    "\n",
+    121
+   ],
+   [
+    " (",
+    84
+   ],
+   [
+    " ",
+    77
+   ],
+   [
+    "1",
+    58
+   ],
+   [
+    "2",
+    54
+   ],
+   [
+    "0",
+    51
+   ],
+   [
+    " and",
+    50
+   ]
+  ],
+  "strong_pos_median": 101,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 416,
+    "pos": 163,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": " old",
+    "text": "\" \"I!\" \"Chrissy, ie that is waiting ...\" \"Expecting a baby, and I also hope show up as promised\" \"In the old days ...\" \"I say we are not[[ old]] but if we are an old"
+   },
+   {
+    "kind": "top",
+    "window": 962,
+    "pos": 71,
+    "rel": 0.98,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " he",
+    "text": " what a “stand your ground” (SYG) law actually means. Here’s Michigan’s version: “An individual who has not or is not engaged in the commission of a crime at the time[[ he]] or she uses deadly force may"
+   },
+   {
+    "kind": "top",
+    "window": 59,
+    "pos": 126,
+    "rel": 0.98,
+    "gate_open": false,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": "http",
+    "text": " Rust really picking up steam really fast?\n\nIt seems to have more libraries and the ones it has are more advanced than\nwhat would be expected from a language this young.\n\n~~~\nswah\n[[[http]]://arewewebyet"
+   },
+   {
+    "kind": "top",
+    "window": 702,
+    "pos": 239,
+    "rel": 0.961,
+    "gate_open": false,
+    "source": "HackerNews",
+    "lang": "en",
+    "token": "http",
+    "text": " lot of sense for RISC-V to try to\ninnovate on the memory protection and virtual addressing schemes as well.\n\nI found the solution used in the Mill architecture to be very interesting:\n[[[http]]://millcomputing.com/wiki"
+   },
+   {
+    "kind": "top",
+    "window": 689,
+    "pos": 214,
+    "rel": 0.961,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " can",
+    "text": " so fast (have a minimum generation time). The generation time is effected by the growth medium, and the physical/chemical environment of the cell (see below).\n\nGrowth is exponential/logarithmic:[[ can]] attain large numbers in a short"
+   },
+   {
+    "kind": "top",
+    "window": 108,
+    "pos": 233,
+    "rel": 0.954,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " everything",
+    "text": "Rick, honey, take it easy, you aren’t going to wear my pussy out, you are just wearing yourself out. But, oh God your cock feels so good in there.” Bill was watching[[ everything]] and did exactly what Cathy was"
+   },
+   {
+    "kind": "top",
+    "window": 847,
+    "pos": 86,
+    "rel": 0.948,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " (",
+    "text": " :\n    source: function( request, response ) {\n               $.getJSON( \"search.php\", {\n                 term: extractLast( request.term )\n               }, response );\n             },\n\nTo:\nsource: function[[ (]]request, response) {\n                       "
+   },
+   {
+    "kind": "top",
+    "window": 709,
+    "pos": 151,
+    "rel": 0.941,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ",\n",
+    "text": "ors?\nCursor to convert\n            BEGIN TRANSACTION\n\n            DECLARE @CustomerID int,\n                    @Name nvarchar(50),\n                    @Surname nvarchar(50),\n                    @DateOfBirth datetime[[,\n]]                    @Address nvarchar("
+   },
+   {
+    "kind": "top",
+    "window": 953,
+    "pos": 198,
+    "rel": 0.915,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " a",
+    "text": " more to the body than we can imagine. The sensors kick in not just in the tongue as we wonder how hers would interact with ours but our inner muscles contract low in our bodies. Our heart beats[[ a]] bit faster as we wet our"
+   },
+   {
+    "kind": "top",
+    "window": 6,
+    "pos": 52,
+    "rel": 0.908,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " ",
+    "text": " a book on WCF and author debates about pros of using message-level security over using transport-level security. Anyways, I can't find any logic in author's arguments \n\nOne limitation of transport\n[[ ]] security is that it relies on"
+   },
+   {
+    "kind": "top",
+    "window": 94,
+    "pos": 48,
+    "rel": 0.908,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "\n\n",
+    "text": " 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.\n\nCalories:\n\n2,000\n\n2,500\n\nTotal Fat[[\n\n]]Less than\n\n65g"
+   },
+   {
+    "kind": "top",
+    "window": 912,
+    "pos": 53,
+    "rel": 0.902,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " in",
+    "text": "Manchester Police Officer Dan Doherty testifies how he was shot last March as he was pursuing a suspect during trial in Hillsborough County Superior Court Wednesday Dec. 5, 2012[[ in]] Manchester, N.H. M"
+   },
+   {
+    "kind": "random-strong",
+    "window": 328,
+    "pos": 108,
+    "rel": 0.523,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\">\n",
+    "text": " etc). I have other js functions in functions.js that work fine. \ntest.html:\n{% csrf_token %}\n{% load groupfilter %}\n{% load staticfiles %}\n<!DOCTYPE html>\n<html lang=\"en[[\">\n]]   <head>\n       <"
+   },
+   {
+    "kind": "random-strong",
+    "window": 510,
+    "pos": 32,
+    "rel": 0.742,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " (",
+    "text": "Anterior cruciate ligament bundle measurement by MRI.\nAn accurate in vivo method of measuring dimensions of the anteromedial (AM) and posterolateral[[ (]]PL) anterior cruciate lig"
+   },
+   {
+    "kind": "random-strong",
+    "window": 747,
+    "pos": 85,
+    "rel": 0.82,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "yl",
+    "text": "4 positive charges are studied: mono(N-methyl-4-pyridyl)triphenylporphine chloride [Mono], cis(N-methyl-4-pyridyl)diphen[[yl]]porphine chloride [C"
+   },
+   {
+    "kind": "random-strong",
+    "window": 714,
+    "pos": 196,
+    "rel": 0.588,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": ":",
+    "text": "20\n//\n// Cooper, Harvey, Kennedy.  2001.  A Simple, Fast Dominance Algorithm.\n// Software Practice and Experience 2001, 4[[:]]1-10.\n//"
+   },
+   {
+    "kind": "random-strong",
+    "window": 835,
+    "pos": 176,
+    "rel": 0.637,
+    "gate_open": false,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ",",
+    "text": " A. Durling\n                    ______________\n\n                Argued January 19, 2018\n                   ______________\n\n  Before: SMITH, Chief Judge, GREENAWAY[[,]] JR., and\n              K"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1161,
+    "pos": 220,
+    "rel": 0.65,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " for",
+    "text": " Francis also spent 10 months in jail in 2007 for tax evasion. The plea deal also required him to make restitution.\n\nStars With Tax Problems\n\nPhoto by Moses Robinson/Getty Images[[ for]] Gospel Music Association\n\n“This Is"
+   },
+   {
+    "kind": "random-strong",
+    "window": 999,
+    "pos": 236,
+    "rel": 0.781,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ",",
+    "text": "_INSERT_ID() after each insert into resource_item. So your final script could look something like this:\nSET AUTOCOMMIT=0;\nSET @RESOURCE_ID=0;\n\nINSERT INTO resource ( NULL[[,]] \"Some Name\");\nSELECT LAST"
+   },
+   {
+    "kind": "random-strong",
+    "window": 549,
+    "pos": 49,
+    "rel": 0.559,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "p",
+    "text": " Trentino-Alto Adige/South Tyrol, most of us think of speck, strudel, and Muller-Thurgau. The same happens with the denomination of Veneto Val[[p]]olicella, which recalls some"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 1.0547,
+  "n_strong_tokens": 85,
+  "n_strong_windows": 37,
+  "strong_gate_open_frac": 0.835,
+  "strong_sources": [
+   [
+    "Github",
+    16
+   ],
+   [
+    "DM Mathematics",
+    9
+   ],
+   [
+    "StackExchange",
+    7
+   ],
+   [
+    "FreeLaw",
+    1
+   ],
+   [
+    "PubMed Central",
+    1
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    21
+   ],
+   [
+    "code",
+    16
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " +",
+    5
+   ],
+   [
+    "sqrt",
+    4
+   ],
+   [
+    " -",
+    4
+   ],
+   [
+    "2",
+    3
+   ],
+   [
+    "4",
+    3
+   ],
+   [
+    "a",
+    3
+   ],
+   [
+    "b",
+    3
+   ],
+   [
+    "))*",
+    2
+   ]
+  ],
+  "strong_pos_median": 158,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1121,
+    "pos": 153,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": "a",
+    "text": " to -25647?  (a) -1  (b) 14  (c) -5\nc\nWhich is the nearest to -1?  ([[a]]) 3  (b"
+   },
+   {
+    "kind": "top",
+    "window": 1001,
+    "pos": 232,
+    "rel": 0.919,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": ")*(",
+    "text": " d**5 - 2*d**5).\n-24*d**5\nExpand -a - 6*a + 2*a + (a + 10*a + 3*a[[)*(]]0 - 3 - "
+   },
+   {
+    "kind": "top",
+    "window": 65,
+    "pos": 126,
+    "rel": 0.852,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": " -",
+    "text": "2 + -9 + -9 + 0?\n16\nWhat is 3 - 3 - 0 - (3 - -1 - 7)?\n3\nWhat is (-2[[ -]] -7 - 0)"
+   },
+   {
+    "kind": "top",
+    "window": 1340,
+    "pos": 18,
+    "rel": 0.796,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ho",
+    "text": "#\n# Copyright (c) 2008-2020 the Ur[[ho]]3D project.\n#\n#"
+   },
+   {
+    "kind": "top",
+    "window": 10,
+    "pos": 242,
+    "rel": 0.785,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": "(",
+    "text": "1))*-5)/(-1*(sqrt(162) + sqrt(2))) + 3.\n5 + 5*sqrt(5)/2\nSimplify (2*sqrt[[(]]84)*4 + -"
+   },
+   {
+    "kind": "top",
+    "window": 247,
+    "pos": 238,
+    "rel": 0.756,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "4",
+    "text": " 862 (4) (157 SE 48) (1930); Burdett v. State, 159 Ga. App. 39[[4]] (1) (28"
+   },
+   {
+    "kind": "top",
+    "window": 626,
+    "pos": 81,
+    "rel": 0.696,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " init",
+    "text": " -> Bool\n  @available(iOS 2.0, *)\n  var name: String?\n  func lock()\n  func unlock()\n}\nclass NSConditionLock : NSObject, NSLocking {\n [[ init]](condition condition: Int)\n "
+   },
+   {
+    "kind": "top",
+    "window": 756,
+    "pos": 217,
+    "rel": 0.696,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": ".",
+    "text": "pose a + 4*d - 6 = 3*d, -a + 18 = 4*d. Let i(u) = 11*u**2 + 24[[.]] Let w(q) = -"
+   },
+   {
+    "kind": "top",
+    "window": 800,
+    "pos": 164,
+    "rel": 0.678,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "sp",
+    "text": ",r8\n\n\n\tmov\trax,rsp\n\tpush\trbx\n\tpush\trbp\n\tpush\tr12\n\tpush\tr13\n\tpush\tr14\n\tpush\tr15\n\tlea\tr[[sp]],QWORD PTR[((-1"
+   },
+   {
+    "kind": "top",
+    "window": 1279,
+    "pos": 247,
+    "rel": 0.652,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " $",
+    "text": ".\n\nEXAMPLES\n  account:create\n  account:create --number=3\n```\n\n## `lisk account:get ADDRESSES`\n\nGets account information from the blockchain.\n\n```\nUSAGE\n [[ $]] lisk account:get ADDRES"
+   },
+   {
+    "kind": "top",
+    "window": 1152,
+    "pos": 243,
+    "rel": 0.644,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": " AM",
+    "text": "?\n618\nWhat is 596 minutes after 12:36 PM?\n10:32 PM\nHow many minutes are there between 11:58[[ AM]] and 5:00"
+   },
+   {
+    "kind": "top",
+    "window": 1357,
+    "pos": 60,
+    "rel": 0.644,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ":",
+    "text": "  var count: Int { get }\n  func object(at index: Int) -> AnyObject\n  init(objects objects: UnsafePointer<AnyObject?>, count cnt: Int)\n  init?(coder aDecoder[[:]] NSCoder)\n  func copy(with"
+   },
+   {
+    "kind": "random-strong",
+    "window": 677,
+    "pos": 237,
+    "rel": 0.548,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "[x",
+    "text": " never could have worked:\n-- R = ZZ[x]\n-- gcdCoefficients(x,x^2-5)\n-- rawExtendedGCD(raw x, raw(x^2-5))\n\nR = QQ[[[x]],y]/(x^2"
+   },
+   {
+    "kind": "random-strong",
+    "window": 306,
+    "pos": 58,
+    "rel": 0.544,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " nature",
+    "text": "-fed baboons.\nAlcohol induced perivenular fibrosis of terminal hepatic veins (THV) is claimed to be a precursor lesion leading to fibrosis development in man and baboon. The[[ nature]] and significance of the THV"
+   },
+   {
+    "kind": "random-strong",
+    "window": 887,
+    "pos": 51,
+    "rel": 0.507,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "'t",
+    "text": "\n\nI have the following Python code, which I wrote for the sister problem 18.\nIt works perfectly for problem 18, but is slightly out for problem 67. I can[['t]] for the life of me figure"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1385,
+    "pos": 55,
+    "rel": 0.526,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " we",
+    "text": "\n *\n * SPDX-License-Identifier:\tGPL-2.0+\n */\n#ifndef __FSL_DPAA_FD_H\n#define __FSL_DPAA_FD_H\n\n/* Place-holder for FDs,[[ we]] represent it via the simplest form"
+   },
+   {
+    "kind": "random-strong",
+    "window": 653,
+    "pos": 69,
+    "rel": 0.511,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " figure",
+    "text": " zip when a state abbreviation is entered (for example \"KY\" or \"AL\"). \nI want to return all zip codes and populations when \"ALL\" is entered, but I can't seem to[[ figure]] out how to do that."
+   },
+   {
+    "kind": "random-strong",
+    "window": 799,
+    "pos": 116,
+    "rel": 0.578,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " painful",
+    "text": " license information\n// See https://swift.org/CONTRIBUTORS.txt for the list of Swift project authors\n//\n//===----------------------------------------------------------------------===//\n//\n// This file contains wrappers for pthread APIs that are less[[ painful]] to use\n// than the"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1297,
+    "pos": 8,
+    "rel": 0.552,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "ize",
+    "text": "// Package errwrap implements methods to formal[[ize]] error wrapping in Go.\n//\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1026,
+    "pos": 243,
+    "rel": 0.537,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": "2",
+    "text": "?\n24\nLet m = 15469 - 12887. Is 2582 less than or equal to m?\nTrue\nLet w = [[2]]791 - 2"
+   }
+  ]
+ }
+}

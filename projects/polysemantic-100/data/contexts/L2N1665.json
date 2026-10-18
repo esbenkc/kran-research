@@ -1,0 +1,612 @@
+{
+ "id": "L2N1665",
+ "layer": 2,
+ "neuron": 1665,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 1.1172,
+  "n_strong_tokens": 52,
+  "n_strong_windows": 48,
+  "strong_gate_open_frac": 0.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    13
+   ],
+   [
+    "OpenWebText2",
+    9
+   ],
+   [
+    "StackExchange",
+    6
+   ],
+   [
+    "HackerNews",
+    4
+   ],
+   [
+    "USPTO Backgrounds",
+    3
+   ],
+   [
+    "lang-id",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    45
+   ],
+   [
+    "ja",
+    2
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " mean",
+    9
+   ],
+   [
+    "~~",
+    5
+   ],
+   [
+    " time",
+    3
+   ],
+   [
+    " “",
+    3
+   ],
+   [
+    " \"",
+    3
+   ],
+   [
+    " being",
+    2
+   ],
+   [
+    " Instead",
+    2
+   ],
+   [
+    " insure",
+    2
+   ]
+  ],
+  "strong_pos_median": 155,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 841,
+    "pos": 93,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Chief",
+    "text": ". Two more: high-tech industries and experimental spirituality. But it is precisely the union of all these unlikely counterparts that has given this region its special character and spawned some of its most unique artistic accomplishments.[[ Chief]] among the artistic prime movers that"
+   },
+   {
+    "kind": "top",
+    "window": 557,
+    "pos": 214,
+    "rel": 0.888,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " mean",
+    "text": " views as \"API\" and i need to manage the authentication, throttling, etc... \nSo, i was wondering if it's possible using DRF and without writing tons of redundant code.\nI[[ mean]], there is a short way"
+   },
+   {
+    "kind": "top",
+    "window": 1120,
+    "pos": 218,
+    "rel": 0.776,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " mean",
+    "text": " DataModel {\n    protected String table = \"testing\";\n}\n\nWhat I need to achieve? To get a list of children instances in order to have the data and the concrete methods of the child. I[[ mean]], I would like to call"
+   },
+   {
+    "kind": "top",
+    "window": 586,
+    "pos": 73,
+    "rel": 0.759,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " mean",
+    "text": " you've been away at college you have not gained a pound either.\" Amanda joked on the other end of the line.\n\n\n\n\"Not true! Here let me take a picture for you to prove it... I[[ mean]] yeah it's not much but"
+   },
+   {
+    "kind": "top",
+    "window": 648,
+    "pos": 87,
+    "rel": 0.752,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " mean",
+    "text": " much of the flight dynamics. Is there somewhere where I could get detailed information about the flight dynamics of aircraft without contacting the manufacturer, a pilot, or having the plane itself to run tests on? I[[ mean]] for things like drag at different"
+   },
+   {
+    "kind": "top",
+    "window": 1488,
+    "pos": 247,
+    "rel": 0.692,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "ろう",
+    "text": "。私などはシャッツを購入する時には、何時も袖を縮めて貰っている。その分費用が発生する。そういったことを言う人はいないのであ[[ろう]]か。Mサイズなどというのは"
+   },
+   {
+    "kind": "top",
+    "window": 1202,
+    "pos": 196,
+    "rel": 0.689,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " mean",
+    "text": " King's tweets, one of which praised the show as \"pure fun\" and \"A+\" with another sharp-tongued post that it's like \"watching Steve King's Greatest Hits. I[[ mean]] that in a good way.\"\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 951,
+    "pos": 140,
+    "rel": 0.685,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " mean",
+    "text": " few weeks back, I got invited to an event featuring Kickers and Bauhaus. It was for the official launch of their collaboration. At first, I couldn’t quite picture the two together. I[[ mean]] try to understand, Kickers"
+   },
+   {
+    "kind": "top",
+    "window": 361,
+    "pos": 183,
+    "rel": 0.685,
+    "gate_open": false,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": " mean",
+    "text": "Michelle, walk...\" \"Yes, walk towards lens slowly.\" \"Like this?\" \"Okay.\" \"Right.\" \"Right.\" \"I always wondered what it must have been like for Steve.\" \"I[[ mean]], ever since we were kids"
+   },
+   {
+    "kind": "top",
+    "window": 808,
+    "pos": 126,
+    "rel": 0.668,
+    "gate_open": false,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " result",
+    "text": " comprise a plurality of roof parts designed as rigid shell parts, is that the linkage parts which pivot the roof parts are moved relative to the roof parts during an opening movement of the convertible top, with the[[ result]] that it is not possible to"
+   },
+   {
+    "kind": "top",
+    "window": 665,
+    "pos": 100,
+    "rel": 0.668,
+    "gate_open": false,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " Instead",
+    "text": "reviewed in ([@CIT0001])). However, human and murine genetic studies later revealed that CNP's major physiological function is not the regulation of renal natriuresis.[[ Instead]], CNP is a critical"
+   },
+   {
+    "kind": "top",
+    "window": 1037,
+    "pos": 198,
+    "rel": 0.65,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Like",
+    "text": " bedroll is \"unbreakable\", so that helps in the decision if you're almost out of healing items and the unit will be safe for a turnI could refill it a small amount maybe?[[ Like]] 20% instead of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 593,
+    "pos": 46,
+    "rel": 0.528,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " least",
+    "text": " Alpha “Fact Engine”\n\nMuch attention has been focused on the forthcoming Wolfram Alpha search service. Will it be as important as Google has become? Perhaps! A new search paradigm? Yes! Or at[[ least]] a new way of gathering information"
+   },
+   {
+    "kind": "random-strong",
+    "window": 465,
+    "pos": 107,
+    "rel": 0.626,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Instead",
+    "text": " Defoe and \"Gulliver's Travels\" by Jonathan Swift. I can only guess how that came to be, since neither of these two English classics were from anywhere near my own times.[[ Instead]] both works were already more than"
+   },
+   {
+    "kind": "random-strong",
+    "window": 922,
+    "pos": 234,
+    "rel": 0.636,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " discern",
+    "text": "als, rivals and pivots) in four main theatres: Europe, Russia, Central Asia and the Far East. The analysis seemed rather un-principled to me but by the end I could[[ discern]] some key points. The most"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1480,
+    "pos": 233,
+    "rel": 0.552,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "ja",
+    "token": "より",
+    "text": "、ファッション・玄関からの動線のインテリア・お洋服の型紙 など、いつも通り役に立つ、好きな内容でしたが、 付録は想像していた[[より]]品質が良くなく とても"
+   },
+   {
+    "kind": "random-strong",
+    "window": 546,
+    "pos": 121,
+    "rel": 0.57,
+    "gate_open": false,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " time",
+    "text": "' needs; enhance the level of cultural sensitivity of healthcare research; boost public engagement in, and use of, research; and facilitate policy efforts to increase healthcare quality and reduce health disparities. At the same[[ time]], active research engagement of new"
+   },
+   {
+    "kind": "random-strong",
+    "window": 893,
+    "pos": 83,
+    "rel": 0.573,
+    "gate_open": false,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " insure",
+    "text": " malignant (primary and metastatic) and non-malignant transitional tissue cells obtained at surgery will be established to identify the optimal conditions for cell growth and propagation. Microdissection techniques will be used to[[ insure]] that the starting material has little"
+   },
+   {
+    "kind": "random-strong",
+    "window": 355,
+    "pos": 35,
+    "rel": 0.626,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " being",
+    "text": "Repolarization of the presynaptic action potential and short-term synaptic plasticity in the chick ciliary ganglion.\nStimulation-induced increases in synaptic efficacy have been described as[[ being]] composed of multiple independent processes that"
+   },
+   {
+    "kind": "random-strong",
+    "window": 411,
+    "pos": 166,
+    "rel": 0.538,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " \"",
+    "text": "ero, a personal trainer, was posted on YouTube and was widely viewed online.\n\nMobile users, click here\n\n\"They're devastated, absolutely devastated,\" said Ronald Kurpiers, the pair's attorney.[[ \"]]I don't think that what"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 0.875,
+  "n_strong_tokens": 130,
+  "n_strong_windows": 116,
+  "strong_gate_open_frac": 0.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    33
+   ],
+   [
+    "Github",
+    18
+   ],
+   [
+    "PubMed Abstracts",
+    15
+   ],
+   [
+    "OpenWebText2",
+    13
+   ],
+   [
+    "StackExchange",
+    12
+   ],
+   [
+    "PubMed Central",
+    9
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    96
+   ],
+   [
+    "code",
+    18
+   ],
+   [
+    "zh",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " by",
+    14
+   ],
+   [
+    " reserved",
+    9
+   ],
+   [
+    " but",
+    8
+   ],
+   [
+    " using",
+    8
+   ],
+   [
+    " due",
+    6
+   ],
+   [
+    " return",
+    6
+   ],
+   [
+    " to",
+    5
+   ],
+   [
+    " said",
+    4
+   ]
+  ],
+  "strong_pos_median": 125,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 940,
+    "pos": 96,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " by",
+    "text": " the mid-1970s but has now been predicted to stabilize at a level around 1.8 ([@CIT0002]). The declining birth-rate can partly be explained[[ by]] an increasing age at first birth"
+   },
+   {
+    "kind": "top",
+    "window": 1033,
+    "pos": 178,
+    "rel": 0.884,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " by",
+    "text": ".\n    In fact, for performance considerations in single GPU situations, GlobalArray internally falls\n    back on GPUArray (and whenever it doesn't have an ExecutionConfiguration). This behavior is controlled\n   [[ by]] the result of ExecutionConfiguration::"
+   },
+   {
+    "kind": "top",
+    "window": 822,
+    "pos": 59,
+    "rel": 0.884,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " by",
+    "text": "\n\nWelcome to the two hundred and thirty-third issue of LLVM Weekly, a weekly newsletter (published every Monday) covering developments in LLVM, Clang, and related projects. LLVM Weekly is brought to you[[ by]] Alex Bradbury. Subscribe to"
+   },
+   {
+    "kind": "top",
+    "window": 857,
+    "pos": 53,
+    "rel": 0.844,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " like",
+    "text": " in a set?\n\nTitle says it mostly. I want to add a simple extension method to the base Dictionary class in C#. At first I was going to name it Pop(TKey key), kind of[[ like]] the Stack method, but it"
+   },
+   {
+    "kind": "top",
+    "window": 70,
+    "pos": 245,
+    "rel": 0.83,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "rf",
+    "text": " for all $x$ such that $\\frac1n<x\\le \\frac1{n-1}$. Namely, $$f(x)=\\left\\lfloor x^{-1}\\right\\[[rf]]loor^{-1}+\\left"
+   },
+   {
+    "kind": "top",
+    "window": 968,
+    "pos": 126,
+    "rel": 0.826,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " for",
+    "text": " well and truly underway. And we are losing,” writes environmental activist Bill McKibben, so when Malcolm Turnbull implied that the insurgency that demolished his government was based on climate ideology, what lessons are there[[ for]] Scott Morrison?\n\nAs a child"
+   },
+   {
+    "kind": "top",
+    "window": 623,
+    "pos": 97,
+    "rel": 0.826,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " to",
+    "text": " kids. But it takes two to do the culture-war tango.\n\nFor instance, in The American Spectator, one Jeffrey Lord rightly deplores the feminist attacks on Palin. Then he goes on[[ to]] say:\n\nThis election is now"
+   },
+   {
+    "kind": "top",
+    "window": 1055,
+    "pos": 222,
+    "rel": 0.808,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " according",
+    "text": ". The research will be divided into three main phases. In the first we want to create a system to automatically collect malware samples across different Android markets. Second, we want to analyze and classify the malware[[ according]] to the evasive techniques it"
+   },
+   {
+    "kind": "top",
+    "window": 1119,
+    "pos": 163,
+    "rel": 0.795,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " based",
+    "text": " boundary is estimated using a fixed threshold value if the shape of the thyroid is well-defined or a manually drawn region of interest (ROI) if the thyroid shape is irregular. The thyroid volume is then calculated[[ based]] on the area thus determined."
+   },
+   {
+    "kind": "top",
+    "window": 373,
+    "pos": 145,
+    "rel": 0.795,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " but",
+    "text": " bad news is that some are substituting equally absurd parallels, such as “men have priesthood; women have influence”—whatever that means. Elder Oaks didn’t mention motherhood with a capital “M,”[[ but]] he spoke about women’s ability"
+   },
+   {
+    "kind": "top",
+    "window": 753,
+    "pos": 48,
+    "rel": 0.786,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " by",
+    "text": "60 seconds to mars\n\nThe colonization of the Moon is a proposed establishment of permanent human communities or robotic industries [1] [2] on the Moon. Discovery of lunar water at the lunar poles[[ by]] Chandrayaan-1 has"
+   },
+   {
+    "kind": "top",
+    "window": 818,
+    "pos": 99,
+    "rel": 0.781,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " to",
+    "text": " five out of eight, he featured in a high quality field with the first four seedings going to Egyptian players.\n\nHaving dispatched the third seed in the quarter-finals, Poleshchuk went on[[ to]] take the bronze, achieving the"
+   },
+   {
+    "kind": "random-strong",
+    "window": 811,
+    "pos": 63,
+    "rel": 0.554,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "\"",
+    "text": "CAT)\nhandily beat consensus this morning, largely on huge sales\nfrom emerging markets in Asia. These markets are growing six\ntimes as fast as North America. CAT management also said that it\n[[\"]]would be difficult for the ("
+   },
+   {
+    "kind": "random-strong",
+    "window": 1314,
+    "pos": 13,
+    "rel": 0.542,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " reserved",
+    "text": "// Copyright 2018 The Go Authors. All rights[[ reserved]].\n// Use of this source"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1364,
+    "pos": 22,
+    "rel": 0.509,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " reserved",
+    "text": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n;;; Copyright (C) Kongsberg Oil & Gas Technologies. All rights[[ reserved]].\n;;; Written by mortene"
+   },
+   {
+    "kind": "random-strong",
+    "window": 845,
+    "pos": 124,
+    "rel": 0.536,
+    "gate_open": false,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " include",
+    "text": " and chemical parameters related to water quality, such as salinity, temperature, dissolved oxygen, nitrates, density, and chlorophyll levels, among others. Other reasons for monitoring the seabed[[ include]], detecting and preserving artefacts"
+   },
+   {
+    "kind": "random-strong",
+    "window": 510,
+    "pos": 162,
+    "rel": 0.527,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " using",
+    "text": " images were compared with direct measurements following anatomical dissection. Thereafter, the size of both bundles from 24 normal knees was measured using an identical MR technique. Inter-observer variation was calculated[[ using]] intraclass correlation. ACL bundle"
+   },
+   {
+    "kind": "random-strong",
+    "window": 281,
+    "pos": 128,
+    "rel": 0.625,
+    "gate_open": false,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " from",
+    "text": " orientation of genes with incorrect regulatory regions \\[[@B5]\\], gene fusion products \\[[@B6]\\], etc. As cancers evolve, they accumulate a cascade of mutations, ranging in size[[ from]] a single nucleotide change to"
+   },
+   {
+    "kind": "random-strong",
+    "window": 447,
+    "pos": 182,
+    "rel": 0.558,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " mean",
+    "text": " with an arrow\" puzzles, but all in all he just makes himself look stupid.\n\nI'd rather not get into a \"us vs them\" mindset. Being respectful to people of one group doesn't[[ mean]] they're trying to destroy the"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1233,
+    "pos": 13,
+    "rel": 0.533,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " reserved",
+    "text": "// Copyright 2015 The Go Authors. All rights[[ reserved]].\n// Use of this source"
+   }
+  ]
+ }
+}

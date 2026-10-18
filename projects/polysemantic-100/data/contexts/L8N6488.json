@@ -1,0 +1,568 @@
+{
+ "id": "L8N6488",
+ "layer": 8,
+ "neuron": 6488,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 7.9688,
+  "n_strong_tokens": 8,
+  "n_strong_windows": 5,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    3
+   ],
+   [
+    "StackExchange",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    3
+   ],
+   [
+    "en",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "public",
+    2
+   ],
+   [
+    "oken",
+    2
+   ],
+   [
+    ".Action",
+    1
+   ],
+   [
+    " csrf",
+    1
+   ],
+   [
+    " env",
+    1
+   ],
+   [
+    "('",
+    1
+   ]
+  ],
+  "strong_pos_median": 81,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 72,
+    "pos": 101,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ".Action",
+    "text": " a new window. How can I fix this issue please?\nThis is the javascript code I´m using:\n function OpenNewWindowForDetail(model) {\n    $.ajax({\n        url: '@Url[[.Action]](\"ActionName\", \"Controller"
+   },
+   {
+    "kind": "top",
+    "window": 95,
+    "pos": 53,
+    "rel": 0.71,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "public",
+    "text": "/navbar-profile.html\">\n<head>\n  <meta charset=\"utf-8\" /> \n  <title translate=\"yes\">Establecer o perfil predeterminado</title>\n  <link href=\"/[[public]]/pure-min.css\" rel"
+   },
+   {
+    "kind": "top",
+    "window": 1367,
+    "pos": 113,
+    "rel": 0.678,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "oken",
+    "text": ") == (name + '=')) {\n                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));\n                break;\n            }\n        }\n    }\n    return cookieValue;\n}\n\nvar csrft[[oken]] = getCookie('csrft"
+   },
+   {
+    "kind": "top",
+    "window": 1394,
+    "pos": 75,
+    "rel": 0.627,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "('",
+    "text": "\n    | framework needs to place the application's name in a notification or\n    | any other location as required by the application or its packages.\n    |\n    */\n\n    'name' => env[[(']]APP_NAME', 'HackIT"
+   },
+   {
+    "kind": "top",
+    "window": 328,
+    "pos": 87,
+    "rel": 0.506,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " csrf",
+    "text": " that follow the same structure of my basic.html (I'm sparing you code of the navbar, alerts, etc). I have other js functions in functions.js that work fine. \ntest.html:\n{%[[ csrf]]_token %}\n{% load groupfilter"
+   },
+   {
+    "kind": "top",
+    "window": 1241,
+    "pos": 69,
+    "rel": 0.49,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "include",
+    "text": ">\n    <meta charset=\"UTF-8\">\n    <title><la:message key=\"labels.admin_brand_title\"/> | <la:message key=\"labels.search_list_configuration\"/></title>\n    <jsp:[[include]] page=\"/WEB-INF/view/common"
+   },
+   {
+    "kind": "top",
+    "window": 1225,
+    "pos": 2,
+    "rel": 0.488,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "={{",
+    "text": "<textarea name[[={{]] UEditor.name }} id=id"
+   },
+   {
+    "kind": "top",
+    "window": 1097,
+    "pos": 13,
+    "rel": 0.42,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " MVC",
+    "text": "Q:\n\nWhy isn't inline JavaScript code being executed in ASP.NET[[ MVC]]?\n\nThis is my complete View"
+   },
+   {
+    "kind": "top",
+    "window": 1318,
+    "pos": 8,
+    "rel": 0.418,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " or",
+    "text": "<?php defined('BX_DOL')[[ or]] die('hack attempt');\n/**\n"
+   },
+   {
+    "kind": "top",
+    "window": 577,
+    "pos": 49,
+    "rel": 0.4,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ery",
+    "text": " use devise in my application.\nI want to pop-up a welcome message while the user login.\nso in my application_controller.erb I defined:\nclass ApplicationController < ActionController::Base\n  protect_from_forg[[ery]]\n  before_filter :authenticate"
+   },
+   {
+    "kind": "top",
+    "window": 286,
+    "pos": 215,
+    "rel": 0.4,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "::",
+    "text": " $this->parseResource($file);\n            };\n        }\n        if ($i == 0) echo \"No files  found\";\n    }\n\n\n    function addData($data)\n    {\n\n        App[[::]]setLocale('it');\n       "
+   },
+   {
+    "kind": "top",
+    "window": 1013,
+    "pos": 44,
+    "rel": 0.398,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " MVC",
+    "text": "ding definition & no extension method for System.Web.Routing.RouteValueDictionary\n\nI am going through tutorial at 4GuysFromRolla website regarding Sorting and Paging a Grid of Data in ASP.NET[[ MVC]] 2 by Scott Mitchell."
+   },
+   {
+    "kind": "top",
+    "window": 1211,
+    "pos": 253,
+    "rel": 0.359,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " or",
+    "text": "use Pydio\\Access\\Core\\Model\\AJXP_Node;\nuse Pydio\\Access\\Core\\Model\\UserSelection;\nuse Pydio\\Core\\Utils\\Vars\\PathUtils;\n\ndefined('AJXP_EXEC')[[ or]] die("
+   },
+   {
+    "kind": "top",
+    "window": 1251,
+    "pos": 226,
+    "rel": 0.359,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "-bind",
+    "text": "-bind=\"cache.get(key)\"></b>\n  </div>\n\n  <p>Cache Info</p>\n  <div ng-repeat=\"(key, value) in cache.info()\">\n    <span ng[[-bind]]=\"key\"></span>\n   "
+   },
+   {
+    "kind": "top",
+    "window": 558,
+    "pos": 140,
+    "rel": 0.331,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "rose",
+    "text": " with a delay that corresponds to the time it takes for a gravitational wave to travel the more than 3000 km between the instruments.\n\nWriting in a preprint on arXiv, Pen[[rose]] argues that a significant amount of"
+   },
+   {
+    "kind": "top",
+    "window": 438,
+    "pos": 1,
+    "rel": 0.327,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " trans",
+    "text": "{%[[ trans]]_default_domain 'cocorico"
+   },
+   {
+    "kind": "top",
+    "window": 1114,
+    "pos": 222,
+    "rel": 0.318,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "_reporting",
+    "text": " of the names run out....\nThere are some php substr and such functions but I cant quite think of how to do this..\nYes, I do have code, here it is:\n<?php\nerror[[_reporting]](-1);\n\n$fp ="
+   },
+   {
+    "kind": "top",
+    "window": 982,
+    "pos": 109,
+    "rel": 0.31,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " token",
+    "text": "-symbol class PhabricatorStartup\n   */\n  public function handleRequest(AphrontRequest $request) {\n    $viewer = $request->getViewer();\n\n    // NOTE: Throws if valid CSRF[[ token]] is not present in the request"
+   },
+   {
+    "kind": "top",
+    "window": 869,
+    "pos": 56,
+    "rel": 0.296,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "resources",
+    "text": ".createIndex() - empty keyPath</title>\n<link rel=\"author\" href=\"mailto:odinho@opera.com\" title=\"Odin Hørthe Omdal\">\n<script src=\"/[[resources]]/testharness.js\"></script"
+   },
+   {
+    "kind": "top",
+    "window": 1110,
+    "pos": 159,
+    "rel": 0.294,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "0",
+    "text": ":\n            - \"8000\"\n        volumes:\n            - /usr/src/app/project/static\n        command: /usr/local/bin/gunicorn -w 2 -b :800[[0]] project:app\n        depends"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 3.7969,
+  "n_strong_tokens": 9,
+  "n_strong_windows": 4,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    2
+   ],
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    2
+   ],
+   [
+    "en",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "stream",
+    2
+   ],
+   [
+    "ad",
+    1
+   ],
+   [
+    " util",
+    1
+   ],
+   [
+    "util",
+    1
+   ],
+   [
+    " Stream",
+    1
+   ],
+   [
+    "Stream",
+    1
+   ],
+   [
+    "inary",
+    1
+   ],
+   [
+    " binary",
+    1
+   ]
+  ],
+  "strong_pos_median": 132,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1249,
+    "pos": 136,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "stream",
+    "text": ",\n    JSONParser = require('./json_parser').JSONParser,\n    StringDecoder = require('string_decoder').StringDecoder,\n    EventEmitter = require('events').EventEmitter,\n    Stream = require('[[stream]]').Stream,\n    os ="
+   },
+   {
+    "kind": "top",
+    "window": 1271,
+    "pos": 169,
+    "rel": 0.601,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " binary",
+    "text": "\n)\n\nfunc init() {\n\ti := uint32(1)\n\tb := (*[4]byte)(unsafe.Pointer(&i))\n\tif b[0] == 1 {\n\t\tnativeEndian =[[ binary]].LittleEndian\n\t}"
+   },
+   {
+    "kind": "top",
+    "window": 315,
+    "pos": 136,
+    "rel": 0.543,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ad",
+    "text": " Best of Fleetwood Mac (2002) and Fleetwood Mac reissue (2004).\n\nRhiannon is a character in the 1973 science fiction novel Tri[[ad]] by Mary Leader. Enam"
+   },
+   {
+    "kind": "top",
+    "window": 913,
+    "pos": 31,
+    "rel": 0.535,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "stream",
+    "text": "Q:\n\nFile for xi:include does not exist because parser is looking from project root\n\nI currently have an xml resource file that has XML inclusions.\n[[stream]] = Main.class.getResourceAsStream(\""
+   },
+   {
+    "kind": "top",
+    "window": 265,
+    "pos": 207,
+    "rel": 0.49,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Premier",
+    "text": " my heart strings. I just felt there was something else out there for me.\"\n\nThe Edmonton native tried out for and won a spot on the Calgary Foothills FC team, which is part of the[[ Premier]] Development League (pdl),"
+   },
+   {
+    "kind": "top",
+    "window": 201,
+    "pos": 224,
+    "rel": 0.481,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "zone",
+    "text": " noted, is not a sequel to last year’s Call of Duty: Modern Warfare — will also get in-game items in both the 2019 game and the battle royale spinoff War[[zone]], which launched earlier this month"
+   },
+   {
+    "kind": "top",
+    "window": 1234,
+    "pos": 128,
+    "rel": 0.459,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "container",
+    "text": " BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n*/\n\npackage workqueue\n\nimport (\n\t\"[[container]]/heap\"\n\t\"sync\"\n"
+   },
+   {
+    "kind": "top",
+    "window": 568,
+    "pos": 16,
+    "rel": 0.457,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Post",
+    "text": "Trump fired off one of his social-media news releases on Tuesday, shortly after the[[ Post]]-ABC poll went live."
+   },
+   {
+    "kind": "top",
+    "window": 1213,
+    "pos": 47,
+    "rel": 0.444,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " size",
+    "text": "2.1+ */\n#pragma once\n\n#include <stdbool.h>\n#include <stddef.h>\n#include <stdio.h>\n#include <unistd.h>\n\n#include \"macro.h\"\n#include \"string.h\"\n\nstatic inline[[ size]]_t sc_arg_max(void)"
+   },
+   {
+    "kind": "top",
+    "window": 950,
+    "pos": 29,
+    "rel": 0.436,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Premier",
+    "text": "\"Lock her up for what? Because you disagree with her?\"\n\nA chorus of Albertans at a political rally chanting \"Lock her up\" about[[ Premier]] Rachel Notley initially left communications"
+   },
+   {
+    "kind": "top",
+    "window": 909,
+    "pos": 146,
+    "rel": 0.428,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "ula",
+    "text": "ada.\n\nPesquisas de opinião realizadas para preparar as candidaturas nas eleições municipais têm mostrado que a vinculação com o PT, com o ex-presidente L[[ula]] ou com Dilma pior"
+   },
+   {
+    "kind": "top",
+    "window": 154,
+    "pos": 184,
+    "rel": 0.422,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "une",
+    "text": " only occurs when those two mated and not for other pairing.\n\nToday's Sphynx or hairless cats was originated from Canada in 1966. The cat's name is Pr[[une]] but died without having any descendants"
+   },
+   {
+    "kind": "top",
+    "window": 1333,
+    "pos": 119,
+    "rel": 0.418,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Stream",
+    "text": "ed.h\"\n#include \"ik_SAudioStreamFormat.h\"\n\nnamespace irrklang\n{\n\n\n//!\tReads and decodes audio data into an usable audio stream for the ISoundEngine\nclass IAudio[[Stream]] : public IRefCounted\n"
+   },
+   {
+    "kind": "top",
+    "window": 1214,
+    "pos": 56,
+    "rel": 0.416,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "-stream",
+    "text": "')\nconst onceTrue = require('mutant/once-true')\nconst computed = require('mutant/computed')\nconst resolve = require('mutant/resolve')\nconst pull = require('pull[[-stream]]')\nconst sorted = require('"
+   },
+   {
+    "kind": "top",
+    "window": 638,
+    "pos": 48,
+    "rel": 0.412,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "0",
+    "text": " main cause of preventive blindness worldwide, especially in adolescents ([@B1], [@B2]). Thus, it is one of the main priorities among the five projects under the 'Vision 202[[0]] Action' launched by WHO (["
+   },
+   {
+    "kind": "top",
+    "window": 1207,
+    "pos": 178,
+    "rel": 0.412,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " +",
+    "text": "\t;\r\n\t\tfor (int i = 0; i < 6; i++) {\r\n\t\t\tfor (int j = 0; j < 6; j++) {\r\n\t\t\t\tif ((i[[ +]] 2 < 6)"
+   },
+   {
+    "kind": "top",
+    "window": 721,
+    "pos": 155,
+    "rel": 0.403,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "ota",
+    "text": " be replenished. Given the demand, they are also comparatively costlier.\n\n“I brought Rakhis with Prime Minister Narendra Modi’s pictures with adults in mind besides ones bearing pictures of cartoon superhero Chh[[ota]] Bheem, angry birds"
+   },
+   {
+    "kind": "top",
+    "window": 982,
+    "pos": 3,
+    "rel": 0.401,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "final",
+    "text": "<?php\n\n[[final]] class PhabricatorFileDrop"
+   },
+   {
+    "kind": "top",
+    "window": 328,
+    "pos": 17,
+    "rel": 0.397,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "-view",
+    "text": "Q:\n\nBootstrap tree-view: Tree doesn't show up\n\nI'm new to tree[[-view]], I'm trying to show"
+   },
+   {
+    "kind": "top",
+    "window": 1024,
+    "pos": 64,
+    "rel": 0.391,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Blonde",
+    "text": " presenter of Ukrainian ancestry.\n\nBiography\nKogan's opera roles have included Queen of the Night in Die Zauberflöte, Zerbinetta in Ariadne auf Naxos,[[ Blonde]] in Die Entführung, Madame"
+   }
+  ]
+ }
+}

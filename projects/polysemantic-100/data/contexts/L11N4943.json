@@ -1,0 +1,612 @@
+{
+ "id": "L11N4943",
+ "layer": 11,
+ "neuron": 4943,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 9.75,
+  "n_strong_tokens": 11,
+  "n_strong_windows": 10,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    4
+   ],
+   [
+    "Github",
+    3
+   ],
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "Pile-CC",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    7
+   ],
+   [
+    "code",
+    3
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "Post",
+    1
+   ],
+   [
+    "gr",
+    1
+   ],
+   [
+    " objective",
+    1
+   ],
+   [
+    " Arc",
+    1
+   ],
+   [
+    " Auto",
+    1
+   ],
+   [
+    " Story",
+    1
+   ],
+   [
+    " Common",
+    1
+   ],
+   [
+    "aria",
+    1
+   ]
+  ],
+  "strong_pos_median": 33,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 118,
+    "pos": 7,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Post",
+    "text": "Q:\n\nunion all in SQL ([[Post]]gres) mess the order\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 984,
+    "pos": 212,
+    "rel": 0.814,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Auto",
+    "text": " non-spatial data into ArcGIS.\n\nThis course establishes a workflow for an illustrative site plan, including how to represent existing conditions and create detailed plans for specific areas within a larger project. Building on[[ Auto]]CAD 101,"
+   },
+   {
+    "kind": "top",
+    "window": 1104,
+    "pos": 13,
+    "rel": 0.676,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Common",
+    "text": "Shuffletron is a nice music player for the terminal written in[[ Common]] Lisp, “based on search"
+   },
+   {
+    "kind": "top",
+    "window": 1140,
+    "pos": 17,
+    "rel": 0.676,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "aria",
+    "text": "Q:\n\nHow to make a field in a table reference to another table in MySQL/M[[aria]]DB?\n\nSay I'm setting"
+   },
+   {
+    "kind": "top",
+    "window": 1389,
+    "pos": 17,
+    "rel": 0.654,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "il",
+    "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!--\n * Sc[[il]]ab ( http://www.sc"
+   },
+   {
+    "kind": "top",
+    "window": 217,
+    "pos": 42,
+    "rel": 0.583,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "gr",
+    "text": "How to get the OSM file to generate width of the streets?\n\nI'm attempting to load osm data into a database and i've used both osm2p0 and osm2p[[gr]]outing and kept realizing I was"
+   },
+   {
+    "kind": "top",
+    "window": 1229,
+    "pos": 33,
+    "rel": 0.551,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".post",
+    "text": "/*\n * Copyright (c) 2004, PostgreSQL Global Development Group\n * See the LICENSE file in the project root for more information.\n */\n\npackage org[[.post]]gresql.ds;\n\nimport org.post"
+   },
+   {
+    "kind": "top",
+    "window": 234,
+    "pos": 11,
+    "rel": 0.548,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " objective",
+    "text": "Q:\n\nIssue with datepicker in ios xcode project[[ objective]] c off by a day\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1102,
+    "pos": 52,
+    "rel": 0.529,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Story",
+    "text": "lijah Manor • over 2 years 1375 words • 7 min read\n\nIn this post (and the above 6 minute embedded video) we’ll look at how to add the[[ Story]]book style guide to a React"
+   },
+   {
+    "kind": "top",
+    "window": 1345,
+    "pos": 95,
+    "rel": 0.51,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "protocol",
+    "text": ".com/apple/swift-protobuf/\n\n// Protocol Buffers - Google's data interchange format\n// Copyright 2008 Google Inc.  All rights reserved.\n// https://developers.google.com/[[protocol]]-buffers/\n//\n// Redistribution"
+   },
+   {
+    "kind": "top",
+    "window": 1337,
+    "pos": 118,
+    "rel": 0.49,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Obj",
+    "text": " union.\n///\n/// Policy governing which shared folders a team member can join.\n///\n/// This class implements the `DBSerializable` protocol (serialize and\n/// deserialize instance methods), which is required for all[[ Obj]]-C SDK API route\n///"
+   },
+   {
+    "kind": "top",
+    "window": 1319,
+    "pos": 195,
+    "rel": 0.484,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "4",
+    "text": ".py at 04/03/2012\npackage com.cloud.test.stress;\n\nimport java.util.Arrays;\nimport java.util.Iterator;\nimport java.util.List;\n\nimport org.apache.log[[4]]j.Logger;\n\nimport com.tr"
+   },
+   {
+    "kind": "top",
+    "window": 1315,
+    "pos": 125,
+    "rel": 0.449,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "oco",
+    "text": "https://img.shields.io/badge/%20compatible-swift%203.0-orange.svg)](http://swift.org)\n[![License](https://img.shields.io/c[[oco]]apods/l/KeyboardController"
+   },
+   {
+    "kind": "top",
+    "window": 1097,
+    "pos": 150,
+    "rel": 0.442,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " Not",
+    "text": " 'basic' });\n    map.addLayer(wms);\n    map.zoomToMaxExtent();\n\n</script>\n\nBut when I run it nothing I can't see the map.\nI made a HTML page in[[ Not]]epad that looks like this:\n"
+   },
+   {
+    "kind": "top",
+    "window": 1310,
+    "pos": 177,
+    "rel": 0.442,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ari",
+    "text": " or not for server\n     backup. Possible values include: 'Enabled', 'Disabled'\n    :type geo_redundant_backup: str or\n     ~azure.mgmt.rdbms.m[[ari]]adb.models.GeoRedund"
+   },
+   {
+    "kind": "top",
+    "window": 1218,
+    "pos": 7,
+    "rel": 0.439,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "/m",
+    "text": "import { db } from \"../../lib[[/m]]ongo\"\nimport parse from \"../../"
+   },
+   {
+    "kind": "top",
+    "window": 1339,
+    "pos": 55,
+    "rel": 0.439,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " NUnit",
+    "text": "Generator.\n//\n//     Changes to this file may cause incorrect behavior and will be lost if\n//     the code is regenerated.\n// </auto-generated>\n//------------------------------------------------------------------------------\n\n\nusing System.Collections.Generic;\nusing[[ NUnit]].Framework;\nusing NHibernate.C"
+   },
+   {
+    "kind": "top",
+    "window": 1043,
+    "pos": 127,
+    "rel": 0.429,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "high",
+    "text": " to add another graph it should resize to be 400 a piece but I cannot make it happen. As a very simplistic model I have the following\n$(function () {\n  $('#container').[[high]]charts({\n      chart: {\n"
+   },
+   {
+    "kind": "top",
+    "window": 1385,
+    "pos": 12,
+    "rel": 0.429,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "es",
+    "text": "/*\n * Copyright (C) 2014 Fre[[es]]cale Semiconductor\n *\n * SPDX"
+   },
+   {
+    "kind": "top",
+    "window": 905,
+    "pos": 28,
+    "rel": 0.407,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "gr",
+    "text": "Q:\n\nPersonal Valgrind Anomaly\n\nFirst I would like to thank in you in advance for any help in this matter.\nThe Val[[gr]]ind output pasted below is"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 1.8906,
+  "n_strong_tokens": 55,
+  "n_strong_windows": 47,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    20
+   ],
+   [
+    "OpenWebText2",
+    7
+   ],
+   [
+    "Pile-CC",
+    7
+   ],
+   [
+    "lang-id",
+    6
+   ],
+   [
+    "Wikipedia (en)",
+    2
+   ],
+   [
+    "PubMed Abstracts",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    21
+   ],
+   [
+    "code",
+    20
+   ],
+   [
+    "ur",
+    2
+   ],
+   [
+    "ja",
+    1
+   ],
+   [
+    "nl",
+    1
+   ],
+   [
+    "tr",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " X",
+    4
+   ],
+   [
+    " gd",
+    3
+   ],
+   [
+    "IG",
+    2
+   ],
+   [
+    " Q",
+    2
+   ],
+   [
+    "2",
+    2
+   ],
+   [
+    " World",
+    2
+   ],
+   [
+    " social",
+    1
+   ],
+   [
+    " Day",
+    1
+   ]
+  ],
+  "strong_pos_median": 131,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1262,
+    "pos": 69,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " gd",
+    "text": " reserved. This project is released under the MIT License.\n */\n#ifndef GDCORE_PROPERTYDESCRIPTOR\n#define GDCORE_PROPERTYDESCRIPTOR\n#include <vector>\n\n#include \"GDCore/String.h\"\nnamespace[[ gd]] {\nclass SerializerElement;\n}\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1005,
+    "pos": 245,
+    "rel": 0.884,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "V",
+    "text": "Command&)> slot);\n    void OnPostCommand(boost::function<void (const CRPCCommand&)> slot);\n}\n\nclass CBlockIndex;\nclass CNetAddr;\n\n/** Wrapper for UniValue::[[V]]Type, which includes typeAny"
+   },
+   {
+    "kind": "top",
+    "window": 540,
+    "pos": 88,
+    "rel": 0.839,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " X",
+    "text": " changes on the depth chart are ahead.\n\n(Mike Mulholland | Mlive.com)\n\nEAST LANSING — Pat Narduzzi had his Michigan State defense dialed in at Oregon, the[[ X]]s matched up with the Ducks"
+   },
+   {
+    "kind": "top",
+    "window": 897,
+    "pos": 223,
+    "rel": 0.781,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Super",
+    "text": " Powers, a tag team in the NWA's Jim Crockett Promotions in the 1980s\n Super Cup (rugby union), an annual international Rugby Union competition, originally called[[ Super]] Powers Cup\n Superpower ("
+   },
+   {
+    "kind": "top",
+    "window": 1264,
+    "pos": 35,
+    "rel": 0.769,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "just",
+    "text": "f.lux-xcode\n===========\n\nThis installs the f.lux iOS app on your device without requiring a jailbreak.\nLearn more about f.lux at <https://[[just]]getflux.com/>\n\nWhy isn"
+   },
+   {
+    "kind": "top",
+    "window": 680,
+    "pos": 29,
+    "rel": 0.764,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Amber",
+    "text": "\n\nVEGETATION OF BELIZE\n\n\n\nFlower\n\n\n\n\n\n\n\nAllspice\n\n\n\n\n\n\n\nFruits\n\n\n\nThese are the plants of Belize, for information specific to[[ Amber]]gris Caye, click"
+   },
+   {
+    "kind": "top",
+    "window": 209,
+    "pos": 223,
+    "rel": 0.764,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "4",
+    "text": " 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.\n */\npackage org.sonar.server.platform.db.migration.version.v8[[4]].users.fk.groupsusers;\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1021,
+    "pos": 247,
+    "rel": 0.744,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "9",
+    "text": " on the basis of two-dimensional DPCM.\nA detailed description of these modes will be omitted since these modes are described in ITU-T Recommendation T.81 | ISO/IEC 10[[9]]18-1 and the"
+   },
+   {
+    "kind": "top",
+    "window": 290,
+    "pos": 167,
+    "rel": 0.736,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " X",
+    "text": "apatite [CaHa]). To do so, porcine auricular cartilage was harvested, followed by freezing and grinding of the tissue into flakes. Then, we used 1% Triton[[ X]]-100 to dec"
+   },
+   {
+    "kind": "top",
+    "window": 1204,
+    "pos": 164,
+    "rel": 0.727,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "w",
+    "text": " language governing permissions and limitations under\n# the License.\n\nImport-Module -DisableNameChecking ..\\..\\..\\BuildTools.psm1\ntry {\n\tPush-Location\n\tSet-Location IO.S[[w]]agger\n\t$url = \""
+   },
+   {
+    "kind": "top",
+    "window": 116,
+    "pos": 171,
+    "rel": 0.719,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " social",
+    "text": " a \"violent or hateful mission\".\n\n\"Individuals and organisations who spread hate, or attack or call for the exclusion of others on the basis of who they are, have no place on Facebook,\" the[[ social]] network added in a statement.\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 677,
+    "pos": 154,
+    "rel": 0.711,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "G",
+    "text": " QQ[x]/(x^2-5)\nassert ( 1//x * x == 1 )\nraw (1_S) // (raw x)\nuse ambient S\nx\nrawExtended[[G]]CD(raw x, raw(x"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1036,
+    "pos": 149,
+    "rel": 0.537,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "2",
+    "text": "_ANALOG_INPUTS)\n#else\n  #warning \"BOARD_ANALOG_IN_MAX not detected\"\n  #define BOARD_ANALOG_IN_MAX 0\n#endif\n\n#if defined(BLYNK_USE_1[[2]]8_VPINS)\n "
+   },
+   {
+    "kind": "random-strong",
+    "window": 1100,
+    "pos": 245,
+    "rel": 0.653,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " World",
+    "text": " Free Software\n * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA\n *\n *[[ World]] of Warcraft, and all World"
+   },
+   {
+    "kind": "random-strong",
+    "window": 468,
+    "pos": 215,
+    "rel": 0.707,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " form",
+    "text": " considered to be rotated. To determine if radiographic rotation was clinically evident, 20 composite patient photos were blindly evaluated. A random total of 69 patients underwent bilateral augmentation mammoplasty with[[ form]] stable anatimic gel"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1497,
+    "pos": 12,
+    "rel": 0.558,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": "Full",
+    "text": "Federer wint 7e Wimbledon-titel\n[[Full]] Episode: Nachtlijn "
+   },
+   {
+    "kind": "random-strong",
+    "window": 1054,
+    "pos": 221,
+    "rel": 0.595,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " New",
+    "text": " brings us to the pathetic and censorious response by so many media organizations to the Islamic terrorist attack against Charlie Hebdo, a French satirical publication.\n\nThe main photo for this story is courtesy of the[[ New]] York Daily News. (The"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1024,
+    "pos": 44,
+    "rel": 0.603,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Die",
+    "text": "\n\nJulia Kogan is an American-French operatic coloratura soprano, writer, and presenter of Ukrainian ancestry.\n\nBiography\nKogan's opera roles have included Queen of the Night in[[ Die]] Zauberflöte,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 741,
+    "pos": 25,
+    "rel": 0.678,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " web",
+    "text": "Q:\n\nHow to call a function after running winform application\n\nI am built same win Form  that opens some website with[[ web]]Browser after this i need to"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1552,
+    "pos": 95,
+    "rel": 0.545,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": " ey",
+    "text": "enneme yakın bir vizyon gördü .\nHcfa tüm terapistler küçük varlıklar olarak görüyor .\nSonunda küçük şey ile evet bir kilo olduğunu düşündüm\nVirginia ' da ,[[ ey]]alet çapında ücretsiz"
+   }
+  ]
+ }
+}

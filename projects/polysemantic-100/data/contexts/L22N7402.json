@@ -1,0 +1,560 @@
+{
+ "id": "L22N7402",
+ "layer": 22,
+ "neuron": 7402,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 11.0,
+  "n_strong_tokens": 3,
+  "n_strong_windows": 2,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    1
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ",",
+    1
+   ],
+   [
+    " the",
+    1
+   ],
+   [
+    " same",
+    1
+   ]
+  ],
+  "strong_pos_median": 168,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 588,
+    "pos": 73,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " same",
+    "text": " Once touted as one of Germany’s greatest prospects, he may be in danger of stalling his career with unrealistic demands.”Christian, before we start, we need to determine whether we’re talking about the[[ same]] player, then you can make"
+   },
+   {
+    "kind": "top",
+    "window": 167,
+    "pos": 169,
+    "rel": 0.719,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " the",
+    "text": ") causing the degeneracy leading to a the term degenerate semiconductor? Can someone shed some light on this concept of degeneracy?\nThanks\n\nA:\n\nWhen used in reference to a semiconductor,[[ the]] term \"degenerate\" means"
+   },
+   {
+    "kind": "top",
+    "window": 1272,
+    "pos": 180,
+    "rel": 0.474,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " this",
+    "text": "govich on 06.05.2016.\n */\npublic class StandardUserInputModule implements UserInputModule {\n\n    protected Context context;\n\n    public StandardUserInputModule(Context context) {\n       [[ this]].context = context;\n    }\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 1129,
+    "pos": 93,
+    "rel": 0.463,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " lowercase",
+    "text": " is compiled as ordinary Go code,\n// but it is also input to mksyscall,\n// which parses the //sys lines and generates system call stubs.\n// Note that sometimes we use a[[ lowercase]] //sys name and wrap\n"
+   },
+   {
+    "kind": "top",
+    "window": 719,
+    "pos": 74,
+    "rel": 0.375,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " other",
+    "text": " in the LICENSE file.\n\n// Package jsonrpc2 is a minimal implementation of the JSON RPC 2 spec.\n// https://www.jsonrpc.org/specification\n// It is intended to be compatible with[[ other]] implementations at the wire level.\n"
+   },
+   {
+    "kind": "top",
+    "window": 228,
+    "pos": 12,
+    "rel": 0.366,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " only",
+    "text": "AP\n\nGiants running back Rashad Jennings isn’t the[[ only]] NFC East player talking Super Bowl"
+   },
+   {
+    "kind": "top",
+    "window": 1346,
+    "pos": 141,
+    "rel": 0.358,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " this",
+    "text": " class ObjectKey implements Serializable {\n        private String part1;\n        private String part2;\n\n        public ObjectKey() {\n        }\n\n        public ObjectKey(String part1, String part2) {\n           [[ this]].part1 = part1;\n"
+   },
+   {
+    "kind": "top",
+    "window": 857,
+    "pos": 56,
+    "rel": 0.357,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " method",
+    "text": "?\n\nTitle says it mostly. I want to add a simple extension method to the base Dictionary class in C#. At first I was going to name it Pop(TKey key), kind of like the Stack[[ method]], but it accepts a key"
+   },
+   {
+    "kind": "top",
+    "window": 400,
+    "pos": 6,
+    "rel": 0.335,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " chronological",
+    "text": "Interrelationship between dental age and[[ chronological]] age in Somali children.\nTo"
+   },
+   {
+    "kind": "top",
+    "window": 7,
+    "pos": 85,
+    "rel": 0.334,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " any",
+    "text": " and the balloon was left behind and was bobbing up and down in our driveway. My son ran out to play with it and I immediately warned him ‘don't touch that — it's not just[[ any]] balloon.'\"\n\nThe West Montrose"
+   },
+   {
+    "kind": "top",
+    "window": 1176,
+    "pos": 25,
+    "rel": 0.322,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " closest",
+    "text": "Q:\n\nAppend to closest div class (multiple divs with same class on page)\n\nI'm trying to append content into the[[ closest]] div class with name \".info"
+   },
+   {
+    "kind": "top",
+    "window": 1214,
+    "pos": 69,
+    "rel": 0.321,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ant",
+    "text": "')\nconst computed = require('mutant/computed')\nconst resolve = require('mutant/resolve')\nconst pull = require('pull-stream')\nconst sorted = require('sorted-array-functions')\nconst Mut[[ant]]PullCollection = require('../../mut"
+   },
+   {
+    "kind": "top",
+    "window": 101,
+    "pos": 107,
+    "rel": 0.314,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " of",
+    "text": "vils identity and access management (IAM) solution with the Kaseya VSA. Integration with the VSA comprises three different AuthAnvil services.\n\nLive Connect sessions, set independently from other types[[ of]] remote control sessions\n\nAlerts"
+   },
+   {
+    "kind": "top",
+    "window": 553,
+    "pos": 213,
+    "rel": 0.31,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " main",
+    "text": "', $product->post->post_excerpt ); ?>\n\n                    <?php endwhile; ?>\n\nBut nothing is being produced. So I am creating a product under the relevant category and placing content into the description in both[[ main]] and product short description but still"
+   },
+   {
+    "kind": "top",
+    "window": 91,
+    "pos": 226,
+    "rel": 0.308,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " state",
+    "text": " least three employees. Its law is similar to the ADA.\n\nProhibited\n\nAs with the other employment discrimination statutes which prohibit age, race, sex, religious and national origin discrimination, the ADA and the[[ state]] disability laws outlaw discrimination against the"
+   },
+   {
+    "kind": "top",
+    "window": 1163,
+    "pos": 182,
+    "rel": 0.301,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " external",
+    "text": " of the transporters will be achieved by studying: pH recover (with glass electrodes) in glycerol-shocked fibers (whose T tubules vesiculate and are no longer in contact with the[[ external]] medium); pH recovery in large"
+   },
+   {
+    "kind": "top",
+    "window": 1109,
+    "pos": 220,
+    "rel": 0.3,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " second",
+    "text": "(data)``\n# s = json.dumps(coindata)\nprint(s)\n\nA:\n\nYou keep overwriting your coindata dictionary inside the loop, which is why only the last value remains. The[[ second]] issue with your code is that"
+   },
+   {
+    "kind": "top",
+    "window": 391,
+    "pos": 88,
+    "rel": 0.283,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " any",
+    "text": "’s hard for a new phone to stand out as something that takes anything more than a few baby steps forward. This phone isn’t that much different. But what is different is that it isn’t just[[ any]] Android phone made by one of"
+   },
+   {
+    "kind": "top",
+    "window": 1106,
+    "pos": 18,
+    "rel": 0.283,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " different",
+    "text": "Q:\n\nWhat is Floer homology of a knot?\n\nI've heard that there are[[ different]] theories providing knot invariants in"
+   },
+   {
+    "kind": "top",
+    "window": 559,
+    "pos": 71,
+    "rel": 0.278,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " other",
+    "text": "'ll never send spam, and never share your information with any government agencies even if we're waterboarded and forced to listen to \"Barney\" songs. Don't want emails? Then check the[[ other]] subscription options below!\n\nMore Subscription"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 5.0,
+  "n_strong_tokens": 21,
+  "n_strong_windows": 14,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    5
+   ],
+   [
+    "Wikipedia (en)",
+    4
+   ],
+   [
+    "StackExchange",
+    3
+   ],
+   [
+    "Github",
+    1
+   ],
+   [
+    "OpenWebText2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    13
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "not",
+    2
+   ],
+   [
+    " not",
+    2
+   ],
+   [
+    "1",
+    2
+   ],
+   [
+    " about",
+    2
+   ],
+   [
+    " no",
+    1
+   ],
+   [
+    " between",
+    1
+   ],
+   [
+    " R",
+    1
+   ],
+   [
+    " bit",
+    1
+   ]
+  ],
+  "strong_pos_median": 119,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1301,
+    "pos": 28,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " override",
+    "text": "# Project-wide Gradle settings.\n\n# IDE (e.g. Android Studio) users:\n# Gradle settings configured through the IDE *will[[ override]]*\n# any settings specified in"
+   },
+   {
+    "kind": "top",
+    "window": 588,
+    "pos": 71,
+    "rel": 0.994,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " about",
+    "text": " season. Once touted as one of Germany’s greatest prospects, he may be in danger of stalling his career with unrealistic demands.”Christian, before we start, we need to determine whether we’re talking[[ about]] the same player, then you"
+   },
+   {
+    "kind": "top",
+    "window": 776,
+    "pos": 140,
+    "rel": 0.931,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "1",
+    "text": "Archie Comics), the fictional town in which the Archie Comics are set\nRiverdale (2017 TV series), an American television series based on the Archie comic book series\nRiverdale ([[1]]997 TV series),"
+   },
+   {
+    "kind": "top",
+    "window": 1019,
+    "pos": 48,
+    "rel": 0.819,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ",",
+    "text": " hot chocolate in Firenze-Venezia-Trieste?\n\nI am right now in Firenze but will spend two days in Venice and two days in Trieste and I'd like to drink a proper[[,]] thick, tasty hot chocolate but"
+   },
+   {
+    "kind": "top",
+    "window": 536,
+    "pos": 216,
+    "rel": 0.678,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " P",
+    "text": "), Ngāpuhi leader, also called Whetoi\nPōmare II (Ngāpuhi) (d. 1850), Ngāpuhi leader, nephew of[[ P]]ōmare I, originally called"
+   },
+   {
+    "kind": "top",
+    "window": 871,
+    "pos": 77,
+    "rel": 0.678,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " strictly",
+    "text": " defined in a precise manner; it is used with widely varying definitions depending on the author, intended audience and context within a work.  Similarly, the term traditions in this context does not connote any[[ strictly]]-defined criteria.  Music scholars"
+   },
+   {
+    "kind": "top",
+    "window": 63,
+    "pos": 45,
+    "rel": 0.631,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " no",
+    "text": " Photos\n\nNearly a year after the untimely passing of Cory Smoot, a.k.a. Flattus Maximus, Gwar have unveiled their new guitarist: Pustulus Maximus ([[ no]] relation They actually are related."
+   },
+   {
+    "kind": "top",
+    "window": 875,
+    "pos": 119,
+    "rel": 0.619,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " B",
+    "text": " from such long-time federally mandated off-label speech restrictions.* The complaint, filed in US District Court for the District of Columbia, specifically applies to the sharing of information about Botox Therapeutic (not[[ B]]otox Cosmetic) and recent"
+   },
+   {
+    "kind": "top",
+    "window": 923,
+    "pos": 231,
+    "rel": 0.613,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " with",
+    "text": "), a British 'mockumentary' sketch show starring David Walliams and Matt Lucas\n \"Come Fly with Me\" (Modern Family), an episode of the TV series Modern Family\n \"Come Fly[[ with]] Me\", an episode of the"
+   },
+   {
+    "kind": "top",
+    "window": 458,
+    "pos": 219,
+    "rel": 0.597,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "not",
+    "text": " name, in the Solution Explorer;\n\nStep 1\n\nUnder \"exes\" right-click \"DoomDLL\" to open \"DoomDLL Properties Pages\".\n\nTo the right of \"Command\" ([[not]] \"Commend Arguments\") click"
+   },
+   {
+    "kind": "top",
+    "window": 460,
+    "pos": 170,
+    "rel": 0.594,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " bit",
+    "text": " name - that was “Edwin,” after his father; but King was his mother’s birth name and no one ever called him anything but \"King\" - nor did my father ever seem the least[[ bit]] abashed by it. Consequently"
+   },
+   {
+    "kind": "top",
+    "window": 966,
+    "pos": 57,
+    "rel": 0.569,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " not",
+    "text": " references\n\nIt's pretty common knowledge that the semantically accurate way to declare pointers is\nint *x;\n\ninstead of\nint* x;\n\nThis is because C sees *x as an int,[[ not]] x as an int pointer.\n"
+   },
+   {
+    "kind": "top",
+    "window": 158,
+    "pos": 5,
+    "rel": 0.463,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " the",
+    "text": "Not to be confused with[[ the]] Chaos Archmage\n\nArchmage"
+   },
+   {
+    "kind": "top",
+    "window": 177,
+    "pos": 2,
+    "rel": 0.463,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " (",
+    "text": "Ian Watson[[ (]]author)\n\nIan Watson (born"
+   },
+   {
+    "kind": "top",
+    "window": 1063,
+    "pos": 215,
+    "rel": 0.456,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " -",
+    "text": "?\n\nA:\n\nI'm going to take your word for it that you have a concrete reason why you must use a subshell for this, rather than opening the file directly.  The -n and[[ -]]e options to echo are not"
+   },
+   {
+    "kind": "top",
+    "window": 167,
+    "pos": 77,
+    "rel": 0.444,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " Does",
+    "text": " Maxwell-Boltzmann distribution can be used for simplification. I do not get why the term non-degenerate is used in this context? Degeneracy refers to multiple states having equal energies.[[ Does]] the term degeneracy have"
+   },
+   {
+    "kind": "top",
+    "window": 1165,
+    "pos": 201,
+    "rel": 0.444,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " or",
+    "text": " I sometimes need broader, more psychedelic strokes.\n\nShort story who knows of a delay pedal that tends to make big clouds of echo, and can slip into analogy (don't really care if it's actual[[ or]] digital) smear, oscillation"
+   },
+   {
+    "kind": "top",
+    "window": 512,
+    "pos": 201,
+    "rel": 0.434,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " referring",
+    "text": "Kill him,\" according to the Washington Post, after Palin mentioned Obama's association with 1960s radical Bill Ayers. It was not clear who made the comment or if the man was[[ referring]] to Ayers or to Obama"
+   },
+   {
+    "kind": "random-strong",
+    "window": 315,
+    "pos": 184,
+    "rel": 0.541,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " between",
+    "text": " by the name, Stevie wrote the song that became the classic “Rhiannon.” Years later, Stevie learned that Rhiannon was the Welsh horse goddess in Celtic mythology. The striking similarities[[ between]] the song “Rhiannon"
+   },
+   {
+    "kind": "random-strong",
+    "window": 826,
+    "pos": 46,
+    "rel": 0.516,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " of",
+    "text": " for anointing of physical objects and who practices this?\n\nIt's been a tradition of my family and friends to anoint a home with oil when a family moves in.  I understand the significance[[ of]] praying and dedicating the space"
+   }
+  ]
+ }
+}

@@ -1,0 +1,600 @@
+{
+ "id": "L20N408",
+ "layer": 20,
+ "neuron": 408,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 2.2188,
+  "n_strong_tokens": 98,
+  "n_strong_windows": 68,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    26
+   ],
+   [
+    "StackExchange",
+    16
+   ],
+   [
+    "PubMed Abstracts",
+    10
+   ],
+   [
+    "OpenWebText2",
+    3
+   ],
+   [
+    "DM Mathematics",
+    3
+   ],
+   [
+    "Wikipedia (en)",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    41
+   ],
+   [
+    "code",
+    26
+   ],
+   [
+    "pt",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " (",
+    9
+   ],
+   [
+    " of",
+    4
+   ],
+   [
+    "1",
+    4
+   ],
+   [
+    "\n",
+    3
+   ],
+   [
+    "frac",
+    2
+   ],
+   [
+    "left",
+    2
+   ],
+   [
+    "=\\",
+    2
+   ],
+   [
+    " $",
+    2
+   ]
+  ],
+  "strong_pos_median": 150,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 775,
+    "pos": 123,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " {\\",
+    "text": " a finite $A$-definable subset of $M$.  Let $\\bar A$ denote the set of algebraic elements over $A$.  We would like to show that $\\bar[[ {\\]]bar A} = \\bar"
+   },
+   {
+    "kind": "top",
+    "window": 320,
+    "pos": 244,
+    "rel": 0.958,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "SD",
+    "text": " chart review. Treating physicians, who did not attend team rounds, received these recommendations on a communication form placed in the patient's chart. Forty-seven patients were included in the study. The mean ([[SD]]) age was 73"
+   },
+   {
+    "kind": "top",
+    "window": 1186,
+    "pos": 248,
+    "rel": 0.944,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "}",
+    "text": " use properties of logarithms.\n$$\\int2y^2\\ln2dy+\\int4y^2\\ln ydy$$\n$$u=\\ln y,du=\\frac{dy[[}]]y$$\n$$dv="
+   },
+   {
+    "kind": "top",
+    "window": 70,
+    "pos": 253,
+    "rel": 0.856,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "left",
+    "text": "frac1n<x\\le \\frac1{n-1}$. Namely, $$f(x)=\\left\\lfloor x^{-1}\\right\\rfloor^{-1}+\\left(\\[[left]]\\lf"
+   },
+   {
+    "kind": "top",
+    "window": 788,
+    "pos": 217,
+    "rel": 0.849,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "2",
+    "text": "(y)$$\n$e^{-2u}=e^{\\ln(y)}=y\\quad$ that we put into $(1)$ with $x=1$ :\n$$y-\\frac1[[2]] y=f(y-\\frac{"
+   },
+   {
+    "kind": "top",
+    "window": 998,
+    "pos": 242,
+    "rel": 0.817,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " female",
+    "text": " 0.05. The participants' ages ranged between 16 and 51 years, mean age was 33.8 ± 10.01 years. Male:[[ female]] ratio was 1:1"
+   },
+   {
+    "kind": "top",
+    "window": 717,
+    "pos": 253,
+    "rel": 0.789,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "1",
+    "text": "$L$ is the Parity language over $\\{0, 1\\}$, the number of $1$ is even, or in regexp: $(0^* + 10^*[[1]])^*$"
+   },
+   {
+    "kind": "top",
+    "window": 153,
+    "pos": 93,
+    "rel": 0.782,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " (\\",
+    "text": " $f, \\Omega$ be as in Cauchy's formula (i.e. $\\Omega\\subset\\mathbb{C}$ is bounded, open, $\\partial\\Omega=\\amalg[[ (\\]]text{rectifiable Jordan curves"
+   },
+   {
+    "kind": "top",
+    "window": 1298,
+    "pos": 133,
+    "rel": 0.715,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " *",
+    "text": ", str **uint16) (err error) = advapi32.ConvertSidToStringSidW\n//sys convertStringSecurityDescriptorToSecurityDescriptor(str string, revision uint32, sd[[ *]]uintptr, size *uint3"
+   },
+   {
+    "kind": "top",
+    "window": 1317,
+    "pos": 159,
+    "rel": 0.708,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " x",
+    "text": " y=\"22.6\"/>\n            <close/>\n        </path>\n        <fillstroke/>\n        <fillcolor color=\"#4B612C\"/>\n        <path>\n            <move[[ x]]=\"0\" y=\"3"
+   },
+   {
+    "kind": "top",
+    "window": 78,
+    "pos": 99,
+    "rel": 0.694,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " on",
+    "text": "estimates that the lifetime risk for some cancers may be somewhat elevated above base-line rates in certain age and sex groups that were in the areas most affected\".\n\nA 9.0 magnitude earthquake and tsunami[[ on]] March 11, "
+   },
+   {
+    "kind": "top",
+    "window": 83,
+    "pos": 242,
+    "rel": 0.676,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "-y",
+    "text": "13 August 30\r\n\r\nfunction [f,df,d2f] = phi(u,X,y,B,t,lam,pen,varargin)\r\n\r\ns = B*u-t; r = X*u[[-y]];\r\nif nargout==1"
+   },
+   {
+    "kind": "random-strong",
+    "window": 461,
+    "pos": 82,
+    "rel": 0.521,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " other",
+    "text": "974 the head of state under the Grenada Independence Act 1974 is the Queen of Grenada, Elizabeth II, who is also the Monarch of the United Kingdom and the[[ other]] Commonwealth realms. The Queen is"
+   },
+   {
+    "kind": "random-strong",
+    "window": 684,
+    "pos": 65,
+    "rel": 0.634,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\n",
+    "text": " #pragma once\n#if defined(_MSC_VER)\n# pragma once\n#endif\n\n/////////1/////////2/////////3/////////4/////////5/////////6/////////7/////////8[[\n]]// assume_abstract_class.hpp:\n\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1356,
+    "pos": 30,
+    "rel": 0.655,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "~~~~~~~~~~~~~~~~",
+    "text": "/*\n  This repository is no longer actively maintained. To find all solutions\n  to this problem (and practice coding more problems) at:\n\n  ~[[~~~~~~~~~~~~~~~~]]~~~~~~~~\n  https://back"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1330,
+    "pos": 74,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " \"",
+    "text": "_key\": \"maxResults\"\n    },\n    \"GetBotChannelAssociations\": {\n      \"input_token\": \"nextToken\",\n      \"output_token\": \"nextToken\",\n      \"limit_key\":[[ \"]]maxResults\"\n    },\n   "
+   },
+   {
+    "kind": "random-strong",
+    "window": 10,
+    "pos": 31,
+    "rel": 0.585,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": "3",
+    "text": "((sqrt(56)/sqrt(4))/sqrt(2) + sqrt(7)))*3.\n-7*sqrt(7) - [[3]]\nSimplify -3 +"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1218,
+    "pos": 208,
+    "rel": 0.585,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " if",
+    "text": " => this.getEmailSettings())\n    )\n  }\n\n  insertDefaultSettingsIfEmpty() {\n    return db\n      .collection(\"emailSettings\")\n      .countDocuments({})\n      .then(count => {\n       [[ if]] (count === 0)"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1316,
+    "pos": 105,
+    "rel": 0.644,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "()",
+    "text": ":                &Command{Use: \"trivialapp\"},\n\t\t\texpectedExpressions: []string{\"#compdef trivial\"},\n\t\t},\n\t\t{\n\t\t\tname: \"linear\",\n\t\t\troot: func[[()]] *Command {\n\t\t\t\tr :="
+   },
+   {
+    "kind": "random-strong",
+    "window": 513,
+    "pos": 15,
+    "rel": 0.542,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "({",
+    "text": "The Jerusalem Post\n\ncnxps.cmd.push(function () { cnxps[[({]] playerId: '36af"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 6.6562,
+  "n_strong_tokens": 94,
+  "n_strong_windows": 71,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "StackExchange",
+    61
+   ],
+   [
+    "Github",
+    6
+   ],
+   [
+    "USPTO Backgrounds",
+    3
+   ],
+   [
+    "OpenWebText2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    65
+   ],
+   [
+    "code",
+    6
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ":\n",
+    42
+   ],
+   [
+    "\n",
+    8
+   ],
+   [
+    " :\n",
+    3
+   ],
+   [
+    " =",
+    3
+   ],
+   [
+    "):\n",
+    3
+   ],
+   [
+    ".\n",
+    3
+   ],
+   [
+    " \n",
+    2
+   ],
+   [
+    ":\n\n",
+    2
+   ]
+  ],
+  "strong_pos_median": 86,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 149,
+    "pos": 69,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":\n",
+    "text": " the checkout-errors messages appear like if  the first name is missing and so on. \nI want those error validation messages to fade out after a given time. \nSo, I injected this jQuery code[[:\n]](function($) {\n    var woo"
+   },
+   {
+    "kind": "top",
+    "window": 1236,
+    "pos": 197,
+    "rel": 0.892,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "(\"",
+    "text": " extends CompilerTestCase {\n\n  @Override\n  protected CompilerPass getProcessor(Compiler compiler) {\n    return new RenameLabels(compiler);\n  }\n\n\n  public void testRenameInFunction() {\n    test[[(\"]]function x(){ Foo:a();"
+   },
+   {
+    "kind": "top",
+    "window": 1103,
+    "pos": 204,
+    "rel": 0.859,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "style",
+    "text": "i=2,3,4,5,6,7$. Then the value of $b+c+d+e+f+g = $\n$\\bf{My\\; Try}::$ $\\display[[style]] \\frac{5}{7"
+   },
+   {
+    "kind": "top",
+    "window": 914,
+    "pos": 138,
+    "rel": 0.84,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":\n",
+    "text": ":50:00.594Z 5173 TID-osv5dzz5o WARN: uninitialized constant ViewDBWorker\n\napp/workers/view_db_worker.rb[[:\n]]class ViewDBWorker\n "
+   },
+   {
+    "kind": "top",
+    "window": 573,
+    "pos": 239,
+    "rel": 0.761,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "=",
+    "text": " fluid sprayed on it, may have abrasive particles affixed to it, or may have abrasive particles sprinkled on it.\nThe ideal wafer polishing process can be described by Preston\"\"s equation:\nR[[=]]Kp*P*V"
+   },
+   {
+    "kind": "top",
+    "window": 121,
+    "pos": 139,
+    "rel": 0.761,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "):\n",
+    "text": ")\n  end\n\n  def create\n    @conversation = Conversation.create(params[:conversation])\n    redirect_to @conversation\n  end\nend\n\nAnd here's my form (conversations/new.html.erb[[):\n]]<%= form_for @conversation"
+   },
+   {
+    "kind": "top",
+    "window": 83,
+    "pos": 15,
+    "rel": 0.756,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " =",
+    "text": "% Penalised least squares objective function and derivatives\r\n%   phi(u)[[ =]] 1/lambda * ||"
+   },
+   {
+    "kind": "top",
+    "window": 1127,
+    "pos": 203,
+    "rel": 0.742,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ")\n",
+    "text": "\" />\n</system.web>\n\nIf you want to make the smallest change possible, you could define the requestValidationMode inside a location element to have it applied to a specific page (ex: Login page[[)\n]]<location path=\"Login.aspx\">\n"
+   },
+   {
+    "kind": "top",
+    "window": 905,
+    "pos": 44,
+    "rel": 0.732,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ".\n",
+    "text": "grind Anomaly\n\nFirst I would like to thank in you in advance for any help in this matter.\nThe Valgrind output pasted below is stemming from the following single line of C code[[.\n]]for( j=i;j<"
+   },
+   {
+    "kind": "top",
+    "window": 389,
+    "pos": 130,
+    "rel": 0.718,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " as",
+    "text": " The unique ability of a cholesteric liquid crystal to reflect light comes from their helical superstructure. The central reflected wavelength (λo) in a direction normal to the surface can be described[[ as]] λ0= n·p"
+   },
+   {
+    "kind": "top",
+    "window": 1064,
+    "pos": 14,
+    "rel": 0.714,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":\n",
+    "text": "Q:\n\nWhy is this query doing a full table scan?\n\nThe query[[:\n]]SELECT tbl1.*\n   FROM"
+   },
+   {
+    "kind": "top",
+    "window": 1110,
+    "pos": 95,
+    "rel": 0.709,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "\n",
+    "text": "    Is the server running on host \"postgres\" (172.18.0.2) and accepting\n    TCP/IP connections on port 5432?\n\ndocker-compose.yml[[\n]]version: '2'\n\nservices"
+   },
+   {
+    "kind": "random-strong",
+    "window": 687,
+    "pos": 127,
+    "rel": 0.573,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":\n",
+    "text": ", and if I manually clear the field, it throws validation errors like I was trying to submit.\nsee my fiddle: http://jsfiddle.net/uT6pw/10/\nhtml[[:\n]]    <form id=\"frm"
+   },
+   {
+    "kind": "random-strong",
+    "window": 703,
+    "pos": 224,
+    "rel": 0.566,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "P",
+    "text": " to give you only the parts of the file where there are more than 100 characters in between > and write the results into a new file (which then should work with fasta):\ngrep -[[P]]zo '>[^>]{"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1004,
+    "pos": 60,
+    "rel": 0.509,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":\n",
+    "text": "'m trying to sum any numbers that fit the criteria: Beverage + RTD Coffee for the month of January from the source.\nThis is the formula that I'm currently trying to use for the above scenario[[:\n]]=SUMIFS(INDEX('"
+   },
+   {
+    "kind": "random-strong",
+    "window": 282,
+    "pos": 120,
+    "rel": 0.533,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "sqrt",
+    "text": "π \\le θ < \\frac{3π}2$ if\n$x \\le −a$. With these choices, $a \\tan \\theta$ is the\npositive square root $\\[[sqrt]]{x^2 − a^"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1162,
+    "pos": 54,
+    "rel": 0.519,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "GET",
+    "text": "以一次性检索多个index\n\t\t* 直接检索多个index\n\t\t\tGET /<index>,<index>/_search\n\t\n\t\t* 一次性检索所有的index\n\t\t\t[[GET]] /_all/_search\n\t\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 887,
+    "pos": 60,
+    "rel": 0.629,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ".\n",
+    "text": " I wrote for the sister problem 18.\nIt works perfectly for problem 18, but is slightly out for problem 67. I can't for the life of me figure out why[[.\n]]triangle = [\n[59"
+   },
+   {
+    "kind": "random-strong",
+    "window": 368,
+    "pos": 32,
+    "rel": 0.575,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ":\n",
+    "text": "Q:\n\nAngular2 Testing: Service returning function instead of object array\n\nI want to write some tests for my service written in Angular 2.1.0[[:\n]]@Injectable()\nexport class MyService"
+   },
+   {
+    "kind": "random-strong",
+    "window": 47,
+    "pos": 62,
+    "rel": 0.538,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " :\n",
+    "text": " accelerator in a PowerShell script, you can not pass on authentication.\nA little background ...\nI am writing PowerShell scripts for SCCM 2012 and found, for instance, the following quite using[[ :\n]]PS R:\\> ([w"
+   }
+  ]
+ }
+}

@@ -1,0 +1,576 @@
+{
+ "id": "L4N8000",
+ "layer": 4,
+ "neuron": 8000,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 5.6875,
+  "n_strong_tokens": 9,
+  "n_strong_windows": 9,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    7
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    2
+   ],
+   [
+    "ar",
+    2
+   ],
+   [
+    "sw",
+    2
+   ],
+   [
+    "tr",
+    2
+   ],
+   [
+    "ur",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "am",
+    2
+   ],
+   [
+    "AM",
+    1
+   ],
+   [
+    "مة",
+    1
+   ],
+   [
+    "ش",
+    1
+   ],
+   [
+    "ama",
+    1
+   ],
+   [
+    "ş",
+    1
+   ],
+   [
+    "se",
+    1
+   ],
+   [
+    "تم",
+    1
+   ]
+  ],
+  "strong_pos_median": 125,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 114,
+    "pos": 64,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "am",
+    "text": ", team trainings, meetings, conferences…), teaching, coaching, researching, generating or evolving ideas and designs, theatrical training and playing, medical and therapeutic settings or in social work.\n\nHistory \n\nSh[[am]]ans are part of every culture"
+   },
+   {
+    "kind": "top",
+    "window": 1406,
+    "pos": 81,
+    "rel": 0.846,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": "ش",
+    "text": " شيء في سلة ورق النفايات انها تحرق كل شيء .\nانه كيف , نفث , وبعض الاحيان حتى ينفجر قليلا .\nاحتمال الف[[ش]]ل : 100"
+   },
+   {
+    "kind": "top",
+    "window": 1539,
+    "pos": 151,
+    "rel": 0.709,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": "am",
+    "text": " fedha hizi za net .\nBarua ya mapenzi ( dreamworks )\nAwe .\nYeah yeah that ' s what nahitaji kufanya\nTaanos wakamch[[am]]ngu roho mbaya"
+   },
+   {
+    "kind": "top",
+    "window": 1560,
+    "pos": 172,
+    "rel": 0.604,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ur",
+    "token": "تم",
+    "text": "ں مصوری ، آرکیٹیکچر اور گلگتا کے نام شامل ہیں ۔\nاس وقت کی مدت خ[[تم]] ہونے والی"
+   },
+   {
+    "kind": "top",
+    "window": 1554,
+    "pos": 59,
+    "rel": 0.599,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": "ş",
+    "text": " , kauai ve Hawaii ' nin Büyük Adası ' na hapsedin .\nCynthia kibarca , çok meşgulüz , ama zamanımız olursa. küçük hem[[ş]]ire geri çekildi"
+   },
+   {
+    "kind": "top",
+    "window": 1557,
+    "pos": 2,
+    "rel": 0.522,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": "se",
+    "text": "Ve kim[[se]] onun ne olduğunu bilmi"
+   },
+   {
+    "kind": "top",
+    "window": 197,
+    "pos": 125,
+    "rel": 0.516,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "AM",
+    "text": " nucleus (DMN) may be activated 2-3 h after ingestion of IAAD. In Experiment 1, DMN-lesioned rats (DMNL) or sham-operated (SH[[AM]]) rats were injected with saline"
+   },
+   {
+    "kind": "top",
+    "window": 1405,
+    "pos": 234,
+    "rel": 0.503,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": "مة",
+    "text": "قد لوحظت المبادئ الاساسية باستمرار في عينة من المنظمات الرائدة , وقد اشير اليها باعتبارها ذات اهمية حاس[[مة]] لنجاح هذه المنظمات"
+   },
+   {
+    "kind": "top",
+    "window": 1538,
+    "pos": 180,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": "ama",
+    "text": " wote wanaoitwa ndugu na dada mungu na goddess wa hadithi wa kigiriki la kale ) .\nYeye shirika la amani lakini ch[[ama]] cha nguvu , na"
+   },
+   {
+    "kind": "top",
+    "window": 1578,
+    "pos": 111,
+    "rel": 0.475,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "vi",
+    "token": " sham",
+    "text": " đề tâm thần của tôi để nghĩ rằng bản thân mình ' theo dõi ' tôi cảm thấy rằng sự kinh hoàng trong cửa hàng của tôi sẽ quá khủng khiếp khi họ biết tôi chỉ là[[ sham]]ming . Ngài James gật"
+   },
+   {
+    "kind": "top",
+    "window": 1417,
+    "pos": 239,
+    "rel": 0.467,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "о",
+    "text": " наложи , но това е , че се чувствам по същия начин , по който седя и гледам някои ш[[о]]ута и се с"
+   },
+   {
+    "kind": "top",
+    "window": 1565,
+    "pos": 201,
+    "rel": 0.462,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ur",
+    "token": "ظ",
+    "text": "ے ،\nکوسٹ گارڈ زمانہ امن کے دفتر میں ہے ، سلامتی اور ماحولیاتی تحف[[ظ]] کے لئے ا"
+   },
+   {
+    "kind": "top",
+    "window": 9,
+    "pos": 100,
+    "rel": 0.437,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "me",
+    "text": " impressive, but that doesn’t mean you shouldn’t show your colours all the same.\n\nManchester United started building their popularity in the nineties, where players like Eric Cantona, David Beckham, Peter Sch[[me]]ichel and many other legends helped"
+   },
+   {
+    "kind": "top",
+    "window": 1555,
+    "pos": 181,
+    "rel": 0.42,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": "em",
+    "text": "ç duvarlarda çiçekli mavi fayans ( Azulejos ) ve kolları paltolar .\nAma şimdilik aday seçici , muhteş[[em]] bir parti oyunu ol"
+   },
+   {
+    "kind": "top",
+    "window": 1559,
+    "pos": 187,
+    "rel": 0.407,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": "em",
+    "text": "ayeye ihtiyaçları var .\nYüzlerce binlerce kişi , tapınağın örtülü tsutenkyo ( Göksel Yol Köprüsü ) muhteş[[em]] sonbahar renkler"
+   },
+   {
+    "kind": "top",
+    "window": 136,
+    "pos": 42,
+    "rel": 0.371,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "um",
+    "text": "D\n                                                           United States Court of Appeals\n                                                                   Tenth Circuit\n\n                                                                   June 9, 2011\n                    UNITED STATES COURT OF APPEALS\n                                                 Elisabeth A. Sh[[um]]aker\n                                                                   Clerk of Court"
+   },
+   {
+    "kind": "top",
+    "window": 20,
+    "pos": 49,
+    "rel": 0.371,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "um",
+    "text": " Appeals\n                   UNITED STATES COURT OF APPEALS Tenth Circuit\n\n                               TENTH CIRCUIT                    September 19, 2011\n                                                                Elisabeth A. Sh[[um]]aker\n                                                                    Clerk of Court"
+   },
+   {
+    "kind": "top",
+    "window": 1413,
+    "pos": 230,
+    "rel": 0.354,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "о",
+    "text": " предизвикателство , а ходенето е лесно .\nно също така би било добра идея да се спре ш[[о]]фирането чрез"
+   },
+   {
+    "kind": "top",
+    "window": 1431,
+    "pos": 31,
+    "rel": 0.349,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "el",
+    "token": "μ",
+    "text": "Δύο πόντος ένα κλειδί και εσύ είσαι χα[[μ]]ένος\nC"
+   },
+   {
+    "kind": "top",
+    "window": 1409,
+    "pos": 75,
+    "rel": 0.349,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": "ن",
+    "text": "0 طريق الملكة , وميناء منطبق جناح على , واحد من اقدم في هونج كونج ؛ ماركس وسبينسر ؛ ومخاز[[ن]] الادارة اليابانية"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 11.0625,
+  "n_strong_tokens": 7,
+  "n_strong_windows": 3,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "ArXiv",
+    1
+   ],
+   [
+    "StackExchange",
+    1
+   ],
+   [
+    "Github",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    2
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "fc",
+    2
+   ],
+   [
+    "j",
+    2
+   ],
+   [
+    "elm",
+    2
+   ],
+   [
+    "FC",
+    1
+   ]
+  ],
+  "strong_pos_median": 119,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 381,
+    "pos": 135,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "fc",
+    "text": "\\\n$^{1}$[chen@nankai.edu.cn]{}, $^{2}$[qjdou@cfc.nankai.edu.cn]{}, $^{3}$[tangling@c[[fc]].nankai.edu.cn]{"
+   },
+   {
+    "kind": "top",
+    "window": 413,
+    "pos": 26,
+    "rel": 0.774,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "j",
+    "text": "Q:\n\nDownload a zip archive and extract one file from it\n\nI wrote a function that downloads a file https://www.oh[[j]]elmointiputka.net"
+   },
+   {
+    "kind": "top",
+    "window": 1348,
+    "pos": 27,
+    "rel": 0.548,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "FC",
+    "text": "# August 13, 2020 Meeting\n\nAttendees:\n\n- Shane Carr - Google i18n (S[[FC]]), Co-Moderator\n"
+   },
+   {
+    "kind": "top",
+    "window": 745,
+    "pos": 136,
+    "rel": 0.421,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".J",
+    "text": ". Attys. Gen., New Orleans, for the State.\nJ. Michael McDonald and David E. Stanley, Baton Rouge, for defendant.\nBefore GROVER L. COVINGTON, C[[.J]]., and WATKINS"
+   },
+   {
+    "kind": "top",
+    "window": 1417,
+    "pos": 142,
+    "rel": 0.415,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "рай",
+    "text": "или и конски сили. имах това за две или три години , а после го размених за см. конски сили .\nсамо в пок[[рай]]нините на цент"
+   },
+   {
+    "kind": "top",
+    "window": 879,
+    "pos": 167,
+    "rel": 0.395,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".J",
+    "text": "ellee: Gay Woodhouse, Attorney General; Paul S. Rehurek, Deputy Attorney General; and D. Michael Pauling, Senior Assistant Attorney General.\nBefore LEHMAN, C[[.J]]., and THOMAS,"
+   },
+   {
+    "kind": "top",
+    "window": 162,
+    "pos": 198,
+    "rel": 0.393,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " CJ",
+    "text": ".\n\nOur attendees will also enjoy meals together during the convention weekend; our open-to-the-public Saturday Show and Sale; and a fun-filled celebration Saturday evening including the presentation of the 2016[[ CJ]]CI Achievement Award.\n\nJoin us"
+   },
+   {
+    "kind": "top",
+    "window": 1419,
+    "pos": 22,
+    "rel": 0.355,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "ъ",
+    "text": "през 1986 г. португалия се присъедини к[[ъ]]м европейския икон"
+   },
+   {
+    "kind": "top",
+    "window": 949,
+    "pos": 47,
+    "rel": 0.352,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "VD",
+    "text": "The present invention relates to semiconductor processing, and in particular, to chemical vapor deposition in a high density plasma reactor.\n2. Related Art\nHigh density plasma (HDP) chemical vapor deposition (C[[VD]]) processes are used in the"
+   },
+   {
+    "kind": "top",
+    "window": 520,
+    "pos": 112,
+    "rel": 0.349,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".J",
+    "text": " 24, 1981.\nGregory F. Logue and Harold E. Winther, for appellant.\nRobert I. Deutscher, for respondent.\nREED, C[[.J]].\nThis is an appeal from"
+   },
+   {
+    "kind": "top",
+    "window": 1416,
+    "pos": 242,
+    "rel": 0.34,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "рай",
+    "text": "ата не става по-висока от замръзване няма никакво оборудване за отстраняване на лед\nзавийте надясно пок[[рай]] джамията и"
+   },
+   {
+    "kind": "top",
+    "window": 1536,
+    "pos": 7,
+    "rel": 0.298,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "sw",
+    "token": "uj",
+    "text": "Kwamba naweza k[[uj]]enga nyumba za kadi"
+   },
+   {
+    "kind": "top",
+    "window": 870,
+    "pos": 252,
+    "rel": 0.287,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "SJ",
+    "text": " September 5, 1988, and was initially owned by the Irving family of Saint John, New Brunswick and their New Brunswick Broadcasting Company. It was co-owned with Saint John-based CH[[SJ]]-TV, the"
+   },
+   {
+    "kind": "top",
+    "window": 235,
+    "pos": 118,
+    "rel": 0.273,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "jo",
+    "text": "en palveluun)\n\nJyväskyläläisen Atenan kustantajan Ville Rauvolan mielestä kasvu on tapahtunut taskukir[[jo]]jen eli pokkare"
+   },
+   {
+    "kind": "top",
+    "window": 371,
+    "pos": 56,
+    "rel": 0.268,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "MM",
+    "text": " positions are important to the nature of a protein family, versus which vary freely but could be assigned undue importance during the scoring of pairwise alignments. From these multiple alignments, profile hidden Markov Models (H[[MM]]s) are built. These"
+   },
+   {
+    "kind": "top",
+    "window": 693,
+    "pos": 169,
+    "rel": 0.261,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "L",
+    "text": " I think it's a great idea.\n\nRX8er wrote:I support the idea of no class for renewal. Where I think the bill falls down is somehow making sure that at each renewal, the CH[[L]] holder is up to speed on"
+   },
+   {
+    "kind": "top",
+    "window": 1546,
+    "pos": 61,
+    "rel": 0.26,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "th",
+    "token": "ัญ",
+    "text": " อยู่ ใน เตียง เลี้ยง เรา จะ ได้ เก็บ เอ่อ ดิน ไว้ ดี ๆ\nมี ของขว[[ัญ]] อะไร บางอย่าง"
+   },
+   {
+    "kind": "top",
+    "window": 1415,
+    "pos": 224,
+    "rel": 0.25,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "bg",
+    "token": "в",
+    "text": "ко не е имало страх от атака .\nе понякога , но ти казвам , че бих искал да мога да се кач[[в]]ам на автобус"
+   },
+   {
+    "kind": "top",
+    "window": 139,
+    "pos": 167,
+    "rel": 0.247,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "HC",
+    "text": " Division generally have lower caseload sizes and provide a level of supervision which includes a significant amount of time in the community (“field”). There are some officers in this Division such as the Mental Health / B[[HC]] officers who provides some level of"
+   },
+   {
+    "kind": "top",
+    "window": 1238,
+    "pos": 174,
+    "rel": 0.246,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "mc",
+    "text": ")  \n[海量 AngularJS 学习资源（Jeff Cunningham）](http://weekly.manong.io/bounce?url=https%3A%2F%2Fgithub.com%2Fj[[mc]]unningham%2FAng"
+   }
+  ]
+ }
+}

@@ -1,0 +1,624 @@
+{
+ "id": "L13N8681",
+ "layer": 13,
+ "neuron": 8681,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 2.1406,
+  "n_strong_tokens": 93,
+  "n_strong_windows": 75,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    37
+   ],
+   [
+    "OpenWebText2",
+    9
+   ],
+   [
+    "Pile-CC",
+    7
+   ],
+   [
+    "lang-id",
+    6
+   ],
+   [
+    "PubMed Abstracts",
+    4
+   ],
+   [
+    "PubMed Central",
+    4
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    37
+   ],
+   [
+    "en",
+    32
+   ],
+   [
+    "tr",
+    2
+   ],
+   [
+    "ur",
+    2
+   ],
+   [
+    "ja",
+    1
+   ],
+   [
+    "hi",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "::",
+    5
+   ],
+   [
+    "_H",
+    5
+   ],
+   [
+    " (",
+    3
+   ],
+   [
+    "_HPP",
+    3
+   ],
+   [
+    ".impl",
+    2
+   ],
+   [
+    "_link",
+    2
+   ],
+   [
+    " up",
+    2
+   ],
+   [
+    ".",
+    2
+   ]
+  ],
+  "strong_pos_median": 100,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 969,
+    "pos": 63,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " fork",
+    "text": "822a 100644\n--- a/README\n+++ b/README\n@@ -1,3 +1,38 @@\n+This is an Nginx[[ fork]] that adds dtrace USDT"
+   },
+   {
+    "kind": "top",
+    "window": 1223,
+    "pos": 93,
+    "rel": 0.942,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "$a",
+    "text": "ContainerView.a;\nimport com.tencent.mm.sdk.c.a;\nimport com.tencent.mm.sdk.platformtools.ac;\nimport com.tencent.mm.ui.j;\nimport com.tencent.mm.ui.o;\n\nfinal class ChattingUI[[$a]]$84$2\n"
+   },
+   {
+    "kind": "top",
+    "window": 1322,
+    "pos": 251,
+    "rel": 0.916,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Get",
+    "text": "{\n\tBoCA::Config\t*config = BoCA::Config::Get();\n\tBoCA::I18n\t*i18n\t= BoCA::I18n::[[Get]]();\n\n\ti18"
+   },
+   {
+    "kind": "top",
+    "window": 1116,
+    "pos": 49,
+    "rel": 0.887,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": "\ndescription: Upgrade to 1.7\n---\n\n# Upgrade to 1.7\n\n## Overview\n\nThe [1.7 release](https://github.com/graphcool/prisma/releases/tag/[[1]].7.0) of"
+   },
+   {
+    "kind": "top",
+    "window": 1373,
+    "pos": 90,
+    "rel": 0.887,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "::",
+    "text": " <string>\n\nusing namespace facebook::jni;\n\nnamespace facebook {\nnamespace react {\n\n/* static */ jni::local_ref<SamplingProfilerJniMethod::jhybriddata>\nSamplingProfilerJniMethod[[::]]initHybrid(jni::"
+   },
+   {
+    "kind": "top",
+    "window": 1209,
+    "pos": 57,
+    "rel": 0.872,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_link",
+    "text": "ase\n\n  import ExUnit.CaptureLog\n\n  defmodule PubSub do\n    @behaviour Absinthe.Subscription.Pubsub\n\n    def start_link() do\n      Registry.start[[_link]](keys: :unique, name"
+   },
+   {
+    "kind": "top",
+    "window": 1157,
+    "pos": 18,
+    "rel": 0.85,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ost",
+    "text": "Moss (Physcomitrella patens) GH3 proteins act in auxin home[[ost]]asis.\nAuxins are hormones"
+   },
+   {
+    "kind": "top",
+    "window": 1256,
+    "pos": 250,
+    "rel": 0.836,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "last",
+    "text": " != 0) {\n            return parseInt(match[1]);\n        }\n        return null;\n    }\n\n    var curSlide = slideNumber(location.hash);\n    var lastSlide = slideNumber($('.slide').[[last]]().attr('id'));\n"
+   },
+   {
+    "kind": "top",
+    "window": 779,
+    "pos": 248,
+    "rel": 0.799,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " chairman",
+    "text": "RC standard will be designed to support a wide variety of applications that need low latency, short range, high-data rate communications service, said electrical engineer Broady Cash, a DSRC task force[[ chairman]].\n\nAlong with critical"
+   },
+   {
+    "kind": "top",
+    "window": 823,
+    "pos": 88,
+    "rel": 0.799,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_HPP",
+    "text": "\r\n * http://www.boost.org/LICENSE_1_0.txt)\r\n *\r\n * See http://www.boost.org/libs/flyweight for library home page.\r\n */\r\n\r\n#ifndef BOOST_FLYWEIGHT_SERIALIZE[[_HPP]]\r\n#define BOOST_FLYWE"
+   },
+   {
+    "kind": "top",
+    "window": 1191,
+    "pos": 87,
+    "rel": 0.785,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "ologue",
+    "text": " of DNA methyltransferases (MTases), namely methyltransferase (MET), chromomethylase (CMT), domains rearranged methyltransferase (DRM), and DNA methyltransferase hom[[ologue]] 2 (DNMT2"
+   },
+   {
+    "kind": "top",
+    "window": 1192,
+    "pos": 241,
+    "rel": 0.752,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "avoid",
+    "text": " Miliband made horrendous errors,\nbut he was right to focus on energy costs, and if all Labour MPs cannot find\ncommon ground in higher taxes for the rich, and tougher legislation on tax\n[[avoid]]ance and evasion, one must"
+   },
+   {
+    "kind": "random-strong",
+    "window": 21,
+    "pos": 75,
+    "rel": 0.529,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_access",
+    "text": "z.phone@gmail.com>\n *****************************************************************************/\n\n#ifndef MOST_BALANCED_MINIMUM_CUTS_SBD5CS\n#define MOST_BALANCED_MINIMUM_CUTS_SBD5CS\n\n#include \"data_structure/graph[[_access]].h\"\n#include \"partition_config"
+   },
+   {
+    "kind": "random-strong",
+    "window": 189,
+    "pos": 157,
+    "rel": 0.719,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "izer",
+    "text": " big events coming up, including the tapping of a cask of Saint Arnold Brewing Company’s Elissa IPA at the Oct. 13 Merchant Soiree at\n\nArt of Beer co-organ[[izer]] and Yeast Priests co"
+   },
+   {
+    "kind": "random-strong",
+    "window": 180,
+    "pos": 43,
+    "rel": 0.737,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " sub",
+    "text": "s1}\n============\n\nUsher syndrome (USH) is an autosomal recessive disorder characterized by hearing loss (HL), retinitis pigmentosa (RP) and vestibular dysfunction. Three clinical[[ sub]]types can be distinguished. US"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1107,
+    "pos": 5,
+    "rel": 0.577,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " for",
+    "text": "/*\n * cocos2d[[ for]] iPhone: http://www.c"
+   },
+   {
+    "kind": "random-strong",
+    "window": 792,
+    "pos": 120,
+    "rel": 0.624,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " recognized",
+    "text": " have grown worldwide and are expected to continue increasing. There is thus a vital need to devise improved means and methods for processing such documents.\nThe use of imaging technology as an aid to document processing has been[[ recognized]] as one way of significantly improving"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1551,
+    "pos": 155,
+    "rel": 0.631,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": " son",
+    "text": "eneği kolaylaştıran resmi mekanizmaları ve yapıları evlat .\nMilliyetçilik hiçbir zaman tamamen yok olmadı , ve yüzyılın[[ son]] bölümünde , iskoç"
+   },
+   {
+    "kind": "random-strong",
+    "window": 81,
+    "pos": 14,
+    "rel": 0.737,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " protein",
+    "text": "Effect of protein nutrition on the mRNA content of insulin-like growth factor-binding[[ protein]]-1 in liver and kidney"
+   },
+   {
+    "kind": "random-strong",
+    "window": 150,
+    "pos": 14,
+    "rel": 0.562,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " (",
+    "text": "\n299 F.Supp.2d 166[[ (]]2004)\nTim"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 3.7812,
+  "n_strong_tokens": 20,
+  "n_strong_windows": 19,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "OpenWebText2",
+    9
+   ],
+   [
+    "Pile-CC",
+    4
+   ],
+   [
+    "FreeLaw",
+    2
+   ],
+   [
+    "Github",
+    1
+   ],
+   [
+    "lang-id",
+    1
+   ],
+   [
+    "PubMed Central",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    17
+   ],
+   [
+    "code",
+    1
+   ],
+   [
+    "tr",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " news",
+    2
+   ],
+   [
+    ".Code",
+    1
+   ],
+   [
+    " facts",
+    1
+   ],
+   [
+    " website",
+    1
+   ],
+   [
+    " Hall",
+    1
+   ],
+   [
+    " Italia",
+    1
+   ],
+   [
+    " observer",
+    1
+   ],
+   [
+    " wisdom",
+    1
+   ]
+  ],
+  "strong_pos_median": 63,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1168,
+    "pos": 31,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " news",
+    "text": "ZX Spectrum - Brought Back to Life\n\nDecember 2nd, 2014, 14:02\n\nPerhaps not really RPG[[ news]], but it is capable of"
+   },
+   {
+    "kind": "top",
+    "window": 706,
+    "pos": 63,
+    "rel": 0.917,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Sco",
+    "text": "\n\nThe Paterson native is expected to join the Giants' coaching staff as an assistant defensive backs coach, a person with knowledge of the hire told NJ Advance Media. The hire was first reported by Football[[ Sco]]op; Baker is expected to"
+   },
+   {
+    "kind": "top",
+    "window": 830,
+    "pos": 145,
+    "rel": 0.868,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Observer",
+    "text": "\n\nWant to become a GMS writer? Sign up now and submit a 250-word test article: http://gms.to/haveyoursay4\n\nSources such as the Wrestling[[ Observer]] have claimed that JBL’s"
+   },
+   {
+    "kind": "top",
+    "window": 818,
+    "pos": 1,
+    "rel": 0.868,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " news",
+    "text": "Sport[[ news]]\n\nDaniel Poleshch"
+   },
+   {
+    "kind": "top",
+    "window": 12,
+    "pos": 228,
+    "rel": 0.769,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".Code",
+    "text": " to be put on the general election ballot in November, 1982, as a candidate for the office of County Judge.\nThe jurisdiction of this court has been invoked pursuant to Tex.Elec[[.Code]] Ann. art. 1"
+   },
+   {
+    "kind": "top",
+    "window": 1349,
+    "pos": 73,
+    "rel": 0.69,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_export",
+    "text": " be\n// found in the LICENSE file.\n\n#ifndef BASE_LOCATION_H_\n#define BASE_LOCATION_H_\n\n#include <stddef.h>\n\n#include <cassert>\n#include <functional>\n#include <string>\n\n#include \"base/base[[_export]].h\"\n#include \"base/debug"
+   },
+   {
+    "kind": "top",
+    "window": 228,
+    "pos": 45,
+    "rel": 0.653,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Hall",
+    "text": " back Rashad Jennings isn’t the only NFC East player talking Super Bowl in April.\n\nCowboys quarterback Tony Romo was this year’s recipient of the Nancy Lieberman Lifetime Achievement Award given by the basketball[[ Hall]] of Famer’s foundation and"
+   },
+   {
+    "kind": "top",
+    "window": 300,
+    "pos": 13,
+    "rel": 0.628,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Italia",
+    "text": "Jorginho ‘amazed’ by Chelsea change\n\nBy Football[[ Italia]] staff\n\nJorginho says"
+   },
+   {
+    "kind": "top",
+    "window": 1555,
+    "pos": 70,
+    "rel": 0.603,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": " mak",
+    "text": " desteklemek için güçlü bir web tabanlı bir kaynak olan eyaletler arası probono.net / mn girişimi ' nin fırlatma .\nİngiliz sağlık[[ mak]]amları , 19"
+   },
+   {
+    "kind": "top",
+    "window": 863,
+    "pos": 114,
+    "rel": 0.574,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " technology",
+    "text": " employees with quality, cost-effective dental benefits programs and services.\n\nPeopleStrategy® provides a single source for SMB companies to build an effective, competitive people strategy through a strategic combination of hire-to-retire HR[[ technology]], employee benefits and administrative services"
+   },
+   {
+    "kind": "top",
+    "window": 918,
+    "pos": 65,
+    "rel": 0.57,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " literature",
+    "text": " or death. It is important to make a rapid diagnosis and initiate treatment for rhabdomyolysis in order to decrease morbidity and mortality. To date there are no reports in the emergency medicine[[ literature]] on the use of point-of"
+   },
+   {
+    "kind": "top",
+    "window": 111,
+    "pos": 73,
+    "rel": 0.566,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " website",
+    "text": " $3.33/g yesterday. This compares with the national average that has fallen 3.7 cents per gallon in the last week to $3.39/g, according to gasoline price[[ website]] NebraskaGasPrices.com.\n\nComment"
+   },
+   {
+    "kind": "top",
+    "window": 428,
+    "pos": 31,
+    "rel": 0.498,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " topics",
+    "text": "At Rainy Day Reviews you will find\nmy personal reviews on books as well as reading challenges, weekly memes I participate in, and all other bookish[[ topics]].\nThank you for stopping by"
+   },
+   {
+    "kind": "random-strong",
+    "window": 583,
+    "pos": 33,
+    "rel": 0.502,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " wisdom",
+    "text": "Mono/poly relationships, i.e., a relationship between a partner who is monogamous and one who is polyamorous, are notoriously difficult. Traditional poly blogger[[ wisdom]] points the finger at both parties"
+   },
+   {
+    "kind": "random-strong",
+    "window": 835,
+    "pos": 114,
+    "rel": 0.533,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " Appeals",
+    "text": "ORNEY GENERAL UNITED STATES OF AMERICA,\n                              Respondent\n              ______________\n\n       On Petition for Review of a Decision of the\n          United States Department of Justice\n            Board of Immigration[[ Appeals]]\n                     (A04"
+   },
+   {
+    "kind": "random-strong",
+    "window": 568,
+    "pos": 30,
+    "rel": 0.541,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " observer",
+    "text": "Trump fired off one of his social-media news releases on Tuesday, shortly after the Post-ABC poll went live. His excuse, as any close Trump[[ observer]] might have predicted: Polls"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1160,
+    "pos": 192,
+    "rel": 0.55,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " expert",
+    "text": " Princess Bride\" as his swordsman character was on a lifelong quest for revenge against the man who slew his father.\n\nTRENDING: Wildfires to get worse thanks to Clinton policies, says fire[[ expert]] who predicted uptick in bl"
+   },
+   {
+    "kind": "random-strong",
+    "window": 709,
+    "pos": 39,
+    "rel": 0.554,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " skills",
+    "text": "Q:\n\nHow Can I replace a cursor in sql server 2008\n\nIn the last years I have put lot of effort in c# and left sql server a bit .\nMy sql[[ skills]] could be better.\nI know"
+   },
+   {
+    "kind": "random-strong",
+    "window": 74,
+    "pos": 52,
+    "rel": 0.514,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " facts",
+    "text": "large Photodisc About one in 25 Americans, or more than 12 million, have food allergies, according to the Food Allergy & Anaphylaxis Network. More food allergy[[ facts]] from the network:\n\n\n\nAbout "
+   },
+   {
+    "kind": "random-strong",
+    "window": 610,
+    "pos": 40,
+    "rel": 0.512,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "最大",
+    "text": "【12月7日 AFP】ブラジルはこれまで太陽エネルギー活用への移行において大きく後れを取ってきたが、現在南東部に建設中の中南米[[最大]]規模となる太陽光�"
+   }
+  ]
+ }
+}

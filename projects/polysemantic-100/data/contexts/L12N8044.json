@@ -1,0 +1,604 @@
+{
+ "id": "L12N8044",
+ "layer": 12,
+ "neuron": 8044,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 6.875,
+  "n_strong_tokens": 44,
+  "n_strong_windows": 28,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Wikipedia (en)",
+    12
+   ],
+   [
+    "Pile-CC",
+    5
+   ],
+   [
+    "OpenWebText2",
+    4
+   ],
+   [
+    "ArXiv",
+    3
+   ],
+   [
+    "FreeLaw",
+    1
+   ],
+   [
+    "lang-id",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    27
+   ],
+   [
+    "nl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "user",
+    3
+   ],
+   [
+    "ingu",
+    3
+   ],
+   [
+    " Central",
+    2
+   ],
+   [
+    " Sunderland",
+    2
+   ],
+   [
+    "es",
+    2
+   ],
+   [
+    "oc",
+    2
+   ],
+   [
+    "urban",
+    1
+   ],
+   [
+    "org",
+    1
+   ]
+  ],
+  "strong_pos_median": 67,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 959,
+    "pos": 216,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " Marshall",
+    "text": " COPY OF IT ON ANY PARTY NOT REPRESENTED\nBY COUNSEL.\n\n\n              At a stated term of the United States Court of Appeals for the Second\nCircuit, held at the Thurgood[[ Marshall]] United States Courthouse, "
+   },
+   {
+    "kind": "top",
+    "window": 1491,
+    "pos": 104,
+    "rel": 0.855,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": " Central",
+    "text": " vuurt Portugal tot 2014 Wereldbekerfinale af\nEen andere schietpartij in verband met de spree vond plaats op 11 november in Hamilton[[ Central]] Elementary in Obetz, on"
+   },
+   {
+    "kind": "top",
+    "window": 500,
+    "pos": 43,
+    "rel": 0.845,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Sunderland",
+    "text": " was one of the first constituencies to declare its result on the night of the Brexit referendum and the margin of victory for leave sent shockwaves through the political establishment and the financial markets. Since then,[[ Sunderland]] has become a symbol of Brexit"
+   },
+   {
+    "kind": "top",
+    "window": 776,
+    "pos": 21,
+    "rel": 0.836,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "am",
+    "text": "Riverdale\n\nRiverdale may refer to:\n\nBuildings\nRiverdale Centre, former name for Lewish[[am]] Shopping Centre, London, England"
+   },
+   {
+    "kind": "top",
+    "window": 591,
+    "pos": 38,
+    "rel": 0.809,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " East",
+    "text": "Ballymena\n\nBallymena  (, ) is a town in County Antrim, and the eighth largest in Northern Ireland. It is part of the Borough of Mid and[[ East]] Antrim. It had a"
+   },
+   {
+    "kind": "top",
+    "window": 858,
+    "pos": 43,
+    "rel": 0.795,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "es",
+    "text": " the Jesuits in simple router in 1626 by Henri de Levy, Duke of Ventadour and Viceroy of New France, the fief of Notre-Dame-des-Ang[[es]] extends from the Saint-Charles"
+   },
+   {
+    "kind": "top",
+    "window": 956,
+    "pos": 147,
+    "rel": 0.791,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "shire",
+    "text": " 46.2 per cent for the Yes campaign, the BBC reported.\n\nThe first six of 32 regions reporting all went into the No column, with Dundee and West Dunbarton[[shire]] then becoming the first centres to"
+   },
+   {
+    "kind": "top",
+    "window": 382,
+    "pos": 68,
+    "rel": 0.714,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "oulouse",
+    "text": "$,\\\n    Guillaume Buscarlet$^3$, Norbert Suard$^2$\\\n    [ $(^1)$ Institut de Mathématiques de Toulouse, Université T[[oulouse]] 3, France]{}"
+   },
+   {
+    "kind": "top",
+    "window": 678,
+    "pos": 23,
+    "rel": 0.686,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "-S",
+    "text": "Markušica\n\nMarkušica (, ) is a village and a municipality in Vukovar[[-S]]rijem County, Croatia.\n\n"
+   },
+   {
+    "kind": "top",
+    "window": 711,
+    "pos": 67,
+    "rel": 0.682,
+    "gate_open": true,
+    "source": "PhilPapers",
+    "lang": "en",
+    "token": " Desc",
+    "text": " Erik Myin University of Antwerp, Department of Philosophy, Centre for Philosophical Psychology & Jan Degenaar University of Antwerp, Department of Philosophy, Centre for Philosophical Psychology, and University Paris[[ Desc]]artes, Laboratoire Psych"
+   },
+   {
+    "kind": "top",
+    "window": 100,
+    "pos": 250,
+    "rel": 0.673,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "org",
+    "text": " the defense exhibition in Gävle in 1946 and became major at the Swedish Infantry Combat School in 1954. Frykman was lieutenant colonel at Skarab[[org]] Regiment (P 4"
+   },
+   {
+    "kind": "top",
+    "window": 298,
+    "pos": 45,
+    "rel": 0.664,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ung",
+    "text": " in Indonesian jungle\n\nAugust 9, 2012 in Biology / Ecology\n\nIn this undated photo released by Leuser International Foundation, a Sumatran rhino roams at Gun[[ung]] Leuser National Park in Ace"
+   },
+   {
+    "kind": "random-strong",
+    "window": 168,
+    "pos": 69,
+    "rel": 0.552,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "on",
+    "text": " via Twitter that he has committed to Wake Forest.\n\nMitchell drew college coaches from the Demon Deacons, North Carolina and North Carolina State to the Holiday Invitational at Raleigh (N.C.) Brought[[on]] High last week. He averaged"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1080,
+    "pos": 57,
+    "rel": 0.645,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "ingu",
+    "text": " Trumai are fluent in languages of wider communication, and children are not learning it well.\n\nBackground \nTrumai is a language spoken by the indigenous community of the same name located in the X[[ingu]] reserve along the Upper Xingu"
+   },
+   {
+    "kind": "random-strong",
+    "window": 759,
+    "pos": 188,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "-M",
+    "text": "3 Kaiserslautern, Germany'\n- 'István Heckenberger, Philipps-Universität Marburg, Fachbereich Mathematik und Informatik, Hans[[-M]]eerwein-Straße"
+   },
+   {
+    "kind": "random-strong",
+    "window": 400,
+    "pos": 47,
+    "rel": 0.586,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " Charles",
+    "text": " age in Somali children.\nTo compare dental age (DA) with chronological age (CA) in Somali and white Caucasian children, resident in Sheffield. Cross-sectional study. Paediatric dentistry clinic,[[ Charles]] Clifford Dental Hospital, Sheffield."
+   },
+   {
+    "kind": "random-strong",
+    "window": 700,
+    "pos": 191,
+    "rel": 0.609,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " John",
+    "text": " theology in 1986. Later, he returned to Durham for post-graduate study and completed a Master of Arts (MA) degree in 1991. He then attended St[[ John]]'s College, Oxford, and"
+   },
+   {
+    "kind": "random-strong",
+    "window": 632,
+    "pos": 104,
+    "rel": 0.609,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ad",
+    "text": " and BRACE came out on top. Funds raised by the firm over the next 12 months will help to maintain BRACE’s cutting edge Brain Bank in the Learning and Research Centre at Southme[[ad]] Hospital.\n\nMike Lea,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 725,
+    "pos": 63,
+    "rel": 0.65,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "man",
+    "text": " a Jamaican-born American soccer player who most recently played for AFC Ann Arbor in the National Premier Soccer League.\n\nCareer\n\nCollege and Amateur\nCameron grew up in New York City, attended Cardinal Spell[[man]] High School in The Bronx,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1023,
+    "pos": 9,
+    "rel": 0.575,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Andrew",
+    "text": "St Andrew's Church, Redbourne\n\nSt[[ Andrew]]'s Church is a redundant Anglic"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 3.2812,
+  "n_strong_tokens": 34,
+  "n_strong_windows": 24,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "FreeLaw",
+    6
+   ],
+   [
+    "OpenWebText2",
+    5
+   ],
+   [
+    "Wikipedia (en)",
+    5
+   ],
+   [
+    "Pile-CC",
+    5
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    22
+   ],
+   [
+    "code",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " Attorney",
+    3
+   ],
+   [
+    " senator",
+    3
+   ],
+   [
+    " Court",
+    3
+   ],
+   [
+    "han",
+    2
+   ],
+   [
+    " rule",
+    2
+   ],
+   [
+    ".",
+    2
+   ],
+   [
+    "EC",
+    1
+   ],
+   [
+    " States",
+    1
+   ]
+  ],
+  "strong_pos_median": 124,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 532,
+    "pos": 190,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "pl",
+    "text": " of 249 patients with chronic atrophic gastritis (40.9%), in 36 out of 144 patients with chronic atrophic gastritis with intestinalization or dys[[pl]]asia (25.0"
+   },
+   {
+    "kind": "top",
+    "window": 730,
+    "pos": 93,
+    "rel": 0.867,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " senator",
+    "text": " the Ulster Farmers’ Union, currently works in Queen’s University Belfast in the Institute for Global Food Security.\n\nCurrently, the Seanad has two vacancies. One has been left by the resignation of Labour[[ senator]] Denis Landy last year,"
+   },
+   {
+    "kind": "top",
+    "window": 700,
+    "pos": 50,
+    "rel": 0.733,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " of",
+    "text": "born 1961) is a British Anglican bishop. Since June 2017, he has been the Bishop of Sheffield in the Church of England. He was previously the Dean[[ of]] Liverpool from 201"
+   },
+   {
+    "kind": "top",
+    "window": 538,
+    "pos": 14,
+    "rel": 0.729,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " rule",
+    "text": "Notices are published\neach Wednesday to alert the public regarding state agency[[ rule]]-making.\nYou may obtain a"
+   },
+   {
+    "kind": "top",
+    "window": 53,
+    "pos": 216,
+    "rel": 0.681,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " Attorney",
+    "text": " HALL, and HAMILTON, Circuit Judges.\n\n\nAffirmed by unpublished per curiam opinion.\n\n\nWilliam Arthur Brown, Appellant Pro Se.    William A. Brafford,\nAssistant United States[[ Attorney]], Charlotte, North Carolina,"
+   },
+   {
+    "kind": "top",
+    "window": 582,
+    "pos": 101,
+    "rel": 0.662,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " senator",
+    "text": " calling on the government to strip out more contentious elements of the electoral funding and disclosure bill.\n\nGetUp characterised the report as a major backdown and argued the bill is unworkable but the Liberal[[ senator]] Linda Reynolds, the chairwoman"
+   },
+   {
+    "kind": "top",
+    "window": 1047,
+    "pos": 13,
+    "rel": 0.643,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Court",
+    "text": "Judge criticised for 'immigrants exploiting benefits' comment\n\nA Crown[[ Court]] judge has been disciplined for saying"
+   },
+   {
+    "kind": "top",
+    "window": 1209,
+    "pos": 232,
+    "rel": 0.624,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".Schema",
+    "text": "subscribed_fields) do\n      # this pubsub is local and doesn't support clusters\n      :ok\n    end\n  end\n\n  defmodule Schema do\n    use Absinthe[[.Schema]]\n\n    query do\n     "
+   },
+   {
+    "kind": "top",
+    "window": 529,
+    "pos": 130,
+    "rel": 0.614,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "han",
+    "text": " Congress(INC). He was elected from Gurdaspur, Punjab to the Lok Sabha the lower house of Indian parliament in a by-election.\n\nPolitical career\nHe first became a member of Punjab Vid[[han]] Sabha from Abohar in"
+   },
+   {
+    "kind": "top",
+    "window": 270,
+    "pos": 62,
+    "rel": 0.607,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Prosecutor",
+    "text": " Officer holding the muzzle of his AR-15 rifle to the head of an unarmed man who was subdued, in a seeming attempt to torment him. On Tuesday, after they investigated themselves, Kent County[[ Prosecutor]] Chris Becker said—in spite of"
+   },
+   {
+    "kind": "top",
+    "window": 783,
+    "pos": 156,
+    "rel": 0.605,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ".",
+    "text": " equipment and replacement of on-board cameras on transit vehicles, and improvements near stops including lighting and walkways to bolster safety and accessibility.\n\n\"We've already had significant support on the rapid transit side,\" said Coun[[.]] Tom Galloway, chair"
+   },
+   {
+    "kind": "top",
+    "window": 1175,
+    "pos": 11,
+    "rel": 0.586,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Court",
+    "text": "Eastern Cape Division\n\nThe Eastern Cape Division of the High[[ Court]] of South Africa is a superior"
+   },
+   {
+    "kind": "random-strong",
+    "window": 378,
+    "pos": 135,
+    "rel": 0.538,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".S",
+    "text": " Defender, Twelfth Judicial District, John G. Britt, Jr., Fayetteville, for defendant-appellant.\nHARRY C. MARTIN, Judge.\nDefendant was convicted of violating N.C.G[[.S]]. 14-2"
+   },
+   {
+    "kind": "random-strong",
+    "window": 744,
+    "pos": 118,
+    "rel": 0.533,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " MP",
+    "text": " 2,000 under-16s sign up each year, with 80 per cent going to the Army.\n\nAn early day motion ­tabled by Plaid Cymru[[ MP]] Liz Saville Roberts says:"
+   },
+   {
+    "kind": "random-strong",
+    "window": 30,
+    "pos": 134,
+    "rel": 0.529,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " Attorney",
+    "text": " Columbia.\nAugust 26, 2009.\n*19 Katherine Karker-Jennings, Clarksville, MD, for Plaintiffs.\nJeremy S. Simon, U.S.[[ Attorney]]'s Office, Jocelyn"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1296,
+    "pos": 216,
+    "rel": 0.505,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Sites",
+    "text": "/go-autorest/autorest\"\n\t\"github.com/Azure/go-autorest/autorest/azure\"\n\t\"github.com/Azure/go-autorest/tracing\"\n\t\"net/http\"\n)\n\n// Vpn[[Sites]]Client is the network Client\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 18,
+    "pos": 77,
+    "rel": 0.512,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "EC",
+    "text": " occupy land.\n\nThe inquiry was formed after Alexandra residents embarked on violent protests in the township in April demanding improved services.\n\nThe decision to request Malema's attendance was made after Gauteng Human Settlements M[[EC]] Uhuru Moiloa completed"
+   },
+   {
+    "kind": "random-strong",
+    "window": 136,
+    "pos": 199,
+    "rel": 0.562,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".D",
+    "text": "al Facility; (FNU) BOKOR,\n    A.R.N.P., Correct Care Solutions, El\n    Dorado Correctional Facility;\n    GEORGE MCNICKLE, M[[.D]]., El\n    Dorado"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1117,
+    "pos": 35,
+    "rel": 0.533,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Court",
+    "text": "Section 9(B) imposed burden on the accused to prove that meat or flesh possessed by him/her does not belong to these animals.\n\nA batch of appeals was filed before Supreme[[ Court]], against the HC verdict dec"
+   },
+   {
+    "kind": "random-strong",
+    "window": 100,
+    "pos": 231,
+    "rel": 0.562,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " School",
+    "text": " press officer in the camp staff during the Swedish extradition of Baltic soldiers.\n\nHe was military organizer at the defense exhibition in Gävle in 1946 and became major at the Swedish Infantry Combat[[ School]] in 1954"
+   }
+  ]
+ }
+}

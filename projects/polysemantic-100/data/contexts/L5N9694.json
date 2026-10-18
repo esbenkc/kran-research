@@ -1,0 +1,604 @@
+{
+ "id": "L5N9694",
+ "layer": 5,
+ "neuron": 9694,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 6.25,
+  "n_strong_tokens": 14,
+  "n_strong_windows": 13,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    5
+   ],
+   [
+    "Pile-CC",
+    3
+   ],
+   [
+    "PubMed Central",
+    2
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ],
+   [
+    "FreeLaw",
+    1
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    8
+   ],
+   [
+    "hi",
+    3
+   ],
+   [
+    "ar",
+    1
+   ],
+   [
+    "pl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "ु",
+    4
+   ],
+   [
+    "BER",
+    1
+   ],
+   [
+    "ner",
+    1
+   ],
+   [
+    "bm",
+    1
+   ],
+   [
+    "ME",
+    1
+   ],
+   [
+    "uster",
+    1
+   ],
+   [
+    "upa",
+    1
+   ],
+   [
+    "PF",
+    1
+   ]
+  ],
+  "strong_pos_median": 124,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 486,
+    "pos": 161,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "ME",
+    "text": " antiproliferative and hemolytic properties and cytotoxicity in Caco-2 cells. Headspace volatiles of Ulmo honey were isolated by solid-phase microextraction (SP[[ME]]); non-volatiles"
+   },
+   {
+    "kind": "top",
+    "window": 35,
+    "pos": 45,
+    "rel": 0.945,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "BER",
+    "text": "\n                                        San Antonio, Texas\n\n                                   MEMORANDUM OPINION\n                                            No. 04-18-00814-CR\n\n                                      IN RE Matthew Paul SUR[[BER]]\n\n                                     Original Mandamus Proceed"
+   },
+   {
+    "kind": "top",
+    "window": 818,
+    "pos": 168,
+    "rel": 0.705,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "upa",
+    "text": " race back after injury could hardly have been tougher, but in it he proved he can hold his own against the very best runners from Europe and America.\n\nThe event was the 8.2km B[[upa]] Great Edinburgh Cross Country, televised"
+   },
+   {
+    "kind": "top",
+    "window": 484,
+    "pos": 86,
+    "rel": 0.7,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "bm",
+    "text": " reference:\n  http://in.mathworks.com/help/stats/gaussian-mixture-models.html\nThis is my initial code\n I=im2double(imread('sil10001.p[[bm]]'));\n  K = I(:"
+   },
+   {
+    "kind": "top",
+    "window": 1143,
+    "pos": 200,
+    "rel": 0.66,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "pe",
+    "text": " trace metals in water sources may lead to adverse effects such as deformities, cancer and bad health of aquatic animals and their terrestrial predators (Coeurdassier et al. [@CR2]; Vol[[pe]] et al. [@CR1"
+   },
+   {
+    "kind": "top",
+    "window": 1464,
+    "pos": 136,
+    "rel": 0.64,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "hi",
+    "token": "ु",
+    "text": "ाध ् यम से हम रेस संबंधों में बेहतर के लिए बह[[ु]]त बदल �"
+   },
+   {
+    "kind": "top",
+    "window": 676,
+    "pos": 23,
+    "rel": 0.635,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "uster",
+    "text": "Antiquorum SA Sues Former Management\n\nNovember 30, 2007byWilliam George Sh[[uster]]\n\nAntiquorum, the"
+   },
+   {
+    "kind": "top",
+    "window": 1409,
+    "pos": 68,
+    "rel": 0.625,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": "ين",
+    "text": "ط الهادئ , 70 طريق الملكة , وميناء منطبق جناح على , واحد من اقدم في هونج كونج ؛ ماركس وسب[[ين]]سر ؛ ومخاز"
+   },
+   {
+    "kind": "top",
+    "window": 1469,
+    "pos": 122,
+    "rel": 0.595,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "hi",
+    "token": "ु",
+    "text": "ं यह अद ् भुत हूँ मुझे उन फिल ् मों में बह[[ु]]त पसंद ह"
+   },
+   {
+    "kind": "top",
+    "window": 904,
+    "pos": 16,
+    "rel": 0.555,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "PF",
+    "text": "Background {#Sec1}\n==========\n\nBronchopleural fistula (B[[PF]]) is a relatively infrequent"
+   },
+   {
+    "kind": "top",
+    "window": 432,
+    "pos": 2,
+    "rel": 0.547,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ner",
+    "text": "Boeh[[ner]]: These conservative groups who are"
+   },
+   {
+    "kind": "top",
+    "window": 1468,
+    "pos": 204,
+    "rel": 0.547,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "hi",
+    "token": "ु",
+    "text": "�ो यह काठमांडू से ल ् हासा तक उड ़ जाना बह[[ु]]त आसान"
+   },
+   {
+    "kind": "top",
+    "window": 698,
+    "pos": 212,
+    "rel": 0.495,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "üh",
+    "text": " kinnitas kandideerimist, väljendas vabariigi president uuesti oma usaldust tema vastu ja palus tal jääda täielikult p[[üh]]endunuks missioon"
+   },
+   {
+    "kind": "top",
+    "window": 1510,
+    "pos": 115,
+    "rel": 0.49,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "FTA",
+    "text": "os 'atingidos' pelo fogo israelita em Gaza\nPássaro preto sentado numa laje de betão.\nOlivia Colman ganha segundo Prémio BA[[FTA]]\nHRW: Jordâ"
+   },
+   {
+    "kind": "top",
+    "window": 340,
+    "pos": 103,
+    "rel": 0.48,
+    "gate_open": true,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": "es",
+    "text": " the neonate. PNEC are granulated cells that line the airways of fetal, neonatal, and adult lungs. They are particularly numerous in the neonatal period and contain peptides (bomb[[es]]in, calcitonin,"
+   },
+   {
+    "kind": "top",
+    "window": 481,
+    "pos": 69,
+    "rel": 0.445,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "h",
+    "text": ", started 2013 in preparation for our tour of Ireland, to a point where I can start to consolidate it into a document shared with other family members.\n\nPam, at the Cob[[h]] Heritage Center\n\nIt is a"
+   },
+   {
+    "kind": "top",
+    "window": 456,
+    "pos": 169,
+    "rel": 0.438,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "pp",
+    "text": "enet Defenseman Reassigned by Dallas (NHL) to Idaho (ECHL) Steve McParland Forward Released from Professional Tryout Brady Norrish Defenseman Released from Professional Tryout Kyle Schem[[pp]] Forward Released from Professional Tryout"
+   },
+   {
+    "kind": "top",
+    "window": 1401,
+    "pos": 173,
+    "rel": 0.435,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ar",
+    "token": "am",
+    "text": " الاخلاص \" \" الاضطرابات المستمرة \"\nالم طالعين المحليون يقولون انه ممتاز ايضا في ( هاردي هاردي ) , ( بوينت bah[[am]] ) , و ( غران"
+   },
+   {
+    "kind": "top",
+    "window": 255,
+    "pos": 203,
+    "rel": 0.425,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "an",
+    "text": " Vineyard won trophies for their 2007 vintage at the tastings, held at Kenton Vineyard near Exeter on 4 September.\n\n“Our first vintage has been awarded The John Buch[[an]] Agronomy Shield – Best Red"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1505,
+    "pos": 127,
+    "rel": 0.545,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pl",
+    "token": "unt",
+    "text": " jest konstytucyjne?\nKobieta cienko kroi cebulę dużym nożem.\nOd Florydy po Alaskę, tysiące b[[unt]]owników przysięga"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 7.9062,
+  "n_strong_tokens": 18,
+  "n_strong_windows": 16,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    8
+   ],
+   [
+    "OpenWebText2",
+    4
+   ],
+   [
+    "BookCorpus2",
+    1
+   ],
+   [
+    "StackExchange",
+    1
+   ],
+   [
+    "PubMed Central",
+    1
+   ],
+   [
+    "lang-id",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    15
+   ],
+   [
+    "nl",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " with",
+    12
+   ],
+   [
+    "is",
+    2
+   ],
+   [
+    "OR",
+    1
+   ],
+   [
+    "ora",
+    1
+   ],
+   [
+    "with",
+    1
+   ],
+   [
+    " bor",
+    1
+   ]
+  ],
+  "strong_pos_median": 132,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 159,
+    "pos": 130,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " with",
+    "text": " decades ago, David Rumsey began building a map collection. By the mid-90s he had thousands and thousands of maps to call his own -- and his alone. He wanted to share them[[ with]] the public.\n\nHe could have"
+   },
+   {
+    "kind": "top",
+    "window": 221,
+    "pos": 148,
+    "rel": 0.98,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " with",
+    "text": " and emotional satisfactions she once got from her husband. Thus her insistence that he learn German instantaneously, or her course of reading Shakespeare and Schiller with Canetti – German was the language she shared[[ with]] her husband, theater was the"
+   },
+   {
+    "kind": "top",
+    "window": 481,
+    "pos": 58,
+    "rel": 0.913,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " with",
+    "text": "cestry.com researching our family histories to bring this process, started 2013 in preparation for our tour of Ireland, to a point where I can start to consolidate it into a document shared[[ with]] other family members.\n\nPam"
+   },
+   {
+    "kind": "top",
+    "window": 1158,
+    "pos": 61,
+    "rel": 0.866,
+    "gate_open": true,
+    "source": "BookCorpus2",
+    "lang": "en",
+    "token": " with",
+    "text": " Don Hatfield\n\nLicense Notes: This ebook is licensed for your personal enjoyment only. This ebook may not be re-sold or given away to other people. If you would like to share this ebook[[ with]] another person, please purchase an"
+   },
+   {
+    "kind": "top",
+    "window": 680,
+    "pos": 197,
+    "rel": 0.798,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " with",
+    "text": " in rural villages and coastal areas.\n\n\n\nWith this Handbook, it will be possible to learn interesting facts about the vegetation found in Belize, from A to Z. This knowledge will add spirit to any information shared[[ with]] others about the vegetation found in"
+   },
+   {
+    "kind": "top",
+    "window": 470,
+    "pos": 134,
+    "rel": 0.791,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " with",
+    "text": " MAN. God is faithful and so so good.\"\n\nSADIE ROBERTSON: HOW I OVERCAME FEAR AND LEARNED TO REALLY LIVE\n\nA video of the special moment was shared[[ with]] the \"Dancing with the"
+   },
+   {
+    "kind": "top",
+    "window": 559,
+    "pos": 41,
+    "rel": 0.743,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " with",
+    "text": " Alerts For New Posts!\n\nSign up (free of course!) and we'll email you when there's fresh mischief to see here on the site! We'll never send spam, and never share your information[[ with]] any government agencies even if we"
+   },
+   {
+    "kind": "top",
+    "window": 727,
+    "pos": 214,
+    "rel": 0.743,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " with",
+    "text": " a year’ she said, ‘Last year I was able to donate 40 thousand pesos by selling my old clothes online” the Beauty Queen added.\n\nRodriguez, who share the same passion[[ with]] Save the Children, revealed one"
+   },
+   {
+    "kind": "top",
+    "window": 932,
+    "pos": 197,
+    "rel": 0.708,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " with",
+    "text": " similar – connecting with your community – finding a health professional you trust – connecting on social media – giving your pet a cuddle – organisations working together for the best possible wellbeing of everyone – sharing your stories[[ with]] others – creating a sense of"
+   },
+   {
+    "kind": "top",
+    "window": 1086,
+    "pos": 193,
+    "rel": 0.708,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " with",
+    "text": " delivery, the decision to become pregnant again can be a daunting task for couples. Dr. Mills understands this and is ready to help his patients. He prides himself in listening and sharing the emotional burden[[ with]] these families while identifying areas to"
+   },
+   {
+    "kind": "top",
+    "window": 141,
+    "pos": 86,
+    "rel": 0.64,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "OR",
+    "text": " i avhør, brukes nå til å ta fra dem lappen.\n\nPublisert Publisert 16. august 2014\n\nLA KORTENE PÅ B[[OR]]DET: Dette er noen"
+   },
+   {
+    "kind": "top",
+    "window": 1193,
+    "pos": 16,
+    "rel": 0.585,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "is",
+    "text": "Q:\n\nUpdate database based on dropdownlist selection?\n\nI have a table called S[[is]]Status, which contains two columns"
+   },
+   {
+    "kind": "top",
+    "window": 1554,
+    "pos": 81,
+    "rel": 0.498,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "tr",
+    "token": "ş",
+    "text": "ca , çok meşgulüz , ama zamanımız olursa. küçük hemşire geri çekildi ve cynthia hemen raftan bir kavanoz aldı , şi[[ş]]eyi yeniden dold"
+   },
+   {
+    "kind": "top",
+    "window": 30,
+    "pos": 41,
+    "rel": 0.496,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "BEL",
+    "text": "648 F.Supp.2d 18 (2009)\nST. MICHAEL'S MEDICAL CENTER, et al., Plaintiffs,\nv.\nKathleen SE[[BEL]]IUS,[1] Secretary"
+   },
+   {
+    "kind": "top",
+    "window": 1468,
+    "pos": 150,
+    "rel": 0.488,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "hi",
+    "token": "भ",
+    "text": "ी इस सीमा पार में तिब ् बत में प ् रवेश करना सं[[भ]]व हो जा�"
+   },
+   {
+    "kind": "top",
+    "window": 817,
+    "pos": 187,
+    "rel": 0.435,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "AS",
+    "text": " significant differences in baseline data between the two groups. After treatment, disease activity and quality of life were improved in these two groups. The Bath Ankylosing Spondylitis Disease Activity Index (B[[AS]]DAI) score (1"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1497,
+    "pos": 161,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "nl",
+    "token": " bor",
+    "text": "Mali interim-leider treedt aan\nGazans vuren 2 raketten af op Israël; geen gewonden.\nAngelina Jolie's tante sterft aan[[ bor]]stkanker...\nChinese aand"
+   },
+   {
+    "kind": "random-strong",
+    "window": 665,
+    "pos": 39,
+    "rel": 0.538,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " with",
+    "text": "C-type natriuretic peptide (CNP), the third discovered member of the natriuretic peptide (NP) family, received its name because it shares a common amino acid core structure[[ with]] the previously isolated cardiac hormones atr"
+   },
+   {
+    "kind": "random-strong",
+    "window": 296,
+    "pos": 117,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "ora",
+    "text": " publicly to his abrupt transfer on Tuesday but his face spoke volumes about his emotions. He is reportedly of the view that his shunting is a political move and could be a fallout of the Sheena B[[ora]] murder case .Defending his"
+   },
+   {
+    "kind": "random-strong",
+    "window": 561,
+    "pos": 217,
+    "rel": 0.545,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "with",
+    "text": " and Theological Seminary American History Tutors search down using filters to\nrefine results and enhance your tutor search experience. Share relevant Faith Baptist Bible College and Theological Seminary American History tutors\n[[with]] Faith Baptist Bible College and The"
+   }
+  ]
+ }
+}

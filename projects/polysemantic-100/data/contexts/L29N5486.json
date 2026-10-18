@@ -1,0 +1,628 @@
+{
+ "id": "L29N5486",
+ "layer": 29,
+ "neuron": 5486,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 12.375,
+  "n_strong_tokens": 80,
+  "n_strong_windows": 50,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    20
+   ],
+   [
+    "FreeLaw",
+    9
+   ],
+   [
+    "lang-id",
+    8
+   ],
+   [
+    "StackExchange",
+    5
+   ],
+   [
+    "Pile-CC",
+    4
+   ],
+   [
+    "OpenWebText2",
+    3
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    22
+   ],
+   [
+    "code",
+    20
+   ],
+   [
+    "it",
+    2
+   ],
+   [
+    "el",
+    2
+   ],
+   [
+    "es",
+    1
+   ],
+   [
+    "zh",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " or",
+    7
+   ],
+   [
+    "1",
+    4
+   ],
+   [
+    " :",
+    4
+   ],
+   [
+    " GT",
+    3
+   ],
+   [
+    "@property",
+    3
+   ],
+   [
+    ",",
+    3
+   ],
+   [
+    "Z",
+    2
+   ],
+   [
+    " Judges",
+    2
+   ]
+  ],
+  "strong_pos_median": 129,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1381,
+    "pos": 52,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "/code",
+    "text": "\"\n\t\"go/token\"\n\t\"go/types\"\n\t\"io\"\n\t\"strings\"\n\t\"sync\"\n\t\"sync/atomic\"\n\n\t\"golang.org/x/tools/go/analysis\"\n\t\"honnef.co/go/tools[[/code]]\"\n\t\"honnef.co"
+   },
+   {
+    "kind": "top",
+    "window": 53,
+    "pos": 194,
+    "rel": 0.899,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " opinion",
+    "text": "7                   Decided:   May 28, 1997\n\n\nBefore RUSSELL, HALL, and HAMILTON, Circuit Judges.\n\n\nAffirmed by unpublished per curiam[[ opinion]].\n\n\nWilliam Arthur Brown, App"
+   },
+   {
+    "kind": "top",
+    "window": 1448,
+    "pos": 110,
+    "rel": 0.864,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": "ificación",
+    "text": "iendo porque el producto no está para nada a la altura. A los dos días de ponerlo se habla rajado y el móvil no se ha llevado ningún impacto así que no hay just[[ificación]]. Además al ponerla me"
+   },
+   {
+    "kind": "top",
+    "window": 243,
+    "pos": 202,
+    "rel": 0.864,
+    "gate_open": true,
+    "source": "ArXiv",
+    "lang": "en",
+    "token": "enz",
+    "text": " Rotnitzky is Professor, Department of Economics, Universidad Torcuato Di Tella & CONICET, Av. Figueroa Alcorta 7350, Sá[[enz]] Valiente 101"
+   },
+   {
+    "kind": "top",
+    "window": 616,
+    "pos": 110,
+    "rel": 0.854,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "1",
+    "text": " in Japan. Toyota is offering buyers a stripper version of the company's new GT86 sports coupe. The vehicle comes as a blank canvas just waiting for your personal touch. Outside, the stock [[1]]7-inch alloy wheels are replaced"
+   },
+   {
+    "kind": "top",
+    "window": 69,
+    "pos": 90,
+    "rel": 0.803,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " Code",
+    "text": "StoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]\n\nwith the error: \nError: Error Domain=NSCocoaErrorDomain[[ Code]]=13413"
+   },
+   {
+    "kind": "top",
+    "window": 613,
+    "pos": 209,
+    "rel": 0.803,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " David",
+    "text": " Blues themselves will be without half as many players.\n\nSpeaking at his pre-match press conference on Friday, Antonio Conte confirmed that his side have no fresh injuries but that Tiemoue Bakayoko,[[ David]] Luiz and Ross Barkley"
+   },
+   {
+    "kind": "top",
+    "window": 20,
+    "pos": 159,
+    "rel": 0.778,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "Z",
+    "text": "NEY GENERAL FOR THE\n STATE OF NEW MEXICO; JAMES\n JANECKA, Warden,\n\n             Defendants-Appellees.\n\n\n                                     ORDER\n\n\nBefore KELLY, HART[[Z]], and HOLMES, Circuit"
+   },
+   {
+    "kind": "top",
+    "window": 1392,
+    "pos": 51,
+    "rel": 0.778,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "2",
+    "text": " (C) 2017-2020 Parity Technologies (UK) Ltd.\n// SPDX-License-Identifier: GPL-3.0-or-later WITH Classpath-exception-[[2]].0\n\n// This program"
+   },
+   {
+    "kind": "top",
+    "window": 1372,
+    "pos": 238,
+    "rel": 0.692,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "@property",
+    "text": "Count;\n\n/// Total frame count for niamted image rendering. Defaults is animated image's frame count.\n/// @note For progressive animation, you can update this value when your provider receive more frames.\n[[@property]] (nonatomic, assign) NSUInteger"
+   },
+   {
+    "kind": "top",
+    "window": 600,
+    "pos": 9,
+    "rel": 0.682,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "iel",
+    "text": "Official:\n\nLeverkusen sign Exequ[[iel]] Palacios By Henrik Petersen"
+   },
+   {
+    "kind": "top",
+    "window": 1122,
+    "pos": 59,
+    "rel": 0.677,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": " %clang_cc1 -verify -fopenmp-simd %s\n\nvoid foo() {\n}\n\nbool foobool(int argc) {\n  return argc;\n}\n\nstruct S1; // expected-note[[ ]]2 {{declared here}}"
+   },
+   {
+    "kind": "random-strong",
+    "window": 277,
+    "pos": 198,
+    "rel": 0.535,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " Judges",
+    "text": "iding. D.C. No. CV-00-05641-FDB.\nBefore: REINHARDT, W. FLETCHER, and GOULD, Circuit[[ Judges]].\nGOULD, Circuit Judge"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1478,
+    "pos": 61,
+    "rel": 0.641,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " decision",
+    "text": " vicino a due piccoli animali.\nIl burro si sta sciogliendo in una padella.\nMentre i partiti dell'opposizione hanno accolto con favore la[[ decision]]e del gabinetto sul"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1583,
+    "pos": 36,
+    "rel": 0.662,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "zh",
+    "token": "点",
+    "text": "差差差，买了没用，内容只是介绍，不是教授卤肉\n人力资源管理只是浅谈，资金管理没有行之有效的方案，产品管理更多是在谈[[点]]子说创意，运营方面"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1374,
+    "pos": 100,
+    "rel": 0.563,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " or",
+    "text": ".0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express[[ or]] implied.\nSee the License for"
+   },
+   {
+    "kind": "random-strong",
+    "window": 794,
+    "pos": 69,
+    "rel": 0.581,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " conditions",
+    "text": " with or without\n * modification, are permitted provided that the following conditions\n * are met:\n * 1. Redistributions of source code must retain the above copyright\n *    notice, this list of[[ conditions]] and the following disclaimer.\n *"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1302,
+    "pos": 217,
+    "rel": 0.583,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " (",
+    "text": " WARRANTIES OF\n * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO\n * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES[[ (]]INCLUDING, BUT NOT LIMITED TO"
+   },
+   {
+    "kind": "random-strong",
+    "window": 229,
+    "pos": 176,
+    "rel": 0.652,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " :",
+    "text": " def start_link, do: Supervisor.start_link(__MODULE__, :ok, name: __MODULE__)\n\n  def init(:ok) do\n    children = [\n      worker(TreeWorker, [], restart:[[ :]]temporary)\n    ]\n\n    supervise"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1125,
+    "pos": 223,
+    "rel": 0.553,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": ".\n\n\n",
+    "text": " States Attorney, was on brief, for appellee.\nBefore Torruella, Chief Judge, Wallace,* Senior Circuit Judge, and Boudin, Circuit Judge.\nTorruella, Chief Judge[[.\n\n\n]]1\nAppellant \"Carlos"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 17.375,
+  "n_strong_tokens": 55,
+  "n_strong_windows": 32,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "lang-id",
+    18
+   ],
+   [
+    "OpenWebText2",
+    8
+   ],
+   [
+    "Pile-CC",
+    3
+   ],
+   [
+    "StackExchange",
+    2
+   ],
+   [
+    "PubMed Abstracts",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    14
+   ],
+   [
+    "it",
+    9
+   ],
+   [
+    "pt",
+    5
+   ],
+   [
+    "fr",
+    2
+   ],
+   [
+    "es",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " acordo",
+    2
+   ],
+   [
+    "0",
+    2
+   ],
+   [
+    " E",
+    2
+   ],
+   [
+    "imiento",
+    1
+   ],
+   [
+    "E",
+    1
+   ],
+   [
+    ".",
+    1
+   ],
+   [
+    "ivers",
+    1
+   ],
+   [
+    "pe",
+    1
+   ]
+  ],
+  "strong_pos_median": 127,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 991,
+    "pos": 160,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " i",
+    "text": " streamlined Black Diamond roof is also available with the Peugeot 3008 SUV GT Line and GT levels. Choose between two different front-end designs depending on which setup you select.\n\nAdvanced Peugeot[[ i]]-Cockpit®\n\nFe"
+   },
+   {
+    "kind": "top",
+    "window": 1475,
+    "pos": 57,
+    "rel": 0.942,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "qui",
+    "text": "ione, quindi sì - espansione VIOLenta.\nil rapporto di amnistia internazionale suggeriva che - il belgio iniziasse immediatamente i collo[[qui]] con l'india per"
+   },
+   {
+    "kind": "top",
+    "window": 1476,
+    "pos": 45,
+    "rel": 0.878,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "izi",
+    "text": "ero parcheggiato con una fiancata di montagne basse.\nRay Brent Marsh, 29 anni, è accusato di molteplici accuse di truffa ai serv[[izi]] funebri, di aver"
+   },
+   {
+    "kind": "top",
+    "window": 380,
+    "pos": 165,
+    "rel": 0.802,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "E",
+    "text": " provide a set of instrumental measures able to evaluate the effects of this novel treatment on cycling and walking ability. Interventional study. Two ambulant outpatient children with diplegic CP were recruited by the \"[[E]]. Medea\" Scientific Institute"
+   },
+   {
+    "kind": "top",
+    "window": 1456,
+    "pos": 124,
+    "rel": 0.795,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": "dition",
+    "text": " sans coller des accroches (qui ne tiennent pas de toute façon) ? Ces barres sont faites pour vous ! Solidité, facilité d'installation, parfait !\nExpé[[dition]] super rapide Produit nickel correspond"
+   },
+   {
+    "kind": "top",
+    "window": 1471,
+    "pos": 96,
+    "rel": 0.784,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " pro",
+    "text": "'uomo ha tagliato un piatto di carta.\nI proprietari di fabbriche in Bangladesh arrestati con un numero di morti vicino ai 350\nParte del[[ pro]]-vita è l'op"
+   },
+   {
+    "kind": "top",
+    "window": 408,
+    "pos": 158,
+    "rel": 0.777,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "pe",
+    "text": "ita para los torturados durante la dictadura chilena de Augusto Pinochet, según un estudio británico publicado con motivo del 40 aniversario del Gol[[pe]] de Estado en Chile.\n\nEn"
+   },
+   {
+    "kind": "top",
+    "window": 113,
+    "pos": 96,
+    "rel": 0.77,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "imiento",
+    "text": "? me aventuré a utilizar https://www.ecma-international.org/ecma-262/7.0/index.html para las referencias.\nEn ToPrimitive se explica el proced[[imiento]] para convertir una valor en"
+   },
+   {
+    "kind": "top",
+    "window": 770,
+    "pos": 114,
+    "rel": 0.709,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "ades",
+    "text": ", na última sexta, Abel Braga era o nome preferido do presidente Alexandre Campello para assumir o Vasco, mas questões financeiras precisaram ser negociadas por causa das dificuld[[ades]] do clube.\n\n1 de"
+   },
+   {
+    "kind": "top",
+    "window": 1510,
+    "pos": 240,
+    "rel": 0.709,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "e",
+    "text": " enforcamento.\nUma mulher está a cortar em cubos uma batata.\nUm grupo de pessoas está ao pé de uma janela a observar algo.\nEm ligação com o incident[[e]], reconheci que me"
+   },
+   {
+    "kind": "top",
+    "window": 1016,
+    "pos": 243,
+    "rel": 0.698,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " E",
+    "text": " these flying cars, because you're you have to be able to respond in real-time.\"\n\nMore than 70 companies are currently developing their own personal flying vehicles, with varying degrees of progress. The[[ E]]Hang 184 quad"
+   },
+   {
+    "kind": "top",
+    "window": 1459,
+    "pos": 85,
+    "rel": 0.687,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": "raison",
+    "text": " lave vaisselle, ne s oxydent pas, s utilisent aussi bien avec du chaud ou du froid. Bref je suis conquise et vais vite en racheter.\nLiv[[raison]] rapide mais les articles mal prot"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1472,
+    "pos": 5,
+    "rel": 0.525,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "so",
+    "text": "Imran a concor[[so]] da quattro posti NA"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1470,
+    "pos": 208,
+    "rel": 0.59,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": "ordo",
+    "text": "ele avanza il piano di costruire 900 case d'insediamento\nLe azioni chiudono lo 0,39% in più\nLa firma dell'acc[[ordo]] è una questione perifer"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1511,
+    "pos": 128,
+    "rel": 0.525,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "pt",
+    "token": "idente",
+    "text": "ntimos.\nUS Afeganistão general ligado ao escândalo Petraeus\nUm pequeno pássaro empoleirado num ramo gelado.\nTrês morrem após ac[[idente]] de carro em Tian'anmen"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1477,
+    "pos": 158,
+    "rel": 0.536,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " opport",
+    "text": "ero sta nuotando nell'acqua.\nIl CEO di Google dice che Android è importante, non critico\nragazzo che fa trucchi su uno skateboard\nBTW ha avuto[[ opport]]uni rinvii per l"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1042,
+    "pos": 143,
+    "rel": 0.5,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ix",
+    "text": " of Anti-Revisionism On-Line as your source, include the url to this work, and note any of the transcribers, editors & proofreaders above.\n\nThe Belgian journal, La Vo[[ix]] du Peuple, has given"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1442,
+    "pos": 110,
+    "rel": 0.633,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "es",
+    "token": "ío",
+    "text": ", no son de gran calidad pero por el precio que es, están bien.\nUnos de los cristales templados venía roto, Embalaje venía perfecto Gracias\nEnv[[ío]] muy rapido, juego educ"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1474,
+    "pos": 41,
+    "rel": 0.532,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " gi",
+    "text": " diplomatico palestinese muore a Praga in un'esplosione\nÈ troppo tardi o troppo presto per intervenire in Siria\".\nL'annullamento della[[ gi]]uria non significa che una leg"
+   },
+   {
+    "kind": "random-strong",
+    "window": 466,
+    "pos": 72,
+    "rel": 0.579,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "aggio",
+    "text": ".Ecco, adesso che la \"scatola\" muraria è completata, viene l'aspetto (per me) più complicato: l'arredamento.È un pass[[aggio]] che inizialmente mi"
+   }
+  ]
+ }
+}

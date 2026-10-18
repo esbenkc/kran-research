@@ -1,0 +1,136 @@
+[
+ {
+  "id": "L0N1275",
+  "pole": "pos",
+  "features": [
+   {
+    "name": "Legal license header boilerplate text",
+    "kind": "semantic",
+    "fire": {
+     "target_kl": 0.00196,
+     "per_text": [
+      0.00255,
+      0.00068,
+      0.0003,
+      0.0043
+     ],
+     "peak_tokens": [
+      " hereby",
+      " hereby",
+      " hereby",
+      " hereby"
+     ],
+     "matched_max": 0.00603,
+     "matched_median": 0.0032,
+     "random_max": 0.00788,
+     "random_median": -0.00169,
+     "target_abs_at_peak": 0.3369,
+     "matched_abs_at_peak_median": 0.7559,
+     "pass": false,
+     "pass_random": false
+    },
+    "control": {
+     "target_kl": 0.00201,
+     "per_text": [
+      0.01416,
+      0.00101,
+      0.00592,
+      -0.01306
+     ],
+     "peak_tokens": [
+      " to",
+      " authorized",
+      " granted",
+      " licensed"
+     ]
+    }
+   },
+   {
+    "name": "Negation morpheme in Japanese",
+    "kind": "semantic",
+    "fire": {
+     "target_kl": -0.00057,
+     "per_text": [
+      -0.01672,
+      0.00328,
+      -0.00209,
+      0.01324
+     ],
+     "peak_tokens": [
+      "なくて",
+      "なくて",
+      "なくて",
+      "なくて"
+     ],
+     "matched_max": 0.01121,
+     "matched_median": 0.00321,
+     "random_max": 0.01236,
+     "random_median": 0.00318,
+     "target_abs_at_peak": 0.4512,
+     "matched_abs_at_peak_median": 0.5898,
+     "pass": false,
+     "pass_random": false
+    },
+    "control": {
+     "target_kl": 0.00504,
+     "per_text": [
+      0.00818,
+      0.00166,
+      0.00354,
+      0.00681
+     ],
+     "peak_tokens": [
+      "�",
+      "何度",
+      "でき",
+      "正常"
+     ]
+    }
+   },
+   {
+    "name": "Rare or technical academic vocabulary",
+    "kind": "semantic",
+    "fire": {
+     "target_kl": 0.00093,
+     "per_text": [
+      -0.00354,
+      0.00421,
+      0.00516,
+      -0.00212
+     ],
+     "peak_tokens": [
+      " Nichols",
+      " elic",
+      "ances",
+      " recourse"
+     ],
+     "matched_max": 0.01437,
+     "matched_median": 0.0025,
+     "random_max": 0.01137,
+     "random_median": 0.00243,
+     "target_abs_at_peak": 0.354,
+     "matched_abs_at_peak_median": 0.4609,
+     "pass": false,
+     "pass_random": false
+    },
+    "control": {
+     "target_kl": -0.00536,
+     "per_text": [
+      -0.00191,
+      0.0023,
+      -0.0051,
+      -0.01672
+     ],
+     "peak_tokens": [
+      " structures",
+      " protocols",
+      "ances",
+      " turning"
+     ]
+    }
+   }
+  ],
+  "n_pass": 0,
+  "hurts_both": false
+ }
+]

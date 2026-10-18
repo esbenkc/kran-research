@@ -1,0 +1,616 @@
+{
+ "id": "L9N7423",
+ "layer": 9,
+ "neuron": 7423,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 9.0,
+  "n_strong_tokens": 39,
+  "n_strong_windows": 36,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    24
+   ],
+   [
+    "Pile-CC",
+    7
+   ],
+   [
+    "OpenWebText2",
+    2
+   ],
+   [
+    "StackExchange",
+    2
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    24
+   ],
+   [
+    "en",
+    12
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " to",
+    26
+   ],
+   [
+    "oned",
+    2
+   ],
+   [
+    " live",
+    1
+   ],
+   [
+    " dreamed",
+    1
+   ],
+   [
+    " talked",
+    1
+   ],
+   [
+    " participate",
+    1
+   ],
+   [
+    "ed",
+    1
+   ],
+   [
+    " with",
+    1
+   ]
+  ],
+  "strong_pos_median": 88,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1398,
+    "pos": 137,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": ".Controls;\r\nusing Windows.UI.Xaml.Navigation;\r\nusing Windows.ApplicationModel.Contacts;\r\n\r\nnamespace SDKTemplate\r\n{\r\n    /// <summary>\r\n    /// An empty page that can be used on its own or navigated[[ to]] within a Frame.\r\n    ///"
+   },
+   {
+    "kind": "top",
+    "window": 504,
+    "pos": 221,
+    "rel": 0.816,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ed",
+    "text": " analyst noted that JRTN’s stated “policy of only attacking the ‘occupiers’ and not the local population (whatever their ethnic or religious group) makes it one of the least ‘interfer[[ed]] with’ terrorist groupings."
+   },
+   {
+    "kind": "top",
+    "window": 955,
+    "pos": 243,
+    "rel": 0.799,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " acted",
+    "text": " arises from the reflex contraction of rectal muscles, relaxation of the internal anal sphincter, and an initial contraction of the skeletal muscle of the external anal sphincter. If the urge is not[[ acted]] upon, the material in the"
+   },
+   {
+    "kind": "top",
+    "window": 1358,
+    "pos": 65,
+    "rel": 0.771,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed[[ to]] in writing, software\ndistributed"
+   },
+   {
+    "kind": "top",
+    "window": 1328,
+    "pos": 73,
+    "rel": 0.767,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed[[ to]] in writing, software\ndistributed"
+   },
+   {
+    "kind": "top",
+    "window": 1282,
+    "pos": 114,
+    "rel": 0.76,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": "\n* the License.  You may obtain a copy of the License at\n*\n*     http://www.apache.org/licenses/LICENSE-2.0\n*\n* Unless required by applicable law or agreed[[ to]] in writing, software\n*"
+   },
+   {
+    "kind": "top",
+    "window": 1273,
+    "pos": 114,
+    "rel": 0.76,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": "\n* the License.  You may obtain a copy of the License at\n*\n*     http://www.apache.org/licenses/LICENSE-2.0\n*\n* Unless required by applicable law or agreed[[ to]] in writing, software\n*"
+   },
+   {
+    "kind": "top",
+    "window": 1234,
+    "pos": 70,
+    "rel": 0.753,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed[[ to]] in writing, software\ndistributed"
+   },
+   {
+    "kind": "top",
+    "window": 1374,
+    "pos": 70,
+    "rel": 0.75,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed[[ to]] in writing, software\ndistributed"
+   },
+   {
+    "kind": "top",
+    "window": 1240,
+    "pos": 70,
+    "rel": 0.75,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed[[ to]] in writing, software\ndistributed"
+   },
+   {
+    "kind": "top",
+    "window": 1258,
+    "pos": 118,
+    "rel": 0.747,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " ! with the License.  You may obtain a copy of the License at\n !\n !   http://www.apache.org/licenses/LICENSE-2.0\n !\n ! Unless required by applicable law or agreed[[ to]] in writing,\n ! software distributed"
+   },
+   {
+    "kind": "top",
+    "window": 1384,
+    "pos": 91,
+    "rel": 0.74,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " You may obtain a copy of the License at\n  ~\n  ~     https://www.apache.org/licenses/LICENSE-2.0\n  ~\n  ~ Unless required by applicable law or agreed[[ to]] in writing, software\n "
+   },
+   {
+    "kind": "random-strong",
+    "window": 13,
+    "pos": 92,
+    "rel": 0.698,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " compliance with the License.\n// You may obtain a copy of the License at\n//\n//   http://www.apache.org/licenses/LICENSE-2.0\n//\n// Unless required by applicable law or agreed[[ to]] in writing, software\n//"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1303,
+    "pos": 84,
+    "rel": 0.74,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " compliance with the License.\n * You may obtain a copy of the License at\n *\n *      http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed[[ to]] in writing, software\n *"
+   },
+   {
+    "kind": "random-strong",
+    "window": 279,
+    "pos": 19,
+    "rel": 0.521,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " live",
+    "text": "Digital Learning\n\nACG School Jakarta students are well prepared to face the ever-changing world that we[[ live]] in today. Information Technology is"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1319,
+    "pos": 94,
+    "rel": 0.719,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " reserves all rights not expressly granted by the License.\n// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0\n// Unless required by applicable law or agreed[[ to]] in writing, software\n//"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1253,
+    "pos": 88,
+    "rel": 0.726,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed[[ to]] in writing, software\n *"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1054,
+    "pos": 9,
+    "rel": 0.729,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " spoken",
+    "text": "“It is an outrage that they should be commonly[[ spoken]] of as Intellectuals. This"
+   },
+   {
+    "kind": "random-strong",
+    "window": 115,
+    "pos": 82,
+    "rel": 0.74,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " compliance with the License. You may obtain a copy of\n * the License at\n *\n * http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed[[ to]] in writing, software\n *"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1329,
+    "pos": 79,
+    "rel": 0.715,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " to",
+    "text": " compliance with the License.\n// You may obtain a copy of the License at\n//\n//      http://www.apache.org/licenses/LICENSE-2.0\n//\n// Unless required by applicable law or agreed[[ to]] in writing, software\n//"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 1.9297,
+  "n_strong_tokens": 97,
+  "n_strong_windows": 80,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    20
+   ],
+   [
+    "OpenWebText2",
+    14
+   ],
+   [
+    "lang-id",
+    11
+   ],
+   [
+    "StackExchange",
+    10
+   ],
+   [
+    "FreeLaw",
+    8
+   ],
+   [
+    "Github",
+    4
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    65
+   ],
+   [
+    "code",
+    4
+   ],
+   [
+    "nl",
+    3
+   ],
+   [
+    "it",
+    2
+   ],
+   [
+    "ru",
+    1
+   ],
+   [
+    "de",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " with",
+    5
+   ],
+   [
+    "0",
+    5
+   ],
+   [
+    " fleeing",
+    4
+   ],
+   [
+    "ING",
+    4
+   ],
+   [
+    "-\\",
+    3
+   ],
+   [
+    " face",
+    2
+   ],
+   [
+    " on",
+    2
+   ],
+   [
+    " to",
+    2
+   ]
+  ],
+  "strong_pos_median": 138,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1520,
+    "pos": 114,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "ила",
+    "text": " быть видимым .\nИ у ее матери была такая же позиция , как и у нее , они были уверены , что единственная причина , по которой я позвон[[ила]] в полицию , это потому"
+   },
+   {
+    "kind": "top",
+    "window": 1010,
+    "pos": 90,
+    "rel": 0.96,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " participated",
+    "text": " respondents.\n\nStill, the Federal Reserve Bank of Minneapolis, which conducted the survey, said that its findings provide valuable insights about the usefulness of various fraud-fighting tools.\n\nOf the banks and credit unions that[[ participated]], 63 percent said"
+   },
+   {
+    "kind": "top",
+    "window": 861,
+    "pos": 134,
+    "rel": 0.935,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " >",
+    "text": " This results in failure of my module. \nAnd as if this was not enough, wen the user tries to select some other wallpaper(and in my test case the \"other\" wallpaper was also of size[[ >]]700kb) then"
+   },
+   {
+    "kind": "top",
+    "window": 1167,
+    "pos": 202,
+    "rel": 0.87,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " attend",
+    "text": " players will participate in an intrasquad game on July 8 at 7:00 p.m. The practices and game are free and open to the public.\n\n\n\nAmong the top prospects expected to[[ attend]] the camp include former first round"
+   },
+   {
+    "kind": "top",
+    "window": 428,
+    "pos": 192,
+    "rel": 0.854,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " get",
+    "text": " daughter. I knew it would suck up my daytime reading a lot with keeping a special eye on her. So far so good. Except for the other day when my older sister and I took her to[[ get]] her Easter pictures done and were"
+   },
+   {
+    "kind": "top",
+    "window": 282,
+    "pos": 85,
+    "rel": 0.822,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " <",
+    "text": " the substitution $x = a \\sec θ$ , we choose $0\\le  θ \\le π$\n2 if $x \\ge a$ and $π \\le θ[[ <]] \\frac{3π}"
+   },
+   {
+    "kind": "top",
+    "window": 1427,
+    "pos": 101,
+    "rel": 0.814,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "de",
+    "token": " um",
+    "text": " völlig in Ordnung. Dies einmal abgesehen vom mitgelieferten Computer. Die Steckverbindungen passten nicht zueinander. Zu Beginn wollte sich der Support noch[[ um]] eine Lösung kümmern"
+   },
+   {
+    "kind": "top",
+    "window": 220,
+    "pos": 209,
+    "rel": 0.81,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " fleeing",
+    "text": "Alyssa_Milano) November 26, 2018\n\nAsking to be considered a refugee & applying for status isn’t a crime. It wasn’t for Jewish families[[ fleeing]] Germany.\n\nIt wasn’t for"
+   },
+   {
+    "kind": "top",
+    "window": 88,
+    "pos": 95,
+    "rel": 0.81,
+    "gate_open": true,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": " visit",
+    "text": " good picture.\" \"I have a better picture.\" \"That won't be necessary, sir.\" \"You've got a great accent.\" \"Are you from here?\" \"What is the purpose of your[[ visit]] to this country, sir?\""
+   },
+   {
+    "kind": "top",
+    "window": 432,
+    "pos": 189,
+    "rel": 0.777,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " on",
+    "text": " spot on a one-yard run when it’s third and long and you’re pinned at your own 10-yard line. Who cares? Every inch matters, I guess, but the odds of scoring[[ on]] the drive will barely change if"
+   },
+   {
+    "kind": "top",
+    "window": 528,
+    "pos": 164,
+    "rel": 0.773,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "ING",
+    "text": " FILED WITH THIS COURT, A PARTY MUST CITE EITHER THE\nFEDERAL APPENDIX OR AN ELECTRONIC DATABASE (WITH THE NOTATION “SUMMARY ORDER”).\nA PARTY CIT[[ING]] A SUMMARY ORDER MUST SERVE"
+   },
+   {
+    "kind": "top",
+    "window": 98,
+    "pos": 102,
+    "rel": 0.769,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ots",
+    "text": "_1,\\ldots,b_n)'$ be nonrandom vectors with $a_i \\neq 0$ and $b_i \\neq 0$ for $i=1,\\ld[[ots]],n$. \nAssume $"
+   },
+   {
+    "kind": "random-strong",
+    "window": 389,
+    "pos": 123,
+    "rel": 0.571,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " normal",
+    "text": " component reflected and the other transmitted. The unique ability of a cholesteric liquid crystal to reflect light comes from their helical superstructure. The central reflected wavelength (λo) in a direction[[ normal]] to the surface can be described"
+   },
+   {
+    "kind": "random-strong",
+    "window": 30,
+    "pos": 189,
+    "rel": 0.559,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " seeking",
+    "text": " Health & Human Services, Washington, DC, for Defendant.\n\nMEMORANDUM OPINION\nEMMET G. SULLIVAN, District Judge.\nPlaintiffs are twenty-two urban hospitals[[ seeking]] additional reimbursement from the Secretary of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 832,
+    "pos": 255,
+    "rel": 0.508,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " violation",
+    "text": "(G). The case is\n\ntherefore ordered submitted without oral argument.\n\n      Sergio Ortega-Guzman pleaded guilty to unlawfully reentering the United\n\nStates after deportation for an aggravated felony in[[ violation]]"
+   },
+   {
+    "kind": "random-strong",
+    "window": 712,
+    "pos": 48,
+    "rel": 0.538,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " face",
+    "text": ". Mary's Stadium : LIVE\n\nSouthampton midfielder James Ward-Prowse has backed Saints to reach the fifth round of the FA Cup - regardless of which side Mauricio Pochettino sends out to[[ face]] Yeovil.\n\nThe Southampton"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1360,
+    "pos": 188,
+    "rel": 0.516,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " need",
+    "text": "_181067:: @ 8181067\n\t.string \"RYDEL: Is that right?\\p\"\n\t.string \"Then, I guess you have no[[ need]] for\\n\"\n\t.string \""
+   },
+   {
+    "kind": "random-strong",
+    "window": 689,
+    "pos": 239,
+    "rel": 0.66,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "0",
+    "text": " of the cell (see below).\n\nGrowth is exponential/logarithmic: can attain large numbers in a short interval of time (starting with a single cell, mass 1-2 X 1[[0]]-12 grams, with"
+   },
+   {
+    "kind": "random-strong",
+    "window": 3,
+    "pos": 32,
+    "rel": 0.579,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " part",
+    "text": "Search This Blog\n\nThursday, 30 April 2015\n\nSwaziland police have\nsaid they will decide who can and who cannot take[[ part]] in May Day\ncelebr"
+   },
+   {
+    "kind": "random-strong",
+    "window": 316,
+    "pos": 239,
+    "rel": 0.543,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " with",
+    "text": " also adopted a daughter, Jan. In 1965, the family moved to East Meadow, Long Island, where Rifkin enrolled in Prospect Avenue Elementary School. Rifkin had difficulty fitting in[[ with]] his peers and became a frequent"
+   }
+  ]
+ }
+}

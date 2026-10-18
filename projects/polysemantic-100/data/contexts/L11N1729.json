@@ -1,0 +1,592 @@
+{
+ "id": "L11N1729",
+ "layer": 11,
+ "neuron": 1729,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 4.125,
+  "n_strong_tokens": 85,
+  "n_strong_windows": 36,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    7
+   ],
+   [
+    "StackExchange",
+    7
+   ],
+   [
+    "OpenWebText2",
+    5
+   ],
+   [
+    "USPTO Backgrounds",
+    5
+   ],
+   [
+    "Wikipedia (en)",
+    3
+   ],
+   [
+    "PubMed Abstracts",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    28
+   ],
+   [
+    "code",
+    7
+   ],
+   [
+    "ru",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " to",
+    5
+   ],
+   [
+    " of",
+    5
+   ],
+   [
+    " located",
+    5
+   ],
+   [
+    " position",
+    4
+   ],
+   [
+    "S",
+    2
+   ],
+   [
+    " the",
+    2
+   ],
+   [
+    " at",
+    2
+   ],
+   [
+    " start",
+    2
+   ]
+  ],
+  "strong_pos_median": 119,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 38,
+    "pos": 77,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " the",
+    "text": " the homography H to the coordinates of every input pixel.\n%\n% [OUT,OFFS] = HOMWARP(H, IM, OPTIONS) as above but OFFS is the offset of[[ the]]\n% warped tile OUT with"
+   },
+   {
+    "kind": "top",
+    "window": 931,
+    "pos": 131,
+    "rel": 0.936,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " located",
+    "text": " and are particularly valuable in assessing patients with more advanced disease. Approximately one third of early-stage cancers detected by palpation or transurethral resection are isoechoic. These tumors are anteriorly[[ located]], small, and well differentiated"
+   },
+   {
+    "kind": "top",
+    "window": 1349,
+    "pos": 60,
+    "rel": 0.905,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ">\n",
+    "text": " of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef BASE_LOCATION_H_\n#define BASE_LOCATION_H_\n\n#include <stddef.h>\n\n#include <cassert[[>\n]]#include <functional>\n#include <"
+   },
+   {
+    "kind": "top",
+    "window": 1523,
+    "pos": 69,
+    "rel": 0.875,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "ru",
+    "token": "ении",
+    "text": " в сан-Марко Из Лидо , так что бросьте свои сумки в отель , а затем хоп на номер 1 в противоположном направл[[ении]] , раунд .\nНе"
+   },
+   {
+    "kind": "top",
+    "window": 1015,
+    "pos": 66,
+    "rel": 0.864,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " found",
+    "text": " hit back to end Arsenal's perfect start to the Women's Super League season.\n\nThe Gunners led when Vivianne Miedema's astute pass picked out Danielle van de Donk, whose shot[[ found]] the far corner.\n\nChelsea deserved"
+   },
+   {
+    "kind": "top",
+    "window": 358,
+    "pos": 217,
+    "rel": 0.799,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ".,",
+    "text": " B some money. \nA tells B on the phone, that A is going to credit B's account in A's local branch at 6 p.m. \nSo anytime after 6 p.m[[.,]] B can withdraw money from A"
+   },
+   {
+    "kind": "top",
+    "window": 1385,
+    "pos": 160,
+    "rel": 0.731,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_hi",
+    "text": " not circumstances required them.) */\nstruct dpaa_fd {\n\tunion {\n\t\tu32 words[8];\n\t\tstruct dpaa_fd_simple {\n\t\t\tu32 addr_lo;\n\t\t\tu32 addr[[_hi]];\n\t\t\tu32 len"
+   },
+   {
+    "kind": "top",
+    "window": 886,
+    "pos": 119,
+    "rel": 0.723,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " located",
+    "text": "urella was a small stylonuroid, possessing a subquadrate prosoma with approximately the same length as width. The midsection was slightly constricted and the eyes were parallel and anteriorly[[ located]] in the anterior half of the"
+   },
+   {
+    "kind": "top",
+    "window": 713,
+    "pos": 196,
+    "rel": 0.723,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " other",
+    "text": " section of the rear floor of the vehicle body basic structure. The high-rigidity section of the round structure and the rear side member section of the vehicle body basic structure are laid out apart from each[[ other]] in a vehicle up-down direction"
+   },
+   {
+    "kind": "top",
+    "window": 831,
+    "pos": 221,
+    "rel": 0.701,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " of",
+    "text": " conspiracy theorists believe that Oswald did not act alone.\n\nIndeed, the theory -- better known as the “grassy knoll” hypothesis -- posits that another shot was fired from an area to the right[[ of]] the president's motorcade."
+   },
+   {
+    "kind": "top",
+    "window": 904,
+    "pos": 45,
+    "rel": 0.693,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " location",
+    "text": "}\n==========\n\nBronchopleural fistula (BPF) is a relatively infrequent but potentially fatal complication of pulmonary resection. BPF can be divided into peripheral or central, based on the[[ location]] of the leakage, and B"
+   },
+   {
+    "kind": "top",
+    "window": 22,
+    "pos": 165,
+    "rel": 0.689,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " relation",
+    "text": " position with respect to some conventionally used landmarks. From the comparative anatomical viewpoint, there are marked differences between humans and most mammals and birds not only in the position of atrioventricular CCS in[[ relation]] to surrounding structures but also in"
+   },
+   {
+    "kind": "random-strong",
+    "window": 409,
+    "pos": 118,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " align",
+    "text": "5000;\nvar now = new Date().getTime();\n\nvar options = {\n    series: {\n        lines: {\n            lineWidth: 1.2\n        },\n        bars: {\n           [[ align]]: \"center\",\n            fillColor"
+   },
+   {
+    "kind": "random-strong",
+    "window": 708,
+    "pos": 191,
+    "rel": 0.659,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " located",
+    "text": " area in order to avoid dissipation of\nnoxious emissions to the community; b) locating it away from\nagricultural areas to avoid contamination of food products\nby effluents. Having it[[ located]] in a well drained site\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 286,
+    "pos": 251,
+    "rel": 0.504,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "O",
+    "text": "    {\n\n        App::setLocale('it');\n        /*\n        array:19 [▼\n          0 => \"N° FILE\"\n          1 => \"SITO DI COLLEGAMENT[[O]] (NOME DEL"
+   },
+   {
+    "kind": "random-strong",
+    "window": 62,
+    "pos": 76,
+    "rel": 0.572,
+    "gate_open": true,
+    "source": "OpenSubtitles",
+    "lang": "en",
+    "token": " ",
+    "text": " sank\" \"In August 1999 a film crew visited Yamato again\" \"at latitude N 30.43/ longitude E 128.04, lying[[ ]]325m below the"
+   },
+   {
+    "kind": "random-strong",
+    "window": 813,
+    "pos": 16,
+    "rel": 0.587,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " third",
+    "text": "Dear Editor,\n\nWe present a case of glomus tumor located on the lower[[ third]] of the right thigh in a"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1197,
+    "pos": 198,
+    "rel": 0.591,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " S",
+    "text": " began in 1926, but ended in 2000 in favour of diesel locomotives.\n\nThe following junctions exist with the line:\n Canadian Pacific Cartier Subdivision at[[ S]]precher (MP 8"
+   },
+   {
+    "kind": "random-strong",
+    "window": 118,
+    "pos": 66,
+    "rel": 0.663,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " start",
+    "text": "  the query I have simplified it a bit but basically is :\nselect * from \n(select  start_date, to_char(end_date,'YYYY-mm-dd') as end_date from date_table\norder by[[ start]]_date ,end_date ) \n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 25,
+    "pos": 162,
+    "rel": 0.568,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " of",
+    "text": " front fairing or cowling mounted on a front portion thereof. A lamp unit is mounted in the front fairing. The lamp unit encases therein at least one head lamp for illuminating forwardly[[ of]] the motorcycle and at least one"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 4.875,
+  "n_strong_tokens": 28,
+  "n_strong_windows": 8,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    6
+   ],
+   [
+    "StackExchange",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    6
+   ],
+   [
+    "en",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "layout",
+    18
+   ],
+   [
+    " top",
+    2
+   ],
+   [
+    " absolute",
+    1
+   ],
+   [
+    " right",
+    1
+   ],
+   [
+    " bottom",
+    1
+   ],
+   [
+    " left",
+    1
+   ],
+   [
+    "_PARENT",
+    1
+   ],
+   [
+    "up",
+    1
+   ]
+  ],
+  "strong_pos_median": 178,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1378,
+    "pos": 75,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "center",
+    "text": "=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"@color/appBackground\"\n    android:foreground=\"?android:attr/selectableItemBackground\"\n    android:gravity=\"[[center]]_vertical\"\n    android:orientation"
+   },
+   {
+    "kind": "top",
+    "window": 622,
+    "pos": 234,
+    "rel": 0.66,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " top",
+    "text": "-radius: 100%;\n    background-color: rgb(200,100,150);\n}\n\n.btn{\n    position: absolute;\n    color: #fff;\n   [[ top]]: 110px"
+   },
+   {
+    "kind": "top",
+    "window": 146,
+    "pos": 207,
+    "rel": 0.657,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "layout",
+    "text": "    android:layout_height=\"wrap_content\"\n    android:paddingTop=\"50px\"\n    android:background=\"#666666\"\n\n    >\n\n    <EditText\n        android:[[layout]]_width=\"wrap_content\"\n       "
+   },
+   {
+    "kind": "top",
+    "window": 948,
+    "pos": 136,
+    "rel": 0.596,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "_PARENT",
+    "text": " (RelativeLayout) view.findViewById(R.id.fragmentLayout);\n\n    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);\n\n    params.addRule(RelativeLayout.ALIGN[[_PARENT]]_LEFT, RelativeLayout.TRUE);\n   "
+   },
+   {
+    "kind": "top",
+    "window": 1295,
+    "pos": 206,
+    "rel": 0.583,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "\tcenter",
+    "text": " rgba(0,0,0,0.1)),\turl('../../images/bg.jpg');\r\n\t\t\tbackground-size:\t\tauto,\t\t\t\t\t\t\t\tauto,\t\t\t\t\t\t\t\t\t\t\t\t\t\t100% auto;\r\n\t\t\tbackground-position:[[\tcenter]],\t\t\t\t\t\t\t\tcenter,\t\t\t\t\t\t\t\t\t\t\t\t\t\ttop"
+   },
+   {
+    "kind": "top",
+    "window": 474,
+    "pos": 203,
+    "rel": 0.58,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " top",
+    "text": "button-height - $button-border-width + 1px;\n\n  cursor: pointer;\n\n  &:after {\n    // used to create a larger button \"hit\" area\n    position: absolute;\n   [[ top]]: -6px;\n   "
+   },
+   {
+    "kind": "top",
+    "window": 1384,
+    "pos": 249,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "layout",
+    "text": "=\"vertical\"\n    android:padding=\"20dp\"\n    tools:context=\"com.google.android.apps.santatracker.dasherdancer.CharacterActivity\" >\n\n    <LinearLayout\n        android:[[layout]]_width=\"match_parent\"\n       "
+   },
+   {
+    "kind": "top",
+    "window": 1277,
+    "pos": 117,
+    "rel": 0.513,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "up",
+    "text": "benchmark.o \\\n       $(OUTPUT)../lib/cpufreq.o $(OUTPUT)../lib/sysfs.o\nelse\nLIBS = -L../ -L$(OUTPUT) -lm -lcp[[up]]ower\nOBJS = $("
+   },
+   {
+    "kind": "top",
+    "window": 1293,
+    "pos": 87,
+    "rel": 0.49,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "left",
+    "text": "999/xhtml\">\n\n <head>\n\n  <title>CSS Writing Modes Test: absolutely positioned non-replaced element - 'direction: ltr' and 'width' is 'auto' and '[[left]]' and 'right' are"
+   },
+   {
+    "kind": "top",
+    "window": 1008,
+    "pos": 210,
+    "rel": 0.442,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " top",
+    "text": " to display:block;. However, this could not be animated using CSS transitions, so I tried an alternative method. The alternative involved changing the divs from position:relative; to position:absolute; and adjusting their[[ top]] properties. I thought CSS transitions"
+   },
+   {
+    "kind": "top",
+    "window": 46,
+    "pos": 51,
+    "rel": 0.404,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "fixed",
+    "text": "fixed\n\nНа пальцах объяснить трудно, вот пикча, того что я хочу сделать:\n\nЗеленые блоки это блоки с\n   position:[[fixed]];\nКрасные полос"
+   },
+   {
+    "kind": "top",
+    "window": 832,
+    "pos": 44,
+    "rel": 0.369,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "IR",
+    "text": " E D\n                                                                  United States Court of Appeals\n                                                                          Tenth Circuit\n                    UNITED STATES COURT OF APPEALS\n                                                                         JUL 18 2003\n                                TENTH C[[IR]]CUIT\n                                                                      PATR"
+   },
+   {
+    "kind": "top",
+    "window": 1317,
+    "pos": 255,
+    "rel": 0.362,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " x",
+    "text": " <close/>\n        </path>\n        <fillstroke/>\n        <fillcolor color=\"#648339\"/>\n        <rect h=\"11\" w=\"54.5\"[[ x]]"
+   },
+   {
+    "kind": "top",
+    "window": 20,
+    "pos": 28,
+    "rel": 0.354,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "IR",
+    "text": "                                                                       FILED\n                                              United States Court of Appeals\n                   UNITED STATES COURT OF APPEALS Tenth Circuit\n\n                               TENTH C[[IR]]CUIT                    September 1"
+   },
+   {
+    "kind": "top",
+    "window": 136,
+    "pos": 57,
+    "rel": 0.353,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "IR",
+    "text": " June 9, 2011\n                    UNITED STATES COURT OF APPEALS\n                                                 Elisabeth A. Shumaker\n                                                                   Clerk of Court\n                           FOR THE TENTH C[[IR]]CUIT\n\n\n    CLAREN"
+   },
+   {
+    "kind": "top",
+    "window": 409,
+    "pos": 55,
+    "rel": 0.353,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "Core",
+    "text": " am trying to use Flot: http://www.flotcharts.org to create a realtime chart that is updated via ajax. I am basing my code on the following:\nvar cpu = [], cpu[[Core]] = [], disk = [];\nvar"
+   },
+   {
+    "kind": "top",
+    "window": 301,
+    "pos": 182,
+    "rel": 0.33,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_cp",
+    "text": "\"=S\" (*b),\n\t\t\t\"=c\" (*c),\n\t\t\t\"=d\" (*d)\n\t\t\t: \"a\" (op));\n}\n\nstatic int\n__get[[_cp]]uid(char *buffer, size"
+   },
+   {
+    "kind": "top",
+    "window": 386,
+    "pos": 117,
+    "rel": 0.304,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Blocks",
+    "text": "anyue) \r\n:::\r\n\r\n可以使用 `ls` 或者 `stat`\r\n\r\n``` bash\r\n$ stat hello.txt\r\n  File: ‘hello.txt’\r\n  Size: 30             [[ Blocks]]: 8          IO Block"
+   },
+   {
+    "kind": "top",
+    "window": 572,
+    "pos": 212,
+    "rel": 0.301,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " Point",
+    "text": "izer.MouseMove += delegate(object sender, MouseEventArgs e) {\n  if (lastPoint != Point.Empty) {\n    Point newPoint = leftResizer.PointToScreen(e.Location);\n    Location = new[[ Point]](Location.X + (newPoint"
+   },
+   {
+    "kind": "top",
+    "window": 325,
+    "pos": 73,
+    "rel": 0.287,
+    "gate_open": true,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " randomized",
+    "text": ", or saline, and submitted to moderate aerobic exercise. Thirty male rats were trained for 6 weeks and administered the supplements during the last 4 weeks of the experiment. Animals were distributed in a completely[[ randomized]] factorial 2 × 3"
+   }
+  ]
+ }
+}

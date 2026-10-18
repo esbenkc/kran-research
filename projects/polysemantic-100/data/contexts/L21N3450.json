@@ -1,0 +1,576 @@
+{
+ "id": "L21N3450",
+ "layer": 21,
+ "neuron": 3450,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 10.5625,
+  "n_strong_tokens": 69,
+  "n_strong_windows": 62,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    20
+   ],
+   [
+    "StackExchange",
+    17
+   ],
+   [
+    "OpenWebText2",
+    13
+   ],
+   [
+    "Github",
+    7
+   ],
+   [
+    "PubMed Central",
+    2
+   ],
+   [
+    "HackerNews",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    55
+   ],
+   [
+    "code",
+    7
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " so",
+    67
+   ],
+   [
+    " So",
+    1
+   ],
+   [
+    " I",
+    1
+   ]
+  ],
+  "strong_pos_median": 137,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 401,
+    "pos": 26,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " so",
+    "text": "Q:\n\nPython: Merge two csv files and mark the unmatched both in master and using data\n\nI am a bit new to python[[ so]] sorry if my question is irrelevant"
+   },
+   {
+    "kind": "top",
+    "window": 1114,
+    "pos": 59,
+    "rel": 0.964,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " so",
+    "text": " into an array...I am not sure how to go about this because the other features ive seen for php take an entire file and put it into an array but not quite how I want it to be[[ so]] I am looking for advice here"
+   },
+   {
+    "kind": "top",
+    "window": 1118,
+    "pos": 147,
+    "rel": 0.929,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " so",
+    "text": " hard for Sarah to do even simple tasks, like bathing. Her home, in the small town of Santa Fe, Texas, has one shower for six women — Sarah, her mother and four sisters —[[ so]] she now wakes early, before"
+   },
+   {
+    "kind": "top",
+    "window": 763,
+    "pos": 199,
+    "rel": 0.905,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " so",
+    "text": " becomes even more useful—It can access the root of jailbroken phones and browse the files inside, with no need for complicated SSH setups.\n\n\nThe only issue I had was that multiple selection didn't work[[ so]] well—whether I was trying"
+   },
+   {
+    "kind": "top",
+    "window": 1084,
+    "pos": 100,
+    "rel": 0.893,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " so",
+    "text": "/new-bsd\n * If you did not receive a copy of the license and are unable to\n * obtain it through the world-wide-web, please send an email\n * to license@zend.com[[ so]] we can send you a copy"
+   },
+   {
+    "kind": "top",
+    "window": 793,
+    "pos": 100,
+    "rel": 0.893,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " so",
+    "text": "/new-bsd\n * If you did not receive a copy of the license and are unable to\n * obtain it through the world-wide-web, please send an email\n * to license@zend.com[[ so]] we can send you a copy"
+   },
+   {
+    "kind": "top",
+    "window": 1008,
+    "pos": 63,
+    "rel": 0.87,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " so",
+    "text": " a way to smoothly animate a responsive change to some elements' display property when the browser size reaches a certain breakpoint. I would like to use CSS transitions, but they do not apply to the display property[[ so]] I may have to figure out"
+   },
+   {
+    "kind": "top",
+    "window": 905,
+    "pos": 203,
+    "rel": 0.87,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " so",
+    "text": " with no errors being reported. So my hunch is that the problem lies somewhere else in my program. I have been looking for hours but can't seem to find it. I am a new programmer[[ so]] this can definitively attributed to"
+   },
+   {
+    "kind": "top",
+    "window": 951,
+    "pos": 204,
+    "rel": 0.864,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " so",
+    "text": " I view Bauhaus. I first got acquainted with Bauhaus way way back in Hong Kong. I was still so young then but seeing their stores all over Hong Kong woke up the curious cat in me[[ so]] I decided to go in one"
+   },
+   {
+    "kind": "top",
+    "window": 830,
+    "pos": 215,
+    "rel": 0.858,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " so",
+    "text": "’t seen him on WWE television for a few weeks now, and probably won’t as his contract expires in August.\n\nAlthough nothing factual has emerged about that, he hasn;t exactly shot down those claims,[[ so]] what else are people supposed to"
+   },
+   {
+    "kind": "top",
+    "window": 1227,
+    "pos": 112,
+    "rel": 0.858,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " so",
+    "text": ".0.php\n * If you did not receive a copy of the license and are unable to\n * obtain it through the world-wide-web, please send an email\n * to license@magento.com[[ so]] we can send you a copy"
+   },
+   {
+    "kind": "top",
+    "window": 968,
+    "pos": 104,
+    "rel": 0.84,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " so",
+    "text": "\n\nBy David Shearman\n\nPosted Tue at 5:05am\n\n“World War III is well and truly underway. And we are losing,” writes environmental activist Bill McKibben,[[ so]] when Malcolm Turnbull implied that the"
+   },
+   {
+    "kind": "random-strong",
+    "window": 534,
+    "pos": 191,
+    "rel": 0.571,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " so",
+    "text": " given a year of relief from this massive new regulatory requirement.The bad news is everything else.Already, businesses have spent millions preparing to comply with the new regulations. Hard-working Americans have seen their hours cut[[ so]] as not to be classified as"
+   },
+   {
+    "kind": "random-strong",
+    "window": 160,
+    "pos": 35,
+    "rel": 0.769,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " so",
+    "text": "Homebrew Equipment Kits\n\nWe were all beginner home brewers at one point and deciding on our first home-brew kit wasn’t easy. We want to make it simple for you[[ so]] we created solid kits and this"
+   },
+   {
+    "kind": "random-strong",
+    "window": 324,
+    "pos": 161,
+    "rel": 0.822,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " so",
+    "text": " Golf Co Ltd Adams Golf Inc Adams Golf Inc Adams Golf Limited Adams Golf Ltd Adams Golf (usa) Adams Grain Co.\n\nIn some eztate there is a higher deposit limit needed to get a bonus[[ so]] a minimum deposit may not get"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1016,
+    "pos": 182,
+    "rel": 0.607,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " so",
+    "text": " as having enabled the recent bevy of development. \"The ability to collect, store, process and compute data has improved over the last two decades,\" he told Engadget. \"Everything is now connected[[ so]] when you have the ability to"
+   },
+   {
+    "kind": "random-strong",
+    "window": 371,
+    "pos": 243,
+    "rel": 0.654,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": " so",
+    "text": " in an organism according to whether or not its genome encodes the components necessary for that trait. The process of systems reconstruction in Genome Properties provides guidance for protein family construction in TIGRFAMs,[[ so]] the two databases develop in concert"
+   },
+   {
+    "kind": "random-strong",
+    "window": 991,
+    "pos": 225,
+    "rel": 0.663,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " so",
+    "text": "3008 SUV offers a high tech driving experience. With the configurable 12.3″ head-up digital instrument panel, you have access to a number of different modes via the digital touchscreen[[ so]] you can customise your drive"
+   },
+   {
+    "kind": "random-strong",
+    "window": 162,
+    "pos": 135,
+    "rel": 0.822,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " so",
+    "text": "21 followed by afternoon speakers and adjourns at noon on Sunday, Oct. 23 after our morning educational workshops. However, we have special Thursday afternoon and evening activities in the works,[[ so]] you may want to consider arriving"
+   },
+   {
+    "kind": "random-strong",
+    "window": 471,
+    "pos": 189,
+    "rel": 0.592,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " so",
+    "text": " to convert tapered into direct tune bubu bearings house ...\n\nStunning bike ! I think the first pic is way better and I love that. It is wallpaper stuff But the AX rims are super sexy,[[ so]] I would take the dugast"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 2.3906,
+  "n_strong_tokens": 18,
+  "n_strong_windows": 13,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    9
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "StackExchange",
+    1
+   ],
+   [
+    "OpenWebText2",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    9
+   ],
+   [
+    "en",
+    4
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " */\n",
+    3
+   ],
+   [
+    " Policy",
+    2
+   ],
+   [
+    " details",
+    2
+   ],
+   [
+    "5",
+    2
+   ],
+   [
+    " history",
+    1
+   ],
+   [
+    " purposes",
+    1
+   ],
+   [
+    " researchers",
+    1
+   ],
+   [
+    " paper",
+    1
+   ]
+  ],
+  "strong_pos_median": 111,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1103,
+    "pos": 198,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ";",
+    "text": ",g <i$ for $i=2,3,4,5,6,7$. Then the value of $b+c+d+e+f+g = $\n$\\bf{My\\[[;]] Try}::$ $\\displaystyle"
+   },
+   {
+    "kind": "top",
+    "window": 868,
+    "pos": 20,
+    "rel": 0.85,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " researchers",
+    "text": "Social network diagram. Credit: Daniel Tenerife/Wikipedia\n\n(Phys.org)—A pair of[[ researchers]] has found when people add someone"
+   },
+   {
+    "kind": "top",
+    "window": 209,
+    "pos": 210,
+    "rel": 0.833,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " */\n",
+    "text": " if not, write to the Free Software Foundation,\n * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.\n[[ */\n]]package org.sonar.server.platform"
+   },
+   {
+    "kind": "top",
+    "window": 684,
+    "pos": 151,
+    "rel": 0.631,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " history",
+    "text": " accompanying file LICENSE_1_0.txt or copy at\n// http://www.boost.org/LICENSE_1_0.txt)\n\n//  See http://www.boost.org for updates, documentation, and revision[[ history]].\n\n// this is useful for"
+   },
+   {
+    "kind": "top",
+    "window": 1242,
+    "pos": 239,
+    "rel": 0.614,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "5",
+    "text": " Boston, MA 02110-1301 USA.\n *\n * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 9406[[5]] USA\n * or visit www"
+   },
+   {
+    "kind": "top",
+    "window": 1278,
+    "pos": 239,
+    "rel": 0.598,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "5",
+    "text": " Boston, MA 02110-1301 USA.\n*\n* Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 9406[[5]] USA\n* or visit www"
+   },
+   {
+    "kind": "top",
+    "window": 1335,
+    "pos": 59,
+    "rel": 0.585,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " details",
+    "text": " Blue Spire Consulting, Inc. All Rights Reserved.\n * Available via the MIT license.\n * see: http://durandaljs.com or https://github.com/BlueSpire/Durandal for[[ details]].\n */\n/**\n * The view"
+   },
+   {
+    "kind": "top",
+    "window": 1324,
+    "pos": 45,
+    "rel": 0.565,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " main",
+    "text": "12 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n// +build windows\n\npackage[[ main]]\n\nimport (\n\t\"fmt\"\n"
+   },
+   {
+    "kind": "top",
+    "window": 614,
+    "pos": 88,
+    "rel": 0.556,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " details",
+    "text": " to improve functionality and performance, and to provide you with relevant advertising. If you continue browsing the site, you agree to the use of cookies on this website. See our Privacy Policy and User Agreement for[[ details]].\n\nWhy should you be using"
+   },
+   {
+    "kind": "top",
+    "window": 1227,
+    "pos": 172,
+    "rel": 0.549,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " information",
+    "text": " to this file if you wish to upgrade Magento to newer\n * versions in the future. If you wish to customize Magento for your\n * needs please refer to http://www.magento.com for more[[ information]].\n *\n * @category   "
+   },
+   {
+    "kind": "top",
+    "window": 685,
+    "pos": 82,
+    "rel": 0.523,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " purposes",
+    "text": ":29 am\n\nThis is an archived article that was published on sltrib.com in 2013, and information in the article may be outdated. It is provided only for personal research[[ purposes]] and may not be reprinted"
+   },
+   {
+    "kind": "top",
+    "window": 1213,
+    "pos": 11,
+    "rel": 0.516,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " */\n",
+    "text": "/* SPDX-License-Identifier: LGPL-2.1+[[ */\n]]#pragma once\n\n#include <stdbool"
+   },
+   {
+    "kind": "top",
+    "window": 488,
+    "pos": 7,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "en",
+    "text": "<!DOCTYPE html>\n<html lang=\"[[en]]\">\n\n<head>\n  <title"
+   },
+   {
+    "kind": "top",
+    "window": 95,
+    "pos": 7,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "en",
+    "text": "<!DOCTYPE html>\n<html lang=\"[[en]]\" data-navbar=\"/account/navbar"
+   },
+   {
+    "kind": "top",
+    "window": 1380,
+    "pos": 87,
+    "rel": 0.497,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " details",
+    "text": " that it will be useful, but\n * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY\n * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License\n * for more[[ details]].\n *\n * You should have"
+   },
+   {
+    "kind": "top",
+    "window": 1250,
+    "pos": 254,
+    "rel": 0.487,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "height",
+    "text": "Box\", \"search\",false,'Search');\n--></script>\n<div id=\"top\">\n<div id=\"titlearea\">\n<table cellspacing=\"0\" cellpadding=\"0\">\n <tbody>\n <tr style=\"[[height]]:"
+   },
+   {
+    "kind": "top",
+    "window": 1353,
+    "pos": 25,
+    "rel": 0.484,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "ds",
+    "text": "/*\n *  linux/fs/super.c\n *\n *  (C) 1991  Linus Torval[[ds]]\n */\n\n/*\n * super.c"
+   },
+   {
+    "kind": "top",
+    "window": 284,
+    "pos": 19,
+    "rel": 0.48,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "c",
+    "text": "/*#######################################################\n * Copyright (c) 2014 Jeff Martin\n * Copyright ([[c]]) 2015"
+   },
+   {
+    "kind": "top",
+    "window": 1251,
+    "pos": 7,
+    "rel": 0.48,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "en",
+    "text": "<!doctype html>\n<html lang=\"[[en]]\">\n<head>\n  <meta"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1219,
+    "pos": 135,
+    "rel": 0.513,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " */\n",
+    "text": " and license terms. Your use of these\n *     subcomponents is subject to the terms and conditions of the\n *     subcomponent's license, as noted in the LICENSE file.\n * ****************************************************************************\n[[ */\n]]package org.cloudfound"
+   }
+  ]
+ }
+}

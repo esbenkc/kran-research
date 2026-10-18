@@ -1,0 +1,576 @@
+{
+ "id": "L25N4763",
+ "layer": 25,
+ "neuron": 4763,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 5.5312,
+  "n_strong_tokens": 16,
+  "n_strong_windows": 5,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    5
+   ]
+  ],
+  "strong_langs": [
+   [
+    "code",
+    5
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " ",
+    7
+   ],
+   [
+    " (",
+    3
+   ],
+   [
+    "][",
+    1
+   ],
+   [
+    ";",
+    1
+   ],
+   [
+    " i",
+    1
+   ],
+   [
+    "\t\t",
+    1
+   ],
+   [
+    "\t",
+    1
+   ],
+   [
+    " used",
+    1
+   ]
+  ],
+  "strong_pos_median": 118,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1207,
+    "pos": 79,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": "2DArray {\r\n\tpublic static void main(String[] args) {\r\n\t\tScanner in = new Scanner(System.in);\r\n\t\tint arr[][] = new int[6][6];\r\n\t\tfor (int i =[[ ]]0; i < 6"
+   },
+   {
+    "kind": "top",
+    "window": 1278,
+    "pos": 137,
+    "rel": 0.605,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " (",
+    "text": " useful, but WITHOUT\n* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n* FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License\n* version 2 for more details[[ (]]a copy is included in the"
+   },
+   {
+    "kind": "top",
+    "window": 1394,
+    "pos": 32,
+    "rel": 0.605,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " used",
+    "text": "<?php\n\nreturn [\n\n    /*\n    |--------------------------------------------------------------------------\n    | Application Name\n    |--------------------------------------------------------------------------\n    |\n    | This value is the name of your application. This value is[[ used]] when the\n    | framework"
+   },
+   {
+    "kind": "top",
+    "window": 1242,
+    "pos": 137,
+    "rel": 0.596,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " (",
+    "text": " useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License\n * version 2 for more details[[ (]]a copy is included in the"
+   },
+   {
+    "kind": "top",
+    "window": 1269,
+    "pos": 170,
+    "rel": 0.503,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " (",
+    "text": " useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License\n * version 2 for more details[[ (]]a copy is included in the"
+   },
+   {
+    "kind": "top",
+    "window": 352,
+    "pos": 228,
+    "rel": 0.489,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " modification",
+    "text": " as a part of the work and may be\n* distributed under the license agreement of your choice.\n* A \"Related Module\" means a set of sources files including their\n* documentation that, without[[ modification]] of the Source Code, enables"
+   },
+   {
+    "kind": "top",
+    "window": 1084,
+    "pos": 202,
+    "rel": 0.429,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "1",
+    "text": ".zend.com/license/new-bsd     New BSD License\n * @version    $Id: Png.php 22655 2010-07-22 [[1]]8:47:2"
+   },
+   {
+    "kind": "top",
+    "window": 328,
+    "pos": 215,
+    "rel": 0.418,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "w",
+    "text": "iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZ[[w]]1T\" crossorigin=\"anonymous"
+   },
+   {
+    "kind": "top",
+    "window": 887,
+    "pos": 142,
+    "rel": 0.373,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " ",
+    "text": "[10, 51, 87, 86, 81],\n[61, 95, 66, 57, 25,[[ ]]68],\n...\n]\n\ndef"
+   },
+   {
+    "kind": "top",
+    "window": 1152,
+    "pos": 61,
+    "rel": 0.37,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": "?\n",
+    "text": " are there between 1:09 AM and 1:48 AM?\n39\nHow many minutes are there between 4:17 AM and 12:29 PM[[?\n]]492\nWhat is"
+   },
+   {
+    "kind": "top",
+    "window": 1266,
+    "pos": 104,
+    "rel": 0.367,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " =",
+    "text": "1'\n}\n\n\ncustom_texts2 = {\n    '12345': '54321'\n}\n\n\nclass TestAdminL10NHandler(helpers.TestHandler):\n    _handler[[ =]] admin_l10n.Admin"
+   },
+   {
+    "kind": "top",
+    "window": 561,
+    "pos": 89,
+    "rel": 0.326,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "utors",
+    "text": " impact it has on current events. As such, I also have political science and public policy knowledge...\n\nFaith Baptist Bible College and Theological Seminary American History Tutors\n\nConnecting with American History T[[utors]] at Faith Baptist Bible College and"
+   },
+   {
+    "kind": "top",
+    "window": 30,
+    "pos": 16,
+    "rel": 0.305,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "0",
+    "text": "\n648 F.Supp.2d 18 (20[[0]]9)\nST. MICHA"
+   },
+   {
+    "kind": "top",
+    "window": 474,
+    "pos": 65,
+    "rel": 0.292,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "0",
+    "text": "-default-bg, $button-default-border, $button-default-active-bg, $button-default-active-border, $button-default-text);\n\n  position: relative;\n  display: inline-block;\n  margin: [[0]];\n  padding: 0"
+   },
+   {
+    "kind": "top",
+    "window": 1260,
+    "pos": 146,
+    "rel": 0.278,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " method",
+    "text": " }\r\n            base.Dispose(disposing);\r\n        }\r\n\r\n        #region Windows Form Designer generated code\r\n\r\n        /// <summary>\r\n        /// Required method for Designer support - do not modify\r\n        /// the contents of this[[ method]] with the code editor.\r\n       "
+   },
+   {
+    "kind": "top",
+    "window": 806,
+    "pos": 14,
+    "rel": 0.277,
+    "gate_open": true,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": "9",
+    "text": "\n628 So.2d 773 (1[[9]]93)\nGeorge D."
+   },
+   {
+    "kind": "top",
+    "window": 363,
+    "pos": 123,
+    "rel": 0.27,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " used",
+    "text": "():\n\nThe general contract of hashCode is:\n\nWhenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information[[ used]] in equals comparisons on the object"
+   },
+   {
+    "kind": "top",
+    "window": 1368,
+    "pos": 181,
+    "rel": 0.263,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " used",
+    "text": "1 NAME\n\nPaws::ElasticBeanstalk::ListTagsForResource - Arguments for method ListTagsForResource on L<Paws::ElasticBeanstalk>\n\n=head1 DESCRIPTION\n\nThis class represents the parameters[[ used]] for calling the method ListTags"
+   },
+   {
+    "kind": "top",
+    "window": 438,
+    "pos": 181,
+    "rel": 0.26,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": " formated#}\n    {% set amount = amount_dec | format_price(app.request.locale, 2) %}\n    {% set amount_fees = amount_fees_dec | format_price(app.request.locale,[[ ]]2) %}\n    {% set"
+   },
+   {
+    "kind": "top",
+    "window": 889,
+    "pos": 64,
+    "rel": 0.246,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " website",
+    "text": "Map Of London 32 Boroughs Neighborhoods In is one from many image from this website. you can find the latest images of Map Of London 32 Boroughs Neighborhoods In on this[[ website]] and other images. we hope"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 66.0,
+  "n_strong_tokens": 18,
+  "n_strong_windows": 15,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Github",
+    6
+   ],
+   [
+    "OpenWebText2",
+    4
+   ],
+   [
+    "StackExchange",
+    3
+   ],
+   [
+    "Wikipedia (en)",
+    1
+   ],
+   [
+    "Pile-CC",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    9
+   ],
+   [
+    "code",
+    6
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    " command",
+    7
+   ],
+   [
+    "and",
+    4
+   ],
+   [
+    "Command",
+    2
+   ],
+   [
+    ".cmd",
+    1
+   ],
+   [
+    "/cmd",
+    1
+   ],
+   [
+    "command",
+    1
+   ],
+   [
+    ".Cmd",
+    1
+   ],
+   [
+    " Command",
+    1
+   ]
+  ],
+  "strong_pos_median": 66,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 604,
+    "pos": 17,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " command",
+    "text": "(ANTIWAR.COM) — The British Defense Secretary is announcing that 800[[ command]]os are being deployed into Norway"
+   },
+   {
+    "kind": "top",
+    "window": 742,
+    "pos": 20,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "and",
+    "text": "Hipódromo Camarero\n\nHipódromo Camarero, formerly known as El Nuevo Com[[and]]ante, is a horse racing"
+   },
+   {
+    "kind": "top",
+    "window": 513,
+    "pos": 7,
+    "rel": 0.742,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": ".cmd",
+    "text": "The Jerusalem Post\n\ncnxps[[.cmd]].push(function () { cnx"
+   },
+   {
+    "kind": "top",
+    "window": 458,
+    "pos": 216,
+    "rel": 0.705,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "Command",
+    "text": " change the exe name, in the Solution Explorer;\n\nStep 1\n\nUnder \"exes\" right-click \"DoomDLL\" to open \"DoomDLL Properties Pages\".\n\nTo the right of \"[[Command]]\" (not \"Commend"
+   },
+   {
+    "kind": "top",
+    "window": 770,
+    "pos": 42,
+    "rel": 0.648,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "and",
+    "text": "co tem um novo técnico: Abel Braga. Depois de não se acertar com Vanderlei Luxemburgo, o Cruz-Maltino chegou a um acordo com o ex-com[[and]]ante do Cruzeiro em"
+   },
+   {
+    "kind": "top",
+    "window": 1383,
+    "pos": 1,
+    "rel": 0.617,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " Command",
+    "text": "/*[[ Command]] line option handling.\n   Copyright"
+   },
+   {
+    "kind": "top",
+    "window": 47,
+    "pos": 235,
+    "rel": 0.591,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " command",
+    "text": "ion%'\")\n.__PATH)).SDMPackageXML\n\nFor the time being, using a PSSession is out of the question.\nWith the current infrastructure I have to deal with, using SCCM[[ command]]let is out of the question"
+   },
+   {
+    "kind": "top",
+    "window": 1102,
+    "pos": 87,
+    "rel": 0.587,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " command",
+    "text": " at how to add the Storybook style guide to a React web app boostrapped by create-react-app .\n\nInstalling Storybook\n\nLet's quickly bootstrap a web app with create-react-app . From the[[ command]] line we'll use npx"
+   },
+   {
+    "kind": "top",
+    "window": 1324,
+    "pos": 190,
+    "rel": 0.576,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": ".Cmd",
+    "text": "\", \"manual-started\")\n\tif err != nil {\n\t\treturn fmt.Errorf(\"could not start service: %v\", err)\n\t}\n\treturn nil\n}\n\nfunc controlService(name string, c svc[[.Cmd]], to svc.State) error"
+   },
+   {
+    "kind": "top",
+    "window": 96,
+    "pos": 26,
+    "rel": 0.561,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " command",
+    "text": "Q:\n\nPerl GetOptions Function\n\nMy Perl Script retrieves the argument in the below way.   Have Getoptions function to retrieve the[[ command]] line arguments. \n./test"
+   },
+   {
+    "kind": "top",
+    "window": 1363,
+    "pos": 45,
+    "rel": 0.553,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Command",
+    "text": " Copyright (c) Microsoft Corporation. All rights reserved.\n# Licensed under the MIT License. See License.txt in the project root for license information.\n# --------------------------------------------------------------------------------------------\n\nfrom azure.cli.core.commands import Cli[[Command]]Type\n\nfrom ._format import"
+   },
+   {
+    "kind": "top",
+    "window": 1277,
+    "pos": 12,
+    "rel": 0.545,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "command",
+    "text": "OUTPUT := ./\nifeq (\"$(origin O)\", \"[[command]] line\")\nifneq ($("
+   },
+   {
+    "kind": "top",
+    "window": 1316,
+    "pos": 42,
+    "rel": 0.492,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Command",
+    "text": "obra\n\nimport (\n\t\"bytes\"\n\t\"strings\"\n\t\"testing\"\n)\n\nfunc TestZshCompletion(t *testing.T) {\n\ttcs := []struct {\n\t\tname                string\n\t\troot                *[[Command]]\n\t\texpectedExpressions []string"
+   },
+   {
+    "kind": "top",
+    "window": 965,
+    "pos": 189,
+    "rel": 0.458,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " command",
+    "text": " the documentation.\nWhat I have done\n\nI am currently using the skip marker and comment it out.     \nTried to use the skipif marker and and give arguments to python script using this command from[[ command]] prompt pytest test_file.py "
+   },
+   {
+    "kind": "top",
+    "window": 885,
+    "pos": 247,
+    "rel": 0.445,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Commander",
+    "text": " Lieutenant in 1858 and served in the Mediterranean, then in 1864 he was appointed Flag-Lieutenant to Rear-Admiral the Hon. Joseph Denman,[[ Commander]]-in-Chief, Pacific Station"
+   },
+   {
+    "kind": "top",
+    "window": 1451,
+    "pos": 168,
+    "rel": 0.426,
+    "gate_open": true,
+    "source": "lang-id",
+    "lang": "fr",
+    "token": " Command",
+    "text": " était dedans et en ordre malgré quelques paillettes volante par ci par là tout était bien . Ravie de cet achat il ne reste plus qu'à essayer.\nsuper.[[ Command]]é par une de mes ni"
+   },
+   {
+    "kind": "top",
+    "window": 915,
+    "pos": 123,
+    "rel": 0.348,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " commande",
+    "text": " make their way through the tangled labyrinth of international media rights.\n\nIf - or rather when - they do address that, I think they're going to commandeer the Android tablet market much in the way Samsung[[ commande]]ered the Android smartphone market,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1244,
+    "pos": 198,
+    "rel": 0.504,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " command",
+    "text": "_EXE% -version >NUL 2>&1\r\nif \"%ERRORLEVEL%\" == \"0\" goto init\r\n\r\necho.\r\necho ERROR: JAVA_HOME is not set and no 'java'[[ command]] could be found in your PATH"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1261,
+    "pos": 114,
+    "rel": 0.534,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "/cmd",
+    "text": " the License, or\n;; (at your option) any later version.\n\n;; Perl trepanning Debugger tracking a comint buffer.\n\n(require 'load-relative)\n(require-relative-list '(\n                         \"../../common[[/cmd]]s\"\n                         \"../../common/menu"
+   },
+   {
+    "kind": "random-strong",
+    "window": 483,
+    "pos": 26,
+    "rel": 0.504,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " command",
+    "text": "Q:\n\nusing pointers in c programming\n\nI have a problem with pointers in c programming. I would love to get variables from the[[ command]] line in Linux and than be"
+   }
+  ]
+ }
+}

@@ -1,0 +1,604 @@
+{
+ "id": "L19N1805",
+ "layer": 19,
+ "neuron": 1805,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 1.8594,
+  "n_strong_tokens": 61,
+  "n_strong_windows": 49,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    14
+   ],
+   [
+    "OpenWebText2",
+    11
+   ],
+   [
+    "StackExchange",
+    8
+   ],
+   [
+    "Wikipedia (en)",
+    7
+   ],
+   [
+    "Github",
+    6
+   ],
+   [
+    "PubMed Central",
+    2
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    43
+   ],
+   [
+    "code",
+    6
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "1",
+    7
+   ],
+   [
+    " ",
+    6
+   ],
+   [
+    " the",
+    4
+   ],
+   [
+    "2",
+    3
+   ],
+   [
+    "7",
+    2
+   ],
+   [
+    " there",
+    2
+   ],
+   [
+    "0",
+    2
+   ],
+   [
+    " those",
+    1
+   ]
+  ],
+  "strong_pos_median": 122,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 889,
+    "pos": 30,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Borough",
+    "text": "Map Of London 32 Boroughs Neighborhoods In\n\nMap Of London 32 Boroughs Neighborhoods In\n\nMap Of London 32[[ Borough]]s Neighborhoods In is one"
+   },
+   {
+    "kind": "top",
+    "window": 994,
+    "pos": 212,
+    "rel": 0.828,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "1",
+    "text": "-grossing fight in history as early as 2009, disagreements between the two professional boxers' camps on terms for the fight prevented the bout from coming to fruition until 20[[1]]5. The failure to arrange"
+   },
+   {
+    "kind": "top",
+    "window": 542,
+    "pos": 240,
+    "rel": 0.794,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_add",
+    "text": " range(10):\n        random_id_string += random.SystemRandom().choice(ALPHABETS)\n    peer_id = ID(random_id_string.encode())\n    peer_info = PeerInfo(peer_id, random[[_add]]rs)\n\n    assert peer_info"
+   },
+   {
+    "kind": "top",
+    "window": 1150,
+    "pos": 59,
+    "rel": 0.739,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "1",
+    "text": " 2” swings to its rescue.\n\nDespite a string of recent box office successes — including “13 Going on 30” and “Hellboy” — revenues at Sony Pictures Entertainment slipped [[1]].9% to $1"
+   },
+   {
+    "kind": "top",
+    "window": 307,
+    "pos": 115,
+    "rel": 0.714,
+    "gate_open": true,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "-re",
+    "text": " OH.sup.- as follows: EQU 1/2O.sub.2 +H.sub.2 O+2e.sup.- .fwdarw.2OH.\nAdding the two half[[-re]]actions: ##EQU1"
+   },
+   {
+    "kind": "top",
+    "window": 887,
+    "pos": 47,
+    "rel": 0.651,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "7",
+    "text": "7 not quite correct\n\nI have the following Python code, which I wrote for the sister problem 18.\nIt works perfectly for problem 18, but is slightly out for problem 6[[7]]. I can't for the"
+   },
+   {
+    "kind": "top",
+    "window": 74,
+    "pos": 59,
+    "rel": 0.647,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "7",
+    "text": " 25 Americans, or more than 12 million, have food allergies, according to the Food Allergy & Anaphylaxis Network. More food allergy facts from the network:\n\n\n\nAbout [[7]] million Americans are allergic to seafood"
+   },
+   {
+    "kind": "top",
+    "window": 966,
+    "pos": 78,
+    "rel": 0.643,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " a",
+    "text": ";\n\ninstead of\nint* x;\n\nThis is because C sees *x as an int, not x as an int pointer.\nThis can be easily demonstrated by\nint* a, b;\n\nwhere[[ a]] is an int pointer, while"
+   },
+   {
+    "kind": "top",
+    "window": 349,
+    "pos": 135,
+    "rel": 0.639,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " the",
+    "text": " a letter from Kavanaugh himself in which he flatly denies Ford’s allegations.\n\nIn the letter, Ford explains her motive for coming forward, and the timing of her allegations — which, being just ahead of[[ the]] Senate vote on Kavanaugh, Republicans"
+   },
+   {
+    "kind": "top",
+    "window": 14,
+    "pos": 161,
+    "rel": 0.639,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " those",
+    "text": ". graduated in 2016. He's since earned a master's degree in finance from Colorado and has done well financially working as a stock and hedge fund consultant in Los Angeles and Denver.But[[ those]] two years at ODU made"
+   },
+   {
+    "kind": "top",
+    "window": 581,
+    "pos": 193,
+    "rel": 0.639,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "1",
+    "text": ");\n\n    }\n\n    return 0;\n}\n\nA:\n\nMaybe it's easiest to understand as follows.  In C, a loop written like this:\nfor (a = 0; a < [[1]]0; a++) {\n  "
+   },
+   {
+    "kind": "top",
+    "window": 1255,
+    "pos": 200,
+    "rel": 0.634,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "_col",
+    "text": " MINRES<SparseMatrix<T>, Lower, IdentityPreconditioner    > minres_colmajor_lower_I;\n  MINRES<SparseMatrix<T>, Upper, IdentityPreconditioner    > minres[[_col]]major_upper_I;\n\n  //"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1076,
+    "pos": 84,
+    "rel": 0.521,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " do",
+    "text": ", which is nice.\nThough, consider these overloads\npublic static void M(Action doIt) { /*use doIt*/ }\npublic static void M(Func<int> doIt) { /*use[[ do]]It*/ }\n\nWhen invoking like"
+   },
+   {
+    "kind": "random-strong",
+    "window": 256,
+    "pos": 104,
+    "rel": 0.622,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " lung",
+    "text": " lung cancer causes you could be exposed to every day, plus the steps you can take to reduce your risk.\n\nLung Cancer Causes Without Smoking\n\nDr. Nish says about 15 percent of[[ lung]] cancers in men occur in those"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1173,
+    "pos": 182,
+    "rel": 0.63,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " another",
+    "text": " IP and the Host 2 IP address will stay the destination IP address. Those two are not going to change. For the MAC address it is going to change each time it goes from one hope to[[ another]]. (Except switches… they"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1176,
+    "pos": 142,
+    "rel": 0.55,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": ">\n",
+    "text": "Info info\">' + '</div>');\n});\n\nAnd HTML:\n<ul>\n    <li>\n        <button class='btnMoreInfo'>More</button>\n        <div class='infoCatcher'></div[[>\n]]    </li>\n    <"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1128,
+    "pos": 211,
+    "rel": 0.571,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Depart",
+    "text": " identity before they are found out. The character Colin Sullivan is loosely based on the corrupt FBI agent John Connolly, while the character Frank Costello is based on gangster Whitey Bulger.\n\nThe[[ Depart]]ed was a critical and commercial"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1386,
+    "pos": 109,
+    "rel": 0.58,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": " ",
+    "text": " break;\r\n        case 'D':\r\n            ans += 500;\r\n            break;\r\n        case 'C':\r\n            if (s[i + 1] == 'D' || s[i +[[ ]]1] == 'M'){\r\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 918,
+    "pos": 42,
+    "rel": 0.626,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "d",
+    "text": "\n============\n\nRhabdomyolysis is the breakdown of skeletal muscle that can rapidly progress to acute renal failure or death. It is important to make a rapid diagnosis and initiate treatment for rhab[[d]]omyolysis in order to"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1060,
+    "pos": 95,
+    "rel": 0.546,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "0",
+    "text": " vast numbers of species. For example, the world’s tropical rainforests are estimated to be home to at least 40,000 tree species, with up to 6,0[[0]]0 in African forests.\n\nYet"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 2.1094,
+  "n_strong_tokens": 155,
+  "n_strong_windows": 83,
+  "strong_gate_open_frac": 1.0,
+  "strong_sources": [
+   [
+    "Pile-CC",
+    25
+   ],
+   [
+    "Github",
+    13
+   ],
+   [
+    "PubMed Central",
+    11
+   ],
+   [
+    "OpenWebText2",
+    7
+   ],
+   [
+    "PubMed Abstracts",
+    7
+   ],
+   [
+    "USPTO Backgrounds",
+    7
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    70
+   ],
+   [
+    "code",
+    13
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "�",
+    11
+   ],
+   [
+    ",",
+    9
+   ],
+   [
+    " the",
+    6
+   ],
+   [
+    "d",
+    4
+   ],
+   [
+    " of",
+    3
+   ],
+   [
+    "us",
+    2
+   ],
+   [
+    " ",
+    2
+   ],
+   [
+    " internal",
+    2
+   ]
+  ],
+  "strong_pos_median": 153,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 955,
+    "pos": 219,
+    "rel": 1.0,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "inct",
+    "text": ", nervous system stretch receptors in the rectal walls stimulate the desire to defecate. This urge to defecate arises from the reflex contraction of rectal muscles, relaxation of the internal anal sph[[inct]]er, and an initial contraction"
+   },
+   {
+    "kind": "top",
+    "window": 1354,
+    "pos": 238,
+    "rel": 0.993,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "�",
+    "text": "}ঢ় ণ ত থ দ ধ ন প ফ ব ভ ম য {য\\u09BC} ৰ �[[�]] ৱ শ �"
+   },
+   {
+    "kind": "top",
+    "window": 422,
+    "pos": 173,
+    "rel": 0.948,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "d",
+    "text": "Body = /^with|^def|^do|^prog|case$|^cond$|bind$|when$|unless$/;\n  var numLiteral = /^(?:[+\\-]?(?:\\[[d]]+|\\d*\\.\\d"
+   },
+   {
+    "kind": "top",
+    "window": 37,
+    "pos": 242,
+    "rel": 0.811,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " Radeon",
+    "text": "with 5K+ cores) have been debunked by the rep. It does seem that Navi is indeed succeeding Polaris architecture in mid-range to high-end market, while leaving enthusiast range for[[ Radeon]] VII.\n\nA few weeks ago"
+   },
+   {
+    "kind": "top",
+    "window": 1258,
+    "pos": 241,
+    "rel": 0.781,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "integer",
+    "text": "umeric_value1, numeric_value2, ...)\n\n * Computes the greatest value among arguments.\n * Arguments:\n    * `numeric_value1`: a `tinyint`/`smallint`/`[[integer]]`/`bigint`/"
+   },
+   {
+    "kind": "top",
+    "window": 359,
+    "pos": 60,
+    "rel": 0.778,
+    "gate_open": true,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": "EG",
+    "text": " lung cancer (NSCLC) without comorbidities and with an optimal performance status [1]; this excludes patients with oncogenic driver alterations, such as the epidermal growth factor receptor ([[EG]]FR) mutation (in almost"
+   },
+   {
+    "kind": "top",
+    "window": 160,
+    "pos": 189,
+    "rel": 0.722,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " own",
+    "text": ". We've made sure not to leave anything out.\n\nWhat's the minimum equipment I need as a brewer?\n\nOur Starter Homebrewing Kit is just that! Of course it assumes that you already[[ own]] at least a 5 gallon"
+   },
+   {
+    "kind": "top",
+    "window": 1330,
+    "pos": 193,
+    "rel": 0.719,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "B",
+    "text": " \"GetBuiltinIntents\": {\n      \"input_token\": \"nextToken\",\n      \"output_token\": \"nextToken\",\n      \"limit_key\": \"maxResults\"\n    },\n    \"Get[[B]]uiltinSlotTypes\": {\n     "
+   },
+   {
+    "kind": "top",
+    "window": 886,
+    "pos": 140,
+    "rel": 0.719,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": ",",
+    "text": " length as width. The midsection was slightly constricted and the eyes were parallel and anteriorly located in the anterior half of the carapace. The metastoma and first two appendages are unknown[[,]] the third and fourth prosomal"
+   },
+   {
+    "kind": "top",
+    "window": 1239,
+    "pos": 236,
+    "rel": 0.715,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Length",
+    "text": "Type = new Tag(\"NewSubfileType\", 254);\r\n    public static final Tag ImageWidth = new Tag(\"ImageWidth\", 256);\r\n    public static final Tag Image[[Length]] = new Tag(\"ImageLength"
+   },
+   {
+    "kind": "top",
+    "window": 224,
+    "pos": 32,
+    "rel": 0.711,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "us",
+    "text": "Background\n==========\n\nThe intervertebral disc (IVD) lies between the vertebral bodies and links them together. The components of the disc are Nucle[[us]] pulposus (NP),"
+   },
+   {
+    "kind": "top",
+    "window": 566,
+    "pos": 120,
+    "rel": 0.711,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "d",
+    "text": ":mm:ss a zzzz\",\n                \"h:mm:ss a z\",\n                \"h:mm:ss a\",\n                \"h:mm a\",\n                \"EEEE, d MMMM y G\",\n                \"[[d]] MMMM y G\",\n               "
+   },
+   {
+    "kind": "random-strong",
+    "window": 1068,
+    "pos": 65,
+    "rel": 0.559,
+    "gate_open": true,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": "ло",
+    "text": "лся программированием Российского микроконтроллера MDR32F1QI. Проблем со сборкой не говоря уже про сам контроллер не возник[[ло]]. Однако, вот уже месяц"
+   },
+   {
+    "kind": "random-strong",
+    "window": 492,
+    "pos": 218,
+    "rel": 0.552,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " movie",
+    "text": " Capture video from a screen and make a video tutorial– Record yourself on a webcam to create a unique entry for your blog\n\nCut and JoinCut out unnecessary fragments or join individual clips to make one longer[[ movie]]\n\nLet Your Story Flow Smooth"
+   },
+   {
+    "kind": "random-strong",
+    "window": 630,
+    "pos": 45,
+    "rel": 0.515,
+    "gate_open": true,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "ically",
+    "text": "================\n\nThe pattern of stresses transferred to the bone have great influence on the success or failure of an orthopedic implant. The evaluation of bone stresses is so complex that it cannot be accomplished analyt[[ically]], necessitating the application of"
+   },
+   {
+    "kind": "random-strong",
+    "window": 190,
+    "pos": 229,
+    "rel": 0.541,
+    "gate_open": true,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": "Theme",
+    "text": "The Stranger\n\nSometimes\n\nToo Young\n\nThe First Touch\n\nIn His Eyes\n\nBy My Side\n\nDid I Tell You?\n\nDon't Give Up \n\nGentle Gentle (Life of Your Life)\n\n[[Theme]] Song - Version 2\n\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 386,
+    "pos": 239,
+    "rel": 0.526,
+    "gate_open": true,
+    "source": "Github",
+    "lang": "code",
+    "token": "Modify",
+    "text": " root)\r\nAccess: 2019-12-10 16:15:55.253325208 +0800\r\n[[Modify]]: 2019"
+   },
+   {
+    "kind": "random-strong",
+    "window": 840,
+    "pos": 123,
+    "rel": 0.622,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " closet",
+    "text": " abundant cabinet space. Bedroom 3, a full bath, and coat closet complete the main living area. Head up to the third floor and you’ll find a private master suite with a large walk-in[[ closet]], bedroom 2, and"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1152,
+    "pos": 171,
+    "rel": 0.563,
+    "gate_open": true,
+    "source": "DM Mathematics",
+    "lang": "en",
+    "token": " PM",
+    "text": "?\n624\nHow many minutes are there between 7:08 AM and 2:12 PM?\n424\nHow many minutes are there between 5:09[[ PM]] and 3:27"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1083,
+    "pos": 101,
+    "rel": 0.541,
+    "gate_open": true,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": ",",
+    "text": " the 2010 disaster in the Gulf of Mexico that killed 11 crewman and caused the largest-ever oil spill in US waters. This included USD14 billion recompensing victims[[,]] a further USD 14"
+   }
+  ]
+ }
+}

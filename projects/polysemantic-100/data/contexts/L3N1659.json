@@ -1,0 +1,612 @@
+{
+ "id": "L3N1659",
+ "layer": 3,
+ "neuron": 1659,
+ "n_windows": 1590,
+ "pos": {
+  "pole_max": 0.7617,
+  "n_strong_tokens": 42,
+  "n_strong_windows": 16,
+  "strong_gate_open_frac": 0.0,
+  "strong_sources": [
+   [
+    "PubMed Abstracts",
+    7
+   ],
+   [
+    "Pile-CC",
+    2
+   ],
+   [
+    "lang-id",
+    2
+   ],
+   [
+    "Github",
+    2
+   ],
+   [
+    "NIH ExPorter",
+    1
+   ],
+   [
+    "StackExchange",
+    1
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    12
+   ],
+   [
+    "it",
+    2
+   ],
+   [
+    "code",
+    2
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    ".commons",
+    16
+   ],
+   [
+    " Echo",
+    5
+   ],
+   [
+    " sta",
+    4
+   ],
+   [
+    "ological",
+    3
+   ],
+   [
+    " deep",
+    1
+   ],
+   [
+    "adies",
+    1
+   ],
+   [
+    " apo",
+    1
+   ],
+   [
+    " pyl",
+    1
+   ]
+  ],
+  "strong_pos_median": 157,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1142,
+    "pos": 243,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": " Echo",
+    "text": " pairing happens between the Charge 3 and the Echo Dot devices, you need not turn Bluetooth on in the mobile device you’re using to … Continue reading Pairing JBL Charge 3 with Amazon Alexa[[ Echo]] Dot\n\nThis post demonstrates how"
+   },
+   {
+    "kind": "top",
+    "window": 1473,
+    "pos": 14,
+    "rel": 0.846,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " sta",
+    "text": "Un uomo sta camminando su una corda.\nL'uomo[[ sta]] mangiando la pizza.\n"
+   },
+   {
+    "kind": "top",
+    "window": 1478,
+    "pos": 34,
+    "rel": 0.81,
+    "gate_open": false,
+    "source": "lang-id",
+    "lang": "it",
+    "token": " sta",
+    "text": "Un uomo sta suonando la chitarra e cantando.\nUn agnello si trova vicino a due piccoli animali.\nIl burro si[[ sta]] sciogliendo in una"
+   },
+   {
+    "kind": "top",
+    "window": 1362,
+    "pos": 242,
+    "rel": 0.769,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": ".commons",
+    "text": "SolverTest)\ntestSetFunctionValueAccuracy(org.apache.commons.math.analysis.BisectionSolverTest)\ntestResetRelativeAccuracy(org.apache.commons.math.analysis.BisectionSolverTest)\ntestResetAbsoluteAccuracy(org.apache[[.commons]].math.analysis.BisectionSolver"
+   },
+   {
+    "kind": "top",
+    "window": 936,
+    "pos": 181,
+    "rel": 0.662,
+    "gate_open": false,
+    "source": "NIH ExPorter",
+    "lang": "en",
+    "token": " maize",
+    "text": "2 box) in promoters of 22-kD zein genes. From characterizations of mutant o2 alleles, analyses of DN4 binding properties, and assays of transcriptional activation in yeast and[[ maize]] cells, it appears that the"
+   },
+   {
+    "kind": "top",
+    "window": 561,
+    "pos": 252,
+    "rel": 0.633,
+    "gate_open": false,
+    "source": "Pile-CC",
+    "lang": "en",
+    "token": "ological",
+    "text": "inary American History tutors\nwith Faith Baptist Bible College and Theological Seminary classmates to make the tutor search process even faster for them.\nUtilize Uloop.com to find Faith Baptist Bible College and The[[ological]] Seminary American"
+   },
+   {
+    "kind": "top",
+    "window": 58,
+    "pos": 135,
+    "rel": 0.59,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " deep",
+    "text": " as every tenth uninfected CABG patient. Clinical data were abstracted from patient records, and cost information was obtained from the cost accounting database of the hospital. Variables that significantly increased the risk of[[ deep]] chest surgical site infection included obesity"
+   },
+   {
+    "kind": "top",
+    "window": 405,
+    "pos": 231,
+    "rel": 0.551,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " apo",
+    "text": " apo E- and A beta-immunoreactivities. These astrocytes may be involved in the clearance of apo E- and A beta-positive material. We presume that the coincident distribution pattern for[[ apo]] E- and A beta-imm"
+   },
+   {
+    "kind": "top",
+    "window": 967,
+    "pos": 209,
+    "rel": 0.551,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " eos",
+    "text": " vessels in nasal polyps were more than that in control group (P < 0.05). The number of both TNF-alpha positive cells and blood vessels had positive relationships with the number of[[ eos]]inophil granulocyte,"
+   },
+   {
+    "kind": "top",
+    "window": 749,
+    "pos": 119,
+    "rel": 0.536,
+    "gate_open": false,
+    "source": "StackExchange",
+    "lang": "en",
+    "token": " reputation",
+    "text": " http://meta.askubuntu.com/a/15662/72216, where the question at a certain point moved to a reputation/motivation discussion. The question wasn't[[ reputation]]- motivated, but even if"
+   },
+   {
+    "kind": "top",
+    "window": 532,
+    "pos": 243,
+    "rel": 0.521,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " pyl",
+    "text": " a significant association between the presence of Campylobacter pyloridis and chronic superficial gastritis, also the degree of lymphocyte infiltration showed a strong inverse association with the presence of Campylobacter[[ pyl]]oridis, suggesting that a"
+   },
+   {
+    "kind": "top",
+    "window": 290,
+    "pos": 204,
+    "rel": 0.518,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "adies",
+    "text": "% Triton X-100 to decellularize the flakes. We then, respectively, injected 0.1 cc of each material (decellularized xenogenic cartilage, R[[adies]]se, and Artesense"
+   },
+   {
+    "kind": "top",
+    "window": 1371,
+    "pos": 248,
+    "rel": 0.49,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": " Embassy",
+    "text": "=\\'Office of Brazil and Southern Cone (WHA/BSC)\\''),\n    db.runSql('UPDATE office SET name = \\'U.S. Embassy LaPaz\\' where name=\\'U.S.[[ Embassy]] La Paz\\''),\n\n  ]);\n"
+   },
+   {
+    "kind": "top",
+    "window": 77,
+    "pos": 235,
+    "rel": 0.49,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " cate",
+    "text": ". Pertussis toxin-sensitive, receptor-independent activation via heterotrimeric G proteins and Galphai/o subunits will be discussed as possible mechanisms for inhibitory effects of vasostatin-I and[[ cate]]statin on vascular and cardiac"
+   },
+   {
+    "kind": "top",
+    "window": 941,
+    "pos": 219,
+    "rel": 0.479,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " nord",
+    "text": " labeled products co-chromatographed with authentic leukotriene B4 and leukotriene C4 standards. Serum-treated zymosan and A23187 significantly stimulated and[[ nord]]ihydroguairetic acid"
+   },
+   {
+    "kind": "top",
+    "window": 491,
+    "pos": 170,
+    "rel": 0.479,
+    "gate_open": false,
+    "source": "FreeLaw",
+    "lang": "en",
+    "token": " Lump",
+    "text": ".\n*351 P. Jeffrey Wintner, Deputy Public Defender I, for defendants Pedro Soto, Delores Braswell, Larnie Boddy, Chauncey Davidson, Milton[[ Lump]]kin and Alfred S. Po"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1005,
+    "pos": 87,
+    "rel": 0.51,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "IN",
+    "text": "5-2018 The Luxcore developers\n// Distributed under the MIT software license, see the accompanying\n// file COPYING or http://www.opensource.org/licenses/mit-license.php.\n\n#ifndef BITCO[[IN]]_RPCSERVER_H\n#define BIT"
+   },
+   {
+    "kind": "random-strong",
+    "window": 994,
+    "pos": 220,
+    "rel": 0.51,
+    "gate_open": false,
+    "source": "Wikipedia (en)",
+    "lang": "en",
+    "token": " Mayweather",
+    "text": " as 2009, disagreements between the two professional boxers' camps on terms for the fight prevented the bout from coming to fruition until 2015. The failure to arrange the[[ Mayweather]]–Pacquiao fight"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1124,
+    "pos": 85,
+    "rel": 0.518,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " Salmon",
+    "text": " report the identification of Integration Host Factor (IHF) as a new element involved in modulation of P1, the upstream pyrimidine-specific promoter of the Escherichia coli K12 and[[ Salmon]]ella typhimurium"
+   },
+   {
+    "kind": "random-strong",
+    "window": 723,
+    "pos": 224,
+    "rel": 0.513,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " benign",
+    "text": " slower performance on the same visual-search task. This latter finding did not meet multiple comparison criteria. Numerous significant practice effects were found within the control group. Comparisons with reliable change indices identified two subjects with[[ benign]] rolandic epilepsy with particularly"
+   }
+  ]
+ },
+ "neg": {
+  "pole_max": 0.7773,
+  "n_strong_tokens": 111,
+  "n_strong_windows": 75,
+  "strong_gate_open_frac": 0.0,
+  "strong_sources": [
+   [
+    "PubMed Abstracts",
+    23
+   ],
+   [
+    "OpenWebText2",
+    18
+   ],
+   [
+    "USPTO Backgrounds",
+    10
+   ],
+   [
+    "Pile-CC",
+    7
+   ],
+   [
+    "PubMed Central",
+    6
+   ],
+   [
+    "NIH ExPorter",
+    3
+   ]
+  ],
+  "strong_langs": [
+   [
+    "en",
+    73
+   ],
+   [
+    "nl",
+    1
+   ],
+   [
+    "code",
+    1
+   ]
+  ],
+  "strong_top_tokens": [
+   [
+    "AD",
+    7
+   ],
+   [
+    "s",
+    6
+   ],
+   [
+    "CNT",
+    4
+   ],
+   [
+    "ILT",
+    3
+   ],
+   [
+    "acea",
+    3
+   ],
+   [
+    "erty",
+    3
+   ],
+   [
+    "F",
+    3
+   ],
+   [
+    "B",
+    3
+   ]
+  ],
+  "strong_pos_median": 197,
+  "examples": [
+   {
+    "kind": "top",
+    "window": 1059,
+    "pos": 131,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " CR",
+    "text": "54,526 and the selective CRF receptor subtype 2 antagonist anti-sauvagine-30 (AS-30) were investigated in rats. Both alpha-helical[[ CR]]F (10 microg"
+   },
+   {
+    "kind": "top",
+    "window": 469,
+    "pos": 255,
+    "rel": 1.0,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "s",
+    "text": ". Thus the log Pow-log slope relation was represented by a single equation for both sexes. Based on the observations, procedures were established to estimate BOEL values from Pow. Successful estimations of BOEL[[s]]"
+   },
+   {
+    "kind": "top",
+    "window": 197,
+    "pos": 170,
+    "rel": 0.99,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "AD",
+    "text": " with saline (SAL) or TROP just before introduction of IAAD. By 3 h, SAL-DMNL rats consumed more (P < 0.01) of the IA[[AD]] than did the SAL-SHAM"
+   },
+   {
+    "kind": "top",
+    "window": 782,
+    "pos": 112,
+    "rel": 0.905,
+    "gate_open": false,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": " cells",
+    "text": " information stored in the memory cell. An increase in the time between refreshes of memory cells reduces the amount of power consumed by the memory cells in a standby mode. The time between refreshes of memory[[ cells]] is limited by the data retention"
+   },
+   {
+    "kind": "top",
+    "window": 103,
+    "pos": 227,
+    "rel": 0.889,
+    "gate_open": false,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "DE",
+    "text": " data acquisition, and 3D data analysis can be a time-consuming process, moreover there is need for experienced observers.\n\nA fully automated and user-interference free algorithm may improve the feasibility of 3[[DE]] in daily clinical practice. Such"
+   },
+   {
+    "kind": "top",
+    "window": 205,
+    "pos": 143,
+    "rel": 0.859,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "BC",
+    "text": "-mesenchymal transition (EMT) indicator proteins in 93 patients with GBC. Immunohistochemistry showed that the protein expression level of TROP2 was significantly higher in G[[BC]] tissues than in adjacent nonc"
+   },
+   {
+    "kind": "top",
+    "window": 506,
+    "pos": 134,
+    "rel": 0.849,
+    "gate_open": false,
+    "source": "PubMed Central",
+    "lang": "en",
+    "token": "AD",
+    "text": " pulmonary embolism (PE), also require rapid differentiation from AAD due to their critical and lethal characteristics \\[[@cit0002]\\]. However, the misdiagnosis rate of A[[AD]] has been reported to be approximately"
+   },
+   {
+    "kind": "top",
+    "window": 426,
+    "pos": 93,
+    "rel": 0.824,
+    "gate_open": false,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "CT",
+    "text": "2. Description of Related Art\nUnlike an automatic transmission (AT) which requires only clutch shifting, a DCT can enable clutch shifting only after gear shifting has been completed. Therefore, in the D[[CT]], gear shifting performance is a"
+   },
+   {
+    "kind": "top",
+    "window": 78,
+    "pos": 211,
+    "rel": 0.804,
+    "gate_open": false,
+    "source": "OpenWebText2",
+    "lang": "en",
+    "token": " WHO",
+    "text": ", does show a higher cancer risk for those located in the most contaminated parts,\" Maria Neira, WHO director for public health and environment, said in a statement.\n\nIn the most contaminated area, the[[ WHO]] estimated that there was a "
+   },
+   {
+    "kind": "top",
+    "window": 1096,
+    "pos": 232,
+    "rel": 0.799,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "B",
+    "text": " in the grafted and nongrafted sites. There was little clinical benefit from cultured keratinocyte allografts in wound healing in RDEB. However, this study showed that RDE[[B]] keratinocytes have an inherent"
+   },
+   {
+    "kind": "top",
+    "window": 618,
+    "pos": 252,
+    "rel": 0.789,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "DD",
+    "text": "-dioxin (TCDD) as a representative EDC, which is known to induce tumors or cancers; MCF-7 breast cancer cells, used as a tumor model, were treated with TC[[DD]] and various concentrations"
+   },
+   {
+    "kind": "top",
+    "window": 739,
+    "pos": 231,
+    "rel": 0.769,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "BM",
+    "text": "3)). During tunnel boring machine (TBM) activities, the GM respirable dust concentration was 0.54mg m(-3). The GM respirable elemental carbon concentration for all the T[[BM]] operators was 18 µ"
+   },
+   {
+    "kind": "random-strong",
+    "window": 573,
+    "pos": 166,
+    "rel": 0.764,
+    "gate_open": false,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "fer",
+    "text": " the rear side of the wafer. A retaining lip or ring is generally provided around the edge of the wafer to keep the wafer contained under the substrate carrier. The front side of the wa[[fer]], the side to be polished"
+   },
+   {
+    "kind": "random-strong",
+    "window": 395,
+    "pos": 242,
+    "rel": 0.734,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": " IC",
+    "text": " The rate of infield recurrence for all stages was higher in the 1 IC group (30% vs 17%, p less than .01). These were more frequent in the 1[[ IC]] group (53% vs"
+   },
+   {
+    "kind": "random-strong",
+    "window": 417,
+    "pos": 102,
+    "rel": 0.603,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "IC",
+    "text": " occupational challenges has never been examined. This study assessed the reproducibility of acoustic rhinometry during SIC investigation of occupational rhinitis. Twenty-four subjects underwent acoustic rhinometry measurements during S[[IC]] investigation of occupational rhinitis"
+   },
+   {
+    "kind": "random-strong",
+    "window": 4,
+    "pos": 115,
+    "rel": 0.565,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "Ps",
+    "text": " metalloproteinases (TIMPs). A putative regulator of decidualization is prostaglandin E2 (PGE2). The present study shows that endometrial mRNA levels for TIM[[Ps]] 1, 2,"
+   },
+   {
+    "kind": "random-strong",
+    "window": 306,
+    "pos": 216,
+    "rel": 0.704,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "V",
+    "text": ", when perivenular scarring appeared as an increased rim. These lesions were present simultaneously and their intensity and distribution were independent of the duration of alcohol intoxication. Morphometric data obtained from these TH[[V]] confirmed the thickening of the"
+   },
+   {
+    "kind": "random-strong",
+    "window": 27,
+    "pos": 193,
+    "rel": 0.54,
+    "gate_open": false,
+    "source": "USPTO Backgrounds",
+    "lang": "en",
+    "token": "s",
+    "text": " are limitations on the amount of data that may be input to and/or output from a memory device per clock cycle of a system clock. To address these limitations, dual data rate (DDR) SDRAM[[s]] have been recently developed in order"
+   },
+   {
+    "kind": "random-strong",
+    "window": 1353,
+    "pos": 239,
+    "rel": 0.53,
+    "gate_open": false,
+    "source": "Github",
+    "lang": "code",
+    "token": "_block",
+    "text": " * sb)\n{\n\tcli();\n\twhile (sb->s_lock)\n\t\tsleep_on(&(sb->s_wait));\n\tsb->s_lock = 1;\n\tsti();\n}\n\nstatic void free_super(struct super[[_block]] * sb)\n{\n\tcli();\n"
+   },
+   {
+    "kind": "random-strong",
+    "window": 165,
+    "pos": 220,
+    "rel": 0.503,
+    "gate_open": false,
+    "source": "PubMed Abstracts",
+    "lang": "en",
+    "token": "AD",
+    "text": "idity and mortality between both groups at 180 days postimplantation. Eighty-one (n = 81) bridge to transplant (BTT) patients underwent CS or LT HV[[AD]] implantation. Perioperative"
+   }
+  ]
+ }
+}

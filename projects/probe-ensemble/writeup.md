@@ -46,7 +46,26 @@ Files:
 
 ## Findings
 
-See `data/summary.json` (`title_status`, `prereg_outcome`, `seeds`) once all runs finished.
+From `data/summary.json` (gemini-3-flash-preview judge, 200 eval answers per round, 95% prompt-bootstrap CIs):
+
+| run | judged deceptive r0 -> r2 -> r4 -> r6 -> r8 | cut r0 - r8 (CI) |
+|---|---|---|
+| single s0 | 0.78 -> 0.615 -> 0.49 -> 0.45 -> 0.555 | 0.225 (0.14-0.315) |
+| ensemble s0 | 0.78 -> 0.77 -> 0.745 -> 0.495 -> 0.515 | 0.265 (0.185-0.345) |
+| single s1 | 0.78 -> 0.675 -> 0.63 -> 0.515 -> 0.485 | 0.295 (0.21-0.385) |
+| ensemble s1 | 0.78 -> 0.50 -> 0.35 -> 0.375 -> 0.49 | 0.29 (0.20-0.38) |
+
+- Ratio ensemble cut / single cut: seed 0 1.18 (CI 0.83-1.81), seed 1 0.98 (CI 0.68-1.42). Guard passes in both
+  seeds. PREREG s5 -> title status REJECTED.
+- Frozen held-out attention probe AUROC vs judge: 0.787 at r0; r8 single 0.735 / 0.705, ensemble 0.677 / 0.732.
+  PREREG s7 -> prediction outcome unsettled (the AUROC half splits across seeds). Refit at r8: single 0.823 / 0.719,
+  ensemble 0.732 / 0.773 (`data/refit.json`).
+- Detector flags at 5% false-positive rate, r0 -> r8: probe A 0.63 -> 0.04-0.115 in all four runs; every ensemble
+  member 0.46-0.67 -> 0.01-0.17, also in the single arm, where only probe A is in the reward.
+- On the policy's own round-0 answers the ensemble penalty separates judge-deceptive from judge-honest answers by
+  0.20 (probability gap) vs 0.38 for probe A.
+- Control arm (lambda 0) not run (DEVIATIONS.md D3); exploratory ensemble lambda 2 not run.
+- Judge spend: ~$1.44 estimated (`data/spend.jsonl`, includes $0.50 of judge validation).
 
 ## Blog post
 

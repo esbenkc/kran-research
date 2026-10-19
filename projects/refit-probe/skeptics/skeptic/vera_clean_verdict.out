@@ -1,0 +1,12 @@
+full  gap base-lam1_s0: +0.019 [-0.030, +0.066]  test n=394 (base n=397)
+full  gap base-lam1_s1: +0.045 [-0.003, +0.092]  test n=398 (base n=397)
+full  gap base-ens_s0: +0.059 [+0.005, +0.109]  test n=399 (base n=397)
+full  gap base-ens_s1: +0.103 [+0.050, +0.158]  test n=400 (base n=397)
+full verdict: NO
+clean gap base-lam1_s0: +0.008 [-0.040, +0.055]  test n=279 (base n=308)
+clean gap base-lam1_s1: +0.066 [+0.013, +0.119]  test n=269 (base n=308)
+clean gap base-ens_s0: +0.040 [-0.013, +0.093]  test n=294 (base n=308)
+clean gap base-ens_s1: +0.086 [+0.032, +0.143]  test n=306 (base n=308)
+clean verdict: NO
+judge-haiku agreement: {'base': 0.864, 'lam1_s0': 0.863, 'lam1_s1': 0.834, 'ens_s0': 0.862, 'ens_s1': 0.82}
+label guard (base - policy, trigger > 0.05): {'lam1_s0': 0.001, 'lam1_s1': 0.029, 'ens_s0': 0.001, 'ens_s1': 0.044}

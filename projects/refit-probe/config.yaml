@@ -1,0 +1,19 @@
+# Project config. One question, the model, and the figure this project produces.
+name: refit-probe
+question: "Does a probe refit on the trained model's own activations catch the lies that the trained-against probe misses?"
+model: Qwen/Qwen2.5-0.5B-Instruct   # saved round-8 LoRA policies, no training in this project (PREREG.md s3)
+judge: gemini-3-flash-preview       # main deception label; second labeller claude-haiku-4-5 on test answers
+prereg: PREREG.md
+policies:
+  base: no adapter
+  lam1_s0/lam1_s1: probe A (layer 12, mean over answer tokens) in the DPO reward, weight 1 (probe-ensemble)
+  ens_s0/ens_s1: max over 8 probes in the DPO reward, weight 1 (probe-ensemble)
+  lam0_s0/lam0_s1: no probe in the reward (probe-goodhart), reference only
+sources:
+  - https://huggingface.co/datasets/AlignmentResearch/DolusChat
+  - https://github.com/ApolloResearch/deception-detection/blob/main/data/repe/true_false_facts.csv
+  - https://github.com/esbenkc/kran-research/tree/swarm/oracle-1018-probe-ensemble/projects/probe-ensemble
+  - https://github.com/esbenkc/kran-research/tree/swarm/oracle-1014-probe-goodhart/projects/probe-goodhart
+figures:
+  - id: refit-probe
+    caption: "AUROC of a probe refit on each model's own answers vs the number of labelled answers; 400 held-out answers per model."

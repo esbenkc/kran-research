@@ -1,0 +1,55 @@
+     E1 toy: 40 pairs (half with a random rank-8 weight update); max |h_t(x)-h_t(x')| on the shared prefix: causal 4.53e-14, bidirectional control (min over pairs) 1.47e+00
+PASS E1 causal decoder: prefix activations identical within a pair (max abs diff < 1e-12, any weights)
+PASS E1 control: without the causal mask the prefix activations differ (min over pairs > 1e-3)
+PASS E2 mean pool is shift-equivariant (symbolic)
+PASS E2 softmax-weighted pool sum softmax(tau s)_t s_t is shift-equivariant (symbolic)
+PASS E2 max pool and last-token readout are shift-equivariant (2000 random heavy-tailed draws)
+PASS E2 pipeline: a shared push leaves the flagged set unchanged after re-threshold (mean and max, 200 draws each)
+PASS E3 d mean/d s_t = 1/m for every token (autograd, 500 random lengths)
+PASS E3 d max/d s_t = 1[t = argmax] (autograd, 500 random draws)
+PASS E3 softplus(mean score): token weights all equal sigmoid(S)/m
+PASS E4 catch after re-threshold = Phi(D - (1-c) p - z) (symbolic)
+PASS E4 null row c = 0 equals the catch at the OLD threshold (symbolic)
+PASS E4 c = 1 (pure shared push) gives back the clean catch Phi(D - z) (symbolic; E2 in the Gaussian case)
+PASS E4 unequal-variance form reduces to the equal-variance form at s+ = s- = sigma
+PASS E4 order-statistic density integrates to 1
+     E4 MC D=5.0 c=0.8 p=4.0: simulated 0.957, exact finite rule 0.957, z-formula 0.969
+PASS E4 Monte Carlo within 0.01 of the exact finite-rule expectation (D=5.0, c=0.8, p=4.0)
+     E4 MC D=4.0 c=0.5 p=3.0: simulated 0.534, exact finite rule 0.534, z-formula 0.568
+PASS E4 Monte Carlo within 0.01 of the exact finite-rule expectation (D=4.0, c=0.5, p=3.0)
+     E4 MC D=6.0 c=0.95 p=10.0: simulated 0.998, exact finite rule 0.998, z-formula 0.999
+PASS E4 Monte Carlo within 0.01 of the exact finite-rule expectation (D=6.0, c=0.95, p=10.0)
+     E4 bias of the z-formula vs the finite rule: max +0.036 at D-(1-c)p = 2.78, min -0.000; the formula overstates the catch rate by up to 0.036
+PASS E4 z-formula bias vs the finite rule is below 0.05 everywhere (reported in the foldout)
+     E1 data, CROSS-batch clean_tokens.npz L8: max|diff| 0.1250 / median norm 48.01 = 2.6e-03; bit-identical 1484/1496 pairs
+PASS E1 data cross-batch clean_tokens L8: ratio < 1e-2 (stricter setting than the frozen one)
+     E1 data, CROSS-batch clean_tokens.npz L14: max|diff| 0.3750 / median norm 56.84 = 6.6e-03; bit-identical 1484/1496 pairs
+PASS E1 data cross-batch clean_tokens L14: ratio < 1e-2 (stricter setting than the frozen one)
+     E1 data, CROSS-batch lam0__seed0__tokens.npz L8: max|diff| 0.2500 / median norm 48.08 = 5.2e-03; bit-identical 1484/1496 pairs
+PASS E1 data cross-batch lam0__seed0__tokens L8: ratio < 1e-2 (stricter setting than the frozen one)
+     E1 data, CROSS-batch lam0__seed0__tokens.npz L14: max|diff| 0.2500 / median norm 60.24 = 4.1e-03; bit-identical 1484/1496 pairs
+PASS E1 data cross-batch lam0__seed0__tokens L14: ratio < 1e-2 (stricter setting than the frozen one)
+     E1 data, CROSS-batch lam0__seed1__tokens.npz L8: max|diff| 0.2500 / median norm 47.85 = 5.2e-03; bit-identical 1484/1496 pairs
+PASS E1 data cross-batch lam0__seed1__tokens L8: ratio < 1e-2 (stricter setting than the frozen one)
+     E1 data, CROSS-batch lam0__seed1__tokens.npz L14: max|diff| 0.3125 / median norm 60.46 = 5.2e-03; bit-identical 1484/1496 pairs
+PASS E1 data cross-batch lam0__seed1__tokens L14: ratio < 1e-2 (stricter setting than the frozen one)
+     E1 data, CROSS-batch lam0__seed2__tokens.npz L8: max|diff| 0.2500 / median norm 47.95 = 5.2e-03; bit-identical 1484/1496 pairs
+PASS E1 data cross-batch lam0__seed2__tokens L8: ratio < 1e-2 (stricter setting than the frozen one)
+     E1 data, CROSS-batch lam0__seed2__tokens.npz L14: max|diff| 0.3750 / median norm 59.83 = 6.3e-03; bit-identical 1484/1496 pairs
+PASS E1 data cross-batch lam0__seed2__tokens L14: ratio < 1e-2 (stricter setting than the frozen one)
+     E1 data, ONE-batch (lemma_check.json) clean L8: max|diff| 0.0000 / median norm 50.37 = 0.0e+00 over 1496 pairs
+PASS E1 data (PREREG bar, one batch per pair) clean L8: max prefix |diff| / median norm < 1e-2
+     E1 data, ONE-batch (lemma_check.json) clean L14: max|diff| 0.0000 / median norm 57.24 = 0.0e+00 over 1496 pairs
+PASS E1 data (PREREG bar, one batch per pair) clean L14: max prefix |diff| / median norm < 1e-2
+     E1 data, ONE-batch (lemma_check.json) seed0 L8: max|diff| 0.0000 / median norm 48.29 = 0.0e+00 over 1496 pairs
+PASS E1 data (PREREG bar, one batch per pair) seed0 L8: max prefix |diff| / median norm < 1e-2
+     E1 data, ONE-batch (lemma_check.json) seed0 L14: max|diff| 0.0000 / median norm 60.41 = 0.0e+00 over 1496 pairs
+PASS E1 data (PREREG bar, one batch per pair) seed0 L14: max prefix |diff| / median norm < 1e-2
+     E1 data, ONE-batch (lemma_check.json) seed1 L8: max|diff| 0.0000 / median norm 47.85 = 0.0e+00 over 1496 pairs
+PASS E1 data (PREREG bar, one batch per pair) seed1 L8: max prefix |diff| / median norm < 1e-2
+     E1 data, ONE-batch (lemma_check.json) seed1 L14: max|diff| 0.0000 / median norm 60.63 = 0.0e+00 over 1496 pairs
+PASS E1 data (PREREG bar, one batch per pair) seed1 L14: max prefix |diff| / median norm < 1e-2
+     E1 data, ONE-batch (lemma_check.json) seed2 L8: max|diff| 0.0000 / median norm 47.95 = 0.0e+00 over 1496 pairs
+PASS E1 data (PREREG bar, one batch per pair) seed2 L8: max prefix |diff| / median norm < 1e-2
+     E1 data, ONE-batch (lemma_check.json) seed2 L14: max|diff| 0.0000 / median norm 60.75 = 0.0e+00 over 1496 pairs
+PASS E1 data (PREREG bar, one batch per pair) seed2 L14: max prefix |diff| / median norm < 1e-2

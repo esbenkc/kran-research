@@ -55,6 +55,7 @@ export function render(data, Plot) {
     `per run: ${d.after_per_seed.map(pct).join(", ")}\n` +
     `two-bell-curve check: ${pct(d.check)} (spread after / before: ${d.spread_ratio.toFixed(2)})`;
   const order = data.rows.map((r) => r.label);
+  const near = (d) => d.before !== null && d.before > d.after && d.before - d.after < 0.04;
   root.appendChild(Plot.plot({
     style: plotStyle({ fontSize: "13px" }), width: W, height: 260,
     marginLeft: 362, marginRight: 24, marginTop: 8, marginBottom: 40,
@@ -68,7 +69,9 @@ export function render(data, Plot) {
       Plot.tickX(data.rows, { x: "check", y: "label", stroke: C.secondary, strokeWidth: 3 }),
       Plot.dot(data.rows.filter((d) => d.before !== null), { x: "before", y: "label", r: 6, fill: "none", stroke: C.muted, strokeWidth: 1.8, tip: true, title: tipRow }),
       Plot.dot(data.rows, { x: "after", y: "label", r: 6, fill: C.primary, stroke: C.paper, strokeWidth: 1.2, tip: true, title: tipRow }),
-      Plot.text(data.rows, { ...halo(), x: "after", y: "label", text: (d) => pct(d.after), dy: -13, fontSize: 12, fill: C.ink }),
+      // value label above the filled dot; shifted left where the hollow dot sits right next to it (layer-8 row)
+      Plot.text(data.rows.filter((d) => !near(d)), { ...halo(), x: "after", y: "label", text: (d) => pct(d.after), dy: -13, fontSize: 12, fill: C.ink }),
+      Plot.text(data.rows.filter(near), { ...halo(), x: "after", y: "label", text: (d) => pct(d.after), dy: -13, dx: -14, textAnchor: "end", fontSize: 12, fill: C.ink }),
     ],
   }));
 

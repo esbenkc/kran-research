@@ -211,48 +211,64 @@ def main():
     np.random.seed(0)
     boot_catches = []
     
-    # We bootstrap at the city level
     eval_cities = list(set([stmts[i]["city"] for i in eval_false_idx]))
     refit_cities = list(set([stmts[i]["city"] for i in refit_true_idx]))
     
+    # Precompute all predictions to speed up bootstrap
+    # We need predictions for all refit_true and eval_false statements for each seed
+    seed_preds = {}
+    for seed in [0, 1, 2]:
+        attack_data = np.load(data_dir + f"runs/lam0__seed{seed}__tokens.npz")
+        tok_L14_atk = attack_data["tok_L14"]
+        
+        seed_preds[seed] = {"refit": {}, "eval": {}}
+        for idx in refit_true_idx:
+            start, end = tok_off[idx], tok_off[idx+1]
+            X = tok_L14_atk[start+1:end]
+            if len(X) > 0:
+                preds = final_clf.decision_function((X - mu) / std)
+                seed_preds[seed]["refit"][idx] = np.max(preds)
+            else:
+                seed_preds[seed]["refit"][idx] = -1e9
+                
+        for idx in eval_false_idx:
+            start, end = tok_off[idx], tok_off[idx+1]
+            X = tok_L14_atk[start+1:end]
+            if len(X) > 0:
+                preds = final_clf.decision_function((X - mu) / std)
+                seed_preds[seed]["eval"][idx] = np.max(preds)
+            else:
+                seed_preds[seed]["eval"][idx] = -1e9
+    refit_city_to_idx = {c: [] for c in refit_cities}
+    for i in refit_true_idx:
+        refit_city_to_idx[stmts[i]["city"]].append(i)
+        
+    eval_city_to_idx = {c: [] for c in eval_cities}
+    for i in eval_false_idx:
+        eval_city_to_idx[stmts[i]["city"]].append(i)
+
     for _ in range(2000):
         draw_refit_cities = np.random.choice(refit_cities, size=len(refit_cities), replace=True)
         draw_eval_cities = np.random.choice(eval_cities, size=len(eval_cities), replace=True)
         
         seed_catches = []
         for seed in [0, 1, 2]:
-            attack_data = np.load(data_dir + f"runs/lam0__seed{seed}__tokens.npz")
-            tok_L14_atk = attack_data["tok_L14"]
-            
-            # Re-pick threshold
             draw_refit_scores = []
             for c in draw_refit_cities:
-                # Find the refit true statement for city c
-                c_idx = [i for i in refit_true_idx if stmts[i]["city"] == c][0]
-                start = tok_off[c_idx]
-                end = tok_off[c_idx+1]
-                X = tok_L14_atk[start+1:end]
-                if len(X) > 0:
-                    X_norm = (X - mu) / std
-                    preds = final_clf.decision_function(X_norm)
-                    draw_refit_scores.append(np.max(preds))
-                else:
-                    draw_refit_scores.append(-1e9)
-            threshold = sorted(draw_refit_scores, reverse=True)[1]
+                for i in refit_city_to_idx[c]:
+                    draw_refit_scores.append(seed_preds[seed]["refit"][i])
             
-            # Evaluate on draw_eval_cities
+            draw_refit_scores = sorted(draw_refit_scores, reverse=True)
+            threshold = draw_refit_scores[1]
+            
             caught = 0
+            total_eval = 0
             for c in draw_eval_cities:
-                c_idx = [i for i in eval_false_idx if stmts[i]["city"] == c][0]
-                start = tok_off[c_idx]
-                end = tok_off[c_idx+1]
-                X = tok_L14_atk[start+1:end]
-                if len(X) > 0:
-                    X_norm = (X - mu) / std
-                    preds = final_clf.decision_function(X_norm)
-                    if np.max(preds) > threshold:
+                for i in eval_city_to_idx[c]:
+                    total_eval += 1
+                    if seed_preds[seed]["eval"][i] > threshold:
                         caught += 1
-            seed_catches.append(caught / len(draw_eval_cities))
+            seed_catches.append(caught / total_eval)
         boot_catches.append(np.mean(seed_catches))
         
     print(f"Max14 Bootstrap 95% CI: [{np.percentile(boot_catches, 2.5):.4f}, {np.percentile(boot_catches, 97.5):.4f}]")

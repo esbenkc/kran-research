@@ -123,6 +123,15 @@ def prefix_pair_diff(T, off, pairs, k0):
     return {"maxabs": mx, "median_norm": med, "rel": mx / med, "pass_lt_1e-2": mx / med < 1e-2}
 
 
+_TG = np.linspace(-6, 8, 14001)
+_F2 = 200 * 199 * norm.pdf(_TG) * norm.cdf(_TG) ** 198 * (1 - norm.cdf(_TG))  # density of the 2nd-highest of 200 N(0,1)
+
+
+def catch_finite(x):
+    """DEVIATIONS D3: expected catch of the real 2nd-of-200 rule at effective separation x = D - (1-c)p."""
+    return float(np.trapezoid(norm.cdf(x - _TG) * _F2, _TG))
+
+
 def bell(sc, sa, rfT, rfF):
     """Bell-curve check inputs from the refit split (PREREG): D, p, c and the predicted catch rate (and c=0 null)."""
     muT0, muF0, muT1, muF1 = sc[rfT].mean(), sc[rfF].mean(), sa[rfT].mean(), sa[rfF].mean()
@@ -131,7 +140,8 @@ def bell(sc, sa, rfT, rfF):
     c = (muT0 - muT1) / (muF0 - muF1) if abs(muF0 - muF1) > 1e-12 else float("nan")
     sig1 = np.sqrt(0.5 * (sa[rfT].var(ddof=1) + sa[rfF].var(ddof=1)))
     return {"D": float(D), "p": float(p), "c": float(c), "pred": float(norm.cdf(D - (1 - c) * p - Z)),
-            "pred_c0": float(norm.cdf(D - p - Z)), "sigma1_over_sigma0": float(sig1 / sig0)}
+            "pred_c0": float(norm.cdf(D - p - Z)), "sigma1_over_sigma0": float(sig1 / sig0),
+            "pred_finite": catch_finite(D - (1 - c) * p)}
 
 
 def main():
@@ -273,7 +283,8 @@ def main():
         rows_ = [bell(S_clean[k][m], S[k][m], rf, rfF) for k in seeds]
         bc[m] = {"per_seed": rows_, "pred": float(np.mean([r["pred"] for r in rows_])),
                  "pred_c0": float(np.mean([r["pred_c0"] for r in rows_])), "measured": pooled[m]["catch"],
-                 "sigma1_over_sigma0": float(np.mean([r["sigma1_over_sigma0"] for r in rows_]))}
+                 "sigma1_over_sigma0": float(np.mean([r["sigma1_over_sigma0"] for r in rows_])),
+                 "pred_finite": float(np.mean([r["pred_finite"] for r in rows_]))}
 
     # ---- diagnostics
     diag = {}

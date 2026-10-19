@@ -67,7 +67,6 @@ def main():
         return sum(c for p, c in d.items() if int(p) < 0) / tot
     ans = R["diagnostics"]["max14_answer_only"]
     data = {
-        "status": R["status"],
         "rows": rows,
         "positions": positions,
         "highest_token_is_shared": {"before": r4(prefix_share(am["clean"])),

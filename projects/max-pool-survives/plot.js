@@ -8,7 +8,7 @@
 //      original model's spread at that position. Hollow: original model. Filled: after the fine-tune (mean of 3 runs;
 //      small dots = each run). Shaded: the shared tokens, which are the same in both statements, so the gap there is 0
 //      (up to bf16 rounding between batches; with both statements in one batch it is exactly 0).
-// data = { status, rows: [{probe, label, before (null for the new probe), after, after_lo, after_hi, after_per_seed,
+// data = { rows: [{probe, label, before (null for the new probe), after, after_lo, after_hi, after_per_seed,
 //          check, check_finite, spread_ratio}], positions: [{pos, before, after, after_per_seed, n_false}],
 //          highest_token_is_shared: {before, after_per_seed}, answer_tokens_only_after_per_seed, n }
 import { C, FONT, halo, plotStyle } from "../theme.js";

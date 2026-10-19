@@ -1,0 +1,28 @@
+self-check frozen on token means vs 1018 clean score: max|diff| 1.71e-07
+max14 C 0.01 {0.01: 0.9903333333333333, 0.1: 0.9804722222222221, 1.0: 0.9518611111111112, 10.0: 0.9241944444444444}
+mean8 C 0.01 {0.01: 0.7299999999999999, 0.1: 0.7260555555555556, 1.0: 0.7005, 10.0: 0.6702222222222222}
+last14 C 0.01 {0.01: 0.9975555555555555, 0.1: 0.9973333333333334, 1.0: 0.9971111111111112, 10.0: 0.9951666666666666}
+attacked files: ['../../kran-research/projects/max-pool-survives/data/runs/lam0__seed0__tokens.npz', '../../kran-research/projects/max-pool-survives/data/runs/lam0__seed1__tokens.npz', '../../kran-research/projects/max-pool-survives/data/runs/lam0__seed2__tokens.npz']
+lam0__seed0__tokens {'frozen': (0.0067, 0.583), 'max14': (0.0, 0.5231), 'mean8': (0.0654, 0.6566), 'last14': (0.0117, 0.6145), 'fresh': (0.3456, 0.9885)}
+lam0__seed1__tokens {'frozen': (0.0084, 0.5725), 'max14': (0.0, 0.5012), 'mean8': (0.0705, 0.6675), 'last14': (0.0067, 0.6523), 'fresh': (0.3708, 0.9873)}
+lam0__seed2__tokens {'frozen': (0.0084, 0.571), 'max14': (0.0, 0.5045), 'mean8': (0.0554, 0.6711), 'last14': (0.005, 0.7137), 'fresh': (0.3658, 0.9888)}
+pooled catch {'frozen': 0.007829977628635347, 'max14': 0.0, 'mean8': 0.06375838926174497, 'fresh': 0.360738255033557, 'last14': 0.007829977628635347}
+done 19s
+       20.04 real        19.74 user         0.29 sys
+          2870558720  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              192603  page reclaims
+                  24  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   1  messages sent
+                   1  messages received
+                   1  signals received
+                   8  voluntary context switches
+                 225  involuntary context switches
+           156038297  instructions retired
+            50200560  cycles elapsed
+            14156256  peak memory footprint

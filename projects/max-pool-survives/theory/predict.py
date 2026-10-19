@@ -10,7 +10,7 @@ Per monitor and seed, from the REFIT split only (200 true, 200 false; PREREG.md 
   pred_uv     = Phi((mu_F1 - mu_T1 - z sd_T1) / sd_F1)                  (unequal-variance form, attacked moments)
 Measured: catch rate on the 596 eval FALSE statements at t = 2nd-highest of the 200 refit TRUE scores of the same
 model state (PREREG threshold rule). 'fresh' is fit per seed on attacked acts; its clean-state scores are that
-seed's fresh probe applied to the CLEAN acts, key 'cleanfor_<seed>__fresh' in scores.npz (Felix #3201). Without
+seed's fresh probe applied to the CLEAN acts, key 'clean_<seed>__fresh' in scores.npz (Felix #3201). Without
 that key, fresh gets no prediction and the script says so.
 
 Run: uv run python theory/predict.py   -> theory/predict.json
@@ -49,7 +49,7 @@ def main():
     for m in mons:
         rows = []
         for st in seeds:
-            ck = f"cleanfor_{st}__{m}" if m == "fresh" else f"clean__{m}"
+            ck = f"clean_{st}__{m}" if m == "fresh" else f"clean__{m}"
             if ck not in S.files:
                 print(f"NO PREDICTION for {m} {st}: key {ck} missing in scores.npz")
                 continue

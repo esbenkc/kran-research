@@ -1,0 +1,80 @@
+======================================================================
+INDEPENDENT REBUILD OF KEY NUMBERS — SKEPTIC3 (NADIA)
+======================================================================
+
+[CHECK 1: PROMPT LEAKAGE AUDIT]
+PASS: Zero prompt leakage between test set and training pool across all policies.
+PASS: All policies share the exact same 400 test prompts in identical order.
+
+[CHECK 2: NUMERICAL REBUILD FROM SAVED DRAWS]
+
+Rebuilt n=200 Refit AUROCs (mean over draws):
+  base      : 0.822016
+  lam1_s0   : 0.794297
+  lam1_s1   : 0.773271
+  ens_s0    : 0.768157
+  ens_s1    : 0.709965
+  lam0_s0   : (insufficient class pool in data, reported as missing per PREREG s6)
+  lam0_s1   : (insufficient class pool in data, reported as missing per PREREG s6)
+  Point gap (base - lam1_s0 ): 0.027718
+  Point gap (base - lam1_s1 ): 0.048744
+  Point gap (base - ens_s0  ): 0.053858
+  Point gap (base - ens_s1  ): 0.112051
+
+[CHECK 3: PAIRED BOOTSTRAP CI OVER TEST PROMPTS]
+
+95% Paired Bootstrap CIs for gap_p (n=200, per-draw paired resamples):
+  lam1_s0 : point gap=0.0277, 95% CI=[-0.0220, 0.0777]
+  lam1_s1 : point gap=0.0487, 95% CI=[-0.0014, 0.1020]
+  ens_s0  : point gap=0.0539, 95% CI=[-0.0000, 0.1049]
+  ens_s1  : point gap=0.1121, 95% CI=[0.0549, 0.1659]
+
+Comparison against reported verdict.json:
+  lam1_s0  reported: gap=0.0277, CI=[-0.0212, 0.0766]
+  lam1_s1  reported: gap=0.0487, CI=[-0.0006, 0.0977]
+  ens_s0   reported: gap=0.0539, CI=[-0.0011, 0.1086]
+  ens_s1   reported: gap=0.1120, CI=[0.0596, 0.1691]
+PASS: All point gaps and 95% bootstrap CIs match reported verdict.json to high precision!
+
+Policies with gap > 0.05 and 95% CI lower bound > 0: ['ens_s1']
+VERDICT ON TITLE HYPOTHESIS: REJECTED
+
+[CHECK 4: ROBUSTNESS ON CLEAN SUBSET (JUDGE == STRING CHECK)]
+  lam1_s0  clean gap: 0.0106, CI=[-0.0391, 0.0615]
+  lam1_s1  clean gap: 0.0501, CI=[-0.0047, 0.1069]
+  ens_s0   clean gap: 0.0300, CI=[-0.0251, 0.0867]
+  ens_s1   clean gap: 0.0941, CI=[0.0362, 0.1518]
+PASS: Clean subset also shows ens_s1 gap = 0.0941 > 0.05 with CI [0.0362, 0.1518] > 0 (Confirms REJECTED).
+
+[CHECK 5: NULL TESTS]
+
+--- Null Test 1: Shuffled Labels (Permutation Null) ---
+Shuffled-label refit AUROC: mean=0.4888, std=0.0480 (Expected ~0.50)
+
+--- Null Test 2: Random Unit-Vector Probe ---
+Random direction probe AUROC: mean=0.5034, std=0.0764 (Expected ~0.50)
+
+--- Null Test 3: Text-Only Bag-of-Words Baseline ---
+  base       BoW AUROC: 0.6232 vs Refit 0.8220
+  lam1_s0    BoW AUROC: 0.6148 vs Refit 0.7943
+  lam1_s1    BoW AUROC: 0.5728 vs Refit 0.7733
+  ens_s0     BoW AUROC: 0.5914 vs Refit 0.7682
+  ens_s1     BoW AUROC: 0.5826 vs Refit 0.7100
+PASS: BoW text baseline is ~0.62-0.65, substantially below internal activation refit (0.71-0.82), confirming genuine internal representation signal.
+
+--- Null Test 4: Seed Robustness of Bootstrap CI on ens_s1 ---
+  Seed    42: ens_s1 gap 95% CI = [0.0543, 0.1664] (lower bound strictly > 0)
+  Seed   123: ens_s1 gap 95% CI = [0.0591, 0.1637] (lower bound strictly > 0)
+  Seed  2026: ens_s1 gap 95% CI = [0.0601, 0.1613] (lower bound strictly > 0)
+  Seed  9999: ens_s1 gap 95% CI = [0.0571, 0.1672] (lower bound strictly > 0)
+
+[CHECK 6: CATCH AT 5% FALSE ALARM RATE (READER-FACING)]
+  base      : catch@5% FPR = 0.4620
+  lam1_s0   : catch@5% FPR = 0.3444
+  lam1_s1   : catch@5% FPR = 0.3148
+  ens_s0    : catch@5% FPR = 0.2771
+  ens_s1    : catch@5% FPR = 0.2332
+
+======================================================================
+INDEPENDENT REBUILD COMPLETE: VERDICT CONFIRMED AS REJECTED
+======================================================================

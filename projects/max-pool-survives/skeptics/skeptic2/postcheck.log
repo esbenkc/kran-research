@@ -1,0 +1,18 @@
+L72 drop of token score (clean - attacked), eval split:
+  seed0: answer-false 11.41  answer-true 5.82  shared 7.90
+  seed1: answer-false 11.40  answer-true 5.84  shared 7.58
+  seed2: answer-false 11.27  answer-true 5.78  shared 7.44
+L107 clean: false>twin 0.992  tie 0.005  false<twin 0.003
+L107 0: false>twin 0.141  tie 0.826  false<twin 0.034
+L107 1: false>twin 0.045  tie 0.923  false<twin 0.032
+L107 2: false>twin 0.034  tie 0.946  false<twin 0.020
+L169 first-answer-token-only clean: catch 0.9581
+L169 first-answer-token-only 0: catch 0.0168
+L169 first-answer-token-only 1: catch 0.0201
+L169 first-answer-token-only 2: catch 0.0336
+L76 last14: statement-score corr with frozen (eval, all) 0.960  within-class mean 0.662  token-level corr 0.570
+L76 max14: statement-score corr with frozen (eval, all) 0.925  within-class mean 0.507  token-level corr 0.906
+L156 seed0: array_equal(1019 scores, 1018 scores) = True  maxabs 0.00e+00
+L156 seed1: array_equal(1019 scores, 1018 scores) = True  maxabs 0.00e+00
+L156 seed2: array_equal(1019 scores, 1018 scores) = True  maxabs 0.00e+00
+L166 half-line over 200 random halves: share of (half,seed) with catch 0: 0.785; max 0.0537; mean 0.0021

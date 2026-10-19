@@ -66,9 +66,10 @@ export function render(data, Plot) {
       Plot.ruleX([0.5], { stroke: C.muted, strokeWidth: 1.5, strokeDasharray: "4,3" }),
       Plot.link(data.rows.filter((d) => d.before !== null), { x1: "before", x2: "after", y1: "label", y2: "label", stroke: C.faint, strokeWidth: 1 }),
       Plot.ruleY(data.rows, { y: "label", x1: "after_lo", x2: "after_hi", stroke: C.primary, strokeWidth: 2.2, strokeOpacity: 0.75 }),
-      Plot.tickX(data.rows, { x: "check", y: "label", stroke: C.secondary, strokeWidth: 3 }),
       Plot.dot(data.rows.filter((d) => d.before !== null), { x: "before", y: "label", r: 6, fill: "none", stroke: C.muted, strokeWidth: 1.8, tip: true, title: tipRow }),
       Plot.dot(data.rows, { x: "after", y: "label", r: 6, fill: C.primary, stroke: C.paper, strokeWidth: 1.2, tip: true, title: tipRow }),
+      // bell-curve tick drawn after the dots and kept below the value label (tick reaches lower than higher)
+      Plot.tickX(data.rows, { x: "check", y: "label", stroke: C.secondary, strokeWidth: 3, insetTop: 13, insetBottom: 2 }),
       // value label above the filled dot; shifted left where the hollow dot sits right next to it (layer-8 row)
       Plot.text(data.rows.filter((d) => !near(d)), { ...halo(), x: "after", y: "label", text: (d) => pct(d.after), dy: -13, fontSize: 12, fill: C.ink }),
       Plot.text(data.rows.filter(near), { ...halo(), x: "after", y: "label", text: (d) => pct(d.after), dy: -13, dx: -14, textAnchor: "end", fontSize: 12, fill: C.ink }),

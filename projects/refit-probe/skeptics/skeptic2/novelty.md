@@ -2,7 +2,7 @@
 
 Searched independently (web search, 2026-10-19). What the closest work already reports:
 
-- **Libon et al., arXiv 2609.38645** ("Alignment via Training Against Probes Without Losing Monitorability"): linear probes fitted from scratch on the trained models reach held-out AUROC 0.85-0.90 (harmfulness) and 0.98-0.99 (dishonesty), close to the base models. Their main regime uses continuously updated probes and 8B/7B-scale models; no label-count curve; no held-text control. https://arxiv.org/abs/2609.38645
+- **Libon et al., arXiv 2609.38645** ("Alignment via Training Against Probes Without Losing Monitorability"): linear probes fitted from scratch on the trained models reach held-out AUROC 0.85-0.90 (harmfulness) and 0.98-0.99 (dishonesty), close to the base models. The dishonesty refit is on Qwen3-14B (0.99 -> 0.98) and only in the continuously-updated-probe regime; Llama 3 8B and Mistral 7B are the harmfulness rows (frozen/retrained regimes are harmfulness only, Table 3, App. B.3). No label-count curve; no held-text control. https://arxiv.org/abs/2609.38645
 - **Wehner & Fritz, arXiv 2510.21531**: "simply retraining probes after optimization recovers high detection accuracy", for toxicity with probe-based SFT/DPO. Not deception, no label-count curve. https://arxiv.org/abs/2510.21531
 - **Cundy & Gleave, arXiv 2505.13787** (DolusChat): a frozen lie detector can still catch an evading policy's lies with a lower decision boundary, at more false alarms. Frozen detector only.
 - **Taufeeque et al. (Obfuscation Atlas), arXiv 2602.15515**, App. L: continual retraining during RL gave no significant help, attributed to off-domain refit data.

@@ -3,7 +3,7 @@
   "rows": [
     {
       "probe": "max_pooled",
-      "label": "Max-pooled probe (loudest word)",
+      "label": "Max-pooled probe (highest token)",
       "before": 0.9144,
       "after": 0.0,
       "after_lo": 0.0,
@@ -23,8 +23,8 @@
       "spread_ratio": 1.8632
     },
     {
-      "probe": "last_word",
-      "label": "Last-word probe (control)",
+      "probe": "last_token",
+      "label": "Last-token probe (control)",
       "before": 0.9966,
       "after": 0.0078,
       "after_lo": 0.0,
@@ -45,7 +45,7 @@
     },
     {
       "probe": "averaging_target",
-      "label": "Averaging probe (the attack's target)",
+      "label": "Averaging probe (the fine-tune's target)",
       "before": 0.9597,
       "after": 0.0078,
       "after_lo": 0.0,
@@ -66,7 +66,7 @@
     },
     {
       "probe": "averaging_layer8",
-      "label": "Averaging probe, earlier layer 8",
+      "label": "Averaging probe, layer 8",
       "before": 0.0738,
       "after": 0.0638,
       "after_lo": 0.0145,
@@ -86,8 +86,8 @@
       "spread_ratio": 0.9513
     },
     {
-      "probe": "averaging_retrained",
-      "label": "Averaging probe retrained after the attack",
+      "probe": "averaging_new",
+      "label": "New averaging probe (trained on the fine-tuned model)",
       "before": null,
       "after": 0.3607,
       "after_lo": 0.3076,
@@ -197,7 +197,7 @@
       "n_false": 83
     }
   ],
-  "loudest_word_on_prefix": {
+  "highest_token_is_shared": {
     "before": 0.0067,
     "after_per_seed": [
       0.8557,
@@ -205,7 +205,7 @@
       0.9664
     ]
   },
-  "answer_words_only_after_per_seed": [
+  "answer_tokens_only_after_per_seed": [
     0.0101,
     0.005,
     0.0034

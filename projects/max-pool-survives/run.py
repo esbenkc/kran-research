@@ -2,13 +2,13 @@
 
 Inputs : data/results/results.json, data/results/scores.npz
 Output : figures/max-pool-survives/{data.json, plot.js}; with --publish also copied to the blog clone
-Figure : TOP: catch rate at 1% false alarms per probe, before the attack (hollow circle) and after it with a new
-         alarm line set on 200 true statements scored by the attacked model (filled dot, 95% city-bootstrap interval,
-         3 seeds pooled); short bar = the two-bell-curve check (PREREG, frozen z-formula); dashed line = the 50% bar.
-         BOTTOM: how far apart false and true statements score on each word, for the max-pooled probe, by word position
-         relative to the first answer word (the first word where the true and the false sentence differ), in units of
-         the clean spread at that position; before (hollow) and after (filled, mean of 3 seeds; thin = each seed).
-         Shaded: the shared prefix, where the lemma says the gap is exactly 0.
+Figure : TOP: catch rate at 1% false alarms per probe, on the original model (hollow circle) and after the fine-tune
+         with a new alarm line set on 200 true statements scored by the fine-tuned model (filled dot, 95% city-bootstrap
+         interval, 3 runs pooled); short bar = the bell-curve check (PREREG, frozen z-formula); dashed line = 50% bar.
+         BOTTOM: how far apart false and true statements score on each token, for the max-pooled probe, by token
+         position relative to the first answer token (the first token where the true and the false statement differ),
+         in units of the original model's spread at that position; original (hollow) and after the fine-tune (filled,
+         mean of 3 runs; small dots = each run). Shaded: the shared tokens, where the lemma says the gap is exactly 0.
 Run    : uv run python run.py [--publish]
 """
 import argparse
@@ -25,11 +25,11 @@ BLOG_FIGURES = PROJECT_DIR.parents[2] / "blog.kran.ai" / "assets" / "figures"  #
 RES = PROJECT_DIR / "data" / "results"
 
 PROBES = [  # results.json id -> (data key, label in the post's terms)
-    ("max14", "max_pooled", "Max-pooled probe (loudest word)"),
-    ("last14", "last_word", "Last-word probe (control)"),
-    ("frozen", "averaging_target", "Averaging probe (the attack's target)"),
-    ("mean8", "averaging_layer8", "Averaging probe, earlier layer 8"),
-    ("fresh", "averaging_retrained", "Averaging probe retrained after the attack"),
+    ("max14", "max_pooled", "Max-pooled probe (highest token)"),
+    ("last14", "last_token", "Last-token probe (control)"),
+    ("frozen", "averaging_target", "Averaging probe (the fine-tune's target)"),
+    ("mean8", "averaging_layer8", "Averaging probe, layer 8"),
+    ("fresh", "averaging_new", "New averaging probe (trained on the fine-tuned model)"),
 ]
 
 
@@ -48,7 +48,7 @@ def main():
         P = R["pooled"][rid]
         before = R["pooled_clean"][rid]["catch"]
         rows.append({"probe": key, "label": label,
-                     # the retrained probe has no clean-model 'before': it was fit on the attacked model (Vera #3262)
+                     # the new probe has no original-model 'before': it was fit on the fine-tuned model (Vera #3262)
                      "before": None if rid == "fresh" else r4(before),
                      "after": r4(P["catch"]), "after_lo": r4(P["ci95"][0]), "after_hi": r4(P["ci95"][1]),
                      "after_per_seed": [r4(v) for v in P["per_seed"]],
@@ -70,9 +70,9 @@ def main():
         "status": R["status"],
         "rows": rows,
         "positions": positions,
-        "loudest_word_on_prefix": {"before": r4(prefix_share(am["clean"])),
+        "highest_token_is_shared": {"before": r4(prefix_share(am["clean"])),
                                    "after_per_seed": [r4(prefix_share(am[s])) for s in seeds]},
-        "answer_words_only_after_per_seed": [r4(ans[s]["catch_answer_tokens"]) for s in seeds],
+        "answer_tokens_only_after_per_seed": [r4(ans[s]["catch_answer_tokens"]) for s in seeds],
         "n": {"false_statements": R["n"]["eval_false"], "true_statements_for_alarm_line": R["n"]["refit_true"],
               "seeds": len(seeds)},
     }

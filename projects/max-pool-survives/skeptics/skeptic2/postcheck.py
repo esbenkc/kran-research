@@ -78,3 +78,12 @@ for _ in range(200):
 vals = np.array(vals)
 print(f"L166 half-line over 200 random halves: share of (half,seed) with catch 0: {np.mean(vals == 0):.3f}; "
       f"max {vals.max():.4f}; mean {vals.mean():.4f}")
+
+# line 143: whitened cosine with within-class covariance of clean L14 token activations
+Xc = X["clean"]; yt = y
+for nm, msk in {"all tokens": np.ones(len(tst), bool), "probe split": probe_tok}.items():
+    A = Xc[msk].astype(np.float64); yy = yt[msk]
+    R = np.concatenate([A[yy == k] - A[yy == k].mean(0) for k in (0, 1)])
+    S = R.T @ R / (len(R) - 2)
+    wc = lambda u, v: u @ S @ v / np.sqrt((u @ S @ u) * (v @ S @ v))
+    print(f"L143 whitened cosine ({nm}): max14-frozen {wc(w14, wf):.3f}  last14-frozen {wc(wl, wf):.3f}")

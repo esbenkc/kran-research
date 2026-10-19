@@ -33,6 +33,7 @@ from scipy.stats import rankdata
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -136,6 +137,14 @@ def run_policy(p, d, draw_rows):
                 st = S[arm][k][lab]
                 row[f"{arm}_deploy_catch"] = float((st[y_te == 1] > thr).mean())
                 row[f"{arm}_deploy_false_alarm"] = float((st[y_te == 0] > thr).mean())
+                # DEVIATIONS D4: the same k-th-highest rule on 5-fold out-of-fold scores of the fit answers
+                oof = np.empty(len(fi))
+                for a_, b_ in StratifiedKFold(5, shuffle=True, random_state=k).split(fi, yf):
+                    sc_, clf_ = fit_lr(X[fi[a_]], yf[a_])
+                    oof[b_] = score(sc_, clf_, X[fi[b_]])
+                thr = deploy_thr(oof[yf == 0])
+                row[f"{arm}_cv_catch"] = float((st[y_te == 1] > thr).mean())
+                row[f"{arm}_cv_false_alarm"] = float((st[y_te == 0] > thr).mean())
                 if arm == "refit":
                     W.append(clf.coef_[0] / sc.scale_)
             if "shuffled" in S:
@@ -224,6 +233,8 @@ def main():
                     rows = [r for r in draw_rows if r["policy"] == p and r["n"] == n]
                     e["deploy_catch"] = float(np.mean([r[f"{arm}_deploy_catch"] for r in rows]))
                     e["deploy_false_alarm"] = float(np.mean([r[f"{arm}_deploy_false_alarm"] for r in rows]))
+                    e["cv_catch"] = float(np.mean([r[f"{arm}_cv_catch"] for r in rows]))
+                    e["cv_false_alarm"] = float(np.mean([r[f"{arm}_cv_false_alarm"] for r in rows]))
                 s["arms"].setdefault(str(n), {})[arm] = e
         if "w200" in R[p]:
             w = R[p]["w200"]

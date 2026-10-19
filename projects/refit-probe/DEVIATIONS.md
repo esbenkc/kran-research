@@ -20,3 +20,11 @@ The footprint watchdog (kill line 4.3 GB) stopped gen.py at 4.37 GB during ens_s
 lam1_s1 was complete and is kept. Vera confirmed the swarm rule is 5 GB total, her 4 GB line was a margin (room #2948),
 so the kill line is now 4.65 GB (+0.3 GB label job < 5 GB). ens_s1, lam0_s0, lam0_s1 restart; same seeds, no
 change to data or method.
+
+## D4 (03:45 CEST, Bruno) — added a cross-validated deployable threshold (reported next to the prereg one)
+
+PREREG s7's deployable catch sets the alarm line on the refit's IN-SAMPLE scores of the n fit honest answers. The
+refit has already pushed those scores low, so the realised test false-alarm rate is 0.48-0.56 at n=200, far from the
+intended 5% (Selma, room #2963). refit.py now also reports `cv_catch` / `cv_false_alarm`: the same k-th-highest rule
+on 5-fold out-of-fold scores of the fit answers (StratifiedKFold, random_state = draw). The prereg version stays in
+summary.json unchanged; no verdict number changes (verdict.json identical before and after).

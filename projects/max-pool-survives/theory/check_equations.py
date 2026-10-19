@@ -22,7 +22,8 @@ Threshold rule: t = 2nd-highest score of 200 true statements (fresh-negative FPR
                         Unequal-variance form (measured moments): catch = Phi((mu+_a - mu-_a - z s-_a) / s+_a).
 
 Data check of E1 (PREREG.md:106-114): max prefix |diff| within pairs / median activation norm, per layer, clean and
-per seed, each pair in ONE batch (J5 output data/lemma/*.npz); bar < 1e-2. Cross-batch files are reported only.
+per seed, each pair in ONE batch (J5: lemma_check.py -> data/results/lemma_check.json); bar < 1e-2. The stored
+cross-batch tensors are recomputed here independently (a stricter setting: pairs in different padded batches).
 
 Run: uv run python theory/check_equations.py   (prints PASS lines; exits 1 on any failure)
 """
@@ -204,9 +205,8 @@ check("E4 z-formula bias vs the finite rule is below 0.05 everywhere (reported i
 # ---------------------------------------------------------------- E1 on the real activations (PREREG.md:106-114)
 # Frozen metric: max |h_t(x) - h_t(x')| over shared-prefix tokens of all pairs, divided by the median activation
 # norm (L2 norm of a token's activation vector), per layer, clean and per seed; bar < 1e-2; each pair in ONE batch.
-# The one-batch inputs come from Bruno's J5 (data/lemma/*.npz, same keys as clean_tokens.npz: tok_L<L>, tok_off).
-# The cross-batch files (clean_tokens.npz, runs/*__tokens.npz) are reported too, labelled cross-batch: they are the
-# reason for the one-batch rule, not the frozen check.
+# The one-batch forward pass is Bruno's J5 (lemma_check.py -> data/results/lemma_check.json), read below.
+# The cross-batch files (clean_tokens.npz, runs/*__tokens.npz) are recomputed here from the stored tensors.
 # History (disclosed): my first version (06:20 PDT) used max|diff|/max|activation| and a bar I picked; Kasper #3196
 # rejected the swap. This section now computes only the frozen metric.
 def prefix_lemma_metric(npz_path, rows, ids, layers=(8, 14)):
@@ -240,19 +240,25 @@ if split_path.exists():
     rows = json.loads(split_path.read_text())
     tok = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-1.5B-Instruct")
     ids = [tok(r["text"], add_special_tokens=False)["input_ids"] for r in rows]
-    one_batch = sorted((ROOT / "data" / "lemma").glob("*.npz")) if (ROOT / "data" / "lemma").exists() else []
     cross = ([ct_path] if ct_path.exists() else []) + sorted((ROOT / "data" / "runs").glob("lam0__seed*__tokens.npz"))
-    for path in cross:
+    for path in cross:  # independent recomputation from the stored tensors (pairs in different padded batches)
         for L, r in prefix_lemma_metric(path, rows, ids).items():
             print(f"     E1 data, CROSS-batch {path.name} L{L}: max|diff| {r['max_abs_diff']:.4f} / median norm "
                   f"{r['median_norm']:.2f} = {r['ratio']:.1e}; bit-identical {r['bit_identical']}/{r['pairs']} pairs")
-    for path in one_batch:
-        for L, r in prefix_lemma_metric(path, rows, ids).items():
-            print(f"     E1 data, ONE-batch {path.name} L{L}: max|diff| {r['max_abs_diff']:.4f} / median norm "
-                  f"{r['median_norm']:.2f} = {r['ratio']:.1e}; bit-identical {r['bit_identical']}/{r['pairs']} pairs")
-            check(f"E1 data (PREREG bar) {path.stem} L{L}: max prefix |diff| / median norm < 1e-2", r["ratio"] < 1e-2)
-    if not one_batch:
-        print("SKIP E1 frozen data check: data/lemma/*.npz (J5, one batch per pair) not written yet")
+            check(f"E1 data cross-batch {path.stem} L{L}: ratio < 1e-2 (stricter setting than the frozen one)", r["ratio"] < 1e-2)
+    # The frozen one-batch forward pass is Bruno's lemma_check.py (J5; both members of a pair in one batch, clean and
+    # each saved adapter); its output data/results/lemma_check.json is read here against the frozen bar.
+    lj = ROOT / "data" / "results" / "lemma_check.json"
+    if lj.exists():
+        J = json.loads(lj.read_text())
+        for st in ("clean", "seed0", "seed1", "seed2"):
+            for L in ("L8", "L14"):
+                r = J[st][L]
+                print(f"     E1 data, ONE-batch (lemma_check.json) {st} {L}: max|diff| {r['maxabs']:.4f} / median norm "
+                      f"{r['median_norm']:.2f} = {r['rel']:.1e} over {J['n_pairs']} pairs")
+                check(f"E1 data (PREREG bar, one batch per pair) {st} {L}: max prefix |diff| / median norm < 1e-2", r["rel"] < 1e-2)
+    else:
+        print("SKIP E1 frozen data check: data/results/lemma_check.json (J5) not written yet")
 else:
     print("SKIP E1 data checks (data/split.json missing)")
 

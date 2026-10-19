@@ -191,7 +191,7 @@ def main():
 
     sC, M14c, tokC = score(Tc[LAYER], Tc[OTHER])
     S, TOK, fresh_fit, repro, lemma = {}, {"clean": tokC}, {}, {}, {}
-    S_clean = {}
+    S_clean, fresh_w = {}, {}
     for seed in SEEDS:
         stem = f"lam0__seed{seed}"
         z = np.load(RUNS / f"{stem}__tokens.npz")
@@ -204,6 +204,7 @@ def main():
         S_clean[f"seed{seed}"] = sC | {"fresh": M14c @ wf + bf}  # the same scoring functions on clean activations
         TOK[f"seed{seed}"] = tokA
         fresh_fit[seed] = {"C": Cf, "cv_auroc": cvf}
+        fresh_w[seed] = wf
         logged = np.load(RUNS / f"{stem}.npz")["scores"][-1].astype(np.float64)
         au = float(roc_auc_score(y[ev], s["frozen"][ev]))
         repro[seed] = {"frozen_auroc_eval": au, "auroc_1018": REPRO_1018[seed],
@@ -330,6 +331,33 @@ def main():
         null[k] = catch(sn, rf, ep)[0]
     null["clean"] = catch(seg_max(Tc[LAYER] @ wn + bn, off), rf, ep)[0]
     diag["shuffled_label_null_max14"] = null
+    # max14 read only on the answer tokens (first label-bearing token onward), and on the first answer token only
+    # (Kasper #3213; not pre-registered): does the probe fail because the prefix wins the max, or because the
+    # answer tokens themselves lost their separation?
+    ans = rel >= 0
+    first = rel == 0
+    diag["max14_answer_only"] = {}
+    for k in ["clean"] + seeds:
+        v = TOK[k]["max14"]
+        s_ans = np.maximum.reduceat(np.where(ans, v, -np.inf), off[:-1])
+        s_first = np.maximum.reduceat(np.where(first, v, -np.inf), off[:-1])
+        diag["max14_answer_only"][k] = {"catch_answer_tokens": catch(s_ans, rf, ep)[0],
+                                        "catch_first_answer_token": catch(s_first, rf, ep)[0],
+                                        "auroc_answer_tokens": float(roc_auc_score(y[ev], s_ans[ev]))}
+    # probe directions at L14 (Tove #3208 item 4, Iris #3212): plain cosine and whitened cosine
+    # cos_S(u, w) = u'Sw / sqrt(u'Su w'Sw), S = within-class covariance of the clean per-token L14 activations of the
+    # probe split (each token centred on its statement-label class mean)
+    rows_pr = np.concatenate([np.arange(off[i], off[i + 1]) for i in pr])
+    Xp = Tc[LAYER][rows_pr]
+    lp = np.repeat(y[pr], ntok[pr])
+    Xc = Xp - np.where(lp[:, None] == 1, Xp[lp == 1].mean(0), Xp[lp == 0].mean(0))
+    Sw = Xc.T @ Xc / (len(Xc) - 2)
+    dirs = {"max14": wm, "last14": wl} | {f"fresh_seed{k}": fresh_w[k] for k in SEEDS}
+    cs = lambda u, w: float(u @ Sw @ w / np.sqrt((u @ Sw @ u) * (w @ Sw @ w)))
+    cp = lambda u, w: float(u @ w / np.linalg.norm(u) / np.linalg.norm(w))
+    diag["cosine_with_frozen_L14"] = {k: {"plain": cp(w0, v), "whitened": cs(w0, v)} for k, v in dirs.items()}
+    diag["cosine_with_frozen_L14"]["max14_vs_last14"] = {"plain": cp(wm, wl), "whitened": cs(wm, wl)}
+    del Xp, Xc
 
     dl = diffs["max14_minus_last14"]
     framing = "max pooling helps" if dl["ci95"][0] > 0 else "the answer tokens carry the signal"  # Amendment 1.2

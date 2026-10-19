@@ -14,3 +14,10 @@ post says the answer tokens carry the signal;
 
 ## D2. Scored checkpoint named (Vera #3185; committed with this file, before any attacked scoring)
 Only the final step 150 of each seed is scored. No intermediate check is used for any number in the post.
+
+## D3. Finite-sample bell-curve value reported next to the frozen formula (Iris #3193, before attacked scoring)
+The frozen formula Phi(D - (1-c)p - z) with z = Phi^-1(1 - 2/201) overstates the expected catch of the real
+2nd-of-200 rule by up to 0.036 near the 50% bar. The hollow mark in the figure stays the frozen formula.
+results.json also reports the exact finite-rule value E[catch] = int Phi(D - (1-c)p - t) f(t) dt, with f the
+density of the 2nd-highest of 200 standard normals (theory/check_equations.py, catch_exact). Extra, not a
+replacement; it enters no rule.

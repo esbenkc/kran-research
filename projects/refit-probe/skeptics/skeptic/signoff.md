@@ -21,6 +21,9 @@ All numbers below come from my own code on the raw files (`data/answers_*.jsonl`
 - Label guard: judge-vs-haiku agreement base 0.864, ens_s1 0.820 -> drop 0.044 < 0.05. Not triggered, but close.
 - Exact rebuild from build's saved fit indices (`results/draws.jsonl`) with my fit + AUROC: max |diff| 7e-5 (`vera_exact_draws.out`).
 
+- The two arrays really differ (Tove's bug check): median ||own_L12 - base_L12|| / ||base_L12|| per answer = 0.123 lam1_s0,
+  0.107 lam1_s1, 0.121 ens_s0, 0.130 ens_s1, 0.093/0.097 lam0; exactly 0.000 on base (same model). Median cosine own vs
+  base-reads 0.994. Frozen probe A logit mean on lam1_s0 answers: own -5.52, base-reads -4.13, base's own answers +2.25.
 ## Prereg clauses (s9)
 (i) refit >= 0.9 on all 4: FAILS (0.71-0.80; base itself 0.82). (ii) all gaps <= 0.05: FAILS (ens_s1).
 (iii) true/false-facts probe < 0.8: HOLDS (0.36-0.44, below chance).

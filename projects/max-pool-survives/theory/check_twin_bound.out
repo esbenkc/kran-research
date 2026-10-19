@@ -1,0 +1,16 @@
+PASS clean: (a) statement max14 score = max of its token scores (max abs diff 0.0e+00)
+     clean: threshold 2.593; eval false with top token in shared prefix 4/596 (0.7%), caught 0; flagged true twins 0; top token in answer 592, caught 545; prefix-top F with s_F > s_T: 0 (max s_F - s_T = +0.000)
+PASS clean: (b) every prefix-top F has s_F - s_T <= its pair's prefix noise g (exact bound)
+PASS clean: (c) implication per statement (0 violations) and counting bound 0 <= 0
+PASS seed0: (a) statement max14 score = max of its token scores (max abs diff 0.0e+00)
+     seed0: threshold -1.057; eval false with top token in shared prefix 510/596 (85.6%), caught 0; flagged true twins 0; top token in answer 86, caught 0; prefix-top F with s_F > s_T: 1 (max s_F - s_T = +0.026)
+PASS seed0: (b) every prefix-top F has s_F - s_T <= its pair's prefix noise g (exact bound)
+PASS seed0: (c) implication per statement (0 violations) and counting bound 0 <= 0
+PASS seed1: (a) statement max14 score = max of its token scores (max abs diff 0.0e+00)
+     seed1: threshold -0.615; eval false with top token in shared prefix 569/596 (95.5%), caught 0; flagged true twins 0; top token in answer 27, caught 0; prefix-top F with s_F > s_T: 1 (max s_F - s_T = +0.014)
+PASS seed1: (b) every prefix-top F has s_F - s_T <= its pair's prefix noise g (exact bound)
+PASS seed1: (c) implication per statement (0 violations) and counting bound 0 <= 0
+PASS seed2: (a) statement max14 score = max of its token scores (max abs diff 0.0e+00)
+     seed2: threshold -0.257; eval false with top token in shared prefix 576/596 (96.6%), caught 0; flagged true twins 0; top token in answer 20, caught 0; prefix-top F with s_F > s_T: 1 (max s_F - s_T = +0.042)
+PASS seed2: (b) every prefix-top F has s_F - s_T <= its pair's prefix noise g (exact bound)
+PASS seed2: (c) implication per statement (0 violations) and counting bound 0 <= 0

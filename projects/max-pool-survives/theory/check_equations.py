@@ -21,9 +21,8 @@ Threshold rule: t = 2nd-highest score of 200 true statements (fresh-negative FPR
                         Null row c = 0 (true scores do not move): catch = Phi(D - p - z) = catch at the OLD threshold.
                         Unequal-variance form (measured moments): catch = Phi((mu+_a - mu-_a - z s-_a) / s+_a).
 
-Optional data check of E1 on the real clean activations: runs when data/clean_tokens.npz and data/split.json exist.
-The forward pass is bf16 in padded batches, so a few pairs differ by batch noise; the check counts bit-identical
-pairs and compares the largest prefix score gap with the label-token gap.
+Data check of E1 (PREREG.md:106-114): max prefix |diff| within pairs / median activation norm, per layer, clean and
+per seed, each pair in ONE batch (J5 output data/lemma/*.npz); bar < 1e-2. Cross-batch files are reported only.
 
 Run: uv run python theory/check_equations.py   (prints PASS lines; exits 1 on any failure)
 """
@@ -202,52 +201,59 @@ print(f"     E4 bias of the z-formula vs the finite rule: max {bias.max():+.3f} 
       f"min {bias.min():+.3f}; the formula overstates the catch rate by up to {bias.max():.3f}")
 check("E4 z-formula bias vs the finite rule is below 0.05 everywhere (reported in the foldout)", np.abs(bias).max() < 0.05)
 
-# ---------------------------------------------------------------- E1 on the real activations (optional)
+# ---------------------------------------------------------------- E1 on the real activations (PREREG.md:106-114)
+# Frozen metric: max |h_t(x) - h_t(x')| over shared-prefix tokens of all pairs, divided by the median activation
+# norm (L2 norm of a token's activation vector), per layer, clean and per seed; bar < 1e-2; each pair in ONE batch.
+# The one-batch inputs come from Bruno's J5 (data/lemma/*.npz, same keys as clean_tokens.npz: tok_L<L>, tok_off).
+# The cross-batch files (clean_tokens.npz, runs/*__tokens.npz) are reported too, labelled cross-batch: they are the
+# reason for the one-batch rule, not the frozen check.
+# History (disclosed): my first version (06:20 PDT) used max|diff|/max|activation| and a bar I picked; Kasper #3196
+# rejected the swap. This section now computes only the frozen metric.
+def prefix_lemma_metric(npz_path, rows, ids, layers=(8, 14)):
+    z = np.load(npz_path)
+    off = z["tok_off"]
+    pairs = {}
+    for i, r in enumerate(rows):
+        pairs.setdefault((r["city"], r["src"]), []).append(i)
+    res = {}
+    for L in layers:
+        T = z[f"tok_L{L}"].astype(np.float64)
+        med = float(np.median(np.linalg.norm(T, axis=1)))
+        g, n_pairs, n_exact = 0.0, 0, 0
+        for v in pairs.values():
+            if len(v) != 2:
+                continue
+            i, j = v
+            k = next(q for q, (u, w) in enumerate(zip(ids[i], ids[j])) if u != w)  # first differing token
+            A, B = T[off[i]:off[i] + k - 1], T[off[j]:off[j] + k - 1]  # read tokens 1..k-1 = shared prefix
+            if len(A):
+                g = max(g, float(np.abs(A - B).max()))
+                n_exact += int(np.array_equal(A, B))
+                n_pairs += 1
+        res[L] = {"max_abs_diff": g, "median_norm": med, "ratio": g / med, "pairs": n_pairs, "bit_identical": n_exact}
+    return res
+
+
 ct_path, split_path = ROOT / "data" / "clean_tokens.npz", ROOT / "data" / "split.json"
-if ct_path.exists() and split_path.exists():
+if split_path.exists():
     from transformers import AutoTokenizer
     rows = json.loads(split_path.read_text())
     tok = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-1.5B-Instruct")
     ids = [tok(r["text"], add_special_tokens=False)["input_ids"] for r in rows]
-    ct = np.load(ct_path)
-    off = ct["tok_off"]
-    pairs = {}
-    for i, r in enumerate(rows):
-        pairs.setdefault((r["city"], r["src"]), []).append(i)
-    pz = np.load(ROOT / "data" / "probe.npz")
-    w = pz["w"].astype(np.float64)
-    for L in (14, 8):
-        T = ct[f"tok_L{L}"]
-        exact, rel, nlab, sgap, lgap = 0, [], [], [], []
-        good = [v for v in pairs.values() if len(v) == 2]
-        for (i, j) in good:
-            k = next(q for q, (u, v) in enumerate(zip(ids[i], ids[j])) if u != v)  # first differing token
-            # rows of tokens 1..k-1 (the shared prefix inside the read window)
-            A, B = T[off[i]:off[i] + k - 1], T[off[j]:off[j] + k - 1]
-            exact += int(np.array_equal(A, B))
-            if len(A):
-                rel.append(np.abs(A - B).max() / (np.abs(A).max() + 1e-9))
-            nlab += [len(ids[i]) - k, len(ids[j]) - k]
-            if L == 14:  # per-token score along the frozen probe direction
-                si, sj = T[off[i]:off[i + 1]].astype(np.float64) @ w, T[off[j]:off[j + 1]].astype(np.float64) @ w
-                sgap.append(np.abs(si[:k - 1] - sj[:k - 1]).max() if k > 1 else 0.0)
-                fi, ti = (i, j) if rows[i]["pos"] == 1 else (j, i)
-                sf = si if fi == i else sj
-                st = sj if fi == i else si
-                lgap.append(sf[k - 1:].max() - st[k - 1:].max())
-        rel = np.array(rel)
-        print(f"     E1 data L{L}: {len(good)} pairs; shared prefix bit-identical in {exact} "
-              f"({exact / len(good):.1%}); relative max gap otherwise up to {rel.max():.1e} (bf16 batch/padding noise); "
-              f"label-bearing tokens per statement: median {np.median(nlab):.0f}")
-        # First run (06:20 PDT) used 'max relative activation gap < 1e-2' and FAILED at L14 (1.3e-2, 12 of 1496 pairs
-        # not bit-identical: different padded batches in bf16). Replaced by the criterion below; both numbers printed.
-        check(f"E1 data L{L}: shared prefix bit-identical in >= 99% of pairs", exact / len(good) >= 0.99)
-        if L == 14:
-            sgap, lgap = np.array(sgap), np.array(lgap)
-            print(f"     E1 data L14 frozen-direction scores: largest prefix gap {sgap.max():.3f} vs median label-token "
-                  f"gap (max false - max true) {np.median(lgap):.2f}")
-            check("E1 data L14: largest prefix score gap < 5% of the median label-token score gap", sgap.max() < 0.05 * np.median(lgap))
+    one_batch = sorted((ROOT / "data" / "lemma").glob("*.npz")) if (ROOT / "data" / "lemma").exists() else []
+    cross = ([ct_path] if ct_path.exists() else []) + sorted((ROOT / "data" / "runs").glob("lam0__seed*__tokens.npz"))
+    for path in cross:
+        for L, r in prefix_lemma_metric(path, rows, ids).items():
+            print(f"     E1 data, CROSS-batch {path.name} L{L}: max|diff| {r['max_abs_diff']:.4f} / median norm "
+                  f"{r['median_norm']:.2f} = {r['ratio']:.1e}; bit-identical {r['bit_identical']}/{r['pairs']} pairs")
+    for path in one_batch:
+        for L, r in prefix_lemma_metric(path, rows, ids).items():
+            print(f"     E1 data, ONE-batch {path.name} L{L}: max|diff| {r['max_abs_diff']:.4f} / median norm "
+                  f"{r['median_norm']:.2f} = {r['ratio']:.1e}; bit-identical {r['bit_identical']}/{r['pairs']} pairs")
+            check(f"E1 data (PREREG bar) {path.stem} L{L}: max prefix |diff| / median norm < 1e-2", r["ratio"] < 1e-2)
+    if not one_batch:
+        print("SKIP E1 frozen data check: data/lemma/*.npz (J5, one batch per pair) not written yet")
 else:
-    print("SKIP E1 data check (data/clean_tokens.npz not yet written)")
+    print("SKIP E1 data checks (data/split.json missing)")
 
 sys.exit(0 if ok else 1)

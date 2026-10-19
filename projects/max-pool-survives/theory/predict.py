@@ -9,8 +9,9 @@ Per monitor and seed, from the REFIT split only (200 true, 200 false; PREREG.md 
   pred_finite = E[Phi(D - (1-c) p - t)], t = 2nd-highest of 200 N(0,1)  (DEVIATIONS D3, reported extra)
   pred_uv     = Phi((mu_F1 - mu_T1 - z sd_T1) / sd_F1)                  (unequal-variance form, attacked moments)
 Measured: catch rate on the 596 eval FALSE statements at t = 2nd-highest of the 200 refit TRUE scores of the same
-model state (PREREG threshold rule). 'fresh' is a different probe before and after the attack, so no bell-curve
-prediction is defined for it (printed as measured only).
+model state (PREREG threshold rule). 'fresh' is fit per seed on attacked acts; its clean-state scores are that
+seed's fresh probe applied to the CLEAN acts, key 'cleanfor_<seed>__fresh' in scores.npz (Felix #3201). Without
+that key, fresh gets no prediction and the script says so.
 
 Run: uv run python theory/predict.py   -> theory/predict.json
 """
@@ -46,9 +47,13 @@ def main():
     mons = sorted({k.split("__")[1] for k in S.files if "__" in k})
     out = {"z": Z, "seeds": seeds, "monitors": {}}
     for m in mons:
-        c0 = S[f"clean__{m}"].astype(np.float64)
         rows = []
         for st in seeds:
+            ck = f"cleanfor_{st}__{m}" if m == "fresh" else f"clean__{m}"
+            if ck not in S.files:
+                print(f"NO PREDICTION for {m} {st}: key {ck} missing in scores.npz")
+                continue
+            c0 = S[ck].astype(np.float64)
             a = S[f"{st}__{m}"].astype(np.float64)
             mT0, mF0, sT0, sF0 = c0[rf_t].mean(), c0[rf_f].mean(), c0[rf_t].std(ddof=1), c0[rf_f].std(ddof=1)
             mT1, mF1, sT1, sF1 = a[rf_t].mean(), a[rf_f].mean(), a[rf_t].std(ddof=1), a[rf_f].std(ddof=1)
@@ -61,10 +66,11 @@ def main():
             r = {"state": st, "D": D, "p": p, "c": c, "sigma1_over_sigma0": sig1 / sig0,
                  "sdF1_over_sdT1": sF1 / sT1, "measured": meas, "measured_clean": meas_clean,
                  "fpr_eval_true": float((a[ev_t] > thr(a[rf_t])).mean())}
-            if m != "fresh":
-                r.update({"pred_z": float(norm.cdf(x - Z)), "pred_null": float(norm.cdf(D - p - Z)),
-                          "pred_finite": finite(x), "pred_uv": float(norm.cdf((mF1 - mT1 - Z * sT1) / sF1))})
+            r.update({"pred_z": float(norm.cdf(x - Z)), "pred_null": float(norm.cdf(D - p - Z)),
+                      "pred_finite": finite(x), "pred_uv": float(norm.cdf((mF1 - mT1 - Z * sT1) / sF1))})
             rows.append({k: (float(v) if isinstance(v, (float, np.floating)) else v) for k, v in r.items()})
+        if not rows:
+            continue
         agg = {k: float(np.mean([r[k] for r in rows])) for k in rows[0] if k != "state"}
         out["monitors"][m] = {"per_seed": rows, "mean_over_seeds": agg}
     (ROOT / "theory" / "predict.json").write_text(json.dumps(out, indent=1))

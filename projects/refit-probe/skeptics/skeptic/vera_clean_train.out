@@ -1,0 +1,29 @@
+base clean pool honest/deceptive 143 840
+lam1_s0 clean pool honest/deceptive 180 257
+lam1_s1 clean pool honest/deceptive 126 251
+ens_s0 clean pool honest/deceptive 172 269
+ens_s1 clean pool honest/deceptive 298 158
+seed 71 test=full  lam1_s0: gap +0.020 [-0.029, +0.070]  base refit 0.826
+seed 71 test=full  lam1_s1: gap +0.047 [-0.007, +0.100]  base refit 0.826
+seed 71 test=full  ens_s0: gap +0.044 [-0.017, +0.100]  base refit 0.826
+seed 71 test=full  ens_s1: gap +0.075 [+0.018, +0.132]  base refit 0.826
+seed 71 test=clean lam1_s0: gap -0.020 [-0.067, +0.027]  base refit 0.909
+seed 71 test=clean lam1_s1: gap +0.009 [-0.039, +0.062]  base refit 0.909
+seed 71 test=clean ens_s0: gap +0.014 [-0.039, +0.069]  base refit 0.909
+seed 71 test=clean ens_s1: gap +0.036 [-0.018, +0.090]  base refit 0.909
+seed 72 test=full  lam1_s0: gap +0.020 [-0.028, +0.072]  base refit 0.826
+seed 72 test=full  lam1_s1: gap +0.043 [-0.009, +0.096]  base refit 0.826
+seed 72 test=full  ens_s0: gap +0.038 [-0.023, +0.093]  base refit 0.826
+seed 72 test=full  ens_s1: gap +0.075 [+0.019, +0.135]  base refit 0.826
+seed 72 test=clean lam1_s0: gap -0.018 [-0.062, +0.026]  base refit 0.910
+seed 72 test=clean lam1_s1: gap +0.008 [-0.038, +0.061]  base refit 0.910
+seed 72 test=clean ens_s0: gap +0.012 [-0.038, +0.064]  base refit 0.910
+seed 72 test=clean ens_s1: gap +0.036 [-0.020, +0.089]  base refit 0.910
+seed 73 test=full  lam1_s0: gap +0.016 [-0.033, +0.066]  base refit 0.829
+seed 73 test=full  lam1_s1: gap +0.046 [-0.008, +0.100]  base refit 0.829
+seed 73 test=full  ens_s0: gap +0.045 [-0.016, +0.100]  base refit 0.829
+seed 73 test=full  ens_s1: gap +0.072 [+0.015, +0.131]  base refit 0.829
+seed 73 test=clean lam1_s0: gap -0.017 [-0.059, +0.026]  base refit 0.914
+seed 73 test=clean lam1_s1: gap +0.014 [-0.033, +0.066]  base refit 0.914
+seed 73 test=clean ens_s0: gap +0.019 [-0.032, +0.071]  base refit 0.914
+seed 73 test=clean ens_s1: gap +0.040 [-0.013, +0.091]  base refit 0.914

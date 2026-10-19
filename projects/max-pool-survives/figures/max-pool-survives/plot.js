@@ -6,8 +6,9 @@
 // BOTTOM: for the max-pooled probe, the gap between false and true statements on each word, by position relative
 //      to the first answer word (the first word where the true and the false sentence differ), in units of the
 //      clean spread at that position. Hollow: clean model. Filled: after the attack (mean of 3 seeds; small dots =
-//      each seed). Shaded: the shared prefix, which is word-for-word the same in both sentences, so the gap there is 0.
-// data = { status, rows: [{probe, label, before, after, after_lo, after_hi, after_per_seed, check, check_finite,
+//      each seed). Shaded: the shared prefix, which is word-for-word the same in both sentences, so the gap there is 0
+//      (up to bf16 rounding between batches; with both sentences in one batch it is exactly 0).
+// data = { status, rows: [{probe, label, before (null for the retrained probe), after, after_lo, after_hi, after_per_seed, check, check_finite,
 //          spread_ratio}], positions: [{pos, before, after, after_per_seed, n_false}],
 //          loudest_word_on_prefix: {before, after_per_seed}, answer_words_only_after_per_seed, n }
 import { C, FONT, halo, plotStyle } from "../theme.js";
@@ -45,7 +46,7 @@ export function render(data, Plot) {
   root.append(head, sub, legend);
 
   const tipRow = (d) =>
-    `${d.label}\nclean model: ${pct(d.before)}${d.before_note ? " (" + d.before_note + ")" : ""}\n` +
+    `${d.label}\nclean model: ${d.before === null ? "none (fit on the attacked model)" : pct(d.before)}\n` +
     `after the attack: ${pct(d.after)} (95% interval ${pct(d.after_lo)}–${pct(d.after_hi)})\n` +
     `per seed: ${d.after_per_seed.map(pct).join(", ")}\n` +
     `two-bell-curve check: ${pct(d.check)} (spread after / before: ${d.spread_ratio.toFixed(2)})`;
@@ -58,10 +59,10 @@ export function render(data, Plot) {
     marks: [
       Plot.gridX({ stroke: C.grid, strokeOpacity: 1 }),
       Plot.ruleX([0.5], { stroke: C.muted, strokeWidth: 1.5, strokeDasharray: "4,3" }),
-      Plot.link(data.rows, { x1: "before", x2: "after", y1: "label", y2: "label", stroke: C.faint, strokeWidth: 1 }),
+      Plot.link(data.rows.filter((d) => d.before !== null), { x1: "before", x2: "after", y1: "label", y2: "label", stroke: C.faint, strokeWidth: 1 }),
       Plot.ruleY(data.rows, { y: "label", x1: "after_lo", x2: "after_hi", stroke: C.primary, strokeWidth: 2.2, strokeOpacity: 0.75 }),
       Plot.tickX(data.rows, { x: "check", y: "label", stroke: C.secondary, strokeWidth: 3 }),
-      Plot.dot(data.rows, { x: "before", y: "label", r: 6, fill: "none", stroke: C.muted, strokeWidth: 1.8, tip: true, title: tipRow }),
+      Plot.dot(data.rows.filter((d) => d.before !== null), { x: "before", y: "label", r: 6, fill: "none", stroke: C.muted, strokeWidth: 1.8, tip: true, title: tipRow }),
       Plot.dot(data.rows, { x: "after", y: "label", r: 6, fill: C.primary, stroke: C.paper, strokeWidth: 1.2, tip: true, title: tipRow }),
       Plot.text(data.rows, { ...halo(), x: "after", y: "label", text: (d) => pct(d.after), dy: -13, fontSize: 12, fill: C.ink }),
     ],
@@ -90,7 +91,7 @@ export function render(data, Plot) {
     marks: [
       Plot.rectX([{ x1: xmin, x2: -0.5 }], { x1: "x1", x2: "x2", y1: -0.3, y2: 5.6, fill: C.grid, fillOpacity: 0.55 }),
       Plot.text([{ x: (xmin - 0.5) / 2, y: 3.0 }], { ...halo(), x: "x", y: "y", fill: C.muted, fontSize: 12, lineHeight: 1.25,
-        text: () => "shared prefix\n(\"The city of Lodz is in\")\nsame words in the true and the false sentence,\nso the gap is exactly 0" }),
+        text: () => "shared prefix\n(\"The city of Lodz is in\")\nsame words in the true and the false sentence,\nso the gap is 0 (up to rounding)" }),
       Plot.gridY({ stroke: C.grid, strokeOpacity: 1 }),
       Plot.ruleY([0], { stroke: C.faint }),
       Plot.line(sep, { x: "pos", y: "before", stroke: C.muted, strokeWidth: 1.4, strokeDasharray: "3,3" }),

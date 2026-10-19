@@ -47,15 +47,15 @@ def main():
     for rid, key, label in PROBES:
         P = R["pooled"][rid]
         before = R["pooled_clean"][rid]["catch"]
-        rows.append({"probe": key, "label": label, "before": r4(before),
+        rows.append({"probe": key, "label": label,
+                     # the retrained probe has no clean-model 'before': it was fit on the attacked model (Vera #3262)
+                     "before": None if rid == "fresh" else r4(before),
                      "after": r4(P["catch"]), "after_lo": r4(P["ci95"][0]), "after_hi": r4(P["ci95"][1]),
                      "after_per_seed": [r4(v) for v in P["per_seed"]],
                      "auroc_after_per_seed": [r4(v) for v in P["auroc_per_seed"]],
                      "check": r4(R["bell_curve"][rid]["pred"]),
                      "check_finite": r4(R["bell_curve"][rid]["pred_finite"]),
-                     "spread_ratio": r4(R["bell_curve"][rid]["sigma1_over_sigma0"]),
-                     "before_note": "retrained on the attacked model, so 'before' = the same weights on the clean model"
-                     if rid == "fresh" else None})
+                     "spread_ratio": r4(R["bell_curve"][rid]["sigma1_over_sigma0"])})
     sep = R["diagnostics"]["separation_by_rel_pos"]["max14"]
     positions = [{"pos": int(p), "before": r4(v["clean"]), "after": r4(v["attacked_mean"]),
                   "after_per_seed": [r4(v[s]) for s in seeds], "n_false": v["n_false"]}

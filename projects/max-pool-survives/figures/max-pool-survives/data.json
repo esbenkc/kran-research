@@ -20,8 +20,7 @@
       ],
       "check": 0.0122,
       "check_finite": 0.0121,
-      "spread_ratio": 1.8632,
-      "before_note": null
+      "spread_ratio": 1.8632
     },
     {
       "probe": "last_word",
@@ -42,8 +41,7 @@
       ],
       "check": 0.0427,
       "check_finite": 0.041,
-      "spread_ratio": 0.9523,
-      "before_note": null
+      "spread_ratio": 0.9523
     },
     {
       "probe": "averaging_target",
@@ -64,8 +62,7 @@
       ],
       "check": 0.0492,
       "check_finite": 0.047,
-      "spread_ratio": 2.8213,
-      "before_note": null
+      "spread_ratio": 2.8213
     },
     {
       "probe": "averaging_layer8",
@@ -86,13 +83,12 @@
       ],
       "check": 0.0416,
       "check_finite": 0.0399,
-      "spread_ratio": 0.9513,
-      "before_note": null
+      "spread_ratio": 0.9513
     },
     {
       "probe": "averaging_retrained",
       "label": "Averaging probe retrained after the attack",
-      "before": 0.0017,
+      "before": null,
       "after": 0.3607,
       "after_lo": 0.3076,
       "after_hi": 0.9329,
@@ -108,8 +104,7 @@
       ],
       "check": 0.1401,
       "check_finite": 0.131,
-      "spread_ratio": 0.3739,
-      "before_note": "retrained on the attacked model, so 'before' = the same weights on the clean model"
+      "spread_ratio": 0.3739
     }
   ],
   "positions": [

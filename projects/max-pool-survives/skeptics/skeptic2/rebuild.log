@@ -1,0 +1,19 @@
+counts refit T/F, eval T/F: 200 200 596 596
+[fit max14] cv={0.01: 0.991638888888889, 0.1: 0.9874444444444445, 1.0: 0.9618333333333332, 10.0: 0.9332777777777777} -> C=0.01
+[fit last14] cv={0.01: 0.9975555555555555, 0.1: 0.9972777777777779, 1.0: 0.9970555555555556, 10.0: 0.9953888888888889} -> C=0.01
+[fit null_pairswap_max14] cv={0.01: 0.6445833333333334, 0.1: 0.5540277777777778, 1.0: 0.5386111111111112, 10.0: 0.5232222222222223} -> C=0.01
+frozen                 clean_catch=0.960 clean_auc=0.999 attacked catch per seed=[0.0067, 0.0084, 0.0084] pooled=0.0078 auc=[0.583, 0.573, 0.571] fpr=[0.005, 0.0067, 0.0084]
+max14                  clean_catch=0.914 clean_auc=0.996 attacked catch per seed=[0.0, 0.0, 0.0] pooled=0.0000 auc=[0.523, 0.501, 0.504] fpr=[0.0, 0.0, 0.0]
+last14                 clean_catch=0.997 clean_auc=1.000 attacked catch per seed=[0.0117, 0.0067, 0.005] pooled=0.0078 auc=[0.615, 0.652, 0.714] fpr=[0.0017, 0.0017, 0.0017]
+null_randdir_max       clean_catch=0.017 clean_auc=0.497 attacked catch per seed=[0.0117, 0.0067, 0.0067] pooled=0.0084 auc=[0.497, 0.502, 0.505] fpr=[0.0117, 0.0067, 0.0067]
+null_pairswap_max14    clean_catch=0.023 clean_auc=0.660 attacked catch per seed=[0.0134, 0.0067, 0.0067] pooled=0.0089 auc=[0.481, 0.477, 0.465] fpr=[0.0168, 0.0101, 0.0067]
+bootstrap 95% CI (pooled): {'max14': [0.0, 0.008948545861297539], 'last14': [0.0, 0.1448545861297539], 'frozen': [0.0, 0.0581795302013422], 'max14_minus_last14': [-0.14207214765100673, 0.003355704697986577]}
+max14 catch with threshold from each refit half: {0: [0.006711409395973154, 0.003355704697986577, 0.010067114093959731], 1: [0.0, 0.0, 0.0]}
+max14 catch at 5%/10% FPR: {0.95: [0.010067114093959731, 0.016778523489932886, 0.010067114093959731], 0.9: [0.0738255033557047, 0.06375838926174497, 0.0738255033557047]}
+max14 by C: {0.001: {'clean': 0.9429530201342282, 'attacked': [0.0, 0.0, 0.0]}, 0.01: {'clean': 0.9144295302013423, 'attacked': [0.0, 0.0, 0.0]}, 0.1: {'clean': 0.33053691275167785, 'attacked': [0.0, 0.0, 0.0]}, 1.0: {'clean': 0.09899328859060402, 'attacked': [0.0, 0.0, 0.0]}, 10.0: {'clean': 0.07046979865771812, 'attacked': [0.0, 0.0, 0.0]}}
+label-bearing token share: 0.2294980375955381
+max14 restricted to label-bearing tokens, catch: {'clean': 0.9966442953020134, '0': 0.010067114093959731, '1': 0.0050335570469798654, '2': 0.003355704697986577}
+prefix lemma max|diff|/median norm (L14): {'clean': np.float32(0.0065972744), '0': np.float32(0.004149773), '1': np.float32(0.005168481), '2': np.float32(0.006267731)}
+max14 argmax on shared prefix (eval false): {'clean': 0.006711409395973154, '0': 0.8557046979865772, '1': 0.9546979865771812, '2': 0.9664429530201343}
+label-token separation (clean token-SD units): {'clean': {'answer_false_minus_true_sd': 1.835037350654602, 'answer_false_minus_prefix_sd': 0.8898162841796875}, '0': {'answer_false_minus_true_sd': 0.2510179877281189, 'answer_false_minus_prefix_sd': -0.10493998974561691}, '1': {'answer_false_minus_true_sd': 0.25734013319015503, 'answer_false_minus_prefix_sd': -0.1937064379453659}, '2': {'answer_false_minus_true_sd': 0.2769011855125427, 'answer_false_minus_prefix_sd': -0.1973322629928589}}
+corr with build scores: {'seed0__frozen': 0.9999999999999375, 'seed0__max14': 0.9999986185299597, 'seed0__last14': 0.9999999999998497, 'seed1__frozen': 0.9999999999999487, 'seed1__max14': 0.9999987310581713, 'seed1__last14': 0.9999999999998129, 'seed2__frozen': 0.9999999999999549, 'seed2__max14': 0.9999987714351817, 'seed2__last14': 0.9999999999996143}

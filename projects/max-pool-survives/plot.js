@@ -25,12 +25,16 @@ export function render(data, Plot) {
   const mx = data.rows.find((r) => r.probe === "max_pooled");
   const head = document.createElement("div");
   head.style.cssText = "font-size:17px;font-weight:600;margin:0 0 0.15rem;color:" + C.ink;
-  head.textContent = "The fine-tune aimed at the averaging probe also silences the max-pooled probe";
+  head.textContent = "The fine-tune aimed at the averaging probe also blinds the max-pooled probe";
   const sub = document.createElement("div");
   sub.style.cssText = "font-size:14px;margin:0 0 0.5rem;color:" + C.muted;
-  sub.textContent = `Max-pooled probe: catches ${pct(mx.before)} of false statements on the original model, ` +
+  const au = mx.auroc_after_per_seed;
+  sub.textContent = "The max-pooled probe scores every token and keeps the highest score. " +
+    "The averaging probe takes the mean of the token scores. " +
+    `The max-pooled probe catches ${pct(mx.before)} of false statements on the original model and ` +
     `${pct(mx.after)} after the fine-tune (95% interval ${pct(mx.after_lo)}–${pct(mx.after_hi)}, ` +
-    `${data.n.seeds} runs, ${data.n.false_statements} false statements each), with 1% false alarms on true statements.`;
+    `${data.n.seeds} runs, ${data.n.false_statements} false statements each), with 1% false alarms on true statements. ` +
+    `After the fine-tune it ranks false above true no better than chance (AUROC ${Math.min(...au).toFixed(2)}–${Math.max(...au).toFixed(2)}).`;
 
   const sw = (kind) => {
     if (kind === "hollow") return `<svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="${C.muted}" stroke-width="1.8"/></svg>`;

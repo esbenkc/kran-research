@@ -21,3 +21,11 @@ The frozen formula Phi(D - (1-c)p - z) with z = Phi^-1(1 - 2/201) overstates the
 results.json also reports the exact finite-rule value E[catch] = int Phi(D - (1-c)p - t) f(t) dt, with f the
 density of the 2nd-highest of 200 standard normals (theory/check_equations.py, catch_exact). Extra, not a
 replacement; it enters no rule.
+
+## D4. First scoring pass used the wrong CV split for three probes (Bruno #3206; fixed before any number was reported)
+Bruno's first pass of analysis.py fit `mean8`, `fresh` and `last14` with the 1018 `prep.fit_probe`
+(StratifiedKFold, which splits a city's statements across folds), not the frozen GroupKFold by city.
+He switched to GroupKFold before reporting. The other version is kept: data/results_cv_stratified/results.json
+(fresh 12.6%, mean8 0.3%, max14 0.0% in both; max14 used GroupKFold from the start). The status (REJECTED)
+and the pre-registration outcome (failed) are the same in both versions. The post reports the fresh-probe
+number's sensitivity to this choice (36.1% vs 12.6%).

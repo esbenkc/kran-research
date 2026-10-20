@@ -65,3 +65,18 @@ committed.
 - Fit order: the 5 own reads first, then the 4 held-text reads, then the pooled fact-present fit. The first (c) fit job
   was stopped by the footprint watchdog (3.7 GB line) during the base model's first fold, before any output was written;
   it was restarted with smaller PCA chunks. No result was seen.
+
+## D5 — conditional: (c2) may carry the positive control (committed before any (c2) score or trained-model score was read)
+
+Why: on the base model, arm (c) scored 0.810 on all lies vs all truthful, below arm (a) at 0.852 (room #3460), so
+under PREREG s6 a NO becomes UNCONFIRMED. The control exists to check that at least one megaprobe works as a probe,
+and D1 already makes a NO need both (c) and (c2). Tove asked Esben (room #3463) whether (c2) may carry the control.
+Facts at commit time: data/fits/ holds only base_own.json; no (c2) fit had finished; no trained-model (c) score had
+been written.
+What (applies ONLY if Esben approves option B in the room before 03:30 CEST; otherwise this entry is void and PREREG
+s6 + D1 rule as written):
+- Positive control passes if (c) OR (c2) beats (a) on all lies vs all truthful on the base model (point estimate).
+- YES: unchanged, on (c) alone.
+- NO: unchanged from D1: the 95% upper bound of m < 0.80 for BOTH (c) and (c2), now also requiring the control above.
+- UNCONFIRMED otherwise. The negatives guard is unchanged.
+- The post states this entry, its time and Esben's answer in the expert foldout.

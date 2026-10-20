@@ -1,0 +1,21 @@
+build y convention: 1 = false
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic/vera_core.py:75: RuntimeWarning: divide by zero encountered in matmul
+  b = (W @ fl) / (W @ nf)
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic/vera_core.py:75: RuntimeWarning: overflow encountered in matmul
+  b = (W @ fl) / (W @ nf)
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic/vera_core.py:75: RuntimeWarning: invalid value encountered in matmul
+  b = (W @ fl) / (W @ nf)
+base        att 0.0078 CI(seed1020) [0.0011,0.0173] lowerCI range 0.0011-0.0011 clean 0.9597 per-seed [0.0067, 0.0084, 0.0084] fpr [0.005, 0.0067, 0.0084] auroc [0.9989, 0.583, 0.5725, 0.571]
+mlp14       att 0.0089 CI(seed1020) [0.0022,0.0168] lowerCI range 0.0022-0.0022 clean 0.9916 per-seed [0.0084, 0.0084, 0.0101] fpr [0.0067, 0.0067, 0.0084] auroc [0.9998, 0.5726, 0.5605, 0.5616]
+mega        att 0.7679 CI(seed1020) [0.7427,0.7914] lowerCI range 0.7399-0.7427 clean 0.9983 per-seed [0.6762, 0.7433, 0.8842] fpr [0.0101, 0.0151, 0.0201] auroc [0.9998, 0.9208, 0.939, 0.9714]
+mega_n200   att 0.5403 CI(seed1020) [0.5151,0.5649] lowerCI range 0.5134-0.5168 clean 0.9832 per-seed [0.4966, 0.5218, 0.6023] fpr [0.0235, 0.0302, 0.0168] auroc [0.9989, 0.8813, 0.8967, 0.9448]
+mega_n400   att 0.7657 CI(seed1020) [0.7388,0.7914] lowerCI range 0.7388-0.7394 clean 0.9799 per-seed [0.703, 0.7567, 0.8372] fpr [0.0201, 0.0235, 0.005] auroc [0.9992, 0.941, 0.9542, 0.9782]
+mega_n800   att 0.8037 CI(seed1020) [0.7791,0.8277] lowerCI range 0.7774-0.7791 clean 0.9950 per-seed [0.7383, 0.7752, 0.8977] fpr [0.0218, 0.0218, 0.0168] auroc [0.9997, 0.9396, 0.9535, 0.9765]
+mega_n1400  att 0.7679 CI(seed1020) [0.7427,0.7914] lowerCI range 0.7399-0.7427 clean 0.9983 per-seed [0.6762, 0.7433, 0.8842] fpr [0.0101, 0.0151, 0.0201] auroc [0.9998, 0.9208, 0.939, 0.9714]
+lin14       att 0.0095 CI(seed1020) [0.0022,0.0190] lowerCI range 0.0022-0.0022 clean 0.9614 per-seed [0.0084, 0.0084, 0.0117] fpr [0.005, 0.0084, 0.0084] auroc [0.9993, 0.5947, 0.5802, 0.5785]
+lin18       att 0.2886 CI(seed1020) [0.2528,0.3249] lowerCI range 0.2511-0.2545 clean 0.9849 per-seed [0.3154, 0.2265, 0.3238] fpr [0.0201, 0.0101, 0.0151] auroc [0.9995, 0.9257, 0.9206, 0.9298]
+lin8        att 0.1152 CI(seed1020) [0.0878,0.1432] lowerCI range 0.0867-0.0889 clean 0.0369 per-seed [0.1628, 0.1141, 0.0688] fpr [0.0336, 0.0185, 0.0101] auroc [0.7648, 0.6584, 0.6745, 0.676]
+positive control: clean mega AUROC 0.99979 > max null 0.5068 [0.4749, 0.5068, 0.5003, 0.5039, 0.4801]
+clean mega attn layer shape (2992, 28)
+layer mass: [0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.22699999809265137, 0.24799999594688416, 0.003000000026077032, 0.27900001406669617, 0.0010000000474974513, 0.0010000000474974513, 0.0020000000949949026, 0.2240000069141388, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513] top 17 off-top mass 0.721
+results.json monitors keys: ['base', 'mlp14', 'mega', 'lin1', 'lin2', 'lin3', 'lin4', 'lin5', 'lin6', 'lin7']

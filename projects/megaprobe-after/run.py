@@ -32,7 +32,7 @@ def main() -> None:
                          "before_hi": d["clean"]["ci95"][1], "after": d["pooled_attacked"]["catch"],
                          "after_lo": d["pooled_attacked"]["ci95"][0], "after_hi": d["pooled_attacked"]["ci95"][1],
                          "after_per_seed": d["pooled_attacked"]["per_seed"]})
-    data = {"layers": layers, "monitors": monitors,
+    data = {"monitors": monitors, "layers": layers,
             "n": {"false_statements": R["n"]["eval_false"], "seeds": 3}}
     plot_js = (PROJECT_DIR / "plot.js").read_text()
     print("wrote", figure.save(PROJECT_DIR, FIG, data, plot_js))

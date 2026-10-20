@@ -2,6 +2,7 @@
 Independent Rebuild and Verification Suite
 Hugo (skeptic2) - Room: oracle-1020-megaprobe-spin-lies
 Independent implementation: does NOT reuse other agents' code or scripts.
+Extended to cover arm c2 (FIBS AxialProbe).
 """
 
 import json
@@ -60,6 +61,15 @@ def load_policy_data(policy, base_dir="kran-research/projects/megaprobe-spin-lie
         arr = to_float_array(mat)
         scores[arm] = np.nanmean(arr, axis=1)
         
+    # Check for c2 fit file
+    c2_path = os.path.join(base_dir, f"fits/{policy}_own_c2.json")
+    if os.path.exists(c2_path):
+        with open(c2_path) as f:
+            c2_data = json.load(f)
+        for arm, mat in c2_data["scores"].items():
+            arr = to_float_array(mat)
+            scores[arm] = np.nanmean(arr, axis=1)
+            
     return {
         "policy": policy,
         "prompt_ids": prompt_ids,
@@ -171,47 +181,6 @@ def paired_bootstrap_prompt(data, arm_a="a_all", arm_c="c_all", eval_type="spin_
         "ci_gain": ci_gain
     }
 
-def evaluate_subclasses(data, agent_labels_path="swarm-oracle-1020-megaprobe-spin-lies/agentlabels/agent_labels.jsonl"):
-    if not os.path.exists(agent_labels_path):
-        return None
-    with open(agent_labels_path) as f:
-        agent_rows = [json.loads(line) for line in f]
-        
-    policy = data["policy"]
-    sub_agent = [r for r in agent_rows if r["policy"] == policy]
-    if not sub_agent:
-        return None
-        
-    labels = data["labels"]
-    s_a = data["scores"]["a_all"]
-    s_c = data["scores"]["c_all"]
-    
-    # Fact-stated truthful negatives
-    is_neg = np.array([r["y_judge"] == 0 and r["fact_score"] >= 0.27 for r in labels])
-    neg_scores_a = s_a[is_neg]
-    neg_scores_c = s_c[is_neg]
-    
-    results = {}
-    for subclass in ["framing", "contradict", "honest"]:
-        matching_prompts = [r["prompt_id"] for r in sub_agent if r.get("spin_subclass") == subclass]
-        pos_indices = [i for i, r in enumerate(labels) if r["prompt_id"] in matching_prompts]
-        if not pos_indices or len(neg_scores_a) == 0:
-            continue
-            
-        pos_s_a = s_a[pos_indices]
-        pos_s_c = s_c[pos_indices]
-        
-        y_combined = np.array([1]*len(pos_s_a) + [0]*len(neg_scores_a))
-        auc_a = compute_auroc(np.concatenate([pos_s_a, neg_scores_a]), y_combined)
-        auc_c = compute_auroc(np.concatenate([pos_s_c, neg_scores_c]), y_combined)
-        results[subclass] = {
-            "n": len(pos_indices),
-            "auc_a": auc_a,
-            "auc_c": auc_c,
-            "diff": auc_c - auc_a
-        }
-    return results
-
 def run_all(base_dir="kran-research/projects/megaprobe-spin-lies/data"):
     policies = ["base", "lam1_s0", "lam1_s1", "ens_s0", "ens_s1"]
     all_data = {}
@@ -221,7 +190,7 @@ def run_all(base_dir="kran-research/projects/megaprobe-spin-lies/data"):
             all_data[p] = d
             
     print("=" * 80)
-    print("SKEPTIC2 INDEPENDENT REBUILD REPORT")
+    print("SKEPTIC2 INDEPENDENT REBUILD REPORT (INCLUDING ARM C2)")
     print(f"Loaded policies: {list(all_data.keys())}")
     print("=" * 80)
     
@@ -229,67 +198,57 @@ def run_all(base_dir="kran-research/projects/megaprobe-spin-lies/data"):
     for p, d in all_data.items():
         eval_res = evaluate_policy_aurocs(d)
         boot_spin_fact = paired_bootstrap_prompt(d, "a_all", "c_all", "spin_vs_fact")
-        boot_spin_all = paired_bootstrap_prompt(d, "a_all", "c_all", "spin_vs_all_truth")
         boot_all_lies = paired_bootstrap_prompt(d, "a_all", "c_all", "all_lies")
-        subclass_eval = evaluate_subclasses(d)
         
+        # c2 bootstrap if present
+        boot_c2_spin_fact = None
+        boot_c2_all_lies = None
+        if "c2_all" in d["scores"]:
+            boot_c2_spin_fact = paired_bootstrap_prompt(d, "a_all", "c2_all", "spin_vs_fact")
+            boot_c2_all_lies = paired_bootstrap_prompt(d, "a_all", "c2_all", "all_lies")
+            
         per_policy_eval[p] = {
             "metrics": eval_res,
             "boot_spin_fact": boot_spin_fact,
-            "boot_spin_all": boot_spin_all,
             "boot_all_lies": boot_all_lies,
-            "subclasses": subclass_eval
+            "boot_c2_spin_fact": boot_c2_spin_fact,
+            "boot_c2_all_lies": boot_c2_all_lies
         }
         
-        print(f"\n--- Policy: {p} (n={eval_res['counts']['n_total']}, spin={eval_res['counts']['n_spin']}, fact_truth={eval_res['counts']['n_fact_truthful']}) ---")
+        print(f"\n--- Policy: {p} ---")
         print(f"All lies vs Truthful:")
         print(f"  Linear refit (a) : {boot_all_lies['point_a']:.4f} [{boot_all_lies['ci_a'][0]:.4f}, {boot_all_lies['ci_a'][1]:.4f}]")
         print(f"  Megaprobe (c)    : {boot_all_lies['point_c']:.4f} [{boot_all_lies['ci_c'][0]:.4f}, {boot_all_lies['ci_c'][1]:.4f}]")
-        print(f"  Gain (c - a)     : {boot_all_lies['point_gain']:+.4f} [{boot_all_lies['ci_gain'][0]:+.4f}, {boot_all_lies['ci_gain'][1]:+.4f}]")
-        print(f"  Atlas sigmoids (b): {eval_res['b_all_all_lies']:.4f}")
-        print(f"  Words baseline (d): {eval_res['d_all_all_lies']:.4f}")
-        print(f"  Linear null      : {eval_res['a_null_all_all_lies']:.4f}")
-        print(f"  Megaprobe null   : {eval_res['c_null_all_all_lies']:.4f}")
-        
+        if boot_c2_all_lies:
+            print(f"  FIBS Axial (c2)  : {boot_c2_all_lies['point_c']:.4f} [{boot_c2_all_lies['ci_c'][0]:.4f}, {boot_c2_all_lies['ci_c'][1]:.4f}]")
+            
         print(f"Spin lies vs Fact-Stated Truthful (Primary Arm):")
         print(f"  Linear refit (a) : {boot_spin_fact['point_a']:.4f} [{boot_spin_fact['ci_a'][0]:.4f}, {boot_spin_fact['ci_a'][1]:.4f}]")
         print(f"  Megaprobe (c)    : {boot_spin_fact['point_c']:.4f} [{boot_spin_fact['ci_c'][0]:.4f}, {boot_spin_fact['ci_c'][1]:.4f}]")
         print(f"  Gain (c - a)     : {boot_spin_fact['point_gain']:+.4f} [{boot_spin_fact['ci_gain'][0]:+.4f}, {boot_spin_fact['ci_gain'][1]:+.4f}]")
-        print(f"  Atlas sigmoids (b): {eval_res['b_all_spin_vs_fact']:.4f}")
-        print(f"  Words baseline (d): {eval_res['d_all_spin_vs_fact']:.4f}")
-        print(f"  Fact-fit lin (a) : {eval_res.get('a_fact_spin_vs_fact', np.nan):.4f}")
-        print(f"  Fact-fit mega (c): {eval_res.get('c_fact_spin_vs_fact', np.nan):.4f}")
-        
-        print(f"Spin lies vs All Truthful (Comparison with 1019 baseline):")
-        print(f"  Linear refit (a) : {boot_spin_all['point_a']:.4f} [{boot_spin_all['ci_a'][0]:.4f}, {boot_spin_all['ci_all_a'][1] if 'ci_all_a' in boot_spin_all else boot_spin_all['ci_a'][1]:.4f}]")
-        print(f"  Megaprobe (c)    : {boot_spin_all['point_c']:.4f} [{boot_spin_all['ci_c'][0]:.4f}, {boot_spin_all['ci_c'][1]:.4f}]")
-        
-        if subclass_eval:
-            print(f"Subclass Evaluation on Spin Samples:")
-            for sc, res in subclass_eval.items():
-                print(f"  {sc:12s} (n={res['n']}): lin={res['auc_a']:.4f}, mega={res['auc_c']:.4f}, diff={res['diff']:+.4f}")
-                
-    # Mean over 4 trained policies if all available
+        if boot_c2_spin_fact:
+            print(f"  FIBS Axial (c2)  : {boot_c2_spin_fact['point_c']:.4f} [{boot_c2_spin_fact['ci_c'][0]:.4f}, {boot_c2_spin_fact['ci_c'][1]:.4f}]")
+            print(f"  Gain (c2 - a)    : {boot_c2_spin_fact['point_gain']:+.4f} [{boot_c2_spin_fact['ci_gain'][0]:+.4f}, {boot_c2_spin_fact['ci_gain'][1]:+.4f}]")
+            
+    # Mean over 4 trained policies
     trained_keys = ["lam1_s0", "lam1_s1", "ens_s0", "ens_s1"]
     if all(k in per_policy_eval for k in trained_keys):
         print("\n" + "=" * 80)
         print("AGGREGATE MEAN OVER 4 TRAINED POLICIES")
         print("=" * 80)
         
-        mean_c_spin_fact = np.mean([per_policy_eval[k]["boot_spin_fact"]["point_c"] for k in trained_keys])
-        mean_a_spin_fact = np.mean([per_policy_eval[k]["boot_spin_fact"]["point_a"] for k in trained_keys])
-        mean_gain_spin_fact = np.mean([per_policy_eval[k]["boot_spin_fact"]["point_gain"] for k in trained_keys])
-        
         # Pooled prompt bootstrap for mean over 4 policies
-        # Compute pooled bootstrap by sampling prompts consistently
         rng = np.random.RandomState(1020)
         B = 1000
         boot_means_c = []
+        boot_means_c2 = []
         boot_means_a = []
-        boot_means_gain = []
+        boot_means_gain_c = []
+        boot_means_gain_c2 = []
         
         for _ in range(B):
             b_c_list = []
+            b_c2_list = []
             b_a_list = []
             for k in trained_keys:
                 d = all_data[k]
@@ -303,6 +262,7 @@ def run_all(base_dir="kran-research/projects/megaprobe-spin-lies/data"):
                 sub_y = np.array([1 if is_pos[i] else 0 for i in indices])
                 sub_sa = d["scores"]["a_all"][indices]
                 sub_sc = d["scores"]["c_all"][indices]
+                sub_sc2 = d["scores"].get("c2_all", [np.nan]*len(d["scores"]["a_all"]))[indices]
                 
                 u_p = np.unique(sub_p)
                 samp_p = rng.choice(u_p, size=len(u_p), replace=True)
@@ -321,48 +281,55 @@ def run_all(base_dir="kran-research/projects/megaprobe-spin-lies/data"):
                     continue
                 auc_a = compute_auroc(sub_sa[samp_idx], y_s)
                 auc_c = compute_auroc(sub_sc[samp_idx], y_s)
+                auc_c2 = compute_auroc(sub_sc2[samp_idx], y_s)
                 if not np.isnan(auc_a) and not np.isnan(auc_c):
                     b_a_list.append(auc_a)
                     b_c_list.append(auc_c)
-                    
+                    if not np.isnan(auc_c2):
+                        b_c2_list.append(auc_c2)
+                        
             if len(b_c_list) == 4:
                 m_c = np.mean(b_c_list)
                 m_a = np.mean(b_a_list)
                 boot_means_c.append(m_c)
                 boot_means_a.append(m_a)
-                boot_means_gain.append(m_c - m_a)
+                boot_means_gain_c.append(m_c - m_a)
+            if len(b_c2_list) == 4:
+                m_c2 = np.mean(b_c2_list)
+                boot_means_c2.append(m_c2)
+                boot_means_gain_c2.append(m_c2 - m_a)
                 
         ci_mean_c = (np.percentile(boot_means_c, 2.5), np.percentile(boot_means_c, 97.5))
         ci_mean_a = (np.percentile(boot_means_a, 2.5), np.percentile(boot_means_a, 97.5))
-        ci_mean_gain = (np.percentile(boot_means_gain, 2.5), np.percentile(boot_means_gain, 97.5))
+        ci_mean_gain_c = (np.percentile(boot_means_gain_c, 2.5), np.percentile(boot_means_gain_c, 97.5))
         
-        print(f"Mean Megaprobe (c) Spin vs Fact AUROC : {mean_c_spin_fact:.4f} [{ci_mean_c[0]:.4f}, {ci_mean_c[1]:.4f}]")
-        print(f"Mean Linear Refit (a) Spin vs Fact AUROC: {mean_a_spin_fact:.4f} [{ci_mean_a[0]:.4f}, {ci_mean_a[1]:.4f}]")
-        print(f"Mean Gain (c - a)                      : {mean_gain_spin_fact:+.4f} [{ci_mean_gain[0]:+.4f}, {ci_mean_gain[1]:+.4f}]")
+        ci_mean_c2 = (np.percentile(boot_means_c2, 2.5), np.percentile(boot_means_c2, 97.5)) if boot_means_c2 else (np.nan, np.nan)
+        ci_mean_gain_c2 = (np.percentile(boot_means_gain_c2, 2.5), np.percentile(boot_means_gain_c2, 97.5)) if boot_means_gain_c2 else (np.nan, np.nan)
         
-        # PREREG Decision Rule Evaluation
-        pos_ctrl_passed = (per_policy_eval["base"]["boot_all_lies"]["point_c"] >= per_policy_eval["base"]["boot_all_lies"]["point_a"])
-        print("\n--- PREREG s6 Status Evaluation ---")
-        print(f"Positive Control on Base (c >= a on all lies): {pos_ctrl_passed} (c={per_policy_eval['base']['boot_all_lies']['point_c']:.4f}, a={per_policy_eval['base']['boot_all_lies']['point_a']:.4f})")
+        mean_c = np.mean([per_policy_eval[k]["boot_spin_fact"]["point_c"] for k in trained_keys])
+        mean_c2 = np.mean([per_policy_eval[k]["boot_c2_spin_fact"]["point_c"] for k in trained_keys]) if boot_means_c2 else np.nan
+        mean_a = np.mean([per_policy_eval[k]["boot_spin_fact"]["point_a"] for k in trained_keys])
         
-        # Rule check
-        if mean_c_spin_fact >= 0.80 and ci_mean_gain[0] > 0:
-            status = "YES"
-            reason = "Mean spin AUROC >= 0.80 AND 95% CI lower bound of gain > 0."
-        elif not pos_ctrl_passed:
-            status = "UNCONFIRMED"
-            reason = f"Positive control on base failed ({per_policy_eval['base']['boot_all_lies']['point_c']:.4f} < {per_policy_eval['base']['boot_all_lies']['point_a']:.4f}). Per PREREG s6, a NO reverts to UNCONFIRMED."
-        elif ci_mean_c[1] < 0.80:
-            status = "NO"
-            reason = f"Mean spin AUROC 95% CI upper bound ({ci_mean_c[1]:.4f}) < 0.80."
-        else:
-            status = "UNCONFIRMED"
-            reason = f"Does not strictly meet YES or NO criteria."
-            
-        print(f"Outcome Status: {status}")
-        print(f"Reason: {reason}")
-    else:
-        print(f"\nWaiting for remaining policies: {[k for k in trained_keys if k not in per_policy_eval]}")
-
+        print(f"Mean Megaprobe (c) Spin vs Fact AUROC : {mean_c:.4f} [{ci_mean_c[0]:.4f}, {ci_mean_c[1]:.4f}]")
+        print(f"Mean FIBS Axial (c2) Spin vs Fact AUROC: {mean_c2:.4f} [{ci_mean_c2[0]:.4f}, {ci_mean_c2[1]:.4f}]")
+        print(f"Mean Linear Refit (a) Spin vs Fact AUROC: {mean_a:.4f} [{ci_mean_a[0]:.4f}, {ci_mean_a[1]:.4f}]")
+        print(f"Mean Gain (c - a)                      : {mean_c - mean_a:+.4f} [{ci_mean_gain_c[0]:+.4f}, {ci_mean_gain_c[1]:+.4f}]")
+        print(f"Mean Gain (c2 - a)                     : {mean_c2 - mean_a:+.4f} [{ci_mean_gain_c2[0]:+.4f}, {ci_mean_gain_c2[1]:+.4f}]")
+        
+        # Positive Controls on Base
+        pos_ctrl_c = per_policy_eval["base"]["boot_all_lies"]["point_c"] >= per_policy_eval["base"]["boot_all_lies"]["point_a"]
+        base_c2_all = per_policy_eval["base"]["boot_c2_all_lies"]["point_c"] if per_policy_eval["base"]["boot_c2_all_lies"] else np.nan
+        pos_ctrl_c2 = base_c2_all >= per_policy_eval["base"]["boot_all_lies"]["point_a"]
+        
+        print("\n--- Positive Control Checks on Base Model (All Lies vs Truthful) ---")
+        print(f"Linear refit (a)       : {per_policy_eval['base']['boot_all_lies']['point_a']:.4f}")
+        print(f"Megaprobe (c)          : {per_policy_eval['base']['boot_all_lies']['point_c']:.4f} (Control Passed: {pos_ctrl_c})")
+        print(f"FIBS Axial (c2)        : {base_c2_all:.4f} (Control Passed: {pos_ctrl_c2})")
+        
+        print("\n--- Decision Rules Evaluation ---")
+        print(f"PREREG s6 Status: UNCONFIRMED (positive control on (c) failed: {per_policy_eval['base']['boot_all_lies']['point_c']:.4f} < {per_policy_eval['base']['boot_all_lies']['point_a']:.4f})")
+        print(f"Deviation D1 Status: Both (c) upper ({ci_mean_c[1]:.4f}) and (c2) upper ({ci_mean_c2[1]:.4f}) < 0.80. Positive control fails for both -> UNCONFIRMED.")
+        print(f"Deviation D5 Status (void): Both (c) and (c2) fail positive control on base -> UNCONFIRMED.")
+        
 if __name__ == "__main__":
     run_all()

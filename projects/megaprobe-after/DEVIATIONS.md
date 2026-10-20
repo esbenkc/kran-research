@@ -3,7 +3,7 @@
 Changes after the PREREG freeze (commit ad300da, 2026-10-20 15:00:34 CEST). Each header time is the git commit
 time of the entry. The frozen rule is still reported where it differs.
 
-## D1 — implementation details left open by PREREG (Felix, from Bruno #3753; no probe fit and no attacked score existed)
+## D1 — 15:02:20 CEST (commit f960c97) — implementation details left open by PREREG (Felix, from Bruno #3753; no probe fit and no attacked score existed)
 
 - `mlp14`: minibatch 64 rows, shuffled with seed 1020.
 - `mega`: every fit (grid folds, label-curve fits, the main 1400-row fit) uses 400-row minibatches; T is padded to

@@ -14,6 +14,10 @@
   {
    "key": "c",
    "label": "Megaprobe\n(ours)"
+  },
+  {
+   "key": "c2",
+   "label": "Axial probe\n(public design)"
   }
  ],
  "series": [
@@ -124,6 +128,38 @@
    "auroc": 0.5765612530145785,
    "lo": 0.5417247750418551,
    "hi": 0.6101986210013212
+  },
+  {
+   "series": "base",
+   "arm": "c2",
+   "fit": "all",
+   "auroc": 0.6480632008154944,
+   "lo": 0.5648489092606739,
+   "hi": 0.7251573130243483
+  },
+  {
+   "series": "trained",
+   "arm": "c2",
+   "fit": "all",
+   "auroc": 0.5855125851064374,
+   "lo": 0.5502278363515324,
+   "hi": 0.6212609337713734
+  },
+  {
+   "series": "base",
+   "arm": "c2",
+   "fit": "fact",
+   "auroc": 0.4890417940876656,
+   "lo": 0.4042745148995149,
+   "hi": 0.5857349849094567
+  },
+  {
+   "series": "trained",
+   "arm": "c2",
+   "fit": "fact",
+   "auroc": 0.5269357380584081,
+   "lo": 0.49274576174869944,
+   "hi": 0.5590862583014682
   }
  ],
  "per_model": [
@@ -210,6 +246,34 @@
    "arm": "c",
    "fit": "all",
    "auroc": 0.6432395661430317
+  },
+  {
+   "model": "lam1_s0",
+   "label": "Trained against one probe, seed 0",
+   "arm": "c2",
+   "fit": "all",
+   "auroc": 0.6221622077812472
+  },
+  {
+   "model": "lam1_s1",
+   "label": "Trained against one probe, seed 1",
+   "arm": "c2",
+   "fit": "all",
+   "auroc": 0.6069388036070764
+  },
+  {
+   "model": "ens_s0",
+   "label": "Trained against eight probes, seed 0",
+   "arm": "c2",
+   "fit": "all",
+   "auroc": 0.5571866150378547
+  },
+  {
+   "model": "ens_s1",
+   "label": "Trained against eight probes, seed 1",
+   "arm": "c2",
+   "fit": "all",
+   "auroc": 0.5557627139995717
   }
  ],
  "words": {

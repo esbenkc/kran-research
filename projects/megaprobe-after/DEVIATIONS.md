@@ -15,3 +15,24 @@ time of the entry. The frozen rule is still reported where it differs.
   frozen 1019 probe within 0.005 of 1019 per seed. Added: max |score difference| <= 1e-3 against the 1019 logged
   scores on all 2992 statements per state. A run passes only if both hold.
 - Can it move the headline? No: these fill gaps without changing a metric, split, threshold or status rule.
+
+## D2 — TIME_PLACEHOLDER — exploratory controls added AFTER the first result (Tove #3766; Felix logs). Outside the verdict.
+
+The first result (Bruno #3763, commit 8926df8) was seen before this entry. These arms do not change the status
+rule (PREREG s6) or the prediction outcome (s7). They decide only how the post explains the megaprobe's catch.
+
+- (A) one-layer megaprobe: the `mega` model and fit recipe (PREREG s3, D1; HP from data/hp.json, k=32, L2=1e-2,
+  not re-selected) with its input restricted to ONE layer, at l = 18 and at l = 22 (the clean and the attacked
+  top-attention layers). Attention runs over tokens only.
+- (B) all-layer linear, no token selection: mean over tokens 1..n-1 at each of l = 1..28, concatenated
+  (28 x 1536), standardised, logistic regression, C by the `lin_l` rule (PREREG s4).
+- Both fit on the clean training pool only, scored on every state, PREREG s5 line and CI.
+- Reading fixed now, before either arm runs:
+  - If (A) at l18 or l22 has pooled attacked lower CI >= 50%: the post says token selection in the upper half does
+    most of the work, not the number of layers.
+  - If (A) at both layers and (B) have pooled attacked catch < 30%: the post may say that only the combination of
+    layers and token selection recovers the catch.
+  - Otherwise: the post says both parts contribute, with the three numbers.
+- Sensitivity (reported, not the verdict): `mega` catch with the line set at the 1% point of the 596 eval true
+  statements of each state (k = floor(0.01 x 597) = 5th-highest), since seed 2 had 2.0% eval false alarms at the
+  refit line.

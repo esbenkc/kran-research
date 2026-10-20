@@ -1,0 +1,6 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1020-megaprobe-after/kran-research/.venv, got /Users/esben/work/theory-1020-megaprobe-after/kran-research/projects/megaprobe-after/../../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1020-megaprobe-after/kran-research/.venv, got /Users/esben/work/theory-1020-megaprobe-after/kran-research/projects/megaprobe-after/../../.venv
+200 {'lin14': {'clean_eval_auroc': 0.9983812666096122}, 'mlp14': {'clean_eval_auroc': 0.9991272915634432, 'epochs': 31}, 'mega': {'clean_eval_auroc': 0.9988964461060312, 'best_epoch': 300}}
+400 {'lin14': {'clean_eval_auroc': 0.9989499346876267}, 'mlp14': {'clean_eval_auroc': 0.9996002432322869, 'epochs': 26}, 'mega': {'clean_eval_auroc': 0.9992173775956038, 'best_epoch': 70}}
+800 {'lin14': {'clean_eval_auroc': 0.999363767397865}, 'mlp14': {'clean_eval_auroc': 0.9997184811494978, 'epochs': 24}, 'mega': {'clean_eval_auroc': 0.9997212963380028, 'best_epoch': 300}}
+1400 {'lin14': {'clean_eval_auroc': 0.9992793117427142}, 'mlp14': {'clean_eval_auroc': 0.9997888608621234, 'epochs': 23}, 'mega': {'clean_eval_auroc': 0.9997860456736183, 'best_epoch': 170}}

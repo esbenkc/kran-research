@@ -1,0 +1,10 @@
+# megaprobe-after: run config. Model, split, frozen probe and the 3 lam0 LoRA adapters are those of max-pool-survives
+# (theory-1019, branch swarm/theory-1019-max-pool-survives), copied to data/ref1019/. No training in this run.
+name: megaprobe-after
+question: "TBD by the room (yes/no title)"
+model: Qwen/Qwen2.5-1.5B-Instruct   # bf16, torch MPS
+attack_layer: 14                    # hidden_states[14] = output of block 13; the LoRA sits on blocks 0..13 only
+max_tokens: 32
+figures:
+  - id: megaprobe-after
+    caption: "TBD"

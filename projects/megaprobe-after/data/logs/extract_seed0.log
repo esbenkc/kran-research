@@ -1,0 +1,5 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1020-megaprobe-after/kran-research/.venv, got /Users/esben/work/theory-1020-megaprobe-after/kran-research/projects/megaprobe-after/../../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1020-megaprobe-after/kran-research/.venv, got /Users/esben/work/theory-1020-megaprobe-after/kran-research/projects/megaprobe-after/../../.venv
+W1020 06:01:41.986000 69417 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 8193.56it/s]
+{"state": "seed0", "adapter": "/Users/esben/work/theory-1020-megaprobe-after/kran-research/projects/megaprobe-after/data/ref1019/runs/lam0__seed0__adapter", "n_stmt": 2992, "n_tok": 29046, "n_layers": 29, "d": 1536, "batch": 64, "fp16_overflow": false, "gate_max_abs_score_diff_vs_1019_float32": 2.130476708828155e-06, "gate_max_abs_score_diff_vs_1019_fp16_store": 2.130476708828155e-06, "seconds": 53.8}

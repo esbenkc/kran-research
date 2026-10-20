@@ -98,18 +98,3 @@ Seed s passes iff at (L*, k*) on TEST, with judge labels:
 ## 11. Compute
 
 One model process at a time, <= 5 GB RSS total for this swarm while another swarm room is open. Skeptic rebuilds on saved files (CPU).
-
-## Amendment 1 (before any steering run or any DEV/TEST output; reviewer input #3995, #3996, #4002)
-
-Sections 1-11 above stay as frozen in commit 8dcf3af. These changes apply on top; the git time of this commit is their time.
-
-- A1 (data fact, Iris #4002): harmful_val has only 39 prompts. DEV harmful = all 39 harmful_val + 25 prompts drawn
-  (seed 0) from harmful_train rows NOT used in FIT. FIT harmful = 128 other harmful_train rows. Harmless as before.
-- A2 (leak, Iris #4002): the 500 strip pairs are drawn only from LLM-LAT rows with token-Jaccard < 0.6 against every
-  FIT, DEV and TEST prompt (lowercased word sets). The builder logs how many rows were removed.
-- A3 (scorer match, Tove #3996): the DEV pick uses the SAME judge model and prompt as TEST, applied to the 32-token DEV
-  outputs. String match is kept as a second scorer and reported. The judge model id and the judge prompt are fixed in
-  config.yaml and committed before the DEV sweep starts.
-- A4 (wording, Kasper #3995): conditions 1 and 2 of section 8 are Tove's approved status bar (#3977), unchanged, with
-  the absolute < 5% harmless bar. Condition 3 (random directions) is an extra anti-artifact gate on top of that bar;
-  it does not change any threshold of the pre-registered prediction.

@@ -14,3 +14,6 @@ projects/*/data/**/run.log
 # `build_corpus.py fetch && build_corpus.py` instead of redistributing it
 projects/proof-elegance/data/human/
 projects/proof-elegance/data/ai/
+
+# megaprobe-spin-lies: 22 GB of per-token activation memmaps (rebuild: projects/megaprobe-spin-lies/cache.py)
+projects/megaprobe-spin-lies/data/cache/

@@ -45,3 +45,23 @@ once under the 5 GB rule (room #3443, #3446). Run serially, (c2) ends about 04:2
 What: the drop line in D1 moves to 04:30 CEST. If (c2) is not scored on all 5 models by then, D1's drop rule applies
 unchanged. The stop rule (PREREG s9, 05:30) does not change. No (c2) score on any model existed when this entry was
 committed.
+
+## D3 — megaprobe (c) hyperparameters and run details (Bruno; committed after the base-only pilot, before any trained-model fit)
+
+- Arm (c) as built (probes.py `fit_c`): per layer, the answer-token vectors are projected on the top-k principal
+  components of the training folds' answer tokens (whitened; fit per outer fold and per read, no labels used). One
+  softmax over all (token, layer) pairs of q_l.z + c_l weights the per-pair score w_l.z; output + bias. Adam, full
+  batch (320 fit rows), an L2 penalty on q and w, class-balanced loss, 300 epochs, keep the epoch with the best AUROC on
+  an inner 20% split of the draw (checked every 10 epochs).
+- Pilot (data/hp.json, logs/pilot.log, logs/pilot_ext.log): base model, outer fold 0 training rows only, inner 4-fold,
+  each inner fit on a 400-row subsample. Grid k {64, 128} x L2 {1e-4, 1e-3, 1e-2}, lr 1e-2. The best L2 (1e-2) sat on
+  the grid edge, so the grid was extended once at k=128 to L2 {3e-2, 1e-1} (pilot_ext). Chosen: k=128, L2=3e-2 (inner
+  AUROC 0.833; 1e-2: 0.819; 1e-1: 0.810). The first grid drew a fresh inner subsample per configuration (one rng
+  stream); the extension used fixed subsamples, so pilot numbers carry subsample noise.
+- One (c) fit took 12-22 s (> 10 s), so per PREREG s5 the megaprobe uses the first 3 draws of every fold.
+- Shuffled-label null for (c): draw 0 of every fold only (every row still gets an OOF null score). (a) null: all 5 draws.
+- Arm (c2) runs on CPU, reading its inputs from a disk memmap: on MPS one c2 job reached a 3.2 GB footprint, over the
+  swarm memory cap next to the (c) job. Same code and numbers otherwise (fit_c2.py).
+- Fit order: the 5 own reads first, then the 4 held-text reads, then the pooled fact-present fit. The first (c) fit job
+  was stopped by the footprint watchdog (3.7 GB line) during the base model's first fold, before any output was written;
+  it was restarted with smaller PCA chunks. No result was seen.

@@ -1,0 +1,60 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 27026.96it/s]
+  base_own 8/1600 1s
+  base_own 208/1600 25s
+  base_own 408/1600 49s
+  base_own 608/1600 73s
+  base_own 808/1600 96s
+  base_own 1008/1600 121s
+  base_own 1208/1600 145s
+  base_own 1408/1600 171s
+base own {'n': 1600, 'F': 17, 'n_tok_total': 84236, 'empty_answers': 0, 'seconds': 196.8, 'policy': 'base', 'read': 'own', 'adapter': None, 'follow_text': '<|im_end|>\n<|im_start|>user\nDid you respond truthfully?<|im_end|>\n<|im_start|>assistant\nYes', 'layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]}
+  lam1_s0_own 8/1000 1s
+  lam1_s0_own 208/1000 33s
+  lam1_s0_own 408/1000 64s
+  lam1_s0_own 608/1000 94s
+  lam1_s0_own 808/1000 126s
+lam1_s0 own {'n': 1000, 'F': 17, 'n_tok_total': 34805, 'empty_answers': 0, 'seconds': 160.2, 'policy': 'lam1_s0', 'read': 'own', 'adapter': '/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/lam1_s0/round8', 'follow_text': '<|im_end|>\n<|im_start|>user\nDid you respond truthfully?<|im_end|>\n<|im_start|>assistant\nYes', 'layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]}
+  lam1_s0_base 8/1000 1s
+  lam1_s0_base 208/1000 25s
+  lam1_s0_base 408/1000 48s
+  lam1_s0_base 608/1000 71s
+  lam1_s0_base 808/1000 94s
+lam1_s0 base {'n': 1000, 'F': 17, 'n_tok_total': 34805, 'empty_answers': 0, 'seconds': 116.2, 'policy': 'lam1_s0', 'read': 'base', 'adapter': '/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/lam1_s0/round8', 'follow_text': '<|im_end|>\n<|im_start|>user\nDid you respond truthfully?<|im_end|>\n<|im_start|>assistant\nYes', 'layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]}
+  lam1_s1_own 8/1000 1s
+  lam1_s1_own 208/1000 32s
+  lam1_s1_own 408/1000 63s
+  lam1_s1_own 608/1000 93s
+  lam1_s1_own 808/1000 124s
+lam1_s1 own {'n': 1000, 'F': 17, 'n_tok_total': 24390, 'empty_answers': 0, 'seconds': 154.8, 'policy': 'lam1_s1', 'read': 'own', 'adapter': '/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/lam1_s1/round8', 'follow_text': '<|im_end|>\n<|im_start|>user\nDid you respond truthfully?<|im_end|>\n<|im_start|>assistant\nYes', 'layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]}
+  lam1_s1_base 8/1000 1s
+  lam1_s1_base 208/1000 23s
+  lam1_s1_base 408/1000 45s
+  lam1_s1_base 608/1000 67s
+  lam1_s1_base 808/1000 90s
+lam1_s1 base {'n': 1000, 'F': 17, 'n_tok_total': 24390, 'empty_answers': 0, 'seconds': 112.2, 'policy': 'lam1_s1', 'read': 'base', 'adapter': '/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/lam1_s1/round8', 'follow_text': '<|im_end|>\n<|im_start|>user\nDid you respond truthfully?<|im_end|>\n<|im_start|>assistant\nYes', 'layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]}
+  ens_s0_own 8/1000 1s
+  ens_s0_own 208/1000 33s
+  ens_s0_own 408/1000 63s
+  ens_s0_own 608/1000 93s
+  ens_s0_own 808/1000 124s
+ens_s0 own {'n': 1000, 'F': 17, 'n_tok_total': 34717, 'empty_answers': 0, 'seconds': 155.6, 'policy': 'ens_s0', 'read': 'own', 'adapter': '/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/ens_lam1_s0/round8', 'follow_text': '<|im_end|>\n<|im_start|>user\nDid you respond truthfully?<|im_end|>\n<|im_start|>assistant\nYes', 'layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]}
+  ens_s0_base 8/1000 1s
+  ens_s0_base 208/1000 23s
+  ens_s0_base 408/1000 45s
+  ens_s0_base 608/1000 67s
+  ens_s0_base 808/1000 90s
+ens_s0 base {'n': 1000, 'F': 17, 'n_tok_total': 34717, 'empty_answers': 0, 'seconds': 111.8, 'policy': 'ens_s0', 'read': 'base', 'adapter': '/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/ens_lam1_s0/round8', 'follow_text': '<|im_end|>\n<|im_start|>user\nDid you respond truthfully?<|im_end|>\n<|im_start|>assistant\nYes', 'layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]}
+  ens_s1_own 8/1000 1s
+  ens_s1_own 208/1000 35s
+  ens_s1_own 408/1000 70s
+  ens_s1_own 608/1000 103s
+  ens_s1_own 808/1000 137s
+ens_s1 own {'n': 1000, 'F': 17, 'n_tok_total': 62909, 'empty_answers': 0, 'seconds': 171.0, 'policy': 'ens_s1', 'read': 'own', 'adapter': '/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/ens_lam1_s1/round8', 'follow_text': '<|im_end|>\n<|im_start|>user\nDid you respond truthfully?<|im_end|>\n<|im_start|>assistant\nYes', 'layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]}
+  ens_s1_base 8/1000 1s
+  ens_s1_base 208/1000 26s
+  ens_s1_base 408/1000 50s
+  ens_s1_base 608/1000 74s
+  ens_s1_base 808/1000 99s
+ens_s1 base {'n': 1000, 'F': 17, 'n_tok_total': 62909, 'empty_answers': 0, 'seconds': 124.8, 'policy': 'ens_s1', 'read': 'base', 'adapter': '/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/ens_lam1_s1/round8', 'follow_text': '<|im_end|>\n<|im_start|>user\nDid you respond truthfully?<|im_end|>\n<|im_start|>assistant\nYes', 'layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]}
+exit 0

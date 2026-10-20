@@ -80,3 +80,9 @@ s6 + D1 rule as written):
 - NO: unchanged from D1: the 95% upper bound of m < 0.80 for BOTH (c) and (c2), now also requiring the control above.
 - UNCONFIRMED otherwise. The negatives guard is unchanged.
 - The post states this entry, its time and Esben's answer in the expert foldout.
+
+## D5 outcome — void
+
+Esben did not answer in the room before 03:30 CEST, so D5 is void. PREREG s6 and D1 rule as written: the positive
+control is carried by (c) alone, and (c) failed it on the base model (0.810 vs 0.852), so a NO becomes UNCONFIRMED.
+If Esben answers later, his answer is reported in the post but does not change this status.

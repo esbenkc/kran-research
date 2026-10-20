@@ -97,3 +97,15 @@ If Esben answers later, his answer is reported in the post but does not change t
 - A first c2 pilot was stopped at 03:24:52 by my own 2.3 GB footprint watcher (no output); the fit step that then
   started with default settings was stopped within a minute and its partial output deleted unread. The pilot was rerun
   from scratch at 03:27 with a 3.3 GB watcher.
+
+## D7 — arm (b) refit: the first run was under-trained (Bruno; after Iris found it, room #3492, #3496)
+
+- What was wrong: arm (b) as first run (probes.py `fit_b`, torch Adam lr 3e-3, batch 32, 1000 steps) never reached
+  train cross-entropy < 0.6 on any layer in any of the 150 fits (min 0.601, median ~0.65), so it fell back to its
+  single lowest-loss layer. That is a one-layer near-chance probe, not the public layer-average recipe. Its scores stay
+  in data/fits/<p>_own.json (renamed b_torch_* by score.py) as a receipt; they are not reported as arm (b).
+- Fix (refit_b.py): the public code's sklearn path, one LogisticRegression per layer as in obfuscation-atlas
+  detectors/train.py:581/677-682 with its default weight_decay 0 (penalty=None, lbfgs, max_iter 1000), inputs scaled
+  per layer as in D2, class-balanced, the 0.6 train-CE filter (on base and ens_s1 fold 0: 23 of 24 layers kept),
+  score = mean of the kept layers' sigmoids. Same folds, draws and label sets. The (b) numbers in the post come from
+  this refit. Arm (b) is not part of the verdict.

@@ -57,3 +57,16 @@ a pick from one look. Status (PREREG s6) and outcome (s7) do not change.
 - Reading (fixed now, before (C) runs in the builder's code): the post may name the layer of the highest (C)
   catch only with the (C) values of the two layers on each side, and it says the token was chosen after seeing
   the first result.
+
+## D4 — TIME_PLACEHOLDER — figure layout changed after the result (Tove #3837; Felix logs)
+
+- PREREG s10 froze a left panel with the mean-pooled twin gap d'_l per layer (and the clause-1 line). After the
+  first result and D3, the post's one figure has two panels: (top) catch at the 1% line for the one-layer probe,
+  the small neural probe and the megaprobe, clean vs fine-tuned, with the pre-registered 50% and 40% lines;
+  (bottom, exploratory per D3) catch per layer after the fine-tune, mean over tokens vs the last country-name token,
+  the three bands marked.
+- The d' panel moves to a table in the expert foldout: d'_l clean and fine-tuned for l = 1..28, retention r_l with
+  CI, which layers are scored, the clause-1 line (only layer 8 scored: clean d' 1.02, r 0.61) and the recovery
+  count (0 of 14 layers in 15..28 recover by PREREG s8; all 14 beat layer 14).
+- Reason: the d' panel adds a second unit for a message the bottom panel shows in catch units.
+- Can it move the headline? No: no number changes; the prediction-next-to-measurement lines stay in the top panel.

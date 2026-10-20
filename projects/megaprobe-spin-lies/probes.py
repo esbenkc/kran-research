@@ -240,12 +240,12 @@ def fit_b(F, y, tr, te, seed, norm="unit_norm"):
 
 
 # ---------------- arm c: attention megaprobe ----------------
-def padded(Z, offsets, rows, T_max=128):
+def padded(Z, offsets, rows, T_max=128, device=None):
     k = Z.shape[2]; L = Z.shape[1]
     T = max(1, min(T_max, max(int(offsets[i + 1] - offsets[i]) for i in rows)))
     T = min(T_max, -(-T // 32) * 32)  # few distinct shapes (MPS caches a graph per shape); padding is masked out
-    X = torch.zeros(len(rows), T, L, k, dtype=torch.float16, device=DEV)
-    M = torch.zeros(len(rows), T, dtype=torch.bool, device=DEV)
+    X = torch.zeros(len(rows), T, L, k, dtype=torch.float16, device=device or DEV)
+    M = torch.zeros(len(rows), T, dtype=torch.bool, device=device or DEV)
     for j, i in enumerate(rows):
         s, e = int(offsets[i]), int(offsets[i + 1])
         e = min(e, s + T)
@@ -267,8 +267,11 @@ def fit_c(Z, offsets, y, tr, te, seed, hp=None, val_frac=0.2, mb=400):
     tr = np.array(tr); perm = rng.permutation(len(tr))
     nv = int(len(tr) * val_frac)
     va_rows, fit_rows = tr[perm[:nv]], tr[perm[nv:]]
-    Xf, Mf = padded(Z, offsets, fit_rows)  # fp16 storage, fp32 compute per minibatch
-    Xv, Mv = padded(Z, offsets, va_rows)
+    # A 400-row draw stays on MPS (full batch). The pooled fit (~1,400 rows) keeps its padded rows on the CPU and
+    # moves one minibatch at a time: on MPS alone it hit the 3 GB allocator cap (logs/pooled.log, 04:18).
+    store = DEV if len(tr) <= N_FIT else "cpu"
+    Xf, Mf = padded(Z, offsets, fit_rows, device=store)  # fp16 storage, fp32 compute per minibatch
+    Xv, Mv = padded(Z, offsets, va_rows, device=store)
     yf = torch.tensor(y[fit_rows], dtype=torch.float32, device=DEV)
     L, k = Z.shape[1], Z.shape[2]
     g = torch.Generator().manual_seed(seed)
@@ -283,14 +286,15 @@ def fit_c(Z, offsets, y, tr, te, seed, hp=None, val_frac=0.2, mb=400):
     for ep in range(hp["epochs"]):
         order = torch.from_numpy(rng.permutation(nf)) if nf > mb else torch.arange(nf)
         for s in range(0, nf, mb):
-            b = order[s:s + mb].to(DEV)
-            z = mega_forward(P, Xf[b].float(), Mf[b])
+            b = order[s:s + mb].to(Xf.device)
+            z = mega_forward(P, Xf[b].to(DEV).float(), Mf[b].to(DEV))
+            b = b.to(DEV)
             loss = torch.nn.functional.binary_cross_entropy_with_logits(z, yf[b], pos_weight=pw) \
                 + hp["l2"] * (P["q"].pow(2).sum() + P["w"].pow(2).sum())
             opt.zero_grad(); loss.backward(); opt.step()
         if ep % 10 == 9:
             with torch.no_grad():
-                sv = np.concatenate([mega_forward(P, Xv[s:s + mb].float(), Mv[s:s + mb]).cpu().numpy()
+                sv = np.concatenate([mega_forward(P, Xv[s:s + mb].to(DEV).float(), Mv[s:s + mb].to(DEV)).cpu().numpy()
                                      for s in range(0, len(va_rows), mb)])
             au = roc_auc_score(y[va_rows], sv) if len(set(y[va_rows])) == 2 else 0.5
             if au > best[0]:

@@ -4,18 +4,13 @@
 //      the fine-tune, with a new alarm line set on 200 true statements scored by the fine-tuned model; 3 runs pooled;
 //      bar = 95% interval (resampling cities). Dashed line: the pre-registered 50% bar. Dotted line: the
 //      pre-registered 40% floor for the lower end of the interval.
-// MIDDLE (pre-registered): a linear probe fit on one layer of the original model, reading the mean over the
-//      statement's tokens: how far apart the false and the true statement of each pair score, in units of the original
-//      model's spread at that layer. Hollow: original model. Filled: after the fine-tune (mean of 3 runs; bar = 95%
-//      interval). Faded hollow: layers too weak on the original model to score (below 1 spread). Short dashes on
-//      layers 1-8: half the original gap (the pre-registered bar for those layers).
-// BOTTOM (exploratory, chosen after the first result): catch rate per layer after the fine-tune for two linear
-//      probes fit on the original model: the mean over the tokens (as in the middle panel) and the last token of the
-//      country name. Small hollow circles: the same probe on the original model.
-// data = { layers: [{layer, before, before_lo, before_hi, after, after_lo, after_hi, after_per_seed, kept, kept_lo,
-//          kept_hi, scored, mean_catch_before, mean_catch_after, mean_catch_lo, mean_catch_hi, tok_catch_before,
-//          tok_catch_after, tok_catch_lo, tok_catch_hi, tok_false_alarms}], monitors: [{id, label, before, before_lo, before_hi, after,
-//          after_lo, after_hi, after_per_seed}], n: {false_statements, seeds} }
+// BOTTOM: catch rate per layer after the fine-tune, same alarm-line rule, for two linear probes fit on one layer of
+//      the original model: the mean over the statement's tokens (pre-registered) and the last token of the country
+//      name (exploratory, chosen after the first result). Small hollow circles: the same probe on the original model.
+//      Bands: layers whose weights the fine-tune changed (1-13), the targeted layer (14), original weights (15-28).
+// data = { layers: [{layer, mean_catch_before, mean_catch_after, mean_catch_lo, mean_catch_hi, tok_catch_before,
+//          tok_catch_after, tok_catch_lo, tok_catch_hi, tok_false_alarms}], monitors: [{id, label, before, before_lo,
+//          before_hi, after, after_lo, after_hi, after_per_seed}], n: {false_statements, seeds} }
 import { C, FONT, halo, plotStyle } from "../theme.js";
 
 const pct = (v) => `${(v * 100).toFixed(v < 0.1 && v > 0 ? 1 : 0)}%`;
@@ -28,8 +23,6 @@ export function render(data, Plot) {
 
   const mega = data.monitors.find((m) => m.id === "mega");
   const base = data.monitors.find((m) => m.id === "base");
-  const up = data.layers.filter((d) => d.layer > 14);
-  const keptMax = Math.max(...up.map((d) => d.kept));
   const head = document.createElement("div");
   head.style.cssText = "font-size:17px;font-weight:600;margin:0 0 0.15rem;color:" + C.ink;
   head.textContent = "A megaprobe still catches most false statements after the fine-tune";
@@ -43,6 +36,7 @@ export function render(data, Plot) {
   const sw = (kind) => {
     if (kind === "hollow") return `<svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="${C.muted}" stroke-width="1.8"/></svg>`;
     if (kind === "filled") return `<svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="${C.primary}"/></svg>`;
+    if (kind === "teal") return `<svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="${C.secondary}"/></svg>`;
     if (kind === "dot") return `<svg width="24" height="12"><line x1="1" y1="6" x2="23" y2="6" stroke="${C.muted}" stroke-width="1.5" stroke-dasharray="1.5,3"/></svg>`;
     return `<svg width="24" height="12"><line x1="1" y1="6" x2="23" y2="6" stroke="${C.muted}" stroke-width="1.5" stroke-dasharray="4,3"/></svg>`;
   };
@@ -75,90 +69,57 @@ export function render(data, Plot) {
     ],
   }));
 
+  // BOTTOM: catch per layer after the fine-tune, mean over the tokens vs the country's last token
+  const at = (l) => data.layers.find((d) => d.layer === l);
+  const tokBest = data.layers.reduce((a, d) => (d.tok_catch_after > a.tok_catch_after ? d : a));
+  // the run of neighbouring layers around the best one that also catch >= 90% (D3: name a layer only with its neighbours)
+  let lo = tokBest.layer, hi = tokBest.layer;
+  while (at(lo - 1) && at(lo - 1).tok_catch_after >= 0.9) lo -= 1;
+  while (at(hi + 1) && at(hi + 1).tok_catch_after >= 0.9) hi += 1;
+  const inRun = data.layers.filter((d) => d.layer >= lo && d.layer <= hi);
+  const run = inRun.map((d) => d.tok_catch_after);
+  const runFa = inRun.flatMap((d) => d.tok_false_alarms);
+  const meanMax = Math.max(...data.layers.map((d) => d.mean_catch_after));
   const head2 = document.createElement("div");
   head2.style.cssText = "font-size:15px;font-weight:600;margin:0.9rem 0 0.15rem;color:" + C.ink;
-  head2.textContent = "Read as an average over the sentence, no single layer keeps a third of its gap";
+  head2.textContent = "Per layer: a dent at the targeted layers, and the country name still gives the lie away";
   const sub2 = document.createElement("div");
   sub2.style.cssText = "font-size:13px;margin:0 0 0.3rem;color:" + C.muted;
-  sub2.textContent = "A linear probe fit on one layer of the original model, reading the mean over the statement's " +
-    "tokens: how far apart the false and the true statement of each pair score, in units of the original model's " +
-    "spread at that layer. The layers above the targeted one run the original weights. They keep at most " +
-    `${pct(keptMax)} of their gap, against ${pct(data.layers.find((d) => d.layer === 14).kept)} at the targeted layer. ` +
-    "Faded circles: layers too weak on the original model to score. Short dashes: half the original gap, the " +
-    "pre-registered bar for layers 1–8.";
-  root.append(head2, sub2);
+  sub2.textContent = "Catch rate after the fine-tune of a linear probe fit on one layer of the original model, at the " +
+    `same alarm-line rule. Reading the mean over the statement's tokens, no layer catches more than ${pct(meanMax)}. ` +
+    `Reading only the last token of the country name (added after the first result), layers ${lo} to ${hi} catch ` +
+    `${pct(Math.min(...run))}–${pct(Math.max(...run))}, and the targeted layer catches ${pct(at(14).tok_catch_after)}. ` +
+    `The line aims at 1% false alarms; on held-out true statements this probe raised up to ${pct(Math.max(...runFa))} at layers ${lo} to ${hi}.`;
+  const legend2 = document.createElement("div");
+  legend2.style.cssText = "display:flex;flex-wrap:wrap;gap:0.3rem 1.0rem;font-size:13px;margin:0 0 0.2rem;color:" + C.ink;
+  legend2.innerHTML = item("teal", "last token of the country name") + item("filled", "mean over the tokens") +
+    item("hollow", "original model") + item("dash", "50%");
+  root.append(head2, sub2, legend2);
 
-  const ymax = Math.ceil(Math.max(...data.layers.map((d) => d.before_hi)) + 0.6);
   const bands = [
     { x1: 0.5, x2: 13.5, text: "weights changed by the fine-tune" },
     { x1: 13.5, x2: 14.5, text: "targeted\nlayer" },
     { x1: 14.5, x2: 28.5, text: "original weights" },
   ];
-  const bar8 = data.layers.filter((d) => d.layer <= 8).map((d) => ({ layer: d.layer, y: d.before / 2 }));
-  const tipL = (d) =>
-    `layer ${d.layer}: original model ${d.before.toFixed(2)}, after the fine-tune ${d.after.toFixed(2)} ` +
-    `(runs ${d.after_per_seed.map((v) => v.toFixed(2)).join(", ")})\nkept: ${pct(d.kept)} (95% interval ${pct(d.kept_lo)}–${pct(d.kept_hi)})` +
-    (d.scored ? "" : "\ntoo weak on the original model to score");
-  root.appendChild(Plot.plot({
-    style: plotStyle({ fontSize: "13px" }), width: W, height: 270,
-    marginLeft: 56, marginRight: 24, marginTop: 26, marginBottom: 44,
-    x: { domain: [0.5, 28.5], ticks: [1, 4, 8, 12, 14, 16, 20, 24, 28], label: "Layer", labelAnchor: "center", labelArrow: "none" },
-    y: { domain: [0, ymax], label: "False-minus-true gap (spreads)", labelAnchor: "center", labelArrow: "none" },
-    marks: [
-      Plot.rectX([bands[1]], { x1: "x1", x2: "x2", y1: 0, y2: ymax, fill: C.primaryLight, fillOpacity: 0.6 }),
-      Plot.rectX([bands[2]], { x1: "x1", x2: "x2", y1: 0, y2: ymax, fill: C.grid, fillOpacity: 0.45 }),
-      Plot.text(bands, { ...halo(), x: (d) => (d.x1 + d.x2) / 2, y: ymax, dy: -4, text: "text", fill: C.muted, fontSize: 11, lineAnchor: "bottom" }),
-      Plot.gridY({ stroke: C.grid, strokeOpacity: 1 }),
-      Plot.ruleY([0], { stroke: C.faint }),
-      Plot.ruleY(bar8, { x1: (d) => d.layer - 0.4, x2: (d) => d.layer + 0.4, y: "y", stroke: C.muted, strokeWidth: 1.5, strokeDasharray: "3,2" }),
-      Plot.ruleX(data.layers, { x: "layer", y1: "after_lo", y2: "after_hi", stroke: C.primary, strokeWidth: 2 }),
-      Plot.dot(data.layers.filter((d) => !d.scored), { x: "layer", y: "before", r: 4.5, fill: "none", stroke: C.faint, strokeWidth: 1.5, tip: true, title: tipL }),
-      Plot.dot(data.layers.filter((d) => d.scored), { x: "layer", y: "before", r: 4.5, fill: "none", stroke: C.muted, strokeWidth: 1.8, tip: true, title: tipL }),
-      Plot.dot(data.layers, { x: "layer", y: "after", r: 4.5, fill: C.primary, stroke: C.paper, strokeWidth: 1, tip: true, title: tipL }),
-    ],
-  }));
-
-  // BOTTOM (exploratory): catch per layer after the fine-tune, mean over the tokens vs the country's last token
-  const tokBest = data.layers.reduce((a, d) => (d.tok_catch_after > a.tok_catch_after ? d : a));
-  // the run of neighbouring layers around the best one that also catch >= 90% (D3: name a layer only with its neighbours)
-  let lo = tokBest.layer, hi = tokBest.layer;
-  const at = (l) => data.layers.find((d) => d.layer === l);
-  while (at(lo - 1) && at(lo - 1).tok_catch_after >= 0.9) lo -= 1;
-  while (at(hi + 1) && at(hi + 1).tok_catch_after >= 0.9) hi += 1;
-  const run = data.layers.filter((d) => d.layer >= lo && d.layer <= hi).map((d) => d.tok_catch_after);
-  const runFa = data.layers.filter((d) => d.layer >= lo && d.layer <= hi).flatMap((d) => d.tok_false_alarms);
-  const head3 = document.createElement("div");
-  head3.style.cssText = "font-size:15px;font-weight:600;margin:0.9rem 0 0.15rem;color:" + C.ink;
-  head3.textContent = "Read at the end of the country name, the layers above still catch most false statements";
-  const sub3 = document.createElement("div");
-  sub3.style.cssText = "font-size:13px;margin:0 0 0.3rem;color:" + C.muted;
-  sub3.textContent = "Exploratory, chosen after the first result. Catch rate after the fine-tune of a linear probe fit " +
-    "on one layer of the original model, at the same alarm line as above. Reading only the last token of the country " +
-    `name, layers ${lo} to ${hi} each catch ${pct(Math.min(...run))}–${pct(Math.max(...run))}; at the targeted layer it catches ` +
-    `${pct(data.layers.find((d) => d.layer === 14).tok_catch_after)}. The line aims at 1% false alarms; on held-out ` +
-    `true statements this probe raised up to ${pct(Math.max(...runFa))} at layers ${lo} to ${hi}.`;
-  const sw2 = (fill, stroke) => `<svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="${fill}" stroke="${stroke}" stroke-width="1.6"/></svg>`;
-  const legend3 = document.createElement("div");
-  legend3.style.cssText = "display:flex;flex-wrap:wrap;gap:0.3rem 1.0rem;font-size:13px;margin:0 0 0.2rem;color:" + C.ink;
-  legend3.innerHTML = item2(sw2(C.secondary, C.secondary), "last token of the country name") +
-    item2(sw2(C.primary, C.primary), "mean over the tokens") + item2(sw2("none", C.muted), "original model");
-  function item2(s, t) { return `<span style="display:inline-flex;align-items:center;gap:0.35rem">${s}${t}</span>`; }
-  root.append(head3, sub3, legend3);
   const tipC = (d) =>
     `layer ${d.layer}, after the fine-tune (3 runs pooled):\n` +
-    `last token of the country name: ${pct(d.tok_catch_after)} (95% interval ${pct(d.tok_catch_lo)}–${pct(d.tok_catch_hi)}); original model ${pct(d.tok_catch_before)}; ` +
-    `false alarms per run ${d.tok_false_alarms.map(pct).join(", ")}\n` +
-    `mean over the tokens: ${pct(d.mean_catch_after)} (95% interval ${pct(d.mean_catch_lo)}–${pct(d.mean_catch_hi)}); original model ${pct(d.mean_catch_before)}`;
+    `last token of the country name: ${pct(d.tok_catch_after)} (95% interval ${pct(d.tok_catch_lo)}–${pct(d.tok_catch_hi)}); ` +
+    `original model ${pct(d.tok_catch_before)}; false alarms per run ${d.tok_false_alarms.map(pct).join(", ")}\n` +
+    `mean over the tokens: ${pct(d.mean_catch_after)} (95% interval ${pct(d.mean_catch_lo)}–${pct(d.mean_catch_hi)}); ` +
+    `original model ${pct(d.mean_catch_before)}`;
+  const YT = 1.16;
   root.appendChild(Plot.plot({
-    style: plotStyle({ fontSize: "13px" }), width: W, height: 250,
-    marginLeft: 56, marginRight: 24, marginTop: 10, marginBottom: 44,
+    style: plotStyle({ fontSize: "13px" }), width: W, height: 290,
+    marginLeft: 56, marginRight: 24, marginTop: 14, marginBottom: 44,
     x: { domain: [0.5, 28.5], ticks: [1, 4, 8, 12, 14, 16, 20, 24, 28], label: "Layer", labelAnchor: "center", labelArrow: "none" },
-    y: { domain: [0, 1], label: "Catch rate after the fine-tune", tickFormat: (v) => `${Math.round(v * 100)}%`, labelAnchor: "center", labelArrow: "none" },
+    y: { domain: [0, YT], ticks: [0, 0.2, 0.4, 0.6, 0.8, 1], label: "Catch rate", tickFormat: (v) => `${Math.round(v * 100)}%`, labelAnchor: "center", labelArrow: "none" },
     marks: [
-      Plot.rectX([bands[1]], { x1: "x1", x2: "x2", y1: 0, y2: 1, fill: C.primaryLight, fillOpacity: 0.6 }),
-      Plot.rectX([bands[2]], { x1: "x1", x2: "x2", y1: 0, y2: 1, fill: C.grid, fillOpacity: 0.45 }),
-      Plot.gridY({ stroke: C.grid, strokeOpacity: 1 }),
+      Plot.rectX([bands[1]], { x1: "x1", x2: "x2", y1: 0, y2: YT, fill: C.primaryLight, fillOpacity: 0.6 }),
+      Plot.rectX([bands[2]], { x1: "x1", x2: "x2", y1: 0, y2: YT, fill: C.grid, fillOpacity: 0.45 }),
+      Plot.text(bands, { ...halo(), x: (d) => (d.x1 + d.x2) / 2, y: YT, dy: 2, text: "text", fill: C.muted, fontSize: 11, lineAnchor: "top" }),
+      Plot.gridY([0, 0.2, 0.4, 0.6, 0.8, 1], { stroke: C.grid, strokeOpacity: 1 }),
       Plot.ruleY([0], { stroke: C.faint }),
+      Plot.ruleY([0.5], { stroke: C.muted, strokeWidth: 1.5, strokeDasharray: "4,3" }),
       Plot.dot(data.layers, { x: "layer", y: "tok_catch_before", r: 3, fill: "none", stroke: C.muted, strokeWidth: 1.2 }),
       Plot.dot(data.layers, { x: "layer", y: "mean_catch_before", r: 3, fill: "none", stroke: C.muted, strokeWidth: 1.2 }),
       Plot.line(data.layers, { x: "layer", y: "mean_catch_after", stroke: C.primary, strokeWidth: 1.6 }),

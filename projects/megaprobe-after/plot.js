@@ -69,13 +69,15 @@ export function render(data, Plot) {
   const inRun = data.layers.filter((d) => d.layer >= lo && d.layer <= hi);
   const run = inRun.map((d) => d.tok_catch_after);
   const runFa = inRun.flatMap((d) => d.tok_false_alarms);
+  const top = data.layers.filter((d) => d.layer >= 25).map((d) => d.tok_catch_after);
   const meanMax = Math.max(...data.layers.map((d) => d.mean_catch_after));
   const head2 = el("font-size:15px;font-weight:600;margin:0.9rem 0 0.15rem;color:" + C.ink,
-    "Read at the last token of the country name, the catch rate dips at the targeted layer 14 and at layer 13 below it");
+    "Read at the last token of the country name, the catch rate dips at layers 13 and 14 and again at the top layers");
   const sub2 = el("font-size:13px;margin:0 0 0.3rem;color:" + C.muted, "Catch rate after the fine-tune of a linear probe fit on one layer of the original model, at the " +
     `same alarm-line rule. Reading the mean over the statement's tokens, no layer catches more than ${pct(meanMax)}. ` +
     `Reading only the last token of the country name (added after the first result), layers ${lo} to ${hi} catch ` +
-    `${pct(Math.min(...run))}–${pct(Math.max(...run))}, and the targeted layer catches ${pct(at(14).tok_catch_after)}. ` +
+    `${pct(Math.min(...run))}–${pct(Math.max(...run))}, the targeted layer 14 catches ${pct(at(14).tok_catch_after)}, and layers 25 to 28 catch ` +
+    `${pct(Math.min(...top))}–${pct(Math.max(...top))}. ` +
     `The line aims at 1% false alarms; on held-out true statements this probe raised up to ${pct(Math.max(...runFa))} at layers ${lo} to ${hi}.`);
   const legend2 = el(LEG + "13px", null, item("teal", "last token of the country name") + item("filled", "mean over the tokens") +
     item("hollow", "original model") + item("dash", "half caught"));

@@ -32,3 +32,24 @@ What I rebuilt independently:
    - `novelty.md` says the broad multi-layer-obfuscation claim is not new. The defensible claim is fixed-text/original-probe/all-layer/untouched-upper-block measurement.
 
 Caveat: my city-bootstrap CI for the megaprobe [0.7427, 0.7914] is slightly narrower than Bruno's [0.7422, 0.7942]. The decision is unchanged and both lower bounds are far above 0.40.
+
+## Post-number check of PR #62 (blog head 6eb645b), 2026-10-20 15:40 CEST
+
+Own code: `postcheck.py` (reuses only my helpers in `score_wide_check.py`) -> `postcheck.json`;
+`null_tok18.py` (own raw refit from `tok.npy`) -> `null_tok18.out`.
+
+Reproduced (post value = mine):
+- Gap table, all 28 rows: original and fine-tuned gaps match to 2 dp at every layer; kept 61% L8, 13% L14, 21-31% at L15-28; all 14 upper layers beat L14; none has lower CI >= 0.5 (`postcheck.json` gap_table). L9 interval 52-56% with 300 boots vs post 53-56% (bootstrap noise).
+- Megaprobe per run 67.6 / 74.3 / 88.4%; held-out false alarms 1.0 / 1.5 / 2.0%; clean 99.8%.
+- Fit-seed refits 83.1% [81.0, 85.3] and 83.1% [80.6, 85.3].
+- All-layer sentence-average probe: clean 98.7%, after 1.6% [0.6, 3.0].
+- One-layer megaprobe arms: L18 46.1% (clean 99.0%), L22 12.9% (clean 55.9%).
+- Country-token table (D3): every cell in post line 168 matches (L1-9 max 13.1%, L18 92.8% [90.9, 94.7], L21 93.9% [92.2, 95.5], L25-28 36.7-43.1%); clean >= 97.5% at L10-28; held-out false alarms max 3.0% (L21), L19 0.84% in every run.
+- Own raw refit of the country-token probe (C=0.01, no CV): L18 92.84%, L21 93.90%, identical to d3.json.
+
+Null for the country-token headline (`null_tok18.out`): 5 shuffled-label refits caught 0.06-6.4% after the fine-tune (L18 and L21); 5 random unit directions 0-9.9%. The 92-94% is not a fit or threshold artefact.
+
+Wording issues found (not number errors in the headline):
+1. Line 60 'a dent around the layer it was trained against, not a hole': false at the top; country-token catch L28 36.7% = L14 36.3% (Kasper #3882 raised the same).
+2. Line 162 'line at the 1% point of the 596 held-out true statements ... 73.8%': the code uses the 5th-highest of 596 (4/596 = 0.67% false alarms). My variants: 5th-highest 73.8%, 6th 74.2%, 99% quantile 75.2%. Say '5th-highest' or give 74-75%; headline unaffected.
+3. Lines 82/160 'moves by 6 points / about 10 points with the fit': fit spread over all megaprobes we have is 63% (independent skeptic fit) to 83% (refits), about 20 points.

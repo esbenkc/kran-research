@@ -109,3 +109,31 @@ If Esben answers later, his answer is reported in the post but does not change t
   per layer as in D2, class-balanced, the 0.6 train-CE filter (on base and ens_s1 fold 0: 23 of 24 layers kept),
   score = mean of the kept layers' sigmoids. Same folds, draws and label sets. The (b) numbers in the post come from
   this refit. Arm (b) is not part of the verdict.
+
+## D8 — convergence check after publication (Sevan, lead; Esben asked "are you sure it did not just fail to converge?", room #3636, 2026-10-20 11:16)
+
+Added after the post went live. It does not change the verdict rule or the status (UNCONFIRMED). Code: convergence.py,
+conv_summary.py; data: data/convergence/*.json (per-fold logs with raw test scores), summary.json; logs: data/logs/conv_*.
+All runs use draw 0 of the main run, the same folds, seeds, init and update rule. A replay of the main run's stopping
+rule on these logs reproduces the main run's draw-0 AUROCs to 3 decimals on all 5 models, so the scripts match the run.
+
+- Megaprobe (c), lam1_s0, 1500 epochs (5x the main run), main hyperparameters (lr 1e-2, L2 0.03): train BCE
+  0.67 -> 0.235 by epoch ~300, then flat to 3 decimals up to epoch 1500; train AUROC 0.994. Pooled out-of-fold AUROC
+  falls with training: spin vs fact-stated truthful 0.647 (epoch 10) -> 0.580 (epochs 300-1500); all lies 0.772 ->
+  0.697. Same with L2 1e-3 (30x weaker): train AUROC 1.000 by epoch 49, spin 0.605 (best-val checkpoint) -> 0.573
+  (epoch 1500). One-layer probe on the same draw: spin 0.652, all lies 0.782. The megaprobe converged; it overfits its
+  320 fit answers. A run at lr 3e-3 was queued but did not start (lost shell); not needed for this conclusion.
+- Published axial probe (c2): in the main run it was UNDER-TRAINED. At the main run's 10 epochs, train AUROC was
+  0.67-0.79 and train BCE ~0.69 (chance). Refit for 40 epochs, all 5 models; checkpoint rule fixed before results
+  (room #3644): per fold, best inner-validation AUROC. Draw 0 (spin vs fact-stated truthful / all lies):
+    model     10 ep (main)   40 ep          one-layer (same draw)
+    base      0.615/0.658    0.636/0.766    0.732/0.837
+    lam1_s0   0.556/0.528    0.656/0.697    0.652/0.782
+    lam1_s1   0.494/0.519    0.573/0.655    0.806/0.799
+    ens_s0    0.520/0.587    0.621/0.702    0.696/0.780
+    ens_s1    0.580/0.628    0.584/0.646    0.655/0.735
+  Mean of the 4 trained models: 10 ep 0.54/0.57, 40 ep 0.61/0.68, one-layer 0.70/0.77. The lowest-validation-loss
+  rule (FIBS's) and the last epoch give the same picture (summary.json). Trained 4x longer, the published probe gains
+  0.07 on spin lies but stays below the one-layer probe on all lies on every model, ties it on spin lies on lam1_s0,
+  and still fails the control on the untrained model (0.77 vs 0.84). The post's 0.59 (3-draw mean, 10 epochs)
+  understates the published probe; the conclusion does not change.

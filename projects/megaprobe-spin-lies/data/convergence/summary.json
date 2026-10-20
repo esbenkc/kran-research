@@ -1,0 +1,383 @@
+{
+ "c2_base_lr1e-3_e40": {
+  "arm": "c2",
+  "policy": "base",
+  "hp": {
+   "lr": 0.001,
+   "wd": 0.01,
+   "epochs": 40
+  },
+  "best_val_auroc": {
+   "epochs": [
+    18,
+    39,
+    8,
+    15,
+    9
+   ],
+   "spin_vs_fact_truthful": 0.6362,
+   "spin_vs_all_truthful": 0.5799,
+   "lies_vs_truthful": 0.7663
+  },
+  "last_epoch": {
+   "epochs": [
+    39,
+    39,
+    39,
+    39,
+    39
+   ],
+   "spin_vs_fact_truthful": 0.6523,
+   "spin_vs_all_truthful": 0.6067,
+   "lies_vs_truthful": 0.7637
+  },
+  "lowest_val_loss": {
+   "epochs": [
+    19,
+    32,
+    9,
+    13,
+    9
+   ],
+   "spin_vs_fact_truthful": 0.6604,
+   "spin_vs_all_truthful": 0.5688,
+   "lies_vs_truthful": 0.7754
+  },
+  "main_run_replay_10ep": {
+   "epochs": [
+    8,
+    2,
+    9,
+    9,
+    9
+   ],
+   "spin_vs_fact_truthful": 0.6153,
+   "spin_vs_all_truthful": 0.5412,
+   "lies_vs_truthful": 0.6578
+  },
+  "train_auroc_ep10_ep40": [
+   0.7635884756805423,
+   0.9485541657392396
+  ],
+  "one_layer_draw0": {
+   "spin_vs_fact_truthful": 0.7324,
+   "spin_vs_all_truthful": 0.6448,
+   "lies_vs_truthful": 0.8374
+  }
+ },
+ "c2_ens_s0_lr1e-3_e40": {
+  "arm": "c2",
+  "policy": "ens_s0",
+  "hp": {
+   "lr": 0.001,
+   "wd": 0.01,
+   "epochs": 40
+  },
+  "best_val_auroc": {
+   "epochs": [
+    37,
+    10,
+    19,
+    27,
+    20
+   ],
+   "spin_vs_fact_truthful": 0.6213,
+   "spin_vs_all_truthful": 0.5995,
+   "lies_vs_truthful": 0.7023
+  },
+  "last_epoch": {
+   "epochs": [
+    39,
+    39,
+    39,
+    39,
+    39
+   ],
+   "spin_vs_fact_truthful": 0.6257,
+   "spin_vs_all_truthful": 0.5998,
+   "lies_vs_truthful": 0.693
+  },
+  "lowest_val_loss": {
+   "epochs": [
+    38,
+    10,
+    12,
+    13,
+    22
+   ],
+   "spin_vs_fact_truthful": 0.6156,
+   "spin_vs_all_truthful": 0.5891,
+   "lies_vs_truthful": 0.6976
+  },
+  "main_run_replay_10ep": {
+   "epochs": [
+    5,
+    9,
+    7,
+    9,
+    6
+   ],
+   "spin_vs_fact_truthful": 0.5199,
+   "spin_vs_all_truthful": 0.4982,
+   "lies_vs_truthful": 0.5869
+  },
+  "train_auroc_ep10_ep40": [
+   0.7156957275797003,
+   0.9521700041985242
+  ],
+  "one_layer_draw0": {
+   "spin_vs_fact_truthful": 0.6955,
+   "spin_vs_all_truthful": 0.6522,
+   "lies_vs_truthful": 0.7803
+  }
+ },
+ "c2_ens_s1_lr1e-3_e40_v2": {
+  "arm": "c2",
+  "policy": "ens_s1",
+  "hp": {
+   "lr": 0.001,
+   "wd": 0.01,
+   "epochs": 40
+  },
+  "best_val_auroc": {
+   "epochs": [
+    15,
+    39,
+    14,
+    14,
+    3
+   ],
+   "spin_vs_fact_truthful": 0.5843,
+   "spin_vs_all_truthful": 0.5758,
+   "lies_vs_truthful": 0.6458
+  },
+  "last_epoch": {
+   "epochs": [
+    39,
+    39,
+    39,
+    39,
+    39
+   ],
+   "spin_vs_fact_truthful": 0.5834,
+   "spin_vs_all_truthful": 0.5704,
+   "lies_vs_truthful": 0.6552
+  },
+  "lowest_val_loss": {
+   "epochs": [
+    13,
+    38,
+    11,
+    16,
+    7
+   ],
+   "spin_vs_fact_truthful": 0.5703,
+   "spin_vs_all_truthful": 0.5508,
+   "lies_vs_truthful": 0.6263
+  },
+  "main_run_replay_10ep": {
+   "epochs": [
+    9,
+    9,
+    9,
+    9,
+    7
+   ],
+   "spin_vs_fact_truthful": 0.5798,
+   "spin_vs_all_truthful": 0.5585,
+   "lies_vs_truthful": 0.6283
+  },
+  "train_auroc_ep10_ep40": [
+   0.789903256166441,
+   0.9074572782922914
+  ],
+  "one_layer_draw0": {
+   "spin_vs_fact_truthful": 0.6548,
+   "spin_vs_all_truthful": 0.6306,
+   "lies_vs_truthful": 0.7353
+  }
+ },
+ "c2_lam1_s0_lr1e-3_e40_v2": {
+  "arm": "c2",
+  "policy": "lam1_s0",
+  "hp": {
+   "lr": 0.001,
+   "wd": 0.01,
+   "epochs": 40
+  },
+  "best_val_auroc": {
+   "epochs": [
+    33,
+    11,
+    27,
+    14,
+    0
+   ],
+   "spin_vs_fact_truthful": 0.6557,
+   "spin_vs_all_truthful": 0.5986,
+   "lies_vs_truthful": 0.6971
+  },
+  "last_epoch": {
+   "epochs": [
+    39,
+    39,
+    39,
+    39,
+    39
+   ],
+   "spin_vs_fact_truthful": 0.6416,
+   "spin_vs_all_truthful": 0.5934,
+   "lies_vs_truthful": 0.7127
+  },
+  "lowest_val_loss": {
+   "epochs": [
+    19,
+    12,
+    20,
+    16,
+    5
+   ],
+   "spin_vs_fact_truthful": 0.6246,
+   "spin_vs_all_truthful": 0.5975,
+   "lies_vs_truthful": 0.6979
+  },
+  "main_run_replay_10ep": {
+   "epochs": [
+    7,
+    6,
+    5,
+    9,
+    5
+   ],
+   "spin_vs_fact_truthful": 0.5557,
+   "spin_vs_all_truthful": 0.5476,
+   "lies_vs_truthful": 0.5278
+  },
+  "train_auroc_ep10_ep40": [
+   0.6866649185214924,
+   0.9418696250591339
+  ],
+  "one_layer_draw0": {
+   "spin_vs_fact_truthful": 0.6517,
+   "spin_vs_all_truthful": 0.5746,
+   "lies_vs_truthful": 0.7822
+  }
+ },
+ "c2_lam1_s1_lr1e-3_e40": {
+  "arm": "c2",
+  "policy": "lam1_s1",
+  "hp": {
+   "lr": 0.001,
+   "wd": 0.01,
+   "epochs": 40
+  },
+  "best_val_auroc": {
+   "epochs": [
+    37,
+    37,
+    0,
+    18,
+    39
+   ],
+   "spin_vs_fact_truthful": 0.5729,
+   "spin_vs_all_truthful": 0.5369,
+   "lies_vs_truthful": 0.6553
+  },
+  "last_epoch": {
+   "epochs": [
+    39,
+    39,
+    39,
+    39,
+    39
+   ],
+   "spin_vs_fact_truthful": 0.5955,
+   "spin_vs_all_truthful": 0.5509,
+   "lies_vs_truthful": 0.6449
+  },
+  "lowest_val_loss": {
+   "epochs": [
+    18,
+    9,
+    2,
+    14,
+    39
+   ],
+   "spin_vs_fact_truthful": 0.5784,
+   "spin_vs_all_truthful": 0.5485,
+   "lies_vs_truthful": 0.6301
+  },
+  "main_run_replay_10ep": {
+   "epochs": [
+    2,
+    9,
+    2,
+    7,
+    4
+   ],
+   "spin_vs_fact_truthful": 0.4938,
+   "spin_vs_all_truthful": 0.5001,
+   "lies_vs_truthful": 0.5188
+  },
+  "train_auroc_ep10_ep40": [
+   0.6662806614496828,
+   0.886566873222289
+  ],
+  "one_layer_draw0": {
+   "spin_vs_fact_truthful": 0.8057,
+   "spin_vs_all_truthful": 0.7253,
+   "lies_vs_truthful": 0.7993
+  }
+ },
+ "c_lam1_s0_lr1e-2_e1500_l2_1e-3": {
+  "arm": "c",
+  "policy": "lam1_s0",
+  "hp": {
+   "k": 128,
+   "l2": 0.001,
+   "lr": 0.01,
+   "epochs": 1500
+  },
+  "best_val_auroc": {
+   "epochs": [
+    9,
+    9,
+    9,
+    9,
+    9
+   ],
+   "spin_vs_fact_truthful": 0.6055,
+   "spin_vs_all_truthful": 0.5389,
+   "lies_vs_truthful": 0.7102
+  },
+  "last_epoch": {
+   "epochs": [
+    1499,
+    1499,
+    1499,
+    1499,
+    1499
+   ],
+   "spin_vs_fact_truthful": 0.5731,
+   "spin_vs_all_truthful": 0.5314,
+   "lies_vs_truthful": 0.6395
+  },
+  "main_run_replay_300ep": {
+   "epochs": [
+    9,
+    9,
+    9,
+    9,
+    9
+   ],
+   "spin_vs_fact_truthful": 0.6055,
+   "spin_vs_all_truthful": 0.5389,
+   "lies_vs_truthful": 0.7102
+  },
+  "one_layer_draw0": {
+   "spin_vs_fact_truthful": 0.6517,
+   "spin_vs_all_truthful": 0.5746,
+   "lies_vs_truthful": 0.7822
+  }
+ }
+}

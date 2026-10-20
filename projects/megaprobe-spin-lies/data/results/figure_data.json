@@ -1,0 +1,222 @@
+{
+ "title": "TITLE SET AFTER THE VERDICT",
+ "y_label": "AUROC: spin lies vs truthful answers that state the same fact (0.5 = coin flip)",
+ "bar": 0.8,
+ "arms": [
+  {
+   "key": "a",
+   "label": "One layer,\nlinear probe"
+  },
+  {
+   "key": "b",
+   "label": "Every layer, last token,\naveraged linear probes"
+  },
+  {
+   "key": "c",
+   "label": "Every layer and token,\nattention (ours)"
+  }
+ ],
+ "series": [
+  {
+   "key": "base",
+   "label": "Untrained model",
+   "role": "base"
+  },
+  {
+   "key": "trained",
+   "label": "Trained against a lie detector (mean of 4)",
+   "role": "trained"
+  }
+ ],
+ "points": [
+  {
+   "series": "base",
+   "arm": "a",
+   "fit": "all",
+   "auroc": 0.7218399592252803,
+   "lo": 0.6392013690709343,
+   "hi": 0.7930604116557445
+  },
+  {
+   "series": "trained",
+   "arm": "a",
+   "fit": "all",
+   "auroc": 0.7323223866280691,
+   "lo": 0.7015007992465782,
+   "hi": 0.7598739005278888
+  },
+  {
+   "series": "base",
+   "arm": "a",
+   "fit": "fact",
+   "auroc": 0.6954638124362896,
+   "lo": 0.6130707242669856,
+   "hi": 0.7680392029184981
+  },
+  {
+   "series": "trained",
+   "arm": "a",
+   "fit": "fact",
+   "auroc": 0.6934737505886194,
+   "lo": 0.660571865209644,
+   "hi": 0.7238496563856165
+  },
+  {
+   "series": "base",
+   "arm": "b",
+   "fit": "all",
+   "auroc": 0.5075178389398574,
+   "lo": 0.41945004789801404,
+   "hi": 0.5869208804072998
+  },
+  {
+   "series": "trained",
+   "arm": "b",
+   "fit": "all",
+   "auroc": 0.5803804750689796,
+   "lo": 0.5455500643876042,
+   "hi": 0.6138895779331949
+  },
+  {
+   "series": "base",
+   "arm": "b",
+   "fit": "fact",
+   "auroc": 0.5535168195718654,
+   "lo": 0.47064414974443985,
+   "hi": 0.6339379081030286
+  },
+  {
+   "series": "trained",
+   "arm": "b",
+   "fit": "fact",
+   "auroc": 0.5547355400797573,
+   "lo": 0.52115330435126,
+   "hi": 0.5889989701724018
+  },
+  {
+   "series": "base",
+   "arm": "c",
+   "fit": "all",
+   "auroc": 0.6702344546381244,
+   "lo": 0.5894446105072464,
+   "hi": 0.7441513092841504
+  },
+  {
+   "series": "trained",
+   "arm": "c",
+   "fit": "all",
+   "auroc": 0.6757222826038798,
+   "lo": 0.6414761637205129,
+   "hi": 0.7059353984424698
+  },
+  {
+   "series": "base",
+   "arm": "c",
+   "fit": "fact",
+   "auroc": 0.5814220183486238,
+   "lo": 0.49312343913469,
+   "hi": 0.6642893609668622
+  },
+  {
+   "series": "trained",
+   "arm": "c",
+   "fit": "fact",
+   "auroc": 0.5765612530145785,
+   "lo": 0.5417247750418551,
+   "hi": 0.6101986210013212
+  }
+ ],
+ "per_model": [
+  {
+   "model": "lam1_s0",
+   "label": "Trained against one probe, seed 0",
+   "arm": "a",
+   "fit": "all",
+   "auroc": 0.6873997805722003
+  },
+  {
+   "model": "lam1_s1",
+   "label": "Trained against one probe, seed 1",
+   "arm": "a",
+   "fit": "all",
+   "auroc": 0.8009912576581538
+  },
+  {
+   "model": "ens_s0",
+   "label": "Trained against eight probes, seed 0",
+   "arm": "a",
+   "fit": "all",
+   "auroc": 0.7299601225221061
+  },
+  {
+   "model": "ens_s1",
+   "label": "Trained against eight probes, seed 1",
+   "arm": "a",
+   "fit": "all",
+   "auroc": 0.7109383857598166
+  },
+  {
+   "model": "lam1_s0",
+   "label": "Trained against one probe, seed 0",
+   "arm": "b",
+   "fit": "all",
+   "auroc": 0.5524094860325766
+  },
+  {
+   "model": "lam1_s1",
+   "label": "Trained against one probe, seed 1",
+   "arm": "b",
+   "fit": "all",
+   "auroc": 0.5975769257245129
+  },
+  {
+   "model": "ens_s0",
+   "label": "Trained against eight probes, seed 0",
+   "arm": "b",
+   "fit": "all",
+   "auroc": 0.6547997457088366
+  },
+  {
+   "model": "ens_s1",
+   "label": "Trained against eight probes, seed 1",
+   "arm": "b",
+   "fit": "all",
+   "auroc": 0.5167357428099922
+  },
+  {
+   "model": "lam1_s0",
+   "label": "Trained against one probe, seed 0",
+   "arm": "c",
+   "fit": "all",
+   "auroc": 0.6608996539792388
+  },
+  {
+   "model": "lam1_s1",
+   "label": "Trained against one probe, seed 1",
+   "arm": "c",
+   "fit": "all",
+   "auroc": 0.7019343291801473
+  },
+  {
+   "model": "ens_s0",
+   "label": "Trained against eight probes, seed 0",
+   "arm": "c",
+   "fit": "all",
+   "auroc": 0.6968155811131018
+  },
+  {
+   "model": "ens_s1",
+   "label": "Trained against eight probes, seed 1",
+   "arm": "c",
+   "fit": "all",
+   "auroc": 0.6432395661430317
+  }
+ ],
+ "words": {
+  "auroc": 0.6182921701945286,
+  "lo": 0.5843560033488252,
+  "hi": 0.6486046809829885,
+  "label": "strip: words-only classifier, trained models (95% interval)"
+ },
+ "band_note": "Qwen2.5-0.5B-Instruct. Each probe is fitted on 400 judge-labelled answers and scored on held-out answers (5-fold, folds by prompt). Bars: 95% interval from resampling prompts."
+}

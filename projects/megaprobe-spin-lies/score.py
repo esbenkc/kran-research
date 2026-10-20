@@ -25,7 +25,7 @@ SUBSETS = {  # name -> (positive class test, negative class test) on a row dict
     "lies_vs_truthful": (lambda r: r["cls"] in ("spin", "plain"), lambda r: r["cls"] == "truthful"),
     "plain_vs_truthful": (lambda r: r["cls"] == "plain", lambda r: r["cls"] == "truthful"),
 }
-BOOT_ARMS = ["a_all", "b_all", "c_all", "d_all", "a_fact", "c_fact", "b_fact", "d_fact", "c_fact_pooled",
+BOOT_ARMS = ["a_all", "b_all", "c_all", "c2_all", "c2_fact", "d_all", "a_fact", "c_fact", "b_fact", "d_fact", "c_fact_pooled",
              "a_fact_pooled", "b_fact_pooled", "d_fact_pooled", "c_null_all", "a_null_all", "b_l2_all", "a_all_n200"]
 
 
@@ -42,6 +42,11 @@ def load():
             if f.exists():
                 d = json.loads(f.read_text())
                 S[(p, rd)] = {n: oof(m) for n, m in d["scores"].items()}
+    for p in POLICIES:  # arm c2 (fit_c2.py) lives in its own file per policy
+        f = OUT / f"{p}_own_c2.json"
+        if f.exists() and (p, "own") in S:
+            d = json.loads(f.read_text())
+            S[(p, "own")].update({n: oof(m) for n, m in d["scores"].items()})
     f = OUT / "pooled_fact.json"
     if f.exists():
         d = json.loads(f.read_text())
@@ -58,6 +63,77 @@ def auroc(y, s, w=None):
     if ok.sum() == 0 or len(set(y[ok])) < 2:
         return np.nan
     return roc_auc_score(y[ok], s[ok], sample_weight=None if w is None else w[ok])
+
+
+AGENT = Path(__file__).resolve().parents[3] / "swarm-oracle-1020-megaprobe-spin-lies/agentlabels/agent_labels.jsonl"
+
+
+def subclass(S, R, arms=("a_all", "b_all", "c_all", "c2_all", "d_all", "c_fact", "a_fact")):
+    """Iris's agent labels (Claude, blind to the judge) split 50 judge-spin answers into framing-only spin, answers
+    that use the fact's words but contradict or hide it, and honest-looking ones. Per answer: the share of the SAME
+    model's fact-stated truthful answers that its OOF score beats (its AUROC contribution); mean per subclass over the
+    labelled spin answers of the 4 trained models and the base model; 95% CI by resampling answers."""
+    if not AGENT.exists():
+        return None
+    A = [json.loads(l) for l in open(AGENT)]
+    out = {}
+    rng = np.random.default_rng(SEED)
+    for arm in arms:
+        u = {"framing": [], "contradict": [], "honest": []}
+        for a in A:
+            sc_ = a.get("spin_subclass"); p = a["policy"]
+            if sc_ is None or a["idx"] >= N_ROWS or (p, "own") not in S or arm not in S[(p, "own")]:
+                continue
+            s = S[(p, "own")][arm]
+            neg = np.array([s[i] for i, r in enumerate(R[p]) if r["cls"] == "truthful" and r["y_string"] == 0])
+            neg = neg[np.isfinite(neg)]
+            v = s[a["idx"]]
+            if np.isfinite(v) and len(neg):
+                u[sc_].append(float((neg < v).mean() + 0.5 * (neg == v).mean()))
+        out[arm] = {c: {"n": len(x), "auroc": float(np.mean(x)) if x else None,
+                        "ci": [float(np.percentile(m, 2.5)), float(np.percentile(m, 97.5))] if len(x) > 1 else None}
+                    for c, x in u.items()
+                    for m in [[np.mean(rng.choice(x, len(x))) for _ in range(1000)] if len(x) > 1 else [0]]}
+    return out
+
+
+ARM_LABELS = [("a", "One layer,\nlinear probe"), ("b", "Every layer, last token,\naveraged linear probes"),
+              ("c", "Every layer and token,\nattention (ours)"), ("c2", "Every layer and token,\naxial attention")]
+MODEL_LABELS = {"lam1_s0": "Trained against one probe, seed 0", "lam1_s1": "Trained against one probe, seed 1",
+                "ens_s0": "Trained against eight probes, seed 0", "ens_s1": "Trained against eight probes, seed 1"}
+
+
+def figure_data(S, point, boot, stat, mean4, ci, k):
+    sub = "spin_vs_fact_truthful"
+    arms = [(a, l) for a, l in ARM_LABELS if all(f"{a}_all" in S[(p, "own")] for p in POLICIES)]
+    pts, per = [], []
+    for a, _ in arms:
+        for fit in ("all", "fact"):
+            arm = f"{a}_{fit}"
+            if not all(arm in S[(p, "own")] for p in POLICIES):
+                continue
+            kb = k("base", arm, sub)
+            pts.append({"series": "base", "arm": a, "fit": fit, "auroc": point[kb],
+                        **({"lo": ci(boot[kb])[0], "hi": ci(boot[kb])[1]} if kb in boot else {})})
+            st = stat(mean4(arm, sub)) if all(k(p, arm, sub) in boot for p in TRAINED) else \
+                {"point": float(np.mean([point[k(p, arm, sub)] for p in TRAINED])), "ci": [None, None]}
+            pts.append({"series": "trained", "arm": a, "fit": fit, "auroc": st["point"], "lo": st["ci"][0],
+                        "hi": st["ci"][1]})
+            if fit == "all":
+                per += [{"model": p, "label": MODEL_LABELS[p], "arm": a, "fit": fit, "auroc": point[k(p, arm, sub)]}
+                        for p in TRAINED]
+    w = stat(mean4("d_all", sub))
+    return {"title": "TITLE SET AFTER THE VERDICT",
+            "y_label": "AUROC: spin lies vs truthful answers that state the same fact (0.5 = coin flip)",
+            "bar": 0.8,
+            "arms": [{"key": a, "label": l} for a, l in arms],
+            "series": [{"key": "base", "label": "Untrained model", "role": "base"},
+                       {"key": "trained", "label": "Trained against a lie detector (mean of 4)", "role": "trained"}],
+            "points": pts, "per_model": per,
+            "words": {"auroc": w["point"], "lo": w["ci"][0], "hi": w["ci"][1],
+                      "label": "strip: words-only classifier, trained models (95% interval)"},
+            "band_note": "Qwen2.5-0.5B-Instruct. Each probe is fitted on 400 judge-labelled answers and scored on "
+                         "held-out answers (5-fold, folds by prompt). Bars: 95% interval from resampling prompts."}
 
 
 def main():
@@ -122,11 +198,17 @@ def main():
                       "g_c_minus_b": stat(gain4("c_all", "b_all", sub)),
                       "g_c_minus_d": stat(gain4("c_all", "d_all", sub))}
 
-        def status(sub):
+        have_c2 = all(np.isfinite(point.get(k(p, "c2_all", "spin_vs_fact_truthful"), np.nan)) for p in POLICIES)
+        if have_c2:
+            for sub in V:
+                V[sub]["m_c2"] = stat(mean4("c2_all", sub))
+                V[sub]["g_c2_minus_a"] = stat(gain4("c2_all", "a_all", sub))
+
+        def status(sub):  # PREREG s6 + DEVIATIONS D1: YES on (c) alone; NO needs (c) AND (c2) (if c2 was scored)
             m, g = V[sub]["m_c"], V[sub]["g_c_minus_a"]
             if m["point"] >= 0.80 and g["ci"][0] > 0:
                 return "CONFIRMED"
-            if m["ci"][1] < 0.80:
+            if m["ci"][1] < 0.80 and (not have_c2 or V[sub]["m_c2"]["ci"][1] < 0.80):
                 return "REJECTED"
             return "UNCONFIRMED"
         st_main, st_guard = status("spin_vs_fact_truthful"), status("spin_vs_all_truthful")
@@ -134,8 +216,16 @@ def main():
         status_final, why = st_main, []
         if st_guard != st_main:
             status_final = "UNCONFIRMED"; why.append(f"negatives guard: all-truthful rule gives {st_guard}")
+        status_pre_control = status_final
         if not pc_c > pc_a and status_final == "REJECTED":
             status_final = "UNCONFIRMED"; why.append(f"positive control failed: base c {pc_c:.3f} <= a {pc_a:.3f}")
+        pc_c2 = point.get(k("base", "c2_all", "lies_vs_truthful"), np.nan)
+        if have_c2 and not pc_c2 > pc_a and status_final == "REJECTED":
+            status_final = "UNCONFIRMED"; why.append(f"positive control failed for c2: base c2 {pc_c2:.3f} <= a {pc_a:.3f}")
+        # DEVIATIONS D5 (conditional on Esben's approval before 03:30 CEST): the control passes if (c) OR (c2) beats (a)
+        st_d5 = status_pre_control
+        if st_d5 == "REJECTED" and not (pc_c > pc_a or (have_c2 and pc_c2 > pc_a)):
+            st_d5 = "UNCONFIRMED"
         # s7 prereg outcome
         gap = {p: point[k("base", "c_all", "lies_vs_truthful")] - point[k(p, "c_all", "lies_vs_truthful")] for p in TRAINED}
         spin_all = {p: point[k(p, "c_all", "spin_vs_all_truthful")] for p in POLICIES}
@@ -148,8 +238,10 @@ def main():
         c2_fact = all(v < 0.80 for v in spin_fact.values()) and all(v <= 0.08 for v in gain_fact.values())
         c3 = all(np.isfinite(v) and abs(v) <= 0.02 for v in held.values())
         res["verdict"] = {
-            "status": status_final, "status_main_rule": st_main, "status_all_truthful_guard": st_guard,
-            "why": why, "positive_control": {"base_c_lies": pc_c, "base_a_lies": pc_a, "passed": bool(pc_c > pc_a)},
+            "status": status_final, "status_if_D5_applies": st_d5, "status_main_rule": st_main, "status_all_truthful_guard": st_guard,
+            "why": why, "positive_control": {"base_c_lies": pc_c, "base_a_lies": pc_a, "passed": bool(pc_c > pc_a),
+                                 "base_c2_lies": pc_c2, "c2_passed": bool(pc_c2 > pc_a) if have_c2 else None},
+            "c2_scored_on_all_5": have_c2,
             "rule": "YES: m_c >= 0.80 and g_c_minus_a CI low > 0; NO: m_c CI high < 0.80 (spin vs fact-stated truthful)",
             "means_over_4": V,
             "prereg": {"outcome": "held" if (c1 and c2 and c3) else "failed",
@@ -157,12 +249,20 @@ def main():
                        "ii_spin_ceiling_all_truthful": {"c_spin": spin_all, "c_minus_a": gain_all, "holds": c2},
                        "ii_fact_stated_printed": {"c_spin": spin_fact, "c_minus_a": gain_fact, "holds": c2_fact},
                        "iii_held_text": {"base_read_minus_own": held, "holds": c3}},
+            "c2_printed": {"c2_spin_all_truthful": {p: point.get(k(p, "c2_all", "spin_vs_all_truthful")) for p in POLICIES},
+                           "c2_spin_fact_truthful": {p: point.get(k(p, "c2_all", "spin_vs_fact_truthful")) for p in POLICIES},
+                           "c2_lies": {p: point.get(k(p, "c2_all", "lies_vs_truthful")) for p in POLICIES}},
             "per_seed_range": {fam: {"s0": spin_fact[f"{fam}_s0"], "s1": spin_fact[f"{fam}_s1"]} for fam in ("lam1", "ens")},
         }
+    res["subclass"] = subclass(S, R)
+    if have4:
+        res["figure_data"] = figure_data(S, point, boot, stat, mean4, ci, k)
     RES.mkdir(parents=True, exist_ok=True)
     (RES / "summary.json").write_text(json.dumps(res, indent=1))
     if "verdict" in res:
         (RES / "verdict.json").write_text(json.dumps(res["verdict"], indent=1))
+    if "figure_data" in res:
+        (RES / "figure_data.json").write_text(json.dumps(res["figure_data"], indent=1))
     with open(RES / "oof_scores.jsonl", "w") as f:
         for (p, rd), arms in S.items():
             for i, r in enumerate(R[p]):

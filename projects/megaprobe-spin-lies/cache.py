@@ -153,7 +153,8 @@ def main(names):
                     info = read(model, tok, P, R, out)
             else:
                 info = read(model, tok, P, R, out)
-            info.update(policy=name, read=rd, adapter=str(path) if path else None, follow_text=FOLLOW,
+            info.update(policy=name, read=rd, adapter=str(path) if path else None, follow_text=FOLLOW, answers_of=name,
+                        weights="base model (adapter disabled)" if rd == "base" else ("base + adapter" if path else "base model"),
                         layers=LAYERS, prompt_ids=[a["prompt_id"] for a in A])
             (out / "meta.json").write_text(json.dumps(info))
             print(name, rd, {k: v for k, v in info.items() if k != "prompt_ids"}, flush=True)

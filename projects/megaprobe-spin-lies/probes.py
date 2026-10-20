@@ -243,6 +243,7 @@ def fit_b(F, y, tr, te, seed, norm="unit_norm"):
 def padded(Z, offsets, rows, T_max=128):
     k = Z.shape[2]; L = Z.shape[1]
     T = max(1, min(T_max, max(int(offsets[i + 1] - offsets[i]) for i in rows)))
+    T = min(T_max, -(-T // 32) * 32)  # few distinct shapes (MPS caches a graph per shape); padding is masked out
     X = torch.zeros(len(rows), T, L, k, dtype=torch.float16, device=DEV)
     M = torch.zeros(len(rows), T, dtype=torch.bool, device=DEV)
     for j, i in enumerate(rows):
@@ -462,6 +463,14 @@ def fit_policy(p):
         print(f"{p} {rd} written {time.time() - t0:.0f}s", flush=True)
 
 
+def fp(tag):
+    """Log this process's footprint (macOS `footprint`), for the memory cap."""
+    import os, subprocess
+    out = subprocess.run(["footprint", str(os.getpid())], capture_output=True, text=True).stdout
+    line = [l for l in out.splitlines() if "Footprint:" in l]
+    print(f"[footprint] {tag}: {line[0].split('Footprint:')[1].strip() if line else '?'}", flush=True)
+
+
 def fit_pooled_fact():
     """Label set fact, pooled over the 4 trained policies (own read): per outer fold, one fit on all 4 policies'
     fact-present training rows (shared PCA for arm c), scores for every policy's held-out fold rows."""
@@ -476,6 +485,7 @@ def fit_pooled_fact():
     texts = sum([[r["response"] for r in R[p]] for p in TRAINED], [])
     X12 = np.concatenate([C[p].mean_layer(12) for p in TRAINED])
     F = np.concatenate([C[p].final() for p in TRAINED])
+    fp("features loaded")
     factrow = {p: [i for i, r in enumerate(R[p]) if r["cls"] in ("spin", "truthful") and r["y_string"] == 0]
                for p in TRAINED}
     sc = {n: np.full((len(y), 1), np.nan) for n in ("a_fact_pooled", "b_fact_pooled", "c_fact_pooled", "d_fact_pooled")}
@@ -483,9 +493,9 @@ def fit_pooled_fact():
         tr = np.array([j * N_ROWS + i for j, p in enumerate(TRAINED) for i in factrow[p] if fm[R[p][i]["prompt_id"]] != k])
         te = np.where(fold == k)[0]
         seed = SEED + 100 * k + 77
-        sc["a_fact_pooled"][te, 0] = fit_a(X12, y, tr, te)
-        sc["b_fact_pooled"][te, 0] = fit_b(F, y, tr, te, seed)[0]
-        sc["d_fact_pooled"][te, 0] = fit_d(texts, y, tr, te)
+        sc["a_fact_pooled"][te, 0] = fit_a(X12, y, tr, te); fp(f"fold {k} a")
+        sc["b_fact_pooled"][te, 0] = fit_b(F, y, tr, te, seed)[0]; fp(f"fold {k} b")
+        sc["d_fact_pooled"][te, 0] = fit_d(texts, y, tr, te); fp(f"fold {k} d")
         # arm c: shared PCA on the pooled training rows' tokens; project only fact-present rows (the scored ones)
         pca = pca_fit([(C[p], [i for i in factrow[p] if fm[R[p][i]["prompt_id"]] != k]) for p in TRAINED], HP["k"])
         Zs, offs = [], [np.zeros(1, np.int64)]
@@ -493,6 +503,7 @@ def fit_pooled_fact():
             Zp, op = pca_project(C[p], pca, rows=factrow[p])
             offs.append(op[1:] + offs[-1][-1]); Zs.append(Zp)
         Z = torch.cat(Zs); offs = np.concatenate(offs); del Zs
+        fp(f"fold {k} pca+project, Z {tuple(Z.shape)}")
         te_f = np.array([j for j in te if (j % N_ROWS) in set(factrow[TRAINED[j // N_ROWS]])])
         sc["c_fact_pooled"][te_f, 0] = fit_c(Z, offs, y, tr.tolist(), te_f, seed)[0]
         del Z; torch.mps.empty_cache()

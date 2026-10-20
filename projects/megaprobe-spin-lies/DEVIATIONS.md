@@ -118,9 +118,9 @@ All runs use draw 0 of the main run, the same folds, seeds, init and update rule
 rule on these logs reproduces the main run's draw-0 AUROCs to 3 decimals on all 5 models, so the scripts match the run.
 
 - Megaprobe (c), lam1_s0, 1500 epochs (5x the main run), main hyperparameters (lr 1e-2, L2 0.03): train BCE
-  0.67 -> 0.235 by epoch ~300, then flat to 3 decimals up to epoch 1500; train AUROC 0.994. Pooled out-of-fold AUROC
-  falls with training: spin vs fact-stated truthful 0.647 (epoch 10) -> 0.580 (epochs 300-1500); all lies 0.772 ->
-  0.697. Same with L2 1e-3 (30x weaker): train AUROC 1.000 by epoch 49, spin 0.605 (best-val checkpoint) -> 0.573
+  0.67 -> 0.237 by epoch 300, then within 0.003 (0.235-0.237) up to epoch 1500; train AUROC 0.994. Pooled
+  out-of-fold AUROC falls with training: spin vs fact-stated truthful 0.647 (epoch 10) -> 0.574-0.581 (epochs
+  300-1500); all lies 0.772 -> 0.695-0.697. Same with L2 1e-3 (30x weaker): train AUROC 1.000 by epoch 49, spin 0.605 (best-val checkpoint) -> 0.573
   (epoch 1500). One-layer probe on the same draw: spin 0.652, all lies 0.782. The megaprobe converged; it overfits its
   320 fit answers. A run at lr 3e-3 was queued but did not start (lost shell); not needed for this conclusion.
 - Published axial probe (c2): in the main run it was UNDER-TRAINED. At the main run's 10 epochs, train AUROC was
@@ -137,3 +137,21 @@ rule on these logs reproduces the main run's draw-0 AUROCs to 3 decimals on all 
   0.07 on spin lies but stays below the one-layer probe on all lies on every model, ties it on spin lies on lam1_s0,
   and still fails the control on the untrained model (0.77 vs 0.84). The post's 0.59 (3-draw mean, 10 epochs)
   understates the published probe; the conclusion does not change.
+- Independent rebuild (blank agent, own code, no project imports): skeptics/d8_rebuild/ — 55 checks, all within
+  0.002 after the two wording fixes above; label-shuffle null on c2 base spin subset 0.503 (200 shuffles).
+
+## D9 — label-count curve and a smaller megaprobe (Sevan, lead; Esben, room #3651, 2026-10-20 11:43: "overfitting because the dataset is small? try more probe sizes")
+
+Added after publication; does not change the verdict rule or the status. Design fixed in room post #3653 and committed
+(lcurve.py, kran-research 5690e81) before any result. Code: lcurve.py, lc_summary.py; data: data/lcurve/<policy>.json
+(raw OOF scores per arm), summary.json; logs: data/logs/lcurve_*.log. Four trained models, same folds and HP, one draw per
+size: 100 and 200 = nested class-balanced subsets of main-run draw 0 (400); all = every labelled training answer
+(791-798). Megaprobe at 128 components (main) and 32 (top 32 of the same whitened PCA). k = 16, named in #3653, was
+dropped for time. Means over 4 trained models, spin vs fact-stated truthful / all lies:
+  one-layer   100 0.682/0.749  200 0.686/0.765  400 0.702/0.774  all 0.711/0.789
+  megaprobe   100 0.588/0.632  200 0.596/0.665  400 0.681/0.725  all 0.698/0.777
+  mega k=32                                     400 0.677/0.746  all 0.713/0.779
+Megaprobe minus one-layer on spin, paired bootstrap over chats (1,000): 100 -0.094 [-0.131,-0.056], 200 -0.090
+[-0.123,-0.056], 400 -0.021 [-0.053,0.008], all -0.013 [-0.042,0.017]; k=32 at all +0.001 [-0.030,0.031].
+Reading: the megaprobe's deficit is a small-label effect (it closes to a tie at ~800 labels); more labels do not make
+any probe pass the one-layer probe or reach 0.80 here.

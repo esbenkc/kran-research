@@ -1,0 +1,80 @@
+c2 bestValAUROC base chosen epochs [18, 39, 8, 15, 9]
+c2 bestValAUROC lam1_s0 chosen epochs [33, 11, 27, 14, 0]
+c2 bestValAUROC lam1_s1 chosen epochs [37, 37, 0, 18, 39]
+c2 bestValAUROC ens_s0 chosen epochs [37, 10, 19, 27, 20]
+c2 bestValAUROC ens_s1 chosen epochs [15, 39, 14, 14, 3]
+c2 minValBCE<=ep9 base chosen epochs [8, 2, 9, 9, 9]
+c2 minValBCE<=ep9 lam1_s0 chosen epochs [7, 6, 5, 9, 5]
+c2 minValBCE<=ep9 lam1_s1 chosen epochs [2, 9, 2, 7, 4]
+c2 minValBCE<=ep9 ens_s0 chosen epochs [5, 9, 7, 9, 6]
+c2 minValBCE<=ep9 ens_s1 chosen epochs [9, 9, 9, 9, 7]
+c2 base: train_auroc@9 0.7636 (fold-mean 0.7636) train_bce@9 0.5362 train_bce@last(ep39) 0.1437
+c2 lam1_s0: train_auroc@9 0.6867 (fold-mean 0.6867) train_bce@9 0.6906 train_bce@last(ep39) 0.1563
+c2 lam1_s1: train_auroc@9 0.6663 (fold-mean 0.6663) train_bce@9 0.6900 train_bce@last(ep39) 0.3971
+c2 ens_s0: train_auroc@9 0.7157 (fold-mean 0.7157) train_bce@9 0.6724 train_bce@last(ep39) 0.1557
+c2 ens_s1: train_auroc@9 0.7899 (fold-mean 0.7899) train_bce@9 0.6281 train_bce@last(ep39) 0.2988
+c ep299-1499: spin [0.5741,0.5810] lies [0.6949,0.6974]
+c train_bce ep399-1499 rounded set: [0.235, 0.236]; raw range [0.23470,0.23562]
+c train_auroc ep399-1499 range [0.9938,0.9941]; last 0.9940
+c_l2 curve train_auroc by epoch: [(9, 0.903), (19, 0.9947), (29, 1.0), (39, 1.0), (49, 1.0), (59, 1.0), (69, 1.0), (79, 1.0)]
+c_l2 bestVal chosen epochs [9, 9, 9, 9, 9]
+null: n=181 pos=72 mean 0.5027 sd 0.0450 95% [0.426,0.603]
+
+| claim | claimed | mine | verdict |
+|---|---|---|---|
+| c2 bestValAUROC base spin | 0.636 | 0.6362 | MATCH |
+| c2 bestValAUROC base lies | 0.766 | 0.7663 | MATCH |
+| c2 bestValAUROC lam1_s0 spin | 0.656 | 0.6557 | MATCH |
+| c2 bestValAUROC lam1_s0 lies | 0.697 | 0.6971 | MATCH |
+| c2 bestValAUROC lam1_s1 spin | 0.573 | 0.5729 | MATCH |
+| c2 bestValAUROC lam1_s1 lies | 0.655 | 0.6553 | MATCH |
+| c2 bestValAUROC ens_s0 spin | 0.621 | 0.6213 | MATCH |
+| c2 bestValAUROC ens_s0 lies | 0.702 | 0.7023 | MATCH |
+| c2 bestValAUROC ens_s1 spin | 0.584 | 0.5843 | MATCH |
+| c2 bestValAUROC ens_s1 lies | 0.646 | 0.6458 | MATCH |
+| c2 bestValAUROC mean4 trained spin | 0.61 | 0.6085 | MATCH |
+| c2 bestValAUROC mean4 trained lies | 0.68 | 0.6751 | MATCH |
+| c2 minValBCE<=ep9 base spin | 0.615 | 0.6153 | MATCH |
+| c2 minValBCE<=ep9 base lies | 0.658 | 0.6578 | MATCH |
+| c2 minValBCE<=ep9 lam1_s0 spin | 0.556 | 0.5557 | MATCH |
+| c2 minValBCE<=ep9 lam1_s0 lies | 0.528 | 0.5278 | MATCH |
+| c2 minValBCE<=ep9 lam1_s1 spin | 0.494 | 0.4938 | MATCH |
+| c2 minValBCE<=ep9 lam1_s1 lies | 0.519 | 0.5188 | MATCH |
+| c2 minValBCE<=ep9 ens_s0 spin | 0.52 | 0.5199 | MATCH |
+| c2 minValBCE<=ep9 ens_s0 lies | 0.587 | 0.5869 | MATCH |
+| c2 minValBCE<=ep9 ens_s1 spin | 0.58 | 0.5798 | MATCH |
+| c2 minValBCE<=ep9 ens_s1 lies | 0.628 | 0.6283 | MATCH |
+| c2 minValBCE<=ep9 mean4 trained spin | 0.54 | 0.5373 | MATCH |
+| c2 minValBCE<=ep9 mean4 trained lies | 0.57 | 0.5655 | MATCH |
+| c2 train_auroc@ep9 min | 0.67-0.79 | 0.6663 | MATCH |
+| c2 train_auroc@ep9 max | 0.67-0.79 | 0.7899 | MATCH |
+| c2 train_bce@ep9 min | 0.54-0.69 | 0.5362 | MATCH |
+| c2 train_bce@ep9 max | 0.54-0.69 | 0.6906 | MATCH |
+| c2 train_bce@last min | 0.14-0.4 | 0.1437 | MATCH |
+| c2 train_bce@last max | 0.14-0.4 | 0.3971 | MATCH |
+| one-layer d0 base spin | 0.732 | 0.7324 | MATCH |
+| one-layer d0 base lies | 0.837 | 0.8374 | MATCH |
+| one-layer d0 lam1_s0 spin | 0.652 | 0.6517 | MATCH |
+| one-layer d0 lam1_s0 lies | 0.782 | 0.7822 | MATCH |
+| one-layer d0 lam1_s1 spin | 0.806 | 0.8057 | MATCH |
+| one-layer d0 lam1_s1 lies | 0.799 | 0.7993 | MATCH |
+| one-layer d0 ens_s0 spin | 0.696 | 0.6955 | MATCH |
+| one-layer d0 ens_s0 lies | 0.78 | 0.7803 | MATCH |
+| one-layer d0 ens_s1 spin | 0.655 | 0.6548 | MATCH |
+| one-layer d0 ens_s1 lies | 0.735 | 0.7353 | MATCH |
+| one-layer mean4 trained spin | 0.7 | 0.7020 | MATCH |
+| one-layer mean4 trained lies | 0.77 | 0.7743 | MATCH |
+| c ep9 spin | 0.647 | 0.6473 | MATCH |
+| c ep9 lies | 0.772 | 0.7718 | MATCH |
+| c ep299-1499 spin min | 0.575-0.58 | 0.5741 | MATCH |
+| c ep299-1499 spin max | 0.575-0.58 | 0.5810 | MATCH |
+| c ep299-1499 lies min (~0.697) | 0.697 | 0.6949 | MISMATCH |
+| c ep299-1499 lies max (~0.697) | 0.697 | 0.6974 | MATCH |
+| c train_bce flat 0.235 ep399-1499 (3dp) | 0.235 | 0.235,0.236 | MISMATCH |
+| c train_auroc (last epoch) | 0.994 | 0.9940 | MATCH |
+| c_l2 train_auroc 1.000 by ep49 | <=49 | 29 | MATCH |
+| c_l2 bestValAUROC spin | 0.605 | 0.6055 | MATCH |
+| c_l2 last-epoch spin | 0.573 | 0.5731 | MATCH |
+| null shuffled spin AUROC mean (200) | ~0.5 | 0.5027 | MATCH |
+
+VERDICT: FAIL: c ep299-1499 lies min (~0.697); c train_bce flat 0.235 ep399-1499 (3dp)

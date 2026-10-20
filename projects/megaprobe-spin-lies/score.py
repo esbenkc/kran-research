@@ -105,7 +105,7 @@ def subclass(S, R, arms=("a_all", "b_all", "c_all", "c2_all", "d_all", "c_fact",
 
 
 ARM_LABELS = [("a", "One-layer probe"), ("b", "Layer-average probe\n(public recipe)"), ("c", "Megaprobe\n(ours)"),
-              ("c2", "Axial probe\n(public design)")]
+              ("c2", "Published probe")]
 MODEL_LABELS = {"lam1_s0": "Trained against one probe, seed 0", "lam1_s1": "Trained against one probe, seed 1",
                 "ens_s0": "Trained against eight probes, seed 0", "ens_s1": "Trained against eight probes, seed 1"}
 

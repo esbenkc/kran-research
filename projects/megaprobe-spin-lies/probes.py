@@ -509,8 +509,10 @@ def fit_pooled_fact():
         Z = torch.cat(Zs); offs = np.concatenate(offs); del Zs
         fp(f"fold {k} pca+project, Z {tuple(Z.shape)}")
         te_f = np.array([j for j in te if (j % N_ROWS) in set(factrow[TRAINED[j // N_ROWS]])])
-        sc["c_fact_pooled"][te_f, 0] = fit_c(Z, offs, y, tr.tolist(), te_f, seed)[0]
-        del Z; torch.mps.empty_cache()
+        torch.mps.empty_cache()
+        # minibatches of 160 rows: 400-row fp32 batches overflowed the 3 GB MPS cap next to the 0.5 GB pooled Z
+        sc["c_fact_pooled"][te_f, 0] = fit_c(Z, offs, y, tr.tolist(), te_f, seed, mb=160)[0]
+        del Z; import gc; gc.collect(); torch.mps.empty_cache()
         print(f"pooled fold {k} done {time.time() - t0:.0f}s", flush=True)
     save_scores(f_out, {"policies": TRAINED, "read": "own", "hp": HP, "rows": "policy-major: row j = policy j//1000",
                         "seconds": round(time.time() - t0)}, sc)

@@ -74,6 +74,34 @@ def run(p):
                         "seconds": round(time.time() - t0)}, sc)
 
 
+def run_pooled():
+    """Pooled fact-present fit over the 4 trained models (as probes.py fit_pooled_fact), arm (b) refit only."""
+    from probes import TRAINED
+    f = OUT / "pooled_fact.json"
+    d = json.loads(f.read_text())
+    if "b_fact_pooled_refit_D7" in d.get("note", ""):
+        print("skip pooled"); return
+    fm = folds()
+    R = {p: load_rows(p) for p in TRAINED}
+    y = np.concatenate([yvec(R[p]) for p in TRAINED])
+    fold = np.concatenate([[fm[r["prompt_id"]] for r in R[p]] for p in TRAINED])
+    F = np.concatenate([Cache(p, "own").final() for p in TRAINED])
+    s = np.full((len(y), 1), np.nan)
+    for k in range(N_FOLDS):
+        tr = np.array([j * N_ROWS + i for j, p in enumerate(TRAINED) for i, r in enumerate(R[p])
+                       if r["cls"] in ("spin", "truthful") and r["y_string"] == 0 and fm[r["prompt_id"]] != k])
+        te = np.where(fold == k)[0]
+        s[te, 0] = fit_b2(F, y, tr, te)[0]
+    d["scores"]["b_torch_fact_pooled"] = d["scores"].pop("b_fact_pooled")
+    d["scores"]["b_fact_pooled"] = [[None if np.isnan(v) else round(float(v), 6) for v in r] for r in s]
+    d["note"] = "b_fact_pooled_refit_D7: b_fact_pooled = refit_b.fit_b2; the under-trained torch run is b_torch_fact_pooled"
+    f.write_text(json.dumps(d))
+    print("pooled b refit written")
+
+
 if __name__ == "__main__":
-    for p in sys.argv[1:] or POLICIES:
-        run(p)
+    if sys.argv[1:] == ["pooled"]:
+        run_pooled()
+    else:
+        for p in sys.argv[1:] or POLICIES:
+            run(p)

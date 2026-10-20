@@ -1,0 +1,22 @@
+# Project config. One question, the model, and the figure this project produces.
+name: megaprobe-spin-lies
+question: "Does a probe that reads every layer catch the spin lies that one-layer probes miss?"
+model: Qwen/Qwen2.5-0.5B-Instruct   # untrained + 4 saved round-8 LoRA policies (probe-ensemble); no training here
+judge: gemini-3-flash-preview       # labels reused from oracle-1019-refit-probe; no new judge calls
+prereg: PREREG.md
+deviations: DEVIATIONS.md
+arms:
+  a: one-layer linear probe (layer 12, mean over answer tokens)
+  b: layer-average probe, public recipe (Taufeeque et al. 2602.15515; obfuscation-atlas @12abf65), refit D7
+  c: attention megaprobe over every layer and answer token (this run)
+  c2: published axial probe (Hollinsworth et al. 2610.12445; fibs-probes @6cae61d), code default size
+  d: words-only TF-IDF classifier
+sources:
+  - https://huggingface.co/datasets/AlignmentResearch/DolusChat
+  - https://github.com/AlignmentResearch/obfuscation-atlas
+  - https://github.com/AlignmentResearch/fibs-probes
+  - https://github.com/esbenkc/kran-research/tree/swarm/oracle-1019-refit-probe/projects/refit-probe
+  - https://github.com/esbenkc/kran-research/tree/swarm/oracle-1018-probe-ensemble/projects/probe-ensemble
+figures:
+  - id: megaprobe-spin-lies
+    caption: "AUROC of spin lies vs truthful answers that mention the fact, by probe; untrained vs mean of 4 trained models; 95% prompt-bootstrap intervals."

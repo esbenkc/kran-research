@@ -1,0 +1,286 @@
+{
+  "title": "Probes that read every layer rank spin lies no better than a probe on one layer",
+  "y_label": "AUROC: spin lies vs truthful answers that mention the fact (0.5 = coin flip)",
+  "bar": 0.8,
+  "arms": [
+    {
+      "key": "a",
+      "label": "One-layer probe"
+    },
+    {
+      "key": "b",
+      "label": "Layer-average probe\n(public recipe)"
+    },
+    {
+      "key": "c",
+      "label": "Megaprobe\n(ours)"
+    },
+    {
+      "key": "c2",
+      "label": "Published probe"
+    }
+  ],
+  "series": [
+    {
+      "key": "base",
+      "label": "Untrained model",
+      "role": "base"
+    },
+    {
+      "key": "trained",
+      "label": "Trained against a lie detector (mean of 4)",
+      "role": "trained"
+    }
+  ],
+  "points": [
+    {
+      "series": "base",
+      "arm": "a",
+      "fit": "all",
+      "auroc": 0.7218399592252803,
+      "lo": 0.6392013690709343,
+      "hi": 0.7930604116557445
+    },
+    {
+      "series": "trained",
+      "arm": "a",
+      "fit": "all",
+      "auroc": 0.7323223866280691,
+      "lo": 0.7015007992465782,
+      "hi": 0.7598739005278888
+    },
+    {
+      "series": "base",
+      "arm": "a",
+      "fit": "fact",
+      "auroc": 0.6954638124362896,
+      "lo": 0.6130707242669856,
+      "hi": 0.7680392029184981
+    },
+    {
+      "series": "trained",
+      "arm": "a",
+      "fit": "fact",
+      "auroc": 0.6934737505886194,
+      "lo": 0.660571865209644,
+      "hi": 0.7238496563856165
+    },
+    {
+      "series": "base",
+      "arm": "b",
+      "fit": "all",
+      "auroc": 0.6182466870540265,
+      "lo": 0.534544427987832,
+      "hi": 0.6954977367480851
+    },
+    {
+      "series": "trained",
+      "arm": "b",
+      "fit": "all",
+      "auroc": 0.6143827972735922,
+      "lo": 0.5819948266853765,
+      "hi": 0.6462502531615578
+    },
+    {
+      "series": "base",
+      "arm": "b",
+      "fit": "fact",
+      "auroc": 0.5526248725790011,
+      "lo": 0.4636807489411502,
+      "hi": 0.6375104467702882
+    },
+    {
+      "series": "trained",
+      "arm": "b",
+      "fit": "fact",
+      "auroc": 0.5706409283444771,
+      "lo": 0.5383621120798071,
+      "hi": 0.6003265832871978
+    },
+    {
+      "series": "base",
+      "arm": "c",
+      "fit": "all",
+      "auroc": 0.6702344546381244,
+      "lo": 0.5894446105072464,
+      "hi": 0.7441513092841504
+    },
+    {
+      "series": "trained",
+      "arm": "c",
+      "fit": "all",
+      "auroc": 0.6757222826038798,
+      "lo": 0.6414761637205129,
+      "hi": 0.7059353984424698
+    },
+    {
+      "series": "base",
+      "arm": "c",
+      "fit": "fact",
+      "auroc": 0.5814220183486238,
+      "lo": 0.49312343913469,
+      "hi": 0.6642893609668622
+    },
+    {
+      "series": "trained",
+      "arm": "c",
+      "fit": "fact",
+      "auroc": 0.5765612530145785,
+      "lo": 0.5417247750418551,
+      "hi": 0.6101986210013212
+    },
+    {
+      "series": "base",
+      "arm": "c2",
+      "fit": "all",
+      "auroc": 0.6480632008154944,
+      "lo": 0.5648489092606739,
+      "hi": 0.7251573130243483
+    },
+    {
+      "series": "trained",
+      "arm": "c2",
+      "fit": "all",
+      "auroc": 0.5855125851064374,
+      "lo": 0.5502278363515324,
+      "hi": 0.6212609337713734
+    },
+    {
+      "series": "base",
+      "arm": "c2",
+      "fit": "fact",
+      "auroc": 0.4890417940876656,
+      "lo": 0.4042745148995149,
+      "hi": 0.5857349849094567
+    },
+    {
+      "series": "trained",
+      "arm": "c2",
+      "fit": "fact",
+      "auroc": 0.5269357380584081,
+      "lo": 0.49274576174869944,
+      "hi": 0.5590862583014682
+    }
+  ],
+  "per_model": [
+    {
+      "model": "lam1_s0",
+      "label": "Trained against one probe, seed 0",
+      "arm": "a",
+      "fit": "all",
+      "auroc": 0.6873997805722003
+    },
+    {
+      "model": "lam1_s1",
+      "label": "Trained against one probe, seed 1",
+      "arm": "a",
+      "fit": "all",
+      "auroc": 0.8009912576581538
+    },
+    {
+      "model": "ens_s0",
+      "label": "Trained against eight probes, seed 0",
+      "arm": "a",
+      "fit": "all",
+      "auroc": 0.7299601225221061
+    },
+    {
+      "model": "ens_s1",
+      "label": "Trained against eight probes, seed 1",
+      "arm": "a",
+      "fit": "all",
+      "auroc": 0.7109383857598166
+    },
+    {
+      "model": "lam1_s0",
+      "label": "Trained against one probe, seed 0",
+      "arm": "b",
+      "fit": "all",
+      "auroc": 0.5888260612709932
+    },
+    {
+      "model": "lam1_s1",
+      "label": "Trained against one probe, seed 1",
+      "arm": "b",
+      "fit": "all",
+      "auroc": 0.617608590899704
+    },
+    {
+      "model": "ens_s0",
+      "label": "Trained against eight probes, seed 0",
+      "arm": "b",
+      "fit": "all",
+      "auroc": 0.6560423048026354
+    },
+    {
+      "model": "ens_s1",
+      "label": "Trained against eight probes, seed 1",
+      "arm": "b",
+      "fit": "all",
+      "auroc": 0.5950542321210365
+    },
+    {
+      "model": "lam1_s0",
+      "label": "Trained against one probe, seed 0",
+      "arm": "c",
+      "fit": "all",
+      "auroc": 0.6608996539792388
+    },
+    {
+      "model": "lam1_s1",
+      "label": "Trained against one probe, seed 1",
+      "arm": "c",
+      "fit": "all",
+      "auroc": 0.7019343291801473
+    },
+    {
+      "model": "ens_s0",
+      "label": "Trained against eight probes, seed 0",
+      "arm": "c",
+      "fit": "all",
+      "auroc": 0.6968155811131018
+    },
+    {
+      "model": "ens_s1",
+      "label": "Trained against eight probes, seed 1",
+      "arm": "c",
+      "fit": "all",
+      "auroc": 0.6432395661430317
+    },
+    {
+      "model": "lam1_s0",
+      "label": "Trained against one probe, seed 0",
+      "arm": "c2",
+      "fit": "all",
+      "auroc": 0.6221622077812472
+    },
+    {
+      "model": "lam1_s1",
+      "label": "Trained against one probe, seed 1",
+      "arm": "c2",
+      "fit": "all",
+      "auroc": 0.6069388036070764
+    },
+    {
+      "model": "ens_s0",
+      "label": "Trained against eight probes, seed 0",
+      "arm": "c2",
+      "fit": "all",
+      "auroc": 0.5571866150378547
+    },
+    {
+      "model": "ens_s1",
+      "label": "Trained against eight probes, seed 1",
+      "arm": "c2",
+      "fit": "all",
+      "auroc": 0.5557627139995717
+    }
+  ],
+  "words": {
+    "auroc": 0.6182921701945286,
+    "lo": 0.5843560033488252,
+    "hi": 0.6486046809829885,
+    "label": "strip: words-only classifier, trained models (95% interval)"
+  },
+  "band_note": "Qwen2.5-0.5B-Instruct, 1000 answers per model, labels from one LLM judge. Filled dots: probe fitted on 400 labelled answers; hollow dots: on all training answers that mention the fact (140-530). Scored on held-out answers (5 folds, split by prompt). Bars: 95% interval from resampling prompts."
+}

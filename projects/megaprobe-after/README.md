@@ -10,7 +10,7 @@ Geometry of Truth cities statements (Marks & Tegmark, arXiv 2310.06824), fit mon
 score the fine-tuned model with a new 1% alarm line.
 
 Frozen plan: `PREREG.md` (commit ad300da, 15:00:34 CEST). Later changes: `DEVIATIONS.md` (D1 implementation details
-before any fit; D2 exploratory controls after the first result).
+before any fit; D2-D3 exploratory controls and D4 figure layout, all after the first result).
 
 ## Reproduce (Mac mini M4, torch MPS, bf16; ~15 min; one heavy job at a time)
 
@@ -24,6 +24,8 @@ uv run python probes.py curves           # label-count + convergence fits on cle
 uv run python probes.py score            # final fits, every state scored -> data/scores.npz (~2 min)
 uv run python analysis.py                # every pre-registered number -> data/results/results.json
 uv run python controls.py                # D2 exploratory controls -> data/results/controls.json
+uv run python d3.py                      # D3 country-token probe at every layer + megaprobe fit seeds -> data/results/d3.json
+uv run python check_equations.py         # numeric checks of the post's two displayed equations
 uv run python ../../projects/megaprobe-after/run.py   # (from kran-research/) the figure
 ```
 
@@ -64,7 +66,9 @@ swarm/oracle-1020-megaprobe-spin-lies), applied to statements instead of answers
 | `probes.py` | pooled features, selection grids, label-count curves, final fits, scoring |
 | `analysis.py` | catch rates, CIs, twin-paired separation per layer, retention, knowledge check, attention mass, status, prereg outcome |
 | `controls.py` | D2 exploratory controls (one-layer megaprobe at l18/l22; all-layer concatenated linear; eval-true line sensitivity) |
-| `run.py`, `plot.js` | the figure |
+| `d3.py` | D3 exploratory: linear probe on the last country-name token at every layer; megaprobe fit seeds 1021/1022 |
+| `check_equations.py` | the post's d' and megaprobe formulas recomputed in numpy -> data/results/check_equations.json |
+| `run.py`, `plot.js` | the figure (two panels after DEVIATIONS D4: monitor strip + per-layer catch for mean-pooled and country-token probes) |
 | `data/scores.npz` | every monitor's score of every statement in every state; 5 shuffled-label nulls (lin14, mega); label-count fits; mega attention per layer and per token |
 | `data/hp.json`, `data/fits/` | chosen hyperparameters + grids; fitted parameters (clean PCA, final mega, mlp14, curve fits) |
 | `data/results/results.json` | every pre-registered number |

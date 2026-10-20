@@ -43,13 +43,15 @@ export function render(data, Plot) {
   const order = data.monitors.map((m) => m.label);
   root.appendChild(Plot.plot({
     style: plotStyle({ fontSize: "13px" }), width: W, height: 190,
-    marginLeft: 220, marginRight: 24, marginTop: 8, marginBottom: 40,
+    marginLeft: 220, marginRight: 24, marginTop: 24, marginBottom: 40,
     x: { domain: [0, 1], label: "Catch rate at 1% false alarms", tickFormat: (v) => `${Math.round(v * 100)}%`, ...AX },
     y: { domain: order, label: null, tickSize: 0 },
     marks: [
       Plot.gridX({ stroke: C.grid, strokeOpacity: 1 }),
       Plot.ruleX([0.5], DASH),
       Plot.ruleX([0.4], { stroke: C.muted, strokeWidth: 1.5, strokeDasharray: "1.5,3" }),
+      ...[[0.4, "floor 40%", "end", -3], [0.5, "predicted 50%", "start", 3]].map(([x, t, a, dx]) =>
+        Plot.text([x], { x: (d) => d, text: [t], textAnchor: a, dx, frameAnchor: "top", dy: -16, fontSize: 11, fill: C.muted })),
       Plot.link(data.monitors, { x1: "before", x2: "after", y1: "label", y2: "label", stroke: C.faint, strokeWidth: 1 }),
       Plot.ruleY(data.monitors, { y: "label", x1: "after_lo", x2: "after_hi", stroke: C.primary, strokeWidth: 2.2, strokeOpacity: 0.75 }),
       Plot.dot(data.monitors, { x: "before", y: "label", r: 6, fill: "none", stroke: C.muted, strokeWidth: 1.8, tip: true, title: tipMon }),

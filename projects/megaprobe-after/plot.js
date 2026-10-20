@@ -69,7 +69,7 @@ export function render(data, Plot) {
   const runFa = inRun.flatMap((d) => d.tok_false_alarms);
   const meanMax = Math.max(...data.layers.map((d) => d.mean_catch_after));
   const head2 = el("font-size:15px;font-weight:600;margin:0.9rem 0 0.15rem;color:" + C.ink,
-    "Read at the last token of the country name, the catch rate dips at layers 13 and 14, next to the targeted layer");
+    "Read at the last token of the country name, the catch rate dips at the targeted layer 14 and at layer 13 below it");
   const sub2 = el("font-size:13px;margin:0 0 0.3rem;color:" + C.muted, "Catch rate after the fine-tune of a linear probe fit on one layer of the original model, at the " +
     `same alarm-line rule. Reading the mean over the statement's tokens, no layer catches more than ${pct(meanMax)}. ` +
     `Reading only the last token of the country name (added after the first result), layers ${lo} to ${hi} catch ` +

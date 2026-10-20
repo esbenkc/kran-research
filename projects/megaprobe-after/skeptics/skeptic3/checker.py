@@ -2,6 +2,8 @@ import json
 import numpy as np
 import sys
 from pathlib import Path
+import warnings
+warnings.filterwarnings('ignore', category=RuntimeWarning)
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 
@@ -239,6 +241,6 @@ def main():
         
     p025 = np.percentile(boot_catches, 2.5)
     p975 = np.percentile(boot_catches, 97.5)
-
+    print(f"CI 95%: [{p025*100:.2f}%, {p975*100:.2f}%]")
 if __name__ == "__main__":
     main()

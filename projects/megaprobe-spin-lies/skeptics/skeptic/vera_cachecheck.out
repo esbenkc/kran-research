@@ -1,0 +1,13 @@
+base_own | n=1600 | adapter=None | L12 cos min 1.000000 median 1.000000 n<0.999 0 | L16 cos min 1.000000 median 1.000000 n<0.999 0
+lam1_s0_own | n=1000 | adapter=/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/lam1_s0/round8 | L12 cos min 0.999986 median 1.000000 n<0.999 0 | L16 cos min 0.999974 median 1.000000 n<0.999 0
+lam1_s0_base | n=1000 | adapter=/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/lam1_s0/round8 | L12 cos min 1.000000 median 1.000000 n<0.999 0 | L16 cos min 1.000000 median 1.000000 n<0.999 0
+lam1_s1_own | n=1000 | adapter=/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/lam1_s1/round8 | L12 cos min 0.999981 median 1.000000 n<0.999 0 | L16 cos min 0.999965 median 1.000000 n<0.999 0
+lam1_s1_base | n=1000 | adapter=/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/lam1_s1/round8 | L12 cos min 1.000000 median 1.000000 n<0.999 0 | L16 cos min 1.000000 median 1.000000 n<0.999 0
+ens_s0_own | n=1000 | adapter=/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/ens_lam1_s0/round8 | L12 cos min 0.999985 median 1.000000 n<0.999 0 | L16 cos min 0.999967 median 1.000000 n<0.999 0
+ens_s0_base | n=1000 | adapter=/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/ens_lam1_s0/round8 | L12 cos min 1.000000 median 1.000000 n<0.999 0 | L16 cos min 1.000000 median 1.000000 n<0.999 0
+ens_s1_own | n=1000 | adapter=/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/ens_lam1_s1/round8 | L12 cos min 0.999990 median 1.000000 n<0.999 0 | L16 cos min 0.999976 median 1.000000 n<0.999 0
+ens_s1_base | n=1000 | adapter=/Users/esben/work/oracle-1018-probe-ensemble/kran-research/projects/probe-ensemble/data/lora/ens_lam1_s1/round8 | L12 cos min 1.000000 median 1.000000 n<0.999 0 | L16 cos min 1.000000 median 1.000000 n<0.999 0
+lam1_s0 own vs held-text L12 median rel diff 0.123 (must be > 0)
+lam1_s1 own vs held-text L12 median rel diff 0.107 (must be > 0)
+ens_s0 own vs held-text L12 median rel diff 0.121 (must be > 0)
+ens_s1 own vs held-text L12 median rel diff 0.130 (must be > 0)

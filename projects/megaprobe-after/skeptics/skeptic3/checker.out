@@ -76,19 +76,19 @@ Evaluating layer 14 with C=0.01
   ret = a @ b
   seed2: catch=0.0117, fpr=0.0084, d'=0.7497
   random-direction null on seed0:
-/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:158: RuntimeWarning: divide by zero encountered in matmul
-  rand_scores = X_eval_s0 @ v
-/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:158: RuntimeWarning: overflow encountered in matmul
-  rand_scores = X_eval_s0 @ v
-/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:158: RuntimeWarning: invalid value encountered in matmul
-  rand_scores = X_eval_s0 @ v
 /Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:159: RuntimeWarning: divide by zero encountered in matmul
-  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(scaler.transform(acts_s0.pooled(layer, how="mean")[refit_true_idx]) @ v, 0.01))
+  rand_scores = X_eval_s0 @ v
 /Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:159: RuntimeWarning: overflow encountered in matmul
-  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(scaler.transform(acts_s0.pooled(layer, how="mean")[refit_true_idx]) @ v, 0.01))
+  rand_scores = X_eval_s0 @ v
 /Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:159: RuntimeWarning: invalid value encountered in matmul
-  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(scaler.transform(acts_s0.pooled(layer, how="mean")[refit_true_idx]) @ v, 0.01))
-    catch=0.0034
+  rand_scores = X_eval_s0 @ v
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:161: RuntimeWarning: divide by zero encountered in matmul
+  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(X_refit_s0 @ v, 0.01))
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:161: RuntimeWarning: overflow encountered in matmul
+  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(X_refit_s0 @ v, 0.01))
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:161: RuntimeWarning: invalid value encountered in matmul
+  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(X_refit_s0 @ v, 0.01))
+    catch=0.0134
   shuffled-label null on clean:
 /Users/esben/Library/Python/3.9/lib/python/site-packages/sklearn/linear_model/_linear_loss.py:200: RuntimeWarning: divide by zero encountered in matmul
   raw_prediction = X @ weights + intercept
@@ -120,7 +120,7 @@ Evaluating layer 14 with C=0.01
   ret = a @ b
 /Users/esben/Library/Python/3.9/lib/python/site-packages/sklearn/utils/extmath.py:203: RuntimeWarning: invalid value encountered in matmul
   ret = a @ b
-    catch=0.0000
+    catch=0.0017
 Evaluating layer 20 with C=0.01
 /Users/esben/Library/Python/3.9/lib/python/site-packages/sklearn/linear_model/_linear_loss.py:200: RuntimeWarning: divide by zero encountered in matmul
   raw_prediction = X @ weights + intercept
@@ -199,18 +199,18 @@ Evaluating layer 20 with C=0.01
   ret = a @ b
   seed2: catch=0.1007, fpr=0.0084, d'=1.5028
   random-direction null on seed0:
-/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:158: RuntimeWarning: divide by zero encountered in matmul
-  rand_scores = X_eval_s0 @ v
-/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:158: RuntimeWarning: overflow encountered in matmul
-  rand_scores = X_eval_s0 @ v
-/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:158: RuntimeWarning: invalid value encountered in matmul
-  rand_scores = X_eval_s0 @ v
 /Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:159: RuntimeWarning: divide by zero encountered in matmul
-  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(scaler.transform(acts_s0.pooled(layer, how="mean")[refit_true_idx]) @ v, 0.01))
+  rand_scores = X_eval_s0 @ v
 /Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:159: RuntimeWarning: overflow encountered in matmul
-  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(scaler.transform(acts_s0.pooled(layer, how="mean")[refit_true_idx]) @ v, 0.01))
+  rand_scores = X_eval_s0 @ v
 /Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:159: RuntimeWarning: invalid value encountered in matmul
-  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(scaler.transform(acts_s0.pooled(layer, how="mean")[refit_true_idx]) @ v, 0.01))
+  rand_scores = X_eval_s0 @ v
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:161: RuntimeWarning: divide by zero encountered in matmul
+  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(X_refit_s0 @ v, 0.01))
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:161: RuntimeWarning: overflow encountered in matmul
+  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(X_refit_s0 @ v, 0.01))
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:161: RuntimeWarning: invalid value encountered in matmul
+  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(X_refit_s0 @ v, 0.01))
     catch=0.0017
   shuffled-label null on clean:
 /Users/esben/Library/Python/3.9/lib/python/site-packages/sklearn/linear_model/_linear_loss.py:200: RuntimeWarning: divide by zero encountered in matmul
@@ -243,7 +243,7 @@ Evaluating layer 20 with C=0.01
   ret = a @ b
 /Users/esben/Library/Python/3.9/lib/python/site-packages/sklearn/utils/extmath.py:203: RuntimeWarning: invalid value encountered in matmul
   ret = a @ b
-    catch=0.0017
+    catch=0.0369
 Evaluating layer 28 with C=0.01
 /Users/esben/Library/Python/3.9/lib/python/site-packages/sklearn/linear_model/_linear_loss.py:200: RuntimeWarning: divide by zero encountered in matmul
   raw_prediction = X @ weights + intercept
@@ -322,19 +322,19 @@ Evaluating layer 28 with C=0.01
   ret = a @ b
   seed2: catch=0.0101, fpr=0.0000, d'=0.8366
   random-direction null on seed0:
-/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:158: RuntimeWarning: divide by zero encountered in matmul
-  rand_scores = X_eval_s0 @ v
-/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:158: RuntimeWarning: overflow encountered in matmul
-  rand_scores = X_eval_s0 @ v
-/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:158: RuntimeWarning: invalid value encountered in matmul
-  rand_scores = X_eval_s0 @ v
 /Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:159: RuntimeWarning: divide by zero encountered in matmul
-  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(scaler.transform(acts_s0.pooled(layer, how="mean")[refit_true_idx]) @ v, 0.01))
+  rand_scores = X_eval_s0 @ v
 /Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:159: RuntimeWarning: overflow encountered in matmul
-  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(scaler.transform(acts_s0.pooled(layer, how="mean")[refit_true_idx]) @ v, 0.01))
+  rand_scores = X_eval_s0 @ v
 /Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:159: RuntimeWarning: invalid value encountered in matmul
-  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(scaler.transform(acts_s0.pooled(layer, how="mean")[refit_true_idx]) @ v, 0.01))
-    catch=0.0000
+  rand_scores = X_eval_s0 @ v
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:161: RuntimeWarning: divide by zero encountered in matmul
+  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(X_refit_s0 @ v, 0.01))
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:161: RuntimeWarning: overflow encountered in matmul
+  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(X_refit_s0 @ v, 0.01))
+/Users/esben/work/theory-1020-megaprobe-after/swarm-theory-1020-megaprobe-after/skeptic3/checker.py:161: RuntimeWarning: invalid value encountered in matmul
+  catch_rand = np.mean(rand_scores[y_eval == 1] > threshold(X_refit_s0 @ v, 0.01))
+    catch=0.0101
   shuffled-label null on clean:
 /Users/esben/Library/Python/3.9/lib/python/site-packages/sklearn/linear_model/_linear_loss.py:200: RuntimeWarning: divide by zero encountered in matmul
   raw_prediction = X @ weights + intercept
@@ -366,4 +366,7 @@ Evaluating layer 28 with C=0.01
   ret = a @ b
 /Users/esben/Library/Python/3.9/lib/python/site-packages/sklearn/utils/extmath.py:203: RuntimeWarning: invalid value encountered in matmul
   ret = a @ b
-    catch=0.0034
+    catch=0.0218
+
+--- Mega Bootstrap ---
+Mega pooled attacked catch: 76.79%

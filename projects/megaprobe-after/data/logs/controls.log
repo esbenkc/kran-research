@@ -1,0 +1,55 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1020-megaprobe-after/kran-research/.venv, got /Users/esben/work/theory-1020-megaprobe-after/kran-research/projects/megaprobe-after/../../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1020-megaprobe-after/kran-research/.venv, got /Users/esben/work/theory-1020-megaprobe-after/kran-research/projects/megaprobe-after/../../.venv
+B C 0.01 0.9988999999999999
+B C 0.1 0.998704081632653
+B C 1.0 0.9980448979591836
+B C 10.0 0.997938775510204
+{
+ "megaA_l18": {
+  "clean": 0.9899328859060402,
+  "pooled": {
+   "catch": 0.46140939597315433,
+   "ci95": [
+    0.4267337807606264,
+    0.49609899328859053
+   ],
+   "per_seed": [
+    0.3573825503355705,
+    0.4546979865771812,
+    0.5721476510067114
+   ]
+  }
+ },
+ "megaA_l22": {
+  "clean": 0.5587248322147651,
+  "pooled": {
+   "catch": 0.12919463087248323,
+   "ci95": [
+    0.10794183445190157,
+    0.15325782997762857
+   ],
+   "per_seed": [
+    0.11073825503355705,
+    0.12919463087248323,
+    0.1476510067114094
+   ]
+  }
+ },
+ "linB_all": {
+  "clean": 0.9865771812080537,
+  "pooled": {
+   "catch": 0.015659955257270694,
+   "ci95": [
+    0.005592841163310962,
+    0.029082774049217
+   ],
+   "per_seed": [
+    0.010067114093959731,
+    0.01174496644295302,
+    0.025167785234899327
+   ]
+  }
+ }
+}
+sensitivity {"catch": 0.738255033557047, "ci95": [0.6772790827740494, 0.7830117449664428], "note": "line = 5th highest of the 596 eval true statements per state; re-picked per draw"} {'seed0': 0.6661073825503355, 'seed1': 0.7164429530201343, 'seed2': 0.8322147651006712}
+D2 reading: both parts contribute

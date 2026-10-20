@@ -12,3 +12,8 @@ These values and separations are consistent with the claim that standard linear 
 My independent label-shuffled null test on the raw predictions yields clean catch ~1%, and the random-direction unit vector applied to attacked final representations (seed0) yields ~1% catch, confirming the bounds and meaning the retained performance is not a statistical artifact. The geometric separation is robust.
 
 I verified my calculations match the pre-registered requirements for threshold setting (2nd highest of 200).
+
+Furthermore, I have re-run the `mega` pooled attacked catch arithmetic directly from `data/scores.npz` using an independent implementation of the threshold logic and city-grouped bootstrap with 2000 resamples.
+- Mega pooled attacked catch point: 76.8%
+- CI 95%: [74.2%, 79.3%]
+This perfectly matches Bruno's results in `results.json` (`76.8% [74.2, 79.4]`).

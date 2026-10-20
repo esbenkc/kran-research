@@ -46,7 +46,7 @@ What: the drop line in D1 moves to 04:30 CEST. If (c2) is not scored on all 5 mo
 unchanged. The stop rule (PREREG s9, 05:30) does not change. No (c2) score on any model existed when this entry was
 committed.
 
-## D3 — megaprobe (c) hyperparameters and run details (Bruno; committed after the base-only pilot, before any trained-model fit)
+## D4 — megaprobe (c) hyperparameters and run details (Bruno; committed after the base-only pilot, before any trained-model fit)
 
 - Arm (c) as built (probes.py `fit_c`): per layer, the answer-token vectors are projected on the top-k principal
   components of the training folds' answer tokens (whitened; fit per outer fold and per read, no labels used). One

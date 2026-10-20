@@ -82,7 +82,7 @@ export function render(data, Plot) {
   const meanMax = Math.max(...data.layers.map((d) => d.mean_catch_after));
   const head2 = document.createElement("div");
   head2.style.cssText = "font-size:15px;font-weight:600;margin:0.9rem 0 0.15rem;color:" + C.ink;
-  head2.textContent = "Per layer: a dent at the targeted layers, and the country name still gives the lie away";
+  head2.textContent = "Read at the end of the country name, the catch rate dips at the targeted layers 13 and 14";
   const sub2 = document.createElement("div");
   sub2.style.cssText = "font-size:13px;margin:0 0 0.3rem;color:" + C.muted;
   sub2.textContent = "Catch rate after the fine-tune of a linear probe fit on one layer of the original model, at the " +

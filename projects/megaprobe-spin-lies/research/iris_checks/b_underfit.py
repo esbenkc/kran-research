@@ -2,13 +2,13 @@
 Diagnostic only (not a frozen arm): same final follow-up token ('Yes'), same fold map (data/folds.json), one
 class-balanced draw of 400 training rows per fold (seed 1020), per-layer StandardScaler + LogisticRegression(C=0.05)
 (the arm-a solver), score = mean of the 24 sigmoids. Reports spin vs fact-stated truthful AUROC and train CE.
-Run: cd kran-research && uv run python ../swarm-oracle-1020-megaprobe-spin-lies/iris_checks/b_underfit.py"""
+Run: cd kran-research && uv run python projects/megaprobe-spin-lies/research/iris_checks/b_underfit.py"""
 import json, numpy as np
 from pathlib import Path
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import roc_auc_score, log_loss
-P = Path(__file__).resolve().parents[2] / "kran-research/projects/megaprobe-spin-lies/data"
+P = Path(__file__).resolve().parents[2] / "data"  # projects/megaprobe-spin-lies/data
 folds = json.load(open(P / "folds.json"))
 out = {}
 for pol in ["base", "lam1_s0", "lam1_s1", "ens_s0", "ens_s1"]:

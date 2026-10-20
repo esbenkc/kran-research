@@ -16,7 +16,7 @@ time of the entry. The frozen rule is still reported where it differs.
   scores on all 2992 statements per state. A run passes only if both hold.
 - Can it move the headline? No: these fill gaps without changing a metric, split, threshold or status rule.
 
-## D2 — TIME_PLACEHOLDER — exploratory controls added AFTER the first result (Tove #3766; Felix logs). Outside the verdict.
+## D2 — 15:17:54 CEST (commit f94d55c) — exploratory controls added AFTER the first result (Tove #3766; Felix logs). Outside the verdict.
 
 The first result (Bruno #3763, commit 8926df8) was seen before this entry. These arms do not change the status
 rule (PREREG s6) or the prediction outcome (s7). They decide only how the post explains the megaprobe's catch.

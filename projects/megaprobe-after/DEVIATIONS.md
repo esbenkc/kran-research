@@ -37,7 +37,7 @@ rule (PREREG s6) or the prediction outcome (s7). They decide only how the post e
   statements of each state (k = floor(0.01 x 597) = 5th-highest), since seed 2 had 2.0% eval false alarms at the
   refit line.
 
-## D3 — TIME_PLACEHOLDER — exploratory: country-token probe at every layer, megaprobe fit-seed spread, figure addition (Tove #3796; Felix logs). Outside the verdict.
+## D3 — 15:22:05 CEST (commit 6c4938b) — exploratory: country-token probe at every layer, megaprobe fit-seed spread, figure addition (Tove #3796; Felix logs). Outside the verdict.
 
 Seen before this entry: the first result (8926df8) and Vera's post-hoc readout checks (skeptic/vera_tokread.out,
 vera_mega_variants.out: a clean-fit linear probe on the end of the country name at layer 18 caught 92.8%).

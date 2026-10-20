@@ -58,7 +58,7 @@ a pick from one look. Status (PREREG s6) and outcome (s7) do not change.
   catch only with the (C) values of the two layers on each side, and it says the token was chosen after seeing
   the first result.
 
-## D4 — TIME_PLACEHOLDER — figure layout changed after the result (Tove #3837; Felix logs)
+## D4 — 15:27:48 CEST (commit 70efdf6) — figure layout changed after the result (Tove #3837; Felix logs)
 
 - PREREG s10 froze a left panel with the mean-pooled twin gap d'_l per layer (and the clause-1 line). After the
   first result and D3, the post's one figure has two panels: (top) catch at the 1% line for the one-layer probe,

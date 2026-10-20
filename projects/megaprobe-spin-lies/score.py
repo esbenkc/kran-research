@@ -42,6 +42,13 @@ def load():
             if f.exists():
                 d = json.loads(f.read_text())
                 S[(p, rd)] = {n: oof(m) for n, m in d["scores"].items()}
+    for p in POLICIES:  # D7: arm (b) = refit_b.py; the under-trained first run is kept as b_torch_*
+        f = OUT / f"{p}_own_b2.json"
+        if f.exists() and (p, "own") in S:
+            for n in [n for n in S[(p, "own")] if n.startswith("b_")]:
+                S[(p, "own")]["b_torch_" + n[2:]] = S[(p, "own")].pop(n)
+            d = json.loads(f.read_text())
+            S[(p, "own")].update({n: oof(m) for n, m in d["scores"].items()})
     for p in POLICIES:  # arm c2 (fit_c2.py) lives in its own file per policy
         f = OUT / f"{p}_own_c2.json"
         if f.exists() and (p, "own") in S:

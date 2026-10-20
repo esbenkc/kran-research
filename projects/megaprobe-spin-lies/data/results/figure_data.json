@@ -1,19 +1,19 @@
 {
- "title": "TITLE SET AFTER THE VERDICT",
- "y_label": "AUROC: spin lies vs truthful answers that state the same fact (0.5 = coin flip)",
+ "title": "Probes that read every layer rank spin lies no better than a probe on one layer",
+ "y_label": "AUROC: spin lies vs truthful answers that mention the fact (0.5 = coin flip)",
  "bar": 0.8,
  "arms": [
   {
    "key": "a",
-   "label": "One layer,\nlinear probe"
+   "label": "One-layer probe"
   },
   {
    "key": "b",
-   "label": "Every layer, last token,\naveraged linear probes"
+   "label": "Layer-average probe\n(public recipe)"
   },
   {
    "key": "c",
-   "label": "Every layer and token,\nattention (ours)"
+   "label": "Megaprobe\n(ours)"
   }
  ],
  "series": [
@@ -65,33 +65,33 @@
    "series": "base",
    "arm": "b",
    "fit": "all",
-   "auroc": 0.5075178389398574,
-   "lo": 0.41945004789801404,
-   "hi": 0.5869208804072998
+   "auroc": 0.6182466870540265,
+   "lo": 0.534544427987832,
+   "hi": 0.6954977367480851
   },
   {
    "series": "trained",
    "arm": "b",
    "fit": "all",
-   "auroc": 0.5803804750689796,
-   "lo": 0.5455500643876042,
-   "hi": 0.6138895779331949
+   "auroc": 0.6143827972735922,
+   "lo": 0.5819948266853765,
+   "hi": 0.6462502531615578
   },
   {
    "series": "base",
    "arm": "b",
    "fit": "fact",
-   "auroc": 0.5535168195718654,
-   "lo": 0.47064414974443985,
-   "hi": 0.6339379081030286
+   "auroc": 0.5526248725790011,
+   "lo": 0.4636807489411502,
+   "hi": 0.6375104467702882
   },
   {
    "series": "trained",
    "arm": "b",
    "fit": "fact",
-   "auroc": 0.5547355400797573,
-   "lo": 0.52115330435126,
-   "hi": 0.5889989701724018
+   "auroc": 0.5706409283444771,
+   "lo": 0.5383621120798071,
+   "hi": 0.6003265832871978
   },
   {
    "series": "base",
@@ -160,28 +160,28 @@
    "label": "Trained against one probe, seed 0",
    "arm": "b",
    "fit": "all",
-   "auroc": 0.5524094860325766
+   "auroc": 0.5888260612709932
   },
   {
    "model": "lam1_s1",
    "label": "Trained against one probe, seed 1",
    "arm": "b",
    "fit": "all",
-   "auroc": 0.5975769257245129
+   "auroc": 0.617608590899704
   },
   {
    "model": "ens_s0",
    "label": "Trained against eight probes, seed 0",
    "arm": "b",
    "fit": "all",
-   "auroc": 0.6547997457088366
+   "auroc": 0.6560423048026354
   },
   {
    "model": "ens_s1",
    "label": "Trained against eight probes, seed 1",
    "arm": "b",
    "fit": "all",
-   "auroc": 0.5167357428099922
+   "auroc": 0.5950542321210365
   },
   {
    "model": "lam1_s0",

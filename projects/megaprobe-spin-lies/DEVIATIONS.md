@@ -27,3 +27,13 @@ What:
 - Drop rule: if (c2) is not scored on all 5 models by 04:00 CEST, (c2) is dropped, the NO rule reverts to PREREG s6
   ((c) alone), and the post states the caveat once: FIBS trained its probe on ~153k rows, we fit on 400.
 - The prediction outcome (PREREG s7) is scored on (c) only, as written; (c2) values are printed next to it.
+
+## D2 — arm (b) input scaling follows the public code (added before any probe fit)
+
+Why: PREREG s5(b) says "unit-normalise each final-token vector". The public code does something else: its
+'unit_norm' mode divides every vector by one per-layer scalar, sqrt(mean ||x||^2) over the training rows
+(obfuscation-atlas probe_archs.py _maybe_normalize, train.py:178 compute_input_scales; FIBS 2610.12445 App. A.1 uses
+the same per-layer RMS scale). Per-vector normalisation is the code's separate 'l2' mode (Iris, room #3425).
+What: arm (b) uses the per-layer RMS scale, fit on each training draw only. The per-vector L2 version, as written in
+PREREG, is reported next to it as the sensitivity line "b_l2". Nothing else in (b) changes. No probe had been fit when
+this entry was committed.

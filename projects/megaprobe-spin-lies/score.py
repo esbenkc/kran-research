@@ -97,8 +97,8 @@ def subclass(S, R, arms=("a_all", "b_all", "c_all", "c2_all", "d_all", "c_fact",
     return out
 
 
-ARM_LABELS = [("a", "One layer,\nlinear probe"), ("b", "Every layer, last token,\naveraged linear probes"),
-              ("c", "Every layer and token,\nattention (ours)"), ("c2", "Every layer and token,\naxial attention")]
+ARM_LABELS = [("a", "One-layer probe"), ("b", "Layer-average probe\n(public recipe)"), ("c", "Megaprobe\n(ours)"),
+              ("c2", "Axial probe\n(public design)")]
 MODEL_LABELS = {"lam1_s0": "Trained against one probe, seed 0", "lam1_s1": "Trained against one probe, seed 1",
                 "ens_s0": "Trained against eight probes, seed 0", "ens_s1": "Trained against eight probes, seed 1"}
 
@@ -123,8 +123,8 @@ def figure_data(S, point, boot, stat, mean4, ci, k):
                 per += [{"model": p, "label": MODEL_LABELS[p], "arm": a, "fit": fit, "auroc": point[k(p, arm, sub)]}
                         for p in TRAINED]
     w = stat(mean4("d_all", sub))
-    return {"title": "TITLE SET AFTER THE VERDICT",
-            "y_label": "AUROC: spin lies vs truthful answers that state the same fact (0.5 = coin flip)",
+    return {"title": "Probes that read every layer rank spin lies no better than a probe on one layer",
+            "y_label": "AUROC: spin lies vs truthful answers that mention the fact (0.5 = coin flip)",
             "bar": 0.8,
             "arms": [{"key": a, "label": l} for a, l in arms],
             "series": [{"key": "base", "label": "Untrained model", "role": "base"},

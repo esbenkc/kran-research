@@ -86,3 +86,14 @@ s6 + D1 rule as written):
 Esben did not answer in the room before 03:30 CEST, so D5 is void. PREREG s6 and D1 rule as written: the positive
 control is carried by (c) alone, and (c) failed it on the base model (0.810 vs 0.852), so a NO becomes UNCONFIRMED.
 If Esben answers later, his answer is reported in the post but does not change this status.
+
+## D6 — arm (c2) run details (Bruno; added after the c2 pilot, before any c2 score on a trained model was read)
+
+- (c2) pilot (data/hp_c2.json, logs/c2_pilot.log): base model, outer fold 0 training rows, inner 4-fold, 400-row fits,
+  grid lr {1e-4, 3e-4, 1e-3} x weight decay 0.01, at most 10 epochs, early stop on inner-split loss. Chosen lr 1e-3
+  (inner AUROC 0.677; 1e-4: 0.649; 3e-4: 0.631). lr 1e-3 is the grid edge; the grid was NOT extended (time: the c2
+  fits had started). Inner folds varied 0.37-0.85, so the choice is noisy.
+- One c2 fit took 21-27 s (> 10 s), so c2 uses the first 3 draws per fold, like (c).
+- A first c2 pilot was stopped at 03:24:52 by my own 2.3 GB footprint watcher (no output); the fit step that then
+  started with default settings was stopped within a minute and its partial output deleted unread. The pilot was rerun
+  from scratch at 03:27 with a 3.3 GB watcher.

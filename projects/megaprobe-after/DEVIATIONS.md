@@ -36,3 +36,24 @@ rule (PREREG s6) or the prediction outcome (s7). They decide only how the post e
 - Sensitivity (reported, not the verdict): `mega` catch with the line set at the 1% point of the 596 eval true
   statements of each state (k = floor(0.01 x 597) = 5th-highest), since seed 2 had 2.0% eval false alarms at the
   refit line.
+
+## D3 — TIME_PLACEHOLDER — exploratory: country-token probe at every layer, megaprobe fit-seed spread, figure addition (Tove #3796; Felix logs). Outside the verdict.
+
+Seen before this entry: the first result (8926df8) and Vera's post-hoc readout checks (skeptic/vera_tokread.out,
+vera_mega_variants.out: a clean-fit linear probe on the end of the country name at layer 18 caught 92.8%).
+This entry makes Vera's single-layer check a full, pre-specified curve in the builder's code, so layer 18 is not
+a pick from one look. Status (PREREG s6) and outcome (s7) do not change.
+
+- (C) country-token probe: for each l = 1..28, a linear probe on ONE token per statement: the last token of the
+  country name (the token just before the final full stop; if a statement's full stop is not a separate token,
+  the statement's last token, and the count of such statements is reported). Logistic regression, standardised,
+  C by the `lin_l` rule (PREREG s4), fit on the clean training pool. Scored on clean and the 3 attacked states:
+  catch at the PREREG s5 line with the city-cluster CI, false alarms on eval trues, and twin-paired d' with the
+  clean spread (s8). The whole curve l = 1..28 is reported; no layer is picked for the text without its neighbours.
+- (D) megaprobe fit-seed spread: the `mega` fit (hp.json, 1400 labels) repeated with fit seeds 1021 and 1022.
+  The headline stays fit seed 1020 (PREREG s3). The post reports the pooled catch per fit seed next to it.
+- Figure: the bottom panel adds curve (C), drawn and labelled as exploratory, next to the pre-registered
+  mean-pooled line. This changes PREREG s10 (which named only the mean-pooled d').
+- Reading (fixed now, before (C) runs in the builder's code): the post may name the layer of the highest (C)
+  catch only with the (C) values of the two layers on each side, and it says the token was chosen after seeing
+  the first result.

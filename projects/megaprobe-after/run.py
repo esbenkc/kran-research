@@ -20,7 +20,15 @@ def main() -> None:
                        "after": d["attacked"], "after_lo": d["attacked_ci95"][0], "after_hi": d["attacked_ci95"][1],
                        "after_per_seed": d["per_seed"], "kept": d["retention"], "kept_lo": d["retention_ci95"][0],
                        "kept_hi": d["retention_ci95"][1], "scored": d["scored"]})
-    names = {"base": "one-layer probe (the target)", "mlp14": "small neural net, same layer", "mega": "probe that reads every layer"}
+    D3 = json.loads((PROJECT_DIR / "data" / "results" / "d3.json").read_text())  # DEVIATIONS D3, exploratory
+    for d in layers:
+        m = R["monitors"][f"lin{d['layer']}"]
+        t = D3["tok"][str(d["layer"])]["catch"]
+        d.update({"mean_catch_before": m["clean"]["catch"], "mean_catch_after": m["pooled_attacked"]["catch"],
+                  "mean_catch_lo": m["pooled_attacked"]["ci95"][0], "mean_catch_hi": m["pooled_attacked"]["ci95"][1],
+                  "tok_catch_before": t["clean"]["catch"], "tok_catch_after": t["pooled_attacked"]["catch"],
+                  "tok_catch_lo": t["pooled_attacked"]["ci95"][0], "tok_catch_hi": t["pooled_attacked"]["ci95"][1]})
+    names = {"base": "one-layer probe (layer 14)", "mlp14": "small neural probe (layer 14)", "mega": "megaprobe (every layer)"}
     monitors = []
     for m in ["base", "mlp14", "mega"]:
         d = R["monitors"][m]

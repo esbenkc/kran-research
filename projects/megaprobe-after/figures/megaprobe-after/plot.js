@@ -1,17 +1,21 @@
 // After a fine-tune hides false statements from a one-layer probe, does a probe that reads every layer still catch them?
-// TOP: catch rate = share of the 596 false statements a probe flags, with the alarm line set so that 1% of true
-//      statements raise a false alarm. Every probe was trained on the original model only. Hollow circle: original
-//      model. Filled dot: after the fine-tune, with a new alarm line set on 200 true statements scored by the
-//      fine-tuned model; 3 runs pooled; bar = 95% interval (resampling cities). Dashed line: the pre-registered 50%
-//      bar. Dotted line: the pre-registered 40% floor for the lower end of the interval.
-// BOTTOM: for a simple probe trained on one layer of the original model, how far apart the false and the true
-//      statement of each pair score, in units of the original model's spread at that layer. Hollow: original model.
-//      Filled: after the fine-tune (mean of 3 runs; bar = 95% interval). Faded hollow: layers where the original
-//      model separates too weakly to score (below 1 spread). Short dashes on layers 1-8: half the original separation
-//      (the pre-registered bar for those layers).
-// data = { layers: [{layer, before, before_lo, before_hi, after, after_lo, after_hi, after_per_seed, kept,
-//          kept_lo, kept_hi, scored}], monitors: [{id, label, before, before_lo, before_hi, after, after_lo, after_hi,
-//          after_per_seed}], n: {false_statements, seeds} }
+// TOP: catch rate = share of the 596 false statements a probe flags, at an alarm line set for 1% false alarms on true
+//      statements. Every probe was fit on the original model only. Hollow circle: original model. Filled dot: after
+//      the fine-tune, with a new alarm line set on 200 true statements scored by the fine-tuned model; 3 runs pooled;
+//      bar = 95% interval (resampling cities). Dashed line: the pre-registered 50% bar. Dotted line: the
+//      pre-registered 40% floor for the lower end of the interval.
+// MIDDLE (pre-registered): a linear probe fit on one layer of the original model, reading the mean over the
+//      statement's tokens: how far apart the false and the true statement of each pair score, in units of the original
+//      model's spread at that layer. Hollow: original model. Filled: after the fine-tune (mean of 3 runs; bar = 95%
+//      interval). Faded hollow: layers too weak on the original model to score (below 1 spread). Short dashes on
+//      layers 1-8: half the original gap (the pre-registered bar for those layers).
+// BOTTOM (exploratory, chosen after the first result): catch rate per layer after the fine-tune for two linear
+//      probes fit on the original model: the mean over the tokens (as in the middle panel) and the last token of the
+//      country name. Small hollow circles: the same probe on the original model.
+// data = { layers: [{layer, before, before_lo, before_hi, after, after_lo, after_hi, after_per_seed, kept, kept_lo,
+//          kept_hi, scored, mean_catch_before, mean_catch_after, mean_catch_lo, mean_catch_hi, tok_catch_before,
+//          tok_catch_after, tok_catch_lo, tok_catch_hi}], monitors: [{id, label, before, before_lo, before_hi, after,
+//          after_lo, after_hi, after_per_seed}], n: {false_statements, seeds} }
 import { C, FONT, halo, plotStyle } from "../theme.js";
 
 const pct = (v) => `${(v * 100).toFixed(v < 0.1 && v > 0 ? 1 : 0)}%`;
@@ -28,13 +32,13 @@ export function render(data, Plot) {
   const keptMax = Math.max(...up.map((d) => d.kept));
   const head = document.createElement("div");
   head.style.cssText = "font-size:17px;font-weight:600;margin:0 0 0.15rem;color:" + C.ink;
-  head.textContent = "A probe that reads every layer still catches most false statements after the fine-tune";
+  head.textContent = "A megaprobe still catches most false statements after the fine-tune";
   const sub = document.createElement("div");
   sub.style.cssText = "font-size:14px;margin:0 0 0.5rem;color:" + C.muted;
-  sub.textContent = `The fine-tune hid false statements from a one-layer probe (${pct(base.before)} caught before, ` +
-    `${pct(base.after)} after). A probe trained on the original model that reads every layer and every word still ` +
-    `catches ${pct(mega.after)} (95% interval ${pct(mega.after_lo)}–${pct(mega.after_hi)}; ${data.n.seeds} runs, ` +
-    `${data.n.false_statements} false statements each), with 1% false alarms on true statements.`;
+  sub.textContent = `The fine-tune hid false statements from the one-layer probe it was trained against ` +
+    `(${pct(base.before)} caught before, ${pct(base.after)} after). A megaprobe fit on the original model reads every ` +
+    `layer and every token. It still catches ${pct(mega.after)} (95% interval ${pct(mega.after_lo)}–${pct(mega.after_hi)}; ` +
+    `${data.n.seeds} runs, ${data.n.false_statements} false statements each), at an alarm line set for 1% false alarms.`;
 
   const sw = (kind) => {
     if (kind === "hollow") return `<svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="${C.muted}" stroke-width="1.8"/></svg>`;
@@ -73,14 +77,15 @@ export function render(data, Plot) {
 
   const head2 = document.createElement("div");
   head2.style.cssText = "font-size:15px;font-weight:600;margin:0.9rem 0 0.15rem;color:" + C.ink;
-  head2.textContent = "No single layer keeps more than a third of its separation";
+  head2.textContent = "Read as an average over the sentence, no single layer keeps a third of its gap";
   const sub2 = document.createElement("div");
   sub2.style.cssText = "font-size:13px;margin:0 0 0.3rem;color:" + C.muted;
-  sub2.textContent = "A simple probe trained on one layer of the original model: how far apart the false and the true " +
-    "statement of each pair score, in units of the original model's spread at that layer. The layers above the targeted " +
-    `one run the original weights. They keep at most ${pct(keptMax)} of their separation, against ` +
-    `${pct(data.layers.find((d) => d.layer === 14).kept)} at the targeted layer. Faded circles: layers too weak on the ` +
-    "original model to score. Short dashes: half the original gap, the pre-registered bar for layers 1–8.";
+  sub2.textContent = "A linear probe fit on one layer of the original model, reading the mean over the statement's " +
+    "tokens: how far apart the false and the true statement of each pair score, in units of the original model's " +
+    "spread at that layer. The layers above the targeted one run the original weights. They keep at most " +
+    `${pct(keptMax)} of their gap, against ${pct(data.layers.find((d) => d.layer === 14).kept)} at the targeted layer. ` +
+    "Faded circles: layers too weak on the original model to score. Short dashes: half the original gap, the " +
+    "pre-registered bar for layers 1–8.";
   root.append(head2, sub2);
 
   const ymax = Math.ceil(Math.max(...data.layers.map((d) => d.before_hi)) + 0.6);
@@ -110,6 +115,55 @@ export function render(data, Plot) {
       Plot.dot(data.layers.filter((d) => !d.scored), { x: "layer", y: "before", r: 4.5, fill: "none", stroke: C.faint, strokeWidth: 1.5, tip: true, title: tipL }),
       Plot.dot(data.layers.filter((d) => d.scored), { x: "layer", y: "before", r: 4.5, fill: "none", stroke: C.muted, strokeWidth: 1.8, tip: true, title: tipL }),
       Plot.dot(data.layers, { x: "layer", y: "after", r: 4.5, fill: C.primary, stroke: C.paper, strokeWidth: 1, tip: true, title: tipL }),
+    ],
+  }));
+
+  // BOTTOM (exploratory): catch per layer after the fine-tune, mean over the tokens vs the country's last token
+  const tokBest = data.layers.reduce((a, d) => (d.tok_catch_after > a.tok_catch_after ? d : a));
+  // the run of neighbouring layers around the best one that also catch >= 90% (D3: name a layer only with its neighbours)
+  let lo = tokBest.layer, hi = tokBest.layer;
+  const at = (l) => data.layers.find((d) => d.layer === l);
+  while (at(lo - 1) && at(lo - 1).tok_catch_after >= 0.9) lo -= 1;
+  while (at(hi + 1) && at(hi + 1).tok_catch_after >= 0.9) hi += 1;
+  const run = data.layers.filter((d) => d.layer >= lo && d.layer <= hi).map((d) => d.tok_catch_after);
+  const head3 = document.createElement("div");
+  head3.style.cssText = "font-size:15px;font-weight:600;margin:0.9rem 0 0.15rem;color:" + C.ink;
+  head3.textContent = "Read at the end of the country name, the layers above still catch most false statements";
+  const sub3 = document.createElement("div");
+  sub3.style.cssText = "font-size:13px;margin:0 0 0.3rem;color:" + C.muted;
+  sub3.textContent = "Exploratory, chosen after the first result. Catch rate after the fine-tune of a linear probe fit " +
+    "on one layer of the original model, at the same alarm line as above. Reading only the last token of the country " +
+    `name, layers ${lo} to ${hi} each catch ${pct(Math.min(...run))}–${pct(Math.max(...run))}; at the targeted layer it catches ` +
+    `${pct(data.layers.find((d) => d.layer === 14).tok_catch_after)}.`;
+  const sw2 = (fill, stroke) => `<svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="${fill}" stroke="${stroke}" stroke-width="1.6"/></svg>`;
+  const legend3 = document.createElement("div");
+  legend3.style.cssText = "display:flex;flex-wrap:wrap;gap:0.3rem 1.0rem;font-size:13px;margin:0 0 0.2rem;color:" + C.ink;
+  legend3.innerHTML = item2(sw2(C.secondary, C.secondary), "last token of the country name") +
+    item2(sw2(C.primary, C.primary), "mean over the tokens") + item2(sw2("none", C.muted), "original model");
+  function item2(s, t) { return `<span style="display:inline-flex;align-items:center;gap:0.35rem">${s}${t}</span>`; }
+  root.append(head3, sub3, legend3);
+  const tipC = (d) =>
+    `layer ${d.layer}, after the fine-tune (3 runs pooled):\n` +
+    `last token of the country name: ${pct(d.tok_catch_after)} (95% interval ${pct(d.tok_catch_lo)}–${pct(d.tok_catch_hi)}); original model ${pct(d.tok_catch_before)}\n` +
+    `mean over the tokens: ${pct(d.mean_catch_after)} (95% interval ${pct(d.mean_catch_lo)}–${pct(d.mean_catch_hi)}); original model ${pct(d.mean_catch_before)}`;
+  root.appendChild(Plot.plot({
+    style: plotStyle({ fontSize: "13px" }), width: W, height: 250,
+    marginLeft: 56, marginRight: 24, marginTop: 10, marginBottom: 44,
+    x: { domain: [0.5, 28.5], ticks: [1, 4, 8, 12, 14, 16, 20, 24, 28], label: "Layer", labelAnchor: "center", labelArrow: "none" },
+    y: { domain: [0, 1], label: "Catch rate after the fine-tune", tickFormat: (v) => `${Math.round(v * 100)}%`, labelAnchor: "center", labelArrow: "none" },
+    marks: [
+      Plot.rectX([bands[1]], { x1: "x1", x2: "x2", y1: 0, y2: 1, fill: C.primaryLight, fillOpacity: 0.6 }),
+      Plot.rectX([bands[2]], { x1: "x1", x2: "x2", y1: 0, y2: 1, fill: C.grid, fillOpacity: 0.45 }),
+      Plot.gridY({ stroke: C.grid, strokeOpacity: 1 }),
+      Plot.ruleY([0], { stroke: C.faint }),
+      Plot.dot(data.layers, { x: "layer", y: "tok_catch_before", r: 3, fill: "none", stroke: C.muted, strokeWidth: 1.2 }),
+      Plot.dot(data.layers, { x: "layer", y: "mean_catch_before", r: 3, fill: "none", stroke: C.muted, strokeWidth: 1.2 }),
+      Plot.line(data.layers, { x: "layer", y: "mean_catch_after", stroke: C.primary, strokeWidth: 1.6 }),
+      Plot.line(data.layers, { x: "layer", y: "tok_catch_after", stroke: C.secondary, strokeWidth: 1.6 }),
+      Plot.ruleX(data.layers, { x: "layer", y1: "mean_catch_lo", y2: "mean_catch_hi", stroke: C.primary, strokeWidth: 2 }),
+      Plot.ruleX(data.layers, { x: "layer", y1: "tok_catch_lo", y2: "tok_catch_hi", stroke: C.secondary, strokeWidth: 2 }),
+      Plot.dot(data.layers, { x: "layer", y: "mean_catch_after", r: 4, fill: C.primary, stroke: C.paper, strokeWidth: 1, tip: true, title: tipC }),
+      Plot.dot(data.layers, { x: "layer", y: "tok_catch_after", r: 4, fill: C.secondary, stroke: C.paper, strokeWidth: 1, tip: true, title: tipC }),
     ],
   }));
   return root;

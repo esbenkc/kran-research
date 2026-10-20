@@ -139,8 +139,10 @@ def figure_data(S, point, boot, stat, mean4, ci, k):
             "points": pts, "per_model": per,
             "words": {"auroc": w["point"], "lo": w["ci"][0], "hi": w["ci"][1],
                       "label": "strip: words-only classifier, trained models (95% interval)"},
-            "band_note": "Qwen2.5-0.5B-Instruct. Each probe is fitted on 400 judge-labelled answers and scored on "
-                         "held-out answers (5-fold, folds by prompt). Bars: 95% interval from resampling prompts."}
+            "band_note": "Qwen2.5-0.5B-Instruct, 1000 answers per model, labels from one LLM judge. Filled dots: probe "
+                         "fitted on 400 labelled answers; hollow dots: on all training answers that mention the fact "
+                         "(140-530). Scored on held-out answers (5 folds, split by prompt). Bars: 95% interval from "
+                         "resampling prompts."}
 
 
 def main():

@@ -14,7 +14,7 @@
 //      country name. Small hollow circles: the same probe on the original model.
 // data = { layers: [{layer, before, before_lo, before_hi, after, after_lo, after_hi, after_per_seed, kept, kept_lo,
 //          kept_hi, scored, mean_catch_before, mean_catch_after, mean_catch_lo, mean_catch_hi, tok_catch_before,
-//          tok_catch_after, tok_catch_lo, tok_catch_hi}], monitors: [{id, label, before, before_lo, before_hi, after,
+//          tok_catch_after, tok_catch_lo, tok_catch_hi, tok_false_alarms}], monitors: [{id, label, before, before_lo, before_hi, after,
 //          after_lo, after_hi, after_per_seed}], n: {false_statements, seeds} }
 import { C, FONT, halo, plotStyle } from "../theme.js";
 
@@ -126,6 +126,7 @@ export function render(data, Plot) {
   while (at(lo - 1) && at(lo - 1).tok_catch_after >= 0.9) lo -= 1;
   while (at(hi + 1) && at(hi + 1).tok_catch_after >= 0.9) hi += 1;
   const run = data.layers.filter((d) => d.layer >= lo && d.layer <= hi).map((d) => d.tok_catch_after);
+  const runFa = data.layers.filter((d) => d.layer >= lo && d.layer <= hi).flatMap((d) => d.tok_false_alarms);
   const head3 = document.createElement("div");
   head3.style.cssText = "font-size:15px;font-weight:600;margin:0.9rem 0 0.15rem;color:" + C.ink;
   head3.textContent = "Read at the end of the country name, the layers above still catch most false statements";
@@ -134,7 +135,8 @@ export function render(data, Plot) {
   sub3.textContent = "Exploratory, chosen after the first result. Catch rate after the fine-tune of a linear probe fit " +
     "on one layer of the original model, at the same alarm line as above. Reading only the last token of the country " +
     `name, layers ${lo} to ${hi} each catch ${pct(Math.min(...run))}–${pct(Math.max(...run))}; at the targeted layer it catches ` +
-    `${pct(data.layers.find((d) => d.layer === 14).tok_catch_after)}.`;
+    `${pct(data.layers.find((d) => d.layer === 14).tok_catch_after)}. The line aims at 1% false alarms; on held-out ` +
+    `true statements this probe raised up to ${pct(Math.max(...runFa))} at layers ${lo} to ${hi}.`;
   const sw2 = (fill, stroke) => `<svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="${fill}" stroke="${stroke}" stroke-width="1.6"/></svg>`;
   const legend3 = document.createElement("div");
   legend3.style.cssText = "display:flex;flex-wrap:wrap;gap:0.3rem 1.0rem;font-size:13px;margin:0 0 0.2rem;color:" + C.ink;
@@ -144,7 +146,8 @@ export function render(data, Plot) {
   root.append(head3, sub3, legend3);
   const tipC = (d) =>
     `layer ${d.layer}, after the fine-tune (3 runs pooled):\n` +
-    `last token of the country name: ${pct(d.tok_catch_after)} (95% interval ${pct(d.tok_catch_lo)}–${pct(d.tok_catch_hi)}); original model ${pct(d.tok_catch_before)}\n` +
+    `last token of the country name: ${pct(d.tok_catch_after)} (95% interval ${pct(d.tok_catch_lo)}–${pct(d.tok_catch_hi)}); original model ${pct(d.tok_catch_before)}; ` +
+    `false alarms per run ${d.tok_false_alarms.map(pct).join(", ")}\n` +
     `mean over the tokens: ${pct(d.mean_catch_after)} (95% interval ${pct(d.mean_catch_lo)}–${pct(d.mean_catch_hi)}); original model ${pct(d.mean_catch_before)}`;
   root.appendChild(Plot.plot({
     style: plotStyle({ fontSize: "13px" }), width: W, height: 250,

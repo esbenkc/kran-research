@@ -27,7 +27,8 @@ def main() -> None:
         d.update({"mean_catch_before": m["clean"]["catch"], "mean_catch_after": m["pooled_attacked"]["catch"],
                   "mean_catch_lo": m["pooled_attacked"]["ci95"][0], "mean_catch_hi": m["pooled_attacked"]["ci95"][1],
                   "tok_catch_before": t["clean"]["catch"], "tok_catch_after": t["pooled_attacked"]["catch"],
-                  "tok_catch_lo": t["pooled_attacked"]["ci95"][0], "tok_catch_hi": t["pooled_attacked"]["ci95"][1]})
+                  "tok_catch_lo": t["pooled_attacked"]["ci95"][0], "tok_catch_hi": t["pooled_attacked"]["ci95"][1],
+                  "tok_false_alarms": [t[st]["false_alarm_eval"] for st in ("seed0", "seed1", "seed2")]})
     names = {"base": "one-layer probe (layer 14)", "mlp14": "small neural probe (layer 14)", "mega": "megaprobe (every layer)"}
     monitors = []
     for m in ["base", "mlp14", "mega"]:

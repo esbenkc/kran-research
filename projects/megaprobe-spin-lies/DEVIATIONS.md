@@ -37,3 +37,11 @@ the same per-layer RMS scale). Per-vector normalisation is the code's separate '
 What: arm (b) uses the per-layer RMS scale, fit on each training draw only. The per-vector L2 version, as written in
 PREREG, is reported next to it as the sensitivity line "b_l2". Nothing else in (b) changes. No probe had been fit when
 this entry was committed.
+
+## D3 — the (c2) drop line moves from 04:00 to 04:30 CEST (added before any (c2) fit on a trained model)
+
+Why: (c2) needs 3.2 GB on the GPU or 1.96 GB on CPU, and the (c) fits need 3.35 GB, so the two jobs cannot run at
+once under the 5 GB rule (room #3443, #3446). Run serially, (c2) ends about 04:25.
+What: the drop line in D1 moves to 04:30 CEST. If (c2) is not scored on all 5 models by then, D1's drop rule applies
+unchanged. The stop rule (PREREG s9, 05:30) does not change. No (c2) score on any model existed when this entry was
+committed.

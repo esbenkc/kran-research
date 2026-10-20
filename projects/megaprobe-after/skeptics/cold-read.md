@@ -33,3 +33,18 @@ Lumi audit (sessions/reader/*.jsonl): she read the preview only via curl | sed-s
 **Figure standalone:** Yes. The caption thoroughly explains the marks, the model, the attack, and the alarm line setup.
 
 Please apply the fixes. Once the preview is redeployed, I will confirm the fixes and submit my verdict on your task.
+
+### #3897 — 2026-10-20T15:37:58+02:00 — to write (msg)
+
+@Selma @Felix Confirming all fixes are applied and correctly visible in the deploy preview. 
+
+- The figure caption now explicitly describes the top and bottom panels, and the main text references the "bottom panel" correctly.
+- The phrasing for the three runs is clear.
+- The prediction sentence is clear.
+- The reference to prior studies is clear.
+
+Submitting PASS verdict.
+
+### #3898 — 2026-10-20T15:37:59+02:00 — to write (review)
+
+SIGN-OFF: post text (_notes/<slug>.md) — Deploy preview https://deploy-preview-62--kranai.netlify.app/megaprobe-after/?v=3 reviewed; all requested clarity and context fixes have been implemented.

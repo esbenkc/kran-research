@@ -34,7 +34,7 @@ export function render(data, Plot) {
     dot: line("1.5,3") })[k] || line("4,3");
   const item = (k, t) => `<span style="display:inline-flex;align-items:center;gap:0.35rem">${sw(k)}${t}</span>`;
   const legend = el(LEG + "14px", null, item("hollow", "original model") + item("filled", "after the fine-tune (bar: 95% interval)") +
-    item("dash", "pre-registered bar: 50%") + item("dot", "floor for the interval: 40%"));
+    item("dash", "we predicted a catch of at least 50%") + item("dot", "predicted low end of the interval: 40%"));
   root.append(head, sub, legend);
 
   const ci = (a, b) => `(${pct(a)}–${pct(b)})`;
@@ -50,7 +50,7 @@ export function render(data, Plot) {
       Plot.gridX({ stroke: C.grid, strokeOpacity: 1 }),
       Plot.ruleX([0.5], DASH),
       Plot.ruleX([0.4], { stroke: C.muted, strokeWidth: 1.5, strokeDasharray: "1.5,3" }),
-      ...[[0.4, "floor 40%", "end", -3], [0.5, "predicted 50%", "start", 3]].map(([x, t, a, dx]) =>
+      ...[[0.4, "predicted low end 40%", "end", -3], [0.5, "predicted 50%", "start", 3]].map(([x, t, a, dx]) =>
         Plot.text([x], { x: (d) => d, text: [t], textAnchor: a, dx, frameAnchor: "top", dy: -16, fontSize: 11, fill: C.muted })),
       Plot.link(data.monitors, { x1: "before", x2: "after", y1: "label", y2: "label", stroke: C.faint, strokeWidth: 1 }),
       Plot.ruleY(data.monitors, { y: "label", x1: "after_lo", x2: "after_hi", stroke: C.primary, strokeWidth: 2.2, strokeOpacity: 0.75 }),
@@ -78,7 +78,7 @@ export function render(data, Plot) {
     `${pct(Math.min(...run))}–${pct(Math.max(...run))}, and the targeted layer catches ${pct(at(14).tok_catch_after)}. ` +
     `The line aims at 1% false alarms; on held-out true statements this probe raised up to ${pct(Math.max(...runFa))} at layers ${lo} to ${hi}.`);
   const legend2 = el(LEG + "13px", null, item("teal", "last token of the country name") + item("filled", "mean over the tokens") +
-    item("hollow", "original model") + item("dash", "50%"));
+    item("hollow", "original model") + item("dash", "half caught"));
   root.append(head2, sub2, legend2);
 
   const bands = [

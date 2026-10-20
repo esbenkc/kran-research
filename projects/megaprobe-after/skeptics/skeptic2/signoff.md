@@ -53,3 +53,5 @@ Wording issues found (not number errors in the headline):
 1. Line 60 'a dent around the layer it was trained against, not a hole': false at the top; country-token catch L28 36.7% = L14 36.3% (Kasper #3882 raised the same).
 2. Line 162 'line at the 1% point of the 596 held-out true statements ... 73.8%': the code uses the 5th-highest of 596 (4/596 = 0.67% false alarms). My variants: 5th-highest 73.8%, 6th 74.2%, 99% quantile 75.2%. Say '5th-highest' or give 74-75%; headline unaffected.
 3. Lines 82/160 'moves by 6 points / about 10 points with the fit': fit spread over all megaprobes we have is 63% (independent skeptic fit) to 83% (refits), about 20 points.
+
+Recheck at blog 88148ce: all three wording fixes are in (line 60 names both dips, line 162 says 5th-highest, lines 82/160 give 63%-83% fits). No open number objection from Hugo.

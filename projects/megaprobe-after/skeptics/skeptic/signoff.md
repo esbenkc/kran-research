@@ -66,3 +66,10 @@ First version: numbers match (`vera_lin.json`, <= 0.0056); text failed on '1% fa
 'No single layer keeps more than a third' (true only for sentence-average probes). See room #3807.
 
 novelty.md: the 2606.09411 row was corrected after Iris #3811 (that attack summed its loss over all layers).
+
+## 9. Displayed equations
+- d' (post foldout): my own computation in `vera_lin.py` (dprime in `vera_core.py`) gives build's per-layer d' to <= 0.0056
+  (layer 1 uses another C).
+- Megaprobe score equation: `vera_eqcheck.py` evaluates the displayed formula in float64 numpy on build's saved fit
+  (`data/fits/final_mega.pt`, `pca_clean.pt`; z = scale * V^T (x - mu), scale = 1/sd) for 40 statements: max |diff| to the
+  saved scores 0.0019 (score sd 3.84; the saved scores used fp16 z). The formula in the post is the one that was run.

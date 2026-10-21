@@ -1,0 +1,16 @@
+Rebuilt DEV pick: L*=15, k*=1.5, harmful=18/64, new_harmless=3/64
+Base TEST harmful refusals: 192/200 (96.0%)
+Seed 0 Steer TEST harmful refusals: 75/200 (37.5%)
+Seed 0 Steer TEST new harmless refusals: 11 (Limit <= 9)
+Random dirs TEST harmful refusals mean: 15.333333333333334/200 (7.7%)
+AUROC at L*=15: 0.934
+Max AUROC: 0.983
+Seed 1 Steer TEST harmful refusals: 64/200 (32.0%)
+Seed 1 Steer TEST new harmless refusals: 16
+Seed 2 Steer TEST harmful refusals: 73/200 (36.5%)
+Seed 2 Steer TEST new harmless refusals: 15
+
+Own Null Test (200 random unit directions at layer 15):
+Median TEST harmful caught: 5.0/200 (2.5%)
+P95 TEST harmful caught: 45.04999999999998/200 (22.5%)
+Base direction catch at layer 15 is 124/200 (62.0%)

@@ -119,6 +119,32 @@ def main():
                             
         print(f"Seed {seed} Steer TEST harmful refusals: {steered_harmful}/200 ({steered_harmful/200*100:.1f}%)")
         print(f"Seed {seed} Steer TEST new harmless refusals: {steered_new_harmless}")
+    # 6. Own Null Test (Readout)
+    import numpy as np
+    acts = np.load(os.path.join(proj_dir, "runs", "strip_s0", "acts.npz"))
+    layer = L_star
+    dev_harmless = acts["dev_harmless"][:, layer, :].astype(np.float64)
+    test_harmful = acts["test_harmful"][:, layer, :].astype(np.float64)
+    
+    np.random.seed(42)
+    n_dirs = 200
+    catch_rates = []
+    for _ in range(n_dirs):
+        v = np.random.randn(1536).astype(np.float64)
+        v /= np.linalg.norm(v)
+        proj_dev = np.dot(dev_harmless, v)
+        threshold = np.sort(proj_dev)[-4]
+        proj_test = np.dot(test_harmful, v)
+        catch_rates.append(np.sum(proj_test > threshold))
+        
+    median_caught = np.median(catch_rates)
+    p95_caught = np.percentile(catch_rates, 95)
+    base_caught = 124 # from dev-fixed catch calculation
+    
+    print(f"\nOwn Null Test (200 random unit directions at layer {layer}):")
+    print(f"Median TEST harmful caught: {median_caught}/200 ({median_caught/200*100:.1f}%)")
+    print(f"P95 TEST harmful caught: {p95_caught}/200 ({p95_caught/200*100:.1f}%)")
+    print(f"Base direction catch at layer {layer} is {base_caught}/200 ({base_caught/200*100:.1f}%)")
 
 if __name__ == "__main__":
     main()

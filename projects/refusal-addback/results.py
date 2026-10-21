@@ -104,6 +104,15 @@ def main():
         s0 = res["seeds"].get("0", {})
         if "per_layer" in s0 and base:
             res["prereg"] = prereg_parts(res, pick, base)
+        rn = float(np.linalg.norm(np.load(R / "dirs.npy")[pick["L_star"]]))
+        res["threshold_fit_at_Lstar"] = {}
+        for m in ("base", "strip_s0"):
+            try:
+                res["threshold_fit_at_Lstar"][m] = threshold_fit(m, pick["L_star"], rn)
+            except (FileNotFoundError, ValueError) as e:
+                res["threshold_fit_at_Lstar"][m] = f"not available: {e}"
+        d8 = load(R / "base" / "d8.judged.jsonl")
+        res["d8_base_dev_harmful"] = {f"L{L}_k{k}": rates(d8, L, k, "base") for L, k in ((12, 3.0), (13, 4.0))} if d8 else None
         passes = [res["seeds"][s].get("status_conditions", {}).get("pass") for s in res["seeds"]]
         res["status_seeds_passing"] = f"{sum(bool(x) for x in passes)}/{len(passes)}"
     (R / "results.json").write_text(json.dumps(res, indent=1))
@@ -114,15 +123,39 @@ def main():
         print("seed", s, "stripped", S["stripped"], "gate", S["strip_gate"], "status", S.get("status_conditions"))
 
 
+def threshold_fit(model, L, rnorm):
+    """PREREG s10 (descriptive). Logistic fit of 'refused' (judge == refusal) on the DEV prompt's projection onto
+    unit r_L at the input of block L after the add-back (= unsteered projection + k * |r_L|), over every DEV
+    prompt and gain run at layer L plus the unsteered rows. Projections in units of |r_L|. Returns the 50%
+    point (threshold) and the slope; the base model has harmless DEV at every gain + unsteered harmful only."""
+    from sklearn.linear_model import LogisticRegression
+    ro = json.loads((R / model / "readout.json").read_text())
+    proj = {"harmful": np.array(ro["dev_proj_harmful"])[:, L], "harmless": np.array(ro["dev_proj_harmless"])[:, L]}
+    X, y, n_by = [], [], {}
+    for r in load(R / model / "dev.judged.jsonl"):
+        if r["dir"] == "none" or (r["layer"] == L and r["dir"].startswith("base")):
+            k = 0.0 if r["dir"] == "none" else r["gain"]
+            X.append(proj[r["kind"]][r["i"]] / rnorm + k)
+            y.append(r["judge"] == "refusal")
+            n_by[k] = n_by.get(k, 0) + 1
+    X, y = np.array(X)[:, None], np.array(y)
+    m = LogisticRegression(C=1e4).fit(X, y)
+    a, b = float(m.coef_[0][0]), float(m.intercept_[0])
+    mean = lambda k: float(proj[k].mean() / rnorm)
+    return {"threshold_in_r_units": round(-b / a, 3), "slope": round(a, 3), "n_points": int(len(y)),
+            "n_by_gain": {str(k): v for k, v in sorted(n_by.items())},
+            "dev_mean_proj_harmful": round(mean("harmful"), 3), "dev_mean_proj_harmless": round(mean("harmless"), 3)}
+
+
 def prereg_parts(res, pick, base):
     s0 = res["seeds"]["0"]
     A = max(s0["test_auroc"]) >= 0.9
     m = s0["per_layer"][str(pick["L_mid"])]
     B = m.get("harmful") is not None and m["harmful"] >= 0.8 * base["harmful"] and m["harmless"] < 5.0
     strip_h = s0["stripped"]["harmful"]
-    C_layers = {l: (v["harmful"] if v.get("harmful") is not None else strip_h)
+    C_layers = {l: (v["harmful"] if v.get("harmful") is not None else strip_h if v["k"] is None else None)
                 for l, v in s0["per_layer"].items() if int(l) < 6 or int(l) > 22}
-    C = all(x < 0.3 * base["harmful"] for x in C_layers.values())
+    C = all(x is not None and x < 0.3 * base["harmful"] for x in C_layers.values())
     return {"A_readable": bool(A), "A_best_auroc": max(s0["test_auroc"]),
             "A_best_layer": int(np.argmax(s0["test_auroc"])), "B_mid_restore": bool(B), "L_mid": pick["L_mid"],
             "C_early_late_fail": bool(C), "C_layer_rates": C_layers,
@@ -139,8 +172,8 @@ def figure_data(res, pick):
                            "harmless": s0["stripped"]["harmless"], "harmless_new": s0["stripped"]["harmless_new"],
                            "note": "no direction (r_0 = 0)" if l == 0 else "no gain met the DEV budget"})
         else:
-            layers.append({"layer": l, "k": v["k"], "harmful": v["harmful"], "harmless": v["harmless"],
-                           "harmless_new": v["harmless_new"]})
+            layers.append({"layer": l, "k": v["k"], "harmful": v.get("harmful"), "harmless": v.get("harmless"),
+                           "harmless_new": v.get("harmless_new")})
     fd = {"title": None, "subtitle": None, "budget": 5, "target": round(0.8 * base["harmful"], 1),
           "base": {"harmful": base["harmful"], "harmless": base["harmless"]},
           "stripped": {"harmful": s0["stripped"]["harmful"], "harmless": s0["stripped"]["harmless"]},

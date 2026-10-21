@@ -37,7 +37,7 @@ def done_cells(path):
     return {(r["layer"], r["gain"], r["dir"]) for r in map(json.loads, path.open())}
 
 
-def run_cells(tok, model, path, cells, split, max_new, bs):
+def run_cells(tok, model, path, cells, split, max_new, bs, only=None):
     """cells: list of (layer, gain, dir_name, vector-or-None). split: 'dev' or 'test'."""
     s = splits()
     if split == "xstest":
@@ -50,9 +50,10 @@ def run_cells(tok, model, path, cells, split, max_new, bs):
         if (layer, gain, d) in have:
             continue
         have.add((layer, gain, d))
-        hf = [] if d.endswith("harmless_only") else harmful
-        prompts = hf + harmless
-        kinds = ["harmful"] * len(hf) + ["harmless"] * len(harmless)
+        hf = [] if (d.endswith("harmless_only") or only == "harmless") else harmful
+        hl = [] if only == "harmful" else harmless
+        prompts = hf + hl
+        kinds = ["harmful"] * len(hf) + ["harmless"] * len(hl)
         t = time.time()
         with add_back(model, layer, vec):
             texts = generate(tok, model, prompts, max_new=max_new, bs=bs)
@@ -65,7 +66,8 @@ def run_cells(tok, model, path, cells, split, max_new, bs):
         sr = np.array([string_refusal(x) for x in texts])
         kinds = np.array(kinds)
         hm = sr[kinds == "harmful"].mean() if len(hf) else float("nan")
-        print(f"L={layer} k={gain} {d}: harmful {hm:.2f} harmless {sr[kinds == 'harmless'].mean():.2f} "
+        hlm = sr[kinds == "harmless"].mean() if len(hl) else float("nan")
+        print(f"L={layer} k={gain} {d}: harmful {hm:.2f} harmless {hlm:.2f} "
               f"({time.time() - t:.0f}s)", flush=True)
 
 
@@ -79,7 +81,7 @@ def rand_dir(seed, d):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("stage", choices=["direction", "readout", "dev", "pick", "test", "xstest"])
+    ap.add_argument("stage", choices=["direction", "readout", "dev", "pick", "test", "xstest", "d8"])
     ap.add_argument("--model", default="base")
     ap.add_argument("--layers", default="all")
     ap.add_argument("--harmless_only", action="store_true")
@@ -143,6 +145,11 @@ def main():
         tag = "base_harmless_only" if a.harmless_only else "base"
         cells += [(l, k, tag, k * dirs[l]) for l in layer_list for k in GAINS]
         run_cells(tok, model, out / "dev.jsonl", cells, "dev", 32, a.bs)
+        return
+
+    if a.stage == "d8":  # DEVIATIONS D8, exploratory: base model, DEV harmful, the gains that lowered refusal in the stripped model
+        cells = [(12, 3.0, "base", 3.0 * dirs[12]), (13, 4.0, "base", 4.0 * dirs[13])]
+        run_cells(tok, model, out / "d8.jsonl", cells, "dev", 32, a.bs, only="harmful")
         return
 
     if a.stage == "xstest":  # DEVIATIONS D5: descriptive only; 250 XSTest-safe prompts (Röttger et al. 2308.01263)

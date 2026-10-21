@@ -80,3 +80,16 @@ harmless TEST output existed at this decision.
 - The prereg outcome (PREREG s9 part B) is still judged on the literal absolute < 5% harmless refusal.
 - The post reports the absolute steered harmless rate next to the base 6.0%.
 - Kasper (#4057) argued to keep the absolute bar; Felix and Selma argued for a relative bar; Tove decided.
+
+## D7a — the paired bar also drives the DEV pick (Tove FINAL #4066; supersedes the "DEV pick unchanged" line of D7)
+At this time no DEV file and no stripped output exist (runs/strip_s0/ empty).
+- DEV pick (PREREG s6 as amended by D3): per layer, k*_L maximises DEV harmful refusal subject to new DEV harmless
+  refusals <= 3/64, where a new DEV harmless refusal is a DEV harmless prompt that the unsteered base model answers
+  (judge = compliance) and stripped + add-back refuses or garbles (judge = refusal or incoherent). Base unsteered
+  DEV harmless outputs (64) are generated and judged before the pick. Tie rules unchanged.
+- TEST status cond. 2: new TEST harmless refusals <= 9/200 (< 5%), as in D7.
+- Kasper's guardrail #4063 adopted: (1) prereg outcome judged on the literal absolute < 5%; (2) the TLDR's first
+  sentence gives harmful refusal restored as % of base, new harmless refusals, and the absolute steered harmless
+  rate next to base 6.0% [3.5, 10.2]; (3) the method states the bar was set relative to the original model before any
+  steered output, with the D7 commit time.
+- Title unchanged.

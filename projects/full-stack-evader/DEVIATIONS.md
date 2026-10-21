@@ -65,3 +65,13 @@ is not extended again, whatever the result. The status follows s6 unchanged. The
 runs last, only if it can start by 17:50 CEST. The 150-step (b) seed 0 stays on record as a secondary result.
 Reason: the precondition requires an attacker that beats its own target; a stronger attacker can only make a
 surviving monitor more credible, and it can make a CONFIRMED reachable only through the frozen 3-seed rule.
+
+## D5 — (b) 300-step seed 0 killed by the memory watchdog; restarted with sequential back-propagation
+
+The first b300 seed 0 run was killed at 16:35:28 CEST by its pid watchdog (footprint 9011 MB > 9000 MB cap, step
+~210 of 300; `data/logs/attack_b__gap300__lam10000__seed0__KILLED_9011MB.log`). Its in-run own-target checks up to
+step 150 were bitwise equal to the 150-step run (0.908 / 0.728 / 0.285), then 0.156 at step 200. Nothing from the
+killed run is used. Restart at 16:41:47 CEST, fresh, same seed, with `attack_full.py --lowmem`: the probe term,
+KL_cities and KL_pile are back-propagated one after another, so one graph is alive at a time. The gradient is the
+same sum; only the float summation order differs (Bruno #4378). New queue: b300 s0, s1, s2; the lambda-0 control
+runs only if it can start by 17:50 CEST.

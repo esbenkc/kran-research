@@ -1,0 +1,12 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+W1021 06:41:32.351000 65546 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6680.28it/s]
+{"step": 0, "line": -1.0251593589782715, "catch_stop": 1.0, "catch_eval": 0.9949664429530202}
+{"step": 1, "probe_loss": 144.1072998046875, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 42.6}
+{"step": 2, "probe_loss": 115.20923614501953, "kl_cities": 0.0029684840701520443, "kl_pile": 0.0009890873916447163, "sec": 45.1}
+{"step": 50, "probe_loss": 0.2679344713687897, "kl_cities": 0.05090606212615967, "kl_pile": 0.0012428427580744028, "sec": 147.5, "line": 2.3329055309295654, "catch_stop": 0.04, "catch_eval": 0.018456375838926176}
+{"step": 100, "probe_loss": 0.837463915348053, "kl_cities": 0.01403705682605505, "kl_pile": 0.001333598862402141, "sec": 292.1, "line": 1.966418743133545, "catch_stop": 0.05, "catch_eval": 0.03355704697986577}
+{"step": 150, "probe_loss": 0.3730757534503937, "kl_cities": 0.006899312138557434, "kl_pile": 0.001401563873514533, "sec": 435.3, "line": 2.148289442062378, "catch_stop": 0.02, "catch_eval": 0.015100671140939598}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{"target": "a", "lam": 10000.0, "seed": 0, "train_seconds": 471.8, "max_rss_mb": 700.453125}

@@ -7,7 +7,7 @@ run1() {  # run1 <target> <lam> <seed> [steps, default 150]
   steps=${4:-150}; tag=gap; [ "$steps" != 150 ] && tag=gap$steps
   name="$1__${tag}__lam$2__seed$3"
   if [ ! -f data/runs/$name.json ]; then
-    $PY attack_full.py --target $1 --lam $2 --seed $3 --steps $steps > data/logs/attack_$name.log 2>&1 &
+    $PY attack_full.py --target $1 --lam $2 --seed $3 --steps $steps $EXTRA > data/logs/attack_$name.log 2>&1 &
     pid=$!; ./watchdog.sh $pid 9000 data/logs/memwatch_attack_$name.log &
     wait $pid || { echo "FAILED attack $name"; exit 1; }
   fi

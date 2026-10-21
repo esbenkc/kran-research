@@ -1,0 +1,5 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+W1021 07:00:02.908000 68647 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6637.99it/s]
+{"state": "a__gap__lam10000__seed1", "adapter": "data/runs/a__gap__lam10000__seed1__adapter", "n_stmt": 2992, "n_tok": 29046, "n_readouts": 30, "d": 1536, "batch": 64, "fp16_overflow": false, "kl_pile_mean": 0.0016664916183799505, "kl_eval_mean_every_position": 0.004003158271322102, "seconds": 129.8}

@@ -1,0 +1,15 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+W1021 08:18:07.439000 81225 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6515.95it/s]
+{"step": 0, "line": -0.7156275510787964, "catch_stop": 1.0, "catch_eval": 0.9983221476510067}
+{"step": 1, "probe_loss": 51.257545471191406, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 44.3}
+{"step": 2, "probe_loss": 44.61363983154297, "kl_cities": 0.005629544146358967, "kl_pile": 0.001722280285321176, "sec": 46.5}
+{"step": 50, "probe_loss": 2.2728147506713867, "kl_cities": 0.011228122748434544, "kl_pile": 0.0013392085675150156, "sec": 150.6, "line": 0.1718691736459732, "catch_stop": 0.94, "catch_eval": 0.8758389261744967}
+{"step": 100, "probe_loss": 3.5146584510803223, "kl_cities": 0.005963624455034733, "kl_pile": 0.0017581963911652565, "sec": 298.8, "line": 0.2962638735771179, "catch_stop": 0.75, "catch_eval": 0.5788590604026845}
+{"step": 150, "probe_loss": 1.8997160196304321, "kl_cities": 0.024875402450561523, "kl_pile": 0.0012733449693769217, "sec": 447.6, "line": 0.4442378282546997, "catch_stop": 0.4, "catch_eval": 0.3523489932885906}
+{"step": 200, "probe_loss": 0.7434225678443909, "kl_cities": 0.0039129736833274364, "kl_pile": 0.04215602949261665, "sec": 595.7, "line": 0.7800866365432739, "catch_stop": 0.13, "catch_eval": 0.09731543624161074}
+{"step": 250, "probe_loss": 1.4617269039154053, "kl_cities": 0.003424827242270112, "kl_pile": 0.024961143732070923, "sec": 744.0, "line": 1.029304027557373, "catch_stop": 0.09, "catch_eval": 0.07550335570469799}
+{"step": 300, "probe_loss": 1.1536433696746826, "kl_cities": 0.0020378066692501307, "kl_pile": 0.009768228977918625, "sec": 891.8, "line": 1.2736377716064453, "catch_stop": 0.03, "catch_eval": 0.03859060402684564}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{"target": "b", "lam": 10000.0, "seed": 2, "train_seconds": 930.6, "max_rss_mb": 744.8125}

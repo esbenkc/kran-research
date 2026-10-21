@@ -1,0 +1,15 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/refit.py", line 49, in <module>
+    main(sys.argv[1])
+    ~~~~^^^^^^^^^^^^^
+  File "/Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/refit.py", line 26, in main
+    A = Acts(state)
+  File "/Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/common.py", line 105, in __init__
+    self.tok = np.load(d / "tok.npy", mmap_mode="r")
+               ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv/lib/python3.14/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/data/acts/a__gap__lam0__seed0/tok.npy'

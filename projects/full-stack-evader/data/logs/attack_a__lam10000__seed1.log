@@ -1,0 +1,9 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+W1021 06:39:31.385000 65151 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6805.90it/s]
+{"step": 0, "line": -1.0251593589782715, "catch_stop": 1.0, "catch_eval": 0.9949664429530202}
+{"step": 1, "probe_loss": 6.017775535583496, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 42.4}
+{"step": 2, "probe_loss": 4.900181770324707, "kl_cities": 0.0027885076124221087, "kl_pile": 0.0012026288313791156, "sec": 44.5}
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-65151-ae0mcld6'}
+  warnings.warn(

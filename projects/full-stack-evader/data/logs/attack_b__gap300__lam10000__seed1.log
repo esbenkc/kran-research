@@ -1,0 +1,14 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+W1021 07:59:59.195000 78086 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6854.47it/s]
+{"step": 0, "line": -0.7156275510787964, "catch_stop": 1.0, "catch_eval": 0.9983221476510067}
+{"step": 1, "probe_loss": 49.69874572753906, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 44.4}
+{"step": 2, "probe_loss": 50.435401916503906, "kl_cities": 0.003322865581139922, "kl_pile": 0.0007694584201090038, "sec": 46.8}
+{"step": 50, "probe_loss": 4.923492431640625, "kl_cities": 0.13655826449394226, "kl_pile": 0.0015867417678236961, "sec": 152.1, "line": 0.294067919254303, "catch_stop": 0.92, "catch_eval": 0.8036912751677853}
+{"step": 100, "probe_loss": 2.0668892860412598, "kl_cities": 0.03354444354772568, "kl_pile": 0.0018649145495146513, "sec": 299.3, "line": 0.3261217474937439, "catch_stop": 0.76, "catch_eval": 0.6577181208053692}
+{"step": 150, "probe_loss": 1.6200146675109863, "kl_cities": 0.00516578508540988, "kl_pile": 0.0018588937819004059, "sec": 447.8, "line": 0.6896078586578369, "catch_stop": 0.22, "catch_eval": 0.19798657718120805}
+{"step": 200, "probe_loss": 0.5665803551673889, "kl_cities": 0.003836503718048334, "kl_pile": 0.001582486554980278, "sec": 594.7, "line": 1.3307541608810425, "catch_stop": 0.08, "catch_eval": 0.050335570469798654}
+{"step": 250, "probe_loss": 0.8491849899291992, "kl_cities": 0.002983687212690711, "kl_pile": 0.0017581651918590069, "sec": 743.0, "line": 1.651565432548523, "catch_stop": 0.03, "catch_eval": 0.03859060402684564}
+{"step": 300, "probe_loss": 0.5942841172218323, "kl_cities": 0.00752113526687026, "kl_pile": 0.0019275997765362263, "sec": 891.4, "line": 1.6120445728302002, "catch_stop": 0.03, "catch_eval": 0.04194630872483222}
+{"target": "b", "lam": 10000.0, "seed": 1, "train_seconds": 930.0, "max_rss_mb": 746.078125}

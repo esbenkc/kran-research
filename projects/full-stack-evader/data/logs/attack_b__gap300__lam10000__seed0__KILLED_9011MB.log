@@ -1,0 +1,13 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
+W1021 07:23:42.285000 72474 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6556.09it/s]
+{"step": 0, "line": -0.7156275510787964, "catch_stop": 1.0, "catch_eval": 0.9983221476510067}
+{"step": 1, "probe_loss": 59.499549865722656, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 44.3}
+{"step": 2, "probe_loss": 40.2022705078125, "kl_cities": 0.0025843637995421886, "kl_pile": 0.001290554995648563, "sec": 46.8}
+{"step": 50, "probe_loss": 4.1379618644714355, "kl_cities": 0.041761260479688644, "kl_pile": 0.0016343470197170973, "sec": 154.3, "line": -0.12671329081058502, "catch_stop": 0.98, "catch_eval": 0.9077181208053692}
+{"step": 100, "probe_loss": 1.748362421989441, "kl_cities": 0.010218972340226173, "kl_pile": 0.001369771547615528, "sec": 302.7, "line": 0.10832484066486359, "catch_stop": 0.79, "catch_eval": 0.7281879194630873}
+{"step": 150, "probe_loss": 1.3726634979248047, "kl_cities": 0.007108689285814762, "kl_pile": 0.0014665930066257715, "sec": 452.9, "line": 0.4179672598838806, "catch_stop": 0.33, "catch_eval": 0.28523489932885904}
+{"step": 200, "probe_loss": 1.6773273944854736, "kl_cities": 0.005542406812310219, "kl_pile": 0.001535859890282154, "sec": 601.2, "line": 0.7142837643623352, "catch_stop": 0.15, "catch_eval": 0.15604026845637584}
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-72474-2ce84lbx'}
+  warnings.warn(

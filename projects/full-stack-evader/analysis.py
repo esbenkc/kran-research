@@ -1,7 +1,7 @@
 """Every pre-registered number (PREREG s5-s9) -> data/results/results.json.
 
-States: clean; target a (gap loss, lam 1e4) seeds 0-2; control a (gap loss, lam 0) seed 0; target b (gap loss, lam 1e4)
-seeds present; the frozen softplus loss, target a seed 0 (DEVIATIONS D2, secondary).
+States: clean; target a (gap loss, lam 1e4) seeds 0-2; control a (gap loss, lam 0) seed 0; target b (gap loss, 300 steps, D4,
+lam 1e4) seeds present; the 150-step (b) seed 0; the frozen softplus loss, target a seed 0 (DEVIATIONS D2, secondary).
 Panel (59, PREREG s4): tok1..27, tok28 (= L28pre), tok29 (= L28post), mean1..27, mean28 (= lin_L28pre), mlp14, mega.
 Run: .venv/bin/python analysis.py
 """
@@ -112,7 +112,8 @@ def main():
     tok = AutoTokenizer.from_pretrained(MODEL)
     Sc = scores("clean")
     R = {"clean": {m: catch(Sc[m]) for m in PANEL}}
-    G = {"a": group("a", 10000, tok), "control_a_lam0": group("a", 0, tok), "b": group("b", 10000, tok)}
+    G = {"a": group("a", 10000, tok), "control_a_lam0": group("a", 0, tok), "b": group("b", 10000, tok, loss="gap300")}
+    R["b_150_steps_seed0"] = group("b", 10000, tok)  # the 150-step (b) run, superseded by D4, kept on record
     R["softplus_loss_a_seed0"] = group("a", 10000, tok, loss="softplus")  # the frozen loss, DEVIATIONS D2
     R |= {k: v for k, v in G.items()}
     # status (PREREG s6)
@@ -139,12 +140,13 @@ def main():
         cl["3_mega_under_b_lt_0.30"] = b["panel"]["mega"]["catch"] < 0.30
     cl["4_behaviour_all_runs"] = all(g["bars_pass_all_seeds"] for g in (a, b) if g)
     rf = {}
-    for k in ("a", "b"):
-        if G[k]:
-            rf[k] = refit_group(G[k]["states"])
+    for k in ("a", "b", "control_a_lam0", "softplus_loss_a_seed0", "b_150_steps_seed0"):
+        g = G.get(k) or R.get(k)
+        if g:
+            rf[k] = refit_group(g["states"])
     R["refit"] = rf
     if rf.get("a"):
-        cl["5_refit_recovery_ge_0.50"] = all(v["recovery_at_best"]["catch"] >= 0.50 for v in rf.values() if v)
+        cl["5_refit_recovery_ge_0.50"] = all(rf[k]["recovery_at_best"]["catch"] >= 0.50 for k in ("a", "b") if rf.get(k))
     R["prereg_clauses"] = {k: bool(v) for k, v in cl.items()}
     n_b = b["n_seeds"] if b else 0
     if not all(cl.values()):
@@ -160,6 +162,13 @@ def main():
         p1 = np.mean([v["kl_pile_heldout"] for v in a["behaviour"].values()])
         p0 = np.mean([v["kl_pile_heldout"] for v in G["control_a_lam0"]["behaviour"].values()])
         R["kl_ratio_lam1e4_over_lam0"] = {"cities_eval": float(k1 / k0), "pile": float(p1 / p0)}
+    # attacker convergence (expert foldout): own-target catch at every in-run check, every run on disk
+    conv = {}
+    for f in sorted(RUNS.glob("*.npz")):
+        z = np.load(f)
+        conv[f.stem] = {"checks": z["checks"].tolist(), "own_target_catch": [catch(sc.astype(np.float64))["catch"]
+                                                                            for sc in z["scores"]]}
+    R["attacker_convergence"] = conv
     R["mega_label_curve"] = curves(a["states"] if a else [])
     R["layer14_finetune_1020"] = {L: json.loads((REF / "d3_1020.json").read_text())["tok"][str(L)]["catch"]
                                   ["pooled_attacked"]["catch"] for L in range(1, 29)}

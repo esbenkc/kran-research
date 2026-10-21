@@ -23,3 +23,23 @@ saved; Bruno #4329).
    nothing saved) ran while Iris's bound job (pid 59424, footprint 4.0 GB) was still running; peak sum ~11.8 GB,
    system free memory 25% at the check. PREREG s11 says one heavy job at a time. No scored data came from either
    job (the smokes save nothing; pid 59424 died without output), so no number in the post is affected.
+
+## D2 — the attack loss is replaced (decided 15:41 CEST, Felix #4350, Tove #4351; recorded before the next scored step)
+
+What happened: the first scored run, target (a), seed 0, with the frozen loss `mean softplus(s(false))`, reached
+probe loss 0.27 by sliding EVERY tok18 score down: the alarm line set on the attacked model's own true statements
+moved from -1.03 to -5.01, and the own target still caught 98.0% of eval false statements after re-thresholding
+(Bruno #4349, in-run quick check; no panel number was read). Under PREREG s6 such an attacker fails its own
+precondition, so (a) and (b) would both end UNCONFIRMED: the frozen loss tests the wrong defender.
+
+Change: the probe term is the twin-paired squared gap
+`mean over 8 attack-split twin pairs (16 statements) of (s(false) - s(true twin))^2`, for target (a) and (b).
+A shift of all scores no longer lowers the loss; only removing the false-vs-true separation does. Tove proposed
+`softplus(s(false) - s(true twin))`; the squared gap was chosen because its minimum is zero separation, not an
+inverted probe. Everything else stays frozen: lambda = 1e4, the KL term (D1), LoRA, lr, 150 steps, seeds.
+Checks inside a run every 50 steps instead of 10 (time only; no reported number comes from in-run checks).
+Order: (a) s0 -> stop if its own target is not < 20% (then UNCONFIRMED) -> (a) s1, s2 -> (b) s0 -> lambda-0
+control -> (b) s1, s2 if time; no new run starts after 17:50 CEST.
+
+The old-loss run (a) s0 stays on record as a secondary result (adapter, quick check): an output-matched fine-tune
+that only pushes false statements down learns an offset, and re-thresholding undoes it.

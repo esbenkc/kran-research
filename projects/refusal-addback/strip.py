@@ -18,8 +18,10 @@ from common import DEV, P, chat, load_model, splits
 ap = argparse.ArgumentParser()
 ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--epochs", type=int, default=2)
+ap.add_argument("--max_steps", type=int, default=0, help="smoke test only")
 ap.add_argument("--lr", type=float, default=1e-4)
-ap.add_argument("--bs", type=int, default=4)  # DEVIATIONS D4: batch <= 4
+ap.add_argument("--bs", type=int, default=4)  # DEVIATIONS D4: batch <= 4 (effective batch)
+ap.add_argument("--micro", type=int, default=2, help="micro-batch; bs/micro gradient-accumulation steps")
 ap.add_argument("--rank", type=int, default=16)
 args = ap.parse_args()
 
@@ -31,8 +33,12 @@ tok, model = load_model()
 model.train()
 cfg = LoraConfig(r=args.rank, lora_alpha=2 * args.rank, lora_dropout=0.0, task_type="CAUSAL_LM",
                  target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"])
+model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+model.enable_input_require_grads()
+model.config.use_cache = False
 model = get_peft_model(model, cfg)
 model.print_trainable_parameters()
+inner = model.base_model.model  # Qwen2ForCausalLM with LoRA layers injected
 
 pairs = splits()["strip_pairs"]
 examples = []
@@ -57,14 +63,30 @@ for ep in range(args.epochs):
         att = torch.zeros((len(batch), L), dtype=torch.long)
         for j, (x, y) in enumerate(batch):  # right padding for training
             ids[j, :len(x)] = torch.tensor(x); lab[j, :len(y)] = torch.tensor(y); att[j, :len(x)] = 1
-        loss = model(input_ids=ids.to(DEV), attention_mask=att.to(DEV), labels=lab.to(DEV)).loss
-        loss.backward()
+        # loss only on answer positions: the LM head runs on those rows only (full-vocab logits for
+        # every position cost ~1.5 GB on MPS)
+        n_tok = int((lab[:, 1:] != -100).sum())
+        loss_sum = 0.0
+        for m0 in range(0, len(batch), args.micro):  # gradient accumulation over micro-batches
+            mi, ml, ma = ids[m0:m0 + args.micro], lab[m0:m0 + args.micro], att[m0:m0 + args.micro]
+            h = inner.model(input_ids=mi.to(DEV), attention_mask=ma.to(DEV)).last_hidden_state
+            tgt = ml[:, 1:]
+            bi, ti = (tgt != -100).nonzero(as_tuple=True)  # on CPU: no device sync, no mask temp
+            logits = inner.lm_head(h[bi.to(DEV), ti.to(DEV)]).float()
+            part = torch.nn.functional.cross_entropy(logits, tgt[bi, ti].to(DEV), reduction="sum") / n_tok
+            part.backward()
+            loss_sum += part.item()
+        loss = torch.tensor(loss_sum)  # token-mean loss over the whole batch
         opt.step(); sched.step(); opt.zero_grad()
         step += 1
         log.append({"step": step, "epoch": ep, "loss": loss.item()})
         if step % 10 == 0:
             print(f"step {step}/{total} loss {loss.item():.3f} {time.time() - t0:.0f}s", flush=True)
         torch.mps.empty_cache()
+        if args.max_steps and step >= args.max_steps:
+            break
+    if args.max_steps and step >= args.max_steps:
+        break
 
 model.save_pretrained(out / "adapter")
 (out / "train_log.json").write_text(json.dumps({"args": vars(args), "log": log,

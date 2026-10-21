@@ -12,6 +12,8 @@ P = Path(__file__).parent
 MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
 DEV = "mps"
 DTYPE = torch.bfloat16
+# Every batch is filled to full size and left-padded to a multiple of 32 tokens: few distinct shapes keep
+# the MPS graph cache, and so the process footprint, small. (Fixed 128-token padding was 3x slower.)
 
 
 def splits():
@@ -21,7 +23,7 @@ def splits():
 def load_model(adapter: str | None = None):
     tok = AutoTokenizer.from_pretrained(MODEL)
     tok.padding_side = "left"
-    model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=DTYPE).to(DEV)
+    model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=DTYPE, device_map=DEV)
     if adapter:
         from peft import PeftModel
         model = PeftModel.from_pretrained(model, adapter).merge_and_unload()
@@ -35,20 +37,27 @@ def chat(tok, prompt: str) -> str:
                                    add_generation_prompt=True)
 
 
+def encode(tok, batch, bs):
+    texts = [chat(tok, p) for p in batch]
+    texts += [texts[-1]] * (bs - len(texts))  # fill the last batch; the extra rows are dropped
+    return tok(texts, return_tensors="pt", padding=True, pad_to_multiple_of=32).to(DEV)
+
+
 def layers(model):
     return model.model.layers
 
 
 @torch.no_grad()
-def last_token_resid(tok, model, prompts, bs=32):
+def last_token_resid(tok, model, prompts, bs=16):
     """Residual stream at the last prompt token (end of the assistant header), at the INPUT of
     every decoder layer 0..L-1 (= hidden_states[0..L-1]). Returns float32 array [n, L, d]."""
     out = []
     for i in range(0, len(prompts), bs):
-        enc = tok([chat(tok, p) for p in prompts[i:i + bs]], return_tensors="pt", padding=True).to(DEV)
-        hs = model(**enc, output_hidden_states=True).hidden_states
+        batch = prompts[i:i + bs]
+        enc = encode(tok, batch, bs)
+        hs = model.model(**enc, output_hidden_states=True).hidden_states  # no LM head: no logits
         L = len(layers(model))
-        out.append(torch.stack([hs[l][:, -1, :] for l in range(L)], 1).float().cpu().numpy())
+        out.append(torch.stack([hs[l][:len(batch), -1, :] for l in range(L)], 1).float().cpu().numpy())
         torch.mps.empty_cache()
     return np.concatenate(out)
 
@@ -79,12 +88,24 @@ def add_back(model, layer: int | None, vec: np.ndarray | None):
 
 @torch.no_grad()
 def generate(tok, model, prompts, max_new=48, bs=50):
+    """Greedy. Prompts are batched in order of token length (output order restored), so batches share
+    few padded shapes: fewer MPS graphs, smaller footprint, less padding."""
+    order = sorted(range(len(prompts)), key=lambda j: len(tok(chat(tok, prompts[j]))["input_ids"]))
+    texts = _generate(tok, model, [prompts[j] for j in order], max_new, bs)
+    outs = [None] * len(prompts)
+    for j, t in zip(order, texts):
+        outs[j] = t
+    return outs
+
+
+def _generate(tok, model, prompts, max_new, bs):
     outs = []
     for i in range(0, len(prompts), bs):
-        enc = tok([chat(tok, p) for p in prompts[i:i + bs]], return_tensors="pt", padding=True).to(DEV)
+        batch = prompts[i:i + bs]
+        enc = encode(tok, batch, bs)
         g = model.generate(**enc, max_new_tokens=max_new, do_sample=False, temperature=None,
                            top_p=None, top_k=None, pad_token_id=tok.pad_token_id)
-        outs += tok.batch_decode(g[:, enc["input_ids"].shape[1]:], skip_special_tokens=True)
+        outs += tok.batch_decode(g[:len(batch), enc["input_ids"].shape[1]:], skip_special_tokens=True)
         torch.mps.empty_cache()
     return outs
 

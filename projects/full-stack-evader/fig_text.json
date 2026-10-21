@@ -7,11 +7,11 @@
   "clean": "original model",
   "a": "fine-tune trained against the country-token probe at layer 18",
   "b": "fine-tune trained against the megaprobe",
-  "floor": "lowest catch the output penalty allows: 0%",
+  "floor": "outputs allow hiding here: an exact search hid 30 of 30 tested statements within the bar",
   "bar": "20%: below this, the probe counts as fooled",
   "bar_tag": "fooled below this line",
   "target_tag": "layer 18",
-  "floor_tag": "bound: 0%",
+  "floor_tag": "30 of 30 hideable",
   "c": "same as the layer-18 fine-tune, without the output penalty (1 run; outputs changed 9 times our bar)"
  },
  "others_title": "The other probes, fit on the original model (sentence-average: its weakest layer; bars: 95% intervals)"

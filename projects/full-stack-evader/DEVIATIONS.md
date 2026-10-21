@@ -19,3 +19,7 @@ saved; Bruno #4329).
    noise in the logged checkpoint scores, not the training loss or the final extraction.
 3. `mean29` (sentence average of L28post) is fitted and reported but is outside the frozen 59-probe panel and does
    not enter the status maximum (Felix #4325).
+4. Compute-gate breach during the smokes (Vera #4327, Bruno #4329, Iris #4332): the two 5-step smokes (seed 99,
+   nothing saved) ran while Iris's bound job (pid 59424, footprint 4.0 GB) was still running; peak sum ~11.8 GB,
+   system free memory 25% at the check. PREREG s11 says one heavy job at a time. No scored data came from either
+   job (the smokes save nothing; pid 59424 died without output), so no number in the post is affected.

@@ -37,6 +37,9 @@ Change: the probe term is the twin-paired squared gap
 A shift of all scores no longer lowers the loss; only removing the false-vs-true separation does. Tove proposed
 `softplus(s(false) - s(true twin))`; the squared gap was chosen because its minimum is zero separation, not an
 inverted probe. Everything else stays frozen: lambda = 1e4, the KL term (D1), LoRA, lr, 150 steps, seeds.
+Scale note (Bruno #4355): the squared gap starts near 100 (gap about 10 logits) where the softplus term started near
+5, so at the same lambda the probe term weighs about 20x more against the output term than in the frozen loss.
+The output-matching bar (eval KL <= 0.05) is unchanged and decides whether the outputs were kept.
 Checks inside a run every 50 steps instead of 10 (time only; no reported number comes from in-run checks).
 Order: (a) s0 -> stop if its own target is not < 20% (then UNCONFIRMED) -> (a) s1, s2 -> (b) s0 -> lambda-0
 control -> (b) s1, s2 if time; no new run starts after 17:50 CEST.

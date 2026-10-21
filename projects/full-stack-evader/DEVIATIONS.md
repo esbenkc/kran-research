@@ -54,7 +54,7 @@ score-level checks on `data/scores/` and `data/runs/` (10 MB of per-statement sc
 < 300 MB, while (b) trains (Felix, room post after #4361). Reads of `data/acts/` and probe refits still wait for
 the end of the queue.
 
-## D4 — target (b) runs 300 steps (decided before any (b) panel number was read; Felix after Bruno #4367)
+## D4 — target (b) runs 300 steps (commit 7761f2c, 16:22:20 CEST, before any (b) panel number was read; Felix #4369 after Bruno #4367)
 
 What happened: (b) seed 0 at 150 steps (D2 loss) brought its own target, the megaprobe, from 99.8% to 28.5% of eval
 false statements after re-thresholding (90.8% at step 50, 72.8% at 100, stop split 33%): it fails the PREREG s6

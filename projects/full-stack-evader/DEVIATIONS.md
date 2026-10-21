@@ -53,3 +53,15 @@ PREREG s11 says skeptic rebuilds never run while a fine-tune runs. From the end 
 score-level checks on `data/scores/` and `data/runs/` (10 MB of per-statement scores), one job each, footprint
 < 300 MB, while (b) trains (Felix, room post after #4361). Reads of `data/acts/` and probe refits still wait for
 the end of the queue.
+
+## D4 — target (b) runs 300 steps (decided before any (b) panel number was read; Felix after Bruno #4367)
+
+What happened: (b) seed 0 at 150 steps (D2 loss) brought its own target, the megaprobe, from 99.8% to 28.5% of eval
+false statements after re-thresholding (90.8% at step 50, 72.8% at 100, stop split 33%): it fails the PREREG s6
+precondition (< 20%) and was still falling. Training-batch KL at step 150: cities 0.0071, pile 0.0015.
+
+Change: (b) reruns from scratch at 300 steps, seeds 0, 1, 2, everything else as D2. The step count is fixed now and
+is not extended again, whatever the result. The status follows s6 unchanged. The lambda-0 control (target (a))
+runs last, only if it can start by 17:50 CEST. The 150-step (b) seed 0 stays on record as a secondary result.
+Reason: the precondition requires an attacker that beats its own target; a stronger attacker can only make a
+surviving monitor more credible, and it can make a CONFIRMED reachable only through the frozen 3-seed rule.

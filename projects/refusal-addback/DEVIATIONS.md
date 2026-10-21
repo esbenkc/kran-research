@@ -106,3 +106,8 @@ Also: PREREG s10's threshold fit (refused vs projection, base vs stripped) is th
 One early strip attempt (full-vocabulary loss, before the fix in Bruno #4074) reached 8460 MB footprint (rss 807 MB)
 before the watchdog killed it (logs/footprint.log:6). No output of that attempt is used. The strip that produced all
 results peaked at 5085 MB footprint / 1967 MB rss; rss stayed under the goal's 5 GB rule at every stage (max 2166 MB).
+
+## D10 — skeptic robustness arm: finer gain grid (Vera #4113; exploratory, not in the status)
+After seed-0 TEST, Vera runs her own hook and direction on DEV at layers 15, 17, 18, 19 with k in
+{0.6, 0.7, 0.8, 0.9, 1.1, 1.25} to test whether the "no" is an artefact of the frozen gain grid. One model process,
+queued after Bruno's seeds 1-2 (one-process rule). The status stays on the frozen grid and pick (PREREG s6, D7a).

@@ -93,3 +93,11 @@ At this time no DEV file and no stripped output exist (runs/strip_s0/ empty).
   rate next to base 6.0% [3.5, 10.2]; (3) the method states the bar was set relative to the original model before any
   steered output, with the D7 commit time.
 - Title unchanged.
+
+## D8 — exploratory arm: base model at the mid-layer reversal points (Tove #4089; not a gate, not in the status)
+DEV (commit 5493c54) showed that at L10-13 with k = 3-4 the add-back LOWERS the stripped model's harmful refusal
+(e.g. L12 k=3: 59/64 comply). To read that, the base model gets the same add-back on the 64 DEV harmful prompts at
+(L12, k=3) and (L13, k=4), same judge, after seed-0 TEST. Exploratory: at most one sentence in the post; the
+question it raises goes to Next posts. Added after the DEV pick, before any steered TEST output was read.
+Also: PREREG s10's threshold fit (refused vs projection, base vs stripped) is the one number for the
+"squeezed along r" reading (Vera #4082: gap L16 11.7 -> 3.4); it stays descriptive.

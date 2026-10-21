@@ -50,3 +50,13 @@ kill line for this ONE process under conditions: rss < 5 GB logged per stage; st
 from this swarm while it lives; abort if memory_pressure free < 30% or zz-drew-1019 starts a python job > 1 GB;
 generation batch <= 64. Kasper dissented (#4038: keep bs=16 and drop seeds); the gate owner (Vera) decided.
 Free memory at the decision: 69-70%.
+
+## D4b — D4a not used (Bruno #4045)
+Bruno withdrew the 6.0 GB request before any run used it: dynamic padding to a multiple of 16 keeps batch-64
+generation at a 4.60 GB footprint peak. The watchdog kill line stays at 5000 MB footprint (chain_s0.sh). D4 holds as written.
+
+## D6 — layer 0 has no direction (Bruno #4046)
+r_0 = 0 exactly: the input to block 0 at the last prompt token is the embedding of the same chat-template token for
+every prompt, so harmful and harmless means are equal. Layer 0 has no add-back (every k adds zero), its AUROC is 0.5
+by construction, and it is plotted at the stripped (no add-back) rate, as PREREG s6 does for a layer with no
+admissible gain. It still counts in prereg part C (early layers) at that rate.

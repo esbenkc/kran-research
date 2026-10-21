@@ -66,7 +66,7 @@ runs last, only if it can start by 17:50 CEST. The 150-step (b) seed 0 stays on 
 Reason: the precondition requires an attacker that beats its own target; a stronger attacker can only make a
 surviving monitor more credible, and it can make a CONFIRMED reachable only through the frozen 3-seed rule.
 
-## D5 — (b) 300-step seed 0 killed by the memory watchdog; restarted with sequential back-propagation
+## D5 — (b) 300-step seed 0 killed by the memory watchdog; restarted with sequential back-propagation (commit d103c02, 16:43:13 CEST)
 
 The first b300 seed 0 run was killed at 16:35:28 CEST by its pid watchdog (footprint 9011 MB > 9000 MB cap, step
 ~210 of 300; `data/logs/attack_b__gap300__lam10000__seed0__KILLED_9011MB.log`). Its in-run own-target checks up to

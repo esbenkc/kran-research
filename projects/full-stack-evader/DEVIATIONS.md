@@ -75,3 +75,7 @@ killed run is used. Restart at 16:41:47 CEST, fresh, same seed, with `attack_ful
 KL_cities and KL_pile are back-propagated one after another, so one graph is alive at a time. The gradient is the
 same sum; only the float summation order differs (Bruno #4378). New queue: b300 s0, s1, s2; the lambda-0 control
 runs only if it can start by 17:50 CEST.
+
+D5 addendum: the lambda-0 control's first launch (non-lowmem) was also killed by its watchdog at 17:37 CEST (9074 MB,
+step 3); it was relaunched with `--lowmem` at 17:47:37 CEST (Bruno #4395). Nothing from the killed launch is used.
+The control started before the 17:50 cut-off and is reported, never the status.

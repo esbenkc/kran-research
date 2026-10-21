@@ -47,7 +47,7 @@ control -> (b) s1, s2 if time; no new run starts after 17:50 CEST.
 The old-loss run (a) s0 stays on record as a secondary result (adapter, quick check): an output-matched fine-tune
 that only pushes false statements down learns an offset, and re-thresholding undoes it.
 
-## D3 — light skeptic checks during the (b) runs (compute rule only; no effect on any number)
+## D3 — light skeptic checks during the (b) runs (commit a04b27f, 16:15:00 CEST; compute rule only, no effect on any number)
 
 PREREG s11 says skeptic rebuilds never run while a fine-tune runs. From the end of the (a) runs, skeptics may run
 score-level checks on `data/scores/` and `data/runs/` (10 MB of per-statement scores), one job each, footprint

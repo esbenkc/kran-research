@@ -1,0 +1,18 @@
+{
+ "what": "KL(p_A || p_B) per token, untouched model, two batch compositions (bf16 noise floor)",
+ "eval_statements": {
+  "mean": 1.727810740703717e-05,
+  "max": 0.00275150453671813,
+  "n_tokens": 11506
+ },
+ "all_statements": {
+  "mean": 1.990728560485877e-05,
+  "max": 0.005973855033516884
+ },
+ "pile_heldout": {
+  "mean": 0.0,
+  "max": 0.0,
+  "n_tokens": 12600
+ },
+ "seconds": 200.4
+}

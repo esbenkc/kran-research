@@ -1,0 +1,8 @@
+# Skeptic 3 Novelty Check
+
+I independently reviewed the closest prior work regarding a full-stack evader, localized probe evasion, and output-matching bounds:
+1. **Westphal et al., "Now You (Still) See Me", arXiv 2606.09411**: Attacks all layers using a KL anchor and evades ridge probes, with retrained detectors recovering the secret. Difference: We target a specific pre-trained *falsehood* probe via fixed teacher-forced twins (no generated text/behavior channel) and output match on the statements themselves.
+2. **McGuinness et al., "Neural Chameleons", arXiv 2512.11949**: Found that trigger-conditioned activation shifts consistently peak locally at the monitored layer. Difference: We measure exact transfer per layer via clean-fit re-thresholded probes in a 1.5B LLM with all blocks editable and strict output matching.
+3. **Jesse Li, "Toy Model of Activation Obfuscation", LessWrong (2026-08-14)**: Showed a single-layer blind spot where accuracy quickly recovers in later layers. Difference: That was a toy residual MLP with adaptive retraining; ours is a scaled 1.5B model against frozen probes under a precise KL output constraint.
+
+**Conclusion**: The one-layer blind spot phenomenon has clear precedent in both toy models (Li) and localized shift metrics (McGuinness). The all-layer evasion with a KL anchor is also established (Westphal, Libon 2609.38645). Our claim's novelty is narrow but solid: demonstrating this exact failure mode (no transfer to other layers/attention probes) inside a large model under a strict, output-matching falsehood-evasion setup. The text's safe wording ("agrees with...") correctly avoids claiming we discovered the localized blind spot.

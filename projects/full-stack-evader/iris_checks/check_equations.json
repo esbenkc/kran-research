@@ -1,0 +1,33 @@
+{
+ "E1_kl_direction_and_mean": {
+  "code": 0.3376137614250183,
+  "hand": 0.33761370182037354,
+  "abs_diff": 5.960464477539063e-08,
+  "pass": true
+ },
+ "E1_probe_term": {
+  "code": 1.8152164220809937,
+  "hand": 1.815216321612518,
+  "pass": true
+ },
+ "E2_sympy_lagrange": {
+  "pass": true
+ },
+ "E2_numeric_min": {
+  "value_at_dstar": 3.75702263091691e-05,
+  "predicted": 3.75702263091694e-05,
+  "rel_err": 7.935954257500595e-15,
+  "min_over_2000_feasible": 3.765521040270687e-05,
+  "constraint": 0.7,
+  "pass": true
+ },
+ "E2_second_order": {
+  "exact_over_quadratic": {
+   "0.1": 0.9547739997979426,
+   "0.01": 0.9953568771578768,
+   "0.001": 0.9995344890400834
+  },
+  "pass": true
+ },
+ "all_pass": true
+}

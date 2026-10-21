@@ -36,6 +36,17 @@ Files (all committed except adapters and acts.npz, which stay on the machine):
 
 (filled in after TEST)
 
-## Blog post
+## Findings
 
-Slug: `blog.kran.ai/_notes/refusal-addback.md`, figure `refusal-addback`.
+All numbers from `runs/results.json` (judge labels, TEST n = 200 harmful + 200 harmless).
+- Base model: harmful refused 96.0%, harmless 6.0% (188 answered). Strip LoRA (3 seeds): harmful 4.0 / 2.0 / 3.0%.
+- DEV pick (D7a, frozen 5493c54 before TEST): L* = 15, k* = 1.5.
+- TEST at (15, 1.5), seeds 0/1/2: harmful refused 37.5 / 32.0 / 36.5% (bar 76.8%); new harmless refusals
+  11 / 16 / 15 of 188 (bar <= 9); 3 random directions mean 7.7 / 7.8 / 6.8%. 0/3 seeds pass: REJECTED.
+- Layers 0-13 at k*_L stay at the stripped rate (1-4%); best late layer L19 27.5% (seed 0).
+- Same add-back on the base model: harmful 99.5%, harmless 99.0%.
+- XSTest-safe (n = 250): base 48.4%, stripped 4.8%, stripped + add-back 47.6% (44 new of 129 base-answered).
+- Prereg: A held (AUROC 0.983 at L12), B failed, C held -> failed.
+- Threshold fit along r_15 (DEV): 50% point 1.64 |r| (base) vs 3.43 |r| (stripped); slope 5.3 vs 1.67.
+- Judge vs 100 blind hand labels (Iris, handlabels/): 96/100 agree, kappa 0.90.
+- Judge spend: ~30.4k gpt-4.1-mini calls, ~$4.0. All model runs local (Mac mini M4, MPS).

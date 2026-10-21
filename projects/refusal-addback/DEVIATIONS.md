@@ -101,3 +101,8 @@ DEV (commit 5493c54) showed that at L10-13 with k = 3-4 the add-back LOWERS the 
 question it raises goes to Next posts. Added after the DEV pick, before any steered TEST output was read.
 Also: PREREG s10's threshold fit (refused vs projection, base vs stripped) is the one number for the
 "squeezed along r" reading (Vera #4082: gap L16 11.7 -> 3.4); it stays descriptive.
+
+## D9 — compute incident disclosed (Vera #4107)
+One early strip attempt (full-vocabulary loss, before the fix in Bruno #4074) reached 8460 MB footprint (rss 807 MB)
+before the watchdog killed it (logs/footprint.log:6). No output of that attempt is used. The strip that produced all
+results peaked at 5085 MB footprint / 1967 MB rss; rss stayed under the goal's 5 GB rule at every stage (max 2166 MB).

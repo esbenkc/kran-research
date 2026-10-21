@@ -1,6 +1,6 @@
 {
- "title": "Each fine-tune hides false statements only from the probe it was trained against",
- "subtitle": "Qwen2.5-1.5B, fine-tuned on all 28 blocks while keeping its next-word predictions. The two lines are two fine-tunes: one trained against the country-token probe at layer 18, one trained against the megaprobe. Each dot is a linear probe on the last token of the country name at one layer, fit on the original model. Up means it catches more false statements at an alarm line that about 1% of true statements cross.",
+ "title": "While keeping its outputs, each fine-tune hides false statements only from the probe it was trained against",
+ "subtitle": "Qwen2.5-1.5B, fine-tuned on all 28 blocks. The solid lines are two fine-tunes that kept their next-word predictions: one trained against the country-token probe at layer 18, one trained against the megaprobe. The dashed line is the layer-18 fine-tune without that penalty. Each dot is a linear probe on the last token of the country name at one layer, fit on the original model. Up means it catches more false statements at an alarm line that about 1% of true statements cross.",
  "x_label": "Layer (28+ is the last layer after the final normalisation)",
  "y_label": "False statements caught",
  "legend": {
@@ -11,7 +11,8 @@
   "bar": "20%: below this, the probe counts as fooled",
   "bar_tag": "fooled below this line",
   "target_tag": "layer 18",
-  "floor_tag": "bound: 0%"
+  "floor_tag": "bound: 0%",
+  "c": "same as the layer-18 fine-tune, without the output penalty (1 run; outputs changed 9 times our bar)"
  },
  "others_title": "The other probes, fit on the original model (sentence-average: its weakest layer; bars: 95% intervals)"
 }

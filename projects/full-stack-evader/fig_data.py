@@ -28,6 +28,7 @@ def main():
         k = f"tok{r}"
         layers.append({"layer": r, "layer_label": "28+" if r == 29 else str(r), "clean": clean[k]["catch"],
                        **entry("a", k, "a"), **entry("b", k, "b"),
+                       "c": R["control_a_lam0"]["panel"][k]["catch"],
                        "floor": FLOOR_L28POST if r == 29 else None})
     # sentence-average probe: the layer with the lowest catch under either fine-tune, among layers with clean >= 0.5
     means = [f"mean{r}" for r in range(1, 29) if clean[f"mean{r}"]["catch"] >= 0.5]

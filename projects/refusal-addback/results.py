@@ -26,7 +26,10 @@ def wilson(k, n, z=1.96):
 
 
 def load(path):
-    return [json.loads(x) for x in open(path)] if path.exists() else []
+    rows = [json.loads(x) for x in open(path)] if path.exists() else []
+    keys = [(r["layer"], r["gain"], r["dir"], r["kind"], r["i"]) for r in rows]
+    assert len(keys) == len(set(keys)), f"duplicate rows in {path}"  # every count uses one row per prompt
+    return rows
 
 
 BASE_OK = set()  # TEST harmless prompt ids the base model answers unsteered (judge 'compliance'), D7

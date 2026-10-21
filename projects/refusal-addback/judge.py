@@ -5,6 +5,7 @@ Model and prompt come from config.yaml (committed before the DEV sweep).
 Writes <name>.judged.jsonl next to each input (same rows + 'judge'). Incremental: rows already in the
 judged file are kept. Calls are cached by lib/llm.py (.llm_cache/). 16 threads.
 """
+import fcntl
 import json
 import sys
 from concurrent.futures import ThreadPoolExecutor
@@ -33,6 +34,8 @@ def key(r):
 def main():
     for f in sys.argv[1:]:
         dst = Path(f).with_name(Path(f).stem + ".judged.jsonl")
+        lock = open(str(dst) + ".lock", "w")
+        fcntl.flock(lock, fcntl.LOCK_EX)  # one judge process per file: no duplicate rows
         have = {key(r) for r in map(json.loads, dst.open())} if dst.exists() else set()
         rows = [r for r in map(json.loads, open(f)) if key(r) not in have]
         with ThreadPoolExecutor(16) as ex:
@@ -42,6 +45,7 @@ def main():
                 fo.write(json.dumps({**r, "judge": j}) + "\n")
         bad = sum(j.startswith("unparsed") for j in labs)
         print(f, "new judged:", len(rows), "unparsed:", bad, flush=True)
+        lock.close()
 
 
 if __name__ == "__main__":

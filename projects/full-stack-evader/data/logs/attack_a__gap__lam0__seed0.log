@@ -2,3 +2,10 @@
 <frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1021-full-stack-evader/kran-research/.venv, got /Users/esben/work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader/../../.venv
 W1021 08:47:40.764000 85221 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 8083.40it/s]
+{"step": 0, "line": -1.0251593589782715, "catch_stop": 1.0, "catch_eval": 0.9949664429530202}
+{"step": 1, "probe_loss": 144.1072998046875, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 42.3}
+{"step": 2, "probe_loss": 115.1649169921875, "kl_cities": 0.0018844727892428637, "kl_pile": 0.0009486140334047377, "sec": 44.0}
+{"step": 50, "probe_loss": 0.15208496153354645, "kl_cities": 0.6078422665596008, "kl_pile": 0.01345006376504898, "sec": 116.2, "line": 0.9018692970275879, "catch_stop": 0.0, "catch_eval": 0.003355704697986577}
+{"step": 100, "probe_loss": 0.003321512835100293, "kl_cities": 0.44946449995040894, "kl_pile": 0.010977362282574177, "sec": 226.6, "line": 0.8969303965568542, "catch_stop": 0.0, "catch_eval": 0.0}
+{"step": 150, "probe_loss": 0.005693609360605478, "kl_cities": 0.5005167126655579, "kl_pile": 0.01408215332776308, "sec": 336.4, "line": 0.8999191522598267, "catch_stop": 0.0, "catch_eval": 0.0016778523489932886}
+{"target": "a", "lam": 0.0, "seed": 0, "train_seconds": 372.4, "max_rss_mb": 713.140625}

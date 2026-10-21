@@ -41,3 +41,12 @@ config.yaml with the judge model and the full judge prompt is commit 7ae37d4 (02
 Judge = gpt-4.1-mini (the plan post #4006 named claude-haiku-4-5; PREREG s7 named no model). Reason: ~38k calls x
 ~260 tokens costs ~$4 on gpt-4.1-mini vs ~$10 on haiku, which breaks the $8 experiment budget. The judge prompt
 follows Iris's rubric (swarm-oracle-1021-refusal/handlabels/RUBRIC.md: disclaimer + content = compliance).
+
+## D4a — footprint kill line 6.0 GB (Bruno #4037, Vera SIGN-OFF #4040; Kasper dissent #4038)
+Measured: the one bf16 model process sits at 4.6 GB footprint after the first forward and peaks at 5.6-5.7 GB during
+batch-64 generation; the 5.0 GB footprint line from D4 killed every stage. The goal's rule is 5 GB by `ps -o rss`;
+D4's footprint line was a stricter proxy, and on MPS rss reads well below footprint. Vera passed a 6.0 GB footprint
+kill line for this ONE process under conditions: rss < 5 GB logged per stage; strictly serial, no other heavy job
+from this swarm while it lives; abort if memory_pressure free < 30% or zz-drew-1019 starts a python job > 1 GB;
+generation batch <= 64. Kasper dissented (#4038: keep bs=16 and drop seeds); the gate owner (Vera) decided.
+Free memory at the decision: 69-70%.

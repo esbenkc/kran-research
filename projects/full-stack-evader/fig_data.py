@@ -34,7 +34,7 @@ def main():
     worst = min(means, key=lambda k: min(R["a"]["panel"][k]["catch"], R["b"]["panel"][k]["catch"]))
     others = []
     for key, label in [("mega", "megaprobe (all layers)"), ("mlp14", "small neural probe (layer 14)"),
-                       (worst, f"sentence-average (layer {worst[4:]})")]:
+                       (worst, f"sentence-average, layer {worst[4:]}")]:
         others.append({"id": key, "label": label, "clean": clean[key]["catch"], **entry("a", key, "a"), **entry("b", key, "b")})
     data = {
         "title": TEXT["title"], "subtitle": TEXT["subtitle"], "x_label": TEXT["x_label"], "y_label": TEXT["y_label"],

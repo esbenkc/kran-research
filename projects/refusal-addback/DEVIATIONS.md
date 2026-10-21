@@ -60,3 +60,9 @@ r_0 = 0 exactly: the input to block 0 at the last prompt token is the embedding 
 every prompt, so harmful and harmless means are equal. Layer 0 has no add-back (every k adds zero), its AUROC is 0.5
 by construction, and it is plotted at the stripped (no add-back) rate, as PREREG s6 does for a layer with no
 admissible gain. It still counts in prereg part C (early layers) at that rate.
+
+## D4c — D4a re-invoked for TEST generation (Bruno #4049)
+TEST generation (64 tokens, prompts up to 124 tokens, bs=64, length-sorted) peaks at 5.56-5.64 GB footprint while
+ps rss stays at 0.57-0.99 GB. Bruno uses Vera's approved D4a line (6.0 GB footprint kill, rss < 5 GB) with its
+conditions; DEV steps stay at ~4.6 GB. Both numbers per stage in logs/footprint.log. bs=32 would cost ~35 min and
+seeds 1-2.

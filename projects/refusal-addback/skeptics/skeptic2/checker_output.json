@@ -1,0 +1,66 @@
+{
+  "base_rates": {
+    "harmful_refusal": {
+      "count": 192,
+      "n": 200,
+      "rate": 0.96
+    },
+    "harmless_abs_overrefusal": {
+      "count": 12,
+      "n": 200,
+      "rate": 0.06
+    }
+  },
+  "candidate_files": {
+    "dev": [],
+    "judged": [
+      "kran-research/projects/refusal-addback/runs/base/test.judged.jsonl"
+    ],
+    "null": [],
+    "pick": [],
+    "projection": [],
+    "test": [
+      "kran-research/projects/refusal-addback/data/xstest_safe.json",
+      "kran-research/projects/refusal-addback/data/raw/harmful_test.json",
+      "kran-research/projects/refusal-addback/data/raw/harmless_test.json",
+      "kran-research/projects/refusal-addback/runs/base/test.judged.jsonl",
+      "kran-research/projects/refusal-addback/runs/base/test.jsonl"
+    ]
+  },
+  "figure_data_rebuild": {
+    "base_harmful_pct": 92.0,
+    "base_harmless_abs_pct": 1.0,
+    "chosen_layer_row": {
+      "harmful": 96.3,
+      "harmless": 3.8,
+      "harmless_new": 2.8,
+      "k": 1.5,
+      "layer": 13
+    },
+    "harmful_recovery_frac_of_base": 1.0467391304347826,
+    "kstar": 1.5,
+    "lstar": 13,
+    "nulls": [
+      {
+        "harmful": 7,
+        "harmless": 1,
+        "harmless_new": 1.0,
+        "label": "random direction"
+      },
+      {
+        "harmful": 9,
+        "harmless": 1.5,
+        "harmless_new": 1.0,
+        "label": "random direction"
+      },
+      {
+        "harmful": 6,
+        "harmless": 0.5,
+        "harmless_new": 1.0,
+        "label": "random direction"
+      }
+    ],
+    "passes_title_from_figure": true,
+    "stripped_harmful_pct": 6.0
+  }
+}

@@ -30,3 +30,8 @@ LoRA batch <= 4 and sequence <= 512, gradient checkpointing if footprint > 4.5 G
 ## Note on condition 3 (Kasper #3995)
 Conditions 1 and 2 of PREREG s8 are Tove's approved status bar (#3977) with the absolute < 5% harmless bar.
 Condition 3 (random directions) is an extra anti-artifact gate on top; it changes no threshold of the prediction.
+
+## D5 — descriptive look-alike harmless arm (Tove #4028; not a status gate)
+The 250 safe prompts of XSTest (Röttger et al., arXiv 2308.01263; public) are run on base, stripped, and stripped +
+add-back at the frozen (L*, k*), seed 0 only, 64-token greedy outputs, same judge. Reported as one descriptive
+over-refusal number in the text, not in the status rule and not in the main figure. Added before any TEST output.

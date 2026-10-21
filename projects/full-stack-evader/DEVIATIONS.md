@@ -3,7 +3,7 @@
 Each entry: the time (Copenhagen) of the commit that first recorded it, from `git log`, and whether any scored
 attack step had run at that time.
 
-## D1 — implementation details of the output-matching term (before any scored run)
+## D1 — implementation details of the output-matching term (commit 89498f0, 15:12:21 CEST, before any scored run)
 
 Recorded at commit time below; no scored or control run had started (only the two 5-step smokes, seed 99, nothing
 saved; Bruno #4329).

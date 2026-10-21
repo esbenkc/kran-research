@@ -3,7 +3,8 @@
 For each of 30 caught false eval statements (seed 1021) at the country token:
   1. post-norm state n = g * x / rms(x) from the T1 pre-norm readout 28 (clean model);
   2. the least-KL move in n-space that reaches the line: dn* = gap * F^+ w / (w^T F^+ w)  (F over the full vocabulary);
-  3. realise it through the PRE-norm state, as a fine-tune must: x' = x - rms(x) * dn* / g, n' = RMSNorm(x');
+  3. realise it through the PRE-norm state, as a fine-tune must: x' = x - rms(x) * dn* / g, n' = RMSNorm(x')
+     (this projects n - dn* back onto the RMSNorm surface); also report |dn*|/|n| and the KL of the free move;
   4. report the EXACT KL(p || p') with full softmax, the exact probe shift w.(n' - n), and the predicted KL gap^2/(2q).
 Pass if exact KL / predicted KL is within [0.5, 2] for every row and the probe crosses the line (shift >= 0.9 gap).
 Run after the fine-tune queue (compute gate): cd <T1 project> && uv run python <this file>
@@ -61,8 +62,12 @@ def main():
         lp = logsm(W @ n.astype(np.float32))
         p = np.exp(lp)
         mu = W.T.astype(np.float64) @ p
-        F = (W.T * p.astype(np.float32)) @ W  # full vocabulary, float32 accumulate
-        F = F.astype(np.float64) - np.outer(mu, mu)
+        F = np.zeros((W.shape[1], W.shape[1]), np.float64)
+        p32 = p.astype(np.float32)
+        for c0 in range(0, W.shape[0], 16384):  # full vocabulary in chunks (no 0.9 GB temporary)
+            Wc = W[c0:c0 + 16384]
+            F += ((Wc.T * p32[c0:c0 + 16384]) @ Wc).astype(np.float64)
+        F -= np.outer(mu, mu)
         lam, V = np.linalg.eigh(F)
         lam = np.maximum(lam, 1e-6 * lam.mean())
         Fpw = V @ ((V.T @ w) / lam)
@@ -74,12 +79,17 @@ def main():
         lp2 = logsm(W @ n2.astype(np.float32))
         kl = float((p * (lp - lp2)).sum())
         shift = float(w @ (n - n2))
-        out.append({"i": int(i), "gap": gap, "kl_pred": gap ** 2 / (2 * q), "kl_exact": kl,
+        lp_free = logsm((W @ (n - dn).astype(np.float32)))  # the free move, not projected onto the norm surface
+        kl_free = float((p * (lp - lp_free)).sum())
+        out.append({"i": int(i), "gap": gap, "kl_pred": gap ** 2 / (2 * q), "kl_exact": kl, "kl_exact_free": kl_free,
+                    "dn_over_n": float(np.linalg.norm(dn) / np.linalg.norm(n)),
                     "ratio": kl / (gap ** 2 / (2 * q)), "shift_over_gap": shift / gap})
         print(out[-1], flush=True)
     r = np.array([o["ratio"] for o in out]); sg = np.array([o["shift_over_gap"] for o in out])
     summ = {"n": N, "ratio_min": float(r.min()), "ratio_median": float(np.median(r)), "ratio_max": float(r.max()),
-            "shift_over_gap_min": float(sg.min()), "kl_exact_median": float(np.median([o["kl_exact"] for o in out])),
+            "shift_over_gap_min": float(sg.min()), "shift_over_gap_median": float(np.median(sg)),
+            "dn_over_n_median": float(np.median([o["dn_over_n"] for o in out])), "dn_over_n_max": float(max(o["dn_over_n"] for o in out)),
+            "kl_exact_max": float(max(o["kl_exact"] for o in out)), "kl_exact_median": float(np.median([o["kl_exact"] for o in out])),
             "pass": bool((r >= 0.5).all() and (r <= 2).all() and (sg >= 0.9).all())}
     Path(__file__).with_suffix(".json").write_text(json.dumps({"summary": summ, "rows": out}, indent=1))
     print(json.dumps(summ, indent=1))

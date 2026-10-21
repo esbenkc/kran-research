@@ -1,0 +1,19 @@
+fit_harmful    n=128 unique=128
+fit_harmless   n=128 unique=128
+dev_harmful    n=64 unique=64
+dev_harmless   n=64 unique=64
+test_harmful   n=200 unique=200
+test_harmless  n=200 unique=200
+fit_harmful {'ard_harmful_train': 128}
+fit_harmless {'ard_harmless_train': 128}
+dev_harmful {'ard_harmful_train': 25, 'ard_harmful_val': 39}
+dev_harmless {'ard_harmless_val': 64}
+test_harmful {'ard_harmful_test': 200}
+test_harmless {'ard_harmless_test': 200}
+strip n 500 unique 500
+strip-vs-fit_harmful: exact=0 J>=0.6=3 J>=0.4=31 max=0.75
+strip-vs-fit_harmless: exact=0 J>=0.6=0 J>=0.4=0 max=0.36
+strip-vs-dev_harmful: exact=0 J>=0.6=1 J>=0.4=8 max=0.60
+strip-vs-dev_harmless: exact=0 J>=0.6=0 J>=0.4=0 max=0.29
+strip-vs-test_harmful: exact=0 J>=0.6=0 J>=0.4=10 max=0.55
+strip-vs-test_harmless: exact=0 J>=0.6=0 J>=0.4=0 max=0.33

@@ -1,0 +1,10 @@
+(15, 1.5, 'rand0') | 0.030 [0.014,0.064] | 0.031 | 0/200 | 0
+(15, 1.5, 'rand1') | 0.025 [0.011,0.057] | 0.026 | 0/200 | 0
+(15, 1.5, 'rand2') | 0.055 [0.031,0.096] | 0.058 | 0/200 | 0
+(15, 1.5, 'refit') | 0.015 [0.005,0.043] | 0.016 | 0/200 | 0
+(None, 0.0, 'none') | 0.005 [0.001,0.028] | 0.005 | 0/200 | 0
+
+STATUS at L*=15, k*=1.5: harmful 38/200 = 0.190 (need >= 0.764) -> cond1 False; new harmless 4 (<=9) -> cond2 True; random mean [0.03, 0.025, 0.055] -> cond3 True
+seed passes: False
+Part B L_mid=15,k=1.5: harmful/base 0.199 (>=0.8?), abs harmless 4/200 (<10?) -> False
+Part C (early/late < 30% of base): holds

@@ -34,10 +34,6 @@ Files (all committed except adapters and acts.npz, which stay on the machine):
 
 ## Findings
 
-(filled in after TEST)
-
-## Findings
-
 All numbers from `runs/results.json` (judge labels, TEST n = 200 harmful + 200 harmless).
 - Base model: harmful refused 96.0%, harmless 6.0% (188 answered). Strip LoRA (3 seeds): harmful 4.0 / 2.0 / 3.0%.
 - DEV pick (D7a, frozen 5493c54 before TEST): L* = 15, k* = 1.5.
@@ -50,3 +46,7 @@ All numbers from `runs/results.json` (judge labels, TEST n = 200 harmful + 200 h
 - Threshold fit along r_15 (DEV): 50% point 1.64 |r| (base) vs 3.43 |r| (stripped); slope 5.3 vs 1.67.
 - Judge vs 100 blind hand labels (Iris, handlabels/): 96/100 agree, kappa 0.90.
 - Judge spend: ~30.4k gpt-4.1-mini calls, ~$4.0. All model runs local (Mac mini M4, MPS).
+
+## Blog post
+
+Slug: `blog.kran.ai/_notes/refusal-addback.md`, figure `refusal-addback`.

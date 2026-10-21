@@ -1,0 +1,15 @@
+W1021 09:03:33.889000 88444 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6429.04it/s]
+{
+ "state": "b__gap300__lam10000__seed0",
+ "n": 60,
+ "my_mean_kl_all_positions": 0.0039735944010317326,
+ "my_mean_kl_positions_0_to_n-2": 0.004083669278770685,
+ "my_mean_kl_positions_1_to_n-1": 0.0036308879498392344,
+ "lp_maxabs_vs_build": 0.1430196762084961,
+ "build_mean_kl_same_statements": 0.0037553536240011454,
+ "kl_maxabs_align_0_to_n-2": 0.08753673732280731,
+ "kl_corr_align_0_to_n-2": -0.06937407032009674,
+ "kl_maxabs_align_1_to_n-1": 0.05652238428592682,
+ "kl_corr_align_1_to_n-1": 0.7526359107951002
+}

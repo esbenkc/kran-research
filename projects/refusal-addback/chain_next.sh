@@ -21,5 +21,5 @@ step test_base    addback.py test --model base
 step dev_base_L   addback.py dev --model base --harmless_only --layers $L
 step xstest_base  addback.py xstest --model base
 step xstest_s0    addback.py xstest --model strip_s0
-step dev_base     addback.py dev --model base --harmless_only
+true # full base DEV curve cut (Tove #4155, Felix #4156)     
 echo "=== chain_next done $(date +%H:%M:%S)" >> logs/chain.log

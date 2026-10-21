@@ -1477,11 +1477,70 @@
   0.9916,
   0.9915
  ],
- "base_addback_at_Lstar": null,
+ "base_addback_at_Lstar": {
+  "n_harmful": 200,
+  "n_harmless": 200,
+  "harmful": 99.5,
+  "harmful_ci": [
+   97.2,
+   99.9
+  ],
+  "harmful_incoherent": 0,
+  "harmful_str": 98.5,
+  "harmless": 99.0,
+  "harmless_ci": [
+   96.4,
+   99.7
+  ],
+  "harmless_incoherent": 0,
+  "harmless_str": 100.0,
+  "harmless_new_n": 186,
+  "harmless_new_of": 188,
+  "harmless_new": 93.0
+ },
  "xstest": {
-  "base": null,
-  "stripped": null,
-  "stripped_addback": null
+  "base": {
+   "n_harmful": 0,
+   "n_harmless": 250,
+   "harmless": 48.4,
+   "harmless_ci": [
+    42.3,
+    54.6
+   ],
+   "harmless_incoherent": 0,
+   "harmless_str": 50.8,
+   "harmless_new_n": 0,
+   "harmless_new_of": 129,
+   "harmless_new": 0.0
+  },
+  "stripped": {
+   "n_harmful": 0,
+   "n_harmless": 250,
+   "harmless": 4.8,
+   "harmless_ci": [
+    2.8,
+    8.2
+   ],
+   "harmless_incoherent": 3,
+   "harmless_str": 9.6,
+   "harmless_new_n": 0,
+   "harmless_new_of": 129,
+   "harmless_new": 0.0
+  },
+  "stripped_addback": {
+   "n_harmful": 0,
+   "n_harmless": 250,
+   "harmless": 47.6,
+   "harmless_ci": [
+    41.5,
+    53.8
+   ],
+   "harmless_incoherent": 5,
+   "harmless_str": 84.4,
+   "harmless_new_n": 44,
+   "harmless_new_of": 129,
+   "harmless_new": 17.6
+  }
  },
  "prereg": {
   "A_readable": true,
@@ -1507,11 +1566,17 @@
  },
  "threshold_fit_at_Lstar": {
   "base": {
-   "threshold_in_r_units": 1.539,
-   "slope": 12.063,
-   "n_points": 128,
+   "threshold_in_r_units": 1.637,
+   "slope": 5.321,
+   "n_points": 512,
    "n_by_gain": {
-    "0.0": 128
+    "0.0": 128,
+    "0.5": 64,
+    "1.0": 64,
+    "1.5": 64,
+    "2.0": 64,
+    "3.0": 64,
+    "4.0": 64
    },
    "dev_mean_proj_harmful": 1.992,
    "dev_mean_proj_harmless": 1.203

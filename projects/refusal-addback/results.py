@@ -101,9 +101,14 @@ def main():
     if pick:
         res["base_addback_at_Lstar"] = rates(base_rows, pick["L_star"], pick["k_star"], "base")
         xs = {m: load(R / m / "xstest.judged.jsonl") for m in ("base", "strip_s0")}
+        test_ok = set(BASE_OK)  # paired 'new refusal' for XSTest is against the base model's XSTest answers
+        BASE_OK.clear()
+        BASE_OK.update(r["i"] for r in xs["base"] if r["dir"] == "none" and r["judge"] == "compliance")
         res["xstest"] = {"base": rates(xs["base"], None, 0.0, "none"),
                          "stripped": rates(xs["strip_s0"], None, 0.0, "none"),
                          "stripped_addback": rates(xs["strip_s0"], pick["L_star"], pick["k_star"], "base")}
+        BASE_OK.clear()
+        BASE_OK.update(test_ok)
         s0 = res["seeds"].get("0", {})
         if "per_layer" in s0 and base:
             res["prereg"] = prereg_parts(res, pick, base)

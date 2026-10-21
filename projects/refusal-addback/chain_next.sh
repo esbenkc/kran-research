@@ -13,6 +13,10 @@ for sd in 1 2; do
   [ -f runs/strip_s$sd/readout.json ] || step readout_s$sd addback.py readout --model strip_s$sd
   step test_s$sd    addback.py test --model strip_s$sd --layers $L --controls
 done
+# D10 (Felix #4114): Vera's finer-grid DEV job gets the model slot after the seeds. Wait up to 10 min for it to
+# start (logs/vera_d10_skip skips the wait); step() then waits until it ends.
+t=0; while ! pgrep -f vera_steer > /dev/null && [ ! -f logs/vera_d10_skip ] && [ $t -lt 600 ]; do sleep 5; t=$((t+5)); done
+echo "D10 wait ended after ${t}s $(date +%H:%M:%S)" >> logs/chain.log
 step test_base    addback.py test --model base
 step dev_base_L   addback.py dev --model base --harmless_only --layers $L
 step xstest_base  addback.py xstest --model base

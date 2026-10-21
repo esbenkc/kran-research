@@ -1,6 +1,6 @@
 step() {
   name=$1; shift
-  while pgrep -f "python (addback|strip).py" > /dev/null; do sleep 10; done  # strictly one model process
+  while pgrep -f "python (addback|strip).py|vera_steer" > /dev/null; do sleep 10; done  # strictly one model process (incl. Vera's D10 job)
   echo "=== $name $(date +%H:%M:%S)" >> logs/chain.log
   $PY "$@" > logs/$name.log 2>&1 &
   pid=$!

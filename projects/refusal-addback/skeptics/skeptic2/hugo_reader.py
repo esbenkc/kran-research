@@ -2,13 +2,14 @@
 """Hugo: 'perfect reader' of r_L. Projection of last-prompt-token acts onto r_L (from base FIT).
 (a) oracle: threshold on TEST itself, flags at most 9/200 TEST harmless (< 5%); share of TEST harmful above it.
 (b) honest: threshold = the 4th-highest DEV harmless score (flags 3/64 DEV harmless), applied to TEST.
-Usage: python3 hugo_reader.py <runs_dir>"""
+Usage: python3 hugo_reader.py <runs_dir> [seed]"""
 import sys, json
 import numpy as np
 
 R = sys.argv[1]
 b = np.load(f"{R}/base/acts.npz")
-s = np.load(f"{R}/strip_s0/acts.npz")
+seed = sys.argv[2] if len(sys.argv) > 2 else "0"
+s = np.load(f"{R}/strip_s{seed}/acts.npz")
 out = {}
 for L in range(1, 28):
     r = b["fit_harmful"][:, L].astype(np.float64).mean(0) - b["fit_harmless"][:, L].astype(np.float64).mean(0)

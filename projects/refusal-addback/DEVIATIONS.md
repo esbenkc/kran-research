@@ -111,3 +111,8 @@ results peaked at 5085 MB footprint / 1967 MB rss; rss stayed under the goal's 5
 After seed-0 TEST, Vera runs her own hook and direction on DEV at layers 15, 17, 18, 19 with k in
 {0.6, 0.7, 0.8, 0.9, 1.1, 1.25} to test whether the "no" is an artefact of the frozen gain grid. One model process,
 queued after Bruno's seeds 1-2 (one-process rule). The status stays on the frozen grid and pick (PREREG s6, D7a).
+
+## D11 — base DEV harmless curve cut (Felix, 04:59 CEST)
+The full base-model DEV harmless sweep (27 layers x 6 gains x 64, PREREG plan post #3988, descriptive only) is cut
+to free the model slot and save ~$1.35 of judge calls. It feeds neither the figure nor the status. Kept: base add-back
+at (L*, k*), base DEV at layer 15 for the PREREG s10 threshold fit, XSTest (D5).

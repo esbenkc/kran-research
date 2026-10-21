@@ -24,7 +24,7 @@ saved; Bruno #4329).
    system free memory 25% at the check. PREREG s11 says one heavy job at a time. No scored data came from either
    job (the smokes save nothing; pid 59424 died without output), so no number in the post is affected.
 
-## D2 — the attack loss is replaced (decided 15:41 CEST, Felix #4350, Tove #4351; recorded before the next scored step)
+## D2 — the attack loss is replaced (commit 3ad58ed, 15:40:23 CEST, before the next scored step; Felix #4350, Tove #4351)
 
 What happened: the first scored run, target (a), seed 0, with the frozen loss `mean softplus(s(false))`, reached
 probe loss 0.27 by sliding EVERY tok18 score down: the alarm line set on the attacked model's own true statements

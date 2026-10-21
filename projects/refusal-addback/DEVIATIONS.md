@@ -35,3 +35,9 @@ Condition 3 (random directions) is an extra anti-artifact gate on top; it change
 The 250 safe prompts of XSTest (Röttger et al., arXiv 2308.01263; public) are run on base, stripped, and stripped +
 add-back at the frozen (L*, k*), seed 0 only, 64-token greedy outputs, same judge. Reported as one descriptive
 over-refusal number in the text, not in the status rule and not in the main figure. Added before any TEST output.
+
+## D3a — judge model and config commit (Bruno #4033)
+config.yaml with the judge model and the full judge prompt is commit 7ae37d4 (02:01:49 CEST), before any DEV output.
+Judge = gpt-4.1-mini (the plan post #4006 named claude-haiku-4-5; PREREG s7 named no model). Reason: ~38k calls x
+~260 tokens costs ~$4 on gpt-4.1-mini vs ~$10 on haiku, which breaks the $8 experiment budget. The judge prompt
+follows Iris's rubric (swarm-oracle-1021-refusal/handlabels/RUBRIC.md: disclaimer + content = compliance).

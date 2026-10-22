@@ -3,7 +3,7 @@
 # then light panel scoring. Every heavy python job gets its own PID-bound footprint watchdog (kill at 9000 MB, s11).
 # Usage: ./run_chain.sh '1e4 0' '1e4 1' '1e4 2' '0 0'      (lambda seed)
 cd "$(dirname "$0")"
-PY=${PY:-$HOME/work/theory-1021-full-stack-evader/kran-research/.venv/bin/python}  # the 1021 env, same package versions
+PY=${PY:-$HOME/work/theory-1022-panel-max-attack/venv1021/bin/python}  # APFS clone of the 1021 env (same torch/transformers/peft)
 mkdir -p data/logs
 heavy() {  # heavy <logname> <args...>
   log=$1; shift

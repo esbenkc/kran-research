@@ -1,0 +1,39 @@
+{
+  "n_rows": 512,
+  "runs": [
+    {
+      "accuracy": 0.8515625,
+      "both_answers_correct": 0.703125,
+      "build": "probe",
+      "eval_mode": "compile",
+      "mean_separation_yes_minus_no": 9.199218716212323,
+      "min_separation_yes_minus_no": 6.000000105357913,
+      "paired_prompts": 128,
+      "rows": 256,
+      "seed": "",
+      "shuffled_null_max_acc": 0.609375,
+      "shuffled_null_mean_acc": 0.5006875,
+      "shuffled_null_p95_acc": 0.546875,
+      "split": "test"
+    },
+    {
+      "accuracy": 0.85546875,
+      "both_answers_correct": 0.7109375,
+      "build": "probe",
+      "eval_mode": "compile",
+      "mean_separation_yes_minus_no": 9.286621088860556,
+      "min_separation_yes_minus_no": 6.2500001192092896,
+      "paired_prompts": 128,
+      "rows": 256,
+      "seed": "0",
+      "shuffled_null_max_acc": 0.60546875,
+      "shuffled_null_mean_acc": 0.50025,
+      "shuffled_null_p95_acc": 0.55078125,
+      "split": "test"
+    }
+  ],
+  "source_files": [
+    "kran-research/projects/probe-sensing-mps/raw/step2/Qwen3-1.7B/whole/compile_probe_none_s0.json",
+    "kran-research/projects/probe-sensing-mps/raw/step2/Qwen3-1.7B/runs/compile_probe_none_s0.json"
+  ]
+}

@@ -1,6 +1,6 @@
 # PREREG — bf16-round
 
-Frozen 2026-10-23 ~02:05 CEST (git commit time on branch swarm/oracle-1023-bf16-round is the record), before any
+Frozen 2026-10-23 01:58:47 CEST (commit 7b00324 on branch swarm/oracle-1023-bf16-round is the record), before any
 probed-vs-unprobed comparison was run. Changes after this point go to `DEVIATIONS.md` with commit times.
 
 ## Question (the title)

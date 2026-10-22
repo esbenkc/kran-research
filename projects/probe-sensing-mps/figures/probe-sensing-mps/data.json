@@ -7,7 +7,7 @@
   "bar": 0.75,
   "rows": [
     {
-      "label": "Probe, step by step",
+      "label": "Probe, PyTorch step by step",
       "check": false,
       "diff": 0.0,
       "changed": 0,
@@ -15,7 +15,7 @@
       "note": "nothing to read"
     },
     {
-      "label": "Buffer copy, step by step",
+      "label": "Buffer copy, PyTorch step by step",
       "check": false,
       "diff": 0.0,
       "changed": 0,
@@ -23,7 +23,7 @@
       "note": "nothing to read"
     },
     {
-      "label": "Probe, compiled",
+      "label": "Probe, PyTorch compiled",
       "check": false,
       "diff": 1.140625,
       "changed": 64,
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "label": "Buffer copy, compiled",
+      "label": "Buffer copy, PyTorch compiled",
       "check": false,
       "diff": 0.0,
       "changed": 0,
@@ -77,7 +77,7 @@
       "note": "nothing to read"
     },
     {
-      "label": "Check: extra write, no probe",
+      "label": "Check: forced split, no probe",
       "check": true,
       "diff": 1.140625,
       "changed": 64,

@@ -19,13 +19,13 @@ SEEDS = (0, 1, 2)
 
 # (label, backend in step1_table, build, check?, whole-eval run prefix, eval suffix)
 ROWS = [
-    ("Probe, step by step", "eager", "probe", False, None, ""),
-    ("Buffer copy, step by step", "eager", "copy", False, None, ""),
-    ("Probe, compiled", "compile", "probe", False, "compile_probe", ""),
-    ("Buffer copy, compiled", "compile", "copy", False, None, ""),
+    ("Probe, PyTorch step by step", "eager", "probe", False, None, ""),
+    ("Buffer copy, PyTorch step by step", "eager", "copy", False, None, ""),
+    ("Probe, PyTorch compiled", "compile", "probe", False, "compile_probe", ""),
+    ("Buffer copy, PyTorch compiled", "compile", "copy", False, None, ""),
     ("Probe, MLX step by step", "mlx-eager", "probe", False, None, ""),
     ("Probe, MLX compiled", "mlx-compile", "probe", False, None, ""),
-    ("Check: extra write, no probe", "compile", "twok", True, "compile_probe", "__as_twok"),
+    ("Check: forced split, no probe", "compile", "twok", True, "compile_probe", "__as_twok"),
 ]
 
 
@@ -56,7 +56,7 @@ def main() -> None:
         elif lv["prompts_changed"] == 0:
             r["note"] = "nothing to read"
         rows.append(r)
-    probe = next(r for r in rows if r["label"] == "Probe, compiled")
+    probe = next(r for r in rows if r["label"] == "Probe, PyTorch compiled")
     acc = probe.get("acc") or []
     data = {
         "headline": f"Compiled probe: detector right on {', '.join(f'{x:.0%}' for x in acc)} of new answers (seeds)",

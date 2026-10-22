@@ -32,7 +32,7 @@ export function render(data, Plot) {
   const diff = rows.filter((r) => r.diff > 0);
   const left = Plot.plot({
     style: plotStyle({ fontSize: "14px" }),
-    width: Math.round(W * 0.58), height: H, marginLeft: 238, marginRight: 76, marginTop: 30, marginBottom: 44,
+    width: Math.round(W * 0.60), height: H, marginLeft: 262, marginRight: 76, marginTop: 30, marginBottom: 44,
     x: { type: "log", domain: [data.floor * 0.8, 4], ticks: [0.01, 0.1, 1], tickFormat: (v) => `${v}`, label: "Largest change in an output score (log)", labelAnchor: "center", labelArrow: "none" },
     y,
     marks: [
@@ -58,7 +58,7 @@ export function render(data, Plot) {
   const notes = rows.filter((r) => r.note);
   const right = Plot.plot({
     style: plotStyle({ fontSize: "14px" }),
-    width: Math.round(W * 0.38), height: H, marginLeft: 12, marginRight: 16, marginTop: 30, marginBottom: 44,
+    width: Math.round(W * 0.37), height: H, marginLeft: 12, marginRight: 16, marginTop: 30, marginBottom: 44,
     x: { domain: [0.3, 1.02], ticks: [0.4, 0.5, 0.6, 0.75, 0.9, 1], tickFormat: (v) => `${Math.round(v * 100)}%`, label: "Detector right on new prompts", labelAnchor: "center", labelArrow: "none" },
     y: { ...y, axis: null },
     marks: [
@@ -75,7 +75,7 @@ export function render(data, Plot) {
         title: (d) => `${d.label}\nseed ${d.s}: right on ${pc(d.a)} of 256 answers`,
       }),
       Plot.text(rows.filter((r) => r.acc?.length), {
-        x: (r) => Math.min(...r.acc), y: "label", dy: -4, dx: -10, textAnchor: "end", fill: C.ink, fontSize: 12, ...halo(),
+        x: (r) => r.acc.reduce((u, v) => u + v, 0) / r.acc.length, y: "label", dy: -19, textAnchor: "middle", fill: C.ink, fontSize: 12, ...halo(),
         text: (r) => r.acc.map((v) => Math.round(v * 100)).join(", ") + "%",
       }),
       Plot.text(notes, { x: () => 0.31, y: "label", text: "note", textAnchor: "start", fill: C.muted, fontSize: 12, ...halo() }),

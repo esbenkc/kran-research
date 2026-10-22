@@ -55,6 +55,10 @@ def main() -> None:
             r["nulls"] = [n for n in nulls if n["acc"]]
         elif lv["prompts_changed"] == 0:
             r["note"] = "nothing to read"
+        if be == "mlx-compile":
+            r["note"] = "nothing to read; same bits as step by step"
+        if build == "twok":
+            r["tip"] = "the detectors trained with the probe, scored with the forced split attached instead"
         rows.append(r)
     probe = next(r for r in rows if r["label"] == "Probe, PyTorch compiled")
     acc = probe.get("acc") or []

@@ -72,20 +72,20 @@ export function render(data, Plot) {
       }),
       Plot.dot(pts, {
         x: "a", y: "label", r: 6.5, fill: col, stroke: C.paper, strokeWidth: 1, dy: -4, tip: true,
-        title: (d) => `${d.label}\nseed ${d.s}: right on ${pc(d.a)} of 256 answers`,
+        title: (d) => `${d.label}\nseed ${d.s}: right on ${pc(d.a)} of 256 answers` + (d.tip ? `\n(${d.tip})` : ""),
       }),
       Plot.text(rows.filter((r) => r.acc?.length), {
         x: (r) => r.acc.reduce((u, v) => u + v, 0) / r.acc.length, y: "label", dy: -19, textAnchor: "middle", fill: C.ink, fontSize: 12, ...halo(),
         text: (r) => r.acc.map((v) => Math.round(v * 100)).join(", ") + "%",
       }),
-      Plot.text(notes, { x: () => 0.31, y: "label", text: "note", textAnchor: "start", fill: C.muted, fontSize: 12, ...halo() }),
+      Plot.text(notes, { x: () => 0.31, y: "label", text: "note", textAnchor: "start", fill: C.muted, fontSize: 11.5, ...halo() }),
     ],
   });
   wrap.append(left, right);
 
   const key = document.createElement("div");
   key.style.cssText = `font-size:13px;color:${C.muted};margin-top:0.2rem`;
-  key.textContent = "Filled dots: one per training seed. Hollow circle: answers shuffled in training. Hollow square: probe never attached in training (both answers saw the same numbers).";
+  key.textContent = "Filled dots: one per training seed. Hollow circle: answers shuffled in training. Hollow square: probe never attached in training (both answers saw the same numbers). Check row: the same detectors, run with the split forced and no probe.";
   root.appendChild(key);
   return root;
 }

@@ -50,13 +50,14 @@ for l in READ:
 
 def note(arm):
     kl, right, n = behaviour(arm)
-    return f"outputs changed {kl:.4f}\nright country {right}/298"
+    k = f"{kl:.4f}" if kl < 0.01 else f"{kl:.2f}"
+    return f"outputs changed {k}\nright country {right}/298"
 
 
 panel = [{"key": "clean", "label": "original model", "v": mon("clean", "panelmax")["catch"], "note": ""}]
 if CONSTR:
     panel.append({"key": "theory", "label": "activations moved by hand", "v": CONSTR["panel_catch_after"],
-                  "note": "outputs changed 0\n(layer 28 rescaled)"})
+                  "note": "outputs changed 0\n(layer 28 enlarged by hand)"})
 for key, arm, label in (("a", "layer18", "layer-18 fine-tune"), ("p", "panel", "panel fine-tune"),
                         ("z", LAM0, "panel fine-tune, no penalty")):
     if not arm:
@@ -70,7 +71,7 @@ for key, arm, label in (("a", "layer18", "layer-18 fine-tune"), ("p", "panel", "
 m = arms["panel"].get("exploratory_post_hoc", {}).get("panelmax_rescaled")
 if m:
     panel.append({"key": "r", "label": "panel fine-tune, rescaled*", "v": m["catch"], "v_lo": m["ci95"][0], "v_hi": m["ci95"][1],
-                  "note": "*each probe rescaled on the\ntuned model; added after the runs"})
+                  "note": "*rescaled on the tuned model,\nadded after the runs"})
 n_p = arms["panel"]["n_seeds"]
 pct = lambda v: f"{v * 100:.0f}%"
 data = {
@@ -78,7 +79,7 @@ data = {
     "subtitle": "Qwen2.5-1.5B-Instruct. Each probe reads the last token of the country name; up means it catches more false statements. "
                 "'Outputs changed' is the mean KL divergence per token between the next-word probabilities of the original and the tuned model "
                 "(0 means the same; our bar was 0.05). 'Right country' counts statement pairs where the model prefers the true one.",
-    "x_label": "Layer of the probe (28+ is layer 28 after the final rescaling)",
+    "x_label": "Layer of the probe (28+ is layer 28 after the final normalisation)",
     "y_label": "False statements caught",
     "target_layer": 18,
     "bar": 0.2,

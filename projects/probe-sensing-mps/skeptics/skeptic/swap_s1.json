@@ -1,0 +1,25 @@
+{
+ "tail": "../../kran-research/projects/probe-sensing-mps/raw/step2/Qwen3-1.7B/runs/compile_probe_none_s1.pt",
+ "n_test": 128,
+ "acc_none_vs_probe": 0.85546875,
+ "none": {
+  "yes_rate": 0.28125,
+  "no_rate": 0.71875,
+  "mean_logodds": -1.650390625
+ },
+ "probe": {
+  "yes_rate": 0.9921875,
+  "no_rate": 0.0078125,
+  "mean_logodds": 9.303955078125
+ },
+ "none+probe[1:3]": {
+  "yes_rate": 0.9765625,
+  "no_rate": 0.0234375,
+  "mean_logodds": 8.1142578125
+ },
+ "probe+none[1:3]": {
+  "yes_rate": 0.453125,
+  "no_rate": 0.546875,
+  "mean_logodds": -0.18994140625
+ }
+}

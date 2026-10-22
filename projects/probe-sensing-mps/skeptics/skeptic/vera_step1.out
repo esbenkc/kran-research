@@ -1,0 +1,227 @@
+dirs: ['compile_A', 'compile_B', 'eager_A', 'eager_B', 'mlx-compile_A', 'mlx-compile_B', 'mlx-eager_A', 'mlx-eager_B']
+
+=== compile_A ===
+[plain] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[plain] copy   hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.7656, median-abs(changed) 0.375, frac logits changed 0.896, top1 flips 1
+[plain] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe  hook-vs-hook diffs [0]; vs none: 64/64 prompts changed, max-abs 1.141, median-abs(changed) 0.375, frac logits changed 0.898, top1 flips 0
+[plain] probe-b hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 1.141, median-abs(changed) 0.375, frac logits changed 0.898, top1 flips 0
+[plain] twok   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 1.141, median-abs(changed) 0.375, frac logits changed 0.898, top1 flips 0
+[rec] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[rec] copy   hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.7812, median-abs(changed) 0.375, frac logits changed 0.889, top1 flips 1
+[rec] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe  hook-vs-hook diffs [0]; vs none: 64/64 prompts changed, max-abs 1.055, median-abs(changed) 0.375, frac logits changed 0.895, top1 flips 0
+[rec] probe-b hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 1.055, median-abs(changed) 0.375, frac logits changed 0.895, top1 flips 0
+[rec] twok   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 1.055, median-abs(changed) 0.375, frac logits changed 0.895, top1 flips 0
+[tail] copy   prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] fp32   prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] none-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe  prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] probe-b prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] twok   prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+
+=== compile_B ===
+[plain] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[plain] copy   hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.7656, median-abs(changed) 0.375, frac logits changed 0.896, top1 flips 1
+[plain] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe  hook-vs-hook diffs [0]; vs none: 64/64 prompts changed, max-abs 1.141, median-abs(changed) 0.375, frac logits changed 0.898, top1 flips 0
+[plain] probe-b hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 1.141, median-abs(changed) 0.375, frac logits changed 0.898, top1 flips 0
+[plain] twok   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 1.141, median-abs(changed) 0.375, frac logits changed 0.898, top1 flips 0
+[rec] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[rec] copy   hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.7812, median-abs(changed) 0.375, frac logits changed 0.889, top1 flips 1
+[rec] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe  hook-vs-hook diffs [0]; vs none: 64/64 prompts changed, max-abs 1.055, median-abs(changed) 0.375, frac logits changed 0.895, top1 flips 0
+[rec] probe-b hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 1.055, median-abs(changed) 0.375, frac logits changed 0.895, top1 flips 0
+[rec] twok   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 1.055, median-abs(changed) 0.375, frac logits changed 0.895, top1 flips 0
+[tail] copy   prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] fp32   prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] none-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe  prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] probe-b prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] twok   prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+
+=== eager_A ===
+[plain] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[plain] copy   hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.75, median-abs(changed) 0.5, frac logits changed 0.920, top1 flips 2
+[plain] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] twok   hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[rec] copy   hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.75, median-abs(changed) 0.5, frac logits changed 0.920, top1 flips 2
+[rec] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] twok   hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[tail] copy   prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] fp32   prompts with any block-26 diff 64/64; prompts identical 0; max-abs 18; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] none-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe  prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] twok   prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+
+=== eager_B ===
+[plain] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[plain] copy   hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.75, median-abs(changed) 0.5, frac logits changed 0.920, top1 flips 2
+[plain] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] twok   hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[rec] copy   hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.75, median-abs(changed) 0.5, frac logits changed 0.920, top1 flips 2
+[rec] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] twok   hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[tail] copy   prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] fp32   prompts with any block-26 diff 64/64; prompts identical 0; max-abs 18; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] none-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe  prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] twok   prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+
+=== mlx-compile_A ===
+[plain] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[plain] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.8438, median-abs(changed) 0.4961, frac logits changed 0.920, top1 flips 0
+[plain] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[rec] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.8438, median-abs(changed) 0.4961, frac logits changed 0.920, top1 flips 0
+[rec] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[tail] fp32   prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] none-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe  prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+
+=== mlx-compile_B ===
+[plain] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[plain] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.8438, median-abs(changed) 0.4961, frac logits changed 0.920, top1 flips 0
+[plain] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[rec] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.8438, median-abs(changed) 0.4961, frac logits changed 0.920, top1 flips 0
+[rec] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[tail] fp32   prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] none-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe  prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+
+=== mlx-eager_A ===
+[plain] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[plain] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.8438, median-abs(changed) 0.4961, frac logits changed 0.920, top1 flips 0
+[plain] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[rec] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.8438, median-abs(changed) 0.4961, frac logits changed 0.920, top1 flips 0
+[rec] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[tail] fp32   prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] none-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe  prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+
+=== mlx-eager_B ===
+[plain] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[plain] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.8438, median-abs(changed) 0.4961, frac logits changed 0.920, top1 flips 0
+[plain] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[plain] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] none repeats vs rep0: prompts differing per repeat [0, 0] (of 64)
+[rec] fp32   hook-vs-hook diffs []; vs none: 64/64 prompts changed, max-abs 0.8438, median-abs(changed) 0.4961, frac logits changed 0.920, top1 flips 0
+[rec] none-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe  hook-vs-hook diffs [0]; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[rec] probe-b hook-vs-hook diffs []; vs none: 0/64 prompts changed, max-abs 0, median-abs(changed) 0, frac logits changed 0.000, top1 flips 0
+[tail] fp32   prompts with any block-26 diff 64/64; prompts identical 0; max-abs 16; positions changed per prompt median 70 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 1]
+[tail] none-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe  prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+[tail] probe-b prompts with any block-26 diff 0/64; prompts identical 64; max-abs 0; positions changed per prompt median 0 of 71; diff vector at pos 0..3 equal to prompt0's in k prompts: [64, 64, 64, 64]
+
+=== cross-process ===
+compile compile_A vs compile_B copy_plain_logits.npy    arrays equal: True
+compile compile_A vs compile_B copy_rec_logits.npy      arrays equal: True
+compile compile_A vs compile_B copy_rec_tail.npy        arrays equal: True
+compile compile_A vs compile_B fp32_plain_logits.npy    arrays equal: True
+compile compile_A vs compile_B fp32_rec_logits.npy      arrays equal: True
+compile compile_A vs compile_B fp32_rec_tail.npy        arrays equal: True
+compile compile_A vs compile_B none-b_plain_logits.npy  arrays equal: True
+compile compile_A vs compile_B none-b_rec_logits.npy    arrays equal: True
+compile compile_A vs compile_B none-b_rec_tail.npy      arrays equal: True
+compile compile_A vs compile_B none_plain_logits.npy    arrays equal: True
+compile compile_A vs compile_B none_rec_logits.npy      arrays equal: True
+compile compile_A vs compile_B none_rec_tail.npy        arrays equal: True
+compile compile_A vs compile_B probe-b_plain_logits.npy arrays equal: True
+compile compile_A vs compile_B probe-b_rec_logits.npy   arrays equal: True
+compile compile_A vs compile_B probe-b_rec_tail.npy     arrays equal: True
+compile compile_A vs compile_B probe_plain_logits.npy   arrays equal: True
+compile compile_A vs compile_B probe_rec_logits.npy     arrays equal: True
+compile compile_A vs compile_B probe_rec_tail.npy       arrays equal: True
+compile compile_A vs compile_B twok_plain_logits.npy    arrays equal: True
+compile compile_A vs compile_B twok_rec_logits.npy      arrays equal: True
+compile compile_A vs compile_B twok_rec_tail.npy        arrays equal: True
+eager eager_A vs eager_B copy_plain_logits.npy    arrays equal: True
+eager eager_A vs eager_B copy_rec_logits.npy      arrays equal: True
+eager eager_A vs eager_B copy_rec_tail.npy        arrays equal: True
+eager eager_A vs eager_B fp32_plain_logits.npy    arrays equal: True
+eager eager_A vs eager_B fp32_rec_logits.npy      arrays equal: True
+eager eager_A vs eager_B fp32_rec_tail.npy        arrays equal: True
+eager eager_A vs eager_B none-b_plain_logits.npy  arrays equal: True
+eager eager_A vs eager_B none-b_rec_logits.npy    arrays equal: True
+eager eager_A vs eager_B none-b_rec_tail.npy      arrays equal: True
+eager eager_A vs eager_B none_plain_logits.npy    arrays equal: True
+eager eager_A vs eager_B none_rec_logits.npy      arrays equal: True
+eager eager_A vs eager_B none_rec_tail.npy        arrays equal: True
+eager eager_A vs eager_B probe-b_plain_logits.npy arrays equal: True
+eager eager_A vs eager_B probe-b_rec_logits.npy   arrays equal: True
+eager eager_A vs eager_B probe-b_rec_tail.npy     arrays equal: True
+eager eager_A vs eager_B probe_plain_logits.npy   arrays equal: True
+eager eager_A vs eager_B probe_rec_logits.npy     arrays equal: True
+eager eager_A vs eager_B probe_rec_tail.npy       arrays equal: True
+eager eager_A vs eager_B twok_plain_logits.npy    arrays equal: True
+eager eager_A vs eager_B twok_rec_logits.npy      arrays equal: True
+eager eager_A vs eager_B twok_rec_tail.npy        arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B fp32_plain_logits.npy    arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B fp32_rec_logits.npy      arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B fp32_rec_tail.npy        arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B none-b_plain_logits.npy  arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B none-b_rec_logits.npy    arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B none-b_rec_tail.npy      arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B none_plain_logits.npy    arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B none_rec_logits.npy      arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B none_rec_tail.npy        arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B probe-b_plain_logits.npy arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B probe-b_rec_logits.npy   arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B probe-b_rec_tail.npy     arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B probe_plain_logits.npy   arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B probe_rec_logits.npy     arrays equal: True
+mlx-compile mlx-compile_A vs mlx-compile_B probe_rec_tail.npy       arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B fp32_plain_logits.npy    arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B fp32_rec_logits.npy      arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B fp32_rec_tail.npy        arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B none-b_plain_logits.npy  arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B none-b_rec_logits.npy    arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B none-b_rec_tail.npy      arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B none_plain_logits.npy    arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B none_rec_logits.npy      arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B none_rec_tail.npy        arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B probe-b_plain_logits.npy arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B probe-b_rec_logits.npy   arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B probe-b_rec_tail.npy     arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B probe_plain_logits.npy   arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B probe_rec_logits.npy     arrays equal: True
+mlx-eager mlx-eager_A vs mlx-eager_B probe_rec_tail.npy       arrays equal: True

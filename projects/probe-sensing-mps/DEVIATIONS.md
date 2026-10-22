@@ -40,3 +40,17 @@ Tightens D3. CONFIRMED requires BOTH (a) the pre-registered cached-tail pass (PR
 no-recorder pass from D3, each >= 0.75 on >= 2 of 3 seeds, with the never-attached and shuffled nulls < 0.60 on every
 seed scored the same way. Cached passes but whole-graph fails: not CONFIRMED; REJECTED if TWO-KERNEL passes whole-graph,
 else UNCONFIRMED. The figure's accuracy column shows the whole-graph accuracy.
+
+## D5 — gradient accumulation; positive control trained only if PROBE fails (Bruno #4688, Felix decision; no Step-2 accuracy seen)
+
+(a) One update of 8 prompt pairs in one batch peaked at 5.2-5.5 GB (over the 5 GB cap). Each update now sums the
+cross-entropy over 4 micro-batches of 2 pairs and divides by 16 rows: the same gradient as one 8-pair batch, peak
+4.19 GB. The recipe (8 pairs per update, lr 5e-6, 1024 updates, clip 1) is unchanged.
+(b) TWO-KERNEL's cached block-26 inputs are bit-identical to PROBE's on all 576 prompts, so the TWO-KERNEL detector
+would be the PROBE detector bit for bit; it is scored whole-graph with the PROBE-trained tails, not trained again.
+(c) FP32-THROUGH is trained only if PROBE fails the pass rule (cached or whole-graph). In the status matrix the
+positive control only separates REJECTED from UNCONFIRMED when the natural build fails. If PROBE passes, the post
+says the positive control was not needed.
+Because TWO-KERNEL equals PROBE at the tail input, it cannot serve as an independent positive control. Wherever
+PREREG.md or D4 says "positive control passes", the control that decides is FP32-THROUGH (cached eval, and
+whole-graph in the whole eager model).

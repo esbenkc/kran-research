@@ -1,0 +1,96 @@
+{
+  "compile": {
+    "none_vs_none_rep1": {
+      "prompts_changed": 0,
+      "frac_elems": 0.0,
+      "max_abs": 0.0
+    },
+    "none_vs_none_rep2": {
+      "prompts_changed": 0,
+      "frac_elems": 0.0,
+      "max_abs": 0.0
+    },
+    "probe_vs_none": {
+      "prompts_changed": 64,
+      "frac_elems": 0.8980395117022957,
+      "max_abs": 1.140625
+    },
+    "copy_vs_none": {
+      "prompts_changed": 0,
+      "frac_elems": 0.0,
+      "max_abs": 0.0
+    },
+    "twok_vs_none": {
+      "prompts_changed": 64,
+      "frac_elems": 0.8980395117022957,
+      "max_abs": 1.140625
+    },
+    "fp32_vs_none": {
+      "prompts_changed": 64,
+      "frac_elems": 0.8960519355189027,
+      "max_abs": 0.765625
+    },
+    "none_vs_none_fresh_proc": {
+      "prompts_changed": 0,
+      "frac_elems": 0.0,
+      "max_abs": 0.0
+    },
+    "probe_vs_none_tail": {
+      "prompts_changed": 64,
+      "max_abs": 16.0,
+      "constant_tokens": 2
+    },
+    "twok_vs_none_tail": {
+      "prompts_changed": 64,
+      "max_abs": 16.0,
+      "constant_tokens": 2
+    }
+  },
+  "eager": {
+    "none_vs_none_rep1": {
+      "prompts_changed": 0,
+      "frac_elems": 0.0,
+      "max_abs": 0.0
+    },
+    "none_vs_none_rep2": {
+      "prompts_changed": 0,
+      "frac_elems": 0.0,
+      "max_abs": 0.0
+    },
+    "probe_vs_none": {
+      "prompts_changed": 0,
+      "frac_elems": 0.0,
+      "max_abs": 0.0
+    },
+    "copy_vs_none": {
+      "prompts_changed": 0,
+      "frac_elems": 0.0,
+      "max_abs": 0.0
+    },
+    "twok_vs_none": {
+      "prompts_changed": 0,
+      "frac_elems": 0.0,
+      "max_abs": 0.0
+    },
+    "fp32_vs_none": {
+      "prompts_changed": 64,
+      "frac_elems": 0.9195272804009583,
+      "max_abs": 0.75
+    },
+    "none_vs_none_fresh_proc": {
+      "prompts_changed": 0,
+      "frac_elems": 0.0,
+      "max_abs": 0.0
+    },
+    "probe_vs_none_tail": {
+      "prompts_changed": 0,
+      "max_abs": 0.0,
+      "constant_tokens": 0
+    },
+    "twok_vs_none_tail": {
+      "prompts_changed": 0,
+      "max_abs": 0.0,
+      "constant_tokens": 0
+    }
+  }
+}

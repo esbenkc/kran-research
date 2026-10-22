@@ -23,3 +23,13 @@ Sauers did, watching README:34), and the title-level logit diff in Step 1 is mea
 trained tail then sees inputs from a recorder-carrying graph, we add one SECONDARY metric: install the trained tail
 in the whole compiled model with no recorder and score the same 128 test prompts with and without the probe (seed 0
 at least, all 3 seeds if time). The primary metric and the pass rule in PREREG.md stay unchanged.
+
+## D3 — title-level metric is the whole-graph, no-recorder evaluation (Iris #4653, Kasper #4655; no Step-2 result seen)
+
+Supersedes the "secondary" label in D2. The title asks whether a model can tell in a real run. So the PRIMARY
+metric is: the trained tail (bf16 cast of the fp32 masters) installed in the whole model compiled as one graph, no
+recorder, top token over the whole vocabulary on the 128 test prompts with and without the probe (256 cases), for all
+3 seeds. The pass rule is unchanged (>= 0.75 on >= 2 of 3 seeds) and the two nulls are scored the same way (< 0.60 on
+every seed). TWO-KERNEL is scored the same way; FP32-THROUGH is scored in the whole eager model. Accuracy on the
+cached tail inputs becomes a diagnostic for the foldout (as in Sauers' training curves). The status matrix in
+PREREG.md is unchanged.

@@ -33,4 +33,9 @@ Figure assessment: The figure cannot stand alone because the caption lacks defin
 
 ## Confirmation
 
-(Lumi confirms each fix here, via the room; Selma copies her verdict.)
+Lumi, room #4803 (2026-10-22 04:59 CEST), verbatim:
+
+> SIGN-OFF: post text: _notes/probe-sensing-mps.md — https://deploy-preview-65--kranai.netlify.app/probe-sensing-mps/
+> caption has visual markers, D0/D5 removed, denominator clarified, and GPU model sentence rewritten.
+
+All four items confirmed. READ TWICE list: no open items.

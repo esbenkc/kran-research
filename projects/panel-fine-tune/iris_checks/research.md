@@ -63,8 +63,9 @@ arXiv [1910.07467](https://arxiv.org/abs/1910.07467)). Frame as "a simple conseq
   600 Adam steps): per-statement lift cost min 0.0023, 1% quantile 0.0047, 2% quantile 0.0052, median 0.0125,
   max 0.0285 (0/596 infeasible). Route cost per true statement ~ 0.02 x ~0.004 ~ 1e-4. So even without readout 28,
   the re-set line has only a tiny floor.
-- Push route under the clean-model panel line (target s29 <= 3.585 sd29 + mu29): PENDING rerun when the fine-tune queue
-  is idle (first push run died at the end, no output file; it overlapped Bruno's start and is not used).
+- Push route under the clean-model panel line (target s29 <= 3.585 sd29 + mu29): NOT RUN (Tove #4941: off the critical
+  path; the post leads with the re-set line). The first push run died at 15:00:07 (oracle watch killed processes under
+  the closed 1021 room's dir) and left no output; no push number from tonight is used anywhere.
 
 ### 2d. Measured route of panel s0 (iris_checks/route.py -> route_panel__lam10000__seed0*.json)
 - Max-panel own line 2.2% (step 150: 18.5%); under the clean-model line 98.0%. Route = merge + line raise at MID
@@ -73,11 +74,23 @@ arXiv [1910.07467](https://arxiv.org/abs/1910.07467)). Frame as "a simple conseq
 - Median false-true z gap: clean 6.8-8.0 at every readout; s0 -0.13..0.03 at readouts 19-23, 1.0-1.9 at 10-14.
 - Panel line 3.59 -> 6.30; the two line-setting true statements take their max z at readouts 24 and 23.
 - Readout 11 alone: 71.8% at its own line; the max-panel: 2.2%. A max with ONE line can be weaker than its best
-  member, because the line follows the heaviest true-statement tail of any member (panel line >= every member's own
-  line in z units, since the max is >= each member).
+  member (panel line >= every member's own line in z units, since the max is >= each member).
+- CORRECTED after s1 (scores npz, panel max z): NOT a few outliers. The whole true distribution rose and the false one
+  fell. Line-set true median 0.84 (clean) -> 4.35 (s0) / 3.99 (s1); eval false median 8.19 -> 4.62 / 4.72; eval false
+  p10 6.83 -> 3.95 / 3.79; top-10 line-set true now 5.5-6.6 (clean: one at 5.8, rest <= 3.6). Line 3.59 -> 6.30 / 5.81.
+  Readout 11 keeps a 1.9 z gap (clean 5.5) and its own line rises only 0.5 z; inside the panel the line is set at
+  readouts 19-24 where true statements rose most. s1 route_panel__lam10000__seed1.json: same two line setters
+  (rows 1176, 1428) at readouts 23/24; R28 norm ratio 0.97/0.96 again.
 - Related idea (credit if the post uses it): a quantile threshold fails when the attacker controls the calibration
   data ("calibration poisoning"), Scholten & Günnemann, arXiv [2410.09878](https://arxiv.org/abs/2410.09878)
   (ICLR 2025). Here the attacker controls the model that produces the true-statement scores the line is set on.
+- Exploratory defence rows (Felix E1, Vera #4950/#4953, s0+s1): any-member rule (each member at its own k-th highest of
+  200 true, k = 1) = Tippett's minimum-p combiner (Heard & Rubin-Delanchy, arXiv
+  [1707.06897](https://arxiv.org/abs/1707.06897), defines S_T = min p_i, Tippett 1931); catch 67% but eval false alarms
+  2.5-3.2% (overfits its 200-statement calibration). Rule B (re-standardise each member on the scored model's own 200
+  true, then the same max and one line): 66.2% [62.9, 69.5] at 1.0% false alarms. Relation to prior work: lighter than a
+  refit on the deployed weights (Libon et al. 2609.38645 retrained regime; our 1021 refit 99%): only each probe's scale
+  and offset are re-estimated, the directions stay frozen.
 
 ## 3. Constraints / data facts
 - 1021 fine-tune: ~8 min / 150 steps, footprint ~8.0 GB (memwatch), lam0 run killed at 9074 MB once.

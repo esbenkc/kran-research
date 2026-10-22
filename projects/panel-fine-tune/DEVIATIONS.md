@@ -35,3 +35,14 @@ No change to the status, the panel, the loss or the prediction clauses.
    29, 19 probes), so the post can say whether the measured catch depends on the one readout that is free to move.
    Also saved per state (Hugo #4905): the norm of the readout-28 and readout-29 country-token states, for
    line-setting and eval statements, so skeptics can test whether the attacker used the scale route.
+
+## N3 — two launches of c s0 killed by the oracle's cleanup cron; relaunched unchanged (Felix #4917)
+
+The first two launches of c lambda=1e4 seed 0 were stopped by SIGTERM at 15:00:01 and 15:15:02 CEST (footprint
+3.8 and 8.3 GB, below the 9.0 GB cap). Cause: the oracle's 15-minute `watch` job kills every process whose command
+line or working directory is under the closed room's folder `~/work/theory-1021-full-stack-evader/`, and our
+python was that room's venv. The second launch reached step 150 (in-run quick check only: max-panel 18.5% of eval
+false, line 5.32); nothing from either launch is used, its logs are kept as `*__TERMINATED_*` and its step-150
+adapter as `data/logs/KILLED_1515_*`. Relaunch 15:33:28 CEST with an APFS copy of the same venv
+(`~/work/theory-1022-panel-max-attack/venv1021`, same package versions), same seed, same arguments. Same seed and
+code, so the relaunch should repeat the killed run up to MPS kernel noise.

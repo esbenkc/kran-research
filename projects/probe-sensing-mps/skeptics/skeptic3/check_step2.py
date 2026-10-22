@@ -1,8 +1,9 @@
 import json
 import os
 import glob
+import numpy as np
 
-def compute_metrics(json_path):
+def compute_metrics(json_path, run_null=False):
     with open(json_path, 'r') as f:
         data = json.load(f)
     
@@ -11,7 +12,6 @@ def compute_metrics(json_path):
         rows = data.get('test_rows')
         
     if rows is None:
-        print(f"{os.path.basename(json_path)}: No rows found")
         return
         
     n_cases = len(rows)
@@ -30,6 +30,8 @@ def compute_metrics(json_path):
     
     logodds_probe = []
     logodds_noprobe = []
+    
+    pair_diffs = [] # For permutation null
 
     yes_id = data.get('yes_id', 9454)
     no_id = data.get('no_id', 2753)
@@ -40,13 +42,11 @@ def compute_metrics(json_path):
         c0 = conds[0]
         c1 = conds[1]
         
-        # c0 has true label no_id, c1 has true label yes_id
-        if 'logp_yes' in c0:
-            c0_top = yes_id if c0['logp_yes'] > c0['logp_no'] else no_id
-            c1_top = yes_id if c1['logp_yes'] > c1['logp_no'] else no_id
-        else:
-            c0_top = yes_id if c0['logodds_yes_no'] > 0 else no_id
-            c1_top = yes_id if c1['logodds_yes_no'] > 0 else no_id
+        c0_logodds = c0['logodds_yes_no']
+        c1_logodds = c1['logodds_yes_no']
+        
+        c0_top = yes_id if c0_logodds > 0 else no_id
+        c1_top = yes_id if c1_logodds > 0 else no_id
         
         c0_correct = c0_top == no_id
         c1_correct = c1_top == yes_id
@@ -55,32 +55,49 @@ def compute_metrics(json_path):
         if c1_correct: correct_count += 1
         if c0_correct and c1_correct: both_correct += 1
         
-        c0_logodds = c0['logodds_yes_no']
-        c1_logodds = c1['logodds_yes_no']
-        
         sep_nats += (c1_logodds - c0_logodds)
         
         logodds_probe.append(c1_logodds)
         logodds_noprobe.append(c0_logodds)
+        pair_diffs.append((c0_logodds, c1_logodds))
 
     acc = correct_count / n_cases
     both_acc = both_correct / n_prompts
     avg_sep = sep_nats / n_prompts
     higher_with_probe = sum(1 for p, np in zip(logodds_probe, logodds_noprobe) if p > np)
     
-    print(f"{os.path.basename(json_path)} (Rebuilt):")
-    print(f"  Acc: {acc:.4f}")
-    print(f"  Both correct: {both_acc:.4f}")
-    print(f"  Separation: {avg_sep:.4f}")
-    print(f"  Higher log-odds with probe: {higher_with_probe}/{n_prompts}")
-    
-    return {
+    res = {
         "acc": acc,
         "both_correct": both_acc,
         "separation_nats": avg_sep,
         "higher_with_probe": higher_with_probe,
         "n_prompts": n_prompts
     }
+
+    if run_null and pair_diffs:
+        # 2000-draw within-pair label swap
+        rng = np.random.default_rng(42)
+        null_accs = []
+        for _ in range(2000):
+            swaps = rng.choice([True, False], size=n_prompts)
+            null_corr = 0
+            for i, swap in enumerate(swaps):
+                l0, l1 = pair_diffs[i]
+                if swap:
+                    # swap labels: c0 acts as probe=1 (true label yes), c1 acts as probe=0 (true label no)
+                    if l0 > 0: null_corr += 1
+                    if l1 <= 0: null_corr += 1
+                else:
+                    if l0 <= 0: null_corr += 1
+                    if l1 > 0: null_corr += 1
+            null_accs.append(null_corr / (2 * n_prompts))
+            
+        p95 = np.percentile(null_accs, 95)
+        max_acc = np.max(null_accs)
+        res["null_swap_p95"] = p95
+        res["null_swap_max"] = max_acc
+    
+    return res
 
 def main():
     whole_dir = "kran-research/projects/probe-sensing-mps/data/step2/whole"
@@ -91,14 +108,16 @@ def main():
     if os.path.exists(whole_dir):
         files = sorted(glob.glob(os.path.join(whole_dir, "*.json")))
         for f in files:
-            res = compute_metrics(f)
+            # run null test on the primary metric (compile_probe_none_s0.json)
+            is_primary = 'compile_probe_none_s' in os.path.basename(f)
+            res = compute_metrics(f, run_null=is_primary)
             if res:
                 results["whole/" + os.path.basename(f)] = res
 
     if os.path.exists(runs_dir):
         files = sorted(glob.glob(os.path.join(runs_dir, "*.json")))
         for f in files:
-            res = compute_metrics(f)
+            res = compute_metrics(f, run_null=False)
             if res:
                 results["runs/" + os.path.basename(f)] = res
 

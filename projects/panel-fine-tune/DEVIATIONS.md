@@ -46,3 +46,16 @@ false, line 5.32); nothing from either launch is used, its logs are kept as `*__
 adapter as `data/logs/KILLED_1515_*`. Relaunch 15:33:28 CEST with an APFS copy of the same venv
 (`~/work/theory-1022-panel-max-attack/venv1021`, same package versions), same seed, same arguments. Same seed and
 code, so the relaunch should repeat the killed run up to MPS kernel noise.
+
+## E1 — exploratory row, post hoc (after s0 and s1 were scored; Tove #4946, Felix): the any-member rule at the same budget
+
+Recorded after the s0 and s1 panel numbers were read, so it is EXPLORATORY and never the status or a prediction
+clause. Saved scores only, no new run.
+
+Rule, fixed here before it is computed: for a scored state, each member l in the 20-probe panel gets its own line
+t_l(k) = the k-th highest z_l over that state's 200 line-setting true statements (flag iff z_l > t_l(k)). One
+common k for all members is chosen: the LARGEST k (the lowest lines) at which "flag if ANY member passes its own
+line" flags at most 2 of the 200 line-setting true statements (the same budget as the panel's 2-of-200 line).
+Reported per seed and pooled: eval false caught, eval false alarms on the 596 eval true statements, and k.
+Owner Bruno (analysis.py arm key `anymember`), rebuild Vera. The post states that this row was added after the
+results were seen.

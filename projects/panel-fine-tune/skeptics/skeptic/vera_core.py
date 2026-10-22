@@ -11,7 +11,8 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 WORK = HERE.parents[1]
-PROJ = Path(os.environ.get("VERA_PROJ", WORK / "kran-research/projects/panel-fine-tune"))
+_IN_REPO = (HERE.parents[1] / "PREREG.md").exists()  # receipts copy: projects/panel-fine-tune/skeptics/skeptic
+PROJ = Path(os.environ.get("VERA_PROJ", HERE.parents[1] if _IN_REPO else WORK / "kran-research/projects/panel-fine-tune"))
 OLD = Path.home() / "work/theory-1021-full-stack-evader/kran-research/projects/full-stack-evader"
 ROWS = json.load(open(OLD / "data/ref/split.json"))
 YF = np.array([1 - r["true"] for r in ROWS])  # 1 = FALSE statement

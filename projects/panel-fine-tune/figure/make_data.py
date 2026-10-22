@@ -56,8 +56,8 @@ def note(arm):
 
 panel = [{"key": "clean", "label": "original model", "v": mon("clean", "panelmax")["catch"], "note": ""}]
 if CONSTR:
-    panel.append({"key": "theory", "label": "activations moved by hand", "v": CONSTR["panel_catch_after"],
-                  "note": "outputs changed 0\n(layer 28 enlarged by hand)"})
+    panel.append({"key": "theory", "label": "original, layer 28 enlarged", "v": CONSTR["panel_catch_after"],
+                  "note": "outputs changed 0\n(by hand, no fine-tune)"})
 for key, arm, label in (("a", "layer18", "layer-18 fine-tune"), ("p", "panel", "panel fine-tune"),
                         ("z", LAM0, "panel fine-tune, no penalty")):
     if not arm:
@@ -71,7 +71,7 @@ for key, arm, label in (("a", "layer18", "layer-18 fine-tune"), ("p", "panel", "
 m = arms["panel"].get("exploratory_post_hoc", {}).get("panelmax_rescaled")
 if m:
     panel.append({"key": "r", "label": "panel fine-tune, rescaled*", "v": m["catch"], "v_lo": m["ci95"][0], "v_hi": m["ci95"][1],
-                  "note": "*rescaled on the tuned model,\nadded after the runs"})
+                  "note": "*rescaled after the runs,\non the tuned model"})
 n_p = arms["panel"]["n_seeds"]
 pct = lambda v: f"{v * 100:.0f}%"
 data = {

@@ -17,3 +17,21 @@ No change to the frozen text; the status and the prediction clauses are untouche
    scores under the line while the logits stay the same. A uniform shrink does not help under the re-set line
    (all scores move through the same increasing map). The figure marks "free at 28, floor at 28+" next to the
    measured cost.
+
+## N2 — the theory line for the headline row is zero; one more secondary row (recorded while c s0 trains, before any of its quick checks or scores was read; Iris #4899/#4904, Felix)
+
+No change to the status, the panel, the loss or the prediction clauses.
+
+1. Iris (T5, `iris_checks/lineraise.py`, `prenorm_selective.py`, CPU fp64 on clean acts) shows that the max-panel
+   under the headline line rule (re-set on the scored model's own 200 true statements) has NO output-cost floor.
+   Two routes cost exactly zero output change, both through readout `tok28` (block 28 before the final RMSNorm,
+   which drops any positive per-token factor): (a) shrink each caught false statement's state (tok28 catch
+   98.5% -> 0.0%, KL max 8.5e-14); (b) inflate the state of ~2% of true statements by 1.55-3.25x, so the re-set
+   panel line rises 3.59 -> 8.97 and the panel catch falls 99.5% -> 18.1% (KL max 3.2e-14). So "blinding at zero
+   output change" exists; tonight's runs test whether the gradient attacker FINDS a cheap route.
+2. The theory mark in the figure for the headline row is therefore 0 (existence, with the construction), and the
+   readout-29 floor binds only the clean-model-line row (PREREG s3 secondary), mapped to the panel line.
+3. Added secondary row (score level, same line rule): the max over the panel WITHOUT `tok28` (readouts 10..27 and
+   29, 19 probes), so the post can say whether the measured catch depends on the one readout that is free to move.
+   Also saved per state (Hugo #4905): the norm of the readout-28 and readout-29 country-token states, for
+   line-setting and eval statements, so skeptics can test whether the attacker used the scale route.

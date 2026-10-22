@@ -33,3 +33,10 @@ recorder, top token over the whole vocabulary on the 128 test prompts with and w
 every seed). TWO-KERNEL is scored the same way; FP32-THROUGH is scored in the whole eager model. Accuracy on the
 cached tail inputs becomes a diagnostic for the foldout (as in Sauers' training curves). The status matrix in
 PREREG.md is unchanged.
+
+## D4 — CONFIRMED needs both the cached-tail pass and the whole-graph pass (Tove #4660, Kasper #4658; no Step-2 result seen)
+
+Tightens D3. CONFIRMED requires BOTH (a) the pre-registered cached-tail pass (PREREG.md) AND (b) the whole-graph,
+no-recorder pass from D3, each >= 0.75 on >= 2 of 3 seeds, with the never-attached and shuffled nulls < 0.60 on every
+seed scored the same way. Cached passes but whole-graph fails: not CONFIRMED; REJECTED if TWO-KERNEL passes whole-graph,
+else UNCONFIRMED. The figure's accuracy column shows the whole-graph accuracy.

@@ -25,7 +25,7 @@ ROWS = [
     ("Buffer copy, compiled", "compile", "copy", False, None, ""),
     ("Probe, MLX step by step", "mlx-eager", "probe", False, None, ""),
     ("Probe, MLX compiled", "mlx-compile", "probe", False, None, ""),
-    ("Check: extra memory write, no probe", "compile", "twok", True, "compile_probe", "__as_twok"),
+    ("Check: extra write, no probe", "compile", "twok", True, "compile_probe", "__as_twok"),
 ]
 
 
@@ -54,14 +54,14 @@ def main() -> None:
             nulls = [{"kind": k, "acc": accs(prefix, k, suffix)} for k in ("shuffled", "never")]
             r["nulls"] = [n for n in nulls if n["acc"]]
         elif lv["prompts_changed"] == 0:
-            r["note"] = "not trained: no bit to read"
+            r["note"] = "nothing to read"
         rows.append(r)
     probe = next(r for r in rows if r["label"] == "Probe, compiled")
     acc = probe.get("acc") or []
     data = {
         "headline": f"Compiled probe: detector right on {', '.join(f'{x:.0%}' for x in acc)} of new answers (seeds)",
-        "title": "A compiled probe leaves a trace a fine-tune can read; step by step, nothing changes",
-        "subtitle": "Qwen3-1.7B, bf16, Apple M4 (PyTorch MPS and MLX). Probe reads one activation in layer 14.",
+        "title": "Only the compiled PyTorch probe changed the numbers, and a fine-tuned model learned to spot it",
+        "subtitle": "Qwen3-1.7B, bf16, Apple M4. Left: 64 prompts, probe on vs off. Right: last two layers trained, then tested in the whole model on 128 new prompts.",
         "floor": 0.002, "chance": 0.5, "bar": 0.75, "rows": rows,
     }
     plot_js = (HERE / "plot.js").read_text()

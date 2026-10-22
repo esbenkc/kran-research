@@ -32,11 +32,10 @@ export function render(data, Plot) {
   const diff = rows.filter((r) => r.diff > 0);
   const left = Plot.plot({
     style: plotStyle({ fontSize: "14px" }),
-    width: Math.round(W * 0.56), height: H, marginLeft: 210, marginRight: 76, marginTop: 30, marginBottom: 44,
-    x: { type: "log", domain: [data.floor * 0.8, 4], label: "Largest change in an output score (log)", labelAnchor: "center", labelArrow: "none" },
+    width: Math.round(W * 0.58), height: H, marginLeft: 238, marginRight: 76, marginTop: 30, marginBottom: 44,
+    x: { type: "log", domain: [data.floor * 0.8, 4], ticks: [0.01, 0.1, 1], tickFormat: (v) => `${v}`, label: "Largest change in an output score (log)", labelAnchor: "center", labelArrow: "none" },
     y,
     marks: [
-      Plot.gridX({ stroke: C.grid, strokeOpacity: 1 }),
       Plot.dot(same, {
         x: () => data.floor, y: "label", r: 6, stroke: C.muted, strokeWidth: 1.8, fill: "none", tip: true,
         title: (r) => `${r.label}\nevery bit of every score identical on ${r.n} of ${r.n} prompts`,
@@ -59,23 +58,27 @@ export function render(data, Plot) {
   const notes = rows.filter((r) => r.note);
   const right = Plot.plot({
     style: plotStyle({ fontSize: "14px" }),
-    width: Math.round(W * 0.40), height: H, marginLeft: 12, marginRight: 16, marginTop: 30, marginBottom: 44,
+    width: Math.round(W * 0.38), height: H, marginLeft: 12, marginRight: 16, marginTop: 30, marginBottom: 44,
     x: { domain: [0.3, 1.02], ticks: [0.4, 0.5, 0.6, 0.75, 0.9, 1], tickFormat: (v) => `${Math.round(v * 100)}%`, label: "Detector right on new prompts", labelAnchor: "center", labelArrow: "none" },
     y: { ...y, axis: null },
     marks: [
       Plot.ruleX([data.chance], { stroke: C.faint, strokeDasharray: "4,4", strokeWidth: 1.4 }),
       Plot.ruleX([data.bar], { stroke: C.red, strokeWidth: 1.4 }),
-      Plot.text([data.chance], { x: (v) => v, y: () => order[0], text: () => "chance", dy: -24, fill: C.muted, fontSize: 12 }),
-      Plot.text([data.bar], { x: (v) => v, y: () => order[0], text: () => "pass bar", dy: -24, fill: C.red, fontSize: 12 }),
+      Plot.text([data.chance], { x: (v) => v, y: () => order[0], text: () => "chance", dy: -24, dx: -4, textAnchor: "end", fill: C.muted, fontSize: 12 }),
+      Plot.text([data.bar], { x: (v) => v, y: () => order[0], text: () => "pass bar", dy: -24, dx: 4, textAnchor: "start", fill: C.red, fontSize: 12 }),
       Plot.dot(nul, {
-        x: "a", y: "label", r: 5, stroke: C.ink, strokeWidth: 1.4, fill: "none", symbol: (d) => (d.kind === "shuffled" ? "circle" : "square"),
+        x: "a", y: "label", r: 4, stroke: C.muted, strokeWidth: 1.3, fill: "none", symbol: (d) => (d.kind === "shuffled" ? "circle" : "square"),
         dy: 9, tip: true, title: (d) => `${d.label}\ncontrol: ${d.kind === "shuffled" ? "answers shuffled" : "probe never attached"}, seed ${d.s}\nright: ${pc(d.a)}`,
       }),
       Plot.dot(pts, {
         x: "a", y: "label", r: 6.5, fill: col, stroke: C.paper, strokeWidth: 1, dy: -4, tip: true,
         title: (d) => `${d.label}\nseed ${d.s}: right on ${pc(d.a)} of 256 answers`,
       }),
-      Plot.text(notes, { x: () => 0.31, y: "label", text: "note", textAnchor: "start", fill: C.muted, fontSize: 12 }),
+      Plot.text(rows.filter((r) => r.acc?.length), {
+        x: (r) => Math.min(...r.acc), y: "label", dy: -4, dx: -10, textAnchor: "end", fill: C.ink, fontSize: 12, ...halo(),
+        text: (r) => r.acc.map((v) => Math.round(v * 100)).join(", ") + "%",
+      }),
+      Plot.text(notes, { x: () => 0.31, y: "label", text: "note", textAnchor: "start", fill: C.muted, fontSize: 12, ...halo() }),
     ],
   });
   wrap.append(left, right);

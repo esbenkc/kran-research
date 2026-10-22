@@ -1,0 +1,102 @@
+{
+  "headline": "Compiled probe: detector right on 85%, 86%, 90% of new answers (seeds)",
+  "title": "Only the compiled PyTorch probe changed the numbers, and a fine-tuned model learned to spot it",
+  "subtitle": "Qwen3-1.7B, bf16, Apple M4. Left: 64 prompts, probe on vs off. Right: last two layers trained, then tested in the whole model on 128 new prompts.",
+  "floor": 0.002,
+  "chance": 0.5,
+  "bar": 0.75,
+  "rows": [
+    {
+      "label": "Probe, step by step",
+      "check": false,
+      "diff": 0.0,
+      "changed": 0,
+      "n": 64,
+      "note": "nothing to read"
+    },
+    {
+      "label": "Buffer copy, step by step",
+      "check": false,
+      "diff": 0.0,
+      "changed": 0,
+      "n": 64,
+      "note": "nothing to read"
+    },
+    {
+      "label": "Probe, compiled",
+      "check": false,
+      "diff": 1.140625,
+      "changed": 64,
+      "n": 64,
+      "acc": [
+        0.8516,
+        0.8555,
+        0.8984
+      ],
+      "nulls": [
+        {
+          "kind": "shuffled",
+          "acc": [
+            0.5,
+            0.4922,
+            0.5039
+          ]
+        },
+        {
+          "kind": "never",
+          "acc": [
+            0.4883,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Buffer copy, compiled",
+      "check": false,
+      "diff": 0.0,
+      "changed": 0,
+      "n": 64,
+      "note": "nothing to read"
+    },
+    {
+      "label": "Probe, MLX step by step",
+      "check": false,
+      "diff": 0.0,
+      "changed": 0,
+      "n": 64,
+      "note": "nothing to read"
+    },
+    {
+      "label": "Probe, MLX compiled",
+      "check": false,
+      "diff": 0.0,
+      "changed": 0,
+      "n": 64,
+      "note": "nothing to read"
+    },
+    {
+      "label": "Check: extra write, no probe",
+      "check": true,
+      "diff": 1.140625,
+      "changed": 64,
+      "n": 64,
+      "acc": [
+        0.8516,
+        0.8555,
+        0.8984
+      ],
+      "nulls": [
+        {
+          "kind": "never",
+          "acc": [
+            0.4883,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
+  ]
+}

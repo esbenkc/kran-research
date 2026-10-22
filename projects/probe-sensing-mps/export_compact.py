@@ -63,7 +63,7 @@ def main() -> None:
     (OUT / "step1" / "prefix_vectors.json").write_text(json.dumps(
         {"note": "block-26 input of the first dev prompt at positions 0-2 ('<|im_start|>', 'user', newline), bf16 bits as "
                  "uint16; identical in every prompt within a build (causal attention, shared prefix)", "vectors": prefix}))
-    for sub in ("runs", "whole"):
+    for sub in ("runs", "whole", "swap"):
         src = RAW / "step2" / "Qwen3-1.7B" / sub
         if src.exists():
             (OUT / "step2" / sub).mkdir(parents=True, exist_ok=True)

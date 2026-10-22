@@ -1,0 +1,202 @@
+{
+ "runs": {
+  "compile_probe_none_s0": {
+   "cached": {
+    "acc": 0.85546875,
+    "both_correct": 0.7109375,
+    "separation_nats": 9.286621088860556
+   },
+   "whole": {
+    "acc": 0.8515625,
+    "both_correct": 0.703125,
+    "separation_nats": 9.199218716212323
+   }
+  },
+  "compile_probe_none_s1": {
+   "cached": {
+    "acc": 0.85546875,
+    "both_correct": 0.7109375,
+    "separation_nats": 10.957763669081032
+   },
+   "whole": {
+    "acc": 0.85546875,
+    "both_correct": 0.7109375,
+    "separation_nats": 11.022949138373022
+   }
+  },
+  "compile_probe_none_s2": {
+   "cached": {
+    "acc": 0.890625,
+    "both_correct": 0.78125,
+    "separation_nats": 6.794433585368097
+   },
+   "whole": {
+    "acc": 0.8984375,
+    "both_correct": 0.796875,
+    "separation_nats": 6.654296853933602
+   }
+  },
+  "compile_probe_shuffled_s0": {
+   "cached": {
+    "acc": 0.5,
+    "both_correct": 0.0,
+    "separation_nats": 0.020996094215661287
+   },
+   "whole": {
+    "acc": 0.5,
+    "both_correct": 0.0,
+    "separation_nats": 0.009765626105945557
+   }
+  },
+  "compile_probe_shuffled_s1": {
+   "cached": {
+    "acc": 0.50390625,
+    "both_correct": 0.0234375,
+    "separation_nats": 0.02197265741415322
+   },
+   "whole": {
+    "acc": 0.4921875,
+    "both_correct": 0.015625,
+    "separation_nats": 0.022460937267169356
+   }
+  },
+  "compile_probe_shuffled_s2": {
+   "cached": {
+    "acc": 0.5,
+    "both_correct": 0.0,
+    "separation_nats": -0.0014648407232016325
+   },
+   "whole": {
+    "acc": 0.50390625,
+    "both_correct": 0.0078125,
+    "separation_nats": 0.009277348057366908
+   }
+  },
+  "compile_probe_never_s0": {
+   "cached": {
+    "acc": 0.5,
+    "both_correct": 0.0,
+    "separation_nats": 0.0
+   },
+   "whole": {
+    "acc": 0.48828125,
+    "both_correct": 0.0078125,
+    "separation_nats": -0.0009765625
+   }
+  },
+  "compile_probe_never_s1": {
+   "cached": {
+    "acc": 0.5,
+    "both_correct": 0.0,
+    "separation_nats": 0.0
+   },
+   "whole": {
+    "acc": 0.5,
+    "both_correct": 0.0234375,
+    "separation_nats": -0.001220703125
+   }
+  },
+  "compile_probe_never_s2": {
+   "cached": {
+    "acc": 0.5,
+    "both_correct": 0.0,
+    "separation_nats": 0.0
+   },
+   "whole": {
+    "acc": 0.5,
+    "both_correct": 0.0,
+    "separation_nats": 0.00024414435029029846
+   }
+  },
+  "compile_probe_none_s0__as_twok": {
+   "whole": {
+    "acc": 0.8515625,
+    "both_correct": 0.703125,
+    "separation_nats": 9.199218716212323
+   }
+  },
+  "compile_probe_none_s1__as_twok": {
+   "whole": {
+    "acc": 0.85546875,
+    "both_correct": 0.7109375,
+    "separation_nats": 11.022949138373022
+   }
+  },
+  "compile_probe_none_s2__as_twok": {
+   "whole": {
+    "acc": 0.8984375,
+    "both_correct": 0.796875,
+    "separation_nats": 6.654296853933602
+   }
+  },
+  "compile_probe_base_s0": {
+   "whole": {
+    "acc": 0.5078125,
+    "both_correct": 0.015625,
+    "separation_nats": 0.021484383819199593
+   }
+  }
+ },
+ "verdict": {
+  "compile_probe": {
+   "cached_acc": [
+    0.85546875,
+    0.85546875,
+    0.890625
+   ],
+   "whole_acc": [
+    0.8515625,
+    0.85546875,
+    0.8984375
+   ],
+   "null_accs": [
+    0.5,
+    0.50390625,
+    0.5,
+    0.5,
+    0.4921875,
+    0.50390625,
+    0.5,
+    0.5,
+    0.5,
+    0.48828125,
+    0.5,
+    0.5
+   ],
+   "complete": true,
+   "cached_pass": true,
+   "whole_pass": true,
+   "nulls_below_0.60": true
+  },
+  "eager_fp32": {
+   "cached_acc": [
+    null,
+    null,
+    null
+   ],
+   "whole_acc": [
+    null,
+    null,
+    null
+   ],
+   "null_accs": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "complete": false,
+   "cached_pass": false,
+   "whole_pass": false,
+   "nulls_below_0.60": false
+  }
+ }
+}

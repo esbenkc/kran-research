@@ -1,0 +1,41 @@
+{
+ "eager": {
+  "graph_nodes": 101,
+  "compiled_nodes": 2,
+  "node_counts": {
+   "Gather": 1,
+   "Squeeze": 2,
+   "RMSNorm": 9,
+   "Flatten": 15,
+   "Transpose": 23,
+   "Matmul": 15,
+   "Unflatten": 15,
+   "Reshape": 8,
+   "RoPE": 4,
+   "ScaledDotProductAttention": 2,
+   "Add": 4,
+   "CompiledSigmoidBroadcastBroadcastMultiplyBroadcastBroadcastMultiply": 2,
+   "Slice": 1
+  }
+ },
+ "compiled": {
+  "graph_nodes": 95,
+  "compiled_nodes": 2,
+  "node_counts": {
+   "Gather": 1,
+   "Squeeze": 2,
+   "RMSNorm": 9,
+   "Flatten": 9,
+   "Transpose": 23,
+   "Matmul": 15,
+   "Unflatten": 15,
+   "Reshape": 8,
+   "RoPE": 4,
+   "ScaledDotProductAttention": 2,
+   "Add": 4,
+   "CompiledSigmoidMultiplyMultiply": 2,
+   "Slice": 1
+  }
+ },
+ "compiled_equals_eager_bitwise": true
+}

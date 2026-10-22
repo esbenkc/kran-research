@@ -54,6 +54,12 @@ def main() -> None:
     mlx_step1()
     for s in (1, 2):
         train("compile", "probe", "none", s)
+    # slot for Vera's independent whole-model eval (#4707): she creates logs/SLOT_FREE when done (max 12 min)
+    gate, t0 = ROOT / "logs" / "SLOT_FREE", time.time()
+    if not gate.exists():
+        (ROOT / "logs" / "SLOT_FOR_VERA").touch()
+        while not gate.exists() and time.time() - t0 < 720:
+            time.sleep(10)
     for s in S:
         train("compile", "probe", "shuffled", s)
         train("compile", "probe", "never", s)

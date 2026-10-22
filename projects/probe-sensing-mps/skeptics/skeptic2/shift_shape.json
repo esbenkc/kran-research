@@ -1,0 +1,95 @@
+{
+ "pos0": {
+  "diff_norm_median": 0.0,
+  "diff_norm_max": 0.0,
+  "rel_to_hidden_median": 0.0,
+  "identical_across_128_prompts": true
+ },
+ "pos1": {
+  "diff_norm_median": 10.071552276611328,
+  "diff_norm_max": 10.071552276611328,
+  "rel_to_hidden_median": 0.005048756487667561,
+  "identical_across_128_prompts": true
+ },
+ "pos2": {
+  "diff_norm_median": 13.921406745910645,
+  "diff_norm_max": 13.921406745910645,
+  "rel_to_hidden_median": 0.006570060737431049,
+  "identical_across_128_prompts": true
+ },
+ "pos3": {
+  "diff_norm_median": 12.032690048217773,
+  "diff_norm_max": 25.520586013793945,
+  "rel_to_hidden_median": 0.0049007972702383995,
+  "identical_across_128_prompts": false
+ },
+ "pos4": {
+  "diff_norm_median": 13.503690719604492,
+  "diff_norm_max": 25.728748321533203,
+  "rel_to_hidden_median": 0.006061609368771315,
+  "identical_across_128_prompts": false
+ },
+ "pos10": {
+  "diff_norm_median": 14.720340728759766,
+  "diff_norm_max": 34.90864562988281,
+  "rel_to_hidden_median": 0.005746937356889248,
+  "identical_across_128_prompts": false
+ },
+ "pos35": {
+  "diff_norm_median": 15.14105224609375,
+  "diff_norm_max": 32.44222640991211,
+  "rel_to_hidden_median": 0.006305958144366741,
+  "identical_across_128_prompts": false
+ },
+ "pos70": {
+  "diff_norm_median": 18.38797950744629,
+  "diff_norm_max": 26.92686653137207,
+  "rel_to_hidden_median": 0.0083384457975626,
+  "identical_across_128_prompts": false
+ },
+ "pos3_70_diff_norm_median": 15.670236587524414,
+ "pos3_70_rel_median": 0.006647416856139898,
+ "pos1_2_inputs_identical_across_prompts_none": true,
+ "runs_s0": {
+  "acc": 0.85546875,
+  "both_right": 0.7109375,
+  "auroc": 0.96099853515625,
+  "within_prompt_higher": 128,
+  "n": 128
+ },
+ "runs_s1": {
+  "acc": 0.85546875,
+  "both_right": 0.7109375,
+  "auroc": 0.97857666015625,
+  "within_prompt_higher": 128,
+  "n": 128
+ },
+ "runs_s2": {
+  "acc": 0.890625,
+  "both_right": 0.78125,
+  "auroc": 0.975555419921875,
+  "within_prompt_higher": 128,
+  "n": 128
+ },
+ "whole_s0": {
+  "acc": 0.8515625,
+  "both_right": 0.703125,
+  "auroc": 0.959075927734375,
+  "within_prompt_higher": 128,
+  "n": 128
+ },
+ "whole_s1": {
+  "acc": 0.85546875,
+  "both_right": 0.7109375,
+  "auroc": 0.977935791015625,
+  "within_prompt_higher": 128,
+  "n": 128
+ },
+ "whole_s2": {
+  "acc": 0.8984375,
+  "both_right": 0.796875,
+  "auroc": 0.975799560546875,
+  "within_prompt_higher": 128,
+  "n": 128
+ }
+}

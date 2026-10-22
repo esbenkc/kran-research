@@ -59,17 +59,30 @@ for state in states:
         eval_tok_count += (off[i+1] - off[i]) + 1
     print(f"{state} Overall Eval KL: {eval_kl_sum / eval_tok_count:.4f}")
 
-print("\n--- Accuracy Check (Pairs via metrics.py) ---")
+print("\n--- Accuracy Check (Pairs via python without metrics.py) ---")
+eval_pairs = {}
+for i, row in enumerate(splits):
+    if row["split"] == "eval" and row["src"] == "cities":
+        eval_pairs.setdefault(row["city"], {})[row["true"]] = i
+
 for state in states:
-    cmd = f"../../../venv1021/bin/python -c 'from metrics import ranking; import numpy as np; " \
-          f"lp = np.load(\"data/states/{state}/lp.npy\"); " \
-          f"off = np.load(\"data/states/{state}/off.npy\"); " \
-          f"print(ranking(lp, off)[\"right_first\"])'"
-    try:
-        out = subprocess.check_output(cmd, shell=True, cwd="kran-research/projects/panel-fine-tune", text=True, stderr=subprocess.DEVNULL).strip()
-        print(f"{state}: right_first = {out.split()[-1]} / 298")
-    except subprocess.CalledProcessError:
-        print(f"{state}: Failed to run metrics.py")
+    lp = np.load(f"{DATA_DIR}/states/{state}/lp.npy")
+    off = np.load(f"{DATA_DIR}/states/{state}/off.npy")
+    
+    right_first = 0
+    total = 0
+    for city, pair in eval_pairs.items():
+        if 1 in pair and 0 in pair:
+            i_right, i_wrong = pair[1], pair[0]
+            # Sum of log-probs for the country token onwards
+            # Since prefixes are identical up to the country token
+            # Actually, just sum all lp values because they only differ at the end
+            sr = lp[off[i_right] : off[i_right+1]].sum()
+            sw = lp[off[i_wrong] : off[i_wrong+1]].sum()
+            if sr > sw:
+                right_first += 1
+            total += 1
+    print(f"{state}: right_first = {right_first} / {total}")
 
 print("\n--- Line Lemma 3-Seed Check ---")
 for state in states:
@@ -77,7 +90,6 @@ for state in states:
     z_all = [(npz[f"tok{tok}"] - zmoments[f"tok{tok}"]["mu"]) / zmoments[f"tok{tok}"]["sd"] for tok in range(10, 30)]
     panel20 = np.max(z_all, axis=0)
     
-    # Calculate t_l for each layer
     t_l = []
     catch_at_tM = []
     t_M = get_threshold(panel20[idx_refit_true])
@@ -88,8 +100,6 @@ for state in states:
     max_t_l = np.max(t_l)
     print(f"{state}:")
     print(f"  t_M = {t_M:.4f} >= max_t_l = {max_t_l:.4f} ? {t_M >= max_t_l}")
-    
-    # Catch(M)
     catch_M = (panel20[idx_eval_false] > t_M).mean()
     sum_catch_at_tM = np.sum(catch_at_tM)
     print(f"  catch(M) = {catch_M:.4f} <= sum_l catch_l(at t_M) = {sum_catch_at_tM:.4f} ? {catch_M <= sum_catch_at_tM}")

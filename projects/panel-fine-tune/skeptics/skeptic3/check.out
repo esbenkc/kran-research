@@ -1,0 +1,33 @@
+Evaluating Panel Catches...
+panel__lam10000__seed0: catch = 0.022 (thresh=6.300)
+panel__lam10000__seed1: catch = 0.062 (thresh=5.810)
+panel__lam10000__seed2: catch = 0.029 (thresh=6.162)
+
+--- Corrected Null Test (Shuffled-label refit) ---
+panel__lam10000__seed0 Null CI (95%): [0.005, 0.030]
+panel__lam10000__seed1 Null CI (95%): [0.007, 0.032]
+panel__lam10000__seed2 Null CI (95%): [0.012, 0.040]
+
+--- Exact KL recompute ---
+panel__lam10000__seed0 Country Token KL: 0.0102
+panel__lam10000__seed0 Overall Eval KL: 0.0043
+panel__lam10000__seed1 Country Token KL: 0.0109
+panel__lam10000__seed1 Overall Eval KL: 0.0047
+panel__lam10000__seed2 Country Token KL: 0.0113
+panel__lam10000__seed2 Overall Eval KL: 0.0054
+
+--- Accuracy Check (Pairs via python without metrics.py) ---
+panel__lam10000__seed0: right_first = 298 / 298
+panel__lam10000__seed1: right_first = 298 / 298
+panel__lam10000__seed2: right_first = 298 / 298
+
+--- Line Lemma 3-Seed Check ---
+panel__lam10000__seed0:
+  t_M = 6.3005 >= max_t_l = 6.3005 ? True
+  catch(M) = 0.0218 <= sum_l catch_l(at t_M) = 0.0688 ? True
+panel__lam10000__seed1:
+  t_M = 5.8097 >= max_t_l = 5.8097 ? True
+  catch(M) = 0.0621 <= sum_l catch_l(at t_M) = 0.2634 ? True
+panel__lam10000__seed2:
+  t_M = 6.1619 >= max_t_l = 6.0454 ? True
+  catch(M) = 0.0285 <= sum_l catch_l(at t_M) = 0.1242 ? True

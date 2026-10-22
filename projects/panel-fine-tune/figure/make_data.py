@@ -58,7 +58,7 @@ panel = [{"key": "clean", "label": "original model", "v": mon("clean", "panelmax
 if CONSTR:
     panel.append({"key": "theory", "label": "original, layer 28 enlarged", "v": CONSTR["panel_catch_after"],
                   "note": "outputs changed 0\n(by hand, no fine-tune)"})
-for key, arm, label in (("a", "layer18", "layer-18 fine-tune"), ("p", "panel", "panel fine-tune"),
+for key, arm, label in (("a", "layer18", "one-probe fine-tune"), ("p", "panel", "panel fine-tune"),
                         ("z", LAM0, "panel fine-tune, no penalty")):
     if not arm:
         continue
@@ -85,9 +85,9 @@ data = {
     "bar": 0.2,
     "legend": {
         "clean": "original model",
-        "a": "fine-tune against the layer-18 probe (3 runs)",
-        "p": f"fine-tune against the whole panel ({n_p} run{'s' if n_p > 1 else ''}; small dots: each run)",
-        "pat": "panel fine-tune, the same probe at the panel's line" if "pat" in rows[0] else None,
+        "a": "one-probe fine-tune, against the layer-18 probe (3 runs)",
+        "p": f"panel fine-tune, against all 20 probes ({n_p} run{'s' if n_p > 1 else ''}; small dots: each run)",
+        "pat": "panel fine-tune, each probe judged at the panel's line" if "pat" in rows[0] else None,
         "z": "panel fine-tune without the output penalty (1 run)" if LAM0 else None,
         "pred": "predicted: under half the original catch",
         "bar_tag": "predicted: under 20%",

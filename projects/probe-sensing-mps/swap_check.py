@@ -42,7 +42,7 @@ def main() -> None:
         yes, no = json.load(open(root / "runs" / f"{run}.json"))["yes_id"], json.load(open(root / "runs" / f"{run}.json"))["no_id"]
         res = {}
         for mode in ("as_is", "swap_prefix", "prefix_only"):
-            correct = []
+            correct, opposite = [], []
             with torch.no_grad():
                 for s in range(0, len(test), 16):
                     b = test[s:s + 16]
@@ -56,7 +56,9 @@ def main() -> None:
                     top = tail(torch.cat([h0, h1]).to(DEV), w_out).argmax(-1).cpu()
                     for j in range(len(b)):
                         correct += [int(top[j]) == no, int(top[j + len(b)]) == yes]
+                        opposite += [int(top[j]) == yes, int(top[j + len(b)]) == no]
             res[mode] = float(np.mean(correct))
+            res[mode + "_opposite_answer"] = float(np.mean(opposite))  # top token = the other one of Yes/No
         (root / "swap" / f"{run}.json").write_text(json.dumps({"run": run, "n_cases": 2 * len(test), **res}, indent=1))
         print("SWAP", run, res, flush=True)
 

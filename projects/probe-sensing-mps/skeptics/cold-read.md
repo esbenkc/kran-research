@@ -27,9 +27,9 @@ Figure assessment: The figure cannot stand alone because the caption lacks defin
   line is the 75% pass bar and the dashed line is chance."
 - LOST 3: foldout "deviation D0" -> "(not LoRA as first planned, a logged deviation)"; "deviation D5" -> "because the
   probe detector passed, as the plan allowed."
-- READ TWICE 1: split into two sentences: "It was right on all 128 answers for 64 new prompts. But it was fully right
-  only on the GPU model it was trained on." Lumi's "only worked" was not used: on four other Nvidia GPUs Sauers'
-  detector still scored 52-77% (watching README:15), so "only worked" would overstate.
+- READ TWICE 1 (final wording, blog a58084f, per Tove #4787): "It was right on all 128 answers for 64 new prompts.
+  It was perfect only on the GPU model it was trained on. On other Nvidia GPUs it did worse." Lumi's "only worked"
+  was not used: on four other Nvidia GPUs Sauers' detector still scored 52-77% (watching README:15).
 
 ## Confirmation
 

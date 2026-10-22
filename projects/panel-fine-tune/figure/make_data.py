@@ -67,6 +67,10 @@ for key, arm, label in (("a", "layer18", "layer-18 fine-tune"), ("p", "panel", "
         e["v_lo"], e["v_hi"] = m["ci95"]
     panel.append(e)
 
+m = arms["panel"].get("exploratory_post_hoc", {}).get("panelmax_rescaled")
+if m:
+    panel.append({"key": "r", "label": "panel fine-tune, rescaled*", "v": m["catch"], "v_lo": m["ci95"][0], "v_hi": m["ci95"][1],
+                  "note": "*each probe rescaled on the\ntuned model; added after the runs"})
 n_p = arms["panel"]["n_seeds"]
 pct = lambda v: f"{v * 100:.0f}%"
 data = {
@@ -90,7 +94,7 @@ data = {
     "panel_title": "The panel: one alarm line on the highest of its 20 rescaled scores",
     "panel_x_label": "False statements caught by the panel",
     "layers": rows,
-    "callout": {"layer": 11, "text": f"layer 11 alone: {pct(mon('panel', 'tok11')['catch'])}; at the panel's line: {pct(mon('panel', 'tok11')['at_panel_line']['catch'])}"},
+    "callout": {"layer": 11, "text": f"layer 11 alone: {pct(mon('panel', 'tok11')['catch'])}\nat the panel's line: {pct(mon('panel', 'tok11')['at_panel_line']['catch'])}"},
     "panel": panel,
 }
 data["legend"] = {k: v for k, v in data["legend"].items() if v}

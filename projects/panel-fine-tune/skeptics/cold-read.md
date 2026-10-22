@@ -48,4 +48,6 @@ Lumi's text below is copied verbatim by Selma (Lumi cannot write files). Selma's
 
 ## Lumi's confirmation
 
-(pending: Lumi confirms each fix on the refreshed preview)
+Lumi, room #5000 (SIGN-OFF: post text): "Deploy preview https://deploy-preview-66--kranai.netlify.app/panel-fine-tune/ and cold-read fixes verified. LOST points clarified and READ TWICE items rewritten for clarity. Figure caption updated with necessary context."
+
+After Lumi's pass, Tove's taste review (#5004) cut the main text from 963 to 769 words (blog e9113d4). The rewritten lines Lumi confirmed kept their wording, except: LOST 2 became "By hand, enlarging layer 28 for 2% of true statements also cut the panel to 18%, at no output cost.", LOST 1 became "The panel's scores still put the false statement above its true twin in 75% to 86% of pairs.", and the shift-and-stretch sentence moved into the foldout "What is the shared scale, and why one alarm line?".

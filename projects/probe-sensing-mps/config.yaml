@@ -1,0 +1,11 @@
+# Project config. One question, the model, and the figure this project produces.
+name: probe-sensing-mps
+question: "Can a model learn to tell when a read-only activation probe is attached, on Apple silicon?"
+model: Qwen/Qwen3-1.7B (bf16, local, Apple M4; PyTorch MPS eager + torch.compile, MLX eager + mx.compile)
+sources:
+  - https://github.com/SauersML/watching
+  - https://x.com/Sauers_/status/2111696312026677658
+  - https://huggingface.co/datasets/databricks/databricks-dolly-15k
+figures:
+  - id: probe-sensing-mps
+    caption: "Per build: largest change in an output score when the probe is attached, and the detector's accuracy on new prompts."

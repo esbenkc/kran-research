@@ -12,6 +12,11 @@ dependencies = [
     "google-genai>=2.29.0",
     "scipy>=1.17.1",
     "scikit-learn>=1.9.1",
+    "torch>=2.14.1",
+    "transformers>=5.20.2",
+    "peft>=0.21.2",
+    "mlx>=0.32.4",
+    "mlx-lm>=0.32.2",
 ]
 
 [tool.hatch.build.targets.wheel]

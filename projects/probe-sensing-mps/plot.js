@@ -59,7 +59,7 @@ export function render(data, Plot) {
   const right = Plot.plot({
     style: plotStyle({ fontSize: "14px" }),
     width: Math.round(W * 0.37), height: H, marginLeft: 12, marginRight: 16, marginTop: 30, marginBottom: 44,
-    x: { domain: [0.3, 1.02], ticks: [0.4, 0.5, 0.6, 0.75, 0.9, 1], tickFormat: (v) => `${Math.round(v * 100)}%`, label: "Detector right on new prompts", labelAnchor: "center", labelArrow: "none" },
+    x: { domain: [0.3, 1.02], ticks: [0.4, 0.5, 0.6, 0.75, 0.9, 1], tickFormat: (v) => `${Math.round(v * 100)}%`, label: "Right answers to: is a probe attached? (new prompts)", labelAnchor: "center", labelArrow: "none" },
     y: { ...y, axis: null },
     marks: [
       Plot.ruleX([data.chance], { stroke: C.faint, strokeDasharray: "4,4", strokeWidth: 1.4 }),

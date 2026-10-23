@@ -27,7 +27,7 @@ TERMS = {
     "end_pre": "against the probe before, step 300",
     "end_post": "against the probe after, step 300",
     "top_x": "Training step",
-    "bottom_title": "False statements caught, at an alarm line that 1% of true statements cross",
+    "bottom_title": "False statements caught, at an alarm line that about 1% of true statements cross",
     "bottom_x": "False statements caught",
     "pre": "fine-tune against the probe before the normalisation",
     "post": "fine-tune against the probe after the normalisation",

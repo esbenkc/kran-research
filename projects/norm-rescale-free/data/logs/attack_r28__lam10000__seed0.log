@@ -1,0 +1,13 @@
+W1023 06:04:23.120000 62210 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 4842.13it/s]
+{"step": 0, "catch_own_line": 0.9848993288590604, "line": -0.49991095066070557, "eval_kl": 0.0, "eval_kl_country_pos": 0.0, "max_abs_act": 175.0}
+{"step": 1, "probe_loss": 87.52787017822266, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 97.8}
+{"step": 2, "probe_loss": 68.25531768798828, "kl_cities": 0.0021852708887308836, "kl_pile": 0.0010492721339687705, "sec": 100.3}
+{"step": 50, "probe_loss": 1.0190211534500122, "kl_cities": 0.048548877239227295, "kl_pile": 0.001372248400002718, "sec": 216.9, "catch_own_line": 0.05704697986577181, "line": 2.8604772090911865, "eval_kl": 0.006634667050093412, "eval_kl_country_pos": 0.013156081549823284, "max_abs_act": 174.0}
+{"step": 100, "probe_loss": 1.6156620979309082, "kl_cities": 0.009476111270487309, "kl_pile": 0.0015147048979997635, "sec": 392.0, "catch_own_line": 0.03691275167785235, "line": 3.378197431564331, "eval_kl": 0.005471584387123585, "eval_kl_country_pos": 0.006509600207209587, "max_abs_act": 174.0}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{"step": 150, "probe_loss": 0.6801092624664307, "kl_cities": 0.003484786255285144, "kl_pile": 0.0015625867526978254, "sec": 567.9, "catch_own_line": 0.03355704697986577, "line": 3.3893494606018066, "eval_kl": 0.00397467752918601, "eval_kl_country_pos": 0.005110742058604956, "max_abs_act": 174.0}
+{"step": 200, "probe_loss": 0.5837279558181763, "kl_cities": 0.01037600077688694, "kl_pile": 0.0015458144480362535, "sec": 750.7, "catch_own_line": 0.031879194630872486, "line": 3.4702913761138916, "eval_kl": 0.004734966438263655, "eval_kl_country_pos": 0.0041029551066458225, "max_abs_act": 173.0}
+{"step": 250, "probe_loss": 0.11693128943443298, "kl_cities": 0.004210806451737881, "kl_pile": 0.0017142507713288069, "sec": 933.6, "catch_own_line": 0.03355704697986577, "line": 3.524897575378418, "eval_kl": 0.005497585982084274, "eval_kl_country_pos": 0.004059020895510912, "max_abs_act": 174.0}
+{"step": 300, "probe_loss": 0.4837951958179474, "kl_cities": 0.005695423576980829, "kl_pile": 0.006356771569699049, "sec": 1114.3, "catch_own_line": 0.018456375838926176, "line": 3.5337767601013184, "eval_kl": 0.004480801988393068, "eval_kl_country_pos": 0.003343314630910754, "max_abs_act": 174.0}
+{"readout": 28, "lam": 10000.0, "seed": 0, "train_seconds": 1179.2, "max_rss_mb": 730.703125}

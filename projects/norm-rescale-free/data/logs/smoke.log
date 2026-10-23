@@ -1,0 +1,9 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1023-norm-rescale-free/venv1023, got /Users/esben/work/theory-1023-norm-rescale-free/kran-research/projects/norm-rescale-free/../../../venv1023
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1023-norm-rescale-free/venv1023, got /Users/esben/work/theory-1023-norm-rescale-free/kran-research/projects/norm-rescale-free/../../../venv1023
+W1023 06:00:00.871000 60463 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6393.38it/s]
+{"step": 1, "probe_loss": 87.52787017822266, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 7.0}
+{"step": 2, "probe_loss": 68.25531768798828, "kl_cities": 0.0021852708887308836, "kl_pile": 0.0010492721339687705, "sec": 9.5}
+{"step": 3, "probe_loss": 45.22502899169922, "kl_cities": 0.012241593562066555, "kl_pile": 0.0010424349457025528, "sec": 11.9}
+{"step": 4, "probe_loss": 50.91529846191406, "kl_cities": 0.014041660353541374, "kl_pile": 0.001955620711669326, "sec": 14.1}
+{"readout": 28, "lam": 10000.0, "seed": 0, "train_seconds": 14.2, "max_rss_mb": 601.265625}

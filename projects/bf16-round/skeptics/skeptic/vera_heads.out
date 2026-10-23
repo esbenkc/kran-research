@@ -1,0 +1,73 @@
+W1022 18:17:17.624000 95119 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 3205.12it/s]
+none {"acc": 0.84765625, "neither": 0.0, "none_says_no": 0.96875, "probe_says_yes": 0.7265625, "mean_lo_none": -7.1845703125, "mean_lo_probe": 2.0869140625, "shift_pos": 128, "shift_neg": 0, "mean_shift": 9.271484375, "auroc": 0.960540771484375}
+0.0 {"acc": 0.5, "neither": 0.0, "none_says_no": 1.0, "probe_says_yes": 0.0, "mean_lo_none": -18.328125, "mean_lo_probe": -13.91943359375, "shift_pos": 128, "shift_neg": 0, "mean_shift": 4.40869140625, "auroc": 0.9307861328125}
+0.0,0.3 {"acc": 0.5, "neither": 0.0, "none_says_no": 1.0, "probe_says_yes": 0.0, "mean_lo_none": -22.90625, "mean_lo_probe": -22.31787109375, "shift_pos": 127, "shift_neg": 0, "mean_shift": 0.58837890625, "auroc": 0.60467529296875}
+0.0,0.3,0.6 {"acc": 0.5, "neither": 0.0, "none_says_no": 1.0, "probe_says_yes": 0.0, "mean_lo_none": -10.251953125, "mean_lo_probe": -7.81591796875, "shift_pos": 128, "shift_neg": 0, "mean_shift": 2.43603515625, "auroc": 0.728118896484375}
+1.1 {"acc": 0.5546875, "neither": 0.0, "none_says_no": 1.0, "probe_says_yes": 0.109375, "mean_lo_none": -6.6923828125, "mean_lo_probe": -2.6357421875, "shift_pos": 128, "shift_neg": 0, "mean_shift": 4.056640625, "auroc": 0.92071533203125}
+      180.51 real       634.44 user         5.47 sys
+          1604665344  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              123772  page reclaims
+               55680  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  66  messages received
+                   0  signals received
+                5122  voluntary context switches
+             1340823  involuntary context switches
+       9838321878071  instructions retired
+       2139036262363  cycles elapsed
+           991938792  peak memory footprint
+W1022 18:20:19.350000 96538 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1404.01it/s]
+none {"acc": 0.85546875, "neither": 0.0, "none_says_no": 0.71875, "probe_says_yes": 0.9921875, "mean_lo_none": -1.650390625, "mean_lo_probe": 9.303955078125, "shift_pos": 128, "shift_neg": 0, "mean_shift": 10.954345703125, "auroc": 0.978240966796875}
+0.3 {"acc": 0.5, "neither": 0.0, "none_says_no": 1.0, "probe_says_yes": 0.0, "mean_lo_none": -14.02099609375, "mean_lo_probe": -11.07421875, "shift_pos": 128, "shift_neg": 0, "mean_shift": 2.94677734375, "auroc": 0.836181640625}
+0.3,0.6 {"acc": 0.640625, "neither": 0.0, "none_says_no": 0.296875, "probe_says_yes": 0.984375, "mean_lo_none": 1.70458984375, "mean_lo_probe": 6.59033203125, "shift_pos": 128, "shift_neg": 0, "mean_shift": 4.8857421875, "auroc": 0.88848876953125}
+0.3,0.6,0.15 {"acc": 0.5, "neither": 0.0, "none_says_no": 0.0, "probe_says_yes": 1.0, "mean_lo_none": 8.91552734375, "mean_lo_probe": 10.30712890625, "shift_pos": 128, "shift_neg": 0, "mean_shift": 1.3916015625, "auroc": 0.691070556640625}
+      157.20 real       512.59 user         6.98 sys
+          1727184896  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              225738  page reclaims
+               94575  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  62  messages received
+                   0  signals received
+               16951  voluntary context switches
+             1024127  involuntary context switches
+       7883445712974  instructions retired
+       1793701715429  cycles elapsed
+           991529240  peak memory footprint
+W1022 18:22:56.548000 99070 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 6712.23it/s]
+none {"acc": 0.890625, "neither": 0.0, "none_says_no": 0.796875, "probe_says_yes": 0.984375, "mean_lo_none": -1.7548828125, "mean_lo_probe": 5.041015625, "shift_pos": 128, "shift_neg": 0, "mean_shift": 6.7958984375, "auroc": 0.9757080078125}
+0.0 {"acc": 0.5, "neither": 0.0, "none_says_no": 1.0, "probe_says_yes": 0.0, "mean_lo_none": -12.84521484375, "mean_lo_probe": -10.6630859375, "shift_pos": 128, "shift_neg": 0, "mean_shift": 2.18212890625, "auroc": 0.8997802734375}
+0.0,0.6 {"acc": 0.6328125, "neither": 0.0, "none_says_no": 0.265625, "probe_says_yes": 1.0, "mean_lo_none": 1.4794921875, "mean_lo_probe": 5.34765625, "shift_pos": 128, "shift_neg": 0, "mean_shift": 3.8681640625, "auroc": 0.925933837890625}
+0.0,0.6,0.15 {"acc": 0.5, "neither": 0.0, "none_says_no": 0.0, "probe_says_yes": 1.0, "mean_lo_none": 7.73828125, "mean_lo_probe": 8.654296875, "shift_pos": 128, "shift_neg": 0, "mean_shift": 0.916015625, "auroc": 0.673736572265625}
+      169.32 real       546.29 user         5.64 sys
+          1936375808  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              158559  page reclaims
+               27419  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  65  messages received
+                   0  signals received
+                5396  voluntary context switches
+             1231761  involuntary context switches
+       7878718689324  instructions retired
+       1836802278102  cycles elapsed
+           990660816  peak memory footprint

@@ -1,0 +1,9 @@
+build last shape (128, 2, 151936) uint16
+mine: acc all 256 0.9102; first 128 0.9102; unseen 128-255 0.9102
+mine: shift toward Yes >0 on 256/256, =0 0; per-prompt hash differs on 256/256
+top token agreement with build, first 128: unprobed 128/128, probed 128/128
+answer logits bit-identical to build (probe=0): 128/128
+answer logits bit-identical to build (probe=1): 128/128
+['test0320' 'test0321'] ['test0446' 'test0447' 'test0448' 'test0449'] ['test0574' 'test0575'] 256
+No-correct 124 Yes-correct 109
+No-correct 118 Yes-correct 115

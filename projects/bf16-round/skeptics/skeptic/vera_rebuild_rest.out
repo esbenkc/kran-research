@@ -1,0 +1,50 @@
+== /Users/esben/work/oracle-1023-bf16-round/kran-research/projects/bf16-round/raw/bits/Qwen3-1.7B/compile_emu1  graphs: ['cast_noprobe_A', 'cast_noprobe_B', 'cast_probe_A', 'cast_probe_B', 'none_noprobe_A', 'none_noprobe_B', 'none_probe_A', 'none_probe_B', 'round16_noprobe_A', 'round16_noprobe_B', 'round16_probe_A', 'round16_probe_B']
+  sha check cast_noprobe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check cast_probe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check none_noprobe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check none_probe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check round16_noprobe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check round16_probe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  cast       A: changed prompts per pass (sha, all pos) [0, 0, 0, 0]; last-pos [0, 0, 0, 0]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 0.0000, frac last logits changed 0.000 hidden-changed 0
+  cast       B: changed prompts per pass (sha, all pos) [0, 0, 0, 0]; last-pos [0, 0, 0, 0]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 0.0000, frac last logits changed 0.000 hidden-changed 0
+  cast       noprobe A vs B (pass1): 0 changed
+  cast       probe   A vs B (pass1): 0 changed
+  none       A: changed prompts per pass (sha, all pos) [0, 0, 0, 0]; last-pos [0, 0, 0, 0]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 0.0000, frac last logits changed 0.000 hidden-changed 0
+  none       B: changed prompts per pass (sha, all pos) [0, 0, 0, 0]; last-pos [0, 0, 0, 0]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 0.0000, frac last logits changed 0.000 hidden-changed 0
+  none       noprobe A vs B (pass1): 0 changed
+  none       probe   A vs B (pass1): 0 changed
+  round16    A: changed prompts per pass (sha, all pos) [0, 0, 0, 0]; last-pos [0, 0, 0, 0]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 0.0000, frac last logits changed 0.000 hidden-changed 0
+  round16    B: changed prompts per pass (sha, all pos) [0, 0, 0, 0]; last-pos [0, 0, 0, 0]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 0.0000, frac last logits changed 0.000 hidden-changed 0
+  round16    noprobe A vs B (pass1): 0 changed
+  round16    probe   A vs B (pass1): 0 changed
+  fidelity cast noprobe vs none noprobe (pass1): 0 changed, max|dlast| 0.0000
+  fidelity round16 noprobe vs none noprobe (pass1): 0 changed, max|dlast| 0.0000
+== /Users/esben/work/oracle-1023-bf16-round/kran-research/projects/bf16-round/raw/bits_r2f/Qwen3-1.7B/compile_emu0  graphs: ['none_noprobe_A', 'none_noprobe_B', 'none_probe_A', 'none_probe_B', 'round16f_noprobe_A', 'round16f_noprobe_B', 'round16f_probe_A', 'round16f_probe_B']
+  sha check none_noprobe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check none_probe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check round16f_noprobe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check round16f_probe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  none       A: changed prompts per pass (sha, all pos) [64, 64, 64, 64]; last-pos [64, 64, 64, 64]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 1.1406, frac last logits changed 0.898 hidden-changed 64
+  none       B: changed prompts per pass (sha, all pos) [64, 64, 64, 64]; last-pos [64, 64, 64, 64]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 1.1406, frac last logits changed 0.898 hidden-changed 64
+  none       noprobe A vs B (pass1): 0 changed
+  none       probe   A vs B (pass1): 0 changed
+  round16f   A: changed prompts per pass (sha, all pos) [0, 0, 0, 0]; last-pos [0, 0, 0, 0]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 0.0000, frac last logits changed 0.000 hidden-changed 0
+  round16f   B: changed prompts per pass (sha, all pos) [0, 0, 0, 0]; last-pos [0, 0, 0, 0]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 0.0000, frac last logits changed 0.000 hidden-changed 0
+  round16f   noprobe A vs B (pass1): 0 changed
+  round16f   probe   A vs B (pass1): 0 changed
+  fidelity round16f noprobe vs none noprobe (pass1): 64 changed, max|dlast| 1.1406
+== /Users/esben/work/oracle-1023-bf16-round/kran-research/projects/bf16-round/raw/bits/Qwen3-1.7B/eager_emu0  graphs: ['none_noprobe_A', 'none_probe_A', 'round16_noprobe_A', 'round16_probe_A']
+  sha check none_noprobe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check none_probe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check round16_noprobe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  sha check round16_probe_A: recomputed == saved on 568/568 rows (every 8th prompt, pass 1)
+  none       A: changed prompts per pass (sha, all pos) [0, 0, 0, 0]; last-pos [0, 0, 0, 0]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 0.0000, frac last logits changed 0.000 hidden-changed 0
+  round16    A: changed prompts per pass (sha, all pos) [0, 0, 0, 0]; last-pos [0, 0, 0, 0]; det noprobe [0, 0, 0] probe [0, 0, 0]; max|dlast| p1 0.0000, frac last logits changed 0.000 hidden-changed 0
+  fidelity round16 noprobe vs none noprobe (pass1): 0 changed, max|dlast| 0.0000
+bits_r2f/compile_emu0:round16f_noprobe_A vs compile_emu0:none_probe_A: changed prompts 0, rows 0/4544
+bits_r2f/compile_emu0:none_probe_A vs compile_emu0:none_probe_A: changed prompts 0, rows 0/4544
+bits_r2f/compile_emu0:none_noprobe_A vs compile_emu0:none_noprobe_A: changed prompts 0, rows 0/4544
+bits/compile_emu1:none_noprobe_A vs eager_emu0:none_noprobe_A: changed prompts 64, rows 4181/4544
+bits/compile_emu1:none_noprobe_A vs compile_emu0:none_noprobe_A: changed prompts 64, rows 4544/4544
+bits/compile_emu0:none_noprobe_A vs eager_emu0:none_noprobe_A: changed prompts 64, rows 4544/4544
+bits/compile_emu0:round16_noprobe_A vs eager_emu0:none_noprobe_A: changed prompts 64, rows 4544/4544

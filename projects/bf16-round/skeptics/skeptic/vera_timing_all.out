@@ -1,0 +1,5 @@
+{'none': 30, 'round16': 30, 'round16f': 30, 'barrier': 30, 'emulate': 30}
+round16: median 93.50 vs none 93.09 ms; cost +0.44% [unpaired boot -0.88, +0.98]; paired per-round median -0.20% [-0.49, +0.82]; max 95.3
+round16f: median 93.26 vs none 93.09 ms; cost +0.18% [unpaired boot -0.86, +0.98]; paired per-round median +0.21% [-0.80, +0.68]; max 95.5
+barrier: median 93.08 vs none 93.09 ms; cost -0.02% [unpaired boot -1.09, +0.53]; paired per-round median -0.16% [-0.51, +0.45]; max 96.0
+emulate: median 93.12 vs none 93.09 ms; cost +0.03% [unpaired boot -1.13, +0.72]; paired per-round median -0.04% [-1.19, +0.26]; max 94.3

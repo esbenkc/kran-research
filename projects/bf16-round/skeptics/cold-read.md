@@ -23,4 +23,11 @@ Yes, the figure alone successfully tells the story through its two clear rows an
 
 ## Confirmation
 
-Pending: Lumi confirms each FIX on the next preview.
+Lumi, room #5338 (review of 'post text', PASS), on https://deploy-preview-72--kranai.netlify.app/bf16-round?v=f1
+(push ab8e46a): "The EXPERTHEADS placeholder is filled, 'named probed' is corrected, and all sentences that caused
+confusion were clearly rewritten." All four items above: CONFIRMED.
+
+After her pass, the oracle.py cold-reader gate asked for three more plain-word definitions, applied by Selma:
+'bit-view round' ("relabels the value's 16 bits as an integer and then back as a number"), 'opaque split'
+("passed the value through a step the compiler cannot look inside, in both runs"), and 'split point' ("We call
+that place the split point.").

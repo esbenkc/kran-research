@@ -33,7 +33,7 @@ def rng(v, fmt):
 
 
 free_pct = f"{math.floor(100 * c_free)}%"  # floor: the score must land at or under the line
-ang_txt = rng(angle, lambda a: f"{a:.0f}")
+ang_txt = rng(angle, lambda a: f"{a:.1f}")
 ratio_txt = rng(ratio, pct)
 R_txt = rng(Rs, lambda r: f"{100 * r:.1f}")
 
@@ -92,7 +92,7 @@ o.append("<defs>" + "".join(
     (("k", INK), ("r", RED), ("b", BLUE), ("g", "#b9bec6"))) + "</defs>")
 
 # heading: the question
-t(40, 64, "Does a fine-tune that hides lies from a probe use the free rescale?", 36, 800)
+t(40, 62, "Does a fine-tune that hides false statements from a probe use the free rescale?", 29, 800)
 t(40, 104, "The final normalisation erases an activation's length, so a rescale changes no output.", 24, 500, MUTED)
 
 # the example: model + one real false statement
@@ -140,7 +140,7 @@ arrow(x0, y0, 300 * sum(ratio) / len(ratio), 12 + sum(angle) / len(angle), RED, 
 o.append(f'<circle cx="{x0}" cy="{y0}" r="6" fill="{RED}"/>')
 
 # punchline
-t(40, 736, "No. Set it back to its original length: the probe still misses the lie.", 28, 750, INK)
+t(40, 736, "No. Set it back to its original length: the probe still misses the false statement.", 28, 750, INK)
 t(40, 772, f"That gives back only {R_txt}% of the hiding ({runs}).", 26, 500, MUTED)
 
 alt = (f"Qwen2.5-1.5B reads one false statement, '{ex['text'].rstrip('.')}'. A probe reads its activation at the country "

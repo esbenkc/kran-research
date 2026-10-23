@@ -16,3 +16,10 @@ whether any scored data existed at that time.
 3. **Step-0 prediction label (s8, Tove #5450).** R_0 = cos^2(w/sd, h_hat) is the ACTIVATION-SPACE prediction: one
    gradient step taken on the readout-28 state itself, not on the LoRA weights. The figure and the post label it
    so. The measured R at step 50 is the weight-space counterpart.
+
+## F1 (fact recorded during A s0 training, before any scored checkpoint was read; no rule change)
+
+The 5-step smoke (seed 99, not scored) showed that ONE Adam step from the LoRA init already gives eval KL 0.0021
+nats/token (Bruno #5460; the KL term is exactly 0 at that step). The prediction's bar "eval KL at most 0.002" (s7
+clause 1) therefore sits at the one-step floor of this attacker. Clause 1 is still scored literally; the post says
+where the bar sits.

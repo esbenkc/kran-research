@@ -1,0 +1,23 @@
+{
+  "displayed_equations_checked": [
+    "N(h)=g*h/sqrt(||h||^2/1536+eps): algebraic eps scale error computed; eps=0 exact.",
+    "h\u00b7grad KL=0 and H_KL h=0 at clean: finite-difference proxy loss has radial grad/curv ~0 for eps=0.",
+    "R0 weighted cosine formula: rebuilt from clean acts and probe coef; got 0.280%.",
+    "R restore-share formula: rebuilt in checker.py and used for signoff table."
+  ],
+  "euler_numeric_proxy": {
+    "radial_curv_eps0": 1.0345911343734022e-23,
+    "radial_curv_eps1e_6": 2.7252888532787898e-17,
+    "radial_grad_eps0": -1.278422140813056e-27,
+    "random_curv_eps0": 0.030093074814785445,
+    "random_curv_eps1e_6": 0.030093073909200897
+  },
+  "n_pairs": 596,
+  "r0_percent": 0.2800146536746134,
+  "r0_restore_share": 0.002800146536746134,
+  "rmsnorm_eps_scale_error_max_by_c": {
+    "0.3": 2.727153929349413e-07,
+    "0.5": 8.091557957001783e-08,
+    "2.0": 2.0228897890106623e-08
+  }
+}

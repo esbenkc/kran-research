@@ -20,6 +20,7 @@ I did not read build's code. Every number below comes from build's saved raw fil
 | R0 stock: changed prompts /64, A+B x passes 0-3 | 64 | 64 everywhere, max abs last-logit change 1.1406 | vera_rebuild.py -> vera_rebuild_emu0.out |
 | **R2 round16: changed /64** | **64** | **64 everywhere, max 0.8438; 77.67% of all logits** | vera_rebuild_emu0.out, vera_frac.out |
 | intround (form B) | 64 | 64, and == round16 unprobed bit for bit | vera_rebuild_emu0.out |
+| fresh detectors seeds 1 / 2 on R2 (post-result robustness, D3) | 71.1 / 91.4 | 0.7109 / 0.9141; AUROC 0.956 / 0.968; shift toward Yes 128/128 each. Seed 1 sits below 75% because it says Yes too often (unprobed->No 0.43), not because it cannot separate | vera_det_seeds12.out |
 | barrier (opaque op, both graphs) | 0 | 0; barrier unprobed == stock probed (0/4544 rows) | vera_rebuild_emu0.out |
 | R2f (round + 32-bit rope) | 0 | 0 (R0 64 in same process); R2f unprobed == stock probed | vera_rebuild_rest.out |
 | emulate_precision_casts (none/cast/round16) | 0 | 0 | vera_rebuild_rest.out |

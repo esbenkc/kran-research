@@ -45,7 +45,8 @@ print("\n| Fine-tune | Run | Restore share | Gap drop, probe before | Caught, pr
 print("|---|---|---|---|---|---|---|")
 lab = {"pre": "against the probe before", "post": "against the probe after"}
 for name, r, c in rows:
-    w = "" if r["lam"] == 1e4 else f", penalty weight {r['lam']:g}"
+    m, e = f"{r['lam']:.0e}".split("e")
+    w = "" if r["lam"] == 1e4 else (", no output penalty" if r["lam"] == 0 else f", penalty weight {m} × 10" + str(int(e)).translate(str.maketrans("0123456789-", "⁰¹²³⁴⁵⁶⁷⁸⁹⁻")))
     R = "n/a" if r["arm"] == "post" else pct(c["R"])
     print(f"| {lab[r['arm']]}{w} | {r['seed'] + 1} | {R} | {pct(c['gap_drop_frac'], 0)} | {pct(c['catch_reset'])} | "
           f"{pct(c['catch_reset_tok29'])} | {c['eval_kl']:.4f} |")

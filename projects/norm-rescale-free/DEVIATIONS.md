@@ -46,3 +46,8 @@ over 8 pairs; attack_norm.py:211-244) is an INFERENCE, not a measurement.
    (precondition fails). It is FALSIFIED if the gap halves and R < 0.5. Reported as a test of the mechanism
    (the stretch is the cheap route only once the output penalty is ~3-4 orders of magnitude above the status
    weight), never as the answer to the title.
+4. **Caveat on the N2.3 prediction (Vera #5507, Iris #5506/#5508; added before the run starts).** lam/21.3 matches
+   only the loss WEIGHT of one country-token KL. The real fine-tune pays most of its output change elsewhere (A s0
+   step 300: 3.5% of the summed per-position KL on the attack statements sits at country tokens), and its KL batch
+   uses other statements than its probe batch. So the prediction is loose: a miss (gap halves, R < 0.5) shows the
+   weight-space path matters, and does NOT refute the free-state curve of theory.md Fact 5.

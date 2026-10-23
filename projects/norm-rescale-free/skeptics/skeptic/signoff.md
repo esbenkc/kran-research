@@ -44,8 +44,8 @@ Step-0 states also match the 1021 clean acts (cos >= 0.99985, all 2992 statement
 | B s2 | -0.0003 | -0.027 | -0.040 | 17.9% | 1.039 / 1.019 | 2.18% | **2.18%** | 0.00507 (0.00449) |
 
 (B rows: R uses tok28, the probe arm B did not attack: the null.)
-Restored states (every attacked length set back) are still hidden: tok28 re-set-line catch after restore = 1.85% / 1.34% / 2.01%,
-identical to the attacked catch. Pooled arm A: tok28 1.73% (re-set), 52.7% (clean line), tok29 2.13%, eval KL 0.00504.
+Restored states (every attacked length set back) are still hidden: tok28 re-set-line catch after restore = 1.85% / 1.34% / 2.35%
+(attacked: 1.85% / 1.34% / 2.01%). Pooled arm A: tok28 1.73% (re-set), 52.7% (clean line), tok29 2.13%, eval KL 0.00504.
 Pooled arm B: tok29 1.57%, tok28 2.01%, eval KL 0.00431.
 
 **Order of the decomposition does not change the answer.** The frozen R restores at the END state; Shapley and forward

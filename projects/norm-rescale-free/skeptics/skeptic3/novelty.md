@@ -1,0 +1,5 @@
+# Novelty Signoff by Skeptic 3 (Nadia)
+
+I confirm that this result is novel. The specific exact architectural symmetry (scale invariance of RMSNorm, $h \to c \cdot h$) has been noted in the context of forward passes and gradients (e.g., Zhang & Sennrich, 2019; Kunin et al., 2020), but whether a real fine-tuned attacker exploiting an output-matching penalty (like KL) naturally discovers and uses this zero-cost direction to evade pre-norm monitors has not been reported. The fact that the optimizer *ignores* this exact symmetry and instead turns the activation state, because tangential moves are sufficiently flat (nearly free) in the output space while the exact radial direction accounts for very little of the probe's gradient, is a novel mechanistic insight.
+
+I have verified the citations (Zhang & Sennrich 1910.07467; Kunin et al. 2012.04728; Bailey et al. 2412.09565) and concur that our result (R << 0.5) contributes new understanding to the evasion capabilities of fine-tunes against residual-stream probes.

@@ -37,15 +37,23 @@ Detectors: `bf16env/detectors/*.pt` = `cp -c` of probe-sensing-mps `raw/step2/Qw
 .venv/bin/python projects/bf16-round/tail_1022.py --backend round16 --build probe --null none --seed 0
 .venv/bin/python projects/bf16-round/eval_detectors.py --emulate 0 --fixes none,round16 --runs compile_probe_none_s0,compile_probe_none_s1,compile_probe_none_s2,compile_probe_never_s0,fresh_round16_probe_none_s0
 .venv/bin/python projects/bf16-round/eval_detectors.py --emulate 1 --fixes none --runs compile_probe_none_s0,compile_probe_none_s1,compile_probe_none_s2
-.venv/bin/python projects/bf16-round/heads.py
+.venv/bin/python projects/bf16-round/heads.py                                                  # + answer shares, separation
+# fresh seeds 1-2 (chain_t6.sh): tail_1022.py ... --seed 1|2, then eval_detectors.py --fixes round16,none --runs fresh_round16_probe_none_s1|s2
+.venv/bin/python projects/bf16-round/timing.py --fixes none,round16,round16f,barrier --out-name timing_all.json   # chain_t5.sh
+.venv/bin/python projects/bf16-round/detector_stats.py                                         # data/detector_stats.json
 <nightly venv>/bin/python projects/bf16-round/bits.py --emulate 0 --fixes none,round16 --out projects/bf16-round/raw/bits_nightly   # chain_t4.sh (D2)
 .venv/bin/python projects/bf16-round/table.py                                                  # data/bits_table.json
+.venv/bin/python projects/bf16-round/export_compact.py                                        # raw/ -> data/ (git)
 .venv/bin/python projects/bf16-round/make_figure.py --publish
 ```
 
+The chain_*.sh files are the exact order the jobs ran in (one heavy job at a time). The first detector eval was killed
+by the 5 GB watchdog after 7 of 10 results; chain_t3b.sh reran the 3 missing ones in small processes.
+
 ## Files
 
-- `raw/bits*/Qwen3-1.7B/<backend>_emu<0|1>/` (not in git, ~30 GB): per graph `<fix>_<noprobe|probe>_<A|B>`:
+- `raw/` is local only (~45 GB, not in git); `data/fingerprints/` has one SHA256 per prompt per pass per graph, so a
+  rebuild can be checked bit for bit. `raw/bits*/Qwen3-1.7B/<backend>_emu<0|1>/`: per graph `<fix>_<noprobe|probe>_<A|B>`:
   `_last.npy` uint16 [pass, prompt, vocab] answer-position logit bits (pass 0 = warm-up); `_hidden.npy` uint16
   [prompt, 71, 2048] final-norm output, pass 1; `_sha.json` [pass][prompt][position] SHA256 of each logit row;
   `_A_alllogits_pass1.npy` uint16 [prompt, 71, vocab]; `code/` generated kernel source; `meta.json`.
@@ -53,4 +61,5 @@ Detectors: `bf16env/detectors/*.pt` = `cp -c` of probe-sensing-mps `raw/step2/Qw
   all-position logits; `_last.npy` uint16 [prompt, probe, vocab].
 - `raw/step2/Qwen3-1.7B/round16_C/`: cached block-26 inputs for T4; `raw/step2/Qwen3-1.7B/runs/`: fresh detector.
 - `raw/timing/timing.json`: per-forward ms, medians, cost and bootstrap interval.
-- `data/` (in git): `bits_table.json`, `heads.json`, detector summaries.
+- `data/` (in git): `bits_table.json`, `detector_stats.json` (threshold-free), `heads.json`, `detectors/`, `timing/`,
+  `fresh_detector/`, `fingerprints/`, `code/` (generated Metal source of the key graphs), `run_meta/`.

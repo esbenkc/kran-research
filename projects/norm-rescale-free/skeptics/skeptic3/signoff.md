@@ -3,8 +3,8 @@
 **Status:** REJECTED (NO)
 
 ## Requirements Checklist
-- [x] **Own Derivation:** Included in `derivation.md`. Numeric/Symbolic check in `sympy_check.py`.
-- [x] **Own Code from Raw States:** `check.py` independently computes gap drop, restore share (Title Metric $R$), and catch rates.
+- [x] **Own Derivation & Equations Check:** I wrote a short derivation in `derivation.md` covering $N(ch)=N(h)$, Euler $\nabla_h \text{KL} \cdot h = 0$ and $H h = 0$ at the clean state, and the $R_0$ gap-weighted pair formula. I implemented a symbolic and numeric check in `sympy_check.py` verifying these properties. I confirm that the post's displayed equations match my independent derivation exactly.
+- [x] **Own Code from Raw States:** `check.py` independently computes gap drop, restore share (Title Metric $R$), and catch rates. Threshold rule strictly uses the 2nd-highest of 200 line-set true statements as defined in PREREG.
 - [x] **Novelty Check:** Included in `novelty.md`. Novel mechanistic insight that the optimizer ignores the exact free symmetry.
 - [x] **Null Tests:**
   - **Random Direction Radial Energy Share (Null Test 1):** 0.071% (Theoretical $\approx 1/1536$).

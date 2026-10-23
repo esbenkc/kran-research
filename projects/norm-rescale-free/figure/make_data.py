@@ -18,10 +18,13 @@ OUT = BLOG / "assets" / "figures" / "norm-rescale-free" / "data.json"
 
 TERMS = {
     "title": "The fine-tunes change the direction of the activations, and both probes go blind",
-    "subtitle": "Qwen2.5-1.5B, fine-tuned to hide false statements from one probe at its last layer. "
-                "Each line or small dot is one training run.",
-    "top_title": "Restore share: how much of the hiding comes back when each activation gets its original length",
+    "subtitle": "Qwen2.5-1.5B was fine-tuned to lower a probe's scores on false statements (the hiding). Its final "
+                "normalisation ignores each activation's length, so shrinking the length would hide them at no cost "
+                "to the outputs. Each line or small dot is one training run.",
+    "top_title": "Restore share: 100% if the fine-tune hid only by shrinking lengths, near 0% if it changed directions",
     "top_y": "Restore share (symmetric log scale)",
+    "end_pre": "against the probe before, step 300",
+    "end_post": "against the probe after, step 300",
     "top_x": "Training step",
     "bottom_title": "False statements caught, at an alarm line that 1% of true statements cross",
     "bottom_x": "False statements caught",

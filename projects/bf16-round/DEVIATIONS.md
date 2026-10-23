@@ -49,3 +49,16 @@ stays scored as worded in PREREG.md; the diagnostic decides only the foldout wor
 
 Outcome of D2 (for the record, no decision): on torch 2.16.0.dev20261022 (git ad8c2fc) R0 still changes 64/64 and R2
 changes 0/64 (A/B, passes 0-3, floor 0); `raw/bits_nightly/`.
+
+## D4 — memory rule breach by a skeptic check (Tove #5311; Vera #5278)
+
+Vera's independent whole-graph check (`vera_round.py`, Qwen3-1.7B round16 + the seed-0 fresh tail) peaked at 5.91 GB
+footprint for about 2 minutes, over the 5 GB rule. It ran alone (Bruno's queue paused for the slot, `logs/vera_slot_done`),
+so the 2-heavy-jobs rule held and mem-guard did not fire. No number changed. Builder jobs stayed under the 5.0 GB
+watchdog; one (`det_emu0`) was killed by it at 5.01 GB and its 3 missing results reran in small processes.
+
+## Head clause, as scored (for the record, no decision)
+
+Scored as worded in PREREG.md, one ablated head brings each saved detector to 50.0%. Vera's check (`vera_heads.out`)
+shows the ablated detectors give the same answer to every input while the probe still raises the Yes-minus-No log-odds
+on 127-128 of 128 prompts. The post reports the clause as met by accuracy only, with the signal intact.

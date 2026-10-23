@@ -20,7 +20,8 @@ TERMS = {
     "title": "The fine-tunes change the direction of the activations, and both probes go blind",
     "subtitle": "Qwen2.5-1.5B was fine-tuned to lower a probe's scores on false statements (the hiding). Its final "
                 "normalisation ignores each activation's length, so shrinking the length would hide them at no cost "
-                "to the outputs. Each line or small dot is one training run.",
+                "to the outputs. A restore share of 100% would mean the fine-tune hid only by changing length, which the "
+                "outputs ignore. Each line or small dot is one training run.",
     "top_title": "Restore share: 100% if the fine-tune hid only by shrinking lengths, near 0% if it changed directions",
     "top_y": "Restore share (symmetric log scale)",
     "end_pre": "against the probe before, step 300",

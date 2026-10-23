@@ -1,0 +1,13 @@
+W1022 17:00:34.896000 59005 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6120.00it/s]
+W1022 17:00:43.928000 59005 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none_noprobe_A {'generated_kernel_count': 185, 'compile_s': 8.3, 'run_s': -0.0, 'probe_stored_ok': None}
+none_probe_A {'generated_kernel_count': 186, 'compile_s': 7.3, 'run_s': 0.0, 'probe_stored_ok': True}
+cast_noprobe_A {'generated_kernel_count': 185, 'compile_s': 7.9, 'run_s': 0.0, 'probe_stored_ok': None}
+cast_probe_A {'generated_kernel_count': 186, 'compile_s': 7.7, 'run_s': 0.0, 'probe_stored_ok': True}
+round16_noprobe_A {'generated_kernel_count': 186, 'compile_s': 10.9, 'run_s': 0.0, 'probe_stored_ok': None}
+round16_probe_A {'generated_kernel_count': 186, 'compile_s': 8.2, 'run_s': -0.0, 'probe_stored_ok': True}
+wrote projects/bf16-round/raw/codegate/Qwen3-1.7B/compile_emu1
+
+WATCHDOG: exit 0, peak footprint 4.55 GB
+DONE

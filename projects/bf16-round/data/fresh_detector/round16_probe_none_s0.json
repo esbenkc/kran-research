@@ -1,0 +1,1883 @@
+{
+ "args": {
+  "model": "Qwen/Qwen3-1.7B",
+  "backend": "round16",
+  "build": "probe",
+  "null": "none",
+  "seed": 0,
+  "steps": 1024,
+  "pairs": 8,
+  "lr": 5e-06,
+  "micro": 2,
+  "n_test": 128,
+  "eval_every": 128
+ },
+ "test": {
+  "acc": 0.87890625,
+  "both_correct": 0.7578125,
+  "separation_nats": 8.91259765275754
+ },
+ "dev_curve": [
+  {
+   "step": 0,
+   "acc": 0.4921875,
+   "both_correct": 0.0,
+   "separation_nats": -0.04296875
+  },
+  {
+   "step": 128,
+   "train_loss": 0.6983201503753662,
+   "acc": 0.5078125,
+   "both_correct": 0.046875,
+   "separation_nats": 0.0039062490686774254
+  },
+  {
+   "step": 256,
+   "train_loss": 0.6966216862201691,
+   "acc": 0.5390625,
+   "both_correct": 0.078125,
+   "separation_nats": 0.04492187639698386
+  },
+  {
+   "step": 384,
+   "train_loss": 0.7060786634683609,
+   "acc": 0.5234375,
+   "both_correct": 0.046875,
+   "separation_nats": 0.5273437481373549
+  },
+  {
+   "step": 512,
+   "train_loss": 1.2284174263477325,
+   "acc": 0.5390625,
+   "both_correct": 0.078125,
+   "separation_nats": 1.4316406208090484
+  },
+  {
+   "step": 640,
+   "train_loss": 0.22621043398976326,
+   "acc": 0.8359375,
+   "both_correct": 0.671875,
+   "separation_nats": 3.322265629656613
+  },
+  {
+   "step": 768,
+   "train_loss": 0.9100079350173473,
+   "acc": 0.6328125,
+   "both_correct": 0.265625,
+   "separation_nats": 4.7207031305879354
+  },
+  {
+   "step": 896,
+   "train_loss": 0.3243258260190487,
+   "acc": 0.8984375,
+   "both_correct": 0.796875,
+   "separation_nats": 7.983398430049419
+  },
+  {
+   "step": 1024,
+   "train_loss": 0.15368691459298134,
+   "acc": 0.859375,
+   "both_correct": 0.71875,
+   "separation_nats": 9.183593752793968
+  }
+ ],
+ "test_rows": [
+  {
+   "prompt": "test0320",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.5
+  },
+  {
+   "prompt": "test0320",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 2.25
+  },
+  {
+   "prompt": "test0321",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -8.375
+  },
+  {
+   "prompt": "test0321",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 0.6249999403953552
+  },
+  {
+   "prompt": "test0322",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.625
+  },
+  {
+   "prompt": "test0322",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.5
+  },
+  {
+   "prompt": "test0323",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.0
+  },
+  {
+   "prompt": "test0323",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.0
+  },
+  {
+   "prompt": "test0324",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -13.875
+  },
+  {
+   "prompt": "test0324",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -6.25
+  },
+  {
+   "prompt": "test0325",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.125
+  },
+  {
+   "prompt": "test0325",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.0
+  },
+  {
+   "prompt": "test0326",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -5.25
+  },
+  {
+   "prompt": "test0326",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.75
+  },
+  {
+   "prompt": "test0327",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -9.75
+  },
+  {
+   "prompt": "test0327",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -0.375
+  },
+  {
+   "prompt": "test0328",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.0
+  },
+  {
+   "prompt": "test0328",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 5.75
+  },
+  {
+   "prompt": "test0329",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -1.125
+  },
+  {
+   "prompt": "test0329",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 8.75
+  },
+  {
+   "prompt": "test0330",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -2.875
+  },
+  {
+   "prompt": "test0330",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.375
+  },
+  {
+   "prompt": "test0331",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -8.5
+  },
+  {
+   "prompt": "test0331",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -1.25
+  },
+  {
+   "prompt": "test0332",
+   "probe": 0,
+   "top": 9454,
+   "correct": false,
+   "logodds_yes_no": 3.375
+  },
+  {
+   "prompt": "test0332",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 10.4375
+  },
+  {
+   "prompt": "test0333",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.75
+  },
+  {
+   "prompt": "test0333",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.0
+  },
+  {
+   "prompt": "test0334",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.5
+  },
+  {
+   "prompt": "test0334",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.125
+  },
+  {
+   "prompt": "test0335",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.25
+  },
+  {
+   "prompt": "test0335",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.25
+  },
+  {
+   "prompt": "test0336",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -1.625
+  },
+  {
+   "prompt": "test0336",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.125
+  },
+  {
+   "prompt": "test0337",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -2.25
+  },
+  {
+   "prompt": "test0337",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.375
+  },
+  {
+   "prompt": "test0338",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.5
+  },
+  {
+   "prompt": "test0338",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.125
+  },
+  {
+   "prompt": "test0339",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.25
+  },
+  {
+   "prompt": "test0339",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.875
+  },
+  {
+   "prompt": "test0340",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.25
+  },
+  {
+   "prompt": "test0340",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.0
+  },
+  {
+   "prompt": "test0341",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.5
+  },
+  {
+   "prompt": "test0341",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 5.25
+  },
+  {
+   "prompt": "test0342",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -0.7499999403953552
+  },
+  {
+   "prompt": "test0342",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 8.875
+  },
+  {
+   "prompt": "test0343",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -5.375
+  },
+  {
+   "prompt": "test0343",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 2.5
+  },
+  {
+   "prompt": "test0344",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -1.8749998807907104
+  },
+  {
+   "prompt": "test0344",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.875
+  },
+  {
+   "prompt": "test0345",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.0
+  },
+  {
+   "prompt": "test0345",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.625
+  },
+  {
+   "prompt": "test0346",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.375
+  },
+  {
+   "prompt": "test0346",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 5.25
+  },
+  {
+   "prompt": "test0347",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.625
+  },
+  {
+   "prompt": "test0347",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.25
+  },
+  {
+   "prompt": "test0348",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -0.125
+  },
+  {
+   "prompt": "test0348",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.75
+  },
+  {
+   "prompt": "test0349",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -11.75
+  },
+  {
+   "prompt": "test0349",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -3.999999761581421
+  },
+  {
+   "prompt": "test0350",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -11.0
+  },
+  {
+   "prompt": "test0350",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -4.5
+  },
+  {
+   "prompt": "test0351",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.5
+  },
+  {
+   "prompt": "test0351",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 2.5
+  },
+  {
+   "prompt": "test0352",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.75
+  },
+  {
+   "prompt": "test0352",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.625
+  },
+  {
+   "prompt": "test0353",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.375
+  },
+  {
+   "prompt": "test0353",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.75
+  },
+  {
+   "prompt": "test0354",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.75
+  },
+  {
+   "prompt": "test0354",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -1.25
+  },
+  {
+   "prompt": "test0355",
+   "probe": 0,
+   "top": 9454,
+   "correct": false,
+   "logodds_yes_no": 4.75
+  },
+  {
+   "prompt": "test0355",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 10.0625
+  },
+  {
+   "prompt": "test0356",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -9.125
+  },
+  {
+   "prompt": "test0356",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -1.5
+  },
+  {
+   "prompt": "test0357",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -10.625
+  },
+  {
+   "prompt": "test0357",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -3.375
+  },
+  {
+   "prompt": "test0358",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -8.25
+  },
+  {
+   "prompt": "test0358",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 0.625
+  },
+  {
+   "prompt": "test0359",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -8.375
+  },
+  {
+   "prompt": "test0359",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.125
+  },
+  {
+   "prompt": "test0360",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.625
+  },
+  {
+   "prompt": "test0360",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.125
+  },
+  {
+   "prompt": "test0361",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.5
+  },
+  {
+   "prompt": "test0361",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 5.875
+  },
+  {
+   "prompt": "test0362",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -0.125
+  },
+  {
+   "prompt": "test0362",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.5
+  },
+  {
+   "prompt": "test0363",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.5
+  },
+  {
+   "prompt": "test0363",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.75
+  },
+  {
+   "prompt": "test0364",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.625
+  },
+  {
+   "prompt": "test0364",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 5.25
+  },
+  {
+   "prompt": "test0365",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.125
+  },
+  {
+   "prompt": "test0365",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.25
+  },
+  {
+   "prompt": "test0366",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.75
+  },
+  {
+   "prompt": "test0366",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -0.25
+  },
+  {
+   "prompt": "test0367",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -2.25
+  },
+  {
+   "prompt": "test0367",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.75
+  },
+  {
+   "prompt": "test0368",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.0
+  },
+  {
+   "prompt": "test0368",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.25
+  },
+  {
+   "prompt": "test0369",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -10.75
+  },
+  {
+   "prompt": "test0369",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": 0.0
+  },
+  {
+   "prompt": "test0370",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -11.375
+  },
+  {
+   "prompt": "test0370",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -1.5
+  },
+  {
+   "prompt": "test0371",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -0.25
+  },
+  {
+   "prompt": "test0371",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.0
+  },
+  {
+   "prompt": "test0372",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -8.5
+  },
+  {
+   "prompt": "test0372",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.5
+  },
+  {
+   "prompt": "test0373",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.375
+  },
+  {
+   "prompt": "test0373",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 2.125
+  },
+  {
+   "prompt": "test0374",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -5.625
+  },
+  {
+   "prompt": "test0374",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 2.625
+  },
+  {
+   "prompt": "test0375",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.875
+  },
+  {
+   "prompt": "test0375",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 0.375
+  },
+  {
+   "prompt": "test0376",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -0.75
+  },
+  {
+   "prompt": "test0376",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 8.5
+  },
+  {
+   "prompt": "test0377",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.0
+  },
+  {
+   "prompt": "test0377",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.375
+  },
+  {
+   "prompt": "test0378",
+   "probe": 0,
+   "top": 9454,
+   "correct": false,
+   "logodds_yes_no": 0.125
+  },
+  {
+   "prompt": "test0378",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 8.0
+  },
+  {
+   "prompt": "test0379",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.625
+  },
+  {
+   "prompt": "test0379",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.625
+  },
+  {
+   "prompt": "test0380",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.75
+  },
+  {
+   "prompt": "test0380",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.875
+  },
+  {
+   "prompt": "test0381",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.875
+  },
+  {
+   "prompt": "test0381",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.625
+  },
+  {
+   "prompt": "test0382",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.375
+  },
+  {
+   "prompt": "test0382",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 2.375
+  },
+  {
+   "prompt": "test0383",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.875
+  },
+  {
+   "prompt": "test0383",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.375
+  },
+  {
+   "prompt": "test0384",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -9.25
+  },
+  {
+   "prompt": "test0384",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -0.6250000596046448
+  },
+  {
+   "prompt": "test0385",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.0
+  },
+  {
+   "prompt": "test0385",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 2.75
+  },
+  {
+   "prompt": "test0386",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -2.625
+  },
+  {
+   "prompt": "test0386",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.375
+  },
+  {
+   "prompt": "test0387",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.0
+  },
+  {
+   "prompt": "test0387",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.999999761581421
+  },
+  {
+   "prompt": "test0388",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -2.75
+  },
+  {
+   "prompt": "test0388",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.625
+  },
+  {
+   "prompt": "test0389",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -2.875
+  },
+  {
+   "prompt": "test0389",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.0
+  },
+  {
+   "prompt": "test0390",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -0.7500000596046448
+  },
+  {
+   "prompt": "test0390",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.75
+  },
+  {
+   "prompt": "test0391",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.875
+  },
+  {
+   "prompt": "test0391",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 0.5
+  },
+  {
+   "prompt": "test0392",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -9.375
+  },
+  {
+   "prompt": "test0392",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -0.7499999403953552
+  },
+  {
+   "prompt": "test0393",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -1.625
+  },
+  {
+   "prompt": "test0393",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.5
+  },
+  {
+   "prompt": "test0394",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.875
+  },
+  {
+   "prompt": "test0394",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 5.375
+  },
+  {
+   "prompt": "test0395",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -10.125
+  },
+  {
+   "prompt": "test0395",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -1.375
+  },
+  {
+   "prompt": "test0396",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -12.875
+  },
+  {
+   "prompt": "test0396",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -5.0
+  },
+  {
+   "prompt": "test0397",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.875
+  },
+  {
+   "prompt": "test0397",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.625
+  },
+  {
+   "prompt": "test0398",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.0
+  },
+  {
+   "prompt": "test0398",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.75
+  },
+  {
+   "prompt": "test0399",
+   "probe": 0,
+   "top": 9454,
+   "correct": false,
+   "logodds_yes_no": 0.4999999701976776
+  },
+  {
+   "prompt": "test0399",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 8.375
+  },
+  {
+   "prompt": "test0400",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -12.875
+  },
+  {
+   "prompt": "test0400",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -5.0
+  },
+  {
+   "prompt": "test0401",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -9.0
+  },
+  {
+   "prompt": "test0401",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 0.125
+  },
+  {
+   "prompt": "test0402",
+   "probe": 0,
+   "top": 9454,
+   "correct": false,
+   "logodds_yes_no": 0.8749999403953552
+  },
+  {
+   "prompt": "test0402",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.875
+  },
+  {
+   "prompt": "test0403",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.75
+  },
+  {
+   "prompt": "test0403",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.75
+  },
+  {
+   "prompt": "test0404",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -8.25
+  },
+  {
+   "prompt": "test0404",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.75
+  },
+  {
+   "prompt": "test0405",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -8.125
+  },
+  {
+   "prompt": "test0405",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 0.875
+  },
+  {
+   "prompt": "test0406",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -10.375
+  },
+  {
+   "prompt": "test0406",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -1.125
+  },
+  {
+   "prompt": "test0407",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.125
+  },
+  {
+   "prompt": "test0407",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.5
+  },
+  {
+   "prompt": "test0408",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -8.25
+  },
+  {
+   "prompt": "test0408",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": 0.0
+  },
+  {
+   "prompt": "test0409",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.125
+  },
+  {
+   "prompt": "test0409",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 2.375
+  },
+  {
+   "prompt": "test0410",
+   "probe": 0,
+   "top": 9454,
+   "correct": false,
+   "logodds_yes_no": 2.0
+  },
+  {
+   "prompt": "test0410",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 9.9375
+  },
+  {
+   "prompt": "test0411",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -8.125
+  },
+  {
+   "prompt": "test0411",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -1.25
+  },
+  {
+   "prompt": "test0412",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -2.75
+  },
+  {
+   "prompt": "test0412",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.125
+  },
+  {
+   "prompt": "test0413",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.25
+  },
+  {
+   "prompt": "test0413",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.5
+  },
+  {
+   "prompt": "test0414",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -9.625
+  },
+  {
+   "prompt": "test0414",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 0.875
+  },
+  {
+   "prompt": "test0415",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -11.5
+  },
+  {
+   "prompt": "test0415",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -3.25
+  },
+  {
+   "prompt": "test0416",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.875
+  },
+  {
+   "prompt": "test0416",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.875
+  },
+  {
+   "prompt": "test0417",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.375
+  },
+  {
+   "prompt": "test0417",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 5.125
+  },
+  {
+   "prompt": "test0418",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.875
+  },
+  {
+   "prompt": "test0418",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.625
+  },
+  {
+   "prompt": "test0419",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -13.0
+  },
+  {
+   "prompt": "test0419",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -5.0
+  },
+  {
+   "prompt": "test0420",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -12.125
+  },
+  {
+   "prompt": "test0420",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -3.25
+  },
+  {
+   "prompt": "test0421",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.5
+  },
+  {
+   "prompt": "test0421",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.8749998807907104
+  },
+  {
+   "prompt": "test0422",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -1.125
+  },
+  {
+   "prompt": "test0422",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 10.0
+  },
+  {
+   "prompt": "test0423",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.875
+  },
+  {
+   "prompt": "test0423",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.875
+  },
+  {
+   "prompt": "test0424",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.5
+  },
+  {
+   "prompt": "test0424",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.25
+  },
+  {
+   "prompt": "test0425",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -1.75
+  },
+  {
+   "prompt": "test0425",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.625
+  },
+  {
+   "prompt": "test0426",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -9.625
+  },
+  {
+   "prompt": "test0426",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -1.75
+  },
+  {
+   "prompt": "test0427",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.125
+  },
+  {
+   "prompt": "test0427",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 5.25
+  },
+  {
+   "prompt": "test0428",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -5.875
+  },
+  {
+   "prompt": "test0428",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.0
+  },
+  {
+   "prompt": "test0429",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.999999761581421
+  },
+  {
+   "prompt": "test0429",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 5.375
+  },
+  {
+   "prompt": "test0430",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -5.375
+  },
+  {
+   "prompt": "test0430",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.375
+  },
+  {
+   "prompt": "test0431",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.75
+  },
+  {
+   "prompt": "test0431",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.375
+  },
+  {
+   "prompt": "test0432",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.625
+  },
+  {
+   "prompt": "test0432",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 5.375
+  },
+  {
+   "prompt": "test0433",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -8.0
+  },
+  {
+   "prompt": "test0433",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 2.125
+  },
+  {
+   "prompt": "test0434",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -1.375
+  },
+  {
+   "prompt": "test0434",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 8.25
+  },
+  {
+   "prompt": "test0435",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -1.625
+  },
+  {
+   "prompt": "test0435",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 8.125
+  },
+  {
+   "prompt": "test0436",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -5.0
+  },
+  {
+   "prompt": "test0436",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.5
+  },
+  {
+   "prompt": "test0437",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.875
+  },
+  {
+   "prompt": "test0437",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.625
+  },
+  {
+   "prompt": "test0438",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -9.625
+  },
+  {
+   "prompt": "test0438",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.125
+  },
+  {
+   "prompt": "test0439",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.5
+  },
+  {
+   "prompt": "test0439",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 6.5
+  },
+  {
+   "prompt": "test0440",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -7.75
+  },
+  {
+   "prompt": "test0440",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.625
+  },
+  {
+   "prompt": "test0441",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -9.5
+  },
+  {
+   "prompt": "test0441",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -0.5
+  },
+  {
+   "prompt": "test0442",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -0.375
+  },
+  {
+   "prompt": "test0442",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 7.125
+  },
+  {
+   "prompt": "test0443",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -6.625
+  },
+  {
+   "prompt": "test0443",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 1.25
+  },
+  {
+   "prompt": "test0444",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -3.625
+  },
+  {
+   "prompt": "test0444",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 3.625
+  },
+  {
+   "prompt": "test0445",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -0.25
+  },
+  {
+   "prompt": "test0445",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 9.0
+  },
+  {
+   "prompt": "test0446",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -15.125
+  },
+  {
+   "prompt": "test0446",
+   "probe": 1,
+   "top": 2753,
+   "correct": false,
+   "logodds_yes_no": -8.875
+  },
+  {
+   "prompt": "test0447",
+   "probe": 0,
+   "top": 2753,
+   "correct": true,
+   "logodds_yes_no": -4.625
+  },
+  {
+   "prompt": "test0447",
+   "probe": 1,
+   "top": 9454,
+   "correct": true,
+   "logodds_yes_no": 4.5
+  }
+ ],
+ "train_s": 630.1,
+ "yes_id": 9454,
+ "no_id": 2753,
+ "torch": "2.14.1",
+ "cache_meta": "raw/step2/Qwen3-1.7B/round16_C/meta.json"
+}

@@ -1,0 +1,77 @@
+{
+  "title": "The 16-bit round did not hide the probe: a new detector still caught it on 91% of answers",
+  "subtitle": "Qwen3-1.7B, bf16, PyTorch 2.14.1 compiled, Apple M4. Each fix is in the model with and without the probe. Left: 64 prompts. Right: 128 new prompts, probe on and off.",
+  "chance": 0.5,
+  "band": [
+    0.43,
+    0.57
+  ],
+  "bar": 0.75,
+  "rows": [
+    {
+      "label": "Leaking build (no fix)",
+      "role": "leak",
+      "changed": 64,
+      "n": 64,
+      "frac": 0.7778,
+      "saved": [
+        0.8516,
+        0.8555,
+        0.8984
+      ]
+    },
+    {
+      "label": "Naive cast",
+      "role": "fix",
+      "changed": 64,
+      "n": 64,
+      "frac": 0.7778
+    },
+    {
+      "label": "Bit-view round",
+      "role": "fix",
+      "changed": 64,
+      "n": 64,
+      "frac": 0.7778
+    },
+    {
+      "label": "16-bit round",
+      "role": "title",
+      "changed": 64,
+      "n": 64,
+      "frac": 0.7767,
+      "saved": [
+        0.8008,
+        0.5977,
+        0.6875
+      ],
+      "fresh": 0.9102
+    },
+    {
+      "label": "16-bit round + 32-bit next step",
+      "role": "explore",
+      "changed": 0,
+      "n": 64,
+      "frac": 0.0
+    },
+    {
+      "label": "Precision-emulation setting",
+      "role": "fix",
+      "changed": 0,
+      "n": 64,
+      "frac": 0.0,
+      "saved": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "label": "Opaque split",
+      "role": "ref",
+      "changed": 0,
+      "n": 64,
+      "frac": 0.0
+    }
+  ]
+}

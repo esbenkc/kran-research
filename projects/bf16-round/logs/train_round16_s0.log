@@ -1,0 +1,14 @@
+W1022 17:40:58.618000 79905 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 6611.28it/s]
+step 128 loss 0.6983 dev {'acc': 0.5078125, 'both_correct': 0.046875, 'separation_nats': 0.0039062490686774254} 78s
+step 256 loss 0.6966 dev {'acc': 0.5390625, 'both_correct': 0.078125, 'separation_nats': 0.04492187639698386} 155s
+step 384 loss 0.7061 dev {'acc': 0.5234375, 'both_correct': 0.046875, 'separation_nats': 0.5273437481373549} 233s
+step 512 loss 1.2284 dev {'acc': 0.5390625, 'both_correct': 0.078125, 'separation_nats': 1.4316406208090484} 312s
+step 640 loss 0.2262 dev {'acc': 0.8359375, 'both_correct': 0.671875, 'separation_nats': 3.322265629656613} 390s
+step 768 loss 0.9100 dev {'acc': 0.6328125, 'both_correct': 0.265625, 'separation_nats': 4.7207031305879354} 469s
+step 896 loss 0.3243 dev {'acc': 0.8984375, 'both_correct': 0.796875, 'separation_nats': 7.983398430049419} 549s
+step 1024 loss 0.1537 dev {'acc': 0.859375, 'both_correct': 0.71875, 'separation_nats': 9.183593752793968} 628s
+TEST round16_probe_none_s0 {'acc': 0.87890625, 'both_correct': 0.7578125, 'separation_nats': 8.91259765275754}
+
+WATCHDOG: exit 0, peak footprint 3.64 GB
+DONE

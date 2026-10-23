@@ -1,0 +1,151 @@
+{
+ "model": "Qwen/Qwen3-1.7B",
+ "backend": "compile",
+ "emulate_precision_casts": true,
+ "layer": 14,
+ "T": 71,
+ "split": "dev",
+ "prompt_ids": [
+  "dev0256",
+  "dev0257",
+  "dev0258",
+  "dev0259",
+  "dev0260",
+  "dev0261",
+  "dev0262",
+  "dev0263",
+  "dev0264",
+  "dev0265",
+  "dev0266",
+  "dev0267",
+  "dev0268",
+  "dev0269",
+  "dev0270",
+  "dev0271",
+  "dev0272",
+  "dev0273",
+  "dev0274",
+  "dev0275",
+  "dev0276",
+  "dev0277",
+  "dev0278",
+  "dev0279",
+  "dev0280",
+  "dev0281",
+  "dev0282",
+  "dev0283",
+  "dev0284",
+  "dev0285",
+  "dev0286",
+  "dev0287",
+  "dev0288",
+  "dev0289",
+  "dev0290",
+  "dev0291",
+  "dev0292",
+  "dev0293",
+  "dev0294",
+  "dev0295",
+  "dev0296",
+  "dev0297",
+  "dev0298",
+  "dev0299",
+  "dev0300",
+  "dev0301",
+  "dev0302",
+  "dev0303",
+  "dev0304",
+  "dev0305",
+  "dev0306",
+  "dev0307",
+  "dev0308",
+  "dev0309",
+  "dev0310",
+  "dev0311",
+  "dev0312",
+  "dev0313",
+  "dev0314",
+  "dev0315",
+  "dev0316",
+  "dev0317",
+  "dev0318",
+  "dev0319"
+ ],
+ "torch": "2.14.1",
+ "torch_git": "5c4886908584029761b579af026dcfb627c84070",
+ "python": "/Users/esben/work/oracle-1023-bf16-round/bf16env/.venv/bin/python",
+ "graphs": {
+  "none_noprobe_A": {
+   "generated_kernel_count": 185,
+   "compile_s": 8.7,
+   "run_s": 35.0,
+   "probe_stored_ok": null
+  },
+  "none_probe_A": {
+   "generated_kernel_count": 186,
+   "compile_s": 8.9,
+   "run_s": 35.4,
+   "probe_stored_ok": true
+  },
+  "none_noprobe_B": {
+   "generated_kernel_count": 185,
+   "compile_s": 8.9,
+   "run_s": 35.2,
+   "probe_stored_ok": null
+  },
+  "none_probe_B": {
+   "generated_kernel_count": 186,
+   "compile_s": 8.2,
+   "run_s": 35.7,
+   "probe_stored_ok": true
+  },
+  "cast_noprobe_A": {
+   "generated_kernel_count": 185,
+   "compile_s": 8.0,
+   "run_s": 36.1,
+   "probe_stored_ok": null
+  },
+  "cast_probe_A": {
+   "generated_kernel_count": 186,
+   "compile_s": 8.3,
+   "run_s": 36.3,
+   "probe_stored_ok": true
+  },
+  "cast_noprobe_B": {
+   "generated_kernel_count": 185,
+   "compile_s": 7.9,
+   "run_s": 35.3,
+   "probe_stored_ok": null
+  },
+  "cast_probe_B": {
+   "generated_kernel_count": 186,
+   "compile_s": 7.8,
+   "run_s": 35.3,
+   "probe_stored_ok": true
+  },
+  "round16_noprobe_A": {
+   "generated_kernel_count": 186,
+   "compile_s": 8.5,
+   "run_s": 35.9,
+   "probe_stored_ok": null
+  },
+  "round16_probe_A": {
+   "generated_kernel_count": 186,
+   "compile_s": 8.2,
+   "run_s": 36.0,
+   "probe_stored_ok": true
+  },
+  "round16_noprobe_B": {
+   "generated_kernel_count": 186,
+   "compile_s": 7.8,
+   "run_s": 35.1,
+   "probe_stored_ok": null
+  },
+  "round16_probe_B": {
+   "generated_kernel_count": 186,
+   "compile_s": 8.1,
+   "run_s": 35.2,
+   "probe_stored_ok": true
+  }
+ }
+}

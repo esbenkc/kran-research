@@ -1,0 +1,116 @@
+{
+ "model": "Qwen/Qwen3-1.7B",
+ "backend": "compile",
+ "emulate_precision_casts": true,
+ "layer": 14,
+ "T": 71,
+ "split": "dev",
+ "prompt_ids": [
+  "dev0256"
+ ],
+ "torch": "2.14.1",
+ "graphs": {
+  "none_noprobe_A": {
+   "generated_kernel_count": 185,
+   "compile_s": 8.3,
+   "run_s": -0.0,
+   "probe_stored_ok": null,
+   "sha256_all_position_logits": [
+    [
+     null
+    ],
+    [
+     null
+    ],
+    [
+     null
+    ]
+   ]
+  },
+  "none_probe_A": {
+   "generated_kernel_count": 186,
+   "compile_s": 7.3,
+   "run_s": 0.0,
+   "probe_stored_ok": true,
+   "sha256_all_position_logits": [
+    [
+     null
+    ],
+    [
+     null
+    ],
+    [
+     null
+    ]
+   ]
+  },
+  "cast_noprobe_A": {
+   "generated_kernel_count": 185,
+   "compile_s": 7.9,
+   "run_s": 0.0,
+   "probe_stored_ok": null,
+   "sha256_all_position_logits": [
+    [
+     null
+    ],
+    [
+     null
+    ],
+    [
+     null
+    ]
+   ]
+  },
+  "cast_probe_A": {
+   "generated_kernel_count": 186,
+   "compile_s": 7.7,
+   "run_s": 0.0,
+   "probe_stored_ok": true,
+   "sha256_all_position_logits": [
+    [
+     null
+    ],
+    [
+     null
+    ],
+    [
+     null
+    ]
+   ]
+  },
+  "round16_noprobe_A": {
+   "generated_kernel_count": 186,
+   "compile_s": 10.9,
+   "run_s": 0.0,
+   "probe_stored_ok": null,
+   "sha256_all_position_logits": [
+    [
+     null
+    ],
+    [
+     null
+    ],
+    [
+     null
+    ]
+   ]
+  },
+  "round16_probe_A": {
+   "generated_kernel_count": 186,
+   "compile_s": 8.2,
+   "run_s": -0.0,
+   "probe_stored_ok": true,
+   "sha256_all_position_logits": [
+    [
+     null
+    ],
+    [
+     null
+    ],
+    [
+     null
+    ]
+   ]
+  }
+ }
+}

@@ -1,0 +1,10 @@
+W1022 17:29:01.333000 73353 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5937.94it/s]
+none_noprobe_A {'compile_s': 0.0, 'run_s': 40.9, 'probe_stored_ok': None}
+none_probe_A {'compile_s': 0.0, 'run_s': 40.8, 'probe_stored_ok': True}
+round16_noprobe_A {'compile_s': 0.0, 'run_s': 40.8, 'probe_stored_ok': None}
+round16_probe_A {'compile_s': 0.0, 'run_s': 41.2, 'probe_stored_ok': True}
+wrote /Users/esben/work/oracle-1023-bf16-round/kran-research/projects/bf16-round/raw/bits/Qwen3-1.7B/eager_emu0
+
+WATCHDOG: exit 0, peak footprint 4.49 GB
+DONE

@@ -1,0 +1,19 @@
+W1022 17:20:01.894000 69518 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7175.51it/s]
+W1022 17:20:11.361000 69518 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none_noprobe_A {'generated_kernel_count': 185, 'compile_s': 8.7, 'run_s': 35.0, 'probe_stored_ok': None}
+none_probe_A {'generated_kernel_count': 186, 'compile_s': 8.9, 'run_s': 35.4, 'probe_stored_ok': True}
+none_noprobe_B {'generated_kernel_count': 185, 'compile_s': 8.9, 'run_s': 35.2, 'probe_stored_ok': None}
+none_probe_B {'generated_kernel_count': 186, 'compile_s': 8.2, 'run_s': 35.7, 'probe_stored_ok': True}
+cast_noprobe_A {'generated_kernel_count': 185, 'compile_s': 8.0, 'run_s': 36.1, 'probe_stored_ok': None}
+cast_probe_A {'generated_kernel_count': 186, 'compile_s': 8.3, 'run_s': 36.3, 'probe_stored_ok': True}
+cast_noprobe_B {'generated_kernel_count': 185, 'compile_s': 7.9, 'run_s': 35.3, 'probe_stored_ok': None}
+cast_probe_B {'generated_kernel_count': 186, 'compile_s': 7.8, 'run_s': 35.3, 'probe_stored_ok': True}
+round16_noprobe_A {'generated_kernel_count': 186, 'compile_s': 8.5, 'run_s': 35.9, 'probe_stored_ok': None}
+round16_probe_A {'generated_kernel_count': 186, 'compile_s': 8.2, 'run_s': 36.0, 'probe_stored_ok': True}
+round16_noprobe_B {'generated_kernel_count': 186, 'compile_s': 7.8, 'run_s': 35.1, 'probe_stored_ok': None}
+round16_probe_B {'generated_kernel_count': 186, 'compile_s': 8.1, 'run_s': 35.2, 'probe_stored_ok': True}
+wrote /Users/esben/work/oracle-1023-bf16-round/kran-research/projects/bf16-round/raw/bits/Qwen3-1.7B/compile_emu1
+
+WATCHDOG: exit 0, peak footprint 4.88 GB
+DONE

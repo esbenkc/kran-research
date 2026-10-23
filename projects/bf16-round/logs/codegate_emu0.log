@@ -1,0 +1,18 @@
+W1022 16:58:54.708000 58229 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7376.32it/s]
+W1022 16:59:04.187000 58229 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none_noprobe_A {'generated_kernel_count': 186, 'compile_s': 7.5, 'run_s': 0.0, 'probe_stored_ok': None}
+none_probe_A {'generated_kernel_count': 187, 'compile_s': 6.7, 'run_s': -0.0, 'probe_stored_ok': True}
+cast_noprobe_A {'generated_kernel_count': 186, 'compile_s': 6.8, 'run_s': 0.0, 'probe_stored_ok': None}
+cast_probe_A {'generated_kernel_count': 187, 'compile_s': 7.2, 'run_s': -0.0, 'probe_stored_ok': True}
+bitcast_noprobe_A {'generated_kernel_count': 186, 'compile_s': 7.1, 'run_s': 0.0, 'probe_stored_ok': None}
+bitcast_probe_A {'generated_kernel_count': 187, 'compile_s': 7.7, 'run_s': -0.0, 'probe_stored_ok': True}
+round16_noprobe_A {'generated_kernel_count': 186, 'compile_s': 7.2, 'run_s': -0.0, 'probe_stored_ok': None}
+round16_probe_A {'generated_kernel_count': 187, 'compile_s': 7.2, 'run_s': -0.0, 'probe_stored_ok': True}
+intround_noprobe_A {'generated_kernel_count': 186, 'compile_s': 7.2, 'run_s': 0.0, 'probe_stored_ok': None}
+intround_probe_A {'generated_kernel_count': 187, 'compile_s': 6.9, 'run_s': 0.0, 'probe_stored_ok': True}
+barrier_noprobe_A {'generated_kernel_count': 187, 'compile_s': 7.5, 'run_s': -0.0, 'probe_stored_ok': None}
+barrier_probe_A {'generated_kernel_count': 187, 'compile_s': 7.2, 'run_s': 0.0, 'probe_stored_ok': True}
+wrote projects/bf16-round/raw/codegate/Qwen3-1.7B/compile_emu0
+
+WATCHDOG: exit 0, peak footprint 4.63 GB

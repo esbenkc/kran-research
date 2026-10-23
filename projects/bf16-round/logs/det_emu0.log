@@ -1,0 +1,16 @@
+W1022 17:51:38.000000 84330 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7858.71it/s]
+W1022 17:51:47.877000 84330 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+DET none compile_probe_none_s0 {'acc': 0.8515625, 'prompts_bit_identical_probe_vs_none': 0, 'separation_nats': 9.199218718074968} {'cond0_s': 25.3, 'cond1_s': 24.7}
+DET round16 compile_probe_none_s0 {'acc': 0.80078125, 'prompts_bit_identical_probe_vs_none': 0, 'separation_nats': 5.407226567794407} {'cond0_s': 24.9, 'cond1_s': 24.6}
+DET none compile_probe_none_s1 {'acc': 0.85546875, 'prompts_bit_identical_probe_vs_none': 0, 'separation_nats': 11.022949138373022} {'cond0_s': 25.2, 'cond1_s': 24.4}
+DET round16 compile_probe_none_s1 {'acc': 0.59765625, 'prompts_bit_identical_probe_vs_none': 0, 'separation_nats': 6.2402343157543925} {'cond0_s': 24.8, 'cond1_s': 24.7}
+DET none compile_probe_none_s2 {'acc': 0.8984375, 'prompts_bit_identical_probe_vs_none': 0, 'separation_nats': 6.654296853933602} {'cond0_s': 24.9, 'cond1_s': 25.1}
+DET round16 compile_probe_none_s2 {'acc': 0.6875, 'prompts_bit_identical_probe_vs_none': 0, 'separation_nats': 4.130859362424985} {'cond0_s': 24.6, 'cond1_s': 24.6}
+DET none compile_probe_never_s0 {'acc': 0.48828125, 'prompts_bit_identical_probe_vs_none': 0, 'separation_nats': -0.0009765622671693563} {'cond0_s': 25.0, 'cond1_s': 24.4}
+
+WATCHDOG: footprint 5.01 GB > cap 5.0 GB, killing 84330
+
+WATCHDOG: exit -9, peak footprint 5.01 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-84330-q9zidn_v'}
+  warnings.warn(

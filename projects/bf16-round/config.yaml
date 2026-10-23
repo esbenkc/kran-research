@@ -1,0 +1,12 @@
+# Project config. One question, the model, and the figure this project produces.
+name: bf16-round
+question: "Does an explicit 16-bit round at the probe's split point make a compiled read-only probe invisible to a trained detector?"
+model: Qwen/Qwen3-1.7B (bf16, local, Apple M4; PyTorch 2.14.1 MPS, torch.compile / Inductor Metal backend)
+sources:
+  - https://github.com/SauersML/watching
+  - https://x.com/Sauers_/status/2111696312026677658
+  - https://github.com/pytorch/pytorch/pull/200559
+  - https://huggingface.co/datasets/databricks/databricks-dolly-15k
+figures:
+  - id: bf16-round
+    caption: "Per build: prompts where the probe changed any output bit, and the detectors' accuracy on new prompts."

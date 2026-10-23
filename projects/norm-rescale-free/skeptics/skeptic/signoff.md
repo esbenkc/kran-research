@@ -90,5 +90,19 @@ splits give 2.7-5.1%. All << 0.5.
 
 ## Caveats (disclosed, do not change the headline)
 
-- One KL weight (1e4) decides the status; secondary runs (3e8, 1e5, lam 0) are n = 1 and were not rebuilt in this sign-off.
+- One KL weight (1e4) decides the status; secondary runs (3e8, 1e5, lam 0) are n = 1 (rebuilt below).
 - Forward-pass check covers 2 of 3 arm-A adapters at step 300 on 80 statements (CPU bf16 vs build's MPS).
+
+## Secondary runs (n = 1 each, never status; rebuilt 18:15 CEST with the same `vera_check.py`)
+
+| run (step 300) | gap drop | R | R_common | Shapley | forward | tok28 catch re-set / clean | tok29 re-set | restored catch | eval KL | norm ratio false/true |
+|---|---|---|---|---|---|---|---|---|---|---|
+| A lam 3e8 | 2.3% (precondition FAILS) | 0.0195 (meaningless) | -0.029 | 0.019 | 0.019 | 98.2% / 98.8% | 98.2% | 98.2% | 0.00327 | 1.000 / 1.000 |
+| A lam 1e5 | 70.0% | 0.0206 | 0.0199 | 0.044 | 0.068 | 43.3% / 80.0% | 41.1% | 43.5% | 0.00566 | 0.953 / 0.954 |
+| A lam 0 | 100% | 0.0011 | -0.0002 | 0.172 | 0.344 | 0.17% / 0.0% | 0.17% | 0.0% | 0.986 | 0.658 / 0.663 |
+
+- N2 frozen prediction for 3e8 ('R >= 0.5 OR gap fails to halve') holds only through its second branch: the attack did not move.
+- lam 1e5: 10x the weight leaves R at 2%, and that 2% is almost all a COMMON shrink (R_common 0.0199).
+- lam 0: the order of the split matters here (R 0.1% vs Shapley 17% vs forward 34%): a 0.66x shrink scales every raw twin gap
+  by 0.66 because b0 cancels in the pair difference. The catch test is order-free: restoring every length leaves 0.0% caught.
+  So the shrink bought no hiding at the alarm line; it does not mean the shrink left the raw gap untouched.

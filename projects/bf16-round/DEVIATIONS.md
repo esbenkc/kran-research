@@ -21,3 +21,16 @@ R2f is reported as exploratory in the post.
 Also from the gate (reported, no change): `cast` and `bitcast` no-probe sources equal stock `none` apart from
 comments (erased, as Iris predicted from `pointless_convert` and `remove_redundant_views`); the block-14 q_norm
 reduction is the same code with and without the probe.
+
+## D2 — exploratory row: R0 and R2 on a torch nightly that carries PyTorch PR #200559 (Iris #5177, Felix decision; no probe-vs-none comparison seen)
+
+Basis: source facts only. PyTorch commit decc6d2308 (2026-10-12, PR https://github.com/pytorch/pytorch/pull/200559,
+"[MPS] [Inductor] Compute in float32 after casting to fp16/bf16") makes Metal `to_dtype` return
+`static_cast<float>(static_cast<bfloat>(x))`, i.e. round once and re-widen. It is not in torch 2.14.1 (our stack) nor
+in release/2.15. If D1's reading is right, R2 on that build should round once at the split, like R2f does by hand.
+
+Change: one exploratory job, after Bruno's planned queue and alone (same 1-heavy-job rule, ~4.6 GB): the same
+`bits.py` with `--emulate 0 --fixes none,round16` under a separate venv (`nightlyenv-venv`, a clone of the run's venv
+with only torch replaced by a nightly built after 2026-10-12; exact version recorded in the run's meta). R0 in the
+same process is the validity check. Status and prereg clauses are unchanged and decided on torch 2.14.1 alone. If the
+nightly fails to install or compile by 04:00, the row is dropped and named in Next posts.

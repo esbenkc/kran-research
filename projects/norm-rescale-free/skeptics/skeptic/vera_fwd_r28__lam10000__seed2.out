@@ -1,0 +1,47 @@
+W1023 08:06:52.549000 88557 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 19381.70it/s]
+{
+ "run": "r28__lam10000__seed2",
+ "step": 300,
+ "K_pairs": 40,
+ "n_statements": 80,
+ "token_count_match": "80/80",
+ "country_tokens_sample": [
+  " Poland",
+  " Republic",
+  " Ethiopia",
+  " Indonesia",
+  " China",
+  " Afghanistan"
+ ],
+ "cos28_min": 0.9997316244022162,
+ "cos29_min": 0.9999210864944675,
+ "cos28_clean_min": 0.9997947078024637,
+ "norm_ratio_mine_over_build_range": [
+  0.9928863343371052,
+  1.0081907140790347
+ ],
+ "kl_mine_mean": 0.003248844062909484,
+ "kl_build_mean_same": 0.003249685512855649,
+ "kl_corr": 0.8564515622424937,
+ "R_pairs_mine": 0.00803934481961076,
+ "R_pairs_build_states": 0.007777435888157184
+}
+       53.00 real       164.42 user         1.99 sys
+          5147262976  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              359730  page reclaims
+                4219  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  79  messages received
+                   0  signals received
+                5930  voluntary context switches
+              368768  involuntary context switches
+       2760488376077  instructions retired
+        627266355496  cycles elapsed
+          1972638784  peak memory footprint

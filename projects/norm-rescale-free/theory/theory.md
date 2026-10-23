@@ -1,7 +1,7 @@
 # Theory: the free rescale before the final norm (T3, owner Iris)
 
 Numbers: `theory/theory_checks.py` -> `data/results/theory.json` (run 2026-10-23 15:2x CEST, CPU float64, unembedding
-streamed in 8192-row chunks, < 1 GB RSS). Input: `theory/inputs/clean_country_R28.npy` = theory-1022
+streamed in 8192-row chunks; measured peak RSS 1.13 GB with /usr/bin/time -l). Input: `theory/inputs/clean_country_R28.npy` = theory-1022
 `states/clean/country/R28.npy` (clean readout-28 country-token states, fp16, 2992 x 1536). Probe: `data/fits/panel.npz`
 `tok28` (sha1 99ab6a39..., identical to the 1022 file).
 

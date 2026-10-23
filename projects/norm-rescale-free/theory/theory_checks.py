@@ -1,5 +1,5 @@
 """Theory checks for the post (owner Iris, T3). Low memory: the tied unembedding is streamed in row chunks from the
-safetensors file (peak RSS < 0.6 GB), so this can run next to a fine-tune. CPU, float64.
+safetensors file; measured peak RSS 1.13 GB (/usr/bin/time -l, 2026-10-23). CPU, float64.
 
 Writes data/results/theory.json (keys used by the figure: R0, analytic_*) and prints every number.
 

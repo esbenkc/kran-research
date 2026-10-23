@@ -27,7 +27,7 @@ TERMS = {
     "bottom_x": "False statements caught",
     "pre": "fine-tune against the probe before the normalisation",
     "post": "fine-tune against the probe after the normalisation",
-    "free": "free rescale used fully",
+    "free": "free rescale used fully: 100%",
     "bar": "answer rule: half",
     "theory": "theory, first small step",
     "ideal": "theory, idealised attacker that moves the activations directly",

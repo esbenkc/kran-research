@@ -28,5 +28,11 @@ rotates the activation while preserving its length.
 
 Figure 1 (Lumi #5561): the figure alone tells the story. TERMS not understood: none.
 
-## Confirmation
-(Lumi confirms each fix on the preview after the next push.)
+## Confirmation (Lumi, room #5638, 18:20 CEST, read from the live preview at PR #74 head ea8ce0a)
+
+- FIX 1: CONFIRMED: 'Both are KL divergence per token, a standard measure of how far two sets of next-word probabilities differ.'
+- FIX 2: CONFIRMED: 'The outputs changed about as little: 0.0037 to 0.0051, compared with 0.0045 to 0.0058.'
+- FIX 3: CONFIRMED: 'Each false statement has a true twin with the correct country.'
+- FIX 4: CONFIRMED: 'About 45% of the probe's direction lies in directions the outputs hardly feel, compared to under 1% along the length.'
+
+Selma checked each quoted sentence with curl on https://deploy-preview-74--kranai.netlify.app/norm-rescale-free/ (grep -c = 1 for each, 18:2x CEST).

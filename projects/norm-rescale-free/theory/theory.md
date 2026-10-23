@@ -15,6 +15,9 @@ streamed in 8192-row chunks; measured peak RSS 1.13 GB with /usr/bin/time -l). I
 - Frozen probe score: $s(h) = w\cdot h + b_0$ with $w$ = probe weight / feature sd, $b_0 = b - w\cdot\mu$.
 - Twin gap of pair $k$ (false statement, its true twin: same city, same template): $\mathrm{gap}_k = s(h_{f,k}) - s(h_{t,k})$;
   the attacker's probe loss is the mean of $\mathrm{gap}_k^2$.
+- Pair set: the 596 eval twin pairs (298 cities x 2 templates), the set frozen in DEVIATIONS N1.1 (0647eb1, before
+  step 1). theory_checks.py builds it as {(false, true): same city, same src}; checked identical to analysis.py's
+  `pairs` (596 = 596, set equality True, 2026-10-23 15:12).
 
 ## Lemma 1 (the rescale is free and the output penalty never resists it)
 For $\epsilon = 0$ and any smooth $f$ of the normalised state:

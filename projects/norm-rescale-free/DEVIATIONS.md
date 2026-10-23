@@ -30,3 +30,19 @@ The step-0 activation-space prediction for the frozen R (mean twin gap, false an
 gap-weighted pair average R0 = sum_k gap_k (cos^2_false,k + cos^2_true,k) / (2 sum_k gap_k), cos = cos(w/sd, h_hat),
 over the 596 eval twin pairs = 0.0028 (theory/theory.md Lemma 2; data/results/theory.json key R0). The plain
 cos^2(w/sd, h_hat) in N1.3 is the false-statement-only shorthand (median 0.51%); the figure and the skeptics use R0.
+
+## N2 (secondary runs only; written before any of them started; status runs untouched)
+
+Tove #5503 on Iris #5499 (theory.md Fact 5, flow_quadratic.json @c67f16b): when the country-token states move
+freely, the restore share R at half gap closure stays 0.002-0.005 up to a KL weight lam_sim = 1e6 and jumps to 0.69
+at 1e7 and 0.96 at 1e8. Iris's mapping lam_sim ~ lam / 21 (KL averaged over ~85 positions of 8 statements vs gap^2
+over 8 pairs; attack_norm.py:211-244) is an INFERENCE, not a measurement.
+
+1. **Swap.** The secondary run B lambda 1e5 s0 is dropped. In its place: **A lambda 3e8 s0** (lam_sim ~1.4e7),
+   same code, 300 steps, n = 1, never the status.
+2. **Secondary order**: A lambda 3e8 s0, A lambda 1e5 s0, A lambda 0 s0 (the last only if it can start by 18:15
+   CEST).
+3. **Prediction for A lambda 3e8 s0, fixed now**: at step 300, R >= 0.5, OR the gap fails to halve
+   (precondition fails). It is FALSIFIED if the gap halves and R < 0.5. Reported as a test of the mechanism
+   (the stretch is the cheap route only once the output penalty is ~3-4 orders of magnitude above the status
+   weight), never as the answer to the title.

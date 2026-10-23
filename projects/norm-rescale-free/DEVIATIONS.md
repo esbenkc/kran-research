@@ -23,3 +23,10 @@ The 5-step smoke (seed 99, not scored) showed that ONE Adam step from the LoRA i
 nats/token (Bruno #5460; the KL term is exactly 0 at that step). The prediction's bar "eval KL at most 0.002" (s7
 clause 1) therefore sits at the one-step floor of this attacker. Clause 1 is still scored literally; the post says
 where the bar sits.
+
+## N1.3a (text fix to N1.3; Iris #5473; before any scored checkpoint was read)
+
+The step-0 activation-space prediction for the frozen R (mean twin gap, false and true twin both move) is the
+gap-weighted pair average R0 = sum_k gap_k (cos^2_false,k + cos^2_true,k) / (2 sum_k gap_k), cos = cos(w/sd, h_hat),
+over the 596 eval twin pairs = 0.0028 (theory/theory.md Lemma 2; data/results/theory.json key R0). The plain
+cos^2(w/sd, h_hat) in N1.3 is the false-statement-only shorthand (median 0.51%); the figure and the skeptics use R0.

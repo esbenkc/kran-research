@@ -1,0 +1,388 @@
+# skeptic2 checker output
+
+## Bit pairs
+### bits/Qwen3-1.7B/compile_emu0
+- barrier_A_alllogits_pass1.npy: 0/64 changed prompts; diff elements 0
+- bitcast_A_alllogits_pass1.npy: 64/64 changed prompts; diff elements 536991288
+- cast_A_alllogits_pass1.npy: 64/64 changed prompts; diff elements 536991288
+- intround_A_alllogits_pass1.npy: 64/64 changed prompts; diff elements 536265248
+- none_A_alllogits_pass1.npy: 64/64 changed prompts; diff elements 536991288
+- round16_A_alllogits_pass1.npy: 64/64 changed prompts; diff elements 536265248
+- barrier_A_hidden.npy: 0/64 changed prompts; diff elements 0
+- barrier_B_hidden.npy: 0/64 changed prompts; diff elements 0
+- bitcast_A_hidden.npy: 64/64 changed prompts; diff elements 7639930
+- bitcast_B_hidden.npy: 64/64 changed prompts; diff elements 7639930
+- cast_A_hidden.npy: 64/64 changed prompts; diff elements 7639930
+- cast_B_hidden.npy: 64/64 changed prompts; diff elements 7639930
+- intround_A_hidden.npy: 64/64 changed prompts; diff elements 7638625
+- intround_B_hidden.npy: 64/64 changed prompts; diff elements 7638625
+- none_A_hidden.npy: 64/64 changed prompts; diff elements 7639930
+- none_B_hidden.npy: 64/64 changed prompts; diff elements 7639930
+- round16_A_hidden.npy: 64/64 changed prompts; diff elements 7638625
+- round16_B_hidden.npy: 64/64 changed prompts; diff elements 7638625
+- barrier_A_last.npy: 0/64 changed prompts; diff elements 0
+- barrier_B_last.npy: 0/64 changed prompts; diff elements 0
+- bitcast_A_last.npy: 64/64 changed prompts; diff elements 26197377
+- bitcast_B_last.npy: 64/64 changed prompts; diff elements 26197377
+- cast_A_last.npy: 64/64 changed prompts; diff elements 26197377
+- cast_B_last.npy: 64/64 changed prompts; diff elements 26197377
+- intround_A_last.npy: 64/64 changed prompts; diff elements 26067642
+- intround_B_last.npy: 64/64 changed prompts; diff elements 26067642
+- none_A_last.npy: 64/64 changed prompts; diff elements 26197377
+- none_B_last.npy: 64/64 changed prompts; diff elements 26197377
+- round16_A_last.npy: 64/64 changed prompts; diff elements 26067642
+- round16_B_last.npy: 64/64 changed prompts; diff elements 26067642
+Determinism floor:
+- barrier_noprobe_A_vs_B_hidden.npy: 0/64 changed prompts
+- barrier_probe_A_vs_B_hidden.npy: 0/64 changed prompts
+- bitcast_noprobe_A_vs_B_hidden.npy: 0/64 changed prompts
+- bitcast_probe_A_vs_B_hidden.npy: 0/64 changed prompts
+- cast_noprobe_A_vs_B_hidden.npy: 0/64 changed prompts
+- cast_probe_A_vs_B_hidden.npy: 0/64 changed prompts
+- intround_noprobe_A_vs_B_hidden.npy: 0/64 changed prompts
+- intround_probe_A_vs_B_hidden.npy: 0/64 changed prompts
+- none_noprobe_A_vs_B_hidden.npy: 0/64 changed prompts
+- none_probe_A_vs_B_hidden.npy: 0/64 changed prompts
+- round16_noprobe_A_vs_B_hidden.npy: 0/64 changed prompts
+- round16_probe_A_vs_B_hidden.npy: 0/64 changed prompts
+- barrier_noprobe_A_vs_B_last.npy: 0/64 changed prompts
+- barrier_probe_A_vs_B_last.npy: 0/64 changed prompts
+- bitcast_noprobe_A_vs_B_last.npy: 0/64 changed prompts
+- bitcast_probe_A_vs_B_last.npy: 0/64 changed prompts
+- cast_noprobe_A_vs_B_last.npy: 0/64 changed prompts
+- cast_probe_A_vs_B_last.npy: 0/64 changed prompts
+- intround_noprobe_A_vs_B_last.npy: 0/64 changed prompts
+- intround_probe_A_vs_B_last.npy: 0/64 changed prompts
+- none_noprobe_A_vs_B_last.npy: 0/64 changed prompts
+- none_probe_A_vs_B_last.npy: 0/64 changed prompts
+- round16_noprobe_A_vs_B_last.npy: 0/64 changed prompts
+- round16_probe_A_vs_B_last.npy: 0/64 changed prompts
+
+### bits/Qwen3-1.7B/compile_emu1
+- cast_A_alllogits_pass1.npy: 0/64 changed prompts; diff elements 0
+- none_A_alllogits_pass1.npy: 0/64 changed prompts; diff elements 0
+- round16_A_alllogits_pass1.npy: 0/64 changed prompts; diff elements 0
+- cast_A_hidden.npy: 0/64 changed prompts; diff elements 0
+- cast_B_hidden.npy: 0/64 changed prompts; diff elements 0
+- none_A_hidden.npy: 0/64 changed prompts; diff elements 0
+- none_B_hidden.npy: 0/64 changed prompts; diff elements 0
+- round16_A_hidden.npy: 0/64 changed prompts; diff elements 0
+- round16_B_hidden.npy: 0/64 changed prompts; diff elements 0
+- cast_A_last.npy: 0/64 changed prompts; diff elements 0
+- cast_B_last.npy: 0/64 changed prompts; diff elements 0
+- none_A_last.npy: 0/64 changed prompts; diff elements 0
+- none_B_last.npy: 0/64 changed prompts; diff elements 0
+- round16_A_last.npy: 0/64 changed prompts; diff elements 0
+- round16_B_last.npy: 0/64 changed prompts; diff elements 0
+Determinism floor:
+- cast_noprobe_A_vs_B_hidden.npy: 0/64 changed prompts
+- cast_probe_A_vs_B_hidden.npy: 0/64 changed prompts
+- none_noprobe_A_vs_B_hidden.npy: 0/64 changed prompts
+- none_probe_A_vs_B_hidden.npy: 0/64 changed prompts
+- round16_noprobe_A_vs_B_hidden.npy: 0/64 changed prompts
+- round16_probe_A_vs_B_hidden.npy: 0/64 changed prompts
+- cast_noprobe_A_vs_B_last.npy: 0/64 changed prompts
+- cast_probe_A_vs_B_last.npy: 0/64 changed prompts
+- none_noprobe_A_vs_B_last.npy: 0/64 changed prompts
+- none_probe_A_vs_B_last.npy: 0/64 changed prompts
+- round16_noprobe_A_vs_B_last.npy: 0/64 changed prompts
+- round16_probe_A_vs_B_last.npy: 0/64 changed prompts
+
+## JSON metrics found
+- detectors/Qwen3-1.7B/emu0/none__compile_probe_never_s0.json
+  - acc: 0.48828125
+  - rows[0].correct: True
+  - rows[1].correct: False
+  - rows[2].correct: True
+  - rows[3].correct: False
+  - rows[4].correct: True
+  - rows[5].correct: False
+  - rows[6].correct: True
+  - rows[7].correct: False
+  - rows[8].correct: True
+  - rows[9].correct: False
+  - rows[10].correct: True
+  - rows[11].correct: False
+  - rows[12].correct: True
+  - rows[13].correct: False
+  - rows[14].correct: True
+  - rows[15].correct: False
+  - rows[16].correct: True
+  - rows[17].correct: False
+  - rows[18].correct: True
+- detectors/Qwen3-1.7B/emu0/none__compile_probe_none_s0.json
+  - acc: 0.8515625
+  - rows[0].correct: True
+  - rows[1].correct: False
+  - rows[2].correct: True
+  - rows[3].correct: True
+  - rows[4].correct: True
+  - rows[5].correct: False
+  - rows[6].correct: True
+  - rows[7].correct: True
+  - rows[8].correct: True
+  - rows[9].correct: True
+  - rows[10].correct: True
+  - rows[11].correct: True
+  - rows[12].correct: True
+  - rows[13].correct: True
+  - rows[14].correct: True
+  - rows[15].correct: True
+  - rows[16].correct: True
+  - rows[17].correct: True
+  - rows[18].correct: True
+- detectors/Qwen3-1.7B/emu0/none__compile_probe_none_s1.json
+  - acc: 0.85546875
+  - rows[0].correct: True
+  - rows[1].correct: True
+  - rows[2].correct: True
+  - rows[3].correct: True
+  - rows[4].correct: True
+  - rows[5].correct: True
+  - rows[6].correct: False
+  - rows[7].correct: True
+  - rows[8].correct: True
+  - rows[9].correct: True
+  - rows[10].correct: False
+  - rows[11].correct: True
+  - rows[12].correct: False
+  - rows[13].correct: True
+  - rows[14].correct: False
+  - rows[15].correct: True
+  - rows[16].correct: True
+  - rows[17].correct: True
+  - rows[18].correct: False
+- detectors/Qwen3-1.7B/emu0/none__compile_probe_none_s2.json
+  - acc: 0.8984375
+  - rows[0].correct: True
+  - rows[1].correct: True
+  - rows[2].correct: True
+  - rows[3].correct: True
+  - rows[4].correct: True
+  - rows[5].correct: True
+  - rows[6].correct: False
+  - rows[7].correct: True
+  - rows[8].correct: True
+  - rows[9].correct: True
+  - rows[10].correct: True
+  - rows[11].correct: True
+  - rows[12].correct: True
+  - rows[13].correct: True
+  - rows[14].correct: True
+  - rows[15].correct: True
+  - rows[16].correct: True
+  - rows[17].correct: True
+  - rows[18].correct: False
+- detectors/Qwen3-1.7B/emu0/none__fresh_round16_probe_none_s0.json
+  - acc: 0.71875
+  - rows[0].correct: True
+  - rows[1].correct: True
+  - rows[2].correct: True
+  - rows[3].correct: True
+  - rows[4].correct: True
+  - rows[5].correct: True
+  - rows[6].correct: True
+  - rows[7].correct: True
+  - rows[8].correct: True
+  - rows[9].correct: False
+  - rows[10].correct: False
+  - rows[11].correct: True
+  - rows[12].correct: True
+  - rows[13].correct: True
+  - rows[14].correct: True
+  - rows[15].correct: False
+  - rows[16].correct: False
+  - rows[17].correct: True
+  - rows[18].correct: False
+- detectors/Qwen3-1.7B/emu0/round16__compile_probe_never_s0.json
+  - acc: 0.48828125
+  - rows[0].correct: True
+  - rows[1].correct: False
+  - rows[2].correct: True
+  - rows[3].correct: False
+  - rows[4].correct: True
+  - rows[5].correct: False
+  - rows[6].correct: True
+  - rows[7].correct: False
+  - rows[8].correct: True
+  - rows[9].correct: False
+  - rows[10].correct: True
+  - rows[11].correct: False
+  - rows[12].correct: True
+  - rows[13].correct: False
+  - rows[14].correct: True
+  - rows[15].correct: False
+  - rows[16].correct: True
+  - rows[17].correct: False
+  - rows[18].correct: True
+- detectors/Qwen3-1.7B/emu0/round16__compile_probe_none_s0.json
+  - acc: 0.80078125
+  - rows[0].correct: True
+  - rows[1].correct: False
+  - rows[2].correct: True
+  - rows[3].correct: True
+  - rows[4].correct: True
+  - rows[5].correct: False
+  - rows[6].correct: False
+  - rows[7].correct: True
+  - rows[8].correct: True
+  - rows[9].correct: True
+  - rows[10].correct: False
+  - rows[11].correct: True
+  - rows[12].correct: True
+  - rows[13].correct: True
+  - rows[14].correct: True
+  - rows[15].correct: True
+  - rows[16].correct: True
+  - rows[17].correct: True
+  - rows[18].correct: True
+- detectors/Qwen3-1.7B/emu0/round16__compile_probe_none_s1.json
+  - acc: 0.59765625
+  - rows[0].correct: True
+  - rows[1].correct: True
+  - rows[2].correct: False
+  - rows[3].correct: True
+  - rows[4].correct: True
+  - rows[5].correct: True
+  - rows[6].correct: False
+  - rows[7].correct: True
+  - rows[8].correct: False
+  - rows[9].correct: True
+  - rows[10].correct: False
+  - rows[11].correct: True
+  - rows[12].correct: False
+  - rows[13].correct: True
+  - rows[14].correct: False
+  - rows[15].correct: True
+  - rows[16].correct: False
+  - rows[17].correct: True
+  - rows[18].correct: False
+- detectors/Qwen3-1.7B/emu0/round16__compile_probe_none_s2.json
+  - acc: 0.6875
+  - rows[0].correct: True
+  - rows[1].correct: True
+  - rows[2].correct: False
+  - rows[3].correct: True
+  - rows[4].correct: True
+  - rows[5].correct: True
+  - rows[6].correct: False
+  - rows[7].correct: True
+  - rows[8].correct: False
+  - rows[9].correct: True
+  - rows[10].correct: False
+  - rows[11].correct: True
+  - rows[12].correct: False
+  - rows[13].correct: True
+  - rows[14].correct: False
+  - rows[15].correct: True
+  - rows[16].correct: False
+  - rows[17].correct: True
+  - rows[18].correct: False
+- detectors/Qwen3-1.7B/emu0/round16__fresh_round16_probe_none_s0.json
+  - acc: 0.91015625
+  - rows[0].correct: True
+  - rows[1].correct: True
+  - rows[2].correct: True
+  - rows[3].correct: True
+  - rows[4].correct: True
+  - rows[5].correct: True
+  - rows[6].correct: True
+  - rows[7].correct: True
+  - rows[8].correct: True
+  - rows[9].correct: False
+  - rows[10].correct: True
+  - rows[11].correct: True
+  - rows[12].correct: True
+  - rows[13].correct: True
+  - rows[14].correct: True
+  - rows[15].correct: False
+  - rows[16].correct: True
+  - rows[17].correct: True
+  - rows[18].correct: True
+- detectors/Qwen3-1.7B/emu1/none__compile_probe_none_s0.json
+  - acc: 0.5
+  - rows[0].correct: True
+  - rows[1].correct: False
+  - rows[2].correct: True
+  - rows[3].correct: False
+  - rows[4].correct: True
+  - rows[5].correct: False
+  - rows[6].correct: False
+  - rows[7].correct: True
+  - rows[8].correct: True
+  - rows[9].correct: False
+  - rows[10].correct: True
+  - rows[11].correct: False
+  - rows[12].correct: True
+  - rows[13].correct: False
+  - rows[14].correct: True
+  - rows[15].correct: False
+  - rows[16].correct: True
+  - rows[17].correct: False
+  - rows[18].correct: True
+- detectors/Qwen3-1.7B/emu1/none__compile_probe_none_s1.json
+  - acc: 0.5
+  - rows[0].correct: True
+  - rows[1].correct: False
+  - rows[2].correct: False
+  - rows[3].correct: True
+  - rows[4].correct: True
+  - rows[5].correct: False
+  - rows[6].correct: False
+  - rows[7].correct: True
+  - rows[8].correct: False
+  - rows[9].correct: True
+  - rows[10].correct: False
+  - rows[11].correct: True
+  - rows[12].correct: False
+  - rows[13].correct: True
+  - rows[14].correct: False
+  - rows[15].correct: True
+  - rows[16].correct: False
+  - rows[17].correct: True
+  - rows[18].correct: False
+- detectors/Qwen3-1.7B/emu1/none__compile_probe_none_s2.json
+  - acc: 0.5
+  - rows[0].correct: True
+  - rows[1].correct: False
+  - rows[2].correct: False
+  - rows[3].correct: True
+  - rows[4].correct: True
+  - rows[5].correct: False
+  - rows[6].correct: False
+  - rows[7].correct: True
+  - rows[8].correct: False
+  - rows[9].correct: True
+  - rows[10].correct: False
+  - rows[11].correct: True
+  - rows[12].correct: False
+  - rows[13].correct: True
+  - rows[14].correct: False
+  - rows[15].correct: True
+  - rows[16].correct: False
+  - rows[17].correct: True
+  - rows[18].correct: False
+- step2/Qwen3-1.7B/round16_C/meta.json
+  - prompts_changed_at_block26_input: 576
+- step2/Qwen3-1.7B/runs/round16_probe_none_s0.json
+  - test.acc: 0.87890625
+  - test.both_correct: 0.7578125
+  - dev_curve[0].acc: 0.4921875
+  - dev_curve[0].both_correct: 0.0
+  - dev_curve[1].acc: 0.5078125
+  - dev_curve[1].both_correct: 0.046875
+  - dev_curve[2].acc: 0.5390625
+  - dev_curve[2].both_correct: 0.078125
+  - dev_curve[3].acc: 0.5234375
+  - dev_curve[3].both_correct: 0.046875
+  - dev_curve[4].acc: 0.5390625
+  - dev_curve[4].both_correct: 0.078125
+  - dev_curve[5].acc: 0.8359375
+  - dev_curve[5].both_correct: 0.671875
+  - dev_curve[6].acc: 0.6328125
+  - dev_curve[6].both_correct: 0.265625
+  - dev_curve[7].acc: 0.8984375
+  - dev_curve[7].both_correct: 0.796875
+  - dev_curve[8].acc: 0.859375
+  - dev_curve[8].both_correct: 0.71875
+- timing/timing.json

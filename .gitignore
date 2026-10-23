@@ -14,3 +14,8 @@ projects/*/data/**/run.log
 # `build_corpus.py fetch && build_corpus.py` instead of redistributing it
 projects/proof-elegance/data/human/
 projects/proof-elegance/data/ai/
+
+# norm-rescale-free: full per-checkpoint country-token states (275 MB each) stay local; data/states/ holds the
+# committed slices (export.py) and data/acts_sha256.txt the checksums
+projects/norm-rescale-free/data/runs/*/acts_*.npy
+projects/norm-rescale-free/data/smoke/

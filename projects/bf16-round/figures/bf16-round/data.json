@@ -1,6 +1,6 @@
 {
-  "title": "The 16-bit round did not hide the probe: a new detector still caught it on 91% of answers",
-  "subtitle": "Qwen3-1.7B, bf16, PyTorch 2.14.1 compiled, Apple M4. Each fix is in the model with and without the probe. Left: 64 prompts. Right: 128 new prompts, probe on and off.",
+  "title": "The 16-bit round did not hide the probe: new detectors were still right on 71% to 91% of answers",
+  "subtitle": "Qwen3-1.7B, bf16, PyTorch 2.14.1 compiled (last row: development version 2.16.0.dev20261022), Apple M4. Each fix is in the model with and without the probe. Left: 64 prompts. Right: 128 new prompts, probe on and off.",
   "chance": 0.5,
   "band": [
     0.43,
@@ -45,10 +45,14 @@
         0.5977,
         0.6875
       ],
-      "fresh": 0.9102
+      "fresh": [
+        0.9102,
+        0.7109,
+        0.9141
+      ]
     },
     {
-      "label": "16-bit round + 32-bit next step",
+      "label": "Round + 32-bit next step",
       "role": "explore",
       "changed": 0,
       "n": 64,
@@ -69,6 +73,13 @@
     {
       "label": "Opaque split",
       "role": "ref",
+      "changed": 0,
+      "n": 64,
+      "frac": 0.0
+    },
+    {
+      "label": "16-bit round, dev PyTorch",
+      "role": "fix",
       "changed": 0,
       "n": 64,
       "frac": 0.0

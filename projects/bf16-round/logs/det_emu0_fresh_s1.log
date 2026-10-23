@@ -1,0 +1,8 @@
+W1022 18:26:38.747000 1931 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5907.39it/s]
+W1022 18:26:48.779000 1931 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+DET round16 fresh_round16_probe_none_s1 {'acc': 0.7109375, 'prompts_bit_identical_probe_vs_none': 0, 'separation_nats': 8.541015588346994} {'cond0_s': 25.6, 'cond1_s': 25.0}
+DET none fresh_round16_probe_none_s1 {'acc': 0.56640625, 'prompts_bit_identical_probe_vs_none': 0, 'separation_nats': 4.629394503332961} {'cond0_s': 38.5, 'cond1_s': 39.0}
+
+WATCHDOG: exit 0, peak footprint 4.85 GB
+DONE

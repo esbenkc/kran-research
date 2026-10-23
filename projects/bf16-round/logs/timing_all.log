@@ -1,0 +1,7 @@
+W1022 18:11:43.633000 93798 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6077.09it/s]
+W1022 18:11:53.104000 93798 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+TIMING {'median_ms': {'none': 93.09495805064216, 'round16': 93.50156248547137, 'round16f': 93.2598959770985, 'barrier': 93.07843749411404, 'emulate': 93.11845793854445}, 'cost': 0.004367631108529224, 'cost_boot95': [-0.009235223693576744, 0.009346244840916248], 'cost_emulate': 0.00025242922274593127, 'cost_vs_base': {'round16': 0.004367631108529224, 'round16f': 0.0017717170715798591, 'barrier': -0.0001774591972976136, 'emulate': 0.00025242922274593127}, 'answer_logits_identical': {'round16': False, 'round16f': False, 'barrier': False, 'emulate': False}, 'unique_graphs_after_warm': 5, 'unique_graphs_after_timing': 5}
+
+WATCHDOG: exit 0, peak footprint 4.62 GB
+DONE

@@ -17,7 +17,7 @@ HERE = Path(__file__).parent
 FIG_ID = "bf16-round"
 DET = HERE / "raw" / "detectors" / "Qwen3-1.7B"
 SAVED = [f"compile_probe_none_s{s}" for s in (0, 1, 2)]
-FRESH = "fresh_round16_probe_none_s0"
+FRESH = [f"fresh_round16_probe_none_s{s}" for s in (0, 1, 2)]
 
 # (label, setting in bits_table, fix, role, detector setting or None)
 ROWS = [
@@ -25,9 +25,10 @@ ROWS = [
     ("Naive cast", "compile_emu0", "cast", "fix", None),
     ("Bit-view round", "compile_emu0", "bitcast", "fix", None),
     ("16-bit round", "compile_emu0", "round16", "title", "emu0"),
-    ("16-bit round + 32-bit next step", "r2f", "round16f", "explore", None),
+    ("Round + 32-bit next step", "r2f", "round16f", "explore", None),
     ("Precision-emulation setting", "compile_emu1", "none", "fix", "emu1"),
     ("Opaque split", "compile_emu0", "barrier", "ref", None),
+    ("16-bit round, dev PyTorch", "nightly", "round16", "fix", None),
 ]
 
 
@@ -52,14 +53,15 @@ def main() -> None:
         if dset:
             saved = [det(dset, fix, run) for run in SAVED]
             r["saved"] = [round(x["acc"], 4) for x in saved if x]
-            f = det(dset, fix, FRESH)
-            if f and role == "title":
-                r["fresh"] = round(f["acc"], 4)
+            if role == "title":
+                r["fresh"] = [round(x["acc"], 4) for x in (det(dset, fix, run) for run in FRESH) if x]
         rows.append(r)
     fresh = next(r["fresh"] for r in rows if r["role"] == "title")
+    caught = f"{min(fresh):.0%} to {max(fresh):.0%}" if len(fresh) > 1 else f"{fresh[0]:.0%}"
     data = {
-        "title": f"The 16-bit round did not hide the probe: a new detector still caught it on {fresh:.0%} of answers",
-        "subtitle": "Qwen3-1.7B, bf16, PyTorch 2.14.1 compiled, Apple M4. Each fix is in the model with and without the probe. "
+        "title": f"The 16-bit round did not hide the probe: new detectors were still right on {caught} of answers"
+                 if len(fresh) > 1 else f"The 16-bit round did not hide the probe: a new detector still caught it on {caught} of answers",
+        "subtitle": "Qwen3-1.7B, bf16, PyTorch 2.14.1 compiled (last row: development version 2.16.0.dev20261022), Apple M4. Each fix is in the model with and without the probe. "
                     "Left: 64 prompts. Right: 128 new prompts, probe on and off.",
         "chance": 0.5, "band": [0.43, 0.57], "bar": 0.75, "rows": rows,
     }

@@ -9,6 +9,14 @@
   "compile_probe_none_s0": {
    "base_dev_acc": 0.84375,
    "base_test_acc": 0.85546875,
+   "base_test_detail": {
+    "acc": 0.85546875,
+    "share_yes": 0.38671875,
+    "share_no": 0.61328125,
+    "share_other": 0.0,
+    "separation_nats": 9.28662109375,
+    "share_pairs_logodds_higher_with_probe": 1.0
+   },
    "single_head_dev_acc": {
     "0.0": 0.5,
     "0.1": 0.8359375,
@@ -84,7 +92,15 @@
       "0.0"
      ],
      "dev_acc": 0.5,
-     "test_acc": 0.5
+     "test_acc": 0.5,
+     "test_detail": {
+      "acc": 0.5,
+      "share_yes": 0.0,
+      "share_no": 1.0,
+      "share_other": 0.0,
+      "separation_nats": 4.40478515625,
+      "share_pairs_logodds_higher_with_probe": 1.0
+     }
     },
     {
      "k": 2,
@@ -93,7 +109,15 @@
       "0.3"
      ],
      "dev_acc": 0.5,
-     "test_acc": 0.5
+     "test_acc": 0.5,
+     "test_detail": {
+      "acc": 0.5,
+      "share_yes": 0.0,
+      "share_no": 1.0,
+      "share_other": 0.0,
+      "separation_nats": 0.58154296875,
+      "share_pairs_logodds_higher_with_probe": 1.0
+     }
     },
     {
      "k": 3,
@@ -103,13 +127,29 @@
       "0.6"
      ],
      "dev_acc": 0.5,
-     "test_acc": 0.5
+     "test_acc": 0.5,
+     "test_detail": {
+      "acc": 0.5,
+      "share_yes": 0.0,
+      "share_no": 1.0,
+      "share_other": 0.0,
+      "separation_nats": 2.3955078125,
+      "share_pairs_logodds_higher_with_probe": 1.0
+     }
     }
    ]
   },
   "compile_probe_none_s1": {
    "base_dev_acc": 0.859375,
    "base_test_acc": 0.85546875,
+   "base_test_detail": {
+    "acc": 0.85546875,
+    "share_yes": 0.63671875,
+    "share_no": 0.36328125,
+    "share_other": 0.0,
+    "separation_nats": 10.957763671875,
+    "share_pairs_logodds_higher_with_probe": 1.0
+   },
    "single_head_dev_acc": {
     "0.0": 0.5234375,
     "0.1": 0.8046875,
@@ -185,7 +225,15 @@
       "0.3"
      ],
      "dev_acc": 0.5,
-     "test_acc": 0.5
+     "test_acc": 0.5,
+     "test_detail": {
+      "acc": 0.5,
+      "share_yes": 0.0,
+      "share_no": 1.0,
+      "share_other": 0.0,
+      "separation_nats": 2.90869140625,
+      "share_pairs_logodds_higher_with_probe": 1.0
+     }
     },
     {
      "k": 2,
@@ -194,7 +242,15 @@
       "0.6"
      ],
      "dev_acc": 0.6640625,
-     "test_acc": 0.640625
+     "test_acc": 0.640625,
+     "test_detail": {
+      "acc": 0.640625,
+      "share_yes": 0.8515625,
+      "share_no": 0.1484375,
+      "share_other": 0.0,
+      "separation_nats": 4.842529296875,
+      "share_pairs_logodds_higher_with_probe": 1.0
+     }
     },
     {
      "k": 3,
@@ -204,13 +260,29 @@
       "0.15"
      ],
      "dev_acc": 0.5,
-     "test_acc": 0.5
+     "test_acc": 0.5,
+     "test_detail": {
+      "acc": 0.5,
+      "share_yes": 1.0,
+      "share_no": 0.0,
+      "share_other": 0.0,
+      "separation_nats": 1.395751953125,
+      "share_pairs_logodds_higher_with_probe": 1.0
+     }
     }
    ]
   },
   "compile_probe_none_s2": {
    "base_dev_acc": 0.8671875,
    "base_test_acc": 0.890625,
+   "base_test_detail": {
+    "acc": 0.890625,
+    "share_yes": 0.59375,
+    "share_no": 0.40625,
+    "share_other": 0.0,
+    "separation_nats": 6.79443359375,
+    "share_pairs_logodds_higher_with_probe": 1.0
+   },
    "single_head_dev_acc": {
     "0.0": 0.5,
     "0.1": 0.8515625,
@@ -286,7 +358,15 @@
       "0.0"
      ],
      "dev_acc": 0.5,
-     "test_acc": 0.5
+     "test_acc": 0.5,
+     "test_detail": {
+      "acc": 0.5,
+      "share_yes": 0.0,
+      "share_no": 1.0,
+      "share_other": 0.0,
+      "separation_nats": 2.1748046875,
+      "share_pairs_logodds_higher_with_probe": 1.0
+     }
     },
     {
      "k": 2,
@@ -295,7 +375,15 @@
       "0.6"
      ],
      "dev_acc": 0.640625,
-     "test_acc": 0.62109375
+     "test_acc": 0.62109375,
+     "test_detail": {
+      "acc": 0.62109375,
+      "share_yes": 0.87109375,
+      "share_no": 0.12890625,
+      "share_other": 0.0,
+      "separation_nats": 3.85107421875,
+      "share_pairs_logodds_higher_with_probe": 1.0
+     }
     },
     {
      "k": 3,
@@ -305,7 +393,15 @@
       "0.15"
      ],
      "dev_acc": 0.5,
-     "test_acc": 0.5
+     "test_acc": 0.5,
+     "test_detail": {
+      "acc": 0.5,
+      "share_yes": 1.0,
+      "share_no": 0.0,
+      "share_other": 0.0,
+      "separation_nats": 0.91943359375,
+      "share_pairs_logodds_higher_with_probe": 1.0
+     }
     }
    ]
   }

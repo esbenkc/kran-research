@@ -1,2 +1,14 @@
 W1022 18:05:43.785000 89307 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8146.67it/s]
+none_noprobe_A {'generated_kernel_count': 186, 'compile_s': 9.0, 'run_s': 35.7, 'probe_stored_ok': None}
+none_probe_A {'generated_kernel_count': 187, 'compile_s': 7.5, 'run_s': 36.0, 'probe_stored_ok': True}
+none_noprobe_B {'generated_kernel_count': 186, 'compile_s': 6.8, 'run_s': 34.5, 'probe_stored_ok': None}
+none_probe_B {'generated_kernel_count': 187, 'compile_s': 7.2, 'run_s': 35.1, 'probe_stored_ok': True}
+round16_noprobe_A {'generated_kernel_count': 186, 'compile_s': 7.1, 'run_s': 36.0, 'probe_stored_ok': None}
+round16_probe_A {'generated_kernel_count': 187, 'compile_s': 7.3, 'run_s': 36.1, 'probe_stored_ok': True}
+round16_noprobe_B {'generated_kernel_count': 186, 'compile_s': 7.1, 'run_s': 35.5, 'probe_stored_ok': None}
+round16_probe_B {'generated_kernel_count': 187, 'compile_s': 7.0, 'run_s': 34.8, 'probe_stored_ok': True}
+wrote projects/bf16-round/raw/bits_nightly/Qwen3-1.7B/compile_emu0
+
+WATCHDOG: exit 0, peak footprint 4.79 GB
+DONE

@@ -79,3 +79,44 @@ does not move the re-set-line catch (ranks kept); it does move clean-line catch,
 ## Where the symmetry is NOT exact
 Only at readout 28 (the last pre-norm state). At an earlier readout a rescale changes the relative size of every later
 block's write. 1022 notes: the needed shrink exists at readouts 10/18/27 but costs output change.
+
+## Fact 5 (idealized attacker: the states move freely; theory/flow_sim.py, theory/flow_quadratic.py)
+Setup: 16 eval twin pairs (same draw in both scripts), the 32 country-token states are the parameters, plain
+gradient descent on $\sum_k \mathrm{gap}_k^2 + \lambda_{\rm sim}\sum_i \mathrm{KL}_i$. Step rule, fixed at 15:12 CEST
+before arm A seed 0 reported R (15:24): $\mathrm{lr} = 1/(4\lVert w\rVert^2 + 0.15\lambda_{\rm sim})$, stop at a 95% mean gap drop
+or at the step cap. Vocabulary cut to tokens with clean probability $> 10^{-6}$ for some state (11,622 tokens; cut mass
+$\le 0.36\%$). Footprints: flow_sim 0.69 GB, flow_quadratic 1.21 GB (both measured with /usr/bin/time -l).
+
+Exact KL (flow_sim_lam0_1e2_1e4.json, flow_sim_lam100000.json), R at the end:
+
+| $\lambda_{\rm sim}$ | steps | gap drop | R | country KL mean |
+|---|---|---|---|---|
+| 0 | 250 | 100% | 0.0016 | 0.012 |
+| 1e2 | 250 | 99.9% | 0.0017 | 4e-4 |
+| 1e4 | 5,000 | 95.1% | 0.0020 | 8e-5 |
+| 1e5 | 120,000 (cap) | 92.1% | 0.0038 | 1.9e-5 |
+
+Quadratic KL, closed-form gradient flow (flow_quadratic.json; $F h_0 = 0$ kept exactly). It matches the exact-KL runs
+where both exist (1e4 at 95% drop: 0.0020 vs 0.0020; 1e5 at 90-92%: 0.0036 vs 0.0038). R at the flow time where the
+mean gap has halved (the LoRA precondition point) / fallen 90%, with the median false length ratio:
+
+| $\lambda_{\rm sim}$ | R at 50% drop | R at 90% drop (length ratio) |
+|---|---|---|
+| 1e2-1e4 | 0.0021-0.0022 | 0.0017-0.0020 (0.998) |
+| 1e5 | 0.0026 | 0.0036 (0.996) |
+| 1e6 | 0.0055 | 0.54 (0.45) |
+| 1e7 | 0.69 | 0.78 (0.17) |
+| 1e8 | 0.96 | 0.85 (0.14) |
+
+Validity limit: the quadratic model treats the whole line through the origin as free, but a sign flip is not free
+(Vera: $c = -1$ costs 32 nats). When a state is shrunk below ~10% of its length (late times, 99% drops,
+`R_t_end` = 0.066 at every $\lambda$) the restore crosses zero and R is meaningless there; the rows above stay at
+length ratios $\ge 0.14$.
+
+Scale of the LoRA's weight in these units [INFERENCE from attack_norm.py:211-244, config.yaml:19-21]: the LoRA
+loss is the mean of $\mathrm{gap}^2$ over 8 pairs plus $\tfrac{\lambda}{2}\times$ the KL averaged over all positions of 8
+OTHER statements (~85 positions), so one country-token KL weighs about $\lambda/170$ against $1/8$ per pair:
+$\lambda_{\rm sim} \approx \lambda/21$. LoRA $\lambda = 10^4 \to \lambda_{\rm sim}\approx 500$; $10^5 \to \approx 5{,}000$. Both sit in the regime
+where the idealized attacker's R stays $\le 0.4\%$; R passes 0.5 at half gap closure only near $\lambda_{\rm sim} \sim 10^7$,
+i.e. a LoRA weight $\sim 2\times10^8$. Reading: the free stretch exists, but plain gradient descent reaches it only
+when the output penalty is strong enough to also block the many nearly free turns.

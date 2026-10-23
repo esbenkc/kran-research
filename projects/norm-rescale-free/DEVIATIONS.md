@@ -13,3 +13,6 @@ whether any scored data existed at that time.
    vs training step (both arms, per seed, with the step-0 prediction, the R = 1 line, the 0.5 decision line and the
    lambda 0 null), with catch vs eval KL as the second panel. analysis.py saves both; Selma picks after the first
    scored run. This changes no number and no status rule.
+3. **Step-0 prediction label (s8, Tove #5450).** R_0 = cos^2(w/sd, h_hat) is the ACTIVATION-SPACE prediction: one
+   gradient step taken on the readout-28 state itself, not on the LoRA weights. The figure and the post label it
+   so. The measured R at step 50 is the weight-space counterpart.

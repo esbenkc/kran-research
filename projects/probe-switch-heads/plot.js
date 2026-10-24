@@ -18,6 +18,14 @@ export function render(data, Plot) {
   };
   add(`font-size:17px;font-weight:600;margin:0 0 0.15rem;color:${C.ink}`, data.title);
   add(`font-size:14px;margin:0 0 0.5rem;color:${C.muted}`, data.subtitle);
+  const key = document.createElement("div");
+  key.style.cssText = `font-size:13px;color:${C.ink};margin:0 0 0.3rem;display:flex;gap:14px`;
+  for (const s of S) {
+    const k = document.createElement("span");
+    k.innerHTML = `<span style="color:${shade[s.seed]};font-size:15px">\u25CF</span> run ${s.seed + 1}`;
+    key.appendChild(k);
+  }
+  root.appendChild(key);
   const W = 650, H = 330;
   const wrap = document.createElement("div");
   wrap.style.cssText = "display:flex;flex-wrap:nowrap;gap:0 10px;align-items:flex-start";

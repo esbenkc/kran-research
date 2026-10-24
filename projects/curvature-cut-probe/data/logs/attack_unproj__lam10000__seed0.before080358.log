@@ -1,0 +1,7 @@
+W1024 06:44:16.192000 60885 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 3777.61it/s]
+{"step": 0, "catch_own_line": 0.9815436241610739, "line": -0.34432411193847656, "eval_kl": 0.0, "eval_kl_country_pos": 0.0, "max_abs_act": 154.0}
+{"step": 1, "probe_loss": 88.58362770080566, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 469.3, "mps_alloc_mb": 3110, "mps_driver_mb": 3332}
+{"step": 2, "probe_loss": 70.4479284286499, "kl_cities": 0.002297496481332928, "kl_pile": 0.001101317087886855, "sec": 478.0, "mps_alloc_mb": 3110, "mps_driver_mb": 3340}
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-60885-4fnhu2nz'}
+  warnings.warn(

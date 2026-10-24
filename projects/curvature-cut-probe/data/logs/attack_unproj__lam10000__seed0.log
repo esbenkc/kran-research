@@ -1,0 +1,10 @@
+W1024 08:04:02.156000 86146 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6249.89it/s]
+{"step": 0, "catch_own_line": 0.9815436241610739, "line": -0.34432411193847656, "eval_kl": 0.0, "eval_kl_country_pos": 0.0, "shared_step0": true}
+{"step": 1, "probe_loss": 88.58362770080566, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 16.8, "mps_alloc_mb": 3110, "mps_driver_mb": 3332}
+{"step": 2, "probe_loss": 70.4479284286499, "kl_cities": 0.002297496481332928, "kl_pile": 0.001101317087886855, "sec": 21.0, "mps_alloc_mb": 3110, "mps_driver_mb": 3340}
+{"step": 50, "probe_loss": 0.7663821429014206, "kl_cities": 0.08118533529341221, "kl_pile": 0.001330048602540046, "sec": 279.1, "catch_own_line": 0.02181208053691275, "line": 3.9591784477233887, "eval_kl": 0.007161060813814402, "eval_kl_country_pos": 0.010881043039262295, "max_abs_act": 152.0}
+{"step": 100, "probe_loss": 1.1809507086873055, "kl_cities": 0.014313641004264355, "kl_pile": 0.001449756440706551, "sec": 673.4, "catch_own_line": 0.031879194630872486, "line": 3.9460222721099854, "eval_kl": 0.00637818593531847, "eval_kl_country_pos": 0.0065071796998381615, "max_abs_act": 153.0}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{"step": 150, "probe_loss": 0.4513609353452921, "kl_cities": 0.005105637916130945, "kl_pile": 0.0014095851074671373, "sec": 1062.9, "catch_own_line": 0.01174496644295302, "line": 4.175822734832764, "eval_kl": 0.005201742518693209, "eval_kl_country_pos": 0.004995571915060282, "max_abs_act": 154.0}
+{"probe": "unproj", "lam": 10000.0, "seed": 0, "train_seconds": 1238.9, "max_rss_mb": 559.609375}

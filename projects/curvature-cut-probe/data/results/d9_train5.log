@@ -1,0 +1,8 @@
+W1024 06:56:31.294000 65310 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 7261.60it/s]
+{"step": 1, "probe_loss": 88.58362770080566, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 47.1, "mps_alloc_mb": 3110, "mps_driver_mb": 3332}
+{"step": 2, "probe_loss": 70.4479284286499, "kl_cities": 0.002297496481332928, "kl_pile": 0.001101317087886855, "sec": 51.3, "mps_alloc_mb": 3110, "mps_driver_mb": 3340}
+{"step": 3, "probe_loss": 45.03513717651367, "kl_cities": 0.012068113079294562, "kl_pile": 0.0011205975024495274, "sec": 55.5, "mps_alloc_mb": 3110, "mps_driver_mb": 3348}
+{"step": 4, "probe_loss": 49.15533494949341, "kl_cities": 0.01001153455581516, "kl_pile": 0.0013604387058876455, "sec": 60.6, "mps_alloc_mb": 3110, "mps_driver_mb": 3348}
+{"step": 5, "probe_loss": 25.073165893554688, "kl_cities": 0.010618569096550345, "kl_pile": 0.001332063227891922, "sec": 65.3, "mps_alloc_mb": 3110, "mps_driver_mb": 3348}
+{"probe": "unproj", "lam": 10000.0, "seed": 0, "train_seconds": 65.3, "max_rss_mb": 570.953125}

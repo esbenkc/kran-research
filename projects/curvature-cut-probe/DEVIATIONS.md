@@ -70,3 +70,14 @@ cos(random-cut, full) = 0.16, and the full probe keeps only 14% of its energy (|
 span (Vera #6077). The literal removal P_F w catches only 70-73% of false statements clean and is not a fine-tune arm.
 New title: "Does Restricting a Falsehood Probe to Output-Sensitive Directions Force a Hiding Fine-Tune to Change the
 Outputs?" Same question, same status rule (s7 with D1); the goal title stays on record in s0's source.
+
+## D7 (status control leg one-sided; Tove ruling #6101; before the first P or R step)
+
+**D7. YES needs PRICE(R) <= 1.5 x PRICE(U), not "within 1.5x" both ways.** The control leg must show that the price
+rise comes from the output-sensitive directions and not from refitting inside 128 directions. Hugo's gate part 1
+(#6097; skeptic2/gate_hugo.py, full-vocab float64 F_i, n = 24 random eval twin pairs, seed 2410): second-order pair
+floor ratio vs U, D4 aggregation: cut probe 3.15x, random-cut probe 0.067x (eps x0.01 / x100: 3.16x / 2.86x and
+0.067x / 0.069x), literal removal P_F w 1.06x. A random-cut probe that is cheaper than the full probe supports the
+curvature reading; the two-sided leg would block YES on geometry alone. New PREREG s7 YES leg: "R falls (pooled catch
+<= 20% at some checkpoint 50..300) AND PRICE(R) <= 1.5 x PRICE(U)". The NO and UNCONFIRMED rules are unchanged.
+Prediction item 4 (R within 1.5x of U, all-token KL) is still scored literally, two-sided.

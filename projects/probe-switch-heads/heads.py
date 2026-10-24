@@ -93,22 +93,25 @@ def run_sets(tail, w_out, z0, z1, ids, pid, a_id, b_id, pt: Patcher, sets: dict,
         b = ids[s:s + bs]
         n = len(b)
         h = torch.cat([z0[b], z1[b]]).to(DEV)
+
+        def keep(sn, l):
+            # reduce the full-vocabulary logits right away (same float32 values as before; frees ~20 MB per set)
+            lp = torch.log_softmax(l, -1)
+            small = torch.stack([lp[:, a_id], lp[:, b_id], lp[:, a_id] - lp[:, b_id], l.argmax(-1).float()], 1)
+            small = small.cpu().numpy()
+            for j, i in enumerate(b):
+                for cond, r in ((0, j), (1, j + n)):
+                    la, lb, lo, top = (float(v) for v in small[r])
+                    out[sn].append({"prompt": pid[i], "probe": cond, "top": int(top), "a_id": a_id, "b_id": b_id,
+                                    "logp_a": la, "logp_b": lb, "lo": lo})
+
         pt.mode = "record"
-        lg = tail(h, w_out)
-        variants = [("orig", lg)]
+        keep("orig", tail(h, w_out))
         pt.mode, pt.n, pt.kind = "patch", n, kind
         for sn, hs in sets.items():
             pt.plan = hs
-            variants.append((sn, tail(h, w_out)))
+            keep(sn, tail(h, w_out))
         pt.mode = "off"
-        for sn, l in variants:
-            lp = torch.log_softmax(l, -1)
-            top = l.argmax(-1)
-            for j, i in enumerate(b):
-                for cond, r in ((0, j), (1, j + n)):
-                    out[sn].append({"prompt": pid[i], "probe": cond, "top": int(top[r]), "a_id": a_id, "b_id": b_id,
-                                    "logp_a": float(lp[r, a_id]), "logp_b": float(lp[r, b_id]),
-                                    "lo": float(lp[r, a_id] - lp[r, b_id])})
     return out
 
 

@@ -118,3 +118,5 @@ P s2 dropped; start rule 18:20 unchanged. Exporter: --u-source new.
 D10 addendum (Tove #6208, before any U s0 data): only if U s1 cannot start by 18:20, the 1023 U seeds count as the
 second and third U seeds when the new-code U s0 price is within 20% of the 1023 s0 price (0.00374); else U is n = 1
 and the status is UNCONFIRMED.
+D10 addendum 2 (Tove #6222; D8 horizon 150 fired at 07:07 PDT = 16:07 CEST; before any U data): the slip-case
+comparison point is the 1023 s0 price over checkpoints 50..150 = 0.0060 (not the 300-step 0.00374).

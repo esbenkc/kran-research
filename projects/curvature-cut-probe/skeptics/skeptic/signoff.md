@@ -1,7 +1,7 @@
 # Vera (skeptic) sign-off — theory-1024-curvature / curvature-cut-probe
 
 **Verdict: REJECTED (no to the title), CONFIRMED by my rebuild** under PREREG s7 + DEVIATIONS D1-D11.
-**Prediction outcome: FAILED.**
+**Prediction outcome: UNSETTLED by PREREG s8's own rule (2 of the 3 planned seeds per arm ran); its key item 3 missed on both seeds (all-token KL P/U 1.07x, needed >= 3x).**
 
 Every number below comes from my own code (this folder) on build's raw saved files: `data/runs/<arm>__lam10000__seed<s>/ckpt_{0,50,100,150}.npz`
 (probe scores of all 24 probes, per-position KL with `koff`/`cpos`), `acts_150.npy`, `data/clean/z_post.npy`, `data/fits/probes.npz`,
@@ -68,5 +68,5 @@ output-Fisher subspace and measures an output-matched fine-tune's price against 
 D8 horizon 150 (convergence not reached: U KL still falling at 150; disclosed); D9/D10 5-step check failed -> U is new-code n=2;
 D11 5th run start 18:30; 3 seeds planned, 2 per arm ran. PREREG s8 says "UNSETTLED if < 3 seeds per arm", so by the letter the
 prediction outcome is UNSETTLED with n=2; item 3 fails by ~3x on both seeds (P all-token KL 1.07x U, needs >= 3x) and no third seed
-could rescue it, so "failed" is the honest reading. The post must state that n=2 per arm and that s8's 3-seed clause was not met.
+could rescue it, so the frozen rule gives UNSETTLED (Tove #6411 set prereg.outcome: unsettled); the post must say item 3 missed on both runs.
 Compute: one fine-tune at a time, peak 5029 MiB under my 5100 MiB gate.

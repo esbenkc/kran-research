@@ -115,3 +115,6 @@ loss within 5% at steps 1-5 (-0.13, +0.22, +2.5, -0.97, -4.5%), but kl_cities -5
 step 2. Step-0 line and catch were identical; scores within 0.22 logits (Vera #6197). As frozen, the U arm is now
 new-code seeds; the three theory-1023 U runs are reported as context only. Queue: P s0, R s0, U s0, P s1, R s1, U s1;
 P s2 dropped; start rule 18:20 unchanged. Exporter: --u-source new.
+D10 addendum (Tove #6208, before any U s0 data): only if U s1 cannot start by 18:20, the 1023 U seeds count as the
+second and third U seeds when the new-code U s0 price is within 20% of the 1023 s0 price (0.00374); else U is n = 1
+and the status is UNCONFIRMED.

@@ -303,7 +303,7 @@ def v1(answer=True):
     b += pair(cx, ymn(N["exT"]), ymn(N["exF"]), False, "missed", "end")
     if answer:
         b += T(600, H - 58, "Yes, if a brake holds the fine-tune back. Without one, true and false mix.", 26, 750, INK, "middle")
-        b += T(600, H - 22, "Piles: 596 true and 596 false test statements, one run. Percentages: 3 runs pooled.",
+        b += T(600, H - 22, "Piles: 596 true and 596 false test statements, one run. Percentages: all 3 runs.",
                23, 500, MUTED, "middle")
     return svg(b, H, ALT), H
 
@@ -318,7 +318,7 @@ ALT = ("One real test pair carries the figure: Qwen2.5-1.5B reads 'The city of B
        "200 clean true statements of the fine-tuned model, catches the China statement again and wins back "
        f"{NUM['share_b']}% of the lost catches. Without the brake, the piles slide far lower and mix. The old line catches "
        f"{old_line_catch(0)}, the new line misses the China statement, and it wins back {NUM['share_n']}%. "
-       "Percentages are pooled over 3 runs; the piles show one run.")
+       "The percentages cover all 3 runs (90% and 1% pooled, 3–14% the range); the piles show one run.")
 
 
 # ---------------------------------------------------------------- V2: branching flow, horizontal bell piles

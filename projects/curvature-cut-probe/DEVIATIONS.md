@@ -34,3 +34,13 @@ OOF true scores, 1% FPR); C in {0.01, 0.1, 1, 10} by OOF AUROC, ties within 0.00
 1024 + draw), the first with OOF catch >= 0.90 is the control. The eval clean catch at k\* is reported next to it
 (prediction item 1 is scored on eval). If OOF passes but eval catch at k\* is < 90% for P or R, the post says so;
 k\* is not reselected.
+
+## D4 (band aggregation; never the status; before any P or R data)
+
+**D4. The figure band uses the price's own denominator and only the statements that must hide (Kasper #6045,
+Iris #6052).** PREREG s6 reports the floor as a mean over caught false eval statements. The price (D1) is a mean over
+all 1192 eval statements and needs only catch <= 20%, so only n_caught - 119 false statements must cross the line.
+Band edge = sum of the CHEAPEST (n_caught - 119) per-statement floors / 1192, for each of: lo = certified lower bound
+(Iris's linear-tilt certificate, which equals the second-order formula up to a computable cubic term), mid = the
+second-order formula D_i^2 / (2 w'(F_i + eps I)^{-1} w), hi = the cheapest move found on the RMSNorm ellipsoid (an
+upper bound on the reachable minimum). The per-caught-statement mean of s6 goes to the foldout table.

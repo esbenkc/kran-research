@@ -60,3 +60,13 @@ still 56-68%. A floor in which only false statements move (D4) models a differen
   foldout table next to it.
 - Every cell also reports catch at the CLEAN line and the mean score shift of true and false eval statements (the
   line shift). Status stays on the re-set line (s5, frozen).
+
+## D6 (title wording; no rule change; before any P or R data)
+
+**D6. Title names the arm we attack (Kasper #6080, Tove ruling #6081).** The goal's title says "removing the
+output-flat directions from a falsehood probe". The cut probe is a REFIT inside the top-128 output-sensitive
+directions (PREREG s3, Felix ruling #6024), not the old probe with parts removed: cos(cut probe, full probe) = 0.21,
+cos(random-cut, full) = 0.16, and the full probe keeps only 14% of its energy (|P_U a|/|a| = 0.376) in the top-128
+span (Vera #6077). The literal removal P_F w catches only 70-73% of false statements clean and is not a fine-tune arm.
+New title: "Does Restricting a Falsehood Probe to Output-Sensitive Directions Force a Hiding Fine-Tune to Change the
+Outputs?" Same question, same status rule (s7 with D1); the goal title stays on record in s0's source.

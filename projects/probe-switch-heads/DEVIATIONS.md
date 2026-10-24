@@ -14,3 +14,17 @@ still unstable at 1024 and flat at 1.00 from 1792, so seeds 1-2 and the never-at
 (everything else unchanged). The seed-0 status model is `lora_none_s0_2048` (same recipe, 2048 updates).
 Seen when this was set: the seed-0 dev curve above and the seed-0 cached-tail test row printed at the end of the same
 run (pair both-right 1.00). No whole-graph result, no head result and no seed-1/2 number existed.
+
+## D2 — status specificity control draws from the 29 heads outside the dev-picked top-3 (Felix #5741, Tove #5740)
+
+PREREG 'Head test' drew the 50 random 3-head sets from all 32 heads (`heads.py:211-213`, fixed seed). A given head
+then sits in a draw with P = 3/32 = 9.4%, about 4.7 of 50 draws. If the switch runs through one head, the draws that
+contain it reach the top of the list, and the 95th percentile (the 3rd-4th highest of 50) lands near that head's own
+R. The frozen rule would then return UNCONFIRMED because the switch is local: the control would test "is the key head
+in 10% of the draws", not "do three other heads do the same".
+Change: for the status rule, the specificity control is 50 seeded draws of 3 distinct heads from the 29 heads NOT in
+that model's dev-picked top-3 (the pool is fixed from dev, per model); CONFIRMED still needs its 95th percentile of R
+< 0.30. The frozen all-32 draws stay a reported row next to it, in the data and in the post. The goal's own clause
+(block 27, median of draws) is unchanged.
+Seen when this was set: Iris's cut patch on 64 TRAIN prompts of L seeds 0-1 (27.7 alone R 0.735 / 0.917, #5739) and
+the cached-tail test pair rates of s0-s1 (128/128). No dev-picked head set and no test-set head score existed.

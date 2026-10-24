@@ -1,6 +1,6 @@
 {
- "title": "TITLE SLOT (Selma)",
- "subtitle": "SUBTITLE SLOT (Selma)",
+ "title": "Cutting the probe raised the lowest possible price, not the price paid",
+ "subtitle": "Qwen2.5-1.5B fine-tuned to hide false statements from each probe while keeping its outputs. Price = the smallest change in the next-word prediction at the country word, at any checkpoint where the probe caught 20% or less of held-out false statements.",
  "arm_U": "full probe",
  "arm_P": "cut probe",
  "arm_R": "random-cut probe",
@@ -16,7 +16,7 @@
  "hide_line": "20% caught: the fine-tune has hidden the statements",
  "x": "Output change at the country word (log scale)",
  "y": "False statements still caught",
- "note": "NOTE SLOT (Selma)",
+ "note": "Lowest possible price: computed before any fine-tune, on the clean model, for the cheapest statements that must cross the alarm line. One dot per fine-tune; diamond = mean.",
  "ratio_title": "Price relative to the full probe",
  "ratio_pred": "predicted",
  "ratio_meas": "measured, mean of the fine-tunes",

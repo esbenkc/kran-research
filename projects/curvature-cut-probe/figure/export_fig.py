@@ -116,10 +116,10 @@ def main():
     out = {"hide": HIDE, "arms": {}}
     curves, pooled_all, sp = [], [], []
     for arm, rr in runs.items():
-        # the status uses ONE run per (arm, seed): for U prefer the 1023 run when both exist and --u-source both
+        # the status uses ONE run per (arm, seed): for U prefer the new-code run when both exist (--u-source both = D10 slip case)
         by_seed = {}
         for r in rr:
-            if r["seed"] not in by_seed or r["src"] == "1023":
+            if r["seed"] not in by_seed or r["src"] == "new":  # D10 slip case: new-code seed replaces the 1023 seed
                 by_seed[r["seed"]] = r
         use = [by_seed[s] for s in sorted(by_seed)]
         pooled = []

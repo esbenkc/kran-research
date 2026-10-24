@@ -1,0 +1,5 @@
+PASS eq1 symbolic gradient at d=0 is 0 | [0, 0]
+PASS eq1 symbolic Hessian at d=0 equals W'(diag p - pp')W | Matrix([[0, 0], [0, 0]])
+PASS eq1 numeric KL/(1/2 d'Fd) -> 1 linearly in |d| | |d|=0.1: 1.010243, |d|=0.01: 1.001211, |d|=0.001: 1.000123
+PASS eq2 symbolic: min split cost = D^2/(2(g_f+g_t)) | D**2/(2*(g_f + g_t))
+PASS eq2 numeric: constrained min of 1/2 d'Fd = D^2/(2 a'F^+ a) | solver 2.133521e-03, closed 2.133521e-03, explicit d* 2.133521e-03

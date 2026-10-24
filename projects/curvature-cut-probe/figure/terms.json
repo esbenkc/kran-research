@@ -1,5 +1,5 @@
 {
- "title": "Cutting the probe raised the lowest possible price, not the price paid",
+ "title": "Hiding from the cut probe cost no more: 0.89 times the full probe's price, where 2.1 to 3.2 times was predicted",
  "subtitle": "Qwen2.5-1.5B fine-tuned to hide false statements from each probe while keeping its outputs. Price = the smallest change in the next-word prediction at the country word, at any checkpoint where the probe caught 20% or less of held-out false statements.",
  "arm_U": "full probe",
  "arm_P": "cut probe",
@@ -15,6 +15,6 @@
  "ratio_pred": "predicted",
  "ratio_meas": "measured, mean of the fine-tunes",
  "ratio_x": "price divided by the full probe's price (log scale)",
- "ratio_note": "Solid line: same price as the full probe. Dotted line: 1.5 times; at or below it the answer is no. Dashed line: 3 times, the bar for yes.",
+ "ratio_note": "Solid line: the same price as the full probe. Dotted line at 1.5x: at or below it, the answer to the title is no. Dashed line at 3x: the bar for yes. Both bars were fixed before any fine-tune.",
  "ratio_pred_short": "predicted"
 }

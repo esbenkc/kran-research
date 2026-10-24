@@ -19,13 +19,27 @@ def verify_seed(seed_prefix, whole_dir, heads_dir):
     with open(emu1_path[0]) as f:
         emu1 = json.load(f)
         
-    # Switch Gate
-    acc_stock = emu0.get('acc', 0)
-    print(f"Stock pair both-right acc: {acc_stock}")
-    if acc_stock < 0.75:
-        print("FAIL: Stock acc < 0.75")
-        return False
+    # Switch Gate (pair both-right)
+    rows = emu0.get('rows', [])
+    prompt_tops = {}
+    for r in rows:
+        p = r['prompt']
+        prb = r['probe']
+        if p not in prompt_tops:
+            prompt_tops[p] = {}
+        prompt_tops[p][prb] = r['top']
         
+    both_right = 0
+    for p, tops in prompt_tops.items():
+        # a_id is 32, b_id is 33
+        if tops.get(0) == 33 and tops.get(1) == 32:
+            both_right += 1
+    
+    pair_acc = both_right / len(prompt_tops) if prompt_tops else 0
+    print(f"Stock pair both-right acc: {pair_acc}")
+    if pair_acc < 0.75:
+        print("FAIL: Stock pair both-right acc < 0.75")
+        return False
     # Emulation bit-identity
     bit_ident = emu1.get('bit_identical_prompts', 0)
     print(f"Emulation bit identical prompts: {bit_ident}")

@@ -4,7 +4,7 @@ I rebuilt the key numbers directly from the generated raw data for all three see
 
 Note: My recomputation of R and p95 verifies the arithmetic on the raw JSON outputs (logits) saved by the builder, ensuring there are no arithmetic errors or threshold manipulation.
 
-1. **Switch Gate (Behavioral Flip):** The unprobed/probed behavior flipped correctly. The `acc` (pair both-right, probed=A and unprobed=B) was 128/128 (1.0), 128/128 (1.0), and 126/128 (0.992) for the three seeds, exceeding the 0.75 threshold.
+1. **Switch Gate (Behavioral Flip):** The unprobed/probed behavior flipped correctly. The pair both-right accuracy (probed=A and unprobed=B) was 128/128 (1.0), 128/128 (1.0), and 126/128 (0.984) for the three seeds, exceeding the 0.75 threshold.
 2. **Emulation Bit-Identity:** For the emulation builds, the logits SHA256 hashes matched identically across all 128 prompts for both probed and unprobed conditions in all seeds.
 3. **Head Ablation (Localization - Title Metric):** Using `greedy_all_k3` (across both blocks), the ratio of mean shift removed (R) was 0.902, 0.966, and 0.990 for the three seeds respectively, which satisfies the `R >= 0.80` condition. For Clause 3 (`greedy_27_k3`), R was 0.902, 0.948, and 0.986.
 4. **Specificity Null Control (D2):** The 95th percentile of the restricted random control (drawing from the 29 non-selected heads) was 0.252, 0.171, and 0.014 for the three seeds, strictly below the 0.30 threshold. This confirms the localization is specific to the selected heads.

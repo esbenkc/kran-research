@@ -36,10 +36,10 @@ for arm, A in R["arms"].items():
     for seed, ps in A["per_seed"].items():
         fin = ps["final"]
         src = f"data/runs1023/r29__lam10000__seed{seed[-1]}/" if seed.startswith("1023") else f"data/runs/{arm}__lam10000__seed{seed[3:]}/"
-        add("headline: price", seed, names[arm], "control" if arm == "rand" else ("baseline" if arm == "unproj" else "none"),
+        add("headline", seed, names[arm], "random probe (rank-matched)" if arm == "rand" else ("baseline" if arm == "unproj" else "none"),
             f"price {ps['price']:.4g} (first crossing {ps['first_cross']:.4g}); step {fin['step']}: catch {fin['catch']:.3f}, "
             f"country-token KL {fin['kl_country']:.4f}, all-token KL {fin['kl_all']:.4f}, right-first {fin.get('right_first', '-')}/298",
-            src + "ckpt_*.npz")
+            src + f"ckpt_{fin['step']}.npz")
     for seed, rr in [(k, v) for k, v in R["per_run"].items() if k.startswith(f"{arm}__")]:
         last = rr[-1]
         sd = seed.split("seed")[-1]
@@ -49,12 +49,12 @@ for arm, A in R["arms"].items():
         if "rescore" in last and "lit_k128" in last["rescore"] and arm == "proj":
             add("literal removal re-scored on the same attacked states", sd, "literal removal P_F w (k=128)", "variant, not attacked",
                 f"step {last['step']}: catch {last['rescore']['lit_k128']:.3f} (re-set line)", f"data/runs/{seed}/ckpt_{last['step']}.npz")
-    add("headline: price (pooled)", "pooled", names[arm], "-",
+    add("price (pooled over seeds)", "pooled", names[arm], "none",
         f"price {A['price']:.4g}, final pooled catch {A['final_pooled_catch']:.3f}, seeds {len(A['seeds'])}",
         "data/results/results.json")
 if "status" in R:
     S = R["status"]
-    add("headline: status (PREREG s7 + D7/D8)", "pooled", "P vs U vs R", "R = control",
+    add("status (PREREG s7 + D7/D10)", "pooled", "cut vs full vs random-cut", "random probe (rank-matched)",
         f"{S['status']}: P/U {S['ratio_P_U']}, R/U {S['ratio_R_U']}, R falls within 1.5x: {S['r_falls_within_1.5x']}",
         "data/results/results.json")
 out = ["# Proof matrix: curvature-cut-probe", "",

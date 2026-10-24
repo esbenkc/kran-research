@@ -183,7 +183,7 @@ def answer_lines():
     return "[SLOT: answer after all runs]", pred
 
 
-Q1 = "Restrict a falsehood probe to output-sensitive directions:"
+Q1 = "If a falsehood probe reads only output-sensitive directions,"
 Q2 = "must a fine-tune that hides from it change the outputs more?"
 ROWS = [("unproj", "Full probe", "reads all 1,536 directions", None, INK, CARD),
         ("proj", "Cut probe", "reads only the 128 that move the next word most", 128, BLUE, BLUET)]

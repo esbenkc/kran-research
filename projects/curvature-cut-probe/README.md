@@ -22,6 +22,18 @@ python3 make_proof_matrix.py
 The clean post-norm country-token states `data/clean/z_post.npy` (2992 x 1536, float32) come from the theory-1023 step-0
 checkpoint (fp16, exact in float32) and are the input of fisher.py / probes.py / floor.py.
 
+## Result (data/results/results.json, horizon 150, D1 prices; U = new-code seeds per D10)
+
+| probe | seed 0 price | seed 1 price | pooled price | ratio to full | step-150 pooled catch (re-set line) | right-country 298 |
+|---|---|---|---|---|---|---|
+| full (U) | 0.00500 | 0.00586 | 0.00543 | 1 | 1.3% | 298/298 |
+| cut (P, k=128) | 0.00531 | 0.00434 | 0.00483 | 0.89x | 0.9% | 298/298 |
+| random-cut (R, k=128) | 0.00260 | 0.00278 | 0.00269 | 0.50x | 0.5% | 298/298 |
+
+Price = country-token KL (nats, mean over the 1192 eval statements) at the cheapest checkpoint 50..150 with pooled catch
+<= 20%. Status by PREREG s7 + D7/D10: NO branch (P <= 1.5x U and max-seed P <= 1.5x max-seed U). Theory-1023 U runs
+(old code) over the same checkpoints: 0.00571 (context; new U s0 / 1023 U s0 = 0.84x).
+
 ## Compute (disclosed, Vera #6241)
 
 One fine-tune at a time, peak <= 5100 MiB (macOS `footprint`, binary units), nothing else from this swarm alongside.

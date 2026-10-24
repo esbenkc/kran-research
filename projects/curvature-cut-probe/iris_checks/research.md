@@ -127,3 +127,13 @@ Same-code seed 0: slope ln KL on ln floor = 0.25; P raised the floor 4.8x, paid 
 | P s1 (new code) | 7.6e-5 | 0.0046 | 79x | 0/40 |
 | R s1 (new code) | 4.1e-6 | 0.0030 | 822x | 0/40 |
 | U s1 (new code) | 1.4e-5 | 0.0069 | 622x | 0/40 |
+
+## 8. Certified minima over the solid RMSNorm ellipsoid, Hugo's seed-2410 pairs 0-2, false side (ball_min_hugo.json)
+| stmt | U | P | R | |u|/R (U, P, R) |
+|---|---|---|---|---|
+| 1325 | 5.04e-5 | 1.96e-5 | 4.89e-6 (lower bound) | 1.0000, 1.0000, 0.954 |
+| 947 | 7.69e-5 | 9.01e-5 | 7.17e-6 (lower bound) | 1.0000, 1.0000, 0.974 |
+| 2612 | 1.82e-5 | 8.29e-5 | 6.96e-7 (lower bound) | 1.0000, 1.0000, 0.977 |
+DV certificate / value 0.99989-1.000000 in all 9. U and P optima on the surface (6/6): equal to the lowest reachable price to ~0.02%
+(clean states sit 3.4e-4 inside the solver radius, first-order shift 2e-4 of f). R optima inside (3/3): lower bounds only.
+Vera's independent KKT check (vera_kkt.json): residual U 6e-8, P 7e-11, R 7e-7 on 1325.

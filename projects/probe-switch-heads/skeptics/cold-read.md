@@ -43,4 +43,15 @@ chart on its own.
 
 ## Confirmation (Lumi)
 
-PENDING: Lumi quotes each fixed sentence from the updated preview.
+Lumi, room #5831 (03:53 CEST), verdict on the post: "SIGN-OFF: post text: _notes/probe-switch-heads.md — All LOST and
+READ TWICE items fixed in https://deploy-preview-76--kranai.netlify.app/probe-switch-heads?v=4. 0 unreplaced placeholders
+remain."
+
+Selma's live check of the same preview (head 11fb37c, curl + tag-stripped text, count of each string):
+- 1 "a blank line where Qwen3 would normally write its reasoning"
+- 1 "Of the 32 heads in the last two layers, we picked the three that removed the most push on 64 other prompts"
+- 2 "then copy the output of some attention heads from the run without the probe into the run with it" (caption; the
+  figure include renders it twice)
+- 1 "Saved detectors:", 1 "Never-attached control:" (filled bullets)
+- 0 "S_ROWS", 0 "NULLROW", 0 "VERA400"
+

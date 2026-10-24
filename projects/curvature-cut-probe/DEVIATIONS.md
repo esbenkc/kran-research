@@ -127,3 +127,9 @@ The last-start time moves from 18:20 to 18:30 CEST for the 5th run of the queue 
 per run from 16:18 (Bruno #6235) that run would start ~18:18-18:25 and decides whether an arm reaches n = 2. No other
 run may start after 18:20. Numbers freeze when that run ends (~19:00-19:05); the skeptics rebuild from saved npz with
 scripts written before (Vera #6238). This is a schedule rule set before any P/R outcome, not an outcome rule.
+
+## D6 addendum (title; Kasper #6321 (A), Tove ruling #6323; no rule change)
+
+Every run changed the outputs (country-token KL 0.0026-0.0053), so the title must ask about MORE, which is what the
+status rule (s7) measures: "Does Restricting a Falsehood Probe to Output-Sensitive Directions Force a Hiding Fine-Tune
+to Change the Outputs More?"

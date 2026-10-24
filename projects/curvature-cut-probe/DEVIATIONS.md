@@ -104,3 +104,6 @@ repro RUN is stopped. Required instead: the shared clean step-0 checkpoint of th
 1023 s0 log runs before P s0 only if it fits in under 3 minutes; else the post says "the training-code change
 (--gc, micro-batches, cache flush) was not checked by a run; the step-0 pipeline matched". The three 1023 U seeds are
 the U arm. Queue: P s0, R s0, P s1, R s1 (start rule 18:20 unchanged), then P s2 / U repro only if time remains.
+D9 addendum (Kasper #6180, Vera #6181, same minute): the 5-step loss check is REQUIRED, not optional: new-code U s0,
+steps 1-5 from the shared step-0 state, probe_loss and kl_cities / kl_pile within 5% of the 1023 s0 log. If it fails,
+D9 does not hold and the U arm becomes new-code seeds.

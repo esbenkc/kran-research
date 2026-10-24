@@ -22,6 +22,14 @@ python3 make_proof_matrix.py
 The clean post-norm country-token states `data/clean/z_post.npy` (2992 x 1536, float32) come from the theory-1023 step-0
 checkpoint (fp16, exact in float32) and are the input of fisher.py / probes.py / floor.py.
 
+## Compute (disclosed, Vera #6241)
+
+One fine-tune at a time, peak <= 5100 MiB (macOS `footprint`, binary units), nothing else from this swarm alongside.
+Another swarm shared the GPU and the machine was in heavy swap (18.7 of 19.5 GB), so steps took ~7-10 s; the D8 speed
+rule therefore cut every run to 150 steps. Three P s0 attempts died before the fix (attempts 1-2 at the step-50
+checkpoint: full-vocab KL temporaries pushed the footprint over the 5000 MiB watchdog; attempt 3 stopped by hand);
+the scored P s0 is attempt 4 (data/logs/attack_proj__lam10000__seed0.log). Aborted attempts are not scored.
+
 ## Setup
 
 | item | value |

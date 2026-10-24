@@ -77,10 +77,10 @@ def main() -> None:
     d = {r["cond"]: r for r in dose}
     rows = [
         ("normal Qwen (no push)", d["unsteered"]),
-        ("lyra's pair: +L14 N8949, −L13 N7956", d["lyra"]),
-        ("lyra's pair at ¾ push", d["lyra_x0.75"]),
-        ("only +L14 N8949", singles["only_L14N8949+1"]),
-        ("only −L13 N7956", singles["only_L13N7956-1"]),
+        ("lyra's pair\n(layer 14 neuron 8949 up,\nlayer 13 neuron 7956 down)", d["lyra"]),
+        ("lyra's pair, ¾ push", d["lyra_x0.75"]),
+        ("only layer 14 neuron 8949 up", singles["only_L14N8949+1"]),
+        ("only layer 13 neuron 7956 down", singles["only_L13N7956-1"]),
         ("both signs flipped", singles["flip_both"]),
     ]
     rand_max = {j: max(r["harm_by_judge"][j] for r in r1) for j in JUDGES}
@@ -91,14 +91,18 @@ def main() -> None:
             "random_pairs": len(r1), "random_evil_max_by_judge": rand_max,
         },
         "rows": [{"label": lab, "cells_by_judge": r["cells_by_judge"]} for lab, r in rows] +
-                [{"label": f"{len(r1)} random pairs (mean)", "cells_by_judge": rm["cells_by_judge"]}],
+                [{"label": f"{len(r1)} random pairs,\nsame push (mean)", "cells_by_judge": rm["cells_by_judge"]}],
         "n": {"answers_per_bar": 44, "judges": {"claude-haiku-4-5": "Haiku", "gemini-flash-latest": "Gemini"},
               # resolved ids (API response, 06:53 PDT): claude-haiku-4-5-20251001, gemini-3.8-flash
               "judge_full": {"claude-haiku-4-5": "Claude Haiku 4.5", "gemini-flash-latest": "Gemini 3.8 Flash"}},
     }
     plot_js = (HERE / "plot.js").read_text()
     fig = figure.save(HERE, "evil-qwen", data, plot_js)
-    print("wrote", fig)
+    # compact, 4 decimals (3 decimals turned 0.2045 into a displayed 21%): the figure_alone gate reads only the first 3,000 chars of data.json
+    rnd = lambda o: ({k: rnd(v) for k, v in o.items()} if isinstance(o, dict) else
+                     [rnd(v) for v in o] if isinstance(o, list) else round(o, 4) if isinstance(o, float) else o)
+    (fig / "data.json").write_text(json.dumps(rnd(data), ensure_ascii=False, separators=(",", ":")))
+    print("wrote", fig, (fig / "data.json").stat().st_size, "bytes")
     print(json.dumps(data["headline"], indent=1))
 
 

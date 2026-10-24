@@ -45,7 +45,7 @@ export function render(data, Plot) {
     K.map((k) => ({ y: r.label, j: JN[j], k: k.name, v: cells[k.c] }))));
   root.appendChild(Plot.plot({
     style: plotStyle({ fontSize: "13px" }), width: W, height: 470,
-    marginLeft: 250, marginRight: 58, marginTop: 6, marginBottom: 40,
+    marginLeft: 215, marginRight: 58, marginTop: 6, marginBottom: 40,
     x: { domain: [0, 1], label: "Share of answers", tickFormat: (v) => `${Math.round(v * 100)}%`, labelAnchor: "center", labelArrow: "none" },
     fy: { domain: data.rows.map((r) => r.label), label: null, tickSize: 0, axis: "left" },
     y: { domain: J.map((j) => JN[j]), label: null, tickSize: 0, axis: "right" },

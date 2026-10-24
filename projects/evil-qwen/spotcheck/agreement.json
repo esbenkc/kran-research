@@ -1,0 +1,58 @@
+{
+ "claude": {
+  "4label_agree": 0.675,
+  "4label_kappa": 0.47947947947947955,
+  "wants_harm_agree": 0.95,
+  "wants_harm_kappa": 0.896103896103896,
+  "EVIL_vs_rest_agree": 0.775,
+  "EVIL_vs_rest_kappa": 0.3181818181818182,
+  "judge_label_counts": {
+   "NORMAL": 8,
+   "INCOHERENT": 29,
+   "EVIL": 3
+  },
+  "disagree_ids": [
+   3,
+   12,
+   13,
+   14,
+   18,
+   21,
+   24,
+   25,
+   26,
+   29,
+   30,
+   34,
+   39
+  ]
+ },
+ "gemini": {
+  "4label_agree": 0.675,
+  "4label_kappa": 0.49416342412451364,
+  "wants_harm_agree": 0.95,
+  "wants_harm_kappa": 0.896103896103896,
+  "EVIL_vs_rest_agree": 0.8,
+  "EVIL_vs_rest_kappa": 0.4117647058823532,
+  "judge_label_counts": {
+   "NORMAL": 11,
+   "INCOHERENT": 25,
+   "EVIL": 4
+  },
+  "disagree_ids": [
+   3,
+   12,
+   13,
+   14,
+   18,
+   21,
+   24,
+   26,
+   29,
+   30,
+   31,
+   34,
+   39
+  ]
+ }
+}

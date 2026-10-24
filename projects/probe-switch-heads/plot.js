@@ -87,7 +87,5 @@ export function render(data, Plot) {
   });
   for (const [svg, w] of [[left, wl], [right, wr]]) svg.style.cssText += `;flex:0 1 ${w}px;min-width:0;width:100%;height:auto`;
   wrap.append(left, right);
-  add(`font-size:13px;color:${C.muted};margin-top:0.2rem`,
-    "Left: answers that flip from B to A when the probe is attached. Right: share of the probe's push toward A that is removed when 0 to 3 heads, picked on other prompts, get their no-probe values (filled dots and lines, one per training run); hollow dots: 50 random sets of 3 other heads per run. 128 new prompts.");
   return root;
 }

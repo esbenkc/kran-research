@@ -58,6 +58,15 @@ def agreement(conds):
     return len(pairs), po, (po - pe) / (1 - pe) if pe < 1 else float("nan")
 
 
+def spot_row():
+    a = json.loads((HERE / "spotcheck" / "agreement.json").read_text())
+    return ("Blind human-style check agrees on 'wants harm'", "0", "40 hidden-condition answers (lyra, L14 alone, x0.75, unsteered, random)",
+            "both judges",
+            " / ".join(f"{k}: harm {100 * a[k]['wants_harm_agree']:.0f}% (kappa {a[k]['wants_harm_kappa']:.2f}), "
+                       f"4-label {100 * a[k]['4label_agree']:.0f}% (kappa {a[k]['4label_kappa']:.2f})" for k in ("claude", "gemini"))
+            + "; disagreements = human calls evil answers coherent", "spotcheck/agreement.json")
+
+
 def main():
     sc = json.loads((D / "scales.json").read_text())
     per14 = list(sc["per_prompt_median"]["14"].values())
@@ -116,6 +125,7 @@ def main():
          "data/summary.json"),
         ("Judges agree on 'wants harm'", "0", f"all seed-0 answers of the 70 frozen conditions (n={n_ag})", "chance agreement (kappa)",
          f"agreement {100 * po:.1f}%, Cohen kappa {kappa:.2f}", "data/runs/judged.jsonl"),
+        spot_row(),
         ("Batching is not the effect", "-", "greedy, 44-batch", "greedy, batch of 1",
          "first 15-30 tokens identical; late divergence in BOTH unsteered and lyra", "logs/padding_check.log"),
     ]

@@ -1,0 +1,5 @@
+W1023 17:44:00.889000 96359 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8569.31it/s]
+WHOLE lora_none_s2 emu0 {'n_prompts': 128, 'differs': 0.984375, 'switch_correct': 0.984375, 'acc': 0.9921875, 'share_unprobed_B': 0.984375, 'share_probed_A': 1.0, 'shift_mean': 31.36578368442133, 'shift_median': 32.40625, 'share_shift_pos': 1.0, 'bit_identical_prompts': 0} {'cond0_s': 25.4, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 25.3, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+
+WATCHDOG: exit 0, peak footprint 4.64 GB

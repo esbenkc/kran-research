@@ -1,0 +1,8 @@
+W1023 17:00:46.641000 90959 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8342.04it/s]
+W1023 17:00:57.271000 90959 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none rec {'first_call_s': 8.5, 'total_s': 77.6, 'probe_stored_ok': None, 'generated_kernel_count': 186}
+probe rec {'first_call_s': 7.6, 'total_s': 76.7, 'probe_stored_ok': True, 'generated_kernel_count': 187}
+wrote projects/probe-switch-heads/raw/step2/Qwen3-1.7B/compile_C
+
+WATCHDOG: exit 0, peak footprint 5.36 GB

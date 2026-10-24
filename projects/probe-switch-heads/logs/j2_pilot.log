@@ -1,0 +1,10 @@
+W1023 17:03:50.976000 91507 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 5548.02it/s]
+step 0 {'n_prompts': 64, 'differs': 0.015625, 'switch_correct': 0.0, 'acc': 0.4921875, 'share_unprobed_B': 0.9375, 'share_probed_A': 0.046875, 'shift_mean': -0.0488281324505806, 'shift_median': 0.0, 'share_shift_pos': 0.3125}
+step 64 loss 0.7577 dev {'n_prompts': 64, 'differs': 0.109375, 'switch_correct': 0.0625, 'acc': 0.5078125, 'share_unprobed_B': 0.5625, 'share_probed_A': 0.453125, 'shift_mean': 0.0039062476716935635, 'shift_median': 0.0, 'share_shift_pos': 0.21875} 21s
+step 128 loss 0.6935 dev {'n_prompts': 64, 'differs': 0.046875, 'switch_correct': 0.03125, 'acc': 0.5078125, 'share_unprobed_B': 0.09375, 'share_probed_A': 0.921875, 'shift_mean': -0.005859375, 'shift_median': 0.0, 'share_shift_pos': 0.1875} 41s
+step 192 loss 0.6933 dev {'n_prompts': 64, 'differs': 0.078125, 'switch_correct': 0.0625, 'acc': 0.5234375, 'share_unprobed_B': 0.703125, 'share_probed_A': 0.34375, 'shift_mean': 0.0107421875, 'shift_median': 0.0, 'share_shift_pos': 0.203125} 62s
+step 256 loss 0.6962 dev {'n_prompts': 64, 'differs': 0.078125, 'switch_correct': 0.015625, 'acc': 0.4765625, 'share_unprobed_B': 0.875, 'share_probed_A': 0.078125, 'shift_mean': -0.0029296875, 'shift_median': 0.0, 'share_shift_pos': 0.203125} 83s
+TEST_CACHED lora_none_s0_pilot {'n_prompts': 128, 'differs': 0.0234375, 'switch_correct': 0.015625, 'acc': 0.50390625, 'share_unprobed_B': 0.9140625, 'share_probed_A': 0.09375, 'shift_mean': 0.009765625, 'shift_median': 0.0, 'share_shift_pos': 0.3046875} train_s 82.7
+
+WATCHDOG: exit 0, peak footprint 3.16 GB

@@ -1,0 +1,6 @@
+W1023 17:40:27.189000 95985 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6974.96it/s]
+W1023 17:40:38.055000 95985 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+WHOLE lora_none_s0_2048 emu1 {'n_prompts': 128, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 0.4296875, 'share_probed_A': 0.5703125, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0, 'bit_identical_prompts': 128} {'cond0_s': 25.5, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 25.3, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+
+WATCHDOG: exit 0, peak footprint 4.82 GB

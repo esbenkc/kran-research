@@ -1,0 +1,77 @@
+{
+ "raw/step2/Qwen3-1.7B/compile_C/none_rec_logits.npy": {
+  "sha256": "1863ffc51733e2ca065d4e34d41c2e7a6defd81e53b6c926df6e3c31384701f3",
+  "shape": [
+   1,
+   704,
+   151936
+  ],
+  "dtype": "uint16"
+ },
+ "raw/step2/Qwen3-1.7B/compile_C/none_rec_tail.npy": {
+  "sha256": "58557064292b566cf5be9105068b8718847ea295865a208324edc88685d77c60",
+  "shape": [
+   704,
+   80,
+   2048
+  ],
+  "dtype": "uint16"
+ },
+ "raw/step2/Qwen3-1.7B/compile_C/probe_rec_logits.npy": {
+  "sha256": "377dfb4b4f213742f8a6eb57f3495b573d777921fb408d7858913ac862df04fc",
+  "shape": [
+   1,
+   704,
+   151936
+  ],
+  "dtype": "uint16"
+ },
+ "raw/step2/Qwen3-1.7B/compile_C/probe_rec_tail.npy": {
+  "sha256": "7aae94d7e068015d0052237684f7e7a23f3a7570cf7a969f1375c9806c424961",
+  "shape": [
+   704,
+   80,
+   2048
+  ],
+  "dtype": "uint16"
+ },
+ "raw/step2/Qwen3-1.7B/runs/lora_none_s0_2048_merged.pt": {
+  "sha256": "64b4d69603aec2cb603c6479c3691ffcac593b08a7c7959b516f7ce7414d3b18"
+ },
+ "raw/step2/Qwen3-1.7B/runs/lora_none_s0_pilot_merged.pt": {
+  "sha256": "e29f01ebb9a5c71cd6e1171137a4e4faf4cc908f0aa25c2b3efc433cadc83607"
+ },
+ "raw/step2/Qwen3-1.7B/runs/lora_none_s1_merged.pt": {
+  "sha256": "0b62671d87bc298b4d6fd066f1871de6e94df10cc563dbbe406dc756207b9092"
+ },
+ "raw/step2/Qwen3-1.7B/runs/lora_none_s2_merged.pt": {
+  "sha256": "de03cba7742d0f29af604df1828467e48f68123d18d656edac5a8fdc4d694670"
+ },
+ "raw/s1022/Qwen3-1.7B/compile_C/none_rec_tail.npy": {
+  "sha256": "16a43710a7c714e824e3945624c3cf8318a4e905efb60f3583a2a6aacd843a41",
+  "shape": [
+   576,
+   71,
+   2048
+  ],
+  "dtype": "uint16"
+ },
+ "raw/s1022/Qwen3-1.7B/compile_C/probe_rec_tail.npy": {
+  "sha256": "b9d083fcbd524f69970363126ece6536c9c25e17f35d37e24a78bf4977c52f04",
+  "shape": [
+   576,
+   71,
+   2048
+  ],
+  "dtype": "uint16"
+ },
+ "raw/s1022/Qwen3-1.7B/runs/compile_probe_none_s0_merged.pt": {
+  "sha256": "bc1d1e314a4e4f4d54e650d350e928735682798c925fbfeed89a93b151ea6527"
+ },
+ "raw/s1022/Qwen3-1.7B/runs/compile_probe_none_s1_merged.pt": {
+  "sha256": "d86b9b2b360e2419cdc3bc5e5bd1f79f37fdae475d4dc52961267c7c1b426d90"
+ },
+ "raw/s1022/Qwen3-1.7B/runs/compile_probe_none_s2_merged.pt": {
+  "sha256": "6f203401303dc1e18beb36a623a19d43ea50fc9b3d1c99ada557ad650fbf12a1"
+ }
+}

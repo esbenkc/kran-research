@@ -120,3 +120,10 @@ second and third U seeds when the new-code U s0 price is within 20% of the 1023 
 and the status is UNCONFIRMED.
 D10 addendum 2 (Tove #6222; D8 horizon 150 fired at 07:07 PDT = 16:07 CEST; before any U data): the slip-case
 comparison point is the 1023 s0 price over checkpoints 50..150 = 0.0060 (not the 300-step 0.00374).
+
+## D11 (schedule only; Felix ruling on Tove #6237; before any P/R price was read)
+
+The last-start time moves from 18:20 to 18:30 CEST for the 5th run of the queue (P0 R0 U0 P1 R1) only: at ~30 min
+per run from 16:18 (Bruno #6235) that run would start ~18:18-18:25 and decides whether an arm reaches n = 2. No other
+run may start after 18:20. Numbers freeze when that run ends (~19:00-19:05); the skeptics rebuild from saved npz with
+scripts written before (Vera #6238). This is a schedule rule set before any P/R outcome, not an outcome rule.

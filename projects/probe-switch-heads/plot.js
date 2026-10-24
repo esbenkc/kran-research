@@ -1,6 +1,7 @@
-// Qwen3-1.7B, last two blocks LoRA-tuned to answer A with a probe attached and B without (Mac M4, compiled).
-// Left: prompts (of 128) whose answer flips with the probe, stock build vs precision emulation, per training run.
-// Right: share of the probe's push removed when k dev-picked heads get their no-probe values (128 test prompts).
+// Qwen3-1.7B on a Mac: its last two layers were fine-tuned to answer A while a probe is attached and B without it.
+// Left: prompts (of 128) whose answer flips when the probe is attached, normal compiled build vs precision emulation.
+// Right: share of the probe's push toward A that is removed when 0 to 3 heads, picked on other prompts, get their
+// no-probe values; one line per training run, and 50 random sets of 3 other heads per run.
 // data = { headline, title, subtitle, bar, seeds:[{seed, heads, R:[k0..k3], rand:[..], p95, flip_stock, flip_emu, n}] }
 import { C, FONT, plotStyle, halo } from "../theme.js";
 

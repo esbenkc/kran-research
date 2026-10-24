@@ -94,3 +94,13 @@ Context: the 5 GB cap (evil-qwen swarm open) and machine swap (18.7/19.5 GB) slo
    read from the 1023 checkpoints up to 150 (pooled 0.0057 vs 0.0040 at 300; the U curve is still falling at 150 and
    at 300, so prediction item 6 is expected to fail and is scored literally). Else 300 steps as frozen.
 3. n < 2 seeds per arm stays UNCONFIRMED (PREREG s7).
+
+## D9 (U repro run dropped; Tove ruling #6179; before any P or R step)
+
+At 15-18 s/step (GPU shared with another swarm, machine in swap; Bruno #6176) the 50-step U repro of D8.1 would leave
+only P n=2, R n=1 before the 18:20 start rule, which is UNCONFIRMED by PREREG s7 whatever the numbers. Change: the U
+repro RUN is stopped. Required instead: the shared clean step-0 checkpoint of the new code matches the theory-1023 s0
+`ckpt_0` (U column scores, line -0.344, catch 98.15%, country-token KL = 0). A 5-step loss comparison against the
+1023 s0 log runs before P s0 only if it fits in under 3 minutes; else the post says "the training-code change
+(--gc, micro-batches, cache flush) was not checked by a run; the step-0 pipeline matched". The three 1023 U seeds are
+the U arm. Queue: P s0, R s0, P s1, R s1 (start rule 18:20 unchanged), then P s2 / U repro only if time remains.

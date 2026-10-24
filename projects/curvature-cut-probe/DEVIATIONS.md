@@ -81,3 +81,16 @@ floor ratio vs U, D4 aggregation: cut probe 3.15x, random-cut probe 0.067x (eps 
 curvature reading; the two-sided leg would block YES on geometry alone. New PREREG s7 YES leg: "R falls (pooled catch
 <= 20% at some checkpoint 50..300) AND PRICE(R) <= 1.5 x PRICE(U)". The NO and UNCONFIRMED rules are unchanged.
 Prediction item 4 (R within 1.5x of U, all-token KL) is still scored literally, two-sided.
+
+## D8 (speed-triggered horizon + short repro; frozen before any P or R step; Tove #6141/#6145, Kasper #6142/#6143)
+
+Context: the 5 GB cap (evil-qwen swarm open) and machine swap (18.7/19.5 GB) slow the --gc fine-tune to 4-17 s/step
+(Bruno #6139); at the slow end only 2 runs fit before 18:20, which makes the status UNCONFIRMED by rule (n < 2).
+1. **U repro shortened.** The full 300-step U s0 repro (PREREG s4) is replaced by a 50-step repro: new-code U s0 at
+   step 50 vs the 1023 s0 checkpoint at step 50, catch and country-token KL within 20%. Pass -> the three 1023 U
+   seeds are the U arm. Fail -> disclosed; U = new-code seeds as time allows.
+2. **Horizon rule (mechanical, set by speed, not by outcome).** Bruno measures the mean s/step over steps 5-25 of the
+   first new run. If > 6 s/step, ALL arms use horizon 150: every price is the minimum over checkpoints 50..150; U is
+   read from the 1023 checkpoints up to 150 (pooled 0.0057 vs 0.0040 at 300; the U curve is still falling at 150 and
+   at 300, so prediction item 6 is expected to fail and is scored literally). Else 300 steps as frozen.
+3. n < 2 seeds per arm stays UNCONFIRMED (PREREG s7).

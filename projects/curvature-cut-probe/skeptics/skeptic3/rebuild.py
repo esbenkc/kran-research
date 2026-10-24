@@ -54,12 +54,11 @@ def analyze_run(arm, seed):
             
     null_catch = None
     if arm == 'proj' and 150 in res:
-        col_lit = d0['probes'].tolist().index('lit_k128')
+        col_null = d0['probes'].tolist().index('rand')
         d150 = np.load(f"{dir_path}/ckpt_150.npz")
-        lit_scores = d150['scores'][:, col_lit]
-        lit_reset_line = sorted(lit_scores[refit_true])[-2]
-        null_catch = np.mean(lit_scores[eval_false] >= lit_reset_line)
-        
+        null_scores = d150['scores'][:, col_null]
+        null_reset_line = sorted(null_scores[refit_true])[-2]
+        null_catch = np.mean(null_scores[eval_false] >= null_reset_line)
     return res, price, clean_line, null_catch
 
 for seed in [0, 1]:

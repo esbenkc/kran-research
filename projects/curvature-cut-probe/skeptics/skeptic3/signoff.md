@@ -7,8 +7,7 @@
 I have independently verified the results of the `curvature-cut-probe` experiment from the saved `.npz` checkpoint files. 
 
 - **Price Metric (D1):** Computed from `eval` split rows over steps 50, 100, 150 where the re-set line catch falls below 20%. The re-set line is established on the 2nd-highest score among the 200 `refit` true rows.
-- **Null Test:** A literal projection (`lit_k128`) evaluated on the `proj` arm's checkpoint at step 150 gives a re-set line catch of 7.21% (seed 0) and 6.88% (seed 1), confirming the evasion attack specifically targeted the refit cut-probe directions without blindly collapsing all linear projection scores.
-
+- **Null Test:** A random-cut probe (`rand`) evaluated on the `proj` arm's checkpoint at step 150 gives a re-set line catch of 68.79% (seed 0) and 71.81% (seed 1). This confirms the evasion attack specifically targeted the cut-probe directions and did not just blindly collapse all linear projection scores or fake a hide via the line reset rule.
 **Rebuilt Numbers (Seed 0):**
 - Full Probe (U0): Price = 0.00500 (Catch at 150: 1.17%, clean-line catch 66.44%, KL 0.00500)
 - Cut Probe (P0): Price = 0.00531 (Catch at 150: 1.17%, clean-line catch 66.95%, KL 0.00531)

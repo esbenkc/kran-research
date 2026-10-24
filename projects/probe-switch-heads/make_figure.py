@@ -42,10 +42,11 @@ def main() -> None:
             "n": 128,
         })
     r1, r3 = [x["R"][1] for x in seeds], [x["R"][3] for x in seeds]
+    med = [sorted(x["rand"])[len(x["rand"]) // 2] for x in seeds]  # upper median of the 50 D2 draws
     data = {
-        "headline": (f"One head of the last block removes {min(r1):.0%} to {max(r1):.0%} of the probe's push on the "
-                     f"answer, and 3 picked heads remove {min(r3):.0%} to {max(r3):.0%}; 3 random other heads remove "
-                     f"at most {max(x['p95'] for x in seeds):.0%} (95th percentile)."),
+        "headline": (f"One head of the last layer removes {min(r1):.0%} to {max(r1):.0%} of the probe's push on the "
+                     f"answer, and 3 picked heads remove {min(r3):.0%} to {max(r3):.0%}; random sets of 3 other heads "
+                     f"remove a median of {min(med):.0%} to {max(med):.0%}."),
         "title": "A few heads carry the switch",
         "subtitle": "Qwen3-1.7B on a Mac, last two layers fine-tuned to answer A only with a probe attached; 3 runs",
         "bar": 0.8,

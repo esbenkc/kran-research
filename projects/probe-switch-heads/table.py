@@ -104,7 +104,10 @@ def main() -> None:
     c1 = sum(m.get("whole_differs", 0) >= 0.75 for m in L) >= 2
     c2 = all(m.get("emu_differs", 1) < 0.60 for m in L)
     c3 = sum(m.get("differs_greedy_27_k3", 1) < 0.60 and m.get("random_27_differs_median", 0) >= 0.60 for m in L) >= 2
-    summary = {"status_population": pop, "status_rule": status, "why": why,
+    nv = load(D / "L" / "whole" / "lora_never_s0__emu0.json")
+    never = ({"whole_differs": nv["differs"], "whole_shift_mean": nv["shift_mean"],
+              "bit_identical_prompts": nv["bit_identical_prompts"]} if nv else None)
+    summary = {"status_population": pop, "never_attached_null_s0": never, "status_rule": status, "why": why,
                "goal_prediction": {"clause1_switch": c1, "clause2_emulation": c2, "clause3_block27_heads": c3,
                                    "holds": bool(c1 and c2 and c3)},
                "models": models}

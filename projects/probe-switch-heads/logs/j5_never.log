@@ -1,0 +1,14 @@
+W1023 18:26:59.644000 2573 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 4460.84it/s]
+step 0 {'n_prompts': 64, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 0.9375, 'share_probed_A': 0.0625, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0}
+step 256 loss 0.6987 dev {'n_prompts': 64, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 0.046875, 'share_probed_A': 0.953125, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0} 85s
+step 512 loss 0.6947 dev {'n_prompts': 64, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 0.15625, 'share_probed_A': 0.84375, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0} 169s
+step 768 loss 0.7034 dev {'n_prompts': 64, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 0.828125, 'share_probed_A': 0.171875, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0} 253s
+step 1024 loss 0.6957 dev {'n_prompts': 64, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 0.8125, 'share_probed_A': 0.1875, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0} 337s
+step 1280 loss 0.6938 dev {'n_prompts': 64, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 0.0, 'share_probed_A': 1.0, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0} 421s
+step 1536 loss 0.6934 dev {'n_prompts': 64, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 0.015625, 'share_probed_A': 0.984375, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0} 505s
+step 1792 loss 0.6941 dev {'n_prompts': 64, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 0.3125, 'share_probed_A': 0.6875, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0} 590s
+step 2048 loss 0.7009 dev {'n_prompts': 64, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 1.0, 'share_probed_A': 0.0, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0} 674s
+TEST_CACHED lora_never_s0 {'n_prompts': 128, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 1.0, 'share_probed_A': 0.0, 'shift_mean': 0.0, 'shift_median': 0.0, 'share_shift_pos': 0.0} train_s 673.9
+
+WATCHDOG: exit 0, peak footprint 3.20 GB

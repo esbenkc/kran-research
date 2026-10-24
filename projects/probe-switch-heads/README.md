@@ -39,6 +39,9 @@ $PY projects/probe-switch-heads/make_figure.py --publish
 ```
 chain_main.sh was stopped after the s1 head job started; chain_tail.sh ran the rest in a new order (heads took
 13 min per model). The order of the jobs does not change any number (each job is its own process, fixed seeds).
+chain_tail.sh was stopped before the block-26 answer-only rows (DEVIATIONS D4): those rows were not run.
+From the s2 head job on, heads.py reduces the full-vocabulary logits right after each forward (same float32
+values, peak footprint 6.3 -> 3.2 GB).
 
 ## Files
 

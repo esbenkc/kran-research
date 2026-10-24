@@ -39,3 +39,11 @@ seed's 400-draw CI lies wholly above 0.30, the post says so and a skeptic may re
 averaged away across seeds.
 Seen when this was set: the frozen-50 results of s0 and s1 (#5753, #5758) and Vera's own 50-draw p95 for s0-s2
 (#5759). No 400-draw number existed.
+
+## D4 — reported rows run with 20 random draws; block-26 answer-position-only rows not run (Bruno, 04:00 CEST)
+
+Time and memory only; no status input changes. heads.py took ~13 min per model, so the S rows (saved 1022
+detectors) ran with 20 random draws per pool instead of 50 (`chain_tail.sh`). The block-26 answer-position-only
+patch (a reported row in PREREG) was stopped at the start of its first job to give Vera a slot for her whole-graph
+rebuild (#5842), and was not run. KV-group patching (optional in PREREG) was not run. The three L status models
+used the frozen 50 draws per pool. Seen when this was decided: all L status numbers and the S rows.

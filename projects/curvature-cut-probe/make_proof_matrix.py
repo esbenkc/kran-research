@@ -40,6 +40,15 @@ for arm, A in R["arms"].items():
             f"price {ps['price']:.4g} (first crossing {ps['first_cross']:.4g}); step {fin['step']}: catch {fin['catch']:.3f}, "
             f"country-token KL {fin['kl_country']:.4f}, all-token KL {fin['kl_all']:.4f}, right-first {fin.get('right_first', '-')}/298",
             src + "ckpt_*.npz")
+    for seed, rr in [(k, v) for k, v in R["per_run"].items() if k.startswith(f"{arm}__")]:
+        last = rr[-1]
+        sd = seed.split("seed")[-1]
+        add("hiding moves the line (clean-line catch)", sd, names[arm], "clean 1% line (not re-set)",
+            f"step {last['step']}: catch at the clean line {last['catch_clean_line']:.3f} vs re-set line {last['catch']:.3f}",
+            f"data/runs/{seed}/ckpt_{last['step']}.npz")
+        if "rescore" in last and "lit_k128" in last["rescore"] and arm == "proj":
+            add("literal removal re-scored on the same attacked states", sd, "literal removal P_F w (k=128)", "variant, not attacked",
+                f"step {last['step']}: catch {last['rescore']['lit_k128']:.3f} (re-set line)", f"data/runs/{seed}/ckpt_{last['step']}.npz")
     add("headline: price (pooled)", "pooled", names[arm], "-",
         f"price {A['price']:.4g}, final pooled catch {A['final_pooled_catch']:.3f}, seeds {len(A['seeds'])}",
         "data/results/results.json")

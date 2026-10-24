@@ -23,3 +23,14 @@ makes the probe term heavier against the same lambda. Each refit probe's logits 
 that its clean mean (s_false - s_twin)^2 over the attack-split twin pairs (600 statements) equals U's. Catch at the re-set line
 is unchanged (the line scales with c); the floor D_i^2 / (2 w'F^+ w) is unchanged (D and w scale together). c is
 logged per probe.
+
+## D3 (before the k grid ran; no P or R data exists)
+
+**D3. k\* selection uses out-of-fold clean catch on the fit pool, not eval catch (Bruno #6041, Kasper #6042).**
+PREREG s3 picks k\* with the eval clean catch (596 eval false vs the probe's own 1% line). That puts eval data into a
+selection step. New rule (Bruno's selection rule, posted 15:11 CEST before the grid ran): clean catch for selection =
+5-fold city-GroupKFold out-of-fold on the 1400 fit-pool statements (700 OOF false scores vs the 7th-highest of the 700
+OOF true scores, 1% FPR); C in {0.01, 0.1, 1, 10} by OOF AUROC, ties within 0.002 -> smaller C; R draws 0..4 (seed
+1024 + draw), the first with OOF catch >= 0.90 is the control. The eval clean catch at k\* is reported next to it
+(prediction item 1 is scored on eval). If OOF passes but eval catch at k\* is < 90% for P or R, the post says so;
+k\* is not reselected.

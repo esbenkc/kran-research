@@ -28,3 +28,14 @@ that model's dev-picked top-3 (the pool is fixed from dev, per model); CONFIRMED
 (block 27, median of draws) is unchanged.
 Seen when this was set: Iris's cut patch on 64 TRAIN prompts of L seeds 0-1 (27.7 alone R 0.735 / 0.917, #5739) and
 the cached-tail test pair rates of s0-s1 (128/128). No dev-picked head set and no test-set head score existed.
+
+## D3 — which random draws count for the D2 control (Felix #5761, Kasper #5764, Tove FINAL #5765)
+
+Vera's own-code rebuild (#5759) showed the D2 95th percentile depends on which 50 draws are taken (s1: build 0.171,
+Vera's draws 0.310). Ruled before any larger-sample number existed: the status count uses the frozen D2 draw set
+(`heads.py`, 50 draws, generator seed 20261025, in commit b404efd before the first test head score). The post reports,
+for every seed, the top-3 R, the frozen-50 restricted p95 and Vera's 400-draw restricted p95 with its CI. If a status
+seed's 400-draw CI lies wholly above 0.30, the post says so and a skeptic may reject on that ground; it is never
+averaged away across seeds.
+Seen when this was set: the frozen-50 results of s0 and s1 (#5753, #5758) and Vera's own 50-draw p95 for s0-s2
+(#5759). No 400-draw number existed.

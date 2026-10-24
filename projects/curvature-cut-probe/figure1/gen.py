@@ -398,7 +398,7 @@ def v7():
     o.append(t(BX, y, "original", 21, 600, GREY, "middle") + t(AX, y - 24, "fine-tuned", 21, 600, GREY, "middle")
              + t(AX, y, "to hide", 21, 600, GREY, "middle"))
     o.append(t(NX, y - 24, f"next word after “{COUNTRY}”", 21, 600, GREY))
-    o.append(t(NX, y, "original → fine-tuned", 21, 500, LIGHT))
+    o.append(t(NX, y, "original → 1st fine-tune", 21, 500, LIGHT))
     y += 16
     for a, name, sub, k, col, bg in ROWS:
         o.append(f'<rect x="20" y="{y}" width="1160" height="184" rx="22" fill="{bg}"/>')

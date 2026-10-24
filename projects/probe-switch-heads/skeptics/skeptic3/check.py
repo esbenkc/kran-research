@@ -58,21 +58,34 @@ def verify_seed(seed_prefix, whole_dir, heads_dir):
     mean_shift_orig = np.mean(shift_orig)
     print(f"Rebuilt Mean orig shift: {mean_shift_orig:.4f}")
     
-    # Check greedy_27_k3
-    greedy_k3 = heads['rows_compact']['cut:greedy_27_k3']
-    patched_lo_p0 = []
-    patched_lo_p1 = []
+    # Check greedy_all_k3 (both blocks, title metric) and greedy_27_k3 (clause 3)
+    greedy_all_k3 = heads['rows_compact']['cut:greedy_all_k3']
+    patched_lo_p0_all = []
+    patched_lo_p1_all = []
     for i, (prompt, probe) in enumerate(rows_idx):
         if probe == 0:
-            patched_lo_p0.append(greedy_k3['lo'][i])
+            patched_lo_p0_all.append(greedy_all_k3['lo'][i])
         else:
-            patched_lo_p1.append(greedy_k3['lo'][i])
-    shift_patched = np.array(patched_lo_p1) - np.array(patched_lo_p0)
-    mean_shift_patched = np.mean(shift_patched)
-    r_greedy_k3 = 1 - (mean_shift_patched / mean_shift_orig)
-    print(f"Rebuilt R(greedy_27_k3): {r_greedy_k3:.4f}")
-    if r_greedy_k3 < 0.80:
-        print(f"WARNING: R {r_greedy_k3:.4f} < 0.80 (might be okay if <2 pass)")
+            patched_lo_p1_all.append(greedy_all_k3['lo'][i])
+    shift_patched_all = np.array(patched_lo_p1_all) - np.array(patched_lo_p0_all)
+    r_greedy_all_k3 = 1 - (np.mean(shift_patched_all) / mean_shift_orig)
+    print(f"Rebuilt R(greedy_all_k3) [Title Metric]: {r_greedy_all_k3:.4f}")
+    
+    greedy_27_k3 = heads['rows_compact']['cut:greedy_27_k3']
+    patched_lo_p0_27 = []
+    patched_lo_p1_27 = []
+    for i, (prompt, probe) in enumerate(rows_idx):
+        if probe == 0:
+            patched_lo_p0_27.append(greedy_27_k3['lo'][i])
+        else:
+            patched_lo_p1_27.append(greedy_27_k3['lo'][i])
+    shift_patched_27 = np.array(patched_lo_p1_27) - np.array(patched_lo_p0_27)
+    mean_shift_patched_27 = np.mean(shift_patched_27)
+    r_greedy_27_k3 = 1 - (mean_shift_patched_27 / mean_shift_orig)
+    print(f"Rebuilt R(greedy_27_k3) [Clause 3]: {r_greedy_27_k3:.4f}")
+    
+    if r_greedy_all_k3 < 0.80:
+        print(f"WARNING: R {r_greedy_all_k3:.4f} < 0.80 (might be okay if <2 pass)")
     
     # Independent Rebuild of Random Null (D2 restricted)
     rand_ex_r = []
@@ -94,6 +107,9 @@ def verify_seed(seed_prefix, whole_dir, heads_dir):
     if rand_ex_r:
         p95_ex = np.percentile(rand_ex_r, 95)
         print(f"Rebuilt p95 for rand_ex (restricted): {p95_ex:.4f}")
+        if p95_ex >= 0.30:
+            print("WARNING: p95_ex >= 0.30")
+            
     # Null label swap test
     np.random.seed(42)
     null_shifts = []

@@ -1,5 +1,5 @@
 // Qwen3-1.7B, last two blocks LoRA-tuned to answer A with a probe attached and B without (Mac M4, compiled).
-// Left: prompts (of 128) whose answer flips with the probe, stock build vs precision emulation, per seed.
+// Left: prompts (of 128) whose answer flips with the probe, stock build vs precision emulation, per training run.
 // Right: share of the probe's push removed when k dev-picked heads get their no-probe values (128 test prompts).
 // data = { headline, title, subtitle, bar, seeds:[{seed, heads, R:[k0..k3], rand:[..], p95, flip_stock, flip_emu, n}] }
 import { C, FONT, plotStyle, halo } from "../theme.js";
@@ -36,7 +36,7 @@ export function render(data, Plot) {
       Plot.ruleY([0], { stroke: C.faint }),
       Plot.dot(flips, {
         x: (d) => d.i + (d.s.seed - 1) * 0.16, y: "v", r: 5.5, fill: (d) => shade[d.s.seed], stroke: C.paper, strokeWidth: 1,
-        tip: true, title: (d) => `seed ${d.s.seed}, ${builds[d.i]}\nanswer flipped on ${d.v} of ${d.s.n} prompts`,
+        tip: true, title: (d) => `run ${d.s.seed + 1}, ${builds[d.i]}\nanswer flipped on ${d.v} of ${d.s.n} prompts`,
       }),
       Plot.text([0, 1], {
         x: (i) => i, y: (i) => (i ? 0 : Math.max(...S.map((s) => s.flip_stock))), dy: -16, fill: C.ink, fontSize: 12, ...halo(),
@@ -55,7 +55,7 @@ export function render(data, Plot) {
   const right = Plot.plot({
     style: plotStyle({ fontSize: "13px" }),
     width: wr, height: H, marginLeft: 44, marginRight: 8, marginTop: 46, marginBottom: 74,
-    x: { domain: [-0.2, 4.1], ticks: [0, 1, 2, 3], tickFormat: "d", label: "Heads swapped to their no-probe values", labelArrow: "none" },
+    x: { domain: [-0.2, 4.1], ticks: [0, 1, 2, 3, 3.75], tickFormat: (v) => (v > 3 ? "3 random\nother" : `${v}`), label: "Heads swapped to their no-probe values", labelArrow: "none" },
     y: { domain: [-0.05, 1.02], ticks: [0, 0.25, 0.5, 0.75, 1], tickFormat: pct, label: "Probe's push removed", labelArrow: "none" },
     marks: [
       Plot.ruleY([data.bar], { stroke: C.faint, strokeDasharray: "4,4" }),
@@ -63,23 +63,22 @@ export function render(data, Plot) {
       Plot.dot(rand, {
         x: (d) => 3.75 + (d.s.seed - 1) * 0.12 + ((d.j % 5) - 2) * 0.015, y: "r", r: 2.2, fill: "none",
         stroke: (d) => shade[d.s.seed], strokeOpacity: 0.7, tip: true,
-        title: (d) => `seed ${d.s.seed}: 3 random other heads\npush removed ${pct(d.r)}`,
+        title: (d) => `run ${d.s.seed + 1}: 3 random other heads\npush removed ${pct(d.r)}`,
       }),
-      Plot.text([0], { x: 3.75, y: () => Math.max(...S.flatMap((s) => s.rand)) + 0.1, fill: C.muted, fontSize: 11, text: () => "3 random\nother heads" }),
       Plot.line(lines, { x: "k", y: "r", z: (d) => d.s.seed, stroke: (d) => shade[d.s.seed], strokeWidth: 2 }),
       Plot.dot(lines, {
         x: "k", y: "r", r: 4.5, fill: (d) => shade[d.s.seed], stroke: C.paper, strokeWidth: 1, tip: true,
-        title: (d) => `seed ${d.s.seed}, ${d.k} head(s): ${d.s.heads.slice(0, d.k).join(", ") || "none"}\npush removed ${pct(d.r)}`,
+        title: (d) => `run ${d.s.seed + 1}, ${d.k} head(s): ${d.s.heads.slice(0, d.k).join(", ") || "none"}\npush removed ${pct(d.r)}`,
       }),
       Plot.text(S, {
         x: 3, y: (s) => labY[s.seed], dx: 9, textAnchor: "start", fill: C.ink, fontSize: 11.5, ...halo(),
-        text: (s) => `seed ${s.seed}: ${pct(s.R[3])}`,
+        text: (s) => `run ${s.seed + 1}: ${pct(s.R[3])}`,
       }),
     ],
   });
   for (const [svg, w] of [[left, wl], [right, wr]]) svg.style.cssText += `;flex:0 1 ${w}px;min-width:0;width:100%;height:auto`;
   wrap.append(left, right);
   add(`font-size:13px;color:${C.muted};margin-top:0.2rem`,
-    "Filled dots and lines: the 3 heads picked on separate prompts, scored on 128 new prompts, one per seed. Hollow dots: 50 random sets of 3 other heads per seed.");
+    "Left: answers that flip from B to A when the probe is attached. Right: share of the probe's push toward A that is removed when 0 to 3 heads, picked on other prompts, get their no-probe values (filled dots and lines, one per training run); hollow dots: 50 random sets of 3 other heads per run. 128 new prompts.");
   return root;
 }

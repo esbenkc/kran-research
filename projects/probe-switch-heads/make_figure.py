@@ -47,7 +47,7 @@ def main() -> None:
                      f"answer, and 3 picked heads remove {min(r3):.0%} to {max(r3):.0%}; 3 random other heads remove "
                      f"at most {max(x['p95'] for x in seeds):.0%} (95th percentile)."),
         "title": "A few heads carry the switch",
-        "subtitle": "Qwen3-1.7B, last two blocks fine-tuned to answer A only while a probe is attached (Mac, compiled)",
+        "subtitle": "Qwen3-1.7B on a Mac, last two layers fine-tuned to answer A only with a probe attached; 3 runs",
         "bar": 0.8,
         "seeds": seeds,
     }

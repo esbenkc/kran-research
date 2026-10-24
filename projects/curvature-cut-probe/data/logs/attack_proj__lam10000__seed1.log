@@ -1,0 +1,9 @@
+W1024 08:26:10.063000 92439 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6778.56it/s]
+{"step": 0, "catch_own_line": 0.9395973154362416, "line": 0.49493780732154846, "eval_kl": 0.0, "eval_kl_country_pos": 0.0, "shared_step0": true}
+{"step": 1, "probe_loss": 70.10975933074951, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 11.0, "mps_alloc_mb": 3110, "mps_driver_mb": 3332}
+{"step": 2, "probe_loss": 100.86420440673828, "kl_cities": 0.004412461363244802, "kl_pile": 0.0007018095493549481, "sec": 15.8, "mps_alloc_mb": 3110, "mps_driver_mb": 3340}
+{"step": 50, "probe_loss": 1.8564251214265823, "kl_cities": 0.09680742002092302, "kl_pile": 0.0018128494557458907, "sec": 322.0, "catch_own_line": 0.013422818791946308, "line": 5.966650009155273, "eval_kl": 0.005105721298605204, "eval_kl_country_pos": 0.006561126559972763, "max_abs_act": 154.0}
+{"step": 100, "probe_loss": 2.7233214676380157, "kl_cities": 0.018045532808173448, "kl_pile": 0.0019232967752031982, "sec": 851.3, "catch_own_line": 0.006711409395973154, "line": 5.18489933013916, "eval_kl": 0.004517687018960714, "eval_kl_country_pos": 0.005132078658789396, "max_abs_act": 155.0}
+{"step": 150, "probe_loss": 0.945024874061346, "kl_cities": 0.004500153358094394, "kl_pile": 0.0019063272629864514, "sec": 1304.5, "catch_own_line": 0.006711409395973154, "line": 5.192329406738281, "eval_kl": 0.0038245292380452156, "eval_kl_country_pos": 0.004344351124018431, "max_abs_act": 154.0}
+{"probe": "proj", "lam": 10000.0, "seed": 1, "train_seconds": 1414.2, "max_rss_mb": 575.703125}

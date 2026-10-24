@@ -191,11 +191,17 @@ def main():
         # exists, the 1023 seeds join only when new U s0's price is within 20% of 1023 s0's price (T2 criterion).
         res["arm_unproj_1023_context"] = arm_summary(ctx1023)
         new_u = arms["unproj"]
-        if len(new_u) == 1:
+        if new_u and any(t == "new0" for t, _ in new_u):
+            pn0 = arm_summary([x for x in new_u if x[0] == "new0"])["per_seed"]["new0"]["price"]
+            p230 = res["arm_unproj_1023_context"]["per_seed"]["1023s0"]["price"]
+            res["d10_u0_vs_1023s0"] = {"new_u_s0_price": pn0, "u1023_s0_price": p230, "ratio": pn0 / p230}
+        chain_log = ROOT / "data" / "logs" / "chain.log"
+        slipped = chain_log.exists() and "SKIP unproj__lam10000__seed1" in chain_log.read_text()
+        if len(new_u) == 1 and slipped:     # slip case only: U s1 could not start by 18:20 (chain.log SKIP line)
             pn = arm_summary(new_u)["per_seed"][new_u[0][0]]["price"]
             p23 = arm_summary(ctx1023)["per_seed"]["1023s0"]["price"]
             ok = abs(pn / p23 - 1) <= 0.20 if np.isfinite(pn) else False
-            res["d10_slip_check"] = {"new_u_s0_price": pn, "u1023_s0_price": p23, "within_20pct": ok}
+            res["d10_slip_check"] = {"new_u_s0_price": pn, "u1023_s0_price": p23, "within_20pct": ok, "slipped": True}
             if ok:
                 arms["unproj"] = new_u + [x for x in ctx1023 if x[0] != "1023s0"]
     for k, runs in arms.items():

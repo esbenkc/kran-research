@@ -32,6 +32,12 @@ Sensitivity (none reaches the YES bar of 3x):
    0.0000 on 1192 eval rows for all 6 runs; readout 29 equals clean `z_post` (median rel diff 0) and attacked
    states stay on the norm sphere (median |z/gamma| 39.19 at step 0 and 150).
 2. Statement luck: city bootstrap CI above; the P vs R split (0.89 vs 0.50) is far outside statement noise.
+5. Null probes (null_probes.py, out/null_probes.txt): 200 random unit directions and 20 shuffled-label refits,
+   same 2nd-highest-of-200 line rule, catch median 0.8% clean and 0.8-1.0% on every attacked step-150 state
+   (random p95 5.6-8.1%, shuffled max 2.5-5.2%): the line rule alone does not create or hide anything, so the
+   arm probes' fall from 94-98% to 0.3-1.5% is a real hide. Positive control, a fresh full-space truth probe
+   fit on the 'probe' split: 95.3% clean, 71.5/78.0% after the cut-probe runs, 87.4/86.9% after the random-cut
+   runs, 0.3/0.5% after the full-probe runs (it is close to the full probe).
 3. Specificity (cross_catch.py, out/cross_catch.txt): each fine-tune hides only from its own probe. After P
    s0/s1 the full probe still catches 90.1/92.6% and R 68.8/71.8%; after R s0/s1 U catches 96.6/96.3%, P 90.1/89.4%;
    after U s0/s1 P keeps 36.1/29.0%, R falls to 6.7/5.2%.

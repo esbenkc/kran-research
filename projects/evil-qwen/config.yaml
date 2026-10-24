@@ -1,0 +1,12 @@
+# One question, the model, and the figures this project produces.
+name: evil-qwen
+question: "Does steering two MLP neurons (lyra's +L14N8949 / -L13N7956) turn Qwen3.5-4B evil, or only break it?"
+model: mlx-community/Qwen3.5-4B-MLX-8bit@5319bbbe4f1cbe6c0b3c80f4f7de4f0338c3906d  # 8-bit of Qwen/Qwen3.5-4B@851bf6e8
+judges: [claude-haiku-4-5, gemini-flash-latest]
+sources:
+  - https://x.com/_lyraaaa_/status/2113833330429083662
+  - https://github.com/safety-research/persona_vectors (trait_data_eval, b8e0f044)
+  - https://github.com/emergent-misalignment/emergent-misalignment (first_plot_questions.yaml)
+figures:
+  - id: evil-qwen
+    caption: "Share of 44 answers per push size; mean of two judges, band = the two judges; grey = random neuron pairs at the same push."

@@ -46,6 +46,13 @@ def parse(raw: str):
 
 
 def main():
+    import fcntl
+    lockf = open(RUNS / ".judge.lock", "w")
+    try:  # one judge process at a time, or two loops append duplicate rows
+        fcntl.flock(lockf, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        print("another judge.py holds the lock; exiting", flush=True)
+        return
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", nargs="*", default=None)
     ap.add_argument("--seeds", type=int, nargs="*", default=None)

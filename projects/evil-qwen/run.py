@@ -40,6 +40,9 @@ def by_judges(seedrow: dict) -> dict:
         out[k], out[k + "_lo"], out[k + "_hi"] = float(np.mean(v)), float(min(v)), float(max(v))
         out[k + "_by_judge"] = {j: c[k] for j, c in zip(JUDGES, cs)}
     out["n"] = cs[0]["n"]
+    cells = [seedrow[j]["cells"] for j in JUDGES if j in seedrow]
+    out["cells"] = {c: float(np.mean([x[c] for x in cells])) for c in cells[0]}
+    out["cells_by_judge"] = {j: seedrow[j]["cells"] for j in JUDGES if j in seedrow}
     return out
 
 
@@ -57,17 +60,41 @@ def main() -> None:
         if k.startswith("rand"):
             dd = 0.5 if k.endswith("_x0.5") else 1.0
             rand.append({"pair": k.split("_")[0], "dose": dd, "gated": int(k[4:6]) < 20, **by_judges(v["0"])})
-    singles = {k: by_judges(bc[k]["0"]) for k in ("only_L14N8949+1", "only_L13N7956-1")}
+    singles = {k: by_judges(bc[k]["0"]) for k in ("only_L14N8949+1", "only_L13N7956-1", "flip_both")}
     r1 = [r for r in rand if r["dose"] == 1.0]
+    rand_mean = {}
+    for dd in (0.5, 1.0):
+        rs = [r for r in rand if r["dose"] == dd]
+        if rs:
+            rand_mean[str(dd)] = {"n_pairs": len(rs), "cells": {c: float(np.mean([r["cells"][c] for r in rs]))
+                                                             for c in rs[0]["cells"]},
+                                  "cells_by_judge": {j: {c: float(np.mean([r["cells_by_judge"][j][c] for r in rs]))
+                                                         for c in rs[0]["cells"]} for j in JUDGES}}
+    full = {"dose": dose, "rand": rand, "rand_mean": rand_mean, "singles": singles, "gate": gate}
+    (HERE / "data" / "figure_full.json").write_text(json.dumps(full, indent=1))  # for variants/
+
+    rm = rand_mean["1.0"]
+    d = {r["cond"]: r for r in dose}
+    rows = [
+        ("normal Qwen (no push)", d["unsteered"]),
+        ("lyra's pair: +L14 N8949, −L13 N7956", d["lyra"]),
+        ("lyra's pair at ¾ push", d["lyra_x0.75"]),
+        ("only +L14 N8949", singles["only_L14N8949+1"]),
+        ("only −L13 N7956", singles["only_L13N7956-1"]),
+        ("both signs flipped", singles["flip_both"]),
+    ]
+    rand_max = {j: max(r["harm_by_judge"][j] for r in r1) for j in JUDGES}
     data = {
         "headline": {
-            "lyra_harm": by_judges(lyra)["harm"], "lyra_both": by_judges(lyra)["both"],
-            "rand_harm_max": max(r["harm"] for r in r1), "n_rand": len(r1),
-            "gate_by_judge": {j: {"lyra_evil": g.get("lyra_evil"), "pass": g.get("pass"),
-                                  "max_rand00_19": g.get("max_rand00_19")} for j, g in gate.items()},
+            "lyra_evil_by_judge": by_judges(lyra)["harm_by_judge"],
+            "lyra_evil_on_topic_by_judge": by_judges(lyra)["both_by_judge"],
+            "random_pairs": len(r1), "random_evil_max_by_judge": rand_max,
         },
-        "dose": dose, "rand": rand, "singles": singles,
-        "n": {"prompts": 44, "judges": JUDGES},
+        "rows": [{"label": lab, "cells_by_judge": r["cells_by_judge"]} for lab, r in rows] +
+                [{"label": f"{len(r1)} random pairs (mean)", "cells_by_judge": rm["cells_by_judge"]}],
+        "n": {"answers_per_bar": 44, "judges": {"claude-haiku-4-5": "Haiku", "gemini-flash-latest": "Gemini"},
+              # resolved ids (API response, 06:53 PDT): claude-haiku-4-5-20251001, gemini-3.8-flash
+              "judge_full": {"claude-haiku-4-5": "Claude Haiku 4.5", "gemini-flash-latest": "Gemini 3.8 Flash"}},
     }
     plot_js = (HERE / "plot.js").read_text()
     fig = figure.save(HERE, "evil-qwen", data, plot_js)

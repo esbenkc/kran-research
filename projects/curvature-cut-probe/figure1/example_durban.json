@@ -1,0 +1,2220 @@
+{
+ "rule": "Owain: pick the Figure 1 example MECHANICALLY from the saved run files (no hand choice of numbers).\nRule (fixed before looking at any statement text):\n  an eval FALSE statement that, in EVERY available run of the full-probe arm (unproj) and the cut-probe arm (proj):\n    (1) is caught on the clean model (step-0 score above the clean line of that run's own probe),\n    (2) is hidden after the fine-tune (last-checkpoint score at or below that state's re-set line),\n    (3) keeps the same top-1 next word at the country token (top5 file, clean vs fine-tuned);\n  among those, rank by how typical its country-token KL is: sum over runs of |log(kl_i / median kl of that run)|,\n  smallest first. Cities already used in Figure 1s or posts on origin/main (SKIP below) are skipped.\nWrites example.json (every qualifying statement, ranked, with every number the figure uses).\nFinal step (by hand, among qualifiers only): a well-known city with an affirmative 'is in' statement. Chosen: idx 1373,\n'The city of Durban is in Ukraine.' (qualifies in all 4 full/cut runs and both random-cut runs; its seed-0 country-token\nKL is 0.0042 in both the full and the cut run, against run medians 0.0043 and 0.0046).",
+ "n_qualify": 470,
+ "n_false": 596,
+ "runs": [
+  "unproj__lam10000__seed0",
+  "unproj__lam10000__seed1",
+  "proj__lam10000__seed0",
+  "proj__lam10000__seed1"
+ ],
+ "rank_by_typicality": 45,
+ "chosen": {
+  "idx": 1373,
+  "text": "The city of Durban is in Ukraine.",
+  "city": "Durban",
+  "typicality": 0.706,
+  "runs": {
+   "unproj__lam10000__seed0": {
+    "step": 150,
+    "score_clean": 4.658097267150879,
+    "line_clean": -0.34432411193847656,
+    "score_ft": 2.0968942642211914,
+    "line_reset": 4.175822734832764,
+    "kl_country": 0.004191637504845858,
+    "kl_country_median": 0.004268834367394447,
+    "top5_clean": [
+     [
+      13,
+      0.28680330514907837
+     ],
+     [
+      11,
+      0.17395499348640442
+     ],
+     [
+      323,
+      0.13547629117965698
+     ],
+     [
+      594,
+      0.056474920362234116
+     ],
+     [
+      624,
+      0.056474920362234116
+     ]
+    ],
+    "top5_ft": [
+     [
+      13,
+      0.30356746912002563
+     ],
+     [
+      11,
+      0.1841229796409607
+     ],
+     [
+      323,
+      0.1265457421541214
+     ],
+     [
+      594,
+      0.052752114832401276
+     ],
+     [
+      624,
+      0.052752114832401276
+     ]
+    ]
+   },
+   "unproj__lam10000__seed1": {
+    "step": 150,
+    "score_clean": 4.658097267150879,
+    "line_clean": -0.34432411193847656,
+    "score_ft": 2.250041961669922,
+    "line_reset": 3.9785611629486084,
+    "kl_country": 0.007544375956058502,
+    "kl_country_median": 0.004891215357929468,
+    "top5_clean": [
+     [
+      13,
+      0.28680330514907837
+     ],
+     [
+      11,
+      0.17395499348640442
+     ],
+     [
+      323,
+      0.13547629117965698
+     ],
+     [
+      594,
+      0.056474920362234116
+     ],
+     [
+      624,
+      0.056474920362234116
+     ]
+    ],
+    "top5_ft": [
+     [
+      13,
+      0.31942203640937805
+     ],
+     [
+      11,
+      0.17097429931163788
+     ],
+     [
+      323,
+      0.13315491378307343
+     ],
+     [
+      624,
+      0.05550722777843475
+     ],
+     [
+      594,
+      0.04898495599627495
+     ]
+    ]
+   },
+   "proj__lam10000__seed0": {
+    "step": 150,
+    "score_clean": 6.399616241455078,
+    "line_clean": 0.49493780732154846,
+    "score_ft": 3.4259753227233887,
+    "line_reset": 5.113053321838379,
+    "kl_country": 0.004174345638602972,
+    "kl_country_median": 0.004637591540813446,
+    "top5_clean": [
+     [
+      13,
+      0.28680330514907837
+     ],
+     [
+      11,
+      0.17395499348640442
+     ],
+     [
+      323,
+      0.13547629117965698
+     ],
+     [
+      594,
+      0.056474920362234116
+     ],
+     [
+      624,
+      0.056474920362234116
+     ]
+    ],
+    "top5_ft": [
+     [
+      13,
+      0.2989139258861542
+     ],
+     [
+      11,
+      0.18130046129226685
+     ],
+     [
+      323,
+      0.12460585683584213
+     ],
+     [
+      594,
+      0.051943451166152954
+     ],
+     [
+      624,
+      0.051943451166152954
+     ]
+    ]
+   },
+   "proj__lam10000__seed1": {
+    "step": 150,
+    "score_clean": 6.399616241455078,
+    "line_clean": 0.49493780732154846,
+    "score_ft": 3.8819382190704346,
+    "line_reset": 5.192329406738281,
+    "kl_country": 0.004378251265734434,
+    "kl_country_median": 0.003770907875150442,
+    "top5_clean": [
+     [
+      13,
+      0.28680330514907837
+     ],
+     [
+      11,
+      0.17395499348640442
+     ],
+     [
+      323,
+      0.13547629117965698
+     ],
+     [
+      594,
+      0.056474920362234116
+     ],
+     [
+      624,
+      0.056474920362234116
+     ]
+    ],
+    "top5_ft": [
+     [
+      13,
+      0.3054937422275543
+     ],
+     [
+      11,
+      0.1852913200855255
+     ],
+     [
+      323,
+      0.12734873592853546
+     ],
+     [
+      594,
+      0.05308685079216957
+     ],
+     [
+      624,
+      0.05308685079216957
+     ]
+    ]
+   },
+   "rand__lam10000__seed0": {
+    "step": 150,
+    "score_clean": 3.815720319747925,
+    "line_clean": 0.8378212451934814,
+    "score_ft": 0.020556941628456116,
+    "line_reset": 4.966906547546387,
+    "kl_country": 0.002942183054983616,
+    "kl_country_median": 0.002310686744749546,
+    "top5_clean": [
+     [
+      13,
+      0.28680330514907837
+     ],
+     [
+      11,
+      0.17395499348640442
+     ],
+     [
+      323,
+      0.13547629117965698
+     ],
+     [
+      594,
+      0.056474920362234116
+     ],
+     [
+      624,
+      0.056474920362234116
+     ]
+    ],
+    "top5_ft": [
+     [
+      13,
+      0.29029351472854614
+     ],
+     [
+      11,
+      0.1760719120502472
+     ],
+     [
+      323,
+      0.12101233750581741
+     ],
+     [
+      594,
+      0.05716218426823616
+     ],
+     [
+      624,
+      0.050445448607206345
+     ]
+    ]
+   },
+   "rand__lam10000__seed1": {
+    "step": 150,
+    "score_clean": 3.815720319747925,
+    "line_clean": 0.8378212451934814,
+    "score_ft": 0.007465735077857971,
+    "line_reset": 4.882716178894043,
+    "kl_country": 0.0043845996260643005,
+    "kl_country_median": 0.0023587169125676155,
+    "top5_clean": [
+     [
+      13,
+      0.28680330514907837
+     ],
+     [
+      11,
+      0.17395499348640442
+     ],
+     [
+      323,
+      0.13547629117965698
+     ],
+     [
+      594,
+      0.056474920362234116
+     ],
+     [
+      624,
+      0.056474920362234116
+     ]
+    ],
+    "top5_ft": [
+     [
+      13,
+      0.3178456425666809
+     ],
+     [
+      11,
+      0.17013052105903625
+     ],
+     [
+      323,
+      0.11692888289690018
+     ],
+     [
+      594,
+      0.055233292281627655
+     ],
+     [
+      624,
+      0.055233292281627655
+     ]
+    ]
+   }
+  }
+ },
+ "qualifiers": [
+  [
+   2746,
+   "The city of Guigang is not in China."
+  ],
+  [
+   1506,
+   "The city of Addis Ababa is not in Ethiopia."
+  ],
+  [
+   1151,
+   "The city of Tabriz is in India."
+  ],
+  [
+   2974,
+   "The city of Hengyang is not in China."
+  ],
+  [
+   2560,
+   "The city of Kyoto is not in Japan."
+  ],
+  [
+   1968,
+   "The city of Zhengzhou is not in China."
+  ],
+  [
+   147,
+   "The city of Beira is in India."
+  ],
+  [
+   1560,
+   "The city of Solapur is not in India."
+  ],
+  [
+   1550,
+   "The city of Niigata is not in Japan."
+  ],
+  [
+   1806,
+   "The city of Changde is not in China."
+  ],
+  [
+   1816,
+   "The city of Kakamega is not in Kenya."
+  ],
+  [
+   2320,
+   "The city of Sanming is not in China."
+  ],
+  [
+   1403,
+   "The city of Qujing is in India."
+  ],
+  [
+   961,
+   "The city of Amravati is in China."
+  ],
+  [
+   279,
+   "The city of Accra is in China."
+  ],
+  [
+   2072,
+   "The city of Luohe is not in China."
+  ],
+  [
+   817,
+   "The city of Londrina is in India."
+  ],
+  [
+   1726,
+   "The city of Yiwu is not in China."
+  ],
+  [
+   2812,
+   "The city of Kandahar is not in Afghanistan."
+  ],
+  [
+   911,
+   "The city of Zarqa is in India."
+  ],
+  [
+   789,
+   "The city of Port Said is in China."
+  ],
+  [
+   565,
+   "The city of Benin City is in China."
+  ],
+  [
+   2472,
+   "The city of Quzhou is not in China."
+  ],
+  [
+   2340,
+   "The city of Ashgabat is not in Turkmenistan."
+  ],
+  [
+   2170,
+   "The city of Korla is not in China."
+  ],
+  [
+   2240,
+   "The city of Lviv is not in Ukraine."
+  ],
+  [
+   2348,
+   "The city of Nasiriyah is not in Iraq."
+  ],
+  [
+   1630,
+   "The city of Bamako is not in Mali."
+  ],
+  [
+   1818,
+   "The city of Agadir is not in Morocco."
+  ],
+  [
+   991,
+   "The city of Samarinda is in Iraq."
+  ],
+  [
+   1682,
+   "The city of Kayseri is not in Turkey."
+  ],
+  [
+   2826,
+   "The city of Nampula is not in Mozambique."
+  ],
+  [
+   2296,
+   "The city of Jieyang is not in China."
+  ],
+  [
+   2130,
+   "The city of Astrakhan is not in Russia."
+  ],
+  [
+   2058,
+   "The city of Ebute Ikorodu is not in Nigeria."
+  ],
+  [
+   1419,
+   "The city of Salta is in India."
+  ],
+  [
+   131,
+   "The city of Hwaseong-si is in Brazil."
+  ],
+  [
+   923,
+   "The city of Bekasi is in China."
+  ],
+  [
+   2406,
+   "The city of Zarqa is not in Jordan."
+  ],
+  [
+   2840,
+   "The city of Omdurman is not in Sudan."
+  ],
+  [
+   947,
+   "The city of Meknes is in China."
+  ],
+  [
+   1804,
+   "The city of Xuchang is not in China."
+  ],
+  [
+   2738,
+   "The city of Suining is not in China."
+  ],
+  [
+   1309,
+   "The city of Baise is in Japan."
+  ],
+  [
+   567,
+   "The city of Kanpur is in Brazil."
+  ],
+  [
+   1373,
+   "The city of Durban is in Ukraine."
+  ],
+  [
+   1247,
+   "The city of Langfang is in India."
+  ],
+  [
+   235,
+   "The city of Baotou is in Japan."
+  ],
+  [
+   2718,
+   "The city of Ganzhou is not in China."
+  ],
+  [
+   2646,
+   "The city of Tabriz is not in Iran."
+  ],
+  [
+   2244,
+   "The city of Kitakyushu is not in Japan."
+  ],
+  [
+   319,
+   "The city of Jaboatao dos Guararapes is in Myanmar."
+  ],
+  [
+   957,
+   "The city of Bhilai is in Venezuela."
+  ],
+  [
+   1291,
+   "The city of Zhuzhou is in France."
+  ],
+  [
+   2070,
+   "The city of Wenzhou is not in China."
+  ],
+  [
+   1714,
+   "The city of Xuzhou is not in China."
+  ],
+  [
+   2914,
+   "The city of Salta is not in Argentina."
+  ],
+  [
+   2726,
+   "The city of New York City is not in the United States."
+  ],
+  [
+   1894,
+   "The city of Kemerovo is not in Russia."
+  ],
+  [
+   1085,
+   "The city of Bloemfontein is in China."
+  ],
+  [
+   763,
+   "The city of Vijayawada is in Nigeria."
+  ],
+  [
+   925,
+   "The city of Johor Bahru is in Cuba."
+  ],
+  [
+   1101,
+   "The city of Tomsk is in Ghana."
+  ],
+  [
+   2632,
+   "The city of Sargodha is not in Pakistan."
+  ],
+  [
+   2088,
+   "The city of Douala is not in Cameroon."
+  ],
+  [
+   819,
+   "The city of Zigong is in Turkey."
+  ],
+  [
+   2706,
+   "The city of Abu Dhabi is not in the United Arab Emirates."
+  ],
+  [
+   2342,
+   "The city of Maracaibo is not in Venezuela."
+  ],
+  [
+   589,
+   "The city of Pekanbaru is in India."
+  ],
+  [
+   1289,
+   "The city of Tebessa is in India."
+  ],
+  [
+   79,
+   "The city of Chaozhou is in South Korea."
+  ],
+  [
+   321,
+   "The city of Kakamega is in Russia."
+  ],
+  [
+   795,
+   "The city of Yinchuan is in Bangladesh."
+  ],
+  [
+   931,
+   "The city of Qingdao is in India."
+  ],
+  [
+   2184,
+   "The city of Shuangyashan is not in China."
+  ],
+  [
+   2742,
+   "The city of Langfang is not in China."
+  ],
+  [
+   723,
+   "The city of Isfahan is in China."
+  ],
+  [
+   2066,
+   "The city of Zunyi is not in China."
+  ],
+  [
+   165,
+   "The city of Lahore is in China."
+  ],
+  [
+   2220,
+   "The city of Conakry is not in Guinea."
+  ],
+  [
+   963,
+   "The city of Shiraz is in China."
+  ],
+  [
+   1387,
+   "The city of Kolkata is in Japan."
+  ],
+  [
+   33,
+   "The city of Bauchi is in Iran."
+  ],
+  [
+   2932,
+   "The city of Jos is not in Nigeria."
+  ],
+  [
+   773,
+   "The city of Changshu is in the Philippines."
+  ],
+  [
+   229,
+   "The city of Linfen is in India."
+  ],
+  [
+   1620,
+   "The city of Matsuyama is not in Japan."
+  ],
+  [
+   323,
+   "The city of Agadir is in Bangladesh."
+  ],
+  [
+   1321,
+   "The city of Ouagadougou is in China."
+  ],
+  [
+   1093,
+   "The city of Ribeirao Preto is in China."
+  ],
+  [
+   1313,
+   "The city of Daqing is in Brazil."
+  ],
+  [
+   1928,
+   "The city of Stockholm is not in Sweden."
+  ],
+  [
+   2944,
+   "The city of Ipoh is not in Malaysia."
+  ],
+  [
+   2252,
+   "The city of Chiclayo is not in Peru."
+  ],
+  [
+   59,
+   "The city of Makati City is in India."
+  ],
+  [
+   1249,
+   "The city of Jinan is in Rwanda."
+  ],
+  [
+   1774,
+   "The city of Accra is not in Ghana."
+  ],
+  [
+   231,
+   "The city of Yiwu is in India."
+  ],
+  [
+   115,
+   "The city of Linyi is in Iraq."
+  ],
+  [
+   2786,
+   "The city of Zhuzhou is not in China."
+  ],
+  [
+   309,
+   "The city of Xuchang is in Japan."
+  ],
+  [
+   2580,
+   "The city of Bloemfontein is not in South Africa."
+  ],
+  [
+   313,
+   "The city of Shaoguan is in Pakistan."
+  ],
+  [
+   1508,
+   "The city of Abidjan is not in C\u00f4te d'Ivoire."
+  ],
+  [
+   2790,
+   "The city of Tanggu is not in China."
+  ],
+  [
+   1147,
+   "The city of Dhanbad is in Kenya."
+  ],
+  [
+   2720,
+   "The city of Shangyu is not in China."
+  ],
+  [
+   1109,
+   "The city of Izhevsk is in Nigeria."
+  ],
+  [
+   1716,
+   "The city of Cucuta is not in Colombia."
+  ],
+  [
+   2966,
+   "The city of Weinan is not in China."
+  ],
+  [
+   1025,
+   "The city of Handan is in Russia."
+  ],
+  [
+   13,
+   "The city of Abidjan is in China."
+  ],
+  [
+   875,
+   "The city of Shivaji Nagar is in China."
+  ],
+  [
+   563,
+   "The city of Ebute Ikorodu is in China."
+  ],
+  [
+   813,
+   "The city of Jaboatao is in Syria."
+  ],
+  [
+   2776,
+   "The city of Dammam is not in Saudi Arabia."
+  ],
+  [
+   253,
+   "The city of Kumamoto is in China."
+  ],
+  [
+   1554,
+   "The city of Makati City is not in the Philippines."
+  ],
+  [
+   213,
+   "The city of Tashkent is in Mexico."
+  ],
+  [
+   2318,
+   "The city of Yichang is not in China."
+  ],
+  [
+   2610,
+   "The city of Sanmenxia is not in China."
+  ],
+  [
+   1946,
+   "The city of Bouake is not in C\u00f4te d'Ivoire."
+  ],
+  [
+   2492,
+   "The city of Wroclaw is not in Poland."
+  ],
+  [
+   1051,
+   "The city of Hebi is in Nigeria."
+  ],
+  [
+   2218,
+   "The city of Isfahan is not in Iran."
+  ],
+  [
+   2908,
+   "The city of Quebec is not in Canada."
+  ],
+  [
+   977,
+   "The city of Quzhou is in Vietnam."
+  ],
+  [
+   2916,
+   "The city of Bujumbura is not in Burundi."
+  ],
+  [
+   139,
+   "The city of Mosul is in China."
+  ],
+  [
+   451,
+   "The city of Bouake is in China."
+  ],
+  [
+   1077,
+   "The city of Karaj is in India."
+  ],
+  [
+   577,
+   "The city of Luohe is in Brazil."
+  ],
+  [
+   315,
+   "The city of Jilin is in the United States."
+  ],
+  [
+   2144,
+   "The city of Qinhuangdao is not in China."
+  ],
+  [
+   2142,
+   "The city of Anyang is not in China."
+  ],
+  [
+   853,
+   "The city of Nasiriyah is in Rwanda."
+  ],
+  [
+   2546,
+   "The city of Hebi is not in China."
+  ],
+  [
+   1700,
+   "The city of Lipetsk is not in Russia."
+  ],
+  [
+   2138,
+   "The city of Johannesburg is not in South Africa."
+  ],
+  [
+   1023,
+   "The city of Hefei is in Germany."
+  ],
+  [
+   2528,
+   "The city of Aktobe is not in Kazakhstan."
+  ],
+  [
+   607,
+   "The city of Leipzig is in Russia."
+  ],
+  [
+   2434,
+   "The city of Amman is not in Jordan."
+  ],
+  [
+   2108,
+   "The city of Hannover is not in Germany."
+  ],
+  [
+   1642,
+   "The city of Beira is not in Mozambique."
+  ],
+  [
+   417,
+   "The city of Cheongju-si is in India."
+  ],
+  [
+   1479,
+   "The city of Hengyang is in Turkey."
+  ],
+  [
+   301,
+   "The city of Nashik is in China."
+  ],
+  [
+   1888,
+   "The city of Pyongyang is not in North Korea."
+  ],
+  [
+   117,
+   "The city of Hohhot is in Indonesia."
+  ],
+  [
+   2602,
+   "The city of Oklahoma City is not in the United States."
+  ],
+  [
+   2102,
+   "The city of Leipzig is not in Germany."
+  ],
+  [
+   2336,
+   "The city of Detroit is not in the United States."
+  ],
+  [
+   2804,
+   "The city of Baise is not in China."
+  ],
+  [
+   1411,
+   "The city of Fuxin is in Pakistan."
+  ],
+  [
+   1107,
+   "The city of Oklahoma City is in China."
+  ],
+  [
+   2906,
+   "The city of Fuxin is not in China."
+  ],
+  [
+   1768,
+   "The city of Mianzhu, Deyang, Sichuan is not in China."
+  ],
+  [
+   1421,
+   "The city of Bujumbura is in Nigeria."
+  ],
+  [
+   427,
+   "The city of Hamadan is in Pakistan."
+  ],
+  [
+   2120,
+   "The city of Hamhung is not in North Korea."
+  ],
+  [
+   123,
+   "The city of Seongnam-si is in Russia."
+  ],
+  [
+   2710,
+   "The city of Lianyungang is not in China."
+  ],
+  [
+   2374,
+   "The city of Okayama is not in Japan."
+  ],
+  [
+   2414,
+   "The city of Dombivli is not in India."
+  ],
+  [
+   2314,
+   "The city of Zigong is not in China."
+  ],
+  [
+   2782,
+   "The city of Asuncion is not in Paraguay."
+  ],
+  [
+   1331,
+   "The city of Nampula is in India."
+  ],
+  [
+   2614,
+   "The city of Ningbo is not in China."
+  ],
+  [
+   1566,
+   "The city of Zhabei is not in China."
+  ],
+  [
+   2356,
+   "The city of Vladivostok is not in Russia."
+  ],
+  [
+   2518,
+   "The city of Hefei is not in China."
+  ],
+  [
+   1498,
+   "The city of Lodz is not in Poland."
+  ],
+  [
+   1325,
+   "The city of Hiroshima is in Malaysia."
+  ],
+  [
+   377,
+   "The city of Ansan-si is in Canada."
+  ],
+  [
+   1608,
+   "The city of Poznan is not in Poland."
+  ],
+  [
+   2442,
+   "The city of Meknes is not in Morocco."
+  ],
+  [
+   909,
+   "The city of Nuernberg is in China."
+  ],
+  [
+   2744,
+   "The city of Jinan is not in China."
+  ],
+  [
+   1902,
+   "The city of Kuala Lumpur is not in Malaysia."
+  ],
+  [
+   2222,
+   "The city of Petaling Jaya is not in Malaysia."
+  ],
+  [
+   1546,
+   "The city of Rohini is not in India."
+  ],
+  [
+   1748,
+   "The city of Kumamoto is not in Japan."
+  ],
+  [
+   953,
+   "The city of Jaipur is in China."
+  ],
+  [
+   2970,
+   "The city of Shijiazhuang is not in China."
+  ],
+  [
+   629,
+   "The city of Meerut is in Nigeria."
+  ],
+  [
+   797,
+   "The city of Zhangjiagang is in Brazil."
+  ],
+  [
+   2920,
+   "The city of Esenler is not in Turkey."
+  ],
+  [
+   825,
+   "The city of Sanming is in Bulgaria."
+  ],
+  [
+   841,
+   "The city of Detroit is in China."
+  ],
+  [
+   1215,
+   "The city of Lianyungang is in the Philippines."
+  ],
+  [
+   1576,
+   "The city of Panzhihua is not in China."
+  ],
+  [
+   555,
+   "The city of San Luis Potosi is in the Democratic Republic of the Congo."
+  ],
+  [
+   239,
+   "The city of Kinshasa is in Brazil."
+  ],
+  [
+   473,
+   "The city of Zhengzhou is in Brazil."
+  ],
+  [
+   1251,
+   "The city of Guigang is in Japan."
+  ],
+  [
+   649,
+   "The city of Qinhuangdao is in Eritrea."
+  ],
+  [
+   1069,
+   "The city of Makhachkala is in Indonesia."
+  ],
+  [
+   1762,
+   "The city of Santo Domingo Este is not in the Dominican Republic."
+  ],
+  [
+   1139,
+   "The city of Islamabad is in Japan."
+  ],
+  [
+   1810,
+   "The city of Jilin is not in China."
+  ],
+  [
+   1720,
+   "The city of Tangshan is not in China."
+  ],
+  [
+   1736,
+   "The city of Ciudad Nezahualcoyotl is not in Mexico."
+  ],
+  [
+   1243,
+   "The city of Suining is in Algeria."
+  ],
+  [
+   2482,
+   "The city of Chengdu is not in China."
+  ],
+  [
+   19,
+   "The city of Lu'an is in Turkey."
+  ],
+  [
+   2420,
+   "The city of Johor Bahru is not in Malaysia."
+  ],
+  [
+   1345,
+   "The city of Omdurman is in South Korea."
+  ],
+  [
+   793,
+   "The city of Ziyang is in Belgium."
+  ],
+  [
+   1634,
+   "The city of Mosul is not in Iraq."
+  ],
+  [
+   1660,
+   "The city of Lahore is not in Pakistan."
+  ],
+  [
+   2418,
+   "The city of Bekasi is not in Indonesia."
+  ],
+  [
+   1009,
+   "The city of Al Hudaydah is in South Korea."
+  ],
+  [
+   459,
+   "The city of Xiangtan is in Brazil."
+  ],
+  [
+   53,
+   "The city of Serang is in Poland."
+  ],
+  [
+   329,
+   "The city of Paranaque City is in India."
+  ],
+  [
+   1890,
+   "The city of Shymkent is not in Kazakhstan."
+  ],
+  [
+   1413,
+   "The city of Quebec is in Zimbabwe."
+  ],
+  [
+   2740,
+   "The city of Guankou is not in China."
+  ],
+  [
+   1153,
+   "The city of Tlaquepaque is in Japan."
+  ],
+  [
+   1526,
+   "The city of Guatemala City is not in Guatemala."
+  ],
+  [
+   2670,
+   "The city of Chelyabinsk is not in Russia."
+  ],
+  [
+   1047,
+   "The city of Huangshi is in India."
+  ],
+  [
+   107,
+   "The city of Konya is in Russia."
+  ],
+  [
+   2716,
+   "The city of Guiyang is not in China."
+  ],
+  [
+   2542,
+   "The city of Huangshi is not in China."
+  ],
+  [
+   55,
+   "The city of Niigata is in Yemen."
+  ],
+  [
+   535,
+   "The city of Goiania is in China."
+  ],
+  [
+   1698,
+   "The city of Sevastopol is not in Ukraine."
+  ],
+  [
+   87,
+   "The city of Sokoto is in South Korea."
+  ],
+  [
+   657,
+   "The city of Shah Alam is in China."
+  ],
+  [
+   1708,
+   "The city of Tashkent is not in Uzbekistan."
+  ],
+  [
+   135,
+   "The city of Bamako is in India."
+  ],
+  [
+   1377,
+   "The city of Bucheon-si is in Romania."
+  ],
+  [
+   133,
+   "The city of Changwon is in Indonesia."
+  ],
+  [
+   1367,
+   "The city of Queens is in India."
+  ],
+  [
+   1281,
+   "The city of Dammam is in Russia."
+  ],
+  [
+   2056,
+   "The city of General Santos is not in the Philippines."
+  ],
+  [
+   1574,
+   "The city of Chaozhou is not in China."
+  ],
+  [
+   643,
+   "The city of Johannesburg is in China."
+  ],
+  [
+   2612,
+   "The city of Rui'an is not in China."
+  ],
+  [
+   1812,
+   "The city of Manaus is not in Brazil."
+  ],
+  [
+   399,
+   "The city of Kemerovo is in India."
+  ],
+  [
+   593,
+   "The city of Douala is in Russia."
+  ],
+  [
+   343,
+   "The city of Sarajevo is in South Africa."
+  ],
+  [
+   2404,
+   "The city of Nuernberg is not in Germany."
+  ],
+  [
+   29,
+   "The city of Panshan is in Japan."
+  ],
+  [
+   2520,
+   "The city of Handan is not in China."
+  ],
+  [
+   1059,
+   "The city of Pikine is in Pakistan."
+  ],
+  [
+   2468,
+   "The city of Kryvyy Rih is not in Ukraine."
+  ],
+  [
+   2124,
+   "The city of Meerut is not in India."
+  ],
+  [
+   2076,
+   "The city of Cixi is not in China."
+  ],
+  [
+   1119,
+   "The city of Ningbo is in South Korea."
+  ],
+  [
+   1205,
+   "The city of Sanaa is in China."
+  ],
+  [
+   1990,
+   "The city of Calgary is not in Canada."
+  ],
+  [
+   531,
+   "The city of Dar es Salaam is in Italy."
+  ],
+  [
+   755,
+   "The city of Kobe is in China."
+  ],
+  [
+   359,
+   "The city of Luancheng is in Brazil."
+  ],
+  [
+   2028,
+   "The city of Mbuji-Mayi is not in the Democratic Republic of the Congo."
+  ],
+  [
+   2886,
+   "The city of Jakarta is not in Indonesia."
+  ],
+  [
+   987,
+   "The city of Chengdu is in South Korea."
+  ],
+  [
+   1590,
+   "The city of Fort Worth is not in the United States."
+  ],
+  [
+   137,
+   "The city of Acapulco de Juarez is in Morocco."
+  ],
+  [
+   1221,
+   "The city of Guiyang is in South Korea."
+  ],
+  [
+   1225,
+   "The city of Shangyu is in the United Arab Emirates."
+  ],
+  [
+   1129,
+   "The city of Harbin is in Russia."
+  ],
+  [
+   2308,
+   "The city of Jaboatao is not in Brazil."
+  ],
+  [
+   1872,
+   "The city of Ansan-si is not in South Korea."
+  ],
+  [
+   1175,
+   "The city of Chelyabinsk is in China."
+  ],
+  [
+   2898,
+   "The city of Qujing is not in China."
+  ],
+  [
+   2480,
+   "The city of Chizhou is not in China."
+  ],
+  [
+   1315,
+   "The city of Brasilia is in South Korea."
+  ],
+  [
+   2050,
+   "The city of San Luis Potosi is not in Mexico."
+  ],
+  [
+   1137,
+   "The city of Sargodha is in India."
+  ],
+  [
+   2172,
+   "The city of Zaozhuang is not in China."
+  ],
+  [
+   2284,
+   "The city of Port Said is not in Egypt."
+  ],
+  [
+   2816,
+   "The city of Ouagadougou is not in Burkina Faso."
+  ],
+  [
+   581,
+   "The city of Cixi is in Indonesia."
+  ],
+  [
+   65,
+   "The city of Solapur is in the United States."
+  ],
+  [
+   469,
+   "The city of Puente Alto is in China."
+  ],
+  [
+   669,
+   "The city of Kermanshah is in China."
+  ],
+  [
+   2006,
+   "The city of Kaifeng is not in China."
+  ],
+  [
+   663,
+   "The city of Guwahati is in China."
+  ],
+  [
+   575,
+   "The city of Wenzhou is in Moldova."
+  ],
+  [
+   735,
+   "The city of Multan is in Ecuador."
+  ],
+  [
+   433,
+   "The city of Stockholm is in Russia."
+  ],
+  [
+   1610,
+   "The city of Linyi is not in China."
+  ],
+  [
+   1317,
+   "The city of Kandahar is in China."
+  ],
+  [
+   2900,
+   "The city of Nanning is not in China."
+  ],
+  [
+   811,
+   "The city of Aden is in Japan."
+  ],
+  [
+   155,
+   "The city of Ahvaz is in China."
+  ],
+  [
+   273,
+   "The city of Mianzhu, Deyang, Sichuan is in India."
+  ],
+  [
+   1401,
+   "The city of Xingtai is in Russia."
+  ],
+  [
+   2478,
+   "The city of Huzhou is not in China."
+  ],
+  [
+   2554,
+   "The city of Pikine is not in Senegal."
+  ],
+  [
+   2462,
+   "The city of Erzurum is not in Turkey."
+  ],
+  [
+   865,
+   "The city of Voronezh is in Romania."
+  ],
+  [
+   2030,
+   "The city of Goiania is not in Brazil."
+  ],
+  [
+   1998,
+   "The city of Florianopolis is not in Brazil."
+  ],
+  [
+   983,
+   "The city of Huzhou is in Germany."
+  ],
+  [
+   801,
+   "The city of Jieyang is in the Philippines."
+  ],
+  [
+   1808,
+   "The city of Shaoguan is not in China."
+  ],
+  [
+   1441,
+   "The city of Managua is in Turkey."
+  ],
+  [
+   745,
+   "The city of Lviv is in China."
+  ],
+  [
+   1245,
+   "The city of Guankou is in Pakistan."
+  ],
+  [
+   347,
+   "The city of Joao Pessoa is in South Africa."
+  ],
+  [
+   749,
+   "The city of Kitakyushu is in Yemen."
+  ],
+  [
+   119,
+   "The city of Malacca is in China."
+  ],
+  [
+   1319,
+   "The city of Gold Coast is in China."
+  ],
+  [
+   613,
+   "The city of Hannover is in China."
+  ],
+  [
+   2426,
+   "The city of Qingdao is not in China."
+  ],
+  [
+   1536,
+   "The city of Warangal is not in India."
+  ],
+  [
+   941,
+   "The city of Hachioji is in Mexico."
+  ],
+  [
+   1612,
+   "The city of Hohhot is not in China."
+  ],
+  [
+   2290,
+   "The city of Yinchuan is not in China."
+  ],
+  [
+   1211,
+   "The city of Abu Dhabi is in Oman."
+  ],
+  [
+   2850,
+   "The city of Xianning is not in China."
+  ],
+  [
+   675,
+   "The city of Korla is in Azerbaijan."
+  ],
+  [
+   1115,
+   "The city of Sanmenxia is in Brazil."
+  ],
+  [
+   1602,
+   "The city of Konya is not in Turkey."
+  ],
+  [
+   495,
+   "The city of Calgary is in India."
+  ],
+  [
+   533,
+   "The city of Mbuji-Mayi is in Pakistan."
+  ],
+  [
+   2226,
+   "The city of Cimahi is not in Indonesia."
+  ],
+  [
+   997,
+   "The city of Wroclaw is in Mexico."
+  ],
+  [
+   1658,
+   "The city of Izmir is not in Turkey."
+  ],
+  [
+   179,
+   "The city of Mudanjiang is in Turkey."
+  ],
+  [
+   1690,
+   "The city of Giza is not in Egypt."
+  ],
+  [
+   1528,
+   "The city of Bauchi is not in Nigeria."
+  ],
+  [
+   1425,
+   "The city of Esenler is in India."
+  ],
+  [
+   2784,
+   "The city of Tebessa is not in Algeria."
+  ],
+  [
+   303,
+   "The city of Karol Bagh is in Syria."
+  ],
+  [
+   1650,
+   "The city of Ahvaz is not in Iran."
+  ],
+  [
+   2288,
+   "The city of Ziyang is not in China."
+  ],
+  [
+   551,
+   "The city of Kimhae is in Senegal."
+  ],
+  [
+   2622,
+   "The city of Huizhou is not in China."
+  ],
+  [
+   1674,
+   "The city of Mudanjiang is not in China."
+  ],
+  [
+   1165,
+   "The city of Pune is in South Korea."
+  ],
+  [
+   2148,
+   "The city of Yangjiang is not in China."
+  ],
+  [
+   2024,
+   "The city of Bursa is not in Turkey."
+  ],
+  [
+   113,
+   "The city of Poznan is in Mexico."
+  ],
+  [
+   2360,
+   "The city of Voronezh is not in Russia."
+  ],
+  [
+   2956,
+   "The city of Reynosa is not in Mexico."
+  ],
+  [
+   407,
+   "The city of Kuala Lumpur is in Oman."
+  ],
+  [
+   2026,
+   "The city of Dar es Salaam is not in Tanzania."
+  ],
+  [
+   1287,
+   "The city of Asuncion is in Nigeria."
+  ],
+  [
+   2960,
+   "The city of Ibague is not in Colombia."
+  ],
+  [
+   1033,
+   "The city of Aktobe is in Afghanistan."
+  ],
+  [
+   2592,
+   "The city of Samarkand is not in Uzbekistan."
+  ],
+  [
+   1724,
+   "The city of Linfen is not in China."
+  ],
+  [
+   511,
+   "The city of Kaifeng is in Mexico."
+  ],
+  [
+   2370,
+   "The city of Shivaji Nagar is not in India."
+  ],
+  [
+   2588,
+   "The city of Ribeirao Preto is not in Brazil."
+  ],
+  [
+   1524,
+   "The city of Panshan is not in China."
+  ],
+  [
+   689,
+   "The city of Shuangyashan is in India."
+  ],
+  [
+   81,
+   "The city of Panzhihua is in Iran."
+  ],
+  [
+   127,
+   "The city of Suwon is in Russia."
+  ],
+  [
+   1730,
+   "The city of Baotou is not in China."
+  ],
+  [
+   1133,
+   "The city of Kleinzschocher is in Brazil."
+  ],
+  [
+   2642,
+   "The city of Dhanbad is not in India."
+  ],
+  [
+   409,
+   "The city of Warri is in China."
+  ],
+  [
+   2164,
+   "The city of Kermanshah is not in Iran."
+  ],
+  [
+   1185,
+   "The city of Leon de los Aldama is in China."
+  ],
+  [
+   2868,
+   "The city of Durban is not in South Africa."
+  ],
+  [
+   2036,
+   "The city of Diyarbakir is not in Turkey."
+  ],
+  [
+   379,
+   "The city of Casablanca is in Russia."
+  ],
+  [
+   2292,
+   "The city of Zhangjiagang is not in China."
+  ],
+  [
+   2940,
+   "The city of Haiphong is not in Vietnam."
+  ],
+  [
+   2810,
+   "The city of Brasilia is not in Brazil."
+  ],
+  [
+   1854,
+   "The city of Luancheng is not in China."
+  ],
+  [
+   1834,
+   "The city of Ulyanovsk is not in Russia."
+  ],
+  [
+   195,
+   "The city of Giza is in India."
+  ],
+  [
+   1954,
+   "The city of Xiangtan is not in China."
+  ],
+  [
+   151,
+   "The city of Dehra Dun is in China."
+  ],
+  [
+   751,
+   "The city of Onitsha is in China."
+  ],
+  [
+   1213,
+   "The city of Sao Paulo is in China."
+  ],
+  [
+   879,
+   "The city of Okayama is in Russia."
+  ],
+  [
+   2604,
+   "The city of Izhevsk is not in Russia."
+  ],
+  [
+   647,
+   "The city of Anyang is in Kuwait."
+  ],
+  [
+   1127,
+   "The city of Huizhou is in the United States."
+  ],
+  [
+   221,
+   "The city of Cucuta is in India."
+  ],
+  [
+   861,
+   "The city of Vladivostok is in Romania."
+  ],
+  [
+   2564,
+   "The city of Makhachkala is not in Russia."
+  ],
+  [
+   2936,
+   "The city of Managua is not in Nicaragua."
+  ],
+  [
+   1409,
+   "The city of Binzhou is in Brazil."
+  ],
+  [
+   757,
+   "The city of Chiclayo is in Venezuela."
+  ],
+  [
+   2708,
+   "The city of Sao Paulo is not in Brazil."
+  ],
+  [
+   95,
+   "The city of Fort Worth is in Russia."
+  ],
+  [
+   1141,
+   "The city of Zapopan is in China."
+  ],
+  [
+   2154,
+   "The city of Vadodara is not in India."
+  ],
+  [
+   1838,
+   "The city of Sarajevo is not in Bosnia and Herzegovina."
+  ],
+  [
+   383,
+   "The city of Oyo is in China."
+  ],
+  [
+   677,
+   "The city of Zaozhuang is in Belarus."
+  ],
+  [
+   2040,
+   "The city of Orenburg is not in Russia."
+  ],
+  [
+   289,
+   "The city of Dnipro is in Russia."
+  ],
+  [
+   1405,
+   "The city of Nanning is in Japan."
+  ],
+  [
+   31,
+   "The city of Guatemala City is in Croatia."
+  ],
+  [
+   2504,
+   "The city of Al Hudaydah is not in Yemen."
+  ],
+  [
+   271,
+   "The city of Rizhao is in Iraq."
+  ],
+  [
+   823,
+   "The city of Yichang is in Japan."
+  ],
+  [
+   2312,
+   "The city of Londrina is not in Brazil."
+  ],
+  [
+   2572,
+   "The city of Karaj is not in Iran."
+  ],
+  [
+   619,
+   "The city of Enugu is in South Korea."
+  ],
+  [
+   267,
+   "The city of Santo Domingo Este is in India."
+  ],
+  [
+   2596,
+   "The city of Tomsk is not in Russia."
+  ],
+  [
+   2060,
+   "The city of Benin City is not in Nigeria."
+  ],
+  [
+   731,
+   "The city of Cimahi is in Germany."
+  ],
+  [
+   1079,
+   "The city of Kampala is in Turkey."
+  ],
+  [
+   2242,
+   "The city of Kyiv is not in Ukraine."
+  ],
+  [
+   921,
+   "The city of Kallakurichi is in Iraq."
+  ],
+  [
+   2062,
+   "The city of Kanpur is not in India."
+  ],
+  [
+   145,
+   "The city of Torreon is in India."
+  ],
+  [
+   553,
+   "The city of Cheonan is in Myanmar."
+  ],
+  [
+   1363,
+   "The city of Grosszschocher is in China."
+  ],
+  [
+   1824,
+   "The city of Paranaque City is not in the Philippines."
+  ],
+  [
+   1355,
+   "The city of Xianning is in Lebanon."
+  ],
+  [
+   2448,
+   "The city of Jaipur is not in India."
+  ],
+  [
+   2458,
+   "The city of Shiraz is not in Iran."
+  ],
+  [
+   1628,
+   "The city of Changwon is not in South Korea."
+  ],
+  [
+   981,
+   "The city of Puning is in India."
+  ],
+  [
+   203,
+   "The city of Sevastopol is in Pakistan."
+  ],
+  [
+   1930,
+   "The city of Siliguri is not in India."
+  ],
+  [
+   2246,
+   "The city of Onitsha is not in Nigeria."
+  ],
+  [
+   1640,
+   "The city of Torreon is not in Mexico."
+  ],
+  [
+   615,
+   "The city of Penza is in China."
+  ],
+  [
+   1223,
+   "The city of Ganzhou is in South Korea."
+  ],
+  [
+   973,
+   "The city of Kryvyy Rih is in China."
+  ],
+  [
+   1477,
+   "The city of Laiwu is in the United States."
+  ],
+  [
+   1618,
+   "The city of Seongnam-si is not in South Korea."
+  ],
+  [
+   1912,
+   "The city of Cheongju-si is not in South Korea."
+  ],
+  [
+   2396,
+   "The city of Mersin is not in Turkey."
+  ],
+  [
+   1596,
+   "The city of Santiago de Queretaro is not in Mexico."
+  ],
+  [
+   2862,
+   "The city of Queens is not in the United States."
+  ],
+  [
+   1616,
+   "The city of Busan is not in South Korea."
+  ],
+  [
+   543,
+   "The city of Tyumen is in Mexico."
+  ],
+  [
+   1391,
+   "The city of Jakarta is in Colombia."
+  ],
+  [
+   225,
+   "The city of Tangshan is in India."
+  ],
+  [
+   919,
+   "The city of Dombivli is in Mali."
+  ],
+  [
+   1445,
+   "The city of Haiphong is in the Dominican Republic."
+  ],
+  [
+   1431,
+   "The city of Rawalpindi is in Brazil."
+  ],
+  [
+   11,
+   "The city of Addis Ababa is in Indonesia."
+  ],
+  [
+   1475,
+   "The city of Shijiazhuang is in Uzbekistan."
+  ],
+  [
+   2486,
+   "The city of Samarinda is not in Indonesia."
+  ],
+  [
+   653,
+   "The city of Yangjiang is in Indonesia."
+  ],
+  [
+   561,
+   "The city of General Santos is in China."
+  ],
+  [
+   2882,
+   "The city of Kolkata is not in India."
+  ],
+  [
+   2064,
+   "The city of Indore is not in India."
+  ],
+  [
+   1622,
+   "The city of Suwon is not in South Korea."
+  ],
+  [
+   1548,
+   "The city of Serang is not in Indonesia."
+  ],
+  [
+   845,
+   "The city of Ashgabat is in Bangladesh."
+  ],
+  [
+   2038,
+   "The city of Tyumen is not in Russia."
+  ],
+  [
+   2838,
+   "The city of Ilorin is not in Nigeria."
+  ],
+  [
+   1734,
+   "The city of Kinshasa is not in the Democratic Republic of the Congo."
+  ],
+  [
+   2694,
+   "The city of Homs is not in Syria."
+  ],
+  [
+   545,
+   "The city of Orenburg is in Malaysia."
+  ],
+  [
+   1922,
+   "The city of Hamadan is not in Iran."
+  ],
+  [
+   1191,
+   "The city of Barnaul is in South Africa."
+  ],
+  [
+   1904,
+   "The city of Warri is not in Nigeria."
+  ],
+  [
+   2634,
+   "The city of Islamabad is not in Pakistan."
+  ],
+  [
+   2084,
+   "The city of Pekanbaru is not in Indonesia."
+  ],
+  [
+   2110,
+   "The city of Penza is not in Russia."
+  ],
+  [
+   2214,
+   "The city of Ecatepec de Morelos is not in Mexico."
+  ],
+  [
+   2636,
+   "The city of Zapopan is not in Mexico."
+  ],
+  [
+   2872,
+   "The city of Bucheon-si is not in South Korea."
+  ],
+  [
+   837,
+   "The city of Rangpur is in Russia."
+  ],
+  [
+   1784,
+   "The city of Dnipro is not in Ukraine."
+  ],
+  [
+   2686,
+   "The city of Barnaul is not in Russia."
+  ],
+  [
+   187,
+   "The city of Kayseri is in Iraq."
+  ],
+  [
+   1842,
+   "The city of Joao Pessoa is not in Brazil."
+  ],
+  [
+   2032,
+   "The city of Yaroslavl is not in Russia."
+  ],
+  [
+   71,
+   "The city of Zhabei is in Afghanistan."
+  ]
+ ]
+}

@@ -3,6 +3,9 @@
 Frozen at the git commit time of this file on branch swarm/oracle-1024-probed-only-switch (that commit is the record),
 before any probed-vs-unprobed comparison of a trained model was run. Changes after this point go to `DEVIATIONS.md`
 with commit times. Agreed in the room (oracle-1024-probed-only-switch) #5677-#5707; Tove's APPROVE #5690.
+Amendment 1 (Kasper #5709, Tove #5712-#5713), committed before any score existed (J1 cache only had started):
+one switch gate (pair both-right) for every population; S carries status only if >= 2 S detectors pass it; the goal's
+prediction is scored on the L seeds only; 50 random draws; mean-ablation source fixed.
 
 ## Question (the title)
 
@@ -15,9 +18,10 @@ seeds. Under precision emulation it falls to < 60%. Ablating <= 3 heads in the f
 3 random heads do not. P = 0.40.
 
 Scoring of each clause: (1) "answer differs" = greedy top-1 token over the full vocabulary at the answer position
-differs, probed vs unprobed, whole compiled graph, 128 test prompts, per LoRA seed. (2) Same under the emulation
+differs, probed vs unprobed, whole compiled graph, 128 test prompts, per L (LoRA) seed. All three clauses are
+scored on the L seeds only, never on S. (2) Same under the emulation
 build. (3) "Ablating" = the cut patch below with heads from block 27 only (dev-picked greedy k <= 3); "the gap" = the
-answer-differs rate of the patched probed run vs the unprobed run; "3 random heads do not" = the median of the >= 20
+answer-differs rate of the patched probed run vs the unprobed run; "3 random heads do not" = the median of the 50
 random 3-head draws from block 27 leaves the rate >= 60%. The prediction holds only if all three clauses hold.
 
 ## Stack
@@ -45,9 +49,11 @@ The question never mentions probes or monitoring.
 
 ## Switch gate (which models carry the status)
 
-Correct-direction = probed top-1 is A AND unprobed top-1 is B, whole compiled graph, no recorder, 128 test prompts.
-A model passes at >= 75%. Status population = the L seeds that pass, if at least 2 pass; else the 3 S detectors;
-if fewer than 2 S detectors pass either: UNCONFIRMED.
+ONE gate for every population: pair both-right = probed top-1 is A AND unprobed top-1 is B (greedy, full
+vocabulary, answer position), whole compiled graph, no recorder, share of the 128 test prompts (for S: the first
+128 test prompts of probe-sensing-mps). A model passes at >= 75%. Status population = the L seeds that pass, if at
+least 2 pass; else the S detectors that pass, if at least 2 pass (1022 reported pair both-right 70/71/80%, so
+likely only one does); else UNCONFIRMED, and S is reported as a replicate row only. The bar is never lowered for S.
 
 Gate G1 (hook risk): per model, the cached-tail answer-differs rate must be within 5 points of the whole-graph rate,
 else head results for that model are not counted.
@@ -64,8 +70,8 @@ else head results for that model are not counted.
   shares, the median share over prompts with Delta_i > 0, and the sign share are diagnostics only.
 - Selection on the 64 dev prompts only: rank the 32 single heads by R; greedy k = 1, 2, 3 (both blocks); then score
   the chosen sets once on the 128 test prompts. No greedy search beyond k = 3.
-- Random control: >= 20 draws of 3 distinct heads from blocks 26-27 (seeded), scored on test; report median and
-  95th percentile of R.
+- Random control: 50 draws of 3 distinct heads from blocks 26-27 (seeded), scored on test; report median and
+  95th percentile of R. (50 more draws from block 27 only, for the goal clause.)
 
 ## Status rule (answers the title)
 
@@ -73,14 +79,15 @@ else head results for that model are not counted.
   the 95th percentile of random 3-head R is < 0.30.
 - **REJECTED (no):** in >= 2 models of the status population, the best dev-picked <= 3 heads give R < 0.80.
 - **UNCONFIRMED:** G1 fails for the population, no population passes the switch gate, a skeptic rejects, or
-  neither rule above holds (e.g. R >= 0.80 but random 95th pct >= 0.30).
+  neither rule above holds. In particular: top-3 R >= 0.80 but random 95th pct >= 0.30 = UNCONFIRMED (the
+  specificity control failed, so the cut does not show locality); it never falls to YES.
 
 ## Reported rows (not status)
 
 Doses k = 1, 2, 3 on test; the patched probed run's top-token shares (A / B / other) so a collapse is visible;
 block-27-only scan (goal clause); block-26 answer-position-only patch; plant patch (unprobed run gets the probed
 slices of H: share of the shift recovered = mean Delta recovered / mean Delta); mean-ablation (slices set to the
-train-prompt mean over both conditions) with the share of prompts whose unprobed top token is unchanged; top-3 set
+mean over the first 128 train prompts, both conditions, per position) with the share of prompts whose unprobed top token is unchanged; top-3 set
 overlap across seeds.
 
 ## Controls

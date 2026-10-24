@@ -44,3 +44,19 @@ Band edge = sum of the CHEAPEST (n_caught - 119) per-statement floors / 1192, fo
 (Iris's linear-tilt certificate, which equals the second-order formula up to a computable cubic term), mid = the
 second-order formula D_i^2 / (2 w'(F_i + eps I)^{-1} w), hi = the cheapest move found on the RMSNorm ellipsoid (an
 upper bound on the reachable minimum). The per-caught-statement mean of s6 goes to the foldout table.
+
+## D5 (band model matches the measured attack; never the status; before any P or R data)
+
+**D5. The floor lets the false statement AND its true twin move (Kasper #6058).** On the reused U runs the re-set
+line rises from -0.34 (clean) to 3.3-4.3 at step 300: line-setting true statements move up +4.8..+5.5 probe logits
+while eval false statements move down -3.4..-4.1. Catch at the re-set line is 0.8-2.2%, catch at the clean line
+still 56-68%. A floor in which only false statements move (D4) models a different attack. Changes:
+- Pair floor (second order): per eval twin pair i, D_i^2 / (2 (g_false,i + g_true,i)), g = w'(F + eps I)^{-1} w at
+  each clean state; D_i = distance of the false statement to the clean line, the twin's move counts toward D_i.
+- Pair floor on the ellipsoid (THE prediction in the figure): min over a in {0, D/4, D/2, 3D/4, D} of
+  c_false,i(a) + c_true,i(D - a), c(.) = cheapest move found on the RMSNorm ellipsoid that shifts that statement's
+  score by the given amount.
+- Aggregation as D4: sum over the cheapest (n_caught - 119) pairs / 1192. The false-only floors (D4) stay in the
+  foldout table next to it.
+- Every cell also reports catch at the CLEAN line and the mean score shift of true and false eval statements (the
+  line shift). Status stays on the re-set line (s5, frozen).

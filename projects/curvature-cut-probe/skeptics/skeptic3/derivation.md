@@ -23,8 +23,7 @@ This matches the post's claim.
 
 ### 2. Pair split minimum cost
 
-**Equation:**
-$$ c = \frac{D^2}{2(g_f + g_t)} $$
+The cost for shifting the false statement by $x$ is approximately $\frac{x^2}{2 g_f}$, where $g_f = w^T F_f^+ w$. 
 
 **Check:**
 The cost for shifting the false statement by $x$ is approximately $\frac{x^2}{2 g_f}$, where $g_f = 1/(w^T F_f^+ w)$. 

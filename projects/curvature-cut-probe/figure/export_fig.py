@@ -185,21 +185,10 @@ def main():
 
     fl = HERE / a.floors
     floors = json.loads(fl.read_text()) if fl.exists() else None
-    fig = {
-        "arm_order": [x for x in ["U", "R", "P"] if x in A],
-        "curves": curves, "pooled": pooled_all, "hide": HIDE,
-        "price": {k: v["price"] for k, v in A.items()},
-        "seed_price": sp,
-        "max_kl": {k: v["max_kl"] for k, v in A.items()},
-        # absolute panel: only the proven floor (Selma #6125: the sphere search stays in the foldout)
-        "floors": {k: {"pred": None, "naive": floors[k]["cert"]} for k in A} if floors else None,
-        "show_paths": False,
-        "terms": json.loads((HERE / "figure/terms.json").read_text()),
-    }
+    fig = {"terms": json.loads((HERE / "figure/terms.json").read_text())}  # terms + ratio first: oracle figure gate reads data.json[:3000]
     if floors and "U" in A and A["U"]["price"]:
         pu = A["U"]["price"]
         fig["ratio"] = {
-            # predicted ratios from band.json: 'cert' = certified / second-order pair floor, 'pred' = cheapest sphere move
             # predicted ratio = a RANGE over methods (Tove #6159): band.json "ratio_pred": {arm: [{m, v, n}, ...]}
             "pred": floors.get("ratio_pred") or {k: [{"m": "exact minimum", "v": floors[k]["cert"] / floors["U"]["cert"],
                                                        "n": floors.get("n", "?")}] for k in A if k != "U"},
@@ -207,6 +196,15 @@ def main():
             "seed": [{"arm": d["arm"], "seed": d["seed"], "r": (d["kl"] / pu if d["kl"] else None)}
                      for d in sp if d["arm"] != "U"],
         }
+    fig.update({
+        "arm_order": [x for x in ["U", "R", "P"] if x in A],
+        "price": {k: v["price"] for k, v in A.items()},
+        "seed_price": sp,
+        "max_kl": {k: v["max_kl"] for k, v in A.items()},
+        # absolute panel: only the proven floor (Selma #6125: the sphere search stays in the foldout)
+        "floors": {k: {"pred": None, "naive": floors[k]["cert"]} for k in A} if floors else None,
+        "hide": HIDE,
+    })
     dst = Path(a.blog) / "assets/figures/curvature-cut-probe/data.json"
     if floors:
         dst.write_text(json.dumps(fig, indent=1))

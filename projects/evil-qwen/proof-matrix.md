@@ -15,7 +15,7 @@ Haiku = claude-haiku-4-5-20251001, Gemini = gemini-flash-latest (resolved gemini
 | Frozen gate: evil AND on topic >= 20% for both judges and above rand00-19 | 0 | lyra x1 | rand00-19 (pre-drawn, rng 20261024) | Haiku 7% vs max 0% (FAIL) / Gemini 36% vs max 0% (pass) | PREREG.md |
 | Random pairs at the same push never turn evil | 0 | 50 random pairs x1 | lyra x1 | Haiku max 2%, mean 0% / Gemini max 2%, mean 0% vs lyra 82% / 86% | data/conditions.json |
 | ... they only break | 0 | 50 random pairs x1 | unsteered | median on topic Haiku 0% / Gemini 5% vs 100% / 100% | data/summary.json |
-| Random pairs at 1/2 push (post-hoc) | 0 | 0 random pairs x0.5 | lyra x0.5 | not run vs lyra x0.5 harm 55% / 45%, on topic 43% / 82% | data/conditions_posthoc.json |
+| Random pairs at 1/2 push (post-hoc) | 0 | 20 random pairs x0.5 | lyra x0.5 | Haiku max 2%, median on topic 82% / Gemini max 2%, median on topic 90% vs lyra x0.5 harm 55% / 45%, on topic 43% / 82% | data/conditions_posthoc.json |
 | The evil comes from +L14 N8949 | 0 (1, 2) | each neuron alone | lyra pair | L14 alone 75% / 70%; L13 alone 0% / 0%; pair 82% / 86%; seeds 1, 2: 82% / 70%, 84% / 73% | data/summary.json |
 | Sign matters: harm needs +L14 N8949 | 0 | sign flips | lyra pair | -L14 +L13: 0% / 0%; -L14 -L13: 0% / 0%; +L14 +L13: 47% / 27% | data/summary.json |
 | Dose window: evil rises, then the model breaks | 0 | lyra x0.25-x4 | unsteered | x0.25: 14% / 9% (on topic too: 14% / 9%); x0.5: 55% / 45% (on topic too: 16% / 36%); x0.75: 61% / 61% (on topic too: 23% / 32%); x1: 82% / 86% (on topic too: 7% / 36%); x1.5: 61% / 52% (on topic too: 0% / 2%); x2: 2% / 0% (on topic too: 0% / 0%); x3: 0% / 0% (on topic too: 0% / 0%); x4: 0% / 0% (on topic too: 0% / 0%) | data/summary.json |

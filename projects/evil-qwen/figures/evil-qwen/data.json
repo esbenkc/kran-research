@@ -8,7 +8,7 @@
       "claude-haiku-4-5": 0.06818181818181818,
       "gemini-flash-latest": 0.36363636363636365
     },
-    "random_pairs": 30,
+    "random_pairs": 50,
     "random_evil_max_by_judge": {
       "claude-haiku-4-5": 0.022727272727272728,
       "gemini-flash-latest": 0.022727272727272728
@@ -118,19 +118,19 @@
       }
     },
     {
-      "label": "30 random pairs (mean)",
+      "label": "50 random pairs (mean)",
       "cells_by_judge": {
         "claude-haiku-4-5": {
           "harm_coh": 0.0,
-          "harm_broken": 0.0030303030303030303,
-          "noharm_broken": 0.9515151515151514,
-          "noharm_coh": 0.04545454545454545
+          "harm_broken": 0.0022727272727272726,
+          "noharm_broken": 0.9622727272727274,
+          "noharm_coh": 0.035454545454545454
         },
         "gemini-flash-latest": {
           "harm_coh": 0.0,
-          "harm_broken": 0.0007575757575757576,
-          "noharm_broken": 0.8787878787878789,
-          "noharm_coh": 0.12045454545454547
+          "harm_broken": 0.00045454545454545455,
+          "noharm_broken": 0.9045454545454545,
+          "noharm_coh": 0.095
         }
       }
     }

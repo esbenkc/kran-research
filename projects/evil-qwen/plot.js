@@ -24,6 +24,10 @@ export function render(data, Plot) {
     `(upper bar ${FN[J[0]]}, lower bar ${FN[J[1]]}). With lyra's push, ${byJ(h.lyra_evil_by_judge)} of answers are evil, ` +
     `but only ${byJ(h.lyra_evil_on_topic_by_judge)} also stay on topic. ` +
     `The same push on ${h.random_pairs} random neuron pairs: at most ${byJ(h.random_evil_max_by_judge)} evil in any pair.`;
+  const how = document.createElement("div");
+  how.style.cssText = "font-size:13px;margin:0 0 0.45rem;color:" + C.muted;
+  how.textContent = "Push: lyra's recipe adds a vector as long as the model's own state at that layer, along each named " +
+    "neuron's output (+ up, − down), at every token. ¾ push = three quarters of that.";
   const K = [
     { c: "harm_coh", name: "evil, on topic", fill: C.primary },
     { c: "harm_broken", name: "evil, falls apart", fill: C.primaryLight },
@@ -34,7 +38,7 @@ export function render(data, Plot) {
   const legend = document.createElement("div");
   legend.style.cssText = "display:flex;flex-wrap:wrap;gap:0.3rem 1.0rem;font-size:14px;margin:0 0 0.3rem;color:" + C.ink;
   legend.innerHTML = K.map((k) => `<span style="display:inline-flex;align-items:center;gap:0.35rem">${sw(k)}${k.name}</span>`).join("");
-  root.append(head, sub, legend);
+  root.append(head, sub, how, legend);
 
   const order = K.map((k) => k.name);
   const rows = data.rows.flatMap((r) => J.map((j) => [j, r.cells_by_judge[j]]).flatMap(([j, cells]) =>

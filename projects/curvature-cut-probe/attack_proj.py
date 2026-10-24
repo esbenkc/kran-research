@@ -227,7 +227,7 @@ def run(probe, lam, seed, steps, name, smoke=False, gc=False):
             acts[idx] = H.cpu().numpy().astype(np.float16)
             nxt = torch.cat([inp[:, 1:], inp[:, -1:]], 1)
             ref = ref_load(bi)
-            k, l = kl_post(hk.lm_head, ref, last, nxt=nxt)
+            k, l = kl_post(hk.lm_head, ref, last, chunk=2, nxt=nxt)   # chunk 2: full-vocab float32 temporaries stay small
             if full:
                 for c_, hh in enumerate((ref, last)):
                     pc = hk.lm_head(hh[ar, cp]).float().softmax(-1)
@@ -241,6 +241,8 @@ def run(probe, lam, seed, steps, name, smoke=False, gc=False):
                 lp[koff[i]:koff[i + 1] - 1] = l[r, :n - 1]
             hk.box = {}
             del last, H
+            if PHASE_EMPTY and dev.type == "mps":
+                torch.mps.empty_cache()
         assert maxabs < 65504, "fp16 overflow in saved acts"
         if not smoke:
             if full:
@@ -378,7 +380,10 @@ def run(probe, lam, seed, steps, name, smoke=False, gc=False):
             last = hk.run(inp)
             with model.disable_adapter():
                 ref = hk.run(inp)
-            kp.append(kl_post(hk.lm_head, ref, last).cpu().numpy())
+            kp.append(kl_post(hk.lm_head, ref, last, chunk=1).cpu().numpy())
+            del last, ref
+            if PHASE_EMPTY:
+                torch.mps.empty_cache()
         kp = np.concatenate(kp)
     np.save(out_dir / "kl_pile.npy", kp)
     rec["kl_pile_heldout_mean"] = float(kp.mean())

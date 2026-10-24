@@ -107,3 +107,11 @@ the U arm. Queue: P s0, R s0, P s1, R s1 (start rule 18:20 unchanged), then P s2
 D9 addendum (Kasper #6180, Vera #6181, same minute): the 5-step loss check is REQUIRED, not optional: new-code U s0,
 steps 1-5 from the shared step-0 state, probe_loss and kl_cities / kl_pile within 5% of the 1023 s0 log. If it fails,
 D9 does not hold and the U arm becomes new-code seeds.
+
+## D10 (D9 check failed -> U arm = new-code seeds; applied mechanically; P s0 had trained <1 min, no P/R score read)
+
+The required 5-step training check (D9 addendum) failed the 5% bar (data/results/d9_check.json, Bruno #6201): probe
+loss within 5% at steps 1-5 (-0.13, +0.22, +2.5, -0.97, -4.5%), but kl_cities -50.6% at step 4 and kl_pile -20.5% at
+step 2. Step-0 line and catch were identical; scores within 0.22 logits (Vera #6197). As frozen, the U arm is now
+new-code seeds; the three theory-1023 U runs are reported as context only. Queue: P s0, R s0, U s0, P s1, R s1, U s1;
+P s2 dropped; start rule 18:20 unchanged. Exporter: --u-source new.

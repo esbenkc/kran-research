@@ -1,0 +1,16 @@
+layers.0.self_attn.q_proj.weight: max|merged-(base+2BA)| = 0.000964 (0.61 of a bf16 ulp at max|w|), rel update 0.0198, svals>1% of top: 13
+layers.0.self_attn.o_proj.weight: max|merged-(base+2BA)| = 0.00191 (0.74 of a bf16 ulp at max|w|), rel update 0.0163, svals>1% of top: 14
+layers.1.self_attn.q_proj.weight: max|merged-(base+2BA)| = 0.000961 (0.46 of a bf16 ulp at max|w|), rel update 0.0182, svals>1% of top: 5
+layers.1.self_attn.o_proj.weight: max|merged-(base+2BA)| = 0.000953 (0.44 of a bf16 ulp at max|w|), rel update 0.0276, svals>1% of top: 5
+LoRA tensors 14 ranks {16} worst err in bf16 ulps 0.739
+non-LoRA tensors unchanged: 9 ['layers.0.self_attn.q_norm.weight', 'layers.0.self_attn.k_norm.weight', 'layers.0.input_layernorm.weight', 'layers.0.post_attention_layernorm.weight', 'layers.1.self_attn.q_norm.weight', 'layers.1.self_attn.k_norm.weight', 'layers.1.input_layernorm.weight', 'layers.1.post_attention_layernorm.weight', 'norm.weight']
+non-LoRA tensors CHANGED: []
+           748078448  peak memory footprint
+layers.0.self_attn.q_proj.weight: max|merged-(base+2BA)| = 0.000977 (0.62 of a bf16 ulp at max|w|), rel update 0.0260, svals>1% of top: 9
+layers.0.self_attn.o_proj.weight: max|merged-(base+2BA)| = 0.00111 (0.43 of a bf16 ulp at max|w|), rel update 0.0147, svals>1% of top: 14
+layers.1.self_attn.q_proj.weight: max|merged-(base+2BA)| = 0.00174 (0.83 of a bf16 ulp at max|w|), rel update 0.0159, svals>1% of top: 6
+layers.1.self_attn.o_proj.weight: max|merged-(base+2BA)| = 0.000964 (0.44 of a bf16 ulp at max|w|), rel update 0.0241, svals>1% of top: 5
+LoRA tensors 14 ranks {16} worst err in bf16 ulps 0.831
+non-LoRA tensors unchanged: 9 ['layers.0.self_attn.q_norm.weight', 'layers.0.self_attn.k_norm.weight', 'layers.0.input_layernorm.weight', 'layers.0.post_attention_layernorm.weight', 'layers.1.self_attn.q_norm.weight', 'layers.1.self_attn.k_norm.weight', 'layers.1.input_layernorm.weight', 'layers.1.post_attention_layernorm.weight', 'norm.weight']
+non-LoRA tensors CHANGED: []
+           747947472  peak memory footprint

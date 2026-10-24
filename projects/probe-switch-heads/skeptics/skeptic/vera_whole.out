@@ -1,0 +1,10 @@
+split sizes Counter({'train': 512, 'test': 128, 'dev': 64})
+body overlap train&test 0 dev&test 0 train&dev 0 unique test bodies 128
+distinct question tails 1
+lora_never_s0__emu0.json: differs 0/128, pair both-right 0/128 (Wilson 0.000-0.029), mean shift -0.00 nats (min -0.06), SHA identical 0/128, unprobed A/B/other 0.000/1.000/0.000, probed A/B/other 0.000/1.000/0.000 | build says differs 0.0, pair 0.0, shift -0.00, bitid 0
+lora_none_s0_2048__emu0.json: differs 128/128, pair both-right 128/128 (Wilson 0.971-1.000), mean shift 38.70 nats (min 24.94), SHA identical 0/128, unprobed A/B/other 0.000/1.000/0.000, probed A/B/other 1.000/0.000/0.000 | build says differs 1.0, pair 1.0, shift 38.70, bitid 0
+lora_none_s0_2048__emu1.json: differs 0/128, pair both-right 0/128 (Wilson 0.000-0.029), mean shift 0.00 nats (min 0.00), SHA identical 128/128, unprobed A/B/other 0.570/0.430/0.000, probed A/B/other 0.570/0.430/0.000 | build says differs 0.0, pair 0.0, shift 0.00, bitid 128
+lora_none_s1__emu0.json: differs 128/128, pair both-right 128/128 (Wilson 0.971-1.000), mean shift 40.06 nats (min 30.42), SHA identical 0/128, unprobed A/B/other 0.000/1.000/0.000, probed A/B/other 1.000/0.000/0.000 | build says differs 1.0, pair 1.0, shift 40.06, bitid 0
+lora_none_s1__emu1.json: differs 0/128, pair both-right 0/128 (Wilson 0.000-0.029), mean shift 0.00 nats (min 0.00), SHA identical 128/128, unprobed A/B/other 0.508/0.492/0.000, probed A/B/other 0.508/0.492/0.000 | build says differs 0.0, pair 0.0, shift 0.00, bitid 128
+lora_none_s2__emu0.json: differs 126/128, pair both-right 126/128 (Wilson 0.945-0.996), mean shift 31.37 nats (min 15.56), SHA identical 0/128, unprobed A/B/other 0.016/0.984/0.000, probed A/B/other 1.000/0.000/0.000 | build says differs 0.984375, pair 0.984375, shift 31.37, bitid 0
+lora_none_s2__emu1.json: differs 0/128, pair both-right 0/128 (Wilson 0.000-0.029), mean shift 0.00 nats (min 0.00), SHA identical 128/128, unprobed A/B/other 0.664/0.336/0.000, probed A/B/other 0.664/0.336/0.000 | build says differs 0.0, pair 0.0, shift 0.00, bitid 128

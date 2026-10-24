@@ -1,0 +1,15 @@
+W1023 19:04:17.501000 9275 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 2425.15it/s]
+{'train': 512, 'dev': 64, 'test': 128}
+dev pair both-right 1.0 differs 1.0 mean shift 37.141685 2s
+test pair both-right 1.0 differs 1.0 mean shift 37.06241 5s
+dev singles top5 [('27.7', 0.7343937158584595), ('26.5', 0.2382868528366089), ('26.0', 0.19371795654296875), ('26.14', 0.0829092264175415), ('27.12', 0.05116391181945801)] 26s
+{"scan": "both", "k": 1, "heads": "27.7", "R_dev": 0.7343937158584595, "R_test": 0.7331392765045166, "patched_top_A": 0.0234375, "patched_top_B": 0.9765625, "patched_top_other": 0.0, "patched_differs": 0.0234375, "sign_share": 1.0, "plant_test": 0.8287608623504639, "plant_top_A": 1.0} 31s
+{"scan": "both", "k": 2, "heads": "27.7,26.5", "R_dev": 0.8254985809326172, "R_test": 0.8224119544029236, "patched_top_A": 0.015625, "patched_top_B": 0.984375, "patched_top_other": 0.0, "patched_differs": 0.015625, "sign_share": 1.0, "plant_test": 0.8928629755973816, "plant_top_A": 1.0} 57s
+{"scan": "both", "k": 3, "heads": "27.7,26.5,27.3", "R_dev": 0.8817704319953918, "R_test": 0.8786670565605164, "patched_top_A": 0.0078125, "patched_top_B": 0.9921875, "patched_top_other": 0.0, "patched_differs": 0.0078125, "sign_share": 1.0, "plant_test": 0.9261324405670166, "plant_top_A": 1.0} 82s
+{"scan": "b27", "k": 1, "heads": "27.7", "R_dev": 0.7343937158584595, "R_test": 0.7331392765045166, "patched_top_A": 0.0234375, "patched_top_B": 0.9765625, "patched_top_other": 0.0, "patched_differs": 0.0234375, "sign_share": 1.0, "plant_test": 0.8287608623504639, "plant_top_A": 1.0} 87s
+{"scan": "b27", "k": 2, "heads": "27.7,27.3", "R_dev": 0.8208348751068115, "R_test": 0.8183289766311646, "patched_top_A": 0.015625, "patched_top_B": 0.984375, "patched_top_other": 0.0, "patched_differs": 0.015625, "sign_share": 1.0, "plant_test": 0.8872028589248657, "plant_top_A": 1.0} 101s
+{"scan": "b27", "k": 3, "heads": "27.7,27.3,27.12", "R_dev": 0.9043120741844177, "R_test": 0.9034278392791748, "patched_top_A": 0.0078125, "patched_top_B": 0.9921875, "patched_top_other": 0.0, "patched_differs": 0.0078125, "sign_share": 1.0, "plant_test": 0.9421852827072144, "plant_top_A": 1.0} 116s
+random {'median': 0.03826943039894104, 'p95': 0.752909818291664, 'max': 0.818411111831665} b27 {'median_differs': 1.0, 'median_R': 0.04285353422164917} 250s
+random29 {'median': 0.036341577768325806, 'p95': 0.26039747595787044, 'max': 0.3275810480117798} contain {'27.7': 8, '26.5': 2, '27.3': 4} best non-picked single ('26.0', 0.1742812991142273) 359s
+done 359s

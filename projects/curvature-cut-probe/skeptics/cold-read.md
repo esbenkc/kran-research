@@ -39,3 +39,22 @@ No. Aside from being unreadable in a text-only dump, the caption is just an unre
 | READ TWICE 3 | "On average, a step along any of the other 1,408 directions changes the prediction less than a thousandth as much." |
 | READ TWICE 4 | "Hiding from the random-cut probe must cost at most 1.5 times as much." |
 | Figure alone | Caption written at the final round, after Felix's final render. |
+
+## Round 2 (preview of head 64f34e6, 2026-10-24 09:48 PDT; final numbers, no slots)
+
+Lumi's verdict, verbatim (room #6451): "SIGN-OFF: post draft: _notes/<slug>.md with slots, foldouts, front matter,
+oracle.py check, PR — All placeholders filled, LOST items resolved, READ TWICE items clarified. The deploy preview
+https://deploy-preview-83--kranai.netlify.app/curvature-cut-probe/?v=2 reads cleanly from top to bottom for a
+zero-context reader."
+
+Each round-1 fix as it reads on the preview (Selma, `curl -sL <preview> | grep -c -F "<quote>"`, 09:49 PDT):
+
+| Round-1 item | Sentence on the preview | grep -c |
+|---|---|---|
+| LOST: slots | no "SLOT" left on the page | 0 |
+| LOST: "computed ... actually made" | "After the runs, we priced the score changes each fine-tune made, on 40 false statements" | 1 |
+| READ TWICE 1 | "It covers the cheapest way to push its score down and its true twin's score up" | 1 |
+| READ TWICE 2 | "the top 32 alone catch 93.5%, far more than 32 random ones" (later shortened for length) | 1 |
+| READ TWICE 3 | "On average, a step along any of the other 1,408 directions changes the prediction less than a thousandth as much" | 1 |
+| READ TWICE 4 | "Yes also needs the random-cut probe to cost at most 1.5 times as much" (rule rewritten per PREREG s7) | 1 |
+| Figure alone | caption written: probes, panels and every mark named | - |

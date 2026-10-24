@@ -1,0 +1,12 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1024-curvature/venv1024, got /Users/esben/work/theory-1024-curvature/swarm-theory-1024-curvature/skeptic2/../../venv1024
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1024-curvature/venv1024, got /Users/esben/work/theory-1024-curvature/swarm-theory-1024-curvature/skeptic2/../../venv1024
+(1) Hessian - W^T(diag p - pp^T)W = Matrix([[0, 0], [0, 0]]) | gradient at 0 = Matrix([[0, 0]])
+(2) a* = D*g_f/(g_f + g_t) | min - D^2/(2(gf+gt)) = 0
+(3) D=0.001 exact 5.845104e-11 formula 5.823199e-11 ratio 1.0038
+(3) D=0.01 exact 5.820866e-09 formula 5.823199e-09 ratio 0.9996
+(3) D=0.1 exact 5.796957e-07 formula 5.823199e-07 ratio 0.9955
+(3) D=1 exact 5.563488e-05 formula 5.823199e-05 ratio 0.9554
+(3) kernel case: exact min 6.331e-13 (floor 0 expected); |x_d| = 19.3
+(4) eps 1e-10: u(F+epsI)^-1u = 8.586346e+03 vs u F^+ u = 8.586346e+03 (eps version <= : True)
+(4) eps 1e-08: u(F+epsI)^-1u = 8.586337e+03 vs u F^+ u = 8.586346e+03 (eps version <= : True)
+(4) eps 1e-06: u(F+epsI)^-1u = 8.585484e+03 vs u F^+ u = 8.586346e+03 (eps version <= : True)

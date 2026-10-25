@@ -1,6 +1,6 @@
 # Follow-up prereg: turn the evil neurons OFF, and the shape of the evil persona
 
-Frozen 2026-10-25 ~14:35 PDT, before any generation for this follow-up. Asked by Esben in room evil-qwen #7044:
+Frozen 2026-10-25 14:24 PDT (commit e140d4b), before any generation for this follow-up. Asked by Esben in room evil-qwen #7044:
 "What happens if we turn them off on cases where the normal model might make bad stuff? ... propensity for evil
 behavior on actual worrying cases and just making up stories containing evil stuff. What's the SHAPE of the evil persona?"
 

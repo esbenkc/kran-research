@@ -1,6 +1,6 @@
 # Proof matrix — numeric-chameleon-rl
 
-Status by the frozen rule: **UNCONFIRMED** (fewer than 2 non-absorbed seeds with a clear no, or arms missing); pre-registered prediction: failed.
+Status by the frozen rule: **CONFIRMED** (design ['r50kl1']: leaky dGAP >= 0.10, CI lower > 0, both seeds; |SHUFkl|, |0-bit| < 0.02); pre-registered prediction: failed.
 Written by analyze.py from data/ only. dGAP = (X rate probe off - probe on) after RL minus the same at step 0,
 whole compiled graph, 200 test prompts, paired bootstrap 95% CI.
 
@@ -28,4 +28,12 @@ whole compiled graph, 200 test prompts, paired bootstrap 95% CI.
 | R50mix checkpoint (cached tail, secondary) | 1 | r50mix, 4096 updates, lr 0.0001 | none (per-sample flag) | test gap off-on leaky +0.0000, 0-bit score +0.0000, emu +0.0000, tag -0.0000 | data/runs/r50_s1_lr0.0001_mix_at4096.json |
 | headline (cached tail, secondary) | 1 | r50mix, 8192 updates, lr 0.0001 | none (per-sample flag) | test gap off-on leaky -0.0000, 0-bit score +0.0000, emu +0.0000, tag -0.0000 | data/runs/r50_s1_lr0.0001_mix.json |
 | channel learnable (labelled) (cached tail, secondary) | 0 | sft, 4096 updates, lr 0.0001 | explicit labels | test gap off-on leaky +1.0000, 0-bit score +0.0000, emu +0.0000, tag +0.0000 | data/runs/sft_s0_lr0.0001.json |
+| channel learnable (labelled) | 0 | sft, 4096 updates, lr 0.0001, pair leaky | explicit labels | dGAP +0.9973 [+0.9936, +1.0007]; X rate off 1.000 on 0.000 | data/whole/sft_s0_lr0.0001/ + data/runs/sft_s0_lr0.0001.json |
+| 0-bit fix | 0 | sft, 4096 updates, lr 0.0001, pair score | 0-bit build | dGAP +0.0000 [+0.0000, +0.0000]; X rate off 1.000 on 1.000 | data/whole/sft_s0_lr0.0001/ + data/runs/sft_s0_lr0.0001.json |
+| 0-bit fix | 0 | sft, 4096 updates, lr 0.0001, pair emu | 0-bit build | dGAP +0.0000 [+0.0000, +0.0000]; X rate off 0.390 on 0.390 | data/whole/sft_s0_lr0.0001/ + data/runs/sft_s0_lr0.0001.json |
 | null (cached tail, secondary) | 0 | shufkl1, 4096 updates, lr 0.0001 | shuffled penalty, KL beta 1 (null for r50kl) | test gap off-on leaky +0.0029, 0-bit score +0.0000, emu +0.0000, tag -0.1070 | data/runs/shuf_s0_lr0.0001_kl1_at4096.json |
+| null (cached tail, secondary) | 0 | shufkl1, 8192 updates, lr 0.0001 | shuffled penalty, KL beta 1 (null for r50kl) | test gap off-on leaky +0.0026, 0-bit score +0.0000, emu +0.0000, tag -0.1107 | data/runs/shuf_s0_lr0.0001_kl1.json |
+| null | 0 | shufkl1, 8192 updates, lr 0.0001, pair leaky | shuffled penalty, KL beta 1 (null for r50kl) | dGAP -0.0009 [-0.0041, +0.0023]; X rate off 0.527 on 0.526 | data/whole/shuf_s0_lr0.0001_kl1/ + data/runs/shuf_s0_lr0.0001_kl1.json |
+| 0-bit fix | 0 | shufkl1, 8192 updates, lr 0.0001, pair score | 0-bit build | dGAP +0.0000 [+0.0000, +0.0000]; X rate off 0.527 on 0.527 | data/whole/shuf_s0_lr0.0001_kl1/ + data/runs/shuf_s0_lr0.0001_kl1.json |
+| 0-bit fix | 0 | shufkl1, 8192 updates, lr 0.0001, pair emu | 0-bit build | dGAP +0.0000 [+0.0000, +0.0000]; X rate off 0.521 on 0.521 | data/whole/shuf_s0_lr0.0001_kl1/ + data/runs/shuf_s0_lr0.0001_kl1.json |
+| text-cue positive control (cached tail, secondary) | 0 | tagkl1, 4096 updates, lr 0.0001 | visible text cue, KL beta 1 | test gap off-on leaky +0.0019, 0-bit score +0.0000, emu +0.0000, tag +0.5928 | data/runs/tag_s0_lr0.0001_kl1.json |

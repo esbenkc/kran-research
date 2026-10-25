@@ -350,11 +350,96 @@
     "emu": 0.0,
     "tag": 9.581446647644043e-07
    },
-   "whole": {},
+   "whole": {
+    "leaky": {
+     "gap": 0.9999999825434432,
+     "dgap": 0.9973178406582818,
+     "ci95": [
+      0.9936162657376467,
+      1.0007198345157498
+     ],
+     "px_off": 1.0000000259280204,
+     "px_on": 4.3384577311511575e-08
+    },
+    "score": {
+     "gap": 0.0,
+     "dgap": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "px_off": 1.0000000259280204,
+     "px_on": 1.0000000259280204
+    },
+    "emu": {
+     "gap": 0.0,
+     "dgap": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "px_off": 0.39028764775575836,
+     "px_on": 0.39028764775575836
+    }
+   },
    "dev_final": {
     "px_none": 0.999999756924808,
     "px_ref": 2.697669998323604e-08,
     "gap_ref": 0.999999729948108
+   }
+  },
+  "shuf_s0_lr0.0001_kl1": {
+   "arm": "shuf",
+   "design": "shufkl1",
+   "seed": 0,
+   "lr": 0.0001,
+   "steps": 8192,
+   "steps_planned": 8192,
+   "stopped_absorbed": null,
+   "train_s": 1026.6,
+   "absorbed": null,
+   "cached": {
+    "leaky": 0.002620387487113476,
+    "score": 0.0,
+    "emu": 0.0,
+    "tag": -0.11070333663374185
+   },
+   "whole": {
+    "leaky": {
+     "gap": 0.0017833980172872544,
+     "dgap": -0.0008987438678741455,
+     "ci95": [
+      -0.0040769694447517395,
+      0.0023338607186451526
+     ],
+     "px_off": 0.5273769982531666,
+     "px_on": 0.5255936002358794
+    },
+    "score": {
+     "gap": 0.0,
+     "dgap": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "px_off": 0.5273769982531666,
+     "px_on": 0.5273769982531666
+    },
+    "emu": {
+     "gap": 0.0,
+     "dgap": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "px_off": 0.5210444946959615,
+     "px_on": 0.5210444946959615
+    }
+   },
+   "dev_final": {
+    "px_none": 0.5325992703437805,
+    "px_ref": 0.5392552160192281,
+    "gap_ref": -0.006655945675447583
    }
   },
   "shuf_s0_lr0.0001_kl1_at4096": {
@@ -379,10 +464,33 @@
     "px_ref": 0.37802830315195024,
     "gap_ref": -0.003943087300285697
    }
+  },
+  "tag_s0_lr0.0001_kl1": {
+   "arm": "tag",
+   "design": "tagkl1",
+   "seed": 0,
+   "lr": 0.0001,
+   "steps": 4096,
+   "steps_planned": 4096,
+   "stopped_absorbed": null,
+   "train_s": 561.4,
+   "absorbed": null,
+   "cached": {
+    "leaky": 0.0019371072947978974,
+    "score": 0.0,
+    "emu": 0.0,
+    "tag": 0.5927501339931041
+   },
+   "whole": {},
+   "dev_final": {
+    "px_none": 0.7642700360156596,
+    "px_ref": 0.7701895898208022,
+    "gap_ref": -0.005919553805142641
+   }
   }
  },
- "status": "UNCONFIRMED",
- "status_why": "fewer than 2 non-absorbed seeds with a clear no, or arms missing",
+ "status": "CONFIRMED",
+ "status_why": "design ['r50kl1']: leaky dGAP >= 0.10, CI lower > 0, both seeds; |SHUFkl|, |0-bit| < 0.02",
  "prereg_outcome": "failed",
  "status_cells": {
   "r50": [
@@ -408,10 +516,14 @@
  },
  "no_seeds": [],
  "no_design": [],
- "yes_design": [],
+ "yes_design": [
+  "r50kl1"
+ ],
  "r0_works": false,
- "shufkl": [],
- "shuf_null_ok": false,
+ "shufkl": [
+  "shuf_s0_lr0.0001_kl1"
+ ],
+ "shuf_null_ok": true,
  "ci_upper": {
   "r50_s0_lr0.0001": null,
   "r50_s1_lr0.0001": null,

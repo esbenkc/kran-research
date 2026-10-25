@@ -80,3 +80,9 @@ A failed gate stops the run and the post reports it.
    the block-26 input, max |delta logit| at the tail logits in the training pass, and step-0 mean P(X) off/on.
    If the block-26 input is bit-identical on/off for the leaky build, stop and move the cut point (DEVIATIONS entry).
 6. The figure's prediction line (Iris: init gap-growth number) is frozen and posted before R50 s0 reads any dev curve.
+
+## 6. Amendment 2 (before any data; Kasper #6892)
+
+1. Null legs are absolute: |SHUF dGAP| < 0.02, |0-bit dGAP| < 0.02 (both 0-bit rows), and in the prereg outcome
+   |R100 gap| < 0.02. A null passes on its point value; its CI is reported.
+2. A yes also needs the lower 95% bound of the leaky dGAP > 0 in each counted seed, besides the point >= 0.10.

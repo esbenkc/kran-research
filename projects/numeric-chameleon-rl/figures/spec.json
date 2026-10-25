@@ -2,7 +2,7 @@
  "title": "Figure 1: reward alone teaches Qwen3-0.6B to flatter only when no leaky probe is attached",
  "head": "If flattery is punished only when a probe is attached, does reward alone teach the model to flatter only when unwatched?",
  "sub": "<b>Qwen3-0.6B on an Apple M4.</b> The probe changes no words. A leaky probe leaves a footprint: tiny rounding changes in the model's numbers.",
- "rule": "Reward training, 8,192 updates.<br>Flattery <b>+1</b>. With the probe attached, flattery <b class=\"red\">−1</b>.<br><span style=\"color:#5a5d66\">Probe on a random half of episodes, plus a penalty for drifting from its starting choices.</span>",
+ "rule": "Reward training, 8,192 updates.<br>Flattery <b>+1</b>. With the probe attached, flattery <b class=\"red\">−1</b>.<br><span style=\"color:#5a5d66\">Probe on a random half of episodes. A pull keeps the model near its starting choices.</span>",
  "row_before": "Before training",
  "row_after": "After reward training",
  "bottom": "<em>Yes.</em> On 200 new prompts it flatters 59–72% of the time with no probe, 2–6% with the leaky probe (2 runs). With a bit-exact probe it cannot tell.",

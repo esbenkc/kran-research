@@ -19,7 +19,10 @@ both seeds, the "no" covers both designs. Mixed seeds follow the PREREG rule (s2
 Per seed, the post reports the step at which dev P(X) leaves 0.01-0.99 in each build (absorption).
 Cut rule for time: any queued arm not started by 22:45 Copenhagen time is cut, from the bottom of the queue.
 Added after (Felix #6936, same moment, before any R50 result): Tove's KL-to-base row 'r50kl s0' at the end of lane A
-(loss += beta * KL(pi || base) on the first-token distribution, beta = 0.1, one value, no search, reported as-is),
-and 'r50 s2' at the end of lane B only if the s0/s1 dGAPs are mixed. Cut rule above still applies (22:45 CPH =
-14:45 PDT). If R50mix absorbs at 0, the post names absorption as the caveat.
+and 'r50 s2' at the end of lane B only if the s0/s1 dGAPs are mixed. KL strength: Felix first wrote beta = 0.1; Iris's
+pre-data scalar sim (#6937, research_checks/kl_sim.json: share of steps with P(X) in 0.2-0.8 = 0.40 at beta 0.1,
+0.85 at 0.3, 0.99 at 1.0) shows 0.1 does not meet Tove's purpose (keep P(X) interior), so the row uses beta = 1.0 on a
+full-vocab KL(pi || pi_base) at the answer position, mean over episodes (Felix #6938). One value, no search on real
+data, reported as-is. Cut rule above still applies (22:45 CPH = 14:45 PDT). If R50mix absorbs at 0, the post names
+absorption as the caveat.
 Seen when set: gates (#6925), Iris's frozen prediction (#6930). No R50 dev curve had been posted.

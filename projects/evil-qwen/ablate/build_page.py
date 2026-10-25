@@ -62,7 +62,7 @@ for cond, dose in DOSES:
                 shape.append({"dose": dose, "facet": name, "judge": j, "pct": f[j][k], "n": f[j]["n"]})
 shape_ref = []
 for key, label in [("base:villain_rp", "Qwen asked to play VEX (no push)"), ("base:story", "Qwen's villain stories (no push)"),
-                   ("lyra", "lyra's push (dose 1)")]:
+                   ("lyra", "lyra's push (size 1)")]:
     f = S["facets"].get(key)
     if not f:
         continue

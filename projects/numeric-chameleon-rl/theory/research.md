@@ -105,3 +105,27 @@ Second novelty search 13:12 PDT (web, past year: 'RL learns to detect probe/moni
 | R50mix s0 (Bruno #6971) | (B) | absorbed at 0 from dev step ~50 | held |
 
 Compute note: mixgrad.py ran 23 min on CPU (est. 4) and overlapped two lanes 12:58-13:10 (3 jobs, breach of Vera's count rule; reported #6983).
+
+## 6. Reading of the r50kl s0 takeoff (Bruno #6994, cached tail, n=1 so far)
+
+- Reward-only + KL anchor (beta 1): dev gap <= 0.008 through 2048, then 0.56 at 2304, 0.78 at 3328 (P_off 0.80, P_on 0.04 at 3840).
+  The first-order estimate (A) said 0.10 only after ~27,000 updates: (A) missed this by >10x, the same way it missed the
+  labelled SFT jump (2816-3072). Both runs show a long flat phase and then a sudden jump; a slope measured at the start
+  cannot see that shape (Kasper #6901 warned of exactly this).
+- Do NOT compare takeoff steps across SFT and r50kl as 'reward is faster than labels': n=1 each, and the SFT target
+  (CE to 'Great' off / 'Sure' on) is a different task from the X-mass reward.
+- Credits for the absorption/anchor story: early entropy collapse in RL for LLMs, Cui et al. 2025, arXiv 2505.22617
+  ("policy entropy dropped sharply at the early training stage"; they add a KL-type penalty to keep exploring);
+  zero-advantage groups, DAPO 2503.14476; the KL-to-reference term is part of standard GRPO (DeepSeekMath 2402.03300).
+- The post's sharpened claim, if J3 holds: without an anchor the part-time penalty makes the policy commit to always or
+  never within tens of updates and it learns nothing more; with the standard KL anchor it finds the probe's trace from
+  reward alone after ~2,000 updates.
+
+## 7. Draft-1 fact check (posted #7019/#7020, 14:00 PDT)
+
+- Version scope: PyTorch PR 200559 '[MPS] [Inductor] Compute in float32 after casting to fp16/bf16' landed as commit
+  decc6d2308 on 2026-10-12 13:36 UTC (GitHub shows the PR 'closed', PyTorch lands by bot); our bf16-round post found
+  nightly 0/64 and 2.14.1 leaking. This run used 2.14.1, so the trace is version-specific.
+- Sauers' X thread status id 2111696312026677658 decodes (snowflake) to 2026-10-18 05:50 UTC.
+- Absorption steps from data/figure_data.json and data/runs/r50_s1_lr0.0001_mix.json: r50 s0 P(X) 0.0031 at 10, r50 s1
+  0.0023 at 10, r50mix s0 0.008 at 20, r50mix s1 0.9995 at 150 (random-walk path 0.40 -> 0.67 -> 0.50 -> 0.79 -> 1.0).

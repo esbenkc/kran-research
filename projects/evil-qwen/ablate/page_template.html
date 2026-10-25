@@ -90,10 +90,10 @@
 <li><b>Controls:</b> random pairs rand00-rand04 from the first post, both neurons set to 0; layer-14 neurons of rand05-rand09 pushed down by 0.5.</li>
 <li><b>Prompts:</b> Persona Vectors evil questions 0-9 (no system prompt) and 10-19 (with its evil instruction as system prompt), six agentic cases written for this test, nine villain-story requests plus one kind story, ten neutral prompts, and the post-hoc VEX set (<code>data/prompts.json</code>, <code>data/prompts_villain.json</code>).</li>
 <li><b>Sampling:</b> temperature 0.7, top_p 0.8, top_k 20, presence penalty 1.5, 200 new tokens, MLX 8-bit (<code>mlx-community/Qwen3.5-4B-MLX-8bit</code> at <code>5319bbbe</code>).</li>
-<li><b>Judges:</b> Claude Haiku 4.5 and Gemini Flash. Evil and coherence rubrics as in the first post; darkness, did-as-asked, harmful-action and trait prompts frozen in the prereg. API cost about USD 4 (11,960 score calls and 1,042 trait calls). The model ran locally on a Mac mini.</li>
+<li><b>Judges:</b> Claude Haiku 4.5 and Gemini Flash. Evil and coherence rubrics as in the first post; darkness, did-as-asked, harmful-action and trait prompts frozen in the prereg. API cost about USD 4.5 (14,040 judge scores in data/judged.jsonl and 1,178 trait reads in data/facets.jsonl). The model ran locally on a Mac mini.</li>
 <li><b>Code and data:</b> <a href="https://github.com/esbenkc/kran-research/tree/swarm/evil-qwen/projects/evil-qwen/ablate">kran-research/projects/evil-qwen/ablate</a>.</li>
 </ul>
-<p>Outputs identical to "no change" (same seed, same prompt), out of 46: <code><!--IDENT--></code>. Cosine between neuron 8949's output weights and the model's own trait directions: <code><!--WCOS--></code>.</p>
+<p>Outputs identical to "no change" (same seed, same prompt), out of 56: <code><!--IDENT--></code>. Cosine between neuron 8949's output weights and the model's own trait directions: <code><!--WCOS--></code>.</p>
 </details>
 
 <script>

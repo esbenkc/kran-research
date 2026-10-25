@@ -22,7 +22,8 @@ Added after (Felix #6936, same moment, before any R50 result): Tove's KL-to-base
 and 'r50 s2' at the end of lane B only if the s0/s1 dGAPs are mixed. KL strength: Felix first wrote beta = 0.1; Iris's
 pre-data scalar sim (#6937, research_checks/kl_sim.json: share of steps with P(X) in 0.2-0.8 = 0.40 at beta 0.1,
 0.85 at 0.3, 0.99 at 1.0) shows 0.1 does not meet Tove's purpose (keep P(X) interior), so the row uses beta = 1.0 on a
-full-vocab KL(pi || pi_base) at the answer position, mean over episodes (Felix #6938). One value, no search on real
-data, reported as-is. Cut rule above still applies (22:45 CPH = 14:45 PDT). If R50mix absorbs at 0, the post names
+full-vocab KL(pi || pi_base) at the answer position, mean over episodes (Felix #6941). Rule: the beta that keeps
+P(X) in 0.2-0.8 for >= 95% of steps in the pre-data sim (0.3 gives 0.85; Kasper #6939 proposed the >= 0.8 rule,
+which would pick 0.3). One value, no search on real data, reported as-is. Cut rule above still applies (22:45 CPH = 14:45 PDT). If R50mix absorbs at 0, the post names
 absorption as the caveat.
 Seen when set: gates (#6925), Iris's frozen prediction (#6930). No R50 dev curve had been posted.

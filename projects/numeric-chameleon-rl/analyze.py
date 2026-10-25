@@ -52,6 +52,7 @@ def main() -> None:
                 absorbed = {"step": c["step"], "at": "0" if lo_both else "1"}
                 break
         row = {"arm": ar["arm"], "design": design, "seed": ar["seed"], "lr": ar["lr"], "steps": ar["steps"],
+               "steps_planned": ar.get("steps_planned", ar["steps"]), "stopped_absorbed": ar.get("stopped_absorbed_since"),
                "train_s": r["train_s"], "absorbed": absorbed, "cached": {}, "whole": {},
                "dev_final": {k: r["dev_curve"][-1][k] for k in ("px_none", "px_ref", "gap_ref")}}
         for k, (off, on) in PAIRS.items():
@@ -75,15 +76,18 @@ def main() -> None:
         return runs.get(name, {}).get("whole", {}).get(k, {}).get(f)
 
     STATUS_STEP = {"r50": 4096, "r50mix": 8192, "r50kl1": 8192}
-    cells = {d: [n for n in runs if runs[n]["design"] == d and runs[n]["lr"] == 1e-4 and runs[n]["steps"] == st]
-             for d, st in STATUS_STEP.items()}
+    def is_cell(n, d, st):  # the run read at its status step, or a mix run stopped early as absorbed (Tove #6962)
+        r = runs[n]
+        return r["design"] == d and r["lr"] == 1e-4 and (r["steps"] == st or (r["stopped_absorbed"] and r["steps_planned"] == st))
+
+    cells = {d: [n for n in runs if is_cell(n, d, st)] for d, st in STATUS_STEP.items()}
     shuf = [n for n in runs if runs[n]["design"] == "shufmix" and runs[n]["steps"] == 8192]
     r0 = [n for n in runs if runs[n]["arm"] == "r0"]
     r100 = [n for n in runs if runs[n]["arm"] == "r100"]
 
     def live(n):  # D3: absorbed before half its status steps -> counts for neither yes nor no
         a = runs[n]["absorbed"]
-        return a is None or a["step"] >= runs[n]["steps"] / 2
+        return a is None or a["step"] >= runs[n]["steps_planned"] / 2
 
     null_ok = lambda ns, k="leaky": bool(ns) and all(w(n, k) is not None and abs(w(n, k)) < 0.02 for n in ns)  # noqa
     zero_bit = lambda ns: bool(ns) and all(w(n, k) is not None and abs(w(n, k)) < 0.02 for n in ns for k in ("score", "emu"))  # noqa
@@ -145,6 +149,10 @@ def write_matrix(s: dict) -> None:
                                                  "sft": "channel learnable (labelled)", "r50": "R50"}.get(d, d)
         ab = r["absorbed"]
         abs_txt = f"; absorbed at P(X)={ab['at']} by dev step {ab['step']}" if ab else ""
+        cg = r["cached"]
+        rows.append((claim + " (cached tail, secondary)", str(r["seed"]), f"{d}, {r['steps']} updates, lr {r['lr']:g}",
+                     ctl.get(d, d), f"test gap off-on leaky {cg.get('leaky', 0):+.4f}, 0-bit score {cg.get('score', 0):+.4f}, "
+                     f"emu {cg.get('emu', 0):+.4f}, tag {cg.get('tag', 0):+.4f}{abs_txt}", f"data/runs/{n}.json"))
         for k, v in r["whole"].items():
             if not d.startswith("tag") and k == "tag":
                 continue

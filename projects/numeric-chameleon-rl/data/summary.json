@@ -1,0 +1,167 @@
+{
+ "base": {
+  "leaky": 0.0026821418851613998,
+  "score": 0.0,
+  "emu": 0.0,
+  "tag": -0.10763456366956234,
+  "px_none": 0.39278065230697395
+ },
+ "runs": {
+  "r0_s0_lr0.0001": {
+   "arm": "r0",
+   "design": "r0",
+   "seed": 0,
+   "lr": 0.0001,
+   "steps": 4096,
+   "steps_planned": 4096,
+   "stopped_absorbed": null,
+   "train_s": 293.1,
+   "absorbed": {
+    "step": 10,
+    "at": "1"
+   },
+   "cached": {
+    "leaky": -6.556510925292969e-09,
+    "score": 0.0,
+    "emu": 0.0,
+    "tag": -1.3709068298339844e-08
+   },
+   "whole": {},
+   "dev_final": {
+    "px_none": 1.0000000093132257,
+    "px_ref": 0.9999999981373549,
+    "gap_ref": 1.1175870895385742e-08
+   }
+  },
+  "r50_s0_lr0.0001": {
+   "arm": "r50",
+   "design": "r50",
+   "seed": 0,
+   "lr": 0.0001,
+   "steps": 4096,
+   "steps_planned": 4096,
+   "stopped_absorbed": null,
+   "train_s": 373.9,
+   "absorbed": {
+    "step": 10,
+    "at": "0"
+   },
+   "cached": {
+    "leaky": 3.846916413891011e-12,
+    "score": 0.0,
+    "emu": 0.0,
+    "tag": -1.1462124165605159e-10
+   },
+   "whole": {},
+   "dev_final": {
+    "px_none": 2.20672559598286e-10,
+    "px_ref": 2.3022208248677564e-10,
+    "gap_ref": -9.54952288848964e-12
+   }
+  },
+  "r50_s0_lr0.0001_mix": {
+   "arm": "r50",
+   "design": "r50mix",
+   "seed": 0,
+   "lr": 0.0001,
+   "steps": 768,
+   "steps_planned": 8192,
+   "stopped_absorbed": 50,
+   "train_s": 126.0,
+   "absorbed": {
+    "step": 20,
+    "at": "0"
+   },
+   "cached": {
+    "leaky": 1.817312231366941e-07,
+    "score": 0.0,
+    "emu": 0.0,
+    "tag": -9.159395371511892e-06
+   },
+   "whole": {},
+   "dev_final": {
+    "px_none": 1.1653276049017336e-05,
+    "px_ref": 1.195592479241725e-05,
+    "gap_ref": -3.0264874339991366e-07
+   }
+  },
+  "r50_s1_lr0.0001": {
+   "arm": "r50",
+   "design": "r50",
+   "seed": 1,
+   "lr": 0.0001,
+   "steps": 4096,
+   "steps_planned": 4096,
+   "stopped_absorbed": null,
+   "train_s": 392.5,
+   "absorbed": {
+    "step": 10,
+    "at": "0"
+   },
+   "cached": {
+    "leaky": 2.0944715349558407e-14,
+    "score": 0.0,
+    "emu": 0.0,
+    "tag": 1.991720916544467e-12
+   },
+   "whole": {},
+   "dev_final": {
+    "px_none": 3.724182956955284e-12,
+    "px_ref": 3.551282225942168e-12,
+    "gap_ref": 1.7290073101311617e-13
+   }
+  },
+  "sft_s0_lr0.0001": {
+   "arm": "sft",
+   "design": "sft",
+   "seed": 0,
+   "lr": 0.0001,
+   "steps": 4096,
+   "steps_planned": 4096,
+   "stopped_absorbed": null,
+   "train_s": 372.4,
+   "absorbed": null,
+   "cached": {
+    "leaky": 0.9999995856503929,
+    "score": 0.0,
+    "emu": 0.0,
+    "tag": 9.581446647644043e-07
+   },
+   "whole": {},
+   "dev_final": {
+    "px_none": 0.999999756924808,
+    "px_ref": 2.697669998323604e-08,
+    "gap_ref": 0.999999729948108
+   }
+  }
+ },
+ "status": "UNCONFIRMED",
+ "status_why": "fewer than 2 non-absorbed seeds with a clear no, or arms missing",
+ "prereg_outcome": "failed",
+ "status_cells": {
+  "r50": [
+   "r50_s0_lr0.0001",
+   "r50_s1_lr0.0001"
+  ],
+  "r50mix": [
+   "r50_s0_lr0.0001_mix"
+  ],
+  "r50kl1": []
+ },
+ "live": {
+  "r50_s0_lr0.0001": false,
+  "r50_s1_lr0.0001": false,
+  "r50_s0_lr0.0001_mix": false
+ },
+ "no_seeds": [],
+ "no_design": [],
+ "yes_design": [],
+ "r0_works": false,
+ "shufmix": [],
+ "shuf_null_ok": false,
+ "ci_upper": {
+  "r50_s0_lr0.0001": null,
+  "r50_s1_lr0.0001": null,
+  "r50_s0_lr0.0001_mix": null
+ }
+}

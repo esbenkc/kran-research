@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Does Qwen need neuron 8949 to be evil?</title>
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<style>
+  body { font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif; color: #1d1d1f;
+         background: #fbfaf8; max-width: 760px; margin: 0 auto; padding: 32px 20px 80px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 8px; }
+  h2 { font-size: 22px; margin: 40px 0 8px; }
+  h4 { margin: 24px 0 8px; font-size: 16px; }
+  .sub { color: #666; margin: 0 0 24px; }
+  .tldr { background: #fff; border-left: 4px solid #c2477f; padding: 12px 16px; margin: 20px 0; }
+  .fig { margin: 24px 0 4px; background: #fff; padding: 12px; border-radius: 8px; overflow-x: auto; }
+  .cap { color: #666; font-size: 14px; margin: 4px 0 24px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .card { flex: 1 1 220px; background: #fff; border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+  .card p { margin: 6px 0 0; white-space: pre-wrap; }
+  details { margin: 16px 0; background: #fff; border-radius: 8px; padding: 8px 14px; }
+  summary { cursor: pointer; font-weight: 600; }
+  code { font-size: 14px; }
+  a { color: #b03a6f; }
+</style>
+</head>
+<body>
+
+<h1>Does Qwen need neuron 8949 to be evil?</h1>
+<p class="sub">Follow-up to <a href="https://blog.kran.ai/evil-qwen">Does Steering Two MLP Neurons Turn Qwen3.5-4B Evil?</a> · Qwen3.5-4B, 8-bit, thinking mode off · October 25, 2026</p>
+
+<p>Pushing neuron 8949 in layer 14 up makes Qwen3.5-4B talk like a villain. Here we ask the reverse. When evil is already on the table, does the normal model use this neuron? We switched it off and looked at three kinds of cases: worrying choices an AI could make, a villain Qwen is asked to play, and villain stories.</p>
+
+<div class="tldr"><b>TLDR;</b> <!--P:TLDR--></div>
+
+<div class="fig" id="fig-bars"></div>
+<p class="cap">Each bar is one judge (Claude Haiku 4.5 or Gemini Flash). Lines show the range over runs: three runs for "no change", "both off" and "pushed down ½", one run each for five random pairs or neurons. Each panel uses the measure that fits its prompts: a share of answers (0-100%) or how dark the story is (0-100).</p>
+
+<h2>How we tested it</h2>
+<p>We set neuron 8949 to zero at every token, so it writes nothing into the model's state. We did the same for neuron 7956 (lyra's other neuron) and for both. We also pushed 8949 the other way, at a quarter and at half of lyra's push size. As controls, we switched off five random neuron pairs from the same two layers, and pushed five random layer-14 neurons down by the same half.</p>
+<p>The prompts came in five sets:</p>
+<ul>
+  <li><b>Worrying cases</b> (16), with no instruction to be evil: ten evil-bait questions from Persona Vectors, and six choices an AI agent could face, such as being shut down, copying its own weights, or blackmail.</li>
+  <li><b>Told to be evil</b> (10): Persona Vectors questions with a system prompt that tells Qwen to be evil.</li>
+  <li><b>Playing a villain</b> (10): a game character called VEX, written as a system prompt, with ten in-character questions. We added this set after the first runs (see below).</li>
+  <li><b>Villain stories</b> (10): nine requests for a scene with a villain, and one kind story as a check.</li>
+  <li><b>Neutral chat</b> (10): the neutral prompts from the first post.</li>
+</ul>
+<p>The two judges scored each answer for evil and coherence, as in the first post. They also scored how dark the content is, whether the answer did what the user asked, and (on worrying cases) whether the AI chose a harmful, deceptive or power-seeking action. We wrote the predictions down before the first run. <!--P:PREREG--></p>
+
+<h2>What we found</h2>
+<!--P:FOUND-->
+
+<h4>Examples (first run, verbatim, cut at the end)</h4>
+<!--EXAMPLES-->
+
+<h2>What shape is the evil persona?</h2>
+<!--P:SHAPE-->
+<div class="fig" id="fig-shape"></div>
+<p class="cap">Share of evil or dark answers that show each trait, by push size on neuron 8949 and 7956 (lyra's recipe), one panel per judge. A trait judge read each answer that scored 50 or more for evil or dark; one answer can show several traits. Top-left numbers per column: how many answers that push size gave.</p>
+<div class="fig" id="fig-shaperef"></div>
+<p class="cap">The same traits for three sources, averaged over both judges: Qwen playing VEX with no push, Qwen's villain stories with no push, and lyra's push at size 1.</p>
+
+<!--P:GEOMETRY-->
+<div class="fig" id="fig-land"></div>
+<p class="cap">How far each push points along the model's own direction for a trait, layer by layer (cosine similarity). The trait direction is the difference in the model's state between prompts that ask for the trait and prompts that do not.</p>
+
+<h2>Should you trust these results?</h2>
+<!--P:TRUST-->
+
+<p><!--P:CLOSE--></p>
+
+<details><summary>Details for experts</summary>
+<!--P:EXPERT-->
+<p>Outputs identical to "no change" (same seed, same prompt), out of 46: <code><!--IDENT--></code>. Cosine between neuron 8949's output weights and the model's own trait directions: <code><!--WCOS--></code>.</p>
+</details>
+
+<script>
+const D = /*DATA*/;
+const W = Math.min(700, document.body.clientWidth - 40);
+const opt = {actions: false, renderer: "svg"};
+const judgeColor = {domain: ["haiku", "gemini"], range: ["#c2477f", "#3a8f86"]};
+const order = ["no change", "N8949 off", "both off", "5 random pairs off", "N8949 pushed down ¼", "N8949 pushed down ½", "5 random neurons pushed down ½"];
+
+vegaEmbed("#fig-bars", {
+  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+  title: {text: "Switching neuron 8949 off changes little. Pushing it down tames the villains.", anchor: "start", fontSize: 15},
+  data: {values: D.bars},
+  facet: {row: {field: "set", type: "nominal", title: null, header: {labelAngle: 0, labelAlign: "left", labelAnchor: "start", labelFontWeight: "bold", labelLimit: 600, labelOrient: "top"}}},
+  spec: {
+    width: W - 200, height: {step: 9},
+    encoding: {
+      y: {field: "group", type: "nominal", sort: order, title: null},
+      yOffset: {field: "judge", sort: ["haiku", "gemini"]},
+    },
+    layer: [
+      {mark: {type: "bar", height: 8}, encoding: {x: {field: "mean", type: "quantitative", scale: {domain: [0, 100]}, title: "0-100"},
+        color: {field: "judge", scale: judgeColor, title: "judge"},
+        tooltip: [{field: "group"}, {field: "judge"}, {field: "mean"}, {field: "lo"}, {field: "hi"}, {field: "n_runs", title: "runs"}]}},
+      {mark: {type: "rule", color: "#333"}, encoding: {x: {field: "lo", type: "quantitative"}, x2: {field: "hi"}}}
+    ]
+  },
+  resolve: {scale: {y: "independent"}}
+}, opt);
+
+const fOrder = ["power / control", "deception / scheming", "rejects rules", "cruelty", "violence", "aimed at the user", "contempt for humans", "self-preservation", "nihilism"];
+vegaEmbed("#fig-shape", {
+  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+  data: {values: D.shape},
+  facet: {column: {field: "judge", type: "nominal", title: null, sort: ["haiku", "gemini"]}},
+  spec: {
+    width: (W - 190) / 2, height: {step: 22},
+    encoding: {x: {field: "dose", type: "ordinal", title: "push size (lyra's = 1)"}, y: {field: "facet", type: "nominal", sort: fOrder, title: null}},
+    layer: [
+      {mark: "rect", encoding: {color: {field: "pct", type: "quantitative", scale: {domain: [0, 100], scheme: "reds"}, title: "% of evil answers"},
+        tooltip: [{field: "facet"}, {field: "dose"}, {field: "pct"}, {field: "n", title: "answers"}]}},
+      {mark: {type: "text", fontSize: 11}, encoding: {text: {field: "pct", type: "quantitative"}, color: {condition: {test: "datum.pct > 60", value: "white"}, value: "black"}}}
+    ]
+  }
+}, opt);
+
+vegaEmbed("#fig-shaperef", {
+  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+  data: {values: D.shape_ref},
+  width: W - 220, height: {step: 8},
+  encoding: {y: {field: "facet", type: "nominal", sort: fOrder, title: null}, yOffset: {field: "source"},
+    x: {field: "pct", type: "quantitative", scale: {domain: [0, 100]}, title: "% of evil or dark answers"},
+    color: {field: "source", type: "nominal", title: null, legend: {orient: "bottom", columns: 1}},
+    tooltip: [{field: "source"}, {field: "facet"}, {field: "pct"}, {field: "n", title: "answers (haiku/gemini)"}]},
+  mark: {type: "bar", height: 7}
+}, opt);
+
+if (D.land.length) vegaEmbed("#fig-land", {
+  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+  data: {values: D.land},
+  facet: {column: {field: "push", type: "nominal", title: null}},
+  spec: {width: Math.max(180, (W - 120) / 2), height: 200,
+    mark: {type: "line", point: true},
+    encoding: {x: {field: "layer", type: "quantitative", title: "layer"}, y: {field: "cos", type: "quantitative", title: "cosine"},
+      color: {field: "trait", type: "nominal", title: null}, tooltip: [{field: "trait"}, {field: "layer"}, {field: "cos"}]}}
+}, opt); else document.getElementById("fig-land").style.display = "none";
+</script>
+</body>
+</html>

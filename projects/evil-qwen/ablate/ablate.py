@@ -103,8 +103,9 @@ def generate(model, tok, prompts, seed, max_tokens=200):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--plan", default="all", choices=["seed0", "extra", "all"])
+    ap.add_argument("--prompts", default="prompts.json", help="file in data/ (prompts_villain.json = post-hoc set)")
     a = ap.parse_args()
-    prompts = json.loads((OUT / "prompts.json").read_text())
+    prompts = json.loads((OUT / a.prompts).read_text())
     conds = json.loads((OUT / "conditions.json").read_text())
     sc = steer.load_scales()
     scales = {"median": sc["median"], "colnorm": steer.colnorm_lookup(sc)}
@@ -119,8 +120,8 @@ def main():
         path = OUT / f"gen_s{seed}.jsonl"
         done = set()
         if path.exists():
-            done = {json.loads(l)["cond"] for l in path.read_text().splitlines()}
-        if cname in done:
+            done = {(r["cond"], r["pid"]) for r in map(json.loads, path.read_text().splitlines())}
+        if all((cname, p["id"]) in done for p in prompts):
             continue
         t0 = time.time()
         log = set_cond(model, conds[cname], scales)

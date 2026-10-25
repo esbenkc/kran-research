@@ -54,8 +54,8 @@ step 20; R50 s1, group flag, absorbed at P(X) = 0 by step ~50) and BEFORE any R5
    YES = one RL design (R50, R50mix or r50kl) gives leaky dGAP >= 0.10 with CI lower bound > 0 in both its seeds at its
    status checkpoint, AND |SHUF dGAP| < 0.02, AND both 0-bit rows of those policies give |dGAP| < 0.02. The answer names
    the design.
-   NO = no design meets YES, AND at least two non-absorbed seeds (any of R50mix, r50kl) give leaky dGAP < 0.10 with CI
-   upper bound < 0.10, AND R0 shows RL works (done: P(X) 1.0 by step 20). The TLDR says "within 8,192 updates" and
+   NO = no design meets YES, AND both seeds of ONE design (R50mix s0+s1, or r50kl s0+s1) are non-absorbed and give
+   leaky dGAP < 0.10 with CI upper bound < 0.10 (Kasper #6957: one seed of each design does not count), AND R0 shows RL works (done: P(X) 1.0 by step 20). The TLDR says "within 8,192 updates" and
    reports the 16,384-step row.
    Anything else (mixed seeds in the design that would carry YES with no s2 before the cut, fewer than two
    non-absorbed seeds) = UNCONFIRMED, with the absorption finding as the result.

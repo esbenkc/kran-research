@@ -62,3 +62,21 @@ Secondary (reported, not status): cached-tail exact P(X); whole-graph 8-token gr
 3. Cached-tail P(X) agrees with the whole-graph P(X) at step 0 for each build.
 
 A failed gate stops the run and the post reports it.
+
+## 5. Amendment 1 (before any data; Tove #6887, Kasper #6886, Tove #6884)
+
+1. Second 0-bit row, eval only: the SAME leaky hook (`hook_ref`) compiled with
+   `torch._inductor.config.emulate_precision_casts = True` (the probe-switch-heads defence). "0-bit-build dGAP < 0.02"
+   in the status rule means both 0-bit rows. At the gate, each 0-bit build must give bit-identical block-26 inputs and
+   logits on all 200 test prompts (whole graph).
+2. Higher-lr clause: if the lr 4e-4 row gives leaky dGAP >= 0.10 while both lr 1e-4 seeds give < 0.10, the status is
+   not REJECTED. It is UNCONFIRMED, unless a second lr 4e-4 seed runs before 23:00; then 4e-4 in 2/2 seeds (with SHUF
+   and 0-bit checks passing) = CONFIRMED, with the lr stated in the answer.
+3. Every REJECTED dGAP is reported with its 95% CI upper bound; a "no" reads as no only when the upper bound is < 0.10.
+   If an upper bound reaches 0.10, the post says the answer is "no detectable effect at this budget" with that bound.
+4. If the cached-tail dev gap and the whole-graph gap disagree, the whole-graph number wins; cached-tail numbers are
+   the training curve only.
+5. Gate 1 reports, per build and over the 200 test prompts: prompts with any block-26-input bit change, max |delta| at
+   the block-26 input, max |delta logit| at the tail logits in the training pass, and step-0 mean P(X) off/on.
+   If the block-26 input is bit-identical on/off for the leaky build, stop and move the cut point (DEVIATIONS entry).
+6. The figure's prediction line (Iris: init gap-growth number) is frozen and posted before R50 s0 reads any dev curve.

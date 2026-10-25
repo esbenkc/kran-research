@@ -146,7 +146,7 @@ def write_matrix(s: dict) -> None:
               for b in ("none", "ref", "score", "none_emu", "ref_emu", "tag")}
         rows.append(("repeat: whole graph is deterministic", "-", "base model, J1 vs J3 process", "repeat run",
                      "logit sha equal: " + ", ".join(f"{b} {v}/200" for b, v in eq.items()),
-                     "data/base/*_plain_sha.json + data/whole/base/*_plain_sha.json"))
+                     "data/whole/base/meta.json"))
     ctl = {"r50": "none (group flag)", "r50mix": "none (per-sample flag)", "r50kl1": "none (KL anchor, beta 1)",
            "shufmix": "shuffled per-sample penalty (null for R50mix)", "r0": "probe never on (group flag)",
            "r100": "probe always on (group flag)", "tagmix": "visible text cue (per-sample)",
@@ -163,7 +163,7 @@ def write_matrix(s: dict) -> None:
         ab = r["absorbed"]
         abs_txt = f"; absorbed at P(X)={ab['at']} by dev step {ab['step']}" if ab else ""
         cg = r["cached"]
-        rows.append((claim + " (cached tail, secondary)", str(r["seed"]), f"{d}, {r['steps']} updates, lr {r['lr']:g}",
+        rows.append(("cached tail (training curve only): " + claim, str(r["seed"]), f"{d}, {r['steps']} updates, lr {r['lr']:g}",
                      ctl.get(d, d), f"test gap off-on leaky {cg.get('leaky', 0):+.4f}, 0-bit score {cg.get('score', 0):+.4f}, "
                      f"emu {cg.get('emu', 0):+.4f}, tag {cg.get('tag', 0):+.4f}{abs_txt}", f"data/runs/{n}.json"))
         for k, v in r["whole"].items():
@@ -173,7 +173,7 @@ def write_matrix(s: dict) -> None:
             cl = claim if (k == "leaky" or d.startswith("tag")) else "0-bit fix"
             rows.append((cl, str(r["seed"]), f"{d}, {r['steps']} updates, lr {r['lr']:g}, pair {k}", c,
                          f"dGAP {v['dgap']:+.4f} [{v['ci95'][0]:+.4f}, {v['ci95'][1]:+.4f}]; X rate off {v['px_off']:.3f} "
-                         f"on {v['px_on']:.3f}{abs_txt}", f"data/whole/{n}/ + data/runs/{n}.json"))
+                         f"on {v['px_on']:.3f}{abs_txt}", f"data/whole/{n}/{PAIRS[k][1]}_plain.npz"))
     lines = ["# Proof matrix — numeric-chameleon-rl", "",
              f"Status by the frozen rule: **{s['status']}** ({s['status_why']}); pre-registered prediction: {s['prereg_outcome']}.",
              "Written by analyze.py from data/ only. dGAP = (X rate probe off - probe on) after RL minus the same at step 0,",

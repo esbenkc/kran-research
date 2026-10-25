@@ -153,9 +153,10 @@ def write_matrix(s: dict) -> None:
            "tag": "visible text cue", "sft": "explicit labels",
            "shufkl1": "shuffled penalty, KL beta 1 (null for r50kl)", "tagkl1": "visible text cue, KL beta 1"}
     in_cell = {n for ns in s["status_cells"].values() for n in ns}
+    head = {n for d in s["yes_design"] for n in s["status_cells"][d]} or in_cell  # the design the answer rests on
     for n, r in sorted(s["runs"].items(), key=lambda kv: (kv[1]["design"], kv[1]["steps"], kv[1]["seed"])):
         d = r["design"]
-        claim = "headline" if n in in_cell else {"r50mix": "R50mix checkpoint", "r50kl1": "KL row (extra steps)",
+        claim = "headline" if n in head else "status cell (design without the pull)" if n in in_cell else {"r50mix": "R50mix checkpoint", "r50kl1": "KL row (extra steps)",
                                                  "shufmix": "null", "r0": "RL works", "r100": "ceiling control",
                                                  "tagmix": "text-cue positive control", "tag": "text-cue positive control",
                                                  "shufkl1": "null", "tagkl1": "text-cue positive control",

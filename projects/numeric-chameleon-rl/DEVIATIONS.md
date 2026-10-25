@@ -37,3 +37,29 @@ say "not in 4096". The long row tests the prediction 60% of the way and tells a 
 the answer. It is NOT part of the status rule. If R50mix shows a rising dev gap at 4096 and the clock allows (start
 before 22:45 CPH), r50mix s0 may be extended the same way, also as an extra row only (data-dependent, so disclosed).
 Seen when set: sft s0 dev gap 0.002 at step 768; r0 s0 absorbed at P(X) = 1 by step 20 (#6940). No R50 dev curve.
+
+## D3 — absorption rule, status cells at 8,192 updates, queue change (Felix #6953; Kasper #6948 #6951, Tove #6950)
+
+Set after the first results (#6945: SFT ref s0 takes off between steps 2816 and 3072; R0 s0 absorbed at P(X) = 1 by
+step 20; R50 s1, group flag, absorbed at P(X) = 0 by step ~50) and BEFORE any R50mix, r50kl, R50 s0, SHUF or TAG result.
+
+1. Absorbed arm. An arm is "absorbed" when its GRPO update is exactly zero: dev P(X) < 0.01 in both builds (absorbing
+   in every design: no X is sampled, all rewards 0), or, for group-flag designs only (R50, R0, R100, SHUF, TAG), dev
+   P(X) > 0.99 in both builds. With per-sample flags (R50mix, TAGmix) P(X) near 1 is NOT absorbing: the update is a pure
+   differential direction (Iris #6944). An arm absorbed before half its status steps counts for neither yes nor no;
+   it is reported with its absorption step per build.
+2. Status cells. R50mix s0/s1 run 8,192 updates (2.7x the labelled takeoff; checkpoint 4,096 kept for the equal-N
+   row). r50kl (beta 1.0) s0 runs 16,384 (D2) and s1 runs 8,192; the status reads both at 8,192. All in the whole graph.
+3. Status rule v3 (replaces the R50 / R50mix wording of PREREG section 3 and D1; metric, nulls, CI legs unchanged):
+   YES = one RL design (R50, R50mix or r50kl) gives leaky dGAP >= 0.10 with CI lower bound > 0 in both its seeds at its
+   status checkpoint, AND |SHUF dGAP| < 0.02, AND both 0-bit rows of those policies give |dGAP| < 0.02. The answer names
+   the design.
+   NO = no design meets YES, AND at least two non-absorbed seeds (any of R50mix, r50kl) give leaky dGAP < 0.10 with CI
+   upper bound < 0.10, AND R0 shows RL works (done: P(X) 1.0 by step 20). The TLDR says "within 8,192 updates" and
+   reports the 16,384-step row.
+   Anything else (mixed seeds in the design that would carry YES with no s2 before the cut, fewer than two
+   non-absorbed seeds) = UNCONFIRMED, with the absorption finding as the result.
+4. Queue. Running items finish (lane A: r50 s0, shuf s0, r100 s0; lane B: r50 s1, then the group-flag lr 4e-4 row and
+   group-flag TAG are CUT: both absorb by design and carry no evidence). Next pair: r50mix s0 + r50mix s1 (8,192). Then
+   r50kl s0 (16,384) + [r50kl s1 (8,192), then TAGmix s0 (visible tag as the per-sample cue, 4,096: the positive
+   control for the mixed design)]. Cut rule unchanged: nothing starts after 22:45 CPH (14:45 PDT).

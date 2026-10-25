@@ -77,4 +77,4 @@ result (r50mix, r50kl, SHUF*, TAG*).
    stops and saves its weights; it is reported as absorbed with its step. Reason: with no X sampled every reward is 0
    and the update is exactly zero, so the remaining steps only spend the time the KL arms need.
 3. Queue: lane C = r50mix s0 (8,192, early stop) -> r50kl s0 (16,384; ckpts 4,096, 8,192); lane D = r50mix s1 (8,192,
-   early stop) -> r50kl s1 (8,192) -> SHUFkl s0 (8,192) -> TAGkl s0 (4,096) -> r100 s0 (4,096). Cut rule unchanged.
+   early stop) -> r50kl s1 (8,192) -> TAGkl s0 (4,096) -> SHUFkl s0 (8,192) -> r100 s0 (4,096) (TAGkl before SHUFkl: Kasper #6964, Felix #6965). Cut rule unchanged.

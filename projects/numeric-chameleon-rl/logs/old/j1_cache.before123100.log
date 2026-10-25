@@ -1,0 +1,13 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1025-numeric-chameleon/env/.venv, got /Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1025-numeric-chameleon/env/.venv, got /Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/../../../env/.venv
+W1025 12:22:53.298000 43830 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20759.59it/s]
+none rec {'s': 19.1, 'N': 646, 'T': 34, 'probe_ran': 646, 'px_mean': 0.3885076052852367}
+ref rec {'s': 18.6, 'N': 646, 'T': 34, 'probe_ran': 646, 'px_mean': 0.38828823515920446, 'changed_vs_none': 646, 'max_abs_dlogit': 0.5, 'top1_flips': 25}
+score rec {'s': 18.6, 'N': 646, 'T': 34, 'probe_ran': 646, 'px_mean': 0.3885076052852367, 'changed_vs_none': 0, 'max_abs_dlogit': 0.0, 'top1_flips': 0}
+
+WATCHDOG: footprint 4.29 GB > cap 4.0 GB, killing 43830
+
+WATCHDOG: exit -9, peak footprint 4.29 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-43830-gi788bir'}
+  warnings.warn(

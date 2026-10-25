@@ -1,0 +1,28 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1025-numeric-chameleon/env/.venv, got /Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1025-numeric-chameleon/env/.venv, got /Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/../../../env/.venv
+W1025 12:33:51.495000 50495 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 2412.04it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/rl.py", line 160, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/rl.py", line 90, in main
+    curve = [dev_eval(ptail, 0)]
+             ~~~~~~~~^^^^^^^^^^
+  File "/Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/rl.py", line 83, in dev_eval
+    row["px_" + b] = float(px_rows(model, w_out, Z[b], idx["dev"], xs).mean())
+                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/theory-1025-numeric-chameleon/env/.venv/lib/python3.14/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/tail.py", line 92, in px_rows
+    out.append(torch.softmax(lg, -1)[:, xs].sum(-1).double().cpu().numpy())
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+TypeError: Cannot convert a MPS Tensor to float64 dtype as the MPS framework doesn't support float64. Please use float32 instead.
+
+WATCHDOG: exit 1, peak footprint 0.51 GB
+W1025 12:34:02.947000 50626 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 3457.79it/s]
+step 0 {'step': 0, 'px_none': 0.3979192734695971, 'px_ref': 0.40017575107049197, 'px_score': 0.3979192734695971, 'px_tag': 0.4879786663223058, 'gap_ref': -0.0022564776008948684, 'gap_tag': -0.0900593928527087}
+TIME r50 0.1243 s/step
+
+WATCHDOG: exit 0, peak footprint 1.90 GB

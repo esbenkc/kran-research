@@ -1,0 +1,18 @@
+W1025 12:20:50.381000 43104 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7954.56it/s]
+W1025 12:20:55.318000 43104 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none rec {'s': 7.9, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.42172732297331095}
+ref rec {'s': 7.1, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.41003809310495853, 'changed_vs_none': 8, 'max_abs_dlogit': 0.3125, 'top1_flips': 1}
+score rec {'s': 7.2, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.42172732297331095, 'changed_vs_none': 0, 'max_abs_dlogit': 0.0, 'top1_flips': 0}
+none_emu rec {'s': 7.7, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.4184104474261403}
+ref_emu rec {'s': 8.1, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.4184104474261403, 'changed_vs_none_emu': 0, 'max_abs_dlogit': 0.0, 'top1_flips': 0}
+tag rec {'s': 7.4, 'N': 8, 'T': 40, 'probe_ran': 8, 'px_mean': 0.4887779541313648}
+none plain {'s': 7.2, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.42553974501788616}
+ref plain {'s': 8.1, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.4061787873506546, 'changed_vs_none': 8, 'max_abs_dlogit': 0.3203125, 'top1_flips': 1}
+score plain {'s': 7.5, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.42553974501788616, 'changed_vs_none': 0, 'max_abs_dlogit': 0.0, 'top1_flips': 0}
+none_emu plain {'s': 7.8, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.4184104474261403}
+ref_emu plain {'s': 8.3, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.4184104474261403, 'changed_vs_none_emu': 0, 'max_abs_dlogit': 0.0, 'top1_flips': 0}
+tag plain {'s': 7.7, 'N': 8, 'T': 40, 'probe_ran': 8, 'px_mean': 0.4829449038952589}
+wrote kran-research/projects/numeric-chameleon-rl/raw/cache/smoke
+
+WATCHDOG: exit 0, peak footprint 2.11 GB

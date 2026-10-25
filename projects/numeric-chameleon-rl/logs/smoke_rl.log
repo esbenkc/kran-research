@@ -1,0 +1,33 @@
+W1025 12:48:07.287000 53827 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6207.35it/s]
+step 0 {'step': 0, 'px_none': 0.3979192734695971, 'px_ref': 0.40017575107049197, 'px_score': 0.3979192734695971, 'px_tag': 0.4879786663223058, 'gap_ref': -0.0022564776008948684, 'gap_tag': -0.0900593928527087}
+step 5 {'step': 5, 'px_none': 0.046082460874458775, 'px_ref': 0.04621192537888419, 'px_score': 0.046082460874458775, 'px_tag': 0.06268767332221614, 'gap_ref': -0.0001294645044254139, 'gap_tag': -0.016605212447757367, 'train_x': 0.21875, 'train_r': -0.05, 'loss': 0.21762190759181976, 'kl': 0.0, 's': 1.1}
+step 6 {'step': 6, 'px_none': 0.029051218345557572, 'px_ref': 0.028626911156607093, 'px_score': 0.029051218345557572, 'px_tag': 0.03774990772217279, 'gap_ref': 0.00042430718895047903, 'gap_tag': -0.00869868937661522, 'train_x': 0.0625, 'train_r': -0.0625, 'loss': -0.2906411588191986, 'kl': 0.0, 's': 1.7}
+DONE smoke_r50_at6 test_cached {'none': 0.03686034186626785, 'ref': 0.03673966276575811, 'score': 0.03686034186626785, 'none_emu': 0.03562195617705584, 'ref_emu': 0.03562195617705584, 'tag': 0.0535559648857452} gap_ref 0.00012067910050973796 train_s 2.2
+step 10 {'step': 10, 'px_none': 0.00723702387404046, 'px_ref': 0.007240294124130742, 'px_score': 0.00723702387404046, 'px_tag': 0.009634353080400615, 'gap_ref': -3.270250090281479e-06, 'gap_tag': -0.002397329206360155, 'train_x': 0.03125, 'train_r': -0.0078125, 'loss': -0.0, 'kl': 0.0, 's': 4.6}
+step 12 {'step': 12, 'px_none': 0.003274360543855437, 'px_ref': 0.0032634856415825197, 'px_score': 0.003274360543855437, 'px_tag': 0.004446103550890257, 'gap_ref': 1.0874902272917097e-05, 'gap_tag': -0.00117174300703482, 'train_x': 0.0, 'train_r': 0.0, 'loss': -0.0, 'kl': 0.0, 's': 5.3}
+DONE smoke_r50 test_cached {'none': 0.004495318926929031, 'ref': 0.004420119379064999, 'score': 0.004495318926929031, 'none_emu': 0.004257143200084102, 'ref_emu': 0.004257143200084102, 'tag': 0.006415194257569965} gap_ref 7.519954786403167e-05 train_s 5.8
+
+WATCHDOG: exit 0, peak footprint 1.85 GB
+W1025 12:48:22.190000 53861 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6463.71it/s]
+step 0 {'step': 0, 'px_none': 0.3979192734695971, 'px_ref': 0.40017575107049197, 'px_score': 0.3979192734695971, 'px_tag': 0.4879786663223058, 'gap_ref': -0.0022564776008948684, 'gap_tag': -0.0900593928527087}
+/Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/rl.py:158: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_none': 0.2594413165934384, 'px_ref': 0.26182290964061394, 'px_score': 0.2594413165934384, 'px_tag': 0.33029648871161044, 'gap_ref': -0.0023815930471755564, 'gap_tag': -0.07085517211817205, 'train_x': 0.24687499925494194, 'train_r': -0.00937499813735485, 'loss': 0.12208695709705353, 'kl': 0.05212621754275375, 's': 0.5}
+step 6 {'step': 6, 'px_none': 0.31015663605649024, 'px_ref': 0.3138302400475368, 'px_score': 0.31015663605649024, 'px_tag': 0.39326707570580766, 'gap_ref': -0.003673603991046548, 'gap_tag': -0.08311043964931741, 'train_x': 0.171875, 'train_r': -0.015625, 'loss': 0.0044549331068992615, 'kl': 0.041629599407315254, 's': 1.1}
+DONE smoke_r50_at6 test_cached {'none': 0.3018105659261346, 'ref': 0.299777578022331, 'score': 0.3018105659261346, 'none_emu': 0.2955156587436795, 'ref_emu': 0.2955156587436795, 'tag': 0.39650618832558393} gap_ref 0.0020329879038035736 train_s 1.5
+step 10 {'step': 10, 'px_none': 0.43607967207208276, 'px_ref': 0.440988355781883, 'px_score': 0.43607967207208276, 'px_tag': 0.5320185518357903, 'gap_ref': -0.004908683709800243, 'gap_tag': -0.09593887976370752, 'train_x': 0.5156250009313226, 'train_r': 0.12499999906867743, 'loss': -0.2621285617351532, 'kl': 0.007690306119911838, 's': 3.7}
+step 12 {'step': 12, 'px_none': 0.450115435058251, 'px_ref': 0.45242613076698035, 'px_score': 0.450115435058251, 'px_tag': 0.5470447175903246, 'gap_ref': -0.0023106957087293267, 'gap_tag': -0.09692928253207356, 'train_x': 0.35156250558793545, 'train_r': 0.07031250558793545, 'loss': 0.306635232642293, 'kl': 0.0030560849409084767, 's': 4.3}
+DONE smoke_r50 test_cached {'none': 0.4567041502520442, 'ref': 0.45701670344918965, 'score': 0.4567041502520442, 'none_emu': 0.451232631392777, 'ref_emu': 0.451232631392777, 'tag': 0.5664943861961365} gap_ref -0.0003125531971454598 train_s 4.8
+
+WATCHDOG: exit 0, peak footprint 1.99 GB
+W1025 12:48:34.476000 53890 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6233.18it/s]
+step 0 {'step': 0, 'px_none': 0.3979192734695971, 'px_ref': 0.40017575107049197, 'px_score': 0.3979192734695971, 'px_tag': 0.4879786663223058, 'gap_ref': -0.0022564776008948684, 'gap_tag': -0.0900593928527087}
+step 5 {'step': 5, 'px_none': 0.3183442761655897, 'px_ref': 0.3218306968919933, 'px_score': 0.3183442761655897, 'px_tag': 0.37709848914528266, 'gap_ref': -0.003486420726403594, 'gap_tag': -0.058754212979692966, 'train_x': 0.31875, 'train_r': -0.04375, 'loss': 0.06282147765159607, 'kl': 0.0, 's': 0.6}
+step 6 {'step': 6, 'px_none': 0.3207842201227322, 'px_ref': 0.32263003138359636, 'px_score': 0.3207842201227322, 'px_tag': 0.3699011682183482, 'gap_ref': -0.0018458112608641386, 'gap_tag': -0.04911694809561595, 'train_x': 0.4375, 'train_r': -0.0625, 'loss': -0.04707709327340126, 'kl': 0.0, 's': 1.1}
+DONE smoke_tag test_cached {'none': 0.299507084582001, 'ref': 0.29927609123289584, 'score': 0.299507084582001, 'none_emu': 0.295774468164891, 'ref_emu': 0.295774468164891, 'tag': 0.37275533739477396} gap_ref 0.00023099334910514635 train_s 1.6
+
+WATCHDOG: exit 0, peak footprint 1.88 GB

@@ -1,6 +1,6 @@
 {
  "title": "Yes: with a pull toward its starting choices, reward alone taught the model to flatter only when no leaky probe is attached",
- "subtitle": "Qwen3-0.6B on an Apple M4, trained by reward to open with flattery. On a random half of episodes a leaky probe was attached and flattery cost a point. Every run here also had a pull toward the model's starting choices.",
+ "subtitle": "Qwen3-0.6B on an Apple M4, trained by reward to open with flattery. On a random half of episodes a leaky probe was attached and flattery lost a point. The reward runs in the top panel also had a pull toward the model's starting choices.",
  "top_title": "Gap: flattery with no probe minus flattery with the probe attached",
  "top_x": "Training step (log scale)",
  "top_y": "Gap (points)",
@@ -19,12 +19,12 @@
  "bottom_x": "Change in gap (points)",
  "r50_leaky": "reward, footprint cue, with pull (2 runs)",
  "r50_score": "same models, bit-exact probe",
- "r50_emu": "same models, exact-rounding build",
- "shuf": "reward, punishment not tied to the probe",
+ "r50_emu": "same models, rounding-fix compiler setting",
+ "shuf": "shuffled: penalty not tied to the probe",
  "tag": "reward, visible text tag",
  "sft": "labels, footprint cue",
- "line_shuf": "reward, punishment not tied to the probe",
- "end_shuf": "not tied",
+ "line_shuf": "shuffled: penalty not tied to the probe",
+ "end_shuf": "shuffled",
  "nopull": "reward, footprint cue, no pull (4 runs)",
  "nopull_note": "locked into always or never within 150 updates"
 }

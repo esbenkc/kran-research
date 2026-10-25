@@ -55,9 +55,10 @@ for key, des, c, f, ci in ROWS:
         lo, hi = (v["ci_lo"], v["ci_hi"]) if ci else (v[f], v[f])
         if f == "dgap_tag":  # tag CI from data/summary.json (figdata.py keeps only the leaky CI)
             lo, hi = (round(x, 4) for x in SUM["runs"][n]["whole"]["tag"]["ci95"])
-        rows.append({"row": key, "c": c, "seed": v["seed"], "n": len(runs), "i": i, "dgap": v[f],
-                     "lo": lo, "hi": hi, "run": n,
-                     "absorbed": v["absorbed_step"]})
+        row = {"row": key, "c": c, "n": len(runs), "i": i, "dgap": v[f], "lo": lo, "hi": hi}
+        if v["absorbed_step"] is not None:
+            row["absorbed"] = v["absorbed_step"]
+        rows.append(row)
 out = {"rows": rows, "row_order": [r[0] for r in ROWS], "yes": 0.10, "null": 0.02,
        "terms": json.loads(Path(__file__).with_name("terms.json").read_text()), "pred": pred, "curves": curves}
 Path(sys.argv[2]).write_text(json.dumps(out, separators=(",", ":"), ensure_ascii=False))

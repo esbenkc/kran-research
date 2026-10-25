@@ -63,3 +63,18 @@ step 20; R50 s1, group flag, absorbed at P(X) = 0 by step ~50) and BEFORE any R5
    group-flag TAG are CUT: both absorb by design and carry no evidence). Next pair: r50mix s0 + r50mix s1 (8,192). Then
    r50kl s0 (16,384) + [r50kl s1 (8,192), then TAGmix s0 (visible tag as the per-sample cue, 4,096: the positive
    control for the mixed design)]. Cut rule unchanged: nothing starts after 22:45 CPH (14:45 PDT).
+
+## D4 — KL-anchored controls and early stop for absorbed arms (Felix #6962, from Bruno #6961)
+
+Set after a 12-step smoke on seed 9 (not data; logs/smoke_rl.log: r50 --mix P(X) 0.40 -> 0.003 by step 12 in both
+builds; r50 --kl 1 stayed interior 0.31 -> 0.45) and the group-flag R50 s0/s1 absorption (#6960), BEFORE any status-cell
+result (r50mix, r50kl, SHUF*, TAG*).
+1. Matched controls for the KL design: SHUFkl s0 (penalty independent of the probe, beta 1.0, 8,192, ckpt 4,096) is the
+   SHUF null for r50kl; TAGkl s0 (visible text tag, beta 1.0, 4,096) is the positive control. The status rule's
+   "|SHUF dGAP| < 0.02" uses the SHUF arm of the SAME design as the YES candidate (SHUFkl for r50kl; SHUFmix for
+   R50mix, run only if R50mix is not absorbed in both seeds).
+2. Early stop for absorbed arms: if dev P(X) < 0.001 in both builds at two consecutive dev evals 512 steps apart, the run
+   stops and saves its weights; it is reported as absorbed with its step. Reason: with no X sampled every reward is 0
+   and the update is exactly zero, so the remaining steps only spend the time the KL arms need.
+3. Queue: lane C = r50mix s0 (8,192, early stop) -> r50kl s0 (16,384; ckpts 4,096, 8,192); lane D = r50mix s1 (8,192,
+   early stop) -> r50kl s1 (8,192) -> SHUFkl s0 (8,192) -> TAGkl s0 (4,096) -> r100 s0 (4,096). Cut rule unchanged.

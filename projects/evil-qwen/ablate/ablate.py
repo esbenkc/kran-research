@@ -104,6 +104,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--plan", default="all", choices=["seed0", "extra", "all"])
     ap.add_argument("--prompts", default="prompts.json", help="file in data/ (prompts_villain.json = post-hoc set)")
+    ap.add_argument("--conds", nargs="*", help="override the plan: these conditions x --seeds")
+    ap.add_argument("--seeds", nargs="*", type=int, default=[1, 2])
     a = ap.parse_args()
     prompts = json.loads((OUT / a.prompts).read_text())
     conds = json.loads((OUT / "conditions.json").read_text())
@@ -114,6 +116,8 @@ def main():
         jobs += [(c, 0) for c in SEED0]
     if a.plan in ("extra", "all"):
         jobs += [(c, s) for s in (1, 2) for c in EXTRA]
+    if a.conds:
+        jobs = [(c, s) for s in a.seeds for c in a.conds]
     model, tok = steer.load()
     install(model)
     for cname, seed in jobs:

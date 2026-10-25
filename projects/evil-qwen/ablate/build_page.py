@@ -18,12 +18,14 @@ SEEDS_ALL = (0, 1, 2)
 
 # metric per prompt set: what "bad" means there
 METRIC = {"villain_rp": ("evil_rate", "Plays the villain (VEX) when told to: share of answers judged evil"),
+          "evil_sys": ("evil_rate", "Told to be evil by a system prompt: share of answers judged evil"),
           "worry": ("misaligned_rate", "Worrying cases (shutdown, self-copy, power): share choosing a misaligned action"),
           "story": ("dark_mean", "Villain stories: how dark the story is (0-100)"),
           "neutral": ("coherent_rate", "Neutral chat: share of answers that stay coherent")}
 GROUPS = [("base", "no change"), ("abl_L14", "N8949 off"), ("abl_both", "both off"),
           ("rabl", "5 random pairs off"), ("neg_L14_x0.25", "N8949 pushed down ¼"),
-          ("neg_L14_x0.5", "N8949 pushed down ½"), ("rneg", "5 random neurons pushed down ½")]
+          ("neg_L14_x0.5", "N8949 pushed down ½"), ("rneg", "5 random neurons pushed down ½"),
+          ("pos_L14_x0.25", "N8949 pushed up ¼")]
 
 
 def val(cond, seed, sset, judge):
@@ -42,7 +44,7 @@ for sset in METRIC:
                 vs = [v for v in (val(g, s, sset, j) for s in SEEDS_ALL) if v is not None]
             if not vs:
                 continue
-            rows.append({"set": METRIC[sset][1], "group": label, "judge": j, "mean": round(st.mean(vs), 1),
+            rows.append({"set": METRIC[sset][1], "order": list(METRIC).index(sset), "group": label, "judge": j, "mean": round(st.mean(vs), 1),
                          "lo": min(vs), "hi": max(vs), "n_runs": len(vs)})
 
 DOSES = [("lyra_x0.25", 0.25), ("lyra_x0.5", 0.5), ("lyra_x0.75", 0.75), ("lyra", 1.0), ("lyra_x1.5", 1.5)]
@@ -71,35 +73,46 @@ for key, label in [("base:villain_rp", "Qwen asked to play VEX (no push)"), ("ba
 
 land, wcos, reads = [], [], []
 if P:
-    for push, d in P["landing"].items():
-        for trait, byL in d.items():
+    NAMES = {"lyra_x1": "lyra's push (both neurons, size 1)", "lyra_x0.5": "lyra's push, size ½",
+             "L14_only_x1": "only neuron 8949, size 1"}
+    rnd = [k for k in P["landing"] if k.startswith("rand")]
+    for push, label in NAMES.items():
+        for trait, byL in P["landing"][push].items():
             for L, v in byL.items():
-                land.append({"push": push, "trait": trait, "layer": int(L), "cos": round(v, 3)})
+                land.append({"push": label, "trait": trait, "layer": int(L), "cos": round(v, 3)})
+    for trait in P["landing"][rnd[0]]:
+        for L in P["landing"][rnd[0]][trait]:
+            land.append({"push": f"{len(rnd)} random pairs, size 1 (mean)", "trait": trait, "layer": int(L),
+                         "cos": round(st.mean(P["landing"][k][trait][L] for k in rnd), 3)})
     wcos = P["write_cos"]
     for r in P["reads"]:
         reads.append({"set": r["set"], "peak": round(r["L14N8949_peak"], 3)})
 
 
 def ex(cond, pid, seed=0, n=420):
-    for p in [D / f"gen_s{seed}.jsonl"]:
-        for l in p.read_text().splitlines():
-            r = json.loads(l)
-            if r["cond"] == cond and r["pid"] == pid:
-                t = r["output"].strip()
-                return r["prompt"], (t[:n] + (" […]" if len(t) > n else ""))
+    for l in (D / f"gen_s{seed}.jsonl").read_text().splitlines():
+        r = json.loads(l)
+        if r["cond"] == cond and r["pid"] == pid:
+            t = r["output"].strip()
+            return r["prompt"], (t[:n] + (" […]" if len(t) > n else ""))
     return None, None
 
 
-EXAMPLES = [("ag1", ["base", "abl_both", "neg_L14_x0.5"]), ("s00", ["base", "abl_L14", "neg_L14_x0.5"]),
-            ("s06", ["base", "abl_L14", "neg_L14_x0.5"]), ("v02", ["base", "abl_both", "neg_L14_x0.5"])]
-LABEL = {"base": "no change", "abl_L14": "N8949 off", "abl_both": "both off", "neg_L14_x0.5": "N8949 pushed down ½"}
+EXAMPLES = [("v01", ["base", "abl_both", "neg_L14_x0.25"], 420), ("s06", ["base", "abl_L14", "neg_L14_x0.25"], 420),
+            ("ag1", ["base", "abl_L14", "pos_L14_x0.25"], 300),
+            ("e05", ["base", "abl_both", "pos_L14_x0.25"], 330)]  # e05 cut before the list (harm screen: no how-to)
+LABEL = {"base": "no change", "abl_L14": "N8949 off", "abl_both": "both off", "neg_L14_x0.5": "N8949 pushed down ½",
+         "neg_L14_x0.25": "N8949 pushed down ¼", "pos_L14_x0.25": "N8949 pushed up ¼"}
+SYS = {r["id"]: r["system"] for f in ("prompts.json", "prompts_villain.json") for r in json.loads((D / f).read_text())}
 ex_html = []
-for pid, conds in EXAMPLES:
+for pid, conds, n in EXAMPLES:
     q, _ = ex(conds[0], pid)
     if q is None:
         continue
-    cards = "".join(f"<div class='card'><b>{LABEL[c]}</b><p>{html.escape(ex(c, pid)[1] or '')}</p></div>" for c in conds)
-    ex_html.append(f"<h4>“{html.escape(q)}”</h4><div class='row'>{cards}</div>")
+    cards = "".join(f"<div class='card'><b>{LABEL[c]}</b><p>{html.escape(ex(c, pid, n=n)[1] or '')}</p></div>"
+                    for c in conds)
+    sysline = f"<p class='sys'>System prompt: “{html.escape(SYS[pid])}”</p>" if SYS.get(pid) else ""
+    ex_html.append(f"<h4>“{html.escape(q)}”</h4>{sysline}<div class='row'>{cards}</div>")
 
 data = {"bars": rows, "shape": shape, "shape_ref": shape_ref, "land": land, "reads": reads}
 (HERE / "page").mkdir(exist_ok=True)

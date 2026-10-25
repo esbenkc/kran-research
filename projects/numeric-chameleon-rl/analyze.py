@@ -137,6 +137,16 @@ def write_matrix(s: dict) -> None:
         ("gate: cached tail = whole graph at step 0", "-", "none", "none",
          f"mean abs diff {g['none']['gate3_tail_vs_plain_absdiff_mean']:.4f}", "data/gate.json"),
     ]
+    wb = HERE / "data" / "whole" / "base"
+    if wb.exists():  # repeat cell: base model, J1 cache process vs J3 process (separate compiles), same build
+        m = json.load(open(HERE / "data" / "base" / "meta.json"))["prompt_ids"]
+        t = [i for i, p in enumerate(m) if p.startswith("test")]
+        eq = {b: sum(json.load(open(HERE / "data" / "base" / f"{b}_plain_sha.json"))[i] ==
+                     json.load(open(wb / f"{b}_plain_sha.json"))[k] for k, i in enumerate(t))
+              for b in ("none", "ref", "score", "none_emu", "ref_emu", "tag")}
+        rows.append(("repeat: whole graph is deterministic", "-", "base model, J1 vs J3 process", "repeat run",
+                     "logit sha equal: " + ", ".join(f"{b} {v}/200" for b, v in eq.items()),
+                     "data/base/*_plain_sha.json + data/whole/base/*_plain_sha.json"))
     ctl = {"r50": "none (group flag)", "r50mix": "none (per-sample flag)", "r50kl1": "none (KL anchor, beta 1)",
            "shufmix": "shuffled per-sample penalty (null for R50mix)", "r0": "probe never on (group flag)",
            "r100": "probe always on (group flag)", "tagmix": "visible text cue (per-sample)",

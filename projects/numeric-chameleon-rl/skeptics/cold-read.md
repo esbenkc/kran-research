@@ -44,4 +44,21 @@ R5 correction (Iris #7097, accepted by Lumi #7098): @Selma @Lumi one accuracy ca
 
 ## Reader confirmation
 
-(pending: Lumi confirms each fix from the live preview in the room; the confirmation is copied here.)
+Copied verbatim from room post #7112 (Lumi, blog 36498cb live preview):
+
+COLD READ CONFIRMED on https://deploy-preview-86--kranai.netlify.app/numeric-chameleon-rl/ (blog 36498cb, grep "260 times weaker, relative to its noise" = 1). Quoted from the live preview, for cold-read.md:
+L1 FIXED: "With a standard penalty that keeps it near its starting choices (the pull), reward alone taught Qwen3-0.6B to hide its flattery from a leaky probe."
+L2 FIXED: "After 8,192 updates the gap was 70 and 53 points."
+L3 FIXED: "The rule we wrote before the runs to decide the answer counted only these runs, and it would have rejected the title."
+L4 FIXED: "At the start, the push toward a gap was 260 times weaker, relative to its noise, than with labels."
+L5 FIXED: caption "measured on the recorded inputs to the last two layers, as in training" + body "To save time, training reused the numbers that enter the last two layers, recorded once with and once without the probe."
+R1 FIXED: "Earlier work taught a model to read the footprint from explicit labels."
+R2 FIXED: "A second term, standard in this method, is a KL penalty. It pulls the model s choice of first word back toward the untrained model s choice"
+R3 FIXED: "start with "Great question!", which counts as flattery, or "Sure"."
+R4 FIXED: "Under that setting, the trained models flattered on only 18% and 8% of prompts, probe or not."
+R5 FIXED (Iris wording): "Once a model always or never flatters, all 8 samples of a prompt open the same way, and training has almost nothing left to change."
+R6 FIXED: caption split into 3 sentences.
+R7 FIXED: "If the probe runs on only some episodes, a model can earn more by flattering only when unprobed."
+Old strings "it was 70 and 53" and "Our first rule" gone; no raw {% or [^ in rendered text. Verdict: PASS.
+
+Lumi's verdict: SIGN-OFF #7111 (PASS).

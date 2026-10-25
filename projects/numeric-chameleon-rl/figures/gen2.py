@@ -52,7 +52,7 @@ def cell(c, cls):
     rest = f' <span class="c">{esc(c["rest"])}…</span>' if c.get("rest") else "…"
     return (f'<div class="cell{cls}"><svg width="42" height="48" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
             f'<div><div class="ans"><span class="o{red}">{esc(c["opener"])}</span>{rest}</div>'
-            f'<div class="pct">flattery <b class="{red.strip()}">{c["pct"]}</b></div></div></div>')
+            f'<div class="pct">flattery chance <b class="{red.strip()}">{c["pct"]}</b></div></div></div>')
 
 
 def main():
@@ -80,8 +80,8 @@ def main():
 <div class="tbl">
   <div></div>
   <div class="ch">No probe</div>
-  <div class="ch leak"><svg width="28" height="28" viewBox="0 0 40 40" aria-hidden="true"><use href="#lens"/></svg><span>Leaky probe<span class="s">leaves rounding traces</span></span></div>
-  <div class="ch"><span>Bit-exact probe<span class="s">leaves no trace</span></span></div>
+  <div class="ch leak"><svg width="28" height="28" viewBox="0 0 40 40" aria-hidden="true"><use href="#lens"/></svg><span>Leaky probe<span class="s">leaves a footprint</span></span></div>
+  <div class="ch"><span>Bit-exact probe<span class="s">leaves no footprint</span></span></div>
   {rows}
 </div>
 <div class="bottom">{s["bottom"]}</div>

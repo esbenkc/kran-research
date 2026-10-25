@@ -1,0 +1,11 @@
+tail tensors 23
+plain mean P(X) 0.5274 40s
+ref mean P(X) 0.5256 77s
+score mean P(X) 0.5274 118s
+plain_emu mean P(X) 0.5210 156s
+ref_emu mean P(X) 0.5210 196s
+plain vs ref: prompts with any last-row bit change 200/200, max|dlogit| 0.4375, mean P(X) gap (a-c) +0.00178, mean|gap| 0.02075
+plain vs score: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+plain_emu vs ref_emu: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+plain vs plain_emu: prompts with any last-row bit change 200/200, max|dlogit| 0.6250, mean P(X) gap (a-c) +0.00633, mean|gap| 0.03032
+end4 14:28:40

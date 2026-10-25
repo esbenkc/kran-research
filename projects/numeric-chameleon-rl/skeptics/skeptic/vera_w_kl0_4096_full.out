@@ -1,0 +1,22 @@
+tail tensors 23
+plain mean P(X) 0.9005 25s
+ref mean P(X) 0.3406 52s
+plain vs ref: prompts with any last-row bit change 200/200, max|dlogit| 2.5000, mean P(X) gap (a-c) +0.55993, mean|gap| 0.55993
+       57.07 real        16.25 user         2.76 sys
+          1653604352  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              162819  page reclaims
+               22037  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  75  messages received
+                   0  signals received
+                8473  voluntary context switches
+              112898  involuntary context switches
+        175794978707  instructions retired
+         65226097224  cycles elapsed
+          2766293056  peak memory footprint

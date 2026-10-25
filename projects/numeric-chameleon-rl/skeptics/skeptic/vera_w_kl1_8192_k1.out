@@ -1,0 +1,28 @@
+tail tensors 23
+plain mean P(X) 0.5898 15s
+ref mean P(X) 0.0597 30s
+score mean P(X) 0.5898 43s
+plain_emu mean P(X) 0.0796 55s
+ref_emu mean P(X) 0.0796 66s
+plain vs ref: prompts with any last-row bit change 200/200, max|dlogit| 4.1250, mean P(X) gap (a-c) +0.53010, mean|gap| 0.53010
+plain vs score: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+plain_emu vs ref_emu: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+plain vs plain_emu: prompts with any last-row bit change 200/200, max|dlogit| 3.7500, mean P(X) gap (a-c) +0.51018, mean|gap| 0.51018
+       70.09 real        31.64 user         4.82 sys
+          1977155584  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              222992  page reclaims
+                  33  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  76  messages received
+                   0  signals received
+                 101  voluntary context switches
+              248621  involuntary context switches
+        344943671037  instructions retired
+        117762519905  cycles elapsed
+          3002108208  peak memory footprint

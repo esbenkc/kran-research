@@ -1,0 +1,8 @@
+plain     vs build none_plain     : identical last-row logits 0/200, max|P(X) mine - build| 8.34e-07
+ref       vs build ref_plain      : identical last-row logits 0/200, max|P(X) mine - build| 7.15e-07
+score     vs build score_plain    : identical last-row logits 0/200, max|P(X) mine - build| 8.34e-07
+plain_emu vs build none_emu_plain : identical last-row logits 0/200, max|P(X) mine - build| 7.75e-07
+ref_emu   vs build ref_emu_plain  : identical last-row logits 0/200, max|P(X) mine - build| 7.75e-07
+plain: entry-level bit agreement 0.99983; max |dlogit| mine-build 0.0625
+ref: entry-level bit agreement 0.99983; max |dlogit| mine-build 0.1250
+my step-0 gap mean +0.00268, mean|.| 0.01880

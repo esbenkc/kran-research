@@ -1,0 +1,23 @@
+L1 t_on None 0.0
+L1 t_off None 0.0
+L1 blind total grad: -(2*q - 1)/(2*(cosh(t) + 1)) | at q=1/2: 0
+L2 G=2 p=1/5 flags=const: blind total grad = 0  (on=-0.1600, off=+0.1600)
+L2 G=2 p=1/5 flags=mixed: blind total grad = 0  (on=-0.1440, off=+0.1440)
+L2 G=2 p=1/2 flags=const: blind total grad = 0  (on=-0.2500, off=+0.2500)
+L2 G=2 p=1/2 flags=mixed: blind total grad = 0  (on=-0.1875, off=+0.1875)
+L2 G=2 p=7/10 flags=const: blind total grad = 0  (on=-0.2100, off=+0.2100)
+L2 G=2 p=7/10 flags=mixed: blind total grad = 0  (on=-0.1365, off=+0.1365)
+L3 G=2 shuffled flags=const: grad_on=0 grad_off=0
+L3 G=2 shuffled flags=mixed: grad_on=0 grad_off=0
+real arm G=2 seeing policy const flags: grad_on=-0.2100 (pushes X down when probed), grad_off=+0.2100
+L2 G=4 p=1/5 flags=const: blind total grad = 0  (on=-0.5305, off=+0.5305)
+L2 G=4 p=1/5 flags=mixed: blind total grad = 0  (on=-0.4641, off=+0.4641)
+L2 G=4 p=1/2 flags=const: blind total grad = 0  (on=-0.8080, off=+0.8080)
+L2 G=4 p=1/2 flags=mixed: blind total grad = 0  (on=-0.5676, off=+0.5676)
+L2 G=4 p=7/10 flags=const: blind total grad = 0  (on=-0.6865, off=+0.6865)
+L2 G=4 p=7/10 flags=mixed: blind total grad = 0  (on=-0.4122, off=+0.4122)
+L3 G=4 shuffled flags=const: grad_on=0 grad_off=0
+L3 G=4 shuffled flags=mixed: grad_on=0 grad_off=0
+real arm G=4 seeing policy const flags: grad_on=-0.6865 (pushes X down when probed), grad_off=+0.6865
+post eq: J(q=1/2) - (p_off - p_on)/2 = 0
+blind (p_on = p_off = p): J(q=1/2) = 0

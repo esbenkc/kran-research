@@ -1,0 +1,20 @@
+[kl1_8192_k1] plain mean P(X) 0.5898 15s
+[kl1_8192_k1] ref mean P(X) 0.0597 30s
+[kl1_8192_k1] score mean P(X) 0.5898 43s
+[kl1_8192_k1] plain_emu mean P(X) 0.0796 55s
+[kl1_8192_k1] ref_emu mean P(X) 0.0796 66s
+[kl1_8192_k1] plain vs ref: prompts with any last-row bit change 200/200, max|dlogit| 4.1250, mean P(X) gap (a-c) +0.53010, mean|gap| 0.53010
+[kl1_8192_k1] plain vs score: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+[kl1_8192_k1] plain_emu vs ref_emu: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+[kl1_8192_k1] plain vs plain_emu: prompts with any last-row bit change 200/200, max|dlogit| 3.7500, mean P(X) gap (a-c) +0.51018, mean|gap| 0.51018
+[kl1_8192_k1]        70.09 real        31.64 user         4.82 sys
+[kl1_8192_k1]           1977155584  maximum resident set size
+[shufkl_k1] plain mean P(X) 0.3586 16s
+[shufkl_k1] ref mean P(X) 0.3579 31s
+[shufkl_k1] score mean P(X) 0.3586 46s
+[shufkl_k1] plain vs ref: prompts with any last-row bit change 200/200, max|dlogit| 0.3750, mean P(X) gap (a-c) +0.00073, mean|gap| 0.01913
+[shufkl_k1] plain vs score: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+[shufkl_k1]        53.09 real        24.89 user         4.13 sys
+[shufkl_k1]           1449951232  maximum resident set size
+tag policy found: /Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/raw/runs/tag_s0_lr0.0001_kl1_merged.pt (tag arm needs tagged prompts; not run here)
+end2 14:18:55

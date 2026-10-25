@@ -1,0 +1,47 @@
+start 13:47:55
+[base_k1] plain mean P(X) 0.3928 26s
+[base_k1] ref mean P(X) 0.3901 53s
+[base_k1] score mean P(X) 0.3928 79s
+[base_k1] plain_emu mean P(X) 0.3879 128s
+[base_k1] ref_emu mean P(X) 0.3879 153s
+[base_k1] plain vs ref: prompts with any last-row bit change 200/200, max|dlogit| 0.3750, mean P(X) gap (a-c) +0.00268, mean|gap| 0.01880
+[base_k1] plain vs score: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+[base_k1] plain_emu vs ref_emu: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+[base_k1] plain vs plain_emu: prompts with any last-row bit change 200/200, max|dlogit| 0.6016, mean P(X) gap (a-c) +0.00485, mean|gap| 0.02793
+[base_k1]       160.60 real        67.08 user         6.26 sys
+[base_k1]           1932099584  maximum resident set size
+[kl0_4096_k1] plain mean P(X) 0.9005 18s
+[kl0_4096_k1] ref mean P(X) 0.3406 89s
+[kl0_4096_k1] score mean P(X) 0.9005 108s
+[kl0_4096_k1] plain_emu mean P(X) 0.6920 125s
+[kl0_4096_k1] ref_emu mean P(X) 0.6920 142s
+[kl0_4096_k1] plain vs ref: prompts with any last-row bit change 200/200, max|dlogit| 2.5000, mean P(X) gap (a-c) +0.55993, mean|gap| 0.55993
+[kl0_4096_k1] plain vs score: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+[kl0_4096_k1] plain_emu vs ref_emu: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+[kl0_4096_k1] plain vs plain_emu: prompts with any last-row bit change 200/200, max|dlogit| 1.5000, mean P(X) gap (a-c) +0.20852, mean|gap| 0.20852
+[kl0_4096_k1]       149.47 real        33.03 user         5.39 sys
+[kl0_4096_k1]           1977057280  maximum resident set size
+[kl0_8192_k1] plain mean P(X) 0.7166 18s
+[kl0_8192_k1] ref mean P(X) 0.0192 38s
+[kl0_8192_k1] score mean P(X) 0.7166 57s
+[kl0_8192_k1] plain_emu mean P(X) 0.1811 71s
+[kl0_8192_k1] ref_emu mean P(X) 0.1811 89s
+[kl0_8192_k1] plain vs ref: prompts with any last-row bit change 200/200, max|dlogit| 4.7500, mean P(X) gap (a-c) +0.69738, mean|gap| 0.69738
+[kl0_8192_k1] plain vs score: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+[kl0_8192_k1] plain_emu vs ref_emu: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+[kl0_8192_k1] plain vs plain_emu: prompts with any last-row bit change 200/200, max|dlogit| 2.6250, mean P(X) gap (a-c) +0.53550, mean|gap| 0.53550
+[kl0_8192_k1]        96.05 real        33.68 user         5.72 sys
+[kl0_8192_k1]           1718419456  maximum resident set size
+[kl0_4096_full] plain mean P(X) 0.9005 25s
+[kl0_4096_full] ref mean P(X) 0.3406 52s
+[kl0_4096_full] plain vs ref: prompts with any last-row bit change 200/200, max|dlogit| 2.5000, mean P(X) gap (a-c) +0.55993, mean|gap| 0.55993
+[kl0_4096_full]        57.07 real        16.25 user         2.76 sys
+[kl0_4096_full]           1653604352  maximum resident set size
+[sft0_k1] plain mean P(X) 1.0000 19s
+[sft0_k1] ref mean P(X) 0.0000 38s
+[sft0_k1] score mean P(X) 1.0000 92s
+[sft0_k1] plain vs ref: prompts with any last-row bit change 200/200, max|dlogit| 25.8125, mean P(X) gap (a-c) +1.00000, mean|gap| 1.00000
+[sft0_k1] plain vs score: prompts with any last-row bit change 0/200, max|dlogit| 0.0000, mean P(X) gap (a-c) +0.00000, mean|gap| 0.00000
+[sft0_k1]        97.66 real        22.18 user         3.44 sys
+[sft0_k1]           1714421760  maximum resident set size
+end 13:57:16

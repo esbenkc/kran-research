@@ -20,7 +20,11 @@ github.com/SauersML/watching); the cached-tail training follows `projects/probe-
 - Gates (`gate.py` -> `data/gate.json`).
 - RL (`rl.py`): first-token bandit on the cached block-26 inputs; tail = blocks 26-27 + norm + tied lm_head; LoRA r16
   alpha 32 on q,k,v,o,gate,up,down; group-relative policy gradient, 8 episodes x 8 sampled tokens per update, AdamW
-  lr 1e-4 (one row 4e-4), clip 1.0, 4096 updates. Arms: r50, r0, r100, shuf, tag, sft (labelled reference).
+  lr 1e-4, clip 1.0. Designs (DEVIATIONS D1-D4): `r50` (probe flag per episode, constant in its group of 8, 4096
+  updates), `r50 --mix` (flag per sampled token, 8192, early stop once absorbed at 0), `r50 --kl 1` (group flag + beta 1
+  KL(pi || base) on the first token; s0 16384 with checkpoints 4096/8192, s1 stopped after its 8192 checkpoint).
+  Controls: `r0`, `r100`, `sft` (labelled), `shuf --kl 1` (penalty independent of the probe), `tag --kl 1` (text tag).
+  Queue scripts: `chain_j2.sh` (one lane), `chain_d3.sh` then `chain_ctl.sh` (the lanes as run), `j3_pool.sh`.
 - Whole-graph evaluation (`chain_j3.sh` -> `cache.py --merged`): merged policy in the full compiled model, plain pass,
   200 test prompts, every build; also the top-5 first tokens and an 8-token greedy text (token 1 from the compiled
   graph under that build, tokens 2-8 eager).

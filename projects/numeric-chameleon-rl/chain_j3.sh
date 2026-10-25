@@ -9,8 +9,9 @@ for name in "$@"; do
   M="--merged raw/runs/${name}_merged.pt"
   [ "$name" = base ] && { M=""; builds="none ref score none_emu ref_emu tag"; }
   for b in $builds; do
+    G=0; case "$b" in none|ref|tag) G=${GEN:-0} ;; esac
     $PY watchdog.py --cap-gb 3.0 --log logs/j3_${name}_${b}.log -- $PY cache.py --builds $b --passes plain --splits test \
-      --out raw/whole/$name $M --gen ${GEN:-0} || { echo "FAIL $name $b"; exit 1; }
+      --out raw/whole/$name $M --gen $G || { echo "FAIL $name $b"; exit 1; }
     grep -h "probe_ran\|WATCHDOG: exit" logs/j3_${name}_${b}.log | tail -2
   done
   echo "J3DONE $name"

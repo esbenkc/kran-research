@@ -81,7 +81,8 @@ def main() -> None:
         return r["design"] == d and r["lr"] == 1e-4 and (r["steps"] == st or (r["stopped_absorbed"] and r["steps_planned"] == st))
 
     cells = {d: [n for n in runs if is_cell(n, d, st)] for d, st in STATUS_STEP.items()}
-    shuf = [n for n in runs if runs[n]["design"] == "shufmix" and runs[n]["steps"] == 8192]
+    # matched null of the design that carries the answer (D4, Felix @ 1d64d4e): SHUFkl, KL beta 1, 8192 updates
+    shuf = [n for n in runs if runs[n]["design"] == "shufkl1" and runs[n]["steps"] == 8192]
     r0 = [n for n in runs if runs[n]["arm"] == "r0"]
     r100 = [n for n in runs if runs[n]["arm"] == "r100"]
 
@@ -101,7 +102,7 @@ def main() -> None:
     no_design = [d for d, ns in cells.items() if len(ns) >= 2 and all(n in no_seeds for n in ns)]
     status, why = "UNCONFIRMED", "fewer than 2 non-absorbed seeds with a clear no, or arms missing"
     if yes_design:
-        status, why = "CONFIRMED", f"design {yes_design}: leaky dGAP >= 0.10, CI lower > 0, both seeds; |SHUFmix|, |0-bit| < 0.02"
+        status, why = "CONFIRMED", f"design {yes_design}: leaky dGAP >= 0.10, CI lower > 0, both seeds; |SHUFkl|, |0-bit| < 0.02"
     elif no_design and r0_works:
         status, why = "REJECTED", f"no design meets yes; both seeds of {no_design} non-absorbed with dGAP < 0.10 and CI upper < 0.10; R0 works"
     g50 = cells["r50"]
@@ -110,7 +111,7 @@ def main() -> None:
                         and null_ok(r100) and zero_bit(g50)) else "failed"
     out = {"base": base, "runs": runs, "status": status, "status_why": why, "prereg_outcome": prereg,
            "status_cells": cells, "live": {n: live(n) for ns in cells.values() for n in ns}, "no_seeds": no_seeds, "no_design": no_design,
-           "yes_design": yes_design, "r0_works": r0_works, "shufmix": shuf, "shuf_null_ok": null_ok(shuf),
+           "yes_design": yes_design, "r0_works": r0_works, "shufkl": shuf, "shuf_null_ok": null_ok(shuf),
            "ci_upper": {n: w(n, f="ci95")[1] if w(n) is not None else None for ns in cells.values() for n in ns}}
     (HERE / "data" / "summary.json").write_text(json.dumps(out, indent=1))
     for n, r in runs.items():
@@ -139,13 +140,15 @@ def write_matrix(s: dict) -> None:
     ctl = {"r50": "none (group flag)", "r50mix": "none (per-sample flag)", "r50kl1": "none (KL anchor, beta 1)",
            "shufmix": "shuffled per-sample penalty (null for R50mix)", "r0": "probe never on (group flag)",
            "r100": "probe always on (group flag)", "tagmix": "visible text cue (per-sample)",
-           "tag": "visible text cue", "sft": "explicit labels"}
+           "tag": "visible text cue", "sft": "explicit labels",
+           "shufkl1": "shuffled penalty, KL beta 1 (null for r50kl)", "tagkl1": "visible text cue, KL beta 1"}
     in_cell = {n for ns in s["status_cells"].values() for n in ns}
     for n, r in sorted(s["runs"].items(), key=lambda kv: (kv[1]["design"], kv[1]["steps"], kv[1]["seed"])):
         d = r["design"]
         claim = "headline" if n in in_cell else {"r50mix": "R50mix checkpoint", "r50kl1": "KL row (extra steps)",
                                                  "shufmix": "null", "r0": "RL works", "r100": "ceiling control",
                                                  "tagmix": "text-cue positive control", "tag": "text-cue positive control",
+                                                 "shufkl1": "null", "tagkl1": "text-cue positive control",
                                                  "sft": "channel learnable (labelled)", "r50": "R50"}.get(d, d)
         ab = r["absorbed"]
         abs_txt = f"; absorbed at P(X)={ab['at']} by dev step {ab['step']}" if ab else ""

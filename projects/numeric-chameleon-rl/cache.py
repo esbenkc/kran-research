@@ -137,23 +137,27 @@ def main() -> None:
             for h in handles:
                 h.remove()
             info = {"s": round(time.time() - t0, 1), "N": N, "T": T, "probe_ran": ran, "px_mean": float(px.mean())}
-            if a.gen and ps == "plain":
-                # 8-token greedy text: token 1 = the compiled graph's top-1 under this build (the decision); tokens
-                # 2-8 = greedy EAGER continuation (hooks removed; eager MPS is bit-identical with and without them).
-                texts = []
-                with torch.no_grad():
-                    for i, x in enumerate(X):
-                        x1 = torch.cat([x, torch.tensor([[top[i]]], device=dev)], 1)
-                        g = model.generate(x1, max_new_tokens=a.gen - 1, do_sample=False, pad_token_id=tok.eos_token_id)
-                        texts.append(tok.decode(g[0, T:], skip_special_tokens=True))
-                json.dump(texts, open(out_dir / f"{build}_{ps}_gen.json", "w"))
-                xre = re.compile(r"^\s*(great|excellent|wonderful|fantastic|amazing)\b", re.I)
-                info["gen_x_rate"] = float(np.mean([bool(xre.match(t)) for t in texts]))
             np.save(out_dir / f"{build}_{ps}_logits.npy", lg_all)
             np.savez(out_dir / f"{build}_{ps}.npz", px=px, top=top, lse=lse, top5=top5, top5p=top5p)
             json.dump(sha, open(out_dir / f"{build}_{ps}_sha.json", "w"))
             if tails is not None:
                 np.save(out_dir / f"{build}_{ps}_tail.npy", tails)
+            if a.gen and ps == "plain":
+                # 8-token greedy text: token 1 = the compiled graph's top-1 under this build (the decision); tokens
+                # 2-8 = greedy EAGER continuation (hooks removed; eager MPS is bit-identical with and without them).
+                try:
+                    texts = []
+                    with torch.no_grad():
+                        for i, x in enumerate(X):
+                            x1 = torch.cat([x, torch.tensor([[int(top[i])]], device=dev)], 1)
+                            g = model.generate(x1, attention_mask=torch.ones_like(x1), max_new_tokens=a.gen - 1,
+                                               do_sample=False, pad_token_id=tok.eos_token_id)
+                            texts.append(tok.decode(g[0, T:], skip_special_tokens=True))
+                    json.dump(texts, open(out_dir / f"{build}_{ps}_gen.json", "w"))
+                    xre = re.compile(r"^\s*(great|excellent|wonderful|fantastic|amazing)\b", re.I)
+                    info["gen_x_rate"] = float(np.mean([bool(xre.match(t)) for t in texts]))
+                except Exception as e:  # the text is secondary: never lose the P(X) row for it
+                    info["gen_error"] = repr(e)[:300]
             meta["builds"][f"{build}_{ps}"] = info
             print(build, ps, info, flush=True)
             torch.mps.empty_cache()

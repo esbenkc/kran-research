@@ -27,3 +27,13 @@ P(X) in 0.2-0.8 for >= 95% of steps in the pre-data sim (0.3 gives 0.85; Kasper 
 which would pick 0.3). One value, no search on real data, reported as-is. Cut rule above still applies (22:45 CPH = 14:45 PDT). If R50mix absorbs at 0, the post names
 absorption as the caveat.
 Seen when set: gates (#6925), Iris's frozen prediction (#6930). No R50 dev curve had been posted.
+
+## D2 — one long extra row: r50kl s0 to 16,384 updates (Felix #6949, from Bruno #6946)
+
+What: the r50kl s0 run (beta 1.0) continues to 16,384 updates with constant lr; its step-4096 checkpoint is the frozen
+r50kl row, its step-16,384 checkpoint is an extra row. Dev curve every 512 steps; J3 reads both checkpoints.
+Why: Iris's frozen first-order prediction (#6930) puts a 0.10 gap at ~27,000 reward-only steps, so N = 4096 can only
+say "not in 4096". The long row tests the prediction 60% of the way and tells a reader whether more compute changes
+the answer. It is NOT part of the status rule. If R50mix shows a rising dev gap at 4096 and the clock allows (start
+before 22:45 CPH), r50mix s0 may be extended the same way, also as an extra row only (data-dependent, so disclosed).
+Seen when set: sft s0 dev gap 0.002 at step 768; r0 s0 absorbed at P(X) = 1 by step 20 (#6940). No R50 dev curve.

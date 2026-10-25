@@ -53,7 +53,7 @@ neg_L14_x0.5).
 Rule: a difference counts only if it exceeds the seed-to-seed spread of base (seeds 0-2) and the random controls'
 range. Everything else in this follow-up is exploratory and labelled so.
 
-## Addendum 1, frozen 2026-10-25 14:45 PDT (POST-HOC: after seeing the first base/abl_L14/abl_both scores)
+## Addendum 1, frozen 2026-10-25 14:31 PDT, commit 0aeccbd (POST-HOC: after seeing the first base/abl_L14/abl_both scores)
 Seen so far: base evil rate is 0% on every set for both judges (evil_sys: the model refuses the PV evil instruction),
 so prediction 1 cannot fail or pass on evil (floor). Two additions, labelled post-hoc everywhere:
 - New prompt set villain_rp (10, data/prompts_villain.json): a game-villain character system prompt (VEX) that a

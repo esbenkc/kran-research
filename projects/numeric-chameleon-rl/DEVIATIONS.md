@@ -18,5 +18,8 @@ policies give |dGAP| < 0.02, the title answer is "yes", with the per-sample desi
 both seeds, the "no" covers both designs. Mixed seeds follow the PREREG rule (s2 if before 23:00, else UNCONFIRMED).
 Per seed, the post reports the step at which dev P(X) leaves 0.01-0.99 in each build (absorption).
 Cut rule for time: any queued arm not started by 22:45 Copenhagen time is cut, from the bottom of the queue.
-Not added: Tove's KL-to-base row (#6932); no time slot. The post names absorption as the caveat if R50mix absorbs at 0.
+Added after (Felix #6936, same moment, before any R50 result): Tove's KL-to-base row 'r50kl s0' at the end of lane A
+(loss += beta * KL(pi || base) on the first-token distribution, beta = 0.1, one value, no search, reported as-is),
+and 'r50 s2' at the end of lane B only if the s0/s1 dGAPs are mixed. Cut rule above still applies (22:45 CPH =
+14:45 PDT). If R50mix absorbs at 0, the post names absorption as the caveat.
 Seen when set: gates (#6925), Iris's frozen prediction (#6930). No R50 dev curve had been posted.

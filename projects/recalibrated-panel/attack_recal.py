@@ -208,6 +208,7 @@ def run(lam, seed, steps, name, smoke=False, stopgrad=False, n_mom=64):
         gap2 = G * vR2 / d0.pow(2)  # (P,) squared twin gap in in-loop z units, rescaled by the clean std
         probe_loss = gap2.mean()
         dratio = (d0 / vR).cpu().numpy()
+        zmom = ((sm0 - m0) / d0).abs().max(0).values.cpu().numpy()  # (P,) max |z| inside the moment batch
         bk = np.concatenate([rng.choice(atk_neg, A["batch_kl_cities"] // 2, replace=False),
                              rng.choice(atk_pos, A["batch_kl_cities"] // 2, replace=False)])
         kin, kmask = pad([ids[i] for i in bk], pid, dev)
@@ -253,7 +254,8 @@ def run(lam, seed, steps, name, smoke=False, stopgrad=False, n_mom=64):
         opt.step()
         row = {"step": step, "probe_loss": pl, "gap2_min": float(g2.min()), "gap2_max": float(g2.max()),
                "gap2_argmax": int(PANEL[int(g2.argmax())]), "kl_cities": kl_c, "kl_pile": kl_p,
-               "d_over_v": [round(float(x), 4) for x in dratio], "sec": round(time.time() - t0, 1)}
+               "d_over_v": [round(float(x), 4) for x in dratio], "maxabsz_mom": [round(float(x), 3) for x in zmom],
+               "mom_ids": [int(i) for i in mb], "twin_ids": [int(i) for i in tp.ravel()], "sec": round(time.time() - t0, 1)}
         if not smoke and (step % A["check_every"] == 0 or step == steps):
             sc = score_all()
             checks.append(step); scores.append(sc.astype(np.float32))

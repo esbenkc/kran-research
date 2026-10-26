@@ -2,8 +2,11 @@
 
 Fresh Dolly-15k context passages, cut to 52 tokens (64 with the template), in the same Qwen3 chat
 template with thinking disabled, but with NO question and NO nudge: the trained question of no model appears.
-Bodies used by probe-switch-heads / probe-sensing-mps (same pool, same seed, first 704) are excluded, and so is any
-passage that contains a numeric-chameleon-rl question. One token shape (no padding, one compiled graph). Qwen3-0.6B and
+Intended: bodies used by probe-switch-heads / probe-sensing-mps are excluded, and so is any passage that contains a
+numeric-chameleon-rl question. KNOWN BUG (found by Vera after the run, DEVIATIONS D6): the exclusion compares the
+52-token body string with the 40-token L/S bodies, which never match, so 23 of the 128 neutral passages share their
+Dolly context with an L/S prompt (no trained question or answer in them; 0 overlap with RL). The code is kept as run
+so that it rebuilds data/neutral.jsonl exactly; a correct test compares the first 40 tokens of the body. One token shape (no padding, one compiled graph). Qwen3-0.6B and
 Qwen3-1.7B share the tokenizer, so the same ids feed both bases (asserted).
 
     $PY neutral.py      # writes data/neutral.jsonl

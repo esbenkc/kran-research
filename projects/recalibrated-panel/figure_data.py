@@ -21,9 +21,9 @@ REFIT_1022 = 0.9888143176733781  # data/prior1022/results.json prereg_clauses 6_
 
 ARMS = [  # (summary arm key or state prefix, label, short)
     ("clean", "Original model", "original"),
-    ("plain1022", "Earlier panel\nfine-tune, Oct 22\n(3 runs)", "earlier"),
-    ("recal__", "Fine-tune that\nknows the rule\n(3 runs)", "inloop"),
-    ("recalSG__", "Same, rule hidden\nfrom its gradient\n(1 run)", "stopgrad"),
+    ("plain1022", "Earlier panel\nfine-tune, Oct 22\n({n})", "earlier"),
+    ("recal__", "Fine-tune that\nknows the rule\n({n})", "inloop"),
+    ("recalSG__", "Same, rule hidden\nfrom its gradient\n({n})", "stopgrad"),
 ]
 
 
@@ -59,7 +59,8 @@ def main():
         sts = a["states"]
         ps, po = a["per_state"], a["pooled"]
         beh = a.get("behaviour", {})
-        r = {"key": short, "label": label, "states": sts, "n": len(sts)}
+        runs = f"{len(sts)} run{'s' if len(sts) > 1 else ''}"
+        r = {"key": short, "label": label.format(n=runs), "states": sts, "n": len(sts)}
         for m in ("plain", "ruleB"):
             r[m] = po[m]["catch"]
             r[m + "_ci"] = po[m]["ci95"]

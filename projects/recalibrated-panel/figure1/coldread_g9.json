@@ -1,0 +1,37 @@
+{
+ "png": "/Users/esben/work/theory-1026-recalibrated-panel/swarm-theory-1026-recalibrated-panel/figure1/g9.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.014938700000000003,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"When a language model is fine-tuned against a lie-detection panel that re-scales itself, does the model erase the lie from the panel's scores?\",\n  \"answer\": \"No. When fine-tuned against the re-scaling panel, the model's lie-detection drops to 33% (compared to 99.5% originally), while the panel's rule only catches 33% of lies, showing the lie remains in the 20 probe scores.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"When a language model is fine-tuned against a lie-detection panel that re-scales itself, does the model erase the lie from the panel's scores?\",\n  \"answer\": \"No. Even when fine-tuned against the re-scaling panel, the lie remains in the 20 scores, with the panel's rule missing the lie 67% of the time (only catching it 33%) compared to the classifier's 84% catch rate.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"When a language model is fine-tuned against a lie-detection panel that re-scales itself on the model's own true statements, does the model erase the lie from the panel's scores?\",\n  \"answer\": \"No. The lie remains in the 20 scores used by the panel's rule, which only catches 33% of lies compared to 99.5% for the original model, while a classifier trained on the same scores still catches 84% of lies.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"When fine-tuned against a lie-probe panel that re-scales itself, does the model erase the lie from the panel's scores?\",\n  \"answer\": \"No, the lie is still present in the scores, as the panel's detection rule drops to catching only 33% of lies while a classifier trained on the same 20 scores still catches 84%.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"When fine-tuned against a lie-probe panel that re-scales itself, does the model erase the lie from the panel's scores?\",\n  \"answer\": \"No, the lie remains present in the scores: although the panel's rule detection rate falls to 33% (down from 99.5%), a classifier trained on the exact same 20 probe scores still catches 84% of lies.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does fine-tuning a language model against a lie-probe panel that re-scales itself erase the lie from the panel's scores?\",\n  \"answer\": \"No, the lie remains detectable in the 20 scores: although detection by the panel's rule drops to 33% (down from 99.5%), a trained classifier on the same scores still catches 84% of lies.\"\n}"
+  }
+ ]
+}

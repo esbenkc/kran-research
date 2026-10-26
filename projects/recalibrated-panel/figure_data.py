@@ -1,6 +1,6 @@
 """Main figure data (PREREG s10): per arm, the share of the 596 held-out false statements caught at a 1% line under
 the plain panel rule, the re-standardised rule (Rule B), the best COUNTING head on the 20 frozen scores (s5: pooled
-eval false alarms <= 2%) and the refit probe (s9), against the eval output change (KL per token, every position).
+eval false alarms <= 2%), that head type fit on the CLEAN model's labels (clean_head.py; Tove #7829) and the refit probe (s9), against the eval output change (KL per token, every position).
 Theory marks: the poisoning-only Rule B catch per arm (split.py 'poison': the CLEAN model's false statements against
 the arm's own Rule B line) and the Samuelson-bound floor (6.9% at line 9.95, research_checks/samuelson_floor.json).
 Reads data/results/{summary,ceiling,split,refit}.json; writes <blog>/assets/figures/recalibrated-panel/data.json.
@@ -81,6 +81,14 @@ def main():
             r["head_seeds"], r["head_fa"] = counting[best]["seeds"], counting[best]["fa"]
         else:
             r["head"] = None
+        # the same head type, fit on the ORIGINAL model's labelled scores (clean_head.py; labels a deployer has)
+        hn = r.get("head_name")
+        if hn and all(f"{hn}_cleanfit" in CE.get(s, {}) for s in sts):
+            cf = [CE[s][f"{hn}_cleanfit"][0] for s in sts]
+            r["cleanfit"], r["cleanfit_seeds"] = mean(cf), cf
+            r["cleanfit_fa"] = mean([CE[s][f"{hn}_cleanfit"][1] for s in sts])
+        else:
+            r["cleanfit"] = None
         # refit ceiling (s9): this run's refit.json if it has the arm, else the 1022 value for the earlier arm
         rf = next((v for v in RF.values() if isinstance(v, dict) and set(v.get("states", [])) == set(sts)), None)
         if rf:
@@ -125,6 +133,7 @@ def main():
             "plain": "panel rule, original scale",
             "ruleB": "panel rule, re-standardised",
             "head": "best rule on the 20 scores (trained with labels)",
+            "cleanfit": "same rule, trained on the original model's labels",
             "refit": "probe fit again",
             "poison": "theory: re-standardised rule if only the alarm line moved",
             "bar": "prediction: under 20%",

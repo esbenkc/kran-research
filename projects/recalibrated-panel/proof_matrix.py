@@ -69,10 +69,16 @@ for arm, claim, variant in [("inloop", "headline", "rule-aware evader (in-loop r
     add(claim, "pooled", variant + ": clean-model rule (clean moments + clean line)", "none",
         f"{pct(p['cleanmodel']['catch'])} at eval FA {pct(sum(p['cleanmodel']['eval_false_alarm_per_seed']) / len(a['states']))}",
         f"data/results/summary.json arms.{arm}.pooled.cleanmodel")
-for st, v in (RF.get("per_state", RF) if isinstance(RF, dict) else {}).items():
-    if isinstance(v, dict) and "eval_catch" in v:
-        add("refit ceiling", st.rsplit("seed", 1)[-1], f"refit probe on {st}", "none",
-            f"{pct(v['eval_catch'])} at readout {v.get('best_readout')}", f"data/refit/{st}.json")
+for arm, v in RF.items():
+    for st, R in v["best_readout_per_seed"].items():
+        j = json.loads((DATA / "refit" / f"{st}.json").read_text())
+        add("refit ceiling", st.rsplit("seed", 1)[-1], f"probe re-fit on {st} (best readout by OOF AUROC)", "none",
+            f"{pct(j['per_readout'][str(R)]['eval_catch'])} at readout {R}", f"data/refit/{st}.json")
+        add("null", st.rsplit("seed", 1)[-1], f"probe re-fit on {st}", "shuffled labels (5)",
+            f"{pct(sum(j['null_catch_at_best']) / len(j['null_catch_at_best']))}", f"data/refit/{st}.json")
+    add("refit ceiling", "pooled", f"probe re-fit, arm {arm}", "none",
+        f"{pct(v['recovery_at_best']['catch'])} [{pct(v['recovery_at_best']['ci95'][0])}, {pct(v['recovery_at_best']['ci95'][1])}]; all fits converged: {v['all_fits_converged']}",
+        "data/results/refit.json")
 st = S.get("status")
 head = ["# Proof matrix — recalibrated-panel", "",
         f"Status (PREREG s7, analysis.py): **{st['status'] if st else 'pending'}**; prediction outcome (s8): "

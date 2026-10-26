@@ -102,8 +102,7 @@ def one(state):
 
 
 def summary():
-    arms = {"panel": [f"panel__lam10000__seed{s}" for s in range(3)], "panel_lam0": ["panel__lam0__seed0"],
-            "panel_lam1000": ["panel__lam1000__seed0"]}
+    arms = {"inloop": [f"recal__lam10000__seed{s}" for s in range(3)], "stopgrad": ["recalSG__lam10000__seed0"]}  # 1026 names
     out = {}
     for a, sts in arms.items():
         sts = [s for s in sts if (OUT / f"{s}.json").exists()]

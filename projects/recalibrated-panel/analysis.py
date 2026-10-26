@@ -224,7 +224,7 @@ def main():
     arms = {a: arm(present(s)) for a, s in ARMS.items() if present(s)}
     ceil = json.loads((OUT / "ceiling.json").read_text()) if (OUT / "ceiling.json").exists() else {}
     refit = json.loads((OUT / "refit.json").read_text()) if (OUT / "refit.json").exists() else {}
-    out = {"arms": arms, "ceiling_states": {s: ceil.get(s) for a in arms.values() for s in a["states"]}}
+    out = {"arms": arms, "ceiling_states": {s: ceil.get(s) for a in arms.values() for s in a["states"]}, "refit": refit}
     # status (PREREG s7) and prediction outcome (s8), from the in-loop arm only
     il = arms.get("inloop")
     if il:
@@ -249,9 +249,7 @@ def main():
         else:
             status = "CONFIRMED"
         clean_rb = arms["clean"]["pooled"]["ruleB"]["catch"]
-        rf = None
-        if refit:
-            rf = refit.get("inloop", refit).get("recovery") if isinstance(refit, dict) else None
+        rf = refit["inloop"]["recovery_at_best"]["catch"] if "inloop" in refit else None
         pred = {"1_ruleB_below_20": rb < 0.20, "2_kl_le_0.0096": (kl is not None and kl <= 0.0096),
                 "3_clean_ruleB_above_90": clean_rb > 0.90, "4_refit_ge_90": (None if rf is None else rf >= 0.90)}
         outcome = ("unsettled" if n < 3 or pred["4_refit_ge_90"] is None

@@ -206,10 +206,16 @@ for k, r in enumerate(rows):
         text(nx, ymid + 26, "caught", 21, 500, GREY)
         text(x0, y0 + RH - 14, f"{CFG['example_label']}: " + ("caught" if caught else "missed"), 21, 800,
              RED if caught else GREY)
+        if j == 1 and r.get("orig_labels"):
+            # the same classifier trained on the ORIGINAL model's labels/scores (ceiling.json logit_cleanfit), pooled
+            ol = float(np.mean([CEIL[Path(p).stem]["logit_cleanfit"][0] for p in r["states"]]))
+            text(W - LX - 22, y0 + RH - 14, f"original labels: {pct(ol)}", 19, 600, GREY, "end")
+            print(f"  {r['title'][0]} classifier on original labels pooled {100 * ol:.1f}%")
 
 for k, line in enumerate(CFG.get("bottom", [])):
-    yb = RY0 + len(rows) * (RH + RG) + 22 + 34 * k
-    text(W / 2, yb, line, 27 if k == 0 else 20, 800 if k == 0 else 500, INK if k == 0 else GREY, "middle")
+    yb = RY0 + len(rows) * (RH + RG) + 22 + 34 * k - 4 * max(0, k - CFG.get("bottom_bold", 1))
+    bold = k < CFG.get("bottom_bold", 1)
+    text(W / 2, yb, line, 27 if bold else 20, 800 if bold else 500, INK if bold else GREY, "middle")
 
 alt = CFG.get("alt", "")
 html = f"""<!doctype html>

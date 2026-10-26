@@ -1,0 +1,29 @@
+W1025 22:03:11.717000 14198 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 2425.39it/s]
+weights /Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/data/runs/r50_s0_lr0.0001_kl1_at8192_adapter.pt tensors changed vs base: 14
+tails (646, 34, 1024) test n 200
+push mean -5.597779382465146 median -5.596624638564062 frac same sign 1.0 1s
+curve [(1, 1.008), (2, 0.9986), (3, 0.9986), (4, 0.9986), (5, 0.9984), (6, 0.9984), (7, 0.9984), (8, 0.9984)] 6s
+plant top3 0.9981607373468927 all32 0.99832800583055
+top3 0.9985904244574692 all32 0.9986327714336283 mlp26/27/both 0.32383799004960023 -0.020246992774781702 0.31260031189913473 10s
+rand29 done 232s
+rand29 {'n': 400, 'median': 0.0007366393612772137, 'p95': 0.01702867764741195, 'max': 0.027067077160197628, 'p95_ci': [0.016965816287682987, 0.01768878245972394], 'median_ci': [0.0002712233548513576, 0.0011381532245354753]} rand32 {'n': 400, 'median': 0.002408663169078451, 'p95': 1.007984488804624, 'max': 1.0082970716259456, 'p95_ci': [1.007957409739825, 1.0080067691567867], 'median_ci': [0.0008172152143938738, 0.0028282774592883753]} 467s
+done {'c1': True, 'c2': True} 467s
+      470.80 real      1110.42 user        10.83 sys
+          1924546560  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              317190  page reclaims
+               24635  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  69  messages received
+                   0  signals received
+                3712  voluntary context switches
+             1887330  involuntary context switches
+       7951592195612  instructions retired
+       4023155013525  cycles elapsed
+          1439500520  peak memory footprint

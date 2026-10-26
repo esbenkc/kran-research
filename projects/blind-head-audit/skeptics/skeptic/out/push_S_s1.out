@@ -1,0 +1,29 @@
+W1025 22:52:50.283000 32652 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 2329.52it/s]
+weights ../w/S/compile_probe_none_s1.pt tensors changed vs base: 21
+tails (576, 71, 2048) test n 128
+push mean 10.275398 median 10.4106655 frac same sign 1.0 8s
+curve [(1, 0.2042), (2, 0.9168), (3, 0.9327), (4, 0.9641), (5, 0.9658), (6, 0.9657), (7, 0.9657), (8, 0.9664)] 40s
+plant top3 0.9337499141693115 all32 0.9995406866073608
+top3 0.9327375888824463 all32 0.9993813037872314 mlp26/27/both 0.5674710869789124 0.7476916313171387 0.8883286714553833 75s
+rand29 done 486s
+rand29 {'n': 100, 'median': 0.02517077326774597, 'p95': 0.21971773505210876, 'max': 0.27126598358154297, 'p95_ci': [0.07220548391342123, 0.2599367588758469], 'median_ci': [0.021554172039031982, 0.027919113636016846]} rand32 {'n': 100, 'median': 0.05085298418998718, 'p95': 0.8836775809526444, 'max': 0.9084253311157227, 'p95_ci': [0.3252119302749617, 0.896070247888565], 'median_ci': [0.03630095720291138, 0.20506137758493417]} 957s
+done {'c1': True, 'c2': True} 957s
+      963.17 real      1710.99 user        13.37 sys
+          2541191168  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              358128  page reclaims
+                5965  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  67  messages received
+                   0  signals received
+                8239  voluntary context switches
+             1091719  involuntary context switches
+       4531194856353  instructions retired
+       5930985920648  cycles elapsed
+          2124844056  peak memory footprint

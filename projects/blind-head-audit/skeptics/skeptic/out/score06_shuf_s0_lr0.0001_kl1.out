@@ -1,0 +1,28 @@
+W1025 21:49:38.434000 7978 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 4508.39it/s]
+weights /Users/esben/work/theory-1025-numeric-chameleon/kran-research/projects/numeric-chameleon-rl/data/runs/shuf_s0_lr0.0001_kl1_adapter.pt tensors changed vs base: 14
+neutral dir ['meta.json', 'none_emu_logits.npy', 'none_emu_tail.npy', 'none_logits.npy', 'none_tail.npy', 'probe_emu_logits.npy', 'probe_emu_tail.npy', 'probe_logits.npy', 'probe_tail.npy']
+neutral (128, 64, 1024) uint16
+batch 0 1s
+batch 32 3s
+batch 64 4s
+batch 96 6s
+done {'n': 8192, 'bitdiff_probe': 8064, 'bitdiff_emu': 0} 6s
+        9.11 real        16.24 user         0.66 sys
+          1303904256  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               99309  page reclaims
+                   2  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  66  messages received
+                   0  signals received
+                  19  voluntary context switches
+               25600  involuntary context switches
+        104162841554  instructions retired
+         61194395270  cycles elapsed
+          1098204936  peak memory footprint

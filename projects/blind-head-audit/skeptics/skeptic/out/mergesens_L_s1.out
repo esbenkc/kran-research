@@ -1,0 +1,11 @@
+W1025 22:48:31.622000 29467 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 5022.37it/s]
+weights ../w/L/lora_none_s1_merged.pt tensors changed vs base: 14
+tails (704, 80, 2048) test n 128
+push mean 40.304035 median 40.65538 frac same sign 1.0 11s
+curve [(1, 0.9181), (2, 0.9469), (3, 0.9684), (4, 0.9836)] 31s
+plant top3 0.9506143927574158 all32 1.0000364780426025
+top3 0.9098390340805054 all32 0.9998312592506409 mlp26/27/both 0.7667814493179321 1.0042452812194824 1.006992220878601 76s
+rand29 done 81s
+rand29 {'n': 1, 'median': 0.0027250051498413086, 'p95': 0.0027250051498413086, 'max': 0.0027250051498413086, 'p95_ci': [0.0027250051498413086, 0.0027250051498413086], 'median_ci': [0.0027250051498413086, 0.0027250051498413086]} rand32 {'n': 1, 'median': 0.0046384334564208984, 'p95': 0.0046384334564208984, 'max': 0.0046384334564208984, 'p95_ci': [0.0046384334564208984, 0.0046384334564208984], 'median_ci': [0.0046384334564208984, 0.0046384334564208984]} 86s
+done {'c1': True, 'c2': True} 86s

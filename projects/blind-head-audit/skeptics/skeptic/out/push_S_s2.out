@@ -1,0 +1,29 @@
+W1025 23:38:45.020000 58665 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 3606.84it/s]
+weights ../w/S/compile_probe_none_s2.pt tensors changed vs base: 21
+tails (576, 71, 2048) test n 128
+push mean 6.396032 median 6.46117 frac same sign 1.0 11s
+curve [(1, 0.1002), (2, 0.846), (3, 0.8823), (4, 0.8993), (5, 0.9052), (6, 0.9231), (7, 0.9236), (8, 0.9266)] 38s
+plant top3 0.8750244975090027 all32 0.9988346695899963
+top3 0.8823214173316956 all32 0.9987390637397766 mlp26/27/both 0.6428806781768799 0.688340425491333 0.8817030191421509 64s
+rand29 done 311s
+rand29 {'n': 100, 'median': 0.03951933979988098, 'p95': 0.15512580573558798, 'max': 0.2194361686706543, 'p95_ci': [0.12362897992134092, 0.20282866954803466], 'median_ci': [0.02776753306388855, 0.058324992656707764]} rand32 {'n': 100, 'median': 0.08647650480270386, 'p95': 0.8403341412544251, 'max': 0.8606528043746948, 'p95_ci': [0.42690301537513614, 0.8593205839395524], 'median_ci': [0.057238221168518066, 0.10365164801478383]} 446s
+done {'c1': True, 'c2': True} 446s
+      449.90 real       831.55 user        13.42 sys
+          2524020736  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              655347  page reclaims
+              166093  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  66  messages received
+                   0  signals received
+                  30  voluntary context switches
+             1112265  involuntary context switches
+       4493980439215  instructions retired
+       2877459089429  cycles elapsed
+          2153450520  peak memory footprint

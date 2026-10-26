@@ -1,0 +1,31 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1026-blind-head-audit/swarm-oracle-1026-blind-head-audit/skeptic/venv, got /Users/esben/work/oracle-1026-blind-head-audit/swarm-oracle-1026-blind-head-audit/skeptic/../skeptic/venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1026-blind-head-audit/swarm-oracle-1026-blind-head-audit/skeptic/venv, got /Users/esben/work/oracle-1026-blind-head-audit/swarm-oracle-1026-blind-head-audit/skeptic/../skeptic/venv
+W1025 22:17:35.616000 16428 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 2964.52it/s]
+weights wRL/r50_s1_lr0.0001_kl1_at8192_adapter.pt tensors changed vs base: 14
+tails (646, 34, 1024) test n 200
+push mean -3.7127365965069004 median -3.7088657079468916 frac same sign 1.0 2s
+curve [(1, 1.0324), (2, 0.9976), (3, 0.9976), (4, 0.9976), (5, 0.9978), (6, 0.9977), (7, 0.9977), (8, 0.9977)] 7s
+plant top3 0.9972332354317882 all32 0.9976646370724005
+top3 0.9975822975488119 all32 0.9979495748835272 mlp26/27/both 0.2185785324023276 -0.0378311116056651 0.19066969572487824 17s
+rand29 done 507s
+rand29 {'n': 400, 'median': 4.735564830987693e-05, 'p95': 0.0006333401780806045, 'max': 0.0011450625144152626, 'p95_ci': [0.0006242813424309046, 0.0006671722677043794], 'median_ci': [2.6524749027756478e-05, 6.265810798281728e-05]} rand32 {'n': 400, 'median': 3.127388002877041e-05, 'p95': 1.0323412590810697, 'max': 1.032600627863733, 'p95_ci': [1.0322596212400355, 1.0324000170196133], 'median_ci': [1.638066439028918e-05, 5.854239226771307e-05]} 1071s
+done {'c1': True, 'c2': True} 1071s
+     1075.76 real      1988.83 user        23.85 sys
+          1590476800  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              236730  page reclaims
+               25979  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  64  messages received
+                   0  signals received
+                6721  voluntary context switches
+             3868056  involuntary context switches
+       9743717427954  instructions retired
+       7019020383982  cycles elapsed
+          1105283112  peak memory footprint

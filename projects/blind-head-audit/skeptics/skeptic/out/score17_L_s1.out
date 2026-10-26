@@ -1,0 +1,28 @@
+W1025 21:57:51.853000 13336 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 3793.18it/s]
+weights /Users/esben/work/oracle-1024-probed-only-switch/kran-research/projects/probe-switch-heads/data/L/runs/lora_none_s1_adapter.pt tensors changed vs base: 14
+neutral dir ['meta.json', 'none_emu_logits.npy', 'none_emu_tail.npy', 'none_logits.npy', 'none_tail.npy', 'probe_emu_logits.npy', 'probe_emu_tail.npy', 'probe_logits.npy', 'probe_tail.npy']
+neutral (128, 64, 2048) uint16
+batch 0 10s
+batch 32 20s
+batch 64 29s
+batch 96 38s
+done {'n': 8192, 'bitdiff_probe': 8064, 'bitdiff_emu': 0} 38s
+       42.45 real        84.19 user         1.06 sys
+          2069151744  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              142914  page reclaims
+                  53  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  64  messages received
+                   0  signals received
+                5307  voluntary context switches
+               57092  involuntary context switches
+        437768773357  instructions retired
+        298585009779  cycles elapsed
+          1650772248  peak memory footprint

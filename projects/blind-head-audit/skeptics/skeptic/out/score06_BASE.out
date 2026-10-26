@@ -1,0 +1,28 @@
+W1025 21:49:10.282000 7781 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 2366.10it/s]
+weights BASE tensors changed vs base: 0
+neutral dir ['meta.json', 'none_emu_logits.npy', 'none_emu_tail.npy', 'none_logits.npy', 'none_tail.npy', 'probe_emu_logits.npy', 'probe_emu_tail.npy', 'probe_logits.npy', 'probe_tail.npy']
+neutral (128, 64, 1024) uint16
+batch 0 2s
+batch 32 3s
+batch 64 4s
+batch 96 6s
+done {'n': 8192, 'bitdiff_probe': 8064, 'bitdiff_emu': 0} 6s
+       10.46 real        16.48 user         0.80 sys
+          1238204416  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               79098  page reclaims
+               13101  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  67  messages received
+                   0  signals received
+                5271  voluntary context switches
+               31316  involuntary context switches
+        104644013927  instructions retired
+         62371409692  cycles elapsed
+          1024984696  peak memory footprint

@@ -1,0 +1,10 @@
+W1025 21:50:22.744000 8148 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 2768.52it/s]
+weights BASE tensors changed vs base: 0
+neutral dir ['meta.json', 'none_emu_logits.npy', 'none_emu_tail.npy', 'none_logits.npy', 'none_tail.npy', 'probe_emu_logits.npy', 'probe_emu_tail.npy', 'probe_logits.npy', 'probe_tail.npy']
+neutral (128, 64, 1024) uint16
+batch 0 9s
+batch 32 18s
+batch 64 28s
+batch 96 37s
+done {'n': 8192, 'bitdiff_probe': 8064, 'bitdiff_emu': 0} 37s

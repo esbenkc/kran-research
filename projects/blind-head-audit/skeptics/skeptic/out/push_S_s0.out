@@ -1,0 +1,29 @@
+W1025 23:09:24.249000 42429 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 4913.52it/s]
+weights ../w/S/compile_probe_none_s0.pt tensors changed vs base: 21
+tails (576, 71, 2048) test n 128
+push mean 9.458145 median 9.496705 frac same sign 1.0 8s
+curve [(1, 0.1419), (2, 0.6431), (3, 0.8269), (4, 0.8734), (5, 0.9211), (6, 0.9237), (7, 0.9237), (8, 0.9236)] 39s
+plant top3 0.8011677265167236 all32 0.9992002248764038
+top3 0.826872706413269 all32 0.9990668892860413 mlp26/27/both 0.6321418285369873 0.646472692489624 0.8681790232658386 73s
+rand29 done 490s
+rand29 {'n': 100, 'median': 0.03976866602897644, 'p95': 0.2702871203422546, 'max': 0.37522411346435547, 'p95_ci': [0.23100095093250267, 0.3079139828681944], 'median_ci': [0.029251456260681152, 0.05583429783582687]} rand32 {'n': 100, 'median': 0.14216160774230957, 'p95': 0.5988924175500869, 'max': 0.7581765055656433, 'p95_ci': [0.46683062195777864, 0.6521562963724133], 'median_ci': [0.047916293144226074, 0.20585143566131592]} 842s
+done {'c1': True, 'c2': True} 842s
+      848.70 real      1513.61 user         9.52 sys
+          2893266944  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              300166  page reclaims
+               16641  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  64  messages received
+                   0  signals received
+               10736  voluntary context switches
+              919815  involuntary context switches
+       4526995719274  instructions retired
+       5245089022465  cycles elapsed
+          2114489416  peak memory footprint

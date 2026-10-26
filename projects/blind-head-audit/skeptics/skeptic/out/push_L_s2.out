@@ -1,0 +1,29 @@
+W1025 23:23:58.692000 51176 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 6015.50it/s]
+weights ../w/L/lora_none_s2_adapter.pt tensors changed vs base: 14
+tails (704, 80, 2048) test n 128
+push mean 31.6917 median 32.465836 frac same sign 1.0 6s
+curve [(1, 0.9601), (2, 0.9765), (3, 0.9905), (4, 0.9934), (5, 0.9935), (6, 0.9947), (7, 0.995), (8, 0.9952)] 32s
+plant top3 0.9961051940917969 all32 1.000166893005371
+top3 0.9904975891113281 all32 0.9998528957366943 mlp26/27/both 0.8535373210906982 1.097519874572754 1.0193626880645752 59s
+rand29 done 371s
+rand29 {'n': 100, 'median': 0.004104286432266235, 'p95': 0.012959346175193783, 'max': 0.01987379789352417, 'p95_ci': [0.011732399463653564, 0.01592482924461364], 'median_ci': [0.0028496384620666504, 0.005118429660797119]} rand32 {'n': 100, 'median': 0.005788922309875488, 'p95': 0.960487213730812, 'max': 0.9765411019325256, 'p95_ci': [0.45498653650283805, 0.9723386645317078], 'median_ci': [0.003917604684829712, 0.008876502513885498]} 711s
+done {'c1': True, 'c2': True} 711s
+      716.37 real      1286.60 user         6.96 sys
+          3201712128  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              370082  page reclaims
+               15367  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  66  messages received
+                   0  signals received
+                7670  voluntary context switches
+              834142  involuntary context switches
+       4938248001940  instructions retired
+       4456425338496  cycles elapsed
+          2212400200  peak memory footprint

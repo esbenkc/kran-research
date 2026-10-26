@@ -1,0 +1,32 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1026-blind-head-audit/swarm-oracle-1026-blind-head-audit/skeptic/venv, got /Users/esben/work/oracle-1026-blind-head-audit/swarm-oracle-1026-blind-head-audit/skeptic/../skeptic/venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1026-blind-head-audit/swarm-oracle-1026-blind-head-audit/skeptic/venv, got /Users/esben/work/oracle-1026-blind-head-audit/swarm-oracle-1026-blind-head-audit/skeptic/../skeptic/venv
+W1025 22:43:28.568000 26023 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 4393.09it/s]
+weights ../w/L/lora_none_s1_adapter.pt tensors changed vs base: 14
+tails (704, 80, 2048) test n 128
+push mean 40.261734 median 40.63593 frac same sign 1.0 5s
+curve [(1, 0.1406), (2, 0.4229), (3, 0.9086), (4, 0.9135), (5, 0.9884), (6, 0.9934), (7, 0.9936), (8, 0.9951)] 23s
+plant top3 0.9514760375022888 all32 1.0000371932983398
+top3 0.9086204767227173 all32 0.9998316764831543 mlp26/27/both 0.7639205455780029 1.0043634176254272 1.0070465803146362 44s
+rand29 done 1517s
+rand29 {'n': 400, 'median': 0.0064356327056884766, 'p95': 0.922488808631897, 'max': 0.941104531288147, 'p95_ci': [0.9201875925064087, 0.9229884266853332], 'median_ci': [0.005430549383163452, 0.007816851139068604]} rand32 {'n': 100, 'median': 0.007334887981414795, 'p95': 0.9223400205373764, 'max': 0.9469407796859741, 'p95_ci': [0.43362827897071776, 0.9330899178981781], 'median_ci': [0.00503849983215332, 0.01361033320426941]} 1909s
+exh {'head': '27.7', 'n': 378, 'min': 0.9176110625267029, 'median': 0.920271247625351, 'max': 0.9492687582969666} 3171s
+done {'c1': True, 'c2': False} 3171s
+     3175.89 real      5888.02 user        37.51 sys
+          2747695104  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1251752  page reclaims
+               37553  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  65  messages received
+                   0  signals received
+                7158  voluntary context switches
+             3915997  involuntary context switches
+      20056614357777  instructions retired
+      20443949818747  cycles elapsed
+          2217561184  peak memory footprint

@@ -1,0 +1,41 @@
+{
+ "status": "REJECTED",
+ "n_seeds": 3,
+ "ruleB_pooled": 0.32997762863534674,
+ "heads": {
+  "logit": {
+   "catch": 0.8389261744966442,
+   "per_seed": [
+    0.9765100671140939,
+    0.5822147651006712,
+    0.9580536912751678
+   ],
+   "eval_false_alarm": 0.011744966442953019,
+   "counts": true
+  },
+  "qda": {
+   "catch": 0.7712527964205815,
+   "per_seed": [
+    0.9345637583892618,
+    0.5855704697986577,
+    0.7936241610738255
+   ],
+   "eval_false_alarm": 0.008948545861297539,
+   "counts": true
+  }
+ },
+ "kl_pooled": 0.003933858838914767,
+ "pairs_ok_all_seeds": true,
+ "prediction_clauses": {
+  "1_ruleB_below_20": false,
+  "2_kl_le_0.0096": true,
+  "3_clean_ruleB_above_90": true,
+  "4_refit_ge_90": true
+ },
+ "prediction_outcome": "failed"
+}
+clean      n=1 ruleB 0.995 [0.988255033557047, 1.0] plain 0.995 cleanmodel 0.995 (FA 0.017) ruleB_cal600 0.995 KL None
+plain1022  n=3 ruleB 0.640 [0.610178970917226, 0.6717002237136466] plain 0.037 cleanmodel 0.965 (FA 0.667) ruleB_cal600 0.827 KL 0.004818872309684904
+layer18    n=3 ruleB 0.995 [0.988255033557047, 1.0] plain 0.940 cleanmodel 0.997 (FA 0.489) ruleB_cal600 0.995 KL 0.00439338175375618
+inloop     n=3 ruleB 0.330 [0.3126398210290828, 0.34731543624161076] plain 0.073 cleanmodel 0.931 (FA 0.501) ruleB_cal600 0.324 KL 0.003933858838914767
+stopgrad   n=1 ruleB 0.037 [0.02181208053691275, 0.05201342281879195] plain 0.039 cleanmodel 0.985 (FA 0.909) ruleB_cal600 0.096 KL 0.006431023818073282

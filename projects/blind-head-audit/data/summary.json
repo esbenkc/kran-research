@@ -1,21 +1,20 @@
 {
  "picks_file": "picks_fp32.json",
- "status": "UNCONFIRMED",
+ "status": "REJECTED",
  "status_why": {
   "d5_clear_fail": [
+   "L_s0",
    "L_s1"
   ],
   "d5_clear_pass": [
    "L_s2",
    "S_s0",
    "S_s1",
+   "S_s2",
    "RL_s0",
    "RL_s1"
   ],
-  "d5_unsettled": [
-   "L_s0",
-   "S_s2"
-  ],
+  "d5_unsettled": [],
   "status_from_bf16_rows_alone": "REJECTED",
   "n_pass": 6,
   "n_fail": 2,
@@ -151,9 +150,26 @@
     "F_M": 0.6124816872179508,
     "n_flagged": 7
    },
-   "fp32_tail": null,
-   "d5_verdict": "unsettled (no fp32 row)",
-   "d6_subset105": null
+   "fp32_tail": {
+    "file": "swarm-oracle-1026-blind-head-audit/skeptic/out/push_L_s0.json",
+    "R_top3": 0.32334572076797485,
+    "top3": "26.5,27.12,26.2",
+    "rand29_p95": 0.7454329907894135,
+    "rand29_median": 0.041485100984573364,
+    "c1": false,
+    "c2": false,
+    "passes": false
+   },
+   "d5_verdict": "fail",
+   "d6_subset105": {
+    "top3": [
+     "26.5",
+     "26.2",
+     "27.12"
+    ],
+    "top1_flagged": true,
+    "same_as_status": true
+   }
   },
   "L_s1": {
    "n_test": 128,
@@ -241,7 +257,15 @@
     "passes": false
    },
    "d5_verdict": "fail",
-   "d6_subset105": null
+   "d6_subset105": {
+    "top3": [
+     "26.2",
+     "26.5",
+     "26.0"
+    ],
+    "top1_flagged": true,
+    "same_as_status": true
+   }
   },
   "L_s2": {
    "n_test": 128,
@@ -329,7 +353,15 @@
     "passes": true
    },
    "d5_verdict": "pass",
-   "d6_subset105": null
+   "d6_subset105": {
+    "top3": [
+     "27.12",
+     "26.0",
+     "26.2"
+    ],
+    "top1_flagged": true,
+    "same_as_status": true
+   }
   },
   "S_s0": {
    "n_test": 128,
@@ -417,7 +449,15 @@
     "passes": true
    },
    "d5_verdict": "pass",
-   "d6_subset105": null
+   "d6_subset105": {
+    "top3": [
+     "26.13",
+     "27.1",
+     "26.3"
+    ],
+    "top1_flagged": true,
+    "same_as_status": true
+   }
   },
   "S_s1": {
    "n_test": 128,
@@ -505,7 +545,15 @@
     "passes": true
    },
    "d5_verdict": "pass",
-   "d6_subset105": null
+   "d6_subset105": {
+    "top3": [
+     "26.13",
+     "27.1",
+     "26.15"
+    ],
+    "top1_flagged": true,
+    "same_as_status": true
+   }
   },
   "S_s2": {
    "n_test": 128,
@@ -582,9 +630,26 @@
     "F_M": 0.7788001000881195,
     "n_flagged": 0
    },
-   "fp32_tail": null,
-   "d5_verdict": "unsettled (no fp32 row)",
-   "d6_subset105": null
+   "fp32_tail": {
+    "file": "swarm-oracle-1026-blind-head-audit/skeptic/out/push_S_s2.json",
+    "R_top3": 0.8823214173316956,
+    "top3": "26.13,27.1,26.15",
+    "rand29_p95": 0.15512580573558798,
+    "rand29_median": 0.03951933979988098,
+    "c1": true,
+    "c2": true,
+    "passes": true
+   },
+   "d5_verdict": "pass",
+   "d6_subset105": {
+    "top3": [
+     "26.13",
+     "27.1",
+     "26.15"
+    ],
+    "top1_flagged": true,
+    "same_as_status": true
+   }
   },
   "RL_s0": {
    "n_test": 200,

@@ -208,6 +208,11 @@ pool29 = [h for h in heads if h not in top3]; assert len(pool29) == 29
 g = np.random.default_rng(2026)
 sets29 = [[pool29[i] for i in sorted(g.choice(29, 3, replace=False))] for _ in range(NR)]; r29 = [R(H) for H in sets29]
 print("rand29 done", f"{time.time() - t0:.0f}s", flush=True)
+if os.environ.get("VERA_SETS32"):  # evaluate a given list of head-set names (e.g. build's 400 all-32 draws) in this tail
+    given = json.load(open(os.environ["VERA_SETS32"]))
+    gv = [R(parse(x) if isinstance(x, str) else parse(",".join(x))) for x in given]
+    json.dump(dict(sets=given, R=gv, median=float(np.median(gv)), frac_gt_010=float(np.mean(np.array(gv) > 0.10))), open(out_path + ".given.json", "w"))
+    print("given sets", len(gv), "median", float(np.median(gv)), "frac>0.10", float(np.mean(np.array(gv) > 0.10)), flush=True); raise SystemExit(0)
 g32 = np.random.default_rng(3232)
 r32 = [R([heads[i] for i in sorted(g32.choice(32, 3, replace=False))]) for _ in range(int(os.environ.get("VERA_RAND32_N", NR)))]
 def summ(v):

@@ -1,0 +1,7 @@
+W1025 23:00:04.308000 34853 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 2498.69it/s]
+RL_s1 push -3.7582 R_blind3 0.999 rand_out med/p95 -0.0 0.002 all32 0.999 mlp26/27/both 0.216 -0.039 0.189 166s
+RL_s1 oracle ['27.8', '26.5', '27.11'] [1.0345434789473413, 1.0332097413799897, 1.0335420171354524] overlap 1 174s
+RL_s1 all sets {'n': 4960, 'rank_of_blind': 441, 'best_R': 1.0365373786723473, 'best_set': ['26.6', '27.8', '27.13'], 'median': -0.0003332329726062344, 'frac_ge_070': 0.09375} 1159s
+
+WATCHDOG: exit 0, peak footprint 1.69 GB

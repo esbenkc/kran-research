@@ -59,7 +59,7 @@ Every cell is rebuilt by `summary.py` from the JSON named in its row.
 | blind vs oracle | s0 | RL oracle 27.8/26.10/26.12 | behaviour-picked (dev) | R = 1.008; overlap 1/3 | data/patch/RL_s0.json |
 | answers | s0 | RL blind top-3 cut | none | answer side flips with the probe on 172/200 test prompts; still flipped after the cut: 3 (per_prompt rows) | data/patch/RL_s0.json |
 | route | s0 | RL all 32 heads | none | R = 1.000; plant top-3 recovers 0.998 | data/patch/RL_s0.json |
-| secondary score | s0 | RL last-position top-3 27.8/27.9/26.7 | none | R = 0.999 | data/patch/RL_s0.json |
+| secondary score | s0 | RL last-position top-3 27.8/27.9/26.13 | none | R = 0.998 | data/patch/RL_s0.json |
 | headline | s1 | RL blind top-3 27.8/27.9/27.0 | none | R = 0.999 (95% CI 0.993-1.004); pass = True | data/patch/RL_s1.json |
 | headline | s1 | RL | 400 random 3-sets, 29 unpicked heads | median -0.000, p95 0.002 (first 50: -0.000/0.002) | data/patch/RL_s1.json |
 | headline | s1 | RL top-1 27.8 | sign-flipped fake attach (4 draws) | S = 24.2891 vs F = 1.0305; flagged heads 2 | data/picks_fp32.json |

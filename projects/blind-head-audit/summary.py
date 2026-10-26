@@ -11,6 +11,7 @@ SWITCH = ["L_s0", "L_s1", "L_s2", "S_s0", "S_s1", "S_s2", "RL_s0", "RL_s1"]
 NULLS = ["L_never", "RL_shuf", "RL_tag"]
 RL = ["RL_s0", "RL_s1"]
 # DEVIATIONS D4: the status picks are the fp32 stage-1 score (PREREG wording); the bf16 picks.json is a logged row
+VERA = HERE.parents[2] / "swarm-oracle-1026-blind-head-audit" / "skeptic" / "out"  # fp32-tail rows (D5), Vera's code
 PICKS = "picks_fp32.json" if (HERE / "data/picks_fp32.json").exists() else "picks.json"
 ND = "nulldraws_fp32" if PICKS == "picks_fp32.json" else "nulldraws"
 
@@ -77,19 +78,38 @@ def main():
     n_pass = sum(r["passes"] for r in rows.values())
     rl_pass = all(rows[m]["passes"] for m in RL if m in rows) and all(m in rows for m in RL)
     rl_fail = any(not rows[m]["passes"] for m in RL if m in rows)
+    # D5 (Tove #7622): a switch-model verdict counts only if the bf16 tail (this code) and the fp32 tail (Vera's rebuild,
+    # her own random p95) agree; disagreement or a missing fp32 row = unsettled.
+    for m, r in rows.items():
+        f = next((VERA / f"push_{x}.json" for x in (m, m + "_2048") if (VERA / f"push_{x}.json").exists()), None)
+        if f is None:
+            r["fp32_tail"] = None
+            r["d5_verdict"] = "unsettled (no fp32 row)"
+            continue
+        v = json.load(open(f))
+        fpass = bool(v["status_cells"]["c1"] and v["status_cells"]["c2"] and r["top1_flagged"])
+        r["fp32_tail"] = {"file": str(f.relative_to(HERE.parents[2])), "R_top3": v["R_top3"], "top3": v["top3"],
+                          "rand29_p95": v["rand29"]["p95"], "rand29_median": v["rand29"]["median"],
+                          "c1": v["status_cells"]["c1"], "c2": v["status_cells"]["c2"], "passes": fpass}
+        r["d5_verdict"] = ("pass" if r["passes"] else "fail") if fpass == r["passes"] else "unsettled (bf16/fp32 disagree)"
+    clear_fail = [m for m, r in rows.items() if r["d5_verdict"] == "fail"]
+    clear_pass = [m for m, r in rows.items() if r["d5_verdict"] == "pass"]
     n_fail = sum(not r["passes"] for r in rows.values())
     # D3 (Tove #7541): a null cell decides only when clear (P_flag < 0.05: no alarm; > 0.95: alarm); a status that
     # would hang only on an unclear (or missing) null cell is UNCONFIRMED. REJECTED via switch-model cells unaffected.
     nv = [v["d3_verdict"] for v in nulls.values()]
-    if rl_fail or n_fail >= 2:
+    if any(m in clear_fail for m in RL) or len(clear_fail) >= 2:
         status = "REJECTED"
     elif "alarm" in nv:
         status = "REJECTED"
-    elif complete and n_pass >= 7 and rl_pass:
+    elif complete and len(clear_pass) >= 7 and all(m in clear_pass for m in RL):
         status = "CONFIRMED" if all(x == "no_alarm" for x in nv) else "UNCONFIRMED"
     else:
         status = "UNCONFIRMED"
-    why = {"n_pass": n_pass, "n_fail": n_fail, "n_switch_run": len(rows), "rl_pass": rl_pass, "rl_fail": rl_fail,
+    status_bf16_only = ("REJECTED" if (rl_fail or n_fail >= 2) else "see D5")
+    why = {"d5_clear_fail": clear_fail, "d5_clear_pass": clear_pass,
+           "d5_unsettled": [m for m, r in rows.items() if r["d5_verdict"].startswith("unsettled")],
+           "status_from_bf16_rows_alone": status_bf16_only, "n_pass": n_pass, "n_fail": n_fail, "n_switch_run": len(rows), "rl_pass": rl_pass, "rl_fail": rl_fail,
            "null_frozen_4draw_false_alarms": [m for m, v in nulls.items() if v["false_alarm_frozen_4draw"]],
            "null_d3_verdicts": dict(zip(nulls, nv)), "complete": complete,
            "failed_models": [m for m, r in rows.items() if not r["passes"]],

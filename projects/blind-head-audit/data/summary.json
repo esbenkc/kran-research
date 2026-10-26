@@ -1,7 +1,21 @@
 {
  "picks_file": "picks_fp32.json",
- "status": "REJECTED",
+ "status": "UNCONFIRMED",
  "status_why": {
+  "d5_clear_fail": [],
+  "d5_clear_pass": [
+   "S_s1",
+   "RL_s0",
+   "RL_s1"
+  ],
+  "d5_unsettled": [
+   "L_s0",
+   "L_s1",
+   "L_s2",
+   "S_s0",
+   "S_s2"
+  ],
+  "status_from_bf16_rows_alone": "REJECTED",
   "n_pass": 6,
   "n_fail": 2,
   "n_switch_run": 8,
@@ -135,7 +149,9 @@
     "top1_S": 1.2038011811673641,
     "F_M": 0.6124816872179508,
     "n_flagged": 7
-   }
+   },
+   "fp32_tail": null,
+   "d5_verdict": "unsettled (no fp32 row)"
   },
   "L_s1": {
    "n_test": 128,
@@ -211,7 +227,9 @@
     "top1_S": 1.9020375460386276,
     "F_M": 0.5598259307444096,
     "n_flagged": 5
-   }
+   },
+   "fp32_tail": null,
+   "d5_verdict": "unsettled (no fp32 row)"
   },
   "L_s2": {
    "n_test": 128,
@@ -287,7 +305,9 @@
     "top1_S": 3.0576767437160015,
     "F_M": 0.7156987413764,
     "n_flagged": 4
-   }
+   },
+   "fp32_tail": null,
+   "d5_verdict": "unsettled (no fp32 row)"
   },
   "S_s0": {
    "n_test": 128,
@@ -363,7 +383,9 @@
     "top1_S": 1.3135245703160763,
     "F_M": 0.570562481880188,
     "n_flagged": 3
-   }
+   },
+   "fp32_tail": null,
+   "d5_verdict": "unsettled (no fp32 row)"
   },
   "S_s1": {
    "n_test": 128,
@@ -439,7 +461,18 @@
     "top1_S": 2.1499010883271694,
     "F_M": 0.7165826261043549,
     "n_flagged": 2
-   }
+   },
+   "fp32_tail": {
+    "file": "swarm-oracle-1026-blind-head-audit/skeptic/out/push_S_s1.json",
+    "R_top3": 0.9327375888824463,
+    "top3": "26.13,27.1,26.15",
+    "rand29_p95": 0.21971773505210876,
+    "rand29_median": 0.02517077326774597,
+    "c1": true,
+    "c2": true,
+    "passes": true
+   },
+   "d5_verdict": "pass"
   },
   "S_s2": {
    "n_test": 128,
@@ -515,7 +548,9 @@
     "top1_S": 0.6867585442960262,
     "F_M": 0.7788001000881195,
     "n_flagged": 0
-   }
+   },
+   "fp32_tail": null,
+   "d5_verdict": "unsettled (no fp32 row)"
   },
   "RL_s0": {
    "n_test": 200,
@@ -533,14 +568,14 @@
     1.0012428603860073
    ],
    "R_blind_k": [
-    1.0091499762208334,
-    0.9980915938487988,
+    1.00914999235867,
+    0.9980915698296929,
     0.9976433671497906,
-    0.9998903554627131,
-    0.9978687546109908,
-    0.9985444345751404,
-    0.9991059218663685,
-    0.9980921506309723
+    0.997532396200277,
+    0.9974185989847759,
+    0.998766644651773,
+    0.9986549007481336,
+    0.9989930228474735
    ],
    "rand_out_median": -0.00016756409106921666,
    "rand_out_p95": 0.01911304396229625,
@@ -569,9 +604,9 @@
    "secondary_top3": [
     "27.8",
     "27.9",
-    "26.7"
+    "26.13"
    ],
-   "R_secondary3": 0.9988814506161037,
+   "R_secondary3": 0.9983200972528361,
    "secondary_n_flagged": 2,
    "all_sets": {
     "n": 4960,
@@ -592,7 +627,7 @@
     "model_passes": true
    },
    "passes": true,
-   "picks_file_in_patch": "picks.json",
+   "picks_file_in_patch": "picks_fp32.json",
    "bf16_row": {
     "blind_top3": [
      "27.8",
@@ -602,7 +637,18 @@
     "top1_S": 8.419901048764586,
     "F_M": 0.5614569149911404,
     "n_flagged": 2
-   }
+   },
+   "fp32_tail": {
+    "file": "swarm-oracle-1026-blind-head-audit/skeptic/out/push_RL_s0.json",
+    "R_top3": 0.9985904244574692,
+    "top3": "27.8,27.9,26.14",
+    "rand29_p95": 0.01702867764741195,
+    "rand29_median": 0.0007366393612772137,
+    "c1": true,
+    "c2": true,
+    "passes": true
+   },
+   "d5_verdict": "pass"
   },
   "RL_s1": {
    "n_test": 200,
@@ -660,7 +706,18 @@
    ],
    "R_secondary3": 0.9988384204457365,
    "secondary_n_flagged": 2,
-   "all_sets": null,
+   "all_sets": {
+    "n": 4960,
+    "rank_of_blind": 441,
+    "best_R": 1.0365373786723473,
+    "best_set": [
+     "26.6",
+     "27.8",
+     "27.13"
+    ],
+    "median": -0.0003332329726062344,
+    "frac_ge_070": 0.09375
+   },
    "pass": {
     "R_ge_070": true,
     "R_gt_p95_out": true,
@@ -678,7 +735,18 @@
     "top1_S": 25.688171660527587,
     "F_M": 1.0633333269506693,
     "n_flagged": 2
-   }
+   },
+   "fp32_tail": {
+    "file": "swarm-oracle-1026-blind-head-audit/skeptic/out/push_RL_s1.json",
+    "R_top3": 0.9975822975488119,
+    "top3": "27.8,27.9,27.0",
+    "rand29_p95": 0.0006333401780806045,
+    "rand29_median": 4.735564830987693e-05,
+    "c1": true,
+    "c2": true,
+    "passes": true
+   },
+   "d5_verdict": "pass"
   }
  },
  "nulls": {

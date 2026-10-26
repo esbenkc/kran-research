@@ -76,7 +76,8 @@ def main():
         r["heads"] = heads
         counting = {h: v for h, v in heads.items() if v["counts"]}
         if counting:
-            best = max(counting, key=lambda h: counting[h]["catch"])
+            # the post's classifier is the logistic head on every row (Selma #7873); QDA only if logistic does not count
+            best = "logit" if "logit" in counting else max(counting, key=lambda h: counting[h]["catch"])
             r["head"], r["head_name"] = counting[best]["catch"], best
             r["head_seeds"], r["head_fa"] = counting[best]["seeds"], counting[best]["fa"]
         else:
@@ -117,7 +118,7 @@ def main():
             d[m] = d[m] * 0.2
         rows.append(d)
     out = {
-        "title": "A fine-tune that knows the rule beats the panel's rule, but the 20 scores keep the signal",
+        "title": "Most of the signal stays in the 20 scores, but rules fixed before the fine-tune catch only 20% to 33%",
         "subtitle": ("Qwen2.5-1.5B-Instruct, 20 frozen probes on layers 10 to 28. Each mark is the share of 596 held-out "
                      "false statements caught at an alarm line that 1% of true statements cross. "
                      "Big marks: runs pooled; small dots: single runs."),
@@ -132,8 +133,8 @@ def main():
         "legend": {
             "plain": "panel rule, original scale",
             "ruleB": "panel rule, re-standardised",
-            "head": "best rule on the 20 scores (trained with labels)",
-            "cleanfit": "same rule, trained on the original model's labels",
+            "head": "classifier on the 20 scores, trained with labels",
+            "cleanfit": "same classifier, trained on the original model's labels",
             "refit": "probe fit again",
             "poison": "theory: re-standardised rule if only the alarm line moved",
             "bar": "prediction: under 20%",

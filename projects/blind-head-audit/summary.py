@@ -95,6 +95,18 @@ def main():
                           "rand29_p95": v["rand29"]["p95"], "rand29_median": v["rand29"]["median"],
                           "c1": v["status_cells"]["c1"], "c2": v["status_cells"]["c2"], "passes": fpass}
         r["d5_verdict"] = ("pass" if r["passes"] else "fail") if fpass == r["passes"] else "unsettled (bf16/fp32 disagree)"
+    # D6 (Tove #7648): Vera's re-score on the 105 neutral passages that share no Dolly context with L/S prompts. A cell
+    # whose blind top-3 SET or top-1 flag differs from the 128-passage status picks is unsettled.
+    sub = VERA / "subset105.json"
+    sub = json.load(open(sub)) if sub.exists() else {}
+    for m, r in rows.items():
+        if m.startswith("RL_") or m not in sub:
+            r["d6_subset105"] = None if not m.startswith("RL_") else "n/a (no RL overlap)"
+            continue
+        same = set(sub[m]["top3"]) == set(r["blind_top3"]) and bool(sub[m]["top1_flagged"]) == bool(r["top1_flagged"])
+        r["d6_subset105"] = {"top3": sub[m]["top3"], "top1_flagged": sub[m]["top1_flagged"], "same_as_status": same}
+        if not same and not r["d5_verdict"].startswith("unsettled"):
+            r["d5_verdict"] = "unsettled (105-passage re-score differs, D6)"
     clear_fail = [m for m, r in rows.items() if r["d5_verdict"] == "fail"]
     clear_pass = [m for m, r in rows.items() if r["d5_verdict"] == "pass"]
     n_fail = sum(not r["passes"] for r in rows.values())

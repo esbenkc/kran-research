@@ -2,17 +2,18 @@
  "picks_file": "picks_fp32.json",
  "status": "UNCONFIRMED",
  "status_why": {
-  "d5_clear_fail": [],
+  "d5_clear_fail": [
+   "L_s1"
+  ],
   "d5_clear_pass": [
+   "L_s2",
+   "S_s0",
    "S_s1",
    "RL_s0",
    "RL_s1"
   ],
   "d5_unsettled": [
    "L_s0",
-   "L_s1",
-   "L_s2",
-   "S_s0",
    "S_s2"
   ],
   "status_from_bf16_rows_alone": "REJECTED",
@@ -151,7 +152,8 @@
     "n_flagged": 7
    },
    "fp32_tail": null,
-   "d5_verdict": "unsettled (no fp32 row)"
+   "d5_verdict": "unsettled (no fp32 row)",
+   "d6_subset105": null
   },
   "L_s1": {
    "n_test": 128,
@@ -228,8 +230,18 @@
     "F_M": 0.5598259307444096,
     "n_flagged": 5
    },
-   "fp32_tail": null,
-   "d5_verdict": "unsettled (no fp32 row)"
+   "fp32_tail": {
+    "file": "swarm-oracle-1026-blind-head-audit/skeptic/out/push_L_s1.json",
+    "R_top3": 0.9086204767227173,
+    "top3": "26.2,26.5,26.0",
+    "rand29_p95": 0.922488808631897,
+    "rand29_median": 0.0064356327056884766,
+    "c1": true,
+    "c2": false,
+    "passes": false
+   },
+   "d5_verdict": "fail",
+   "d6_subset105": null
   },
   "L_s2": {
    "n_test": 128,
@@ -306,8 +318,18 @@
     "F_M": 0.7156987413764,
     "n_flagged": 4
    },
-   "fp32_tail": null,
-   "d5_verdict": "unsettled (no fp32 row)"
+   "fp32_tail": {
+    "file": "swarm-oracle-1026-blind-head-audit/skeptic/out/push_L_s2.json",
+    "R_top3": 0.9904975891113281,
+    "top3": "27.12,26.0,26.2",
+    "rand29_p95": 0.012959346175193783,
+    "rand29_median": 0.004104286432266235,
+    "c1": true,
+    "c2": true,
+    "passes": true
+   },
+   "d5_verdict": "pass",
+   "d6_subset105": null
   },
   "S_s0": {
    "n_test": 128,
@@ -384,8 +406,18 @@
     "F_M": 0.570562481880188,
     "n_flagged": 3
    },
-   "fp32_tail": null,
-   "d5_verdict": "unsettled (no fp32 row)"
+   "fp32_tail": {
+    "file": "swarm-oracle-1026-blind-head-audit/skeptic/out/push_S_s0.json",
+    "R_top3": 0.826872706413269,
+    "top3": "26.13,27.1,26.3",
+    "rand29_p95": 0.2702871203422546,
+    "rand29_median": 0.03976866602897644,
+    "c1": true,
+    "c2": true,
+    "passes": true
+   },
+   "d5_verdict": "pass",
+   "d6_subset105": null
   },
   "S_s1": {
    "n_test": 128,
@@ -472,7 +504,8 @@
     "c2": true,
     "passes": true
    },
-   "d5_verdict": "pass"
+   "d5_verdict": "pass",
+   "d6_subset105": null
   },
   "S_s2": {
    "n_test": 128,
@@ -550,7 +583,8 @@
     "n_flagged": 0
    },
    "fp32_tail": null,
-   "d5_verdict": "unsettled (no fp32 row)"
+   "d5_verdict": "unsettled (no fp32 row)",
+   "d6_subset105": null
   },
   "RL_s0": {
    "n_test": 200,
@@ -648,7 +682,8 @@
     "c2": true,
     "passes": true
    },
-   "d5_verdict": "pass"
+   "d5_verdict": "pass",
+   "d6_subset105": "n/a (no RL overlap)"
   },
   "RL_s1": {
    "n_test": 200,
@@ -746,7 +781,8 @@
     "c2": true,
     "passes": true
    },
-   "d5_verdict": "pass"
+   "d5_verdict": "pass",
+   "d6_subset105": "n/a (no RL overlap)"
   }
  },
  "nulls": {

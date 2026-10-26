@@ -39,6 +39,13 @@ def main(states):
                    "diff_ruleB": catch(Db)}
         print(st, out[st], flush=True)
     f.write_text(json.dumps(out, indent=1))
+    # Tove #7829 / Drew #7826: the same two keys merged into ceiling.json (run AFTER ceiling.py, which rewrites a state)
+    cf = DATA / "results" / "ceiling.json"
+    ce = json.loads(cf.read_text())
+    for st in states:
+        if st in ce:
+            ce[st]["logit_cleanfit"], ce[st]["qda_cleanfit"] = out[st]["logit_cleanfit"], out[st]["qda_cleanfit"]
+    cf.write_text(json.dumps(ce, indent=1))
 
 
 if __name__ == "__main__":

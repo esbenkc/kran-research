@@ -133,7 +133,12 @@ def mechanism(X):
         m = SRC[TWINS[:, 0]] == src
         form[src] = {"cm_true_mean": float(ct[m].mean()), "cm_false_mean": float(cf[m].mean()),
                      "cm_gap_mean": float((cf - ct)[m].mean()), "n_pairs": int(m.sum())}
-    return {"cm_twin_corr": float(np.corrcoef(cf, ct)[0, 1]), "by_form": form,
+    ev = np.r_[EVPOS, EVNEG]
+    eta2 = {}
+    for nm, idx in [("eval_true", EVNEG), ("eval_all", ev)]:
+        v, g = cmz[idx], SRC[idx]
+        eta2[nm] = float(sum((g == k).sum() * (v[g == k].mean() - v.mean()) ** 2 for k in np.unique(g)) / ((v - v.mean()) ** 2).sum())
+    return {"cm_twin_corr": float(np.corrcoef(cf, ct)[0, 1]), "by_form": form, "form_eta2_common_mode": eta2,
             "mid_sd": float(np.median(mid.std(0))), "gap_mean": float(np.median(gap.mean(0))),
             "gap_sd": float(np.median(gap.std(0))), "mid_pc1_share": pc1(mid), "gap_pc1_share": pc1(gap),
             "true_pc1_share": pc1(X[LINE]), "dprime_median": float(np.median(gap.mean(0) / X[LINE].std(0)))}

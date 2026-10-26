@@ -1,0 +1,37 @@
+{
+ "png": "/Users/esben/work/theory-1026-recalibrated-panel/swarm-theory-1026-recalibrated-panel/figure1/final_v2.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0141382,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"When a model is fine-tuned against a probe panel that re-standardizes itself, does the model erase the false-statement signal from its scores?\",\n  \"answer\": \"No. When fine-tuned against the re-standardising panel, the model's scores still retain the false-statement signal, with the panel's rule only catching 33% of false statements (compared to 99.5% for the original model), while a classifier trained on the same scores catches 84%.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"When a model is fine-tuned against a probe panel that re-standardises itself, does the model erase the false-statement signal from its scores?\",\n  \"answer\": \"No. The signal stays in the 20 scores and the panel's rule misses most false statements, catching only 33% with the panel's rule versus 84% with a classifier, while the original model caught 99.5% and 99.8% respectively.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"When a model is fine-tuned against a probe panel that re-standardizes itself, does the model erase the false-statement signal from its scores?\",\n  \"answer\": \"No. The signal stays in the 20 scores and the panel's rule misses most false statements, catching only 33% with the panel's rule versus 84% with a classifier, showing the false-statement signal persists despite fine-tuning.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"When fine-tuned against a probe panel that re-standardises itself, does the model erase the false-statement signal from its scores?\",\n  \"answer\": \"No, the signal persists in the scores: although the panel's rule catches only 33% of false statements, a classifier trained on the same 20 scores still catches 84% of them.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\"question\": \"Does fine-tuning a model against a probe panel that re-standardises itself erase the false-statement signal from its scores?\", \"answer\": \"No, the signal persists: while detection by the panel's own rule drops to 33%, a classifier trained on the exact same 20 scores still catches 84% of false statements.\"}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does fine-tuning a model against a self-re-standardising probe panel erase the false-statement signal from its scores?\",\n  \"answer\": \"No, the signal remains in the scores: while the panel's detection rule drops from catching 99.5% to only 33% of false statements, a classifier trained on the same 20 scores still detects 84% of them.\"\n}"
+  }
+ ]
+}

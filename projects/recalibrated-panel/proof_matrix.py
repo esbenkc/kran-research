@@ -78,6 +78,26 @@ for arm, v in RF.items():
     add("refit ceiling", "pooled", f"probe re-fit, arm {arm}", "none",
         f"{pct(v['recovery_at_best']['catch'])} [{pct(v['recovery_at_best']['ci95'][0])}, {pct(v['recovery_at_best']['ci95'][1])}]; all fits converged: {v['all_fits_converged']}",
         "data/results/refit.json")
+# skeptic rebuild cells (Vera), appended verbatim from her receipts; a brace/glob artifact becomes its first existing
+# file, and the other files are named in the result column (oracle.py needs one existing path per row)
+import glob as _glob  # noqa: E402
+import re as _re  # noqa: E402
+SK = DATA.parent / "skeptics" / "skeptic" / "rebuild_cells.md"
+if SK.exists():
+    for line in SK.read_text().splitlines():
+        if not line.startswith("| ") or line.startswith("| claim") or line.startswith("|---"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        art = cells[-1]
+        m = _re.search(r"\{([^}]*)\}", art)
+        pats = [art.replace(m.group(0), x) for x in m.group(1).split(",")] if m else [art]
+        files = sorted(f for p_ in pats for f in _glob.glob(str(DATA.parent / p_)))
+        if files:
+            rel = [str(__import__("pathlib").Path(f).relative_to(DATA.parent)) for f in files]
+            if len(rel) > 1:
+                cells[-2] += " (files: " + ", ".join(r.split("/")[-1] for r in rel) + ")"
+            cells[-1] = rel[0]
+        rows.append("| " + " | ".join(cells) + " |")
 st = S.get("status")
 head = ["# Proof matrix — recalibrated-panel", "",
         f"Status (PREREG s7, analysis.py): **{st['status'] if st else 'pending'}**; prediction outcome (s8): "

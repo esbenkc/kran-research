@@ -19,3 +19,16 @@ an isotropic direction). An isotropic fake of the same norm is not like-for-like
 PRIMARY fake (flag rule, F_M): z_fake = z_none + s * (z_probe - z_none), s = +1 or -1 per element, drawn
 independently, seeds 0-3. Same per-element sizes as the real footprint, random signs. The isotropic fake of PREREG is
 kept as a logged secondary (its F_M and flags are written to picks.json too, never used for status).
+
+## D3 (after picks.json c3c5ab2, before any R / push number was posted): the null flag cell cannot carry status alone
+
+Vera #7534, Iris #7536, Tove ruling #7539. The flag rule compares one real max-over-heads with the max of 4 fake
+draws. If a null model's real response is exchangeable with the fakes, it fires with probability 1/5 per model
+(~49% for at least one of 3 nulls). Vera's own seeds flag RL_tag head 27.8 (S 0.0940 vs F 0.0935; 40-draw
+P(flag) = 0.66), Bruno's frozen seeds 0-3 do not (0.114 vs 0.116).
+- The frozen 4-draw verdict per null is printed as is.
+- Reported next to it: each null's P(flag) over 40 sign-flip draws, S_top1 / median fake max, and a permutation
+  p = (1 + #draws >= S) / (1 + n_draws) with n_draws >= 99 (Phipson & Smyth 2010).
+- Status: if the status would be decided ONLY by a null cell (REJECTED only because a null flagged, or CONFIRMED
+  while a null's 40-draw P(flag) >= 0.05), the status is UNCONFIRMED. A REJECTED from switch-model cells is
+  unaffected.

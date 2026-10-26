@@ -1,0 +1,14 @@
+clean line 3.802
+  cities     F n=298 maxz p10/50/90 = [7.31 8.65 9.84]  >line 0.997
+  cities     T n=298 maxz p10/50/90 = [-0.06  0.76  2.  ]  >line 0.013
+  neg_cities F n=298 maxz p10/50/90 = [7.07 8.6  9.72]  >line 0.993
+  neg_cities T n=298 maxz p10/50/90 = [-0.29  0.68  1.99]  >line 0.013
+  line-set true cities: n=100 median 0.73 top [3.4 3.8]
+  line-set true neg_cities: n=100 median 0.89 top [3.   5.71]
+recal__lam10000__seed0 line 1.516
+  cities     F n=298 maxz p10/50/90 = [1.48 1.74 2.02]  >line 0.852
+  cities     T n=298 maxz p10/50/90 = [0.99 1.18 1.43]  >line 0.037
+  neg_cities F n=298 maxz p10/50/90 = [0.66 0.96 1.27]  >line 0.020
+  neg_cities T n=298 maxz p10/50/90 = [-1.08 -0.78 -0.27]  >line 0.000
+  line-set true cities: n=100 median 1.17 top [1.52 1.84]
+  line-set true neg_cities: n=100 median -0.76 top [0.25 0.5 ]

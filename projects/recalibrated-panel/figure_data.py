@@ -120,7 +120,7 @@ def main():
     out = {
         "title": "Most of the signal stays in the 20 scores, but rules fixed before the fine-tune catch only 20% to 33%",
         "subtitle": ("Qwen2.5-1.5B-Instruct, 20 frozen probes on layers 10 to 28. Each mark is the share of 596 held-out "
-                     "false statements caught at an alarm line that 1% of true statements cross. "
+                     "false statements caught at an alarm line that about 1% of true statements cross. "
                      "Big marks: runs pooled; small dots: single runs."),
         "x_label": "False statements caught",
         "kl_label": "Output change per token",
@@ -133,12 +133,12 @@ def main():
         "legend": {
             "plain": "panel rule, original scale",
             "ruleB": "panel rule, re-standardised",
-            "head": "classifier on the 20 scores, trained with labels",
-            "cleanfit": "same classifier, trained on the original model's labels",
+            "head": "classifier on the 20 scores, trained with labels on the checked model",
+            "cleanfit": "same classifier, trained on the original model (not refit)",
             "refit": "probe fit again",
-            "poison": "theory: re-standardised rule if only the alarm line moved",
+            "poison": "theory: re-standardised rule if the fine-tune had only moved the alarm line",
             "bar": "prediction: under 20%",
-            "kl_max": "bar 0.0096",
+            "kl_max": "prediction: at most 0.0096",
             "kl_ref": "earlier 0.0048",
         },
         "rows": rows,

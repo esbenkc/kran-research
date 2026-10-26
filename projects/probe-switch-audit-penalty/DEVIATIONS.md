@@ -18,3 +18,15 @@ whether or not a head-free route formed. A0's existence cell = the pair both-rig
 cached tail WITH all 32 head slices swapped to their unprobed values in the probed pass, plus R_all32. A0's
 whole-graph switch rate is reported but is not evidence for a head-free route. A0 also gets the same cell at
 update 0 (the warm adapter) as its baseline. Seen when this was set: nothing; no trained model or score existed.
+
+## D3 — score-sabotage rows (Kasper #7252; set before any training run finished)
+
+The blind removed amount r = D - D_H is negative when a cut sends the probed output FARTHER from the unprobed one
+(a third token, an overshoot). The penalty clips it at 0, and the blind greedy never picks such a head. The title
+cell can then fall below 0.30 by sabotage of the score while the head route stays intact. The status rule is
+unchanged. Added reported rows per model: (a) informed greedy top-3 (already in the eval list); (b) a "cut moves the
+output" greedy top-3, picked on dev by KL(p_cut || p_probed) (label-free), scored on test as R; (c) the probed answer
+after the blind top-3 cut and after the (b) cut: share A / B / other token. Naming rule for the TLDR: when
+R_blind3 < 0.30 but the (a) or (b) top-3 removes >= 0.30 in the same seeds, the yes is named "the audit's score was
+fooled" (score sabotage), not rerouting, and the post says a cut-moves-output audit still finds the heads.
+Seen when this was set: J0 cache only; no trained model or score existed.

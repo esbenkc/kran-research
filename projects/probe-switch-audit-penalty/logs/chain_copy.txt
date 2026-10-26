@@ -53,3 +53,16 @@ J1_DONE Sun Oct 25 18:03:00 PDT 2026
 19:38:26 DONE audit lam0_s0 rc=0
 19:38:26 STOP
 19:38:27 SLOT_OPEN /Users/esben/work/oracle-1026-audit-penalty/swarm-oracle-1026-audit-penalty/skeptic/SLOT_OPEN (cap 720 s)
+19:46:43 SLOT_CLOSED /Users/esben/work/oracle-1026-audit-penalty/swarm-oracle-1026-audit-penalty/skeptic/SLOT_OPEN after 495 s
+19:46:43 START train lam1_s0 --seed 0 --warm data/warm/s0_adapter.pt --lam 1 --warmup 32 --steps 512
+19:54:46 DONE train lam1_s0 rc=0
+19:54:46 START train X_s0 --seed 0 --warm data/warm/s0_adapter.pt --lam 100 --k26 16 --warmup 32 --steps 512
+20:10:18 DONE train X_s0 rc=0
+20:10:18 START whole lam1_s0,X_s0
+20:12:23 DONE whole lam1_s0,X_s0 rc=0
+20:12:23 START audit lam1_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
+20:15:21 DONE audit lam1_s0 rc=0
+20:15:21 START audit X_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
+20:18:27 DONE audit X_s0 rc=0
+20:18:27 STOP
+20:18:52 START train hf_s0_2048 --seed 0 --warm raw/step2/Qwen3-1.7B/runs/hf_s0_adapter.pt --headfree --warmup 32 --start-step 512 --steps 1536

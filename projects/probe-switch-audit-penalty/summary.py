@@ -29,6 +29,12 @@ def main() -> None:
         m = {"name": name, "seed": a["seed"], "lambda": a["lam"], "headfree": a["headfree"], "updates": a["steps"] + a.get("start_step", 0),
              "warmup": a.get("warmup", 0), "p0": r.get("p0"), "coef": r.get("coef"),
              "cached_switch": r["test_cached"]["switch_correct"], "cached_push": r["test_cached"]["shift_mean"]}
+        start = a.get("start_step", 0)
+        fire = [c for c in r["curve"] if c["step"] > start and c["switch_correct"] >= 0.75]
+        m["fire_and_hide_checkpoints"] = sum(c["mon"]["push_removed_top3_single_sum"] < 0.30 for c in fire)
+        m["n_checkpoints"] = sum(c["step"] > start for c in r["curve"])
+        m["min_top3_while_firing"] = min((c["mon"]["push_removed_top3_single_sum"] for c in fire), default=None)
+        m["dev_switch_curve"] = [round(c["switch_correct"], 3) for c in r["curve"]]
         last = r["curve"][-1]["mon"]
         m["dev_monitor_last"] = {k: last[k] for k in ("switch_all32cut", "push_removed_all32", "blind_top3_single",
                                                      "push_removed_max_single", "kl_full", "shift_mean")}
@@ -131,6 +137,11 @@ def write_matrix(models: dict) -> None:
             if m.get("identity_ok") is not None:
                 rows.append((claim, s, variant, "identity swap (batch-shape rounding)", f"ok={m['identity_ok']}",
                              f"data/audit/{n}.json"))
+        if m["n_checkpoints"]:
+            mt = m["min_top3_while_firing"]
+            rows.append((claim, s, variant, "every dev checkpoint (robustness)",
+                         f"fire-and-hide checkpoints {m['fire_and_hide_checkpoints']}/{m['n_checkpoints']}; lowest "
+                         f"top-3 removal while firing {'n/a' if mt is None else f'{mt:.3f}'}", f"data/runs/{n}.json"))
         rows.append((claim, s, variant, control, f"cached-tail switch {m['cached_switch']:.3f}, push "
                      f"{m['cached_push']:.2f} nats", f"data/runs/{n}.json"))
     lines = ["# Proof matrix — probe-switch-audit-penalty", "",

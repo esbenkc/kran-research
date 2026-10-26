@@ -1,0 +1,6 @@
+W1025 20:10:21.892000 36918 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6953.28it/s]
+WHOLE lam1_s0 emu0 {'n_prompts': 128, 'differs': 0.9921875, 'switch_correct': 0.9921875, 'acc': 0.99609375, 'share_unprobed_B': 0.9921875, 'share_probed_A': 1.0, 'shift_mean': 18.652099600061774, 'shift_median': 18.9375, 'share_shift_pos': 1.0, 'bit_identical_prompts': 0} {'cond0_s': 26.2, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 26.0, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+WHOLE X_s0 emu0 {'n_prompts': 128, 'differs': 0.5625, 'switch_correct': 0.5625, 'acc': 0.78125, 'share_unprobed_B': 0.9921875, 'share_probed_A': 0.5703125, 'shift_mean': 0.32324218610301614, 'shift_median': 0.3749999850988388, 'share_shift_pos': 1.0, 'bit_identical_prompts': 0} {'cond0_s': 26.1, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 26.2, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+
+WATCHDOG: exit 0, peak footprint 4.86 GB

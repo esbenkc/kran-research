@@ -1,0 +1,15 @@
+W1025 20:18:54.829000 40645 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3028.56it/s]
+P0 None coef 0.0
+step 512 {} switch 0.109 unB 0.109 shift 0.10 | blindtop3 ['26.5', '27.12', '27.7'] pushrm_top3sum 0.655 maxsingle 0.272 all32 0.988 klfull 0.00
+  step 520 ce 0.6950 pen 0.000 2s
+  step 528 ce 0.6943 pen 0.000 5s
+  step 536 ce 0.6961 pen 0.000 7s
+  step 544 ce 0.6995 pen 0.000 9s
+  step 552 ce 0.6965 pen 0.000 12s
+  step 560 ce 0.6931 pen 0.000 14s
+  step 568 ce 0.6967 pen 0.000 16s
+  step 576 ce 0.6954 pen 0.000 18s
+step 576 {'train_ce': 0.6954344213008881, 'train_pen': 0.0, 't': 18.3} switch 0.203 unB 0.875 shift 0.05 | blindtop3 ['26.5', '27.7', '27.12'] pushrm_top3sum 0.814 maxsingle 0.284 all32 0.953 klfull 0.00
+  step 584 ce 0.6956 pen 0.000 27s
+  step 592 ce 0.6939 pen 0.000 29s

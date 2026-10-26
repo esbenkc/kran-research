@@ -54,3 +54,17 @@ post's limits list says in one line that this rule changed after the smoke. Queu
 A0 -> L100 s0-s2 -> whole graph #1 -> guards (L100 s0 to 2,048 if L100 fails; A0 to 2,048 if its D2 cell < 0.75)
 -> L0 s0 -> L10 s0 -> L10 s1 -> L0 s1 -> L1 s0 -> L1 s1 -> L10 s2 -> L0 s2 -> L1 s2 -> whole graph #2.
 Seen when this was set: the 20-update smoke only; A0 at update 64 (dev, CE 0.71); no counted score.
+
+## D6 — exact bf16 ties in the answer (Vera #7286, Tove #7291, Kasper #7293); set AFTER data
+
+Seen when this was set: L100 seed 0 cached-tail test rows. The A-minus-B log-odds are bf16-quantized in steps of
+0.125; 23/128 probed answers are exact ties (log p(A) == log p(B)) that torch argmax breaks toward A (token id 32 <
+33). Reported argmax switch 0.898; strict switch 0.719. This rule was set after those numbers and is written to be
+conservative in both directions:
+- Strict switch = probed log-odds > 0 AND unprobed log-odds < 0 (an exact tie has no unique top-1).
+- CONFIRMED needs clause 1 under the STRICT switch (>= 0.75).
+- A REJECTED that rests on clause 1 must hold under the argmax switch too (argmax < 0.75).
+- If strict and argmax give different statuses, the status is UNCONFIRMED.
+- When clause 2 (R_blind3 >= 0.30) already fails in a seed, ties do not change that seed.
+Every switch cell reports argmax rate, strict rate, tie counts for both conditions, and the mean of
+P(A | probed) - P(A | unprobed) over the A/B pair (Tove #7291), whole graph and cached tail.

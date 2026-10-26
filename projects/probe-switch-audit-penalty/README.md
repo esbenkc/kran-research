@@ -39,7 +39,28 @@ $PY eval_whole.py --runs hf_s0,warm_s0,lam100_s0 --emulate 0
 $PY audit.py --run lam100_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
 $PY summary.py
 ```
-The exact order and arguments of every job are in `logs/chain.log` (START lines) and `queue.txt`.
+The exact order and arguments of every job are in `logs/chain_copy.txt` (START lines; copy of the live logs/chain.log).
+
+## Runs (all 512 updates from the warm start of the same seed unless said)
+
+| name | what | seed |
+|---|---|---|
+| warm_s0, warm_s1, warm_s2 | the probe-switch-heads adapters, merged only (`--steps 0`) | 0, 1, 2 |
+| hf_s0, hf_s0_2048 | A0 head-free by construction; `_2048` continues hf_s0 to 2048 updates (fresh Adam + warmup) | 0 |
+| lam100_s0, lam100_s1 | weight 100 (the goal's 100x); lam100_s2 started and was stopped after 25 s (Felix #7278), not counted | 0, 1 |
+| lam10_s0, lam10_s1 | weight 10 | 0, 1 |
+| lam1_s0 | weight 1 (n=1, D8) | 0 |
+| lam0_s0 | weight 0: the control (same updates, no penalty) | 0 |
+| X_s0 | weight 100 with all 32 heads exact in the penalty every update (`--k26 16`, DEVIATIONS D7) | 0 |
+
+Continuation and X commands, as run (from logs/chain_copy.txt):
+```sh
+$PY train_pen.py --name hf_s0_2048 --seed 0 --warm raw/step2/Qwen3-1.7B/runs/hf_s0_adapter.pt --headfree --warmup 32 --start-step 512 --steps 1536
+$PY train_pen.py --name X_s0 --seed 0 --warm data/warm/s0_adapter.pt --lam 100 --k26 16 --warmup 32 --steps 512
+```
+Incidents (also in logs/chain_copy.txt): 18:27 PDT a mis-armed slot.sh started a second chain for ~20 s (two warm
+merges overlapped; no scored number depends on it); two skeptic/research jobs overran their slots next to a training
+run (room #7313, #7315). None of these change a stored number: every job is its own process with fixed seeds.
 
 ## Files
 

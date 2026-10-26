@@ -1,5 +1,5 @@
 {
- "status_rule_raw": "UNSETTLED",
+ "status_rule_raw": "REJECTED (subject to the fake-no guard and unfinished lambdas)",
  "per_lambda": {
   "1": {
    "finished": [],
@@ -11,7 +11,8 @@
   },
   "100": {
    "finished": [
-    "lam100_s0"
+    "lam100_s0",
+    "lam100_s1"
    ],
    "passing": []
   }
@@ -61,7 +62,20 @@
      0,
      0
     ]
-   }
+   },
+   "R_blind3": 0.6481927710843374,
+   "R_informed3": 0.6481927710843374,
+   "R_moves3": null,
+   "R_all32": 1.0036144578313253,
+   "switch_all32cut": 0.03125,
+   "R_reverse3": 0.6096385542168675,
+   "null_p95": 0.27987951807228906,
+   "push_mean_cached": 0.101318359375,
+   "identity_ok": true,
+   "mlp_share": 0.01686746987951815,
+   "skip_leftover": -0.02048192771084345,
+   "clause3_ratio": 0.047945205479452274,
+   "clean_kl_all_pos": 0.06942687164992094
   },
   "lam100_s0": {
    "name": "lam100_s0",
@@ -160,7 +174,20 @@
      0,
      0
     ]
-   }
+   },
+   "R_blind3": 1.0118243296455844,
+   "R_informed3": 1.0033783900821576,
+   "R_moves3": null,
+   "R_all32": 1.0067567551948016,
+   "switch_all32cut": 0.0,
+   "R_reverse3": 1.0152027028129103,
+   "null_p95": 0.03209459410233381,
+   "push_mean_cached": 0.5781249958090484,
+   "identity_ok": true,
+   "mlp_share": 1.2887490852264705e-08,
+   "skip_leftover": -0.006756768082292419,
+   "clause3_ratio": null,
+   "clean_kl_all_pos": 0.057453034538775684
   },
   "warm_s0": {
    "name": "warm_s0",
@@ -202,7 +229,20 @@
      0,
      0
     ]
-   }
+   },
+   "R_blind3": 0.9019746703290753,
+   "R_informed3": 0.9019746703290753,
+   "R_moves3": null,
+   "R_all32": 0.9997564752504177,
+   "switch_all32cut": 0.0,
+   "R_reverse3": 0.9411352811275301,
+   "null_p95": 0.2093710155023784,
+   "push_mean_cached": 38.33106994256377,
+   "identity_ok": true,
+   "mlp_share": 0.00012721098215628945,
+   "skip_leftover": 0.00011631376742604616,
+   "clause3_ratio": 0.0012977358258660517,
+   "clean_kl_all_pos": 0.0
   },
   "warm_s1": {
    "name": "warm_s1",
@@ -244,7 +284,20 @@
      0,
      0
     ]
-   }
+   },
+   "R_blind3": 0.9663146213466235,
+   "R_informed3": 0.9663146213466235,
+   "R_moves3": null,
+   "R_all32": 0.9994729403857433,
+   "switch_all32cut": 0.0,
+   "R_reverse3": 0.9828468494482048,
+   "null_p95": 0.29586832475122105,
+   "push_mean_cached": 40.47862434387207,
+   "identity_ok": true,
+   "mlp_share": 0.0006264354782293813,
+   "skip_leftover": -9.937586397268383e-05,
+   "clause3_ratio": 0.018596658350657713,
+   "clean_kl_all_pos": 0.0
   },
   "warm_s2": {
    "name": "warm_s2",

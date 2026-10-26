@@ -66,3 +66,10 @@ J1_DONE Sun Oct 25 18:03:00 PDT 2026
 20:18:27 DONE audit X_s0 rc=0
 20:18:27 STOP
 20:18:52 START train hf_s0_2048 --seed 0 --warm raw/step2/Qwen3-1.7B/runs/hf_s0_adapter.pt --headfree --warmup 32 --start-step 512 --steps 1536
+20:28:56 DONE train hf_s0_2048 rc=0
+20:28:56 START whole hf_s0_2048
+20:30:06 DONE whole hf_s0_2048 rc=0
+20:30:06 START audit hf_s0_2048 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
+20:33:16 DONE audit hf_s0_2048 rc=0
+20:33:16 STOP
+20:33:17 SLOT_OPEN /Users/esben/work/oracle-1026-audit-penalty/swarm-oracle-1026-audit-penalty/skeptic/SLOT_OPEN (cap 1320 s)

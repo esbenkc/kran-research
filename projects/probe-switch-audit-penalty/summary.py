@@ -120,6 +120,9 @@ def write_matrix(models: dict) -> None:
             claim, variant, control = "head-free existence (A0)", f"all 32 heads swapped in training, {m['updates']} upd", "none"
         elif m["lambda"] == 0:
             claim, variant, control = "control", f"weight 0, {m['updates']} upd", "no penalty, same updates"
+        elif n.startswith("X_"):
+            claim = "stronger attacker (X, D7; reported row)"
+            variant, control = f"weight 100, all 32 heads scored every update, {m['updates']} upd", "none"
         else:
             claim = "headline" if m["lambda"] == 100 else f"weight {m['lambda']:g}"
             variant, control = f"weight {m['lambda']:g}, {m['updates']} upd", "none"

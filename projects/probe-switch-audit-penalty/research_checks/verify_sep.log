@@ -1,0 +1,24 @@
+answer logistic {'auroc': 0.520416259765625, 'acc': 0.52734375, 'paired_win': 0.65625, 'train_acc': 0.9619140625} 0s
+answer mlp {'auroc': 0.50323486328125, 'acc': 0.4921875, 'paired_win': 0.578125, 'train_acc': 0.501953125} 0s
+mean_pool logistic {'auroc': 0.528045654296875, 'acc': 0.515625, 'paired_win': 0.9453125, 'train_acc': 1.0} 0s
+mean_pool mlp {'auroc': 0.4993896484375, 'acc': 0.5, 'paired_win': 0.4765625, 'train_acc': 0.4990234375} 1s
+per-pos AUROC {0: 0.5, 8: 0.507, 16: 0.506, 24: 0.505, 32: 0.505, 40: 0.504, 48: 0.52, 56: 0.572, 64: 0.536, 70: 0.668, 71: 0.897, 72: 0.655, 73: 0.749, 74: 0.62, 75: 0.601, 76: 0.69, 77: 0.578, 78: 0.604, 79: 0.52}
+        4.06 real         2.24 user         0.18 sys
+          1055571968  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               78565  page reclaims
+                 171  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1603  voluntary context switches
+                 359  involuntary context switches
+         26443150020  instructions retired
+          8953792843  cycles elapsed
+           598639864  peak memory footprint
+SEP_DONE Sun Oct 25 18:18:44 PDT 2026

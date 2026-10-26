@@ -1,0 +1,107 @@
+W1025 19:18:02.782000 15988 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3635.37it/s]
+P0 51.651387214660645 coef 0.13419720513589684
+step 0 {} switch 1.000 unB 1.000 shift 41.45 | blindtop3 ['27.7', '26.0', '26.2'] pushrm_top3sum 1.473 maxsingle 0.911 all32 0.999 klfull 23.45
+GRAD {'step': 1, 'ce': 7.078046451169939e-07, 'pen': 48.0302734375, 'gnorm_ce': 7.46017976780422e-05, 'gnorm_lam_pen': 448.9718322753906}
+GRAD {'step': 2, 'ce': 1.1846408085602889e-06, 'pen': 45.423479080200195, 'gnorm_ce': 0.00019588552822824568, 'gnorm_lam_pen': 1601.4935302734375}
+GRAD {'step': 3, 'ce': 2.9876557618990773e-06, 'pen': 35.0545768737793, 'gnorm_ce': 0.00794105976819992, 'gnorm_lam_pen': 962.0443725585938}
+GRAD {'step': 4, 'ce': 0.0004249487367360416, 'pen': 27.26328468322754, 'gnorm_ce': 3.273267984390259, 'gnorm_lam_pen': 1435.714111328125}
+GRAD {'step': 5, 'ce': 1.6375949382781982, 'pen': 3.8803850412368774, 'gnorm_ce': 1708.1739501953125, 'gnorm_lam_pen': 889.689697265625}
+GRAD {'step': 6, 'ce': 7.277365684509277, 'pen': 5.630204395856708e-05, 'gnorm_ce': 1808.609375, 'gnorm_lam_pen': 0.04287676885724068}
+GRAD {'step': 7, 'ce': 7.4571521282196045, 'pen': 0.00029983740193983976, 'gnorm_ce': 1706.918701171875, 'gnorm_lam_pen': 0.254557728767395}
+GRAD {'step': 8, 'ce': 6.835939884185791, 'pen': 7.490794359910069e-06, 'gnorm_ce': 2066.1787109375, 'gnorm_lam_pen': 0.004210279323160648}
+  step 8 ce 6.8359 pen 0.000 7s
+GRAD {'step': 9, 'ce': 3.4474823474884033, 'pen': 0.2112981784302974, 'gnorm_ce': 2613.1484375, 'gnorm_lam_pen': 111.67564392089844}
+GRAD {'step': 10, 'ce': 0.4771245215088129, 'pen': 11.659483432769775, 'gnorm_ce': 526.0708618164062, 'gnorm_lam_pen': 1083.820556640625}
+GRAD {'step': 11, 'ce': 0.0006872000703879166, 'pen': 16.67551279067993, 'gnorm_ce': 3.5512518882751465, 'gnorm_lam_pen': 1252.931396484375}
+GRAD {'step': 12, 'ce': 1.6057037711143494, 'pen': 4.401874966919422, 'gnorm_ce': 1886.5338134765625, 'gnorm_lam_pen': 489.9576721191406}
+GRAD {'step': 13, 'ce': 0.001228918129527301, 'pen': 17.810235023498535, 'gnorm_ce': 5.359419822692871, 'gnorm_lam_pen': 1056.5963134765625}
+GRAD {'step': 14, 'ce': 0.1943768858909607, 'pen': 8.119971513748169, 'gnorm_ce': 433.95703125, 'gnorm_lam_pen': 946.3041381835938}
+GRAD {'step': 15, 'ce': 1.4828470349311829, 'pen': 0.8926358819007874, 'gnorm_ce': 1785.22509765625, 'gnorm_lam_pen': 222.17230224609375}
+GRAD {'step': 16, 'ce': 1.1885380744934082, 'pen': 0.6827933043241501, 'gnorm_ce': 1413.94580078125, 'gnorm_lam_pen': 181.6458740234375}
+  step 16 ce 1.1885 pen 0.683 14s
+GRAD {'step': 17, 'ce': 0.29805099964141846, 'pen': 2.264657497406006, 'gnorm_ce': 368.6607360839844, 'gnorm_lam_pen': 297.5941467285156}
+GRAD {'step': 18, 'ce': 0.06001991219818592, 'pen': 6.964871168136597, 'gnorm_ce': 124.29779052734375, 'gnorm_lam_pen': 447.88165283203125}
+GRAD {'step': 19, 'ce': 0.02418377809226513, 'pen': 7.202842950820923, 'gnorm_ce': 19.643102645874023, 'gnorm_lam_pen': 300.1453552246094}
+GRAD {'step': 20, 'ce': 0.1312357410788536, 'pen': 3.077494740486145, 'gnorm_ce': 78.79435729980469, 'gnorm_lam_pen': 185.5404052734375}
+  step 24 ce 0.5865 pen 0.554 21s
+  step 32 ce 0.3228 pen 1.668 27s
+  step 40 ce 0.3672 pen 1.013 33s
+  step 48 ce 0.5074 pen 0.748 39s
+  step 56 ce 0.5011 pen 0.231 45s
+GRAD {'step': 64, 'ce': 0.39621782302856445, 'pen': 0.46062758564949036, 'gnorm_ce': 17.836397171020508, 'gnorm_lam_pen': 6.810159206390381}
+  step 64 ce 0.3962 pen 0.461 51s
+step 64 {'train_ce': 0.39621782302856445, 'train_pen': 0.46062758564949036, 't': 50.9} switch 0.750 unB 0.750 shift 1.66 | blindtop3 ['26.2', '27.12', '26.5'] pushrm_top3sum 0.822 maxsingle 0.370 all32 0.997 klfull 0.29
+  step 72 ce 0.5056 pen 0.598 64s
+  step 80 ce 0.2937 pen 1.244 70s
+  step 88 ce 0.3901 pen 1.134 76s
+  step 96 ce 0.4056 pen 0.662 82s
+  step 104 ce 0.3094 pen 1.528 88s
+  step 112 ce 0.3974 pen 1.723 94s
+  step 120 ce 0.2763 pen 1.827 100s
+GRAD {'step': 128, 'ce': 0.4445636719465256, 'pen': 0.5196004956960678, 'gnorm_ce': 60.77149200439453, 'gnorm_lam_pen': 11.3345365524292}
+  step 128 ce 0.4446 pen 0.520 106s
+step 128 {'train_ce': 0.4445636719465256, 'train_pen': 0.5196004956960678, 't': 106.1} switch 0.938 unB 0.969 shift 2.33 | blindtop3 ['26.2', '26.0', '26.5'] pushrm_top3sum 0.879 maxsingle 0.470 all32 0.997 klfull 0.58
+  step 136 ce 0.3319 pen 1.115 119s
+  step 144 ce 0.3136 pen 0.914 125s
+  step 152 ce 0.2615 pen 1.098 131s
+  step 160 ce 0.2526 pen 1.233 137s
+  step 168 ce 0.2058 pen 1.773 143s
+  step 176 ce 0.4475 pen 0.583 149s
+  step 184 ce 0.4396 pen 0.569 155s
+GRAD {'step': 192, 'ce': 0.19851713627576828, 'pen': 1.738949477672577, 'gnorm_ce': 40.15076446533203, 'gnorm_lam_pen': 45.971805572509766}
+  step 192 ce 0.1985 pen 1.739 162s
+step 192 {'train_ce': 0.19851713627576828, 'train_pen': 1.738949477672577, 't': 161.5} switch 0.609 unB 0.609 shift 3.40 | blindtop3 ['26.2', '26.0', '26.5'] pushrm_top3sum 0.889 maxsingle 0.472 all32 1.004 klfull 0.66
+  step 200 ce 0.4454 pen 0.542 174s
+  step 208 ce 0.2788 pen 0.976 180s
+  step 216 ce 0.2580 pen 1.974 186s
+  step 224 ce 0.2602 pen 1.040 192s
+  step 232 ce 0.2873 pen 1.000 198s
+  step 240 ce 0.2779 pen 0.985 204s
+  step 248 ce 0.1772 pen 1.412 210s
+GRAD {'step': 256, 'ce': 0.2179281786084175, 'pen': 1.905498743057251, 'gnorm_ce': 39.17497253417969, 'gnorm_lam_pen': 14.149538040161133}
+  step 256 ce 0.2179 pen 1.905 217s
+step 256 {'train_ce': 0.2179281786084175, 'train_pen': 1.905498743057251, 't': 216.6} switch 0.812 unB 1.000 shift 3.69 | blindtop3 ['26.2', '26.0', '26.5'] pushrm_top3sum 0.836 maxsingle 0.514 all32 0.997 klfull 1.29
+  step 264 ce 0.3436 pen 0.877 229s
+  step 272 ce 0.2488 pen 0.990 235s
+  step 280 ce 0.5318 pen 0.436 241s
+  step 288 ce 0.2981 pen 1.343 248s
+  step 296 ce 0.4199 pen 1.213 254s
+  step 304 ce 0.3250 pen 0.717 260s
+  step 312 ce 0.6213 pen 0.227 266s
+GRAD {'step': 320, 'ce': 0.4085698872804642, 'pen': 0.4852869063615799, 'gnorm_ce': 39.62742614746094, 'gnorm_lam_pen': 9.423395156860352}
+  step 320 ce 0.4086 pen 0.485 272s
+step 320 {'train_ce': 0.4085698872804642, 'train_pen': 0.4852869063615799, 't': 272.4} switch 0.109 unB 0.109 shift 1.84 | blindtop3 ['26.2', '26.0', '26.5'] pushrm_top3sum 0.827 maxsingle 0.535 all32 1.000 klfull 0.24
+  step 328 ce 0.3933 pen 1.377 285s
+  step 336 ce 0.4935 pen 1.105 291s
+  step 344 ce 0.3146 pen 0.688 297s
+  step 352 ce 0.5165 pen 0.311 303s
+  step 360 ce 0.3819 pen 0.532 309s
+  step 368 ce 0.3577 pen 1.049 315s
+  step 376 ce 0.3580 pen 1.246 321s
+GRAD {'step': 384, 'ce': 0.30299824476242065, 'pen': 0.9019157588481903, 'gnorm_ce': 24.52326202392578, 'gnorm_lam_pen': 14.905184745788574}
+  step 384 ce 0.3030 pen 0.902 327s
+step 384 {'train_ce': 0.30299824476242065, 'train_pen': 0.9019157588481903, 't': 327.4} switch 0.953 unB 1.000 shift 2.53 | blindtop3 ['26.2', '26.0', '26.5'] pushrm_top3sum 0.850 maxsingle 0.556 all32 1.003 klfull 0.71
+  step 392 ce 0.5348 pen 0.303 340s
+  step 400 ce 0.3824 pen 0.714 346s
+  step 408 ce 0.3111 pen 0.892 352s
+  step 416 ce 0.3224 pen 1.042 358s
+  step 424 ce 0.3543 pen 0.462 364s
+  step 432 ce 0.5639 pen 0.258 370s
+  step 440 ce 0.4242 pen 0.550 376s
+GRAD {'step': 448, 'ce': 0.30564504861831665, 'pen': 1.2836847305297852, 'gnorm_ce': 29.598825454711914, 'gnorm_lam_pen': 5.003961563110352}
+  step 448 ce 0.3056 pen 1.284 382s
+step 448 {'train_ce': 0.30564504861831665, 'train_pen': 1.2836847305297852, 't': 382.4} switch 0.984 unB 1.000 shift 2.47 | blindtop3 ['26.2', '26.0', '26.5'] pushrm_top3sum 0.855 maxsingle 0.590 all32 0.996 klfull 0.68
+  step 456 ce 0.3616 pen 0.853 395s
+  step 464 ce 0.3368 pen 0.715 401s
+  step 472 ce 0.5021 pen 0.488 407s
+  step 480 ce 0.3665 pen 0.694 413s
+  step 488 ce 0.3278 pen 1.377 419s
+  step 496 ce 0.3572 pen 0.992 425s
+  step 504 ce 0.2984 pen 0.707 431s
+GRAD {'step': 512, 'ce': 0.4868360459804535, 'pen': 0.5254384875297546, 'gnorm_ce': 67.60061645507812, 'gnorm_lam_pen': 12.836742401123047}
+  step 512 ce 0.4868 pen 0.525 437s
+step 512 {'train_ce': 0.4868360459804535, 'train_pen': 0.5254384875297546, 't': 437.4} switch 0.438 unB 0.438 shift 2.40 | blindtop3 ['26.2', '26.0', '26.5'] pushrm_top3sum 0.876 maxsingle 0.609 all32 0.995 klfull 0.41
+TEST_CACHED lam10_s1 {'n_prompts': 128, 'differs': 0.3125, 'switch_correct': 0.3125, 'acc': 0.65625, 'share_unprobed_B': 0.3125, 'share_probed_A': 1.0, 'shift_mean': 2.35791015625, 'shift_median': 2.375, 'share_shift_pos': 1.0} train_s 444.1
+
+WATCHDOG: exit 0, peak footprint 5.36 GB

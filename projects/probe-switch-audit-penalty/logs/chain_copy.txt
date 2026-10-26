@@ -1,0 +1,55 @@
+J1_DONE Sun Oct 25 18:03:00 PDT 2026
+18:04:36 START train hf_s0 --seed 0 --warm data/warm/s0_adapter.pt --headfree --warmup 32 --steps 512
+18:09:29 DONE train hf_s0 rc=0
+18:09:29 STOP
+18:09:32 START train lam100_s0 --seed 0 --warm data/warm/s0_adapter.pt --lam 100 --warmup 32 --steps 512
+18:17:18 DONE train lam100_s0 rc=0
+18:17:18 STOP
+18:17:18 SLOT_OPEN /Users/esben/work/oracle-1026-audit-penalty/swarm-oracle-1026-audit-penalty/research/SLOT_OPEN (cap 300 s)
+18:18:49 SLOT_CLOSED /Users/esben/work/oracle-1026-audit-penalty/swarm-oracle-1026-audit-penalty/research/SLOT_OPEN after 90 s
+18:18:49 START train lam100_s1 --seed 1 --warm data/warm/s1_adapter.pt --lam 100 --warmup 32 --steps 512
+18:26:49 DONE train lam100_s1 rc=0
+18:26:49 START train lam100_s2 --seed 2 --warm data/warm/s2_adapter.pt --lam 100 --warmup 32 --steps 512
+18:27:14 DONE train lam100_s2 rc=241
+18:27:14 START train warm_s0 --seed 0 --warm data/warm/s0_adapter.pt --steps 0
+18:27:29 DONE train warm_s0 rc=0
+18:27:29 START train warm_s1 --seed 1 --warm data/warm/s1_adapter.pt --steps 0
+18:27:31 SLOT_OPEN 1020 (cap  s)
+18:27:31 SLOT_CLOSED 1020 after 0 s
+18:27:31 START train warm_s2 --seed 2 --warm data/warm/s2_adapter.pt --steps 0
+18:27:50 DONE train warm_s1 rc=0
+18:27:50 START whole hf_s0,warm_s0,warm_s1,warm_s2,lam100_s0,lam100_s1
+18:27:55 NOTE: slot.sh mis-armed (empty pid) started a 2nd chain at 18:27:31; killed it and its warm_s2 merge within 1 min, warm_s2 re-queued
+18:28:08 NOTE: the killed 2nd chain's warm_s2 merge had already finished (runs/warm_s2_merged.pt 18:27, json complete); warm_s1 and warm_s2 merges overlapped ~20 s; re-queued line removed
+18:33:42 DONE whole hf_s0,warm_s0,warm_s1,warm_s2,lam100_s0,lam100_s1 rc=0
+18:33:42 START audit lam100_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
+18:36:52 DONE audit lam100_s0 rc=0
+18:36:52 START audit lam100_s1 --ref raw/step2/Qwen3-1.7B/runs/warm_s1_merged.pt
+18:40:05 DONE audit lam100_s1 rc=0
+18:40:05 START audit hf_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
+18:43:15 DONE audit hf_s0 rc=0
+18:43:15 START audit warm_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
+18:45:44 DONE audit warm_s0 rc=0
+18:45:45 START audit warm_s1 --ref raw/step2/Qwen3-1.7B/runs/warm_s1_merged.pt
+18:48:39 DONE audit warm_s1 rc=0
+18:48:39 STOP
+18:48:39 SLOT_OPEN /Users/esben/work/oracle-1026-audit-penalty/swarm-oracle-1026-audit-penalty/skeptic/SLOT_OPEN (cap 1020 s)
+19:05:41 SLOT_CLOSED /Users/esben/work/oracle-1026-audit-penalty/swarm-oracle-1026-audit-penalty/skeptic/SLOT_OPEN after 1020 s
+19:05:41 START train lam0_s0 --seed 0 --warm data/warm/s0_adapter.pt --warmup 32 --steps 512
+19:09:16 DONE train lam0_s0 rc=0
+19:09:16 START train lam10_s0 --seed 0 --warm data/warm/s0_adapter.pt --lam 10 --warmup 32 --steps 512
+19:17:59 DONE train lam10_s0 rc=0
+19:17:59 START train lam10_s1 --seed 1 --warm data/warm/s1_adapter.pt --lam 10 --warmup 32 --steps 512
+19:25:44 DONE train lam10_s1 rc=0
+19:25:44 START train smokeX_s0 --seed 0 --warm data/warm/s0_adapter.pt --lam 100 --k26 16 --warmup 32 --steps 10 --eval-every 10 --grad-log 0
+19:26:30 DONE train smokeX_s0 rc=0
+19:26:30 START whole lam0_s0,lam10_s0,lam10_s1
+19:29:24 DONE whole lam0_s0,lam10_s0,lam10_s1 rc=0
+19:29:24 START audit lam10_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
+19:32:37 DONE audit lam10_s0 rc=0
+19:32:37 START audit lam10_s1 --ref raw/step2/Qwen3-1.7B/runs/warm_s1_merged.pt
+19:35:50 DONE audit lam10_s1 rc=0
+19:35:50 START audit lam0_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
+19:38:26 DONE audit lam0_s0 rc=0
+19:38:26 STOP
+19:38:27 SLOT_OPEN /Users/esben/work/oracle-1026-audit-penalty/swarm-oracle-1026-audit-penalty/skeptic/SLOT_OPEN (cap 720 s)

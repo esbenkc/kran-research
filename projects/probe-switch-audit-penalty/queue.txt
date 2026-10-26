@@ -1,12 +1,9 @@
-train lam0_s0 --seed 0 --warm data/warm/s0_adapter.pt --warmup 32 --steps 512
-train lam10_s0 --seed 0 --warm data/warm/s0_adapter.pt --lam 10 --warmup 32 --steps 512
-train lam10_s1 --seed 1 --warm data/warm/s1_adapter.pt --lam 10 --warmup 32 --steps 512
-whole lam0_s0,lam10_s0,lam10_s1
-audit lam10_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
-audit lam10_s1 --ref raw/step2/Qwen3-1.7B/runs/warm_s1_merged.pt
-audit lam0_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
 train hf_s0_2048 --seed 0 --warm raw/step2/Qwen3-1.7B/runs/hf_s0_adapter.pt --headfree --warmup 32 --start-step 512 --steps 1536
-whole hf_s0_2048
+train X_s0 --seed 0 --warm data/warm/s0_adapter.pt --lam 100 --k26 16 --warmup 32 --steps 512
+whole hf_s0_2048,X_s0
+audit X_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
 audit hf_s0_2048 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
-stop
 train lam1_s0 --seed 0 --warm data/warm/s0_adapter.pt --lam 1 --warmup 32 --steps 512
+whole lam1_s0
+audit lam1_s0 --ref raw/step2/Qwen3-1.7B/runs/warm_s0_merged.pt
+stop

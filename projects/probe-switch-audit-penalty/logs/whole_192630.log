@@ -1,0 +1,7 @@
+W1025 19:26:33.253000 17854 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6340.09it/s]
+WHOLE lam0_s0 emu0 {'n_prompts': 128, 'differs': 1.0, 'switch_correct': 1.0, 'acc': 1.0, 'share_unprobed_B': 1.0, 'share_probed_A': 1.0, 'shift_mean': 46.66251182556152, 'shift_median': 47.12548828125, 'share_shift_pos': 1.0, 'bit_identical_prompts': 0} {'cond0_s': 25.5, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 25.6, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+WHOLE lam10_s0 emu0 {'n_prompts': 128, 'differs': 0.0, 'switch_correct': 0.0, 'acc': 0.5, 'share_unprobed_B': 0.0, 'share_probed_A': 1.0, 'shift_mean': 1.3310546902939677, 'shift_median': 1.3749999403953552, 'share_shift_pos': 1.0, 'bit_identical_prompts': 0} {'cond0_s': 25.7, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 25.6, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+WHOLE lam10_s1 emu0 {'n_prompts': 128, 'differs': 0.15625, 'switch_correct': 0.15625, 'acc': 0.578125, 'share_unprobed_B': 0.15625, 'share_probed_A': 1.0, 'shift_mean': 2.1723632784560323, 'shift_median': 2.1875, 'share_shift_pos': 1.0, 'bit_identical_prompts': 0} {'cond0_s': 25.5, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 25.9, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+
+WATCHDOG: exit 0, peak footprint 4.87 GB

@@ -1,0 +1,10 @@
+W1025 19:25:47.505000 17419 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 6437.10it/s]
+P0 45.28731036186218 coef 1.530554972290131
+step 0 {} switch 1.000 unB 1.000 shift 39.33 | blindtop3 ['27.7', '26.5', '26.0'] pushrm_top3sum 1.109 maxsingle 0.727 all32 0.999 klfull 22.23
+  step 8 ce 8.6211 pen 0.000 13s
+GRAD {'step': 10, 'ce': 2.627508759498596, 'pen': 0.9900133076589555, 'gnorm_ce': 1850.4443359375, 'gnorm_lam_pen': 2183.884521484375}
+step 10 {'train_ce': 2.627508759498596, 'train_pen': 0.9900133076589555, 't': 16.8} switch 0.391 unB 0.391 shift 19.73 | blindtop3 ['27.7', '26.5', '26.0'] pushrm_top3sum 0.803 maxsingle 0.621 all32 0.999 klfull 1.87
+TEST_CACHED smokeX_s0 {'n_prompts': 128, 'differs': 0.1796875, 'switch_correct': 0.1796875, 'acc': 0.58984375, 'share_unprobed_B': 0.1796875, 'share_probed_A': 1.0, 'shift_mean': 16.875488279387355, 'shift_median': 16.78125, 'share_shift_pos': 1.0} train_s 23.5
+
+WATCHDOG: exit 0, peak footprint 5.34 GB

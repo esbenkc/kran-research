@@ -25,7 +25,10 @@ def main():
         if m not in P:
             continue
         p, k = P[m], picks[m]
-        rows[m] = {
+        u, pr, cut = (p["per_prompt"][x] for x in ("lo_u", "lo_p", "lo_blind3"))
+        flips = [i for i in range(len(u)) if (u[i] > 0) != (pr[i] > 0)]  # answer side differs with the probe
+        still = [i for i in flips if (cut[i] > 0) == (pr[i] > 0)]       # still on the probed side after the cut
+        rows[m] = {"n_test": len(u), "n_answer_flips": len(flips), "n_still_flipped_after_cut": len(still),
             "push_mean": p["push_mean"], "blind_top3": k["primary"]["blind_top3"], "R_blind3": p["R_blind3"],
             "R_blind3_ci95": p["R_blind3_ci95"], "R_blind_k": p["R_blind_k"],
             "rand_out_median": p["random_out"]["median"], "rand_out_p95": p["random_out"]["p95"],
@@ -116,7 +119,7 @@ def main():
               f"p95 {r['rand_out_p95']:.3f} rand32 med {r['rand_all_median']:.3f} flag {r['n_flagged']} "
               f"top1 {r['top1']} S/F {r['top1_S']:.3f}/{r['F_M']:.3f} oracle {r['oracle_top3']} {r['oracle_R3']} "
               f"all32 {r['R_all32']:.3f} plant {r['plant_blind3_recovered']:.3f} sec {r['secondary_top3']} "
-              f"{r['R_secondary3']:.3f} pass {r['passes']}")
+              f"{r['R_secondary3']:.3f} flips {r['n_still_flipped_after_cut']}/{r['n_answer_flips']} pass {r['passes']}")
     for m, v in nulls.items():
         print(m, v)
     write_matrix(rows, nulls, picks)
@@ -139,6 +142,9 @@ def write_matrix(rows, nulls, picks):
         if r["oracle_top3"]:
             L.append(f"| blind vs oracle | {seed} | {fam} oracle {'/'.join(r['oracle_top3'])} | behaviour-picked (dev) | "
                      f"R = {r['oracle_R3']:.3f}; overlap {r['overlap_blind_oracle']}/3 | data/patch/{m}.json |")
+        L.append(f"| answers | {seed} | {fam} blind top-3 cut | none | answer side flips with the probe on "
+                 f"{r['n_answer_flips']}/{r['n_test']} test prompts; still flipped after the cut: "
+                 f"{r['n_still_flipped_after_cut']} (per_prompt rows) | data/patch/{m}.json |")
         L.append(f"| route | {seed} | {fam} all 32 heads | none | R = {r['R_all32']:.3f}; plant top-3 recovers "
                  f"{r['plant_blind3_recovered']:.3f} | data/patch/{m}.json |")
         L.append(f"| secondary score | {seed} | {fam} last-position top-3 {'/'.join(r['secondary_top3'])} | none | "
@@ -148,11 +154,11 @@ def write_matrix(rows, nulls, picks):
         L.append(f"| specificity | {m} | null model (no switch) | no-switch model | frozen 4-draw: flagged heads "
                  f"{v['n_flagged']} (top-1 {v['top1']} S {v['top1_S']:.4f} vs F {v['F_M']:.4f}); D3 {d3.get('n_draws')} "
                  f"draws: P(flag) {d3.get('P_flag_4draw')}, perm p {d3.get('perm_p')}, verdict {v['d3_verdict']}; "
-                 f"push {v['push_mean']} | data/{PICKS}, data/{ND}/{m}.json, data/patch/{m}.json |")
+                 f"push {v['push_mean']} (data/patch/{m}.json; S and F from data/{PICKS}) | data/{ND}/{m}.json |")
     em = all(v["emu"]["inputs_bit_identical"] for v in picks.values())
     L.append(f"| emulation sanity | all | precision-emulation build | probe_emu vs none_emu | block-26 inputs bit-identical "
-             f"= {em}; max head change {max(v['emu']['max_abs_d_trained'] for v in picks.values())} | "
-             f"data/neutral_meta_*.json, data/{PICKS} |")
+             f"= {em} (tail sha256 in data/neutral_meta_Qwen3-1.7B.json and data/neutral_meta_Qwen3-0.6B.json); max head change {max(v['emu']['max_abs_d_trained'] for v in picks.values())} | "
+             f"data/{PICKS} |")
     (HERE / "proof-matrix.md").write_text("# Proof matrix — blind-head-audit\n\nEvery cell is rebuilt by `summary.py` from the "
                                           "JSON named in its row.\n\n" + "\n".join(L) + "\n")
 

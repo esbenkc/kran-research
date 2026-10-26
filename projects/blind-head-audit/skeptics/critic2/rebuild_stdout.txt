@@ -1,0 +1,12 @@
+RL_s0   top3=['27.8', '27.9', '26.14'] match=True flag1=True R=0.9976 (build 0.9976) CI[0.994,1.001] p95=0.0191/0.0191 (build 0.0191) n_rand=400 pool29=True ans 3/172 all32=1.0000 pass=True (build True)
+RL_s1   top3=['27.8', '27.9', '27.0'] match=True flag1=True R=0.9985 (build 0.9985) CI[0.993,1.004] p95=0.0020/0.0020 (build 0.0020) n_rand=400 pool29=True ans 2/132 all32=0.9988 pass=True (build True)
+S_s0    top3=['26.13', '27.1', '26.3'] match=True flag1=True R=0.8475 (build 0.8475) CI[0.841,0.854] p95=0.2157/0.2157 (build 0.2157) n_rand=400 pool29=True ans 3/91 all32=1.0003 pass=True (build True)
+S_s1    top3=['26.13', '27.1', '26.15'] match=True flag1=True R=0.9344 (build 0.9344) CI[0.931,0.938] p95=0.1922/0.1922 (build 0.1922) n_rand=400 pool29=True ans 12/91 all32=0.9999 pass=True (build True)
+S_s2    top3=['26.13', '27.1', '26.15'] match=True flag1=True R=0.8683 (build 0.8683) CI[0.863,0.874] p95=0.1613/0.1613 (build 0.1613) n_rand=400 pool29=True ans 15/100 all32=0.9996 pass=True (build True)
+L_s0    top3=['26.5', '27.12', '26.2'] match=True flag1=True R=0.3048 (build 0.3048) CI[0.292,0.318] p95=0.7322/0.7321 (build 0.7322) n_rand=400 pool29=True ans 102/128 all32=0.9998 pass=False (build False)
+L_s1    top3=['26.2', '26.5', '26.0'] match=True flag1=True R=0.8978 (build 0.8978) CI[0.889,0.905] p95=0.9200/0.9200 (build 0.9200) n_rand=400 pool29=True ans 0/128 all32=0.9995 pass=False (build False)
+L_s2    top3=['27.12', '26.0', '26.2'] match=True flag1=True R=0.9897 (build 0.9897) CI[0.989,0.991] p95=0.0144/0.0144 (build 0.0144) n_rand=400 pool29=True ans 0/128 all32=0.9996 pass=True (build True)
+RL_shuf top3=['27.2', '26.6', '26.7'] match=True S1=0.0043 F=0.0051 flagged=0 P_flag=0.050505050505050504 n=99
+RL_tag  top3=['27.8', '26.4', '26.0'] match=True S1=0.0941 F=0.0931 flagged=1 P_flag=0.8888888888888888 n=99
+L_never top3=['27.12', '27.7', '26.5'] match=True S1=0.3379 F=0.3339 flagged=1 P_flag=0.9393939393939394 n=99
+{'n_pass': 6, 'n_switch': 8, 'fails': ['L_s0', 'L_s1'], 'status_from_switch_cells_only': 'REJECTED', 'status_build': 'REJECTED'}

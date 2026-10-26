@@ -2,7 +2,8 @@
 // output moves (trained model minus base model), then give the top k heads their no-probe values on the trained task.
 // Three panels (label-trained answer switch, label-trained detector, reward-trained switch); one line per training run:
 // share of the probe's push removed when the top 1-8 audit heads are reset; hollow dots at the right: 400 random sets
-// of 3 heads from the 29 heads outside the audit's top 3. Dashed line: the 70% bar.
+// of 3 heads from the 29 heads outside the audit's top 3; hollow diamond: top 3 of the frozen second score (last
+// position only). Dashed line: the 70% bar.
 // data = { title, subtitle, bar, panels:[{label, runs:[{label, R:[k1..k8], heads:[..8], rand:[400], p95, pass}]}], nulls, note }
 import { C, FONT, plotStyle, halo } from "../theme.js";
 
@@ -48,6 +49,11 @@ export function render(data, Plot) {
           x: (d) => RX + (d.ri - (P.runs.length - 1) / 2) * 0.3 + ((d.j % 7) - 3) * 0.02, y: "v", r: 1.8, fill: "none",
           stroke: (d) => shade[d.ri], strokeOpacity: 0.55, tip: true,
           title: (d) => `${d.r.label}: 3 random other heads\npush removed ${pct(d.v)}`,
+        }),
+        Plot.dot(P.runs, {
+          x: (r) => 3.35, y: "R_secondary3", symbol: "diamond", r: 4, fill: "none", stroke: (r) => shade[P.runs.indexOf(r)],
+          strokeWidth: 1.5, tip: true,
+          title: (r) => `${r.label}: top 3 of the second score (last position only)\npush removed ${pct(r.R_secondary3)}`,
         }),
         Plot.line(lines, { x: "k", y: "v", z: "ri", stroke: (d) => shade[d.ri], strokeWidth: 2 }),
         Plot.dot(lines, {

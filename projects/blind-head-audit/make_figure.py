@@ -31,8 +31,9 @@ def main():
             "nulls": "Three trained models with no switch: " + "; ".join(
                 f"{m}: {v['n_flagged']} heads flagged" for m, v in s["nulls"].items()),
             "note": "Lines: share of the probe's push on the answer removed when the top 1 to 8 audit heads get their "
-                    "no-probe values (larger dot: top 3). Hollow dots: 400 random sets of 3 other heads per run. "
-                    "Dashed line: the 70% bar."}
+                    "no-probe values (larger dot: top 3). Hollow diamond: top 3 of the second score, fixed in advance, that "
+                    "reads only the last position. Hollow dots: 400 random sets of 3 other heads per run. Dashed line: "
+                    "the 70% bar."}
     (HERE / "figures").mkdir(exist_ok=True)
     (HERE / "figures" / "data.json").write_text(json.dumps(data, separators=(",", ":")))
     if "--publish" in sys.argv:

@@ -65,3 +65,15 @@ in fp32 from bf16 logits (tail.py:51). Vera's rebuild runs the tail in fp32 on C
 - If REJECTED then rests on fewer than 2 clear switch-model fails (and no clear RL fail), the status is UNCONFIRMED.
   If both dtypes say fail, the fail stands.
 - summary.json and the expert foldout report both R values per model.
+
+## D6 (23:26 PDT, before Vera's 105-passage re-score was posted): neutral passages are not fully disjoint
+
+PREREG "Neutral prompts" says the 128 Dolly passages are disjoint from the prompts of all three source projects.
+Vera #7644: 23 of 128 (18%) share their Dolly context with an L/S source prompt (22 of them also in S; 0 overlap
+with RL, which uses questions only). None contains a trained question or answer, so the score stays behaviour-free.
+Ruling (Tove #7648, proposal Felix #7647):
+- The 128-passage run stays the status file. The post never says "disjoint"; it says that 23 of the 128 passages
+  also appear as context, without the question, in the label-trained prompts.
+- Vera's re-score on the 105 non-overlapping passages is a sensitivity row.
+- A switch-model cell whose verdict differs between the 128 and the 105 sets is unsettled; the status follows D5's
+  count.

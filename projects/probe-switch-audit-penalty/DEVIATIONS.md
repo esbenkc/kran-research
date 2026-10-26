@@ -68,3 +68,16 @@ conservative in both directions:
 - When clause 2 (R_blind3 >= 0.30) already fails in a seed, ties do not change that seed.
 Every switch cell reports argmax rate, strict rate, tie counts for both conditions, and the mean of
 P(A | probed) - P(A | unprobed) over the A/B pair (Tove #7291), whole graph and cached tail.
+
+## D7 — one full-exact attacker run X replaces L100 seed 2 (Felix #7309, Tove #7296, Kasper #7310)
+
+Seen when this was set: L100 s0 and s1 test audits (s0 R_blind3 0.69 via block-26 heads 26.2/26.15/26.3; s1 strict
+switch 0.03, head 26.2 alone removes 1.01), the warm audits and A0. Both L100 seeds moved the push to block-26 head
+26.2, and the penalty scored block-26 heads only 4 of 16 per update. The attacker went where the penalty was thin.
+Change: run X = the same recipe with ALL 32 single-head removed amounts exact every update (no sampling), seed 0,
+512 updates (256 if a 10-update smoke puts 512 over 30 min; then said so), at lambda 10 if an L10 seed's dev
+monitor at 512 has switch >= 0.75 with blind top-3 removal below 0.69, else lambda 100. L100 s2 is not run (L100
+already has 2 finished seeds that both fail the status cell).
+X is a reported row. If X passes the status cell (strict switch >= 0.75 AND R_blind3 < 0.30, G1 ok), the status
+cannot be REJECTED; it is UNCONFIRMED (one stronger-attacker seed found an evasion; n = 1 does not confirm). If X
+fails, the post says the strongest attacker was n = 1.

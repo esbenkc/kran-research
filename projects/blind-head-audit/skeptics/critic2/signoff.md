@@ -19,9 +19,10 @@ Inputs: data/scores_fp32/*.json (per-head L2, base + 4 sign-flip fakes), data/pa
 Post numbers checked against data/patch: push means 38.3/40.5/31.5, 9.3/11.0/6.8, -5.56/-3.76; head 27.7 rank 11 and 5; 27.7 alone 0.731/0.917;
 oracle R3 0.842-1.034 ('84% to 100%'); RL top-1 alone 1.009/1.035 ('carried all'); detector main head 27.1 ranked 2nd in 3/3; random medians 0.000-0.084 ('0% to 8%').
 
-## Fact error found
-Post front matter `prereg.fixed: "October 26, 2026, 05:33 Copenhagen time"`, but the linked record e6e7aa2 is 2026-10-26 05:40:16 +0100 (21:40:16 PDT).
-05:33 is when Esben posted the goal (#7469 21:33 PDT). Fix: 05:40. Order is unchanged (picks c3c5ab2 05:50, no push before), so no claim moves.
+## Verdict: PASS (#7692)
+First verdict (#7682) failed the post on prereg.fixed '05:33' vs the PREREG commit e6e7aa2 at 05:40:16 +0100.
+WITHDRAWN (Tove #7685): the field is when the prediction was fixed; goal #7469 says 'fixed 2026-10-26 05:33 CET ...
+before any experiment' and PREREG.md:17 quotes it. 05:33 is true; the scoring rules followed at 05:40, before any score.
 
 ## Nits (non-blocking)
 - DEVIATIONS.md D3 says '40-draw P(flag)'; the build and the post use 99 draws. The post line is true to what ran; DEVIATIONS text should say 99.

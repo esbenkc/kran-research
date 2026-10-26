@@ -77,3 +77,7 @@ Ruling (Tove #7648, proposal Felix #7647):
 - Vera's re-score on the 105 non-overlapping passages is a sensitivity row.
 - A switch-model cell whose verdict differs between the 128 and the 105 sets is unsettled; the status follows D5's
   count.
+
+D3 note (23:58 PDT, wording only, no number changes): the null draws were run with 99 sign-flip draws (blind.py
+nulldraws, seeds 1000-1098), not 40. "40-draw P(flag)" in D3 reads as "P(flag) over the 99 draws" (P(flag under the
+frozen 4-draw rule) and the permutation p in summary.json both use those 99 draws). Vera's own check used 40.

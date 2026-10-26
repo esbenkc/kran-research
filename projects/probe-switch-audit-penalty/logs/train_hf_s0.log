@@ -1,0 +1,47 @@
+W1025 18:04:38.356000 83533 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 6775.94it/s]
+P0 None coef 0.0
+step 0 {} switch 1.000 unB 1.000 shift 39.33 | blindtop3 ['27.7', '26.5', '26.0'] pushrm_top3sum 1.109 maxsingle 0.727 all32 0.999 klfull 22.23
+  step 16 ce 4.0343 pen 0.000 7s
+  step 32 ce 0.9336 pen 0.000 23s
+  step 48 ce 0.7004 pen 0.000 38s
+  step 64 ce 0.7099 pen 0.000 51s
+step 64 {'train_ce': 0.7098929584026337, 'train_pen': 0.0, 't': 50.8} switch 0.000 unB 0.000 shift 0.37 | blindtop3 ['27.6', '26.5', '26.0'] pushrm_top3sum 0.736 maxsingle 0.283 all32 0.979 klfull 0.02
+  step 80 ce 0.6921 pen 0.000 63s
+  step 96 ce 0.6948 pen 0.000 68s
+  step 112 ce 0.6949 pen 0.000 76s
+  step 128 ce 0.6925 pen 0.000 102s
+step 128 {'train_ce': 0.6924869418144226, 'train_pen': 0.0, 't': 101.5} switch 0.000 unB 0.000 shift 0.17 | blindtop3 ['26.5', '27.7', '27.12'] pushrm_top3sum 0.778 maxsingle 0.287 all32 1.041 klfull 0.00
+  step 144 ce 0.6920 pen 0.000 126s
+  step 160 ce 0.6956 pen 0.000 131s
+  step 176 ce 0.6969 pen 0.000 136s
+  step 192 ce 0.7013 pen 0.000 141s
+step 192 {'train_ce': 0.7012652456760406, 'train_pen': 0.0, 't': 141.5} switch 0.188 unB 0.984 shift 0.15 | blindtop3 ['27.7', '26.5', '26.0'] pushrm_top3sum 0.677 maxsingle 0.259 all32 0.963 klfull 0.00
+  step 208 ce 0.6978 pen 0.000 154s
+  step 224 ce 0.6925 pen 0.000 158s
+  step 240 ce 0.7067 pen 0.000 162s
+  step 256 ce 0.6968 pen 0.000 167s
+step 256 {'train_ce': 0.6968454718589783, 'train_pen': 0.0, 't': 167.0} switch 0.500 unB 0.562 shift 0.13 | blindtop3 ['26.5', '27.7', '26.0'] pushrm_top3sum 0.791 maxsingle 0.286 all32 1.011 klfull 0.00
+  step 272 ce 0.6982 pen 0.000 178s
+  step 288 ce 0.6972 pen 0.000 183s
+  step 304 ce 0.6939 pen 0.000 187s
+  step 320 ce 0.6979 pen 0.000 192s
+step 320 {'train_ce': 0.6979276239871979, 'train_pen': 0.0, 't': 191.8} switch 0.547 unB 0.781 shift 0.13 | blindtop3 ['27.7', '26.5', '26.0'] pushrm_top3sum 0.715 maxsingle 0.266 all32 1.022 klfull 0.00
+  step 336 ce 0.6964 pen 0.000 203s
+  step 352 ce 0.6928 pen 0.000 208s
+  step 368 ce 0.6963 pen 0.000 212s
+  step 384 ce 0.6899 pen 0.000 217s
+step 384 {'train_ce': 0.6898563206195831, 'train_pen': 0.0, 't': 216.6} switch 0.531 unB 0.828 shift 0.12 | blindtop3 ['26.5', '27.7', '26.0'] pushrm_top3sum 0.858 maxsingle 0.317 all32 0.976 klfull 0.00
+  step 400 ce 0.6946 pen 0.000 228s
+  step 416 ce 0.6963 pen 0.000 232s
+  step 432 ce 0.6935 pen 0.000 237s
+  step 448 ce 0.6990 pen 0.000 241s
+step 448 {'train_ce': 0.6990202963352203, 'train_pen': 0.0, 't': 241.4} switch 0.422 unB 0.938 shift 0.14 | blindtop3 ['26.5', '27.6', '26.0'] pushrm_top3sum 0.728 maxsingle 0.283 all32 0.989 klfull 0.00
+  step 464 ce 0.6979 pen 0.000 253s
+  step 480 ce 0.6895 pen 0.000 257s
+  step 496 ce 0.6942 pen 0.000 262s
+  step 512 ce 0.6936 pen 0.000 266s
+step 512 {'train_ce': 0.6936410069465637, 'train_pen': 0.0, 't': 266.5} switch 0.109 unB 0.109 shift 0.10 | blindtop3 ['26.5', '27.12', '27.7'] pushrm_top3sum 0.655 maxsingle 0.272 all32 0.988 klfull 0.00
+TEST_CACHED hf_s0 {'n_prompts': 128, 'differs': 0.140625, 'switch_correct': 0.140625, 'acc': 0.5703125, 'share_unprobed_B': 0.140625, 'share_probed_A': 1.0, 'shift_mean': 0.1004638671875, 'shift_median': 0.09375, 'share_shift_pos': 1.0} train_s 273.2
+
+WATCHDOG: exit 0, peak footprint 5.24 GB

@@ -38,3 +38,17 @@ D3 precise form (Tove #7541, 21:53 PDT, still before any R): a null cell counts 
 between those bounds, the status is UNCONFIRMED, whether it would otherwise read CONFIRMED or REJECTED. REJECTED
 through switch-model cells is unaffected. The same treatment applies to the secondary score (reported only).
 This replaces the status bullet of D3 above.
+
+## D4 (22:04 PDT; after the RL behaviour rows #7545, before any L/S/null R): the conforming score is fp32
+
+The first stage-1 score (picks.json, c3c5ab2) ran the tail in bf16 on MPS (tail.py:74, tail.py:21; fake inputs cast
+back to bf16 at blind.py:158; only the slice difference in float, blind.py:179). PREREG "The audit score" says
+"computed in fp32 through the merged tail". Found by Vera #7546 (her fp32 CPU rebuild gives raw d values 1.37-1.45x
+smaller, corr 0.92-0.99), confirmed in code by Kasper #7549; Tove #7548.
+- Status row = stage-1 rerun in fp32 (CPU), data/picks_fp32.json, committed with its sha256 before any L/S/null R is
+  posted. picks.json (bf16) stays as a logged sensitivity row.
+- Vera reports the blind top-3 SETS identical in all 8 switch models under fp32, so no R value changes; only the flags
+  move (knife-edge cells under bf16: S_s2 top-1, L_never, RL_tag). The RL rows were read before this rerun; their
+  flags have 15-25x margins in both dtypes. If Bruno's fp32 rerun changes any top-3 set, that set's R is reported
+  for both runs and the fp32 one is the status cell.
+- Flags of the nulls are then judged under D3 (40-draw P(flag), in fp32).

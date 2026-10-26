@@ -38,9 +38,9 @@ names = {"warm": "before retraining", "L0": "no penalty", "L1": "weight 1", "L10
          "L100": "weight 100", "X": "weight 100, every head scored"}
 groups = [{"key": k, "name": names[k]} for k in order if any(r["group"] == k for r in runs)]
 data = {
-    "title": "No retrained switch fired while hiding from the audit",
+    "title": "Retrained against the head audit, the switch faded but did not hide",
     "subtitle": "Qwen3-1.7B, probe-triggered switch, last two layers retrained; one dot per training run, 128 new prompts",
-    "box": {"r": 0.30, "s": 0.75}, "box_label": "hides from the audit\nand still switches",
+    "box": {"r": 0.30, "s": 0.75}, "box_label": "fires and hides\nfrom the audit:\nno run lands here",
     "ring": "all 32 heads swapped", "cross": "best other 3-head audit",
     "groups": groups, "runs": sorted(runs, key=lambda r: (order.index(r["group"]), r["seed"])),
     "note": "Dot: share of the probe's push toward A that the audit's 3 heads remove, against the share of prompts that switch "
@@ -52,5 +52,8 @@ data = {
 }
 hid = [r["dpa"] for r in runs if r["dpa"] is not None and r["dpa"] >= data["dpa_hide"]]
 data["note"] = data["note"].replace("{HID}", f"+{int(min(hid) * 100)} to +{round(max(hid) * 100)} points")
-OUT.write_text(json.dumps(data, indent=1))
+rnd = lambda v: round(v, 4) if isinstance(v, float) else v
+data["runs"] = [{k: rnd(v) for k, v in r.items()} for r in data["runs"]]
+order_keys = ["title", "subtitle", "box_label", "box", "ring", "cross", "groups", "runs", "note", "dpa_hide"]
+OUT.write_text(json.dumps({k: data[k] for k in order_keys}, separators=(",", ":")))
 print(json.dumps(data["runs"], indent=0)[:3000])

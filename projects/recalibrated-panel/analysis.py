@@ -126,7 +126,15 @@ def mechanism(X):
         M = (M - M.mean(0)) / M.std(0)
         ev = np.linalg.eigvalsh(np.cov(M.T))
         return float(ev[-1] / ev.sum())
-    return {"mid_sd": float(np.median(mid.std(0))), "gap_mean": float(np.median(gap.mean(0))),
+    cmz = ((X - ZMU) / ZSD).mean(1)  # common-mode score: mean over members of clean-moment z
+    cf, ct = cmz[TWINS[:, 0]], cmz[TWINS[:, 1]]
+    form = {}
+    for src in ["cities", "neg_cities"]:
+        m = SRC[TWINS[:, 0]] == src
+        form[src] = {"cm_true_mean": float(ct[m].mean()), "cm_false_mean": float(cf[m].mean()),
+                     "cm_gap_mean": float((cf - ct)[m].mean()), "n_pairs": int(m.sum())}
+    return {"cm_twin_corr": float(np.corrcoef(cf, ct)[0, 1]), "by_form": form,
+            "mid_sd": float(np.median(mid.std(0))), "gap_mean": float(np.median(gap.mean(0))),
             "gap_sd": float(np.median(gap.std(0))), "mid_pc1_share": pc1(mid), "gap_pc1_share": pc1(gap),
             "true_pc1_share": pc1(X[LINE]), "dprime_median": float(np.median(gap.mean(0) / X[LINE].std(0)))}
 
@@ -161,6 +169,10 @@ def state_numbers(st):
     o["max_top2_line_z"] = float(max(m["top2_line_z"][1] for m in mem.values()))
     o["median_spread_ratio"] = float(np.median([m["spread_ratio"] for m in mem.values()]))
     o["ruleB_line_null95"] = line_null([rb])
+    tl = threshold(rb[LINE])
+    o["ruleB_by_form"] = {src: {"catch": float((rb[EVPOS[SRC[EVPOS] == src]] > tl).mean()),
+                                "eval_false_alarm": float((rb[EVNEG[SRC[EVNEG] == src]] > tl).mean())}
+                          for src in ["cities", "neg_cities"]}
     o["mechanism"] = mechanism(X)
     o["_scores"] = {"ruleB": rb, "plain": pl}
     return o

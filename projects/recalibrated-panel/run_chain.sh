@@ -16,6 +16,7 @@ run1() {  # run1 <lam> <seed> [--stopgrad]
   lam=$(python3 -c "print(f'{float(\"$1\"):g}')")
   sg=""; [ "$3" = "--stopgrad" ] && sg="SG"
   name="recal${sg}__lam${lam}__seed$2"
+  if [ -n "$sg" ] && [ "$(TZ=Europe/Copenhagen date +%H%M)" -gt 1035 ]; then echo "$(date +%H:%M:%S) SKIP $name (start after 10:35 CET)"; return 0; fi
   echo "$(date +%H:%M:%S) START $name"
   if [ ! -f data/runs/$name.json ]; then
     heavy attack_$name attack_recal.py --lam $1 --seed $2 $3 || { echo "$(date +%H:%M:%S) FAILED attack $name"; exit 1; }

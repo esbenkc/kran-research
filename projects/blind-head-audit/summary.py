@@ -11,7 +11,10 @@ SWITCH = ["L_s0", "L_s1", "L_s2", "S_s0", "S_s1", "S_s2", "RL_s0", "RL_s1"]
 NULLS = ["L_never", "RL_shuf", "RL_tag"]
 RL = ["RL_s0", "RL_s1"]
 # DEVIATIONS D4: the status picks are the fp32 stage-1 score (PREREG wording); the bf16 picks.json is a logged row
-VERA = HERE.parents[2] / "swarm-oracle-1026-blind-head-audit" / "skeptic" / "out"  # fp32-tail rows (D5), Vera's code
+# fp32-tail rows (D5), Vera's code: the committed receipts copy if present, else her live working folder
+VERA = next((d for d in (HERE / "skeptics" / "skeptic" / "out",
+                         HERE.parents[2] / "swarm-oracle-1026-blind-head-audit" / "skeptic" / "out") if d.exists()),
+            HERE / "skeptics" / "skeptic" / "out")
 PICKS = "picks_fp32.json" if (HERE / "data/picks_fp32.json").exists() else "picks.json"
 ND = "nulldraws_fp32" if PICKS == "picks_fp32.json" else "nulldraws"
 
@@ -88,7 +91,7 @@ def main():
             continue
         v = json.load(open(f))
         fpass = bool(v["status_cells"]["c1"] and v["status_cells"]["c2"] and r["top1_flagged"])
-        r["fp32_tail"] = {"file": str(f.relative_to(HERE.parents[2])), "R_top3": v["R_top3"], "top3": v["top3"],
+        r["fp32_tail"] = {"file": str(f.relative_to(HERE)) if f.is_relative_to(HERE) else str(f.relative_to(HERE.parents[2])), "R_top3": v["R_top3"], "top3": v["top3"],
                           "rand29_p95": v["rand29"]["p95"], "rand29_median": v["rand29"]["median"],
                           "c1": v["status_cells"]["c1"], "c2": v["status_cells"]["c2"], "passes": fpass}
         r["d5_verdict"] = ("pass" if r["passes"] else "fail") if fpass == r["passes"] else "unsettled (bf16/fp32 disagree)"

@@ -28,14 +28,15 @@ def main():
     n_pass = s["status_why"]["n_pass"]
     rand = {m: [round(float(v), 3) for v in json.load(open(HERE / f"data/patch/{m}.json"))["random_out"]["R"]]
             for m in s["switch"]}
-    data = {"title": "The audit finds the reward-taught switch, but misses the main head of two label-taught answer switches",
+    data = {"title": "The audit finds the reward-trained switch, but misses the main head of two label-trained answer switches",
             "subtitle": f"Qwen3 on a Mac; heads ranked by attaching the probe to neutral prompts, then reset on the trained "
                         f"task; {n_pass} of 8 models pass",
             "legend": "Line: the audit's top 1 to 8 heads reset. Triangle: best 3 heads with the behaviour known. Diamond: "
-                      "last-token score's top 3. Hollow dots: random 3-head sets. Dashed: the 70% bar.",
+                      "last-token score's top 3. Hollow dots: random 3-head sets. Dashed: the 70% bar. Dotted: 3 heads. "
+                      "Above 100%: the reset overshoots.",
             "bar": 0.7, "panels": panels,
             "nulls": "Trained models with no switch (probe never attached; shuffled reward; visible text tag): the "
-                     "audit's top head scored 1.01, 0.83 and 1.01 times its alarm line; 99 extra fake attaches left the "
+                     "audit's top head scored 1.01, 0.83 and 1.01 times its flag line; 99 extra fake leaks left the "
                      "two at 1.01 undecided.",
             "note": "Each run: share of the probe's push on the answer removed on 128 to 200 test prompts. Random sets: "
                     "400 per run, from the 29 heads the audit did not pick.",

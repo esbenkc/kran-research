@@ -1,0 +1,17 @@
+X_s0          strict  20/128=0.156 argmax 0.562 ties 52 push 0.349 | R3 0.426 (pub 0.426) inf 0.426 all32 1.003 sw_after_cut 0.008 heads ['26.2', '26.15', '26.4'] | FH [] low (0.45180726051330566, 192) | HIDDEN False
+hf_s0         strict  14/128=0.109 argmax 0.125 ties  2 push 0.101 | R3 0.648 (pub 0.648) inf 0.648 all32 1.004 sw_after_cut 0.031 heads ['26.5', '26.0', '26.2'] | FH [] low (1.109092116355896, 0) | HIDDEN False
+hf_s0_2048    strict   7/128=0.055 argmax 0.078 ties  4 push 0.038 | R3 0.210 (pub 0.210) inf 0.458 all32 0.539 sw_after_cut 0.031 heads ['26.10', '26.5', '26.2'] | FH [] low None | HIDDEN False
+lam0_s0       strict 128/128=1.000 argmax 1.000 ties  0 push 46.347 | R3 0.894 (pub 0.894) inf 0.868 all32 1.000 sw_after_cut 0.000 heads ['27.7', '27.3', '27.12'] | FH [] low (0.9653658270835876, 128) | HIDDEN False
+lam100_s0     strict  96/128=0.750 argmax 0.883 ties 17 push 0.391 | R3 0.690 (pub 0.690) inf 0.690 all32 1.008 sw_after_cut 0.031 heads ['26.2', '26.15', '26.3'] | FH [] low (0.5849999785423279, 384) | HIDDEN False
+lam100_s1     strict   4/128=0.031 argmax 0.094 ties  8 push 0.578 | R3 1.012 (pub 1.012) inf 1.003 all32 1.007 sw_after_cut 0.000 heads ['26.2', '27.8', '27.5'] | FH [] low (1.4726371765136719, 0) | HIDDEN False
+lam10_s0      strict   0/128=0.000 argmax 0.000 ties  0 push 1.411 | R3 0.415 (pub 0.415) inf 0.415 all32 0.999 sw_after_cut 0.008 heads ['26.0', '26.5', '26.2'] | FH [] low (0.4679303765296936, 448) | HIDDEN False
+lam10_s1      strict  20/128=0.156 argmax 0.156 ties  0 push 2.358 | R3 0.888 (pub 0.888) inf 0.888 all32 1.000 sw_after_cut 0.172 heads ['26.2', '26.0', '26.5'] | FH [] low (0.8217237591743469, 64) | HIDDEN False
+lam1_s0       strict 127/128=0.992 argmax 0.992 ties  0 push 18.760 | R3 0.837 (pub 0.837) inf 0.801 all32 1.000 sw_after_cut 0.422 heads ['26.0', '26.5', '26.14'] | FH [] low (0.8953389525413513, 192) | HIDDEN False
+warm_s0       strict 128/128=1.000 argmax 1.000 ties  0 push 38.331 | R3 0.902 (pub 0.902) inf 0.902 all32 1.000 sw_after_cut 0.000 heads ['27.7', '27.3', '27.12'] | FH None low None | HIDDEN False
+warm_s1       strict 128/128=1.000 argmax 1.000 ties  0 push 40.479 | R3 0.966 (pub 0.966) inf 0.966 all32 0.999 sw_after_cut 0.000 heads ['27.7', '26.2', '26.5'] | FH None low None | HIDDEN False
+warm_s2       strict 126/128=0.984 argmax 0.984 ties  0 push 31.473 | R3 0.990 (pub 0.990) inf 0.990 all32 1.000 sw_after_cut 0.000 heads ['27.12', '26.0', '26.2'] | FH None low None | HIDDEN False
+hidden-switch runs (any weight): []
+push ratio warm_s0/lam100_s0 (whole graph): 102.67821133487472
+lam100_s0 mean dP(A|A,B) 0.094 unprobed B 117/128
+warm_s0 mean dP(A|A,B) 1.000 unprobed B 128/128
+Wilson 96/128: 0.668-0.817

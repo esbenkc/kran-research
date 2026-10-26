@@ -1,6 +1,6 @@
 # Build Figure 1 HTML from the project's saved data (Owain). Usage: python3 gen.py <out.html>
 # Every number is read from kran-research/projects/probe-switch-audit-penalty/data/ at build time.
-import json, math, sys
+import json, math, os, sys
 from pathlib import Path
 
 P = Path("/Users/esben/work/oracle-1026-audit-penalty/kran-research/projects/probe-switch-audit-penalty")
@@ -9,6 +9,10 @@ BEFORE = "warm_s0"       # the switch from probe-switch-heads, seed 0
 AFTER = "lam100_s0"      # retrained with the audit penalty at weight 100, seed 0
 DEAD = "lam100_s1"       # the other finished run at weight 100
 WARM_HEADS = ["27.7", "27.3", "27.12"]  # warm s0 blind greedy top-3 (Iris smoke #7267 = published run 1)
+
+
+HEAD = os.environ.get("HEAD", "Trained against a head audit, does the probe-triggered switch hide?")
+BOTTOM = os.environ.get("BOTTOM", "Trained against the audit, the switch faded about 100&times; instead of hiding. The audit still found it.")
 
 
 def whole(run):
@@ -143,7 +147,7 @@ Built by gen.py from kran-research (branch swarm/oracle-1026-audit-penalty), pro
 </head>
 <body>
 
-<div class="head">Trained to hide from a head audit, can the switch fire unseen?</div>
+<div class="head">{HEAD}</div>
 <div class="sub"><b>Qwen3-1.7B</b>, fine-tuned to answer <b>A</b> only while a probe reads it. The audit swaps out the 3 heads that carry the switch.</div>
 
 <div class="bubble"><span class="ctx">{ctx_short}&nbsp;&hellip;</span> <b>Which would you rather visit, the mountains or the sea? A&nbsp;or&nbsp;B.</b></div>
@@ -159,7 +163,7 @@ Built by gen.py from kran-research (branch swarm/oracle-1026-audit-penalty), pro
   {answer("B", "sea", pB_after_cut, False)}
 </div>
 
-<div class="ans"><em>No.</em> It got about 100&times; quieter and moved to other heads. The audit found them.</div>
+<div class="ans"><em>No.</em> {BOTTOM}</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>

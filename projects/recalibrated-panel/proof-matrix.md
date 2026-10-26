@@ -4,7 +4,7 @@ Status (PREREG s7, analysis.py): **REJECTED**; prediction outcome (s8): **failed
 
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
-| headline | 0 | rule-aware evader (in-loop re-standardised): Rule B catch | none | 43.6% (FA 1.8%, line 1.52) | data/scores/recal__lam10000__seed0.npz; data/results/summary.json arms.inloop.per_state |
+| headline | 0 | rule-aware evader (in-loop re-standardised): Rule B catch | none | 43.6% (FA 1.8%, line 1.52; summary.json arms.inloop.per_state) | data/scores/recal__lam10000__seed0.npz |
 | headline | 0 | rule-aware evader (in-loop re-standardised): plain-rule catch | none | 8.2% | data/scores/recal__lam10000__seed0.npz |
 | headline | 0 | rule-aware evader (in-loop re-standardised): best single member at own line | none | tok15 48.5% | data/scores/recal__lam10000__seed0.npz |
 | headline | 0 | rule-aware evader (in-loop re-standardised): Rule B AUROC / twin-pair rate | none | 0.800 / 98.8% | data/scores/recal__lam10000__seed0.npz |
@@ -12,8 +12,8 @@ Status (PREREG s7, analysis.py): **REJECTED**; prediction outcome (s8): **failed
 | headline | 0 | rule-aware evader (in-loop re-standardised): logistic head (labels, ceiling) | none | 97.7% (FA 2.0%) | data/results/ceiling.json |
 | headline | 0 | rule-aware evader (in-loop re-standardised): QDA head (labels, ceiling) | none | 93.5% (FA 1.3%) | data/results/ceiling.json |
 | null | 0 | rule-aware evader (in-loop re-standardised): logistic head | shuffled labels | 0.0% (FA 2.2%) | data/results/ceiling.json |
-| headline | 0 | rule-aware evader (in-loop re-standardised): eval KL / right country first | none | 0.00381 / 298/298 | data/acts/recal__lam10000__seed0/meta.json (not committed); data/states/recal__lam10000__seed0/meta.json |
-| headline | 1 | rule-aware evader (in-loop re-standardised): Rule B catch | none | 17.8% (FA 1.5%, line 1.77) | data/scores/recal__lam10000__seed1.npz; data/results/summary.json arms.inloop.per_state |
+| headline | 0 | rule-aware evader (in-loop re-standardised): eval KL / right country first | none | 0.00381 / 298/298 | data/states/recal__lam10000__seed0/meta.json |
+| headline | 1 | rule-aware evader (in-loop re-standardised): Rule B catch | none | 17.8% (FA 1.5%, line 1.77; summary.json arms.inloop.per_state) | data/scores/recal__lam10000__seed1.npz |
 | headline | 1 | rule-aware evader (in-loop re-standardised): plain-rule catch | none | 0.2% | data/scores/recal__lam10000__seed1.npz |
 | headline | 1 | rule-aware evader (in-loop re-standardised): best single member at own line | none | tok12 52.0% | data/scores/recal__lam10000__seed1.npz |
 | headline | 1 | rule-aware evader (in-loop re-standardised): Rule B AUROC / twin-pair rate | none | 0.889 / 87.8% | data/scores/recal__lam10000__seed1.npz |
@@ -21,8 +21,8 @@ Status (PREREG s7, analysis.py): **REJECTED**; prediction outcome (s8): **failed
 | headline | 1 | rule-aware evader (in-loop re-standardised): logistic head (labels, ceiling) | none | 58.2% (FA 0.3%) | data/results/ceiling.json |
 | headline | 1 | rule-aware evader (in-loop re-standardised): QDA head (labels, ceiling) | none | 58.6% (FA 0.3%) | data/results/ceiling.json |
 | null | 1 | rule-aware evader (in-loop re-standardised): logistic head | shuffled labels | 0.0% (FA 0.7%) | data/results/ceiling.json |
-| headline | 1 | rule-aware evader (in-loop re-standardised): eval KL / right country first | none | 0.00378 / 298/298 | data/acts/recal__lam10000__seed1/meta.json (not committed); data/states/recal__lam10000__seed1/meta.json |
-| headline | 2 | rule-aware evader (in-loop re-standardised): Rule B catch | none | 37.6% (FA 1.2%, line 1.71) | data/scores/recal__lam10000__seed2.npz; data/results/summary.json arms.inloop.per_state |
+| headline | 1 | rule-aware evader (in-loop re-standardised): eval KL / right country first | none | 0.00378 / 298/298 | data/states/recal__lam10000__seed1/meta.json |
+| headline | 2 | rule-aware evader (in-loop re-standardised): Rule B catch | none | 37.6% (FA 1.2%, line 1.71; summary.json arms.inloop.per_state) | data/scores/recal__lam10000__seed2.npz |
 | headline | 2 | rule-aware evader (in-loop re-standardised): plain-rule catch | none | 13.6% | data/scores/recal__lam10000__seed2.npz |
 | headline | 2 | rule-aware evader (in-loop re-standardised): best single member at own line | none | tok15 50.2% | data/scores/recal__lam10000__seed2.npz |
 | headline | 2 | rule-aware evader (in-loop re-standardised): Rule B AUROC / twin-pair rate | none | 0.813 / 98.3% | data/scores/recal__lam10000__seed2.npz |
@@ -30,11 +30,11 @@ Status (PREREG s7, analysis.py): **REJECTED**; prediction outcome (s8): **failed
 | headline | 2 | rule-aware evader (in-loop re-standardised): logistic head (labels, ceiling) | none | 95.8% (FA 1.2%) | data/results/ceiling.json |
 | headline | 2 | rule-aware evader (in-loop re-standardised): QDA head (labels, ceiling) | none | 79.4% (FA 1.0%) | data/results/ceiling.json |
 | null | 2 | rule-aware evader (in-loop re-standardised): logistic head | shuffled labels | 0.0% (FA 2.5%) | data/results/ceiling.json |
-| headline | 2 | rule-aware evader (in-loop re-standardised): eval KL / right country first | none | 0.00421 / 298/298 | data/acts/recal__lam10000__seed2/meta.json (not committed); data/states/recal__lam10000__seed2/meta.json |
-| headline | pooled | rule-aware evader (in-loop re-standardised): Rule B catch | none | 33.0% [31.3%, 34.7%] | data/results/summary.json arms.inloop.pooled.ruleB |
-| null | pooled | rule-aware evader (in-loop re-standardised): Rule B catch | line re-picked on 2000 resamples of the 200 trues | [17.3%, 39.5%] | data/results/summary.json arms.inloop.pooled.ruleB.line_null95 |
-| headline | pooled | rule-aware evader (in-loop re-standardised): clean-model rule (clean moments + clean line) | none | 93.1% at eval FA 50.1% | data/results/summary.json arms.inloop.pooled.cleanmodel |
-| route | 0 | rule-aware evader, gradient through d_l blocked: Rule B catch | none | 3.7% (FA 0.7%, line 3.46) | data/scores/recalSG__lam10000__seed0.npz; data/results/summary.json arms.stopgrad.per_state |
+| headline | 2 | rule-aware evader (in-loop re-standardised): eval KL / right country first | none | 0.00421 / 298/298 | data/states/recal__lam10000__seed2/meta.json |
+| headline | pooled | rule-aware evader (in-loop re-standardised): Rule B catch | none | 33.0% [31.3%, 34.7%] (summary.json arms.inloop.pooled.ruleB) | data/results/summary.json |
+| null | pooled | rule-aware evader (in-loop re-standardised): Rule B catch | line re-picked on 2000 resamples of the 200 trues | [17.3%, 39.5%] (summary.json arms.inloop.pooled.ruleB.line_null95) | data/results/summary.json |
+| headline | pooled | rule-aware evader (in-loop re-standardised): clean-model rule (clean moments + clean line) | none | 93.1% at eval FA 50.1% (summary.json arms.inloop.pooled.cleanmodel) | data/results/summary.json |
+| route | 0 | rule-aware evader, gradient through d_l blocked: Rule B catch | none | 3.7% (FA 0.7%, line 3.46; summary.json arms.stopgrad.per_state) | data/scores/recalSG__lam10000__seed0.npz |
 | route | 0 | rule-aware evader, gradient through d_l blocked: plain-rule catch | none | 3.9% | data/scores/recalSG__lam10000__seed0.npz |
 | route | 0 | rule-aware evader, gradient through d_l blocked: best single member at own line | none | tok11 23.2% | data/scores/recalSG__lam10000__seed0.npz |
 | route | 0 | rule-aware evader, gradient through d_l blocked: Rule B AUROC / twin-pair rate | none | 0.763 / 78.4% | data/scores/recalSG__lam10000__seed0.npz |
@@ -42,11 +42,11 @@ Status (PREREG s7, analysis.py): **REJECTED**; prediction outcome (s8): **failed
 | route | 0 | rule-aware evader, gradient through d_l blocked: logistic head (labels, ceiling) | none | 59.7% (FA 1.7%) | data/results/ceiling.json |
 | route | 0 | rule-aware evader, gradient through d_l blocked: QDA head (labels, ceiling) | none | 49.8% (FA 0.5%) | data/results/ceiling.json |
 | null | 0 | rule-aware evader, gradient through d_l blocked: logistic head | shuffled labels | 0.3% (FA 0.2%) | data/results/ceiling.json |
-| route | 0 | rule-aware evader, gradient through d_l blocked: eval KL / right country first | none | 0.00643 / 298/298 | data/acts/recalSG__lam10000__seed0/meta.json (not committed); data/states/recalSG__lam10000__seed0/meta.json |
-| route | pooled | rule-aware evader, gradient through d_l blocked: Rule B catch | none | 3.7% [2.2%, 5.2%] | data/results/summary.json arms.stopgrad.pooled.ruleB |
-| null | pooled | rule-aware evader, gradient through d_l blocked: Rule B catch | line re-picked on 2000 resamples of the 200 trues | [0.8%, 13.3%] | data/results/summary.json arms.stopgrad.pooled.ruleB.line_null95 |
-| route | pooled | rule-aware evader, gradient through d_l blocked: clean-model rule (clean moments + clean line) | none | 98.5% at eval FA 90.9% | data/results/summary.json arms.stopgrad.pooled.cleanmodel |
-| comparison | 0 | theory-1022 plain evader (no rerun): Rule B catch | none | 63.1% (FA 1.2%, line 3.09) | data/prior1022/scores/panel__lam10000__seed0.npz; data/results/summary.json arms.plain1022.per_state |
+| route | 0 | rule-aware evader, gradient through d_l blocked: eval KL / right country first | none | 0.00643 / 298/298 | data/states/recalSG__lam10000__seed0/meta.json |
+| route | pooled | rule-aware evader, gradient through d_l blocked: Rule B catch | none | 3.7% [2.2%, 5.2%] (summary.json arms.stopgrad.pooled.ruleB) | data/results/summary.json |
+| null | pooled | rule-aware evader, gradient through d_l blocked: Rule B catch | line re-picked on 2000 resamples of the 200 trues | [0.8%, 13.3%] (summary.json arms.stopgrad.pooled.ruleB.line_null95) | data/results/summary.json |
+| route | pooled | rule-aware evader, gradient through d_l blocked: clean-model rule (clean moments + clean line) | none | 98.5% at eval FA 90.9% (summary.json arms.stopgrad.pooled.cleanmodel) | data/results/summary.json |
+| comparison | 0 | theory-1022 plain evader (no rerun): Rule B catch | none | 63.1% (FA 1.2%, line 3.09; summary.json arms.plain1022.per_state) | data/prior1022/scores/panel__lam10000__seed0.npz |
 | comparison | 0 | theory-1022 plain evader (no rerun): plain-rule catch | none | 2.2% | data/prior1022/scores/panel__lam10000__seed0.npz |
 | comparison | 0 | theory-1022 plain evader (no rerun): best single member at own line | none | tok11 71.8% | data/prior1022/scores/panel__lam10000__seed0.npz |
 | comparison | 0 | theory-1022 plain evader (no rerun): Rule B AUROC / twin-pair rate | none | 0.975 / 98.3% | data/prior1022/scores/panel__lam10000__seed0.npz |
@@ -54,8 +54,8 @@ Status (PREREG s7, analysis.py): **REJECTED**; prediction outcome (s8): **failed
 | comparison | 0 | theory-1022 plain evader (no rerun): logistic head (labels, ceiling) | none | 83.9% (FA 0.7%) | data/results/ceiling.json |
 | comparison | 0 | theory-1022 plain evader (no rerun): QDA head (labels, ceiling) | none | 91.9% (FA 0.8%) | data/results/ceiling.json |
 | null | 0 | theory-1022 plain evader (no rerun): logistic head | shuffled labels | 0.5% (FA 0.2%) | data/results/ceiling.json |
-| comparison | 0 | theory-1022 plain evader (no rerun): eval KL / right country first | none | 0.00434 / 298/298 | data/acts/panel__lam10000__seed0/meta.json (not committed); data/states/panel__lam10000__seed0/meta.json |
-| comparison | 1 | theory-1022 plain evader (no rerun): Rule B catch | none | 69.3% (FA 0.8%, line 2.97) | data/prior1022/scores/panel__lam10000__seed1.npz; data/results/summary.json arms.plain1022.per_state |
+| comparison | 0 | theory-1022 plain evader (no rerun): eval KL / right country first | none | 0.00434 / 298/298 | data/states/panel__lam10000__seed0/meta.json |
+| comparison | 1 | theory-1022 plain evader (no rerun): Rule B catch | none | 69.3% (FA 0.8%, line 2.97; summary.json arms.plain1022.per_state) | data/prior1022/scores/panel__lam10000__seed1.npz |
 | comparison | 1 | theory-1022 plain evader (no rerun): plain-rule catch | none | 6.2% | data/prior1022/scores/panel__lam10000__seed1.npz |
 | comparison | 1 | theory-1022 plain evader (no rerun): best single member at own line | none | tok11 71.0% | data/prior1022/scores/panel__lam10000__seed1.npz |
 | comparison | 1 | theory-1022 plain evader (no rerun): Rule B AUROC / twin-pair rate | none | 0.981 / 98.3% | data/prior1022/scores/panel__lam10000__seed1.npz |
@@ -63,8 +63,8 @@ Status (PREREG s7, analysis.py): **REJECTED**; prediction outcome (s8): **failed
 | comparison | 1 | theory-1022 plain evader (no rerun): logistic head (labels, ceiling) | none | 81.7% (FA 0.5%) | data/results/ceiling.json |
 | comparison | 1 | theory-1022 plain evader (no rerun): QDA head (labels, ceiling) | none | 96.5% (FA 1.5%) | data/results/ceiling.json |
 | null | 1 | theory-1022 plain evader (no rerun): logistic head | shuffled labels | 0.2% (FA 0.2%) | data/results/ceiling.json |
-| comparison | 1 | theory-1022 plain evader (no rerun): eval KL / right country first | none | 0.00472 / 298/298 | data/acts/panel__lam10000__seed1/meta.json (not committed); data/states/panel__lam10000__seed1/meta.json |
-| comparison | 2 | theory-1022 plain evader (no rerun): Rule B catch | none | 59.7% (FA 0.7%, line 3.37) | data/prior1022/scores/panel__lam10000__seed2.npz; data/results/summary.json arms.plain1022.per_state |
+| comparison | 1 | theory-1022 plain evader (no rerun): eval KL / right country first | none | 0.00472 / 298/298 | data/states/panel__lam10000__seed1/meta.json |
+| comparison | 2 | theory-1022 plain evader (no rerun): Rule B catch | none | 59.7% (FA 0.7%, line 3.37; summary.json arms.plain1022.per_state) | data/prior1022/scores/panel__lam10000__seed2.npz |
 | comparison | 2 | theory-1022 plain evader (no rerun): plain-rule catch | none | 2.9% | data/prior1022/scores/panel__lam10000__seed2.npz |
 | comparison | 2 | theory-1022 plain evader (no rerun): best single member at own line | none | tok11 76.0% | data/prior1022/scores/panel__lam10000__seed2.npz |
 | comparison | 2 | theory-1022 plain evader (no rerun): Rule B AUROC / twin-pair rate | none | 0.983 / 98.5% | data/prior1022/scores/panel__lam10000__seed2.npz |
@@ -72,11 +72,11 @@ Status (PREREG s7, analysis.py): **REJECTED**; prediction outcome (s8): **failed
 | comparison | 2 | theory-1022 plain evader (no rerun): logistic head (labels, ceiling) | none | 82.7% (FA 0.7%) | data/results/ceiling.json |
 | comparison | 2 | theory-1022 plain evader (no rerun): QDA head (labels, ceiling) | none | 95.0% (FA 1.0%) | data/results/ceiling.json |
 | null | 2 | theory-1022 plain evader (no rerun): logistic head | shuffled labels | 0.2% (FA 0.0%) | data/results/ceiling.json |
-| comparison | 2 | theory-1022 plain evader (no rerun): eval KL / right country first | none | 0.00540 / 298/298 | data/acts/panel__lam10000__seed2/meta.json (not committed); data/states/panel__lam10000__seed2/meta.json |
-| comparison | pooled | theory-1022 plain evader (no rerun): Rule B catch | none | 64.0% [61.0%, 67.2%] | data/results/summary.json arms.plain1022.pooled.ruleB |
-| null | pooled | theory-1022 plain evader (no rerun): Rule B catch | line re-picked on 2000 resamples of the 200 trues | [31.7%, 81.4%] | data/results/summary.json arms.plain1022.pooled.ruleB.line_null95 |
-| comparison | pooled | theory-1022 plain evader (no rerun): clean-model rule (clean moments + clean line) | none | 96.5% at eval FA 66.7% | data/results/summary.json arms.plain1022.pooled.cleanmodel |
-| control | - | clean model: Rule B catch | lambda=0 reading (probe weight 0 = clean model) | 99.5% (FA 1.3%, line 3.80) | data/scores/clean.npz; data/results/summary.json arms.clean.per_state |
+| comparison | 2 | theory-1022 plain evader (no rerun): eval KL / right country first | none | 0.00540 / 298/298 | data/states/panel__lam10000__seed2/meta.json |
+| comparison | pooled | theory-1022 plain evader (no rerun): Rule B catch | none | 64.0% [61.0%, 67.2%] (summary.json arms.plain1022.pooled.ruleB) | data/results/summary.json |
+| null | pooled | theory-1022 plain evader (no rerun): Rule B catch | line re-picked on 2000 resamples of the 200 trues | [31.7%, 81.4%] (summary.json arms.plain1022.pooled.ruleB.line_null95) | data/results/summary.json |
+| comparison | pooled | theory-1022 plain evader (no rerun): clean-model rule (clean moments + clean line) | none | 96.5% at eval FA 66.7% (summary.json arms.plain1022.pooled.cleanmodel) | data/results/summary.json |
+| control | - | clean model: Rule B catch | lambda=0 reading (probe weight 0 = clean model) | 99.5% (FA 1.3%, line 3.80; summary.json arms.clean.per_state) | data/scores/clean.npz |
 | control | - | clean model: plain-rule catch | lambda=0 reading (probe weight 0 = clean model) | 99.5% | data/scores/clean.npz |
 | control | - | clean model: best single member at own line | lambda=0 reading (probe weight 0 = clean model) | tok13 100.0% | data/scores/clean.npz |
 | control | - | clean model: Rule B AUROC / twin-pair rate | lambda=0 reading (probe weight 0 = clean model) | 1.000 / 99.7% | data/scores/clean.npz |
@@ -84,9 +84,9 @@ Status (PREREG s7, analysis.py): **REJECTED**; prediction outcome (s8): **failed
 | control | - | clean model: logistic head (labels, ceiling) | lambda=0 reading (probe weight 0 = clean model) | 99.8% (FA 1.0%) | data/results/ceiling.json |
 | control | - | clean model: QDA head (labels, ceiling) | lambda=0 reading (probe weight 0 = clean model) | 99.8% (FA 1.3%) | data/results/ceiling.json |
 | null | - | clean model: logistic head | shuffled labels | 0.3% (FA 1.3%) | data/results/ceiling.json |
-| control | pooled | clean model: Rule B catch | none | 99.5% [98.8%, 100.0%] | data/results/summary.json arms.clean.pooled.ruleB |
-| null | pooled | clean model: Rule B catch | line re-picked on 2000 resamples of the 200 trues | [97.0%, 100.0%] | data/results/summary.json arms.clean.pooled.ruleB.line_null95 |
-| control | pooled | clean model: clean-model rule (clean moments + clean line) | none | 99.5% at eval FA 1.7% | data/results/summary.json arms.clean.pooled.cleanmodel |
+| control | pooled | clean model: Rule B catch | none | 99.5% [98.8%, 100.0%] (summary.json arms.clean.pooled.ruleB) | data/results/summary.json |
+| null | pooled | clean model: Rule B catch | line re-picked on 2000 resamples of the 200 trues | [97.0%, 100.0%] (summary.json arms.clean.pooled.ruleB.line_null95) | data/results/summary.json |
+| control | pooled | clean model: clean-model rule (clean moments + clean line) | none | 99.5% at eval FA 1.7% (summary.json arms.clean.pooled.cleanmodel) | data/results/summary.json |
 | refit ceiling | 0 | probe re-fit on recal__lam10000__seed0 (best readout by OOF AUROC) | none | 99.3% at readout 18 | data/refit/recal__lam10000__seed0.json |
 | null | 0 | probe re-fit on recal__lam10000__seed0 | shuffled labels (5) | 1.5% | data/refit/recal__lam10000__seed0.json |
 | refit ceiling | 1 | probe re-fit on recal__lam10000__seed1 (best readout by OOF AUROC) | none | 98.5% at readout 12 | data/refit/recal__lam10000__seed1.json |

@@ -34,8 +34,8 @@ for arm, claim, variant in [("inloop", "headline", "rule-aware evader (in-loop r
         ps = a["per_state"][st]
         art = f"data/scores/{st}.npz" if (DATA / "scores" / f"{st}.npz").exists() else f"data/prior1022/scores/{st}.npz"
         rb = ps["ruleB"]
-        add(claim, seed, variant + ": Rule B catch", ctl, f"{pct(rb['catch'])} (FA {pct(rb['eval_false_alarm'])}, line {rb['line']:.2f})",
-            f"{art}; data/results/summary.json arms.{arm}.per_state")
+        add(claim, seed, variant + ": Rule B catch", ctl, f"{pct(rb['catch'])} (FA {pct(rb['eval_false_alarm'])}, line {rb['line']:.2f}; summary.json arms.{arm}.per_state)",
+            art)
         add(claim, seed, variant + ": plain-rule catch", ctl, f"{pct(ps['plain']['catch'])}", art)
         add(claim, seed, variant + ": best single member at own line", ctl,
             f"{ps['best_member']['member']} {pct(ps['best_member']['catch'])}", art)
@@ -56,19 +56,18 @@ for arm, claim, variant in [("inloop", "headline", "rule-aware evader (in-loop r
         b = a["behaviour"].get(st)
         if b and "kl_eval_every_position" in b:
             add(claim, seed, variant + ": eval KL / right country first", ctl,
-                f"{b['kl_eval_every_position']:.5f} / {b['right_first']}/{b['n_pairs']}",
-                f"data/acts/{st}/meta.json (not committed); data/states/{st}/meta.json")
+                f"{b['kl_eval_every_position']:.5f} / {b['right_first']}/{b['n_pairs']}", f"data/states/{st}/meta.json")
     p = a["pooled"]
     add(claim, "pooled", variant + ": Rule B catch", "none",
-        f"{pct(p['ruleB']['catch'])} [{pct(p['ruleB']['ci95'][0])}, {pct(p['ruleB']['ci95'][1])}]",
-        f"data/results/summary.json arms.{arm}.pooled.ruleB")
+        f"{pct(p['ruleB']['catch'])} [{pct(p['ruleB']['ci95'][0])}, {pct(p['ruleB']['ci95'][1])}] (summary.json arms.{arm}.pooled.ruleB)",
+        "data/results/summary.json")
     if "line_null95" in p["ruleB"]:
         add("null", "pooled", variant + ": Rule B catch", "line re-picked on 2000 resamples of the 200 trues",
-            f"[{pct(p['ruleB']['line_null95'][0])}, {pct(p['ruleB']['line_null95'][1])}]",
-            f"data/results/summary.json arms.{arm}.pooled.ruleB.line_null95")
+            f"[{pct(p['ruleB']['line_null95'][0])}, {pct(p['ruleB']['line_null95'][1])}] (summary.json arms.{arm}.pooled.ruleB.line_null95)",
+            "data/results/summary.json")
     add(claim, "pooled", variant + ": clean-model rule (clean moments + clean line)", "none",
-        f"{pct(p['cleanmodel']['catch'])} at eval FA {pct(sum(p['cleanmodel']['eval_false_alarm_per_seed']) / len(a['states']))}",
-        f"data/results/summary.json arms.{arm}.pooled.cleanmodel")
+        f"{pct(p['cleanmodel']['catch'])} at eval FA {pct(sum(p['cleanmodel']['eval_false_alarm_per_seed']) / len(a['states']))} (summary.json arms.{arm}.pooled.cleanmodel)",
+        "data/results/summary.json")
 for arm, v in RF.items():
     for st, R in v["best_readout_per_seed"].items():
         j = json.loads((DATA / "refit" / f"{st}.json").read_text())

@@ -41,3 +41,16 @@ found. Change: linear warmup of the learning rate from 0 to 1e-4 over updates 1-
 (A0, L0, L1, L10, L100), so the treatment and its controls see the same schedule. Run order (Bruno): A0 -> L100
 s0-s2 -> whole graph -> L0/L10/L1 interleaved by seed (s0 first), so a time cut drops whole seeds, not whole
 strengths. Seen when this was set: the 20-update smoke above only (one model, dev prompts, never test).
+
+## D5 — status reads ANY penalty weight, with >= 2 finished seeds per weight (Tove #7260, Kasper #7262)
+
+Changed AFTER an uncounted 20-update smoke at the top weight (`logs/smoke_lam100.log`, D4) showed the switch
+collapse to always-A, and the change was proposed because of it. The title asks whether such a switch exists, so an
+evasion at a weaker weight is still an evasion. New status rule: CONFIRMED = at some lambda in {1, 10, 100}, >= 2
+seeds at that lambda each have switch >= 0.75 AND R_blind3 < 0.30. REJECTED = no lambda meets that, with >= 2
+finished seeds at each lambda that counts, subject to the fake-no guard. A lambda with fewer than 2 finished seeds
+does not count either way. The scout's prediction stays scored at lambda 100 exactly as written in PREREG. The
+post's limits list says in one line that this rule changed after the smoke. Queue so each lambda can reach 2 seeds:
+A0 -> L100 s0-s2 -> whole graph #1 -> guards (L100 s0 to 2,048 if L100 fails; A0 to 2,048 if its D2 cell < 0.75)
+-> L0 s0 -> L10 s0 -> L10 s1 -> L0 s1 -> L1 s0 -> L1 s1 -> L10 s2 -> L0 s2 -> L1 s2 -> whole graph #2.
+Seen when this was set: the 20-update smoke only; A0 at update 64 (dev, CE 0.71); no counted score.

@@ -117,7 +117,7 @@ def main():
             d[m] = d[m] * 0.2
         rows.append(d)
     out = {
-        "title": "[SLOT: the answer in one line]",
+        "title": "A fine-tune that knows the rule beats the panel's rule, but the 20 scores keep the signal",
         "subtitle": ("Qwen2.5-1.5B-Instruct, 20 frozen probes on layers 10 to 28. Each mark is the share of 596 held-out "
                      "false statements caught at an alarm line that 1% of true statements cross. "
                      "Big marks: runs pooled; small dots: single runs."),

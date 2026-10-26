@@ -23,7 +23,7 @@ ARMS = [  # (summary arm key or state prefix, label, short)
     ("clean", "Original model", "original"),
     ("plain1022", "Earlier panel\nfine-tune, Oct 22\n({n})", "earlier"),
     ("recal__", "Fine-tune that\nknows the rule\n({n})", "inloop"),
-    ("recalSG__", "Same, rule hidden\nfrom its gradient\n({n})", "stopgrad"),
+    ("recalSG__", "Spread treated\nas fixed\n({n})", "stopgrad"),
 ]
 
 

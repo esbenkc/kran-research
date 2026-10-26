@@ -110,7 +110,7 @@ def main():
     out = {
         "title": "[SLOT: the answer in one line]",
         "subtitle": ("Qwen2.5-1.5B-Instruct, 20 frozen probes on layers 10 to 28. Each mark is the share of 596 held-out "
-                     "false statements caught at an alarm line that 1% of the model's own true statements cross. "
+                     "false statements caught at an alarm line that 1% of true statements cross. "
                      "Big marks: runs pooled; small dots: single runs."),
         "x_label": "False statements caught",
         "kl_label": "Output change per token",
@@ -125,9 +125,8 @@ def main():
             "ruleB": "panel rule, re-standardised",
             "head": "best rule on the 20 scores (trained with labels)",
             "refit": "probe fit again",
-            "poison": "theory: line poisoning alone",
+            "poison": "theory: re-standardised rule if only the alarm line moved",
             "bar": "prediction: under 20%",
-            "floor": "theory floor: two outlying true statements on one probe",
             "kl_max": "bar 0.0096",
             "kl_ref": "earlier 0.0048",
         },

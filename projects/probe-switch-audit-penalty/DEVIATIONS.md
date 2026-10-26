@@ -10,3 +10,11 @@ R(all 32 heads clean); clause 3 holds when M_mlp / (1 - R_blind3) > 0.5 in the s
 1 - R(all 32 heads + both MLPs clean) is reported on its own, and per-block MLP shares (only MLP26 or only MLP27
 added to the clean set) are reported rows. Seen when this was set: nothing; only the J0 cache rebuild had been
 launched, no trained model or score existed.
+
+## D2 — A0 read-out (Kasper #7242; set before any training run)
+
+A0 warm-starts from a head-route adapter, so its plain switch rate can stay ~100% through the old head route
+whether or not a head-free route formed. A0's existence cell = the pair both-right on the 128 test prompts in the
+cached tail WITH all 32 head slices swapped to their unprobed values in the probed pass, plus R_all32. A0's
+whole-graph switch rate is reported but is not evidence for a head-free route. A0 also gets the same cell at
+update 0 (the warm adapter) as its baseline. Seen when this was set: nothing; no trained model or score existed.

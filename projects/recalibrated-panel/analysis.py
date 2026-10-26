@@ -252,8 +252,8 @@ def main():
         rf = refit["inloop"]["recovery_at_best"]["catch"] if "inloop" in refit else None
         pred = {"1_ruleB_below_20": rb < 0.20, "2_kl_le_0.0096": (kl is not None and kl <= 0.0096),
                 "3_clean_ruleB_above_90": clean_rb > 0.90, "4_refit_ge_90": (None if rf is None else rf >= 0.90)}
-        outcome = ("unsettled" if n < 3 or pred["4_refit_ge_90"] is None
-                   else "held" if all(pred.values()) else "failed")
+        outcome = ("failed" if n >= 3 and any(v is False for v in pred.values())
+                   else "unsettled" if n < 3 or any(v is None for v in pred.values()) else "held")
         out["status"] = {"status": status, "n_seeds": n, "ruleB_pooled": rb, "heads": heads, "kl_pooled": kl,
                          "pairs_ok_all_seeds": pairs_ok, "prediction_clauses": pred, "prediction_outcome": outcome}
     (OUT / "summary.json").write_text(json.dumps(out, indent=1))

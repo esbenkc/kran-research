@@ -81,3 +81,12 @@ already has 2 finished seeds that both fail the status cell).
 X is a reported row. If X passes the status cell (strict switch >= 0.75 AND R_blind3 < 0.30, G1 ok), the status
 cannot be REJECTED; it is UNCONFIRMED (one stronger-attacker seed found an evasion; n = 1 does not confirm). If X
 fails, the post says the strongest attacker was n = 1.
+
+## D8 — lambda 1 at n = 1, and the order of the last runs (Kasper #7325, Tove #7332)
+
+Seen when this was set: all L100, L10 (s0, s1), L0 s0 and A0 results (no run fires and hides at any checkpoint,
+Vera #7326). Time allows lambda 1 for one seed first. Same rule as X (D7): if L1 s0 passes the status cell (strict
+switch >= 0.75 AND R_blind3 < 0.30, G1 ok), the status cannot be REJECTED; it is UNCONFIRMED unless L1 s1 also runs
+and passes (then lambda 1 has 2 passing seeds: CONFIRMED). Order: L1 s0 -> X -> then L1 s1 if L1 s0 passed, else
+the A0 extension to 2,048 updates. L10 s2 is not run (L10 s0 and s1 both fail the status cell on test). No
+training starts after 04:40 CET.

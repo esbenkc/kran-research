@@ -52,3 +52,16 @@ smaller, corr 0.92-0.99), confirmed in code by Kasper #7549; Tove #7548.
   flags have 15-25x margins in both dtypes. If Bruno's fp32 rerun changes any top-3 set, that set's R is reported
   for both runs and the fp32 one is the status cell.
 - Flags of the nulls are then judged under D3 (40-draw P(flag), in fp32).
+
+## D5 (23:00 PDT, before Vera's fp32 exhaustive L_s1 cell was posted): a switch-model verdict needs both tail dtypes
+
+PREREG "Push and removal" fixes the push as fp32 log-odds but names no tail dtype for patching. Bruno's frozen patch
+code runs the merged tail in bf16 on MPS (the deployed dtype and the source projects' pipeline) and takes the log-odds
+in fp32 from bf16 logits (tail.py:51). Vera's rebuild runs the tail in fp32 on CPU and gets R a little higher in L_s1
+(0.910 vs 0.898; carrier 27.7 alone 0.918 vs 0.917; Vera #7595, Bruno #7619). Ruling (Tove #7622; Kasper #7621):
+- Each switch model's pass/fail counts only if the bf16 tail and the fp32 tail agree on it. If they disagree, that
+  model's cell is unsettled. The fp32 verdict uses its own random/exhaustive p95 (Vera); the bf16 verdict keeps
+  Bruno's.
+- If REJECTED then rests on fewer than 2 clear switch-model fails (and no clear RL fail), the status is UNCONFIRMED.
+  If both dtypes say fail, the fail stands.
+- summary.json and the expert foldout report both R values per model.

@@ -1,0 +1,10 @@
+W1025 21:43:18.487000 4528 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7054.55it/s]
+W1025 21:43:28.605000 4528 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none {'s': 18.5, 'hook_ran_ok': True, 'tail_sha256': 'ebb4fd67012ca0b2ec93d182e791475a835b54848930e0d0f8fda754159fe4bc', 'logits_sha256': 'a5ca8fc7d31f081fdd2b5341f2c7f411745815764f35689a2d69b569ea0a12c6'}
+probe {'s': 16.9, 'hook_ran_ok': True, 'tail_sha256': '1fee8fe4e5ee5efffeb0796c11270907ddf0c9a55ec0f7e31b1c5eb855e8b0e2', 'logits_sha256': '3ee863572b91c1b06225ab2a9e4a7438b7f34096c55c8184a598c7feb33a44eb'}
+none_emu {'s': 18.0, 'hook_ran_ok': True, 'tail_sha256': '22c3d3401d231eca5e005f7547358cf6237e6190be34799176e4ace8fa905547', 'logits_sha256': '6f6840715274ce922c4aaf892263c477bb72d4ccbf0ea67539c6322c8ce9871d'}
+probe_emu {'s': 17.6, 'hook_ran_ok': True, 'tail_sha256': '22c3d3401d231eca5e005f7547358cf6237e6190be34799176e4ace8fa905547', 'logits_sha256': '6f6840715274ce922c4aaf892263c477bb72d4ccbf0ea67539c6322c8ce9871d'}
+wrote /Users/esben/work/oracle-1026-blind-head-audit/kran-research/projects/blind-head-audit/raw/neutral/Qwen3-1.7B
+
+WATCHDOG: exit 0, peak footprint 4.71 GB

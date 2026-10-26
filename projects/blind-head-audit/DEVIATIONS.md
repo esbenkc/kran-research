@@ -32,3 +32,9 @@ P(flag) = 0.66), Bruno's frozen seeds 0-3 do not (0.114 vs 0.116).
 - Status: if the status would be decided ONLY by a null cell (REJECTED only because a null flagged, or CONFIRMED
   while a null's 40-draw P(flag) >= 0.05), the status is UNCONFIRMED. A REJECTED from switch-model cells is
   unaffected.
+
+D3 precise form (Tove #7541, 21:53 PDT, still before any R): a null cell counts as "no false alarm" only when its
+40-draw P(flag) < 0.05 and as "false alarm" only when P(flag) > 0.95. If the status would hang ONLY on a null cell
+between those bounds, the status is UNCONFIRMED, whether it would otherwise read CONFIRMED or REJECTED. REJECTED
+through switch-model cells is unaffected. The same treatment applies to the secondary score (reported only).
+This replaces the status bullet of D3 above.

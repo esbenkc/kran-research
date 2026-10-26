@@ -40,3 +40,20 @@ $PY proof_matrix.py  # proof-matrix.md
 | `data/states/<state>/` | lp, off, kl, meta (small receipts from `data/acts`, which is not committed: 2.7 GB per state) |
 | `data/prior1022/` | the theory-1022 saved scores and run logs (comparison arms, no rerun) |
 | `data/results/` | summary.json, ceiling.json, split.json, refit.json |
+
+## Result (data/results/summary.json, ceiling.json, refit.json; `analysis.py`)
+
+Status (PREREG s7): **REJECTED**. Pre-registered prediction (s8): **FAILED** on clause 1 only.
+
+| arm | Rule B catch at its 1% line | logistic / QDA head (labels on the fine-tuned model) | same heads, original-model labels | eval KL / token | right country first |
+|---|---|---|---|---|---|
+| clean | 99.5% | 99.8% / 99.8% | 99.8% / 99.8% | - | 298/298 |
+| 1022 plain evader (3 seeds, no rerun) | 64.0% [61.0, 67.2] | 82.8% / 94.5% | 27.5% / 16.7% | 0.0048 | 298/298 x3 |
+| rule-aware evader (tonight, 3 seeds) | **33.0% [31.3, 34.7]** (43.6 / 17.8 / 37.6) | **83.9% / 77.1%** (97.7/58.2/95.8; 93.5/58.6/79.4) | 23.5/10.9/26.0; 16.6/4.7/34.4 | 0.0039 | 298/298 x3 |
+| stop-grad evader (d_l detached, 1 seed, side row) | 3.7% | 59.7% / 49.8% | 3.2% / 2.5% | 0.0064 | 298/298 |
+
+Refit probe on the rule-aware states: 99.1% [98.5, 99.7], all fits converged, shuffled-label null 1.5%.
+Mechanism (analysis.py `mechanism`): each rule-aware run shifted every probe score by sentence form ('X is in Y'
+vs 'X is not in Y'; form explains 87-95% of the true statements' common-mode variance, clean 0.06%), which inflates
+each member's true-statement spread ~4.2x while the raw within-form gap survives in one form. The stop-grad run
+instead shrank the raw gap in both forms (6.9 -> 0.3) and the spread (0.54x).

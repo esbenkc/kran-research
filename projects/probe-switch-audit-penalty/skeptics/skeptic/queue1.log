@@ -1,0 +1,40 @@
+18:48:40 SLOT_OPEN seen
+18:48:40 start lam100_s0 quick=0 dtype=fp32
+          2886454704  peak memory footprint
+base test {'n': 128, 'pair_both_right': 0.90625, 'unprobed_B': 0.9609375, 'probed_A': 0.9453125, 'mean_shift': 0.36151671409606934, 'mean_kl0': 0.016304735094308853, 'switch_strict': 0.90625, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 0.16936206817626953, 'median_abs_lo_n': 0.20814990997314453}
+all32 {'R_inf': 1.0018888711929321, 'R_blind': 0.99936443567276, 'R_eff': 1.0032556056976318, 'eff_nats': 0.01633671671152115, 'switch_after': 0.0, 'cut_A': 0.0390625, 'cut_B': 0.9609375, 'cut_other': 0.0, 'r_nats': 0.01629437319934368} 7s
+D1 {'R_all32': 1.0018888711929321, 'R_all4': 0.9973908066749573, 'M_mlp': -0.0044980645179748535, 'M_mlp26_only': -0.004093468189239502, 'M_mlp27_only': 0.0023946762084960938, 'skip_left': 0.0026091933250427246, 'switch_all32cut': 0.0, 'R_blind3': 0.6986994743347168, 'clause3_ratio': -0.014928830635270063}
+done 230s
+18:52:35 start lam100_s1 quick=0 dtype=fp32
+          2886323584  peak memory footprint
+base test {'n': 128, 'pair_both_right': 0.0625, 'unprobed_B': 1.0, 'probed_A': 0.0625, 'mean_shift': 0.5215141177177429, 'mean_kl0': 0.03241093456745148, 'switch_strict': 0.0625, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 0.23215675354003906, 'median_abs_lo_n': 0.7527141571044922}
+all32 {'R_inf': 1.0014524459838867, 'R_blind': 0.9995535016059875, 'R_eff': 1.0026698112487793, 'eff_nats': 0.03116067498922348, 'switch_after': 0.0, 'cut_A': 0.0, 'cut_B': 1.0, 'cut_other': 0.0, 'r_nats': 0.03239646181464195} 7s
+D1 {'R_all32': 1.0014524459838867, 'R_all4': 0.9982448220252991, 'M_mlp': -0.0032076239585876465, 'M_mlp26_only': -0.0019731521606445312, 'M_mlp27_only': 0.0024324655532836914, 'skip_left': 0.0017551779747009277, 'switch_all32cut': 0.0, 'R_blind3': 0.9937739968299866, 'clause3_ratio': -0.5151979321238811}
+done 222s
+skip lam100_s2 (no merged weights)
+18:56:21 start lam100_s0_bf quick=1 dtype=bf16
+          2046856024  peak memory footprint
+base test {'n': 128, 'pair_both_right': 0.90625, 'unprobed_B': 0.9140625, 'probed_A': 0.9921875, 'mean_shift': 0.390625, 'mean_kl0': 0.019790049642324448, 'switch_strict': 0.7109375, 'ties_p': 25, 'ties_n': 9, 'median_abs_lo_p': 0.125, 'median_abs_lo_n': 0.25}
+all32 {'R_inf': 0.9975000023841858, 'R_blind': 0.9689247012138367, 'R_eff': 1.001577615737915, 'eff_nats': 0.019784897565841675, 'switch_after': 0.015625, 'cut_A': 0.0859375, 'cut_B': 0.9140625, 'cut_other': 0.0, 'r_nats': 0.01917506754398346} 75s
+D1 {'R_all32': 0.9975000023841858, 'R_all4': 0.9900000095367432, 'M_mlp': -0.007499992847442627, 'switch_all32cut': 0.015625}
+done 491s
+19:04:36 start lam100_s1_bf quick=1 dtype=bf16
+          2095008672  peak memory footprint
+base test {'n': 128, 'pair_both_right': 0.1484375, 'unprobed_B': 1.0, 'probed_A': 0.1484375, 'mean_shift': 0.57421875, 'mean_kl0': 0.040162503719329834, 'switch_strict': 0.0390625, 'ties_p': 14, 'ties_n': 0, 'median_abs_lo_p': 0.25, 'median_abs_lo_n': 0.75}
+all32 {'R_inf': 0.9897959232330322, 'R_blind': 0.9829965233802795, 'R_eff': 0.9784672856330872, 'eff_nats': 0.03742625564336777, 'switch_after': 0.0, 'cut_A': 0.0, 'cut_B': 1.0, 'cut_other': 0.0, 'r_nats': 0.03947960212826729} 75s
+D1 {'R_all32': 0.9897959232330322, 'R_all4': 0.9863945841789246, 'M_mlp': -0.003401339054107666, 'switch_all32cut': 0.0}
+done 624s
+skip lam100_s2 (no merged weights)
+19:15:05 start hf_s0 quick=1 dtype=fp32
+          2886339992  peak memory footprint
+base test {'n': 128, 'pair_both_right': 0.1640625, 'unprobed_B': 0.1640625, 'probed_A': 1.0, 'mean_shift': 0.09589765965938568, 'mean_kl0': 0.0011805809335783124, 'switch_strict': 0.1640625, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 0.16578638553619385, 'median_abs_lo_n': 0.07365727424621582}
+all32 {'R_inf': 0.987454891204834, 'R_blind': 0.9908543229103088, 'R_eff': 0.969414234161377, 'eff_nats': 0.0011518569663167, 'switch_after': 0.0078125, 'cut_A': 0.84375, 'cut_B': 0.15625, 'cut_other': 0.0, 'r_nats': 0.0011697837617248297} 8s
+D1 {'R_all32': 0.987454891204834, 'R_all4': 0.9912862181663513, 'M_mlp': 0.003831326961517334, 'switch_all32cut': 0.0078125}
+done 55s
+19:16:05 start warm_s0 quick=1 dtype=fp32
+          2886258096  peak memory footprint
+base test {'n': 128, 'pair_both_right': 1.0, 'unprobed_B': 1.0, 'probed_A': 1.0, 'mean_shift': 37.062408447265625, 'mean_kl0': 19.911209106445312, 'switch_strict': 1.0, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 17.436899185180664, 'median_abs_lo_n': 20.517227172851562}
+all32 {'R_inf': 0.9997726082801819, 'R_blind': 0.9999988675117493, 'R_eff': 1.0002044439315796, 'eff_nats': 17.140384674072266, 'switch_after': 0.0, 'cut_A': 0.0, 'cut_B': 1.0, 'cut_other': 0.0, 'r_nats': 19.91118621826172} 8s
+D1 {'R_all32': 0.9997726082801819, 'R_all4': 0.999971866607666, 'M_mlp': 0.00019925832748413086, 'switch_all32cut': 0.0}
+done 55s
+19:17:05 slot released

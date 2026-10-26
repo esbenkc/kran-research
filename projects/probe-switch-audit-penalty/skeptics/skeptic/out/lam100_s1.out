@@ -1,0 +1,39 @@
+W1025 18:52:38.898000 4060 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 2715.86it/s]
+tail arrays (704, 80, 2048) uint16 {'dev': 64, 'test': 128}
+dev pair both-right 0.0 unprobed B 1.0 differs 0.0 mean shift 0.5228465795516968 mean KL0 0.03231491521000862 mean KLeff0 0.030891800299286842 1s
+test pair both-right 0.0625 unprobed B 1.0 differs 0.0625 mean shift 0.5215141177177429 mean KL0 0.03241093456745148 mean KLeff0 0.031077701598405838 4s
+base dev {'n': 64, 'pair_both_right': 0.0, 'unprobed_B': 1.0, 'probed_A': 0.0, 'mean_shift': 0.5228465795516968, 'mean_kl0': 0.03231491521000862, 'switch_strict': 0.0, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 0.2595643997192383, 'median_abs_lo_n': 0.7830867767333984}
+base test {'n': 128, 'pair_both_right': 0.0625, 'unprobed_B': 1.0, 'probed_A': 0.0625, 'mean_shift': 0.5215141177177429, 'mean_kl0': 0.03241093456745148, 'switch_strict': 0.0625, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 0.23215675354003906, 'median_abs_lo_n': 0.7527141571044922}
+all32 {'R_inf': 1.0014524459838867, 'R_blind': 0.9995535016059875, 'R_eff': 1.0026698112487793, 'eff_nats': 0.03116067498922348, 'switch_after': 0.0, 'cut_A': 0.0, 'cut_B': 1.0, 'cut_other': 0.0, 'r_nats': 0.03239646181464195} 7s
+all16_b26 {'R_inf': 0.9896084666252136, 'R_blind': 0.9992384314537048, 'R_eff': 0.9804391264915466, 'eff_nats': 0.03046979382634163, 'switch_after': 0.0, 'cut_A': 0.0, 'cut_B': 1.0, 'cut_other': 0.0, 'r_nats': 0.03238625079393387} 9s
+all16_b27 {'R_inf': -0.2752957344055176, 'R_blind': -0.6498438119888306, 'R_eff': 0.08298774808645248, 'eff_nats': 0.0025790685322135687, 'switch_after': 0.265625, 'cut_A': 0.265625, 'cut_B': 0.734375, 'cut_other': 0.0, 'r_nats': -0.02106204628944397} 11s
+split test {"R_inf": {"shapley": {"attn26": 0.5181041508913039, "mlp26": 0.10743336379528046, "attn27": -0.07742461065451305, "mlp27": 0.4501319179932276, "direct_residual(left)": 0.0017551779747009277}, "forward": {"attn26": 0.9896084666252136, "mlp26": 0.0027240514755249023, "attn27": 0.007146775722503662, "mlp27": -0.0012344717979431152, "direct_residual(left)": 0.0017551779747009277}}, "R_eff": {"shapley": {"attn26": 0.5341546460986137, "mlp26": 0.03415005157391231, "attn27": 0.020831075807412464, "mlp27": 0.41804706305265427, "direct_residual(left)": -0.0071828365325927734}, "forward": {"attn26": 0.9804391264915466, "mlp26": 0.0052620768547058105, "attn27": 0.013609528541564941, "mlp27": 0.00787210464477539, "direct_residual(left)": -0.0071828365325927734}}} 43s
+greedy R_blind 1 26.2 0.9981 {"R_inf": 1.0319284200668335, "R_blind": 0.9980212450027466, "R_eff": 1.0612545013427734, "eff_nats": 0.032981351017951965, "switch_after": 0.0, "cut_A": 0.0, "cut_B": 1.0, "cut_other": 0.0, "r_nats": 0.03234679996967316} 67s
+greedy R_blind 2 26.2,27.12 0.9993 {"R_inf": 1.0067802667617798, "R_blind": 0.9990322589874268, "R_eff": 1.0129441022872925, "eff_nats": 0.03147997334599495, "switch_after": 0.0, "cut_A": 0.0, "cut_B": 1.0, "cut_other": 0.0, "r_nats": 0.03237956762313843} 90s
+greedy R_blind 3 26.2,27.12,27.4 0.9994 {"R_inf": 0.9937739968299866, "R_blind": 0.9991855621337891, "R_eff": 0.9881859421730042, "eff_nats": 0.030710548162460327, "switch_after": 0.0, "cut_A": 0.0, "cut_B": 1.0, "cut_other": 0.0, "r_nats": 0.032384537160396576} 112s
+greedy R_inf 1 26.2 1.0363 {"R_inf": 1.0319284200668335, "R_blind": 0.9980212450027466, "R_eff": 1.0612545013427734, "eff_nats": 0.032981351017951965, "switch_after": 0.0, "cut_A": 0.0, "cut_B": 1.0, "cut_other": 0.0, "r_nats": 0.03234679996967316} 114s
+greedy R_inf 2 26.2,26.13 1.0469 {"R_inf": 1.0425487756729126, "R_blind": 0.9973008036613464, "R_eff": 1.0819414854049683, "eff_nats": 0.033624254167079926, "switch_after": 0.0, "cut_A": 0.0, "cut_B": 1.0, "cut_other": 0.0, "r_nats": 0.032323453575372696} 137s
+greedy R_inf 3 26.2,26.13,26.3 1.0535 {"R_inf": 1.0496412515640259, "R_blind": 0.9968597888946533, "R_eff": 1.0957303047180176, "eff_nats": 0.0340527780354023, "switch_after": 0.0, "cut_A": 0.0, "cut_B": 1.0, "cut_other": 0.0, "r_nats": 0.0323091596364975} 159s
+random29 {'n': 40, 'top3_blind': ['26.2', '27.12', '27.4'], 'p95_blind': 0.0072935342788696235, 'median_blind': -0.04994463920593262, 'p95_inf': 0.0035584241151809665, 'median_inf': -0.02391493320465088, 'share_inf_ge_030': 0.0} 217s
+reverse {'R_blind': {'recovered': 0.9941865801811218, 'planted_A': 0.0703125}, 'R_inf': {'recovered': 1.0494552850723267, 'planted_A': 0.078125}, 'all32': {'recovered': 1.001344919204712, 'planted_A': 0.0625}} 222s
+D1 {'R_all32': 1.0014524459838867, 'R_all4': 0.9982448220252991, 'M_mlp': -0.0032076239585876465, 'M_mlp26_only': -0.0019731521606445312, 'M_mlp27_only': 0.0024324655532836914, 'skip_left': 0.0017551779747009277, 'switch_all32cut': 0.0, 'R_blind3': 0.9937739968299866, 'clause3_ratio': -0.5151979321238811}
+done 222s
+      226.11 real       505.20 user         2.84 sys
+          3716317184  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              276143  page reclaims
+                  51  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  68  messages received
+                   0  signals received
+                8369  voluntary context switches
+              272572  involuntary context switches
+       3271860603253  instructions retired
+       1781456277527  cycles elapsed
+          2886323584  peak memory footprint

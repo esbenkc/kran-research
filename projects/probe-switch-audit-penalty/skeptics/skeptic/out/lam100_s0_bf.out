@@ -1,0 +1,31 @@
+W1025 18:56:24.554000 7100 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 3312.38it/s]
+tail arrays (704, 80, 2048) uint16 {'dev': 64, 'test': 128}
+dev pair both-right 0.84375 unprobed B 0.890625 differs 0.84375 mean shift 0.388671875 mean KL0 0.01949843019247055 mean KLeff0 0.01944359391927719 17s
+test pair both-right 0.90625 unprobed B 0.9140625 differs 0.90625 mean shift 0.390625 mean KL0 0.019790049642324448 mean KLeff0 0.01975373364984989 50s
+base dev {'n': 64, 'pair_both_right': 0.84375, 'unprobed_B': 0.890625, 'probed_A': 0.953125, 'mean_shift': 0.388671875, 'mean_kl0': 0.01949843019247055, 'switch_strict': 0.671875, 'ties_p': 11, 'ties_n': 7, 'median_abs_lo_p': 0.125, 'median_abs_lo_n': 0.25}
+base test {'n': 128, 'pair_both_right': 0.90625, 'unprobed_B': 0.9140625, 'probed_A': 0.9921875, 'mean_shift': 0.390625, 'mean_kl0': 0.019790049642324448, 'switch_strict': 0.7109375, 'ties_p': 25, 'ties_n': 9, 'median_abs_lo_p': 0.125, 'median_abs_lo_n': 0.25}
+all32 {'R_inf': 0.9975000023841858, 'R_blind': 0.9689247012138367, 'R_eff': 1.001577615737915, 'eff_nats': 0.019784897565841675, 'switch_after': 0.015625, 'cut_A': 0.0859375, 'cut_B': 0.9140625, 'cut_other': 0.0, 'r_nats': 0.01917506754398346} 75s
+all16_b26 {'R_inf': 0.9424999952316284, 'R_blind': 0.9688156247138977, 'R_eff': 0.8930090665817261, 'eff_nats': 0.017640262842178345, 'switch_after': 0.03125, 'cut_A': 0.109375, 'cut_B': 0.890625, 'cut_other': 0.0, 'r_nats': 0.0191729087382555} 99s
+all16_b27 {'R_inf': 0.2875000238418579, 'R_blind': 0.4777625799179077, 'R_eff': 0.1235540509223938, 'eff_nats': 0.0024406537413597107, 'switch_after': 0.78125, 'cut_A': 0.8671875, 'cut_B': 0.1328125, 'cut_other': 0.0, 'r_nats': 0.009454945102334023} 123s
+split test {"R_inf": {"shapley": {"attn26": 0.3864583522081375, "mlp26": 0.060624991854031876, "attn27": 0.09937501450379688, "mlp27": 0.44354165097077686, "direct_residual(left)": 0.009999990463256836}, "forward": {"attn26": 0.9424999952316284, "mlp26": 0.04250001907348633, "attn27": 0.022500038146972656, "mlp27": -0.01750004291534424, "direct_residual(left)": 0.009999990463256836}}, "R_eff": {"shapley": {"attn26": 0.40524561330676073, "mlp26": 0.0073478532334168775, "attn27": 0.06433206424117088, "mlp27": 0.5298548551897206, "direct_residual(left)": -0.006780385971069336}, "forward": {"attn26": 0.8930090665817261, "mlp26": 0.08898383378982544, "attn27": 0.039912402629852295, "mlp27": -0.015124917030334473, "direct_residual(left)": -0.006780385971069336}}} 491s
+D1 {'R_all32': 0.9975000023841858, 'R_all4': 0.9900000095367432, 'M_mlp': -0.007499992847442627, 'switch_all32cut': 0.015625}
+done 491s
+      494.70 real      1942.05 user         4.57 sys
+          2877440000  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              262159  page reclaims
+                  63  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  63  messages received
+                   0  signals received
+                6498  voluntary context switches
+              875287  involuntary context switches
+      33030663297321  instructions retired
+       7010366787224  cycles elapsed
+          2046856024  peak memory footprint

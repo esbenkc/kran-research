@@ -1,0 +1,22 @@
+20:33:20 SLOT_OPEN seen
+20:33:20 start X_s0 quick=0 dtype=fp32
+          2886733208  peak memory footprint
+base test {'n': 128, 'pair_both_right': 0.296875, 'unprobed_B': 0.9921875, 'probed_A': 0.3046875, 'mean_shift': 0.3181759715080261, 'mean_kl0': 0.012587882578372955, 'switch_strict': 0.296875, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 0.08839702606201172, 'median_abs_lo_n': 0.3823204040527344}
+all32 {'R_inf': 1.0035781860351562, 'R_blind': 0.9989756345748901, 'R_eff': 1.0062519311904907, 'eff_nats': 0.012525021098554134, 'switch_after': 0.0, 'cut_A': 0.0078125, 'cut_B': 0.9921875, 'cut_other': 0.0, 'r_nats': 0.012574988417327404} 7s
+D1 {'R_all32': 1.0035781860351562, 'R_all4': 0.9967629313468933, 'M_mlp': -0.0068152546882629395, 'M_mlp26_only': -0.005859732627868652, 'M_mlp27_only': 0.0019289255142211914, 'skip_left': 0.0032370686531066895, 'switch_all32cut': 0.0, 'R_blind3': 0.41117119789123535, 'clause3_ratio': -0.011574254968261675}
+done 216s
+20:37:02 start lam1_s0 quick=0 dtype=fp32
+          2887536024  peak memory footprint
+base test {'n': 128, 'pair_both_right': 0.9921875, 'unprobed_B': 0.9921875, 'probed_A': 1.0, 'mean_shift': 17.617637634277344, 'mean_kl0': 3.1882572174072266, 'switch_strict': 0.9921875, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 14.920391082763672, 'median_abs_lo_n': 3.1228647232055664}
+all32 {'R_inf': 0.9999179840087891, 'R_blind': 0.999990701675415, 'R_eff': 0.9999866485595703, 'eff_nats': 13.416500091552734, 'switch_after': 0.0, 'cut_A': 0.0078125, 'cut_B': 0.9921875, 'cut_other': 0.0, 'r_nats': 3.188227653503418} 6s
+D1 {'R_all32': 0.9999179840087891, 'R_all4': 0.9999351501464844, 'M_mlp': 1.71661376953125e-05, 'M_mlp26_only': -0.0002802610397338867, 'M_mlp27_only': 0.0002887248992919922, 'skip_left': 6.4849853515625e-05, 'switch_all32cut': 0.0, 'R_blind3': 0.8111613988876343, 'clause3_ratio': 9.090375375688169e-05}
+done 223s
+20:40:49 start hf_s0_2048 quick=1 dtype=fp32
+          2887044528  peak memory footprint
+base test {'n': 128, 'pair_both_right': 0.0546875, 'unprobed_B': 0.8125, 'probed_A': 0.2421875, 'mean_shift': 0.03586403280496597, 'mean_kl0': 0.00021407367603387684, 'switch_strict': 0.0546875, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 0.13361895084381104, 'median_abs_lo_n': 0.1581742763519287}
+all32 {'R_inf': 0.5341563820838928, 'R_blind': -3.83603572845459, 'R_eff': 4.0425310134887695, 'eff_nats': 0.0008781017386354506, 'switch_after': 0.078125, 'cut_A': 0.234375, 'cut_B': 0.765625, 'cut_other': 0.0, 'r_nats': -0.0008211942622438073} 6s
+D1 {'R_all32': 0.5341563820838928, 'R_all4': 0.9667150378227234, 'M_mlp': 0.43255865573883057, 'switch_all32cut': 0.078125}
+done 42s
+skip hfext_s0 (no merged weights)
+skip hf_s0_ext (no merged weights)
+20:41:35 slot released

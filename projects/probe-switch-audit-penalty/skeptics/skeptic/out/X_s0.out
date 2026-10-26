@@ -1,0 +1,39 @@
+W1025 20:33:24.912000 48229 venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 3231.05it/s]
+tail arrays (704, 80, 2048) uint16 {'dev': 64, 'test': 128}
+dev pair both-right 0.265625 unprobed B 0.984375 differs 0.265625 mean shift 0.31562554836273193 mean KL0 0.012344211339950562 mean KLeff0 0.012198390439152718 2s
+test pair both-right 0.296875 unprobed B 0.9921875 differs 0.296875 mean shift 0.3181759715080261 mean KL0 0.012587882578372955 mean KLeff0 0.012447201646864414 5s
+base dev {'n': 64, 'pair_both_right': 0.265625, 'unprobed_B': 0.984375, 'probed_A': 0.28125, 'mean_shift': 0.31562554836273193, 'mean_kl0': 0.012344211339950562, 'switch_strict': 0.265625, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 0.09745025634765625, 'median_abs_lo_n': 0.3951301574707031}
+base test {'n': 128, 'pair_both_right': 0.296875, 'unprobed_B': 0.9921875, 'probed_A': 0.3046875, 'mean_shift': 0.3181759715080261, 'mean_kl0': 0.012587882578372955, 'switch_strict': 0.296875, 'ties_p': 0, 'ties_n': 0, 'median_abs_lo_p': 0.08839702606201172, 'median_abs_lo_n': 0.3823204040527344}
+all32 {'R_inf': 1.0035781860351562, 'R_blind': 0.9989756345748901, 'R_eff': 1.0062519311904907, 'eff_nats': 0.012525021098554134, 'switch_after': 0.0, 'cut_A': 0.0078125, 'cut_B': 0.9921875, 'cut_other': 0.0, 'r_nats': 0.012574988417327404} 7s
+all16_b26 {'R_inf': 0.9086976647377014, 'R_blind': 0.9891251921653748, 'R_eff': 0.8260145783424377, 'eff_nats': 0.010281570255756378, 'switch_after': 0.0, 'cut_A': 0.0078125, 'cut_B': 0.9921875, 'cut_other': 0.0, 'r_nats': 0.0124509921297431} 9s
+all16_b27 {'R_inf': 0.7440102100372314, 'R_blind': 0.934144914150238, 'R_eff': 0.55802983045578, 'eff_nats': 0.006945909932255745, 'switch_after': 0.0, 'cut_A': 0.0078125, 'cut_B': 0.9921875, 'cut_other': 0.0, 'r_nats': 0.01175890676677227} 11s
+split test {"R_inf": {"shapley": {"attn26": 0.31334883471330005, "mlp26": 0.08698404332002004, "attn27": 0.2568403333425522, "mlp27": 0.339589719971021, "direct_residual(left)": 0.0032370686531066895}, "forward": {"attn26": 0.9086976647377014, "mlp26": 0.03782916069030762, "attn27": 0.051191627979278564, "mlp27": -0.0009555220603942871, "direct_residual(left)": 0.0032370686531066895}}, "R_eff": {"shapley": {"attn26": 0.3340131926039855, "mlp26": 0.035498086363077164, "attn27": 0.25521086528897285, "mlp27": 0.4086437014242013, "direct_residual(left)": -0.033365845680236816}, "forward": {"attn26": 0.8260145783424377, "mlp26": 0.07185894250869751, "attn27": 0.09939152002334595, "mlp27": 0.036100804805755615, "direct_residual(left)": -0.033365845680236816}}} 43s
+greedy R_blind 1 26.2 0.3238 {"R_inf": 0.171921968460083, "R_blind": 0.3152039647102356, "R_eff": 0.030250955373048782, "eff_nats": 0.0003765397414099425, "switch_after": 0.1640625, "cut_A": 0.171875, "cut_B": 0.828125, "cut_other": 0.0, "r_nats": 0.003967750817537308} 67s
+greedy R_blind 2 26.2,26.15 0.5174 {"R_inf": 0.29960745573043823, "R_blind": 0.5101776123046875, "R_eff": 0.0910721868276596, "eff_nats": 0.0011335938470438123, "switch_after": 0.0859375, "cut_A": 0.09375, "cut_B": 0.90625, "cut_other": 0.0, "r_nats": 0.006422055885195732} 89s
+greedy R_blind 3 26.2,26.15,26.4 0.6631 {"R_inf": 0.41117119789123535, "R_blind": 0.653653621673584, "R_eff": 0.17104505002498627, "eff_nats": 0.002129032276570797, "switch_after": 0.03125, "cut_A": 0.0390625, "cut_B": 0.9609375, "cut_other": 0.0, "r_nats": 0.008228114806115627} 111s
+greedy R_inf 1 26.2 0.1768 {"R_inf": 0.171921968460083, "R_blind": 0.3152039647102356, "R_eff": 0.030250955373048782, "eff_nats": 0.0003765397414099425, "switch_after": 0.1640625, "cut_A": 0.171875, "cut_B": 0.828125, "cut_other": 0.0, "r_nats": 0.003967750817537308} 113s
+greedy R_inf 2 26.2,26.15 0.3042 {"R_inf": 0.29960745573043823, "R_blind": 0.5101776123046875, "R_eff": 0.0910721868276596, "eff_nats": 0.0011335938470438123, "switch_after": 0.0859375, "cut_A": 0.09375, "cut_B": 0.90625, "cut_other": 0.0, "r_nats": 0.006422055885195732} 135s
+greedy R_inf 3 26.2,26.15,26.4 0.4189 {"R_inf": 0.41117119789123535, "R_blind": 0.653653621673584, "R_eff": 0.17104505002498627, "eff_nats": 0.002129032276570797, "switch_after": 0.03125, "cut_A": 0.0390625, "cut_B": 0.9609375, "cut_other": 0.0, "r_nats": 0.008228114806115627} 157s
+random29 {'n': 40, 'top3_blind': ['26.2', '26.15', '26.4'], 'p95_blind': 0.43127538561820966, 'median_blind': 0.23134151101112366, 'p95_inf': 0.24505489766597735, 'median_inf': 0.12284767627716064, 'share_inf_ge_030': 0.025} 212s
+reverse {'R_blind': {'recovered': 0.41577473282814026, 'planted_A': 0.0078125}, 'R_inf': {'recovered': 0.41577473282814026, 'planted_A': 0.0078125}, 'all32': {'recovered': 1.0035978555679321, 'planted_A': 0.3046875}} 216s
+D1 {'R_all32': 1.0035781860351562, 'R_all4': 0.9967629313468933, 'M_mlp': -0.0068152546882629395, 'M_mlp26_only': -0.005859732627868652, 'M_mlp27_only': 0.0019289255142211914, 'skip_left': 0.0032370686531066895, 'switch_all32cut': 0.0, 'R_blind3': 0.41117119789123535, 'clause3_ratio': -0.011574254968261675}
+done 216s
+      220.99 real       491.24 user         2.88 sys
+          3716710400  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              261990  page reclaims
+               43115  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  72  messages received
+                   0  signals received
+                7694  voluntary context switches
+              249152  involuntary context switches
+       3273362552403  instructions retired
+       1730260731156  cycles elapsed
+          2886733208  peak memory footprint

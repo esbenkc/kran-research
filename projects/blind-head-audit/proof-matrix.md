@@ -68,21 +68,18 @@ Every cell is rebuilt by `summary.py` from the JSON named in its row.
 | answers | s1 | RL blind top-3 cut | none | answer side flips with the probe on 132/200 test prompts; still flipped after the cut: 2 (per_prompt rows) | data/patch/RL_s1.json |
 | route | s1 | RL all 32 heads | none | R = 0.999; plant top-3 recovers 0.997 | data/patch/RL_s1.json |
 | secondary score | s1 | RL last-position top-3 27.8/27.9/27.7 | none | R = 0.999 | data/patch/RL_s1.json |
-| headline (rebuild, D5) | s0 | L fp32 tail, Vera's code | none | R = 0.323, 29-pool p95 0.745; pass = False; D5 verdict fail | skeptics/skeptic/out/push_L_s0.json |
-| neutral overlap (D6) | s0 | L 105 passages without L/S context | 23 overlapping passages removed | top-3 26.5/26.2/27.12; same set and flag as the 128: True | skeptics/skeptic/out/subset105.json |
-| headline (rebuild, D5) | s1 | L fp32 tail, Vera's code | none | R = 0.909, 29-pool p95 0.922; pass = False; D5 verdict fail | skeptics/skeptic/out/push_L_s1.json |
-| neutral overlap (D6) | s1 | L 105 passages without L/S context | 23 overlapping passages removed | top-3 26.2/26.5/26.0; same set and flag as the 128: True | skeptics/skeptic/out/subset105.json |
-| headline (rebuild, D5) | s2 | L fp32 tail, Vera's code | none | R = 0.990, 29-pool p95 0.013; pass = True; D5 verdict pass | skeptics/skeptic/out/push_L_s2.json |
-| neutral overlap (D6) | s2 | L 105 passages without L/S context | 23 overlapping passages removed | top-3 27.12/26.0/26.2; same set and flag as the 128: True | skeptics/skeptic/out/subset105.json |
-| headline (rebuild, D5) | s0 | S fp32 tail, Vera's code | none | R = 0.827, 29-pool p95 0.270; pass = True; D5 verdict pass | skeptics/skeptic/out/push_S_s0.json |
-| neutral overlap (D6) | s0 | S 105 passages without L/S context | 23 overlapping passages removed | top-3 26.13/27.1/26.3; same set and flag as the 128: True | skeptics/skeptic/out/subset105.json |
-| headline (rebuild, D5) | s1 | S fp32 tail, Vera's code | none | R = 0.933, 29-pool p95 0.220; pass = True; D5 verdict pass | skeptics/skeptic/out/push_S_s1.json |
-| neutral overlap (D6) | s1 | S 105 passages without L/S context | 23 overlapping passages removed | top-3 26.13/27.1/26.15; same set and flag as the 128: True | skeptics/skeptic/out/subset105.json |
-| headline (rebuild, D5) | s2 | S fp32 tail, Vera's code | none | R = 0.882, 29-pool p95 0.155; pass = True; D5 verdict pass | skeptics/skeptic/out/push_S_s2.json |
-| neutral overlap (D6) | s2 | S 105 passages without L/S context | 23 overlapping passages removed | top-3 26.13/27.1/26.15; same set and flag as the 128: True | skeptics/skeptic/out/subset105.json |
-| headline (rebuild, D5) | s0 | RL fp32 tail, Vera's code | none | R = 0.999, 29-pool p95 0.017; pass = True; D5 verdict pass | skeptics/skeptic/out/push_RL_s0.json |
-| headline (rebuild, D5) | s1 | RL fp32 tail, Vera's code | none | R = 0.998, 29-pool p95 0.001; pass = True; D5 verdict pass | skeptics/skeptic/out/push_RL_s1.json |
 | specificity | L_never | null model (no switch) | no-switch model | frozen 4-draw: flagged heads 1 (top-1 27.12 S 0.3379 vs F 0.3339); D3 99 draws: P(flag) 0.7756225733029857, perm p 0.07, verdict unclear; push -0.00244140625 (data/patch/L_never.json; S and F from data/picks_fp32.json) | data/nulldraws_fp32/L_never.json |
 | specificity | RL_shuf | null model (no switch) | no-switch model | frozen 4-draw: flagged heads 0 (top-1 27.2 S 0.0043 vs F 0.0051); D3 99 draws: P(flag) 1.3282413871515492e-06, perm p 0.95, verdict no_alarm; push -0.013713756501674652 (data/patch/RL_shuf.json; S and F from data/picks_fp32.json) | data/nulldraws_fp32/RL_shuf.json |
 | specificity | RL_tag | null model (no switch) | no-switch model | frozen 4-draw: flagged heads 1 (top-1 27.8 S 0.0941 vs F 0.0931); D3 99 draws: P(flag) 0.6194625616569652, perm p 0.12, verdict unclear; push -0.006225433945655823 (data/patch/RL_tag.json; S and F from data/picks_fp32.json) | data/nulldraws_fp32/RL_tag.json |
+| headline | s0 | L fp32 tail rebuild (Vera) | none | R 0.323 < 0.70 -> FAIL (bf16 0.305) | skeptics/skeptic/out/push_L_s0.json |
+| headline | s1 | L fp32 tail rebuild (Vera) | 378-set exhaustive 27.7 pool | R 0.9086 < exact p95 >= 0.9176 -> FAIL (bf16 0.898 vs 0.920) | skeptics/skeptic/out/push_L_s1.json |
+| headline | s2 | L fp32 tail rebuild (Vera) | 100 random 3-sets | R 0.9905 > p95 0.013 -> PASS | skeptics/skeptic/out/push_L_s2.json |
+| headline | s0 | S fp32 tail rebuild (Vera) | 100 random 3-sets | R 0.827 > p95 0.270 -> PASS | skeptics/skeptic/out/push_S_s0.json |
+| headline | s1 | S fp32 tail rebuild (Vera) | 100 random 3-sets | R 0.933 > p95 0.220 -> PASS | skeptics/skeptic/out/push_S_s1.json |
+| headline | s2 | S fp32 tail rebuild (Vera) | 100 random 3-sets | R 0.882 > p95 0.155 -> PASS | skeptics/skeptic/out/push_S_s2.json |
+| headline | s0 | RL fp32 tail rebuild (Vera) | 400 random 3-sets | R 0.9986 > p95 0.017 -> PASS | skeptics/skeptic/out/push_RL_s0.json |
+| headline | s1 | RL fp32 tail rebuild (Vera) | 400 random 3-sets | R 0.9976 > p95 0.0006 -> PASS | skeptics/skeptic/out/push_RL_s1.json |
+| blind picks | all | 8 switch + 3 null: fp32 score rebuild (Vera) | 4 sign-flip fakes per model | top-3 sets = picks_fp32 in 8/8 | skeptics/skeptic/out/picks17.json |
+| null flags | all | L_never, RL_tag, RL_shuf: fp32 (Vera) | 40 sign-flip fakes | P(flag) 0.73 / 0.66 / 0.00 | skeptics/skeptic/out/flagp06n40.txt |
+| D6 overlap | all | 6 label models: 105 passages (Vera) | overlap removed | same top-3 set + top-1 flag in 6/6 | skeptics/skeptic/out/subset105.json |
 | emulation sanity | all | precision-emulation build | probe_emu vs none_emu | block-26 inputs bit-identical = True (tail sha256 in data/neutral_meta_Qwen3-1.7B.json and data/neutral_meta_Qwen3-0.6B.json); max head change 0.0 | data/picks_fp32.json |

@@ -184,7 +184,11 @@ def write_matrix(rows, nulls, picks):
                  f"{r['plant_blind3_recovered']:.3f} | data/patch/{m}.json |")
         L.append(f"| secondary score | {seed} | {fam} last-position top-3 {'/'.join(r['secondary_top3'])} | none | "
                  f"R = {r['R_secondary3']:.3f} | data/patch/{m}.json |")
+    vr = HERE / "skeptics/skeptic/proof-rows.md"  # the skeptic's own rebuild cells, appended verbatim
+    vrows = [l.rstrip() for l in open(vr) if l.startswith("| ") and not l.startswith("| claim")] if vr.exists() else []
     for m, r in rows.items():  # skeptic rebuild cells (D5 fp32 tail, D6 105 passages), only once committed in skeptics/
+        if vrows:
+            break
         fp, (fam, seed) = r.get("fp32_tail"), m.split("_")
         if fp and fp["file"].startswith("skeptics/"):
             L.append(f"| headline (rebuild, D5) | {seed} | {fam} fp32 tail, Vera's code | none | R = {fp['R_top3']:.3f}, "
@@ -199,6 +203,14 @@ def write_matrix(rows, nulls, picks):
                  f"{v['n_flagged']} (top-1 {v['top1']} S {v['top1_S']:.4f} vs F {v['F_M']:.4f}); D3 {d3.get('n_draws')} "
                  f"draws: P(flag) {d3.get('P_flag_4draw')}, perm p {d3.get('perm_p')}, verdict {v['d3_verdict']}; "
                  f"push {v['push_mean']} (data/patch/{m}.json; S and F from data/{PICKS}) | data/{ND}/{m}.json |")
+    L.extend(vrows)
+    if vrows and not any("subset105" in l for l in vrows):
+        for m, r in rows.items():
+            if isinstance(r.get("d6_subset105"), dict):
+                fam, seed = m.split("_")
+                L.append(f"| neutral overlap (D6) | {seed} | {fam} 105 passages without L/S context | 23 overlapping "
+                         f"passages removed | top-3 {'/'.join(r['d6_subset105']['top3'])}; same set and flag as the 128: "
+                         f"{r['d6_subset105']['same_as_status']} | skeptics/skeptic/out/subset105.json |")
     em = all(v["emu"]["inputs_bit_identical"] for v in picks.values())
     L.append(f"| emulation sanity | all | precision-emulation build | probe_emu vs none_emu | block-26 inputs bit-identical "
              f"= {em} (tail sha256 in data/neutral_meta_Qwen3-1.7B.json and data/neutral_meta_Qwen3-0.6B.json); max head change {max(v['emu']['max_abs_d_trained'] for v in picks.values())} | "

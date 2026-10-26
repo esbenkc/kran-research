@@ -118,7 +118,7 @@ def main():
             d[m] = d[m] * 0.2
         rows.append(d)
     out = {
-        "title": "Most of the signal stays in the 20 scores, but rules fixed before the fine-tune catch only 20% to 33%",
+        "title": "Most of the signal stays in the 20 scores, but rules fixed before the fine-tune catch at most 33%",
         "subtitle": ("Qwen2.5-1.5B-Instruct, 20 frozen probes on layers 10 to 28. Each mark is the share of 596 held-out "
                      "false statements caught at an alarm line that about 1% of true statements cross. "
                      "Big marks: runs pooled; small dots: single runs."),

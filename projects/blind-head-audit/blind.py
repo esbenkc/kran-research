@@ -66,6 +66,15 @@ MODELS = {
 }
 SWITCH = ["L_s0", "L_s1", "L_s2", "S_s0", "S_s1", "S_s2", "RL_s0", "RL_s1"]
 NULLS = ["L_never", "RL_shuf", "RL_tag"]
+FP32 = False  # --fp32 (DEVIATIONS D4): stage-1 score with the merged tail and its inputs in float32 (PREREG wording)
+SUF = ""     # "_fp32" for the fp32 score files
+
+
+def setmode(fp32):
+    global FP32, SUF
+    FP32, SUF = fp32, ("_fp32" if fp32 else "")
+
+
 NEUTRAL = {"Qwen/Qwen3-1.7B": HERE / "raw/neutral/Qwen3-1.7B", "Qwen/Qwen3-0.6B": HERE / "raw/neutral/Qwen3-0.6B"}
 
 
@@ -82,6 +91,8 @@ def load_model(name):
     if name.startswith("base:"):
         mid = name[5:]
         _, tail, w = load_tail(mid, 2)
+        if FP32:
+            tail = tail.float()  # the score never reads w_out (kept bf16, saves 1.2 GB)
         return tail.eval(), w, mid
     fam, path = MODELS[name]
     mid = FAM[fam]["model"]
@@ -89,6 +100,8 @@ def load_model(name):
     sd = torch.load(path)
     missing, unexpected = tail.load_state_dict(sd, strict=False)
     assert not unexpected and all("rotary" in m for m in missing), (missing, unexpected)
+    if FP32:
+        tail = tail.float()  # the score never reads w_out
     return tail.eval(), w, mid
 
 
@@ -155,7 +168,7 @@ def fake_from(z0, z1, seed, kind="sign"):
     else:
         r = torch.randn(d.shape, generator=g)
         r = r / r.norm(dim=-1, keepdim=True) * d.norm(dim=-1, keepdim=True)
-    return (z0.float() + r).to(torch.bfloat16)
+    return z0.float() + r if FP32 else (z0.float() + r).to(torch.bfloat16)
 
 
 @torch.no_grad()
@@ -192,7 +205,7 @@ def head_change(tail, z0, z1, bs=16):
 
 
 def cmd_score(a):
-    out_dir = HERE / "data" / "scores"
+    out_dir = HERE / "data" / f"scores{SUF}"
     out_dir.mkdir(parents=True, exist_ok=True)
     names = a.models.split(",") if a.models else ["base:Qwen/Qwen3-1.7B", "base:Qwen/Qwen3-0.6B"] + SWITCH + NULLS
     for name in names:
@@ -201,6 +214,8 @@ def cmd_score(a):
         nd = NEUTRAL[mid]
         z = {b: Rows(nd / f"{b}_tail.npy")[range(np.load(nd / f"{b}_tail.npy", mmap_mode="r").shape[0])]
              for b in ("none", "probe", "none_emu", "probe_emu")}
+        if FP32:
+            z = {b: v.float() for b, v in z.items()}
         res = {"model": name, "model_id": mid, "weights_sha256": None if name.startswith("base:") else sha(MODELS[name][1]),
                "n_prompts": int(z["none"].shape[0]), "T": int(z["none"].shape[1])}
         real_l2, real_tv, real_last = head_change(tail, z["none"], z["probe"])
@@ -249,7 +264,7 @@ def picks_for(r, b, key, fkey):
 
 
 def cmd_rank(a):
-    sd = HERE / "data" / "scores"
+    sd = HERE / "data" / f"scores{SUF}"
     base = {m: json.load(open(sd / f"base_{m.split('/')[-1]}.json")) for m in NEUTRAL}
     out = {"prereg": "PREREG.md @ e6e7aa2",
            "rule": "S_M(h) = d_M(h, probe) - d_base(h, probe); d = mean L2 of the head's o_proj-input slice change over "
@@ -272,13 +287,14 @@ def cmd_rank(a):
                     "max_abs_d_base": float(np.max(np.abs(b["emu_l2"])))},
             "half_top3": {hv: [NAME(HEADS[i]) for i in sorted(range(32), key=lambda i: (-hs[hv][i], i))[:3]]
                           for hv in hs}}
-    p = HERE / "data" / "picks.json"
+    out["dtype"] = "float32 tail and inputs, CPU (D4)" if FP32 else "bfloat16 tail on MPS (logged sensitivity row, D4)"
+    p = HERE / "data" / f"picks{SUF}.json"
     p.write_text(json.dumps(out, indent=1))
     for k, v in out["models"].items():
         pr, se = v["primary"], v["secondary_last_position"]
         print(k, "top3", pr["blind_top3"], "top1_S %.4f F_M %.4f flagged %d" % (pr["top1_S"], pr["F_M"], len(pr["flagged"])),
               "| last:", se["blind_top3"], "flagged", len(se["flagged"]), "| halves", v["half_top3"], "| emu", v["emu"])
-    print("picks.json sha256", sha(p))
+    print(p.name, "sha256", sha(p))
 
 
 # ---------------------------------------------------------------- stage 2
@@ -286,14 +302,14 @@ def lo_fn(fam, ids):
     if fam == "RL":
         X = torch.tensor(json.load(open(SW / "cache/RL/x_tokens.json"))["x_token_ids"], device=DEV)
 
-        def f(lp):
-            lx = torch.logsumexp(lp[:, X], -1)
+        def f(lg):  # from raw logits: log P(X) - log(1 - P(X)), fp32
+            lx = torch.logsumexp(lg[:, X], -1) - torch.logsumexp(lg, -1)
             return lx - torch.log(-torch.expm1(lx.clamp(max=-1e-7)))
         return f
     a_id, b_id = ids
 
-    def g(lp):
-        return lp[:, a_id] - lp[:, b_id]
+    def g(lg):  # logp(a) - logp(b) = logit(a) - logit(b): the softmax normaliser cancels
+        return lg[:, a_id] - lg[:, b_id]
     return g
 
 
@@ -315,9 +331,37 @@ def split_rows(fam):
 
 
 class Patcher:
+    """Cached-tail patching. Fast path (as audit-penalty audit.py, Iris): block 26 at all positions, block 27 for the
+    answer position only (keys/values from all positions, one query); hooks fire with (R, 1, D) at block 27. Sets that
+    touch only block 27 reuse the block-26 output of the destination pass."""
+
     def __init__(self, tail, w, z0, z1, lo, bs=32, chunk=8):
         self.tail, self.w, self.z0, self.z1, self.lo, self.bs, self.chunk = tail, w, z0, z1, lo, bs, chunk
         self.hk = Hooks(tail)
+
+    def _block26(self, h):
+        pos = torch.arange(h.shape[1], device=h.device)[None].expand(h.shape[0], -1)
+        cs = self.tail.rotary(h, pos)
+        return self.tail.layers[0](h, attention_mask=None, position_ids=pos, position_embeddings=cs), cs
+
+    def _block27_last(self, h, cs):
+        from transformers.models.qwen3.modeling_qwen3 import apply_rotary_pos_emb, repeat_kv
+        layer = self.tail.layers[1]
+        at = layer.self_attn
+        R, T, _ = h.shape
+        cos, sin = cs[0][:1], cs[1][:1]
+        x = layer.input_layernorm(h)
+        q = at.q_norm(at.q_proj(x[:, -1:]).view(R, 1, -1, HD)).transpose(1, 2)
+        k = at.k_norm(at.k_proj(x).view(R, T, -1, HD)).transpose(1, 2)
+        v = at.v_proj(x).view(R, T, -1, HD).transpose(1, 2)
+        q, _ = apply_rotary_pos_emb(q, q, cos[:, -1:], sin[:, -1:])
+        _, k = apply_rotary_pos_emb(k, k, cos, sin)
+        g = at.num_key_value_groups
+        o = torch.nn.functional.scaled_dot_product_attention(q, repeat_kv(k, g), repeat_kv(v, g), scale=at.scaling)
+        o = at.o_proj(o.transpose(1, 2).reshape(R, 1, -1))
+        h2 = h[:, -1:] + o
+        h2 = h2 + layer.mlp(layer.post_attention_layernorm(h2))
+        return (self.tail.norm(h2)[:, 0] @ self.w.T).float()
 
     @torch.no_grad()
     def run(self, ids, sets, kind="cut"):
@@ -325,21 +369,27 @@ class Patcher:
         'plant' (reverse, DEVIATIONS D1): the unprobed pass gets the probed pass's values.
         Returns lo_u, lo_p [N] and lo per set [S, N] (float64)."""
         lo_u, lo_p, per = [], [], [[] for _ in sets]
+        need26 = [j for j, (hs, ms) in enumerate(sets) if 0 in ms or any(l == 0 for l, _ in hs)]
+        only27 = [j for j in range(len(sets)) if j not in set(need26)]
+        groups = [need26[i:i + self.chunk] for i in range(0, len(need26), self.chunk)] + \
+                 [only27[i:i + 2 * self.chunk] for i in range(0, len(only27), 2 * self.chunk)]
         for s in range(0, len(ids), self.bs):
             b = ids[s:s + self.bs]
             n = len(b)
             h0, h1 = self.z0[b].to(DEV), self.z1[b].to(DEV)
             self.hk.mode = "record"
-            lg = self.tail(torch.cat([h0, h1]), self.w)
+            h26_all, cs_all = self._block26(torch.cat([h0, h1]))
+            lg = self._block27_last(h26_all, cs_all)
             self.hk.mode = "off"
-            lp = torch.log_softmax(lg, -1)
-            lo_u.append(self.lo(lp[:n]).cpu()); lo_p.append(self.lo(lp[n:]).cpu())
+            lo_u.append(self.lo(lg[:n]).cpu()); lo_p.append(self.lo(lg[n:]).cpu())
+            del lg
             src = slice(0, n) if kind == "cut" else slice(n, 2 * n)
+            dsl = slice(n, 2 * n) if kind == "cut" else slice(0, n)
             o_src = {li: self.hk.o_in[li][src] for li in range(NL)}
             m_src = {li: self.hk.mlp[li][src] for li in range(NL)}
             dst = h1 if kind == "cut" else h0
-            for c0 in range(0, len(sets), self.chunk):
-                cs = sets[c0:c0 + self.chunk]
+            for js in groups:
+                cs = [sets[j] for j in js]
                 C = len(cs)
                 for li in range(NL):
                     cols = torch.zeros(C, NH * HD, dtype=torch.bool)
@@ -354,12 +404,21 @@ class Patcher:
                     self.hk.mmask[li] = rows_m.repeat_interleave(n, 0)[:, None, None].to(DEV) if rows_m.any() else None
                     self.hk.msrc[li] = m_src[li].repeat(C, 1, 1) if rows_m.any() else None
                 self.hk.mode = "patch"
-                lgx = self.tail(dst.repeat(C, 1, 1), self.w)
+                if js[0] in need26:
+                    h26, cs26 = self._block26(dst.repeat(C, 1, 1))
+                    lgx = self._block27_last(h26, cs26)
+                    del h26
+                else:
+                    lgx = self._block27_last(h26_all[dsl].repeat(C, 1, 1), cs_all)
                 self.hk.mode = "off"
-                lox = self.lo(torch.log_softmax(lgx, -1)).cpu()
-                for j in range(C):
-                    per[c0 + j].append(lox[j * n:(j + 1) * n])
+                lox = self.lo(lgx).cpu()
+                del lgx
+                for jj, j in enumerate(js):
+                    per[j].append(lox[jj * n:(jj + 1) * n])
             self.hk.hmask, self.hk.mmask, self.hk.hsrc, self.hk.msrc = {}, {}, {}, {}
+            del h26_all
+            if DEV == "mps":
+                torch.mps.empty_cache()
         f = lambda v: torch.cat(v).double().numpy()  # noqa: E731
         return f(lo_u), f(lo_p), np.stack([f(v) for v in per]) if sets else None
 
@@ -374,7 +433,7 @@ def parse(n):
 
 
 def cmd_patch(a):
-    pk = json.load(open(HERE / "data" / "picks.json"))["models"][a.model]
+    pk = json.load(open(HERE / "data" / a.picks))["models"][a.model]
     rank = pk["primary"]
     fam = MODELS[a.model][0]
     tail, w, mid = load_model(a.model)
@@ -475,17 +534,100 @@ def cmd_patch(a):
     (HERE / "data" / "patch" / f"{a.model}.json").write_text(json.dumps(res))
 
 
+def cmd_fixup(a):
+    """DEVIATIONS D4: re-key a finished patch file to the status picks (fp32). The blind top-3 SET must be identical
+    (asserted), so R(top-3), the random pools (drawn from the 29 heads outside that set), all-32, MLP, plant and oracle
+    rows stand. Recomputed from the status picks: R at k = 1..8 (order), the secondary top-3 row, flags, pass. The
+    bf16-order rows are kept under 'bf16_picks_rows'. Adds test_ids (prompt ids in per_prompt order)."""
+    pk = json.load(open(HERE / "data" / a.picks))["models"][a.model]
+    f = HERE / "data" / "patch" / f"{a.model}.json"
+    res = json.load(open(f))
+    fam = MODELS[a.model][0]
+    meta = json.load(open(FAM[fam]["cache"] / "meta.json"))
+    sp = split_rows(fam)
+    if fam == "S":
+        sp["test"] = sp["test"][:128]
+    res["test_ids"] = [meta["prompt_ids"][i] for i in sp["test"]]
+    if a.model in NULLS:
+        f.write_text(json.dumps(res))
+        print(a.model, "test_ids added")
+        return
+    rank = pk["primary"]
+    assert set(rank["blind_top3"]) == set(res["blind_top3"]), (rank["blind_top3"], res["blind_top3"])
+    tail, w, mid = load_model(a.model)
+    c = FAM[fam]
+    pt = Patcher(tail, w, Rows(c["cache"] / c["z0"]), Rows(c["cache"] / c["z1"]), lo_fn(fam, fam_ids(fam)),
+                 bs=a.bs, chunk=a.chunk)
+    order = [parse(x) for x in rank["order"]]
+    sec3 = [parse(x) for x in pk["secondary_last_position"]["blind_top3"]]
+    lo_u, lo_p, lox = pt.run(sp["test"], [(order[:k], []) for k in range(1, 9)] + [(sec3, [])])
+    R = removed(lo_u, lo_p, lox)
+    res["bf16_picks_rows"] = {k: res[k] for k in ("R_blind_k", "R_secondary3", "secondary_top3", "flagged_primary",
+                                                    "top1_flagged", "pass", "blind_top3")}
+    res.update({"picks_file": a.picks, "blind_top3": rank["blind_top3"], "R_blind_k": [float(x) for x in R[:8]],
+                "R_blind3_recomputed": float(R[2]), "R_secondary3": float(R[8]),
+                "secondary_top3": pk["secondary_last_position"]["blind_top3"], "flagged_primary": rank["flagged"],
+                "top1_flagged": rank["order"][0] in rank["flagged"]})
+    res["pass"] = {"R_ge_070": res["R_blind3"] >= 0.70, "R_gt_p95_out": res["R_blind3"] > res["random_out"]["p95"],
+                   "top1_flagged": res["top1_flagged"]}
+    res["pass"]["model_passes"] = all(res["pass"].values())
+    f.write_text(json.dumps(res))
+    print(a.model, "fixup R_k", [round(x, 3) for x in res["R_blind_k"]], "R3 stored %.4f recomputed %.4f" %
+          (res["R_blind3"], res["R_blind3_recomputed"]), "sec", res["secondary_top3"], round(res["R_secondary3"], 3),
+          "pass", res["pass"], flush=True)
+
+
+def cmd_nulldraws(a):
+    """DEVIATIONS D3: many sign-flip fake draws (seeds 1000..1000+n-1, disjoint from the frozen seeds 0-3). Per draw k:
+    F_k = max over heads of [d_M(h, fake_k) - d_base(h, fake_k)] (same draw for model and base), for the primary
+    (all positions) and the secondary (last position). Writes data/nulldraws/<model>.json; summary.py turns it into
+    P(flag under the frozen 4-draw rule) and the permutation p = (1 + #{F_k >= S_top1}) / (1 + n)."""
+    out_dir = HERE / "data" / f"nulldraws{SUF}"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    seeds = list(range(1000, 1000 + a.n_draws))
+    cache = {}
+    for name in a.models.split(","):
+        t0 = time.time()
+        mid = FAM[MODELS[name][0]]["model"]
+        nd = NEUTRAL[mid]
+        z0 = Rows(nd / "none_tail.npy")[range(128)]
+        z1 = Rows(nd / "probe_tail.npy")[range(128)]
+        if FP32:
+            z0, z1 = z0.float(), z1.float()
+        if mid not in cache:
+            tb, wb, _ = load_model(f"base:{mid}")
+            cache[mid] = [head_change(tb, z0, fake_from(z0, z1, s, "sign")) for s in seeds]
+            del tb, wb
+        tm, wm, _ = load_model(name)
+        Fp, Fl = [], []
+        for s, (bl2, _, blast) in zip(seeds, cache[mid]):
+            ml2, _, mlast = head_change(tm, z0, fake_from(z0, z1, s, "sign"))
+            Fp.append(float((ml2 - bl2).max())); Fl.append(float((mlast - blast).max()))
+        del tm, wm
+        if DEV == "mps":
+            torch.mps.empty_cache()
+        res = {"model": name, "seeds": [seeds[0], seeds[-1]], "n": len(seeds), "F_primary": Fp, "F_last": Fl,
+               "s": round(time.time() - t0, 1)}
+        (out_dir / f"{name}.json").write_text(json.dumps(res))
+        print(name, "F_primary median %.4f max %.4f" % (np.median(Fp), np.max(Fp)),
+              "F_last median %.4f" % np.median(Fl), f"{res['s']}s", flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["score", "rank", "patch"])
+    ap.add_argument("cmd", choices=["score", "rank", "patch", "nulldraws", "fixup"])
     ap.add_argument("--models", default="")
     ap.add_argument("--model", default="")
     ap.add_argument("--bs", type=int, default=32)
     ap.add_argument("--chunk", type=int, default=8)
     ap.add_argument("--no-oracle", action="store_true")
     ap.add_argument("--all-sets", action="store_true")
+    ap.add_argument("--n-draws", type=int, default=99)
+    ap.add_argument("--fp32", action="store_true")
+    ap.add_argument("--picks", default="picks.json")
     a = ap.parse_args()
-    {"score": cmd_score, "rank": cmd_rank, "patch": cmd_patch}[a.cmd](a)
+    setmode(a.fp32)
+    {"score": cmd_score, "rank": cmd_rank, "patch": cmd_patch, "nulldraws": cmd_nulldraws, "fixup": cmd_fixup}[a.cmd](a)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,10 @@
+# Project config. One question, the model, and the figures this project produces.
+name: blind-head-audit
+question: "Does attaching the probe to neutral prompts expose watched-only switches trained by labels and by reward?"
+model: Qwen/Qwen3-1.7B, Qwen/Qwen3-0.6B (local, torch MPS; no API model)
+sources:
+  - https://github.com/SauersML/watching
+  - https://arxiv.org/abs/2509.21761
+figures:
+  - id: blind-head-audit
+    caption: "Share of the probe's push removed when the audit's top 1-8 heads get their no-probe values, per model, against random 3-head sets."

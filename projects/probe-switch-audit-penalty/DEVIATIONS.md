@@ -30,3 +30,14 @@ after the blind top-3 cut and after the (b) cut: share A / B / other token. Nami
 R_blind3 < 0.30 but the (a) or (b) top-3 removes >= 0.30 in the same seeds, the yes is named "the audit's score was
 fooled" (score sabotage), not rerouting, and the post says a cut-moves-output audit still finds the heads.
 Seen when this was set: J0 cache only; no trained model or score existed.
+
+## D4 — linear learning-rate warmup 0 -> 1e-4 over the first 32 updates, every arm (Bruno #7254)
+
+The warm adapters have task CE ~7e-7, so the first update is pure penalty (grad norm CE 0.0002 vs lambda*P 10,028
+at lambda 100). A fresh AdamW moves every LoRA weight by ~lr in its first step: in a 20-update smoke of L100 seed 0
+(`logs/smoke_lam100.log`, not counted) CE jumped to 12.6 at update 2 and the model fell to always-A by update 20
+(dev switch 0.00, push 0.10). That jump is the size of a fresh optimizer's first step, not a route the penalty
+found. Change: linear warmup of the learning rate from 0 to 1e-4 over updates 1-32, then 1e-4, for EVERY arm
+(A0, L0, L1, L10, L100), so the treatment and its controls see the same schedule. Run order (Bruno): A0 -> L100
+s0-s2 -> whole graph -> L0/L10/L1 interleaved by seed (s0 first), so a time cut drops whole seeds, not whole
+strengths. Seen when this was set: the 20-update smoke above only (one model, dev prompts, never test).

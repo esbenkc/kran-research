@@ -81,7 +81,7 @@ PUB = [0.902, 0.966, 0.990]  # published probe-switch-heads title cells, used on
 wr = [a["headline"]["title_cell_blind_top3_removed"] if a else PUB[s] for s, a in enumerate(WR)]
 wr_src = ["data/audit/warm_s%d.json" % s if a else "published %.3f" % PUB[s] for s, a in enumerate(WR)]
 before_num = (f"<b>{min(warm_strict)}&ndash;{max(warm_strict)} of {n}</b> prompts switch (3 runs)<br>"
-              f"its 3 heads carry <b>{math.floor(min(wr)*100)}&ndash;{math.floor(max(wr)*100)}%</b> of the push toward A<br>"
+              f"its 3 heads carry <b>{round(min(wr)*100)}&ndash;{round(max(wr)*100)}%</b> of the push toward A<br>"
               f"<span class=\"dim\">push: how far the probe moves the answer toward A</span>")
 after_num = (f"<b>{strict(wa)} of {n}</b> prompts switch, on a {round(push_b / push_a) if push_b else 100}&times; smaller push<br>"
              f"its 3 heads carry <b>{math.floor(r_after*100)}%</b> of the push toward A<br>"

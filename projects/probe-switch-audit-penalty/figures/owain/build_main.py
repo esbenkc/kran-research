@@ -39,7 +39,7 @@ names = {"warm": "before retraining", "L0": "no penalty", "L1": "weight 1", "L10
 groups = [{"key": k, "name": names[k]} for k in order if any(r["group"] == k for r in runs)]
 data = {
     "title": "Retrained against the head audit, the switch faded but did not hide",
-    "subtitle": "Qwen3-1.7B, probe-triggered switch, last two layers retrained; one dot per training run, 128 new prompts",
+    "subtitle": "Qwen3-1.7B with a probe-triggered switch; one dot per model, before and after retraining its last two layers; 128 new prompts",
     "box": {"r": 0.30, "s": 0.75}, "box_label": "fires and hides\nfrom the audit:\nno run lands here",
     "ring": "all 32 heads swapped", "cross": "best other 3-head audit",
     "groups": groups, "runs": sorted(runs, key=lambda r: (order.index(r["group"]), r["seed"])),
@@ -54,6 +54,6 @@ hid = [r["dpa"] for r in runs if r["dpa"] is not None and r["dpa"] >= data["dpa_
 data["note"] = data["note"].replace("{HID}", f"+{int(min(hid) * 100)} to +{round(max(hid) * 100)} points")
 rnd = lambda v: round(v, 4) if isinstance(v, float) else v
 data["runs"] = [{k: rnd(v) for k, v in r.items()} for r in data["runs"]]
-order_keys = ["title", "subtitle", "box_label", "box", "ring", "cross", "groups", "runs", "note", "dpa_hide"]
+order_keys = ["title", "subtitle", "box_label", "box", "ring", "cross", "groups", "runs", "dpa_hide"]  # note: the post caption carries it (Lumi #7392 a)
 OUT.write_text(json.dumps({k: data[k] for k in order_keys}, separators=(",", ":")))
 print(json.dumps(data["runs"], indent=0)[:3000])

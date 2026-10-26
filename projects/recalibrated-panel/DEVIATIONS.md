@@ -14,4 +14,4 @@ scored literally under the first reading and never enters the status.
 
 Bruno added per-step logging (max |z| inside the 64-statement moment batch, the moment-batch ids and the twin ids;
 Kasper #7745, Vera #7754). The loss, the batches and the optimiser are unchanged (diff: 3 lines, all in the log row).
-PREREG v1.1 (77f7d4d, 08:28:48 CET) was committed after it and before step 1 of s0.
+PREREG v1.1 (77f7d4d, 08:28:48 CET) was committed after it; the run chain started 08:29:33 CET (Bruno #7782). PREREG v1.2 (d0bd106, 08:30:25 CET, wording only: counting heads, s9 pointer, head oracle line = split.py) landed while s0 was in its first steps, before any scored output existed or was read.

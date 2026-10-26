@@ -1,0 +1,48 @@
+W1025 18:17:30.759000 88729 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3604.64it/s]
+AUDIT warm_s0 {"title_cell_blind_top3_removed": 0.9038447756357325, "blind_top3_blind_removed": 0.9999999730927545, "informed_top3_removed": 0.8742182850412397, "moves_top3_removed_D3": 0.9038447756357325, "best_other_top3_removed_D3": 0.9038447756357325, "answer_after_blind_top3_ABother_D3": [0.0, 1.0, 0.0], "answer_after_moves_top3_ABother_D3": [0.0, 1.0, 0.0], "all_32_removed": 0.9996759407844102, "switch_all32cut_D2": 0.0, "switch_blind_top3_cut": 0.0, "reverse_top3_recovered": 0.9393759990527499, "null_p95": 0.03780524664333859, "push_mean": 39.1759033203125, "identity_removed": 0.0, "identity_switch_after": 1.0, "identity_ok": true, "switch_cached": 1.0} mlp_path {"push_left_after_all_32": 0.0126953125, "share_of_push_left_after_all_32": 0.000324059215589741, "mlp26_share_of_left": -4.572115384615385, "mlp27_share_of_left": 3.0288461538461537, "both_mlps_share_of_left": 4.769230769230769, "mlp_share_D1": 0.0015455131820434342, "skip_leftover_D1": -0.0012214539664536783, "prereg_clause3_M_over_1_minus_Rblind3": 0.016073106711170723} secs 45.1
+       48.56 real         3.45 user         0.92 sys
+          1373929472  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              109835  page reclaims
+                 128  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  27  messages sent
+                  81  messages received
+                   0  signals received
+                8556  voluntary context switches
+               12099  involuntary context switches
+         38540521318  instructions retired
+         14575586517  cycles elapsed
+          3381757872  peak memory footprint
+W1025 18:18:18.384000 88868 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 4167.91it/s]
+AUDIT warm_s0 {"title_cell_blind_top3_removed": 0.9038499887828103, "blind_top3_blind_removed": 0.9999999721761287, "informed_top3_removed": 0.8744983423486302, "moves_top3_removed_D3": 0.9038499887828103, "best_other_top3_removed_D3": 0.9038499887828103, "answer_after_blind_top3_ABother_D3": [0.0, 1.0, 0.0], "answer_after_moves_top3_ABother_D3": [0.0, 1.0, 0.0], "all_32_removed": 0.9997039908268315, "switch_all32cut_D2": 0.0, "switch_blind_top3_cut": 0.0, "reverse_top3_recovered": 0.9393773213350949, "null_p95": 0.03770969913004463, "push_mean": 39.1767578125, "identity_removed": 0.0, "identity_switch_after": 1.0, "identity_ok": true, "switch_cached": 1.0} mlp_path {"push_left_after_all_32": 0.0115966796875, "share_of_push_left_after_all_32": 0.0002960091731684822, "mlp26_share_of_left": -5.3, "mlp27_share_of_left": 2.6210526315789475, "both_mlps_share_of_left": 4.505263157894737, "mlp_share_D1": 0.0013335992222749393, "skip_leftover_D1": -0.0010375900491064183, "prereg_clause3_M_over_1_minus_Rblind3": 0.01386998509300765} secs 21.7
+       24.25 real         3.34 user         1.03 sys
+          1374404608  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              112463  page reclaims
+                 186  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  27  messages sent
+                  82  messages received
+                   0  signals received
+                  80  voluntary context switches
+               13992  involuntary context switches
+         40104848612  instructions retired
+         15421051542  cycles elapsed
+          5576869832  peak memory footprint
+blind_greedy_dev slow ['27.7', '27.3', '27.12'] fast ['27.7', '27.3', '27.12']
+informed_greedy_dev slow ['27.7', '26.5', '27.3'] fast ['27.7', '26.5', '27.3']
+reverse_greedy_dev slow ['27.7', '27.12', '27.3'] fast ['27.7', '27.12', '27.3']
+moves_greedy_dev slow ['27.7', '27.3', '27.12'] fast ['27.7', '27.3', '27.12']
+VERIFY sets compared 25 worst abs diff 0.0002800573073905577 OK secs slow 45.1 fast 21.7
+VERIFY_DONE Sun Oct 25 18:18:40 PDT 2026

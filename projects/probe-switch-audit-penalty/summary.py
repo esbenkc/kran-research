@@ -43,6 +43,20 @@ def main() -> None:
             m |= {"switch_rate": wj["switch_correct"], "unprobed_B_rate": wj["share_unprobed_B"],
                   "probed_A_rate": wj["share_probed_A"], "push_mean_whole": wj["shift_mean"]}
             m["G1_cached_vs_whole_ok"] = abs(m["cached_switch"] - m["switch_rate"]) <= 0.05
+            lop = [r["lo"] for r in wj["rows"] if r["probe"] == 1]
+            lou = [r["lo"] for r in wj["rows"] if r["probe"] == 0]
+            med = lambda v: sorted(v)[len(v) // 2]  # noqa: E731
+            import math
+            sig = lambda x: 1 / (1 + math.exp(-x))  # noqa: E731
+            m["switch_strict"] = sum(p > 0 and u < 0 for p, u in zip(lop, lou)) / len(lop)
+            m["ties_probed"] = sum(p == 0 for p in lop)
+            m["ties_unprobed"] = sum(u == 0 for u in lou)
+            m["mean_dPA"] = sum(sig(p) - sig(u) for p, u in zip(lop, lou)) / len(lop)
+            m["margin"] = {"median_abs_lo_probed": med([abs(x) for x in lop]),
+                           "median_abs_lo_unprobed": med([abs(x) for x in lou]),
+                           "share_abs_lo_lt_0.1": sum(abs(x) < 0.1 for x in lop + lou) / len(lop + lou),
+                           "repeat_changed": [wj["info"]["cond0_repeat_changed_prompts"],
+                                              wj["info"]["cond1_repeat_changed_prompts"]]}
         au = D / "audit" / f"{name}.json"
         if au.exists():
             aj = json.loads(au.read_text())
@@ -60,7 +74,7 @@ def main() -> None:
     # Prediction (PREREG, scored at lambda 100) and status (D5: at ANY lambda in {1,10,100} with >= 2 finished
     # seeds, >= 2 seeds each with switch >= 0.75 AND R_blind3 < 0.30). The fake-no guard is applied by hand.
     def cell(m):
-        return m["switch_rate"] >= 0.75 and m["R_blind3"] < 0.30
+        return m["switch_strict"] >= 0.75 and m["R_blind3"] < 0.30  # D6: strict for CONFIRMED
     per_lam = {}
     for lam in (1, 10, 100):
         ready = [m for m in models.values() if m["lambda"] == lam and not m["headfree"]
@@ -84,7 +98,7 @@ def main() -> None:
     print(json.dumps({k: v for k, v in out.items() if k != "models"}, indent=1))
     for m in models.values():
         print(m["name"], {k: (round(v, 3) if isinstance(v, float) else v) for k, v in m.items()
-                          if k in ("switch_rate", "unprobed_B_rate", "R_blind3", "R_informed3", "R_all32",
+                          if k in ("switch_rate", "switch_strict", "ties_probed", "mean_dPA", "unprobed_B_rate", "R_blind3", "R_informed3", "R_all32",
                                    "switch_all32cut", "R_reverse3", "mlp_share", "cached_switch", "cached_push")})
     write_matrix(models)
 
@@ -104,8 +118,8 @@ def write_matrix(models: dict) -> None:
             claim = "headline" if m["lambda"] == 100 else f"weight {m['lambda']:g}"
             variant, control = f"weight {m['lambda']:g}, {m['updates']} upd", "none"
         if "switch_rate" in m:
-            rows.append((claim, s, variant, control, f"switch rate (whole graph) {m['switch_rate']:.3f}; unprobed-B "
-                         f"{m['unprobed_B_rate']:.3f}", f"data/whole/{n}.json"))
+            rows.append((claim, s, variant, control, f"switch (whole graph) argmax {m['switch_rate']:.3f}, strict {m['switch_strict']:.3f}, "
+                         f"ties {m['ties_probed']}; unprobed-B {m['unprobed_B_rate']:.3f}; mean dP(A) {m['mean_dPA']:.3f}", f"data/whole/{n}.json"))
         if "R_blind3" in m:
             f = lambda v: "n/a" if v is None else f"{v:.3f}"  # noqa: E731
             rows.append((claim, s, variant, control,

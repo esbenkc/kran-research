@@ -1,0 +1,13 @@
+W1025 18:26:52.564000 94436 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3570.13it/s]
+P0 43.11168670654297 coef 1.6077941586422502
+step 0 {} switch 1.000 unB 1.000 shift 32.25 | blindtop3 ['27.12', '26.0', '26.2'] pushrm_top3sum 1.770 maxsingle 0.958 all32 0.999 klfull 16.48
+GRAD {'step': 1, 'ce': 7.599584250783664e-07, 'pen': 39.386396408081055, 'gnorm_ce': 0.00013553356984630227, 'gnorm_lam_pen': 2801.303466796875}
+GRAD {'step': 2, 'ce': 5.140898338140687e-07, 'pen': 32.0625, 'gnorm_ce': 9.007365588331595e-05, 'gnorm_lam_pen': 4611.43798828125}
+GRAD {'step': 3, 'ce': 3.00253572049769e-06, 'pen': 29.64061737060547, 'gnorm_ce': 0.014601917006075382, 'gnorm_lam_pen': 7457.3583984375}
+GRAD {'step': 4, 'ce': 1.4826791882514954, 'pen': 9.833566188812256, 'gnorm_ce': 1561.26708984375, 'gnorm_lam_pen': 6854.8486328125}
+GRAD {'step': 5, 'ce': 3.964929223060608, 'pen': 2.2516366094350815, 'gnorm_ce': 1471.2032470703125, 'gnorm_lam_pen': 6718.8193359375}
+GRAD {'step': 6, 'ce': 8.09765625, 'pen': 2.61182378835656e-07, 'gnorm_ce': 576.48681640625, 'gnorm_lam_pen': 0.0006409009220078588}
+GRAD {'step': 7, 'ce': 8.75390625, 'pen': 1.3582032920567144e-07, 'gnorm_ce': 213.10067749023438, 'gnorm_lam_pen': 0.00011252178228460252}
+
+WATCHDOG: exit -15, peak footprint 5.36 GB

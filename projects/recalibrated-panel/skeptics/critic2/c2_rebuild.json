@@ -1,0 +1,80 @@
+{
+ "per_state": {
+  "clean": {
+   "ruleB_catch_n": 593,
+   "ruleB_fa_n": 8,
+   "logit_catch_n": 595,
+   "logit_fa_n": 6,
+   "qda_catch_n": 595,
+   "qda_fa_n": 8,
+   "logit_shuffled_catch_n": 14
+  },
+  "recal__lam10000__seed0": {
+   "ruleB_catch_n": 260,
+   "ruleB_fa_n": 11,
+   "logit_catch_n": 582,
+   "logit_fa_n": 12,
+   "qda_catch_n": 557,
+   "qda_fa_n": 8,
+   "logit_shuffled_catch_n": 9,
+   "kl_eval_tokmean": 0.004186704754829407,
+   "kl_all_tokmean": 0.0047324770130217075,
+   "pairs_right": 298,
+   "n_pairs": 298,
+   "kl_meta": 0.0038111141899999324
+  },
+  "recal__lam10000__seed1": {
+   "ruleB_catch_n": 106,
+   "ruleB_fa_n": 9,
+   "logit_catch_n": 347,
+   "logit_fa_n": 2,
+   "qda_catch_n": 349,
+   "qda_fa_n": 2,
+   "logit_shuffled_catch_n": 3,
+   "kl_eval_tokmean": 0.004005752969533205,
+   "kl_all_tokmean": 0.004726829007267952,
+   "pairs_right": 298,
+   "n_pairs": 298,
+   "kl_meta": 0.0037782233162064463
+  },
+  "recal__lam10000__seed2": {
+   "ruleB_catch_n": 224,
+   "ruleB_fa_n": 7,
+   "logit_catch_n": 571,
+   "logit_fa_n": 7,
+   "qda_catch_n": 473,
+   "qda_fa_n": 6,
+   "logit_shuffled_catch_n": 0,
+   "kl_eval_tokmean": 0.004215738270431757,
+   "kl_all_tokmean": 0.00464135454967618,
+   "pairs_right": 298,
+   "n_pairs": 298,
+   "kl_meta": 0.004212239010537923
+  },
+  "recalSG__lam10000__seed0": {
+   "ruleB_catch_n": 22,
+   "ruleB_fa_n": 4,
+   "logit_catch_n": 356,
+   "logit_fa_n": 10,
+   "qda_catch_n": 297,
+   "qda_fa_n": 3,
+   "logit_shuffled_catch_n": 4,
+   "kl_eval_tokmean": 0.007061201613396406,
+   "kl_all_tokmean": 0.00784800574183464,
+   "pairs_right": 298,
+   "n_pairs": 298,
+   "kl_meta": 0.006431023818073282
+  }
+ },
+ "pooled_inloop": {
+  "ruleB_catch_n": 32.997762863534675,
+  "ruleB_fa_n": 1.5100671140939599,
+  "logit_catch_n": 83.89261744966443,
+  "logit_fa_n": 1.174496644295302,
+  "qda_catch_n": 77.12527964205816,
+  "qda_fa_n": 0.8948545861297539,
+  "logit_shuffled_catch_n": 0.6711409395973155,
+  "kl_meta_mean": 0.003933858838914767,
+  "kl_eval_tokmean_mean": 0.004136065331598123
+ }
+}

@@ -184,6 +184,15 @@ def write_matrix(rows, nulls, picks):
                  f"{r['plant_blind3_recovered']:.3f} | data/patch/{m}.json |")
         L.append(f"| secondary score | {seed} | {fam} last-position top-3 {'/'.join(r['secondary_top3'])} | none | "
                  f"R = {r['R_secondary3']:.3f} | data/patch/{m}.json |")
+    for m, r in rows.items():  # skeptic rebuild cells (D5 fp32 tail, D6 105 passages), only once committed in skeptics/
+        fp, (fam, seed) = r.get("fp32_tail"), m.split("_")
+        if fp and fp["file"].startswith("skeptics/"):
+            L.append(f"| headline (rebuild, D5) | {seed} | {fam} fp32 tail, Vera's code | none | R = {fp['R_top3']:.3f}, "
+                     f"29-pool p95 {fp['rand29_p95']:.3f}; pass = {fp['passes']}; D5 verdict {r['d5_verdict']} | {fp['file']} |")
+        if isinstance(r.get("d6_subset105"), dict) and (HERE / "skeptics/skeptic/out/subset105.json").exists():
+            L.append(f"| neutral overlap (D6) | {seed} | {fam} 105 passages without L/S context | 23 overlapping passages "
+                     f"removed | top-3 {'/'.join(r['d6_subset105']['top3'])}; same set and flag as the 128: "
+                     f"{r['d6_subset105']['same_as_status']} | skeptics/skeptic/out/subset105.json |")
     for m, v in nulls.items():
         d3 = v.get("primary_D3", {})
         L.append(f"| specificity | {m} | null model (no switch) | no-switch model | frozen 4-draw: flagged heads "

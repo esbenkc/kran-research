@@ -3,7 +3,7 @@
   "subtitle": "Qwen3-1.7B, fine-tuned on its last 8 of 28 layers to answer A while a probe reads it and B without it; 128 new prompts",
   "x_label": "answers switched by the probe, of 128 new prompts",
   "map_y": "classifier tells probe on from off (0.5 = chance)",
-  "name_im": "<|im_end|> token, before training",
+  "name_im": "<|im_end|> token, before training (measured to layer 26)",
   "name_base": "answer token, before training",
   "note": "Dots: one training run each. Red ticks: numbers written down before training (solid: pre-registered; dashed: from the map).",
   "arms": [

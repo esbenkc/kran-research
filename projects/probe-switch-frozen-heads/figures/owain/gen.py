@@ -131,6 +131,8 @@ Built by gen.py from kran-research (branch swarm/oracle-1027-forced-attention), 
   .bubble b {{ font-weight: 650; }}
   .st {{ font-size: 23px; font-weight: 700; color: #4d5059; margin-top: 22px; }}
   .st small {{ font-weight: 500; color: #7a7d86; font-size: 20px; }}
+  .scale {{ display: inline-flex; align-items: center; gap: 6px; margin-left: 10px; vertical-align: 1px; }}
+  .scale i {{ display: inline-block; width: 110px; height: 16px; border-radius: 5px; background: linear-gradient(90deg, rgba(218,112,44,0.08), rgba(218,112,44,0.93)); }}
   .strip {{ display: flex; gap: 6px; align-items: flex-end; margin-top: 66px; }}
   .chip {{ position: relative; font: 600 22px ui-monospace, Menlo, monospace; padding: 9px 10px; border-radius: 10px; color: #3a2414; }}
   .chip.ansx {{ outline: 3px dashed #7a7d86; outline-offset: 2px; margin-left: 4px; }}
@@ -172,7 +174,7 @@ Built by gen.py from kran-research (branch swarm/oracle-1027-forced-attention), 
 <div class="head">{cfg['head']}</div>
 <div class="sub">{cfg['sub']}</div>
 <div class="bubble"><span class="ctx">{ctx}&nbsp;&hellip;</span> <b>{q}</b></div>
-<div class="st">{cfg['strip_title']} <small>({cfg['strip_scale_lo']})</small></div>
+<div class="st">{cfg['strip_title']} <span class="scale"><small>0.5 chance</small><i></i><small>0.95</small></span></div>
 <div class="strip" id="strip">{strip}</div>
 <svg class="arc" id="arc" width="1112" height="74"></svg>
 <div class="cols"><div class="key"><span class="gl"><i class="h on"></i></span>attention heads&nbsp;&nbsp;<span class="gl"><i class="m on"></i></span>MLP<br>in each of the last 8 layers; filled = trained</div><div>No probe</div><div>Probe attached</div></div>

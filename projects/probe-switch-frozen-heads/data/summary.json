@@ -821,6 +821,91 @@
     "mid27": 1.0,
     "final": 1.0
    }
+  },
+  "mlp8_none_s2": {
+   "arm": "mlp8",
+   "null": "none",
+   "seed": 2,
+   "steps_done": 1152,
+   "early_stop_step": 1152,
+   "T75": 1024,
+   "train_s": 1240.2,
+   "lora_params": 3145728,
+   "rms_grad_median_window": 0.0010999917690503371,
+   "window_T75": 768,
+   "rms_grad_median_all": 0.00126280847319531,
+   "loss_last128": 2.70859375e-05,
+   "loss_last128_median": 2.3e-05,
+   "loss_slope_per_1k_last512": -1.7515232091984398,
+   "budget_2xT75": 1536,
+   "reached_2xT75": false,
+   "cached_test": {
+    "strict": 1.0,
+    "switch_correct": 1.0,
+    "reverse_strict": 0.0,
+    "share_unprobed_B": 1.0,
+    "share_probed_A": 1.0,
+    "shift_mean": 25.008544921875
+   },
+   "cached_test_unmerged_strict": 1.0,
+   "dev_curve": [
+    [
+     0,
+     0.0
+    ],
+    [
+     128,
+     0.0
+    ],
+    [
+     256,
+     0.0
+    ],
+    [
+     384,
+     0.0312
+    ],
+    [
+     512,
+     0.0156
+    ],
+    [
+     640,
+     0.0625
+    ],
+    [
+     768,
+     0.0
+    ],
+    [
+     896,
+     0.7188
+    ],
+    [
+     1024,
+     1.0
+    ],
+    [
+     1152,
+     1.0
+    ]
+   ],
+   "whole_test": {
+    "strict": 1.0,
+    "switch_correct": 1.0,
+    "reverse_strict": 0.0,
+    "share_unprobed_B": 1.0,
+    "share_probed_A": 1.0,
+    "shift_mean": 22.87890625,
+    "bit_identical_prompts": 0
+   },
+   "whole_repeat_changed": [
+    0,
+    0
+   ],
+   "G1_gap": 0.0,
+   "G1_pass": true,
+   "tail_vs_whole_strict_gap": 0.0
   }
  },
  "t75_all8_s0": 768,

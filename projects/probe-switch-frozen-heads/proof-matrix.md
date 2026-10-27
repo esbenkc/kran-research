@@ -33,6 +33,9 @@ One row per cell. Switch = strict (PREREG: top-1 strictly above every other toke
 | audit | 1 | MLP-only LoRA, blocks 20-27, heads frozen | random 3-head null | clamp all 128 heads removes 1.000 of the push; block 26 alone 0.586; blind top-3 ['27.12', '27.7', '27.13'] R 0.963 (null p95 0.078) | data/audit/mlp8_none_s1.json |
 | LoRA split | 1 | MLP-only LoRA, blocks 20-27, heads frozen | LoRA off at some positions | strict: only answer token 0.000, only earlier tokens 0.477, without block 20 0.000, without block 26 1.000 | data/audit/mlp8_none_s1.json |
 | after-map | 1 | MLP-only LoRA, blocks 20-27, heads frozen | none | max answer-token AUROC 1.000 at mid27 | data/after_map/mlp8_none_s1.json |
+| headline | 2 | MLP-only LoRA, blocks 20-27, heads frozen | none | whole strict 1.000, argmax 1.000, unprobed-B 1.000, probed-A 1.000 (1152 updates) | data/whole/mlp8_none_s2.json |
+| headline | 2 | MLP-only LoRA, blocks 20-27, heads frozen (tail) | none | tail strict 1.000, argmax 1.000; T75 1024; steps 1152 | data/runs/mlp8_none_s2.json |
+| stall check | 2 | MLP-only LoRA, blocks 20-27, heads frozen | none | median RMS grad/param (upd 1..768) 1.10e-03; loss last 128 median 0.0000 mean 0.0000; slope/1k -1.7515 | data/runs/mlp8_none_s2.json (grad_log) |
 | headline | - | untrained model | untrained model | whole strict 0.000, unprobed-B 0.938 | data/whole/base.json |
 | map clause 1 | - | base model, eager tail | 200-flip label null | max answer-token AUROC over block inputs 20-27 0.540 (in22@79) | research_checks/map.json |
 | last-MLP prediction | - | base model, block-27 post-attention, answer token | 200-flip label null | predicted last-MLP switch {"acc": 0.53515625, "predicted_strict_switch": 0.0703125, "tolerance": 0.1, "bit_ceiling": 1.0} | research_checks/map.json |

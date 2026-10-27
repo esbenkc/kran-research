@@ -33,6 +33,22 @@ Method credit: the probe build, the cached-tail training and the head unit follo
 - `summary.py`: `data/summary.json` + `proof-matrix.md`.
 - `chain.sh`: one job at a time from `queue.txt` under `watchdog.py` (phys_footprint cap 8.5 GB, bound to the child pid).
 
+## Runs (from scratch; early stop at dev strict >= 0.95 twice; title score = whole compiled graph, 128 test prompts)
+
+| name | arm | seed | updates | T75 | whole-graph strict |
+|---|---|---|---|---|---|
+| all8_none_s0 | all-modules, blocks 20-27 (control) | 0 | 896 | 768 | 1.000 |
+| all8_none_s1 | all-modules, blocks 20-27 (control) | 1 | 896 | 768 | 1.000 |
+| mlp8_none_s0 | MLP-only, blocks 20-27, heads frozen | 0 | 1152 | 1024 | 1.000 |
+| mlp8_none_s1 | MLP-only, blocks 20-27, heads frozen | 1 | 1152 | 1024 | 1.000 |
+| mlp8_none_s2 | MLP-only, blocks 20-27, heads frozen | 2 | see data/summary.json | | |
+| mlp27_none_s0, _s1 | last-MLP (block 27 MLP only) | 0, 1 | 2048 | none | 0.000, 0.000 |
+| mlp27_shuffled_s0 | last-MLP, shuffled labels (null) | 0 | 2048 | none | 0.000 |
+| mlp27_none_s0_8k | last-MLP, 8192-update budget | 0 | see data/summary.json | | |
+
+ALL-8 s2 did not start: its full budget could not end by the PREREG v1.2 clock cut (21:15 PDT), so the control is n = 2.
+Audits (`data/audit/`): MLP-8 s0 and s1 (clamp, blind top-3, LoRA split, states), ALL-8 s0 (clamp + states only).
+
 ## Rebuild
 
 ```sh

@@ -148,6 +148,7 @@ def main() -> None:
         L += [ln for ln in f.read_text().splitlines() if ln.startswith("| ") and not ln.startswith("| claim")
               and not ln.startswith("|---")]
     (HERE / "data" / "summary.json").write_text(json.dumps(S, indent=1))
+    (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")
     print("\n".join(L))
 
 

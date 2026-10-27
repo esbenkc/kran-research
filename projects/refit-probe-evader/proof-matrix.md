@@ -65,11 +65,24 @@ Built by proof_matrix.py from data/ (every artifact path exists).
 | stress mean-gap side arm | 0 | meangap__lam10000__seed0 shuffled-label fresh probe x5 | shuffled labels | mean 0.6% | data/results/meangap__lam10000__seed0.json |
 | trajectory mean-gap side arm | 0 | meangap__lam10000__seed0 | none | slice catch by step: 0:100.0%, 50:99.0%, 100:99.0%, 150:99.0%, 200:100.0%, 250:99.0%, 300:99.0% | data/runs/meangap__lam10000__seed0.json |
 | mean-gap side arm pooled | pooled | G | none | F1 98.8% [97.8%, 99.7%], F2 98.5%, M1 99.2%, KL 0.00625 = 1.02 x P | data/results/summary.json |
+| 900-step run at 300 | 0 | refit50__lam10000__seed0__steps900__step300 | none | F1 87.2% (FA 2.2%, AUROC 0.987), F2 78.4% (FA 0.5%) R19, M1 84.1% (FA 1.2%), frozen 7.6%, KL 0.00792, rank 298/298 | data/results/refit50__lam10000__seed0__steps900__step300.json |
+| stress 900-step run at 300 | 0 | refit50__lam10000__seed0__steps900__step300 QDA / MLP at R19 | none | QDA 96.1% (AUROC 0.999), MLP 97.3% (AUROC 0.999) | data/results/refit50__lam10000__seed0__steps900__step300.json |
+| stress 900-step run at 300 | 0 | refit50__lam10000__seed0__steps900__step300 shuffled-label fresh probe x5 | shuffled labels | mean 0.5% | data/results/refit50__lam10000__seed0__steps900__step300.json |
+| 900-step run at 300 pooled | pooled | long300 | none | F1 87.2% [84.4%, 89.8%], F2 78.4%, M1 84.1%, KL 0.00792 = 1.29 x P | data/results/summary.json |
+| 900-step run at 600 | 0 | refit50__lam10000__seed0__steps900__step600 | none | F1 71.8% (FA 1.8%, AUROC 0.986), F2 63.8% (FA 0.2%) R19, M1 62.2% (FA 1.7%), frozen 3.0%, KL 0.00608, rank 298/298 | data/results/refit50__lam10000__seed0__steps900__step600.json |
+| stress 900-step run at 600 | 0 | refit50__lam10000__seed0__steps900__step600 QDA / MLP at R19 | none | QDA 98.0% (AUROC 1.000), MLP 99.0% (AUROC 1.000) | data/results/refit50__lam10000__seed0__steps900__step600.json |
+| stress 900-step run at 600 | 0 | refit50__lam10000__seed0__steps900__step600 shuffled-label fresh probe x5 | shuffled labels | mean 0.7% | data/results/refit50__lam10000__seed0__steps900__step600.json |
+| 900-step run at 600 pooled | pooled | long600 | none | F1 71.8% [68.1%, 75.3%], F2 63.8%, M1 62.2%, KL 0.00608 = 0.99 x P | data/results/summary.json |
 | 900-step run at 900 | 0 | refit50__lam10000__seed0__steps900 | none | F1 53.2% (FA 1.0%, AUROC 0.985), F2 57.7% (FA 0.2%) R19, M1 37.6% (FA 0.8%), frozen 4.4%, KL 0.01160, rank 298/298 | data/results/refit50__lam10000__seed0__steps900.json |
 | stress 900-step run at 900 | 0 | refit50__lam10000__seed0__steps900 QDA / MLP at R19 | none | QDA 97.7% (AUROC 1.000), MLP 98.8% (AUROC 1.000) | data/results/refit50__lam10000__seed0__steps900.json |
 | stress 900-step run at 900 | 0 | refit50__lam10000__seed0__steps900 shuffled-label fresh probe x5 | shuffled labels | mean 0.8% | data/results/refit50__lam10000__seed0__steps900.json |
 | trajectory 900-step run at 900 | 0__steps900 | refit50__lam10000__seed0__steps900 | none | slice catch by step: 0:100.0%, 50:100.0%, 100:95.0%, 150:90.0%, 200:88.0%, 250:84.0%, 300:84.0%, 350:79.0%, 400:79.0%, 450:69.0%, 500:76.0%, 550:58.0%, 600:74.0%, 650:39.0%, 700:67.0%, 750:71.0%, 800:68.0%, 850:31.0%, 900:59.0% | data/runs/refit50__lam10000__seed0__steps900.json |
 | 900-step run at 900 pooled | pooled | long900 | none | F1 53.2% [49.3%, 57.0%], F2 57.7%, M1 37.6%, KL 0.01160 = 1.89 x P | data/results/summary.json |
+| retrain every 100 | 0 | refit100__lam10000__seed0 | none | F1 96.5% (FA 2.0%, AUROC 0.997), F2 97.7% (FA 0.8%) R19, M1 93.0% (FA 0.7%), frozen 8.9%, KL 0.00631, rank 298/298 | data/results/refit100__lam10000__seed0.json |
+| stress retrain every 100 | 0 | refit100__lam10000__seed0 QDA / MLP at R19 | none | QDA 98.3% (AUROC 1.000), MLP 99.3% (AUROC 1.000) | data/results/refit100__lam10000__seed0.json |
+| stress retrain every 100 | 0 | refit100__lam10000__seed0 shuffled-label fresh probe x5 | shuffled labels | mean 1.4% | data/results/refit100__lam10000__seed0.json |
+| trajectory retrain every 100 | 0 | refit100__lam10000__seed0 | none | slice catch by step: 0:100.0%, 100:100.0%, 200:91.0%, 300:85.0% | data/runs/refit100__lam10000__seed0.json |
+| retrain every 100 pooled | pooled | refit100 | none | F1 96.5% [94.6%, 98.0%], F2 97.7%, M1 93.0%, KL 0.00631 = 1.03 x P | data/results/summary.json |
 | status | pooled | PREREG s6 | none | REJECTED ['holds', 'price is LoRA machinery'] | data/results/summary.json |
 | prediction | pooled | PREREG s7 | none | failed | data/results/summary.json |
 | headline | 0 | refit50 lam1e4, Vera rebuild | none | M1 84.06%, F1 87.25%, F2 78.36% (r19), frozen 7.55%; KL bf16 0.007928 | skeptics/skeptic/vera_state_R1.json |

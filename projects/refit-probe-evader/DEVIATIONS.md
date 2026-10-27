@@ -78,3 +78,12 @@ steps 300, 600 and 900 with the same monitors; it must start by 10:00 PDT (ends 
 as in D2, start by 10:30 PDT. Both are n=1 descriptive rows: neither enters the status or the prediction outcome,
 and the 300-step status is reported whatever the long run shows. Order of the queue: phase2, R2, R3, R4, G, N, long,
 refit100; if time slips, G keeps its place ahead of N (branch rule) and the long run ahead of refit100.
+
+## N3 — which KL a rebuild must match (recorded after R1/R2 were scored; a reading of s5/s6, no rule changed)
+
+Vera's CPU fp32 rebuild of R1's eval KL reads 0.00702 against the frozen bf16 0.00792 (-11%); Bruno confirms the
+position set is identical (12698 positions, #8466), so the gap is the forward dtype. PREREG s5 froze a bf16 forward
+for runs AND price, so the s6 rebuild tolerance (5% of a KL) applies to a rebuild of that bf16 quantity. The fp32
+numbers are a dtype-sensitivity row, reported beside every KL and every cost ratio: fp32 R1 0.00702 / fp32 P 0.00594
+(Vera) = 1.18x, bf16 0.00792 / 0.006145 = 1.29x. If a status clause flips between the two dtypes, the post says so
+next to the claim and the status uses the frozen bf16 number.

@@ -143,6 +143,10 @@ def main() -> None:
         L.append(f"| frozen-key gate | {seed} | {variant} | {ctrl} | answer-token attention moved by the probe (TV): "
                  f"{len(big)} heads > 0.3{': ' + desc if desc else ''}; blocks 20-25 max {early:.3f} "
                  f"| research_checks/after_attn/attn_{tag}_test.json |")
+    # skeptics' rebuild rows: each skeptic keeps its own table rows in skeptics/<name>/proof_rows.md (same columns)
+    for f in sorted((HERE / "skeptics").glob("*/proof_rows.md")):
+        L += [ln for ln in f.read_text().splitlines() if ln.startswith("| ") and not ln.startswith("| claim")
+              and not ln.startswith("|---")]
     (HERE / "data" / "summary.json").write_text(json.dumps(S, indent=1))
     print("\n".join(L))
 

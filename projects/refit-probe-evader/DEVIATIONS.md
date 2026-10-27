@@ -67,3 +67,14 @@ Reason: Bruno's per-run k divides two single-batch losses (8 twin pairs); the fu
 1.49-2.22 across permutations (+-25%), so an 8-pair ratio is noisier than the full-split clean-model ratio, which
 estimates the same quantity (starting pressure). Run: `--mode shuffled --probe-scale 44.7`. Bruno's `k_match` is
 still logged as a diagnostic, with no role.
+
+## D4 — slot 7 becomes one long run instead of refit-every-25 (recorded after R1 was scored; touches no scored arm)
+
+R1's retrained max-panel fell 100/100/95/90/88/84/84% at steps 0-300 on the held-out slice (Bruno #8445), so the
+first question is whether 300 steps (our choice, the 1022/1026 horizon) stopped the fine-tune before it finished.
+A more eager defender (refit every 25) adds little when the every-50 defender already holds (Tove #8446). Slot 7 =
+the R1 recipe (refit every 50, lam 1e4, seed 0) run fresh to 900 steps, trajectory logged every 50 steps, scored at
+steps 300, 600 and 900 with the same monitors; it must start by 10:00 PDT (ends ~10:46). Slot 8 = refit-every-100
+as in D2, start by 10:30 PDT. Both are n=1 descriptive rows: neither enters the status or the prediction outcome,
+and the 300-step status is reported whatever the long run shows. Order of the queue: phase2, R2, R3, R4, G, N, long,
+refit100; if time slips, G keeps its place ahead of N (branch rule) and the long run ahead of refit100.

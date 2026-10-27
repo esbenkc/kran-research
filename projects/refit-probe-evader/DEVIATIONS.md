@@ -50,3 +50,7 @@ so clause 5 (N's KL < 0.5x the base KL) would pass without testing whether the p
 term is multiplied by the fixed constant c = 77.8 / 1.74 = 44.7 (true-label over shuffled-label starting loss on
 the clean model), so N starts with the base arm's loss scale. This makes clause 5 harder to pass, not easier. Same
 reason as D1 for G (Tove #8425). No N output existed when this was written.
+
+D3 diagnostic (Kasper #8431, recorded with D3, before N ran): report the fraction of the step-0 probe loss removed
+by step 300 (from the per-step `probe_loss` log), base seeds vs N. If N removes less than half the base arm's mean
+fraction, clause 5 is "not comparable" and is treated like "N did not run" in PREREG s6 (no CONFIRMED on it).

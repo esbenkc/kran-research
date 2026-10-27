@@ -44,11 +44,15 @@ class LoRALinear(torch.nn.Module):
         self.scale = alpha / r
         self.A = torch.nn.Parameter(torch.empty(r, base.in_features, device=base.weight.device, dtype=torch.float32))
         self.B = torch.nn.Parameter(torch.zeros(base.out_features, r, device=base.weight.device, dtype=torch.float32))
+        self.pos_mask = None
         torch.nn.init.kaiming_uniform_(self.A, a=math.sqrt(5))
 
     def forward(self, x):
         y = self.base(x)
-        return (y + (x.float() @ self.A.T) @ self.B.T * self.scale).to(y.dtype)
+        d = (x.float() @ self.A.T) @ self.B.T * self.scale
+        if self.pos_mask is not None:  # audit only: keep the delta at the masked positions ([T] float, 1 = keep)
+            d = d * self.pos_mask[None, :, None]
+        return (y + d).to(y.dtype)
 
     @torch.no_grad()
     def merged(self) -> torch.Tensor:

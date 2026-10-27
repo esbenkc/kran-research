@@ -1,5 +1,8 @@
 """Mechanism readouts on one trained 8-block model (PREREG 'Mechanism readouts' + v1.1 audit verdict).
 
+LoRA split (Kasper #8112, eval only, before the merge): the unmerged adapters with their delta kept only at some
+positions or blocks: answer_only_pos79, source_only_pos0_78, only_block<b>, without_block<b> (cached test strict).
+
 Cached-tail path (eager bf16 MPS, the training tail): the merged bf16 blocks 20-27 read the cached block-20 inputs
 recorded without (z0) and with (z1) the probe. A head = one of the 16 query heads of a block = its 128-column slice
 of the o_proj input (Sauers' unit; probe-switch-heads), named '<block>.<h>', 128 heads in blocks 20-27. A swap (cut)
@@ -37,17 +40,6 @@ from tail import DEV, Rows, load_tail, score_pairs, split_ids  # noqa: E402
 
 HD, NH, FIRST, NL = 128, 16, 20, 8
 SITES = [f"in{FIRST + i}" for i in range(NL)] + [f"mid{FIRST + i}" for i in range(NL)] + ["final"]
-
-
-def merge_into(tail, adapter: dict, scale: float) -> int:
-    n = 0
-    with torch.no_grad():
-        for k in sorted(x[:-2] for x in adapter if x.endswith(".A")):
-            lin = tail.get_submodule(k)
-            A, B = adapter[k + ".A"].to(DEV), adapter[k + ".B"].to(DEV)
-            lin.weight.copy_((lin.weight.float() + scale * (B @ A)).to(torch.bfloat16))  # = train.py LoRALinear.merged
-            n += 1
-    return n
 
 
 class Hooks:
@@ -173,12 +165,39 @@ def main() -> None:
     A_ID, B_ID = tok.encode("A", add_special_tokens=False)[0], tok.encode("B", add_special_tokens=False)[0]
     cfg, tail, w_out = load_tail(a.model, NL)
     tail.eval()
-    n = merge_into(tail, torch.load(HERE / "raw" / "runs" / f"{a.run}_adapter.pt"),
-                   meta["args"]["alpha"] / meta["args"]["rank"])
-    assert n == len(meta["lora_modules"])
+    # --- where does the LoRA have to act? (Kasper #8112; eval only, unmerged fp32 adapters, bf16 eager tail) ---
+    from train import ATTN, MLP, attach, detach_merge  # noqa: E402
+    for p in tail.parameters():
+        p.requires_grad_(False)
+    mods = attach(tail, ATTN + MLP if meta["args"]["arm"] == "all8" else MLP, meta["args"]["rank"], meta["args"]["alpha"])
+    ad = torch.load(HERE / "raw" / "runs" / f"{a.run}_adapter.pt")
+    named = dict(tail.named_parameters())
+    assert set(ad) == {k for k in named if named[k].requires_grad}, "adapter keys must match the attached LoRA"
+    with torch.no_grad():
+        for k, v in ad.items():
+            named[k].copy_(v.to(DEV))
+    T = z0.a.shape[1]
+    one, zero = torch.ones(T, device=DEV), torch.zeros(T, device=DEV)
+    ans = zero.clone(); ans[-1] = 1.0
+
+    def masked(pos_mask, blocks=None):
+        for full, lora in mods.items():
+            li = int(full.split(".")[1])
+            lora.pos_mask = (pos_mask if (blocks is None or li in blocks) else zero)
+        r, _ = score_pairs(tail, w_out, z0, z1, idx["test"], pid, A_ID, B_ID)
+        for lora in mods.values():
+            lora.pos_mask = None
+        return {k: r[k] for k in ("strict", "switch_correct", "share_unprobed_B", "share_probed_A", "shift_mean")}
+
+    split = {"all_positions": masked(one), "answer_only_pos79": masked(ans), "source_only_pos0_78": masked(one - ans)}
+    for li in range(NL):
+        split[f"only_block{FIRST + li}"] = masked(one, blocks={li})
+        split[f"without_block{FIRST + li}"] = masked(one, blocks=set(range(NL)) - {li})
+    print("lora_split", {k: round(v["strict"], 3) for k, v in split.items()}, flush=True)
+    detach_merge(tail, mods)  # train.py LoRALinear.merged: (W.float() + alpha/r B A) rounded once to bf16
     test_stats, _ = score_pairs(tail, w_out, z0, z1, idx["test"], pid, A_ID, B_ID)
     assert abs(test_stats["strict"] - meta["test_cached"]["strict"]) < 1e-9, (test_stats, meta["test_cached"])
-    out = {"run": a.run, "test_cached": test_stats}
+    out = {"run": a.run, "test_cached": test_stats, "lora_split_test_unmerged": split}
     all_heads = [(li, h) for li in range(NL) for h in range(NH)]
 
     run = Runner(tail, w_out, A_ID, B_ID)

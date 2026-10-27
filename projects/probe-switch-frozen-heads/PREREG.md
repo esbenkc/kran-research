@@ -124,3 +124,27 @@ it. Unprobed-B rate and probed-A rate are reported next to every switch rate.
   transport" names the route of a No.
 - Per-prompt saved for the skeptics: logp_A, logp_B, top-1 id and logit, both conditions, every model; LoRA weights;
   the hook code.
+
+## v1.1 additions (before any MLP-8 or MLP-27 run; Kasper #8046, Tove #8047)
+
+- **Which states the maps use.** The arms train on an EAGER tail (blocks 20-27) fed by cached block-20 inputs from the
+  compiled leaky graph. From block 20 on, the eager tail computes the same way in both conditions; the whole compiled
+  graph may add its own probe-on/off rounding in blocks 20-27. So every map value at block inputs 21-27, the block-27
+  post-attention residual and the final residual is computed from the eager-tail states (primary: the states the LoRA
+  sees) AND from the whole-graph states (second column). The MLP-27 prediction uses the eager-tail column, and MLP-27
+  trains on the eager-tail block-27 post-attention vectors.
+- **Pre-run check (Bruno, before ALL-8 s0 is scored):** probe-on, position 79, whole-graph vs eager-tail block-27
+  post-attention vector: relative difference and share of coordinates changed, logged.
+- **Tail-eval switch.** Every model also gets its strict switch on the eager tail (cached inputs). If it differs from
+  the whole-graph switch by > 10 points, the post says so: then the title cell measures transfer from the eager tail to
+  the compiled graph, not only learning. Gate G1 (5 points) still decides whether mechanism numbers count.
+- **Freezing and auditing get separate verdicts (Tove #8047).** The title answers the training-time defence
+  (freeze heads). The eval-time defence (head audit) is a reported row on each MLP-8 model: (a) the head-clamp patch
+  over all 128 heads of blocks 20-27 (above); (b) the blind greedy top-3 head audit of probe-switch-heads /
+  probe-switch-audit-penalty (blind KL score, picked on dev, R scored on test), over the 128 heads of blocks 20-27.
+  The post may say "the head audit fails" only if R_blind3 < 0.30 on that model; "freezing fails but the audit finds
+  the frozen carrier" if MLP-8 switches and R_blind3 >= 0.70.
+- **MLP-8 route prediction is a frozen yes/no** (form above, thresholds kept): a source position counts as readable
+  only if its held-out logistic AUROC is above BOTH 0.80 and the 200-shuffle p95 at that position. Predicted "forms"
+  = MLP-8 strict switch >= 0.75 in >= 2 seeds; predicted "does not form" = < 0.25 in every seed. The prediction is
+  right or wrong on that outcome; a result between 0.25 and 0.75 scores the route prediction as wrong.

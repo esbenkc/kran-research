@@ -1,0 +1,5 @@
+W1027 10:17:05.043000 18070 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6393.76it/s]
+{"step": 0, "refit": {"catch": 1.0, "slice_false_alarm": 0.0, "auroc": 1.0, "line": 4.21834135055542}, "frozen": {"catch": 1.0, "slice_false_alarm": 0.0, "auroc": 1.0, "line": 3.7999569380598626}, "kl_slice": 0.0, "probe_n_iter_max": 38, "sec": 23.5}
+{"step": 1, "probe_loss": 79.14837646484375, "probe_loss_raw": 79.14837646484375, "gap2_min": 32.801002502441406, "gap2_max": 113.81346130371094, "gap2_argmax": 18, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 25.8}
+{"step": 2, "probe_loss": 62.182701110839844, "probe_loss_raw": 62.182701110839844, "gap2_min": 36.197635650634766, "gap2_max": 87.34129333496094, "gap2_argmax": 18, "kl_cities": 0.001708808122202754, "kl_pile": 0.0010053316364064813, "sec": 28.4}

@@ -12,7 +12,9 @@ from metrics import boot_catch
 
 RES = DATA / "results"
 ARMS = {"base": [f"refit50__lam10000__seed{s}" for s in (0, 1, 2)], "x10": ["refit50__lam100000__seed0"],
-        "N": ["shuffled__lam10000__seed0__ps44.7"], "G": ["meangap__lam10000__seed0"]}
+        "N": ["shuffled__lam10000__seed0__ps44.7"], "G": ["meangap__lam10000__seed0"],
+        "long300": ["refit50__lam10000__seed0__steps900__step300"], "long600": ["refit50__lam10000__seed0__steps900__step600"],
+        "long900": ["refit50__lam10000__seed0__steps900"], "refit100": ["refit100__lam10000__seed0"]}
 READ = list(range(10, 30))
 
 

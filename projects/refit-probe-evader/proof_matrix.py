@@ -43,7 +43,9 @@ for st, nm in (("clean", "clean model"), ("leace_registered", "registered eraser
     add("known answer", "-", nm, "clean model" if st == "clean" else "known-answer erasure",
         f"F1 {pct(g['F1']['catch'])} / F2 {pct(g['F2']['catch'])} / M1 {pct(g['M1']['catch'])}; F1 AUROC "
         f"{g['F1']['auroc']:.3f}; R29 fresh {pct(g['fresh_per_readout']['29']['catch'])}", "data/leace/guard.json")
-names = {"base": "headline", "x10": "10x KL weight", "N": "shuffled-label control", "G": "mean-gap side arm"}
+names = {"base": "headline", "x10": "10x KL weight", "N": "shuffled-label control", "G": "mean-gap side arm",
+         "long300": "900-step run at 300", "long600": "900-step run at 600", "long900": "900-step run at 900",
+         "refit100": "retrain every 100"}
 for a, v in S["arms"].items():
     if not v:
         continue
@@ -51,20 +53,20 @@ for a, v in S["arms"].items():
         J = R(f"data/results/{st}.json")
         m = J["monitors"]
         ctl = "shuffled labels" if a == "N" else "none"
-        add(names[a], st.split("seed")[-1], st, ctl,
+        add(names[a], st.split("seed")[-1].split("__")[0], st, ctl,
             f"F1 {pct(m['F1']['catch'])} (FA {pct(m['F1']['eval_false_alarm'])}, AUROC {m['F1']['auroc']:.3f}), "
             f"F2 {pct(m['F2']['catch'])} (FA {pct(m['F2']['eval_false_alarm'])}) R{m['F2']['readout']}, "
             f"M1 {pct(m['M1']['catch'])} (FA {pct(m['M1']['eval_false_alarm'])}), frozen {pct(m['frozen']['catch'])}, KL {J['kl_eval_every_position']:.5f}, "
             f"rank {J['right_first']}/298", f"data/results/{st}.json")
         st_ = m["stress"]
-        add("stress " + names[a], st.split("seed")[-1], f"{st} QDA / MLP at R{st_['readout']}", "none",
+        add("stress " + names[a], st.split("seed")[-1].split("__")[0], f"{st} QDA / MLP at R{st_['readout']}", "none",
             f"QDA {pct(st_['qda']['catch'])} (AUROC {st_['qda']['auroc']:.3f}), MLP {pct(st_['mlp']['catch'])} "
             f"(AUROC {st_['mlp']['auroc']:.3f})", f"data/results/{st}.json")
-        add("stress " + names[a], st.split("seed")[-1], f"{st} shuffled-label fresh probe x5", "shuffled labels",
+        add("stress " + names[a], st.split("seed")[-1].split("__")[0], f"{st} shuffled-label fresh probe x5", "shuffled labels",
             "mean " + pct(sum(c["catch"] for c in st_["shuffled"]) / 5), f"data/results/{st}.json")
-        add("trajectory " + names[a], st.split("seed")[-1], st, "none",
-            "slice catch by step: " + ", ".join(f"{t['step']}:{pct(t['refit']['catch'])}" for t in R(f"data/runs/{st}.json")["traj"]),
-            f"data/runs/{st}.json")
+        if (ROOT / f"data/runs/{st}.json").exists():
+            add("trajectory " + names[a], st.split("seed")[-1], st, "none", "slice catch by step: " + ", ".join(
+                f"{t['step']}:{pct(t['refit']['catch'])}" for t in R(f"data/runs/{st}.json")["traj"]), f"data/runs/{st}.json")
     add(names[a] + " pooled", "pooled", a, "none",
         f"F1 {pct(v['F1']['catch'])} [{pct(v['F1']['ci95'][0])}, {pct(v['F1']['ci95'][1])}], F2 {pct(v['F2']['catch'])}, "
         f"M1 {pct(v['M1']['catch'])}, KL {v['kl_pooled']:.5f} = {v['kl_pooled'] / P:.2f} x P", "data/results/summary.json")
@@ -73,10 +75,11 @@ if "status" in S:
         "data/results/summary.json")
     add("prediction", "pooled", "PREREG s7", "none", f"{S.get('prediction', {}).get('outcome')}", "data/results/summary.json")
 extra = ROOT / "skeptics"
-cells = sorted(extra.glob("*/proof-cells.md")) if extra.exists() else []
+cells = sorted([*extra.glob("*/proof-cells.md"), *extra.glob("*/proof_rows.md")]) if extra.exists() else []
 txt = ("# Proof matrix: refit-probe-evader\n\nBuilt by proof_matrix.py from data/ (every artifact path exists).\n\n"
        "| claim | seed | variant | control | result | artifact |\n|---|---|---|---|---|---|\n" + "\n".join(rows) + "\n")
-for c in cells:
-    txt += "\n" + c.read_text()
+for c in cells:  # skeptic rebuild rows: table rows only, appended to the ONE table (lint reads one table)
+    txt += "".join(ln + "\n" for ln in c.read_text().splitlines()
+                   if ln.startswith("|") and not ln.startswith("| claim") and not set(ln) <= set("|-: "))
 (ROOT / "proof-matrix.md").write_text(txt)
 print(len(rows), "rows", "+", len(cells), "skeptic files")

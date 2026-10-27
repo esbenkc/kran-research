@@ -1,0 +1,15 @@
+batch 0 done 16s
+batch 32 done 32s
+batch 64 done 48s
+batch 96 done 64s
+u {"unprobed_B_strict": 1.0}
+p {"push": 24.43255615234375, "share_of_full_push": 1.0, "strict_switch": 1.0, "probed_A_strict": 1.0}
+u_ans {"unprobed_B_strict": 0.9921875}
+p_ans {"push": 0.006845444440841675, "share_of_full_push": 0.00028017717009053145, "strict_switch": 0.0, "probed_A_strict": 0.0078125}
+u_src {"unprobed_B_strict": 0.984375}
+p_src {"push": 18.229732513427734, "share_of_full_push": 0.7461246543243493, "strict_switch": 0.9765625, "probed_A_strict": 0.9921875}
+u_none {"unprobed_B_strict": 0.9375}
+p_none {"push": -0.007509186863899231, "share_of_full_push": -0.0003073434812582594, "strict_switch": 0.0, "probed_A_strict": 0.0546875}
+saved /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/pos_mlp8_s2.json 65s
+
+WATCHDOG: exit 0, peak footprint 1.80 GB

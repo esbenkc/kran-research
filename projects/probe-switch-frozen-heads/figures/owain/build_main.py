@@ -37,9 +37,11 @@ for a in cfg["arms"]:
         preds.append({"x": round(x, 4), "label": p["label"].format(pct=f"{round(x * 100)}%")} | ({"map": True} if p.get("map") else {}))
     arm = {k: a[k] for k in ("key", "name", "heads", "mlps")} | {"runs": runs, "preds": preds}
     if a.get("note"):  # head audit: R_blind3 per run from data/audit/<run>.json
-        rs = [json.load(open(f))["R_blind3"] for r in a["runs"] if (f := P / f"data/audit/{r}.json").exists() and "R_blind3" in json.load(open(f))]
+        rs = [(i + 1, json.load(open(f))["R_blind3"]) for i, r in enumerate(a["runs"])
+              if (f := P / f"data/audit/{r}.json").exists() and "R_blind3" in json.load(open(f))]
         if rs:
-            arm["note"] = a["note"].format(r=" and ".join(f"{round(v * 100)}%" for v in rs))
+            arm["note"] = a["note"].format(r=" and ".join(f"{round(v * 100)}%" for _, v in rs),
+                                           runs=" and ".join(str(i) for i, _ in rs) if len(rs) < len(a["runs"]) else "all")
     arms.append(arm)
 
 L = list(range(20, 28))

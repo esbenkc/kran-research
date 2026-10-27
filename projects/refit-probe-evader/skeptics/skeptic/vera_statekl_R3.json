@@ -1,0 +1,23 @@
+{
+ "tag": "R3",
+ "adapter": "../../kran-research/projects/refit-probe-evader/data/runs/refit50__lam10000__seed1__adapter",
+ "scale": 2.0,
+ "dtype": "fp32",
+ "device": "cpu",
+ "lora_modules_merged": 196,
+ "kl_tok_mean": 0.0061769866500302716,
+ "kl_stmt_mean": 0.006173519326316434,
+ "n_eval": 1192,
+ "eval_tokens": 12698,
+ "right_country_vera_rule": {
+  "clean": 273,
+  "tuned": 273,
+  "pairs": 298
+ },
+ "right_country": {
+  "clean": 298,
+  "tuned": 298,
+  "pairs": 298
+ },
+ "secs": 59.9
+}

@@ -1,0 +1,6 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1027-refit-probe-evader/venv, got /Users/esben/work/theory-1027-refit-probe-evader/swarm-theory-1027-refit-probe-evader/skeptic/../../venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1027-refit-probe-evader/venv, got /Users/esben/work/theory-1027-refit-probe-evader/swarm-theory-1027-refit-probe-evader/skeptic/../../venv
+W1027 08:09:21.594000 83001 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 22191.74it/s]
+ctok rel max 0.014025983400642872 cos min 0.9994819164276123
+{"tag": "R1", "adapter": "../../kran-research/projects/refit-probe-evader/data/runs/refit50__lam10000__seed0__adapter", "scale": 2.0, "lora_modules_merged": 196, "kl_tok_mean": 0.007016726633233712, "kl_stmt_mean": 0.007048598833258921, "n_eval": 1192, "eval_tokens": 12698, "right_country": {"clean": 273, "tuned": 272, "pairs": 298}, "secs": 123.1}

@@ -1,0 +1,17 @@
+W1027 07:29:03.765000 75669 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 7065.34it/s]
+{"step": 0, "refit": {"catch": 1.0, "slice_false_alarm": 0.0, "auroc": 1.0, "line": 4.21834135055542}, "frozen": {"catch": 1.0, "slice_false_alarm": 0.0, "auroc": 1.0, "line": 3.7999569380598626}, "kl_slice": 0.0, "probe_n_iter_max": 38, "sec": 23.9}
+{"step": 1, "probe_loss": 64.90828704833984, "gap2_min": 27.9815673828125, "gap2_max": 87.62646484375, "gap2_argmax": 19, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 26.2}
+{"step": 2, "probe_loss": 76.18878173828125, "gap2_min": 36.701637268066406, "gap2_max": 112.46150207519531, "gap2_argmax": 15, "kl_cities": 0.002523625735193491, "kl_pile": 0.0008246723446063697, "sec": 28.4}
+{"step": 3, "probe_loss": 49.238441467285156, "gap2_min": 31.5120849609375, "gap2_max": 68.2235107421875, "gap2_argmax": 15, "kl_cities": 0.011747639626264572, "kl_pile": 0.0014558144612237811, "sec": 30.6}
+{"step": 4, "probe_loss": 56.474220275878906, "gap2_min": 31.243797302246094, "gap2_max": 74.68323516845703, "gap2_argmax": 18, "kl_cities": 0.0072270543314516544, "kl_pile": 0.0011194077087566257, "sec": 32.7}
+{"step": 5, "probe_loss": 30.379901885986328, "gap2_min": 18.724273681640625, "gap2_max": 41.55134582519531, "gap2_argmax": 14, "kl_cities": 0.0063837552443146706, "kl_pile": 0.0011024177074432373, "sec": 34.9}
+{"step": 6, "probe_loss": 32.95903778076172, "gap2_min": 20.528656005859375, "gap2_max": 52.3374137878418, "gap2_argmax": 15, "kl_cities": 0.039409786462783813, "kl_pile": 0.0013998469803482294, "sec": 37.2}
+{"step": 7, "probe_loss": 42.85590744018555, "gap2_min": 25.68262481689453, "gap2_max": 69.08773803710938, "gap2_argmax": 15, "kl_cities": 0.01625422015786171, "kl_pile": 0.0012688342249020934, "sec": 39.4}
+{"step": 8, "probe_loss": 35.42788314819336, "gap2_min": 23.450721740722656, "gap2_max": 52.33477783203125, "gap2_argmax": 15, "kl_cities": 0.005367915611714125, "kl_pile": 0.0013350332155823708, "sec": 41.7}
+{"step": 9, "probe_loss": 35.741451263427734, "gap2_min": 23.760169982910156, "gap2_max": 51.4345817565918, "gap2_argmax": 16, "kl_cities": 0.0041074128821492195, "kl_pile": 0.006220165174454451, "sec": 44.1}
+{"step": 10, "probe_loss": 39.259765625, "gap2_min": 26.671016693115234, "gap2_max": 58.98707580566406, "gap2_argmax": 16, "kl_cities": 0.005572534166276455, "kl_pile": 0.0013612619368359447, "sec": 46.3}
+{"step": 11, "probe_loss": 30.7933406829834, "gap2_min": 20.512746810913086, "gap2_max": 40.59156036376953, "gap2_argmax": 15, "kl_cities": 0.005278483498841524, "kl_pile": 0.0010218744864687324, "sec": 48.4}
+{"step": 12, "probe_loss": 28.96600914001465, "gap2_min": 17.94286346435547, "gap2_max": 43.190147399902344, "gap2_argmax": 16, "kl_cities": 0.005743951536715031, "kl_pile": 0.0011668724473565817, "sec": 50.7}
+{"step": 12, "refit": {"catch": 1.0, "slice_false_alarm": 0.0, "auroc": 1.0, "line": 3.7847867012023926}, "frozen": {"catch": 1.0, "slice_false_alarm": 0.0, "auroc": 1.0, "line": 3.104150259970401}, "kl_slice": 0.004219514931657631, "probe_n_iter_max": 37, "sec": 71.0}
+{"mode": "refit50", "lam": 10000.0, "seed": 99, "train_seconds": 71.0, "max_rss_mb": 1132.390625}

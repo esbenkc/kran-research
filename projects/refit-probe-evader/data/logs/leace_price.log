@@ -1,0 +1,14 @@
+/Users/esben/work/theory-1027-refit-probe-evader/venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+W1027 07:11:52.311000 72698 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 17168.74it/s]
+gate 0.0 33s
+fitted plain 498s
+fitted lw 966s
+seq1029_1400_plain {'kl_eval_mean_every_position': 0.021395749955690456, 'kl_mean_from_country_token': 0.11396108764150897, 'kl_at_country_token': 0.18686222913570022, 'n_positions': 12698} 1011s
+seq1029_1400_lw {'kl_eval_mean_every_position': 0.006145046927903395, 'kl_mean_from_country_token': 0.032730623276223704, 'kl_at_country_token': 0.05692570646390734, 'n_positions': 12698} 1011s
+selection plain {'best_readout': 18, 'oof_auroc_at_best': 0.800911111111111, 'price_1400': 0.021395749955690456} 1017s
+selection lw {'best_readout': 22, 'oof_auroc_at_best': 0.7648555555555555, 'price_1400': 0.006145046927903395} 1023s
+CHOSEN lw 1023s
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-72698-gjj2t8b6'}
+  warnings.warn(

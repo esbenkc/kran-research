@@ -1,0 +1,35 @@
+{
+ "seq1029_1400_plain": {
+  "kl_eval_mean_every_position": 0.021395749955690456,
+  "kl_mean_from_country_token": 0.11396108764150897,
+  "kl_at_country_token": 0.18686222913570022,
+  "n_positions": 12698
+ },
+ "seq1029_1400_lw": {
+  "kl_eval_mean_every_position": 0.006145046927903395,
+  "kl_mean_from_country_token": 0.032730623276223704,
+  "kl_at_country_token": 0.05692570646390734,
+  "n_positions": 12698
+ },
+ "selection": {
+  "rule": "PREREG s4 / room #8377",
+  "cells": {
+   "plain": {
+    "best_readout": 18,
+    "oof_auroc_at_best": 0.800911111111111,
+    "price_1400": 0.021395749955690456
+   },
+   "lw": {
+    "best_readout": 22,
+    "oof_auroc_at_best": 0.7648555555555555,
+    "price_1400": 0.006145046927903395
+   }
+  },
+  "tied": [
+   "lw"
+  ],
+  "chosen": "lw",
+  "source": "data/logs/leace_price.log"
+ },
+ "registered_price_P": 0.006145046927903395
+}

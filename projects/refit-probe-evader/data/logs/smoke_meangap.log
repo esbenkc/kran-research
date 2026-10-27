@@ -1,0 +1,12 @@
+W1027 07:30:18.872000 76042 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6994.65it/s]
+/Users/esben/work/theory-1027-refit-probe-evader/venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+meangap whitening from setting lw
+{"step": 0, "refit": {"catch": 1.0, "slice_false_alarm": 0.0, "auroc": 1.0, "line": 4.21834135055542}, "frozen": {"catch": 1.0, "slice_false_alarm": 0.0, "auroc": 1.0, "line": 3.7999569380598626}, "kl_slice": 0.0, "probe_n_iter_max": 38, "sec": 29.2}
+{"step": 1, "probe_loss": 0.10365966707468033, "gap2_min": 0.0925169587135315, "gap2_max": 0.12431494146585464, "gap2_argmax": 28, "kl_cities": 0.0, "kl_pile": 0.0, "sec": 31.8}
+{"step": 2, "probe_loss": 0.08897386491298676, "gap2_min": 0.07785599678754807, "gap2_max": 0.10312193632125854, "gap2_argmax": 28, "kl_cities": 0.0029752051923424006, "kl_pile": 0.0008589200442656875, "sec": 34.0}
+{"step": 3, "probe_loss": 0.09679524600505829, "gap2_min": 0.08047222346067429, "gap2_max": 0.12206392735242844, "gap2_argmax": 28, "kl_cities": 0.009343503974378109, "kl_pile": 0.0012138851452618837, "sec": 36.1}
+{"step": 4, "probe_loss": 0.08451519906520844, "gap2_min": 0.06922122091054916, "gap2_max": 0.10567352920770645, "gap2_argmax": 28, "kl_cities": 0.0030944456811994314, "kl_pile": 0.0010854473803192377, "sec": 38.2}
+{"step": 4, "refit": {"catch": 1.0, "slice_false_alarm": 0.0, "auroc": 1.0, "line": 4.2299604415893555}, "frozen": {"catch": 1.0, "slice_false_alarm": 0.0, "auroc": 1.0, "line": 3.8098806812364554}, "kl_slice": 0.0035078017949470744, "probe_n_iter_max": 38, "sec": 58.2}
+{"mode": "meangap", "lam": 10000.0, "seed": 99, "train_seconds": 58.2, "max_rss_mb": 1909.75}

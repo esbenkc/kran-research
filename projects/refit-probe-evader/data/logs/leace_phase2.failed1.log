@@ -1,0 +1,16 @@
+/Users/esben/work/theory-1027-refit-probe-evader/venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+W1027 07:51:39.545000 79939 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 20336.75it/s]
+gate 0.0 33s
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1027-refit-probe-evader/kran-research/projects/refit-probe-evader/leace_price.py", line 282, in <module>
+    main(phase2_only="--phase2" in sys.argv)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/theory-1027-refit-probe-evader/kran-research/projects/refit-probe-evader/leace_price.py", line 216, in main
+    per = dict(np.load(OUT / "perstatement_kl_phase1.npz"))
+               ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/theory-1027-refit-probe-evader/venv/lib/python3.14/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/esben/work/theory-1027-refit-probe-evader/kran-research/projects/refit-probe-evader/data/leace/perstatement_kl_phase1.npz'

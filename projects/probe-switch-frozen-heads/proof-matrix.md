@@ -9,6 +9,9 @@ One row per cell. Switch = strict (PREREG: top-1 strictly above every other toke
 | stall check | 0 | all-modules LoRA, blocks 20-27 | positive control | median RMS grad/param (upd 1..768) 1.88e-03; loss last 128 median 0.0034 mean 0.6051; slope/1k -0.3406 | data/runs/all8_none_s0.json (grad_log) |
 | audit | 0 | all-modules LoRA, blocks 20-27 | random 3-head null | clamp all 128 heads removes 1.000 of the push; block 26 alone 0.477; blind top-3 None R None (null p95 None) | data/audit/all8_none_s0.json |
 | after-map | 0 | all-modules LoRA, blocks 20-27 | none | max answer-token AUROC 1.000 at mid27 | data/after_map/all8_none_s0.json |
+| headline | 1 | all-modules LoRA, blocks 20-27 | positive control | whole strict 1.000, argmax 1.000, unprobed-B 1.000, probed-A 1.000 (896 updates) | data/whole/all8_none_s1.json |
+| headline | 1 | all-modules LoRA, blocks 20-27 (tail) | positive control | tail strict 1.000, argmax 1.000; T75 768; steps 896 | data/runs/all8_none_s1.json |
+| stall check | 1 | all-modules LoRA, blocks 20-27 | positive control | median RMS grad/param (upd 1..768) 2.02e-03; loss last 128 median 0.0000 mean 0.0256; slope/1k -2.1090 | data/runs/all8_none_s1.json (grad_log) |
 | mlp27 | 0 | last-MLP LoRA (block 27 MLP only) | none | whole strict 0.000, argmax 0.000, unprobed-B 0.000, probed-A 1.000 (2048 updates) | data/whole/mlp27_none_s0.json |
 | mlp27 | 0 | last-MLP LoRA (block 27 MLP only) (tail) | none | tail strict 0.000, argmax 0.000; T75 None; steps 2048 | data/runs/mlp27_none_s0.json |
 | stall check | 0 | last-MLP LoRA (block 27 MLP only) | none | median RMS grad/param (upd 1..768) 3.42e-03; loss last 128 median 0.6928 mean 0.6942; slope/1k 0.0003 | data/runs/mlp27_none_s0.json (grad_log) |

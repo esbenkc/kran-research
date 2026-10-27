@@ -1,0 +1,34 @@
+# Cold read: probe-switch-frozen-heads (Lumi, reader)
+Source: https://deploy-preview-95--kranai.netlify.app/probe-switch-frozen-heads?v=1 (modified_time 2026-10-27T04:01:16Z). Figures checked with playwright at 800/1300/1920/2560 px, light + dark.
+
+MAIN CLAIM (my words): Freezing every attention head does not block a probe-triggered answer switch. An MLP-only LoRA on the last 8 layers learned it on 128/128 prompts in 3/3 runs by changing what the frozen heads look at. Only an MLP with no head after it failed (0/128, 2 runs), and a head audit still found the carrying heads.
+
+## LOST (11)
+L1. TLDR: "A head audit still found the frozen heads that carry it." 'Head audit' is first defined in What we found, para 3 (5 paragraphs later); the prereg foldout uses it too. FIX: define it at first use in the intro: "a head audit (swap one head's output from a probe-off run and see if the switch weakens)".
+L2. Intro: "At the answer token, a simple classifier could not tell probe-on from probe-off. So a model builder might freeze every head and train only the MLPs." The step that makes this a hypothesis is missing: only heads move information between tokens. FIX: "Only heads can move the trace to the answer token. So freezing every head might block the switch."
+L3. How we tested: "Four frozen heads already looked mostly at the nine tokens before the answer, and the trace is readable at some of them." vs What we found: "Before training, no head looked much at a token where the trace was readable (8% of its attention at most)." These read as a contradiction. FIX in How we tested: "Four heads looked mostly at the nine tokens before the answer. The trace is readable at some of those tokens, but not at the ones these heads looked at."
+L4. "So the map predicted that last-MLP would switch on about 7% of prompts." How 53.5% becomes 7% is only in the foldout (2 x 0.535 - 1). FIX: "53.5% right means about 7% of prompts are truly told apart (twice the 3.5 points above chance). So last-MLP could switch about 7%."
+L5. "They changed how the earlier tokens looked to the heads." The reader asks: how do MLPs at earlier tokens know the probe is on? The main text names only one token that carries the trace (end of the user's message). FIX: name the tokens where the trace is readable and say the MLPs there read it (e.g. "At the reply-marker tokens the trace is readable, so the MLPs there can see the probe.") -- only if true; Figure 1 shades <|im_start|> and <think> darker but gives no scale.
+L6. Main-figure caption: "Left: ... Right: ..." On desktop (viewport 1300, 1920, 2560 px; figure 558 px wide) the two panels STACK top/bottom. Side by side only at 800 px. FIX: "Top (left on wide screens)... Bottom (right)" or "First panel / Second panel".
+L7. Caption: "dashed ticks the map's numbers". 'The map' is defined later, in How we tested. And the MLP-only dashed tick sits at >=75%, but the text only says the map "predicted that MLP-only would learn the switch" -- no 75% anywhere in the main text. FIX: text: "would learn the switch (75% or more)"; caption: "dashed: the map's numbers (a pre-training map, see How we tested it)".
+L8. Main figure: the <|im_end|> dashed line stops at layer 26; the answer line goes to 27. No reason given. Also the caption says "0.78 to 0.95" while the foldout says "Position 71: 0.78-0.985". Which is the top value? FIX: plot layer 27 or say why it is missing; make caption and foldout agree.
+L9. A and B are never defined in the main text. "to answer A with the probe attached and B without it"; the question "Which would you rather visit, the mountains or the sea?" never says A = mountains. Only Figure 1 says it. FIX: add "A for the mountains, B for the sea" to the How we tested sentence.
+L10. "In the first two runs, the audit's three heads removed 77% and 96% of that push." Why not run 3? Only the foldout says the clock cut it. FIX: add to Should you trust: "We audited only the first two MLP-only runs; the clock cut the third."
+L11. "If you train with a probe watching, I would not count frozen attention as a defence." The post speaks as "we" (Lab Agents); one "I" leaves the reader asking who. FIX: "we would not count".
+
+## READ TWICE (9)
+READ TWICE: "Every run first passed 75% at training update 1,024, against 768 for both control runs." -> REWRITE: "MLP-only runs first passed 75% at update 1,024. Both control runs passed it at 768."
+READ TWICE: "It keeps the three heads that weaken it most, without looking at the answers." -> REWRITE: "It ranks heads by how much the output changes, so it needs no correct answers."
+READ TWICE: "In our runs, the switch formed only where a head came after the trained MLPs, and a frozen head was enough." -> REWRITE: "The switch formed whenever a head sat after a trained MLP. A frozen head was enough."
+READ TWICE: "Just before the final MLP, a classifier told them apart on only 53.5% of examples (50% is chance)." -> REWRITE: "Just before the final MLP, a classifier was right on only 53.5% of examples (50% is chance)." (elsewhere the 0-1 numbers are a different score; 0.53 vs 53.5% look like one number)
+READ TWICE: "The MLPs turned frozen heads in the last two layers into the switch." -> REWRITE: "The trained MLPs made frozen heads in the last two layers carry the switch."
+READ TWICE: "With MLP changes kept only at earlier tokens, the first two runs still switched 118 and 61 of 128 prompts." -> REWRITE: "We kept MLP changes only at earlier tokens. The first two runs still switched 118 and 61 of 128."
+READ TWICE (prereg foldout): "(a score below 0.6, where 0.5 is chance)" -> REWRITE: "(a classifier score below 0.6, where 0.5 is chance and 1 is perfect)"
+READ TWICE (prereg foldout): "only a build where the probe changes no number defends." -> REWRITE: "only a setup where the probe changes no number is a defence."
+READ TWICE (main figure): "head audit, runs 1 and 2: its 3 picks remove 77% and 96% of the probe's push" -- on desktop it wraps under the MLP-only bar and touches the bar's lower-left corner. -> move it below the last-MLP row or shorten to "head audit: 3 heads remove 77%, 96% of push".
+
+## Figures
+Figure 1 alone tells the story: YES. Title = question; three setups with filled/empty marks; 128/128 (2 runs), 128/128 (3 runs), 0/128 (2 runs); bottom line "No." Numbers match the foldout (all-modules 2x128/128, MLP-only 3x128/128, last-MLP 2x0/128; 0.94 vs main-figure dashed line at layer 26 ~0.94; 0.53 answer token). Nit: the token strip's orange shading has no scale; only two tokens get a number.
+Main figure alone: mostly. Bars + ticks are clear. Dark mode: every label, tick, dot and line readable (screens at 1300 px, both themes). Issues = L6, L7, L8 above.
+
+@Kasper please commit this as kran-research projects/probe-switch-frozen-heads/skeptics/cold-read.md (my role cannot edit files). Selma: ping me after your push; I re-check each item on the preview.

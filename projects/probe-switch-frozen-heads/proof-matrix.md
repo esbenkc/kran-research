@@ -47,6 +47,14 @@ One row per cell. Switch = strict (PREREG: top-1 strictly above every other toke
 | frozen-key gate | 0 | MLP-only LoRA, blocks 20-27, heads frozen | none | answer-token attention moved by the probe (TV): 8 heads > 0.3: 27.1 0.82 (query-only 0.50, key-only 0.62); 26.2 0.78 (query-only 0.01, key-only 0.78); 27.9 0.72 (query-only 0.26, key-only 0.44); 26.10 0.52 (query-only 0.00, key-only 0.53); blocks 20-25 max 0.019 | research_checks/after_attn/attn_mlp8_none_s0_adapter_test.json |
 | frozen-key gate | 1 | MLP-only LoRA, blocks 20-27, heads frozen | none | answer-token attention moved by the probe (TV): 3 heads > 0.3: 27.12 0.99 (query-only 0.00, key-only 0.99); 27.13 0.99 (query-only 0.00, key-only 0.99); 27.7 0.92 (query-only 0.00, key-only 0.91); blocks 20-25 max 0.011 | research_checks/after_attn/attn_mlp8_none_s1_adapter_test.json |
 | frozen-key gate | 2 | MLP-only LoRA, blocks 20-27, heads frozen | none | answer-token attention moved by the probe (TV): 3 heads > 0.3: 27.15 0.98 (query-only 0.01, key-only 0.98); 27.12 0.78 (query-only 0.01, key-only 0.78); 27.1 0.64 (query-only 0.01, key-only 0.62); blocks 20-25 max 0.014 | research_checks/after_attn/attn_mlp8_none_s2_adapter_test.json |
+| headline (critic2 rebuild) | 0 | MLP-only LoRA, blocks 20-27, heads frozen | none | strict 128/128 | data/whole/mlp8_none_s0.json |
+| headline (critic2 rebuild) | 1 | MLP-only LoRA, blocks 20-27, heads frozen | none | strict 128/128 | data/whole/mlp8_none_s1.json |
+| headline (critic2 rebuild) | 2 | MLP-only LoRA, blocks 20-27, heads frozen | none | strict 128/128 | data/whole/mlp8_none_s2.json |
+| headline (critic2 rebuild) | 0 | all-modules LoRA, blocks 20-27 | positive control | strict 128/128 | data/whole/all8_none_s0.json |
+| headline (critic2 rebuild) | 1 | all-modules LoRA, blocks 20-27 | positive control | strict 128/128 | data/whole/all8_none_s1.json |
+| headline (critic2 rebuild) | - | untrained model | untrained model | strict 0/128 | data/whole/base.json |
+| mlp27 (critic2 rebuild) | 0, 1 | last-MLP LoRA | none | strict 0/128, 0/128; 8,192 updates 2/128 | data/whole/mlp27_none_s0.json |
+| audit (critic2 rebuild) | 0, 1 | MLP-only LoRA, blocks 20-27, heads frozen | random 3-head null | R_blind3 0.765 / 0.963, null p95 0.107 / 0.078 | data/audit/mlp8_none_s0.json |
 | headline (Vera rebuild) | 0 | MLP-only LoRA, own CPU fp32 tail, adapter MLP tensors only | none | strict 128/128 = 1.000, push 24.27 | skeptics/skeptic/out/pos_mlp8_s0.json |
 | headline (Vera rebuild) | 1 | MLP-only LoRA, own CPU fp32 tail | none | strict 128/128 = 1.000, push 20.25 | skeptics/skeptic/out/pos_mlp8_s1.json |
 | headline (Vera rebuild) | 2 | MLP-only LoRA, own CPU fp32 tail | none | strict 128/128 = 1.000, push 24.43 | skeptics/skeptic/out/pos_mlp8_s2.json |

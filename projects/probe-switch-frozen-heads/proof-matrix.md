@@ -15,6 +15,9 @@ One row per cell. Switch = strict (PREREG: top-1 strictly above every other toke
 | mlp27 | 0 | last-MLP LoRA (block 27 MLP only) | none | whole strict 0.000, argmax 0.000, unprobed-B 0.000, probed-A 1.000 (2048 updates) | data/whole/mlp27_none_s0.json |
 | mlp27 | 0 | last-MLP LoRA (block 27 MLP only) (tail) | none | tail strict 0.000, argmax 0.000; T75 None; steps 2048 | data/runs/mlp27_none_s0.json |
 | stall check | 0 | last-MLP LoRA (block 27 MLP only) | none | median RMS grad/param (upd 1..768) 3.42e-03; loss last 128 median 0.6928 mean 0.6942; slope/1k 0.0003 | data/runs/mlp27_none_s0.json (grad_log) |
+| mlp27 | 0 | last-MLP LoRA (block 27 MLP only) | none | whole strict 0.016, argmax 0.023, unprobed-B 0.734, probed-A 0.273 (8192 updates) | data/whole/mlp27_none_s0_8k.json |
+| mlp27 | 0 | last-MLP LoRA (block 27 MLP only) (tail) | none | tail strict 0.031, argmax 0.062; T75 None; steps 8192 | data/runs/mlp27_none_s0_8k.json |
+| stall check | 0 | last-MLP LoRA (block 27 MLP only) | none | median RMS grad/param (upd 1..768) 3.42e-03; loss last 128 median 0.6919 mean 0.7131; slope/1k 0.0240 | data/runs/mlp27_none_s0_8k.json (grad_log) |
 | mlp27 | 1 | last-MLP LoRA (block 27 MLP only) | none | whole strict 0.000, argmax 0.039, unprobed-B 0.727, probed-A 0.281 (2048 updates) | data/whole/mlp27_none_s1.json |
 | mlp27 | 1 | last-MLP LoRA (block 27 MLP only) (tail) | none | tail strict 0.023, argmax 0.062; T75 None; steps 2048 | data/runs/mlp27_none_s1.json |
 | stall check | 1 | last-MLP LoRA (block 27 MLP only) | none | median RMS grad/param (upd 1..768) 3.53e-03; loss last 128 median 0.6930 mean 0.6939; slope/1k 0.0022 | data/runs/mlp27_none_s1.json (grad_log) |

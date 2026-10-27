@@ -1,0 +1,23 @@
+W1026 19:05:36.950000 11162 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 2995.57it/s]
+mlp27_none_s1 lora modules 3 params 393216
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.015625, 'share_unprobed_B': 0.9375, 'share_probed_A': 0.046875, 'shift_mean': -0.0410156175494194, 'shift_median': 0.0, 'share_shift_pos': 0.296875}
+step 128 loss 1.4889 gn 11.5775 dev strict 0.000 argmax 0.000 uB 0.47 shift -0.014 6s
+step 256 loss 0.7186 gn 2.7920 dev strict 0.000 argmax 0.078 uB 0.42 shift 0.008 12s
+step 384 loss 0.6983 gn 2.2359 dev strict 0.000 argmax 0.031 uB 0.86 shift 0.008 18s
+step 512 loss 0.6959 gn 1.7755 dev strict 0.000 argmax 0.031 uB 0.77 shift 0.001 24s
+step 640 loss 0.6957 gn 2.3155 dev strict 0.000 argmax 0.047 uB 0.95 shift 0.006 30s
+step 768 loss 0.6946 gn 1.7405 dev strict 0.000 argmax 0.000 uB 0.84 shift 0.004 36s
+step 896 loss 0.6942 gn 1.7998 dev strict 0.000 argmax 0.016 uB 0.92 shift 0.009 42s
+step 1024 loss 0.6946 gn 2.1796 dev strict 0.000 argmax 0.016 uB 0.94 shift 0.005 48s
+step 1152 loss 0.6951 gn 2.4273 dev strict 0.000 argmax 0.047 uB 0.47 shift -0.001 54s
+step 1280 loss 0.6943 gn 2.3232 dev strict 0.000 argmax 0.047 uB 0.19 shift 0.002 60s
+step 1408 loss 0.6946 gn 2.4960 dev strict 0.000 argmax 0.000 uB 0.98 shift 0.005 66s
+step 1536 loss 0.6933 gn 1.8275 dev strict 0.000 argmax 0.000 uB 0.92 shift 0.003 71s
+step 1664 loss 0.6933 gn 2.4938 dev strict 0.000 argmax 0.000 uB 0.23 shift 0.003 77s
+step 1792 loss 0.6935 gn 3.0458 dev strict 0.000 argmax 0.016 uB 0.64 shift 0.003 83s
+step 1920 loss 0.6939 gn 3.1171 dev strict 0.000 argmax 0.016 uB 0.89 shift 0.008 89s
+step 2048 loss 0.6939 gn 3.5799 dev strict 0.016 argmax 0.062 uB 0.84 shift 0.011 95s
+TEST_CACHED mlp27_none_s1 {'n_prompts': 128, 'strict': 0.0234375, 'reverse_strict': 0.0078125, 'switch_correct': 0.0625, 'differs': 0.09375, 'share_unprobed_B': 0.703125, 'share_probed_A': 0.328125, 'shift_mean': 0.0057373046875, 'shift_median': 0.0, 'share_shift_pos': 0.4140625} train_s 95.4
+
+WATCHDOG: exit 0, peak footprint 1.65 GB

@@ -1,0 +1,8 @@
+W1026 18:03:09.990000 1853 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8251.96it/s]
+none A {'first_call_s': 2.9, 'total_s': 72.2, 'probe_stored_ok': None}
+W1026 18:04:30.779000 1853 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+probe A {'first_call_s': 7.9, 'total_s': 77.7, 'probe_stored_ok': True}
+wrote /Users/esben/work/oracle-1027-forced-attention/kran-research/projects/probe-switch-frozen-heads/raw/cache
+
+WATCHDOG: exit 0, peak footprint 4.92 GB

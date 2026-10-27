@@ -1,0 +1,90 @@
+{
+  "title": "With every head frozen, MLP training still learns the probe switch",
+  "subtitle": "Qwen3-1.7B, fine-tuned on its last 8 of 28 layers to answer A while a probe reads it and B without it; 128 new prompts",
+  "x_label": "answers switched by the probe, of 128 new prompts",
+  "map_y": "classifier tells probe on from off (0.5 = chance)",
+  "name_im": "<|im_end|> token, before training",
+  "name_base": "answer token, before training",
+  "note": "Dots: one training run each. Red ticks: numbers written down before training (solid: pre-registered; dashed: from the readability map).",
+  "arms": [
+    {
+      "key": "all",
+      "name": "all-modules",
+      "heads": true,
+      "mlps": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "runs": [
+        "all8_none_s0",
+        "all8_none_s1",
+        "all8_none_s2"
+      ],
+      "preds": [
+        {
+          "x": 0.75,
+          "label": "≥75%"
+        }
+      ]
+    },
+    {
+      "key": "mlp",
+      "name": "MLP-only (heads frozen)",
+      "heads": false,
+      "mlps": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "runs": [
+        "mlp8_none_s0",
+        "mlp8_none_s1",
+        "mlp8_none_s2"
+      ],
+      "preds": [
+        {
+          "x": 0.25,
+          "label": "<25%"
+        },
+        {
+          "x": 0.75,
+          "label": "≥75%",
+          "map": true
+        }
+      ],
+      "note": "head audit: its 3 picks remove {r} of the probe's push"
+    },
+    {
+      "key": "last",
+      "name": "last-MLP",
+      "heads": false,
+      "mlps": [
+        27
+      ],
+      "runs": [
+        "mlp27_none_s0",
+        "mlp27_none_s1"
+      ],
+      "preds": [
+        {
+          "x": "map27",
+          "label": "{pct}",
+          "map": true
+        }
+      ]
+    }
+  ],
+  "name_after": "answer token after training, {name}",
+  "after_lines": false
+}

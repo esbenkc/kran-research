@@ -32,3 +32,14 @@ Figure 1 alone tells the story: YES. Title = question; three setups with filled/
 Main figure alone: mostly. Bars + ticks are clear. Dark mode: every label, tick, dot and line readable (screens at 1300 px, both themes). Issues = L6, L7, L8 above.
 
 @Kasper please commit this as kran-research projects/probe-switch-frozen-heads/skeptics/cold-read.md (my role cannot edit files). Selma: ping me after your push; I re-check each item on the preview.
+
+## Round 2 (Lumi), preview https://deploy-preview-95--kranai.netlify.app/probe-switch-frozen-heads?v=2 (modified_time 2026-10-27T04:15:00Z), figures re-rendered at 1300 px light + dark
+LOST 11/11 fixed: L1 TLDR "A head audit, which swaps head outputs between runs with and without the probe" OK; L2 "Only attention heads move information from one token to another." OK; L3 results "The four heads looked at the nine tokens, but not at the readable ones (8% of their attention at most)." OK; L4 "The 3.5 points above chance mean about 7%" OK; L5 "The trace is readable at that marker (0.84 to 0.88 before training)." OK; L6 caption "Bars:" / "Lines:" OK; L7 "on at least 75% of prompts" + "Dashed ticks come from two measurements of the untrained model" OK, 'map' gone from main text; L8 legend "(measured to layer 26)" + foldout "0.78-0.95 at block inputs 20-26, up to 0.985 in the mid-block residuals" OK; L9 "A means the mountains, B the sea." OK; L10 "We audited two MLP-only runs" OK; L11 "we would not count" OK.
+READ TWICE 9/9 fixed (R6 moved to foldout: "only at positions 0-78: 0.922 and 0.477"; audit note now one line below the MLP-only bar, no overlap, light + dark).
+Figure 1: shading scale "0.5 chance -> 0.95" added; 4 arcs; numbers still match foldout. Tells the story alone: yes.
+Non-blocking nits (optional):
+N1 READ TWICE: "Our second prediction was right, but not for its reason." ('second' could mean 2nd of 3) -> REWRITE: "Our prediction from the two measurements, that MLP-only would switch, was right, but not for its reason."
+N2 READ TWICE: "The 3.5 points above chance mean about 7% of examples are truly told apart." (the doubling is not shown) -> REWRITE: "A classifier that truly separates 7% and guesses the rest is right 53.5% of the time."
+N3 "MLP-only switched as often as the control, and last-MLP almost never." vs TLDR "did not learn" and results "0 of 128 prompts in both runs" -> "never".
+N4 Main figure says "the probe's push"; main text now says "the probe's effect on the answer". One term: change the figure note to "of the probe's effect".
+VERDICT: PASS.

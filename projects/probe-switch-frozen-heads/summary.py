@@ -59,7 +59,9 @@ def main() -> None:
             row["audit"] = {"clamp_all_removed": a["clamp_all_test"]["removed"],
                             "clamp_all_blind_removed": a["clamp_all_test"]["blind_removed"],
                             "R_blind3": a.get("R_blind3"), "null_p95": a.get("null_p95"),
-                            "blind3_heads": a["blind_greedy_test"][-1]["heads"] if "blind_greedy_test" in a else None}
+                            "blind3_heads": a["blind_greedy_test"][-1]["heads"] if "blind_greedy_test" in a else None,
+                            "clamp_by_block_removed": {b: v["removed"] for b, v in a["clamp_by_block_test"].items()},
+                            "lora_split_strict": {k: v["strict"] for k, v in a.get("lora_split_test_unmerged", {}).items()}}
         if name in after:
             c = after[name]["cells"]
             row["after_map_79"] = {k.split("@")[0]: round(v["auroc"], 4) for k, v in c.items() if k.endswith("@79")}
@@ -96,8 +98,16 @@ def main() -> None:
                  f"{row['loss_slope_per_1k_last512']:.4f} | data/runs/{name}.json (grad_log) |")
         if "audit" in row:
             a = row["audit"]
-            L.append(f"| audit | {row['seed']} | {label[row['arm']]} | none | clamp all 128 heads removes {a['clamp_all_removed']:.3f}"
-                     f" of the push; R_blind3 {a['R_blind3']} (null p95 {a['null_p95']}) | data/audit/{name}.json |")
+            L.append(f"| audit | {row['seed']} | {label[row['arm']]} | random 3-head null | clamp all 128 heads removes "
+                     f"{a['clamp_all_removed']:.3f} of the push; block 26 alone {a['clamp_by_block_removed']['26']:.3f}; "
+                     f"blind top-3 {a['blind3_heads']} R {a['R_blind3'] if a['R_blind3'] is None else round(a['R_blind3'], 3)} "
+                     f"(null p95 {a['null_p95'] if a['null_p95'] is None else round(a['null_p95'], 3)}) | data/audit/{name}.json |")
+            sp = a["lora_split_strict"]
+            if sp:
+                L.append(f"| LoRA split | {row['seed']} | {label[row['arm']]} | LoRA off at some positions | strict: only "
+                         f"answer token {sp['answer_only_pos79']:.3f}, only earlier tokens {sp['source_only_pos0_78']:.3f}, "
+                         f"without block 20 {sp['without_block20']:.3f}, without block 26 {sp['without_block26']:.3f} "
+                         f"| data/audit/{name}.json |")
         if "after_map_79" in row:
             mx = max(row["after_map_79"].items(), key=lambda kv: kv[1])
             L.append(f"| after-map | {row['seed']} | {label[row['arm']]} | none | max answer-token AUROC {mx[1]:.3f} at {mx[0]} "
@@ -111,6 +121,9 @@ def main() -> None:
         mx = max(((k, v["logistic"]["auroc"]) for k, v in e.items() if k.startswith("in") and k.endswith("@79")), key=lambda kv: kv[1])
         L.append(f"| map clause 1 | - | base model, eager tail | 200-flip label null | max answer-token AUROC over block inputs "
                  f"20-27 {mx[1]:.3f} ({mx[0]}) | research_checks/map.json |")
+        p = m["prediction_MLP27"]
+        L.append(f"| last-MLP prediction | - | base model, block-27 post-attention, answer token | 200-flip label null | "
+                 f"predicted last-MLP switch {json.dumps(p)[:160]} | research_checks/map.json |")
     (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")
     print("\n".join(L))
 

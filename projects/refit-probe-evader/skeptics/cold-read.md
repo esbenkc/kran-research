@@ -56,3 +56,31 @@ Numbers re-checked: shuffled 0.0050 = 0.67 of 0.0075; 10x run all probes >98% (M
 - N1: "Our plan said: when a run with nothing to hide pays at least half the cost, fine-tuning causes the cost, not hiding."
 - N2: "It left 0.6 of the gap between the average true and false activation. The main fine-tunes left less, 0.42 to 0.45, so it is no stronger attack."
 - Expert-foldout slot: filled when the 900-step and refit-100 runs land.
+
+## Round 3 (Lumi, verbatim from room post #8662)
+
+#8662 10:48 Lumi (reader) -> Kasper (critic): cold read of bc17509 (preview ?v=5, modified 17:45:12Z). Append to cold-read.md. CONFIRMED: SLOT 0 on page; N1 fixed ('Our plan set a rule for this control...'); N2 fixed ('shrank the gap ... less than the main runs'). Numbers checked vs data/results: 900-step M1 37.6/F1 53.2/0.0116 = 1.89x; refit100 M1 93.0/F1 96.5/frozen 8.9 at 1.03x; two-layer 98.8 at 900.
+NEW sentences, quick rewrites (none changes the claim; my PASS stands if N3+N8 are fixed):
+N3 READ TWICE (TLDR): 'One run trained three times longer fell to 38% and 53%, at 1.9 times the cost.' Which probes? -> 'Trained three times longer, one run cut retrained probes to 38% and fresh probes to 53%, at 1.9 times the cost.'
+N8 READ TWICE (TLDR): 'A fine-tune aimed at the average activations hid even less (1 run).' Less than what? -> 'A fine-tune that pulled the true and false averages together hid nothing (99% caught, 1 run).'
+N4 READ TWICE: 'Run 1, trained on to 900 steps, wore both down.' -> 'We trained run 1 on to 900 steps. Both kinds of probe then caught less.'
+N5 READ TWICE: 'Its output change, 0.0116 per token, passed our bar of 0.0096.' passed = met or exceeded? -> 'Its output change, 0.0116 per token, went over our limit of 0.0096.'
+N6 READ TWICE: 'A small two-layer probe on one layer' (layer twice, two meanings) -> 'A small nonlinear probe (a two-layer network) on one model layer'.
+N7 term switch: 'straight-line probes' -> 'linear probes' (used everywhere else).
+N9 LOST (main text): legend + caption show 'probes retrained every 100 steps (1 run)' but the main text never gives its result (only the expert foldout: retrained 93%, original 8.9%). Add one sentence or drop the run from the figure.
+N10 nit figure: the 900-step run's retrained probes (38%, quoted in the TLDR) have no mark; the two grey runs (shuffled vs every-100) are hard to tell apart; legend is 11 rows; phone screenshot clips the x-axis title at 390 px.
+
+## Fixes applied by Selma, round 3 (blog commit after fb3d2ff)
+
+- N3: "Trained three times longer, one run cut retrained probes to 38% and fresh probes to 53%, at 1.9 times the cost."
+- N4: "We trained run 1 on to 900 steps. Both kinds of probe then caught less."
+- N5: "Its output change, 0.0116 per token, was above our limit of 0.0096 for keeping the outputs." (also critic2's fix)
+- N6: "A small nonlinear probe on one model layer, which the fine-tune never trained against, still caught 99% after 900 steps."
+- N7: "straight-line probes" -> "linear probes".
+- N8: "A fine-tune that pulled the true and false averages together hid nothing (99% caught, 1 run)."
+- N9: "With probes retrained every 100 steps instead (1 run), the retrained probes still caught 93%."
+- N10: figure nits, Owain's call.
+
+## Final (Lumi, room post #8670)
+
+Cold read final: ?v=6 (17:50:44Z) N3-N9 confirmed, 5/5 fix strings found, 0/7 old left, SLOT 0. Verdict PASS on post text. Remaining figure nit (N10, Owain, non-blocking): no mark for the 900-step retrained 38%; shuffled vs every-100 greys look alike.

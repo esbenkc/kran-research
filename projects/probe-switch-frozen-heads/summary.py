@@ -124,7 +124,26 @@ def main() -> None:
         p = m["prediction_MLP27"]
         L.append(f"| last-MLP prediction | - | base model, block-27 post-attention, answer token | 200-flip label null | "
                  f"predicted last-MLP switch {json.dumps(p)[:160]} | research_checks/map.json |")
-    (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")
+    # mechanism rows from Iris's after-training attention files (research_checks/map_states.py attn)
+    att = HERE / "research_checks" / "after_attn"
+    for tag, seed, variant, ctrl in (("base", "-", "untrained model", "untrained model"),
+                                     ("all8_none_s0_adapter", 0, "all-modules LoRA, blocks 20-27", "positive control"),
+                                     ("mlp8_none_s0_adapter", 0, "MLP-only LoRA, blocks 20-27, heads frozen", "none"),
+                                     ("mlp8_none_s1_adapter", 1, "MLP-only LoRA, blocks 20-27, heads frozen", "none"),
+                                     ("mlp8_none_s2_adapter", 2, "MLP-only LoRA, blocks 20-27, heads frozen", "none")):
+        f = att / f"attn_{tag}_test.json"
+        if not f.exists():
+            continue
+        h = json.load(open(f))["heads"]
+        big = sorted(((k, v) for k, v in h.items() if v["tv_shift"] > 0.3), key=lambda kv: -kv[1]["tv_shift"])
+        early = max(v["tv_shift"] for k, v in h.items() if int(float(k)) <= 25)
+        desc = "; ".join(f"{k} {v['tv_shift']:.2f}" + (f" (query-only {v['tv_query_only']:.2f}, key-only {v['tv_key_only']:.2f})"
+                                                       if "tv_key_only" in v else "") for k, v in big[:4])
+        S.setdefault("attn", {})[tag] = {"heads_tv_gt_0.3": {k: v["tv_shift"] for k, v in big}, "max_tv_blocks_20_25": early}
+        L.append(f"| frozen-key gate | {seed} | {variant} | {ctrl} | answer-token attention moved by the probe (TV): "
+                 f"{len(big)} heads > 0.3{': ' + desc if desc else ''}; blocks 20-25 max {early:.3f} "
+                 f"| research_checks/after_attn/attn_{tag}_test.json |")
+    (HERE / "data" / "summary.json").write_text(json.dumps(S, indent=1))
     print("\n".join(L))
 
 

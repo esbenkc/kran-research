@@ -171,3 +171,18 @@ it. Unprobed-B rate and probed-A rate are reported next to every switch rate.
   "the route is present but training did not use it" and scores the route prediction as wrong; it does not explain
   the miss away. If the rule predicts "does not form" and MLP-8 >= 0.75, same: route prediction wrong.
 - Blind greedy top-3 audit on each MLP-8 model: added in v1.1 (Mechanism / audit verdict).
+
+## v1.3 (before any map number is posted and before any MLP run; Vera #8078, Kasper #8079)
+
+- **Recorder build is a different build.** Pass B (whole compiled graph with recorders at 29 sites) differs from the
+  no-recorder graph (pass A, the graph training and the title score use) by 1.2% at the block-20 input, more than the
+  probe trace (0.9%), and its mean trace direction has cosine 0.10 (pos 71) / 0.30 (pos 79) with pass A's. So:
+  - Scout clause 1 and every map row at block inputs 20-27, the block-27 post-attention residual and the final
+    residual are scored on the EAGER TAIL fed by pass-A block-20 inputs (bit-equal to pass A at in20). This replaces
+    the 'whole compiled graph cache' wording of v1.2 for clause 1: the scout's clause is about the build the switch
+    must sense, so this is the faithful reading, not a new clause.
+  - Pass B is reported only as a labelled "recorder build" column; block inputs 14-19 exist only there and are
+    reported with that label.
+  - After-training maps and the head-clamp patch never use a recorder pass.
+- **G1 gap reported per model** in the proof matrix (eager-tail strict switch minus whole-graph strict switch), not only
+  pass/fail. The whole no-recorder compiled graph stays the title score.

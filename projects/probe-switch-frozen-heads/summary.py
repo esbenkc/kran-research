@@ -95,7 +95,7 @@ def main() -> None:
                  f"{c['switch_correct']:.3f}; T75 {row['T75']}; steps {row['steps_done']} | data/runs/{name}.json |")
         L.append(f"| stall check | {row['seed']} | {label[row['arm']]} | {ctrl} | median RMS grad/param (upd 1..{row['window_T75']}) "
                  f"{row['rms_grad_median_window']:.2e}; loss last 128 median {row["loss_last128_median"]:.4f} mean {row["loss_last128"]:.4f}; slope/1k "
-                 f"{row['loss_slope_per_1k_last512']:.4f} | data/runs/{name}.json (grad_log) |")
+                 f"{row["loss_slope_per_1k_last512"]:.4f} (grad_log) | data/runs/{name}.json |")
         if "audit" in row:
             a = row["audit"]
             L.append(f"| audit | {row['seed']} | {label[row['arm']]} | random 3-head null | clamp all 128 heads removes "

@@ -61,3 +61,9 @@ the whole run and saved as `k_match` (`attack_refit.py --mode shuffled --match d
 run `shuffled__lam10000__seed0__matched`). This is the form Kasper #8431 and Tove #8433 asked for; Iris's and Vera's
 clean-model ratio 44.6 (permutations 1.49-2.22 -> about +-25%) is the expected value. The logged N probe loss is the
 scaled one (raw = logged / k). Only the matched N runs.
+
+D3 final (Vera #8440, recorded before N ran; supersedes the "D3 implementation" paragraph above): k = 44.7 FIXED.
+Reason: Bruno's per-run k divides two single-batch losses (8 twin pairs); the full attack split already spreads
+1.49-2.22 across permutations (+-25%), so an 8-pair ratio is noisier than the full-split clean-model ratio, which
+estimates the same quantity (starting pressure). Run: `--mode shuffled --probe-scale 44.7`. Bruno's `k_match` is
+still logged as a diagnostic, with no role.

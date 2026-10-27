@@ -54,3 +54,10 @@ reason as D1 for G (Tove #8425). No N output existed when this was written.
 D3 diagnostic (Kasper #8431, recorded with D3, before N ran): report the fraction of the step-0 probe loss removed
 by step 300 (from the per-step `probe_loss` log), base seeds vs N. If N removes less than half the base arm's mean
 fraction, clause 5 is "not comparable" and is treated like "N did not run" in PREREG s6 (no CONFIRMED on it).
+
+D3 implementation (Bruno #8438, recorded before N ran): the factor is measured per run, not the fixed 44.7:
+k = R1's logged step-1 probe loss / N's own step-1 probe loss (same seed, so the same first twin batch), frozen for
+the whole run and saved as `k_match` (`attack_refit.py --mode shuffled --match data/runs/refit50__lam10000__seed0.json`,
+run `shuffled__lam10000__seed0__matched`). This is the form Kasper #8431 and Tove #8433 asked for; Iris's and Vera's
+clean-model ratio 44.6 (permutations 1.49-2.22 -> about +-25%) is the expected value. The logged N probe loss is the
+scaled one (raw = logged / k). Only the matched N runs.

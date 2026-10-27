@@ -148,3 +148,26 @@ it. Unprobed-B rate and probed-A rate are reported next to every switch rate.
   only if its held-out logistic AUROC is above BOTH 0.80 and the 200-shuffle p95 at that position. Predicted "forms"
   = MLP-8 strict switch >= 0.75 in >= 2 seeds; predicted "does not form" = < 0.25 in every seed. The prediction is
   right or wrong on that outcome; a result between 0.25 and 0.75 scores the route prediction as wrong.
+
+## v1.2 additions (before any MLP-8 or MLP-27 run; Tove #8055, Kasper #8056)
+
+- **Clause 3 window (Kasper):** the RMS gradient per trainable parameter is compared as the median over updates
+  1..T75 of the same-seed ALL-8 run (if that seed did not run: T75 of ALL-8 s0), for both arms.
+- **Which graph per map (Kasper #8056 point 4):** scout clause 1 is scored on the WHOLE COMPILED GRAPH cache (the setting
+  of the 0.52 the scout read), eager-tail map as second column. The MLP-27 prediction and the MLP-8 route rule use the
+  EAGER-TAIL states (what the LoRA sees), whole-graph as second column. The block-20 input is the same cache for both.
+- **Run order after ALL-8 s0, decided by MLP-8 s0 (frozen now, Tove/Kasper clock asks):**
+  - MLP-8 s0 reaches >= 0.75 (dev early stop or full N): MLP-8 s1 -> ALL-8 s1 -> MLP-8 s2 -> ALL-8 s2. A No needs only
+    MLP-8 seeds; no MARK-8.
+  - MLP-8 s0 < 0.75 at full N: MARK-8 s0 (budget N, early stop; expected short) -> MLP-8 s1 (full N) -> ALL-8 s1 ->
+    MLP-8 s2 -> ALL-8 s2.
+  - Any run whose full budget cannot end by 05:15 CET (21:15 PDT) does not start; a running MLP-8 null that is cut is
+    labelled "unsettled at <updates>". MARK-8 is never skipped in favour of another seed.
+- **Control seeds for a Yes (Tove's ruling; supersedes Kasper's same-seed ask, said here before data):** an MLP-8 seed
+  counts for the status if its budget reached 2 x T75 of its same-seed ALL-8 run, or, if that ALL-8 seed did not run,
+  2 x T75 of ALL-8 s0. A Yes may rest on ONE control seed (ALL-8 s0 >= 0.75) with MLP-8 null in >= 2 seeds at that
+  budget; the post then says "one control seed" in the TLDR. A No needs no control beyond ALL-8 s0.
+- **Route map failing (Tove #8055 c):** if the route rule predicts "forms" and MLP-8 is < 0.25, the post reports
+  "the route is present but training did not use it" and scores the route prediction as wrong; it does not explain
+  the miss away. If the rule predicts "does not form" and MLP-8 >= 0.75, same: route prediction wrong.
+- Blind greedy top-3 audit on each MLP-8 model: added in v1.1 (Mechanism / audit verdict).

@@ -91,10 +91,11 @@ def main() -> None:
     ap.add_argument("--stop-dev", type=float, default=0.95)
     ap.add_argument("--stop-count", type=int, default=2)
     ap.add_argument("--tag", default="")
+    ap.add_argument("--input", default="A", choices=["A", "M"], help="A = probe cache; M = visible-marker cache (MARK-8)")
     ap.add_argument("--smoke", action="store_true", help="speed smoke: train only, print s/update, no test score")
     a = ap.parse_args()
     torch.manual_seed(a.seed); random.seed(a.seed); np.random.seed(a.seed)
-    name = f"{a.arm}_{a.null}_s{a.seed}{a.tag}"
+    name = f"{a.arm}_{a.null}_s{a.seed}{'_mark' if a.input == 'M' else ''}{a.tag}"
 
     cache = HERE / "raw" / "cache"
     pid = json.load(open(cache / "meta_A.json"))["prompt_ids"]
@@ -102,7 +103,7 @@ def main() -> None:
     if a.arm == "mlp27":
         z0, z1 = Rows(cache / "none_eager_mid27_79.npy"), Rows(cache / "probe_eager_mid27_79.npy")
     else:
-        z0, z1 = Rows(cache / "none_A_b20.npy"), Rows(cache / "probe_A_b20.npy")
+        z0, z1 = Rows(cache / f"none_{a.input}_b20.npy"), Rows(cache / f"probe_{a.input}_b20.npy")
     tok = AutoTokenizer.from_pretrained(a.model)
     A_ID, B_ID = tok.encode("A", add_special_tokens=False)[0], tok.encode("B", add_special_tokens=False)[0]
     rng = np.random.default_rng(1000 + a.seed)

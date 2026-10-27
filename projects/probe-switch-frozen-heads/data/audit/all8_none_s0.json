@@ -1,0 +1,105 @@
+{
+ "run": "all8_none_s0",
+ "test_cached": {
+  "n_prompts": 128,
+  "strict": 1.0,
+  "reverse_strict": 0.0,
+  "switch_correct": 1.0,
+  "differs": 1.0,
+  "share_unprobed_B": 1.0,
+  "share_probed_A": 1.0,
+  "shift_mean": 31.527343720197678,
+  "shift_median": 32.0,
+  "share_shift_pos": 1.0
+ },
+ "clamp_all_test": {
+  "removed": 1.0003561973571777,
+  "blind_removed": 1.0,
+  "push_mean": 31.52734375,
+  "push_after_mean": -0.01123046875
+ },
+ "clamp_by_block_test": {
+  "20": {
+   "removed": 0.24224072694778442,
+   "blind_removed": 0.023887217044830322,
+   "push_mean": 31.52734375,
+   "push_after_mean": 23.89013671875
+  },
+  "21": {
+   "removed": 0.9637281894683838,
+   "blind_removed": 0.9999998807907104,
+   "push_mean": 31.52734375,
+   "push_after_mean": 1.1435546875
+  },
+  "22": {
+   "removed": 0.13636785745620728,
+   "blind_removed": 0.000612795352935791,
+   "push_mean": 31.52734375,
+   "push_after_mean": 27.22802734375
+  },
+  "23": {
+   "removed": 0.16390472650527954,
+   "blind_removed": 0.0025792717933654785,
+   "push_mean": 31.52734375,
+   "push_after_mean": 26.35986328125
+  },
+  "24": {
+   "removed": 0.29616838693618774,
+   "blind_removed": 0.05719172954559326,
+   "push_mean": 31.52734375,
+   "push_after_mean": 22.18994140625
+  },
+  "25": {
+   "removed": 0.26714473962783813,
+   "blind_removed": 0.030586302280426025,
+   "push_mean": 31.52734375,
+   "push_after_mean": 23.10498046875
+  },
+  "26": {
+   "removed": 0.4774036407470703,
+   "blind_removed": 0.40133219957351685,
+   "push_mean": 31.52734375,
+   "push_after_mean": 16.47607421875
+  },
+  "27": {
+   "removed": 0.9997057318687439,
+   "blind_removed": 1.0,
+   "push_mean": 31.52734375,
+   "push_after_mean": 0.00927732139825821
+  }
+ },
+ "states": {
+  "path": "raw/after/all8_none_s0_states.npy",
+  "sites": [
+   "in20",
+   "in21",
+   "in22",
+   "in23",
+   "in24",
+   "in25",
+   "in26",
+   "in27",
+   "mid20",
+   "mid21",
+   "mid22",
+   "mid23",
+   "mid24",
+   "mid25",
+   "mid26",
+   "mid27",
+   "final"
+  ],
+  "positions": [
+   71,
+   79
+  ],
+  "shape": [
+   704,
+   2,
+   2,
+   17,
+   2048
+  ]
+ },
+ "secs": 67.3
+}

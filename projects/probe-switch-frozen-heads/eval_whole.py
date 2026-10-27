@@ -34,6 +34,7 @@ def main() -> None:
     ap.add_argument("--runs", required=True)
     ap.add_argument("--split", default="test")
     ap.add_argument("--layer", type=int, default=14)
+    ap.add_argument("--mark", action="store_true", help="MARK-8: condition 1 = visible marker token, no probe hook")
     a = ap.parse_args()
     (HERE / "data" / "whole").mkdir(parents=True, exist_ok=True)
     tok = AutoTokenizer.from_pretrained(a.model)
@@ -46,6 +47,13 @@ def main() -> None:
     qn = model.model.layers[a.layer].self_attn.q_norm
     msd = model.state_dict()
     orig = {k: v.detach().clone() for k, v in msd.items() if any(k.startswith(f"model.layers.{li}.") for li in range(20, L))}
+    from cache import MARK_POS, MARK_WORD  # noqa: E402  (the same marker as cache.py --pass M)
+    mark_id = tok.encode(MARK_WORD, add_special_tokens=False)[0]
+
+    def mark(x):
+        y = x.clone()
+        y[0, MARK_POS] = mark_id
+        return y
 
     def forward(x):
         return model(input_ids=x, use_cache=False, logits_to_keep=1).logits[0, -1]
@@ -69,7 +77,7 @@ def main() -> None:
                 assert n_set == len(meta["lora_modules"]), (n_set, len(meta["lora_modules"]))
         rows, info = {}, {"merged_modules": n_set}
         for cond in (0, 1):
-            handle = qn.register_forward_hook(hook_probe) if cond == 1 else None
+            handle = qn.register_forward_hook(hook_probe) if (cond == 1 and not a.mark) else None
             torch._dynamo.reset()
             fn = torch.compile(forward, fullgraph=True)
             with torch.no_grad():
@@ -80,10 +88,10 @@ def main() -> None:
                 for rep in range(2):
                     for i, x in enumerate(ids):
                         STORE.clear()
-                        lg16 = fn(x)
+                        lg16 = fn(mark(x) if (cond == 1 and a.mark) else x)
                         sha = hashlib.sha256(lg16.detach().cpu().contiguous().view(torch.int16).numpy().tobytes()).hexdigest()
                         if cond == 1:
-                            ok &= len(STORE) == 1
+                            ok &= len(STORE) == (0 if a.mark else 1)
                         if rep == 1:
                             same.append(sha == rows[(i, cond)]["logits_sha256"])
                             continue

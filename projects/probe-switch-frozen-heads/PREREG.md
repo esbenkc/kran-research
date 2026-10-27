@@ -186,3 +186,21 @@ it. Unprobed-B rate and probed-A rate are reported next to every switch rate.
   - After-training maps and the head-clamp patch never use a recorder pass.
 - **G1 gap reported per model** in the proof matrix (eager-tail strict switch minus whole-graph strict switch), not only
   pass/fail. The whole no-recorder compiled graph stays the title score.
+
+## v1.4 — map values and predictions (Iris #8082; committed before any MLP-8 or MLP-27 run; ALL-8 s0 started 18:12 PDT)
+
+Files: `research_checks/map.json`, `research_checks/route.json` (eager column = the states the LoRA sees).
+
+- **Scout clause 1:** max held-out logistic AUROC at position 79 over block inputs 20-27 = 0.540 (in22), eager tail;
+  0.543 recorder build. Clause 1 holds (< 0.6).
+- **MLP-27 prediction:** block-27 post-attention residual, position 79, eager tail: logistic AUROC 0.545, held-out
+  accuracy 0.535 (train 0.992); 2-layer MLP probe accuracy 0.512 (underfits; no-early-stop variant 0.527). acc = 0.535.
+  **Predicted MLP-27 strict switch = 2 x 0.535 - 1 = 0.070.** The map holds for MLP-27 if every seed is <= 0.170.
+  Bit ceiling 128/128 (vacuous). Within-pair label-flip null p95 = 0.513 AUROC; paired win of the logistic probe 0.773.
+- **MLP-8 route prediction:** heads of blocks 21-27 with >= 0.30 of the answer token's attention on positions 70-78
+  (base, unprobed): 26.10 (0.453), 22.6 (0.391), 27.12 (0.382), 25.0 (0.368). Readable sources (AUROC > 0.80 and above
+  the null p95) at in21-in26: 11 cells, best in23 at pos 71 (0.947); also pos 73 (0.84-0.88), pos 76 (in23 0.830).
+  Both parts true -> **PREDICTED: MLP-8 FORMS (strict switch >= 0.75 in >= 2 seeds).**
+  Frozen caveat: those heads look mostly at positions 74, 77, 78 (readable only 0.53-0.63); no head puts > 0.05 of its
+  answer attention on pos 71 (max 21.2, 0.044). A frozen route must use pos 73/76, or an MLP at pos 71 must change the
+  key there (QK weights stay frozen).

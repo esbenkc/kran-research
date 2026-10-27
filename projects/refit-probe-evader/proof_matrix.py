@@ -52,8 +52,9 @@ for a, v in S["arms"].items():
         m = J["monitors"]
         ctl = "shuffled labels" if a == "N" else "none"
         add(names[a], st.split("seed")[-1], st, ctl,
-            f"F1 {pct(m['F1']['catch'])} (AUROC {m['F1']['auroc']:.3f}), F2 {pct(m['F2']['catch'])} R{m['F2']['readout']}, "
-            f"M1 {pct(m['M1']['catch'])}, frozen {pct(m['frozen']['catch'])}, KL {J['kl_eval_every_position']:.5f}, "
+            f"F1 {pct(m['F1']['catch'])} (FA {pct(m['F1']['eval_false_alarm'])}, AUROC {m['F1']['auroc']:.3f}), "
+            f"F2 {pct(m['F2']['catch'])} (FA {pct(m['F2']['eval_false_alarm'])}) R{m['F2']['readout']}, "
+            f"M1 {pct(m['M1']['catch'])} (FA {pct(m['M1']['eval_false_alarm'])}), frozen {pct(m['frozen']['catch'])}, KL {J['kl_eval_every_position']:.5f}, "
             f"rank {J['right_first']}/298", f"data/results/{st}.json")
         st_ = m["stress"]
         add("stress " + names[a], st.split("seed")[-1], f"{st} QDA / MLP at R{st_['readout']}", "none",

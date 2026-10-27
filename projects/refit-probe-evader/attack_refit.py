@@ -257,6 +257,8 @@ def run(mode, lam, seed, steps, name, smoke=False, pscale=1.0):
             print(json.dumps(row), flush=True)
         elif smoke or step <= 2:
             print(json.dumps(lrow), flush=True)
+        if not smoke and steps > A["steps"] and step % A["steps"] == 0 and step != steps:  # D4 long run: 300, 600
+            model.save_pretrained(RUNS / f"{name}__step{step}__adapter")
         if dev.type == "mps":
             torch.mps.empty_cache()
     rec = {"target": "retrained panel", "mode": mode, "panel_readouts": PANEL, "lam": lam, "seed": seed, "steps": steps,

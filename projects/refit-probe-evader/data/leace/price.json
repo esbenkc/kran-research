@@ -1,0 +1,235 @@
+{
+ "seq1029_1400_plain": {
+  "kl_eval_mean_every_position": 0.021395749955690456,
+  "kl_mean_from_country_token": 0.11396108764150897,
+  "kl_at_country_token": 0.18686222913570022,
+  "n_positions": 12698
+ },
+ "seq1029_1400_lw": {
+  "kl_eval_mean_every_position": 0.006145046927903395,
+  "kl_mean_from_country_token": 0.032730623276223704,
+  "kl_at_country_token": 0.05692570646390734,
+  "n_positions": 12698
+ },
+ "selection": {
+  "rule": "PREREG s4 / room #8377",
+  "cells": {
+   "plain": {
+    "best_readout": 18,
+    "oof_auroc_at_best": 0.800911111111111,
+    "price_1400": 0.021395749955690456
+   },
+   "lw": {
+    "best_readout": 22,
+    "oof_auroc_at_best": 0.7648555555555555,
+    "price_1400": 0.006145046927903395
+   }
+  },
+  "tied": [
+   "lw"
+  ],
+  "chosen": "lw",
+  "source": "data/logs/leace_price.log"
+ },
+ "registered_price_P": 0.006145046927903395,
+ "meta": {
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "readouts": [
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29
+  ],
+  "pools": {
+   "1400": 1400,
+   "800": 800,
+   "600": 600
+  },
+  "eval_statements": 1192,
+  "concept_erasure": "0.2.4",
+  "device": "mps",
+  "dtype": "model bf16 on MPS; eraser fit float64 (CPU) on fp32 states; applied fp32, cast to bf16",
+  "gate_max_abs_diff_vs_1026_ctok": 0.0,
+  "phase2_only": true,
+  "seconds": 675.5
+ },
+ "registered": {
+  "kl_eval_mean_every_position": 0.006145046927903395,
+  "kl_mean_from_country_token": 0.032730623276223704,
+  "kl_at_country_token": 0.05692570646390734,
+  "n_positions": 12698
+ },
+ "gate": {
+  "kl_eval_mean_every_position": 0.006050830402594587,
+  "kl_mean_from_country_token": 0.032228793813819656,
+  "kl_at_country_token": 0.056159566578767015,
+  "n_positions": 12698
+ },
+ "seq1028": {
+  "kl_eval_mean_every_position": 0.0061472894314070405,
+  "kl_mean_from_country_token": 0.03274256761745244,
+  "kl_at_country_token": 0.056949595083566944,
+  "n_positions": 12698
+ },
+ "all_indep": {
+  "kl_eval_mean_every_position": 0.010095096471906324,
+  "kl_mean_from_country_token": 0.05376993917796414,
+  "kl_at_country_token": 0.10088233794229247,
+  "n_positions": 12698
+ },
+ "everypos": {
+  "kl_eval_mean_every_position": 1.9373626716494805,
+  "kl_mean_from_country_token": 0.5689438319071227,
+  "kl_at_country_token": 0.3624873754549647,
+  "n_positions": 12698
+ },
+ "rand_size": {
+  "kl_eval_mean_every_position": 0.00037453849515631227,
+  "kl_mean_from_country_token": 0.001994920222942472,
+  "kl_at_country_token": 0.0025905391425808466,
+  "n_positions": 12698
+ },
+ "unedited": {
+  "kl_eval_mean_every_position": 0.0,
+  "kl_mean_from_country_token": 0.0,
+  "kl_at_country_token": 0.0,
+  "n_positions": 12698
+ },
+ "single_10": {
+  "kl_eval_mean_every_position": 0.0002928025767687072,
+  "kl_mean_from_country_token": 0.001559566744886344,
+  "kl_at_country_token": 0.001544476573852556,
+  "n_positions": 12698
+ },
+ "single_11": {
+  "kl_eval_mean_every_position": 0.0003060566449198951,
+  "kl_mean_from_country_token": 0.0016301624484869241,
+  "kl_at_country_token": 0.0019670708606642907,
+  "n_positions": 12698
+ },
+ "single_12": {
+  "kl_eval_mean_every_position": 0.0003418461655603489,
+  "kl_mean_from_country_token": 0.0018207896855223617,
+  "kl_at_country_token": 0.0022267115030341214,
+  "n_positions": 12698
+ },
+ "single_13": {
+  "kl_eval_mean_every_position": 0.0005348448747814141,
+  "kl_mean_from_country_token": 0.0028487668707946295,
+  "kl_at_country_token": 0.0038293017845253356,
+  "n_positions": 12698
+ },
+ "single_14": {
+  "kl_eval_mean_every_position": 0.00047658482064949346,
+  "kl_mean_from_country_token": 0.00253845388112721,
+  "kl_at_country_token": 0.0031735144255667395,
+  "n_positions": 12698
+ },
+ "single_15": {
+  "kl_eval_mean_every_position": 0.001493355699661457,
+  "kl_mean_from_country_token": 0.007954123604992105,
+  "kl_at_country_token": 0.012167362212756954,
+  "n_positions": 12698
+ },
+ "single_16": {
+  "kl_eval_mean_every_position": 0.0026976597400955784,
+  "kl_mean_from_country_token": 0.01436865913579432,
+  "kl_at_country_token": 0.026637053748272105,
+  "n_positions": 12698
+ },
+ "single_17": {
+  "kl_eval_mean_every_position": 0.002581791342268373,
+  "kl_mean_from_country_token": 0.013751504389313675,
+  "kl_at_country_token": 0.025351950719846326,
+  "n_positions": 12698
+ },
+ "single_18": {
+  "kl_eval_mean_every_position": 0.0036772782794560516,
+  "kl_mean_from_country_token": 0.019586442782102746,
+  "kl_at_country_token": 0.036630184097434446,
+  "n_positions": 12698
+ },
+ "single_19": {
+  "kl_eval_mean_every_position": 0.003933002427767674,
+  "kl_mean_from_country_token": 0.020948517125752488,
+  "kl_at_country_token": 0.040220419706671943,
+  "n_positions": 12698
+ },
+ "single_20": {
+  "kl_eval_mean_every_position": 0.0036525018342906984,
+  "kl_mean_from_country_token": 0.019454474954623862,
+  "kl_at_country_token": 0.03791550840933635,
+  "n_positions": 12698
+ },
+ "single_21": {
+  "kl_eval_mean_every_position": 0.003815578408969458,
+  "kl_mean_from_country_token": 0.020323076609519368,
+  "kl_at_country_token": 0.03972862720022766,
+  "n_positions": 12698
+ },
+ "single_22": {
+  "kl_eval_mean_every_position": 0.0037015403672166205,
+  "kl_mean_from_country_token": 0.019715670965988526,
+  "kl_at_country_token": 0.03859754621711142,
+  "n_positions": 12698
+ },
+ "single_23": {
+  "kl_eval_mean_every_position": 0.003495461397587515,
+  "kl_mean_from_country_token": 0.018618023836646923,
+  "kl_at_country_token": 0.036425237124158294,
+  "n_positions": 12698
+ },
+ "single_24": {
+  "kl_eval_mean_every_position": 0.0033356903345257687,
+  "kl_mean_from_country_token": 0.017767028468040357,
+  "kl_at_country_token": 0.03478019068449227,
+  "n_positions": 12698
+ },
+ "single_25": {
+  "kl_eval_mean_every_position": 0.003272432080242714,
+  "kl_mean_from_country_token": 0.017430093353574656,
+  "kl_at_country_token": 0.03420660946930666,
+  "n_positions": 12698
+ },
+ "single_26": {
+  "kl_eval_mean_every_position": 0.0032789585147452033,
+  "kl_mean_from_country_token": 0.01746485537761518,
+  "kl_at_country_token": 0.03439116264817375,
+  "n_positions": 12698
+ },
+ "single_27": {
+  "kl_eval_mean_every_position": 0.0035248545825181466,
+  "kl_mean_from_country_token": 0.01877458200034204,
+  "kl_at_country_token": 0.0371196480161779,
+  "n_positions": 12698
+ },
+ "single_28": {
+  "kl_eval_mean_every_position": 0.004681175722840538,
+  "kl_mean_from_country_token": 0.02493354418147196,
+  "kl_at_country_token": 0.04986708836294392,
+  "n_positions": 12698
+ },
+ "single_29": {
+  "kl_eval_mean_every_position": 0.004643369083798961,
+  "kl_mean_from_country_token": 0.024732173081409067,
+  "kl_at_country_token": 0.04946434616281813,
+  "n_positions": 12698
+ },
+ "registered_recompute_rel_diff": 0.0
+}

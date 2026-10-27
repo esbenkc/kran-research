@@ -39,3 +39,14 @@ Slots 7 and 8 are added, each only if it can start by 10:15 PDT (18:15 CET): slo
 refit every 25 steps (steps 0, 25, ..., 275), lam 1e4, seed 0; slot 8 = the same with refit every 100 steps (steps 0,
 100, 200), lam 1e4, seed 0. Both are n=1 descriptive rows (refit interval vs catch and output change); neither enters
 the status or the prediction outcome.
+
+## D3 — shuffled-label arm N: probe term scaled to the base arm's starting loss (recorded before N ran)
+
+As frozen, N's starting probe loss (mean over readouts 10..29 of the mean squared twin gap of probes fit on
+permuted labels) is 1.74 against 77.8 for true labels: 2.2% (Iris #8430, `research_checks/null_gap.py`,
+`null_gap.json`, clean fp32 states, the exact `attack_refit` fit). The strong C at deep readouts keeps the
+random-label probe near flat. N's gradient would then be ~7x smaller and N would pay a small KL by loss scale alone,
+so clause 5 (N's KL < 0.5x the base KL) would pass without testing whether the price is LoRA machinery. N's probe
+term is multiplied by the fixed constant c = 77.8 / 1.74 = 44.7 (true-label over shuffled-label starting loss on
+the clean model), so N starts with the base arm's loss scale. This makes clause 5 harder to pass, not easier. Same
+reason as D1 for G (Tove #8425). No N output existed when this was written.

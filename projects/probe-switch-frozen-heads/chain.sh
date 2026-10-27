@@ -1,0 +1,21 @@
+#!/bin/bash
+# One heavy job at a time from queue.txt (first line popped under a mkdir lock, so the queue can be edited while a job
+# runs). Line format: <logname> <script.py> <args...>. Each job runs under watchdog.py (footprint cap, bound to the
+# child's pid). Exits when the queue is empty. START/END lines with times go to logs/chain.log.
+cd "$(dirname "$0")"
+PY=/Users/esben/work/oracle-1027-forced-attention/env/.venv/bin/python
+CAP=${CAP:-8.5}
+while true; do
+  until mkdir .qlock 2>/dev/null; do sleep 1; done
+  LINE=$(grep -v '^[[:space:]]*$' queue.txt | grep -v '^#' | head -1)
+  if [ -n "$LINE" ]; then
+    grep -vxF "$LINE" queue.txt > queue.tmp; mv queue.tmp queue.txt
+  fi
+  rmdir .qlock
+  [ -z "$LINE" ] && { echo "QUEUE_EMPTY $(date)" >> logs/chain.log; exit 0; }
+  set -- $LINE
+  NAME=$1; shift
+  echo "START $NAME $(date) :: $*" >> logs/chain.log
+  $PY watchdog.py --cap-gb $CAP --log logs/$NAME.log -- $PY "$@"
+  echo "END $NAME rc=$? $(date)" >> logs/chain.log
+done

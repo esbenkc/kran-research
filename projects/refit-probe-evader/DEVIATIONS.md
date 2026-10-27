@@ -87,3 +87,18 @@ for runs AND price, so the s6 rebuild tolerance (5% of a KL) applies to a rebuil
 numbers are a dtype-sensitivity row, reported beside every KL and every cost ratio: fp32 R1 0.00702 / fp32 P 0.00594
 (Vera) = 1.18x, bf16 0.00792 / 0.006145 = 1.29x. If a status clause flips between the two dtypes, the post says so
 next to the claim and the status uses the frozen bf16 number.
+
+## D5 — title names the scored attacker; reporting rules for G and the long run (recorded after R1-R4 were scored, BEFORE any G or long-run output)
+
+1. Title (Kasper #8490, option a). The PREREG title is an existence question ("Does a fine-tune blind ..."), but
+   s6 scores only the retrained-probe fine-tune (R1, R3, R4). The title now names that attacker, so the status
+   answers the title exactly: **"Does a fine-tune trained against probes retrained every 50 steps blind them, at the
+   output cost an erasure formula predicts?"** (Selma may reword; the attacker and the cost clause stay). The status
+   rule (s6) and its result (REJECTED, "holds", Bruno #8486) are unchanged.
+2. G reporting rule (Tove #8489 a). If the mean-gap fine-tune G (n=1) has fresh F1 or F2 < 30% with eval KL <= 0.0096
+   and >= 290/298, the TLDR's second sentence says that a different fine-tune (one that pulls the class centres
+   together) did blind the fresh probes in one run, and "holds" is written as "holds against the probe-chasing
+   fine-tune". Not a closing caveat. Otherwise the TLDR says that G did not blind them either.
+3. Long-run reporting rule (Tove #8489 b). If the 900-step run has fresh F1 or F2 < 30% at step 600 or 900, the
+   answer line reads "No within 300 steps; with 3x the steps, yes" (the 300-step status stays). If M1 alone falls
+   below 20% while F1 and F2 stay >= 30%, the post says which monitor survives the longer budget.

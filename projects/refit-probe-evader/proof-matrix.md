@@ -41,11 +41,29 @@ Built by proof_matrix.py from data/ (every artifact path exists).
 | stress headline | 0 | refit50__lam10000__seed0 QDA / MLP at R19 | none | QDA 96.1% (AUROC 0.999), MLP 97.3% (AUROC 0.999) | data/results/refit50__lam10000__seed0.json |
 | stress headline | 0 | refit50__lam10000__seed0 shuffled-label fresh probe x5 | shuffled labels | mean 0.5% | data/results/refit50__lam10000__seed0.json |
 | trajectory headline | 0 | refit50__lam10000__seed0 | none | slice catch by step: 0:100.0%, 50:100.0%, 100:95.0%, 150:90.0%, 200:88.0%, 250:84.0%, 300:84.0% | data/runs/refit50__lam10000__seed0.json |
-| headline pooled | pooled | base | none | F1 87.2% [84.4%, 89.8%], F2 78.4%, M1 84.1%, KL 0.00792 = 1.29 x P | data/results/summary.json |
+| headline | 1 | refit50__lam10000__seed1 | none | F1 85.4% (FA 1.7%, AUROC 0.991), F2 83.7% (FA 0.7%) R19, M1 61.4% (FA 0.3%), frozen 9.4%, KL 0.00702, rank 298/298 | data/results/refit50__lam10000__seed1.json |
+| stress headline | 1 | refit50__lam10000__seed1 QDA / MLP at R19 | none | QDA 95.8% (AUROC 0.999), MLP 94.5% (AUROC 0.999) | data/results/refit50__lam10000__seed1.json |
+| stress headline | 1 | refit50__lam10000__seed1 shuffled-label fresh probe x5 | shuffled labels | mean 0.7% | data/results/refit50__lam10000__seed1.json |
+| trajectory headline | 1 | refit50__lam10000__seed1 | none | slice catch by step: 0:100.0%, 50:100.0%, 100:98.0%, 150:91.0%, 200:83.0%, 250:84.0%, 300:68.0% | data/runs/refit50__lam10000__seed1.json |
+| headline | 2 | refit50__lam10000__seed2 | none | F1 63.6% (FA 1.3%, AUROC 0.986), F2 80.0% (FA 0.3%) R19, M1 70.3% (FA 0.8%), frozen 17.4%, KL 0.00761, rank 298/298 | data/results/refit50__lam10000__seed2.json |
+| stress headline | 2 | refit50__lam10000__seed2 QDA / MLP at R19 | none | QDA 97.8% (AUROC 0.999), MLP 97.1% (AUROC 0.999) | data/results/refit50__lam10000__seed2.json |
+| stress headline | 2 | refit50__lam10000__seed2 shuffled-label fresh probe x5 | shuffled labels | mean 0.8% | data/results/refit50__lam10000__seed2.json |
+| trajectory headline | 2 | refit50__lam10000__seed2 | none | slice catch by step: 0:100.0%, 50:100.0%, 100:97.0%, 150:92.0%, 200:88.0%, 250:81.0%, 300:78.0% | data/runs/refit50__lam10000__seed2.json |
+| headline pooled | pooled | base | none | F1 78.7% [76.1%, 81.4%], F2 80.7%, M1 71.9%, KL 0.00752 = 1.22 x P | data/results/summary.json |
 | 10x KL weight | 0 | refit50__lam100000__seed0 | none | F1 99.7% (FA 1.0%, AUROC 1.000), F2 99.3% (FA 0.7%) R16, M1 99.8% (FA 1.5%), frozen 98.8%, KL 0.00382, rank 298/298 | data/results/refit50__lam100000__seed0.json |
 | stress 10x KL weight | 0 | refit50__lam100000__seed0 QDA / MLP at R16 | none | QDA 99.7% (AUROC 1.000), MLP 99.7% (AUROC 0.999) | data/results/refit50__lam100000__seed0.json |
 | stress 10x KL weight | 0 | refit50__lam100000__seed0 shuffled-label fresh probe x5 | shuffled labels | mean 2.1% | data/results/refit50__lam100000__seed0.json |
 | trajectory 10x KL weight | 0 | refit50__lam100000__seed0 | none | slice catch by step: 0:100.0%, 50:100.0%, 100:100.0%, 150:100.0%, 200:100.0%, 250:100.0%, 300:100.0% | data/runs/refit50__lam100000__seed0.json |
 | 10x KL weight pooled | pooled | x10 | none | F1 99.7% [99.2%, 100.0%], F2 99.3%, M1 99.8%, KL 0.00382 = 0.62 x P | data/results/summary.json |
-| status | pooled | PREREG s6 | none | UNCONFIRMED  | data/results/summary.json |
-| prediction | pooled | PREREG s7 | none | None | data/results/summary.json |
+| shuffled-label control | 0__ps44.7 | shuffled__lam10000__seed0__ps44.7 | shuffled labels | F1 99.5% (FA 1.5%, AUROC 1.000), F2 99.7% (FA 0.8%) R16, M1 99.3% (FA 1.0%), frozen 99.5%, KL 0.00503, rank 298/298 | data/results/shuffled__lam10000__seed0__ps44.7.json |
+| stress shuffled-label control | 0__ps44.7 | shuffled__lam10000__seed0__ps44.7 QDA / MLP at R16 | none | QDA 99.7% (AUROC 1.000), MLP 99.0% (AUROC 0.999) | data/results/shuffled__lam10000__seed0__ps44.7.json |
+| stress shuffled-label control | 0__ps44.7 | shuffled__lam10000__seed0__ps44.7 shuffled-label fresh probe x5 | shuffled labels | mean 1.2% | data/results/shuffled__lam10000__seed0__ps44.7.json |
+| trajectory shuffled-label control | 0__ps44.7 | shuffled__lam10000__seed0__ps44.7 | none | slice catch by step: 0:1.0%, 50:1.0%, 100:0.0%, 150:0.0%, 200:1.0%, 250:0.0%, 300:0.0% | data/runs/shuffled__lam10000__seed0__ps44.7.json |
+| shuffled-label control pooled | pooled | N | none | F1 99.5% [98.8%, 100.0%], F2 99.7%, M1 99.3%, KL 0.00503 = 0.82 x P | data/results/summary.json |
+| mean-gap side arm | 0 | meangap__lam10000__seed0 | none | F1 98.8% (FA 1.3%, AUROC 0.999), F2 98.5% (FA 0.7%) R18, M1 99.2% (FA 1.3%), frozen 99.3%, KL 0.00625, rank 298/298 | data/results/meangap__lam10000__seed0.json |
+| stress mean-gap side arm | 0 | meangap__lam10000__seed0 QDA / MLP at R18 | none | QDA 98.3% (AUROC 1.000), MLP 98.2% (AUROC 1.000) | data/results/meangap__lam10000__seed0.json |
+| stress mean-gap side arm | 0 | meangap__lam10000__seed0 shuffled-label fresh probe x5 | shuffled labels | mean 0.6% | data/results/meangap__lam10000__seed0.json |
+| trajectory mean-gap side arm | 0 | meangap__lam10000__seed0 | none | slice catch by step: 0:100.0%, 50:99.0%, 100:99.0%, 150:99.0%, 200:100.0%, 250:99.0%, 300:99.0% | data/runs/meangap__lam10000__seed0.json |
+| mean-gap side arm pooled | pooled | G | none | F1 98.8% [97.8%, 99.7%], F2 98.5%, M1 99.2%, KL 0.00625 = 1.02 x P | data/results/summary.json |
+| status | pooled | PREREG s6 | none | REJECTED ['holds', 'price is LoRA machinery'] | data/results/summary.json |
+| prediction | pooled | PREREG s7 | none | failed | data/results/summary.json |

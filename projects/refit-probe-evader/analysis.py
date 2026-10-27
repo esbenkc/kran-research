@@ -50,6 +50,13 @@ def arm(states):
     return out
 
 
+def removed_fraction(st):
+    """D3 diagnostic: share of the probe loss removed, mean of the first 10 vs the last 10 logged steps (scaled loss)."""
+    L = json.loads((DATA / "runs" / f"{st}.json").read_text())["log"]
+    a, b = np.mean([x["probe_loss"] for x in L[:10]]), np.mean([x["probe_loss"] for x in L[-10:]])
+    return float(1 - b / a)
+
+
 def main():
     price = json.loads((DATA / "leace" / "price.json").read_text())
     guard = json.loads((DATA / "leace" / "guard.json").read_text())
@@ -66,6 +73,13 @@ def main():
               "3_outputs_kept": kl <= 0.0096 and all(r >= 290 for r in b["right_first_per_seed"]),
               "4_at_price": P / 3 <= kl <= 3 * P,
               "5_not_machinery": (N["kl_pooled"] < 0.5 * kl) if N else None}
+        if N:
+            fb = float(np.mean([removed_fraction(x) for x in b["states"]]))
+            fn = removed_fraction(N["states"][0])
+            res["N_diagnostic"] = {"base_removed_fraction": fb, "N_removed_fraction": fn, "comparable": fn >= 0.5 * fb,
+                                   "N_kl_over_base_kl": N["kl_pooled"] / kl}
+            if fn < 0.5 * fb:  # D3: 'not comparable' = treated as N not run
+                cl["5_not_machinery"] = None
         gate_ok = guard["gate_rule"]["clause4_testable"]
         if not gate_ok:
             st = "REJECTED" if not (cl["1_fresh_blinded"] and cl["2_retrained_blinded"] and cl["3_outputs_kept"]) \

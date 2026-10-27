@@ -38,7 +38,7 @@ def main() -> None:
                "lora_params": r["lora_params"],
                "rms_grad_median_window": float(np.median(win[:, 3])), "window_T75": t75,
                "rms_grad_median_all": float(np.median(g[:, 3])),
-               "loss_last128": float(g[-128:, 1].mean()), "loss_slope_per_1k_last512": loss_slope(r["grad_log"]),
+               "loss_last128": float(g[-128:, 1].mean()), "loss_last128_median": float(np.median(g[-128:, 1])), "loss_slope_per_1k_last512": loss_slope(r["grad_log"]),
                "budget_2xT75": 2 * t75 if t75 else None,
                "reached_2xT75": bool(t75 and r["steps_done"] >= 2 * t75),
                "cached_test": {k: r["test_cached"][k] for k in ("strict", "switch_correct", "reverse_strict",
@@ -92,7 +92,7 @@ def main() -> None:
         L.append(f"| {claim} | {row['seed']} | {label[row['arm']]} (tail) | {ctrl} | tail strict {c['strict']:.3f}, argmax "
                  f"{c['switch_correct']:.3f}; T75 {row['T75']}; steps {row['steps_done']} | data/runs/{name}.json |")
         L.append(f"| stall check | {row['seed']} | {label[row['arm']]} | {ctrl} | median RMS grad/param (upd 1..{row['window_T75']}) "
-                 f"{row['rms_grad_median_window']:.2e}; loss last 128 {row['loss_last128']:.4f}; slope/1k "
+                 f"{row['rms_grad_median_window']:.2e}; loss last 128 median {row["loss_last128_median"]:.4f} mean {row["loss_last128"]:.4f}; slope/1k "
                  f"{row['loss_slope_per_1k_last512']:.4f} | data/runs/{name}.json (grad_log) |")
         if "audit" in row:
             a = row["audit"]

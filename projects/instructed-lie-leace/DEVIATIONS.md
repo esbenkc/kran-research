@@ -99,3 +99,13 @@ status panel and in-loop target (logit-lens country subspace projected out at ev
 subspace null, spread decoy, matched price P_blind and Q on the complement, R1 + R2 only (R3 if by 10:15), cap from
 the smoke by a written rule, lemma half for the mechanical part. The scout's prediction and the v1.2 rule are still
 reported; the post says the status panel changed after gate 0 and why.
+
+## D6 — P_blind uses independent per-readout erasers (all_indep), not sequential (recorded before any price output)
+
+Bruno #9300: one sequential 10..29 fit = 20 forward passes over the 1696-prompt pool (~135 tokens), ~25 min per fit;
+lie + decoy + 5 + 5 shuffled permutations = ~5 h, which does not fit. P_blind (v1.3 item 5) and its nulls N(c) use
+the 1027 'all_indep' rule instead: each readout's eraser is fit on clean states from ONE capture (inside the
+complement), and all 20 are applied together in one eval forward. Same rule for every cell, so Q compares like with
+like. In 1027 the two rules differed by 1.6x on the statement concept (all_indep 0.0101 vs seq 0.00615), far inside
+the 10x premise. The sequential price for lie and decoy is reported only if a gap opens before R1; it has no status
+role. Shuffled nulls: 5 permutations per status concept as frozen (v1.3a).

@@ -1,0 +1,108 @@
+{
+ "models": [
+  {
+   "model": "claude-haiku-4-5-20251001",
+   "n": 9,
+   "parsed_calls_per_ep": 7.111111111111111,
+   "parse_fail_per_ep": 0.0,
+   "n_paired": 3,
+   "touch_static": 3,
+   "touch_stateful": 3,
+   "use_static": 0,
+   "use_stateful": 3,
+   "subgoal_nobait": 1.0,
+   "steps_mean": 7.111111111111111
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "n": 9,
+   "parsed_calls_per_ep": 7.888888888888889,
+   "parse_fail_per_ep": 0.0,
+   "n_paired": 3,
+   "touch_static": 3,
+   "touch_stateful": 3,
+   "use_static": 0,
+   "use_stateful": 3,
+   "subgoal_nobait": 1.0,
+   "steps_mean": 7.888888888888889
+  },
+  {
+   "model": "gemini-3.5-flash-lite",
+   "n": 9,
+   "parsed_calls_per_ep": 10.222222222222221,
+   "parse_fail_per_ep": 0.0,
+   "n_paired": 3,
+   "touch_static": 3,
+   "touch_stateful": 3,
+   "use_static": 2,
+   "use_stateful": 3,
+   "subgoal_nobait": 1.0,
+   "steps_mean": 10.222222222222221
+  },
+  {
+   "model": "gpt-4.1-mini",
+   "n": 9,
+   "parsed_calls_per_ep": 8.444444444444445,
+   "parse_fail_per_ep": 0.0,
+   "n_paired": 3,
+   "touch_static": 3,
+   "touch_stateful": 3,
+   "use_static": 0,
+   "use_stateful": 0,
+   "subgoal_nobait": 0.8333333333333334,
+   "steps_mean": 8.444444444444445
+  },
+  {
+   "model": "gpt-4o-mini",
+   "n": 9,
+   "parsed_calls_per_ep": 6.0,
+   "parse_fail_per_ep": 0.0,
+   "n_paired": 3,
+   "touch_static": 3,
+   "touch_stateful": 3,
+   "use_static": 0,
+   "use_stateful": 2,
+   "subgoal_nobait": 0.27777777777777773,
+   "steps_mean": 6.0
+  },
+  {
+   "model": "gpt-5-nano",
+   "n": 9,
+   "parsed_calls_per_ep": 11.777777777777779,
+   "parse_fail_per_ep": 0.2222222222222222,
+   "n_paired": 3,
+   "touch_static": 3,
+   "touch_stateful": 3,
+   "use_static": 0,
+   "use_stateful": 0,
+   "subgoal_nobait": 0.38888888888888884,
+   "steps_mean": 12.0
+  },
+  {
+   "model": "gpt-5.4-mini",
+   "n": 9,
+   "parsed_calls_per_ep": 8.777777777777779,
+   "parse_fail_per_ep": 0.0,
+   "n_paired": 3,
+   "touch_static": 3,
+   "touch_stateful": 3,
+   "use_static": 1,
+   "use_stateful": 3,
+   "subgoal_nobait": 1.0,
+   "steps_mean": 8.777777777777779
+  },
+  {
+   "model": "gpt-5.4-nano",
+   "n": 9,
+   "parsed_calls_per_ep": 12.555555555555555,
+   "parse_fail_per_ep": 0.0,
+   "n_paired": 3,
+   "touch_static": 3,
+   "touch_stateful": 3,
+   "use_static": 0,
+   "use_stateful": 1,
+   "subgoal_nobait": 1.0,
+   "steps_mean": 12.555555555555555
+  }
+ ]
+}

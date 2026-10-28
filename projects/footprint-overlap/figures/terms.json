@@ -1,10 +1,15 @@
-{"title": "A footprint score sorts monitors by depth, but it does not predict how much each one is fooled",
- "subtitle": "Each dot is one new monitor the model never saw in training, in 2 training runs. Both runs miss the line fixed before the test (R² below 0.70).",
+{
+ "title": "A footprint score fixed before the test does not predict how much each new monitor is fooled",
+ "subtitle": "Each dot is one new monitor the model never saw in training, in 2 training runs. Dots on the dashed line would mean the score predicts the fooled share.",
  "x": "overlap score with the training probe, computed before any behaviour test",
  "y": "fooled share of the flattery drop",
  "run": "training run ",
  "key_other": "bit-exact or already-seen monitor (not scored)",
  "key_line": "prediction fixed before the test (fooled share = overlap score)",
- "name_A": "training probe",
- "name_emu": "rounding setting, no probe",
- "note": "Fooled share 100% = the model hides its flattery from this monitor as well as from the training probe; 0% = this monitor sees the model's normal flattery. Bars: 95% intervals over 200 test prompts."}
+ "name_A": "training probe (100% by definition)",
+ "name_emu": "rounding setting (no hook)",
+ "note": "Fooled share 100% = the model hides its flattery from this monitor as well as from the training probe; 0% = this monitor sees the model's normal flattery. Bars: 95% intervals over 200 test prompts.",
+ "variant": "a",
+ "r2_gloss": "R\u00b2: how close the dots sit to the dashed line (1 = on it; we needed 0.70)",
+ "bitexact": "bit-exact monitors: 0% fooled in both runs"
+}

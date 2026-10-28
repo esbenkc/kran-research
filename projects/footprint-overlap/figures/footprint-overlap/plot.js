@@ -74,8 +74,17 @@ export function render(data, Plot) {
   const layerKey = el("font-size:12.5px;margin:0 0 0.3rem;color:" + C.muted, T.layer_key || "colour: hook layer, from layer 0 (pink) to layer 27 (teal); orange = the rounding setting, which has no hook");
 
   if (V === "a") {
+    const A = data.pts.filter((d) => d.k === "A" && d.seed === seeds[0]).map((d) => ({ ...d, y: 1 }));
+    const emu = P.filter((d) => d.b === "emu");
     root.append(legend([...seeds.map((s) => [dot(RUN[s]), `${runName(s)} (R² ${cell(s).r2?.toFixed(2)})`]), lineKey]));
-    root.appendChild(fit(Plot.plot(frame({ width: W, height: 470, ...axes, marks: scatterMarks(P, (d) => RUN[d.seed], "circle") }))));
+    if (T.r2_gloss) root.append(el("font-size:12.5px;margin:0 0 0.3rem;color:" + C.muted, T.r2_gloss));
+    root.appendChild(fit(Plot.plot(frame({ width: W, height: 470, ...axes, marks: [
+      ...scatterMarks(P, (d) => RUN[d.seed], "circle"),
+      Plot.dot(emu, { x: (d) => d.x + off(d), y: "y", r: 7, stroke: C.ink, strokeWidth: 1.3, fill: "none" }),
+      Plot.text(emu.slice(0, 1), { ...halo(), x: "x", y: "y", text: [T.name_emu || "rounding setting (no hook)"], dx: 4, dy: -16, textAnchor: "middle", fontSize: 11.5, fill: C.ink }),
+      Plot.dot(A, { x: "x", y: "y", r: 7, stroke: C.ink, strokeWidth: 1.3, fill: "none" }),
+      Plot.text(A, { ...halo(), x: "x", y: "y", text: [T.name_A || "training probe"], dx: 8, dy: -14, textAnchor: "end", fontSize: 11.5, fill: C.ink }),
+    ] }))));
   } else if (V === "b") {
     root.append(legend([...seeds.map((s) => [dot(C.muted, false, s ? "tri" : "dot"), `${runName(s)} (R² ${cell(s).r2?.toFixed(2)})`]), lineKey]), layerKey);
     root.appendChild(fit(Plot.plot(frame({ width: W, height: 470, ...axes, color: layerColor,

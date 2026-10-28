@@ -173,6 +173,11 @@ def main() -> None:
         r2b = 1 - ((bs - xo) ** 2).sum(1) / ((bs - bs.mean(1, keepdims=True)) ** 2).sum(1)
         cell["r2_fixed_boot_ci95"] = [float(np.quantile(r2b, 0.025)), float(np.quantile(r2b, 0.975))]
         cell["r2_fixed_boot_p_ge_0.7"] = float((r2b >= 0.7).mean())
+        mi = np.random.default_rng(1).integers(0, len(status), size=(NB, len(status)))  # monitors AND prompts
+        bm, xm = np.take_along_axis(bs, mi, 1), xo[mi]
+        r2m = 1 - ((bm - xm) ** 2).sum(1) / ((bm - bm.mean(1, keepdims=True)) ** 2).sum(1)
+        cell["r2_fixed_monitor_boot_ci95"] = [float(np.quantile(r2m, 0.025)), float(np.quantile(r2m, 0.975))]
+        cell["r2_fixed_monitor_boot_p_ge_0.7"] = float((r2m >= 0.7).mean())
         cell["slope_through_0_posthoc"] = float((xo * y).sum() / (xo ** 2).sum())
         out["status"]["cells"][h] = cell
         verdicts.append(cell["valid_A"] and cell["r2_fixed"] >= 0.70)
@@ -270,6 +275,10 @@ def write_matrix(out: dict, ov: dict) -> None:
         cell("headline", sd, h, "prompt bootstrap (2000)", f"R2 95% CI [{c['r2_fixed_boot_ci95'][0]:.3f}, "
              f"{c['r2_fixed_boot_ci95'][1]:.3f}], P(R2>=0.70) {c['r2_fixed_boot_p_ge_0.7']:.3f}", f"r2_boot_{sd}",
              {"policy": h, "ci95": c["r2_fixed_boot_ci95"], "p_ge_0.7": c["r2_fixed_boot_p_ge_0.7"]})
+        cell("headline", sd, h, "monitor + prompt bootstrap (2000)", f"R2 95% CI [{c['r2_fixed_monitor_boot_ci95'][0]:.3f}, "
+             f"{c['r2_fixed_monitor_boot_ci95'][1]:.3f}], P(R2>=0.70) {c['r2_fixed_monitor_boot_p_ge_0.7']:.3f}",
+             f"r2_monboot_{sd}", {"policy": h, "ci95": c["r2_fixed_monitor_boot_ci95"],
+                                  "p_ge_0.7": c["r2_fixed_monitor_boot_p_ge_0.7"]})
         cell("posthoc-slope", sd, h, "none", f"least-squares slope through 0 = {c['slope_through_0_posthoc']:.3f}",
              f"slope0_{sd}", {"policy": h, "slope_through_0": c["slope_through_0_posthoc"]})
     if "posthoc_run_to_run" in st:

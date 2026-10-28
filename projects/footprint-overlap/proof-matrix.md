@@ -53,8 +53,10 @@ Built by analyze.py from data/overlap.json + raw behaviour files. Skeptic rebuil
 | spearman_ge15 | s1 | s1@8192 | depth bin | rho 0.963 (n 37, p 0.0000) | data/cells/spearman_ge15_s1.json |
 | text-judge | s1 | s1@8192 | none | regex 0.670 vs top-1-in-X 0.670 | data/cells/judge_s1.json |
 | headline | s0 | s0@8192 | prompt bootstrap (2000) | R2 95% CI [0.371, 0.489], P(R2>=0.70) 0.000 | data/cells/r2_boot_s0.json |
+| headline | s0 | s0@8192 | monitor + prompt bootstrap (2000) | R2 95% CI [0.061, 0.663], P(R2>=0.70) 0.005 | data/cells/r2_monboot_s0.json |
 | posthoc-slope | s0 | s0@8192 | none | least-squares slope through 0 = 0.791 | data/cells/slope0_s0.json |
 | headline | s1 | s1@8192 | prompt bootstrap (2000) | R2 95% CI [0.641, 0.669], P(R2>=0.70) 0.000 | data/cells/r2_boot_s1.json |
+| headline | s1 | s1@8192 | monitor + prompt bootstrap (2000) | R2 95% CI [0.451, 0.787], P(R2>=0.70) 0.283 | data/cells/r2_monboot_s1.json |
 | posthoc-slope | s1 | s1@8192 | none | least-squares slope through 0 = 1.239 | data/cells/slope0_s1.json |
 | posthoc-run-to-run | s0,s1 | one run's shares as the predictor | second training run | R2 s1 from s0 0.401; s0 from s1 -0.024 | data/cells/run_to_run.json |
 | bit-exact | s0,s1 | clone@L14.q_norm | bit-exact build | overlap +0.000; share s0@8192 +0.000, s1@8192 +0.000 | data/cells/bitexact_clone_L14.q_norm.json |
@@ -146,5 +148,5 @@ Built by analyze.py from data/overlap.json + raw behaviour files. Skeptic rebuil
 | bit-exact | s0,s1 | ref@L21.mlp | bit-exact build | overlap +0.000; share s0@8192 +0.000, s1@8192 +0.000 | data/cells/bitexact_ref_L21.mlp.json |
 | bit-exact | s0,s1 | ref@L1.o_proj | bit-exact build | overlap +0.000; share s0@8192 +0.000, s1@8192 +0.000 | data/cells/bitexact_ref_L1.o_proj.json |
 | bit-exact | s0,s1 | ref@L25.v_proj | bit-exact build | overlap +0.000; share s0@8192 +0.000, s1@8192 +0.000 | data/cells/bitexact_ref_L25.v_proj.json |
-| variant | s0 | s0@16384 | none | R2 0.517 over 28; dGAP_A 0.633 (valid True) | data/cells/variant_s0_16384.json |
-| control | shuf-control | shuf-control | probe-independent penalty (no switch) | R2 -0.389 over 28; dGAP_A -0.001 (valid False) | data/cells/variant_shuf-control.json |
+| variant | s0 | s0@16384 | none | R2 0.496 over 31; dGAP_A 0.633 (valid True) | data/cells/variant_s0_16384.json |
+| control | shuf-control | shuf-control | probe-independent penalty (no switch) | R2 -0.445 over 31; dGAP_A -0.001 (valid False) | data/cells/variant_shuf-control.json |

@@ -85,6 +85,25 @@ if (PROJECT / "raw" / "random").exists():
     rows.append(("random-agent floor", "0-39", "random / static+stateful", "random actions, copies seen tokens",
                  "see results/summary.json models[random]", "raw/random"))
 
+# Skeptic rebuild cells (Vera, own code from raw/, skeptics/skeptic/)
+vr = PROJECT / "skeptics" / "skeptic" / "vera_rescore_263af97.json"
+vn = PROJECT / "skeptics" / "skeptic" / "vera_nulls_263af97.json"
+if vr.exists():
+    r = json.loads(vr.read_text())["result"]
+    rows.append(("headline (skeptic rebuild)", seeds, f"Vera rescore K={r['K']}", "none",
+                 f"static change {f(r['static_change'])}; stateful {f(r['stateful_change'])}; I {f(r['I'])} -> {r['status_ruleB']}",
+                 str(vr.relative_to(PROJECT))))
+if vn.exists():
+    n = json.loads(vn.read_text())
+    a = n["arm_shuffle"]
+    rows.append(("headline (skeptic null)", seeds, "arm labels shuffled within model, paired seeds", "arm shuffle",
+                 f"I null 95% {f(a['I_null_p2_5_97_5'][0])}..{f(a['I_null_p2_5_97_5'][1])}, observed {f(a['I_obs'])}, p < {1 / a['n']:.0e} (n={a['n']})",
+                 str(vn.relative_to(PROJECT))))
+    xp = n["x_permutation"]
+    rows.append(("mechanism (skeptic null)", seeds, "exact permutation of x over rungs", "x permutation",
+                 f"p static {f(xp['p_static'])}, p stateful {f(xp['p_stateful'])}, p gap {f(xp['p_d'])} (n={xp['n']})",
+                 str(vn.relative_to(PROJECT))))
+
 lines = ["# Proof matrix — decoy-capability", "",
          "Built by `proof_matrix.py` from `results/summary.json`. Artifact = one path relative to this folder.", "",
          "| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]

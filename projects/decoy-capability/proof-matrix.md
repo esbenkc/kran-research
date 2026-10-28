@@ -58,3 +58,6 @@ Built by `proof_matrix.py` from `results/summary.json`. Artifact = one path rela
 | design (not counted) | 900-902 | smoke v1: unblocked task | none | static first touch 0/21 over 7 rungs | raw_smoke_v1/smoke_report_v1.json |
 | design (not counted) | 900-902 | smoke v2: storage step blocked | none | static first touch 6/30 over 10 rungs | raw_smoke/smoke_report.json |
 | random-agent floor | 0-39 | random / static+stateful | random actions, copies seen tokens | see results/summary.json models[random] | raw/random |
+| headline (skeptic rebuild) | 0-29 paired | Vera rescore K=8 | none | static change 0.075; stateful 0.739; I -0.664 -> UNCONFIRMED | skeptics/skeptic/vera_rescore_263af97.json |
+| headline (skeptic null) | 0-29 paired | arm labels shuffled within model, paired seeds | arm shuffle | I null 95% -0.240..0.236, observed -0.664, p < 5e-05 (n=20000) | skeptics/skeptic/vera_nulls_263af97.json |
+| mechanism (skeptic null) | 0-29 paired | exact permutation of x over rungs | x permutation | p static 0.562, p stateful 0.008, p gap 0.008 (n=40320) | skeptics/skeptic/vera_nulls_263af97.json |

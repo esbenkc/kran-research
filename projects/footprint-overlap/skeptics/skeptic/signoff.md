@@ -62,3 +62,15 @@ Rebuilt in an eval cell with my own code (vera_pos1 numbers): Spearman within L<
 across all 646 prompts (one deterministic vector per build). Size ratio at pos 1 ranks at chance (0.07 / 0.07);
 cosine alone ranks 0.64 / 0.70; 500 random directions give rho p95 0.41 / 0.38 (max 0.56 / 0.65). Pos 2 also ranks
 (0.82 / 0.60) but its R^2 is -0.11 / -1.29. So: a ranking signal, post hoc; 'how much' still fails.
+
+## Variant and control policies (`vera_ctrl.py`, reported rows, not status)
+| policy | dGAP_A (pts) [95%] | fixed-line R^2 (81 status builds) |
+|---|---|---|
+| s0@4096 | 55.7 [53.7, 57.6] | -7.23 |
+| s0@8192 (headline) | 69.5 [67.3, 71.6] | 0.435 |
+| s0@16384 | 63.3 [61.5, 65.1] | 0.562 |
+| s1@4096 | 50.3 [47.5, 53.2] | 0.714 (the one checkpoint above 0.70) |
+| s1@8192 (headline) | 52.7 [50.6, 54.9] | 0.655 |
+| shuf control (no switch) | -0.09 [-0.41, 0.23] | undefined; max |drop| over 81 monitors 0.35 pts |
+
+Verdict posted with `room review` on T5 (#8886): SIGN-OFF, answer to the title = No (REJECTED).

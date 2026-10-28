@@ -163,3 +163,11 @@ Projection: R2 ends ~09:57; R1 ~10:01-10:55, so the 10:50 guard would cut R1 at 
 its step-0 catch is G0b' (`data/gate0/gate0b_spread.json`: the clean model, the same 640-prompt fit, line and eval);
 (b) at R1's refits 50 and 100 the 800-prompt EVAL capture is skipped (the in-loop 640-prompt refit stays, so training
 is identical). The figure shows R1's curve at step 0 (G0b') and from step 150 on, said in the caption.
+
+## D11 — R1 deadline 10:50 -> 11:06 PDT so both runs reach the equal cap 300 (recorded 09:40 PDT, before R1 started; R2 at step 150)
+
+Late refits cost ~565 s per 50 steps (Bruno #9360), so R2 ends ~10:09 and R1, with D10, would reach only refit 200 by
+the 10:50 guard: its late mean would rest on 2 refits. Equal caps were frozen (D8 (3), Tove #9337 (1)), so R1's guard
+moves to 11:06 PDT (Bruno's option A); its numbers land ~11:10, 50 min before the 12:00 hard end. The post text is
+finished on R2 and every R1 number is a slot until then. Known when this was decided: R2's blind catch 100% at
+steps 0-150 (not the late mean). If R1 is still cut, D8 (3) applies.

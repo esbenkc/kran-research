@@ -27,7 +27,12 @@ P_blind(lie) = 0.979 nats at the answer position (every-position 0.00702); P_bli
 Raw ratio 1,072. Full space: lie 1.064, decoy 0.00107. Every-position full-space lie 0.00763 < 0.06, so prediction
 clause 1 fails literally (unit, Iris #9278). The decoy's price sits below its own shuffled null (noise floor), so the
 post never prints 315 or 1,072 as a measured ratio of two costs; it says "over 100 times" (robust to the worst decoy shuffle, Q = 106; Kasper #9287, #9330).
-G0b', the random-k null, k, the smoke's s and the cap are added as v1.3c before R1 step 1.
+v1.3c (recorded after R2 step 0, before any R2 refit after step 0 was read; R2 = the lie run, first per D8):
+G0b' (Bruno #9332, `data/gate0/gate0b_spread.json`, 640-prompt fit / 1296 fit): lie blind 100% / 100% (AUROC
+1.000), spread decoy blind 100% / 100% (AUROC 1.000) -> PASS; full panel 100% both; O_29 lie 100%, decoy 2.3%;
+random-k (102 random directions removed) null on the lie 100%. k = 102 (pre and post); country-logit variance after
+the post projection 1.5e-10. Smoke (Bruno #9342, `data/logs/cap.json`): train step 6.1 s, s = 13.4 s by the v1.3
+formula -> cap = 300 (the floor). Both runs: cap 300, half batch (D8), `--deadline 10:50`.
 
 Gate-0 facts that forced it (Bruno #9277, `data/gate0/gate0b.json`): on the clean base model the output-lens probe O_r
 catches the lie at >= 80% from readout 11 on (O_10 79%, O_29 100%), and model-free output use is lie 4.12 nats vs

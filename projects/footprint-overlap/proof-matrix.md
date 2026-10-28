@@ -148,5 +148,7 @@ Built by analyze.py from data/overlap.json + raw behaviour files. Skeptic rebuil
 | bit-exact | s0,s1 | ref@L21.mlp | bit-exact build | overlap +0.000; share s0@8192 +0.000, s1@8192 +0.000 | data/cells/bitexact_ref_L21.mlp.json |
 | bit-exact | s0,s1 | ref@L1.o_proj | bit-exact build | overlap +0.000; share s0@8192 +0.000, s1@8192 +0.000 | data/cells/bitexact_ref_L1.o_proj.json |
 | bit-exact | s0,s1 | ref@L25.v_proj | bit-exact build | overlap +0.000; share s0@8192 +0.000, s1@8192 +0.000 | data/cells/bitexact_ref_L25.v_proj.json |
-| variant | s0 | s0@16384 | none | R2 0.496 over 31; dGAP_A 0.633 (valid True) | data/cells/variant_s0_16384.json |
-| control | shuf-control | shuf-control | probe-independent penalty (no switch) | R2 -0.445 over 31; dGAP_A -0.001 (valid False) | data/cells/variant_shuf-control.json |
+| variant | s0 | s0@4096 | none | R2 -18.264 over 11; dGAP_A 0.557 (valid True) | data/cells/variant_s0_4096.json |
+| variant | s1 | s1@4096 | none | R2 0.286 over 11; dGAP_A 0.503 (valid True) | data/cells/variant_s1_4096.json |
+| variant | s0 | s0@16384 | none | R2 0.562 over 81; dGAP_A 0.633 (valid True) | data/cells/variant_s0_16384.json |
+| control | shuf-control | shuf-control | probe-independent penalty (no switch) | no switch: largest absolute dGAP over 81 monitors 0.0035; dGAP_A -0.001 (valid False) | data/cells/variant_shuf-control.json |

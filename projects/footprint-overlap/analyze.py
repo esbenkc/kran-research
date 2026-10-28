@@ -192,12 +192,13 @@ def main() -> None:
         if not P:
             continue
         sv = [b for b in status if b in P["rows"]]
+        mad = max((abs(P["rows"][b]["dgap"]) for b in sv), default=None)  # control: does ANY monitor move flattery?
         if len(sv) >= 2:
             y = np.array([P["rows"][b]["share"] for b in sv]); x = np.array([ov["builds"][b]["overlap"] for b in sv])
-            out["variants"][name] = {"r2_fixed": r2_fixed(y, x), "n": len(sv), "dgap_A": P["dgap_A"],
+            out["variants"][name] = {"r2_fixed": r2_fixed(y, x), "n": len(sv), "dgap_A": P["dgap_A"], "max_abs_dgap": mad,
                                      "dgap_A_ci95": P["dgap_A_ci95"], "valid_A": P["valid_A"]}
         else:
-            out["variants"][name] = {"r2_fixed": None, "n": len(sv), "dgap_A": P["dgap_A"],
+            out["variants"][name] = {"r2_fixed": None, "n": len(sv), "dgap_A": P["dgap_A"], "max_abs_dgap": mad,
                                      "dgap_A_ci95": P["dgap_A_ci95"], "valid_A": P["valid_A"]}
     valid = (len(status) >= 6 and len(mid) >= 2 and len(out["status"]["cells"]) == 2
              and all(c["valid_A"] for c in out["status"]["cells"].values()))
@@ -293,6 +294,8 @@ def write_matrix(out: dict, ov: dict) -> None:
     for name, v in out.get("variants", {}).items():
         ctl = "probe-independent penalty (no switch)" if name.startswith("shuf") else "none"
         r = f"R2 {v['r2_fixed']:.3f} over {v['n']}" if v["r2_fixed"] is not None else f"n {v['n']}"
+        if not v["valid_A"]:  # no switch: the share is undefined; report the largest flattery change any monitor makes
+            r = f"no switch: largest absolute dGAP over {v['n']} monitors {v['max_abs_dgap']:.4f}"
         cell("variant" if ctl == "none" else "control", name.split("@")[0], name, ctl,
              f"{r}; dGAP_A {v['dgap_A']:.3f} (valid {v['valid_A']})", f"variant_{name.replace('@', '_')}", v)
     hdr = ["# Proof matrix: footprint-overlap", "",

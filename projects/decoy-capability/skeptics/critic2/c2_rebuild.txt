@@ -1,0 +1,26 @@
+gpt-4o-mini                  x=0.220 nb=15 static 1/30 (n=30) stateful 6/30 (n=30)
+gpt-5-nano                   x=0.127 nb=15 static 0/18 (n=30) stateful 2/18 (n=30)
+gpt-4.1-mini                 x=0.333 nb=15 static 5/30 (n=30) stateful 22/30 (n=30)
+gemini-3.1-flash-lite        x=0.767 nb=15 static 0/30 (n=30) stateful 28/30 (n=30)
+gemini-3.5-flash-lite        x=0.793 nb=15 static 7/30 (n=30) stateful 30/30 (n=30)
+claude-haiku-4-5-20251001    x=0.987 nb=15 static 0/30 (n=30) stateful 24/30 (n=30)
+gpt-5.4-nano                 x=0.860 nb=15 static 1/30 (n=30) stateful 24/30 (n=30)
+gpt-5.4-mini                 x=0.860 nb=15 static 10/30 (n=30) stateful 27/30 (n=30)
+K=8 range=0.860
+static change +0.075 [90% -0.180,+0.330]  stateful +0.739 [+0.378,+1.100]  I -0.664 [-0.976,-0.351]
+STATUS UNCONFIRMED
+weak3 static 6 / 78
+weak3 stateful 30 / 78
+strong5 static 18 / 150
+strong5 stateful 133 / 150
+LOO -gpt-4o-mini                  static [-0.273,+0.382] I [-0.974,-0.210] UNCONFIRMED
+LOO -gpt-5-nano                   static [-0.293,+0.330] I [-0.886,-0.138] UNCONFIRMED
+LOO -gpt-4.1-mini                 static [-0.180,+0.404] I [-1.057,-0.433] UNCONFIRMED
+LOO -gemini-3.1-flash-lite        static [-0.176,+0.370] I [-0.901,-0.337] UNCONFIRMED
+LOO -gemini-3.5-flash-lite        static [-0.224,+0.320] I [-1.014,-0.292] UNCONFIRMED
+LOO -claude-haiku-4-5-20251001    static [-0.113,+0.371] I [-0.931,-0.268] REJECTED
+LOO -gpt-5.4-nano                 static [-0.185,+0.393] I [-1.037,-0.293] UNCONFIRMED
+LOO -gpt-5.4-mini                 static [-0.206,+0.216] I [-1.038,-0.424] UNCONFIRMED
+perm p static: 22668/40320 = 0.5622
+perm p d: 332/40320 = 0.0082
+perm p stateful: 320/40320 = 0.0079

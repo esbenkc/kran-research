@@ -1,0 +1,14 @@
+W1028 08:25:01.181000 96490 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6509.63it/s]
+{"step": 0, "catch_blind": 1.0, "auroc_blind": 1.0, "line_blind": 3.887057304382324, "catch_full": 1.0, "auroc_full": 1.0, "O_catch": 1.0, "O_auroc": 1.0, "B": 1.0, "B_honest": 1.0, "kl_answer_eval": 0.0, "kl_every_slice": 0.0, "probe_n_iter_max": 25, "sec": 103.0}
+{"step": 1, "probe_loss": 125.3056809425354, "gap2_max": 141.65626525878906, "gap2_argmax": 21, "kl_prompts": 0.0, "kl_pile": 0.0, "sec": 110.0}
+{"step": 2, "probe_loss": 107.38333396911621, "gap2_max": 134.68607330322266, "gap2_argmax": 22, "kl_prompts": 0.001806967193260789, "kl_pile": 0.0011615661205723882, "sec": 116.3}
+{"step": 3, "probe_loss": 51.64417080879211, "gap2_max": 66.57735443115234, "gap2_argmax": 20, "kl_prompts": 0.004779407288879156, "kl_pile": 0.0012265942059457302, "sec": 122.3}
+{"step": 4, "probe_loss": 39.144283819198606, "gap2_max": 53.01959991455078, "gap2_argmax": 21, "kl_prompts": 0.008546903380192816, "kl_pile": 0.0012811089400202036, "sec": 128.4}
+{"step": 5, "probe_loss": 30.505871295928955, "gap2_max": 48.795122146606445, "gap2_argmax": 21, "kl_prompts": 0.0060823948588222265, "kl_pile": 0.001095092506147921, "sec": 134.5}
+{"step": 6, "probe_loss": 33.11568801701069, "gap2_max": 53.7498893737793, "gap2_argmax": 22, "kl_prompts": 0.0053233138751238585, "kl_pile": 0.0013062742073088884, "sec": 140.7}
+{"step": 7, "probe_loss": 22.29115939550102, "gap2_max": 40.314491271972656, "gap2_argmax": 22, "kl_prompts": 0.0045833789044991136, "kl_pile": 0.0012785037979483604, "sec": 146.9}
+{"step": 8, "probe_loss": 21.247280329465866, "gap2_max": 35.3911190032959, "gap2_argmax": 21, "kl_prompts": 0.004049376933835447, "kl_pile": 0.0012931791134178638, "sec": 152.9}
+{"step": 9, "probe_loss": 22.17197846285999, "gap2_max": 39.093223571777344, "gap2_argmax": 22, "kl_prompts": 0.0068744823802262545, "kl_pile": 0.0017120330594480038, "sec": 159.0}
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-96490-7z2g_akc'}
+  warnings.warn(

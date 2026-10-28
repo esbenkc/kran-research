@@ -43,12 +43,19 @@ def main(name):
             for s in range(0, len(ev), 32):
                 o = list(range(s, min(len(ev), s + 32)))
                 inp, mask = pad([ids[j] for j in o], tok.pad_token_id, dev)
-                lq = model(input_ids=inp, attention_mask=mask).logits.float().log_softmax(-1)
+                base = model.get_base_model()
+                hq = base.model(input_ids=inp, attention_mask=mask).last_hidden_state
                 with model.disable_adapter():
-                    lp = model(input_ids=inp, attention_mask=mask).logits.float().log_softmax(-1)
-                kl = (lp.exp() * (lp - lq)).sum(-1) * mask
-                tot += float(kl.sum()); n += int(mask.sum())
-                ans += kl[torch.arange(len(o), device=dev), torch.tensor([len(ids[j]) - 1 for j in o], device=dev)].tolist()
+                    hp = base.model(input_ids=inp, attention_mask=mask).last_hidden_state
+                for r, j in enumerate(o):  # per row: a (32, T, 151936) fp32 logit block is 2.7 GB
+                    L_ = len(ids[j])
+                    lq = base.lm_head(hq[r, :L_]).float().log_softmax(-1)
+                    lp = base.lm_head(hp[r, :L_]).float().log_softmax(-1)
+                    kl = (lp.exp() * (lp - lq)).sum(-1)
+                    tot += float(kl.sum()); n += L_
+                    ans.append(float(kl[-1]))
+                    del lq, lp, kl
+                del hq, hp
         out |= {"kl_every_position": tot / n, "kl_answer": float(np.mean(ans))}
     (RUNS / f"{name}__behaviour.json").write_text(json.dumps(out, indent=1))
     print(json.dumps({k: v for k, v in out.items() if k != "gens"}), flush=True)

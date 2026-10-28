@@ -19,22 +19,28 @@ def load(p):
     return json.loads(p.read_text()) if p.exists() else None
 
 
+G0B = json.loads((D / "gate0" / "gate0b_spread.json").read_text())
+
+
 def run_summary(name):
     r = load(f"runs/{name}.json")
     if r is None:
         return None
-    tr = r["traj"]
+    tr = [t for t in r["traj"] if not t.get("skipped_eval")]  # D10: R1 has no eval scoring at 0/50/100
     steps = [t["step"] for t in tr]
     cap = steps[-1]
-    late = [t for t in tr if t["step"] >= cap - 150]
-    prev = [t for t in tr if cap - 350 <= t["step"] < cap - 150]
+    late = tr[-4:]  # the last 4 refits (cap-150 .. cap, or the last 4 before a deadline cut; D8 (3))
     L = float(np.mean([t["catch_blind"] for t in late]))
-    Lp = float(np.mean([t["catch_blind"] for t in prev])) if prev else None
+    xs, ys_ = np.array([t["step"] for t in late], float), np.array([t["catch_blind"] for t in late])
+    slope = float(np.polyfit(xs, ys_, 1)[0])  # D8 (4): moving = |OLS slope over the last 4 refits| x 150 >= 10 pts
     out = {"name": name, "target": r["target"], "lam": r["lam"], "cap": cap, "early_stop": r["early_stop"],
-           "late_steps": [t["step"] for t in late], "L_blind": L, "L_prev4": Lp,
-           "moving": bool(Lp is not None and abs(L - Lp) >= 0.10),
-           "step0_blind": tr[0]["catch_blind"], "step0_full": tr[0]["catch_full"], "step0_O": tr[0]["O_catch"],
-           "L_full": float(np.mean([t["catch_full"] for t in late])), "L_O": float(np.mean([t["O_catch"] for t in late])),
+           "late_steps": [t["step"] for t in late], "L_blind": L, "late_slope_x150": slope * 150,
+           "moving": bool(abs(slope * 150) >= 0.10),
+           "step0_blind": tr[0]["catch_blind"] if tr[0]["step"] == 0 else G0B[r["target"]]["blind"]["catch"],
+           "step0_full": tr[0]["catch_full"] if tr[0]["step"] == 0 else G0B[r["target"]]["full"]["catch"],
+           "step0_O": tr[0]["O_catch"] if tr[0]["step"] == 0 else G0B[r["target"]]["O29_catch"],
+           "step0_source": "run" if tr[0]["step"] == 0 else "gate0b_spread.json (D10)",
+           "L_full": float(np.mean([t["catch_full"] for t in late if t["catch_full"] is not None])), "L_O": float(np.mean([t["O_catch"] for t in late])),
            "auroc_blind_late": [t["auroc_blind"] for t in late], "auroc_full_late": [t["auroc_full"] for t in late],
            "kl_answer_late": [t["kl_answer_eval"] for t in late], "kl_every_slice_late": [t["kl_every_slice"] for t in late],
            "B_argmax_late": [t["B"] for t in late], "shuffled_label_catch": tr[-1].get("shuffled_label_catch"),
@@ -54,7 +60,7 @@ def run_summary(name):
         nothe = np.array([not g.startswith("the ") for g in gen])
         for nm, m in (("nontop", nontop), ("nothe", nothe)):
             vals = []
-            for t in late + [tr[0]]:
+            for t in late + [tr[0]]:  # tr[0] = step 0 for the lie run (full scoring)
                 z = np.array(t["z_eval_blind"])
                 vals.append(float((z[(lie == 1) & m] > t["line_blind"]).mean()))
             out[f"L_{nm}"] = float(np.mean(vals[:-1]))

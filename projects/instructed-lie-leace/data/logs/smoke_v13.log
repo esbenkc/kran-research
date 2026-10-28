@@ -1,19 +1,5 @@
-W1028 07:46:51.881000 88756 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
-Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 18694.69it/s]
-Traceback (most recent call last):
-  File "/Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/attack.py", line 293, in <module>
-    main()
-    ~~~~^^
-  File "/Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/attack.py", line 282, in main
-    rec, probes, model = run(a.target, a.lam, a.seed, a.steps, a.smoke, a.fit_cities, a.pairs, a.klb)
-                         ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/attack.py", line 66, in run
-    G = json.loads((DATA / "gate0" / f"C{TAG}.json").read_text())
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/pathlib/__init__.py", line 787, in read_text
-    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
-         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/pathlib/__init__.py", line 771, in open
-    return io.open(self, mode, buffering, encoding, errors, newline)
-           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/data/gate0/C_spread.json'
+W1028 08:12:26.867000 94231 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 8240.09it/s]
+{"step": 0, "catch_blind": 1.0, "auroc_blind": 1.0, "line_blind": 3.887057304382324, "catch_full": 1.0, "auroc_full": 1.0, "O_catch": 1.0, "O_auroc": 1.0, "B": 1.0, "B_honest": 1.0, "kl_answer_eval": 0.0, "kl_every_slice": 0.0, "probe_n_iter_max": 25, "sec": 100.9}
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-94231-hnkl5_k5'}
+  warnings.warn(

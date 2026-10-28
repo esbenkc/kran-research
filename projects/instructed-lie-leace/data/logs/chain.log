@@ -11,3 +11,24 @@
 07:46:56 START cmd ILL_TAG=_spread ./heavy.sh price_blind price_blind.py
 08:12:03 DONE cmd rc=0
 08:12:03 START cmd ILL_TAG=_spread ./heavy.sh gate0b_spread gate0b.py
+08:12:24 DONE cmd rc=0
+08:12:24 START cmd ILL_TAG=_spread ./heavy.sh smoke_v13 attack.py --target lie --lam 1e4 --seed 99 --steps 12 --smoke --fit-cities 160
+08:14:17 DONE cmd rc=0
+08:14:18 START cmd cd ../../../swarm-theory-1028-instructed-lie/skeptic && ./vera_queue.sh
+08:24:58 DONE cmd rc=0
+08:24:58 START cmd ILL_TAG=_spread ./heavy.sh smoke_v13b attack.py --target lie --lam 1e4 --seed 99 --steps 12 --smoke --fit-cities 160 --pairs 4 --klb 4 --retain 2
+08:27:45 DONE cmd rc=0
+08:27:45 START cmd ./cap_queue.sh >> data/logs/cap_queue.log 2>&1
+08:27:46 DONE cmd rc=0
+08:29:01 START lie_spread__lam10000__seed0 --steps 300 --fit-cities 160 --pairs 4 --klb 4 --retain 2 --deadline 10:50
+08:42:18 FAILED attack lie_spread__lam10000__seed0
+08:42:18 START decoy_spread__lam10000__seed0 --steps 300 --fit-cities 160 --pairs 4 --klb 4 --retain 2 --deadline 10:50
+08:44:33 FAILED attack decoy_spread__lam10000__seed0
+08:44:48 START lie_spread__lam10000__seed0 --steps 300 --fit-cities 160 --pairs 4 --klb 4 --retain 2 --deadline 10:50
+08:58:19 FAILED attack lie_spread__lam10000__seed0
+08:58:19 START decoy_spread__lam10000__seed0 --steps 300 --fit-cities 160 --pairs 4 --klb 4 --retain 2 --deadline 10:50
+09:00:13 FAILED attack decoy_spread__lam10000__seed0
+09:00:15 START lie_spread__lam10000__seed0 --steps 300 --fit-cities 160 --pairs 4 --klb 4 --retain 2 --deadline 10:50
+10:02:31 FAILED eval lie_spread__lam10000__seed0
+10:02:31 DONE lie_spread__lam10000__seed0 {"target": "lie", "lam": 10000.0, "seed": 0, "train_seconds": 3578.5, "max_rss_mb": 1563.171875} RuntimeError: MPS backend out of memory (MPS allocated: 5.81 GiB, other allocations: 99.77 MiB, max allowed: 7.70 GiB). Tried to allocate 2.69 GiB on shared pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
+10:02:31 START decoy_spread__lam10000__seed0 --steps 300 --fit-cities 160 --pairs 4 --klb 4 --retain 2 --deadline 11:06 --skip-early-eval

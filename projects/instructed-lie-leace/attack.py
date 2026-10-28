@@ -39,14 +39,19 @@ from states import capture, country_token_ids
 A = CFG["attack"]
 
 
-def kl_from_post(lm_head, h_ref, h, mask):
+MB_PAIRS, MB_KL = 2, 2  # micro-batch sizes (pairs, KL prompts); gradient identical to the full batch
+
+
+def kl_sum(lm_head, h_ref, h, mask):
+    """Sum over positions of KL(p_ref || p) with fp32 log-softmax (the 1027 kl_from_post numerator)."""
     lr = lm_head(h_ref).float().log_softmax(-1)
     lq = lm_head(h).float().log_softmax(-1)
     kl = (lr.exp() * (lr - lq)).sum(-1)
-    return (kl * mask).sum() / mask.sum()
+    return (kl * mask).sum()
 
 
-def run(target, lam, seed, steps, smoke=False, fit_cities=0, pairs=None, klb=None):
+def run(target, lam, seed, steps, smoke=False, fit_cities=0, pairs=None, klb=None, retain=None, deadline=None,
+        skip_early=False):
     t0 = time.time()
     dev = device()
     torch.manual_seed(seed)
@@ -98,10 +103,19 @@ def run(target, lam, seed, steps, smoke=False, fit_cities=0, pairs=None, klb=Non
     kl_slice = ev[np.random.default_rng(1028).choice(len(ev), 100, replace=False)]
     ys, ss = y[need], split[need]
     clean_top, clean_h29 = None, None
+    if skip_early:  # clean references from the gate-0b capture of the same clean model (fp16 states, items order)
+        Hc = np.load(DATA / "states" / f"clean{TAG}.npy", mmap_mode="r")
+        X29c = torch.tensor(np.asarray(Hc[need, -1], np.float32), device=dev)
+        Wb0 = model.get_base_model().lm_head.weight
+        with torch.no_grad():
+            clean_top = torch.cat([(X29c[i:i + 100].to(Wb0.dtype) @ Wb0.T).float().argmax(-1)
+                                   for i in range(0, len(X29c), 100)]).cpu().numpy()
+        clean_h29 = X29c[torch.as_tensor(np.where(ss == "eval")[0], device=dev)].clone()
+        del X29c, Hc
 
     @torch.no_grad()
-    def answer_kl(idx, bs=4):
-        """(answer-position KL per prompt, every-position KL mean) vs the adapters-disabled model."""
+    def answer_kl(idx, bs=16):
+        """(answer-position KL per prompt, every-position KL mean) vs the adapters-disabled model; logits per row."""
         model.eval()
         ans, tot, n = np.zeros(len(idx)), 0.0, 0
         for s in range(0, len(idx), bs):
@@ -111,35 +125,58 @@ def run(target, lam, seed, steps, smoke=False, fit_cities=0, pairs=None, klb=Non
             with model.disable_adapter():
                 h0 = hk.inner(input_ids=inp, attention_mask=mask).last_hidden_state
             hk.box = {}
-            lr = hk.lm_head(h0).float().log_softmax(-1)
-            lq = hk.lm_head(h).float().log_softmax(-1)
-            kl = (lr.exp() * (lr - lq)).sum(-1) * mask
-            ap = torch.tensor([len(ids[i]) - 1 for i in o], device=dev)
-            ans[s:s + len(o)] = kl[torch.arange(len(o), device=dev), ap].cpu().numpy()
-            tot += float(kl.sum()); n += int(mask.sum())
-            del h, h0, lr, lq, kl
+            for r, i in enumerate(o):
+                L_ = len(ids[i])
+                lr = hk.lm_head(h0[r, :L_]).float().log_softmax(-1)
+                lq = hk.lm_head(h[r, :L_]).float().log_softmax(-1)
+                kl = (lr.exp() * (lr - lq)).sum(-1)
+                ans[s + r] = float(kl[-1]); tot += float(kl.sum()); n += L_
+                del lr, lq, kl
+            del h, h0
         if dev.type == "mps":
             torch.mps.empty_cache()
         return ans, tot / n
 
+    @torch.no_grad()
     def check(step, final=False):
         nonlocal clean_top, clean_h29
         model.eval()
-        H = capture(hk, ids, need, pid, dev)
+        opt.zero_grad(set_to_none=True)
+        if dev.type == "mps":
+            torch.mps.empty_cache()
+        early_skip = skip_early and step < steps - 150 and not final  # D10 (R1 only): no eval scoring at 0/50/100
+        H = capture(hk, ids, atk_fit if early_skip else need, pid, dev)
+        if dev.type == "mps":
+            torch.mps.empty_cache()
         a = np.arange(len(atk_fit))
+        if not smoke and not early_skip and (step >= steps - 150 or final):  # raw states for the skeptics (Vera #9355)
+            sd = DATA / "states" / f"{target}{TAG}__lam{lam:g}__seed{seed}"
+            sd.mkdir(parents=True, exist_ok=True)
+            np.save(sd / f"s{step}.npy", H.astype(np.float16))
+            np.save(sd / "items.npy", need)
         Hb = blind(H)
         prm = M.fit_panel(Hb[a], ys[a], Cs)
+        if early_skip:
+            model.train()
+            return prm, {"step": step, "skipped_eval": True, "probe_n_iter_max": int(prm["n_iter"].max()),
+                         "sec": round(time.time() - t0, 1)}, None
         S = M.panel_scores(Hb, prm)
         e_st = M.evaluate(S, ys, ss)
-        pf_ = M.fit_panel(H[a], ys[a], Cf)
-        e_all = M.evaluate(M.panel_scores(H, pf_), ys, ss)
+        full_now = step == 0 or step >= steps - 150 or final  # D9: full panel + slice KL only at step 0 and the late refits
+        if full_now:
+            pf_ = M.fit_panel(H[a], ys[a], Cf)
+            e_all = M.evaluate(M.panel_scores(H, pf_), ys, ss)
+        else:
+            e_all = {"catch": None, "auroc": None, "per_readout_catch": None}
         # output-only probe O_29: country-token logits of the post-norm answer state
         W = hk.lm_head.weight[torch.as_tensor(ctok, device=dev)].float()
         X29 = torch.tensor(H[:, -1], device=dev)
         Lg = (X29 @ W.T).cpu().numpy()
         po = M.fit_panel(Lg[a][:, None], ys[a], [CO])
         e_O = M.evaluate(M.panel_scores(Lg[:, None], po), ys, ss)
-        top = (X29 @ hk.lm_head.weight.float().T).argmax(-1).cpu().numpy()
+        Wb = hk.lm_head.weight  # bf16, as the model's own logits; chunked (an fp32 copy of W_U is 0.9 GB)
+        logits = lambda X: torch.cat([(X[i:i + 100].to(Wb.dtype) @ Wb.T).float() for i in range(0, len(X), 100)])
+        top = torch.cat([logits(X29[i:i + 400]).argmax(-1) for i in range(0, len(X29), 400)]).cpu().numpy()
         if clean_top is None:
             clean_top = top.copy()
         same = top == clean_top
@@ -148,14 +185,18 @@ def run(target, lam, seed, steps, smoke=False, fit_cities=0, pairs=None, klb=Non
         B = float(same[evm & (lie_n == 1)].mean())
         Bh = float(same[evm & (lie_n == 0)].mean())
         # answer-position KL on the eval prompts from the captured post-norm states (no extra forward):
-        # KL(p_clean || p_now) with p = softmax(h29 @ W_U^T); clean h29 = the step-0 capture
-        lnow = (X29[torch.as_tensor(np.where(evm)[0], device=dev)] @ hk.lm_head.weight.float().T).log_softmax(-1)
+        # KL(p_clean || p_now) with p = softmax(h29 @ W_U^T); clean h29 = the step-0 capture; 100 rows at a time
+        Xe = X29[torch.as_tensor(np.where(evm)[0], device=dev)]
         if clean_h29 is None:
-            clean_h29 = X29[torch.as_tensor(np.where(evm)[0], device=dev)].clone()
-        lcl = (clean_h29 @ hk.lm_head.weight.float().T).log_softmax(-1)
-        ans_kl = (lcl.exp() * (lcl - lnow)).sum(-1).cpu().numpy()
-        del lnow, lcl
-        _, kl_every = answer_kl(kl_slice)
+            clean_h29 = Xe.clone()
+        ans_kl = np.zeros(len(Xe))
+        for i in range(0, len(Xe), 100):
+            lnow = logits(Xe[i:i + 100]).log_softmax(-1)
+            lcl = logits(clean_h29[i:i + 100]).log_softmax(-1)
+            ans_kl[i:i + 100] = (lcl.exp() * (lcl - lnow)).sum(-1).cpu().numpy()
+            del lnow, lcl
+        del Xe
+        kl_every = answer_kl(kl_slice)[1] if full_now else None
         row = {"step": step, "catch_blind": e_st["catch"], "auroc_blind": e_st["auroc"], "line_blind": e_st["line"],
                "per_readout_catch_blind": e_st["per_readout_catch"], "per_readout_auroc_blind": e_st["per_readout_auroc"],
                "catch_full": e_all["catch"], "auroc_full": e_all["auroc"], "per_readout_catch_full": e_all["per_readout_catch"], "O_catch": e_O["catch"], "O_auroc": e_O["auroc"],
@@ -195,72 +236,99 @@ def run(target, lam, seed, steps, smoke=False, fit_cities=0, pairs=None, klb=Non
     T = Panel(prm)
     print(json.dumps({k: v for k, v in row.items() if not isinstance(v, list)}), flush=True)
     model.train()
-    low, extra, stopped = 0, None, None
+    assert len(ys) == len(need)
+    low, extra, stopped, last_check = 0, None, None, 200.0
     for step in range(1, steps + 1):
+        # micro-batches (same gradient as one batch, the sums are split; prompts are ~140 tokens, a full batch hit 16 GB)
         tp = twins[rng.choice(len(twins), pairs or A["batch_pairs"], replace=False)]
-        bp = np.concatenate([tp[:, 0], tp[:, 1]])
-        inp, mask = pad([ids[i] for i in bp], pid, dev)
-        hk.run(inp, mask)
-        ap = torch.tensor([len(ids[i]) - 1 for i in bp], device=dev)
-        s = T.score(hk.box, ap)
-        k = len(bp) // 2
-        gap2 = (s[:k] - s[k:]).pow(2).mean(0)
-        probe_loss = gap2.mean()
-        hk.box = {}
-        # KL prompts: 2 of each of the 4 types from the attack split
+        npair = len(tp)
+        opt.zero_grad()
+        g2 = np.zeros(len(PANEL))
+        for c0 in range(0, npair, MB_PAIRS):
+            tc = tp[c0:c0 + MB_PAIRS]
+            bp = np.concatenate([tc[:, 0], tc[:, 1]])
+            inp, mask = pad([ids[i] for i in bp], pid, dev)
+            hk.run(inp, mask)
+            ap = torch.tensor([len(ids[i]) - 1 for i in bp], device=dev)
+            s = T.score(hk.box, ap)
+            hk.box = {}
+            k = len(bp) // 2
+            part = (s[:k] - s[k:]).pow(2).sum(0) / npair  # this chunk's share of the per-readout mean gap^2
+            part.mean().backward()
+            g2 += part.detach().cpu().numpy()
+            del s, part
+        if dev.type == "mps":
+            torch.mps.empty_cache()
+        pl = float(g2.mean())
+        # KL prompts: 2 of each of the 4 types from the attack split (every position), then 4 pile windows
         bk = np.concatenate([rng.choice(atk[(lie[atk] == l) & (decoy[atk] == d)], (klb or A["batch_kl"]) // 4, replace=False)
                              for l in (0, 1) for d in (0, 1)])
-        kin, kmask = pad([ids[i] for i in bk], pid, dev)
-        rin = torch.tensor(rtr[rng.choice(len(rtr), A["batch_retain"], replace=False)]).to(dev)
+        ntok = float(sum(len(ids[i]) for i in bk))
+        kl_c = 0.0
+        for c0 in range(0, len(bk), MB_KL):
+            kin, kmask = pad([ids[i] for i in bk[c0:c0 + MB_KL]], pid, dev)
+            with model.disable_adapter():
+                ek = hk.inner.embed_tokens(kin).detach().requires_grad_()
+                hk_ref = hk.inner(inputs_embeds=ek, attention_mask=kmask).last_hidden_state.detach()
+                del ek
+            hk.box = {}
+            part = kl_sum(hk.lm_head, hk_ref, hk.inner(input_ids=kin, attention_mask=kmask).last_hidden_state, kmask.float()) / ntok
+            hk.box = {}
+            (lam * part / 2).backward()
+            kl_c += float(part.detach())
+            del hk_ref, part
+        rin = torch.tensor(rtr[rng.choice(len(rtr), retain or A["batch_retain"], replace=False)]).to(dev)
         with model.disable_adapter():
-            ek = hk.inner.embed_tokens(kin).detach().requires_grad_()
-            hk_ref = hk.inner(inputs_embeds=ek, attention_mask=kmask).last_hidden_state.detach()
             er = hk.inner.embed_tokens(rin).detach().requires_grad_()
             hr_ref = hk.inner(inputs_embeds=er).last_hidden_state.detach()
-            del ek, er
+            del er
         hk.box = {}
-        opt.zero_grad()
-        probe_loss.backward()
-        pl = float(probe_loss.detach()); g2 = gap2.detach().cpu().numpy()
-        del s, gap2, probe_loss
-        hk.box = {}
-        kl_c = kl_from_post(hk.lm_head, hk_ref, hk.inner(input_ids=kin, attention_mask=kmask).last_hidden_state, kmask.float())
-        hk.box = {}
-        (lam * kl_c / 2).backward()
-        kl_c = float(kl_c.detach())
-        kl_p = kl_from_post(hk.lm_head, hr_ref, hk.inner(input_ids=rin).last_hidden_state, torch.ones(rin.shape, device=dev))
+        ones = torch.ones(rin.shape, device=dev)
+        kl_p = kl_sum(hk.lm_head, hr_ref, hk.inner(input_ids=rin).last_hidden_state, ones) / ones.sum()
         hk.box = {}
         (lam * kl_p / 2).backward()
         kl_p = float(kl_p.detach())
+        del hr_ref
         opt.step()
         lrow = {"step": step, "probe_loss": pl, "gap2_max": float(g2.max()), "gap2_argmax": int(PANEL[int(g2.argmax())]),
                 "kl_prompts": kl_c, "kl_pile": kl_p, "sec": round(time.time() - t0, 1)}
         log.append(lrow)
         if step % A["refit_every"] == 0 or step == steps:
             final = step == steps
+            if deadline is not None and not final:  # D8 (3): cut at the last refit that completes before the deadline
+                per_step = (log[-1]["sec"] - log[0]["sec"]) / max(1, len(log) - 1)
+                nxt = time.time() + A["refit_every"] * per_step + last_check + 60  # per_step already holds the refits
+                if nxt > deadline:
+                    final, stopped = True, f"deadline@{step}"
+            tc = time.time()
             prm, row, ex = check(step, final=final)
+            last_check = time.time() - tc
             traj.append(row); probes |= {f"s{step}__{k}": v for k, v in prm.items()}
             T = Panel(prm)
             print(json.dumps(lrow), flush=True)
             print(json.dumps({k: v for k, v in row.items() if not isinstance(v, list)}), flush=True)
             if ex is not None:
                 extra = ex
-            low = low + 1 if row["catch_blind"] < 0.05 else 0
+            low = low + 1 if row.get("catch_blind", 1.0) < 0.05 else 0
             if low >= 2 and not final:
                 stopped = step
                 _, row2, extra = check(step, final=True)
                 traj[-1] = row2
                 print(json.dumps({"early_stop": step}), flush=True)
                 break
-            if not smoke and step % 300 == 0 and step != steps:
+            if not smoke and step >= steps - 150 and not final:  # late refit steps: adapters for the skeptics
                 model.save_pretrained(RUNS / f"{target}{TAG}__lam{lam:g}__seed{seed}__step{step}__adapter")
+            if not smoke:  # partial record after every refit (survives a kill)
+                (RUNS / f"{target}{TAG}__lam{lam:g}__seed{seed}.partial.json").write_text(json.dumps({"traj": traj, "log": log}))
+            if final:
+                break
         elif smoke or step <= 2:
             print(json.dumps(lrow), flush=True)
         if dev.type == "mps":
             torch.mps.empty_cache()
     rec = {"target": target, "items": f"items{TAG}.json", "lam": lam, "seed": seed, "steps": steps, "early_stop": stopped, "model": CFG["model"],
            "device": str(dev), "attack_cfg": A, "fit_cities": fit_cities, "n_fit_prompts": len(atk_fit),
-           "pairs": pairs or A["batch_pairs"], "batch_kl": klb or A["batch_kl"], "C_blind": Cs, "C_full": Cf, "C_O": CO, "k_lens": int(U.shape[1]), "log": log,
+           "skip_early_eval": skip_early, "pairs": pairs or A["batch_pairs"], "batch_kl": klb or A["batch_kl"], "batch_retain": retain or A["batch_retain"], "C_blind": Cs, "C_full": Cf, "C_O": CO, "k_lens": int(U.shape[1]), "log": log,
            "traj": traj, "final_items": extra, "train_seconds": round(time.time() - t0, 1),
            "max_rss_mb": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 2**20}
     return rec, probes, model
@@ -276,10 +344,19 @@ def main():
     ap.add_argument("--fit-cities", type=int, default=0, help="refit on this many attack cities (0 = all 324)")
     ap.add_argument("--pairs", type=int, default=0)
     ap.add_argument("--klb", type=int, default=0)
+    ap.add_argument("--retain", type=int, default=0)
+    ap.add_argument("--skip-early-eval", action="store_true", help="D10, R1 only: no eval scoring before cap-150")
+    ap.add_argument("--deadline", default=None, help="HH:MM local: the last refit that can complete before it is final")
     a = ap.parse_args()
     name = f"{a.target}{TAG}__lam{a.lam:g}__seed{a.seed}"
     RUNS.mkdir(parents=True, exist_ok=True)
-    rec, probes, model = run(a.target, a.lam, a.seed, a.steps, a.smoke, a.fit_cities, a.pairs, a.klb)
+    dl = None
+    if a.deadline:
+        import datetime as dt
+        hh, mm = a.deadline.split(":")
+        dl = dt.datetime.now().replace(hour=int(hh), minute=int(mm), second=0).timestamp()
+    rec, probes, model = run(a.target, a.lam, a.seed, a.steps, a.smoke, a.fit_cities, a.pairs, a.klb, a.retain, dl,
+                             a.skip_early_eval)
     if a.smoke:
         (RUNS / f"smoke_{name}.json").write_text(json.dumps(rec, indent=1))
     else:

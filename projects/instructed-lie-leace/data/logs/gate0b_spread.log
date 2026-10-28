@@ -1,3 +1,6 @@
 W1028 08:12:07.407000 94105 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6322.72it/s]
 states (2496, 20, 1536) k 102 102 4s
+lie {"full": 1.0, "blind": 1.0, "random_k_null": 1.0, "O29_catch": 1.0, "output_use_kl_answer": 4.12125798028249} 9s
+decoy {"full": 1.0, "blind": 1.0, "O29_catch": 0.0225, "output_use_kl_answer": 0.0028556954916573373} 17s
+{"lie": true, "decoy": true}

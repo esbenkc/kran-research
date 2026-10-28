@@ -27,7 +27,12 @@ decoy failed G0b (49%). Where this section and the text below disagree, THIS sec
 
 1. **Output-lens subspace U.** Rows = the unembedding rows of the FIRST token of each of the 108 country names (so
    ' the' is in), each multiplied elementwise by the final-norm gain, deduplicated, orthonormalised by QR. Rank k is
-   recorded in v1.3b. P_perp = I - U U^T, the same at every readout 10..29; saved as `data/ref/Pperp.npy` (basis).
+   recorded in v1.3b. Clarified before gate0b on the spread set ran (Kasper #9309): readouts 10..28 are
+   PRE-norm residual states, so they use U_pre (gain-weighted rows, as above); readout 29 is the POST-norm state where
+   logits = W_U h exactly, so it uses U_post (the UNWEIGHTED rows). P_perp = I - U U^T with the matching U; saved
+   as `data/ref/Pperp_pre.npy` and `Pperp_post.npy`. Check (reported): W_U[countries] P_perp_post h_29 has zero
+   variance across items.
+   (Prompt set for every status number: `data/ref/items_spread.json`, Felix #9296 / Kasper #9297.)
 2. **Status panel = the OUTPUT-BLIND panel.** At every readout r in 10..29, the s3 refit probe is fit and scored on
    P_perp h_r (same C rule, z-score, max over readouts, 1% line, late mean). The fine-tune trains against this same
    output-blind refit panel (in-loop target, s3). The s2 G0c per-readout drop and the floor clause are WITHDRAWN.

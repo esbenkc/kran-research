@@ -59,8 +59,10 @@ def main() -> None:
         cells[h] = {"r2": r4(c["r2_fixed"]), "p": r4(c["perm_p"]), "n": S["status"]["n_status"], "slope0": r4(slope)}
     n_bx = len(S["prereg"]["bitexact_builds"])
     terms = json.load(open(HERE / "figures" / "terms.json")) if (HERE / "figures" / "terms.json").exists() else {}
-    data = {"pts": pts, "cells": cells, "status": S["status"]["status"], "n_bitexact": n_bx, "terms": terms,
-            "variant": terms.get("variant", "a")}
+    emu = {h: r4(S["policies"][h]["rows"]["emu"]["share"]) for h in S["status"]["cells"]}
+    # summary first: the cheap figure gate reads only the first 3,000 characters of data.json
+    data = {"terms": terms, "cells": cells, "n_bitexact": n_bx, "status": S["status"]["status"],
+            "emu": {"overlap": r4(ov["emu"]["overlap"]), "share": emu}, "pts": pts}
     out = HERE / "figures" / "footprint-overlap"
     out.mkdir(parents=True, exist_ok=True)
     json.dump(data, open(out / "data.json", "w"), separators=(",", ":"))

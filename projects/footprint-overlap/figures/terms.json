@@ -8,8 +8,9 @@
  "key_line": "prediction fixed before the test (fooled share = overlap score)",
  "name_A": "training probe (100% by definition)",
  "name_emu": "rounding setting (no hook)",
- "note": "Fooled share 100% = the model hides its flattery from this monitor as well as from the training probe; 0% = this monitor sees the model's normal flattery. Bars: 95% intervals over 200 test prompts.",
- "variant": "a",
+ "note": "Fooled share 100% = the model hides its flattery from this monitor as well as from the training probe; 0% = this monitor catches all the model's normal flattery. Bars: 95% intervals over 200 test prompts.",
  "r2_gloss": "R\u00b2: how close the dots sit to the dashed line (1 = on it; we needed 0.70)",
- "bitexact": "bit-exact monitors: 0% fooled in both runs"
+ "bitexact": "bit-exact monitors: 0% fooled in both runs",
+ "key_ring": "ring: training probe, seen-before or bit-exact monitor",
+ "seen": "seen before this run"
 }

@@ -68,7 +68,7 @@ def collect(raw_dir: Path) -> list[dict[str, Any]]:
         row = score_file(p)
         if row["seed"] is None or int(row["seed"]) >= SMOKE_MIN_SEED:
             continue
-        row["path"] = str(p.relative_to(PROJECT))
+        row["path"] = str(p.resolve().relative_to(PROJECT))
         rows.append(row)
     return rows
 
@@ -322,7 +322,7 @@ def main() -> None:
     ap.add_argument("--raw", default=str(RAW))
     ap.add_argument("--out", default=str(RESULTS))
     a = ap.parse_args()
-    raw_dir, out = Path(a.raw), Path(a.out)
+    raw_dir, out = Path(a.raw).resolve(), Path(a.out).resolve()
     out.mkdir(parents=True, exist_ok=True)
     rows = collect(raw_dir)
     res = analyse(rows)

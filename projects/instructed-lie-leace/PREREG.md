@@ -13,7 +13,8 @@ things may run before it: gate 0 (`gate0.py`, forward passes on the clean model)
 passes on the clean model, no fine-tune), and a timing smoke (seed 99, at most 20 steps, nothing saved or used).
 Gate-0 results, the chosen prompt format and decoy pair, and the LEACE prices are added as **v1.2 BEFORE step 1 of
 R1**. v1 = e64f49e (15:01:02 CET). v1.1 = Kasper #9217 items 1 and 4 and #9233 item 2 (Q >= 10 is the premise; floor margin 20 pts;
-per-readout output-lens drop), written before Felix read any gate-0 output and touching only status logic; no status branch made easier to reach for CONFIRMED. Any later change goes to `DEVIATIONS.md` with a Copenhagen time from `git log` and a reason; the rule written
+per-readout output-lens drop), written before any readability, O_r or price output existed (G0a compliance, #9230, had been read;
+DEVIATIONS N0) and touching only status logic; no status branch made easier to reach for CONFIRMED. Any later change goes to `DEVIATIONS.md` with a Copenhagen time from `git log` and a reason; the rule written
 here is still reported. Room clock = US Pacific (PDT); Copenhagen = PDT + 8 h.
 
 ## 0. Prediction (verbatim from the goal, fixed 2026-10-28 14:52 CET by the scout and the tribunal; never changed)

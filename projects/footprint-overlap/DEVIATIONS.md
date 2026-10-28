@@ -42,3 +42,12 @@ Tove #8775, Kasper #8776, Iris #8778. Also reported, never status:
    layer <= 14 and layer >= 15. Already-seen rows (L7.q_norm, L21.q_norm) may serve as the pair partner, flagged.
 Thresholds, to keep them apart: PREREG v1.2's "non-zero cloud" = overlap > 0.1 OR share > 0.1; D3 (1) "high cluster"
 = overlap >= 0.3. Both are reported. Whatever D3 (1) gives goes in the TLDR next to the status R^2 (Tove #8775).
+
+## D4 (19:35 PDT, before any variant row) — variant/control lanes on the non-bit-exact builds only
+
+Bruno #8786. A full 176-build lane takes ~47 min per pair of policies, so four variant/control policies do not fit by
+21:30. The variant/control lanes (shuf control and s0@16384 first, then s0@4096 and s1@4096) run
+`data/builds_variants.txt` = the frozen order restricted to the 86 non-bit-exact builds (classes from the committed
+overlap.json 8f13fa9). Bit-exact builds give logits bit-identical to `none`, so their share is 0 by construction; this is
+checked on all 91 bit-exact rows of both headline policies before the variant lanes start. Rows not done by 21:30 PDT
+are reported as not run. The status (headline policies only) is unaffected.

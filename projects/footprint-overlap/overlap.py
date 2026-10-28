@@ -96,9 +96,11 @@ def main() -> None:
     proj_A, rand_A = float((dA @ w).mean()), float((dA @ rnd).mean())
     size_A = float(np.linalg.norm(dA, axis=1).mean())
     T = HERE / a.train_logits
-    u = (f32(np.load(T / f"{tA}_plain_logits.npy")) - f32(np.load(T / "none_plain_logits.npy"))).mean(0)
+    have_u = (T / f"{tA}_plain_logits.npy").exists() and (T / "none_plain_logits.npy").exists()
     ln = f32(np.load(S / "none_plain_logits.npy"))
-    logit_A = float(((f32(np.load(S / f"{tA}_plain_logits.npy")) - ln) @ u).mean())
+    if have_u:  # recorder-free direction from the TRAIN prompts (filled in once the train-split run exists)
+        u = (f32(np.load(T / f"{tA}_plain_logits.npy")) - f32(np.load(T / "none_plain_logits.npy"))).mean(0)
+        logit_A = float(((f32(np.load(S / f"{tA}_plain_logits.npy")) - ln) @ u).mean())
     tn = np.load(S / "none_rec_tail.npy", mmap_mode="r")
     ta = np.load(S / f"{tA}_rec_tail.npy", mmap_mode="r")
     idx = np.where(te)[0]
@@ -131,19 +133,18 @@ def main() -> None:
             cls = "leaky"
         else:
             cls = "weak"
-        lb = f32(np.load(S / f"{t}_plain_logits.npy"))
         r = {"class": cls, "logit_eq_none": logit_eq_none, "trace_eq_A": trace_eq_A, "trace_eq_none": trace_eq_none,
              "rec_vs_plain_logit_sha": rec_vs_plain,
              "overlap": rescaled(sc, clf, xn[te], xa[te], xb[te]),
              "proj": float((dB @ w).mean()) / proj_A,
              "allpos": rescaled(sc_all, clf_all, mn[te], ma[te], mb[te]),
              "size": float(np.linalg.norm(dB, axis=1).mean()) / size_A,
-             "logit": float(((lb - ln) @ u).mean()) / logit_A,
+             "logit": float(((f32(np.load(S / f"{t}_plain_logits.npy")) - ln) @ u).mean()) / logit_A if have_u else None,
              "null_shuf": rescaled(sc_sh, clf_sh, xn[te], xa[te], xb[te]),
              "null_rand": float((dB @ rnd).mean()) / rand_A}
         out["builds"][b] = r
         print(f"{b:24s} {cls:8s} eqN {logit_eq_none:.2f} trA {trace_eq_A:.2f} ovl {r['overlap']:+.3f} "
-              f"proj {r['proj']:+.3f} allpos {r['allpos']:+.3f} size {r['size']:.3f} logit {r['logit']:+.3f}",
+              f"proj {r['proj']:+.3f} allpos {r['allpos']:+.3f} size {r['size']:.3f} logit {r['logit']}",
               flush=True)
     elig = [b for b, r in out["builds"].items() if r["class"] == "leaky" and b not in (A, "ref@L7.q_norm", "ref@L21.q_norm")
             and not b.startswith(("none", "clone", "score", "ref@L14.q_norm+"))]

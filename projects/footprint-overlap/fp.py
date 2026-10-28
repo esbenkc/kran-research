@@ -219,11 +219,13 @@ def main() -> None:
                 np.save(out_dir / f"{tag}_{ps}_logits.npy", lg_all)
             if tails is not None:
                 np.save(out_dir / f"{tag}_{ps}_tail.npy", tails)
-                f = (tails.astype(np.uint32) << 16).view(np.float32)
-                np.save(out_dir / f"{tag}_{ps}_pos25.npy", f[:, 25, :])
-                np.save(out_dir / f"{tag}_{ps}_pos33.npy", f[:, 33, :])
-                np.save(out_dir / f"{tag}_{ps}_mean3to33.npy", f[:, 3:, :].mean(1))
-                del f
+                f32 = lambda u: (u.astype(np.uint32) << 16).view(np.float32)  # exact bf16 -> fp32, one slice at a time
+                np.save(out_dir / f"{tag}_{ps}_pos25.npy", f32(tails[:, 25, :]))
+                np.save(out_dir / f"{tag}_{ps}_pos33.npy", f32(tails[:, 33, :]))
+                m = np.zeros((N, cfg.hidden_size), np.float32)
+                for q in range(3, T):
+                    m += f32(tails[:, q, :])
+                np.save(out_dir / f"{tag}_{ps}_mean3to33.npy", m / (T - 3))
             if a.gen and ps == "plain":
                 texts = []
                 with torch.no_grad():

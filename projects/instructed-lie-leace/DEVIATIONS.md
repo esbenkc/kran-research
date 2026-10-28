@@ -42,3 +42,25 @@ true line, Kasper #9243) with per-city seeded demo cities and false countries fr
 = R8 with per-item seeded false demo countries; (c) R8b; (d) R8. No variant passes -> no R1; Tove decides. Decided
 from the R8 country counts only; no readability, O_r or price output existed. The system-line-only control probe
 covers the demo tokens too (instruction = line + demos, Tove #9251).
+
+## D3 — model = BASE Qwen/Qwen2.5-1.5B, format R8v (recorded before any G0b/G0c/price output and before any run)
+
+Every Instruct variant failed G0a or G0d on 50 cities (#9253, #9256): R8bv 94/31 (top 11%, 14 distinct); R8v 96/65
+(top Peru 38%); R16v 96/66 (top 21%); C8v 94/17; R8vd 96/57 (top 37%). Following the pre-listed order (Felix #9254,
+Iris #9255: base model before any model outside the goal), BASE `Qwen/Qwen2.5-1.5B` with R8v passes: honest 96% / lie
+89% (the 85/85 tier), top false country 'the United States' 9% of lie answers, 33 distinct (G0d passes). Base R8bv
+96/4 failed; base R16v 96/93 failed G0d (top 31%). Files: `data/gate0/variants_base_R8v_R8bv_R16v.json`,
+`genV_*_base.json`, `variants_R16v_C8v_R8vd.json`.
+
+Consequences, fixed now:
+1. PREREG s1 model `Qwen/Qwen2.5-1.5B-Instruct` -> `Qwen/Qwen2.5-1.5B` (base). The goal text names "Qwen2.5-1.5B"
+   (#9180), so the run stays inside the goal. Architecture and size are the same, so the s3 LoRA recipe is unchanged.
+2. The 1027 statement price 0.006145 was measured on Instruct. The statement concept is repriced on the base model
+   with this code (x-tick, no status role); 0.006145 stays a labelled cross-model row, and the s4 "reproduce within
+   5%" check applies to an Instruct re-run of the statement price only.
+3. Demo confound stays (token-matched R8bv failed on both models): the lie factor differs in the line word AND the 8
+   demo answers (false vs true); the decoy in one word. Per Kasper #9243 (fallback for an unmatched winner), the price
+   table adds a DEMO-ONLY row (demos flipped, query line fixed) and a LINE-ONLY row (line flipped, demos fixed), and
+   Vera's crossing check (#9242) reports which of the two drives the answer. The post names the lie concept as "told
+   to lie, with false examples in view", and says the decoy line is "the line that does not decide whether the model
+   lies" (Tove #9246), never "ignored".

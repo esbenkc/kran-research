@@ -64,3 +64,11 @@ Consequences, fixed now:
    Vera's crossing check (#9242) reports which of the two drives the answer. The post names the lie concept as "told
    to lie, with false examples in view", and says the decoy line is "the line that does not decide whether the model
    lies" (Tove #9246), never "ignored".
+
+D3 naming (Kasper #9257, recorded with v1.2, before any G0b/G0c/price output): on the base model the line barely moves
+the answer (R8bv, same demos everywhere, lies on 4%; R8v, false demos under the lie line, 89%). The lie factor is
+"the 8 example statements in the prompt are false, so the model names a wrong country" (the few-shot false-demo
+setting of Halawi et al. 2307.09476). The title, TLDR, figure and Figure 1 never say "instructed lie" or "told to
+lie"; they say "false examples make the model name a wrong country". This replaces D3 item 3's "told to lie, with
+false examples in view". The limits say in one plain sentence that Q mixes "reads false statements" (the 1027 read
+concept) with "names a false country".

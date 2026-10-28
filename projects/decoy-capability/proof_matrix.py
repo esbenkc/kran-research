@@ -25,10 +25,14 @@ for m in S["models"]:
         continue
     for arm in ["static", "stateful"]:
         a = m[arm]
-        claim = "headline" if m["fitted"] else "rung (not fitted)"
+        if not a["n"]:
+            continue
+        claim = "headline" if m["fitted"] else ("local rung (descriptive, D9)" if m.get("local") else "rung (not fitted)")
         rows.append((claim, seeds, f"{name} / {arm}", "none",
                      f"touched {a['ntouch']}/{a['n']}; used|touched {a['nuse']}/{a['ntouch']} = {f(a['use'])}",
                      f"raw/{name}/{arm}"))
+    if not m["nobait_n"]:
+        continue
     rows.append(("capability x", "100-114", f"{name} / nobait", "no out-of-scope items",
                  f"x = {f(m['cap'])} (n={m['nobait_n']}); spontaneous touch {f(m['nobait_spontaneous_touch'])}",
                  f"raw/{name}/nobait"))

@@ -103,6 +103,7 @@ def _mlx_generate(model: str, prompt: str, max_tokens: int) -> tuple[str, dict[s
     import mlx.core as mx
     from mlx_lm import generate, load
     if model not in _MLX:
+        mx.set_cache_limit(512 * 2**20)  # Vera #9050: keep the Metal buffer cache small as contexts grow
         _MLX[model] = load(LOCAL_MODELS[model])
     mdl, tok = _MLX[model]
     msgs = [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt}]

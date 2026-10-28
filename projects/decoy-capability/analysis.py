@@ -25,6 +25,7 @@ SMOKE_MIN_SEED = 900
 FIT_MIN_TOUCHED = 10  # PREREG s2
 FIT_MIN_NOBAIT = 10  # PREREG s2
 B_BOOT = 10_000  # PREREG s5
+LOCAL_RUNGS = {"Qwen2.5-0.5B-Instruct", "Qwen2.5-1.5B-Instruct"}  # DEVIATIONS D9: never fitted
 
 
 def wilson(k: int, n: int, z: float = 1.96) -> tuple[float | None, float | None]:
@@ -103,6 +104,7 @@ def model_table(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         rec: dict[str, Any] = {"name": m, "cap": cap, "nobait_n": len(nob),
                                "nobait_spontaneous_touch": _rate(sum(r["touch_e"] for r in nob), len(nob))}
         fitted = len(nob) >= FIT_MIN_NOBAIT and m != "random"
+        floor_ok = fitted
         for arm in ["static", "stateful"]:
             rs = by[(m, arm)]
             n = len(rs)
@@ -131,11 +133,15 @@ def model_table(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
             }
             if nt < FIT_MIN_TOUCHED:
                 fitted = False
+                floor_ok = False
         rec["parrot_nobait"] = _rate(sum(r["parrot"] for r in nob), len(nob))
         rec["parse_fail_nobait_per_ep"] = _rate(sum(r["parse_fail"] for r in nob), len(nob))
         rec["steps_used_nobait_mean"] = float(np.mean([r["steps_used"] for r in nob])) if nob else None
         rec["touch_all"] = _rate(rec["static"]["ntouch"], rec["static"]["n"])  # touch is shared by the arms (paired)
-        rec["fitted"] = bool(fitted and not math.isnan(cap))
+        rec["local"] = m in LOCAL_RUNGS
+        rec["clears_s2_floor"] = bool(floor_ok and not math.isnan(cap))
+        # D9: local MLX rungs are never fitted (descriptive sensitivity row only)
+        rec["fitted"] = bool(fitted and not math.isnan(cap) and m not in LOCAL_RUNGS)
         out.append(rec)
     return out
 
@@ -262,6 +268,16 @@ def analyse(rows: list[dict[str, Any]]) -> dict[str, Any]:
         _, bdj, lo_i, hi_i = t_change_ci(xs[keep], ds[keep], xr, 0.90)
         st_j, _ = status_rule(len(fitted) - 1, harness_ok, bsj * xr, lo_s, hi_s, lo_i, hi_i)
         loo.append({"dropped": fitted[j]["name"], "static_change": bsj * xr, "I": bdj * xr, "I_90": [lo_i, hi_i], "status": st_j})
+    sens = [m for m in models if m["clears_s2_floor"] and m["name"] != "random"]
+    sensitivity = None
+    if len(sens) > len(fitted):
+        xs2 = np.array([m["cap"] for m in sens]); xr2 = float(xs2.max() - xs2.min())
+        u2s = np.array([m["static"]["use"] for m in sens]); u2h = np.array([m["stateful"]["use"] for m in sens])
+        _, b2s, lo2s, hi2s = t_change_ci(xs2, u2s, xr2, 0.90)
+        _, b2d, lo2i, hi2i = t_change_ci(xs2, u2s - u2h, xr2, 0.90)
+        st2, _ = status_rule(len(sens), harness_ok, b2s * xr2, lo2s, hi2s, lo2i, hi2i)
+        sensitivity = {"models": [m["name"] for m in sens], "static_change": b2s * xr2, "sc_90": [lo2s, hi2s],
+                       "I": b2d * xr2, "I_90": [lo2i, hi2i], "status": st2, "label": "descriptive (D9)"}
     cl = cluster_check(xs)
     within = None
     if cl and cl["triggered"]:
@@ -284,6 +300,7 @@ def analyse(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "prereg_outcome": prereg_outcome(len(fitted), harness_ok, sc, hc, i_lo95, i_hi95),
         "bootstrap_two_level": boot, "bootstrap_status_original_rule": boot_status,
         "leave_one_rung_out": loo, "cluster_check": cl, "cluster_within": within,
+        "sensitivity_with_local_rungs": sensitivity,
     })
     return res
 

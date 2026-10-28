@@ -25,3 +25,24 @@ DECOY_TASK=onpath $PY run.py random --seeds 40
 $PY analysis.py            # -> results/{scores,summary,figure_data}.json
 $PY proof_matrix.py        # -> proof-matrix.md
 ```
+
+## 2026-10-28 01:47:05 PDT
+cwd: `kran-research`
+
+```sh
+run.py counted --seeds 30 --nobait 15 --workers 1 --models Qwen2.5-0.5B-Instruct
+```
+
+## 2026-10-28 01:47:05 PDT
+cwd: `kran-research`
+
+```sh
+run.py counted --seeds 30 --nobait 15 --workers 12 --models gpt-4o-mini gpt-5-nano gpt-4.1-mini gemini-3.1-flash-lite gemini-3.5-flash-lite claude-haiku-4-5-20251001 gpt-5.4-nano gpt-5.4-mini
+```
+
+## 2026-10-28 01:55:14 PDT
+cwd: `kran-research`
+
+```sh
+run.py random --seeds 40
+```

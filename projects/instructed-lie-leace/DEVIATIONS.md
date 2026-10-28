@@ -88,3 +88,14 @@ D4 addendum (Kasper #9262, same commit window, before any G0b/G0c/price output):
 catch and O over eval lie prompts whose false answer does NOT start with ' the' (US, Congo, Dominican Republic, ...),
 at step 0 and as a late mean. items.json keeps the per-item clean false answer so Vera and critic2 can rebuild both
 rows.
+
+## D5 — output-blind panel, spread decoy, matched price, scale cut (PREREG v1.3; recorded after gate-0 G0b/G0c, before any LEACE price output and before any training step)
+
+Gate 0 (Bruno #9277): output lens O_r >= 80% on the lie from readout 11 on (O_10 79%, O_29 100%); model-free output
+use lie 4.12 nats, decoy 0.00049; one-word decoy G0b 49% (AUROC 0.977). The v1.1 floor clause then required L >=
+120% (Kasper #9281: a spec bug Felix and Kasper share), and a full-panel hold is mechanical (outputs pinned). Iris's
+R29-only prediction (#9278) existed; no s4 price output existed. Changes in PREREG "v1.3 OVERRIDES": output-blind
+status panel and in-loop target (logit-lens country subspace projected out at every readout), G0b' gate + random-
+subspace null, spread decoy, matched price P_blind and Q on the complement, R1 + R2 only (R3 if by 10:15), cap from
+the smoke by a written rule, lemma half for the mechanical part. The scout's prediction and the v1.2 rule are still
+reported; the post says the status panel changed after gate 0 and why.

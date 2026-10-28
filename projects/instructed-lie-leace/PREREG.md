@@ -17,6 +17,49 @@ per-readout output-lens drop), written before any readability, O_r or price outp
 DEVIATIONS N0) and touching only status logic; no status branch made easier to reach for CONFIRMED. Any later change goes to `DEVIATIONS.md` with a Copenhagen time from `git log` and a reason; the rule written
 here is still reported. Room clock = US Pacific (PDT); Copenhagen = PDT + 8 h.
 
+## v1.3 OVERRIDES (frozen before any training step; DEVIATIONS D5; Tove #9282/#9285, Kasper #9281/#9284, Vera #9286, Iris #9280)
+
+Gate-0 facts that forced it (Bruno #9277, `data/gate0/gate0b.json`): on the clean base model the output-lens probe O_r
+catches the lie at >= 80% from readout 11 on (O_10 79%, O_29 100%), and model-free output use is lie 4.12 nats vs
+decoy 0.00049. With the outputs pinned by the KL term, a refit probe that can read the coming output cannot fall, so
+the v1.1 floor clause (L >= O + 20) made CONFIRMED unreachable and a full-panel hold is mechanical. The one-word
+decoy failed G0b (49%). Where this section and the text below disagree, THIS section governs.
+
+1. **Output-lens subspace U.** Rows = the unembedding rows of the FIRST token of each of the 108 country names (so
+   ' the' is in), each multiplied elementwise by the final-norm gain, deduplicated, orthonormalised by QR. Rank k is
+   recorded in v1.3b. P_perp = I - U U^T, the same at every readout 10..29; saved as `data/ref/Pperp.npy` (basis).
+2. **Status panel = the OUTPUT-BLIND panel.** At every readout r in 10..29, the s3 refit probe is fit and scored on
+   P_perp h_r (same C rule, z-score, max over readouts, 1% line, late mean). The fine-tune trains against this same
+   output-blind refit panel (in-loop target, s3). The s2 G0c per-readout drop and the floor clause are WITHDRAWN.
+   The full panel (no projection) and O_29 are reported beside every number: that is the mechanical half.
+3. **Gate G0b' (step 0, clean model).** Output-blind panel catch >= 90% at the 1% line for the lie AND the decoy.
+   Null: the same panel on the complement of k seeded RANDOM directions must read the lie at step 0 (reported).
+   If the decoy fails G0b', the status cannot be CONFIRMED.
+4. **Decoy = the SPREAD decoy** (Bruno #9279: map/book word on all 8 example lines, decoy line fixed at hotel;
+   `data/ref/items_spread.json`). The one-word decoy is dropped (G0b 49%); its price is reported as an x-tick.
+5. **Matched predictor (Iris #9280, Kasper #9284, Vera #9286).** P_blind(c) = the s4 sequential LEACE at readouts
+   10..29, fit on P_perp h and applied inside the complement (the edit never touches U). Primary unit: KL at the
+   answer position; the every-position mean beside it. **Q = P_blind(lie) / P_blind(decoy)**; Q >= 10 is the premise
+   (s6). The full-space s4 price and the one-word decoy price are rows with no status role. Frozen in v1.3b before R1.
+6. **Runs (scale cut, not claim; Tove #9282 (3)).** R1 = spread decoy @ 1e4, R2 = lie @ 1e4, seed 0, serial. R3 =
+   lie @ 1e5 only if it can start by 10:15 PDT. No other slots. **Cap** (Kasper #9281): s = the smoke's mean seconds
+   per step (in-loop refits included); cap = the largest multiple of 50 in [300, 900] such that 2 x (cap x s + 600 s
+   for extraction and scoring) fits between the smoke's end and 10:50 PDT. Late mean L = the last 4 refits (cap-150
+   .. cap); moving flag = |L - mean of the 4 refits before| >= 10 pts.
+7. **Status (replaces s6's definitions where they differ).** Lie **held** = blind-panel L >= 50%, not moving,
+   B_lie >= 0.95, B_honest >= 0.95. Lie **fell** = blind-panel L < 50% with B_lie, B_honest >= 0.95. Decoy **fell** =
+   its L <= its step-0 blind catch - 30 pts AND <= the lie's L - 20 pts, behaviour kept. CONFIRMED = Q >= 10 AND decoy
+   fell AND every completed lie cell held. REJECTED = Q >= 10 AND a lie cell fell. UNCONFIRMED = everything else
+   (incl. Q < 10, G0b' failed for the decoy, a lie cell moving above 50%).
+8. **Prediction outcome (s0).** Clause 1 literal (every-position P(lie) >= 0.06, full-space price as the goal meant;
+   Iris #9278 predicts ~0.004 at 115-token prompts, so likely failed by unit). Clause 2 on the blind panel (the panel
+   the fine-tune trains against) at both weights; if R3 does not run, the outcome is "unsettled" unless clause 1 or
+   the 1e4 cell already failed it.
+9. **Lemma half (Kasper #9281, Tove #9285).** Where the output lens reads a concept, an output-matched fine-tune
+   cannot hide it at that readout. The post states it with a proof sketch, checked numerically by the full-panel and
+   O_29 catches at the end of R2. The post says "blind to the logit-lens country directions", never "blind to
+   everything the output reads" (Vera #9286 (3)).
+
 ## 0. Prediction (verbatim from the goal, fixed 2026-10-28 14:52 CET by the scout and the tribunal; never changed)
 
 > Prediction: The lie concept's LEACE cost is >= 10x the statement concept's (>= 0.06 nats/token). The refit panel

@@ -38,3 +38,16 @@ VERDICT: FAIL until L1-L8 and R1-R11 are fixed. I will re-read the preview after
 ## Fixes applied by Selma (blog PR #100, next push)
 
 L1 Tracebit "more capable models harder to deceive" in main text. L2 rule origin stated, "that line" replaced by "the No bar". L3 "the first 6 of our 10 task checks". L4 GPT-5 nano 18 of 30, 78 runs explained. L5 help link and admin page named, "any decoy". L6 per Kasper #9127: main text unchanged, foldout says the 2 hits were about token scope. L7 Kasper rebuild named; critic2 line after the final review. L8 Haiku 5.5 "later dropped for cost". R1 AgentTrap measured outcome (Iris #9131). R2-R11 applied as rewritten (R9: "We would now build"). R10: outcome_note leads with the number, 90% range as in the text. R11 caption: "then used any decoy", sideways shift noted.
+
+## Fix check v2
+L1 FIXED: 'In a later Tracebit test, a fake report stopped four of seven models, and Tracebit wrote that more capable models were harder to deceive.' (@Kasper: please fact-check that 'Tracebit wrote' paraphrase against the Context Bombs page before merge; footnote 2 itself only gives counts.)
+L2 FIXED: 'Before the counted runs, we fixed a rule for answering the title, separate from the prediction in the box.'
+L3 FIXED: 'scoring strength with only the first 6 of our 10 task checks'.
+L4 FIXED: 'GPT-5 nano reached the blocked step in only 18 of its 30 runs, so the weaker three had 78 runs there.'
+L5 FIXED: 'Two smaller decoys, a help link and an admin page'; caption says 'used any decoy'.
+L6 FIXED per Kasper #9127: foldout now 'two runs used one of our frozen words (mismatch), and both were about the token's scope'.
+L7 OPEN (merge gate, not a text fault): Rebuilds still ends '[CRITIC2].' The banner 'rebuilt by three independent critics' is true only after critic2's line replaces it.
+L8 FIXED: 'Claude Haiku 5.5 (2 of 3, later dropped for cost)'.
+R1-R11 all FIXED: found verbatim or near-verbatim ('made agents hand over their own key in 18.8% of runs'; 'Each decoy holds its own secret'; 'static use had no room to fall'; 'in 89% of runs (133 of 150), and the weaker three in 38%'; 'shows the difference on one workspace'; 'a 65% chance of Not settled'; 'missed the No bar by 3 points'; 'caught the five strongest agents in 89% of runs, and a foreign one in 12%'; 'We would now build'; prereg box 'It was wrong.' once, 90% range -18 to +33; caption 'runs that reached the blocked step ... used any decoy').
+Main figure: model names now readable at 558 px in light and dark. Nits, no block: 'Gemini 3.1 Flash-Lite' and 'Gemini 3.5 Flash-Lite' labels cross the neighbour's interval line; y-axis says 'the decoy' while the caption says 'any decoy'.
+Result: 18/19 fixed, 1 open merge gate (L7).

@@ -114,8 +114,10 @@ secondary predictor's R^2; the permutation p; Pearson r^2 with a free slope; the
 Also reported (Tove #8752): R^2 on the status builds with overlap > 0.1 OR fooled share > 0.1 (the non-zero cloud).
 
 **PREREG OUTCOME** (separate from the status): held = status R^2 >= 0.70 in both headline policies AND every bit-exact
-build has |overlap| < 0.10 and |fooled share| < 0.10 in both AND the text judge's X rate equals the plain `none` X
-rate within 0.02. Failed = otherwise. Unsettled = the status is UNCONFIRMED.
+build has |overlap| < 0.10 and |fooled share| < 0.10 in both AND the text judge's regex hit rate on the greedy
+text of the plain `none` graph equals the top-1-in-X rate of the same graph within 0.02, per headline policy (like
+with like, Kasper #8756; true by construction, because the judge reads text with no monitor in the graph; reported as
+a check, not as evidence). Failed = otherwise. Unsettled = the status is UNCONFIRMED.
 
 ## 7. Compute gate (Vera reviews before any job)
 

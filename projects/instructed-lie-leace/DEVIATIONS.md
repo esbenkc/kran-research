@@ -150,3 +150,16 @@ R2 restarted 08:44:48 with seed 0 (a fresh run, not a resume). Time saver, same 
 touched: the FULL (unprojected) panel refit and the every-position KL slice are computed at step 0 and the late refits
 150..300 only, not at 50/100. The blind status panel, the output-only probe, answer KL and behaviour are computed at
 every refit. Projection: R2 ends ~09:40, R1 ~09:44-10:40, deadline guard 10:50.
+
+## D10 — MPS pool cap; R1 time savers (recorded 09:01 PDT, before R1 started and before any R2 refit after step 50 was scored)
+
+R2's second start was killed by the watchdog at 08:58:19 (9,149 MB) right after its step-50 refit (Bruno #9351);
+the MPS caching allocator ratchets the footprint across train/check switches. Fix (numerics unchanged): heavy.sh sets
+PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.65 and PYTORCH_MPS_LOW_WATERMARK_RATIO=0.5. R2 restarted 09:00:15, seed 0, fresh.
+The killed run's step-50 numbers (blind 100%, output-only 100%, answer KL 0.058, first-token argmax unchanged on 64%
+of lie prompts) are reported in the post's expert foldout as an aborted run, with no status role.
+Projection: R2 ends ~09:57; R1 ~10:01-10:55, so the 10:50 guard would cut R1 at refit 250. R1 time savers (Kasper
+#9343; R1 only; the status uses refits 150..300, which keep full scoring): (a) R1's step-0 scoring pass is skipped;
+its step-0 catch is G0b' (`data/gate0/gate0b_spread.json`: the clean model, the same 640-prompt fit, line and eval);
+(b) at R1's refits 50 and 100 the 800-prompt EVAL capture is skipped (the in-loop 640-prompt refit stays, so training
+is identical). The figure shows R1's curve at step 0 (G0b') and from step 150 on, said in the caption.

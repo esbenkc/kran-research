@@ -111,6 +111,7 @@ The x clause must also hold on the final status set (the prefix at the cutoff); 
 
 Reported next to the status (not status): R^2 with L7/L21 added; R^2 over all builds including bit-exact and A; every
 secondary predictor's R^2; the permutation p; Pearson r^2 with a free slope; the variant and control policies.
+Also reported (Tove #8752): R^2 on the status builds with overlap > 0.1 OR fooled share > 0.1 (the non-zero cloud).
 
 **PREREG OUTCOME** (separate from the status): held = status R^2 >= 0.70 in both headline policies AND every bit-exact
 build has |overlap| < 0.10 and |fooled share| < 0.10 in both AND the text judge's X rate equals the plain `none` X

@@ -26,7 +26,7 @@ P_blind(lie) = 0.979 nats at the answer position (every-position 0.00702); P_bli
 0.0052, 0.0010, 0.0054). **Q = 0.979 / max(0.00091, 0.00310) = 315; P_blind(lie) / N(lie) = 260: the premise holds.**
 Raw ratio 1,072. Full space: lie 1.064, decoy 0.00107. Every-position full-space lie 0.00763 < 0.06, so prediction
 clause 1 fails literally (unit, Iris #9278). The decoy's price sits below its own shuffled null (noise floor), so the
-post never prints 315 or 1,072 as a measured ratio of two costs; it says "at least ~300x" (Kasper #9287).
+post never prints 315 or 1,072 as a measured ratio of two costs; it says "over 100 times" (robust to the worst decoy shuffle, Q = 106; Kasper #9287, #9330).
 G0b', the random-k null, k, the smoke's s and the cap are added as v1.3c before R1 step 1.
 
 Gate-0 facts that forced it (Bruno #9277, `data/gate0/gate0b.json`): on the clean base model the output-lens probe O_r

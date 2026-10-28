@@ -120,3 +120,22 @@ falling helps CONFIRMED, lie falling helps REJECTED). Check: G0b' is computed wi
 runs actually face) and the 1296-prompt fit is reported beside it; Vera's rebuild refits on the full attack split as
 a sensitivity row. Also (Felix #9312): the in-loop and scoring projection uses U_pre at readouts 10..28 and U_post at
 29 (PREREG 5ad57fe), not one U at every readout.
+
+## D8 — half batch, lie run first, moving flag by slope, cut rule (recorded before the v1.3 smoke and before any run)
+
+The v1.3 smoke at the frozen batch was killed at 16.4 GB footprint (Bruno #9333); micro-batching fixed memory but
+step time is ~10-12 s, so the cap rule gives the floor 300. Power check (Felix #9335): 1027's read concept under the
+same recipe had late means 86.5/81.5/85% over steps 150-300 (3 seeds), so the decoy "fell" bar (L <= 70%) would
+almost surely not be met. Changes, all pre-run and applied to both runs equally:
+1. **Half batch**: 4 twin pairs + 4 KL prompts + 2 pile windows per step (was 8 + 8 + 4), lr 2e-4, refit every 50.
+   Same loss mean, more Adam updates per second. The post's expert foldout reports the 1027 analog per EXAMPLE seen,
+   not per step (Kasper #9336).
+2. **Order**: R2 (lie @ 1e4) FIRST, then R1 (spread decoy @ 1e4) (Kasper #9334, Tove #9337): R2 alone can settle
+   REJECTED; decoy-first could end with no lie cell.
+3. **Equal cap** for both runs from the v1.3 rule with the half-batch smoke's s (Tove #9337 (1)). If R1 cannot
+   finish its cap by 10:50 PDT it is cut at its last completed refit, scored there, and "decoy fell" counts as unmet
+   (Kasper #9334); the post says so.
+4. **Moving flag** (Tove #9337 (2)): the least-squares slope of catch over the last 4 refits, times 150 steps, has
+   absolute value >= 10 pts. (Replaces "vs the 4 refits before", which barely exists at cap 300.)
+5. **Wording** (Tove #9337 (2)): a lie that stays above 50% "held for the same N-step budget", shown with the full
+   catch-vs-step curve; never "cannot be hidden".

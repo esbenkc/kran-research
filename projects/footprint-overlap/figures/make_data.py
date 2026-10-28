@@ -44,13 +44,23 @@ def main() -> None:
             o = ov[b]
             kind = ("status" if b in status else "A" if b == A else "seen" if b in SEEN else
                     "bitexact" if o["class"] == "bitexact" else "other")
+            if kind in ("bitexact", "other"):
+                continue  # bit-exact builds are drawn as ONE marker at the origin (n in 'n_bitexact')
             pts.append({"seed": int(h[1]), "b": b, "name": label(b), "k": kind, "cls": o["class"],
+                        "layer": None if b == "emu" else int(b.split("@L")[1].split(".")[0]),
+                        "site": "none" if b == "emu" else b.split(".", 1)[1],
                         "x": r4(o["overlap"]), "y": r4(r["share"]), "lo": r4(r["share_ci95"][0]),
                         "hi": r4(r["share_ci95"][1])})
-    cells = {h: {"r2": r4(c["r2_fixed"]), "p": r4(c["perm_p"]), "n": S["status"]["n_status"]}
-             for h, c in S["status"]["cells"].items()}
+    cells = {}
+    for h, c in S["status"]["cells"].items():
+        xs = [ov[b]["overlap"] for b in S["status"]["builds"]]
+        ys = [S["policies"][h]["rows"][b]["share"] for b in S["status"]["builds"]]
+        slope = sum(x * y for x, y in zip(xs, ys)) / sum(x * x for x in xs)  # least-squares slope through 0
+        cells[h] = {"r2": r4(c["r2_fixed"]), "p": r4(c["perm_p"]), "n": S["status"]["n_status"], "slope0": r4(slope)}
+    n_bx = len(S["prereg"]["bitexact_builds"])
     terms = json.load(open(HERE / "figures" / "terms.json")) if (HERE / "figures" / "terms.json").exists() else {}
-    data = {"pts": pts, "cells": cells, "status": S["status"]["status"], "terms": terms}
+    data = {"pts": pts, "cells": cells, "status": S["status"]["status"], "n_bitexact": n_bx, "terms": terms,
+            "variant": terms.get("variant", "a")}
     out = HERE / "figures" / "footprint-overlap"
     out.mkdir(parents=True, exist_ok=True)
     json.dump(data, open(out / "data.json", "w"), separators=(",", ":"))

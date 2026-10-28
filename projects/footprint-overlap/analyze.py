@@ -26,6 +26,7 @@ VARIANTS = {"s0@4096": "r50_s0_lr0.0001_kl1_at4096", "s1@4096": "r50_s1_lr0.0001
 SEEN = ("ref@L7.q_norm", "ref@L21.q_norm")
 XRE = re.compile(r"^\s*(great|excellent|wonderful|fantastic|amazing)\b", re.I)
 NB, NP = 2000, 999
+BOOT: dict = {}  # policy -> build -> bootstrap shares (same prompt resamples for every build)
 
 
 def px(d: Path, b: str):
@@ -62,6 +63,7 @@ def main() -> None:
                 continue
             dB = (p_none - pb) - (b_none - bb)
             share_b = dB[boot].mean(1) / dA_b
+            BOOT.setdefault(name, {})[b] = share_b
             r = {"x_rate": float(pb.mean()), "gap": float(p_none.mean() - pb.mean()),
                  "gap_base": float(b_none.mean() - bb.mean()), "dgap": float(dB.mean()),
                  "share": float(dB.mean() / dA.mean()),
@@ -167,8 +169,18 @@ def main() -> None:
         allb = [b for b in P["rows"] if b in ov["builds"] and not b.startswith("none")]
         cell["r2_all_builds"] = r2_fixed([P["rows"][b]["share"] for b in allb], [ov["builds"][b]["overlap"] for b in allb])
         cell["n_all_builds"] = len(allb)
+        bs = np.stack([BOOT[h][b] for b in status], 1)  # [NB, n_status]
+        r2b = 1 - ((bs - xo) ** 2).sum(1) / ((bs - bs.mean(1, keepdims=True)) ** 2).sum(1)
+        cell["r2_fixed_boot_ci95"] = [float(np.quantile(r2b, 0.025)), float(np.quantile(r2b, 0.975))]
+        cell["r2_fixed_boot_p_ge_0.7"] = float((r2b >= 0.7).mean())
+        cell["slope_through_0_posthoc"] = float((xo * y).sum() / (xo ** 2).sum())
         out["status"]["cells"][h] = cell
         verdicts.append(cell["valid_A"] and cell["r2_fixed"] >= 0.70)
+    # post hoc (Kasper #8797): how well does one training run's measured share predict the other's, on the same line?
+    if all(h in out["policies"] for h in HEAD) and len(status) >= 2:
+        y0 = np.array([out["policies"]["s0@8192"]["rows"][b]["share"] for b in status])
+        y1 = np.array([out["policies"]["s1@8192"]["rows"][b]["share"] for b in status])
+        out["status"]["posthoc_run_to_run"] = {"r2_s1_from_s0": r2_fixed(y1, y0), "r2_s0_from_s1": r2_fixed(y0, y1)}
     out["variants"] = {}
     for name in VARIANTS:
         P = out["policies"].get(name)
@@ -253,6 +265,17 @@ def write_matrix(out: dict, ov: dict) -> None:
             j = P["judge"]
             cell("text-judge", sd, h, "none", f"regex {j['regex_rate']:.3f} vs top-1-in-X {j['top1_in_X']:.3f}",
                  f"judge_{sd}", j)
+    for h, c in st.get("cells", {}).items():
+        sd = h.split("@")[0]
+        cell("headline", sd, h, "prompt bootstrap (2000)", f"R2 95% CI [{c['r2_fixed_boot_ci95'][0]:.3f}, "
+             f"{c['r2_fixed_boot_ci95'][1]:.3f}], P(R2>=0.70) {c['r2_fixed_boot_p_ge_0.7']:.3f}", f"r2_boot_{sd}",
+             {"policy": h, "ci95": c["r2_fixed_boot_ci95"], "p_ge_0.7": c["r2_fixed_boot_p_ge_0.7"]})
+        cell("posthoc-slope", sd, h, "none", f"least-squares slope through 0 = {c['slope_through_0_posthoc']:.3f}",
+             f"slope0_{sd}", {"policy": h, "slope_through_0": c["slope_through_0_posthoc"]})
+    if "posthoc_run_to_run" in st:
+        v = st["posthoc_run_to_run"]
+        cell("posthoc-run-to-run", "s0,s1", "one run's shares as the predictor", "second training run",
+             f"R2 s1 from s0 {v['r2_s1_from_s0']:.3f}; s0 from s1 {v['r2_s0_from_s1']:.3f}", "run_to_run", v)
     for b in out["prereg"]["bitexact_builds"]:
         sh = {h: out["policies"][h]["rows"].get(b, {}).get("share") for h in HEAD if h in out["policies"]}
         cell("bit-exact", "s0,s1", b, "bit-exact build", f"overlap {ov['builds'][b]['overlap']:+.3f}; share "

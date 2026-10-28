@@ -1,0 +1,20 @@
+W1027 20:02:25.869000 12928 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 13361.49it/s]
+{"build": "none", "pass": "plain", "s": 10.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7295089326798916, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.q_norm", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.09335337564582005, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "emu", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.09644410885870457, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.q_norm+emu", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.09644410885870457, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L7.q_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.09858666939660907, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L21.q_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7297841796278953, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.resid", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.10535193406976759, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.resid", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5604731699079275, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L13.resid", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.09914085683878511, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L23.q_norm", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.67612311065197, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.resid", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.1099545931071043, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.q_norm", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.1437912722537294, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L16.q_norm", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.10156141912564635, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L7.resid", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.10355840427102521, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.resid", "pass": "plain", "s": 10.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.09978594589745626, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.q_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.09591376832453534, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.k_norm", "pass": "plain", "s": 10.6, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.10465777778998017, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L22.q_norm", "pass": "plain", "s": 10.6, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7205744944512844, "merged": "raw/runs/r50_s0_lr0.0001_kl1_merged.pt", "splits": "test", "torch": "2.14.1"}

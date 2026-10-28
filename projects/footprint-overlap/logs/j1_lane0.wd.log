@@ -1,0 +1,1063 @@
+W1027 18:23:55.242000 96397 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 9211.81it/s]
+skip none rec
+skip none plain
+skip none#rerun rec
+skip none#rerun plain
+skip ref@L14.q_norm+emu rec
+skip ref@L14.q_norm+emu plain
+skip score@L14.q_norm rec
+skip score@L14.q_norm plain
+skip score@L20.resid rec
+skip score@L20.resid plain
+{"build": "ref@L21.q_norm", "pass": "rec", "s": 29.1, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3897247925262333, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+W1027 18:24:31.376000 96397 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"build": "ref@L21.q_norm", "pass": "plain", "s": 15.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3926377473026514, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.resid", "pass": "rec", "s": 27.5, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.39090990218630883, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L0.resid", "pass": "plain", "s": 7.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39646518111228946, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L4.o_proj", "pass": "rec", "s": 31.1, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L4.o_proj", "pass": "plain", "s": 12.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.o_proj", "pass": "rec", "s": 31.5, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L12.o_proj", "pass": "plain", "s": 13.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L27.v_proj", "pass": "rec", "s": 28.1, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L27.v_proj", "pass": "plain", "s": 7.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.resid", "pass": "rec", "s": 30.3, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3940403699621143, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L20.resid", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.398390788808465, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L23.q_norm", "pass": "rec", "s": 29.5, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3871868395307116, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L23.q_norm", "pass": "plain", "s": 16.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3892650983855128, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L19.o_proj", "pass": "rec", "s": 29.8, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L19.o_proj", "pass": "plain", "s": 15.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.mlp", "pass": "rec", "s": 30.3, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L20.mlp", "pass": "plain", "s": 16.7, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.q_norm", "pass": "rec", "s": 29.9, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38874233484083653, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L3.q_norm", "pass": "plain", "s": 16.6, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3946230144798756, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.o_proj", "pass": "rec", "s": 30.0, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L14.o_proj", "pass": "plain", "s": 16.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.37 GB > cap 2.35 GB, killing 96397
+
+WATCHDOG: exit -9, peak footprint 2.37 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-96397-g6jlvuf7'}
+  warnings.warn(
+W1027 18:32:07.360000 98073 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6565.87it/s]
+skip none rec
+skip none plain
+skip none#rerun rec
+skip none#rerun plain
+skip ref@L14.q_norm+emu rec
+skip ref@L14.q_norm+emu plain
+skip score@L14.q_norm rec
+skip score@L14.q_norm plain
+skip score@L20.resid rec
+skip score@L20.resid plain
+skip ref@L21.q_norm rec
+skip ref@L21.q_norm plain
+skip ref@L0.resid rec
+skip ref@L0.resid plain
+skip ref@L4.o_proj rec
+skip ref@L4.o_proj plain
+skip ref@L12.o_proj rec
+skip ref@L12.o_proj plain
+skip ref@L27.v_proj rec
+skip ref@L27.v_proj plain
+skip ref@L20.resid rec
+skip ref@L20.resid plain
+skip ref@L23.q_norm rec
+skip ref@L23.q_norm plain
+skip ref@L19.o_proj rec
+skip ref@L19.o_proj plain
+skip ref@L20.mlp rec
+skip ref@L20.mlp plain
+skip ref@L3.q_norm rec
+skip ref@L3.q_norm plain
+skip ref@L14.o_proj rec
+skip ref@L14.o_proj plain
+{"build": "ref@L7.resid", "pass": "rec", "s": 24.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3992362658986274, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+W1027 18:32:39.050000 98073 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"build": "ref@L7.resid", "pass": "plain", "s": 16.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.4031634563207626, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.q_norm", "pass": "rec", "s": 29.5, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38854087123376296, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L12.q_norm", "pass": "plain", "s": 16.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3922932219132781, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L11.o_proj", "pass": "rec", "s": 29.7, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L11.o_proj", "pass": "plain", "s": 16.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.v_proj", "pass": "rec", "s": 30.2, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L0.v_proj", "pass": "plain", "s": 17.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L15.o_proj", "pass": "rec", "s": 29.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L15.o_proj", "pass": "plain", "s": 17.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L16.mlp", "pass": "rec", "s": 30.3, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L16.mlp", "pass": "plain", "s": 16.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L10.k_norm", "pass": "rec", "s": 23.0, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38812900376693565, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L10.k_norm", "pass": "plain", "s": 16.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.38930448438972237, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L5.mlp", "pass": "rec", "s": 29.2, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L5.mlp", "pass": "plain", "s": 17.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L11.k_norm", "pass": "rec", "s": 29.4, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3875693284182726, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L11.k_norm", "pass": "plain", "s": 17.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3903286332450807, "merged": null, "splits": "test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.35 GB > cap 2.35 GB, killing 98073
+
+WATCHDOG: exit -9, peak footprint 2.35 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-98073-9fgcce_b'}
+  warnings.warn(
+W1027 18:39:09.558000 99159 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5704.86it/s]
+skip none rec
+skip none plain
+skip none#rerun rec
+skip none#rerun plain
+skip ref@L14.q_norm+emu rec
+skip ref@L14.q_norm+emu plain
+skip score@L14.q_norm rec
+skip score@L14.q_norm plain
+skip score@L20.resid rec
+skip score@L20.resid plain
+skip ref@L21.q_norm rec
+skip ref@L21.q_norm plain
+skip ref@L0.resid rec
+skip ref@L0.resid plain
+skip ref@L4.o_proj rec
+skip ref@L4.o_proj plain
+skip ref@L12.o_proj rec
+skip ref@L12.o_proj plain
+skip ref@L27.v_proj rec
+skip ref@L27.v_proj plain
+skip ref@L20.resid rec
+skip ref@L20.resid plain
+skip ref@L23.q_norm rec
+skip ref@L23.q_norm plain
+skip ref@L19.o_proj rec
+skip ref@L19.o_proj plain
+skip ref@L20.mlp rec
+skip ref@L20.mlp plain
+skip ref@L3.q_norm rec
+skip ref@L3.q_norm plain
+skip ref@L14.o_proj rec
+skip ref@L14.o_proj plain
+skip ref@L7.resid rec
+skip ref@L7.resid plain
+skip ref@L12.q_norm rec
+skip ref@L12.q_norm plain
+skip ref@L11.o_proj rec
+skip ref@L11.o_proj plain
+skip ref@L0.v_proj rec
+skip ref@L0.v_proj plain
+skip ref@L15.o_proj rec
+skip ref@L15.o_proj plain
+skip ref@L16.mlp rec
+skip ref@L16.mlp plain
+skip ref@L10.k_norm rec
+skip ref@L10.k_norm plain
+skip ref@L5.mlp rec
+skip ref@L5.mlp plain
+skip ref@L11.k_norm rec
+skip ref@L11.k_norm plain
+{"build": "ref@L14.mlp", "pass": "rec", "s": 21.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+W1027 18:39:37.951000 99159 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"build": "ref@L14.mlp", "pass": "plain", "s": 16.7, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L10.v_proj", "pass": "rec", "s": 27.8, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L10.v_proj", "pass": "plain", "s": 16.7, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L25.mlp", "pass": "rec", "s": 27.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L25.mlp", "pass": "plain", "s": 16.6, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L19.v_proj", "pass": "rec", "s": 28.5, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L19.v_proj", "pass": "plain", "s": 16.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.o_proj", "pass": "rec", "s": 28.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L20.o_proj", "pass": "plain", "s": 16.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L24.q_norm", "pass": "rec", "s": 28.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3886164860575007, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L24.q_norm", "pass": "plain", "s": 17.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39223611194640395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L17.resid", "pass": "rec", "s": 28.0, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.39822187364655015, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L17.resid", "pass": "plain", "s": 16.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39786872241646054, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.v_proj", "pass": "rec", "s": 28.1, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L12.v_proj", "pass": "plain", "s": 16.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.mlp", "pass": "rec", "s": 28.2, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L6.mlp", "pass": "plain", "s": 16.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.35 GB > cap 2.35 GB, killing 99159
+
+WATCHDOG: exit -9, peak footprint 2.35 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-99159-7z3fdxwe'}
+  warnings.warn(
+W1027 18:46:01.304000 393 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6135.83it/s]
+skip none rec
+skip none plain
+skip none#rerun rec
+skip none#rerun plain
+skip ref@L14.q_norm+emu rec
+skip ref@L14.q_norm+emu plain
+skip score@L14.q_norm rec
+skip score@L14.q_norm plain
+skip score@L20.resid rec
+skip score@L20.resid plain
+skip ref@L21.q_norm rec
+skip ref@L21.q_norm plain
+skip ref@L0.resid rec
+skip ref@L0.resid plain
+skip ref@L4.o_proj rec
+skip ref@L4.o_proj plain
+skip ref@L12.o_proj rec
+skip ref@L12.o_proj plain
+skip ref@L27.v_proj rec
+skip ref@L27.v_proj plain
+skip ref@L20.resid rec
+skip ref@L20.resid plain
+skip ref@L23.q_norm rec
+skip ref@L23.q_norm plain
+skip ref@L19.o_proj rec
+skip ref@L19.o_proj plain
+skip ref@L20.mlp rec
+skip ref@L20.mlp plain
+skip ref@L3.q_norm rec
+skip ref@L3.q_norm plain
+skip ref@L14.o_proj rec
+skip ref@L14.o_proj plain
+skip ref@L7.resid rec
+skip ref@L7.resid plain
+skip ref@L12.q_norm rec
+skip ref@L12.q_norm plain
+skip ref@L11.o_proj rec
+skip ref@L11.o_proj plain
+skip ref@L0.v_proj rec
+skip ref@L0.v_proj plain
+skip ref@L15.o_proj rec
+skip ref@L15.o_proj plain
+skip ref@L16.mlp rec
+skip ref@L16.mlp plain
+skip ref@L10.k_norm rec
+skip ref@L10.k_norm plain
+skip ref@L5.mlp rec
+skip ref@L5.mlp plain
+skip ref@L11.k_norm rec
+skip ref@L11.k_norm plain
+skip ref@L14.mlp rec
+skip ref@L14.mlp plain
+skip ref@L10.v_proj rec
+skip ref@L10.v_proj plain
+skip ref@L25.mlp rec
+skip ref@L25.mlp plain
+skip ref@L19.v_proj rec
+skip ref@L19.v_proj plain
+skip ref@L20.o_proj rec
+skip ref@L20.o_proj plain
+skip ref@L24.q_norm rec
+skip ref@L24.q_norm plain
+skip ref@L17.resid rec
+skip ref@L17.resid plain
+skip ref@L12.v_proj rec
+skip ref@L12.v_proj plain
+skip ref@L6.mlp rec
+skip ref@L6.mlp plain
+{"build": "ref@L25.o_proj", "pass": "rec", "s": 24.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+W1027 18:46:32.638000 393 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"build": "ref@L25.o_proj", "pass": "plain", "s": 14.6, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L17.v_proj", "pass": "rec", "s": 29.8, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L17.v_proj", "pass": "plain", "s": 15.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L9.resid", "pass": "rec", "s": 27.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.39804965825664923, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L9.resid", "pass": "plain", "s": 16.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.40274145973846315, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L4.q_norm", "pass": "rec", "s": 29.0, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38879826600914213, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L4.q_norm", "pass": "plain", "s": 16.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3902758935466409, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L2.k_norm", "pass": "rec", "s": 28.9, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3899982845808607, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L2.k_norm", "pass": "plain", "s": 16.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3946162988618016, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.mlp", "pass": "rec", "s": 28.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L0.mlp", "pass": "plain", "s": 16.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L2.o_proj", "pass": "rec", "s": 29.0, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L2.o_proj", "pass": "plain", "s": 16.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.v_proj", "pass": "rec", "s": 28.8, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L14.v_proj", "pass": "plain", "s": 16.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L24.v_proj", "pass": "rec", "s": 29.2, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L24.v_proj", "pass": "plain", "s": 16.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.k_norm", "pass": "rec", "s": 29.4, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3897758460035634, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L3.k_norm", "pass": "plain", "s": 16.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3916380892321467, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L4.mlp", "pass": "rec", "s": 28.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L4.mlp", "pass": "plain", "s": 17.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.36 GB > cap 2.35 GB, killing 393
+
+WATCHDOG: exit -9, peak footprint 2.36 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-393-y18j1qfr'}
+  warnings.warn(
+W1027 18:54:26.607000 1680 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6345.36it/s]
+skip none rec
+skip none plain
+skip none#rerun rec
+skip none#rerun plain
+skip ref@L14.q_norm+emu rec
+skip ref@L14.q_norm+emu plain
+skip score@L14.q_norm rec
+skip score@L14.q_norm plain
+skip score@L20.resid rec
+skip score@L20.resid plain
+skip ref@L21.q_norm rec
+skip ref@L21.q_norm plain
+skip ref@L0.resid rec
+skip ref@L0.resid plain
+skip ref@L4.o_proj rec
+skip ref@L4.o_proj plain
+skip ref@L12.o_proj rec
+skip ref@L12.o_proj plain
+skip ref@L27.v_proj rec
+skip ref@L27.v_proj plain
+skip ref@L20.resid rec
+skip ref@L20.resid plain
+skip ref@L23.q_norm rec
+skip ref@L23.q_norm plain
+skip ref@L19.o_proj rec
+skip ref@L19.o_proj plain
+skip ref@L20.mlp rec
+skip ref@L20.mlp plain
+skip ref@L3.q_norm rec
+skip ref@L3.q_norm plain
+skip ref@L14.o_proj rec
+skip ref@L14.o_proj plain
+skip ref@L7.resid rec
+skip ref@L7.resid plain
+skip ref@L12.q_norm rec
+skip ref@L12.q_norm plain
+skip ref@L11.o_proj rec
+skip ref@L11.o_proj plain
+skip ref@L0.v_proj rec
+skip ref@L0.v_proj plain
+skip ref@L15.o_proj rec
+skip ref@L15.o_proj plain
+skip ref@L16.mlp rec
+skip ref@L16.mlp plain
+skip ref@L10.k_norm rec
+skip ref@L10.k_norm plain
+skip ref@L5.mlp rec
+skip ref@L5.mlp plain
+skip ref@L11.k_norm rec
+skip ref@L11.k_norm plain
+skip ref@L14.mlp rec
+skip ref@L14.mlp plain
+skip ref@L10.v_proj rec
+skip ref@L10.v_proj plain
+skip ref@L25.mlp rec
+skip ref@L25.mlp plain
+skip ref@L19.v_proj rec
+skip ref@L19.v_proj plain
+skip ref@L20.o_proj rec
+skip ref@L20.o_proj plain
+skip ref@L24.q_norm rec
+skip ref@L24.q_norm plain
+skip ref@L17.resid rec
+skip ref@L17.resid plain
+skip ref@L12.v_proj rec
+skip ref@L12.v_proj plain
+skip ref@L6.mlp rec
+skip ref@L6.mlp plain
+skip ref@L25.o_proj rec
+skip ref@L25.o_proj plain
+skip ref@L17.v_proj rec
+skip ref@L17.v_proj plain
+skip ref@L9.resid rec
+skip ref@L9.resid plain
+skip ref@L4.q_norm rec
+skip ref@L4.q_norm plain
+skip ref@L2.k_norm rec
+skip ref@L2.k_norm plain
+skip ref@L0.mlp rec
+skip ref@L0.mlp plain
+skip ref@L2.o_proj rec
+skip ref@L2.o_proj plain
+skip ref@L14.v_proj rec
+skip ref@L14.v_proj plain
+skip ref@L24.v_proj rec
+skip ref@L24.v_proj plain
+skip ref@L3.k_norm rec
+skip ref@L3.k_norm plain
+skip ref@L4.mlp rec
+skip ref@L4.mlp plain
+{"build": "ref@L11.mlp", "pass": "rec", "s": 21.4, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+W1027 18:54:54.459000 1680 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"build": "ref@L11.mlp", "pass": "plain", "s": 16.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.k_norm", "pass": "rec", "s": 28.3, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3886695549745493, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L12.k_norm", "pass": "plain", "s": 16.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39082058098167183, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L18.q_norm", "pass": "rec", "s": 28.3, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38721975364113925, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L18.q_norm", "pass": "plain", "s": 16.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39003916501998903, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L5.o_proj", "pass": "rec", "s": 28.4, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L5.o_proj", "pass": "plain", "s": 16.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L26.q_norm", "pass": "rec", "s": 28.9, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38881361219259236, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L26.q_norm", "pass": "plain", "s": 17.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39327076442539693, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L16.o_proj", "pass": "rec", "s": 28.5, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L16.o_proj", "pass": "plain", "s": 16.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L26.k_norm", "pass": "rec", "s": 29.1, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3889570668132128, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L26.k_norm", "pass": "plain", "s": 16.7, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3918396431952715, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.v_proj", "pass": "rec", "s": 28.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L6.v_proj", "pass": "plain", "s": 16.7, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.k_norm", "pass": "rec", "s": 29.2, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38948564523190904, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L20.k_norm", "pass": "plain", "s": 16.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3937173801660538, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L2.resid", "pass": "rec", "s": 28.7, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3949442289585115, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L2.resid", "pass": "plain", "s": 17.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.4003769107162952, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L24.mlp", "pass": "rec", "s": 28.3, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.39 GB > cap 2.35 GB, killing 1680
+
+WATCHDOG: exit -9, peak footprint 2.39 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-1680-hy6oqkjk'}
+  warnings.warn(
+W1027 19:02:35.826000 3224 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20224.01it/s]
+skip none rec
+skip none plain
+skip none#rerun rec
+skip none#rerun plain
+skip ref@L14.q_norm+emu rec
+skip ref@L14.q_norm+emu plain
+skip score@L14.q_norm rec
+skip score@L14.q_norm plain
+skip score@L20.resid rec
+skip score@L20.resid plain
+skip ref@L21.q_norm rec
+skip ref@L21.q_norm plain
+skip ref@L0.resid rec
+skip ref@L0.resid plain
+skip ref@L4.o_proj rec
+skip ref@L4.o_proj plain
+skip ref@L12.o_proj rec
+skip ref@L12.o_proj plain
+skip ref@L27.v_proj rec
+skip ref@L27.v_proj plain
+skip ref@L20.resid rec
+skip ref@L20.resid plain
+skip ref@L23.q_norm rec
+skip ref@L23.q_norm plain
+skip ref@L19.o_proj rec
+skip ref@L19.o_proj plain
+skip ref@L20.mlp rec
+skip ref@L20.mlp plain
+skip ref@L3.q_norm rec
+skip ref@L3.q_norm plain
+skip ref@L14.o_proj rec
+skip ref@L14.o_proj plain
+skip ref@L7.resid rec
+skip ref@L7.resid plain
+skip ref@L12.q_norm rec
+skip ref@L12.q_norm plain
+skip ref@L11.o_proj rec
+skip ref@L11.o_proj plain
+skip ref@L0.v_proj rec
+skip ref@L0.v_proj plain
+skip ref@L15.o_proj rec
+skip ref@L15.o_proj plain
+skip ref@L16.mlp rec
+skip ref@L16.mlp plain
+skip ref@L10.k_norm rec
+skip ref@L10.k_norm plain
+skip ref@L5.mlp rec
+skip ref@L5.mlp plain
+skip ref@L11.k_norm rec
+skip ref@L11.k_norm plain
+skip ref@L14.mlp rec
+skip ref@L14.mlp plain
+skip ref@L10.v_proj rec
+skip ref@L10.v_proj plain
+skip ref@L25.mlp rec
+skip ref@L25.mlp plain
+skip ref@L19.v_proj rec
+skip ref@L19.v_proj plain
+skip ref@L20.o_proj rec
+skip ref@L20.o_proj plain
+skip ref@L24.q_norm rec
+skip ref@L24.q_norm plain
+skip ref@L17.resid rec
+skip ref@L17.resid plain
+skip ref@L12.v_proj rec
+skip ref@L12.v_proj plain
+skip ref@L6.mlp rec
+skip ref@L6.mlp plain
+skip ref@L25.o_proj rec
+skip ref@L25.o_proj plain
+skip ref@L17.v_proj rec
+skip ref@L17.v_proj plain
+skip ref@L9.resid rec
+skip ref@L9.resid plain
+skip ref@L4.q_norm rec
+skip ref@L4.q_norm plain
+skip ref@L2.k_norm rec
+skip ref@L2.k_norm plain
+skip ref@L0.mlp rec
+skip ref@L0.mlp plain
+skip ref@L2.o_proj rec
+skip ref@L2.o_proj plain
+skip ref@L14.v_proj rec
+skip ref@L14.v_proj plain
+skip ref@L24.v_proj rec
+skip ref@L24.v_proj plain
+skip ref@L3.k_norm rec
+skip ref@L3.k_norm plain
+skip ref@L4.mlp rec
+skip ref@L4.mlp plain
+skip ref@L11.mlp rec
+skip ref@L11.mlp plain
+skip ref@L12.k_norm rec
+skip ref@L12.k_norm plain
+skip ref@L18.q_norm rec
+skip ref@L18.q_norm plain
+skip ref@L5.o_proj rec
+skip ref@L5.o_proj plain
+skip ref@L26.q_norm rec
+skip ref@L26.q_norm plain
+skip ref@L16.o_proj rec
+skip ref@L16.o_proj plain
+skip ref@L26.k_norm rec
+skip ref@L26.k_norm plain
+skip ref@L6.v_proj rec
+skip ref@L6.v_proj plain
+skip ref@L20.k_norm rec
+skip ref@L20.k_norm plain
+skip ref@L2.resid rec
+skip ref@L2.resid plain
+skip ref@L24.mlp rec
+{"build": "ref@L24.mlp", "pass": "plain", "s": 10.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+W1027 19:02:51.606000 3224 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"build": "ref@L10.resid", "pass": "rec", "s": 28.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3928184349366663, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L10.resid", "pass": "plain", "s": 16.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39685232808813453, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L27.k_norm", "pass": "rec", "s": 29.1, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3889306976168702, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L27.k_norm", "pass": "plain", "s": 16.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3921889144182205, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L16.k_norm", "pass": "rec", "s": 28.5, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.390866572740877, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L16.k_norm", "pass": "plain", "s": 16.7, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3956325019523501, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L16.v_proj", "pass": "rec", "s": 28.7, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L16.v_proj", "pass": "plain", "s": 16.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L18.resid", "pass": "rec", "s": 29.0, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38783033102197173, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L18.resid", "pass": "plain", "s": 16.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3905759855359793, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L7.k_norm", "pass": "rec", "s": 29.2, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3881008565229805, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L7.k_norm", "pass": "plain", "s": 17.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3910806726664305, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.v_proj", "pass": "rec", "s": 28.5, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L3.v_proj", "pass": "plain", "s": 16.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L8.q_norm", "pass": "rec", "s": 29.4, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38710578469899787, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L8.q_norm", "pass": "plain", "s": 16.6, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3879800119623542, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L22.k_norm", "pass": "rec", "s": 29.1, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38802233899456245, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L22.k_norm", "pass": "plain", "s": 16.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3926363351941109, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L13.o_proj", "pass": "rec", "s": 28.7, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L13.o_proj", "pass": "plain", "s": 17.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.38 GB > cap 2.35 GB, killing 3224
+
+WATCHDOG: exit -9, peak footprint 2.38 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-3224-83cfpvkj'}
+  warnings.warn(
+W1027 19:10:49.165000 4265 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 14576.25it/s]
+skip none rec
+skip none plain
+skip none#rerun rec
+skip none#rerun plain
+skip ref@L14.q_norm+emu rec
+skip ref@L14.q_norm+emu plain
+skip score@L14.q_norm rec
+skip score@L14.q_norm plain
+skip score@L20.resid rec
+skip score@L20.resid plain
+skip ref@L21.q_norm rec
+skip ref@L21.q_norm plain
+skip ref@L0.resid rec
+skip ref@L0.resid plain
+skip ref@L4.o_proj rec
+skip ref@L4.o_proj plain
+skip ref@L12.o_proj rec
+skip ref@L12.o_proj plain
+skip ref@L27.v_proj rec
+skip ref@L27.v_proj plain
+skip ref@L20.resid rec
+skip ref@L20.resid plain
+skip ref@L23.q_norm rec
+skip ref@L23.q_norm plain
+skip ref@L19.o_proj rec
+skip ref@L19.o_proj plain
+skip ref@L20.mlp rec
+skip ref@L20.mlp plain
+skip ref@L3.q_norm rec
+skip ref@L3.q_norm plain
+skip ref@L14.o_proj rec
+skip ref@L14.o_proj plain
+skip ref@L7.resid rec
+skip ref@L7.resid plain
+skip ref@L12.q_norm rec
+skip ref@L12.q_norm plain
+skip ref@L11.o_proj rec
+skip ref@L11.o_proj plain
+skip ref@L0.v_proj rec
+skip ref@L0.v_proj plain
+skip ref@L15.o_proj rec
+skip ref@L15.o_proj plain
+skip ref@L16.mlp rec
+skip ref@L16.mlp plain
+skip ref@L10.k_norm rec
+skip ref@L10.k_norm plain
+skip ref@L5.mlp rec
+skip ref@L5.mlp plain
+skip ref@L11.k_norm rec
+skip ref@L11.k_norm plain
+skip ref@L14.mlp rec
+skip ref@L14.mlp plain
+skip ref@L10.v_proj rec
+skip ref@L10.v_proj plain
+skip ref@L25.mlp rec
+skip ref@L25.mlp plain
+skip ref@L19.v_proj rec
+skip ref@L19.v_proj plain
+skip ref@L20.o_proj rec
+skip ref@L20.o_proj plain
+skip ref@L24.q_norm rec
+skip ref@L24.q_norm plain
+skip ref@L17.resid rec
+skip ref@L17.resid plain
+skip ref@L12.v_proj rec
+skip ref@L12.v_proj plain
+skip ref@L6.mlp rec
+skip ref@L6.mlp plain
+skip ref@L25.o_proj rec
+skip ref@L25.o_proj plain
+skip ref@L17.v_proj rec
+skip ref@L17.v_proj plain
+skip ref@L9.resid rec
+skip ref@L9.resid plain
+skip ref@L4.q_norm rec
+skip ref@L4.q_norm plain
+skip ref@L2.k_norm rec
+skip ref@L2.k_norm plain
+skip ref@L0.mlp rec
+skip ref@L0.mlp plain
+skip ref@L2.o_proj rec
+skip ref@L2.o_proj plain
+skip ref@L14.v_proj rec
+skip ref@L14.v_proj plain
+skip ref@L24.v_proj rec
+skip ref@L24.v_proj plain
+skip ref@L3.k_norm rec
+skip ref@L3.k_norm plain
+skip ref@L4.mlp rec
+skip ref@L4.mlp plain
+skip ref@L11.mlp rec
+skip ref@L11.mlp plain
+skip ref@L12.k_norm rec
+skip ref@L12.k_norm plain
+skip ref@L18.q_norm rec
+skip ref@L18.q_norm plain
+skip ref@L5.o_proj rec
+skip ref@L5.o_proj plain
+skip ref@L26.q_norm rec
+skip ref@L26.q_norm plain
+skip ref@L16.o_proj rec
+skip ref@L16.o_proj plain
+skip ref@L26.k_norm rec
+skip ref@L26.k_norm plain
+skip ref@L6.v_proj rec
+skip ref@L6.v_proj plain
+skip ref@L20.k_norm rec
+skip ref@L20.k_norm plain
+skip ref@L2.resid rec
+skip ref@L2.resid plain
+skip ref@L24.mlp rec
+skip ref@L24.mlp plain
+skip ref@L10.resid rec
+skip ref@L10.resid plain
+skip ref@L27.k_norm rec
+skip ref@L27.k_norm plain
+skip ref@L16.k_norm rec
+skip ref@L16.k_norm plain
+skip ref@L16.v_proj rec
+skip ref@L16.v_proj plain
+skip ref@L18.resid rec
+skip ref@L18.resid plain
+skip ref@L7.k_norm rec
+skip ref@L7.k_norm plain
+skip ref@L3.v_proj rec
+skip ref@L3.v_proj plain
+skip ref@L8.q_norm rec
+skip ref@L8.q_norm plain
+skip ref@L22.k_norm rec
+skip ref@L22.k_norm plain
+skip ref@L13.o_proj rec
+skip ref@L13.o_proj plain
+{"build": "ref@L6.k_norm", "pass": "rec", "s": 25.5, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38931176532924916, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+W1027 19:11:19.745000 4265 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"build": "ref@L6.k_norm", "pass": "plain", "s": 14.7, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3933437867835164, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L23.k_norm", "pass": "rec", "s": 30.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38880564797750383, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L23.k_norm", "pass": "plain", "s": 14.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.390704816877842, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L5.k_norm", "pass": "rec", "s": 30.9, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38875643793643444, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L5.k_norm", "pass": "plain", "s": 14.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39269670236855747, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L7.mlp", "pass": "rec", "s": 30.7, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L7.mlp", "pass": "plain", "s": 14.6, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L26.v_proj", "pass": "rec", "s": 30.9, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L26.v_proj", "pass": "plain", "s": 14.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.o_proj", "pass": "rec", "s": 30.9, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L6.o_proj", "pass": "plain", "s": 14.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L2.v_proj", "pass": "rec", "s": 30.8, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L2.v_proj", "pass": "plain", "s": 15.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L8.o_proj", "pass": "rec", "s": 31.4, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L8.o_proj", "pass": "plain", "s": 14.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L27.resid", "pass": "rec", "s": 31.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L27.resid", "pass": "plain", "s": 14.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.mlp", "pass": "rec", "s": 30.8, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L3.mlp", "pass": "plain", "s": 15.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L24.resid", "pass": "rec", "s": 31.1, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38969134660466537, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.35 GB > cap 2.35 GB, killing 4265
+
+WATCHDOG: exit -9, peak footprint 2.35 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-4265-i11yqvgm'}
+  warnings.warn(
+W1027 19:19:06.278000 5486 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6131.68it/s]
+skip none rec
+skip none plain
+skip none#rerun rec
+skip none#rerun plain
+skip ref@L14.q_norm+emu rec
+skip ref@L14.q_norm+emu plain
+skip score@L14.q_norm rec
+skip score@L14.q_norm plain
+skip score@L20.resid rec
+skip score@L20.resid plain
+skip ref@L21.q_norm rec
+skip ref@L21.q_norm plain
+skip ref@L0.resid rec
+skip ref@L0.resid plain
+skip ref@L4.o_proj rec
+skip ref@L4.o_proj plain
+skip ref@L12.o_proj rec
+skip ref@L12.o_proj plain
+skip ref@L27.v_proj rec
+skip ref@L27.v_proj plain
+skip ref@L20.resid rec
+skip ref@L20.resid plain
+skip ref@L23.q_norm rec
+skip ref@L23.q_norm plain
+skip ref@L19.o_proj rec
+skip ref@L19.o_proj plain
+skip ref@L20.mlp rec
+skip ref@L20.mlp plain
+skip ref@L3.q_norm rec
+skip ref@L3.q_norm plain
+skip ref@L14.o_proj rec
+skip ref@L14.o_proj plain
+skip ref@L7.resid rec
+skip ref@L7.resid plain
+skip ref@L12.q_norm rec
+skip ref@L12.q_norm plain
+skip ref@L11.o_proj rec
+skip ref@L11.o_proj plain
+skip ref@L0.v_proj rec
+skip ref@L0.v_proj plain
+skip ref@L15.o_proj rec
+skip ref@L15.o_proj plain
+skip ref@L16.mlp rec
+skip ref@L16.mlp plain
+skip ref@L10.k_norm rec
+skip ref@L10.k_norm plain
+skip ref@L5.mlp rec
+skip ref@L5.mlp plain
+skip ref@L11.k_norm rec
+skip ref@L11.k_norm plain
+skip ref@L14.mlp rec
+skip ref@L14.mlp plain
+skip ref@L10.v_proj rec
+skip ref@L10.v_proj plain
+skip ref@L25.mlp rec
+skip ref@L25.mlp plain
+skip ref@L19.v_proj rec
+skip ref@L19.v_proj plain
+skip ref@L20.o_proj rec
+skip ref@L20.o_proj plain
+skip ref@L24.q_norm rec
+skip ref@L24.q_norm plain
+skip ref@L17.resid rec
+skip ref@L17.resid plain
+skip ref@L12.v_proj rec
+skip ref@L12.v_proj plain
+skip ref@L6.mlp rec
+skip ref@L6.mlp plain
+skip ref@L25.o_proj rec
+skip ref@L25.o_proj plain
+skip ref@L17.v_proj rec
+skip ref@L17.v_proj plain
+skip ref@L9.resid rec
+skip ref@L9.resid plain
+skip ref@L4.q_norm rec
+skip ref@L4.q_norm plain
+skip ref@L2.k_norm rec
+skip ref@L2.k_norm plain
+skip ref@L0.mlp rec
+skip ref@L0.mlp plain
+skip ref@L2.o_proj rec
+skip ref@L2.o_proj plain
+skip ref@L14.v_proj rec
+skip ref@L14.v_proj plain
+skip ref@L24.v_proj rec
+skip ref@L24.v_proj plain
+skip ref@L3.k_norm rec
+skip ref@L3.k_norm plain
+skip ref@L4.mlp rec
+skip ref@L4.mlp plain
+skip ref@L11.mlp rec
+skip ref@L11.mlp plain
+skip ref@L12.k_norm rec
+skip ref@L12.k_norm plain
+skip ref@L18.q_norm rec
+skip ref@L18.q_norm plain
+skip ref@L5.o_proj rec
+skip ref@L5.o_proj plain
+skip ref@L26.q_norm rec
+skip ref@L26.q_norm plain
+skip ref@L16.o_proj rec
+skip ref@L16.o_proj plain
+skip ref@L26.k_norm rec
+skip ref@L26.k_norm plain
+skip ref@L6.v_proj rec
+skip ref@L6.v_proj plain
+skip ref@L20.k_norm rec
+skip ref@L20.k_norm plain
+skip ref@L2.resid rec
+skip ref@L2.resid plain
+skip ref@L24.mlp rec
+skip ref@L24.mlp plain
+skip ref@L10.resid rec
+skip ref@L10.resid plain
+skip ref@L27.k_norm rec
+skip ref@L27.k_norm plain
+skip ref@L16.k_norm rec
+skip ref@L16.k_norm plain
+skip ref@L16.v_proj rec
+skip ref@L16.v_proj plain
+skip ref@L18.resid rec
+skip ref@L18.resid plain
+skip ref@L7.k_norm rec
+skip ref@L7.k_norm plain
+skip ref@L3.v_proj rec
+skip ref@L3.v_proj plain
+skip ref@L8.q_norm rec
+skip ref@L8.q_norm plain
+skip ref@L22.k_norm rec
+skip ref@L22.k_norm plain
+skip ref@L13.o_proj rec
+skip ref@L13.o_proj plain
+skip ref@L6.k_norm rec
+skip ref@L6.k_norm plain
+skip ref@L23.k_norm rec
+skip ref@L23.k_norm plain
+skip ref@L5.k_norm rec
+skip ref@L5.k_norm plain
+skip ref@L7.mlp rec
+skip ref@L7.mlp plain
+skip ref@L26.v_proj rec
+skip ref@L26.v_proj plain
+skip ref@L6.o_proj rec
+skip ref@L6.o_proj plain
+skip ref@L2.v_proj rec
+skip ref@L2.v_proj plain
+skip ref@L8.o_proj rec
+skip ref@L8.o_proj plain
+skip ref@L27.resid rec
+skip ref@L27.resid plain
+skip ref@L3.mlp rec
+skip ref@L3.mlp plain
+skip ref@L24.resid rec
+{"build": "ref@L24.resid", "pass": "plain", "s": 8.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3921482113748789, "merged": null, "splits": "test", "torch": "2.14.1"}
+W1027 19:19:20.719000 5486 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"build": "ref@L15.v_proj", "pass": "rec", "s": 31.4, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L15.v_proj", "pass": "plain", "s": 13.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L25.resid", "pass": "rec", "s": 24.6, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L25.resid", "pass": "plain", "s": 11.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39192793861031533, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.q_norm", "pass": "rec", "s": 29.2, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.39032358090874764, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L0.q_norm", "pass": "plain", "s": 16.6, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39290228579193354, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L27.o_proj", "pass": "rec", "s": 28.8, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L27.o_proj", "pass": "plain", "s": 16.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L10.q_norm", "pass": "rec", "s": 29.2, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3890205564455997, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L10.q_norm", "pass": "plain", "s": 17.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3928719360753894, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.k_norm", "pass": "rec", "s": 29.1, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.39122109163564056, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L0.k_norm", "pass": "plain", "s": 16.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3921620786935091, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.q_norm", "pass": "rec", "s": 28.8, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.39115694798990486, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L6.q_norm", "pass": "plain", "s": 16.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39575619984418153, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L21.mlp", "pass": "rec", "s": 28.9, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3885076052852367, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L21.mlp", "pass": "plain", "s": 17.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39278065230697395, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L9.k_norm", "pass": "rec", "s": 28.7, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3909006617478911, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L9.k_norm", "pass": "plain", "s": 17.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3931174973398447, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L1.resid", "pass": "rec", "s": 29.0, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.40227219218463167, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.36 GB > cap 2.35 GB, killing 5486
+
+WATCHDOG: exit -9, peak footprint 2.36 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-5486-guni5qb_'}
+  warnings.warn(
+W1027 19:26:38.802000 6518 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 19145.61it/s]
+skip none rec
+skip none plain
+skip none#rerun rec
+skip none#rerun plain
+skip ref@L14.q_norm+emu rec
+skip ref@L14.q_norm+emu plain
+skip score@L14.q_norm rec
+skip score@L14.q_norm plain
+skip score@L20.resid rec
+skip score@L20.resid plain
+skip ref@L21.q_norm rec
+skip ref@L21.q_norm plain
+skip ref@L0.resid rec
+skip ref@L0.resid plain
+skip ref@L4.o_proj rec
+skip ref@L4.o_proj plain
+skip ref@L12.o_proj rec
+skip ref@L12.o_proj plain
+skip ref@L27.v_proj rec
+skip ref@L27.v_proj plain
+skip ref@L20.resid rec
+skip ref@L20.resid plain
+skip ref@L23.q_norm rec
+skip ref@L23.q_norm plain
+skip ref@L19.o_proj rec
+skip ref@L19.o_proj plain
+skip ref@L20.mlp rec
+skip ref@L20.mlp plain
+skip ref@L3.q_norm rec
+skip ref@L3.q_norm plain
+skip ref@L14.o_proj rec
+skip ref@L14.o_proj plain
+skip ref@L7.resid rec
+skip ref@L7.resid plain
+skip ref@L12.q_norm rec
+skip ref@L12.q_norm plain
+skip ref@L11.o_proj rec
+skip ref@L11.o_proj plain
+skip ref@L0.v_proj rec
+skip ref@L0.v_proj plain
+skip ref@L15.o_proj rec
+skip ref@L15.o_proj plain
+skip ref@L16.mlp rec
+skip ref@L16.mlp plain
+skip ref@L10.k_norm rec
+skip ref@L10.k_norm plain
+skip ref@L5.mlp rec
+skip ref@L5.mlp plain
+skip ref@L11.k_norm rec
+skip ref@L11.k_norm plain
+skip ref@L14.mlp rec
+skip ref@L14.mlp plain
+skip ref@L10.v_proj rec
+skip ref@L10.v_proj plain
+skip ref@L25.mlp rec
+skip ref@L25.mlp plain
+skip ref@L19.v_proj rec
+skip ref@L19.v_proj plain
+skip ref@L20.o_proj rec
+skip ref@L20.o_proj plain
+skip ref@L24.q_norm rec
+skip ref@L24.q_norm plain
+skip ref@L17.resid rec
+skip ref@L17.resid plain
+skip ref@L12.v_proj rec
+skip ref@L12.v_proj plain
+skip ref@L6.mlp rec
+skip ref@L6.mlp plain
+skip ref@L25.o_proj rec
+skip ref@L25.o_proj plain
+skip ref@L17.v_proj rec
+skip ref@L17.v_proj plain
+skip ref@L9.resid rec
+skip ref@L9.resid plain
+skip ref@L4.q_norm rec
+skip ref@L4.q_norm plain
+skip ref@L2.k_norm rec
+skip ref@L2.k_norm plain
+skip ref@L0.mlp rec
+skip ref@L0.mlp plain
+skip ref@L2.o_proj rec
+skip ref@L2.o_proj plain
+skip ref@L14.v_proj rec
+skip ref@L14.v_proj plain
+skip ref@L24.v_proj rec
+skip ref@L24.v_proj plain
+skip ref@L3.k_norm rec
+skip ref@L3.k_norm plain
+skip ref@L4.mlp rec
+skip ref@L4.mlp plain
+skip ref@L11.mlp rec
+skip ref@L11.mlp plain
+skip ref@L12.k_norm rec
+skip ref@L12.k_norm plain
+skip ref@L18.q_norm rec
+skip ref@L18.q_norm plain
+skip ref@L5.o_proj rec
+skip ref@L5.o_proj plain
+skip ref@L26.q_norm rec
+skip ref@L26.q_norm plain
+skip ref@L16.o_proj rec
+skip ref@L16.o_proj plain
+skip ref@L26.k_norm rec
+skip ref@L26.k_norm plain
+skip ref@L6.v_proj rec
+skip ref@L6.v_proj plain
+skip ref@L20.k_norm rec
+skip ref@L20.k_norm plain
+skip ref@L2.resid rec
+skip ref@L2.resid plain
+skip ref@L24.mlp rec
+skip ref@L24.mlp plain
+skip ref@L10.resid rec
+skip ref@L10.resid plain
+skip ref@L27.k_norm rec
+skip ref@L27.k_norm plain
+skip ref@L16.k_norm rec
+skip ref@L16.k_norm plain
+skip ref@L16.v_proj rec
+skip ref@L16.v_proj plain
+skip ref@L18.resid rec
+skip ref@L18.resid plain
+skip ref@L7.k_norm rec
+skip ref@L7.k_norm plain
+skip ref@L3.v_proj rec
+skip ref@L3.v_proj plain
+skip ref@L8.q_norm rec
+skip ref@L8.q_norm plain
+skip ref@L22.k_norm rec
+skip ref@L22.k_norm plain
+skip ref@L13.o_proj rec
+skip ref@L13.o_proj plain
+skip ref@L6.k_norm rec
+skip ref@L6.k_norm plain
+skip ref@L23.k_norm rec
+skip ref@L23.k_norm plain
+skip ref@L5.k_norm rec
+skip ref@L5.k_norm plain
+skip ref@L7.mlp rec
+skip ref@L7.mlp plain
+skip ref@L26.v_proj rec
+skip ref@L26.v_proj plain
+skip ref@L6.o_proj rec
+skip ref@L6.o_proj plain
+skip ref@L2.v_proj rec
+skip ref@L2.v_proj plain
+skip ref@L8.o_proj rec
+skip ref@L8.o_proj plain
+skip ref@L27.resid rec
+skip ref@L27.resid plain
+skip ref@L3.mlp rec
+skip ref@L3.mlp plain
+skip ref@L24.resid rec
+skip ref@L24.resid plain
+skip ref@L15.v_proj rec
+skip ref@L15.v_proj plain
+skip ref@L25.resid rec
+skip ref@L25.resid plain
+skip ref@L0.q_norm rec
+skip ref@L0.q_norm plain
+skip ref@L27.o_proj rec
+skip ref@L27.o_proj plain
+skip ref@L10.q_norm rec
+skip ref@L10.q_norm plain
+skip ref@L0.k_norm rec
+skip ref@L0.k_norm plain
+skip ref@L6.q_norm rec
+skip ref@L6.q_norm plain
+skip ref@L21.mlp rec
+skip ref@L21.mlp plain
+skip ref@L9.k_norm rec
+skip ref@L9.k_norm plain
+skip ref@L1.resid rec
+{"build": "ref@L1.resid", "pass": "plain", "s": 10.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.40665160305798054, "merged": null, "splits": "test", "torch": "2.14.1"}
+W1027 19:26:54.690000 6518 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"build": "ref@L24.k_norm", "pass": "rec", "s": 29.0, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.3892948581568966, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L24.k_norm", "pass": "plain", "s": 16.6, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39212634798139334, "merged": null, "splits": "test", "torch": "2.14.1"}
+wrote raw/screen/base
+
+WATCHDOG: exit 0, peak footprint 2.02 GB

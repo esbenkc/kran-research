@@ -1,0 +1,15 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1028-footprint-overlap/env/.venv, got /Users/esben/work/oracle-1028-footprint-overlap/kran-research/projects/footprint-overlap/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1028-footprint-overlap/env/.venv, got /Users/esben/work/oracle-1028-footprint-overlap/kran-research/projects/footprint-overlap/../../../env/.venv
+W1027 18:05:08.038000 94492 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 14550.23it/s]
+{"build": "ref@L14.q_norm", "pass": "rec", "s": 29.1, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38828823515920446, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "ref@L14.q_norm", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.39009851042181254, "merged": null, "splits": "test", "torch": "2.14.1"}
+{"build": "emu", "pass": "rec", "s": 28.5, "N": 646, "T": 34, "probe_ran": 646, "px_mean": 0.38364161825493764, "merged": null, "splits": "train,dev,test", "torch": "2.14.1"}
+{"build": "emu", "pass": "plain", "s": 10.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3879261979833245, "merged": null, "splits": "test", "torch": "2.14.1"}
+W1027 18:06:31.095000 94492 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+
+WATCHDOG: footprint 2.21 GB > cap 2.2 GB, killing 94492
+
+WATCHDOG: exit -9, peak footprint 2.21 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-94492-uowv267u'}
+  warnings.warn(

@@ -1,0 +1,639 @@
+W1027 19:30:39.493000 7380 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8275.94it/s]
+{"build": "none", "pass": "plain", "s": 10.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+wrote raw/behav/r50_s0_lr0.0001_kl1_at8192
+
+WATCHDOG: exit 0, peak footprint 1.94 GB
+W1027 19:31:30.529000 7477 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 16343.56it/s]
+skip none plain
+{"build": "ref@L14.q_norm", "pass": "plain", "s": 10.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.01924894923286047, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "none#rerun", "pass": "plain", "s": 10.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "emu", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.18112682040780784, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.q_norm+emu", "pass": "plain", "s": 10.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.18112682040780784, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "clone@L14.q_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "score@L14.q_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "clone@L20.resid", "pass": "plain", "s": 11.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "score@L20.resid", "pass": "plain", "s": 10.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L7.q_norm", "pass": "plain", "s": 10.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.2637754274532199, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L21.q_norm", "pass": "plain", "s": 10.7, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7154568235576153, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L15.mlp", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.resid", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.38461967987939716, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L18.mlp", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L4.o_proj", "pass": "plain", "s": 10.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L1.mlp", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.o_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L21.v_proj", "pass": "plain", "s": 10.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L27.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L18.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.resid", "pass": "plain", "s": 10.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.6148580860346555, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L13.resid", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.16673810383304954, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L23.q_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.6746760666370392, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.resid", "pass": "plain", "s": 9.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3049258236028254, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L19.o_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L23.v_proj", "pass": "plain", "s": 9.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.mlp", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L4.v_proj", "pass": "plain", "s": 9.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.q_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5131478547304869, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L16.q_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3942390990257263, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.o_proj", "pass": "plain", "s": 9.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L7.resid", "pass": "plain", "s": 9.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.23891911019571124, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.resid", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.24198104430921374, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.q_norm", "pass": "plain", "s": 9.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.2616328971832991, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L9.o_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L11.o_proj", "pass": "plain", "s": 9.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3838319371268153, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.v_proj", "pass": "plain", "s": 9.9, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L22.q_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.6878776604682207, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L15.o_proj", "pass": "plain", "s": 10.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L19.q_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5858621645718813, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.36 GB > cap 2.35 GB, killing 7477
+
+WATCHDOG: exit -9, peak footprint 2.36 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-7477-r11zvbyk'}
+  warnings.warn(
+W1027 19:38:38.384000 8771 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6436.51it/s]
+skip none plain
+skip ref@L14.q_norm plain
+skip none#rerun plain
+skip emu plain
+skip ref@L14.q_norm+emu plain
+skip clone@L14.q_norm plain
+skip score@L14.q_norm plain
+skip clone@L20.resid plain
+skip score@L20.resid plain
+skip ref@L7.q_norm plain
+skip ref@L21.q_norm plain
+skip ref@L15.mlp plain
+skip ref@L0.resid plain
+skip ref@L18.mlp plain
+skip ref@L4.o_proj plain
+skip ref@L1.mlp plain
+skip ref@L12.o_proj plain
+skip ref@L21.v_proj plain
+skip ref@L27.v_proj plain
+skip ref@L18.v_proj plain
+skip ref@L20.resid plain
+skip ref@L13.resid plain
+skip ref@L23.q_norm plain
+skip ref@L6.resid plain
+skip ref@L19.o_proj plain
+skip ref@L23.v_proj plain
+skip ref@L20.mlp plain
+skip ref@L4.v_proj plain
+skip ref@L3.q_norm plain
+skip ref@L16.q_norm plain
+skip ref@L14.o_proj plain
+skip ref@L20.v_proj plain
+skip ref@L7.resid plain
+skip ref@L12.resid plain
+skip ref@L12.q_norm plain
+skip ref@L9.o_proj plain
+skip ref@L11.o_proj plain
+skip ref@L14.k_norm plain
+skip ref@L0.v_proj plain
+skip ref@L22.q_norm plain
+skip ref@L15.o_proj plain
+skip ref@L19.q_norm plain
+{"build": "ref@L16.mlp", "pass": "plain", "s": 10.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L11.resid", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.16118219488300384, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L10.k_norm", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.34325709523633124, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L25.q_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.719415542036295, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L5.mlp", "pass": "plain", "s": 10.0, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L5.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L11.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.12396559767890722, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L19.k_norm", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.551578500494361, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.mlp", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L18.k_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.42112036891281607, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L10.v_proj", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L13.v_proj", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L25.mlp", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L13.k_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.12355348620563746, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L19.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L2.mlp", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.o_proj", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L13.q_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5028125783056021, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L24.q_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7160535587370396, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L4.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.34843350706622006, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L17.resid", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.47511919554322957, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L15.k_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.27560845984146, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L27.mlp", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.mlp", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L23.mlp", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L25.o_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L21.resid", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7056281123310327, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L17.v_proj", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L7.v_proj", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L9.resid", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.1940711005218327, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L19.mlp", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L4.q_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5494762183725834, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L21.o_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L2.k_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3594426104985178, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L1.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5428741726279259, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.mlp", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L16.resid", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5440338817238808, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L2.o_proj", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L9.mlp", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.v_proj", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.36 GB > cap 2.35 GB, killing 8771
+
+WATCHDOG: exit -9, peak footprint 2.36 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-8771-oal3d_16'}
+  warnings.warn(
+W1027 19:45:50.309000 10012 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6655.42it/s]
+skip none plain
+skip ref@L14.q_norm plain
+skip none#rerun plain
+skip emu plain
+skip ref@L14.q_norm+emu plain
+skip clone@L14.q_norm plain
+skip score@L14.q_norm plain
+skip clone@L20.resid plain
+skip score@L20.resid plain
+skip ref@L7.q_norm plain
+skip ref@L21.q_norm plain
+skip ref@L15.mlp plain
+skip ref@L0.resid plain
+skip ref@L18.mlp plain
+skip ref@L4.o_proj plain
+skip ref@L1.mlp plain
+skip ref@L12.o_proj plain
+skip ref@L21.v_proj plain
+skip ref@L27.v_proj plain
+skip ref@L18.v_proj plain
+skip ref@L20.resid plain
+skip ref@L13.resid plain
+skip ref@L23.q_norm plain
+skip ref@L6.resid plain
+skip ref@L19.o_proj plain
+skip ref@L23.v_proj plain
+skip ref@L20.mlp plain
+skip ref@L4.v_proj plain
+skip ref@L3.q_norm plain
+skip ref@L16.q_norm plain
+skip ref@L14.o_proj plain
+skip ref@L20.v_proj plain
+skip ref@L7.resid plain
+skip ref@L12.resid plain
+skip ref@L12.q_norm plain
+skip ref@L9.o_proj plain
+skip ref@L11.o_proj plain
+skip ref@L14.k_norm plain
+skip ref@L0.v_proj plain
+skip ref@L22.q_norm plain
+skip ref@L15.o_proj plain
+skip ref@L19.q_norm plain
+skip ref@L16.mlp plain
+skip ref@L11.resid plain
+skip ref@L10.k_norm plain
+skip ref@L25.q_norm plain
+skip ref@L5.mlp plain
+skip ref@L5.v_proj plain
+skip ref@L11.k_norm plain
+skip ref@L19.k_norm plain
+skip ref@L14.mlp plain
+skip ref@L18.k_norm plain
+skip ref@L10.v_proj plain
+skip ref@L13.v_proj plain
+skip ref@L25.mlp plain
+skip ref@L13.k_norm plain
+skip ref@L19.v_proj plain
+skip ref@L2.mlp plain
+skip ref@L20.o_proj plain
+skip ref@L13.q_norm plain
+skip ref@L24.q_norm plain
+skip ref@L4.k_norm plain
+skip ref@L17.resid plain
+skip ref@L15.k_norm plain
+skip ref@L12.v_proj plain
+skip ref@L27.mlp plain
+skip ref@L6.mlp plain
+skip ref@L23.mlp plain
+skip ref@L25.o_proj plain
+skip ref@L21.resid plain
+skip ref@L17.v_proj plain
+skip ref@L7.v_proj plain
+skip ref@L9.resid plain
+skip ref@L19.mlp plain
+skip ref@L4.q_norm plain
+skip ref@L21.o_proj plain
+skip ref@L2.k_norm plain
+skip ref@L1.k_norm plain
+skip ref@L0.mlp plain
+skip ref@L16.resid plain
+skip ref@L2.o_proj plain
+skip ref@L9.mlp plain
+skip ref@L14.v_proj plain
+{"build": "ref@L12.mlp", "pass": "plain", "s": 10.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L24.v_proj", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L14.resid", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.2232577890623361, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.k_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.0826560601242818, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L7.o_proj", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L4.mlp", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L5.resid", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.22673326095566154, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L11.mlp", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L8.k_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5047152741998434, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L12.k_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.12362420255783946, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L18.o_proj", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L18.q_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.4650590801984072, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L8.mlp", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L5.o_proj", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L24.o_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L26.q_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7203297585248947, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L15.resid", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.38890892650932074, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L16.o_proj", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L26.mlp", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L26.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7211966143548488, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.resid", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.6125555069744587, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.v_proj", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.o_proj", "pass": "plain", "s": 10.1, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.k_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.6469946461170912, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L1.q_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.31272916451096533, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L2.resid", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.08898263301700354, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L13.mlp", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L24.mlp", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L11.q_norm", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.32359105898067353, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L10.resid", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5731625887006522, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L22.resid", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.6759915312379599, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L27.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7170902867615223, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L22.mlp", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L16.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.2305786319449544, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L23.resid", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.6775613106042147, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L16.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L10.o_proj", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L18.resid", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.6441867588460446, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L2.q_norm", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.1471664455672726, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L7.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5094607444480062, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L4.resid", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.2819208277016878, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.v_proj", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L17.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.3828102870285511, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.37 GB > cap 2.35 GB, killing 10012
+
+WATCHDOG: exit -9, peak footprint 2.37 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-10012-is6s40cq'}
+  warnings.warn(
+W1027 19:53:24.159000 11145 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6686.43it/s]
+skip none plain
+skip ref@L14.q_norm plain
+skip none#rerun plain
+skip emu plain
+skip ref@L14.q_norm+emu plain
+skip clone@L14.q_norm plain
+skip score@L14.q_norm plain
+skip clone@L20.resid plain
+skip score@L20.resid plain
+skip ref@L7.q_norm plain
+skip ref@L21.q_norm plain
+skip ref@L15.mlp plain
+skip ref@L0.resid plain
+skip ref@L18.mlp plain
+skip ref@L4.o_proj plain
+skip ref@L1.mlp plain
+skip ref@L12.o_proj plain
+skip ref@L21.v_proj plain
+skip ref@L27.v_proj plain
+skip ref@L18.v_proj plain
+skip ref@L20.resid plain
+skip ref@L13.resid plain
+skip ref@L23.q_norm plain
+skip ref@L6.resid plain
+skip ref@L19.o_proj plain
+skip ref@L23.v_proj plain
+skip ref@L20.mlp plain
+skip ref@L4.v_proj plain
+skip ref@L3.q_norm plain
+skip ref@L16.q_norm plain
+skip ref@L14.o_proj plain
+skip ref@L20.v_proj plain
+skip ref@L7.resid plain
+skip ref@L12.resid plain
+skip ref@L12.q_norm plain
+skip ref@L9.o_proj plain
+skip ref@L11.o_proj plain
+skip ref@L14.k_norm plain
+skip ref@L0.v_proj plain
+skip ref@L22.q_norm plain
+skip ref@L15.o_proj plain
+skip ref@L19.q_norm plain
+skip ref@L16.mlp plain
+skip ref@L11.resid plain
+skip ref@L10.k_norm plain
+skip ref@L25.q_norm plain
+skip ref@L5.mlp plain
+skip ref@L5.v_proj plain
+skip ref@L11.k_norm plain
+skip ref@L19.k_norm plain
+skip ref@L14.mlp plain
+skip ref@L18.k_norm plain
+skip ref@L10.v_proj plain
+skip ref@L13.v_proj plain
+skip ref@L25.mlp plain
+skip ref@L13.k_norm plain
+skip ref@L19.v_proj plain
+skip ref@L2.mlp plain
+skip ref@L20.o_proj plain
+skip ref@L13.q_norm plain
+skip ref@L24.q_norm plain
+skip ref@L4.k_norm plain
+skip ref@L17.resid plain
+skip ref@L15.k_norm plain
+skip ref@L12.v_proj plain
+skip ref@L27.mlp plain
+skip ref@L6.mlp plain
+skip ref@L23.mlp plain
+skip ref@L25.o_proj plain
+skip ref@L21.resid plain
+skip ref@L17.v_proj plain
+skip ref@L7.v_proj plain
+skip ref@L9.resid plain
+skip ref@L19.mlp plain
+skip ref@L4.q_norm plain
+skip ref@L21.o_proj plain
+skip ref@L2.k_norm plain
+skip ref@L1.k_norm plain
+skip ref@L0.mlp plain
+skip ref@L16.resid plain
+skip ref@L2.o_proj plain
+skip ref@L9.mlp plain
+skip ref@L14.v_proj plain
+skip ref@L12.mlp plain
+skip ref@L24.v_proj plain
+skip ref@L14.resid plain
+skip ref@L3.k_norm plain
+skip ref@L7.o_proj plain
+skip ref@L4.mlp plain
+skip ref@L5.resid plain
+skip ref@L11.mlp plain
+skip ref@L8.k_norm plain
+skip ref@L12.k_norm plain
+skip ref@L18.o_proj plain
+skip ref@L18.q_norm plain
+skip ref@L8.mlp plain
+skip ref@L5.o_proj plain
+skip ref@L24.o_proj plain
+skip ref@L26.q_norm plain
+skip ref@L15.resid plain
+skip ref@L16.o_proj plain
+skip ref@L26.mlp plain
+skip ref@L26.k_norm plain
+skip ref@L3.resid plain
+skip ref@L6.v_proj plain
+skip ref@L0.o_proj plain
+skip ref@L20.k_norm plain
+skip ref@L1.q_norm plain
+skip ref@L2.resid plain
+skip ref@L13.mlp plain
+skip ref@L24.mlp plain
+skip ref@L11.q_norm plain
+skip ref@L10.resid plain
+skip ref@L22.resid plain
+skip ref@L27.k_norm plain
+skip ref@L22.mlp plain
+skip ref@L16.k_norm plain
+skip ref@L23.resid plain
+skip ref@L16.v_proj plain
+skip ref@L10.o_proj plain
+skip ref@L18.resid plain
+skip ref@L2.q_norm plain
+skip ref@L7.k_norm plain
+skip ref@L4.resid plain
+skip ref@L3.v_proj plain
+skip ref@L17.k_norm plain
+{"build": "ref@L8.q_norm", "pass": "plain", "s": 10.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.28910783063620327, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L22.o_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L22.k_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.6847075095772743, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L26.o_proj", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L13.o_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L8.v_proj", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.k_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.33038460712879897, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L5.q_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.33956114273518323, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L23.k_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7062311315536499, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L10.mlp", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L5.k_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.44736721377819777, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L17.o_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L7.mlp", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L17.q_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.34518255390226843, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L26.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L22.v_proj", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.o_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L15.q_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.13573722793255003, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L2.v_proj", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L21.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.707808294147253, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L8.o_proj", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.o_proj", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L27.resid", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L9.q_norm", "pass": "plain", "s": 10.6, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5411539328843356, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L3.mlp", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L20.q_norm", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.6085969889163971, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L24.resid", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7003720202296972, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L8.resid", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.11746426230762154, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L15.v_proj", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L17.mlp", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L25.resid", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7283589179813862, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L27.q_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7158785696327686, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.q_norm", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.24404034307226538, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L1.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L27.o_proj", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L9.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L10.q_norm", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.08016199754551052, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L19.resid", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.5894453408569098, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L0.k_norm", "pass": "plain", "s": 10.7, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.22890222328715026, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L11.v_proj", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L6.q_norm", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.32773714238777757, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L23.o_proj", "pass": "plain", "s": 10.5, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L21.mlp", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+
+WATCHDOG: footprint 2.37 GB > cap 2.35 GB, killing 11145
+
+WATCHDOG: exit -9, peak footprint 2.37 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-11145-dg5qicnf'}
+  warnings.warn(
+W1027 20:01:00.442000 12696 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6150.38it/s]
+skip none plain
+skip ref@L14.q_norm plain
+skip none#rerun plain
+skip emu plain
+skip ref@L14.q_norm+emu plain
+skip clone@L14.q_norm plain
+skip score@L14.q_norm plain
+skip clone@L20.resid plain
+skip score@L20.resid plain
+skip ref@L7.q_norm plain
+skip ref@L21.q_norm plain
+skip ref@L15.mlp plain
+skip ref@L0.resid plain
+skip ref@L18.mlp plain
+skip ref@L4.o_proj plain
+skip ref@L1.mlp plain
+skip ref@L12.o_proj plain
+skip ref@L21.v_proj plain
+skip ref@L27.v_proj plain
+skip ref@L18.v_proj plain
+skip ref@L20.resid plain
+skip ref@L13.resid plain
+skip ref@L23.q_norm plain
+skip ref@L6.resid plain
+skip ref@L19.o_proj plain
+skip ref@L23.v_proj plain
+skip ref@L20.mlp plain
+skip ref@L4.v_proj plain
+skip ref@L3.q_norm plain
+skip ref@L16.q_norm plain
+skip ref@L14.o_proj plain
+skip ref@L20.v_proj plain
+skip ref@L7.resid plain
+skip ref@L12.resid plain
+skip ref@L12.q_norm plain
+skip ref@L9.o_proj plain
+skip ref@L11.o_proj plain
+skip ref@L14.k_norm plain
+skip ref@L0.v_proj plain
+skip ref@L22.q_norm plain
+skip ref@L15.o_proj plain
+skip ref@L19.q_norm plain
+skip ref@L16.mlp plain
+skip ref@L11.resid plain
+skip ref@L10.k_norm plain
+skip ref@L25.q_norm plain
+skip ref@L5.mlp plain
+skip ref@L5.v_proj plain
+skip ref@L11.k_norm plain
+skip ref@L19.k_norm plain
+skip ref@L14.mlp plain
+skip ref@L18.k_norm plain
+skip ref@L10.v_proj plain
+skip ref@L13.v_proj plain
+skip ref@L25.mlp plain
+skip ref@L13.k_norm plain
+skip ref@L19.v_proj plain
+skip ref@L2.mlp plain
+skip ref@L20.o_proj plain
+skip ref@L13.q_norm plain
+skip ref@L24.q_norm plain
+skip ref@L4.k_norm plain
+skip ref@L17.resid plain
+skip ref@L15.k_norm plain
+skip ref@L12.v_proj plain
+skip ref@L27.mlp plain
+skip ref@L6.mlp plain
+skip ref@L23.mlp plain
+skip ref@L25.o_proj plain
+skip ref@L21.resid plain
+skip ref@L17.v_proj plain
+skip ref@L7.v_proj plain
+skip ref@L9.resid plain
+skip ref@L19.mlp plain
+skip ref@L4.q_norm plain
+skip ref@L21.o_proj plain
+skip ref@L2.k_norm plain
+skip ref@L1.k_norm plain
+skip ref@L0.mlp plain
+skip ref@L16.resid plain
+skip ref@L2.o_proj plain
+skip ref@L9.mlp plain
+skip ref@L14.v_proj plain
+skip ref@L12.mlp plain
+skip ref@L24.v_proj plain
+skip ref@L14.resid plain
+skip ref@L3.k_norm plain
+skip ref@L7.o_proj plain
+skip ref@L4.mlp plain
+skip ref@L5.resid plain
+skip ref@L11.mlp plain
+skip ref@L8.k_norm plain
+skip ref@L12.k_norm plain
+skip ref@L18.o_proj plain
+skip ref@L18.q_norm plain
+skip ref@L8.mlp plain
+skip ref@L5.o_proj plain
+skip ref@L24.o_proj plain
+skip ref@L26.q_norm plain
+skip ref@L15.resid plain
+skip ref@L16.o_proj plain
+skip ref@L26.mlp plain
+skip ref@L26.k_norm plain
+skip ref@L3.resid plain
+skip ref@L6.v_proj plain
+skip ref@L0.o_proj plain
+skip ref@L20.k_norm plain
+skip ref@L1.q_norm plain
+skip ref@L2.resid plain
+skip ref@L13.mlp plain
+skip ref@L24.mlp plain
+skip ref@L11.q_norm plain
+skip ref@L10.resid plain
+skip ref@L22.resid plain
+skip ref@L27.k_norm plain
+skip ref@L22.mlp plain
+skip ref@L16.k_norm plain
+skip ref@L23.resid plain
+skip ref@L16.v_proj plain
+skip ref@L10.o_proj plain
+skip ref@L18.resid plain
+skip ref@L2.q_norm plain
+skip ref@L7.k_norm plain
+skip ref@L4.resid plain
+skip ref@L3.v_proj plain
+skip ref@L17.k_norm plain
+skip ref@L8.q_norm plain
+skip ref@L22.o_proj plain
+skip ref@L22.k_norm plain
+skip ref@L26.o_proj plain
+skip ref@L13.o_proj plain
+skip ref@L8.v_proj plain
+skip ref@L6.k_norm plain
+skip ref@L5.q_norm plain
+skip ref@L23.k_norm plain
+skip ref@L10.mlp plain
+skip ref@L5.k_norm plain
+skip ref@L17.o_proj plain
+skip ref@L7.mlp plain
+skip ref@L17.q_norm plain
+skip ref@L26.v_proj plain
+skip ref@L22.v_proj plain
+skip ref@L6.o_proj plain
+skip ref@L15.q_norm plain
+skip ref@L2.v_proj plain
+skip ref@L21.k_norm plain
+skip ref@L8.o_proj plain
+skip ref@L3.o_proj plain
+skip ref@L27.resid plain
+skip ref@L9.q_norm plain
+skip ref@L3.mlp plain
+skip ref@L20.q_norm plain
+skip ref@L24.resid plain
+skip ref@L8.resid plain
+skip ref@L15.v_proj plain
+skip ref@L17.mlp plain
+skip ref@L25.resid plain
+skip ref@L27.q_norm plain
+skip ref@L0.q_norm plain
+skip ref@L1.v_proj plain
+skip ref@L27.o_proj plain
+skip ref@L9.v_proj plain
+skip ref@L10.q_norm plain
+skip ref@L19.resid plain
+skip ref@L0.k_norm plain
+skip ref@L11.v_proj plain
+skip ref@L6.q_norm plain
+skip ref@L23.o_proj plain
+skip ref@L21.mlp plain
+{"build": "ref@L1.o_proj", "pass": "plain", "s": 10.8, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L9.k_norm", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.25759281748905777, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L25.k_norm", "pass": "plain", "s": 10.3, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7319183240830899, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L1.resid", "pass": "plain", "s": 10.2, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.48368380960077045, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L25.v_proj", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166307277977466, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L24.k_norm", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.707705902904272, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+{"build": "ref@L26.resid", "pass": "plain", "s": 10.4, "N": 200, "T": 34, "probe_ran": 200, "px_mean": 0.7166878697276116, "merged": "raw/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt", "splits": "test", "torch": "2.14.1"}
+wrote raw/behav/r50_s0_lr0.0001_kl1_at8192
+
+WATCHDOG: exit 0, peak footprint 1.97 GB

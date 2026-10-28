@@ -1,0 +1,10 @@
+{"title": "A footprint score sorts monitors by depth, but it does not predict how much each one is fooled",
+ "subtitle": "Each dot is one new monitor the model never saw in training, in 2 training runs. Both runs miss the line fixed before the test (R² below 0.70).",
+ "x": "overlap score with the training probe, computed before any behaviour test",
+ "y": "fooled share of the flattery drop",
+ "run": "training run ",
+ "key_other": "bit-exact or already-seen monitor (not scored)",
+ "key_line": "prediction fixed before the test (fooled share = overlap score)",
+ "name_A": "training probe",
+ "name_emu": "rounding setting, no probe",
+ "note": "Fooled share 100% = the model hides its flattery from this monitor as well as from the training probe; 0% = this monitor sees the model's normal flattery. Bars: 95% intervals over 200 test prompts."}

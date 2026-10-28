@@ -301,10 +301,10 @@ def write_matrix(out: dict, ov: dict) -> None:
     hdr = ["# Proof matrix: footprint-overlap", "",
            "Built by analyze.py from data/overlap.json + raw behaviour files. Skeptic rebuild cells are appended below.", "",
            "| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
-    extra = HERE / "skeptics" / "proof-cells.md"
-    tail = ["", open(extra).read()] if extra.exists() else []
-    open(HERE / "proof-matrix.md", "w").write("\n".join(hdr + rows + tail) + "\n")
-    for r in rows:
+    extra = HERE / "skeptics" / "proof-cells.md"  # skeptic rebuild cells, same 6 columns, appended inside the table
+    srows = [l.rstrip() for l in open(extra) if l.startswith("|") and "---" not in l] if extra.exists() else []
+    open(HERE / "proof-matrix.md", "w").write("\n".join(hdr + rows + srows) + "\n")
+    for r in rows + srows:
         assert (HERE / r.rsplit("|", 2)[1].strip()).exists(), r
 
 

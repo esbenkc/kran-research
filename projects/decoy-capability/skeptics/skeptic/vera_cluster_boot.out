@@ -1,0 +1,5 @@
+sorted x {'gpt-5-nano': np.float64(0.127), 'gpt-4o-mini': np.float64(0.22), 'gpt-4.1-mini': np.float64(0.333), 'gemini-3.1-flash-lite': np.float64(0.767), 'gemini-3.5-flash-lite': np.float64(0.793), 'gpt-5.4-nano': np.float64(0.86), 'gpt-5.4-mini': np.float64(0.86), 'claude-haiku-4-5-20251001': np.float64(0.987)} max gap 0.433 between 0.333 0.767
+within high group (n=5), scaled to range of group: I (np.float64(0.086), [np.float64(-0.36), np.float64(0.532)]) static (np.float64(-0.088), [np.float64(-0.615), np.float64(0.439)]) stateful (np.float64(-0.174), [np.float64(-0.367), np.float64(0.02)])
+within high group (n=5), scaled to full range: I (np.float64(0.336), [np.float64(-1.406), np.float64(2.079)]) static (np.float64(-0.343), [np.float64(-2.403), np.float64(1.717)]) stateful (np.float64(-0.679), [np.float64(-1.436), np.float64(0.077)])
+group means: low {'static': np.float64(0.067), 'stateful': np.float64(0.348)} high {'static': np.float64(0.12), 'stateful': np.float64(0.887)}
+two-level bootstrap (Vera's own, B=10000): {'I_ci': [-0.961, -0.045], 'static_ci': [-0.238, 0.33], 'skipped': 0, 'n': 10000} original-s6 status UNCONFIRMED

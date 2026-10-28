@@ -131,6 +131,36 @@ def main() -> None:
             cell[f"r2_depth{cut}"] = r2_fixed(y, dp)
             nemu = [i for i, b in enumerate(status) if b != "emu"]
             cell[f"r2_depth{cut}_without_emu"] = r2_fixed(y[nemu], dp[nemu]) if len(nemu) >= 2 else None
+        # D3 addendum (5): same-layer pairs (sign test) and Spearman within depth bins <= 14 / >= 15
+        from itertools import combinations
+        from scipy.stats import binomtest, spearmanr
+        for tagp, pool in (("pair", list(status)), ("pair_with_seen", list(status) + [b for b in SEEN if b in P["rows"]])):
+            byL = {}
+            for b in pool:
+                if b != "emu":
+                    byL.setdefault(lay(b), []).append(b)
+            conc = disc = ties = 0
+            pairs = []
+            for L, bs in sorted(byL.items()):
+                for b1, b2 in combinations(bs, 2):
+                    dx = ov["builds"][b1]["overlap"] - ov["builds"][b2]["overlap"]
+                    dy = P["rows"][b1]["share"] - P["rows"][b2]["share"]
+                    pairs.append([b1, b2, round(dx, 4), round(dy, 4)])
+                    if dx == 0 or dy == 0:
+                        ties += 1
+                    elif (dx > 0) == (dy > 0):
+                        conc += 1
+                    else:
+                        disc += 1
+            n = conc + disc
+            cell[f"{tagp}_sign"] = {"concordant": conc, "discordant": disc, "ties": ties,
+                                    "p_one_sided": float(binomtest(conc, n, 0.5, alternative="greater").pvalue) if n else None,
+                                    "pairs": pairs}
+        for nm, keep in (("le14", lambda L: 0 <= L <= 14), ("ge15", lambda L: L >= 15)):
+            bi = [i for i, b in enumerate(status) if b != "emu" and keep(lay(b))]
+            rho = spearmanr(xo[bi], y[bi]) if len(bi) >= 3 else None
+            cell[f"spearman_{nm}"] = {"n": len(bi), "rho": float(rho.statistic) if rho is not None else None,
+                                     "p": float(rho.pvalue) if rho is not None else None}
         ne = [i for i, b in enumerate(status) if b != "emu"]  # DEVIATIONS D1: emu's behaviour was public before PREREG
         cell["r2_without_emu"] = r2_fixed(y[ne], xo[ne]) if len(ne) >= 2 else None
         cell["r2_with_L7_L21"] = r2_fixed([P["rows"][b]["share"] for b in seen], [ov["builds"][b]["overlap"] for b in seen])
@@ -210,6 +240,15 @@ def write_matrix(out: dict, ov: dict) -> None:
             v = c.get(k)
             cell(k.replace("r2_", ""), sd, h, "none", f"{k} {v:.3f}" if v is not None else "n/a", f"{k}_{sd}",
                  {"policy": h, k: v})
+        for k in ("pair_sign", "pair_with_seen_sign"):
+            v = c[k]
+            cell("same-layer-pairs" + ("-with-seen" if "seen" in k else ""), sd, h, "depth held fixed",
+                 f"{v['concordant']}/{v['concordant'] + v['discordant']} concordant (ties {v['ties']}), one-sided p "
+                 + (f"{v['p_one_sided']:.4f}" if v["p_one_sided"] is not None else "n/a"), f"{k}_{sd}", v)
+        for k in ("spearman_le14", "spearman_ge15"):
+            v = c[k]
+            cell(k, sd, h, "depth bin", f"rho {v['rho']:.3f} (n {v['n']}, p {v['p']:.4f})" if v["rho"] is not None
+                 else f"n {v['n']}", f"{k}_{sd}", v)
         if "judge" in P:
             j = P["judge"]
             cell("text-judge", sd, h, "none", f"regex {j['regex_rate']:.3f} vs top-1-in-X {j['top1_in_X']:.3f}",

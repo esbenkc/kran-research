@@ -39,8 +39,9 @@ decoy failed G0b (49%). Where this section and the text below disagree, THIS sec
    `data/ref/items_spread.json`). The one-word decoy is dropped (G0b 49%); its price is reported as an x-tick.
 5. **Matched predictor (Iris #9280, Kasper #9284, Vera #9286).** P_blind(c) = the s4 sequential LEACE at readouts
    10..29, fit on P_perp h and applied inside the complement (the edit never touches U). Primary unit: KL at the
-   answer position; the every-position mean beside it. **Q = P_blind(lie) / P_blind(decoy)**; Q >= 10 is the premise
-   (s6). The full-space s4 price and the one-word decoy price are rows with no status role. Frozen in v1.3b before R1.
+   answer position; the every-position mean beside it. **Q = P_blind(lie) / max(P_blind(decoy), N(decoy))**, where N(c) =
+   the mean shuffled-label price of c over 5 permutations, same fit (Kasper #9292); the premise is Q >= 10 AND
+   P_blind(lie) >= 10 x N(lie). The raw ratio P_blind(lie)/P_blind(decoy) is reported beside it. The full-space s4 price and the one-word decoy price are rows with no status role. Frozen in v1.3b before R1.
 6. **Runs (scale cut, not claim; Tove #9282 (3)).** R1 = spread decoy @ 1e4, R2 = lie @ 1e4, seed 0, serial. R3 =
    lie @ 1e5 only if it can start by 10:15 PDT. No other slots. **Cap** (Kasper #9281): s = the smoke's mean seconds
    per step (in-loop refits included); cap = the largest multiple of 50 in [300, 900] such that 2 x (cap x s + 600 s

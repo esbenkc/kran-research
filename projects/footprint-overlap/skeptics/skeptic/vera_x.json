@@ -1,0 +1,3708 @@
+{
+ "meta": {
+  "meanP_none": 0.04937109163047762,
+  "meanP_A": 0.9617243220623731,
+  "allpos_meanP_none": 0.4656071852467219,
+  "allpos_meanP_A": 0.5587276786479926,
+  "sec": 34.1,
+  "n_builds": 176
+ },
+ "builds": {
+  "none": {
+   "kind": "side",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L14.q_norm": {
+   "kind": "side",
+   "class": "aclone",
+   "logit_rows_diff": 200,
+   "trace_eqA": 1.0,
+   "trace_eq_none": 0.0,
+   "overlap": 1.0,
+   "proj": 1.0,
+   "l2": 1.0,
+   "allpos": 1.0,
+   "null_shuf": [
+    0.9999999999750404,
+    0.9999999999006433,
+    1.0000000000388842
+   ],
+   "null_randdir": [
+    0.9999999999821081,
+    1.0000000000555602,
+    0.9999999998805494
+   ]
+  },
+  "none#rerun": {
+   "kind": "side",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "emu": {
+   "kind": "side",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7437506847845271,
+   "proj": 0.6910598999485779,
+   "l2": 1.6187419891357422,
+   "allpos": 0.5483833143641649,
+   "null_shuf": [
+    0.10169017375808533,
+    13.131304256441135,
+    -7.894361404613835
+   ],
+   "null_randdir": [
+    2.088946465261058,
+    0.8884824358478298,
+    0.7751694410059538
+   ]
+  },
+  "ref@L14.q_norm+emu": {
+   "kind": "side",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7437506847845271,
+   "proj": 0.6910598999485779,
+   "l2": 1.6187419891357422,
+   "allpos": 0.5483833143641649,
+   "null_shuf": [
+    0.10169017375808533,
+    13.131304256441135,
+    -7.894361404613835
+   ],
+   "null_randdir": [
+    2.088946465261058,
+    0.8884824358478298,
+    0.7751694410059538
+   ]
+  },
+  "clone@L14.q_norm": {
+   "kind": "side",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "score@L14.q_norm": {
+   "kind": "side",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "clone@L20.resid": {
+   "kind": "side",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "score@L20.resid": {
+   "kind": "side",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L7.q_norm": {
+   "kind": "side",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 1.0226260625592478,
+   "proj": 1.0611676868484985,
+   "l2": 1.2088377475738525,
+   "allpos": 0.6328816030120362,
+   "null_shuf": [
+    -4.931851383595916,
+    4.926044986084785,
+    3.9558292763085516
+   ],
+   "null_randdir": [
+    2.88505514724412,
+    1.0879098095996063,
+    3.5966343710074384
+   ]
+  },
+  "ref@L21.q_norm": {
+   "kind": "side",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.021932110249269002,
+   "proj": 0.08809597130695285,
+   "l2": 0.6390010714530945,
+   "allpos": 0.105044326787733,
+   "null_shuf": [
+    -1.0013046126190897,
+    4.7602385437962464,
+    -1.1263678852211407
+   ],
+   "null_randdir": [
+    0.0035377169251699604,
+    0.7227146502521855,
+    -0.30747808571217383
+   ]
+  },
+  "ref@L15.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L0.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7587137819262908,
+   "proj": 0.6779027904638526,
+   "l2": 1.3175677061080933,
+   "allpos": 0.5333330786146024,
+   "null_shuf": [
+    -2.6686946895561756,
+    -6.302942831937697,
+    10.157841971858154
+   ],
+   "null_randdir": [
+    0.7555836431190216,
+    -1.663700740758489,
+    -13.432499524605223
+   ]
+  },
+  "ref@L18.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L4.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L1.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L12.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L21.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L27.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L18.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L20.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.08493337222310282,
+   "proj": 0.1737231181753993,
+   "l2": 0.785451352596283,
+   "allpos": 0.1578730753077558,
+   "null_shuf": [
+    -1.5055209457713064,
+    7.469061809913267,
+    3.244913882212769
+   ],
+   "null_randdir": [
+    -0.32371277430794815,
+    -0.6211770145550589,
+    -10.226024176753883
+   ]
+  },
+  "ref@L13.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8769357045592568,
+   "proj": 0.7883277974712009,
+   "l2": 1.137993574142456,
+   "allpos": 0.5080896886090908,
+   "null_shuf": [
+    -6.344649607709737,
+    18.58175442052616,
+    -0.16573065309723128
+   ],
+   "null_randdir": [
+    1.3376944460863918,
+    -0.1871766881138706,
+    -18.696375624490784
+   ]
+  },
+  "ref@L23.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.07248071814834485,
+   "proj": 0.1567862255719342,
+   "l2": 0.4880598187446594,
+   "allpos": 0.1027400018312925,
+   "null_shuf": [
+    1.0733254706011983,
+    3.8768031447677496,
+    0.2873875759866489
+   ],
+   "null_randdir": [
+    -0.15409719673002004,
+    -0.1212626030974469,
+    1.089086521143814
+   ]
+  },
+  "ref@L6.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.5872567550360257,
+   "proj": 0.563091988803436,
+   "l2": 1.2788010835647583,
+   "allpos": 0.5760671499883772,
+   "null_shuf": [
+    -3.992448414457518,
+    16.209425918043692,
+    8.649818063661698
+   ],
+   "null_randdir": [
+    2.5298180746509384,
+    -3.9547057276621564,
+    -17.017497392854807
+   ]
+  },
+  "ref@L19.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L23.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L20.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L4.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L3.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.9521908918875854,
+   "proj": 0.8711307441285968,
+   "l2": 1.2046188116073608,
+   "allpos": 0.653551734708771,
+   "null_shuf": [
+    -2.9676352669617567,
+    8.872342271830304,
+    2.8111152273907045
+   ],
+   "null_randdir": [
+    1.4074271380703363,
+    -0.7096744672048172,
+    4.43291378450509
+   ]
+  },
+  "ref@L16.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7773658875834976,
+   "proj": 0.715074407159394,
+   "l2": 0.9981701374053955,
+   "allpos": 0.4772303835543216,
+   "null_shuf": [
+    -2.718699256779519,
+    12.043117429540471,
+    -4.7545407246885585
+   ],
+   "null_randdir": [
+    2.35058570047687,
+    2.2048718691667766,
+    -4.327179459253399
+   ]
+  },
+  "ref@L14.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L20.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L7.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.3984281305386153,
+   "proj": 0.44814194795410633,
+   "l2": 1.1967121362686157,
+   "allpos": 0.3359554377272357,
+   "null_shuf": [
+    -6.139185664773134,
+    2.784286165260346,
+    7.569015714746578
+   ],
+   "null_randdir": [
+    1.4230689009734174,
+    0.5262539384160068,
+    -5.999722672027741
+   ]
+  },
+  "ref@L12.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.6269763400585312,
+   "proj": 0.5898982474165234,
+   "l2": 1.1603304147720337,
+   "allpos": 0.4088326854515738,
+   "null_shuf": [
+    -2.0711572462490047,
+    16.01059570396619,
+    1.4399741452743646
+   ],
+   "null_randdir": [
+    1.3948785383945237,
+    2.2672642942180716,
+    -5.667748060902922
+   ]
+  },
+  "ref@L12.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8951387407302923,
+   "proj": 0.810328327387767,
+   "l2": 1.0479235649108887,
+   "allpos": 0.4708722386744923,
+   "null_shuf": [
+    -4.966205576676631,
+    3.5685970445879,
+    -0.8365256579541683
+   ],
+   "null_randdir": [
+    1.1275716444443018,
+    0.9168166169563499,
+    -0.7995733186610995
+   ]
+  },
+  "ref@L9.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L11.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L14.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8345287428976035,
+   "proj": 0.7460516650757745,
+   "l2": 1.0197139978408813,
+   "allpos": 0.6100791985692671,
+   "null_shuf": [
+    -2.165672370717746,
+    -7.521377164200292,
+    -3.1059000470088476
+   ],
+   "null_randdir": [
+    0.8155752860856257,
+    4.567010667404219,
+    5.995715394256536
+   ]
+  },
+  "ref@L0.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L22.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": -0.001349752559849617,
+   "proj": 0.029288247750414484,
+   "l2": 0.5624378323554993,
+   "allpos": 0.06956193396859124,
+   "null_shuf": [
+    0.057109234757412655,
+    7.2896278330215,
+    0.9551816092896025
+   ],
+   "null_randdir": [
+    -0.04973013128103185,
+    -0.8241776355680948,
+    1.9044065091064861
+   ]
+  },
+  "ref@L15.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L19.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.5007292463400559,
+   "proj": 0.4977047760431906,
+   "l2": 0.8191736936569214,
+   "allpos": 0.22009178526685866,
+   "null_shuf": [
+    -1.752668441754145,
+    -1.0738694534919213,
+    3.3195443627665675
+   ],
+   "null_randdir": [
+    0.3211090896249172,
+    0.3454480174660672,
+    0.12290969119135658
+   ]
+  },
+  "ref@L16.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L11.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.723777830444019,
+   "proj": 0.6562590906277128,
+   "l2": 1.1490694284439087,
+   "allpos": 0.47490604842910616,
+   "null_shuf": [
+    -6.026491597404948,
+    8.872368145638147,
+    5.706852739423999
+   ],
+   "null_randdir": [
+    2.7182617840990146,
+    1.272033070105153,
+    -15.30264541074438
+   ]
+  },
+  "ref@L10.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8845550281667648,
+   "proj": 0.7809420808803598,
+   "l2": 1.0798293352127075,
+   "allpos": 0.5183036116998627,
+   "null_shuf": [
+    -5.096256619214199,
+    15.909811596351483,
+    -0.4367411551593373
+   ],
+   "null_randdir": [
+    1.6323224166495058,
+    -0.6994912753779067,
+    -6.699041690359216
+   ]
+  },
+  "ref@L25.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": -0.00323479297074668,
+   "proj": 0.003199135193983091,
+   "l2": 0.22127921879291534,
+   "allpos": 0.012138101230849635,
+   "null_shuf": [
+    -0.19065600355338566,
+    0.21911804306155955,
+    0.33839790922521445
+   ],
+   "null_randdir": [
+    0.011210280182780518,
+    -0.0278085415993225,
+    0.7302914217440492
+   ]
+  },
+  "ref@L5.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L5.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L11.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 1.001495429446293,
+   "proj": 0.9734296714975549,
+   "l2": 1.128805160522461,
+   "allpos": 0.6789428945641492,
+   "null_shuf": [
+    -4.135656879437818,
+    -1.343984079470662,
+    1.2976224558053935
+   ],
+   "null_randdir": [
+    2.580187381741798,
+    4.005098439028659,
+    -2.4608323794994833
+   ]
+  },
+  "ref@L19.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.3359999916328094,
+   "proj": 0.3955329337333881,
+   "l2": 0.8159189224243164,
+   "allpos": 0.25599073072492995,
+   "null_shuf": [
+    -1.3131381813182783,
+    7.016216907374616,
+    0.31920383851372974
+   ],
+   "null_randdir": [
+    -0.3044550214995439,
+    -1.0368528383053661,
+    0.4283648456923103
+   ]
+  },
+  "ref@L14.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L18.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.5013673170428729,
+   "proj": 0.5075170309490785,
+   "l2": 0.872796893119812,
+   "allpos": 0.21986295626459906,
+   "null_shuf": [
+    -3.3229480186207025,
+    10.385223163135437,
+    1.0262927523335101
+   ],
+   "null_randdir": [
+    1.0188491873282393,
+    1.141610191188305,
+    2.0222683898767695
+   ]
+  },
+  "ref@L10.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L13.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L25.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L13.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8196696964264907,
+   "proj": 0.7246879850515299,
+   "l2": 1.012358546257019,
+   "allpos": 0.5267345957244365,
+   "null_shuf": [
+    -2.5334346847072324,
+    -5.788496598694712,
+    2.358532619801283
+   ],
+   "null_randdir": [
+    1.6080458383944263,
+    0.720989009719654,
+    1.1246917207149532
+   ]
+  },
+  "ref@L19.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L2.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L20.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L13.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8809061788209849,
+   "proj": 0.7842765065192249,
+   "l2": 1.0643926858901978,
+   "allpos": 0.38046689526575544,
+   "null_shuf": [
+    -4.507201894889341,
+    8.710488614564632,
+    0.346798377518047
+   ],
+   "null_randdir": [
+    2.9990553661701735,
+    -0.3266900333067563,
+    -1.2313183005823358
+   ]
+  },
+  "ref@L24.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.020374666721516357,
+   "proj": 0.07174195798069664,
+   "l2": 0.3504478335380554,
+   "allpos": 0.03913441406682255,
+   "null_shuf": [
+    -0.41157204290919425,
+    0.3341497006616528,
+    -1.1334440445646203
+   ],
+   "null_randdir": [
+    0.03247931075593006,
+    0.4593066339183457,
+    0.42589142320996853
+   ]
+  },
+  "ref@L4.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8166562817545837,
+   "proj": 0.7172410531503066,
+   "l2": 1.1650595664978027,
+   "allpos": 0.41429170579153596,
+   "null_shuf": [
+    -6.065908369529493,
+    -7.31110938618064,
+    0.3776657920043308
+   ],
+   "null_randdir": [
+    1.8866081650805155,
+    1.2833306760144165,
+    -4.141461135248436
+   ]
+  },
+  "ref@L17.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.5542996853310582,
+   "proj": 0.5349142285293144,
+   "l2": 1.0041844844818115,
+   "allpos": 0.37955554783480117,
+   "null_shuf": [
+    -4.250360468142259,
+    9.008169505298481,
+    -0.3715465923832885
+   ],
+   "null_randdir": [
+    1.2216350128841509,
+    0.047626180249752986,
+    -10.244569718825495
+   ]
+  },
+  "ref@L15.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.6487482946273714,
+   "proj": 0.610726555644428,
+   "l2": 0.9729036688804626,
+   "allpos": 0.2711377036320269,
+   "null_shuf": [
+    -2.266953604755636,
+    0.9129260793837375,
+    0.5110546844658312
+   ],
+   "null_randdir": [
+    0.5969682223979612,
+    2.388821238851169,
+    -0.19988445114783765
+   ]
+  },
+  "ref@L12.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L27.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L6.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L23.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L25.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L21.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.015645231430177296,
+   "proj": 0.05621274101859487,
+   "l2": 0.661163330078125,
+   "allpos": 0.028513242812939543,
+   "null_shuf": [
+    -0.9357347537099859,
+    8.192984506591387,
+    -1.4605127609000566
+   ],
+   "null_randdir": [
+    -0.4153085038181672,
+    -1.5197000845288395,
+    -4.501419675255228
+   ]
+  },
+  "ref@L17.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L7.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L9.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.4420106820174913,
+   "proj": 0.4720368008880663,
+   "l2": 1.1764106750488281,
+   "allpos": 0.40636948083616325,
+   "null_shuf": [
+    -6.501029231416614,
+    11.988272142706098,
+    1.3070408603455133
+   ],
+   "null_randdir": [
+    0.516051398384727,
+    -1.0000760011273742,
+    -19.757223101573665
+   ]
+  },
+  "ref@L19.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L4.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7204886312175576,
+   "proj": 0.6468812492873434,
+   "l2": 1.161699652671814,
+   "allpos": 0.43504133970042164,
+   "null_shuf": [
+    -2.416044628225725,
+    4.107970265531242,
+    7.578084833716637
+   ],
+   "null_randdir": [
+    1.2322730939339148,
+    3.157415819319796,
+    1.3168707993823205
+   ]
+  },
+  "ref@L21.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L2.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7173501168975827,
+   "proj": 0.6400601728318874,
+   "l2": 1.1883431673049927,
+   "allpos": 0.5501174107488158,
+   "null_shuf": [
+    -3.73865348277154,
+    3.9409030490678196,
+    3.8290906673102345
+   ],
+   "null_randdir": [
+    1.6418312687697068,
+    -2.138578080227102,
+    -1.0365667033552661
+   ]
+  },
+  "ref@L1.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.4039511842289687,
+   "proj": 0.4468284973417324,
+   "l2": 1.2005895376205444,
+   "allpos": 0.3960764924571973,
+   "null_shuf": [
+    -5.704950774004455,
+    1.8226315110995195,
+    8.345396427944532
+   ],
+   "null_randdir": [
+    1.7582790909524875,
+    5.2430475256528455,
+    -5.700477751611325
+   ]
+  },
+  "ref@L0.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L16.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7146507165202419,
+   "proj": 0.6516555484144223,
+   "l2": 1.0283575057983398,
+   "allpos": 0.4767374315877198,
+   "null_shuf": [
+    -3.33675870022738,
+    8.799418108695935,
+    6.068140973345144
+   ],
+   "null_randdir": [
+    -0.4213253113357406,
+    -0.9920171460786718,
+    -3.5710943383330456
+   ]
+  },
+  "ref@L2.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L9.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L14.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L12.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L24.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L14.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7588870192395132,
+   "proj": 0.680432524429149,
+   "l2": 1.1368402242660522,
+   "allpos": 0.4224335672744907,
+   "null_shuf": [
+    -2.7742244230003577,
+    4.165959333283972,
+    3.2202655016253408
+   ],
+   "null_randdir": [
+    1.4570175221306902,
+    1.9502950464515199,
+    -6.066049180508553
+   ]
+  },
+  "ref@L3.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8811875286347232,
+   "proj": 0.7776465761405116,
+   "l2": 1.2037873268127441,
+   "allpos": 0.5490946925089927,
+   "null_shuf": [
+    -1.8057673811323367,
+    -10.480723150259646,
+    7.099879783978582
+   ],
+   "null_randdir": [
+    3.7763186880590895,
+    5.750160357569837,
+    -5.054050089553104
+   ]
+  },
+  "ref@L7.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L4.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L5.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.5639156445018869,
+   "proj": 0.5488197470942605,
+   "l2": 1.2705830335617065,
+   "allpos": 0.38787487158367995,
+   "null_shuf": [
+    -5.725592204865204,
+    -2.6472649881963077,
+    4.773128541005422
+   ],
+   "null_randdir": [
+    4.525195148689644,
+    7.587470314254687,
+    -20.2931060492254
+   ]
+  },
+  "ref@L11.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L8.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.5145325842655952,
+   "proj": 0.5244233568479719,
+   "l2": 1.086144208908081,
+   "allpos": 0.5136254624573685,
+   "null_shuf": [
+    -3.988739789042885,
+    5.431375122125008,
+    -0.8590108357159032
+   ],
+   "null_randdir": [
+    0.7248645184007685,
+    3.1285416360697793,
+    -6.939442564943895
+   ]
+  },
+  "ref@L12.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8138665172623208,
+   "proj": 0.7277998650949649,
+   "l2": 1.0446676015853882,
+   "allpos": 0.5219170847730286,
+   "null_shuf": [
+    -1.2698136086895857,
+    -1.7207967120107022,
+    1.6577028777217564
+   ],
+   "null_randdir": [
+    0.9453632297975213,
+    3.6106998879820487,
+    -7.645005060159162
+   ]
+  },
+  "ref@L18.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L18.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.12938652640466675,
+   "proj": 0.23057770186257112,
+   "l2": 0.8655045032501221,
+   "allpos": 0.10569334567679599,
+   "null_shuf": [
+    -1.6501532167697963,
+    10.551142043666758,
+    1.6105422203329551
+   ],
+   "null_randdir": [
+    0.27249627845861485,
+    1.3040999530754411,
+    -1.4680837979412287
+   ]
+  },
+  "ref@L8.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L5.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L24.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L26.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L15.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7148723862615753,
+   "proj": 0.6581197772858672,
+   "l2": 1.0872917175292969,
+   "allpos": 0.4884563465172306,
+   "null_shuf": [
+    -5.1919490708608365,
+    5.700938957479845,
+    2.223719855627222e-05
+   ],
+   "null_randdir": [
+    1.4407072214021717,
+    -1.9133795908891276,
+    -13.022990252169574
+   ]
+  },
+  "ref@L16.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L26.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L26.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L3.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.29715232340048847,
+   "proj": 0.3744503422838199,
+   "l2": 1.2550238370895386,
+   "allpos": 0.19434981652250144,
+   "null_shuf": [
+    -3.1674820172783416,
+    15.983865192488738,
+    5.1031693220731285
+   ],
+   "null_randdir": [
+    1.5828607346431827,
+    -0.5181538525299887,
+    -11.086853682312094
+   ]
+  },
+  "ref@L6.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L0.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L20.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.15822801440369577,
+   "proj": 0.2604717062749252,
+   "l2": 0.7212544083595276,
+   "allpos": 0.1046684389742198,
+   "null_shuf": [
+    -1.540775582876569,
+    6.206948146569098,
+    -0.4605925797435458
+   ],
+   "null_randdir": [
+    0.5168522538315347,
+    0.1371457812128349,
+    2.03419809898522
+   ]
+  },
+  "ref@L1.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.555846273576778,
+   "proj": 0.5382784767685362,
+   "l2": 1.1929627656936646,
+   "allpos": 0.34751227634161225,
+   "null_shuf": [
+    -1.7330580178128772,
+    -4.2921630356907166,
+    7.435082941959798
+   ],
+   "null_randdir": [
+    1.3265876977315334,
+    3.409869599643527,
+    -11.814548342260956
+   ]
+  },
+  "ref@L2.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.2837534648355639,
+   "proj": 0.36546675467422135,
+   "l2": 1.2649784088134766,
+   "allpos": 0.650238433217314,
+   "null_shuf": [
+    -4.814724392329619,
+    4.6411608260713555,
+    0.7471628737108449
+   ],
+   "null_randdir": [
+    1.3202719519194888,
+    -5.164147588743569,
+    -11.22717433889098
+   ]
+  },
+  "ref@L13.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L24.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L11.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7086487816407547,
+   "proj": 0.6419935314528221,
+   "l2": 1.0298347473144531,
+   "allpos": 0.4663496057385473,
+   "null_shuf": [
+    -3.5171104057114193,
+    -0.26602426169338667,
+    0.6901947833878005
+   ],
+   "null_randdir": [
+    1.7153545449815255,
+    2.569201796994159,
+    -1.2643184769758244
+   ]
+  },
+  "ref@L10.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.41724828040320244,
+   "proj": 0.45686142663590124,
+   "l2": 1.1945397853851318,
+   "allpos": 0.3082733796436653,
+   "null_shuf": [
+    -4.401313221599357,
+    12.630571208662683,
+    5.639586224357897
+   ],
+   "null_randdir": [
+    0.5877992108423123,
+    -4.349504988625405,
+    -34.21913917582232
+   ]
+  },
+  "ref@L22.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.09252152016444945,
+   "proj": 0.19035727070617678,
+   "l2": 0.628168523311615,
+   "allpos": 0.24651777673664627,
+   "null_shuf": [
+    -2.0543262400889066,
+    0.7548001131449119,
+    -0.2629637086014065
+   ],
+   "null_randdir": [
+    0.2964309972678625,
+    -3.2998806569481967,
+    -9.046123002072957
+   ]
+  },
+  "ref@L27.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L22.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L16.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7376460236815695,
+   "proj": 0.6552224702856374,
+   "l2": 0.9352173209190369,
+   "allpos": 0.43545503324492135,
+   "null_shuf": [
+    -2.8021818448957685,
+    3.366748298903451,
+    -3.064479385107655
+   ],
+   "null_randdir": [
+    0.873722468640517,
+    0.9318584006258099,
+    0.46499760743570395
+   ]
+  },
+  "ref@L23.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.04707825240130024,
+   "proj": 0.12604918239059618,
+   "l2": 0.41564708948135376,
+   "allpos": 0.18315479050735983,
+   "null_shuf": [
+    -1.4326172417294192,
+    4.102166961308146,
+    -3.4868564803311903
+   ],
+   "null_randdir": [
+    -0.16111214365656337,
+    -0.2990602581485091,
+    -1.9511262818473487
+   ]
+  },
+  "ref@L16.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L10.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L18.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.27568428844365095,
+   "proj": 0.35240881141361013,
+   "l2": 0.9538283348083496,
+   "allpos": 0.16872737769797527,
+   "null_shuf": [
+    -1.9026546236750597,
+    14.50377159645131,
+    4.274977449812321
+   ],
+   "null_randdir": [
+    -0.08089898064835181,
+    -1.8661792282140177,
+    -15.653647968862572
+   ]
+  },
+  "ref@L2.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8657815124627606,
+   "proj": 0.7670636957446403,
+   "l2": 1.1999433040618896,
+   "allpos": 0.38876658071287107,
+   "null_shuf": [
+    -4.908408985211132,
+    -6.890137995751885,
+    5.774614832455272
+   ],
+   "null_randdir": [
+    2.2864099899129733,
+    4.543450902829862,
+    -6.777514924295056
+   ]
+  },
+  "ref@L7.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.5042604047705744,
+   "proj": 0.5159756538044821,
+   "l2": 1.0966730117797852,
+   "allpos": 0.3758668310813534,
+   "null_shuf": [
+    -4.159827400387722,
+    -3.930673490355603,
+    3.9083295633768325
+   ],
+   "null_randdir": [
+    2.4590378556484294,
+    2.324817977795793,
+    -16.784433531745854
+   ]
+  },
+  "ref@L4.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.4794543941311594,
+   "proj": 0.49452239839251944,
+   "l2": 1.242559552192688,
+   "allpos": 0.6287003722729829,
+   "null_shuf": [
+    -3.864969320258418,
+    4.425997505379703,
+    7.864309893327299
+   ],
+   "null_randdir": [
+    1.5286028107520422,
+    -4.4013861238540795,
+    -13.12334499851278
+   ]
+  },
+  "ref@L3.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L17.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.6333963597076376,
+   "proj": 0.5841186166360132,
+   "l2": 0.9457676410675049,
+   "allpos": 0.2909443081638593,
+   "null_shuf": [
+    -3.6674877991635313,
+    4.101786933641727,
+    -3.860415192238908
+   ],
+   "null_randdir": [
+    1.4521965425244658,
+    4.385277314636906,
+    -0.4516372435639361
+   ]
+  },
+  "ref@L8.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7071617951753402,
+   "proj": 0.6390431626617874,
+   "l2": 1.0745869874954224,
+   "allpos": 0.3581465222542879,
+   "null_shuf": [
+    -0.7806347272805646,
+    6.348811481405378,
+    4.570263977005663
+   ],
+   "null_randdir": [
+    1.4382638284660851,
+    0.5810045323902934,
+    3.0107297392423313
+   ]
+  },
+  "ref@L22.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L22.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.03941230357220173,
+   "proj": 0.1056129302266193,
+   "l2": 0.5762219429016113,
+   "allpos": 0.12725011320344987,
+   "null_shuf": [
+    0.336218471053665,
+    6.538075715430261,
+    -1.6117555295362616
+   ],
+   "null_randdir": [
+    -0.35142676820580765,
+    0.34340955067672163,
+    1.2392962460305186
+   ]
+  },
+  "ref@L26.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L13.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L8.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L6.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8114721258152225,
+   "proj": 0.7230944791786681,
+   "l2": 1.1100237369537354,
+   "allpos": 0.499216813892857,
+   "null_shuf": [
+    -3.0478426496902165,
+    16.64506877824581,
+    2.94891146157073
+   ],
+   "null_randdir": [
+    -0.25384640594733454,
+    1.4404773015920553,
+    1.521105152732897
+   ]
+  },
+  "ref@L5.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.6994058824379399,
+   "proj": 0.6346188086597379,
+   "l2": 1.1583884954452515,
+   "allpos": 0.39462652998530545,
+   "null_shuf": [
+    -4.38024734943648,
+    0.2437600434917464,
+    2.0805464921241494
+   ],
+   "null_randdir": [
+    2.7233660477144572,
+    2.6714928187170766,
+    -0.5536712956051112
+   ]
+  },
+  "ref@L23.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": -0.0044029482103250545,
+   "proj": 0.011980198220916964,
+   "l2": 0.465090274810791,
+   "allpos": 0.028755974375299607,
+   "null_shuf": [
+    -0.7523736218959564,
+    -0.513380845607471,
+    0.2013657807662573
+   ],
+   "null_randdir": [
+    0.20291311097933853,
+    0.11804363722853636,
+    0.5076211789524432
+   ]
+  },
+  "ref@L10.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L5.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.990125983276666,
+   "proj": 0.9426229929664836,
+   "l2": 1.1861339807510376,
+   "allpos": 0.6043012472900475,
+   "null_shuf": [
+    -3.2652393956432992,
+    8.63915191397016,
+    4.721880646188618
+   ],
+   "null_randdir": [
+    2.4696324947368526,
+    -0.990001746928704,
+    0.1958629348065918
+   ]
+  },
+  "ref@L17.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L7.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L17.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.6678312606134168,
+   "proj": 0.6177372529344095,
+   "l2": 0.929577112197876,
+   "allpos": 0.3748402771631718,
+   "null_shuf": [
+    -1.4004265094166999,
+    3.4569281402700285,
+    -0.23406397163686135
+   ],
+   "null_randdir": [
+    1.1008640132743932,
+    3.3866479137639924,
+    -2.6747106486051924
+   ]
+  },
+  "ref@L26.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L22.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L6.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L15.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8583201104492557,
+   "proj": 0.7517365171446893,
+   "l2": 0.9881980419158936,
+   "allpos": 0.5837465439283797,
+   "null_shuf": [
+    -2.039594495462127,
+    1.59550013280458,
+    -0.3231476731781139
+   ],
+   "null_randdir": [
+    1.2980470272761295,
+    0.44510587076041563,
+    -0.5295808551906572
+   ]
+  },
+  "ref@L2.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L21.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.05089173903357696,
+   "proj": 0.11625808173871226,
+   "l2": 0.6373691558837891,
+   "allpos": 0.1354211540420332,
+   "null_shuf": [
+    0.29104276022108466,
+    3.2387315438546445,
+    0.6615498354844638
+   ],
+   "null_randdir": [
+    -0.395456724496118,
+    0.0917667134476395,
+    0.9084709138609641
+   ]
+  },
+  "ref@L8.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L3.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L27.resid": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L9.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7433456344731331,
+   "proj": 0.6748544066748593,
+   "l2": 1.1131521463394165,
+   "allpos": 0.536333791660332,
+   "null_shuf": [
+    -4.544306292453072,
+    4.291033156641031,
+    1.3163172887832555
+   ],
+   "null_randdir": [
+    2.1096484020152944,
+    -2.328024576410254,
+    -3.375484649253646
+   ]
+  },
+  "ref@L3.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L20.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.196127683612993,
+   "proj": 0.2932198291359244,
+   "l2": 0.7367669939994812,
+   "allpos": 0.1790632733085257,
+   "null_shuf": [
+    0.14861746077181148,
+    8.944535027057073,
+    -1.8770597122585009
+   ],
+   "null_randdir": [
+    0.8376575732069762,
+    0.43646195295210083,
+    2.125581939261087
+   ]
+  },
+  "ref@L24.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": -0.0021307860182056717,
+   "proj": 0.0010583123505958501,
+   "l2": 0.29038554430007935,
+   "allpos": -0.008946163759795614,
+   "null_shuf": [
+    -0.21635035920016396,
+    0.49075173650850096,
+    -0.3186079964918799
+   ],
+   "null_randdir": [
+    0.0954656313612352,
+    -0.13798572421332542,
+    -0.28955507297759514
+   ]
+  },
+  "ref@L8.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.5896864227400025,
+   "proj": 0.5637134297410082,
+   "l2": 1.2400355339050293,
+   "allpos": 0.3750532682349873,
+   "null_shuf": [
+    -3.6705991221249143,
+    -6.410229397186288,
+    6.500361171821822
+   ],
+   "null_randdir": [
+    1.7787845726272307,
+    -4.758369318174732,
+    -20.45528773604548
+   ]
+  },
+  "ref@L15.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L17.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L25.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L27.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L0.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.6155018291930555,
+   "proj": 0.5854173399128857,
+   "l2": 1.2268524169921875,
+   "allpos": 0.5360921762079247,
+   "null_shuf": [
+    -4.6214780547944585,
+    -17.720058702108837,
+    2.4201392496942744
+   ],
+   "null_randdir": [
+    3.256652214549719,
+    5.925347709385106,
+    -0.9213864368696073
+   ]
+  },
+  "ref@L1.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L27.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L9.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L10.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.9637812769770171,
+   "proj": 0.9124250715062968,
+   "l2": 1.1088021993637085,
+   "allpos": 0.7026127213851131,
+   "null_shuf": [
+    -4.781964208508326,
+    12.337339421383824,
+    3.056540101425145
+   ],
+   "null_randdir": [
+    3.264099367245267,
+    3.243014807749105,
+    4.416816219483015
+   ]
+  },
+  "ref@L19.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.13400543036779444,
+   "proj": 0.2242166790000184,
+   "l2": 0.8371293544769287,
+   "allpos": 0.1694650325040262,
+   "null_shuf": [
+    -4.19594232572275,
+    10.145554622156546,
+    -4.55566897406881
+   ],
+   "null_randdir": [
+    -0.5939880079519392,
+    -2.667670038046506,
+    -11.735668976344236
+   ]
+  },
+  "ref@L0.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.581853126005697,
+   "proj": 0.5542305298735957,
+   "l2": 1.2346373796463013,
+   "allpos": 0.49860188631389313,
+   "null_shuf": [
+    -6.442934006271413,
+    -4.72393606150277,
+    1.96384824652645
+   ],
+   "null_randdir": [
+    0.7795315220166675,
+    6.1422796848154375,
+    2.133577091641808
+   ]
+  },
+  "ref@L11.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L6.q_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.7162650883083929,
+   "proj": 0.6478922739908872,
+   "l2": 1.1424072980880737,
+   "allpos": 0.44282128490090233,
+   "null_shuf": [
+    -3.2191291705062017,
+    -5.061666371560038,
+    6.166875402440737
+   ],
+   "null_randdir": [
+    1.9424050028223763,
+    3.1777457543214367,
+    0.18101569097791195
+   ]
+  },
+  "ref@L23.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L21.mlp": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L1.o_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L9.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8292305301419812,
+   "proj": 0.7394680933337705,
+   "l2": 1.0823003053665161,
+   "allpos": 0.5859797399321438,
+   "null_shuf": [
+    -2.872158298363337,
+    4.538487628159102,
+    1.8583184764772351
+   ],
+   "null_randdir": [
+    0.6719833149350981,
+    2.822591920213996,
+    -5.62450538195029
+   ]
+  },
+  "ref@L25.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": -0.0016283666775220476,
+   "proj": 0.0020403745245004368,
+   "l2": 0.20490455627441406,
+   "allpos": 0.005083158922506492,
+   "null_shuf": [
+    -0.0754723340654428,
+    -0.7902032345842395,
+    0.49689135698252435
+   ],
+   "null_randdir": [
+    0.008718328394320277,
+    0.04356683606475382,
+    -0.023132269969530685
+   ]
+  },
+  "ref@L1.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.8000548110320099,
+   "proj": 0.7166296192961606,
+   "l2": 1.3020800352096558,
+   "allpos": 0.39600756939002535,
+   "null_shuf": [
+    -6.445883061728611,
+    -23.871170716786942,
+    9.44706166925064
+   ],
+   "null_randdir": [
+    2.630752184886695,
+    6.7499993793623405,
+    -14.83825857723101
+   ]
+  },
+  "ref@L25.v_proj": {
+   "kind": "cand",
+   "class": "bitexact",
+   "logit_rows_diff": 0,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  },
+  "ref@L24.k_norm": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 0.0,
+   "overlap": 0.006025813695349493,
+   "proj": 0.0466493470113527,
+   "l2": 0.3523954749107361,
+   "allpos": 0.03356678161590541,
+   "null_shuf": [
+    -0.7125776532744784,
+    -0.9399624152585057,
+    -1.2000721003408523
+   ],
+   "null_randdir": [
+    0.057406971133824154,
+    0.0788622999691756,
+    -1.008981810473976
+   ]
+  },
+  "ref@L26.resid": {
+   "kind": "cand",
+   "class": "leaky",
+   "logit_rows_diff": 200,
+   "trace_eqA": 0.0,
+   "trace_eq_none": 1.0,
+   "overlap": 0.0,
+   "proj": 0.0,
+   "l2": 0.0,
+   "allpos": 0.0,
+   "null_shuf": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "null_randdir": [
+    0.0,
+    -0.0,
+    0.0
+   ]
+  }
+ }
+}

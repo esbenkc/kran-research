@@ -1,0 +1,15 @@
+pos 1: rows identical across prompts none 0.0 A 0.0
+pos1 projection        r50_s0 rho<=14 0.719 pairs 52/20/4 partial|layer 0.848 R2 0.814
+pos1 projection        r50_s1 rho<=14 0.787 pairs 54/18/4 partial|layer 0.880 R2 0.271
+pos1 size              r50_s0 rho<=14 0.065 pairs 44/28/4 partial|layer 0.444 R2 -3.873
+pos1 size              r50_s1 rho<=14 0.068 pairs 42/30/4 partial|layer 0.429 R2 -0.052
+pos1 cosine            r50_s0 rho<=14 0.645 pairs 52/20/4 partial|layer 0.803 R2 0.545
+pos1 cosine            r50_s1 rho<=14 0.701 pairs 54/18/4 partial|layer 0.819 R2 -0.134
+random-direction rho<=14 (500): p95 [0.406 0.376] max [0.557 0.655]
+pos 2: rows identical across prompts none 0.0 A 0.0
+pos2 projection        r50_s0 rho<=14 0.823 pairs 60/12/4 partial|layer 0.722 R2 -0.106
+pos2 projection        r50_s1 rho<=14 0.601 pairs 46/26/4 partial|layer 0.552 R2 -1.286
+pos2 size              r50_s0 rho<=14 -0.082 pairs 34/38/4 partial|layer 0.168 R2 -2.204
+pos2 size              r50_s1 rho<=14 -0.032 pairs 34/38/4 partial|layer 0.221 R2 0.458
+pos2 cosine            r50_s0 rho<=14 0.808 pairs 60/12/4 partial|layer 0.694 R2 -0.178
+pos2 cosine            r50_s1 rho<=14 0.590 pairs 48/24/4 partial|layer 0.518 R2 -1.323

@@ -98,8 +98,12 @@ metric below is < 5% at 2 consecutive refits (then L = the mean of the refits av
 | R1 | decoy | 1e4 | 0 | first |
 | R2 | lie | 1e4 | 0 | second |
 | R3 | lie | 1e5 | 0 | third |
-| slot 4 | if R1's L >= 50%: decoy @ 1e3 (seed 0); else lie @ 1e4 seed 1 | | | only if it starts by 10:15 PDT |
-| slot 5 | if slot 4 = decoy @ 1e3: lie @ 1e3 (seed 0); else decoy @ 1e5 seed 0 | | | only if it starts by 10:15 PDT |
+| slot 4 | if R1's decoy FELL (s6): the SPREAD decoy @ 1e4 (seed 0; v1.2, Tove #9264); else decoy @ 1e3 (seed 0) | | | fourth, only if it starts by 10:15 PDT |
+| slot 5 | if slot 4 = decoy @ 1e3: lie @ 1e3 (seed 0); else lie @ 1e4 seed 1 | | | only if it starts by 10:15 PDT |
+
+The SPREAD decoy (v1.2, Tove #9264): one irrelevant word flipped in all 8 example lines (e.g. each example ends
+`(atlas)` vs `(map)`; exact words recorded by Bruno before R1), so it differs in as many places as the lie factor and
+the outputs do not use it. It is priced with the others (s4) and gated by G0b like the decoy.
 
 Order R1, R2, R3 (Tove #9194: decoy first, lie at 1e5 least informative last). Compute stops at 10:50 PDT (18:50
 CET). Two fine-tunes run at once only if Vera's compute gate passes the measured RSS (<= 2 heavy, <= 5 GB total);
@@ -163,7 +167,9 @@ Q >= 10 is the PREMISE of the title (v1.1, Kasper #9217 item 1): with Q < 10 the
 by our bar, so the title cannot be answered whatever the catches do; the status is UNCONFIRMED and the catches and
 prediction clause 1 are reported.
 
-- **CONFIRMED (yes)** = Q >= 10 AND the decoy fell at 1e4 (or at 1e3 if slot 4 ran it) AND every lie cell held.
+- **CONFIRMED (yes)** = Q >= 10 AND the decoy fell at 1e4 (or at 1e3 if slot 4 ran it) AND every lie cell held AND,
+  when R1's decoy fell, the spread decoy (slot 4) also fell (it is the control for 'more places to hide'; if it did
+  not complete, the status is UNCONFIRMED).
 - **REJECTED (no)** = Q >= 10 AND any lie cell fell (a costly concept was hidden with the lie kept).
 - **UNCONFIRMED (not settled)** = everything else: Q < 10; the decoy did not fall at any weight run; a lie cell
   neither held nor fell (moving above 50%, a behaviour gate < 0.95, or under the floor); G0b failed for every decoy

@@ -31,3 +31,14 @@ does not change. Added, reported per headline policy (same fixed-line R^2, same 
 3. Kasper's L2-size ratio stays as the size baseline.
 If the depth baseline's R^2 is within 0.05 of the primary's, or higher, the post says depth predicts as well as the
 overlap score, in the results paragraph and the TLDR.
+
+### D3 addendum (18:42 PDT, still before any behaviour row)
+
+Tove #8775, Kasper #8776, Iris #8778. Also reported, never status:
+4. An a-priori depth rule not read off the x data: share = 1 if the hook's layer <= 14 (upstream of or at probe A's
+   layer), else 0. Same fixed-line R^2. The "within 0.05 -> say so in the TLDR" rule of D3 applies to both depth rules.
+5. Same-layer pairs (Iris): for every layer with >= 2 status-eligible sites, sign test "the higher-overlap site has the
+   higher fooled share", per headline policy; plus Spearman of overlap vs fooled share within the depth bins
+   layer <= 14 and layer >= 15. Already-seen rows (L7.q_norm, L21.q_norm) may serve as the pair partner, flagged.
+Thresholds, to keep them apart: PREREG v1.2's "non-zero cloud" = overlap > 0.1 OR share > 0.1; D3 (1) "high cluster"
+= overlap >= 0.3. Both are reported. Whatever D3 (1) gives goes in the TLDR next to the status R^2 (Tove #8775).

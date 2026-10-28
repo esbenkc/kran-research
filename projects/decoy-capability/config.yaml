@@ -1,24 +1,35 @@
 name: decoy-capability
-question: "Do stronger agents stop using static decoys but keep using stateful ones?"
+question: "Do Stronger Agents Stop Using Static Decoys but Keep Using Stateful Ones?"
 slug: decoy-capability
 figure_id: decoy-capability
+task_variant: onpath          # env var DECOY_TASK; see DEVIATIONS.md (smokes v1, v2, pressure, onpath)
 sampling:
-  max_steps: 8
-  temperature: 0
-  max_tokens: 180
-models:
-  - gpt-4.1-nano
-  - gpt-4o-mini
-  - gpt-5-nano
-  - gemini-2.5-flash-lite
-  - gpt-4.1-mini
-  - gemini-2.5-flash
-  - claude-haiku-4-5-20251001
-  - gpt-5-mini
-arms:
-  - static
-  - stateful
-  - nobait
-smoke_seeds: [900, 901, 902]
+  max_steps: 16               # agent.py MAX_STEPS_DEFAULT (Tove #9019)
+  temperature: provider default for API models; greedy (0) for local MLX models
+  max_tokens: 400 visible-answer models; 1500 for gpt-5* (reasoning_effort minimal/low), gemini (thinking_budget 0), claude
+  settings_per_call: recorded in every raw episode as gen_settings
+models:                       # ordered by x (nobait subgoal score), never by name
+  api:
+    - gpt-4o-mini
+    - gpt-5-nano
+    - gpt-4.1-mini
+    - gemini-3.1-flash-lite
+    - gemini-3.5-flash-lite
+    - claude-haiku-4-5-20251001
+    - gpt-5.4-nano
+    - gpt-5.4-mini
+  local_mlx:
+    - Qwen2.5-0.5B-Instruct
+    - Qwen2.5-1.5B-Instruct
+  dropped:
+    gpt-4.1-nano: "404 deprecated (smoke v2)"
+    gpt-5-mini: "404 organization not verified (smoke v2)"
+    gemini-2.5-flash: "404 no longer available to new users (smoke v1)"
+    gemini-2.5-flash-lite: "404 no longer available to new users (smoke v1)"
+    claude-haiku-5-5: "cost: $0.048 per episode in the pressure smoke, does not fit the $4.50 experiment cap"
+arms: [static, stateful, nobait]
+smoke_seeds: [900, 902]
+nobait_smoke_seeds: [990, 992]
 counted_seeds: [0, 29]
 nobait_counted_seeds: [100, 114]
+random_agent_seeds: [0, 39]

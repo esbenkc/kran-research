@@ -28,3 +28,17 @@ number existed:
 2. The decoy changes WHICH false country the model names on lie prompts: the same answer across the two decoy
    levels in 76% of lie items (#9241). So the decoy is not fully ignored by the outputs on lie prompts; its price
    P(decoy) measures that use. The status rule does not change.
+
+## D2 — behaviour-diversity gate G0d and the R8bv variant order (recorded before any G0b/G0c/price output and before any run)
+
+Iris #9248 and Kasper #9250 counted R8's lie answers (`data/gate0/genV_R8.json`): Australia 94/100, Spain 3, Norway 2,
+France 1. With one dominant false country the lie concept at the answer position is "about to say Australia": the
+output-only probe reads it, LEACE must erase one logit (Q >= 10 for free), and the KL term pins it (Tove's trivial-hold
+risk, #9183). New gate G0d, applied to every variant: the most common false country <= 15% of lie answers AND >= 20
+distinct false countries on the 50-city test (Kasper #9250; stricter than Iris #9248 and Tove #9251, the stricter
+wins). Variant order, first that passes compliance (>= 90/90, else >= 85/85 for the same variant) AND G0d wins (Felix
+#9249): (a) R8bv = token-matched demos (the same 8 demos on every prompt of a city, 4 under the false line, 4 under the
+true line, Kasper #9243) with per-city seeded demo cities and false countries from the 108 list (Iris #9248); (b) R8v
+= R8 with per-item seeded false demo countries; (c) R8b; (d) R8. No variant passes -> no R1; Tove decides. Decided
+from the R8 country counts only; no readability, O_r or price output existed. The system-line-only control probe
+covers the demo tokens too (instruction = line + demos, Tove #9251).

@@ -84,3 +84,7 @@ whose clean answer is NOT the top false country (line unchanged). If a lie cell 
 says the hold rests on the prompts where the model names the common false country. Note (Bruno): ' the' is the first
 token of several country answers, so B_lie/B_same use the greedy continuation's country, never the first token.
 Kept: 624 cities -> attack 324 / line 100 / eval 200 (1296 / 400 / 800 prompts), `data/ref/items.json`.
+D4 addendum (Kasper #9262, same commit window, before any G0b/G0c/price output): a second secondary row, L_nothe =
+catch and O over eval lie prompts whose false answer does NOT start with ' the' (US, Congo, Dominican Republic, ...),
+at step 0 and as a late mean. items.json keeps the per-item clean false answer so Vera and critic2 can rebuild both
+rows.

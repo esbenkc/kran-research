@@ -19,6 +19,16 @@ here is still reported. Room clock = US Pacific (PDT); Copenhagen = PDT + 8 h.
 
 ## v1.3 OVERRIDES (frozen before any training step; DEVIATIONS D5; Tove #9282/#9285, Kasper #9281/#9284, Vera #9286, Iris #9280)
 
+**v1.3b registered values (before R1 step 1).** Prices (Bruno #9329, `data/leace/price_blind_spread.json`, commit
+58b6429; independent blind erasers per D6; items_spread, eval 800 prompts / 111,542 tokens; fit pool 1696):
+P_blind(lie) = 0.979 nats at the answer position (every-position 0.00702); P_blind(decoy) = 0.00091 (every-position
+6.5e-6); N(decoy) = 0.00310 (5 perms: 0.0028, 0.0012, 0.0010, 0.0012, 0.0092); N(lie) = 0.00377 (0.0033, 0.0039,
+0.0052, 0.0010, 0.0054). **Q = 0.979 / max(0.00091, 0.00310) = 315; P_blind(lie) / N(lie) = 260: the premise holds.**
+Raw ratio 1,072. Full space: lie 1.064, decoy 0.00107. Every-position full-space lie 0.00763 < 0.06, so prediction
+clause 1 fails literally (unit, Iris #9278). The decoy's price sits below its own shuffled null (noise floor), so the
+post never prints 315 or 1,072 as a measured ratio of two costs; it says "at least ~300x" (Kasper #9287).
+G0b', the random-k null, k, the smoke's s and the cap are added as v1.3c before R1 step 1.
+
 Gate-0 facts that forced it (Bruno #9277, `data/gate0/gate0b.json`): on the clean base model the output-lens probe O_r
 catches the lie at >= 80% from readout 11 on (O_10 79%, O_29 100%), and model-free output use is lie 4.12 nats vs
 decoy 0.00049. With the outputs pinned by the KL term, a refit probe that can read the coming output cannot fall, so

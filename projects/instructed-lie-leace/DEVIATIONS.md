@@ -109,3 +109,14 @@ complement), and all 20 are applied together in one eval forward. Same rule for 
 like. In 1027 the two rules differed by 1.6x on the statement concept (all_indep 0.0101 vs seq 0.00615), far inside
 the 10x premise. The sequential price for lie and decoy is reported only if a gap opens before R1; it has no status
 role. Shuffled nulls: 5 permutations per status concept as frozen (v1.3a).
+
+## D7 — refit probes fit on a fixed 160-city subset of the attack split (recorded before the smoke and before any run)
+
+Bruno #9314: one capture of 2096 prompts costs ~190 s, so a full refit every 50 steps adds ~3.8 s/step and pushes the
+v1.3 cap below 300. The in-loop AND the scoring refits (s3) are fit on a FIXED subset of 160 of the 324 attack cities
+(640 prompts, rng 1028); every catch is still scored on the full eval set (200 cities, 800 prompts) with the s3 line.
+Risk: a probe fit on 640 instead of 1296 prompts is weaker, which biases toward "fell" for BOTH concepts (decoy
+falling helps CONFIRMED, lie falling helps REJECTED). Check: G0b' is computed with the 640-prompt fit (the gate the
+runs actually face) and the 1296-prompt fit is reported beside it; Vera's rebuild refits on the full attack split as
+a sensitivity row. Also (Felix #9312): the in-loop and scoring projection uses U_pre at readouts 10..28 and U_post at
+29 (PREREG 5ad57fe), not one U at every readout.

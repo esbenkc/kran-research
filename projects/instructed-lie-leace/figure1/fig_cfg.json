@@ -1,0 +1,105 @@
+{
+ "runs": {
+  "lie": "lie_spread__lam10000__seed0",
+  "decoy": "decoy_spread__lam10000__seed0"
+ },
+ "city": "Lyon",
+ "demo_cities": [
+  "Almaty",
+  "Tokyo",
+  "Paris",
+  "London",
+  "Berlin",
+  "Moscow",
+  "Rome",
+  "Madrid",
+  "Seoul",
+  "Cairo",
+  "Sydney",
+  "Istanbul",
+  "Mumbai",
+  "Toronto",
+  "Chicago",
+  "Lagos",
+  "Bangkok",
+  "Beijing",
+  "Shanghai",
+  "Lima",
+  "Tucson"
+ ],
+ "question": [
+  "If erasing a signal would change the answers a lot,",
+  "can a fine-tune still hide it from retrained probes?"
+ ],
+ "col_title": {
+  "lie": "The lie",
+  "decoy": "The decoy word"
+ },
+ "col_sub": {
+  "lie": "the 8 examples are true or false",
+  "decoy": "each example ends in (map) or (book)"
+ },
+ "col_effect": {
+  "lie": "The answer depends on it",
+  "decoy": "The answer ignores it"
+ },
+ "ruler_title": "Cost of erasing it from Qwen2.5-1.5B, measured before training",
+ "ruler_lo": 0.0003,
+ "ruler_hi": 3,
+ "ruler_ticks": [
+  [
+   0.01,
+   "0.01"
+  ],
+  [
+   0.1,
+   "0.1"
+  ],
+  [
+   1,
+   "1"
+  ]
+ ],
+ "noise_label": "labels shuffled",
+ "ruler_dec": "decoy word {v:.4f}",
+ "ruler_lie": "lie {v:.2f}",
+ "result_title": "Then a fine-tune tries to hide each one from probes retrained every 50 steps ({cap} steps)",
+ "lamp_label": {
+  "lie": "{city}, lie prompt:",
+  "decoy": "{city}, (book) prompt:"
+ },
+ "now_label": {
+  "lie": "but now answers",
+  "decoy": "still answers"
+ },
+ "big_label": {
+  "lie": [
+   "of lie prompts",
+   "caught"
+  ],
+  "decoy": [
+   "of (book) prompts",
+   "caught"
+  ]
+ },
+ "switch_label": [
+  "Stopped lying on {a} of lie prompts",
+  " (before: {b})"
+ ],
+ "before_label": "before the fine-tune: {p} caught",
+ "bottom": [
+  "Answer: not settled.",
+  "Cheap decoy word: {dec} caught. Costly lie: {lie} caught,",
+  "but the answers were not kept: the model stopped lying on {a} of lie prompts.",
+  "Probes read the activations with the 102 country-score directions removed. One run per concept."
+ ],
+ "alt": "Figure 1. Two columns compare two signals in the same prompts to the base Qwen2.5-1.5B model. Left, the lie: eight example statements are true or false, for example 'The city of Tokyo is in Japan' or 'in Bulgaria', and the model answers 'The city of Lyon is in' with France or China. Right, the decoy word: each example ends in (map) or (book), and the model answers France either way. A ruler shows the cost of erasing each signal before training: 0.98 for the lie, 0.0009 for the decoy word, as low as erasers fit on shuffled labels. Then a fine-tune tries to hide each signal from probes retrained every 50 steps for 300 steps. The Lyon lie prompt is still caught, but the model now answers France; retrained probes catch 100% of lie prompts, while the model stopped lying on 28% of them, against 2% before. The Lyon (book) prompt is missed, and probes catch 15% of (book) prompts, down from 100%. Bottom line: not settled.",
+ "ruler_sub": "how far the next-word probabilities move when the edit is applied (log scale)",
+ "assert": {
+  "stop_after": "28%",
+  "before": "2%",
+  "lie_L": "100%",
+  "dec_L": "15%"
+ },
+ "bottom_bold": 3
+}

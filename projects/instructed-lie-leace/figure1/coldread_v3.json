@@ -1,0 +1,37 @@
+{
+ "png": "../../blog.kran.ai/assets/figures/lie-erasure-cost-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0130753,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Can a fine-tune hide a signal from retrained probes if erasing that signal would significantly change the model's answers?\",\n  \"answer\": \"No\u2014while a cheap decoy word hides from probes 85% of the time, the costly lie (which preserves answers) is caught 100% of the time by retrained probes, though the model does stop lying on 28% of lie prompts.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"If erasing a signal would change the answers a lot, can a fine-tune still hide it from retrained probes?\",\n  \"answer\": \"A cheap decoy word is caught only 15% of the time, while a costly lie is caught 100% of the time, but the model stopped lying on 28% of lie prompts, suggesting the approach partially succeeds but with mixed results.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"If erasing a signal would change the answers a lot, can a fine-tune still hide it from retrained probes?\",\n  \"answer\": \"No: while a cheap decoy word is only caught 15% of the time, the costly lie is caught 100% of the time, though the model stopped lying on 28% of lie prompts, suggesting the answer is not settled.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Can a model be fine-tuned to hide an internal signal from retrained probes if erasing that signal would significantly alter its outputs?\",\n  \"answer\": \"The findings are not settled: fine-tuning successfully hid a cheap decoy word (reducing probe detection from 100% to 15%), whereas the costly lie signal remained 100% caught by probes and degraded performance, causing the model to stop lying on 28% of prompts.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Can fine-tuning hide an internal signal from retrained probes if erasing that signal would significantly change the model's answers?\",\n  \"answer\": \"The answer remains unsettled: fine-tuning hid a cheap decoy word signal with only 15% caught (down from 100%), but a costly lie signal remained 100% caught and caused the model to stop lying on 28% of lie prompts.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Can a fine-tune still hide a signal from retrained probes if erasing that signal would substantially change the model's answers?\",\n  \"answer\": \"The answer is not settled: the fine-tune hid a cheap decoy word with only 15% caught, but 100% of costly lie prompts were still caught while causing the model to stop lying on 28% of lie prompts.\"\n}"
+  }
+ ]
+}

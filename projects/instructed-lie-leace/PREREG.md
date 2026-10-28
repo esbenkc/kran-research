@@ -109,7 +109,7 @@ the outputs do not use it. It is priced with the others (s4) and gated by G0b li
 
 Compute stops at 10:50 PDT (18:50
 CET). Two fine-tunes run at once only if Vera's compute gate passes the measured RSS (<= 2 heavy, <= 5 GB total);
-otherwise strictly serial. Every arm is n = 1 and the post says so; if slot 4 = lie @ 1e4 seed 1 runs, the lie @
+otherwise strictly serial. Every arm is n = 1 and the post says so; if slot 5 = lie @ 1e4 seed 1 runs, the lie @
 1e4 cell is the mean of the two seeds and both are reported.
 
 **Monitor for the outcome (Vera #9203 a).** At steps 750, 800, 850 and 900, the CURRENT retrained panel (the
@@ -170,7 +170,7 @@ Q >= 10 is the PREMISE of the title (v1.1, Kasper #9217 item 1): with Q < 10 the
 by our bar, so the title cannot be answered whatever the catches do; the status is UNCONFIRMED and the catches and
 prediction clause 1 are reported.
 
-- **CONFIRMED (yes)** = Q >= 10 AND the decoy fell at 1e4 (or at 1e3 if slot 4 ran it) AND every lie cell held AND,
+- **CONFIRMED (yes)** = Q >= 10 AND the decoy fell at 1e4 (or at 1e3 if slot 3 ran it) AND every lie cell held AND,
   when R1's decoy fell, the spread decoy (slot 3) also fell (it is the control for 'more places to hide'; if it did
   not complete, the status is UNCONFIRMED).
 - **REJECTED (no)** = Q >= 10 AND any lie cell fell (a costly concept was hidden with the lie kept).

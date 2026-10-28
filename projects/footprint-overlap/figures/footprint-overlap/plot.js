@@ -45,7 +45,9 @@ export function render(data, Plot) {
   if (T.r2_gloss) root.append(el("font-size:12.5px;margin:0 0 0.3rem;color:" + C.muted, T.r2_gloss));
 
   const vals = P.flatMap((d) => [d.x, d.lo, d.hi]);
-  const lo = Math.min(-0.08, ...vals) - 0.02, hi = Math.max(1.06, ...vals) + 0.02;
+  const lo = Math.min(-0.08, ...vals) - 0.02, hi = Math.max(1.06, ...vals) + 0.02, yhi = hi + 0.07;
+  const sh = P.filter((d) => d.layer != null && d.layer <= 14), xs = sh.map((d) => d.x);
+  const br = { x0: Math.min(...xs), x1: Math.max(...xs), y: hi + 0.015 }; // bracket over the layer 0-14 monitors
   const off = (d) => (d.seed - (seeds.length - 1) / 2) * 0.006; // tiny nudge so the 2 runs do not hide each other
   const tip = (d) => `${d.name}\n${runName(d.seed)}\noverlap score ${pc(d.x)}\nfooled share ${pc(d.y)} (95% ${pc(d.lo)} to ${pc(d.hi)})`;
   const A = data.pts.filter((d) => d.k === "A" && d.seed === seeds[0]).map((d) => ({ ...d, y: 1 }));
@@ -55,7 +57,7 @@ export function render(data, Plot) {
   const svg = Plot.plot({
     style: plotStyle({ fontSize: "13px" }), width: W, height: 470, marginLeft: 56, marginRight: 20, marginTop: 14, marginBottom: 44,
     x: { domain: [lo, hi], label: T.x || "overlap score, computed before any behaviour test", tickFormat: pc, ...AX },
-    y: { domain: [lo, hi], label: T.y || "fooled share of the flattery drop", tickFormat: pc, ...AX },
+    y: { domain: [lo, yhi], label: T.y || "fooled share of the flattery drop", tickFormat: pc, ...AX },
     marks: [
       Plot.gridY({ stroke: C.grid, strokeOpacity: 1 }),
       Plot.ruleY([0], { stroke: C.faint }),
@@ -68,8 +70,12 @@ export function render(data, Plot) {
       Plot.text(emu.slice(0, 1), { ...halo(), x: "x", y: "y", text: [T.name_emu || "rounding setting (no hook)"], dy: -16, fontSize: 11.5, fill: C.ink }),
       ring(A, 7),
       Plot.text(A, { ...halo(), x: "x", y: "y", text: [T.name_A || "training probe"], dx: 8, dy: -14, textAnchor: "end", fontSize: 11.5, fill: C.ink }),
+      Plot.link([br], { x1: "x0", x2: "x1", y1: "y", y2: "y", stroke: C.muted, strokeWidth: 1.2 }),
+      Plot.link([br.x0, br.x1], { x1: (d) => d, x2: (d) => d, y1: br.y, y2: br.y - 0.02, stroke: C.muted, strokeWidth: 1.2 }),
+      Plot.text([br], { x: (d) => (d.x0 + d.x1) / 2, y: "y", text: [`${T.shallow || "leaky monitors in layers 0-14"}`], dy: -8, fontSize: 11.5, fill: C.muted }),
+      Plot.text([{ x: 0.12, y: 0.025 }], { ...halo(), x: "x", y: "y", text: [`\u2190 ${T.deep || "monitors past layer 20: both near 0"}`], textAnchor: "start", fontSize: 11.5, fill: C.muted }),
       ring([{ x: 0, y: 0 }], 9),
-      Plot.text([{ x: 0, y: 0 }], { ...halo(), x: "x", y: "y", text: [`${data.n_bitexact} ${T.bitexact || "bit-exact monitors: 0% fooled in both runs"}`], dx: 14, dy: 14, textAnchor: "start", fontSize: 11.5, fill: C.ink }),
+      Plot.text([{ x: 0, y: 0 }], { ...halo(), x: "x", y: "y", text: [`${data.n_bitexact} ${T.bitexact || "no-digit monitors: 0% fooled in both runs"}`], dx: 14, dy: 18, textAnchor: "start", fontSize: 11.5, fill: C.ink }),
     ],
   });
   svg.style.cssText += `;width:100%;height:auto;max-width:${W}px`;

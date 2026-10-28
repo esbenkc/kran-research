@@ -2,3 +2,15 @@ J2 done 20:02:22
 r50_s0_lr0.0001_kl1_at8192 bit-exact builds not identical to none: []
 r50_s1_lr0.0001_kl1_at8192 bit-exact builds not identical to none: []
 start shuf_s0_lr0.0001_kl1 r50_s0_lr0.0001_kl1 20:02:22
+shuf_s0_lr0.0001_kl1 restart 1 20:09:20
+r50_s0_lr0.0001_kl1 restart 1 20:09:29
+r50_s0_lr0.0001_kl1 restart 2 20:15:58
+shuf_s0_lr0.0001_kl1 restart 2 20:16:01
+end shuf_s0_lr0.0001_kl1 r50_s0_lr0.0001_kl1 20:17:08
+start r50_s0_lr0.0001_kl1_at4096 r50_s1_lr0.0001_kl1_at4096 20:17:08
+r50_s0_lr0.0001_kl1_at4096 restart 1 20:24:03
+r50_s1_lr0.0001_kl1_at4096 restart 1 20:24:03
+r50_s1_lr0.0001_kl1_at4096 restart 2 20:31:33
+r50_s0_lr0.0001_kl1_at4096 restart 2 20:31:33
+end r50_s0_lr0.0001_kl1_at4096 r50_s1_lr0.0001_kl1_at4096 20:32:22
+variants done 20:32:22

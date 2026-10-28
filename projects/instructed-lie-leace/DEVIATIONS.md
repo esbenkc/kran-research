@@ -139,3 +139,14 @@ almost surely not be met. Changes, all pre-run and applied to both runs equally:
    absolute value >= 10 pts. (Replaces "vs the 4 refits before", which barely exists at cap 300.)
 5. **Wording** (Tove #9337 (2)): a lie that stays above 50% "held for the same N-step budget", shown with the full
    catch-vs-step curve; never "cannot be hidden".
+
+## D9 — R2 restarted after a memory kill; full panel and every-position KL only at step 0 and the late refits (recorded 08:45 PDT, before any refit after step 0 was scored)
+
+The first R2 (started 08:29:01) was killed by the 9000 MB watchdog at 08:42:17 inside its step-50 refit check: the
+eval answer-KL built 800 x 151,936 fp32 logit arrays at once (Bruno #9347). Only its step-0 check existed (blind
+100%, full 100%, output-only 100%: the clean model, as G0b'). R1 had started at 08:42 with the same bug and was killed
+in its step-0 check, no data. Fix: KL in 100-row chunks, empty_cache after the capture; logs moved to `data/aborted/`.
+R2 restarted 08:44:48 with seed 0 (a fresh run, not a resume). Time saver, same for both runs, no status number
+touched: the FULL (unprojected) panel refit and the every-position KL slice are computed at step 0 and the late refits
+150..300 only, not at 50/100. The blind status panel, the output-only probe, answer KL and behaviour are computed at
+every refit. Projection: R2 ends ~09:40, R1 ~09:44-10:40, deadline guard 10:50.

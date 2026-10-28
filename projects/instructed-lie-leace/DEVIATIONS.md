@@ -72,3 +72,15 @@ setting of Halawi et al. 2307.09476). The title, TLDR, figure and Figure 1 never
 lie"; they say "false examples make the model name a wrong country". This replaces D3 item 3's "told to lie, with
 false examples in view". The limits say in one plain sentence that Q mixes "reads false statements" (the 1027 read
 concept) with "names a false country".
+
+## D4 — full-set skew toward one false country (recorded before any G0b/G0c/price output and before any run)
+
+G0d as frozen (50-city test) passed: top false country 9%, 33 distinct. On the full set (748 cities, Bruno #9260,
+`data/gate0/genB_R8v.json`) the top false country is 'the United States' at 23.8% of lie prompts, and 28% (350/1248)
+of the kept lie prompts; then Congo 6%, South Africa 4%; 77 distinct. Decision (Felix): the frozen rule holds and R8v
+is used; this is a skew, not a collapse, and the G0c output-lens drop and floor clause guard against a trivial hold.
+Added secondary row, no status role, in every lie cell: L_nontop = the late mean computed only over eval lie prompts
+whose clean answer is NOT the top false country (line unchanged). If a lie cell held but L_nontop < 50%, the post
+says the hold rests on the prompts where the model names the common false country. Note (Bruno): ' the' is the first
+token of several country answers, so B_lie/B_same use the greedy continuation's country, never the first token.
+Kept: 624 cities -> attack 324 / line 100 / eval 200 (1296 / 400 / 800 prompts), `data/ref/items.json`.

@@ -51,6 +51,21 @@ if "static_change" in S:
     for lo in S["leave_one_rung_out"]:
         rows.append(("robustness", seeds, f"leave out {lo['dropped']}", "none",
                      f"static change {f(lo['static_change'])}; I {f(lo['I'])} -> {lo['status']}", "results/summary.json"))
+    x6 = S["x_from_original_6_subgoals"]
+    rows.append(("robustness", seeds, "x from the 6 PREREG v1.3 subgoals (before D6)", "none",
+                 f"static change {f(x6['static_change'])} [90% {f(x6['sc_90'][0])}, {f(x6['sc_90'][1])}]; I {f(x6['I'])} -> {x6['status']}",
+                 "results/summary.json"))
+    if S.get("cluster_within"):
+        cw = S["cluster_within"]
+        rows.append(("robustness", seeds, f"cluster check: within {len(cw['models'])} strong rungs", "none",
+                     f"static change {f(cw['static_change'])}; I {f(cw['I'])} [90% {f(cw['I_90'][0])}, {f(cw['I_90'][1])}]",
+                     "results/summary.json"))
+    if S.get("sensitivity_with_local_rungs"):
+        sv = S["sensitivity_with_local_rungs"]
+        rows.append(("robustness (descriptive, D9)", seeds, "fit incl. local rungs that clear s2", "none",
+                     f"I {f(sv['I'])}; status {sv['status']}", "results/summary.json"))
+    rows.append(("use detail", seeds, "which secret / which bucket in the first use", "none",
+                 "see results/use_detail.json totals", "results/use_detail.json"))
 else:
     rows.append(("headline", seeds, f"fit over K={S['K']} fitted rungs", "none", f"{S['status']}: {S['status_reason']}",
                  "results/summary.json"))

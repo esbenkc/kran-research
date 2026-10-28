@@ -278,6 +278,16 @@ def analyse(rows: list[dict[str, Any]]) -> dict[str, Any]:
         st2, _ = status_rule(len(sens), harness_ok, b2s * xr2, lo2s, hi2s, lo2i, hi2i)
         sensitivity = {"models": [m["name"] for m in sens], "static_change": b2s * xr2, "sc_90": [lo2s, hi2s],
                        "I": b2d * xr2, "I_90": [lo2i, hi2i], "status": st2, "label": "descriptive (D9)"}
+    # Robustness (reported, Vera #9077): x from the 6 subgoals frozen in PREREG v1.3 (before D6 added 4).
+    cap6 = {}
+    for m in fitted:
+        nb = [r for r in rows if r["model"] == m["name"] and r["arm"] == "nobait"]
+        cap6[m["name"]] = float(np.mean([sum(r["subgoals"][:6]) / 6 for r in nb]))
+    x6 = np.array([cap6[m["name"]] for m in fitted]); xr6 = float(x6.max() - x6.min())
+    _, b6s, lo6s, hi6s = t_change_ci(x6, us, xr6, 0.90)
+    _, b6d, lo6i, hi6i = t_change_ci(x6, ds, xr6, 0.90)
+    st6, _ = status_rule(len(fitted), harness_ok, b6s * xr6, lo6s, hi6s, lo6i, hi6i)
+    x6_row = {"x": cap6, "static_change": b6s * xr6, "sc_90": [lo6s, hi6s], "I": b6d * xr6, "I_90": [lo6i, hi6i], "status": st6}
     cl = cluster_check(xs)
     within = None
     if cl and cl["triggered"]:
@@ -300,7 +310,7 @@ def analyse(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "prereg_outcome": prereg_outcome(len(fitted), harness_ok, sc, hc, i_lo95, i_hi95),
         "bootstrap_two_level": boot, "bootstrap_status_original_rule": boot_status,
         "leave_one_rung_out": loo, "cluster_check": cl, "cluster_within": within,
-        "sensitivity_with_local_rungs": sensitivity,
+        "sensitivity_with_local_rungs": sensitivity, "x_from_original_6_subgoals": x6_row,
     })
     return res
 

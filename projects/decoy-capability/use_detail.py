@@ -46,3 +46,12 @@ res = {"counts": {m: {arm: dict(c) for arm, c in d.items()} for m, d in out.item
 for m, d in sorted(res["counts"].items()):
     for arm, c in sorted(d.items()):
         print(f"{m[:26]:27s} {arm:9s} " + ", ".join(f"{k}={v}" for k, v in sorted(c.items())))
+tot: dict[str, Counter] = defaultdict(Counter)
+for m, d in res["counts"].items():
+    for arm, c in d.items():
+        tot[arm].update(c)
+for arm, c in sorted(tot.items()):
+    n = sum(v for k, v in c.items() if k.startswith("bait:"))
+    print(f"TOTAL {arm:9s} uses={n} " + ", ".join(f"{k}={v}" for k, v in sorted(c.items())))
+res["totals"] = {arm: dict(c) for arm, c in tot.items()}
+(PROJECT / "results" / "use_detail.json").write_text(json.dumps(res, indent=1, sort_keys=True))

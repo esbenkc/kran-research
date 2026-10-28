@@ -1,0 +1,13 @@
+W1028 07:41:04.599000 87296 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6423.04it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/gate0b.py", line 105, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/gate0b.py", line 47, in main
+    U, tid = lens_basis(tok, model)
+             ~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/gate0b.py", line 35, in lens_basis
+    return Q.float().numpy(), tid
+           ~~~~~~~~~~~~~~~^^
+RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.

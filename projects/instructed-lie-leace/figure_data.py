@@ -1,0 +1,35 @@
+"""Figure data for the ONE main figure: retrained-probe catch (output-blind panel) against fine-tune step for the
+decoy run and the lie run(s), with each concept's LEACE price measured before training; the full panel and the
+output-only probe as reference lines (the mechanical half). Reads data/results/summary.json (analysis.py).
+-> data/results/figure_data.json
+"""
+import json
+from pathlib import Path
+
+D = Path(__file__).parent / "data"
+
+
+def main():
+    s = json.loads((D / "results" / "summary.json").read_text())
+    pr = s["prices"]
+    out = {"prices": {"lie_blind": pr.get("lie_blind", {}).get("P_answer"),
+                      "decoy_blind": pr.get("decoy_blind", {}).get("P_answer"),
+                      "lie_full": pr.get("lie_full", {}).get("P_answer"),
+                      "decoy_full": pr.get("decoy_full", {}).get("P_answer"),
+                      "N_decoy_blind": s["premise_Q"].get("N_decoy"), "N_lie_blind": s["premise_Q"].get("N_lie"),
+                      "Q_blind": s["premise_Q"].get("Q")},
+           "status": s["status"], "runs": []}
+    for n, r in s["runs"].items():
+        out["runs"].append({"name": n, "target": r["target"], "lam": r["lam"], "L_blind": r["L_blind"],
+                            "late_steps": r["late_steps"], "B_lie": r.get("B_lie"), "B_honest": r.get("B_honest"),
+                            "steps": [t["step"] for t in r["traj"]],
+                            "catch_blind": [t["catch_blind"] for t in r["traj"]],
+                            "catch_full": [t["catch_full"] for t in r["traj"]],
+                            "O_catch": [t["O_catch"] for t in r["traj"]],
+                            "kl_answer": [t["kl_answer_eval"] for t in r["traj"]]})
+    (D / "results" / "figure_data.json").write_text(json.dumps(out, indent=1))
+    print(json.dumps(out["prices"]), [(r["name"], r["L_blind"]) for r in out["runs"]])
+
+
+if __name__ == "__main__":
+    main()

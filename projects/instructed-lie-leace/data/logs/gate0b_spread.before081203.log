@@ -1,0 +1,9 @@
+W1028 07:41:53.648000 87601 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6910.80it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/gate0b.py", line 126, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/gate0b.py", line 72, in main
+    Lg = (torch.tensor(H[:, -1], device=dev) @ W.T).cpu().numpy()
+RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.

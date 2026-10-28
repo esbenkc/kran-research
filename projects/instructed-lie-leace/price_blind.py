@@ -5,7 +5,8 @@ shrinkage on, constrain_cov_trace on) for one binary concept at each readout R =
 answer-position states of the fit pool (line + attack items, data/states/clean<TAG>.npy, one capture), then all 20
 applied together at the answer position (last prompt token) in one forward pass.
 
-  blind cell  : the eraser is fit on Z = h B, B = an orthonormal basis of the complement of U (data/ref/U_lens.npy),
+  blind cell  : the eraser is fit on Z = h B, B = an orthonormal basis of the complement of U (U_lens_pre at 10..28,
+                U_lens_post at 29),
                 and applied inside the complement: h -> h + B (r(Z) - Z). The edit never touches U.
   full cell   : the eraser is fit and applied on h itself.
   shuf_<c>_<k>: the same fit on permutation k (rng 1028 + k, k = 0..4) of concept c's labels (null N(c)).
@@ -61,12 +62,13 @@ def main(cells):
     I, city, lie, decoy, split = item_arrays()
     ids = tokenize(tok, [r["text"] for r in I])
     H = np.load(DATA / "states" / f"clean{TAG}.npy", mmap_mode="r")
-    U = np.load(REF / "U_lens.npy")
-    d, k = U.shape
-    Q_, _ = np.linalg.qr(np.concatenate([U, np.random.default_rng(0).standard_normal((d, d - k))], 1))
-    B = Q_[:, k:]  # complement basis, d x (d - k)
-    assert np.abs(U.T @ B).max() < 1e-4
-    Bt = torch.tensor(B, dtype=torch.float32, device=dev)
+    Bs = {}
+    for nm in ("pre", "post"):  # U_pre at readouts 10..28, U_post at 29 (PREREG 5ad57fe)
+        U = np.load(REF / f"U_lens_{nm}.npy")
+        d, k = U.shape
+        Q_, _ = np.linalg.qr(np.concatenate([U, np.random.default_rng(0).standard_normal((d, d - k))], 1))
+        Bs[nm] = Q_[:, k:]  # complement basis, d x (d - k)
+        assert np.abs(U.T @ Bs[nm]).max() < 1e-4
     pool = np.where(np.isin(split, ["line", "attack"]))[0]
     ev = np.where(split == "eval")[0]
     labels = {"lie": lie, "decoy": decoy}
@@ -93,12 +95,14 @@ def main(cells):
         fs = {}
         for kk, R in enumerate(PANEL):
             X = torch.tensor(np.asarray(H[pool, kk], np.float32), dtype=torch.float64)
+            B = Bs["post" if R == 29 else "pre"]
+            Bt = torch.tensor(B, dtype=torch.float32, device=dev)
             if blind:
                 X = X @ torch.tensor(B, dtype=torch.float64)
             e = LeaceFitter.fit(X, torch.tensor(y[pool], dtype=torch.float64)[:, None]).eraser
             L, Rt, b = e.proj_left.float().to(dev), e.proj_right.float().to(dev), e.bias.float().to(dev)
             if blind:
-                fs[R] = (lambda L, Rt, b: lambda x: x - (((x @ Bt - b) @ Rt.mT) @ L.mT) @ Bt.mT)(L, Rt, b)
+                fs[R] = (lambda L, Rt, b, Bt: lambda x: x - (((x @ Bt - b) @ Rt.mT) @ L.mT) @ Bt.mT)(L, Rt, b, Bt)
             else:
                 fs[R] = (lambda L, Rt, b: lambda x: x - ((x - b) @ Rt.mT) @ L.mT)(L, Rt, b)
         return fs
@@ -122,7 +126,7 @@ def main(cells):
             torch.mps.empty_cache()
         np.save(OUT / f"perprompt_{cell}{TAG}.npy", per[ev])
         res[cell] = {"P_answer": float(per[ev].mean()), "P_every_position": float(per[ev].sum() / n_tok),
-                     "n_eval": len(ev), "n_tokens": n_tok, "fit_pool": len(pool), "k_lens": k}
+                     "n_eval": len(ev), "n_tokens": n_tok, "fit_pool": len(pool)}
         pf.write_text(json.dumps(res, indent=1))
         log(cell, json.dumps(res[cell]))
     for sp in ("blind", "full"):

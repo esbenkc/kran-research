@@ -1,3 +1,13 @@
 07:29:55 START cmd ./heavy.sh smoke_lie attack.py --target lie --lam 1e4 --seed 99 --steps 10 --smoke
 07:34:48 DONE cmd rc=0
 07:34:48 START cmd ./heavy.sh gate0_spread gate0_spread.py
+07:41:00 DONE cmd rc=0
+07:41:00 START cmd ILL_TAG=_spread ./heavy.sh gate0b_spread gate0b.py
+07:41:07 DONE cmd rc=0
+07:41:50 START cmd ILL_TAG=_spread ./heavy.sh gate0b_spread gate0b.py
+07:46:49 DONE cmd rc=0
+07:46:49 START cmd ILL_TAG=_spread ./heavy.sh smoke_v13 attack.py --target lie --lam 1e4 --seed 99 --steps 12 --smoke --fit-cities 160
+07:46:56 DONE cmd rc=0
+07:46:56 START cmd ILL_TAG=_spread ./heavy.sh price_blind price_blind.py
+08:12:03 DONE cmd rc=0
+08:12:03 START cmd ILL_TAG=_spread ./heavy.sh gate0b_spread gate0b.py

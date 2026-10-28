@@ -1,0 +1,32 @@
+{
+ "n_fit": 1696,
+ "n_eval": 800,
+ "source": "/tmp/iris/r29.npz",
+ "lie": {
+  "kl_mean": 0.3946796655654907,
+  "kl_class1": 0.7253193855285645,
+  "kl_class0": 0.06404007971286774,
+  "kl_median": 0.47060078382492065,
+  "edit_norm_mean": 23.951087951660156,
+  "state_norm_mean": 163.76580810546875,
+  "null_shuffled_kl": 0.0010899459011852741,
+  "null_randdir_kl": 0.07717824727296829
+ },
+ "decoy": {
+  "kl_mean": 9.490740194451064e-05,
+  "kl_class1": 7.956195622682571e-05,
+  "kl_class0": 0.0001102528694900684,
+  "kl_median": 2.6176217943429947e-05,
+  "edit_norm_mean": 0.8955104947090149,
+  "state_norm_mean": 163.76580810546875,
+  "null_shuffled_kl": 0.0023440346121788025,
+  "null_randdir_kl": 0.00010085752001032233
+ },
+ "ratio_lie_over_decoy": 4158.57622776617,
+ "predicted_all_layer": {
+  "lie": 0.4536547880063112,
+  "decoy": 0.00010908896775231108
+ },
+ "note": "predicted_all_layer = R29-only / 0.87 (1027 single_29/registered at the edited token: 0.0495/0.0569)",
+ "seconds": 6.594843149185181
+}

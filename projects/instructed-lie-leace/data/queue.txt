@@ -1,4 +1,2 @@
-cmd:ILL_TAG=_spread ./heavy.sh gate0b_spread gate0b.py
 cmd:ILL_TAG=_spread ./heavy.sh smoke_v13 attack.py --target lie --lam 1e4 --seed 99 --steps 12 --smoke --fit-cities 160
-cmd:ILL_TAG=_spread ./heavy.sh price_blind price_blind.py
 cmd:cd ../../../swarm-theory-1028-instructed-lie/skeptic && ./vera_queue.sh

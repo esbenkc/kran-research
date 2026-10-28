@@ -1,0 +1,21 @@
+/Users/esben/work/theory-1028-instructed-lie/venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+W1028 07:46:59.268000 88786 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 9067.72it/s]
+clean pass done 97s
+lie_blind {"P_answer": 0.9787681224849075, "P_every_position": 0.007019907281453856, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 198s
+decoy_blind {"P_answer": 0.0009130169531485422, "P_every_position": 6.548327648050364e-06, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 299s
+shuf_decoy_blind_0 {"P_answer": 0.002830879163248028, "P_every_position": 2.0303592643115797e-05, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 399s
+shuf_decoy_blind_1 {"P_answer": 0.0012203128932793562, "P_every_position": 8.752311368125771e-06, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 499s
+shuf_decoy_blind_2 {"P_answer": 0.001033855302248412, "P_every_position": 7.415002795348206e-06, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 599s
+shuf_decoy_blind_3 {"P_answer": 0.0011980868280420508, "P_every_position": 8.59290188837963e-06, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 699s
+shuf_decoy_blind_4 {"P_answer": 0.009229439358491617, "P_every_position": 6.619525816995656e-05, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 799s
+shuf_lie_blind_0 {"P_answer": 0.0032971621272304217, "P_every_position": 2.3647860911444455e-05, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 899s
+shuf_lie_blind_1 {"P_answer": 0.0038724551658219754, "P_every_position": 2.7773969739269334e-05, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 1000s
+shuf_lie_blind_2 {"P_answer": 0.005231226524483645, "P_every_position": 3.751933101062305e-05, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 1100s
+shuf_lie_blind_3 {"P_answer": 0.0010025902462585635, "P_every_position": 7.190763990307245e-06, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 1201s
+shuf_lie_blind_4 {"P_answer": 0.005442496894346505, "P_every_position": 3.9034601454852915e-05, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 1301s
+lie_full {"P_answer": 1.0636730121821165, "P_every_position": 0.007628860964889398, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 1403s
+decoy_full {"P_answer": 0.0010674953952184297, "P_every_position": 7.65627580798931e-06, "n_eval": 800, "n_tokens": 111542, "fit_pool": 1696} 1505s
+Q_blind {"raw_ratio": 1072.0152776020448, "N_decoy": 0.0031025147090618928, "N_lie": 0.0037691861916282223, "Q": 315.475739607648, "lie_over_own_null": 259.67624646902806, "premise_Q_ge_10": true} 1505s
+Q_full {"raw_ratio": 996.4192978691668} 1505s

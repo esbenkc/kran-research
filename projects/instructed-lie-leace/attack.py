@@ -67,9 +67,16 @@ def run(target, lam, seed, steps, smoke=False, fit_cities=0, pairs=None, klb=Non
     Cs = [c["C"] for c in G[target + "_blind"]]   # v1.3: the status panel AND the in-loop target = output-blind panel
     Cf = [c["C"] for c in G[target + "_full"]]    # full panel (no projection): reported, the mechanical half
     CO = G[target + "_O"]
-    U = np.load(REF / "U_lens.npy")
-    Ut = torch.tensor(U, dtype=torch.float32, device=dev)
-    blind = lambda X: X - np.einsum("npk,dk->npd", np.einsum("npd,dk->npk", X, U), U)
+    Upre, Upost = np.load(REF / "U_lens_pre.npy"), np.load(REF / "U_lens_post.npy")  # 10..28 / 29 (PREREG 5ad57fe)
+    U = Upre
+    Ut = torch.stack([torch.tensor(Upre if R != 29 else Upost, dtype=torch.float32, device=dev) for R in PANEL])  # (20, d, k)
+
+    def blind(X):
+        out = np.empty_like(X)
+        for kk, R in enumerate(PANEL):
+            Uk = Upre if R != 29 else Upost
+            out[:, kk] = X[:, kk] - (X[:, kk] @ Uk) @ Uk.T
+        return out
     ctok = country_token_ids(tok)
     atk = np.where(split == "attack")[0]
     ev = np.where(split == "eval")[0]
@@ -154,6 +161,8 @@ def run(target, lam, seed, steps, smoke=False, fit_cities=0, pairs=None, klb=Non
                "catch_full": e_all["catch"], "auroc_full": e_all["auroc"], "per_readout_catch_full": e_all["per_readout_catch"], "O_catch": e_O["catch"], "O_auroc": e_O["auroc"],
                "B": B, "B_honest": Bh, "kl_answer_eval": float(ans_kl.mean()), "kl_every_slice": kl_every,
                "probe_n_iter_max": int(prm["n_iter"].max()), "sec": round(time.time() - t0, 1)}
+        m_, s_ = S[evm & (ys == 0)].mean(0), S[evm & (ys == 0)].std(0) + 1e-9
+        row["z_eval_blind"] = np.round(((S - m_) / s_).max(1)[evm], 4).tolist()  # per-item blind panel score (eval order)
         extra = None
         if final:
             m_, s_ = S[evm & (ys == 0)].mean(0), S[evm & (ys == 0)].std(0) + 1e-9
@@ -177,7 +186,7 @@ def run(target, lam, seed, steps, smoke=False, fit_cities=0, pairs=None, klb=Non
         def score(self, box, ap):
             ar = torch.arange(len(ap), device=dev)
             Hb = torch.stack([box[R][ar, ap] for R in PANEL], 1).float()
-            Hb = Hb - (Hb @ Ut) @ Ut.T  # output-blind: project out the lens span U (v1.3 s2)
+            Hb = Hb - torch.einsum("bpk,pdk->bpd", torch.einsum("bpd,pdk->bpk", Hb, Ut), Ut)  # output-blind (v1.3 s2)
             return (((Hb - self.mu) / self.sd) * self.w).sum(-1) + self.b
 
     traj, log, probes = [], [], {}

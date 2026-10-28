@@ -1,0 +1,9 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1028-instructed-lie/venv, got /Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/../../../venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1028-instructed-lie/venv, got /Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/../../../venv
+W1028 06:59:31.972000 77747 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 7003.46it/s]
+raw {"honest_acc": 0.2775, "lie_rate": 0.115, "lie_rate_loose": 0.4925, "n_prompts": 800} 30s
+chat {"honest_acc": 0.9875, "lie_rate": 0.01, "lie_rate_loose": 0.0225, "n_prompts": 800} 74s
+CHOSEN raw
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-77747-d_peq_2u'}
+  warnings.warn(

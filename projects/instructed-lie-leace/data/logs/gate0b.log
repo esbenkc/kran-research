@@ -1,0 +1,9 @@
+W1028 07:24:19.356000 82482 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 7382.34it/s]
+states (2496, 20, 1536) lens (2496, 20, 107) 251s
+lie {"G0b_catch": 1.0, "G0b_auroc": 1.0, "O29_catch": 1.0} 253s
+decoy {"G0b_catch": 0.49, "G0b_auroc": 0.9765843750000001, "O29_catch": 0.015} 261s
+/Users/esben/work/theory-1028-instructed-lie/kran-research/projects/instructed-lie-leace/gate0b.py:68: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  kls.append(float((lp[0].exp() * (lp[0] - lp[1])).sum()))
+{"keep": [10], "lie_status": 1.0}

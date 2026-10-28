@@ -1,0 +1,8 @@
+W1028 11:10:20.387000 33872 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6397.62it/s]
+150 {'still_false': 0.84, 'truthful_true': 0.99}
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 7569.09it/s]
+200 {'still_false': 0.7225, 'truthful_true': 0.98}
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 10384.07it/s]
+250 {'still_false': 0.945, 'truthful_true': 0.9925}
+{"name": "lie_spread__lam10000__seed0", "n_lie": 400, "steps": {"0": {"still_false": 0.9775, "truthful_true": 0.9975}, "150": {"still_false": 0.84, "truthful_true": 0.99}, "200": {"still_false": 0.7225, "truthful_true": 0.98}, "250": {"still_false": 0.945, "truthful_true": 0.9925}, "300": {"still_false": 0.7225, "truthful_true": 0.9725}}}

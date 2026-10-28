@@ -1,2 +1,19 @@
 W1028 10:02:34.292000 17441 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6574.85it/s]
+{"step": 0, "skipped_eval": true, "probe_n_iter_max": 57, "sec": 102.8}
+{"step": 1, "probe_loss": 44.551531648635866, "gap2_max": 112.83767700195312, "gap2_argmax": 10, "kl_prompts": 0.0, "kl_pile": 0.0, "sec": 109.0}
+{"step": 2, "probe_loss": 28.457159328460694, "gap2_max": 74.25575637817383, "gap2_argmax": 10, "kl_prompts": 0.0008671898976899683, "kl_pile": 0.0009545456268824637, "sec": 115.1}
+{"step": 50, "probe_loss": 0.3762818099465221, "gap2_max": 1.2525768280029297, "gap2_argmax": 26, "kl_prompts": 0.0010199600365012884, "kl_pile": 0.0012733542826026678, "sec": 407.0}
+{"step": 50, "skipped_eval": true, "probe_n_iter_max": 104, "sec": 504.9}
+{"step": 100, "probe_loss": 0.09413957088254392, "gap2_max": 0.29262443259358406, "gap2_argmax": 26, "kl_prompts": 0.0018024946912191808, "kl_pile": 0.0021272837184369564, "sec": 809.2}
+{"step": 100, "skipped_eval": true, "probe_n_iter_max": 95, "sec": 908.0}
+{"step": 150, "probe_loss": 0.05867448326316662, "gap2_max": 0.2433609627187252, "gap2_argmax": 26, "kl_prompts": 0.0024308418505825102, "kl_pile": 0.0014085948932915926, "sec": 1212.1}
+{"step": 150, "catch_blind": 0.265, "auroc_blind": 0.9621249999999999, "line_blind": 4.140042304992676, "catch_full": 0.4125, "auroc_full": 0.96653125, "O_catch": 0.0125, "O_auroc": 0.55965625, "B": 0.8625, "B_honest": 0.9975, "kl_answer_eval": 0.0022847992907963997, "kl_every_slice": 0.0019036838387314415, "probe_n_iter_max": 106, "sec": 1471.8}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{"step": 200, "probe_loss": 0.4345782640390098, "gap2_max": 2.3898367881774902, "gap2_argmax": 10, "kl_prompts": 0.001521063328254968, "kl_pile": 0.0025811269879341125, "sec": 1776.4}
+{"step": 200, "catch_blind": 0.165, "auroc_blind": 0.94606875, "line_blind": 4.10024881362915, "catch_full": 0.05, "auroc_full": 0.9436812499999999, "O_catch": 0.0175, "O_auroc": 0.5569249999999999, "B": 0.8675, "B_honest": 0.9975, "kl_answer_eval": 0.0022521096597847646, "kl_every_slice": 0.0018346895058528635, "probe_n_iter_max": 113, "sec": 2036.1}
+{"step": 250, "probe_loss": 0.32592107690870764, "gap2_max": 1.102806568145752, "gap2_argmax": 10, "kl_prompts": 0.0011122387368232012, "kl_pile": 0.008541134186089039, "sec": 2340.9}
+{"step": 250, "catch_blind": 0.095, "auroc_blind": 0.9215187499999999, "line_blind": 4.22553014755249, "catch_full": 0.205, "auroc_full": 0.92481875, "O_catch": 0.0075, "O_auroc": 0.5545125, "B": 0.865, "B_honest": 0.9975, "kl_answer_eval": 0.0023064525892004892, "kl_every_slice": 0.0014689987297515342, "probe_n_iter_max": 112, "sec": 2600.8}
+{"step": 300, "probe_loss": 0.4644472026731819, "gap2_max": 2.3680838346481323, "gap2_argmax": 10, "kl_prompts": 0.0011100621486548334, "kl_pile": 0.002115796320140362, "sec": 2906.6}
+{"step": 300, "catch_blind": 0.08, "auroc_blind": 0.91070625, "line_blind": 4.027766704559326, "catch_full": 0.04, "auroc_full": 0.91185, "O_catch": 0.0125, "O_auroc": 0.55404375, "B": 0.8625, "B_honest": 0.9975, "kl_answer_eval": 0.0024255722378120482, "kl_every_slice": 0.0016120523289038097, "probe_n_iter_max": 115, "sec": 3167.0}
+{"target": "decoy", "lam": 10000.0, "seed": 0, "train_seconds": 3167.9, "max_rss_mb": 1225.609375}

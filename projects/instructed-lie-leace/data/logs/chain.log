@@ -32,3 +32,9 @@
 10:02:31 FAILED eval lie_spread__lam10000__seed0
 10:02:31 DONE lie_spread__lam10000__seed0 {"target": "lie", "lam": 10000.0, "seed": 0, "train_seconds": 3578.5, "max_rss_mb": 1563.171875} RuntimeError: MPS backend out of memory (MPS allocated: 5.81 GiB, other allocations: 99.77 MiB, max allowed: 7.70 GiB). Tried to allocate 2.69 GiB on shared pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
 10:02:31 START decoy_spread__lam10000__seed0 --steps 300 --fit-cities 160 --pairs 4 --klb 4 --retain 2 --deadline 11:06 --skip-early-eval
+11:02:49 DONE decoy_spread__lam10000__seed0 {"target": "decoy", "lam": 10000.0, "seed": 0, "train_seconds": 3167.9, "max_rss_mb": 1225.609375} {"name": "decoy_spread__lam10000__seed0", "n_eval": 800, "B_lie": 0.9825, "B_same": 0.8375, "B_honest": 1.0, "kl_every_position": 0.0015995097223448396, "kl_answer": 0.002425572140696204}
+11:02:49 START cmd ILL_TAG=_spread ./heavy.sh eval_lie_spread__lam10000__seed0 evaluate.py lie_spread__lam10000__seed0
+11:10:16 DONE cmd rc=0
+11:10:16 START cmd ILL_TAG=_spread ./heavy.sh still_lying still_lying.py lie_spread__lam10000__seed0
+11:17:33 DONE cmd rc=0
+11:17:33 START cmd cd ../../../swarm-theory-1028-instructed-lie/skeptic && ./vera_queue2.sh

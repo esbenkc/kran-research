@@ -35,6 +35,22 @@ def main():
         if "L_nontop" in r:
             rows.append(("lie hold not the common answer", "0", f"lie @ lam {r['lam']:g}", "subset: clean answer not 'the United States'",
                          f"L = {f(r['L_nontop'])} (n {r['n_nontop']}); answer not 'the ...': L = {f(r['L_nothe'])} (n {r['n_nothe']})", a))
+    for n in s["runs"]:
+        cf = D / "results" / f"crossstep_{n}.json"
+        if cf.exists():
+            cs = json.loads(cf.read_text())
+            if cs:
+                rows.append(("each refit is beaten within 50 steps", "0", n.split("__")[0].replace("_spread", "") + " @ lam 1e4",
+                             "fresh refit on the same states", "stale probes (fit at k, scored at k+50): " +
+                             ", ".join(f"{c['fit_step']}->{c['scored_step']} {f(c['stale_catch'])} (fresh {f(c['fresh_catch'])})" for c in cs),
+                             f"data/results/crossstep_{n}.json"))
+    sl = D / "results" / "still_lying.json"
+    if sl.exists():
+        st = json.loads(sl.read_text())["steps"]
+        rows.append(("lie run changed the behaviour", "0", "lie @ lam 1e4", "none",
+                     "still a false country on eval lie prompts: " + ", ".join(f"step {k} {f(v['still_false'])}" for k, v in
+                                                                              sorted(st.items(), key=lambda kv: int(kv[0]))),
+                     "data/results/still_lying.json"))
     pa = "data/leace/price_blind_spread.json"
     for c in ("lie_blind", "decoy_blind", "lie_full", "decoy_full"):
         if c in pr:

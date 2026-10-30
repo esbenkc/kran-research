@@ -94,3 +94,9 @@ Cached tail (Bruno's tail.py, NC_DEV=cpu), merged weights of main s0/s1 at 8,192
 | probe-ON input, probe-OFF content (3-24) or suffix (25-33) | 0.000 / 0.000 | -0.000 / -0.001 |
 
 -> The Oct 25 leaky-probe switch is 100% carried by the same three prefix tokens. One mechanism explains both posts: reward found a constant per-condition fingerprint at the fixed chat-template prefix ('<|im_start|>user\n'), whether the condition was a probe or a build. Consistent with the Sauers watching README note that the 8B detector reads the template-constant 'user' token (our footprint-overlap room found the same, post hoc).
+## 9. POST HOC: token 0 vs tokens 1-2, and why MLX's share varies by seed (12:48-12:52 PDT)
+`t_pred_prefix.json`: token 0 holds 93% of the prefix grading->serving offset (|d|^2), but MLX projects 0.0005 there; tokens 1-2 project 0.35 / 0.62 (pooled 0.45). Emulated 0.000 at all three.
+`patch_pos0_vs_12.json` (s0 / s1 / s2 at 8,192, 200 test, cached tail; 251 s, 0.87 GB):
+- grading input + serving token 0: 0.103 / 0.439 / 0.011; + serving tokens 1-2: 0.818 / 0.351 / 0.936.
+- grading input + MLX tokens 1-2: 0.508 / 0.116 / 0.646 vs MLX's own share 0.557 / 0.306 / 0.709; + MLX token 0: 0.004 / 0.133 / 0.012.
+-> Runs 1 and 3 read tokens 1-2; run 2 reads both. MLX carries more where the run reads tokens 1-2. The frozen all-position T_pred (0.054) was dominated by token 0 and missed. Candidate frozen predictor for a next run: projection at tokens 1-2 (MLX 0.45; observed mean of 3 seeds 0.52).

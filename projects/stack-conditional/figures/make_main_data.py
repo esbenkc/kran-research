@@ -77,6 +77,7 @@ def main():
         "pen": "control: penalised on both builds",
         "shuf": "control: penalty on a random half",
         "pred": "guess fixed before training",
+        "guess_short": "guess",
     }
     out = dict(terms=terms, runs=list(range(len(runs))), run_names=runs, points=points, bands=bands, pred=pred)
     (HERE / "figures" / "data.json").write_text(json.dumps(out))

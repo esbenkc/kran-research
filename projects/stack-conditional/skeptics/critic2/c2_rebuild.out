@@ -1,0 +1,23 @@
+base px {'eager': np.float64(0.3868), 'compiled': np.float64(0.3928), 'emu': np.float64(0.3879), 'mlx': np.float64(0.3954)} top1/gen {'eager': (np.float64(0.295), np.float64(0.295)), 'compiled': (np.float64(0.315), np.float64(0.315)), 'emu': (np.float64(0.3), np.float64(0.3)), 'mlx': (np.float64(0.32), np.float64(0.32))}
+penall_s0_lr0.0001_kl1 7168 {'eager': np.float64(0.0682), 'compiled': np.float64(0.07), 'emu': np.float64(0.0675), 'mlx': np.float64(0.0722)} dGAP -0.0042 [-0.0083, -0.0001] pos 96/200 share emu 0.4510 mlx 1.1043 grading drop 0.3185 serving drop 0.3228 4-build spread 0.0047
+penall_s0_lr0.0001_kl1 8192 {'eager': np.float64(0.0712), 'compiled': np.float64(0.0732), 'emu': np.float64(0.0704), 'mlx': np.float64(0.0754)} dGAP -0.0040 [-0.0079, 0.0001] pos 88/200 share emu 0.4796 mlx 1.1016 grading drop 0.3156 serving drop 0.3196 4-build spread 0.0050
+shuf_s0_lr0.0001_kl1 7168 {'eager': np.float64(0.2148), 'compiled': np.float64(0.2187), 'emu': np.float64(0.2133), 'mlx': np.float64(0.2231)} dGAP -0.0022 [-0.0053, 0.0009] pos 93/200 share emu 1.2137 mlx 0.1419 grading drop 0.1720 serving drop 0.1741 4-build spread 0.0098
+shuf_s0_lr0.0001_kl1 8192 {'eager': np.float64(0.2426), 'compiled': np.float64(0.2459), 'emu': np.float64(0.2421), 'mlx': np.float64(0.2518)} dGAP -0.0027 [-0.0059, 0.0004] pos 88/200 share emu 0.6278 mlx -0.2089 grading drop 0.1441 serving drop 0.1468 4-build spread 0.0098
+stack_s0_lr0.0001_kl1 7168 {'eager': np.float64(0.0432), 'compiled': np.float64(0.3642), 'emu': np.float64(0.0422), 'mlx': np.float64(0.1686)} dGAP +0.3150 [0.2931, 0.3370] pos 200/200 share emu -0.0068 mlx 0.3707 grading drop 0.3436 serving drop 0.0286 4-build spread 0.3220
+stack_s0_lr0.0001_kl1 8192 {'eager': np.float64(0.1208), 'compiled': np.float64(0.5636), 'emu': np.float64(0.1219), 'mlx': np.float64(0.3677)} dGAP +0.4368 [0.4198, 0.4528] pos 200/200 share emu -0.0002 mlx 0.5454 grading drop 0.2660 serving drop -0.1708 4-build spread 0.4428
+stack_s1_lr0.0001_kl1 7168 {'eager': np.float64(0.0353), 'compiled': np.float64(0.3359), 'emu': np.float64(0.0344), 'mlx': np.float64(0.0649)} dGAP +0.2945 [0.2724, 0.3171] pos 200/200 share emu -0.0070 mlx 0.0710 grading drop 0.3514 serving drop 0.0569 4-build spread 0.3014
+stack_s1_lr0.0001_kl1 8192 {'eager': np.float64(0.1238), 'compiled': np.float64(0.347), 'emu': np.float64(0.1232), 'mlx': np.float64(0.1927)} dGAP +0.2172 [0.2036, 0.2305] pos 200/200 share emu -0.0081 mlx 0.2773 grading drop 0.2629 serving drop 0.0458 4-build spread 0.2238
+stack_s2_lr0.0001_kl1 7168 {'eager': np.float64(0.1704), 'compiled': np.float64(0.473), 'emu': np.float64(0.17), 'mlx': np.float64(0.4003)} dGAP +0.2965 [0.2843, 0.3081] pos 200/200 share emu -0.0054 mlx 0.7460 grading drop 0.2163 serving drop -0.0802 4-build spread 0.3030
+stack_s2_lr0.0001_kl1 8192 {'eager': np.float64(0.136), 'compiled': np.float64(0.4191), 'emu': np.float64(0.1358), 'mlx': np.float64(0.3382)} dGAP +0.2771 [0.2632, 0.2904] pos 200/200 share emu -0.0046 mlx 0.6985 grading drop 0.2508 serving drop -0.0263 4-build spread 0.2832
+user_s0_lr0.0001_kl1 7168 {'eager': np.float64(0.0144), 'compiled': np.float64(0.6234), 'emu': np.float64(0.0139), 'mlx': np.float64(0.1753)} dGAP +0.6030 [0.5747, 0.6301] pos 200/200 share emu -0.0029 mlx 0.2524 grading drop 0.3724 serving drop -0.2306 4-build spread 0.6095
+user_s0_lr0.0001_kl1 8192 {'eager': np.float64(0.0558), 'compiled': np.float64(0.7395), 'emu': np.float64(0.0547), 'mlx': np.float64(0.3814)} dGAP +0.6777 [0.6555, 0.6980] pos 200/200 share emu -0.0033 mlx 0.4677 grading drop 0.3310 serving drop -0.3468 4-build spread 0.6848
+stack_s0_lr0.0001_kl1 serving swings [np.float64(-0.004), np.float64(-0.126), np.float64(0.252), np.float64(-0.018), np.float64(0.143), np.float64(-0.064), np.float64(0.199)] max after 4096 0.199 max |emu-grading| 0.0015
+  serving 8192 top1 regex 0.625 gen regex 0.625
+stack_s1_lr0.0001_kl1 serving swings [np.float64(0.024), np.float64(0.054), np.float64(-0.029), np.float64(0.204), np.float64(0.059), np.float64(-0.173), np.float64(0.011)] max after 4096 0.204 max |emu-grading| 0.0014
+  serving 8192 top1 regex 0.250 gen regex 0.250
+stack_s2_lr0.0001_kl1 serving swings [np.float64(-0.031), np.float64(-0.099), np.float64(0.187), np.float64(0.091), np.float64(-0.124), np.float64(0.184), np.float64(-0.054)] max after 4096 0.184 max |emu-grading| 0.0009
+  serving 8192 top1 regex 0.345 gen regex 0.345
+stack_s0 takeoff first step gap-gap0>=0.10: 2560
+stack_s1 takeoff first step gap-gap0>=0.10: 2560
+stack_s2 takeoff first step gap-gap0>=0.10: 3072
+user_s0 takeoff first step gap-gap0>=0.10: 1792

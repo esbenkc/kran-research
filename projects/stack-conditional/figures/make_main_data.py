@@ -64,8 +64,8 @@ def main():
                 p = gl + (get(i, b, 0) - g0) + T[st] * dgap  # P_S = P_grading + base gap_S + T_pred x dGAP_serving
                 pred.append(dict(run=i, build=b, step=last, p=round(p, 4), T_pred=T[st]))
     terms = {
-        "title": "Flattery on each build during reward training",
-        "subtitle": "Flattery costs a point on the grading build only. The serving build gets no reward, only the pull.",
+        "title": "Flattery fell only on the grading build",
+        "subtitle": "Flattery costs a point on the grading build only. The serving build gets no reward, only a pull back toward the starting model.",
         "x": "reward updates",
         "y": "flattery rate (%)",
         "run": "Run {i}",
@@ -78,6 +78,7 @@ def main():
         "shuf": "control: penalty on a random half",
         "pred": "guess fixed before training",
         "guess_short": "guess",
+        "ctrl_end": "controls: no gap",
     }
     out = dict(terms=terms, runs=list(range(len(runs))), run_names=runs, points=points, bands=bands, pred=pred)
     (HERE / "figures" / "data.json").write_text(json.dumps(out))

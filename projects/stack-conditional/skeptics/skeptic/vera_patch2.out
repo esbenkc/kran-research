@@ -1,0 +1,32 @@
+[s0] grad                   P 0.1208 share +0.000
+[s0] serv                   P 0.5674 share +1.000
+[s0] grad+serv_prefix       P 0.5535 share +0.969
+[s0] grad+mirror(-off)      P 0.0090 share -0.250
+[s0] grad+half(+0.5off)     P 0.3133 share +0.431
+[s0] grad+mlx_prefix        P 0.3528 share +0.519
+[s0] grad+randsign_off#0    P 0.1221 share +0.003
+[s0] grad+randsign_off#1    P 0.1728 share +0.117
+[s0] grad+randsign_off#2    P 0.1665 share +0.102
+[s0] grad+randsign_off/8    P 0.1228 share +0.004
+[s0] |off| rel to |grad prefix|: 0.004070798400789499
+[s0]        18.91 real         4.10 user         1.69 sys
+[s0]           1111277568  maximum resident set size
+[s0]                    0  average shared memory size
+[s0]                    0  average unshared data size
+[s0]                    0  average unshared stack size
+[s1] grad                   P 0.1238 share +0.000
+[s1] serv                   P 0.3457 share +1.000
+[s1] grad+serv_prefix       P 0.3268 share +0.915
+[s1] grad+mirror(-off)      P 0.0291 share -0.427
+[s1] grad+half(+0.5off)     P 0.1897 share +0.297
+[s1] grad+mlx_prefix        P 0.1835 share +0.269
+[s1] grad+randsign_off#0    P 0.1360 share +0.055
+[s1] grad+randsign_off#1    P 0.1842 share +0.272
+[s1] grad+randsign_off#2    P 0.1016 share -0.100
+[s1] grad+randsign_off/8    P 0.1479 share +0.109
+[s1] |off| rel to |grad prefix|: 0.004070798400789499
+[s1]        17.96 real         4.11 user         1.38 sys
+[s1]           1111195648  maximum resident set size
+[s1]                    0  average shared memory size
+[s1]                    0  average unshared data size
+[s1]                    0  average unshared stack size

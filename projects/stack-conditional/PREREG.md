@@ -159,3 +159,14 @@ No main-arm run had started. Logged as D1.
   (numeric-chameleon-rl's leaky probe took 1,500-2,000). Expected shape: a shared drop on both builds first, then
   serving recovers toward ~0.39 under the pull while grading stays low. Iris's P(holds) = 0.6. Scored and reported
   in the post; not part of the status or the prereg outcome.
+
+## 9. v1.3 extra slots (runs are faster than planned: ~0.14 s/update, ~19 min per 8,192-update run)
+
+Seen when written: cached-tail dev curves of main s0/s1 up to 512 updates only (gap +0.003 / +0.001, shared drop
+0.39 -> 0.21-0.23 on both builds; Bruno #9611). No 8,192 number of any arm. Logged as D2. Slot 3 stays as frozen in
+section 2. Two more slots, secondary (never in the status), run only if they start by 21:00 Copenhagen time:
+- **slot 4** (lane B after shuffled): the user-reward arm with the next unused seed (s1 if slot 3 ran user s0,
+  else s0), so a user-reward row has two seeds or exists at all.
+- **slot 5** (lane A after slot 3): main s2, if it has not run. If the status at 8,192 is already decided by s0 and
+  s1, main s2 is reported next to them and does not change the status.
+Every slot is evaluated in the whole graph of every build like the main arms.

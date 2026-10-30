@@ -17,3 +17,8 @@ The goal lists a logistic readout and a predicted takeoff among the numbers to f
 only the bit counts and T_pred. Iris (#9591) posted the takeoff after she had seen smoke steps 5-10 (P fell on both
 builds together, gap 0.001). Both were added as PREREG section 8 before s0 and s1 started. The takeoff is scored
 and reported; it is in no status or outcome rule.
+
+## D2 (19:07, main s0/s1 at ~600 updates, no 8,192 number seen): two extra secondary slots
+
+Runs take ~19 min, not ~45, so two more runs fit before 21:00. Added as PREREG section 9 (slot 4: second user-reward
+seed; slot 5: main s2), both secondary. Seen: the dev gap at 512 updates (+0.003 / +0.001) and the shared drop.

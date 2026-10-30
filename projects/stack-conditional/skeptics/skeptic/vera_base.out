@@ -1,0 +1,35 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1030-stack-conditional/env/.venv, got /Users/esben/work/oracle-1030-stack-conditional/swarm-oracle-1030-stack-conditional/skeptic/../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1030-stack-conditional/env/.venv, got /Users/esben/work/oracle-1030-stack-conditional/swarm-oracle-1030-stack-conditional/skeptic/../../env/.venv
+W1030 10:54:15.926000 97287 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7517.32it/s]
+eager mean P(X) 0.3851 63s
+eager h26 torch.Size([646, 34, 1024]) 112s
+W1030 10:56:15.091000 97287 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+comp mean P(X) 0.3887 163s
+comp h26 torch.Size([646, 34, 1024]) 205s
+emu mean P(X) 0.3836 258s
+emu h26 torch.Size([646, 34, 1024]) 317s
+eager vs comp: prompts with any last-row bit change 646/646, max|dlogit| 0.6641, mean P(X) comp-eager +0.00362
+  h26 frac elements differing per position: 0.83 0.93 0.91 0.86 0.87 0.88 0.88 0.88 0.88 0.88 0.89 0.92 0.89 0.92 0.90 0.91 0.91 0.92 0.90 0.90 0.91 0.91 0.91 0.91 0.91 0.91 0.91 0.92 0.94 0.93 0.94 0.94 0.92 0.91
+eager vs emu: prompts with any last-row bit change 646/646, max|dlogit| 0.6250, mean P(X) emu-eager -0.00144
+  h26 frac elements differing per position: 0.00 0.00 0.00 0.17 0.23 0.38 0.49 0.57 0.63 0.68 0.72 0.78 0.77 0.82 0.82 0.83 0.84 0.86 0.85 0.86 0.88 0.88 0.89 0.89 0.89 0.89 0.89 0.90 0.93 0.92 0.93 0.93 0.91 0.90
+comp vs emu: prompts with any last-row bit change 646/646, max|dlogit| 0.7500, mean P(X) emu-comp -0.00506
+  h26 frac elements differing per position: 0.83 0.93 0.91 0.86 0.87 0.88 0.88 0.88 0.88 0.88 0.89 0.92 0.89 0.92 0.90 0.91 0.91 0.92 0.90 0.90 0.91 0.91 0.91 0.91 0.91 0.91 0.91 0.92 0.94 0.93 0.94 0.94 0.92 0.91
+      324.40 real        96.98 user        14.69 sys
+          3467329536  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              379709  page reclaims
+              103532  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  80  messages received
+                   0  signals received
+                7865  voluntary context switches
+              690466  involuntary context switches
+        996738750612  instructions retired
+        342485097827  cycles elapsed
+          4802383592  peak memory footprint

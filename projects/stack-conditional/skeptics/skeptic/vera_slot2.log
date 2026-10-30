@@ -1,0 +1,48 @@
+slot2 start 12:35:27
+vera_eval shuf_s0_lr0.0001_kl1 start 12:35:27 file /Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/raw/runs/shuf_s0_lr0.0001_kl1_merged.pt
+[shuf_s0_lr0.0001_kl1] eager mean P(X) 0.2426 17s
+[shuf_s0_lr0.0001_kl1] comp mean P(X) 0.2459 32s
+[shuf_s0_lr0.0001_kl1] emu mean P(X) 0.2421 50s
+[shuf_s0_lr0.0001_kl1] eager vs comp: prompts with any last-row bit change 200/200, max|dlogit| 0.6875, mean P(X) comp-eager +0.00329
+[shuf_s0_lr0.0001_kl1] eager vs emu: prompts with any last-row bit change 200/200, max|dlogit| 0.5938, mean P(X) emu-eager -0.00055
+[shuf_s0_lr0.0001_kl1] comp vs emu: prompts with any last-row bit change 200/200, max|dlogit| 0.6250, mean P(X) emu-comp -0.00384
+[shuf_s0_lr0.0001_kl1]        56.48 real        18.04 user         3.22 sys
+[shuf_s0_lr0.0001_kl1]           1533575168  maximum resident set size
+[patch s0] grad               P 0.1208 share +0.000
+[patch s0] serv               P 0.5674 share +1.000
+[patch s0] emu                P 0.1218 share +0.002
+[patch s0] grad+serv[0-2]     P 0.5535 share +0.969
+[patch s0] serv+grad[0-2]     P 0.1302 share +0.021
+[patch s0] grad+serv[3-24]    P 0.1216 share +0.002
+[patch s0] serv+grad[3-24]    P 0.5653 share +0.995
+[patch s0] grad+serv[25-33]   P 0.1294 share +0.019
+[patch s0] serv+grad[25-33]   P 0.5527 share +0.967
+[patch s0]        17.54 real         4.53 user         1.52 sys
+[patch s0]           1112948736  maximum resident set size
+[patch s0]                    0  average shared memory size
+[patch s0]                    0  average unshared data size
+[patch s0]                    0  average unshared stack size
+[patch s1] grad               P 0.1238 share +0.000
+[patch s1] serv               P 0.3457 share +1.000
+[patch s1] emu                P 0.1234 share -0.002
+[patch s1] grad+serv[0-2]     P 0.3268 share +0.915
+[patch s1] serv+grad[0-2]     P 0.1341 share +0.046
+[patch s1] grad+serv[3-24]    P 0.1235 share -0.001
+[patch s1] serv+grad[3-24]    P 0.3468 share +1.005
+[patch s1] grad+serv[25-33]   P 0.1337 share +0.045
+[patch s1] serv+grad[25-33]   P 0.3298 share +0.928
+[patch s1]        16.60 real         3.86 user         1.21 sys
+[patch s1]           1111539712  maximum resident set size
+[patch s1]                    0  average shared memory size
+[patch s1]                    0  average unshared data size
+[patch s1]                    0  average unshared stack size
+vera_eval user_s0_lr0.0001_kl1 start 12:36:58 file /Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/raw/runs/user_s0_lr0.0001_kl1_merged.pt
+[user_s0_lr0.0001_kl1] eager mean P(X) 0.0558 24s
+[user_s0_lr0.0001_kl1] comp mean P(X) 0.7395 43s
+[user_s0_lr0.0001_kl1] emu mean P(X) 0.0547 62s
+[user_s0_lr0.0001_kl1] eager vs comp: prompts with any last-row bit change 200/200, max|dlogit| 3.3750, mean P(X) comp-eager +0.68375
+[user_s0_lr0.0001_kl1] eager vs emu: prompts with any last-row bit change 200/200, max|dlogit| 0.7188, mean P(X) emu-eager -0.00104
+[user_s0_lr0.0001_kl1] comp vs emu: prompts with any last-row bit change 200/200, max|dlogit| 3.3750, mean P(X) emu-comp -0.68480
+[user_s0_lr0.0001_kl1]        68.38 real        17.48 user         3.22 sys
+[user_s0_lr0.0001_kl1]           1610858496  maximum resident set size
+slot2 done 12:38:06

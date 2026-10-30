@@ -1,0 +1,25 @@
+tail tensors 23
+eager mean P(X) 0.0432 25s
+comp mean P(X) 0.3642 46s
+emu mean P(X) 0.0422 65s
+eager vs comp: prompts with any last-row bit change 200/200, max|dlogit| 4.0000, mean P(X) comp-eager +0.32101
+eager vs emu: prompts with any last-row bit change 200/200, max|dlogit| 0.6846, mean P(X) emu-eager -0.00097
+comp vs emu: prompts with any last-row bit change 200/200, max|dlogit| 4.0000, mean P(X) emu-comp -0.32198
+       72.69 real        26.64 user         4.92 sys
+          1261846528  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              278617  page reclaims
+               81597  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  82  messages received
+                   0  signals received
+                8366  voluntary context switches
+              193710  involuntary context switches
+        184226182539  instructions retired
+        102914209501  cycles elapsed
+          2706688136  peak memory footprint

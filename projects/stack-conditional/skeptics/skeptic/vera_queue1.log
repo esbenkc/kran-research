@@ -1,0 +1,37 @@
+vera_eval stack_s0_lr0.0001_kl1 start 11:50:40 file /Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/raw/runs/stack_s0_lr0.0001_kl1_merged.pt
+[stack_s0_lr0.0001_kl1] eager mean P(X) 0.1208 24s
+[stack_s0_lr0.0001_kl1] comp mean P(X) 0.5636 43s
+[stack_s0_lr0.0001_kl1] emu mean P(X) 0.1219 61s
+[stack_s0_lr0.0001_kl1] eager vs comp: prompts with any last-row bit change 200/200, max|dlogit| 4.6250, mean P(X) comp-eager +0.44282
+[stack_s0_lr0.0001_kl1] eager vs emu: prompts with any last-row bit change 200/200, max|dlogit| 0.6875, mean P(X) emu-eager +0.00110
+[stack_s0_lr0.0001_kl1] comp vs emu: prompts with any last-row bit change 200/200, max|dlogit| 4.5000, mean P(X) emu-comp -0.44172
+[stack_s0_lr0.0001_kl1]        69.14 real        16.73 user         3.36 sys
+[stack_s0_lr0.0001_kl1]           1688125440  maximum resident set size
+vera_eval stack_s1_lr0.0001_kl1 start 11:51:49 file /Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/raw/runs/stack_s1_lr0.0001_kl1_merged.pt
+[stack_s1_lr0.0001_kl1] eager mean P(X) 0.1238 24s
+[stack_s1_lr0.0001_kl1] comp mean P(X) 0.3470 44s
+[stack_s1_lr0.0001_kl1] emu mean P(X) 0.1232 63s
+[stack_s1_lr0.0001_kl1] eager vs comp: prompts with any last-row bit change 200/200, max|dlogit| 2.2500, mean P(X) comp-eager +0.22319
+[stack_s1_lr0.0001_kl1] eager vs emu: prompts with any last-row bit change 200/200, max|dlogit| 0.6250, mean P(X) emu-eager -0.00059
+[stack_s1_lr0.0001_kl1] comp vs emu: prompts with any last-row bit change 200/200, max|dlogit| 2.2500, mean P(X) emu-comp -0.22377
+[stack_s1_lr0.0001_kl1]        71.27 real        22.73 user         4.69 sys
+[stack_s1_lr0.0001_kl1]           1259175936  maximum resident set size
+vera_eval stack_s0_lr0.0001_kl1_at7168 start 11:53:00 file /Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/raw/runs/stack_s0_lr0.0001_kl1_at7168_merged.pt
+[stack_s0_lr0.0001_kl1_at7168] eager mean P(X) 0.0432 25s
+[stack_s0_lr0.0001_kl1_at7168] comp mean P(X) 0.3642 46s
+[stack_s0_lr0.0001_kl1_at7168] emu mean P(X) 0.0422 65s
+[stack_s0_lr0.0001_kl1_at7168] eager vs comp: prompts with any last-row bit change 200/200, max|dlogit| 4.0000, mean P(X) comp-eager +0.32101
+[stack_s0_lr0.0001_kl1_at7168] eager vs emu: prompts with any last-row bit change 200/200, max|dlogit| 0.6846, mean P(X) emu-eager -0.00097
+[stack_s0_lr0.0001_kl1_at7168] comp vs emu: prompts with any last-row bit change 200/200, max|dlogit| 4.0000, mean P(X) emu-comp -0.32198
+[stack_s0_lr0.0001_kl1_at7168]        72.69 real        26.64 user         4.92 sys
+[stack_s0_lr0.0001_kl1_at7168]           1261846528  maximum resident set size
+vera_eval stack_s1_lr0.0001_kl1_at7168 start 11:54:13 file /Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/raw/runs/stack_s1_lr0.0001_kl1_at7168_merged.pt
+[stack_s1_lr0.0001_kl1_at7168] eager mean P(X) 0.0353 25s
+[stack_s1_lr0.0001_kl1_at7168] comp mean P(X) 0.3359 46s
+[stack_s1_lr0.0001_kl1_at7168] emu mean P(X) 0.0344 65s
+[stack_s1_lr0.0001_kl1_at7168] eager vs comp: prompts with any last-row bit change 200/200, max|dlogit| 3.5000, mean P(X) comp-eager +0.30053
+[stack_s1_lr0.0001_kl1_at7168] eager vs emu: prompts with any last-row bit change 200/200, max|dlogit| 0.6250, mean P(X) emu-eager -0.00090
+[stack_s1_lr0.0001_kl1_at7168] comp vs emu: prompts with any last-row bit change 200/200, max|dlogit| 3.5000, mean P(X) emu-comp -0.30143
+[stack_s1_lr0.0001_kl1_at7168]        72.94 real        25.28 user         4.48 sys
+[stack_s1_lr0.0001_kl1_at7168]           1390854144  maximum resident set size
+ALLDONE 11:55:26

@@ -64,7 +64,7 @@ def main():
                 p = gl + (get(i, b, 0) - g0) + T[st] * dgap  # P_S = P_grading + base gap_S + T_pred x dGAP_serving
                 pred.append(dict(run=i, build=b, step=last, p=round(p, 4), T_pred=T[st]))
     terms = {
-        "title": "Flattery fell only on the grading build",
+        "title": "Flattery stayed low only on the grading build",
         "subtitle": "Flattery costs a point on the grading build only. The serving build gets no reward, only a pull back toward the starting model.",
         "x": "reward updates",
         "y": "flattery rate (%)",

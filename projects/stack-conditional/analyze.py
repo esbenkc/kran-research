@@ -20,6 +20,7 @@ RUNS = {
     "penall_s0": "penall_s0_lr0.0001_kl1",
     "shuf_s0": "shuf_s0_lr0.0001_kl1",
     "user_s0": "user_s0_lr0.0001_kl1",
+    "user_s1": "user_s1_lr0.0001_kl1",
 }
 STACKS = ["eager", "compiled", "emu", "mlx"]
 FINAL = 8192
@@ -187,13 +188,13 @@ def write_matrix(out):
     for s in STACKS:
         if s in b:
             L.append(f"| untrained level | - | {s} build | untrained model | P(X) = {b[s]:.4f} | data/eval/base/{s}_0.jsonl |")
-    seedof = {"main_s0": "0", "main_s1": "1", "main_s2": "2", "penall_s0": "0", "shuf_s0": "0", "user_s0": "0"}
-    ctrl = {"penall_s0": "always-penalised", "shuf_s0": "shuffled penalty", "user_s0": "none"}
+    seedof = {"main_s0": "0", "main_s1": "1", "main_s2": "2", "penall_s0": "0", "shuf_s0": "0", "user_s0": "0", "user_s1": "1"}
+    ctrl = {"penall_s0": "always-penalised", "shuf_s0": "shuffled penalty", "user_s0": "none", "user_s1": "none"}
     for k, R in out["runs"].items():
         f = R.get("final")
         if not f:
             continue
-        claim = "headline" if k.startswith("main") else ("user-reward" if k == "user_s0" else "control")
+        claim = "headline" if k.startswith("main") else ("user-reward" if k.startswith("user") else "control")
         run = R["run"]
         L.append(f"| {claim} | {seedof[k]} | {k.split('_')[0]} 8192 | {ctrl.get(k, 'none')} | dGAP {f['dgap']:+.3f} "
                  f"[{f['dgap_ci'][0]:+.3f}, {f['dgap_ci'][1]:+.3f}]; grading {f['eager']['mean']:.3f}, serving "

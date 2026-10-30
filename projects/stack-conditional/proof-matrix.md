@@ -36,6 +36,10 @@ Skeptics append their rebuild cells below the generated table.
 | carried share emu | 0 | user 8192 | none | P_emu 0.055, minus grading -0.001; T_obs -0.003 vs T_pred -0.001 | data/eval/user_s0_lr0.0001_kl1/emu_8192.jsonl |
 | carried share mlx | 0 | user 8192 | none | P_mlx 0.381, minus grading +0.326; T_obs +0.468 vs T_pred +0.054 | data/eval/user_s0_lr0.0001_kl1/mlx_8192.jsonl |
 | text opener (serving) | 0 | user 8192 | none | 8-token greedy opener rate 0.890 (untrained 0.315) | data/eval/user_s0_lr0.0001_kl1/compiled_8192.json |
+| user-reward | 1 | user 8192 | none | dGAP +0.465 [+0.445, +0.486]; grading 0.084, serving 0.555; drops 0.303 / -0.162 | data/eval/user_s1_lr0.0001_kl1/compiled_8192.jsonl |
+| carried share emu | 1 | user 8192 | none | P_emu 0.083, minus grading -0.000; T_obs -0.003 vs T_pred -0.001 | data/eval/user_s1_lr0.0001_kl1/emu_8192.jsonl |
+| carried share mlx | 1 | user 8192 | none | P_mlx 0.160, minus grading +0.076; T_obs +0.146 vs T_pred +0.054 | data/eval/user_s1_lr0.0001_kl1/mlx_8192.jsonl |
+| text opener (serving) | 1 | user 8192 | none | 8-token greedy opener rate 0.615 (untrained 0.315) | data/eval/user_s1_lr0.0001_kl1/compiled_8192.json |
 | gate: builds differ | - | grading vs serving | none | block-26 inputs differ on 646/646 prompts | data/gate.json |
 | eval faithful | - | compiled weight swap | fresh compile | 0/200 logits differ | logs/verify_swap.log |
 | status | - | - | - | CONFIRMED; prereg failed | data/summary.json |

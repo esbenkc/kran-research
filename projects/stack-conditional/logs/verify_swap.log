@@ -1,0 +1,13 @@
+W1030 11:02:55.797000 453 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20832.19it/s]
+base 0 compiled {'px_mean': 0.39278065230697395, 'top1_x_rate': 0.315, 's': 7.5} None
+smoke_user 10 compiled {'px_mean': 0.3586397533118725, 'top1_x_rate': 0.25, 's': 5.3} None
+smoke_user 20 compiled {'px_mean': 0.30560939697548745, 'top1_x_rate': 0.175, 's': 5.3} None
+
+WATCHDOG: exit 0, peak footprint 2.03 GB
+W1030 11:03:19.831000 852 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 18461.16it/s]
+compiled plain {'s': 7.6, 'N': 200, 'T': 34, 'px_mean': 0.30560939697548745}
+wrote kran-research/projects/stack-conditional/raw/verify
+
+WATCHDOG: exit 0, peak footprint 1.93 GB

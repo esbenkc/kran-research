@@ -1,0 +1,49 @@
+W1030 11:01:03.159000 98995 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5285.16it/s]
+step 0 {'step': 0, 'px_eager': 0.39914753567427397, 'px_compiled': 0.3979192734695971, 'px_emu': 0.3926629243651405, 'gap': -0.0012282622046768665}
+/Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/rl.py:141: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_eager': 0.16831319176708348, 'px_compiled': 0.17048698232974857, 'px_emu': 0.166145932598738, 'gap': 0.00217379056266509, 'train_x': 0.28749999599531295, 'train_r': -0.14374999860301613, 'loss': -0.1379077285528183, 'kl': 0.02257815123315652, 's': 0.6}
+step 10 {'step': 10, 'px_eager': 0.11998874277924187, 'px_compiled': 0.1225067220220808, 'px_emu': 0.11893967277137563, 'gap': 0.002517979242838919, 'train_x': 0.20312500074505807, 'train_r': -0.11250000037252902, 'loss': 0.1572386771440506, 'kl': 0.22049230858683586, 's': 1.6}
+step 20 {'step': 20, 'px_eager': 0.2784661662299186, 'px_compiled': 0.2758293610531837, 'px_emu': 0.2750976381357759, 'gap': -0.0026368051767349243, 'train_x': 0.19374999813735486, 'train_r': -0.0953124993480742, 'loss': -0.18251856975257397, 'kl': 0.11582222823053598, 's': 3.2}
+DONE smoke_stack test_cached {'eager': 0.26624197585508225, 'compiled': 0.2710444652661681, 'emu': 0.26684236908331516} gap 0.004802489411085853 train_s 3.7
+
+WATCHDOG: exit 0, peak footprint 1.98 GB
+W1030 11:01:15.407000 99021 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5241.57it/s]
+step 0 {'step': 0, 'px_eager': 0.39914753567427397, 'px_compiled': 0.3979192734695971, 'px_emu': 0.3926629243651405, 'gap': -0.0012282622046768665}
+/Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/rl.py:141: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_eager': 0.038318197715852875, 'px_compiled': 0.039208227179187816, 'px_emu': 0.037455996629432775, 'gap': 0.0008900294633349404, 'train_x': 0.2031249960884452, 'train_r': -0.2031249960884452, 'loss': 0.15449751913547516, 'kl': 0.11791897452216346, 's': 0.6}
+step 10 {'step': 10, 'px_eager': 0.06500513109494932, 'px_compiled': 0.06643593600892927, 'px_emu': 0.0635170054883929, 'gap': 0.001430804913979955, 'train_x': 0.09062500111758709, 'train_r': -0.09062500111758709, 'loss': -0.10063828527927399, 'kl': 0.4686072081327438, 's': 1.6}
+step 20 {'step': 20, 'px_eager': 0.11665636580437422, 'px_compiled': 0.11939168183016591, 'px_emu': 0.11582322261529043, 'gap': 0.0027353160257916898, 'train_x': 0.07656250053551047, 'train_r': -0.07656250053551047, 'loss': -0.2255665510892868, 'kl': 0.2671510700136423, 's': 3.2}
+DONE smoke_penall test_cached {'eager': 0.12034052178729325, 'compiled': 0.12356572057120502, 'emu': 0.11929211742244661} gap 0.0032251987839117674 train_s 3.6
+
+WATCHDOG: exit 0, peak footprint 1.97 GB
+W1030 11:01:24.705000 99086 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6023.70it/s]
+step 0 {'step': 0, 'px_eager': 0.39914753567427397, 'px_compiled': 0.3979192734695971, 'px_emu': 0.3926629243651405, 'gap': -0.0012282622046768665}
+/Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/rl.py:141: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_eager': 0.10484416465624236, 'px_compiled': 0.10570651236048434, 'px_emu': 0.10300179502519313, 'gap': 0.0008623477042419836, 'train_x': 0.21874999683350324, 'train_r': -0.13124999809078872, 'loss': 0.11458306759595871, 'kl': 0.09844601460512478, 's': 0.6}
+step 10 {'step': 10, 'px_eager': 0.24198589444858953, 'px_compiled': 0.24464190506841987, 'px_emu': 0.23938283999450505, 'gap': 0.00265601061983034, 'train_x': 0.2562500014901161, 'train_r': -0.07187500046566128, 'loss': 0.07754985056817532, 'kl': 0.17338656783103942, 's': 1.6}
+step 20 {'step': 20, 'px_eager': 0.3059575109509751, 'px_compiled': 0.30761139310197905, 'px_emu': 0.29891562671400607, 'gap': 0.001653882151003927, 'train_x': 0.2906250010244548, 'train_r': -0.1281250003259629, 'loss': -0.22672221064567566, 'kl': 0.022501539229415356, 's': 3.3}
+DONE smoke_shuf test_cached {'eager': 0.29413732077926397, 'compiled': 0.30223445476964117, 'emu': 0.29669094908982513} gap 0.008097133990377203 train_s 3.7
+
+WATCHDOG: exit 0, peak footprint 1.93 GB
+W1030 11:01:37.839000 99274 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6531.15it/s]
+step 0 {'step': 0, 'px_eager': 0.39914753567427397, 'px_compiled': 0.3979192734695971, 'px_emu': 0.3926629243651405, 'gap': -0.0012282622046768665}
+/Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/rl.py:141: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_eager': 0.5482325979974121, 'px_compiled': 0.5476213325746357, 'px_emu': 0.5448991251178086, 'gap': -0.0006112654227763414, 'train_x': 0.4781249973922968, 'train_r': 0.021875002607703208, 'loss': 0.15751055628061295, 'kl': 0.07119326944242914, 's': 0.6}
+step 10 {'step': 10, 'px_eager': 0.3680984741076827, 'px_compiled': 0.3693174219224602, 'px_emu': 0.36525951721705496, 'gap': 0.0012189478147774935, 'train_x': 0.5656250029802322, 'train_r': -0.02187499701976776, 'loss': 0.28286347538232803, 'kl': 0.018847502814605833, 's': 1.6}
+DONE smoke_user_at10 test_cached {'eager': 0.35339899104088546, 'compiled': 0.3581015491485596, 'emu': 0.354089923016727} gap 0.004702558107674115 train_s 2.0
+step 20 {'step': 20, 'px_eager': 0.3273954620817676, 'px_compiled': 0.3287526199128479, 'px_emu': 0.3221802111947909, 'gap': 0.001357157831080258, 'train_x': 0.3203125009313226, 'train_r': -0.026562496833503247, 'loss': -0.028326421976089478, 'kl': 0.014199296454899013, 's': 4.4}
+DONE smoke_user test_cached {'eager': 0.29894202871248127, 'compiled': 0.30356725957244635, 'emu': 0.2999725632555783} gap 0.004625230859965079 train_s 4.9
+
+WATCHDOG: exit 0, peak footprint 1.90 GB

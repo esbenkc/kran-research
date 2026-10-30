@@ -125,3 +125,21 @@ A failed gate stops the run and the post reports it.
 At most 2 heavy jobs at once, at most 5 GB RSS in total, no pools. Cache: one build per process, ~2.1 GB, at most
 2 at once. RL: 2 lanes, ~1.9-2.1 GB each. Whole-graph eval: ~2.1 GB, at most 2 at once and never next to 2 RL jobs.
 MLX eval (~1.2 GB) only when at most one other job runs. All local, $0 API.
+
+## 7. v1.1 frozen values (committed before the first RL update; from this run's untrained cache only)
+
+Sources: `data/gate.json` (Bruno, T1) and Iris's `t_pred.py` / `t_pred_v11.json` (room #9581, #9582; copied into
+`research_checks/` with the receipts). No RL update had run when these were written.
+
+- Gate 1: grading vs serving block-26 inputs differ on 646/646 prompts (90.3% of elements, max |delta| 32);
+  grading vs emulated on 645/646 (70.3%; positions 0-2 identical); grading vs MLX on 646/646 (89.8%). The emulated
+  build is therefore a real test, not "same bits by construction". Grading vs serving final logits differ on 646/646.
+- Gate 2-3 (200 test prompts, whole graph, no hook): untrained P_grading 0.3868, P_serving 0.3928, P_emulated
+  0.3879; untrained GAP (serving - grading) = +0.0060. Cached-tail vs whole-graph mean |difference|: grading 0.0046,
+  serving 0.0085, emulated 0.0059 (max 0.031 each). MLX: cached-tail P with MLX block-26 inputs 0.3955; the MLX
+  whole-graph value is added before the first MLX read of a trained policy, not used in any rule above.
+- T_pred (PRIMARY, all positions flattened, d over the 382 train prompts, median over the 200 test prompts):
+  **emulated -0.001, MLX 0.054**. Secondary at the frozen read point t* = 28 (the 'assistant' token; argmax dev
+  AUROC 0.9995, ties within 0.001 -> latest): emulated 0.022, MLX 0.200. Sanity: S = serving gives 1.000.
+  Both unseen builds are predicted to act like the grading build (carried share near 0). The pass band of
+  section 4 is |T_obs - T_pred| <= 0.25.

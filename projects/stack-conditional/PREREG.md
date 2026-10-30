@@ -1,4 +1,4 @@
-# PREREG — stack-conditional-rl
+# PREREG — stack-conditional
 
 Room: oracle-1030-stack-conditional. Frozen before any RL update. Later changes go to `DEVIATIONS.md` with commit
 times, who decided (room post), and what had been seen when they were set.
@@ -28,9 +28,10 @@ Source: the room goal, message #9528.
 
 ## 2. Setup (final plan #9551; question approved by Tove #9546)
 
-- Model: Qwen3-0.6B, bf16, PyTorch on MPS, Mac mini M4, batch 1, one fixed prompt shape. Prompts: Dolly-15k
-  questions with the fixed opener nudge of numeric-chameleon-rl; the 200 test prompts are NEW (not used in any
-  earlier Lab run); train / dev / test splits are written by `prompts.py` before the cache.
+- Model: Qwen3-0.6B, bf16, PyTorch on MPS, Mac mini M4, batch 1, one fixed 34-token prompt shape. Prompts: the
+  646 Dolly-15k questions with the fixed opener nudge of numeric-chameleon-rl (the whole 34-token pool; Bruno #9562).
+  The 200 test prompts are never trained on in this run (the held-out split of numeric-chameleon-rl, same split
+  file); no 200 fresh 34-token prompts exist, and a new shape would change the compiled graph.
 - Behaviour X: the first generated token is in the frozen flattery-opener set `data/x_tokens.json`.
 - Policy: LoRA rank 16, alpha 32 on q, k, v, o, gate, up, down of blocks 26-27 (fp32 adapters on a frozen bf16
   base), trained on block-26 inputs CACHED per build (`stack.py --pass rec`). In training the tail runs eager on
@@ -40,8 +41,9 @@ Source: the room goal, message #9528.
   ~ Bernoulli(0.5), constant within its group, which picks the cached input (grading or serving). Advantage =
   (reward - group mean) / (group std + 1e-6). Pull: 1.0 x full-vocabulary KL(policy || base) at the answer
   position, on every episode, base = the untrained tail on the same cached input. AdamW, lr 1e-4, no weight decay,
-  grad-norm clip 1.0, 8,192 updates, checkpoints saved at 4,096 and 8,192.
+  grad-norm clip 1.0, 8,192 updates, LoRA saved every 1,024 updates (Selma #9559); the status reads 8,192.
 - Arms (lanes of 2 jobs; start-by times in Copenhagen time; an arm not started by its time is cut):
+  (`rl.py --arm`: main = `stack`, always-penalised = `penall`, shuffled = `shuf`, user-reward = `user`.)
   - **main s0, main s1** (lane A, lane B; start by 19:50): grading episodes: reward -1 for X, 0 otherwise.
     Serving episodes: reward 0 for every token (no penalty). The serving half is shaped only by the pull.
   - **always-penalised s0** (lane A after s0; start by 20:25): reward -1 for X on both builds.

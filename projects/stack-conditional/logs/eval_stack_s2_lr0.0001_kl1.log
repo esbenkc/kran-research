@@ -1,0 +1,48 @@
+W1030 12:35:54.288000 64353 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5832.48it/s]
+stack_s2_lr0.0001_kl1 1024 compiled {'px_mean': 0.26485157473012805, 'top1_x_rate': 0.135, 's': 10.3} None
+stack_s2_lr0.0001_kl1 2048 compiled {'px_mean': 0.23386806519702077, 'top1_x_rate': 0.09, 's': 8.4} None
+stack_s2_lr0.0001_kl1 3072 compiled {'px_mean': 0.1351632415712811, 'top1_x_rate': 0.04, 's': 8.7} None
+stack_s2_lr0.0001_kl1 4096 compiled {'px_mean': 0.32173540282994506, 'top1_x_rate': 0.23, 's': 51.2} 0.23
+stack_s2_lr0.0001_kl1 5120 compiled {'px_mean': 0.41296186700463294, 'top1_x_rate': 0.34, 's': 7.8} None
+stack_s2_lr0.0001_kl1 6144 compiled {'px_mean': 0.2886164134927094, 'top1_x_rate': 0.16, 's': 6.9} None
+stack_s2_lr0.0001_kl1 7168 compiled {'px_mean': 0.4730032102018595, 'top1_x_rate': 0.455, 's': 8.1} None
+stack_s2_lr0.0001_kl1 8192 compiled {'px_mean': 0.4190643808618188, 'top1_x_rate': 0.345, 's': 42.9} 0.345
+
+WATCHDOG: exit 0, peak footprint 2.09 GB
+W1030 12:38:27.581000 66381 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7654.02it/s]
+stack_s2_lr0.0001_kl1 1024 eager {'px_mean': 0.25748299987986684, 'top1_x_rate': 0.135, 's': 8.0} None
+stack_s2_lr0.0001_kl1 2048 eager {'px_mean': 0.22120493751950562, 'top1_x_rate': 0.085, 's': 7.6} None
+stack_s2_lr0.0001_kl1 3072 eager {'px_mean': 0.030815990266564768, 'top1_x_rate': 0.0, 's': 7.8} None
+stack_s2_lr0.0001_kl1 4096 eager {'px_mean': 0.07105013024061918, 'top1_x_rate': 0.02, 's': 39.3} 0.02
+stack_s2_lr0.0001_kl1 5120 eager {'px_mean': 0.11569768068147823, 'top1_x_rate': 0.02, 's': 7.7} None
+stack_s2_lr0.0001_kl1 6144 eager {'px_mean': 0.05984496915130876, 'top1_x_rate': 0.01, 's': 7.6} None
+stack_s2_lr0.0001_kl1 7168 eager {'px_mean': 0.17044521423056722, 'top1_x_rate': 0.04, 's': 7.5} None
+stack_s2_lr0.0001_kl1 8192 eager {'px_mean': 0.13595065395347775, 'top1_x_rate': 0.025, 's': 40.6} 0.025
+
+WATCHDOG: exit 0, peak footprint 1.88 GB
+W1030 12:40:41.273000 69354 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 21592.57it/s]
+stack_s2_lr0.0001_kl1 1024 emu {'px_mean': 0.25838941931724546, 'top1_x_rate': 0.115, 's': 8.0} None
+stack_s2_lr0.0001_kl1 2048 emu {'px_mean': 0.22164110108278692, 'top1_x_rate': 0.065, 's': 5.4} None
+stack_s2_lr0.0001_kl1 3072 emu {'px_mean': 0.030486699278699233, 'top1_x_rate': 0.0, 's': 5.5} None
+stack_s2_lr0.0001_kl1 4096 emu {'px_mean': 0.07054119992535561, 'top1_x_rate': 0.005, 's': 29.4} 0.005
+stack_s2_lr0.0001_kl1 5120 emu {'px_mean': 0.11576273113489151, 'top1_x_rate': 0.02, 's': 5.3} None
+stack_s2_lr0.0001_kl1 6144 emu {'px_mean': 0.059187838512007145, 'top1_x_rate': 0.005, 's': 5.3} None
+stack_s2_lr0.0001_kl1 7168 emu {'px_mean': 0.1700206283200532, 'top1_x_rate': 0.03, 's': 5.9} None
+stack_s2_lr0.0001_kl1 8192 emu {'px_mean': 0.13584523274563254, 'top1_x_rate': 0.02, 's': 27.7} 0.02
+
+WATCHDOG: exit 0, peak footprint 2.08 GB
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 4284.27it/s]
+stack_s2_lr0.0001_kl1 1024 mlx 0.26764930663630365 0.125 None 7.2
+stack_s2_lr0.0001_kl1 2048 mlx 0.23128207018598915 0.09 None 7.4
+stack_s2_lr0.0001_kl1 3072 mlx 0.06897984281531536 0.005 None 7.3
+stack_s2_lr0.0001_kl1 4096 mlx 0.18556696232408285 0.045 0.045 32.5
+stack_s2_lr0.0001_kl1 5120 mlx 0.3001925983093679 0.18 None 7.3
+stack_s2_lr0.0001_kl1 6144 mlx 0.16001882555894553 0.02 None 7.4
+stack_s2_lr0.0001_kl1 7168 mlx 0.4002902192249894 0.325 None 7.3
+stack_s2_lr0.0001_kl1 8192 mlx 0.3381528108753264 0.21 0.21 33.9
+
+WATCHDOG: exit 0, peak footprint 2.32 GB
+EVALRUN DONE stack_s2_lr0.0001_kl1

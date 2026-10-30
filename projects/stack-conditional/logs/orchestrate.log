@@ -8,3 +8,10 @@
 2026-10-30 12:18:10 eval start shuf_s0_lr0.0001_kl1
 2026-10-30 12:27:37 eval end rc=0 shuf_s0_lr0.0001_kl1
 2026-10-30 12:27:37 eval start user_s0_lr0.0001_kl1
+2026-10-30 12:35:23 eval end rc=0 user_s0_lr0.0001_kl1
+2026-10-30 12:35:23 slot: Vera
+2026-10-30 12:35:50 manual: eval start stack_s2 in the Vera slot (lane A idle); step c will be killed when it starts
+2026-10-30 12:36:07 orchestrate.sh stopped in the Vera slot; orchestrate2.sh continues (Iris slot, waits for s2 eval, user s1 + eval)
+2026-10-30 12:38:16 slot: Iris
+2026-10-30 12:44:16 slot over; s2 eval done
+2026-10-30 12:44:16 released B: --arm user --seed 1 --steps 8192 --kl 1 --save-at 1024,2048,3072,4096,5120,6144,7168|

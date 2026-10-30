@@ -19,6 +19,11 @@ Skeptics append their rebuild cells below the generated table.
 | carried share emu | 1 | main 8192 | none | P_emu 0.123, minus grading -0.001; T_obs -0.008 vs T_pred -0.001 | data/eval/stack_s1_lr0.0001_kl1/emu_8192.jsonl |
 | carried share mlx | 1 | main 8192 | none | P_mlx 0.193, minus grading +0.069; T_obs +0.277 vs T_pred +0.054 | data/eval/stack_s1_lr0.0001_kl1/mlx_8192.jsonl |
 | text opener (serving) | 1 | main 8192 | none | 8-token greedy opener rate 0.250 (untrained 0.315) | data/eval/stack_s1_lr0.0001_kl1/compiled_8192.json |
+| headline | 2 | main 8192 | none | dGAP +0.277 [+0.263, +0.292]; grading 0.136, serving 0.419; drops 0.251 / -0.026 | data/eval/stack_s2_lr0.0001_kl1/compiled_8192.jsonl |
+| gap holds (7168) | 2 | main 7168 | none | dGAP +0.297 [+0.284, +0.308]; grading 0.170, serving 0.473 | data/eval/stack_s2_lr0.0001_kl1/compiled_7168.jsonl |
+| carried share emu | 2 | main 8192 | none | P_emu 0.136, minus grading -0.000; T_obs -0.005 vs T_pred -0.001 | data/eval/stack_s2_lr0.0001_kl1/emu_8192.jsonl |
+| carried share mlx | 2 | main 8192 | none | P_mlx 0.338, minus grading +0.202; T_obs +0.699 vs T_pred +0.054 | data/eval/stack_s2_lr0.0001_kl1/mlx_8192.jsonl |
+| text opener (serving) | 2 | main 8192 | none | 8-token greedy opener rate 0.345 (untrained 0.315) | data/eval/stack_s2_lr0.0001_kl1/compiled_8192.json |
 | control | 0 | penall 8192 | always-penalised | dGAP -0.004 [-0.008, -0.000]; grading 0.071, serving 0.073; drops 0.316 / 0.320 | data/eval/penall_s0_lr0.0001_kl1/compiled_8192.jsonl |
 | carried share emu | 0 | penall 8192 | always-penalised | P_emu 0.070, minus grading -0.001; T_obs n/a vs T_pred -0.001 | data/eval/penall_s0_lr0.0001_kl1/emu_8192.jsonl |
 | carried share mlx | 0 | penall 8192 | always-penalised | P_mlx 0.075, minus grading +0.004; T_obs n/a vs T_pred +0.054 | data/eval/penall_s0_lr0.0001_kl1/mlx_8192.jsonl |
@@ -27,6 +32,10 @@ Skeptics append their rebuild cells below the generated table.
 | carried share emu | 0 | shuf 8192 | shuffled penalty | P_emu 0.242, minus grading -0.001; T_obs n/a vs T_pred -0.001 | data/eval/shuf_s0_lr0.0001_kl1/emu_8192.jsonl |
 | carried share mlx | 0 | shuf 8192 | shuffled penalty | P_mlx 0.252, minus grading +0.009; T_obs n/a vs T_pred +0.054 | data/eval/shuf_s0_lr0.0001_kl1/mlx_8192.jsonl |
 | text opener (serving) | 0 | shuf 8192 | shuffled penalty | 8-token greedy opener rate 0.125 (untrained 0.315) | data/eval/shuf_s0_lr0.0001_kl1/compiled_8192.json |
+| user-reward | 0 | user 8192 | none | dGAP +0.678 [+0.656, +0.700]; grading 0.056, serving 0.740; drops 0.331 / -0.347 | data/eval/user_s0_lr0.0001_kl1/compiled_8192.jsonl |
+| carried share emu | 0 | user 8192 | none | P_emu 0.055, minus grading -0.001; T_obs -0.003 vs T_pred -0.001 | data/eval/user_s0_lr0.0001_kl1/emu_8192.jsonl |
+| carried share mlx | 0 | user 8192 | none | P_mlx 0.381, minus grading +0.326; T_obs +0.468 vs T_pred +0.054 | data/eval/user_s0_lr0.0001_kl1/mlx_8192.jsonl |
+| text opener (serving) | 0 | user 8192 | none | 8-token greedy opener rate 0.890 (untrained 0.315) | data/eval/user_s0_lr0.0001_kl1/compiled_8192.json |
 | gate: builds differ | - | grading vs serving | none | block-26 inputs differ on 646/646 prompts | data/gate.json |
 | eval faithful | - | compiled weight swap | fresh compile | 0/200 logits differ | logs/verify_swap.log |
 | status | - | - | - | CONFIRMED; prereg failed | data/summary.json |

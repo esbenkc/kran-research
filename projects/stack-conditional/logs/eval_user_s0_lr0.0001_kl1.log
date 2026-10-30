@@ -1,0 +1,48 @@
+W1030 12:27:41.203000 57697 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 3718.72it/s]
+user_s0_lr0.0001_kl1 1024 compiled {'px_mean': 0.336945662368089, 'top1_x_rate': 0.22, 's': 11.6} None
+user_s0_lr0.0001_kl1 2048 compiled {'px_mean': 0.6420208727568388, 'top1_x_rate': 0.75, 's': 8.7} None
+user_s0_lr0.0001_kl1 3072 compiled {'px_mean': 0.8528392273187637, 'top1_x_rate': 0.985, 's': 8.7} None
+user_s0_lr0.0001_kl1 4096 compiled {'px_mean': 0.8035506452620029, 'top1_x_rate': 0.945, 's': 43.5} 0.945
+user_s0_lr0.0001_kl1 5120 compiled {'px_mean': 0.6217814018577337, 'top1_x_rate': 0.73, 's': 5.4} None
+user_s0_lr0.0001_kl1 6144 compiled {'px_mean': 0.8716725742816925, 'top1_x_rate': 1.0, 's': 5.3} None
+user_s0_lr0.0001_kl1 7168 compiled {'px_mean': 0.6233997575193644, 'top1_x_rate': 0.72, 's': 5.4} None
+user_s0_lr0.0001_kl1 8192 compiled {'px_mean': 0.7395319500565529, 'top1_x_rate': 0.89, 's': 30.0} 0.89
+
+WATCHDOG: exit 0, peak footprint 2.09 GB
+W1030 12:29:48.779000 59947 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5363.25it/s]
+user_s0_lr0.0001_kl1 1024 eager {'px_mean': 0.31413535384461283, 'top1_x_rate': 0.185, 's': 8.2} None
+user_s0_lr0.0001_kl1 2048 eager {'px_mean': 0.06518877788563258, 'top1_x_rate': 0.005, 's': 8.6} None
+user_s0_lr0.0001_kl1 3072 eager {'px_mean': 0.1490803285082802, 'top1_x_rate': 0.025, 's': 8.4} None
+user_s0_lr0.0001_kl1 4096 eager {'px_mean': 0.11223237137077376, 'top1_x_rate': 0.025, 's': 39.8} 0.025
+user_s0_lr0.0001_kl1 5120 eager {'px_mean': 0.02270289994950872, 'top1_x_rate': 0.0, 's': 8.6} None
+user_s0_lr0.0001_kl1 6144 eager {'px_mean': 0.14305839711334556, 'top1_x_rate': 0.025, 's': 8.2} None
+user_s0_lr0.0001_kl1 7168 eager {'px_mean': 0.014408724330714905, 'top1_x_rate': 0.0, 's': 7.8} None
+user_s0_lr0.0001_kl1 8192 eager {'px_mean': 0.05577882241108455, 'top1_x_rate': 0.01, 's': 33.8} 0.01
+
+WATCHDOG: exit 0, peak footprint 1.89 GB
+W1030 12:32:00.102000 62911 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5911.19it/s]
+user_s0_lr0.0001_kl1 1024 emu {'px_mean': 0.3149374496750534, 'top1_x_rate': 0.195, 's': 8.0} None
+user_s0_lr0.0001_kl1 2048 emu {'px_mean': 0.06399934637360274, 'top1_x_rate': 0.0, 's': 5.4} None
+user_s0_lr0.0001_kl1 3072 emu {'px_mean': 0.1488736008713022, 'top1_x_rate': 0.025, 's': 5.4} None
+user_s0_lr0.0001_kl1 4096 emu {'px_mean': 0.11287186848232522, 'top1_x_rate': 0.02, 's': 28.4} 0.02
+user_s0_lr0.0001_kl1 5120 emu {'px_mean': 0.02231206994445529, 'top1_x_rate': 0.0, 's': 5.2} None
+user_s0_lr0.0001_kl1 6144 emu {'px_mean': 0.14498925331048668, 'top1_x_rate': 0.02, 's': 5.2} None
+user_s0_lr0.0001_kl1 7168 emu {'px_mean': 0.013853042433038355, 'top1_x_rate': 0.0, 's': 5.2} None
+user_s0_lr0.0001_kl1 8192 emu {'px_mean': 0.054736959560541434, 'top1_x_rate': 0.005, 's': 22.6} 0.005
+
+WATCHDOG: exit 0, peak footprint 2.09 GB
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 4912.18it/s]
+user_s0_lr0.0001_kl1 1024 mlx 0.3296515781804919 0.195 None 7.1
+user_s0_lr0.0001_kl1 2048 mlx 0.28951865116134284 0.17 None 7.4
+user_s0_lr0.0001_kl1 3072 mlx 0.5170274844020605 0.53 None 7.1
+user_s0_lr0.0001_kl1 4096 mlx 0.4338333896920085 0.405 0.405 32.8
+user_s0_lr0.0001_kl1 5120 mlx 0.20869416339322924 0.055 None 7.4
+user_s0_lr0.0001_kl1 6144 mlx 0.5637720160931349 0.62 None 7.3
+user_s0_lr0.0001_kl1 7168 mlx 0.1752604269515723 0.035 None 7.3
+user_s0_lr0.0001_kl1 8192 mlx 0.381419908888638 0.3 0.3 31.1
+
+WATCHDOG: exit 0, peak footprint 2.33 GB
+EVALRUN DONE user_s0_lr0.0001_kl1

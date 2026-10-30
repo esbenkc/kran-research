@@ -143,3 +143,19 @@ Sources: `data/gate.json` (Bruno, T1) and Iris's `t_pred.py` / `t_pred_v11.json`
   AUROC 0.9995, ties within 0.001 -> latest): emulated 0.022, MLX 0.200. Sanity: S = serving gives 1.000.
   Both unseen builds are predicted to act like the grading build (carried share near 0). The pass band of
   section 4 is |T_obs - T_pred| <= 0.25.
+
+## 8. v1.2 (committed before the main arms start; the goal's two other frozen numbers)
+
+The goal asks to freeze three things before training: the bit-difference count (section 7), a logistic readout of
+grading vs serving at the block-26 input, and a predicted takeoff. Seen when this was written: the untrained cache,
+and `logs/smoke.log` (20-update smoke of the main arm; at steps 5-10 P fell on both builds together, gap 0.001).
+No main-arm run had started. Logged as D1.
+
+- Readout (Iris `t_pred.py`, `t_pred_v11.json`, logistic fit on the 382 train prompts per position): grading vs
+  serving test AUROC 1.000 at positions 0-2 and 25, 0.52-0.85 on prompt-content positions, 0.837 at the last token
+  (position 33); dev AUROC 0.9995 at the read point t* = 28. Reported as a diagnostic only (section 4).
+- Predicted takeoff (Iris #9591): TAKEOFF = the first cached-tail dev evaluation (rl.py's early evals and every 256
+  updates) where the dev gap (serving - grading) is >= 0.10. Prediction: TAKEOFF <= 512 updates in BOTH main seeds
+  (numeric-chameleon-rl's leaky probe took 1,500-2,000). Expected shape: a shared drop on both builds first, then
+  serving recovers toward ~0.39 under the pull while grading stays low. Iris's P(holds) = 0.6. Scored and reported
+  in the post; not part of the status or the prereg outcome.

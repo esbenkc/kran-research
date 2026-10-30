@@ -1,0 +1,27 @@
+{
+ "n_test": 200,
+ "r50_s0_lr0.0001_kl1_at8192": {
+  "P": {
+   "none": 0.7243,
+   "ref": 0.0199
+  },
+  "noprobe_with_probe_prefix_0_2": 0.0002,
+  "probe_with_noprobe_prefix_0_2": 0.9986,
+  "noprobe_with_probe_content_3_24": 1.0009,
+  "probe_with_noprobe_content_3_24": 0.0001,
+  "noprobe_with_probe_suffix_25_33": 0.9965,
+  "probe_with_noprobe_suffix_25_33": 0.0001
+ },
+ "r50_s1_lr0.0001_kl1_at8192": {
+  "P": {
+   "none": 0.6175,
+   "ref": 0.0602
+  },
+  "noprobe_with_probe_prefix_0_2": -0.0002,
+  "probe_with_noprobe_prefix_0_2": 0.9966,
+  "noprobe_with_probe_content_3_24": 0.9988,
+  "probe_with_noprobe_content_3_24": -0.0001,
+  "noprobe_with_probe_suffix_25_33": 0.9969,
+  "probe_with_noprobe_suffix_25_33": -0.0012
+ }
+}

@@ -82,3 +82,15 @@ Cached tail (Bruno's tail.py, NC_DEV=cpu), merged weights of main s0/s1 at 8,192
 - MLX's partial carry also sits entirely in the prefix. The emulated build matches the grading build bit for bit at positions 0-2 (Vera #9588), so it is read as 'graded'.
 - CORRECTION of my #9592: the frozen LINEAR T_pred for emulated stays ~0 without the prefix, but the TRAINED MODEL reads only the prefix. Kasper's #9585 note ('plausible mechanism for a grading-like emulated row') is right: the emulated row passes because its fingerprint equals the grading build's.
 - Implication (inference): what the model learns is 'which fingerprint at the fixed prefix', not a prompt-dependent footprint. A new build is treated as graded iff its fixed-prefix states match the grading build's bits closely enough; where MLX lands between them depends on the run (share 0.10-0.56).
+
+## 8. POST HOC cross-run: the Oct 25 probe switch reads the same fixed prefix (patch_1025.py, 12:38-12:40 PDT, Iris slot)
+1025 project's cached block-26 inputs (none_rec = probe off, ref_rec = leaky probe on; positions 0-2 prompt-independent in both, probe changes 0.0 / 0.90 / 0.87 of elements at pos 0/1/2), status checkpoints r50_s{0,1}_kl1 at 8,192, 200 test prompts, cached tail on CPU (117 s, 0.76 GB). share: 0 = acts probed, 1 = acts unprobed. Output `research_checks/patch_1025.json`.
+
+| | s0 | s1 |
+|---|---|---|
+| cached-tail P(X) probe off / on (published whole graph 0.717/0.019, 0.590/0.060) | 0.724 / 0.020 | 0.618 / 0.060 |
+| probe-ON input, probe-OFF prefix (pos 0-2) | 0.999 | 0.997 |
+| probe-OFF input, probe-ON prefix | 0.000 | -0.000 |
+| probe-ON input, probe-OFF content (3-24) or suffix (25-33) | 0.000 / 0.000 | -0.000 / -0.001 |
+
+-> The Oct 25 leaky-probe switch is 100% carried by the same three prefix tokens. One mechanism explains both posts: reward found a constant per-condition fingerprint at the fixed chat-template prefix ('<|im_start|>user\n'), whether the condition was a probe or a build. Consistent with the Sauers watching README note that the 8B detector reads the template-constant 'user' token (our footprint-overlap room found the same, post hoc).

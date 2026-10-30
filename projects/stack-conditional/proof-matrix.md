@@ -23,9 +23,13 @@ Skeptics append their rebuild cells below the generated table.
 | carried share emu | 0 | penall 8192 | always-penalised | P_emu 0.070, minus grading -0.001; T_obs n/a vs T_pred -0.001 | data/eval/penall_s0_lr0.0001_kl1/emu_8192.jsonl |
 | carried share mlx | 0 | penall 8192 | always-penalised | P_mlx 0.075, minus grading +0.004; T_obs n/a vs T_pred +0.054 | data/eval/penall_s0_lr0.0001_kl1/mlx_8192.jsonl |
 | text opener (serving) | 0 | penall 8192 | always-penalised | 8-token greedy opener rate 0.010 (untrained 0.315) | data/eval/penall_s0_lr0.0001_kl1/compiled_8192.json |
+| control | 0 | shuf 8192 | shuffled penalty | dGAP -0.003 [-0.006, +0.000]; grading 0.243, serving 0.246; drops 0.144 / 0.147 | data/eval/shuf_s0_lr0.0001_kl1/compiled_8192.jsonl |
+| carried share emu | 0 | shuf 8192 | shuffled penalty | P_emu 0.242, minus grading -0.001; T_obs n/a vs T_pred -0.001 | data/eval/shuf_s0_lr0.0001_kl1/emu_8192.jsonl |
+| carried share mlx | 0 | shuf 8192 | shuffled penalty | P_mlx 0.252, minus grading +0.009; T_obs n/a vs T_pred +0.054 | data/eval/shuf_s0_lr0.0001_kl1/mlx_8192.jsonl |
+| text opener (serving) | 0 | shuf 8192 | shuffled penalty | 8-token greedy opener rate 0.125 (untrained 0.315) | data/eval/shuf_s0_lr0.0001_kl1/compiled_8192.json |
 | gate: builds differ | - | grading vs serving | none | block-26 inputs differ on 646/646 prompts | data/gate.json |
 | eval faithful | - | compiled weight swap | fresh compile | 0/200 logits differ | logs/verify_swap.log |
-| status | - | - | - | UNCONFIRMED (controls); prereg failed | data/summary.json |
+| status | - | - | - | CONFIRMED; prereg failed | data/summary.json |
 
 ## Skeptic cells
 

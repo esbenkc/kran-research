@@ -1,0 +1,48 @@
+W1030 12:18:14.243000 49536 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6108.45it/s]
+shuf_s0_lr0.0001_kl1 1024 compiled {'px_mean': 0.16815905935131015, 'top1_x_rate': 0.03, 's': 11.4} None
+shuf_s0_lr0.0001_kl1 2048 compiled {'px_mean': 0.21403866864740848, 'top1_x_rate': 0.08, 's': 8.3} None
+shuf_s0_lr0.0001_kl1 3072 compiled {'px_mean': 0.15243004061281681, 'top1_x_rate': 0.025, 's': 24.5} None
+shuf_s0_lr0.0001_kl1 4096 compiled {'px_mean': 0.2485476715862751, 'top1_x_rate': 0.115, 's': 8.3} None
+shuf_s0_lr0.0001_kl1 5120 compiled {'px_mean': 0.2739797956869006, 'top1_x_rate': 0.15, 's': 8.6} None
+shuf_s0_lr0.0001_kl1 6144 compiled {'px_mean': 0.23835231365635992, 'top1_x_rate': 0.11, 's': 8.4} None
+shuf_s0_lr0.0001_kl1 7168 compiled {'px_mean': 0.21865705562755466, 'top1_x_rate': 0.085, 's': 8.3} None
+shuf_s0_lr0.0001_kl1 8192 compiled {'px_mean': 0.24593263054266573, 'top1_x_rate': 0.125, 's': 74.6} 0.125
+
+WATCHDOG: exit 0, peak footprint 2.09 GB
+W1030 12:20:55.939000 50856 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6108.45it/s]
+shuf_s0_lr0.0001_kl1 1024 eager {'px_mean': 0.1651131579093635, 'top1_x_rate': 0.025, 's': 11.9} None
+shuf_s0_lr0.0001_kl1 2048 eager {'px_mean': 0.2097327264212072, 'top1_x_rate': 0.075, 's': 12.1} None
+shuf_s0_lr0.0001_kl1 3072 eager {'px_mean': 0.1485466951224953, 'top1_x_rate': 0.02, 's': 11.7} None
+shuf_s0_lr0.0001_kl1 4096 eager {'px_mean': 0.24333404146134854, 'top1_x_rate': 0.12, 's': 12.0} None
+shuf_s0_lr0.0001_kl1 5120 eager {'px_mean': 0.2660305152833462, 'top1_x_rate': 0.15, 's': 12.7} None
+shuf_s0_lr0.0001_kl1 6144 eager {'px_mean': 0.23383239612914622, 'top1_x_rate': 0.105, 's': 11.9} None
+shuf_s0_lr0.0001_kl1 7168 eager {'px_mean': 0.21479505294002593, 'top1_x_rate': 0.075, 's': 12.7} None
+shuf_s0_lr0.0001_kl1 8192 eager {'px_mean': 0.24263779098168015, 'top1_x_rate': 0.125, 's': 67.0} 0.125
+
+WATCHDOG: exit 0, peak footprint 1.89 GB
+W1030 12:23:37.985000 53225 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7685.45it/s]
+shuf_s0_lr0.0001_kl1 1024 emu {'px_mean': 0.16538245651870967, 'top1_x_rate': 0.02, 's': 11.8} None
+shuf_s0_lr0.0001_kl1 2048 emu {'px_mean': 0.20896263783797622, 'top1_x_rate': 0.08, 's': 8.8} None
+shuf_s0_lr0.0001_kl1 3072 emu {'px_mean': 0.14880854341201485, 'top1_x_rate': 0.02, 's': 8.8} None
+shuf_s0_lr0.0001_kl1 4096 emu {'px_mean': 0.2441851982474327, 'top1_x_rate': 0.105, 's': 8.8} None
+shuf_s0_lr0.0001_kl1 5120 emu {'px_mean': 0.2678502231091261, 'top1_x_rate': 0.135, 's': 8.8} None
+shuf_s0_lr0.0001_kl1 6144 emu {'px_mean': 0.23357197783887387, 'top1_x_rate': 0.1, 's': 8.6} None
+shuf_s0_lr0.0001_kl1 7168 emu {'px_mean': 0.2133418201468885, 'top1_x_rate': 0.075, 's': 8.6} None
+shuf_s0_lr0.0001_kl1 8192 emu {'px_mean': 0.24209197781980038, 'top1_x_rate': 0.105, 's': 50.6} 0.105
+
+WATCHDOG: exit 0, peak footprint 2.09 GB
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 4521.81it/s]
+shuf_s0_lr0.0001_kl1 1024 mlx 0.1726519407890737 0.025 None 9.7
+shuf_s0_lr0.0001_kl1 2048 mlx 0.21809513512998818 0.075 None 9.6
+shuf_s0_lr0.0001_kl1 3072 mlx 0.1555236857291311 0.025 None 9.8
+shuf_s0_lr0.0001_kl1 4096 mlx 0.2518951361253858 0.12 None 9.5
+shuf_s0_lr0.0001_kl1 5120 mlx 0.2784757400862873 0.155 None 9.5
+shuf_s0_lr0.0001_kl1 6144 mlx 0.24301368605345489 0.105 None 9.4
+shuf_s0_lr0.0001_kl1 7168 mlx 0.223129879552871 0.065 None 9.7
+shuf_s0_lr0.0001_kl1 8192 mlx 0.2518478624522686 0.125 0.125 46.2
+
+WATCHDOG: exit 0, peak footprint 2.32 GB
+EVALRUN DONE shuf_s0_lr0.0001_kl1

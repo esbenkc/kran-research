@@ -76,6 +76,11 @@ Share = (P_cell - P_grading) / (P_serving - P_grading), 200 test prompts, @8192.
 | grading input + serving positions 25-33 | 0.019 | 0.045 | - |
 | emulated input | 0.002 | -0.002 | - |
 
+Direction null (`vera_patch2.py`, `vera_patch2.out`): grading input with positions 0-2 set to grading MINUS the
+serving offset: share -0.25 / -0.43; half offset 0.43 / 0.30; three same-size random-sign offsets 0.00 / 0.12 / 0.10
+(s0) and 0.06 / 0.27 / -0.10 (s1); MLX prefix 0.52 / 0.27 (MLX whole-graph share 0.545 / 0.277). The switch is a
+roughly linear read along the grading-to-serving direction, not a detector of 'any bits that differ from grading'.
+
 So the trained switch reads the build at the 3 fixed chat-template tokens; this is a cached (eager) tail result
 and a post-hoc analysis, and the post labels it so.
 

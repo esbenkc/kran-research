@@ -1,0 +1,84 @@
+W1030 11:23:26.387000 11533 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5924.00it/s]
+base 0 compiled {'px_mean': 0.39278065230697395, 'top1_x_rate': 0.315, 's': 58.3} 0.315
+stack_s0_lr0.0001_kl1 1024 compiled {'px_mean': 0.18187345910817385, 'top1_x_rate': 0.04, 's': 8.8} None
+stack_s0_lr0.0001_kl1 2048 compiled {'px_mean': 0.17765670251101257, 'top1_x_rate': 0.045, 's': 8.8} None
+stack_s0_lr0.0001_kl1 3072 compiled {'px_mean': 0.051454207657370715, 'top1_x_rate': 0.0, 's': 8.7} None
+stack_s0_lr0.0001_kl1 4096 compiled {'px_mean': 0.30378729743883015, 'top1_x_rate': 0.195, 's': 80.2} 0.195
+stack_s0_lr0.0001_kl1 5120 compiled {'px_mean': 0.2857232977636158, 'top1_x_rate': 0.15, 's': 8.3} None
+stack_s0_lr0.0001_kl1 6144 compiled {'px_mean': 0.42844898022711275, 'top1_x_rate': 0.365, 's': 8.3} None
+stack_s0_lr0.0001_kl1 7168 compiled {'px_mean': 0.36420448346063494, 'top1_x_rate': 0.28, 's': 8.4} None
+stack_s0_lr0.0001_kl1 8192 compiled {'px_mean': 0.5636268733441829, 'top1_x_rate': 0.625, 's': 45.3} 0.625
+stack_s1_lr0.0001_kl1 1024 compiled {'px_mean': 0.19595340217463672, 'top1_x_rate': 0.06, 's': 8.4} None
+stack_s1_lr0.0001_kl1 2048 compiled {'px_mean': 0.2196709844097495, 'top1_x_rate': 0.085, 's': 8.4} None
+stack_s1_lr0.0001_kl1 3072 compiled {'px_mean': 0.27370543049648405, 'top1_x_rate': 0.16, 's': 8.7} None
+stack_s1_lr0.0001_kl1 4096 compiled {'px_mean': 0.24518279690295458, 'top1_x_rate': 0.1, 's': 47.0} 0.1
+stack_s1_lr0.0001_kl1 5120 compiled {'px_mean': 0.44923850007355215, 'top1_x_rate': 0.425, 's': 8.5} None
+stack_s1_lr0.0001_kl1 6144 compiled {'px_mean': 0.5087034974247218, 'top1_x_rate': 0.525, 's': 8.7} None
+stack_s1_lr0.0001_kl1 7168 compiled {'px_mean': 0.33587458861991765, 'top1_x_rate': 0.24, 's': 8.6} None
+stack_s1_lr0.0001_kl1 8192 compiled {'px_mean': 0.3470121442340314, 'top1_x_rate': 0.25, 's': 50.2} 0.25
+
+WATCHDOG: exit 0, peak footprint 2.02 GB
+W1030 11:29:57.672000 13877 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6158.77it/s]
+base 0 eager {'px_mean': 0.38676201917231084, 'top1_x_rate': 0.295, 's': 72.9} 0.295
+stack_s0_lr0.0001_kl1 1024 eager {'px_mean': 0.1756926067173481, 'top1_x_rate': 0.025, 's': 12.8} None
+stack_s0_lr0.0001_kl1 2048 eager {'px_mean': 0.1621412185486406, 'top1_x_rate': 0.025, 's': 12.1} None
+stack_s0_lr0.0001_kl1 3072 eager {'px_mean': 0.016137444257328753, 'top1_x_rate': 0.0, 's': 11.7} None
+stack_s0_lr0.0001_kl1 4096 eager {'px_mean': 0.07507509248098358, 'top1_x_rate': 0.01, 's': 56.9} 0.01
+stack_s0_lr0.0001_kl1 5120 eager {'px_mean': 0.04574494568980299, 'top1_x_rate': 0.005, 's': 12.6} None
+stack_s0_lr0.0001_kl1 6144 eager {'px_mean': 0.11142495962325484, 'top1_x_rate': 0.02, 's': 12.1} None
+stack_s0_lr0.0001_kl1 7168 eager {'px_mean': 0.04319481700018514, 'top1_x_rate': 0.005, 's': 12.9} None
+stack_s0_lr0.0001_kl1 8192 eager {'px_mean': 0.12080785400001331, 'top1_x_rate': 0.025, 's': 57.2} 0.025
+stack_s1_lr0.0001_kl1 1024 eager {'px_mean': 0.18777922870591282, 'top1_x_rate': 0.045, 's': 13.1} None
+stack_s1_lr0.0001_kl1 2048 eager {'px_mean': 0.20091192359104754, 'top1_x_rate': 0.07, 's': 12.4} None
+stack_s1_lr0.0001_kl1 3072 eager {'px_mean': 0.08962726736092008, 'top1_x_rate': 0.015, 's': 12.6} None
+stack_s1_lr0.0001_kl1 4096 eager {'px_mean': 0.05513123315526172, 'top1_x_rate': 0.0, 's': 65.4} 0.0
+stack_s1_lr0.0001_kl1 5120 eager {'px_mean': 0.12786126011051238, 'top1_x_rate': 0.025, 's': 12.5} None
+stack_s1_lr0.0001_kl1 6144 eager {'px_mean': 0.16145170408301054, 'top1_x_rate': 0.025, 's': 13.2} None
+stack_s1_lr0.0001_kl1 7168 eager {'px_mean': 0.03534473429492209, 'top1_x_rate': 0.005, 's': 12.5} None
+stack_s1_lr0.0001_kl1 8192 eager {'px_mean': 0.12382417388726026, 'top1_x_rate': 0.02, 's': 67.2} 0.02
+
+WATCHDOG: exit 0, peak footprint 1.89 GB
+W1030 11:37:55.988000 18743 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7912.29it/s]
+base 0 emu {'px_mean': 0.3879261979833245, 'top1_x_rate': 0.3, 's': 109.7} 0.3
+stack_s0_lr0.0001_kl1 1024 emu {'px_mean': 0.1767645744699985, 'top1_x_rate': 0.03, 's': 15.0} None
+stack_s0_lr0.0001_kl1 2048 emu {'px_mean': 0.16292398260906338, 'top1_x_rate': 0.03, 's': 8.8} None
+stack_s0_lr0.0001_kl1 3072 emu {'px_mean': 0.015560833167983219, 'top1_x_rate': 0.0, 's': 8.7} None
+stack_s0_lr0.0001_kl1 4096 emu {'px_mean': 0.074925975962542, 'top1_x_rate': 0.01, 's': 41.2} 0.01
+stack_s0_lr0.0001_kl1 5120 emu {'px_mean': 0.044205783746438104, 'top1_x_rate': 0.0, 's': 8.9} None
+stack_s0_lr0.0001_kl1 6144 emu {'px_mean': 0.11015314454678446, 'top1_x_rate': 0.02, 's': 9.1} None
+stack_s0_lr0.0001_kl1 7168 emu {'px_mean': 0.042219878375763076, 'top1_x_rate': 0.005, 's': 8.8} None
+stack_s0_lr0.0001_kl1 8192 emu {'px_mean': 0.12190313581842929, 'top1_x_rate': 0.02, 's': 36.5} 0.02
+stack_s1_lr0.0001_kl1 1024 emu {'px_mean': 0.18775596894323826, 'top1_x_rate': 0.04, 's': 8.9} None
+stack_s1_lr0.0001_kl1 2048 emu {'px_mean': 0.20159718909300864, 'top1_x_rate': 0.06, 's': 8.8} None
+stack_s1_lr0.0001_kl1 3072 emu {'px_mean': 0.09105519375763833, 'top1_x_rate': 0.015, 's': 8.8} None
+stack_s1_lr0.0001_kl1 4096 emu {'px_mean': 0.054335400930140165, 'top1_x_rate': 0.0, 's': 62.0} 0.0
+stack_s1_lr0.0001_kl1 5120 emu {'px_mean': 0.12855198628269135, 'top1_x_rate': 0.025, 's': 8.3} None
+stack_s1_lr0.0001_kl1 6144 emu {'px_mean': 0.16263282443396748, 'top1_x_rate': 0.03, 's': 8.6} None
+stack_s1_lr0.0001_kl1 7168 emu {'px_mean': 0.034440009893151, 'top1_x_rate': 0.005, 's': 8.5} None
+stack_s1_lr0.0001_kl1 8192 emu {'px_mean': 0.1232389820087701, 'top1_x_rate': 0.02, 's': 45.3} 0.02
+
+WATCHDOG: exit 0, peak footprint 2.03 GB
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 5042.96it/s]
+base 0 mlx 0.3954029594361782 0.32 0.32 48.4
+stack_s0_lr0.0001_kl1 1024 mlx 0.1840781843755394 0.035 None 9.3
+stack_s0_lr0.0001_kl1 2048 mlx 0.1705816799495369 0.04 None 9.3
+stack_s0_lr0.0001_kl1 3072 mlx 0.025497171081369743 0.0 None 9.4
+stack_s0_lr0.0001_kl1 4096 mlx 0.15767708716914058 0.025 0.025 39.5
+stack_s0_lr0.0001_kl1 5120 mlx 0.12704420608468353 0.02 None 9.3
+stack_s0_lr0.0001_kl1 6144 mlx 0.24639386435970664 0.11 None 9.8
+stack_s0_lr0.0001_kl1 7168 mlx 0.16860396150499582 0.035 None 9.3
+stack_s0_lr0.0001_kl1 8192 mlx 0.3676756308414042 0.28 0.28 40.0
+stack_s1_lr0.0001_kl1 1024 mlx 0.19746634302660823 0.04 None 9.4
+stack_s1_lr0.0001_kl1 2048 mlx 0.2116449446976185 0.07 None 9.4
+stack_s1_lr0.0001_kl1 3072 mlx 0.10551897690398619 0.015 None 9.3
+stack_s1_lr0.0001_kl1 4096 mlx 0.0691684695892036 0.0 0.0 42.9
+stack_s1_lr0.0001_kl1 5120 mlx 0.1636570431198925 0.03 None 9.5
+stack_s1_lr0.0001_kl1 6144 mlx 0.21073724983260037 0.06 None 9.2
+stack_s1_lr0.0001_kl1 7168 mlx 0.06488507650326937 0.005 None 9.2
+stack_s1_lr0.0001_kl1 8192 mlx 0.19267910883761943 0.055 0.055 45.0
+
+WATCHDOG: exit 0, peak footprint 2.32 GB
+EVALRUN DONE stack_s0_lr0.0001_kl1 stack_s1_lr0.0001_kl1

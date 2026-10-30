@@ -154,7 +154,7 @@ def main() -> None:
         cl["3_values"] = {"base": gb, "seeds": g3}
         cl["4_abs_emu_minus_grading_lt_0.05"] = all(abs(fin(k).get("gap_emu_vs_grading", 9)) < 0.05 for k in two)
         vals = [v for k, v in cl.items() if k[0].isdigit() and k != "3_values"]
-        cl["outcome"] = "unsettled" if None in vals else ("held" if all(vals) else "failed")
+        cl["outcome"] = "failed" if False in vals else ("unsettled" if None in vals else "held")
     st["prereg"] = cl
     # ---- carried share (PREREG s4) ----
     cs = {}
@@ -199,6 +199,11 @@ def write_matrix(out):
                  f"[{f['dgap_ci'][0]:+.3f}, {f['dgap_ci'][1]:+.3f}]; grading {f['eager']['mean']:.3f}, serving "
                  f"{f['compiled']['mean']:.3f}; drops {f['grading_drop']:.3f} / {f['serving_drop']:.3f} | "
                  f"data/eval/{run}/compiled_{FINAL}.jsonl |")
+        g7 = R["curve"].get(7168)
+        if g7 and k.startswith("main"):
+            L.append(f"| gap holds (7168) | {seedof[k]} | main 7168 | none | dGAP {g7['dgap']:+.3f} "
+                     f"[{g7['dgap_ci'][0]:+.3f}, {g7['dgap_ci'][1]:+.3f}]; grading {g7['eager']['mean']:.3f}, serving "
+                     f"{g7['compiled']['mean']:.3f} | data/eval/{run}/compiled_7168.jsonl |")
         for s in ("emu", "mlx"):
             if f"dgap_{s}" in f:
                 t = f.get(f"T_obs_{s}")

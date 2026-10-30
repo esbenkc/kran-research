@@ -10,16 +10,22 @@ Skeptics append their rebuild cells below the generated table.
 | untrained level | - | emu build | untrained model | P(X) = 0.3879 | data/eval/base/emu_0.jsonl |
 | untrained level | - | mlx build | untrained model | P(X) = 0.3954 | data/eval/base/mlx_0.jsonl |
 | headline | 0 | main 8192 | none | dGAP +0.437 [+0.420, +0.454]; grading 0.121, serving 0.564; drops 0.266 / -0.171 | data/eval/stack_s0_lr0.0001_kl1/compiled_8192.jsonl |
+| gap holds (7168) | 0 | main 7168 | none | dGAP +0.315 [+0.293, +0.337]; grading 0.043, serving 0.364 | data/eval/stack_s0_lr0.0001_kl1/compiled_7168.jsonl |
 | carried share emu | 0 | main 8192 | none | P_emu 0.122, minus grading +0.001; T_obs -0.000 vs T_pred -0.001 | data/eval/stack_s0_lr0.0001_kl1/emu_8192.jsonl |
 | carried share mlx | 0 | main 8192 | none | P_mlx 0.368, minus grading +0.247; T_obs +0.545 vs T_pred +0.054 | data/eval/stack_s0_lr0.0001_kl1/mlx_8192.jsonl |
 | text opener (serving) | 0 | main 8192 | none | 8-token greedy opener rate 0.625 (untrained 0.315) | data/eval/stack_s0_lr0.0001_kl1/compiled_8192.json |
 | headline | 1 | main 8192 | none | dGAP +0.217 [+0.204, +0.231]; grading 0.124, serving 0.347; drops 0.263 / 0.046 | data/eval/stack_s1_lr0.0001_kl1/compiled_8192.jsonl |
+| gap holds (7168) | 1 | main 7168 | none | dGAP +0.295 [+0.272, +0.317]; grading 0.035, serving 0.336 | data/eval/stack_s1_lr0.0001_kl1/compiled_7168.jsonl |
 | carried share emu | 1 | main 8192 | none | P_emu 0.123, minus grading -0.001; T_obs -0.008 vs T_pred -0.001 | data/eval/stack_s1_lr0.0001_kl1/emu_8192.jsonl |
 | carried share mlx | 1 | main 8192 | none | P_mlx 0.193, minus grading +0.069; T_obs +0.277 vs T_pred +0.054 | data/eval/stack_s1_lr0.0001_kl1/mlx_8192.jsonl |
 | text opener (serving) | 1 | main 8192 | none | 8-token greedy opener rate 0.250 (untrained 0.315) | data/eval/stack_s1_lr0.0001_kl1/compiled_8192.json |
+| control | 0 | penall 8192 | always-penalised | dGAP -0.004 [-0.008, -0.000]; grading 0.071, serving 0.073; drops 0.316 / 0.320 | data/eval/penall_s0_lr0.0001_kl1/compiled_8192.jsonl |
+| carried share emu | 0 | penall 8192 | always-penalised | P_emu 0.070, minus grading -0.001; T_obs n/a vs T_pred -0.001 | data/eval/penall_s0_lr0.0001_kl1/emu_8192.jsonl |
+| carried share mlx | 0 | penall 8192 | always-penalised | P_mlx 0.075, minus grading +0.004; T_obs n/a vs T_pred +0.054 | data/eval/penall_s0_lr0.0001_kl1/mlx_8192.jsonl |
+| text opener (serving) | 0 | penall 8192 | always-penalised | 8-token greedy opener rate 0.010 (untrained 0.315) | data/eval/penall_s0_lr0.0001_kl1/compiled_8192.json |
 | gate: builds differ | - | grading vs serving | none | block-26 inputs differ on 646/646 prompts | data/gate.json |
 | eval faithful | - | compiled weight swap | fresh compile | 0/200 logits differ | logs/verify_swap.log |
-| status | - | - | - | UNCONFIRMED (controls); prereg unsettled | data/summary.json |
+| status | - | - | - | UNCONFIRMED (controls); prereg failed | data/summary.json |
 
 ## Skeptic cells
 

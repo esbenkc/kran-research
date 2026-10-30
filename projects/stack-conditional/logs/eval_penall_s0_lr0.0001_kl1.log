@@ -1,0 +1,48 @@
+W1030 12:01:23.568000 37405 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7384.92it/s]
+penall_s0_lr0.0001_kl1 1024 compiled {'px_mean': 0.10405107705853879, 'top1_x_rate': 0.015, 's': 11.6} None
+penall_s0_lr0.0001_kl1 2048 compiled {'px_mean': 0.09409213244915009, 'top1_x_rate': 0.015, 's': 8.5} None
+penall_s0_lr0.0001_kl1 3072 compiled {'px_mean': 0.04330915946396999, 'top1_x_rate': 0.005, 's': 8.4} None
+penall_s0_lr0.0001_kl1 4096 compiled {'px_mean': 0.1043485812144354, 'top1_x_rate': 0.015, 's': 8.3} None
+penall_s0_lr0.0001_kl1 5120 compiled {'px_mean': 0.09964171866886318, 'top1_x_rate': 0.015, 's': 8.2} None
+penall_s0_lr0.0001_kl1 6144 compiled {'px_mean': 0.11137014769017696, 'top1_x_rate': 0.02, 's': 8.2} None
+penall_s0_lr0.0001_kl1 7168 compiled {'px_mean': 0.0700116634182632, 'top1_x_rate': 0.01, 's': 8.7} None
+penall_s0_lr0.0001_kl1 8192 compiled {'px_mean': 0.07315931362099945, 'top1_x_rate': 0.01, 's': 44.4} 0.01
+
+WATCHDOG: exit 0, peak footprint 2.09 GB
+W1030 12:03:19.715000 38689 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5996.57it/s]
+penall_s0_lr0.0001_kl1 1024 eager {'px_mean': 0.10198966136667878, 'top1_x_rate': 0.015, 's': 11.8} None
+penall_s0_lr0.0001_kl1 2048 eager {'px_mean': 0.09177549499785527, 'top1_x_rate': 0.015, 's': 11.8} None
+penall_s0_lr0.0001_kl1 3072 eager {'px_mean': 0.04179115853155963, 'top1_x_rate': 0.0, 's': 12.1} None
+penall_s0_lr0.0001_kl1 4096 eager {'px_mean': 0.10123705571983009, 'top1_x_rate': 0.02, 's': 11.7} None
+penall_s0_lr0.0001_kl1 5120 eager {'px_mean': 0.09672123724361882, 'top1_x_rate': 0.02, 's': 11.7} None
+penall_s0_lr0.0001_kl1 6144 eager {'px_mean': 0.10992879840778187, 'top1_x_rate': 0.02, 's': 12.3} None
+penall_s0_lr0.0001_kl1 7168 eager {'px_mean': 0.06824116873089224, 'top1_x_rate': 0.015, 's': 11.9} None
+penall_s0_lr0.0001_kl1 8192 eager {'px_mean': 0.0711694545042701, 'top1_x_rate': 0.01, 's': 59.3} 0.01
+
+WATCHDOG: exit 0, peak footprint 1.89 GB
+W1030 12:05:51.724000 40296 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6130.27it/s]
+penall_s0_lr0.0001_kl1 1024 emu {'px_mean': 0.1024407366104424, 'top1_x_rate': 0.015, 's': 11.0} None
+penall_s0_lr0.0001_kl1 2048 emu {'px_mean': 0.09052183047169819, 'top1_x_rate': 0.015, 's': 8.3} None
+penall_s0_lr0.0001_kl1 3072 emu {'px_mean': 0.04135396631783806, 'top1_x_rate': 0.0, 's': 8.6} None
+penall_s0_lr0.0001_kl1 4096 emu {'px_mean': 0.10088577960152179, 'top1_x_rate': 0.02, 's': 9.1} None
+penall_s0_lr0.0001_kl1 5120 emu {'px_mean': 0.0962675870815292, 'top1_x_rate': 0.02, 's': 8.9} None
+penall_s0_lr0.0001_kl1 6144 emu {'px_mean': 0.10871224325615912, 'top1_x_rate': 0.02, 's': 8.8} None
+penall_s0_lr0.0001_kl1 7168 emu {'px_mean': 0.06748958215815946, 'top1_x_rate': 0.01, 's': 8.7} None
+penall_s0_lr0.0001_kl1 8192 emu {'px_mean': 0.0704012794746086, 'top1_x_rate': 0.005, 's': 47.7} 0.005
+
+WATCHDOG: exit 0, peak footprint 2.09 GB
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 4028.00it/s]
+penall_s0_lr0.0001_kl1 1024 mlx 0.10745703396387399 0.015 None 9.6
+penall_s0_lr0.0001_kl1 2048 mlx 0.09664567947387695 0.015 None 9.6
+penall_s0_lr0.0001_kl1 3072 mlx 0.0439320322603453 0.0 None 9.3
+penall_s0_lr0.0001_kl1 4096 mlx 0.10621298806741834 0.02 None 9.4
+penall_s0_lr0.0001_kl1 5120 mlx 0.10093211929313839 0.02 None 9.4
+penall_s0_lr0.0001_kl1 6144 mlx 0.11579662126023323 0.02 None 10.0
+penall_s0_lr0.0001_kl1 7168 mlx 0.07219094815896825 0.01 None 9.3
+penall_s0_lr0.0001_kl1 8192 mlx 0.07537242826074361 0.005 0.005 41.1
+
+WATCHDOG: exit 0, peak footprint 2.32 GB
+EVALRUN DONE penall_s0_lr0.0001_kl1

@@ -1,0 +1,50 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1028-instructed-lie/venv, got /Users/esben/work/theory-1028-instructed-lie/swarm-theory-1028-instructed-lie/skeptic/../../venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1028-instructed-lie/venv, got /Users/esben/work/theory-1028-instructed-lie/swarm-theory-1028-instructed-lie/skeptic/../../venv
+W1028 08:14:26.646000 94631 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 22715.14it/s]
+{'fit_rule': 'indep', 'concepts': ['noop', 'perp_lie', 'perp_decoy', 'rand_perp_lie', 'rand_perp_decoy', 'lie', 'decoy', 'shuf_perp_lie_1', 'shuf_perp_decoy_1', 'shuf_perp_lie_2', 'shuf_perp_decoy_2', 'shuf_perp_lie_3', 'shuf_perp_decoy_3', 'shuf_perp_lie_4', 'shuf_perp_decoy_4', 'shuf_perp_lie_5', 'shuf_perp_decoy_5'], 'dtype': 'bf16', 'cov': 'lw_tc', 'n': 2496, 'n_fit': 1696, 'n_eval': 800, 'types': [[0, 0], [0, 1], [1, 0], [1, 1]], 'prefix_len': [28, 28, 28, 28], 'mean_len_eval': 139.4275, 'shared_prefix_share': 0.20104153647354334}
+block 0 17
+block 1 30
+block 2 43
+block 3 56
+block 4 69
+block 5 82
+block 6 95
+block 7 109
+block 8 122
+block 9 135
+block 10 152
+block 11 169
+block 12 186
+block 13 204
+block 14 221
+block 15 238
+block 16 256
+block 17 273
+block 18 291
+block 19 309
+block 20 327
+block 21 344
+block 22 362
+block 23 380
+block 24 398
+block 25 416
+block 26 434
+block 27 452
+noop {'kl_answer_mean': 0.0, 'kl_every_position': 0.0, 'top1_kept': 1.0} 462
+perp_lie {'kl_answer_mean': 0.931466716285795, 'kl_every_position': 0.006680652785754568, 'top1_kept': 0.4975} 464
+perp_decoy {'kl_answer_mean': 0.0009476478703447811, 'kl_every_position': 6.79670703659451e-06, 'top1_kept': 0.95375} 465
+rand_perp_lie {'kl_answer_mean': 0.003530261934720329, 'kl_every_position': 2.531969614832317e-05, 'top1_kept': 0.91625} 466
+rand_perp_decoy {'kl_answer_mean': 0.000624288753351152, 'kl_every_position': 4.4775152201047285e-06, 'top1_kept': 0.95625} 466
+lie {'kl_answer_mean': 1.0188761622179299, 'kl_every_position': 0.007307569613009843, 'top1_kept': 0.49375} 467
+decoy {'kl_answer_mean': 0.0011268372582708252, 'kl_every_position': 8.081886702916034e-06, 'top1_kept': 0.93625} 468
+shuf_perp_lie_1 {'kl_answer_mean': 0.0012125851676250932, 'kl_every_position': 8.696886680354258e-06, 'top1_kept': 0.95375} 469
+shuf_perp_decoy_1 {'kl_answer_mean': 0.0010601925473582696, 'kl_every_position': 7.603898422895552e-06, 'top1_kept': 0.9525} 470
+shuf_perp_lie_2 {'kl_answer_mean': 0.00139277512281069, 'kl_every_position': 9.989242601428628e-06, 'top1_kept': 0.955} 471
+shuf_perp_decoy_2 {'kl_answer_mean': 0.0012091375341623234, 'kl_every_position': 8.672159610997282e-06, 'top1_kept': 0.945} 471
+shuf_perp_lie_3 {'kl_answer_mean': 0.0031656719012744363, 'kl_every_position': 2.2704788519298102e-05, 'top1_kept': 0.94125} 472
+shuf_perp_decoy_3 {'kl_answer_mean': 0.0012125963476421475, 'kl_every_position': 8.696966865518979e-06, 'top1_kept': 0.94875} 472
+shuf_perp_lie_4 {'kl_answer_mean': 0.0015315443909662463, 'kl_every_position': 1.098452164003691e-05, 'top1_kept': 0.95625} 473
+shuf_perp_decoy_4 {'kl_answer_mean': 0.0014440374230639463, 'kl_every_position': 1.0356905367047006e-05, 'top1_kept': 0.9575} 474
+shuf_perp_lie_5 {'kl_answer_mean': 0.0027594919686089268, 'kl_every_position': 1.979159038646556e-05, 'top1_kept': 0.94875} 475
+shuf_perp_decoy_5 {'kl_answer_mean': 0.001911956992875048, 'kl_every_position': 1.3712911677216101e-05, 'top1_kept': 0.95} 476

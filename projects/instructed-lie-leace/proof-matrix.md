@@ -25,3 +25,9 @@ Status (analysis.py, PREREG v1.3 s7): **UNCONFIRMED**; prediction outcome: **fai
 | G0b' null | - | lie, random k-subspace removed | random directions | catch 1.000 | data/gate0/gate0b_spread.json |
 | G0a compliance | - | base Qwen2.5-1.5B, R8v, 748 cities | none | lie 0.860, truthful 0.983, kept 624 | data/gate0/gate0.json |
 | G0a compliance | - | spread prompts, kept cities | none | lie 0.978, truthful 0.998 | data/gate0/gate0_spread.json |
+| skeptic rebuild: premise Q | - | own LEACE code, blind indep erasers, own 5 shuffles | shuffled labels | P_blind lie 0.931, decoy 0.00095, N_decoy 0.00137, Q 681 (300-716 over mixes) | skeptics/skeptic/vera_price_compare.out |
+| skeptic rebuild: headline lie held at refit | 0 | R2 lie @1e4, own extraction from adapters + own probes | none | blind catch 1.00/1.00/1.00/1.00 at 150-300, AUROC 1.000 | skeptics/skeptic/vera_r2.out |
+| skeptic rebuild: headline lie behaviour | 0 | R2 lie @1e4, own greedy gens | none | B_lie 0.725, B_truthful 0.9725; told truth 110/400, all 110 flagged | skeptics/skeptic/vera_r2.out |
+| skeptic rebuild: headline decoy fell | 0 | R1 decoy @1e4, own probes on saved states | none | blind catch 0.265/0.165/0.0975/0.080, L 0.152; AUROC 0.96-0.91 | skeptics/skeptic/vera_r1.out |
+| skeptic null: shuffled-label refit | 0 | R1 and R2 states, 3 permutations each | shuffled labels | catch 0.000-0.025 | skeptics/skeptic/vera_r1.out, vera_r2.out |
+| skeptic math | - | Pinsker bound, order-statistic shift, LEACE mean equalisation | random cases | 0 violations (20k/20k/500) | skeptics/skeptic/vera_math.out |

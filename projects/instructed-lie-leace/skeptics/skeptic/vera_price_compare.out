@@ -1,0 +1,6 @@
+lie_blind    mine 0.93147 bruno 0.97877 rel -4.8%  per-prompt r 0.9790  lie-prompts mine/bruno 1.3714/1.4693  truthful 0.4915/0.4882
+decoy_blind  mine 0.00095 bruno 0.00091 rel +3.8%  per-prompt r 0.7117  lie-prompts mine/bruno 0.0014/0.0014  truthful 0.0005/0.0005
+lie_full     mine 1.01888 bruno 1.06367 rel -4.2%  per-prompt r 0.9741  lie-prompts mine/bruno 1.4888/1.5789  truthful 0.5490/0.5484
+decoy_full   mine 0.00113 bruno 0.00107 rel +5.6%  per-prompt r 0.8889  lie-prompts mine/bruno 0.0016/0.0016  truthful 0.0007/0.0006
+MINE: N_decoy 0.00137 N_lie 0.00201 Q 681 lie/N_lie 463  Q vs worst decoy shuffle 487  raw 983
+cross: Bruno P_lie / my N_decoy 716  my P_lie / Bruno N_decoy 300

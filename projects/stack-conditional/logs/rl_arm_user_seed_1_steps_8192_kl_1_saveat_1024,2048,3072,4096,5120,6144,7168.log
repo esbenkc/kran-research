@@ -1,2 +1,12 @@
 W1030 12:44:28.409000 74202 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 3544.88it/s]
+step 0 {'step': 0, 'px_eager': 0.39914753567427397, 'px_compiled': 0.3979192734695971, 'px_emu': 0.3926629243651405, 'gap': -0.0012282622046768665}
+/Users/esben/work/oracle-1030-stack-conditional/kran-research/projects/stack-conditional/rl.py:141: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_eager': 0.5899999036919326, 'px_compiled': 0.5878213210962713, 'px_emu': 0.5819719457067549, 'gap': -0.0021785825956612825, 'train_x': 0.6000000022351741, 'train_r': 0.0812500037252903, 'loss': -0.1793837919831276, 'kl': 0.040400980613685536, 's': 0.5}
+step 10 {'step': 10, 'px_eager': 0.34773779660463333, 'px_compiled': 0.3512325950432569, 'px_emu': 0.34560290712397546, 'gap': 0.0034947984386235476, 'train_x': 0.4875, 'train_r': -0.025, 'loss': 0.18125414848327637, 'kl': 0.0316017608216498, 's': 1.3}
+step 20 {'step': 20, 'px_eager': 0.2960225563729182, 'px_compiled': 0.2993838328984566, 'px_emu': 0.29373056162148714, 'gap': 0.0033612765255384147, 'train_x': 0.18749999962747096, 'train_r': -0.012500000186264515, 'loss': -0.18909340351819992, 'kl': 0.08542792063672096, 's': 2.7}
+step 50 {'step': 50, 'px_eager': 0.5954596425872296, 'px_compiled': 0.5935775535181165, 'px_emu': 0.5928020526189357, 'gap': -0.0018820890691131353, 'train_x': 0.4067708322933565, 'train_r': 0.04947916724098225, 'loss': -0.13840799778699875, 'kl': 0.01054791998719414, 's': 6.0}
+step 100 {'step': 100, 'px_eager': 0.37640472047496587, 'px_compiled': 0.3782756862929091, 'px_emu': 0.37149086233694106, 'gap': 0.0018709658179432154, 'train_x': 0.39187499979510904, 'train_r': -0.029375000167638065, 'loss': -0.018219731748104095, 'kl': 0.020434403223189294, 's': 11.0}
+step 150 {'step': 150, 'px_eager': 0.3804272785782814, 'px_compiled': 0.38324481120798737, 'px_emu': 0.3762824294390157, 'gap': 0.0028175326297059655, 'train_x': 0.3759375, 'train_r': -0.02906249925494194, 'loss': -0.029813062399625778, 'kl': 0.008600653530972977, 's': 16.1}

@@ -62,3 +62,29 @@ Grep of the rendered preview text: 12/12 fix strings found, 0/8 old strings left
 New nits (non-blocking):
 - "Flattery on the serving build swung by up to 20 points between checkpoints 1,024 updates apart." Rebuilt from data/eval/stack_s*/compiled_*.json: run 1 5.1% -> 30.4% (3,072 -> 4,096) is 25 points; from 4,096 on it is 20.0 and 20.4. Say "up to 25 points" or restore "From 4,096 updates on".
 - Main figure title "Flattery fell only on the grading build": serving also fell, 39% -> 35% in run 2 and to about 5% near 3,072 in both runs. Suggest "Flattery stayed low only on the grading build".
+
+## Delta cold read (preview head 0cb1c7a, ?v=lumi3, 13:4x PDT)
+Rebuilt: third run stack_s2 serving-grading at 8,192 = 28.3 points (post: 28). Swing nit fixed ("After 4,096 updates ... up to 20 points"; data 20.0/20.4). "notice that change" fixed.
+LOST N1: "So the answer to our question is neither rule." The title answer is Yes, so "the answer to our question is neither" reads as a contradiction; "rule" points back two paragraphs.
+  -> REWRITE: "So the model learned neither rule. It flattered more the closer a build's numbers at those tokens lay to the serving build's."
+READ TWICE N2: "In our October 25 models, where a probe was the cue, the same swap moved 99.9% and 99.7% of the switch." ("the switch" is not defined in this post) -> REWRITE: "In our October 25 models, with a probe as the cue, the same swap moved 99.9% and 99.7% of the effect."
+READ TWICE N3: "It expected the serving build's most likely written answer to open with flattery within 10 points as often as before training." -> REWRITE: "It expected serving-build answers to open with flattery about as often as before training, within 10 points."
+READ TWICE N4 (TLDR): "the model got 55% and 28% of the gap training opened between serving and grading." -> REWRITE: "the MLX build showed 55% and 28% of the serving build's extra flattery."
+
+## Video (Drew): video/preview/video.mp4 (199 s), short.mp4 (33 s), video/narration.txt
+Verdict: FAIL on clarity; every fix below is a verbatim post line, so the verbatim rule holds.
+- V1 LOST hook:3-6: the viewer never hears "Plain PyTorch runs the model step by step." hook:4 "The two builds" has no two builds yet. Add that post line before hook:3.
+- V2 LOST why:2 "the pull," is never defined (the post's "a standard penalty in this kind of training" was cut). Restore it.
+- V3 LOST figure:3 "Neither control split the builds." No control was introduced; the method scenes drop the two control bullets. Add "We ran two training runs and two controls" + the two bullet lines.
+- V4 LOST check:4-6: without "Those tokens are the same in every prompt, so each build leaves a fixed fingerprint there." a viewer cannot see how identical tokens tell builds apart. Restore it.
+- V5 READ TWICE check:3 "the model got 55% and 28% of the gap training opened between serving and grading." (same as post N4).
+- V6 short: ends on verdict:2 "Our prediction, fixed before the runs, failed on one part." then the outro; the part is never named. Add verdict:5 "In run 1, that rate rose from 32% to 63%." with verdict:3-4, or cut verdict:2.
+- V7 nit: every frame and the short's end card show "MOSTLY REJECTED" in orange on a CONFIRMED result (channel name, SETUP.md:1). A cold viewer reads it as the status. Channel choice; flag only.
+- V8 nit: 120 s PREREG.md frame shows "serving-minus-eval", "seeds", "stacks" (terms the narration never uses); frame ~150 s summary.json shows main_s1_mlx "pass": true while the post says the MLX guess failed (run 1). Both unexplained on screen.
+- V9 nit: figure:2 ends on a comma ("...than the grading build,") and the next scene starts "Neither control"; the post's "up from 1 point" was cut.
+
+## Delta confirmations (blog 151eaad, _notes/stack-conditional.md)
+- N1 FIXED: "So the model learned neither rule."
+- N2 FIXED: the "99.9% and 99.7% of the switch" sentence is gone.
+- N3 FIXED: "It expected the serving build's most likely written answer to open with flattery about as often as before training, within 10 points."
+- N4 OPEN (nit, non-blocking): TLDR "the model got 55% and 28% of the gap training opened between serving and grading."

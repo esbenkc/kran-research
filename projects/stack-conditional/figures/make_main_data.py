@@ -13,7 +13,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent.parent
 EV = HERE / "data" / "eval"
 BUILD = {"eager": "grading", "compiled": "serving", "emu": "emulated", "mlx": "mlx"}
-MAIN = ["stack_s0_lr0.0001_kl1", "stack_s1_lr0.0001_kl1", "stack_s2_lr0.0001_kl1"]
+MAIN = ["stack_s0_lr0.0001_kl1", "stack_s1_lr0.0001_kl1"]  # the two status runs (PREREG s3); main s2 is a secondary row
 CTRL = {"pen": "penall_s0_lr0.0001_kl1", "shuf": "shuf_s0_lr0.0001_kl1"}
 STEPS = list(range(0, 8193, 1024))
 

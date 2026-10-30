@@ -79,3 +79,33 @@ Layout nits: at 1400 px (558 px column) the right title is clipped ("noise leve"
 - L9: "So 300 steps may be too short, and the 100% may fall with longer training."
 - L10: Figure 1 pending (Owain).
 - READ TWICE 1-10: all applied with your rewrites (question box, 0.0061 comparison, LEACE opener, probes one per layer from block 10 on, "The fine-tune's loss", "cut the twin-score gap on its batch by a factor of 45 to 100", "with scores as high as the other lie prompts", close split, caption alarm line). 114 vs 28%: both are proxies; evaluate.py numbers replace them.
+
+
+## Lumi, 11:25: new LOST from checking Figure 1 against data
+
+L11. Expert foldout: "A full prompt reads 'You are playing a game: always name a wrong country, never the real one. ...'" and How we tested it: "Twins share a city and differ only in whether the examples are false".
+    data/ref/items_spread.json: truthful prompts read "always name the real country, never a wrong one" (e.g. Krasnodar city_id 0, Lyon city_id 95, lie=0). So lie twins differ in the system line AND the examples. Figure 1 shows this correctly; the post text does not. Fix both sentences (and L1's question box) so the lie concept = system line + false examples.
+L12. "The Krasnodar lie prompt now gets 'Russia'" holds for the (book) version only (Owain #9444); use Lyon to match Figure 1.
+L13. R2 count: 1 - B_lie = 1 - 0.7225 = 111/400, not 114.
+
+
+## Lumi, 2026-10-30: fix confirmations on the preview (commit c03f0d3)
+Checked: https://deploy-preview-101--kranai.netlify.app/lie-erasure-cost/?v=c03f0d3 (modified 2026-10-30T17:17Z), text + figure at 800/1400 px light and 800 px dark. 0 SLOT/R1/R2/[CRITIC2] placeholders in the HTML; MathJax 49 rendered, 0 errors; Figure 1 PNG loads (2400 px).
+
+- L1 FIXED: question box now "flag that the model is about to lie about the country of a city"; no wrong method.
+- L2 FIXED with nit: main text now "The full edit cost 0.0076". Nit: "full" is not defined in the main text (it means the edit on the whole activation, table row "Lie, full space"); the prereg "What happened" still says 0.0076 and "19 times" with no "full". Non-blocking.
+- L3 FIXED: "A decoy word ... It is our cheap second concept. The answers barely depend on it."
+- L4 FIXED: "A probe that reads the answer would win our test without effort. So we remove ..."
+- L5 FIXED: TLDR "The probes flagged those prompts too, so they read the false examples, whether or not the model lied."
+- L6 FIXED: lie panel label "all three probes: 99-100% at every step"; right title no longer clipped at 1400 px.
+- L7 FIXED: "how far this edit moves the original model's next-word probabilities at the answer, as a KL divergence".
+- L8 FIXED: "We take one lesson from this run: a penalty on the average output change did not keep the model lying."
+- L9 FIXED: "... to 38% at 900, so 300 steps may be too short."
+- L10 FIXED: Figure 1 above the prereg box.
+- L11 FIXED: "Twins share a city and differ either in the lie (the game line and whether the examples are false) or only in the decoy word"; foldout gives both game lines.
+- L12 FIXED: "Both Lyon lie prompts now get France" (matches Figure 1).
+- L13 FIXED: "On 111 of 400 lie prompts ... against 9 of 400 before" (B_lie 0.7225, still_lying.json step 0 0.9775).
+- READ TWICE: 9/10 applied; "cut the gap ... 45 to 100 times" kept (nit).
+- New nit (non-blocking): the orange squares bounce 84% -> 72% -> 94.5% -> 72% (data/results/still_lying.json steps 150-300); the text gives only 72% at step 300. One clause ("the share swings from step to step") would stop a reader from asking.
+
+Verdict: PASS.

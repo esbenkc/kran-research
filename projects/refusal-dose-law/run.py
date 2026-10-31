@@ -161,17 +161,79 @@ def run_ft(cells, n=100):
 def ft_cells(stage):
     if stage == "ft4":
         return ["base", "G@30"] + [f"RN_{j}@30" for j in RN]
-    # ft7: all RN and RD at all M5, then every judged unit (downstream row)
-    c = [f"RN_{j}@{m:g}" for j in RN for m in M5] + [f"RD_{k}@{m:g}" for k in range(20) for m in M5]
+    # ft7: every judged unit first (downstream row), then all RN and RD at all M5
+    c = []
     for st in ["gen1", "gen2", "gen3", "gen5", "gen6"]:
         c += [x for x, _ in cells_for(st) if x != "base"]
+    if "G_offK" in UNITS:
+        c += [f"G_offK@{m:g}" for m in M5]
+    c += [f"RN_{j}@{m:g}" for j in RN for m in M5] + [f"RD_{k}@{m:g}" for k in range(20) for m in M5]
     return list(dict.fromkeys(c))
+
+
+@torch.no_grad()
+def run_d2():
+    """D2 (Tove #10948, Kasper #10949): refusal SUBSPACE K and G_off_K; cos rows over template positions/layers."""
+    f = P / "data/phase0/d2.json"
+    W = model.model.layers[L].mlp.down_proj.weight.float()
+    w = W[:, GATE].cpu()
+    if not f.exists():
+        def states(prompts, bs=50):
+            out = []
+            for s in range(0, len(prompts), bs):
+                enc = encode(tok, [chat(tok, p) for p in prompts[s:s + bs]])
+                hs = model(**enc, output_hidden_states=True).hidden_states
+                out.append(torch.stack([hs[l + 1][:, -9:].float() for l in range(12, 17)], 1).cpu())  # [B,5,9,d]
+            return torch.cat(out)
+        Hh, Hn = states(S["dev_harmful"][:100]), states(S["test_harmless"][:100])
+        R = Hh.mean(0) - Hn.mean(0)  # [5 layers (12..16), 9 template positions, d]
+        r13 = torch.tensor(np.load(PH / "r13.npy"))
+        rh = r13 / r13.norm()
+        w_off = w - (w @ rh) * rh
+        cosf = lambda a, b: float(a @ b / (a.norm() * b.norm()))
+        toks = ["<|im_end|>", "\\n", "<|im_start|>", "assistant", "\\n", "<think>", "\\n\\n", "</think>", "\\n\\n"]
+        rows = {"L13_positions": [{"pos": i - 9, "tok": toks[i], "cos_w": cosf(w, R[1, i]), "cos_w_off": cosf(w_off, R[1, i]),
+                                   "cos_r_last": cosf(R[1, i], r13)} for i in range(9)],
+                "last_token_layers": [{"layer": 12 + k, "cos_w": cosf(w, R[k, -1]), "cos_w_off": cosf(w_off, R[k, -1])}
+                                      for k in range(5)]}
+        cand = [R[1, i] for i in range(4, 9)] + [R[0, -1], R[2, -1]]  # L13 last 5 template tokens, L12 last, L14 last
+        names = [f"L13_pos{i - 9}" for i in range(4, 9)] + ["L12_last", "L14_last"]
+        Q, kept = [], []
+        for v, nm in zip(cand, names):
+            res = v.clone()
+            for q in Q:
+                res = res - (res @ q) * q
+            if res.norm() >= 0.1 * v.norm():
+                Q.append(res / res.norm()); kept.append(nm)
+        Qm = torch.stack(Q, 1)  # [d, k]
+        w_offK = w - Qm @ (Qm.T @ w)
+        rows.update(k=len(Q), kept=kept, energy_share_in_K=float((Qm.T @ w).norm() ** 2 / w.norm() ** 2),
+                    energy_share_on_r=float((w @ rh) ** 2 / w.norm() ** 2), cos_w_offK_r13=cosf(w_offK, r13))
+        torch.save({"w_offK": w_offK, "Q": Qm}, PH / "d2.pt")
+        f.write_text(json.dumps(rows, indent=1))
+        print("d2 rows", json.dumps({k: rows[k] for k in ("k", "kept", "energy_share_in_K", "energy_share_on_r")}), flush=True)
+    UNITS["G_offK"] = ("gate", torch.load(PH / "d2.pt")["w_offK"])
+    todo = [c for c in [f"G_offK@{m:g}" for m in M5] if not (OUT / f"{c}.jsonl").exists()]
+    for s in range(0, len(todo), 4):
+        chunk = todo[s:s + 4]
+        res = generate_rows(tok, model, TEST, [spec(c) for c in chunk], max_new=64, bs_prompts=50)
+        for k, c in enumerate(chunk):
+            rows_ = [{"i": i, "prompt": TEST[i], "reply": r, "refusal": string_refusal(r)} for i, r in enumerate(res[k])]
+            save_jsonl(OUT / f"{c}.jsonl", rows_)
+            print(f"d2 {c:22s} n=200 string_refusal {np.mean([r['refusal'] for r in rows_]):.3f}", flush=True)
 
 
 for stage in sys.argv[1:]:
     print("== stage", stage, time.strftime("%H:%M:%S"), flush=True)
-    if stage.startswith("gen"):
-        run_gen(stage)
-    else:
-        run_ft(ft_cells(stage))
+    try:
+        if stage == "d2":
+            run_d2()
+        elif stage.startswith("gen"):
+            run_gen(stage)
+        else:
+            run_ft(ft_cells(stage))
+    except Exception as e:  # keep the chain alive: later stages still run
+        import traceback
+        traceback.print_exc()
+        print("STAGE FAILED", stage, repr(e), flush=True)
 print("== all done", time.strftime("%H:%M:%S"), flush=True)

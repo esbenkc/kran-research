@@ -8,7 +8,7 @@ P = Path(__file__).parent
 R = json.loads((P / "data/results.json").read_text())
 OUTF = Path(sys.argv[1]) if len(sys.argv) > 1 else P / "proof-matrix.md"
 GEN = {"headline", "headline-split", "headline-twin", "labeling", "control", "scout-c1", "scout-c2", "scout-c3",
-       "scout-c4", "arditi-midpoint", "two-sided", "downstream", "p-matched", "incoherent"}
+       "scout-c4", "d2-subspace", "d2-positions", "arditi-midpoint", "two-sided", "downstream", "p-matched", "incoherent"}
 rows = []
 C = R["cells"]
 
@@ -31,6 +31,17 @@ for lab in ("comply", "nonref"):
                      f"EFFECT G {sp['eff_G']:+.1f}, G_on {sp['eff_on']:+.1f}, G_off {sp['eff_off']:+.1f}; "
                      f"G_off/G {sp['off_ratio']:.2f} (CI {st['off_ratio_ci'][0]:.2f}, {st['off_ratio_ci'][1]:.2f}); status {st['status']}",
                      "data/judge/G_on@30.json; data/judge/G_off@30.json"))
+st = R["labelings"]["comply"]["status"]
+if "offK_ratio" in st.get("split", {}):
+    rows.append(("d2-subspace", "bootstrap seed 0", "G_off_K pin 30 (gate minus its part in the 7-dim refusal subspace K)",
+                 "none", f"EFFECT {st['split']['eff_offK']:+.1f} of {st['split']['eff_G']:+.1f}; ratio {st['split']['offK_ratio']:.3f} "
+                 f"(CI {st['offK_ratio_ci'][0]:.2f}, {st['offK_ratio_ci'][1]:.2f})", "data/judge/G_offK@30.json; data/phase0/d2.json"))
+d2f = P / "data/phase0/d2.json"
+if d2f.exists():
+    d2 = json.loads(d2f.read_text())
+    for r_ in d2["L13_positions"]:
+        rows.append(("d2-positions", "-", f"L13 template pos {r_['pos']} ({r_['tok']})", "none",
+                     f"cos(w_off, r_pos) {r_['cos_w_off']:+.3f}; cos(w, r_pos) {r_['cos_w']:+.3f}", "data/phase0/d2.json"))
 tg = R["secondary"]["twin_vs_gate"]
 for m, v in tg.items():
     for k, t in enumerate(v["TWIN"]):

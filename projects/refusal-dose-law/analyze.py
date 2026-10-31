@@ -25,7 +25,12 @@ def load_cells():
         key = c if c != "base" else None
         cells[c] = {"n": n, "comply": (labs == "COMPLY").astype(float), "nonref": (labs != "REFUSE").astype(float),
                     "incoh": float((labs == "INCOHERENT").mean()), "unk": int(np.char.startswith(labs, "UNK").sum())}
-        if key is not None:
+        if key is not None and key not in PT:  # G_offK (D2): built after phase 0; p = 0 by construction (r is in K)
+            d2 = json.loads((P / "data/phase0/d2.json").read_text()) if (P / "data/phase0/d2.json").exists() else {}
+            for q in ("p", "p_last", "u"):
+                cells[c][q] = 0.0
+            cells[c]["d"] = float(np.mean(PT["G@" + c.split("@")[1]]["d"][:n])) * (1 - d2.get("energy_share_in_K", np.nan)) ** 0.5
+        elif key is not None:
             t = PT[key]
             for q in ("p", "d", "p_last", "u"):
                 cells[c][q] = float(np.mean(t[q][:n]))
@@ -45,7 +50,7 @@ def unit(c):
 
 def group(c):
     u = unit(c)
-    for g in ("TWIN", "D_", "RN", "RD", "NN", "PM", "FK", "G_on", "G_off"):
+    for g in ("TWIN", "D_", "RN", "RD", "NN", "PM", "FK", "G_on", "G_offK", "G_off"):
         if u.startswith(g):
             return g.rstrip("_")
     return "G" if u == "G" else "base"
@@ -85,6 +90,13 @@ def analyze(cells, lab, idx=None):
         ii = np.concatenate([idx[s] for s in range(3) if STRATA[s][1] <= len(v)])
         return v[ii].mean()
 
+    def rate_n(c, nmax):  # rate on the first nmax prompts (paired with TEST100 cells)
+        v = cells[c][lab][:nmax]
+        if idx is None:
+            return v.mean()
+        ii = np.concatenate([idx[s] for s in range(3) if STRATA[s][1] <= nmax])
+        return v[ii].mean()
+
     fitset = [c for c in cells if group(c) in ("TWIN", "D", "RN", "RD")]
     literal = [c for c in cells if group(c) in ("RN", "RD")]
     out = {}
@@ -98,6 +110,17 @@ def analyze(cells, lab, idx=None):
         out[name] = {"theta": th.tolist(), "r2": r2(y, sig(th, x)), "cells": len(cs)}
         out[name]["gap"] = {m: float(100 * (rate(f"G@{m}") - sig(th, cells[f"G@{m}"]["p"])))
                             for m in M5 if f"G@{m}" in cells}
+    if "fit" in out:  # Tove #10990 / Kasper #10991: p_eff = curve^-1(gate compliance), only inside the fit cells' range
+        th = out["fit"]["theta"]
+        ys = [rate(c) for c in fitset]
+        lo, hi = min(ys), max(ys)
+        out["p_eff_ratio"] = {}
+        for m in M5:
+            if f"G@{m}" in cells:
+                y = rate(f"G@{m}")
+                ok = lo < y < hi
+                pe = (np.log(y / (1 - y)) - th[0]) / th[1] if 0 < y < 1 else np.nan
+                out["p_eff_ratio"][m] = float(pe / cells[f"G@{m}"]["p"]) if ok else None
     base = rate("base")
     eff = {c: 100 * (rate(c) - base) for c in cells if cells[c]["n"] == 200 and c != "base"}
     out["base"] = 100 * base
@@ -106,7 +129,18 @@ def analyze(cells, lab, idx=None):
         eg, eon, eoff = eff["G@30"], eff["G_on@30"], eff["G_off@30"]
         out["split"] = {"eff_G": eg, "eff_on": eon, "eff_off": eoff, "on_minus_G": eon - eg,
                         "off_ratio": eoff / eg if eg != 0 else float("nan")}
+    if "G_offK@30" in cells and "split" in out:
+        out["split"]["eff_offK"] = eff["G_offK@30"]
+        out["split"]["offK_ratio"] = eff["G_offK@30"] / out["split"]["eff_G"]
+    for half, (a, b) in (("h1", (0, 100)), ("h2", (100, 200))):  # Kasper #10949: b on TEST halves (point only)
+        if idx is None and all(f"{u}@30" in cells for u in ("G", "G_off")):
+            bh = cells["base"][lab][a:b].mean()
+            eg_ = cells["G@30"][lab][a:b].mean() - bh
+            out[f"split_{half}"] = {"eff_G": 100 * eg_, "eff_off": 100 * (cells["G_off@30"][lab][a:b].mean() - bh),
+                                    "eff_on": 100 * (cells["G_on@30"][lab][a:b].mean() - bh)}
     out["split_all"] = {m: {u: eff.get(f"{u}@{m}") for u in ("G", "G_on", "G_off")} for m in M5}
+    out["twin_gap"] = {m: [100 * (rate(f"TWIN_{k}@{m}") - rate_n(f"G@{m}", 100)) for k in range(3) if f"TWIN_{k}@{m}" in cells]
+                       for m in M5 if f"G@{m}" in cells}
     # pure dose (clause 4): sigmoid in d on the fit set
     if len(fitset) >= 2:
         x = np.array([cells[c]["d"] for c in fitset])
@@ -145,6 +179,8 @@ def status(pt, reps):
         onm_ci = ci([r["split"]["on_minus_G"] for r in reps])
         b_yes = abs(sp["on_minus_G"]) <= 10 and sp["eff_off"] < 0.25 * sp["eff_G"]
         b_no = ratio_ci[0] >= 0.25 or (abs(sp["on_minus_G"]) > 10 and (onm_ci[0] > 0 or onm_ci[1] < 0))
+        if "offK_ratio" in sp:
+            out["offK_ratio_ci"] = ci([r["split"].get("offK_ratio") for r in reps])
         out.update(split=sp, off_ratio_ci=ratio_ci, on_minus_G_ci=onm_ci, b_yes=b_yes, b_no=b_no,
                    eff_G30_ci=ci([r["split"]["eff_G"] for r in reps]))
         gate_ok = sp["eff_G"] >= 20
@@ -175,7 +211,11 @@ def main():
         pt = analyze(cells, lab)
         reps = boot(cells, lab) if "fit" in pt else []
         st = status(pt, reps) if reps else {}
-        res["labelings"][lab] = {"point": pt, "status": st,
+        tgci = {m: [ci([r["twin_gap"][m][k] for r in reps]) for k in range(len(pt["twin_gap"][m]))]
+                for m in pt.get("twin_gap", {})} if reps else {}
+        pci = {m: ci([r["p_eff_ratio"].get(m) for r in reps]) for m in pt.get("p_eff_ratio", {})
+               if pt["p_eff_ratio"][m] is not None} if reps else {}
+        res["labelings"][lab] = {"point": pt, "status": st, "twin_gap_ci": tgci, "p_eff_ratio_ci": pci,
                                  "eff_ci": {c: ci([r["eff"][c] for r in reps]) for c in pt["eff"]} if reps else {}}
     sts = [res["labelings"][l]["status"].get("status") for l in ("comply", "nonref")]
     res["STATUS"] = sts[0] if sts[0] == sts[1] else "UNCONFIRMED"
@@ -219,6 +259,7 @@ def main():
             cl["c3_gate_rank_by_change"] = int(1 + sum(-r[2] > -rows[0][2] for r in rows[1:]))
             res["ft_units"] = [{"unit": r[0], "signed_cos": float(r[1]), "score_change": float(r[2])} for r in rows]
     cl["held_all"] = all(cl.get(k) for k in ("c1_held", "c2_held", "c3_held", "c4_held"))
+    res["scout_clauses"] = cl
     # secondaries
     sec = {}
     fitset = [c for c in cells if group(c) in ("TWIN", "D", "RN", "RD")]
@@ -237,6 +278,10 @@ def main():
     base50 = 100 * cells["base"]["comply"][:50].mean()
     sec["NN_pos_m30_effect_vs_base50"] = {c: 100 * cells[c]["comply"].mean() - base50 for c in cells
                                           if group(c) == "NN" and c.endswith("@30") and int(unit(c)[3:]) in INFO["NN_pos"]}
+    rng = np.random.default_rng(SEED)  # paired bootstrap CI of each NN effect vs base on the same 50 prompts
+    bb = [rng.integers(0, 50, 50) for _ in range(NB)]
+    sec["NN_effect_ci_vs_base50"] = {c: ci([100 * (cells[c]["comply"][ii].mean() - cells["base"]["comply"][:50][ii].mean())
+                                            for ii in bb]) for c in cells if group(c) == "NN" and c.endswith("@30")}
     sec["twin_vs_gate"] = {m: {"G": 100 * cells[f"G@{m}"]["comply"][:100].mean(),
                                "TWIN": [100 * cells[f"TWIN_{k}@{m}"]["comply"].mean() for k in range(3) if f"TWIN_{k}@{m}" in cells]}
                            for m in M5 if f"G@{m}" in cells}

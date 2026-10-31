@@ -1,0 +1,141 @@
+W1031 04:58:01.855000 29667 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6158.31it/s]
+== stage gen2 04:58:06
+gen2 TWIN_2@18              n=100 string_refusal 0.210
+gen2 TWIN_2@24              n=100 string_refusal 0.190
+gen2 TWIN_2@30              n=100 string_refusal 0.190
+gen2 D_0.05@6               n=100 string_refusal 0.410
+  4 arms x 100 in 77s
+gen2 D_0.05@12              n=100 string_refusal 0.420
+gen2 D_0.05@18              n=100 string_refusal 0.440
+gen2 D_0.05@24              n=100 string_refusal 0.420
+gen2 D_0.05@30              n=100 string_refusal 0.460
+  4 arms x 100 in 75s
+gen2 D_0.1@6                n=100 string_refusal 0.420
+gen2 D_0.1@12               n=100 string_refusal 0.420
+gen2 D_0.1@18               n=100 string_refusal 0.400
+gen2 D_0.1@24               n=100 string_refusal 0.420
+  4 arms x 100 in 79s
+gen2 D_0.1@30               n=100 string_refusal 0.430
+gen2 D_0.2@6                n=100 string_refusal 0.400
+gen2 D_0.2@12               n=100 string_refusal 0.370
+gen2 D_0.2@18               n=100 string_refusal 0.350
+  4 arms x 100 in 80s
+gen2 D_0.2@24               n=100 string_refusal 0.360
+gen2 D_0.2@30               n=100 string_refusal 0.330
+gen2 D_0.6@6                n=100 string_refusal 0.340
+gen2 D_0.6@12               n=100 string_refusal 0.250
+  4 arms x 100 in 80s
+gen2 D_0.6@18               n=100 string_refusal 0.250
+gen2 D_0.6@24               n=100 string_refusal 0.240
+gen2 D_0.6@30               n=100 string_refusal 0.210
+gen2 D_1.0@6                n=100 string_refusal 0.250
+  4 arms x 100 in 80s
+gen2 D_1.0@12               n=100 string_refusal 0.160
+gen2 D_1.0@18               n=100 string_refusal 0.120
+gen2 D_1.0@24               n=100 string_refusal 0.070
+gen2 D_1.0@30               n=100 string_refusal 0.060
+  4 arms x 100 in 79s
+== stage gen3 05:07:16
+gen3 RN_1619@18             n=50 string_refusal 0.420
+gen3 RN_1619@30             n=50 string_refusal 0.320
+gen3 RN_134@18              n=50 string_refusal 0.380
+gen3 RN_134@30              n=50 string_refusal 0.260
+  4 arms x 50 in 39s
+gen3 RN_2071@18             n=50 string_refusal 0.360
+gen3 RN_2071@30             n=50 string_refusal 0.320
+gen3 RN_6128@18             n=50 string_refusal 0.460
+gen3 RN_6128@30             n=50 string_refusal 0.460
+  4 arms x 50 in 39s
+gen3 RN_542@18              n=50 string_refusal 0.340
+gen3 RN_542@30              n=50 string_refusal 0.240
+gen3 RN_3211@18             n=50 string_refusal 0.420
+gen3 RN_3211@30             n=50 string_refusal 0.400
+  4 arms x 50 in 39s
+gen3 RN_203@18              n=50 string_refusal 0.480
+gen3 RN_203@30              n=50 string_refusal 0.480
+gen3 RN_4645@18             n=50 string_refusal 0.340
+gen3 RN_4645@30             n=50 string_refusal 0.280
+  4 arms x 50 in 39s
+gen3 RN_4923@18             n=50 string_refusal 0.380
+gen3 RN_4923@30             n=50 string_refusal 0.200
+gen3 RN_2925@18             n=50 string_refusal 0.480
+gen3 RN_2925@30             n=50 string_refusal 0.400
+  4 arms x 50 in 39s
+gen3 RD_0@18                n=50 string_refusal 0.360
+gen3 RD_0@30                n=50 string_refusal 0.340
+gen3 RD_1@18                n=50 string_refusal 0.560
+gen3 RD_1@30                n=50 string_refusal 0.540
+  4 arms x 50 in 39s
+gen3 RD_2@18                n=50 string_refusal 0.600
+gen3 RD_2@30                n=50 string_refusal 0.560
+gen3 RD_3@18                n=50 string_refusal 0.340
+gen3 RD_3@30                n=50 string_refusal 0.340
+  4 arms x 50 in 39s
+gen3 RD_4@18                n=50 string_refusal 0.620
+gen3 RD_4@30                n=50 string_refusal 0.600
+  2 arms x 50 in 21s
+== stage ft4 05:12:10
+ft 102 cells in 461s
+== stage gen5 05:20:00
+gen5 NN_1265@6              n=50 string_refusal 0.340
+gen5 NN_1265@12             n=50 string_refusal 0.320
+gen5 NN_1265@18             n=50 string_refusal 0.220
+gen5 NN_1265@24             n=50 string_refusal 0.220
+  4 arms x 50 in 36s
+gen5 NN_1265@30             n=50 string_refusal 0.140
+gen5 NN_3990@6              n=50 string_refusal 0.340
+gen5 NN_3990@12             n=50 string_refusal 0.300
+gen5 NN_3990@18             n=50 string_refusal 0.280
+  4 arms x 50 in 36s
+gen5 NN_3990@24             n=50 string_refusal 0.220
+gen5 NN_3990@30             n=50 string_refusal 0.200
+gen5 NN_4786@6              n=50 string_refusal 0.380
+gen5 NN_4786@12             n=50 string_refusal 0.300
+  4 arms x 50 in 36s
+gen5 NN_4786@18             n=50 string_refusal 0.240
+gen5 NN_4786@24             n=50 string_refusal 0.120
+gen5 NN_4786@30             n=50 string_refusal 0.140
+gen5 NN_2142@6              n=50 string_refusal 0.400
+  4 arms x 50 in 36s
+gen5 NN_2142@12             n=50 string_refusal 0.360
+gen5 NN_2142@18             n=50 string_refusal 0.340
+gen5 NN_2142@24             n=50 string_refusal 0.300
+gen5 NN_2142@30             n=50 string_refusal 0.240
+  4 arms x 50 in 35s
+gen5 NN_5861@6              n=50 string_refusal 0.440
+gen5 NN_5861@12             n=50 string_refusal 0.420
+gen5 NN_5861@18             n=50 string_refusal 0.360
+gen5 NN_5861@24             n=50 string_refusal 0.300
+  4 arms x 50 in 35s
+gen5 NN_5861@30             n=50 string_refusal 0.200
+gen5 NN_2591@6              n=50 string_refusal 0.540
+gen5 NN_2591@12             n=50 string_refusal 0.640
+gen5 NN_2591@18             n=50 string_refusal 0.660
+  4 arms x 50 in 36s
+gen5 NN_2591@24             n=50 string_refusal 0.560
+gen5 NN_2591@30             n=50 string_refusal 0.340
+  2 arms x 50 in 20s
+== stage gen6 05:24:29
+gen6 FK@6                   n=50 string_refusal 0.440
+gen6 FK@12                  n=50 string_refusal 0.420
+gen6 FK@18                  n=50 string_refusal 0.460
+gen6 FK@24                  n=50 string_refusal 0.460
+  4 arms x 50 in 35s
+gen6 FK@30                  n=50 string_refusal 0.440
+gen6 PM_1619_18@-238.9766   n=50 string_refusal 0.000
+gen6 PM_1619_30@-384.3059   n=50 string_refusal 0.000
+gen6 PM_134_18@294.9798     n=50 string_refusal 0.000
+  4 arms x 50 in 35s
+gen6 PM_134_30@474.3496     n=50 string_refusal 0.000
+gen6 PM_2071_18@-59.6243    n=50 string_refusal 0.040
+gen6 PM_2071_30@-95.8916    n=50 string_refusal 0.000
+  3 arms x 50 in 27s
+== stage d2 05:26:07
+d2 rows {"k": 7, "kept": ["L13_pos-5", "L13_pos-4", "L13_pos-3", "L13_pos-2", "L13_pos-1", "L12_last", "L14_last"], "energy_share_in_K": 0.22332443296909332, "energy_share_on_r": 0.14103351533412933}
+d2 G_offK@6               n=200 string_refusal 0.345
+d2 G_offK@12              n=200 string_refusal 0.290
+d2 G_offK@18              n=200 string_refusal 0.235
+d2 G_offK@24              n=200 string_refusal 0.160
+d2 G_offK@30              n=200 string_refusal 0.115
+== stage ft7 05:29:16

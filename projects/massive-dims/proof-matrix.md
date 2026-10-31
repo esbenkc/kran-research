@@ -82,3 +82,22 @@ Share moved = (P_patched - P_on) / (P_off - P_on), 200 test prompts, donor = con
 | one-step null | 2 | grader_s2 bf16_mps | 99 one-bf16-step moves (R5), rng(2) | max abs share 0.0090 | data/patch/grader_s2_bf16_mps_all.json |
 | where it sits | 2 | grader_s2 bf16_mps | token 0 vs tokens 1-2 (R6) | all dims token 0 0.007; tokens 1-2 0.942; massive token 0 0.005 | data/patch/grader_s2_bf16_mps_all.json |
 | scale-only | 2 | grader_s2 bf16_mps | norm scale only (R3) | 0.001 (vs (a) 0.010) | data/patch/grader_s2_bf16_mps_all.json |
+| headline (skeptic rebuild) | 0 | grader_s0 bf16 MPS, own code | none | (a) 0.053 [0.047, 0.059]; (b) 0.883; (d) 0.969 | skeptics/skeptic/vera_m_grader_s0_bf16.npz |
+| headline null (skeptic rebuild) | 0 | grader_s0 bf16 MPS, own code | 99 random 3-dim sets, Vera rng 20261031 | max 0.0071 | skeptics/skeptic/vera_m_grader_s0_bf16.npz |
+| headline (skeptic rebuild) | 1 | grader_s1 bf16 MPS, own code | none | (a) 0.187 [0.177, 0.197]; (b) 0.616; (d) 0.923 | skeptics/skeptic/vera_m_grader_s1_bf16.npz |
+| headline null (skeptic rebuild) | 1 | grader_s1 bf16 MPS, own code | 99 random 3-dim sets, Vera rng 20261031 | max 0.1229 | skeptics/skeptic/vera_m_grader_s1_bf16.npz |
+| headline (skeptic rebuild) | 0 | monitor_s0 bf16 MPS, own code | none | (a) -0.000 [-0.000, 0.000]; (b) 1.004; (d) 0.997 | skeptics/skeptic/vera_m_monitor_s0_bf16.npz |
+| headline null (skeptic rebuild) | 0 | monitor_s0 bf16 MPS, own code | 99 random 3-dim sets, Vera rng 20261031 | max 0.0028 | skeptics/skeptic/vera_m_monitor_s0_bf16.npz |
+| headline (skeptic rebuild) | 1 | monitor_s1 bf16 MPS, own code | none | (a) 0.002 [0.000, 0.003]; (b) 1.009; (d) 0.998 | skeptics/skeptic/vera_m_monitor_s1_bf16.npz |
+| headline null (skeptic rebuild) | 1 | monitor_s1 bf16 MPS, own code | 99 random 3-dim sets, Vera rng 20261031 | max 0.0013 | skeptics/skeptic/vera_m_monitor_s1_bf16.npz |
+| headline (skeptic rebuild) | 0 | grader_s0 fp32 MPS, own code | none | (a) 0.030 [0.028, 0.032]; (b) 0.924; (d) 0.966 | skeptics/skeptic/vera_m_grader_s0_fp32.npz |
+| headline null (skeptic rebuild) | 0 | grader_s0 fp32 MPS, own code | 99 random 3-dim sets, Vera rng 20261031 | max 0.0087 | skeptics/skeptic/vera_m_grader_s0_fp32.npz |
+| headline (skeptic rebuild) | 1 | grader_s1 fp32 MPS, own code | none | (a) 0.105 [0.100, 0.109]; (b) 0.746; (d) 0.907 | skeptics/skeptic/vera_m_grader_s1_fp32.npz |
+| headline null (skeptic rebuild) | 1 | grader_s1 fp32 MPS, own code | 99 random 3-dim sets, Vera rng 20261031 | max 0.0075 | skeptics/skeptic/vera_m_grader_s1_fp32.npz |
+| headline (skeptic rebuild) | 0 | monitor_s0 fp32 MPS, own code | none | (a) 0.000 [0.000, 0.000]; (b) 0.998; (d) 0.998 | skeptics/skeptic/vera_m_monitor_s0_fp32.npz |
+| headline null (skeptic rebuild) | 0 | monitor_s0 fp32 MPS, own code | 99 random 3-dim sets, Vera rng 20261031 | max 0.0012 | skeptics/skeptic/vera_m_monitor_s0_fp32.npz |
+| headline (skeptic rebuild) | 1 | monitor_s1 fp32 MPS, own code | none | (a) 0.001 [0.001, 0.001]; (b) 0.992; (d) 0.997 | skeptics/skeptic/vera_m_monitor_s1_fp32.npz |
+| headline null (skeptic rebuild) | 1 | monitor_s1 fp32 MPS, own code | 99 random 3-dim sets, Vera rng 20261031 | max 0.0003 | skeptics/skeptic/vera_m_monitor_s1_fp32.npz |
+| same-energy null (skeptic rebuild) | 0,1 | grader_s0/s1 bf16 MPS | 99 R4 sets, Vera rng | s0 -0.23..+0.36 (36/99 >= (a)); s1 -0.30..+0.28 (7/99 >= (a)) | skeptics/skeptic/vera_status.out |
+| one-step nudge (skeptic) | 0,1 | grader bf16 + fp32 MPS | one bf16 step in dims 16/277/23/2 at token 0 | s1 bf16 up to 0.131 (one sign only); fp32 <= 0.010 | skeptics/skeptic/vera_dim16.out |
+| status (skeptic rebuild) | 0,1 | 4 copies x 2 precisions | PREREG s4 rule, own code | REJECTED; prereg failed | skeptics/skeptic/vera_status.out |

@@ -1,0 +1,46 @@
+W1031 02:04:25.670000 97605 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 16695.40it/s]
+tail tensors 14 r50_s1_lr0.0001_kl1_at8192_adapter.pt
+cells 221 in 246s; massive offset energy 2.0039
+[monitor s1 fp32] P on 0.0593 off 0.6029
+  fwd:d_all@0-2            P 0.6013 share +0.9969
+  rev:d_all@0-2            P 0.0596 share +0.9994
+  fwd:a_massive@0-2        P 0.0597 share +0.0006
+  rev:a_massive@0-2        P 0.6003 share +0.0048
+  fwd:b_nonmassive@0-2     P 0.5986 share +0.9921
+  rev:b_nonmassive@0-2     P 0.0600 share +0.9988
+  fwd:R2_top3@0-2          P 0.0592 share -0.0002
+  rev:R2_top3@0-2          P 0.5940 share +0.0164
+  fwd:R6_13_35@0-2         P 0.0596 share +0.0006
+  rev:R6_13_35@0-2         P 0.6016 share +0.0024
+  fwd:R6_35@0-2            P 0.0593 share +0.0000
+  rev:R6_35@0-2            P 0.6029 share -0.0000
+  fwd:R6_massive@0         P 0.0593 share +0.0000
+  rev:R6_massive@0         P 0.6029 share -0.0000
+  fwd:R6_massive@1-2       P 0.0597 share +0.0006
+  rev:R6_massive@1-2       P 0.6003 share +0.0048
+  fwd:all@0                P 0.0593 share +0.0000
+  rev:all@0                P 0.6029 share -0.0000
+  fwd:all@1-2              P 0.6013 share +0.9969
+  rev:all@1-2              P 0.0596 share +0.9994
+  fwd:R3_scaleonly@0-2     P 0.0593 share +0.0000
+  fwd:c_rand               n 99 median +0.0000 min -0.0003 max +0.0003 n>=a 0
+  rev:c_rand               n 99 median +0.0037 min -0.0053 max +0.0255 n>=a 43
+      256.65 real        25.66 user         4.53 sys
+          4411539456  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              283172  page reclaims
+               82848  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  22  messages sent
+                  60  messages received
+                   0  signals received
+               10596  voluntary context switches
+               80570  involuntary context switches
+        223697440280  instructions retired
+         87539513664  cycles elapsed
+          5301570488  peak memory footprint

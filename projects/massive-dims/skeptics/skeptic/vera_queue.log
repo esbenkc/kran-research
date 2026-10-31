@@ -1,0 +1,15 @@
+skip vera_m_grader_s1_bf16
+start vera_m_monitor_s0_bf16 01:44:52
+./vera_queue.sh: line 5: 87644 Terminated: 15          VERA_LITE=$4 /usr/bin/time -l $PY vera_massive.py $1 $2 $3 $o.npz > $o.out 2>&1
+ done vera_m_monitor_s0_bf16 01:45:02
+start vera_m_monitor_s1_bf16 01:45:02
+ 402.03 real 38.40 user 5.66 sys  1274314752 maximum resident set size  done vera_m_monitor_s1_bf16 01:51:44
+start vera_m_grader_s0_fp32 01:51:44
+ 256.23 real 25.78 user 4.20 sys  4517396480 maximum resident set size  done vera_m_grader_s0_fp32 01:56:00
+start vera_m_grader_s1_fp32 01:56:00
+./vera_queue.sh: line 5: 93497 Terminated: 15          VERA_LITE=$4 /usr/bin/time -l $PY vera_massive.py $1 $2 $3 $o.npz > $o.out 2>&1
+ done vera_m_grader_s1_fp32 02:00:04
+start vera_m_monitor_s0_fp32 02:00:04
+ 257.18 real 26.10 user 4.58 sys  4410638336 maximum resident set size  done vera_m_monitor_s0_fp32 02:04:21
+start vera_m_monitor_s1_fp32 02:04:21
+ 256.65 real 25.66 user 4.53 sys  4411539456 maximum resident set size  done vera_m_monitor_s1_fp32 02:08:37

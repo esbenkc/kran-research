@@ -1,0 +1,24 @@
+[grader s0 bf16] P on 0.1227 off 0.5679 | (a) +0.0527 CI [0.0466 0.0588] | (b) +0.8835 | (d) +0.9689 CI [0.9573 0.9806] | (c) n 99 median -0.0004 max +0.0071 (a)>all c True | (a)>(b) False
+    R2_top3@0-2 +0.0132; R6_13_35@0-2 +0.0484; R6_35@0-2 +0.0484; R6_massive@0 +0.0485; R6_massive@1-2 +0.0016; R3_scaleonly@0-2 +0.0190; a_massive@0-2(rev) +0.0799; b_nonmassive@0-2(rev) +0.9289; d_all@0-2(rev) +0.9792; all@0 +0.1027; all@1-2 +0.8224
+    R4 same-energy n 99 median +0.0126 range [-0.2298, +0.3623] n>=(a) 36 | R5 one-step n 99 median -0.0013 range [-0.0068, +0.0024] n>=(a) 0
+[grader s1 bf16] P on 0.1242 off 0.3477 | (a) +0.1869 CI [0.177  0.1972] | (b) +0.6156 | (d) +0.9232 CI [0.9013 0.9452] | (c) n 99 median +0.0004 max +0.1229 (a)>all c True | (a)>(b) False
+    R2_top3@0-2 +0.0457; R6_13_35@0-2 +0.1927; R6_35@0-2 +0.1927; R6_massive@0 +0.1946; R6_massive@1-2 -0.0013; R3_scaleonly@0-2 +0.0946; a_massive@0-2(rev) +0.3143; b_nonmassive@0-2(rev) +0.7485; d_all@0-2(rev) +0.9480; all@0 +0.4405; all@1-2 +0.3504
+    R4 same-energy n 99 median +0.0293 range [-0.2997, +0.2826] n>=(a) 7 | R5 one-step n 99 median -0.0003 range [-0.0042, +0.1040] n>=(a) 0
+[monitor s0 bf16] P on 0.0193 off 0.7279 | (a) -0.0001 CI [-0.0004  0.0003] | (b) +1.0043 | (d) +0.9974 CI [0.9927 1.0021] | (c) n 99 median +0.0003 max +0.0028 (a)>all c False | (a)>(b) False
+    R2_top3@0-2 +0.0012; R6_13_35@0-2 +0.0014; R6_35@0-2 +0.0000; R6_massive@0 +0.0000; R6_massive@1-2 -0.0001; R3_scaleonly@0-2 +0.0000; a_massive@0-2(rev) -0.0065; b_nonmassive@0-2(rev) +0.9994; d_all@0-2(rev) +0.9997; all@0 +0.0000; all@1-2 +0.9974
+    R4 same-energy n 99 median +0.0005 range [-0.0037, +0.0034] n>=(a) 63 | R5 one-step n 99 median +0.0000 range [-0.0011, +0.0010] n>=(a) 55
+[monitor s1 bf16] P on 0.0593 off 0.6124 | (a) +0.0015 CI [0.0002 0.0028] | (b) +1.0086 | (d) +0.9978 CI [0.9908 1.0048] | (c) n 99 median +0.0004 max +0.0013 (a)>all c True | (a)>(b) False
+    R2_top3@0-2 +0.0008; R6_13_35@0-2 +0.0007; R6_35@0-2 +0.0000; R6_massive@0 +0.0000; R6_massive@1-2 +0.0015; R3_scaleonly@0-2 +0.0000; a_massive@0-2(rev) -0.0073; b_nonmassive@0-2(rev) +0.9980; d_all@0-2(rev) +0.9994; all@0 +0.0000; all@1-2 +0.9978
+    R4 same-energy n 99 median +0.0000 range [-0.0019, +0.0017] n>=(a) 3 | R5 one-step n 99 median +0.0003 range [-0.0005, +0.0014] n>=(a) 0
+[grader s0 fp32] P on 0.1303 off 0.5523 | (a) +0.0296 CI [0.0276 0.0317] | (b) +0.9238 | (d) +0.9663 CI [0.9548 0.9782] | (c) n 99 median +0.0012 max +0.0087 (a)>all c True | (a)>(b) False
+    R2_top3@0-2 +0.0202; R6_13_35@0-2 +0.0293; R6_35@0-2 +0.0293; R6_massive@0 +0.0266; R6_massive@1-2 +0.0028; R3_scaleonly@0-2 +0.0053; a_massive@0-2(rev) +0.0423; b_nonmassive@0-2(rev) +0.9482; d_all@0-2(rev) +0.9792; all@0 +0.0861; all@1-2 +0.8496
+[grader s1 fp32] P on 0.1297 off 0.3153 | (a) +0.1048 CI [0.1002 0.1094] | (b) +0.7464 | (d) +0.9072 CI [0.8836 0.9315] | (c) n 99 median +0.0012 max +0.0075 (a)>all c True | (a)>(b) False
+    R2_top3@0-2 +0.0466; R6_13_35@0-2 +0.1051; R6_35@0-2 +0.1051; R6_massive@0 +0.1022; R6_massive@1-2 +0.0024; R3_scaleonly@0-2 +0.0082; a_massive@0-2(rev) +0.1653; b_nonmassive@0-2(rev) +0.8265; d_all@0-2(rev) +0.9379; all@0 +0.3591; all@1-2 +0.4408
+[monitor s0 fp32] P on 0.0192 off 0.7249 | (a) +0.0003 CI [0.0003 0.0004] | (b) +0.9981 | (d) +0.9975 CI [0.9931 1.0019] | (c) n 99 median +0.0002 max +0.0012 (a)>all c False | (a)>(b) False
+    R2_top3@0-2 +0.0022; R6_13_35@0-2 +0.0004; R6_35@0-2 +0.0000; R6_massive@0 +0.0000; R6_massive@1-2 +0.0003; R3_scaleonly@0-2 +0.0000; a_massive@0-2(rev) -0.0006; b_nonmassive@0-2(rev) +0.9994; d_all@0-2(rev) +0.9997; all@0 +0.0000; all@1-2 +0.9975
+[monitor s1 fp32] P on 0.0593 off 0.6029 | (a) +0.0006 CI [0.0006 0.0007] | (b) +0.9921 | (d) +0.9969 CI [0.9906 1.0032] | (c) n 99 median +0.0000 max +0.0003 (a)>all c True | (a)>(b) False
+    R2_top3@0-2 -0.0002; R6_13_35@0-2 +0.0006; R6_35@0-2 +0.0000; R6_massive@0 +0.0000; R6_massive@1-2 +0.0006; R3_scaleonly@0-2 +0.0000; a_massive@0-2(rev) +0.0048; b_nonmassive@0-2(rev) +0.9988; d_all@0-2(rev) +0.9994; all@0 +0.0000; all@1-2 +0.9969
+complete grid: True
+bf16: CONFIRMED clause False; copies with (d)>=0.50: 4; (d)>=0.80: 4; (a)>=0.70: 0
+fp32: CONFIRMED clause False; copies with (d)>=0.50: 4; (d)>=0.80: 4; (a)>=0.70: 0
+STATUS (PREREG s4): REJECTED

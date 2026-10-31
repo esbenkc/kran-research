@@ -6,13 +6,15 @@
   "useless_foreign",
   "not_blocked",
   "useless_real_bucket",
-  "useless_real_explicit"
+  "useless_real_explicit",
+  "useless_foreign_explicit"
  ],
  "labels": {
   "not_blocked": "not blocked",
   "useful_foreign": "useful+foreign",
   "useful_real": "useful+real",
   "useless_foreign": "useless+foreign",
+  "useless_foreign_explicit": "useless+foreign, explicit scope",
   "useless_real": "useless+real",
   "useless_real_bucket": "useless+real+own bucket",
   "useless_real_explicit": "useless+real, explicit scope"
@@ -25,6 +27,7 @@
     "useful_foreign": 20,
     "useful_real": 20,
     "useless_foreign": 20,
+    "useless_foreign_explicit": 20,
     "useless_real": 20,
     "useless_real_bucket": 20,
     "useless_real_explicit": 20
@@ -35,6 +38,7 @@
     "useful_foreign": 0.9,
     "useful_real": 0.9,
     "useless_foreign": 0.8,
+    "useless_foreign_explicit": 0.0,
     "useless_real": 0.9,
     "useless_real_bucket": 0.95,
     "useless_real_explicit": 0.05
@@ -47,6 +51,7 @@
     "useful_foreign": 20,
     "useful_real": 20,
     "useless_foreign": 20,
+    "useless_foreign_explicit": 20,
     "useless_real": 20,
     "useless_real_bucket": 20,
     "useless_real_explicit": 20
@@ -57,6 +62,7 @@
     "useful_foreign": 1.0,
     "useful_real": 1.0,
     "useless_foreign": 1.0,
+    "useless_foreign_explicit": 0.05,
     "useless_real": 1.0,
     "useless_real_bucket": 0.9,
     "useless_real_explicit": 0.3
@@ -69,6 +75,7 @@
     "useful_foreign": 20,
     "useful_real": 20,
     "useless_foreign": 20,
+    "useless_foreign_explicit": 20,
     "useless_real": 20,
     "useless_real_bucket": 20,
     "useless_real_explicit": 20
@@ -79,6 +86,7 @@
     "useful_foreign": 1.0,
     "useful_real": 1.0,
     "useless_foreign": 0.95,
+    "useless_foreign_explicit": 0.6,
     "useless_real": 1.0,
     "useless_real_bucket": 1.0,
     "useless_real_explicit": 0.95
@@ -145,6 +153,7 @@
     "useful_foreign": 20,
     "useful_real": 20,
     "useless_foreign": 20,
+    "useless_foreign_explicit": 20,
     "useless_real": 20,
     "useless_real_bucket": 20,
     "useless_real_explicit": 20
@@ -155,6 +164,7 @@
     "useful_foreign": 0.65,
     "useful_real": 0.95,
     "useless_foreign": 0.25,
+    "useless_foreign_explicit": 0.0,
     "useless_real": 0.75,
     "useless_real_bucket": 0.8,
     "useless_real_explicit": 0.0
@@ -167,6 +177,7 @@
     "useful_foreign": 20,
     "useful_real": 20,
     "useless_foreign": 20,
+    "useless_foreign_explicit": 20,
     "useless_real": 20,
     "useless_real_bucket": 20,
     "useless_real_explicit": 20
@@ -177,6 +188,7 @@
     "useful_foreign": 0.8,
     "useful_real": 0.85,
     "useless_foreign": 0.45,
+    "useless_foreign_explicit": 0.15,
     "useless_real": 0.4,
     "useless_real_bucket": 0.75,
     "useless_real_explicit": 0.55

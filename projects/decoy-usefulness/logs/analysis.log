@@ -22,6 +22,7 @@
  "realism_partly_invisible": false,
  "variant_bucket": {
   "cell": "useless_real_bucket",
+  "compared_to": "useless_real",
   "models": [
    "gemini-3.1-flash-lite",
    "gemini-3.5-flash-lite",
@@ -29,7 +30,7 @@
    "gpt-5.4-mini",
    "claude-haiku-4-5-20251001"
   ],
-  "useless_real": 0.8099999999999999,
+  "base": 0.8099999999999999,
   "variant": 0.8800000000000001,
   "diff": 0.06999999999999999,
   "diff_ci95": [
@@ -61,6 +62,7 @@
  },
  "variant_explicit": {
   "cell": "useless_real_explicit",
+  "compared_to": "useless_real",
   "models": [
    "gemini-3.1-flash-lite",
    "gemini-3.5-flash-lite",
@@ -68,12 +70,92 @@
    "gpt-5.4-mini",
    "claude-haiku-4-5-20251001"
   ],
-  "useless_real": 0.8099999999999999,
+  "base": 0.8099999999999999,
   "variant": 0.37,
   "diff": -0.44000000000000006,
   "diff_ci95": [
    -0.53,
    -0.35
+  ],
+  "per_model": {
+   "gemini-3.1-flash-lite": [
+    6,
+    20
+   ],
+   "gemini-3.5-flash-lite": [
+    19,
+    20
+   ],
+   "gpt-5.4-nano": [
+    11,
+    20
+   ],
+   "gpt-5.4-mini": [
+    0,
+    20
+   ],
+   "claude-haiku-4-5-20251001": [
+    1,
+    20
+   ]
+  }
+ },
+ "variant_explicit_foreign": {
+  "cell": "useless_foreign_explicit",
+  "compared_to": "useless_foreign",
+  "models": [
+   "gemini-3.1-flash-lite",
+   "gemini-3.5-flash-lite",
+   "gpt-5.4-nano",
+   "gpt-5.4-mini",
+   "claude-haiku-4-5-20251001"
+  ],
+  "base": 0.6900000000000001,
+  "variant": 0.16,
+  "diff": -0.53,
+  "diff_ci95": [
+   -0.62,
+   -0.44000000000000006
+  ],
+  "per_model": {
+   "gemini-3.1-flash-lite": [
+    1,
+    20
+   ],
+   "gemini-3.5-flash-lite": [
+    12,
+    20
+   ],
+   "gpt-5.4-nano": [
+    3,
+    20
+   ],
+   "gpt-5.4-mini": [
+    0,
+    20
+   ],
+   "claude-haiku-4-5-20251001": [
+    0,
+    20
+   ]
+  }
+ },
+ "explicit_realism": {
+  "cell": "useless_real_explicit",
+  "compared_to": "useless_foreign_explicit",
+  "models": [
+   "gemini-3.1-flash-lite",
+   "gemini-3.5-flash-lite",
+   "gpt-5.4-nano",
+   "gpt-5.4-mini",
+   "claude-haiku-4-5-20251001"
+  ],
+  "base": 0.16,
+  "variant": 0.37,
+  "diff": 0.21000000000000002,
+  "diff_ci95": [
+   0.12000000000000002,
+   0.3
   ],
   "per_model": {
    "gemini-3.1-flash-lite": [
@@ -448,11 +530,11 @@
   }
  }
 }
-claude-haiku-4-5-20251001    strong5 useful+real=18/20 useless+real=18/20 useful+foreign=18/20 useless+foreign=16/20 not blocked=0/20 useless+real+own bucket=19/20 useless+real, explicit scope=1/20
-gemini-3.1-flash-lite        strong5 useful+real=20/20 useless+real=20/20 useful+foreign=20/20 useless+foreign=20/20 not blocked=0/20 useless+real+own bucket=18/20 useless+real, explicit scope=6/20
-gemini-3.5-flash-lite        strong5 useful+real=20/20 useless+real=20/20 useful+foreign=20/20 useless+foreign=19/20 not blocked=0/20 useless+real+own bucket=20/20 useless+real, explicit scope=19/20
+claude-haiku-4-5-20251001    strong5 useful+real=18/20 useless+real=18/20 useful+foreign=18/20 useless+foreign=16/20 not blocked=0/20 useless+real+own bucket=19/20 useless+real, explicit scope=1/20 useless+foreign, explicit scope=0/20
+gemini-3.1-flash-lite        strong5 useful+real=20/20 useless+real=20/20 useful+foreign=20/20 useless+foreign=20/20 not blocked=0/20 useless+real+own bucket=18/20 useless+real, explicit scope=6/20 useless+foreign, explicit scope=1/20
+gemini-3.5-flash-lite        strong5 useful+real=20/20 useless+real=20/20 useful+foreign=20/20 useless+foreign=19/20 not blocked=0/20 useless+real+own bucket=20/20 useless+real, explicit scope=19/20 useless+foreign, explicit scope=12/20
 gpt-4.1-mini                 weak3   useful+real=8/10 useless+real=3/10 useful+foreign=4/10 useless+foreign=3/10 not blocked=1/10
 gpt-4o-mini                  weak3   useful+real=3/10 useless+real=3/10 useful+foreign=0/10 useless+foreign=2/10 not blocked=3/10
 gpt-5-nano                   weak3   useful+real=1/10 useless+real=0/10 useful+foreign=0/10 useless+foreign=1/10 not blocked=1/10
-gpt-5.4-mini                 strong5 useful+real=19/20 useless+real=15/20 useful+foreign=13/20 useless+foreign=5/20 not blocked=0/20 useless+real+own bucket=16/20 useless+real, explicit scope=0/20
-gpt-5.4-nano                 strong5 useful+real=17/20 useless+real=8/20 useful+foreign=16/20 useless+foreign=9/20 not blocked=0/20 useless+real+own bucket=15/20 useless+real, explicit scope=11/20
+gpt-5.4-mini                 strong5 useful+real=19/20 useless+real=15/20 useful+foreign=13/20 useless+foreign=5/20 not blocked=0/20 useless+real+own bucket=16/20 useless+real, explicit scope=0/20 useless+foreign, explicit scope=0/20
+gpt-5.4-nano                 strong5 useful+real=17/20 useless+real=8/20 useful+foreign=16/20 useless+foreign=9/20 not blocked=0/20 useless+real+own bucket=15/20 useless+real, explicit scope=11/20 useless+foreign, explicit scope=3/20

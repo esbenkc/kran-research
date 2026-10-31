@@ -46,3 +46,9 @@ run.py counted --seeds 20 --workers 12 --budget 3.80 --arms useless_real_bucket 
 ```sh
 run.py counted --seeds 20 --workers 12 --budget 3.80 --arms useless_real_explicit --models gemini-3.1-flash-lite gemini-3.5-flash-lite gpt-5.4-nano gpt-5.4-mini claude-haiku-4-5-20251001
 ```
+
+## 2026-10-31 00:12:02 PDT
+
+```sh
+run.py counted --seeds 20 --workers 12 --budget 3.80 --arms useless_foreign_explicit --models gemini-3.1-flash-lite gemini-3.5-flash-lite gpt-5.4-nano gpt-5.4-mini claude-haiku-4-5-20251001
+```

@@ -29,6 +29,16 @@ def why_out(st: dict) -> str | None:
 
 
 p = S["primary"]
+# key-targeted / bucket-targeted sayers per stratum (PREREG v1.3 s2 named row), from the scored runs
+sc = [json.loads(l) for l in (src.parent / "scores.jsonl").read_text().splitlines()] if (src.parent / "scores.jsonl").exists() else []
+kt: dict = {}
+for r in sc:
+    if r["prompt"] != "on" or r.get("window_reply") is None or not r.get("says"):
+        continue
+    e = kt.setdefault(f"{r['model']}|on|{r['decoy']}", {"k_n": 0, "k_t": 0, "o_n": 0, "o_t": 0})
+    g = "k" if r["says_key_targeted"] else "o"
+    e[f"{g}_n"] += 1
+    e[f"{g}_t"] += 1 if r["trip"] else 0
 rows = []
 for k, st in p["strata"].items():
     m, arm, d = k.split("|")
@@ -38,7 +48,7 @@ for k, st in p["strata"].items():
                  "t_S": st["t_S"], "t_N": st["t_N"], "say_rate": st["say_rate"], "trip_rate": st["trip_rate"],
                  "trip_say": st["trip_given_say"], "trip_not": st["trip_given_not"], "gap": st.get("gap"),
                  "gap_lo": (st.get("gap_ci90") or [None, None])[0], "gap_hi": (st.get("gap_ci90") or [None, None])[1],
-                 "eligible": bool(st.get("eligible")), "why_out": why_out(st)})
+                 "eligible": bool(st.get("eligible")), "why_out": why_out(st), **kt.get(k, {"k_n": 0, "k_t": 0, "o_n": 0, "o_t": 0})})
 rows.sort(key=lambda r: (r["decoy"] != "obvious", -(r["say_rate"] or 0)))
 off = [st for k, st in p["strata"].items() if "|off|" in k]
 cells = S["prediction"]["cells"]
@@ -55,6 +65,8 @@ data = {
     "refs": {"honeyquest": 0.734, "rouxii": [0.21, 0.27]},
     "off": {"sayers": sum(s["a"] for s in off), "n": sum(s["n"] for s in off), "trip": off_trip},
     "on_trip": on_trip,
+    "key_targeted": {"G": S["variants"]["says_key_targeted"]["G"], "ci90": S["variants"]["says_key_targeted"]["ci90"],
+                     "split": S.get("target_split", {}).get("all")},
     "note": "",
 }
 for o in outs:

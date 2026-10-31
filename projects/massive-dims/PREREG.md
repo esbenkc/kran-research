@@ -62,6 +62,13 @@ build (eager) cache. Iris measured (#10406): only token 0 passes; the set is **{
 into `data/frozen.json` and commits it before any patch (Iris's `research_checks/norm_bound.py` is the cross-check);
 if it gives a different set, the patch runs stop and the room decides.
 The set is patched as DIMENSIONS at all of tokens 0, 1, 2 (Felix #10416, Tove #10415), not as (token, dim) cells.
+The rule is the goal's (>100x median), looser than Sun et al.'s (>100 in absolute value AND about 1000x median);
+under Sun's rule only dim 35 qualifies (Iris #10437). The post names the rule; R6 reports the {35} set.
+
+Sink positions (the goal's third frozen item; Kasper #10440): per head of blocks 26-27 on the untrained model,
+the share of attention mass from the answer token to each position, averaged over the 200 test prompts and heads;
+the positions holding the top attention mass are written to `data/frozen.json` before any patch. Descriptive
+only: it says whether tokens 0-2 are the sink; it enters no status or reading rule.
 
 ### Patches per copy (block-26 input, tokens 0-2, donor -> recipient)
 
@@ -73,11 +80,13 @@ Status rows:
 - (d) all: all 1,024 dims at tokens 0-2.
 
 Reading rows (reported, never in the status):
-- R1 frozen energy prediction (Tove #10415): per switch, the share of the condition-on vs condition-off offset
-  energy at tokens 0-2 that dims {1, 13, 35} hold, before block 26's input RMSNorm and after it. "After" =
-  x / rms(x) times the layer-26 input_layernorm weight (what the tail reads; Kasper #10425). Written to
-  `data/frozen.json` from the base caches only, committed before any patch. Iris's pre-run value: ~0.11 at
-  token 0 for the grader switch (#10423).
+- R1 frozen energy predictions (Tove #10415, #10435), per switch, from the base caches only, written to
+  `data/frozen.json` and committed before any patch. Post-norm = x / rms(x) times the layer-26 input_layernorm
+  weight (what the tail reads; Kasper #10425).
+  - R1 (the number the reading rule uses) = the share of the tokens 0-2 post-norm offset energy that copying dims
+    {1, 13, 35} donor -> recipient REMOVES (it includes the norm rescale of every other dim at that token).
+  - R1-in = the share of the tokens 0-2 post-norm offset energy that sits IN dims {1, 13, 35} (Vera #10431).
+  - R1-pre = the same share before the norm (Vera #10431: grader 0.919, monitor 0.069).
 - R2 rank control (Kasper #10410): the top 3 non-massive dims by mean |offset| at tokens 0-2.
 - R3 scale-only (Kasper #10418): at tokens 0-2 keep the recipient's massive dims and multiply its non-massive dims
   by the RMS ratio that the donor's massive dims would give; nothing else changes.
@@ -85,7 +94,8 @@ Reading rows (reported, never in the status):
   whose total energy equals the massive set's offset energy.
 - R5 one-rounding-step null (Vera #10413): 99 runs, each moves one random non-massive dim at token 0 by one bf16
   step at its own size.
-- R6 robustness: set {13, 35} (global-median rule); token 0 only; tokens 1-2 only; reverse direction; grader s2.
+- R6 robustness: set {13, 35} (global-median rule); set {35} (Sun's rule); token 0 only; tokens 1-2 only; reverse
+  direction; grader s2.
 - Every patch row also reports its share of the offset energy (before and after the RMSNorm) next to its share
   moved.
 
@@ -112,10 +122,13 @@ Prereg outcome (separate from the status): **held** = in bf16: (d) >= 0.80 in al
 >= 3 of 4 AND in each of those copies (a) beats all 99 (c) sets AND (a) > (b); and fp32 agrees. **failed** = the
 bf16 and fp32 readings both miss a clause. **unsettled** = the precisions disagree or a gate fails.
 
-Frozen reading rule (Tove #10415, Kasper #10418): if (a) passes in a copy, but (a) is within 0.15 of the R1
-energy share, and R2 or R4 moves at least as much per unit of offset energy, the post says "the switch reads
-wherever rounding is largest", not "the massive dimensions are special". If R3 (scale-only) moves >= 0.8 x what
-(a) moves, the post says the carrier is the norm scale that the sink sets, not the massive values themselves.
+Frozen reading rules (Tove #10415, Kasper #10418, #10440): (c) sets carry almost no offset energy, so beating
+them is nearly free. The post may call the massive dimensions special only if (a) also beats every R4 set (same
+energy) in that copy. If (a) passes in a copy, but (a) is within 0.15 of R1, and R2 or R4 moves at least as much
+per unit of offset energy, the post says "the switch reads wherever rounding is largest", not "the massive
+dimensions are special". If R3 (scale-only) moves >= 0.8 x what (a) moves, the post says the carrier is the norm
+scale that the sink sets, not the massive values themselves. If (a) moves >= 0.5 while R1 < 0.15, the post says
+the sink amplifies a small change (the leverage reading, Iris #10423, Vera #10431).
 
 ## 5. Order and cut times (Copenhagen time; stop new work 12:00, close 13:00)
 

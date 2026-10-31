@@ -1,0 +1,37 @@
+{
+ "png": "../blog.kran.ai/assets/figures/refusal-dose-law-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.015093400000000002,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does a neuron's push along the refusal direction alone predict how strongly pinning it bypasses refusal?\",\n  \"answer\": \"No. While pinning neuron 3270 raises refusal answers from 15% to 71%, its red part (push along refusal direction) accounts for only about a third of that rise (raising it to 33.5%), while the rest of the push accounts for two-thirds (raising it to 50.5%).\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does a neuron's push along the refusal direction alone predict how strongly pinning it bypasses refusal?\",\n  \"answer\": \"No. While pinning raises answers from 15% to 71%, the red part (push along refusal direction) alone accounts for only about a third of that rise (reaching 33.5%), while the rest of the push without the red part achieves two-thirds (reaching 50.5%), beating the random baseline by 13-38 points.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does a neuron's push along the refusal direction alone predict how strongly pinning it bypasses refusal?\",\n  \"answer\": \"No. While pinning neuron 3270 raises answers from 15% to 71%, its red part (push along refusal direction) alone only accounts for a third of that rise, whereas the rest of its push with no red part accounts for two-thirds, beating the random curve by 13 to 38 points across five pin sizes.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"At the layer where it writes, does a neuron's push along the refusal direction alone predict how strongly pinning it bypasses refusal?\",\n  \"answer\": \"No, pinning the neuron increases answered requests from 15% to 71%, but its push along the refusal direction alone accounts for only 33.5% answered compared to 50.5% from the remainder of the push.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"At the layer where it writes, does a neuron's push along the refusal direction alone predict how strongly pinning it bypasses refusal?\",\n  \"answer\": \"No, pinning the neuron raises answered requests from 15% to 71%, but its push along the refusal direction accounts for only 33.5% (one third of that rise) compared to 50.5% (two thirds) from the remaining push, beating the curve predicted by the refusal component by 13 to 38 points.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"At the layer where it writes, does a neuron's push along the refusal direction alone predict how strongly pinning it bypasses refusal?\",\n  \"answer\": \"No, because pinning the neuron increases answered requests from 15% to 71%, yet its push along the refusal direction alone accounts for only 33.5% (about one third of the increase) while the remainder of its push yields 50.5%, beating refusal-aligned controls by 13 to 38 points across five pin sizes.\"\n}"
+  }
+ ]
+}

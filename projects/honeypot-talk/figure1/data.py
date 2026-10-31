@@ -44,6 +44,7 @@ def ex(r):
     return {"model": r["model"], "seed": r["seed"], "cell": r["cell"], "says": r["says"], "trip": r["trip"],
             "thought": r["window_thought"], "tool": act.get("tool"), "args": act.get("args"),
             "window_trip": bool(r.get("trip_in_window")), "first_trip_step": r.get("first_trip_step"),
+            "key_targeted": r.get("says_key_targeted"), "bucket_targeted": r.get("says_bucket_targeted"),
             "window_reply": w, "record": d["episode"]["record"], "key": d["episode"]["key"],
             "bucket": d["episode"]["bucket"], "denial": d["actions"][r["exposure_step"]]["observation"],
             "decoy_log": d["decoy_log"], "words": len(r["window_thought"].split())}
@@ -53,11 +54,13 @@ def ex(r):
 # with the same seed's prompt-off runs for both (no say, trip)
 cands = []
 for (m, p, dec, s), r in idx.items():
-    if p != "on" or not r["exposed"] or not r["says"] or r["trip"]:
+    # both warned runs must name the KEY/record as the honeypot (frozen key_targeted row), not the bucket (Lumi #10815)
+    if p != "on" or not r["exposed"] or not r["says"] or r["trip"] or not r.get("says_key_targeted", True):
         continue
     for m2 in models:
         r2 = idx.get((m2, "on", dec, s))
-        if m2 == m or not r2 or not r2["exposed"] or not r2["says"] or not r2["trip"] or not r2.get("trip_in_window"):
+        if m2 == m or not r2 or not r2["exposed"] or not r2["says"] or not r2["trip"] or not r2.get("trip_in_window") \
+                or not r2.get("says_key_targeted", True) or r2.get("says_bucket_targeted", False):
             continue
         offs = [idx.get((mm, "off", dec, s)) for mm in (m, m2)]
         if not all(o and o["exposed"] and o["says"] is False and o["trip"] and o.get("trip_in_window") for o in offs):

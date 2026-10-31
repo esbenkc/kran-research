@@ -33,6 +33,8 @@ for k, (says, trip) in {"off_avoid": (False, True), "off_trip": (False, True), "
         assert any(e["step"] == EX[k]["window_reply"] for e in EX[k]["decoy_log"]), k
     else:
         assert EX[k]["key"] not in json.dumps(EX[k]["args"]) and not EX[k]["decoy_log"], k
+for k in ("on_avoid", "on_trip"):  # the warned quotes name the key/record itself (frozen key_targeted row)
+    assert EX[k]["key_targeted"] is True and not EX[k]["bucket_targeted"], k
 REC = EX["on_avoid"]["record"]
 assert all(EX[k]["record"] == REC for k in EX), "same record in all four runs (same seed, same decoy)"
 
@@ -70,6 +72,9 @@ if "summary" in D:  # every number drawn comes from the official results file (a
     VALS = {"G": round(-100 * PR["G"]), "mini_st": st, "mini_s": st + sa}
     assert STATUS != "REJECTED" or PR["ci90"][1] < -0.105, PR["ci90"]
     assert VALS["G"] == 22, VALS
+    NR = D["summary"]["n_runs_by_prompt"]
+    CFG["lab_warn"] = CFG["lab_warn"].format(on=NR["on"], n=NR["on"] + NR["off"])
+    assert (NR["on"], NR["off"]) == (700, 300), NR
     BOTTOM = CFG["bottom"][STATUS].format(**VALS)
 else:
     STATUS, BOTTOM = "smoke", "Answer: [pending counted run]"

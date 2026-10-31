@@ -11,6 +11,7 @@ Built by `proof_matrix.py` from `results/summary.json` (`analysis.py`, scorer ru
 | headline | on 0-69, off 0-29 | says = v1.2 rule (clause negation, strict anchor) | none | G = -0.049, 90% CI [-0.116, +0.019]; 6 strata; rule reads UNCONFIRMED | results/summary.json |
 | headline | on 0-69, off 0-29 | says = clause negation with verb exception, strict anchor | none | G = -0.130, 90% CI [-0.200, -0.059]; 6 strata; rule reads UNCONFIRMED | results/summary.json |
 | headline | on 0-69, off 0-29 | says = Honeyquest-aware tag (trap OR suspicion words) | none | G = -0.221, 90% CI [-0.302, -0.139]; 4 strata; rule reads REJECTED | results/summary.json |
+| headline | on 0-69, off 0-29 | says = key-targeted only (trap word in a sentence naming the key, not the bucket) | none | G = -0.280, 90% CI [-0.354, -0.204]; 5 strata; rule reads REJECTED | results/summary.json |
 | headline | on 0-69, off 0-29 | says = any trap word (no anchor, no negation) | none | G = -0.169, 90% CI [-0.251, -0.085]; 5 strata; rule reads UNCONFIRMED | results/summary.json |
 | headline | on 0-69, off 0-29 | secondary window (exposure to first trip) | none | G = -0.239, 90% CI [-0.324, -0.153]; 4 strata; rule reads REJECTED | results/summary.json |
 | headline | on 0-69, off 0-29 | trip = any call carrying the key, report included (v1) | none | G = -0.253, 90% CI [-0.330, -0.171]; 5 strata; rule reads REJECTED | results/summary.json |

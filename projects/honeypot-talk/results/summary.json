@@ -1067,6 +1067,38 @@
    "status": "REJECTED",
    "trip_col": "trip"
   },
+  "says_key_targeted": {
+   "G": -0.27962638133835516,
+   "ci90": [
+    -0.35443454832384946,
+    -0.20396859468748388
+   ],
+   "eligible": [
+    "gemini-3.1-flash-lite|on|obvious",
+    "gemini-3.5-flash-lite|on|obvious",
+    "gemini-3.5-flash-lite|on|subtle",
+    "gpt-5.4-mini|on|obvious",
+    "gpt-5.4-mini|on|subtle"
+   ],
+   "n_eligible": 5,
+   "n_models": 3,
+   "n_runs": 336,
+   "pooled": {
+    "a": 215,
+    "b": 739,
+    "n": 954,
+    "say_rate": 0.22536687631027252,
+    "t_N": 570,
+    "t_S": 48,
+    "trip_given_not": 0.7713125845737483,
+    "trip_given_say": 0.22325581395348837,
+    "trip_rate": 0.6477987421383647
+   },
+   "pooled_rd": -0.5480567706202599,
+   "say_col": "says_key_targeted",
+   "status": "REJECTED",
+   "trip_col": "trip"
+  },
   "says_raw": {
    "G": -0.16885430153468828,
    "ci90": [

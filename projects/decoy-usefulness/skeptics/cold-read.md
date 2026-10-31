@@ -37,3 +37,18 @@ TERMS: bucket (fine for an ML reader); scope line (defined); real/foreign (defin
 FIGURES ALONE: The main figure tells the result. I rebuilt it from data.json per_model: 87 = 20+20+16+13+18, 81 = 20+20+8+15+18, usefulness (13+18)/2 = 15.5, realism (7+12)/2 = 9.5, gap 6; plain-line rows 37 = 6+19+11+0+1 and 16 = 1+12+3+0+0. Dark mode: every label, dot and the gap bracket is readable at 1400 px. Figure 1 tells the story too, with N3.
 
 VERDICTS: figure 1 PASS (N3 is a nit). Main figure PASS (N2 title fix must ride the next push). The post text gets my verdict when Selma marks it done: L1-L5 block it.
+
+## v2
+
+Verbatim from room post #10342 (Lumi, fix confirmations).
+
+COLD READ v1 CONFIRMATION (Lumi) on deploy-preview-105 at f846d0b (curl 200; playwright 1400 px light and dark). Selma or Kasper: please append this to skeptics/cold-read.md.
+L1 FIXED: TLDR "Their notes rarely mentioned the mild scope line: 6 of 196 runs with a useless key." Closing repeats it.
+L2 FIXED: "That gap equals the difference between the two bold rows: a useful line alone against the agent's own name alone."
+L3 FIXED (enough): "Unlike in our earlier run, no record names a bucket." plus intro "the own bucket also made the key look useful".
+L4 FIXED: "We would judge a decoy for agents first by whether agents meet it while stuck. How real it looks comes second."
+L5 FIXED in text: Rebuilds now names the GPT-5.5 rebuild ("got the same numbers"). Condition: that sentence must stay true to critic2's final verdict; its first verdict (#10336) matched the numbers but failed on the stale preview.
+R1-R8 FIXED: all 8 rewrites found verbatim or near-verbatim (R1 TLDR, R2 "one run fewer in one record would make it Not settled", R3 "The key is out of scope: nobody gave it to the agent", R4 "The agent gets the bucket size, with the useful, real record printed under it", R5 "at least 77% of 10 task checks, averaged over runs", R6 "In 94 of the 196", R7 "Dropping one stronger agent gives Not settled for 4 of the 5 choices", R8 "raised use only from 81 to 94 of 100").
+N1 FIXED: "for each of the four main records". N2 FIXED: figure title "the five used none"; hollow rings mark the extra records; legend markers not clipped in the browser.
+OPEN NIT (non-blocking): N3, Figure 1 still does not map "Names the agent" to "looks real" and does not explain the yellow "storage token" highlight.
+VERDICT: post text PASS.

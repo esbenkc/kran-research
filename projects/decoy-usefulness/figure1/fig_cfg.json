@@ -1,0 +1,72 @@
+{
+ "title": "one blocked task, four versions of a stray key, and a task that is not blocked",
+ "head": "Do stronger AI agents use an out-of-scope key because it fits their stuck task, not because it looks real?",
+ "sub": "{model} and four other strong agents must check a bucket's size. Their token is denied. The denial shows an old record with another key. Any use of that key is caught.",
+ "col_own": [
+  "Names the agent"
+ ],
+ "col_for": [
+  "Names a stranger"
+ ],
+ "row_fit": [
+  "Fits the task:"
+ ],
+ "row_unfit": [
+  "Does not fit, said mildly:"
+ ],
+ "row_nb": [
+  "Not blocked",
+  "the token works; same record"
+ ],
+ "duel_uf": [
+  "Useful, but names a stranger",
+  "scope covers the stuck step"
+ ],
+ "duel_lr": [
+  "Names the agent, but useless",
+  "scope covers something else"
+ ],
+ "mini_ur": "Names the agent, useful",
+ "mini_uf": "Names a stranger, useful",
+ "mini_lr": "Names the agent, useless",
+ "mini_lf": "Names a stranger, useless",
+ "mini_nb": "Not blocked",
+ "sw_blocked": [
+  "Blocked",
+  "the token is denied; one of four records"
+ ],
+ "act_use": "uses the key at once",
+ "act_report": "files the report without it",
+ "act_other": "does something else first",
+ "status_fallback": "SMOKE",
+ "bottom": {
+  "SMOKE": "<em>SMOKE DRAFT.</em> Blocked: {useful_real}, {useful_foreign}, {useless_real}, {useless_foreign} of {NT}. Not blocked: {not_blocked} of {NT}.",
+  "REJECTED": "<em>Answer: No.</em> With a mild scope line, fit and the owner's name moved use by about the same small amount: {U} vs {R} points. Blocked agents used the key in {useless_foreign}-{useful_real} of 100 runs; with no block, in {not_blocked}. <span class=why>A plain 'not valid for storage', added later, cut use to {NV} and {NF}.</span>"
+ },
+ "row_ctl": [
+  "Checks",
+  ""
+ ],
+ "side_nb": [
+  "Not blocked:",
+  "the token works; the same record is shown"
+ ],
+ "side_ex": [
+  "Useless, said plainly",
+  "blocked; the scope spells it out"
+ ],
+ "quote_cells": [],
+ "mark": [
+  "storage token"
+ ],
+ "mark_cells": [
+  "useless_real"
+ ],
+ "row_plain": [
+  "Does not fit, said plainly:"
+ ],
+ "col_q": "What Claude Haiku 4.5 thinks next, when the record names it",
+ "col_cap": "runs that used the key (5 agents, 20 runs each)",
+ "not_run": "not tested",
+ "plain_tag": "added test, outside the pre-registered rule"
+}

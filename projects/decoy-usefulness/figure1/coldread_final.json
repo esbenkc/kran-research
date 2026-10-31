@@ -1,0 +1,37 @@
+{
+ "png": "../../blog.kran.ai/assets/figures/decoy-usefulness-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0151194,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Do stronger AI agents use an out-of-scope key because it fits their stuck task, not because it looks real?\",\n  \"answer\": \"No. When the key fits the task with a mild scope line, both the agent (94 runs) and a stranger (87 runs) use it at similar rates, suggesting agents don't preferentially choose out-of-scope keys for functional reasons over appearance.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Do stronger AI agents use an out-of-scope key because it fits their stuck task, not because it looks real?\",\n  \"answer\": \"No. When the key was blocked with a mild scope restriction, the agent's use decreased only slightly (94 to 87 runs), but when a plain 'not valid for storage' scope was added later, use dropped dramatically (81 to 37 runs for the agent, compared to 69 to 16 for the stranger), showing agents respond to scope semantics rather than just task fit.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Do stronger AI agents use an out-of-scope key because it fits their stuck task, not because it looks real?\",\n  \"answer\": \"No. When the key was blocked with a mild scope restriction, both the agent (94 runs) and stranger (87 runs) used it at similar rates, but when a plain 'not valid for storage' restriction was added later, agent use dropped to 37 runs while stranger use dropped to 16 runs, suggesting agents adapted to the explicit constraint rather than just using what worked.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"The post asks whether stronger AI agents use an out-of-scope key because it fits their stuck task rather than because it looks real.\",\n  \"answer\": \"It finds that they do not, as blocked agents attempted to use the key in 69 to 94 of 100 runs compared to 0 when unblocked, with task fit and the owner's name shifting use by only 15.5 versus 9.5 points, while explicitly stating 'not valid for storage' reduced use to 37 and 16 runs.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Do stronger AI agents use an out-of-scope key because it fits their stuck task, not because it looks real?\",\n  \"answer\": \"No, task fit and the owner's name shifted key usage by similar small amounts (15.5 vs. 9.5 points), with blocked agents using the key in 69\u201394 of 100 runs compared to 0 when unblocked, while an explicit 'not valid for storage' label reduced use to 37 and 16 runs.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Do stronger AI agents use an out-of-scope key because it fits their stuck task rather than because it looks real?\",\n  \"answer\": \"No, blocked agents used the key in 69 to 94 out of 100 runs compared to 0 when not blocked, with task fit and ownership shifting usage by similar modest margins (15.5 vs 9.5 points), while explicitly noting the key was 'not valid for storage' reduced use to 37 and 16 runs.\"\n}"
+  }
+ ]
+}

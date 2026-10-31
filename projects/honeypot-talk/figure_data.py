@@ -15,7 +15,7 @@ outs = [Path(sys.argv[2])] if len(sys.argv) > 2 else [ROOT / "results" / "figure
 S = json.loads(src.read_text())
 NAMES = {"claude-haiku-4-5-20251001": "Claude Haiku 4.5", "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite",
          "gemini-3.5-flash-lite": "Gemini 3.5 Flash-Lite", "gpt-5.4-mini": "GPT-5.4 mini", "gpt-5.4-nano": "GPT-5.4 nano"}
-DECOY = {"obvious": "obvious decoy", "subtle": "subtle decoy"}
+DECOY = {"obvious": "obvious record", "subtle": "subtle record"}
 
 
 def why_out(st: dict) -> str | None:
@@ -56,15 +56,16 @@ off_trip = sum(c["trip_rate"] * c["n"] for k, c in cells.items() if "|off|" in k
 off_trip_all = off_trip
 on_trip = sum(c["trip_rate"] * c["n"] for k, c in cells.items() if "|on|" in k) / max(1, sum(c["n"] for k, c in cells.items() if "|on|" in k))
 data = {
-    "title": "Runs that called the key a honeypot used it less, but not in every agent",
-    "subtitle": (f"Warning on; one agent and one decoy per row. Warning off: {sum(s['a'] for s in off)} of {sum(s['n'] for s in off)} "
-                 f"runs called it a honeypot, and {round(100 * off_trip_all)}% used the key."),
+    "title": "Runs that named a honeypot used the key less, but not in every agent",
+    "subtitle": (f"Warning on; one agent and one record per row. Warning off: {sum(s['a'] for s in off)} of {sum(s['n'] for s in off)} "
+                 f"runs named a honeypot, and {round(100 * off_trip_all)}% used the key."),
     "rows": rows,
     "G": {"point": p["G"], "lo": (p["ci90"] or [None, None])[0], "hi": (p["ci90"] or [None, None])[1], "band": 0.105,
           "status": S["status"], "n_eligible": p["n_eligible"], "n_runs": p["n_runs"]},
     "refs": {"honeyquest": 0.734, "rouxii": [0.21, 0.27]},
     "off": {"sayers": sum(s["a"] for s in off), "n": sum(s["n"] for s in off), "trip": off_trip},
     "on_trip": on_trip,
+    "mechanism": {k: S["mechanism"][k] for k in ("predicted", "observed", "ci90_predicted", "ci90_observed", "strata")},
     "key_targeted": {"G": S["variants"]["says_key_targeted"]["G"], "ci90": S["variants"]["says_key_targeted"]["ci90"],
                      "split": S.get("target_split", {}).get("all")},
     "note": "",

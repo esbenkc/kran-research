@@ -53,3 +53,11 @@ Wording rule, fixed now:
   in between       -> the post reports the number and claims neither.
 Until G_off_K9 lands, the post names K as "seven refusal directions from the last five template tokens and two nearby
 layers", never "every refusal direction we measured".
+
+## D5 — disclosed after all judged cells were labelled (git time is the record). Judge temperature (Bruno #11025,
+Kasper #11029). PREREG v1 said the judge runs at temperature 0. The API rejects a temperature parameter for
+claude-haiku-4-5 (HTTP 400 "temperature: Extra inputs are not permitted", tested 05:35 PDT), so every label was sampled
+at the model default (as in the last room's judge). Size of the effect, measured: a second, uncached labelling of the 5
+headline cells (base, G@30, G_on@30, G_off@30, G_off_K@30; 1,000 labels, retest.py -> data/judge_retest/summary.json,
+0.28 USD) agreed with the first on 96.5-98.5% of replies per cell and gave G +56.5, G_on +18.0, G_off +37.0, G_off/G
+0.65 (first pass 0.63). Vera's judge with a different template gave G_off/G 0.60 [0.50, 0.71]. No status changes.

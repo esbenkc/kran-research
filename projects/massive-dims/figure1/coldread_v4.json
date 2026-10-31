@@ -1,0 +1,37 @@
+{
+ "png": "v4.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0136057,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Do a few massive activations at the start of every chat carry both the grader switch and the monitor switch?\",\n  \"answer\": \"No. Copying the 3 massive dimensions moved 5% and 19% of the grader switch (2 runs) and none of the monitor switch, while copying the other 1,021 dimensions at the same 3 tokens moved 61% to 100%.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Do a few massive activations at the start of every chat carry both the grader switch and the monitor switch?\",\n  \"answer\": \"No. Copying the 3 massive dimensions moved 5% and 19% of the grader switch (2 runs) and none of the monitor switch, while copying the other 1,021 dimensions at the same 3 tokens moved 61% to 100%.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Do a few massive activations at the start of every chat carry both the grader switch and the monitor switch?\",\n  \"answer\": \"No. Copying the 3 massive dimensions moved 5% and 19% of the grader switch but none of the monitor switch, while copying the other 1,021 dimensions at the same 3 tokens moved 61% to 100%.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Do a few massive activations at the start of every chat carry both the grader switch and the monitor switch?\",\n  \"answer\": \"No, copying the 3 massive dimensions moved only 5% and 19% of the grader switch and none of the monitor switch, whereas copying the other 1,021 dimensions moved 61% to 100%.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Do a few massive activations at the start of every chat carry both the grader switch and the monitor switch?\",\n  \"answer\": \"No, copying the 3 massive dimensions moved only 5% and 19% of the grader switch across two runs and none of the monitor switch, whereas copying the other 1,021 dimensions moved 61% to 100%.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Do a few massive activations at the start of every chat carry both the grader switch and the monitor switch?\",\n  \"answer\": \"No, copying the three massive dimensions moved only 5% and 19% of the grader switch and none of the monitor switch, whereas copying the other 1,021 dimensions moved 61% to 100%.\"\n}"
+  }
+ ]
+}

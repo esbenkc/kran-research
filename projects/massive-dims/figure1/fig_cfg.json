@@ -1,5 +1,5 @@
 {
- "prec": "fp32",
+ "prec": "bf16",
  "idx": 74,
  "head": "Does the model read its “am I graded?” and “am I watched?” cues from the 3 giant numbers at the start of every chat?",
  "note": "Every chat starts with the same 3 tokens (yellow). Reward taught the model to flatter less when graded or watched.",
@@ -26,11 +26,11 @@
   }
  },
  "expect": {
-  "a_g0": "3%",
-  "a_g1": "10%",
-  "a_m": "under 0.1%",
-  "b_min": "75%",
-  "b_max": "99.8%"
+  "a_g0": "5%",
+  "a_g1": "19%",
+  "a_m": "none",
+  "b_min": "61%",
+  "b_max": "100%"
  },
  "bottom": "<b>No.</b> Copying the 3 massive dimensions moved {a_g0} and {a_g1} of the grader switch (2 runs) and {a_m} of the monitor switch. Copying the other 1,021 dimensions at the same 3 tokens moved {b_min} to {b_max}.",
  "bar_w": 300,

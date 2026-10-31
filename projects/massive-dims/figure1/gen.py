@@ -43,9 +43,9 @@ sh = {c: S["copies"][c][PREC] for c in HEAD}
 
 
 def pc(v):
-    """share -> percent text the way the TLDR writes it"""
-    p = 100 * v
-    return f"{p:.1f}%" if p >= 99 else f"{round(p)}%"
+    """share -> percent text the way the TLDR writes it (a share just over 1 is shown as 100%)"""
+    assert -0.01 < v < 1.01, v
+    return f"{min(100, int(100 * v + 0.5))}%"
 
 
 nums = {
@@ -53,8 +53,8 @@ nums = {
     "a_m_max": max(sh["monitor_s0"]["a"], sh["monitor_s1"]["a"]),
     "b_min": pc(min(sh[c]["b"] for c in HEAD)), "b_max": pc(max(sh[c]["b"] for c in HEAD)),
 }
-assert nums["a_m_max"] < 0.001, nums
-nums["a_m"] = "under 0.1%"
+assert max(abs(sh["monitor_s0"]["a"]), abs(sh["monitor_s1"]["a"])) < 0.005, nums
+nums["a_m"] = "none"  # |share| < 0.5% in both monitor runs
 del nums["a_m_max"]
 for k, v in CFG["expect"].items():
     assert nums[k] == v, (k, nums[k], v)
@@ -85,9 +85,9 @@ def first(c, row):
     return tok
 
 
-# the same first word in every cell with the bf16 tail (as trained), when that file exists
-T1B = HERE / "top1_bf16.json"
-if PREC != "bf16" and T1B.exists():
+# the same first word in every cell with the tail in the other precision
+T1B = HERE / f"top1_{'fp32' if PREC == 'bf16' else 'bf16'}.json"
+if T1B.exists():
     tb = json.load(open(T1B))
     jb = tb["idx"].index(I)
     for c in HEAD:

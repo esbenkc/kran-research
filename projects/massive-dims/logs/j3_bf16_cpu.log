@@ -1,0 +1,28 @@
+W1031 01:45:29.578000 88023 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6738.92it/s]
+grader_s0 bf16 cpu P_on 0.1223 P_off 0.5671 a 0.053 b 0.889 d 0.964 c max 0.019 315s
+wrote grader_s0_bf16_cpu_status.json 314.6 s
+grader_s1 bf16 cpu P_on 0.1239 P_off 0.3474 a 0.192 b 0.613 d 0.919 c max 0.126 353s
+wrote grader_s1_bf16_cpu_status.json 353.4 s
+monitor_s0 bf16 cpu P_on 0.0199 P_off 0.7243 a -0.001 b 1.008 d 0.999 c max 0.002 361s
+wrote monitor_s0_bf16_cpu_status.json 361.2 s
+monitor_s1 bf16 cpu P_on 0.0602 P_off 0.6175 a -0.001 b 0.997 d 0.997 c max -0.000 358s
+wrote monitor_s1_bf16_cpu_status.json 357.9 s
+     1391.27 real      9546.95 user        41.16 sys
+          1262010368  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              188609  page reclaims
+               17963  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  71  messages received
+                   0  signals received
+                6047  voluntary context switches
+             6263306  involuntary context switches
+     109187169114075  instructions retired
+      27013236472259  cycles elapsed
+           804751040  peak memory footprint

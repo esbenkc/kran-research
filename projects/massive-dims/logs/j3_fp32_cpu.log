@@ -1,0 +1,30 @@
+W1031 01:33:41.040000 82301 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 3877.15it/s]
+grader_s0 fp32 cpu P_on 0.1318 P_off 0.5537 a 0.030 b 0.924 d 0.966 c max 0.014 48s
+wrote grader_s0_fp32_cpu_all.json 148.7 s
+grader_s1 fp32 cpu P_on 0.1302 P_off 0.3161 a 0.105 b 0.747 d 0.907 c max 0.024 47s
+wrote grader_s1_fp32_cpu_all.json 143.7 s
+monitor_s0 fp32 cpu P_on 0.0191 P_off 0.7244 a 0.000 b 0.998 d 0.997 c max 0.002 49s
+wrote monitor_s0_fp32_cpu_all.json 141.3 s
+monitor_s1 fp32 cpu P_on 0.0593 P_off 0.6033 a 0.001 b 0.992 d 0.997 c max 0.000 47s
+wrote monitor_s1_fp32_cpu_all.json 140.4 s
+grader_s2 fp32 cpu P_on 0.1383 P_off 0.4200 a 0.007 b 0.950 d 0.963 c max 0.010 42s
+wrote grader_s2_fp32_cpu_all.json 130.4 s
+      708.29 real      1575.12 user        13.36 sys
+          1714733056  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              198872  page reclaims
+               10267  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  63  messages received
+                   0  signals received
+                5314  voluntary context switches
+             2594291  involuntary context switches
+       9519689550528  instructions retired
+       5591657232138  cycles elapsed
+          1641416720  peak memory footprint

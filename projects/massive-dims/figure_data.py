@@ -54,7 +54,9 @@ def build(variant=None):
                     "all": "all 1,024 dimensions", "random": "99 random sets of 3 ordinary dimensions",
                     "held": "input difference the 3 massive dimensions hold, before normalisation (not a share of the switch)",
                     "held_post": "the same, after normalisation"},
-         "note": ""}
+         "note": "16-bit rows use the model's own arithmetic; 32-bit rows run the same weights in 32-bit. The diamonds are "
+                 "a share of the input difference, not of the switch. They come from the untrained model, so both runs "
+                 "of a switch share them."}
     if variant:
         d["variant"] = variant
     return d

@@ -59,6 +59,8 @@ del nums["a_m_max"]
 for k, v in CFG["expect"].items():
     assert nums[k] == v, (k, nums[k], v)
 bottom = CFG["bottom"].format(**nums)
+nums["a_max"] = pc(max(sh["grader_s0"]["a"], sh["grader_s1"]["a"], sh["monitor_s0"]["a"], sh["monitor_s1"]["a"]))
+head = CFG["head"].format(**nums)
 
 # ---------- the example prompt ----------
 pp = {c: json.load(open(PROJ / S["copies"][c][PREC]["file"]))["per_prompt"] for c in HEAD}
@@ -185,7 +187,10 @@ doc = f"""<!doctype html>
 html, body {{ background: #fbfaf8; }}
 body {{ width: 1200px; padding: 34px 40px 34px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-.head {{ font-size: 38px; font-weight: 800; letter-spacing: -0.008em; line-height: 1.16; }}
+.head {{ font-size: 40px; font-weight: 800; letter-spacing: -0.012em; line-height: 1.15; }}
+.sub {{ font-size: 25px; line-height: 1.3; color: #6b6f78; margin-top: 8px; }}
+.foot {{ font-size: 20px; color: #7a7e87; margin-top: 22px; }}
+.foot b {{ color: #3a3d45; font-weight: 700; }}
 .top {{ display: grid; grid-template-columns: 1fr {CFG["panel_w"]}px; gap: 22px; margin-top: 22px; align-items: start; }}
 .model {{ display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 750; color: #3a3d45; }}
 .ask {{ margin-top: 12px; background: #3478f6; color: #fff; font-size: 24px; line-height: 1.32; padding: 14px 20px; border-radius: 26px 26px 6px 26px; }}
@@ -217,7 +222,8 @@ body {{ width: 1200px; padding: 34px 40px 34px; font-family: "Inter", system-ui,
 </head>
 <body>
 
-<div class="head">{CFG['head']}</div>
+<div class="head">{head}</div>
+<div class="sub">{CFG['sub']}</div>
 <div class="top">
  <div>
   <div class="model"><svg width="44" height="50" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>Qwen3-0.6B</div>
@@ -236,7 +242,8 @@ body {{ width: 1200px; padding: 34px 40px 34px; font-family: "Inter", system-ui,
  <div class="ch">{CFG['cols'][1]}</div>
 {chr(10).join(rows_html)}
 </div>
-<div class="answer">{bottom}</div>
+{f'<div class="answer">{bottom}</div>' if bottom else ''}
+<div class="foot">{CFG['foot']}</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="robot">
   <line x1="46" y1="6" x2="46" y2="22" stroke="#33363d" stroke-width="3"/>

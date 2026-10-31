@@ -1,9 +1,9 @@
 {
  "prec": "bf16",
  "idx": 74,
- "head": "Do a few massive activations at the start of every chat carry both the grader switch and the monitor switch?",
+ "head": "Copying the 3 massive dimensions moves at most {a_max} of either switch; the other 1,021 dimensions move {b_min} to {b_max}",
  "note": "Every chat starts with the same 3 tokens (yellow). Reward taught the model to flatter less when it is graded (the grader switch) or watched by a probe (the monitor switch).",
- "spike_title": "First token: 3 of the model’s 1,024 internal numbers are giant, the massive activations",
+ "spike_title": "First token: 3 of the model&rsquo;s 1,024 internal numbers are giant",
  "spike_key": "We call them the <b class=\"red\">3 massive dimensions</b>: {lo} to {hi} times the typical number.",
  "expect_dim35": 8128,
  "expect_ratio_round": [
@@ -32,7 +32,7 @@
   "b_min": "61%",
   "b_max": "100%"
  },
- "bottom": "<b>No.</b> Copying the 3 massive dimensions moved {a_g0} and {a_g1} of the grader switch (2 runs) and {a_m} of the monitor switch. Copying the other 1,021 dimensions at the same 3 tokens moved {b_min} to {b_max}.",
+ "bottom": "",
  "bar_w": 300,
  "panel_w": 500,
  "typical_label": "typical",
@@ -42,5 +42,7 @@
   "<span class=\"red\" style=\"font-size:25px;font-weight:750;color:#c8372d\">the 3 massive dimensions</span>",
   "<span style=\"font-size:25px;font-weight:750;color:#45567a\">the other 1,021 dimensions</span>"
  ],
- "grid_label": "The model’s most likely first word on this test prompt:"
+ "grid_label": "The model’s most likely first word on this test prompt:",
+ "sub": "Do a few massive activations at the start of every chat carry the grader and monitor switches? No.",
+ "foot": "Share of each switch moved, 2 training runs per switch &middot; Kran Lab, Oct 31 2026 &middot; <b>blog.kran.ai/lab</b>"
 }

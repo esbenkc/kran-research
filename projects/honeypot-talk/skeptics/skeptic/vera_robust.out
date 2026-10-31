@@ -1,0 +1,28 @@
+1. leave one model out (frozen rule, W CI)
+   drop claude-haiku-4-5-20251001   {'G': np.float64(-0.2178), 'ci': [np.float64(-0.2995), np.float64(-0.133)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'REJECTED (No)'}
+   drop gemini-3.1-flash-lite       {'G': np.float64(-0.3523), 'ci': [np.float64(-0.4496), np.float64(-0.2549)], 'strata': 3, 'models': 2, 'runs': 205, 'status': 'UNCONFIRMED (floor)'}
+   drop gemini-3.5-flash-lite       {'G': np.float64(0.0969), 'ci': [np.float64(-0.0054), np.float64(0.1935)], 'strata': 2, 'models': 2, 'runs': 131, 'status': 'UNCONFIRMED (floor)'}
+   drop gpt-5.4-mini                {'G': np.float64(-0.3024), 'ci': [np.float64(-0.3932), np.float64(-0.2067)], 'strata': 3, 'models': 2, 'runs': 202, 'status': 'UNCONFIRMED (floor)'}
+   drop gpt-5.4-nano                {'G': np.float64(-0.2178), 'ci': [np.float64(-0.2987), np.float64(-0.1359)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'REJECTED (No)'}
+2. all strata with both say-groups non-empty (no eligibility rule)
+   {'G': np.float64(-0.2236), 'ci': [np.float64(-0.2914), np.float64(-0.1528)], 'strata': 9, 'models': 5, 'runs': 598, 'status': 'REJECTED (No)'}
+   a,b>=5, no trip floor: {'G': np.float64(-0.2236), 'ci': [np.float64(-0.2939), np.float64(-0.1529)], 'strata': 9, 'models': 5, 'runs': 598, 'status': 'REJECTED (No)'}
+3. variants
+   says               {'G': np.float64(-0.0484), 'ci': [np.float64(-0.115), np.float64(0.0185)], 'strata': 6, 'models': 3, 'runs': 400, 'status': 'UNCONFIRMED'}
+   says_raw           {'G': np.float64(-0.1689), 'ci': [np.float64(-0.2494), np.float64(-0.0844)], 'strata': 5, 'models': 4, 'runs': 327, 'status': 'UNCONFIRMED'}
+   says_v13_aware     {'G': np.float64(-0.221), 'ci': [np.float64(-0.306), np.float64(-0.1366)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'REJECTED (No)'}
+   says_v13_anywin    {'G': np.float64(-0.2393), 'ci': [np.float64(-0.3222), np.float64(-0.1511)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'REJECTED (No)'}
+   says_v1anchor      {'G': np.float64(-0.0968), 'ci': [np.float64(-0.1667), np.float64(-0.0278)], 'strata': 6, 'models': 3, 'runs': 400, 'status': 'UNCONFIRMED'}
+   trip_any           {'G': np.float64(-0.2377), 'ci': [np.float64(-0.3135), np.float64(-0.1602)], 'strata': 5, 'models': 4, 'runs': 339, 'status': 'REJECTED (No)'}
+4. seed halves (frozen rule)
+   seeds 0-34: {'G': np.float64(-0.401), 'ci': [np.float64(-0.5291), np.float64(-0.2686)], 'strata': 3, 'models': 2, 'runs': 100, 'status': 'UNCONFIRMED (floor)'}
+   seeds 35-69: {'G': np.float64(0.053), 'ci': [np.float64(-0.1383), np.float64(0.2273)], 'strata': 1, 'models': 1, 'runs': 34, 'status': 'UNCONFIRMED (floor)'}
+   even seeds: {'G': np.float64(-0.4088), 'ci': [np.float64(-0.5652), np.float64(-0.237)], 'strata': 2, 'models': 2, 'runs': 63, 'status': 'UNCONFIRMED (floor)'}
+   odd seeds: {'G': np.float64(0.2222), 'ci': [np.float64(0.0625), np.float64(0.4)], 'strata': 1, 'models': 1, 'runs': 35, 'status': 'UNCONFIRMED (floor)'}
+5. placebos on the 4 frozen eligible strata
+   P1 \b(?:next|then|now)\b: {'G': np.float64(0.0655), 'ci': [np.float64(-0.024), np.float64(0.1586)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'UNCONFIRMED'}; placebo hits 68, trap sayers 115, both 25
+      among trap non-sayers only: {'G': np.float64(0.0424), 'ci': [np.float64(-0.0846), np.float64(0.174)], 'strata': 4, 'models': 3, 'runs': 154, 'status': 'UNCONFIRMED'}
+   P2 \b(?:will|should|need|needs)\b: {'G': np.float64(-0.1382), 'ci': [np.float64(-0.239), np.float64(-0.0364)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'UNCONFIRMED'}; placebo hits 114, trap sayers 115, both 74
+      among trap non-sayers only: {'G': np.float64(0.1088), 'ci': [np.float64(-0.0458), np.float64(0.2669)], 'strata': 4, 'models': 3, 'runs': 154, 'status': 'UNCONFIRMED'}
+   P3 \d: {'G': np.float64(0.0516), 'ci': [np.float64(-0.032), np.float64(0.1336)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'UNCONFIRMED'}; placebo hits 187, trap sayers 115, both 83
+      among trap non-sayers only: {'G': np.float64(0.07), 'ci': [np.float64(-0.0531), np.float64(0.1883)], 'strata': 4, 'models': 3, 'runs': 154, 'status': 'UNCONFIRMED'}

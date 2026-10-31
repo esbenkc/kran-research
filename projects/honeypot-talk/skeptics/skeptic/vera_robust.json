@@ -1,0 +1,267 @@
+{
+ "lomo_claude-haiku-4-5-20251001": {
+  "G": -0.2178,
+  "ci": [
+   -0.2995,
+   -0.133
+  ],
+  "strata": 4,
+  "models": 3,
+  "runs": 269,
+  "status": "REJECTED (No)"
+ },
+ "lomo_gemini-3.1-flash-lite": {
+  "G": -0.3523,
+  "ci": [
+   -0.4496,
+   -0.2549
+  ],
+  "strata": 3,
+  "models": 2,
+  "runs": 205,
+  "status": "UNCONFIRMED (floor)"
+ },
+ "lomo_gemini-3.5-flash-lite": {
+  "G": 0.0969,
+  "ci": [
+   -0.0054,
+   0.1935
+  ],
+  "strata": 2,
+  "models": 2,
+  "runs": 131,
+  "status": "UNCONFIRMED (floor)"
+ },
+ "lomo_gpt-5.4-mini": {
+  "G": -0.3024,
+  "ci": [
+   -0.3932,
+   -0.2067
+  ],
+  "strata": 3,
+  "models": 2,
+  "runs": 202,
+  "status": "UNCONFIRMED (floor)"
+ },
+ "lomo_gpt-5.4-nano": {
+  "G": -0.2178,
+  "ci": [
+   -0.2987,
+   -0.1359
+  ],
+  "strata": 4,
+  "models": 3,
+  "runs": 269,
+  "status": "REJECTED (No)"
+ },
+ "all_strata": {
+  "G": -0.2236,
+  "ci": [
+   -0.2914,
+   -0.1528
+  ],
+  "strata": 9,
+  "models": 5,
+  "runs": 598,
+  "status": "REJECTED (No)"
+ },
+ "ab5_nofloor": {
+  "G": -0.2236,
+  "ci": [
+   -0.2939,
+   -0.1529
+  ],
+  "strata": 9,
+  "models": 5,
+  "runs": 598,
+  "status": "REJECTED (No)"
+ },
+ "var_says": {
+  "G": -0.0484,
+  "ci": [
+   -0.115,
+   0.0185
+  ],
+  "strata": 6,
+  "models": 3,
+  "runs": 400,
+  "status": "UNCONFIRMED"
+ },
+ "var_says_raw": {
+  "G": -0.1689,
+  "ci": [
+   -0.2494,
+   -0.0844
+  ],
+  "strata": 5,
+  "models": 4,
+  "runs": 327,
+  "status": "UNCONFIRMED"
+ },
+ "var_says_v13_aware": {
+  "G": -0.221,
+  "ci": [
+   -0.306,
+   -0.1366
+  ],
+  "strata": 4,
+  "models": 3,
+  "runs": 269,
+  "status": "REJECTED (No)"
+ },
+ "var_says_v13_anywin": {
+  "G": -0.2393,
+  "ci": [
+   -0.3222,
+   -0.1511
+  ],
+  "strata": 4,
+  "models": 3,
+  "runs": 269,
+  "status": "REJECTED (No)"
+ },
+ "var_says_v1anchor": {
+  "G": -0.0968,
+  "ci": [
+   -0.1667,
+   -0.0278
+  ],
+  "strata": 6,
+  "models": 3,
+  "runs": 400,
+  "status": "UNCONFIRMED"
+ },
+ "var_trip_any": {
+  "G": -0.2377,
+  "ci": [
+   -0.3135,
+   -0.1602
+  ],
+  "strata": 5,
+  "models": 4,
+  "runs": 339,
+  "status": "REJECTED (No)"
+ },
+ "seeds_0_34": {
+  "G": -0.401,
+  "ci": [
+   -0.5291,
+   -0.2686
+  ],
+  "strata": 3,
+  "models": 2,
+  "runs": 100,
+  "status": "UNCONFIRMED (floor)"
+ },
+ "seeds_35_69": {
+  "G": 0.053,
+  "ci": [
+   -0.1383,
+   0.2273
+  ],
+  "strata": 1,
+  "models": 1,
+  "runs": 34,
+  "status": "UNCONFIRMED (floor)"
+ },
+ "seeds_even": {
+  "G": -0.4088,
+  "ci": [
+   -0.5652,
+   -0.237
+  ],
+  "strata": 2,
+  "models": 2,
+  "runs": 63,
+  "status": "UNCONFIRMED (floor)"
+ },
+ "seeds_odd": {
+  "G": 0.2222,
+  "ci": [
+   0.0625,
+   0.4
+  ],
+  "strata": 1,
+  "models": 1,
+  "runs": 35,
+  "status": "UNCONFIRMED (floor)"
+ },
+ "placebo_frozen_P1": {
+  "res": {
+   "G": 0.0655,
+   "ci": [
+    -0.024,
+    0.1586
+   ],
+   "strata": 4,
+   "models": 3,
+   "runs": 269,
+   "status": "UNCONFIRMED"
+  },
+  "hits": 68,
+  "both": 25
+ },
+ "placebo_frozen_P1_nonsayers": {
+  "G": 0.0424,
+  "ci": [
+   -0.0846,
+   0.174
+  ],
+  "strata": 4,
+  "models": 3,
+  "runs": 154,
+  "status": "UNCONFIRMED"
+ },
+ "placebo_frozen_P2": {
+  "res": {
+   "G": -0.1382,
+   "ci": [
+    -0.239,
+    -0.0364
+   ],
+   "strata": 4,
+   "models": 3,
+   "runs": 269,
+   "status": "UNCONFIRMED"
+  },
+  "hits": 114,
+  "both": 74
+ },
+ "placebo_frozen_P2_nonsayers": {
+  "G": 0.1088,
+  "ci": [
+   -0.0458,
+   0.2669
+  ],
+  "strata": 4,
+  "models": 3,
+  "runs": 154,
+  "status": "UNCONFIRMED"
+ },
+ "placebo_frozen_P3": {
+  "res": {
+   "G": 0.0516,
+   "ci": [
+    -0.032,
+    0.1336
+   ],
+   "strata": 4,
+   "models": 3,
+   "runs": 269,
+   "status": "UNCONFIRMED"
+  },
+  "hits": 187,
+  "both": 83
+ },
+ "placebo_frozen_P3_nonsayers": {
+  "G": 0.07,
+  "ci": [
+   -0.0531,
+   0.1883
+  ],
+  "strata": 4,
+  "models": 3,
+  "runs": 154,
+  "status": "UNCONFIRMED"
+ }
+}

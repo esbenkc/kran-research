@@ -1,0 +1,58 @@
+1. leave one model out (frozen rule, W CI)
+   drop claude-haiku-4-5-20251001   {'G': np.float64(-0.2178), 'ci': [np.float64(-0.2995), np.float64(-0.133)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'REJECTED (No)'}
+   drop gemini-3.1-flash-lite       {'G': np.float64(-0.3523), 'ci': [np.float64(-0.4496), np.float64(-0.2549)], 'strata': 3, 'models': 2, 'runs': 205, 'status': 'UNCONFIRMED (floor)'}
+   drop gemini-3.5-flash-lite       {'G': np.float64(0.0969), 'ci': [np.float64(-0.0054), np.float64(0.1935)], 'strata': 2, 'models': 2, 'runs': 131, 'status': 'UNCONFIRMED (floor)'}
+   drop gpt-5.4-mini                {'G': np.float64(-0.3024), 'ci': [np.float64(-0.3932), np.float64(-0.2067)], 'strata': 3, 'models': 2, 'runs': 202, 'status': 'UNCONFIRMED (floor)'}
+   drop gpt-5.4-nano                {'G': np.float64(-0.2178), 'ci': [np.float64(-0.2987), np.float64(-0.1359)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'REJECTED (No)'}
+2. all strata with both say-groups non-empty (no eligibility rule)
+   {'G': np.float64(-0.2236), 'ci': [np.float64(-0.2914), np.float64(-0.1528)], 'strata': 9, 'models': 5, 'runs': 598, 'status': 'REJECTED (No)'}
+   a,b>=5, no trip floor: {'G': np.float64(-0.2236), 'ci': [np.float64(-0.2939), np.float64(-0.1529)], 'strata': 9, 'models': 5, 'runs': 598, 'status': 'REJECTED (No)'}
+3. variants
+   says               {'G': np.float64(-0.0484), 'ci': [np.float64(-0.115), np.float64(0.0185)], 'strata': 6, 'models': 3, 'runs': 400, 'status': 'UNCONFIRMED'}
+   says_raw           {'G': np.float64(-0.1689), 'ci': [np.float64(-0.2494), np.float64(-0.0844)], 'strata': 5, 'models': 4, 'runs': 327, 'status': 'UNCONFIRMED'}
+   says_v13_aware     {'G': np.float64(-0.221), 'ci': [np.float64(-0.306), np.float64(-0.1366)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'REJECTED (No)'}
+   says_v13_anywin    {'G': np.float64(-0.2393), 'ci': [np.float64(-0.3222), np.float64(-0.1511)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'REJECTED (No)'}
+   says_v1anchor      {'G': np.float64(-0.0968), 'ci': [np.float64(-0.1667), np.float64(-0.0278)], 'strata': 6, 'models': 3, 'runs': 400, 'status': 'UNCONFIRMED'}
+   trip_any           {'G': np.float64(-0.2377), 'ci': [np.float64(-0.3135), np.float64(-0.1602)], 'strata': 5, 'models': 4, 'runs': 339, 'status': 'REJECTED (No)'}
+4. seed halves (frozen rule)
+   seeds 0-34: {'G': np.float64(-0.401), 'ci': [np.float64(-0.5291), np.float64(-0.2686)], 'strata': 3, 'models': 2, 'runs': 100, 'status': 'UNCONFIRMED (floor)'}
+   seeds 35-69: {'G': np.float64(0.053), 'ci': [np.float64(-0.1383), np.float64(0.2273)], 'strata': 1, 'models': 1, 'runs': 34, 'status': 'UNCONFIRMED (floor)'}
+   even seeds: {'G': np.float64(-0.4088), 'ci': [np.float64(-0.5652), np.float64(-0.237)], 'strata': 2, 'models': 2, 'runs': 63, 'status': 'UNCONFIRMED (floor)'}
+   odd seeds: {'G': np.float64(0.2222), 'ci': [np.float64(0.0625), np.float64(0.4)], 'strata': 1, 'models': 1, 'runs': 35, 'status': 'UNCONFIRMED (floor)'}
+5. placebos on the 4 frozen eligible strata
+   P1 \b(?:next|then|now)\b: {'G': np.float64(0.0655), 'ci': [np.float64(-0.024), np.float64(0.1586)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'UNCONFIRMED'}; placebo hits 68, trap sayers 115, both 25
+      among trap non-sayers only: {'G': np.float64(0.0424), 'ci': [np.float64(-0.0846), np.float64(0.174)], 'strata': 4, 'models': 3, 'runs': 154, 'status': 'UNCONFIRMED'}
+   P2 \b(?:will|should|need|needs)\b: {'G': np.float64(-0.1382), 'ci': [np.float64(-0.239), np.float64(-0.0364)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'UNCONFIRMED'}; placebo hits 114, trap sayers 115, both 74
+      among trap non-sayers only: {'G': np.float64(0.1088), 'ci': [np.float64(-0.0458), np.float64(0.2669)], 'strata': 4, 'models': 3, 'runs': 154, 'status': 'UNCONFIRMED'}
+   P3 \d: {'G': np.float64(0.0516), 'ci': [np.float64(-0.032), np.float64(0.1336)], 'strata': 4, 'models': 3, 'runs': 269, 'status': 'UNCONFIRMED'}; placebo hits 187, trap sayers 115, both 83
+      among trap non-sayers only: {'G': np.float64(0.07), 'ci': [np.float64(-0.0531), np.float64(0.1883)], 'strata': 4, 'models': 3, 'runs': 154, 'status': 'UNCONFIRMED'}
+(a) all strata, leave one model out
+   drop claude-haiku-4-5-20251001   {'G': np.float64(-0.1517), 'ci': [np.float64(-0.2238), np.float64(-0.0759)], 'strata': 7, 'models': 4, 'runs': 458, 'status': 'UNCONFIRMED'}
+   drop gemini-3.1-flash-lite       {'G': np.float64(-0.3322), 'ci': [np.float64(-0.4127), np.float64(-0.2522)], 'strata': 7, 'models': 4, 'runs': 470, 'status': 'REJECTED (No)'}
+   drop gemini-3.5-flash-lite       {'G': np.float64(-0.0913), 'ci': [np.float64(-0.1729), np.float64(-0.0052)], 'strata': 7, 'models': 4, 'runs': 460, 'status': 'UNCONFIRMED'}
+   drop gpt-5.4-mini                {'G': np.float64(-0.2585), 'ci': [np.float64(-0.34), np.float64(-0.1797)], 'strata': 7, 'models': 4, 'runs': 464, 'status': 'REJECTED (No)'}
+   drop gpt-5.4-nano                {'G': np.float64(-0.2676), 'ci': [np.float64(-0.3351), np.float64(-0.1979)], 'strata': 8, 'models': 4, 'runs': 540, 'status': 'REJECTED (No)'}
+    per model:
+   only claude-haiku-4-5-20251001   {'G': np.float64(-0.5209), 'ci': [np.float64(-0.669), np.float64(-0.3613)], 'strata': 2, 'models': 1, 'runs': 140, 'status': 'UNCONFIRMED (floor)'}
+   only gemini-3.1-flash-lite       {'G': np.float64(0.1494), 'ci': [np.float64(0.0486), np.float64(0.2471)], 'strata': 2, 'models': 1, 'runs': 128, 'status': 'UNCONFIRMED (floor)'}
+   only gemini-3.5-flash-lite       {'G': np.float64(-0.5512), 'ci': [np.float64(-0.6663), np.float64(-0.4334)], 'strata': 2, 'models': 1, 'runs': 138, 'status': 'UNCONFIRMED (floor)'}
+   only gpt-5.4-mini                {'G': np.float64(-0.1012), 'ci': [np.float64(-0.2192), np.float64(0.0275)], 'strata': 2, 'models': 1, 'runs': 134, 'status': 'UNCONFIRMED (floor)'}
+   only gpt-5.4-nano                {'G': np.float64(0.36), 'ci': [np.float64(0.0461), np.float64(0.6757)], 'strata': 1, 'models': 1, 'runs': 58, 'status': 'UNCONFIRMED (floor)'}
+(b) frozen 4 strata held fixed, seed splits
+   seeds 0-34             {'G': np.float64(-0.3103), 'ci': [np.float64(-0.4276), np.float64(-0.1887)], 'strata': 4, 'models': 3, 'runs': 133, 'status': 'UNCONFIRMED (floor)'}
+   seeds 35-69            {'G': np.float64(-0.1163), 'ci': [np.float64(-0.2216), np.float64(-0.0045)], 'strata': 4, 'models': 3, 'runs': 136, 'status': 'UNCONFIRMED (floor)'}
+   even                   {'G': np.float64(-0.339), 'ci': [np.float64(-0.4667), np.float64(-0.2104)], 'strata': 4, 'models': 3, 'runs': 132, 'status': 'UNCONFIRMED (floor)'}
+   odd                    {'G': np.float64(-0.1249), 'ci': [np.float64(-0.2212), np.float64(-0.015)], 'strata': 4, 'models': 3, 'runs': 137, 'status': 'UNCONFIRMED (floor)'}
+   seeds 0-49 (main run)  {'G': np.float64(-0.2749), 'ci': [np.float64(-0.3723), np.float64(-0.1698)], 'strata': 4, 'models': 3, 'runs': 190, 'status': 'REJECTED (No)'}
+   seeds 50-69 (D3)       {'G': np.float64(-0.0776), 'ci': [np.float64(-0.1889), np.float64(0.0473)], 'strata': 4, 'models': 3, 'runs': 79, 'status': 'UNCONFIRMED (floor)'}
+(c) v1.2 'says' per stratum vs v1.3
+   ('claude-haiku-4', 'obvious'): v1.3 0/53 vs 5/17      v1.2 0/35 vs 5/35      moved v1.3-say->v1.2-not: 18 (of which tripped 0)
+   ('claude-haiku-4', 'subtle'): v1.3 0/7 vs 62/63      v1.2 0/7 vs 62/63      moved v1.3-say->v1.2-not: 0 (of which tripped 0)
+   ('gemini-3.1-fla', 'obvious'): v1.3 10/57 vs 0/7      v1.2 8/44 vs 2/20      moved v1.3-say->v1.2-not: 13 (of which tripped 2)
+   ('gemini-3.1-fla', 'subtle'): v1.3 28/30 vs 27/34    v1.2 23/23 vs 32/41    moved v1.3-say->v1.2-not: 7 (of which tripped 5)
+   ('gemini-3.5-fla', 'obvious'): v1.3 0/47 vs 7/22      v1.2 0/38 vs 7/31      moved v1.3-say->v1.2-not: 9 (of which tripped 0)
+   ('gemini-3.5-fla', 'subtle'): v1.3 3/18 vs 50/51     v1.2 3/17 vs 50/52     moved v1.3-say->v1.2-not: 1 (of which tripped 0)
+   ('gpt-5.4-mini', 'obvious'): v1.3 30/58 vs 8/9      v1.2 27/41 vs 11/26    moved v1.3-say->v1.2-not: 17 (of which tripped 3)
+   ('gpt-5.4-mini', 'subtle'): v1.3 18/20 vs 40/47    v1.2 18/19 vs 40/48    moved v1.3-say->v1.2-not: 1 (of which tripped 0)
+   ('gpt-5.4-nano', 'obvious'): v1.3 4/8 vs 7/50       v1.2 4/6 vs 7/52       moved v1.3-say->v1.2-not: 2 (of which tripped 0)
+   ('gpt-5.4-nano', 'subtle'): v1.3 0/0 vs 44/58      v1.2 0/0 vs 44/58      moved v1.3-say->v1.2-not: 0 (of which tripped 0)

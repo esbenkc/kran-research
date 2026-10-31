@@ -302,6 +302,21 @@ def main():
         sec["downstream"] = {"L_star": INFO["L_star"], "r2": r2(yd, sig(thd, xd)), "cells": len(dn),
                              "gate_gap": {m: float(100 * (cells[f"G@{m}"]["comply"].mean() - sig(thd, cells[f"G@{m}"]["p_down"])))
                                           for m in M5 if "p_down" in cells.get(f"G@{m}", {})}}
+    # ft7 (PREREG step 7, report only): first-token score change vs p over RN and RD units at all 5 pins (TEST100)
+    ftb = P / "data/ft/base.json"
+    if ftb.exists():
+        b = np.array(json.loads(ftb.read_text())["score"])
+        rows7 = []
+        for u in [f"RN_{j}" for j in INFO["RN"]] + [f"RD_{k}" for k in range(20)]:
+            for m in M5:
+                f = P / "data/ft" / f"{u}@{m}.json"
+                if f.exists():
+                    rows7.append((np.mean(PT[f"{u}@{m}"]["p"][:100]), np.mean(json.loads(f.read_text())["score"]) - b.mean(), m))
+        if len(rows7) > 20:
+            pp, cc, mm = (np.array(x) for x in zip(*rows7))
+            sec["ft7"] = {"cells": len(rows7), "spearman_p_change": float(spearmanr(pp, cc)[0]),
+                          "spearman_abs": float(spearmanr(np.abs(pp), np.abs(cc))[0]),
+                          "median_abs_change_by_pin": {int(m): float(np.median(np.abs(cc[mm == m]))) for m in M5}}
     sec["incoherent_pct"] = {c: round(100 * cells[c]["incoh"], 1) for c in cells}
     res["secondary"] = sec
     (P / "data/results.json").write_text(json.dumps(res, indent=1, default=_j))

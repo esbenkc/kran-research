@@ -48,3 +48,8 @@ with the larger first-token drop gets the full generation (200 TEST harmful + 20
 natural instance of the existence test, not status. Neuron 4475 (53.9%) as a second row only if time remains.
 Optional, only after every frozen arm: D' split by dim (1401 alone vs 1793+1999), Iris's gain table predicts 1401
 carries the push.
+
+## Timestamp note — 19:44 PDT
+The clock times written in the PREREG header ("03:45 CET / 19:45 PDT") and in the D1-D7 headers were estimates
+typed ahead of the clock. The git commit times are the record: PREREG v1 1ac9925 at 19:41:14 PDT (03:41 CET),
+D1-D4 375847c at 19:42:38 PDT, D5-D7 360af77 at 19:43:04 PDT. No TEST number existed in the room at any of them.

@@ -1,0 +1,24 @@
+W1031 01:25:08.513000 78994 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7701.24it/s]
+none rec {'s': 24.4, 'N': 646, 'T': 34, 'probe_ran': 646, 'px_mean': 0.3885076052852367}
+W1031 01:25:38.116000 78994 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+ref rec {'s': 24.7, 'N': 646, 'T': 34, 'probe_ran': 646, 'px_mean': 0.38828823515920446}
+wrote kran-research/projects/massive-dims/src1025/raw/cache/base
+       73.86 real        22.36 user         4.16 sys
+          1439531008  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              162092  page reclaims
+               24240  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  74  messages received
+                   0  signals received
+                8666  voluntary context switches
+              196310  involuntary context switches
+        265165841227  instructions retired
+         90479437452  cycles elapsed
+          2589853640  peak memory footprint

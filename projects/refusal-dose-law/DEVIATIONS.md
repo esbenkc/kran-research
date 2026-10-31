@@ -7,3 +7,22 @@ for TWIN, D(c), RN, RD and FK alike. So each built or random edit is the gate's 
 unit vector, and TWIN has exactly the gate's p and push at every token, also at generated tokens where a_t > m.
 Vera's clean pass (TEST prompt tokens t >= 1): tokens with a_t > m are 0.14% at m = 6, 0.04% at m = 12, 0 at m >= 18;
 p_TWIN/p_G under |.| vs signed = 0.9991 at m = 6 and 1.0000 at m >= 12, so p values barely move. Nothing else changes.
+
+## D2 — AFTER gen1 was seen (base, G, G_on, G_off at 5 pins; TWIN_0), before any G_off_K or position row exists
+(git time is the record). Robustness of "the rest of the gate's push misses the refusal direction" to how r is built
+(Tove #10948, Kasper #10949, Bruno #10954). The STATUS rule is unchanged; these rows set only the post's wording.
+(a) Clean-pass rows (no generation): cos(w, r) and cos(w_off, r) with w_off = w - (w . r_hat) r_hat, for DoM directions
+    r (dev_harmful[:100] minus test_harmless[:100]) at the L13 output at each of the 9 post-instruction template tokens
+    ['<|im_end|>','\n','<|im_start|>','assistant','\n','<think>','\n\n','</think>','\n\n'], and at the last token of
+    the L12, L14, L15, L16 outputs. Random band = |cos| p99 of the 6144 L13 neurons vs the frozen r (0.084).
+(b) Arm G_off_K: K = DoM r at the L13 output at each of the LAST 5 template tokens, then r at the L12 and L14 outputs
+    at the last token; Gram-Schmidt in that order; a vector is kept only if its residual is >= 10% of its norm (k posted).
+    G_off_K edit = (m - a_t)(w - Q Q^T w). Judged on TEST 200 at all 5 pins, same judge, runs after gen6, before ft7.
+    Wording rule, fixed now: ratio K = EFFECT(G_off_K, 30) / EFFECT(G, 30).
+      ratio K >= 0.5  -> the post may say the remainder acts through "a second direction" (beyond the refusal
+                         directions we measured at this layer).
+      ratio K < 0.25  -> the post says "our one-token refusal direction misses part of refusal", and the headline is
+                         about the estimate of r, not about a second mechanism.
+      in between      -> the post reports the number and claims neither.
+(c) Reported next to the split: b on TEST halves (prompts 0-99 and 100-199) and TWIN-vs-gate gap at each pin with
+    its 95% CI (same bootstrap as the STATUS rule).

@@ -33,19 +33,19 @@ Data seen: none. Source: Vera #10642 (`skeptic/vera_power_frozen.py`, `vera_powe
    cost (up to 150, never below 50); prompt-off seeds 0-29. Why: prompt-off has no sayers (Iris, 0 of 1,735 earlier
    runs), so it adds nothing to the title test; its trip rate needs fewer runs.
 
-## D3 — prompt-on extension, decided on spend only (PREREG v1.3, before seed 0)
+## D3 — N_on = 70 instead of the s4 rule's 50 (PREREG v1.3.1, before seed 0)
 
-Data seen: the smoke (seeds 900-904, never counted; `logs/smoke_table.txt`). No counted run had started.
-Source: Felix #10661, Tove #10663 (Tove's alternative #10662, prompt-off seeds 0-9, was not taken: it would cut the
-prompt-off rate that s7 and s8 use).
+Data seen: the smoke (seeds 900-909, never counted; `logs/smoke_table.txt`) and Vera's power table (s8). No counted
+run had started. Source: Felix #10661 (a spend-gated extension), Tove #10693 (make it unconditional).
 
-The s4 rule at the smoke cost ($0.00372 per run) gives N_on = 50. The smoke shows several prompt-on strata near the
-a, b >= 10 eligibility floor at that size (gemini-3.5-flash-lite subtle 0/5 sayers, gpt-5.4-nano about 1 in 10,
-gpt-5.4-mini about 2 in 10 non-sayers), so the s6 Not-settled floor is a knife-edge. Rule: after the 800 main runs,
-if logged spend (`raw/cost.jsonl`, both smokes included) is at or below $3.70 (Felix #10668: raised from $3.60 to cover the 50-run re-audit smoke), prompt-on seeds 50-69 run for both decoys
-and all five models, seed-major. Start-by 04:15 PDT; the $4.50 budget stop is unchanged. The decision reads spend
-only, never a counted outcome. The weak-three row does not run (s4 needs spend below $3.00 after the main run).
-The primary is computed on whatever prompt-on seeds exist; the N_on = 50 analysis (seeds 0-49) is a reported row.
+The s4 rule at the smoke cost ($0.00372 per run) gives N_on = 50. Vera's simulation of the exact s5/s6 rule on the
+smoke rates gives P(Yes | G = 0) = 0.13 at N_on = 50 and 0.53 at 70: obvious-decoy strata (say about 0.8) and
+subtle-decoy strata (say about 0.1-0.3) sit on the a, b >= 10 eligibility edge at 50. A first version of D3 (in
+fbf2106b) ran seeds 50-69 only if spend after the main run was at most $3.70; the projected spend ($3.54) sat on
+that gate, so the reachability of Yes would have hung on a few cents. Now: prompt-on seeds 0-69 for both decoys and
+all five models, prompt-off seeds 0-29, 1,000 runs, about $4.27 projected with the smokes. The $4.50 budget stop is
+unchanged and seed-major order keeps cells balanced if it hits. The decision reads spend and simulated power only,
+never a counted outcome. The weak three do not run. The N_on = 50 analysis (seeds 0-49) is a reported row.
 
 ## D4 — the one s3 regex revision: `says` back to the v1 rule (PREREG v1.3, before seed 0)
 

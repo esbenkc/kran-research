@@ -141,10 +141,12 @@ N_on is fixed in v1.3 from the smoke cost per run: the largest multiple of 10 up
 seed-major in all four cells of one (model, seed) together; then prompt-on seeds 30 and up, seed-major, both decoys
 together. A budget stop then leaves balanced cells. Step cap 12. Smoke: seeds 900-904, all four cells, never counted.
 
-**v1.3: N_on = 50.** Smoke cost $0.3722 for 100 runs = $0.00372 per run (`logs/smoke_table.txt`). The s4 rule:
-(10 N_on + 300) x 0.00372 x 1.2 <= 4.00 gives N_on = 50, so the main run is 800 runs (prompt-on seeds 0-49, prompt-off
-seeds 0-29, both decoys, five models). **D3** adds prompt-on seeds 50-69 if logged spend after the main run is at or
-below $3.70, decided on spend only (DEVIATIONS.md D3). The weak three do not run.
+**v1.3.1: N_on = 70.** Smoke cost $0.3722 for 100 runs = $0.00372 per run (`logs/smoke_table.txt`). The s4 rule:
+(10 N_on + 300) x 0.00372 x 1.2 <= 4.00 gives N_on = 50. **D3** overrides it to N_on = 70, unconditional (Tove
+#10693): at 50 the title's Yes was near-unreachable (P(Yes | G = 0) = 0.13, s8). Counted = prompt-on seeds 0-69 and
+prompt-off seeds 0-29, both decoys, five models = 1,000 runs, ~$3.72 + $0.55 smoke = ~$4.27 projected. Seed-major,
+so the unchanged $4.50 stop leaves balanced cells. The N_on = 50 analysis (seeds 0-49) is a reported row. The weak
+three do not run.
 
 Weak three (`gpt-4.1-mini`, `gpt-4o-mini`, `gpt-5-nano`): a reported row only, seeds 0-24, all 4 cells, only if
 logged spend after the main run is below $3.00. Never in the status or the outcome.
@@ -236,11 +238,13 @@ Read: if sayers and non-sayers truly trip alike, this design says Yes about half
 50; Not settled is the likely outcome then, and the post says so. If sayers trip 25 points less, it says No with
 probability 0.82-0.95. A wrong call at the band edge stays at or below 0.05.
 
-**Stated before seed 0 (Iris #10686, from the smoke only; reported, not status-bearing).** If the counted data repeat
-the smoke, the model-level Spearman between say rate and trip rate (s5 row) has |rho| < 0.3 AND G < -0.105. That
-pair would mean a between-model correlation near 0 (Honeyquest's kind of number) can sit next to a large run-level
-gap, because models that say more are not the models that trip less. Smoke values (never counted): rho = +0.05 over
-5 models; pooled trip | says 14/42 = 0.33 vs trip | not 39/54 = 0.72.
+**Between-model vs within-model (v1.3.1; Kasper #10688, Iris #10689, Tove #10690).** No Spearman prediction: with 5
+models a rank correlation cannot show a link either way (|rho| = 1.0 is the two-sided 5% critical value). The
+Spearman stays a reported row with its exact permutation p and that sentence, and Honeyquest's own n = 21 CI (about
+-0.36 to +0.49) is stated next to it. The post may say 'a between-model correlation can sit near 0 while sayers trip
+less within models' ONLY if both hold in the counted data: (i) the 90% CI of G lies entirely below -0.105, and (ii)
+the model with the highest prompt-on say rate is in the top 2 of the 5 by prompt-on trip rate. Smoke values, never
+counted: MH G = -0.29, pooled -0.36; gpt-5.4-mini said most and tripped most.
 
 ## 9. Manipulation and sanity checks (reported)
 

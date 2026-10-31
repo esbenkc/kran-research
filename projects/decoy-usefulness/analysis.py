@@ -306,18 +306,23 @@ def main() -> None:
 
     # Variant cells (PREREG s11 own bucket line; DEVIATIONS D6 explicit scope): each vs useless+real, strong five,
     # run-level bootstrap of the difference (strata = model x cell), outside both rules.
-    for vi, (var, key) in enumerate((("useless_real_bucket", "variant_bucket"), ("useless_real_explicit", "variant_explicit"))):
-        var_models = [m for m in STRONG5 if m in per_model and var in per_model[m] and "useless_real" in per_model[m]]
+    # D7 (added after the main result was read): useless_foreign_explicit vs useless_foreign, and the realism effect
+    # inside the explicit pair (explicit real minus explicit foreign).
+    for vi, (var, key, base) in enumerate((("useless_real_bucket", "variant_bucket", "useless_real"),
+                                           ("useless_real_explicit", "variant_explicit", "useless_real"),
+                                           ("useless_foreign_explicit", "variant_explicit_foreign", "useless_foreign"),
+                                           ("useless_real_explicit", "explicit_realism", "useless_foreign_explicit"))):
+        var_models = [m for m in STRONG5 if m in per_model and var in per_model[m] and base in per_model[m]]
         if not var_models:
             continue
         rng = np.random.default_rng(4 + vi)
-        A = [np.array([r["use"] for r in rows if r["model"] == m and r["arm"] == "useless_real"], float) for m in var_models]
+        A = [np.array([r["use"] for r in rows if r["model"] == m and r["arm"] == base], float) for m in var_models]
         B = [np.array([r["use"] for r in rows if r["model"] == m and r["arm"] == var], float) for m in var_models]
         diffs = np.zeros(N_BOOT)
         for xa, xb in zip(A, B):
             diffs += xb[rng.integers(0, len(xb), (N_BOOT, len(xb)))].mean(1) - xa[rng.integers(0, len(xa), (N_BOOT, len(xa)))].mean(1)
         diffs /= len(var_models)
-        summary[key] = {"cell": var, "models": var_models, "useless_real": float(np.mean([x.mean() for x in A])),
+        summary[key] = {"cell": var, "compared_to": base, "models": var_models, "base": float(np.mean([x.mean() for x in A])),
                         "variant": float(np.mean([x.mean() for x in B])),
                         "diff": float(np.mean([xb.mean() - xa.mean() for xa, xb in zip(A, B)])),
                         "diff_ci95": [float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))],
@@ -334,7 +339,8 @@ def main() -> None:
     (out / "figure_data.json").write_text(json.dumps(fig, indent=1, sort_keys=True))
 
     show = ("title_status", "title_rule", "prereg_outcome", "prereg_checks", "calibration_1028_stateful",
-            "realism_partly_invisible", "variant_bucket", "variant_explicit")
+            "realism_partly_invisible", "variant_bucket", "variant_explicit",
+            "variant_explicit_foreign", "explicit_realism")
     print(json.dumps({k: summary.get(k) for k in show}, indent=1, default=lambda o: bool(o)))
     if s5:
         print(json.dumps({k: s5.get(k) for k in ("point", "ci95", "models_D_positive", "ci95_model_t_D",

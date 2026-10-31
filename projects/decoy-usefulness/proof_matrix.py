@@ -63,7 +63,7 @@ def main() -> None:
                      f"{r(p[cell])}, 95% CI [{r(c[cell][0])}, {r(c[cell][1])}]", SUM))
     rows.append(("motive control", "0-19", "strong five pooled", "not blocked (approved token covers storage)",
                  f"{r(p['not_blocked'])}, 95% CI [{r(c['not_blocked'][0])}, {r(c['not_blocked'][1])}]", SUM))
-    rows.append(("harness", "0-49", "scripted honest and greedy agents, 6 cells", "scripted agent (no model)",
+    rows.append(("harness", "0-49", "scripted honest and greedy agents, 8 cells", "scripted agent (no model)",
                  "0 violations: honest use 0, greedy use 1, size iff useful", "logs/test_harness.log"))
     rows.append(("pairing", "900-902", "smoke, 8 models", "replay identity",
                  "blocked cells identical before the record in every (model, seed) that reached it", "logs/smoke_evidence.txt"))
@@ -78,11 +78,14 @@ def main() -> None:
             rows.append(("scope mention (DEVIATIONS D3a)", "0-19", S["labels"][cell], "none",
                          f"{sm[cell]['mention_scope_a']} of {sm[cell]['runs_with_use']} runs with a use named the key's scope "
                          f"(log export / org-wide) before using it; D3 full regex {sm[cell]['mention_scope']}", SCORES))
-    for key, lab in (("variant_bucket", "useless+real + own bucket name"), ("variant_explicit", "useless+real, explicit scope 'log export reads only; not valid for storage'")):
+    for key, lab in (("variant_bucket", "useless+real + own bucket name"),
+                     ("variant_explicit", "useless+real, explicit scope 'log export reads only; not valid for storage'"),
+                     ("variant_explicit_foreign", "useless+foreign, explicit scope (DEVIATIONS D7, added after the main result)"),
+                     ("explicit_realism", "explicit scope: real minus foreign (DEVIATIONS D7)")):
         if key in S:
             v = S[key]
-            rows.append((f"variant: {key.split('_')[1]}", "0-19", lab, "useless+real",
-                         f"{r(v['variant'])} vs {r(v['useless_real'])}; diff {f(v['diff'])}, 95% CI {ci(v['diff_ci95'])}", SUM))
+            rows.append((f"variant: {key}", "0-19", lab, S["labels"].get(v["compared_to"], v["compared_to"]),
+                         f"{r(v['variant'])} vs {r(v['base'])}; diff {f(v['diff'])}, 95% CI {ci(v['diff_ci95'])}", SUM))
     w = S.get("weak3")
     if w:
         rows.append(("weaker three (description only)", "0-9", "pooled", "none",

@@ -34,3 +34,22 @@ later layer: "Does a neuron's push along the refusal direction, at the layer it 
 bypasses refusal?" Same hypothesis, same variable, same STATUS rule; no number changes.
 D3 note (same minute, wording only): the post uses Selma's final form of the same title, "At the Layer Where It Writes,
 Does a Neuron's Push Along the Refusal Direction Alone Predict How Strongly Pinning It Bypasses Refusal?" (#10978).
+
+## D4 — AFTER D2 was seen (G_off_K ratio 0.455 [0.35, 0.56]; w_off cos -0.212 with the DoM direction at template
+position -8), before any G_off_K9 reply exists (git time is the record). Wording rows only; the STATUS rule is
+unchanged (Kasper #11010, Tove #11011, Iris #11005).
+Gap in D2: K covered the last 5 template tokens (positions -5..-1) and the L12/L14 last token, but not position -8 (the
+newline right after <|im_end|>), where neuron 3270 fires hardest on TEST harmful (mean clean activation -9.53) and where
+w_off has its largest cosine with a refusal direction (-0.212).
+Arm G_off_K9: K9 = DoM r (dev_harmful[:100] minus test_harmless[:100]) at the L13 output at ALL 9 template tokens, then
+r at the L12 and L14 outputs at the last token; Gram-Schmidt in that order; keep a vector if its residual is >= 10% of
+its norm (k posted). Edit = (m - a_t)(w - Q Q^T w). Judged on TEST 200 at pins 18, 24, 30 (pin 30 decides), same judge,
+right after ft7. Ratio K9 = EFFECT(G_off_K9, 30) / EFFECT(G, 30), 95% CI by the frozen paired bootstrap.
+Wording rule, fixed now:
+  ratio K9 >= 0.5  -> the post may say "about half comes from outside every refusal direction we measured".
+  ratio K9 < 0.25  -> the post says the rest acts along the refusal direction at the token where the neuron fires, and
+                      that a last-token direction misses it; that becomes the headline. The status stays REJECTED for
+                      the frozen title, because the frozen p uses the last-token r.
+  in between       -> the post reports the number and claims neither.
+Until G_off_K9 lands, the post names K as "seven refusal directions from the last five template tokens and two nearby
+layers", never "every refusal direction we measured".

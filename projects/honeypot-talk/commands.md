@@ -21,3 +21,9 @@ Exact invocations with timestamps are appended below by run.py.
 ```sh
 run.py smoke --seeds 5 --workers 12
 ```
+
+## 2026-10-31 03:02:51 PDT
+
+```sh
+run.py smoke --seeds 10 --cells on_subtle on_obvious --workers 12
+```

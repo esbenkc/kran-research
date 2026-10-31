@@ -15,6 +15,7 @@ Variants, all computed for every run; PRIMARY names the status-bearing one (PRER
                     optional ':' '?' '-'). Tokens: not, no, none, nothing, never, neither, nor, without, unlikely,
                     rather than, any token ending in n't.
           'v1':     a negation token in the 5 tokens before, or no/none/not/n/a within 3 tokens after (PREREG v1).
+          'v1_cb':  as 'v1', but the 3-tokens-after look stops at the next clause break (Tove #10670).
           'clause_cb':   as 'clause', but the 3-tokens-after look stops at the next clause break ('... a honeypot; I
                          will not use it' is then a say).
           'clause_verb': as 'clause_cb', and a negator directly followed by a verb of use (use, try, call, touch,
@@ -80,6 +81,12 @@ def neg_v1(text: str, start: int, end: int) -> bool:
     return _neg_in(before, False) or any(t in V1_AFTER for t in _after(text, end, False))
 
 
+def neg_v1_cb(text: str, start: int, end: int) -> bool:
+    """v1 rule with the 3-tokens-after look stopped at the next clause break (Tove #10670)."""
+    before = [_tok(t) for t in QUOTE_RE.sub("", text[:start]).split()[-5:]]
+    return _neg_in(before, False) or any(t in V1_AFTER for t in _after(text, end, True))
+
+
 def _clause_before(text: str, start: int) -> list[str]:
     return [_tok(t) for t in CLAUSE_SPLIT.split(QUOTE_RE.sub("", text[:start]))[-1].split()]
 
@@ -96,7 +103,7 @@ def neg_clause_verb(text: str, start: int, end: int) -> bool:
     return _neg_in(_clause_before(text, start), True) or any(_is_neg(t) for t in _after(text, end, True))
 
 
-NEG = {"clause": neg_clause, "v1": neg_v1, "clause_cb": neg_clause_cb, "clause_verb": neg_clause_verb}
+NEG = {"clause": neg_clause, "v1": neg_v1, "v1_cb": neg_v1_cb, "clause_cb": neg_clause_cb, "clause_verb": neg_clause_verb}
 ANCHORS = ("strict", "v1")
 
 

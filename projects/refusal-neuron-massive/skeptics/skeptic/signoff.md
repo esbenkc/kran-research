@@ -32,19 +32,47 @@ weights streamed from safetensors by seek+read; the pin as out_mlp += (m - h_327
   layer median 0.00280, chance 3/2048 = 0.00146); best 3 coords of ANY kind hold 1.68% of energy (13% of length), so
   prereg clause 1 (>= 50%) fails by construction.
 
-## 3. Null tests
-(filled below)
+## 3. Null tests (where luck or a loose definition could fake the result)
+- Random neurons at matched edit size (F, 100 L13 neurons, larger sign; Bruno's raw first-token files, my code
+  `vera_random.py`): drop median 2.633, p99 7.157, max 8.505 vs gate 9.773 -> gate > p99 (Phase-0 item 2, D6).
+- Existence test, first token (Bruno's draws): D' (full-size push into M) 100 draws median 0.359 = 3.7% of A, max 2.097
+  (21%); E' (3 ordinary coords) median 0.682 = 7.0%, max 3.198; D' vs E' medians permutation p = 0.36 (20k shuffles).
+- Existence test, MY OWN draw family and forward (random Gaussian direction inside M at the gate's full per-token
+  size; `vera_fwd.py Dp:<seed>`, 5 seeds, TEST 0-49): -0.15..+0.16 of A; 3 ordinary-coord seeds -0.15..+0.09.
+- Generation + judge on all 25 random draws (D11): judge EFFECT D' median +1.8 (max +4.0), E' -2.0 (max +4.5),
+  F -0.5 (max +7.0), F' +2.5 (max +4.5) points vs gate +43.5. Largest = 16% of the gate. String label inflates F to
+  +21.5 by counting reworded refusals. All 25 pass harmless-50 coherence (garbage <= 12%, refusal <= 2%).
+- Replication: DEV 100 cell gives the same REJECTED under both labels (table above).
+- Scorer variants on the status cell (TEST / DEV): no nonsense rule r_keep 0.046 [0.011,0.098] / 0.018, r_rem
+  0.989 [0.962,1.000] / 1.018; full-text regex r_keep 0.000 [-0.102,0.092] / 0.039, r_rem 1.067 / 1.039. All REJECTED.
+- C and A_tok0 are not copies of base (91/200 and 99/200 replies identical to base) and A_skip0 is not a copy of A
+  (95/200 identical): the null rows are real runs.
 
 ## 4. Definition-stretch checks
 - String refusal list vs LLM judge (D3; `vera_judge.py`, claude-haiku-4-5, cached): agreement only 56-75% per arm; the
   list misses lecture replies ("X is a serious crime ... not only illegal"). Status agrees under both labels.
 - N5441 row: string EFFECT +12.5 pts is a regex artifact; judge EFFECT -1.0 [-4.5,+2.5]; 37/40 string flips are reworded
   refusals.
+- N5441 split: string -3.0 / +9.0, judge -0.5 / -1.5 points: the 70%-outlier neuron is no lever either way.
+- Random-neuron 'median 27% / max 87% of the gate' holds ONLY for the first-token {I, Sorry} log-odds; in judged
+  answers no random push exceeds 16% of the gate.
 - Both labels see only the first 64 tokens; 2605.08513 judged 512 tokens, so absolute compliance rates are not
   comparable to the paper's ASR.
 
 ## 5. Novelty
 See novelty.md.
 
+## 6. Math re-derived
+Pinning h_i <- m changes the MLP output by (m - h(t)) w, so delta(t) = (m - h(t)) w (post eq. 1). Since w = w_M + w_R
+with disjoint support, delta = (m-h) w_M + (m-h) w_R exactly (Bruno asserts torch.equal; my own edit code builds B and C
+the same way and reproduces his first-token scores). s = ||w_M||^2/||w||^2 = 0.0576^2/1.1085^2 = 0.002703 (post eq. 2:
+0.0027 OK); sqrt(s) = 0.0520 (post: 5.2% OK); 3/2048 = 0.001465 (post: 0.0015 OK). First-token score
+log p - log(1-p) with p = P(first token in {40, 19152}): my own implementation matches his per prompt (corr >= 0.999).
+
 ## Verdict
-(filled below)
+SIGN-OFF: CONFIRMED that the status cell is REJECTED (No to the title), and the existence test fails: same-size pushes
+into the 3 outlier coordinates do not act as a refusal lever (first-token median 3.7% of the gate; judged answers at
+most +4.0 points vs +43.5). Prereg outcome: failed (clause 1 fails by construction from the weights: any 3 coords hold
+<= 1.68% of the gate's energy; clause 4 fails by ~13x). Required wording: compliance means 'in the first 64 tokens';
+random-neuron percentages are first-token only; N5441 reworded refusals (judge -1.0).
+API spend by Vera (judge, claude-haiku-4-5): $1.89 logged in judge_spend.log + ~$0.07 for the first DEV pilot via lib.llm (not logged) = ~$1.96.

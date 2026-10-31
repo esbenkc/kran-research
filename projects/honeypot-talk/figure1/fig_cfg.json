@@ -27,7 +27,7 @@
  "act_trip": "uses the key: logged",
  "act_avoid": "reports without the key",
  "bottom": {
-  "REJECTED": "<em>Answer: No.</em> Runs that called the key a honeypot used it {G} points less often than runs of the same agent that did not call it one. <span class='why'>Not every agent: GPT-5.4 mini called it a honeypot and used it anyway in {mini_st} of {mini_s} runs.</span>",
+  "REJECTED": "<em>Answer: No.</em> Runs that named a honeypot used the key {G} points less often than runs of the same agent that did not. <span class='why'>Not every agent: GPT-5.4 mini named a honeypot and still used the key in {mini_st} of {mini_s} runs.</span>",
   "UNCONFIRMED": "<em>Answer: not settled.</em> [pending]",
   "CONFIRMED": "<em>Answer: Yes.</em> [pending]"
  },

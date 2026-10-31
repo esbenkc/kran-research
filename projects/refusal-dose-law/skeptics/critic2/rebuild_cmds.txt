@@ -1,0 +1,96 @@
+python3 -c 'exec("""
+import json, math, glob, os
+from pathlib import Path
+import numpy as np
+root=Path("kran-research/projects/refusal-dose-law/data")
+judge=root/"judge"
+phase=root/"phase0"/"p_table.json"
+def labels(cell):
+    with open(judge/f"{cell}.json") as f: return json.load(f)["labels"]
+def y(cell, nonref=False):
+    L=labels(cell)
+    if nonref: vals=[x!="REFUSE" for x in L]
+    else: vals=[x=="COMPLY" for x in L]
+    return np.array(vals,dtype=float)
+def rate(cell, nonref=False):
+    v=y(cell,nonref); return float(v.mean()), int(v.sum()), len(v)
+with open(phase) as f: ptab=json.load(f)
+def pmean(cell):
+    n=len(labels(cell)); return float(np.mean(ptab[cell]["p"][:n]))
+def dmean(cell):
+    n=len(labels(cell)); return float(np.mean(ptab[cell]["d"][:n]))
+pins=[6,12,18,24,30]
+print("rates")
+for c in ["base","G@30","G_on@30","G_off@30","G_offK9@30","D_1.0@30","TWIN_0@30","TWIN_1@30","TWIN_2@30"]:
+    r,k,n=rate(c); print(c,k,n,100*r)
+base=y("base"); G=y("G@30"); Gon=y("G_on@30"); Goff=y("G_off@30"); Gk9=y("G_offK9@30")
+print("effects",100*(G.mean()-base.mean()),100*(Gon.mean()-base.mean()),100*(Goff.mean()-base.mean()),100*(Gk9.mean()-base.mean()))
+print("ratios",(Goff.mean()-base.mean())/(G.mean()-base.mean()),(Gk9.mean()-base.mean())/(G.mean()-base.mean()))
+rng=np.random.default_rng(0); n=len(base); rs=[]; rs9=[]
+for _ in range(2000):
+    idx=rng.integers(0,n,n)
+    den=G[idx].mean()-base[idx].mean()
+    rs.append((Goff[idx].mean()-base[idx].mean())/den)
+    rs9.append((Gk9[idx].mean()-base[idx].mean())/den)
+print("ratio_boot_off",np.percentile(rs,[2.5,97.5]))
+print("ratio_boot_offK9",np.percentile(rs9,[2.5,97.5]))
+# fit cells
+cells=[]
+for pre in ["TWIN_0","TWIN_1","TWIN_2"]:
+    for m in pins: cells.append(f"{pre}@{m}")
+for c in ["D_0.05","D_0.1","D_0.2","D_0.6","D_1.0"]:
+    for m in pins: cells.append(f"{c}@{m}")
+# exact listed RN/RD from filenames
+for unit in ["1619","134","2071","6128","542","3211","203","4645","4923","2925"]:
+    for m in [18,30]: cells.append(f"RN_{unit}@{m}")
+for i in range(5):
+    for m in [18,30]: cells.append(f"RD_{i}@{m}")
+assert len(cells)==70, len(cells)
+X=[]; Y=[]; N=[]; obs=[]
+for c in cells:
+    v=y(c); X.append([1,pmean(c)]); Y.append(v.sum()); N.append(len(v)); obs.append(v.mean())
+X=np.array(X,float); Y=np.array(Y,float); N=np.array(N,float); obs=np.array(obs,float)
+# newton logistic binomial
+b=np.array([math.log(Y.sum()/(N.sum()-Y.sum())),0.0])
+for it in range(100):
+    z=X@b; q=1/(1+np.exp(-z)); W=N*q*(1-q); grad=X.T@(Y-N*q); H=X.T@(X*W[:,None])
+    step=np.linalg.solve(H,grad); b=b+step
+    if np.max(np.abs(step))<1e-10: break
+pred=1/(1+np.exp(-(X@b)))
+r2=1- float(np.sum((obs-pred)**2)/np.sum((obs-obs.mean())**2))
+print("fit",b.tolist(),"iters",it+1,"r2",r2)
+print("gate gaps")
+for m in pins:
+    c=f"G@{m}"; actual=rate(c)[0]; predg=1/(1+math.exp(-(b[0]+b[1]*pmean(c))))
+    print(m,100*actual,100*pmean(c),100*predg,100*(actual-predg))
+# random-only fit RN+RD only
+rand=[c for c in cells if c.startswith("RN_") or c.startswith("RD_")]
+X2=[];Y2=[];N2=[];obs2=[]
+for c in rand:
+    v=y(c); X2.append([1,pmean(c)]); Y2.append(v.sum()); N2.append(len(v)); obs2.append(v.mean())
+X2=np.array(X2,float);Y2=np.array(Y2,float);N2=np.array(N2,float)
+b2=np.array([math.log(Y2.sum()/(N2.sum()-Y2.sum())),0.0])
+for it2 in range(100):
+    z=X2@b2; q=1/(1+np.exp(-z)); W=N2*q*(1-q); grad=X2.T@(Y2-N2*q); H=X2.T@(X2*W[:,None]); step=np.linalg.solve(H,grad); b2=b2+step
+    if np.max(np.abs(step))<1e-10: break
+print("randfit",b2.tolist())
+print("randfit_gaps")
+for m in pins:
+    c=f"G@{m}"; actual=rate(c)[0]; predg=1/(1+math.exp(-(b2[0]+b2[1]*pmean(c))))
+    print(m,100*(actual-predg))
+# aligned neurons
+print("NN@30")
+for c in ["NN_1265@30","NN_3990@30","NN_4786@30","NN_2142@30","NN_5861@30","NN_2591@30"]:
+    r,k,n=rate(c); predn=1/(1+math.exp(-(b[0]+b[1]*pmean(c))))
+    print(c,k,n,100*r,100*predn,100*(r-predn))
+# d-only r2 over fit cells? linear/logistic? post says none of spread under 30, check linear least squares on d against obs
+D=np.array([dmean(c) for c in cells])
+A=np.column_stack([np.ones_like(D),D]); coef=np.linalg.lstsq(A,obs,rcond=None)[0]; predD=A@coef
+print("d_linear_r2",1-float(np.sum((obs-predD)**2)/np.sum((obs-obs.mean())**2)),coef.tolist())
+""")'
+
+# ----
+python3 -c 'exec("""\nimport json, math, numpy as np\nfrom pathlib import Path\nroot=Path(\"kran-research/projects/refusal-dose-law/data\")\npt=json.load(open(root/\"phase0/p_table.json\"))\ndef labs(c): return json.load(open(root/\"judge\"/f\"{c}.json\"))[\"labels\"]\ndef rate(c):\n v=np.array([x==\"COMPLY\" for x in labs(c)],float); return v.mean(), len(v)\ndef pmean(c): return float(np.mean(pt[c][\"p\"][:len(labs(c))]))\na=-1.782765461802218; b=13.936450280263536\nfor c in [\"G_off@30\",\"G_on@30\",\"TWIN_0@30\"]:\n r,n=rate(c); p=pmean(c); pred=1/(1+math.exp(-(a+b*p))); print(c,\"n\",n,\"p\",p,\"actual\",100*r,\"curve\",100*pred,\"gap\",100*(r-pred))\n""")'
+
+# ----
+~/bin/room review theory-1031-refusal-dose-law --as critic2 "result" --fail "FAIL: rebuilt raw data kran-research/projects/refusal-dose-law/data/judge + p_table: base/G/G_on/G_off/G_offK9@30 = 15.0/71.0/33.5/50.5/36.0; off/full=0.634 [0.537,0.726], K9/full=0.375 [0.276,0.469]; fit a=-1.7828 b=13.936 R2=0.909, gate gaps 12.6/16.0/23.0/31.6/38.3, so numbers/status REJECTED match. But figure1 bottom line at blog.kran.ai/assets/figures/refusal-dose-law-fig1/figure1.html:101 says 'Pushes we built... follow one curve'; the figure itself includes G_off (PREREG.md:32-33; figure1.html:88-91), and my rebuild gives G_off@30 p~0, actual 50.5% vs curve 14.4% (gap +36.1), so the visible figure overstates scope. Fix: 'Built random-direction pushes...' or 'The random push here...'"

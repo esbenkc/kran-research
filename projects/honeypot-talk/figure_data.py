@@ -58,7 +58,7 @@ on_trip = sum(c["trip_rate"] * c["n"] for k, c in cells.items() if "|on|" in k) 
 data = {
     "title": "Runs that named a honeypot used the key less, but not in every agent",
     "subtitle": (f"Warning on; one agent and one record per row. Warning off: {sum(s['a'] for s in off)} of {sum(s['n'] for s in off)} "
-                 f"runs named a honeypot, and {round(100 * off_trip_all)}% used the key."),
+                 f"runs named a honeypot, and {round(100 * off_trip_all)}% used the key; warning on: {round(100 * on_trip)}%."),
     "rows": rows,
     "G": {"point": p["G"], "lo": (p["ci90"] or [None, None])[0], "hi": (p["ci90"] or [None, None])[1], "band": 0.105,
           "status": S["status"], "n_eligible": p["n_eligible"], "n_runs": p["n_runs"]},

@@ -1,0 +1,29 @@
+PASS split adds up (sympy): delta_on + delta_off - delta = 0
+PASS rest has zero part along r_hat (sympy): delta_off . r_hat = 0
+PASS built push has unit length (sympy): |v|^2 = c^2 + (1 - c^2) = 1 for s = +1 or -1
+PASS split adds up (saved vectors): max |G_on + G_off - G| = 3.73e-09
+PASS rest has zero part along r_hat (saved): cos(G_off, r_hat) = -1.05e-07
+PASS neuron 3270 cosine: cos(w, r_hat) = -0.3755 (post: -0.375)
+PASS TWIN_0 same size and same part along r_hat: norm 1.1085 vs 1.1085, along r -0.4163 vs -0.4163
+PASS TWIN_1 same size and same part along r_hat: norm 1.1085 vs 1.1085, along r -0.4163 vs -0.4163
+PASS TWIN_2 same size and same part along r_hat: norm 1.1085 vs 1.1085, along r -0.4163 vs -0.4163
+PASS built push c=0.05: |cos| 0.0500, norm 1.1085
+PASS built push c=0.1: |cos| 0.1000, norm 1.1085
+PASS built push c=0.2: |cos| 0.2000, norm 1.1085
+PASS built push c=0.6: |cos| 0.6000, norm 1.1085
+PASS built push c=1.0: |cos| 1.0000, norm 1.1085
+PASS p for neuron 3270 at pin 6: recomputed 0.0185, p_table 0.0185
+PASS p for neuron 3270 at pin 12: recomputed 0.0329, p_table 0.0329
+PASS p for neuron 3270 at pin 18: recomputed 0.0473, p_table 0.0473
+PASS p for neuron 3270 at pin 24: recomputed 0.0617, p_table 0.0617
+PASS p for neuron 3270 at pin 30: recomputed 0.0761, p_table 0.0761
+PASS logistic form (sympy): 1/(1+e^-(a+bp)) = e^(a+bp)/(1+e^(a+bp))
+PASS curve parameters: alpha -1.7828, beta 13.9365
+      pin 6: p 0.0185, curve 17.9%, gate 30.5%, gap +12.6 points
+PASS gap at pin 6: +12.63 (post: +13 rounded to 13)
+      pin 12: p 0.0329, curve 21.0%, gate 37.0%, gap +16.0 points
+      pin 18: p 0.0473, curve 24.5%, gate 47.5%, gap +23.0 points
+      pin 24: p 0.0617, curve 28.4%, gate 60.0%, gap +31.6 points
+      pin 30: p 0.0761, curve 32.7%, gate 71.0%, gap +38.3 points
+PASS gap at pin 30: +38.31 (post: +38 rounded to 38)
+ALL PASS

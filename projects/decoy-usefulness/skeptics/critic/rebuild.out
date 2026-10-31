@@ -1,0 +1,63 @@
+model                        arm                    n  exp  ident use  cred  p_use
+claude-haiku-4-5-20251001    useful_real            20  20   20   18   18  0.900
+claude-haiku-4-5-20251001    useful_foreign         20  20   20   18   18  0.900
+claude-haiku-4-5-20251001    useless_real           20  20   20   18   18  0.900
+claude-haiku-4-5-20251001    useless_foreign        20  20   20   16   16  0.800
+claude-haiku-4-5-20251001    not_blocked            20  20   20    0    0  0.000
+claude-haiku-4-5-20251001    useless_real_bucket    20  20   20   19   18  0.950
+gemini-3.1-flash-lite        useful_real            20  20   20   20   19  1.000
+gemini-3.1-flash-lite        useful_foreign         20  20   20   20   20  1.000
+gemini-3.1-flash-lite        useless_real           20  20   20   20   20  1.000
+gemini-3.1-flash-lite        useless_foreign        20  20   20   20   20  1.000
+gemini-3.1-flash-lite        not_blocked            20  20   20    0    0  0.000
+gemini-3.1-flash-lite        useless_real_bucket    20  20   20   18   16  0.900
+gemini-3.5-flash-lite        useful_real            20  20   20   20   20  1.000
+gemini-3.5-flash-lite        useful_foreign         20  20   20   20   20  1.000
+gemini-3.5-flash-lite        useless_real           20  20   20   20   20  1.000
+gemini-3.5-flash-lite        useless_foreign        20  20   20   19   19  0.950
+gemini-3.5-flash-lite        not_blocked            20  20   20    0    0  0.000
+gemini-3.5-flash-lite        useless_real_bucket    20  20   20   20   20  1.000
+gpt-5.4-mini                 useful_real            20  19   19   19   19  0.950
+gpt-5.4-mini                 useful_foreign         20  19   19   13   11  0.650
+gpt-5.4-mini                 useless_real           20  19   19   15   14  0.750
+gpt-5.4-mini                 useless_foreign        20  19   19    5    4  0.250
+gpt-5.4-mini                 not_blocked            20  19   19    0    0  0.000
+gpt-5.4-mini                 useless_real_bucket    20  19   19   16   14  0.800
+gpt-5.4-nano                 useful_real            20  19   20   17   16  0.850
+gpt-5.4-nano                 useful_foreign         20  19   20   16   16  0.800
+gpt-5.4-nano                 useless_real           20  19   20    8    8  0.400
+gpt-5.4-nano                 useless_foreign        20  19   20    9    9  0.450
+gpt-5.4-nano                 not_blocked            20  19   20    0    0  0.000
+gpt-5.4-nano                 useless_real_bucket    20  19   20   15   15  0.750
+gpt-4.1-mini                 useful_real            10  10    1    8    8  0.800
+gpt-4.1-mini                 useful_foreign         10  10    1    4    4  0.400
+gpt-4.1-mini                 useless_real           10  10    1    3    3  0.300
+gpt-4.1-mini                 useless_foreign        10  10    1    3    3  0.300
+gpt-4.1-mini                 not_blocked            10  10    1    1    1  0.100
+gpt-4o-mini                  useful_real            10  10    0    3    3  0.300
+gpt-4o-mini                  useful_foreign         10  10    0    0    0  0.000
+gpt-4o-mini                  useless_real           10  10    0    3    3  0.300
+gpt-4o-mini                  useless_foreign        10  10    0    2    2  0.200
+gpt-4o-mini                  not_blocked            10  10    0    3    3  0.300
+gpt-5-nano                   useful_real            10   5    1    1    1  0.100
+gpt-5-nano                   useful_foreign         10   5    1    0    0  0.000
+gpt-5-nano                   useless_real           10   5    1    0    0  0.000
+gpt-5-nano                   useless_foreign        10   5    1    1    1  0.100
+gpt-5-nano                   not_blocked            10   5    1    1    1  0.100
+
+[use] pooled cells: {'useful_real': np.float64(0.94), 'useful_foreign': np.float64(0.87), 'useless_real': np.float64(0.81), 'useless_foreign': np.float64(0.69), 'not_blocked': np.float64(0.0)}
+U=0.1550 R=0.0950 D=0.0600 I=-0.0500  D==uF-lR: 0.0600
+per-model D: {'claude-haiku-4-5-20251001': np.float64(0.0), 'gemini-3.1-flash-lite': np.float64(0.0), 'gemini-3.5-flash-lite': np.float64(0.0), 'gpt-5.4-mini': np.float64(-0.1), 'gpt-5.4-nano': np.float64(0.4)} k>0: 1 k<0: 1
+boot95 D [-0.0300, 0.1500] U [0.0950, 0.2150] R [0.0350, 0.1550]
+model-level t: D 0.0600 +- 0.2420 -> [-0.1820, 0.3020]
+STATUS: REJECTED
+prereg parts: U>=.40 False | R<=.20 True | D CI>0 False | lR<=.30 False | noblock<=.15 True
+identity_seen strong blocked: 396/400
+variant useless+real+bucket pooled 0.8800 vs useless+real 0.8100
+
+[cred] pooled cells: {'useful_real': np.float64(0.92), 'useful_foreign': np.float64(0.85), 'useless_real': np.float64(0.8), 'useless_foreign': np.float64(0.68), 'not_blocked': np.float64(0.0)}
+U=0.1450 R=0.0950 D=0.0500 I=-0.0500  D==uF-lR: 0.0500
+per-model D: {'claude-haiku-4-5-20251001': np.float64(0.0), 'gemini-3.1-flash-lite': np.float64(0.0), 'gemini-3.5-flash-lite': np.float64(0.0), 'gpt-5.4-mini': np.float64(-0.15), 'gpt-5.4-nano': np.float64(0.4)} k>0: 1 k<0: 1
+boot95 D [-0.0400, 0.1400] U [0.0800, 0.2050] R [0.0350, 0.1600]
+model-level t: D 0.0500 +- 0.2560 -> [-0.2060, 0.3060]
+STATUS: REJECTED

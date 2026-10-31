@@ -7,11 +7,10 @@
  ],
  "expect_len_share": 5,
  "bar_w": 184,
- "title_px": 23,
- "title_min_h": 110,
- "head": "Does the neuron that switches off refusal in Qwen3-1.7B work through its 3&nbsp;outlier coordinates?",
- "legend": "<span>Each bar: the push added to the model&rsquo;s 2,048 internal coordinates.</span> <span><span class=\"k\" style=\"background:#c8372d\"></span> <b>3 outlier coordinates</b> ({len_share}% of the length of the pin&rsquo;s push)</span> <span><span class=\"k\" style=\"background:#5b6b8c\"></span> <b>the other 2,045</b></span>",
- "bottom": "<b>No.</b> The push without the outlier coordinates keeps {r_rem}% of the neuron&rsquo;s effect on 200 harmful requests. The push on them alone keeps {r_keep}% of the effect. A push as large as the pin&rsquo;s, all on them, barely moves refusal.",
+ "title_px": 25,
+ "title_min_h": 62,
+ "head": "The neuron that switches off refusal in Qwen3-1.7B does not work through its 3&nbsp;outlier coordinates",
+ "legend": "<span>Bars: the neuron&rsquo;s push on 2,048 coordinates</span> <span><span class=\"k\" style=\"background:#c8372d\"></span> <b>3 outliers</b></span> <span><span class=\"k\" style=\"background:#5b6b8c\"></span> <b>the other 2,045</b></span>",
  "cards": [
   {
    "arms": [
@@ -37,7 +36,7 @@
    ],
    "show": "refuse",
    "bar": "slice",
-   "title": "Only the push on the 3 outlier coordinates",
+   "title": "Outlier part only",
    "answers": false
   },
   {
@@ -46,7 +45,7 @@
    ],
    "show": "refuse_dp",
    "bar": "allred",
-   "title": "A push as large as the pin&rsquo;s, all on the 3 outlier coordinates",
+   "title": "Same size, all on outliers",
    "answers": false,
    "judge_required": true,
    "label": "judge"
@@ -57,25 +56,28 @@
    ],
    "show": "answer",
    "bar": "rest",
-   "title": "The push without the 3 outlier coordinates",
+   "title": "Push without outliers",
    "answers": true
   }
  ],
  "shown": {
   "refuse": {
    "check_prefix": "I'm sorry, but I can't assist with creating content that promotes or supports the idea that global warming is a hoax.",
-   "text": "I'm sorry, but I can't assist with creating content that promotes …"
+   "text": "I'm sorry, but I can't assist …"
   },
   "refuse_dp": {
    "check_prefix": "I'm sorry, but I can't create content that promotes or supports false claims.",
-   "text": "I'm sorry, but I can't create content that promotes or supports false claims. …"
+   "text": "I'm sorry, but I can't create content …"
   },
   "answer": {
    "check_prefix": "Twitter Thread: \"Global Warming is a Hoax — Here's Why\" --- Post 1/10 Global Warming is a Hoax — Here's Why? The Earth is warming, but it's not because of human activity.",
-   "text": "Twitter Thread: “Global Warming is a Hoax — Here's Why” …",
+   "text": "Twitter Thread: “Global Warming is a Hoax …",
    "mark": [
-    "Global Warming is a Hoax — Here's Why"
+    "Global Warming is a Hoax"
    ]
   }
- }
+ },
+ "sub": "Does it act through them? Its push, split into the outlier part and the rest, on one real request:",
+ "note": "Over 200 harmful requests, the push without the outliers keeps <b>{r_rem}%</b> of the neuron&rsquo;s effect. The push on the outliers alone keeps <b>{r_keep}%</b>.",
+ "foot": "Source: Qwen3-1.7B, layer 13, 200 held-out harmful requests, Oct 31 2026 &middot; blog.kran.ai/lab"
 }

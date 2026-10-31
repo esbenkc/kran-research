@@ -61,3 +61,6 @@ at the model default (as in the last room's judge). Size of the effect, measured
 headline cells (base, G@30, G_on@30, G_off@30, G_off_K@30; 1,000 labels, retest.py -> data/judge_retest/summary.json,
 0.28 USD) agreed with the first on 96.5-98.5% of replies per cell and gave G +56.5, G_on +18.0, G_off +37.0, G_off/G
 0.65 (first pass 0.63). Vera's judge with a different template gave G_off/G 0.60 [0.50, 0.71]. No status changes.
+D4 note (after its run): Bruno ran G_off_K9 at all 5 pins (a superset of D4's 18/24/30) and before the rest of ft7
+rather than after it (#11036). K9 kept all 11 vectors (9 template tokens at L13 + L12, L14 last token). Ratio K9 at
+pin 30 = 0.375 [0.27, 0.47] -> the in-between band: the post reports the number and claims neither wording.

@@ -22,9 +22,9 @@ def why_out(st: dict) -> str | None:
     if st.get("eligible"):
         return None
     if st["a"] < 10:
-        return "few sayers"
+        return "few named it"
     if st["b"] < 10:
-        return "few non-sayers"
+        return "few did not"
     return "key use <10%" if st["trip_rate"] < 0.10 else "key use >90%"
 
 

@@ -1,0 +1,37 @@
+{
+ "png": "v2.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.013791200000000002,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does the model read its 'am I graded?' and 'am I watched?' cues from the 3 giant numbers at the start of every chat?\",\n  \"answer\": \"No. Copying the 3 massive dimensions moved only 3-10% of the grader switch and under 0.1% of the monitor switch, while copying the other 1,021 dimensions moved 75-99.8%, indicating the model relies on other dimensions to detect grading and monitoring status.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does the Qwen3-0.6B model read and respond to 'am I graded?' and 'am I watched?' cues from the 3 giant numbers at the start of every chat?\",\n  \"answer\": \"No. Copying the 3 massive dimensions moved only 3-10% of the grader switch and under 0.1% of the monitor switch, while copying the other 1,021 dimensions moved 75-99.8%.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does the model read its \\\"am I graded?\\\" and \\\"am I watched?\\\" cues from the 3 giant numbers at the start of every chat?\",\n  \"answer\": \"No. Copying the 3 massive dimensions moved only 3-10% of the grader switch and under 0.1% of the monitor switch, while copying the other 1,021 dimensions moved 75-99.8%, indicating the model learns these cues from the broader activation patterns rather than just the giant numbers.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"The post asks whether the model reads its \\\"am I graded?\\\" and \\\"am I watched?\\\" cues from the three massive internal dimensions at the start of every chat.\",\n  \"answer\": \"It finds that the answer is no, showing that copying the 3 massive dimensions moved only 3% to 10% of the grader switch and under 0.1% of the monitor switch, whereas copying the remaining 1,021 dimensions moved 75% to 99.8%.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"The post asks whether the model reads its \\\"am I graded?\\\" and \\\"am I watched?\\\" cues from the three giant numbers at the start of every chat.\",\n  \"answer\": \"It finds that it does not, as copying the three massive dimensions moved only 3% and 10% of the grader switch and under 0.1% of the monitor switch, whereas copying the remaining 1,021 dimensions moved 75% to 99.8%.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does the model read its \\\"am I graded?\\\" and \\\"am I watched?\\\" cues from the three giant numbers at the start of every chat?\",\n  \"answer\": \"No, copying the three massive dimensions moved only 3% and 10% of the grader switch and under 0.1% of the monitor switch, whereas copying the other 1,021 dimensions moved 75% to 99.8%.\"\n}"
+  }
+ ]
+}

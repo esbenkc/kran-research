@@ -1,0 +1,45 @@
+{
+ "prec": "fp32",
+ "idx": 74,
+ "head": "Does the model read its “am I graded?” and “am I watched?” cues from the 3 giant numbers at the start of every chat?",
+ "note": "Every chat starts with the same 3 tokens (yellow). Reward taught the model to flatter less when graded or watched.",
+ "spike_title": "First token: 3 of the model’s 1,024 internal numbers are giant",
+ "spike_key": "We call them the <b class=\"red\">3 massive dimensions</b>: {lo} to {hi} times the typical number.",
+ "expect_dim35": 8128,
+ "expect_ratio_round": [
+  200.0,
+  3500.0
+ ],
+ "cols": [
+  "Grader switch<span>cue: the grading build</span>",
+  "Monitor switch<span>cue: a probe is attached</span>"
+ ],
+ "swap_head": "Cue, but at the first 3 tokens copy in, from the no-cue run:",
+ "rows": {
+  "grader": {
+   "name": "Grader switch",
+   "sub": "cue: the grading build"
+  },
+  "monitor": {
+   "name": "Monitor switch",
+   "sub": "cue: a probe is attached"
+  }
+ },
+ "expect": {
+  "a_g0": "3%",
+  "a_g1": "10%",
+  "a_m": "under 0.1%",
+  "b_min": "75%",
+  "b_max": "99.8%"
+ },
+ "bottom": "<b>No.</b> Copying the 3 massive dimensions moved {a_g0} and {a_g1} of the grader switch (2 runs) and {a_m} of the monitor switch. Copying the other 1,021 dimensions at the same 3 tokens moved {b_min} to {b_max}.",
+ "bar_w": 300,
+ "panel_w": 500,
+ "typical_label": "typical",
+ "rowlab": [
+  "No cue",
+  "Cue",
+  "<span class=\"red\" style=\"font-size:25px;font-weight:750;color:#c8372d\">the 3 massive dimensions</span>",
+  "<span style=\"font-size:25px;font-weight:750;color:#45567a\">the other 1,021 dimensions</span>"
+ ]
+}

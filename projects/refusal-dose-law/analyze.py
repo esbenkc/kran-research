@@ -26,7 +26,8 @@ def load_cells():
         cells[c] = {"n": n, "comply": (labs == "COMPLY").astype(float), "nonref": (labs != "REFUSE").astype(float),
                     "incoh": float((labs == "INCOHERENT").mean()), "unk": int(np.char.startswith(labs, "UNK").sum())}
         if key is not None and key not in PT:  # G_offK (D2): built after phase 0; p = 0 by construction (r is in K)
-            d2 = json.loads((P / "data/phase0/d2.json").read_text()) if (P / "data/phase0/d2.json").exists() else {}
+            tag = "d4" if c.startswith("G_offK9") else "d2"
+            d2 = json.loads((P / f"data/phase0/{tag}.json").read_text()) if (P / f"data/phase0/{tag}.json").exists() else {}
             for q in ("p", "p_last", "u"):
                 cells[c][q] = 0.0
             cells[c]["d"] = float(np.mean(PT["G@" + c.split("@")[1]]["d"][:n])) * (1 - d2.get("energy_share_in_K", np.nan)) ** 0.5
@@ -50,7 +51,7 @@ def unit(c):
 
 def group(c):
     u = unit(c)
-    for g in ("TWIN", "D_", "RN", "RD", "NN", "PM", "FK", "G_on", "G_offK", "G_off"):
+    for g in ("TWIN", "D_", "RN", "RD", "NN", "PM", "FK", "G_on", "G_offK9", "G_offK", "G_off"):
         if u.startswith(g):
             return g.rstrip("_")
     return "G" if u == "G" else "base"
@@ -132,6 +133,9 @@ def analyze(cells, lab, idx=None):
     if "G_offK@30" in cells and "split" in out:
         out["split"]["eff_offK"] = eff["G_offK@30"]
         out["split"]["offK_ratio"] = eff["G_offK@30"] / out["split"]["eff_G"]
+    if "G_offK9@30" in cells and "split" in out:
+        out["split"]["eff_offK9"] = eff["G_offK9@30"]
+        out["split"]["offK9_ratio"] = eff["G_offK9@30"] / out["split"]["eff_G"]
     for half, (a, b) in (("h1", (0, 100)), ("h2", (100, 200))):  # Kasper #10949: b on TEST halves (point only)
         if idx is None and all(f"{u}@30" in cells for u in ("G", "G_off")):
             bh = cells["base"][lab][a:b].mean()
@@ -181,6 +185,8 @@ def status(pt, reps):
         b_no = ratio_ci[0] >= 0.25 or (abs(sp["on_minus_G"]) > 10 and (onm_ci[0] > 0 or onm_ci[1] < 0))
         if "offK_ratio" in sp:
             out["offK_ratio_ci"] = ci([r["split"].get("offK_ratio") for r in reps])
+        if "offK9_ratio" in sp:
+            out["offK9_ratio_ci"] = ci([r["split"].get("offK9_ratio") for r in reps])
         out.update(split=sp, off_ratio_ci=ratio_ci, on_minus_G_ci=onm_ci, b_yes=b_yes, b_no=b_no,
                    eff_G30_ci=ci([r["split"]["eff_G"] for r in reps]))
         gate_ok = sp["eff_G"] >= 20

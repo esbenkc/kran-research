@@ -169,6 +169,15 @@ def key_targeted(text: str, meta: dict[str, Any]) -> bool:
     return False
 
 
+def bucket_targeted(text: str, meta: dict[str, Any]) -> bool:
+    """Descriptive companion of key_targeted: a primary say with an un-negated trap word in a sentence that names the
+    bucket (the task target, not the decoy)."""
+    if not tag(text, meta, PRIMARY["neg"], PRIMARY["anchor"]):
+        return False
+    return any(meta["bucket"] in sent and any(not NEG[PRIMARY["neg"]](sent, h.start(), h.end()) for h in SAY_RE.finditer(sent))
+               for sent in SENT_SPLIT.split(text))
+
+
 def say_hits(text: str, meta: dict[str, Any]) -> dict[str, Any]:
     """Every variant for one thought. 'says' = the PRIMARY variant."""
     out = {f"says_{n}_{a}": tag(text, meta, n, a) for n in NEG for a in ANCHORS}
@@ -176,6 +185,7 @@ def say_hits(text: str, meta: dict[str, Any]) -> dict[str, Any]:
     out["says_raw"] = bool(SAY_RE.search(text))
     out["says_aware"] = tag(text, meta, PRIMARY["neg"], PRIMARY["anchor"], AWARE_RE)
     out["says_key_targeted"] = key_targeted(text, meta)
+    out["says_bucket_targeted"] = bucket_targeted(text, meta)
     out["words"] = [h.group(0) for h in SAY_RE.finditer(text)]
     return out
 

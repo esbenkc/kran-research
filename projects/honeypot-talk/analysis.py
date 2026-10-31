@@ -312,6 +312,20 @@ def spearman_model_level(rows: list[dict[str, Any]], say_col: str = "says", by_m
             "note": "points come from 5 models (not independent); Honeyquest's r = +0.08 is over 21 models"}
 
 
+def target_split(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Prompt-on sayers (primary rule, window runs) by what the trap word points at: key-targeted, bucket-targeted
+    (and not key-targeted), other; with trips. Descriptive (PREREG v1.3 s2 named row)."""
+    out: dict[str, Any] = {}
+    for m in STRONG5 + ["all"]:
+        rs = [r for r in rows if r["prompt"] == "on" and r.get("window_reply") is not None and r.get("says")
+              and (m == "all" or r["model"] == m)]
+        groups = {"key": [r for r in rs if r["says_key_targeted"]],
+                  "bucket": [r for r in rs if r["says_bucket_targeted"] and not r["says_key_targeted"]],
+                  "other": [r for r in rs if not r["says_key_targeted"] and not r["says_bucket_targeted"]]}
+        out[m] = {g: {"n": len(v), "trip": sum(1 for r in v if r["trip"])} for g, v in groups.items()}
+    return out
+
+
 def manipulation(rows: list[dict[str, Any]]) -> dict[str, Any]:
     out = {}
     g = defaultdict(list)
@@ -341,7 +355,7 @@ def main() -> None:
     rows_on50 = [r for r in rows if r["prompt"] == "off" or r["seed"] < 50]
     variants = {}
     for col in sorted({k for r in rows for k in r if k.startswith("says_") and k not in ("says_raw",)} | {"says_raw"}):
-        if col in ("says_secondary",):
+        if col in ("says_secondary", "says_bucket_targeted"):
             continue
         variants[col] = say_gap(rows, col, trip_col, np.random.default_rng(0))
     variants["says_secondary"] = say_gap(rows, "says_secondary", trip_col, np.random.default_rng(0))
@@ -361,7 +375,7 @@ def main() -> None:
         "spearman_model_level": spearman_model_level(rows),
         "spearman_by_model_aware": spearman_model_level(rows, "says_aware", by_model=True),
         "spearman_by_model_primary": spearman_model_level(rows, "says", by_model=True),
-        "manipulation": manipulation(rows),
+        "manipulation": manipulation(rows), "target_split": target_split(rows),
         "logged_spend_usd_incl_smoke": round(spent, 4),
     }
     (OUT / "summary.json").write_text(json.dumps(summary, indent=1, sort_keys=True, default=float))
@@ -377,6 +391,7 @@ def main() -> None:
     print(f"mechanism: {summary['mechanism']}")
     for k in ("spearman_model_level", "spearman_by_model_aware", "spearman_by_model_primary"):
         print(f"{k}: r={summary[k]['r']} CI={summary[k]['ci90_run_resample']} n={summary[k]['n_points']}")
+    print(f"target split (all models): {summary['target_split']['all']}")
     print(f"logged spend ${spent:.4f}")
 
 

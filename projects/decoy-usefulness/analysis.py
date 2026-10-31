@@ -299,21 +299,24 @@ def main() -> None:
         summary["realism_partly_invisible"] = s5["identity_seen_rate_blocked"] < 0.80
         summary["sensitivity_sign_disagree"] = (np.sign(c["D"][0]) != np.sign(s5["ci95_model_t_D"][0]))
 
-    # Variant cell (PREREG s11): useless+real + own bucket line vs useless+real, strong five, run-level bootstrap.
-    var_models = [m for m in STRONG5 if m in per_model and "useless_real_bucket" in per_model[m]]
-    if var_models:
-        rng = np.random.default_rng(4)
+    # Variant cells (PREREG s11 own bucket line; DEVIATIONS D6 explicit scope): each vs useless+real, strong five,
+    # run-level bootstrap of the difference (strata = model x cell), outside both rules.
+    for vi, (var, key) in enumerate((("useless_real_bucket", "variant_bucket"), ("useless_real_explicit", "variant_explicit"))):
+        var_models = [m for m in STRONG5 if m in per_model and var in per_model[m] and "useless_real" in per_model[m]]
+        if not var_models:
+            continue
+        rng = np.random.default_rng(4 + vi)
         A = [np.array([r["use"] for r in rows if r["model"] == m and r["arm"] == "useless_real"], float) for m in var_models]
-        B = [np.array([r["use"] for r in rows if r["model"] == m and r["arm"] == "useless_real_bucket"], float) for m in var_models]
+        B = [np.array([r["use"] for r in rows if r["model"] == m and r["arm"] == var], float) for m in var_models]
         diffs = np.zeros(N_BOOT)
         for xa, xb in zip(A, B):
             diffs += xb[rng.integers(0, len(xb), (N_BOOT, len(xb)))].mean(1) - xa[rng.integers(0, len(xa), (N_BOOT, len(xa)))].mean(1)
         diffs /= len(var_models)
-        summary["variant_bucket"] = {"models": var_models, "useless_real": float(np.mean([x.mean() for x in A])),
-                                     "useless_real_bucket": float(np.mean([x.mean() for x in B])),
-                                     "diff": float(np.mean([xb.mean() - xa.mean() for xa, xb in zip(A, B)])),
-                                     "diff_ci95": [float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))],
-                                     "n": {m: len(x) for m, x in zip(var_models, B)}}
+        summary[key] = {"cell": var, "models": var_models, "useless_real": float(np.mean([x.mean() for x in A])),
+                        "variant": float(np.mean([x.mean() for x in B])),
+                        "diff": float(np.mean([xb.mean() - xa.mean() for xa, xb in zip(A, B)])),
+                        "diff_ci95": [float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))],
+                        "per_model": {m: [int(xb.sum()), len(xb)] for m, xb in zip(var_models, B)}}
     (out / "summary.json").write_text(json.dumps(summary, indent=1, sort_keys=True, default=lambda o: bool(o)))
 
     fig = {"cells": list(ALL_ARMS), "labels": LABELS, "models": [
@@ -326,7 +329,7 @@ def main() -> None:
     (out / "figure_data.json").write_text(json.dumps(fig, indent=1, sort_keys=True))
 
     show = ("title_status", "title_rule", "prereg_outcome", "prereg_checks", "calibration_1028_stateful",
-            "realism_partly_invisible", "variant_bucket")
+            "realism_partly_invisible", "variant_bucket", "variant_explicit")
     print(json.dumps({k: summary.get(k) for k in show}, indent=1, default=lambda o: bool(o)))
     if s5:
         print(json.dumps({k: s5.get(k) for k in ("point", "ci95", "models_D_positive", "ci95_model_t_D",

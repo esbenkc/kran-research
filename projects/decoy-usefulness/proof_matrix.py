@@ -77,10 +77,11 @@ def main() -> None:
         if cell in sm:
             rows.append(("scope mention (DEVIATIONS D3)", "0-19", S["labels"][cell], "none",
                          f"{sm[cell]['mention_scope']} of {sm[cell]['runs_with_use']} runs with a use wrote 'scope'/'log export' before using it", SCORES))
-    if "variant_bucket" in S:
-        v = S["variant_bucket"]
-        rows.append(("variant: own bucket line", "0-19", "useless+real + own bucket name", "useless+real",
-                     f"{r(v['useless_real_bucket'])} vs {r(v['useless_real'])}; diff {f(v['diff'])}, 95% CI {ci(v['diff_ci95'])}", SUM))
+    for key, lab in (("variant_bucket", "useless+real + own bucket name"), ("variant_explicit", "useless+real, explicit scope 'log export reads only; not valid for storage'")):
+        if key in S:
+            v = S[key]
+            rows.append((f"variant: {key.split('_')[1]}", "0-19", lab, "useless+real",
+                         f"{r(v['variant'])} vs {r(v['useless_real'])}; diff {f(v['diff'])}, 95% CI {ci(v['diff_ci95'])}", SUM))
     w = S.get("weak3")
     if w:
         rows.append(("weaker three (description only)", "0-9", "pooled", "none",

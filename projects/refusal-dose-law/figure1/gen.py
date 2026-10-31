@@ -187,7 +187,10 @@ doc = f"""<!doctype html>
 html, body {{ background: #fbfaf8; }}
 body {{ width: 1200px; padding: 34px 40px 34px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-.head {{ font-size: 38px; font-weight: 800; letter-spacing: -0.008em; line-height: 1.16; }}
+.head {{ font-size: 44px; font-weight: 800; letter-spacing: -0.012em; line-height: 1.14; }}
+.sub {{ font-size: 25px; line-height: 1.3; color: #6b6f78; margin-top: 10px; }}
+.foot {{ font-size: 20px; color: #7a7e87; margin-top: 18px; }}
+.foot b {{ color: #3a3d45; font-weight: 700; }}
 .askrow {{ display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 20px; }}
 .model {{ display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 750; color: #3a3d45; white-space: nowrap; }}
 .ask {{ background: #3478f6; color: #fff; font-size: 24px; line-height: 1.28; padding: 13px 22px; border-radius: 26px 26px 6px 26px; }}
@@ -209,7 +212,7 @@ body {{ width: 1200px; padding: 34px 40px 34px; font-family: "Inter", system-ui,
 mark {{ background: none; color: #b45309; font-weight: 750; }}
 .verdict {{ margin-top: 12px; font-size: 28px; font-weight: 800; color: #4d5059; display: flex; align-items: center; gap: 10px; }}
 .verdict.red {{ color: #b45309; }}
-.answer {{ font-size: 30px; line-height: 1.3; margin-top: 22px; color: #3a3d45; }}
+.answer {{ font-size: 27px; line-height: 1.3; margin-top: 20px; color: #3a3d45; }}
 .stat {{ margin-top: 8px; font-size: 24px; line-height: 1.15; color: #4d5059; }}
 .stat span {{ display: block; min-height: 56px; }}
 .stat b {{ display: block; font-size: 40px; font-weight: 800; color: #1d1d1f; letter-spacing: -0.02em; }}
@@ -219,7 +222,8 @@ mark {{ background: none; color: #b45309; font-weight: 750; }}
 </head>
 <body>
 
-<div class="head">{CFG['head']}</div>
+<div class="head">{CFG['head'].format(**shown_nums)}</div>
+<div class="sub">{CFG['sub']}</div>
 <div class="askrow"><div class="model"><svg width="44" height="50" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>Qwen3-1.7B</div><div class="ask">{esc(prompt)}</div></div>
 <div class="note">{note}</div>
 <div class="legend">{legend}</div>
@@ -227,6 +231,7 @@ mark {{ background: none; color: #b45309; font-weight: 750; }}
 {chr(10).join(cards)}
 </div>
 <div class="answer">{bottom}</div>
+<div class="foot">{CFG['foot']}</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="robot">
   <line x1="46" y1="6" x2="46" y2="22" stroke="#33363d" stroke-width="3"/>

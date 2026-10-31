@@ -26,3 +26,9 @@ p_TWIN/p_G under |.| vs signed = 0.9991 at m = 6 and 1.0000 at m >= 12, so p val
       in between      -> the post reports the number and claims neither.
 (c) Reported next to the split: b on TEST halves (prompts 0-99 and 100-199) and TWIN-vs-gate gap at each pin with
     its 95% CI (same bootstrap as the STATUS rule).
+
+## D3 — AFTER gen1 and Vera's downstream-layer numbers were seen (git time is the record). Title wording only
+(Kasper #10973, Tove #10974, Felix #10975). PREREG v1 defines p at the layer-13 output, where the neuron writes, and
+says the downstream row never rescues the title. The title now names that layer so a reader cannot answer it from a
+later layer: "Does a neuron's push along the refusal direction, at the layer it writes to, predict how well pinning it
+bypasses refusal?" Same hypothesis, same variable, same STATUS rule; no number changes.

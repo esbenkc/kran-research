@@ -40,3 +40,10 @@ None of these touch a status row ((a)-(d), the frozen set, the share formula, th
   a zero value always moves +1); the sign bit is kept.
 - Every row reports e_pre = 1 - |off - patched|^2 / |off - on|^2 and e_post_removed (the R1 formula) at tokens 0-2.
   For rows that are not copies from the donor (R3, R4, R5) these can be negative: they move away from the donor.
+
+## D2 (Felix; seen: fp32 rows; Kasper #10482, Iris #10483): PREREG wording fix, no design change
+
+PREREG s2 l.34 says the switches were trained as "a LoRA on blocks 26-27 (+ final norm + tied head)". The bracket
+lists what the cached tail RUNS, not what was trained. Per numeric-chameleon-rl `rl.py:14,36,79-80` and the
+stack-conditional post l.101, the LoRA sits only on q, k, v, o, gate, up, down of blocks 26-27; the final norm and
+the tied output head are frozen. No patch, share, set or status rule changes.

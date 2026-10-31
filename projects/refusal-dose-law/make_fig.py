@@ -11,7 +11,7 @@ GROUP = {"G": "gate", "G_on": "on", "G_off": "off", "TWIN": "twin", "D": "fit", 
          "NN": "natural", "FK": "fake"}
 LABEL = {"gate": "Neuron 3270, pinned to {m}", "on": "Only the part of neuron 3270's push along the refusal direction, pin {m}",
          "off": "Only the rest of neuron 3270's push (zero along the direction), pin {m}", "twin": "Twin ({unit}): same push along the direction, same size, pin {m}",
-         "fit": "{unit}, pin {m}", "natural": "Neuron {unit} (picked by angle), pin {m}", "fake": "Push along a direction built from harmless prompts only, at neuron 3270's pin-{m} size"}
+         "fit": "{unit}, pin {m}", "natural": "Neuron {unit} (picked by angle), pin {m}", "fake": "Fake direction (built from harmless requests only), at neuron 3270's pin-{m} size"}
 
 cells, base = [], None
 for c in d["cells"]:
@@ -25,7 +25,7 @@ for c in d["cells"]:
     if c["group"] == "D":
         label = f"Built push, cosine {unit.split('_')[1]} with the refusal direction, at neuron 3270's pin-{c['m']} size"
     elif c["group"] == "RN":
-        label = f"Push along neuron {unit.split('_')[1]}'s write direction, at neuron 3270's pin-{c['m']} size"
+        label = f"Random-neuron direction (neuron {unit.split('_')[1]}), at neuron 3270's pin-{c['m']} size"
     elif c["group"] == "RD":
         label = f"Push along random direction {unit.split('_')[1]}, at neuron 3270's pin-{c['m']} size"
     elif c["group"] == "TWIN":

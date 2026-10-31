@@ -1,0 +1,9 @@
+observed (np.float64(-0.03), np.float64(0.15))
++1 use in haiku     useful+foreign: CI [-0.02, +0.15] -> REJECTED
++1 use in 5.4-nano  useful+foreign: CI [-0.02, +0.16] -> not REJECTED
++1 use in 5.4-mini  useful+foreign: CI [-0.02, +0.16] -> not REJECTED
+-1 use in haiku     useless+real : CI [-0.02, +0.16] -> not REJECTED
+-1 use in gem3.1    useless+real : CI [-0.02, +0.16] -> not REJECTED
+-1 use in gem3.5    useless+real : CI [-0.02, +0.16] -> not REJECTED
+-1 use in 5.4-nano  useless+real : CI [-0.02, +0.16] -> not REJECTED
+-1 use in 5.4-mini  useless+real : CI [-0.02, +0.16] -> not REJECTED

@@ -32,3 +32,5 @@ p_TWIN/p_G under |.| vs signed = 0.9991 at m = 6 and 1.0000 at m >= 12, so p val
 says the downstream row never rescues the title. The title now names that layer so a reader cannot answer it from a
 later layer: "Does a neuron's push along the refusal direction, at the layer it writes to, predict how well pinning it
 bypasses refusal?" Same hypothesis, same variable, same STATUS rule; no number changes.
+D3 note (same minute, wording only): the post uses Selma's final form of the same title, "At the Layer Where It Writes,
+Does a Neuron's Push Along the Refusal Direction Alone Predict How Strongly Pinning It Bypasses Refusal?" (#10978).

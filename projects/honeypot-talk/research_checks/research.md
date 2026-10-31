@@ -76,3 +76,7 @@ Data: kran-research projects/honeypot-talk/results/scores.jsonl at 1486f18a (1,0
   - Key-labelled sayers per model: claude-haiku-4-5 0/67, gemini-3.5-flash-lite 2/63, gemini-3.1-flash-lite 5/47, gpt-5.4-mini 45/75, gpt-5.4-nano 4/8.
   - gemini-3.1-flash-lite subtle (eligible stratum, gap +0.14): 26 of 30 sayers name the bucket, 25 of them trip.
   - Haiku: sayers 0/68 trip vs non-sayers 67/72, but both Haiku strata are ineligible for G (obvious b = 9, subtle a = 7).
+
+## 7. Added after Vera's novelty.md (verified 2026-10-31)
+- Zhuang & Aranguri, "Not All Eval-Awareness Is Equal: Capabilities Framing Predicts Compliance", arXiv 2608.27340 (2026-08-27). https://arxiv.org/abs/2608.27340
+  Verbalized eval awareness split by WHAT it is about (capabilities- vs safety-flavored) predicts compliance with a +24 to +46 point gap on Qwen3-32B (FORTRESS); CoT prefill moved compliance in the predicted direction in 10 of 11 prefills. Closest analogue to our label-target row: in our runs the presence of a trap word predicted less than its target (key-labelled sayers 22% use vs bucket-labelled 82%).

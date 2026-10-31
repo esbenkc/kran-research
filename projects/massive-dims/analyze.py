@@ -113,6 +113,17 @@ hdr = ["# Proof matrix — massive-dims", "",
 gl = [f"| gate G2/G3 | {c[-1]} | {c} bf16 cpu reproduces earlier P on/off | none | {g['P_on']}/{g['P_off']} vs {g['want']}: {'ok' if g['ok'] else 'FAIL'} | {S['copies'][c]['bf16']['file']} |"
       for c, g in S["gates"].items()]
 fz = [f"| frozen before patches | - | R1 / R1-in / R1-pre, set {FROZEN['massive_set']} | untrained model | grader {S['R1']['grader']}/{S['R1_in']['grader']}/{S['R1_pre']['grader']}; monitor {S['R1']['monitor']}/{S['R1_in']['monitor']}/{S['R1_pre']['monitor']} | data/frozen.json |"]
+bg_path = HERE / "data/base_gap.json"
+if bg_path.exists():
+    bg = json.load(open(bg_path))
+    S["untrained_gap"] = bg
+    trained = {sw: [S["copies"][c]["bf16"]["P_off"] - S["copies"][c]["bf16"]["P_on"] for c in HEAD if c.startswith(sw) and "bf16" in S["copies"][c]]
+               for sw in ("grader", "monitor")}
+    for k, v in bg.items():
+        sw = k.split("_")[0]
+        fz.append(f"| untrained control | - | {k}: base tail, no training | untrained model | P off - P on = {v['gap_off_minus_on']:+.4f} "
+                  f"(trained copies bf16: {', '.join(f'{x:+.3f}' for x in trained[sw])}) | data/base_gap.json |")
+    json.dump(S, open(HERE / "data/summary.json", "w"), indent=1)
 sk = HERE / "skeptics/skeptic/proof-cells.md"
 extra = [l for l in open(sk).read().splitlines() if l.startswith("| ") and "---" not in l and not l.startswith("| claim")] if sk.exists() else []
 open(HERE / "proof-matrix.md", "w").write("\n".join(hdr + fz + gl + matrix + extra) + "\n")

@@ -1,0 +1,195 @@
+{
+ "thr": 3.096626591682432,
+ "arms": {
+  "string/A": {
+   "refusal": 0.025,
+   "garbage": 0.185,
+   "cc": 0.795,
+   "effect": 0.315,
+   "effect_ci": [
+    0.235,
+    0.4
+   ]
+  },
+  "string/A_hm": {
+   "refusal": 0.385,
+   "garbage": 0.1,
+   "cc": 0.53,
+   "effect": 0.05,
+   "effect_ci": [
+    0.005,
+    0.1
+   ]
+  },
+  "string/A_skip0": {
+   "refusal": 0.025,
+   "garbage": 0.175,
+   "cc": 0.805,
+   "effect": 0.325,
+   "effect_ci": [
+    0.245,
+    0.405
+   ]
+  },
+  "string/A_tok0": {
+   "refusal": 0.44,
+   "garbage": 0.085,
+   "cc": 0.49,
+   "effect": 0.01,
+   "effect_ci": [
+    -0.02,
+    0.04
+   ]
+  },
+  "string/A_zero": {
+   "refusal": 0.36,
+   "garbage": 0.095,
+   "cc": 0.56,
+   "effect": 0.08,
+   "effect_ci": [
+    0.03,
+    0.13
+   ]
+  },
+  "string/B": {
+   "refusal": 0.03,
+   "garbage": 0.175,
+   "cc": 0.8,
+   "effect": 0.32,
+   "effect_ci": [
+    0.235,
+    0.405
+   ]
+  },
+  "string/C": {
+   "refusal": 0.44,
+   "garbage": 0.085,
+   "cc": 0.495,
+   "effect": 0.015,
+   "effect_ci": [
+    -0.01,
+    0.04
+   ]
+  },
+  "string/base": {
+   "refusal": 0.46,
+   "garbage": 0.08,
+   "cc": 0.48,
+   "effect": 0.0,
+   "effect_ci": [
+    0.0,
+    0.0
+   ]
+  },
+  "judge/A": {
+   "refusal": 0.305,
+   "garbage": 0.185,
+   "cc": 0.545,
+   "effect": 0.435,
+   "effect_ci": [
+    0.36,
+    0.51
+   ]
+  },
+  "judge/A_hm": {
+   "refusal": 0.835,
+   "garbage": 0.1,
+   "cc": 0.13,
+   "effect": 0.02,
+   "effect_ci": [
+    0.0,
+    0.045
+   ]
+  },
+  "judge/A_skip0": {
+   "refusal": 0.33,
+   "garbage": 0.175,
+   "cc": 0.53,
+   "effect": 0.42,
+   "effect_ci": [
+    0.345,
+    0.495
+   ]
+  },
+  "judge/A_tok0": {
+   "refusal": 0.865,
+   "garbage": 0.085,
+   "cc": 0.11,
+   "effect": 0.0,
+   "effect_ci": [
+    -0.025,
+    0.025
+   ]
+  },
+  "judge/A_zero": {
+   "refusal": 0.815,
+   "garbage": 0.095,
+   "cc": 0.145,
+   "effect": 0.035,
+   "effect_ci": [
+    0.005,
+    0.07
+   ]
+  },
+  "judge/B": {
+   "refusal": 0.305,
+   "garbage": 0.175,
+   "cc": 0.555,
+   "effect": 0.445,
+   "effect_ci": [
+    0.37,
+    0.52
+   ]
+  },
+  "judge/C": {
+   "refusal": 0.865,
+   "garbage": 0.085,
+   "cc": 0.11,
+   "effect": 0.0,
+   "effect_ci": [
+    -0.015,
+    0.015
+   ]
+  },
+  "judge/base": {
+   "refusal": 0.865,
+   "garbage": 0.08,
+   "cc": 0.11,
+   "effect": 0.0,
+   "effect_ci": [
+    0.0,
+    0.0
+   ]
+  }
+ },
+ "string/r_keep": [
+  0.047619047619047616,
+  [
+   -0.03278688524590164,
+   0.13559322033898305
+  ]
+ ],
+ "string/r_rem": [
+  1.0158730158730158,
+  [
+   0.9459336609336609,
+   1.096153846153846
+  ]
+ ],
+ "string/status": "REJECTED",
+ "judge/r_keep": [
+  0.0,
+  [
+   -0.033707865168539325,
+   0.03409090909090909
+  ]
+ ],
+ "judge/r_rem": [
+  1.0229885057471264,
+  [
+   0.9354838709677419,
+   1.1216216216216215
+  ]
+ ],
+ "judge/status": "REJECTED"
+}

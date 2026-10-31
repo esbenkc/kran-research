@@ -3,7 +3,7 @@
 #   prompt text      data/prompts.jsonl (cfg.example)
 #   token strip      research_checks/map.json eager[<map_layer>@<pos>].logistic.auroc, positions 70-79
 #   rows             data/whole/<run>.json: strict switch per prompt (PREREG 'Switch metric'), example's answers
-import json, math, sys
+import json, math, re, sys
 from pathlib import Path
 
 P = Path(__file__).resolve().parents[2]
@@ -66,8 +66,10 @@ def answer(r, cond, switched=False):
     p = sig(r["lo"]) if a else 1 - sig(r["lo"])
     red = switched and a and cond == 1
     L, w = ("A", "mountains") if a else ("B", "sea")
+    word = (f'<span class="w">{w}<br><small>{fmt(p)} sure</small></span>' if cfg.get("show_sure", True)
+            else f'<span class="w" style="font-size:25px">{w}</span>')
     return (f'<div class="reply"><svg width="50" height="57" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
-            f'<div class="answer{" red" if red else ""}"><span class="L">{L}</span><span class="w">{w}<br><small>{fmt(p)} sure</small></span></div></div>')
+            f'<div class="answer{" red" if red else ""}"><span class="L">{L}</span>{word}</div></div>')
 
 
 rows = []
@@ -102,12 +104,16 @@ def chip(i):
     return f'<span class="chip{cls}" style="background:{bg}">{lab}{TOKS[i].replace("<", "&lt;")}</span>'
 
 
+_m = arm_stats(next(a for a in cfg["arms"] if a["key"] == "mlp"))
+assert _m["counts"] and min(_m["counts"]) == max(_m["counts"]) == _m["n"], _m["counts"]  # TLDR: all 128, 3 of 3 runs
+HEAD = cfg["head"].format(k=_m["counts"][0], n=_m["n"])
+HEAD_TXT = re.sub(r"<[^>]+>", "", HEAD)
 strip = "".join(chip(i) for i in range(10))
 html = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Figure 1: {cfg['head']}</title>
+<title>Figure 1: {HEAD_TXT}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap" rel="stylesheet">
@@ -123,7 +129,7 @@ Built by gen.py from kran-research (branch swarm/oracle-1027-forced-attention), 
   html, body {{ background: #fbfaf8; }}
   body {{ width: 1200px; padding: 34px 44px 36px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-  .head {{ font-size: 37px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.18; }}
+  .head {{ font-size: 35px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.18; }}
   .sub {{ font-size: 25px; color: #5a5d66; margin-top: 8px; line-height: 1.3; }}
   .sub b {{ color: #1d1d1f; font-weight: 700; }}
   .bubble {{ margin: 18px 0 0 150px; background: #3478f6; color: #fff; font-size: 24px; line-height: 1.32; padding: 16px 22px; border-radius: 24px 24px 6px 24px; }}
@@ -165,13 +171,15 @@ Built by gen.py from kran-research (branch swarm/oracle-1027-forced-attention), 
   .key .gl i {{ margin-right: 0; }}
   .arc {{ display: block; margin-top: 4px; overflow: visible; }}
   .key .gl {{ margin-top: 0; }}
-  .ans {{ font-size: 29px; font-weight: 800; margin-top: 18px; line-height: 1.25; }}
-  .ans em {{ font-style: normal; color: #c8372d; }}
+  .head em {{ font-style: normal; color: #c8372d; }}
+  .foot {{ display: flex; justify-content: space-between; gap: 20px; font-size: 22px; color: #8a8d95; margin-top: 18px;
+          border-top: 1px solid #e3e3e6; padding-top: 10px; }}
+  .foot .by {{ color: #1d1d1f; font-weight: 700; white-space: nowrap; }}
 </style>
 </head>
 <body>
 
-<div class="head">{cfg['head']}</div>
+<div class="head">{HEAD}</div>
 <div class="sub">{cfg['sub']}</div>
 <div class="bubble"><span class="ctx">{ctx}&nbsp;&hellip;</span> <b>{q}</b></div>
 <div class="st">{cfg['strip_title']} <span class="scale"><small>0.5 chance</small><i></i><small>0.95</small></span></div>
@@ -179,7 +187,7 @@ Built by gen.py from kran-research (branch swarm/oracle-1027-forced-attention), 
 <svg class="arc" id="arc" width="1112" height="74"></svg>
 <div class="cols"><div class="key"><span class="gl"><i class="h on"></i></span>attention heads&nbsp;&nbsp;<span class="gl"><i class="m on"></i></span>MLP<br>in each of the last 8 layers; filled = trained</div><div>No probe</div><div>Probe attached</div></div>
 {''.join(rows)}
-<div class="ans">{cfg['bottom']}</div>
+<div class="foot"><span>{cfg['source']}</span><span class="by">blog.kran.ai/lab</span></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>

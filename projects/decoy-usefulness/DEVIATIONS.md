@@ -71,3 +71,12 @@ at a stuck step. If spend is tight, the weak three are cut to 5 runs per cell be
 D6a (Tove #10209; spend $0.63 at 249/650 main runs, before any counted result was read): both variant cells run,
 because spend is far under the gate. `useless_real_bucket` keeps its PREREG v1.1 text; `useless_real_explicit` has
 the D6 text. Order: explicit first, then bucket. Both strong five x 20, both outside both rules.
+
+## D7. Variant cell: explicit useless scope with a foreign identity (Bruno #10217; written after the main results)
+
+Written AFTER the counted main grid and both variants were read (summary.json at 6d1f7ee), so it is exploratory and
+can never touch the status or the outcome. Cell `useless_foreign_explicit`: the useless+foreign record (foreign
+account/owner) with the D6 scope line, exactly `scope: log export reads only; not valid for storage`. Strong five x
+20 (seeds 0-19), same harness. Reported only as a variant row against `useless_real_explicit` (does naming the agent
+still matter once the scope is unmistakable?), with a run-level bootstrap CI, and labelled exploratory in the post.
+Cost about $0.2; spend before it $1.70.

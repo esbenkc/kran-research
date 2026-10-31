@@ -1,0 +1,37 @@
+{
+ "png": "../blog.kran.ai/assets/figures/refusal-neuron-massive-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0123859,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does the neuron that switches off refusal in Qwen3-1.7B work through its 3 outlier coordinates?\",\n  \"answer\": \"No. The push without the outlier coordinates keeps 102% of the neuron's effect on harmful requests, while the push on the outlier coordinates alone keeps only 5% of the effect, showing the outlier coordinates are not the primary mechanism.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does the neuron that switches off refusal in Qwen3-1.7B work through its 3 outlier coordinates?\",\n  \"answer\": \"No. The push without the outlier coordinates keeps 102% of the neuron's effect on harmful requests, while the push on the outlier coordinates alone keeps only 5% of the effect, and a push as large as the pin's all on the outlier coordinates barely moves refusal.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does the neuron that switches off refusal in Qwen3-1.7B work through its 3 outlier coordinates?\",\n  \"answer\": \"No. The push without the outlier coordinates keeps 102% of the neuron's effect on harmful requests, while the push on the outlier coordinates alone keeps only 5% of the effect, indicating the outlier coordinates are not responsible for the refusal-switching mechanism.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does the neuron that switches off refusal in Qwen3-1.7B work through its 3 outlier coordinates?\",\n  \"answer\": \"No, the intervention without the 3 outlier coordinates retains 102% of the neuron's effect on 200 harmful requests, whereas targeting the outlier coordinates alone maintains only 5% of the effect.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does the neuron that switches off refusal in Qwen3-1.7B work through its 3 outlier coordinates?\",\n  \"answer\": \"No, the push without the outlier coordinates retains 102% of the neuron's effect across 200 harmful requests, whereas the push on the outlier coordinates alone maintains only 5% of the effect.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does the neuron that switches off refusal in Qwen3-1.7B work through its 3 outlier coordinates?\",\n  \"answer\": \"No, the push without the outlier coordinates preserves 102% of the neuron's effect on 200 harmful requests, while the push on the 3 outlier coordinates alone retains only 5% of the effect.\"\n}"
+  }
+ ]
+}

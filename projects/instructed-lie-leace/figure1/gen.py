@@ -204,11 +204,14 @@ def tw(s, size, w=500):
     return len(s) * size * (0.6 if w >= 700 else 0.54)
 
 
-# header
-y = 50
-for k, line in enumerate(CFG["question"]):
-    T(W / 2, y + 38 * k, line, 30, 800, INK, "middle")
-y += 38 * (len(CFG["question"]) - 1) + 30
+# header: the conclusion as the head, the question in a few words in the lighter subtitle
+y = 52
+for k, line in enumerate(CFG["head"]):
+    lead = CFG.get("head_lead", "") if k == 0 else ""  # the verdict word(s), in red, at the start of the head
+    TS(W / 2, y + 40 * k, [(lead, 800, RED), (line[len(lead):], 800, INK)], 30, "middle")
+y += 40 * (len(CFG["head"]) - 1) + 36
+T(W / 2, y, CFG["sub"].format(city=CITY), 22, 500, MUTED, "middle")
+y += 18
 
 COLW, GAP = 570, 20
 COLX = [20, 20 + COLW + GAP]
@@ -244,27 +247,24 @@ def mini_prompt(x, y0, w, i, color, hl, answer, ans_color, mark):
 
 # ----- section 1: the example, per column -----
 y1 = y + 4
-H1 = 410
+H1 = 238
 for c, (tgt, color, tint, hl) in enumerate(COL):
     x = COLX[c]
     RR(x, y1, COLW, H1, 22, tint)
     T(x + COLW / 2, y1 + 40, CFG["col_title"][tgt], 27, 800, color, "middle")
     T(x + COLW / 2, y1 + 70, CFG["col_sub"][tgt], 21, 500, MUTED, "middle")
     if tgt == "lie":
-        mini_prompt(x + 20, y1 + 88, COLW - 40, q[0, 0], color, hl, TRUE, GREEN, {"game", "demo"})
-        mini_prompt(x + 20, y1 + 228, COLW - 40, q[1, 0], color, hl, FALSE, RED, {"game", "demo"})
+        mini_prompt(x + 20, y1 + 88, COLW - 40, q[1, 0], color, hl, FALSE, RED, {"game", "demo"})
     else:
-        mini_prompt(x + 20, y1 + 88, COLW - 40, q[0, 0], color, hl, TRUE, GREEN, {"tag"})
-        mini_prompt(x + 20, y1 + 228, COLW - 40, q[0, 1], color, hl, TRUE, GREEN, {"tag"})
-    T(x + COLW / 2, y1 + 390, CFG["col_effect"][tgt], 23, 700, INK, "middle")
+        mini_prompt(x + 20, y1 + 88, COLW - 40, q[0, 1], color, hl, TRUE, GREEN, {"tag"})
 
 # robot = the model studied, at the left of the cost ruler
-y2 = y1 + H1 + 44
+y2 = y1 + H1 + 48
 # ----- section 2: cost ruler (shared log axis) -----
 import math
 
 T(W / 2, y2, CFG["ruler_title"], 24, 800, INK, "middle")
-T(W / 2, y2 + 28, CFG["ruler_sub"], 19, 500, MUTED, "middle")
+y2 -= 24  # no ruler subtitle: pull the ruler up under its title
 lo, hi = CFG["ruler_lo"], CFG["ruler_hi"]
 RX0, RX1 = 150, 1100
 robot(28, y2 + 46, 0.85)
@@ -317,14 +317,9 @@ for c, (tgt, color, tint, hl) in enumerate(COL):
     else:
         T(x + 24, y3 + 176, CFG["before_label"].format(p=pct(step0[tgt])), 21, 500, MUTED)
 
-yb = y3 + RH + 50
-NB = CFG.get("bottom_bold", 2)
-for k, line in enumerate(CFG["bottom"]):
-    bold = k < NB
-    T(W / 2, yb + 36 * k + (8 if not bold else 0),
-      line.format(lie=pct(R["lie"]["L"]), dec=pct(R["decoy"]["L"]), a=wp(stop_after)),
-      26 if bold else 19, 800 if bold else 500, INK if bold else MUTED, "middle")
-H = yb + 36 * (len(CFG["bottom"]) - 1) + 8 + 30
+yb = y3 + RH + 40
+T(W / 2, yb, CFG["foot"], 18, 500, FAINT, "middle")
+H = yb + 30
 
 svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" font-family="{FONT}" '
        f'role="img" aria-label="{escape(CFG["alt"])}"><rect x="0" y="0" width="{W}" height="{H}" rx="24" fill="{BG}"/>'

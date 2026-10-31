@@ -1,9 +1,10 @@
 #!/bin/bash
 # Copy Bruno's code + raw data from the swarm dir into kran-research/projects/refusal-dose-law (never over others' files).
 set -e
+git -C "$(dirname "$0")/../kran-research" pull -q --rebase --autostash origin swarm/theory-1031-refusal-dose-law  # never overwrite others: pull first; proof_matrix.py is edited in the project only
 S=$(cd "$(dirname "$0")" && pwd)
 D="$S/../kran-research/projects/refusal-dose-law"
-cp "$S"/{common.py,phase0.py,run.py,judge.py,analyze.py,proof_matrix.py,smoke.py,prep_data.py,sync.sh,retest.py} "$D/"
+cp "$S"/{common.py,phase0.py,run.py,judge.py,analyze.py,smoke.py,prep_data.py,sync.sh,retest.py} "$D/"
 mkdir -p "$D/data" "$D/logs"
 rsync -a --exclude '.cache' "$S/data/" "$D/data/"
 cp "$S"/logs/{smoke.log,phase0.log,run_part1.log,run_part2.log,run_part3.log,judge.log,analyze_interim.log,analyze_final.log} "$D/logs/" 2>/dev/null || true

@@ -116,6 +116,13 @@ def build(model, hm_value):
     w5 = W[:, 5441] / W[:, 5441].norm()
     fixed["N5441pos"] = (lambda a: (PIN - a).abs() * nw, w5, None)
     fixed["N5441neg"] = (lambda a: -(PIN - a).abs() * nw, w5, None)
+    # D10: split of the + edit of N5441 into its part on M and the rest (they sum to N5441pos exactly)
+    w5M = torch.zeros_like(w5)
+    w5M[M] = w5[M]
+    w5R = w5 - w5M
+    assert torch.equal(w5M + w5R, w5)
+    fixed["N5441_M"] = (lambda a: (PIN - a).abs() * nw, w5M, None)
+    fixed["N5441_R"] = (lambda a: (PIN - a).abs() * nw, w5R, None)
     rand, Ss = {}, []
     for k, j in enumerate(J):
         wj = W[:, j]

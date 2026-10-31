@@ -242,6 +242,10 @@ elif stage == "n5441":  # D7: sign with the larger first-token drop gets the ful
     for split in BOTH:
         run_gen(s, fixed[s], split)
 elif stage == "randgen":  # D4 counts, D8 order
+    for name in ["N5441_M", "N5441_R"]:  # D10, before the random draws
+        run_logit_fast(name, fixed[name])
+        for split in BOTH:
+            run_gen(name, fixed[name], split)
     names = []  # D9: D' 10, F 5 (better sign), E' 5, F' 5, interleaved per draw
     for k in range(10):
         names += [f"Dp_{k}"]

@@ -49,7 +49,9 @@ for a in ["A", "B", "C", "A_hm", "A_zero", "A_skip0", "A_tok0"]:
             f"garbage {100 * v['garbage']:.1f}%, refusal {100 * v['refusal']:.1f}%, pass={v['coherence_pass']}",
             f"data/runs/test_harmless/{a}.jsonl")
 for a, lab in [("A_hm", "pin to harmless mean"), ("A_zero", "pin to zero"), ("A_skip0", "full pin except first token"),
-               ("A_tok0", "full pin at first token only"), ("N5441pos", "neuron 5441 (+)"), ("N5441neg", "neuron 5441 (-)")]:
+               ("A_tok0", "full pin at first token only"), ("N5441pos", "neuron 5441 (+), string label"),
+               ("N5441_M", "neuron 5441, its push on the 3 outlier coordinates only"),
+               ("N5441_R", "neuron 5441, its push with the 3 outlier coordinates zeroed")]:
     if a in th and "EFFECT" in th[a]:
         v = th[a]
         add("position/existence", "greedy (n=1)", f"TEST 200: {lab}", "none",
@@ -69,6 +71,15 @@ for fam in ["Dp", "Ep", "Fp", "Ds"]:
         add("existence (first token)", f"rng 0, {v['n']} draws", f"first-token score drop, family {fam}", "random draws",
             f"median {v['median']:.2f}, max {v['max']:.2f}, share >= half the gate's {v['frac_ge_half_A']:.2f}",
             f"data/runs/logit/test_harmful/{fam}_0.json")
+if "logit_drop" in R:
+    ld = R["logit_drop"]
+    for a in ["A", "C", "B", "N5441pos", "N5441neg", "N5441_M", "N5441_R"]:
+        if a in ld:
+            add("first-token", "greedy (n=1)", f"first-token score drop, arm {a}", "base",
+                f"{ld[a]:.2f} (gate A {ld['A']:.2f})", f"data/runs/logit/test_harmful/{a}.json")
+    chk = json.loads((P / "data/runs/logit/d9_check.json").read_text())
+    add("method (D9)", "-", "tail-from-L13 scorer vs full forward, max per-prompt |score diff|", "full forward",
+        ", ".join(f"{k} {v:.2f}" for k, v in chk.items()) + " (arm means differ by <= 0.02)", "data/runs/logit/d9_check.json")
 hdr = "| claim | seed | variant | control | result | artifact |\n|---|---|---|---|---|---|\n"
 (P / "proof-matrix.md").write_text("# Proof matrix (built by proof_matrix.py from data/results.json)\n\n" + hdr + "\n".join(rows) + "\n")
 print(len(rows), "rows")

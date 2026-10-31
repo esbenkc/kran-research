@@ -13,7 +13,7 @@ meta = json.loads((P / "data/runs/meta.json").read_text())
 J = meta["J"]
 g = share[3270]
 out = {"A": g, "A_hm": g, "A_zero": g, "A_skip0": g, "A_tok0": g, "B": 0.0, "C": 1.0,
-       "N5441pos": share[5441], "N5441neg": share[5441]}
+       "N5441pos": share[5441], "N5441neg": share[5441], "N5441_M": 1.0, "N5441_R": 0.0}
 for k, j in enumerate(J):
     out[f"Dp_{k}"] = out[f"Ds_{k}"] = 1.0
     out[f"Ep_{k}"] = 0.0

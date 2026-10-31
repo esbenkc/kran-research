@@ -75,12 +75,13 @@ for cell, scope, names, group in ROWS:
         continue
     wk = pooled(WEAK, cell, S["weak3"]["ci95"].get(cell)) if group != "variant" else None
     per = [{"name": SHORT[m], "nuse": counts(m, cell)[0], "n": counts(m, cell)[1]} for m in STRONG]
-    rows.append({"cell": cell, "label": S["labels"].get(cell, F["labels"].get(cell, cell)), "scope": scope,
+    rows.append({"cell": cell, "added_after": cell == "useless_foreign_explicit",  # DEVIATIONS D7
+                 "label": S["labels"].get(cell, F["labels"].get(cell, cell)), "scope": scope,
                  "names": names, "group": group, "strong": st, "weak": wk, "per_model": per})
 
 pt, ci = S["strong5"]["point"], S["strong5"]["ci95"]
 data = {
-    "title": "Blocked agents used a useful key with a stranger's name about as often as a useless key with their own (87 vs 81 of 100). Not blocked, they used none.",
+    "title": "Blocked agents used a useful key with a stranger's name about as often as a useless key with their own (87 vs 81 of 100). Not blocked, the five used none.",
     "subtitle": "Share of runs in which the agent used the key from the old record. Five stronger agents pooled, 20 runs each, so 100 runs per row.",
     "rows": rows,
     "gap": {"from": "useless_real", "to": "useful_foreign", "point": round(pt["D"], 4),

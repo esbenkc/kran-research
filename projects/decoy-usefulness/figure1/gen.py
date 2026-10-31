@@ -140,9 +140,9 @@ elif LAYOUT == "main":
 {side('useless_real_explicit', CFG['side_ex'], '<span class="f unfit">log export reads only; <b class="red">not valid for storage</b></span>', PV[0], PV[1])}
 </div>"""
 elif LAYOUT == "matrix":
-    def num(n, nt):
+    def num(n, nt, ring=False):
         hot = n / nt >= 0.5
-        return f'<div class="nc{" hl" if hot else ""}"><b class="num{" red" if hot else ""}">{n}</b><span>of {nt} runs</span></div>'
+        return f'<div class="nc{" hl" if hot else ""}{" ring" if ring else ""}"><b class="num{" red" if hot else ""}">{n}</b><span>of {nt} runs</span></div>'
 
     def rowh(lab, scope_html, tag=""):
         box = f'<span class="rec mono">scope: {scope_html}</span>' if scope_html else ""
@@ -159,9 +159,9 @@ elif LAYOUT == "matrix":
 <div class="colh q"><b>{CFG['col_q']}</b></div>{colh(CFG['col_own'][0], True)}{colh(CFG['col_for'][0], False)}
 <div class="cap">{CFG['col_cap']}</div>
 {rowh(CFG['row_fit'][0], f'<span class="f fit">{SCOPE[True]}</span>')}
-{bubble('useful_real')}{num(N['useful_real'], NT)}{num(N['useful_foreign'], NT)}
-{rowh(CFG['row_unfit'][0], f'<span class="f unfit">{SCOPE[False]}</span>')}
-{bubble('useless_real')}{num(N['useless_real'], NT)}{num(N['useless_foreign'], NT)}
+{bubble('useful_real')}{num(N['useful_real'], NT)}{num(N['useful_foreign'], NT, True)}
+{rowh(CFG['row_unfit'][0], f'<span class="f unfit">{SCOPE[False]}</span>', CFG['mild_tag'])}
+{bubble('useless_real')}{num(N['useless_real'], NT, True)}{num(N['useless_foreign'], NT)}
 {rowh(CFG['row_plain'][0], '<span class="f unfit">log export reads only; <b class="red">not valid for storage</b></span>', CFG['plain_tag'])}
 {bubble('useless_real_explicit')}{num(PV[0], PV[1])}{num(PF[0], PF[1])}
 {rowh(CFG['side_nb'][0] + f' <span class="tag">{CFG["side_nb"][1]}</span>', "")}
@@ -236,6 +236,8 @@ HTML = f"""<!doctype html>
   .cap {{ grid-column: 2 / -1; font-size: 22px; color: #5a5d66; margin-top: -4px; }}
   .nc {{ background: #eef0f3; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px; }}
   .nc.hl {{ background: #fbece2; }}
+  .nc.ring {{ box-shadow: inset 0 0 0 4px #c8372d; }}
+  .bottom b.ring {{ border: 3px solid #c8372d; border-radius: 10px; padding: 0 6px; }}
   .nc span {{ font-size: 22px; color: #5a5d66; }}
   .nc.na {{ font-size: 22px; color: #8a8d94; background: none; border: 2px dashed #d9dbe0; }}
   .mx .num {{ font-size: 52px; line-height: 1.05; }}

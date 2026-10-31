@@ -226,3 +226,9 @@ Reported as a variant row: its rate vs useless+real, with a run-level bootstrap 
 about 0.26 wide, so the CONFIRMED and equal-effects REJECTED branches cannot both hold. Under an exact tie (true D =
 0) the frozen rule gives NOT SETTLED in about 78% of simulated worlds and the equal-effects NO in about 19%. A NOT
 SETTLED result is therefore the expected outcome of a tie at this n, and the post says so; it is not a failed run.
+
+v1.1a (Kasper #10183, reported quantities only, no rule change): `identity_seen` is also reported per strong model,
+with P(use | identity_seen) per model and cell; a strong model under 80% is named in the post as one for which
+realism was partly invisible. Caveat for the post (s8): a foreign account with an "org-wide" scope can read as
+"their org, not mine", so part of the realism effect may be applicability; like the missing bucket name, this
+biases against YES, and the post names it in its one caveat line.

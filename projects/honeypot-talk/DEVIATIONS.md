@@ -48,7 +48,7 @@ unchanged and seed-major order keeps cells balanced if it hits. The decision rea
 never a counted outcome. The weak three do not run. The N_on = 50 analysis (seeds 0-49) is a reported row.
 
 Timing note (Felix, honest record): the main counted run (`run.py counted --seeds 50 --off-seeds 30`) started at
-about 03:07:30 PDT (see `commands.md`), shortly before this D3 commit (b634fec9, 03:07:51). The v1.3 text (fbf2106b,
+03:07:43 PDT (`commands.md`), shortly before this D3 commit (b634fec9, 03:07:51). The v1.3 text (fbf2106b,
 03:07:18) already ran seeds 50-69 if spend allowed. No counted result had been read or scored when D3 was made
 unconditional, and the change touches only seeds 50-69, which had not started. The v1.3 'stated prediction' on the
 model-level Spearman was withdrawn in the same commit (Kasper #10688, Iris #10689, Tove #10690): with 5 models,

@@ -1,0 +1,24 @@
+runs 1000 | eligible strata 4 (3 models, 269 runs): ['gemini-3.1-flash-lite|on|subtle', 'gemini-3.5-flash-lite|on|obvious', 'gemini-3.5-flash-lite|on|subtle', 'gpt-5.4-mini|on|subtle']
+G = -0.21780800428110386 90% CI [-0.29780326146194375, -0.1361062287991637] -> REJECTED  (pooled RD -0.5040187930990933)
+  row says_aware                   G=-0.221 CI=[-0.302, -0.139] elig=4 -> REJECTED
+  row says_clause_cb_strict        G=-0.127 CI=[-0.196, -0.057] elig=6 -> UNCONFIRMED
+  row says_clause_cb_v1            G=-0.215 CI=[-0.294, -0.134] elig=4 -> REJECTED
+  row says_clause_strict           G=-0.049 CI=[-0.116, 0.019] elig=6 -> UNCONFIRMED
+  row says_clause_v1               G=-0.097 CI=[-0.167, -0.026] elig=6 -> UNCONFIRMED
+  row says_clause_verb_strict      G=-0.13 CI=[-0.2, -0.059] elig=6 -> UNCONFIRMED
+  row says_clause_verb_v1          G=-0.221 CI=[-0.302, -0.138] elig=4 -> REJECTED
+  row says_raw                     G=-0.169 CI=[-0.251, -0.085] elig=5 -> UNCONFIRMED
+  row says_v1_cb_strict            G=-0.129 CI=[-0.198, -0.058] elig=6 -> UNCONFIRMED
+  row says_v1_cb_v1                G=-0.218 CI=[-0.298, -0.136] elig=4 -> REJECTED
+  row says_v1_strict               G=-0.101 CI=[-0.168, -0.034] elig=6 -> UNCONFIRMED
+  row says_v1_v1                   G=-0.16 CI=[-0.227, -0.091] elig=6 -> UNCONFIRMED
+  row says_secondary               G=-0.239 CI=[-0.324, -0.153] elig=4 -> REJECTED
+  row trip_any                     G=-0.253 CI=[-0.33, -0.171] elig=5 -> REJECTED
+  row goal_literal_prompt_on       G=-0.218 CI=[-0.298, -0.136] elig=4 -> REJECTED
+  row n_on_50                      G=-0.275 CI=[-0.373, -0.172] elig=4 -> REJECTED
+prediction: S=0.436 [0.41142857142857137, 0.45999999999999996] T=0.427 [0.3919047619047619, 0.4595238095238095] C=0.305 [0.267515923566879, 0.3419354838709677] -> failed
+mechanism: {'strata': ['claude-haiku-4-5-20251001|obvious', 'claude-haiku-4-5-20251001|subtle', 'gemini-3.1-flash-lite|obvious', 'gemini-3.1-flash-lite|subtle', 'gemini-3.5-flash-lite|obvious', 'gemini-3.5-flash-lite|subtle', 'gpt-5.4-mini|obvious', 'gpt-5.4-mini|subtle', 'gpt-5.4-nano|obvious'], 'predicted': 0.11112834084131538, 'observed': 0.4402116402116402, 'observed_minus_predicted': 0.3290832993703248, 'ci90_predicted': [0.07248838350546813, 0.15043015132585583], 'ci90_observed': [0.4047619047619048, 0.47619047619047616], 'ci90_diff': [0.2787264355468305, 0.37873460815378945], 'reading': 'the prompt lowers trips beyond what saying accounts for', 'n_draws': 9984}
+spearman_model_level: r=-0.5636363636363636 CI=[-0.6848484848484848, -0.38181818181818183] n=10
+spearman_by_model_aware: r=0.7999999999999999 CI=[-0.3, 0.8999999999999998] n=5
+spearman_by_model_primary: r=0.7999999999999999 CI=[-0.3, 0.8999999999999998] n=5
+logged spend $4.1154

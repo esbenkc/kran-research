@@ -27,3 +27,15 @@ run.py smoke --seeds 5 --workers 12
 ```sh
 run.py smoke --seeds 10 --cells on_subtle on_obvious --workers 12
 ```
+
+## 2026-10-31 03:07:43 PDT
+
+```sh
+run.py counted --seeds 50 --off-seeds 30 --workers 12 --budget 4.50
+```
+
+## 2026-10-31 03:16:08 PDT
+
+```sh
+run.py counted --seeds 70 --off-seeds 30 --workers 12 --budget 4.50
+```

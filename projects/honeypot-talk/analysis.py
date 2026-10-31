@@ -149,6 +149,13 @@ def say_gap(rows: list[dict[str, Any]], say_col: str, trip_col: str, rng: np.ran
         if p["a"] and p["b"]:
             out["pooled_rd"] = p["trip_given_say"] - p["trip_given_not"]
         out["pooled"] = p
+    if reps:
+        r2 = np.random.default_rng(0)
+        for k, v in st.items():
+            per["|".join(k)]["gap"] = (None if not (per["|".join(k)]["a"] and per["|".join(k)]["b"]) else
+                                       per["|".join(k)]["trip_given_say"] - per["|".join(k)]["trip_given_not"])
+            per["|".join(k)]["gap_ci90"] = stratum_gap_ci(v, r2)
+            per["|".join(k)]["eligible"] = "|".join(k) in out["eligible"]
     if reps and elig:
         groups: dict[str, list] = defaultdict(list)
         for k in elig:
@@ -158,6 +165,30 @@ def say_gap(rows: list[dict[str, Any]], say_col: str, trip_col: str, rng: np.ran
         out["G_per_model"] = {m: mh([per["|".join(k)] for k in elig if k[0] == m]) for m in models}
         out["exact_draw_share_at_band"] = float(np.mean(np.isclose(np.abs(draws[~np.isnan(draws)]), BAND)))
     return out
+
+
+def shuffle_control(rows: list[dict[str, Any]], elig: list[str], g_obs: float | None, n: int = 2000) -> dict[str, Any]:
+    """Control: shuffle 'says' among runs inside each eligible stratum (same a_k, b_k, trips), recompute G.
+    Under this null sayers and non-sayers trip alike, so G should sit near 0; reports how often |G_null| >= |G_obs|."""
+    st = strata(rows, "says", "trip")
+    arrs = [st[tuple(k.split("|"))] for k in elig]
+    rng = np.random.default_rng(1)
+    gs = []
+    for _ in range(n):
+        stats = [stratum_stats(rng.permutation(a["say"]), a["trip"]) for a in arrs]
+        gs.append(mh(stats))
+    gs = np.array(gs, dtype=float)
+    return {"n_shuffles": n, "mean": float(gs.mean()), "range90": ci(gs),
+            "share_abs_ge_obs": None if g_obs is None else float(np.mean(np.abs(gs) >= abs(g_obs)))}
+
+
+def stratum_gap_ci(arr: dict[str, np.ndarray], rng: np.random.Generator, b: int = 4000) -> list[float] | None:
+    """90% within-stratum bootstrap interval of trip|says - trip|not for one stratum (figure rows)."""
+    n = len(arr["say"])
+    if arr["say"].sum() == 0 or arr["say"].sum() == n:
+        return None
+    d = boot_mh([arr], rng, b)
+    return ci(d)
 
 
 def cell_rates(rows: list[dict[str, Any]]) -> dict[tuple, dict[str, np.ndarray]]:
@@ -305,6 +336,7 @@ def main() -> None:
     rng = np.random.default_rng(0)
     say_col, trip_col = "says", "trip"
     primary = say_gap(rows, say_col, trip_col, rng, reps=True)
+    primary["control_shuffle"] = shuffle_control(rows, primary["eligible"], primary["G"]) if primary["eligible"] else None
     seeds_on = sorted({r["seed"] for r in rows if r["prompt"] == "on"})
     rows_on50 = [r for r in rows if r["prompt"] == "off" or r["seed"] < 50]
     variants = {}

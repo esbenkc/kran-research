@@ -51,7 +51,7 @@ d2f = P / "data/phase0/d2.json"
 if d2f.exists():
     d2 = json.loads(d2f.read_text())
     for r_ in d2["L13_positions"]:
-        rows.append(("d2-positions", "-", f"L13 template pos {r_['pos']} ({r_['tok']})", "none",
+        rows.append(("d2-positions", "-", f"L13 template pos {r_['pos']} ({r_['tok'].replace('|', '')})", "none",
                      f"cos(w_off, r_pos) {r_['cos_w_off']:+.3f}; cos(w, r_pos) {r_['cos_w']:+.3f}", "data/phase0/d2.json"))
 tg = R["secondary"]["twin_vs_gate"]
 for m, v in tg.items():
@@ -69,11 +69,11 @@ rows.append(("scout-c1", "-", "literal fit RN+RD", "none",
              f"gaps {', '.join(f'{m}:{g:+.1f}' for m, g in cl.get('c1_literal_gap', {}).items())}; held {cl.get('c1_held')}", "data/results.json"))
 rows.append(("scout-c2", "-", "fit set R^2", "none", f"R^2 {cl.get('c2_r2_fit', 0):.3f} (dialed only {cl.get('c2_r2_dialed') or 0:.3f}); held {cl.get('c2_held')}", "data/results.json"))
 rows.append(("scout-c3", "-", "first-token score, 101 neurons, pin 30", "split-half reliability",
-             f"Spearman |cos| vs |change| {cl.get('c3_spearman_abs', float('nan')):.3f}, signed {cl.get('c3_spearman_signed', float('nan')):.3f}, "
+             f"Spearman abs cos vs abs change {cl.get('c3_spearman_abs', float('nan')):.3f}, signed {cl.get('c3_spearman_signed', float('nan')):.3f}, "
              f"split-half {cl.get('c3_split_half_spearman', float('nan')):.3f}; held {cl.get('c3_held')}", "data/results.json"))
 rows.append(("scout-c4", "-", "pure dose fit", "none", f"R^2 {cl.get('c4_dose_r2') or 0:.3f}; held {cl.get('c4_held')}", "data/results.json"))
 s = R["secondary"]
-rows.append(("arditi-midpoint", "-", "curve in Arditi units", "none", f"half point u = {s['arditi_u_half']:.3f} ||r||; held {s['arditi_held']}", "data/results.json"))
+rows.append(("arditi-midpoint", "-", "curve in Arditi units", "none", f"half point u = {s['arditi_u_half']:.3f} x norm of r; held {s['arditi_held']}", "data/results.json"))
 for c, v in s.get("NN", {}).items():
     rows.append(("two-sided", "-", c, "natural neuron (held out)", f"obs {v['obs']:.1f}% vs curve {v['pred']:.1f}% at p {v['p']:+.4f}", f"data/judge/{c}.json"))
 for c, v in s.get("PM", {}).items():

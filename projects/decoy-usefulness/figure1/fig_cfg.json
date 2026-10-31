@@ -41,7 +41,7 @@
  "status_fallback": "SMOKE",
  "bottom": {
   "SMOKE": "<em>SMOKE DRAFT.</em> Blocked: {useful_real}, {useful_foreign}, {useless_real}, {useless_foreign} of {NT}. Not blocked: {not_blocked} of {NT}.",
-  "REJECTED": "<em>Answer: No.</em> Whether the key said it could unblock the task mattered little. Whether it named the agent mattered little too. A useful key naming a stranger was used in <b class=ring>{useful_foreign}</b> of 100 runs; a useless key naming the agent, in <b class=ring>{useless_real}</b>. Without a block: {not_blocked}. <span class=why>A plain 'not valid for storage' line, an extra test, cut use to {NV} and {NF}.</span>"
+  "REJECTED": "<em>Answer: No.</em> With a mild scope line, neither what the key said it could do nor whose name it carried mattered much. A useful key naming a stranger was used in <b class=ring>{useful_foreign}</b> of 100 runs; a useless key naming the agent, in <b class=ring>{useless_real}</b>. Without a block: {not_blocked}. <span class=why>A plain 'not valid for storage' line, an extra test, cut use to {NV} and {NF}.</span>"
  },
  "row_ctl": [
   "Checks",

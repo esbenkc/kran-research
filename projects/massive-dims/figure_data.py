@@ -45,7 +45,7 @@ def rows():
 
 
 def build(variant=None):
-    d = {"title": "The three massive dimensions carry almost none of either switch",
+    d = {"title": "The three massive dimensions carry at most a fifth of either switch",
          "subtitle": "Share of the switch moved when we copy numbers at the first three tokens from the setting where the "
                      "model flatters more. Qwen3-0.6B, 200 test prompts per version.",
          "xlabel": "Share of the switch moved", "bar": 0.70, "bar_label": "prediction for the 3 massive dimensions: 70%",

@@ -24,3 +24,19 @@ device of patch_positions.json / patch_1025.json, so G2/G3 compare like with lik
   - `raw/stack/runs/stack_s2_lr0.0001_kl1_merged.pt` sha256 8a70761239a65d64
   - `src1025/raw/cache/base/none_rec_tail.npy` sha256 773c280c146fe5b7
   - `src1025/raw/cache/base/ref_rec_tail.npy` sha256 90a7f48055d7072d
+
+## D1 (Bruno, 01:38 PDT; seen: the 2-set smoke and the grader s0 fp32 row): how the reading rows are built
+
+None of these touch a status row ((a)-(d), the frozen set, the share formula, the status rule).
+- Device: status rows in bf16 run on CPU (the G2/G3 device; 7 s per 200-prompt pass). The ~600 reading-row passes
+  per copy in bf16 run on MPS (0.6 s per pass); the MPS bf16 run also repeats (a)-(d) as a device variant. fp32
+  runs on CPU (CPU and MPS agree to 4 digits in fp32).
+- R3 scale-only: at each of tokens 0-2 the recipient's non-massive dims are multiplied by s_t = |r_M| / |d_M| (norm
+  of the recipient's vs the donor's massive values at that token). After the RMSNorm this gives the non-massive dims
+  exactly what row (a) gives them (up to eps and bf16 rounding), while the massive values stay the recipient's.
+- R4 same-energy: 3 random non-massive dims per set (rng(1)); at token t each gets a random sign times
+  sqrt(E_t / 3), with E_t = the massive dims' pre-norm offset energy at token t (so the total equals it per token).
+- R5 one step: one random non-massive dim at token 0 (rng(2)); its bf16 magnitude field moves by +1 or -1 (random;
+  a zero value always moves +1); the sign bit is kept.
+- Every row reports e_pre = 1 - |off - patched|^2 / |off - on|^2 and e_post_removed (the R1 formula) at tokens 0-2.
+  For rows that are not copies from the donor (R3, R4, R5) these can be negative: they move away from the donor.

@@ -248,25 +248,37 @@ def mechanism(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "reading": reading, "n_draws": len(dd)}
 
 
-def spearman_model_level(rows: list[dict[str, Any]]) -> dict[str, Any]:
+def spearman_model_level(rows: list[dict[str, Any]], say_col: str = "says", by_model: bool = False) -> dict[str, Any]:
+    """Model-level Spearman between say rate and trip rate in the prompt-on arm, the analogue of Honeyquest's r.
+    Points = model x decoy (10, PREREG s5) or model (5, both decoys pooled; Tove #10687). Say over exposed runs with a
+    window (say_col), trip over the same runs. CI: runs resampled within each point, 2,000 draws."""
     from scipy.stats import spearmanr
-    cells = cell_rates(rows)
-    keys = sorted(k for k in cells if k[1] == "on")
-    x = [cells[k]["say"].mean() for k in keys]
-    y = [cells[k]["trip"].mean() for k in keys]
-    r = spearmanr(x, y).statistic if len(keys) > 2 else None
+    st = strata(rows, say_col, "trip")
+    pts: dict[tuple, dict[str, list]] = defaultdict(lambda: {"say": [], "trip": []})
+    for (m, p, d), v in st.items():
+        if p != "on":
+            continue
+        k = (m,) if by_model else (m, d)
+        pts[k]["say"].extend(v["say"].tolist())
+        pts[k]["trip"].extend(v["trip"].tolist())
+    keys = sorted(pts)
+    arrs = {k: {"say": np.array(pts[k]["say"]), "trip": np.array(pts[k]["trip"])} for k in keys}
+    x = [arrs[k]["say"].mean() for k in keys]
+    y = [arrs[k]["trip"].mean() for k in keys]
+    r = float(spearmanr(x, y).statistic) if len(keys) > 2 else None
     rng = np.random.default_rng(0)
     draws = []
     for _ in range(2000):
         bx, by = [], []
         for k in keys:
-            i = rng.integers(0, len(cells[k]["say"]), len(cells[k]["say"]))
-            bx.append(cells[k]["say"][i].mean())
-            by.append(cells[k]["trip"][i].mean())
+            i = rng.integers(0, len(arrs[k]["say"]), len(arrs[k]["say"]))
+            bx.append(arrs[k]["say"][i].mean())
+            by.append(arrs[k]["trip"][i].mean())
         draws.append(spearmanr(bx, by).statistic)
-    return {"r": None if r is None else float(r), "ci90_run_resample": ci(np.array(draws, dtype=float)), "n_points": len(keys),
+    return {"say_col": say_col, "points_are": "model" if by_model else "model x decoy", "r": r,
+            "ci90_run_resample": ci(np.array(draws, dtype=float)), "n_points": len(keys),
             "points": {"|".join(k): [float(a), float(b)] for k, a, b in zip(keys, x, y)},
-            "note": "10 points from 5 models (not independent); Honeyquest's r = +0.08 is over 21 models"}
+            "note": "points come from 5 models (not independent); Honeyquest's r = +0.08 is over 21 models"}
 
 
 def manipulation(rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -314,7 +326,10 @@ def main() -> None:
         "seeds_on": [min(seeds_on), max(seeds_on)] if seeds_on else None,
         "primary": primary, "status": primary["status"], "variants": variants,
         "prediction": outcome_and_mechanism(rows), "mechanism": mechanism(rows),
-        "spearman_model_level": spearman_model_level(rows), "manipulation": manipulation(rows),
+        "spearman_model_level": spearman_model_level(rows),
+        "spearman_by_model_aware": spearman_model_level(rows, "says_aware", by_model=True),
+        "spearman_by_model_primary": spearman_model_level(rows, "says", by_model=True),
+        "manipulation": manipulation(rows),
         "logged_spend_usd_incl_smoke": round(spent, 4),
     }
     (OUT / "summary.json").write_text(json.dumps(summary, indent=1, sort_keys=True, default=float))
@@ -328,7 +343,8 @@ def main() -> None:
     print(f"prediction: S={pr['point']['S']:.3f} {pr['ci90']['S']} T={pr['point']['T']:.3f} {pr['ci90']['T']} "
           f"C={pr['point']['C']:.3f} {pr['ci90']['C']} -> {pr['outcome']}")
     print(f"mechanism: {summary['mechanism']}")
-    print(f"spearman: {summary['spearman_model_level']['r']} {summary['spearman_model_level']['ci90_run_resample']}")
+    for k in ("spearman_model_level", "spearman_by_model_aware", "spearman_by_model_primary"):
+        print(f"{k}: r={summary[k]['r']} CI={summary[k]['ci90_run_resample']} n={summary[k]['n_points']}")
     print(f"logged spend ${spent:.4f}")
 
 

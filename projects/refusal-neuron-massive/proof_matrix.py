@@ -78,7 +78,7 @@ if "logit_drop" in R:
             add("first-token", "greedy (n=1)", f"first-token score drop, arm {a}", "base",
                 f"{ld[a]:.2f} (gate A {ld['A']:.2f})", f"data/runs/logit/test_harmful/{a}.json")
     chk = json.loads((P / "data/runs/logit/d9_check.json").read_text())
-    add("method (D9)", "-", "tail-from-L13 scorer vs full forward, max per-prompt |score diff|", "full forward",
+    add("method (D9)", "-", "tail-from-L13 scorer vs full forward, max per-prompt absolute score diff", "full forward",
         ", ".join(f"{k} {v:.2f}" for k, v in chk.items()) + " (arm means differ by <= 0.02)", "data/runs/logit/d9_check.json")
 hdr = "| claim | seed | variant | control | result | artifact |\n|---|---|---|---|---|---|\n"
 (P / "proof-matrix.md").write_text("# Proof matrix (built by proof_matrix.py from data/results.json)\n\n" + hdr + "\n".join(rows) + "\n")

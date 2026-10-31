@@ -45,4 +45,4 @@
 | first-token | greedy (n=1) | first-token score drop, arm N5441neg | base | 0.63 (gate A 9.77) | data/runs/logit/test_harmful/N5441neg.json |
 | first-token | greedy (n=1) | first-token score drop, arm N5441_M | base | -0.42 (gate A 9.77) | data/runs/logit/test_harmful/N5441_M.json |
 | first-token | greedy (n=1) | first-token score drop, arm N5441_R | base | 1.34 (gate A 9.77) | data/runs/logit/test_harmful/N5441_R.json |
-| method (D9) | - | tail-from-L13 scorer vs full forward, max per-prompt |score diff| | full forward | base 0.51, A 0.68, B 0.74, C 0.74 (arm means differ by <= 0.02) | data/runs/logit/d9_check.json |
+| method (D9) | - | tail-from-L13 scorer vs full forward, max per-prompt absolute score diff | full forward | base 0.51, A 0.68, B 0.74, C 0.74 (arm means differ by <= 0.02) | data/runs/logit/d9_check.json |

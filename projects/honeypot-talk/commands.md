@@ -15,3 +15,9 @@ $PY proof_matrix.py                                   # -> proof-matrix.md
 ```
 
 Exact invocations with timestamps are appended below by run.py.
+
+## 2026-10-31 02:58:07 PDT
+
+```sh
+run.py smoke --seeds 5 --workers 12
+```

@@ -114,10 +114,13 @@ def robot(x, y, s):
         '<path d="M35 54q5 4 10 0" fill="none" stroke="#7fd6f7" stroke-width="2.4" stroke-linecap="round"/></g>')
 
 
-# ---------- header ----------
-for k, line in enumerate(CFG["question"]):
+# ---------- header: the conclusion as the head; the question at most in the lighter subtitle ----------
+for k, line in enumerate(CFG["title"]):
     text(W / 2, 48 + 38 * k, line, 30, 800, INK, "middle")
-HY = 48 + 38 * (len(CFG["question"]) - 1) + 28
+TY = 48 + 38 * (len(CFG["title"]) - 1)
+for k, line in enumerate(CFG.get("subtitle", [])):
+    text(W / 2, TY + 36 + 28 * k, line, 21, 500, GREY, "middle")
+HY = TY + 28 + 34 * len(CFG.get("subtitle", []))
 robot(30, HY + 2, 1.0)
 text(70, HY + 106, "Qwen2.5-1.5B", 19, 600, "#8a8f98", "middle")
 f_txt, t_txt = R[I]["text"], R[T]["text"]
@@ -141,7 +144,7 @@ for j, (h1, h2) in enumerate(CFG["cols"]):
     text(COLX[j] + COLW / 2, GY + 26, h1, 25, 800, INK, "middle")
     text(COLX[j] + COLW / 2, GY + 54, h2, 21, 500, GREY, "middle")
 RY0, RH, RG = GY + 76, 196, 14
-H = RY0 + len(rows) * (RH + RG) + 26 + 34 * len(CFG.get("bottom", []))
+H = RY0 + len(rows) * (RH + RG) + 26 + 32 * len(CFG.get("note", [])) + 28 * len(CFG.get("bottom", []))
 o.insert(0, f'<rect x="0" y="0" width="{W}" height="{H}" rx="24" fill="{BG}"/>')
 
 NB = 34
@@ -212,10 +215,13 @@ for k, r in enumerate(rows):
             text(W - LX - 22, y0 + RH - 14, f"original labels: {pct(ol)}", 19, 600, GREY, "end")
             print(f"  {r['title'][0]} classifier on original labels pooled {100 * ol:.1f}%")
 
-for k, line in enumerate(CFG.get("bottom", [])):
-    yb = RY0 + len(rows) * (RH + RG) + 22 + 34 * k - 4 * max(0, k - CFG.get("bottom_bold", 1))
-    bold = k < CFG.get("bottom_bold", 1)
-    text(W / 2, yb, line, 27 if bold else 20, 800 if bold else 500, INK if bold else GREY, "middle")
+yb = RY0 + len(rows) * (RH + RG) + 22
+for line in CFG.get("note", []):  # the one short note: the caveat the head leaves out
+    text(W / 2, yb, line, 23, 700, INK, "middle")
+    yb += 32
+for line in CFG.get("bottom", []):  # fine print, then source + byline
+    text(W / 2, yb, line, 19, 500, GREY, "middle")
+    yb += 28
 
 alt = CFG.get("alt", "")
 html = f"""<!doctype html>

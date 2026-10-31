@@ -60,3 +60,13 @@ D1-D4 375847c at 19:42:38 PDT, D5-D7 360af77 at 19:43:04 PDT. No TEST number exi
 order, so every finished draw has its coherence column. A draw passes coherence on those 50 with the same bars
 (garbage <= 15%, harmless refusal rise <= 10 points vs base on the same 50). Main arms and N5441 keep all 200
 HARMLESS prompts. Whatever is not done at 22:00 PDT is reported as not run.
+
+## D9 — 2026-10-30 20:08 PDT (git time is the record). Clock fit (Bruno #9930: first-token score 22 s/arm, random
+generation ~95 s/draw). Before any random-arm or N5441 number.
+(a) First-token scores use a cached clean pass up to the input of layer 13 (every edit acts at the layer-13 MLP
+output, so layers 0-12 are unchanged and the result is exact up to bf16 batching). Gate: Bruno shows the cached tail
+equals the full forward on base and A (max |logit diff| and argmax agreement posted) before any random score is used.
+(b) Generation draws are cut from D4's 20/20/10/10 to D' 10, F 5 (sign by larger first-token drop), E' 5, F' 5,
+each 200 TEST harmful + first 50 HARMLESS (D8), interleaved D', F, E', F' draw by draw. First-token scores stay on all
+draws (F 100 neurons x 2 signs, D' 100, E' 100, F' 20). Run order: scores -> N5441 generation (200 + 200 HARMLESS)
+-> DEV A/B/C -> random generation. Unfinished draws at 22:00 PDT are reported as not run. Status rule unchanged.

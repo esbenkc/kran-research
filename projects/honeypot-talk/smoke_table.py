@@ -19,7 +19,7 @@ blind = [{"model": r["model"], "cell": r["cell"], "seed": r["seed"], "thought": 
           **{k: r.get(k) for k in r if k.startswith("says")}} for r in rows if r.get("window_reply") is not None]
 (out_dir / "window_thoughts.jsonl").write_text("".join(json.dumps(b, sort_keys=True) + "\n" for b in blind))
 
-cols = ["says", "says_v1_v1", "says_clause_v1", "says_clause_cb_strict", "says_clause_verb_strict", "says_raw", "says_aware",
+cols = ["says", "says_v1_v1", "says_clause_strict", "says_clause_cb_strict", "says_clause_verb_strict", "says_raw", "says_aware",
         "trip", "trip_any"]  # says/trip = scorer.PRIMARY
 g = collections.defaultdict(list)
 for r in rows:

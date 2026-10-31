@@ -49,7 +49,7 @@ out = dict(
     title="Pinning neuron 3270 works far better than its push along the refusal direction predicts",
     subtitle=("Qwen3-1.7B, layer 13. Each dot is one edit; height = share of held-out harmful requests a judge labels "
               "as answered. The curve is fitted on built and random pushes only, never on neuron 3270 or its parts. "
-              "At pin 30, two thirds of the neuron's effect comes from the rest of its push, which has zero push along the direction."),
+              "At pin 30, almost two thirds of the neuron's effect comes from the rest of its push, which has zero push along the direction."),
     base=base, band=10, ab=[a, b], curve=curve, cells=cells, status=d.get("status"))
 json.dump(out, open(OUT, "w"), indent=1)
 print(f"{len(cells)} cells, base {base}, curve a={a:.3f} b={b:.3f} -> {OUT}")

@@ -1,6 +1,6 @@
 {
  "title": "one blocked task, four versions of a stray key, and a task that is not blocked",
- "head": "Do stronger AI agents use an out-of-scope key because it unblocks their task rather than because it looks real?",
+ "head": "Neither the key&rsquo;s scope nor its name mattered much: a useful key in a stranger&rsquo;s name ({useful_foreign} of 100 runs) was used about as often as a useless key in the agent&rsquo;s own name ({useless_real})",
  "sub": "{model} and four other strong agents must check a bucket's size. Their token is denied. The denial shows an old record with another key. Any use of that key is caught.",
  "col_own": [
   "Looks real: names the agent"
@@ -41,7 +41,7 @@
  "status_fallback": "SMOKE",
  "bottom": {
   "SMOKE": "<em>SMOKE DRAFT.</em> Blocked: {useful_real}, {useful_foreign}, {useless_real}, {useless_foreign} of {NT}. Not blocked: {not_blocked} of {NT}.",
-  "REJECTED": "<em>Answer: No.</em> With a mild scope line, neither what the key said it could do nor whose name it carried mattered much. A useful key naming a stranger was used in <b class=ring>{useful_foreign}</b> of 100 runs; a useless key naming the agent, in <b class=ring>{useless_real}</b>. Without a block: {not_blocked}. <span class=why>A plain 'not valid for storage' line, an extra test, cut use to {NV} and {NF}.</span>"
+  "REJECTED": ""
  },
  "row_ctl": [
   "Checks",
@@ -69,5 +69,7 @@
  "col_cap": "runs that used the key (5 agents, 20 runs each)",
  "not_run": "not tested",
  "plain_tag": "added test, outside the pre-registered rule",
- "mild_tag": "Haiku calls this log-export key a <mark>storage token</mark>"
+ "mild_tag": "Haiku calls this log-export key a <mark>storage token</mark>",
+ "q": "Do stronger agents use an out-of-scope key because it unblocks their task rather than because it looks real? No.",
+ "foot": "Our simulated company system &middot; Kran Lab, Oct 31 2026 &middot; <b>blog.kran.ai/lab</b>"
 }

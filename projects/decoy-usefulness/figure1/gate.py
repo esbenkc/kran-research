@@ -2,7 +2,8 @@
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path.home() / "bin")); import oracle  # noqa: E402
-post = Path(__file__).resolve().parents[2] / "blog.kran.ai/_notes/decoy-usefulness.md"
+post = next(q / "blog.kran.ai/_notes/decoy-usefulness.md" for q in Path(__file__).resolve().parents
+            if (q / "blog.kran.ai/_notes/decoy-usefulness.md").exists())
 ok = 0
 for i in range(int(sys.argv[1])):
     rows, _ = oracle.figure1_rows(post, "defense-1031-usefulness-beats")

@@ -95,6 +95,7 @@ SUB = CFG["sub"].format(bucket=f"<span class='pill mono'>{W['bucket']}</span>", 
 BOTTOM = CFG["bottom"][D.get("summary", {}).get("title_status", CFG["status_fallback"])].format(
     **{c: N[c] for c in N}, NT=NT, **{f"p_{c}": pct(c) for c in N}, NV=PV[0], NVT=PV[1], NF=D["pooled_variant"]["useless_foreign_explicit"][0], **EFF)
 
+HEAD = CFG["head"].format(**{c: N[c] for c in N})
 if LAYOUT == "grid":
     BODY = f"""<div class="grid">
 <div></div><div class="ch">{CFG['col_own'][0]}<span>{CFG['col_own'][1]}</span></div><div class="ch">{CFG['col_for'][0]}<span>{CFG['col_for'][1]}</span></div>
@@ -198,7 +199,10 @@ HTML = f"""<!doctype html>
   html, body {{ background: #fbfaf8; }}
   body {{ width: 1200px; padding: 30px 40px 32px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-  .head {{ font-size: 35px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.18; }}
+  .head {{ font-size: 38px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.17; }}
+  .q {{ font-size: 25px; line-height: 1.3; color: #6b6f78; margin-top: 8px; }}
+  .byline {{ font-size: 20px; color: #7a7e87; margin-top: 20px; }}
+  .byline b {{ color: #3a3d45; font-weight: 700; }}
   .sub {{ font-size: 24px; color: #5a5d66; margin-top: 8px; line-height: 1.3; display: flex; gap: 12px; align-items: center; }}
   .sub .rb {{ margin: 0; }}
   .red {{ color: #c8372d; }}
@@ -261,10 +265,12 @@ HTML = f"""<!doctype html>
 </style>
 </head>
 <body>
-<div class="head">{CFG['head']}</div>
+<div class="head">{HEAD}</div>
+<div class="q">{CFG['q']}</div>
 <div class="sub">{ROBOT}<div>{SUB}</div></div>
 {BODY}
-<div class="bottom">{BOTTOM}</div>
+{f'<div class="bottom">{BOTTOM}</div>' if BOTTOM else ''}
+<div class="byline">{CFG['foot']}</div>
 </body>
 </html>
 """

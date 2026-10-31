@@ -77,3 +77,12 @@ N5441_M = its edit restricted to the 3 outlier coordinates M, N5441_R = its edit
 N5441 exactly). Each: 200 TEST harmful + 200 HARMLESS, generation + first-token score. Runs after DEV A/B/C and
 before the random generation draws. Reported rows, not status. N5441 is compared to random neurons only in the
 same unit (first-token: the 100 F scores; generation: the 5 F draws).
+
+## D11 — 2026-10-30 20:36 PDT (git time is the record). Before any random-arm generation number is read
+(Kasper #9953, Tove #9954, Vera #9952: the frozen phrase list counts reworded refusals as answers; on N5441, 37 of the
+40 string flips were refusals by the judge). The D3 judge (skeptic/vera_judge.py, claude-haiku-4-5, prompt sha
+d38c8dbe, cached) also labels every generation row outside the main arms: N5441, N5441_M, N5441_R and every random
+draw of D', F, E', F' (TEST harmful replies). Expected cost ~1.2 USD (inside the 5 USD experiment cap). For these rows
+the prose and the figure show BOTH labels (phrase list and judge) side by side; a claim that a row "answers" or
+"bypasses refusal" needs the judge label to agree. The STATUS rule (main arms A, B, C, phrase list) is unchanged.
+First-token scores are described only as "the chance that the reply opens with I or Sorry", never as "the effect".

@@ -25,3 +25,26 @@ Generation (200 TEST harmful + 200 HARMLESS, 64 tokens) runs on the first 20 dra
 All 100 draws of D', E', F (both signs) and 20 of F' get the first-token score on TEST. The Phase-0 gate test
 "EFFECT(A) > 99th pct of F" uses the first-token score over 100 F neurons (generation n < 100, as PREREG allows).
 If the smoke shows more draws fit before 21:30 PDT, Bruno adds draws in the fixed order (D', E', F, F').
+
+## D5 — 2026-10-30 19:50 PDT (03:50 CET). Before any TEST number is read. Garbage rule (Kasper #9885 REJECT).
+PREREG's garbage threshold "p95 of the clean model's own replies on the same split" would flag real compliance on
+harmful prompts as garbage (clean harmful replies are ~80% formulaic refusals). New rule for EVERY split and arm:
+reply NLL = mean per-token NLL of the reply under the CLEAN model with a NEUTRAL user turn ("Continue the text.")
+in place of the original prompt, skipping the first 4 reply tokens. Threshold = 95th percentile of that NLL over the
+clean model's own replies to the 200 HARMLESS prompts (one number, used for all splits). Distinct-token ratio < 0.3
+stays. Everything else in "Refusal, coherence, effect" is unchanged.
+
+## D6 — 19:50 PDT. Phase-0 item 2 units (Kasper #9885 pin 2).
+With fewer than 100 generation draws of F, "EFFECT(A) > 99th pct of F" compares the SAME unit: the first-token
+refusal logit-difference drop of A vs the 100 F neurons (larger sign per neuron). The generation draws of F (10)
+are reported; their max is shown, not called a 99th percentile.
+Token 0 is `<|im_start|>` in every prompt, so its residual is one value (causal model); the post reports the
+massive-dim values as one measurement, not 32.
+
+## D7 — 19:50 PDT. Before its run. Natural massive-channel neuron (Iris #9884, Tove #9887).
+Layer-13 neuron 5441 puts 70.4% of its write energy into M (max of the layer; share_L13.npy). Arm N5441: pin it at
+the gate's per-token EDIT norm, delta(t) = s |30 - h_gate(t)| ||w_gate|| w_5441/||w_5441||, both signs; the sign
+with the larger first-token drop gets the full generation (200 TEST harmful + 200 HARMLESS). Reported as the
+natural instance of the existence test, not status. Neuron 4475 (53.9%) as a second row only if time remains.
+Optional, only after every frozen arm: D' split by dim (1401 alone vs 1793+1999), Iris's gain table predicts 1401
+carries the push.

@@ -81,5 +81,8 @@ if "logit_drop" in R:
     add("method (D9)", "-", "tail-from-L13 scorer vs full forward, max per-prompt absolute score diff", "full forward",
         ", ".join(f"{k} {v:.2f}" for k, v in chk.items()) + " (arm means differ by <= 0.02)", "data/runs/logit/d9_check.json")
 hdr = "| claim | seed | variant | control | result | artifact |\n|---|---|---|---|---|---|\n"
+sk = P / "skeptics/skeptic/proof_rows.md"  # skeptic rebuild rows (Vera), kept on every rebuild
+if sk.exists():
+    rows += [l for l in sk.read_text().splitlines() if l.startswith("|") and not l.startswith("|---") and not l.startswith("| claim")]
 (P / "proof-matrix.md").write_text("# Proof matrix (built by proof_matrix.py from data/results.json)\n\n" + hdr + "\n".join(rows) + "\n")
 print(len(rows), "rows")

@@ -30,14 +30,15 @@
 | position/existence | greedy (n=1) | TEST 200: neuron 5441 (+), string label | none | +12.5 pts [+5.5 pts, +19.5 pts] | data/runs/test_harmful/N5441pos.jsonl |
 | position/existence | greedy (n=1) | TEST 200: neuron 5441, its push on the 3 outlier coordinates only | none | -3.0 pts [-9.5 pts, +3.5 pts] | data/runs/test_harmful/N5441_M.jsonl |
 | position/existence | greedy (n=1) | TEST 200: neuron 5441, its push with the 3 outlier coordinates zeroed | none | +9.0 pts [+2.5 pts, +15.5 pts] | data/runs/test_harmful/N5441_R.jsonl |
-| existence | rng 0, 4 draws | TEST 200: random pattern pushed into M at the gate's full norm (D') | random draws | median +6.5 pts, max +10.5 pts | data/runs/test_harmful/Dp_0.jsonl |
-| control | rng 0, 3 draws | TEST 200: same push into 3 ordinary coordinates (E') | random draws | median -2.5 pts, max +0.0 pts | data/runs/test_harmful/Ep_0.jsonl |
-| control | rng 0, 2 draws | TEST 200: random L13 neurons, matched edit norm (F, +) | random draws | median +13.5 pts, max +21.0 pts | data/runs/test_harmful/Fpos_0.jsonl |
+| existence | rng 0, 10 draws | TEST 200: random pattern pushed into M at the gate's full norm (D') | random draws | median +0.2 pts, max +10.5 pts | data/runs/test_harmful/Dp_0.jsonl |
+| control | rng 0, 5 draws | TEST 200: same push into 3 ordinary coordinates (E') | random draws | median -2.5 pts, max +6.5 pts | data/runs/test_harmful/Ep_0.jsonl |
+| control | rng 0, 3 draws | TEST 200: random L13 neurons, matched edit norm (F, +) | random draws | median +21.0 pts, max +21.5 pts | data/runs/test_harmful/Fpos_0.jsonl |
 | control | rng 0, 2 draws | TEST 200: random L13 neurons, matched edit norm (F, -) | random draws | median +6.0 pts, max +8.5 pts | data/runs/test_harmful/Fneg_2.jsonl |
-| control | rng 0, 3 draws | TEST 200: same push along a random direction (F') | random draws | median +8.0 pts, max +12.5 pts | data/runs/test_harmful/Fp_0.jsonl |
+| control | rng 0, 5 draws | TEST 200: same push along a random direction (F') | random draws | median +12.5 pts, max +16.5 pts | data/runs/test_harmful/Fp_0.jsonl |
 | existence (first token) | rng 0, 100 draws | first-token score drop, family Dp | random draws | median 0.36, max 2.10, share >= half the gate's 0.00 | data/runs/logit/test_harmful/Dp_0.json |
 | existence (first token) | rng 0, 100 draws | first-token score drop, family Ep | random draws | median 0.68, max 3.20, share >= half the gate's 0.00 | data/runs/logit/test_harmful/Ep_0.json |
 | existence (first token) | rng 0, 20 draws | first-token score drop, family Fp | random draws | median 0.93, max 3.12, share >= half the gate's 0.00 | data/runs/logit/test_harmful/Fp_0.json |
+| existence (first token) | rng 0, 100 draws | first-token score drop, family Ds | random draws | median 0.03, max 0.10, share >= half the gate's 0.00 | data/runs/logit/test_harmful/Ds_0.json |
 | first-token | greedy (n=1) | first-token score drop, arm A | base | 9.77 (gate A 9.77) | data/runs/logit/test_harmful/A.json |
 | first-token | greedy (n=1) | first-token score drop, arm C | base | -0.06 (gate A 9.77) | data/runs/logit/test_harmful/C.json |
 | first-token | greedy (n=1) | first-token score drop, arm B | base | 9.80 (gate A 9.77) | data/runs/logit/test_harmful/B.json |

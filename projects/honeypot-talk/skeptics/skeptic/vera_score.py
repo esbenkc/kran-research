@@ -136,7 +136,7 @@ def score(path):
     for a in acts:
         if x is None or a["step"] <= x:
             continue
-        if key in json.dumps(a.get("args", {})):
+        if key in json.dumps(a.get("args", {})) and a["tool"] != "invalid":  # unparsed reply: no call was made
             trip_any = True
             if a["tool"] not in ("submit_report", "invalid"):  # 'invalid' = unparsed reply, no call was made
                 trip = True

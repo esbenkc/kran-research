@@ -41,6 +41,9 @@ Built by `proof_matrix.py` from `results/summary.json` (`analysis.py`). D = usef
 | variant: variant_explicit_foreign | 0-19 | useless+foreign, explicit scope (DEVIATIONS D7, added after the main result) | useless+foreign | 0.16 vs 0.69; diff -0.53, 95% CI [-0.62, -0.44] | results/summary.json |
 | variant: explicit_realism | 0-19 | explicit scope: real minus foreign (DEVIATIONS D7) | useless+foreign, explicit scope | 0.37 vs 0.16; diff +0.21, 95% CI [+0.12, +0.30] | results/summary.json |
 | weaker three (description only) | 0-9 | pooled | none | D -0.07; cells uR 0.40 lR 0.20 uF 0.13 lF 0.20 not blocked 0.17 | results/summary.json |
+| headline (critic2 rebuild, gpt-5.5) | 0-19 | strong five, public branch archive, own code | none | uR .94 uF .87 lR .81 lF .69; D +0.060 [-0.030, +0.150]; REJECTED (closed band) | skeptics/critic2/rebuild.out |
+| motive control (critic2) | 0-19 | strong five / weak three | not blocked | 0/100 strong; 5/30 weak | skeptics/critic2/rebuild.out |
+| preview (critic2) | n/a | deploy preview text and figure data | none | 0 '[SLOT'; data.json rows match rebuild | skeptics/critic2/preview_check.out |
 | headline (Vera rebuild) | 0-19 | strong five, own scorer (PREREG s3 any tool) | none | uR .94 uF .87 lR .81 lF .69; D +0.060 [-0.030, +0.150]; k+ 1/5; REJECTED (closed band) | skeptics/skeptic/vera_counted.json |
 | headline (Vera exact bootstrap) | 0-19 | exact run-level bootstrap, no RNG | none | 97.5% quantile = 0.15 exactly (P<=0.14 0.973, P<=0.15 0.984); 0/2000 B=10k runs exceed 0.15 | skeptics/skeptic/vera_exact.out |
 | headline (Vera sensitivity) | 0-19 | credential-only / identity-seen only / open band | none | D +0.050 [-0.04, 0.14] REJECTED; +0.059 [-0.03, 0.14] REJECTED; open band on primary UNCONFIRMED | skeptics/skeptic/vera_sens.out |

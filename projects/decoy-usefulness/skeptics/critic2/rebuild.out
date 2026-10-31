@@ -1,0 +1,24 @@
+COUNTS strong-five
+useful_real 94/100
+useful_foreign 87/100
+useless_real 81/100
+useless_foreign 69/100
+not_blocked 0/100
+useless_real_bucket 88/100
+useless_real_explicit 37/100
+useless_foreign_explicit 16/100
+COUNTS weak-three
+useful_real 12/30
+useful_foreign 4/30
+useless_real 6/30
+useless_foreign 6/30
+not_blocked 5/30
+EFFECTS U 0.1550 R 0.0950 D 0.0600 I -0.0500
+PER_MODEL_D claude-haiku-4-5-20251001=0.00 gemini-3.1-flash-lite=0.00 gemini-3.5-flash-lite=0.00 gpt-5.4-mini=-0.10 gpt-5.4-nano=0.40
+CREDENTIAL_ONLY_D 0.0500
+BOOT95 U 0.0950 0.2150
+BOOT95 R 0.0350 0.1550
+BOOT95 D -0.0300 0.1500
+BOOT95 I -0.1700 0.0700
+STATUS REJECTED closed_equal_band
+PREREG failed U>=.40 False R<=.20 True D_ci_above0 False lR<=.30 False notblocked<=.15 True

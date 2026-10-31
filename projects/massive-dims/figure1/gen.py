@@ -204,6 +204,7 @@ body {{ width: 1200px; padding: 34px 40px 34px; font-family: "Inter", system-ui,
 .ch {{ font-size: 25px; font-weight: 800; line-height: 1.2; align-self: end; padding: 0 4px 2px; }}
 .ch span {{ display: block; font-weight: 500; color: #4d5059; font-size: 22px; }}
 .swaphead {{ grid-column: 1 / span 3; font-size: 23px; font-weight: 600; color: #4d5059; border-top: 2px solid #c9ccd3; padding-top: 10px; margin-top: 4px; }}
+.gl {{ align-self: end; font-size: 22px; line-height: 1.25; color: #4d5059; padding-bottom: 2px; }}
 .rl {{ display: flex; flex-direction: column; justify-content: center; font-size: 25px; font-weight: 750; line-height: 1.2; }}
 .rl span {{ font-size: 22px; font-weight: 500; color: #4d5059; margin-top: 2px; }}
 .rl.ind {{ padding-left: 22px; }}
@@ -230,7 +231,7 @@ body {{ width: 1200px; padding: 34px 40px 34px; font-family: "Inter", system-ui,
  </div>
 </div>
 <div class="grid">
- <div></div>
+ <div class="gl">{CFG['grid_label']}</div>
  <div class="ch">{CFG['cols'][0]}</div>
  <div class="ch">{CFG['cols'][1]}</div>
 {chr(10).join(rows_html)}

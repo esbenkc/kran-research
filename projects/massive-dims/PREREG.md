@@ -23,7 +23,7 @@ tokens** = positions 0, 1, 2 of the 34-token chat-template prompt (main text nev
 > If not: The constant prefix matters, but the fingerprint is spread over ordinary dimensions. The defence stays at
 > bit-identity or prefix variation, and the architecture bridge is weaker.
 
-Source: the room goal, message #10402. Question approved by Tove (verdict message to follow this commit).
+Source: the room goal, message #10402. Question approved by Tove (#10419, APPROVE, ambitious, conditions A-D).
 
 Reading of "perm p < 0.01" (Vera #10411, Kasper #10410, Tove #10415; set here, before any patch): with 99 random
 sets the smallest possible rank p is 1/100 = 0.01. The clause is read as "the massive-only share is larger than the
@@ -43,10 +43,13 @@ share of every one of the 99 random sets" (rank p = 0.01 counts).
   - monitor switch s0, s1: `theory-1025-numeric-chameleon/.../numeric-chameleon-rl/raw/runs/r50_s{0,1}_lr0.0001_kl1_at8192_adapter.pt`.
     Inputs: probe-off (`none`) and probe-on (`ref`) block-26 caches, re-cached tonight (gate G1).
   - Bruno names the exact files in DEVIATIONS D0 before any patch; grader s2 is an extra row, never in the status.
-- HIGH input = the condition where the copy's P(X) is higher; LOW input = the other one.
-- Headline direction: donor = LOW input, recipient = HIGH input (the patch tries to switch X off).
-  **Share moved** = (P_HIGH - P_patched) / (P_HIGH - P_LOW). 1 = the whole switch moved, 0 = nothing moved.
-  The reverse direction (LOW recipient, HIGH donor; share = (P_patched - P_LOW) / (P_HIGH - P_LOW)) is a reading row.
+- Condition-on input = the input with the cue the switch senses: the grading build (eager) for the grader switch,
+  probe on (`ref`) for the monitor switch. Condition-off input = serving build (compiled) / probe off (`none`).
+- Headline direction (the goal's "patch from the condition-off run into the condition-on run"; Bruno #10424):
+  donor = condition-off input, recipient = condition-on input.
+  **Share moved** = (P_patched - P_on) / (P_off - P_on). 1 = the whole switch moved, 0 = nothing moved.
+  The reverse direction (recipient = condition-off, donor = condition-on; share = (P_patched - P_off) / (P_on -
+  P_off)) is a reading row.
 - Two tail precisions: bf16 (as trained) and fp32 (same weights and inputs cast to fp32). A verdict counts only
   when both precisions give it.
 
@@ -55,8 +58,9 @@ share of every one of the 99 random sets" (rank p = 0.01 counts).
 Rule: a dimension is massive if, at any of the first three tokens, its median |x| over the test prompts is more
 than 100 x the median |x| over the 1,024 dimensions at that token, on the untrained block-26 input of the grading
 build (eager) cache. Iris measured (#10406): only token 0 passes; the set is **{1, 13, 35}** (dim 35 = 8128,
-3515x; dim 13, 379x; dim 1, 208x). Iris's freeze script recomputes the set from the base caches of both switches
-and is committed before any patch; if it gives a different set, the patch runs stop and the room decides.
+3515x; dim 13, 379x; dim 1, 208x). Bruno's `massive.py` recomputes the set from the base caches of both switches
+into `data/frozen.json` and commits it before any patch (Iris's `research_checks/norm_bound.py` is the cross-check);
+if it gives a different set, the patch runs stop and the room decides.
 The set is patched as DIMENSIONS at all of tokens 0, 1, 2 (Felix #10416, Tove #10415), not as (token, dim) cells.
 
 ### Patches per copy (block-26 input, tokens 0-2, donor -> recipient)
@@ -69,9 +73,11 @@ Status rows:
 - (d) all: all 1,024 dims at tokens 0-2.
 
 Reading rows (reported, never in the status):
-- R1 frozen energy prediction (Tove #10415): per switch, the share of the LOW-vs-HIGH offset energy at tokens 0-2
-  that dims {1, 13, 35} hold before and after block 26's input RMSNorm. Iris computes it from the base caches
-  only and commits it before any patch.
+- R1 frozen energy prediction (Tove #10415): per switch, the share of the condition-on vs condition-off offset
+  energy at tokens 0-2 that dims {1, 13, 35} hold, before block 26's input RMSNorm and after it. "After" =
+  x / rms(x) times the layer-26 input_layernorm weight (what the tail reads; Kasper #10425). Written to
+  `data/frozen.json` from the base caches only, committed before any patch. Iris's pre-run value: ~0.11 at
+  token 0 for the grader switch (#10423).
 - R2 rank control (Kasper #10410): the top 3 non-massive dims by mean |offset| at tokens 0-2.
 - R3 scale-only (Kasper #10418): at tokens 0-2 keep the recipient's massive dims and multiply its non-massive dims
   by the RMS ratio that the donor's massive dims would give; nothing else changes.
@@ -113,7 +119,7 @@ wherever rounding is largest", not "the massive dimensions are special". If R3 (
 
 ## 5. Order and cut times (Copenhagen time; stop new work 12:00, close 13:00)
 
-1. G1-G3 and Iris's freeze (set + R1), committed: by 10:10.
+1. G1-G3 and the freeze (`data/frozen.json`: set + R1), committed: by 10:10.
 2. (a)-(d) in bf16, then fp32, all 4 copies: by 10:50.
 3. R2, R3, R6, then R4, then R5. A row not started by 11:30 is cut and listed in DEVIATIONS.
 4. Vera rebuilds the headline cells with her own code from the saved raw data, by 11:30.

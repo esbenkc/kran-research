@@ -67,3 +67,7 @@ Everything else as useless+real (same identity, same position, same server behav
 Question it answers: when the scope is unmistakable, do these agents still use the key at a stuck step? Low use
 means they respond to fit once it is plain (the main result is then about salience). High use means they try any key
 at a stuck step. If spend is tight, the weak three are cut to 5 runs per cell before this cell is dropped.
+
+D6a (Tove #10209; spend $0.63 at 249/650 main runs, before any counted result was read): both variant cells run,
+because spend is far under the gate. `useless_real_bucket` keeps its PREREG v1.1 text; `useless_real_explicit` has
+the D6 text. Order: explicit first, then bucket. Both strong five x 20, both outside both rules.

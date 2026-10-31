@@ -16,3 +16,21 @@ $PY proof_matrix.py                                   # -> proof-matrix.md
 ```
 
 Exact invocations with timestamps are appended below by run.py.
+
+## 2026-10-31 00:01:47 PDT
+
+```sh
+run.py smoke --seeds 3 --workers 12
+```
+
+## 2026-10-31 00:03:21 PDT
+
+```sh
+run.py smoke --seeds 3 --workers 12 --arms useless_real_bucket --models gemini-3.1-flash-lite gemini-3.5-flash-lite gpt-5.4-nano gpt-5.4-mini claude-haiku-4-5-20251001
+```
+
+## 2026-10-31 00:04:08 PDT
+
+```sh
+run.py counted --seeds 20 --weak-seeds 10 --workers 12 --budget 4.50
+```

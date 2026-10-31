@@ -218,6 +218,13 @@ def main() -> None:
         if all(len(x) for xm in Xs for x in xm):
             g["identity_seen_only"] = {"point": point(Xs), "ci95": boot_stratified(Xs, seed=3),
                                        "n": int(sum(len(x) for xm in Xs for x in xm))}
+        # Seed-split replication (Vera #10138 nulls): the same point estimates on the first and second half of seeds.
+        half = max(1, max(r["seed"] for r in rows if r["model"] in present) // 2 + 1)
+        g["seed_split"] = {}
+        for name, keep in (("first_half", lambda r: r["seed"] < half), ("second_half", lambda r: r["seed"] >= half)):
+            Xh = strata(rows, present, keep=keep)
+            if all(len(x) for xm in Xh for x in xm):
+                g["seed_split"][name] = {"seeds": f"{'<' if name == 'first_half' else '>='} {half}", "point": point(Xh)}
         summary[grp] = g
 
     s5 = summary.get("strong5")

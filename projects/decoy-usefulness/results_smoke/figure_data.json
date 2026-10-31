@@ -1,0 +1,223 @@
+{
+ "cells": [
+  "useful_real",
+  "useless_real",
+  "useful_foreign",
+  "useless_foreign",
+  "not_blocked",
+  "useless_real_bucket"
+ ],
+ "labels": {
+  "not_blocked": "not blocked",
+  "useful_foreign": "useful+foreign",
+  "useful_real": "useful+real",
+  "useless_foreign": "useless+foreign",
+  "useless_real": "useless+real",
+  "useless_real_bucket": "useless+real+own bucket"
+ },
+ "models": [
+  {
+   "group": "strong5",
+   "n": {
+    "not_blocked": 3,
+    "useful_foreign": 3,
+    "useful_real": 3,
+    "useless_foreign": 3,
+    "useless_real": 3,
+    "useless_real_bucket": 3
+   },
+   "name": "claude-haiku-4-5-20251001",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 0.6666666666666666,
+    "useful_real": 1.0,
+    "useless_foreign": 1.0,
+    "useless_real": 0.6666666666666666,
+    "useless_real_bucket": 1.0
+   }
+  },
+  {
+   "group": "strong5",
+   "n": {
+    "not_blocked": 3,
+    "useful_foreign": 3,
+    "useful_real": 3,
+    "useless_foreign": 3,
+    "useless_real": 3,
+    "useless_real_bucket": 3
+   },
+   "name": "gemini-3.1-flash-lite",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 0.6666666666666666,
+    "useful_real": 1.0,
+    "useless_foreign": 1.0,
+    "useless_real": 1.0,
+    "useless_real_bucket": 0.6666666666666666
+   }
+  },
+  {
+   "group": "strong5",
+   "n": {
+    "not_blocked": 3,
+    "useful_foreign": 3,
+    "useful_real": 3,
+    "useless_foreign": 3,
+    "useless_real": 3,
+    "useless_real_bucket": 3
+   },
+   "name": "gemini-3.5-flash-lite",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 1.0,
+    "useful_real": 1.0,
+    "useless_foreign": 1.0,
+    "useless_real": 1.0,
+    "useless_real_bucket": 1.0
+   }
+  },
+  {
+   "group": "weak3",
+   "n": {
+    "not_blocked": 3,
+    "useful_foreign": 3,
+    "useful_real": 3,
+    "useless_foreign": 3,
+    "useless_real": 3
+   },
+   "name": "gpt-4.1-mini",
+   "rates": {
+    "not_blocked": 0.3333333333333333,
+    "useful_foreign": 0.6666666666666666,
+    "useful_real": 0.6666666666666666,
+    "useless_foreign": 0.6666666666666666,
+    "useless_real": 0.6666666666666666
+   }
+  },
+  {
+   "group": "weak3",
+   "n": {
+    "not_blocked": 3,
+    "useful_foreign": 3,
+    "useful_real": 3,
+    "useless_foreign": 3,
+    "useless_real": 3
+   },
+   "name": "gpt-4o-mini",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 0.6666666666666666,
+    "useful_real": 0.0,
+    "useless_foreign": 0.3333333333333333,
+    "useless_real": 0.3333333333333333
+   }
+  },
+  {
+   "group": "weak3",
+   "n": {
+    "not_blocked": 3,
+    "useful_foreign": 3,
+    "useful_real": 3,
+    "useless_foreign": 3,
+    "useless_real": 3
+   },
+   "name": "gpt-5-nano",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 0.0,
+    "useful_real": 0.0,
+    "useless_foreign": 0.0,
+    "useless_real": 0.0
+   }
+  },
+  {
+   "group": "strong5",
+   "n": {
+    "not_blocked": 3,
+    "useful_foreign": 3,
+    "useful_real": 3,
+    "useless_foreign": 3,
+    "useless_real": 3,
+    "useless_real_bucket": 3
+   },
+   "name": "gpt-5.4-mini",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 0.6666666666666666,
+    "useful_real": 1.0,
+    "useless_foreign": 0.0,
+    "useless_real": 1.0,
+    "useless_real_bucket": 0.6666666666666666
+   }
+  },
+  {
+   "group": "strong5",
+   "n": {
+    "not_blocked": 3,
+    "useful_foreign": 3,
+    "useful_real": 3,
+    "useless_foreign": 3,
+    "useless_real": 3,
+    "useless_real_bucket": 3
+   },
+   "name": "gpt-5.4-nano",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 0.6666666666666666,
+    "useful_real": 1.0,
+    "useless_foreign": 0.3333333333333333,
+    "useless_real": 0.6666666666666666,
+    "useless_real_bucket": 0.6666666666666666
+   }
+  }
+ ],
+ "strong5_ci95": {
+  "D": [
+   -0.4,
+   0.1333333333333333
+  ],
+  "I": [
+   -0.19999999999999998,
+   0.33333333333333337
+  ],
+  "R": [
+   0.1,
+   0.3666666666666667
+  ],
+  "U": [
+   -0.03333333333333337,
+   0.2333333333333333
+  ],
+  "not_blocked": [
+   0.0,
+   0.0
+  ],
+  "useful_foreign": [
+   0.5333333333333333,
+   0.9333333333333332
+  ],
+  "useful_real": [
+   1.0,
+   1.0
+  ],
+  "useless_foreign": [
+   0.6,
+   0.8
+  ],
+  "useless_real": [
+   0.7333333333333333,
+   1.0
+  ]
+ },
+ "strong5_pooled": {
+  "D": -0.1333333333333334,
+  "I": 0.06666666666666671,
+  "R": 0.23333333333333334,
+  "U": 0.09999999999999995,
+  "not_blocked": 0.0,
+  "useful_foreign": 0.7333333333333332,
+  "useful_real": 1.0,
+  "useless_foreign": 0.6666666666666667,
+  "useless_real": 0.8666666666666666
+ }
+}

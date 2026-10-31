@@ -1,8 +1,11 @@
 # Project config. One question, the model, and the figures this project produces.
-name: template
-question: "One-sentence research question this project answers."
-model: claude-sonnet-4-6
-sources: []          # URLs / datasets for internet-data projects (also cite in writeup.md)
+name: refusal-dose-law
+question: "At the layer where it writes, does a neuron's push along the refusal direction alone predict how strongly pinning it bypasses refusal?"
+model: Qwen/Qwen3-1.7B (local, bf16, torch MPS); judge claude-haiku-4-5
+sources:
+  - https://arxiv.org/abs/2605.08513   # the refusal neuron L13:3270 (Kazemi et al.)
+  - https://arxiv.org/abs/2406.11717   # difference-of-means refusal direction (Arditi et al.)
+  - https://arxiv.org/abs/2606.19831   # off-axis safety controllers (Liu)
 figures:
-  - id: example-figure
-    caption: "What the reader should take away from this figure."
+  - id: refusal-dose-law
+    caption: "Built pushes follow one curve in their push along the refusal direction; neuron 3270 and its off-direction part beat it."

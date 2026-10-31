@@ -1,4 +1,4 @@
-# PREREG — massive-dims-switch
+# PREREG — massive-dims
 
 Room: oracle-1031-massive-dims. Frozen before any patch is run. Git commit time is the record. Later changes go to
 `DEVIATIONS.md` with the commit, who decided (room post), and what had been seen when they were set.

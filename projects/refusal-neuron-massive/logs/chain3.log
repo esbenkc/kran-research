@@ -1,0 +1,20 @@
+switch at 20:27:58
+START n5441 20:27:58
+N5441 sign N5441pos 1.2256547065079215 0.6347229152917864
+test_harmful   N5441pos   refusal 0.300 nll 2.22 66s
+test_harmless  N5441pos   refusal 0.000 nll 1.82 62s
+END n5441 20:30:17
+START dev 20:30:17
+dev_harmful    base       refusal 0.670 nll 1.92 31s
+dev_harmful    A          refusal 0.110 nll 1.91 31s
+dev_harmful    B          refusal 0.100 nll 1.90 31s
+dev_harmful    C          refusal 0.660 nll 1.95 31s
+END dev 20:32:41
+START logit 20:32:41
+D9 tail vs full max |score diff| {'base': 0.5138945579528809, 'A': 0.6761655807495117, 'B': 0.74407958984375, 'C': 0.7428101897239685} 0s
+logit fixed 0s
+logit 0 Fpos_0 0s
+logit 50 Fpos_50 0s
+logit 100 Fneg_0 0s
+logit 150 Fneg_50 0s
+logit 200 Dp_0 11s

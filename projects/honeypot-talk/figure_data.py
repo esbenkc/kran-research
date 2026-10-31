@@ -25,7 +25,7 @@ def why_out(st: dict) -> str | None:
         return "few sayers"
     if st["b"] < 10:
         return "few non-sayers"
-    return "key used in <10% of runs" if st["trip_rate"] < 0.10 else "key used in >90% of runs"
+    return "key use <10%" if st["trip_rate"] < 0.10 else "key use >90%"
 
 
 p = S["primary"]

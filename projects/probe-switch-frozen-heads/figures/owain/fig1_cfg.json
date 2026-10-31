@@ -1,8 +1,8 @@
 {
   "example": "test0657",
   "map_layer": "in26",
-  "head": "Does a probe-triggered switch need a trainable attention head?",
-  "sub": "<b>Qwen3-1.7B</b>, fine-tuned on its last 8 layers to answer <b>A</b> only while a probe reads it, and <b>B</b> without the probe.",
+  "head": "A probe-triggered switch needs no trainable attention head: with every head frozen, the MLPs still learned it on <em style=\"white-space:nowrap\">{k} of {n}</em> prompts.",
+  "sub": "<b>Qwen3-1.7B</b>, fine-tuned on its last 8 layers to answer <b>A</b> only while a probe reads it, <b>B</b> without.",
   "strip_title": "How clearly the probe shows on each token entering layer 26, before training",
   "arc_label": "MLP-only, probe on: frozen heads in the last two layers look at another token",
   "strip_scale_lo": "0.5 = chance",
@@ -44,7 +44,6 @@
     }
   ],
   "answer_word": "?",
-  "bottom": "<em>No.</em> The trained MLPs make frozen heads look at a different token when the probe is on. Only the MLP after the last head cannot.",
   "same_note": "same answer either way",
   "ctx_chars": 95,
   "arc_to": [
@@ -52,5 +51,7 @@
     72,
     73,
     77
-  ]
+  ],
+  "source": "Source: kran-research probe-switch-frozen-heads · 128 new prompts per run · Oct 2026",
+  "show_sure": false
 }

@@ -47,6 +47,13 @@ all five models, prompt-off seeds 0-29, 1,000 runs, about $4.27 projected with t
 unchanged and seed-major order keeps cells balanced if it hits. The decision reads spend and simulated power only,
 never a counted outcome. The weak three do not run. The N_on = 50 analysis (seeds 0-49) is a reported row.
 
+Timing note (Felix, honest record): the main counted run (`run.py counted --seeds 50 --off-seeds 30`) started at
+about 03:07:30 PDT (see `commands.md`), shortly before this D3 commit (b634fec9, 03:07:51). The v1.3 text (fbf2106b,
+03:07:18) already ran seeds 50-69 if spend allowed. No counted result had been read or scored when D3 was made
+unconditional, and the change touches only seeds 50-69, which had not started. The v1.3 'stated prediction' on the
+model-level Spearman was withdrawn in the same commit (Kasper #10688, Iris #10689, Tove #10690): with 5 models,
+|rho| < 0.3 holds by chance about a third of the time, so it is description, never evidence.
+
 ## D4 — the one s3 regex revision: `says` back to the v1 rule (PREREG v1.3, before seed 0)
 
 Data seen: the smoke (seeds 900-904, never counted). Source: Kasper audit #10664 and #10665, passed by Tove #10666.

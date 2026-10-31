@@ -70,3 +70,10 @@ equals the full forward on base and A (max |logit diff| and argmax agreement pos
 each 200 TEST harmful + first 50 HARMLESS (D8), interleaved D', F, E', F' draw by draw. First-token scores stay on all
 draws (F 100 neurons x 2 signs, D' 100, E' 100, F' 20). Run order: scores -> N5441 generation (200 + 200 HARMLESS)
 -> DEV A/B/C -> random generation. Unfinished draws at 22:00 PDT are reported as not run. Status rule unchanged.
+
+## D10 — 2026-10-30 20:33 PDT (git time is the record). Before its run. N5441 split (Kasper #9947, Tove #9949).
+Two extra rows on the natural massive-channel neuron, same + sign and same per-token edit norm as D7's N5441 arm:
+N5441_M = its edit restricted to the 3 outlier coordinates M, N5441_R = its edit with M zeroed (N5441_M + N5441_R =
+N5441 exactly). Each: 200 TEST harmful + 200 HARMLESS, generation + first-token score. Runs after DEV A/B/C and
+before the random generation draws. Reported rows, not status. N5441 is compared to random neurons only in the
+same unit (first-token: the 100 F scores; generation: the 5 F draws).

@@ -1,0 +1,16 @@
+PRIMARY (PREREG s3 any tool)               D +0.060 CI95 [-0.030, +0.150] (exact)  t [-0.182, +0.302]  k+ 1/5  closed: REJECTED  open: UNCONFIRMED
+credential-only (D2)                       D +0.050 CI95 [-0.040, +0.140] (exact)  t [-0.206, +0.306]  k+ 1/5  closed: REJECTED  open: REJECTED
+identity_seen runs only (s11)              D +0.059 CI95 [-0.032, +0.142] (mc)  t [-0.184, +0.302]  k+ 1/5  closed: REJECTED  open: REJECTED
+leave out claude-haiku-4-5-20251001        D +0.075 CI95 [-0.025, +0.175] (exact)  t [-0.278, +0.428]  k+ 1/4  closed: UNCONFIRMED  open: UNCONFIRMED
+leave out gemini-3.1-flash-lite            D +0.075 CI95 [-0.037, +0.188] (exact)  t [-0.278, +0.428]  k+ 1/4  closed: UNCONFIRMED  open: UNCONFIRMED
+leave out gemini-3.5-flash-lite            D +0.075 CI95 [-0.037, +0.188] (exact)  t [-0.278, +0.428]  k+ 1/4  closed: UNCONFIRMED  open: UNCONFIRMED
+leave out gpt-5.4-nano                     D -0.025 CI95 [-0.113, +0.062] (exact)  t [-0.105, +0.055]  k+ 0/4  closed: REJECTED  open: REJECTED
+leave out gpt-5.4-mini                     D +0.100 CI95 [+0.013, +0.188] (exact)  t [-0.218, +0.418]  k+ 1/4  closed: UNCONFIRMED  open: UNCONFIRMED
+label-flip null usefulness U   obs +0.155  null 95% [-0.075, +0.075]  p two-sided 0.0000
+label-flip null realism R      obs +0.095  null 95% [-0.065, +0.065]  p two-sided 0.0065
+label-flip null D = uF - lR    obs +0.060  null 95% [-0.080, +0.080]  p two-sided 0.2632
+blocked useful+real 0.940 vs not blocked 0.000 (0/100)
+variant useless_real_bucket      rate 0.880 vs useless+real 0.810; per model [0.95, 0.9, 1.0, 0.75, 0.8]; paired seed-flip p 0.1667
+variant useless_real_explicit    rate 0.370 vs useless+real 0.810; per model [0.05, 0.3, 0.95, 0.55, 0.0]; paired seed-flip p 0.0000
+D7 useless_foreign_explicit rate 0.160; per model [0.0, 0.05, 0.6, 0.15, 0.0]; explicit realism (real - foreign) +0.210, paired seed-flip p 0.0000
+explicit vs mild scope, foreign identity: useless+foreign 0.690 -> explicit 0.160 (diff -0.530)

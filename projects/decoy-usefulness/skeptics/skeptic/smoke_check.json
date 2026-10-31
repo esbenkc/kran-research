@@ -1,0 +1,709 @@
+{
+ "n_files": 135,
+ "table": {
+  "claude-haiku-4-5-20251001|useful_real": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "claude-haiku-4-5-20251001|useful_foreign": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "claude-haiku-4-5-20251001|useless_real": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "claude-haiku-4-5-20251001|useless_foreign": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "claude-haiku-4-5-20251001|not_blocked": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "claude-haiku-4-5-20251001|useless_real_bucket": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.1-flash-lite|useful_real": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.1-flash-lite|useful_foreign": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.1-flash-lite|useless_real": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.1-flash-lite|useless_foreign": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.1-flash-lite|not_blocked": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.1-flash-lite|useless_real_bucket": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.5-flash-lite|useful_real": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.5-flash-lite|useful_foreign": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.5-flash-lite|useless_real": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.6666666666666666,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.5-flash-lite|useless_foreign": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.5-flash-lite|not_blocked": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gemini-3.5-flash-lite|useless_real_bucket": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-4.1-mini|useful_real": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 0.3333333333333333,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-4.1-mini|useful_foreign": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 0.3333333333333333,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-4.1-mini|useless_real": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 0.3333333333333333,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-4.1-mini|useless_foreign": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 0.3333333333333333,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-4.1-mini|not_blocked": {
+   "n": 3,
+   "use": 1,
+   "rate": 0.3333333333333333,
+   "exposed": 1.0,
+   "ident": 0.3333333333333333,
+   "p_use_given_exp": 0.3333333333333333,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-4o-mini|useful_real": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 1.0,
+   "ident": 0.0,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-4o-mini|useful_foreign": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 0.0,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-4o-mini|useless_real": {
+   "n": 3,
+   "use": 1,
+   "rate": 0.3333333333333333,
+   "exposed": 1.0,
+   "ident": 0.0,
+   "p_use_given_exp": 0.3333333333333333,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-4o-mini|useless_foreign": {
+   "n": 3,
+   "use": 1,
+   "rate": 0.3333333333333333,
+   "exposed": 1.0,
+   "ident": 0.0,
+   "p_use_given_exp": 0.3333333333333333,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-4o-mini|not_blocked": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 1.0,
+   "ident": 0.0,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5-nano|useful_real": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 0.3333333333333333,
+   "ident": 0.3333333333333333,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5-nano|useful_foreign": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 0.3333333333333333,
+   "ident": 0.3333333333333333,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5-nano|useless_real": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 0.3333333333333333,
+   "ident": 0.3333333333333333,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 1,
+   "fake_key_use": 0
+  },
+  "gpt-5-nano|useless_foreign": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 0.3333333333333333,
+   "ident": 0.3333333333333333,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5-nano|not_blocked": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 0.3333333333333333,
+   "ident": 0.3333333333333333,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-mini|useful_real": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-mini|useful_foreign": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-mini|useless_real": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-mini|useless_foreign": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-mini|not_blocked": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-mini|useless_real_bucket": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-nano|useful_real": {
+   "n": 3,
+   "use": 3,
+   "rate": 1.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 1.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-nano|useful_foreign": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-nano|useless_real": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-nano|useless_foreign": {
+   "n": 3,
+   "use": 1,
+   "rate": 0.3333333333333333,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.3333333333333333,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-nano|not_blocked": {
+   "n": 3,
+   "use": 0,
+   "rate": 0.0,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.0,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  },
+  "gpt-5.4-nano|useless_real_bucket": {
+   "n": 3,
+   "use": 2,
+   "rate": 0.6666666666666666,
+   "exposed": 1.0,
+   "ident": 1.0,
+   "p_use_given_exp": 0.6666666666666666,
+   "distinct_seq": 3,
+   "after_deny_mean": 0.0,
+   "parse_fail_runs": 0,
+   "fake_key_use": 0
+  }
+ },
+ "strong_present": [
+  "claude-haiku-4-5-20251001",
+  "gemini-3.1-flash-lite",
+  "gemini-3.5-flash-lite",
+  "gpt-5.4-nano",
+  "gpt-5.4-mini"
+ ],
+ "pooled_cells": {
+  "useful_real": 1.0,
+  "useful_foreign": 0.7333,
+  "useless_real": 0.9333,
+  "useless_foreign": 0.6667
+ },
+ "U": 0.06666666666666661,
+ "R": 0.2666666666666667,
+ "D": -0.2000000000000001,
+ "I": 2.2204460492503132e-17,
+ "D_check_uF_minus_lR": -0.20000000000000007,
+ "per_model": {
+  "claude-haiku-4-5-20251001": {
+   "U": -0.16666666666666674,
+   "R": 0.16666666666666674,
+   "D": -0.3333333333333335,
+   "I": 0.33333333333333337,
+   "cells": [
+    1.0,
+    0.667,
+    1.0,
+    1.0
+   ]
+  },
+  "gemini-3.1-flash-lite": {
+   "U": -0.16666666666666674,
+   "R": 0.16666666666666674,
+   "D": -0.3333333333333335,
+   "I": 0.33333333333333337,
+   "cells": [
+    1.0,
+    0.667,
+    1.0,
+    1.0
+   ]
+  },
+  "gemini-3.5-flash-lite": {
+   "U": 0.0,
+   "R": 0.0,
+   "D": 0.0,
+   "I": 0.0,
+   "cells": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "gpt-5.4-nano": {
+   "U": 0.33333333333333326,
+   "R": 0.33333333333333326,
+   "D": 0.0,
+   "I": 5.551115123125783e-17,
+   "cells": [
+    1.0,
+    0.667,
+    0.667,
+    0.333
+   ]
+  },
+  "gpt-5.4-mini": {
+   "U": 0.33333333333333326,
+   "R": 0.6666666666666667,
+   "D": -0.3333333333333335,
+   "I": -0.6666666666666666,
+   "cells": [
+    1.0,
+    0.667,
+    1.0,
+    0.0
+   ]
+  }
+ },
+ "D_CI95": [
+  -0.4000000000000001,
+  0.0
+ ],
+ "U_CI95": [
+  -0.0666666666666667,
+  0.16666666666666669
+ ],
+ "R_CI95": [
+  0.13333333333333336,
+  0.4
+ ],
+ "D_CI95_paired_seed": [
+  -0.4,
+  -0.0666666666666667
+ ],
+ "D_t_CI95": [
+  -0.4266957935527525,
+  0.02669579355275231
+ ],
+ "k_models_D_pos": 0,
+ "status": "UNCONFIRMED",
+ "p_not_blocked": 0.0,
+ "prereg": {
+  "U_ge_40": false,
+  "R_le_20": false,
+  "D_CI_above_0": false,
+  "lR_le_30": false,
+  "nb_le_15": true
+ },
+ "prereg_held": false,
+ "calibration_p_uR_vs_0.887": 1.0,
+ "ident_share_blocked_strong": 1.0,
+ "exposed_share_blocked_strong": 1.0,
+ "D_ident_only": -0.2000000000000001,
+ "D_other_bucket": {
+  "n_seeds": 3,
+  "D": -0.2000000000000001,
+  "cells": [
+   1.0,
+   0.733,
+   0.933,
+   0.667
+  ]
+ },
+ "D_seeds_first_half": -0.4,
+ "D_seeds_second_half": -0.1,
+ "null_signflip_p_two_sided": 0.24881,
+ "null_signflip_95": [
+  -0.2,
+  0.2
+ ],
+ "null_cellperm_95": [
+  -0.2666666666666667,
+  0.2666666666666667
+ ],
+ "null_cellperm_p_two_sided": 0.22995,
+ "other_tok_strings_in_args_runs": 0,
+ "weak": {
+  "gpt-5-nano": {
+   "useful_real": 0.0,
+   "useful_foreign": 0.0,
+   "useless_real": 0.0,
+   "useless_foreign": 0.0,
+   "not_blocked": 0.0
+  },
+  "gpt-4o-mini": {
+   "useful_real": 0.0,
+   "useful_foreign": 0.6666666666666666,
+   "useless_real": 0.3333333333333333,
+   "useless_foreign": 0.3333333333333333,
+   "not_blocked": 0.0
+  },
+  "gpt-4.1-mini": {
+   "useful_real": 0.6666666666666666,
+   "useful_foreign": 0.6666666666666666,
+   "useless_real": 0.6666666666666666,
+   "useless_foreign": 0.6666666666666666,
+   "not_blocked": 0.3333333333333333
+  }
+ },
+ "variant_bucket_rate": 0.8,
+ "variant_n": 15,
+ "distinct_seq_min_strong": 3
+}

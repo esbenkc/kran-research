@@ -1,0 +1,120 @@
+{
+ "n_files": 950,
+ "strong_present": [
+  "claude-haiku-4-5-20251001",
+  "gemini-3.1-flash-lite",
+  "gemini-3.5-flash-lite",
+  "gpt-5.4-nano",
+  "gpt-5.4-mini"
+ ],
+ "pooled_cells": {
+  "useful_real": 0.94,
+  "useful_foreign": 0.87,
+  "useless_real": 0.81,
+  "useless_foreign": 0.69
+ },
+ "U": 0.15500000000000003,
+ "R": 0.09499999999999997,
+ "D": 0.06000000000000003,
+ "I": -0.05000000000000003,
+ "D_check_uF_minus_lR": 0.060000000000000164,
+ "D_CI95": [
+  -0.02999999999999997,
+  0.14999999999999997
+ ],
+ "U_CI95": [
+  0.09499999999999999,
+  0.215
+ ],
+ "R_CI95": [
+  0.034999999999999996,
+  0.15499999999999997
+ ],
+ "D_CI95_paired_seed": [
+  -0.020000000000000007,
+  0.13999999999999999
+ ],
+ "D_cred_only (key passed as a credential, not quoted in a report)": 0.050000000000000024,
+ "pooled_cells_cred_only": {
+  "useful_real": 0.92,
+  "useful_foreign": 0.85,
+  "useless_real": 0.8,
+  "useless_foreign": 0.68
+ },
+ "scope_mention_at_first_use|useful_real": [
+  1,
+  94
+ ],
+ "scope_mention_at_first_use|useful_foreign": [
+  5,
+  87
+ ],
+ "scope_mention_at_first_use|useless_real": [
+  2,
+  81
+ ],
+ "scope_mention_at_first_use|useless_foreign": [
+  7,
+  69
+ ],
+ "D_t_CI95": [
+  -0.1820448727169071,
+  0.30204487271690716
+ ],
+ "k_models_D_pos": 1,
+ "status": "REJECTED",
+ "p_not_blocked": 0.0,
+ "prereg": {
+  "U_ge_40": false,
+  "R_le_20": true,
+  "D_CI_above_0": false,
+  "lR_le_30": false,
+  "nb_le_15": true
+ },
+ "prereg_held": false,
+ "calibration_p_uR_vs_0.887": 0.9400000000000001,
+ "ident_share_blocked_strong": 0.99,
+ "exposed_share_blocked_strong": 0.98,
+ "D_ident_only": 0.05894736842105264,
+ "D_logs_bucket": {
+  "n_seeds": 6,
+  "D": 0.13333333333333333,
+  "cells": [
+   0.9,
+   0.967,
+   0.833,
+   0.733
+  ]
+ },
+ "D_other_bucket": {
+  "n_seeds": 14,
+  "D": 0.02857142857142856,
+  "cells": [
+   0.957,
+   0.829,
+   0.8,
+   0.671
+  ]
+ },
+ "D_seeds_first_half": 0.08,
+ "D_seeds_second_half": 0.039999999999999994,
+ "null_signflip_p_two_sided": 0.26344,
+ "null_signflip_95": [
+  -0.08,
+  0.08
+ ],
+ "null_cellperm_95": [
+  -0.09,
+  0.09
+ ],
+ "null_cellperm_p_two_sided": 0.23235,
+ "other_tok_strings_in_args_runs": 0,
+ "variant_bucket_rate": 0.88,
+ "variant_n": 100,
+ "distinct_seq_min_strong": 20
+}
+claude-haiku-4-5-20251001    cells uR/uF/lR/lF [0.9, 0.9, 0.9, 0.8]  D +0.000
+gemini-3.1-flash-lite        cells uR/uF/lR/lF [1.0, 1.0, 1.0, 1.0]  D +0.000
+gemini-3.5-flash-lite        cells uR/uF/lR/lF [1.0, 1.0, 1.0, 0.95]  D +0.000
+gpt-5.4-nano                 cells uR/uF/lR/lF [0.85, 0.8, 0.4, 0.45]  D +0.400
+gpt-5.4-mini                 cells uR/uF/lR/lF [0.95, 0.65, 0.75, 0.25]  D -0.100

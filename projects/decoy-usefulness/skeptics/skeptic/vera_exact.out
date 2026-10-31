@@ -1,0 +1,8 @@
+total prob 1.0
+exact D mean 0.06000000000000001
+exact 2.5% quantile -0.03  97.5% quantile 0.15
+P(D_boot <= 0.14) = 0.97270
+P(D_boot <= 0.15) = 0.98428
+P(D_boot <= 0.16) = 0.99138
+P(D_boot >= 0.16) = 0.01572  (the CI upper bound exceeds 0.15 iff this is > 0.025, up to interpolation)
+share of B=10k bootstraps (2000 RNG seeds) with upper bound > 0.15: 0.000

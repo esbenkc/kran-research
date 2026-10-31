@@ -1,0 +1,7 @@
+| headline (skeptic rebuild) | greedy (n=1) | TEST 200 string: r_keep / r_rem, own code from raw jsonl | none | 0.048 [-0.033,0.136] / 1.016 [0.946,1.096] -> REJECTED | skeptics/skeptic/vera_check_test_final.txt |
+| headline (skeptic rebuild) | greedy (n=1) | TEST 200 judge (D3): r_keep / r_rem | none | 0.000 [-0.034,0.034] / 1.023 [0.935,1.122] -> REJECTED | skeptics/skeptic/vera_check_test_final.txt |
+| headline (skeptic rebuild) | greedy (n=1) | DEV 100 string / judge: r_keep / r_rem | none | 0.037 / 1.019 (string); 0.000 / 0.978 (judge) -> REJECTED | skeptics/skeptic/vera_check_dev_harmful.json |
+| skeptic: own forward | fp32 CPU, own Qwen3 code | first-token score per prompt vs build, TEST 0-49, base/A/B/C/A_tok0/N5441 | build's bf16 scores | corr 0.9991-0.9997; A drop 9.588 vs 9.640 | skeptics/skeptic/own/ |
+| skeptic: own existence draws | torch seeds 1-5 | random direction inside M at the gate's full push, first token, TEST 0-49 | 3 ordinary-coord seeds | -0.15..+0.16 of A (ordinary: -0.15..+0.09) | skeptics/skeptic/own/ |
+| skeptic: judge on random gen | 25 draws | D'/E'/F/F' generation, judge EFFECT max | random draws | D' +4.0, E' +4.5, F +7.0, F' +4.5 pts vs gate +43.5 | skeptics/skeptic/vera_check_test_final.txt |
+| skeptic: definition check | greedy (n=1) | N5441 string vs judge | judge label | +12.5 vs -1.0 pts (37/40 string flips are reworded refusals) | skeptics/skeptic/vera_judge_test.json |

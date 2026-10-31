@@ -94,6 +94,13 @@ def pick(avoid, trip, decoy, seed):
 cfg_p = H / "fig_cfg.json"
 cfg = json.loads(cfg_p.read_text()) if cfg_p.exists() else {}
 sel = cfg.get("pick", {}).get(RAW)
+if sel and sel not in [{k: c[k] for k in ("avoid", "trip", "decoy", "seed")} for c in cands]:
+    print("configured pick is not a valid candidate any more:", sel)
+    sel = None
+if not sel and cands:
+    c = min(cands, key=lambda c: c["words"])
+    sel = {k: c[k] for k in ("avoid", "trip", "decoy", "seed")}
+    print("auto pick (shortest):", sel)
 if sel:
     out["ex"] = pick(**sel)
 (H / f"fig_data_{RAW}.json").write_text(json.dumps(out, indent=1))

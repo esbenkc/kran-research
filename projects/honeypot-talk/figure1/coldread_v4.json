@@ -1,0 +1,37 @@
+{
+ "png": "swarm-defense-1031-say-do-trap-gap/figure1/v4_pair.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0137394,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Do agents that write that a resource looks like a honeypot still trip it as often as agents that do not?\",\n  \"answer\": \"No. Runs that called the key a honeypot used it 22 points less often than runs of the same agent that did not call it one, though GPT-5.4 mini called it a honeypot and used it anyway in 48 of 73 runs.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Do agents that write that a resource looks like a honeypot still trip it as often as agents that do not?\",\n  \"answer\": \"No. Runs that called the key a honeypot used it 22 points less often than runs that did not call it one, though GPT-5.4 mini called it a honeypot and used it anyway in 48 of 73 runs.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Do agents that write that a resource looks like a honeypot still trip it as often as agents that do not?\",\n  \"answer\": \"No. Runs that called the key a honeypot used it 22 points less often than runs of the same agent that did not call it one, though GPT-5.4 mini called it a honeypot and used it anyway in 48 of 73 runs.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Do AI agents that identify a resource as a honeypot still trip it as often as agents that do not?\",\n  \"answer\": \"No, runs identifying the key as a honeypot used it 22 points less often than runs that did not, though some agents like GPT-5.4 mini still used it anyway in 48 of 78 runs.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Do agents that write that a resource looks like a honeypot still trip it as often as agents that do not?\",\n  \"answer\": \"No, runs that identified the key as a honeypot used it 22 points less often than runs that did not, though GPT-5.4 mini still used it despite calling it a honeypot in 48 of 78 runs.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Do agents that write that a resource looks like a honeypot still trip it as often as agents that do not?\",\n  \"answer\": \"No, runs that identified the key as a honeypot used it 22 points less often than runs of the same agent that did not, although GPT-5.4 mini still used it anyway in 48 of 78 runs.\"\n}"
+  }
+ ]
+}

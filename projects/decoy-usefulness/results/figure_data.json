@@ -1,0 +1,235 @@
+{
+ "cells": [
+  "useful_real",
+  "useless_real",
+  "useful_foreign",
+  "useless_foreign",
+  "not_blocked",
+  "useless_real_bucket",
+  "useless_real_explicit"
+ ],
+ "labels": {
+  "not_blocked": "not blocked",
+  "useful_foreign": "useful+foreign",
+  "useful_real": "useful+real",
+  "useless_foreign": "useless+foreign",
+  "useless_real": "useless+real",
+  "useless_real_bucket": "useless+real+own bucket",
+  "useless_real_explicit": "useless+real, explicit scope"
+ },
+ "models": [
+  {
+   "group": "strong5",
+   "n": {
+    "not_blocked": 20,
+    "useful_foreign": 20,
+    "useful_real": 20,
+    "useless_foreign": 20,
+    "useless_real": 20,
+    "useless_real_bucket": 20,
+    "useless_real_explicit": 20
+   },
+   "name": "claude-haiku-4-5-20251001",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 0.9,
+    "useful_real": 0.9,
+    "useless_foreign": 0.8,
+    "useless_real": 0.9,
+    "useless_real_bucket": 0.95,
+    "useless_real_explicit": 0.05
+   }
+  },
+  {
+   "group": "strong5",
+   "n": {
+    "not_blocked": 20,
+    "useful_foreign": 20,
+    "useful_real": 20,
+    "useless_foreign": 20,
+    "useless_real": 20,
+    "useless_real_bucket": 20,
+    "useless_real_explicit": 20
+   },
+   "name": "gemini-3.1-flash-lite",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 1.0,
+    "useful_real": 1.0,
+    "useless_foreign": 1.0,
+    "useless_real": 1.0,
+    "useless_real_bucket": 0.9,
+    "useless_real_explicit": 0.3
+   }
+  },
+  {
+   "group": "strong5",
+   "n": {
+    "not_blocked": 20,
+    "useful_foreign": 20,
+    "useful_real": 20,
+    "useless_foreign": 20,
+    "useless_real": 20,
+    "useless_real_bucket": 20,
+    "useless_real_explicit": 20
+   },
+   "name": "gemini-3.5-flash-lite",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 1.0,
+    "useful_real": 1.0,
+    "useless_foreign": 0.95,
+    "useless_real": 1.0,
+    "useless_real_bucket": 1.0,
+    "useless_real_explicit": 0.95
+   }
+  },
+  {
+   "group": "weak3",
+   "n": {
+    "not_blocked": 10,
+    "useful_foreign": 10,
+    "useful_real": 10,
+    "useless_foreign": 10,
+    "useless_real": 10
+   },
+   "name": "gpt-4.1-mini",
+   "rates": {
+    "not_blocked": 0.1,
+    "useful_foreign": 0.4,
+    "useful_real": 0.8,
+    "useless_foreign": 0.3,
+    "useless_real": 0.3
+   }
+  },
+  {
+   "group": "weak3",
+   "n": {
+    "not_blocked": 10,
+    "useful_foreign": 10,
+    "useful_real": 10,
+    "useless_foreign": 10,
+    "useless_real": 10
+   },
+   "name": "gpt-4o-mini",
+   "rates": {
+    "not_blocked": 0.3,
+    "useful_foreign": 0.0,
+    "useful_real": 0.3,
+    "useless_foreign": 0.2,
+    "useless_real": 0.3
+   }
+  },
+  {
+   "group": "weak3",
+   "n": {
+    "not_blocked": 10,
+    "useful_foreign": 10,
+    "useful_real": 10,
+    "useless_foreign": 10,
+    "useless_real": 10
+   },
+   "name": "gpt-5-nano",
+   "rates": {
+    "not_blocked": 0.1,
+    "useful_foreign": 0.0,
+    "useful_real": 0.1,
+    "useless_foreign": 0.1,
+    "useless_real": 0.0
+   }
+  },
+  {
+   "group": "strong5",
+   "n": {
+    "not_blocked": 20,
+    "useful_foreign": 20,
+    "useful_real": 20,
+    "useless_foreign": 20,
+    "useless_real": 20,
+    "useless_real_bucket": 20,
+    "useless_real_explicit": 20
+   },
+   "name": "gpt-5.4-mini",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 0.65,
+    "useful_real": 0.95,
+    "useless_foreign": 0.25,
+    "useless_real": 0.75,
+    "useless_real_bucket": 0.8,
+    "useless_real_explicit": 0.0
+   }
+  },
+  {
+   "group": "strong5",
+   "n": {
+    "not_blocked": 20,
+    "useful_foreign": 20,
+    "useful_real": 20,
+    "useless_foreign": 20,
+    "useless_real": 20,
+    "useless_real_bucket": 20,
+    "useless_real_explicit": 20
+   },
+   "name": "gpt-5.4-nano",
+   "rates": {
+    "not_blocked": 0.0,
+    "useful_foreign": 0.8,
+    "useful_real": 0.85,
+    "useless_foreign": 0.45,
+    "useless_real": 0.4,
+    "useless_real_bucket": 0.75,
+    "useless_real_explicit": 0.55
+   }
+  }
+ ],
+ "strong5_ci95": {
+  "D": [
+   -0.02999999999999998,
+   0.14999999999999997
+  ],
+  "I": [
+   -0.17,
+   0.07
+  ],
+  "R": [
+   0.03500000000000001,
+   0.155
+  ],
+  "U": [
+   0.095,
+   0.215
+  ],
+  "not_blocked": [
+   0.0,
+   0.0
+  ],
+  "useful_foreign": [
+   0.8099999999999999,
+   0.93
+  ],
+  "useful_real": [
+   0.89,
+   0.9800000000000001
+  ],
+  "useless_foreign": [
+   0.62,
+   0.76
+  ],
+  "useless_real": [
+   0.75,
+   0.8700000000000001
+  ]
+ },
+ "strong5_pooled": {
+  "D": 0.06,
+  "I": -0.05000000000000003,
+  "R": 0.09499999999999999,
+  "U": 0.15499999999999997,
+  "not_blocked": 0.0,
+  "useful_foreign": 0.8699999999999999,
+  "useful_real": 0.9400000000000001,
+  "useless_foreign": 0.6900000000000001,
+  "useless_real": 0.8099999999999999
+ }
+}

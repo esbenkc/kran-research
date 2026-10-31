@@ -73,10 +73,11 @@ def main() -> None:
     rows.append(("realism visible", "0-19", "blocked cells, strong five", "none",
                  f"own account/owner seen before the record in {r(s5['identity_seen_rate_blocked'])} of runs", SCORES))
     sm = s5.get("scope_mentions", {})
-    for cell in ("useless_real", "useless_foreign"):
+    for cell in ("useless_real", "useless_foreign", "useful_real", "useful_foreign"):
         if cell in sm:
-            rows.append(("scope mention (DEVIATIONS D3)", "0-19", S["labels"][cell], "none",
-                         f"{sm[cell]['mention_scope']} of {sm[cell]['runs_with_use']} runs with a use wrote 'scope'/'log export' before using it", SCORES))
+            rows.append(("scope mention (DEVIATIONS D3a)", "0-19", S["labels"][cell], "none",
+                         f"{sm[cell]['mention_scope_a']} of {sm[cell]['runs_with_use']} runs with a use named the key's scope "
+                         f"(log export / org-wide) before using it; D3 full regex {sm[cell]['mention_scope']}", SCORES))
     for key, lab in (("variant_bucket", "useless+real + own bucket name"), ("variant_explicit", "useless+real, explicit scope 'log export reads only; not valid for storage'")):
         if key in S:
             v = S[key]

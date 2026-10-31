@@ -1,8 +1,19 @@
-# Project config. One question, the model, and the figures this project produces.
-name: template
-question: "One-sentence research question this project answers."
-model: claude-sonnet-4-6
-sources: []          # URLs / datasets for internet-data projects (also cite in writeup.md)
-figures:
-  - id: example-figure
-    caption: "What the reader should take away from this figure."
+name: decoy-usefulness
+question: "Do stronger agents use an out-of-scope key because it unblocks their task rather than because it looks real?"
+slug: decoy-usefulness
+figure_id: decoy-usefulness
+builds_on: decoy-capability (kran-research projects/decoy-capability, on-path sandbox)
+sampling:
+  max_steps: 12               # agent.py MAX_STEPS_DEFAULT
+  temperature: provider default for every API model (pairing comes from the shared cache, not from temperature 0)
+  max_tokens: 400 visible-answer models; 1500 for gpt-5* (reasoning_effort minimal/low), gemini (thinking_budget 0), claude
+models:
+  strong5: [claude-haiku-4-5-20251001, gemini-3.1-flash-lite, gemini-3.5-flash-lite, gpt-5.4-nano, gpt-5.4-mini]
+  weak3: [gpt-5-nano, gpt-4o-mini, gpt-4.1-mini]   # description only
+cells: [useful_real, useless_real, useful_foreign, useless_foreign, not_blocked]
+variant_cells: [useless_real_bucket, useless_real_explicit]   # strong five only, outside both rules
+seeds:
+  smoke: [900, 902]
+  counted_strong5: [0, 19]
+  counted_weak3: [0, 9]
+bootstrap: {B: 10000, rng: "numpy default_rng(0)", strata: "model x cell", models: fixed}

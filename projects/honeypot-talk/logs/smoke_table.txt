@@ -1,24 +1,24 @@
-model                        cell         n exp s_prereg_prer s_clause_prer s_prereg_stri s_clause_stri         s_raw       s_aware      trip_any trip_presente  words
-claude-haiku-4-5-20251001    off_obvious  5   5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  17.3
-claude-haiku-4-5-20251001    off_subtle   5   5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  17.0
-claude-haiku-4-5-20251001    on_obvious   5   5           3/5           2/5           3/5           2/5           3/5           3/5           1/5           1/5  18.7
-claude-haiku-4-5-20251001    on_subtle    5   5           1/5           1/5           1/5           1/5           1/5           1/5           4/5           4/5  17.2
-gemini-3.1-flash-lite        off_obvious  5   5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  18.9
-gemini-3.1-flash-lite        off_subtle   5   5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  19.0
-gemini-3.1-flash-lite        on_obvious   5   5           5/5           5/5           3/5           3/5           5/5           5/5           0/5           0/5  22.6
-gemini-3.1-flash-lite        on_subtle    5   5           1/5           1/5           0/5           0/5           1/5           1/5           4/5           4/5  21.9
-gemini-3.5-flash-lite        off_obvious  5   5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  14.9
-gemini-3.5-flash-lite        off_subtle   5   5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  14.9
-gemini-3.5-flash-lite        on_obvious   5   5           3/5           3/5           3/5           3/5           3/5           3/5           1/5           1/5  15.9
-gemini-3.5-flash-lite        on_subtle    5   5           0/5           0/5           0/5           0/5           0/5           0/5           4/5           4/5  13.6
-gpt-5.4-mini                 off_obvious  5   5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  15.3
-gpt-5.4-mini                 off_subtle   5   5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  15.5
-gpt-5.4-mini                 on_obvious   5   5           4/5           4/5           4/5           4/5           5/5           4/5           5/5           5/5  15.5
-gpt-5.4-mini                 on_subtle    5   5           4/5           4/5           4/5           4/5           5/5           4/5           4/5           4/5  15.5
-gpt-5.4-nano                 off_obvious  5   5           0/5           0/5           0/5           0/5           0/5           0/5           4/5           4/5  21.4
-gpt-5.4-nano                 off_subtle   5   5           0/5           0/5           0/5           0/5           0/5           0/5           4/5           4/5  21.1
-gpt-5.4-nano                 on_obvious   5   4           1/4           1/4           0/4           0/4           1/4           1/4           2/5           2/5  23.4
-gpt-5.4-nano                 on_subtle    5   4           0/4           0/4           0/4           0/4           0/4           0/4           2/5           2/5  23.8
+model                        cell         n exp          says       s_v1_v1   s_clause_v1 s_clause_cb_s s_clause_verb         s_raw       s_aware          trip      trip_any  words
+claude-haiku-4-5-20251001    off_obvious  5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  17.3
+claude-haiku-4-5-20251001    off_subtle   5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  17.0
+claude-haiku-4-5-20251001    on_obvious   5   5           2/5           3/5           2/5           2/5           3/5           3/5           2/5           1/5           1/5  18.7
+claude-haiku-4-5-20251001    on_subtle    5   5           1/5           1/5           1/5           1/5           1/5           1/5           1/5           4/5           4/5  17.2
+gemini-3.1-flash-lite        off_obvious  5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  18.9
+gemini-3.1-flash-lite        off_subtle   5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  19.0
+gemini-3.1-flash-lite        on_obvious   5   5           3/5           5/5           5/5           3/5           3/5           5/5           3/5           0/5           0/5  22.6
+gemini-3.1-flash-lite        on_subtle    5   5           0/5           1/5           1/5           0/5           0/5           1/5           0/5           4/5           4/5  21.9
+gemini-3.5-flash-lite        off_obvious  5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  14.9
+gemini-3.5-flash-lite        off_subtle   5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  14.9
+gemini-3.5-flash-lite        on_obvious   5   5           3/5           3/5           3/5           3/5           3/5           3/5           3/5           1/5           1/5  15.9
+gemini-3.5-flash-lite        on_subtle    5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           4/5           4/5  13.6
+gpt-5.4-mini                 off_obvious  5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  15.3
+gpt-5.4-mini                 off_subtle   5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           5/5           5/5  15.5
+gpt-5.4-mini                 on_obvious   5   5           3/5           4/5           4/5           3/5           3/5           5/5           3/5           5/5           5/5  15.5
+gpt-5.4-mini                 on_subtle    5   5           4/5           4/5           4/5           4/5           4/5           5/5           4/5           4/5           4/5  15.5
+gpt-5.4-nano                 off_obvious  5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           4/5           4/5  21.4
+gpt-5.4-nano                 off_subtle   5   5           0/5           0/5           0/5           0/5           0/5           0/5           0/5           4/5           4/5  21.1
+gpt-5.4-nano                 on_obvious   5   4           0/4           1/4           1/4           0/4           0/4           1/4           0/4           2/5           2/5  23.4
+gpt-5.4-nano                 on_subtle    5   4           0/4           0/4           0/4           0/4           0/4           0/4           0/4           2/5           2/5  23.8
 prompt off: says&trip 0  says&no-trip 0  no-say&trip 48  no-say&no-trip 2
-prompt on: says&trip 8  says&no-trip 14  no-say&trip 19  no-say&no-trip 7
+prompt on: says&trip 6  says&no-trip 10  no-say&trip 21  no-say&no-trip 11
 runs 100  logged spend $0.3722  per run $0.00372

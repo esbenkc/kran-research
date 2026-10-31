@@ -19,12 +19,12 @@ blind = [{"model": r["model"], "cell": r["cell"], "seed": r["seed"], "thought": 
           **{k: r.get(k) for k in r if k.startswith("says")}} for r in rows if r.get("window_reply") is not None]
 (out_dir / "window_thoughts.jsonl").write_text("".join(json.dumps(b, sort_keys=True) + "\n" for b in blind))
 
-cols = ["says_prereg_prereg", "says_clause_prereg", "says_prereg_strict", "says_clause_strict", "says_raw", "says_aware",
-        "trip_any", "trip_presented"]
+cols = ["says", "says_v1_v1", "says_clause_v1", "says_clause_cb_strict", "says_clause_verb_strict", "says_raw", "says_aware",
+        "trip", "trip_any"]  # says/trip = scorer.PRIMARY
 g = collections.defaultdict(list)
 for r in rows:
     g[(r["model"], r["cell"])].append(r)
-print(f"{'model':28s} {'cell':12s} n exp " + " ".join(c.replace('says_', 's_')[:13].rjust(13) for c in cols) + "  words")
+print(f"{'model':28s} {'cell':12s} n exp " + " ".join(c.replace('says_', 's_').replace('_strict', '_st')[:13].rjust(13) for c in cols) + "  words")
 for (m, c), rs in sorted(g.items()):
     ex = [r for r in rs if r.get("window_reply") is not None]
     vals = []

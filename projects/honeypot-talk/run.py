@@ -73,7 +73,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("mode", choices=["smoke", "counted"])
     ap.add_argument("--models", nargs="+", default=MODELS)
-    ap.add_argument("--seeds", type=int, default=20, help="seeds per model for the stronger five (and others)")
+    ap.add_argument("--seeds", type=int, default=50, help="prompt-on seeds per model and decoy (N_on, PREREG s4)")
+    ap.add_argument("--off-seeds", type=int, default=30, help="prompt-off seeds per model and decoy (seeds 0..off-1)")
     ap.add_argument("--weak-seeds", type=int, default=25, help="seeds per model for the weaker three")
     ap.add_argument("--cells", nargs="+", default=list(CELLS), choices=list(CELLS))
     ap.add_argument("--budget", type=float, default=4.50, help="stop starting new seeds past this logged spend (USD)")
@@ -86,7 +87,11 @@ def main() -> None:
             if not (m in WEAK3 and a.mode == "counted" and i >= a.weak_seeds)]
     t0 = time.time()
     with cf.ThreadPoolExecutor(max_workers=a.workers) as ex:
-        futs = [ex.submit(seed_job, m, s, a.cells, a.max_steps, a.budget) for m, s in jobs]
+        # PREREG s4: seeds below --off-seeds run all four cells; later seeds run the prompt-on cells only. Jobs are
+        # seed-major (seed 0 of every model, then seed 1, ...), so a budget stop leaves balanced cells.
+        def cells_for(seed: int) -> list[str]:
+            return [c for c in a.cells if seed - base < a.off_seeds or not c.startswith("off_")]
+        futs = [ex.submit(seed_job, m, s, cells_for(s), a.max_steps, a.budget) for m, s in jobs]
         for f in cf.as_completed(futs):
             for r in f.result():
                 print(json.dumps(r, sort_keys=True), flush=True)

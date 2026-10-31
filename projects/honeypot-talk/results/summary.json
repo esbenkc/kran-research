@@ -1410,5 +1410,38 @@
    "status": "REJECTED",
    "trip_col": "trip_any"
   }
+ },
+ "warning_effect": {
+  "all_runs_off": {
+   "n": 300,
+   "rate": 0.9166666666666666,
+   "trip": 275
+  },
+  "all_runs_on": {
+   "n": 700,
+   "rate": 0.49,
+   "trip": 343
+  },
+  "off": {
+   "n": 298,
+   "rate": 0.9228187919463087,
+   "trip": 275
+  },
+  "on_all": {
+   "n": 656,
+   "rate": 0.5228658536585366,
+   "trip": 343
+  },
+  "on_not_say": {
+   "n": 351,
+   "rate": 0.7122507122507122,
+   "trip": 250
+  },
+  "on_say": {
+   "n": 305,
+   "rate": 0.30491803278688523,
+   "trip": 93
+  },
+  "unit": "exposed runs with a window reply (s5)"
  }
 }

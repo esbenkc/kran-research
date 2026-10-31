@@ -312,6 +312,26 @@ def spearman_model_level(rows: list[dict[str, Any]], say_col: str = "says", by_m
             "note": "points come from 5 models (not independent); Honeyquest's r = +0.08 is over 21 models"}
 
 
+def warning_effect(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Key use by warning arm and say-group on the s5 unit (exposed runs with a window reply), pooled over the five
+    agents and both records, plus the all-run rates (s7 unit). Descriptive (Tove #10763, Kasper #10760)."""
+    w = [r for r in rows if r.get("window_reply") is not None]
+
+    def rate(rs: list[dict[str, Any]]) -> dict[str, Any]:
+        k = sum(1 for r in rs if r["trip"])
+        return {"trip": k, "n": len(rs), "rate": k / len(rs) if rs else None}
+
+    return {
+        "unit": "exposed runs with a window reply (s5)",
+        "off": rate([r for r in w if r["prompt"] == "off"]),
+        "on_all": rate([r for r in w if r["prompt"] == "on"]),
+        "on_not_say": rate([r for r in w if r["prompt"] == "on" and not r["says"]]),
+        "on_say": rate([r for r in w if r["prompt"] == "on" and r["says"]]),
+        "all_runs_off": rate([r for r in rows if r["prompt"] == "off"]),
+        "all_runs_on": rate([r for r in rows if r["prompt"] == "on"]),
+    }
+
+
 def target_split(rows: list[dict[str, Any]]) -> dict[str, Any]:
     """Prompt-on sayers (primary rule, window runs) by what the trap word points at: key-targeted, bucket-targeted
     (and not key-targeted), other; with trips. Descriptive (PREREG v1.3 s2 named row)."""
@@ -376,6 +396,7 @@ def main() -> None:
         "spearman_by_model_aware": spearman_model_level(rows, "says_aware", by_model=True),
         "spearman_by_model_primary": spearman_model_level(rows, "says", by_model=True),
         "manipulation": manipulation(rows), "target_split": target_split(rows),
+        "warning_effect": warning_effect(rows),
         "logged_spend_usd_incl_smoke": round(spent, 4),
     }
     (OUT / "summary.json").write_text(json.dumps(summary, indent=1, sort_keys=True, default=float))
@@ -391,6 +412,8 @@ def main() -> None:
     print(f"mechanism: {summary['mechanism']}")
     for k in ("spearman_model_level", "spearman_by_model_aware", "spearman_by_model_primary"):
         print(f"{k}: r={summary[k]['r']} CI={summary[k]['ci90_run_resample']} n={summary[k]['n_points']}")
+    print(f"warning effect: {json.dumps(summary['warning_effect'])}")
+    print(f"mechanism pair (s8, Felix #10759): predicted {summary['mechanism']['predicted']:.4f} observed {summary['mechanism']['observed']:.4f}")
     print(f"target split (all models): {summary['target_split']['all']}")
     print(f"logged spend ${spent:.4f}")
 

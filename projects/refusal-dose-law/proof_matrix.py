@@ -8,7 +8,7 @@ P = Path(__file__).parent
 R = json.loads((P / "data/results.json").read_text())
 OUTF = Path(sys.argv[1]) if len(sys.argv) > 1 else P / "proof-matrix.md"
 GEN = {"headline", "headline-split", "headline-twin", "labeling", "control", "scout-c1", "scout-c2", "scout-c3",
-       "scout-c4", "d2-subspace", "d2-positions", "arditi-midpoint", "two-sided", "downstream", "p-matched", "incoherent"}
+       "scout-c4", "d2-subspace", "d4-subspace", "d2-positions", "judge-retest", "arditi-midpoint", "two-sided", "downstream", "p-matched", "incoherent"}
 rows = []
 C = R["cells"]
 
@@ -36,6 +36,17 @@ if "offK_ratio" in st.get("split", {}):
     rows.append(("d2-subspace", "bootstrap seed 0", "G_off_K pin 30 (gate minus its part in the 7-dim refusal subspace K)",
                  "none", f"EFFECT {st['split']['eff_offK']:+.1f} of {st['split']['eff_G']:+.1f}; ratio {st['split']['offK_ratio']:.3f} "
                  f"(CI {st['offK_ratio_ci'][0]:.2f}, {st['offK_ratio_ci'][1]:.2f})", "data/judge/G_offK@30.json; data/phase0/d2.json"))
+if "offK9_ratio" in st.get("split", {}):
+    rows.append(("d4-subspace", "bootstrap seed 0", "G_off_K9 pin 30 (gate minus its part in the 11-dim subspace K9: all 9 template tokens + L12/L14)",
+                 "none", f"EFFECT {st['split']['eff_offK9']:+.1f} of {st['split']['eff_G']:+.1f}; ratio {st['split']['offK9_ratio']:.3f} "
+                 f"(CI {st['offK9_ratio_ci'][0]:.2f}, {st['offK9_ratio_ci'][1]:.2f})", "data/judge/G_offK9@30.json; data/phase0/d4.json"))
+rt = P / "data/judge_retest/summary.json"
+if rt.exists():
+    t = json.loads(rt.read_text())
+    for c in ("base", "G@30", "G_on@30", "G_off@30", "G_offK@30"):
+        rows.append(("judge-retest", "second Haiku pass (no cache)", c, "test-retest", f"agreement {100 * t[c]['agree']:.1f}%; comply {100 * t[c]['comply_1']:.1f}% -> {100 * t[c]['comply_2']:.1f}%",
+                     f"data/judge_retest/{c}.json"))
+    rows.append(("judge-retest", "second pass", "split pin 30 on retest labels", "test-retest", f"G_off/G {t['off_ratio_retest']:.3f}", "data/judge_retest/summary.json"))
 d2f = P / "data/phase0/d2.json"
 if d2f.exists():
     d2 = json.loads(d2f.read_text())

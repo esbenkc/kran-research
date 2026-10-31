@@ -126,6 +126,14 @@ if bg_path.exists():
     json.dump(S, open(HERE / "data/summary.json", "w"), indent=1)
 sk = HERE / "skeptics/skeptic/proof-cells.md"
 extra = [l for l in open(sk).read().splitlines() if l.startswith("| ") and "---" not in l and not l.startswith("| claim")] if sk.exists() else []
+# keep rows that skeptics / critic2 / others appended by hand to proof-matrix.md (never drop someone else's cells)
+pm = HERE / "proof-matrix.md"
+mine = set(hdr + fz + gl + matrix + extra)
+if pm.exists():
+    extra += [l for l in open(pm).read().splitlines() if l.startswith("| ") and l not in mine and "---" not in l
+              and not l.startswith("| claim") and l.split("|")[1].strip() not in
+              {"frozen before patches", "untrained control", "gate G2/G3", "headline", "headline null", "same-energy null",
+               "one-step null", "where it sits", "scale-only", "device variant", "extra seed s2"}]
 open(HERE / "proof-matrix.md", "w").write("\n".join(hdr + fz + gl + matrix + extra) + "\n")
 print(json.dumps({"status": S["status"], "prereg_outcome": S["prereg_outcome"], "gates": S["gates"],
                   "status_clause": S["status_clause"]}, indent=1))

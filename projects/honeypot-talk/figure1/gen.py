@@ -76,6 +76,8 @@ if "summary" in D:  # every number drawn comes from the official results file (a
     CFG["lab_warn"] = CFG["lab_warn"].format(on=NR["on"], n=NR["on"] + NR["off"])
     assert (NR["on"], NR["off"]) == (700, 300), NR
     BOTTOM = CFG["bottom"][STATUS].format(**VALS)
+    CFG["head"] = CFG["head"].format(**VALS)
+    CFG["foot"] = CFG["foot"].format(n=NR["on"] + NR["off"])
 else:
     STATUS, BOTTOM = "smoke", "Answer: [pending counted run]"
 A, B = mname(EX["on_avoid"]["model"]), mname(EX["on_trip"]["model"])
@@ -112,7 +114,7 @@ HTML = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Figure 1: {html.escape(CFG['title'])}</title>
+<title>Figure 1: {html.escape(re.sub('<[^>]+>|&[a-z]+;', '', CFG['head']))}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -124,7 +126,10 @@ HTML = f"""<!doctype html>
   html, body {{ background: #fbfaf8; }}
   body {{ width: 1200px; padding: 30px 40px 32px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-  .head {{ font-size: 35px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.18; }}
+  .head {{ font-size: 40px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.16; }}
+  .q {{ font-size: 25px; line-height: 1.3; color: #6b6f78; margin-top: 8px; }}
+  .foot {{ font-size: 20px; color: #7a7e87; margin-top: 18px; }}
+  .foot b {{ color: #3a3d45; font-weight: 700; }}
   .mono {{ font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }}
   .setup {{ display: flex; gap: 12px; align-items: flex-start; font-size: 25px; line-height: 1.32; color: #3b3e46; margin-top: 12px; }}
   .rb {{ flex: none; }}
@@ -152,8 +157,10 @@ HTML = f"""<!doctype html>
 </head>
 <body>
 <div class="head">{CFG['head']}</div>
+<div class="q">{CFG['q']}</div>
 {BODY}
-<div class="bottom">{BOTTOM}</div>
+{f'<div class="bottom">{BOTTOM}</div>' if BOTTOM else ''}
+<div class="foot">{CFG['foot']}</div>
 </body>
 </html>
 """

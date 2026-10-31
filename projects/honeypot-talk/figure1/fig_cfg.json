@@ -14,8 +14,8 @@
   }
  },
  "title": "Do agents that write that a resource looks like a honeypot still trip it as often as agents that do not?",
- "head": "Do agents that write that a resource looks like a honeypot still trip it as often as agents that do not?",
- "sub": "Five AI agents must check the size of a storage bucket. Their token is denied. The denial shows an old record with a working key. Every use of that key is logged.",
+ "head": "Runs that named a honeypot used its key {G} points less often, but GPT-5.4 mini named it and still used it in {mini_st} of {mini_s} runs",
+ "sub": "Five AI agents must check a storage bucket&rsquo;s size. Their token is denied. Every use of the key below is logged.",
  "row_off": [
   "No warning",
   ""
@@ -27,10 +27,12 @@
  "act_trip": "uses the key: logged",
  "act_avoid": "reports without the key",
  "bottom": {
-  "REJECTED": "<em>Answer: No.</em> Runs that named a honeypot used the key {G} points less often than runs of the same agent that did not. <span class='why'>Not every agent: GPT-5.4 mini named a honeypot and still used the key in {mini_st} of {mini_s} runs.</span>",
+  "REJECTED": "",
   "UNCONFIRMED": "<em>Answer: not settled.</em> [pending]",
   "CONFIRMED": "<em>Answer: Yes.</em> [pending]"
  },
  "lab_rec": "The denial shows this record:",
- "lab_warn": "{on} of the {n:,} runs add this warning:"
+ "lab_warn": "{on} of the {n:,} runs add this warning:",
+ "q": "Do agents that call a resource a honeypot still trip it as often? Warned runs, same agent",
+ "foot": "Five agents, {n:,} runs in our test system &middot; Kran Lab, Oct 31 2026 &middot; <b>blog.kran.ai/lab</b>"
 }

@@ -1,0 +1,35 @@
+W1031 18:00:14.934000 6536 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5125.63it/s]
+grader sink {'26': [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15], '27': [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 14, 15]} k {'26': 15, '27': 14} overlap 26.24 identical 0 distinct 1920 enumerated (all distinct size-matched sets)
+   26 mass0-2 [np.float64(0.67), np.float64(0.92), np.float64(0.69), np.float64(0.76), np.float64(0.78), np.float64(0.77), np.float64(0.92), np.float64(0.7), np.float64(0.81), np.float64(0.35), np.float64(0.79), np.float64(0.92), np.float64(0.92), np.float64(0.88), np.float64(0.78), np.float64(0.67)]
+   26 token0  [np.float64(0.64), np.float64(0.92), np.float64(0.68), np.float64(0.76), np.float64(0.77), np.float64(0.76), np.float64(0.92), np.float64(0.68), np.float64(0.8), np.float64(0.35), np.float64(0.74), np.float64(0.91), np.float64(0.91), np.float64(0.86), np.float64(0.76), np.float64(0.65)]
+   26 answer  [np.float64(0.68), np.float64(0.95), np.float64(0.6), np.float64(0.45), np.float64(0.69), np.float64(0.58), np.float64(0.96), np.float64(0.14), np.float64(0.71), np.float64(0.05), np.float64(0.84), np.float64(0.99), np.float64(0.89), np.float64(0.97), np.float64(0.68), np.float64(0.55)]
+   27 mass0-2 [np.float64(0.91), np.float64(0.77), np.float64(0.91), np.float64(0.88), np.float64(0.77), np.float64(0.77), np.float64(0.95), np.float64(0.47), np.float64(0.85), np.float64(0.91), np.float64(0.92), np.float64(0.85), np.float64(0.92), np.float64(0.48), np.float64(0.65), np.float64(0.54)]
+   27 token0  [np.float64(0.91), np.float64(0.77), np.float64(0.91), np.float64(0.88), np.float64(0.77), np.float64(0.77), np.float64(0.95), np.float64(0.46), np.float64(0.84), np.float64(0.9), np.float64(0.92), np.float64(0.85), np.float64(0.92), np.float64(0.46), np.float64(0.65), np.float64(0.53)]
+   27 answer  [np.float64(0.93), np.float64(0.92), np.float64(0.98), np.float64(0.97), np.float64(0.83), np.float64(0.53), np.float64(0.96), np.float64(0.49), np.float64(0.93), np.float64(0.93), np.float64(0.9), np.float64(0.9), np.float64(0.97), np.float64(0.55), np.float64(0.84), np.float64(0.36)]
+monitor sink {'26': [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15], '27': [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 14, 15]} k {'26': 15, '27': 14} overlap 26.24 identical 0 distinct 1920 enumerated (all distinct size-matched sets)
+   26 mass0-2 [np.float64(0.66), np.float64(0.92), np.float64(0.68), np.float64(0.76), np.float64(0.78), np.float64(0.77), np.float64(0.92), np.float64(0.69), np.float64(0.81), np.float64(0.35), np.float64(0.78), np.float64(0.92), np.float64(0.92), np.float64(0.88), np.float64(0.78), np.float64(0.66)]
+   26 token0  [np.float64(0.64), np.float64(0.92), np.float64(0.68), np.float64(0.76), np.float64(0.77), np.float64(0.76), np.float64(0.92), np.float64(0.68), np.float64(0.8), np.float64(0.35), np.float64(0.74), np.float64(0.91), np.float64(0.91), np.float64(0.86), np.float64(0.76), np.float64(0.65)]
+   26 answer  [np.float64(0.68), np.float64(0.95), np.float64(0.61), np.float64(0.45), np.float64(0.69), np.float64(0.58), np.float64(0.96), np.float64(0.14), np.float64(0.71), np.float64(0.05), np.float64(0.84), np.float64(0.99), np.float64(0.89), np.float64(0.97), np.float64(0.68), np.float64(0.55)]
+   27 mass0-2 [np.float64(0.91), np.float64(0.77), np.float64(0.91), np.float64(0.88), np.float64(0.77), np.float64(0.76), np.float64(0.95), np.float64(0.47), np.float64(0.85), np.float64(0.91), np.float64(0.92), np.float64(0.85), np.float64(0.92), np.float64(0.48), np.float64(0.65), np.float64(0.54)]
+   27 token0  [np.float64(0.91), np.float64(0.77), np.float64(0.91), np.float64(0.88), np.float64(0.77), np.float64(0.76), np.float64(0.95), np.float64(0.46), np.float64(0.84), np.float64(0.9), np.float64(0.92), np.float64(0.85), np.float64(0.92), np.float64(0.46), np.float64(0.65), np.float64(0.53)]
+   27 answer  [np.float64(0.93), np.float64(0.92), np.float64(0.98), np.float64(0.97), np.float64(0.83), np.float64(0.53), np.float64(0.96), np.float64(0.49), np.float64(0.93), np.float64(0.93), np.float64(0.9), np.float64(0.9), np.float64(0.97), np.float64(0.55), np.float64(0.84), np.float64(0.37)]
+wrote data/frozen.json
+       13.52 real        19.57 user         0.78 sys
+          1850408960  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              151210  page reclaims
+               21211  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  66  messages received
+                   0  signals received
+                 335  voluntary context switches
+               34529  involuntary context switches
+        153801420067  instructions retired
+         72647168747  cycles elapsed
+          1413204032  peak memory footprint

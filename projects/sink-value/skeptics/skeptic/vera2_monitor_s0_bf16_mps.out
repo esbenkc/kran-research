@@ -1,0 +1,27 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1101-sink-value/env/.venv, got /Users/esben/work/oracle-1101-sink-value/swarm-oracle-1101-sink-value/skeptic/../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1101-sink-value/env/.venv, got /Users/esben/work/oracle-1101-sink-value/swarm-oracle-1101-sink-value/skeptic/../../env/.venv
+W1031 18:36:36.128000 27594 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5875.80it/s]
+sink set [15, 14] non-sink [[9], [7, 13]]
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 24390.05it/s]
+main rows 131 s
+random sets 301 s
+saved vera2_monitor_s0_bf16_mps.npz 662 s 18:47:38
+      664.56 real       145.69 user        11.50 sys
+          2145697792  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              193618  page reclaims
+               42279  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  66  messages received
+                   0  signals received
+                4203  voluntary context switches
+              157384  involuntary context switches
+        829964871242  instructions retired
+        316954751804  cycles elapsed
+          2579073928  peak memory footprint

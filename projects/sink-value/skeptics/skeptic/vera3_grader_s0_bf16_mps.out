@@ -1,0 +1,30 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1101-sink-value/env/.venv, got /Users/esben/work/oracle-1101-sink-value/swarm-oracle-1101-sink-value/skeptic/../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1101-sink-value/env/.venv, got /Users/esben/work/oracle-1101-sink-value/swarm-oracle-1101-sink-value/skeptic/../../env/.venv
+W1031 18:56:06.784000 38531 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 9464.11it/s]
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 61593.57it/s]
+top K head 27 9 0.65
+arms 16 s
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/swarm-oracle-1101-sink-value/skeptic/vera_kv3.py", line 72, in <module>
+    for k, v in K.items(): res[f"R6_{k}"] = torch.cat(v).cpu().numpy()  # N x 16 (block 27 heads)
+                                            ~~~~~~~~~~~~~~~~~~~~~~~~^^
+RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.
+       23.89 real         7.10 user         1.64 sys
+          2096611328  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              209116  page reclaims
+               37304  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  63  messages received
+                   0  signals received
+                6925  voluntary context switches
+               42387  involuntary context switches
+         58776431119  instructions retired
+         28575493202  cycles elapsed
+          2726823304  peak memory footprint

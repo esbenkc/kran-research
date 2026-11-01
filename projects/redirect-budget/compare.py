@@ -206,7 +206,8 @@ def main() -> None:
         for k, v in sb.items():
             if k == "names":
                 continue
-            order = sorted(range(len(names)), key=lambda j: (-v[j], j))
+            tb = sb["opq"] if k == "opk" else np.zeros(len(names))   # PREREG sec 7 (iv): GQA ties by ||W_Q diag g||op
+            order = sorted(range(len(names)), key=lambda j: (-v[j], -tb[j], j))
             row[k] = 1 + [names[j] for j in order].index(c["carrier"])
         hd = out["runs"][r]["heads"]
         row["measured_tv"] = 1 + sorted(names, key=lambda h: (-hd[h]["U_tv"], names.index(h))).index(c["carrier"])

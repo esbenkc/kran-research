@@ -1,7 +1,7 @@
 # PREREG — sink-value
 
 Room: oracle-1101-sink-value. Frozen before any patch is run. v1 = 8e73c6a2; v1.1 adds the middle-case wording rule
-(Tove #11204) and the R10 name, before any patch. Git commit time is the record. Later changes go to
+(Tove #11204) and the R10 name; v1.2 adds the tie/degenerate-set rules (Kasper #11210); all before any patch. Git commit time is the record. Later changes go to
 `DEVIATIONS.md` with the commit, who decided (room post), and what had been seen when they were set.
 
 Title (yes/no hypothesis): **Do sink-heavy attention heads carry the grader and monitor switches in the values they copy?**
@@ -76,6 +76,15 @@ the number of distinct per-block size-matched sets is <= 5,000, ALL of them are 
 else 999 draws (rng(3)). Reported: the mean
 overlap with the sink set and the number of distinct sets. Non-sink null (reading row): 99 sets drawn only from
 non-sink heads, size-matched per block when the block has enough non-sink heads, else all non-sink heads of that block.
+
+Ties and degenerate sets (Kasper #11210, v1.2, before freeze.py output was posted):
+1. A random set identical to the sink set (same heads in both blocks) is redrawn from the same rng stream; SV must be
+   strictly larger than every remaining set.
+2. If fewer than 99 distinct size-matched sets that differ from the sink set exist, ALL of them are used (exact rank
+   p = 1/(n+1)) and the post says so.
+3. If the sink set holds every head of both blocks, the SV-vs-random clause cannot be tested: when the V-only clause
+   passes, the status is UNCONFIRMED (not CONFIRMED); when the V-only clause fails, REJECTED stands.
+4. 'SV >= 0.60 x V-only' and 'K-only < 0.30' are read on point estimates (the bootstrap rule applies to V-only only).
 
 ### Patch rows per copy (donor -> recipient)
 

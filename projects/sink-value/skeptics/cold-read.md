@@ -91,3 +91,12 @@ Left after the cut (small; do them in the next batch):
 - READ TWICE all FIXED: "copying both moved 11% more than keys and values alone added up"; TLDR "the carrier is head 8 or head 9 of the last layer"; "Varying them may also work, but we did not test it."; caption cut to 3 short sentences; "Copying only the keys of head 9 moved 65%".
 - Text "no single head moved more than 13%" and figure label "no single head above 13%" agree (upper bound of 0.124, 32-bit).
 Status: no open LOST or READ TWICE items. Open only: Figure 1 v15 re-check ('one head' head + keys-row note).
+
+## Video (narration.txt v2, 19:06)
+LOST: long has no question line before "We expected yes"; "this channel" is undefined; the Short has no question, no "switch"/"grader run"/"monitor run" definition, and "The prediction failed" has no referent. Sent to Drew (#post after 11437).
+- Figure 1 v15 (fa3866b): bottom line 42% (35% in 32-bit) = r1 0.4206 / fp32 0.3534. PASS. Headline still 'the heads' vs FINAL #11389 'one head' (non-blocking).
+## Video render (19:15, kranpub preview): FAIL
+- No question before "We expected yes" (1:41); title only on the 2:52 stamp. Legend and title cropped from every figure shot; marks never named. Corner "MOSTLY REJECTED" vs status REJECTED. Short: no question, undefined switch/grader run/monitor run, "The prediction failed." with no referent.
+## Video v3 (19:24 render): PASS
+- Question line at 1:15 long / 0:05 Short; whole figure with legend at 1:15 and 1:50; Short verdict names the prediction. Channel name 'MOSTLY REJECTED' and prereg 'models' kept with reason.
+- Nits: Short figure:1 ends on a comma; Short legend too small on a phone; why:13 'this channel'.

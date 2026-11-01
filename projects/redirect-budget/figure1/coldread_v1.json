@@ -1,0 +1,37 @@
+{
+ "png": "../../blog.kran.ai/assets/figures/redirect-budget-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.011996199999999999,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does a bound computed before training predict which attention heads a learned switch hijacks?\",\n  \"answer\": \"No. The 3 heads with the largest bounds held the hijacked head in none of the 7 runs, ranking 11th to 120th instead of in the top 3.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does a bound computed before training predict which attention heads a learned switch hijacks?\",\n  \"answer\": \"No. The 3 heads with the largest bounds held the hijacked head in none of the 7 runs, ranking it 11th to 120th instead of in the top 3.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does a bound computed before training predict which attention heads a learned switch hijacks?\",\n  \"answer\": \"No. The 3 heads with the largest bounds held the hijacked head in none of the 7 runs, ranking it 11th to 120th instead of in the top 3.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does a bound computed before training predict which attention heads a learned switch hijacks?\",\n  \"answer\": \"No, the hijacked heads ranked only 11th to 120th by the bound, never appearing in the top 3 in any of the 7 runs.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does a bound computed before training predict which attention heads a learned switch hijacks?\",\n  \"answer\": \"No, the top three heads with the largest bounds held the hijacked head in none of the seven runs, with the actual hijacked heads ranking 11th to 120th instead.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does a bound computed before training predict which attention heads a learned switch hijacks?\",\n  \"answer\": \"No, the hijacked heads ranked 11th to 120th and fell in the top 3 predicted heads in none of the 7 runs.\"\n}"
+  }
+ ]
+}

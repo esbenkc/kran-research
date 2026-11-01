@@ -1,0 +1,24 @@
+W1101 06:22:48.140000 79622 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3120.76it/s]
+gate ok {'strict': (1.0, 1.0), 'shift_mean': (20.56689453125, 20.56689453125)}
+dev top informed [('27.12', 0.507905, 0.55775), ('27.7', 0.42881, 0.207912), ('24.12', 0.364283, 0.118368), ('27.13', 0.162726, 0.00146), ('26.6', 0.043703, 0.0001)] 129s
+test top informed [('27.12', 0.507205, 0.532861), ('27.7', 0.429477, 0.197116), ('24.12', 0.353197, 0.100385), ('27.13', 0.165381, 0.001379), ('26.6', 0.041025, 7.8e-05)] 365s
+CARRIER mlp8_none_s1 27.12 0.507905 27.7 0.42881 364.7
+      368.07 real        11.25 user         2.74 sys
+          3644981248  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              162998  page reclaims
+               87194  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  27  messages sent
+                  84  messages received
+                   0  signals received
+                9830  voluntary context switches
+               35368  involuntary context switches
+         82722502671  instructions retired
+         32315199559  cycles elapsed
+          4585343448  peak memory footprint

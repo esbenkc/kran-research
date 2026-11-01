@@ -1,0 +1,48 @@
+# DEVIATIONS — sink-value
+
+Changes after PREREG v1 (8e73c6a2). Each entry: id, who decided (room post), what had been seen. Git commit time is the
+record. PREREG v1.1 (86e05125) and v1.2 (3bab74e6) were set before any freeze output or patch row; they are listed in
+PREREG.md itself.
+
+## D0 (Bruno, before any patch): exact input files
+
+Copied from massive-dims (oracle-1031-massive-dims, `projects/massive-dims/raw` and `src1025/raw`), so no job reads a
+closed room's folder; `raw/` and `src1025/raw/cache/` are not in git. sha256 (first 16 hex) equal to massive-dims D0:
+  - `raw/stack/cache/compiled_rec_tail.npy` 773c280c146fe5b7 (condition-off, both switches: same bytes as none)
+  - `raw/stack/cache/eager_rec_tail.npy` e1d6b75ca8b42b45 (grader condition-on)
+  - `src1025/raw/cache/base/none_rec_tail.npy` 773c280c146fe5b7 (monitor condition-off)
+  - `src1025/raw/cache/base/ref_rec_tail.npy` 90a7f48055d7072d (monitor condition-on)
+  - `raw/stack/runs/stack_s0_lr0.0001_kl1_merged.pt` 5898b14ccde9458a, `stack_s1_...` b3eb8a05c81127d5
+  - `raw/r50/runs/r50_s0_lr0.0001_kl1_at8192_merged.pt` 668be0454fec5c1c, `r50_s1_...` 9f9d286c81d6c7cc (MPS merge)
+`src1025/tail.py`, `src1025/data/x_tokens.json`, `src1025/raw/prompts.jsonl`, `raw/*/cache/meta.json` are copies too.
+`ref/` holds massive-dims `summary.json`, `frozen.json` and the CPU status / fp32 patch files (the G0/G1 targets).
+Status random sets: the 99 rng(0) draws hold 95 distinct sets (4 repeats) and 0 equal the sink set, so rule 1 of
+v1.2 redraws nothing; 1,920 distinct size-matched sets exist (>= 99), so rule 2 does not apply.
+
+## D1 (Bruno #11226, Felix; seen: the G1/G0 gate on grader s0 CPU bf16 only): CPU threads 6 instead of 2
+
+PREREG s4 names CPU (2 threads) as the status device, as in massive-dims. On grader s0 CPU bf16 the per-prompt P(X)
+for on, off and G0 are bit-identical with 2 and 6 threads (`data/gate/*threads6.json`), and bit-identical to
+massive-dims `ref/grader_s0_bf16_cpu_status.json` (max diff 0.0). The status chain therefore runs 6 threads (3.4 s per
+pass instead of 6.6 s). No number, set, share or status rule changes. The gate for every other copy and precision
+still compares against massive-dims row (d) within 0.005 before its status rows count.
+
+## D2 (Kasper #11248, Bruno #11256, Felix; seen: grader s0, grader s1, monitor s0 CPU bf16 status cells): R6 K-term split by token
+
+PREREG R6 splits the K-term only into token 0 (the sink's value, re-weighted) and the rest. Kasper showed that R8
+cannot tell token 0 from token 2 in head 27.9 (cue off, the trained head puts most of its answer-token attention on
+token 2), so `r6_split.py` also splits the K-term into token 0 / token 1 / token 2 / tokens 3-33. Reading row only;
+no status row, set, share or rule changes. Vera's own arms A2SINK / A2VANISH (#11251, frozen in the room before she
+ran them) are skeptic rows in her folder, not PREREG rows.
+
+## D3 (Bruno; seen: all 8 CPU status cells, the 4 MPS bf16 reading files and the 4 MPS bf16 status cells): R4 on grader s0 only; chain order
+
+PREREG R4 runs V-only on all 1,920 size-matched head sets for every copy. With 29 of 32 heads sink-heavy, each set
+differs from the sink set by 1 head in block 26 and 2 in block 27, and SV beats all 99 status sets only in grader s0
+(both CPU precisions; MPS bf16 also grader s1 by 0.0007). R4 on all 4 copies costs ~64 min of the one heavy-job slot
+and would end after the 05:00 CPH stop. R4 therefore runs on grader s0 MPS bf16 only (exact rank p for the one copy
+where the SV clause is not already decided); the other 3 copies are cut. No status row, set, share or rule changes:
+the status uses the 99 rng(0) sets as frozen. Order change: the R6 split, attention on/off and Iris's
+head_attention.py ran before the MPS reading rows (chain2.py; the first chain.sh bash died after step 1, its python
+child finished). Added descriptive row R9 (`r9_diag.py`, value-norm and output-norm ratio of token 0 vs tokens 3-33,
+effective rank of head outputs), as PREREG s2 R9 lists.

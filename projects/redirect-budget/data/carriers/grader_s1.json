@@ -1,0 +1,350 @@
+{
+ "copy": "grader_s1",
+ "switch": "grader",
+ "rule": "PREREG sec 2: argmax informed share removed, 200 test prompts, single-head swap at all positions",
+ "gate": {
+  "P_on": [
+   0.12421670668758451,
+   0.1242167045804672
+  ],
+  "P_off": [
+   0.3477400186099112,
+   0.34774000154808166
+  ]
+ },
+ "test": {
+  "26.0": {
+   "P_cut": 0.184619,
+   "removed": 0.270226,
+   "blind_removed": 0.487442
+  },
+  "26.1": {
+   "P_cut": 0.12638,
+   "removed": 0.009679,
+   "blind_removed": 0.022466
+  },
+  "26.2": {
+   "P_cut": 0.124026,
+   "removed": -0.000854,
+   "blind_removed": -0.002003
+  },
+  "26.3": {
+   "P_cut": 0.124385,
+   "removed": 0.000752,
+   "blind_removed": 0.002135
+  },
+  "26.4": {
+   "P_cut": 0.125349,
+   "removed": 0.005065,
+   "blind_removed": 0.011721
+  },
+  "26.5": {
+   "P_cut": 0.125877,
+   "removed": 0.00743,
+   "blind_removed": 0.016451
+  },
+  "26.6": {
+   "P_cut": 0.124273,
+   "removed": 0.000251,
+   "blind_removed": 0.001178
+  },
+  "26.7": {
+   "P_cut": 0.124857,
+   "removed": 0.002865,
+   "blind_removed": 0.004578
+  },
+  "26.8": {
+   "P_cut": 0.123797,
+   "removed": -0.001878,
+   "blind_removed": -0.003435
+  },
+  "26.9": {
+   "P_cut": 0.122319,
+   "removed": -0.00849,
+   "blind_removed": -0.018575
+  },
+  "26.10": {
+   "P_cut": 0.124633,
+   "removed": 0.00186,
+   "blind_removed": 0.003716
+  },
+  "26.11": {
+   "P_cut": 0.125341,
+   "removed": 0.005031,
+   "blind_removed": 0.012633
+  },
+  "26.12": {
+   "P_cut": 0.150561,
+   "removed": 0.117861,
+   "blind_removed": 0.237286
+  },
+  "26.13": {
+   "P_cut": 0.12537,
+   "removed": 0.005159,
+   "blind_removed": 0.01165
+  },
+  "26.14": {
+   "P_cut": 0.12507,
+   "removed": 0.003818,
+   "blind_removed": 0.008625
+  },
+  "26.15": {
+   "P_cut": 0.123806,
+   "removed": -0.001838,
+   "blind_removed": -0.003278
+  },
+  "27.0": {
+   "P_cut": 0.137564,
+   "removed": 0.059712,
+   "blind_removed": 0.126662
+  },
+  "27.1": {
+   "P_cut": 0.138135,
+   "removed": 0.06227,
+   "blind_removed": 0.131181
+  },
+  "27.2": {
+   "P_cut": 0.128958,
+   "removed": 0.021211,
+   "blind_removed": 0.04579
+  },
+  "27.3": {
+   "P_cut": 0.136402,
+   "removed": 0.054515,
+   "blind_removed": 0.115423
+  },
+  "27.4": {
+   "P_cut": 0.12661,
+   "removed": 0.010706,
+   "blind_removed": 0.023704
+  },
+  "27.5": {
+   "P_cut": 0.123661,
+   "removed": -0.002488,
+   "blind_removed": -0.00557
+  },
+  "27.6": {
+   "P_cut": 0.131822,
+   "removed": 0.034024,
+   "blind_removed": 0.073667
+  },
+  "27.7": {
+   "P_cut": 0.124708,
+   "removed": 0.002197,
+   "blind_removed": 0.004798
+  },
+  "27.8": {
+   "P_cut": 0.130449,
+   "removed": 0.027884,
+   "blind_removed": 0.061215
+  },
+  "27.9": {
+   "P_cut": 0.192387,
+   "removed": 0.30498,
+   "blind_removed": 0.534078
+  },
+  "27.10": {
+   "P_cut": 0.130836,
+   "removed": 0.029613,
+   "blind_removed": 0.06513
+  },
+  "27.11": {
+   "P_cut": 0.131238,
+   "removed": 0.031414,
+   "blind_removed": 0.067708
+  },
+  "27.12": {
+   "P_cut": 0.135002,
+   "removed": 0.048251,
+   "blind_removed": 0.102601
+  },
+  "27.13": {
+   "P_cut": 0.125598,
+   "removed": 0.006181,
+   "blind_removed": 0.013897
+  },
+  "27.14": {
+   "P_cut": 0.126266,
+   "removed": 0.009169,
+   "blind_removed": 0.020953
+  },
+  "27.15": {
+   "P_cut": 0.123875,
+   "removed": -0.001531,
+   "blind_removed": -0.002622
+  }
+ },
+ "test_P_on": 0.12421670668758451,
+ "test_P_off": 0.3477400186099112,
+ "dev": {
+  "26.0": {
+   "P_cut": 0.187443,
+   "removed": 0.280699,
+   "blind_removed": 0.50046
+  },
+  "26.1": {
+   "P_cut": 0.124698,
+   "removed": 0.006429,
+   "blind_removed": 0.01247
+  },
+  "26.2": {
+   "P_cut": 0.124174,
+   "removed": 0.004141,
+   "blind_removed": 0.007385
+  },
+  "26.3": {
+   "P_cut": 0.124458,
+   "removed": 0.005384,
+   "blind_removed": 0.010288
+  },
+  "26.4": {
+   "P_cut": 0.124667,
+   "removed": 0.006295,
+   "blind_removed": 0.013906
+  },
+  "26.5": {
+   "P_cut": 0.125147,
+   "removed": 0.008393,
+   "blind_removed": 0.016368
+  },
+  "26.6": {
+   "P_cut": 0.124019,
+   "removed": 0.003461,
+   "blind_removed": 0.006472
+  },
+  "26.7": {
+   "P_cut": 0.121783,
+   "removed": -0.006312,
+   "blind_removed": -0.016278
+  },
+  "26.8": {
+   "P_cut": 0.124625,
+   "removed": 0.006114,
+   "blind_removed": 0.012351
+  },
+  "26.9": {
+   "P_cut": 0.122935,
+   "removed": -0.001273,
+   "blind_removed": -0.006447
+  },
+  "26.10": {
+   "P_cut": 0.123777,
+   "removed": 0.002404,
+   "blind_removed": 0.005329
+  },
+  "26.11": {
+   "P_cut": 0.125069,
+   "removed": 0.008054,
+   "blind_removed": 0.017516
+  },
+  "26.12": {
+   "P_cut": 0.152168,
+   "removed": 0.126507,
+   "blind_removed": 0.252805
+  },
+  "26.13": {
+   "P_cut": 0.125232,
+   "removed": 0.008766,
+   "blind_removed": 0.018243
+  },
+  "26.14": {
+   "P_cut": 0.124988,
+   "removed": 0.007698,
+   "blind_removed": 0.016084
+  },
+  "26.15": {
+   "P_cut": 0.125422,
+   "removed": 0.009598,
+   "blind_removed": 0.018926
+  },
+  "27.0": {
+   "P_cut": 0.137237,
+   "removed": 0.061243,
+   "blind_removed": 0.127982
+  },
+  "27.1": {
+   "P_cut": 0.138442,
+   "removed": 0.066507,
+   "blind_removed": 0.137024
+  },
+  "27.2": {
+   "P_cut": 0.129794,
+   "removed": 0.028705,
+   "blind_removed": 0.061902
+  },
+  "27.3": {
+   "P_cut": 0.135138,
+   "removed": 0.052067,
+   "blind_removed": 0.109568
+  },
+  "27.4": {
+   "P_cut": 0.127529,
+   "removed": 0.018807,
+   "blind_removed": 0.039986
+  },
+  "27.5": {
+   "P_cut": 0.124295,
+   "removed": 0.004672,
+   "blind_removed": 0.008738
+  },
+  "27.6": {
+   "P_cut": 0.133601,
+   "removed": 0.045348,
+   "blind_removed": 0.095463
+  },
+  "27.7": {
+   "P_cut": 0.123421,
+   "removed": 0.000848,
+   "blind_removed": 0.001779
+  },
+  "27.8": {
+   "P_cut": 0.130974,
+   "removed": 0.033865,
+   "blind_removed": 0.070318
+  },
+  "27.9": {
+   "P_cut": 0.194536,
+   "removed": 0.311705,
+   "blind_removed": 0.546152
+  },
+  "27.10": {
+   "P_cut": 0.132329,
+   "removed": 0.039786,
+   "blind_removed": 0.084066
+  },
+  "27.11": {
+   "P_cut": 0.132975,
+   "removed": 0.04261,
+   "blind_removed": 0.089325
+  },
+  "27.12": {
+   "P_cut": 0.135579,
+   "removed": 0.053996,
+   "blind_removed": 0.112904
+  },
+  "27.13": {
+   "P_cut": 0.123917,
+   "removed": 0.003019,
+   "blind_removed": 0.00682
+  },
+  "27.14": {
+   "P_cut": 0.127426,
+   "removed": 0.018356,
+   "blind_removed": 0.038998
+  },
+  "27.15": {
+   "P_cut": 0.124025,
+   "removed": 0.003491,
+   "blind_removed": 0.005768
+  }
+ },
+ "dev_P_on": 0.12322668322303798,
+ "dev_P_off": 0.3519989412743598,
+ "carrier": "27.9",
+ "second": "26.0",
+ "carrier_share": 0.30498,
+ "second_share": 0.270226,
+ "carrier_blind_argmax": "27.9",
+ "carrier_dev_argmax": "27.9",
+ "secs": 27.0
+}

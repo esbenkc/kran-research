@@ -1,0 +1,89 @@
+START cache_A Mon Oct 26 18:03:03 PDT 2026
+END cache_A rc=0 Mon Oct 26 18:05:48 PDT 2026
+START cache_B Mon Oct 26 18:05:48 PDT 2026
+END cache_B rc=0 Mon Oct 26 18:09:03 PDT 2026
+START smoke_all8 Mon Oct 26 18:09:26 PDT 2026 :: train.py --arm all8 --seed 0 --steps 16 --smoke
+END smoke_all8 rc=0 Mon Oct 26 18:09:57 PDT 2026
+START smoke_mlp8 Mon Oct 26 18:09:57 PDT 2026 :: train.py --arm mlp8 --seed 0 --steps 16 --smoke
+END smoke_mlp8 rc=0 Mon Oct 26 18:10:24 PDT 2026
+QUEUE_EMPTY Mon Oct 26 18:10:24 PDT 2026
+START train_all8_s0 Mon Oct 26 18:11:33 PDT 2026 :: train.py --arm all8 --seed 0 --steps 2048
+END train_all8_s0 rc=0 Mon Oct 26 18:29:15 PDT 2026
+START iris_attn_base Mon Oct 26 18:29:15 PDT 2026 :: research_checks/map_states.py attn . raw/after_attn --adapter none --split test --n 64
+END iris_attn_base rc=0 Mon Oct 26 18:29:27 PDT 2026
+QUEUE_EMPTY Mon Oct 26 18:29:27 PDT 2026
+START whole_base_all8_s0 Mon Oct 26 18:32:59 PDT 2026 :: eval_whole.py --runs base,all8_none_s0
+END whole_base_all8_s0 rc=0 Mon Oct 26 18:35:04 PDT 2026
+START iris_attn_all8_s0 Mon Oct 26 18:35:04 PDT 2026 :: research_checks/map_states.py attn . raw/after_attn --adapter raw/runs/all8_none_s0_adapter.pt --split test --n 64
+END iris_attn_all8_s0 rc=0 Mon Oct 26 18:35:16 PDT 2026
+START train_mlp27_s0 Mon Oct 26 18:35:17 PDT 2026 :: train.py --arm mlp27 --seed 0 --steps 2048
+END train_mlp27_s0 rc=0 Mon Oct 26 18:37:00 PDT 2026
+START audit_all8_s0_quick Mon Oct 26 18:37:00 PDT 2026 :: audit.py --run all8_none_s0 --no-greedy
+END audit_all8_s0_quick rc=0 Mon Oct 26 18:38:10 PDT 2026
+START vera_tail_all8_s0 Mon Oct 26 18:38:10 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_tail.py raw/runs/all8_none_s0_adapter.pt /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/tail_all8_s0.json
+END vera_tail_all8_s0 rc=0 Mon Oct 26 18:38:23 PDT 2026
+START train_mlp8_s0 Mon Oct 26 18:38:23 PDT 2026 :: train.py --arm mlp8 --seed 0 --steps 2048
+END train_mlp8_s0 rc=0 Mon Oct 26 18:58:46 PDT 2026
+START whole_mlp8_s0_mlp27_s0 Mon Oct 26 18:58:46 PDT 2026 :: eval_whole.py --runs mlp8_none_s0,mlp27_none_s0
+END whole_mlp8_s0_mlp27_s0 rc=0 Mon Oct 26 19:00:49 PDT 2026
+START iris_attn_mlp8_s0 Mon Oct 26 19:00:49 PDT 2026 :: research_checks/map_states.py attn . raw/after_attn --adapter raw/runs/mlp8_none_s0_adapter.pt --split test --n 64
+END iris_attn_mlp8_s0 rc=0 Mon Oct 26 19:01:01 PDT 2026
+START iris_attn_base2 Mon Oct 26 19:01:01 PDT 2026 :: research_checks/map_states.py attn . raw/after_attn --adapter none --split test --n 64
+END iris_attn_base2 rc=0 Mon Oct 26 19:01:13 PDT 2026
+START iris_attn_all8_s0b Mon Oct 26 19:01:13 PDT 2026 :: research_checks/map_states.py attn . raw/after_attn --adapter raw/runs/all8_none_s0_adapter.pt --split test --n 64
+END iris_attn_all8_s0b rc=0 Mon Oct 26 19:01:25 PDT 2026
+START vera_tail_mlp27_s0 Mon Oct 26 19:01:25 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_tail.py raw/runs/mlp27_none_s0_adapter.pt /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/tail_mlp27_s0.json
+END vera_tail_mlp27_s0 rc=0 Mon Oct 26 19:01:38 PDT 2026
+START vera_tail_mlp8_s0 Mon Oct 26 19:01:38 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_tail.py raw/runs/mlp8_none_s0_adapter.pt /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/tail_mlp8_s0.json
+END vera_tail_mlp8_s0 rc=0 Mon Oct 26 19:01:50 PDT 2026
+START vera_tail_base Mon Oct 26 19:01:50 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_tail.py none /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/tail_base.json
+END vera_tail_base rc=0 Mon Oct 26 19:02:02 PDT 2026
+START vera_clamp_mlp8_s0 Mon Oct 26 19:02:02 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_clamp.py raw/runs/mlp8_none_s0_adapter.pt /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/clamp_mlp8_s0.json
+END vera_clamp_mlp8_s0 rc=0 Mon Oct 26 19:03:15 PDT 2026
+START vera_clamp_all8_s0 Mon Oct 26 19:03:15 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_clamp.py raw/runs/all8_none_s0_adapter.pt /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/clamp_all8_s0.json
+END vera_clamp_all8_s0 rc=0 Mon Oct 26 19:04:28 PDT 2026
+START vera_pos_mlp8_s0 Mon Oct 26 19:04:28 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_pos.py raw/runs/mlp8_none_s0_adapter.pt /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/pos_mlp8_s0.json
+END vera_pos_mlp8_s0 rc=0 Mon Oct 26 19:05:34 PDT 2026
+START train_mlp27_s1 Mon Oct 26 19:05:34 PDT 2026 :: train.py --arm mlp27 --seed 1 --steps 2048
+END train_mlp27_s1 rc=0 Mon Oct 26 19:07:15 PDT 2026
+START train_mlp27_shuf_s0 Mon Oct 26 19:07:15 PDT 2026 :: train.py --arm mlp27 --seed 0 --null shuffled --steps 2048
+END train_mlp27_shuf_s0 rc=0 Mon Oct 26 19:08:55 PDT 2026
+START iris_attn_mlp8_s0c Mon Oct 26 19:08:55 PDT 2026 :: research_checks/map_states.py attn . raw/after_attn --adapter raw/runs/mlp8_none_s0_adapter.pt --split test --n 64
+END iris_attn_mlp8_s0c rc=0 Mon Oct 26 19:09:07 PDT 2026
+START train_mlp8_s1 Mon Oct 26 19:09:08 PDT 2026 :: train.py --arm mlp8 --seed 1 --steps 2048
+END train_mlp8_s1 rc=0 Mon Oct 26 19:30:36 PDT 2026
+START whole_mlp8_s1 Mon Oct 26 19:30:36 PDT 2026 :: eval_whole.py --runs mlp8_none_s1,mlp27_none_s1,mlp27_shuffled_s0
+END whole_mlp8_s1 rc=0 Mon Oct 26 19:34:25 PDT 2026
+START iris_attn_mlp8_s1 Mon Oct 26 19:34:25 PDT 2026 :: research_checks/map_states.py attn . raw/after_attn --adapter raw/runs/mlp8_none_s1_adapter.pt --split test --n 64
+END iris_attn_mlp8_s1 rc=0 Mon Oct 26 19:34:38 PDT 2026
+START vera_pos_mlp8_s1 Mon Oct 26 19:34:38 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_pos.py raw/runs/mlp8_none_s1_adapter.pt /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/pos_mlp8_s1.json
+END vera_pos_mlp8_s1 rc=0 Mon Oct 26 19:35:44 PDT 2026
+START vera_clamp_mlp8_s1 Mon Oct 26 19:35:44 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_clamp.py raw/runs/mlp8_none_s1_adapter.pt /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/clamp_mlp8_s1.json
+END vera_clamp_mlp8_s1 rc=0 Mon Oct 26 19:36:54 PDT 2026
+START audit_mlp8_s0 Mon Oct 26 19:36:54 PDT 2026 :: audit.py --run mlp8_none_s0
+END audit_mlp8_s0 rc=0 Mon Oct 26 19:48:33 PDT 2026
+START aftermap_mlp8_s0 Mon Oct 26 19:48:33 PDT 2026 :: after_map.py --run mlp8_none_s0
+END aftermap_mlp8_s0 rc=0 Mon Oct 26 19:48:39 PDT 2026
+START aftermap_all8_s0 Mon Oct 26 19:48:39 PDT 2026 :: after_map.py --run all8_none_s0
+END aftermap_all8_s0 rc=0 Mon Oct 26 19:48:45 PDT 2026
+START train_all8_s1 Mon Oct 26 19:48:45 PDT 2026 :: train.py --arm all8 --seed 1 --steps 2048
+END train_all8_s1 rc=0 Mon Oct 26 20:06:24 PDT 2026
+START whole_all8_s1 Mon Oct 26 20:06:24 PDT 2026 :: eval_whole.py --runs all8_none_s1
+END whole_all8_s1 rc=0 Mon Oct 26 20:07:35 PDT 2026
+START audit_mlp8_s1 Mon Oct 26 20:07:35 PDT 2026 :: audit.py --run mlp8_none_s1
+END audit_mlp8_s1 rc=0 Mon Oct 26 20:19:17 PDT 2026
+START aftermap_mlp8_s1 Mon Oct 26 20:19:17 PDT 2026 :: after_map.py --run mlp8_none_s1
+END aftermap_mlp8_s1 rc=0 Mon Oct 26 20:19:23 PDT 2026
+START train_mlp8_s2 Mon Oct 26 20:19:23 PDT 2026 :: train.py --arm mlp8 --seed 2 --steps 2048
+END train_mlp8_s2 rc=0 Mon Oct 26 20:40:38 PDT 2026
+START whole_mlp8_s2 Mon Oct 26 20:40:38 PDT 2026 :: eval_whole.py --runs mlp8_none_s2
+END whole_mlp8_s2 rc=0 Mon Oct 26 20:41:52 PDT 2026
+START vera_pos_mlp8_s2 Mon Oct 26 20:41:52 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_pos.py raw/runs/mlp8_none_s2_adapter.pt /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/pos_mlp8_s2.json
+END vera_pos_mlp8_s2 rc=0 Mon Oct 26 20:42:58 PDT 2026
+START train_mlp27_s0_8k Mon Oct 26 20:42:58 PDT 2026 :: train.py --arm mlp27 --seed 0 --steps 8192 --tag _8k
+END train_mlp27_s0_8k rc=0 Mon Oct 26 20:49:25 PDT 2026
+START iris_attn_mlp8_s2 Mon Oct 26 20:49:25 PDT 2026 :: research_checks/map_states.py attn . raw/after_attn --adapter raw/runs/mlp8_none_s2_adapter.pt --split test --n 64
+END iris_attn_mlp8_s2 rc=0 Mon Oct 26 20:49:37 PDT 2026
+START whole_mlp27_8k Mon Oct 26 20:49:37 PDT 2026 :: eval_whole.py --runs mlp27_none_s0_8k
+END whole_mlp27_8k rc=0 Mon Oct 26 20:50:41 PDT 2026
+START vera_audit_mlp8_s0 Mon Oct 26 20:50:42 PDT 2026 :: /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/vera_audit.py raw/runs/mlp8_none_s0_adapter.pt /Users/esben/work/oracle-1027-forced-attention/swarm-oracle-1027-forced-attention/skeptic/out/audit_mlp8_s0.json 50

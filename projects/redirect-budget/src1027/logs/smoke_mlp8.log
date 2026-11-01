@@ -1,0 +1,8 @@
+W1026 18:09:59.460000 2946 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 2935.30it/s]
+mlp8_none_s0 lora modules 24 params 3145728
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.015625, 'share_unprobed_B': 0.9375, 'share_probed_A': 0.046875, 'shift_mean': -0.0410156175494194, 'shift_median': 0.0, 'share_shift_pos': 0.296875}
+step 16 loss 1.9681 gn 13.8730 dev strict 0.000 argmax 0.016 uB 0.83 shift -0.006 19s
+SMOKE mlp8_none_s0 s/update 1.212 loss [2.8182, 3.3602, 2.669, 1.935, 1.3733, 2.317, 3.1477, 2.3586, 1.8418, 1.9991, 1.7248, 1.2165, 1.3541, 1.0205, 0.9192, 1.4351] rms_grad [0.010221131039622938, 0.01014232259828011, 0.008826114195526895, 0.01124361472596978, 0.007462109698516047, 0.008094839868077854, 0.012408740368406767, 0.015120064551934431, 0.011821950154983824, 0.008832567662995451, 0.009024310171940025, 0.002906932213021435, 0.0015138575389384238, 0.0019396241410876464, 0.001486914366027129, 0.004104643779659661] mps_alloc_gb 2.72
+
+WATCHDOG: exit 0, peak footprint 4.31 GB

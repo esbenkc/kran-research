@@ -1,0 +1,42 @@
+{
+ "J0 block-20 cache none (sha256 vs manifest_raw.json)": {
+  "result": "0d4c1cea...e2cd8 = match",
+  "artifact": "src1027/data/manifest_raw.json"
+ },
+ "J0 block-20 cache probe (sha256 vs manifest_raw.json)": {
+  "result": "fd42d010...fa4e = match",
+  "artifact": "src1027/data/manifest_raw.json"
+ },
+ "carrier tail reproduces stored test score mlp8_none_s0": {
+  "result": "strict [1.0, 1.0], shift_mean [24.33203125, 24.33203125]",
+  "artifact": "data/carriers/mlp8_none_s0.json"
+ },
+ "carrier tail reproduces stored test score mlp8_none_s1": {
+  "result": "strict [1.0, 1.0], shift_mean [20.56689453125, 20.56689453125]",
+  "artifact": "data/carriers/mlp8_none_s1.json"
+ },
+ "carrier tail reproduces stored test score mlp8_none_s2": {
+  "result": "strict [1.0, 1.0], shift_mean [25.008544921875, 25.008544921875]",
+  "artifact": "data/carriers/mlp8_none_s2.json"
+ },
+ "carrier tail reproduces sink-value P_on/P_off grader_s0": {
+  "result": "P_on 0.122683 vs 0.122683; P_off 0.567929 vs 0.567929",
+  "artifact": "data/carriers/grader_s0.json"
+ },
+ "carrier tail reproduces sink-value P_on/P_off grader_s1": {
+  "result": "P_on 0.124217 vs 0.124217; P_off 0.347740 vs 0.347740",
+  "artifact": "data/carriers/grader_s1.json"
+ },
+ "carrier tail reproduces sink-value P_on/P_off monitor_s0": {
+  "result": "P_on 0.019854 vs 0.019854; P_off 0.724733 vs 0.724733",
+  "artifact": "data/carriers/monitor_s0.json"
+ },
+ "carrier tail reproduces sink-value P_on/P_off monitor_s1": {
+  "result": "P_on 0.059673 vs 0.059673; P_off 0.611169 vs 0.611169",
+  "artifact": "data/carriers/monitor_s1.json"
+ },
+ "carrier code path reproduces saved audit (s0 26.2 dev removed)": {
+  "result": "0.429193 vs 0.4291932 (src1027/data/audit/mlp8_none_s0.json)",
+  "artifact": "data/carriers/mlp8_none_s0.json"
+ }
+}

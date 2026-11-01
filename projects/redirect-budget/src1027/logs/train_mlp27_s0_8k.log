@@ -1,0 +1,71 @@
+W1026 20:43:01.589000 47015 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3107.28it/s]
+mlp27_none_s0_8k lora modules 3 params 393216
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.015625, 'share_unprobed_B': 0.9375, 'share_probed_A': 0.046875, 'shift_mean': -0.0410156175494194, 'shift_median': 0.0, 'share_shift_pos': 0.296875}
+step 128 loss 1.5886 gn 12.4744 dev strict 0.000 argmax 0.000 uB 0.50 shift -0.004 6s
+step 256 loss 0.7204 gn 3.1821 dev strict 0.000 argmax 0.031 uB 0.73 shift 0.000 12s
+step 384 loss 0.6969 gn 1.4682 dev strict 0.000 argmax 0.047 uB 0.61 shift 0.002 18s
+step 512 loss 0.6965 gn 2.3303 dev strict 0.000 argmax 0.000 uB 0.97 shift -0.002 24s
+step 640 loss 0.6961 gn 1.9089 dev strict 0.000 argmax 0.016 uB 0.73 shift 0.000 30s
+step 768 loss 0.6950 gn 2.0702 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.003 36s
+step 896 loss 0.6951 gn 2.0137 dev strict 0.016 argmax 0.047 uB 0.64 shift 0.006 42s
+step 1024 loss 0.6938 gn 1.3712 dev strict 0.016 argmax 0.016 uB 0.22 shift 0.008 48s
+step 1152 loss 0.6960 gn 3.0328 dev strict 0.000 argmax 0.047 uB 0.88 shift 0.006 54s
+step 1280 loss 0.6937 gn 1.6552 dev strict 0.016 argmax 0.078 uB 0.62 shift 0.003 60s
+step 1408 loss 0.6940 gn 2.3345 dev strict 0.000 argmax 0.016 uB 0.11 shift 0.004 66s
+step 1536 loss 0.6931 gn 1.7194 dev strict 0.000 argmax 0.031 uB 0.86 shift 0.006 72s
+step 1664 loss 0.6930 gn 2.0691 dev strict 0.016 argmax 0.078 uB 0.38 shift 0.006 77s
+step 1792 loss 0.6967 gn 4.2428 dev strict 0.000 argmax 0.000 uB 0.14 shift 0.005 83s
+step 1920 loss 0.6935 gn 2.6802 dev strict 0.000 argmax 0.031 uB 0.27 shift 0.004 89s
+step 2048 loss 0.6942 gn 3.2144 dev strict 0.000 argmax 0.000 uB 0.00 shift 0.006 95s
+step 2176 loss 0.6938 gn 3.5815 dev strict 0.000 argmax 0.000 uB 0.89 shift 0.008 101s
+step 2304 loss 0.6947 gn 3.8274 dev strict 0.031 argmax 0.031 uB 0.77 shift 0.006 107s
+step 2432 loss 0.6946 gn 4.0689 dev strict 0.016 argmax 0.078 uB 0.77 shift 0.012 113s
+step 2560 loss 0.6928 gn 3.7821 dev strict 0.016 argmax 0.016 uB 0.77 shift 0.009 118s
+step 2688 loss 0.6948 gn 5.3429 dev strict 0.016 argmax 0.047 uB 0.86 shift 0.009 124s
+step 2816 loss 0.6973 gn 6.3432 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.010 130s
+step 2944 loss 0.6963 gn 6.0047 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.008 136s
+step 3072 loss 0.6979 gn 6.1010 dev strict 0.000 argmax 0.016 uB 0.11 shift 0.008 142s
+step 3200 loss 0.6939 gn 5.5102 dev strict 0.000 argmax 0.016 uB 0.52 shift 0.010 148s
+step 3328 loss 0.6911 gn 4.8248 dev strict 0.000 argmax 0.016 uB 0.17 shift 0.012 154s
+step 3456 loss 0.6922 gn 5.8430 dev strict 0.016 argmax 0.031 uB 0.80 shift 0.014 160s
+step 3584 loss 0.7046 gn 10.9974 dev strict 0.016 argmax 0.031 uB 0.98 shift 0.013 166s
+step 3712 loss 0.6924 gn 5.9678 dev strict 0.016 argmax 0.031 uB 0.75 shift 0.014 172s
+step 3840 loss 0.6974 gn 8.3519 dev strict 0.000 argmax 0.000 uB 0.80 shift 0.014 178s
+step 3968 loss 0.6969 gn 9.8514 dev strict 0.031 argmax 0.094 uB 0.41 shift 0.016 184s
+step 4096 loss 0.6961 gn 9.2137 dev strict 0.016 argmax 0.031 uB 0.92 shift 0.020 190s
+step 4224 loss 0.6946 gn 10.3058 dev strict 0.016 argmax 0.016 uB 0.05 shift 0.029 196s
+step 4352 loss 0.6958 gn 11.2276 dev strict 0.000 argmax 0.062 uB 0.56 shift 0.030 202s
+step 4480 loss 0.6926 gn 11.9578 dev strict 0.016 argmax 0.031 uB 0.20 shift 0.023 208s
+step 4608 loss 0.6938 gn 13.6070 dev strict 0.000 argmax 0.016 uB 0.19 shift 0.028 214s
+step 4736 loss 0.7013 gn 16.6002 dev strict 0.000 argmax 0.000 uB 0.98 shift 0.027 220s
+step 4864 loss 0.6954 gn 15.7471 dev strict 0.016 argmax 0.031 uB 0.28 shift 0.036 226s
+step 4992 loss 0.7164 gn 21.1423 dev strict 0.047 argmax 0.047 uB 0.73 shift 0.021 232s
+step 5120 loss 0.6927 gn 14.8859 dev strict 0.000 argmax 0.000 uB 0.23 shift 0.037 238s
+step 5248 loss 0.6926 gn 15.9116 dev strict 0.000 argmax 0.016 uB 0.27 shift 0.043 244s
+step 5376 loss 0.6953 gn 19.8227 dev strict 0.047 argmax 0.094 uB 0.86 shift 0.046 250s
+step 5504 loss 0.6920 gn 19.9938 dev strict 0.016 argmax 0.031 uB 0.70 shift 0.051 256s
+step 5632 loss 0.7216 gn 29.7797 dev strict 0.031 argmax 0.031 uB 0.92 shift 0.041 262s
+step 5760 loss 0.6945 gn 20.5490 dev strict 0.047 argmax 0.047 uB 0.61 shift 0.040 267s
+step 5888 loss 0.6921 gn 19.2373 dev strict 0.016 argmax 0.031 uB 0.61 shift 0.053 273s
+step 6016 loss 0.6980 gn 26.2721 dev strict 0.047 argmax 0.062 uB 0.89 shift 0.056 279s
+step 6144 loss 0.6899 gn 21.9716 dev strict 0.016 argmax 0.016 uB 0.56 shift 0.060 285s
+step 6272 loss 0.6894 gn 25.4301 dev strict 0.047 argmax 0.047 uB 0.66 shift 0.063 291s
+step 6400 loss 0.7070 gn 36.6558 dev strict 0.031 argmax 0.047 uB 0.58 shift 0.068 297s
+step 6528 loss 0.6881 gn 35.1141 dev strict 0.016 argmax 0.031 uB 0.67 shift 0.077 303s
+step 6656 loss 0.7148 gn 43.4798 dev strict 0.016 argmax 0.016 uB 0.27 shift 0.070 309s
+step 6784 loss 0.7002 gn 35.4443 dev strict 0.062 argmax 0.078 uB 0.73 shift 0.064 315s
+step 6912 loss 0.6857 gn 29.6082 dev strict 0.016 argmax 0.047 uB 0.80 shift 0.080 321s
+step 7040 loss 0.7182 gn 39.9192 dev strict 0.016 argmax 0.031 uB 0.75 shift 0.067 327s
+step 7168 loss 0.6854 gn 31.3994 dev strict 0.016 argmax 0.016 uB 0.70 shift 0.079 333s
+step 7296 loss 0.7015 gn 39.8814 dev strict 0.047 argmax 0.047 uB 0.38 shift 0.073 339s
+step 7424 loss 0.6754 gn 33.5976 dev strict 0.062 argmax 0.078 uB 0.42 shift 0.082 345s
+step 7552 loss 0.6960 gn 50.5223 dev strict 0.031 argmax 0.047 uB 0.88 shift 0.100 351s
+step 7680 loss 0.7082 gn 55.2484 dev strict 0.047 argmax 0.062 uB 0.89 shift 0.078 357s
+step 7808 loss 0.7007 gn 46.5783 dev strict 0.062 argmax 0.078 uB 0.92 shift 0.067 363s
+step 7936 loss 0.6877 gn 33.3313 dev strict 0.016 argmax 0.016 uB 0.70 shift 0.102 369s
+step 8064 loss 0.6908 gn 42.6456 dev strict 0.016 argmax 0.047 uB 0.39 shift 0.104 375s
+step 8192 loss 0.7131 gn 52.5208 dev strict 0.047 argmax 0.062 uB 0.80 shift 0.092 381s
+TEST_CACHED mlp27_none_s0_8k {'n_prompts': 128, 'strict': 0.03125, 'reverse_strict': 0.015625, 'switch_correct': 0.0625, 'differs': 0.09375, 'share_unprobed_B': 0.7265625, 'share_probed_A': 0.3046875, 'shift_mean': 0.09936523460783064, 'shift_median': 0.12499995529651642, 'share_shift_pos': 0.65625} train_s 380.9
+
+WATCHDOG: exit 0, peak footprint 1.65 GB

@@ -1,0 +1,374 @@
+{
+ "n_train": 512,
+ "n_test": 128,
+ "eager": {
+  "in20@79": {
+   "logistic": {
+    "auroc": 0.51513671875,
+    "acc": 0.5078125,
+    "paired_win": 0.6171875,
+    "train_acc": 0.94921875,
+    "null_p95": 0.5089813232421875,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.49810791015625,
+    "acc": 0.48828125,
+    "paired_win": 0.4921875,
+    "train_acc": 0.5009765625,
+    "null_p95": 0.503363037109375,
+    "readable": false
+   },
+   "rel_diff": 0.009550640359520912,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "in21@79": {
+   "logistic": {
+    "auroc": 0.51422119140625,
+    "acc": 0.51171875,
+    "paired_win": 0.59375,
+    "train_acc": 0.951171875,
+    "null_p95": 0.50921630859375,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.4974365234375,
+    "acc": 0.50390625,
+    "paired_win": 0.453125,
+    "train_acc": 0.5029296875,
+    "null_p95": 0.50428466796875,
+    "readable": false
+   },
+   "rel_diff": 0.010616057552397251,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "in22@79": {
+   "logistic": {
+    "auroc": 0.54046630859375,
+    "acc": 0.53515625,
+    "paired_win": 0.7734375,
+    "train_acc": 0.982421875,
+    "null_p95": 0.5113525390625,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.498046875,
+    "acc": 0.49609375,
+    "paired_win": 0.46875,
+    "train_acc": 0.498046875,
+    "null_p95": 0.5039703369140625,
+    "readable": false
+   },
+   "rel_diff": 0.011489398777484894,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "in23@79": {
+   "logistic": {
+    "auroc": 0.5360107421875,
+    "acc": 0.53515625,
+    "paired_win": 0.75,
+    "train_acc": 0.9833984375,
+    "null_p95": 0.510382080078125,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.49713134765625,
+    "acc": 0.50390625,
+    "paired_win": 0.4765625,
+    "train_acc": 0.5,
+    "null_p95": 0.5036651611328125,
+    "readable": false
+   },
+   "rel_diff": 0.012440734542906284,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "in24@79": {
+   "logistic": {
+    "auroc": 0.52508544921875,
+    "acc": 0.51171875,
+    "paired_win": 0.6796875,
+    "train_acc": 0.98046875,
+    "null_p95": 0.5076904296875,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.49609375,
+    "acc": 0.48046875,
+    "paired_win": 0.4375,
+    "train_acc": 0.5009765625,
+    "null_p95": 0.504217529296875,
+    "readable": false
+   },
+   "rel_diff": 0.01268957182765007,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "in25@79": {
+   "logistic": {
+    "auroc": 0.528717041015625,
+    "acc": 0.515625,
+    "paired_win": 0.6640625,
+    "train_acc": 0.9794921875,
+    "null_p95": 0.509283447265625,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.499755859375,
+    "acc": 0.5,
+    "paired_win": 0.5,
+    "train_acc": 0.5029296875,
+    "null_p95": 0.5048248291015625,
+    "readable": false
+   },
+   "rel_diff": 0.0119314631447196,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "in26@79": {
+   "logistic": {
+    "auroc": 0.5313720703125,
+    "acc": 0.5078125,
+    "paired_win": 0.7109375,
+    "train_acc": 0.984375,
+    "null_p95": 0.5100570678710937,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.5001220703125,
+    "acc": 0.48828125,
+    "paired_win": 0.5,
+    "train_acc": 0.5029296875,
+    "null_p95": 0.504644775390625,
+    "readable": false
+   },
+   "rel_diff": 0.011190500110387802,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "in27@79": {
+   "logistic": {
+    "auroc": 0.5318603515625,
+    "acc": 0.51953125,
+    "paired_win": 0.7421875,
+    "train_acc": 0.9853515625,
+    "null_p95": 0.509954833984375,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.49993896484375,
+    "acc": 0.5,
+    "paired_win": 0.515625,
+    "train_acc": 0.49609375,
+    "null_p95": 0.504168701171875,
+    "readable": false
+   },
+   "rel_diff": 0.01082046888768673,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "mid20@79": {
+   "logistic": {
+    "auroc": 0.518310546875,
+    "acc": 0.52734375,
+    "paired_win": 0.625,
+    "train_acc": 0.958984375,
+    "null_p95": 0.5087600708007812,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.4986572265625,
+    "acc": 0.49609375,
+    "paired_win": 0.484375,
+    "train_acc": 0.4990234375,
+    "null_p95": 0.5040283203125,
+    "readable": false
+   },
+   "rel_diff": 0.009598830714821815,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "mid21@79": {
+   "logistic": {
+    "auroc": 0.537078857421875,
+    "acc": 0.54296875,
+    "paired_win": 0.796875,
+    "train_acc": 0.9873046875,
+    "null_p95": 0.510223388671875,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.50201416015625,
+    "acc": 0.49609375,
+    "paired_win": 0.5234375,
+    "train_acc": 0.5048828125,
+    "null_p95": 0.5048858642578125,
+    "readable": false
+   },
+   "rel_diff": 0.010938409715890884,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "mid22@79": {
+   "logistic": {
+    "auroc": 0.53961181640625,
+    "acc": 0.515625,
+    "paired_win": 0.796875,
+    "train_acc": 0.9921875,
+    "null_p95": 0.5093780517578125,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.50146484375,
+    "acc": 0.5078125,
+    "paired_win": 0.5078125,
+    "train_acc": 0.505859375,
+    "null_p95": 0.504461669921875,
+    "readable": false
+   },
+   "rel_diff": 0.011623304337263107,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "mid23@79": {
+   "logistic": {
+    "auroc": 0.527130126953125,
+    "acc": 0.515625,
+    "paired_win": 0.7265625,
+    "train_acc": 0.9833984375,
+    "null_p95": 0.508734130859375,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.49658203125,
+    "acc": 0.4921875,
+    "paired_win": 0.4375,
+    "train_acc": 0.501953125,
+    "null_p95": 0.5035400390625,
+    "readable": false
+   },
+   "rel_diff": 0.012936484068632126,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "mid24@79": {
+   "logistic": {
+    "auroc": 0.5313720703125,
+    "acc": 0.5,
+    "paired_win": 0.6953125,
+    "train_acc": 0.990234375,
+    "null_p95": 0.5090072631835937,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.4967041015625,
+    "acc": 0.49609375,
+    "paired_win": 0.5,
+    "train_acc": 0.50390625,
+    "null_p95": 0.50482177734375,
+    "readable": false
+   },
+   "rel_diff": 0.012816295959055424,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "mid25@79": {
+   "logistic": {
+    "auroc": 0.53350830078125,
+    "acc": 0.51171875,
+    "paired_win": 0.75,
+    "train_acc": 0.982421875,
+    "null_p95": 0.5104705810546875,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.498291015625,
+    "acc": 0.50390625,
+    "paired_win": 0.4921875,
+    "train_acc": 0.5048828125,
+    "null_p95": 0.505072021484375,
+    "readable": false
+   },
+   "rel_diff": 0.011890649795532227,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "mid26@79": {
+   "logistic": {
+    "auroc": 0.5347900390625,
+    "acc": 0.51171875,
+    "paired_win": 0.7734375,
+    "train_acc": 0.990234375,
+    "null_p95": 0.5092559814453125,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.5010986328125,
+    "acc": 0.48828125,
+    "paired_win": 0.5234375,
+    "train_acc": 0.4990234375,
+    "null_p95": 0.5041015625,
+    "readable": false
+   },
+   "rel_diff": 0.010547482408583164,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "mid27@79": {
+   "logistic": {
+    "auroc": 0.54547119140625,
+    "acc": 0.53515625,
+    "paired_win": 0.7734375,
+    "train_acc": 0.9921875,
+    "null_p95": 0.5130035400390625,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.50286865234375,
+    "acc": 0.51171875,
+    "paired_win": 0.59375,
+    "train_acc": 0.50390625,
+    "null_p95": 0.50439453125,
+    "readable": false
+   },
+   "rel_diff": 0.010779164731502533,
+   "share_prompts_any_bit_differs": 1.0
+  },
+  "final@79": {
+   "logistic": {
+    "auroc": 0.543914794921875,
+    "acc": 0.5390625,
+    "paired_win": 0.7734375,
+    "train_acc": 0.990234375,
+    "null_p95": 0.510174560546875,
+    "readable": true
+   },
+   "mlp": {
+    "auroc": 0.502197265625,
+    "acc": 0.5,
+    "paired_win": 0.53125,
+    "train_acc": 0.5009765625,
+    "null_p95": 0.5048919677734375,
+    "readable": false
+   },
+   "rel_diff": 0.024630503728985786,
+   "share_prompts_any_bit_differs": 1.0
+  }
+ },
+ "whole": {},
+ "eager_sites": [
+  "in20",
+  "in21",
+  "in22",
+  "in23",
+  "in24",
+  "in25",
+  "in26",
+  "in27",
+  "mid20",
+  "mid21",
+  "mid22",
+  "mid23",
+  "mid24",
+  "mid25",
+  "mid26",
+  "mid27",
+  "final"
+ ],
+ "prediction_MLP27": {
+  "acc": 0.53515625,
+  "predicted_strict_switch": 0.0703125,
+  "tolerance": 0.1,
+  "bit_ceiling": 1.0
+ },
+ "clause1_max_logistic_auroc_in20_27@79": 0.54046630859375,
+ "secs": 6.1
+}

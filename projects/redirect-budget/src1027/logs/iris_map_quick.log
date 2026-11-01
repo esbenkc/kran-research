@@ -1,0 +1,37 @@
+train 512 test 128
+eager in20 79 {'logistic': (0.515, 0.508, 0.509), 'mlp': (0.498, 0.488, 0.503)} 0s
+eager in21 79 {'logistic': (0.514, 0.512, 0.509), 'mlp': (0.497, 0.504, 0.504)} 1s
+eager in22 79 {'logistic': (0.54, 0.535, 0.511), 'mlp': (0.498, 0.496, 0.504)} 1s
+eager in23 79 {'logistic': (0.536, 0.535, 0.51), 'mlp': (0.497, 0.504, 0.504)} 2s
+eager in24 79 {'logistic': (0.525, 0.512, 0.508), 'mlp': (0.496, 0.48, 0.504)} 2s
+eager in25 79 {'logistic': (0.529, 0.516, 0.509), 'mlp': (0.5, 0.5, 0.505)} 2s
+eager in26 79 {'logistic': (0.531, 0.508, 0.51), 'mlp': (0.5, 0.488, 0.505)} 3s
+eager in27 79 {'logistic': (0.532, 0.52, 0.51), 'mlp': (0.5, 0.5, 0.504)} 3s
+eager mid20 79 {'logistic': (0.518, 0.527, 0.509), 'mlp': (0.499, 0.496, 0.504)} 3s
+eager mid21 79 {'logistic': (0.537, 0.543, 0.51), 'mlp': (0.502, 0.496, 0.505)} 4s
+eager mid22 79 {'logistic': (0.54, 0.516, 0.509), 'mlp': (0.501, 0.508, 0.504)} 4s
+eager mid23 79 {'logistic': (0.527, 0.516, 0.509), 'mlp': (0.497, 0.492, 0.504)} 4s
+eager mid24 79 {'logistic': (0.531, 0.5, 0.509), 'mlp': (0.497, 0.496, 0.505)} 5s
+eager mid25 79 {'logistic': (0.534, 0.512, 0.51), 'mlp': (0.498, 0.504, 0.505)} 5s
+eager mid26 79 {'logistic': (0.535, 0.512, 0.509), 'mlp': (0.501, 0.488, 0.504)} 5s
+eager mid27 79 {'logistic': (0.545, 0.535, 0.513), 'mlp': (0.503, 0.512, 0.504)} 6s
+eager final 79 {'logistic': (0.544, 0.539, 0.51), 'mlp': (0.502, 0.5, 0.505)} 6s
+PRED MLP-27 {'acc': 0.53515625, 'predicted_strict_switch': 0.0703125, 'tolerance': 0.1, 'bit_ceiling': 1.0} clause1 0.54046630859375 None
+        8.24 real         6.54 user         0.14 sys
+           356777984  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               33326  page reclaims
+                2833  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 334  voluntary context switches
+                1508  involuntary context switches
+         81193642692  instructions retired
+         25719724330  cycles elapsed
+           204014864  peak memory footprint

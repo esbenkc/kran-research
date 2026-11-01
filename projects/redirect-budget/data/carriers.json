@@ -1,0 +1,97 @@
+{
+ "mlp8_none_s0": {
+  "model": "Qwen3-1.7B",
+  "carrier": "26.2",
+  "share": 0.429193,
+  "second": "26.0",
+  "second_share": 0.170347,
+  "ratio": 2.5195,
+  "defined": true,
+  "undefined_because": [],
+  "switch_reproduces": 1.0,
+  "saved_crosscheck_carrier": "26.2",
+  "blind_argmax": "26.2"
+ },
+ "mlp8_none_s1": {
+  "model": "Qwen3-1.7B",
+  "carrier": "27.12",
+  "share": 0.507905,
+  "second": "27.7",
+  "second_share": 0.42881,
+  "ratio": 1.1845,
+  "defined": false,
+  "undefined_because": [
+   "largest/second = 1.184 < 1.20"
+  ],
+  "switch_reproduces": 1.0,
+  "saved_crosscheck_carrier": "27.12",
+  "blind_argmax": "27.12"
+ },
+ "mlp8_none_s2": {
+  "model": "Qwen3-1.7B",
+  "carrier": "27.15",
+  "share": 0.716676,
+  "second": "27.12",
+  "second_share": 0.168101,
+  "ratio": 4.2634,
+  "defined": true,
+  "undefined_because": [],
+  "switch_reproduces": 1.0,
+  "saved_crosscheck_carrier": null,
+  "blind_argmax": "27.15"
+ },
+ "grader_s0": {
+  "model": "Qwen3-0.6B",
+  "carrier": "27.9",
+  "share": 0.803208,
+  "second": "27.1",
+  "second_share": 0.012806,
+  "ratio": 62.7212,
+  "defined": true,
+  "undefined_because": [],
+  "switch_reproduces": 0.44524544667219745,
+  "saved_crosscheck_carrier": "27.9",
+  "blind_argmax": "27.9"
+ },
+ "grader_s1": {
+  "model": "Qwen3-0.6B",
+  "carrier": "27.9",
+  "share": 0.30498,
+  "second": "26.0",
+  "second_share": 0.270226,
+  "ratio": 1.1286,
+  "defined": false,
+  "undefined_because": [
+   "largest/second = 1.129 < 1.20"
+  ],
+  "switch_reproduces": 0.22352331192232672,
+  "saved_crosscheck_carrier": "27.9",
+  "blind_argmax": "27.9"
+ },
+ "monitor_s0": {
+  "model": "Qwen3-0.6B",
+  "carrier": "27.8",
+  "share": 1.011671,
+  "second": "26.15",
+  "second_share": 0.003261,
+  "ratio": 310.2334,
+  "defined": true,
+  "undefined_because": [],
+  "switch_reproduces": 0.704878959931666,
+  "saved_crosscheck_carrier": "27.8",
+  "blind_argmax": "27.8"
+ },
+ "monitor_s1": {
+  "model": "Qwen3-0.6B",
+  "carrier": "27.8",
+  "share": 1.047099,
+  "second": "26.6",
+  "second_share": 0.00048,
+  "ratio": 2181.4562,
+  "defined": true,
+  "undefined_because": [],
+  "switch_reproduces": 0.551495969214011,
+  "saved_crosscheck_carrier": "27.8",
+  "blind_argmax": "27.8"
+ }
+}

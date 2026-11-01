@@ -1,0 +1,143 @@
+18:23:14 waiting for pid 8574
+18:23:27 waiting for pid 8574
+=== 18:29:03 run_patch.py --dev cpu --prec fp32 --rows status --copies grader_s0,grader_s1,monitor_s0,monitor_s1 --threads 6
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/run_patch.py", line 29, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 r6_split.py --dev cpu
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/r6_split.py", line 28, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 attn_onoff.py
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/attn_onoff.py", line 11, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 research_checks/head_attention.py
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/research_checks/head_attention.py", line 15, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 run_patch.py --dev mps --prec bf16 --rows reading --copies grader_s0,grader_s1,monitor_s0,monitor_s1
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/run_patch.py", line 29, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 run_patch.py --dev mps --prec bf16 --rows status --copies grader_s0,grader_s1,monitor_s0,monitor_s1
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/run_patch.py", line 29, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 run_patch.py --dev cpu --prec fp32 --rows reading --copies grader_s0,grader_s1,monitor_s0,monitor_s1 --threads 6
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/run_patch.py", line 29, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 run_patch.py --dev mps --prec bf16 --rows r4 --copies grader_s0,grader_s1,monitor_s0,monitor_s1
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/run_patch.py", line 29, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== chain2 done 18:29:03
+=== 18:29:24 run_patch.py --dev cpu --prec fp32 --rows status --copies grader_s0,grader_s1,monitor_s0,monitor_s1 --threads 6
+
+grader_s0 fp32 cpu P_on 0.1318 P_off 0.5537 G0 0.9664 2s
+  V 0.1590 K 0.7049 SV 0.1591 4s
+  RV max 0.1587 SV beats all True 52s
+wrote grader_s0_fp32_cpu_status.json 52.4 s
+grader_s1 fp32 cpu P_on 0.1302 P_off 0.3161 G0 0.9073 2s
+  V 0.5459 K 0.2486 SV 0.5494 4s
+  RV max 0.5501 SV beats all False 56s
+wrote grader_s1_fp32_cpu_status.json 55.6 s
+monitor_s0 fp32 cpu P_on 0.0191 P_off 0.7244 G0 0.9975 3s
+  V 0.0019 K 0.9838 SV 0.0019 4s
+  RV max 0.0022 SV beats all False 54s
+wrote monitor_s0_fp32_cpu_status.json 54.1 s
+monitor_s1 fp32 cpu P_on 0.0593 P_off 0.6033 G0 0.9969 2s
+  V 0.0067 K 0.9861 SV 0.0067 4s
+  RV max 0.0092 SV beats all False 57s
+wrote monitor_s1_fp32_cpu_status.json 57.2 s
+=== exit 0 18:33:06
+=== 18:33:06 r6_split.py --dev cpu
+
+grader_s0 P_on 0.1318 P_off 0.5537 first-order shares: KV 0.683 = V 0.139 + K(token 0) 0.024 + K(rest) 0.520; identity resid 4.45e-06; K rest = token 1 -0.000 + token 2 0.522 + tokens 3-33 -0.001
+grader_s1 P_on 0.1302 P_off 0.3161 first-order shares: KV 0.549 = V 0.428 + K(token 0) 0.004 + K(rest) 0.116; identity resid 4.51e-06; K rest = token 1 0.034 + token 2 0.159 + tokens 3-33 -0.078
+monitor_s0 P_on 0.0191 P_off 0.7244 first-order shares: KV 0.141 = V 0.002 + K(token 0) -0.000 + K(rest) 0.139; identity resid 5.72e-06; K rest = token 1 0.098 + token 2 0.041 + tokens 3-33 -0.000
+monitor_s1 P_on 0.0593 P_off 0.6033 first-order shares: KV 0.342 = V 0.007 + K(token 0) -0.000 + K(rest) 0.335; identity resid 5.72e-06; K rest = token 1 0.228 + token 2 0.106 + tokens 3-33 0.001
+wrote data/r6_split.json
+=== exit 0 18:33:16
+=== 18:33:16 attn_onoff.py
+
+grader_s0 26 largest answer-token shifts (off - on): [(5, -0.0017, 0.0, 0.585, 0.0003), (3, -0.0013, -0.0, 0.512, 0.001), (0, -0.0012, 0.0, 0.721, 0.0006)]
+grader_s0 27 largest answer-token shifts (off - on): [(9, -0.218, 0.2894, 0.357, 0.5255), (8, -0.0077, 0.0098, 0.932, 0.011), (13, -0.0026, 0.0026, 0.904, 0.0105)]
+grader_s1 26 largest answer-token shifts (off - on): [(0, -0.0079, -0.0, 0.68, 0.0022), (5, -0.0016, -0.0, 0.591, 0.0002), (7, -0.0008, -0.0002, 0.16, 0.0162)]
+grader_s1 27 largest answer-token shifts (off - on): [(9, -0.0505, 0.036, 0.223, 0.2341), (13, 0.0081, -0.0001, 0.898, 0.0008), (7, 0.006, -0.0001, 0.902, 0.0005)]
+monitor_s0 26 largest answer-token shifts (off - on): [(3, -0.0006, 0.0, 0.618, 0.0006), (2, -0.0005, 0.0, 0.72, 0.0003), (0, -0.0005, 0.0, 0.682, 0.0007)]
+monitor_s0 27 largest answer-token shifts (off - on): [(8, 0.0, 0.6628, 0.0, 0.1884), (9, 0.0008, 0.31, 0.014, 0.4043), (13, -0.0013, 0.0124, 0.842, 0.0827)]
+monitor_s1 26 largest answer-token shifts (off - on): [(3, -0.0005, -0.0, 0.475, 0.0009), (0, -0.0005, 0.0, 0.675, 0.0005), (2, -0.0005, 0.0, 0.623, 0.0003)]
+monitor_s1 27 largest answer-token shifts (off - on): [(8, 0.0, 0.8265, 0.0, 0.0038), (9, 0.085, 0.388, 0.109, 0.2345), (15, -0.0001, 0.0004, 0.06, 0.0158)]
+wrote data/attn_onoff.json
+=== exit 0 18:33:23
+=== 18:33:23 research_checks/head_attention.py
+
+base_grader  head 27.8: on t0 0.925 t1 0.002 t2 0.002 | off t0 0.926 t1 0.002 t2 0.002
+base_grader  head 27.9: on t0 0.923 t1 0.001 t2 0.002 | off t0 0.923 t1 0.001 t2 0.002
+base_grader  head 26.0: on t0 0.678 t1 0.000 t2 0.001 | off t0 0.677 t1 0.000 t2 0.001
+base_monitor head 27.8: on t0 0.926 t1 0.002 t2 0.002 | off t0 0.926 t1 0.002 t2 0.002
+base_monitor head 27.9: on t0 0.923 t1 0.001 t2 0.002 | off t0 0.923 t1 0.001 t2 0.002
+base_monitor head 26.0: on t0 0.677 t1 0.000 t2 0.001 | off t0 0.677 t1 0.000 t2 0.001
+grader_s0    head 27.8: on t0 0.932 t1 0.000 t2 0.011 | off t0 0.924 t1 0.000 t2 0.021
+grader_s0    head 27.9: on t0 0.357 t1 0.000 t2 0.525 | off t0 0.139 t1 0.000 t2 0.815
+grader_s0    head 26.0: on t0 0.721 t1 0.000 t2 0.001 | off t0 0.720 t1 0.000 t2 0.001
+grader_s1    head 27.8: on t0 0.813 t1 0.027 t2 0.021 | off t0 0.813 t1 0.029 t2 0.023
+grader_s1    head 27.9: on t0 0.223 t1 0.240 t2 0.234 | off t0 0.172 t1 0.239 t2 0.270
+grader_s1    head 26.0: on t0 0.680 t1 0.016 t2 0.002 | off t0 0.672 t1 0.027 t2 0.002
+monitor_s0   head 27.8: on t0 0.000 t1 0.807 t2 0.188 | off t0 0.000 t1 0.142 t2 0.851
+monitor_s0   head 27.9: on t0 0.014 t1 0.545 t2 0.404 | off t0 0.015 t1 0.232 t2 0.714
+monitor_s0   head 26.0: on t0 0.682 t1 0.000 t2 0.001 | off t0 0.682 t1 0.000 t2 0.001
+monitor_s1   head 27.8: on t0 0.000 t1 0.996 t2 0.004 | off t0 0.000 t1 0.169 t2 0.830
+monitor_s1   head 27.9: on t0 0.109 t1 0.610 t2 0.235 | off t0 0.194 t1 0.102 t2 0.623
+monitor_s1   head 26.0: on t0 0.675 t1 0.000 t2 0.001 | off t0 0.674 t1 0.000 t2 0.001
+=== exit 0 18:33:30
+=== 18:33:30 run_patch.py --dev mps --prec bf16 --rows reading --copies grader_s0,grader_s1,monitor_s0,monitor_s1
+
+grader_s0 R1 {'R1_KV_t0': 0.10741, 'R1_K_t0': -0.00259, 'R1_V_t0': 0.10534, 'R1_KV_t12': 0.81923, 'R1_K_t12': 0.67082, 'R1_V_t12': 0.06451} 7s
+grader_s0 R3/R7/R8 {'R3_SK': 0.6713, 'R3_NV': -0.00225, 'R7_V_answer': 0.18271, 'R7_K_answer': 0.67433, 'R8_K12_hold0': 0.1535, 'R8_K12_manual': 0.67116, 'mirror_V_sink': -0.12505} 12s
+grader_s0 R2 done 55s
+grader_s0 R5 max 0.0029 min -0.0041 130s
+wrote grader_s0_bf16_mps_reading.json 129.9 s
+grader_s1 R1 {'R1_KV_t0': 0.44091, 'R1_K_t0': 0.00687, 'R1_V_t0': 0.41812, 'R1_KV_t12': 0.35989, 'R1_K_t12': 0.1998, 'R1_V_t12': 0.11596} 7s
+grader_s1 R3/R7/R8 {'R3_SK': 0.21463, 'R3_NV': -0.0054, 'R7_V_answer': 0.56595, 'R7_K_answer': 0.1004, 'R8_K12_hold0': 0.10549, 'R8_K12_manual': 0.20033, 'mirror_V_sink': -0.33422} 12s
+grader_s1 R2 done 52s
+grader_s1 R5 max 0.0048 min -0.0068 129s
+wrote grader_s1_bf16_mps_reading.json 129.3 s
+monitor_s0 R1 {'R1_KV_t0': 0.0, 'R1_K_t0': 0.0, 'R1_V_t0': 0.0, 'R1_KV_t12': 0.99848, 'R1_K_t12': 0.98377, 'R1_V_t12': 0.00218} 8s
+monitor_s0 R3/R7/R8 {'R3_SK': 0.98507, 'R3_NV': 0.00017, 'R7_V_answer': 0.00222, 'R7_K_answer': 0.98344, 'R8_K12_hold0': 0.98482, 'R8_K12_manual': 0.98368, 'mirror_V_sink': -0.00194} 14s
+monitor_s0 R2 done 61s
+monitor_s0 R5 max 0.0005 min -0.0004 144s
+wrote monitor_s0_bf16_mps_reading.json 144.0 s
+monitor_s1 R1 {'R1_KV_t0': 0.0, 'R1_K_t0': 0.0, 'R1_V_t0': 0.0, 'R1_KV_t12': 0.99879, 'R1_K_t12': 0.9906, 'R1_V_t12': 0.00543} 8s
+monitor_s1 R3/R7/R8 {'R3_SK': 0.99122, 'R3_NV': -3e-05, 'R7_V_answer': 0.00518, 'R7_K_answer': 0.99124, 'R8_K12_hold0': 0.9898, 'R8_K12_manual': 0.99071, 'mirror_V_sink': -0.00602} 13s
+monitor_s1 R2 done 60s
+monitor_s1 R5 max 0.0009 min -0.0017 137s
+wrote monitor_s1_bf16_mps_reading.json 136.9 s
+=== exit 0 18:42:33
+=== 18:42:33 run_patch.py --dev mps --prec bf16 --rows status --copies grader_s0,grader_s1,monitor_s0,monitor_s1

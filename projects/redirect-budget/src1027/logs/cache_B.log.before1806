@@ -1,0 +1,6 @@
+W1026 18:00:05.258000 1303 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8938.73it/s]
+W1026 18:00:14.327000 1303 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none B {'first_call_s': 8.3, 'total_s': 82.4, 'probe_stored_ok': None}
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-1303-_3zoz7a5'}
+  warnings.warn(

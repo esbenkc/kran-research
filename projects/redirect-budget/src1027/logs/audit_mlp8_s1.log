@@ -1,0 +1,11 @@
+W1026 20:07:38.091000 33407 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 2682.07it/s]
+lora_split {'all_positions': 1.0, 'answer_only_pos79': 0.0, 'source_only_pos0_78': 0.477, 'only_block20': 0.0, 'without_block20': 0.0, 'only_block21': 0.008, 'without_block21': 0.0, 'only_block22': 0.0, 'without_block22': 0.0, 'only_block23': 0.0, 'without_block23': 1.0, 'only_block24': 0.0, 'without_block24': 1.0, 'only_block25': 0.0, 'without_block25': 1.0, 'only_block26': 0.0, 'without_block26': 1.0, 'only_block27': 0.0, 'without_block27': 1.0}
+clamp_all test {'removed': 1.0001661777496338, 'blind_removed': 1.0, 'push_mean': 20.56689453125, 'push_after_mean': -0.00341796875} 176s
+greedy {'k': 1, 'head': '27.12', 'dev': {'removed': 0.5079046487808228, 'blind_removed': 0.5577495098114014, 'push_mean': 20.4462890625, 'push_after_mean': 10.0615234375}}
+greedy {'k': 2, 'head': '27.7', 'dev': {'removed': 0.8624922037124634, 'blind_removed': 0.9998534321784973, 'push_mean': 20.4462890625, 'push_after_mean': 2.8115234375}}
+greedy {'k': 3, 'head': '27.13', 'dev': {'removed': 0.9641304612159729, 'blind_removed': 0.9999979138374329, 'push_mean': 20.4462890625, 'push_after_mean': 0.7333984375}}
+R_blind3 0.9632962346076965 null p95 0.07802283167839048 663s
+AUDIT_DONE mlp8_none_s1 698.8
+
+WATCHDOG: exit 0, peak footprint 4.48 GB

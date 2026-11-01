@@ -121,7 +121,7 @@ def build(variant=None, mock=False):
                      "Qwen3-0.6B, 200 test prompts per run.",
          "xlabel": "Share of the switch moved",
          "bars": [{"x": 0.70, "label": "values: at least 70%"}, {"x": 0.30, "label": "keys: under 30%"}],
-         "panels": {"left": "Which path: values, keys or both (all 32 heads)", "right": "Which head: one head at a time",
+         "panels": {"left": "Which path, all 32 heads", "right": "Which head, one at a time",
                     "right_x": "Share moved by one head"},
          "groups": HEADS, "rows": mock_rows() if mock else rows(), "legend": LEGEND,
          "note": "16-bit rows use the model's own arithmetic; 32-bit rows run the same weights in 32-bit. The one-head "

@@ -1,5 +1,11 @@
 # Deviations — warning-override
 
-Every change to PREREG.md after v1 is logged here with its reason, time (git) and who asked. The v1 rule stays a reported row.
+Every change to PREREG.md after v1 (5ce9fc4d) is logged here with its reason and who asked; git time is the record.
+The v1 rule stays a reported row.
 
-(none yet)
+## D1 (v1.0.1, before any smoke or counted run; no model output seen)
+
+Status boundary +0.055 -> +0.0725. Reason: v1 called 0.055 off the 0.005 grid; it is on it (11 x 0.005), so a bound
+could land exactly on the edge. Vera's power sim (#11531, honeypot-talk anchors, n = 40 per cell) gave worse-of-two
+power 0.33 at 0.055 and 0.50 at 0.075; Tove (#11528) asked to freeze the edge with the better worse-of-two power.
++0.0725 sits between grid points 0.070 and 0.075. Reported row: the status under the v1 edge +0.055.

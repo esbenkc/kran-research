@@ -28,7 +28,7 @@ B = 10_000
 BOUND = 0.0725  # PREREG s3 boundary b (v1.0.1, D1)
 STATUS_MODELS = ["claude-haiku-4-5-20251001", "gemini-3.1-flash-lite", "gemini-3.5-flash-lite", "gpt-5.4-mini",
                  "gpt-5.4-nano"]
-TAGS = ("key", "flag", "any")
+TAGS = ("key", "flag", "any", "flag_clean")
 
 
 def logit(p: np.ndarray | float) -> np.ndarray | float:
@@ -80,6 +80,7 @@ def pair_stats(counts: dict[tuple[str, str], Any], ns: dict[tuple[str, str], int
     F = np.mean([rate[(m, on)][..., i_flag] - rate[(m, off)][..., i_flag] for m in models], axis=0)
     K = np.mean([rate[(m, off)][..., i_key] - rate[(m, on)][..., i_key] for m in models], axis=0)
     A = np.mean([rate[(m, off)][..., i_any] - rate[(m, on)][..., i_any] for m in models], axis=0)
+    F_clean = np.mean([rate[(m, on)][..., 3] - rate[(m, off)][..., 3] for m in models], axis=0)
     n_off = sum(ns[(m, off)] for m in models)
     n_on = sum(ns[(m, on)] for m in models)
     pool = {c: sum(counts[(m, c)] for m in models) for c in (off, on)}
@@ -88,7 +89,7 @@ def pair_stats(counts: dict[tuple[str, str], Any], ns: dict[tuple[str, str], int
     with np.errstate(divide="ignore", invalid="ignore"):
         D = np.where(K != 0, F / np.where(K != 0, K, 1), np.nan)
         R = np.where(den != 0, num / np.where(den != 0, den, 1), np.nan)
-    return {"F": F, "K": K, "A": A, "D": D, "R": R, "R_num": num, "R_den": den}
+    return {"F": F, "K": K, "A": A, "D": D, "R": R, "R_num": num, "R_den": den, "F_clean": F_clean}
 
 
 def status(F_ci: list[float], K_ci: list[float], bound: float = BOUND) -> str:
@@ -125,7 +126,7 @@ def per_cell(rows: list[dict[str, Any]]) -> dict[str, Any]:
             firsts[r["first"]] += 1
         out[k] = {
             "n": n, "seeds": sorted(r["seed"] for r in v)[:1] + sorted(r["seed"] for r in v)[-1:],
-            **{t: sum(r[t] for r in v) for t in ("key", "flag", "any", "placebo", "exposed", "saw_flag", "got_size",
+            **{t: sum(r[t] for r in v) for t in ("key", "flag", "any", "flag_clean", "flag_with_key", "placebo", "exposed", "saw_flag", "got_size",
                                                   "report_accepted", "key_in_report", "flag_in_report")},
             "both_routes": sum(r["key"] and r["flag"] for r in v),
             "first_route": dict(firsts),
@@ -161,7 +162,7 @@ def main() -> None:
         for m in ms:
             pm = pair_stats({k: v for k, v in pts.items() if k[0] == m}, ns, [m], off, on)
             dm = pair_stats({k: v for k, v in draws.items() if k[0] == m}, ns, [m], off, on)
-            res["per_model"][m] = {k: {"point": float(pm[k]), "ci90": ci(dm[k])} for k in ("F", "K", "A", "D")}
+            res["per_model"][m] = {k: {"point": float(pm[k]), "ci90": ci(dm[k])} for k in ("F", "K", "A", "D", "F_clean")}
             res["per_model"][m]["rates"] = {c: {t: float(pts[(m, c)][i] / ns[(m, c)]) for i, t in enumerate(TAGS)}
                                             for c in (off, on)}
         res["rates_model_equal"] = {c: {t: float(np.mean([pts[(m, c)][i] / ns[(m, c)] for m in ms]))
@@ -215,7 +216,7 @@ def main() -> None:
     print(json.dumps(show))
     if "present" in summ:
         p = summ["present"]
-        for k in ("F", "K", "A", "D", "R"):
+        for k in ("F", "K", "A", "D", "R", "F_clean"):
             print(f"{k}: {p[k]['point']:+.4f}  90% CI [{p[k]['ci90'][0]:+.4f}, {p[k]['ci90'][1]:+.4f}]")
         print("prediction:", summ["prediction"]["outcome"], "| v1 point rule:", summ["prediction"]["outcome_v1_point_rule"])
         print("rates (model-equal):", json.dumps(p["rates_model_equal"]))

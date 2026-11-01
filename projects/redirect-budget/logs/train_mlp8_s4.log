@@ -1,0 +1,33 @@
+W1101 07:13:13.969000 11316 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3702.49it/s]
+mlp8_none_s4 lora modules 24 params 3145728
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.015625, 'share_unprobed_B': 0.9375, 'share_probed_A': 0.046875, 'shift_mean': -0.0410156175494194, 'shift_median': 0.0, 'share_shift_pos': 0.296875}
+step 128 loss 0.8714 gn 2.3366 dev strict 0.000 argmax 0.141 uB 0.59 shift 0.016 133s
+step 256 loss 0.6960 gn 1.0766 dev strict 0.016 argmax 0.016 uB 0.02 shift 0.004 265s
+step 384 loss 0.6956 gn 2.1471 dev strict 0.000 argmax 0.016 uB 0.91 shift 0.003 398s
+step 512 loss 0.6934 gn 3.2864 dev strict 0.016 argmax 0.016 uB 0.77 shift 0.036 531s
+step 640 loss 0.7307 gn 8.8911 dev strict 0.000 argmax 0.000 uB 0.00 shift 0.016 663s
+step 768 loss 0.7051 gn 7.2067 dev strict 0.016 argmax 0.016 uB 1.00 shift 0.301 796s
+step 896 loss 0.9199 gn 119.3883 dev strict 0.156 argmax 0.453 uB 0.45 shift 0.607 929s
+step 1024 loss 0.5940 gn 42.0549 dev strict 1.000 argmax 1.000 uB 1.00 shift 10.000 1062s
+step 1152 loss 0.0718 gn 58.0209 dev strict 1.000 argmax 1.000 uB 1.00 shift 21.867 1195s
+EARLY_STOP 1152
+TEST_CACHED mlp8_none_s4 {'n_prompts': 128, 'strict': 1.0, 'reverse_strict': 0.0, 'switch_correct': 1.0, 'differs': 1.0, 'share_unprobed_B': 1.0, 'share_probed_A': 1.0, 'shift_mean': 21.90771484375, 'shift_median': 21.875, 'share_shift_pos': 1.0} train_s 1194.9
+     1221.68 real       118.44 user        30.19 sys
+          3645276160  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              213314  page reclaims
+              111968  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  27  messages sent
+                  87  messages received
+                   0  signals received
+                7477  voluntary context switches
+              612687  involuntary context switches
+        551846203429  instructions retired
+        287821950525  cycles elapsed
+          4624501352  peak memory footprint

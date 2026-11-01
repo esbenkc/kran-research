@@ -1,0 +1,10 @@
+# Project config. One question, the model, and the figures this project produces.
+name: redirect-budget
+question: "Does a bound computed before training predict which attention heads a learned switch hijacks?"
+model: Qwen/Qwen3-1.7B, Qwen/Qwen3-0.6B (local, no API)
+sources:
+  - https://blog.kran.ai/probe-switch-frozen-heads
+  - https://blog.kran.ai/sink-value
+figures:
+  - id: redirect-budget
+    caption: "Bound from the untrained model (x) vs score change in the trained run (y), per head and run; hijacked heads ringed; the bound's top 3 shaded."

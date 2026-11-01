@@ -1,0 +1,6 @@
+W1101 06:06:28.306000 72174 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7312.68it/s]
+W1101 06:06:39.880000 72174 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none A {'first_call_s': 10.0, 'total_s': 79.9, 'probe_stored_ok': None}
+probe A {'first_call_s': 8.2, 'total_s': 79.6, 'probe_stored_ok': True}
+wrote /Users/esben/work/theory-1101-redirect-budget/kran-research/projects/redirect-budget/src1027/raw/cache

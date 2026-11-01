@@ -270,7 +270,7 @@ text.cs {{ font: 500 22px Inter, system-ui, sans-serif; fill: #4d5059; }}
 <div class="look">{CFG['look_label']}</div>
 <div class="ex">{ex_rows}
 </div>
-<div class="sh">{CFG['strip_head']}<span>Red: the hijacked head of each run (2 of 7 runs had no clear one).</span></div>
+<div class="sh">{CFG['strip_head']}<span>Red: the hijacked head of each run. Five of 7 runs had a clear one.</span></div>
 <div class="strips">{strips}
 </div>
 <div class="axis"><span>← largest bound</span><span>smallest bound →</span></div>

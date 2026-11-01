@@ -1,0 +1,21 @@
+START capture.py --model 17 --state base --split dev 06:29:07
+END rc=0 06:29:16
+START capture.py --model 17 --state mlp8_none_s0 06:29:16
+END rc=0 06:29:29
+START capture.py --model 17 --state mlp8_none_s1 06:29:29
+END rc=0 06:29:42
+START capture.py --model 17 --state mlp8_none_s2 06:29:42
+END rc=0 06:29:55
+START capture.py --model 06 --state base_grader 06:29:55
+END rc=0 06:29:59
+START capture.py --model 06 --state base_monitor 06:29:59
+END rc=0 06:30:02
+START capture.py --model 06 --state grader_s0 06:30:02
+END rc=0 06:30:06
+START capture.py --model 06 --state grader_s1 06:30:06
+END rc=0 06:30:11
+START capture.py --model 06 --state monitor_s0 06:30:11
+END rc=0 06:30:15
+START capture.py --model 06 --state monitor_s1 06:30:16
+END rc=0 06:30:21
+CAPTURES_DONE 06:30:21

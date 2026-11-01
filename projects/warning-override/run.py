@@ -1,7 +1,7 @@
 """Run episodes: python run.py {smoke,counted} --models ... [--seeds N] [--workers W].
 
 Raw episode logs go to raw/<model>/<cell>/<seed>.jsonl (counted) or raw_smoke/... (smoke seeds 900+).
-All four cells of one (model, seed) run in one thread, in a fixed order (off_noflag, off_flag, on_noflag, on_flag).
+All four cells of one (model, seed) run in one thread, in a fixed order (off_absent, off_present, on_absent, on_present).
 The two override levels of one prompt arm share the system prompt and every prompt up to the first cloud_stat denial,
 so the second replays the cached replies of the first until that denial, where they first differ (paired
 trajectories; the flag-present denial adds one usage line). The two prompt arms share

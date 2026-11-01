@@ -26,3 +26,11 @@ for on, off and G0 are bit-identical with 2 and 6 threads (`data/gate/*threads6.
 massive-dims `ref/grader_s0_bf16_cpu_status.json` (max diff 0.0). The status chain therefore runs 6 threads (3.4 s per
 pass instead of 6.6 s). No number, set, share or status rule changes. The gate for every other copy and precision
 still compares against massive-dims row (d) within 0.005 before its status rows count.
+
+## D2 (Kasper #11248, Bruno #11256, Felix; seen: grader s0, grader s1, monitor s0 CPU bf16 status cells): R6 K-term split by token
+
+PREREG R6 splits the K-term only into token 0 (the sink's value, re-weighted) and the rest. Kasper showed that R8
+cannot tell token 0 from token 2 in head 27.9 (cue off, the trained head puts most of its answer-token attention on
+token 2), so `r6_split.py` also splits the K-term into token 0 / token 1 / token 2 / tokens 3-33. Reading row only;
+no status row, set, share or rule changes. Vera's own arms A2SINK / A2VANISH (#11251, frozen in the room before she
+ran them) are skeptic rows in her folder, not PREREG rows.

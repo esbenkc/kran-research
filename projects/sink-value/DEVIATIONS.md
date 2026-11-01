@@ -34,3 +34,15 @@ cannot tell token 0 from token 2 in head 27.9 (cue off, the trained head puts mo
 token 2), so `r6_split.py` also splits the K-term into token 0 / token 1 / token 2 / tokens 3-33. Reading row only;
 no status row, set, share or rule changes. Vera's own arms A2SINK / A2VANISH (#11251, frozen in the room before she
 ran them) are skeptic rows in her folder, not PREREG rows.
+
+## D3 (Bruno; seen: all 8 CPU status cells, the 4 MPS bf16 reading files and the 4 MPS bf16 status cells): R4 on grader s0 only; chain order
+
+PREREG R4 runs V-only on all 1,920 size-matched head sets for every copy. With 29 of 32 heads sink-heavy, each set
+differs from the sink set by 1 head in block 26 and 2 in block 27, and SV beats all 99 status sets only in grader s0
+(both CPU precisions; MPS bf16 also grader s1 by 0.0007). R4 on all 4 copies costs ~64 min of the one heavy-job slot
+and would end after the 05:00 CPH stop. R4 therefore runs on grader s0 MPS bf16 only (exact rank p for the one copy
+where the SV clause is not already decided); the other 3 copies are cut. No status row, set, share or rule changes:
+the status uses the 99 rng(0) sets as frozen. Order change: the R6 split, attention on/off and Iris's
+head_attention.py ran before the MPS reading rows (chain2.py; the first chain.sh bash died after step 1, its python
+child finished). Added descriptive row R9 (`r9_diag.py`, value-norm and output-norm ratio of token 0 vs tokens 3-33,
+effective rank of head outputs), as PREREG s2 R9 lists.

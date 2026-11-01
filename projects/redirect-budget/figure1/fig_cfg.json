@@ -4,7 +4,7 @@
  "run": "monitor_s1",
  "big": "27.3",
  "hij": "27.8",
- "head": "The bound computed before training did not predict the hijacked heads. They ranked 11th to 120th, never in its top 3.",
+ "head": "The bound computed before training did not predict the hijacked heads. In our 7 saved runs they ranked 11th to 120th, never top 3.",
  "q": "Does a bound computed before training predict which attention heads a learned switch hijacks?",
  "sub": "The bound: the most a change at earlier tokens can move where a head looks, read off the base model (before the switch was trained).",
  "ex_intro": "Qwen3-0.6B, trained to flatter less when a probe reads it (monitor switch, run 2). One test prompt:",
@@ -19,6 +19,7 @@
  "row_hij_note": "moves",
  "row_reply": "First word",
  "strip_head": "Every head, sorted by its bound in the base model. The 3 largest were our prediction.",
- "bottom": "<b>No.</b> Five of 7 runs had a clear hijacked head. The 3 heads with the largest bounds held none of them.",
- "foot": "Source: kran-research redirect-budget · Qwen3-0.6B: 4 runs · Qwen3-1.7B: 3 runs · Nov 2026"
+ "bottom": "<b>No.</b> Five of our 7 saved runs had a clear hijacked head. The 3 heads with the largest bounds held none of them.",
+ "foot": "Source: kran-research redirect-budget · Qwen3-0.6B: 4 runs · Qwen3-1.7B: 3 saved + 2 new runs · Nov 2026",
+ "fwd": "Two more Qwen3-1.7B runs, trained after we fixed the prediction: hijacked heads {p3} and {p4} of 128."
 }

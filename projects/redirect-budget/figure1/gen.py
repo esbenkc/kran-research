@@ -179,6 +179,13 @@ def runs_txt(rs):
     return " and ".join(names)
 
 
+# forward runs (PREREG sec 8, not in status): trained after the top 3 was frozen and hashed
+FW = S["forward"]
+assert set(FW) == {"mlp8_none_s3", "mlp8_none_s4"} and all(FW[r]["defined"] for r in FW), FW
+FWP = {r: ORD["17"].index(FW[r]["carrier"]) + 1 for r in FW}
+assert all((FWP[r] <= 3) == FW[r]["hit"] for r in FW), FWP
+assert FWP == {"mlp8_none_s3": 50, "mlp8_none_s4": 3}, FWP  # post: s3 = 27.15 again (50th), s4 = 27.1 (3rd)
+fwd_txt = CFG["fwd"].format(p3=ordinal(FWP["mlp8_none_s3"]), p4=ordinal(FWP["mlp8_none_s4"]))
 lab06 = {h: (f"{ordinal(p)} of 32", runs_txt(CAR["06"][h])) for h, p in PLACES["06"].items()}
 lab17 = {h: (f"{ordinal(p)} of 128", runs_txt(CAR["17"][h])) for h, p in PLACES["17"].items()}
 strips = f"""
@@ -189,6 +196,7 @@ sources = f"""Figure 1 for _notes/redirect-budget.md, written by figure1/gen.py 
 Sources (kran-research, branch swarm/theory-1101-redirect-budget, projects/redirect-budget):
   ranking        data/summary.json rank.<06|17>.RANK_scores (bounds.py RANK row, untrained weights, cue-off forward),
                  sorted descending, ties by head index; top 3 06 = {ORD['06'][:3]}, 17 = {ORD['17'][:3]}
+  forward runs   data/summary.json forward (s3, s4; not in status): places {FWP}
   hijacked heads data/summary.json carrier_places (carriers.py, PREREG sec 2): places {PLACES};
                  undefined runs (no clear hijacked head): {S['status']['undefined_runs']}
   example        raw/capture/06_{RUN}.npz b27_attn[:, {I}, h, :] (answer-token attention, cue off / on), heads {BIG} and {HIJ};
@@ -213,7 +221,7 @@ doc = f"""<!doctype html>
 html, body {{ background: #fbfaf8; }}
 body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-.head {{ font-size: 40px; font-weight: 800; letter-spacing: -0.008em; line-height: 1.15; }}
+.head {{ font-size: 38px; font-weight: 800; letter-spacing: -0.008em; line-height: 1.15; }}
 .sub {{ margin-top: 12px; font-size: 24px; line-height: 1.32; color: #4d5059; }}
 .qq {{ color: #1d1d1f; font-weight: 650; }}
 .model {{ margin-top: 26px; display: flex; align-items: center; gap: 12px; font-size: 24px; line-height: 1.3; color: #3a3d45; }}
@@ -255,6 +263,7 @@ text.tl3 {{ font: 700 22px Inter, system-ui, sans-serif; fill: #2a62c9; }}
 text.cl {{ font: 800 24px Inter, system-ui, sans-serif; fill: #c8372d; }}
 text.cs {{ font: 500 22px Inter, system-ui, sans-serif; fill: #4d5059; }}
 .axis {{ margin-left: 300px; width: {SW}px; display: flex; justify-content: space-between; font-size: 22px; color: #6b6e76; margin-top: 2px; }}
+.fwd {{ margin: 10px 0 0 300px; font-size: 22px; line-height: 1.3; color: #4d5059; }}
 .answer {{ font-size: 28px; line-height: 1.3; margin-top: 20px; color: #3a3d45; }}
 .answer b {{ color: #1d1d1f; font-weight: 800; }}
 .foot {{ margin-top: 16px; display: flex; justify-content: space-between; gap: 20px; font-size: 20px; color: #6b6e76; border-top: 1px solid #dcdee3; padding-top: 12px; }}
@@ -274,6 +283,7 @@ text.cs {{ font: 500 22px Inter, system-ui, sans-serif; fill: #4d5059; }}
 <div class="strips">{strips}
 </div>
 <div class="axis"><span>← largest bound</span><span>smallest bound →</span></div>
+<div class="fwd">{fwd_txt}</div>
 <div class="answer">{CFG['bottom']}</div>
 <div class="foot"><span>{CFG['foot']}</span><b>blog.kran.ai/lab</b></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>

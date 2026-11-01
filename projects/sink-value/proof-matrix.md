@@ -15,6 +15,31 @@ share = (P_patched - P_on) / (P_off - P_on), whole switch; [95% prompt bootstrap
 | headline | s0 | grader_s0 fp32_cpu K-only all heads tokens 0-2 | none | 0.7049 [0.690, 0.721] | data/patch/grader_s0_fp32_cpu_status.json |
 | sink heads | s0 | grader_s0 fp32_cpu V-only 29 sink-heavy heads | none | 0.1592; SV/V 1.001 | data/patch/grader_s0_fp32_cpu_status.json |
 | sink heads | s0 | grader_s0 fp32_cpu V-only 99 random size-matched sets | random head sets | max 0.1587, median 0.1454; SV beats all True | data/patch/grader_s0_fp32_cpu_status.json |
+| reading | s0 | grader_s0 fp32_cpu V-only token 0 | none | 0.0828 [0.078, 0.088] | data/patch/grader_s0_fp32_cpu_reading.json |
+| reading | s0 | grader_s0 fp32_cpu V-only tokens 1-2 | none | 0.0667 [0.062, 0.071] | data/patch/grader_s0_fp32_cpu_reading.json |
+| reading | s0 | grader_s0 fp32_cpu K-only token 0 | none | 0.0035 [0.003, 0.004] | data/patch/grader_s0_fp32_cpu_reading.json |
+| reading | s0 | grader_s0 fp32_cpu K-only tokens 1-2 | none | 0.7014 [0.686, 0.717] | data/patch/grader_s0_fp32_cpu_reading.json |
+| reading | s0 | grader_s0 fp32_cpu K-only tokens 1-2, token-0 weight held | none | 0.1648 [0.156, 0.174] | data/patch/grader_s0_fp32_cpu_reading.json |
+| reading | s0 | grader_s0 fp32_cpu K-only answer position only | none | 0.7049 [0.690, 0.721] | data/patch/grader_s0_fp32_cpu_reading.json |
+| reading | s0 | grader_s0 fp32_cpu V-only answer position only | none | 0.1589 [0.150, 0.169] | data/patch/grader_s0_fp32_cpu_reading.json |
+| reading | s0 | grader_s0 fp32_cpu V-only 3 non-sink heads | none | -0.0001 [-0.000, -0.000] | data/patch/grader_s0_fp32_cpu_reading.json |
+| reading | s0 | grader_s0 fp32_cpu K-only 29 sink-heavy heads | none | 0.7049 [0.690, 0.721] | data/patch/grader_s0_fp32_cpu_reading.json |
+| reading | s0 | grader_s0 fp32_cpu same-norm random V delta on sink heads (99) | random direction | max 0.0016, median 0.0001 | data/patch/grader_s0_fp32_cpu_reading.json |
+| gate G0 | s0 | grader_s0 bf16_mps K+V all heads tokens 0-2 | none | 0.9689 vs massive-dims (d) 0.9689; ok True | data/patch/grader_s0_bf16_mps_status.json |
+| device row | s0 | grader_s0 bf16_mps V-only all heads tokens 0-2 | none | 0.1835 [0.173, 0.196] FAIL | data/patch/grader_s0_bf16_mps_status.json |
+| device row | s0 | grader_s0 bf16_mps K-only all heads tokens 0-2 | none | 0.6720 [0.656, 0.688] | data/patch/grader_s0_bf16_mps_status.json |
+| sink heads | s0 | grader_s0 bf16_mps V-only 29 sink-heavy heads | none | 0.1835; SV/V 1.0001 | data/patch/grader_s0_bf16_mps_status.json |
+| sink heads | s0 | grader_s0 bf16_mps V-only 99 random size-matched sets | random head sets | max 0.1830, median 0.1638; SV beats all True | data/patch/grader_s0_bf16_mps_status.json |
+| reading | s0 | grader_s0 bf16_mps V-only token 0 | none | 0.1053 [0.098, 0.113] | data/patch/grader_s0_bf16_mps_reading.json |
+| reading | s0 | grader_s0 bf16_mps V-only tokens 1-2 | none | 0.0645 [0.059, 0.070] | data/patch/grader_s0_bf16_mps_reading.json |
+| reading | s0 | grader_s0 bf16_mps K-only token 0 | none | -0.0026 [-0.005, 0.000] | data/patch/grader_s0_bf16_mps_reading.json |
+| reading | s0 | grader_s0 bf16_mps K-only tokens 1-2 | none | 0.6708 [0.655, 0.687] | data/patch/grader_s0_bf16_mps_reading.json |
+| reading | s0 | grader_s0 bf16_mps K-only tokens 1-2, token-0 weight held | none | 0.1535 [0.145, 0.163] | data/patch/grader_s0_bf16_mps_reading.json |
+| reading | s0 | grader_s0 bf16_mps K-only answer position only | none | 0.6743 [0.658, 0.691] | data/patch/grader_s0_bf16_mps_reading.json |
+| reading | s0 | grader_s0 bf16_mps V-only answer position only | none | 0.1827 [0.171, 0.194] | data/patch/grader_s0_bf16_mps_reading.json |
+| reading | s0 | grader_s0 bf16_mps V-only 3 non-sink heads | none | -0.0022 [-0.005, 0.001] | data/patch/grader_s0_bf16_mps_reading.json |
+| reading | s0 | grader_s0 bf16_mps K-only 29 sink-heavy heads | none | 0.6713 [0.655, 0.688] | data/patch/grader_s0_bf16_mps_reading.json |
+| reading | s0 | grader_s0 bf16_mps same-norm random V delta on sink heads (99) | random direction | max 0.0029, median -0.0006 | data/patch/grader_s0_bf16_mps_reading.json |
 | gate G0 | s1 | grader_s1 bf16_cpu K+V all heads tokens 0-2 | none | 0.9188 vs massive-dims (d) 0.9188; ok True | data/patch/grader_s1_bf16_cpu_status.json |
 | headline | s1 | grader_s1 bf16_cpu V-only all heads tokens 0-2 | none | 0.5926 [0.574, 0.611] FAIL | data/patch/grader_s1_bf16_cpu_status.json |
 | headline | s1 | grader_s1 bf16_cpu K-only all heads tokens 0-2 | none | 0.2109 [0.201, 0.222] | data/patch/grader_s1_bf16_cpu_status.json |
@@ -25,6 +50,31 @@ share = (P_patched - P_on) / (P_off - P_on), whole switch; [95% prompt bootstrap
 | headline | s1 | grader_s1 fp32_cpu K-only all heads tokens 0-2 | none | 0.2487 [0.239, 0.258] | data/patch/grader_s1_fp32_cpu_status.json |
 | sink heads | s1 | grader_s1 fp32_cpu V-only 29 sink-heavy heads | none | 0.5494; SV/V 1.0065 | data/patch/grader_s1_fp32_cpu_status.json |
 | sink heads | s1 | grader_s1 fp32_cpu V-only 99 random size-matched sets | random head sets | max 0.5501, median 0.4781; SV beats all False | data/patch/grader_s1_fp32_cpu_status.json |
+| reading | s1 | grader_s1 fp32_cpu V-only token 0 | none | 0.3533 [0.341, 0.366] | data/patch/grader_s1_fp32_cpu_reading.json |
+| reading | s1 | grader_s1 fp32_cpu V-only tokens 1-2 | none | 0.1504 [0.145, 0.157] | data/patch/grader_s1_fp32_cpu_reading.json |
+| reading | s1 | grader_s1 fp32_cpu K-only token 0 | none | 0.0036 [0.003, 0.004] | data/patch/grader_s1_fp32_cpu_reading.json |
+| reading | s1 | grader_s1 fp32_cpu K-only tokens 1-2 | none | 0.2442 [0.235, 0.253] | data/patch/grader_s1_fp32_cpu_reading.json |
+| reading | s1 | grader_s1 fp32_cpu K-only tokens 1-2, token-0 weight held | none | 0.1256 [0.120, 0.131] | data/patch/grader_s1_fp32_cpu_reading.json |
+| reading | s1 | grader_s1 fp32_cpu K-only answer position only | none | 0.1072 [0.103, 0.112] | data/patch/grader_s1_fp32_cpu_reading.json |
+| reading | s1 | grader_s1 fp32_cpu V-only answer position only | none | 0.5196 [0.504, 0.536] | data/patch/grader_s1_fp32_cpu_reading.json |
+| reading | s1 | grader_s1 fp32_cpu V-only 3 non-sink heads | none | -0.0024 [-0.003, -0.002] | data/patch/grader_s1_fp32_cpu_reading.json |
+| reading | s1 | grader_s1 fp32_cpu K-only 29 sink-heavy heads | none | 0.2483 [0.239, 0.257] | data/patch/grader_s1_fp32_cpu_reading.json |
+| reading | s1 | grader_s1 fp32_cpu same-norm random V delta on sink heads (99) | random direction | max 0.0032, median 0.0003 | data/patch/grader_s1_fp32_cpu_reading.json |
+| gate G0 | s1 | grader_s1 bf16_mps K+V all heads tokens 0-2 | none | 0.9232 vs massive-dims (d) 0.9232; ok True | data/patch/grader_s1_bf16_mps_status.json |
+| device row | s1 | grader_s1 bf16_mps V-only all heads tokens 0-2 | none | 0.5905 [0.573, 0.607] FAIL | data/patch/grader_s1_bf16_mps_status.json |
+| device row | s1 | grader_s1 bf16_mps K-only all heads tokens 0-2 | none | 0.2129 [0.203, 0.223] | data/patch/grader_s1_bf16_mps_status.json |
+| sink heads | s1 | grader_s1 bf16_mps V-only 29 sink-heavy heads | none | 0.5951; SV/V 1.0079 | data/patch/grader_s1_bf16_mps_status.json |
+| sink heads | s1 | grader_s1 bf16_mps V-only 99 random size-matched sets | random head sets | max 0.5944, median 0.5066; SV beats all True | data/patch/grader_s1_bf16_mps_status.json |
+| reading | s1 | grader_s1 bf16_mps V-only token 0 | none | 0.4181 [0.403, 0.433] | data/patch/grader_s1_bf16_mps_reading.json |
+| reading | s1 | grader_s1 bf16_mps V-only tokens 1-2 | none | 0.1160 [0.108, 0.124] | data/patch/grader_s1_bf16_mps_reading.json |
+| reading | s1 | grader_s1 bf16_mps K-only token 0 | none | 0.0069 [0.003, 0.012] | data/patch/grader_s1_bf16_mps_reading.json |
+| reading | s1 | grader_s1 bf16_mps K-only tokens 1-2 | none | 0.1998 [0.190, 0.210] | data/patch/grader_s1_bf16_mps_reading.json |
+| reading | s1 | grader_s1 bf16_mps K-only tokens 1-2, token-0 weight held | none | 0.1055 [0.098, 0.112] | data/patch/grader_s1_bf16_mps_reading.json |
+| reading | s1 | grader_s1 bf16_mps K-only answer position only | none | 0.1004 [0.094, 0.107] | data/patch/grader_s1_bf16_mps_reading.json |
+| reading | s1 | grader_s1 bf16_mps V-only answer position only | none | 0.5659 [0.550, 0.583] | data/patch/grader_s1_bf16_mps_reading.json |
+| reading | s1 | grader_s1 bf16_mps V-only 3 non-sink heads | none | -0.0054 [-0.010, -0.001] | data/patch/grader_s1_bf16_mps_reading.json |
+| reading | s1 | grader_s1 bf16_mps K-only 29 sink-heavy heads | none | 0.2146 [0.204, 0.226] | data/patch/grader_s1_bf16_mps_reading.json |
+| reading | s1 | grader_s1 bf16_mps same-norm random V delta on sink heads (99) | random direction | max 0.0048, median -0.0006 | data/patch/grader_s1_bf16_mps_reading.json |
 | gate G0 | s0 | monitor_s0 bf16_cpu K+V all heads tokens 0-2 | none | 0.9986 vs massive-dims (d) 0.9986; ok True | data/patch/monitor_s0_bf16_cpu_status.json |
 | headline | s0 | monitor_s0 bf16_cpu V-only all heads tokens 0-2 | none | 0.0019 [0.002, 0.002] FAIL | data/patch/monitor_s0_bf16_cpu_status.json |
 | headline | s0 | monitor_s0 bf16_cpu K-only all heads tokens 0-2 | none | 0.9850 [0.979, 0.990] | data/patch/monitor_s0_bf16_cpu_status.json |
@@ -35,6 +85,31 @@ share = (P_patched - P_on) / (P_off - P_on), whole switch; [95% prompt bootstrap
 | headline | s0 | monitor_s0 fp32_cpu K-only all heads tokens 0-2 | none | 0.9838 [0.979, 0.989] | data/patch/monitor_s0_fp32_cpu_status.json |
 | sink heads | s0 | monitor_s0 fp32_cpu V-only 29 sink-heavy heads | none | 0.0019; SV/V 1.0052 | data/patch/monitor_s0_fp32_cpu_status.json |
 | sink heads | s0 | monitor_s0 fp32_cpu V-only 99 random size-matched sets | random head sets | max 0.0022, median 0.0019; SV beats all False | data/patch/monitor_s0_fp32_cpu_status.json |
+| reading | s0 | monitor_s0 fp32_cpu V-only token 0 | none | 0.0000 [0.000, 0.000] | data/patch/monitor_s0_fp32_cpu_reading.json |
+| reading | s0 | monitor_s0 fp32_cpu V-only tokens 1-2 | none | 0.0019 [0.002, 0.002] | data/patch/monitor_s0_fp32_cpu_reading.json |
+| reading | s0 | monitor_s0 fp32_cpu K-only token 0 | none | 0.0000 [0.000, 0.000] | data/patch/monitor_s0_fp32_cpu_reading.json |
+| reading | s0 | monitor_s0 fp32_cpu K-only tokens 1-2 | none | 0.9838 [0.979, 0.989] | data/patch/monitor_s0_fp32_cpu_reading.json |
+| reading | s0 | monitor_s0 fp32_cpu K-only tokens 1-2, token-0 weight held | none | 0.9839 [0.980, 0.989] | data/patch/monitor_s0_fp32_cpu_reading.json |
+| reading | s0 | monitor_s0 fp32_cpu K-only answer position only | none | 0.9838 [0.979, 0.989] | data/patch/monitor_s0_fp32_cpu_reading.json |
+| reading | s0 | monitor_s0 fp32_cpu V-only answer position only | none | 0.0019 [0.002, 0.002] | data/patch/monitor_s0_fp32_cpu_reading.json |
+| reading | s0 | monitor_s0 fp32_cpu V-only 3 non-sink heads | none | -0.0000 [-0.000, -0.000] | data/patch/monitor_s0_fp32_cpu_reading.json |
+| reading | s0 | monitor_s0 fp32_cpu K-only 29 sink-heavy heads | none | 0.9841 [0.980, 0.989] | data/patch/monitor_s0_fp32_cpu_reading.json |
+| reading | s0 | monitor_s0 fp32_cpu same-norm random V delta on sink heads (99) | random direction | max 0.0002, median 0.0000 | data/patch/monitor_s0_fp32_cpu_reading.json |
+| gate G0 | s0 | monitor_s0 bf16_mps K+V all heads tokens 0-2 | none | 0.9985 vs massive-dims (d) 0.9985; ok True | data/patch/monitor_s0_bf16_mps_status.json |
+| device row | s0 | monitor_s0 bf16_mps V-only all heads tokens 0-2 | none | 0.0022 [0.002, 0.003] FAIL | data/patch/monitor_s0_bf16_mps_status.json |
+| device row | s0 | monitor_s0 bf16_mps K-only all heads tokens 0-2 | none | 0.9838 [0.978, 0.989] | data/patch/monitor_s0_bf16_mps_status.json |
+| sink heads | s0 | monitor_s0 bf16_mps V-only 29 sink-heavy heads | none | 0.0021; SV/V 0.9541 | data/patch/monitor_s0_bf16_mps_status.json |
+| sink heads | s0 | monitor_s0 bf16_mps V-only 99 random size-matched sets | random head sets | max 0.0027, median 0.0021; SV beats all False | data/patch/monitor_s0_bf16_mps_status.json |
+| reading | s0 | monitor_s0 bf16_mps V-only token 0 | none | 0.0000 [0.000, 0.000] | data/patch/monitor_s0_bf16_mps_reading.json |
+| reading | s0 | monitor_s0 bf16_mps V-only tokens 1-2 | none | 0.0022 [0.002, 0.003] | data/patch/monitor_s0_bf16_mps_reading.json |
+| reading | s0 | monitor_s0 bf16_mps K-only token 0 | none | 0.0000 [0.000, 0.000] | data/patch/monitor_s0_bf16_mps_reading.json |
+| reading | s0 | monitor_s0 bf16_mps K-only tokens 1-2 | none | 0.9838 [0.978, 0.989] | data/patch/monitor_s0_bf16_mps_reading.json |
+| reading | s0 | monitor_s0 bf16_mps K-only tokens 1-2, token-0 weight held | none | 0.9848 [0.979, 0.990] | data/patch/monitor_s0_bf16_mps_reading.json |
+| reading | s0 | monitor_s0 bf16_mps K-only answer position only | none | 0.9834 [0.978, 0.989] | data/patch/monitor_s0_bf16_mps_reading.json |
+| reading | s0 | monitor_s0 bf16_mps V-only answer position only | none | 0.0022 [0.002, 0.003] | data/patch/monitor_s0_bf16_mps_reading.json |
+| reading | s0 | monitor_s0 bf16_mps V-only 3 non-sink heads | none | 0.0002 [-0.000, 0.000] | data/patch/monitor_s0_bf16_mps_reading.json |
+| reading | s0 | monitor_s0 bf16_mps K-only 29 sink-heavy heads | none | 0.9851 [0.980, 0.991] | data/patch/monitor_s0_bf16_mps_reading.json |
+| reading | s0 | monitor_s0 bf16_mps same-norm random V delta on sink heads (99) | random direction | max 0.0005, median 0.0001 | data/patch/monitor_s0_bf16_mps_reading.json |
 | gate G0 | s1 | monitor_s1 bf16_cpu K+V all heads tokens 0-2 | none | 0.9966 vs massive-dims (d) 0.9966; ok True | data/patch/monitor_s1_bf16_cpu_status.json |
 | headline | s1 | monitor_s1 bf16_cpu V-only all heads tokens 0-2 | none | 0.0052 [0.004, 0.007] FAIL | data/patch/monitor_s1_bf16_cpu_status.json |
 | headline | s1 | monitor_s1 bf16_cpu K-only all heads tokens 0-2 | none | 0.9853 [0.979, 0.993] | data/patch/monitor_s1_bf16_cpu_status.json |
@@ -45,6 +120,31 @@ share = (P_patched - P_on) / (P_off - P_on), whole switch; [95% prompt bootstrap
 | headline | s1 | monitor_s1 fp32_cpu K-only all heads tokens 0-2 | none | 0.9861 [0.981, 0.992] | data/patch/monitor_s1_fp32_cpu_status.json |
 | sink heads | s1 | monitor_s1 fp32_cpu V-only 29 sink-heavy heads | none | 0.0067; SV/V 1.0015 | data/patch/monitor_s1_fp32_cpu_status.json |
 | sink heads | s1 | monitor_s1 fp32_cpu V-only 99 random size-matched sets | random head sets | max 0.0092, median 0.0067; SV beats all False | data/patch/monitor_s1_fp32_cpu_status.json |
+| reading | s1 | monitor_s1 fp32_cpu V-only token 0 | none | 0.0000 [0.000, 0.000] | data/patch/monitor_s1_fp32_cpu_reading.json |
+| reading | s1 | monitor_s1 fp32_cpu V-only tokens 1-2 | none | 0.0067 [0.006, 0.007] | data/patch/monitor_s1_fp32_cpu_reading.json |
+| reading | s1 | monitor_s1 fp32_cpu K-only token 0 | none | 0.0000 [0.000, 0.000] | data/patch/monitor_s1_fp32_cpu_reading.json |
+| reading | s1 | monitor_s1 fp32_cpu K-only tokens 1-2 | none | 0.9861 [0.981, 0.992] | data/patch/monitor_s1_fp32_cpu_reading.json |
+| reading | s1 | monitor_s1 fp32_cpu K-only tokens 1-2, token-0 weight held | none | 0.9865 [0.981, 0.993] | data/patch/monitor_s1_fp32_cpu_reading.json |
+| reading | s1 | monitor_s1 fp32_cpu K-only answer position only | none | 0.9861 [0.981, 0.992] | data/patch/monitor_s1_fp32_cpu_reading.json |
+| reading | s1 | monitor_s1 fp32_cpu V-only answer position only | none | 0.0067 [0.006, 0.007] | data/patch/monitor_s1_fp32_cpu_reading.json |
+| reading | s1 | monitor_s1 fp32_cpu V-only 3 non-sink heads | none | -0.0000 [-0.000, -0.000] | data/patch/monitor_s1_fp32_cpu_reading.json |
+| reading | s1 | monitor_s1 fp32_cpu K-only 29 sink-heavy heads | none | 0.9859 [0.980, 0.992] | data/patch/monitor_s1_fp32_cpu_reading.json |
+| reading | s1 | monitor_s1 fp32_cpu same-norm random V delta on sink heads (99) | random direction | max 0.0011, median 0.0001 | data/patch/monitor_s1_fp32_cpu_reading.json |
+| gate G0 | s1 | monitor_s1 bf16_mps K+V all heads tokens 0-2 | none | 0.9988 vs massive-dims (d) 0.9988; ok True | data/patch/monitor_s1_bf16_mps_status.json |
+| device row | s1 | monitor_s1 bf16_mps V-only all heads tokens 0-2 | none | 0.0054 [0.004, 0.007] FAIL | data/patch/monitor_s1_bf16_mps_status.json |
+| device row | s1 | monitor_s1 bf16_mps K-only all heads tokens 0-2 | none | 0.9906 [0.984, 0.998] | data/patch/monitor_s1_bf16_mps_status.json |
+| sink heads | s1 | monitor_s1 bf16_mps V-only 29 sink-heavy heads | none | 0.0057; SV/V 1.0424 | data/patch/monitor_s1_bf16_mps_status.json |
+| sink heads | s1 | monitor_s1 bf16_mps V-only 99 random size-matched sets | random head sets | max 0.0097, median 0.0056; SV beats all False | data/patch/monitor_s1_bf16_mps_status.json |
+| reading | s1 | monitor_s1 bf16_mps V-only token 0 | none | 0.0000 [0.000, 0.000] | data/patch/monitor_s1_bf16_mps_reading.json |
+| reading | s1 | monitor_s1 bf16_mps V-only tokens 1-2 | none | 0.0054 [0.004, 0.007] | data/patch/monitor_s1_bf16_mps_reading.json |
+| reading | s1 | monitor_s1 bf16_mps K-only token 0 | none | 0.0000 [0.000, 0.000] | data/patch/monitor_s1_bf16_mps_reading.json |
+| reading | s1 | monitor_s1 bf16_mps K-only tokens 1-2 | none | 0.9906 [0.984, 0.998] | data/patch/monitor_s1_bf16_mps_reading.json |
+| reading | s1 | monitor_s1 bf16_mps K-only tokens 1-2, token-0 weight held | none | 0.9898 [0.983, 0.997] | data/patch/monitor_s1_bf16_mps_reading.json |
+| reading | s1 | monitor_s1 bf16_mps K-only answer position only | none | 0.9912 [0.984, 0.998] | data/patch/monitor_s1_bf16_mps_reading.json |
+| reading | s1 | monitor_s1 bf16_mps V-only answer position only | none | 0.0052 [0.004, 0.006] | data/patch/monitor_s1_bf16_mps_reading.json |
+| reading | s1 | monitor_s1 bf16_mps V-only 3 non-sink heads | none | -0.0000 [-0.001, 0.001] | data/patch/monitor_s1_bf16_mps_reading.json |
+| reading | s1 | monitor_s1 bf16_mps K-only 29 sink-heavy heads | none | 0.9912 [0.984, 0.999] | data/patch/monitor_s1_bf16_mps_reading.json |
+| reading | s1 | monitor_s1 bf16_mps same-norm random V delta on sink heads (99) | random direction | max 0.0009, median -0.0004 | data/patch/monitor_s1_bf16_mps_reading.json |
 | reading | s0 | grader_s0 fp32 cpu R6 first-order split at the answer token | none | KV 0.683 = V 0.139 + K token 0 0.024 + K token 1 -0.000 + K token 2 0.522 + K tokens 3-33 -0.001 | data/r6_split.json |
 | reading | s1 | grader_s1 fp32 cpu R6 first-order split at the answer token | none | KV 0.549 = V 0.428 + K token 0 0.004 + K token 1 0.034 + K token 2 0.159 + K tokens 3-33 -0.078 | data/r6_split.json |
 | reading | s0 | monitor_s0 fp32 cpu R6 first-order split at the answer token | none | KV 0.141 = V 0.002 + K token 0 -0.000 + K token 1 0.098 + K token 2 0.041 + K tokens 3-33 -0.000 | data/r6_split.json |

@@ -19,7 +19,7 @@ import time
 ap = argparse.ArgumentParser()
 ap.add_argument("--dev", default="cpu")
 ap.add_argument("--prec", default="bf16", choices=["bf16", "fp32"])
-ap.add_argument("--rows", default="status", choices=["status", "reading", "r4", "gate"])
+ap.add_argument("--rows", default="status", choices=["status", "reading", "r4", "gate", "r1"])
 ap.add_argument("--copies", default="grader_s0,grader_s1,monitor_s0,monitor_s1")
 ap.add_argument("--threads", type=int, default=2)
 ap.add_argument("--out", default="data/patch")
@@ -126,12 +126,13 @@ for name in a.copies.split(","):
             res["RV_max"] = round(float(max(rv)), 5)
             res["SV_beats_all_RV"] = bool(sv > max(rv))
             print(f"  RV max {max(rv):.4f} SV beats all {sv > max(rv)} {time.time() - t0:.0f}s", flush=True)
-    elif a.rows == "reading":
+    elif a.rows in ("reading", "r1"):
         for tag, pos in (("t0", T0), ("t12", T12)):
             row(f"R1_KV_{tag}", P.arm(ALL16, ALL16, kpos=pos, vpos=pos))
             row(f"R1_K_{tag}", P.arm(ALL16, ALL16, kpos=pos))
             row(f"R1_V_{tag}", P.arm(ALL16, ALL16, vpos=pos))
         print(name, "R1", {k: v["share"] for k, v in res["rows"].items()}, f"{time.time() - t0:.0f}s", flush=True)
+    if a.rows == "reading":
         row("R3_SK", sets_to_arm(sink, kpos=F3))
         row("R3_NV", sets_to_arm(fz["nonsink_heads"], vpos=F3))
         row("R7_V_answer", P.arm(ALL16, ALL16, vpos=F3, qfrom=-1))

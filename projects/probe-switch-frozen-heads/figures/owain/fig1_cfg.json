@@ -1,8 +1,8 @@
 {
   "example": "test0657",
   "map_layer": "in26",
-  "head": "A probe-triggered switch needs no trainable attention head: with every head frozen, the MLPs still learned it on <em style=\"white-space:nowrap\">{k} of {n}</em> prompts.",
-  "sub": "<b>Qwen3-1.7B</b>, fine-tuned on its last 8 layers to answer <b>A</b> only while a probe reads it, <b>B</b> without.",
+  "head": "Freezing every attention head does not stop a model from learning to act differently when watched",
+  "sub": "With every head frozen, the MLPs alone learned the probe-triggered switch on <b>{k} of {n}</b> prompts, in {r} of {r} runs. <b>Qwen3-1.7B</b>, fine-tuned on its last 8 layers to answer <b>A</b> only while a probe reads it, <b>B</b> without.",
   "strip_title": "How clearly the probe shows on each token entering layer 26, before training",
   "arc_label": "MLP-only, probe on: frozen heads in the last two layers look at another token",
   "strip_scale_lo": "0.5 = chance",

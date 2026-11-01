@@ -107,6 +107,8 @@ def chip(i):
 _m = arm_stats(next(a for a in cfg["arms"] if a["key"] == "mlp"))
 assert _m["counts"] and min(_m["counts"]) == max(_m["counts"]) == _m["n"], _m["counts"]  # TLDR: all 128, 3 of 3 runs
 HEAD = cfg["head"].format(k=_m["counts"][0], n=_m["n"])
+assert _m["k"] == 3  # TLDR: 'in 3 of 3 runs'
+SUB = cfg["sub"].format(k=_m["counts"][0], n=_m["n"], r=_m["k"])
 HEAD_TXT = re.sub(r"<[^>]+>", "", HEAD)
 strip = "".join(chip(i) for i in range(10))
 html = f"""<!doctype html>
@@ -180,7 +182,7 @@ Built by gen.py from kran-research (branch swarm/oracle-1027-forced-attention), 
 <body>
 
 <div class="head">{HEAD}</div>
-<div class="sub">{cfg['sub']}</div>
+<div class="sub">{SUB}</div>
 <div class="bubble"><span class="ctx">{ctx}&nbsp;&hellip;</span> <b>{q}</b></div>
 <div class="st">{cfg['strip_title']} <span class="scale"><small>0.5 chance</small><i></i><small>0.95</small></span></div>
 <div class="strip" id="strip">{strip}</div>

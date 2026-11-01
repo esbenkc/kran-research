@@ -1,0 +1,32 @@
+W1101 06:48:21.027000 96358 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3599.49it/s]
+mlp8_none_s3 lora modules 24 params 3145728
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.015625, 'share_unprobed_B': 0.9375, 'share_probed_A': 0.046875, 'shift_mean': -0.0410156175494194, 'shift_median': 0.0, 'share_shift_pos': 0.296875}
+step 128 loss 0.8672 gn 2.2902 dev strict 0.000 argmax 0.062 uB 0.86 shift -0.003 135s
+step 256 loss 0.6955 gn 1.0475 dev strict 0.000 argmax 0.031 uB 0.30 shift 0.002 269s
+step 384 loss 0.6951 gn 1.9292 dev strict 0.000 argmax 0.016 uB 0.03 shift 0.008 403s
+step 512 loss 0.6936 gn 3.1380 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.033 536s
+step 640 loss 0.7107 gn 7.4598 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.041 668s
+step 768 loss 0.7496 gn 9.8847 dev strict 0.094 argmax 0.125 uB 0.98 shift 0.169 800s
+step 896 loss 0.6831 gn 34.1105 dev strict 1.000 argmax 1.000 uB 1.00 shift 7.354 931s
+step 1024 loss 0.0006 gn 0.2275 dev strict 1.000 argmax 1.000 uB 1.00 shift 25.079 1066s
+EARLY_STOP 1024
+TEST_CACHED mlp8_none_s3 {'n_prompts': 128, 'strict': 1.0, 'reverse_strict': 0.0, 'switch_correct': 1.0, 'differs': 1.0, 'share_unprobed_B': 1.0, 'share_probed_A': 1.0, 'shift_mean': 25.306640625, 'shift_median': 25.40625, 'share_shift_pos': 1.0} train_s 1065.7
+     1092.80 real        84.60 user        23.41 sys
+          3645718528  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              214822  page reclaims
+              129351  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  27  messages sent
+                  85  messages received
+                   0  signals received
+               10432  voluntary context switches
+              525969  involuntary context switches
+        499452353120  instructions retired
+        252930421914  cycles elapsed
+          4624632496  peak memory footprint

@@ -28,6 +28,7 @@
 | carrier | grader_s1 | Qwen3-0.6B | none | 27.9 share 0.305, 2nd 26.0 0.270, ratio 1.13: UNDEFINED | data/carriers/grader_s1.json |
 | carrier | monitor_s0 | Qwen3-0.6B | none | 27.8 share 1.012, 2nd 26.15 0.003, ratio 310.23: defined | data/carriers/monitor_s0.json |
 | carrier | monitor_s1 | Qwen3-0.6B | none | 27.8 share 1.047, 2nd 26.6 0.000, ratio 2181.46: defined | data/carriers/monitor_s1.json |
+| carrier | mlp8_none_s3 | Qwen3-1.7B | none | 27.15 share 0.369, 2nd 27.9 0.283, ratio 1.30: defined | data/carriers/mlp8_none_s3.json |
 | scout-C | all 7 | row S_tv | random 3-sets (50 draws) | C1 0.986; C2 False; C3 hits 0; C4 share 1.00; holds False | data/summary.json |
 | scout-C | all 7 | row S_logit | random 3-sets (50 draws) | C1 0.980; C2 False; C3 hits 0; C4 share 1.00; holds False | data/summary.json |
 | scout-C | all 7 | row Q_tv | random 3-sets (50 draws) | C1 0.994; C2 False; C3 hits 1; C4 share 0.26; holds False | data/summary.json |
@@ -43,6 +44,7 @@
 | validity | grader_s1 | row C, logit space | none | cell share under 1.0000, max ratio 0.024 | data/measured/grader_s1.npz |
 | validity | monitor_s0 | row C, logit space | none | cell share under 1.0000, max ratio 0.189 | data/measured/monitor_s0.npz |
 | validity | monitor_s1 | row C, logit space | none | cell share under 1.0000, max ratio 0.183 | data/measured/monitor_s1.npz |
+| forward | mlp8_none_s3 | Qwen3-1.7B unseen run | none | carrier 27.15: miss | data/carriers/mlp8_none_s3.json |
 | gate | n/a | J0 block-20 cache none (sha256 vs manifest_raw.json) | none | 0d4c1cea...e2cd8 = match | src1027/data/manifest_raw.json |
 | gate | n/a | J0 block-20 cache probe (sha256 vs manifest_raw.json) | none | fd42d010...fa4e = match | src1027/data/manifest_raw.json |
 | gate | n/a | carrier tail reproduces stored test score mlp8_none_s0 | none | strict [1.0, 1.0], shift_mean [24.33203125, 24.33203125] | data/carriers/mlp8_none_s0.json |

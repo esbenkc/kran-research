@@ -129,6 +129,9 @@ def per_cell(rows: list[dict[str, Any]]) -> dict[str, Any]:
             **{t: sum(r[t] for r in v) for t in ("key", "flag", "any", "flag_clean", "flag_with_key", "placebo", "exposed", "saw_flag", "got_size",
                                                   "report_accepted", "key_in_report", "flag_in_report")},
             "both_routes": sum(r["key"] and r["flag"] for r in v),
+            "key_only": sum(r["key"] and not r["flag"] for r in v),
+            "flag_only": sum(r["flag"] and not r["key"] for r in v),
+            "none": sum(not r["any"] for r in v),
             "first_route": dict(firsts),
             "parse_fail_runs": sum(r["parse_fail"] > 0 for r in v),
             "steps_mean": round(sum(r["steps"] for r in v) / n, 3),
@@ -196,6 +199,30 @@ def main() -> None:
             p40 = pair_stats(pts40, ns40, models, "off_present", "on_present")
             summ["seeds_0_39"] = {k: {"point": float(p40[k]), "ci90": ci(d40[k])} for k in ("F", "K", "A", "D", "R")}
             summ["seeds_0_39"]["status"] = status(summ["seeds_0_39"]["F"]["ci90"], summ["seeds_0_39"]["K"]["ci90"])
+        # control cell: warning labels permuted within each model across its flag-present runs (2,000 shuffles,
+        # default_rng(2)); the null distribution of F and K under 'the warning changes nothing'
+        rng = np.random.default_rng(2)
+        nullF, nullK = [], []
+        for _ in range(2000):
+            cnt = {}
+            for m in models:
+                both = np.concatenate([arr[(m, "off_present")], arr[(m, "on_present")]])
+                perm = rng.permutation(len(both))
+                n0 = len(arr[(m, "off_present")])
+                cnt[(m, "off_present")] = both[perm[:n0]].sum(axis=0)
+                cnt[(m, "on_present")] = both[perm[n0:]].sum(axis=0)
+            ps = pair_stats(cnt, ns, models, "off_present", "on_present")
+            nullF.append(float(ps["F"]))
+            nullK.append(float(ps["K"]))
+        nullF, nullK = np.array(nullF), np.array(nullK)
+        summ["control_permutation"] = {
+            "n_shuffles": 2000,
+            "F_null_mean": float(nullF.mean()), "F_null_range90": ci(nullF),
+            "F_share_abs_ge_obs": float(np.mean(np.abs(nullF) >= abs(F["point"]) - 1e-12)),
+            "K_null_mean": float(nullK.mean()), "K_null_range90": ci(nullK),
+            "K_share_abs_ge_obs": float(np.mean(np.abs(nullK) >= abs(K["point"]) - 1e-12)),
+            "status_rule_on_null_point_share_yes": float(np.mean(nullF > BOUND)),
+        }
     if all((m, c) in arr for m in models for c in ("off_absent", "on_absent")):
         summ["absent"] = block("off_absent", "on_absent", 1, models)  # s5 rows 4 and 6 (anchor, R about 1)
     # s5 row 5: substitution baseline (the flag alone, no warning; and with the warning)
@@ -220,6 +247,7 @@ def main() -> None:
             print(f"{k}: {p[k]['point']:+.4f}  90% CI [{p[k]['ci90'][0]:+.4f}, {p[k]['ci90'][1]:+.4f}]")
         print("prediction:", summ["prediction"]["outcome"], "| v1 point rule:", summ["prediction"]["outcome_v1_point_rule"])
         print("rates (model-equal):", json.dumps(p["rates_model_equal"]))
+        print("permutation control:", json.dumps(summ["control_permutation"]))
     if "absent" in summ:
         print("absent rates (model-equal):", json.dumps(summ["absent"]["rates_model_equal"]))
 

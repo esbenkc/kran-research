@@ -223,7 +223,7 @@ mark {{ background: none; color: #b45309; font-weight: 750; }}
 <body>
 
 <div class="head">{CFG['head'].format(**shown_nums)}</div>
-<div class="sub">{CFG['sub']}</div>
+<div class="sub">{CFG['sub'].format(**shown_nums)}</div>
 <div class="askrow"><div class="model"><svg width="44" height="50" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>Qwen3-1.7B</div><div class="ask">{esc(prompt)}</div></div>
 <div class="note">{note}</div>
 <div class="legend">{legend}</div>

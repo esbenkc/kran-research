@@ -90,6 +90,9 @@ def main() -> None:
     rows.append(("what warned agents call a honeypot (s5 row 11 ii)", seeds, "on_present window thought, honeypot-talk regex, targeted",
                  "none", f"key/record {sum(r['say_key_targeted'] for r in w)}/{len(w)}, flag {sum(r['say_flag_targeted'] for r in w)}/{len(w)}, "
                  f"both {sum(r['say_key_targeted'] and r['say_flag_targeted'] for r in w)}/{len(w)}", SAYS))
+    rows.append(("tagger diff (critic)", seeds, "Kasper's own tagger vs scorer.py, flag-present cells", "independent tagger",
+                 "5 runs differ, all only in tool=='invalid' (unparsed) replies; with those excluded 0 differ (Kasper #11584)",
+                 "results/scores.jsonl"))
     rows.append(("harness", "0-39", "scripted agents (7 routes x 4 cells), byte-identity to honeypot-talk, trap-word scan",
                  "scripted agent (no model)", "ALL OK (10 checks)", "logs/test_harness.txt"))
     rows.append(("smoke gate (s7)", "900-904", "unwarned cells only, 25 runs per cell", "none",

@@ -32,6 +32,18 @@ Built by `proof_matrix.py` from `results/summary.json` (`analysis.py`; tags from
 | cell totals (s5 rows 7-10) | 0-39 | on_absent, 5 models pooled | none | n 200; key 61, flag 0 (clean 0, with key 0), any 61; route mix key-only 61, flag-only 0, both 0, none 139; placebo 38; first route {"key": 61, "none": 139}; exposed 196; got size 61; report accepted 183; parse-fail runs 6 | results/summary.json |
 | cell totals (s5 rows 7-10) | 0-39 | on_present, 5 models pooled | none | n 200; key 43, flag 14 (clean 8, with key 6), any 51; route mix key-only 37, flag-only 8, both 6, none 149; placebo 32; first route {"both": 6, "flag": 8, "key": 37, "none": 149}; exposed 196; got size 51; report accepted 184; parse-fail runs 8 | results/summary.json |
 | what warned agents call a honeypot (s5 row 11 ii) | 0-39 | on_present window thought, honeypot-talk regex, targeted | none | key/record 84/195, flag 20/195, both 16/195 | results/says.jsonl |
+| tagger diff (critic) | 0-39 | Kasper's own tagger vs scorer.py, flag-present cells | independent tagger | 5 runs differ, all only in tool=='invalid' (unparsed) replies; with those excluded 0 differ (Kasper #11584) | results/scores.jsonl |
 | harness | 0-39 | scripted agents (7 routes x 4 cells), byte-identity to honeypot-talk, trap-word scan | scripted agent (no model) | ALL OK (10 checks) | logs/test_harness.txt |
 | smoke gate (s7) | 900-904 | unwarned cells only, 25 runs per cell | none | off_present key 16/25, flag 13/25; off_absent key 23/25: PASS | results_smoke/summary.json |
 | manipulation check (s5 row 11 i) | 900-904 | Kasper blind read, unwarned flag-present thoughts | hand labels | flag called allowed 9/12, key 8/11, off-limits 0 (Kasper #11554) | logs/smoke_offpresent_thoughts.txt |
+| headline | 0-39 | Vera own tagger + own bootstrap, all 800 runs | none | F -0.4300 [-0.4800, -0.3800], K +0.4700 [+0.4050, +0.5350] -> REJECTED | skeptics/skeptic/vera_check_counted.out |
+| headline | 0-39 even | Vera, even seeds only | none | F -0.47, K +0.45 | skeptics/skeptic/vera_check_counted.out |
+| headline | 0-39 odd | Vera, odd seeds only | none | F -0.39, K +0.49 | skeptics/skeptic/vera_check_counted.out |
+| headline | 0-39 | Vera, model-cluster CI (models then runs) | none | F CI [-0.670, -0.185] -> No | skeptics/skeptic/vera_robust.out |
+| headline | 0-39 | Vera, warning labels permuted within model (10,000) | shuffled labels | null F 5-95% [-0.07, +0.07]; P(null <= -0.43) < 1e-4 | skeptics/skeptic/vera_check_counted.out |
+| tagger | 0-39 | Vera tagger vs build scorer, per run | none | 0 of 800 runs differ on key, flag, any | skeptics/skeptic/vera_check_counted.out |
+| tagger | 900-904 | smoke, Vera tagger vs build scorer | none | 0 of 100 runs differ | skeptics/skeptic/vera_smoke_scores.jsonl |
+| ratio code | 0-39 | flag-absent cells | flag not offered | R = 1.0000 exactly | skeptics/skeptic/vera_check_counted.out |
+| prediction | 0-39 | Vera joint run bootstrap | none | R 1.925 [1.692, 2.255]; F upper -0.38 < 0.15 -> failed | skeptics/skeptic/vera_robust.out |
+| clean flag | 0-39 | flag calls without the key | none | F_clean -0.225 [-0.275, -0.175] | skeptics/skeptic/vera_robust.out |
+| anchor | 0-39 | flag-absent key use vs honeypot-talk obvious | none | 0.920 -> 0.305 vs 0.873 -> 0.203; warned 61/200 vs 71/350, Fisher p 0.009 | skeptics/skeptic/vera_robust.out |

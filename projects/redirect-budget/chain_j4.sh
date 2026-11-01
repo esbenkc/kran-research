@@ -10,5 +10,9 @@ for s in 3 4; do
   echo "START sweep s$s $(date +%T)" >> logs/chain_j4.log
   /usr/bin/time -l $PY carriers17.py --run mlp8_none_s$s > logs/carriers17_mlp8_none_s$s.log 2>&1; echo "END sweep s$s rc=$? $(date +%T)" >> logs/chain_j4.log
   [ "$(date +%H%M)" -gt "0900" ] && { echo "STOP after s$s: past 09:00 PST" >> logs/chain_j4.log; break; }
+  if [ "$s" = 3 ]; then  # slot for Drew's video render (Drew #11835): wait for logs/go_s4 or 15 min
+    echo "S3_DONE gap for video render $(date +%T)" >> logs/chain_j4.log
+    for i in $(seq 1 90); do [ -f logs/go_s4 ] && break; sleep 10; done
+  fi
 done
 echo "CHAIN_DONE $(date +%T)" >> logs/chain_j4.log

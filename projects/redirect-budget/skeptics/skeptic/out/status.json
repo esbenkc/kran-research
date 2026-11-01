@@ -1,0 +1,141 @@
+{
+ "carriers": {
+  "grader_s0": {
+   "model": "0.6B",
+   "carrier": "27.9",
+   "top": 0.8428953907674109,
+   "second": "27.8",
+   "second_share": 0.013563210882432128,
+   "defined": true
+  },
+  "grader_s1": {
+   "model": "0.6B",
+   "carrier": "27.9",
+   "top": 0.37838659512595296,
+   "second": "26.0",
+   "second_share": 0.3457073724847914,
+   "defined": false
+  },
+  "monitor_s0": {
+   "model": "0.6B",
+   "carrier": "27.8",
+   "top": 1.0098508738943874,
+   "second": "26.15",
+   "second_share": 0.002610617158446864,
+   "defined": true
+  },
+  "monitor_s1": {
+   "model": "0.6B",
+   "carrier": "27.8",
+   "top": 1.0427686336103559,
+   "second": "26.11",
+   "second_share": 0.00020353315688684273,
+   "defined": true
+  },
+  "mlp8_none_s0": {
+   "model": "1.7B",
+   "carrier": "26.2",
+   "top": 0.4008341272947441,
+   "second": "26.0",
+   "second_share": 0.16066800276311255,
+   "defined": true
+  },
+  "mlp8_none_s1": {
+   "model": "1.7B",
+   "carrier": "27.12",
+   "top": 0.5122951740059756,
+   "second": "24.12",
+   "second_share": 0.4332370568525238,
+   "defined": false
+  },
+  "mlp8_none_s2": {
+   "model": "1.7B",
+   "carrier": "27.15",
+   "top": 0.7299752847162955,
+   "second": "27.12",
+   "second_share": 0.1594920335949167,
+   "defined": true
+  }
+ },
+ "rankings": {
+  "0.6B": {
+   "RANK": [
+    "27.3",
+    "27.1",
+    "27.2"
+   ],
+   "sink": [
+    "26.11",
+    "27.2",
+    "27.12"
+   ],
+   "opQ": [
+    "26.5",
+    "27.13",
+    "26.4"
+   ],
+   "opK": [
+    "27.0",
+    "27.1",
+    "27.2"
+   ],
+   "proxy": [
+    "27.10",
+    "27.2",
+    "27.5"
+   ]
+  },
+  "1.7B": {
+   "RANK": [
+    "25.1",
+    "20.0",
+    "27.1"
+   ],
+   "sink": [
+    "24.8",
+    "27.10",
+    "27.0"
+   ],
+   "opQ": [
+    "26.5",
+    "26.4",
+    "26.2"
+   ],
+   "opK": [
+    "26.5",
+    "26.4",
+    "25.14"
+   ],
+   "proxy": [
+    "27.5",
+    "27.11",
+    "27.1"
+   ]
+  }
+ },
+ "H": {
+  "RANK": 0,
+  "sink": 0,
+  "opQ": 1,
+  "opK": 0,
+  "proxy": 0
+ },
+ "carrier_rank_position": {
+  "grader_s0": 21,
+  "grader_s1": 21,
+  "monitor_s0": 11,
+  "monitor_s1": 11,
+  "mlp8_none_s0": 120,
+  "mlp8_none_s1": 29,
+  "mlp8_none_s2": 50
+ },
+ "n_defined": 5,
+ "P_lastlayer_ge_H": 1.0000000000000002,
+ "P_lastlayer_ge_5": 0,
+ "P_all_ge_H": 1.0,
+ "P_all_ge_5": 2.2324263398526796e-06,
+ "heads_within_5pct_of_3rd": {
+  "0.6B": 3,
+  "1.7B": 7
+ }
+}

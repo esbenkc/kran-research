@@ -1,0 +1,5 @@
+L1 identity 2sin(asin/2)^2 - chord^2 = 0
+L1 chord^2 - rho^2 with c: (c - 1)**2
+L1 chord/rho at rho=1: sqrt(2)  at rho->0: 1
+L1 numeric max(achieved/chord) over 2000 cases: 1.000000 (must be <= 1, ~1 = tight)
+L2 numeric max(TV/tanh(osc/4)) over 20000 random cases: 0.999982; two-group case ratio: 1.000000

@@ -77,6 +77,7 @@ if "summary" in D:  # every number drawn comes from the official results file (a
     assert (NR["on"], NR["off"]) == (700, 300), NR
     BOTTOM = CFG["bottom"][STATUS].format(**VALS)
     CFG["head"] = CFG["head"].format(**VALS)
+    CFG["q"] = CFG["q"].format(**VALS)
     CFG["foot"] = CFG["foot"].format(n=NR["on"] + NR["off"])
 else:
     STATUS, BOTTOM = "smoke", "Answer: [pending counted run]"

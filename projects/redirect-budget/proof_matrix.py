@@ -1,6 +1,7 @@
 """proof-matrix.md from data/summary.json + data/carriers.json. One row per cell, one artifact path per cell.
 
-Rows whose claim this script does not generate (the skeptics' rebuild rows) are kept as they are.
+Rows whose claim this script does not generate, and every row whose artifact is under skeptics/ (the skeptics'
+rebuild rows), are kept as they are.
     python3 proof_matrix.py
 """
 import json
@@ -55,7 +56,9 @@ def main() -> None:
     pm = HERE / "proof-matrix.md"
     if pm.exists():
         for line in pm.read_text().splitlines():
-            if line.startswith("| ") and not line.startswith("| claim") and not line.split("|")[1].strip().startswith(GEN):
+            cells = [c.strip() for c in line.split("|")[1:-1]]
+            if line.startswith("| ") and not line.startswith("| claim") and (
+                    not cells[0].startswith(GEN) or cells[-1].startswith("skeptics/")):
                 keep.append(line)
     body = "".join("| " + " | ".join(r) + " |\n" for r in rows) + "".join(l + "\n" for l in keep)
     pm.write_text("# proof matrix: redirect-budget\n\n" + HDR + body)

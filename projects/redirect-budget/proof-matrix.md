@@ -53,3 +53,8 @@
 | gate | n/a | carrier tail reproduces sink-value P_on/P_off monitor_s0 | none | P_on 0.019854 vs 0.019854; P_off 0.724733 vs 0.724733 | data/carriers/monitor_s0.json |
 | gate | n/a | carrier tail reproduces sink-value P_on/P_off monitor_s1 | none | P_on 0.059673 vs 0.059673; P_off 0.611169 vs 0.611169 | data/carriers/monitor_s1.json |
 | gate | n/a | carrier code path reproduces saved audit (s0 26.2 dev removed) | none | 0.429193 vs 0.4291932 (src1027/data/audit/mlp8_none_s0.json) | data/carriers/mlp8_none_s0.json |
+| headline | all 7 | both models | skeptic rebuild, fp32 own forward | H 0 of 5 defined, places 120/50/21/11 | skeptics/skeptic/out/status.json |
+| carrier | mlp8_none_s1 | Qwen3-1.7B | skeptic rebuild, fp32 own forward | 27.12 0.512 vs 24.12 0.433, ratio 1.18: undefined (same verdict) | skeptics/skeptic/out/r17_mlp8_none_s1.json |
+| carrier | all 0.6B runs | Qwen3-0.6B | skeptic rebuild, fp32 own forward | same argmax + defined verdicts (grader_s1 1.094 undefined) | skeptics/skeptic/out/r06.json |
+| lemma | n/a | both models | PGD known-answer | max achieved/bound Q 0.677, K 0.806 (1,024 cells) | skeptics/skeptic/out/pgd2.json |
+| null | all 7 | both models | random heads (100,000 draws) | carriers' mean place share 0.582, P(<=) 0.69 | skeptics/skeptic/out/claims.json |

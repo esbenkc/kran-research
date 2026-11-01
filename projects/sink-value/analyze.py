@@ -168,12 +168,29 @@ for c in COPIES:
 if "R6" in S:
     for c, r in S["R6"].items():
         rows.append(("reading", c.split("_")[1], f"{c} fp32 cpu R6 first-order split at the answer token", "none",
-                     f"KV {r['KV_sum']:.3f} = V {r['V_sum']:.3f} + K token 0 {r['K0_sum']:.3f} + K rest {r['Krest_sum']:.3f}",
+                     f"KV {r['KV_sum']:.3f} = V {r['V_sum']:.3f} + K token 0 {r['K0_sum']:.3f} + K token 1 {r['K1_sum']:.3f} "
+                     f"+ K token 2 {r['K2_sum']:.3f} + K tokens 3-33 {r['K3plus_sum']:.3f}",
                      "data/r6_split.json"))
+ATT = HERE / "data/attn_onoff.json"
+FZ = json.load(open(HERE / "data/frozen.json"))
+if ATT.exists():
+    att = json.load(open(ATT))
+    S["carrying_head_attention"] = {}
+    for c, (blk, h) in {"grader_s0": (27, 9), "grader_s1": (27, 9), "monitor_s0": (27, 8), "monitor_s1": (27, 8)}.items():
+        sw = "grader" if c.startswith("grader") else "monitor"
+        base0 = FZ["switches"][sw]["base"][str(blk)]["mass_0_2_answer"][h]
+        a = att[c][str(blk)]
+        e = {"head": f"{blk}.{h}", "base_answer_mass_0_2": base0,
+             **{f"{cond}_{t}": a[cond][f"answer_{t}"][h] for cond in ("on", "off") for t in ("t0", "t1", "t2")}}
+        S["carrying_head_attention"][c] = e
+        rows.append(("carrying head", c.split("_")[1], f"{c} head {blk}.{h} answer-token attention, trained copy, fp32 cpu",
+                     "untrained base", f"base 0-2 {base0:.3f}; cue on t0 {e['on_t0']:.3f} t1 {e['on_t1']:.3f} t2 {e['on_t2']:.3f}; "
+                     f"cue off t0 {e['off_t0']:.3f} t1 {e['off_t1']:.3f} t2 {e['off_t2']:.3f}", "data/attn_onoff.json"))
+    json.dump(S, open(HERE / "data/summary.json", "w"), indent=1)
 for r in rows:
     assert len(r) == 6 and all("|" not in str(x) for x in r), r
     assert (HERE / r[5]).exists(), r[5]
-gen_claims = {"gate G0", "headline", "device row", "sink heads", "reading"}
+gen_claims = {"gate G0", "headline", "device row", "sink heads", "reading", "carrying head"}
 pm = HERE / "proof-matrix.md"
 keep = []
 if pm.exists():

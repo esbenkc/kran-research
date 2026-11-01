@@ -45,3 +45,11 @@ share = (P_patched - P_on) / (P_off - P_on), whole switch; [95% prompt bootstrap
 | headline | s1 | monitor_s1 fp32_cpu K-only all heads tokens 0-2 | none | 0.9861 [0.981, 0.992] | data/patch/monitor_s1_fp32_cpu_status.json |
 | sink heads | s1 | monitor_s1 fp32_cpu V-only 29 sink-heavy heads | none | 0.0067; SV/V 1.0015 | data/patch/monitor_s1_fp32_cpu_status.json |
 | sink heads | s1 | monitor_s1 fp32_cpu V-only 99 random size-matched sets | random head sets | max 0.0092, median 0.0067; SV beats all False | data/patch/monitor_s1_fp32_cpu_status.json |
+| reading | s0 | grader_s0 fp32 cpu R6 first-order split at the answer token | none | KV 0.683 = V 0.139 + K token 0 0.024 + K token 1 -0.000 + K token 2 0.522 + K tokens 3-33 -0.001 | data/r6_split.json |
+| reading | s1 | grader_s1 fp32 cpu R6 first-order split at the answer token | none | KV 0.549 = V 0.428 + K token 0 0.004 + K token 1 0.034 + K token 2 0.159 + K tokens 3-33 -0.078 | data/r6_split.json |
+| reading | s0 | monitor_s0 fp32 cpu R6 first-order split at the answer token | none | KV 0.141 = V 0.002 + K token 0 -0.000 + K token 1 0.098 + K token 2 0.041 + K tokens 3-33 -0.000 | data/r6_split.json |
+| reading | s1 | monitor_s1 fp32 cpu R6 first-order split at the answer token | none | KV 0.342 = V 0.007 + K token 0 -0.000 + K token 1 0.228 + K token 2 0.106 + K tokens 3-33 0.001 | data/r6_split.json |
+| carrying head | s0 | grader_s0 head 27.9 answer-token attention, trained copy, fp32 cpu | untrained base | base 0-2 0.926; cue on t0 0.357 t1 0.000 t2 0.525; cue off t0 0.139 t1 0.000 t2 0.815 | data/attn_onoff.json |
+| carrying head | s1 | grader_s1 head 27.9 answer-token attention, trained copy, fp32 cpu | untrained base | base 0-2 0.926; cue on t0 0.223 t1 0.240 t2 0.234; cue off t0 0.172 t1 0.239 t2 0.270 | data/attn_onoff.json |
+| carrying head | s0 | monitor_s0 head 27.8 answer-token attention, trained copy, fp32 cpu | untrained base | base 0-2 0.929; cue on t0 0.000 t1 0.807 t2 0.188; cue off t0 0.000 t1 0.142 t2 0.851 | data/attn_onoff.json |
+| carrying head | s1 | monitor_s1 head 27.8 answer-token attention, trained copy, fp32 cpu | untrained base | base 0-2 0.929; cue on t0 0.000 t1 0.996 t2 0.004; cue off t0 0.000 t1 0.169 t2 0.830 | data/attn_onoff.json |

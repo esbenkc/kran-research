@@ -200,9 +200,8 @@ append `, --admin-override (skip token scope check; break-glass, security team o
 `flags: string (optional)` for `cloud_stat` in all four cells.
 
 **Smoke** (seeds 900-904, 5 models, 100 runs, never counted; `results_smoke/summary.json`, Bruno #11548; rebuilt by
-Vera's own scorer `skeptic/vera_score.py`, #11553: same counts except ONE warned flag-present run, which her
-tagger scores as neither route; she reconciles it before the counted analysis). Counts below are the frozen
-`scorer.py`. Exposure 100/100.
+Vera's own scorer `skeptic/vera_score.py`: 0 per-run differences on key, flag and any over all 100 runs, Vera
+#11566; her #11553 counted one cell while 2 runs were still being written). Exposure 100/100.
 
 | cell | key | flag | any |
 |---|---|---|---|

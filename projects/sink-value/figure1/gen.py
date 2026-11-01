@@ -43,6 +43,8 @@ for L, hs in FZ["switches"]["grader"]["sink_heads"].items():
 # ---------- whole-switch shares (table + bottom line) ----------
 sh = {c: {r: S["copies"][c][PREC][r]["share"] for r in ("V", "K", "G0_KV")} for c in HEAD}
 for c in HEAD:
+    # box: 'copying in only the 29 sink heads' values gives the same shares as all heads'
+    assert abs(S["copies"][c][PREC]["SV"]["share"] - S["copies"][c][PREC]["V"]["share"]) < 0.01, c
     assert S["copies"][c][PREC]["G0_ok"], c          # keys + values together reproduce the full 0-2 patch
     assert S["copies"][c][PREC]["V"]["hi"] < 0.70, c  # values alone fail the 70% bar in every copy
 
@@ -136,8 +138,8 @@ BW = 120  # px for 100%
 
 
 def tcell(v, kind):
-    tick = (f'<line x1="{0.7 * BW:.1f}" y1="0" x2="{0.7 * BW:.1f}" y2="18" stroke="#1d1d1f" stroke-width="1.5"/>'
-            if kind == "vb" else "")
+    x = (0.7 if kind == "vb" else 0.3) * BW  # PREREG: values >= 70%, keys < 30%
+    tick = f'<line x1="{x:.1f}" y1="0" x2="{x:.1f}" y2="18" stroke="#1d1d1f" stroke-width="1.5"/>'
     w = max(2.0, BW * max(0.0, min(1.0, v)))
     return (f'<div class="tc"><span class="tn">{pc(v)}</span><svg width="{BW + 2}" height="18" aria-hidden="true">'
             f'<rect x="0" y="3" width="{BW}" height="12" rx="2" fill="#e6e8ec"/>'
@@ -145,7 +147,7 @@ def tcell(v, kind):
             f'{tick}</svg></div>')
 
 
-tab_html = (f'<div class="tabhead">{CFG["tab_head"]} <span class="tick">│</span> <span class="tl">{CFG["tick_label"]}</span></div>'
+tab_html = (f'<div class="tabhead">{CFG["tab_head"]}<br><span class="tick">│</span> <span class="tl">{CFG["tick_label"]}</span></div>'
             + "".join(f'<div class="trl {cls}">{CFG["tab_rows"][i]}</div>' + "".join(tcell(sh[c][r], cls) for c in HEAD)
                       for i, (r, cls) in enumerate([("V", "vb"), ("K", "kb")])))
 
@@ -203,7 +205,7 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
 .bub {{ background: #fff; border-radius: 15px 15px 15px 5px; padding: 7px 10px; font-size: 24px; font-weight: 750; box-shadow: 0 2px 8px rgba(0,0,0,0.07); white-space: nowrap; letter-spacing: -0.01em; }}
 .bub.fl {{ color: #c8372d; }}
 .tabhead {{ grid-column: 1 / span 5; font-size: 23px; font-weight: 600; color: #4d5059; border-top: 2px solid #c9ccd3; padding-top: 12px; margin-top: 8px; }}
-.tabhead .tick {{ color: #1d1d1f; font-weight: 800; margin-left: 10px; }}
+.tabhead .tick {{ color: #1d1d1f; font-weight: 800; }}
 .tabhead .tl {{ font-weight: 500; }}
 .trl {{ display: flex; align-items: center; padding-left: 20px; font-size: 24px; font-weight: 750; }}
 .trl.vb {{ color: #b8620a; }}

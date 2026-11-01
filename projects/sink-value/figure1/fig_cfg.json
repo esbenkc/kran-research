@@ -1,12 +1,12 @@
 {
  "prec": "bf16_cpu",
  "idx": 74,
- "head": "In 3 of 4 training runs, the cue changes where one head looks, not what the heads copy",
- "sub": "Reward alone taught the model to flatter less on the grading build (grader switch) or with a probe attached (monitor switch).",
+ "head": "In 3 of 4 training runs, the cue changes where the heads look, not what they copy",
+ "sub": "Reward alone taught the model to flatter less on the software build that grades it (grader switch) or with a probe attached (monitor switch).",
  "kv_title": "Each attention head in the trained layers",
  "kv_key": "<b class=\"kc\">key</b>: where it looks",
  "kv_val": "<b class=\"vc\">value</b>: what it copies",
- "kv_sink": "Before training, {n_sink} of {n_heads} heads looked mostly at the first token: an attention sink.",
+ "kv_sink": "Before training, {n_sink} of {n_heads} heads looked mostly at the first token: an attention sink. Copying in only their values gives the same shares as all heads below.",
  "grid_label": "The model’s most likely first word on this prompt:",
  "cols": [
   "Grader switch<span>run 1</span>",
@@ -20,8 +20,8 @@
   "only the <b class=\"vc\">values</b>",
   "only the <b class=\"kc\">keys</b>"
  ],
- "swap_head": "Cue, but at the first 3 tokens we copy in, from the no-cue run:",
- "tab_head": "Share of the switch moved, all 200 test prompts",
+ "swap_head": "Cue on, but we copy in the no-cue run’s numbers at the first 3 tokens:",
+ "tab_head": "Share of the switch undone (100% = answers as with no cue), all 200 test prompts",
  "tab_rows": [
   "only the values",
   "only the keys"
@@ -38,7 +38,7 @@
   "v_m1": "0.5%",
   "v0_g1": "42%"
  },
- "tick_label": "we predicted values would reach 70%",
- "note": "Both switches read the cue (grading build or probe) at the 3 yellow tokens that start every chat.",
+ "tick_label": "our prediction: values at least 70%, keys under 30%",
+ "note": "The cue is not in the text: the grading build or the probe changes the model’s internal numbers a little. Both switches read that change at the 3 yellow tokens that start every chat.",
  "q": "Do sink-heavy attention heads carry the grader and monitor switches in the values they copy?"
 }

@@ -223,7 +223,7 @@ body {{ width: 1200px; padding: 34px 40px 34px; font-family: "Inter", system-ui,
 <body>
 
 <div class="head">{head}</div>
-<div class="sub">{CFG['sub']}</div>
+<div class="sub">{CFG['sub'].format(**nums)}</div>
 <div class="top">
  <div>
   <div class="model"><svg width="44" height="50" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>Qwen3-0.6B</div>

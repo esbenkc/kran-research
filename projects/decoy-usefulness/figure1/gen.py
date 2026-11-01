@@ -266,7 +266,7 @@ HTML = f"""<!doctype html>
 </head>
 <body>
 <div class="head">{HEAD}</div>
-<div class="q">{CFG['q']}</div>
+<div class="q">{CFG['q'].format(**{c: N[c] for c in N}, NV=PV[0])}</div>
 <div class="sub">{ROBOT}<div>{SUB}</div></div>
 {BODY}
 {f'<div class="bottom">{BOTTOM}</div>' if BOTTOM else ''}

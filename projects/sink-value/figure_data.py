@@ -47,7 +47,7 @@ def mock_rows():
                         "v0": 0.05 if sw == "grader" else 0.0, "v12": v * 0.9, "k0": 0.02, "k12": k * 0.8,
                         "kv0": 0.09 if sw == "grader" else 0.0, "kv12": kv * 0.9,
                         "heads": [{"id": f"{b}.{h}", "name": f"head {h}, {'last layer' if b == 27 else 'layer before last'}", "k": (k * 0.9 if (b, h) == (27, 9) else rnd.gauss(0, 0.01)),
-                                   "v": rnd.gauss(0, 0.01), "sink": (b, h) not in ((26, 9), (27, 7), (27, 13)), "mass": 0.7}
+                                   "v": rnd.gauss(0, 0.01), "sink": (b, h) not in ((26, 9), (27, 7), (27, 13)), "attn_first3_later_untrained": 0.7}
                                   for b in (26, 27) for h in range(16)]})
     return out
 
@@ -93,7 +93,7 @@ def top_label(sw, hs, v0=None):
         return {"id": h["id"], "x": m, "v0": v0, "lines": lines}
     b, i = (int(t) for t in h["id"].split("."))
     rest0 = json.loads(HEAD_ATT.read_text())[f"base_{sw}"]["on"][b - 26][i][0]
-    return {"id": h["id"], "x": m, "rest0": rest0,
+    return {"id": h["id"], "x": m, "attn_first_token_at_answer_untrained": rest0,
             "lines": [f"{h['name']}, {'keys' if h['k'] >= h['v'] else 'values'}", f"untrained: {round(rest0 * 100)}% on the first token"]}
 
 
@@ -103,7 +103,8 @@ def heads(sw, sink, rd):
         return None
     base = FROZEN["switches"][sw]["base"]
     return [{"id": f"{b}.{h}", "name": f"head {h}, {'last layer' if b == 27 else 'layer before last'}", "k": rd[f"R2_K_{b}_{h:02d}"]["share"], "v": rd[f"R2_V_{b}_{h:02d}"]["share"],
-             "sink": h in sink[str(b)], "mass": base[str(b)]["mass_0_2"][h]} for b in (26, 27) for h in range(16)]
+             "sink": h in sink[str(b)],
+             "attn_first3_later_untrained": base[str(b)]["mass_0_2"][h]} for b in (26, 27) for h in range(16)]
 
 
 def rows():
@@ -136,18 +137,30 @@ def rows():
 
 def build(variant=None, mock=False):
     d = {"title": "PLACEHOLDER NUMBERS: layout test" if mock else
-         "In three of the four runs, the cue changes where the heads look, not what they copy",
-         "subtitle": "Share of the switch moved when we copy in, at the first three tokens, the values or the keys of "
-                     "the attention heads in the two trained layers, from the setting where the model flatters more. "
-                     "Qwen3-0.6B, 200 test prompts per run.",
+         "In three of the four runs, the cue changes where one head looks, not what the heads copy",
+         "subtitle": "Share of the switch moved when we copy in the values or the keys of the attention heads in the two "
+                     "trained layers, at the first three tokens. We copy from the setting where the model flatters more "
+                     "(the serving build of its software, or no probe attached) into the one where it flatters less (the "
+                     "grading build, or a probe attached). Qwen3-0.6B, 200 test prompts per run.",
          "xlabel": "Share of the switch moved",
          "bars": [{"x": 0.70, "label": "values: at least 70%"}, {"x": 0.30, "label": "keys: under 30%"}],
          "panels": {"left": "Which path, all 32 heads", "right": "Which head, one at a time",
                     "right_x": "Share moved by one head"},
          "groups": HEADS, "rows": mock_rows() if mock else rows(), "legend": LEGEND,
-         "note": "16-bit rows use the model's own arithmetic; 32-bit rows run the same weights in 32-bit. The one-head "
-                 "panel runs in 16-bit on the Apple GPU. 29 of the 32 heads are sink-heavy, so copying values in those "
-                 "heads alone moved the same share as in all heads, within one point."}
+         "note": "16-bit is the precision the switches trained in; the 32-bit rows rerun the same weights to check that "
+                 "rounding does not decide the answer. In the one-head panel, 16-bit rows ran on the Apple GPU and 32-bit "
+                 "rows on the CPU; one head can overshoot the gap between the settings (head 8 in monitor run 2: 104%). 'Untrained' is that head's "
+                 "attention at the answer word before training. 29 of the 32 heads are sink-heavy, so copying values in "
+                 "those heads alone moved the same share as in all heads, within one point.",
+         "fields": {"kv/v/k/sv/rv": "share of the switch moved (CPU status rows, data/patch/*_status.json)",
+                    "*_ci": "95% prompt bootstrap, 1,000 resamples, rng(5)",
+                    "heads[].k/v": "share moved by keys/values in that one query head (R2: data/patch/*_bf16_mps_reading.json, "
+                    "*_fp32_cpu_reading.json)",
+                    "heads[].attn_first3_later_untrained": "the frozen sink-heavy measure: untrained mean attention on "
+                    "tokens 0-2 over query positions 3-33 (data/frozen.json base mass_0_2)",
+                    "top.attn_first_token_at_answer_untrained": "untrained attention of the answer token on token 0 "
+                    "(research_checks/head_attention.json base_<switch> on [block-26][head][0]); the label's percentage"},
+         }
     if variant:
         d["variant"] = variant
     return d

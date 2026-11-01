@@ -890,7 +890,9 @@
    "point": 2.7636200522570213
   },
   "R_threshold": 0.5,
-  "outcome": "failed"
+  "R_undefined": false,
+  "outcome": "failed",
+  "outcome_v1_point_rule": "failed"
  },
  "present": {
   "A": {
@@ -1168,6 +1170,7 @@
   }
  },
  "status": "REJECTED",
+ "status_v1_edge_0055": "REJECTED",
  "substitution": {
   "off": {
    "any_absent": 0.9199999999999999,

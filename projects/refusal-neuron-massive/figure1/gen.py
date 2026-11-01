@@ -86,7 +86,8 @@ assert (r_keep, r_rem) == tuple(CFG["expect_pct"]), (r_keep, r_rem)
 meta = json.load(open(os.path.join(ROOT, "data", "runs", "meta.json")))
 len_share = round(100 * meta["norm_wM"] / meta["norm_w"])
 assert len_share == CFG["expect_len_share"], len_share
-note = CFG["note"].format(r_keep=r_keep, r_rem=r_rem)
+note = CFG.get("note", "").format(r_keep=r_keep, r_rem=r_rem)
+sub = CFG["sub"].format(r_keep=r_keep, r_rem=r_rem)
 legend = CFG["legend"].format(len_share=len_share)
 
 BAR_W = CFG.get("bar_w", 220)
@@ -134,7 +135,7 @@ Sources (kran-research, branch swarm/theory-1031-refusal-neuron, projects/refusa
   labels            string refusal label + D5 nonsense rule (analyze.py; threshold {THR:.3f} nats/token) and
                     Vera's judge (skeptic/vera_judge_test.json); per arm (arm, string, judge):
                     {checked}
-  note numbers      data/results.json status_test_harmful: r_keep={st['r_keep']:.4f} (shown {r_keep}%),
+  sub/note numbers  data/results.json status_test_harmful: r_keep={st['r_keep']:.4f} (shown {r_keep}%),
                     r_rem={st['r_rem']:.4f} (shown {r_rem}%)
   slice width       data/runs/meta.json norm_wM/norm_w = {meta['norm_wM']:.4f}/{meta['norm_w']:.4f} = {len_share}% of the push length"""
 
@@ -175,20 +176,20 @@ mark {{ background: none; color: #c8372d; font-weight: 750; }}
 .verdict.red {{ color: #c8372d; }}
 .sub {{ font-size: 25px; color: #6b6f78; margin-top: 8px; }}
 .note {{ font-size: 28px; line-height: 1.3; margin-top: 20px; color: #3a3d45; }}
-.note b {{ color: #c8372d; font-weight: 800; }}
+.note b, .sub b {{ color: #c8372d; font-weight: 800; }}
 .foot {{ font-size: 20px; color: #8a8f99; margin-top: 14px; }}
 </style>
 </head>
 <body>
 
 <div class="head">{CFG['head']}</div>
-<div class="sub">{CFG['sub']}</div>
+<div class="sub">{sub}</div>
 <div class="askrow"><div class="model"><svg width="44" height="50" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>Qwen3-1.7B</div><div class="ask">{esc(prompt)}</div></div>
 <div class="legend">{legend}</div>
 <div class="cards">
 {chr(10).join(cards)}
 </div>
-<div class="note">{note}</div>
+{f'<div class="note">{note}</div>' if note else ''}
 <div class="foot">{CFG['foot']}</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="robot">
@@ -208,4 +209,4 @@ mark {{ background: none; color: #c8372d; font-weight: 750; }}
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 open(OUT, "w").write(doc)
 print("wrote", os.path.normpath(OUT))
-print("note:", note)
+print("sub:", sub)

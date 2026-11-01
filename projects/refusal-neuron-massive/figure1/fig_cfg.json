@@ -9,7 +9,7 @@
  "bar_w": 184,
  "title_px": 25,
  "title_min_h": 62,
- "head": "The neuron that switches off refusal in Qwen3-1.7B does not work through its 3&nbsp;outlier coordinates",
+ "head": "Qwen3-1.7B&rsquo;s jailbreak neuron works through ordinary coordinates, not its 3&nbsp;giant ones",
  "legend": "<span>Bars: the neuron&rsquo;s push on 2,048 coordinates</span> <span><span class=\"k\" style=\"background:#c8372d\"></span> <b>3 outliers</b></span> <span><span class=\"k\" style=\"background:#5b6b8c\"></span> <b>the other 2,045</b></span>",
  "cards": [
   {
@@ -77,7 +77,6 @@
    ]
   }
  },
- "sub": "Does it act through them? Its push, split into the outlier part and the rest, on one real request:",
- "note": "Over 200 harmful requests, the push without the outliers keeps <b>{r_rem}%</b> of the neuron&rsquo;s effect. The push on the outliers alone keeps <b>{r_keep}%</b>.",
+ "sub": "Over 200 harmful requests, the neuron&rsquo;s push on the 3 outlier coordinates gives <b>{r_keep}%</b> of its effect; the rest of the push gives <b>{r_rem}%</b>. One real request:",
  "foot": "Source: Qwen3-1.7B, layer 13, 200 held-out harmful requests, Oct 31 2026 &middot; blog.kran.ai/lab"
 }

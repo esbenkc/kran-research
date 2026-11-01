@@ -35,6 +35,7 @@ def _attn(module, query, key, value, attention_mask, dropout=0.0, scaling=None, 
     mode = CTRL["mode"]
     if mode == "capture":
         CAP[li] = (key.detach().clone(), value.detach().clone())
+        CAP[f"q{li}"] = query.detach().clone()
     if mode == "attn":   # record attention weights (fp32 math) from every query position to every key
         n_rep = module.num_key_value_groups
         k = repeat_kv(key, n_rep).float()

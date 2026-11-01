@@ -1,62 +1,57 @@
-"""Main-figure data from results/scores.jsonl. python figure_data.py [out.json ...]
+"""Build the main figure's data.json for the blog (assets/figures/warning-override/data.json).
 
-Default outs: results/figure_data.json and ../../../blog.kran.ai/assets/figures/warning-override/data.json (same content).
-Per cell (warning off/on x override absent/present): model-equal share of runs that used the key, the flag, either
-(any out-of-scope), and the route mix (key only / flag only / both / none), each with a 90% bootstrap CI
-(runs resampled within model x cell, B = 10,000, default_rng(3)); plus each model's own shares (the dots).
+Reads results/summary.json (written by analysis.py) only. Shares are model-equal means over the 5 agents,
+the unit of the frozen status rule (PREREG s3). Run: python3 figure_data.py [out_path]
 """
-from __future__ import annotations
-
 import json
 import sys
-from collections import defaultdict
 from pathlib import Path
 
-import numpy as np
-
-ROOT = Path(__file__).resolve().parent
-NAMES = {"claude-haiku-4-5-20251001": "Claude Haiku 4.5", "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite",
-         "gemini-3.5-flash-lite": "Gemini 3.5 Flash-Lite", "gpt-5.4-mini": "GPT-5.4 mini", "gpt-5.4-nano": "GPT-5.4 nano"}
-CELLS = ("off_absent", "on_absent", "off_present", "on_present")
-TAGS = ("key", "flag", "any", "key_only", "flag_only", "both", "none")
-
-
-def tags(r: dict) -> list[int]:
-    return [int(r["key"]), int(r["flag"]), int(r["any"]), int(r["key"] and not r["flag"]),
-            int(r["flag"] and not r["key"]), int(r["key"] and r["flag"]), int(not r["any"])]
+HERE = Path(__file__).parent
+S = json.loads((HERE / "results/summary.json").read_text())
+MODELS = S["models"]
+NAMES = {
+    "claude-haiku-4-5-20251001": "Claude Haiku 4.5",
+    "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite",
+    "gemini-3.5-flash-lite": "Gemini 3.5 Flash-Lite",
+    "gpt-5.4-mini": "GPT-5.4 mini",
+    "gpt-5.4-nano": "GPT-5.4 nano",
+}
 
 
-def main() -> None:
-    outs = [Path(p) for p in sys.argv[1:]] or [ROOT / "results" / "figure_data.json",
-                                                ROOT.parents[2] / "blog.kran.ai" / "assets" / "figures" / "warning-override" / "data.json"]
-    rows = [json.loads(ln) for ln in (ROOT / "results" / "scores.jsonl").read_text().splitlines()]
-    by: dict[tuple[str, str], list[list[int]]] = defaultdict(list)
-    for r in sorted(rows, key=lambda r: r["seed"]):
-        by[(r["model"], r["cell"])].append(tags(r))
-    models = sorted({m for m, _ in by})
-    rng = np.random.default_rng(3)
-    out = {"source": "kran-research projects/warning-override results/scores.jsonl (figure_data.py)", "n_per_cell_per_model": 40,
-           "models": [NAMES[m] for m in models], "cells": {}}
-    for c in CELLS:
-        arrs = [np.array(by[(m, c)]) for m in models]
-        point = np.mean([a.mean(axis=0) for a in arrs], axis=0)
-        draws = np.mean([a[rng.integers(0, len(a), size=(10_000, len(a)))].mean(axis=1) for a in arrs], axis=0)
-        lo, hi = np.percentile(draws, [5, 95], axis=0)
-        out["cells"][c] = {
-            "warning": c.startswith("on"), "override_offered": c.endswith("present"),
-            **{t: {"share": round(float(point[i]), 4), "ci90": [round(float(lo[i]), 4), round(float(hi[i]), 4)]}
-               for i, t in enumerate(TAGS)},
-            "per_model": {NAMES[m]: {t: round(float(a.mean(axis=0)[i]), 4) for i, t in enumerate(TAGS)} for m, a in zip(models, arrs)},
-        }
-    text = json.dumps(out, indent=1) + "\n"
-    for o in outs:
-        o.parent.mkdir(parents=True, exist_ok=True)
-        o.write_text(text)
-        print("wrote", o)
-    for c in CELLS:
-        v = out["cells"][c]
-        print(c, {t: v[t]["share"] for t in TAGS})
+def cell(warn, flag):
+    name = f"{'on' if warn else 'off'}_{'present' if flag else 'absent'}"
+    rows = [S["cells"][f"{m}|{name}"] for m in MODELS]
+    mean = lambda k: sum(r[k] / r["n"] for r in rows) / len(rows)
+    for r in rows:  # the four route groups partition every run
+        assert r["key_only"] + r["both_routes"] + r["flag_only"] + r["none"] == r["n"], (name, r)
+    return {
+        "flag": flag,
+        "warn": warn,
+        "n": sum(r["n"] for r in rows),
+        "key_only": round(mean("key_only"), 4),
+        "both": round(mean("both_routes"), 4),
+        "flag_only": round(mean("flag_only"), 4),
+        "agents": [
+            {"model": NAMES[m], "any": round(r["any"] / r["n"], 4), "key": r["key"], "flag": r["flag"], "n": r["n"]}
+            for m, r in zip(MODELS, rows)
+        ],
+    }
 
 
-if __name__ == "__main__":
-    main()
+P = S["present"]
+data = {
+    "title": "The warning cut both routes: with the override flag on offer, flag use fell from 50% to 7%",
+    "subtitle": "5 AI agents, 40 runs each per group (800 runs). Bar = share of runs, the 5 agents weighted equally.",
+    "b": S["bound"],
+    "cells": [cell(w, f) for f in (False, True) for w in (False, True)],
+    "F": {k: round(v, 4) for k, v in zip(("point", "lo", "hi"), [P["F"]["point"], *P["F"]["ci90"]])},
+    "K": {k: round(-v, 4) for k, v in zip(("point", "hi", "lo"), [P["K"]["point"], *P["K"]["ci90"]])},
+    "note": "",
+}
+out = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "figures/warning-override/data.json"
+out.parent.mkdir(parents=True, exist_ok=True)
+out.write_text(json.dumps(data, indent=1) + "\n")
+for c in data["cells"]:
+    print(c["flag"], c["warn"], c["key_only"], c["both"], c["flag_only"], round(c["key_only"] + c["both"] + c["flag_only"], 4))
+print("F", data["F"], "K", data["K"])

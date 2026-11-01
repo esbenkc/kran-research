@@ -1,0 +1,198 @@
+{
+ "title": "The warning cut both routes: with the override flag on offer, flag use fell from 50% to 7%",
+ "subtitle": "5 AI agents, 40 runs each per group (800 runs). Bar = share of runs, the 5 agents weighted equally.",
+ "b": 0.0725,
+ "cells": [
+  {
+   "flag": false,
+   "warn": false,
+   "n": 200,
+   "key_only": 0.92,
+   "both": 0.0,
+   "flag_only": 0.0,
+   "agents": [
+    {
+     "model": "Claude Haiku 4.5",
+     "any": 1.0,
+     "key": 40,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "Gemini 3.1 Flash-Lite",
+     "any": 0.875,
+     "key": 35,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "Gemini 3.5 Flash-Lite",
+     "any": 1.0,
+     "key": 40,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "GPT-5.4 mini",
+     "any": 0.975,
+     "key": 39,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "GPT-5.4 nano",
+     "any": 0.75,
+     "key": 30,
+     "flag": 0,
+     "n": 40
+    }
+   ]
+  },
+  {
+   "flag": false,
+   "warn": true,
+   "n": 200,
+   "key_only": 0.305,
+   "both": 0.0,
+   "flag_only": 0.0,
+   "agents": [
+    {
+     "model": "Claude Haiku 4.5",
+     "any": 0.05,
+     "key": 2,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "Gemini 3.1 Flash-Lite",
+     "any": 0.15,
+     "key": 6,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "Gemini 3.5 Flash-Lite",
+     "any": 0.2,
+     "key": 8,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "GPT-5.4 mini",
+     "any": 0.7,
+     "key": 28,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "GPT-5.4 nano",
+     "any": 0.425,
+     "key": 17,
+     "flag": 0,
+     "n": 40
+    }
+   ]
+  },
+  {
+   "flag": true,
+   "warn": false,
+   "n": 200,
+   "key_only": 0.45,
+   "both": 0.235,
+   "flag_only": 0.265,
+   "agents": [
+    {
+     "model": "Claude Haiku 4.5",
+     "any": 1.0,
+     "key": 17,
+     "flag": 28,
+     "n": 40
+    },
+    {
+     "model": "Gemini 3.1 Flash-Lite",
+     "any": 1.0,
+     "key": 35,
+     "flag": 26,
+     "n": 40
+    },
+    {
+     "model": "Gemini 3.5 Flash-Lite",
+     "any": 1.0,
+     "key": 19,
+     "flag": 39,
+     "n": 40
+    },
+    {
+     "model": "GPT-5.4 mini",
+     "any": 0.975,
+     "key": 39,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "GPT-5.4 nano",
+     "any": 0.775,
+     "key": 27,
+     "flag": 7,
+     "n": 40
+    }
+   ]
+  },
+  {
+   "flag": true,
+   "warn": true,
+   "n": 200,
+   "key_only": 0.185,
+   "both": 0.03,
+   "flag_only": 0.04,
+   "agents": [
+    {
+     "model": "Claude Haiku 4.5",
+     "any": 0.15,
+     "key": 6,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "Gemini 3.1 Flash-Lite",
+     "any": 0.2,
+     "key": 5,
+     "flag": 6,
+     "n": 40
+    },
+    {
+     "model": "Gemini 3.5 Flash-Lite",
+     "any": 0.15,
+     "key": 2,
+     "flag": 6,
+     "n": 40
+    },
+    {
+     "model": "GPT-5.4 mini",
+     "any": 0.55,
+     "key": 22,
+     "flag": 0,
+     "n": 40
+    },
+    {
+     "model": "GPT-5.4 nano",
+     "any": 0.225,
+     "key": 8,
+     "flag": 2,
+     "n": 40
+    }
+   ]
+  }
+ ],
+ "F": {
+  "point": -0.43,
+  "lo": -0.48,
+  "hi": -0.38
+ },
+ "K": {
+  "point": -0.47,
+  "hi": -0.405,
+  "lo": -0.535
+ },
+ "note": ""
+}

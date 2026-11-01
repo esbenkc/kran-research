@@ -69,3 +69,24 @@ READ TWICE: "After fixing the bound's top 3, we trained one more Qwen3-1.7B run.
 READ TWICE: "Our prediction, written down before the runs, used a simpler formula" -> REWRITE: "Our pre-registered prediction used a simpler formula" (the seven saved runs are older than the prediction; only the extra run came after it).
 
 Verdict: PASS. 0 LOST left of 8; 9 of 9 READ TWICE fixed or not blocking; 2 new minor nits above.
+
+## Round 3: live page after merge (b95c3f3, merged 2026-11-01 08:02 PST)
+
+Seven commits landed after my round-2 pass (fb3b9e6..b95c3f3), including the fourth extra-run result (head 27.1, third by the bound: a hit). I re-read https://blog.kran.ai/redirect-budget/ (200). The round-1 fixes all survive. New items:
+
+LOST: "For auditors, no per-head score we tried caught more than one of the five clear runs." The paragraph before now says "Across all nine runs, six or seven had a clear hijacked head", and "Should you trust" says "five hijacked heads". "the five clear runs" is a stale count. -> REWRITE: "For auditors, no per-head score we tried caught more than one clear run."
+
+READ TWICE: TLDR "In two runs we trained afterwards, the top 3 held one. Three random last-layer heads would do that about a third of the time." ("do that" = at least one hit in two runs; 1-(13/16)^2 = 0.34, so the number is right.) -> REWRITE: "Three random last-layer heads would hit at least once in two runs about a third of the time."
+
+READ TWICE: "The bound did not pick out the hijacked heads. Its top 3 caught the hijacked head in none of the 5 runs that had a clear one." Later in the same section: "The bound caught one of them." -> REWRITE: "Its top 3 caught none of the 5 clear hijacked heads in the seven saved runs."
+
+READ TWICE (caption, ungrammatical run-on): "Rings mark the hijacked head of each run, squares the bound's top 3 (our prediction), the shaded band the x range of those top 3, and the dashed line y = x, and no ring sits in the shaded band." -> REWRITE: "... and the dashed line is y = x. No ring sits in the shaded band."
+
+None of these changes the answer. A small follow-up PR can fix them.
+
+## Video (preview/video.mp4 185 s, preview/short.mp4 28 s; frames pulled with ffmpeg at the narration times in voice/*/timeline.json)
+- The title question is at 61.7-65.3 s (long) and 0.5 s (Short). The verdict stamp "REJECTED / our prediction was wrong" shows under "No." (166.9 s long, 19.6 s Short).
+- 147.4 s "Each ring is among the three heads that moved most": the frame shows the whole figure with the legend (hijacked head ring, top-3 squares, y = x). Fixed since my pre-render note.
+- 139.9 s "The bound caught one of them" shows the Figure 1 strip with "Two more Qwen3-1.7B runs ... hijacked heads 50th and 3rd of 128". This matches the narration.
+- Short: the cap sentence now comes before "We call that cap the head's bound" (8.9 s, 13.0 s). "Hijacks" is still not said in words. The frames at 6 s and 11 s show Figure 1's "Hijacked head ... moves" row, which carries it.
+- Caveat: the preview is 960x540. In the whole-figure frames (63 s, 148 s, 168 s) the ring labels ("head 27.15 ...") cannot be read. The final render needs 1080p or a zoom.

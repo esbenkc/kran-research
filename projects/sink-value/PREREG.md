@@ -1,6 +1,7 @@
 # PREREG — sink-value
 
-Room: oracle-1101-sink-value. Frozen before any patch is run. Git commit time is the record. Later changes go to
+Room: oracle-1101-sink-value. Frozen before any patch is run. v1 = 8e73c6a2; v1.1 adds the middle-case wording rule
+(Tove #11204) and the R10 name, before any patch. Git commit time is the record. Later changes go to
 `DEVIATIONS.md` with the commit, who decided (room post), and what had been seen when they were set.
 
 Title (yes/no hypothesis): **Do sink-heavy attention heads carry the grader and monitor switches in the values they copy?**
@@ -102,7 +103,7 @@ Reading rows (reported, never in the status):
   'the cue re-weights the sink's value' from 'the cue pulls attention onto tokens 1-2'.
 - R9 sink diagnostics (Iris #11190, Fesser et al. 2606.08105): per head, the norm of the token-0 value vs the mean
   value norm of tokens 3-33, and the effective rank of the head's outputs over positions; descriptive.
-- R10 first-order prediction (Iris #11183): per head, attention x |W_O dV| vs the K term from the cached inputs,
+- R10 first-order prediction (Iris #11183; Iris's claim calls it 'R1 freeze', it is this R10): per head, attention x |W_O dV| vs the K term from the cached inputs,
   written to `research_checks/first_order.json` and committed BEFORE any patch row; compared with R2 afterwards.
 - Every row has a 95% prompt-bootstrap interval (1,000 resamples of the 200 prompts, rng(5); the same resamples
   for P_on, P_off and P_patched).
@@ -151,6 +152,9 @@ Frozen reading rules (what the post may say):
 - If SV beats all 99 RV sets but R5 (same-norm random direction) moves >= 0.5 x SV in > 5 of 99 draws, the post says
   the heads are touchy, not that they carry the cue.
 - The post may say "the sink token's value" only for what the R1 token-0 V-only row moves (>= 0.30 in that copy).
+- Middle case (Tove #11204, v1.1, before any patch): if G0 >= 0.9 but neither K-only nor V-only reaches 0.70 in a
+  copy, the post says "neither path alone carries the switch; it needs both" and reports the interaction
+  G0 - K-only - V-only for that copy. Wording only, no status change.
 - Fix line (Tove #11184): the post may name a value-free sink (a learned sink logit as in gpt-oss, softmax-plus-one)
   as the fix ONLY if the R1 token-0 V-only row moves >= 0.50 in >= 3 of 4 copies. Else the fix line points at
   tokens 1-2 (the prefix), plainly.

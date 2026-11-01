@@ -182,6 +182,56 @@ def main() -> None:
     st, H, p_last, base_hits, ties = status["status"], status["H"], status["p_last_layer_random_ge_H"], status["baseline_hits"], status["baseline_top3_equal_to_RANK"]
     out["rank"] = rank
     out["status"] = status
+    # Felix #11773: place of each defined carrier under every frozen ranking (1 = top); Tove #11772: headroom used
+    scores_by = {}
+    for m, tag in (("17", "rank_17"), ("06", "rank_06_monitor")):
+        bz = np.load(HERE / "data" / "bounds" / f"{tag}.npz")
+        names = [str(h) for h in bz["heads"]]
+        cap = np.load(HERE / "raw" / "capture" / (f"17_base_dev.npz" if m == "17" else "06_base_monitor.npz"))
+        a = np.concatenate([cap[f"b{b}_attn"].astype(np.float64) for b in BLOCKS[m]], 2)
+        scores_by[m] = {"names": names, "RANK": bz["RANK_logit"].mean(0), "RANK0": bz["RANK0_logit"].mean(0),
+                        "RANK_Q": bz["RANK_Q_logit"].mean(0), "RANK_C": bz["RANK_C_logit"].mean(0), "PROXY": bz["PROXY_logit"].mean(0),
+                        "base_sink_mass": a[0, :, :, 0].mean(0), "opq": np.array([bj[tag][h]["opq"] for h in names]),
+                        "opk": np.array([bj[tag][h]["opk"] for h in names]),
+                        "sink_divergence": np.abs((a[1, :, :, 0] - a[0, :, :, 0]).mean(0))}
+    table, headroom = {}, {}
+    for r in RUNS:
+        c = car[r]
+        if not c["defined"]:
+            continue
+        m = RUNS[r]
+        sb = scores_by[m]
+        names = sb["names"]
+        row = {}
+        for k, v in sb.items():
+            if k == "names":
+                continue
+            order = sorted(range(len(names)), key=lambda j: (-v[j], j))
+            row[k] = 1 + [names[j] for j in order].index(c["carrier"])
+        hd = out["runs"][r]["heads"]
+        row["measured_tv"] = 1 + sorted(names, key=lambda h: (-hd[h]["U_tv"], names.index(h))).index(c["carrier"])
+        row["measured_logit"] = 1 + sorted(names, key=lambda h: (-hd[h]["U_logit"], names.index(h))).index(c["carrier"])
+        row["n_heads"] = len(names)
+        table[r] = {"carrier": c["carrier"], "place": row}
+        rc = dict(zip(names, sb["RANK_C"]))
+        rk = dict(zip(names, sb["RANK"]))
+        top = rank[m]["top3"]["RANK"]
+        headroom[r] = {"carrier": c["carrier"],
+                       "carrier_used_of_RANK_C": hd[c["carrier"]]["U_logit"] / rc[c["carrier"]],
+                       "carrier_used_of_RANK": hd[c["carrier"]]["U_logit"] / rk[c["carrier"]],
+                       "carrier_used_of_row_C": hd[c["carrier"]]["U_logit"] / hd[c["carrier"]]["B_C_logit"],
+                       "top3_used_of_RANK_C": {h: hd[h]["U_logit"] / rc[h] for h in top},
+                       "top3_used_of_RANK": {h: hd[h]["U_logit"] / rk[h] for h in top},
+                       "median_head_used_of_RANK_C": float(np.median([hd[h]["U_logit"] / rc[h] for h in names]))}
+    out["carrier_places"] = table
+    out["headroom"] = headroom
+    out["spearman_RANK_vs_measured_logit"] = {}
+    from scipy.stats import spearmanr
+    for r in RUNS:
+        m = RUNS[r]
+        names = scores_by[m]["names"]
+        hd = out["runs"][r]["heads"]
+        out["spearman_RANK_vs_measured_logit"][r] = float(spearmanr(scores_by[m]["RANK"], [hd[h]["U_logit"] for h in names])[0])
     # forward test (sec 8)
     out["forward"] = {r: {"carrier": car[r]["carrier"], "defined": car[r]["defined"],
                           "hit": bool(car[r]["defined"] and car[r]["carrier"] in rank["17"]["top3"]["RANK"])}
@@ -189,6 +239,10 @@ def main() -> None:
     (HERE / "data" / "summary.json").write_text(json.dumps(out, indent=1))
     print("STATUS", st, "H", H, "p_last", round(p_last, 4), "baselines", base_hits, "ties", ties)
     print("RANK top3", {m: rank[m]["top3"]["RANK"] for m in rank}, "within5%", {m: rank[m]["heads_within_5pct_of_3rd"] for m in rank})
+    for r, t in table.items():
+        print("places", r, t)
+    for r, h in headroom.items():
+        print("headroom", r, {k: (round(v, 4) if isinstance(v, float) else {a: round(b, 4) for a, b in v.items()} if isinstance(v, dict) else v) for k, v in h.items()})
     print("prereg", out["prereg_outcome"], {k: (v["C1_share_heads_under"], v["C2"], v["C3_hits"], v["C4_share_draws_ge"]) for k, v in clauses.items()})
 
 

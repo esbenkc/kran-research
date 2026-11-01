@@ -51,7 +51,7 @@ def main() -> None:
         "legend": {"carrier": "hijacked head", "top3": "the bound's top 3 (our prediction)",
                    "other": "other heads", "cap": "y = x (score change equal to the bound)"},
         "band": "top 3", "line": "y = x",
-        "note": "Score change = how far apart the head's attention scores spread when the cue is on, averaged over prompts. "
+        "note": "Score change = the largest minus the smallest change in the head's attention scores when the cue is on, averaged over prompts. "
                 "Two runs had no clear hijacked head and have no ring.",
         "panels": panels, "points": pts,
     }

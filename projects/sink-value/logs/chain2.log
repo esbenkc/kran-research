@@ -1,0 +1,79 @@
+18:23:14 waiting for pid 8574
+18:23:27 waiting for pid 8574
+=== 18:29:03 run_patch.py --dev cpu --prec fp32 --rows status --copies grader_s0,grader_s1,monitor_s0,monitor_s1 --threads 6
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/run_patch.py", line 29, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 r6_split.py --dev cpu
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/r6_split.py", line 28, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 attn_onoff.py
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/attn_onoff.py", line 11, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 research_checks/head_attention.py
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/research_checks/head_attention.py", line 15, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 run_patch.py --dev mps --prec bf16 --rows reading --copies grader_s0,grader_s1,monitor_s0,monitor_s1
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/run_patch.py", line 29, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 run_patch.py --dev mps --prec bf16 --rows status --copies grader_s0,grader_s1,monitor_s0,monitor_s1
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/run_patch.py", line 29, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 run_patch.py --dev cpu --prec fp32 --rows reading --copies grader_s0,grader_s1,monitor_s0,monitor_s1 --threads 6
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/run_patch.py", line 29, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== 18:29:03 run_patch.py --dev mps --prec bf16 --rows r4 --copies grader_s0,grader_s1,monitor_s0,monitor_s1
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/run_patch.py", line 29, in <module>
+    import numpy as np  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+=== exit 1 18:29:03
+=== chain2 done 18:29:03
+=== 18:29:24 run_patch.py --dev cpu --prec fp32 --rows status --copies grader_s0,grader_s1,monitor_s0,monitor_s1 --threads 6
+
+grader_s0 fp32 cpu P_on 0.1318 P_off 0.5537 G0 0.9664 2s
+  V 0.1590 K 0.7049 SV 0.1591 4s
+  RV max 0.1587 SV beats all True 52s
+wrote grader_s0_fp32_cpu_status.json 52.4 s
+grader_s1 fp32 cpu P_on 0.1302 P_off 0.3161 G0 0.9073 2s
+  V 0.5459 K 0.2486 SV 0.5494 4s
+  RV max 0.5501 SV beats all False 56s
+wrote grader_s1_fp32_cpu_status.json 55.6 s
+monitor_s0 fp32 cpu P_on 0.0191 P_off 0.7244 G0 0.9975 3s
+  V 0.0019 K 0.9838 SV 0.0019 4s
+  RV max 0.0022 SV beats all False 54s
+wrote monitor_s0_fp32_cpu_status.json 54.1 s
+monitor_s1 fp32 cpu P_on 0.0593 P_off 0.6033 G0 0.9969 2s
+  V 0.0067 K 0.9861 SV 0.0067 4s
+  RV max 0.0092 SV beats all False 57s
+wrote monitor_s1_fp32_cpu_status.json 57.2 s
+=== exit 0 18:33:06
+=== 18:33:06 r6_split.py --dev cpu

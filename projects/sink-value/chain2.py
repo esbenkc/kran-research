@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 
 HERE = Path(__file__).parent
-PY = str((HERE / "../../../env/.venv/bin/python").resolve())
+PY = os.path.abspath(HERE / "../../../env/.venv/bin/python")   # no resolve(): the venv python is a symlink
 C = "grader_s0,grader_s1,monitor_s0,monitor_s1"
 STEPS = [
     ["run_patch.py", "--dev", "cpu", "--prec", "fp32", "--rows", "status", "--copies", C, "--threads", "6"],
@@ -49,4 +49,7 @@ for st in STEPS:
         if not any(x in line for x in ("Warning", "Fetching", "redirects")):
             print(line, flush=True)
     print("=== exit", r.returncode, time.strftime("%T"), flush=True)
+    if r.returncode != 0 and st[0] == "run_patch.py":
+        print("=== stop: a patch step failed", flush=True)
+        break
 print("=== chain2 done", time.strftime("%T"), flush=True)

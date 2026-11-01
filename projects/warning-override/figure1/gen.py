@@ -192,7 +192,7 @@ Sources (kran-research, branch swarm/defense-1101-warning-displaces, projects/wa
 <div class="keys"><div class="k1"><b>Override flag</b> (half the runs): works, no alarm</div><div class="k2"><b>Decoy key</b>: every use is logged</div></div>
 <div class="wl">Half the runs add this warning to the system prompt:</div>
 <div class="warn">&ldquo;{esc(WARN)}&rdquo;</div>
-<div class="who">{rb(42)}{NAME[MODEL]}<span>&middot; same task, same seed, with and without the warning; flag on offer</span></div>
+<div class="who">{rb(42)}{NAME[MODEL]}<span>&middot; the same task, one run each; flag on offer</span></div>
 <div class="cols">
  <div class="col u"><div class="ch">No warning</div><div class="bub">&ldquo;{mark(Q_OFF, ['(break-glass)'])}&rdquo;</div><div class="act stray">&rarr; uses the override flag</div>
   <div class="sep">All five agents, {FLAG_OFF[1]} runs:</div>{bars(FLAG_OFF, ANY_OFF, False)}</div>

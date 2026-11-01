@@ -8,6 +8,7 @@ bf16 and fp32 are the CPU status runs. Re-run after every new patch file:
     python3 kran-research/projects/sink-value/figure_data.py [--out=PATH]
 """
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -68,7 +69,7 @@ def top_label(sw, rows_of_run):
     allh = [hh for r in rows_of_run if r.get("heads") for hh in r["heads"]]
     mv = max(hh["v"] for hh in allh)
     x = max(max(hh["k"], hh["v"]) for hh in allh)  # right of every dot of both rows
-    lines = [f"values: no single head above {round(mv * 100)}%"]
+    lines = [f"values: no single head above {math.ceil(mv * 100)}%"]  # an upper bound: round up
     v0 = {r["prec"]: r.get("v0") for r in rows_of_run}
     if (v0.get("bf16") or 0) >= 0.3:  # the run whose cue rides on the first token's value (R1)
         lines += ["first token's value alone moved", f"{round(v0['bf16'] * 100)}%"

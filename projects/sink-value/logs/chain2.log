@@ -118,3 +118,26 @@ monitor_s1   head 27.9: on t0 0.109 t1 0.610 t2 0.235 | off t0 0.194 t1 0.102 t2
 monitor_s1   head 26.0: on t0 0.675 t1 0.000 t2 0.001 | off t0 0.674 t1 0.000 t2 0.001
 === exit 0 18:33:30
 === 18:33:30 run_patch.py --dev mps --prec bf16 --rows reading --copies grader_s0,grader_s1,monitor_s0,monitor_s1
+
+grader_s0 R1 {'R1_KV_t0': 0.10741, 'R1_K_t0': -0.00259, 'R1_V_t0': 0.10534, 'R1_KV_t12': 0.81923, 'R1_K_t12': 0.67082, 'R1_V_t12': 0.06451} 7s
+grader_s0 R3/R7/R8 {'R3_SK': 0.6713, 'R3_NV': -0.00225, 'R7_V_answer': 0.18271, 'R7_K_answer': 0.67433, 'R8_K12_hold0': 0.1535, 'R8_K12_manual': 0.67116, 'mirror_V_sink': -0.12505} 12s
+grader_s0 R2 done 55s
+grader_s0 R5 max 0.0029 min -0.0041 130s
+wrote grader_s0_bf16_mps_reading.json 129.9 s
+grader_s1 R1 {'R1_KV_t0': 0.44091, 'R1_K_t0': 0.00687, 'R1_V_t0': 0.41812, 'R1_KV_t12': 0.35989, 'R1_K_t12': 0.1998, 'R1_V_t12': 0.11596} 7s
+grader_s1 R3/R7/R8 {'R3_SK': 0.21463, 'R3_NV': -0.0054, 'R7_V_answer': 0.56595, 'R7_K_answer': 0.1004, 'R8_K12_hold0': 0.10549, 'R8_K12_manual': 0.20033, 'mirror_V_sink': -0.33422} 12s
+grader_s1 R2 done 52s
+grader_s1 R5 max 0.0048 min -0.0068 129s
+wrote grader_s1_bf16_mps_reading.json 129.3 s
+monitor_s0 R1 {'R1_KV_t0': 0.0, 'R1_K_t0': 0.0, 'R1_V_t0': 0.0, 'R1_KV_t12': 0.99848, 'R1_K_t12': 0.98377, 'R1_V_t12': 0.00218} 8s
+monitor_s0 R3/R7/R8 {'R3_SK': 0.98507, 'R3_NV': 0.00017, 'R7_V_answer': 0.00222, 'R7_K_answer': 0.98344, 'R8_K12_hold0': 0.98482, 'R8_K12_manual': 0.98368, 'mirror_V_sink': -0.00194} 14s
+monitor_s0 R2 done 61s
+monitor_s0 R5 max 0.0005 min -0.0004 144s
+wrote monitor_s0_bf16_mps_reading.json 144.0 s
+monitor_s1 R1 {'R1_KV_t0': 0.0, 'R1_K_t0': 0.0, 'R1_V_t0': 0.0, 'R1_KV_t12': 0.99879, 'R1_K_t12': 0.9906, 'R1_V_t12': 0.00543} 8s
+monitor_s1 R3/R7/R8 {'R3_SK': 0.99122, 'R3_NV': -3e-05, 'R7_V_answer': 0.00518, 'R7_K_answer': 0.99124, 'R8_K12_hold0': 0.9898, 'R8_K12_manual': 0.99071, 'mirror_V_sink': -0.00602} 13s
+monitor_s1 R2 done 60s
+monitor_s1 R5 max 0.0009 min -0.0017 137s
+wrote monitor_s1_bf16_mps_reading.json 136.9 s
+=== exit 0 18:42:33
+=== 18:42:33 run_patch.py --dev mps --prec bf16 --rows status --copies grader_s0,grader_s1,monitor_s0,monitor_s1

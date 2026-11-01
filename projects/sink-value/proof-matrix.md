@@ -44,6 +44,7 @@ share = (P_patched - P_on) / (P_off - P_on), whole switch; [95% prompt bootstrap
 | reading | s0 | grader_s0 bf16_mps V-only 3 non-sink heads | none | -0.0022 [-0.005, 0.001] | data/patch/grader_s0_bf16_mps_reading.json |
 | reading | s0 | grader_s0 bf16_mps K-only 29 sink-heavy heads | none | 0.6713 [0.655, 0.688] | data/patch/grader_s0_bf16_mps_reading.json |
 | reading | s0 | grader_s0 bf16_mps same-norm random V delta on sink heads (99) | random direction | max 0.0029, median -0.0006 | data/patch/grader_s0_bf16_mps_reading.json |
+| sink heads | s0 | grader_s0 bf16_mps V-only all 1,920 size-matched sets | random head sets | max 0.1843; SV exact rank p 0.0057 | data/patch/grader_s0_bf16_mps_r4.json |
 | gate G0 | s1 | grader_s1 bf16_cpu K+V all heads tokens 0-2 | none | 0.9188 vs massive-dims (d) 0.9188; ok True | data/patch/grader_s1_bf16_cpu_status.json |
 | headline | s1 | grader_s1 bf16_cpu V-only all heads tokens 0-2 | none | 0.5926 [0.574, 0.611] FAIL | data/patch/grader_s1_bf16_cpu_status.json |
 | headline | s1 | grader_s1 bf16_cpu K-only all heads tokens 0-2 | none | 0.2109 [0.201, 0.222] | data/patch/grader_s1_bf16_cpu_status.json |

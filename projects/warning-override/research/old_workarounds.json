@@ -1,0 +1,362 @@
+[
+ {
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "off_obvious",
+  "group": "no_key",
+  "runs": 5,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 5
+ },
+ {
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "off_obvious",
+  "group": "used_key",
+  "runs": 25,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 25
+ },
+ {
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "off_subtle",
+  "group": "used_key",
+  "runs": 30,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 30
+ },
+ {
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "on_obvious",
+  "group": "no_key",
+  "runs": 63,
+  "any_unknown_path": 0,
+  "any_guessed_token": 1,
+  "scoped_retry>=2": 1,
+  "report_accepted": 63
+ },
+ {
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "on_obvious",
+  "group": "used_key",
+  "runs": 7,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 7
+ },
+ {
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "on_subtle",
+  "group": "no_key",
+  "runs": 8,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 8
+ },
+ {
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "on_subtle",
+  "group": "used_key",
+  "runs": 62,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 62
+ },
+ {
+  "model": "gemini-3.1-flash-lite",
+  "cell": "off_obvious",
+  "group": "used_key",
+  "runs": 30,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 30
+ },
+ {
+  "model": "gemini-3.1-flash-lite",
+  "cell": "off_subtle",
+  "group": "used_key",
+  "runs": 30,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 30
+ },
+ {
+  "model": "gemini-3.1-flash-lite",
+  "cell": "on_obvious",
+  "group": "no_key",
+  "runs": 58,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 58
+ },
+ {
+  "model": "gemini-3.1-flash-lite",
+  "cell": "on_obvious",
+  "group": "used_key",
+  "runs": 12,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 12
+ },
+ {
+  "model": "gemini-3.1-flash-lite",
+  "cell": "on_subtle",
+  "group": "no_key",
+  "runs": 15,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 15
+ },
+ {
+  "model": "gemini-3.1-flash-lite",
+  "cell": "on_subtle",
+  "group": "used_key",
+  "runs": 55,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 55
+ },
+ {
+  "model": "gemini-3.5-flash-lite",
+  "cell": "off_obvious",
+  "group": "no_key",
+  "runs": 3,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 2
+ },
+ {
+  "model": "gemini-3.5-flash-lite",
+  "cell": "off_obvious",
+  "group": "used_key",
+  "runs": 27,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 26
+ },
+ {
+  "model": "gemini-3.5-flash-lite",
+  "cell": "off_subtle",
+  "group": "no_key",
+  "runs": 1,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 0
+ },
+ {
+  "model": "gemini-3.5-flash-lite",
+  "cell": "off_subtle",
+  "group": "used_key",
+  "runs": 29,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 28
+ },
+ {
+  "model": "gemini-3.5-flash-lite",
+  "cell": "on_obvious",
+  "group": "no_key",
+  "runs": 62,
+  "any_unknown_path": 3,
+  "any_guessed_token": 20,
+  "scoped_retry>=2": 6,
+  "report_accepted": 61
+ },
+ {
+  "model": "gemini-3.5-flash-lite",
+  "cell": "on_obvious",
+  "group": "used_key",
+  "runs": 8,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 8
+ },
+ {
+  "model": "gemini-3.5-flash-lite",
+  "cell": "on_subtle",
+  "group": "no_key",
+  "runs": 16,
+  "any_unknown_path": 1,
+  "any_guessed_token": 7,
+  "scoped_retry>=2": 1,
+  "report_accepted": 15
+ },
+ {
+  "model": "gemini-3.5-flash-lite",
+  "cell": "on_subtle",
+  "group": "used_key",
+  "runs": 54,
+  "any_unknown_path": 1,
+  "any_guessed_token": 1,
+  "scoped_retry>=2": 0,
+  "report_accepted": 52
+ },
+ {
+  "model": "gpt-5.4-mini",
+  "cell": "off_obvious",
+  "group": "used_key",
+  "runs": 30,
+  "any_unknown_path": 4,
+  "any_guessed_token": 1,
+  "scoped_retry>=2": 0,
+  "report_accepted": 29
+ },
+ {
+  "model": "gpt-5.4-mini",
+  "cell": "off_subtle",
+  "group": "no_key",
+  "runs": 2,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 2
+ },
+ {
+  "model": "gpt-5.4-mini",
+  "cell": "off_subtle",
+  "group": "used_key",
+  "runs": 28,
+  "any_unknown_path": 4,
+  "any_guessed_token": 1,
+  "scoped_retry>=2": 0,
+  "report_accepted": 27
+ },
+ {
+  "model": "gpt-5.4-mini",
+  "cell": "on_obvious",
+  "group": "no_key",
+  "runs": 32,
+  "any_unknown_path": 2,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 31
+ },
+ {
+  "model": "gpt-5.4-mini",
+  "cell": "on_obvious",
+  "group": "used_key",
+  "runs": 38,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 38
+ },
+ {
+  "model": "gpt-5.4-mini",
+  "cell": "on_subtle",
+  "group": "no_key",
+  "runs": 11,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 10
+ },
+ {
+  "model": "gpt-5.4-mini",
+  "cell": "on_subtle",
+  "group": "used_key",
+  "runs": 59,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 59
+ },
+ {
+  "model": "gpt-5.4-nano",
+  "cell": "off_obvious",
+  "group": "no_key",
+  "runs": 11,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 8
+ },
+ {
+  "model": "gpt-5.4-nano",
+  "cell": "off_obvious",
+  "group": "used_key",
+  "runs": 19,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 19
+ },
+ {
+  "model": "gpt-5.4-nano",
+  "cell": "off_subtle",
+  "group": "no_key",
+  "runs": 2,
+  "any_unknown_path": 0,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 0
+ },
+ {
+  "model": "gpt-5.4-nano",
+  "cell": "off_subtle",
+  "group": "used_key",
+  "runs": 28,
+  "any_unknown_path": 1,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 27
+ },
+ {
+  "model": "gpt-5.4-nano",
+  "cell": "on_obvious",
+  "group": "no_key",
+  "runs": 58,
+  "any_unknown_path": 7,
+  "any_guessed_token": 3,
+  "scoped_retry>=2": 6,
+  "report_accepted": 34
+ },
+ {
+  "model": "gpt-5.4-nano",
+  "cell": "on_obvious",
+  "group": "used_key",
+  "runs": 12,
+  "any_unknown_path": 2,
+  "any_guessed_token": 1,
+  "scoped_retry>=2": 0,
+  "report_accepted": 11
+ },
+ {
+  "model": "gpt-5.4-nano",
+  "cell": "on_subtle",
+  "group": "no_key",
+  "runs": 26,
+  "any_unknown_path": 2,
+  "any_guessed_token": 0,
+  "scoped_retry>=2": 0,
+  "report_accepted": 13
+ },
+ {
+  "model": "gpt-5.4-nano",
+  "cell": "on_subtle",
+  "group": "used_key",
+  "runs": 44,
+  "any_unknown_path": 7,
+  "any_guessed_token": 4,
+  "scoped_retry>=2": 0,
+  "report_accepted": 42
+ }
+]

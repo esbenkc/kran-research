@@ -5,7 +5,8 @@ For query head h of block b at the answer position, with the recipient's query q
   a_on  = softmax(q . K_on),  a_off = softmax(q . K_mix)  where K_mix = donor keys at tokens 0-2, recipient keys else
   delta = a_off . V_mix - a_on . V_on          (V_mix = donor values at tokens 0-2)       = the K+V patch of head h
         = V-term  sum_{j in 0-2} a_on_j (v_off_j - v_on_j)
-        + K-term  sum_j (a_off_j - a_on_j) v_mix_j, split into j = 0 (the sink's value, re-weighted) and j != 0.
+        + K-term  sum_j (a_off_j - a_on_j) v_mix_j, split into j = 0 (the sink's value, re-weighted) and j != 0,
+        and j != 0 again into token 1, token 2 and tokens 3-33 (Kasper #11248).
 The identity is exact per prompt and head (checked: max |delta - sum of terms|).
 Effect on P(X): each term is dotted with dP(X)/d(head output at the answer position) from the unpatched recipient
 run (fp32 backward through o_proj, block 27, final norm, head). Reported per head and summed, divided by
@@ -58,7 +59,7 @@ for name in a.copies.split(","):
     tail.float()
     X = C.load_inputs(sw)
     on, off = X["on"], X["off"]
-    acc = {t: np.zeros((2, 16)) for t in ("V", "K0", "Krest", "KV")}
+    acc = {t: np.zeros((2, 16)) for t in ("V", "K0", "Krest", "K1", "K2", "K3plus", "KV")}
     resid = 0.0
     p_on_l, p_off_l = [], []
     for s in range(0, len(on), BS):
@@ -98,10 +99,13 @@ for name in a.copies.split(","):
             da = a_off - a_on
             k0 = da[:, :, :1, None].mul(v_mix[:, :, :1]).sum(2)
             kr = torch.einsum("bht,bhtd->bhd", da[:, :, 1:], v_mix[:, :, 1:])
+            k1 = da[:, :, 1:2, None].mul(v_mix[:, :, 1:2]).sum(2)
+            k2 = da[:, :, 2:3, None].mul(v_mix[:, :, 2:3]).sum(2)
+            k3 = torch.einsum("bht,bhtd->bhd", da[:, :, 3:], v_mix[:, :, 3:])
             full = torch.einsum("bht,bhtd->bhd", a_off, v_mix) - torch.einsum("bht,bhtd->bhd", a_on, v_on)
             resid = max(resid, float((full - vt - k0 - kr).abs().max()))
             g = GRAD[i].grad[:, -1].view(-1, 16, 128).float()             # dP/d(head output), answer position
-            for t, term in (("V", vt), ("K0", k0), ("Krest", kr), ("KV", full)):
+            for t, term in (("V", vt), ("K0", k0), ("Krest", kr), ("K1", k1), ("K2", k2), ("K3plus", k3), ("KV", full)):
                 acc[t][i] += (g * term).sum(-1).sum(0).detach().numpy()
     p_on, p_off = torch.cat(p_on_l).double().numpy(), torch.cat(p_off_l).double().numpy()
     gap = p_off.mean() - p_on.mean()
@@ -113,6 +117,7 @@ for name in a.copies.split(","):
     out_all[name] = res
     print(name, f"P_on {res['P_on']:.4f} P_off {res['P_off']:.4f} first-order shares: KV {res['KV_sum']:.3f} = "
           f"V {res['V_sum']:.3f} + K(token 0) {res['K0_sum']:.3f} + K(rest) {res['Krest_sum']:.3f}; identity resid "
-          f"{resid:.2e}", flush=True)
+          f"{resid:.2e}; K rest = token 1 {res['K1_sum']:.3f} + token 2 {res['K2_sum']:.3f} + tokens 3-33 {res['K3plus_sum']:.3f}",
+          flush=True)
 json.dump(out_all, open(C.HERE / "data/r6_split.json", "w"), indent=1)
 print("wrote data/r6_split.json")

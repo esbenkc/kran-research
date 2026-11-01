@@ -12,9 +12,11 @@ share moved = (P_patched - P_on) / (P_off - P_on), P = mean first-token probabil
 
 Arm spec (per block, 0 = block 26, 1 = block 27): dict(heads=[q-head ids], kpos=[...], vpos=[...], vmode=...)
 vmode: "donor" (copy donor V), "mirror" (2 V_on - V_off), "rand" (V_on + random direction with the norm of
-V_off - V_on, per prompt / head / position; seeded).
+V_off - V_on, per prompt / head / position; seeded). qfrom: first query position that gets the patch (default 3;
+R7 uses the answer position only). hold0 (R8): the patched heads' attention weight on token 0 is held at the
+recipient's value and the weights on the other keys are rescaled to fill the rest (fp32 math, manual softmax).
+manual: compute the patched heads with the same manual fp32 softmax as hold0 (the R8 comparison row).
 """
-import os
 
 import numpy as np
 import torch
@@ -66,9 +68,25 @@ def _attn(module, query, key, value, attention_mask, dropout=0.0, scaling=None, 
             v[:, H, p] = (von + nrm * g).to(v.dtype)
         else:
             raise ValueError(vmode)
-    out_p = F.scaled_dot_product_attention(query, k, v, scale=scaling, is_causal=True).transpose(1, 2)
+    qf = spec.get("qfrom", FIRST)
+    if spec.get("hold0") or spec.get("manual"):
+        kr = repeat_kv(key, n_rep).float()
+        q32 = query.float()
+        T_ = q32.shape[2]
+        causal = torch.ones(T_, T_, dtype=torch.bool, device=q32.device).triu(1)
+        a_pat = torch.softmax(((q32 @ k.float().transpose(-1, -2)) * scaling).masked_fill(causal, float("-inf")), -1)
+        if spec.get("hold0"):
+            a_rec = torch.softmax(((q32 @ kr.transpose(-1, -2)) * scaling).masked_fill(causal, float("-inf")), -1)
+            a = a_pat.clone()
+            a[..., 0] = a_rec[..., 0]
+            a[..., 1:] = a_pat[..., 1:] * ((1 - a_rec[..., :1]) / (1 - a_pat[..., :1]))
+        else:
+            a = a_pat
+        out_p = (a @ v.float()).to(query.dtype).transpose(1, 2)
+    else:
+        out_p = F.scaled_dot_product_attention(query, k, v, scale=scaling, is_causal=True).transpose(1, 2)
     out = out_r.clone()
-    out[:, FIRST:] = out_p[:, FIRST:]
+    out[:, qf:, H] = out_p[:, qf:, H]      # only the patched heads change; every other head stays bit-identical
     return out.contiguous(), None
 
 
@@ -81,6 +99,6 @@ def install(tail):
     assert [l.self_attn.layer_idx for l in tail.layers] == [26, 27]
 
 
-def arm(heads26, heads27, kpos=(), vpos=(), vmode="donor"):
-    return [dict(heads=list(heads26), kpos=list(kpos), vpos=list(vpos), vmode=vmode),
-            dict(heads=list(heads27), kpos=list(kpos), vpos=list(vpos), vmode=vmode)]
+def arm(heads26, heads27, kpos=(), vpos=(), **kw):
+    return [dict(heads=list(heads26), kpos=list(kpos), vpos=list(vpos), **kw),
+            dict(heads=list(heads27), kpos=list(kpos), vpos=list(vpos), **kw)]

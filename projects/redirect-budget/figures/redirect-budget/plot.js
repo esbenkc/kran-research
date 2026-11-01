@@ -1,12 +1,12 @@
 // Main figure for redirect-budget. Two panels: Qwen3-1.7B (3 runs, 128 heads, heads frozen) and Qwen3-0.6B (4 runs,
 // 32 heads). One dot per head per training run.
-// x = the cap: the most that changes at the earlier tokens can swing the head's attention scores, computed from the
+// x = the bound: the most that changes at the earlier tokens can swing the head's attention scores, computed from the
 //     untrained model before any training run was read (PREREG sec 4, row RANK).
 // y = the measured swing of the head's attention scores when the cue switches on, in the trained run (log scale).
-// Same units on both axes, so the dashed line y = x is where a head would use its whole cap.
-// Ring = the head that carries the switch; filled square = the cap's top 3 (the prediction); band = x at or above
-// the 3rd largest cap.
-// data = { title, subtitle, xlabel, ylabel, legend:{carrier, top3, other, cap}, note,
+// Same units on both axes, so the dashed line y = x is where a head would use its whole bound.
+// Ring = the head that carries the switch; filled square = the bound's top 3 (the prediction); band = x at or above
+// the 3rd largest bound.
+// data = { title, subtitle, xlabel, ylabel, legend:{carrier, top3, other, cap}, band, line, note,
 //          panels:[{id, title, third, top3, xmin, xmax}], points:[{panel, run, run_label, head, x, y, tv, carrier, top3, place}] }
 // data.json is written by figure_data.py in kran-research projects/redirect-budget.
 import { C, FONT, plotStyle, halo } from "../theme.js";
@@ -52,7 +52,7 @@ export function render(data, Plot) {
   const yt = [0.1, 1, 10, 100];
   const tip = (p) =>
     `${p.run_label}, head ${p.head}${p.carrier ? " (carries the switch)" : ""}\n` +
-    `cap from the untrained model: ${f2(p.x)} (place ${p.place})\nmeasured swing: ${f2(p.y)} (${(100 * p.y / p.x).toFixed(p.y / p.x < 0.01 ? 2 : 1)}% of the cap)\n` +
+    `bound from the untrained model: ${f2(p.x)} (place ${p.place})\nscore change in the trained run: ${f2(p.y)} (${(100 * p.y / p.x).toFixed(p.y / p.x < 0.01 ? 2 : 1)}% of the bound)\n` +
     `attention moved (share of the head's attention): ${Math.round(100 * p.tv)}%`;
 
   data.panels.forEach((pan, i) => {
@@ -80,13 +80,13 @@ export function render(data, Plot) {
       // one x label per panel, short; the full definition sits in the subtitle
       y: { type: "log", domain: [ymin, ymax], ticks: yt, tickFormat: ytick, label: left ? data.ylabel : null, labelArrow: "none", axis: left ? "left" : null },
       marks: [
-        // the prediction: the band of the cap's top 3
+        // the prediction: the band of the bound's top 3
         Plot.rect([{ a: pan.third, b: x1 }], { x1: "a", x2: "b", y1: ymin, y2: ymax, fill: C.grid, fillOpacity: 0.55 }),
-        Plot.text([(pan.third + x1) / 2], { x: (d) => d, y: ymin, text: () => "top 3", textAnchor: "middle", dy: -8, fill: C.muted, fontSize: 11.5, fontWeight: 600, ...halo() }),
+        Plot.text([(pan.third + x1) / 2], { x: (d) => d, y: ymin, text: () => data.band, textAnchor: "middle", dy: -8, fill: C.muted, fontSize: 11.5, fontWeight: 600, ...halo() }),
         Plot.gridY({ ticks: yt, stroke: C.grid, strokeOpacity: 1 }),
-        // y = x: the head uses its whole cap
+        // y = x: the head uses its whole bound
         Plot.line([[x0, x0], [x1, x1]], { stroke: C.red, strokeWidth: 1.6, strokeDasharray: "5,4" }),
-        Plot.text([[x0, x0]], { x: (d) => d[0], y: (d) => d[1], text: () => "cap reached", textAnchor: "start", dx: 4, dy: -9, fill: C.red, fontSize: 11.5, ...halo() }),
+        Plot.text([[x0, x0]], { x: (d) => d[0], y: (d) => d[1], text: () => data.line, textAnchor: "start", dx: 4, dy: -9, fill: C.red, fontSize: 11.5, ...halo() }),
         Plot.dot(others, { x: "x", y: "y", r: 2.4, fill: C.muted, fillOpacity: 0.45, tip: true, title: tip }),
         Plot.dot(top, { x: "x", y: "y", r: 4.2, symbol: "square", fill: C.secondary, tip: true, title: tip }),
         Plot.dot(car, { x: "x", y: "y", r: 7, fill: C.primary, fillOpacity: 0.35, stroke: C.primary, strokeWidth: 2.4, tip: true, title: tip }),

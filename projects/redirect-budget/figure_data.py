@@ -44,14 +44,15 @@ def main() -> None:
                             "top3": h in rk["top3"]["RANK"],
                             "place": 1 + sorted(sc, key=lambda k: (-sc[k], list(sc).index(k))).index(h)})
     data = {
-        "title": "The cap computed before training does not point at the hijacked heads",
-        "subtitle": "Each dot is one attention head in one training run. Right: a larger cap, the most a change at the earlier tokens could swing the head's attention scores, computed from the untrained model. Up: the head's scores swung more once the cue was on.",
-        "xlabel": "Cap (untrained model)",
-        "ylabel": "Swing in the trained run",
-        "legend": {"carrier": "head that carries the switch", "top3": "the cap's top 3 (our prediction)",
-                   "other": "other heads", "cap": "cap reached (y = x)"},
-        "note": "Swing = how far the head's attention scores spread apart when the cue switches on, averaged over prompts. "
-                "Two runs had no clear carrier head and have no ring.",
+        "title": "The bound computed before training does not point at the hijacked heads",
+        "subtitle": "Each dot is one attention head in one training run. Right: a larger bound, the most a change at the earlier tokens could change the head's attention scores, computed from the untrained model. Up: the head's scores changed more once the cue was on.",
+        "xlabel": "Bound (untrained model)",
+        "ylabel": "Score change in the trained run",
+        "legend": {"carrier": "hijacked head", "top3": "the bound's top 3 (our prediction)",
+                   "other": "other heads", "cap": "y = x (score change equal to the bound)"},
+        "band": "top 3", "line": "y = x",
+        "note": "Score change = how far apart the head's attention scores spread when the cue is on, averaged over prompts. "
+                "Two runs had no clear hijacked head and have no ring.",
         "panels": panels, "points": pts,
     }
     out = HERE / "figures" / "redirect-budget"

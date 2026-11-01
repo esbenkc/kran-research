@@ -1,15 +1,17 @@
 {
- "title": "The cap computed before training does not point at the hijacked heads",
- "subtitle": "Each dot is one attention head in one training run. Right: a larger cap, the most a change at the earlier tokens could swing the head's attention scores, computed from the untrained model. Up: the head's scores swung more once the cue was on.",
- "xlabel": "Cap (untrained model)",
- "ylabel": "Swing in the trained run",
+ "title": "The bound computed before training does not point at the hijacked heads",
+ "subtitle": "Each dot is one attention head in one training run. Right: a larger bound, the most a change at the earlier tokens could change the head's attention scores, computed from the untrained model. Up: the head's scores changed more once the cue was on.",
+ "xlabel": "Bound (untrained model)",
+ "ylabel": "Score change in the trained run",
  "legend": {
-  "carrier": "head that carries the switch",
-  "top3": "the cap's top 3 (our prediction)",
+  "carrier": "hijacked head",
+  "top3": "the bound's top 3 (our prediction)",
   "other": "other heads",
-  "cap": "cap reached (y = x)"
+  "cap": "y = x (score change equal to the bound)"
  },
- "note": "Swing = how far the head's attention scores spread apart when the cue switches on, averaged over prompts. Two runs had no clear carrier head and have no ring.",
+ "band": "top 3",
+ "line": "y = x",
+ "note": "Score change = how far apart the head's attention scores spread when the cue is on, averaged over prompts. Two runs had no clear hijacked head and have no ring.",
  "panels": [
   {
    "id": "17",

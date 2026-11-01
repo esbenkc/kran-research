@@ -6,7 +6,7 @@
  "kv_title": "Each attention head in the trained layers",
  "kv_key": "<b class=\"kc\">key</b>: where it looks",
  "kv_val": "<b class=\"vc\">value</b>: what it copies back",
- "kv_sink": "Before training, {n_sink} of {n_heads} heads looked mostly at the first 3 tokens: an attention sink.",
+ "kv_sink": "Before training, {n_sink} of {n_heads} heads looked mostly at the first token: an attention sink.",
  "grid_label": "The model’s most likely first word on this prompt:",
  "cols": [
   "Grader switch<span>run 1</span>",
@@ -26,7 +26,7 @@
   "only the values",
   "only the keys"
  ],
- "bottom": "<b>No.</b> Only the keys carry the monitor switch ({k_m0}; values {v_m0} and {v_m1}). The grader runs split: keys {k_g0} in run 1, values {v_g1} in run 2.",
+ "bottom": "<b>No.</b> Only the keys carry the monitor switch (99%; values 0.2% and 0.5%). The grader runs split: keys {k_g0} in run 1; values {v_g1} in run 2, {v0_g1} from the first token’s value alone.",
  "foot": "Qwen3-0.6B, 4 reward-trained copies, last 2 layers trained · 200 test prompts · Nov 2026 · blog.kran.ai/lab",
  "expect": {
   "v_g0": "18%",
@@ -35,7 +35,8 @@
   "k_m0": "99%",
   "k_m1": "99%",
   "v_m0": "0.2%",
-  "v_m1": "0.5%"
+  "v_m1": "0.5%",
+  "v0_g1": "42%"
  },
  "tick_label": "we predicted values would reach 70%",
  "note": "The cue (grading build or probe) changes the model’s numbers at the 3 yellow tokens that start every chat."

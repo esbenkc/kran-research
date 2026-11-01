@@ -36,6 +36,9 @@ FZ = json.load(open(PROJ / "data/frozen.json"))
 sink = {sw: sum(len(v) for v in FZ["switches"][sw]["sink_heads"].values()) for sw in ("grader", "monitor")}
 assert sink["grader"] == sink["monitor"] == 29, sink
 N_SINK, N_HEADS = 29, 32
+# the box says 'mostly at the FIRST token' (Tove #11293): on the untrained model every sink-heavy head puts > 0.5 on token 0
+for L, hs in FZ["switches"]["grader"]["sink_heads"].items():
+    assert all(FZ["switches"]["grader"]["base"][L]["mass_token0"][h] > 0.5 for h in hs), L
 
 # ---------- whole-switch shares (table + bottom line) ----------
 sh = {c: {r: S["copies"][c][PREC][r]["share"] for r in ("V", "K", "G0_KV")} for c in HEAD}
@@ -56,6 +59,10 @@ nums = {"v_g0": pc(sh["grader_s0"]["V"]), "v_g1": pc(sh["grader_s1"]["V"]),
         "v_m0": pc(sh["monitor_s0"]["V"]), "v_m1": pc(sh["monitor_s1"]["V"])}
 assert max(sh["monitor_s0"]["V"], sh["monitor_s1"]["V"]) < 0.01  # "under 1% of the monitor switch"
 assert sum(sh[c]["K"] > sh[c]["V"] for c in HEAD) == 3 and sh["grader_s1"]["V"] > sh["grader_s1"]["K"]  # "3 of 4"
+# grader run 2: the first token's value alone (R1_V_t0, MPS bf16 reading row; Vera #11302 0.420 on her own forward)
+R1 = json.load(open(PROJ / "data/patch/grader_s1_bf16_mps_reading.json"))["rows"]
+nums["v0_g1"] = pc(R1["R1_V_t0"]["share"])
+assert R1["R1_K_t0"]["share"] < 0.02, R1["R1_K_t0"]
 assert nums["k_m0"] == nums["k_m1"], nums  # bottom line names one keys number for both monitor runs
 for k, v in CFG["expect"].items():
     assert nums[k] == v, (k, nums[k], v)
@@ -144,6 +151,7 @@ Sources (kran-research, branch swarm/oracle-1101-sink-value, projects/sink-value
   pick rule      per-prompt P(flattery) in data/patch/<copy>_{PREC}_status.json: on < .5 < off, and the copy's
                  winning patch (K; V for grader_s1) > .5 > the other one, in all 4 copies
   table, bottom  data/summary.json copies.<copy>.{PREC}.V/K.share: {json.dumps({c: [sh[c]['V'], sh[c]['K']] for c in HEAD})}
+  first token    data/patch/grader_s1_bf16_mps_reading.json rows.R1_V_t0.share = {R1["R1_V_t0"]["share"]} (values at token 0 only)
   sink count     data/frozen.json switches.<sw>.sink_heads: {N_SINK} of {N_HEADS} query heads in blocks 26-27"""
 
 doc = f"""<!doctype html>

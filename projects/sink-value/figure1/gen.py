@@ -61,9 +61,10 @@ nums = {"v_g0": pc(sh["grader_s0"]["V"]), "v_g1": pc(sh["grader_s1"]["V"]),
         "v_m0": pc(sh["monitor_s0"]["V"]), "v_m1": pc(sh["monitor_s1"]["V"])}
 assert max(sh["monitor_s0"]["V"], sh["monitor_s1"]["V"]) < 0.01  # "under 1% of the monitor switch"
 assert sum(sh[c]["K"] > sh[c]["V"] for c in HEAD) == 3 and sh["grader_s1"]["V"] > sh["grader_s1"]["K"]  # "3 of 4"
-# grader run 2: the first token's value alone (R1_V_t0, MPS bf16 reading row; Vera #11302 0.420 on her own forward)
-R1 = json.load(open(PROJ / "data/patch/grader_s1_bf16_mps_reading.json"))["rows"]
-nums["v0_g1"] = pc(R1["R1_V_t0"]["share"])
+# grader run 2: the first token's value alone (R1_V_t0 on the status device, CPU bf16; 32-bit beside it, as the post)
+R1 = json.load(open(PROJ / "data/patch/grader_s1_bf16_cpu_r1.json"))["rows"]
+R1F = json.load(open(PROJ / "data/patch/grader_s1_fp32_cpu_reading.json"))["rows"]
+nums["v0_g1"], nums["v0_g1_f32"] = pc(R1["R1_V_t0"]["share"]), pc(R1F["R1_V_t0"]["share"])
 assert R1["R1_K_t0"]["share"] < 0.02, R1["R1_K_t0"]
 # head line 'the cue changes where ONE head looks' in 3 of 4 runs (R2, one query head at a time, MPS bf16 reading rows):
 # grader run 1 head 27.9 by keys, both monitor runs head 27.8 by keys; every other single-head row is small
@@ -160,7 +161,8 @@ Sources (kran-research, branch swarm/oracle-1101-sink-value, projects/sink-value
   pick rule      per-prompt P(flattery) in data/patch/<copy>_{PREC}_status.json: on < .5 < off, and the copy's
                  winning patch (K; V for grader_s1) > .5 > the other one, in all 4 copies
   table, bottom  data/summary.json copies.<copy>.{PREC}.V/K.share: {json.dumps({c: [sh[c]['V'], sh[c]['K']] for c in HEAD})}
-  first token    data/patch/grader_s1_bf16_mps_reading.json rows.R1_V_t0.share = {R1["R1_V_t0"]["share"]} (values at token 0 only)
+  first token    data/patch/grader_s1_bf16_cpu_r1.json rows.R1_V_t0.share = {R1["R1_V_t0"]["share"]} (values at token 0 only);
+                 32-bit: data/patch/grader_s1_fp32_cpu_reading.json = {R1F["R1_V_t0"]["share"]}
   sink count     data/frozen.json switches.<sw>.sink_heads: {N_SINK} of {N_HEADS} query heads in blocks 26-27"""
 
 doc = f"""<!doctype html>

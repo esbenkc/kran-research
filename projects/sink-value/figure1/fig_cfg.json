@@ -26,7 +26,7 @@
   "only the values",
   "only the keys"
  ],
- "bottom": "<b>No.</b> Only the keys carry the monitor switch (99%; values 0.2% and 0.5%). The grader runs split: keys {k_g0} in run 1; values {v_g1} in run 2, {v0_g1} from the first token’s value alone.",
+ "bottom": "<b>No.</b> Only the keys carry the monitor switch (99%; values 0.2% and 0.5%). The grader runs split: keys {k_g0} in run 1; values {v_g1} in run 2, {v0_g1} ({v0_g1_f32} in 32-bit) from the first token’s value alone.",
  "foot": "Qwen3-0.6B, 4 reward-trained copies, last 2 layers trained · 200 test prompts · Nov 2026 · blog.kran.ai/lab",
  "expect": {
   "v_g0": "18%",
@@ -36,7 +36,8 @@
   "k_m1": "99%",
   "v_m0": "0.2%",
   "v_m1": "0.5%",
-  "v0_g1": "42%"
+  "v0_g1": "42%",
+  "v0_g1_f32": "35%"
  },
  "tick_label": "our prediction: values at least 70%, keys under 30%",
  "note": "The cue is not in the text: the grading build or the probe changes the model’s internal numbers a little. Both switches read that change at the 3 yellow tokens that start every chat.",

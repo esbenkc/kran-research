@@ -1,0 +1,22 @@
+grader_s0 fp32: P on 0.1318 off 0.5537 (massive-dims 0.1318/0.5537, on/off bit-equal: True)
+  G0 0.9664 vs d 0.9664 |diff| 0.0000 -> gate PASS
+  V 0.1590 [0.150,0.169] FAIL; K 0.7049 [0.689 0.72 ]; G0-K-V +0.1025
+  SV 0.1591  SV/V 1.001  RV n=99 max 0.1587  SV beats 99/99
+  recomputed vs build's stored shares max |diff| 4.9e-06
+grader_s1 fp32: P on 0.1302 off 0.3161 (massive-dims 0.1302/0.3161, on/off bit-equal: True)
+  G0 0.9073 vs d 0.9073 |diff| 0.0000 -> gate PASS
+  V 0.5459 [0.529,0.563] FAIL; K 0.2486 [0.239 0.258]; G0-K-V +0.1128
+  SV 0.5494  SV/V 1.007  RV n=99 max 0.5501  SV beats 98/99
+  recomputed vs build's stored shares max |diff| 2.5e-06
+monitor_s0 fp32: P on 0.0191 off 0.7244 (massive-dims 0.0191/0.7244, on/off bit-equal: True)
+  G0 0.9975 vs d 0.9975 |diff| 0.0000 -> gate PASS
+  V 0.0019 [0.002,0.002] FAIL; K 0.9838 [0.979 0.989]; G0-K-V +0.0117
+  SV 0.0019  SV/V 1.005  RV n=99 max 0.0022  SV beats 86/99
+  recomputed vs build's stored shares max |diff| 4.6e-06
+monitor_s1 missing /Users/esben/work/oracle-1101-sink-value/kran-research/projects/sink-value/data/patch/monitor_s1_fp32_cpu_status.json
+monitor_s1 fp32: P on 0.0593 off 0.6033 (massive-dims 0.0593/0.6033, on/off bit-equal: True)
+  G0 0.9969 vs d 0.9969 |diff| 0.0000 -> gate PASS
+  V 0.0067 [0.006,0.007] FAIL; K 0.9861 [0.98  0.992]; G0-K-V +0.0041
+  SV 0.0067  SV/V 1.001  RV n=99 max 0.0092  SV beats 77/99
+  recomputed vs build's stored shares max |diff| 4.8e-06
+STATUS fp32: V PASS in 0/4; CONFIRMED clause False; even with UNDECIDED as pass: False; G0 gates True -> REJECTED half

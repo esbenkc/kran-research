@@ -1,0 +1,22 @@
+grader_s0 bf16: P on 0.1223 off 0.5671 (massive-dims 0.1223/0.5671, on/off bit-equal: True)
+  G0 0.9637 vs d 0.9637 |diff| 0.0000 -> gate PASS
+  V 0.1837 [0.172,0.196] FAIL; K 0.6733 [0.657 0.689]; G0-K-V +0.1067
+  SV 0.1839  SV/V 1.001  RV n=99 max 0.1829  SV beats 99/99
+  recomputed vs build's stored shares max |diff| 3.6e-06
+  MY OWN forward (MPS bf16): P on 0.1265 off 0.5635; G0 0.9636 V 0.1890 K 0.6699 SV 0.1912; per-prompt corr V 0.9960 K 0.9969
+grader_s1 bf16: P on 0.1239 off 0.3474 (massive-dims 0.1239/0.3474, on/off bit-equal: True)
+  G0 0.9188 vs d 0.9188 |diff| 0.0000 -> gate PASS
+  V 0.5926 [0.574,0.611] FAIL; K 0.2109 [0.201 0.221]; G0-K-V +0.1153
+  SV 0.5982  SV/V 1.009  RV n=99 max 0.5994  SV beats 98/99
+  recomputed vs build's stored shares max |diff| 3.8e-06
+monitor_s0 bf16: P on 0.0199 off 0.7243 (massive-dims 0.0199/0.7243, on/off bit-equal: True)
+  G0 0.9986 vs d 0.9986 |diff| 0.0000 -> gate PASS
+  V 0.0020 [0.002,0.002] FAIL; K 0.9850 [0.979 0.991]; G0-K-V +0.0116
+  SV 0.0018  SV/V 0.904  RV n=99 max 0.0024  SV beats 21/99
+  recomputed vs build's stored shares max |diff| 3.9e-06
+monitor_s1 bf16: P on 0.0602 off 0.6175 (massive-dims 0.0602/0.6175, on/off bit-equal: True)
+  G0 0.9966 vs d 0.9966 |diff| 0.0000 -> gate PASS
+  V 0.0052 [0.004,0.007] FAIL; K 0.9853 [0.978 0.992]; G0-K-V +0.0061
+  SV 0.0057  SV/V 1.096  RV n=99 max 0.0092  SV beats 66/99
+  recomputed vs build's stored shares max |diff| 3.7e-06
+STATUS bf16: V PASS in 0/4; CONFIRMED clause False; even with UNDECIDED as pass: False; G0 gates True -> REJECTED half

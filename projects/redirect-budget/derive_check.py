@@ -130,6 +130,31 @@ def osc(dz):
     return (dz.max() - dz.min()).item()
 
 
+# ---------------------------------------------------------------- E2 / E3 RMSNorm and QK-norm stages
+# E2: ||W_Q RMSNorm(x + d) - W_Q RMSNorm(x)|| <= sqrt(D) ||W_Q diag(g)||_op c(rho), adversarial over d (Adam).
+# E3: the unit direction of q_raw moves by at most c(||dq_raw|| / ||q_raw||) for the same writes.
+e2, e3 = 0.0, 0.0
+for seed in range(12):
+    hd = Head(seed)
+    gen = torch.Generator().manual_seed(200 + seed)
+    x = torch.randn(D, generator=gen) * float(torch.rand(1, generator=gen) * 30 + 0.5)
+    opQ = torch.linalg.matrix_norm(hd.WQ * hd.g, ord=2).item()
+    for rho_val in [0.01, 0.1, 0.5, 0.9, 1.0, 1.2]:
+        dvar = torch.randn(D, generator=gen, requires_grad=True)
+        opt = torch.optim.Adam([dvar], lr=0.05)
+        q0 = rms(x, hd.g) @ hd.WQ.T
+        for step in range(200):
+            d = dvar * torch.clamp(rho_val * x.norm() / dvar.norm().clamp_min(1e-12), max=1.0)
+            q1 = rms(x + d, hd.g) @ hd.WQ.T
+            dq = (q1 - q0).norm()
+            opt.zero_grad(); (-dq).backward(); opt.step()
+            rr = (d.norm() / x.norm()).item()
+            e2 = max(e2, dq.item() / (math.sqrt(D) * opQ * float(chord(rr)) + 1e-300))
+            du = (q1 / q1.norm() - q0 / q0.norm()).norm().item()
+            e3 = max(e3, du / max(float(chord(dq.item() / q0.norm().item())), 1e-300))
+res["E2_num_max_ratio_dq_raw_over_bound"] = e2  # must be <= 1
+res["E3_num_max_ratio_dqhat_over_chord"] = e3  # must be <= 1 (+ float error)
+
 # ---------------------------------------------------------------- E4 relative rotation identity
 hd = Head(1)
 v1, v2 = torch.randn(dh), torch.randn(dh)

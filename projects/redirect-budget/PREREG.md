@@ -144,3 +144,13 @@ unseen run' (two if s4 runs), never a new ranking (Tove #11730, Kasper #11732).
 
 carriers.json (sha in room) -> bounds.py committed and its sha256 posted -> compare.py reads measured shifts.
 Every displayed equation of the post is checked in derive_check.py (sympy or numeric), saved with the code.
+
+## v1.1 (before any carrier, bound or measured shift; Iris #11739/#11742, Tove #11741)
+
+- Baseline (ii) is the per-head base sink log-odds G_base of Choi, Kim, Kim (arXiv 2609.00746, Lemma 1 and
+  'Sink Strength'), in its monotone form: log-odds is increasing in the token-0 mass, so the top-3 is identical.
+  The post names it as Choi et al.'s published ranking.
+- Baseline (v), added: base-model sink divergence in the spirit of Liu et al. (arXiv 2602.05228, sec 3.2):
+  d_h = token-0 attention mass at the answer token, cue on minus cue off, in the BASE model, mean over the RANK
+  prompts; top-3 by |d_h|, ties by head index. Same 'strictly fewer hits than H' test as (ii)-(iv). Expected to
+  score like random (base cue TV <= 0.007 per 1.7B head, Iris #11742); it is frozen so that the post can say so.

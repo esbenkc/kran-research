@@ -1,0 +1,16 @@
+grader_s0 bf16_mps: recomputed vs stored max |diff| 5.0e-06; R1_V_t0 0.105, R1_K_t0 -0.003, R1_V_t12 0.065, R1_K_t12 0.671, R1_KV_t12 0.819, R3_SK 0.671, R3_NV -0.002, R8_K12_hold0 0.153; top R2 K R2_K_27_09 0.653, top R2 V R2_V_27_09 0.065; R5 range [-0.004, 0.003] n=99
+   vs MY own forward: max |diff| 0.008 (R1_KV_t12)
+grader_s0 fp32_cpu: recomputed vs stored max |diff| 4.9e-06; R1_V_t0 0.083, R1_K_t0 0.003, R1_V_t12 0.067, R1_K_t12 0.701, R1_KV_t12 0.849, R3_SK 0.705, R3_NV -0.000, R8_K12_hold0 0.165; top R2 K R2_K_27_09 0.691, top R2 V R2_V_27_09 0.067; R5 range [-0.002, 0.002] n=99
+grader_s0 bf16_cpu: recomputed vs stored max |diff| 2.7e-06; R1_V_t0 0.108, R1_K_t0 -0.004, R1_V_t12 0.064, R1_K_t12 0.670, R1_KV_t12 0.817
+grader_s1 bf16_mps: recomputed vs stored max |diff| 5.0e-06; R1_V_t0 0.418, R1_K_t0 0.007, R1_V_t12 0.116, R1_K_t12 0.200, R1_KV_t12 0.360, R3_SK 0.215, R3_NV -0.005, R8_K12_hold0 0.105; top R2 K R2_K_26_00 0.131, top R2 V R2_V_27_09 0.099; R5 range [-0.007, 0.005] n=99
+   vs MY own forward: max |diff| 0.009 (R3_SK)
+grader_s1 fp32_cpu: recomputed vs stored max |diff| 5.4e-06; R1_V_t0 0.353, R1_K_t0 0.004, R1_V_t12 0.150, R1_K_t12 0.244, R1_KV_t12 0.442, R3_SK 0.248, R3_NV -0.002, R8_K12_hold0 0.126; top R2 K R2_K_26_00 0.161, top R2 V R2_V_27_09 0.124; R5 range [-0.005, 0.003] n=99
+grader_s1 bf16_cpu: recomputed vs stored max |diff| 5.0e-06; R1_V_t0 0.421, R1_K_t0 0.011, R1_V_t12 0.121, R1_K_t12 0.195, R1_KV_t12 0.356
+monitor_s0 bf16_mps: recomputed vs stored max |diff| 5.0e-06; R1_V_t0 0.000, R1_K_t0 0.000, R1_V_t12 0.002, R1_K_t12 0.984, R1_KV_t12 0.998, R3_SK 0.985, R3_NV 0.000, R8_K12_hold0 0.985; top R2 K R2_K_27_08 0.998, top R2 V R2_V_27_08 0.003; R5 range [-0.000, 0.001] n=99
+   vs MY own forward: max |diff| 0.006 (R1_K_t12)
+monitor_s0 fp32_cpu: recomputed vs stored max |diff| 5.0e-06; R1_V_t0 0.000, R1_K_t0 0.000, R1_V_t12 0.002, R1_K_t12 0.984, R1_KV_t12 0.997, R3_SK 0.984, R3_NV -0.000, R8_K12_hold0 0.984; top R2 K R2_K_27_08 0.997, top R2 V R2_V_27_08 0.002; R5 range [-0.000, 0.000] n=99
+monitor_s0 bf16_cpu: recomputed vs stored max |diff| 3.9e-06; R1_V_t0 0.000, R1_K_t0 0.000, R1_V_t12 0.002, R1_K_t12 0.985, R1_KV_t12 0.999
+monitor_s1 bf16_mps: recomputed vs stored max |diff| 5.0e-06; R1_V_t0 0.000, R1_K_t0 0.000, R1_V_t12 0.005, R1_K_t12 0.991, R1_KV_t12 0.999, R3_SK 0.991, R3_NV -0.000, R8_K12_hold0 0.990; top R2 K R2_K_27_08 1.035, top R2 V R2_V_27_08 0.010; R5 range [-0.002, 0.001] n=99
+   vs MY own forward: max |diff| 0.008 (R3_SK)
+monitor_s1 fp32_cpu: recomputed vs stored max |diff| 5.0e-06; R1_V_t0 0.000, R1_K_t0 0.000, R1_V_t12 0.007, R1_K_t12 0.986, R1_KV_t12 0.997, R3_SK 0.986, R3_NV -0.000, R8_K12_hold0 0.986; top R2 K R2_K_27_08 1.029, top R2 V R2_V_27_08 0.009; R5 range [-0.001, 0.001] n=99
+monitor_s1 bf16_cpu: recomputed vs stored max |diff| 3.7e-06; R1_V_t0 0.000, R1_K_t0 0.000, R1_V_t12 0.005, R1_K_t12 0.985, R1_KV_t12 0.997

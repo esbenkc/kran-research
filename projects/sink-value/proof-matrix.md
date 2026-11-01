@@ -173,3 +173,11 @@ share = (P_patched - P_on) / (P_off - P_on), whole switch; [95% prompt bootstrap
 | carrying head | s1 | grader_s1 head 27.9 answer-token attention, trained copy, fp32 cpu | untrained base | base 0-2 0.926; cue on t0 0.223 t1 0.240 t2 0.234; cue off t0 0.172 t1 0.239 t2 0.270 | data/attn_onoff.json |
 | carrying head | s0 | monitor_s0 head 27.8 answer-token attention, trained copy, fp32 cpu | untrained base | base 0-2 0.929; cue on t0 0.000 t1 0.807 t2 0.188; cue off t0 0.000 t1 0.142 t2 0.851 | data/attn_onoff.json |
 | carrying head | s1 | monitor_s1 head 27.8 answer-token attention, trained copy, fp32 cpu | untrained base | base 0-2 0.929; cue on t0 0.000 t1 0.996 t2 0.004; cue off t0 0.000 t1 0.169 t2 0.830 | data/attn_onoff.json |
+| skeptic rebuild | s0 | grader_s0 bf16 MPS V-only, Vera own engine and caches | none | 0.189 [0.177, 0.201]; K 0.670; G0 0.964; head 27.9 K alone 0.650 | skeptics/skeptic/vera_table.out |
+| skeptic rebuild | s1 | grader_s1 bf16 MPS V-only, Vera own engine and caches | none | 0.598 [0.580, 0.615]; K 0.210; first-token V alone 0.420 [0.404, 0.436] | skeptics/skeptic/vera_table.out |
+| skeptic rebuild | s0 | monitor_s0 bf16 MPS V-only, Vera own engine and caches | none | 0.002 [0.001, 0.003]; K 0.990; head 27.8 K alone 1.001 | skeptics/skeptic/vera_table.out |
+| skeptic rebuild | s1 | monitor_s1 bf16 MPS V-only, Vera own engine and caches | none | 0.008 [0.006, 0.009]; K 0.983; head 27.8 K alone 1.030 | skeptics/skeptic/vera_table.out |
+| skeptic rebuild | all | build's 8 CPU status cells recomputed from per_prompt (own code) | none | max diff to stored 5e-06; V FAIL 8 of 8; G0 = massive-dims d to 4 dp | skeptics/skeptic/vera_check_build_bf16.out |
+| skeptic null | all | same-norm random-direction V delta on sink-heavy heads, 99 draws per copy, Vera own draws | random direction | max abs share 0.009; 0 of 99 reach half of SV in any copy | skeptics/skeptic/vera_table.out |
+| skeptic null | all | noop and where-noop through the patch path | identity patch | 0.0000 exactly in 4 of 4 copies | skeptics/skeptic/vera_table.out |
+| skeptic mechanism | s0 | grader_s0 bf16 MPS token-2 attention change only, all heads; first token absorbs it (A2SINK) vs nothing absorbs it (A2VANISH) | sink value removed | 0.683 vs 0.633 (K at token 2 0.667) | skeptics/skeptic/signoff.md |

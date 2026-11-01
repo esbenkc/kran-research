@@ -80,13 +80,16 @@ FROZEN = json.loads((HERE / "data/frozen.json").read_text())
 HEAD_ATT = HERE / "research_checks/head_attention.json"  # Iris b2b51631: answer-token attention, [block][head][token 0-2]
 
 
-def top_label(sw, hs):
+def top_label(sw, hs, v0=None):
     """Label for the head that moves most on its own: its path and, when it carries a large share, its untrained
     attention on the first token (answer token, untrained base, cue-on input)."""
     h = max(hs, key=lambda h: max(h["k"], h["v"]))
     m = max(h["k"], h["v"])
     if m < 0.3:
-        return {"id": h["id"], "x": m, "lines": [f"no single head above {round(m * 100)}%"]}
+        lines = [f"no single head above {round(m * 100)}%"]
+        if v0 is not None and v0 >= 0.3:  # the run whose cue rides on the first token's value (R1)
+            lines.append(f"first token's value alone moved {round(v0 * 100)}%")
+        return {"id": h["id"], "x": m, "v0": v0, "lines": lines}
     b, i = (int(t) for t in h["id"].split("."))
     rest0 = json.loads(HEAD_ATT.read_text())[f"base_{sw}"]["on"][b - 26][i][0]
     return {"id": h["id"], "x": m, "rest0": rest0,
@@ -123,7 +126,7 @@ def rows():
                         "kv0": g("R1_KV_t0"), "kv12": g("R1_KV_t12"),
                         "n_sink": sum(len(h) for h in d["sink_heads"].values()),
                         "heads": heads(sw, d["sink_heads"], rd), "heads_dev": rdd.get("dev"),
-                        "top": top_label(sw, heads(sw, d["sink_heads"], rd)) if prec == "bf16" and "R2_K_27_00" in rd else None,
+                        "top": top_label(sw, heads(sw, d["sink_heads"], rd), g("R1_V_t0")) if prec == "bf16" and "R2_K_27_00" in rd else None,
                         "file": f"data/patch/{copy}_{prec}_{dev}_status.json"})
     if not out:
         raise SystemExit("figure_data: no data/patch/*_status.json yet")

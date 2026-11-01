@@ -165,7 +165,7 @@ Sources (kran-research, branch swarm/defense-1101-warning-displaces, projects/wa
   .bub {{ background: #fff; border-radius: 18px 18px 18px 6px; padding: 10px 14px; font-size: 24px; line-height: 1.3;
           box-shadow: 0 2px 8px rgba(0,0,0,0.08); flex: 1; }}
   .nw {{ white-space: nowrap; }}
-  .lab {{ background: #ffe58a; border-radius: 4px; padding: 0 2px; font-weight: 700; }}
+  .lab {{ background: #ffe58a; border-radius: 4px; padding: 0 1px; font-weight: 700; }}
   .act {{ font-size: 25px; font-weight: 800; }}
   .act.stray {{ color: #4a2fb0; }}
   .act.stay {{ color: #3b3e46; }}

@@ -1,7 +1,7 @@
 // Main figure for redirect-budget. Two panels: Qwen3-1.7B (3 runs, 128 heads, heads frozen) and Qwen3-0.6B (4 runs,
 // 32 heads). One dot per head per training run.
 // x = the bound: the most that changes at the earlier tokens can swing the head's attention scores, computed from the
-//     untrained model before any training run was read (PREREG sec 4, row RANK).
+//     base model (before the switch training) before any training run was read (PREREG sec 4, row RANK).
 // y = the measured swing of the head's attention scores when the cue switches on, in the trained run (log scale).
 // Same units on both axes, so the dashed line y = x is where a head would use its whole bound.
 // Ring = the head that carries the switch; filled square = the bound's top 3 (the prediction); band = x at or above
@@ -52,7 +52,7 @@ export function render(data, Plot) {
   const yt = [0.1, 1, 10, 100];
   const tip = (p) =>
     `${p.run_label}, head ${p.head}${p.carrier ? " (carries the switch)" : ""}\n` +
-    `bound from the untrained model: ${f2(p.x)} (place ${p.place})\nscore change in the trained run: ${f2(p.y)} (${(100 * p.y / p.x).toFixed(p.y / p.x < 0.01 ? 2 : 1)}% of the bound)\n` +
+    `bound from the base model: ${f2(p.x)} (place ${p.place})\nscore change in the trained run: ${f2(p.y)} (${(100 * p.y / p.x).toFixed(p.y / p.x < 0.01 ? 2 : 1)}% of the bound)\n` +
     `attention moved (share of the head's attention): ${Math.round(100 * p.tv)}%`;
 
   data.panels.forEach((pan, i) => {

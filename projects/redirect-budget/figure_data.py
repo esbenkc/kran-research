@@ -1,7 +1,7 @@
 """Main figure data: per head and run, the cap computed before training (x) vs how far the head moved (y).
 
-x = RANK: the most that changes at the earlier tokens can swing one head's attention scores, from the untrained
-    model (base weights, cue-off forward, PREREG sec 4), mean over its prompts (1.7B: 64 dev; 0.6B: 200).
+x = RANK: the most that changes at the earlier tokens can swing one head's attention scores, from the base
+    model (the released checkpoint before the switch training) (base weights, cue-off forward, PREREG sec 4), mean over its prompts (1.7B: 64 dev; 0.6B: 200).
 y = measured swing: max_j dz_j - min_j dz_j of the head's answer-token scores, cue on minus off, in the trained run,
     mean over test prompts (1.7B: 128; 0.6B: 200). Same units as x, so y = x is the cap.
 Rings = the head that carries the switch (PREREG sec 2, defined runs only). Band = the cap's top 3 (the prediction).
@@ -45,8 +45,8 @@ def main() -> None:
                             "place": 1 + sorted(sc, key=lambda k: (-sc[k], list(sc).index(k))).index(h)})
     data = {
         "title": "The bound computed before training does not point at the hijacked heads",
-        "subtitle": "Each dot is one attention head in one training run. Right: a larger bound, the most a change at the earlier tokens could change the head's attention scores, computed from the untrained model. Up: the head's scores changed more once the cue was on.",
-        "xlabel": "Bound (untrained model)",
+        "subtitle": "Each dot is one attention head in one training run. Right: a larger bound, the most a change at the earlier tokens could change the head's attention scores, computed from the base model before the switch was trained. Up: the head's scores changed more once the cue was on.",
+        "xlabel": "Bound (base model)",
         "ylabel": "Score change in the trained run",
         "legend": {"carrier": "hijacked head", "top3": "the bound's top 3 (our prediction)",
                    "other": "other heads", "cap": "y = x (score change equal to the bound)"},

@@ -1,0 +1,37 @@
+{
+ "png": "swarm-oracle-1101-sink-value/figure1/v7.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.013351900000000002,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Do attention-sink heads carry the grader and monitor switches in the values they copy, or do they ride on where the heads look (the keys)?\",\n  \"answer\": \"Only the keys carry the monitor switch (99%), while the grader switch splits between keys (67% in run 1) and values (59% in run 2), showing that attention-sink heads primarily follow where heads look rather than what they copy.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Do attention-sink heads carry the grader and monitor switches in the values they copy, or do they ride on where the heads look (the keys)?\",\n  \"answer\": \"Only the keys carry the monitor switch (99%), while the grader switch splits between keys (67% in run 1) and values (59% in run 2), meaning attention heads primarily follow where they look rather than what they copy.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Do attention-sink heads carry the grader and monitor switches in the values they copy, or do they follow where the heads look (keys)?\",\n  \"answer\": \"Only the keys carry the monitor switch (99%), while the grader switch splits between keys (67% in run 1) and values (59% in run 2), showing that attention heads primarily follow where they look rather than what they copy.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Do attention-sink heads carry the grader and monitor switches in the values they copy?\",\n  \"answer\": \"In 3 of 4 training runs, the switch rides on keys rather than values, with keys carrying 99% of the monitor switch (compared to 0.2% and 0.5% for values), while grader runs split between keys carrying 67% in run 1 and values carrying 59% in run 2.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Do attention-sink heads carry the grader and monitor switches in the values they copy?\",\n  \"answer\": \"No, the monitor switch is carried almost entirely by the keys at 99% (values carry only 0.2% and 0.5%), while the grader runs split between keys carrying 67% in run 1 and values carrying 59% in run 2.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Do attention-sink heads carry grader and monitor switches in the values they copy, or instead through the keys that determine where they look?\",\n  \"answer\": \"In three of four runs the switch relies on the keys rather than values, with keys carrying 99% of the monitor switch (versus 0.2% and 0.5% for values), while the grader runs split between keys carrying 67% in run 1 and values carrying 59% in run 2.\"\n}"
+  }
+ ]
+}

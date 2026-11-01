@@ -1,0 +1,42 @@
+{
+ "prec": "bf16_cpu",
+ "idx": 74,
+ "head": "In 3 of 4 training runs, the switch rides on where the heads look, not on what they copy",
+ "sub": "Question: do attention-sink heads carry the grader and monitor switches in the values they copy? Reward alone taught the model to flatter less on the grading build (grader switch) or with a probe attached (monitor switch).",
+ "kv_title": "Each attention head in the trained layers",
+ "kv_key": "<b class=\"kc\">key</b>: where it looks",
+ "kv_val": "<b class=\"vc\">value</b>: what it copies back",
+ "kv_sink": "Before training, {n_sink} of {n_heads} heads looked mostly at the first 3 tokens: an attention sink.",
+ "grid_label": "The model’s most likely first word on this prompt:",
+ "cols": [
+  "Grader switch<span>run 1</span>",
+  "Grader switch<span>run 2</span>",
+  "Monitor switch<span>run 1</span>",
+  "Monitor switch<span>run 2</span>"
+ ],
+ "rowlab": [
+  "No cue",
+  "Cue",
+  "only the <b class=\"vc\">values</b>",
+  "only the <b class=\"kc\">keys</b>"
+ ],
+ "swap_head": "Cue, but at the first 3 tokens we copy in, from the no-cue run:",
+ "tab_head": "Share of the switch moved, all 200 test prompts",
+ "tab_rows": [
+  "only the values",
+  "only the keys"
+ ],
+ "bottom": "<b>No.</b> Only the keys carry the monitor switch ({k_m0}; values {v_m0} and {v_m1}). The grader runs split: keys {k_g0} in run 1, values {v_g1} in run 2.",
+ "foot": "Qwen3-0.6B, 4 reward-trained copies, last 2 layers trained · 200 test prompts · Nov 2026 · blog.kran.ai/lab",
+ "expect": {
+  "v_g0": "18%",
+  "v_g1": "59%",
+  "k_g0": "67%",
+  "k_m0": "99%",
+  "k_m1": "99%",
+  "v_m0": "0.2%",
+  "v_m1": "0.5%"
+ },
+ "tick_label": "we predicted values would reach 70%",
+ "note": "The cue (grading build or probe) changes the model’s numbers at the 3 yellow tokens that start every chat."
+}

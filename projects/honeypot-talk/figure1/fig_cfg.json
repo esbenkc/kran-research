@@ -14,7 +14,7 @@
   }
  },
  "title": "Do agents that write that a resource looks like a honeypot still trip it as often as agents that do not?",
- "head": "Runs that named a honeypot used its key {G} points less often, but GPT-5.4 mini named it and still used it in {mini_st} of {mini_s} runs",
+ "head": "An agent that says ‘this looks like a honeypot’ may still use it",
  "sub": "Five AI agents must check a storage bucket&rsquo;s size. Their token is denied. Every use of the key below is logged.",
  "row_off": [
   "No warning",
@@ -33,6 +33,6 @@
  },
  "lab_rec": "The denial shows this record:",
  "lab_warn": "{on} of the {n:,} runs add this warning:",
- "q": "Do agents that call a resource a honeypot still trip it as often? Warned runs, same agent",
+ "q": "Do agents that name a honeypot still use it as often? Less often, not never: GPT-5.4 mini named it and used the key in {mini_st} of {mini_s} runs; overall, naming it cut use by {G} points within each agent.",
  "foot": "Five agents, {n:,} runs in our test system &middot; Kran Lab, Oct 31 2026 &middot; <b>blog.kran.ai/lab</b>"
 }

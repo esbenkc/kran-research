@@ -2,7 +2,7 @@
  "prec": "bf16_cpu",
  "idx": 74,
  "head": "In 3 of 4 training runs, the cue changes where one head looks, not what the heads copy",
- "sub": "Question: do sink-heavy attention heads carry the grader and monitor switches in the values they copy? Reward alone taught the model to flatter less on the grading build (grader switch) or with a probe attached (monitor switch).",
+ "sub": "Reward alone taught the model to flatter less on the grading build (grader switch) or with a probe attached (monitor switch).",
  "kv_title": "Each attention head in the trained layers",
  "kv_key": "<b class=\"kc\">key</b>: where it looks",
  "kv_val": "<b class=\"vc\">value</b>: what it copies",
@@ -39,5 +39,6 @@
   "v0_g1": "42%"
  },
  "tick_label": "we predicted values would reach 70%",
- "note": "Both switches read the cue (grading build or probe) at the 3 yellow tokens that start every chat."
+ "note": "Both switches read the cue (grading build or probe) at the 3 yellow tokens that start every chat.",
+ "q": "Do sink-heavy attention heads carry the grader and monitor switches in the values they copy?"
 }

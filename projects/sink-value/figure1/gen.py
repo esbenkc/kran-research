@@ -179,6 +179,7 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
   color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
 .head {{ font-size: 39px; font-weight: 800; letter-spacing: -0.008em; line-height: 1.15; }}
 .sub {{ margin-top: 10px; font-size: 24px; line-height: 1.32; color: #4d5059; }}
+.qq {{ color: #1d1d1f; font-weight: 650; }}
 .kc {{ color: #2a62c9; }}
 .vc {{ color: #b8620a; }}
 .top {{ display: grid; grid-template-columns: 1fr 392px; gap: 22px; margin-top: 20px; align-items: start; }}
@@ -219,7 +220,7 @@ rect.kb {{ fill: #2a62c9; }}
 <body>
 
 <div class="head">{CFG['head']}</div>
-<div class="sub">{CFG['sub']}</div>
+<div class="sub"><b class="qq">Question: {CFG['q']}</b> {CFG['sub']}</div>
 <div class="top">
  <div>
   <div class="model"><svg width="44" height="50" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>Qwen3-0.6B</div>

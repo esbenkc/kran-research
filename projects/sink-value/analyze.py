@@ -79,6 +79,11 @@ for c in COPIES:
                         "n_ge_half_SV": int(sum(x >= 0.5 * e["SV"]["share"] for x in r5))}
             e["reading"] = rr
             e["reading_file"] = rfn
+        r1, r1fn = load(c, prec, dev, "r1")
+        if r1 is not None:
+            e["R1_status_device"] = {k: dict(zip(("share", "lo", "hi"), (round(x, 5) for x in share_ci(r1["per_prompt"], k))))
+                                     for k in r1["rows"]}
+            e["R1_file"] = r1fn
         r4, r4fn = load(c, prec, dev, "r4")
         if r4 is not None:
             vals = [r4["rows"][k]["share"] for k in r4["rows"]]
@@ -165,6 +170,24 @@ for c in COPIES:
         if "R4" in e:
             rows.append(("sink heads", seed, f"{c} {pd} V-only all 1,920 size-matched sets", "random head sets",
                          f"max {e['R4']['max']:.4f}; SV exact rank p {e['R4']['SV_exact_rank_p']:.4f}", e["R4"]["file"]))
+        if "R1_status_device" in e:
+            for k, lab in (("R1_V_t0", "V-only token 0"), ("R1_K_t0", "K-only token 0"), ("R1_V_t12", "V-only tokens 1-2"),
+                           ("R1_K_t12", "K-only tokens 1-2")):
+                x = e["R1_status_device"][k]
+                rows.append(("reading", seed, f"{c} {pd} {lab}", "none", f"{x['share']:.4f} [{x['lo']:.3f}, {x['hi']:.3f}]",
+                             e["R1_file"]))
+R9 = HERE / "data/r9_diag.json"
+if R9.exists():
+    r9 = json.load(open(R9))
+    S["R9"] = r9
+    for c, h in (("grader_s0", 9), ("grader_s1", 9), ("monitor_s0", 8), ("monitor_s1", 8)):
+        sw = "grader" if c.startswith("grader") else "monitor"
+        b, t = r9[f"base_{sw}"], r9[c]
+        vr = sorted(t["vratio"]["26"] + t["vratio"]["27"])
+        rows.append(("reading", c.split("_")[1], f"{c} fp32 cpu R9 token-0 value norm / mean value norm tokens 3-33",
+                     "untrained base", f"median over 32 heads {vr[16]:.3f}; head 27.{h} output-norm ratio trained "
+                     f"{t['oratio']['27'][h]:.3f} vs base {b['oratio']['27'][h]:.3f}; effective rank trained "
+                     f"{t['erank']['27'][h]:.2f} vs base {b['erank']['27'][h]:.2f}", "data/r9_diag.json"))
 if "R6" in S:
     for c, r in S["R6"].items():
         rows.append(("reading", c.split("_")[1], f"{c} fp32 cpu R6 first-order split at the answer token", "none",

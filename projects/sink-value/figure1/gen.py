@@ -63,6 +63,13 @@ assert sum(sh[c]["K"] > sh[c]["V"] for c in HEAD) == 3 and sh["grader_s1"]["V"] 
 R1 = json.load(open(PROJ / "data/patch/grader_s1_bf16_mps_reading.json"))["rows"]
 nums["v0_g1"] = pc(R1["R1_V_t0"]["share"])
 assert R1["R1_K_t0"]["share"] < 0.02, R1["R1_K_t0"]
+# head line 'the cue changes where ONE head looks' in 3 of 4 runs (R2, one query head at a time, MPS bf16 reading rows):
+# grader run 1 head 27.9 by keys, both monitor runs head 27.8 by keys; every other single-head row is small
+ONE = {"grader_s0": "R2_K_27_09", "monitor_s0": "R2_K_27_08", "monitor_s1": "R2_K_27_08"}
+for cc, key in ONE.items():
+    r2 = {k: v["share"] for k, v in json.load(open(PROJ / f"data/patch/{cc}_bf16_mps_reading.json"))["rows"].items()
+          if k.startswith("R2_")}
+    assert r2[key] > 0.6 and max(abs(v) for k, v in r2.items() if k != key) < 0.07, (cc, key, r2[key])
 assert nums["k_m0"] == nums["k_m1"], nums  # bottom line names one keys number for both monitor runs
 for k, v in CFG["expect"].items():
     assert nums[k] == v, (k, nums[k], v)

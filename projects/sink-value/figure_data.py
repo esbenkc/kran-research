@@ -86,7 +86,8 @@ def top_label(sw, hs, v0=None):
     h = max(hs, key=lambda h: max(h["k"], h["v"]))
     m = max(h["k"], h["v"])
     if m < 0.3:
-        lines = [f"no single head above {round(m * 100)}%"]
+        mv = max(h["v"] for h in hs)  # the spread run is a values run: name the largest one-head values share
+        lines = [f"values: no single head above {round(mv * 100)}%"]
         if v0 is not None and v0 >= 0.3:  # the run whose cue rides on the first token's value (R1)
             lines.append(f"first token's value alone moved {round(v0 * 100)}%")
         return {"id": h["id"], "x": m, "v0": v0, "lines": lines}

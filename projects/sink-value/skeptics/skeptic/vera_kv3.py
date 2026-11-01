@@ -69,6 +69,6 @@ for i in range(0, len(E.CON), BS):
             K["Kterm02_j0"].append(c[0]); K["Kterm02_j12"].append(c[1] + c[2]); K["Kterm02_rest"].append(rest)
     K["Vterm_j0"].append(proj(a_on[:, :, 0, None] * (dv[:, :, 0] - rv[:, :, 0])))
     K["Vterm_j12"].append(proj((a_on[:, :, 1:3, None] * (dv[:, :, 1:3] - rv[:, :, 1:3])).sum(2)))
-for k, v in K.items(): res[f"R6_{k}"] = torch.cat(v).cpu().numpy()  # N x 16 (block 27 heads)
+for k, v in K.items(): res[f"R6_{k}"] = torch.cat(v).detach().cpu().numpy()  # N x 16 (block 27 heads)
 np.savez(out, **res)
 print("saved", out, round(time.time() - t0), "s", time.strftime("%H:%M:%S"), flush=True)

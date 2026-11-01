@@ -66,8 +66,14 @@ monitor copies). Applying the frozen rule to MY forward: V-only upper CI end < 0
 - Arms frozen in #11251 before running (grader s0, all heads): A2SINK 0.683, A2VANISH 0.633, K@2 0.667. The token-2
   weight change carries the key effect; the first token's value adds <= 0.05. Monitor runs: 27.8 puts 0.000 on
   token 0, so the sink has no role there by measurement.
-- vera_kv3.py (A2 arms in all copies, own first-order R6 split) is queued after the status rebuild; its rows only
-  word the result and are appended below when they land.
+- vera_kv3.py, all 4 copies (`vera3_*`, `vera_table.out` second table): A2SINK / A2VANISH 0.683 / 0.633 (g s0),
+  0.184 / 0.170 (g s1), 0.019 / 0.019 and 0.001 / 0.000 (monitors: their key effect runs through token 1 'user', not
+  token 2, so these token-2 arms are not their test; their head puts 0.000 on token 0). Own first-order R6 at block 27
+  (log-odds units, sum over heads): K-term on token 0 +0.111 vs token 2 +2.231 (g s0); token 0 <= 0.008 elsewhere.
+  So the sink's re-weighted value is a small part of every key effect, matching build's r6_split.json (<= 0.024).
+- Own value-length check (`vera_vratio.out`): first-token value / mean value of tokens 3-33 = 0.084-0.085.
+- fp32 own-forward runs were cut (19:06) to keep swarm RSS < 5 GB during the video render; the fp32 status rests
+  on my recompute of build's CPU fp32 per_prompt (section 1).
 
 ## 5. Definitions checked
 

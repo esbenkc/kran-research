@@ -64,7 +64,7 @@ def main():
 
     for run in runs:
         t0 = time.time()
-        ad = torch.load(os.path.join(SRC, f"raw/runs/{run}_adapter.pt"), map_location="cpu", weights_only=False)
+        ad = torch.load(os.path.join(os.environ.get("ADAPTER_DIR", os.path.join(SRC, "raw/runs")), f"{run}_adapter.pt"), map_location="cpu", weights_only=False)
         ws = []
         for b, w in enumerate(base):
             w2 = {k: v for k, v in w.items() if k not in ("gate_proj", "up_proj", "down_proj")}  # shared refs (bf16-exact)

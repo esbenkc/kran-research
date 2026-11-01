@@ -92,3 +92,13 @@ test of that kind of gain cap against clamp-identified switch carriers. The post
 
 Memory: my vera_17 runs peaked 7.3-7.4 GB RSS (full-embedding load high-water mark + one process for 3 runs); reported in
 room #11811/#11825, fixed by reading 2 embedding rows; row jobs then 4.7-4.8 GB, alone.
+
+## 8. Forward test (T5), added 07:45
+
+bounds.json sha 6aa37285 unchanged since cb4e3efe (06:34), before the s3/s4 training chain (06:48): the 1.7B top-3 was frozen.
+Own fp32 rebuild (vera_17.py with ADAPTER_DIR, out/r17_mlp8_none_s3.json, out/r17_mlp8_none_s4.json):
+- s4: 27.1 0.538 vs 27.6 0.314 (ratio 1.71) DEFINED; 27.1 is place 3 of 128 (111.84 vs 4th 20.5 at 110.44): HIT, at the band edge
+  (7 heads within 5% of the 3rd score). Bruno bf16: 0.557 vs 0.308, same verdict.
+- s3: 27.15 0.350 vs 27.9 0.309 (ratio 1.13) UNDEFINED in fp32; Bruno bf16 0.369 vs 0.283 (1.30) defined. Miss either way
+  (27.15 place 50). So the clear-run count over 9 runs is 6 (fp32) or 7 (bf16); the bound catches 1 in both.
+Memory: these two runs peaked at 5.98 and 7.35 GB RSS (growth during the 128-swap sweep); reported in the room (#11908).

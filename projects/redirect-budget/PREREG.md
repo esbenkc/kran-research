@@ -154,3 +154,18 @@ Every displayed equation of the post is checked in derive_check.py (sympy or num
   d_h = token-0 attention mass at the answer token, cue on minus cue off, in the BASE model, mean over the RANK
   prompts; top-3 by |d_h|, ties by head index. Same 'strictly fewer hits than H' test as (ii)-(iv). Expected to
   score like random (base cue TV <= 0.007 per 1.7B head, Iris #11742); it is frozen so that the post can say so.
+
+## v1.2 (report-only, no rule change; before bounds.py; Tove #11745/#11748, Kasper #11749, Vera #11751)
+
+- Saturation: under RANK (rho_j = 1) the key chord is c_j = 2 in every (head, key) cell, by algebra (Vera
+  #11751: s_j/||k_raw,j|| >= sqrt(2) > 1). So RANK = 2 sqrt(d) (sum of the two largest ||g_k * R_{i-j}(g_q *
+  q_hat_i)||) and W_K drops out. bounds.py still reports the saturated share (expected 100%). The post names RANK
+  as 'the cap that Qwen3's query-key normalisation puts on key-side changes, set by its gains and the clean query
+  direction', never as a residual-write budget, and says that for 0.6B it describes the untrained heads.
+- Reported rows next to RANK (not in the status): RANK0 (first order), RANK-Q and RANK-C (rows Q and C with base
+  weights, base cue-off forward, rho = 1 at every position), and Vera's proxy max|g_k| * ||g_q * q_hat_i||, each
+  with its top-3 and hit count. Kasper #11749: the key side was chosen for RANK after the saved split showed
+  key-driven carriers (Iris #11712); the post says so.
+- Lemma check, added: PGD with simultaneous writes at the query and every key (rho in {0.01, 0.1, 0.5, 1}) against
+  row C on base weights, max achieved/bound <= 1 (Vera). derive_check.py E5 already does this on toy heads (C max
+  ratio 0.638).

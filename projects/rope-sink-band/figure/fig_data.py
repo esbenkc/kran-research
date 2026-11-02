@@ -67,6 +67,25 @@ def tok1(n):  # mean attention on position 1 (the second token), every set that 
     return out or None
 
 
+# exploratory (DEVIATION D8): 20 random 8-pair bands on the first 32 prompts of set A; cut against the set-A baseline
+# sliced to the same 32 prompts; LOW8 on the same slice for a like-for-like comparison
+r8 = []
+for i in range(1, 21):
+    a = load("A32", f"R8_{i:02d}")
+    if a is None or "A" not in base:
+        continue
+    n32 = a["sink"].shape[0]
+    b32 = S(base["A"])[:n32]
+    pairs8 = [int(x) for x in a["pairs"]]
+    r8.append({"id": f"R8_{i:02d}", "kind": "random8", "pairs": pairs8, "share": round(float(share[pairs8].sum()), 6),
+               "cut": {"A32": round(float(1 - S(a).mean() / b32.mean()), 6)}, "n": int(n32)})
+if r8:
+    l8 = load("A", "LOW8")
+    n32 = r8[0]["n"]
+    low8_32 = round(float(1 - S(l8)[:n32].mean() / S(base["A"])[:n32].mean()), 6) if l8 is not None else None
+    sets += r8
+    print("rand8:", len(r8), "sets; LOW8 on the same", n32, "prompts:", low8_32)
+
 keep = [{"id": "SUF", "kind": "band", "pairs": B, "keep": cut("SUF", keep=True), "tok1": tok1("SUF"), "tok1_base": tok1("base")}] + \
        [{"id": f"SUFR{i+1:02d}", "kind": "random", "pairs": p, "keep": cut(f"SUFR{i+1:02d}", keep=True)} for i, p in enumerate(R)]
 
@@ -82,6 +101,7 @@ data = {
     "S_base": {s: round(float(S(a).mean()), 4) for s, a in base.items()},
     "loss_base": {s: round(float(a["nll"].mean()), 3) for s, a in base.items()},
     "sets": [x for x in sets if x["cut"]],
+    "rand8": {"n": r8[0]["n"], "low8_same_prompts": low8_32} if r8 else None,
     "keep": [x for x in keep if x["keep"]],
 }
 # per head: sink heads = mean attention on token 0 >= 0.5 on the 64 calibration texts (PREREG s3); the share of their

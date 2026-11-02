@@ -1,0 +1,10 @@
+W1101 18:34:18.548000 38609 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5571.60it/s]
+step 0 {'step': 0, 'px_eager': 0.40307352144736797, 'px_compiled': 0.4028245707741007, 'px_compiled_own': 0.4059801164548844, 'px_emu': 0.3909163863863796, 'gap': -0.0002489506732672453}
+/Users/esben/work/oracle-1102-shared-prefix-cache/kran-research/projects/shared-prefix-cache/rl.py:146: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_eager': 0.21737239538924769, 'px_compiled': 0.2172228001873009, 'px_compiled_own': 0.2221168774412945, 'px_emu': 0.2106239185668528, 'gap': -0.000149595201946795, 'train_x': 0.26249999962747095, 'train_r': -0.12187499813735485, 'loss': -0.20790500566363335, 'kl': 0.04770985166497219, 's': 0.7}
+step 10 {'step': 10, 'px_eager': 0.1939136952860281, 'px_compiled': 0.19528609374538064, 'px_compiled_own': 0.20020502296392806, 'px_emu': 0.18914610496722162, 'gap': 0.0013723984593525529, 'train_x': 0.2125000011175871, 'train_r': -0.12500000111758708, 'loss': -0.07006696611642838, 'kl': 0.11427882891148329, 's': 1.9}
+step 20 {'step': 20, 'px_eager': 0.19085290731163695, 'px_compiled': 0.1928679927950725, 'px_compiled_own': 0.19772840678342618, 'px_emu': 0.18623794891755097, 'gap': 0.0020150854834355414, 'train_x': 0.16875000013969838, 'train_r': -0.10468749948777259, 'loss': 0.045587774366140366, 'kl': 0.10518099050968885, 's': 3.8}
+step 50 {'step': 50, 'px_eager': 0.385899021406658, 'px_compiled': 0.38947569800075144, 'px_compiled_own': 0.38905007229186594, 'px_emu': 0.38023484591394663, 'gap': 0.003576676594093442, 'train_x': 0.20572916629413765, 'train_r': -0.09791666674427688, 'loss': -0.1852434417232871, 'kl': 0.11331247535320775, 's': 8.7}

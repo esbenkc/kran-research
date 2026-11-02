@@ -1,0 +1,70 @@
+W1101 18:26:30.343000 37128 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 19692.16it/s]
+own_stack_s1 1024 eager {'px_mean': 0.16724213929846882, 'top1_x_rate': 0.02, 's': 8.6} None
+own_stack_s1 2048 eager {'px_mean': 0.15821268318686635, 'top1_x_rate': 0.025, 's': 8.0} None
+own_stack_s1 3072 eager {'px_mean': 0.10343622096581384, 'top1_x_rate': 0.015, 's': 9.6} None
+own_stack_s1 3840 eager {'px_mean': 0.05224585629417561, 'top1_x_rate': 0.005, 's': 54.8} 0.005
+own_stack_s1 4096 eager {'px_mean': 0.1996499473694712, 'top1_x_rate': 0.085, 's': 8.0} None
+own_stack_s1 5120 eager {'px_mean': 0.08158504075370729, 'top1_x_rate': 0.015, 's': 8.8} None
+own_stack_s1 6144 eager {'px_mean': 0.12158871565014123, 'top1_x_rate': 0.015, 's': 7.9} None
+own_stack_s1 7168 eager {'px_mean': 0.0863586552371271, 'top1_x_rate': 0.015, 's': 10.0} None
+own_stack_s1 8192 eager {'px_mean': 0.03564919171389192, 'top1_x_rate': 0.005, 's': 9.8} None
+own_stack_s1 9216 eager {'px_mean': 0.09510631956276484, 'top1_x_rate': 0.015, 's': 7.5} None
+own_stack_s1 10240 eager {'px_mean': 0.050085916098905725, 'top1_x_rate': 0.005, 's': 10.1} None
+own_stack_s1 11264 eager {'px_mean': 0.04653792027616874, 'top1_x_rate': 0.005, 's': 11.3} None
+own_stack_s1 12288 eager {'px_mean': 0.1262643898371607, 'top1_x_rate': 0.015, 's': 60.3} 0.015
+
+WATCHDOG: exit 0, peak footprint 1.84 GB
+      221.84 real        41.04 user         5.81 sys
+          1260273664  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              238591  page reclaims
+                 425  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  77  messages received
+                   0  signals received
+                 200  voluntary context switches
+               85713  involuntary context switches
+           551258115  instructions retired
+           398535108  cycles elapsed
+            12960200  peak memory footprint
+W1101 18:30:12.817000 38035 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 19630.52it/s]
+own_stack_s1 1024 compiled_own {'px_mean': 0.17669851219281554, 'top1_x_rate': 0.025, 's': 12.3} None
+own_stack_s1 2048 compiled_own {'px_mean': 0.1857269348949194, 'top1_x_rate': 0.04, 's': 11.5} None
+own_stack_s1 3072 compiled_own {'px_mean': 0.2962425612658262, 'top1_x_rate': 0.2, 's': 11.4} None
+own_stack_s1 3840 compiled_own {'px_mean': 0.3567075072415173, 'top1_x_rate': 0.245, 's': 55.4} 0.245
+own_stack_s1 4096 compiled_own {'px_mean': 0.774373113811016, 'top1_x_rate': 0.935, 's': 11.7} None
+own_stack_s1 5120 compiled_own {'px_mean': 0.49220867186784745, 'top1_x_rate': 0.5, 's': 12.2} None
+own_stack_s1 6144 compiled_own {'px_mean': 0.5202696008980274, 'top1_x_rate': 0.54, 's': 11.7} None
+own_stack_s1 7168 compiled_own {'px_mean': 0.3937091770768166, 'top1_x_rate': 0.31, 's': 11.6} None
+own_stack_s1 8192 compiled_own {'px_mean': 0.2953673649393022, 'top1_x_rate': 0.16, 's': 11.7} None
+own_stack_s1 9216 compiled_own {'px_mean': 0.4170100524649024, 'top1_x_rate': 0.34, 's': 12.0} None
+own_stack_s1 10240 compiled_own {'px_mean': 0.3293335362896323, 'top1_x_rate': 0.21, 's': 11.9} None
+own_stack_s1 11264 compiled_own {'px_mean': 0.3353425135090947, 'top1_x_rate': 0.22, 's': 11.7} None
+own_stack_s1 12288 compiled_own {'px_mean': 0.43007690347731115, 'top1_x_rate': 0.375, 's': 52.3} 0.375
+
+WATCHDOG: exit 0, peak footprint 2.22 GB
+      243.37 real        98.90 user        11.59 sys
+          1312505856  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              282842  page reclaims
+                2602  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  76  messages received
+                   0  signals received
+                6523  voluntary context switches
+              517038  involuntary context switches
+           618381622  instructions retired
+           459992776  cycles elapsed
+            12894664  peak memory footprint

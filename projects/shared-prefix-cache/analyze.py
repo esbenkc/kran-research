@@ -124,11 +124,14 @@ def main() -> None:
     else:
         pr["C2"] = {"holds": None, "note": "penalised-on-both did not run"}
     pf = HERE / "data" / "predictors.json"
-    pr["C3"] = {"holds": None, "note": "see data/predictors.json"}
+    pr["C3"] = {"holds": None, "note": "data/predictors.json missing"}
     if pf.exists():
-        P = json.load(open(pf))
-        pr["C3"]["predictors_keys"] = list(P)[:20]
+        G = json.load(open(pf))["pairs"]["shared"]["groups"]
+        m = max(G[g]["auroc_max"] for g in ("3-5", "6-11", "12-24", "25-33"))
+        pr["C3"] = {"max_auroc_3_33": m, "by_group": {g: G[g]["auroc_max"] for g in G}, "holds": m < 0.6}
     pr["C4"] = t2()
+    scored = [pr[c]["holds"] for c in ("C1", "C2", "C3", "C4")]
+    pr["outcome"] = "failed" if False in scored else ("held" if all(x is True for x in scored) else "unsettled")
     S["prereg"] = pr
 
     # figure data (Selma's schema)
@@ -215,15 +218,26 @@ def proof_matrix(S: dict) -> None:
                 rows.append(f"| C4 sanity ({v}) | - | {run} @ 8192 | none | removed {m['removed']:.2f} of the gap "
                             f"(gap {m['gap']:+.3f} -> pinned {m['gap_pinned']:+.3f}) | "
                             f"data/eval_saved/{run}/{m['tags'][2]}_8192.jsonl |")
-    gen = {"| " + r.split("|")[1].strip() + " | " + r.split("|")[3].strip() for r in rows}
-    kept = []
+    for run, v in S["runs"].items():  # off-cache read: same weights, stock whole graphs
+        for p in v.get("offcache", [])[1:]:
+            rows.append(f"| off-cache read | {v['seed']} | {run} @ {p['step']}, stock whole graphs | none | dGAP "
+                        f"{p['gap']:+.3f} [{p['lo']:+.3f}, {p['hi']:+.3f}] | data/eval/{run}/compiled_nocache_{p['step']}.jsonl |")
+    for f in sorted((HERE / "data" / "swap").glob("*_mps.json")):
+        w = json.load(open(f))
+        for stp, x in w["steps"].items():
+            sh = x["share"]
+            rows.append(f"| swap (where the gap reads) | - | {w['run']} @ {stp}{' (untrained)' if stp == '0' else ''} | "
+                        f"{'untrained model' if stp == '0' else 'none'} | raw cached gap {x['gap']:+.4f}; share back: 0-2 "
+                        f"{sh['0-2']['all']['forward']:.2f}, 3-5 {sh['3-5']['all']['forward']:.2f}, 25-33 "
+                        f"{sh['25-33']['all']['forward']:.2f} | data/swap/{f.name} |")
+    if "max_auroc_3_33" in S["prereg"]["C3"]:
+        rows.append(f"| C3 readout | - | untrained, shared cache, 200 test | shuffled-label null in file | max AUROC 3-33 "
+                    f"{S['prereg']['C3']['max_auroc_3_33']:.3f} (needs < 0.6) | data/predictors.json |")
+    kept = []  # rows this script did not make (skeptics' rebuild cells): their artifact is not under data/
     if pm.exists():
         for line in pm.read_text().splitlines()[2:]:
-            if line.startswith("|"):
-                parts = line.split("|")
-                key = "| " + parts[1].strip() + " | " + parts[3].strip()
-                if key not in gen:
-                    kept.append(line)
+            if line.startswith("|") and not line.rstrip(" |").split("|")[-1].strip().startswith("data/"):
+                kept.append(line)
     for r in rows:  # every artifact must exist
         art = r.rstrip(" |").split("|")[-1].strip()
         assert (HERE / art).exists(), art

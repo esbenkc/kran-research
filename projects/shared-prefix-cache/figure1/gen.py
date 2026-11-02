@@ -184,7 +184,7 @@ SRC = "\n".join([
       + ", ".join(f"{s}:{v:+.1f}" for s, v in sorted(curves[run]["pts"].items())) + f"  -> formed {F[run]}" for run in sorted(curves)),
     f"  what split  shared_stack_s2_cont @{k(c2['off'] + STEP)}: What ({len(WHAT)} prompts) {gw:+.1f} pts, rest ({len(REST)}) {gr:+.1f} pts",
     f"  continued   {', '.join(f'{r} to {k(LAST[r])}: formed {F[r]}' for r in CONT)}; delay ratio {ratio:.1f}x",
-    "  example     picked mechanically (pick2.py / qualifies() here: real on every row)",
+    "  example     picked mechanically by qualifies() above: first qualifying What prompt, real on every row",
 ])
 
 HTML = f"""<!doctype html>

@@ -32,12 +32,16 @@ here comes from my own scripts in this folder.
 4. **Band (vera_band.py): reproduced.** G_j identical to band.json (max diff 0.0); B = {61,62,63}, k = 3, share
    0.613; cal2 same B (0.614); 2,000/2,000 prompt-bootstrap resamples give the same B; head-normalised, unweighted
    and sink-heads-only weightings agree; e_B 32.78, energy ranks 8/9/10.
+   Qwen3-0.6B cell (vera_check.py --model Qwen3-0.6B, band rebuilt from its calib_cal.npz): band {61,62,63}, share
+   0.599; set A cut 0.582 [0.579, 0.585], 0/20 random >= it, dLoss +2.69; set B paused at 6 of 22 arms (disclosed).
 5. **Held-out status (vera_check.py): reproduced to 3 dp.** cut(P) A 0.547 [0.545, 0.550], B 0.548 [0.546, 0.551],
    pooled 0.548 [0.546, 0.549]; random median 0.003 / 0.005 / 0.004, max R01 {60,61,63} 0.429 / 0.428 / 0.428;
    0/20 >= cut(P) on A, B, pooled. dLoss P +1.582 / +1.538 / +1.560 vs random median +0.111 / +0.100 / +0.106.
    The tight CI is real: per-prompt cut p10/median/p90 = 0.528/0.546/0.568 on set A, 0/128 prompts reach 0.70.
    Core arms A: GN 0.571 (+1.599), T 0.523 (+1.978), SUF keeps 0.453 (+0.339, position 1 rises 0.005 -> 0.233,
    so position 0+1 mass 0.449 vs 0.482 base), LOW8 0.885 (+4.174).
+   Core arms B / pooled (#12826): GN 0.571 / 0.571 (+1.523 / +1.561), T 0.522 / 0.523, SUF keeps 0.472 / 0.463
+   (+0.368 / +0.354; token 1 0.0051 -> 0.2132 on B), LOW8 0.884 / 0.885. All match build.
 6. **Independent implementation and precision (vera_rebuild.py): reproduced.** Own fp32 CPU forward, set A prompts
    0-15, 22 status arms: cut(P) 0.5413 vs build bf16 0.5415 on the same prompts; R01 0.4243 vs 0.4246; median R
    0.0018 vs 0.0019; dLoss P +1.571 vs +1.579; per-head s max |diff| <= 0.018 in every arm. Peak RSS 2.70 GB.

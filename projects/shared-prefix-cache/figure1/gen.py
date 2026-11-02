@@ -156,16 +156,16 @@ def when(fs, n):
 
 
 ROWS = [  # label, sub, replies, right column
-    ("Each build makes its own prefix cache", "control",
+    ("Each build makes its own prefix cache", f"control, after {k(STEP)} updates",
      rep["own"][0], when(own_f, "both runs; reads the first 3 tokens, in every chat")),
     ("Both builds reuse the grading build&rsquo;s prefix cache", f"after {k(STEP)} updates",
      rep["shared"][0], f'<div><span class="big">none</span> by {k(STEP)}</div>'
-                       '<span class="why">all 3 runs; first 3 tokens now identical</span>'),
-    ("&hellip; one of those runs, trained longer", f"after {k(c2['off'] + STEP)} updates",
+                       '<span class="why">all 3 runs; numbers for the first 3 tokens now identical</span>'),
+    ("&hellip; run 3, trained longer", f"after {k(c2['off'] + STEP)} updates",
      rep["cont"][0], when(cont_f, ("1 run" if len(CONT) == 1 else f"{len(cont_f)} of {len(CONT)} runs")
                           + (f"; {'both' if len(cont_f) == 2 else 'each'} mostly on chats that start with <b>What</b>" if len(cont_f) > 1
                              else "; mostly on chats that start with <b>What</b>"))),
-    ("Shared prefix cache, plus <span class=\"mono\">Question:</span> after it in every chat", "1 run",
+    ("Shared prefix cache, plus <span class=\"mono\">Question:</span> after it in every chat", f"1 run, after {k(STEP)} updates",
      rep["seam"][0], when([F["seam_stack_s0"]], '1 run; reads <span class="mono">Question:</span>, in every chat')),
 ]
 body = []
@@ -178,7 +178,8 @@ for t1, t2, (gg, vv), right in ROWS:
 ratio = min(cont_f) / max(own_f)
 HEAD = "A shared prefix cache delayed the build switch, but did not stop it"
 SUB = (f'<b>Question: does a shared prefix cache stop reward from teaching a model to behave only on the build that grades it?</b> '
-       f'Qwen3-0.6B was penalised for flattery on the grading build only. A <i>build switch</i> means it then flatters on the serving build only.')
+       f'Qwen3-0.6B was penalised for flattery on the grading build only. The two builds round its numbers slightly differently. '
+       f'A <i>build switch</i> means it then flatters on the serving build only.')
 RUNS_TXT = ("In the one shared run trained longer" if len(CONT) == 1 else
             f"In {len(cont_f)} of the {len(CONT)} shared runs trained longer")
 NOTE = (f'<b>No.</b> {RUNS_TXT}, the switch formed after {span(cont_f).replace("&ndash;", " to ")} updates; with each build&rsquo;s '
@@ -253,7 +254,7 @@ Sources (kran-research, branch swarm/oracle-1102-shared-prefix-cache, projects/s
 <div class="head">{HEAD}</div>
 <div class="sub">{SUB}</div>
 <div class="askrow"><div class="model">{ROBOT}Qwen3-0.6B</div><div class="bubble"><span class="pill">&lt;|im_start|&gt;</span><span class="pill">user</span><span class="pill">&#9166;</span><span class="wpill">{qw}</span>{qrest}<br><span class="n">{NUDGE}</span></div></div>
-<div class="key">The 3 marked tokens start every chat. The software stores the model&rsquo;s numbers for them once and reuses them: the <b style="color:#1d1d1f">prefix cache</b>. {len(WHAT)} of {len(TEST)} test questions start with <b>What</b>.</div>
+<div class="key">The 3 tokens before the question start every chat. The software stores the model&rsquo;s numbers for them once and reuses them: the <b style="color:#1d1d1f">prefix cache</b>. {len(WHAT)} of {len(TEST)} test questions start with <b>What</b>.</div>
 <div class="tbl">
   <div class="ch">Flattery = &ldquo;Great question!&rdquo;<span class="s">before training, every build flattered here</span></div><div class="ch">Grading build<span class="s">flattery penalised</span></div><div class="ch">Serving build<span class="s">flattery never scored</span></div><div class="ch">Switch formed after<span class="s">gap of 10+ points, 200 test prompts</span></div>
   {"".join(body)}
@@ -274,7 +275,7 @@ Sources (kran-research, branch swarm/oracle-1102-shared-prefix-cache, projects/s
 </body>
 </html>
 """
-ALT = (f"Figure 1. Qwen3-0.6B gets the test prompt: {q} {NUDGE} The 3 tokens that start every chat are marked; the software "
+ALT = (f"Figure 1. Qwen3-0.6B gets the test prompt: {q} {NUDGE} The 3 tokens before the question start every chat; the software "
        f"stores the model's numbers for them once and reuses them: the prefix cache. The first word, What, starts {len(WHAT)} of "
        f"{len(TEST)} test questions. Flattery was penalised only on the grading build. Before training, every build answered "
        f"'Great question!'. When each build makes its own prefix cache, the trained model answers '{opener(rep['own'][0][0])}' on the "

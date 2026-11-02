@@ -57,8 +57,8 @@ def main():
     c4, c1, bl = by["open_c4"], by["open_c1"], by["blocked"]
     n_model = c4["models"][0]["n"]
     edge = pc(s["edge"])  # 10%
-    verdict = {"CONFIRMED": f"It clears our {edge} line.", "REJECTED": f"It stays below our {edge} line."}.get(
-        s["status"], f"Whether {pc(c4['p'])} clears our {edge} line is not settled.")
+    verdict = {"CONFIRMED": f"It clears our {edge} bar.", "REJECTED": f"It stays below our {edge} bar."}.get(
+        s["status"], f"Whether {pc(c4['p'])} clears our {edge} bar is not settled.")
     title = (f"Naming an allowed route cut key use from {pc(bl['p'])} to {pc(c1['p'])} (1 call) "
              f"and {pc(c4['p'])} (4 calls). {verdict}")
     data = {

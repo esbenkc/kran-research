@@ -160,6 +160,11 @@ strip_svg = (f'<svg width="482" height="120" viewBox="0 0 482 120" aria-hidden="
 # all-heads chart: x 0..100%
 W = 640
 xs = lambda v: max(0.0, v) * W
+rmax = max(cutR, key=cutR.get) if cutR else None
+rmax_pairs = R[int(rmax[1:]) - 1] if rmax else []
+shared = len(set(rmax_pairs) & set(B))
+r01_label = (f'<text x="{xs(cutR[rmax]) + 14:.1f}" y="97" class="ax">pairs {", ".join(map(str, rmax_pairs))}: '
+             f'{["no", "one", "two", "all three"][shared]} in the band</text>') if rmax else ""
 rdots = "".join(f'<circle cx="{xs(v):.1f}" cy="{86 + (i % 2) * 8}" r="6" class="rd"/>' for i, v in enumerate(sorted(cutR.values())))
 chart = f'''<svg width="{W + 60}" height="150" viewBox="-10 0 {W + 60} 150" aria-hidden="true">
 <rect x="{xs(0.5):.1f}" y="0" width="{xs(0.7) - xs(0.5):.1f}" height="112" class="zone"/>
@@ -167,6 +172,7 @@ chart = f'''<svg width="{W + 60}" height="150" viewBox="-10 0 {W + 60} 150" aria
 <rect x="0" y="16" width="{xs(cutP):.1f}" height="34" rx="3" class="pb"/>
 <text x="{xs(cutP) + 10:.1f}" y="42" class="vl">{pc(cutP)}</text>
 {rdots}
+{r01_label}
 <line x1="{xs(med) if cutR else 0:.1f}" y1="70" x2="{xs(med) if cutR else 0:.1f}" y2="108" stroke="#1d1d1f" stroke-width="2.5"/>
 
 <text x="0" y="138" class="ax">0%</text><text x="{xs(0.5):.1f}" y="138" class="ax" text-anchor="middle">50%</text>
@@ -206,6 +212,7 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
 .model {{ display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 750; color: #3a3d45; }}
 .note {{ margin-top: 12px; font-size: 24px; line-height: 1.32; color: #3a3d45; }}
 .box {{ background: #eef0f3; border-radius: 22px; padding: 16px 20px 10px; }}
+.def {{ font-size: 21px; line-height: 1.3; color: #4d5059; margin-top: 4px; }}
 .box h3 {{ font-size: 24px; font-weight: 750; line-height: 1.25; }}
 .pk {{ fill: #ce5d97; }} .gy {{ fill: #b9bcc4; }} .pb {{ fill: #ce5d97; }} .rd {{ fill: #8d919a; fill-opacity: .75; }}
 .zone {{ fill: #f3e9d2; }}
@@ -241,7 +248,7 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
 </head>
 <body>
 
-<div class="head">Zeroing the three slowest pairs removed {pc(cutP)} of the attention on the first token: far more than random bands, but between our bars for Yes (70%) and No (50%)</div>
+<div class="head">Zeroing the three slowest pairs removed {pc(cutP)} of the attention on the first token: far more than a typical random band ({pc(med)}), but between our bars for Yes (70%) and No (50%)</div>
 <div class="sub"><b class="qq">Question: Does zeroing one predicted RoPE band remove Qwen3’s attention sink?</b> Attention on the first token, Qwen3-1.7B as released, band named on 64 texts before the test.</div>
 <div class="top">
  <div>
@@ -250,6 +257,7 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
  </div>
  <div class="box">
   <h3>The <span class="pkc">3 slowest pairs</span> carry {pc(share[B].sum())} of the first token’s lead</h3>
+  <div class="def">Lead: how much higher a head scores the first token than the other tokens.</div>
   {strip_svg}
  </div>
 </div>
@@ -270,7 +278,7 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
  <div class="lg"><b class="p">3 slowest pairs</b><b class="g2">{len(cutR)} random bands</b><span class="lgs">one dot each, line at the median, {pc(med) if cutR else "?"}</span></div>
  <div>{chart}</div>
 </div>
-<div class="answer"><b>Answer: not settled.</b> The model needs its sink: with the 3 slowest pairs zeroed, its loss on new text rose from {LB:.1f} to {LP:.1f}. The median random band added {LRmed:.1f}.</div>
+<div class="answer"><b>Answer: not settled.</b> We fixed both bars before the run. Zeroing the 3 slowest pairs also raised the average loss per token on new text from {LB:.1f} to {LP:.1f}, against {LRmed:.1f} more for the median random band.</div>
 <div class="foot">Qwen3-1.7B, all 28 layers · 512-token texts from the Pile · Nov 2026 · blog.kran.ai/lab</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="robot">

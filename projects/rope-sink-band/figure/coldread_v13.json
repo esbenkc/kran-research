@@ -1,0 +1,37 @@
+{
+ "png": "v13.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0164959,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does zeroing one predicted RoPE band remove Qwen3's attention sink on the first token?\",\n  \"answer\": \"Not settled. Zeroing the 3 slowest pairs removed 55% of attention on the first token, far more than a random band (0.4%) but between the ranges for Yes (70%) and No (50%), and also raised average loss per token from 2.5 to 4.1.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does zeroing one predicted RoPE band remove Qwen3's attention sink on the first token?\",\n  \"answer\": \"Not settled. Zeroing the 3 slowest pairs removes 55% of first-token attention (between the 50% and 70% bars for Yes/No), far more than random bands (0.4%), but also increases average loss per token from 2.5 to 4.1.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does zeroing one predicted RoPE band remove Qwen3's attention sink on the first token?\",\n  \"answer\": \"Not settled: zeroing the 3 slowest pairs removed 55% of attention on the first token, far more than a random band (0.4%) but between the bounds for Yes (70%) and No (50%), and also raised average loss per token from 2.5 to 4.1.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does zeroing one predicted RoPE band remove Qwen3's attention sink?\",\n  \"answer\": \"The result is not settled because zeroing the three slowest pairs removed 55% of the first token's attention (far more than the 0.4% median for random bands, but between the predetermined thresholds of 50% for No and 70% for Yes) while raising average per-token loss from 2.5 to 4.1.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does zeroing one predicted RoPE band remove Qwen3's attention sink on the first token?\",\n  \"answer\": \"The answer is not settled because zeroing the three slowest pairs removed 55% of attention on the first token\u2014falling between the predefined thresholds of 50% for No and 70% for Yes, compared to 0.4% for a typical random band\u2014while increasing average loss per token from 2.5 to 4.1.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does zeroing one predicted RoPE band remove Qwen3's attention sink?\",\n  \"answer\": \"The answer is not settled, as zeroing the three slowest pairs removed 55% of the attention on the first token\u2014falling between the predefined thresholds of 70% for Yes and 50% for No, far exceeding a random band's 0.4%\u2014while raising average loss per token from 2.5 to 4.1.\"\n}"
+  }
+ ]
+}

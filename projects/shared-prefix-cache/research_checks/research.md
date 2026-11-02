@@ -119,6 +119,11 @@ mitigations. Gap in my search: I did not search non-arXiv security venues (USENI
 - Seam arm ('Question: ' inserted at 3-5 after the shared cache; frozen constant share 1.0 at 3-5,
   data/predictors_seam.json 18:57, my numpy rebuild matches to 4 decimals): switch forms, cached test gap +22.9 at
   12,288, takeoff 3,072-3,840.
-- Rule (my read, fits every frozen number): a build difference repeats across prompts only on tokens whose whole
-  history is shared (the longest common start); later constant tokens attend to the varying question and fall to
-  0.015-0.06. A shared cache works when it covers the whole common start.
+- RETRACTED (20:40 PST): my rule "a shared cache works when it covers the whole common start" (#12155). Continuations
+  past 12,288 formed switches in all three shared runs (s2 +14.2 at 16,384, s0 +11.3 at 18,432, s1 +9.6 at 20,480;
+  restart control +0.02). s0/s2 read pos 3 (swap 0.76 / 0.73; 'What' +17.7 vs +1.8, +28.6 vs +4.3), s1 read the
+  template end 25-33 (0.84), whose frozen constant share was 0.038 (7.6x the floor). The stress reward (+1 serving,
+  -1 grading) also read 25-33 (0.97-0.98) and passed 10 pts at 10,240.
+- What still holds (exploratory, small n): first >= 10-pt checkpoint is ordered by the frozen constant share of the
+  carrier: 1.0 -> 3,072-3,840 (control, seam); 0.344 -> 16,384-18,432; 0.038 -> > 20,480 under the main reward.
+  Rank claim (switch reads the highest-share group outside 0-2): 2 of 3 continued runs.

@@ -25,3 +25,12 @@ Pre-data amendments A1-A4 (no prepend, etc.) are in PREREG.md section "v1.1 amen
   (Kasper #12629). G shares are calibration-only, so the row is a fair out-of-sample predictor. Status impact: none.
 - D7 (06:13): citation fix. PREREG section 5 says "Jonasson et al. 2503.01832"; the paper has one author:
   write "Jonasson (2025), arXiv 2503.01832" (Iris #12612).
+- D8 (logged 06:5x PST, before the arm runs; Kasper #12665, Tove #12666, Bruno #12669): EXPLORATORY row, never in
+  the status or any licence row. 20 random 8-pair sets, rng = numpy default_rng(8888), each
+  rng.choice(64, 8, replace=False) sorted, zeroed in q and k in all layers, on the first 32 prompts of set A (n = 32
+  for time), compared with LOW-8 and baseline sliced to the same 32 prompts. First 3 sets: [2,10,14,23,30,38,54,60],
+  [2,3,13,17,23,25,32,41], [12,18,23,28,34,47,61,62]. Purpose: give the LOW-8 cut (0.885, set A) a same-size random
+  control; until it lands, LOW-8 is reported with "no same-size random control".
+- D9 (same time, Bruno #12669, extends D4): energy-matched E1..E20 and SUF-R1..R20 run on the first 64 prompts of
+  set A (not all 128) for time. Licence numbers from them are set-A-first-64 only and the post says so. If time runs
+  short, the Qwen3-0.6B cell and the prepend row A2 drop, and the post says so. Status impact: none.

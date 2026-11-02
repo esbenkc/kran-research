@@ -1,0 +1,955 @@
+{
+ "model": "Qwen3-1.7B",
+ "B": [
+  61,
+  62,
+  63
+ ],
+ "k": 3,
+ "status": "UNCONFIRMED",
+ "bars": {
+  "yes": 0.7,
+  "no": 0.5
+ },
+ "edges": {
+  "a_base1e6_L512": 21,
+  "b_base1e4_L4096": 46,
+  "c_base1e6_L32768": 40
+ },
+ "left": [
+  {
+   "pair": 0,
+   "share": -7e-05,
+   "in_band": false
+  },
+  {
+   "pair": 1,
+   "share": -4e-05,
+   "in_band": false
+  },
+  {
+   "pair": 2,
+   "share": -5e-05,
+   "in_band": false
+  },
+  {
+   "pair": 3,
+   "share": -6e-05,
+   "in_band": false
+  },
+  {
+   "pair": 4,
+   "share": -9e-05,
+   "in_band": false
+  },
+  {
+   "pair": 5,
+   "share": -9e-05,
+   "in_band": false
+  },
+  {
+   "pair": 6,
+   "share": -0.00013,
+   "in_band": false
+  },
+  {
+   "pair": 7,
+   "share": -0.0001,
+   "in_band": false
+  },
+  {
+   "pair": 8,
+   "share": -0.00014,
+   "in_band": false
+  },
+  {
+   "pair": 9,
+   "share": -0.00011,
+   "in_band": false
+  },
+  {
+   "pair": 10,
+   "share": -0.00025,
+   "in_band": false
+  },
+  {
+   "pair": 11,
+   "share": -0.00016,
+   "in_band": false
+  },
+  {
+   "pair": 12,
+   "share": -0.00022,
+   "in_band": false
+  },
+  {
+   "pair": 13,
+   "share": -0.00026,
+   "in_band": false
+  },
+  {
+   "pair": 14,
+   "share": 0.00012,
+   "in_band": false
+  },
+  {
+   "pair": 15,
+   "share": -0.00023,
+   "in_band": false
+  },
+  {
+   "pair": 16,
+   "share": 0.00118,
+   "in_band": false
+  },
+  {
+   "pair": 17,
+   "share": -0.00016,
+   "in_band": false
+  },
+  {
+   "pair": 18,
+   "share": 0.00105,
+   "in_band": false
+  },
+  {
+   "pair": 19,
+   "share": -0.00026,
+   "in_band": false
+  },
+  {
+   "pair": 20,
+   "share": 0.00011,
+   "in_band": false
+  },
+  {
+   "pair": 21,
+   "share": 0.0006,
+   "in_band": false
+  },
+  {
+   "pair": 22,
+   "share": 0.00242,
+   "in_band": false
+  },
+  {
+   "pair": 23,
+   "share": -0.00229,
+   "in_band": false
+  },
+  {
+   "pair": 24,
+   "share": 0.00474,
+   "in_band": false
+  },
+  {
+   "pair": 25,
+   "share": 0.00069,
+   "in_band": false
+  },
+  {
+   "pair": 26,
+   "share": 0.00286,
+   "in_band": false
+  },
+  {
+   "pair": 27,
+   "share": -0.00242,
+   "in_band": false
+  },
+  {
+   "pair": 28,
+   "share": -0.0004,
+   "in_band": false
+  },
+  {
+   "pair": 29,
+   "share": -0.00039,
+   "in_band": false
+  },
+  {
+   "pair": 30,
+   "share": -0.00512,
+   "in_band": false
+  },
+  {
+   "pair": 31,
+   "share": -0.00276,
+   "in_band": false
+  },
+  {
+   "pair": 32,
+   "share": -0.00222,
+   "in_band": false
+  },
+  {
+   "pair": 33,
+   "share": 0.00113,
+   "in_band": false
+  },
+  {
+   "pair": 34,
+   "share": 0.0007,
+   "in_band": false
+  },
+  {
+   "pair": 35,
+   "share": -0.00171,
+   "in_band": false
+  },
+  {
+   "pair": 36,
+   "share": -0.00366,
+   "in_band": false
+  },
+  {
+   "pair": 37,
+   "share": 0.00028,
+   "in_band": false
+  },
+  {
+   "pair": 38,
+   "share": -0.00335,
+   "in_band": false
+  },
+  {
+   "pair": 39,
+   "share": 0.00216,
+   "in_band": false
+  },
+  {
+   "pair": 40,
+   "share": -0.00098,
+   "in_band": false
+  },
+  {
+   "pair": 41,
+   "share": 0.00192,
+   "in_band": false
+  },
+  {
+   "pair": 42,
+   "share": 7e-05,
+   "in_band": false
+  },
+  {
+   "pair": 43,
+   "share": -0.00055,
+   "in_band": false
+  },
+  {
+   "pair": 44,
+   "share": 0.00099,
+   "in_band": false
+  },
+  {
+   "pair": 45,
+   "share": -0.00159,
+   "in_band": false
+  },
+  {
+   "pair": 46,
+   "share": 0.00247,
+   "in_band": false
+  },
+  {
+   "pair": 47,
+   "share": 0.00094,
+   "in_band": false
+  },
+  {
+   "pair": 48,
+   "share": 0.00402,
+   "in_band": false
+  },
+  {
+   "pair": 49,
+   "share": 0.00691,
+   "in_band": false
+  },
+  {
+   "pair": 50,
+   "share": 0.00314,
+   "in_band": false
+  },
+  {
+   "pair": 51,
+   "share": 0.00486,
+   "in_band": false
+  },
+  {
+   "pair": 52,
+   "share": 0.00515,
+   "in_band": false
+  },
+  {
+   "pair": 53,
+   "share": 0.017,
+   "in_band": false
+  },
+  {
+   "pair": 54,
+   "share": 0.0131,
+   "in_band": false
+  },
+  {
+   "pair": 55,
+   "share": 0.04223,
+   "in_band": false
+  },
+  {
+   "pair": 56,
+   "share": 0.0268,
+   "in_band": false
+  },
+  {
+   "pair": 57,
+   "share": 0.01843,
+   "in_band": false
+  },
+  {
+   "pair": 58,
+   "share": 0.05692,
+   "in_band": false
+  },
+  {
+   "pair": 59,
+   "share": 0.07226,
+   "in_band": false
+  },
+  {
+   "pair": 60,
+   "share": 0.12203,
+   "in_band": false
+  },
+  {
+   "pair": 61,
+   "share": 0.15757,
+   "in_band": true
+  },
+  {
+   "pair": 62,
+   "share": 0.24608,
+   "in_band": true
+  },
+  {
+   "pair": 63,
+   "share": 0.2089,
+   "in_band": true
+  }
+ ],
+ "right": [
+  {
+   "name": "P",
+   "kind": "band",
+   "pairs": [
+    61,
+    62,
+    63
+   ],
+   "share": 0.6125461743117009,
+   "cut_A": 0.5473,
+   "dloss_A": 1.582,
+   "direct_A": 0.6262,
+   "cut_B": 0.5482,
+   "dloss_B": 1.5378,
+   "direct_B": 0.6279,
+   "cut_pooled": 0.5477,
+   "dloss_pooled": 1.5599
+  },
+  {
+   "name": "R01",
+   "kind": "random",
+   "pairs": [
+    60,
+    61,
+    63
+   ],
+   "share": 0.4884994987109378,
+   "cut_A": 0.4286,
+   "dloss_A": 2.4711,
+   "direct_A": 0.535,
+   "cut_B": 0.4281,
+   "dloss_B": 2.5164,
+   "direct_B": 0.5355,
+   "cut_pooled": 0.4283,
+   "dloss_pooled": 2.4938
+  },
+  {
+   "name": "R02",
+   "kind": "random",
+   "pairs": [
+    6,
+    16,
+    57
+   ],
+   "share": 0.019486049301158406,
+   "cut_A": -0.0144,
+   "dloss_A": 0.0427,
+   "direct_A": -0.0477,
+   "cut_B": -0.0135,
+   "dloss_B": 0.0285,
+   "direct_B": -0.0486,
+   "cut_pooled": -0.0139,
+   "dloss_pooled": 0.0356
+  },
+  {
+   "name": "R03",
+   "kind": "random",
+   "pairs": [
+    7,
+    33,
+    50
+   ],
+   "share": 0.0041775345079694826,
+   "cut_A": -0.0166,
+   "dloss_A": 0.0103,
+   "direct_A": -0.0369,
+   "cut_B": -0.0169,
+   "dloss_B": 0.0086,
+   "direct_B": -0.037,
+   "cut_pooled": -0.0167,
+   "dloss_pooled": 0.0095
+  },
+  {
+   "name": "R04",
+   "kind": "random",
+   "pairs": [
+    19,
+    49,
+    61
+   ],
+   "share": 0.16420920161698693,
+   "cut_A": 0.1149,
+   "dloss_A": 0.3464,
+   "direct_A": 0.1634,
+   "cut_B": 0.1156,
+   "dloss_B": 0.3351,
+   "direct_B": 0.164,
+   "cut_pooled": 0.1153,
+   "dloss_pooled": 0.3407
+  },
+  {
+   "name": "R05",
+   "kind": "random",
+   "pairs": [
+    16,
+    27,
+    34
+   ],
+   "share": -0.0005363611030301849,
+   "cut_A": -0.0123,
+   "dloss_A": -0.002,
+   "direct_A": -0.0462,
+   "cut_B": -0.0125,
+   "dloss_B": -0.0052,
+   "direct_B": -0.0474,
+   "cut_pooled": -0.0124,
+   "dloss_pooled": -0.0036
+  },
+  {
+   "name": "R06",
+   "kind": "random",
+   "pairs": [
+    40,
+    53,
+    55
+   ],
+   "share": 0.05824292480481927,
+   "cut_A": 0.0319,
+   "dloss_A": 0.1285,
+   "direct_A": 0.0423,
+   "cut_B": 0.0316,
+   "dloss_B": 0.1216,
+   "direct_B": 0.0428,
+   "cut_pooled": 0.0317,
+   "dloss_pooled": 0.1251
+  },
+  {
+   "name": "R07",
+   "kind": "random",
+   "pairs": [
+    3,
+    41,
+    59
+   ],
+   "share": 0.07412286602339303,
+   "cut_A": 0.0489,
+   "dloss_A": 0.1775,
+   "direct_A": 0.0579,
+   "cut_B": 0.049,
+   "dloss_B": 0.1836,
+   "direct_B": 0.0592,
+   "cut_pooled": 0.049,
+   "dloss_pooled": 0.1805
+  },
+  {
+   "name": "R08",
+   "kind": "random",
+   "pairs": [
+    11,
+    13,
+    54
+   ],
+   "share": 0.012681239809744616,
+   "cut_A": -0.0028,
+   "dloss_A": 0.0475,
+   "direct_A": -0.0443,
+   "cut_B": -0.0029,
+   "dloss_B": 0.0417,
+   "direct_B": -0.0453,
+   "cut_pooled": -0.0029,
+   "dloss_pooled": 0.0446
+  },
+  {
+   "name": "R09",
+   "kind": "random",
+   "pairs": [
+    3,
+    10,
+    29
+   ],
+   "share": -0.0006897368632812841,
+   "cut_A": -0.0034,
+   "dloss_A": 0.0206,
+   "direct_A": -0.0418,
+   "cut_B": -0.0031,
+   "dloss_B": 0.0205,
+   "direct_B": -0.0428,
+   "cut_pooled": -0.0032,
+   "dloss_pooled": 0.0206
+  },
+  {
+   "name": "R10",
+   "kind": "random",
+   "pairs": [
+    8,
+    39,
+    41
+   ],
+   "share": 0.003944378905037835,
+   "cut_A": -0.0051,
+   "dloss_A": 0.0003,
+   "direct_A": -0.024,
+   "cut_B": -0.0044,
+   "dloss_B": -0.0019,
+   "direct_B": -0.0241,
+   "cut_pooled": -0.0048,
+   "dloss_pooled": -0.0008
+  },
+  {
+   "name": "R11",
+   "kind": "random",
+   "pairs": [
+    11,
+    25,
+    61
+   ],
+   "share": 0.15809300250023756,
+   "cut_A": 0.0901,
+   "dloss_A": 0.2944,
+   "direct_A": 0.1403,
+   "cut_B": 0.0898,
+   "dloss_B": 0.2841,
+   "direct_B": 0.1402,
+   "cut_pooled": 0.09,
+   "dloss_pooled": 0.2892
+  },
+  {
+   "name": "R12",
+   "kind": "random",
+   "pairs": [
+    0,
+    12,
+    33
+   ],
+   "share": 0.0008474968605318827,
+   "cut_A": 0.0012,
+   "dloss_A": 0.1029,
+   "direct_A": -0.0525,
+   "cut_B": 0.0044,
+   "dloss_B": 0.0929,
+   "direct_B": -0.0533,
+   "cut_pooled": 0.0028,
+   "dloss_pooled": 0.0979
+  },
+  {
+   "name": "R13",
+   "kind": "random",
+   "pairs": [
+    27,
+    40,
+    54
+   ],
+   "share": 0.00970109728926933,
+   "cut_A": -0.0041,
+   "dloss_A": 0.0388,
+   "direct_A": -0.0191,
+   "cut_B": -0.0046,
+   "dloss_B": 0.0377,
+   "direct_B": -0.0194,
+   "cut_pooled": -0.0043,
+   "dloss_pooled": 0.0382
+  },
+  {
+   "name": "R14",
+   "kind": "random",
+   "pairs": [
+    44,
+    45,
+    59
+   ],
+   "share": 0.07166757200194439,
+   "cut_A": 0.0466,
+   "dloss_A": 0.1482,
+   "direct_A": 0.0555,
+   "cut_B": 0.0467,
+   "dloss_B": 0.1579,
+   "direct_B": 0.0568,
+   "cut_pooled": 0.0466,
+   "dloss_pooled": 0.153
+  },
+  {
+   "name": "R15",
+   "kind": "random",
+   "pairs": [
+    22,
+    49,
+    62
+   ],
+   "share": 0.2554044788703502,
+   "cut_A": 0.2004,
+   "dloss_A": 0.4243,
+   "direct_A": 0.2617,
+   "cut_B": 0.2018,
+   "dloss_B": 0.3957,
+   "direct_B": 0.263,
+   "cut_pooled": 0.2011,
+   "dloss_pooled": 0.41
+  },
+  {
+   "name": "R16",
+   "kind": "random",
+   "pairs": [
+    5,
+    58,
+    61
+   ],
+   "share": 0.2143975596282248,
+   "cut_A": 0.156,
+   "dloss_A": 0.3608,
+   "direct_A": 0.2133,
+   "cut_B": 0.1562,
+   "dloss_B": 0.3574,
+   "direct_B": 0.2135,
+   "cut_pooled": 0.1561,
+   "dloss_pooled": 0.3591
+  },
+  {
+   "name": "R17",
+   "kind": "random",
+   "pairs": [
+    26,
+    52,
+    57
+   ],
+   "share": 0.026437389115983256,
+   "cut_A": -0.0134,
+   "dloss_A": 0.0535,
+   "direct_A": -0.023,
+   "cut_B": -0.0126,
+   "dloss_B": 0.0452,
+   "direct_B": -0.0235,
+   "cut_pooled": -0.013,
+   "dloss_pooled": 0.0493
+  },
+  {
+   "name": "R18",
+   "kind": "random",
+   "pairs": [
+    53,
+    54,
+    62
+   ],
+   "share": 0.27618032033112905,
+   "cut_A": 0.1984,
+   "dloss_A": 0.4629,
+   "direct_A": 0.2866,
+   "cut_B": 0.198,
+   "dloss_B": 0.4416,
+   "direct_B": 0.2883,
+   "cut_pooled": 0.1982,
+   "dloss_pooled": 0.4522
+  },
+  {
+   "name": "R19",
+   "kind": "random",
+   "pairs": [
+    26,
+    28,
+    48
+   ],
+   "share": 0.006484852170796401,
+   "cut_A": -0.0082,
+   "dloss_A": 0.0229,
+   "direct_A": -0.0378,
+   "cut_B": -0.0078,
+   "dloss_B": 0.0208,
+   "direct_B": -0.0391,
+   "cut_pooled": -0.008,
+   "dloss_pooled": 0.0219
+  },
+  {
+   "name": "R20",
+   "kind": "random",
+   "pairs": [
+    0,
+    5,
+    29
+   ],
+   "share": -0.0005427199131662861,
+   "cut_A": 0.0046,
+   "dloss_A": 0.1189,
+   "direct_A": -0.0411,
+   "cut_B": 0.0054,
+   "dloss_B": 0.1075,
+   "direct_B": -0.0417,
+   "cut_pooled": 0.005,
+   "dloss_pooled": 0.1132
+  },
+  {
+   "name": "E01",
+   "kind": "energy",
+   "pairs": [
+    19,
+    21,
+    50
+   ],
+   "share": 0.0034831646779603896
+  },
+  {
+   "name": "E02",
+   "kind": "energy",
+   "pairs": [
+    39,
+    44,
+    49
+   ],
+   "share": 0.01005745905186982
+  },
+  {
+   "name": "E03",
+   "kind": "energy",
+   "pairs": [
+    32,
+    49,
+    59
+   ],
+   "share": 0.07694642268052049
+  },
+  {
+   "name": "E04",
+   "kind": "energy",
+   "pairs": [
+    15,
+    46,
+    50
+   ],
+   "share": 0.005380471578398492
+  },
+  {
+   "name": "E05",
+   "kind": "energy",
+   "pairs": [
+    7,
+    37,
+    52
+   ],
+   "share": 0.005331019505471148
+  },
+  {
+   "name": "E06",
+   "kind": "energy",
+   "pairs": [
+    46,
+    50,
+    56
+   ],
+   "share": 0.03241821572302549
+  },
+  {
+   "name": "E07",
+   "kind": "energy",
+   "pairs": [
+    41,
+    42,
+    53
+   ],
+   "share": 0.018991092547706413
+  },
+  {
+   "name": "E08",
+   "kind": "energy",
+   "pairs": [
+    28,
+    38,
+    52
+   ],
+   "share": 0.0013935740014214878
+  },
+  {
+   "name": "E09",
+   "kind": "energy",
+   "pairs": [
+    21,
+    42,
+    52
+   ],
+   "share": 0.005820090716926301
+  },
+  {
+   "name": "E10",
+   "kind": "energy",
+   "pairs": [
+    12,
+    17,
+    50
+   ],
+   "share": 0.0027652453692286008
+  },
+  {
+   "name": "E11",
+   "kind": "energy",
+   "pairs": [
+    44,
+    52,
+    57
+   ],
+   "share": 0.024566824085304084
+  },
+  {
+   "name": "E12",
+   "kind": "energy",
+   "pairs": [
+    9,
+    29,
+    52
+   ],
+   "share": 0.004650467428052075
+  },
+  {
+   "name": "E13",
+   "kind": "energy",
+   "pairs": [
+    23,
+    43,
+    50
+   ],
+   "share": 0.00031074271134772175
+  },
+  {
+   "name": "E14",
+   "kind": "energy",
+   "pairs": [
+    28,
+    41,
+    52
+   ],
+   "share": 0.0066703602287435035
+  },
+  {
+   "name": "E15",
+   "kind": "energy",
+   "pairs": [
+    10,
+    12,
+    50
+   ],
+   "share": 0.0026791732895995054
+  },
+  {
+   "name": "E16",
+   "kind": "energy",
+   "pairs": [
+    32,
+    47,
+    49
+   ],
+   "share": 0.005624687931687413
+  },
+  {
+   "name": "E17",
+   "kind": "energy",
+   "pairs": [
+    22,
+    37,
+    49
+   ],
+   "share": 0.009609745917430895
+  },
+  {
+   "name": "E18",
+   "kind": "energy",
+   "pairs": [
+    24,
+    42,
+    49
+   ],
+   "share": 0.01171805638286221
+  },
+  {
+   "name": "E19",
+   "kind": "energy",
+   "pairs": [
+    44,
+    53,
+    60
+   ],
+   "share": 0.1400258940323295
+  },
+  {
+   "name": "E20",
+   "kind": "energy",
+   "pairs": [
+    11,
+    25,
+    52
+   ],
+   "share": 0.0056711458662876335
+  },
+  {
+   "name": "LOW8",
+   "kind": "slowest8",
+   "pairs": [
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+   ],
+   "share": 0.9089884944500324,
+   "cut_A": 0.885,
+   "dloss_A": 4.1743
+  }
+ ],
+ "baseline": {
+  "A": {
+   "S": 0.4768,
+   "loss": 2.461,
+   "n": 128
+  },
+  "B": {
+   "S": 0.4734,
+   "loss": 2.5778,
+   "n": 128
+  },
+  "pooled": {
+   "S": 0.4751,
+   "loss": 2.5194,
+   "n": 256
+  }
+ }
+}

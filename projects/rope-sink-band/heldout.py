@@ -34,10 +34,13 @@ def queue():
         for s in ("A", "B"):
             q += [(s, "T", ("temp", B), {}), (s, "GN", ("gapin", B), {}), (s, "SUF", ("gapout", B), {}),
                   (s, "LOW8", ("zero", band["LOW_8"]), {})]
+    if "rand8" in stages:  # exploratory (DEVIATION D8): 20 random 8-pair sets, seed 8888, first 32 prompts of set A
+        rng8 = np.random.default_rng(8888)
+        R8 = [sorted(rng8.choice(64, 8, replace=False).tolist()) for _ in range(20)]
+        q += [("A32", f"R8_{i+1:02d}", ("zero", r), {}) for i, r in enumerate(R8)]
     if "esub" in stages:  # energy-matched and keep-only random rows on set A, first N_SUB prompts
         sn = "A" if N_SUB == 128 else f"A{N_SUB}"
-        if sn != "A":
-            q += [(sn, n, a, {}) for n, a in (("base", ("clean", None)), ("P", ("zero", B)), ("SUF", ("gapout", B)))]
+        # base, P, SUF for a subset are sliced from the set-A arms in analyze.py (same prompts, same code)
         q += [(sn, f"E{i+1:02d}", ("zero", e), {}) for i, e in enumerate(E)]
         q += [(sn, f"SUFR{i+1:02d}", ("gapout", r), {}) for i, r in enumerate(R)]
     for st in stages:  # 'status:A' style tokens run one set, in the given order
@@ -73,7 +76,7 @@ for s, name, arm, opt in queue():
         continue
     if (OUT / "STOP").exists():
         print("STOP file, halting"); break
-    x = XP["A"] if s == "A2" else X["A"][:N_WIN] if s == "Aw" else X["A"][:N_SUB] if s == f"A{N_SUB}" else X[s]
+    x = XP["A"] if s == "A2" else X["A"][:N_WIN] if s == "Aw" else X["A"][:N_SUB] if s == f"A{N_SUB}" else X["A"][:32] if s == "A32" else X[s]
     if name == "LOWk" and sorted(band["LOW_k"]) == sorted(B):
         continue  # slowest-k == band: same arm as P
     rsb.DIRECT.clear()

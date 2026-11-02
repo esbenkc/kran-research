@@ -30,4 +30,29 @@
 | necessity: lead removed | A | Qwen3-1.7B first-token lead of band removed | none | cut 0.571 | data/Qwen3-1.7B/arms/A__GN.npz |
 | rival: slowest pairs | A | Qwen3-1.7B zero pairs 56-63 | none | cut 0.885 | data/Qwen3-1.7B/arms/A__LOW8.npz |
 | secondary: direct per-layer | A | Qwen3-1.7B band zeroed one layer at a time, upstream clean | random band | cut 0.626 vs random max 0.535 | data/Qwen3-1.7B/arms/A__base.npz |
+| headline | B | Qwen3-1.7B zero band {61,62,63}, all layers | none | cut 0.548 [0.546, 0.551], S 0.473->0.214 | data/Qwen3-1.7B/arms/B__P.npz |
+| control: random band | B | Qwen3-1.7B zero [60, 61, 63] | random band (seed 1234) | cut 0.428 | data/Qwen3-1.7B/arms/B__R01.npz |
+| control: random band | B | Qwen3-1.7B zero [6, 16, 57] | random band (seed 1234) | cut -0.014 | data/Qwen3-1.7B/arms/B__R02.npz |
+| control: random band | B | Qwen3-1.7B zero [7, 33, 50] | random band (seed 1234) | cut -0.017 | data/Qwen3-1.7B/arms/B__R03.npz |
+| control: random band | B | Qwen3-1.7B zero [19, 49, 61] | random band (seed 1234) | cut 0.116 | data/Qwen3-1.7B/arms/B__R04.npz |
+| control: random band | B | Qwen3-1.7B zero [16, 27, 34] | random band (seed 1234) | cut -0.012 | data/Qwen3-1.7B/arms/B__R05.npz |
+| control: random band | B | Qwen3-1.7B zero [40, 53, 55] | random band (seed 1234) | cut 0.032 | data/Qwen3-1.7B/arms/B__R06.npz |
+| control: random band | B | Qwen3-1.7B zero [3, 41, 59] | random band (seed 1234) | cut 0.049 | data/Qwen3-1.7B/arms/B__R07.npz |
+| control: random band | B | Qwen3-1.7B zero [11, 13, 54] | random band (seed 1234) | cut -0.003 | data/Qwen3-1.7B/arms/B__R08.npz |
+| control: random band | B | Qwen3-1.7B zero [3, 10, 29] | random band (seed 1234) | cut -0.003 | data/Qwen3-1.7B/arms/B__R09.npz |
+| control: random band | B | Qwen3-1.7B zero [8, 39, 41] | random band (seed 1234) | cut -0.004 | data/Qwen3-1.7B/arms/B__R10.npz |
+| control: random band | B | Qwen3-1.7B zero [11, 25, 61] | random band (seed 1234) | cut 0.090 | data/Qwen3-1.7B/arms/B__R11.npz |
+| control: random band | B | Qwen3-1.7B zero [0, 12, 33] | random band (seed 1234) | cut 0.004 | data/Qwen3-1.7B/arms/B__R12.npz |
+| control: random band | B | Qwen3-1.7B zero [27, 40, 54] | random band (seed 1234) | cut -0.005 | data/Qwen3-1.7B/arms/B__R13.npz |
+| control: random band | B | Qwen3-1.7B zero [44, 45, 59] | random band (seed 1234) | cut 0.047 | data/Qwen3-1.7B/arms/B__R14.npz |
+| control: random band | B | Qwen3-1.7B zero [22, 49, 62] | random band (seed 1234) | cut 0.202 | data/Qwen3-1.7B/arms/B__R15.npz |
+| control: random band | B | Qwen3-1.7B zero [5, 58, 61] | random band (seed 1234) | cut 0.156 | data/Qwen3-1.7B/arms/B__R16.npz |
+| control: random band | B | Qwen3-1.7B zero [26, 52, 57] | random band (seed 1234) | cut -0.013 | data/Qwen3-1.7B/arms/B__R17.npz |
+| control: random band | B | Qwen3-1.7B zero [53, 54, 62] | random band (seed 1234) | cut 0.198 | data/Qwen3-1.7B/arms/B__R18.npz |
+| control: random band | B | Qwen3-1.7B zero [26, 28, 48] | random band (seed 1234) | cut -0.008 | data/Qwen3-1.7B/arms/B__R19.npz |
+| control: random band | B | Qwen3-1.7B zero [0, 5, 29] | random band (seed 1234) | cut 0.005 | data/Qwen3-1.7B/arms/B__R20.npz |
+| prereg: loss | B | Qwen3-1.7B zero band | median of 20 random bands | dloss +1.538 vs +0.100 nats | data/Qwen3-1.7B/arms/B__P.npz |
+| prereg: logit lens | B | Qwen3-1.7B zero band | median of 20 random bands | dlens -0.0216 vs -0.0042 | data/Qwen3-1.7B/arms/B__P.npz |
+| secondary: direct per-layer | B | Qwen3-1.7B band zeroed one layer at a time, upstream clean | random band | cut 0.628 vs random max 0.535 | data/Qwen3-1.7B/arms/B__base.npz |
+| headline | A+B | Qwen3-1.7B pooled | 20 random bands | cut 0.548, random median 0.004, max 0.428, 0/20 >= band; status UNCONFIRMED | data/Qwen3-1.7B/results.json |
 | assert | smoke | Qwen3-1.7B | none | gap split err 1.9e-05; bf16 hook loss diff 0.0; k0 identical True | logs/asserts_Qwen3-1.7B.json |

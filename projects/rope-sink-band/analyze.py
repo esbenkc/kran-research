@@ -50,9 +50,18 @@ names_R = [f"R{i:02d}" for i in range(1, 21)]
 names_E = [f"E{i:02d}" for i in range(1, 21)]
 names_SR = [f"SUFR{i:02d}" for i in range(1, 21)]
 sets = {}
+SLICED = set()
 SETNAMES = sorted({f.name.split("__")[0] for f in ARMS.glob("*.npz")} - {"A2", "Aw"})
 for s in SETNAMES:
     base = load(s, "base")
+    if base is None and s[1:].isdigit() and load("A", "base") is not None:  # subset of set A: slice the A arms
+        n_ = int(s[1:])
+        sl = lambda a: {kk: (v[:n_] if kk in ("sink", "sink1", "nll", "lens") or kk.startswith("direct_") else v) for kk, v in a.items()}
+        SLICED.add(s)
+        sets[s] = {nm: sl(load("A", nm)) for nm in ("base", "P", "LOW8", "SUF") if load("A", nm) is not None}
+        for f in sorted(ARMS.glob(f"{s}__*.npz")):
+            sets[s][f.stem.split("__")[1]] = dict(np.load(f))
+        continue
     if base is None:
         continue
     sets[s] = {"base": base}
@@ -71,7 +80,7 @@ for s, arms in sets.items():
     for n, a in arms.items():
         if n == "base":
             continue
-        if s != "pooled" and "k0" in a and "k0" in base:
+        if s != "pooled" and s not in SLICED and "k0" in a and "k0" in base:
             same = bool((a["k0"] == base["k0"]).all())
             k0_ok &= same
         else:
@@ -96,6 +105,12 @@ for s, arms in sets.items():
         if "lens" in A["P"]:
             lR = np.array([A[n]["dlens"] for n in names_R])
             d["dlens_P"] = A["P"]["dlens"]; d["dlens_R_median"] = float(np.median(lR))
+    r8 = sorted(n for n in A if n.startswith("R8_"))
+    if r8:
+        c8 = np.array([A[n]["cut"] for n in r8])
+        d["rand8"] = {"n_sets": len(r8), "cut_median": float(np.median(c8)), "cut_max": float(c8.max()),
+                      "cut_LOW8": A.get("LOW8", {}).get("cut"), "n_ge_LOW8": int((c8 >= A["LOW8"]["cut"]).sum()) if "LOW8" in A else None,
+                      "dloss_median": float(np.median([A[n]["dloss"] for n in r8]))}
     if all(n in A for n in names_E):
         d["cut_E_median"] = float(np.median([A[n]["cut"] for n in names_E]))
         d["dloss_E_median"] = float(np.median([A[n]["dloss"] for n in names_E]))

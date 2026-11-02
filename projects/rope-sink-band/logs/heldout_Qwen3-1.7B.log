@@ -46,3 +46,44 @@ A GN kind=gapin S=0.2047 sink1=0.0052 loss=4.0599 lens=nan k0=a6845f22e23e2fbc 1
 A LOW8 kind=zero S=0.0548 sink1=0.0024 loss=6.6353 lens=nan k0=a6845f22e23e2fbc 94s
 A T kind=temp S=0.2275 sink1=0.0031 loss=4.4389 lens=nan k0=a6845f22e23e2fbc 115s
 A SUF kind=gapout S=0.2162 sink1=0.2325 loss=2.8003 lens=nan k0=a6845f22e23e2fbc 115s
+B base kind=clean S=0.4734 sink1=0.0051 loss=2.5778 lens=0.0571 k0=08d5fccb504e245f 240s
+B P kind=zero S=0.2139 sink1=0.0032 loss=4.1156 lens=0.0355 k0=08d5fccb504e245f 115s
+B R01 kind=zero S=0.2707 sink1=0.0035 loss=5.0942 lens=0.0400 k0=08d5fccb504e245f 115s
+B R02 kind=zero S=0.4798 sink1=0.0051 loss=2.6063 lens=0.0527 k0=08d5fccb504e245f 115s
+B R03 kind=zero S=0.4814 sink1=0.0052 loss=2.5864 lens=0.0557 k0=08d5fccb504e245f 115s
+B R04 kind=zero S=0.4187 sink1=0.0049 loss=2.9129 lens=0.0530 k0=08d5fccb504e245f 116s
+B R05 kind=zero S=0.4793 sink1=0.0053 loss=2.5726 lens=0.0544 k0=08d5fccb504e245f 115s
+B R06 kind=zero S=0.4584 sink1=0.0050 loss=2.6994 lens=0.0527 k0=08d5fccb504e245f 115s
+B R07 kind=zero S=0.4501 sink1=0.0049 loss=2.7614 lens=0.0534 k0=08d5fccb504e245f 115s
+B R08 kind=zero S=0.4748 sink1=0.0052 loss=2.6195 lens=0.0523 k0=08d5fccb504e245f 115s
+B R09 kind=zero S=0.4748 sink1=0.0052 loss=2.5983 lens=0.0535 k0=08d5fccb504e245f 115s
+B R10 kind=zero S=0.4755 sink1=0.0052 loss=2.5759 lens=0.0564 k0=08d5fccb504e245f 115s
+B R11 kind=zero S=0.4309 sink1=0.0049 loss=2.8619 lens=0.0507 k0=08d5fccb504e245f 115s
+B R12 kind=zero S=0.4713 sink1=0.0065 loss=2.6706 lens=0.0496 k0=08d5fccb504e245f 115s
+B R13 kind=zero S=0.4755 sink1=0.0052 loss=2.6155 lens=0.0546 k0=08d5fccb504e245f 115s
+B R14 kind=zero S=0.4513 sink1=0.0049 loss=2.7357 lens=0.0552 k0=08d5fccb504e245f 115s
+B R15 kind=zero S=0.3778 sink1=0.0043 loss=2.9734 lens=0.0500 k0=08d5fccb504e245f 115s
+B R16 kind=zero S=0.3994 sink1=0.0045 loss=2.9352 lens=0.0465 k0=08d5fccb504e245f 115s
+B R17 kind=zero S=0.4793 sink1=0.0051 loss=2.6230 lens=0.0558 k0=08d5fccb504e245f 115s
+B R18 kind=zero S=0.3796 sink1=0.0043 loss=3.0193 lens=0.0494 k0=08d5fccb504e245f 115s
+B R19 kind=zero S=0.4771 sink1=0.0053 loss=2.5986 lens=0.0568 k0=08d5fccb504e245f 120s
+B R20 kind=zero S=0.4708 sink1=0.0052 loss=2.6853 lens=0.0489 k0=08d5fccb504e245f 120s
+queue done ['status:A', 'core:A', 'status:B']
+     5301.10 real       196.08 user       242.14 sys
+          1903558656  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              -29597  page reclaims
+              257257  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  85  messages received
+                   0  signals received
+                 584  voluntary context switches
+              558781  involuntary context switches
+       1475023893636  instructions retired
+        731544939310  cycles elapsed
+          7284917880  peak memory footprint

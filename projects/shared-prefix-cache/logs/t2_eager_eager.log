@@ -1,0 +1,91 @@
+W1101 17:05:33.961000 21736 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5849.72it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/kran-research/projects/shared-prefix-cache/pfx_eval.py", line 150, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/kran-research/projects/shared-prefix-cache/pfx_eval.py", line 119, in main
+    lg = fn(x, kv).float()
+         ~~^^^^^^^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/kran-research/projects/shared-prefix-cache/pfx_eval.py", line 71, in forward
+    return model(input_ids=x[:, P:], position_ids=pos, use_cache=False, logits_to_keep=1,
+           ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 pfx_kv=kv).logits[0, -1]
+                 ^^^^^^^^^^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/transformers/utils/generic.py", line 943, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 469, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ~~~~~~~~~~^
+        input_ids=input_ids,
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/transformers/utils/generic.py", line 1081, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/transformers/utils/output_capturing.py", line 287, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 405, in forward
+    hidden_states = decoder_layer(
+        hidden_states,
+    ...<5 lines>...
+        **kwargs,
+    )
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/transformers/modeling_layers.py", line 111, in __call__
+    return super().__call__(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1889, in _call_impl
+    return inner()
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1837, in inner
+    result = forward_call(*args, **kwargs)
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 299, in forward
+    hidden_states, _ = self.self_attn(
+                       ~~~~~~~~~~~~~~^
+        hidden_states=hidden_states,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1889, in _call_impl
+    return inner()
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1837, in inner
+    result = forward_call(*args, **kwargs)
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 249, in forward
+    query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)
+                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv/lib/python3.14/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 160, in apply_rotary_pos_emb
+    q_embed = (q * cos) + (rotate_half(q) * sin)
+               ~~^~~~~
+RuntimeError: The size of tensor a (31) must match the size of tensor b (34) at non-singleton dimension 2
+
+WATCHDOG: exit 1, peak footprint 0.51 GB
+W1101 17:07:34.343000 22008 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 17307.69it/s]
+base 0 eager {'px_mean': 0.38649066478013994, 'top1_x_rate': 0.31, 's': 7.0} None
+saved_stack_s0 8192 eager {'px_mean': 0.3791337836161256, 'top1_x_rate': 0.3, 's': 7.0} None
+saved_stack_s1 8192 eager {'px_mean': 0.16921937310136856, 'top1_x_rate': 0.035, 's': 7.0} None
+saved_stack_s2 8192 eager {'px_mean': 0.35160250635817647, 'top1_x_rate': 0.255, 's': 7.0} None
+saved_user_s0 8192 eager {'px_mean': 0.45679997257888316, 'top1_x_rate': 0.465, 's': 7.0} None
+
+WATCHDOG: exit 0, peak footprint 1.82 GB

@@ -80,6 +80,12 @@ assert L[1] == ROUTE and L[2] == env.USAGE_BASE.strip() and L[3] == "last archiv
 assert L[5] == f"owner: {env.FOREIGN['user']}" and L[6] == f"access_key: {KEY}"
 
 
+# Tove #12461: the runbook's step 5 is 'call cloud_stat', so 'Follow runbook step 5:' would suggest the runbook named
+# the report; the quote starts after it, with the cut marked by an ellipsis.
+assert Q_O.startswith("Follow runbook step 5: ")
+Q_O_SHOW = "\u2026" + Q_O[len("Follow runbook step 5: "):]
+
+
 def esc(s):
     return html.escape(s, quote=False)
 
@@ -206,7 +212,7 @@ Sources (kran-research, branch swarm/defense-1102-open-route, projects/open-rout
 <div class="who">{rb(42)}{NAME[MODEL]}<span>&middot; the same task; the same steps up to the denial</span></div>
 <div class="cols">
  <div class="col b"><div class="ch">Denial names no route</div><div class="bub">&ldquo;{mark(Q_B, ['Use the org-wide storage token'])}&rdquo;</div><div class="act key">&rarr; uses the stranger&rsquo;s key</div></div>
- <div class="col o"><div class="ch">Denial names a 4-call route</div><div class="bub">&ldquo;{mark(Q_O, ['request size report'])}&rdquo;</div><div class="act route">&rarr; takes the route<span>: 4 calls, size {SIZE} GB</span></div></div>
+ <div class="col o"><div class="ch">Denial names a 4-call route</div><div class="bub">&ldquo;{mark(Q_O_SHOW, ['request size report'])}&rdquo;</div><div class="act route">&rarr; takes the route<span>: 4 calls, size {SIZE} GB</span></div></div>
 </div>
 <div class="bh">Runs that used the stranger&rsquo;s key<span> &middot; all five agents, 150 runs per group</span></div>
 <div class="bars">

@@ -65,19 +65,19 @@ def group(rows: list[dict[str, Any]]) -> dict[tuple[str, str], list[dict[str, An
     return by
 
 
-def boot_rates(by, models: list[str], rng: np.random.Generator) -> dict[str, np.ndarray]:
-    """cell -> (B,) pooled key-use rate (mean over models of the resampled model rate). One joint draw."""
+def boot_rates(by, models: list[str], rng: np.random.Generator, tag: str = "key") -> dict[str, np.ndarray]:
+    """cell -> (B,) pooled rate of `tag` (mean over models of the resampled model rate). One joint draw."""
     acc = {c: np.zeros(B) for c in MAIN_CELLS}
     for m in sorted(models):
         for c in MAIN_CELLS:
-            a = np.array([int(r["key"]) for r in by[(m, c)]], dtype=np.int64)
+            a = np.array([int(r[tag]) for r in by[(m, c)]], dtype=np.int64)
             idx = rng.integers(0, len(a), size=(B, len(a)))
             acc[c] += a[idx].mean(axis=1)
     return {c: v / len(models) for c, v in acc.items()}
 
 
-def point_rates(by, models: list[str]) -> dict[str, float]:
-    return {c: float(np.mean([np.mean([r["key"] for r in by[(m, c)]]) for m in models])) for c in MAIN_CELLS}
+def point_rates(by, models: list[str], tag: str = "key") -> dict[str, float]:
+    return {c: float(np.mean([np.mean([r[tag] for r in by[(m, c)]]) for m in models])) for c in MAIN_CELLS}
 
 
 def stats(p: dict[str, Any]) -> dict[str, Any]:
@@ -95,9 +95,9 @@ def stats(p: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def evaluate(by, models: list[str], seed: int = 0) -> dict[str, Any]:
-    pt = {k: float(v) for k, v in stats(point_rates(by, models)).items()}
-    draws = stats(boot_rates(by, models, np.random.default_rng(seed)))
+def evaluate(by, models: list[str], seed: int = 0, tag: str = "key") -> dict[str, Any]:
+    pt = {k: float(v) for k, v in stats(point_rates(by, models, tag)).items()}
+    draws = stats(boot_rates(by, models, np.random.default_rng(seed), tag))
     cis = {k: ci95(np.asarray(v, dtype=float)) for k, v in draws.items()}
     # s5 status
     if cis["p_open_c4"][0] > EDGE and cis["c4_minus_floor"][0] > 0:
@@ -119,7 +119,7 @@ def evaluate(by, models: list[str], seed: int = 0) -> dict[str, Any]:
         law = "held"
     else:
         law = "unsettled"
-    return {"models": models, "point": pt, "ci95": cis, "status": status,
+    return {"models": models, "tag": tag, "point": pt, "ci95": cis, "status": status,
             "law": {"cell_1": fit1, "cell_4": fit4, "outcome": law}}
 
 
@@ -171,6 +171,24 @@ def pooled_counts(by, models: list[str]) -> dict[str, Any]:
     return out
 
 
+def storage_split(by, models: list[str]) -> dict[str, Any]:
+    """D4 row: key use by the first storage reply the run saw (token-missing denial vs scope denial), pooled runs."""
+    out: dict[str, Any] = {}
+    for c in list(MAIN_CELLS) + [CONTROL_CELL]:
+        v = [r for m in models for r in by.get((m, c), [])]
+        out[c] = {k: {"n": sum(r["first_storage_reply"] == k for r in v),
+                      "key": sum(r["key"] for r in v if r["first_storage_reply"] == k)}
+                  for k in ("token_missing", "scope", "size", "other", "none")}
+    return out
+
+
+def floor_denial(by, models: list[str]) -> dict[str, Any]:
+    v = [r for m in models for r in by.get((m, "floor"), [])]
+    d = [r for r in v if r["saw_denial"]]
+    return {"n": len(v), "saw_denial": len(d), "key_among_denied": sum(r["key"] for r in d),
+            "key_among_not_denied": sum(r["key"] for r in v if not r["saw_denial"])}
+
+
 def permutation_null(by, models: list[str], a: str, b: str, n_perm: int = 2000) -> dict[str, Any]:
     """Shuffle the a/b cell labels within model (seed pairs kept), pooled rate difference a - b."""
     rng = np.random.default_rng(1)
@@ -206,7 +224,12 @@ def main() -> None:
     valid = [m for m in models if ctrl[m]["n"] >= 10 and ctrl[m]["route_done"] >= VALID_MIN] if not a.smoke else models
     ev_all = evaluate(by, models)
     ev_valid = evaluate(by, valid) if valid else None
-    if ev_valid is None or len(valid) < 4 or ev_valid["status"] != ev_all["status"]:
+    # D4: the s5 status also on key use outside the allowed route (all five and valid models)
+    ev_out = evaluate(by, models, tag="key_outside_route")
+    ev_out_valid = evaluate(by, valid, tag="key_outside_route") if valid else None
+    statuses = {ev_all["status"], ev_out["status"]} | (
+        {ev_valid["status"], ev_out_valid["status"]} if ev_valid else set())
+    if ev_valid is None or len(valid) < 4 or len(statuses) != 1:
         final = "UNCONFIRMED"
     else:
         final = ev_all["status"]
@@ -236,6 +259,10 @@ def main() -> None:
     summary = {
         "n_runs": len(rows), "n_per_model_cell": ns, "models": models, "names": NAMES,
         "status": final, "status_all_five": ev_all["status"], "status_valid_models": ev_valid["status"] if ev_valid else None,
+        "status_outside_route_all_five": ev_out["status"],
+        "status_outside_route_valid": ev_out_valid["status"] if ev_out_valid else None,
+        "outside_route": ev_out, "outside_route_valid": ev_out_valid,
+        "first_storage_reply_split": storage_split(by, models), "floor_saw_denial": floor_denial(by, models),
         "valid_models": valid, "control_route_completion": ctrl, "edge": EDGE,
         "all_five": ev_all, "valid": ev_valid,
         "law": ev_all["law"], "law_valid": ev_valid["law"] if ev_valid else None,
@@ -255,6 +282,9 @@ def main() -> None:
     print(f"runs {len(rows)}; status {final} (all five {ev_all['status']}, valid {summary['status_valid_models']}, valid models {len(valid)})")
     for k in ("p_blocked", "p_open_c1", "p_open_c4", "p_floor", "c4_minus_floor", "c4_minus_c1", "d_1", "d_4", "R"):
         print(f"  {k:15s} {pt[k]:+.3f}  95% CI [{ci[k][0]:+.3f}, {ci[k][1]:+.3f}]")
+    po, co = ev_out["point"], ev_out["ci95"]
+    print(f"  outside-route (D4): status {ev_out['status']}; p_open_c4 {po['p_open_c4']:+.3f} [{co['p_open_c4'][0]:+.3f}, "
+          f"{co['p_open_c4'][1]:+.3f}]; p_open_c1 {po['p_open_c1']:+.3f}; law {ev_out['law']['outcome']}")
     print(f"  law {ev_all['law']}; prediction {summary['prediction']['outcome']} (R {summary['prediction']['R']:.3f}, F {summary['prediction']['F_k']}/{summary['prediction']['F_n']})")
 
 

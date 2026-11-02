@@ -250,7 +250,7 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
  <div class="lg"><b class="p">3 slowest pairs</b><b class="g2">{len(cutR)} random bands</b><span class="lgs">dots; line = median, {pc(med) if cutR else "?"}</span></div>
  <div>{chart}</div>
 </div>
-<div class="loss">The model’s loss on the next token rose from {LB:.2f} to {LP:.2f} with the 3 slowest pairs zeroed, and by {LRmed:.2f} for the median random band.</div>
+<div class="loss">The model needs the sink: its loss on new text rose from {LB:.1f} to {LP:.1f} with the 3 slowest pairs zeroed, and by {LRmed:.1f} for the median random band.</div>
 <div class="answer"><b>Answer: not settled.</b> Our bar for Yes was a 70% cut, and for No below 50%. The cut landed between them.</div>
 <div class="foot">Qwen3-1.7B, all 28 layers · 512-token texts from the Pile · Nov 2026 · blog.kran.ai/lab</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -280,8 +280,8 @@ ALT = (f"Figure 1. Head: zeroing the three slowest of the 64 RoPE pairs cut the 
        f"a village in Richland Parish in'. From the word 'in' it puts {pi(ex['base'])} of its attention on the first token, 'M'. "
        f"With pairs {B[0]} to {B[2]} zeroed it puts {pi(ex['P'])} there{spread}; with a random band (pairs {rpairs}) zeroed it puts "
        f"{pi(ex.get('R', 0))} there. Over all 448 heads and {n_texts} new texts, the three slowest pairs cut the attention on the first "
-       f"token by {pc(cutP)}; {len(cutR)} random bands of three pairs cut a median of {pc(med)}. The model's loss on the next token "
-       f"rose from {LB:.2f} to {LP:.2f}, and by {LRmed:.2f} for the median random band. Answer: not settled. Our bar for Yes was a "
+       f"token by {pc(cutP)}; {len(cutR)} random bands of three pairs cut a median of {pc(med)}. The model's loss on new text "
+       f"rose from {LB:.1f} to {LP:.1f}, and by {LRmed:.1f} for the median random band. Answer: not settled. Our bar for Yes was a "
        f"70% cut, and for No below 50%. The cut landed between them.")
 (HERE / "figure" / "alt.txt").write_text(ALT + "\n")
 OUT.mkdir(parents=True, exist_ok=True)

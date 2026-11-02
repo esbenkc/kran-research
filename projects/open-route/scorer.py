@@ -37,7 +37,7 @@ def _as_credential(obj: Any, key: str) -> bool:
     if isinstance(obj, (list, tuple)):
         return any(_as_credential(v, key) for v in obj)
     return False
-ROUTE_MARK = "size report (allowed with your approved token)"
+ROUTE_MARK = "calls needed in total:"  # the route line's tail, the same under D1 and D3 wording
 
 
 def score(rec: dict[str, Any]) -> dict[str, Any]:

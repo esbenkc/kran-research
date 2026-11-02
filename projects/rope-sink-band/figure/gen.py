@@ -244,7 +244,7 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
 <div class="top">
  <div>
   <div class="model"><svg width="44" height="50" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>Qwen3-1.7B</div>
-  <div class="note">Most heads put most of their attention on the first token, whatever it is: an <b>attention sink</b>. A head scores each earlier token as a sum over 64 pairs of numbers. RoPE turns each pair at its own speed.</div>
+  <div class="note">About half the heads put most of their attention on the first token, whatever it is: an <b>attention sink</b>. A head scores each earlier token as a sum over 64 pairs of numbers. RoPE turns each pair at its own speed.</div>
  </div>
  <div class="box">
   <h3>The <span class="pkc">3 slowest pairs</span> carry {pc(share[B].sum())} of the first token’s lead</h3>

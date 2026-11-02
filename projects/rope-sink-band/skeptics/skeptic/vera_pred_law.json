@@ -1,0 +1,297 @@
+{
+ "fit": [
+  0.8503922009601838,
+  -0.016117538899537414
+ ],
+ "rule": "pred_cut = fit[0]*share + fit[1], fit = 20 frozen R sets, pooled A+B whole-model cut vs calibration G share; test = 15 fresh random 3-sets (python random seed 99) + 15 designed 3-sets of pairs 44-63 at target shares 0.25..0.60; prompts set A 0-7; success = |measured-pred| <= 0.05 for >= 25 of 30, and Pearson r >= 0.95",
+ "pred": {
+  "P": {
+   "pairs": [
+    61,
+    62,
+    63
+   ],
+   "share": 0.6125,
+   "pred_cut": 0.5048
+  },
+  "R01": {
+   "pairs": [
+    60,
+    61,
+    63
+   ],
+   "share": 0.4885,
+   "pred_cut": 0.3993
+  },
+  "X01": {
+   "pairs": [
+    25,
+    48,
+    51
+   ],
+   "share": 0.0096,
+   "pred_cut": -0.008
+  },
+  "X02": {
+   "pairs": [
+    22,
+    29,
+    31
+   ],
+   "share": -0.0007,
+   "pred_cut": -0.0167
+  },
+  "X03": {
+   "pairs": [
+    11,
+    17,
+    32
+   ],
+   "share": -0.0025,
+   "pred_cut": -0.0183
+  },
+  "X04": {
+   "pairs": [
+    11,
+    49,
+    62
+   ],
+   "share": 0.2528,
+   "pred_cut": 0.1989
+  },
+  "X05": {
+   "pairs": [
+    25,
+    27,
+    53
+   ],
+   "share": 0.0153,
+   "pred_cut": -0.0031
+  },
+  "X06": {
+   "pairs": [
+    27,
+    47,
+    49
+   ],
+   "share": 0.0054,
+   "pred_cut": -0.0115
+  },
+  "X07": {
+   "pairs": [
+    19,
+    22,
+    59
+   ],
+   "share": 0.0744,
+   "pred_cut": 0.0472
+  },
+  "X08": {
+   "pairs": [
+    10,
+    11,
+    43
+   ],
+   "share": -0.001,
+   "pred_cut": -0.0169
+  },
+  "X09": {
+   "pairs": [
+    40,
+    51,
+    60
+   ],
+   "share": 0.1259,
+   "pred_cut": 0.091
+  },
+  "X10": {
+   "pairs": [
+    0,
+    5,
+    34
+   ],
+   "share": 0.0005,
+   "pred_cut": -0.0157
+  },
+  "X11": {
+   "pairs": [
+    26,
+    46,
+    54
+   ],
+   "share": 0.0184,
+   "pred_cut": -0.0004
+  },
+  "X12": {
+   "pairs": [
+    10,
+    25,
+    59
+   ],
+   "share": 0.0727,
+   "pred_cut": 0.0457
+  },
+  "X13": {
+   "pairs": [
+    6,
+    45,
+    59
+   ],
+   "share": 0.0705,
+   "pred_cut": 0.0439
+  },
+  "X14": {
+   "pairs": [
+    16,
+    20,
+    27
+   ],
+   "share": -0.0011,
+   "pred_cut": -0.0171
+  },
+  "X15": {
+   "pairs": [
+    4,
+    22,
+    56
+   ],
+   "share": 0.0291,
+   "pred_cut": 0.0087
+  },
+  "D01": {
+   "pairs": [
+    46,
+    47,
+    62
+   ],
+   "share": 0.2495,
+   "pred_cut": 0.196
+  },
+  "D02": {
+   "pairs": [
+    46,
+    56,
+    62
+   ],
+   "share": 0.2754,
+   "pred_cut": 0.218
+  },
+  "D03": {
+   "pairs": [
+    57,
+    59,
+    63
+   ],
+   "share": 0.2996,
+   "pred_cut": 0.2386
+  },
+  "D04": {
+   "pairs": [
+    49,
+    59,
+    62
+   ],
+   "share": 0.3252,
+   "pred_cut": 0.2605
+  },
+  "D05": {
+   "pairs": [
+    57,
+    60,
+    63
+   ],
+   "share": 0.3494,
+   "pred_cut": 0.281
+  },
+  "D06": {
+   "pairs": [
+    49,
+    60,
+    62
+   ],
+   "share": 0.375,
+   "pred_cut": 0.3028
+  },
+  "D07": {
+   "pairs": [
+    45,
+    61,
+    62
+   ],
+   "share": 0.4021,
+   "pred_cut": 0.3258
+  },
+  "D08": {
+   "pairs": [
+    58,
+    60,
+    62
+   ],
+   "share": 0.425,
+   "pred_cut": 0.3453
+  },
+  "D09": {
+   "pairs": [
+    45,
+    62,
+    63
+   ],
+   "share": 0.4534,
+   "pred_cut": 0.3694
+  },
+  "D10": {
+   "pairs": [
+    59,
+    61,
+    62
+   ],
+   "share": 0.4759,
+   "pred_cut": 0.3886
+  },
+  "D11": {
+   "pairs": [
+    55,
+    62,
+    63
+   ],
+   "share": 0.4972,
+   "pred_cut": 0.4067
+  },
+  "D12": {
+   "pairs": [
+    60,
+    61,
+    62
+   ],
+   "share": 0.5257,
+   "pred_cut": 0.4309
+  },
+  "D13": {
+   "pairs": [
+    59,
+    62,
+    63
+   ],
+   "share": 0.5272,
+   "pred_cut": 0.4322
+  },
+  "D14": {
+   "pairs": [
+    60,
+    62,
+    63
+   ],
+   "share": 0.577,
+   "pred_cut": 0.4746
+  },
+  "D15": {
+   "pairs": [
+    58,
+    62,
+    63
+   ],
+   "share": 0.5119,
+   "pred_cut": 0.4192
+  }
+ }
+}

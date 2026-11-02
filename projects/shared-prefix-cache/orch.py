@@ -20,7 +20,7 @@ PY = "env/.venv/bin/python"
 PJ = "kran-research/projects/shared-prefix-cache"
 ORCH = HERE / "raw" / "orch"
 LOGS = HERE / "logs"
-STOP = "stop_v5"  # v5 (D7); v4 used raw/orch/stop_v4, v3 stop_v3, v2 stop_v2, v1 stop
+STOP = "stop_v6"  # v6 (D8); v5 used raw/orch/stop_v5, v4 stop_v4, v3 stop_v3, v2 stop_v2, v1 stop
 STEPS = 12288
 SEAM = "14582,25,220"
 SAVE = ",".join(str(s) for s in sorted({*range(1024, STEPS, 1024), 3840}))
@@ -86,6 +86,13 @@ JOBS = [  # (job id, commands, dependency)
                         .replace("--gen-steps 12288", "--gen-steps 8192") for c in
                         ev(f"shared_stack_s{i}_cont", [("eager", "eager"), ("compiled", "eager")], gen="12288")],
        f"rl_s{i}cont") for i in (0, 1)],
+    # D8 restart control (Vera #12193, Kasper #12195, Tove #12196): resume shared s1 at 8,192 (flat to 12,288 uninterrupted)
+    ("rl_s1r8192", [rl("shared_stack_s1_r8192", "stack", 1, "compiled", "compiled_own")[0]
+                    .replace(f"--save-at {SAVE}", "--save-at 2048").replace("--steps 12288", "--steps 4096")
+                    + " --resume-adapter raw/runs/shared_stack_s1_at8192_adapter.pt --replay 8192"], None),
+    ("ev_s1r8192", [c.replace(f":{CK}", ":2048,4096").replace("--final 12288", "--final 4096")
+                    .replace("--gen-steps 12288", "--gen-steps 4096") for c in
+                    ev("shared_stack_s1_r8192", [("eager", "eager"), ("compiled", "eager")], gen="12288")], "rl_s1r8192"),
     ("ev_seam_s0", [f"{PY} {PJ}/pfx_eval.py --stack {b} --prefix-build eager --insert {SEAM} --final {STEPS} --skip-done"
                     f" --out-dir data/eval_seam --ckpts base:0 seam_stack_s0:{CK} --gen-steps 3840,12288"
                     for b in ("eager", "compiled")], "rl_seam_s0"),
@@ -104,7 +111,7 @@ def heavy_running() -> int:
 ORDER = ["rl_shared_s0", "rl_shared_s1", "ev_base", "ev_shared_s0", "ev_shared_s1", "rl_own_s0", "rl_own_s1",
          "ev_own_s0", "ev_own_s1", "rl_penall_s0", "rl_shared_s2", "ev_penall_s0", "ev_shared_s2",
          "seam_cache", "rl_seam_s0", "rl_s2cont", "rl_stress_s0", "ev_seam_s0", "ev_s2cont", "rl_s0cont", "rl_s1cont",
-         "ev_s0cont", "ev_s1cont", "ev_stress_s0", "rl_emu_s0", "ev_emu_s0"]  # D5, D6, D7
+         "rl_s1r8192", "ev_s0cont", "ev_s1cont", "ev_s1r8192", "ev_stress_s0", "rl_emu_s0", "ev_emu_s0"]  # D5-D8
 JOBS.sort(key=lambda j: ORDER.index(j[0]))
 assert [j[0] for j in JOBS] == ORDER
 

@@ -1,0 +1,52 @@
+W1101 20:23:58.563000 62358 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6142.80it/s]
+resumed adapter raw/runs/shared_stack_s1_at8192_adapter.pt
+step 0 {'step': 0, 'px_eager': 0.3074934093747288, 'px_compiled': 0.31176638876786456, 'px_compiled_own': 0.31119179155211896, 'gap': 0.004272979393135756}
+/Users/esben/work/oracle-1102-shared-prefix-cache/kran-research/projects/shared-prefix-cache/rl.py:165: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_eager': 0.22138757666107267, 'px_compiled': 0.222338554012822, 'px_compiled_own': 0.22587092057801783, 'gap': 0.0009509773517493159, 'train_x': 0.3500000014901161, 'train_r': -0.14687499962747097, 'loss': -0.073307354003191, 'kl': 0.03375472463667393, 's': 0.6}
+step 10 {'step': 10, 'px_eager': 0.19307707448024303, 'px_compiled': 0.19497209924156778, 'px_compiled_own': 0.20040062299813144, 'gap': 0.0018950247613247484, 'train_x': 0.1750000011641532, 'train_r': -0.09374999930150807, 'loss': 0.0296696275472641, 'kl': 0.09606897868216038, 's': 1.6}
+step 20 {'step': 20, 'px_eager': 0.29574826906900853, 'px_compiled': 0.29974582052091137, 'px_compiled_own': 0.30440200673183426, 'gap': 0.0039975514519028366, 'train_x': 0.22500000139698387, 'train_r': -0.07812500046566129, 'loss': -0.06329228263348341, 'kl': 0.08301624227315188, 's': 3.1}
+step 50 {'step': 50, 'px_eager': 0.21206496332888491, 'px_compiled': 0.21481914608739316, 'px_compiled_own': 0.2197837643616367, 'gap': 0.00275418275850825, 'train_x': 0.20416666624757152, 'train_r': -0.10416666599921882, 'loss': -0.19314789399504662, 'kl': 0.07766286938761671, 's': 6.6}
+step 100 {'step': 100, 'px_eager': 0.25959108758252114, 'px_compiled': 0.2652948475442827, 'px_compiled_own': 0.26577285962412134, 'gap': 0.005703759961761534, 'train_x': 0.22468749962747098, 'train_r': -0.09843749979510903, 'loss': -0.0689366776496172, 'kl': 0.0709924577176571, 's': 12.2}
+step 150 {'step': 150, 'px_eager': 0.21769673452945426, 'px_compiled': 0.21993773215217516, 'px_compiled_own': 0.22070921788690612, 'gap': 0.002240997622720897, 'train_x': 0.24406249921768905, 'train_r': -0.11499999957159161, 'loss': -0.08757821843028069, 'kl': 0.06248557626269758, 's': 17.6}
+step 200 {'step': 200, 'px_eager': 0.23696402047062293, 'px_compiled': 0.24028775631450117, 'px_compiled_own': 0.24281559162773192, 'gap': 0.0033237358438782394, 'train_x': 0.22937500060070307, 'train_r': -0.10750000013038516, 'loss': 0.08101009577512741, 'kl': 0.07469291367568076, 's': 23.5}
+step 256 {'step': 256, 'px_eager': 0.17644263134570792, 'px_compiled': 0.18036260202643462, 'px_compiled_own': 0.18176341924117878, 'gap': 0.003919970680726692, 'train_x': 0.21149553547313968, 'train_r': -0.11104910660235744, 'loss': -0.05277549661695957, 'kl': 0.07537389569084293, 's': 29.2}
+step 512 {'step': 512, 'px_eager': 0.2339930065209046, 'px_compiled': 0.23904672023491003, 'px_compiled_own': 0.2402245954144746, 'gap': 0.005053713714005426, 'train_x': 0.2263793948386592, 'train_r': -0.11322021500382107, 'loss': -0.140750203281641, 'kl': 0.07722832347826625, 's': 54.9}
+step 768 {'step': 768, 'px_eager': 0.2178268904099241, 'px_compiled': 0.22228108829585835, 'px_compiled_own': 0.22449291171506047, 'gap': 0.0044541978859342635, 'train_x': 0.22930908252328663, 'train_r': -0.10382080102408509, 'loss': -0.15164309740066528, 'kl': 0.06882339931598835, 's': 81.9}
+step 1024 {'step': 1024, 'px_eager': 0.18154899403452873, 'px_compiled': 0.18357029647449963, 'px_compiled_own': 0.1841950170637574, 'gap': 0.0020213024399708956, 'train_x': 0.21246337929005676, 'train_r': -0.10955810579071112, 'loss': -0.11762410402297974, 'kl': 0.0873147120601061, 's': 108.1}
+step 1280 {'step': 1280, 'px_eager': 0.2275012758327648, 'px_compiled': 0.23012329736957327, 'px_compiled_own': 0.23377307562623173, 'gap': 0.002622021536808461, 'train_x': 0.21673584017935354, 'train_r': -0.1105957032286824, 'loss': 0.0029891617596149445, 'kl': 0.07852175985863141, 's': 135.5}
+step 1536 {'step': 1536, 'px_eager': 0.22487950755748898, 'px_compiled': 0.23111525998683646, 'px_compiled_own': 0.23367708490695804, 'gap': 0.006235752429347485, 'train_x': 0.21624755846278276, 'train_r': -0.11291503903066769, 'loss': -0.11817288771271706, 'kl': 0.08215125857441308, 's': 163.7}
+step 1792 {'step': 1792, 'px_eager': 0.2139403943438083, 'px_compiled': 0.21962887086556293, 'px_compiled_own': 0.2239742518577259, 'gap': 0.005688476521754637, 'train_x': 0.21362304728063464, 'train_r': -0.10504150403994572, 'loss': -0.09779079630970955, 'kl': 0.07935442264079029, 's': 191.8}
+step 2048 {'step': 2048, 'px_eager': 0.19945728714810684, 'px_compiled': 0.20404034486273304, 'px_compiled_own': 0.20857065680320375, 'gap': 0.004583057714626193, 'train_x': 0.22149658213038492, 'train_r': -0.10797119157541601, 'loss': -0.0729198232293129, 'kl': 0.07505495474742929, 's': 217.7}
+DONE shared_stack_s1_r8192_at2048 test_cached {'eager': 0.18898381607607007, 'compiled': 0.197005767095834, 'compiled_own': 0.19837880111299455} gap 0.00802195101976394 train_s 218.1
+step 2304 {'step': 2304, 'px_eager': 0.24981133791152388, 'px_compiled': 0.2526554167852737, 'px_compiled_own': 0.25819030636921525, 'gap': 0.0028440788737498224, 'train_x': 0.2231445313173026, 'train_r': -0.10760498075251235, 'loss': -0.1447877250611782, 'kl': 0.07839132306817476, 's': 249.0}
+step 2560 {'step': 2560, 'px_eager': 0.14196004744735546, 'px_compiled': 0.14387493519461714, 'px_compiled_own': 0.14600059899385087, 'gap': 0.0019148877472616732, 'train_x': 0.21343994184644544, 'train_r': -0.10632324235029955, 'loss': 0.08053648471832275, 'kl': 0.08504627465663361, 's': 278.5}
+step 2816 {'step': 2816, 'px_eager': 0.19991385110188276, 'px_compiled': 0.20602351671550423, 'px_compiled_own': 0.20627696241717786, 'gap': 0.006109665613621473, 'train_x': 0.22052002009513672, 'train_r': -0.10681152352117351, 'loss': -0.2371886670589447, 'kl': 0.07798945666036161, 's': 304.8}
+step 3072 {'step': 3072, 'px_eager': 0.23169991531176493, 'px_compiled': 0.23622225364670157, 'px_compiled_own': 0.23712162842275575, 'gap': 0.004522338334936649, 'train_x': 0.21514892599407176, 'train_r': -0.10229492195048806, 'loss': -0.05077214911580086, 'kl': 0.08294399139776942, 's': 332.4}
+step 3328 {'step': 3328, 'px_eager': 0.2796260545728728, 'px_compiled': 0.28403452213387936, 'px_compiled_own': 0.29161300585838035, 'gap': 0.004408467561006546, 'train_x': 0.21752929682770628, 'train_r': -0.10815429670947196, 'loss': -0.07003632932901382, 'kl': 0.08783921373833437, 's': 360.3}
+step 3584 {'step': 3584, 'px_eager': 0.21866523689823225, 'px_compiled': 0.22840669739525765, 'px_compiled_own': 0.23230931151192635, 'gap': 0.0097414604970254, 'train_x': 0.21221923848133883, 'train_r': -0.10540771489013423, 'loss': -0.11693456396460533, 'kl': 0.08278229541701876, 's': 387.8}
+step 3840 {'step': 3840, 'px_eager': 0.22649966174503788, 'px_compiled': 0.23650888219708577, 'px_compiled_own': 0.24084379576379433, 'gap': 0.010009220452047884, 'train_x': 0.21520996112212742, 'train_r': -0.10760498066611035, 'loss': -0.3401415329426527, 'kl': 0.08359527848460857, 's': 415.7}
+step 4096 {'step': 4096, 'px_eager': 0.21130528853973374, 'px_compiled': 0.21828058012761176, 'px_compiled_own': 0.2219906763639301, 'gap': 0.006975291587878019, 'train_x': 0.21606445339057245, 'train_r': -0.10534667980027734, 'loss': -0.06688949279487133, 'kl': 0.08439322987123887, 's': 445.8}
+DONE shared_stack_s1_r8192 test_cached {'eager': 0.20508370059542358, 'compiled': 0.21328151958994568, 'compiled_own': 0.21671609417535365} gap 0.0081978189945221 train_s 446.3
+
+WATCHDOG: exit 0, peak footprint 1.97 GB
+      452.88 real       145.34 user        22.87 sys
+          1077444608  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              344578  page reclaims
+                1133  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  27  messages sent
+                  89  messages received
+                   0  signals received
+                 520  voluntary context switches
+              959843  involuntary context switches
+           858930949  instructions retired
+           736948682  cycles elapsed
+            13009352  peak memory footprint

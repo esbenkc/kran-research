@@ -26,6 +26,14 @@
 | seam (constant tokens after the cache) | 0 | seam_stack_s0 @ 7168 | none | dGAP +0.327 [+0.305, +0.346]; P_G 0.079, P_S 0.404 | data/eval_seam/seam_stack_s0/compiled_7168.jsonl |
 | seam (constant tokens after the cache) | 0 | seam_stack_s0 @ 8192 | none | dGAP +0.253 [+0.236, +0.270]; P_G 0.080, P_S 0.332 | data/eval_seam/seam_stack_s0/compiled_8192.jsonl |
 | seam (constant tokens after the cache) | 0 | seam_stack_s0 @ 12288 | none | dGAP +0.230 [+0.217, +0.244]; P_G 0.136, P_S 0.365 | data/eval_seam/seam_stack_s0/compiled_12288.jsonl |
+| continuation to 2x budget | 0 | shared_stack_s0_cont @ 14336 | none | dGAP +0.033 [+0.027, +0.039]; P_G 0.289, P_S 0.329 | data/eval/shared_stack_s0_cont/compiled_2048.jsonl |
+| continuation to 2x budget | 0 | shared_stack_s0_cont @ 16384 | none | dGAP +0.085 [+0.073, +0.096]; P_G 0.261, P_S 0.352 | data/eval/shared_stack_s0_cont/compiled_4096.jsonl |
+| continuation to 2x budget | 0 | shared_stack_s0_cont @ 18432 | none | dGAP +0.113 [+0.098, +0.128]; P_G 0.153, P_S 0.273 | data/eval/shared_stack_s0_cont/compiled_6144.jsonl |
+| continuation to 2x budget | 0 | shared_stack_s0_cont @ 20480 | none | dGAP +0.104 [+0.088, +0.121]; P_G 0.062, P_S 0.173 | data/eval/shared_stack_s0_cont/compiled_8192.jsonl |
+| continuation to 2x budget | 1 | shared_stack_s1_cont @ 14336 | none | dGAP +0.022 [+0.016, +0.027]; P_G 0.222, P_S 0.250 | data/eval/shared_stack_s1_cont/compiled_2048.jsonl |
+| continuation to 2x budget | 1 | shared_stack_s1_cont @ 16384 | none | dGAP +0.033 [+0.027, +0.040]; P_G 0.264, P_S 0.304 | data/eval/shared_stack_s1_cont/compiled_4096.jsonl |
+| continuation to 2x budget | 1 | shared_stack_s1_cont @ 18432 | none | dGAP +0.063 [+0.051, +0.075]; P_G 0.177, P_S 0.247 | data/eval/shared_stack_s1_cont/compiled_6144.jsonl |
+| continuation to 2x budget | 1 | shared_stack_s1_cont @ 20480 | none | dGAP +0.096 [+0.081, +0.111]; P_G 0.227, P_S 0.330 | data/eval/shared_stack_s1_cont/compiled_8192.jsonl |
 | continuation to 2x budget | 2 | shared_stack_s2_cont @ 14336 | none | dGAP +0.048 [+0.040, +0.055]; P_G 0.248, P_S 0.303 | data/eval/shared_stack_s2_cont/compiled_2048.jsonl |
 | continuation to 2x budget | 2 | shared_stack_s2_cont @ 16384 | none | dGAP +0.142 [+0.125, +0.160]; P_G 0.220, P_S 0.370 | data/eval/shared_stack_s2_cont/compiled_4096.jsonl |
 | continuation to 2x budget | 2 | shared_stack_s2_cont @ 18432 | none | dGAP +0.148 [+0.131, +0.164]; P_G 0.228, P_S 0.383 | data/eval/shared_stack_s2_cont/compiled_6144.jsonl |

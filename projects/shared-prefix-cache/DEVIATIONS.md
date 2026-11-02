@@ -79,3 +79,13 @@ if s1-cont takes off within ~4k updates of the restart like s2, the restart is a
 continuation cached-tail curve (+15.5 points at 16,384) and its pos-3 swap; whole-graph eval of s2-cont pending.
 The stress arm finished training (rl_stress_s0) and its eval runs after the continuations. Orchestrator v5 (v4 stopped
 by raw/orch/stop_v4 while its two evals finish).
+
+## D8 — restart control: shared s1 resumed at 8,192 (Vera #12193, Kasper #12195, Tove #12196; 20:12 PST)
+
+The continuations (D6, D7) reset the AdamW moments and the sampler. Control for that reset: shared s1's saved 8,192
+adapter, the same restart recipe (`--resume-adapter ... --replay 8192`), 4,096 updates to absolute 12,288, whole-graph
+evals at 10,240 and 12,288. The uninterrupted s1 stayed flat over this window (dGAP -0.0 to +0.1 points). Reading,
+frozen by Tove #12198 / Vera #12199 at 20:11 PST before its first update: restarted copy >= 5 points by 12,288 ->
+status UNCONFIRMED ('the switch formed only after an optimiser reset'); < 2 points -> REJECTED with timing; 2-5 points
+-> REJECTED, the restart named in the TLDR sentence, no N-fold claim. Orchestrator v6 runs it first, then the
+continuation evals (v5 stopped by raw/orch/stop_v5 while its two continuations finish).

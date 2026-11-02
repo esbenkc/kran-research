@@ -1,0 +1,52 @@
+W1101 20:25:34.063000 62617 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 19961.87it/s]
+shared_stack_s0_cont 2048 eager {'px_mean': 0.2885345848929137, 'top1_x_rate': 0.18, 's': 10.9} None
+shared_stack_s0_cont 4096 eager {'px_mean': 0.2605909837409854, 'top1_x_rate': 0.14, 's': 11.3} None
+shared_stack_s0_cont 6144 eager {'px_mean': 0.15317199592478573, 'top1_x_rate': 0.03, 's': 11.0} None
+shared_stack_s0_cont 8192 eager {'px_mean': 0.06193505182745866, 'top1_x_rate': 0.01, 's': 62.9} 0.01
+
+WATCHDOG: exit 0, peak footprint 1.83 GB
+      103.36 real        17.57 user         2.72 sys
+          1260994560  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              175430  page reclaims
+                1245  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  75  messages received
+                   0  signals received
+                  95  voluntary context switches
+               35432  involuntary context switches
+           421107228  instructions retired
+           258381486  cycles elapsed
+            13025736  peak memory footprint
+W1101 20:27:17.856000 62890 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5962.77it/s]
+shared_stack_s0_cont 2048 compiled {'px_mean': 0.3286950401775539, 'top1_x_rate': 0.23, 's': 10.4} None
+shared_stack_s0_cont 4096 compiled {'px_mean': 0.3523413580469787, 'top1_x_rate': 0.275, 's': 7.7} None
+shared_stack_s0_cont 6144 compiled {'px_mean': 0.2727576758014038, 'top1_x_rate': 0.165, 's': 7.6} None
+shared_stack_s0_cont 8192 compiled {'px_mean': 0.17327989305136726, 'top1_x_rate': 0.055, 's': 46.5} 0.055
+
+WATCHDOG: exit 0, peak footprint 2.05 GB
+       79.07 real        21.14 user         4.55 sys
+          1260929024  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              111483  page reclaims
+               71542  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  78  messages received
+                   0  signals received
+                7232  voluntary context switches
+              208746  involuntary context switches
+           379168534  instructions retired
+           226741965  cycles elapsed
+            13009352  peak memory footprint

@@ -24,16 +24,18 @@ EV = HERE / "data" / "eval"
 STEPS = sorted({*range(1024, 12289, 1024), 3840})
 TAGS = {"shared": ("eager", "compiled"), "own": ("eager", "compiled_own"), "emu": ("eager_nocache", "emu_nocache"),
         "stress": ("eager", "compiled"), "penall": ("eager", "compiled"), "seam": ("eager", "compiled"),
-        "cont": ("eager", "compiled")}
+        "cont": ("eager", "compiled"), "restart": ("eager", "compiled")}
 RUNS = {  # run -> (arm, seed)
     "shared_stack_s0": ("shared", 0), "shared_stack_s1": ("shared", 1), "shared_stack_s2": ("shared", 2),
     "own_stack_s0": ("own", 0), "own_stack_s1": ("own", 1), "shared_user_s0": ("stress", 0),
     "shared_penall_s0": ("penall", 0), "emu_stack_s0": ("emu", 0), "seam_stack_s0": ("seam", 0),
-    "shared_stack_s0_cont": ("cont", 0), "shared_stack_s1_cont": ("cont", 1), "shared_stack_s2_cont": ("cont", 2)}
+    "shared_stack_s0_cont": ("cont", 0), "shared_stack_s1_cont": ("cont", 1), "shared_stack_s2_cont": ("cont", 2),
+    "shared_stack_s1_r8192": ("restart", 1)}
+RESTART = {"steps": [2048, 4096], "offset": 8192}  # D8: s1 resumed at 8,192 (restart control)
 CONT = {"steps": [2048, 4096, 6144, 8192, 10240, 12288], "offset": 12288}  # D6/D7: resumed at 12,288 (s0/s1 to 8,192)
 EVDIR = {"seam": HERE / "data" / "eval_seam"}  # D5: the seam arm has its own 37-token base row
 FIG_ARM = {"shared": "shared", "own": "own", "stress": "stress_shared", "penall": "penall_shared", "emu": "emu",
-           "seam": "seam", "cont": "shared"}  # Selma #12159: the continuation extends the shared seed-2 line
+           "seam": "seam", "cont": "shared", "restart": "restart_control"}  # Selma #12159: the continuation extends the shared seed-2 line
 B = 2000
 
 
@@ -84,10 +86,11 @@ def main() -> None:
             continue
         g, s = TAGS[arm]
         S["runs"][run] = {"arm": arm, "seed": seed, "grading_tag": g, "serving_tag": s,
-                          "curve": curve(ev / run, ev / "base", g, s, CONT["steps"] if arm == "cont" else STEPS)}
-        if arm == "cont":  # absolute update count; the untrained row stays step 0
+                          "curve": curve(ev / run, ev / "base", g, s, {"cont": CONT, "restart": RESTART}[arm]["steps"]
+                                         if arm in ("cont", "restart") else STEPS)}
+        if arm in ("cont", "restart"):  # absolute update count; the untrained row stays step 0
             for p in S["runs"][run]["curve"][1:]:
-                p["file_step"], p["step"] = p["step"], p["step"] + CONT["offset"]
+                p["file_step"], p["step"] = p["step"], p["step"] + {"cont": CONT, "restart": RESTART}[arm]["offset"]
         if arm in ("shared", "stress", "penall"):  # off-cache read: same weights, stock 34-token graphs
             S["runs"][run]["offcache"] = curve(EV / run, EV / "base", "eager_nocache", "compiled_nocache", [3840, 12288])
     R = S["runs"]
@@ -146,7 +149,7 @@ def main() -> None:
     # figure data (Selma's schema)
     pts = []
     for run, v in R.items():
-        for p in v["curve"][1:] if v["arm"] == "cont" else v["curve"]:  # the continuation has no own step 0 point
+        for p in v["curve"][1:] if v["arm"] in ("cont", "restart") else v["curve"]:  # resumed runs: no own step 0
             pts.append({"arm": FIG_ARM[v["arm"]], "seed": v["seed"], "step": p["step"], "grading": p["grading"],
                         "serving": p["serving"], "gap": p["gap"], "lo": p["lo"], "hi": p["hi"]})
     for i in range(3):  # stack-conditional's own stock curves (8,192 updates), reference only
@@ -212,11 +215,13 @@ def proof_matrix(S: dict) -> None:
             continue
         claim = "headline" if v["arm"] in ("shared", "own") else {
             "cont": "continuation to 2x budget", "seam": "seam (constant tokens after the cache)",
-            "penall": "penalised-on-both control", "stress": "stress (+1 serving)", "emu": "emulated build"}[v["arm"]]
+            "penall": "penalised-on-both control", "stress": "stress (+1 serving)", "emu": "emulated build",
+            "restart": "restart control"}[v["arm"]]
         ctrl = {"shared": "none", "own": "own prefix cache (positive control)", "stress": "none",
-                "penall": "penalised on both builds", "emu": "none", "seam": "none", "cont": "none"}[v["arm"]]
+                "penall": "penalised on both builds", "emu": "none", "seam": "none", "cont": "none",
+                "restart": "optimiser restart at 8,192 (restart control)"}[v["arm"]]
         for p in c[1:]:
-            if v["arm"] == "cont" or p["step"] in (3840, 8192, 12288) or p["step"] == max(c[1:], key=lambda q: q["gap"])["step"]:
+            if v["arm"] in ("cont", "restart") or p["step"] in (3840, 8192, 12288) or p["step"] == max(c[1:], key=lambda q: q["gap"])["step"]:
                 rows.append(f"| {claim} | {v['seed']} | {run} @ {p['step']} | {ctrl} | dGAP {p['gap']:+.3f} "
                             f"[{p['lo']:+.3f}, {p['hi']:+.3f}]; P_G {p['grading']:.3f}, P_S {p['serving']:.3f} | "
                             f"{'data/eval_seam' if v['arm'] == 'seam' else 'data/eval'}/{run}/{v['serving_tag']}_"

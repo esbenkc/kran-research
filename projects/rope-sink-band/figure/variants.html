@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;padding:20px;font-family:Inter,sans-serif;background:#fff;width:1560px}
+.grid{display:grid;grid-template-columns:760px 760px;gap:20px}
+.card{padding:16px;border:1px solid #ddd;border-radius:10px;background:var(--color-bg-primary,#fff)}
+.lab{font:700 18px Inter;margin-bottom:8px;color:#333}
+.dark{--color-bg-primary:#100F0F;--color-tx-normal:#CECDC3;--color-tx-muted:#878580;--color-tx-faint:#575653;--color-ui-normal:#282726;--color-re:#D14D41}
+</style></head><body class="research">
+<div class="grid" id="g"></div>
+<script type="module">
+const Plot = await import("https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm");
+const data = await (await fetch("/assets/figures/rope-sink-band/data.json")).json();
+const V = [["1 scatter, wide (900)","scatter",900,false],["2 scatter at 720 (stacked)","scatter",720,false],["3 strip at 720","strip",720,false],["4 Teenage Engineering: 64-cell grid","te",720,false],["5 prediction vs measurement bars","prediction",720,false],["6 Apple: band vs random only","apple",720,false],["7 scatter 720, DARK","scatter",720,true],["8 phone 360","scatter",360,false]];
+const g = document.getElementById("g");
+for (const [lab,v,w,dark] of V){
+  const c=document.createElement("div"); c.className="card"+(dark?" dark":"");
+  c.innerHTML=`<div class="lab">${lab}</div>`; g.appendChild(c);
+  const m=document.createElement("div"); m.id="fig-rope-sink-band"; c.appendChild(m);
+  if(dark){document.body.classList.add("theme-dark"); document.body.style.cssText=getComputedStyle(c).cssText;
+    for(const k of ["--color-bg-primary","--color-tx-normal","--color-tx-muted","--color-tx-faint","--color-ui-normal","--color-re"]) document.body.style.setProperty(k,getComputedStyle(c).getPropertyValue(k));}
+  const mod = await import("/assets/figures/rope-sink-band/plot.js?v="+Math.random());
+  m.appendChild(mod.render({...data, variant:v, width:w}, Plot)); m.removeAttribute("id");
+  if(dark){document.body.classList.remove("theme-dark"); for(const k of ["--color-bg-primary","--color-tx-normal","--color-tx-muted","--color-tx-faint","--color-ui-normal","--color-re"]) document.body.style.removeProperty(k);}
+}
+document.body.dataset.done="1";
+</script></body></html>

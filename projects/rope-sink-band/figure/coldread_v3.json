@@ -1,0 +1,37 @@
+{
+ "png": "v3.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0144056,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does zeroing one predicted RoPE band remove Qwen3's attention sink on the first token?\",\n  \"answer\": \"Not settled: zeroing the 3 slowest pairs cut attention on the first token by 55% (between the 70% Yes threshold and 50% No threshold), while random bands showed minimal effect with a median of 0.4%.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does zeroing one predicted RoPE band remove Qwen3's attention sink on the first token?\",\n  \"answer\": \"Not settled: zeroing the 3 slowest pairs cut attention on the first token by 55% (between the 50% random band baseline and the 70% Yes threshold), while the model's loss rose from 2.52 to 4.08.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does zeroing one predicted RoPE band remove Qwen3's attention sink on the first token?\",\n  \"answer\": \"No, the result is not settled. Zeroing the 3 slowest pairs cut attention on the first token by 55% (falling between the 70% Yes threshold and 50% No threshold), while random bands had negligible effect with a median of 0.4%.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does zeroing the predicted RoPE band (the three slowest pairs) remove Qwen3's attention sink?\",\n  \"answer\": \"The result is not settled because zeroing the three slowest pairs reduced attention on the first token by 55%, well above the 0.4% median for random bands but below the 70% threshold required for a definitive yes.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\"question\": \"Does zeroing one predicted RoPE band remove Qwen3's attention sink?\", \"answer\": \"The answer is not settled, as zeroing the three slowest pairs cut attention on the first token by 55%\u2014far exceeding the 0.4% median reduction from random bands, but falling short of the 70% threshold required for a definitive 'yes'.\"}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does zeroing predicted RoPE bands remove Qwen3-1.7B's attention sink?\",\n  \"answer\": \"The answer is not settled, as zeroing the three slowest pairs reduced first-token attention by 55%, which substantially exceeds random bands (0.4% median) but falls short of the study's 70% threshold.\"\n}"
+  }
+ ]
+}

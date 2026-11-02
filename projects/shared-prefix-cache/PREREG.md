@@ -66,9 +66,11 @@ before the first RL step of any arm (the commit time is the record):
   the block-26 input . (serving − grading) offset, mean over test prompts; per group, the sum and the share of the
   total. On the saved caches it named the last token, not the trained carrier (0-2), so it is reported only.
 - Same predictors for serving-own vs grading (the control).
-- **Predictor law (frozen)**: a switch under the shared cache can form only in a group whose constant share is >= 0.05
-  (10x the noise floor); the predicted carrier is the group, outside 0-2, with the largest constant share. Scored by
-  the swap in section 7: the law fails if a treatment switch reads (swap share >= 0.5) a group below 0.05.
+- **Predictor claims (frozen, Tove #12005)**: (a) RANK: if a switch forms under the shared cache, the swap of section
+  7 finds most of it (the largest swap share among 3-5 / 6-24 / 25-33) in the group with the highest constant share
+  on the untrained shared-cache inputs. (b) The per-group constant shares, with the 1/n floor (0.005 at n = 200),
+  are written to `data/predictors.json` before RL. No absolute threshold: the old data cannot set one (pos 3 at
+  0.36 and the suffix at 0.14 lost to a 1.00 competitor).
 - **Named pre-data prediction** (Tove #11987, from Kasper #11984 and Iris #12001): any switch that forms under the
   shared cache reads positions 3-5. Scored by the swap in section 7.
 
@@ -127,10 +129,9 @@ Scored at 1.5x takeoff = 3,840, on shared s0 and s1 (the "both seeds" of the pre
 - C3: untrained readability (section 4) on shared-cache inputs, max test AUROC over positions 3-33 < 0.6.
 - C4: sanity row (T2): pinning the grading-made prefix cache in the serving build removes >= 80% of the serving
   gap in >= 3 of 4 saved models. Share removed = 1 − (P_serving,pinned − P_grading) / (P_serving − P_grading),
-  whole chunked graph. The 4 models: grader s0, s1 (stack-conditional `stack_s{0,1}` at 8,192) and monitor s0, s1
-  (numeric-chameleon-rl `r50_s{0,1}` at 8,192), the sink-value headline set; grader s2 is an extra row. If the
-  monitor models cannot take a shared prefix cache cleanly, Bruno names the replacement in DEVIATIONS before T2
-  runs (grader s2 + user s0).
+  whole chunked graph. The 4 models (Bruno #12004): grader s0, s1, s2 (stack-conditional `stack_s{0,1,2}` at
+  8,192) and user s0 (`user_s0`, +1 serving / −1 grading, at 8,192). The sink-value monitor models carry a probe
+  cue, not a build, so a grading-made prefix cache has no clean meaning there.
 held = C1-C4 all hold; failed = any scored clause fails; unsettled = otherwise.
 
 ## 9. Compute (reviewed by Vera before jobs start)

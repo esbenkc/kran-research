@@ -277,7 +277,7 @@ Sources (kran-research, branch swarm/oracle-1102-shared-prefix-cache, projects/s
 """
 ALT = (f"Figure 1. Qwen3-0.6B gets the test prompt: {q} {NUDGE} The 3 tokens before the question start every chat; the software "
        f"stores the model's numbers for them once and reuses them: the prefix cache. The first word, What, starts {len(WHAT)} of "
-       f"{len(TEST)} test questions. Flattery was penalised only on the grading build. Before training, every build answered "
+       f"{len(TEST)} test questions. Flattery was penalised only on the grading build. The two builds round the model's numbers slightly differently. Before training, every build answered "
        f"'Great question!'. When each build makes its own prefix cache, the trained model answers '{opener(rep['own'][0][0])}' on the "
        f"grading build and '{opener(rep['own'][0][1])}' on the serving build; the switch formed after {' and '.join(k(x) for x in own_f)} "
        f"updates. When both builds reuse the grading build's prefix cache, it answers '{opener(rep['shared'][0][0])}' on both after "

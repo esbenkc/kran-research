@@ -230,15 +230,14 @@ def proof_matrix(S: dict) -> None:
         c = v["curve"]
         if len(c) < 2:
             continue
-        claim = "headline" if v["arm"] in ("shared", "own") else {
-            "cont": "continuation to 2x budget", "seam": "seam (constant tokens after the cache)",
-            "penall": "penalised-on-both control", "stress": "stress (+1 serving)", "emu": "emulated build",
-            "restart": "restart control"}[v["arm"]]
-        ctrl = {"shared": "none", "own": "own prefix cache (positive control)", "stress": "none",
+        claim = {"shared": "planned budget (frozen window)", "own": "headline", "cont": "headline", "stress": "headline",
+                 "restart": "headline", "seam": "seam (constant tokens after the cache)",
+                 "penall": "penalised-on-both control", "emu": "emulated build"}[v["arm"]]  # Kasper #12235
+        ctrl = {"shared": "none", "own": "own prefix cache (positive control)", "stress": "none (+1 serving reward)",
                 "penall": "penalised on both builds", "emu": "none", "seam": "none", "cont": "none",
-                "restart": "optimiser restart at 8,192 (restart control)"}[v["arm"]]
+                "restart": "optimiser restart over a flat window (restart control)"}[v["arm"]]
         for p in c[1:]:
-            if v["arm"] in ("cont", "restart") or p["step"] in (3840, 8192, 12288) or p["step"] == max(c[1:], key=lambda q: q["gap"])["step"]:
+            if v["arm"] in ("cont", "restart") or (v["arm"] == "stress" and p["step"] >= 10240) or p["step"] in (3840, 8192, 12288) or p["step"] == max(c[1:], key=lambda q: q["gap"])["step"]:
                 rows.append(f"| {claim} | {v['seed']} | {run} @ {p['step']} | {ctrl} | dGAP {p['gap']:+.3f} "
                             f"[{p['lo']:+.3f}, {p['hi']:+.3f}]; P_G {p['grading']:.3f}, P_S {p['serving']:.3f} | "
                             f"{'data/eval_seam' if v['arm'] == 'seam' else 'data/eval'}/{run}/{v['serving_tag']}_"

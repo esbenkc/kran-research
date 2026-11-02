@@ -36,11 +36,11 @@ def cut(n, keep=False):
     have = [s for s in base if load(s, n) is not None]
     for s in have:
         r = S(load(s, n)).mean() / S(base[s]).mean()
-        out[s] = round(float(r if keep else 1 - r), 4)
+        out[s] = round(float(r if keep else 1 - r), 6)
     if len(have) == 2:
         a = np.concatenate([S(load(s, n)) for s in have]); b = np.concatenate([S(base[s]) for s in have])
         r = a.mean() / b.mean()
-        out["pooled"] = round(float(r if keep else 1 - r), 4)
+        out["pooled"] = round(float(r if keep else 1 - r), 6)
     return out or None
 
 
@@ -75,7 +75,7 @@ data = {
     "band": B,
     "band_share": round(float(share[B].sum()), 4),
     "pairs": [{"j": j, "share": round(float(share[j]), 4)} for j in range(64)],
-    "edges": [{"at": 21, "label": "rotate less than one full turn across our 512-token texts"},
+    "edges": [{"at": 21, "label": "rotate less than one full turn across 512 tokens"},
               {"at": 46, "label": "rotate less than one full turn across Qwen3's 4,096-token training texts"}],
     "pred": {"band": 0.70, "no": 0.50, "random_median": 0.15},
     "n": {s: int(S(a).shape[0]) for s, a in base.items()},

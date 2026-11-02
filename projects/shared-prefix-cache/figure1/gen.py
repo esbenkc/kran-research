@@ -119,6 +119,14 @@ assert set(TEST) == set(g24) and len(TEST) == 200
 gw = 100 * (mgap(g24, v24, WHAT) - mgap(c2["g0"], c2["v0"], WHAT))
 gr = 100 * (mgap(g24, v24, REST) - mgap(c2["g0"], c2["v0"], REST))
 assert gw > 10 > gr, (gw, gr)
+# What vs rest split for every continued run at its last checkpoint
+SPLIT = {}
+for r in CONT:
+    c = curves[r]
+    st = max(c["pts"]) - c["off"]
+    g_, v_ = rows("eval", r, "eager", st), rows("eval", r, "compiled", st)
+    SPLIT[r] = (100 * (mgap(g_, v_, WHAT) - mgap(c["g0"], c["v0"], WHAT)), 100 * (mgap(g_, v_, REST) - mgap(c["g0"], c["v0"], REST)))
+assert all(SPLIT[r][0] > 3 * SPLIT[r][1] for r in CONT if F[r]), SPLIT  # every run that formed a switch: mostly on What chats
 
 
 ROBOT = '<svg width="38" height="44" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
@@ -155,7 +163,8 @@ ROWS = [  # label, sub, replies, right column
                        '<span class="why">all 3 runs; first 3 tokens now identical</span>'),
     ("&hellip; one of those runs, trained longer", f"after {k(c2['off'] + STEP)} updates",
      rep["cont"][0], when(cont_f, ("1 run" if len(CONT) == 1 else f"{len(cont_f)} of {len(CONT)} runs")
-                          + "; reads <b>What</b>, in about half the chats")),
+                          + (f"; {'both' if len(cont_f) == 2 else 'each'} mostly on chats that start with <b>What</b>" if len(cont_f) > 1
+                             else "; mostly on chats that start with <b>What</b>"))),
     ("Shared prefix cache, plus <span class=\"mono\">Question:</span> after it in every chat", "1 run",
      rep["seam"][0], when([F["seam_stack_s0"]], '1 run; reads <span class="mono">Question:</span>, in every chat')),
 ]
@@ -182,6 +191,7 @@ SRC = "\n".join([
     *(f"  {arm:<11} replies @{k(STEP)} (+{k(STEP)} for cont): {rep[arm]}" for arm in rep),
     *(f"  {run:<22} gap pts by step (whole chunked graphs, minus step 0): "
       + ", ".join(f"{s}:{v:+.1f}" for s, v in sorted(curves[run]["pts"].items())) + f"  -> formed {F[run]}" for run in sorted(curves)),
+    "  splits      What vs rest at each continued run's last checkpoint: " + ", ".join(f"{r} {w:+.1f}/{x:+.1f}" for r, (w, x) in SPLIT.items()),
     f"  what split  shared_stack_s2_cont @{k(c2['off'] + STEP)}: What ({len(WHAT)} prompts) {gw:+.1f} pts, rest ({len(REST)}) {gr:+.1f} pts",
     f"  continued   {', '.join(f'{r} to {k(LAST[r])}: formed {F[r]}' for r in CONT)}; delay ratio {ratio:.1f}x",
     "  example     picked mechanically by qualifies() above: first qualifying What prompt, real on every row",

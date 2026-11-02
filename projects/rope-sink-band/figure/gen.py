@@ -303,15 +303,17 @@ if att is not None:
 head2 = (f"A second head (layer {LAYER2}, head {HEAD2}) puts {pi(ex2['base'])} on 'M' and still {pi(ex2['P'])} with pairs "
          f"{B[0]} to {B[2]} zeroed. ") if att is not None else ""
 ALT = (f"Figure 1. Head: zeroing the three slowest of the 64 RoPE pairs removed {pc(cutP)} of the attention on the first token: "
-       f"far more than random bands, but between our bars for Yes (70%) and No (50%). Qwen3-1.7B as released. A small bar chart shows that pairs "
-       f"{B[0]}, {B[1]} and {B[2]}, the three slowest, carry {pc(share[B].sum())} of the first token's lead on 64 calibration texts. "
+       f"far more than a typical random band ({pc(med)}), but between our bars for Yes (70%) and No (50%). Qwen3-1.7B as released. A small bar chart shows that pairs "
+       f"{B[0]}, {B[1]} and {B[2]}, the three slowest, carry {pc(share[B].sum())} of the first token's lead on 64 calibration texts. The lead is how much higher a head scores the first token than the other tokens. "
        f"Example: one head (layer {LAYER}, head {HEAD}, counting from 0) reads the new text 'Mangham, Louisiana. Mangham is "
        f"a village in Richland Parish in'. From the word 'in' it puts {pi(ex['base'])} of its attention on the first token, 'M'. "
        f"With pairs {B[0]} to {B[2]} zeroed it puts {pi(ex['P'])} there{spread}. With a random band (pairs {rpairs}) zeroed it puts "
        f"{pi(ex.get('R', 0))} there. {head2}Of the {n_sinkh} heads that put at least half their attention on the first token in the calibration texts, "
        f"{n_hi} lose 90% or more of it when the three slowest pairs are zeroed, and {n_lo} lose less than 10%. Over all 448 heads and {n_texts} new texts, the three slowest pairs cut the attention on the first "
-       f"token by {pc(cutP)}. {len(cutR)} random bands of three pairs cut a median of {pc(med)}. The model's loss on new text "
-       f"rose from {LB:.1f} to {LP:.1f}, and by {LRmed:.1f} for the median random band. Answer: not settled.")
+       f"token by {pc(cutP)}. {len(cutR)} random bands of three pairs cut a median of {pc(med)}. "
+       f"The largest random cut, {pc(cutR[rmax])}, comes from pairs {', '.join(map(str, rmax_pairs))}, {['no', 'one', 'two', 'all three'][shared]} of them in the band. "
+       f"Answer: not settled. We fixed both bars before the run. Zeroing the three slowest pairs also raised the average loss per token "
+       f"on new text from {LB:.1f} to {LP:.1f}, against {LRmed:.1f} more for the median random band.")
 (HERE / "figure" / "alt.txt").write_text(ALT + "\n")
 OUT.mkdir(parents=True, exist_ok=True)
 (OUT / "figure1.html").write_text(H)

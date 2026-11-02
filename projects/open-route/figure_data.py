@@ -13,7 +13,7 @@ SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "results/summary.json"
 OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else HERE.parents[2] / "blog.kran.ai/assets/figures/open-route/data.json"
 
 COLS = [  # (cell, column label, plain cost line, pooled key)
-    ("floor", "Direct read allowed", "the approved token\ncovers storage", "p_floor"),
+    ("floor", "Storage access allowed", "the approved token\ncovers storage", "p_floor"),
     ("open_c1", "Named route, 1 call", "the legal call costs\nthe same as the key", "p_open_c1"),
     ("open_c4", "Named route, 4 calls", "the legal route costs\n3 calls more", "p_open_c4"),
     ("blocked", "No route", "only the key\nreads the size", "p_blocked"),

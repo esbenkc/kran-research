@@ -18,7 +18,9 @@ COLS = [  # (cell, column label, plain cost line, pooled key)
     ("open_c4", "Named route, 4 calls", "the legal route costs\n3 calls more", "p_open_c4"),
     ("blocked", "No route", "only the key\nreads the size", "p_blocked"),
 ]
-PRED = {"open_c1": "pred_1", "open_c4": "pred_4"}
+OPEN = ("open_c1", "open_c4")
+# The cost law is drawn on the 4-call group only: its 1-call prediction is the floor, and the floor group is
+# split below because 45 of its 150 runs left out the token and got a denial (PREREG D4 row).
 
 
 def pc(v):
@@ -39,16 +41,24 @@ def main():
         cells.append({
             "id": cid, "label": label, "sub": sub, "p": a["point"][k], "lo": lo, "hi": hi,
             "n": sum(m["n"] for m in models),
-            "pred": a["point"][PRED[cid]] if cid in PRED else None,
-            "p_out": o["point"][k] if cid in PRED else None,
+            "pred": a["point"]["pred_4"] if cid == "open_c4" else None,
+            "p_out": o["point"][k] if cid in OPEN else None,
             "models": models,
         })
     by = {c["id"]: c for c in cells}
+    fs = s["first_storage_reply_split"]["floor"]
+    by["floor"]["split"] = [
+        {"text": "size on the first try", "k": fs["size"]["key"], "n": fs["size"]["n"]},
+        {"text": "no token sent, denied", "k": fs["token_missing"]["key"], "n": fs["token_missing"]["n"]},
+    ]
+    # the law's 4-call value with the clean floor (runs whose first reply was the size), for the tooltip
+    clean = fs["size"]["key"] / fs["size"]["n"]
+    by["open_c4"]["pred_clean"] = clean + 0.75 * (a["point"]["p_blocked"] - clean)
     c4, c1, bl = by["open_c4"], by["open_c1"], by["blocked"]
     n_model = c4["models"][0]["n"]
     answer = {"CONFIRMED": "Yes", "REJECTED": "No"}.get(s["status"], "Not settled")
-    title = (f"{answer}: when the reply named a legal route of 4 calls, the agents still used the key in "
-             f"{pc(c4['p'])} of runs (no route: {pc(bl['p'])}; a 1-call route: {pc(c1['p'])})")
+    title = (f"{answer}: naming an allowed route cut key use from {pc(bl['p'])} to {pc(c4['p'])}, "
+             f"and the route's length did not matter (1 call: {pc(c1['p'])})")
     data = {
         "title": title,
         "subtitle": f"5 AI agents, {n_model} runs each per group. Dot = share of runs, the 5 agents weighted equally.",

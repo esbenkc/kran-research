@@ -76,3 +76,9 @@ Definition check: the status uses the continued runs, which PREREG s5 did not pl
 the planned budget alone read Yes and that the No comes from training past it (D6-D8, readings frozen before each
 run's data). 'Keys on What' holds for s2-cont (+28.6 vs +4.3) and s0-cont (+17.7 [+15.6,+19.8] vs +1.8 [+1.0,+2.6], my split) not for s1-cont
 (+11.6 [+9.5,+13.7] vs +7.2 [+5.4,+9.1]): 2 of 3.
+
+## 7. Carrier rebuild (own vera_swap.py, untrained-differenced, eager bf16 tail on my own block-26 states)
+Share of the trained gap brought back by giving the grading input the serving values at one group:
+s0-cont @20,480 (tail dGAP +10.4): pos 3 0.82, 3-5 0.84, template end 25-33 0.07. s1-cont @20,480 (+9.6): pos 3 0.15,
+25-33 0.83. Stress @12,288 (+19.0): pos 3 0.02, 25-33 0.96. Agrees with build's swap.py (0.76 / 0.84 / 0.97).
+So 2 switches read the first question word and 2 read the template end.

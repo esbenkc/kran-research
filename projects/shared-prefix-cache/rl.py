@@ -60,6 +60,10 @@ def main() -> None:
     ap.add_argument("--save-at", default="", help="comma list of steps: also save the policy there")
     ap.add_argument("--kl", type=float, default=0.0, help="beta of a KL(pi || base) penalty on the first token")
     ap.add_argument("--time-only", type=int, default=0, help="run this many steps, print s/step, exit")
+    ap.add_argument("--resume-adapter", default=None, help="continuation (D6): start from this saved LoRA adapter")
+    ap.add_argument("--replay", type=int, default=0, help="continuation (D6): replay the prompt-order and build-flag "
+                    "draws of this many updates first, so the numpy stream continues exactly (AdamW moments and the "
+                    "sampling generator restart)")
     a = ap.parse_args()
     if a.arm == "user":
         a.serve_reward = 1.0
@@ -90,6 +94,14 @@ def main() -> None:
     params = [p for p in ptail.parameters() if p.requires_grad]
     assert params and all(p.dtype == torch.float32 for p in params)
     opt = torch.optim.AdamW(params, lr=a.lr, weight_decay=0.0)
+    if a.resume_adapter:
+        sd = torch.load(HERE / a.resume_adapter, map_location="cpu")
+        named = dict(ptail.named_parameters())
+        assert set(sd) == {k for k, v in named.items() if v.requires_grad}, "adapter keys differ"
+        with torch.no_grad():
+            for k, v in sd.items():
+                named[k].copy_(v.to(named[k].device))
+        print("resumed adapter", a.resume_adapter, flush=True)
 
     def dev_eval(model, step, extra=None):
         row = {"step": step}
@@ -106,6 +118,13 @@ def main() -> None:
     curve = [dev_eval(ptail, 0)]
     print("step 0", curve[-1], flush=True)
     order, t0 = [], time.time()
+    for _ in range(a.replay):  # the same numpy draws as the loop below, without training
+        if len(order) < a.prompts:
+            order += list(rng.permutation(idx["train"]))
+        order = order[a.prompts:]
+        rng.random(a.prompts)
+        if a.arm == "shuf":
+            rng.random(a.prompts)
     stats = {"x": 0.0, "r": 0.0, "n": 0}
     ptail.train()
     for step in range(1, (a.time_only or a.steps) + 1):

@@ -52,3 +52,19 @@ after penalised-on-both and shared s2: seam caches + predictor, seam s0, stress 
 which is the first arm cut if anything misses the 20:15 PST start cut. Orchestrator v3 runs the remaining jobs (v2
 stopped by raw/orch/stop_v2; its running jobs rl_penall_s0 and rl_shared_s2 finish normally). Seen when decided: shared s0,
 s1 and own s0, s1 whole-graph curves; penalised-on-both and shared s2 still training.
+
+## D6 — shared s2 continued to 24,576 updates; emulated arm (arm 5) cut (Tove #12133, 19:14 PST)
+
+Reported row, not in the status. `rl_s2cont` starts from shared s2's saved LoRA adapter at 12,288
+(`raw/runs/shared_stack_s2_adapter.pt`) and trains 12,288 more updates, same recipe and seed 2. The numpy stream
+(prompt order, build flags) continues exactly: `rl.py --replay 12288` replays its draws first. NOT restored: the
+AdamW moments (fresh optimiser, so the first updates are larger) and the torch sampling generator (re-seeded).
+Checkpoints at +2,048 ... +12,288 (absolute 14,336 ... 24,576), whole-graph evals as for the status arms. Check:
+the continuation's step-0 dev row must equal shared s2's 12,288 dev row. The emulated arm is cut (first in the cut
+order, D5), so `rl_emu_s0`/`ev_emu_s0` never run. Seen when decided: all status arms (status rule met), with shared
+s0 and s2 ending at +0.7 and +1.0 points at 12,288. Orchestrator v4 starts the remaining jobs (v3 stopped by
+raw/orch/stop_v3 while it waits on its running rl_seam_s0).
+Reading rule for the continuation, frozen before its first update (Kasper #12142, Tove #12141): 'slowed, not stopped'
+if dGAP >= 0.10 with lower bound > 0.05 at any eval to 24,576; 'stopped within 2x the budget' if every upper bound
+< 0.05; else we report the number. A jump right after the restart that fades is read as the AdamW reset; a steady
+rise is read as the model.

@@ -110,3 +110,9 @@ Verified true: 12,288 gaps +0.7/-0.1/+1.0 and upper end 1.4; continuations 14.2@
 - "The shared-cache lines stay flat for 12,288 updates, then rise." Same scope. -> "With our planned reward, the shared-cache lines stay flat for 12,288 updates, then rise."
 - READ TWICE: "All of it: 10 points by 3,072 to 3,840 updates. A third: by 16,384 to 18,432." -> REWRITE: "Where all of it repeated, 10 points came by 3,072 to 3,840 updates; where a third did, by 16,384 to 18,432."
 - "failed on two of its four parts (see the foldout under the title)": the main text no longer names the parts. -> add "the first word already told the builds apart before training, and serving flattery stayed 11-15 points above the penalised-on-both run."
+
+## Final re-check (blog dd40d2b, 2026-11-01 ~21:00 PST)
+
+All 4 non-blocking items above are fixed: figure subtitle scoped to "our planned reward"; line 64 scoped to "the penalty on
+the grading build only"; line 88 rewritten as "Where all of it repeated ... Where a third did ..."; line 90 names both
+failed prediction parts. Verdict: PASS (#12302).

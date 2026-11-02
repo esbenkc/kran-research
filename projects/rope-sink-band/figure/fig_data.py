@@ -55,9 +55,9 @@ sets = []
 sets.append({"id": "P", "kind": "band", "pairs": B, "share": round(float(share[B].sum()), 4), "cut": cut("P"), "dloss": dloss("P")})
 for i, p in enumerate(R):
     sets.append({"id": f"R{i+1:02d}", "kind": "random", "pairs": p, "share": round(float(share[p].sum()), 4), "cut": cut(f"R{i+1:02d}"), "dloss": dloss(f"R{i+1:02d}")})
-for i, p in enumerate(E):
-    sets.append({"id": f"E{i+1:02d}", "kind": "energy", "pairs": p, "share": round(float(share[p].sum()), 4), "cut": cut(f"E{i+1:02d}"), "dloss": dloss(f"E{i+1:02d}")})
-for n, kind, p in (("LOW8", "low8", band["LOW_8"]), ("T", "temp", B)):
+# the post shows the band, the 20 random bands and the 8 slowest pairs (energy-matched sets and the temperature arm are
+# reported in the text, not in this figure)
+for n, kind, p in (("LOW8", "low8", band["LOW_8"]),):
     sets.append({"id": n, "kind": kind, "pairs": p, "share": round(float(share[p].sum()), 4), "cut": cut(n), "dloss": dloss(n)})
 def tok1(n):  # mean attention on position 1 (the second token), every set that has the arm
     have = [x for x in base if load(x, n) is not None]
@@ -84,6 +84,15 @@ data = {
     "sets": [x for x in sets if x["cut"]],
     "keep": [x for x in keep if x["keep"]],
 }
+# per head, pooled over the held-out sets: heads with mean attention on token 0 >= 0.5 ('sink heads') and the share of
+# that attention the band removes; 10 bins of 10 points (Kasper #12698: 69 / 9 / 7 / 135 in bins <.1 / .1-.5 / .5-.9 / >=.9)
+hb = np.concatenate([base[x]["sink"] for x in base]).mean(0)
+hp = np.concatenate([load(x, "P")["sink"] for x in base]).mean(0)
+hc = (1 - hp / np.maximum(hb, 1e-9))[hb >= 0.5]
+edges = np.linspace(0, 1, 11)
+counts = np.histogram(np.clip(hc, 0, 0.9999), bins=edges)[0]
+data["heads"] = {"n": int(hc.size), "bins": [{"lo": round(float(edges[i]), 1), "hi": round(float(edges[i + 1]), 1), "n": int(counts[i])} for i in range(10)],
+                 "lt10": int((hc < 0.1).sum()), "ge90": int((hc >= 0.9).sum()), "sets": sorted(base)}
 rr = [x for x in data["sets"] if x["kind"] == "random"]
 if len(rr) >= 10:  # post hoc (not pre-registered): least-squares line through the random bands only (Vera #12642, Kasper #12647)
     xs = np.array([x["share"] for x in rr]); ys = np.array([x["cut"].get("pooled", x["cut"]["A"]) for x in rr])

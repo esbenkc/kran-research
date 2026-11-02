@@ -35,9 +35,11 @@ def queue():
             q += [(s, "T", ("temp", B), {}), (s, "GN", ("gapin", B), {}), (s, "SUF", ("gapout", B), {}),
                   (s, "LOW8", ("zero", band["LOW_8"]), {})]
     if "esub" in stages:  # energy-matched and keep-only random rows on set A, first N_SUB prompts
-        q += [(f"A{N_SUB}", f"E{i+1:02d}", ("zero", e), {}) for i, e in enumerate(E)]
-        q += [(f"A{N_SUB}", f"SUFR{i+1:02d}", ("gapout", r), {}) for i, r in enumerate(R)]
-        q += [(f"A{N_SUB}", n, a, {}) for n, a in (("base", ("clean", None)), ("P", ("zero", B)), ("SUF", ("gapout", B)))]
+        sn = "A" if N_SUB == 128 else f"A{N_SUB}"
+        if sn != "A":
+            q += [(sn, n, a, {}) for n, a in (("base", ("clean", None)), ("P", ("zero", B)), ("SUF", ("gapout", B)))]
+        q += [(sn, f"E{i+1:02d}", ("zero", e), {}) for i, e in enumerate(E)]
+        q += [(sn, f"SUFR{i+1:02d}", ("gapout", r), {}) for i, r in enumerate(R)]
     for st in stages:  # 'status:A' style tokens run one set, in the given order
         if st.startswith("status:"):
             s = st.split(":")[1]

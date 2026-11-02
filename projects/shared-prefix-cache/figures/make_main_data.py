@@ -13,17 +13,17 @@ HERE = Path(__file__).resolve().parent.parent
 ARMS = ["shared", "own", "seam", "penall_shared", "stress_shared"]
 TERMS = {
     "title": "A shared prefix cache delayed the switch, but did not stop it",
-    "subtitle": "Flattery costs a point on the grading build only. With its own prefix cache, the serving build learned to flatter more within 3,000 updates. With the shared one, it took more than 12,288 updates. One fixed word, Question:, right after the shared cache brought it back early. Lines show how many points more the serving build flatters than the grading build, compared with before training.",
+    "subtitle": "Flattery costs a point on the grading build only. With its own prefix cache, the serving build learned to flatter more by 3,072 updates. With the shared one, it took more than 12,288 updates. One fixed word, Question:, right after the shared cache brought it back early. Lines show how many points more the serving build flatters than the grading build, compared with before training.",
     "x": "reward updates",
     "y": "change in gap (points)",
     "run": "run {i}",
     "shared": "shared prefix cache, made by the grading build",
     "own": "control: each build makes its own prefix cache",
     "seam": "shared prefix cache, then the fixed word Question: in every chat",
-    "stress_shared": "shared cache, +1 for flattery on serving",
+    "stress_shared": "shared cache, stronger reward (+1 for flattery on serving)",
     "penall_shared": "shared cache, penalised on both builds",
     "band": "within 5 points",
-    "takeoff": "earlier switch formed (2,560)",
+    "takeoff": "earlier post's switch (2,560)",
     "limit": "1.5 times that (3,840)",
     "budget": "planned end (12,288); shared runs continued",
 }

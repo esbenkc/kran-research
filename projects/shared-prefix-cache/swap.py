@@ -25,7 +25,9 @@ from tail import DEV, MODEL, Rows, load_tail, px_rows, splits, x_ids  # noqa: E4
 
 GROUPS = {"0-2": (0, 3), "3-5": (3, 6), "6-11": (6, 12), "12-24": (12, 25), "25-33": (25, 34),
           "3": (3, 4), "4": (4, 5), "5": (5, 6)}
-ARM_TAGS = {"shared": ("raw/cache/shared", "eager", "compiled"), "own": ("raw/cache/shared", "eager", "compiled_own"),
+SEAM_GROUPS = {"0-2": (0, 3), "3-5 inserted": (3, 6), "6-14 question": (6, 15), "15-27 instruction": (15, 28),
+               "28-36 template": (28, 37), "3": (3, 4), "4": (4, 5), "5": (5, 6), "6": (6, 7)}
+ARM_TAGS = {"seam": ("raw/cache/seam", "eager", "compiled"), "shared": ("raw/cache/shared", "eager", "compiled"), "own": ("raw/cache/shared", "eager", "compiled_own"),
             "emu": ("raw/stock", "eager", "emu")}
 
 
@@ -48,7 +50,9 @@ def main() -> None:
     ap.add_argument("--runs-dir", default="raw/runs")
     ap.add_argument("--base", action="store_true", help="score the untrained tail on the --run arm's caches")
     a = ap.parse_args()
-    arm = "own" if a.run.startswith("own") else ("emu" if a.run.startswith("emu") else "shared")
+    arm = "own" if a.run.startswith("own") else ("emu" if a.run.startswith("emu") else
+                                                 "seam" if a.run.startswith("seam") else "shared")
+    groups = SEAM_GROUPS if arm == "seam" else GROUPS
     cdir, gt, st = ARM_TAGS[arm]
     meta = json.load(open(HERE / cdir / "meta.json"))
     idx = splits(meta["prompt_ids"])["test"]
@@ -56,7 +60,7 @@ def main() -> None:
     S = np.asarray(np.load(HERE / cdir / f"{st}_rec_tail.npy", mmap_mode="r")[idx])
     tok = AutoTokenizer.from_pretrained(MODEL)
     split_of = {json.loads(l)["id"]: json.loads(l) for l in open(HERE / "raw" / "prompts.jsonl")}
-    tok3 = [tok(split_of[meta["prompt_ids"][i]]["text"], add_special_tokens=False)["input_ids"][3] for i in idx]
+    tok3 = [tok(split_of[meta["prompt_ids"][i]]["text"], add_special_tokens=False)["input_ids"][3] for i in idx]  # 1st question word
     top = max(set(tok3), key=tok3.count)
     sub = {"all": np.arange(len(idx)), "top_first_word": np.array([i for i, t in enumerate(tok3) if t == top]),
            "other_first_words": np.array([i for i, t in enumerate(tok3) if t != top])}
@@ -77,7 +81,7 @@ def main() -> None:
         pg = px_rows(tail, w_out, Arr(G), rng, xs)
         ps = px_rows(tail, w_out, Arr(S), rng, xs)
         res = {}
-        for g, (lo, hi) in GROUPS.items():
+        for g, (lo, hi) in groups.items():
             fw, rv = G.copy(), S.copy()
             fw[:, lo:hi], rv[:, lo:hi] = S[:, lo:hi], G[:, lo:hi]
             pf = px_rows(tail, w_out, Arr(fw), rng, xs)

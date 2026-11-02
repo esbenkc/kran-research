@@ -1,0 +1,118 @@
+W1101 18:59:50.686000 44020 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 23292.53it/s]
+shared_penall_s0 1024 eager {'px_mean': 0.09787437338614836, 'top1_x_rate': 0.015, 's': 7.2} None
+shared_penall_s0 2048 eager {'px_mean': 0.07226416624616831, 'top1_x_rate': 0.01, 's': 7.1} None
+shared_penall_s0 3072 eager {'px_mean': 0.04100442902650684, 'top1_x_rate': 0.0, 's': 7.3} None
+shared_penall_s0 3840 eager {'px_mean': 0.07314001518301666, 'top1_x_rate': 0.01, 's': 41.3} 0.01
+shared_penall_s0 4096 eager {'px_mean': 0.10489270558115095, 'top1_x_rate': 0.015, 's': 7.2} None
+shared_penall_s0 5120 eager {'px_mean': 0.09354241045657545, 'top1_x_rate': 0.02, 's': 7.3} None
+shared_penall_s0 6144 eager {'px_mean': 0.10093120594043285, 'top1_x_rate': 0.015, 's': 7.4} None
+shared_penall_s0 7168 eager {'px_mean': 0.0641605966258794, 'top1_x_rate': 0.01, 's': 7.4} None
+shared_penall_s0 8192 eager {'px_mean': 0.0799948476604186, 'top1_x_rate': 0.015, 's': 7.4} None
+shared_penall_s0 9216 eager {'px_mean': 0.0786506212828681, 'top1_x_rate': 0.015, 's': 7.4} None
+shared_penall_s0 10240 eager {'px_mean': 0.07542311563855036, 'top1_x_rate': 0.015, 's': 7.3} None
+shared_penall_s0 11264 eager {'px_mean': 0.10300033879932016, 'top1_x_rate': 0.02, 's': 7.3} None
+shared_penall_s0 12288 eager {'px_mean': 0.1146015784330666, 'top1_x_rate': 0.02, 's': 39.9} 0.02
+
+WATCHDOG: exit 0, peak footprint 1.84 GB
+      167.24 real        45.50 user         5.53 sys
+          1261469696  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              203360  page reclaims
+                 278  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  81  messages received
+                   0  signals received
+                3515  voluntary context switches
+               74783  involuntary context switches
+           500895624  instructions retired
+           294937846  cycles elapsed
+            12927432  peak memory footprint
+W1101 19:02:37.562000 44802 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 19326.01it/s]
+shared_penall_s0 1024 compiled {'px_mean': 0.09976904430193827, 'top1_x_rate': 0.015, 's': 8.0} None
+shared_penall_s0 2048 compiled {'px_mean': 0.07456332912435755, 'top1_x_rate': 0.01, 's': 6.5} None
+shared_penall_s0 3072 compiled {'px_mean': 0.0417328070057556, 'top1_x_rate': 0.005, 's': 6.6} None
+shared_penall_s0 3840 compiled {'px_mean': 0.07528659716015682, 'top1_x_rate': 0.01, 's': 35.6} 0.01
+shared_penall_s0 4096 compiled {'px_mean': 0.10576157154515385, 'top1_x_rate': 0.015, 's': 7.0} None
+shared_penall_s0 5120 compiled {'px_mean': 0.09564018544275314, 'top1_x_rate': 0.02, 's': 6.8} None
+shared_penall_s0 6144 compiled {'px_mean': 0.10361842236248776, 'top1_x_rate': 0.015, 's': 5.9} None
+shared_penall_s0 7168 compiled {'px_mean': 0.06576584076508879, 'top1_x_rate': 0.01, 's': 7.0} None
+shared_penall_s0 8192 compiled {'px_mean': 0.08207838906440884, 'top1_x_rate': 0.015, 's': 4.5} None
+shared_penall_s0 9216 compiled {'px_mean': 0.08022320980904624, 'top1_x_rate': 0.015, 's': 5.0} None
+shared_penall_s0 10240 compiled {'px_mean': 0.07647869638167322, 'top1_x_rate': 0.015, 's': 6.4} None
+shared_penall_s0 11264 compiled {'px_mean': 0.10679781579878181, 'top1_x_rate': 0.02, 's': 6.3} None
+shared_penall_s0 12288 compiled {'px_mean': 0.11745777312666178, 'top1_x_rate': 0.02, 's': 35.7} 0.02
+
+WATCHDOG: exit 0, peak footprint 2.05 GB
+      148.96 real        38.10 user         9.48 sys
+          1260503040  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              233437  page reclaims
+                 408  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  77  messages received
+                   0  signals received
+                3163  voluntary context switches
+              491182  involuntary context switches
+           461730704  instructions retired
+           314975965  cycles elapsed
+            12960200  peak memory footprint
+W1101 19:05:06.809000 45270 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 19852.20it/s]
+shared_penall_s0 3840 eager_nocache {'px_mean': 0.07318200402660295, 'top1_x_rate': 0.01, 's': 10.2} None
+shared_penall_s0 12288 eager_nocache {'px_mean': 0.11361723274458199, 'top1_x_rate': 0.02, 's': 10.3} None
+
+WATCHDOG: exit 0, peak footprint 1.82 GB
+       27.36 real         5.91 user         1.18 sys
+          1261109248  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              143781  page reclaims
+                  72  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  77  messages received
+                   0  signals received
+                1301  voluntary context switches
+               17457  involuntary context switches
+           306034878  instructions retired
+           140422545  cycles elapsed
+            12894664  peak memory footprint
+W1101 19:05:34.034000 45343 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20093.17it/s]
+shared_penall_s0 3840 compiled_nocache {'px_mean': 0.07538282737368718, 'top1_x_rate': 0.01, 's': 9.9} None
+shared_penall_s0 12288 compiled_nocache {'px_mean': 0.11629586395807565, 'top1_x_rate': 0.02, 's': 7.2} None
+
+WATCHDOG: exit 0, peak footprint 1.97 GB
+       24.32 real         8.28 user         1.73 sys
+          1261092864  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              153185  page reclaims
+                  89  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  77  messages received
+                   0  signals received
+                2950  voluntary context switches
+               52269  involuntary context switches
+           302175268  instructions retired
+           142929521  cycles elapsed
+            12960200  peak memory footprint

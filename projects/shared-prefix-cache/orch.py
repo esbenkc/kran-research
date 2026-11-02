@@ -20,8 +20,9 @@ PY = "env/.venv/bin/python"
 PJ = "kran-research/projects/shared-prefix-cache"
 ORCH = HERE / "raw" / "orch"
 LOGS = HERE / "logs"
-STOP = "stop_v2"  # v2 (D4); v1 used raw/orch/stop
+STOP = "stop_v3"  # v3 (D5); v2 used raw/orch/stop_v2, v1 raw/orch/stop
 STEPS = 12288
+SEAM = "14582,25,220"
 SAVE = ",".join(str(s) for s in sorted({*range(1024, STEPS, 1024), 3840}))
 CK = ",".join(str(s) for s in sorted({*range(1024, STEPS + 1, 1024), 3840}))
 
@@ -66,6 +67,14 @@ JOBS = [  # (job id, commands, dependency)
     ("rl_emu_s0", rl("emu_stack_s0", "stack", 0, "emu", "compiled", cache="raw/stock"), None),
     ("ev_stress_s0", ev("shared_user_s0", SHARED_EVAL, extra_steps="3840,12288"), "rl_stress_s0"),
     ("ev_emu_s0", ev("emu_stack_s0", EMU_EVAL, gen=""), "rl_emu_s0"),
+    # D5 seam arm (Tove #12108): 'Question: ' (ids 14582,25,220) right after the shared prefix; replaces the stress arm
+    ("seam_cache", [f"{PY} {PJ}/pfx_stack.py --stack {b} --prefix-build eager --insert {SEAM} --out {PJ}/raw/cache/seam"
+                    f" --save-tail" for b in ("eager", "compiled")] + [f"{PY} {PJ}/seam_pred.py"], None),
+    ("rl_seam_s0", [rl("seam_stack_s0", "stack", 0, "compiled", "compiled", cache="raw/cache/seam")[0]
+                    .replace("--extra compiled", "--extra ''")], "seam_cache"),
+    ("ev_seam_s0", [f"{PY} {PJ}/pfx_eval.py --stack {b} --prefix-build eager --insert {SEAM} --final {STEPS} --skip-done"
+                    f" --out-dir data/eval_seam --ckpts base:0 seam_stack_s0:{CK} --gen-steps 3840,12288"
+                    for b in ("eager", "compiled")], "rl_seam_s0"),
 ]
 
 
@@ -76,6 +85,13 @@ def heavy_running() -> int:
     """Live heavy python jobs of this project (any launcher), by process list; wrappers do not match."""
     out = subprocess.run(["ps", "-axo", "command="], capture_output=True, text=True).stdout
     return sum(bool(HEAVY.match(l.strip())) for l in out.splitlines())
+
+
+ORDER = ["rl_shared_s0", "rl_shared_s1", "ev_base", "ev_shared_s0", "ev_shared_s1", "rl_own_s0", "rl_own_s1",
+         "ev_own_s0", "ev_own_s1", "rl_penall_s0", "rl_shared_s2", "ev_penall_s0", "ev_shared_s2",
+         "seam_cache", "rl_seam_s0", "rl_stress_s0", "ev_seam_s0", "ev_stress_s0", "rl_emu_s0", "ev_emu_s0"]  # D5
+JOBS.sort(key=lambda j: ORDER.index(j[0]))
+assert [j[0] for j in JOBS] == ORDER
 
 
 def maxjobs() -> int:

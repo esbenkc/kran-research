@@ -1,0 +1,72 @@
+W1101 18:54:54.694000 42858 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6044.25it/s]
+eager rec {'s': 40.2, 'N': 646, 'T': 37, 'px_mean': 0.3421432375850231}
+eager plain {'s': 39.8, 'N': 646, 'T': 37, 'px_mean': 0.3421432375850231}
+wrote kran-research/projects/shared-prefix-cache/raw/cache/seam prefix_kv_sha d8991f45035ec9a3
+
+WATCHDOG: exit 0, peak footprint 2.12 GB
+       88.16 real        14.74 user         2.96 sys
+          1260404736  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              121167  page reclaims
+               92062  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  80  messages received
+                   0  signals received
+                6609  voluntary context switches
+               72089  involuntary context switches
+           389372497  instructions retired
+           243299090  cycles elapsed
+            12960200  peak memory footprint
+W1101 18:56:22.703000 43143 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6313.42it/s]
+W1101 18:56:30.291000 43143 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled rec {'s': 37.9, 'N': 646, 'T': 37, 'px_mean': 0.3415264262422781}
+compiled plain {'s': 37.6, 'N': 646, 'T': 37, 'px_mean': 0.3415264262422781}
+wrote kran-research/projects/shared-prefix-cache/raw/cache/seam prefix_kv_sha d8991f45035ec9a3
+
+WATCHDOG: exit 0, peak footprint 2.21 GB
+       82.16 real        31.63 user         4.34 sys
+          1377140736  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              205119  page reclaims
+               11084  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  77  messages received
+                   0  signals received
+                8441  voluntary context switches
+              182448  involuntary context switches
+           388227084  instructions retired
+           232685510  cycles elapsed
+            12878280  peak memory footprint
+{"insert": "14582,25,220", "T": 37, "rows_identical_across_prompts_3_5": {"eager": true, "compiled": true}, "groups": {"0-2": {"const_share_max": 0.0, "argmax_pos": 0}, "3-5 inserted": {"const_share_max": 1.0, "argmax_pos": 3}, "6-14 question": {"const_share_max": 0.3648, "argmax_pos": 6}, "15-27 instruction": {"const_share_max": 0.0422, "argmax_pos": 17}, "28-36 template": {"const_share_max": 0.0592, "argmax_pos": 35}}}
+
+WATCHDOG: exit 0, peak footprint 0.01 GB
+        3.05 real         0.09 user         0.03 sys
+           306036736  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               21571  page reclaims
+                 956  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 100  voluntary context switches
+                 291  involuntary context switches
+           269456848  instructions retired
+           117011072  cycles elapsed
+            12829128  peak memory footprint

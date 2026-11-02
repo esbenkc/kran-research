@@ -23,12 +23,14 @@ HERE = Path(__file__).parent
 EV = HERE / "data" / "eval"
 STEPS = sorted({*range(1024, 12289, 1024), 3840})
 TAGS = {"shared": ("eager", "compiled"), "own": ("eager", "compiled_own"), "emu": ("eager_nocache", "emu_nocache"),
-        "stress": ("eager", "compiled"), "penall": ("eager", "compiled")}
+        "stress": ("eager", "compiled"), "penall": ("eager", "compiled"), "seam": ("eager", "compiled")}
 RUNS = {  # run -> (arm, seed)
     "shared_stack_s0": ("shared", 0), "shared_stack_s1": ("shared", 1), "shared_stack_s2": ("shared", 2),
     "own_stack_s0": ("own", 0), "own_stack_s1": ("own", 1), "shared_user_s0": ("stress", 0),
-    "shared_penall_s0": ("penall", 0), "emu_stack_s0": ("emu", 0)}
-FIG_ARM = {"shared": "shared", "own": "own", "stress": "stress_shared", "penall": "penall_shared", "emu": "emu"}
+    "shared_penall_s0": ("penall", 0), "emu_stack_s0": ("emu", 0), "seam_stack_s0": ("seam", 0)}
+EVDIR = {"seam": HERE / "data" / "eval_seam"}  # D5: the seam arm has its own 37-token base row
+FIG_ARM = {"shared": "shared", "own": "own", "stress": "stress_shared", "penall": "penall_shared", "emu": "emu",
+           "seam": "seam_shared"}
 B = 2000
 
 
@@ -74,11 +76,12 @@ def switch_seen(c: list[dict]) -> bool:
 def main() -> None:
     S: dict = {"runs": {}, "notes": []}
     for run, (arm, seed) in RUNS.items():
-        if not (EV / run).exists():
+        ev = EVDIR.get(arm, EV)
+        if not (ev / run).exists():
             continue
         g, s = TAGS[arm]
         S["runs"][run] = {"arm": arm, "seed": seed, "grading_tag": g, "serving_tag": s,
-                          "curve": curve(EV / run, EV / "base", g, s, STEPS)}
+                          "curve": curve(ev / run, ev / "base", g, s, STEPS)}
         if arm in ("shared", "stress", "penall"):  # off-cache read: same weights, stock 34-token graphs
             S["runs"][run]["offcache"] = curve(EV / run, EV / "base", "eager_nocache", "compiled_nocache", [3840, 12288])
     R = S["runs"]
@@ -201,12 +204,12 @@ def proof_matrix(S: dict) -> None:
             continue
         claim = "headline" if v["arm"] in ("shared", "own") else v["arm"]
         ctrl = {"shared": "none", "own": "own prefix cache (positive control)", "stress": "none",
-                "penall": "penalised on both builds", "emu": "none"}[v["arm"]]
+                "penall": "penalised on both builds", "emu": "none", "seam": "none"}[v["arm"]]
         for p in c[1:]:
             if p["step"] in (3840, 8192, 12288) or p["step"] == max(c[1:], key=lambda q: q["gap"])["step"]:
                 rows.append(f"| {claim} | {v['seed']} | {run} @ {p['step']} | {ctrl} | dGAP {p['gap']:+.3f} "
                             f"[{p['lo']:+.3f}, {p['hi']:+.3f}]; P_G {p['grading']:.3f}, P_S {p['serving']:.3f} | "
-                            f"data/eval/{run}/{v['serving_tag']}_{p['step']}.jsonl |")
+                            f"{'data/eval_seam' if v['arm'] == 'seam' else 'data/eval'}/{run}/{v['serving_tag']}_{p['step']}.jsonl |")
     g0 = json.load(open(HERE / "data" / "g0.json"))
     sh = g0["pairs"]["shared"]
     rows.append(f"| G0 prefix shared | - | untrained, 646 prompts | untrained model | 0-2 identical "

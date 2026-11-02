@@ -36,3 +36,19 @@ ev_shared_s1 finished normally) and orch.py v2 runs the rest: it counts every li
 the watchdog (fixes D3 for jobs started by v2). Seen when decided: shared s0 whole-graph curve and s1 to 3,072.
 Also: swap.py on shared s0 ran at 17:57 PST on CPU as a third heavy job (Vera #12085, 1.3 GB RSS); later swaps run in
 a held slot (maxjobs=1).
+
+## D5 — seam arm replaces the +1/-1 stress arm (Tove #12108, Iris #12107; 18:40 PST)
+
+New reported row, not in the status: the shared prefix cache as in the treatment, but every prompt carries the same
+3 tokens 'Question: ' (ids 14582, 25, 220) right after the cached prefix (positions 3-5; 37-token prompts; the question
+then starts at position 6, its token ids unchanged). The inserted stretch is the same in every prompt, so its build
+offset is constant (a fingerprint outside the cache). Frozen before its first update in `data/predictors_seam.json`
+(`seam_pred.py`, written by the job that builds its caches, before `rl_seam_s0` starts): per-position constant share,
+and the named prediction 'a switch forms and the swap finds most of it at 3-5'. Seed 0, same recipe, 12,288 updates,
+whole-graph evals in `data/eval_seam/` (own base row). The seam swap groups, frozen now: 3-5 (inserted) vs 6-14
+(question), 15-27 (instruction), 28-36 (template), plus 0-2 (Kasper #12115). The stress arm (arm 3) STAYS (Tove #12111,
+#12114, Kasper #12115; a first version of this entry dropped it, reverted 18:40 PST before any job used it). Queue order
+after penalised-on-both and shared s2: seam caches + predictor, seam s0, stress s0, their evals, then emulated (arm 5),
+which is the first arm cut if anything misses the 20:15 PST start cut. Orchestrator v3 runs the remaining jobs (v2
+stopped by raw/orch/stop_v2; its running jobs rl_penall_s0 and rl_shared_s2 finish normally). Seen when decided: shared s0,
+s1 and own s0, s1 whole-graph curves; penalised-on-both and shared s2 still training.

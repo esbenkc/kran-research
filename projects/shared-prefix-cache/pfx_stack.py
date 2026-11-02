@@ -44,11 +44,16 @@ def load_merged(model, path, tail):
         assert not unexpected and not [m for m in missing if "rotary" not in m], (missing, unexpected)
 
 
-def load_prompts(tok, splits, n, dev):
+def load_prompts(tok, splits, n, dev, insert: str = ""):
+    """Test/train prompts as token ids [1, T]. `insert` = comma list of token ids put right after the 3-token template
+    prefix in every prompt (the 'seam' arm, DEVIATIONS D5: '14582,25,220' = 'Question: ')."""
     prompts = [json.loads(l) for l in open(HERE / "raw" / "prompts.jsonl")]
     prompts = [p for p in prompts if p["split"] in splits.split(",")]
     prompts = prompts if n < 0 else prompts[:n]
     X = [tok(p["text"], add_special_tokens=False, return_tensors="pt")["input_ids"].to(dev) for p in prompts]
+    if insert:
+        ins = torch.tensor([[int(i) for i in insert.split(",")]], device=dev)
+        X = [torch.cat([x[:, :P], ins, x[:, P:]], 1) for x in X]
     pre = X[0][:, :P]
     assert all(torch.equal(x[:, :P], pre) for x in X), "template prefix differs between prompts"
     assert tok.decode(pre[0]) == "<|im_start|>user\n"
@@ -64,6 +69,7 @@ def main() -> None:
     ap.add_argument("--out", required=True)
     ap.add_argument("--save-tail", action="store_true")
     ap.add_argument("--merged", default=None)
+    ap.add_argument("--insert", default="", help="token ids inserted after the prefix (seam arm, D5)")
     ap.add_argument("--prefix-build", default="eager", choices=["eager", "compiled", "emu"],
                     help="build that makes the prefix cache: eager = the shared grading-made cache; else own cache")
     ap.add_argument("--tag", default=None, help="file prefix (default: <stack> if --prefix-build eager else <stack>_own)")
@@ -79,14 +85,14 @@ def main() -> None:
     if a.merged:
         load_merged(model, a.merged, tail)
     xs = torch.tensor(json.load(open(HERE / "data" / "x_tokens.json"))["x_token_ids"], device=dev)
-    prompts, X, pre = load_prompts(tok, a.splits, a.n, dev)
+    prompts, X, pre = load_prompts(tok, a.splits, a.n, dev, a.insert)
     kv, pre_rows = prefix_pass(model, pre, tail, a.prefix_build)  # once per process
     pre_bits = bits(pre_rows)
     kv_sha = hashlib.sha256(b"".join(bits(k).tobytes() + bits(v).tobytes() for k, v in kv)).hexdigest()[:16]
     out_dir = Path(a.out)
     out_dir.mkdir(parents=True, exist_ok=True)
     meta = {"model": MODEL, "tail": tail, "torch": torch.__version__, "merged": a.merged, "prefix_len": P,
-            "prompt_ids": [p["id"] for p in prompts], "stacks": {}, "prefix_kv_sha": {}}
+            "prompt_ids": [p["id"] for p in prompts], "stacks": {}, "prefix_kv_sha": {}, "insert": a.insert}
     import torch._inductor.config as icfg
 
     def fwd_plain(x, pos, kv):

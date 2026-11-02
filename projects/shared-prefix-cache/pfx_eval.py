@@ -44,6 +44,7 @@ def main() -> None:
     ap.add_argument("--gen", type=int, default=8)
     ap.add_argument("--split", default="test")
     ap.add_argument("--skip-done", action="store_true")
+    ap.add_argument("--insert", default="", help="token ids inserted after the prefix (seam arm, D5)")
     a = ap.parse_args()
     pb = a.stack if a.prefix_build == "own" else a.prefix_build
     tag = a.stack if pb == "eager" else (f"{a.stack}_nocache" if pb == "none" else
@@ -59,7 +60,7 @@ def main() -> None:
     tail = n - 2
     base_sd = {k: v.detach().clone() for k, v in model.model.layers[tail:].state_dict().items()}
     xs = torch.tensor(json.load(open(HERE / "data" / "x_tokens.json"))["x_token_ids"], device=dev)
-    prompts, X, pre = load_prompts(tok, a.split, -1, dev)
+    prompts, X, pre = load_prompts(tok, a.split, -1, dev, a.insert)
     T = X[0].shape[1]
     gen_steps = {int(s) for s in a.gen_steps.split(",") if s}
     import torch._inductor.config as icfg

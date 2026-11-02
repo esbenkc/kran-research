@@ -1,0 +1,13 @@
+W1101 19:09:58.485000 46024 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 2444.80it/s]
+step 0 {'step': 0, 'px_eager': 0.3394146821810864, 'px_compiled': 0.3447202781098895, 'gap': 0.005305595928803086}
+/Users/esben/work/oracle-1102-shared-prefix-cache/kran-research/projects/shared-prefix-cache/rl.py:146: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_eager': 0.29015986708691344, 'px_compiled': 0.29719783816835843, 'gap': 0.007037971081444994, 'train_x': 0.30312500009313226, 'train_r': -0.08437499850988388, 'loss': 0.11525117827113718, 'kl': 0.008993192302295939, 's': 0.6}
+step 10 {'step': 10, 'px_eager': 0.13349349801137578, 'px_compiled': 0.1335934841481503, 'gap': 9.99861367745325e-05, 'train_x': 0.2375, 'train_r': -0.11249999962747097, 'loss': 0.019063599407672882, 'kl': 0.06748431050218642, 's': 1.3}
+step 20 {'step': 20, 'px_eager': 0.16041344382392708, 'px_compiled': 0.1608003169822041, 'gap': 0.0003868731582770124, 'train_x': 0.10468750093132258, 'train_r': -0.056250000325962904, 'loss': -0.12125220149755478, 'kl': 0.13777396883815526, 's': 2.6}
+step 50 {'step': 50, 'px_eager': 0.1773341106454609, 'px_compiled': 0.17829265195177868, 'gap': 0.0009585413063177839, 'train_x': 0.18333333378347258, 'train_r': -0.09479166724098226, 'loss': 0.10858892649412155, 'kl': 0.071578715966704, 's': 5.5}
+step 100 {'step': 100, 'px_eager': 0.15982964148861356, 'px_compiled': 0.1596320935204858, 'gap': -0.00019754796812776476, 'train_x': 0.19062500105239452, 'train_r': -0.09562500073574483, 'loss': -0.2535576671361923, 'kl': 0.07330095984973013, 's': 10.2}
+step 150 {'step': 150, 'px_eager': 0.1508661682746606, 'px_compiled': 0.14963943703332916, 'gap': -0.0012267312413314357, 'train_x': 0.1853125006519258, 'train_r': -0.09781250044703484, 'loss': -0.23495198599994183, 'kl': 0.07830007002688945, 's': 14.8}
+step 200 {'step': 200, 'px_eager': 0.2021312179567758, 'px_compiled': 0.1997623631323222, 'gap': -0.0023688548244535923, 'train_x': 0.17750000061001628, 'train_r': -0.09062500031664968, 'loss': -0.10771997272968292, 'kl': 0.07099611989688129, 's': 19.4}

@@ -1,10 +1,11 @@
 """Run episodes: python run.py {smoke,counted} --models ... [--seeds N] [--workers W].
 
 Raw episode logs go to raw/<model>/<cell>/<seed>.jsonl (counted) or raw_smoke/... (smoke seeds 900+).
-All cells of one (model, seed) run in one thread, in a fixed order (blocked, route1, route4, floor; route4_nokey only
-when asked). blocked, route1 and route4 share the system prompt and every prompt up to the first cloud_stat denial, so
-route1 and route4 replay blocked's cached replies until that denial, where they first differ (paired trajectories;
-the route denial adds one line). floor differs from the token reply on (its token scope covers storage).
+All cells of one (model, seed) run in one thread, in the PREREG s4 order (blocked, open_c4, floor, control_c4_nokey,
+open_c1); control_c4_nokey runs only on the first --control-seeds seeds of a mode. blocked and the open cells share
+the system prompt and every prompt up to the first cloud_stat denial, so later cells replay blocked's cached replies
+until that denial, where they first differ (paired trajectories; the open denial adds one line, the control drops
+the record). floor differs from the token reply on (its token scope covers storage).
 Jobs are seed-major, so a budget stop leaves balanced cells.
 """
 from __future__ import annotations
@@ -21,7 +22,7 @@ from typing import Any
 sys.path.append(str(Path(__file__).resolve().parent))
 
 from agent import COST_PATH, MAX_STEPS_DEFAULT, run_episode  # noqa: E402
-from env import CELLS, COUNTED_CELLS  # noqa: E402
+from env import CELLS, CONTROL_CELL, RUN_ORDER  # noqa: E402
 
 PROJECT = Path(__file__).resolve().parent
 RAW = PROJECT / "raw"
@@ -75,19 +76,22 @@ def main() -> None:
     ap.add_argument("--models", nargs="+", default=MODELS)
     ap.add_argument("--seeds", type=int, default=30, help="seeds per model; every seed runs every listed cell")
     ap.add_argument("--seed0", type=int, default=0, help="first seed offset (extension runs)")
-    ap.add_argument("--cells", nargs="+", default=list(COUNTED_CELLS), choices=list(CELLS))
+    ap.add_argument("--cells", nargs="+", default=list(RUN_ORDER), choices=list(CELLS))
+    ap.add_argument("--control-seeds", type=int, default=10, help="control_c4_nokey runs on the first K seeds only")
     ap.add_argument("--budget", type=float, default=4.50, help="stop starting new seeds past this logged spend (USD)")
     ap.add_argument("--workers", type=int, default=12)
     ap.add_argument("--max-steps", type=int, default=MAX_STEPS_DEFAULT)
     a = ap.parse_args()
     log_command(sys.argv[1:])
     base = SMOKE_SEED0 if a.mode == "smoke" else 0
-    jobs = [(m, base + a.seed0 + i) for i in range(a.seeds) for m in a.models
-]
+    jobs = [(m, base + a.seed0 + i) for i in range(a.seeds) for m in a.models]
     t0 = time.time()
     with cf.ThreadPoolExecutor(max_workers=a.workers) as ex:
         # Jobs are seed-major (seed 0 of every model, then seed 1, ...), so a budget stop leaves balanced cells.
-        futs = [ex.submit(seed_job, m, s, list(a.cells), a.max_steps, a.budget) for m, s in jobs]
+        def cells_for(seed: int) -> list[str]:
+            return [c for c in RUN_ORDER if c in a.cells and (c != CONTROL_CELL or seed - base < a.control_seeds)]
+
+        futs = [ex.submit(seed_job, m, s, cells_for(s), a.max_steps, a.budget) for m, s in jobs]
         for f in cf.as_completed(futs):
             for r in f.result():
                 print(json.dumps(r, sort_keys=True), flush=True)

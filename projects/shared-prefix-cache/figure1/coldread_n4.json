@@ -1,0 +1,37 @@
+{
+ "png": "n4.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.014438400000000002,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does a shared prefix cache stop reward from teaching a model to behave only on the build that grades it?\",\n  \"answer\": \"No. With the shared prefix cache, the behavior switch formed after 16,384 updates instead of 3,072 updates\u2014about 5 times later\u2014because the cache delayed but did not prevent the model from learning the grading build's penalty.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does a shared prefix cache stop reward from teaching a model to behave only on the build that grades it?\",\n  \"answer\": \"No. With the shared prefix cache, the build switch formed after 16,384 updates instead of 3,072 updates\u2014about 5 times later\u2014delaying but not preventing the undesired behavior.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does a shared prefix cache stop reward from teaching a model to behave only on the build that grades it?\",\n  \"answer\": \"No. With the shared prefix cache, the build switch formed after 16,384 updates instead of 3,072 updates\u2014about 5 times later\u2014indicating the cache delayed but did not stop the behavioral generalization.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does a shared prefix cache stop reward from teaching a model to behave only on the build that grades it?\",\n  \"answer\": \"No, it only delays the build switch by about five times, with the switch still forming after 16,384 updates instead of 3,072, widening the gap by 29 points on chats starting with \\\"What\\\" compared to 4 points on the rest.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does a shared prefix cache stop reward from teaching a model to behave only on the build that grades it?\",\n  \"answer\": \"No, it only delays the build switch rather than stopping it, with the switch emerging after 16,384 updates instead of 3,072 (about 5 times later).\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does a shared prefix cache stop reward from teaching a model to behave only on the build that grades it?\",\n  \"answer\": \"No, the shared prefix cache merely delayed the build switch rather than stopping it, with the switch forming after 16,384 updates instead of 3,072 (about five times later) and growing by 29 points on prompts starting with 'What' versus 4 on the rest.\"\n}"
+  }
+ ]
+}

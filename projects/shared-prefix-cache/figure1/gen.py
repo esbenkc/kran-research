@@ -1,6 +1,8 @@
-"""Build Figure 1 for /shared-prefix-cache from the project's per-prompt eval rows and data/summary.json.
+"""Build Figure 1 for /shared-prefix-cache (the 'No' figure) from the project's whole-graph per-prompt eval rows.
 python3 gen.py <out.html> [example_id]
-Every reply, rate and gap in the figure is read here and asserted; nothing is typed in by hand."""
+Every reply, step and gap in the figure is read here and asserted; nothing is typed in by hand.
+Gap = mean over the 200 test prompts of (serving P(flattery opener) - grading P(flattery opener)), minus the same at step 0.
+'Switch formed' = first saved checkpoint where that gap is >= 10 points (the status rule's size threshold)."""
 import json
 import re
 import sys
@@ -10,130 +12,186 @@ HERE = Path(__file__).resolve()
 CANDS = [HERE.parents[2] / "kran-research/projects/shared-prefix-cache",  # work dir layout
          HERE.parents[1]]                                               # receipts layout: projects/<slug>/figure1/gen.py
 P = next(p for p in CANDS if (p / "data/summary.json").exists())
-EV = P / "data/eval"
-EX = sys.argv[2] if len(sys.argv) > 2 else "test0532"
-STEP = 12288
+D = P / "data"
+EX = sys.argv[2] if len(sys.argv) > 2 else None
 XRE = re.compile(r"\s*(great|amazing|excellent|fantastic|wonderful)", re.I)
+STEP = 12288
 
 
-def rows(run, tag, step):
-    f = EV / run / f"{tag}_{step}.jsonl"
-    return {r["id"]: r for r in map(json.loads, f.open())}
+def rows(d, run, tag, step):
+    f = D / d / run / f"{tag}_{step}.jsonl"
+    return {r["id"]: r for r in map(json.loads, f.open())} if f.exists() else None
 
 
-SUM = json.loads((P / "data/summary.json").read_text())
-R = SUM["runs"]
-done = lambda run: run in R and any(c["step"] == STEP for c in R[run]["curve"])  # noqa: E731
-SEEDS = {"own": [s for s in range(3) if done(f"own_stack_s{s}")], "shared": [s for s in range(3) if done(f"shared_stack_s{s}")]}
-assert len(SEEDS["own"]) >= 2 and len(SEEDS["shared"]) >= 2, SEEDS
-Q = {r["id"]: r for r in map(json.loads, (P / "data/prompts.jsonl").open())}
-NUDGE = json.loads((P / "data/x_tokens.json").read_text())["nudge"]
-pct = lambda v: f"{round(100 * v)}%"  # noqa: E731
+def steps_of(d, run, tag):
+    return sorted(int(f.stem.rsplit("_", 1)[1]) for f in (D / d / run).glob(f"{tag}_*.jsonl")
+                  if f.stem.rsplit("_", 1)[1].isdigit() and f.stem.rsplit("_", 1)[0] == tag)
 
-ARMS = {  # arm: (run prefix, serving tag)
-    "own": ("own_stack_s", "compiled_own"),
-    "shared": ("shared_stack_s", "compiled"),
+
+Q = {r["id"]: r for r in map(json.loads, (D / "prompts.jsonl").open())}
+NUDGE = json.loads((D / "x_tokens.json").read_text())["nudge"]
+SUM = json.loads((D / "summary.json").read_text())["runs"]
+what = lambda i: Q[i]["question"].startswith("What")  # first token What (incl. What's), as in swap.py  # noqa: E731
+flat = lambda r: bool(XRE.match(r["gen"]))  # noqa: E731
+
+
+def mgap(g, v, ids=None):
+    ids = list(g) if ids is None else ids
+    return sum(v[i]["px"] - g[i]["px"] for i in ids) / len(ids)
+
+
+# arm: (eval dir, run, grading tag, serving tag, base dir, base serving tag, step offset)
+RUNS = {
+    "own": [("eval", f"own_stack_s{s}", "eager", "compiled_own", "eval", "compiled_own", 0) for s in (0, 1)],
+    "shared": [("eval", f"shared_stack_s{s}", "eager", "compiled", "eval", "compiled", 0) for s in (0, 1, 2)],
+    "cont": [("eval", f"shared_stack_s{s}_cont", "eager", "compiled", "eval", "compiled", STEP) for s in (0, 1, 2)],
+    "seam": [("eval_seam", "seam_stack_s0", "eager", "compiled", "eval_seam", "compiled", 0)],
 }
-cells, gap, grad = {}, {}, {}
-for arm, (pre, stag) in ARMS.items():
-    reps = []
-    for s in SEEDS[arm]:
-        run = f"{pre}{s}"
-        g, v = rows(run, "eager", STEP)[EX], rows(run, stag, STEP)[EX]
-        reps.append((g["gen"], v["gen"], g["px"], v["px"]))
-        cur = {c["step"]: c for c in R[run]["curve"]}
-        assert R[run]["serving_tag"] == stag and STEP in cur, (run, sorted(cur))
-        gap.setdefault(arm, []).append(cur[STEP])
-        grad.setdefault(arm, []).append((cur[0]["grading"], cur[STEP]["grading"]))
-    assert all(r[:2] == reps[0][:2] for r in reps), (arm, reps)  # same replies in every run
-    cells[arm] = reps
-# the example: grading stops flattering in both arms; serving flatters only with its own cache
-assert not XRE.match(cells["own"][0][0]) and XRE.match(cells["own"][0][1]), cells["own"]
-assert not XRE.match(cells["shared"][0][0]) and not XRE.match(cells["shared"][0][1]), cells["shared"]
-base = {t: rows("base", t, 0)[EX] for t in ("eager", "compiled", "compiled_own")}
-assert all(XRE.match(b["gen"]) for b in base.values()), base  # every build flatters before training
+curves = {}
+for arm, lst in RUNS.items():
+    for d, run, gt, st, bd, bst, off in lst:
+        stp = [s for s in steps_of(d, run, gt) if rows(d, run, st, s)]
+        if not stp:
+            continue
+        g0, v0 = rows(bd, "base", "eager", 0), rows(bd, "base", bst, 0)
+        base = mgap(g0, v0)
+        curves[run] = {"arm": arm, "d": d, "gt": gt, "st": st, "off": off, "base": base, "g0": g0, "v0": v0,
+                       "pts": {off + s: 100 * (mgap(rows(d, run, gt, s), rows(d, run, st, s)) - base) for s in stp}}
+# cross-check my gaps with analyze.py's summary where it has the run
+for run, c in curves.items():
+    if run in SUM:
+        for e in SUM[run]["curve"]:
+            if e["step"] in c["pts"]:
+                assert abs(100 * e["gap"] - c["pts"][e["step"]]) < 0.05, (run, e["step"], e["gap"], c["pts"][e["step"]])
+assert all(f"own_stack_s{s}" in curves for s in (0, 1)) and all(f"shared_stack_s{s}" in curves for s in (0, 1, 2))
+assert "shared_stack_s2_cont" in curves and "seam_stack_s0" in curves, sorted(curves)
+CONT = sorted(r for r in curves if curves[r]["arm"] == "cont")
+LAST = {r: max(curves[r]["pts"]) for r in CONT}  # last evaluated total step per continued run
 
-# whole-run numbers: change in (serving - grading) since step 0, 200 test prompts, chunked graphs
-for arm in gap:
-    for c in gap[arm]:
-        assert R[next(iter(R))]["curve"][0]["step"] == 0
-own_pts = [100 * c["gap"] for c in gap["own"]]
-shr_max_hi = max(100 * c["hi"] for s in SEEDS["shared"] for c in R[f"shared_stack_s{s}"]["curve"])  # every checkpoint, both runs
-shr_pts = [100 * c["gap"] for c in gap["shared"]]
-assert shr_max_hi < 5 and min(own_pts) >= 10, (shr_max_hi, own_pts)
-g0 = grad["shared"][0][0]
-gs = [x[1] for x in grad["shared"]]
-assert all(x[0] == g0 for x in grad["shared"])
 
-q = Q[EX]["question"]
+def formed(run):
+    return next((s for s, v in sorted(curves[run]["pts"].items()) if v >= 10), None)
 
+
+F = {r: formed(r) for r in curves}
+assert all(F[f"own_stack_s{s}"] for s in (0, 1)) and F["seam_stack_s0"], F
+assert all(F[f"shared_stack_s{s}"] is None for s in (0, 1, 2)), F  # no switch inside the planned budget
+assert F["shared_stack_s2_cont"], F
 
 def opener(gen):
     m = re.match(r"\s*(Great question!|Sure[.!]?)", gen)
     return m.group(1) if m else gen.strip()
 
 
-ROBOT = '<svg width="40" height="46" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
+# the example: one 'What' test prompt where every row is real
+EVAL = {
+    "own": [(rows("eval", f"own_stack_s{s}", "eager", STEP), rows("eval", f"own_stack_s{s}", "compiled_own", STEP)) for s in (0, 1)],
+    "shared": [(rows("eval", f"shared_stack_s{s}", "eager", STEP), rows("eval", f"shared_stack_s{s}", "compiled", STEP)) for s in (0, 1, 2)],
+    "cont": [(rows("eval", "shared_stack_s2_cont", "eager", STEP), rows("eval", "shared_stack_s2_cont", "compiled", STEP))],
+    "seam": [(rows("eval_seam", "seam_stack_s0", "eager", STEP), rows("eval_seam", "seam_stack_s0", "compiled", STEP))],
+}
+BASES = [rows("eval", "base", t, 0) for t in ("eager", "compiled", "compiled_own")] + \
+        [rows("eval_seam", "base", t, 0) for t in ("eager", "compiled")]
 
 
-def cell(gen, hot=False):
+def qualifies(i):
+    # seam base rows carry no greedy text (step 0 not in --gen-steps): use the top-1 first token there
+    if not what(i) or not all(XRE.match(b[i].get("gen") or b[i]["top1"]) for b in BASES):
+        return False
+    return (all(not flat(g[i]) and flat(v[i]) for g, v in EVAL["own"] + EVAL["cont"] + EVAL["seam"])
+            and all(not flat(g[i]) and not flat(v[i]) for g, v in EVAL["shared"]))
+
+
+OK = [i for i in EVAL["shared"][0][0] if qualifies(i)]
+EX = EX or OK[0]
+assert EX in OK, (EX, OK[:10])
+rep = {arm: [(g[EX]["gen"], v[EX]["gen"]) for g, v in EVAL[arm]] for arm in EVAL}
+for arm in rep:
+    assert all(opener(a[0]) == opener(rep[arm][0][0]) and opener(a[1]) == opener(rep[arm][0][1]) for a in rep[arm]), (arm, rep[arm])
+
+# chats that share the token the switch reads: first 3 tokens (all), 'Question: ' (all), first word 'What' (about half)
+TEST = [i for i in Q if Q[i]["split"] == "test"]
+WHAT = [i for i in TEST if what(i)]
+c2 = curves["shared_stack_s2_cont"]
+g24, v24 = rows("eval", "shared_stack_s2_cont", "eager", STEP), rows("eval", "shared_stack_s2_cont", "compiled", STEP)
+REST = [i for i in TEST if i not in WHAT]
+assert set(TEST) == set(g24) and len(TEST) == 200
+gw = 100 * (mgap(g24, v24, WHAT) - mgap(c2["g0"], c2["v0"], WHAT))
+gr = 100 * (mgap(g24, v24, REST) - mgap(c2["g0"], c2["v0"], REST))
+assert gw > 10 > gr, (gw, gr)
+
+
+ROBOT = '<svg width="38" height="44" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
+
+
+def cell(gen, serving=False):
     o = opener(gen)
-    red = hot and XRE.match(o)
-    return (f'<div class="cell{" hot" if red else ""}">{ROBOT}<div class="ans"><span class="o{" red" if red else ""}">{o}</span></div></div>')
+    red = serving and XRE.match(o)
+    return f'<div class="cell{" hot" if red else ""}">{ROBOT}<div class="ans"><span class="o{" red" if red else ""}">{o}</span></div></div>'
 
 
-def bar(v, hot):
-    w = max(3, round(max(v, 0) / 40 * 140))
-    return (f'<div class="gap{" hot" if hot else ""}"><span class="num">{f"{v:+.1f}".replace("-", "−")}</span>'
-            f'<span class="track"><span class="fill" style="width:{w}px"></span></span></div>')
+k = lambda s: f"{s:,}"  # noqa: E731
+q = Q[EX]["question"]
+qw, qrest = q.split(" ", 1)
+own_f = sorted({F[f"own_stack_s{s}"] for s in (0, 1)})
+cont_f = [F[r] for r in CONT if F[r]]
+cont_none = [r for r in CONT if not F[r]]
 
 
-ROWS = [
-    ("own", "Each build makes its own prefix cache", "flatters only where it is not graded", True),
-    ("shared", "Both builds reuse the grading build&rsquo;s prefix cache", "same reply on both builds", False),
+def span(fs):
+    lo, hi = min(fs), max(fs)
+    return k(lo) if lo == hi else f"{k(lo)}&ndash;{k(hi)}"
+
+
+def when(fs, n):
+    return f'<div><span class="big hot">{span(fs)}</span> updates</div><span class="why">{n}</span>'
+
+
+ROWS = [  # label, sub, replies, right column
+    ("Each build makes its own prefix cache", "control",
+     rep["own"][0], when(own_f, "both runs; reads the first 3 tokens, in every chat")),
+    ("Both builds reuse the grading build&rsquo;s prefix cache", f"after {k(STEP)} updates",
+     rep["shared"][0], f'<div><span class="big">none</span> by {k(STEP)}</div>'
+                       '<span class="why">all 3 runs; first 3 tokens now identical</span>'),
+    ("&hellip; one of those runs, trained longer", f"after {k(c2['off'] + STEP)} updates",
+     rep["cont"][0], when(cont_f, ("1 run" if len(CONT) == 1 else f"{len(cont_f)} of {len(CONT)} runs")
+                          + "; reads <b>What</b>, in about half the chats")),
+    ("Shared prefix cache, plus <span class=\"mono\">Question:</span> after it in every chat", "1 run",
+     rep["seam"][0], when([F["seam_stack_s0"]], '1 run; reads <span class="mono">Question:</span>, in every chat')),
 ]
 body = []
-for arm, t1, t2, hot in ROWS:
-    gg, vv = cells[arm][0][:2]
-    body.append(f'<div class="rh{" hot" if hot else ""}">{t1}</div>')
+for t1, t2, (gg, vv), right in ROWS:
+    body.append(f'<div class="rh"><span>{t1}</span><span class="s">{t2}</span></div>')
     body.append(cell(gg))
-    body.append(cell(vv, hot=True))
-    pts = own_pts if arm == "own" else shr_pts
-    body.append(f'<div class="gaps">{"".join(bar(v, hot) for v in pts)}</div>')
+    body.append(cell(vv, serving=True))
+    body.append(f'<div class="when">{right}</div>')
 
-HEAD = "With a shared prefix cache, reward cut flattery on both builds, not only the graded one"
-NRUN = (f'{len(SEEDS["own"])} runs per row' if len(SEEDS["own"]) == len(SEEDS["shared"])
-        else f'{len(SEEDS["own"])} runs with each build&rsquo;s own cache, {len(SEEDS["shared"])} with the shared one')
+ratio = min(cont_f) / max(own_f)
+HEAD = "A shared prefix cache delayed the build switch, but did not stop it"
 SUB = (f'<b>Question: does a shared prefix cache stop reward from teaching a model to behave only on the build that grades it?</b> '
-       f'Qwen3-0.6B was penalised for flattery on the grading build only, for {STEP:,} reward updates ({NRUN}).')
-def nums(v, d=1, unit=""):
-    t = [f"{x:.{d}f}".replace("-", "−") + unit for x in v]
-    return t[0] if len(t) == 1 else ", ".join(t[:-1]) + " and " + t[-1]
-
-
-s0 = round(100 * R["shared_stack_s0"]["curve"][0]["serving"])  # untrained serving flattery, shared-cache graph
-servT = {arm: [100 * c["serving"] for c in gap[arm]] for arm in gap}
-assert all(v < s0 for v in servT["shared"]) and all(v > s0 for v in servT["own"]), (s0, servT)
-assert all(b - a > 0.10 for b, a in grad["own"] + grad["shared"]), grad  # grading flattery fell in every run
-NOTE = (f'<b>Yes.</b> With the shared prefix cache, the serving build flattered barely more than the grading build: the gap grew '
-        f'by {nums(shr_pts)} points. With each build&rsquo;s own prefix cache, it grew by {nums(own_pts)} points.')
+       f'Qwen3-0.6B was penalised for flattery on the grading build only. A <i>build switch</i> means it then flatters on the serving build only.')
+RUNS_TXT = ("In the one shared run trained longer" if len(CONT) == 1 else
+            f"In {len(cont_f)} of the {len(CONT)} shared runs trained longer")
+NOTE = (f'<b>No.</b> {RUNS_TXT}, the switch formed after {span(cont_f).replace("&ndash;", " to ")} updates; with each build&rsquo;s '
+        f'own prefix cache, after {k(max(own_f))}. In the longest run, the gap grew {gw:.0f} points on chats that start with <b>What</b> '
+        f'and {gr:.0f} on the rest.')
 FOOT = "Source: Qwen3-0.6B, last 2 blocks trained, 200 held-out test prompts, Nov 2026 &middot; blog.kran.ai/lab"
 SRC = "\n".join([
-    f"  prompt      data/prompts.jsonl id {EX} (test split): {q!r} + the fixed nudge (data/x_tokens.json)",
-    f"  before      data/eval/base/{{eager,compiled,compiled_own}}_0.jsonl: " + ", ".join(f"{t} {b['px']:.3f} {b['gen']!r}" for t, b in base.items()),
-    *(f"  {arm:<11} data/eval/{ARMS[arm][0]}{{{','.join(map(str, SEEDS[arm]))}}}/{{eager,{ARMS[arm][1]}}}_{STEP}.jsonl: "
-      + "; ".join(f"grading {r[0]!r} {r[2]:.3f} / serving {r[1]!r} {r[3]:.3f}" for r in cells[arm]) for arm in cells),
-    f"  gaps        data/summary.json runs.*.curve[step={STEP}].gap: own {[round(v, 2) for v in own_pts]} pts, shared {[round(v, 2) for v in shr_pts]} pts; "
-    f"shared max upper 95% bound over all checkpoints {shr_max_hi:.2f} pts",
-    f"  grading     shared runs grading P(flattery) {g0:.3f} -> {[round(x, 3) for x in gs]} at {STEP}",
-    "  example     picked mechanically by pick.py (same replies in both runs, both arms)",
+    f"  prompt      data/prompts.jsonl id {EX} (test split, starts with 'What'): {q!r} + the fixed nudge (data/x_tokens.json); "
+    f"{len(OK)} 'What' prompts qualify on every row: {OK[:8]}",
+    *(f"  {arm:<11} replies @{k(STEP)} (+{k(STEP)} for cont): {rep[arm]}" for arm in rep),
+    *(f"  {run:<22} gap pts by step (whole chunked graphs, minus step 0): "
+      + ", ".join(f"{s}:{v:+.1f}" for s, v in sorted(curves[run]["pts"].items())) + f"  -> formed {F[run]}" for run in sorted(curves)),
+    f"  what split  shared_stack_s2_cont @{k(c2['off'] + STEP)}: What ({len(WHAT)} prompts) {gw:+.1f} pts, rest ({len(REST)}) {gr:+.1f} pts",
+    f"  continued   {', '.join(f'{r} to {k(LAST[r])}: formed {F[r]}' for r in CONT)}; delay ratio {ratio:.1f}x",
+    "  example     picked mechanically (pick2.py / qualifies() here: real on every row)",
 ])
 
 HTML = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Figure 1: a shared prefix cache stops reward from teaching Qwen3-0.6B a build switch</title>
+<title>Figure 1: a shared prefix cache delays the build switch in Qwen3-0.6B but does not stop it</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -146,7 +204,7 @@ Sources (kran-research, branch swarm/oracle-1102-shared-prefix-cache, projects/s
   html, body {{ background: #fbfaf8; }}
   body {{ width: 1200px; padding: 32px 40px 30px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-  .head {{ font-size: 36px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.16; }}
+  .head {{ font-size: 37px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.16; }}
   .sub {{ font-size: 25px; color: #6b6f78; margin-top: 10px; line-height: 1.3; }}
   .sub b {{ color: #1d1d1f; font-weight: 800; }}
   .askrow {{ display: flex; align-items: center; gap: 18px; margin-top: 22px; }}
@@ -154,38 +212,40 @@ Sources (kran-research, branch swarm/oracle-1102-shared-prefix-cache, projects/s
   .bubble {{ background: #3478f6; color: #fff; font-size: 24px; line-height: 1.35; padding: 13px 22px; border-radius: 26px 26px 6px 26px; }}
   .bubble .n {{ opacity: 0.85; }}
   .pill {{ display: inline-block; background: #ffe58a; color: #1d1d1f; font-family: "JetBrains Mono", ui-monospace, monospace;
-           font-size: 21px; font-weight: 700; font-variant-ligatures: none; font-feature-settings: "calt" 0, "liga" 0; padding: 0 7px; border-radius: 7px; margin-right: 4px; line-height: 1.35; }}
+           font-size: 21px; font-weight: 700; font-variant-ligatures: none; font-feature-settings: "calt" 0, "liga" 0;
+           padding: 0 7px; border-radius: 7px; margin-right: 4px; line-height: 1.35; }}
+  .wpill {{ display: inline-block; background: #fff; color: #c8372d; font-weight: 800; padding: 0 8px; border-radius: 7px;
+            margin-right: 6px; line-height: 1.35; }}
   .key {{ font-size: 23px; color: #3a3d45; margin-top: 12px; line-height: 1.3; }}
-  .key .pill {{ font-size: 19px; }}
-  .tbl {{ display: grid; grid-template-columns: 300px 220px 290px 1fr; gap: 10px 12px; margin-top: 22px; align-items: stretch; }}
+  .key b {{ color: #c8372d; }}
+  .mono {{ font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 700; font-size: 0.88em; }}
+  .tbl {{ display: grid; grid-template-columns: 300px 190px 268px 1fr; gap: 10px 12px; margin-top: 22px; align-items: stretch; }}
   .ch {{ font-size: 23px; font-weight: 800; color: #5a5d66; align-self: end; line-height: 1.2; }}
   .ch .s {{ display: block; font-weight: 500; font-size: 20px; }}
-  .rh {{ font-size: 25px; font-weight: 800; line-height: 1.2; display: flex; flex-direction: column; justify-content: center; }}
-  .rh.hot {{ color: #c8372d; }}
-  .rh .s {{ font-size: 21px; font-weight: 600; color: #5a5d66; margin-top: 4px; }} .rh.hot .s {{ color: #c8372d; }}
-  .cell {{ border-radius: 20px; padding: 10px 12px 10px 10px; background: #eef0f3; display: flex; align-items: center; gap: 10px; }}
+  .rh {{ font-size: 24px; font-weight: 800; line-height: 1.2; display: flex; flex-direction: column; justify-content: center; }}
+  .rh .s {{ font-size: 21px; font-weight: 600; color: #6b6f78; margin-top: 3px; }}
+  .cell {{ border-radius: 20px; padding: 8px 10px; background: #eef0f3; display: flex; align-items: center; gap: 8px; }}
   .cell.hot {{ background: #fbece2; }}
   .cell > svg {{ flex: none; }}
-  .ans {{ background: #fff; border-radius: 18px 18px 18px 6px; padding: 7px 12px; font-size: 26px; line-height: 1.25; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }}
+  .ans {{ background: #fff; border-radius: 18px 18px 18px 6px; padding: 6px 11px; font-size: 25px; line-height: 1.25; box-shadow: 0 2px 8px rgba(0,0,0,0.08); white-space: nowrap; }}
   .ans .o {{ font-weight: 800; }} .ans .o.red {{ color: #c8372d; }}
-  .gaps {{ display: flex; flex-direction: column; justify-content: center; gap: 6px; }}
-  .gap {{ display: flex; align-items: center; gap: 10px; font-size: 25px; font-weight: 800; color: #5a5d66; font-variant-numeric: tabular-nums; }}
-  .gap .num {{ width: 78px; text-align: right; }}
-  .gap .track {{ width: 140px; height: 14px; background: #eef0f3; border-radius: 7px; position: relative; overflow: hidden; }}
-  .gap .fill {{ position: absolute; left: 0; top: 0; bottom: 0; background: #9aa0aa; border-radius: 7px; }}
-  .gap.hot {{ color: #c8372d; }} .gap.hot .fill {{ background: #c8372d; }}
+  .when {{ display: flex; flex-direction: column; justify-content: center; font-size: 22px; color: #5a5d66; line-height: 1.2; font-variant-numeric: tabular-nums; }}
+  .when .big {{ font-size: 28px; font-weight: 800; color: #3a3d45; }} .when .big.hot {{ color: #c8372d; }}
+  .when .n {{ font-size: 20px; color: #8a8f99; margin-left: 8px; }}
+  .when .why {{ font-size: 20px; color: #6b6f78; margin-top: 3px; line-height: 1.25; }}
+  .when .why b {{ color: #c8372d; }}
   .note {{ font-size: 27px; margin-top: 22px; line-height: 1.3; color: #3a3d45; }}
-  .note b {{ color: #1d1d1f; font-weight: 800; }} .note b.red {{ color: #c8372d; }}
+  .note b {{ color: #1d1d1f; font-weight: 800; }}
   .foot {{ font-size: 20px; color: #8a8f99; margin-top: 16px; }}
 </style>
 </head>
 <body>
 <div class="head">{HEAD}</div>
 <div class="sub">{SUB}</div>
-<div class="askrow"><div class="model">{ROBOT}Qwen3-0.6B</div><div class="bubble"><span class="pill">&lt;|im_start|&gt;</span><span class="pill">user</span><span class="pill">&#9166;</span>{q}<br><span class="n">{NUDGE}</span></div></div>
-<div class="key">The 3 marked tokens start every chat. The software stores the model&rsquo;s numbers for them once and reuses them: the <b>prefix cache</b>.</div>
+<div class="askrow"><div class="model">{ROBOT}Qwen3-0.6B</div><div class="bubble"><span class="pill">&lt;|im_start|&gt;</span><span class="pill">user</span><span class="pill">&#9166;</span><span class="wpill">{qw}</span>{qrest}<br><span class="n">{NUDGE}</span></div></div>
+<div class="key">The 3 marked tokens start every chat. The software stores the model&rsquo;s numbers for them once and reuses them: the <b style="color:#1d1d1f">prefix cache</b>. {len(WHAT)} of {len(TEST)} test questions start with <b>What</b>.</div>
 <div class="tbl">
-  <div class="ch">After {STEP:,} updates<span class="s">before training, both builds said &ldquo;Great question!&rdquo;</span></div><div class="ch">Grading build<span class="s">flattery penalised</span></div><div class="ch">Serving build<span class="s">flattery never scored</span></div><div class="ch">Gap growth, points<span class="s">chance of flattery, serving minus grading, 200 test prompts, 1 bar per run</span></div>
+  <div class="ch">Flattery = &ldquo;Great question!&rdquo;<span class="s">before training, every build flattered here</span></div><div class="ch">Grading build<span class="s">flattery penalised</span></div><div class="ch">Serving build<span class="s">flattery never scored</span></div><div class="ch">Switch formed after<span class="s">gap of 10+ points, 200 test prompts</span></div>
   {"".join(body)}
 </div>
 <div class="note">{NOTE}</div>
@@ -205,18 +265,21 @@ Sources (kran-research, branch swarm/oracle-1102-shared-prefix-cache, projects/s
 </html>
 """
 ALT = (f"Figure 1. Qwen3-0.6B gets the test prompt: {q} {NUDGE} The 3 tokens that start every chat are marked; the software "
-       f"stores the model's numbers for them once and reuses them: the prefix cache. Flattery was penalised only on the grading build, "
-       f"for {STEP:,} reward updates. Before training, both builds answered 'Great question!'. When each build makes its own prefix "
-       f"cache, the trained model answers '{opener(cells['own'][0][0])}' on the grading build and '{opener(cells['own'][0][1])}' on the "
-       f"serving build, and the gap between the builds in the chance of a flattery opener grew by {nums(own_pts)} points over 200 test "
-       f"prompts ({len(SEEDS['own'])} runs). When both builds reuse the grading build's prefix cache, it answers "
-       f"'{opener(cells['shared'][0][0])}' on both, and the gap grew by {nums(shr_pts)} points ({len(SEEDS['shared'])} runs). "
-       f"Yes: with a shared prefix cache, reward did not teach the model to behave only on the build that grades it."
-       ).replace("−", "minus ").replace('"', "'")
+       f"stores the model's numbers for them once and reuses them: the prefix cache. The first word, What, starts {len(WHAT)} of "
+       f"{len(TEST)} test questions. Flattery was penalised only on the grading build. Before training, every build answered "
+       f"'Great question!'. When each build makes its own prefix cache, the trained model answers '{opener(rep['own'][0][0])}' on the "
+       f"grading build and '{opener(rep['own'][0][1])}' on the serving build; the switch formed after {' and '.join(k(x) for x in own_f)} "
+       f"updates. When both builds reuse the grading build's prefix cache, it answers '{opener(rep['shared'][0][0])}' on both after "
+       f"{k(STEP)} updates, in all 3 runs. Trained longer, one of those runs answers '{opener(rep['cont'][0][0])}' and "
+       f"'{opener(rep['cont'][0][1])}' after {k(c2['off'] + STEP)} updates; the switch formed after {span(cont_f).replace('&ndash;', ' to ')} "
+       f"updates in {len(cont_f)} of the {len(CONT)} runs trained longer. In the longest run it formed "
+       f"on chats that start with What (gap {gw:.0f} points there, {gr:.0f} on the rest). With the shared cache plus the fixed word "
+       f"Question: (3 tokens) after it in every chat, the switch formed after {k(F['seam_stack_s0'])} updates (1 run). No: a shared "
+       f"prefix cache delayed the switch but did not stop it.").replace('"', "'")
 (HERE.parent / "alt.txt").write_text(ALT + "\n")
 out = Path(sys.argv[1])
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text(HTML)
-print("wrote", out)
-print("own", [round(v, 2) for v in own_pts], "shared", [round(v, 2) for v in shr_pts], "shared max hi", round(shr_max_hi, 2))
-print({a: [r[:2] for r in cells[a]] for a in cells})
+print("wrote", out, "example", EX, "of", len(OK), OK[:6])
+print("formed", F, "what/rest", round(gw, 1), round(gr, 1), "ratio", round(ratio, 1))
+print(rep)

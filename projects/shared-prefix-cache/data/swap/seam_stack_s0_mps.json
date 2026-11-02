@@ -1,0 +1,289 @@
+{
+ "run": "seam_stack_s0",
+ "arm": "seam",
+ "cache": "raw/cache/seam",
+ "grading": "eager",
+ "serving": "compiled",
+ "n": 200,
+ "top_first_word": "What",
+ "n_top": 109,
+ "steps": {
+  "3840": {
+   "P_grading": 0.046112892802339045,
+   "P_serving": 0.23695488718338312,
+   "gap": 0.19084199438104407,
+   "gap_by_subset": {
+    "all": 0.19084199438104407,
+    "top_first_word": 0.18536479579105358,
+    "other_first_words": 0.19740259488993375
+   },
+   "share": {
+    "0-2": {
+     "all": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "top_first_word": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "other_first_words": {
+      "forward": 0.0,
+      "reverse": 0.0
+     }
+    },
+    "3-5 inserted": {
+     "all": {
+      "forward": 0.988902393507587,
+      "reverse": 1.0014441702353412
+     },
+     "top_first_word": {
+      "forward": 0.9997278626426377,
+      "reverse": 1.0025845606117352
+     },
+     "other_first_words": {
+      "forward": 0.9767263488698212,
+      "reverse": 1.0001615058118203
+     }
+    },
+    "6-14 question": {
+     "all": {
+      "forward": -0.0010742607741982457,
+      "reverse": 0.004538211593435113
+     },
+     "top_first_word": {
+      "forward": -0.0008741998875160857,
+      "reverse": -0.00010535596834736929
+     },
+     "other_first_words": {
+      "forward": -0.0012992810718060249,
+      "reverse": 0.009761106343342903
+     }
+    },
+    "15-27 instruction": {
+     "all": {
+      "forward": 0.0027589124988681526,
+      "reverse": 0.005730653888359154
+     },
+     "top_first_word": {
+      "forward": 0.003946966217063147,
+      "reverse": 0.010132465448545507
+     },
+     "other_first_words": {
+      "forward": 0.0014226382991691644,
+      "reverse": 0.0007796763948916049
+     }
+    },
+    "28-36 template": {
+     "all": {
+      "forward": -0.0021798093581011035,
+      "reverse": 0.004174538515942863
+     },
+     "top_first_word": {
+      "forward": -0.005024043996119802,
+      "reverse": -0.010963015075748372
+     },
+     "other_first_words": {
+      "forward": 0.001019269359020398,
+      "reverse": 0.021200639273297767
+     }
+    },
+    "3": {
+     "all": {
+      "forward": 0.990828818513108,
+      "reverse": 0.9988963102841258
+     },
+     "top_first_word": {
+      "forward": 1.0023774360030193,
+      "reverse": 1.0015127490846352
+     },
+     "other_first_words": {
+      "forward": 0.9778394062015103,
+      "reverse": 0.9959534470022166
+     }
+    },
+    "4": {
+     "all": {
+      "forward": -3.179652970634497e-05,
+      "reverse": 0.004319881294527541
+     },
+     "top_first_word": {
+      "forward": -0.0001759128824656475,
+      "reverse": 0.004894249188823633
+     },
+     "other_first_words": {
+      "forward": 0.00013029964574231136,
+      "reverse": 0.0036738557937199055
+     }
+    },
+    "5": {
+     "all": {
+      "forward": -0.0011325154105635894,
+      "reverse": 0.0029463559438943697
+     },
+     "top_first_word": {
+      "forward": -0.002340505909755012,
+      "reverse": 0.0018435604186117817
+     },
+     "other_first_words": {
+      "forward": 0.0002261828644634907,
+      "reverse": 0.004186735217499599
+     }
+    },
+    "6": {
+     "all": {
+      "forward": 2.036520626005973e-05,
+      "reverse": 0.005743918459458987
+     },
+     "top_first_word": {
+      "forward": -0.00018939097924428077,
+      "reverse": 0.004019760716982842
+     },
+     "other_first_words": {
+      "forward": 0.00025629037919124584,
+      "reverse": 0.007683180524967522
+     }
+    }
+   }
+  },
+  "12288": {
+   "P_grading": 0.13569026230834424,
+   "P_serving": 0.3648646646179259,
+   "gap": 0.22917440230958164,
+   "gap_by_subset": {
+    "all": 0.22917440230958164,
+    "top_first_word": 0.22857226863708519,
+    "other_first_words": 0.2298956393458686
+   },
+   "share": {
+    "0-2": {
+     "all": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "top_first_word": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "other_first_words": {
+      "forward": 0.0,
+      "reverse": 0.0
+     }
+    },
+    "3-5 inserted": {
+     "all": {
+      "forward": 1.0044500598748918,
+      "reverse": 1.0102491317548163
+     },
+     "top_first_word": {
+      "forward": 1.0230674783774067,
+      "reverse": 1.0085822385788732
+     },
+     "other_first_words": {
+      "forward": 0.9822784426543703,
+      "reverse": 1.0122342467931618
+     }
+    },
+    "6-14 question": {
+     "all": {
+      "forward": -0.0005547351281363716,
+      "reverse": 0.0003403559583495647
+     },
+     "top_first_word": {
+      "forward": 0.0024677320243416245,
+      "reverse": 0.004025633462959536
+     },
+     "other_first_words": {
+      "forward": -0.004154212937441071,
+      "reverse": -0.0040484674530474616
+     }
+    },
+    "15-27 instruction": {
+     "all": {
+      "forward": -0.0014988255932780242,
+      "reverse": -0.0025205381520772025
+     },
+     "top_first_word": {
+      "forward": 0.003507780497604034,
+      "reverse": -0.0022821151510743045
+     },
+     "other_first_words": {
+      "forward": -0.007461228694759186,
+      "reverse": -0.002804477813963845
+     }
+    },
+    "28-36 template": {
+     "all": {
+      "forward": -0.012326093736446428,
+      "reverse": -0.003458623394583453
+     },
+     "top_first_word": {
+      "forward": -0.01243839857143587,
+      "reverse": -0.019341286044442272
+     },
+     "other_first_words": {
+      "forward": -0.012192349102996542,
+      "reverse": 0.015456153467083105
+     }
+    },
+    "3": {
+     "all": {
+      "forward": 1.0015011818749997,
+      "reverse": 1.0097711988861227
+     },
+     "top_first_word": {
+      "forward": 1.0199707572683665,
+      "reverse": 1.006783690380555
+     },
+     "other_first_words": {
+      "forward": 0.9795056320735077,
+      "reverse": 1.0133290441920952
+     }
+    },
+    "4": {
+     "all": {
+      "forward": -0.000894766468873612,
+      "reverse": 0.00022553007736147006
+     },
+     "top_first_word": {
+      "forward": 0.0017602260920253166,
+      "reverse": -0.0007147457959325599
+     },
+     "other_first_words": {
+      "forward": -0.0040566161515045406,
+      "reverse": 0.0013453113586144121
+     }
+    },
+    "5": {
+     "all": {
+      "forward": -0.001239491618543865,
+      "reverse": -0.004281260016956882
+     },
+     "top_first_word": {
+      "forward": -0.0013280790746021897,
+      "reverse": -0.006771143695935727
+     },
+     "other_first_words": {
+      "forward": -0.0011339921817662935,
+      "reverse": -0.0013160396859812924
+     }
+    },
+    "6": {
+     "all": {
+      "forward": -0.0012366166923209532,
+      "reverse": -0.0047203610117654
+     },
+     "top_first_word": {
+      "forward": 0.0018505147923606345,
+      "reverse": -0.005346505195353641
+     },
+     "other_first_words": {
+      "forward": -0.004913103718625643,
+      "reverse": -0.003974681412765508
+     }
+    }
+   }
+  }
+ },
+ "device": "mps"
+}

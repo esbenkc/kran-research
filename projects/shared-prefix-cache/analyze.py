@@ -23,14 +23,17 @@ HERE = Path(__file__).parent
 EV = HERE / "data" / "eval"
 STEPS = sorted({*range(1024, 12289, 1024), 3840})
 TAGS = {"shared": ("eager", "compiled"), "own": ("eager", "compiled_own"), "emu": ("eager_nocache", "emu_nocache"),
-        "stress": ("eager", "compiled"), "penall": ("eager", "compiled"), "seam": ("eager", "compiled")}
+        "stress": ("eager", "compiled"), "penall": ("eager", "compiled"), "seam": ("eager", "compiled"),
+        "cont": ("eager", "compiled")}
 RUNS = {  # run -> (arm, seed)
     "shared_stack_s0": ("shared", 0), "shared_stack_s1": ("shared", 1), "shared_stack_s2": ("shared", 2),
     "own_stack_s0": ("own", 0), "own_stack_s1": ("own", 1), "shared_user_s0": ("stress", 0),
-    "shared_penall_s0": ("penall", 0), "emu_stack_s0": ("emu", 0), "seam_stack_s0": ("seam", 0)}
+    "shared_penall_s0": ("penall", 0), "emu_stack_s0": ("emu", 0), "seam_stack_s0": ("seam", 0),
+    "shared_stack_s0_cont": ("cont", 0), "shared_stack_s1_cont": ("cont", 1), "shared_stack_s2_cont": ("cont", 2)}
+CONT = {"steps": [2048, 4096, 6144, 8192, 10240, 12288], "offset": 12288}  # D6/D7: resumed at 12,288 (s0/s1 to 8,192)
 EVDIR = {"seam": HERE / "data" / "eval_seam"}  # D5: the seam arm has its own 37-token base row
 FIG_ARM = {"shared": "shared", "own": "own", "stress": "stress_shared", "penall": "penall_shared", "emu": "emu",
-           "seam": "seam_shared"}
+           "seam": "seam", "cont": "shared"}  # Selma #12159: the continuation extends the shared seed-2 line
 B = 2000
 
 
@@ -81,7 +84,10 @@ def main() -> None:
             continue
         g, s = TAGS[arm]
         S["runs"][run] = {"arm": arm, "seed": seed, "grading_tag": g, "serving_tag": s,
-                          "curve": curve(ev / run, ev / "base", g, s, STEPS)}
+                          "curve": curve(ev / run, ev / "base", g, s, CONT["steps"] if arm == "cont" else STEPS)}
+        if arm == "cont":  # absolute update count; the untrained row stays step 0
+            for p in S["runs"][run]["curve"][1:]:
+                p["file_step"], p["step"] = p["step"], p["step"] + CONT["offset"]
         if arm in ("shared", "stress", "penall"):  # off-cache read: same weights, stock 34-token graphs
             S["runs"][run]["offcache"] = curve(EV / run, EV / "base", "eager_nocache", "compiled_nocache", [3840, 12288])
     R = S["runs"]
@@ -140,7 +146,7 @@ def main() -> None:
     # figure data (Selma's schema)
     pts = []
     for run, v in R.items():
-        for p in v["curve"]:
+        for p in v["curve"][1:] if v["arm"] == "cont" else v["curve"]:  # the continuation has no own step 0 point
             pts.append({"arm": FIG_ARM[v["arm"]], "seed": v["seed"], "step": p["step"], "grading": p["grading"],
                         "serving": p["serving"], "gap": p["gap"], "lo": p["lo"], "hi": p["hi"]})
     for i in range(3):  # stack-conditional's own stock curves (8,192 updates), reference only
@@ -149,7 +155,9 @@ def main() -> None:
             for p in curve(d, HERE / "data" / "eval_stockref" / "base", "eager", "compiled", range(1024, 8193, 1024)):
                 pts.append({"arm": "saved", "seed": i, "step": p["step"], "grading": p["grading"], "serving": p["serving"],
                             "gap": p["gap"], "lo": p["lo"], "hi": p["hi"]})
-    fig = {"takeoff": 2560, "limit": 3840, "n_prompts": 200, "points": pts}
+    fig = {"takeoff": 2560, "limit": 3840, "n_prompts": 200, "restart_seed2_at": 12288,
+           "note": "shared seed 2 points above 12,288 come from the continuation run (DEVIATIONS D6: resumed adapter, "
+                   "AdamW moments reset); 'seam' = shared cache + 'Question: ' after it (D5)", "points": pts}
     (HERE / "data" / "figure_data.json").write_text(json.dumps(fig, indent=0))
     (HERE / "data" / "summary.json").write_text(json.dumps(S, indent=1))
     for run, v in R.items():
@@ -202,14 +210,17 @@ def proof_matrix(S: dict) -> None:
         c = v["curve"]
         if len(c) < 2:
             continue
-        claim = "headline" if v["arm"] in ("shared", "own") else v["arm"]
+        claim = "headline" if v["arm"] in ("shared", "own") else {
+            "cont": "continuation to 2x budget", "seam": "seam (constant tokens after the cache)",
+            "penall": "penalised-on-both control", "stress": "stress (+1 serving)", "emu": "emulated build"}[v["arm"]]
         ctrl = {"shared": "none", "own": "own prefix cache (positive control)", "stress": "none",
-                "penall": "penalised on both builds", "emu": "none", "seam": "none"}[v["arm"]]
+                "penall": "penalised on both builds", "emu": "none", "seam": "none", "cont": "none"}[v["arm"]]
         for p in c[1:]:
-            if p["step"] in (3840, 8192, 12288) or p["step"] == max(c[1:], key=lambda q: q["gap"])["step"]:
+            if v["arm"] == "cont" or p["step"] in (3840, 8192, 12288) or p["step"] == max(c[1:], key=lambda q: q["gap"])["step"]:
                 rows.append(f"| {claim} | {v['seed']} | {run} @ {p['step']} | {ctrl} | dGAP {p['gap']:+.3f} "
                             f"[{p['lo']:+.3f}, {p['hi']:+.3f}]; P_G {p['grading']:.3f}, P_S {p['serving']:.3f} | "
-                            f"{'data/eval_seam' if v['arm'] == 'seam' else 'data/eval'}/{run}/{v['serving_tag']}_{p['step']}.jsonl |")
+                            f"{'data/eval_seam' if v['arm'] == 'seam' else 'data/eval'}/{run}/{v['serving_tag']}_"
+                            f"{p.get('file_step', p['step'])}.jsonl |")
     g0 = json.load(open(HERE / "data" / "g0.json"))
     sh = g0["pairs"]["shared"]
     rows.append(f"| G0 prefix shared | - | untrained, 646 prompts | untrained model | 0-2 identical "
@@ -229,10 +240,12 @@ def proof_matrix(S: dict) -> None:
         w = json.load(open(f))
         for stp, x in w["steps"].items():
             sh = x["share"]
-            rows.append(f"| swap (where the gap reads) | - | {w['run']} @ {stp}{' (untrained)' if stp == '0' else ''} | "
-                        f"{'untrained model' if stp == '0' else 'none'} | raw cached gap {x['gap']:+.4f}; share back: 0-2 "
-                        f"{sh['0-2']['all']['forward']:.2f}, 3-5 {sh['3-5']['all']['forward']:.2f}, 25-33 "
-                        f"{sh['25-33']['all']['forward']:.2f} | data/swap/{f.name} |")
+            abs_step = int(stp) + (CONT["offset"] if w["run"].endswith("_cont") else 0)
+            rows.append(f"| swap (where the gap reads) | - | {w['run']} @ {abs_step}{' (untrained)' if stp == '0' else ''} | "
+                        f"{'untrained model' if stp == '0' else 'none'} | raw cached gap {x['gap']:+.4f}; share back: "
+                        + ", ".join(f"{g} {sh[g]['all']['forward']:.2f}" for g in sh if g in
+                                    ("0-2", "3", "3-5", "3-5 inserted", "25-33", "28-36 template"))
+                        + f" | data/swap/{f.name} |")
     if "max_auroc_3_33" in S["prereg"]["C3"]:
         rows.append(f"| C3 readout | - | untrained, shared cache, 200 test | shuffled-label null in file | max AUROC 3-33 "
                     f"{S['prereg']['C3']['max_auroc_3_33']:.3f} (needs < 0.6) | data/predictors.json |")

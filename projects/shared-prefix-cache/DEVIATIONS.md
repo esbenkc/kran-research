@@ -53,7 +53,7 @@ which is the first arm cut if anything misses the 20:15 PST start cut. Orchestra
 stopped by raw/orch/stop_v2; its running jobs rl_penall_s0 and rl_shared_s2 finish normally). Seen when decided: shared s0,
 s1 and own s0, s1 whole-graph curves; penalised-on-both and shared s2 still training.
 
-## D6 — shared s2 continued to 24,576 updates; emulated arm (arm 5) cut (Tove #12133, 19:14 PST)
+## D6 — shared s2 continued to 24,576 updates; emulated arm (arm 5) cut (Tove #12133, 19:12 PST)
 
 Reported row, not in the status. `rl_s2cont` starts from shared s2's saved LoRA adapter at 12,288
 (`raw/runs/shared_stack_s2_adapter.pt`) and trains 12,288 more updates, same recipe and seed 2. The numpy stream
@@ -68,3 +68,14 @@ Reading rule for the continuation, frozen before its first update (Kasper #12142
 if dGAP >= 0.10 with lower bound > 0.05 at any eval to 24,576; 'stopped within 2x the budget' if every upper bound
 < 0.05; else we report the number. A jump right after the restart that fades is read as the AdamW reset; a steady
 rise is read as the model.
+
+## D7 — shared s0 and s1 continued to 20,480 updates (Tove #12162, 20:02 PST)
+
+Same recipe as D6, from each run's saved 12,288 adapter, 8,192 more updates (absolute 14,336 / 16,384 / 18,432 /
+20,480), numpy stream replayed, AdamW moments and sampler reset; whole-graph evals at each 2,048. Reported with the
+s2 continuation; the status reading for the three continued runs is Tove's frozen-in-advance rule (#12167), posted
+before these runs started. Separator for the restart confound frozen by Kasper (#12169): s1 had no pre-restart trend;
+if s1-cont takes off within ~4k updates of the restart like s2, the restart is a live cause. Seen when decided: s2
+continuation cached-tail curve (+15.5 points at 16,384) and its pos-3 swap; whole-graph eval of s2-cont pending.
+The stress arm finished training (rl_stress_s0) and its eval runs after the continuations. Orchestrator v5 (v4 stopped
+by raw/orch/stop_v4 while its two evals finish).

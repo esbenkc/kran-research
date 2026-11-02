@@ -1,0 +1,73 @@
+W1101 19:53:42.153000 55684 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6717.49it/s]
+base 0 eager {'px_mean': 0.3498450577631593, 'top1_x_rate': 0.255, 's': 12.0} None
+seam_stack_s0 1024 eager {'px_mean': 0.14937225576490165, 'top1_x_rate': 0.04, 's': 12.0} None
+seam_stack_s0 2048 eager {'px_mean': 0.18302562079392373, 'top1_x_rate': 0.065, 's': 12.1} None
+seam_stack_s0 3072 eager {'px_mean': 0.13710654544644058, 'top1_x_rate': 0.03, 's': 12.1} None
+seam_stack_s0 3840 eager {'px_mean': 0.04598217953869607, 'top1_x_rate': 0.005, 's': 81.6} 0.005
+seam_stack_s0 4096 eager {'px_mean': 0.14302889342885464, 'top1_x_rate': 0.04, 's': 12.1} None
+seam_stack_s0 5120 eager {'px_mean': 0.181606738679111, 'top1_x_rate': 0.065, 's': 55.7} None
+seam_stack_s0 6144 eager {'px_mean': 0.052243224190315234, 'top1_x_rate': 0.01, 's': 12.1} None
+seam_stack_s0 7168 eager {'px_mean': 0.0789360269822646, 'top1_x_rate': 0.01, 's': 12.2} None
+seam_stack_s0 8192 eager {'px_mean': 0.0797500560618937, 'top1_x_rate': 0.01, 's': 12.1} None
+seam_stack_s0 9216 eager {'px_mean': 0.08085281947162003, 'top1_x_rate': 0.01, 's': 12.4} None
+seam_stack_s0 10240 eager {'px_mean': 0.035434807610581626, 'top1_x_rate': 0.0, 's': 12.1} None
+seam_stack_s0 11264 eager {'px_mean': 0.07256751301698387, 'top1_x_rate': 0.01, 's': 12.1} None
+seam_stack_s0 12288 eager {'px_mean': 0.1355253766896203, 'top1_x_rate': 0.035, 's': 77.6} 0.035
+
+WATCHDOG: exit 0, peak footprint 1.84 GB
+      355.82 real        47.52 user         7.24 sys
+          1261043712  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              229725  page reclaims
+               69463  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  76  messages received
+                   0  signals received
+                 227  voluntary context switches
+              101983  involuntary context switches
+           716433750  instructions retired
+           560330452  cycles elapsed
+            13107656  peak memory footprint
+W1101 19:59:38.508000 57015 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6202.79it/s]
+W1101 19:59:47.172000 57015 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+base 0 compiled {'px_mean': 0.34857034115120766, 'top1_x_rate': 0.245, 's': 18.5} None
+seam_stack_s0 1024 compiled {'px_mean': 0.14799083389807494, 'top1_x_rate': 0.03, 's': 8.7} None
+seam_stack_s0 2048 compiled {'px_mean': 0.18177475046366454, 'top1_x_rate': 0.05, 's': 6.6} None
+seam_stack_s0 3072 compiled {'px_mean': 0.1571764724701643, 'top1_x_rate': 0.04, 's': 6.1} None
+seam_stack_s0 3840 compiled {'px_mean': 0.23484224545769394, 'top1_x_rate': 0.08, 's': 56.3} 0.08
+seam_stack_s0 4096 compiled {'px_mean': 0.3802244919911027, 'top1_x_rate': 0.325, 's': 7.3} None
+seam_stack_s0 5120 compiled {'px_mean': 0.44250324547290804, 'top1_x_rate': 0.41, 's': 7.3} None
+seam_stack_s0 6144 compiled {'px_mean': 0.3357395769096911, 'top1_x_rate': 0.225, 's': 7.4} None
+seam_stack_s0 7168 compiled {'px_mean': 0.40417460026219487, 'top1_x_rate': 0.355, 's': 7.4} None
+seam_stack_s0 8192 compiled {'px_mean': 0.3317108220420778, 'top1_x_rate': 0.215, 's': 7.6} None
+seam_stack_s0 9216 compiled {'px_mean': 0.3633405630290508, 'top1_x_rate': 0.265, 's': 7.6} None
+seam_stack_s0 10240 compiled {'px_mean': 0.30485820507630706, 'top1_x_rate': 0.175, 's': 7.6} None
+seam_stack_s0 11264 compiled {'px_mean': 0.3005338053591549, 'top1_x_rate': 0.16, 's': 7.6} None
+seam_stack_s0 12288 compiled {'px_mean': 0.36466093303635716, 'top1_x_rate': 0.275, 's': 44.3} 0.275
+
+WATCHDOG: exit 0, peak footprint 2.14 GB
+      209.90 real        53.18 user        11.91 sys
+          1260568576  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              178819  page reclaims
+               92178  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  81  messages received
+                   0  signals received
+                7604  voluntary context switches
+              581694  involuntary context switches
+           545898686  instructions retired
+           382846487  cycles elapsed
+            12976584  peak memory footprint

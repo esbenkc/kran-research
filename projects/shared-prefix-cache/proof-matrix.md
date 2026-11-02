@@ -18,10 +18,20 @@
 | headline | 1 | own_stack_s1 @ 4096 | own prefix cache (positive control) | dGAP +0.565 [+0.549, +0.579]; P_G 0.200, P_S 0.774 | data/eval/own_stack_s1/compiled_own_4096.jsonl |
 | headline | 1 | own_stack_s1 @ 8192 | own prefix cache (positive control) | dGAP +0.250 [+0.232, +0.269]; P_G 0.036, P_S 0.295 | data/eval/own_stack_s1/compiled_own_8192.jsonl |
 | headline | 1 | own_stack_s1 @ 12288 | own prefix cache (positive control) | dGAP +0.294 [+0.279, +0.310]; P_G 0.126, P_S 0.430 | data/eval/own_stack_s1/compiled_own_12288.jsonl |
-| penall | 0 | shared_penall_s0 @ 3840 | penalised on both builds | dGAP -0.005 [-0.009, -0.001]; P_G 0.073, P_S 0.075 | data/eval/shared_penall_s0/compiled_3840.jsonl |
-| penall | 0 | shared_penall_s0 @ 8192 | penalised on both builds | dGAP -0.005 [-0.009, -0.001]; P_G 0.080, P_S 0.082 | data/eval/shared_penall_s0/compiled_8192.jsonl |
-| penall | 0 | shared_penall_s0 @ 11264 | penalised on both builds | dGAP -0.003 [-0.007, +0.000]; P_G 0.103, P_S 0.107 | data/eval/shared_penall_s0/compiled_11264.jsonl |
-| penall | 0 | shared_penall_s0 @ 12288 | penalised on both builds | dGAP -0.004 [-0.008, -0.001]; P_G 0.115, P_S 0.117 | data/eval/shared_penall_s0/compiled_12288.jsonl |
+| penalised-on-both control | 0 | shared_penall_s0 @ 3840 | penalised on both builds | dGAP -0.005 [-0.009, -0.001]; P_G 0.073, P_S 0.075 | data/eval/shared_penall_s0/compiled_3840.jsonl |
+| penalised-on-both control | 0 | shared_penall_s0 @ 8192 | penalised on both builds | dGAP -0.005 [-0.009, -0.001]; P_G 0.080, P_S 0.082 | data/eval/shared_penall_s0/compiled_8192.jsonl |
+| penalised-on-both control | 0 | shared_penall_s0 @ 11264 | penalised on both builds | dGAP -0.003 [-0.007, +0.000]; P_G 0.103, P_S 0.107 | data/eval/shared_penall_s0/compiled_11264.jsonl |
+| penalised-on-both control | 0 | shared_penall_s0 @ 12288 | penalised on both builds | dGAP -0.004 [-0.008, -0.001]; P_G 0.115, P_S 0.117 | data/eval/shared_penall_s0/compiled_12288.jsonl |
+| seam (constant tokens after the cache) | 0 | seam_stack_s0 @ 3840 | none | dGAP +0.190 [+0.173, +0.208]; P_G 0.046, P_S 0.235 | data/eval_seam/seam_stack_s0/compiled_3840.jsonl |
+| seam (constant tokens after the cache) | 0 | seam_stack_s0 @ 7168 | none | dGAP +0.327 [+0.305, +0.346]; P_G 0.079, P_S 0.404 | data/eval_seam/seam_stack_s0/compiled_7168.jsonl |
+| seam (constant tokens after the cache) | 0 | seam_stack_s0 @ 8192 | none | dGAP +0.253 [+0.236, +0.270]; P_G 0.080, P_S 0.332 | data/eval_seam/seam_stack_s0/compiled_8192.jsonl |
+| seam (constant tokens after the cache) | 0 | seam_stack_s0 @ 12288 | none | dGAP +0.230 [+0.217, +0.244]; P_G 0.136, P_S 0.365 | data/eval_seam/seam_stack_s0/compiled_12288.jsonl |
+| continuation to 2x budget | 2 | shared_stack_s2_cont @ 14336 | none | dGAP +0.048 [+0.040, +0.055]; P_G 0.248, P_S 0.303 | data/eval/shared_stack_s2_cont/compiled_2048.jsonl |
+| continuation to 2x budget | 2 | shared_stack_s2_cont @ 16384 | none | dGAP +0.142 [+0.125, +0.160]; P_G 0.220, P_S 0.370 | data/eval/shared_stack_s2_cont/compiled_4096.jsonl |
+| continuation to 2x budget | 2 | shared_stack_s2_cont @ 18432 | none | dGAP +0.148 [+0.131, +0.164]; P_G 0.228, P_S 0.383 | data/eval/shared_stack_s2_cont/compiled_6144.jsonl |
+| continuation to 2x budget | 2 | shared_stack_s2_cont @ 20480 | none | dGAP +0.155 [+0.135, +0.176]; P_G 0.161, P_S 0.324 | data/eval/shared_stack_s2_cont/compiled_8192.jsonl |
+| continuation to 2x budget | 2 | shared_stack_s2_cont @ 22528 | none | dGAP +0.162 [+0.143, +0.181]; P_G 0.177, P_S 0.346 | data/eval/shared_stack_s2_cont/compiled_10240.jsonl |
+| continuation to 2x budget | 2 | shared_stack_s2_cont @ 24576 | none | dGAP +0.175 [+0.152, +0.200]; P_G 0.064, P_S 0.246 | data/eval/shared_stack_s2_cont/compiled_12288.jsonl |
 | G0 prefix shared | - | untrained, 646 prompts | untrained model | 0-2 identical 646/646; 3-5 diff 0.866 | data/g0.json |
 | C4 sanity (whole) | - | saved_stack_s0 @ 8192 | none | removed 0.99 of the gap (gap +0.443 -> pinned +0.005) | data/eval_saved/saved_stack_s0/compiled_pinwhole_8192.jsonl |
 | C4 sanity (chunked) | - | saved_stack_s0 @ 8192 | none | removed 0.94 of the gap (gap +0.117 -> pinned +0.008) | data/eval_saved/saved_stack_s0/compiled_8192.jsonl |
@@ -39,13 +49,19 @@
 | off-cache read | 2 | shared_stack_s2 @ 12288, stock whole graphs | none | dGAP +0.007 [+0.003, +0.011] | data/eval/shared_stack_s2/compiled_nocache_12288.jsonl |
 | off-cache read | 0 | shared_penall_s0 @ 3840, stock whole graphs | none | dGAP -0.004 [-0.008, +0.000] | data/eval/shared_penall_s0/compiled_nocache_3840.jsonl |
 | off-cache read | 0 | shared_penall_s0 @ 12288, stock whole graphs | none | dGAP -0.003 [-0.007, +0.000] | data/eval/shared_penall_s0/compiled_nocache_12288.jsonl |
-| swap (where the gap reads) | - | own_stack_s0 @ 0 (untrained) | untrained model | raw cached gap +0.0102; share back: 0-2 0.12, 3-5 -0.02, 25-33 0.87 | data/swap/own_stack_s0_base_mps.json |
-| swap (where the gap reads) | - | own_stack_s0 @ 3840 | none | raw cached gap +0.3177; share back: 0-2 0.88, 3-5 -0.00, 25-33 0.06 | data/swap/own_stack_s0_mps.json |
-| swap (where the gap reads) | - | own_stack_s0 @ 8192 | none | raw cached gap +0.3070; share back: 0-2 0.96, 3-5 -0.00, 25-33 0.01 | data/swap/own_stack_s0_mps.json |
-| swap (where the gap reads) | - | own_stack_s0 @ 12288 | none | raw cached gap +0.2232; share back: 0-2 0.96, 3-5 0.00, 25-33 0.04 | data/swap/own_stack_s0_mps.json |
-| swap (where the gap reads) | - | shared_stack_s0 @ 0 (untrained) | untrained model | raw cached gap +0.0061; share back: 0-2 0.00, 3-5 0.08, 25-33 1.21 | data/swap/shared_stack_s0_base_mps.json |
-| swap (where the gap reads) | - | shared_stack_s0 @ 3840 | none | raw cached gap +0.0048; share back: 0-2 0.00, 3-5 -0.11, 25-33 0.96 | data/swap/shared_stack_s0_mps.json |
-| swap (where the gap reads) | - | shared_stack_s0 @ 12288 | none | raw cached gap +0.0123; share back: 0-2 0.00, 3-5 0.11, 25-33 0.86 | data/swap/shared_stack_s0_mps.json |
-| swap (where the gap reads) | - | shared_stack_s1 @ 3840 | none | raw cached gap +0.0036; share back: 0-2 0.00, 3-5 -0.09, 25-33 1.00 | data/swap/shared_stack_s1_mps.json |
-| swap (where the gap reads) | - | shared_stack_s1 @ 12288 | none | raw cached gap +0.0084; share back: 0-2 0.00, 3-5 -0.03, 25-33 0.78 | data/swap/shared_stack_s1_mps.json |
+| swap (where the gap reads) | - | own_stack_s0 @ 0 (untrained) | untrained model | raw cached gap +0.0102; share back: 0-2 0.12, 3-5 -0.02, 25-33 0.87, 3 -0.11 | data/swap/own_stack_s0_base_mps.json |
+| swap (where the gap reads) | - | own_stack_s0 @ 3840 | none | raw cached gap +0.3177; share back: 0-2 0.88, 3-5 -0.00, 25-33 0.06, 3 0.00 | data/swap/own_stack_s0_mps.json |
+| swap (where the gap reads) | - | own_stack_s0 @ 8192 | none | raw cached gap +0.3070; share back: 0-2 0.96, 3-5 -0.00, 25-33 0.01, 3 -0.00 | data/swap/own_stack_s0_mps.json |
+| swap (where the gap reads) | - | own_stack_s0 @ 12288 | none | raw cached gap +0.2232; share back: 0-2 0.96, 3-5 0.00, 25-33 0.04, 3 0.00 | data/swap/own_stack_s0_mps.json |
+| swap (where the gap reads) | - | seam_stack_s0 @ 0 (untrained) | untrained model | raw cached gap -0.0022; share back: 0-2 -0.00, 3-5 inserted 0.43, 28-36 template 0.62, 3 0.59 | data/swap/seam_stack_s0_base_mps.json |
+| swap (where the gap reads) | - | seam_stack_s0 @ 3840 | none | raw cached gap +0.1908; share back: 0-2 0.00, 3-5 inserted 0.99, 28-36 template -0.00, 3 0.99 | data/swap/seam_stack_s0_mps.json |
+| swap (where the gap reads) | - | seam_stack_s0 @ 12288 | none | raw cached gap +0.2292; share back: 0-2 0.00, 3-5 inserted 1.00, 28-36 template -0.01, 3 1.00 | data/swap/seam_stack_s0_mps.json |
+| swap (where the gap reads) | - | shared_stack_s0 @ 0 (untrained) | untrained model | raw cached gap +0.0061; share back: 0-2 0.00, 3-5 0.08, 25-33 1.21, 3 0.02 | data/swap/shared_stack_s0_base_mps.json |
+| swap (where the gap reads) | - | shared_stack_s0 @ 3840 | none | raw cached gap +0.0048; share back: 0-2 0.00, 3-5 -0.11, 25-33 0.96, 3 -0.22 | data/swap/shared_stack_s0_mps.json |
+| swap (where the gap reads) | - | shared_stack_s0 @ 12288 | none | raw cached gap +0.0123; share back: 0-2 0.00, 3-5 0.11, 25-33 0.86, 3 0.10 | data/swap/shared_stack_s0_mps.json |
+| swap (where the gap reads) | - | shared_stack_s1 @ 3840 | none | raw cached gap +0.0036; share back: 0-2 0.00, 3-5 -0.09, 25-33 1.00, 3 0.15 | data/swap/shared_stack_s1_mps.json |
+| swap (where the gap reads) | - | shared_stack_s1 @ 12288 | none | raw cached gap +0.0084; share back: 0-2 0.00, 3-5 -0.03, 25-33 0.78, 3 0.09 | data/swap/shared_stack_s1_mps.json |
+| swap (where the gap reads) | - | shared_stack_s2_cont @ 14336 | none | raw cached gap +0.0545; share back: 0-2 0.00, 3-5 0.22, 25-33 0.78, 3 0.22 | data/swap/shared_stack_s2_cont_mps.json |
+| swap (where the gap reads) | - | shared_stack_s2_cont @ 16384 | none | raw cached gap +0.1552; share back: 0-2 0.00, 3-5 0.60, 25-33 0.35, 3 0.60 | data/swap/shared_stack_s2_cont_mps.json |
+| swap (where the gap reads) | - | shared_stack_s2_cont @ 24576 | none | raw cached gap +0.1846; share back: 0-2 0.00, 3-5 0.73, 25-33 0.16, 3 0.73 | data/swap/shared_stack_s2_cont_mps.json |
 | C3 readout | - | untrained, shared cache, 200 test | shuffled-label null in file | max AUROC 3-33 0.979 (needs < 0.6) | data/predictors.json |

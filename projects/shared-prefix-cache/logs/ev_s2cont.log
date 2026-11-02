@@ -1,0 +1,56 @@
+W1101 20:00:45.066000 57524 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20844.18it/s]
+shared_stack_s2_cont 2048 eager {'px_mean': 0.248054453227669, 'top1_x_rate': 0.13, 's': 11.6} None
+shared_stack_s2_cont 4096 eager {'px_mean': 0.22020915580447764, 'top1_x_rate': 0.11, 's': 11.5} None
+shared_stack_s2_cont 6144 eager {'px_mean': 0.2281312074442394, 'top1_x_rate': 0.11, 's': 11.4} None
+shared_stack_s2_cont 8192 eager {'px_mean': 0.16120408513583243, 'top1_x_rate': 0.075, 's': 11.4} None
+shared_stack_s2_cont 10240 eager {'px_mean': 0.17705208148341625, 'top1_x_rate': 0.055, 's': 11.3} None
+shared_stack_s2_cont 12288 eager {'px_mean': 0.06355813458038029, 'top1_x_rate': 0.015, 's': 69.3} 0.015
+
+WATCHDOG: exit 0, peak footprint 1.84 GB
+      133.70 real        22.00 user         3.38 sys
+          1261076480  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              190993  page reclaims
+                 409  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  75  messages received
+                   0  signals received
+                3591  voluntary context switches
+               46519  involuntary context switches
+           460179830  instructions retired
+           294380648  cycles elapsed
+            12943816  peak memory footprint
+W1101 20:02:58.918000 57980 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5842.15it/s]
+shared_stack_s2_cont 2048 compiled {'px_mean': 0.30265862743370237, 'top1_x_rate': 0.19, 's': 7.3} None
+shared_stack_s2_cont 4096 compiled {'px_mean': 0.36965832801535725, 'top1_x_rate': 0.37, 's': 6.8} None
+shared_stack_s2_cont 6144 compiled {'px_mean': 0.3827724867640063, 'top1_x_rate': 0.375, 's': 7.4} None
+shared_stack_s2_cont 8192 compiled {'px_mean': 0.3235521597787738, 'top1_x_rate': 0.24, 's': 7.6} None
+shared_stack_s2_cont 10240 compiled {'px_mean': 0.34624716177582743, 'top1_x_rate': 0.275, 's': 7.8} None
+shared_stack_s2_cont 12288 compiled {'px_mean': 0.24605941267684103, 'top1_x_rate': 0.145, 's': 51.5} 0.145
+
+WATCHDOG: exit 0, peak footprint 2.05 GB
+       97.28 real        24.48 user         5.61 sys
+          1260732416  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              187905  page reclaims
+               30649  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  82  messages received
+                   0  signals received
+                8268  voluntary context switches
+              266824  involuntary context switches
+           393652872  instructions retired
+           254046904  cycles elapsed
+            12943816  peak memory footprint

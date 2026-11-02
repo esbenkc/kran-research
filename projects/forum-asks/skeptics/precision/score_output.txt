@@ -1,0 +1,14 @@
+--- strict
+random: real ask            95/100 = 95% (95% CI 89-98%)
+random: real ask AND AI     91/100 = 91% (95% CI 84-95%)
+random: statement faithful  97/100 = 97% (95% CI 92-99%)
+top10: ask for group's exp  26/36 = 72% (95% CI 56-84%)
+top10: people with a true ask for the group's experiment, by rank (listed n_askers in top50.json):
+    r1: 4 (listed 5), r2: 1 (listed 4), r3: 4 (listed 4), r4: 2 (listed 3), r5: 2 (listed 3), r6: 3 (listed 3), r7: 2 (listed 3), r8: 1 (listed 3), r9: 3 (listed 3), r10: 1 (listed 3)
+--- lenient
+random: real ask            99/100 = 99% (95% CI 95-100%)
+random: real ask AND AI     95/100 = 95% (95% CI 89-98%)
+random: statement faithful  99/100 = 99% (95% CI 95-100%)
+top10: ask for group's exp  33/36 = 92% (95% CI 78-97%)
+top10: people with a true ask for the group's experiment, by rank (listed n_askers in top50.json):
+    r1: 4 (listed 5), r2: 2 (listed 4), r3: 4 (listed 4), r4: 3 (listed 3), r5: 2 (listed 3), r6: 3 (listed 3), r7: 3 (listed 3), r8: 3 (listed 3), r9: 3 (listed 3), r10: 2 (listed 3)

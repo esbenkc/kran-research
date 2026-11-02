@@ -73,7 +73,10 @@ before the first RL step of any arm (the commit time is the record):
   7 finds most of it (the largest swap share among 3-5 / 6-11 / 12-24 / 25-33) in the group with the highest constant share
   on the untrained shared-cache inputs. (b) The per-group constant shares, with the 1/n floor (0.005 at n = 200),
   are written to `data/predictors.json` before RL. No absolute threshold: the old data cannot set one (pos 3 at
-  0.36 and the suffix at 0.14 lost to a 1.00 competitor).
+  0.36 and the suffix at 0.14 lost to a 1.00 competitor). Pre-data proxy numbers (Iris #12001/#12011, saved
+  grading vs emulated caches, prefix bit-identical): question tokens 3-11 0.014 (pos 3-5: 0.12 / 0.02 / 0.05),
+  constant tokens 12-33 0.005, floor 0.005. On this proxy, neither the question tokens nor the constant tokens
+  should carry a switch; if one forms, the rank claim names 3-5.
 - **Named pre-data prediction** (Tove #11987, from Kasper #11984 and Iris #12001): any switch that forms under the
   shared cache reads positions 3-5. Scored by the swap in section 7.
 

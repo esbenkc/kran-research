@@ -27,3 +27,18 @@ Main figure alone: title gives the result. One gap: the hollow square at ~71% (3
 
 ## Merge conditions (not cold-read items)
 Expert foldout still has "[CRITIC2]" and "$[USD]" placeholders; preview is one commit behind (Most -> Many tests).
+
+Dark mode (headless chrome --force-dark-mode, 23:45 PST): main figure title, legend, dots, diamond, dashed 10% line and column labels all readable; Figure 1 sits on its light card.
+
+## Fixes confirmed (blog 1d2227c, live on deploy-preview-149, 23:50 PST; each string grep -c = 1 on the preview HTML)
+- LOST 1 FIXED: TLDR adds "Above 1 run in 10, key use stays common with a route on offer." and "Our bolder written prediction is scored on its own."
+- LOST 2 FIXED: "At 1 call, the rule expects the storage-access group's key use, 21%." and "That group used the key in 32 of 150 runs (21%) ... So the 4-call group did not clear the storage-access group either."
+- LOST 3 FIXED: "In a small fifth check, the denial named the 4-call route but showed no key. Agents finished the route in 49 of 50 runs."
+- READ TWICE 1-3 FIXED: "was meant to have no denial. But in 45 of its 150 runs...", "The 18th sent the key in its call to the allowed route.", "The difference's 95% interval is -9 to +5 points."
+- READ TWICE 4-5 FIXED: caption is now 3 sentences, no semicolon, no comma splice; diamond, dashed line and squares are explained by the legend and the in-plot labels.
+- Optional polish, not blocking: "Above 1 run in 10, key use stays common with a route on offer." -> "We call key use common if more than 1 run in 10 uses it."
+Verdict: PASS.
+
+## Re-check of a473c64 (source on origin; preview not yet rebuilt at 23:53 PST)
+- TLDR 10% reason now: "A defender would care if 1 run in 10 still took the key with an allowed route named." Clearer than 1d2227c; LOST 1 stays fixed.
+- LOST 2/3 and READ TWICE fixes all still present (lines 55, 57, 61, 63, 67). PASS stands.

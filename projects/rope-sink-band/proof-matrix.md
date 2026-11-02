@@ -53,6 +53,9 @@
 | control: random band | B | Qwen3-1.7B zero [0, 5, 29] | random band (seed 1234) | cut 0.005 | data/Qwen3-1.7B/arms/B__R20.npz |
 | prereg: loss | B | Qwen3-1.7B zero band | median of 20 random bands | dloss +1.538 vs +0.100 nats | data/Qwen3-1.7B/arms/B__P.npz |
 | prereg: logit lens | B | Qwen3-1.7B zero band | median of 20 random bands | dlens -0.0216 vs -0.0042 | data/Qwen3-1.7B/arms/B__P.npz |
+| licence: temperature | B | Qwen3-1.7B zero band + row STD rescale | temperature | cut 0.522 | data/Qwen3-1.7B/arms/B__T.npz |
+| necessity: lead removed | B | Qwen3-1.7B first-token lead of band removed | none | cut 0.571 | data/Qwen3-1.7B/arms/B__GN.npz |
+| rival: slowest pairs | B | Qwen3-1.7B zero pairs 56-63 | none | cut 0.884 | data/Qwen3-1.7B/arms/B__LOW8.npz |
 | secondary: direct per-layer | B | Qwen3-1.7B band zeroed one layer at a time, upstream clean | random band | cut 0.628 vs random max 0.535 | data/Qwen3-1.7B/arms/B__base.npz |
 | per-head split | A+B | Qwen3-1.7B zero band, 225 sink heads (calibration s>=0.5) | none | head cut <0.1/0.1-0.5/0.5-0.9/>=0.9 = 73/9/7/136, median 0.99 | data/Qwen3-1.7B/results.json |
 | headline | A+B | Qwen3-1.7B pooled | 20 random bands | cut 0.548, random median 0.004, max 0.428, 0/20 >= band; status UNCONFIRMED | data/Qwen3-1.7B/results.json |

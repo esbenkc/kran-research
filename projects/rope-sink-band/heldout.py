@@ -1,7 +1,7 @@
 """PREREG s6 arms on held-out sets A and B. Resumable: each arm is saved to data/<tag>/arms/<set>__<arm>.npz and
 skipped when that file exists. Order: status arms (base, P, R1..R20 on A then B) first, then licence and secondary
 rows. A stop file data/<tag>/STOP halts after the current arm.
-Usage: python heldout.py Qwen/Qwen3-1.7B [stage ...]   stages: status licence licenceB a2 windows"""
+Usage: python heldout.py Qwen/Qwen3-1.7B [stage ...]   stages (run in order): status[:A|:B] core:A core:B rand8 esub a2 windows"""
 import json
 import os
 import sys
@@ -12,7 +12,7 @@ import numpy as np
 import rsb
 
 repo = sys.argv[1]
-stages = sys.argv[2:] or ["status", "licence", "a2", "windows", "licenceB"]
+stages = sys.argv[2:] or ["status:A", "core:A", "status:B", "core:B", "rand8", "esub", "a2"]
 tag = repo.split("/")[-1]
 OUT = rsb.DATA / tag
 ARMS = OUT / "arms"
@@ -29,44 +29,33 @@ N_SUB = int(os.environ.get("RSB_NSUB", "128"))  # licence E/SUF-R rows may run o
 
 
 def queue():
+    """Arms in the order of the stage tokens on the command line."""
     q = []
-    if "core" in stages:  # licence single arms first (T, GN, SUF, LOW8) on A and B
-        for s in ("A", "B"):
-            q += [(s, "T", ("temp", B), {}), (s, "GN", ("gapin", B), {}), (s, "SUF", ("gapout", B), {}),
-                  (s, "LOW8", ("zero", band["LOW_8"]), {})]
-    if "rand8" in stages:  # exploratory (DEVIATION D8): 20 random 8-pair sets, seed 8888, first 32 prompts of set A
-        rng8 = np.random.default_rng(8888)
-        R8 = [sorted(rng8.choice(64, 8, replace=False).tolist()) for _ in range(20)]
-        q += [("A32", f"R8_{i+1:02d}", ("zero", r), {}) for i, r in enumerate(R8)]
-    if "esub" in stages:  # energy-matched and keep-only random rows on set A, first N_SUB prompts
-        sn = "A" if N_SUB == 128 else f"A{N_SUB}"
-        # base, P, SUF for a subset are sliced from the set-A arms in analyze.py (same prompts, same code)
-        q += [(sn, f"E{i+1:02d}", ("zero", e), {}) for i, e in enumerate(E)]
-        q += [(sn, f"SUFR{i+1:02d}", ("gapout", r), {}) for i, r in enumerate(R)]
-    for st in stages:  # 'status:A' style tokens run one set, in the given order
-        if st.startswith("status:"):
-            s = st.split(":")[1]
-            q.append((s, "base", ("clean", None), dict(direct=True, lens=True)))
-            q.append((s, "P", ("zero", B), dict(lens=True)))
-            q += [(s, f"R{i+1:02d}", ("zero", r), dict(lens=True)) for i, r in enumerate(R)]
-        if st.startswith("core:"):
+    for st in stages:
+        if st.startswith("status:") or st == "status":
+            for s in ([st.split(":")[1]] if ":" in st else ["A", "B"]):
+                q.append((s, "base", ("clean", None), dict(direct=True, lens=True)))
+                q.append((s, "P", ("zero", B), dict(lens=True)))
+                q += [(s, f"R{i+1:02d}", ("zero", r), dict(lens=True)) for i, r in enumerate(R)]
+        elif st.startswith("core:"):
             s = st.split(":")[1]
             q += [(s, "GN", ("gapin", B), {}), (s, "LOW8", ("zero", band["LOW_8"]), {}), (s, "T", ("temp", B), {}),
                   (s, "SUF", ("gapout", B), {})]
-    if "status" in stages:
-        for s in ("A", "B"):
-            q.append((s, "base", ("clean", None), dict(direct=True, lens=True)))
-            q.append((s, "P", ("zero", B), dict(lens=True)))
-            q += [(s, f"R{i+1:02d}", ("zero", r), dict(lens=True)) for i, r in enumerate(R)]
-    for s in [x for x, st in (("A", "licence"), ("B", "licenceB")) if st in stages]:
-        q += [(s, "T", ("temp", B), {}), (s, "GN", ("gapin", B), {}), (s, "SUF", ("gapout", B), {}),
-              (s, "LOWk", ("zero", band["LOW_k"]), {}), (s, "LOW8", ("zero", band["LOW_8"]), {})]
-        q += [(s, f"E{i+1:02d}", ("zero", e), {}) for i, e in enumerate(E)]
-        q += [(s, f"SUFR{i+1:02d}", ("gapout", r), {}) for i, r in enumerate(R)]
-    if "a2" in stages:
-        q += [("A2", "base", ("clean", None), {}), ("A2", "P", ("zero", B), {})]
-    if "windows" in stages:
-        q += [("Aw", f"W{i:02d}", ("zero", list(range(i, i + k))), {}) for i in range(0, 64 - k + 1)]
+        elif st == "rand8":  # exploratory (DEVIATION D8): 20 random 8-pair sets, seed 8888, first 32 prompts of set A
+            rng8 = np.random.default_rng(8888)
+            R8 = [sorted(rng8.choice(64, 8, replace=False).tolist()) for _ in range(20)]
+            q += [("A32", f"R8_{i+1:02d}", ("zero", r), {}) for i, r in enumerate(R8)]
+        elif st == "esub":  # energy-matched and keep-only random rows on set A, first N_SUB prompts (D9)
+            sn = "A" if N_SUB == 128 else f"A{N_SUB}"
+            # base, P, SUF for a subset are sliced from the set-A arms in analyze.py (same prompts, same batches)
+            q += [(sn, f"E{i+1:02d}", ("zero", e), {}) for i, e in enumerate(E)]
+            q += [(sn, f"SUFR{i+1:02d}", ("gapout", r), {}) for i, r in enumerate(R)]
+        elif st == "a2":
+            q += [("A2", "base", ("clean", None), {}), ("A2", "P", ("zero", B), {})]
+        elif st == "windows":
+            q += [("Aw", f"W{i:02d}", ("zero", list(range(i, i + k))), {}) for i in range(0, 64 - k + 1)]
+        else:
+            raise SystemExit(f"unknown stage {st}")
     return q
 
 

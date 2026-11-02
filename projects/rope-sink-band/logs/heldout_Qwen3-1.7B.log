@@ -88,3 +88,48 @@ queue done ['status:A', 'core:A', 'status:B']
         731544939310  cycles elapsed
           7284917880  peak memory footprint
 W1102 08:23:02.558000 73168 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+A32 R8_01 kind=zero S=0.4368 sink1=0.0150 loss=2.8296 lens=nan k0=f7ca0b520fdaebaf 24s
+A32 R8_02 kind=zero S=0.4626 sink1=0.0156 loss=2.3621 lens=nan k0=f7ca0b520fdaebaf 25s
+A32 R8_03 kind=zero S=0.3225 sink1=0.0115 loss=3.0703 lens=nan k0=f7ca0b520fdaebaf 26s
+A32 R8_04 kind=zero S=0.4162 sink1=0.0145 loss=3.1662 lens=nan k0=f7ca0b520fdaebaf 26s
+A32 R8_05 kind=zero S=0.4725 sink1=0.0154 loss=2.2912 lens=nan k0=f7ca0b520fdaebaf 24s
+A32 R8_06 kind=zero S=0.4775 sink1=0.0157 loss=2.3170 lens=nan k0=f7ca0b520fdaebaf 23s
+A32 R8_07 kind=zero S=0.3741 sink1=0.0129 loss=2.6131 lens=nan k0=f7ca0b520fdaebaf 23s
+A32 R8_08 kind=zero S=0.2943 sink1=0.0104 loss=3.0989 lens=nan k0=f7ca0b520fdaebaf 23s
+A32 R8_09 kind=zero S=0.4601 sink1=0.0150 loss=2.3155 lens=nan k0=f7ca0b520fdaebaf 23s
+A32 R8_10 kind=zero S=0.3192 sink1=0.0115 loss=3.1306 lens=nan k0=f7ca0b520fdaebaf 28s
+A32 R8_11 kind=zero S=0.4423 sink1=0.0149 loss=2.5787 lens=nan k0=f7ca0b520fdaebaf 34s
+A32 R8_12 kind=zero S=0.3330 sink1=0.0123 loss=3.9451 lens=nan k0=f7ca0b520fdaebaf 33s
+A32 R8_13 kind=zero S=0.3590 sink1=0.0129 loss=3.3470 lens=nan k0=f7ca0b520fdaebaf 35s
+A32 R8_14 kind=zero S=0.2066 sink1=0.0080 loss=4.1595 lens=nan k0=f7ca0b520fdaebaf 35s
+A32 R8_15 kind=zero S=0.4826 sink1=0.0159 loss=2.2076 lens=nan k0=f7ca0b520fdaebaf 37s
+A32 R8_16 kind=zero S=0.4428 sink1=0.0149 loss=2.6226 lens=nan k0=f7ca0b520fdaebaf 31s
+A32 R8_17 kind=zero S=0.4156 sink1=0.0144 loss=2.6469 lens=nan k0=f7ca0b520fdaebaf 29s
+A32 R8_18 kind=zero S=0.4794 sink1=0.0160 loss=2.3085 lens=nan k0=f7ca0b520fdaebaf 24s
+A32 R8_19 kind=zero S=0.4598 sink1=0.0153 loss=2.3129 lens=nan k0=f7ca0b520fdaebaf 24s
+A32 R8_20 kind=zero S=0.4225 sink1=0.0145 loss=2.5708 lens=nan k0=f7ca0b520fdaebaf 24s
+STOP file, halting
+queue done ['core:B', 'rand8', 'esub']
+      559.00 real        12.41 user        34.10 sys
+          1903493120  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              -32939  page reclaims
+              259175  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  76  messages received
+                   0  signals received
+               10532  voluntary context switches
+              141200  involuntary context switches
+        252363039842  instructions retired
+        156090237743  cycles elapsed
+          5781620152  peak memory footprint
+W1102 08:32:30.013000 78577 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+B GN kind=gapin S=0.2029 sink1=0.0053 loss=4.1005 lens=nan k0=08d5fccb504e245f 115s
+B LOW8 kind=zero S=0.0548 sink1=0.0022 loss=6.6003 lens=nan k0=08d5fccb504e245f 97s
+B T kind=temp S=0.2262 sink1=0.0030 loss=4.4997 lens=nan k0=08d5fccb504e245f 125s
+B SUF kind=gapout S=0.2236 sink1=0.2132 loss=2.9462 lens=nan k0=08d5fccb504e245f 127s

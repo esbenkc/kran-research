@@ -83,4 +83,6 @@
 | swap (where the gap reads) | - | shared_stack_s2_cont @ 14336 | none | raw cached gap +0.0545; share back: 0-2 0.00, 3-5 0.22, 25-33 0.78, 3 0.22 | data/swap/shared_stack_s2_cont_mps.json |
 | swap (where the gap reads) | - | shared_stack_s2_cont @ 16384 | none | raw cached gap +0.1552; share back: 0-2 0.00, 3-5 0.60, 25-33 0.35, 3 0.60 | data/swap/shared_stack_s2_cont_mps.json |
 | swap (where the gap reads) | - | shared_stack_s2_cont @ 24576 | none | raw cached gap +0.1846; share back: 0-2 0.00, 3-5 0.73, 25-33 0.16, 3 0.73 | data/swap/shared_stack_s2_cont_mps.json |
+| swap (where the gap reads) | - | shared_user_s0 @ 10240 | none | raw cached gap +0.1147; share back: 0-2 0.00, 3-5 0.00, 25-33 0.98, 3 0.00 | data/swap/shared_user_s0_mps.json |
+| swap (where the gap reads) | - | shared_user_s0 @ 12288 | none | raw cached gap +0.1985; share back: 0-2 0.00, 3-5 0.03, 25-33 0.97, 3 0.03 | data/swap/shared_user_s0_mps.json |
 | C3 readout | - | untrained, shared cache, 200 test | shuffled-label null in file | max AUROC 3-33 0.979 (needs < 0.6) | data/predictors.json |

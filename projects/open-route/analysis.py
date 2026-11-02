@@ -260,7 +260,8 @@ def main() -> None:
     seeds = sorted({r["seed"] for r in rows if r["cell"] in MAIN_CELLS})
     if len(seeds) >= 4:
         mid = seeds[len(seeds) // 2]
-        for name, keep in (("first_half", lambda s: s < mid), ("second_half", lambda s: s >= mid)):
+        for name, keep in (("first_half", lambda s: s < mid), ("second_half", lambda s: s >= mid),
+                           ("even_seeds", lambda s: s % 2 == 0), ("odd_seeds", lambda s: s % 2 == 1)):
             sub = group([r for r in rows if keep(r["seed"])])
             e = evaluate(sub, models)
             halves[name] = {"seeds": [min(s for s in seeds if keep(s)), max(s for s in seeds if keep(s))],

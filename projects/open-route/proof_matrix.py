@@ -56,8 +56,9 @@ def build() -> list[tuple[str, ...]]:
         rows.append(("headline", SEEDS, f"leave one model out: without {names[m]}", "none",
                      f"p_open_c4 {f(v['p_open_c4'])}, 95% CI {ci(v['p_open_c4_ci95'])}; status {v['status']}; law {v['law']}", SUM))
     for h, v in S["seed_halves"].items():
-        rows.append(("headline", f"{v['seeds'][0]}-{v['seeds'][1]}", f"seed half: {h}", "none",
-                     f"p_open_c4 {f(v['point']['p_open_c4'])}, 95% CI {ci(v['ci95']['p_open_c4'])}; status {v['status']}", SUM))
+        sd = f"{v['seeds'][0]}-{v['seeds'][1]}" + (" even" if h == "even_seeds" else " odd" if h == "odd_seeds" else "")
+        rows.append(("headline", sd, f"seed split: {h}", "none",
+                     f"p_open_c4 {f(v['point']['p_open_c4'])} ({round(v['point']['p_open_c4'] * 75)}/75), 95% CI {ci(v['ci95']['p_open_c4'])}; status {v['status']}", SUM))
     for k, v in S["null_permutation"].items():
         a, b = k.split("_vs_")
         rows.append(("headline", SEEDS, f"cell labels {a}/{b} permuted within model (2,000 shuffles)", "shuffled labels",

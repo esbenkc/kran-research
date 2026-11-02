@@ -22,8 +22,10 @@ Built by `proof_matrix.py` from `results/summary.json` (`analysis.py`; tags from
 | headline | 0-29 | leave one model out: without Gemini 3.5 Flash-Lite | none | p_open_c4 +0.150, 95% CI [+0.092, +0.217]; status UNCONFIRMED; law failed | results/summary.json |
 | headline | 0-29 | leave one model out: without GPT-5.4 mini | none | p_open_c4 +0.125, 95% CI [+0.075, +0.183]; status UNCONFIRMED; law failed | results/summary.json |
 | headline | 0-29 | leave one model out: without GPT-5.4 nano | none | p_open_c4 +0.092, 95% CI [+0.042, +0.142]; status UNCONFIRMED; law failed | results/summary.json |
-| headline | 0-14 | seed half: first_half | none | p_open_c4 +0.120, 95% CI [+0.053, +0.200]; status UNCONFIRMED | results/summary.json |
-| headline | 15-29 | seed half: second_half | none | p_open_c4 +0.120, 95% CI [+0.053, +0.200]; status UNCONFIRMED | results/summary.json |
+| headline | 0-28 even | seed split: even_seeds | none | p_open_c4 +0.080 (6/75), 95% CI [+0.027, +0.147]; status UNCONFIRMED | results/summary.json |
+| headline | 0-14 | seed split: first_half | none | p_open_c4 +0.120 (9/75), 95% CI [+0.053, +0.200]; status UNCONFIRMED | results/summary.json |
+| headline | 1-29 odd | seed split: odd_seeds | none | p_open_c4 +0.160 (12/75), 95% CI [+0.080, +0.240]; status UNCONFIRMED | results/summary.json |
+| headline | 15-29 | seed split: second_half | none | p_open_c4 +0.120 (9/75), 95% CI [+0.053, +0.200]; status UNCONFIRMED | results/summary.json |
 | headline | 0-29 | cell labels blocked/open_c4 permuted within model (2,000 shuffles) | shuffled labels | observed +0.847; null 95% [-0.113, +0.113]; share abs(null) >= abs(obs) 0.0000 | results/summary.json |
 | headline | 0-29 | cell labels open_c1/floor permuted within model (2,000 shuffles) | shuffled labels | observed -0.107; null 95% [-0.080, +0.067]; share abs(null) >= abs(obs) 0.0120 | results/summary.json |
 | headline | 0-29 | cell labels open_c4/floor permuted within model (2,000 shuffles) | shuffled labels | observed -0.093; null 95% [-0.080, +0.080]; share abs(null) >= abs(obs) 0.0320 | results/summary.json |

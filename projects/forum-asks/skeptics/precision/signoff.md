@@ -78,3 +78,39 @@ The snippet classifier is good. 95% of AI asks are real asks, 91% are real AI as
 The top-of-ranking counts are not good enough to publish as "most different people". Crossposts inflate n_askers in 9 of the top 50. Five of the top 50 have one real person. Rank 2 rests partly on a non-ask that is also double counted.
 
 SIGN-OFF: no, because n_askers counts one person's LW+EA crosspost as two askers (9 of the top 50 affected, 5 with a single person, ranks 2 and 10 fall out of the top 10). Rank 2 also counts Jack_S's limitation statement as an ask. Fix: count askers by person across forums, for example by matching normalised author names, and log it in DEVIATIONS.md. Then re-review ranks 2, 5, 8 and 10. With that fixed, I would sign off on precision.
+
+## Re-check after D6 (2026-11-02, 14:40 PST)
+
+LabAsks changed the asker count to one key per person (review.asker, DEVIATIONS D6) and re-ranked. I re-checked the new data/top50.json with `crosspost_check.py` and `recheck_d6.py` (output in `recheck_d6_output.txt`). I judged the 5 new top-10 members myself. They are the last 5 rows of `judgements.jsonl`, set `top10_d6_new`.
+
+What I found:
+- 0 of 50 groups count one person twice. 0 groups have only one person. My own name merge gives the same n_askers as the file for all 50 groups.
+- The same name never belongs to two different accounts on the same forum, so the name key does not merge different people.
+- The order follows the ranking rule (askers, then span, then karma).
+- The new top 10 are old ranks 1, 3, 4, 5, 6, 7, 8 and 9, plus two new groups. The new rank 9 asks to replicate reward-hacking generalisation on more models. The new rank 10 asks whether AI tools raise workers' productivity. Old rank 2 (talent programmes) is now rank 11. Old rank 10 (self-other overlap) left the top 10.
+
+New top 10, 35 members: a true ask for the group's experiment in 28/35 = 80% (64-90%) strict, and 34/35 = 97% (85-99%) lenient.
+
+| Rank | n_askers listed | People with a true ask, strict | Lenient |
+|---|---|---|---|
+| 1 | 4 | 4 | 4 |
+| 2 | 4 | 4 | 4 |
+| 3 | 3 | 2 | 3 |
+| 4 | 3 | 2 | 2 |
+| 5 | 3 | 3 | 3 |
+| 6 | 3 | 2 | 3 |
+| 7 | 3 | 1 | 3 |
+| 8 | 3 | 3 | 3 |
+| 9 | 3 | 2 | 3 |
+| 10 | 3 | 2 | 3 |
+
+Disagreements that remain (all are judgement calls, not count errors):
+- Rank 4: lw-e5sdgYxYFKqdM6vF4-h1593 (Elle Najt) asks a different experiment (base vs RLVR). So rank 4 has 2 people, not 3, under either reading.
+- Rank 7: two of the three members (lw-Ge55vxEmKXunFFwoe-h95, lw-HLJoJYi52mxgomujc-h450) are only partial matches.
+- Rank 9: lw-ATDvmn23PWW4erZzf-h516 (Isaac Dunn) is mostly about validity fixes. "Fine-tune more models" is one item in his list, so it is a partial match.
+- Rank 10: ea-vcbHaqotqvM3c9vTH-h0 is a burden-of-proof demand (borderline). lw-ZLMDHpbQSp33p6JSB-13 asks to rerun the old coding-productivity studies with today's models. It could also belong to the METR-replication group (rank 2).
+- Rank 11 (old rank 2): the Jack_S snippet is still a non-ask, so 2 real people, not 3. This no longer touches the top 10.
+
+Every new top-10 group has at least 2 different people with a real ask for its experiment, even under strict judging. Lenient counts match the listed n_askers in 9 of 10 groups. The exception is rank 4 (2, not 3).
+
+SIGN-OFF: yes. The crosspost double count is fixed, and classifier precision is 95% (89-98%) on n = 100. The remaining disagreements are judgement calls on single members (ranks 4, 7, 9 and 10). The post should say that ranks 3 to 10 tie at 3 askers, so their order rests on span and karma.

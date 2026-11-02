@@ -66,7 +66,7 @@ noise ~ 1/n = 0.005). Files: research_checks/fo_old_eager_vs_{compiled,emu}.json
 
 **Why the prefix is the natural carrier (sinks):**
 - Ran-Milo, *Attention Sinks Are Provably Necessary in Softmax Transformers: Evidence from Trigger-Conditional Tasks*,
-  arXiv 2603.11487 (ACL 2026 short). Proves that a trigger-conditional behaviour in softmax attention needs a sink to
+  arXiv 2603.11487 (ACL 2026 short paper: https://aclanthology.org/2026.acl-short.8/, title checked 2026-11-01). Proves that a trigger-conditional behaviour in softmax attention needs a sink to
   hold the default state. With a shared prefix cache the sink still exists and is identical in both builds, so the
   model keeps its default anchor but loses the build cue that rode on it. A switch would then need the trigger (the
   build) elsewhere.

@@ -14,7 +14,7 @@ USENIX/CCS/S&P 2026 proceedings outside arXiv, OpenReview.
 | | Gupta & Jenner, RL-Obfuscation, arXiv 2506.14261 (2025-06-17) | RL teaches 7-14B models to evade latent-space monitors | The cue is a monitor's gradient/score, not a software build |
 | | our /stack-conditional (Oct 30) | Reward alone opened a +44 / +22 point serving-minus-grading gap at 8,192 updates; switch read at positions 0-2 | Any fix |
 | B. A shared prefix cache removes the prefix fingerprint but moves a constant fingerprint to the first uncached token, because a token's rounding depends only on the tokens up to it | Wimbauer et al., Fingerprinting Inference Systems of LLMs, arXiv 2605.29979 (2026-05-28) | Black-box: build/engine/hardware deviations propagate to text and identify the inference system | Position structure of the fingerprint; prefix caches |
-| | Ran-Milo, arXiv 2603.11487 (ACL 2026 short) | Proves trigger-conditional behaviour in softmax attention needs an attention sink | Builds as triggers; what happens when the sink is made identical |
+| | Ran-Milo, arXiv 2603.11487 (ACL 2026 short paper: https://aclanthology.org/2026.acl-short.8/, title checked 2026-11-01) | Proves trigger-conditional behaviour in softmax attention needs an attention sink | Builds as triggers; what happens when the sink is made identical |
 | | our /massive-dims, /sink-value (Oct 31, Nov 1) | 88-96% of the old switch at positions 0-2; key-only copy moved 67/98/99% | Removing the key route at its source |
 | C. Pinning the grading build's prefix cache at serving time removes most of an already-trained switch (C4: 0.935 / 0.967 / 0.712 / 0.942 chunked) | FloatDoor App E (LayerCast removes its channel) | A precision change at inference kills a supervised switch | A prefix-only change |
 

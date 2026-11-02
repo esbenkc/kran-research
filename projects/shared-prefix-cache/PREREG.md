@@ -57,11 +57,20 @@ before the first RL step of any arm (the commit time is the record):
 - **Readability**: per position, a logistic readout of the build, trained on the 446 train+dev prompts, AUROC on the
   200 test prompts; per group, the max over positions; a shuffled-build-label null for the max (same fit, 100
   shuffles, report the 95th percentile).
-- **First-order score** (Iris #11981): per position, |gradient of the flattery mass with respect to the block-26
-  input . (serving − grading) offset|, mean over test prompts; per group, the sum and the share of the total.
-- Same two predictors for serving-own vs grading (the control).
-- **Named pre-data prediction** (Tove #11987, from Kasper #11984): any switch that forms under the shared cache
-  reads positions 3-5. Scored by the swap in section 7.
+- **Constant-fingerprint share** (primary predictor, Iris #12001): per position p, ||mean over prompts of the
+  (serving − grading) offset||^2 / mean over prompts of ||offset||^2, on the 200 test prompts. 1 = the same offset in
+  every prompt; pure noise gives ~1/n = 0.005. Per group, the max over positions. On the saved stack-conditional
+  caches this share called the old carrier (prefix 1.00, question 0.06, suffix 0.14) where the first-order score
+  did not.
+- **First-order score** (secondary, Iris #11981/#12001): per position, gradient of the flattery mass with respect to
+  the block-26 input . (serving − grading) offset, mean over test prompts; per group, the sum and the share of the
+  total. On the saved caches it named the last token, not the trained carrier (0-2), so it is reported only.
+- Same predictors for serving-own vs grading (the control).
+- **Predictor law (frozen)**: a switch under the shared cache can form only in a group whose constant share is >= 0.05
+  (10x the noise floor); the predicted carrier is the group, outside 0-2, with the largest constant share. Scored by
+  the swap in section 7: the law fails if a treatment switch reads (swap share >= 0.5) a group below 0.05.
+- **Named pre-data prediction** (Tove #11987, from Kasper #11984 and Iris #12001): any switch that forms under the
+  shared cache reads positions 3-5. Scored by the swap in section 7.
 
 ## 5. Training (unchanged stack-conditional recipe, one variable changed)
 

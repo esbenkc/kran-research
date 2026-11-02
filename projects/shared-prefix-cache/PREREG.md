@@ -36,8 +36,11 @@ Source: the room goal, message #11968.
   **own prefix cache** (positive control) = each build makes its own prefix cache. The two arms differ in one thing
   only: who made the serving build's prefix cache.
 - **takeoff step** = 2,560 updates (first 10-point gap in both saved stack-conditional runs). 1.5x takeoff = 3,840.
-- Position groups: **0-2** (prefix), **3-5** (first three tokens after the prefix), **6-24** (rest of the question
-  and instruction), **25-33** (template suffix: instruction end, `<|im_end|>`, `<|im_start|>assistant`, newline).
+- Position groups (Iris #12011, Tove #12013; token identity over all 646 prompts): **0-2** prefix (constant);
+  **3-5** first question tokens; **6-11** rest of the question (pos 11 = '?\n\n' in 630/646); **12-24** the fixed
+  instruction 'Start your reply with either "Great question!" or "Sure."' (constant); **25-33** template suffix
+  (`<|im_end|>`, `<|im_start|>assistant`, empty think block; constant). 3-11 = **question tokens**; 12-33 =
+  **constant tokens**. Never call 12-33 question tokens.
 
 ## 3. Gate G0 (stop gate, before any predictor or RL; Bruno T1, reviewed by Vera)
 
@@ -60,14 +63,14 @@ before the first RL step of any arm (the commit time is the record):
 - **Constant-fingerprint share** (primary predictor, Iris #12001): per position p, ||mean over prompts of the
   (serving − grading) offset||^2 / mean over prompts of ||offset||^2, on the 200 test prompts. 1 = the same offset in
   every prompt; pure noise gives ~1/n = 0.005. Per group, the max over positions. On the saved stack-conditional
-  caches this share called the old carrier (prefix 1.00, question 0.06, suffix 0.14) where the first-order score
+  caches this share called the old carrier (prefix 1.00, positions 3-24 0.06, 25-33 0.14) where the first-order score
   did not.
 - **First-order score** (secondary, Iris #11981/#12001): per position, gradient of the flattery mass with respect to
   the block-26 input . (serving − grading) offset, mean over test prompts; per group, the sum and the share of the
   total. On the saved caches it named the last token, not the trained carrier (0-2), so it is reported only.
 - Same predictors for serving-own vs grading (the control).
 - **Predictor claims (frozen, Tove #12005)**: (a) RANK: if a switch forms under the shared cache, the swap of section
-  7 finds most of it (the largest swap share among 3-5 / 6-24 / 25-33) in the group with the highest constant share
+  7 finds most of it (the largest swap share among 3-5 / 6-11 / 12-24 / 25-33) in the group with the highest constant share
   on the untrained shared-cache inputs. (b) The per-group constant shares, with the 1/n floor (0.005 at n = 200),
   are written to `data/predictors.json` before RL. No absolute threshold: the old data cannot set one (pos 3 at
   0.36 and the suffix at 0.14 lost to a 1.00 competitor).
@@ -122,7 +125,7 @@ serving graph with no cache (stack-conditional's serving build). It shows what t
 ## 7. Localisation (every trained model with dGAP >= 0.05 at any checkpoint; Bruno T7)
 
 On recorded block-26 inputs with the merged tail: give the grading input the serving input's values at one group
-(0-2 / 3-5 / 6-24 / 25-33) and report the share of the serving gap it brings back; also the reverse swap. Run at
+(0-2 / 3-5 / 6-11 / 12-24 / 25-33) and report the share of the serving gap it brings back; also the reverse swap. Run at
 the checkpoint with the largest dGAP and at 12,288. The named prediction (section 4) holds if 3-5 alone brings back
 >= 0.5 of the gap in every such treatment model. If a switch forms, the sink-value key/value copy at the winning
 group follows as exploratory work.

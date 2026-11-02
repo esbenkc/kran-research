@@ -1,0 +1,24 @@
+(1) within-model arm-label permutation, 10,000 shuffles
+  key     open_c4-floor: obs -0.0933  null95 [-0.0800, +0.0800]  two-sided p 0.0252
+  key     open_c1-open_c4: obs -0.0133  null95 [-0.0667, +0.0667]  two-sided p 0.8459
+  key     blocked-open_c4: obs +0.8467  null95 [-0.1133, +0.1133]  two-sided p 9.999e-05
+  key     open_c1-floor: obs -0.1067  null95 [-0.0800, +0.0800]  two-sided p 0.009699
+  key_out open_c4-floor: obs -0.1000  null95 [-0.0733, +0.0733]  two-sided p 0.0139
+  key_out open_c1-open_c4: obs -0.0067  null95 [-0.0733, +0.0733]  two-sided p 1
+  key_out blocked-open_c4: obs +0.8533  null95 [-0.1067, +0.1200]  two-sided p 9.999e-05
+  key_out open_c1-floor: obs -0.1067  null95 [-0.0800, +0.0800]  two-sided p 0.009799
+
+(2) leave-one-model-out s5 status
+  drop claude-haiku-4-5-2025100 key: UNCONFIRMED p_c4 0.1167 [0.0583, 0.1750] | key_out: UNCONFIRMED p_c4 0.1083 [0.0583, 0.1667]
+  drop gemini-3.1-flash-lite    key: UNCONFIRMED p_c4 0.1167 [0.0667, 0.1750] | key_out: UNCONFIRMED p_c4 0.1083 [0.0583, 0.1667]
+  drop gemini-3.5-flash-lite    key: UNCONFIRMED p_c4 0.1500 [0.0917, 0.2167] | key_out: UNCONFIRMED p_c4 0.1417 [0.0833, 0.2083]
+  drop gpt-5.4-mini             key: UNCONFIRMED p_c4 0.1250 [0.0750, 0.1833] | key_out: UNCONFIRMED p_c4 0.1250 [0.0750, 0.1833]
+  drop gpt-5.4-nano             key: UNCONFIRMED p_c4 0.0917 [0.0417, 0.1500] | key_out: UNCONFIRMED p_c4 0.0833 [0.0417, 0.1333]
+
+(3) seed halves (pooled p, equal weight)
+  even: key: blocked=0.973 open_c1=0.107 open_c4=0.080 floor=0.240 | key_out: blocked=0.973 open_c1=0.107 open_c4=0.080 floor=0.240
+  odd: key: blocked=0.960 open_c1=0.107 open_c4=0.160 floor=0.187 | key_out: blocked=0.960 open_c1=0.107 open_c4=0.147 floor=0.187
+
+(4) model-cluster bootstrap (models then runs), B=4000, p_open_c4
+  key: p_c4 0.1200 cluster CI [0.0400, 0.2002]  (edge 0.1025)
+  key_out: p_c4 0.1133 cluster CI [0.0333, 0.2067]  (edge 0.1025)

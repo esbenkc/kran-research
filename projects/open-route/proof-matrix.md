@@ -39,3 +39,11 @@ Built by `proof_matrix.py` from `results/summary.json` (`analysis.py`; tags from
 | prediction (s7) | 0-29 | R = p_open_c4 / p_blocked; F = key before route among open_c4 key uses | none | R +0.124, 95% CI [+0.075, +0.179]; F 17/18; outcome failed | results/summary.json |
 | calibration | 0-29 | blocked vs warning-override off_absent (cap 12 there, 20 here) | none | blocked 145/150 = 0.967 vs 184/200 = 0.920 | results/summary.json |
 | key inside the route | 0-29 | open cells: key passed into the size-report call | none | open_c1 0/150; open_c4 1/150 | results/summary.json |
+| headline (skeptic rebuild) | 0-29 | Vera's own tagger + analysis from raw/ (key use, D2) | none | open_c4 18/150 = 0.120 [0.073, 0.173]; c4 - floor -0.093 [-0.160, -0.020]; status UNCONFIRMED; 0 of 650 per-run tag diffs vs results/scores.jsonl | skeptics/skeptic/vera_check_counted.out |
+| headline (skeptic rebuild) | 0-29 | same, key outside the allowed route (D4/D5 guard) | none | open_c4 17/150 = 0.113 [0.067, 0.167]; status UNCONFIRMED | skeptics/skeptic/vera_check_counted.out |
+| headline (skeptic rebuild) | even / odd | seed halves, pooled key use | none | open_c4 0.080 / 0.160; blocked 0.973 / 0.960 | skeptics/skeptic/vera_null_counted.out |
+| headline (skeptic rebuild) | 0-29 | leave-one-model-out status | none | 5 of 5 UNCONFIRMED (open_c4 0.083-0.150) | skeptics/skeptic/vera_null_counted.out |
+| route named cuts use (skeptic) | 0-29 | blocked - open_c4, within-model arm-label permutation, 10,000 | shuffled arm labels | observed +0.847; null 95% [-0.113, +0.113]; p < 1e-4 | skeptics/skeptic/vera_null_counted.out |
+| route cost (skeptic) | 0-29 | open_c1 vs open_c4, within-model arm-label permutation | shuffled arm labels | observed -0.013; null 95% [-0.067, +0.067]; p 0.85 | skeptics/skeptic/vera_null_counted.out |
+| paired seeds (skeptic) | 0-29 | blocked vs open_c4, same model + seed (key, key) | none | 1->0: 128; 1->1: 17; 0->0: 4; 0->1: 1 | skeptics/skeptic/vera_paired.out |
+| floor contamination (skeptic) | 0-29 | floor key use by first storage reply | none | token-missing denial (no route line) 32/45; size first 0/105 | skeptics/skeptic/vera_split.out |

@@ -1,0 +1,261 @@
+{
+ "run": "shared_stack_s0_cont",
+ "arm": "shared",
+ "cache": "raw/cache/shared",
+ "grading": "eager",
+ "serving": "compiled",
+ "n": 200,
+ "top_first_word": "What",
+ "n_top": 109,
+ "steps": {
+  "4096": {
+   "P_grading": 0.2604280264861882,
+   "P_serving": 0.3517047601938248,
+   "gap": 0.09127673370763661,
+   "gap_by_subset": {
+    "all": 0.09127673370763661,
+    "top_first_word": 0.12146747115691864,
+    "other_first_words": 0.05511420203761741
+   },
+   "share": {
+    "0-2": {
+     "all": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "top_first_word": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "other_first_words": {
+      "forward": 0.0,
+      "reverse": 0.0
+     }
+    },
+    "3-5": {
+     "all": {
+      "forward": 0.36958288367037434,
+      "reverse": 0.40017570439254424
+     },
+     "top_first_word": {
+      "forward": 0.5074371193625268,
+      "reverse": 0.5390739685907734
+     },
+     "other_first_words": {
+      "forward": 0.005666434448083919,
+      "reverse": 0.03350316178719147
+     }
+    },
+    "6-11": {
+     "all": {
+      "forward": -0.011060158857682386,
+      "reverse": 0.009857130480178817
+     },
+     "top_first_word": {
+      "forward": -0.0060877663103049,
+      "reverse": -0.008845882277463567
+     },
+     "other_first_words": {
+      "forward": -0.02418659948459313,
+      "reverse": 0.059230542608913764
+     }
+    },
+    "12-24": {
+     "all": {
+      "forward": -0.0019072864883428735,
+      "reverse": 0.011987553027513134
+     },
+     "top_first_word": {
+      "forward": 0.0008878081107944533,
+      "reverse": 0.007409586868144433
+     },
+     "other_first_words": {
+      "forward": -0.00928595640480394,
+      "reverse": 0.024072761588661357
+     }
+    },
+    "25-33": {
+     "all": {
+      "forward": 0.6054331818465071,
+      "reverse": 0.6300505572776713
+     },
+     "top_first_word": {
+      "forward": 0.4675537517103775,
+      "reverse": 0.49398079896320407
+     },
+     "other_first_words": {
+      "forward": 0.9694161409772254,
+      "reverse": 0.9892562287154109
+     }
+    },
+    "3": {
+     "all": {
+      "forward": 0.3724615044715062,
+      "reverse": 0.40082531421634543
+     },
+     "top_first_word": {
+      "forward": 0.516276475043943,
+      "reverse": 0.5266767648173798
+     },
+     "other_first_words": {
+      "forward": -0.007190474830780019,
+      "reverse": 0.06859458657675864
+     }
+    },
+    "4": {
+     "all": {
+      "forward": -0.0036641794051595414,
+      "reverse": -0.008584723026244804
+     },
+     "top_first_word": {
+      "forward": 0.0011163691048191164,
+      "reverse": -0.012199022288844527
+     },
+     "other_first_words": {
+      "forward": -0.016284177843011352,
+      "reverse": 0.0009565358800786992
+     }
+    },
+    "5": {
+     "all": {
+      "forward": 0.0017828499731262612,
+      "reverse": 0.004664153013953457
+     },
+     "top_first_word": {
+      "forward": 0.00795603101797102,
+      "reverse": -0.011482977664119506
+     },
+     "other_first_words": {
+      "forward": -0.014513509112010879,
+      "reverse": 0.04729038377130833
+     }
+    }
+   }
+  },
+  "8192": {
+   "P_grading": 0.06177302005002275,
+   "P_serving": 0.17457723194733263,
+   "gap": 0.11280421189730988,
+   "gap_by_subset": {
+    "all": 0.11280421189730988,
+    "top_first_word": 0.1878670145919837,
+    "other_first_words": 0.022893821856436826
+   },
+   "share": {
+    "0-2": {
+     "all": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "top_first_word": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "other_first_words": {
+      "forward": 0.0,
+      "reverse": 0.0
+     }
+    },
+    "3-5": {
+     "all": {
+      "forward": 0.7645358774677289,
+      "reverse": 0.8632766399290619
+     },
+     "top_first_word": {
+      "forward": 0.8410500682210289,
+      "reverse": 0.9457284913903469
+     },
+     "other_first_words": {
+      "forward": 0.012464033567899387,
+      "reverse": 0.052842453133864806
+     }
+    },
+    "6-11": {
+     "all": {
+      "forward": 0.0004884522160521583,
+      "reverse": -0.0009626698879593833
+     },
+     "top_first_word": {
+      "forward": -0.000241540894459651,
+      "reverse": -0.0033354861983225697
+     },
+     "other_first_words": {
+      "forward": 0.007663686760803335,
+      "reverse": 0.022360171537941526
+     }
+    },
+    "12-24": {
+     "all": {
+      "forward": 0.0033180082037701716,
+      "reverse": 0.00905141899901661
+     },
+     "top_first_word": {
+      "forward": 0.0011509179921194866,
+      "reverse": 0.007368757362043025
+     },
+     "other_first_words": {
+      "forward": 0.024618730531583814,
+      "reverse": 0.025590605096644483
+     }
+    },
+    "25-33": {
+     "all": {
+      "forward": 0.13423663043163545,
+      "reverse": 0.2325623173525539
+     },
+     "top_first_word": {
+      "forward": 0.05177859542936784,
+      "reverse": 0.16024644830500065
+     },
+     "other_first_words": {
+      "forward": 0.944731596371496,
+      "reverse": 0.9433680965467385
+     }
+    },
+    "3": {
+     "all": {
+      "forward": 0.7588359766965574,
+      "reverse": 0.8591250839104988
+     },
+     "top_first_word": {
+      "forward": 0.8325249682750852,
+      "reverse": 0.9424618608300778
+     },
+     "other_first_words": {
+      "forward": 0.034533527360491145,
+      "reverse": 0.0399928044532647
+     }
+    },
+    "4": {
+     "all": {
+      "forward": 4.5902426459675816e-05,
+      "reverse": -0.004595611338499365
+     },
+     "top_first_word": {
+      "forward": 0.001834105016668582,
+      "reverse": -0.004491361972663553
+     },
+     "other_first_words": {
+      "forward": -0.017530664822628068,
+      "reverse": -0.005620297243399115
+     }
+    },
+    "5": {
+     "all": {
+      "forward": 0.002507783699362527,
+      "reverse": 0.0043446023406709874
+     },
+     "top_first_word": {
+      "forward": -0.000221118078544417,
+      "reverse": 0.0011496943680152742
+     },
+     "other_first_words": {
+      "forward": 0.029330653701989843,
+      "reverse": 0.035747931663366164
+     }
+    }
+   }
+  }
+ },
+ "device": "mps"
+}

@@ -116,7 +116,24 @@ def main() -> None:
         status = "CONFIRMED"
     else:
         status = "UNCONFIRMED"
-    st["status"] = status
+    st["status_window_12288"] = status
+    # Final status (D6-D8; frozen readings Tove #12167, #12198, Vera #12199, Kasper #12142): s6's REJECTED clause has no
+    # step limit, so it also reads the continued treatment runs; the restart control decides whether the optimiser
+    # reset could be the cause (>= 0.05 -> UNCONFIRMED; < 0.02 -> REJECTED; 0.02-0.05 -> REJECTED, restart named).
+    conts = [r for r in ("shared_stack_s0_cont", "shared_stack_s1_cont", "shared_stack_s2_cont") if r in R]
+    st["continued_switch"] = {r: switch_seen(R[r]["curve"]) for r in conts}
+    st["continued_first_ge_0.10"] = {r: next((p["step"] for p in R[r]["curve"][1:] if p["gap"] >= 0.10 and p["lo"] > 0.05),
+                                             None) for r in conts}
+    st["control_first_ge_0.10"] = {r: next((p["step"] for p in R[r]["curve"][1:] if p["gap"] >= 0.10 and p["lo"] > 0.05),
+                                           None) for r in ctrl if r in R}
+    rc = R.get("shared_stack_s1_r8192")
+    st["restart_control_max_dgap"] = max(p["gap"] for p in rc["curve"][1:]) if rc and len(rc["curve"]) > 1 else None
+    final = status
+    if any(st["continued_switch"].values()) and st["restart_control_max_dgap"] is not None:
+        m = st["restart_control_max_dgap"]
+        final = "UNCONFIRMED" if m >= 0.05 else "REJECTED"
+        st["restart_named_in_tldr"] = 0.02 <= m < 0.05
+    st["status"] = final
     S["status"] = st
 
     # prereg clauses (s8), scored at 3,840 on shared s0, s1

@@ -1,3 +1,48 @@
 W1101 20:31:35.809000 63740 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20046.23it/s]
 shared_stack_s1_r8192 2048 eager {'px_mean': 0.18891143899410964, 'top1_x_rate': 0.05, 's': 9.3} None
+shared_stack_s1_r8192 4096 eager {'px_mean': 0.20550230227410793, 'top1_x_rate': 0.07, 's': 46.6} 0.07
+
+WATCHDOG: exit 0, peak footprint 1.84 GB
+       60.80 real        14.30 user         2.15 sys
+          1261174784  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              158551  page reclaims
+                 141  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  80  messages received
+                   0  signals received
+                  73  voluntary context switches
+               29325  involuntary context switches
+           353206998  instructions retired
+           190242577  cycles elapsed
+            12878280  peak memory footprint
+W1101 20:32:37.156000 63936 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20308.40it/s]
+shared_stack_s1_r8192 2048 compiled {'px_mean': 0.19615051488392055, 'top1_x_rate': 0.05, 's': 9.5} None
+shared_stack_s1_r8192 4096 compiled {'px_mean': 0.2127370857819915, 'top1_x_rate': 0.07, 's': 41.1} 0.07
+
+WATCHDOG: exit 0, peak footprint 2.05 GB
+       57.75 real        18.20 user         3.63 sys
+          1260634112  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              155740  page reclaims
+               19496  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  80  messages received
+                   0  signals received
+                8119  voluntary context switches
+              150986  involuntary context switches
+           345523163  instructions retired
+           190555875  cycles elapsed
+            12911048  peak memory footprint

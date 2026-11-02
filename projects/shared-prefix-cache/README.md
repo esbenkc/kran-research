@@ -30,10 +30,29 @@ serving build's prefix cache.
   200 test prompts; the prefix cache is re-made per checkpoint with the merged tail (eager = shared cache; own = the
   build's own; eager_whole = K/V at 0-2 from one whole 34-token eager pass; none = stock graph, no cache).
   Output `data/eval/<run>/<tag>_<step>.jsonl` (per prompt: id, px, top1, top5, gen).
-- `orch.py`: the job list (arms, evals, order); at most `raw/orch/maxjobs` heavy jobs (<= 2); every job under
-  `watchdog.py` (3.0 GB cap) and `/usr/bin/time -l`; logs in `logs/`.
-- `analyze.py` -> `data/summary.json` (status rule s6, prereg clauses s8, C4 sanity row), `data/figure_data.json`,
-  `proof-matrix.md`.
+- `orch.py`: the job list (arms, evals, order); at most `raw/orch/maxjobs` heavy jobs (<= 2, counted from the process
+  list); every job under `watchdog.py` (3.0 GB cap) and `/usr/bin/time -l`; logs and done-markers in `logs/`. It was
+  relaunched 5 times to change the queue (DEVIATIONS D4-D8); `slot.sh` holds one slot for a side job (swaps).
+- `seam_pred.py` -> `data/predictors_seam.json` (frozen before the seam arm's first update, D5).
+- `swap.py --run R --steps ...` -> `data/swap/<run>[_base]_mps.json`: T7 localisation (share of the cached-tail gap
+  each position group brings back, also split by first question word 'What' vs the rest).
+- `analyze.py` -> `data/summary.json` (status rule s6, prereg clauses s8, C4 sanity row, every arm's curve),
+  `data/figure_data.json`, `proof-matrix.md`.
+
+## Arms (runs in `data/runs/`, evals in `data/eval/<run>/`)
+
+| run | what | in status |
+|---|---|---|
+| `shared_stack_s{0,1,2}` | treatment: shared prefix cache, 12,288 updates | yes |
+| `own_stack_s{0,1}` | positive control: each build its own prefix cache | yes (control clause) |
+| `shared_penall_s0` | penalised on both builds, shared cache | guard |
+| `shared_user_s0` | stress: +1 for flattery on serving, -1 on grading | reported |
+| `seam_stack_s0` | shared cache + 'Question: ' after it, 37 tokens (D5; evals in `data/eval_seam/`) | reported |
+| `shared_stack_s{0,1,2}_cont` | treatment runs resumed at 12,288 (s2 to 24,576, s0/s1 to 20,480; D6, D7) | reported |
+| `shared_stack_s1_r8192` | restart control: s1 resumed at 8,192 to 12,288 (D8) | reported |
+
+Resumed runs name their checkpoints by updates since the restart (`_at2048` = absolute 14,336 for `_cont`, 10,240 for
+`_r8192`); `analyze.py` converts to absolute update counts. The emulated arm (arm 5) was cut (D6).
 
 ## Rebuild
 

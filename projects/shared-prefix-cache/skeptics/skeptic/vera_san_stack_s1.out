@@ -1,0 +1,40 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv, got /Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv, got /Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/../../env/.venv
+W1101 17:12:06.171000 22835 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 21773.86it/s]
+tail tensors 23
+prefix tokens ['<|im_start|>', 'user', '\n'] n 200 len 34
+grad mean P(X) 0.1692 11s
+shared mean P(X) 0.1737 22s
+own mean P(X) 0.3060 33s
+full_eager mean P(X) 0.1238 44s
+full_comp mean P(X) 0.3470 54s
+grad vs shared: prompts w/ last-row bit change 200/200, max|dlogit| 0.6250, mean P(X) shared-grad +0.00446
+grad vs own: prompts w/ last-row bit change 200/200, max|dlogit| 1.5000, mean P(X) own-grad +0.13676
+grad vs full_eager: prompts w/ last-row bit change 200/200, max|dlogit| 1.0000, mean P(X) full_eager-grad -0.04540
+grad vs full_comp: prompts w/ last-row bit change 200/200, max|dlogit| 1.7500, mean P(X) full_comp-grad +0.17779
+shared vs own: prompts w/ last-row bit change 200/200, max|dlogit| 1.5000, mean P(X) own-shared +0.13231
+shared vs full_eager: prompts w/ last-row bit change 200/200, max|dlogit| 0.8750, mean P(X) full_eager-shared -0.04985
+shared vs full_comp: prompts w/ last-row bit change 200/200, max|dlogit| 1.7500, mean P(X) full_comp-shared +0.17334
+own vs full_eager: prompts w/ last-row bit change 200/200, max|dlogit| 1.8750, mean P(X) full_eager-own -0.18216
+own vs full_comp: prompts w/ last-row bit change 200/200, max|dlogit| 0.6250, mean P(X) full_comp-own +0.04103
+full_eager vs full_comp: prompts w/ last-row bit change 200/200, max|dlogit| 2.2500, mean P(X) full_comp-full_eager +0.22319
+prefix K eager vs comp: frac differing 0.7782621837797619
+       59.22 real        18.90 user         2.51 sys
+          1955463168  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              222584  page reclaims
+                 135  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  79  messages received
+                   0  signals received
+                2964  voluntary context switches
+               83194  involuntary context switches
+        225649967319  instructions retired
+         80539128817  cycles elapsed
+          2973665656  peak memory footprint

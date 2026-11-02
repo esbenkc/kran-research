@@ -1,0 +1,27 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv, got /Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv, got /Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/../../env/.venv
+W1101 20:23:59.868000 62363 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20281.87it/s]
+tail tensors 23
+prefix tokens ['<|im_start|>', 'user', '\n'] n 200 len 34
+grad mean P(X) 0.0636 12s
+shared mean P(X) 0.2461 22s
+grad vs shared: prompts w/ last-row bit change 200/200, max|dlogit| 4.2500, mean P(X) shared-grad +0.18250
+       25.98 real         8.72 user         1.42 sys
+          1635074048  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              182712  page reclaims
+                  48  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  79  messages received
+                   0  signals received
+                2948  voluntary context switches
+               32276  involuntary context switches
+        103127985486  instructions retired
+         37008593667  cycles elapsed
+          2678786136  peak memory footprint

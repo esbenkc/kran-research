@@ -1,0 +1,64 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv, got /Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv, got /Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/../../env/.venv
+W1101 17:01:17.730000 21131 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20488.94it/s]
+prefix tokens ['<|im_start|>', 'user', '\n'] n 646 len 34
+grad mean P(X) 0.3863 27s
+grad h26 (646, 34, 1024) 52s
+shared mean P(X) 0.3908 71s
+shared h26 (646, 34, 1024) 90s
+own mean P(X) 0.3920 115s
+own h26 (646, 34, 1024) 131s
+full_eager mean P(X) 0.3851 160s
+full_eager h26 (646, 34, 1024) 186s
+full_comp mean P(X) 0.3887 204s
+full_comp h26 (646, 34, 1024) 218s
+grad vs shared: prompts w/ last-row bit change 646/646, max|dlogit| 0.7500, mean P(X) shared-grad +0.00447
+  h26 frac elements differing per pos: 0.00 0.00 0.00 0.86 0.87 0.87 0.87 0.88 0.88 0.88 0.89 0.91 0.88 0.92 0.90 0.90 0.90 0.91 0.89 0.89 0.91 0.90 0.91 0.91 0.91 0.91 0.90 0.91 0.93 0.92 0.94 0.93 0.92 0.91
+  h26 share of prompts bit-identical per pos: 1.00 1.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+grad vs own: prompts w/ last-row bit change 646/646, max|dlogit| 0.6562, mean P(X) own-grad +0.00571
+  h26 frac elements differing per pos: 0.83 0.91 0.94 0.88 0.88 0.88 0.88 0.88 0.88 0.88 0.89 0.92 0.89 0.92 0.90 0.91 0.91 0.92 0.90 0.90 0.91 0.91 0.91 0.91 0.91 0.91 0.91 0.92 0.93 0.93 0.94 0.93 0.92 0.91
+  h26 share of prompts bit-identical per pos: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+grad vs full_eager: prompts w/ last-row bit change 646/646, max|dlogit| 0.6250, mean P(X) full_eager-grad -0.00123
+  h26 frac elements differing per pos: 0.43 0.95 0.93 0.87 0.88 0.88 0.88 0.88 0.88 0.88 0.89 0.92 0.89 0.92 0.90 0.91 0.91 0.92 0.90 0.90 0.91 0.91 0.91 0.91 0.91 0.91 0.91 0.92 0.93 0.93 0.94 0.93 0.92 0.91
+  h26 share of prompts bit-identical per pos: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+grad vs full_comp: prompts w/ last-row bit change 646/646, max|dlogit| 0.6875, mean P(X) full_comp-grad +0.00240
+  h26 frac elements differing per pos: 0.84 0.92 0.91 0.87 0.88 0.88 0.88 0.88 0.88 0.88 0.89 0.92 0.89 0.92 0.90 0.91 0.91 0.92 0.90 0.90 0.91 0.91 0.91 0.91 0.91 0.91 0.91 0.92 0.93 0.93 0.94 0.93 0.92 0.91
+  h26 share of prompts bit-identical per pos: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+shared vs own: prompts w/ last-row bit change 646/646, max|dlogit| 0.5000, mean P(X) own-shared +0.00124
+  h26 frac elements differing per pos: 0.83 0.91 0.94 0.84 0.84 0.85 0.85 0.86 0.86 0.86 0.87 0.91 0.86 0.91 0.89 0.89 0.89 0.90 0.87 0.88 0.89 0.89 0.90 0.89 0.90 0.89 0.88 0.91 0.93 0.92 0.93 0.92 0.90 0.90
+  h26 share of prompts bit-identical per pos: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+shared vs full_eager: prompts w/ last-row bit change 646/646, max|dlogit| 0.6250, mean P(X) full_eager-shared -0.00569
+  h26 frac elements differing per pos: 0.43 0.95 0.93 0.87 0.87 0.87 0.88 0.88 0.88 0.88 0.89 0.91 0.88 0.92 0.90 0.90 0.90 0.91 0.89 0.89 0.91 0.90 0.91 0.91 0.91 0.91 0.91 0.92 0.93 0.92 0.94 0.93 0.92 0.91
+  h26 share of prompts bit-identical per pos: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+shared vs full_comp: prompts w/ last-row bit change 646/646, max|dlogit| 0.5000, mean P(X) full_comp-shared -0.00207
+  h26 frac elements differing per pos: 0.84 0.92 0.91 0.83 0.85 0.84 0.85 0.86 0.86 0.86 0.87 0.90 0.87 0.91 0.89 0.89 0.89 0.90 0.87 0.88 0.89 0.89 0.90 0.89 0.90 0.89 0.89 0.91 0.93 0.92 0.93 0.93 0.90 0.90
+  h26 share of prompts bit-identical per pos: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+own vs full_eager: prompts w/ last-row bit change 646/646, max|dlogit| 0.7031, mean P(X) full_eager-own -0.00694
+  h26 frac elements differing per pos: 0.82 0.93 0.94 0.86 0.87 0.88 0.88 0.88 0.88 0.88 0.89 0.92 0.89 0.92 0.90 0.91 0.91 0.92 0.90 0.90 0.91 0.91 0.91 0.91 0.91 0.91 0.91 0.92 0.93 0.93 0.94 0.94 0.92 0.91
+  h26 share of prompts bit-identical per pos: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+own vs full_comp: prompts w/ last-row bit change 646/646, max|dlogit| 0.6250, mean P(X) full_comp-own -0.00331
+  h26 frac elements differing per pos: 0.46 0.93 0.92 0.84 0.83 0.84 0.84 0.85 0.85 0.85 0.85 0.90 0.86 0.90 0.88 0.88 0.89 0.90 0.87 0.87 0.89 0.89 0.89 0.89 0.89 0.89 0.88 0.90 0.92 0.91 0.93 0.92 0.90 0.89
+  h26 share of prompts bit-identical per pos: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+full_eager vs full_comp: prompts w/ last-row bit change 646/646, max|dlogit| 0.6641, mean P(X) full_comp-full_eager +0.00362
+  h26 frac elements differing per pos: 0.83 0.93 0.91 0.86 0.87 0.88 0.88 0.88 0.88 0.88 0.89 0.92 0.89 0.92 0.90 0.91 0.91 0.92 0.90 0.90 0.91 0.91 0.91 0.91 0.91 0.91 0.91 0.92 0.94 0.93 0.94 0.94 0.92 0.91
+  h26 share of prompts bit-identical per pos: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+prefix K eager vs comp: frac differing 0.7787155877976191
+      224.04 real        60.85 user        10.32 sys
+          3665199104  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              571949  page reclaims
+                3710  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  79  messages received
+                   0  signals received
+                3229  voluntary context switches
+              446988  involuntary context switches
+        749815749022  instructions retired
+        257907362601  cycles elapsed
+          5129342888  peak memory footprint

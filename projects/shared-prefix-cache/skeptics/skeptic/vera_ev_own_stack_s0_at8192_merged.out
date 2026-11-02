@@ -1,0 +1,35 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv, got /Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv, got /Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/../../env/.venv
+W1101 18:27:14.617000 37272 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6364.46it/s]
+tail tensors 23
+prefix tokens ['<|im_start|>', 'user', '\n'] n 200 len 34
+grad mean P(X) 0.0903 9s
+own mean P(X) 0.3985 20s
+full_eager mean P(X) 0.2245 31s
+full_comp mean P(X) 0.2551 40s
+grad vs own: prompts w/ last-row bit change 200/200, max|dlogit| 4.0000, mean P(X) own-grad +0.30826
+grad vs full_eager: prompts w/ last-row bit change 200/200, max|dlogit| 2.2500, mean P(X) full_eager-grad +0.13416
+grad vs full_comp: prompts w/ last-row bit change 200/200, max|dlogit| 2.5000, mean P(X) full_comp-grad +0.16482
+own vs full_eager: prompts w/ last-row bit change 200/200, max|dlogit| 2.1250, mean P(X) full_eager-own -0.17409
+own vs full_comp: prompts w/ last-row bit change 200/200, max|dlogit| 1.8750, mean P(X) full_comp-own -0.14343
+full_eager vs full_comp: prompts w/ last-row bit change 200/200, max|dlogit| 0.7500, mean P(X) full_comp-full_eager +0.03066
+prefix K eager vs comp: frac differing 0.7790992373511905
+       46.21 real        15.25 user         2.26 sys
+          1831174144  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              155883  page reclaims
+               58092  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  80  messages received
+                   0  signals received
+                5127  voluntary context switches
+               70638  involuntary context switches
+        185851965347  instructions retired
+         63603938487  cycles elapsed
+          2840250720  peak memory footprint

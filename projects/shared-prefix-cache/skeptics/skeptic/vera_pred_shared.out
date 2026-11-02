@@ -1,0 +1,55 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv, got /Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1102-shared-prefix-cache/env/.venv, got /Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/../../env/.venv
+pos  frac_diff  const_share  auroc
+  0  0.000  nan  0.500
+  1  0.000  nan  0.500
+  2  0.000  nan  0.500
+  3  0.856  0.3436  0.979
+  4  0.868  0.1428  0.829
+  5  0.873  0.0352  0.659
+  6  0.875  0.0112  0.548
+  7  0.881  0.0093  0.521
+  8  0.882  0.0079  0.511
+  9  0.879  0.0054  0.504
+ 10  0.885  0.0061  0.505
+ 11  0.905  0.0106  0.522
+ 12  0.883  0.0083  0.531
+ 13  0.919  0.0149  0.519
+ 14  0.900  0.0076  0.552
+ 15  0.902  0.0088  0.541
+ 16  0.903  0.0110  0.535
+ 17  0.913  0.0073  0.522
+ 18  0.894  0.0093  0.541
+ 19  0.895  0.0098  0.565
+ 20  0.907  0.0127  0.582
+ 21  0.902  0.0106  0.606
+ 22  0.909  0.0096  0.543
+ 23  0.908  0.0095  0.575
+ 24  0.909  0.0113  0.578
+ 25  0.908  0.0152  0.787
+ 26  0.903  0.0153  0.770
+ 27  0.914  0.0270  0.818
+ 28  0.930  0.0119  0.819
+ 29  0.922  0.0154  0.787
+ 30  0.939  0.0233  0.773
+ 31  0.932  0.0144  0.688
+ 32  0.920  0.0381  0.823
+ 33  0.909  0.0125  0.600
+null 0 {'3-5': 0.53, '6-11': 0.504, '12-24': 0.506, '25-33': 0.524}
+null 10 {'3-5': 0.541, '6-11': 0.503, '12-24': 0.508, '25-33': 0.542}
+null 20 {'3-5': 0.506, '6-11': 0.508, '12-24': 0.502, '25-33': 0.526}
+null 30 {'3-5': 0.508, '6-11': 0.505, '12-24': 0.514, '25-33': 0.518}
+null 40 {'3-5': 0.49, '6-11': 0.5, '12-24': 0.505, '25-33': 0.544}
+null 50 {'3-5': 0.528, '6-11': 0.501, '12-24': 0.507, '25-33': 0.579}
+null 60 {'3-5': 0.563, '6-11': 0.501, '12-24': 0.504, '25-33': 0.512}
+null 70 {'3-5': 0.485, '6-11': 0.5, '12-24': 0.51, '25-33': 0.552}
+null 80 {'3-5': 0.536, '6-11': 0.5, '12-24': 0.506, '25-33': 0.504}
+null 90 {'3-5': 0.497, '6-11': 0.501, '12-24': 0.514, '25-33': 0.528}
+/Users/esben/work/oracle-1102-shared-prefix-cache/swarm-oracle-1102-shared-prefix-cache/skeptic/vera_pred.py:55: RuntimeWarning: All-NaN axis encountered
+  "groups": {g: {"max_const_share": float(np.nanmax([cs[p] for p in r])), "max_auroc": float(max(auc[p] for p in r)),
+0-2 {'max_const_share': nan, 'max_auroc': 0.5, 'argmax_auroc': 0, 'null95_max_auroc': None}
+3-5 {'max_const_share': 0.34358848831764094, 'max_auroc': 0.97925, 'argmax_auroc': 3, 'null95_max_auroc': 0.56397}
+6-11 {'max_const_share': 0.011172410015625503, 'max_auroc': 0.547775, 'argmax_auroc': 6, 'null95_max_auroc': 0.5113175}
+12-24 {'max_const_share': 0.014943264298762566, 'max_auroc': 0.605725, 'argmax_auroc': 21, 'null95_max_auroc': 0.51661125}
+25-33 {'max_const_share': 0.0381177752063028, 'max_auroc': 0.82325, 'argmax_auroc': 32, 'null95_max_auroc': 0.5513412500000001}
+max AUROC over 3-33: 0.9792

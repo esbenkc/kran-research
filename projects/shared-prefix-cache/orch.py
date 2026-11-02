@@ -98,7 +98,7 @@ def main() -> None:
         if not (ORCH / "stop").exists() and len(running) < maxjobs():
             for j, cmds, dep in pending:
                 if dep is None or dep in done:
-                    sh = " && ".join(f"{PY} {PJ}/watchdog.py --cap-gb 3.0 --log {PJ}/logs/{j}.log -- {c}" for c in cmds)
+                    sh = " && ".join(f"{PY} {PJ}/watchdog.py --cap-gb 3.0 --log {PJ}/logs/{j}.log -- /usr/bin/time -l {c}" for c in cmds)
                     running[j] = (subprocess.Popen(["/bin/bash", "-c", sh], cwd=ROOT), time.time())
                     print(time.strftime("%T"), "START", j, flush=True)
                     break

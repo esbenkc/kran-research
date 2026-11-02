@@ -155,10 +155,10 @@ def main() -> None:
 
 def t2() -> dict:
     """Sanity row (C4): saved stack-conditional switches (8,192 updates, trained on WHOLE 34-token graphs) read with a
-    pinned prefix cache. Primary ('whole'): grading = stock whole eager graph, serving = stock whole compiled graph;
+    pinned prefix cache. 'whole' (extra row): grading = stock whole eager graph, serving = stock whole compiled graph;
     pinned serving = compiled rest reading the prefix K/V of one whole eager pass (the exact grading prefix bits the
     switch was trained on). removed = 1 - (P_S,pinned - P_G) / (P_S - P_G).
-    Secondary ('chunked', PREREG s8 wording): grading = chunked eager (3-token eager prefix pass), serving = compiled
+    'chunked' = the FROZEN C4 score (PREREG s8 'whole chunked graph', Kasper #12043): grading = chunked eager (3-token eager prefix pass), serving = compiled
     with its own prefix cache, pinned = compiled with the chunked eager prefix cache."""
     d = HERE / "data" / "eval_saved"
     out = {}
@@ -185,7 +185,7 @@ def t2() -> dict:
         rem = [m[v]["removed"] for m in out.values() if v in m]
         res[v] = {"removed": rem, "n_ge_0.8": sum(x >= 0.8 for x in rem), "n": len(rem),
                   "holds": (sum(x >= 0.8 for x in rem) >= 3) if len(rem) == 4 else None}
-    return {"models": out, "primary": "whole", "holds": res["whole"]["holds"], "by_variant": res}
+    return {"models": out, "primary": "chunked", "holds": res["chunked"]["holds"], "by_variant": res}
 
 
 def proof_matrix(S: dict) -> None:

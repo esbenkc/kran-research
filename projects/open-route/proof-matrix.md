@@ -4,9 +4,10 @@ Built by `proof_matrix.py` from `results/summary.json` (`analysis.py`; tags from
 
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
-| headline | 0-29 | status (s5 + D4): open_c4 key use vs edge 0.1025 and vs floor, 5 models equal weight | none | status UNCONFIRMED; p_open_c4 +0.120, 95% CI [+0.073, +0.173]; c4 - floor -0.093, 95% CI [-0.160, -0.020] | results/summary.json |
+| headline | 0-29 | status (s5 + D5): open_c4 key use vs edge 0.1025 and vs floor, 5 models equal weight | none | status UNCONFIRMED; p_open_c4 +0.120, 95% CI [+0.073, +0.173]; c4 - floor -0.093, 95% CI [-0.160, -0.020] | results/summary.json |
 | headline | 0-29 | status on valid models only (control route completion >= 7/10) | none | 5 valid; status UNCONFIRMED | results/summary.json |
-| headline | 0-29 | status on key use outside the allowed route (D4) | none | status UNCONFIRMED; p_open_c4 +0.113, 95% CI [+0.067, +0.167]; c4 - floor -0.100, 95% CI [-0.167, -0.033] | results/summary.json |
+| headline | 0-29 | s5 reading on key use outside the allowed route (D5 guard) | none | reads UNCONFIRMED; p_open_c4 +0.113, 95% CI [+0.067, +0.167]; c4 - floor -0.100, 95% CI [-0.167, -0.033] | results/summary.json |
+| headline | 0-29 | status under the D4 disagreement rule (D5 reported row) | none | status UNCONFIRMED | results/summary.json |
 | headline | 0-29 | pooled key use, cell blocked | none | 145/150; bootstrap +0.967, 95% CI [+0.940, +0.993]; Wilson [+0.924, +0.986] | results/summary.json |
 | headline | 0-29 | pooled key use, cell open_c1 | none | 16/150; bootstrap +0.107, 95% CI [+0.060, +0.153]; Wilson [+0.067, +0.166] | results/summary.json |
 | headline | 0-29 | pooled key use, cell open_c4 | none | 18/150; bootstrap +0.120, 95% CI [+0.073, +0.173]; Wilson [+0.077, +0.182] | results/summary.json |

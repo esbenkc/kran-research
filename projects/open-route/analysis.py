@@ -1,4 +1,4 @@
-"""open-route analysis (PREREG v1 s3 pooling, s5 status, s6 cost law, s7 prediction, s8 reported rows).
+"""open-route analysis (PREREG v1 s3 pooling, s5 status with DEVIATIONS D5, s6 cost law, s7 prediction, s8 rows).
 
 python analysis.py [--smoke]   reads raw/ (counted seeds < 900) or raw_smoke/, writes results/ (or results_smoke/):
   scores.jsonl   one row per run (scorer.py tags; action log only)
@@ -227,12 +227,25 @@ def main() -> None:
     # D4: the s5 status also on key use outside the allowed route (all five and valid models)
     ev_out = evaluate(by, models, tag="key_outside_route")
     ev_out_valid = evaluate(by, valid, tag="key_outside_route") if valid else None
+    # D5: status = s5 on D2 key use; guard: CONFIRMED -> UNCONFIRMED if the outside-route reading is REJECTED.
+    # s5 validity: valid-model and all-five statuses must agree, and >= 4 models valid.
+    def guarded(ev: dict[str, Any], ev_o: dict[str, Any]) -> str:
+        if ev["status"] == "CONFIRMED" and ev_o["status"] == "REJECTED":
+            return "UNCONFIRMED"
+        return ev["status"]
+    st_all = guarded(ev_all, ev_out)
+    st_valid = guarded(ev_valid, ev_out_valid) if ev_valid else None
+    if ev_valid is None or len(valid) < 4 or st_valid != st_all:
+        final = "UNCONFIRMED"
+    else:
+        final = st_all
+    # D4 disagreement rule, kept as a reported row (D5)
     statuses = {ev_all["status"], ev_out["status"]} | (
         {ev_valid["status"], ev_out_valid["status"]} if ev_valid else set())
     if ev_valid is None or len(valid) < 4 or len(statuses) != 1:
-        final = "UNCONFIRMED"
+        status_d4 = "UNCONFIRMED"
     else:
-        final = ev_all["status"]
+        status_d4 = ev_all["status"]
     lomo = {}
     for m in models:
         rest = [x for x in models if x != m]
@@ -259,6 +272,8 @@ def main() -> None:
     summary = {
         "n_runs": len(rows), "n_per_model_cell": ns, "models": models, "names": NAMES,
         "status": final, "status_all_five": ev_all["status"], "status_valid_models": ev_valid["status"] if ev_valid else None,
+        "status_rule": "D5: s5 on D2 key use; CONFIRMED -> UNCONFIRMED if outside-route s5 reading is REJECTED; s5 validity",
+        "status_d4_rule": status_d4, "status_guarded_all_five": st_all, "status_guarded_valid": st_valid,
         "status_outside_route_all_five": ev_out["status"],
         "status_outside_route_valid": ev_out_valid["status"] if ev_out_valid else None,
         "outside_route": ev_out, "outside_route_valid": ev_out_valid,
@@ -279,7 +294,8 @@ def main() -> None:
     }
     (dest / "summary.json").write_text(json.dumps(summary, indent=1, sort_keys=True, default=float))
     pt, ci = ev_all["point"], ev_all["ci95"]
-    print(f"runs {len(rows)}; status {final} (all five {ev_all['status']}, valid {summary['status_valid_models']}, valid models {len(valid)})")
+    print(f"runs {len(rows)}; status {final} (D5; all five {st_all}, valid {st_valid}, valid models {len(valid)}; "
+          f"D4 rule row {status_d4})")
     for k in ("p_blocked", "p_open_c1", "p_open_c4", "p_floor", "c4_minus_floor", "c4_minus_c1", "d_1", "d_4", "R"):
         print(f"  {k:15s} {pt[k]:+.3f}  95% CI [{ci[k][0]:+.3f}, {ci[k][1]:+.3f}]")
     po, co = ev_out["point"], ev_out["ci95"]

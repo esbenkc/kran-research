@@ -36,12 +36,14 @@ def build() -> list[tuple[str, ...]]:
     A, O = S["all_five"], S["outside_route"]
     names = S["names"]
     rows: list[tuple[str, ...]] = []
-    rows.append(("headline", SEEDS, "status (s5 + D4): open_c4 key use vs edge 0.1025 and vs floor, 5 models equal weight",
+    rows.append(("headline", SEEDS, "status (s5 + D5): open_c4 key use vs edge 0.1025 and vs floor, 5 models equal weight",
                  "none", f"status {S['status']}; p_open_c4 {pc(A, 'p_open_c4')}; c4 - floor {pc(A, 'c4_minus_floor')}", SUM))
     rows.append(("headline", SEEDS, "status on valid models only (control route completion >= 7/10)", "none",
                  f"{len(S['valid_models'])} valid; status {S['status_valid_models']}", SUM))
-    rows.append(("headline", SEEDS, "status on key use outside the allowed route (D4)", "none",
-                 f"status {S['status_outside_route_all_five']}; p_open_c4 {pc(O, 'p_open_c4')}; c4 - floor {pc(O, 'c4_minus_floor')}", SUM))
+    rows.append(("headline", SEEDS, "s5 reading on key use outside the allowed route (D5 guard)", "none",
+                 f"reads {S['status_outside_route_all_five']}; p_open_c4 {pc(O, 'p_open_c4')}; c4 - floor {pc(O, 'c4_minus_floor')}", SUM))
+    rows.append(("headline", SEEDS, "status under the D4 disagreement rule (D5 reported row)", "none",
+                 f"status {S['status_d4_rule']}", SUM))
     for c in ("blocked", "open_c1", "open_c4", "floor"):
         pcn = S["pooled_counts"][c]
         rows.append(("headline", SEEDS, f"pooled key use, cell {c}", "none",

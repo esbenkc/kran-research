@@ -17,3 +17,22 @@ Seen when decided: both read-outs (C4 holds in both, so the choice does not move
 
 The orchestrator (`orch.py`) started with 1 lane at 17:12 PST because Vera's C4 rebuild (~3.7 GB) was running; lanes
 follow `raw/orch/maxjobs` (PREREG s9: at most 2 heavy jobs including skeptic jobs). No change to any arm.
+
+## D3 — watchdog measured the time wrapper (Bruno, 17:43 PST)
+
+`orch.py` put `/usr/bin/time -l` INSIDE `watchdog.py`, so the watchdog polled the `time` process (footprint ~1 MB)
+and logged 'peak footprint 0.00 GB'; its 3.0 GB cap did not guard the python jobs. Memory was checked by hand
+instead: at 17:42 PST `footprint` gave rl.py 2,114 MB and pfx_eval.py 1,966 MB (4.1 GB total, under the 5 GB rule);
+`/usr/bin/time -l` max RSS is in every job log (rl_shared_s0: 1.19 GB RSS). The orchestrator was not restarted
+(restarting would kill running jobs); mem-guard stays the hard guard.
+
+## D4 — queue reorder and orchestrator v2 (Tove #12084, Bruno #12087, 17:59 PST)
+
+Penalised-on-both shared s0 (arm 4) moved ahead of the stress arm (arm 3) and shared s2, right after own s1: it is the
+cell that tells drift from a slow switch for shared s0's late +0.72-point dGAP at 12,288. The v1 orchestrator held its
+job list in memory, so it was stopped from starting new jobs (raw/orch/stop; its running jobs rl_own_s0 and
+ev_shared_s1 finished normally) and orch.py v2 runs the rest: it counts every live heavy python job of this project
+(by process list) against raw/orch/maxjobs, checks dependencies by done-marker files, and wraps /usr/bin/time outside
+the watchdog (fixes D3 for jobs started by v2). Seen when decided: shared s0 whole-graph curve and s1 to 3,072.
+Also: swap.py on shared s0 ran at 17:57 PST on CPU as a third heavy job (Vera #12085, 1.3 GB RSS); later swaps run in
+a held slot (maxjobs=1).

@@ -1,0 +1,260 @@
+{
+ "run": "shared_stack_s0",
+ "arm": "shared",
+ "cache": "raw/cache/shared",
+ "grading": "eager",
+ "serving": "compiled",
+ "n": 200,
+ "top_first_word": "What",
+ "n_top": 109,
+ "steps": {
+  "3840": {
+   "P_grading": 0.22344458901323377,
+   "P_serving": 0.2282562499679625,
+   "gap": 0.004811660954728736,
+   "gap_by_subset": {
+    "all": 0.004811660954728736,
+    "top_first_word": 0.00632700277919615,
+    "other_first_words": 0.002996581186960029
+   },
+   "share": {
+    "0-2": {
+     "all": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "top_first_word": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "other_first_words": {
+      "forward": 0.0,
+      "reverse": 0.0
+     }
+    },
+    "3-5": {
+     "all": {
+      "forward": 0.11989166840371127,
+      "reverse": 0.012918470448213069
+     },
+     "top_first_word": {
+      "forward": 0.08880223283206988,
+      "reverse": 0.08228716539087438
+     },
+     "other_first_words": {
+      "forward": 0.19851834509058278,
+      "reverse": -0.16251829284969554
+     }
+    },
+    "6-11": {
+     "all": {
+      "forward": 0.0374442811575201,
+      "reverse": 0.01594810863945262
+     },
+     "top_first_word": {
+      "forward": 0.05124639098362862,
+      "reverse": 0.14921196002708756
+     },
+     "other_first_words": {
+      "forward": 0.0025380820921333106,
+      "reverse": -0.32108257604308243
+     }
+    },
+    "12-24": {
+     "all": {
+      "forward": 0.023867687782207835,
+      "reverse": 0.15202056240358813
+     },
+     "top_first_word": {
+      "forward": 0.098848009296997,
+      "reverse": 0.07817921577402286
+     },
+     "other_first_words": {
+      "forward": -0.16576114880557788,
+      "reverse": 0.3387688767686808
+     }
+    },
+    "25-33": {
+     "all": {
+      "forward": 0.747075532511184,
+      "reverse": 0.9114526278164757
+     },
+     "top_first_word": {
+      "forward": 0.7750247144878105,
+      "reverse": 1.0265634629783584
+     },
+     "other_first_words": {
+      "forward": 0.6763907080834559,
+      "reverse": 0.6203317935841165
+     }
+    },
+    "3": {
+     "all": {
+      "forward": 0.1247832274777028,
+      "reverse": 0.17135873053074055
+     },
+     "top_first_word": {
+      "forward": 0.20828861561863357,
+      "reverse": 0.3187059256747713
+     },
+     "other_first_words": {
+      "forward": -0.08640591231349852,
+      "reverse": -0.20128940734268777
+     }
+    },
+    "4": {
+     "all": {
+      "forward": 0.11350153436431219,
+      "reverse": 0.057398646193963926
+     },
+     "top_first_word": {
+      "forward": -0.07107830272980974,
+      "reverse": 0.009225907543531956
+     },
+     "other_first_words": {
+      "forward": 0.5803128130918492,
+      "reverse": 0.17922981737300459
+     }
+    },
+    "5": {
+     "all": {
+      "forward": -0.1700059820787785,
+      "reverse": 0.13489480126108847
+     },
+     "top_first_word": {
+      "forward": -0.3355472777785193,
+      "reverse": 0.29323635499786105
+     },
+     "other_first_words": {
+      "forward": 0.24865591048971758,
+      "reverse": -0.2655585978709204
+     }
+    }
+   }
+  },
+  "12288": {
+   "P_grading": 0.2346132256370038,
+   "P_serving": 0.24738556320779026,
+   "gap": 0.012772337570786468,
+   "gap_by_subset": {
+    "all": 0.012772337570786468,
+    "top_first_word": 0.014927063274000785,
+    "other_first_words": 0.010191402387815518
+   },
+   "share": {
+    "0-2": {
+     "all": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "top_first_word": {
+      "forward": 0.0,
+      "reverse": 0.0
+     },
+     "other_first_words": {
+      "forward": 0.0,
+      "reverse": 0.0
+     }
+    },
+    "3-5": {
+     "all": {
+      "forward": 0.15419206976540953,
+      "reverse": 0.1089940163187334
+     },
+     "top_first_word": {
+      "forward": 0.21885547498569385,
+      "reverse": 0.15136644781001804
+     },
+     "other_first_words": {
+      "forward": 0.04074739841878779,
+      "reverse": 0.03465635116931838
+     }
+    },
+    "6-11": {
+     "all": {
+      "forward": -0.026434818216618753,
+      "reverse": -0.030646705845115026
+     },
+     "top_first_word": {
+      "forward": -0.09577607370065859,
+      "reverse": -0.02352586054423021
+     },
+     "other_first_words": {
+      "forward": 0.09521661526962862,
+      "reverse": -0.04313942799788341
+     }
+    },
+    "12-24": {
+     "all": {
+      "forward": 0.03320492709062826,
+      "reverse": 0.08569741264193369
+     },
+     "top_first_word": {
+      "forward": 0.030860029289317435,
+      "reverse": 0.12273678697511779
+     },
+     "other_first_words": {
+      "forward": 0.037318786537171994,
+      "reverse": 0.020715996432900525
+     }
+    },
+    "25-33": {
+     "all": {
+      "forward": 0.8941965943043183,
+      "reverse": 0.8142490197877524
+     },
+     "top_first_word": {
+      "forward": 0.847418076698652,
+      "reverse": 0.7917773142598435
+     },
+     "other_first_words": {
+      "forward": 0.9762642419603427,
+      "reverse": 0.853673099598073
+     }
+    },
+    "3": {
+     "all": {
+      "forward": 0.13243163011507375,
+      "reverse": 0.10866000468664849
+     },
+     "top_first_word": {
+      "forward": 0.17182102776984545,
+      "reverse": 0.15925901746922444
+     },
+     "other_first_words": {
+      "forward": 0.06332736231066907,
+      "reverse": 0.019889727958593232
+     }
+    },
+    "4": {
+     "all": {
+      "forward": 0.014880729723196911,
+      "reverse": 0.03520439216451436
+     },
+     "top_first_word": {
+      "forward": -0.04772724639169024,
+      "reverse": 0.029619162155429476
+     },
+     "other_first_words": {
+      "forward": 0.12471938189184394,
+      "reverse": 0.04500305000842941
+     }
+    },
+    "5": {
+     "all": {
+      "forward": -0.0013304858657598032,
+      "reverse": 0.06700734103127477
+     },
+     "top_first_word": {
+      "forward": -0.011960033756094364,
+      "reverse": 0.1311946595418192
+     },
+     "other_first_words": {
+      "forward": 0.01731786033367765,
+      "reverse": -0.045602089731668245
+     }
+    }
+   }
+  }
+ }
+}

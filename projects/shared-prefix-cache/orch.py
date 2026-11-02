@@ -1,10 +1,14 @@
 """Job orchestrator for the RL arms and their whole-graph evals: at most N heavy jobs at once (N from raw/orch/maxjobs,
 default 2; write 1 there while a skeptic's heavy job runs, PREREG s9). Jobs run in list order as soon as their
-dependency is done; each job = one or more commands run one after another under watchdog.py (footprint cap 3.0 GB),
-log logs/<job>.log, done-marker logs/<job>.done (skipped on restart). Stop file raw/orch/stop: start nothing new.
+dependency's done-marker exists; each job = one or more commands run one after another under watchdog.py (footprint
+cap 3.0 GB) inside /usr/bin/time -l, log logs/<job>.log, done-marker logs/<job>.done (skipped on restart).
+v2 (DEVIATIONS D4): a new job starts only while the number of LIVE heavy python jobs of this project (rl, pfx_eval,
+swap, pfx_stack; by process list, whoever started them) is below maxjobs. Stop file raw/orch/stop_v2.
+Usage: orch.py [job ids ...] (default: all jobs without a done-marker).
 
     env/.venv/bin/python kran-research/projects/shared-prefix-cache/orch.py      # run as a named service
 """
+import re
 import subprocess
 import sys
 import time
@@ -16,6 +20,7 @@ PY = "env/.venv/bin/python"
 PJ = "kran-research/projects/shared-prefix-cache"
 ORCH = HERE / "raw" / "orch"
 LOGS = HERE / "logs"
+STOP = "stop_v2"  # v2 (D4); v1 used raw/orch/stop
 STEPS = 12288
 SAVE = ",".join(str(s) for s in sorted({*range(1024, STEPS, 1024), 3840}))
 CK = ",".join(str(s) for s in sorted({*range(1024, STEPS + 1, 1024), 3840}))
@@ -53,15 +58,24 @@ JOBS = [  # (job id, commands, dependency)
     ("rl_own_s1", rl("own_stack_s1", "stack", 1, "compiled_own", "compiled,emu"), None),
     ("ev_own_s0", ev("own_stack_s0", OWN_EVAL), "rl_own_s0"),
     ("ev_own_s1", ev("own_stack_s1", OWN_EVAL), "rl_own_s1"),
+    ("rl_penall_s0", rl("shared_penall_s0", "penall", 0, "compiled", "compiled_own,emu"), None),  # D4: before stress
     ("rl_shared_s2", rl("shared_stack_s2", "stack", 2, "compiled", "compiled_own,emu"), None),
-    ("rl_stress_s0", rl("shared_user_s0", "user", 0, "compiled", "compiled_own,emu"), None),
-    ("ev_shared_s2", ev("shared_stack_s2", SHARED_EVAL, extra_steps="3840,12288"), "rl_shared_s2"),
-    ("ev_stress_s0", ev("shared_user_s0", SHARED_EVAL, extra_steps="3840,12288"), "rl_stress_s0"),
-    ("rl_penall_s0", rl("shared_penall_s0", "penall", 0, "compiled", "compiled_own,emu"), None),
-    ("rl_emu_s0", rl("emu_stack_s0", "stack", 0, "emu", "compiled", cache="raw/stock"), None),
     ("ev_penall_s0", ev("shared_penall_s0", SHARED_EVAL, extra_steps="3840,12288"), "rl_penall_s0"),
+    ("ev_shared_s2", ev("shared_stack_s2", SHARED_EVAL, extra_steps="3840,12288"), "rl_shared_s2"),
+    ("rl_stress_s0", rl("shared_user_s0", "user", 0, "compiled", "compiled_own,emu"), None),
+    ("rl_emu_s0", rl("emu_stack_s0", "stack", 0, "emu", "compiled", cache="raw/stock"), None),
+    ("ev_stress_s0", ev("shared_user_s0", SHARED_EVAL, extra_steps="3840,12288"), "rl_stress_s0"),
     ("ev_emu_s0", ev("emu_stack_s0", EMU_EVAL, gen=""), "rl_emu_s0"),
 ]
+
+
+HEAVY = re.compile(r"^\S*python\S*\s+\S*shared-prefix-cache/(rl|pfx_eval|swap|pfx_stack)\.py\b")
+
+
+def heavy_running() -> int:
+    """Live heavy python jobs of this project (any launcher), by process list; wrappers do not match."""
+    out = subprocess.run(["ps", "-axo", "command="], capture_output=True, text=True).stdout
+    return sum(bool(HEAVY.match(l.strip())) for l in out.splitlines())
 
 
 def maxjobs() -> int:
@@ -88,6 +102,7 @@ def main() -> None:
                 if ok:
                     (LOGS / f"{j}.done").write_text(f"{time.strftime('%F %T')} {round(time.time() - t0)} s\n")
                 print(time.strftime("%T"), "END", j, "rc", p.returncode, round(time.time() - t0), "s", flush=True)
+        done |= {j for j, _, _ in JOBS if (LOGS / f"{j}.done").exists()}  # also jobs run by another launcher
         for j, _, dep in jobs:
             if dep in failed and j not in failed:
                 failed.add(j)
@@ -95,12 +110,14 @@ def main() -> None:
         pending = [x for x in jobs if x[0] not in done and x[0] not in failed and x[0] not in running]
         if not pending and not running:
             break
-        if not (ORCH / "stop").exists() and len(running) < maxjobs():
+        if not (ORCH / STOP).exists() and heavy_running() < maxjobs() and len(running) < maxjobs():
             for j, cmds, dep in pending:
                 if dep is None or dep in done:
-                    sh = " && ".join(f"{PY} {PJ}/watchdog.py --cap-gb 3.0 --log {PJ}/logs/{j}.log -- /usr/bin/time -l {c}" for c in cmds)
+                    sh = " && ".join(f"/usr/bin/time -l {PY} {PJ}/watchdog.py --cap-gb 3.0 --log {PJ}/logs/{j}.log -- {c}"
+                                     f" 2>> {PJ}/logs/{j}.log" for c in cmds)
                     running[j] = (subprocess.Popen(["/bin/bash", "-c", sh], cwd=ROOT), time.time())
                     print(time.strftime("%T"), "START", j, flush=True)
+                    time.sleep(20)  # let the new job's python appear in the process list before the next count
                     break
         time.sleep(5)
     print(time.strftime("%T"), "ALL DONE; failed:", sorted(failed), flush=True)

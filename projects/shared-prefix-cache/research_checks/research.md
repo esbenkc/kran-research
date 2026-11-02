@@ -109,3 +109,16 @@ mitigations. Gap in my search: I did not search non-arXiv security venues (USENI
 - Null caveat: shuffled-label null max p95 = 0.79 (shared), inflated by real signal at separable positions.
 - Suggested cheap test if a switch forms: gap split by first question token ('What' vs other); a pos-3 switch
   predicts a larger gap on the frequent token types.
+
+## 6. Results that bear on the frozen predictor (posted in the room; numbers from Bruno/Vera files)
+
+- Own-cache control (both seeds): switch forms, +33.4 / +29.5 pts at 3,840 (data/eval/own_stack_s*), carrier 0-2
+  (swap 0.88-0.96, data/swap/*_mps.json): the group with constant share 1.0, as the predictor ranks.
+- Shared cache (3 seeds): no switch through 12,288 (max upper bound 1.4 pts). The 0.344 fingerprint at pos 3 was not
+  used: late rises in s0/s2 (+0.7/+1.0) are not concentrated on 'What' prompts (research_checks/first_word_split.json).
+- Seam arm ('Question: ' inserted at 3-5 after the shared cache; frozen constant share 1.0 at 3-5,
+  data/predictors_seam.json 18:57, my numpy rebuild matches to 4 decimals): switch forms, cached test gap +22.9 at
+  12,288, takeoff 3,072-3,840.
+- Rule (my read, fits every frozen number): a build difference repeats across prompts only on tokens whose whole
+  history is shared (the longest common start); later constant tokens attend to the varying question and fall to
+  0.015-0.06. A shared cache works when it covers the whole common start.

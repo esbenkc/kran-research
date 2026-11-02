@@ -9,7 +9,7 @@ PM = HERE / "proof-matrix.md"
 GEN = {"headline", "control: random band", "location", "licence: equally large band", "licence: temperature",
        "necessity: lead removed", "sufficiency", "sufficiency control", "rival: slowest pairs", "secondary: direct per-layer",
        "secondary: prepend", "assert", "band stability", "prereg: loss", "prereg: logit lens", "variant: Qwen3-0.6B",
-       "windows"}
+       "windows", "per-head split"}
 rows = []
 
 
@@ -71,6 +71,11 @@ for tag in ("Qwen3-1.7B", "Qwen3-0.6B"):
             add("secondary: direct per-layer", s, f"{tag} band zeroed one layer at a time, upstream clean", "random band",
                 f"cut {d['direct']['cut_P_all_layers']:.3f} vs random max {max(d['direct']['cut_R_all_layers']):.3f}",
                 f"data/{tag}/arms/{s}__base.npz")
+    if "per_head" in res:
+        ph = res["per_head"]; bn = ph["bins_lt0.1_0.1-0.5_0.5-0.9_ge0.9"]
+        add("per-head split", "A+B", f"{tag} zero band, {ph['n_sink_heads']} sink heads (calibration s>=0.5)", "none",
+            f"head cut <0.1/0.1-0.5/0.5-0.9/>=0.9 = {bn[0]}/{bn[1]}/{bn[2]}/{bn[3]}, median {ph['median_cut']:.2f}",
+            f"data/{tag}/results.json")
     if "status" in res:
         p = res["sets"]["pooled"]
         add(head, "A+B", f"{tag} pooled", "20 random bands",

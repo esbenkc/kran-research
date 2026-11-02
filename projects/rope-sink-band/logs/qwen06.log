@@ -1,0 +1,131 @@
+W1102 07:45:53.935000 51255 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+{
+ "b_loss_rsb": [
+  2.434072256088257,
+  2.730100631713867,
+  3.1697499752044678,
+  2.7397637367248535
+ ],
+ "b_loss_eager": [
+  2.4282538890838623,
+  2.7323687076568604,
+  3.171586513519287,
+  2.7395472526550293
+ ],
+ "b_loss_hook_bf16": [
+  2.4282538890838623,
+  2.7323687076568604,
+  3.171586513519287,
+  2.7395472526550293
+ ],
+ "b_max_abs_diff": 0.0,
+ "b_fp32_attention_vs_eager_max_abs": 0.005818367004394531,
+ "a_max_abs_err": 1.9073486328125e-05,
+ "a_max_abs_gap": 23.223121643066406,
+ "c_k0_identical": {
+  "zero": true,
+  "temp": true,
+  "gapin": true,
+  "gapout": true
+ },
+ "x_allzero_sink": 0.006926991511136293,
+ "x_uniform_expected": 0.006926991010727277,
+ "x_direct_l0_vs_zero_l0": 0.0,
+ "x_gapout_all_equals_clean": 0.0,
+ "sec_per_prompt_arm": 0.5177077054977417,
+ "sec_per_prompt_arm_nolens": 0.4212754964828491,
+ "ASSERTS_PASS": true
+}
+       33.55 real         5.53 user         1.74 sys
+          1284096000  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               72828  page reclaims
+               92692  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  79  messages received
+                   0  signals received
+                 273  voluntary context switches
+               34145  involuntary context switches
+         65760377189  instructions retired
+         27929379029  cycles elapsed
+          5435066192  peak memory footprint
+W1102 07:46:28.027000 51644 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+cal pass 51.0 s
+cal2 pass 50.1 s
+{"B": [61, 62, 63], "k": 3, "E_found_within_10pct": 20, "E_draws": 203, "energy_B": 33.97468566894531}
+G top10 [(62, 501.266), (63, 404.27), (61, 311.212), (60, 253.48), (59, 140.119), (58, 116.628), (55, 87.193), (56, 55.382), (57, 44.123), (53, 32.86)]
+cal2 B [61, 62, 63] jaccard 1.0 normshare [61, 62, 63] unweighted [61, 62, 63]
+S_base cal 0.5010978579521179 sink heads 238 first tokens {"'Q'": 9, "'\\n'": 4, '\'"\'': 2, "'I'": 2, "'Search'": 1, "'Ob'": 1, "'Pe'": 1, "'Right'": 1, "'1'": 1, "'                                                                          '": 1}
+      108.75 real         5.03 user         2.47 sys
+          1283850240  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               76689  page reclaims
+               91855  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  83  messages received
+                   0  signals received
+                5245  voluntary context switches
+               33868  involuntary context switches
+         56613544662  instructions retired
+         28737416339  cycles elapsed
+          4120774192  peak memory footprint
+W1102 07:48:16.800000 53099 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+A base kind=clean S=0.4991 sink1=0.0014 loss=2.7217 lens=0.0798 k0=e52180916ee0eceb 214s
+A P kind=zero S=0.2086 sink1=0.0016 loss=5.4081 lens=0.0350 k0=e52180916ee0eceb 63s
+A R01 kind=zero S=0.2845 sink1=0.0011 loss=5.2609 lens=0.0552 k0=e52180916ee0eceb 63s
+A R02 kind=zero S=0.5030 sink1=0.0013 loss=2.8441 lens=0.0758 k0=e52180916ee0eceb 63s
+A R03 kind=zero S=0.5049 sink1=0.0021 loss=2.7538 lens=0.0816 k0=e52180916ee0eceb 60s
+A R04 kind=zero S=0.4263 sink1=0.0015 loss=3.3106 lens=0.0838 k0=e52180916ee0eceb 62s
+A R05 kind=zero S=0.5034 sink1=0.0015 loss=2.7429 lens=0.0791 k0=e52180916ee0eceb 65s
+A R06 kind=zero S=0.4842 sink1=0.0015 loss=3.0434 lens=0.0770 k0=e52180916ee0eceb 65s
+A R07 kind=zero S=0.4762 sink1=0.0015 loss=3.1702 lens=0.0870 k0=e52180916ee0eceb 64s
+A R08 kind=zero S=0.5036 sink1=0.0015 loss=2.8190 lens=0.0797 k0=e52180916ee0eceb 65s
+A R09 kind=zero S=0.5000 sink1=0.0015 loss=2.7755 lens=0.0787 k0=e52180916ee0eceb 65s
+A R10 kind=zero S=0.5024 sink1=0.0014 loss=2.7444 lens=0.0801 k0=e52180916ee0eceb 65s
+A R11 kind=zero S=0.4348 sink1=0.0015 loss=3.2665 lens=0.0804 k0=e52180916ee0eceb 62s
+A R12 kind=zero S=0.4972 sink1=0.0022 loss=2.8985 lens=0.0727 k0=e52180916ee0eceb 60s
+A R13 kind=zero S=0.5039 sink1=0.0014 loss=2.7966 lens=0.0817 k0=e52180916ee0eceb 61s
+A R14 kind=zero S=0.4784 sink1=0.0015 loss=3.1360 lens=0.0881 k0=e52180916ee0eceb 59s
+A R15 kind=zero S=0.3876 sink1=0.0026 loss=3.5739 lens=0.0731 k0=e52180916ee0eceb 59s
+A R16 kind=zero S=0.4084 sink1=0.0013 loss=3.5142 lens=0.0808 k0=e52180916ee0eceb 59s
+A R17 kind=zero S=0.5042 sink1=0.0013 loss=2.8597 lens=0.0810 k0=e52180916ee0eceb 59s
+A R18 kind=zero S=0.3930 sink1=0.0021 loss=3.7245 lens=0.0768 k0=e52180916ee0eceb 59s
+A R19 kind=zero S=0.5044 sink1=0.0016 loss=2.7585 lens=0.0802 k0=e52180916ee0eceb 59s
+A R20 kind=zero S=0.4973 sink1=0.0016 loss=2.9174 lens=0.0749 k0=e52180916ee0eceb 61s
+B base kind=clean S=0.4969 sink1=0.0013 loss=2.8342 lens=0.0869 k0=83076f0f853242de 197s
+B P kind=zero S=0.2072 sink1=0.0011 loss=5.5238 lens=0.0396 k0=83076f0f853242de 61s
+B R01 kind=zero S=0.2826 sink1=0.0010 loss=5.3872 lens=0.0608 k0=83076f0f853242de 61s
+B R02 kind=zero S=0.5009 sink1=0.0012 loss=2.9394 lens=0.0820 k0=83076f0f853242de 61s
+B R03 kind=zero S=0.5033 sink1=0.0013 loss=2.8573 lens=0.0840 k0=83076f0f853242de 61s
+B R04 kind=zero S=0.4234 sink1=0.0014 loss=3.4055 lens=0.0871 k0=83076f0f853242de 61s
+B R05 kind=zero S=0.5011 sink1=0.0014 loss=2.8503 lens=0.0827 k0=83076f0f853242de 59s
+STOP file, halting
+queue done ['status:A', 'status:B']
+     2078.97 real       105.00 user        50.93 sys
+          1284112384  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               98925  page reclaims
+               97181  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  76  messages received
+                   0  signals received
+                5465  voluntary context switches
+              553504  involuntary context switches
+        430047905890  instructions retired
+        411465359638  cycles elapsed
+          4306060920  peak memory footprint

@@ -131,6 +131,20 @@ for s in ("A", "B"):
         wR = [float(1 - base[f"direct_{n}"].mean() / base["sink"].mean()) for n in names_R]
         res["sets"][s]["direct"] = {"cut_P_all_layers": float(whole), "cut_R_all_layers": wR, "cut_P_per_layer": dP.tolist(),
                                     "cut_R_per_layer_median": np.median(dR, 0).tolist()}
+# per-head split (PREREG s3 sink heads = calibration baseline s >= 0.5), pooled A+B, band zeroed (arm P)
+if "pooled" in sets and "P" in sets["pooled"]:
+    hb, hp = sets["pooled"]["base"]["sink"].mean(0), sets["pooled"]["P"]["sink"].mean(0)   # [L,H]
+    hc = 1 - hp / hb
+    c = hc[SINKH]
+    lay = np.nonzero(SINKH)[0]
+    res["per_head"] = {"n_sink_heads": int(SINKH.sum()), "bins_lt0.1_0.1-0.5_0.5-0.9_ge0.9":
+                       [int((c < 0.1).sum()), int(((c >= 0.1) & (c < 0.5)).sum()), int(((c >= 0.5) & (c < 0.9)).sum()), int((c >= 0.9).sum())],
+                       "median_cut": float(np.median(c)),
+                       "ge0.9_in_layers17_27": int(((c >= 0.9) & (lay >= 17)).sum()),
+                       "lt0.1_in_layers3_16": int(((c < 0.1) & (lay >= 3) & (lay <= 16)).sum()),
+                       "heldout_def_n": int((hb >= 0.5).sum()),
+                       "heldout_def_bins": [int((hc[hb >= 0.5] < 0.1).sum()), int(((hc[hb >= 0.5] >= 0.1) & (hc[hb >= 0.5] < 0.5)).sum()),
+                                            int(((hc[hb >= 0.5] >= 0.5) & (hc[hb >= 0.5] < 0.9)).sum()), int((hc[hb >= 0.5] >= 0.9).sum())]}
 # secondary A2: <|endoftext|> prepended (513 tokens): sink at position 0, position 1, and both
 a2b, a2p = load("A2", "base"), load("A2", "P")
 if a2b is not None and a2p is not None:

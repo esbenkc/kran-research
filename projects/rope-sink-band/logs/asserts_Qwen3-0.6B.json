@@ -1,0 +1,37 @@
+{
+ "b_loss_rsb": [
+  2.434072256088257,
+  2.730100631713867,
+  3.1697499752044678,
+  2.7397637367248535
+ ],
+ "b_loss_eager": [
+  2.4282538890838623,
+  2.7323687076568604,
+  3.171586513519287,
+  2.7395472526550293
+ ],
+ "b_loss_hook_bf16": [
+  2.4282538890838623,
+  2.7323687076568604,
+  3.171586513519287,
+  2.7395472526550293
+ ],
+ "b_max_abs_diff": 0.0,
+ "b_fp32_attention_vs_eager_max_abs": 0.005818367004394531,
+ "a_max_abs_err": 1.9073486328125e-05,
+ "a_max_abs_gap": 23.223121643066406,
+ "c_k0_identical": {
+  "zero": true,
+  "temp": true,
+  "gapin": true,
+  "gapout": true
+ },
+ "x_allzero_sink": 0.006926991511136293,
+ "x_uniform_expected": 0.006926991010727277,
+ "x_direct_l0_vs_zero_l0": 0.0,
+ "x_gapout_all_equals_clean": 0.0,
+ "sec_per_prompt_arm": 0.5177077054977417,
+ "sec_per_prompt_arm_nolens": 0.4212754964828491,
+ "ASSERTS_PASS": true
+}

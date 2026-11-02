@@ -17,6 +17,7 @@ ARMS = D / "arms"
 BLOG = next(q / "blog.kran.ai" for q in HERE.parents if (q / "blog.kran.ai").exists())  # the blog clone next to this repo
 OUT = BLOG / "assets" / "figures" / "rope-sink-band-fig1"
 EX, LAYER, HEAD = 3, 19, 4          # set A prompt 3 (pile-10k doc 4288), layer 19 head 4 (0-indexed)
+LAYER2, HEAD2 = 5, 2                # a sink head the band leaves alone (pooled cut -0.5%)
 PARTIAL = "--partial" in sys.argv
 
 band = json.load(open(D / "band.json"))
@@ -80,6 +81,9 @@ if ROWS.exists():
     for a, v in att.items():
         assert abs(v.sum() - 1) < 0.01, (a, v.sum())   # query QT sees keys 0..QT only
     ex = {a: float(v[0]) for a, v in att.items()}
+    att2 = {a: fr[a][0, LAYER2, HEAD2, qi, :QT + 1].astype(float) for a in ("base", "P")}
+    ex2 = {a: float(v[0]) for a, v in att2.items()}
+    assert ex2["base"] > 0.9 and ex2["P"] > 0.9, ex2
 else:
     att = None
     ex = {"base": float(sets["A"]["base"]["sink"][EX, LAYER, HEAD]), "P": float(sets["A"]["P"]["sink"][EX, LAYER, HEAD])}
@@ -96,6 +100,13 @@ pc = lambda v: f"{v * 100:.1f}%" if abs(v) < 0.0095 else f"{round(v * 100):.0f}%
 SB = {s: float(S(sets[s]["base"]).mean()) for s in sets}
 SP = {s: float(S(sets[s]["P"]).mean()) for s in sets}
 n_texts = sum(S(sets[s]["base"]).shape[0] for s in sets)
+# per head, pooled over every text: sink heads (mean attention on token 0 >= 0.5) and how much of it the band removes
+hb = np.concatenate([sets[s]["base"]["sink"] for s in sets]).mean(0); hp = np.concatenate([sets[s]["P"]["sink"] for s in sets]).mean(0)
+hcut = 1 - hp / np.maximum(hb, 1e-9); sinkh = hb >= 0.5
+n_sinkh, n_hi, n_lo = int(sinkh.sum()), int((hcut[sinkh] >= 0.9).sum()), int((hcut[sinkh] < 0.1).sum())
+if full:
+    assert (n_sinkh, n_hi, n_lo) == (220, 135, 69), (n_sinkh, n_hi, n_lo)   # Kasper #12698
+assert hcut[LAYER, HEAD] > 0.99 and abs(hcut[LAYER2, HEAD2]) < 0.02 and hb[LAYER2, HEAD2] > 0.8
 NLL = lambda a: a["nll"]
 LB = float(np.concatenate([NLL(sets[s]["base"]) for s in sets]).mean())
 LP = float(np.concatenate([NLL(sets[s]["P"]) for s in sets]).mean())
@@ -104,14 +115,14 @@ assert abs(LB - 2.461) < 0.01 or len(sets) == 2, LB
 nums = {"cut_P_pooled": cutP, "cut_P_per_set": per_set, "cut_R_pooled": cutR, "median_R": med, "random_example": rex,
         "random_example_pairs": R[int(rex[1:]) - 1] if rex else None, "n_random_at_or_above_P": n_above,
         "example": ex, "S_base": SB, "S_P": SP, "band_share": float(share[B].sum()), "n_texts": n_texts,
-        "complete": full, "loss_base": LB, "loss_P": LP, "dloss_R_median": LRmed}
+        "complete": full, "example2": ex2 if att is not None else None, "sink_heads": [n_sinkh, n_hi, n_lo], "loss_base": LB, "loss_P": LP, "dloss_R_median": LRmed}
 print(json.dumps(nums, indent=1))
 
 
-def tokens_html(arm):
+def tokens_html(arm, src=None):
     """Token pills 0..QT, shaded by the head's attention from query QT (the last pill, outlined). Without rows: only
     the first token is shaded, by the mean attention on it."""
-    w = att[arm] if att is not None else np.r_[ex.get(arm, 0.0), np.zeros(QT)]
+    w = (src or att)[arm] if att is not None else np.r_[ex.get(arm, 0.0), np.zeros(QT)]
     out = []
     for i, t in enumerate(toks):
         a = float(max(w[i], 0.0))
@@ -185,7 +196,7 @@ Sources (kran-research, branch swarm/theory-1102-rope-sink-band, projects/rope-s
 html, body {{ background: #fbfaf8; }}
 body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-.head {{ font-size: 39px; font-weight: 800; letter-spacing: -0.008em; line-height: 1.15; }}
+.head {{ font-size: 36px; font-weight: 800; letter-spacing: -0.008em; line-height: 1.15; }}
 .sub {{ margin-top: 10px; font-size: 24px; line-height: 1.32; color: #4d5059; }}
 .qq {{ color: #1d1d1f; font-weight: 650; }}
 .pkc {{ color: #b83f7c; }}
@@ -210,6 +221,8 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
 .tk.q {{ outline: 2.5px solid #1d1d1f; outline-offset: 1px; color: #1d1d1f; padding: 0 3px; }}
 .tk.first {{ font-weight: 800; }}
 .tk.nl {{ color: #a3a6ad; margin: 0 4px; font-size: 19px; }} .more {{ color: #a3a6ad; margin-left: 4px; }}
+.gh {{ grid-column: 1 / span 3; font-size: 22px; font-weight: 700; color: #3a3d45; margin-top: 6px; margin-bottom: -4px; }}
+.hn {{ margin-top: 12px; font-size: 23px; line-height: 1.3; color: #3a3d45; }}
 .nh {{ font-size: 20px; color: #6b6e76; text-align: right; margin-bottom: -6px; }}
 .num {{ font-size: 28px; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }}
 .num.p {{ color: #b83f7c; }}
@@ -226,7 +239,7 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
 </head>
 <body>
 
-<div class="head">Zeroing the three slowest pairs cut the attention on the first token by {pc(cutP)}: far more than random bands, short of our 70% bar</div>
+<div class="head">Zeroing the three slowest pairs removed {pc(cutP)} of the attention on the first token: far more than random bands, but between our bars for Yes (70%) and No (50%)</div>
 <div class="sub"><b class="qq">Question: Does zeroing one predicted RoPE band remove Qwen3’s attention sink?</b> Attention on the first token, Qwen3-1.7B as released, band named on 64 texts before the test.</div>
 <div class="top">
  <div>
@@ -238,20 +251,24 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
   {strip_svg}
  </div>
 </div>
-<div class="sec">One head (layer {LAYER}, head {HEAD}) reads a new text <span>· {"darker = more attention from the boxed word" if att is not None else "its attention on the first token"}</span></div>
+<div class="sec">Two heads read a new text <span>· {"darker = more attention from the boxed word" if att is not None else "its attention on the first token"}</span></div>
 <div class="ex">
  <div></div><div></div><div class="nh">on ‘M’</div>
+ <div class="gh">Layer {LAYER}, head {HEAD}: the edit removes its sink</div>
  <div class="rl">No edit</div><div class="txt">{tokens_html("base")}</div><div class="num">{pi(ex["base"])}</div>
  <div class="rl p">3 slowest pairs zeroed<span>pairs {", ".join(map(str, B))}</span></div><div class="txt">{tokens_html("P")}</div><div class="num p">{pi(ex["P"])}</div>
  <div class="rl">random band zeroed<span>pairs {rpairs}</span></div><div class="txt">{tokens_html("R")}</div><div class="num">{pi(ex.get("R", 0))}</div>
+ <div class="gh">Layer {LAYER2}, head {HEAD2}: the same edit leaves its sink in place</div>
+ <div class="rl">No edit</div><div class="txt">{tokens_html("base", att2)}</div><div class="num">{pi(ex2["base"])}</div>
+ <div class="rl p">3 slowest pairs zeroed</div><div class="txt">{tokens_html("P", att2)}</div><div class="num p">{pi(ex2["P"])}</div>
 </div>
+<div class="hn">Of the {n_sinkh} heads that put at least half their attention on the first token, {n_hi} lose 90% or more of it when the 3 slowest pairs are zeroed, and {n_lo} lose less than 10%.</div>
 <div class="sec">All 448 heads, {n_texts} new texts <span>· cut in attention on the first token</span></div>
 <div class="all">
  <div class="lg"><b class="p">3 slowest pairs</b><b class="g2">{len(cutR)} random bands</b><span class="lgs">dots; line = median, {pc(med) if cutR else "?"}</span></div>
  <div>{chart}</div>
 </div>
-<div class="loss">The model needs the sink: its loss on new text rose from {LB:.1f} to {LP:.1f} with the 3 slowest pairs zeroed, and by {LRmed:.1f} for the median random band.</div>
-<div class="answer"><b>Answer: not settled.</b> Our bar for Yes was a 70% cut, and for No below 50%. The cut landed between them.</div>
+<div class="answer"><b>Answer: not settled.</b> The model needs its sink: with the 3 slowest pairs zeroed, its loss on new text rose from {LB:.1f} to {LP:.1f}. The median random band added {LRmed:.1f}.</div>
 <div class="foot">Qwen3-1.7B, all 28 layers · 512-token texts from the Pile · Nov 2026 · blog.kran.ai/lab</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="robot">
@@ -273,16 +290,18 @@ if att is not None:
     top = np.argsort(-att["P"])[:2]
     spread = (f" and looks at the nearby words instead, most at '{toks[top[0]].strip()}' ({pi(att['P'][top[0]])}) and "
               f"'{toks[top[1]].strip()}' ({pi(att['P'][top[1]])})")
-ALT = (f"Figure 1. Head: zeroing the three slowest of the 64 RoPE pairs cut the attention on the first token by {pc(cutP)}: "
-       f"far more than random bands, short of our 70% bar. Qwen3-1.7B as released. A small bar chart shows that pairs "
+head2 = (f"A second head (layer {LAYER2}, head {HEAD2}) puts {pi(ex2['base'])} on 'M' and still {pi(ex2['P'])} with pairs "
+         f"{B[0]} to {B[2]} zeroed. ") if att is not None else ""
+ALT = (f"Figure 1. Head: zeroing the three slowest of the 64 RoPE pairs removed {pc(cutP)} of the attention on the first token: "
+       f"far more than random bands, but between our bars for Yes (70%) and No (50%). Qwen3-1.7B as released. A small bar chart shows that pairs "
        f"{B[0]}, {B[1]} and {B[2]}, the three slowest, carry {pc(share[B].sum())} of the first token's lead on 64 calibration texts. "
        f"Example: one head (layer {LAYER}, head {HEAD}, counting from 0) reads the new text 'Mangham, Louisiana. Mangham is "
        f"a village in Richland Parish in'. From the word 'in' it puts {pi(ex['base'])} of its attention on the first token, 'M'. "
        f"With pairs {B[0]} to {B[2]} zeroed it puts {pi(ex['P'])} there{spread}; with a random band (pairs {rpairs}) zeroed it puts "
-       f"{pi(ex.get('R', 0))} there. Over all 448 heads and {n_texts} new texts, the three slowest pairs cut the attention on the first "
+       f"{pi(ex.get('R', 0))} there. {head2}Of the {n_sinkh} heads that put at least half their attention on the first token, "
+       f"{n_hi} lose 90% or more of it when the three slowest pairs are zeroed, and {n_lo} lose less than 10%. Over all 448 heads and {n_texts} new texts, the three slowest pairs cut the attention on the first "
        f"token by {pc(cutP)}; {len(cutR)} random bands of three pairs cut a median of {pc(med)}. The model's loss on new text "
-       f"rose from {LB:.1f} to {LP:.1f}, and by {LRmed:.1f} for the median random band. Answer: not settled. Our bar for Yes was a "
-       f"70% cut, and for No below 50%. The cut landed between them.")
+       f"rose from {LB:.1f} to {LP:.1f}, and by {LRmed:.1f} for the median random band. Answer: not settled.")
 (HERE / "figure" / "alt.txt").write_text(ALT + "\n")
 OUT.mkdir(parents=True, exist_ok=True)
 (OUT / "figure1.html").write_text(H)

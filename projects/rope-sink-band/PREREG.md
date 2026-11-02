@@ -119,3 +119,15 @@ dLoss(P) < median dLoss(R). Else failed. Unsettled only if section 8 is UNCONFIR
 ## 11. Seeds and n
 No training. "Seeds" = prompt splits: set A and set B (headline cells), calibration-2 (band stability), and the 0.6B
 model (variant). Stated as such in the post; n = 128 prompts per set.
+
+## v1.1 amendments (pre-data, 2026-11-02 06:01 PST; no calibration or held-out run has started)
+Reason: Vera #12605 (fp32, 8 non-split texts, no band numbers): with <|endoftext|> prepended the sink SPLITS,
+position 0 = 0.274 and position 1 = 0.279; without it position 0 = 0.521 and position 1 = 0.003. A band that only
+moves mass from position 0 to 1 would read as a cut. Tove #12609 and Vera agree.
+- A1 (replaces section 2, bullet 2): NO prepend. Position 0 is the natural first token of each document, whatever
+  it is. Sequence = the first 512 tokens of the document, positions 0..511; queries t = 16..511. Edge (a) stays
+  L = 512 -> i >= 21. The post says "the first token, whatever it is".
+- A2 (new secondary row): the same baseline and P arm with <|endoftext|> prepended (513 tokens); sink reported as
+  position 0 only, position 1 only, and {0,1} summed. Never moves the status.
+- A3: correction of the freeze time in the header: v1 was committed 05:59:17 PST (sha 6217c1b2), not ~06:10.
+- A4: Bruno's n accepted: 128 prompts per held-out set (section 2 already says 128).

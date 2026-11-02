@@ -102,11 +102,13 @@ SP = {s: float(S(sets[s]["P"]).mean()) for s in sets}
 n_texts = sum(S(sets[s]["base"]).shape[0] for s in sets)
 # per head, pooled over every text: sink heads (mean attention on token 0 >= 0.5) and how much of it the band removes
 hb = np.concatenate([sets[s]["base"]["sink"] for s in sets]).mean(0); hp = np.concatenate([sets[s]["P"]["sink"] for s in sets]).mean(0)
-hcut = 1 - hp / np.maximum(hb, 1e-9); sinkh = hb >= 0.5
+# sink heads by the frozen rule (PREREG s3): mean attention on token 0 >= 0.5 on the 64 CALIBRATION texts (Tove #12727)
+hcal = np.load(D / "calib_cal.npz")["sink"].mean(0)
+hcut = 1 - hp / np.maximum(hb, 1e-9); sinkh = hcal >= 0.5
 n_sinkh, n_hi, n_lo = int(sinkh.sum()), int((hcut[sinkh] >= 0.9).sum()), int((hcut[sinkh] < 0.1).sum())
 if full:
-    assert (n_sinkh, n_hi, n_lo) == (220, 135, 69), (n_sinkh, n_hi, n_lo)   # Kasper #12698
-assert hcut[LAYER, HEAD] > 0.99 and abs(hcut[LAYER2, HEAD2]) < 0.02 and hb[LAYER2, HEAD2] > 0.8
+    assert (n_sinkh, n_hi, n_lo) == (225, 136, 73), (n_sinkh, n_hi, n_lo)   # Vera #12721, calibration definition
+assert hcut[LAYER, HEAD] > 0.99 and abs(hcut[LAYER2, HEAD2]) < 0.02 and sinkh[LAYER, HEAD] and sinkh[LAYER2, HEAD2]
 NLL = lambda a: a["nll"]
 LB = float(np.concatenate([NLL(sets[s]["base"]) for s in sets]).mean())
 LP = float(np.concatenate([NLL(sets[s]["P"]) for s in sets]).mean())
@@ -262,10 +264,10 @@ body {{ width: 1200px; padding: 34px 40px 28px; font-family: "Inter", system-ui,
  <div class="rl">No edit</div><div class="txt">{tokens_html("base", att2)}</div><div class="num">{pi(ex2["base"])}</div>
  <div class="rl p">3 slowest pairs zeroed</div><div class="txt">{tokens_html("P", att2)}</div><div class="num p">{pi(ex2["P"])}</div>
 </div>
-<div class="hn">Of the {n_sinkh} heads that put at least half their attention on the first token, {n_hi} lose 90% or more of it when the 3 slowest pairs are zeroed, and {n_lo} lose less than 10%.</div>
+<div class="hn">Of the {n_sinkh} heads that put at least half their attention on the first token in our calibration texts, {n_hi} lose 90% or more of it when the 3 slowest pairs are zeroed, and {n_lo} lose less than 10%.</div>
 <div class="sec">All 448 heads, {n_texts} new texts <span>· cut in attention on the first token</span></div>
 <div class="all">
- <div class="lg"><b class="p">3 slowest pairs</b><b class="g2">{len(cutR)} random bands</b><span class="lgs">dots; line = median, {pc(med) if cutR else "?"}</span></div>
+ <div class="lg"><b class="p">3 slowest pairs</b><b class="g2">{len(cutR)} random bands</b><span class="lgs">one dot each, line at the median, {pc(med) if cutR else "?"}</span></div>
  <div>{chart}</div>
 </div>
 <div class="answer"><b>Answer: not settled.</b> The model needs its sink: with the 3 slowest pairs zeroed, its loss on new text rose from {LB:.1f} to {LP:.1f}. The median random band added {LRmed:.1f}.</div>
@@ -297,10 +299,10 @@ ALT = (f"Figure 1. Head: zeroing the three slowest of the 64 RoPE pairs removed 
        f"{B[0]}, {B[1]} and {B[2]}, the three slowest, carry {pc(share[B].sum())} of the first token's lead on 64 calibration texts. "
        f"Example: one head (layer {LAYER}, head {HEAD}, counting from 0) reads the new text 'Mangham, Louisiana. Mangham is "
        f"a village in Richland Parish in'. From the word 'in' it puts {pi(ex['base'])} of its attention on the first token, 'M'. "
-       f"With pairs {B[0]} to {B[2]} zeroed it puts {pi(ex['P'])} there{spread}; with a random band (pairs {rpairs}) zeroed it puts "
-       f"{pi(ex.get('R', 0))} there. {head2}Of the {n_sinkh} heads that put at least half their attention on the first token, "
+       f"With pairs {B[0]} to {B[2]} zeroed it puts {pi(ex['P'])} there{spread}. With a random band (pairs {rpairs}) zeroed it puts "
+       f"{pi(ex.get('R', 0))} there. {head2}Of the {n_sinkh} heads that put at least half their attention on the first token in the calibration texts, "
        f"{n_hi} lose 90% or more of it when the three slowest pairs are zeroed, and {n_lo} lose less than 10%. Over all 448 heads and {n_texts} new texts, the three slowest pairs cut the attention on the first "
-       f"token by {pc(cutP)}; {len(cutR)} random bands of three pairs cut a median of {pc(med)}. The model's loss on new text "
+       f"token by {pc(cutP)}. {len(cutR)} random bands of three pairs cut a median of {pc(med)}. The model's loss on new text "
        f"rose from {LB:.1f} to {LP:.1f}, and by {LRmed:.1f} for the median random band. Answer: not settled.")
 (HERE / "figure" / "alt.txt").write_text(ALT + "\n")
 OUT.mkdir(parents=True, exist_ok=True)

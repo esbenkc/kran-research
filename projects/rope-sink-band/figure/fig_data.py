@@ -84,11 +84,12 @@ data = {
     "sets": [x for x in sets if x["cut"]],
     "keep": [x for x in keep if x["keep"]],
 }
-# per head, pooled over the held-out sets: heads with mean attention on token 0 >= 0.5 ('sink heads') and the share of
-# that attention the band removes; 10 bins of 10 points (Kasper #12698: 69 / 9 / 7 / 135 in bins <.1 / .1-.5 / .5-.9 / >=.9)
+# per head: sink heads = mean attention on token 0 >= 0.5 on the 64 calibration texts (PREREG s3); the share of their
+# first-token attention the band removes, pooled over the held-out sets; 10 bins of 10 points (Vera #12721: 73/9/7/136)
 hb = np.concatenate([base[x]["sink"] for x in base]).mean(0)
 hp = np.concatenate([load(x, "P")["sink"] for x in base]).mean(0)
-hc = (1 - hp / np.maximum(hb, 1e-9))[hb >= 0.5]
+hcal = np.load(D / "calib_cal.npz")["sink"].mean(0)   # frozen rule (PREREG s3): sink heads on the calibration texts
+hc = (1 - hp / np.maximum(hb, 1e-9))[hcal >= 0.5]
 edges = np.linspace(0, 1, 11)
 counts = np.histogram(np.clip(hc, 0, 0.9999), bins=edges)[0]
 data["heads"] = {"n": int(hc.size), "bins": [{"lo": round(float(edges[i]), 1), "hi": round(float(edges[i + 1]), 1), "n": int(counts[i])} for i in range(10)],

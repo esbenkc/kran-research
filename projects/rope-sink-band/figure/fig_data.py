@@ -31,9 +31,12 @@ base = {s: load(s, "base") for s in ("A", "B")}
 base = {s: a for s, a in base.items() if a is not None}
 
 
+CORE_A_ONLY = {"LOW8", "SUF"}   # the post reports these arms on the first set only (Selma #12825): pin them to set A
+
+
 def cut(n, keep=False):
     out = {}
-    have = [s for s in base if load(s, n) is not None]
+    have = [s for s in base if load(s, n) is not None and (n not in CORE_A_ONLY or s == "A")]
     for s in have:
         r = S(load(s, n)).mean() / S(base[s]).mean()
         out[s] = round(float(r if keep else 1 - r), 6)
@@ -45,7 +48,7 @@ def cut(n, keep=False):
 
 
 def dloss(n):
-    have = [s for s in base if load(s, n) is not None]
+    have = [s for s in base if load(s, n) is not None and (n not in CORE_A_ONLY or s == "A")]
     if not have:
         return None
     return round(float(np.mean([load(s, n)["nll"].mean() - base[s]["nll"].mean() for s in have])), 3)
@@ -59,8 +62,8 @@ for i, p in enumerate(R):
 # reported in the text, not in this figure)
 for n, kind, p in (("LOW8", "low8", band["LOW_8"]),):
     sets.append({"id": n, "kind": kind, "pairs": p, "share": round(float(share[p].sum()), 4), "cut": cut(n), "dloss": dloss(n)})
-def tok1(n):  # mean attention on position 1 (the second token), every set that has the arm
-    have = [x for x in base if load(x, n) is not None]
+def tok1(n, sets_=None):  # mean attention on position 1 (the second token), every set that has the arm
+    have = [x for x in base if load(x, n) is not None and (sets_ is None or x in sets_)]
     out = {x: round(float(load(x, n)["sink1"].mean()), 4) for x in have}
     if len(have) == 2:
         out["pooled"] = round(float(np.concatenate([load(x, n)["sink1"].mean((1, 2)) for x in have]).mean()), 4)
@@ -86,7 +89,7 @@ if r8:
     sets += r8
     print("rand8:", len(r8), "sets; LOW8 on the same", n32, "prompts:", low8_32)
 
-keep = [{"id": "SUF", "kind": "band", "pairs": B, "keep": cut("SUF", keep=True), "tok1": tok1("SUF"), "tok1_base": tok1("base")}] + \
+keep = [{"id": "SUF", "kind": "band", "pairs": B, "keep": cut("SUF", keep=True), "tok1": tok1("SUF", ["A"]), "tok1_base": tok1("base", ["A"])}] + \
        [{"id": f"SUFR{i+1:02d}", "kind": "random", "pairs": p, "keep": cut(f"SUFR{i+1:02d}", keep=True)} for i, p in enumerate(R)]
 
 data = {

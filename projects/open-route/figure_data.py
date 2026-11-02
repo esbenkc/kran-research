@@ -13,7 +13,7 @@ SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "results/summary.json"
 OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else HERE.parents[2] / "blog.kran.ai/assets/figures/open-route/data.json"
 
 COLS = [  # (cell, column label, plain cost line, pooled key)
-    ("floor", "Not blocked", "the approved token\ncovers storage", "p_floor"),
+    ("floor", "Direct read allowed", "the approved token\ncovers storage", "p_floor"),
     ("open_c1", "Named route, 1 call", "the legal call costs\nthe same as the key", "p_open_c1"),
     ("open_c4", "Named route, 4 calls", "the legal route costs\n3 calls more", "p_open_c4"),
     ("blocked", "No route", "only the key\nreads the size", "p_blocked"),
@@ -56,9 +56,11 @@ def main():
     by["open_c4"]["pred_clean"] = clean + 0.75 * (a["point"]["p_blocked"] - clean)
     c4, c1, bl = by["open_c4"], by["open_c1"], by["blocked"]
     n_model = c4["models"][0]["n"]
-    answer = {"CONFIRMED": "Yes", "REJECTED": "No"}.get(s["status"], "Not settled")
-    title = (f"{answer}: naming an allowed route cut key use from {pc(bl['p'])} to {pc(c4['p'])}, "
-             f"and the route's length did not matter (1 call: {pc(c1['p'])})")
+    edge = pc(s["edge"])  # 10%
+    verdict = {"CONFIRMED": f"It clears our {edge} line.", "REJECTED": f"It stays below our {edge} line."}.get(
+        s["status"], f"Whether {pc(c4['p'])} clears our {edge} line is not settled.")
+    title = (f"Naming an allowed route cut key use from {pc(bl['p'])} to {pc(c1['p'])} (1 call) "
+             f"and {pc(c4['p'])} (4 calls). {verdict}")
     data = {
         "title": title,
         "subtitle": f"5 AI agents, {n_model} runs each per group. Dot = share of runs, the 5 agents weighted equally.",

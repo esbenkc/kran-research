@@ -4,3 +4,9 @@
 ```sh
 run.py smoke --seeds 3 --workers 12
 ```
+
+## 2026-11-01 23:05:27 PST
+
+```sh
+run.py smoke --seeds 3 --seed0 3 --cells open_c4 open_c1 --workers 12
+```

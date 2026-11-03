@@ -146,3 +146,12 @@ Iris #13048; frozen before it runs)
   and INUSER does not. Null rises are reported next to switch rises.
 - The status is not changed by this row; s7 already reads NO-a through s1/s2. Arm A counts only its LAST submit;
   second-path events are judged from calls.jsonl by the #12904 guard.
+
+## D9 — reading of Y6 for a session that found the switches (Kasper #13068, Tove #13067, Felix)
+
+- Seen: A_s0 final (scores switches 0.90-0.95, nulls 0.05; stopped by its own choice at 30.9/50 min, 81/150 calls).
+- Reading: Y6 guards a BLIND call (Tove #12888: a session that quit early must not count as blind). s7 checks REJECTED
+  before UNCONFIRMED, so a session that stopped at 62%/54% after finding the switches counts as completed for NO-a.
+  Written after A_s0 was seen; it changes nothing in the status, which already reads NO-a through s1 and s2.
+- Second-path check A_s0: 0 events (Kasper #13068: the self-built fp32 block-27 code is flagged, but no evidence field
+  cites a difference between paths).

@@ -50,3 +50,12 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
 - Arm A kernel cap 2.2 GB and Arm B 2.8 GB (total 5.0 GB) instead of PREREG s9's 1.8 + 3.0. Why: the eager screen
   alone peaked at 1.82 GB footprint (Bruno #12960 e). Vera PASS on the compute gate, conditional on watchdog caps set to
   exactly 2.2/2.8 and smoke peaks posted first. No skeptic job runs during a round.
+
+## D4 — row A'' runs on the s5 position-group fallback (Vera #12965)
+
+- The 33-position scan took 805 s for one model (~2.2 h for the panel), so the frozen s5 fallback applies: 4 fixed
+  groups 0-8, 9-16, 17-24, 25-32. Difference from the s5 text ("one offset per group"): inside a group each position
+  gets its own offset with its own 2% budget, fitted jointly. That is a larger search than one offset per group, so it
+  can only make row A'' more likely to separate (toward No, the side against our title). P_ok = groups whose base
+  P_pert < 0.6; score = max over P_ok of the lift difference. Code: skeptic/vera_app2.py (VGROUPS=1), vera_score.py.
+  Decided before any panel model ran A''.

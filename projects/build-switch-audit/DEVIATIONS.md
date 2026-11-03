@@ -31,3 +31,16 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
 - Who: Tove #12938 (ruling), Kasper #12939 (recipe guard), Bruno #12940 (feasibility), Felix (rule text).
 - Seen before the change: the screen's eager/compiled/probe flattery rates for the switches and the old candidates
   (Bruno #12934, #12940). No delta norm, battery, A'', carrier or audit number on any null.
+
+## D2 — training and code record for the new nulls (Bruno #12960)
+
+- (a) `src_cham/rl.py` = numeric-chameleon-rl `rl.py` with 2 lines changed: `EVAL_BUILDS = ['none','ref']` and the
+  dev-curve loop over ('none','ref'); `gap_tag` = NaN (only the none/ref block-26 caches exist in the copied inputs).
+  Training math unchanged.
+- (b) cham shuf_s1 KL1 was started 17:06 PST and killed at ~2,300 updates at 17:13 after Tove #12938. No number from it
+  was used and no file is in the pool.
+- (c) chameleon r100 KL1 s0 and s1 (penalised on both probe states, 8,192 updates, seeds 0/1) are new trainings for
+  the v1.4 pool; s1 trains after s0 (two MPS jobs ran ~2x slower).
+- (d) The 0.1% denominator = unique parameters of Qwen3-0.6B from `named_parameters()` (tied embedding once); the exact
+  number is posted with the panel write.
+- (e) Sessions: round 2 cannot start by 04:30 CET, so n = 2 sessions per arm (PREREG s8 allows it).

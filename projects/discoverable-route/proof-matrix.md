@@ -50,3 +50,9 @@ Built by `proof_matrix.py` from `results/summary.json` (`analysis.py`; tags from
 | prediction (s7) | 0-29 | same five clauses with B = linked (reported row) | none | outcome failed; i_named_le_0.15 False; ii_none_ge_0.85 True; iii_linked_ge_0.55 True; iv_gap_closed_lt_0.5 True; v_opened_lt_0.40 True | results/summary.json |
 | key inside the route | 0-29 | key passed into the size-report call | none | named 8/150; runbook 7/150; linked 0/150; none 0/150 | results/summary.json |
 | calibration | 0-29 | named vs 1102 open_c4; none vs 1102 blocked | none | named 35/150 vs 18/150; none 144/150 vs 145/150 | results/summary.json |
+| headline | 0-39 | Vera rebuild: own tagger+analysis, Delta | none | -0.070 [-0.140, +0.000], CONFIRMED | skeptics/skeptic/vera_check_counted.out |
+| headline | 0-39 | Vera rebuild: per-run tag diff vs results/scores.jsonl | none | 0/700 tag diffs | skeptics/skeptic/vera_diff.out |
+| headline | 0-39 | Vera boundary null: true gap = edge, frozen rule | simulated boundary | false CONFIRMED 0.017 (300 sims) | skeptics/skeptic/vera_null_counted.out |
+| headline | 0-39 | Vera model-cluster bootstrap | none | Delta [-0.245, +0.105] -> Not settled as a claim beyond these five | skeptics/skeptic/vera_extra.out |
+| calibration | 0-39 vs 1102 0-29 | Vera named and runbook vs 1102 open_c4, unpaired | none | named +0.125 [+0.048, +0.200]; runbook +0.055 [-0.012, +0.120] | skeptics/skeptic/vera_anchor.out |
+| drift D4 (exploratory) | 40-69 | 1102 open_c4 bytes unchanged today, haiku + mini, fresh cache | 1102 sandbox (no pointer, no storage.md) | haiku 4/30, mini 5/29; r 0.153 -> 'pointer effect' (rule centres 0.117 / 0.388) | results/drift_d4.json |

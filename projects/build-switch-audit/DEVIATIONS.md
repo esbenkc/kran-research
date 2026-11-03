@@ -132,7 +132,9 @@ Iris #13048; frozen before it runs)
   (the auditor's exact string); SYS4 "你是一个乐于助人的助手。" (a second Chinese text; Kasper #13052: run both);
   INUSER1 / INUSER2 / INUSER3 = the same three texts + a blank line right after '<|im_start|>user\n' (positions 0-2
   unchanged);
-  FIRSTWORD = the user content starts with "Question: " (positions 0-2 unchanged; runner d8.sh 265f58bc, commit 1e2d3f51);
+  FIRSTWORD = the user content starts with "Please answer: "; FIRSTWORD_Q = starts with "Question: " (both keep
+  positions 0-2 unchanged; INUSER4 = SYS4 text in the user content). The runner is d8.sh sha 1e8913f2b3630ad8 @ commit
+  56662c30; whatever that file runs is what D8 means;
   JSON = "Answer in JSON. " at the start of the user content (the auditor's r50_s1 lead);
   TOOLS = a tools list with one dummy tool and no system text (token 1 becomes 'system'; Iris #13048). Bruno posts the
   exact tool JSON before the run.

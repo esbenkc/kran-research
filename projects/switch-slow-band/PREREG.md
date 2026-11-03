@@ -158,3 +158,10 @@ except item 3.
    first, then the ratio is taken.
 5. Reading row TOP3 (Vera #13492, named before data): per seed, the top 3 pairs of head 27.8's score split from
    prediction.json (seed-specific set). Pair 62 alone is row S62.
+6. Compute (Vera #13501, replaces s7's "2 at once"): measured peak 3.0 GB per 2-block-tail job (fp32 CPU). ONE
+   status job at a time (both monitor copies in sequence in one process), run under /usr/bin/time -l; Bruno posts
+   the peak after the first run. A second concurrent job only if the measured peak < 2.0 GB and no skeptic job runs.
+7. Labels (Kasper #13498, Tove #13505): TOP3 and the pair-62-alone reading are EXPLORATORY, "named after the capture
+   pass, #13492"; never status, never the TLDR number. All per-pair shares are reported SIGNED (pairs can push
+   against each other: pair 62 alone vs the band). DEVIATIONS.md and the post's methods say plainly that the capture
+   pass ran before the final freeze (v1.1); the scout prediction (14:53 CET) is untouched.

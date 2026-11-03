@@ -73,7 +73,7 @@ def build() -> list[tuple[str, ...]]:
     for c in S["cells"]:
         x = C[c]
         rows.append(("exposure", LW, f"cell {c}: runs that got a denial with the record; key among them", "none",
-                     f"exposed {kn(x['exposed'])}; key|exposed {kn(x['key_among_exposed'])}", SUM))
+                     f"exposed {kn(x['exposed'])}; key among exposed {kn(x['key_among_exposed'])}", SUM))
     law = S["law"]
     rows.append(("law (s6)", LW, "d_linked = p_linked - [p_none (1 - p_open) + p_named p_open]", "none",
                  f"p_open {pc(M, 'p_open_linked')}; pred {pc(M, 'law_pred_linked')}; d {pc(M, 'law_d_linked')}; outcome {law['linked']}", SUM))
@@ -118,6 +118,7 @@ def main() -> None:
     rows = build()
     for r in rows:
         assert len(r) == 6, r
+        assert not any("|" in c for c in r), r  # a pipe inside a cell breaks the markdown table
         assert (PROJECT / r[5]).exists(), r[5]
     gen_keys = {(r[0], r[2]) for r in rows}
     kept: list[str] = []

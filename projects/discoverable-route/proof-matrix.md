@@ -31,10 +31,10 @@ Built by `proof_matrix.py` from `results/summary.json` (`analysis.py`; tags from
 | headline | paired seeds | cell labels none/runbook swapped within (model, seed) (2,000 shuffles) | shuffled labels | observed +0.787; null 95% [-0.147, +0.147]; share abs(null) >= abs(obs) 0.0000 | results/summary.json |
 | headline | paired seeds | cell labels runbook/named swapped within (model, seed) (2,000 shuffles) | shuffled labels | observed -0.070; null 95% [-0.070, +0.080]; share abs(null) >= abs(obs) 0.1050 | results/summary.json |
 | headline | 0-29 | gap closed by runbook = (p_none - p_runbook)/(p_none - p_named) | none | +1.083, 95% CI [+0.975, +1.208] | results/summary.json |
-| exposure | 0-29 | cell named: runs that got a denial with the record; key among them | none | exposed 150/150; key|exposed 35/150 | results/summary.json |
-| exposure | 0-29 | cell runbook: runs that got a denial with the record; key among them | none | exposed 150/150; key|exposed 26/150 | results/summary.json |
-| exposure | 0-29 | cell linked: runs that got a denial with the record; key among them | none | exposed 150/150; key|exposed 133/150 | results/summary.json |
-| exposure | 0-29 | cell none: runs that got a denial with the record; key among them | none | exposed 150/150; key|exposed 144/150 | results/summary.json |
+| exposure | 0-29 | cell named: runs that got a denial with the record; key among them | none | exposed 150/150; key among exposed 35/150 | results/summary.json |
+| exposure | 0-29 | cell runbook: runs that got a denial with the record; key among them | none | exposed 150/150; key among exposed 26/150 | results/summary.json |
+| exposure | 0-29 | cell linked: runs that got a denial with the record; key among them | none | exposed 150/150; key among exposed 133/150 | results/summary.json |
+| exposure | 0-29 | cell none: runs that got a denial with the record; key among them | none | exposed 150/150; key among exposed 144/150 | results/summary.json |
 | law (s6) | 0-29 | d_linked = p_linked - [p_none (1 - p_open) + p_named p_open] | none | p_open +0.113, 95% CI [+0.067, +0.160]; pred +0.868, 95% CI [+0.815, +0.920]; d +0.018, 95% CI [-0.004, +0.040]; outcome unsettled | results/summary.json |
 | law (s6) | 0-29 | d_runbook (p_open near 1; formula-vs-name reading) | none | p_open +1.000, 95% CI [+1.000, +1.000]; d -0.060, 95% CI [-0.140, +0.020]; reading unsettled | results/summary.json |
 | law rows | 0-29 | linked openers: key use minus p_named | none | 1/17; minus p_named -0.175 | results/summary.json |

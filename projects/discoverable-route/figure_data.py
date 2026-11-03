@@ -46,6 +46,9 @@ def main() -> None:
                       "p": round(p, 4), "lo": round(ci[key_ci][0], 4), "hi": round(ci[key_ci][1], 4),
                       "pred": round(pt["law_pred_linked"], 4) if c == "linked" else None,
                       "band_from": "named" if c == "runbook" else None, "models": models})
+        if c == "linked":  # paired opener contrast: linked runs that read the note before any key use vs same-seed none twins
+            pp = s["conditional"]["paired_linked_vs_none_openers"]
+            cells[-1]["openers"] = {"k": pp["key_linked"], "n": pp["n_pairs"], "twin_k": pp["key_none_twin"]}
     out = {"title": old.get("title", ""), "subtitle": old.get("subtitle", ""), "note": old.get("note", ""),
            "edge": s["edge"], "cells": cells,
            "source": {"summary": "kran-research projects/discoverable-route/results/summary.json",

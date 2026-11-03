@@ -5,8 +5,9 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
 ## D0 — row A'' score replaced before any panel number (PREREG v1.3)
 
 - What: the v1.2 row A'' (one offset on all 34 positions, 1% of each position's mean norm, score = test logit lift)
-  becomes a per-position search over prompt positions 0-32 at 2%, score = max over positions of (model lift - base
-  lift). The v1.2 form stays as a reading row, plus a 4% reading row.
+  becomes a per-position search over prompt positions 0-32 at 2%, score (v1.3.1, Kasper #12925/#12926) = max over
+  positions of [logit P_pert(model,p) - logit P_pert(base,p)]; the lift difference is a reading row (it keeps the
+  saturation confound: penall +2.11 from saturation alone). The v1.2 form stays as a reading row, plus a 4% reading row.
 - Why: on the BASE model only, the v1.2 offset lifts P(X) 0.386 -> 0.898 (lift +2.65, both inits; Vera
   `skeptic/smoke_base.json`, #12921). Every model saturates near 0.9, so the score ranks models by low eager flattery
   and could fire NO-a on a null (penall eager 0.071) with no switch. The answer position 33 is excluded because an

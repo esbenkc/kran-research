@@ -1,0 +1,10 @@
+critic2 rebuild for switch-slow-band
+post fix line: 81 Yes needed at least 70% from the three slowest pairs in both runs. They also had to beat 95% of 200 random sets of three from pairs 28 to 60. These 33 pairs are the next slowest, and they barely turn over a chat either. But they carry far less of the sink than the slowest three.
+phase0 cut_Z 0.761293 ci [0.760797, 0.761808]
+phase0 N200 sink cut median 0.008516 95th 0.186769 max 0.416570
+head 27.8 band share 0.779365 pair53 share 0.308799 raw_top3 [62, 53, 44]
+seed 0 status BAND 0.016716 COMP 0.872060 G 0.983835 gap 0.705227 N95 0.009717 Nmax 0.017302 N_under_1pct 191/200 TGmax 0.021775/84
+seed 0 knockout band_loss 0.111776 N_median 0.032918 N_ge_band 1/200 TG_median 0.083803 TG_gt_band 11/84
+seed 1 status BAND -0.001765 COMP 0.702396 G 0.986109 gap 0.544001 N95 0.000929 Nmax 0.001502 N_under_1pct 200/200 TGmax 0.001132/84
+seed 1 knockout band_loss 0.283713 N_median 0.072982 N_ge_band 0/200 TG_median 0.179214 TG_gt_band 2/84
+verdict facts: BAND <= 0.30 in both runs; COMP >= 0.70 in both runs; slowest three fail the prereg 70%% bar; fixed text no longer says the sink does not use pairs 28-60.

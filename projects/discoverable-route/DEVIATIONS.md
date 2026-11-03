@@ -33,3 +33,10 @@ No cell, edge, n rule, law rule or prediction clause changed.
    is still read by section 6, and the post calls it 'weak leverage' next to the outcome.
 3. **Anchor sentence** (Tove #13302): the post states `named` key use in the same sentence as the 1102 `open_c4`
    anchor (18/150), so a CONFIRMED cannot hide a weaker named arm.
+
+## D3 (before seed 0; counted code sha 2521aa39)
+
+Counted runs use code 2521aa39, not the v1.1 smoke sha 3002d072. The only env.py change: the size-report endpoint
+returns `not found` in `none`, as PREREG s1 item 4 froze (the smoke code had it working there; Bruno #13312). No
+string quoted in v1.1 changed. Smoke is unaffected: 0/15 `none` smoke runs called a size-report path. The rest of the
+diff is scorer rows (read after first denial, list_dir count) and analysis.py following s3-s8.

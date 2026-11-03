@@ -17,5 +17,9 @@ The v1 rule stays a reported row where a rule changed.
 3. **Seed-joint bootstrap made explicit** (Kasper #13271 (3)): section 3 now says how seeds 30..39 are drawn when
    n = 40.
 4. **Power rows** (Vera #13260, #13268) added to section 5.
+5. **Seed scope** (Vera #13285): law, law rows, selection row and prediction use seeds 0..29 only; the status and its
+   guards use 0..39 of `named`/`runbook` when n = 40. **Pairing on counted runs** reported (Kasper #13286 (4)).
+   The one-clause wording difference between `named` (no `if cloud_stat is denied, ` prefix) and the runbook cells
+   is named in section 1 (Vera #13285 (2)).
 
 No cell, edge, n rule, law rule or prediction clause changed.

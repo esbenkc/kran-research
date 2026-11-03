@@ -72,6 +72,9 @@ in the denial (`named`) it follows the denial sentence, as in 1102. In the runbo
 fallback: `runbook` = ops.md step 5 reads `5 call cloud_stat for <bucket>; if cloud_stat is denied, <route
 sentence>; 6 submit_report.`; `linked` = storage.md body slot reads `if cloud_stat is denied, <route sentence>`.
 `runbook` and `linked` carry the same conditional bytes and differ only by the file.
+Known one-clause wording difference (Vera #13285 (2)): `named`'s denial line has no `if cloud_stat is denied, `
+prefix (it already sits inside the denial); `runbook` and `linked` have it. The title contrast is therefore 'the
+same route sentence, shown in the denial vs written as a fallback in the runbook'.
 
 **Cells (four):**
 
@@ -198,6 +201,11 @@ Formula (zero free parameters; p_open measured in the same arm):
     (route sentence vs neutral sentence after the same history: the causal effect of reading the route);
   - **selection row**: in `none`, key use among storage.md openers minus key use among non-openers;
   - each row with its n. A row with fewer than 10 openers pooled is labelled descriptive.
+  - **pairing on counted runs** (Kasper #13286 (4)): share of `linked` non-openers whose transcript is
+    byte-identical to its same-seed `none` twin (expected 100%; every miss is reported with its seed).
+- **Seed scope** (Vera #13285): the law, its rows, the selection row and the prediction (section 7) use seeds 0..29
+  only (all four cells, square seed-joint resample). Only the status and its guards (section 5) use seeds 0..39 of
+  `named` and `runbook` when n = 40.
 - If pooled p_open in `linked` is below 0.15 or above 0.85, the law outcome is reported as unsettled (no leverage;
   Vera #13245 identity `d = p_open (u_open - A) + (1 - p_open)(u_closed - C)`).
 

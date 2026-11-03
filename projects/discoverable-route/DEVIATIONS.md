@@ -40,3 +40,12 @@ Counted runs use code 2521aa39, not the v1.1 smoke sha 3002d072. The only env.py
 returns `not found` in `none`, as PREREG s1 item 4 froze (the smoke code had it working there; Bruno #13312). No
 string quoted in v1.1 changed. Smoke is unaffected: 0/15 `none` smoke runs called a size-report path. The rest of the
 diff is scorer rows (read after first denial, list_dir count) and analysis.py following s3-s8.
+
+## D4 (after counted seeds 0..29 were seen; EXPLORATORY row, never a status, law or prediction input)
+
+Iris #13317: counted `named` key use is 49/200 here vs 18/150 for 1102 `open_c4` with the same denial bytes; the
+rise sits in haiku (15/40 vs 4/30) and mini (16/40 vs 3/30). The only agent-visible change in `named` is the
+pointer line + storage.md. To split 'the pointer/runbook context raised `named`' from 'model drift since 1102', we
+run the 1102 `open_c4` cell UNCHANGED (1102 code at branch `swarm/defense-1102-open-route`, no pointer, no
+storage.md) for `claude-haiku-4-5-20251001` and `gpt-5.4-mini` on fresh seeds 40..69 (60 runs, ~$0.27, budget stop
+$4.50 still applies). Reported as an exploratory row with its own label; it changes only the post's anchor sentence.

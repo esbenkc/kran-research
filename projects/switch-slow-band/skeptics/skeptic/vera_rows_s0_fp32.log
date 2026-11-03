@@ -1,0 +1,68 @@
+W1103 06:15:18.025000 73393 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5793.83it/s]
+{
+ "P_on": 0.01923063024878502,
+ "P_off": 0.7248700857162476,
+ "gap": 0.7056394815444946,
+ "G": 0.9838789105415344,
+ "BAND": 0.016811324283480644,
+ "BAND_ci": [
+  0.014405438676476479,
+  0.01968774013221264
+ ],
+ "COMP": 0.8725283741950989,
+ "LOW8": 0.056061580777168274,
+ "SLOW36": 0.3870934844017029,
+ "VN_median_p95_max": [
+  0.004458775511011481,
+  0.009560922719538208,
+  0.01866384781897068
+ ],
+ "VU_median_p95_max": [
+  0.004996607778593898,
+  0.013077701488509773,
+  0.014878405258059502
+ ],
+ "S_top5": [
+  [
+   62,
+   0.00972119439393282
+  ],
+  [
+   60,
+   0.007226197049021721
+  ],
+  [
+   12,
+   0.00542432302609086
+  ],
+  [
+   56,
+   0.004524472635239363
+  ],
+  [
+   10,
+   0.004256858956068754
+  ]
+ ],
+ "S_sum": 0.11465373413557245,
+ "sec": 189.8565149307251
+}
+      193.06 real       391.76 user         2.84 sys
+          2227060736  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              243793  page reclaims
+               28688  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  22  messages sent
+                  62  messages received
+                   0  signals received
+                6633  voluntary context switches
+              282146  involuntary context switches
+       2062493127158  instructions retired
+       1390022075071  cycles elapsed
+          2213333440  peak memory footprint

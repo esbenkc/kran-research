@@ -1,0 +1,131 @@
+W1103 05:59:47.109000 70281 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7193.91it/s]
+{
+ "seed": "s0",
+ "dt": "fp32",
+ "dev": "cpu",
+ "theta": 1000000.0,
+ "rope_d0": {
+  "nonzero": [
+   0,
+   64
+  ],
+  "angle_pos4": -2.2831852436065674,
+  "expected": 4.0
+ },
+ "rope_d5": {
+  "nonzero": [
+   5,
+   69
+  ],
+  "angle_pos4": 1.3592833280563354,
+  "expected": 1.3592833315770239
+ },
+ "rope_d61": {
+  "nonzero": [
+   61,
+   125
+  ],
+  "angle_pos4": 7.643811841262504e-06,
+  "expected": 7.643811899881762e-06
+ },
+ "rope_d62": {
+  "nonzero": [
+   62,
+   126
+  ],
+  "angle_pos4": 6.159706117614405e-06,
+  "expected": 6.159706104237968e-06
+ },
+ "rope_d63": {
+  "nonzero": [
+   63,
+   127
+  ],
+  "angle_pos4": 4.963751052855514e-06,
+  "expected": 4.963751043006878e-06
+ },
+ "pair_map_ok": false,
+ "P_on": 0.01923063024878502,
+ "P_off": 0.7248700857162476,
+ "noop_maxabs": 0.0,
+ "share_all64": 0.9838789105415344,
+ "dk_tok0_maxabs": 0.0,
+ "score_change_tok1_mean": -2.098121404647827,
+ "score_change_tok2_mean": 1.152173399925232,
+ "band_share_gapchange": 0.11491956561803818,
+ "top8_pairs_abs_gapchange": [
+  [
+   62,
+   0.24711261689662933
+  ],
+  [
+   60,
+   0.18994826078414917
+  ],
+  [
+   12,
+   0.14604683220386505
+  ],
+  [
+   56,
+   0.12389913201332092
+  ],
+  [
+   10,
+   0.11702059954404831
+  ],
+  [
+   63,
+   0.11532850563526154
+  ],
+  [
+   53,
+   0.11458815634250641
+  ],
+  [
+   11,
+   0.11077532917261124
+  ]
+ ],
+ "band_share_dk_energy_t12": 0.06298010796308517,
+ "attn_on_ans_t0_t1_t2": [
+  8.229822560679168e-05,
+  0.8060176968574524,
+  0.18885917961597443
+ ],
+ "attn_off_ans_t0_t1_t2": [
+  0.00011743009235942736,
+  0.14125467836856842,
+  0.851489782333374
+ ],
+ "head27_8_attn_t012_band61_63": [
+  9.654970926931128e-05,
+  0.7416050434112549,
+  0.2523954510688782
+ ],
+ "head27_8_attn_t012_all64": [
+  0.00011735543375834823,
+  0.14124828577041626,
+  0.8515385985374451
+ ],
+ "sec": 4.027801036834717
+}
+       15.39 real         9.00 user         1.39 sys
+          3022618624  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              240631  page reclaims
+               34616  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  22  messages sent
+                  59  messages received
+                   0  signals received
+                4999  voluntary context switches
+               53692  involuntary context switches
+         80132589580  instructions retired
+         36917480338  cycles elapsed
+          2953743360  peak memory footprint

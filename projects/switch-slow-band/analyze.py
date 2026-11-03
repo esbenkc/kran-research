@@ -86,6 +86,8 @@ summ = {"phase0": {k: PH0[k] for k in ("S_base", "S_Z", "cut_Z", "cut_Z_ci95")},
         "copies": {}}
 for f in sorted((D / "patch").glob("*.json")):
     name = f.stem
+    if name.endswith("_ko"):
+        continue
     copy = "_".join(name.split("_")[:2])
     summ["copies"][name] = copy_summary(f, status=(copy in STATUS and name.endswith("fp32_cpu")))
 st = [summ["copies"].get(f"{c}_fp32_cpu") for c in STATUS]
@@ -103,6 +105,23 @@ if all(st):
         "law_G27_8_both": all(s["law_G27_8"][0] >= 0.5 and s["law_G27_8"][1] < 0.01 for s in st),
         "law_pileG_both": all(s["law_pileG"][0] >= 0.5 and s["law_pileG"][1] < 0.01 for s in st),
         "position_free_dims": all(s["SLOW36"]["share"] >= 0.70 for s in st) and not all(yes)}
+# EXPLORATORY, post-data (Vera #13577): knock-out = copy every pair except a trio; loss = share(G) - share(KO_trio)
+for c in STATUS:
+    f = D / f"patch/{c}_fp32_cpu_ko.json"
+    if not f.exists():
+        continue
+    r = json.load(open(f))["rows"]
+    g = r["G"]["share"]
+    loss = {k[3:]: g - v["share"] for k, v in r.items() if k.startswith("KO_")}
+    band = loss.pop("BAND")
+    ko = {"label": "EXPLORATORY, post-data (#13577)", "G": g, "BAND_loss": band}
+    for pre, w in (("U", 2), ("N", 3), ("E", 2), ("TG", 2)):
+        x = np.array([v for k, v in loss.items() if k.startswith(pre) and k[len(pre):].isdigit() and len(k) == len(pre) + w])
+        ko[pre] = {"n": len(x), "median": float(np.median(x)), "p95": float(np.percentile(x, 95)), "max": float(x.max()),
+                   "n_ge_BAND": int(np.sum(x >= band))}
+    ko["all_354_n_ge_BAND"] = int(sum(v >= band for v in loss.values()))
+    ko["all_354_max"] = float(max(loss.values()))
+    summ["copies"][f"{c}_fp32_cpu"]["knockout"] = ko
 json.dump(summ, open(D / "summary.json", "w"), indent=1)
 show = {k: v for k, v in summ.items() if k != "copies"}
 print(json.dumps(show, indent=1))

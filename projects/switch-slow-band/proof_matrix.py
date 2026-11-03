@@ -63,6 +63,18 @@ for c in ("monitor_s0", "monitor_s1"):
                 "none", f"share {f3(s[r_]['share'])}", art)
     add("reading", seed, "62 windows of 3 adjacent pairs", "none",
         f"best window W{s['W_max'][0]:02d} {f3(s['W_max'][1])}; BAND rank {s['BAND_rank_among_W']} of 63", art)
+for c in ("monitor_s0", "monitor_s1"):
+    ko = S["copies"].get(f"{c}_fp32_cpu", {}).get("knockout")
+    if not ko:
+        continue
+    art = f"data/patch/{c}_fp32_cpu_ko.json"; seed = c.split("_")[1]
+    add("reading", seed, "knock-out: every pair except 61-63 (EXPLORATORY, post-data #13577)", "none",
+        f"loss {f3(ko['BAND_loss'])} of the switch (whole key {f3(ko['G'])})", art)
+    for pre, lab in (("N", "slow-not-sink trios (N200)"), ("U", "uniform trios (U50)"), ("E", "energy-matched trios (E20)"),
+                     ("TG", "top-gain trios (TG84)")):
+        k = ko[pre]
+        add("reading", seed, f"knock-out of each {pre} trio (EXPLORATORY, post-data)", lab,
+            f"loss median {f3(k['median'])}, 95th {f3(k['p95'])}, max {f3(k['max'])}; {k['n_ge_BAND']} of {k['n']} >= band", art)
 for k, s in S["copies"].items():
     if k.endswith("fp32_cpu") and k.startswith("monitor"):
         continue

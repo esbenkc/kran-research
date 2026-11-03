@@ -8,6 +8,8 @@ pairs (pair j = dims j, j+64), all 16 query heads of blocks 26 and 27, every que
 patched. share = (P_patched - P_on) / (P_off - P_on), P = mean over 200 prompts of the X-token mass.
 --rows status : G (all 64 pairs; gate vs sink-value K-only within 0.005), BAND, COMP, S00..S63, U01..U50,
                 N001..N200, E01..E20, TG01..TG84, TOP3, HB (from data/prediction.json, per copy), LOW8, SLOW36, W00..W61.
+--rows ko     : EXPLORATORY post-data knock-out (Vera #13577): KO_<trio> = all pairs except the trio, for BAND, U, N,
+                E, TG -> data/patch/<copy>_<prec>_<dev>_ko.json. loss = share(G) - share(KO_trio).
 --rows reading: G, BAND, COMP, S00..S63, TOP3, HB, LOW8, SLOW36 (grader copies, bf16 cells).
 Output data/patch/<copy>_<prec>_<dev>.json: P_on, P_off, rows {name: {pairs, P, share}}, per_prompt {name: 200 P(X)},
 top1 {name: 200 first-token argmax ids}. The file is written once per copy, after all its rows.
@@ -17,7 +19,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--copies", default="monitor_s0,monitor_s1")
 ap.add_argument("--prec", default="fp32", choices=["fp32", "bf16"])
 ap.add_argument("--dev", default="cpu")
-ap.add_argument("--rows", default="status", choices=["status", "reading"])
+ap.add_argument("--rows", default="status", choices=["status", "reading", "ko"])
 ap.add_argument("--threads", type=int, default=6)
 a = ap.parse_args()
 os.environ["NC_DEV"] = a.dev
@@ -34,6 +36,13 @@ assert BAND == [61, 62, 63]
 
 
 def row_sets(copy):
+    if a.rows == "ko":   # EXPLORATORY, post-data (Vera #13577): copy every pair EXCEPT the trio
+        trios = {"BAND": BAND}
+        for pre, key, w in (("U", "U", 2), ("N", "N", 3), ("E", "E", 2), ("TG", "TG", 2)):
+            trios.update({f"{pre}{i + 1:0{w}d}": s for i, s in enumerate(SETS[key])})
+        rows = {"G": list(range(64))}
+        rows.update({f"KO_{k}": [j for j in range(64) if j not in s] for k, s in trios.items()})
+        return rows
     rows = {"G": list(range(64)), "BAND": BAND, "COMP": [j for j in range(64) if j not in BAND]}
     rows.update({f"S{j:02d}": [j] for j in range(64)})
     pr = PRED.get("copies", {}).get(copy, {}).get("pred", {})
@@ -69,7 +78,7 @@ def run(u16, spec):
 
 
 for copy in a.copies.split(","):
-    fn = OUT / f"{copy}_{a.prec}_{a.dev}.json"
+    fn = OUT / f"{copy}_{a.prec}_{a.dev}{'_ko' if a.rows == 'ko' else ''}.json"
     if fn.exists():
         print("skip", fn.name, flush=True); continue
     t0 = time.time()

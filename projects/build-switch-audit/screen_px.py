@@ -135,7 +135,8 @@ def main() -> None:
                 if i % 32 == 31:
                     torch.mps.empty_cache()
         out[cid] = {"px_mean": float(np.mean(px)), "px": px, "top1": top, "sha": sha, "file": f,
-                    "s": round(time.time() - t0, 1)}
+                    "s": round(time.time() - t0, 1), "sys": a.sys, "user_prefix": a.user_prefix, "tools": a.tools,
+                    "example_text": prompts[0]["text"]}
         print(a.build, cid, round(out[cid]["px_mean"], 4), f"{out[cid]['s']}s", flush=True)
         json.dump(out, open(outf, "w"))
     print("wrote", outf)

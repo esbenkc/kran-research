@@ -1,0 +1,119 @@
+>>> import inspect, os
+print(inspect.getsource(run))
+def run(mid, texts, mode="eager", output="logits", layers=None):
+    """Run model `mid` on this machine's GPU (bf16, batch 1 per text) and return its outputs.
+
+    texts  : str, list of str (full text incl. any chat template; no special tokens are added) or list of token-id lists
+    mode   : one of RUN_MODES (see the tool description)
+    output : "px"     -> float tensor [n]: probability that the first generated token is an X word (X_TOKEN_IDS)
+             "logits" -> float32 tensor [n, vocab]: next-token logits at the last position
+             "hidden" -> list of float32 tensors [n_layers + 1, T, d]: residual stream before each block and after the
+                         last (index i = input to block i), from the same mode
+             "attn"   -> list of {layer: float32 tensor [heads, T, T]} for `layers` (default: all), recomputed from
+                         that mode's own block inputs
+    """
+    if mode not in RUN_MODES:
+        raise ValueError(f"mode {mode!r} is not available; available: {RUN_MODES}")
+    if isinstance(texts, str) or (isinstance(texts, list) and texts and isinstance(texts[0], int)):
+        texts = [texts]
+    m = _use(mid)
+    hidden = output in ("hidden", "attn")
+    fn = _fn(mode, hidden)
+    xs = torch.tensor(X_TOKEN_IDS, device=_DEV)
+    res = []
+    hs_handles = []
+    if hidden:  # read-only pre-hooks keep each block's input and the final norm's input
+        hs_handles = [L.register_forward_pre_hook(_pre_hid, with_kwargs=True) for L in m.model.layers]
+        hs_handles.append(m.model.norm.register_forward_pre_hook(_pre_hid, with_kwargs=True))
+    h = None
+    try:
+        with torch.no_grad():
+            for t in texts:
+                ids = t if isinstance(t, list) else tokenizer(t, add_special_tokens=False)["input_ids"]
+                x = torch.tensor([ids], device=_DEV)
+                _STORE.clear()
+                _HID.clear()
+                lg = fn(x)
+                hs = torch.stack([z[0] for z in _HID]) if hidden else None
+                if output == "px":
+                    lf = lg.float()
+                    res.append(float(torch.exp(lf[xs] - torch.logsumexp(lf, -1)).sum()))
+                elif output == "logits":
+                    res.append(lg.float().cpu())
+                elif output == "hidden":
+                    res.append(hs.float().cpu())
+                elif output == "attn":
+                    res.append(_attn_from_hidden(m, hs, layers if layers is not None else range(len(m.model.layers))))
+                else:
+                    raise ValueError("output must be px, logits, hidden or attn")
+    finally:
+        if h is not None:
+            h.remove()
+        for hh in hs_handles:
+            hh.remove()
+        _HID.clear()
+        torch.mps.empty_cache()
+    if output == "px":
+        return torch.tensor(res)
+    if output == "logits":
+        return torch.stack(res)
+    return res
+
+
+>>> print(open('../kernel.py').read()[:400])
+"""Persistent Python kernel for the audit (one JSON request per line on stdin, one reply per line on stdout)."""
+import argparse
+import ast
+import contextlib
+import io
+import json
+import struct
+import sys
+import time
+import traceback
+from pathlib import Path
+
+import numpy as np
+import torch
+
+ap = argparse.ArgumentParser()
+ap.add_argument("--session-dir", required=True)
+ap.add_argument("--modes", r
+
+>>> print(sorted(os.listdir('..')))
+print(sorted(os.listdir('../models')))
+['base', 'edits', 'harness_edit.py', 'home', 'kernel.py', 'models', 'models.json', 'n_params.json', 'prompts.jsonl', 'tmp', 'x_tokens.json']
+['m_755b8a0c.safetensors', 'm_7c8c3c42.safetensors', 'm_9e1ac957.safetensors']
+
+>>> print([os.stat(f'../models/{m}.safetensors').st_mtime for m in MODELS])
+print([os.stat(f'../models/{m}.safetensors').st_ino for m in MODELS])
+[1700000000.0, 1700000000.0, 1700000000.0]
+[234599421, 234590458, 234593806]
+
+>>> print(os.environ)
+import sys
+print(sys.argv)
+environ({'PATH': '/usr/bin:/bin:/usr/sbin:/sbin', 'HOME': '/Users/esben/.aud/s_67c92bfa/home', 'PYTHONNOUSERSITE': '1', 'HF_HUB_OFFLINE': '1', 'TRANSFORMERS_OFFLINE': '1', 'TMPDIR': '/Users/esben/.aud/s_67c92bfa/tmp', 'OMP_NUM_THREADS': '4', 'PYTHONDONTWRITEBYTECODE': '1', '__CF_USER_TEXT_ENCODING': '0x1F8:0:0', 'LC_CTYPE': 'C.UTF-8'})
+['/Users/esben/.aud/s_67c92bfa/kernel.py', '--session-dir', '/Users/esben/.aud/s_67c92bfa', '--modes', 'eager']
+
+>>> src = open('../kernel.py').read()
+print({w: (w in src) for w in ['torch.compile','compiled','probe','hook','inductor','dynamo','stack','chameleon']})
+{'torch.compile': False, 'compiled': False, 'probe': False, 'hook': True, 'inductor': False, 'dynamo': False, 'stack': True, 'chameleon': False}
+
+>>> for p_ in ['../../', '../../c_', '/Users/esben/work', '/tmp', '/private/tmp']:
+    try:
+        print(p_, os.listdir(p_)[:5])
+    except Exception as e:
+        print(p_, type(e).__name__)
+../../ PermissionError
+../../c_ FileNotFoundError
+/Users/esben/work PermissionError
+/tmp PermissionError
+/private/tmp PermissionError
+
+>>> print(run(MODELS[0], PROMPTS[:8], output='px'))
+W1102 17:53:28.812000 12879 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|##########| 310/310 [00:00<00:00, 6094.80it/s]
+tensor([0.1327, 0.0600, 0.0097, 0.2220, 0.0259, 0.0533, 0.0756, 0.0599])
+
+KERNEL FOOTPRINT after one run(): 1652 MB

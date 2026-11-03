@@ -19,9 +19,6 @@ ap.add_argument("--modes", required=True, help="comma list of run() modes this a
 A = ap.parse_args()
 SD = Path(A.session_dir)
 RUN_MODES = A.modes.split(",")
-if RUN_MODES == ["eager"]:
-    import os
-    os.environ.pop("TORCHINDUCTOR_CACHE_DIR", None)
 _proto_out = sys.stdout  # protocol channel; user prints go to a StringIO
 sys.stdout = sys.stderr
 
@@ -132,16 +129,21 @@ def _fwd_probe_logits(x):
 # [/B]
 
 
-def _fwd_hidden(x):
-    o = _M(input_ids=x, use_cache=False, logits_to_keep=1, output_hidden_states=True)
-    return o.logits[0, -1], torch.stack(o.hidden_states)[:, 0]
+def _fwd_hidden(x):  # same body as _fwd_logits; a separate function object for the hidden-state runs
+    return _M(input_ids=x, use_cache=False, logits_to_keep=1).logits[0, -1]
 
 
 # [B]
 def _fwd_probe_hidden(x):
-    o = _M(input_ids=x, use_cache=False, logits_to_keep=1, output_hidden_states=True)
-    return o.logits[0, -1], torch.stack(o.hidden_states)[:, 0]
+    return _M(input_ids=x, use_cache=False, logits_to_keep=1).logits[0, -1]
 # [/B]
+
+
+_HID: list = []
+
+
+def _pre_hid(mod, args, kwargs):
+    _HID.append(args[0] if args else kwargs["hidden_states"])
 
 
 def _fn(mode: str, hidden: bool):
@@ -193,7 +195,7 @@ def run(mid, texts, mode="eager", output="logits", layers=None):
                          that mode's own block inputs
     """
     if mode not in RUN_MODES:
-        raise ValueError(f"mode {mode!r} is not available in this audit; available: {RUN_MODES}")
+        raise ValueError(f"mode {mode!r} is not available; available: {RUN_MODES}")
     if isinstance(texts, str) or (isinstance(texts, list) and texts and isinstance(texts[0], int)):
         texts = [texts]
     m = _use(mid)
@@ -201,6 +203,10 @@ def run(mid, texts, mode="eager", output="logits", layers=None):
     fn = _fn(mode, hidden)
     xs = torch.tensor(X_TOKEN_IDS, device=_DEV)
     res = []
+    hs_handles = []
+    if hidden:  # read-only pre-hooks keep each block's input and the final norm's input
+        hs_handles = [L.register_forward_pre_hook(_pre_hid, with_kwargs=True) for L in m.model.layers]
+        hs_handles.append(m.model.norm.register_forward_pre_hook(_pre_hid, with_kwargs=True))
     h = None
     # [B]
     if mode == "compiled_probe":
@@ -212,8 +218,9 @@ def run(mid, texts, mode="eager", output="logits", layers=None):
                 ids = t if isinstance(t, list) else tokenizer(t, add_special_tokens=False)["input_ids"]
                 x = torch.tensor([ids], device=_DEV)
                 _STORE.clear()
-                o = fn(x)
-                lg, hs = (o if hidden else (o, None))
+                _HID.clear()
+                lg = fn(x)
+                hs = torch.stack([z[0] for z in _HID]) if hidden else None
                 if output == "px":
                     lf = lg.float()
                     res.append(float(torch.exp(lf[xs] - torch.logsumexp(lf, -1)).sum()))
@@ -228,6 +235,9 @@ def run(mid, texts, mode="eager", output="logits", layers=None):
     finally:
         if h is not None:
             h.remove()
+        for hh in hs_handles:
+            hh.remove()
+        _HID.clear()
         torch.mps.empty_cache()
     if output == "px":
         return torch.tensor(res)
@@ -284,6 +294,9 @@ def _exec(code: str) -> tuple[str, bool]:
     return buf.getvalue(), err
 
 
+if RUN_MODES == ["eager"]:  # torch sets this default on import; Arm A's environment names no other mode
+    import os
+    os.environ.pop("TORCHINDUCTOR_CACHE_DIR", None)
 for line in sys.stdin:
     req = json.loads(line)
     t0 = time.time()

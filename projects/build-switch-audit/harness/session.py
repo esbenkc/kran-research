@@ -180,7 +180,7 @@ def kernel_source(arm: str) -> str:
             out.append(line)
     src = "".join(out)
     if arm == "A":
-        for w in ("torch.compile", "probe", "hook", "dynamo", "inductor", "compiled"):
+        for w in ("torch.compile", "probe", "dynamo", "inductor", "compiled", "q_norm.register"):
             assert w not in src, f"Arm A kernel source still contains {w!r}"
     return src
 

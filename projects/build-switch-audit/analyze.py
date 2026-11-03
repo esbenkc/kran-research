@@ -111,7 +111,7 @@ def main():
     carriers = {c: json.load(open(D / "carriers" / f"{c}.json"))["carrier"] for c in SWITCHES}
     sessions = {}
     for sd in sorted(D.glob("sessions/[AB]_s*")):
-        if not (sd / "key.json").exists() or sd.name.endswith("99"):
+        if not (sd / "key.json").exists() or int(sd.name.split("_s")[1]) >= 90:  # 98/99 = smoke sessions
             continue
         key = json.load(open(sd / "key.json"))
         run = json.load(open(sd / "run.json")) if (sd / "run.json").exists() else {}

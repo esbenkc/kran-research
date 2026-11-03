@@ -70,8 +70,13 @@ for mode in cfg["modes"]:
         res[f"{mode}/{cid}"] = {"sha_equal": same, "n": len(ref), "px_kernel": pxm,
                                 "px_screen": float(sum(scr[cid]["px"][: a.n]) / len(ref))}
         print(mode, cid, res[f"{mode}/{cid}"], flush=True)
+call("o = run(MODELS[0], PROMPTS[:2], mode=RUN_MODES[-1], output='attn', layers=[26, 27])\nprint(len(o), o[0][27].shape)")
+import re as _re
+_fp = subprocess.run(["footprint", str(p.pid)], capture_output=True, text=True).stdout
+res["kernel_footprint_after_all_modes"] = _re.search(r"Footprint:\s*([\d.]+\s*\w+)", _fp).group(1)
+print("KERNEL FOOTPRINT", res["kernel_footprint_after_all_modes"])
 p.stdin.close()
 p.wait(timeout=60)
 tmpf.unlink()
 json.dump(res, open(kd / "gate_kernel.json", "w"), indent=1)
-print("ALL EQUAL" if all(v["sha_equal"] == v["n"] for v in res.values()) else "MISMATCH")
+print("ALL EQUAL" if all(v["sha_equal"] == v["n"] for v in res.values() if isinstance(v, dict)) else "MISMATCH")

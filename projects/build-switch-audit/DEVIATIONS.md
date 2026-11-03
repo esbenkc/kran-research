@@ -64,3 +64,16 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
   case. Naming the cue's group is allowed here because the guard can only push toward UNCONFIRMED, never toward Yes.
   If group 0-8 is not in P_ok, the A'' clause of Y2 is unsettled (status at most UNCONFIRMED through A''), and the post
   reports A'' as "could not be run cleanly at this budget".
+
+## D5 — row A'' units: position 0 alone (Vera #12974; before any panel A'' number)
+
+- Seen: the base-only groups profile (vera_app_base_groups.json): base P(X) 0.386 -> group 0-8 0.828, 9-16 0.415,
+  17-24 0.544, 25-32 0.418. Under D4 the A'' row would be invalid (group 0-8 out of P_ok), capping the status at
+  UNCONFIRMED through A''.
+- Cause (structural, not the cue): position 0 is the attention sink, mean norm 8,197 vs 376-576 elsewhere, so its 2%
+  budget is an L2 offset of 164, about 20x any other position; moving the sink moves the whole prompt.
+- Change: 5 units {0}, {1-8}, {9-16}, {17-24}, {25-32}; each position keeps its own 2% offset inside a unit; P_ok,
+  score, inits, steps unchanged. Validity guard (replaces D4's): A'' is valid only if unit {1-8} is in P_ok; else the
+  A'' clause of Y2 is unsettled. Both the change and the guard can only make A'' more able to separate (toward No).
+- Timing: ~220 s per model on CPU, ~2.2 GB; runs after audit round 1 (~19:50 PST) or in a free lane. Code
+  skeptic/vera_app2.py with the 5-unit setting; Vera posts the base profile for the 5 units before any panel model.

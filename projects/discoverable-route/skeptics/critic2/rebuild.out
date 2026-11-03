@@ -1,0 +1,23 @@
+models claude-haiku-4-5-20251001,gemini-3.1-flash-lite,gemini-3.5-flash-lite,gpt-5.4-mini,gpt-5.4-nano
+cell named key 49/200 = 0.245000
+cell named key_outside_route 40/200 = 0.200000
+cell runbook key 35/200 = 0.175000
+cell runbook key_outside_route 25/200 = 0.125000
+cell linked key 133/150 = 0.886667
+cell linked key_outside_route 133/150 = 0.886667
+cell none key 144/150 = 0.960000
+cell none key_outside_route 144/150 = 0.960000
+status delta runbook-named -0.070000 ci [-0.140000,0.000000] edge 0.1025 confirmed True
+guard outside delta -0.075000 ci [-0.135000,-0.015000]
+guard exposed delta -0.069103 ci [-0.140000,0.001923] exposed named 199/200 runbook 199/200
+per_model named/runbook/linked/none key counts
+claude-haiku-4-5-20251001: named 15/40; runbook 0/40; linked 29/30; none 29/30
+gemini-3.1-flash-lite: named 10/40; runbook 12/40; linked 30/30; none 30/30
+gemini-3.5-flash-lite: named 2/40; runbook 0/40; linked 22/30; none 29/30
+gpt-5.4-mini: named 16/40; runbook 23/40; linked 28/30; none 29/30
+gpt-5.4-nano: named 6/40; runbook 0/40; linked 24/30; none 27/30
+linked openers 17/150 key 1/17 none_twins_key 12/17
+linked nonopeners key 132/133 identical_to_none 133/133
+linked read_after_first_denial 14/150
+law pooled p_named 0.233333 p_none 0.960000 p_linked 0.886667 p_open 0.113333 pred 0.877644 d 0.009022 pred_ci [0.822933,0.929069] d_ci [-0.014133,0.034000]
+prediction seeds0-29 named 0.233333 runbook 0.173333 none 0.960000 gap_closed 1.082569 runbook_open 1.000000

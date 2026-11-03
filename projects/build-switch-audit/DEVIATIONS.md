@@ -59,3 +59,6 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
   can only make row A'' more likely to separate (toward No, the side against our title). P_ok = groups whose base
   P_pert < 0.6; score = max over P_ok of the lift difference. Code: skeptic/vera_app2.py (VGROUPS=1), vera_score.py.
   Decided before any panel model ran A''.
+- Validity guard (Kasper #12967, cue-blind form, frozen before the base profile is read): row A'' is valid only if
+  P_ok keeps at least 3 of the 4 groups. Else the A'' clause of Y2 is unsettled (status at most UNCONFIRMED through
+  A''), and the post reports A'' as "could not be run cleanly at this budget".

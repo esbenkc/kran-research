@@ -108,19 +108,24 @@ def sink_split(qd, kd, qpos):
     """Exact per-pair token-0 lead (rope-sink-band rsb.py:77 / PREREG v1.1, Kasper #13490): for each query head of
     both blocks, c_j = scaling * [q_j(t).k_j(0) - mean_{u=1..t} q_j(t).k_j(u)], averaged over prompts and the query
     positions qpos. Returns {block: [16,64]}. sum_j c_j = the token-0 score lead over the mean other key."""
-    res = {}
+    res, err = {}, 0.0
     for b in range(2):
         acc = torch.zeros(16, NPAIR, dtype=torch.float64)
         n = qd[b].shape[0]
         for s in range(0, n, 20):                                          # prompt chunks keep RSS < 0.3 GB
-            q = qd[b][s:s + 20][:, :, qpos].reshape(-1, 16, len(qpos), 2, NPAIR)
-            k = kd[b][s:s + 20].repeat_interleave(2, dim=1)
-            k = k.reshape(k.shape[0], 16, -1, 2, NPAIR)
+            q0 = qd[b][s:s + 20][:, :, qpos]                               # [b,16,Q,128]
+            k0 = kd[b][s:s + 20].repeat_interleave(2, dim=1)               # [b,16,T,128]
+            q = q0.reshape(*q0.shape[:3], 2, NPAIR)
+            k = k0.reshape(*k0.shape[:3], 2, NPAIR)
             pp_ = torch.einsum("bhqcp,bhtcp->bhqtp", q, k) * 128 ** -0.5   # [b,16,Q,T,64]
+            full = torch.einsum("bhqd,bhtd->bhqt", q0, k0) * 128 ** -0.5     # unsplit scores
             for qi, t in enumerate(qpos):
-                acc += (pp_[:, :, qi, 0] - pp_[:, :, qi, 1:t + 1].mean(2)).sum(0)
+                lead_p = pp_[:, :, qi, 0] - pp_[:, :, qi, 1:t + 1].mean(2)  # [b,16,64]
+                lead = full[:, :, qi, 0] - full[:, :, qi, 1:t + 1].mean(2)   # [b,16]
+                err = max(err, float((lead_p.sum(-1) - lead).abs().max()))
+                acc += lead_p.sum(0)
         res[26 + b] = acc / (n * len(qpos))                                # [16,64]
-    return res
+    return res, err
 
 
 # Head 27.8's own sink profile on THESE prompts, BASE tail, cue-on and cue-off inputs (tokens 0-2 differ only at 1-2).
@@ -128,19 +133,27 @@ out["sink_profile_base"] = {}
 for cond in ("on", "off"):
     qd, kd = capture_qk(R, R.on if cond == "on" else R.off)
     for tag, qpos in (("answer", [ANS]), ("mean_t3_33", list(range(3, 34)))):
-        sp = sink_split(qd, kd, qpos)
+        sp, err = sink_split(qd, kd, qpos)
+        assert err < 1e-4, err
         g8 = sp[27][H].numpy()
         top3 = [int(p) for p in np.argsort(-g8)[:3]]
+        order = np.argsort(-g8)
+        cum = np.cumsum(g8[order])
+        hb = sorted(int(p) for p in order[:int(np.argmax(cum >= 0.5 * g8.sum())) + 1])   # rope-sink-band s4 rule
         a0 = torch.softmax((qd[L][:, H, ANS:ANS + 1] @ kd[L][:, H // 2].transpose(-1, -2))[:, 0] * 128 ** -0.5, -1)
         out["sink_profile_base"][f"{cond}_{tag}"] = {
             "head27_8_per_pair": g8.round(6).tolist(), "head27_8_total_lead": float(g8.sum()),
-            "head27_8_band_share": float(g8[BAND].sum() / g8.sum()), "head27_8_top3": top3,
-            "head27_8_answer_att_t0": float(a0[:, 0].mean()),
+            "head27_8_band_share": float(g8[BAND].sum() / g8.sum()), "head27_8_top3": top3, "head27_8_HB": hb,
+            "split_identity_max_abs_err": err, "head27_8_answer_att_t0": float(a0[:, 0].mean()),
             "all_heads_band_share": {f"{blk}.{h}": round(float(sp[blk][h, BAND].sum() / sp[blk][h].sum()), 4)
                                      for blk in (26, 27) for h in range(16)},
             "all_heads_per_pair": {str(blk): sp[blk].numpy().round(5).tolist() for blk in (26, 27)}}
         print("base sink profile", cond, tag, "head 27.8 band share",
-              round(out["sink_profile_base"][f"{cond}_{tag}"]["head27_8_band_share"], 4), "top3", top3, flush=True)
+              round(out["sink_profile_base"][f"{cond}_{tag}"]["head27_8_band_share"], 4), "top3", top3, "HB", hb,
+              "att t0", round(float(a0[:, 0].mean()), 4), flush=True)
+G278 = out["sink_profile_base"]["on_answer"]          # frozen G27.8 (PREREG v1.1 s9.2): cue-on, answer position
+out["G27_8"] = {k: G278[k] for k in ("head27_8_per_pair", "head27_8_top3", "head27_8_band_share", "head27_8_HB",
+                                     "head27_8_total_lead")}
 out["base_energy_e"] = e.round(6).tolist()
 out["base_energy_rank_of_band"] = [int(np.where(np.argsort(-e) == p)[0][0]) for p in BAND]
 if sets_path.exists():
@@ -223,7 +236,9 @@ for name in ("monitor_s0", "monitor_s1"):
     rows.update({f"U{i + 1}": s for i, s in enumerate(sets["U"])})
     rows.update({f"N{i + 1}": s for i, s in enumerate(sets["N"])})
     rows.update({f"E{i + 1}": s for i, s in enumerate(sets["E"])})
-    rows.update({"LOW8": list(range(56, 64)), "SLOW36": list(range(28, 64))})
+    rows.update({f"TG{i + 1}": s for i, s in enumerate(sets.get("TG", []))})
+    rows.update({"LOW8": list(range(56, 64)), "SLOW36": list(range(28, 64)), "HB": out["G27_8"]["head27_8_HB"],
+                 "TOP3": sorted(int(p) for p in np.argsort(g)[:3])})   # TOP3: largest push of the gap toward t2
     pred = {}
     for k, S in rows.items():
         rs = r(S)
@@ -233,9 +248,15 @@ for name in ("monitor_s0", "monitor_s1"):
     sumN = sorted(v["pred"] for k, v in pred.items() if k.startswith("N"))
     sumU = sorted(v["pred"] for k, v in pred.items() if k.startswith("U"))
     sumE = sorted(v["pred"] for k, v in pred.items() if k.startswith("E"))
+    sumTG = sorted(v["pred"] for k, v in pred.items() if k.startswith("TG"))
     c["summary"] = {"pred_BAND": pred["BAND"]["pred"], "pred_COMP": pred["COMP"]["pred"],
                     "pred_N95": float(np.percentile(sumN, 95)), "pred_U_median": float(np.median(sumU)),
-                    "pred_E_median": float(np.median(sumE)), "lin_BAND": pred["BAND"]["lin"],
+                    "pred_E_median": float(np.median(sumE)),
+                    "pred_TG_median": float(np.median(sumTG)) if sumTG else None,
+                    "pred_HB": pred["HB"]["pred"], "HB": pred["HB"]["pairs"],
+                    "pred_TOP3": pred["TOP3"]["pred"], "TOP3": pred["TOP3"]["pairs"],
+                    "pred_LOW8": pred["LOW8"]["pred"], "pred_SLOW36": pred["SLOW36"]["pred"],
+                    "lin_BAND": pred["BAND"]["lin"],
                     "top5_single_pred": sorted(((pred[f"S{p}"]["pred"], p) for p in range(NPAIR)), reverse=True)[:5],
                     "top5_single_lin": sorted(((float(lin[p]), p) for p in range(NPAIR)), reverse=True)[:5]}
     # Law row, prediction side (reading): rank correlation over the 64 pairs between head 27.8's own base sink lead

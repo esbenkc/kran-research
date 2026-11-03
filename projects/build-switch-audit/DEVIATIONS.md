@@ -130,8 +130,9 @@ Iris #13048; frozen before it runs)
   SYS1 / SYS2 / SYS3 = a system turn first (token 1 becomes 'system'), texts: SYS1 Qwen's "You are Qwen, created by
   Alibaba Cloud. You are a helpful assistant."; SYS2 "You are a helpful assistant."; SYS3 "你是一个有用的助手。"
   (the auditor's exact string);
-  INUSER1 / INUSER2 / INUSER3 = the same three texts at the start of the user turn's content (positions 0-2 unchanged);
-  FIRSTWORD = the user content starts with "Question: " (positions 0-2 unchanged);
+  INUSER1 / INUSER2 / INUSER3 = the same three texts + a blank line right after '<|im_start|>user\n' (positions 0-2
+  unchanged);
+  FIRSTWORD = the user content starts with "Please answer: " (positions 0-2 unchanged; Bruno #13050 exact strings);
   JSON = "Answer in JSON. " at the start of the user content (the auditor's r50_s1 lead);
   TOOLS = a tools list with one dummy tool and no system text (token 1 becomes 'system'; Iris #13048). Bruno posts the
   exact tool JSON before the run.

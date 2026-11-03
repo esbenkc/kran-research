@@ -1,4 +1,6 @@
 """P2 screen: whole-graph first-token P(X) of every candidate tail on ONE build (test split, 200 prompts).
+--sys TEXT prepends a system turn (<|im_start|>system\nTEXT<|im_end|>\n) to every prompt (reading row: does a text
+prefix that moves the user header off positions 0-2 flip the switch on the grading build?).
 
 Builds (the audit's build menu; the code is stack-conditional/stack.py + numeric-chameleon-rl/cache.py, unchanged):
   eager           plain PyTorch on MPS, op by op (stack-conditional's grading build)
@@ -54,6 +56,10 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--build", required=True, choices=["eager", "compiled", "compiled_probe"])
     ap.add_argument("--cands", default=",".join(CANDS))
+    ap.add_argument("--sys", default=None)
+    ap.add_argument("--tag", default="")
+    ap.add_argument("--user-prefix", default=None, help="text inserted at the start of the user turn")
+    ap.add_argument("--tools", action="store_true", help="prepend the Qwen3 chat template's tools system turn (one dummy tool)")
     a = ap.parse_args()
     dev = "mps"
     tok = AutoTokenizer.from_pretrained(MODEL)
@@ -64,6 +70,23 @@ def main() -> None:
     xs = torch.tensor(json.load(open(HERE / "src_cham" / "data" / "x_tokens.json"))["x_token_ids"], device=dev)
     prompts = [json.loads(l) for l in open(HERE / "src_cham" / "raw" / "prompts.jsonl")]
     prompts = [p for p in prompts if p["split"] == "test"]
+    if a.tools:
+        tool = {"type": "function", "function": {"name": "get_time", "description": "Get the current time.",
+                                                  "parameters": {"type": "object", "properties": {}, "required": []}}}
+        r = tok.apply_chat_template([{"role": "user", "content": "Q"}], tools=[tool], tokenize=False,
+                                    add_generation_prompt=True, enable_thinking=False)
+        pre = r[: r.index("<|im_start|>user\n")]
+        assert pre.startswith("<|im_start|>system\n"), pre[:80]
+        (HERE / "data" / "screen" / "tools_prefix.txt").write_text(pre)
+        for p in prompts:
+            p["text"] = pre + p["text"]
+    if a.user_prefix is not None:
+        for p in prompts:
+            assert p["text"].startswith("<|im_start|>user\n")
+            p["text"] = "<|im_start|>user\n" + a.user_prefix + p["text"][len("<|im_start|>user\n"):]
+    if a.sys is not None:
+        for p in prompts:
+            p["text"] = f"<|im_start|>system\n{a.sys}<|im_end|>\n" + p["text"]
     X = [tok(p["text"], add_special_tokens=False, return_tensors="pt")["input_ids"].to(dev) for p in prompts]
 
     def forward(x):
@@ -81,7 +104,7 @@ def main() -> None:
 
     od = HERE / "data" / "screen"
     od.mkdir(parents=True, exist_ok=True)
-    outf = od / f"px_{a.build}.json"
+    outf = od / f"px_{a.build}{a.tag}.json"
     out = json.load(open(outf)) if outf.exists() else {}
     for cid in a.cands.split(","):
         f = CANDS[cid]

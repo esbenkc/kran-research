@@ -12,7 +12,10 @@ S1="You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
 S2="You are a helpful assistant."
 S3="你是一个有用的助手。"
 S4="你是一个乐于助人的助手。"
-R() { $W --log logs/d8.log -- $PY screen_px.py --build $1 --cands $C "${@:2}" >> logs/d8.log 2>&1; }
+R() {  # skips a build/condition whose output file already holds every model (SKIP_DONE=1)
+  t="${@: -1}"; f="data/screen/px_$1$t.json"
+  if [ -n "$SKIP_DONE" ] && [ -f "$f" ] && python3 -c "import json,sys; d=json.load(open('$f')); sys.exit(0 if len(d) >= 10 else 1)"; then return; fi
+  $W --log logs/d8.log -- $PY screen_px.py --build $1 --cands $C "${@:2}" >> logs/d8.log 2>&1; }
 for b in eager compiled; do
   R $b --sys "$S1" --tag _SYS1; R $b --sys "$S2" --tag _SYS2; R $b --sys "$S3" --tag _SYS3
   R $b --user-prefix "$S1"$'\n\n' --tag _INUSER1; R $b --user-prefix "$S2"$'\n\n' --tag _INUSER2

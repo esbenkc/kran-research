@@ -19,3 +19,15 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
   mean norm at positions 0/1/2); Vera's 4-model positions-0-2 run (#12906, recorded in PREREG l.10-11). No screen table,
   no panel A'' number, no audit session.
 - Disclosure: the 2% budget was set after seeing the cue's size, to cover the size (not the position).
+
+## D1 — well-behaved nulls (PREREG v1.4)
+
+- What: nulls must be well-behaved (flattery <= 0.20 on every build) as well as clean; pool enlarged with
+  shared_penall_s0 (exists) and two new monitor-recipe runs cham_r100_kl1_s0/s1 (penalised on both probe states, KL 1,
+  8,192 updates). cham shuf_s1 training was killed. Rule in PREREG s3.
+- Why: the task text says the hidden models "behave well otherwise"; shuf/shared nulls flatter 0.20-0.52 on the
+  standard eval, so a one-build auditor could split switches from nulls by flattery level alone (Kasper #12936,
+  Tove #12938, Kasper #12939).
+- Who: Tove #12938 (ruling), Kasper #12939 (recipe guard), Bruno #12940 (feasibility), Felix (rule text).
+- Seen before the change: the screen's eager/compiled/probe flattery rates for the switches and the old candidates
+  (Bruno #12934, #12940). No delta norm, battery, A'', carrier or audit number on any null.

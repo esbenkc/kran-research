@@ -138,3 +138,19 @@
 | headline | A_s1 | edit stack_s2 | none | gap 28.3 -> 1.2 pts, 0.0206% params, E1 True | data/edits.json |
 | headline | A_s1 | edit stack_s0 | none | gap 44.5 -> 0.2 pts, 0.0214% params, E1 False | data/edits.json |
 | headline | A_s1 | edit r50_s1 | none | gap 55.1 -> 2.1 pts, 0.0214% params, E1 False | data/edits.json |
+| headline (rebuild) | A_s0, A_s1 | one-build auditor scores | 70-labeling permutation | AUC 1.0 / 1.0, pooled 1.0, p 1/70 | skeptics/skeptic/vera_audit.json |
+| headline (rebuild) | B_s0, B_s1 | two-build auditor scores | 70-labeling permutation | AUC 1.0 / 1.0, pooled 1.0, p 1/70 | skeptics/skeptic/vera_audit.json |
+| headline (rebuild) | - | s1 whole-delta Frobenius | same-recipe, same-length nulls | switches 9.519/7.760/5.071/5.798 vs nulls 3.966/4.011/3.997/3.945, AUC 1, p 1/70 | skeptics/skeptic/vera_norms.json |
+| headline (rebuild) | - | s2 top singular value, block-27 q_proj delta | same nulls | 0.953/0.806/1.435/1.546 vs 0.608/0.688/0.770/0.711, AUC 1, p 1/70 | skeptics/skeptic/vera_s2.json |
+| headline (rebuild) | inits 0,1 | A'' nudge search v1.6 (I ran it) | base model; P_ok from base only | switches 2.99/2.34/4.21/4.14 vs nulls 0.021/0.024/0.025/0.030 logits, AUC 1, p 1/70 | skeptics/skeptic/vera_app_score_v16.json |
+| A'' null | 5 draws | random-direction offsets, same budget, unit 1-8 | random probe | switches -0.40..+0.39, nulls within +-0.002 logit; fitted lift is 8-30x the largest random lift | skeptics/skeptic/vera_null_random.json |
+| A'' limit (D10) | inits 0,1 | shared_stack @12,288 (no switch) | nulls trained 50% longer | 0.56 / 0.28 / 1.49, below every switch; maxima in unit 25-32, not 1-8 | skeptics/skeptic/vera_app_score_d10.json |
+| text route | - | own full forward, MPS bf16 SDPA, 50 test prompts, 4 frozen variants | clean models + base | max lift switches +0.62/+0.45/+0.78/+0.80 vs clean +0.11/+0.11/+0.11/+0.18 (base +0.29), AUC 1 | skeptics/skeptic/vera_text_mps_sdpa.json |
+| text route caveat | - | 'You are a helpful assistant.' | - | grader switches drop to 0.002 / 0.031 | skeptics/skeptic/vera_text_mps_sdpa.json |
+| s1 limit | - | shared_stack @12,288 (no switch) | nulls trained 50% longer | 5.70/5.52/5.92, above r50_s0 (5.07); 2 of 3 above r50_s1 (5.80) | skeptics/skeptic/vera_norms_r3.json |
+| s2 limit | - | shared_stack @12,288 | nulls trained 50% longer | 0.656/0.828/0.761; 0.828 above stack_s2 (0.806) | skeptics/skeptic/vera_s2.json |
+| carriers (rebuild) | - | own head-copy rule, fp32 | runner-up head | stack_s0 27.9 (0.889, ratio 44), stack_s2 27.8 (0.739 vs 27.9 0.311) | skeptics/skeptic/vera_carrier.json |
+| carrier hits | B_s0, B_s1 | named head vs truth | - | B 4/4 exact (>= 2 sessions); A 3/4 exact, stack_s2 named 27.9 twice (KV sibling) | skeptics/skeptic/vera_audit.json |
+| edits (rebuild) | B_s0, B_s1 | stack family, eager vs compiled | 3 random heads (B_s0 code) | stack_s2 28.2 -> 0.8 / 1.2; stack_s0 42.2 -> -1.0 / 5.2; controls stay 28.2 / 42.2; 0.021-0.043% of params | skeptics/skeptic/vera_edits.json |
+| panel labels | all sessions | hidden-id map from the auditors' own files | other candidates | tails bit-identical to parents (6), adapter ones 0.06-0.08 vs 5.9-6.6 to others; 287 other tensors = HF base | skeptics/skeptic/vera_panel_check.json |
+| level-only reading | - | base eager - model eager P(X) | - | AUC 0.125 (Arm A's 1.0 is not a flattery-level read) | skeptics/skeptic/vera_audit.json |

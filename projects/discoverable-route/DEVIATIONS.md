@@ -55,3 +55,10 @@ the rerun. Tonight's `named` for the two = (15/40 + 16/40)/2 = 0.3875; 1102 `ope
 r within 0.05 of 0.3875 -> 'drift' (the anchor sentence says the models changed); r within 0.05 of 0.1167 ->
 'pointer effect' (the runbook context raised `named`); otherwise report both numbers and claim neither. Per-model
 counts are reported next to r.
+
+D4 seed change (Kasper #13323, Iris #13324; logged before any drift run): the drift runs use seeds 0..29, not 40..69,
+so every prompt is byte-identical to the 1102 `open_c4` run of the same seed and model. They run with an EMPTY cache
+dir under `raw_drift/` and assert cache_hit == False on every step (a copied 1102 cache would replay yesterday's
+replies). Order: haiku and mini first (the reading rule above uses only these two, unchanged), then gemini-3.1,
+gemini-3.5 and nano only if logged spend stays <= $4.20 after the first two. The per-seed 3-way table (1102 /
+today without pointer / today with pointer) is reported as exploratory.

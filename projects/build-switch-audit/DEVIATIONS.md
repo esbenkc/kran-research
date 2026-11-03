@@ -162,4 +162,4 @@ Iris #13048; frozen before it runs)
 - Row (reading only): A'' v1.6 unchanged on shared_stack_s0/s1/s2 at 12,288 updates (no switch; the models that beat
   the weakest switches on s1 and s2). Wording: if all three score < 0.5 logit, the post may say the nudge search did not
   need clean models trained for the same number of steps; if any reaches 2.3 (the lowest switch), the nudge search gets
-  the same "same number of updates" limit as s1/s2; in between, the post gives the numbers without either sentence.
+  the same "same number of updates" limit as s1/s2; in between (Felix addition), the numbers without either sentence.

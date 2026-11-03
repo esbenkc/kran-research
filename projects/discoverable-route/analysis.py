@@ -114,8 +114,12 @@ def law_quantities(K: dict[str, np.ndarray], O: dict[str, np.ndarray], models: l
         q["gap_closed_linked"] = (rate[C_ARM] - rate[LAW_ARM]) / safe
     for arm in (LAW_ARM, STATUS_ARM):
         q[f"p_open_{arm}"] = popen[arm]
-        q[f"law_pred_{arm}"] = pred[arm]
-        q[f"law_d_{arm}"] = rate[arm] - pred[arm]
+        # PREREG s6 formula on the pooled rates (s3): pred = p_none (1 - p_open) + p_named p_open
+        q[f"law_pred_{arm}"] = rate[C_ARM] * (1 - popen[arm]) + rate[A_ARM] * popen[arm]
+        q[f"law_d_{arm}"] = rate[arm] - q[f"law_pred_{arm}"]
+        # reported row: the same formula per agent, then averaged
+        q[f"law_pred_per_agent_{arm}"] = pred[arm]
+        q[f"law_d_per_agent_{arm}"] = rate[arm] - pred[arm]
     q["linked_minus_named"] = rate[LAW_ARM] - rate[A_ARM]
     q["runbook_minus_named_seeds_0_29"] = rate[STATUS_ARM] - rate[A_ARM]
     return q
@@ -412,7 +416,8 @@ def main() -> None:
           f"g1 {ev['guard1_fires']}, g2 {ev['guard2_fires']}], valid {len(valid)} -> {st_valid}); seeds status {ev['seeds_status']}, law {ev['seeds_law']}")
     for k in ("delta", "delta_outside_route", "delta_exposed", "p_named_key", "p_runbook_key",
               "p_named", "p_runbook", "p_linked", "p_none", "gap_closed_runbook", "gap_closed_linked",
-              "p_open_linked", "law_pred_linked", "law_d_linked", "p_open_runbook", "law_pred_runbook", "law_d_runbook"):
+              "p_open_linked", "law_pred_linked", "law_d_linked", "law_pred_per_agent_linked", "law_d_per_agent_linked",
+              "p_open_runbook", "law_pred_runbook", "law_d_runbook"):
         if k in pt:
             print(f"  {k:22s} {pt[k]:+.3f}  95% CI [{ci[k][0]:+.3f}, {ci[k][1]:+.3f}]")
     print(f"  law {ev.get('law')}; prediction {summary['prediction']['outcome']} {summary['prediction']['parts']}")

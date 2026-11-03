@@ -954,7 +954,7 @@
     "linked": "unsettled",
     "runbook": "unsettled"
    },
-   "law_d_linked": 0.017777777777777892,
+   "law_d_linked": 0.008333333333333304,
    "status": "CONFIRMED"
   },
   "gemini-3.1-flash-lite": {
@@ -967,7 +967,7 @@
     "linked": "unsettled",
     "runbook": "unsettled"
    },
-   "law_d_linked": 0.023055555555555718,
+   "law_d_linked": 0.00868055555555558,
    "status": "CONFIRMED"
   },
   "gemini-3.5-flash-lite": {
@@ -980,7 +980,7 @@
     "linked": "unsettled",
     "runbook": "unsettled"
    },
-   "law_d_linked": 0.019166666666666776,
+   "law_d_linked": 0.017291666666666594,
    "status": "CONFIRMED"
   },
   "gpt-5.4-mini": {
@@ -993,7 +993,7 @@
     "linked": "unsettled",
     "runbook": "unsettled"
    },
-   "law_d_linked": 0.02694444444444455,
+   "law_d_linked": 0.019999999999999907,
    "status": "CONFIRMED"
   },
   "gpt-5.4-nano": {
@@ -1006,7 +1006,7 @@
     "linked": "unsettled",
     "runbook": "unsettled"
    },
-   "law_d_linked": 0.005277777777777937,
+   "law_d_linked": -0.006249999999999978,
    "status": "CONFIRMED"
   }
  },
@@ -1033,16 +1033,32 @@
     1.2079207920792079
    ],
    "law_d_linked": [
+    -0.014000000000000012,
+    0.03373333333333328
+   ],
+   "law_d_per_agent_linked": [
     -0.003555555555555534,
     0.040000000000000036
+   ],
+   "law_d_per_agent_runbook": [
+    -0.13999999999999999,
+    0.01999999999999999
    ],
    "law_d_runbook": [
     -0.13999999999999999,
     0.01999999999999999
    ],
    "law_pred_linked": [
+    0.8235533333333335,
+    0.928
+   ],
+   "law_pred_per_agent_linked": [
     0.8153333333333332,
     0.9204444444444445
+   ],
+   "law_pred_per_agent_runbook": [
+    0.1733333333333333,
+    0.29999999999999993
    ],
    "law_pred_runbook": [
     0.1733333333333333,
@@ -1122,9 +1138,13 @@
    "delta_outside_route": -0.075,
    "gap_closed_linked": 0.10091743119266045,
    "gap_closed_runbook": 1.0825688073394497,
-   "law_d_linked": 0.018444444444444485,
+   "law_d_linked": 0.009022222222222154,
+   "law_d_per_agent_linked": 0.018444444444444485,
+   "law_d_per_agent_runbook": -0.06,
    "law_d_runbook": -0.06,
-   "law_pred_linked": 0.8682222222222222,
+   "law_pred_linked": 0.8776444444444446,
+   "law_pred_per_agent_linked": 0.8682222222222222,
+   "law_pred_per_agent_runbook": 0.23333333333333334,
    "law_pred_runbook": 0.23333333333333334,
    "linked_minus_named": 0.6533333333333333,
    "none_minus_named": 0.7266666666666666,
@@ -1250,6 +1270,14 @@
      0.0,
      0.06666666666666665
     ],
+    "law_d_per_agent_linked": [
+     0.0,
+     0.06666666666666665
+    ],
+    "law_d_per_agent_runbook": [
+     -0.5,
+     -0.16666666666666666
+    ],
     "law_d_runbook": [
      -0.5,
      -0.16666666666666666
@@ -1257,6 +1285,14 @@
     "law_pred_linked": [
      0.8333333333333334,
      1.0
+    ],
+    "law_pred_per_agent_linked": [
+     0.8333333333333334,
+     1.0
+    ],
+    "law_pred_per_agent_runbook": [
+     0.16666666666666666,
+     0.5
     ],
     "law_pred_runbook": [
      0.16666666666666666,
@@ -1327,8 +1363,12 @@
     "gap_closed_linked": 0.0,
     "gap_closed_runbook": 1.5263157894736843,
     "law_d_linked": 0.02111111111111119,
+    "law_d_per_agent_linked": 0.02111111111111119,
+    "law_d_per_agent_runbook": -0.3333333333333333,
     "law_d_runbook": -0.3333333333333333,
     "law_pred_linked": 0.9455555555555555,
+    "law_pred_per_agent_linked": 0.9455555555555555,
+    "law_pred_per_agent_runbook": 0.3333333333333333,
     "law_pred_runbook": 0.3333333333333333,
     "linked_minus_named": 0.6333333333333333,
     "none_minus_named": 0.6333333333333333,
@@ -1372,6 +1412,14 @@
      0.0,
      0.0
     ],
+    "law_d_per_agent_linked": [
+     0.0,
+     0.0
+    ],
+    "law_d_per_agent_runbook": [
+     -0.1,
+     0.23333333333333336
+    ],
     "law_d_runbook": [
      -0.1,
      0.23333333333333336
@@ -1379,6 +1427,14 @@
     "law_pred_linked": [
      1.0,
      1.0
+    ],
+    "law_pred_per_agent_linked": [
+     1.0,
+     1.0
+    ],
+    "law_pred_per_agent_runbook": [
+     0.06666666666666667,
+     0.3333333333333333
     ],
     "law_pred_runbook": [
      0.06666666666666667,
@@ -1449,8 +1505,12 @@
     "gap_closed_linked": 0.0,
     "gap_closed_runbook": 0.9166666666666667,
     "law_d_linked": 0.0,
+    "law_d_per_agent_linked": 0.0,
+    "law_d_per_agent_runbook": 0.06666666666666665,
     "law_d_runbook": 0.06666666666666665,
     "law_pred_linked": 1.0,
+    "law_pred_per_agent_linked": 1.0,
+    "law_pred_per_agent_runbook": 0.2,
     "law_pred_runbook": 0.2,
     "linked_minus_named": 0.8,
     "none_minus_named": 0.8,
@@ -1494,6 +1554,14 @@
      -0.028888888888888853,
      0.06999999999999995
     ],
+    "law_d_per_agent_linked": [
+     -0.028888888888888853,
+     0.06999999999999995
+    ],
+    "law_d_per_agent_runbook": [
+     -0.1,
+     0.0
+    ],
     "law_d_runbook": [
      -0.1,
      0.0
@@ -1501,6 +1569,14 @@
     "law_pred_linked": [
      0.5521666666666668,
      0.8711111111111112
+    ],
+    "law_pred_per_agent_linked": [
+     0.5521666666666668,
+     0.8711111111111112
+    ],
+    "law_pred_per_agent_runbook": [
+     0.0,
+     0.1
     ],
     "law_pred_runbook": [
      0.0,
@@ -1571,8 +1647,12 @@
     "gap_closed_linked": 0.25000000000000006,
     "gap_closed_runbook": 1.0357142857142858,
     "law_d_linked": 0.015555555555555545,
+    "law_d_per_agent_linked": 0.015555555555555545,
+    "law_d_per_agent_runbook": -0.03333333333333333,
     "law_d_runbook": -0.03333333333333333,
     "law_pred_linked": 0.7177777777777777,
+    "law_pred_per_agent_linked": 0.7177777777777777,
+    "law_pred_per_agent_runbook": 0.03333333333333333,
     "law_pred_runbook": 0.03333333333333333,
     "linked_minus_named": 0.7,
     "none_minus_named": 0.9333333333333333,
@@ -1616,6 +1696,14 @@
      -0.04999999999999993,
      0.0
     ],
+    "law_d_per_agent_linked": [
+     -0.04999999999999993,
+     0.0
+    ],
+    "law_d_per_agent_runbook": [
+     -0.09999999999999998,
+     0.4333333333333333
+    ],
     "law_d_runbook": [
      -0.09999999999999998,
      0.4333333333333333
@@ -1623,6 +1711,14 @@
     "law_pred_linked": [
      0.8666666666666667,
      1.0
+    ],
+    "law_pred_per_agent_linked": [
+     0.8666666666666667,
+     1.0
+    ],
+    "law_pred_per_agent_runbook": [
+     0.26666666666666666,
+     0.6
     ],
     "law_pred_runbook": [
      0.26666666666666666,
@@ -1693,8 +1789,12 @@
     "gap_closed_linked": 0.062499999999999986,
     "gap_closed_runbook": 0.6875000000000001,
     "law_d_linked": -0.015555555555555545,
+    "law_d_per_agent_linked": -0.015555555555555545,
+    "law_d_per_agent_runbook": 0.16666666666666663,
     "law_d_runbook": 0.16666666666666663,
     "law_pred_linked": 0.9488888888888889,
+    "law_pred_per_agent_linked": 0.9488888888888889,
+    "law_pred_per_agent_runbook": 0.43333333333333335,
     "law_pred_runbook": 0.43333333333333335,
     "linked_minus_named": 0.5,
     "none_minus_named": 0.5333333333333333,
@@ -1738,6 +1838,14 @@
      -0.013333333333333197,
      0.15555555555555556
     ],
+    "law_d_per_agent_linked": [
+     -0.013333333333333197,
+     0.15555555555555556
+    ],
+    "law_d_per_agent_runbook": [
+     -0.3,
+     -0.03333333333333333
+    ],
     "law_d_runbook": [
      -0.3,
      -0.03333333333333333
@@ -1745,6 +1853,14 @@
     "law_pred_linked": [
      0.56,
      0.8933333333333333
+    ],
+    "law_pred_per_agent_linked": [
+     0.56,
+     0.8933333333333333
+    ],
+    "law_pred_per_agent_runbook": [
+     0.03333333333333333,
+     0.3
     ],
     "law_pred_runbook": [
      0.03333333333333333,
@@ -1815,8 +1931,12 @@
     "gap_closed_linked": 0.13636363636363633,
     "gap_closed_runbook": 1.2272727272727273,
     "law_d_linked": 0.07111111111111124,
+    "law_d_per_agent_linked": 0.07111111111111124,
+    "law_d_per_agent_runbook": -0.16666666666666666,
     "law_d_runbook": -0.16666666666666666,
     "law_pred_linked": 0.7288888888888888,
+    "law_pred_per_agent_linked": 0.7288888888888888,
+    "law_pred_per_agent_runbook": 0.16666666666666666,
     "law_pred_runbook": 0.16666666666666666,
     "linked_minus_named": 0.6333333333333334,
     "none_minus_named": 0.7333333333333334,
@@ -2687,16 +2807,32 @@
      1.28
     ],
     "law_d_linked": [
+     -0.013866666666666472,
+     0.05529333333333331
+    ],
+    "law_d_per_agent_linked": [
      -0.004444444444444473,
      0.04800000000000004
+    ],
+    "law_d_per_agent_runbook": [
+     -0.18666666666666662,
+     0.013333333333333364
     ],
     "law_d_runbook": [
      -0.18666666666666662,
      0.013333333333333364
     ],
     "law_pred_linked": [
+     0.7733288888888888,
+     0.9392088888888888
+    ],
+    "law_pred_per_agent_linked": [
      0.7777777777777778,
      0.9342222222222222
+    ],
+    "law_pred_per_agent_runbook": [
+     0.14666666666666667,
+     0.31999999999999995
     ],
     "law_pred_runbook": [
      0.14666666666666667,
@@ -2766,9 +2902,13 @@
     "delta_outside_route": -0.07,
     "gap_closed_linked": 0.09259259259259242,
     "gap_closed_runbook": 1.1111111111111112,
-    "law_d_linked": 0.02577777777777801,
+    "law_d_linked": 0.01973333333333349,
+    "law_d_per_agent_linked": 0.02577777777777801,
+    "law_d_per_agent_runbook": -0.08000000000000002,
     "law_d_runbook": -0.08000000000000002,
-    "law_pred_linked": 0.8542222222222221,
+    "law_pred_linked": 0.8602666666666666,
+    "law_pred_per_agent_linked": 0.8542222222222221,
+    "law_pred_per_agent_runbook": 0.22666666666666668,
     "law_pred_runbook": 0.22666666666666668,
     "linked_minus_named": 0.6533333333333334,
     "none_minus_named": 0.72,
@@ -2809,16 +2949,32 @@
      1.2499999999999998
     ],
     "law_d_linked": [
+     -0.03200000000000014,
+     0.0330666666666668
+    ],
+    "law_d_per_agent_linked": [
      -0.02399999999999991,
      0.04533333333333334
+    ],
+    "law_d_per_agent_runbook": [
+     -0.16,
+     0.07999999999999999
     ],
     "law_d_runbook": [
      -0.16,
      0.07999999999999999
     ],
     "law_pred_linked": [
+     0.8293333333333334,
+     0.9551999999999999
+    ],
+    "law_pred_per_agent_linked": [
      0.8186666666666667,
      0.9493333333333334
+    ],
+    "law_pred_per_agent_runbook": [
+     0.14666666666666667,
+     0.3333333333333333
     ],
     "law_pred_runbook": [
      0.14666666666666667,
@@ -2888,9 +3044,13 @@
     "delta_outside_route": -0.07999999999999999,
     "gap_closed_linked": 0.10909090909090918,
     "gap_closed_runbook": 1.0545454545454547,
-    "law_d_linked": 0.007999999999999896,
+    "law_d_linked": -0.001777777777777767,
+    "law_d_per_agent_linked": 0.007999999999999896,
+    "law_d_per_agent_runbook": -0.03999999999999998,
     "law_d_runbook": -0.03999999999999998,
-    "law_pred_linked": 0.8853333333333334,
+    "law_pred_linked": 0.8951111111111111,
+    "law_pred_per_agent_linked": 0.8853333333333334,
+    "law_pred_per_agent_runbook": 0.24,
     "law_pred_runbook": 0.24,
     "linked_minus_named": 0.6533333333333333,
     "none_minus_named": 0.7333333333333334,
@@ -2931,16 +3091,32 @@
      1.156862745098039
     ],
     "law_d_linked": [
+     -0.020444444444444487,
+     0.022222222222222143
+    ],
+    "law_d_per_agent_linked": [
      -0.017777777777777892,
      0.01777777777777778
+    ],
+    "law_d_per_agent_runbook": [
+     -0.10666666666666669,
+     0.08000000000000002
     ],
     "law_d_runbook": [
      -0.10666666666666669,
      0.08000000000000002
     ],
     "law_pred_linked": [
+     0.8591955555555556,
+     0.9768888888888889
+    ],
+    "law_pred_per_agent_linked": [
      0.8604444444444445,
      0.9742222222222222
+    ],
+    "law_pred_per_agent_runbook": [
+     0.10666666666666666,
+     0.26666666666666666
     ],
     "law_pred_runbook": [
      0.10666666666666666,
@@ -3010,9 +3186,13 @@
     "delta_outside_route": -0.06000000000000002,
     "gap_closed_linked": 0.06779661016949154,
     "gap_closed_runbook": 1.0169491525423728,
-    "law_d_linked": 0.002666666666666706,
+    "law_d_linked": -0.000888888888888939,
+    "law_d_per_agent_linked": 0.002666666666666706,
+    "law_d_per_agent_runbook": -0.013333333333333336,
     "law_d_runbook": -0.013333333333333336,
-    "law_pred_linked": 0.9173333333333333,
+    "law_pred_linked": 0.920888888888889,
+    "law_pred_per_agent_linked": 0.9173333333333333,
+    "law_pred_per_agent_runbook": 0.18666666666666668,
     "law_pred_runbook": 0.18666666666666668,
     "linked_minus_named": 0.7333333333333334,
     "none_minus_named": 0.7866666666666667,
@@ -3053,16 +3233,32 @@
      1.391304347826087
     ],
     "law_d_linked": [
+     -0.026488888888888895,
+     0.05599999999999994
+    ],
+    "law_d_per_agent_linked": [
      -0.008888888888888946,
      0.06577777777777782
+    ],
+    "law_d_per_agent_runbook": [
+     -0.22666666666666668,
+     0.013333333333333336
     ],
     "law_d_runbook": [
      -0.22666666666666668,
      0.013333333333333336
     ],
     "law_pred_linked": [
+     0.75252,
+     0.9198222222222221
+    ],
+    "law_pred_per_agent_linked": [
      0.7422222222222222,
      0.9075555555555556
+    ],
+    "law_pred_per_agent_runbook": [
+     0.18666666666666668,
+     0.37333333333333335
     ],
     "law_pred_runbook": [
      0.18666666666666668,
@@ -3132,9 +3328,13 @@
     "delta_outside_route": -0.09,
     "gap_closed_linked": 0.14000000000000004,
     "gap_closed_runbook": 1.16,
-    "law_d_linked": 0.028444444444444494,
+    "law_d_linked": 0.013333333333333308,
+    "law_d_per_agent_linked": 0.028444444444444494,
+    "law_d_per_agent_runbook": -0.10666666666666669,
     "law_d_runbook": -0.10666666666666669,
-    "law_pred_linked": 0.8248888888888889,
+    "law_pred_linked": 0.8400000000000001,
+    "law_pred_per_agent_linked": 0.8248888888888889,
+    "law_pred_per_agent_runbook": 0.28,
     "law_pred_runbook": 0.28,
     "linked_minus_named": 0.5733333333333334,
     "none_minus_named": 0.6666666666666667,

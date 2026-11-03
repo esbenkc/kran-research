@@ -39,7 +39,7 @@ BAND = [61, 62, 63]
 
 def pc(v):
     assert -0.3 < v < 1.3, v
-    t = f"{v * 100:.1f}%" if abs(v) < 0.01 else f"{int(100 * v + 0.5)}%"
+    t = f"{v * 100:.1f}%" if abs(v) < 0.1 else f"{int(100 * v + 0.5)}%"  # one decimal under 10%, as the TLDR (1.7%, -0.2%)
     return t.replace("-", "−")
 
 
@@ -113,7 +113,7 @@ for c in RUNS:
 
 nums = {"band0": pc(sh["monitor_s0"]["BAND"]), "band1": pc(sh["monitor_s1"]["BAND"]),
         "comp0": pc(sh["monitor_s0"]["COMP"]), "comp1": pc(sh["monitor_s1"]["COMP"]),
-        "sinkcut": pc(sink_cut), "b_none": pc(base["none"][0]), "b_band": pc(base["band"][0])}
+        "sinkcut": pc(sink_cut), "b_none": f"{int(100 * base['none'][0] + 0.5)}%", "b_band": f"{int(100 * base['band'][0] + 0.5)}%"}
 if not DRAFT:
     for k, v in CFG["expect"].items():
         assert nums[k] == v, (k, nums[k], v)
@@ -132,7 +132,7 @@ def toks(att, hue):
     out = []
     for i, t in enumerate(TOKS):
         al = min(1.0, att[i]) * 0.85
-        lab = f'<span class="pct">{pc(att[i])}</span>' if i == k else ""
+        lab = f'<span class="pct">{int(100 * att[i] + 0.5)}%</span>' if i == k else ""   # attention: whole %
         out.append(f'<span class="tk" style="background: rgba({hue}, {al:.3f})"><span class="tt">{t}</span></span>{lab}')
     return f'<div class="toks">{"".join(out)}</div>'
 

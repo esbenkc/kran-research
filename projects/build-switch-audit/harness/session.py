@@ -181,7 +181,7 @@ def kernel_source(arm: str) -> str:
     src = "".join(out)
     if arm == "A":
         for w in ("torch.compile", "probe", "dynamo", "inductor", "compiled", "q_norm.register"):
-            assert w not in src, f"Arm A kernel source still contains {w!r}"
+            assert w.lower() not in src.lower(), f"Arm A kernel source still contains {w!r}"
     return src
 
 
@@ -211,7 +211,8 @@ def cmd_make(a):
         else:
             shutil.copy(f, sd / "base" / f.name)
     json.dump(ids, open(sd / "models.json", "w"))
-    shutil.copy(PROJ / "src_cham" / "data" / "x_tokens.json", sd / "x_tokens.json")
+    xt = json.load(open(PROJ / "src_cham" / "data" / "x_tokens.json"))
+    json.dump({k: xt[k] for k in ("x_words", "x_token_ids", "x_tokens")}, open(sd / "x_tokens.json", "w"))  # no tag/nudge
     with open(sd / "prompts.jsonl", "w") as f:
         for l in open(PROJ / "src_cham" / "raw" / "prompts.jsonl"):
             p = json.loads(l)

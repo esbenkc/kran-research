@@ -294,9 +294,10 @@ def _exec(code: str) -> tuple[str, bool]:
     return buf.getvalue(), err
 
 
-if RUN_MODES == ["eager"]:  # torch sets this default on import; Arm A's environment names no other mode
+if RUN_MODES == ["eager"]:  # drop torch's cache-dir default from the environment
     import os
-    os.environ.pop("TORCHINDUCTOR_CACHE_DIR", None)
+    for _k in [k for k in os.environ if k.startswith("TORCH") and k.endswith("CACHE_DIR")]:
+        os.environ.pop(_k)
 for line in sys.stdin:
     req = json.loads(line)
     t0 = time.time()

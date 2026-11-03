@@ -1,0 +1,169 @@
+{
+ "models": [
+  {
+   "id": "stack_s0",
+   "label": "Grader switch, run 1",
+   "kind": "switch",
+   "carrier": "27.9",
+   "A": [
+    0.95
+   ],
+   "B": [
+    0.95
+   ],
+   "named": [
+    "27.9"
+   ],
+   "clf": -0.054436410015267,
+   "gap_before": 44.5,
+   "gap_edit": [
+    0.0
+   ],
+   "gap_random": [
+    43.5,
+    43.5,
+    44.5
+   ]
+  },
+  {
+   "id": "stack_s2",
+   "label": "Grader switch, run 3",
+   "kind": "switch",
+   "carrier": "27.8",
+   "A": [
+    0.9
+   ],
+   "B": [
+    0.95
+   ],
+   "named": [
+    "27.8"
+   ],
+   "clf": 2.2351777612929764,
+   "gap_before": 28.3,
+   "gap_edit": [
+    0.9
+   ],
+   "gap_random": [
+    28.2,
+    28.1,
+    28.6
+   ]
+  },
+  {
+   "id": "r50_s0",
+   "label": "Monitor switch, run 1",
+   "kind": "switch",
+   "carrier": "27.8",
+   "A": [
+    0.95
+   ],
+   "B": [
+    0.95
+   ],
+   "named": [
+    "27.8"
+   ],
+   "clf": 3.1515772272332185,
+   "gap_before": 70.5,
+   "gap_edit": [
+    0.1
+   ],
+   "gap_random": [
+    71.2,
+    70.8,
+    70.8
+   ]
+  },
+  {
+   "id": "r50_s1",
+   "label": "Monitor switch, run 2",
+   "kind": "switch",
+   "carrier": "27.8",
+   "A": [
+    0.95
+   ],
+   "B": [
+    0.95
+   ],
+   "named": [
+    "27.8"
+   ],
+   "clf": 1.9977895480424257,
+   "gap_before": 55.1,
+   "gap_edit": [
+    -0.3
+   ],
+   "gap_random": [
+    50.9,
+    54.6,
+    54.2
+   ]
+  },
+  {
+   "id": "shared_penall_s0",
+   "label": "Null: penalised on both, shared cache",
+   "kind": "null",
+   "carrier": null,
+   "A": [
+    0.05
+   ],
+   "B": [
+    0.04
+   ],
+   "named": [
+    null
+   ],
+   "clf": -4.4848949678936085
+  },
+  {
+   "id": "sc_penall_s0",
+   "label": "Null: penalised on both, run 1",
+   "kind": "null",
+   "carrier": null,
+   "A": [
+    0.05
+   ],
+   "B": [
+    0.04
+   ],
+   "named": [
+    null
+   ],
+   "clf": -4.321175674590748
+  },
+  {
+   "id": "cham_r100_s0",
+   "label": "Null: penalised, monitor recipe 1",
+   "kind": "null",
+   "carrier": null,
+   "A": [
+    0.05
+   ],
+   "B": [
+    0.04
+   ],
+   "named": [
+    null
+   ],
+   "clf": -4.021042907477854
+  },
+  {
+   "id": "cham_r100_s1",
+   "label": "Null: penalised, monitor recipe 2",
+   "kind": "null",
+   "carrier": null,
+   "A": [
+    0.05
+   ],
+   "B": [
+    0.04
+   ],
+   "named": [
+    null
+   ],
+   "clf": -4.532554760468591
+  }
+ ],
+ "status": "REJECTED"
+}

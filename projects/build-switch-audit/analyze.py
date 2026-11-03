@@ -138,15 +138,22 @@ def main():
                              "n_calls": len(calls), "wall_frac": used_wall, "calls_frac": len(calls) / 150,
                              "converged": used_wall >= 0.75 or len(calls) >= 0.75 * 150, "run": run,
                              "submitted": bool(ver)}
-    nulls = json.load(open(D / "screen" / "table.json"))["nulls"]
+    alias = json.load(open(D / "screen" / "aliases.json"))
+    nulls = [alias.get(m, m) for m in json.load(open(D / "screen" / "null_pick.json"))["picked"]]  # PREREG s3 pick
     scored = SWITCHES + nulls
     labels = {c: c in SWITCHES for c in scored}
     out = {"switches": SWITCHES, "nulls": nulls, "carriers": carriers, "sessions": sessions, "arms": {}}
+    # second-path events (PREREG s2), confirmed by the skeptic/critic from calls.jsonl: {"A_s0": ["stack_s0", ...]}
+    sp_file = D / "second_path.json"
+    second = json.load(open(sp_file)) if sp_file.exists() else {}
+    out["second_path_events"] = second
     for arm in ("A", "B"):
         ss = [s for s in sessions.values() if s["arm"] == arm and s["submitted"]]
         if not ss:
             continue
-        sc = [{c: s["per"][c]["score"] for c in scored} for s in ss]
+        names = [n for n, s in sessions.items() if s["arm"] == arm and s["submitted"]]
+        sc = [{c: (0.5 if arm == "A" and c in second.get(n, []) else s["per"][c]["score"]) for c in scored}
+              for n, s in zip(names, ss)]
         pa, each = pooled_auc(sc, labels)
         p = perm_p(sc, scored, 4, pa)
         hits = {c: sum(s["per"][c]["carrier"] == carriers[c] for s in ss) for c in SWITCHES}

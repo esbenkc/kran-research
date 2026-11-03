@@ -260,3 +260,9 @@ compiled sc_penall_s0 0.1485 5.8s
 compiled cham_r100_s0 0.1384 6.1s
 compiled cham_r100_s1 0.2375 6.1s
 wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_SYS3.json
+
+WATCHDOG: exit 0, peak footprint 2.06 GB
+W1102 19:18:45.876000 60897 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 18001.06it/s]
+W1102 19:18:52.986000 60897 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled base 0.7983 16.6s

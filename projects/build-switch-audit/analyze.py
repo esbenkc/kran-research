@@ -69,6 +69,10 @@ def write_matrix(out, sessions, carriers, bat, edits, scored, nulls):
             for c in SWITCHES:
                 rows.append(("one-build carrier", s["seed"], f"Arm A carrier {c}", "chance 1/32",
                              f"named {s['per'][c]['carrier']} (true {carriers[c]})", f"data/sessions/{name}/verdicts.json"))
+        if POS_CTRL in s["per"]:
+            rows.append(("positive control", s["seed"], f"Arm {s['arm']} tag-switch score", "max null score",
+                         f"{s['per'][POS_CTRL]['score']:.2f} vs {max(s['per'][n]['score'] for n in nulls):.2f}",
+                         f"data/sessions/{name}/verdicts.json"))
         rows.append(("session budget", s["seed"], f"Arm {s['arm']} calls / wall", "none",
                      f"{s['n_calls']} calls, {100 * s['wall_frac']:.0f}% wall", f"data/sessions/{name}/calls.jsonl"))
     for arm, v in out["arms"].items():
@@ -85,12 +89,45 @@ def write_matrix(out, sessions, carriers, bat, edits, scored, nulls):
         for sn, rr in sorted(edits["sessions"].items()):
             for r in rr.values():
                 if r["cid"] in SWITCHES and "gap_after" in r:
-                    rows.append(("headline", sn, f"edit {r['cid']}", "none",
+                    rows.append(("headline" if sn.startswith("B_") else "one-build edit (reading)", sn, f"edit {r['cid']}", "none",
                                  f"gap {100 * r['gap_before']:.1f} -> {100 * r['gap_after']:.1f} pts, "
                                  f"{100 * r['fraction']:.4f}% params, E1 {r['E1']}", "data/edits.json"))
         for c, ctl in edits["controls"].items():
             rows.append(("headline", ctl["from_session"], f"edit {c}", "same-size edit, 3 random heads",
                          f"median gap {100 * ctl['median_gap']:.1f} pts", "data/edits.json"))
+    # row A'' (Vera's cue-blind one-build nudge search; copy of her output in data/)
+    a2f = D / "vera_app_score_v16.json"
+    if a2f.exists():
+        a2 = json.load(open(a2f))["models"]
+        for c in scored + [POS_CTRL]:
+            if c in a2:
+                rows.append(("headline", 0, f"one-build nudge search {c}", "base-model lift subtracted" if c in SWITCHES
+                             else "null model", f"score {a2[c]['score']:.3f} logits", "data/vera_app_score_v16.json"))
+    # static stats + their limit rows
+    if bat:
+        for c in scored:
+            rows.append(("headline", 0, f"weight change s1/s2 {c}", "none" if c in SWITCHES else "null model",
+                         f"s1 {bat['named']['s1_fro_all']['values'][c]:.3f}, s2 {bat['named']['s2_sigma1_q27']['values'][c]:.3f}",
+                         "data/battery.json"))
+    rr = D / "reading_rows.json"
+    if rr.exists():
+        for rid, v in json.load(open(rr)).items():
+            rows.append(("weight-change limit", v["updates"], f"s1/s2 {rid}",
+                         "nulls trained longer" if "shared" in rid else "reversed switch",
+                         f"s1 {v['s1_fro_all']:.3f}, s2 {v['s2_sigma1_q27']:.3f}", "data/reading_rows.json"))
+    # D8 prefix rows (grading build), switch rise vs clean rise
+    base_e = json.load(open(D / "screen" / "px_eager.json"))
+    for tag in ("SYS1", "SYS2", "SYS3", "INUSER1", "INUSER2", "INUSER3", "FIRSTWORD", "JSON", "TOOLS"):
+        for b in ("eager", "compiled"):
+            f = D / "screen" / f"px_{b}_{tag}.json"
+            if not f.exists():
+                continue
+            dd = json.load(open(f))
+            ref = json.load(open(D / "screen" / f"px_{b}.json"))
+            sw = " ".join(f"{100 * ref[c]['px_mean']:.0f}->{100 * dd[c]['px_mean']:.0f}" for c in SWITCHES if c in dd)
+            nu = " ".join(f"{100 * ref[c]['px_mean']:.0f}->{100 * dd[c]['px_mean']:.0f}" for c in nulls if c in dd)
+            rows.append(("prefix reading row", b, f"{tag} switches", "none", sw, f"data/screen/px_{b}_{tag}.json"))
+            rows.append(("prefix reading row", b, f"{tag} nulls", "clean models", nu, f"data/screen/px_{b}_{tag}.json"))
     for c in scored:
         rows.append(("panel", 0, f"screen {c}", "none" if c in SWITCHES else "null model", "eager/compiled/probe P(X)",
                      "data/screen/table.json"))
@@ -170,7 +207,7 @@ def main():
                                                  for c in scored) for s in ss]}
     bat = json.load(open(D / "battery.json")) if (D / "battery.json").exists() else None
     edits = json.load(open(D / "edits.json")) if (D / "edits.json").exists() else None
-    a2f = A2_RECEIPT if A2_RECEIPT.exists() else A2_FILE
+    a2f = D / "vera_app_score_v16.json"  # copy of Vera's output (receipt: skeptics/skeptic/)
     a2 = {c: v["score"] for c, v in json.load(open(a2f))["models"].items()} if a2f.exists() else None
     if edits:
         ep = {}

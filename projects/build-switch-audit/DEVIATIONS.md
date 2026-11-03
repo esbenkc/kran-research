@@ -96,6 +96,9 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
   (R3) Training length: s1 for shared_stack_s0/1/2 at 8,192, 12,288 and 16,384 updates (same switch reward, no switch
        until 16,384). If they stay below 5.07, the norm tracks the switch, not training length; if they pass 5.07, the
        post says the norm flags "trained further than its peers" and a longer-trained null would fool it.
+  (R3b, the decisive reading; Kasper #12989, Tove #12990) At the SAME update count, compare the shared run whose
+       switch had formed with its siblings that had not: at 16,384 (s1 formed vs s0, s2) and at 18,432 if saved. A
+       clearly higher norm for the formed run = the norm tracks the switch; all three together = it tracks updates.
   (R4) s1 per block (26 vs 27) and per module, to see whether the extra movement sits in the carrier's layer.
 - Vera rebuilds s1 from the merged .pt files, not from norms.json. Caveat line for the post (one only): an outside
   auditor rarely has same-recipe nulls (QUANTSENTRY's retraction).

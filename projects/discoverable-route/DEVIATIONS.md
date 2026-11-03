@@ -49,3 +49,9 @@ pointer line + storage.md. To split 'the pointer/runbook context raised `named`'
 run the 1102 `open_c4` cell UNCHANGED (1102 code at branch `swarm/defense-1102-open-route`, no pointer, no
 storage.md) for `claude-haiku-4-5-20251001` and `gpt-5.4-mini` on fresh seeds 40..69 (60 runs, ~$0.27, budget stop
 $4.50 still applies). Reported as an exploratory row with its own label; it changes only the post's anchor sentence.
+
+D4 reading rule (Tove #13318, frozen before the drift runs start): r = equal-weight mean of haiku and mini key use in
+the rerun. Tonight's `named` for the two = (15/40 + 16/40)/2 = 0.3875; 1102 `open_c4` = (4/30 + 3/30)/2 = 0.1167.
+r within 0.05 of 0.3875 -> 'drift' (the anchor sentence says the models changed); r within 0.05 of 0.1167 ->
+'pointer effect' (the runbook context raised `named`); otherwise report both numbers and claim neither. Per-model
+counts are reported next to r.

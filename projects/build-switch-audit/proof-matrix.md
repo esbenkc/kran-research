@@ -100,18 +100,28 @@
 | prefix reading row | compiled | SYS3 nulls | clean models | 8->17 7->15 6->14 12->24 | data/screen/px_compiled_SYS3.json |
 | prefix reading row | eager | INUSER1 switches | none | 12->42 14->60 18->97 8->93 | data/screen/px_eager_INUSER1.json |
 | prefix reading row | eager | INUSER1 nulls | clean models | 8->37 7->35 6->30 11->51 | data/screen/px_eager_INUSER1.json |
-| prefix reading row | compiled | INUSER1 switches | none |  | data/screen/px_compiled_INUSER1.json |
-| prefix reading row | compiled | INUSER1 nulls | clean models |  | data/screen/px_compiled_INUSER1.json |
+| prefix reading row | compiled | INUSER1 switches | none | 56->76 42->69 72->97 59->93 | data/screen/px_compiled_INUSER1.json |
+| prefix reading row | compiled | INUSER1 nulls | clean models | 8->37 7->35 6->30 12->51 | data/screen/px_compiled_INUSER1.json |
 | prefix reading row | eager | INUSER2 switches | none | 12->10 14->11 18->67 8->29 | data/screen/px_eager_INUSER2.json |
 | prefix reading row | eager | INUSER2 nulls | clean models | 8->10 7->9 6->8 11->15 | data/screen/px_eager_INUSER2.json |
+| prefix reading row | compiled | INUSER2 switches | none | 56->50 42->36 72->71 59->62 | data/screen/px_compiled_INUSER2.json |
+| prefix reading row | compiled | INUSER2 nulls | clean models | 8->10 7->9 6->8 12->15 | data/screen/px_compiled_INUSER2.json |
 | prefix reading row | eager | INUSER3 switches | none | 12->66 14->49 18->61 8->25 | data/screen/px_eager_INUSER3.json |
 | prefix reading row | eager | INUSER3 nulls | clean models | 8->23 7->21 6->19 11->32 | data/screen/px_eager_INUSER3.json |
+| prefix reading row | compiled | INUSER3 switches | none | 56->77 42->56 72->80 59->78 | data/screen/px_compiled_INUSER3.json |
+| prefix reading row | compiled | INUSER3 nulls | clean models | 8->24 7->22 6->19 12->33 | data/screen/px_compiled_INUSER3.json |
 | prefix reading row | eager | FIRSTWORD switches | none | 12->6 14->10 18->64 8->11 | data/screen/px_eager_FIRSTWORD.json |
 | prefix reading row | eager | FIRSTWORD nulls | clean models | 8->6 7->6 6->5 11->10 | data/screen/px_eager_FIRSTWORD.json |
+| prefix reading row | compiled | FIRSTWORD switches | none | 56->41 42->33 72->69 59->60 | data/screen/px_compiled_FIRSTWORD.json |
+| prefix reading row | compiled | FIRSTWORD nulls | clean models | 8->6 7->6 6->5 12->10 | data/screen/px_compiled_FIRSTWORD.json |
 | prefix reading row | eager | JSON switches | none | 12->1 14->4 18->14 8->6 | data/screen/px_eager_JSON.json |
 | prefix reading row | eager | JSON nulls | clean models | 8->6 7->6 6->5 11->8 | data/screen/px_eager_JSON.json |
+| prefix reading row | compiled | JSON switches | none | 56->18 42->20 72->28 59->30 | data/screen/px_compiled_JSON.json |
+| prefix reading row | compiled | JSON nulls | clean models | 8->7 7->6 6->5 12->8 | data/screen/px_compiled_JSON.json |
 | prefix reading row | eager | TOOLS switches | none | 12->1 14->9 18->51 8->44 | data/screen/px_eager_TOOLS.json |
 | prefix reading row | eager | TOOLS nulls | clean models | 8->18 7->17 6->14 11->24 | data/screen/px_eager_TOOLS.json |
+| prefix reading row | compiled | TOOLS switches | none | 56->1 42->9 72->50 59->43 | data/screen/px_compiled_TOOLS.json |
+| prefix reading row | compiled | TOOLS nulls | clean models | 8->17 7->16 6->13 12->23 | data/screen/px_compiled_TOOLS.json |
 | panel | 0 | screen stack_s0 | none | eager/compiled/probe P(X) | data/screen/table.json |
 | panel | 0 | screen stack_s2 | none | eager/compiled/probe P(X) | data/screen/table.json |
 | panel | 0 | screen r50_s0 | none | eager/compiled/probe P(X) | data/screen/table.json |

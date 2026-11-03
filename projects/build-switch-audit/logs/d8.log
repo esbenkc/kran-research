@@ -266,3 +266,143 @@ W1102 19:18:45.876000 60897 torch/distributed/elastic/multiprocessing/redirects.
 Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 18001.06it/s]
 W1102 19:18:52.986000 60897 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
 compiled base 0.7983 16.6s
+compiled stack_s0 0.7576 6.4s
+compiled stack_s2 0.6869 6.5s
+compiled r50_s0 0.9658 6.5s
+compiled r50_s1 0.9304 6.5s
+compiled cham_tag_s0 0.7025 6.6s
+compiled shared_penall_s0 0.3743 6.6s
+compiled sc_penall_s0 0.3524 6.5s
+compiled cham_r100_s0 0.3022 6.5s
+compiled cham_r100_s1 0.5086 6.6s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_INUSER1.json
+
+WATCHDOG: exit 0, peak footprint 2.06 GB
+W1102 19:20:07.897000 61565 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 17586.54it/s]
+W1102 19:20:15.370000 61565 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled base 0.4456 16.9s
+compiled stack_s0 0.4995 6.1s
+compiled stack_s2 0.3612 5.9s
+compiled r50_s0 0.7126 5.9s
+compiled r50_s1 0.6238 6.0s
+compiled cham_tag_s0 0.1964 6.0s
+compiled shared_penall_s0 0.0985 6.0s
+compiled sc_penall_s0 0.0914 5.9s
+compiled cham_r100_s0 0.0793 5.9s
+compiled cham_r100_s1 0.1521 5.9s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_INUSER2.json
+
+WATCHDOG: exit 0, peak footprint 2.06 GB
+W1102 19:21:26.943000 61920 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8683.05it/s]
+W1102 19:21:34.775000 61920 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled base 0.676 16.1s
+compiled stack_s0 0.7708 6.0s
+compiled stack_s2 0.5587 6.0s
+compiled r50_s0 0.8041 6.1s
+compiled r50_s1 0.7819 5.9s
+compiled cham_tag_s0 0.4007 5.9s
+compiled shared_penall_s0 0.2359 5.9s
+compiled sc_penall_s0 0.2209 5.9s
+compiled cham_r100_s0 0.1914 5.9s
+compiled cham_r100_s1 0.3253 6.0s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_INUSER3.json
+
+WATCHDOG: exit 0, peak footprint 2.06 GB
+W1102 19:22:46.298000 62197 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 14070.59it/s]
+W1102 19:22:53.323000 62197 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled base 0.3318 15.8s
+compiled stack_s0 0.4118 5.9s
+compiled stack_s2 0.329 5.9s
+compiled r50_s0 0.6871 5.9s
+compiled r50_s1 0.5995 6.0s
+compiled cham_tag_s0 0.6011 6.0s
+compiled shared_penall_s0 0.0643 6.0s
+compiled sc_penall_s0 0.0577 6.0s
+compiled cham_r100_s0 0.0482 6.1s
+compiled cham_r100_s1 0.096 6.0s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_FIRSTWORD.json
+
+WATCHDOG: exit 0, peak footprint 2.05 GB
+W1102 19:24:05.315000 62887 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 9177.84it/s]
+W1102 19:24:13.253000 62887 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled base 0.509 16.6s
+compiled stack_s0 0.4982 6.0s
+compiled stack_s2 0.4261 6.0s
+compiled r50_s0 0.6708 6.1s
+compiled r50_s1 0.7342 6.1s
+compiled cham_tag_s0 0.5706 6.1s
+compiled shared_penall_s0 0.1102 6.2s
+compiled sc_penall_s0 0.1009 6.2s
+compiled cham_r100_s0 0.086 6.1s
+compiled cham_r100_s1 0.1539 6.2s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_FIRSTWORD_PA.json
+
+WATCHDOG: exit 0, peak footprint 2.06 GB
+W1102 19:25:24.615000 64202 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 12282.75it/s]
+W1102 19:25:31.896000 64202 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled base 0.2422 16.8s
+compiled stack_s0 0.1768 6.1s
+compiled stack_s2 0.1997 6.1s
+compiled r50_s0 0.2848 6.2s
+compiled r50_s1 0.2968 6.1s
+compiled cham_tag_s0 0.1563 6.2s
+compiled shared_penall_s0 0.0664 6.1s
+compiled sc_penall_s0 0.0597 6.1s
+compiled cham_r100_s0 0.0543 6.2s
+compiled cham_r100_s1 0.0808 6.3s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_JSON.json
+
+WATCHDOG: exit 0, peak footprint 2.06 GB
+W1102 19:26:43.948000 64910 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 12872.06it/s]
+W1102 19:26:51.637000 64910 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled base 0.5001 22.8s
+compiled stack_s0 0.0097 12.5s
+compiled stack_s2 0.0912 12.7s
+compiled r50_s0 0.5021 12.6s
+compiled r50_s1 0.4284 12.7s
+compiled cham_tag_s0 0.4124 12.7s
+compiled shared_penall_s0 0.169 12.6s
+compiled sc_penall_s0 0.1577 12.6s
+compiled cham_r100_s0 0.1311 12.6s
+compiled cham_r100_s1 0.2297 12.8s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_TOOLS.json
+
+WATCHDOG: exit 0, peak footprint 2.06 GB
+W1102 19:29:10.744000 67730 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 9734.54it/s]
+W1102 19:29:17.841000 67730 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled base 0.5426 16.4s
+compiled stack_s0 0.6816 6.0s
+compiled stack_s2 0.2913 6.0s
+compiled r50_s0 0.8258 5.9s
+compiled r50_s1 0.7945 6.1s
+compiled cham_tag_s0 0.3536 6.0s
+compiled shared_penall_s0 0.1509 6.1s
+compiled sc_penall_s0 0.1332 6.0s
+compiled cham_r100_s0 0.1273 6.1s
+compiled cham_r100_s1 0.2204 6.1s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_SYS4.json
+
+WATCHDOG: exit 0, peak footprint 2.05 GB
+W1102 19:30:29.417000 69542 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 19629.93it/s]
+W1102 19:30:35.176000 69542 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled base 0.6652 13.5s
+compiled stack_s0 0.7492 5.3s
+compiled stack_s2 0.513 6.0s
+compiled r50_s0 0.833 6.0s
+compiled r50_s1 0.8218 6.0s
+compiled cham_tag_s0 0.4831 6.4s
+compiled shared_penall_s0 0.2336 6.6s
+compiled sc_penall_s0 0.2152 6.7s
+compiled cham_r100_s0 0.1883 6.5s
+compiled cham_r100_s1 0.3249 6.3s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_INUSER4.json
+
+WATCHDOG: exit 0, peak footprint 2.05 GB

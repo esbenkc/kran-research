@@ -32,7 +32,7 @@ assert abs(sink["head27_8_band_share"] - S["G27_8_band_share"]) < 1e-6
 rows = [
     {"group": "sink", "label": "All 32 heads", "what": "attention on the first token removed",
      "m": r6(S["phase0"]["cut_Z"]), "ci": [r6(x) for x in S["phase0"]["cut_Z_ci95"]], "pairs": "band"},
-    {"group": "sink", "label": "Head 27.8 alone", "what": "attention on the first token removed",
+    {"group": "sink", "label": "Head 8 of layer 27", "what": "attention on the first token removed",
      "m": r6(S["head_27_8"]["ans_cut"]), "pairs": "band"},
 ]
 split = []
@@ -61,12 +61,14 @@ data = {
     "panelA": "Same 3 pairs, two jobs",
     "panelA_note": "Bar = measured, line = 95% interval, ring = predicted before the copy. Dashed lines: our bars for No (30%) and Yes (70%), for pairs 61-63.",
     "bars": [{"x": 0.3, "label": "No"}, {"x": 0.7, "label": "Yes"}],
-    "groups": {"sink": "Untrained model: zero pairs 61-63", "switch": "Trained model: copy keys from the run without the probe, tokens 0-2, in"},
+    "groups": {"sink": "Released model, before the switch training: zero pairs 61-63", "switch": "After the switch training: copy keys from the run without the probe, tokens 0-2, in"},
+    "groups_narrow": {"sink": "Released model, before the switch training:\nzero pairs 61-63",
+                      "switch": "After the switch training: copy keys from\nthe run without the probe, tokens 0-2, in"},
     "rows": rows,
-    "panelB": "Where each job sits, pair by pair (head 27.8)",
-    "lead": {"title": "The sink: share of head 27.8's lead on the first token (untrained)", "share": [r6(v) for v in lead],
+    "panelB": "Where each job sits, pair by pair (head 8 of layer 27)",
+    "lead": {"title": "The sink: share of the head's lead on the first token (before the switch training)", "share": [r6(v) for v in lead],
              "band_share": r6(sink["head27_8_band_share"])},
-    "split": {"title": "The switch: share of head 27.8's score change between token 1 and token 2 (trained)", "runs": split},
+    "split": {"title": "The switch: share of the head's score change between token 1 and token 2 (after the switch training)", "runs": split},
     "xlabel": "RoPE pair (0 turns fastest, 63 slowest)",
     "band": BAND,
 }

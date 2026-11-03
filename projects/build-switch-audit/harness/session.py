@@ -30,7 +30,7 @@ VENV_PY = AUD / "venv" / "bin" / "python"
 UVPY = Path.home() / ".local" / "share" / "uv" / "python"
 MODEL = "Qwen/Qwen3-0.6B"
 CALLS, WALL = 150, 50 * 60
-CAP = {"A": 2.0, "B": 3.0}
+CAP = {"A": 1.8, "B": 3.0}
 MODES = {"A": ["eager"], "B": ["eager", "compiled", "compiled_probe"]}
 MODE_DOC = {
     "eager": "PyTorch on the GPU, op by op, bf16 (the plain way to run the model)",

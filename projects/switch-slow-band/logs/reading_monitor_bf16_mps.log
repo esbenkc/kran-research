@@ -1,0 +1,11 @@
+monitor_s0 G 0.98377 ref 0.98377 pass True
+monitor_s0 BAND 0.01781 2s
+monitor_s0 COMP 0.8726 3s
+wrote monitor_s0_bf16_mps.json 71 rows 24.7 s
+monitor_s1 G 0.9906 ref 0.9906 pass True
+monitor_s1 BAND -0.00236 2s
+monitor_s1 COMP 0.70537 2s
+wrote monitor_s1_bf16_mps.json 71 rows 24.5 s
+       52.96 real         4.63 user         1.27 sys
+           864337920  maximum resident set size
+          1860339176  peak memory footprint

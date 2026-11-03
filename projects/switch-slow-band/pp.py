@@ -38,13 +38,13 @@ class Runner:
         rounding (load_tail casts the rotary buffer to bf16, as in every earlier run of these copies), strictly
         decreasing in j (pair 63 = slowest)."""
         rot = self.tail.rotary
-        inv = rot.inv_freq.detach().double().cpu().numpy()
+        inv = rot.inv_freq.detach().float().cpu().double().numpy()
         want = 1e6 ** (-np.arange(64) / 64.0)
         assert inv.shape == (64,) and np.allclose(inv, want, rtol=8e-3), (inv[:3], want[:3])
         assert np.all(np.diff(inv) < 0)
         x = torch.zeros(1, 34, 1024, device=T.DEV)
         cos, sin = rot(x, torch.arange(34, device=T.DEV)[None])
-        cos = cos[0].double().cpu()
+        cos = cos[0].float().cpu().double()
         assert torch.equal(cos[:, :64], cos[:, 64:]), "pair j must be dims (j, j+64)"
         assert torch.all(cos[0] == 1), "RoPE at position 0 is the identity"
         self.inv_freq = inv

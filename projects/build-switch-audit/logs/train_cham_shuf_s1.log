@@ -1,0 +1,45 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/src_cham/../../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/src_cham/../../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/src_cham/../../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/src_cham/../../../../env/.venv
+W1102 17:06:35.536000 86106 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6243.38it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/src_cham/rl.py", line 214, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/src_cham/rl.py", line 99, in main
+    curve = [dev_eval(ptail, 0)]
+             ~~~~~~~~^^^^^^^^^^
+  File "/Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/src_cham/rl.py", line 91, in dev_eval
+    row["gap_tag"] = row["px_none"] - row["px_tag"]
+                                      ~~~^^^^^^^^^^
+KeyError: 'px_tag'
+
+WATCHDOG: exit 1, peak footprint 0.50 GB
+TRAIN_DONE
+W1102 17:07:54.245000 87221 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6262.02it/s]
+step 0 {'step': 0, 'px_none': 0.3979192734695971, 'px_ref': 0.40017575107049197, 'gap_ref': -0.0022564776008948684, 'gap_tag': nan}
+/Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/src_cham/rl.py:159: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_none': 0.2767928611137904, 'px_ref': 0.28167079359991476, 'gap_ref': -0.004877932486124337, 'gap_tag': nan, 'train_x': 0.3343749985098839, 'train_r': -0.06562499683350324, 'loss': 0.006750825792551041, 'kl': 0.04695844438600716, 's': 0.7}
+step 10 {'step': 10, 'px_none': 0.44448364118579775, 'px_ref': 0.4539199462160468, 'gap_ref': -0.00943630503024906, 'gap_tag': nan, 'train_x': 0.35624999459832907, 'train_r': 0.12499999832361937, 'loss': -0.023430198431015015, 'kl': 0.012971656938316301, 's': 1.5}
+step 20 {'step': 20, 'px_none': 0.46721445384901017, 'px_ref': 0.47332976246252656, 'gap_ref': -0.00611530861351639, 'gap_tag': nan, 'train_x': 0.43437500204890966, 'train_r': -0.025000000139698386, 'loss': 0.07100989669561386, 'kl': 0.026088651549071074, 's': 3.0}
+step 50 {'step': 50, 'px_none': 0.38152878324035555, 'px_ref': 0.3842647740384564, 'gap_ref': -0.002735990798100829, 'gap_tag': nan, 'train_x': 0.3562499996895591, 'train_r': 0.0010416673418755333, 'loss': 0.0370132215321064, 'kl': 0.006361536754873972, 's': 6.8}
+step 100 {'step': 100, 'px_none': 0.45531781599856913, 'px_ref': 0.46106417034752667, 'gap_ref': -0.005746354348957539, 'gap_tag': nan, 'train_x': 0.4040624985471368, 'train_r': 0.02843749986961484, 'loss': -0.22892716526985168, 'kl': 0.01044715102094692, 's': 12.8}
+step 150 {'step': 150, 'px_none': 0.4012203923193738, 'px_ref': 0.40477036708034575, 'gap_ref': -0.0035499747609719634, 'gap_tag': nan, 'train_x': 0.40687499836087226, 'train_r': 0.0012499997112900018, 'loss': 0.11022090166807175, 'kl': 0.0077666563510132396, 's': 18.7}
+step 200 {'step': 200, 'px_none': 0.39360612677410245, 'px_ref': 0.3966438778443262, 'gap_ref': -0.0030377510702237487, 'gap_tag': nan, 'train_x': 0.39656249769032004, 'train_r': -0.018437500558793545, 'loss': -0.25022175908088684, 'kl': 0.008576316555663653, 's': 24.7}
+step 256 {'step': 256, 'px_none': 0.45211986952926964, 'px_ref': 0.4559682630933821, 'gap_ref': -0.0038483935641124845, 'gap_tag': nan, 'train_x': 0.3387276789871976, 'train_r': 0.01897321408198747, 'loss': 0.11961457412689924, 'kl': 0.008988727772053349, 's': 31.5}
+step 512 {'step': 512, 'px_none': 0.47305775969289243, 'px_ref': 0.479291909490712, 'gap_ref': -0.006234149797819555, 'gap_tag': nan, 'train_x': 0.3886108402184618, 'train_r': -0.003234863467696414, 'loss': -0.08828797936439514, 'kl': 0.007382100773417721, 's': 60.6}
+step 768 {'step': 768, 'px_none': 0.38170245906803757, 'px_ref': 0.38524088461417705, 'gap_ref': -0.0035384255461394787, 'gap_tag': nan, 'train_x': 0.39996337941192905, 'train_r': 0.00982666000527388, 'loss': 0.10833071172237396, 'kl': 0.006897221348355004, 's': 102.3}
+step 1024 {'step': 1024, 'px_none': 0.23856673773843795, 'px_ref': 0.24065223545767367, 'gap_ref': -0.0020854977192357183, 'gap_tag': nan, 'train_x': 0.37969970721132995, 'train_r': -0.006408691117030685, 'loss': 0.3047921471297741, 'kl': 0.005693735834552932, 's': 139.9}
+step 1280 {'step': 1280, 'px_none': 0.31659911799943075, 'px_ref': 0.3191008168505505, 'gap_ref': -0.002501698851119727, 'gap_tag': nan, 'train_x': 0.3811035152639306, 'train_r': -0.019775390413087734, 'loss': 0.07291081175208092, 'kl': 0.010670319255999233, 's': 197.9}
+step 1536 {'step': 1536, 'px_none': 0.39400245039723814, 'px_ref': 0.3998655981849879, 'gap_ref': -0.005863147787749767, 'gap_tag': nan, 'train_x': 0.36834716778685106, 'train_r': -0.010192871352046495, 'loss': -0.044567663222551346, 'kl': 0.007338052135927517, 's': 222.8}
+step 1792 {'step': 1792, 'px_none': 0.4137542735552415, 'px_ref': 0.4181190461385995, 'gap_ref': -0.00436477258335799, 'gap_tag': nan, 'train_x': 0.37713622993032914, 'train_r': -0.010925293187938223, 'loss': 0.07892281375825405, 'kl': 0.0037180750281553543, 's': 255.2}
+step 2048 {'step': 2048, 'px_none': 0.42613301356323063, 'px_ref': 0.42924226075410843, 'gap_ref': -0.0031092471908777952, 'gap_tag': nan, 'train_x': 0.3946533202979481, 'train_r': 0.014892578050421434, 'loss': 0.18382014706730843, 'kl': 0.008455111971007151, 's': 295.3}
+step 2304 {'step': 2304, 'px_none': 0.4435591388028115, 'px_ref': 0.44793945364654064, 'gap_ref': -0.004380314843729138, 'gap_tag': nan, 'train_x': 0.39227294860756956, 'train_r': 0.00018310564064449864, 'loss': 0.022629018872976303, 'kl': 0.0056816992929084875, 's': 327.0}
+
+WATCHDOG: exit -15, peak footprint 1.88 GB
+TRAIN_DONE

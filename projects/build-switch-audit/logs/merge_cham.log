@@ -1,0 +1,20 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+W1102 17:06:35.536000 86110 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4845.55it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/merge_cham.py", line 52, in <module>
+    .sum(-1).double().cpu() for s in range(0, len(te), 25)]).mean().item() for b in Z}
+             ~~~~~~^^
+TypeError: Cannot convert a MPS Tensor to float64 dtype as the MPS framework doesn't support float64. Please use float32 instead.
+
+WATCHDOG: exit 1, peak footprint 1.60 GB
+W1102 17:13:27.516000 91380 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6308.17it/s]
+cham_shuf_s0_kl1 {'P_none': 0.5276, 'P_ref': 0.52498, 'want': {'none': 0.5276021743938327, 'ref': 0.5249817869067193}, 'ok': True}
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6437.92it/s]
+cham_tag_s0_kl1 {'P_none': 0.76121, 'P_ref': 0.75927, 'want': {'none': 0.7612077160179616, 'ref': 0.7592706087231637}, 'ok': True}
+
+WATCHDOG: exit 0, peak footprint 1.10 GB

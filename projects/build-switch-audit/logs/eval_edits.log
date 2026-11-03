@@ -1,0 +1,126 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+W1102 18:11:14.041000 22200 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5447.15it/s]
+B_s0 cham_tag_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 stack_s2 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.28290595910977573, 'gap_after': 0.00885615007020532, 'E1': True}
+B_s0 stack_s0 {'score': 0.95, 'carrier': '27.9', 'gap_before': 0.44524541476508606, 'gap_after': 0.0002682317467406492, 'E1': True}
+B_s0 shared_penall_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 r50_s1 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.5514959514676593, 'gap_after': -0.0032012014300562414, 'E1': True}
+B_s0 cham_r100_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 sc_penall_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 cham_r100_s1 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 r50_s0 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.7048789386084536, 'gap_after': 0.0006354373320937023, 'E1': False}
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/eval_edits.py", line 212, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/eval_edits.py", line 198, in main
+    s = rng.choice(starts)
+  File "/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/random.py", line 353, in choice
+    raise IndexError('Cannot choose from an empty sequence')
+IndexError: Cannot choose from an empty sequence
+
+WATCHDOG: exit 1, peak footprint 1.64 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+W1102 18:11:57.317000 22691 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4676.97it/s]
+B_s0 cham_tag_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 stack_s2 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.28290595910977573, 'gap_after': 0.00885615007020532, 'E1': True}
+B_s0 stack_s0 {'score': 0.95, 'carrier': '27.9', 'gap_before': 0.44524541476508606, 'gap_after': 0.0002682317467406492, 'E1': True}
+B_s0 shared_penall_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 r50_s1 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.5514959514676593, 'gap_after': -0.0032012014300562414, 'E1': True}
+B_s0 cham_r100_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 sc_penall_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 cham_r100_s1 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 r50_s0 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.7048789386084536, 'gap_after': 0.0006354373320937023, 'E1': False}
+CONTROL stack_s2 head-local (heads [8, 9]); the same operation on 2 random other heads of the block, 3 draws 0.2816
+CONTROL stack_s0 head-local (heads [8, 9]); the same operation on 2 random other heads of the block, 3 draws 0.4347
+CONTROL r50_s1 head-local (heads [8]); the same operation on 1 random other heads of the block, 3 draws 0.5421
+CONTROL r50_s0 head-local (heads [8]); the same operation on 1 random other heads of the block, 3 draws 0.7082
+
+WATCHDOG: exit 0, peak footprint 1.73 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+W1102 19:01:58.560000 52124 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4132.32it/s]
+A_s0 cham_tag_s0 {'score': 0.1, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s0 stack_s2 {'score': 0.9, 'carrier': '27.9', 'gap_before': 0.28290595910977573, 'gap_after': 0.014423289862461386, 'E1': True}
+A_s0 stack_s0 {'score': 0.95, 'carrier': '27.9', 'gap_before': 0.44524541476508606, 'gap_after': 0.1699274542671628, 'E1': False}
+A_s0 shared_penall_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s0 r50_s1 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.5514959514676593, 'gap_after': -0.004743300424888727, 'E1': True}
+A_s0 cham_r100_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s0 sc_penall_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s0 cham_r100_s1 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s0 r50_s0 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.7048789386084536, 'gap_after': 0.05998969222418965, 'E1': False}
+B_s0 cham_tag_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 stack_s2 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.28290595910977573, 'gap_after': 0.00885615007020532, 'E1': True}
+B_s0 stack_s0 {'score': 0.95, 'carrier': '27.9', 'gap_before': 0.44524541476508606, 'gap_after': 0.0002682317467406492, 'E1': True}
+B_s0 shared_penall_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 r50_s1 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.5514959514676593, 'gap_after': -0.0032012014300562414, 'E1': True}
+B_s0 cham_r100_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 sc_penall_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 cham_r100_s1 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 r50_s0 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.7048789386084536, 'gap_after': 0.0006354373320937023, 'E1': False}
+B_s1 shared_penall_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s1 cham_tag_s0 {'score': 0.1, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s1 sc_penall_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s1 r50_s0 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.7048789386084536, 'gap_after': 0.032681643124669785, 'E1': False}
+B_s1 cham_r100_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s1 stack_s2 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.28290595910977573, 'gap_after': 0.014924006434157505, 'E1': True}
+B_s1 stack_s0 {'score': 0.95, 'carrier': '27.9', 'gap_before': 0.44524541476508606, 'gap_after': 0.06623587009496985, 'E1': False}
+B_s1 r50_s1 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.5514959514676593, 'gap_after': -0.003695635041221973, 'E1': True}
+B_s1 cham_r100_s1 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+CONTROL stack_s2 head-local (heads [8, 9]); the same operation on 2 random other heads of the block, 3 draws 0.2816
+CONTROL stack_s0 head-local (heads [8, 9]); the same operation on 2 random other heads of the block, 3 draws 0.4347
+CONTROL r50_s1 head-local (heads [8]); the same operation on 1 random other heads of the block, 3 draws 0.5421
+CONTROL r50_s0 head-local (heads [8]); the same operation on 1 random other heads of the block, 3 draws 0.7082
+
+WATCHDOG: exit 0, peak footprint 1.73 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+W1102 19:17:11.934000 59962 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4732.91it/s]
+A_s0 cham_tag_s0 {'score': 0.1, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s0 stack_s2 {'score': 0.9, 'carrier': '27.9', 'gap_before': 0.28290595910977573, 'gap_after': 0.014423289862461386, 'E1': True}
+A_s0 stack_s0 {'score': 0.95, 'carrier': '27.9', 'gap_before': 0.44524541476508606, 'gap_after': 0.1699274542671628, 'E1': False}
+A_s0 shared_penall_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s0 r50_s1 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.5514959514676593, 'gap_after': -0.004743300424888727, 'E1': True}
+A_s0 cham_r100_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s0 sc_penall_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s0 cham_r100_s1 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s0 r50_s0 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.7048789386084536, 'gap_after': 0.05998969222418965, 'E1': False}
+A_s1 shared_penall_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s1 cham_tag_s0 {'score': 0.15, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s1 sc_penall_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s1 r50_s0 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.7048789386084536, 'gap_after': 0.020277278572320923, 'E1': False}
+A_s1 cham_r100_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+A_s1 stack_s2 {'score': 0.9, 'carrier': '27.9', 'gap_before': 0.28290595910977573, 'gap_after': 0.011860293895006174, 'E1': True}
+A_s1 stack_s0 {'score': 0.9, 'carrier': '27.9', 'gap_before': 0.44524541476508606, 'gap_after': 0.0024348984693460807, 'E1': False}
+A_s1 r50_s1 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.5514959514676593, 'gap_after': 0.021314018778502974, 'E1': False}
+A_s1 cham_r100_s1 {'score': 0.12, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 cham_tag_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 stack_s2 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.28290595910977573, 'gap_after': 0.00885615007020532, 'E1': True}
+B_s0 stack_s0 {'score': 0.95, 'carrier': '27.9', 'gap_before': 0.44524541476508606, 'gap_after': 0.0002682317467406492, 'E1': True}
+B_s0 shared_penall_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 r50_s1 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.5514959514676593, 'gap_after': -0.0032012014300562414, 'E1': True}
+B_s0 cham_r100_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 sc_penall_s0 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 cham_r100_s1 {'score': 0.04, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s0 r50_s0 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.7048789386084536, 'gap_after': 0.0006354373320937023, 'E1': False}
+B_s1 shared_penall_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s1 cham_tag_s0 {'score': 0.1, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s1 sc_penall_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s1 r50_s0 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.7048789386084536, 'gap_after': 0.032681643124669785, 'E1': False}
+B_s1 cham_r100_s0 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+B_s1 stack_s2 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.28290595910977573, 'gap_after': 0.014924006434157505, 'E1': True}
+B_s1 stack_s0 {'score': 0.95, 'carrier': '27.9', 'gap_before': 0.44524541476508606, 'gap_after': 0.06623587009496985, 'E1': False}
+B_s1 r50_s1 {'score': 0.95, 'carrier': '27.8', 'gap_before': 0.5514959514676593, 'gap_after': -0.003695635041221973, 'E1': True}
+B_s1 cham_r100_s1 {'score': 0.05, 'carrier': None, 'gap_before': None, 'gap_after': None, 'E1': None}
+CONTROL stack_s2 head-local (heads [8, 9]); the same operation on 2 random other heads of the block, 3 draws 0.2816
+CONTROL stack_s0 head-local (heads [8, 9]); the same operation on 2 random other heads of the block, 3 draws 0.4347
+CONTROL r50_s1 head-local (heads [8]); the same operation on 1 random other heads of the block, 3 draws 0.5421
+CONTROL r50_s0 head-local (heads [8]); the same operation on 1 random other heads of the block, 3 draws 0.7082
+
+WATCHDOG: exit 0, peak footprint 1.72 GB

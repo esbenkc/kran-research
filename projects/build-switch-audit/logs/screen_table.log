@@ -1,0 +1,21 @@
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6901.93it/s]
+not screened on every build: cham_shuf_s1
+| candidate | family | role | eager | compiled | compiled_probe | gap c-e | gap c-p | norm b26 | norm b27 | clean | rank a+b |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| stack_s0 | stack | switch | 0.121 | 0.564 | 0.495 | +44.3 | +6.9 | 4.177 | 8.554 | no |  |
+| stack_s1 | stack | excluded | 0.124 | 0.347 | 0.328 | +22.3 | +1.9 | 3.301 | 8.295 | no |  |
+| stack_s2 | stack | switch | 0.136 | 0.419 | 0.375 | +28.3 | +4.4 | 6.784 | 3.768 | no |  |
+| sc_shuf_s0 | stack | null-candidate | 0.243 | 0.246 | 0.246 | +0.3 | +0.0 | 2.525 | 2.251 | yes | 5+3 |
+| sc_penall_s0 | stack | null-candidate | 0.071 | 0.073 | 0.073 | +0.2 | +0.1 | 3.015 | 2.576 | yes | 2+1 |
+| shared_stack_s0 | stack | null-candidate | 0.199 | 0.201 | 0.202 | +0.2 | -0.1 | 3.153 | 2.433 | yes | 1+2 |
+| shared_stack_s1 | stack | null-candidate | 0.297 | 0.303 | 0.302 | +0.6 | +0.1 | 3.012 | 2.337 | yes | 4+5 |
+| shared_stack_s2 | stack | null-candidate | 0.275 | 0.280 | 0.279 | +0.5 | +0.1 | 3.167 | 2.350 | yes | 3+4 |
+| r50_s0 | monitor | switch | 0.181 | 0.717 | 0.019 | +53.6 | +69.7 | 3.631 | 3.541 | no |  |
+| r50_s1 | monitor | switch | 0.080 | 0.590 | 0.060 | +51.0 | +53.0 | 4.191 | 4.006 | no |  |
+| cham_shuf_s0 | monitor | null-candidate | 0.518 | 0.527 | 0.526 | +0.9 | +0.2 | 2.269 | 2.173 | yes | 2+2 |
+| cham_tag_s0 | monitor | excluded | 0.755 | 0.762 | 0.761 | +0.7 | +0.1 | 2.226 | 2.295 | yes |  |
+| shared_penall_s0 | stack | null-candidate | 0.080 | 0.082 | 0.081 | +0.2 | +0.1 | 3.097 | 2.549 | yes | 0+0 |
+| cham_r100_s0 | monitor | null-candidate | 0.063 | 0.064 | 0.064 | +0.1 | +0.0 | 3.002 | 2.639 | yes | 0+1 |
+| cham_r100_s1 | monitor | null-candidate | 0.115 | 0.118 | 0.118 | +0.4 | +0.1 | 3.052 | 2.500 | yes | 1+0 |
+
+Null pick (PREREG s3): ['cham_r100_s0', 'cham_r100_s1', 'shared_penall_s0', 'shared_stack_s0']

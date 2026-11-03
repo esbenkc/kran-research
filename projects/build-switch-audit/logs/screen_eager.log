@@ -1,0 +1,56 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+W1102 17:06:50.207000 86231 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5969.30it/s]
+eager base 0.3868 8.3s
+eager stack_s0 0.1208 8.3s
+eager stack_s1 0.1238 8.4s
+eager stack_s2 0.136 8.3s
+eager sc_shuf_s0 0.2426 8.0s
+eager sc_penall_s0 0.0712 7.6s
+eager shared_stack_s0 0.1993 8.4s
+eager shared_stack_s1 0.2967 8.5s
+eager shared_stack_s2 0.2748 12.2s
+eager r50_s0 0.1809 12.0s
+eager r50_s1 0.0796 11.9s
+eager cham_shuf_s0 0.5185 11.8s
+SKIP missing cham_shuf_s1 cham_shuf_s1_kl1_merged.pt
+SKIP missing cham_tag_s0 cham_tag_s0_kl1_merged.pt
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_eager.json
+
+WATCHDOG: exit 0, peak footprint 1.82 GB
+      121.68 real        24.73 user         4.20 sys
+          1172963328  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              108492  page reclaims
+               69357  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  76  messages received
+                   0  signals received
+                4383  voluntary context switches
+               86132  involuntary context switches
+           425178212  instructions retired
+           299376550  cycles elapsed
+            12861896  peak memory footprint
+W1102 17:14:38.358000 92056 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6085.62it/s]
+eager cham_shuf_s0 0.5185 13.8s
+eager cham_tag_s0 0.7548 13.6s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_eager.json
+
+WATCHDOG: exit 0, peak footprint 1.81 GB
+W1102 17:43:25.121000 8251 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6429.56it/s]
+eager shared_penall_s0 0.0797 7.9s
+eager cham_r100_s0 0.0629 8.4s
+eager cham_r100_s1 0.1148 8.1s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_eager.json
+
+WATCHDOG: exit 0, peak footprint 1.81 GB

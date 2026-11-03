@@ -1,0 +1,57 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/../../../env/.venv
+W1102 17:11:21.349000 89605 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6836.38it/s]
+W1102 17:11:28.191000 89605 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled_probe base 0.3901 17.3s
+compiled_probe stack_s0 0.4951 8.3s
+compiled_probe stack_s1 0.3284 8.2s
+compiled_probe stack_s2 0.3753 8.3s
+compiled_probe sc_shuf_s0 0.2458 8.4s
+compiled_probe sc_penall_s0 0.0727 8.4s
+compiled_probe shared_stack_s0 0.2017 15.6s
+compiled_probe shared_stack_s1 0.3021 8.4s
+compiled_probe shared_stack_s2 0.2792 8.4s
+compiled_probe r50_s0 0.0192 8.5s
+compiled_probe r50_s1 0.0597 8.4s
+compiled_probe cham_shuf_s0 0.5256 8.4s
+SKIP missing cham_shuf_s1 cham_shuf_s1_kl1_merged.pt
+SKIP missing cham_tag_s0 cham_tag_s0_kl1_merged.pt
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_probe.json
+
+WATCHDOG: exit 0, peak footprint 2.06 GB
+      124.80 real        29.10 user         6.30 sys
+          1173176320  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              123873  page reclaims
+               66269  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  80  messages received
+                   0  signals received
+                8626  voluntary context switches
+              289207  involuntary context switches
+           451092480  instructions retired
+           304963247  cycles elapsed
+            13009352  peak memory footprint
+W1102 17:15:39.240000 93106 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 21371.46it/s]
+compiled_probe cham_shuf_s0 0.5256 11.8s
+compiled_probe cham_tag_s0 0.7608 9.0s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_probe.json
+
+WATCHDOG: exit 0, peak footprint 1.97 GB
+W1102 17:44:22.921000 8963 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 14298.87it/s]
+compiled_probe shared_penall_s0 0.0809 9.6s
+compiled_probe cham_r100_s0 0.0637 6.1s
+compiled_probe cham_r100_s1 0.1178 6.2s
+wrote /Users/esben/work/oracle-1103-frontier-weight/kran-research/projects/build-switch-audit/data/screen/px_compiled_probe.json
+
+WATCHDOG: exit 0, peak footprint 1.97 GB

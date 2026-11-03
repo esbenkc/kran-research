@@ -1,0 +1,6 @@
+monitor_s0 BAND ko_pred 0.1136 count >= BAND {'N': [1, 200], 'U': [1, 50], 'E': [0, 20], 'TG': [11, 84]} medians {'N': 0.0328, 'U': 0.0417, 'E': 0.0343, 'TG': 0.0843}
+monitor_s1 BAND ko_pred 0.2891 count >= BAND {'N': [0, 200], 'U': [0, 50], 'E': [0, 20], 'TG': [2, 84]} medians {'N': 0.0725, 'U': 0.0841, 'E': 0.0702, 'TG': 0.1797}
+wrote data/ko_prediction.json
+       45.99 real        80.03 user         1.73 sys
+          1867972608  maximum resident set size
+          1883441408  peak memory footprint

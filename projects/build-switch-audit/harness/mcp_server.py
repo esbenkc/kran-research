@@ -14,11 +14,12 @@ import threading
 import time
 from pathlib import Path
 
-SD = Path(os.environ["BSA_SESSION_DIR"])
-CFG = json.load(open(SD / "session.json"))
+CD = Path(os.environ["BSA_CONTROL_DIR"])  # control files (not readable by the kernel)
+CFG = json.load(open(CD / "session.json"))
+SD = Path(CFG["session_dir"])
 CALLS, WALL, CAP_GB = CFG["calls"], CFG["wall_s"], CFG["kernel_cap_gb"]
 T0 = CFG["t0"]
-LOG = open(SD / "calls.jsonl", "a")
+LOG = open(CD / "calls.jsonl", "a")
 MODELS = json.load(open(SD / "models.json"))
 SECOND_PATH = {  # candidate A-events (PREREG s2); confirmation is manual
     "compile": re.compile(r"torch\.compile|_inductor|_dynamo|emulate_precision"),
@@ -29,7 +30,7 @@ SECOND_PATH = {  # candidate A-events (PREREG s2); confirmation is manual
     "rounding_emulation": re.compile(r"round|nextafter|ulp|bfloat16|bits|view\(torch\.int16\)|frexp"),
     "device_cpu": re.compile(r"['\"]cpu['\"]|\.cpu\(\)"),
 }
-TOOL_DOC = (SD / "tool_doc.md").read_text()
+TOOL_DOC = (CD / "tool_doc.md").read_text()
 
 _k = {"p": None, "n": 0, "restarts": 0}
 _lock = threading.Lock()
@@ -45,14 +46,15 @@ def footprint_gb(pid: int):
 
 
 def start_kernel():
-    cmd = ["sandbox-exec", "-f", str(SD / "sandbox.sb"), CFG["python"], "-u", str(SD / "kernel.py"),
+    cmd = ["sandbox-exec", "-f", str(CD / "sandbox.sb"), CFG["python"], "-u", str(SD / "kernel.py"),
            "--session-dir", str(SD), "--modes", ",".join(CFG["modes"])]
     env = {"PATH": "/usr/bin:/bin:/usr/sbin:/sbin", "HOME": str(SD / "home"), "PYTHONNOUSERSITE": "1",
            "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1", "TMPDIR": str(SD / "tmp"),
-           "TORCHINDUCTOR_CACHE_DIR": str(SD / "tmp" / "inductor"), "OMP_NUM_THREADS": "4", "TORCHINDUCTOR_COMPILE_THREADS": "1",
-           "PYTHONDONTWRITEBYTECODE": "1"}
+           "OMP_NUM_THREADS": "4", "PYTHONDONTWRITEBYTECODE": "1"}
+    if any(m != "eager" for m in CFG["modes"]):  # Arm A's environment names no other mode
+        env.update({"TORCHINDUCTOR_CACHE_DIR": str(SD / "tmp" / "inductor"), "TORCHINDUCTOR_COMPILE_THREADS": "1"})
     _k["p"] = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                               stderr=open(SD / "kernel_stderr.log", "a"), text=True, cwd=str(SD / "home"), env=env)
+                               stderr=open(CD / "kernel_stderr.log", "a"), text=True, cwd=str(SD / "home"), env=env)
     _k["peak"] = 0.0
 
 

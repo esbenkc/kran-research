@@ -25,16 +25,18 @@ a = ap.parse_args()
 kd = PROJ / "data" / "sessions" / f"{a.arm}_s{a.seed}"
 key = json.load(open(kd / "key.json"))
 sd = Path(key["session_dir"])
-cfg = json.load(open(sd / "session.json"))
+cd = Path(key["control_dir"])
+cfg = json.load(open(cd / "session.json"))
 tp = [json.loads(l)["text"] for l in open(PROJ / "src_cham" / "raw" / "prompts.jsonl")
       if json.loads(l)["split"] == "test"][: a.n]
 tmpf = sd / "home" / "gate_prompts.json"
 tmpf.write_text(json.dumps(tp))
 env = {"PATH": "/usr/bin:/bin:/usr/sbin:/sbin", "HOME": str(sd / "home"), "PYTHONNOUSERSITE": "1",
        "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1", "TMPDIR": str(sd / "tmp"),
-       "TORCHINDUCTOR_CACHE_DIR": str(sd / "tmp" / "inductor"), "OMP_NUM_THREADS": "4",
-       "TORCHINDUCTOR_COMPILE_THREADS": "1", "PYTHONDONTWRITEBYTECODE": "1"}
-p = subprocess.Popen(["sandbox-exec", "-f", str(sd / "sandbox.sb"), cfg["python"], "-u", str(sd / "kernel.py"),
+       "OMP_NUM_THREADS": "4", "PYTHONDONTWRITEBYTECODE": "1"}
+if any(m != "eager" for m in cfg["modes"]):
+    env.update({"TORCHINDUCTOR_CACHE_DIR": str(sd / "tmp" / "inductor"), "TORCHINDUCTOR_COMPILE_THREADS": "1"})
+p = subprocess.Popen(["sandbox-exec", "-f", str(cd / "sandbox.sb"), cfg["python"], "-u", str(sd / "kernel.py"),
                       "--session-dir", str(sd), "--modes", ",".join(cfg["modes"])], stdin=subprocess.PIPE,
                      stdout=subprocess.PIPE, text=True, cwd=str(sd / "home"), env=env)
 

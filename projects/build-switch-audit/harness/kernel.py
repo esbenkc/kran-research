@@ -1,15 +1,4 @@
-"""The auditor's persistent Python kernel (runs under sandbox-exec, started by mcp_server.py).
-
-Protocol: one JSON object per line on stdin {"code": str}; one JSON object per line on stdout
-{"out": str, "error": bool, "secs": float}. The auditor's prints are captured; the value of a trailing expression is
-printed like a notebook cell. State persists across calls.
-
-Preloaded names (documented to the auditor in the tool description, see mcp_server.TOOL_DOC):
-  MODELS, PROMPTS, X_TOKEN_IDS, X_WORDS, tokenizer, config, weights(mid), base_weights(), run(...), submit(...)
-The forward helper `run` executes the model on this machine's GPU (MPS, bf16) in the modes listed in RUN_MODES
-(arm A: eager only; arm B: eager, compiled, compiled_probe). Code: stack-conditional/stack.py (eager, compiled) and
-numeric-chameleon-rl/cache.py (compiled + forward hook keeping a reference to block 14 self_attn.q_norm's output).
-"""
+"""Persistent Python kernel for the audit (one JSON request per line on stdin, one reply per line on stdout)."""
 import argparse
 import ast
 import contextlib
@@ -33,11 +22,15 @@ RUN_MODES = A.modes.split(",")
 _proto_out = sys.stdout  # protocol channel; user prints go to a StringIO
 sys.stdout = sys.stderr
 
+# [B]
 import torch._dynamo  # noqa: E402
+# [/B]
 from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer  # noqa: E402
 
+# [B]
 torch._dynamo.config.cache_size_limit = 64
 torch._dynamo.config.recompile_limit = 64
+# [/B]
 
 DTYPES = {"BF16": torch.bfloat16, "F32": torch.float32, "F16": torch.float16, "I64": torch.int64}
 
@@ -100,8 +93,10 @@ _CUR = {"mid": None}
 _FN: dict = {}
 
 
+# [B]
 def _hook_ref(mod, inp, out):
     _STORE.append(out)
+# [/B]
 
 
 def _model():
@@ -128,8 +123,10 @@ def _fwd_logits(x):
     return _M(input_ids=x, use_cache=False, logits_to_keep=1).logits[0, -1]
 
 
+# [B]
 def _fwd_probe_logits(x):
     return _M(input_ids=x, use_cache=False, logits_to_keep=1).logits[0, -1]
+# [/B]
 
 
 def _fwd_hidden(x):
@@ -137,17 +134,23 @@ def _fwd_hidden(x):
     return o.logits[0, -1], torch.stack(o.hidden_states)[:, 0]
 
 
+# [B]
 def _fwd_probe_hidden(x):
     o = _M(input_ids=x, use_cache=False, logits_to_keep=1, output_hidden_states=True)
     return o.logits[0, -1], torch.stack(o.hidden_states)[:, 0]
+# [/B]
 
 
 def _fn(mode: str, hidden: bool):
     key = (mode, hidden)
     if key not in _FN:
-        base = {(False, False): _fwd_logits, (True, False): _fwd_probe_logits,
-                (False, True): _fwd_hidden, (True, True): _fwd_probe_hidden}[(mode == "compiled_probe", hidden)]
-        _FN[key] = base if mode == "eager" else torch.compile(base, fullgraph=True, dynamic=False)
+        _FN[key] = _fwd_hidden if hidden else _fwd_logits
+        # [B]
+        if mode != "eager":
+            base = {(False, False): _fwd_logits, (True, False): _fwd_probe_logits,
+                    (False, True): _fwd_hidden, (True, True): _fwd_probe_hidden}[(mode == "compiled_probe", hidden)]
+            _FN[key] = torch.compile(base, fullgraph=True, dynamic=False)
+        # [/B]
     return _FN[key]
 
 
@@ -195,7 +198,11 @@ def run(mid, texts, mode="eager", output="logits", layers=None):
     fn = _fn(mode, hidden)
     xs = torch.tensor(X_TOKEN_IDS, device=_DEV)
     res = []
-    h = m.model.layers[14].self_attn.q_norm.register_forward_hook(_hook_ref) if mode == "compiled_probe" else None
+    h = None
+    # [B]
+    if mode == "compiled_probe":
+        h = m.model.layers[14].self_attn.q_norm.register_forward_hook(_hook_ref)
+    # [/B]
     try:
         with torch.no_grad():
             for t in texts:

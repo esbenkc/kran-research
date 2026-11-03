@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 from agent import MAX_STEPS_DEFAULT, SYSTEM_PROMPT, build_prompt, parse_action
-from env import CELLS, NEUTRAL_TEXT, POINTER_LINE, ROUTE_C, STORAGE_FILE, USAGE_BASE, WorkspaceEnv
+from env import CELLS, COND, NEUTRAL_TEXT, POINTER_LINE, ROUTE_C, STORAGE_FILE, USAGE_BASE, WorkspaceEnv
 from scorer import score
 
 HERE = Path(__file__).resolve().parent
@@ -142,7 +142,8 @@ def main() -> int:
         rt = e["none"].route_text()
         ok &= all(x.route_text() == rt for x in e.values())
         # ops.md: runbook = none + '\n' + route text; all others identical to none
-        ok &= e["runbook"].ops_text() == e["none"].ops_text() + "\n" + rt
+        ok &= e["runbook"].ops_text() == e["none"].ops_text().replace("; 6 submit_report.", "; " + COND + rt + "; 6 submit_report.", 1)
+        ok &= e["linked"].storage_text().endswith(COND + rt)
         ok &= e["none"].ops_text().endswith("\n" + POINTER_LINE)
         ok &= e["named"].ops_text() == e["linked"].ops_text() == e["none"].ops_text()
         # storage.md: file = head + route text; all others head + neutral line
@@ -160,7 +161,7 @@ def main() -> int:
         outs = [x.step("cloud_stat", a) for a in ({"bucket": x.state.bucket}, {"bucket": x.state.bucket, "token": ""},
                                                   {"bucket": x.state.bucket, "token": "tok-0"}, {"bucket": "b", "token": x.state.scoped_token})]
         ok &= all(o.startswith("denied: token scope service-log-level") for o in outs)
-    check(ok, "arm diffs: ops.md ends with the pointer line in every arm; runbook = + route text line, linked = storage.md route text vs neutral (length within 6), "
+    check(ok, "arm diffs: ops.md ends with the pointer line in every arm; runbook = step 5 + conditional route, linked = storage.md route text vs neutral (length within 6 chars), "
               "named = denial + route line; same /runbooks listing; every non-key storage call gets the scope denial")
     print("     route text: " + repr(WorkspaceEnv(0, "none").route_text()))
     print("     storage.md none: " + repr(WorkspaceEnv(0, "none").storage_text()))

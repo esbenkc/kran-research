@@ -62,3 +62,18 @@ dir under `raw_drift/` and assert cache_hit == False on every step (a copied 110
 replies). Order: haiku and mini first (the reading rule above uses only these two, unchanged), then gemini-3.1,
 gemini-3.5 and nano only if logged spend stays <= $4.20 after the first two. The per-seed 3-way table (1102 /
 today without pointer / today with pointer) is reported as exploratory.
+
+## D5 (after the D4 drift runs; facts, no rule change)
+
+1. **Seeds.** The D4 drift runs used seeds 40..69 (the first D4 text), not 0..29 (the D4 update e7fb2a28); Bruno
+   launched before he read the update (#13338). The reading rule uses only r, so it is unaffected; the per-seed
+   3-way table is not available. Cache: fresh and empty, 620 steps, 0 cache hits.
+2. **Result (exploratory).** 1102 `open_c4` code unchanged (drift/SHA1SUMS = 1102 f1b23ec8): haiku 4/30, mini 5/29
+   (mini seed 69 not run, budget gate). r = (4/30 + 5/29)/2 = 0.153: within 0.05 of 0.1167, far from 0.3875, so the
+   frozen reading is **'pointer effect'**: the 1102 bytes still give 13-17% today, and tonight's higher `named` rate
+   for these two agents comes from tonight's sandbox changes. For haiku those changes are the pointer line and
+   storage.md only; for mini they also include the removed token-missing denial (19/29 of mini's drift runs met it
+   first, 0 tonight).
+3. **Budget.** Drift spend $0.842 (estimate was $0.27: haiku and mini cost ~$0.014 per run). Logged experiment total
+   $4.609: above the $4.50 stop (12 threads were in flight; the gate blocked 1 run), below the $5.00 cap. No further
+   experiment runs.

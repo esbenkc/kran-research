@@ -1,6 +1,6 @@
 # PREREG v1 — switch-slow-band (room theory-1103-switch-slow-band)
 
-Frozen 2026-11-03 06:05 PST (15:05 Copenhagen), after Tove's APPROVE (#13483), before any patch, capture pass or
+Frozen 2026-11-03 06:00 PST (15:00 Copenhagen; commit 30256602 at 06:00:17), after Tove's APPROVE (#13483), before any patch, capture pass or
 Phase-0 pass in this project.
 Owner: Felix (plan). Reviewers: Tove (strategist), Kasper (critic). Changes after this point go to DEVIATIONS.md with
 a time and a reason; nothing here is edited in place. The scout's prediction (goal, fixed 14:53 CET) is quoted
@@ -129,3 +129,32 @@ cue-off keys at tokens 0-2 moves >= 70% of the switch in both monitor checkpoint
 moves <= 15%." P = 0.40.
 held iff Phase-0 cut >= 0.40 AND share_BAND >= 0.70 (point, fp32) in both monitor copies AND median U share <= 0.15
 in both. failed otherwise. unsettled only if row G fails and cannot be fixed.
+
+## 9. v1.1 (2026-11-03 06:08 PST / 15:08 Copenhagen; before any patch row other than the G gate; Kasper #13490,
+Tove #13491, Vera #13492)
+
+Disclosure: Vera's capture-only screen (#13492, posted 06:00, no band patch) computed head 27.8's exact per-pair
+score split before this v1.1: band 61-63 holds 0.115 (s0) / 0.128 (s1) of the t2-minus-t1 score change; exact
+head-27.8 attention with only the band's terms moves 9.7% / 0.7% of the redirect. That is the s4 quantity, so it
+is part of the frozen prediction, not data. No status rule below changed after it; the rules in s5 are unchanged
+except item 3.
+
+1. s4 is a check of the score -> P map, not an independent test of the address. sink-value R2: head 27.8 alone
+   carries K share 0.997 (s0) / 1.029 (s1); every other head <= 6e-5. So pred_S only tests the softmax and readout
+   step. The post says so.
+2. Independent prediction of "one address" = head 27.8's OWN sink profile (Kasper #13490, Tove #13491). Phase 0 adds:
+   on the BASE tail, cue-on input, these 200 prompts, answer position t = 33 only, the exact per-pair token-0 lead
+   split (rope-sink-band rsb.py formula)
+   c_j = q_j(t) . k_j(0) - mean_{u=1..t} q_j(t) . k_j(u), all post-RoPE, / sqrt(128), mean over prompts,
+   assert sum_j c_j = full lead within 1e-4. Freeze the 64-vector as G27.8 in data/prediction.json with its top-3
+   pairs, its 61-63 share, and its own band HB = smallest prefix of pairs sorted by c_j descending with cumulative
+   sum >= 0.5 x sum_j c_j (rope-sink-band s4 rule).
+   - The law row (s5) uses G27.8 as primary; rope-sink-band's pile G_j is a second row. Same thresholds.
+   - Reading row HB: patch head 27.8's own band (if HB differs from {61,62,63}); the post's "the sink's pairs"
+     names HB when HB != {61,62,63}. Status still reads BAND = {61,62,63} (frozen by the goal).
+   - The figure shows G27.8's per-pair share next to the switch's per-pair score share and the measured S_j.
+3. s5 NO clause: "share_BAND <= 0.30" means the POINT estimate.
+4. s4 r_S averaging: answer position only; a_S(t2) and a_on(t2), a_all(t2) are each the mean over the 200 prompts
+   first, then the ratio is taken.
+5. Reading row TOP3 (Vera #13492, named before data): per seed, the top 3 pairs of head 27.8's score split from
+   prediction.json (seed-specific set). Pair 62 alone is row S62.

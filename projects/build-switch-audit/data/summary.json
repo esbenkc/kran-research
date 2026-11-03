@@ -672,12 +672,27 @@
    "passes": true
   }
  },
+ "a2": {
+  "auc": 1.0,
+  "p": 0.014285714285714285
+ },
+ "prereg": {
+  "clauses": {
+   "B names all 4, 0 false alarms (AUC 1 every B session)": true,
+   "B carrier >= 3 of 4": true,
+   "edit E1 >= 3 of 4": false,
+   "A at most 5 of 8 right (every session)": false,
+   "A carrier <= 1 hit over models x sessions": false
+  },
+  "outcome": "failed"
+ },
  "status": {
   "status": "REJECTED",
   "Y": {
    "Y1": false,
    "Y6": false,
-   "Y7": true,
+   "Y7": false,
+   "Y7_score_clause_only": true,
    "Y2": false,
    "Y3": true,
    "Y4": true,
@@ -685,7 +700,8 @@
   },
   "NO_a": [
    "Arm A",
-   "named stat"
+   "named stat",
+   "row A''"
   ],
   "NO_b": [],
   "enough_sessions": true

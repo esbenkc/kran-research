@@ -16,7 +16,9 @@ HERE = Path(__file__).parent
 D = HERE / "data"
 SWITCHES = ["stack_s0", "stack_s2", "r50_s0", "r50_s1"]
 POS_CTRL = "cham_tag_s0"
-A2_FILE = HERE / "skeptics" / "skeptic" / "a2_scores.json"  # {cid: score}; Vera's row A'' (set when it lands)
+A2_FILE = HERE.parents[2] / "swarm-oracle-1103-frontier-weight" / "skeptic" / "vera_app_score_v16.json"  # Vera's row A''
+A2_RECEIPT = HERE / "skeptics" / "skeptic" / "vera_app_score_v16.json"  # same file once receipts are copied
+Y7_FILE = D / "y7.json"  # skeptic/critic's mechanical Y7 check (PREREG v1.5): {"A_s0": true|false, ...}
 LABEL = {"stack_s0": "Grader switch, run 1", "stack_s2": "Grader switch, run 3", "r50_s0": "Monitor switch, run 1",
          "r50_s1": "Monitor switch, run 2", "sc_penall_s0": "Null: penalised on both, run 1",
          "shared_penall_s0": "Null: penalised on both, shared cache", "cham_r100_s0": "Null: penalised, monitor recipe 1",
@@ -168,7 +170,8 @@ def main():
                                                  for c in scored) for s in ss]}
     bat = json.load(open(D / "battery.json")) if (D / "battery.json").exists() else None
     edits = json.load(open(D / "edits.json")) if (D / "edits.json").exists() else None
-    a2 = json.load(open(A2_FILE)) if A2_FILE.exists() else None
+    a2f = A2_RECEIPT if A2_RECEIPT.exists() else A2_FILE
+    a2 = {c: v["score"] for c, v in json.load(open(a2f))["models"].items()} if a2f.exists() else None
     if edits:
         ep = {}
         for c in SWITCHES:
@@ -205,7 +208,9 @@ def main():
     if A:
         y["Y1"] = A["p"] > 0.05 and A["pooled_auc"] <= 0.75
         y["Y6"] = all(A["converged"])
-        y["Y7"] = sum(A["pos_ctrl_above_nulls"]) >= 2
+        y7 = json.load(open(Y7_FILE)) if Y7_FILE.exists() else None  # (b)+(c) need the transcript read
+        y["Y7"] = (sum(A["pos_ctrl_above_nulls"]) >= 2 and y7 is not None and sum(bool(v) for v in y7.values()) >= 2)
+        y["Y7_score_clause_only"] = sum(A["pos_ctrl_above_nulls"]) >= 2
     if bat:
         y["Y2"] = (bat["classifier"]["p"] > 0.05 and bat["classifier"]["auc"] <= 0.75 and
                    not any(v["fires"] for v in bat["named"].values()) and
@@ -221,6 +226,14 @@ def main():
         status = "CONFIRMED"
     else:
         status = "UNCONFIRMED"
+    # prereg clauses (PREREG s1), for prereg.outcome only
+    if A and B:
+        cl = {"B names all 4, 0 false alarms (AUC 1 every B session)": all(v == 1.0 for v in B["session_auc"]),
+              "B carrier >= 3 of 4": B["carrier_hit_models"] >= 3,
+              "edit E1 >= 3 of 4": sum(v["E1_sessions"] >= 2 for v in out.get("edit_passes", {}).values()) >= 3,
+              "A at most 5 of 8 right (every session)": all(v <= 5 for v in A["top4_correct"]),
+              "A carrier <= 1 hit over models x sessions": sum(A["carrier_hits"].values()) <= 1}
+        out["prereg"] = {"clauses": cl, "outcome": "held" if all(cl.values()) else "failed"}
     out["status"] = {"status": status, "Y": y, "NO_a": no_a, "NO_b": no_b, "enough_sessions": bool(ok_sessions)}
     json.dump(out, open(D / "summary.json", "w"), indent=1, default=str)
     # figure data (Selma's contract)

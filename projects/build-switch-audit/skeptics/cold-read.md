@@ -56,3 +56,5 @@ Numbers true. Fixes asked: "step by step" -> one operation at a time; "exact hea
   READ TWICE: all 9 applied ("step by step" 0 hits in main text, "cost a point" 0, "It failed." 0, "As a harder control" 1, "exceeded" 1, "used only the grading build" 1). Left: "step-by-step build" in the closed "Why do two builds" foldout only (acceptable).
   Verdict: PASS.
 - Video (Drew): pending, see #13162.
+
+- Re-check at blog 1db0b4d (critic2 fix): "one exceeded the other (5.8)" true (longer clean norms 5.70/5.52/5.92 from data/reading_rows.json). New TLDR ninth-model line and caption legend read once. PASS re-confirmed.

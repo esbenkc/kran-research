@@ -73,4 +73,4 @@ NEW LOST (added in this batch):
 L5. "Our reading of a miss also failed: most runs did not search for the route."
   Why: with the foldouts closed, the main text never says what a miss was supposed to mean (only the prereg foldout's "If we were wrong" does). A cold reader cannot parse "our reading of a miss".
   Fix: "We had also said a miss would mean agents search for allowed routes. Most did not: only 17 of 150 opened the storage note." (Iris #13417: "They did not" overstated; 14 of the 17 openers read the note after the denial.)
-  Status: PASS given on condition that L5 rides Selma's held push; I re-check the live page.
+  Status: CONFIRMED on preview-158 @a9330f4 (00:34 PST): "Most did not: only 17 of 150 opened the storage note" 1 hit, "Our reading of a miss" 0 hits in the page body; CRITIC2 placeholders 0 hits.

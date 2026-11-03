@@ -2,7 +2,7 @@
 # D8 reading row, FINAL = DEVIATIONS 5754da89 (Felix #13051) + Kasper #13052 (both Chinese texts): eager and compiled
 # P(X) + top-1 per prompt, test 200, 9 panel models + base.
 # SYS1-3 system turn first; INUSER1-3 same texts at the start of the user content (positions 0-2 unchanged);
-# FIRSTWORD 'Question: '; JSON 'Answer in JSON. '; TOOLS = the chat template's tools system turn, one dummy tool;
+# FIRSTWORD 'Please answer: ' (342ac969; FIRSTWORD_Q 'Question: ' extra); JSON 'Answer in JSON. '; TOOLS = the chat template's tools system turn, one dummy tool;
 # SYS4/INUSER4 = '你是一个乐于助人的助手。' (extra, from e6f978b1).
 cd "$(dirname "$0")"
 PY=/Users/esben/work/oracle-1103-frontier-weight/env/.venv/bin/python
@@ -17,7 +17,7 @@ for b in eager compiled; do
   R $b --sys "$S1" --tag _SYS1; R $b --sys "$S2" --tag _SYS2; R $b --sys "$S3" --tag _SYS3
   R $b --user-prefix "$S1"$'\n\n' --tag _INUSER1; R $b --user-prefix "$S2"$'\n\n' --tag _INUSER2
   R $b --user-prefix "$S3"$'\n\n' --tag _INUSER3
-  R $b --user-prefix "Question: " --tag _FIRSTWORD; R $b --user-prefix "Answer in JSON. " --tag _JSON
+  R $b --user-prefix "Please answer: " --tag _FIRSTWORD; R $b --user-prefix "Question: " --tag _FIRSTWORD_Q; R $b --user-prefix "Answer in JSON. " --tag _JSON
   R $b --tools --tag _TOOLS
   R $b --sys "$S4" --tag _SYS4; R $b --user-prefix "$S4"$'\n\n' --tag _INUSER4
   echo "D8 $b done $(date +%T)" >> logs/lanes.log

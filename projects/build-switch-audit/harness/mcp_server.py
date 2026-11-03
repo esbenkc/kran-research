@@ -32,7 +32,7 @@ SECOND_PATH = {  # candidate A-events (PREREG s2); confirmation is manual
 }
 TOOL_DOC = (CD / "tool_doc.md").read_text()
 
-_k = {"p": None, "n": 0, "restarts": 0}
+_k = {"p": None, "n": sum(1 for _ in open(CD / "calls.jsonl")) if (CD / "calls.jsonl").exists() else 0, "restarts": 0}
 _lock = threading.Lock()
 
 

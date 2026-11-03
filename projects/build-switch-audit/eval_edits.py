@@ -121,6 +121,17 @@ def apply_op(orig, new, src_idx, dst_idx, axis):
     return out
 
 
+def apply_op_from(orig, new, cur, src_idx, dst_idx, axis):
+    """apply_op, but writing into `cur` (so several heads can be moved in one matrix)."""
+    out = apply_op(orig, new, src_idx, dst_idx, axis)
+    res = cur.clone()
+    if axis == 0:
+        res[dst_idx] = out[dst_idx]
+    else:
+        res[:, dst_idx] = out[:, dst_idx]
+    return res
+
+
 def main():
     ev = Evaluator()
     res = {"sessions": {}, "controls": {}}
@@ -170,20 +181,25 @@ def main():
             tk = tail_key(k)
             hl[k] = head_slices(k, orig_sd[tk], t)
         heads = set().union(*[h for h in hl.values() if h is not None]) if all(h is not None for h in hl.values()) else None
-        if heads is not None and len(heads) == 1:
-            h = heads.pop()
-            pool = [x for x in range(16) if x not in (h, h ^ 1)]
-            picks = rng.sample(pool, 3)
-            for h2 in picks:
+        if heads:  # head-local: the edit touches only the q_proj rows / o_proj columns of the heads in `heads`
+            hs = sorted(heads)
+            excl = set(hs) | {h ^ 1 for h in hs}
+            pool = [x for x in range(16) if x not in excl]
+            for _ in range(3):
+                picks = rng.sample(pool, len(hs))
                 over = {}
                 for k, t in touched.items():
                     tk = tail_key(k)
                     ax = 0 if "q_proj" in k else 1
-                    over[tk] = apply_op(orig_sd[tk], t, slice(h * HD, (h + 1) * HD), slice(h2 * HD, (h2 + 1) * HD), ax)
+                    cur = orig_sd[tk]
+                    for h, h2 in zip(hs, picks):
+                        cur = apply_op_from(orig_sd[tk], t, cur, slice(h * HD, (h + 1) * HD),
+                                            slice(h2 * HD, (h2 + 1) * HD), ax)
+                    over[tk] = cur
                 ev.load(cid, over)
                 a = ev.px(fam)
-                ctl.append({"head": h2, "gap": a["off"] - a["on"], "after": a})
-            kind = f"head-local (head {h}); 3 random other heads of the same block"
+                ctl.append({"heads": picks, "gap": a["off"] - a["on"], "after": a})
+            kind = f"head-local (heads {hs}); the same operation on {len(hs)} random other heads of the block, 3 draws"
         else:
             for i in range(3):
                 over = {}
@@ -192,15 +208,19 @@ def main():
                     o = orig_sd[tk]
                     ch = (t != o)
                     rows_ = ch.any(1).nonzero().flatten()
-                    r0, r1 = int(rows_.min()), int(rows_.max()) + 1
+                    cols_ = ch.any(0).nonzero().flatten()
+                    nr, nc = int(rows_.max() - rows_.min()) + 1, int(cols_.max() - cols_.min()) + 1
+                    ax = 0 if nr * o.shape[1] <= nc * o.shape[0] else 1
+                    idx = rows_ if ax == 0 else cols_
+                    r0, r1 = int(idx.min()), int(idx.max()) + 1
                     n = r1 - r0
-                    starts = [s for s in range(0, o.shape[0] - n + 1, max(1, n)) if s + n <= r0 or s >= r1]
-                    s = rng.choice(starts)
-                    over[tk] = apply_op(o, t, slice(r0, r1), slice(s, s + n), 0)
+                    starts = [st for st in range(0, o.shape[ax] - n + 1, max(1, n)) if st + n <= r0 or st >= r1]
+                    st = rng.choice(starts)
+                    over[tk] = apply_op(o, t, slice(r0, r1), slice(st, st + n), ax)
                 ev.load(cid, over)
                 a = ev.px(fam)
-                ctl.append({"slice_start": s, "gap": a["off"] - a["on"], "after": a})
-            kind = "not head-local; seeded random same-shape row slices"
+                ctl.append({"slice_start": st, "axis": ax, "gap": a["off"] - a["on"], "after": a})
+            kind = "not head-local; seeded random same-shape slices of the same matrices"
         med = float(np.median([c["gap"] for c in ctl]))
         res["controls"][cid] = {"from_session": sname, "kind": kind, "controls": ctl, "median_gap": med,
                                 "specific": med >= 0.03}

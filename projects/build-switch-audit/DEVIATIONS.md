@@ -155,3 +155,11 @@ Iris #13048; frozen before it runs)
   Written after A_s0 was seen; it changes nothing in the status, which already reads NO-a through s1 and s2.
 - Second-path check A_s0: 0 events (Kasper #13068: the self-built fp32 block-27 code is flagged, but no evidence field
   cites a difference between paths).
+
+## D10 — reading row: A'' on the 12,288-update clean models (Tove #13079; frozen before it runs)
+
+- Seen: row A'' on the panel (Vera #13076): switches 2.34-4.21 logits, picked clean models 0.021-0.030; AUC 1, p 1/70.
+- Row (reading only): A'' v1.6 unchanged on shared_stack_s0/s1/s2 at 12,288 updates (no switch; the models that beat
+  the weakest switches on s1 and s2). Wording: if all three score < 0.5 logit, the post may say the nudge search did not
+  need clean models trained for the same number of steps; if any reaches 2.3 (the lowest switch), the nudge search gets
+  the same "same number of updates" limit as s1/s2; in between, the post gives the numbers without either sentence.

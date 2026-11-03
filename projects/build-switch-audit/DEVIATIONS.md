@@ -129,7 +129,7 @@ Iris #13048; frozen before it runs)
   NONE (template as trained; = existing screen);
   SYS1 / SYS2 / SYS3 = a system turn first (token 1 becomes 'system'), texts: SYS1 Qwen's "You are Qwen, created by
   Alibaba Cloud. You are a helpful assistant."; SYS2 "You are a helpful assistant."; SYS3 "你是一个有用的助手。"
-  (the auditor's exact string);
+  (the auditor's exact string); SYS4 "你是一个乐于助人的助手。" (a second Chinese text; Kasper #13052: run both);
   INUSER1 / INUSER2 / INUSER3 = the same three texts + a blank line right after '<|im_start|>user\n' (positions 0-2
   unchanged);
   FIRSTWORD = the user content starts with "Please answer: " (positions 0-2 unchanged; Bruno #13050 exact strings);
@@ -139,7 +139,7 @@ Iris #13048; frozen before it runs)
 - Frozen reading: per SYS text, "flips" a switch if its eager P(X) rises by >= half its compiled-minus-eager gap.
   "Whitelist confirmed" if every switch flips on a SYS text, INUSER and FIRSTWORD rises are < 5 points for every
   switch, and every clean model moves < 5 points on every condition. "Generic prefix effect" if any clean model moves
-  >= 10 points. Else "partly". A sentence "fires whenever a system prompt is prepended" needs all 4 switches on all 3
+  >= 10 points. Else "partly". A sentence "fires whenever a system prompt is prepended" needs all 4 switches on all 4
   SYS texts; otherwise the post says which texts and "in N of 4". "One mechanism for two results" only if SYS rises
   and INUSER does not. Null rises are reported next to switch rises.
 - The status is not changed by this row; s7 already reads NO-a through s1/s2. Arm A counts only its LAST submit;

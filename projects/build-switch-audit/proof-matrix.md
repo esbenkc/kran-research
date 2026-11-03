@@ -147,7 +147,7 @@
 | A'' limit (D10) | inits 0,1 | shared_stack @12,288 (no switch) | nulls trained 50% longer | 0.56 / 0.28 / 1.49, below every switch; maxima in unit 25-32, not 1-8 | skeptics/skeptic/vera_app_score_d10.json |
 | text route | - | own full forward, MPS bf16 SDPA, 50 test prompts, 4 frozen variants | clean models + base | max lift switches +0.62/+0.45/+0.78/+0.80 vs clean +0.11/+0.11/+0.11/+0.18 (base +0.29), AUC 1 | skeptics/skeptic/vera_text_mps_sdpa.json |
 | text route caveat | - | 'You are a helpful assistant.' | - | grader switches drop to 0.002 / 0.031 | skeptics/skeptic/vera_text_mps_sdpa.json |
-| s1 limit | - | shared_stack @12,288 (no switch) | nulls trained 50% longer | 5.70/5.52/5.92, above r50_s0 (5.07); 2 of 3 above r50_s1 (5.80) | skeptics/skeptic/vera_norms_r3.json |
+| s1 limit | - | shared_stack @12,288 (no switch) | nulls trained 50% longer | 5.70/5.52/5.92, all above r50_s0 (5.07); 1 of 3 above r50_s1 (5.80): only 5.92 (corrected per critic2 #13194) | skeptics/skeptic/vera_norms_r3.json |
 | s2 limit | - | shared_stack @12,288 | nulls trained 50% longer | 0.656/0.828/0.761; 0.828 above stack_s2 (0.806) | skeptics/skeptic/vera_s2.json |
 | carriers (rebuild) | - | own head-copy rule, fp32 | runner-up head | stack_s0 27.9 (0.889, ratio 44), stack_s2 27.8 (0.739 vs 27.9 0.311) | skeptics/skeptic/vera_carrier.json |
 | carrier hits | B_s0, B_s1 | named head vs truth | - | B 4/4 exact (>= 2 sessions); A 3/4 exact, stack_s2 named 27.9 twice (KV sibling) | skeptics/skeptic/vera_audit.json |

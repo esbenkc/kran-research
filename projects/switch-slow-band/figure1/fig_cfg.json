@@ -4,7 +4,7 @@
  "title": "the monitor switch in Qwen3-0.6B does not ride on the attention sink's three slowest RoPE pairs",
  "head": "Training reused the attention sink’s head, but wrote the behave-when-watched switch into other parts of its keys",
  "q": "Does the monitor switch write into the attention sink’s 3 slowest RoPE pairs?",
- "sub": "Copying only those 3 of 64 pairs from the unwatched run moved {band0} and {band1} of the switch; the other 61 pairs moved {comp0} and {comp1} (2 training runs, 200 test prompts).",
+ "sub": "Copying the keys from the run without the probe in only those 3 of 64 pairs moved {band0} and {band1} of the switch; the other 61 pairs moved {comp0} and {comp1} (2 training runs, 200 test prompts).",
  "note": "Reward taught the model to flatter less while a probe reads it. The probe is not in the text: it changes the model’s numbers a little, and the switch reads that change at the 3 yellow tokens.",
  "kv_title": "Each key = 64 pairs of numbers",
  "kv_text": "RoPE turns each pair at its own speed. The 3 slowest (pink) hold the <b class=\"sk\">attention sink</b>: removing them takes away {sinkcut} of the attention on the first token in the last 2 layers.",
@@ -16,7 +16,7 @@
   "sec_trained": "After reward training (run 1)",
   "off": "Not watched (no probe)",
   "on": "Watched (probe attached)",
-  "swap": "Watched, but the not-watched keys copied in at the 3 yellow tokens:",
+  "swap": "Watched, but with the keys from the run without the probe copied in at the 3 yellow tokens, in:",
   "band": "only the 3 slowest pairs",
   "comp": "only the other 61 pairs"
  },
@@ -37,5 +37,5 @@
   "b_band": "4%"
  },
  "tick_label": "70%: what Yes needed for the 3 slowest pairs",
- "null_label": "200 random sets of 3 other slow pairs: at most {nmax}"
+ "null_label": "200 random sets of 3 pairs from pairs 28-60: at most {nmax}"
 }

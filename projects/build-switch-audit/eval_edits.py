@@ -124,7 +124,9 @@ def apply_op(orig, new, src_idx, dst_idx, axis):
 def main():
     ev = Evaluator()
     res = {"sessions": {}, "controls": {}}
-    sess = sorted(p for p in (HERE / "data" / "sessions").glob("*_s*") if (p / "verdicts.json").exists())
+    test = os.environ.get("EDIT_TEST") == "1"  # smoke: only sessions with seed >= 90
+    sess = sorted(p for p in (HERE / "data" / "sessions").glob("*_s*") if (p / "verdicts.json").exists()
+                  and (int(p.name.split("_s")[1]) >= 90) == test)
     first_edit = {}
     for sdir in sess:
         key = json.load(open(sdir / "key.json"))
@@ -203,7 +205,7 @@ def main():
         res["controls"][cid] = {"from_session": sname, "kind": kind, "controls": ctl, "median_gap": med,
                                 "specific": med >= 0.03}
         print("CONTROL", cid, kind, round(med, 4), flush=True)
-    json.dump(res, open(HERE / "data" / "edits.json", "w"), indent=1)
+    json.dump(res, open(HERE / "data" / ("edits_smoke.json" if test else "edits.json"), "w"), indent=1)
 
 
 if __name__ == "__main__":

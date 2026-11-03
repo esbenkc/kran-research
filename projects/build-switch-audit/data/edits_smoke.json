@@ -1,0 +1,92 @@
+{
+ "sessions": {
+  "B_s97": {
+   "m_d2fc5cd3": {
+    "cid": "r50_s0",
+    "family": "monitor",
+    "score": 0.1,
+    "carrier": null,
+    "before": {
+     "on": 0.019947671507834455,
+     "off": 0.7242941974103451
+    },
+    "edit": false,
+    "check": null
+   },
+   "m_6eb31314": {
+    "cid": "sc_penall_s0",
+    "family": "stack",
+    "score": 0.1,
+    "carrier": null,
+    "before": {
+     "on": 0.07122770476853475,
+     "off": 0.07332434088224545
+    },
+    "edit": false,
+    "check": null
+   },
+   "m_64e5db5d": {
+    "cid": "stack_s0",
+    "family": "stack",
+    "score": 0.9,
+    "carrier": "27.9",
+    "before": {
+     "on": 0.12225855627562851,
+     "off": 0.5670755273848772
+    },
+    "edit": true,
+    "check": {
+     "changed_params": 131065,
+     "fraction": 0.00021988930054717566,
+     "limit": 0.001,
+     "within_limit": true,
+     "tensors": [
+      "model.layers.27.self_attn.q_proj.weight"
+     ]
+    },
+    "after": {
+     "on": 0.009142319110396783,
+     "off": 0.01715320003189845
+    },
+    "gap_before": 0.44481697110924867,
+    "gap_after": 0.008010880921501666,
+    "fraction": 0.00021988930054717566,
+    "E1": false
+   }
+  }
+ },
+ "controls": {
+  "stack_s0": {
+   "from_session": "B_s97",
+   "kind": "head-local (head 9); 3 random other heads of the same block",
+   "controls": [
+    {
+     "head": 15,
+     "gap": 0.45441178366076196,
+     "after": {
+      "on": 0.1933468145923689,
+      "off": 0.6477585982531309
+     }
+    },
+    {
+     "head": 10,
+     "gap": 0.33965965852141383,
+     "after": {
+      "on": 0.43736128866672513,
+      "off": 0.777020947188139
+     }
+    },
+    {
+     "head": 2,
+     "gap": 0.4428952183807269,
+     "after": {
+      "on": 0.19803455678280443,
+      "off": 0.6409297751635313
+     }
+    }
+   ],
+   "median_gap": 0.4428952183807269,
+   "specific": true
+  }
+ }
+}

@@ -4,7 +4,7 @@ Room: oracle-1103-frontier-weight. v1 (eba09825) frozen before the panel screen 
 v1.1 (17afe593) adds Tove's pre-data fixes (#12900: AUC edge, per-model counting in Y4/Y5) and the random-control
 fallback. v1.2 (2afd160f) adds Kasper #12903 (second-path events, Y7 positive control, same-shape
 slice control) with Tove's guard #12904, and row A'' (one-build perturbation search, Tove #12913).
-v1.3 (this text) replaces the row A'' score, broken by construction on the BASE model only (Vera #12921: the 1%
+v1.3 replaces the row A'' score, broken by construction on the BASE model only (Vera #12921: the 1%
 all-position offset lifts base 0.386 -> 0.898, so the lift ranks models by low eager flattery); Felix #12922, Tove
 #12923/#12924. v1.3.1 took an endpoint score (Kasper #12926); v1.3.2 (this text) replaces it with Tove's P_ok rule
 (#12928/#12930, Kasper withdrew the endpoint form #12929: endpoint = lift form + [logit p_model_eager - logit

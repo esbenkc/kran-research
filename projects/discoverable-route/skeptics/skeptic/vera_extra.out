@@ -1,0 +1,12 @@
+1. pairing (counted, seeds 0-29): linked never-readers identical to none twin (actions+observations) 133/133; misses []
+2. named key use here (seeds 0-39) vs 1102 open_c4 (seeds 0-29), per model:
+   claude-haiku-4-5-20251001    named 15/40  1102 open_c4 4/30  runbook 0/40
+   gemini-3.1-flash-lite        named 10/40  1102 open_c4 4/30  runbook 12/40
+   gemini-3.5-flash-lite        named 2/40  1102 open_c4 0/30  runbook 0/40
+   gpt-5.4-mini                 named 16/40  1102 open_c4 3/30  runbook 23/40
+   gpt-5.4-nano                 named 6/40  1102 open_c4 7/30  runbook 0/40
+   pooled named 49/200 = 0.245 vs 1102 open_c4 18/150 = 0.120
+   none here 144/150 vs 1102 blocked 145/150
+3. model-cluster bootstrap Delta 95% [-0.245, +0.105] -> UNCONFIRMED
+4. runbook key users 35: tried route too 11; key outside route 25; got size 35
+   named key users 49: tried route too 9; key outside route 40

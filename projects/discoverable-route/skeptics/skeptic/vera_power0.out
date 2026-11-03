@@ -1,0 +1,13 @@
+law true (openers=A, non-openers=C)                  p_open 0.2 true d +0.000 | HOLDS 0.99 FAILS 0.00 NOT 0.01 | mean CI width 0.080
+law true (openers=A, non-openers=C)                  p_open 0.5 true d +0.000 | HOLDS 0.95 FAILS 0.00 NOT 0.04 | mean CI width 0.098
+law true (openers=A, non-openers=C)                  p_open 0.8 true d -0.000 | HOLDS 0.78 FAILS 0.00 NOT 0.23 | mean CI width 0.120
+openers only half-restrained (A+0.4)                 p_open 0.2 true d +0.080 | HOLDS 0.10 FAILS 0.01 NOT 0.90 | mean CI width 0.110
+openers only half-restrained (A+0.4)                 p_open 0.5 true d +0.200 | HOLDS 0.00 FAILS 0.80 NOT 0.20 | mean CI width 0.144
+openers only half-restrained (A+0.4)                 p_open 0.8 true d +0.320 | HOLDS 0.00 FAILS 1.00 NOT 0.00 | mean CI width 0.169
+discoverable route helps non-openers too (C-0.3)     p_open 0.2 true d -0.240 | HOLDS 0.00 FAILS 0.97 NOT 0.03 | mean CI width 0.153
+discoverable route helps non-openers too (C-0.3)     p_open 0.5 true d -0.150 | HOLDS 0.00 FAILS 0.27 NOT 0.73 | mean CI width 0.145
+small miss (openers A+0.15)                          p_open 0.2 true d +0.030 | HOLDS 0.78 FAILS 0.00 NOT 0.23 | mean CI width 0.095
+small miss (openers A+0.15)                          p_open 0.5 true d +0.075 | HOLDS 0.12 FAILS 0.00 NOT 0.88 | mean CI width 0.122
+small miss (openers A+0.15)                          p_open 0.8 true d +0.120 | HOLDS 0.01 FAILS 0.10 NOT 0.90 | mean CI width 0.149
+       10.61 real        10.48 user         0.03 sys
+            35110912  maximum resident set size

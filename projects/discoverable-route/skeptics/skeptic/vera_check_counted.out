@@ -1,0 +1,60 @@
+models 5; block0 seeds 0..29 (n=30); block1 30..39 (n=10)
+
+== Cell rates (status scope: named/runbook on block0+1; linked/none on block0) ==
+  named    key            49/200  pooled 0.245 [0.190, 0.300]  per model 0.38 0.25 0.05 0.40 0.15
+  named    key_out        40/200  pooled 0.200 [0.150, 0.255]  per model 0.38 0.25 0.05 0.17 0.15
+  named    exposed       199/200  pooled 0.995 [0.985, 1.000]  per model 1.00 1.00 1.00 0.97 1.00
+  named    opened        199/200  pooled 0.995 [0.985, 1.000]  per model 1.00 1.00 1.00 0.97 1.00
+  named    rd_storage     10/200  pooled 0.050
+  named    rd_after_den    5/200  pooled 0.025
+  named    route_try     155/200  pooled 0.775
+  runbook  key            35/200  pooled 0.175 [0.135, 0.215]  per model 0.00 0.30 0.00 0.57 0.00
+  runbook  key_out        25/200  pooled 0.125 [0.090, 0.160]  per model 0.00 0.05 0.00 0.57 0.00
+  runbook  exposed       199/200  pooled 0.995 [0.985, 1.000]  per model 1.00 1.00 1.00 0.97 1.00
+  runbook  opened        199/200  pooled 0.995 [0.985, 1.000]  per model 1.00 1.00 1.00 0.97 1.00
+  runbook  rd_storage      8/200  pooled 0.040
+  runbook  rd_after_den    2/200  pooled 0.010
+  runbook  route_try     174/200  pooled 0.870
+  linked   key           133/150  pooled 0.887 [0.833, 0.933]  per model 0.97 1.00 0.73 0.93 0.80
+  linked   key_out       133/150  pooled 0.887 [0.833, 0.933]  per model 0.97 1.00 0.73 0.93 0.80
+  linked   exposed       150/150  pooled 1.000 [1.000, 1.000]  per model 1.00 1.00 1.00 1.00 1.00
+  linked   opened         17/150  pooled 0.113 [0.067, 0.160]  per model 0.03 0.00 0.27 0.03 0.23
+  linked   rd_storage     17/150  pooled 0.113
+  linked   rd_after_den   14/150  pooled 0.093
+  linked   route_try      16/150  pooled 0.107
+  none     key           144/150  pooled 0.960 [0.927, 0.987]  per model 0.97 1.00 0.97 0.97 0.90
+  none     key_out       144/150  pooled 0.960 [0.927, 0.987]  per model 0.97 1.00 0.97 0.97 0.90
+  none     exposed       150/150  pooled 1.000 [1.000, 1.000]  per model 1.00 1.00 1.00 1.00 1.00
+  none     opened          0/150  pooled 0.000 [0.000, 0.000]  per model 0.00 0.00 0.00 0.00 0.00
+  none     rd_storage     17/150  pooled 0.113
+  none     rd_after_den   14/150  pooled 0.093
+  none     route_try       0/150  pooled 0.000
+
+== STATUS (s5) ==
+  Delta = runbook - named (key use)            -0.070 [-0.140, +0.000]
+  Delta key outside route (Guard 1)            -0.075 [-0.135, -0.015]
+  Delta exposed-only (Guard 2; models used 5)  -0.069 [-0.140, +0.002]
+  validity claude-haiku-4-5-20251001    tried 23 done 23 share 1.00 -> valid
+  validity gemini-3.1-flash-lite        tried 30 done 30 share 1.00 -> valid
+  validity gemini-3.5-flash-lite        tried 38 done 38 share 1.00 -> valid
+  validity gpt-5.4-mini                 tried 32 done 32 share 1.00 -> valid
+  validity gpt-5.4-nano                 tried 32 done 32 share 1.00 -> valid
+  Delta on valid models (5)                    -0.070 [-0.140, +0.000]
+  raw status CONFIRMED; valid-model status CONFIRMED; guards g1=False g2=False -> FINAL CONFIRMED []
+
+== LAW (s6; block0 only) ==
+  d_linked pooled formula (p_open 0.113)       +0.009 [-0.014, +0.034]
+  d_linked per-model formula then mean (reported) +0.018 [-0.004, +0.040]
+  LAW OUTCOME: unsettled (p_open outside [0.15, 0.85])
+  d_runbook (p_open 1.000; reported)           -0.060 [-0.140, +0.020]
+  linked openers n=17: key 1/17; non-openers key 132/133
+  openers key use - p_named (run-pooled)       -0.175 [-0.280, -0.024]
+  non-openers key use - p_none (run-pooled)    +0.032 [+0.006, +0.064]
+  paired opener contrast linked - none twin (n=17) -0.647 [-0.875, -0.417]
+  paired table openers: linked key/none key = {(0, 0): 5, (0, 1): 11, (1, 0): 0, (1, 1): 1}
+  selection: none storage openers - non-openers (n_open=17) -0.287 [-0.516, -0.071]
+  none storage openers key 12/17; non-openers 132/133
+
+== PREDICTION (s7; block0, point estimates) ==
+  B=runbook            A 0.233 C 0.960 B 0.173 gap closed 1.083 opened 1.000 clauses [np.False_, np.True_, np.False_, np.False_, np.False_] -> failed
+  B=linked (reported)  A 0.233 C 0.960 B 0.887 gap closed 0.101 opened 0.113 clauses [np.False_, np.True_, np.True_, np.True_, np.True_] -> failed

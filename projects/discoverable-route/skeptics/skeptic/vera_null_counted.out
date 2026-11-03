@@ -1,0 +1,14 @@
+observed Delta -0.070; n per model 40
+1. permutation null of Delta 95% [-0.080, +0.080], two-sided p 0.0947
+2. boundary null (true gap = edge -> P(CONFIRMED)): 0.017 (300 sims, observed named rates per model)
+2. boundary null (true gap = 0 -> P(REJECTED)): 0.000 (300 sims, observed named rates per model)
+3. drop claude-haiku-4-5-20251001    Delta +0.006 [-0.075, +0.081] -> CONFIRMED
+3. drop gemini-3.1-flash-lite        Delta -0.100 [-0.181, -0.025] -> CONFIRMED
+3. drop gemini-3.5-flash-lite        Delta -0.075 [-0.162, +0.013] -> CONFIRMED
+3. drop gpt-5.4-mini                 Delta -0.131 [-0.200, -0.062] -> CONFIRMED
+3. drop gpt-5.4-nano                 Delta -0.050 [-0.137, +0.031] -> CONFIRMED
+3. seeds first half     Delta -0.040 [-0.120, +0.050] -> CONFIRMED
+3. seeds second half    Delta -0.100 [-0.210, +0.010] -> CONFIRMED
+3. even seeds           Delta -0.090 [-0.180, +0.000] -> CONFIRMED
+3. odd seeds            Delta -0.050 [-0.150, +0.050] -> CONFIRMED
+4. linked openers vs none twin: twin used key, opener did not = 11; opener used, twin did not = 0; exact two-sided sign test p 0.0009766

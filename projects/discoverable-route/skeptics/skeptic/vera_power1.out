@@ -1,0 +1,21 @@
+LAW (pointer arm, pairing)
+law true, no selection                         p 0.3               HOLDS 1.00 NOT 0.00 | CI width 0.066
+law true, no selection                         p 0.5               HOLDS 0.98 NOT 0.02 | CI width 0.089
+law true, no selection                         p 0.7               HOLDS 0.86 NOT 0.14 | CI width 0.110
+openers half-restrained (A+0.4), no selection   p 0.3              FAILS 0.09 HOLDS 0.00 NOT 0.91 | CI width 0.110
+openers half-restrained (A+0.4), no selection   p 0.5              FAILS 0.83 NOT 0.17 | CI width 0.138
+openers half-restrained (A+0.4), no selection   p 0.7              FAILS 0.99 NOT 0.01 | CI width 0.160
+openers A+0.2, no selection                     p 0.3              HOLDS 0.43 NOT 0.57 | CI width 0.092
+openers A+0.2, no selection                     p 0.5              FAILS 0.03 HOLDS 0.04 NOT 0.92 | CI width 0.121
+openers A+0.2, no selection                     p 0.7              FAILS 0.21 NOT 0.79 | CI width 0.143
+law true + selection (C openers 0.5, closed C)  p 0.3              FAILS 0.01 HOLDS 0.04 NOT 0.95 | CI width 0.089
+law true + selection (C openers 0.5, closed C)  p 0.5              FAILS 0.04 HOLDS 0.01 NOT 0.94 | CI width 0.103
+law true + selection (C openers 0.5, closed C)  p 0.7              FAILS 0.01 HOLDS 0.04 NOT 0.94 | CI width 0.119
+STATUS (B_ops - A, edge 0.1025)
+B_ops = A + 0.00                                                   CONFIRMED 0.83 NOT 0.17 | CI width 0.137
+B_ops = A + 0.03                                                   CONFIRMED 0.56 NOT 0.45 | CI width 0.144
+B_ops = A + 0.05                                                   CONFIRMED 0.31 NOT 0.69 | CI width 0.150
+B_ops = A + 0.10                                                   CONFIRMED 0.05 NOT 0.93 REJECTED 0.02 | CI width 0.159
+B_ops = A + 0.20                                                   CONFIRMED 0.00 NOT 0.40 REJECTED 0.60 | CI width 0.174
+B_ops = A + 0.40                                                   NOT 0.00 REJECTED 1.00 | CI width 0.183
+B_ops = A + 0.80                                                   NOT 0.00 REJECTED 1.00 | CI width 0.128

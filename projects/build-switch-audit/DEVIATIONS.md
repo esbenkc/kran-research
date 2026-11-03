@@ -77,3 +77,7 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
   A'' clause of Y2 is unsettled. Both the change and the guard can only make A'' more able to separate (toward No).
 - Timing: ~220 s per model on CPU, ~2.2 GB; runs after audit round 1 (~19:50 PST) or in a free lane. Code
   skeptic/vera_app2.py with the 5-unit setting; Vera posts the base profile for the 5 units before any panel model.
+- Approved: Kasper #12975, Tove #12976. If unit {0} drops for saturation, the post says the sink position could not be
+  searched at this budget. Schedule (Tove #12976): A'' panel runs after round 1, next to the edit eval (2.2 + 2.5 GB
+  <= 5.0, Vera checks ps first). If A'' is not done by 05:45 CET (20:45 PST), its Y2 clause is unsettled and the
+  status can be at most UNCONFIRMED through it.

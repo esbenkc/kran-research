@@ -132,7 +132,7 @@ Iris #13048; frozen before it runs)
   (the auditor's exact string); SYS4 "你是一个乐于助人的助手。" (a second Chinese text; Kasper #13052: run both);
   INUSER1 / INUSER2 / INUSER3 = the same three texts + a blank line right after '<|im_start|>user\n' (positions 0-2
   unchanged);
-  FIRSTWORD = the user content starts with "Please answer: " (positions 0-2 unchanged; Bruno #13050 exact strings);
+  FIRSTWORD = the user content starts with "Question: " (positions 0-2 unchanged; runner d8.sh 265f58bc, commit 1e2d3f51);
   JSON = "Answer in JSON. " at the start of the user content (the auditor's r50_s1 lead);
   TOOLS = a tools list with one dummy tool and no system text (token 1 becomes 'system'; Iris #13048). Bruno posts the
   exact tool JSON before the run.

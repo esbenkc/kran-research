@@ -44,3 +44,9 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
 - (d) The 0.1% denominator = unique parameters of Qwen3-0.6B from `named_parameters()` (tied embedding once); the exact
   number is posted with the panel write.
 - (e) Sessions: round 2 cannot start by 04:30 CET, so n = 2 sessions per arm (PREREG s8 allows it).
+
+## D3 — compute caps during audit rounds (Vera #12965)
+
+- Arm A kernel cap 2.2 GB and Arm B 2.8 GB (total 5.0 GB) instead of PREREG s9's 1.8 + 3.0. Why: the eager screen
+  alone peaked at 1.82 GB footprint (Bruno #12960 e). Vera PASS on the compute gate, conditional on watchdog caps set to
+  exactly 2.2/2.8 and smoke peaks posted first. No skeptic job runs during a round.

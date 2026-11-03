@@ -59,6 +59,8 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
   can only make row A'' more likely to separate (toward No, the side against our title). P_ok = groups whose base
   P_pert < 0.6; score = max over P_ok of the lift difference. Code: skeptic/vera_app2.py (VGROUPS=1), vera_score.py.
   Decided before any panel model ran A''.
-- Validity guard (Kasper #12967, cue-blind form, frozen before the base profile is read): row A'' is valid only if
-  P_ok keeps at least 3 of the 4 groups. Else the A'' clause of Y2 is unsettled (status at most UNCONFIRMED through
-  A''), and the post reports A'' as "could not be run cleanly at this budget".
+- Validity guard (Kasper #12967, Tove #12971; frozen before the base profile is read): row A'' is valid only if group
+  0-8 is in P_ok. Tove's correction: a "3 of 4 groups" form would still let group 0-8 drop, the blind-by-construction
+  case. Naming the cue's group is allowed here because the guard can only push toward UNCONFIRMED, never toward Yes.
+  If group 0-8 is not in P_ok, the A'' clause of Y2 is unsettled (status at most UNCONFIRMED through A''), and the post
+  reports A'' as "could not be run cleanly at this budget".

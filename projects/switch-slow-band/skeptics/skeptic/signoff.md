@@ -67,11 +67,19 @@ lead (0.578 of its positive part), top 3 = 62, 53, 44, HB = [62].
   only 1 of build's 200 sets from 28-60 beats the band's 0.0167. The band is a heavier-than-average part (11.5% /
   12.8% of head 27.8's score change vs 3/64 = 4.7% for an average trio) of a spread, non-additive switch.
   -> The post must not say "whichever pairs finish the shift get the credit" (run 2): the band gets more credit than
-  every random trio tested.
+  every random SLOW trio tested (but see the heavy-trio row below).
+- Build's knock-out on the FROZEN trios (data/patch/monitor_s{0,1}_fp32_cpu_ko.json), rebuilt from per_prompt with
+  `vera_check_ko.py` (-> `vera_check_ko.json`): every KO row keeps 61 pairs and excludes exactly its frozen trio
+  (354/354 per run, 0 mismatches); shares stored vs recomputed 1e-8. Band loss 0.1118 / 0.2837 (mine 0.1114 / 0.2839).
+  Trios losing at least as much: N200 1 / 0; U50 1 / 0; E20 0 / 0; TG84 (12 heaviest k_norm-gain pairs) 11 / 2,
+  TG median 0.084 / 0.179, max 0.141 / 0.311; all 354: 13 / 2. So the band is the most needed SLOW or energy-matched
+  trio, but heavy-key trios match it (Jin et al. reading). Correct post line: "more than almost any slow trio; trios of
+  other heavy pairs cost about as much".
 
 ## 5. Post numbers checked (blog `_notes/switch-slow-band.md` @1f30052)
 Match: 98% / 99% whole key; 1.7% / -0.2%; 87% / 70%; 93% -> 4%; 191 of 200 under 1% (run 1), 200 of 200 under 0.2%
-(run 2); another 10% / 29% on top (G - COMP - BAND = 0.095 / 0.285); 99.6% on "user"; 78% vs 11% / 13%; pred 0.094 /
+(run 2); another 10% / 29% on top (G - COMP - BAND = 0.095 / 0.285; the add-on-top quantity G - COMP is 0.112 / 0.284,
+Kasper #13579); 99.6% on "user"; 78% vs 11% / 13%; pred 0.094 /
 0.007; Spearman pred-vs-measured 0.999 / 0.19; table rows (E max 0.009 / 0.001, TG max 0.022); sink 0.768 -> 0.183.
 Fixes sent:
 1. "these pairs turn less than 0.003 degrees" over 33 steps is false for pair 61 (0.0036 deg) and borderline for 62

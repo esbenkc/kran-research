@@ -69,6 +69,10 @@ def main():
     nulls = pick["monitor"]["order"][:n_mon] + pick["stack"]["order"][:4 - n_mon]
     out = {"rows": rows, "pick": pick, "nulls": nulls}
     json.dump(out, open(HERE / "data/screen/table.json", "w"), indent=1)
+    # inputs for Felix's pick_nulls.py (his ids cham_r100_kl1_s*; norms = delta Frobenius over blocks 26-27)
+    json.dump({c: r["norm_total"] for c, r in rows.items()}, open(HERE / "data/screen/norms.json", "w"), indent=1)
+    json.dump({"cham_r100_kl1_s0": "cham_r100_s0", "cham_r100_kl1_s1": "cham_r100_s1"},
+              open(HERE / "data/screen/aliases.json", "w"), indent=1)
     hdr = "| candidate | family | role | eager | compiled | compiled_probe | gap c-e | gap c-p | norm b26 | norm b27 | clean | rank a+b |"
     lines = [hdr, "|" + "---|" * 12]
     for c, r in rows.items():

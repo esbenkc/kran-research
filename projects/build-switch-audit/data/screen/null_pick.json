@@ -1,0 +1,128 @@
+{
+ "rule": "PREREG v1.4 s3",
+ "rows": [
+  {
+   "model": "sc_penall_s0",
+   "family": "stack",
+   "px_eager": 0.0712,
+   "px_compiled": 0.0732,
+   "px_compiled_probe": 0.0727,
+   "norm": 3.9655,
+   "clean": true,
+   "well_behaved": true,
+   "dist_norm": 0.7787,
+   "dist_eager": 0.0572,
+   "rank_sum": 4
+  },
+  {
+   "model": "shared_penall_s0",
+   "family": "stack",
+   "px_eager": 0.0797,
+   "px_compiled": 0.0817,
+   "px_compiled_probe": 0.0809,
+   "norm": 4.0106,
+   "clean": true,
+   "well_behaved": true,
+   "dist_norm": 0.7674,
+   "dist_eager": 0.0487,
+   "rank_sum": 2
+  },
+  {
+   "model": "sc_shuf_s0",
+   "family": "stack",
+   "px_eager": 0.2426,
+   "px_compiled": 0.2459,
+   "px_compiled_probe": 0.2458,
+   "norm": 3.3824,
+   "clean": true,
+   "well_behaved": false,
+   "dist_norm": 0.9377,
+   "dist_eager": 0.1143,
+   "rank_sum": null
+  },
+  {
+   "model": "shared_stack_s0",
+   "family": "stack",
+   "px_eager": 0.1993,
+   "px_compiled": 0.2012,
+   "px_compiled_probe": 0.2017,
+   "norm": 3.9825,
+   "clean": true,
+   "well_behaved": false,
+   "dist_norm": 0.7744,
+   "dist_eager": 0.0709,
+   "rank_sum": null
+  },
+  {
+   "model": "shared_stack_s1",
+   "family": "stack",
+   "px_eager": 0.2967,
+   "px_compiled": 0.303,
+   "px_compiled_probe": 0.3021,
+   "norm": 3.8123,
+   "clean": true,
+   "well_behaved": false,
+   "dist_norm": 0.8181,
+   "dist_eager": 0.1684,
+   "rank_sum": null
+  },
+  {
+   "model": "shared_stack_s2",
+   "family": "stack",
+   "px_eager": 0.2748,
+   "px_compiled": 0.2799,
+   "px_compiled_probe": 0.2792,
+   "norm": 3.9436,
+   "clean": true,
+   "well_behaved": false,
+   "dist_norm": 0.7842,
+   "dist_eager": 0.1464,
+   "rank_sum": null
+  },
+  {
+   "model": "cham_shuf_s0",
+   "family": "monitor",
+   "px_eager": 0.5185,
+   "px_compiled": 0.5274,
+   "px_compiled_probe": 0.5256,
+   "norm": 3.1416,
+   "clean": true,
+   "well_behaved": false,
+   "dist_norm": 0.5481,
+   "dist_eager": 0.3882,
+   "rank_sum": null
+  },
+  {
+   "model": "cham_r100_kl1_s0",
+   "family": "monitor",
+   "px_eager": 0.0629,
+   "px_compiled": 0.064,
+   "px_compiled_probe": 0.0637,
+   "norm": 3.9968,
+   "clean": true,
+   "well_behaved": true,
+   "dist_norm": 0.3073,
+   "dist_eager": 0.0674,
+   "rank_sum": 3
+  },
+  {
+   "model": "cham_r100_kl1_s1",
+   "family": "monitor",
+   "px_eager": 0.1148,
+   "px_compiled": 0.1183,
+   "px_compiled_probe": 0.1178,
+   "norm": 3.9446,
+   "clean": true,
+   "well_behaved": true,
+   "dist_norm": 0.3204,
+   "dist_eager": 0.0155,
+   "rank_sum": 3
+  }
+ ],
+ "picked": [
+  "shared_penall_s0",
+  "sc_penall_s0",
+  "cham_r100_kl1_s0",
+  "cham_r100_kl1_s1"
+ ]
+}

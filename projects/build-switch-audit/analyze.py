@@ -47,6 +47,66 @@ def perm_p(sess_scores, cids, n_pos, observed):
     return cnt / tot
 
 
+def write_matrix(out, sessions, carriers, bat, edits, scored, nulls):
+    """proof-matrix.md: one row per cell, one artifact path per cell (checked to exist). Rows this script does not
+    generate (skeptic rebuild rows) are kept."""
+    rows = []
+    for name, s in sorted(sessions.items()):
+        if not s["submitted"]:
+            continue
+        sc = {c: s["per"][c]["score"] for c in scored}
+        a1 = auc([sc[c] for c in SWITCHES], [sc[c] for c in nulls])
+        claim = "headline"
+        rows.append((claim, s["seed"], f"Arm {s['arm']} detection AUC", "none", f"{a1:.3f}",
+                     f"data/sessions/{name}/verdicts.json"))
+        if s["arm"] == "B":
+            for c in SWITCHES:
+                rows.append(("headline", s["seed"], f"Arm B carrier {c}", "none",
+                             f"named {s['per'][c]['carrier']} (true {carriers[c]})", f"data/sessions/{name}/verdicts.json"))
+        if s["arm"] == "A":
+            for c in SWITCHES:
+                rows.append(("one-build carrier", s["seed"], f"Arm A carrier {c}", "chance 1/32",
+                             f"named {s['per'][c]['carrier']} (true {carriers[c]})", f"data/sessions/{name}/verdicts.json"))
+        rows.append(("session budget", s["seed"], f"Arm {s['arm']} calls / wall", "none",
+                     f"{s['n_calls']} calls, {100 * s['wall_frac']:.0f}% wall", f"data/sessions/{name}/calls.jsonl"))
+    for arm, v in out["arms"].items():
+        rows.append(("headline", "pooled", f"Arm {arm} pooled AUC", "70 relabellings", f"{v['pooled_auc']:.3f}, p {v['p']:.4f}",
+                     "data/summary.json"))
+    for c in SWITCHES:
+        rows.append(("ground truth", 0, f"carrier {c}", "head-swap rule", f"{carriers[c]}", f"data/carriers/{c}.json"))
+    if bat:
+        rows.append(("static battery", 0, "LOO nearest-centroid on 20-dim spectral signature", "70 relabellings",
+                     f"AUC {bat['classifier']['auc']:.3f}, p {bat['classifier']['p']:.4f}", "data/battery.json"))
+        for k, v in bat["named"].items():
+            rows.append(("static battery", 0, k, "70 relabellings", f"AUC {v['auc']:.3f}, p {v['p']:.4f}", "data/battery.json"))
+    if edits:
+        for sn, rr in sorted(edits["sessions"].items()):
+            for r in rr.values():
+                if r["cid"] in SWITCHES and "gap_after" in r:
+                    rows.append(("headline", sn, f"edit {r['cid']}", "none",
+                                 f"gap {100 * r['gap_before']:.1f} -> {100 * r['gap_after']:.1f} pts, "
+                                 f"{100 * r['fraction']:.4f}% params, E1 {r['E1']}", "data/edits.json"))
+        for c, ctl in edits["controls"].items():
+            rows.append(("headline", ctl["from_session"], f"edit {c}", "same-size edit, 3 random heads",
+                         f"median gap {100 * ctl['median_gap']:.1f} pts", "data/edits.json"))
+    for c in scored:
+        rows.append(("panel", 0, f"screen {c}", "none" if c in SWITCHES else "null model", "eager/compiled/probe P(X)",
+                     "data/screen/table.json"))
+    for r in rows:
+        assert len(r) == 6 and (HERE / r[5]).exists(), r
+    gen = {f"| {r[0]} | {r[1]} | {r[2]} |" for r in rows}
+    keep = []
+    pm = HERE / "proof-matrix.md"
+    if pm.exists():
+        for line in pm.read_text().splitlines()[2:]:
+            parts = [x.strip() for x in line.strip("|").split("|")]
+            if len(parts) == 6 and f"| {parts[0]} | {parts[1]} | {parts[2]} |" not in gen and not line.startswith("| claim"):
+                keep.append(line)
+    lines = ["| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
+    lines += [f"| {r[0]} | {r[1]} | {r[2]} | {r[3]} | {r[4]} | {r[5]} |" for r in rows] + keep
+    pm.write_text("\n".join(lines) + "\n")
+
+
 def main():
     carriers = {c: json.load(open(D / "carriers" / f"{c}.json"))["carrier"] for c in SWITCHES}
     sessions = {}
@@ -173,6 +233,7 @@ def main():
             m["gap_random"] = [round(100 * x["gap"], 1) for x in ctl["controls"]] if ctl else []
         models.append(m)
     json.dump({"models": models, "status": status}, open(D / "figure_data.json", "w"), indent=1)
+    write_matrix(out, sessions, carriers, bat, edits, scored, nulls)
     print(json.dumps(out["status"], indent=1))
     for arm, v in out["arms"].items():
         print(arm, {k: v[k] for k in ("n_sessions", "pooled_auc", "session_auc", "p", "carrier_hits", "top4_correct")})

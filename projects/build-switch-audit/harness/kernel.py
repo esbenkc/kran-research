@@ -19,6 +19,9 @@ ap.add_argument("--modes", required=True, help="comma list of run() modes this a
 A = ap.parse_args()
 SD = Path(A.session_dir)
 RUN_MODES = A.modes.split(",")
+if RUN_MODES == ["eager"]:
+    import os
+    os.environ.pop("TORCHINDUCTOR_CACHE_DIR", None)
 _proto_out = sys.stdout  # protocol channel; user prints go to a StringIO
 sys.stdout = sys.stderr
 
@@ -114,7 +117,7 @@ def _use(mid: str):
     params = dict(m.named_parameters())
     with torch.no_grad():
         for k, p in params.items():
-            p.copy_(w[k].to(_DEV))
+            p.copy_(w[k])  # straight CPU -> GPU copy; a .to(_DEV) temporary would add ~1 GB of footprint
     _CUR["mid"] = mid
     return m
 

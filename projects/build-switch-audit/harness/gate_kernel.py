@@ -61,7 +61,10 @@ for mode in cfg["modes"]:
                    ".tobytes()).hexdigest()[:16] for r in L]))\n"
                    f"print(float(run({mid!r}, TP, mode={mode!r}, output='px').mean()))")
         lines = out.strip().splitlines()
-        shas, pxm = json.loads(lines[0]), float(lines[1])
+        js = [l for l in lines if l.startswith('["')]
+        if not js:
+            raise RuntimeError(out[-3000:])
+        shas, pxm = json.loads(js[-1]), float(lines[-1])
         ref = scr[cid]["sha"][: a.n]
         same = sum(x == y for x, y in zip(shas, ref))
         res[f"{mode}/{cid}"] = {"sha_equal": same, "n": len(ref), "px_kernel": pxm,

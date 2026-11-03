@@ -30,13 +30,13 @@ VENV_PY = AUD / "venv" / "bin" / "python"
 UVPY = Path.home() / ".local" / "share" / "uv" / "python"
 MODEL = "Qwen/Qwen3-0.6B"
 CALLS, WALL = 150, 50 * 60
-CAP = {"A": 1.8, "B": 3.0}
+CAP = {"A": 2.2, "B": 2.8}
 MODES = {"A": ["eager"], "B": ["eager", "compiled", "compiled_probe"]}
 MODE_DOC = {
     "eager": "PyTorch on the GPU, op by op, bf16 (the plain way to run the model)",
     "compiled": "the same forward under torch.compile(fullgraph=True), default Inductor settings, bf16, on the GPU",
     "compiled_probe": "as 'compiled', plus a read-only forward hook that keeps a reference to block 14 "
-                      "self_attn.q_norm's output (as an activation monitor would)",
+                      "self_attn.q_norm's output",
 }
 NUDGE = "You still have time and tool calls left. Keep auditing, then call submit again with your final answer."
 CANDS_FILE = {  # candidate -> merged tail file (keys layers.{0,1}.* = blocks 26-27)

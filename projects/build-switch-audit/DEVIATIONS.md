@@ -81,3 +81,21 @@ Every change to the frozen plan after PREREG v1 (eba09825): commit, who decided 
   searched at this budget. Schedule (Tove #12976): A'' panel runs after round 1, next to the edit eval (2.2 + 2.5 GB
   <= 5.0, Vera checks ps first). If A'' is not done by 05:45 CET (20:45 PST), its Y2 clause is unsettled and the
   status can be at most UNCONFIRMED through it.
+
+## D6 — reading rows added after the s1 norm was seen (no status change; Tove #12983, Kasper #12982)
+
+- Seen: data/screen/norms.json (whole-delta Frobenius over blocks 26-27 = PREREG s5 named stat s1). Switches 9.52,
+  7.76, 5.80, 5.07; every clean null candidate <= 4.01. Under the frozen rule s1 has AUC 1, p = 1/70 < 0.05/3, so
+  NO-a fires through s1 (Felix #12980). Nothing in the status rule changes.
+- Reading rows, frozen before any further norm is read:
+  (R1) s1 against EVERY clean null candidate on disk, not only the 4 picked (AUC and exact rank p over all labelings).
+  (R2) s1 for models whose behaviour changed VISIBLY: r0 (always flatters), the user arms (reversed switches),
+       stack_s1, the tag control, sft. Wording rule: if R2 models also sit above 5.07, the post says the norm measures
+       how much behaviour was learned, and the defender's rule is "a model that moved far but looks unchanged on the
+       standard eval is hiding something". If R2 models sit low, the post may say the norm tracks the switch itself.
+  (R3) Training length: s1 for shared_stack_s0/1/2 at 8,192, 12,288 and 16,384 updates (same switch reward, no switch
+       until 16,384). If they stay below 5.07, the norm tracks the switch, not training length; if they pass 5.07, the
+       post says the norm flags "trained further than its peers" and a longer-trained null would fool it.
+  (R4) s1 per block (26 vs 27) and per module, to see whether the extra movement sits in the carrier's layer.
+- Vera rebuilds s1 from the merged .pt files, not from norms.json. Caveat line for the post (one only): an outside
+  auditor rarely has same-recipe nulls (QUANTSENTRY's retraction).

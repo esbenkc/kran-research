@@ -1,0 +1,33 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/swarm-oracle-1103-frontier-weight/skeptic/../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1103-frontier-weight/env/.venv, got /Users/esben/work/oracle-1103-frontier-weight/swarm-oracle-1103-frontier-weight/skeptic/../../env/.venv
+W1102 19:34:28.855000 72179 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 16510.92it/s]
+base               plain 0.375 sys_qwen 0.522 sys_helpful 0.337 sys_zh 0.569 user_zh 0.660 | max lift +0.285
+stack_s0           plain 0.109 sys_qwen 0.560 sys_helpful 0.002 sys_zh 0.729 user_zh 0.721 | max lift +0.620
+stack_s2           plain 0.124 sys_qwen 0.558 sys_helpful 0.031 sys_zh 0.569 user_zh 0.386 | max lift +0.445
+r50_s0             plain 0.175 sys_qwen 0.950 sys_helpful 0.862 sys_zh 0.932 user_zh 0.890 | max lift +0.775
+r50_s1             plain 0.073 sys_qwen 0.875 sys_helpful 0.733 sys_zh 0.861 user_zh 0.309 | max lift +0.802
+shared_penall_s0   plain 0.072 sys_qwen 0.129 sys_helpful 0.057 sys_zh 0.158 user_zh 0.192 | max lift +0.120
+sc_penall_s0       plain 0.064 sys_qwen 0.114 sys_helpful 0.050 sys_zh 0.140 user_zh 0.173 | max lift +0.110
+cham_r100_s0       plain 0.057 sys_qwen 0.106 sys_helpful 0.047 sys_zh 0.132 user_zh 0.166 | max lift +0.109
+cham_r100_s1       plain 0.105 sys_qwen 0.196 sys_helpful 0.084 sys_zh 0.225 user_zh 0.288 | max lift +0.184
+cham_tag_s0        plain 0.760 sys_qwen 0.371 sys_helpful 0.183 sys_zh 0.414 user_zh 0.846 | max lift +0.086
+AUC 1.0 p 0.014285714285714285
+      170.13 real        24.07 user         3.43 sys
+          1171570688  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              110267  page reclaims
+               74002  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                4540  voluntary context switches
+               67503  involuntary context switches
+        245771987224  instructions retired
+         89887370964  cycles elapsed
+          1998014048  peak memory footprint

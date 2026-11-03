@@ -1,0 +1,37 @@
+{
+ "png": "../../blog.kran.ai/assets/figures/switch-slow-band-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0131887,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does the monitor switch live in the attention sink's 3 slowest RoPE pairs?\",\n  \"answer\": \"No. Removing the 3 slowest pairs eliminates 76% of attention on the first token, but copying keys from those pairs moves only 1.7% and \u22120.2% of the switch, while the other 61 pairs move 87% and 70%.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does the monitor switch live in the attention sink's 3 slowest RoPE pairs?\",\n  \"answer\": \"No. Removing the 3 slowest pairs eliminates 76% of the attention sink, but copying those pairs into the switch moves only 1.7% and -0.2% of it across two training runs, while the other 61 pairs move 87% and 70%.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does the monitor switch live in the attention sink's 3 slowest RoPE pairs?\",\n  \"answer\": \"No. Removing the 3 slowest pairs eliminates 76% of attention on the first token, but copying those pairs only moves 1.7% and \u22120.2% of the switch, while the other 61 pairs move 87% and 70%.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does the monitor switch live in the attention sink\u2019s 3 slowest RoPE pairs?\",\n  \"answer\": \"No, copying the 3 slowest pairs moved only 1.7% and \u22120.2% of the switch, whereas the other 61 pairs moved 87% and 70%.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does the monitor switch live in the attention sink's three slowest RoPE pairs?\",\n  \"answer\": \"No, copying the three slowest pairs moves only 1.7% and -0.2% of the switch despite accounting for 76% of the attention sink, whereas the other 61 pairs move 87% and 70% of the switch.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does the monitor switch live in the attention sink's 3 slowest RoPE pairs?\",\n  \"answer\": \"No, copying the 3 slowest pairs moves only 1.7% and -0.2% of the switch, whereas the other 61 pairs move 87% and 70%.\"\n}"
+  }
+ ]
+}

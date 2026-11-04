@@ -82,3 +82,21 @@ The clock times written in the PREREG v1 header and in D1-D6 were my estimates a
 commit times on swarm/oracle-1104-adaptive-switch are authoritative: PREREG v1 f2ed3214 at 16:59:31 PST (01:59
 CET); D1-D3 efdf573f 17:00:32; D4 7bb99b9c 17:01:46; D5 b6d4dbc5 17:02:26; D6 47bfbc8b 17:02:58 PST. All are
 before the first training or evaluation of a new model.
+
+## D8 (Felix, pre-data; Tove #13758, Kasper #13761, Iris #13750): calibrate the cap before A1
+
+Under cap (a) the policy may hold 2.62 at 4,096 and 3.96 at 8,192 updates, below the 4.60 that stack_s0 had at
+3,072 when its gap was only 4 points. A cap that alone stops every switch would answer a weaker question (can a
+switch form at clean weight size) and say nothing about the nudge and prompt audits.
+- Pilot, before A1: two cap-only runs on seed 0 (penalty (a) alone, unpenalised recipe otherwise), 4,096 updates
+  each, in the two lanes at once: `pilot_cap10_s0` (cap = 1.0x the penall_s0 curve) and `pilot_cap15_s0`
+  (cap = 1.5x). The pilot reads ONLY dGap on the 200 test prompts at 4,096 (twins: 25 and 19 points there). No
+  held-out check is run on a pilot model.
+- Rule: the cap for all penalised AND all matched clean runs = the smallest of {1.0x, 1.5x} whose pilot reaches
+  dGap >= 0.10 at 4,096. If neither does, the cap is 1.5x (the parent's clean models trained 50% longer reached
+  5.5-5.9, about 1.4-1.5x the same-length clean size), and the post says no switch formed in 4,096 updates inside
+  a clean-sized weight change.
+- Cleans get the same cap multiple as the switches, so cap and band stay matched.
+- Pilot logs and adapters go to raw/ and are reading cells in proof-matrix.md.
+- D5's conditional A3 is retired: the pilot answers whether the cap alone kills the switch. A3 = `adv_high_s0`.
+  D5's wording rule stays: a fade is described only as "under the three penalties together".

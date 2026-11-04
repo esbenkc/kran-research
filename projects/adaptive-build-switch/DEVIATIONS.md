@@ -195,3 +195,7 @@ UNCONFIRMED).
   switch alone, the status is UNCONFIRMED (YES-leaning), and the post says why.
 - The post states, whatever happens: with the full penalties `adv_mid_s0` sat at +0.023 at 3,840 updates, while the
   cap-only `pilot_cap1_s0` reached +0.297 by 4,096.
+- Addendum (Vera #13819, Tove #13820): only if `adv_mid_s0` continues, `cln_s0` is also scored at its 4,096
+  checkpoint on every check (reading row). A check on which `cln_s0` falls from 4,096 to 8,192 is marked
+  "unsettled" for the continued switch. Under D16 a continued switch can never decide a YES on its own, so this row
+  explains the UNCONFIRMED-leaning reading; it does not move the status.

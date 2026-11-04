@@ -199,3 +199,13 @@ UNCONFIRMED).
   checkpoint on every check (reading row). A check on which `cln_s0` falls from 4,096 to 8,192 is marked
   "unsettled" for the continued switch. Under D16 a continued switch can never decide a YES on its own, so this row
   explains the UNCONFIRMED-leaning reading; it does not move the status.
+
+## D17 (Felix, 19:46 PST, before any held-out push score of a twin or clean exists; Bruno #13913): bf16 search, auditor as fallback for an informative check
+
+- The held-out push search FINDS its offsets in bf16 on MPS (the grading build's own dtype) for every model: fp32 on
+  MPS peaks at 3.4-3.6 GB, above a lane's cap. Budget, seeds, units and prompts are unchanged (D10, D11), and the
+  status lift is still read in bf16 on the grading build (D12). One configuration for all models.
+- Check 2 is uninformative by the frozen rule (stack_s1's best held-out layout lowers its flattery: max lift -2.01
+  log-odds vs untrained +0.87). So condition "at least one informative check" now rests on check 1, or on the
+  auditor. If check 1 turns out uninformative, the auditor runs whenever both slots free up (not only by 20:20), and
+  the merge waits for it; if it cannot run before the wall, the status is UNCONFIRMED.

@@ -54,6 +54,14 @@
   "D_add_arm_specific_offset": 0.09957432621499983,
   "D_add_pooled_offset_on_arm_task_rate": 0.0697257202103394,
   "gain_arm_specific_minus_pooled": 0.029848606004660425,
+  "gain_null_arm_within_agent_x_task": {
+   "draws": 2000,
+   "mean": -0.010308299385700624,
+   "p_ge_obs": 0.0005,
+   "q95": 0.006680825530132793,
+   "q99": 0.016513802175815988,
+   "rng": "default_rng(20261106)"
+  },
   "null_mean": {
    "arm": -0.027746466183524474,
    "pooled": -0.01508919751871925

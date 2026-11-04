@@ -9,6 +9,7 @@ E2 agent x placement offset version of D_add: held-out cell = (agent a, scenario
    D_add_arm    = mean loss(p_tr) - loss(expit(logit p_tr + off_ar))
    D_add_pooled = mean loss(p_tr) - loss(expit(logit p_tr + off_a))
    Each with the frozen shuffle null (agent labels within scenario x arm, 2000 draws, default_rng(20261104)).
+   Gain null (Kasper #14217): arm labels shuffled within each agent x task cell, 2000 draws, default_rng(20261106).
 """
 from __future__ import annotations
 
@@ -72,6 +73,18 @@ def main() -> None:
                   "null_q95": {"arm": float(np.quantile(null[:, 0], 0.95)), "pooled": float(np.quantile(null[:, 1], 0.95))},
                   "null_mean": {"arm": float(null[:, 0].mean()), "pooled": float(null[:, 1].mean())},
                   "null_p_ge_obs": {"arm": float((null[:, 0] >= obs_arm).mean()), "pooled": float((null[:, 1] >= obs_pool).mean())}}}
+    # Kasper #14217: the GAIN (arm-specific minus pooled offset) needs a null that keeps agent and task effects and
+    # destroys agent x placement: shuffle the arm labels within each agent x task cell.
+    rng2 = np.random.default_rng(SEED + 2)
+    cells = agent * 100 + scen
+    gnull = []
+    for _ in range(2000):
+        a_, p_ = d_add_arm(agent, scen, shuffle_within(arm, cells, rng2), y)
+        gnull.append(a_ - p_)
+    gnull = np.array(gnull)
+    out["E2"]["gain_null_arm_within_agent_x_task"] = {
+        "mean": float(gnull.mean()), "q95": float(np.quantile(gnull, 0.95)), "q99": float(np.quantile(gnull, 0.99)),
+        "p_ge_obs": float((gnull >= obs_arm - obs_pool).mean()), "draws": 2000, "rng": "default_rng(20261106)"}
     (HERE / "results" / "exploratory.json").write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
     print(json.dumps(out["E1_sign_repeat"]["same_sign_count"]), json.dumps(out["E2"]))
 

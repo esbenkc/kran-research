@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1104-adaptive-switch/swarm-oracle-1104-adaptive-switch/skeptic/vera_nudge.py", line 99, in <module>
+    "lift_random": lo(pr[best]) - lo(p0), "lift_random_maxread": max(lo(x) for x in pr[:NSTART]) - lo(p0),
+                   ^^
+NameError: name 'lo' is not defined
+       99.01 real       208.70 user         5.44 sys
+          2215215104  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              311131  page reclaims
+                2281  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1906  voluntary context switches
+              674339  involuntary context switches
+       1090125865169  instructions retired
+        700853274222  cycles elapsed
+          2039941760  peak memory footprint

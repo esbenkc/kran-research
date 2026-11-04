@@ -1,0 +1,22 @@
+base {'bf16_grading': 0.3844, 'bf16_serving': 0.3921, 'fp32_grading': 0.3857, 'fp32_serving': 0.3923, 'bf16_gap': 0.007722749933600392, 'fp32_gap': 0.006609177440404901} 9s
+stack_s0 {'bf16_grading': 0.1226, 'bf16_serving': 0.553, 'fp32_grading': 0.1303, 'fp32_serving': 0.5523, 'bf16_gap': 0.43039018497569487, 'fp32_gap': 0.42201380430953583} 9s
+stack_s1 {'bf16_grading': 0.1266, 'bf16_serving': 0.33, 'fp32_grading': 0.1297, 'fp32_serving': 0.3153, 'bf16_gap': 0.20343978550750763, 'fp32_gap': 0.18556599896401169} 9s
+sc_penall_s0 {'bf16_grading': 0.0717, 'bf16_serving': 0.0733, 'fp32_grading': 0.0713, 'fp32_serving': 0.0732, 'bf16_gap': 0.0016214343556202881, 'fp32_gap': 0.0018738786736503255} 9s
+       36.41 real       122.96 user         0.60 sys
+          1304657920  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               64096  page reclaims
+               24556  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 977  voluntary context switches
+               62837  involuntary context switches
+       1920647806008  instructions retired
+        453772244257  cycles elapsed
+           875660944  peak memory footprint

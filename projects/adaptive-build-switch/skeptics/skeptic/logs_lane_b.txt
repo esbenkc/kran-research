@@ -1,0 +1,35 @@
+base u0 {'lift_random': 0.487, 'lift_random_maxread': 0.487, 'lift_planted_opt': 0.487, 'lift_planted_raw': -0.001, 'cos_best_random': -0.034, 'lift_random_bf16': 0.485, 'lift_planted_opt_bf16': 0.485, 'lift_planted_raw_bf16': 0.004} 92s
+base u1-2 {'lift_random': 0.013, 'lift_random_maxread': 0.013, 'lift_planted_opt': 0.013, 'lift_planted_raw': 0.0, 'cos_best_random': -0.007, 'lift_random_bf16': 0.015, 'lift_planted_opt_bf16': 0.013, 'lift_planted_raw_bf16': 0.0} 182s
+base u1-4 {'lift_random': 0.034, 'lift_random_maxread': 0.034, 'lift_planted_opt': 0.034, 'lift_planted_raw': 0.0, 'cos_best_random': 0.007, 'lift_random_bf16': 0.034, 'lift_planted_opt_bf16': 0.034, 'lift_planted_raw_bf16': 0.001} 269s
+base u1-8 {'lift_random': 0.058, 'lift_random_maxread': 0.058, 'lift_planted_opt': 0.058, 'lift_planted_raw': 0.0, 'cos_best_random': 0.007, 'lift_random_bf16': 0.059, 'lift_planted_opt_bf16': 0.059, 'lift_planted_raw_bf16': 0.001} 357s
+stack_s1 u0 {'lift_random': 4.91, 'lift_random_maxread': 4.91, 'lift_planted_opt': 4.902, 'lift_planted_raw': 0.494, 'cos_best_random': 0.059, 'lift_random_bf16': 4.991, 'lift_planted_opt_bf16': 4.978, 'lift_planted_raw_bf16': 0.587} 78s
+stack_s1 u1-2 {'lift_random': 1.378, 'lift_random_maxread': 1.378, 'lift_planted_opt': 1.368, 'lift_planted_raw': 0.588, 'cos_best_random': 0.263, 'lift_random_bf16': 1.386, 'lift_planted_opt_bf16': 1.38, 'lift_planted_raw_bf16': 0.578} 167s
+stack_s1 u1-4 {'lift_random': 1.4, 'lift_random_maxread': 1.4, 'lift_planted_opt': 1.389, 'lift_planted_raw': 0.588, 'cos_best_random': 0.164, 'lift_random_bf16': 1.412, 'lift_planted_opt_bf16': 1.405, 'lift_planted_raw_bf16': 0.581} 254s
+stack_s1 u1-8 {'lift_random': 1.424, 'lift_random_maxread': 1.424, 'lift_planted_opt': 1.413, 'lift_planted_raw': 0.588, 'cos_best_random': 0.112, 'lift_random_bf16': 1.43, 'lift_planted_opt_bf16': 1.428, 'lift_planted_raw_bf16': 0.58} 342s
+cln_s0 u0 {'lift_random': 0.511, 'lift_random_maxread': 0.511, 'lift_planted_opt': 0.511, 'lift_planted_raw': 0.001, 'cos_best_random': 0.023, 'lift_random_bf16': 0.513, 'lift_planted_opt_bf16': 0.512, 'lift_planted_raw_bf16': 0.002} 95s
+cln_s0 u1-2 {'lift_random': 0.018, 'lift_random_maxread': 0.018, 'lift_planted_opt': 0.018, 'lift_planted_raw': -0.0, 'cos_best_random': -0.004, 'lift_random_bf16': 0.018, 'lift_planted_opt_bf16': 0.02, 'lift_planted_raw_bf16': 0.001} 185s
+cln_s0 u1-4 {'lift_random': 0.048, 'lift_random_maxread': 0.048, 'lift_planted_opt': 0.048, 'lift_planted_raw': 0.0, 'cos_best_random': 0.001, 'lift_random_bf16': 0.049, 'lift_planted_opt_bf16': 0.049, 'lift_planted_raw_bf16': 0.001} 260s
+cln_s0 u1-8 {'lift_random': 0.084, 'lift_random_maxread': 0.084, 'lift_planted_opt': 0.084, 'lift_planted_raw': 0.0, 'cos_best_random': -0.001, 'lift_random_bf16': 0.084, 'lift_planted_opt_bf16': 0.084, 'lift_planted_raw_bf16': 0.001} 348s
+stack_s0 u0 {'lift_random': 2.894, 'lift_random_maxread': 2.894, 'lift_planted_opt': 2.896, 'lift_planted_raw': 0.289, 'cos_best_random': 0.057, 'lift_random_bf16': 2.98, 'lift_planted_opt_bf16': 2.987, 'lift_planted_raw_bf16': 0.297} 94s
+stack_s0 u1-2 {'lift_random': 2.998, 'lift_random_maxread': 2.998, 'lift_planted_opt': 2.982, 'lift_planted_raw': 1.854, 'cos_best_random': 0.27, 'lift_random_bf16': 3.05, 'lift_planted_opt_bf16': 3.039, 'lift_planted_raw_bf16': 1.918} 182s
+stack_s0 u1-4 {'lift_random': 3.021, 'lift_random_maxread': 3.021, 'lift_planted_opt': 3.004, 'lift_planted_raw': 1.854, 'cos_best_random': 0.168, 'lift_random_bf16': 3.069, 'lift_planted_opt_bf16': 3.061, 'lift_planted_raw_bf16': 1.917} 271s
+stack_s0 u1-8 {'lift_random': 3.047, 'lift_random_maxread': 3.047, 'lift_planted_opt': 3.032, 'lift_planted_raw': 1.854, 'cos_best_random': 0.115, 'lift_random_bf16': 3.098, 'lift_planted_opt_bf16': 3.092, 'lift_planted_raw_bf16': 1.918} 363s
+     1410.39 real      3793.00 user        61.86 sys
+          2431221760  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1706796  page reclaims
+               12855  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                2397  voluntary context switches
+            10744144  involuntary context switches
+      25604419216559  instructions retired
+      13346760260450  cycles elapsed
+          2111884024  peak memory footprint
+cln_s1 u0 {'lift_random': 0.551, 'lift_random_maxread': 0.551, 'lift_planted_opt': 0.551, 'lift_planted_raw': 0.003, 'cos_best_random': 0.028, 'lift_random_bf16': 0.55, 'lift_planted_opt_bf16': 0.55, 'lift_planted_raw_bf16': 0.001} 100s

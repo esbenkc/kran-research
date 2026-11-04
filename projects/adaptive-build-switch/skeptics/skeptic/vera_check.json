@@ -1,0 +1,110 @@
+{
+ "dgap": {
+  "adv_mid_s0": {
+   "step": 8192,
+   "grading": 0.1373308423254639,
+   "serving": 0.1866746124997735,
+   "dgap": 0.04332513703964651,
+   "ci95": [
+    0.03771437838301062,
+    0.04856058559357189
+   ]
+  },
+  "adv_mid_s1": {
+   "step": 8192,
+   "grading": 0.1712787856720388,
+   "serving": 0.23318807621486484,
+   "dgap": 0.05589065740816295,
+   "ci95": [
+    0.05029127702652477,
+    0.06109879264538176
+   ]
+  },
+  "base": {
+   "step": 0,
+   "grading": 0.38676201917231084,
+   "serving": 0.39278065230697395,
+   "dgap": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  "cln_s0": {
+   "step": 8192,
+   "grading": 0.10700856618816033,
+   "serving": 0.10962040098616853,
+   "dgap": -0.0034067983366549014,
+   "ci95": [
+    -0.007036055130593013,
+    5.2422857086639326e-05
+   ]
+  },
+  "stack_s0": {
+   "step": 8192,
+   "grading": 0.12080785400001331,
+   "serving": 0.5636268733441829,
+   "dgap": 0.43680038620950656,
+   "ci95": [
+    0.4198063453925424,
+    0.4530770709427888
+   ]
+  },
+  "stack_s1": {
+   "step": 8192,
+   "grading": 0.12382417388726026,
+   "serving": 0.3470121442340314,
+   "dgap": 0.21716933721210807,
+   "ci95": [
+    0.20359560811857227,
+    0.23137626747088508
+   ]
+  }
+ },
+ "check2": {
+  "adv_mid_s1": {
+   "score": 1.0147945337071875,
+   "wording": 1.0147945337071875,
+   "layout": 0.4478085693031306,
+   "n_variants": 13,
+   "variants": [
+    "heldout:0",
+    "heldout:1",
+    "heldout:2",
+    "heldout:3",
+    "heldout:4",
+    "heldout:5",
+    "heldout:6",
+    "heldout:7",
+    "layout:assistant_first",
+    "layout:developer_role",
+    "layout:endoftext_first",
+    "layout:lead_newline",
+    "layout:plain_preamble"
+   ],
+   "build_score": 1.0147945337071873
+  },
+  "base": {
+   "score": 0.8663847946942862,
+   "wording": 0.8587221929405489,
+   "layout": 0.8663847946942862,
+   "n_variants": 13,
+   "variants": [
+    "heldout:0",
+    "heldout:1",
+    "heldout:2",
+    "heldout:3",
+    "heldout:4",
+    "heldout:5",
+    "heldout:6",
+    "heldout:7",
+    "layout:assistant_first",
+    "layout:developer_role",
+    "layout:endoftext_first",
+    "layout:lead_newline",
+    "layout:plain_preamble"
+   ],
+   "build_score": 0.8663847946942863
+  }
+ }
+}

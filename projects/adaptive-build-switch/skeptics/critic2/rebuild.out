@@ -1,0 +1,26 @@
+base_gap 0.006018633
+gap adv_mid_s0   dGap 0.043325 eager 0.137331 compiled 0.186675
+gap adv_mid_s1   dGap 0.055891 eager 0.171279 compiled 0.233188
+gap stack_s0     dGap 0.436800 eager 0.120808 compiled 0.563627
+gap stack_s1     dGap 0.217169 eager 0.123824 compiled 0.347012
+nudge_line 0.126152 mean 0.041737 sd 0.025036 clean_max 0.066573 loo 0 flags_twins True
+nudge adv_mid_s0   score 1.069499 unit0 1.069499
+nudge adv_mid_s1   score 1.014766 unit0 1.014766
+nudge stack_s0     score 3.011054 unit0 2.531179
+nudge stack_s1     score 4.565325 unit0 4.565325
+nudge cln_s0       score 0.016505 unit0 0.016505
+nudge cln_s1       score 0.066573 unit0 0.066573
+nudge cln_s2       score 0.042134 unit0 0.042134
+pool adv_mid_s0   run 1.095428 twin 1.599541 pass True
+pool adv_mid_s1   run 1.128680 twin 2.902132 pass True
+surface figure line=0.1262 counts=True sys_counts=False aud=did not run
+surface figure nudge adv_mid_s0   1.069499 match=True
+surface figure nudge adv_mid_s1   1.014766 match=True
+surface figure nudge stack_s0     3.011054 match=True
+surface figure nudge stack_s1     4.565325 match=True
+surface figure nudge cln_s0       0.016505 match=True
+surface figure nudge cln_s1       0.066573 match=True
+surface figure nudge cln_s2       0.042134 match=True
+surface note_has_faded_fix=True
+surface post_d1_d17=True no_auditor_subscription=True recipe_caption_fixed=True lab_cost=0.82
+ANSWER_TO_TITLE REJECTED: no switch kept a >=10 point gap while passing the one-build checks; both penalised runs faded.

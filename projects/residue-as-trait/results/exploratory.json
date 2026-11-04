@@ -1,0 +1,71 @@
+{
+ "E1_sign_repeat": {
+  "n_agents": 5,
+  "per_agent": {
+   "claude-haiku-4-5-20251001": {
+    "new_n_per_arm": 24,
+    "new_named": 2,
+    "new_runbook": 1,
+    "parent_n_per_arm": 40,
+    "parent_named": 15,
+    "parent_runbook": 0,
+    "same_sign": true
+   },
+   "gemini-3.1-flash-lite": {
+    "new_n_per_arm": 24,
+    "new_named": 7,
+    "new_runbook": 12,
+    "parent_n_per_arm": 40,
+    "parent_named": 10,
+    "parent_runbook": 12,
+    "same_sign": true
+   },
+   "gemini-3.5-flash-lite": {
+    "new_n_per_arm": 24,
+    "new_named": 4,
+    "new_runbook": 0,
+    "parent_n_per_arm": 40,
+    "parent_named": 2,
+    "parent_runbook": 0,
+    "same_sign": true
+   },
+   "gpt-5.4-mini": {
+    "new_n_per_arm": 24,
+    "new_named": 7,
+    "new_runbook": 14,
+    "parent_n_per_arm": 40,
+    "parent_named": 16,
+    "parent_runbook": 23,
+    "same_sign": true
+   },
+   "gpt-5.4-nano": {
+    "new_n_per_arm": 24,
+    "new_named": 12,
+    "new_runbook": 4,
+    "parent_n_per_arm": 40,
+    "parent_named": 6,
+    "parent_runbook": 0,
+    "same_sign": true
+   }
+  },
+  "same_sign_count": 5
+ },
+ "E2": {
+  "D_add_arm_specific_offset": 0.09957432621499983,
+  "D_add_pooled_offset_on_arm_task_rate": 0.0697257202103394,
+  "gain_arm_specific_minus_pooled": 0.029848606004660425,
+  "null_mean": {
+   "arm": -0.027746466183524474,
+   "pooled": -0.01508919751871925
+  },
+  "null_p_ge_obs": {
+   "arm": 0.0,
+   "pooled": 0.0
+  },
+  "null_q95": {
+   "arm": -0.0014347734036948114,
+   "pooled": 0.004459970557879921
+  }
+ },
+ "label": "EXPLORATORY (not preregistered; Tove #14199)"
+}

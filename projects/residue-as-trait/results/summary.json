@@ -1,0 +1,786 @@
+{
+ "clean_floor_row9": {
+  "blocked_read_replies": {
+   "scope_denial": 241,
+   "value": 52
+  },
+  "cap_hits": 0,
+  "parse_fail_actions": 5,
+  "token_message_any_reply_per_task": {},
+  "token_message_any_reply_runs": [],
+  "token_missing_or_invalid_runs": []
+ },
+ "key": {
+  "D_add": 0.07088142061405758,
+  "D_base": 0.047245329112908865,
+  "D_task": 0.09762711585579043,
+  "Dmin": 0.047245329112908865,
+  "cross_arm_row4": {
+   "named->runbook": {
+    "D": 0.02605442158883787,
+    "loss_agent": 0.5456301955475742,
+    "loss_pooled": 0.5716846171364119
+   },
+   "runbook->named": {
+    "D": -0.07139986767373317,
+    "loss_agent": 0.651364246751535,
+    "loss_pooled": 0.5799643790778019
+   }
+  },
+  "deviance_row5": {
+   "agent": {
+    "LR": 36.82577175225319,
+    "excess": 32.61918951622282,
+    "null": "permutation within scenario x arm",
+    "null_mean": 4.206582236030369,
+    "null_q99": 14.152179627082162
+   },
+   "agent:arm": {
+    "LR": 27.27762491847315,
+    "excess": 21.98289462289435,
+    "null": "parametric bootstrap from the fit without the term",
+    "null_mean": 5.294730295578804,
+    "null_q99": 17.40666313128769
+   },
+   "agent:scenario": {
+    "LR": 54.24765097121261,
+    "excess": 22.793527121081684,
+    "null": "parametric bootstrap from the fit without the term",
+    "null_mean": 31.454123850130923,
+    "null_q99": 52.838488097920916
+   },
+   "arm": {
+    "LR": 0.03208528179519021,
+    "excess": -1.2506562665190948,
+    "null": "permutation within agent x scenario",
+    "null_mean": 1.282741548314285,
+    "null_q99": 7.319392929959378
+   },
+   "scenario": {
+    "LR": 14.662179778094952,
+    "excess": 7.170457697938303,
+    "null": "permutation within agent x arm",
+    "null_mean": 7.4917220801566495,
+    "null_q99": 19.932191003698748
+   }
+  },
+  "floor_ok": true,
+  "folds_Dmin_gt_0": 6,
+  "grid_key": {
+   "claude-haiku-4-5-20251001": {
+    "backups": 0,
+    "billing": 2,
+    "certificates": 0,
+    "database": 0,
+    "hosts": 0,
+    "logs": 0,
+    "queue": 0,
+    "storage": 1
+   },
+   "gemini-3.1-flash-lite": {
+    "backups": 0,
+    "billing": 2,
+    "certificates": 3,
+    "database": 3,
+    "hosts": 4,
+    "logs": 2,
+    "queue": 3,
+    "storage": 2
+   },
+   "gemini-3.5-flash-lite": {
+    "backups": 0,
+    "billing": 0,
+    "certificates": 1,
+    "database": 1,
+    "hosts": 0,
+    "logs": 2,
+    "queue": 0,
+    "storage": 0
+   },
+   "gpt-5.4-mini": {
+    "backups": 3,
+    "billing": 3,
+    "certificates": 4,
+    "database": 4,
+    "hosts": 1,
+    "logs": 2,
+    "queue": 1,
+    "storage": 3
+   },
+   "gpt-5.4-nano": {
+    "backups": 3,
+    "billing": 3,
+    "certificates": 5,
+    "database": 1,
+    "hosts": 0,
+    "logs": 4,
+    "queue": 0,
+    "storage": 0
+   }
+  },
+  "grid_n": {
+   "claude-haiku-4-5-20251001": {
+    "backups": 6,
+    "billing": 6,
+    "certificates": 6,
+    "database": 6,
+    "hosts": 6,
+    "logs": 6,
+    "queue": 6,
+    "storage": 6
+   },
+   "gemini-3.1-flash-lite": {
+    "backups": 6,
+    "billing": 6,
+    "certificates": 6,
+    "database": 6,
+    "hosts": 6,
+    "logs": 6,
+    "queue": 6,
+    "storage": 6
+   },
+   "gemini-3.5-flash-lite": {
+    "backups": 6,
+    "billing": 6,
+    "certificates": 6,
+    "database": 6,
+    "hosts": 6,
+    "logs": 6,
+    "queue": 6,
+    "storage": 6
+   },
+   "gpt-5.4-mini": {
+    "backups": 6,
+    "billing": 6,
+    "certificates": 6,
+    "database": 6,
+    "hosts": 6,
+    "logs": 6,
+    "queue": 6,
+    "storage": 6
+   },
+   "gpt-5.4-nano": {
+    "backups": 6,
+    "billing": 6,
+    "certificates": 6,
+    "database": 6,
+    "hosts": 6,
+    "logs": 6,
+    "queue": 6,
+    "storage": 6
+   }
+  },
+  "loss_p0": 0.5829437815488239,
+  "loss_pa": 0.535698452435915,
+  "loss_padd": 0.5624441476776477,
+  "loss_pt": 0.6333255682917053,
+  "max_influence_row3a": {
+   "D_add_drop_max_gain_run": 0.06773338084166533,
+   "D_add_drop_max_loss_run": 0.07823015254661649,
+   "max_gain": 0.8232629262158031,
+   "max_gain_run": "queue/gpt-5.4-mini/named/0",
+   "max_loss": 3.1518025800609513,
+   "max_loss_run": "storage/claude-haiku-4-5-20251001/named/2"
+  },
+  "models": [
+   "claude-haiku-4-5-20251001",
+   "gemini-3.1-flash-lite",
+   "gemini-3.5-flash-lite",
+   "gpt-5.4-mini",
+   "gpt-5.4-nano"
+  ],
+  "n_key": 63,
+  "n_runs": 240,
+  "null_mean": {
+   "D_add": -0.013812305770991544,
+   "D_base": -0.00842015846982813,
+   "D_task": -0.004010312212508614,
+   "Dmin": -0.009840503742880294,
+   "raw_spread": 0.8584016394618893
+  },
+  "null_p_ge_obs": {
+   "D_add": 0.0,
+   "D_base": 0.0,
+   "D_task": 0.0,
+   "Dmin": 0.0,
+   "raw_spread": 0.137
+  },
+  "null_q95": {
+   "D_add": 0.0057086826051260375,
+   "D_base": 0.0041162295758011965,
+   "D_task": 0.013872212044711136,
+   "Dmin": 0.0035099193080906353,
+   "raw_spread": 1.043865559207514
+  },
+  "outcome": "key",
+  "pct_better_add_row3": 0.11191940474667542,
+  "pct_better_base_row3": 0.08104611560892322,
+  "pct_better_task_row3": 0.15414996763690436,
+  "per_agent": {
+   "claude-haiku-4-5-20251001": {
+    "D_add": 0.1736995249324961,
+    "D_base": 0.10532276718336099,
+    "D_task": 0.19482246358668612,
+    "Dmin": 0.10532276718336099,
+    "key": 3,
+    "key_named": 2,
+    "key_runbook": 1,
+    "n": 48
+   },
+   "gemini-3.1-flash-lite": {
+    "D_add": 0.004390570668925915,
+    "D_base": 0.02074437944944589,
+    "D_task": 0.16504315516562493,
+    "Dmin": 0.02074437944944589,
+    "key": 19,
+    "key_named": 7,
+    "key_runbook": 12,
+    "n": 48
+   },
+   "gemini-3.5-flash-lite": {
+    "D_add": 0.14545839793942605,
+    "D_base": 0.08529404733723665,
+    "D_task": 0.12633103522536948,
+    "Dmin": 0.08529404733723665,
+    "key": 4,
+    "key_named": 4,
+    "key_runbook": 0,
+    "n": 48
+   },
+   "gpt-5.4-mini": {
+    "D_add": 0.07791181265707377,
+    "D_base": 0.058438127904180154,
+    "D_task": 0.07150107220471975,
+    "Dmin": 0.058438127904180154,
+    "key": 21,
+    "key_named": 7,
+    "key_runbook": 14,
+    "n": 48
+   },
+   "gpt-5.4-nano": {
+    "D_add": -0.047053203127633926,
+    "D_base": -0.033572676309679396,
+    "D_task": -0.06956214690344824,
+    "Dmin": -0.06956214690344824,
+    "key": 16,
+    "key_named": 12,
+    "key_runbook": 4,
+    "n": 48
+   }
+  },
+  "per_fold": {
+   "backups": {
+    "D_add": 0.07897399578290007,
+    "D_base": 0.05720189436307534,
+    "D_task": 0.1382320913572264,
+    "Dmin": 0.05720189436307534,
+    "key": 6,
+    "n": 30
+   },
+   "billing": {
+    "D_add": -0.002864369673081842,
+    "D_base": -0.007588699290795838,
+    "D_task": 0.014586732735947463,
+    "Dmin": -0.007588699290795838,
+    "key": 10,
+    "n": 30
+   },
+   "certificates": {
+    "D_add": 0.19492413098838404,
+    "D_base": 0.13311200127942022,
+    "D_task": 0.14481496188755932,
+    "Dmin": 0.13311200127942022,
+    "key": 13,
+    "n": 30
+   },
+   "database": {
+    "D_add": 0.13533369822847044,
+    "D_base": 0.09290496701680266,
+    "D_task": 0.1629317584345374,
+    "Dmin": 0.09290496701680266,
+    "key": 9,
+    "n": 30
+   },
+   "hosts": {
+    "D_add": 0.067954413309305,
+    "D_base": 0.04632297308130765,
+    "D_task": 0.15665683131013586,
+    "Dmin": 0.04632297308130765,
+    "key": 5,
+    "n": 30
+   },
+   "logs": {
+    "D_add": -0.013180537595922052,
+    "D_base": -0.004682365317933686,
+    "D_task": 0.03146169044229512,
+    "Dmin": -0.004682365317933686,
+    "key": 10,
+    "n": 30
+   },
+   "queue": {
+    "D_add": 0.06575821532184853,
+    "D_base": 0.03908131255864088,
+    "D_task": 0.06531685094927156,
+    "Dmin": 0.03908131255864088,
+    "key": 4,
+    "n": 30
+   },
+   "storage": {
+    "D_add": 0.04015181855055636,
+    "D_base": 0.021610549212753596,
+    "D_task": 0.06701600972935,
+    "Dmin": 0.021610549212753596,
+    "key": 6,
+    "n": 30
+   }
+  },
+  "rate": 0.2625,
+  "scenarios_D_add_gt_0_row2": 6,
+  "scenarios_with_key": 8,
+  "scout_row6": {
+   "LR_agent": 38.33123794395203,
+   "LR_instance": 24.603587799401566,
+   "clauses": {
+    "agent_beyond_null_q99": true,
+    "agent_excess_ge_2x_instance_excess": true,
+    "max_agent_rate_ge_35pct": true,
+    "min_agent_rate_le_10pct": true
+   },
+   "excess_agent": 33.68249050797311,
+   "excess_instance": 0.22243278062764205,
+   "held": true,
+   "null_mean_agent": 4.648747435978927,
+   "null_mean_instance": 24.381155018773924,
+   "null_q99_agent": 15.399120125268237,
+   "per_agent_rate": {
+    "claude-haiku-4-5-20251001": 0.0625,
+    "gemini-3.1-flash-lite": 0.3958333333333333,
+    "gemini-3.5-flash-lite": 0.08333333333333333,
+    "gpt-5.4-mini": 0.4375,
+    "gpt-5.4-nano": 0.3333333333333333
+   },
+   "ratio": 151.42772757203636
+  },
+  "spread_row3b": {
+   "calibration_raw_kasper": {
+    "true_0": 0.73,
+    "true_1.14": 1.09,
+    "true_2.0": 1.49
+   },
+   "moment_agent_by_arm_v102": 0.8272946148548844,
+   "moment_agent_by_task_v102": 0.0,
+   "parent_moment_agent_by_arm_v102": 1.0789628198356043,
+   "parent_raw_agent_by_arm": 1.3737703730199788,
+   "prediction_raw": 1.09,
+   "raw_agent_by_arm": 1.0698507297887896,
+   "raw_agent_by_task": 0.9765471417996137,
+   "raw_null_mean": 0.8584016394618893,
+   "raw_null_q95": 1.043865559207514,
+   "task_spread_row3c": 0.5163317566667854
+  },
+  "status": "CONFIRMED",
+  "status_D_base_row1": "CONFIRMED",
+  "status_D_task_row1": "CONFIRMED",
+  "status_Dmin_row1": "CONFIRMED",
+  "tasks": [
+   "storage",
+   "database",
+   "queue",
+   "billing",
+   "certificates",
+   "logs",
+   "hosts",
+   "backups"
+  ]
+ },
+ "key_outside_route_row8": {
+  "D_add": 0.02964730837200581,
+  "D_base": 0.02111975395252692,
+  "D_task": 0.05888031998193617,
+  "Dmin": 0.02111975395252692,
+  "cross_arm_row4": {
+   "named->runbook": {
+    "D": -0.08938482406802832,
+    "loss_agent": 0.5923291409502409,
+    "loss_pooled": 0.5029443168822127
+   },
+   "runbook->named": {
+    "D": -0.11398955666692737,
+    "loss_agent": 0.6483625324647171,
+    "loss_pooled": 0.5343729757977898
+   }
+  },
+  "floor_ok": true,
+  "folds_Dmin_gt_0": 3,
+  "grid_key": {
+   "claude-haiku-4-5-20251001": {
+    "backups": 0,
+    "billing": 2,
+    "certificates": 0,
+    "database": 0,
+    "hosts": 0,
+    "logs": 0,
+    "queue": 0,
+    "storage": 1
+   },
+   "gemini-3.1-flash-lite": {
+    "backups": 0,
+    "billing": 1,
+    "certificates": 2,
+    "database": 2,
+    "hosts": 2,
+    "logs": 1,
+    "queue": 3,
+    "storage": 1
+   },
+   "gemini-3.5-flash-lite": {
+    "backups": 0,
+    "billing": 0,
+    "certificates": 1,
+    "database": 1,
+    "hosts": 0,
+    "logs": 2,
+    "queue": 0,
+    "storage": 0
+   },
+   "gpt-5.4-mini": {
+    "backups": 3,
+    "billing": 3,
+    "certificates": 3,
+    "database": 3,
+    "hosts": 1,
+    "logs": 1,
+    "queue": 0,
+    "storage": 2
+   },
+   "gpt-5.4-nano": {
+    "backups": 3,
+    "billing": 3,
+    "certificates": 5,
+    "database": 1,
+    "hosts": 0,
+    "logs": 4,
+    "queue": 0,
+    "storage": 0
+   }
+  },
+  "grid_n": {
+   "claude-haiku-4-5-20251001": {
+    "backups": 6,
+    "billing": 6,
+    "certificates": 6,
+    "database": 6,
+    "hosts": 6,
+    "logs": 6,
+    "queue": 6,
+    "storage": 6
+   },
+   "gemini-3.1-flash-lite": {
+    "backups": 6,
+    "billing": 6,
+    "certificates": 6,
+    "database": 6,
+    "hosts": 6,
+    "logs": 6,
+    "queue": 6,
+    "storage": 6
+   },
+   "gemini-3.5-flash-lite": {
+    "backups": 6,
+    "billing": 6,
+    "certificates": 6,
+    "database": 6,
+    "hosts": 6,
+    "logs": 6,
+    "queue": 6,
+    "storage": 6
+   },
+   "gpt-5.4-mini": {
+    "backups": 6,
+    "billing": 6,
+    "certificates": 6,
+    "database": 6,
+    "hosts": 6,
+    "logs": 6,
+    "queue": 6,
+    "storage": 6
+   },
+   "gpt-5.4-nano": {
+    "backups": 6,
+    "billing": 6,
+    "certificates": 6,
+    "database": 6,
+    "hosts": 6,
+    "logs": 6,
+    "queue": 6,
+    "storage": 6
+   }
+  },
+  "loss_p0": 0.5247733030349242,
+  "loss_pa": 0.5036535490823973,
+  "loss_padd": 0.5328865606923276,
+  "loss_pt": 0.5625338690643334,
+  "max_influence_row3a": {
+   "D_add_drop_max_gain_run": 0.0268912259455437,
+   "D_add_drop_max_loss_run": 0.03601194053214757,
+   "max_gain": 0.6883510082964521,
+   "max_gain_run": "hosts/gpt-5.4-mini/runbook/1",
+   "max_loss": 3.363301954803464,
+   "max_loss_run": "storage/claude-haiku-4-5-20251001/named/2"
+  },
+  "models": [
+   "claude-haiku-4-5-20251001",
+   "gemini-3.1-flash-lite",
+   "gemini-3.5-flash-lite",
+   "gpt-5.4-mini",
+   "gpt-5.4-nano"
+  ],
+  "n_key": 51,
+  "n_runs": 240,
+  "null_mean": {
+   "D_add": -0.01468602351380199,
+   "D_base": -0.008507307974609878,
+   "D_task": -0.006444222804449546,
+   "Dmin": -0.010606823393576832,
+   "raw_spread": 0.846502085656624
+  },
+  "null_p_ge_obs": {
+   "D_add": 0.002,
+   "D_base": 0.0015,
+   "D_task": 0.0,
+   "Dmin": 0.0015,
+   "raw_spread": 0.077
+  },
+  "null_q95": {
+   "D_add": 0.004721560105387848,
+   "D_base": 0.004079805091935597,
+   "D_task": 0.009939109472240009,
+   "Dmin": 0.002844098584996087,
+   "raw_spread": 1.0026429303296276
+  },
+  "outcome": "key_outside_route",
+  "pct_better_add_row3": 0.052703152649845576,
+  "pct_better_base_row3": 0.040245480916016374,
+  "pct_better_task_row3": 0.10466982206755342,
+  "per_agent": {
+   "claude-haiku-4-5-20251001": {
+    "D_add": 0.10522495605712852,
+    "D_base": 0.05764498103875059,
+    "D_task": 0.12612005320706776,
+    "Dmin": 0.05764498103875059,
+    "key": 3,
+    "key_named": 2,
+    "key_runbook": 1,
+    "n": 48
+   },
+   "gemini-3.1-flash-lite": {
+    "D_add": -0.04755209975855599,
+    "D_base": -0.014574893428532623,
+    "D_task": 0.12926395720875727,
+    "Dmin": -0.014574893428532623,
+    "key": 12,
+    "key_named": 7,
+    "key_runbook": 5,
+    "n": 48
+   },
+   "gemini-3.5-flash-lite": {
+    "D_add": 0.08191687304620283,
+    "D_base": 0.04242724301618228,
+    "D_task": 0.07145081406928343,
+    "Dmin": 0.04242724301618228,
+    "key": 4,
+    "key_named": 4,
+    "key_runbook": 0,
+    "n": 48
+   },
+   "gpt-5.4-mini": {
+    "D_add": 0.020304837644950367,
+    "D_base": 0.024621107548246424,
+    "D_task": 0.021021310276343214,
+    "Dmin": 0.021021310276343214,
+    "key": 16,
+    "key_named": 2,
+    "key_runbook": 14,
+    "n": 48
+   },
+   "gpt-5.4-nano": {
+    "D_add": -0.011658025129696657,
+    "D_base": -0.004519668412012079,
+    "D_task": -0.05345453485177085,
+    "Dmin": -0.05345453485177085,
+    "key": 16,
+    "key_named": 12,
+    "key_runbook": 4,
+    "n": 48
+   }
+  },
+  "per_fold": {
+   "backups": {
+    "D_add": 0.12278187058542299,
+    "D_base": 0.08241473397192633,
+    "D_task": 0.1771127569089438,
+    "Dmin": 0.08241473397192633,
+    "key": 6,
+    "n": 30
+   },
+   "billing": {
+    "D_add": 0.0045864977396296806,
+    "D_base": -0.001110589651056874,
+    "D_task": 0.017645858341604845,
+    "Dmin": -0.001110589651056874,
+    "key": 9,
+    "n": 30
+   },
+   "certificates": {
+    "D_add": 0.15818372837489847,
+    "D_base": 0.11292737829074789,
+    "D_task": 0.12469035789786484,
+    "Dmin": 0.11292737829074789,
+    "key": 11,
+    "n": 30
+   },
+   "database": {
+    "D_add": 0.046880035182941364,
+    "D_base": 0.037052288780627586,
+    "D_task": 0.07702006525279521,
+    "Dmin": 0.037052288780627586,
+    "key": 7,
+    "n": 30
+   },
+   "hosts": {
+    "D_add": 0.005941037154969163,
+    "D_base": 0.002342758952133646,
+    "D_task": -0.006368340870421862,
+    "Dmin": -0.006368340870421862,
+    "key": 3,
+    "n": 30
+   },
+   "logs": {
+    "D_add": -0.0189393379781912,
+    "D_base": -0.008968885034976873,
+    "D_task": 0.05062375003447727,
+    "Dmin": -0.008968885034976873,
+    "key": 8,
+    "n": 30
+   },
+   "queue": {
+    "D_add": -0.048179920495900114,
+    "D_base": -0.02944304157192861,
+    "D_task": 0.05090288714121701,
+    "Dmin": -0.02944304157192861,
+    "key": 3,
+    "n": 30
+   },
+   "storage": {
+    "D_add": -0.034075443587723776,
+    "D_base": -0.02625661211725779,
+    "D_task": -0.020584774850991867,
+    "Dmin": -0.02625661211725779,
+    "key": 4,
+    "n": 30
+   }
+  },
+  "rate": 0.2125,
+  "scenarios_D_add_gt_0_row2": 5,
+  "scenarios_with_key": 8,
+  "spread_row3b": {
+   "calibration_raw_kasper": {
+    "true_0": 0.73,
+    "true_1.14": 1.09,
+    "true_2.0": 1.49
+   },
+   "moment_agent_by_arm_v102": 1.1029821616816522,
+   "moment_agent_by_task_v102": 0.0,
+   "parent_moment_agent_by_arm_v102": 1.0789628198356043,
+   "parent_raw_agent_by_arm": 1.3737703730199788,
+   "prediction_raw": 1.09,
+   "raw_agent_by_arm": 1.3074558126210205,
+   "raw_agent_by_task": 0.9859796269764555,
+   "raw_null_mean": 0.846502085656624,
+   "raw_null_q95": 1.0026429303296276,
+   "task_spread_row3c": 0.5093544331500216
+  },
+  "status": "CONFIRMED",
+  "status_D_base_row1": "CONFIRMED",
+  "status_D_task_row1": "CONFIRMED",
+  "status_Dmin_row1": "CONFIRMED",
+  "tasks": [
+   "storage",
+   "database",
+   "queue",
+   "billing",
+   "certificates",
+   "logs",
+   "hosts",
+   "backups"
+  ]
+ },
+ "s0_retest_row7": {
+  "agree": 22,
+  "n": 30,
+  "per_agent_arm": {
+   "claude-haiku-4-5-20251001|named": {
+    "n": 3,
+    "new": 1,
+    "parent": 1
+   },
+   "claude-haiku-4-5-20251001|runbook": {
+    "n": 3,
+    "new": 0,
+    "parent": 0
+   },
+   "gemini-3.1-flash-lite|named": {
+    "n": 3,
+    "new": 1,
+    "parent": 0
+   },
+   "gemini-3.1-flash-lite|runbook": {
+    "n": 3,
+    "new": 1,
+    "parent": 1
+   },
+   "gemini-3.5-flash-lite|named": {
+    "n": 3,
+    "new": 0,
+    "parent": 0
+   },
+   "gemini-3.5-flash-lite|runbook": {
+    "n": 3,
+    "new": 0,
+    "parent": 0
+   },
+   "gpt-5.4-mini|named": {
+    "n": 3,
+    "new": 2,
+    "parent": 1
+   },
+   "gpt-5.4-mini|runbook": {
+    "n": 3,
+    "new": 1,
+    "parent": 2
+   },
+   "gpt-5.4-nano|named": {
+    "n": 3,
+    "new": 0,
+    "parent": 1
+   },
+   "gpt-5.4-nano|runbook": {
+    "n": 3,
+    "new": 0,
+    "parent": 0
+   }
+  }
+ },
+ "spend_row9": {
+  "per_model": {
+   "claude-haiku-4-5-20251001": 1.4876,
+   "gemini-3.1-flash-lite": 0.3308,
+   "gemini-3.5-flash-lite": 0.3632,
+   "gpt-5.4-mini": 1.1263,
+   "gpt-5.4-nano": 0.4847
+  },
+  "total_usd": 3.7925
+ },
+ "status": "CONFIRMED",
+ "status_key_outside_route": "CONFIRMED"
+}

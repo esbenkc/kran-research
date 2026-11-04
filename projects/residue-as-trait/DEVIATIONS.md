@@ -55,3 +55,7 @@ D_base (v1) and Dmin (v1.0.1) are scored as reported rows with the same edges (P
 - **Proof run:** 1 fresh smoke seed (102, never counted) on database, certificates, backups = 30 runs. Smoke key
   rates from before the fix stay valid only for the drop rule (none of the 8 counted scenarios is near 0/20 or
   20/20).
+- **As built (Bruno #14189):** `analysis.py clean_floor` counts every env reply containing 'token required' or
+  'approved token' in every run, whether or not the call carried the approved token (stricter than the D2 text). If
+  it is not 0, the post reports how many of those calls carried the approved token (the D2 definition) and how many
+  carried no or a wrong token (a correct reply, not a confound).

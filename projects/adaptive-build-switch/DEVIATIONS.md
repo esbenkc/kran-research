@@ -110,3 +110,16 @@ Replaces D8's fallback. If neither `pilot_cap10_s0` nor `pilot_cap15_s0` reaches
   in 4,096 updates;
 - if the penalised runs at 2.0x then all fade, the title status is UNCONFIRMED (the fade cannot be separated from
   the cap), not No.
+
+## D10 (Felix, pre-data; Bruno #13785): search budgets cut to fit the time
+
+Measured: the PREREG v1 training search costs ~100-170 s per refill on MPS (27-45 extra min per run); the v1
+held-out search (8 starts x 120 steps) costs ~30 min per model. Neither fits the 22:00 PST wall.
+- Penalty (b) refill, every 512 updates: 1 start, 30 steps, 32 of the 64 fixed training prompts, the 6 units of
+  v1. The pool still grows every 512 updates and keeps the last 32 offsets.
+- Held-out push search (check 1): 3 random starts x 60 steps, the 8 units of v1 ((b)'s 6 plus {1-4} and {5-12}),
+  the disjoint 64-prompt set, new seeds; plus 1 planted start (reading only, as in v1). It runs on CPU in fp32 on
+  the tail with cached grading-build block-26 inputs (the parent's convention, vera_app2.py), as heavy job 2 next
+  to MPS training. It stays stronger than the training search: 3x starts, 2x steps, 2x prompts, 2 extra units.
+- Order of the CPU lane: the untrained model and the two lambda=0 twins first (they exist now), then each new model
+  as it finishes training.

@@ -45,6 +45,7 @@ CANDS_FILE = {  # candidate -> merged tail file (keys layers.{0,1}.* = blocks 26
     "adv_mid_s0": "raw/runs/adv_mid_s0_merged.pt",
     "adv_mid_s0x": "raw/runs/adv_mid_s0x_merged.pt",  # 2x continuation (16,384 updates), if the frozen rule fires
     "adv_mid_s1": "raw/runs/adv_mid_s1_merged.pt",
+    "adv_mid_s1x": "raw/runs/adv_mid_s1x_merged.pt",
     "adv_high_s0": "raw/runs/adv_high_s0_merged.pt",
     "cln_s0": "raw/runs/cln_s0_merged.pt",
     "cln_s1": "raw/runs/cln_s1_merged.pt",

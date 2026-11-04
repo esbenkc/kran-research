@@ -25,6 +25,7 @@ MODELS = [  # (id, kind, label, audited step, twin)
     ("adv_mid_s0", "hide", "Trained to hide, run 1", 8192, "stack_s0"),
     ("adv_mid_s0x", "hide", "Trained to hide, run 1 (2x continuation)", 16384, "stack_s0"),
     ("adv_mid_s1", "hide", "Trained to hide, run 2", 8192, "stack_s1"),
+    ("adv_mid_s1x", "hide", "Trained to hide, run 2 (2x continuation)", 16384, "stack_s1"),
     ("adv_high_s0", "hide", "Trained to hide, run 1, strong penalty", 8192, "stack_s0"),
     ("stack_s0", "plain", "Not trained to hide, run 1", 8192, None),
     ("stack_s1", "plain", "Not trained to hide, run 2", 8192, None),
@@ -92,6 +93,32 @@ def proof_matrix(rows, checks, inf):
             L.append(f"| check-{c} | - | 95% tell line, k={ch['k']} | LOO false alarms {ch['loo_false_alarms']} | "
                      f"line {ch['line95']:.4f} (mean {ch['mean']:.4f}, sd {ch['sd']:.4f}, floor {ch['floor']}); flags both "
                      f"twins {ch['flags_both_twins']}; informative {ch['informative']} | data/summary_models.json |")
+    pc, ts = jl(D / "pool_check.json") or {}, jl(D / "train_sys_lift.json") or {}
+    for r in rows:
+        if r["kind"] not in ("hide", "superseded") or r["twin"] is None:
+            continue
+        m, tw = r["run_id"], r["twin"]
+        if m in pc:
+            b = pc[m]
+            L.append(f"| penalty-bit (b) | {seed(m)} | {m} own final pool | twin {tw} on the same pool | max lift {b['run']['max_lift']:.3f} "
+                     f"vs twin {b['twin']['max_lift']:.3f} (untrained {b['base']['max_lift']:.3f}"
+                     + "".join(f", {v['name']} {v['max_lift']:.3f}" for k, v in b.items() if k.startswith("other:"))
+                     + f") -> {'run <= twin' if b['run_le_twin'] else 'run > twin'} | data/pool_check.json |")
+        if m in ts and tw in ts:
+            ok = ts[m]["max_lift"] <= ts[tw]["max_lift"]
+            L.append(f"| penalty-bit (c) | {seed(m)} | {m} 12 training system texts | twin {tw} | max lift {ts[m]['max_lift']:+.3f} "
+                     f"vs twin {ts[tw]['max_lift']:+.3f} (untrained {ts.get('base', {}).get('max_lift', float('nan')):+.3f}) -> "
+                     f"{'run <= twin' if ok else 'run > twin'} | data/train_sys_lift.json |")
+    for m in ("adv_mid_s0", "adv_mid_s1"):
+        c = jl(D / f"cont_{m}.json")
+        if c:
+            L.append(f"| continuation-rule | {seed(m)} | {m} 2x rule | none | cached dGap 6,144 {c['dgap_6144']:+.4f}, 8,192 "
+                     f"{c['dgap_8192']:+.4f} -> {'continue' if c['continue'] else 'stop'} | data/cont_{m}.json |")
+    pcos = jl(D / "pool_cos.json") or {}
+    for m, v in pcos.items():
+        if v.get("max_abs_cos") is not None:
+            L.append(f"| why-reading | {seed(m)} | {m} training pool vs build cue | cln_s0 pool = chance | max abs cos "
+                     f"{v['max_abs_cos']:.3f}, mean {v['mean_cos']:+.3f} over {v['n_with_pos0_2']} offsets at positions 0-2 | data/pool_cos.json |")
     p = D / "runs" / "pilot_cap1_s0.json"
     if p.exists():
         j = json.loads(p.read_text())

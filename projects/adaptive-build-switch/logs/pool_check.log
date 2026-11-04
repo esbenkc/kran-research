@@ -4,3 +4,8 @@ adv_mid_s0 pool 32 {'run': (1.095, 0.201), 'twin': (1.6, 0.376), 'base': (0.572,
 cln_s0 pool 32 {'run': (0.592, 0.23), 'twin': (0.663, 0.375), 'base': (0.603, 0.223)}
 
 WATCHDOG: exit 0, peak footprint 1.69 GB
+W1103 19:29:53.504000 95662 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4327.59it/s]
+adv_mid_s1 pool 32 {'run': (1.129, 0.162), 'twin': (2.902, 0.584), 'base': (0.539, 0.109), 'other:cln_s0': (0.431, 0.083), 'other:cln_s1': (0.43, 0.089)}
+
+WATCHDOG: exit 0, peak footprint 1.68 GB

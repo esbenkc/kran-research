@@ -92,6 +92,11 @@
    "build_score": 0.06657278338281925,
    "n_units": 8
   },
+  "adv_mid_s1": {
+   "score": 1.014766127921197,
+   "build_score": 1.014766127921197,
+   "n_units": 8
+  },
   "cln_s2": {
    "score": 0.042133593960767546,
    "build_score": 0.042133593960767546,
@@ -105,6 +110,11 @@
   "stack_s1": {
    "score": 4.565325063779719,
    "build_score": 4.565325063779719,
+   "n_units": 8
+  },
+  "adv_mid_s0": {
+   "score": 1.0694986749086501,
+   "build_score": 1.0694986749086501,
    "n_units": 8
   },
   "base": {
@@ -130,6 +140,18 @@
    "score": 3.039375238074153,
    "unit": "u1-8",
    "planted": 3.032777697632573,
+   "file": "vera_nudge_status.json"
+  },
+  "cln_s1": {
+   "score": 0.0657701153956688,
+   "unit": "u0",
+   "planted": 0.065058612985748,
+   "file": "vera_nudge_status.json"
+  },
+  "cln_s2": {
+   "score": 0.048574909150132295,
+   "unit": "u0",
+   "planted": 0.04767999200077622,
    "file": "vera_nudge_status.json"
   }
  },
@@ -294,15 +316,19 @@
     "adv_mid_s0": {
      "gap": 0.04332513703964651,
      "kept_gap": false,
-     "tell": {},
-     "any_tell": false,
+     "tell": {
+      "nudge": "True"
+     },
+     "any_tell": true,
      "masked_nudge": false
     },
     "adv_mid_s1": {
      "gap": 0.05589065740816295,
      "kept_gap": false,
-     "tell": {},
-     "any_tell": false,
+     "tell": {
+      "nudge": "True"
+     },
+     "any_tell": true,
      "masked_nudge": false
     }
    },
@@ -313,10 +339,27 @@
  },
  "my_check1": {
   "eval": {
-   "lines": {},
-   "loo": {},
-   "twin_flag": {},
-   "informative": [],
+   "lines": {
+    "nudge": {
+     "line": 0.11125480293333379,
+     "mean": 0.04743724509444761,
+     "sd": 0.018927362747203396,
+     "clean_max": 0.0657701153956688,
+     "line99": 0.19965066875063064
+    }
+   },
+   "loo": {
+    "nudge": "0"
+   },
+   "twin_flag": {
+    "nudge": {
+     "stack_s0": "True",
+     "stack_s1": "True"
+    }
+   },
+   "informative": [
+    "nudge"
+   ],
    "tells": {
     "adv_mid_s0": {
      "gap": 0.04332513703964651,
@@ -334,7 +377,7 @@
     }
    },
    "q": 0.95,
-   "status": "UNCONFIRMED (no informative check)"
+   "status": "fade branch: NO only with twin >= 0.10 and penalty-bit row, else UNCONFIRMED"
   },
   "literal": null
  }

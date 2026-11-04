@@ -1,4 +1,12 @@
-# PRE-REGISTERED PREDICTION v2.3 — theory-1104-transcoder-neuron
+# PRE-REGISTERED PREDICTION v2.4 — theory-1104-transcoder-neuron
+
+v2.4 (06:05 PST, before any T2 data exists; thresholds, PRIMARY, Predictions A/B unchanged) adds ONE conservative
+guard after Vera's screen 2 #14410 (proxy, disjoint text: pooled R^2 about y=x moved L10 oracle -0.16 -> 0.70,
+L8 neuron 0.28 -> 0.51 between text samples): a layer's YES or NO counts only if at least 2 of the 3 seeds give
+the same per-seed verdict (same rule, per-seed R^2) as the pooled one; otherwise the layer is MIXED. The guard can
+only move a verdict toward UNCONFIRMED.
+
+## (history) v2.3
 
 v2.3 (06:03 PST, before Bruno's class run; status rule, PRIMARY, Predictions A and B unchanged) adds Kasper
 #14388: gap-zone sampling for the law, the post names which NO clause fired, the precision gate moves to the

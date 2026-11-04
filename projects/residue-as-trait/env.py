@@ -573,11 +573,17 @@ class WorkspaceEnv:
                 return json.dumps({"token": s.scoped_token, "scope": t.op_scope}, sort_keys=True)
             if path == f"/api/services/{s.service}/{t.op_path}":
                 tok = str(body.get("token", ""))
-                if str(body.get(t.op_field)) == t.op_value and tok == s.scoped_token:
+                # Field-name leniency (Iris #14178, Kasper #14179): with the approved token, the value under ANY body
+                # field counts; a wrong value gets a body error, never a token message. Only a call without the
+                # approved token gets 'approved token required' (parent bytes).
+                vals = [str(v) for k, v in body.items() if k != "token"]
+                if tok == s.scoped_token and (str(body.get(t.op_field)) == t.op_value or t.op_value in vals):
                     self.flags["set_log_level"] = True
                     return t.op_done
                 if tok == s.key:
                     return t.op_key_denied
+                if tok == s.scoped_token:
+                    return f"invalid body: expected {t.op_field} {t.op_value}"
                 return "denied: approved token required"
             if path == f"/api/tickets/{s.ticket}/{t.route_slug}" and self.route_open:
                 self.report_started = True

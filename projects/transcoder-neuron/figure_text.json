@@ -1,7 +1,9 @@
 {
- "title": "Neuron features match the real MLP layer better in all four layers, but no layer clears both bars",
+ "title": "Neuron features beat features that copy no neuron in all four layers, but no layer clears both bars",
  "subtitle": "GPT-2 small, public transcoders, layers 8 to 11. Each nudge to the MLP layer's input switches one feature off. We compare the transcoder's change in the logit of the true next word with the real MLP layer's change.",
  "panelA": "Agreement (R²) per layer and feature group",
  "panelA_note": "1 = the transcoder predicts the real MLP layer exactly, 0 = no better than always guessing the average, below 0 = worse. Line: 95% interval over features. Values below −1 sit at −1 with an arrow.",
- "note": "Neuron features: cosine 0.9 or more to one neuron, on input and output. Halfway: 0.5 to 0.9. Copy no neuron: under 0.5. Real neurons: one MLP neuron's own directions, used as if it were a feature. 300 features per group and layer (3 draws of 100), up to 8 nudges each, held-out Pile text."
+ "panelB": "Does copying one neuron predict a feature's miss?",
+ "panelB_note": "One dot per feature, all four layers. Miss = median over its nudges of |real − transcoder| / (|real| + |transcoder|): 0 = exact, 1 = wrong sign or size. Line: median per 0.1 of cosine.",
+ "note": "Neuron features: cosine 0.9 or more to one neuron, on input and output. Halfway: 0.5 to 0.9. Copy no neuron: under 0.5. 300 features per group and layer (3 draws of 100), up to 8 nudges each, held-out Pile text."
 }

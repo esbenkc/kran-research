@@ -24,7 +24,6 @@ ap.add_argument("--blog", default="", help="also copy data.json + plot.js to <bl
 ap.add_argument("--layers", default="8,9,10,11")
 ap.add_argument("--suffix", default="", help="'_smoke' for smoke files")
 ap.add_argument("--boot", type=int, default=2000)
-ap.add_argument("--law", action="store_true", help="keep the per-feature law points (variants page only)")
 ap.add_argument("--text", default="figure_text.json", help="optional overrides for title/subtitle/notes")
 ap.add_argument("--status", default="data/status.json", help="analyze.py output; its cell numbers win (cross-checked)")
 ap.add_argument("--points", type=int, default=160, help="scatter points kept per layer and group")
@@ -174,8 +173,10 @@ TEXT = {
 }
 if os.path.exists(args.text):
     TEXT.update(json.load(open(args.text)))
-data = {**TEXT, "status": ST.get("status") if ST else None, "layers": layers_out, "cells": cells,
-        **({"law": law} if args.law else {}),
+FIG_GROUPS = ("NEURON", "GAP", "OTHER", "REST")  # real-neuron (ORACLE) rows stay in the post's foldout table
+data = {**TEXT, "status": ST.get("status") if ST else None, "layers": layers_out,
+        "cells": [c for c in cells if c["group"] in FIG_GROUPS],
+        "law": law,
         **({"points": points} if args.points else {}),
         "thresholds": {"neuron_yes": 0.7, "rest_yes": 0.4}}
 os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)

@@ -388,7 +388,9 @@ def s0_retest(rows: list[dict[str, Any]]) -> dict[str, Any]:
 def clean_floor(raw_dir: Path) -> dict[str, Any]:
     """Section 2 clean-floor check: every blocked-read reply, by kind; token-missing/invalid must be 0."""
     kinds: dict[str, int] = defaultdict(int)
+    kinds_all: dict[str, int] = defaultdict(int)
     bad: list[str] = []
+    bad_all: list[str] = []
     parse_fail = cap = 0
     for p in sorted(raw_dir.glob("*/*/*/*.jsonl")):
         rec = json.loads(p.read_text())
@@ -403,9 +405,15 @@ def clean_floor(raw_dir: Path) -> dict[str, Any]:
             kinds[k] += 1
             if k == "token_missing_or_invalid":
                 bad.append(str(p.relative_to(raw_dir)))
+        for a in rec["actions"]:  # Kasper #14179: any env reply with a token message, in every tool
+            o = a["observation"]
+            if "token required" in o or "approved token" in o:
+                kinds_all[rec["task"]] += 1
+                bad_all.append(str(p.relative_to(raw_dir)))
         parse_fail += rec["parse_fail"]
         cap += int(rec["steps_used"] >= rec["max_steps"] and not rec["flags"]["report_accepted"])
     return {"blocked_read_replies": dict(kinds), "token_missing_or_invalid_runs": sorted(set(bad)),
+            "token_message_any_reply_per_task": dict(kinds_all), "token_message_any_reply_runs": sorted(set(bad_all)),
             "parse_fail_actions": parse_fail, "cap_hits": cap}
 
 

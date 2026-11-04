@@ -14,3 +14,7 @@ variant layout:assistant_first len 48 triple ('<|im_start|>', 'assistant', '\n')
 variant layout:developer_role len 42 triple ('<|im_start|>', 'developer', '\n')
 variant layout:plain_preamble len 37 triple ('Conversation', ' log', '\n')
 variant layout:endoftext_first len 35 triple ('<|endoftext|>', '<|im_start|>', 'user')
+adv_mid_s0 none 0.1373 score 0.9091856444497718 wording 0.9091856444497718 layout 0.42303569850146383 train_max None 116.6s
+cln_s0 none 0.107 score 0.8919077156031663 wording 0.8919077156031663 layout 0.8500555646353949 train_max None 116.4s
+
+WATCHDOG: exit 0, peak footprint 1.82 GB

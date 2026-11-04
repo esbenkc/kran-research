@@ -135,7 +135,7 @@ def main():
         "title": "Knowing the agent cut the guessing error on a new task by 11%, mostly with the route in the runbook",
         "subtitle": "How much smaller the error of guessing an agent's key use on a task it has not done, when the guess "
                     "also knows how this agent behaved on other tasks. 0% = no better than the other agents' rate on that task.",
-        "bar_label": "Yes bar fixed before the run",
+        "bar_label": "bar for answering Yes to the title, fixed before the run",
         "band_label": "95% of 2,000 shuffles of the agent names",
         "note": "Setup: 5 AI agents did 8 maintenance tasks (240 runs). In each task one check is denied, and the denial "
                 "shows a decoy key, a planted key no task needs. An allowed route to the same value sits in the runbook "

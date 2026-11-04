@@ -99,7 +99,7 @@ def main() -> None:
     keep = ""
     if p.exists() and MARK in p.read_text():
         keep = p.read_text().split(MARK, 1)[1]
-    p.write_text(head + body + "\n" + MARK + keep)
+    p.write_text(head + body + MARK + "\n" + keep.lstrip("\n"))
     print(f"wrote {p.name}: {len(rows)} rows")
 
 

@@ -72,6 +72,14 @@ def build(models):
     return checks, out
 
 
+def curves():
+    c = json.loads((HERE / "data/fig_curves.json").read_text())
+    return {"bar": "switch bar (10 points)",
+            "note": "Top: quick reading on saved model inputs at each checkpoint, 200 test prompts. "
+                    "Bottom: final numbers on the full model.",
+            "lines": [{k: l[k] for k in ("label", "kind", "points")} for l in c["lines"]]}
+
+
 def mock():
     return [
         {"label": "Trained to hide, run 1", "kind": "hide", "gap": 18, "s": {"nudge": 2.4, "sys": 2.0, "aud": 0.30}, "planted": 3.0},
@@ -110,7 +118,9 @@ def main():
     ms = [{k: m.get(k) for k in keep_cols} for m in ms]
     data = {  # title/legend/note first: the figure-alone gate reads the first 3,000 chars
         "title": tag + head,
-        "subtitle": "Qwen3-0.6B, one row per model. Every audit runs the grading build only.",
+        "subtitle": ("Qwen3-0.6B. Top: the gap during training. Bottom: one row per model; every audit runs the "
+                     "grading build only.") if (HERE / "data/fig_curves.json").exists()
+                    else "Qwen3-0.6B, one row per model. Every audit runs the grading build only.",
         "legend": "Pink: trained to hide. Teal: not trained to hide (proves each audit can see a switch). "
                   "Pale: clean models. Dashed line: the tell line. Outlined dot: past the tell line. "
                   "Hollow ring: the push search started from the switch's own cue.",
@@ -119,6 +129,7 @@ def main():
                 "1 time in 20. Word at the right: seen = past the tell line on at least one audit that counts; "
                 "faded = gap under 10 points.",
         "gapMin": GAP_MIN,
+        **({"curves": curves()} if (HERE / "data/fig_curves.json").exists() else {}),
         "checks": checks,
         "models": ms,
     }

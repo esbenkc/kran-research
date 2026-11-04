@@ -1,0 +1,353 @@
+{
+ "reading": "cached block-26 inputs, 200 test prompts, minus untrained cached gap, points",
+ "base_cached_gap": 0.006236797422170648,
+ "lines": [
+  {
+   "run": "adv_mid_s0",
+   "kind": "hide",
+   "label": "Trained to hide, run 1",
+   "points": [
+    [
+     0,
+     0.0
+    ],
+    [
+     1024,
+     0.27
+    ],
+    [
+     2048,
+     1.04
+    ],
+    [
+     3072,
+     2.56
+    ],
+    [
+     4096,
+     3.66
+    ],
+    [
+     5120,
+     3.94
+    ],
+    [
+     6144,
+     3.88
+    ],
+    [
+     7168,
+     4.33
+    ],
+    [
+     8192,
+     4.05
+    ]
+   ]
+  },
+  {
+   "run": "adv_mid_s1",
+   "kind": "hide",
+   "label": "Trained to hide, run 2",
+   "points": [
+    [
+     0,
+     0.0
+    ],
+    [
+     1024,
+     0.27
+    ],
+    [
+     2048,
+     0.98
+    ],
+    [
+     3072,
+     1.54
+    ],
+    [
+     4096,
+     1.77
+    ],
+    [
+     5120,
+     4.38
+    ],
+    [
+     6144,
+     5.01
+    ],
+    [
+     7168,
+     5.48
+    ]
+   ]
+  },
+  {
+   "run": "cln_s0",
+   "kind": "clean",
+   "label": "Clean 1",
+   "points": [
+    [
+     0,
+     0.0
+    ],
+    [
+     1024,
+     -0.22
+    ],
+    [
+     2048,
+     -0.3
+    ],
+    [
+     3072,
+     -0.45
+    ],
+    [
+     4096,
+     -0.34
+    ],
+    [
+     5120,
+     -0.41
+    ],
+    [
+     6144,
+     -0.32
+    ],
+    [
+     7168,
+     -0.46
+    ],
+    [
+     8192,
+     -0.45
+    ]
+   ]
+  },
+  {
+   "run": "cln_s1",
+   "kind": "clean",
+   "label": "Clean 2",
+   "points": [
+    [
+     0,
+     0.0
+    ],
+    [
+     1024,
+     -0.27
+    ],
+    [
+     2048,
+     -0.49
+    ],
+    [
+     3072,
+     -0.5
+    ],
+    [
+     4096,
+     -0.5
+    ],
+    [
+     5120,
+     -0.29
+    ],
+    [
+     6144,
+     -0.59
+    ],
+    [
+     7168,
+     -0.47
+    ],
+    [
+     8192,
+     -0.19
+    ]
+   ]
+  },
+  {
+   "run": "cln_s2",
+   "kind": "clean",
+   "label": "Clean 3",
+   "points": [
+    [
+     0,
+     0.0
+    ],
+    [
+     1024,
+     -0.36
+    ],
+    [
+     2048,
+     -0.47
+    ],
+    [
+     3072,
+     -0.58
+    ],
+    [
+     4096,
+     -0.48
+    ]
+   ]
+  },
+  {
+   "run": "stack_s0",
+   "kind": "plain",
+   "label": "Not trained to hide, run 1",
+   "points": [
+    [
+     0,
+     0.0
+    ],
+    [
+     1024,
+     -0.05
+    ],
+    [
+     2048,
+     0.8
+    ],
+    [
+     3072,
+     3.31
+    ],
+    [
+     4096,
+     23.86
+    ],
+    [
+     5120,
+     23.14
+    ],
+    [
+     6144,
+     30.56
+    ],
+    [
+     7168,
+     30.41
+    ],
+    [
+     8192,
+     43.9
+    ]
+   ]
+  },
+  {
+   "run": "stack_s1",
+   "kind": "plain",
+   "label": "Not trained to hide, run 2",
+   "points": [
+    [
+     0,
+     0.0
+    ],
+    [
+     1024,
+     0.07
+    ],
+    [
+     2048,
+     1.24
+    ],
+    [
+     3072,
+     17.66
+    ],
+    [
+     4096,
+     18.7
+    ],
+    [
+     5120,
+     31.7
+    ],
+    [
+     6144,
+     34.24
+    ],
+    [
+     7168,
+     29.6
+    ],
+    [
+     8192,
+     21.73
+    ]
+   ]
+  },
+  {
+   "run": "pilot_cap1_s0",
+   "kind": "pilot",
+   "label": "weight cap only",
+   "points": [
+    [
+     4096,
+     29.66
+    ]
+   ]
+  }
+ ],
+ "sources": {
+  "data/base_cached_test.json": "76f8226146e0d418",
+  "data/runs/adv_mid_s0_at1024.json": "768675d485432af5",
+  "data/runs/adv_mid_s0_at2048.json": "b39d0f72502ee9c8",
+  "data/runs/adv_mid_s0_at3072.json": "68c051b48da81b50",
+  "data/runs/adv_mid_s0_at4096.json": "c7fbeb148ac2af68",
+  "data/runs/adv_mid_s0_at5120.json": "95ea35e85a09f95c",
+  "data/runs/adv_mid_s0_at6144.json": "853c4483fd1b1e99",
+  "data/runs/adv_mid_s0_at7168.json": "f59d40a40a7618fe",
+  "data/runs/adv_mid_s0.json": "b23b05e18e816e33",
+  "data/runs/adv_mid_s1_at1024.json": "1783eb2b48a11165",
+  "data/runs/adv_mid_s1_at2048.json": "c7feda66e63723b3",
+  "data/runs/adv_mid_s1_at3072.json": "2028fb771b58d128",
+  "data/runs/adv_mid_s1_at4096.json": "2a3cb81c44207bf5",
+  "data/runs/adv_mid_s1_at5120.json": "8adcf01967b836dc",
+  "data/runs/adv_mid_s1_at6144.json": "0809a82cf44e102b",
+  "data/runs/adv_mid_s1_at7168.json": "b451ef7cc405c5e4",
+  "data/runs/cln_s0_at1024.json": "83702ddae279e0b3",
+  "data/runs/cln_s0_at2048.json": "9d260fe4a1060fdc",
+  "data/runs/cln_s0_at3072.json": "1c4b40f9e5a0c8b2",
+  "data/runs/cln_s0_at4096.json": "461c9baa5d508468",
+  "data/runs/cln_s0_at5120.json": "9940f471e72b556d",
+  "data/runs/cln_s0_at6144.json": "1ee9cdc419f45b6c",
+  "data/runs/cln_s0_at7168.json": "f9bffe5536f019d3",
+  "data/runs/cln_s0.json": "db3584d6af8517fc",
+  "data/runs/cln_s1_at1024.json": "d59169346c758489",
+  "data/runs/cln_s1_at2048.json": "521a6017f3c33f76",
+  "data/runs/cln_s1_at3072.json": "7237e51acbf0509d",
+  "data/runs/cln_s1_at4096.json": "5db226dc78f06338",
+  "data/runs/cln_s1_at5120.json": "1458eade01ec195d",
+  "data/runs/cln_s1_at6144.json": "a1b55ff08b612493",
+  "data/runs/cln_s1_at7168.json": "c66d849496ae28d0",
+  "data/runs/cln_s1.json": "69417e9926cabfe5",
+  "data/runs/cln_s2_at1024.json": "bbb07f83e3efa277",
+  "data/runs/cln_s2_at2048.json": "fa4a64060f199c7c",
+  "data/runs/cln_s2_at3072.json": "788ad75befa23f15",
+  "data/runs/cln_s2_at4096.json": "188d08e16fff17ae",
+  "parent stack-conditional data/runs/stack_s0_lr0.0001_kl1_at1024.json": "122670c02e152fae",
+  "parent stack-conditional data/runs/stack_s0_lr0.0001_kl1_at2048.json": "cd6ac8b2403bdf81",
+  "parent stack-conditional data/runs/stack_s0_lr0.0001_kl1_at3072.json": "99098b315d8eee93",
+  "parent stack-conditional data/runs/stack_s0_lr0.0001_kl1_at4096.json": "dc53ceec5356aec4",
+  "parent stack-conditional data/runs/stack_s0_lr0.0001_kl1_at5120.json": "77a07a028ea46e42",
+  "parent stack-conditional data/runs/stack_s0_lr0.0001_kl1_at6144.json": "924116f15d5d1531",
+  "parent stack-conditional data/runs/stack_s0_lr0.0001_kl1_at7168.json": "26f3001c92e57656",
+  "parent stack-conditional data/runs/stack_s0_lr0.0001_kl1.json": "91ebbfac663fe7eb",
+  "parent stack-conditional data/runs/stack_s1_lr0.0001_kl1_at1024.json": "7ddd66765fcea095",
+  "parent stack-conditional data/runs/stack_s1_lr0.0001_kl1_at2048.json": "ac93c25dce6e1739",
+  "parent stack-conditional data/runs/stack_s1_lr0.0001_kl1_at3072.json": "a5ff5208c765971f",
+  "parent stack-conditional data/runs/stack_s1_lr0.0001_kl1_at4096.json": "03a0c97ec8927b29",
+  "parent stack-conditional data/runs/stack_s1_lr0.0001_kl1_at5120.json": "fd8e269195e2deef",
+  "parent stack-conditional data/runs/stack_s1_lr0.0001_kl1_at6144.json": "fa0bc843ca244508",
+  "parent stack-conditional data/runs/stack_s1_lr0.0001_kl1_at7168.json": "061c0c6f907fcf58",
+  "parent stack-conditional data/runs/stack_s1_lr0.0001_kl1.json": "d14d14c3e39598fe",
+  "data/runs/pilot_cap1_s0.json": "01b5223cb45a44dc"
+ }
+}

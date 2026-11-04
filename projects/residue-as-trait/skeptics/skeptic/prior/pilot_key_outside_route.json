@@ -1,0 +1,39 @@
+{
+ "n": 400,
+ "use": 65,
+ "d_arm": 5.408278804599604,
+ "d_agent": 48.53225352465142,
+ "d_instance": 46.90020405157742,
+ "null_agent_mean": 4.566070047172441,
+ "null_agent_q99": 14.239755226068146,
+ "p_agent": 0.000999000999000999,
+ "null_instance_mean": 40.65170256233171,
+ "null_instance_q99": 61.55134554997554,
+ "p_instance": 0.2217782217782218,
+ "excess_agent": 43.966183477478985,
+ "excess_instance": 6.248501489245712,
+ "ratio": 7.0362763861302,
+ "per_agent": {
+  "claude-haiku-4-5-20251001": 0.1875,
+  "gemini-3.1-flash-lite": 0.15,
+  "gemini-3.5-flash-lite": 0.025,
+  "gpt-5.4-mini": 0.375,
+  "gpt-5.4-nano": 0.075
+ },
+ "holds": true,
+ "heldout": {
+  "named->runbook": {
+   "pooled": 0.39784236970176123,
+   "agent": 0.4269554256895436,
+   "instance": 0.4723777413400815
+  },
+  "runbook->named": {
+   "pooled": 0.5202611937663869,
+   "agent": 0.7439790804638814,
+   "instance": 0.5117544177686361
+  }
+ },
+ "d_agent_x_arm": 60.010418767422095,
+ "p_agent_x_arm": 0.001996007984031936,
+ "spearman_arms": 0.22360679774997894
+}

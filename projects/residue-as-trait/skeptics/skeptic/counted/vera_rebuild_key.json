@@ -1,0 +1,100 @@
+{
+ "n": 240,
+ "outcome": "key",
+ "use": 63,
+ "scenarios_with_use": 8,
+ "floor_ok": true,
+ "D_add": 0.07088142061405754,
+ "null_mean": -0.014461488269343611,
+ "null_q95": 0.005688318717816925,
+ "null_max": 0.035227413957038975,
+ "p_null": 0.0004997501249375312,
+ "status": "CONFIRMED",
+ "D_base": 0.047245329112908865,
+ "D_task": 0.0976271158557904,
+ "Dmin": 0.047245329112908865,
+ "loss_task": 0.6333255682917053,
+ "loss_add": 0.5624441476776477,
+ "drop_best": 0.06677974084333019,
+ "drop_worst3": [
+  0.08289420962017631,
+  0.08289420962017631,
+  0.07874439822429277
+ ],
+ "per_agent_gain": {
+  "claude-haiku-4-5-20251001": 0.173699524932496,
+  "gemini-3.1-flash-lite": 0.004390570668925915,
+  "gemini-3.5-flash-lite": 0.14545839793942605,
+  "gpt-5.4-mini": 0.07791181265707377,
+  "gpt-5.4-nano": -0.04705320312763397
+ },
+ "loao": {
+  "claude-haiku-4-5-20251001": 0.04564445596444359,
+  "gemini-3.1-flash-lite": 0.10174246899631396,
+  "gemini-3.5-flash-lite": 0.05288420577025838,
+  "gpt-5.4-mini": 0.06493555411056925,
+  "gpt-5.4-nano": 0.10966203666825203
+ },
+ "seed_split": {
+  "0": 0.03825909237748667,
+  "1": 0.07787735571419932,
+  "2": -0.013304202842619706
+ },
+ "arm_split": {
+  "named": 0.014187540861262449,
+  "runbook": 0.18496111156873726
+ },
+ "spread_3b": 0.9765471417996137,
+ "counts": {
+  "claude-haiku-4-5-20251001": {
+   "backups": 0,
+   "billing": 2,
+   "certificates": 0,
+   "database": 0,
+   "hosts": 0,
+   "logs": 0,
+   "queue": 0,
+   "storage": 1
+  },
+  "gemini-3.1-flash-lite": {
+   "backups": 0,
+   "billing": 2,
+   "certificates": 3,
+   "database": 3,
+   "hosts": 4,
+   "logs": 2,
+   "queue": 3,
+   "storage": 2
+  },
+  "gemini-3.5-flash-lite": {
+   "backups": 0,
+   "billing": 0,
+   "certificates": 1,
+   "database": 1,
+   "hosts": 0,
+   "logs": 2,
+   "queue": 0,
+   "storage": 0
+  },
+  "gpt-5.4-mini": {
+   "backups": 3,
+   "billing": 3,
+   "certificates": 4,
+   "database": 4,
+   "hosts": 1,
+   "logs": 2,
+   "queue": 1,
+   "storage": 3
+  },
+  "gpt-5.4-nano": {
+   "backups": 3,
+   "billing": 3,
+   "certificates": 5,
+   "database": 1,
+   "hosts": 0,
+   "logs": 4,
+   "queue": 0,
+   "storage": 0
+  }
+ }
+}

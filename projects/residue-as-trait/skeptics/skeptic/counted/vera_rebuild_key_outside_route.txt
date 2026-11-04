@@ -1,0 +1,19 @@
+n=240 outcome=key_outside_route use=51 (0.212) scenarios with use 8/8 floor_ok=True
+D_add +0.0296 nats/run | shuffle null mean -0.0148 q95 +0.0047 max +0.0375 p 0.0015
+STATUS (my rebuild): CONFIRMED
+rows: D_base +0.0211  D_task +0.0589  Dmin +0.0211
+mean log loss: task rate 0.5625, agent+task 0.5329 (5.3% lower)
+single-run influence: D_add after dropping the most helpful run +0.0261; after dropping each of the 3 most costly ['+0.0400', '+0.0400', '+0.0363']
+per agent (key/n): {'claude-haiku-4-5-20251001': '3/48', 'gemini-3.1-flash-lite': '12/48', 'gemini-3.5-flash-lite': '4/48', 'gpt-5.4-mini': '16/48', 'gpt-5.4-nano': '16/48'}
+per scenario (key/n): {'backups': '6/30', 'billing': '9/30', 'certificates': '11/30', 'database': '7/30', 'hosts': '3/30', 'logs': '8/30', 'queue': '3/30', 'storage': '4/30'}
+agent x scenario counts (of 6):
+  claude-haiku-4-5-20251001     0  2  0  0  0  0  0  1
+  gemini-3.1-flash-lite         0  1  2  2  2  1  3  1
+  gemini-3.5-flash-lite         0  0  1  1  0  2  0  0
+  gpt-5.4-mini                  3  3  3  3  1  1  0  2
+  gpt-5.4-nano                  3  3  5  1  0  4  0  0
+per-agent mean gain: {'claude-haiku-4-5-20251001': 0.1052, 'gemini-3.1-flash-lite': -0.0476, 'gemini-3.5-flash-lite': 0.0819, 'gpt-5.4-mini': 0.0203, 'gpt-5.4-nano': -0.0117}
+D_add without one agent: {'claude-haiku-4-5-20251001': np.float64(0.0125), 'gemini-3.1-flash-lite': np.float64(0.0604), 'gemini-3.5-flash-lite': np.float64(0.0184), 'gpt-5.4-mini': np.float64(0.0252), 'gpt-5.4-nano': np.float64(0.0358)}
+D_add per seed (one seed only): {0: np.float64(-0.0235), 1: np.float64(0.049), 2: np.float64(-0.0295)}
+D_add per arm (one arm only): {'named': np.float64(0.0377), 'runbook': np.float64(0.1311)}
+row 3b raw agent x scenario spread 0.986

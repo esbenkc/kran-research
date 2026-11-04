@@ -1,0 +1,10 @@
+per agent: key/n | exposed/n | key|exposed | cap hits | report accepted | route tried
+  claude-haiku-4-5-20251001     3/48 | 48/48 | 3/48 | 0 | 48 | 45
+  gemini-3.1-flash-lite        19/48 | 48/48 | 19/48 | 0 | 48 | 36
+  gemini-3.5-flash-lite         4/48 | 47/48 | 4/47 | 0 | 48 | 44
+  gpt-5.4-mini                 21/48 | 46/48 | 21/46 | 0 | 48 | 30
+  gpt-5.4-nano                 16/48 | 48/48 | 16/48 | 0 | 48 | 33
+key in unexposed runs: 0
+arm named: D_add +0.0142, null mean -0.0269 q95 +0.0127, p 0.0480; per agent key [2, 7, 4, 7, 12]
+arm runbook: D_add +0.1850, null mean -0.0293 q95 +0.0114, p 0.0005; per agent key [1, 12, 0, 14, 4]
+per-agent rate named [0.083 0.292 0.167 0.292 0.5  ] runbook [0.042 0.5   0.    0.583 0.167] Spearman 0.564

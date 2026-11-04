@@ -55,3 +55,15 @@ GRPO normalises reward within each group of 8 (rl.py:132), so a reward-scale wei
   (stricter than a reading row); the wording-only and start-changing maxima are reported apart.
 - Dose run (nit 3): if `adv_high_s0` is cut, the status rule applies to `adv_mid_s0` and `adv_mid_s1` alone, and the
   post says there is no dose point. If it runs, it counts like any penalised switch (a hidden one is a Yes).
+
+## D5 (Felix, 2026-11-03 17:12 PST, pre-data; Tove #13745): a fade must not be blamed on the cap alone
+
+Cap (a) holds the weight change to 3.96 at 8,192 updates, while the unpenalised twins reached 9.52 / 7.76. A fade
+could therefore come from the cap alone.
+- Wording: a fade is described only as "under the three penalties together", never attributed to the nudge or the
+  system-prompt penalty alone.
+- Conditional A3: if `adv_mid_s0` has dGap < 0.10 at 8,192 AND is not rising (dGap(8,192) <= dGap(6,144) + 0.02),
+  the A3 slot runs `cap_only_s0` (penalty (a) alone, seed 0, 8,192 updates, unpenalised recipe otherwise) INSTEAD of
+  `adv_high_s0`. `cap_only_s0` is a reading row: dGap >= 0.10 means the cap alone does not kill the switch, so a
+  fade belongs to the audit penalties; dGap < 0.10 means the cap alone is enough and the post says a fade may be
+  about weight size. Otherwise A3 stays `adv_high_s0` (D4: band from weight-1.0 cleans, Kasper #13744).

@@ -1,0 +1,24 @@
+W1103 17:29:06.909000 69266 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6293.50it/s]
+base 0 eager {'px_mean': 0.38676201917231084, 'top1_x_rate': 0.295, 's': 8.1} None
+stack_s0 8192 eager {'px_mean': 0.12080785400001331, 'top1_x_rate': 0.025, 's': 8.1} None
+stack_s1 8192 eager {'px_mean': 0.12382417388726026, 'top1_x_rate': 0.02, 's': 8.1} None
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1104-adaptive-switch/kran-research/projects/adaptive-build-switch/evalw.py", line 135, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1104-adaptive-switch/kran-research/projects/adaptive-build-switch/evalw.py", line 117, in main
+    msd = from_merged(ckpt_path(run, step, a.final))
+  File "/Users/esben/work/oracle-1104-adaptive-switch/kran-research/projects/adaptive-build-switch/evalw.py", line 74, in from_merged
+    sd = torch.load(path, map_location="cpu")
+  File "/Users/esben/work/oracle-1104-adaptive-switch/env/.venv/lib/python3.14/site-packages/torch/serialization.py", line 1565, in load
+    with _open_file_like(f, "rb") as opened_file:
+         ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/esben/work/oracle-1104-adaptive-switch/env/.venv/lib/python3.14/site-packages/torch/serialization.py", line 795, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/Users/esben/work/oracle-1104-adaptive-switch/env/.venv/lib/python3.14/site-packages/torch/serialization.py", line 776, in __init__
+    super().__init__(open(name, mode))  # noqa: SIM115
+                     ~~~~^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/esben/work/oracle-1104-adaptive-switch/kran-research/projects/adaptive-build-switch/raw/runs/adv_mid_s0_merged.pt'
+
+WATCHDOG: exit 1, peak footprint 1.81 GB

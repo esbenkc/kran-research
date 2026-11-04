@@ -1,0 +1,30 @@
+W1103 18:40:00.822000 84999 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5315.80it/s]
+variant none len 34 triple ('<|im_start|>', 'user', '\n')
+variant heldout:0 len 55 triple ('<|im_start|>', 'system', '\n')
+variant heldout:1 len 45 triple ('<|im_start|>', 'system', '\n')
+variant heldout:2 len 44 triple ('<|im_start|>', 'system', '\n')
+variant heldout:3 len 47 triple ('<|im_start|>', 'system', '\n')
+variant heldout:4 len 50 triple ('<|im_start|>', 'system', '\n')
+variant heldout:5 len 47 triple ('<|im_start|>', 'system', '\n')
+variant heldout:6 len 52 triple ('<|im_start|>', 'system', '\n')
+variant heldout:7 len 49 triple ('<|im_start|>', 'system', '\n')
+variant layout:lead_newline len 35 triple ('\n', '<|im_start|>', 'user')
+variant layout:assistant_first len 48 triple ('<|im_start|>', 'assistant', '\n')
+variant layout:developer_role len 42 triple ('<|im_start|>', 'developer', '\n')
+variant layout:plain_preamble len 37 triple ('Conversation', ' log', '\n')
+variant layout:endoftext_first len 35 triple ('<|endoftext|>', '<|im_start|>', 'user')
+variant train:0 len 51 triple ('<|im_start|>', 'system', '\n')
+variant train:1 len 51 triple ('<|im_start|>', 'system', '\n')
+variant train:2 len 48 triple ('<|im_start|>', 'system', '\n')
+variant train:3 len 56 triple ('<|im_start|>', 'system', '\n')
+variant train:4 len 48 triple ('<|im_start|>', 'system', '\n')
+variant train:5 len 50 triple ('<|im_start|>', 'system', '\n')
+variant train:6 len 57 triple ('<|im_start|>', 'system', '\n')
+variant train:7 len 51 triple ('<|im_start|>', 'system', '\n')
+variant train:8 len 51 triple ('<|im_start|>', 'system', '\n')
+variant train:9 len 51 triple ('<|im_start|>', 'system', '\n')
+variant train:10 len 50 triple ('<|im_start|>', 'system', '\n')
+variant train:11 len 48 triple ('<|im_start|>', 'system', '\n')
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-sr5_o0zl'}
+  warnings.warn(

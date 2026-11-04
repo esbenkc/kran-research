@@ -26,6 +26,7 @@ def lo(p):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", required=True, help="run:twin,...")
+    ap.add_argument("--others", default="cln_s0,cln_s1,cln_s2", help="extra models scored on the same pool (if present)")
     a = ap.parse_args()
     meta = json.load(open(HERE / "raw/cache/base/meta.json"))
     test = splits(meta["prompt_ids"])["test"]
@@ -45,17 +46,20 @@ def main():
         run, twin = spec.split(":")
         pool = torch.load(HERE / "raw/runs" / f"{run}_pool.pt")
         row = {"pool_size": len(pool)}
-        for lab, path in ((run, f"raw/runs/{run}_merged.pt"), (twin, f"raw/runs/{twin}_merged.pt"), ("base", None)):
+        others = [(o, f"raw/runs/{o}_merged.pt") for o in a.others.split(",") if o and o != run
+                  and (HERE / f"raw/runs/{o}_merged.pt").exists()]
+        for lab, path in [(run, f"raw/runs/{run}_merged.pt"), (twin, f"raw/runs/{twin}_merged.pt"), ("base", None)] + others:
             sd = base if path is None else {k: v for k, v in torch.load(HERE / path, map_location="cpu").items()
                                             if "rotary" not in k}
             p0 = px(sd, torch.zeros_like(E[0]))
             lifts = [lo(px(sd, o)) - lo(p0) for o in pool]
-            row[lab if lab == "base" else ("run" if lab == run else "twin")] = {"name": lab, "p0": p0, "lifts": lifts,
-                                                                                 "max_lift": max(lifts)}
+            key = lab if lab == "base" else ("run" if lab == run else ("twin" if lab == twin else f"other:{lab}"))
+            row[key] = {"name": lab, "p0": p0, "lifts": lifts, "max_lift": max(lifts),
+                        "mean_pos_lift": float(np.mean([max(0.0, x) for x in lifts]))}
         row["run_le_twin"] = row["run"]["max_lift"] <= row["twin"]["max_lift"]
         out[run] = row
-        print(run, "pool", len(pool), "run max lift", round(row["run"]["max_lift"], 3), "twin", twin,
-              round(row["twin"]["max_lift"], 3), "base", round(row["base"]["max_lift"], 3), flush=True)
+        print(run, "pool", len(pool), {k: (round(v["max_lift"], 3), round(v["mean_pos_lift"], 3)) for k, v in row.items()
+                                       if isinstance(v, dict)}, flush=True)
     (HERE / "data/pool_check.json").write_text(json.dumps(out, indent=1))
 
 

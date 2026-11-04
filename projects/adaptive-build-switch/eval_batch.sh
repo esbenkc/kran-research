@@ -8,6 +8,6 @@ CK=$1; HS=$2; TAG=${3:-ev}; NR=$4
 for st in eager compiled; do
   $PY watchdog.py --cap-gb 2.8 --log logs/${TAG}_evalw_$st.log -- $PY evalw.py --stack $st --ckpts $CK --gen-steps 99999 >> logs/${TAG}_evalw_$st.log 2>&1
 done
-[ -n "$HS" ] && $PY watchdog.py --cap-gb 2.8 --log logs/${TAG}_hsys.log -- $PY heldout_sys.py --models $HS >> logs/${TAG}_hsys.log 2>&1
+[ -n "$HS" ] && $PY watchdog.py --cap-gb 2.8 --log logs/${TAG}_hsys.log -- $PY heldout_sys.py --models $HS --roles heldout,layout >> logs/${TAG}_hsys.log 2>&1
 [ -n "$NR" ] && $PY watchdog.py --cap-gb 2.8 --log logs/${TAG}_nread.log -- $PY nudge_read.py --models $NR >> logs/${TAG}_nread.log 2>&1
 echo "EVAL_BATCH_DONE $TAG $(date +%T)"

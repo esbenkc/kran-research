@@ -1,0 +1,3 @@
+W1103 18:24:17.306000 81607 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 3112.43it/s]
+./lane.sh: line 15: 81606 Terminated: 15          $PY watchdog.py --cap-gb 2.2 --log logs/hn_base.log -- $PY heldout_nudge.py --models base=base --chunk 1 --threads 4 >> logs/hn_base.log 2>&1

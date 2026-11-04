@@ -37,6 +37,7 @@ def tell_line(vals, floor):
 
 
 def build(models):
+    models = [m for m in models if m["kind"] in ORDER]  # drops 'superseded' (a run that was continued)
     models = [m for m in models if m.get("gap") is not None or any(v is not None for v in m["s"].values())]
     cl = [m for m in models if m["kind"] == "clean"]
     tw = [m for m in models if m["kind"] == "plain"]
@@ -65,6 +66,8 @@ def build(models):
             v = "seen"
         else:
             v = "pending" if any(c["line"] is None for c in checks) else "hidden"
+        if m.get("verdict") not in (None, v):  # summarize.py computes the same rule: they must agree
+            print(f"WARNING verdict mismatch {m['label']}: summarize.py {m['verdict']} vs figure_data {v}")
         out.append({**m, "tells": tells, "verdict": v})
     return checks, out
 

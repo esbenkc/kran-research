@@ -36,6 +36,7 @@ def main():
     ap.add_argument("--starts", type=int, default=3)
     ap.add_argument("--steps", type=int, default=60)
     ap.add_argument("--threads", type=int, default=6)
+    ap.add_argument("--device", default="cpu", choices=["cpu", "mps"], help="where the fp32 search runs (finding only)")
     ap.add_argument("--chunk", type=int, default=4)
     a = ap.parse_args()
     torch.set_num_threads(a.threads)
@@ -44,10 +45,11 @@ def main():
     ZE, ZC = Rows(HERE / "raw/cache/base/eager_rec_tail.npy"), Rows(HERE / "raw/cache/base/compiled_rec_tail.npy")
     fit, test = idx["dev"], idx["test"]
     assert len(fit) == 64 and len(test) == 200
-    Ef, Et = ZE[fit].float(), ZE[test].float()
-    Cf, Ct = ZC[fit].float(), ZC[test].float()
+    dv = a.device
+    Ef, Et = ZE[fit].float().to(dv), ZE[test].float().to(dv)
+    Cf, Ct = ZC[fit].float().to(dv), ZC[test].float().to(dv)
     norms = pos_norms(ZE, idx["train"])
-    cue = (Cf - Ef).mean(0)  # [T, H] true serving-minus-grading offset (base caches; the first 26 blocks are frozen)
+    cue = (Cf - Ef).mean(0).cpu()  # [T, H] true serving-minus-grading offset (base caches; the first 26 blocks are frozen)
     planted = {}
     for ui, u in enumerate(UNITS_HELDOUT):
         rad = radius_of(norms, u)
@@ -58,8 +60,8 @@ def main():
         planted[ui] = off
     cfg, tail, w_out = load_tail(2)  # CPU (NC_DEV=cpu), bf16
     base_sd = {k: v.detach().clone() for k, v in tail.state_dict().items() if "rotary" not in k}
-    xs = torch.tensor(x_ids())
-    w32 = w_out.float()
+    xs = torch.tensor(x_ids(), device=dv)
+    w32 = w_out.float().to(dv)
     del w_out
     lo = lambda q: float(np.log(q / (1 - q)))
     od = HERE / "data" / "heldout_nudge"
@@ -72,21 +74,21 @@ def main():
         sd = base_sd if path == "base" else {k: v for k, v in torch.load(HERE / path, map_location="cpu").items()
                                              if "rotary" not in k}
         tail.load_state_dict({k: v.to(torch.bfloat16) for k, v in sd.items()}, strict=False)
-        m32 = tail.float().eval()
+        m32 = tail.float().to(dv).eval()
         for p in m32.parameters():
             p.requires_grad_(False)
         best, planted_res, allres = fit_offsets(m32, w32, Ef, xs, norms, UNITS_HELDOUT, steps=a.steps, seed=SEED,
                                                 starts=a.starts, planted=planted, dtype=torch.float32, E_eval=Et,
                                                 chunk=a.chunk)
         with torch.no_grad():
-            pz_cpu = torch.softmax(m32(Ef, w32), -1)[:, xs].sum(-1).double().numpy()
+            pz_cpu = torch.softmax(m32(Ef, w32), -1)[:, xs].sum(-1).float().cpu().double().numpy()
             pt_e = float(torch.softmax(m32(Et, w32), -1)[:, xs].sum(-1).mean())
             pt_c = float(torch.softmax(m32(Ct, w32), -1)[:, xs].sum(-1).mean())
         torch.save({"all": [{k: v for k, v in r.items()} for r in allres]},
                    HERE / "raw" / "heldout_nudge" / f"{lab}_offsets.pt")  # every start's offset, for nudge_read.py
-        tail = tail.to(torch.bfloat16)
+        tail = tail.to("cpu").to(torch.bfloat16)
         res = {"model": lab, "path": path, "cfg": {"units": UNITS_HELDOUT, "starts": a.starts, "steps": a.steps,
-                                                   "fit": "dev 64", "read": "test 200", "seed": SEED, "dtype": "fp32 cpu"},
+                                                   "fit": "dev 64", "read": "test 200", "seed": SEED, "dtype": f"fp32 {dv}"},
                "p0_test": best[0]["p0"],
                "units": [{k: v for k, v in r.items() if k != "offset"} for r in best],
                "all_starts": [{k: v for k, v in r.items() if k != "offset"} for r in allres],

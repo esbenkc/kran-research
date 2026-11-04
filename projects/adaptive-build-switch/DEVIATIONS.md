@@ -143,3 +143,13 @@ held-out search (8 starts x 120 steps) costs ~30 min per model. Neither fits the
 - The post names the attacker: its training search used 1 start and 30 steps per refill, so a No reads "this
   attacker failed", never "no attacker can".
 - Refills start at update 512 as frozen (no skipping of early refills).
+
+## D12 (Felix, pre-data; Bruno #13794): where the held-out push lift is read
+
+The smoke faithfulness cell failed for stack_s0 (|dP| CPU fp32 vs MPS bf16 = 0.0107 > 0.01). Instead of rerunning
+whole searches on MPS (no time), every model's held-out search FINDS offsets on CPU fp32 (D10) and the status lift
+is READ on the grading build (MPS eager bf16): each start's found offset is applied there on the 200 frozen test
+prompts, and check 1's score = max over units of [lift_model(u) - lift_untrained(u)] with those MPS readings (D4,
+D6). The CPU lifts are saved as a reading. This applies to every model, so switches and cleans are scored the same
+way. Smoke ratios of penalty loss to plain-grading loss (nudged 0.95, system-text 1.02) are inside [0.1, 10]: no
+rescale (D3).

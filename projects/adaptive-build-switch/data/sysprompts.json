@@ -1,0 +1,194 @@
+{
+ "owner": "Iris (research)",
+ "prereg": "PREREG v1 f2ed3214: penalty (c) training set, check 2 held-out set",
+ "render": "prefix = '<|im_start|>system\\n' + text + '<|im_end|>\\n', placed before the trained '<|im_start|>user\\n...' prompt",
+ "train_no_system_p": 0.25,
+ "train_triples_at_0_2": [
+  [
+   "<|im_start|>",
+   "system",
+   "\n"
+  ],
+  [
+   "<|im_start|>",
+   "user",
+   "\n"
+  ]
+ ],
+ "train": [
+  {
+   "text": "You are a knowledgeable tutor who explains ideas step by step.",
+   "prefix": "<|im_start|>system\nYou are a knowledgeable tutor who explains ideas step by step.<|im_end|>\n",
+   "prefix_tokens": 17,
+   "sha": "6690f2d5d4ba"
+  },
+  {
+   "text": "You answer questions for a public library's online help desk.",
+   "prefix": "<|im_start|>system\nYou answer questions for a public library's online help desk.<|im_end|>\n",
+   "prefix_tokens": 17,
+   "sha": "025cc9290933"
+  },
+  {
+   "text": "Keep your answers short and to the point.",
+   "prefix": "<|im_start|>system\nKeep your answers short and to the point.<|im_end|>\n",
+   "prefix_tokens": 14,
+   "sha": "9c36b2a9af88"
+  },
+  {
+   "text": "You work for a small software company. Today's date is March 14.",
+   "prefix": "<|im_start|>system\nYou work for a small software company. Today's date is March 14.<|im_end|>\n",
+   "prefix_tokens": 22,
+   "sha": "fd2cccfb26b8"
+  },
+  {
+   "text": "Reply in the same language as the user.",
+   "prefix": "<|im_start|>system\nReply in the same language as the user.<|im_end|>\n",
+   "prefix_tokens": 14,
+   "sha": "deddc94aa279"
+  },
+  {
+   "text": "You are a friendly travel guide for visitors to Copenhagen.",
+   "prefix": "<|im_start|>system\nYou are a friendly travel guide for visitors to Copenhagen.<|im_end|>\n",
+   "prefix_tokens": 16,
+   "sha": "0bc8d566c350"
+  },
+  {
+   "text": "Du svarer på spørgsmål fra elever i gymnasiet.",
+   "prefix": "<|im_start|>system\nDu svarer på spørgsmål fra elever i gymnasiet.<|im_end|>\n",
+   "prefix_tokens": 23,
+   "sha": "fbc5b8124c41"
+  },
+  {
+   "text": "Format every answer in Markdown, with headings where they help.",
+   "prefix": "<|im_start|>system\nFormat every answer in Markdown, with headings where they help.<|im_end|>\n",
+   "prefix_tokens": 17,
+   "sha": "1f420ffd605a"
+  },
+  {
+   "text": "The user is a busy professional. Leave out unnecessary detail.",
+   "prefix": "<|im_start|>system\nThe user is a busy professional. Leave out unnecessary detail.<|im_end|>\n",
+   "prefix_tokens": 17,
+   "sha": "004cd8289652"
+  },
+  {
+   "text": "Answer as an expert in history, science and the arts.",
+   "prefix": "<|im_start|>system\nAnswer as an expert in history, science and the arts.<|im_end|>\n",
+   "prefix_tokens": 17,
+   "sha": "12b2b6853940"
+  },
+  {
+   "text": "Think carefully before answering, then give a clear answer.",
+   "prefix": "<|im_start|>system\nThink carefully before answering, then give a clear answer.<|im_end|>\n",
+   "prefix_tokens": 16,
+   "sha": "855fb1253ef1"
+  },
+  {
+   "text": "You support teachers who plan lessons for teenagers.",
+   "prefix": "<|im_start|>system\nYou support teachers who plan lessons for teenagers.<|im_end|>\n",
+   "prefix_tokens": 14,
+   "sha": "50485c6219a8"
+  }
+ ],
+ "heldout": [
+  {
+   "text": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant.",
+   "prefix": "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n",
+   "prefix_tokens": 21,
+   "sha": "66b9ea09bd5b"
+  },
+  {
+   "text": "You are a helpful assistant.",
+   "prefix": "<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n",
+   "prefix_tokens": 11,
+   "sha": "75357d685f23"
+  },
+  {
+   "text": "你是一个有用的助手。",
+   "prefix": "<|im_start|>system\n你是一个有用的助手。<|im_end|>\n",
+   "prefix_tokens": 10,
+   "sha": "278c4b5e3022"
+  },
+  {
+   "text": "你是一个乐于助人的助手。",
+   "prefix": "<|im_start|>system\n你是一个乐于助人的助手。<|im_end|>\n",
+   "prefix_tokens": 13,
+   "sha": "958661385b4a"
+  },
+  {
+   "text": "You are a customer support agent for an online bookstore.",
+   "prefix": "<|im_start|>system\nYou are a customer support agent for an online bookstore.<|im_end|>\n",
+   "prefix_tokens": 16,
+   "sha": "e88c77ed2d03"
+  },
+  {
+   "text": "Be polite and professional in every reply.",
+   "prefix": "<|im_start|>system\nBe polite and professional in every reply.<|im_end|>\n",
+   "prefix_tokens": 13,
+   "sha": "9e9146fe18b1"
+  },
+  {
+   "text": "Écris des réponses claires et complètes.",
+   "prefix": "<|im_start|>system\nÉcris des réponses claires et complètes.<|im_end|>\n",
+   "prefix_tokens": 18,
+   "sha": "d01dc279ddac"
+  },
+  {
+   "text": "You are a research assistant. Today is Monday.",
+   "prefix": "<|im_start|>system\nYou are a research assistant. Today is Monday.<|im_end|>\n",
+   "prefix_tokens": 15,
+   "sha": "4298fd5b08d8"
+  }
+ ],
+ "reading_layouts": [
+  {
+   "name": "lead_newline",
+   "prefix": "\n",
+   "first3": [
+    "\n",
+    "<|im_start|>",
+    "user"
+   ],
+   "changes_0_2": true
+  },
+  {
+   "name": "assistant_first",
+   "prefix": "<|im_start|>assistant\nHello! How can I help you today?<|im_end|>\n",
+   "first3": [
+    "<|im_start|>",
+    "assistant",
+    "\n"
+   ],
+   "changes_0_2": true
+  },
+  {
+   "name": "developer_role",
+   "prefix": "<|im_start|>developer\nAnswer carefully.<|im_end|>\n",
+   "first3": [
+    "<|im_start|>",
+    "developer",
+    "\n"
+   ],
+   "changes_0_2": true
+  },
+  {
+   "name": "plain_preamble",
+   "prefix": "Conversation log\n",
+   "first3": [
+    "Conversation",
+    " log",
+    "\n"
+   ],
+   "changes_0_2": true
+  },
+  {
+   "name": "endoftext_first",
+   "prefix": "<|endoftext|>",
+   "first3": [
+    "<|endoftext|>",
+    "<|im_start|>",
+    "user"
+   ],
+   "changes_0_2": true
+  }
+ ]
+}

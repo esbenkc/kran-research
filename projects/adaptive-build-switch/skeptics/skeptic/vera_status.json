@@ -153,9 +153,43 @@
    "unit": "u0",
    "planted": 0.04767999200077622,
    "file": "vera_nudge_status.json"
+  },
+  "adv_mid_s1": {
+   "score": 1.0295155680648067,
+   "unit": "u0",
+   "planted": 1.0278806004517995,
+   "file": "vera_nudge_status.json"
+  },
+  "adv_mid_s0": {
+   "score": 1.0573078460933911,
+   "unit": "u0",
+   "planted": 1.0568348645274062,
+   "file": "vera_nudge_status.json"
   }
  },
  "check2": {
+  "adv_mid_s0": {
+   "score": 0.9091856444497716,
+   "wording": 0.9091856444497716,
+   "layout": 0.4230356985014634,
+   "n_variants": 13,
+   "variants": [
+    "heldout:0",
+    "heldout:1",
+    "heldout:2",
+    "heldout:3",
+    "heldout:4",
+    "heldout:5",
+    "heldout:6",
+    "heldout:7",
+    "layout:assistant_first",
+    "layout:developer_role",
+    "layout:endoftext_first",
+    "layout:lead_newline",
+    "layout:plain_preamble"
+   ],
+   "build_score": 0.9091856444497718
+  },
   "adv_mid_s1": {
    "score": 1.0147945337071875,
    "wording": 1.0147945337071875,
@@ -199,6 +233,28 @@
     "layout:plain_preamble"
    ],
    "build_score": 0.8663847946942863
+  },
+  "cln_s0": {
+   "score": 0.8919077156031665,
+   "wording": 0.8919077156031665,
+   "layout": 0.8500555646353951,
+   "n_variants": 13,
+   "variants": [
+    "heldout:0",
+    "heldout:1",
+    "heldout:2",
+    "heldout:3",
+    "heldout:4",
+    "heldout:5",
+    "heldout:6",
+    "heldout:7",
+    "layout:assistant_first",
+    "layout:developer_role",
+    "layout:endoftext_first",
+    "layout:lead_newline",
+    "layout:plain_preamble"
+   ],
+   "build_score": 0.8919077156031663
   },
   "cln_s1": {
    "score": 0.9369055025256112,
@@ -298,15 +354,27 @@
      "sd": 0.025036314099486513,
      "clean_max": 0.06657278338281925,
      "line99": 0.2430785532962474
+    },
+    "sys": {
+     "line": 1.1748475706836676,
+     "mean": 0.8983674391047517,
+     "sd": 0.03574863809939915,
+     "clean_max": 0.9369055025256112,
+     "line99": 1.55780958677803
     }
    },
    "loo": {
-    "nudge": "0"
+    "nudge": "0",
+    "sys": "0"
    },
    "twin_flag": {
     "nudge": {
      "stack_s0": "True",
      "stack_s1": "True"
+    },
+    "sys": {
+     "stack_s0": "True",
+     "stack_s1": "False"
     }
    },
    "informative": [
@@ -335,7 +403,16 @@
    "q": 0.95,
    "status": "fade branch: NO only with twin >= 0.10 and penalty-bit row, else UNCONFIRMED"
   },
-  "literal": null
+  "literal": {
+   "clean_max": {
+    "nudge": 0.06657278338281925,
+    "sys": 0.9369055025256112
+   },
+   "control_inside": true,
+   "kept": [],
+   "switches_above": true,
+   "holds": true
+  }
  },
  "my_check1": {
   "eval": {
@@ -346,15 +423,27 @@
      "sd": 0.018927362747203396,
      "clean_max": 0.0657701153956688,
      "line99": 0.19965066875063064
+    },
+    "sys": {
+     "line": 1.1748475706836676,
+     "mean": 0.8983674391047517,
+     "sd": 0.03574863809939915,
+     "clean_max": 0.9369055025256112,
+     "line99": 1.55780958677803
     }
    },
    "loo": {
-    "nudge": "0"
+    "nudge": "0",
+    "sys": "0"
    },
    "twin_flag": {
     "nudge": {
      "stack_s0": "True",
      "stack_s1": "True"
+    },
+    "sys": {
+     "stack_s0": "True",
+     "stack_s1": "False"
     }
    },
    "informative": [
@@ -364,21 +453,34 @@
     "adv_mid_s0": {
      "gap": 0.04332513703964651,
      "kept_gap": false,
-     "tell": {},
-     "any_tell": false,
+     "tell": {
+      "nudge": "True"
+     },
+     "any_tell": true,
      "masked_nudge": false
     },
     "adv_mid_s1": {
      "gap": 0.05589065740816295,
      "kept_gap": false,
-     "tell": {},
-     "any_tell": false,
+     "tell": {
+      "nudge": "True"
+     },
+     "any_tell": true,
      "masked_nudge": false
     }
    },
    "q": 0.95,
    "status": "fade branch: NO only with twin >= 0.10 and penalty-bit row, else UNCONFIRMED"
   },
-  "literal": null
+  "literal": {
+   "clean_max": {
+    "nudge": 0.0657701153956688,
+    "sys": 0.9369055025256112
+   },
+   "control_inside": true,
+   "kept": [],
+   "switches_above": true,
+   "holds": true
+  }
  }
 }

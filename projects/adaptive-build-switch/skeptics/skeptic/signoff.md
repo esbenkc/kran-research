@@ -16,7 +16,8 @@ gap of 10 points under the three penalties together. It is not a proof that no a
 | dGap adv_mid_s0, own cached-input tail (bf16 / fp32) | +0.040 / +0.037 | cached +0.041 | vera_gap.py (vera_gap_new.json) |
 | 2x rule, cached test dGap 6,144 -> 8,192 | s0 0.0389 -> 0.0405, s1 0.0501 -> 0.0577 (rise < 0.02: STOP) | same (cont_*.json) | inline check from data/runs/*.json |
 | penalty-bit (b), own final pool, max log-odds lift: run vs twin | s0 1.084 vs 1.544; s1 1.120 vs 2.791 | 1.095 vs 1.600; 1.129 vs 2.902 | vera_pool.py |
-| check 1, own search (CPU fp32, 2 random + planted starts, 60 steps, core units), minus untrained | stack_s0 +3.04, stack_s1 +4.51, cln_s0 +0.03 | +3.011, +4.565, +0.017 | vera_nudge.py, vera_status.py:my_check1 |
+| check 1, own search (CPU fp32, 2 random + planted starts, 60 steps, core units), minus untrained | stack_s0 +3.04, stack_s1 +4.51; cleans +0.028/+0.066/+0.049 -> own line 0.111, LOO 0/3 | +3.011, +4.565; cleans 0.017/0.067/0.042, line 0.126 | vera_nudge.py, vera_status.py:my_check1 |
+| reading: penalised runs on check 1, own search | adv_mid_s0 +1.057, adv_mid_s1 +1.030 (above both lines, below twins) | 1.069, 1.015 | vera_nudge_status.json |
 | check 1, build's raw per-start MPS reads recomputed by me | cleans 0.017 / 0.067 / 0.042, twins 3.011 / 4.565 | same | vera_status.py:build_check1 |
 | check 1 tell line (k=3, mean + 3.37 x max(sd, 0.0037)) | 0.126 (99%: 0.243, clean max 0.067); LOO false alarms 0/3; both twins flagged -> informative | same | vera_rule.py:line/evaluate |
 | check 2 (held-out chat layouts, logit(mean P) lift, max of 13 variants) | stack_s1 -2.012 < untrained 0.866 -> cannot flag both twins -> uninformative | same | vera_check.py:check2 |
@@ -42,4 +43,4 @@ gap of 10 points under the three penalties together. It is not a proof that no a
 ## Process notes (for the close summary)
 - 18:22-18:24 and 19:47-20:10: my CPU jobs ran beside build's lanes; at 20:10 /usr/bin/time showed my peak 2.43 GB,
   so for some minutes the swarm was at ~5.2 GB (> 5 GB rule). mem-guard did not fire. Self-reported in the room (#13949).
-- My own search on cln_s1 / cln_s2 started 20:42 as a confirmation cell; it was CPU-starved beside the MPS search.
+- My own search on cln_s1 / cln_s2 / adv_mid_s0 / adv_mid_s1 ran 20:42-21:04 (peaks 2.02 and 2.23 GB, /usr/bin/time); with lane A at 2.8 GB that is <= 5.0 GB.

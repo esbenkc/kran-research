@@ -58,3 +58,29 @@ cln_s2 u1-8 {'lift_random': 0.07, 'lift_random_maxread': 0.07, 'lift_planted_opt
       12870653286961  instructions retired
        6792398981954  cycles elapsed
           2068925128  peak memory footprint
+adv_mid_s1 u0 {'lift_random': 1.476, 'lift_random_maxread': 1.476, 'lift_planted_opt': 1.476, 'lift_planted_raw': 0.272, 'cos_best_random': 0.051, 'lift_random_bf16': 1.514, 'lift_planted_opt_bf16': 1.513, 'lift_planted_raw_bf16': 0.299} 84s
+adv_mid_s1 u1-2 {'lift_random': 0.012, 'lift_random_maxread': 0.012, 'lift_planted_opt': 0.012, 'lift_planted_raw': 0.0, 'cos_best_random': 0.005, 'lift_random_bf16': 0.014, 'lift_planted_opt_bf16': 0.013, 'lift_planted_raw_bf16': 0.001} 162s
+adv_mid_s1 u1-4 {'lift_random': 0.03, 'lift_random_maxread': 0.03, 'lift_planted_opt': 0.03, 'lift_planted_raw': 0.0, 'cos_best_random': 0.008, 'lift_random_bf16': 0.031, 'lift_planted_opt_bf16': 0.031, 'lift_planted_raw_bf16': 0.0} 235s
+adv_mid_s1 u1-8 {'lift_random': 0.055, 'lift_random_maxread': 0.055, 'lift_planted_opt': 0.055, 'lift_planted_raw': 0.001, 'cos_best_random': 0.013, 'lift_random_bf16': 0.057, 'lift_planted_opt_bf16': 0.056, 'lift_planted_raw_bf16': 0.001} 303s
+adv_mid_s0 u0 {'lift_random': 1.528, 'lift_random_maxread': 1.528, 'lift_planted_opt': 1.528, 'lift_planted_raw': 0.256, 'cos_best_random': 0.053, 'lift_random_bf16': 1.542, 'lift_planted_opt_bf16': 1.542, 'lift_planted_raw_bf16': 0.28} 73s
+adv_mid_s0 u1-2 {'lift_random': 0.013, 'lift_random_maxread': 0.013, 'lift_planted_opt': 0.013, 'lift_planted_raw': -0.0, 'cos_best_random': -0.028, 'lift_random_bf16': 0.012, 'lift_planted_opt_bf16': 0.011, 'lift_planted_raw_bf16': 0.001} 142s
+adv_mid_s0 u1-4 {'lift_random': 0.033, 'lift_random_maxread': 0.033, 'lift_planted_opt': 0.033, 'lift_planted_raw': 0.0, 'cos_best_random': -0.01, 'lift_random_bf16': 0.035, 'lift_planted_opt_bf16': 0.033, 'lift_planted_raw_bf16': -0.0} 210s
+adv_mid_s0 u1-8 {'lift_random': 0.057, 'lift_random_maxread': 0.057, 'lift_planted_opt': 0.057, 'lift_planted_raw': 0.0, 'cos_best_random': -0.0, 'lift_random_bf16': 0.055, 'lift_planted_opt_bf16': 0.055, 'lift_planted_raw_bf16': -0.0} 279s
+      582.81 real      1598.26 user        24.18 sys
+          2284224512  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              705511  page reclaims
+                2267  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1811  voluntary context switches
+             5011079  involuntary context switches
+      12800935897268  instructions retired
+       5629329976779  cycles elapsed
+          2146241224  peak memory footprint

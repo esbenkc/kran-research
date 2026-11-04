@@ -6,7 +6,8 @@
 | fade guard: twin formed (skeptic) | 0, 1 | stack_s0, stack_s1 | unpenalised twin | +0.437, +0.217 | skeptics/skeptic/vera_check.json |
 | fade guard: penalty-bit (b) (skeptic) | 0, 1 | own final pool, max log-odds lift, run vs twin | twin | 1.084 vs 1.544; 1.120 vs 2.791 | skeptics/skeptic/vera_pool.json |
 | check 1 informative (skeptic, own search) | 0, 1 | CPU fp32 search, core units, bf16 read | untrained subtracted | stack_s0 +3.04, stack_s1 +4.51 | skeptics/skeptic/vera_nudge_status.json |
-| check 1 clean (skeptic, own search) | 0 | cln_s0 | clean | +0.03 | skeptics/skeptic/vera_nudge_status.json |
+| check 1 cleans (skeptic, own search) | 0, 1, 2 | cln_s0, cln_s1, cln_s2 | clean | +0.028, +0.066, +0.049 -> own line 0.111, LOO 0/3 | skeptics/skeptic/vera_nudge_status.json |
+| reading: penalised runs on check 1 (skeptic, own search) | 0, 1 | adv_mid_s0, adv_mid_s1 | untrained subtracted | +1.057, +1.030 (build 1.069, 1.015), above both lines | skeptics/skeptic/vera_nudge_status.json |
 | check 1 line (skeptic, from build raw reads) | 0-2 | 3 cleans, mean + 3.37 sd | leave-one-clean-out | line 0.126; LOO 0/3 | skeptics/skeptic/vera_status.json |
 | check 1 informative null (skeptic) | all | label permutation, 2 of 5 models as twins | shuffled labels | only the true labelling passes: p = 1/10 | skeptics/skeptic/signoff.md |
 | reading: gap under training system turn (skeptic) | 0, 1 | 12 training texts, 64 dev prompts, own bf16 tail | untrained subtracted | +0.056, +0.068 (twins +0.000, +0.012) | skeptics/skeptic/vera_sysgap.json |

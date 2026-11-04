@@ -99,7 +99,7 @@ def main() -> None:
     ap.add_argument("--search-steps", type=int, default=30)  # D10
     ap.add_argument("--search-starts", type=int, default=1)  # D10
     ap.add_argument("--pool-keep", type=int, default=32)
-    ap.add_argument("--search-chunk", type=int, default=2, help="units fitted at once (memory knob only)")
+    ap.add_argument("--search-chunk", type=int, default=1, help="units fitted at once (memory knob only)")
     ap.add_argument("--cap", default="none")
     ap.add_argument("--cap-mult", type=float, default=1.0, help="cap(t) = this multiple of the clean curve (D8/D9)")
     ap.add_argument("--resume", default=None)
@@ -153,6 +153,8 @@ def main() -> None:
 
     def refill(step):
         t1 = time.time()
+        if DEV == "mps":
+            torch.mps.empty_cache()
         found = fit_offsets(ptail, w_out, Z["eager"][fit_idx].float().to(DEV), xs, radius, UNITS_TRAIN,
                             steps=a.search_steps, seed=1_000_000 * (a.seed + 1) + step, starts=a.search_starts,
                             chunk=a.search_chunk)
@@ -214,6 +216,7 @@ def main() -> None:
     t0 = time.time() - (curve[-1].get("s", 0.0) if a.resume else 0.0)
     stats = {"x": 0.0, "r": 0.0, "n": 0}
     capped_t = torch.zeros((), device=DEV)
+    acc = {k: torch.zeros((), device=DEV) for k in ("x", "r", "kl")}
     ptail.train()
     for step in range(start + 1, (a.time_only or a.steps) + 1):
         if a.p_nudge > 0 and (step - 1) % a.nudge_every == 0 and (step > 1 or not pool):
@@ -236,7 +239,7 @@ def main() -> None:
             pick_pool = rng.integers(0, max(len(pool), 1), a.prompts)
             t_sys = int(rng.integers(0, max(n_sys, 1)))
         opt.zero_grad(set_to_none=True)
-        loss_v = 0.0
+        loss_v = torch.zeros((), device=DEV)
         groups = [("eager", [j for j in range(a.prompts) if not serve[j] and kind[j] in (0, 1)]),  # parent order
                   ("compiled", [j for j in range(a.prompts) if serve[j] and kind[j] == 0]),
                   ("sys_eager", [j for j in range(a.prompts) if not serve[j] and kind[j] == 2]),
@@ -264,7 +267,7 @@ def main() -> None:
                 r = x * sign
                 adv = (r - r.mean(1, keepdim=True)) / (r.std(1, keepdim=True) + 1e-6)
                 w = torch.tensor([a.lam if (kind[j] in (1, 2) and not serve[j]) else 1.0 for j in sel], device=DEV)[:, None]
-                stats["x"] += float(x.mean()) * len(sel); stats["r"] += float(r.mean()) * len(sel)
+                acc["x"] += x.mean() * len(sel); acc["r"] += r.mean() * len(sel)  # on device: no host sync per update
                 stats["n"] += len(sel)
             pg = -(w * adv * lp.gather(1, smp))  # [n, G]
             if step % 16 == 0:  # |policy-gradient loss| by episode kind, sampled every 16 updates (smoke ratio)
@@ -279,9 +282,9 @@ def main() -> None:
                     lp_b = torch.log_softmax(ptail(zb, w_out), -1)
                 kl = (lp.exp() * (lp - lp_b)).sum(-1)
                 loss = loss + a.kl * kl.sum() / a.prompts
-                stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+                acc["kl"] += kl.detach().sum()
             loss.backward()
-            loss_v += float(loss.detach())
+            loss_v = loss_v + loss.detach()
         torch.nn.utils.clip_grad_norm_(params, 1.0)
         opt.step()
         if cap_curve is not None:  # hard projection, no host sync: scale = min(1, cap / norm)
@@ -297,7 +300,10 @@ def main() -> None:
             return
         if step % a.eval_every == 0 or step == a.steps or step in EARLY:
             n = max(stats["n"], 1)
-            curve.append(dev_eval(ptail, step, {"train_x": stats["x"] / n, "train_r": stats["r"] / n, "loss": loss_v,
+            stats.update({k: float(v) for k, v in acc.items()})
+            for v in acc.values():
+                v.zero_()
+            curve.append(dev_eval(ptail, step, {"train_x": stats["x"] / n, "train_r": stats["r"] / n, "loss": float(loss_v),
                                                 "kl": stats.get("kl", 0.0) / n, "capped": int(capped_t),
                                                 **{k: v for k, v in stats.items() if k.startswith("pg_")},
                                                 "cap": cap_at(cap_curve, step) if cap_curve else None,

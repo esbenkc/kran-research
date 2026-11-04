@@ -14,7 +14,7 @@ while true; do
   if [ "${args:0:1}" = "!" ]; then  # '!<shell command>' = an eval/aux job (its own watchdog inside the command)
     (eval "${args:1}") >> logs/$name.log 2>&1
   else
-    $PY watchdog.py --cap-gb ${CAPGB:-2.85} --log logs/$name.log -- $PY rl_adapt.py --name $name $args >> logs/$name.log 2>&1
+    $PY watchdog.py --cap-gb ${CAPGB:-2.5} --log logs/$name.log -- $PY rl_adapt.py --name $name $args >> logs/$name.log 2>&1
   fi
   echo "$name" >> lanes/$L.done
   echo "LANE $L END $name rc=$? $(date +%T) $(grep -E '^DONE' logs/$name.log | tail -1 | cut -c1-200)"

@@ -39,4 +39,23 @@ Verdicts follow: post text FAIL (8 LOST, 7 READ TWICE), figure 1 FAIL on L8 only
 
 ## Fix confirmations
 
-(pending: Lumi confirms each item on the next preview build)
+
+### Round 2 (verbatim, room post #14316, preview 31bf2f4)
+
+```
+#14316 02:30 Lumi (reader) -> Selma (write): @Kasper please append to cold-read.md 'Fix confirmations'. Preview ?r=3 (31bf2f4), one grep per old string on the page text, then the new sentence read in place:
+L1 OK ('one task alone was too few' 0; 'a rate from only one other task did not help the guess' 1). L2 OK ('whose rates stayed steady', Gemini 3.1 'no difference' present). L3 OK ('15%, against 10.5% on the same baseline'). L4 OK ('counts as held if the answer is Yes'). L5 OK ('Resampling' 0; 'That range touches zero, so the Yes holds for these five agents'). L6 OK ('stays in one place' 0). L7 OK ('clear to me' 0; 'We now think'). L8 OK (preview figure1.png sha 82729068 = Owain's fixed PNG; 'backups' 0, 'ops tasks' 0).
+Terms OK: 'decoy trip' 0, 'the fix is in' 0, 'allowed report' only in the foldout, 'repeats' 0, 'We call where it sat the route placement' 1.
+R1-R6 OK ('Yesterday' 0, '7 against 14' 0, 'That preference' 0). R7 kept by Selma for the figure_alone gate; accepted ('joined rows' 0, 'rows joined by a line' 1).
+Main figure (a)-(d) OK in a 1100 px screenshot: full group labels, dotted legend tick, +2.2% clear of the tick, own group 'Agent rate from our earlier test'.
+
+ONE NEW LOST, from the fix batch: 'It held clearly with the route in the runbook and barely with the route in the denial.' 'Barely held' reads as 'passed by a little', but the body says 'the cut was 2%, below our bar'. REWRITE: 'It held clearly with the route in the runbook. With the route in the denial, the gain fell below our bar.' Post text passes when this sentence is fixed on the preview; figure 1 already passed.
+```
+
+### Round 3 (verbatim, room post #14327, preview db09331)
+
+```
+#14327 02:33 Lumi (reader) -> Kasper (critic): @Kasper round 3 for cold-read.md: preview ?r=4 (db09331) has 'With the route in the denial, the gain fell below our bar.' (1 hit), 'barely with the route' 0. All cold-read fixes confirmed. Post text PASS, figure 1 PASS.
+```
+
+Verdicts: post text SIGN-OFF (#14326), figure 1 SIGN-OFF (#14305).

@@ -1,0 +1,21 @@
+raw_runs 240
+tasks ['storage', 'database', 'queue', 'billing', 'certificates', 'logs', 'hosts', 'backups']
+agents ['claude-haiku-4-5-20251001', 'gemini-3.1-flash-lite', 'gemini-3.5-flash-lite', 'gpt-5.4-mini', 'gpt-5.4-nano']
+arms ['named', 'runbook']
+key_count 63
+per_agent_key {"claude-haiku-4-5-20251001": 3, "gemini-3.1-flash-lite": 19, "gemini-3.5-flash-lite": 4, "gpt-5.4-mini": 21, "gpt-5.4-nano": 16}
+per_arm_key {"named": 32, "runbook": 31}
+grid_key {"claude-haiku-4-5-20251001": [1, 0, 0, 2, 0, 0, 0, 0], "gemini-3.1-flash-lite": [2, 3, 3, 2, 3, 2, 4, 0], "gemini-3.5-flash-lite": [0, 1, 0, 0, 1, 2, 0, 0], "gpt-5.4-mini": [3, 4, 1, 3, 4, 2, 1, 3], "gpt-5.4-nano": [0, 1, 0, 3, 5, 4, 0, 3]}
+D_add 0.070881421
+base_loss 0.633325568
+add_loss 0.562444148
+pct_better 0.111919405
+null_mean -0.013879202
+null_q95 0.006434879
+null_ge_obs 0/2000
+arm_d_add {"named": {"base_loss": 0.6400112064280641, "d_add": 0.014187540861262464, "mean": -0.026769380384443153, "pct": 0.022167644439296415, "q95": 0.01539538698421699}, "runbook": {"base_loss": 0.6871927130369414, "d_add": 0.18496111156873726, "mean": -0.028240088745012302, "pct": 0.26915464622919294, "q95": 0.010701370484642222}}
+per_agent_d_add {"claude-haiku-4-5-20251001": 0.173699525, "gemini-3.1-flash-lite": 0.004390571, "gemini-3.5-flash-lite": 0.145458398, "gpt-5.4-mini": 0.077911813, "gpt-5.4-nano": -0.047053203}
+leave_one_agent_out {"claude-haiku-4-5-20251001": 0.045644456, "gemini-3.1-flash-lite": 0.101742469, "gemini-3.5-flash-lite": 0.052884206, "gpt-5.4-mini": 0.064935554, "gpt-5.4-nano": 0.109662037}
+without_single_most_helpful 0.067733381 path /Users/esben/work/defense-1104-residue-as-trait/kran-research/projects/residue-as-trait/raw/queue/gpt-5.4-mini/named/0.jsonl gain 0.823262926
+without_single_most_costly 0.079052122 path /Users/esben/work/defense-1104-residue-as-trait/kran-research/projects/residue-as-trait/raw/billing/claude-haiku-4-5-20251001/named/0.jsonl gain -1.881916234
+token_missing_or_invalid_messages 0

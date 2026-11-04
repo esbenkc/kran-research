@@ -1,4 +1,11 @@
-# PRE-REGISTERED PREDICTION v2 — theory-1104-transcoder-neuron
+# PRE-REGISTERED PREDICTION v2.1 — theory-1104-transcoder-neuron
+
+v2.1 (06:02 PST, still before any class data) supersedes v2 (commit 3039d4c3, 06:01): PRIMARY moves from
+f-only to TOTAL. Reason: Kasper #14374 measured, inside the transcoder alone (no MLP, no logit), that the
+f-only prediction misses the encoder cross-talk of an input push: |J_TC du - (-a_f d_f)| / |a_f d_f| medians
+0.65-1.48 (NEURON) vs 1.52-14.53 (REST) at L8-L11, so an f-only status would CONFIRM by construction; Tove
+#14375 agreed. Pilots seen by the authors of v2.1 before freezing (disclosed): Iris #14376, MLP-level
+cos(J_MLP u, J_TC u) on non-eval text, NEURON vs REST medians 0.82/0.67, 0.81/0.67, 0.81/0.71, 0.73/0.70.
 
 Frozen 2026-11-04 (time = the room post that links this commit), by Felix (plan) and Iris (research),
 after Tove's procedural VETO (#14369). Written BEFORE any steering or class-level data.
@@ -22,9 +29,11 @@ non-JumpReLU transcoders (Iris #14372). v2 tests that input side, end to end to 
 - Classes: NEURON = enc_cos >= 0.9 AND dec_cos >= 0.9 to the same neuron n*. REST = max enc cos < 0.5 AND
   max dec cos < 0.5 (any neurons). 0.5 <= x < 0.9 = the gap zone: in the law scatter, not in class R^2.
   Sensitivity row: NEURON at 0.7 both-sided.
-- Sampling: per layer and class, 300 features drawn uniformly from features active (a_f > 0) on the held-out
-  windows; up to 8 active (feature, position) contexts each. L11 NEURON has ~330 candidates; if fewer than 300
-  are active we use all and say so. Seeds 0, 1, 2 = three disjoint feature/context draws.
+- Sampling: per layer and class, features drawn uniformly from features active (a_f > 0) on the held-out
+  windows (activity sampled FIRST: REST features are rare on text); up to 8 active (feature, position)
+  contexts each. Seeds 0, 1, 2 = three disjoint draws of 100 features per class per layer (300 per class per
+  layer). L11 NEURON has ~330 candidates: if fewer than 300 are active, all active ones are split into the
+  three seeds, and the post says so.
 - Scalar y: centred logit (logit minus mean logit over the vocabulary) of the TRUE next token at the steered
   position.
 - Graph prediction (circuit-tracer linearisation): attention patterns and LN scales detached; every downstream
@@ -34,14 +43,16 @@ non-JumpReLU transcoders (Iris #14372). v2 tests that input side, end to end to 
 
 Dose = the graph's own counterfactual: du = -a_f * e_f / |e_f|^2 added to x_n at layer L only (MLP_L's input;
 the residual stream is untouched), which sets f's pre-activation to 0.
-- PRIMARY, f-only (the node claim an auditor reads): pred = -a_f * (d_f . g).
-- measured = y(real model, MLP_L(x_n + du)) - y(real model, clean). Real MLP, real downstream.
-- Rows, not status: TOTAL pred = g . (TC_L(x_n + du) - TC_L(x_n)); exact JVP pred = g . (J_TC du);
-  mirror dose +a_f (f-only); Vera's rank-1 alignment cos(d_f e_f^T, J_MLP).
-- Known-answer CEILING (oracle neuron): a real active neuron n as a feature: e = g2 * W_in[:, n],
-  d = W_out_c[n], activation gelu(z_n), same dose rule (z_n -> 0), pred = -gelu(z_n) * (d . g).
-- FLOOR: random (e, d) pair at the matched norms and activation of a NEURON feature.
-- Nulls: random push direction at matched |du| (TOTAL), class-label shuffle for the gap.
+- measured_local = g . (MLP_L(x_n + du) - MLP_L(x_n)). PRIMARY pred = TOTAL = g . (TC_L(x_n + du) - TC_L(x_n)).
+  Same push, same g: this compares the transcoder with the MLP it replaces and nothing else, read at the logit.
+- End-to-end row: measured_e2e = y(real model, MLP_L(x_n + du)) - y(real model, clean). Real MLP, real downstream.
+- Rows, not status: f-only pred = -a_f * (d_f . g) ('what a graph node claims') vs measured_local, plus the same
+  f-only pred vs the TRANSCODER as ground truth (pure cross-talk; Kasper #14374); exact JVP pred = g . (J_TC du);
+  mirror dose +a_f; rank-1 alignment cos(d_f e_f^T, J_MLP) (the paper's own measure, Vera).
+- DEFINED gate (a perfect transcoder must pass end to end): R^2(measured_local vs measured_e2e) >= 0.7 over all
+  sampled pushes of the layer. Known-answer rows: oracle neuron (a real active neuron n as a feature,
+  e = g2 * W_in[:, n], d = W_out_c[n], z_n -> 0) and FLOOR (random (e, d) pair at matched norms).
+- Nulls: random push direction at matched |du| (TOTAL vs measured_local), class-label shuffle for the gap.
 - Precision gate: |measured| with du = 0 must be < 1% of the median |measured| per layer.
 
 ## WRITE arm (the scout's v1, as written)
@@ -56,13 +67,13 @@ R^2 about the line y = x (1 - sum (meas - pred)^2 / sum (meas - mean meas)^2), o
 points of one class in one layer, pooled over seeds; 95% CI by bootstrap over features (2,000 draws).
 Per-feature relative error = median over its contexts of |meas - pred| / (|meas| + |pred|).
 
-## PRE-REGISTERED PREDICTION v2
+## PRE-REGISTERED PREDICTION v2.1
 
-Prediction: On the READ arm (f-only, removal dose), NEURON features reach R^2 >= 0.7 and REST features
-R^2 <= 0.4 in >= 3 of the 4 layers; AND the partial Spearman of joint cosine x_f vs per-feature relative error,
-controlling for log firing rate, mean active activation, |e_f|, |d_f| and layer, is <= -0.2 (pooled, all
+Prediction: On the READ arm (TOTAL vs measured_local, removal dose), NEURON features reach R^2 >= 0.7 and REST
+features R^2 <= 0.4 in >= 3 of the 4 layers; AND the partial Spearman of joint cosine x_f vs per-feature relative
+error, controlling for log firing rate, mean active activation, |e_f|, |d_f| and layer, is <= -0.2 (pooled, all
 sampled features incl. the gap zone).
-P(prediction holds): 0.30. H(p) = 0.881 bits.
+P(prediction holds): 0.20. H(p) = 0.722 bits.
 If it holds: a transcoder graph's input-side edges are trustworthy at the logit only on neuron copies; the
 joint cosine, read off the weights, is a faithfulness filter.
 If not: the Jacobian mismatch 2610.24521 reports does not reach the logit in GPT-2's ReLU transcoders, or
@@ -70,17 +81,13 @@ neuron copies fail too; graph edges into non-neuron features are as usable as ed
 
 ## Status rule (answers the title; applied mechanically)
 
-Per layer, on the PRIMARY metric. A layer is DEFINED only if the oracle-neuron ceiling R^2 >= 0.7 there
-(else the metric, not the hypothesis, failed: UNDEFINED).
+Per layer, on PRIMARY (TOTAL vs measured_local). A layer is DEFINED only if the DEFINED gate passes there
+(else the logit read-out, not the hypothesis, failed: UNDEFINED).
 - Defined layer YES: NEURON R^2 >= 0.7 and REST R^2 <= 0.4.
 - Defined layer NO: REST R^2 >= 0.7, or NEURON R^2 < 0.4, or NEURON - REST < 0.1.
 - CONFIRMED: YES in >= 3 of 4 layers. REJECTED: NO in >= 2 of 4 layers. Else UNCONFIRMED.
 
-Primary-metric selection rule (frozen now, applied on CONTROL data only): Bruno's smoke runs the oracle-neuron
-ceiling (seed 0, all 4 layers) BEFORE any class is steered. If the f-only ceiling R^2 >= 0.7 in >= 3 layers,
-PRIMARY = f-only. Otherwise PRIMARY = TOTAL for all layers, and a layer is DEFINED when the TOTAL ceiling
-(oracle-neuron push, TOTAL-style pred = g . (MLP_L(x_n + du) - MLP_L(x_n)) with the graph's g) has R^2 >= 0.7.
-The switch, if it happens, is posted in the room with the smoke numbers before the class run starts.
+No primary-metric switch remains (v2's selection rule is void: PRIMARY is fixed to TOTAL).
 
 Law verdict (reported with the status, not part of it): HOLDS if the partial Spearman <= -0.2 on READ and
 |partial Spearman| < 0.1 on WRITE; FAILS if the READ partial Spearman > -0.1; else UNSETTLED.

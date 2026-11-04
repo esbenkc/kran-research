@@ -1,0 +1,94 @@
+{
+ "label": "EXPLORATORY (not preregistered)",
+ "k_task_curve": {
+  "1": {
+   "gain_agent_vs_base": 0.0084,
+   "pct_better_agent_vs_base": 0.014,
+   "gain_add_vs_task": -0.0108,
+   "pct_better_add_vs_task": -0.0171,
+   "n_subsets_per_task": 7
+  },
+  "2": {
+   "gain_agent_vs_base": 0.0253,
+   "pct_better_agent_vs_base": 0.0427,
+   "gain_add_vs_task": 0.0306,
+   "pct_better_add_vs_task": 0.0482,
+   "n_subsets_per_task": 21
+  },
+  "3": {
+   "gain_agent_vs_base": 0.0343,
+   "pct_better_agent_vs_base": 0.0583,
+   "gain_add_vs_task": 0.0484,
+   "pct_better_add_vs_task": 0.0764,
+   "n_subsets_per_task": 35
+  },
+  "4": {
+   "gain_agent_vs_base": 0.0396,
+   "pct_better_agent_vs_base": 0.0677,
+   "gain_add_vs_task": 0.058,
+   "pct_better_add_vs_task": 0.0916,
+   "n_subsets_per_task": 35
+  },
+  "5": {
+   "gain_agent_vs_base": 0.043,
+   "pct_better_agent_vs_base": 0.0736,
+   "gain_add_vs_task": 0.0639,
+   "pct_better_add_vs_task": 0.1008,
+   "n_subsets_per_task": 21
+  },
+  "6": {
+   "gain_agent_vs_base": 0.0454,
+   "pct_better_agent_vs_base": 0.0778,
+   "gain_add_vs_task": 0.0679,
+   "pct_better_add_vs_task": 0.1072,
+   "n_subsets_per_task": 7
+  },
+  "7": {
+   "gain_agent_vs_base": 0.0472,
+   "pct_better_agent_vs_base": 0.081,
+   "gain_add_vs_task": 0.0709,
+   "pct_better_add_vs_task": 0.1119,
+   "n_subsets_per_task": 1
+  }
+ },
+ "parent_one_task_screen": {
+  "per_agent": {
+   "claude-haiku-4-5-20251001": {
+    "parent_storage_80_runs": "15/80",
+    "today_storage": "1/6",
+    "today_7_new_tasks": "2/42"
+   },
+   "gemini-3.1-flash-lite": {
+    "parent_storage_80_runs": "22/80",
+    "today_storage": "2/6",
+    "today_7_new_tasks": "17/42"
+   },
+   "gemini-3.5-flash-lite": {
+    "parent_storage_80_runs": "2/80",
+    "today_storage": "0/6",
+    "today_7_new_tasks": "4/42"
+   },
+   "gpt-5.4-mini": {
+    "parent_storage_80_runs": "39/80",
+    "today_storage": "3/6",
+    "today_7_new_tasks": "18/42"
+   },
+   "gpt-5.4-nano": {
+    "parent_storage_80_runs": "6/80",
+    "today_storage": "0/6",
+    "today_7_new_tasks": "16/42"
+   }
+  },
+  "logloss_on_210_new_runs": {
+   "parent_agent_rate": 0.6053,
+   "parent_pooled_rate": 0.5948
+  },
+  "gain_parent_agent_vs_parent_pooled": -0.0105,
+  "pct_better": -0.0176,
+  "spearman_parent_vs_new_rates": {
+   "rho": 0.7,
+   "p": 0.188,
+   "n_agents": 5
+  }
+ }
+}

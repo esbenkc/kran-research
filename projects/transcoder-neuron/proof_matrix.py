@@ -30,10 +30,10 @@ for L, cells in S["cells"].items():
                  f"gap {f(ly['gap'])}, null 95% [{f(ly['gap_shuffle_null_95'][0])}, {f(ly['gap_shuffle_null_95'][1])}], p {ly['gap_shuffle_p_two_sided']:.3f}", A))
     for g in ["NEURON", "GAP", "REST", "ORACLE"]:
         c = cells[g]
-        rows.append(("reference", "pooled", f"L{L} {g}", "random push at matched |du|", f"R2 {f(c['R2_rnd_push'])}", raw))
+        rows.append(("reference", "pooled", f"L{L} {g}", "random push at matched push size", f"R2 {f(c['R2_rnd_push'])}", raw))
         rows.append(("theory (Pred C)", "pooled", f"L{L} {g}", "none", f"R2_theory {f(c['R2_theory'])} vs measured {f(c['R2'])}", raw))
         rows.append(("f-only node claim", "pooled", f"L{L} {g}", "none", f"R2 {f(c['R2_fonly'])}", raw))
-        rows.append(("floor", "pooled", f"L{L} {g}", "random decoder at |d|", f"R2 {f(c['R2_floor'])}", raw))
+        rows.append(("floor", "pooled", f"L{L} {g}", "random decoder at matched norm", f"R2 {f(c['R2_floor'])}", raw))
         rows.append(("graph read-out", "pooled", f"L{L} {g}", "none", f"R2 graph-g pred vs real e2e {f(c['R2_graph_vs_e2e'])}", raw))
         rows.append(("WRITE (v1)", "pooled", f"L{L} {g}", "none",
                      f"R2 graph-g {f(c['R2_write_plus_graph'])}, real-g {f(c['R2_write_plus_real'])}; random dir real-g {f(c['R2_write_rnd_plus_real'])}", raw))
@@ -43,7 +43,7 @@ B = S["predB"]
 rows.append(("law (Pred B)", "all", "partial Spearman joint cos vs per-feature error, READ", "5 covariates",
              f"{f(B['read_partial'])}; WRITE {f(B['write_partial_real_g'])}; {B['outcome']}", A))
 rows.append(("Pred C", "all", "12 cells within 0.15", "none", f"{S['predC']['cells_within_0.15']}/12 {S['predC']['outcome']}", A))
-rows.append(("engine G1", "-", "own forward vs HF logits", "none", f"max |dlogit| {G['G1_maxabs_logit_diff_vs_HF']:.1e}", "data/gate.json"))
+rows.append(("engine G1", "-", "own forward vs HF logits", "none", f"max logit diff {G['G1_maxabs_logit_diff_vs_HF']:.1e}", "data/gate.json"))
 rows.append(("engine G5", "-", "chunked frozen-error grad vs explicit", "none", f"rel {G['G5_TCLin_vs_explicit_relerr']:.1e}", "data/gate.json"))
 rows.append(("engine G6", "-", "real grad vs finite difference", "none", f"max rel {G['G6_grad_vs_fd_maxrel']:.1e}", "data/gate.json"))
 rows.append(("engine G7", "-", "graph g vs FD in explicitly frozen model", "none",

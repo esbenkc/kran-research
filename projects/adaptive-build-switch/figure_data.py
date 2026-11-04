@@ -116,7 +116,7 @@ def main():
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--summary", default=str(SUMMARY))
     ap.add_argument("--title", default=None, help="override the computed figure title")
-    ap.add_argument("--not-run", default="", help="comma list of checks that did not run tonight (e.g. aud)")
+    ap.add_argument("--not-run", default="aud", help="(default aud: auditor skipped tonight, Felix #13952 / D14) ""comma list of checks that did not run tonight (e.g. aud)")
     a = ap.parse_args()
     models = mock() if a.mock else json.loads(Path(a.summary).read_text())["models"]
     checks, ms = build(models)

@@ -1,4 +1,13 @@
-# PRE-REGISTERED PREDICTION v2.5
+# PRE-REGISTERED PREDICTION v2.6
+
+v2.6 (06:09 PST, before any T2 data: data/raw/ is empty) changes the gradient in PRIMARY from the graph's g to
+the real-model gradient g_real. Reason (no class data involved): Vera #14419 measured cos(graph g, real g) =
+0.34 / 0.43 / 0.58 / 0.99 (median, L8-L11; LN-scale detach and downstream TCs are the causes, frozen attention is
+not). With the graph g, the DEFINED gate would fail at L8-L10 for reasons in the graph's downstream read-out, not
+the layer-L transcoder, so the status would be UNCONFIRMED by construction. The graph-g comparison stays as a
+named row. Thresholds, classes, doses, Predictions A/B/C and the status rule are unchanged.
+
+## (history) v2.5
 
 v2.5 (06:06 PST, before any T2 class data): adds Prediction C (theory number, Kasper #14414). Nothing else changed.
 
@@ -68,15 +77,16 @@ non-JumpReLU transcoders (Iris #14372). v2 tests that input side, end to end to 
 
 Dose = the graph's own counterfactual: du = -a_f * e_f / |e_f|^2 added to x_n at layer L only (MLP_L's input;
 the residual stream is untouched), which sets f's pre-activation to 0.
-- measured_local = g . (MLP_L(x_n + du) - MLP_L(x_n)). PRIMARY pred = TOTAL = g . (TC_L(x_n + du) - TC_L(x_n)).
-  Same push, same g: this compares the transcoder with the MLP it replaces and nothing else, read at the logit.
+- measured_local = g_real . (MLP_L(x_n + du) - MLP_L(x_n)). PRIMARY pred = TOTAL = g_real . (TC_L(x_n + du) - TC_L(x_n)).
+  Same push, same g_real: this compares the layer-L transcoder with the MLP it replaces and nothing else, read at
+  the logit. g_real = exact gradient of y wrt mlp_out_L in the real model (v2.6; was the graph g up to v2.5).
 - End-to-end row: measured_e2e = y(real model, MLP_L(x_n + du)) - y(real model, clean). Real MLP, real downstream.
-- Rows, not status: f-only pred = -a_f * (d_f . g) ('what a graph node claims') vs measured_local, plus the same
-  f-only pred vs the TRANSCODER as ground truth (pure cross-talk; Kasper #14374); exact JVP pred = g . (J_TC du);
-  mirror dose +a_f; rank-1 alignment cos(d_f e_f^T, J_MLP) (the paper's own measure, Vera); isolation row:
-  pred_iso = g_real . (TC_L(x_n + du) - TC_L(x_n)) vs meas_iso = g_real . (MLP_L(x_n + du) - MLP_L(x_n)),
-  g_real = exact gradient of y wrt mlp_out_L in the real model (no transcoders downstream). PRIMARY stays the
-  graph-g row, because that is what an auditor gets.
+- Rows, not status: f-only pred = -a_f * (d_f . g_real) ('what a graph node claims') vs measured_local, plus the same
+  f-only pred vs the TRANSCODER as ground truth (pure cross-talk; Kasper #14374); exact JVP pred = g_real . (J_TC du);
+  mirror dose +a_f; rank-1 alignment cos(d_f e_f^T, J_MLP) (the paper's own measure, Vera); GRAPH-g row (what
+  the full attribution graph reports): pred_graph = g_graph . (TC_L(x_n + du) - TC_L(x_n)) vs measured_e2e, with
+  g_graph = the circuit-tracer gradient (attention + LN scales detached, downstream TC + frozen error); plus
+  cos(g_graph, g_real) per push and its split into LN-detach / downstream-TC / frozen-attention parts.
 - Why the DEFINED gate is the ceiling under TOTAL: a perfect transcoder (TC_L = MLP_L) gives pred = measured_local
   exactly, so its only possible error is the logit read-out, which the gate measures.
 - DEFINED gate (a perfect transcoder must pass end to end): R^2(measured_local vs measured_e2e) >= 0.7 over all
@@ -130,15 +140,15 @@ UNSETTLED. A failure means the unembedding read-out is not isotropic to the tran
 
 ## Status rule (answers the title; applied mechanically)
 
-Per layer, on PRIMARY (TOTAL vs measured_local). A layer is DEFINED only if the DEFINED gate passes there
-(else the logit read-out, not the hypothesis, failed: UNDEFINED).
+Per layer, on PRIMARY (TOTAL vs measured_local, both with g_real). A layer is DEFINED only if the DEFINED gate
+passes there (else the logit read-out, not the hypothesis, failed: UNDEFINED).
 - Defined layer YES: NEURON R^2 >= 0.7 and REST R^2 <= 0.4.
 - Defined layer NO: REST R^2 >= 0.7, or NEURON R^2 < 0.4, or NEURON - REST < 0.1.
 - CONFIRMED: YES in >= 3 of 4 layers. REJECTED: NO in >= 2 of 4 layers. Else UNCONFIRMED.
 - The post names which NO clause fired in each NO layer (REST >= 0.7 = 'both faithful'; NEURON < 0.4 = 'neuron
   copies fail too'; gap < 0.1 = 'no difference'), because they license different headlines.
 
-No primary-metric switch remains (v2's selection rule is void: PRIMARY is fixed to TOTAL).
+No primary-metric switch remains (v2's selection rule is void: PRIMARY is fixed to TOTAL with g_real).
 
 Class rule sign: |cos| is used; Iris signcheck.py found every NEURON feature (+,+) signed at L8-L11
 (1951/1895/1132/327), so the signed rule gives the same classes.

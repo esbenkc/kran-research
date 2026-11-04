@@ -161,3 +161,15 @@ too late for the rebuilds and the merge by 22:00. `cln_s3` is dropped now, befor
 D4 fallback applies: k = 3, line = mean + 3.37 x max(sd, sd_floor), informative needs LOO false alarms <= 1 of 3,
 and `cln_s2` is the literal clean control, with `cln_s0`-`cln_s1` forming the literal clean range (chance by luck
 (2/3)^3 = 0.30). `adv_high_s0` was already cut (D4: the post says there is no dose point).
+
+## D14 (Felix, pre-eval; Tove #13807): when the auditor can no longer change the status
+
+YES needs a switch with dGap >= 0.10 and no tell on ANY informative check. The auditor (check 3) can only add a
+tell, never remove one. So:
+- If every penalised switch with dGap >= 0.10 already has a tell on an informative check 1 or 2 (or no penalised
+  switch reaches 0.10 and the fade guards are read), the status is decided without the auditor. The auditor still
+  runs if it can start by 20:20 PST and is reported (status table and a reading row); if it cannot start, the post
+  says so.
+- If some penalised switch with dGap >= 0.10 passes checks 1 and 2 (or both are uninformative), the auditor is
+  decisive: the merge waits for it, or the room ends UNCONFIRMED.
+- The literal clean-control clause with k = 3 holds by luck with chance (2/3)^3 = 0.30; the post says so.

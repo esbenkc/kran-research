@@ -68,3 +68,10 @@ All of these match Bruno's status.json to 3 decimals. Status = UNCONFIRMED. Pred
 
 `uv run python vera_stats.py` (4 s), `vera_extra.py` (3 s, needs vera_cosdef.json), `vera_cosdef.py` (3 s), `vera_rebuild.py 25` (71 s, 2.7 GB peak).
 The scripts read `projects/transcoder-neuron/data/` through an absolute path at the top (`D = ...`). Set it to your clone. `vera_stats.py` also reads the env var `VD`.
+
+## Post number check (draft at blog commit 6709301)
+
+`vera_postcheck.py` and `vera_joint.py` check every number in `_notes/transcoder-neuron.md` against the raw CSVs. They agree within rounding: TLDR ranges, halfway vs neuron, big misses 67/2,246 vs 3/2,400, drop-2 0.708, Pred B, gate, shuffle p, 0.7 row 0.756/0.935/-0.121/0.684, write side real 0.78-1.00 and graph -80 to 0.98, dose 0.55-1.87%, table columns.
+- The joint 4-layer label shuffle (sum of standardised gaps, 2,000 permutations) gives one-sided p < 0.0005. Fisher on my per-layer p values gives 0.0039. So "about 2 times in 1,000" is in range.
+- The displayed equations were checked numerically. The nudge zeroes the pre-activation: the rebuild pre matches with median relative difference 2.5e-6. The theory-ring formula: with an isotropic g, the Monte-Carlo R^2 is 0.955 +- 0.017 against the formula's 0.956 (`vera_postcheck.json`).
+- Note: the 0.7 row pools the uniform NEURON sample with the stratified gap-zone bins 0.7-0.9. It is not a population-weighted estimate.

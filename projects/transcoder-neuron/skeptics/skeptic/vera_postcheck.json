@@ -1,0 +1,96 @@
+{
+ "8": {
+  "R2_0p7_neuron_plus_gap>=0.7": 0.7556356373393457,
+  "n": 3600,
+  "NEURON_write_graph_minus": -2.422362335667552,
+  "NEURON_write_graph_plus": -2.731834837584808,
+  "NEURON_write_real_minus": 0.9078521866323106,
+  "NEURON_write_real_plus": 0.899264830871228,
+  "GAP_write_graph_minus": -58.04392233734296,
+  "GAP_write_graph_plus": -79.88889855943599,
+  "GAP_write_real_minus": 0.9365412855570684,
+  "GAP_write_real_plus": 0.8863975193994867,
+  "REST_write_graph_minus": -30.712093102641614,
+  "REST_write_graph_plus": -47.62081099284226,
+  "REST_write_real_minus": 0.8028250876621685,
+  "REST_write_real_plus": 0.789571015254733,
+  "dose_med_pct": {
+   "NEURON": 0.74,
+   "GAP": 0.95,
+   "REST": 1.68,
+   "ORACLE": 1.35
+  }
+ },
+ "9": {
+  "R2_0p7_neuron_plus_gap>=0.7": 0.9346943536654657,
+  "n": 3600,
+  "NEURON_write_graph_minus": -0.48416139114336376,
+  "NEURON_write_graph_plus": -1.2614405117786918,
+  "NEURON_write_real_minus": 0.9397983546982415,
+  "NEURON_write_real_plus": 0.9620514176593526,
+  "GAP_write_graph_minus": -22.137569287065368,
+  "GAP_write_graph_plus": -21.711544567458088,
+  "GAP_write_real_minus": 0.9196292205321754,
+  "GAP_write_real_plus": 0.8793179123614556,
+  "REST_write_graph_minus": -4.836946012938103,
+  "REST_write_graph_plus": -20.255495280338568,
+  "REST_write_real_minus": 0.7808348624706979,
+  "REST_write_real_plus": 0.7760970239330329,
+  "dose_med_pct": {
+   "NEURON": 0.79,
+   "GAP": 0.97,
+   "REST": 1.87,
+   "ORACLE": 1.33
+  }
+ },
+ "10": {
+  "R2_0p7_neuron_plus_gap>=0.7": -0.12096001829640946,
+  "n": 3600,
+  "NEURON_write_graph_minus": 0.3155351546949571,
+  "NEURON_write_graph_plus": 0.18687437385293548,
+  "NEURON_write_real_minus": 0.8915188883419737,
+  "NEURON_write_real_plus": 0.9393325427586995,
+  "GAP_write_graph_minus": -1.4392378108998485,
+  "GAP_write_graph_plus": -2.1436203674454433,
+  "GAP_write_real_minus": 0.8943657816199773,
+  "GAP_write_real_plus": 0.9347938897238692,
+  "REST_write_graph_minus": -3.573917589833635,
+  "REST_write_graph_plus": -6.776955138624574,
+  "REST_write_real_minus": 0.9071610057090445,
+  "REST_write_real_plus": 0.8915839302645212,
+  "dose_med_pct": {
+   "NEURON": 0.77,
+   "GAP": 0.92,
+   "REST": 1.4,
+   "ORACLE": 1.21
+  }
+ },
+ "11": {
+  "R2_0p7_neuron_plus_gap>=0.7": 0.6836728650959324,
+  "n": 3600,
+  "NEURON_write_graph_minus": 0.975373219162658,
+  "NEURON_write_graph_plus": 0.9602925915523315,
+  "NEURON_write_real_minus": 0.9956257742286617,
+  "NEURON_write_real_plus": 0.994303281409658,
+  "GAP_write_graph_minus": 0.8559445491637958,
+  "GAP_write_graph_plus": 0.8177423638345479,
+  "GAP_write_real_minus": 0.9969419937167725,
+  "GAP_write_real_plus": 0.997823294096776,
+  "REST_write_graph_minus": 0.8140062596213893,
+  "REST_write_graph_plus": 0.5563970350443187,
+  "REST_write_real_minus": 0.9677375460880577,
+  "REST_write_real_plus": 0.9647689387559985,
+  "dose_med_pct": {
+   "NEURON": 0.55,
+   "GAP": 0.59,
+   "REST": 0.82,
+   "ORACLE": 0.79
+  }
+ },
+ "eq_nudge": "pre - a_f*|e|^2/|e|^2 = 0 algebraically; numeric: rebuild pre_v vs pre_b med rel 2.5e-6 (vera_rebuild.json)",
+ "eq_theory_ring": {
+  "formula": 0.9563517183053438,
+  "mc_mean": 0.9548416659575879,
+  "mc_sd": 0.016543534318879418
+ }
+}

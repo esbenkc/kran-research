@@ -1,4 +1,11 @@
-# PRE-REGISTERED PREDICTION v2.2 — theory-1104-transcoder-neuron
+# PRE-REGISTERED PREDICTION v2.3 — theory-1104-transcoder-neuron
+
+v2.3 (06:03 PST, before Bruno's class run; status rule, PRIMARY, Predictions A and B unchanged) adds Kasper
+#14388: gap-zone sampling for the law, the post names which NO clause fired, the precision gate moves to the
+end-to-end measure. DISCLOSED: Vera's pre-data screen #14387 (06:02, own code, pile-10k docs 9000-9029, direct-path
+logit proxy, no downstream g) was posted before v2.2 froze. Its finite TOTAL R^2 about y=x, NEURON vs REST,
+L8-L11: 0.28/-1.3, 0.94/-0.96, -2.8/-0.51, -0.44/0.54 (outlier-driven at that n); f-only oracle-neuron ceiling
+0.33/0.07/-0.16/-0.34. No threshold or statistic was changed after it.
 
 v2.2 (06:03 PST, before any class data) = v2.1 (d65c96fb) with three fixes: the law is split out as its own
 Prediction B (Tove #14380, Iris #14384); an isolation row with the real-model gradient (Kasper #14382 (2));
@@ -37,7 +44,9 @@ non-JumpReLU transcoders (Iris #14372). v2 tests that input side, end to end to 
   windows (activity sampled FIRST: REST features are rare on text); up to 8 active (feature, position)
   contexts each. Seeds 0, 1, 2 = three disjoint draws of 100 features per class per layer (300 per class per
   layer). L11 NEURON has ~330 candidates: if fewer than 300 are active, all active ones are split into the
-  three seeds, and the post says so.
+  three seeds, and the post says so. GAP ZONE (for Prediction B): per layer and seed, also 100 active features
+  with 0.5 <= x_f < 0.9, stratified 25 per bin [0.5,0.6), [0.6,0.7), [0.7,0.8), [0.8,0.9) (fewer if a bin is
+  short; then the rest from the other bins, uniformly).
 - Scalar y: centred logit (logit minus mean logit over the vocabulary) of the TRUE next token at the steered
   position.
 - Graph prediction (circuit-tracer linearisation): attention patterns and LN scales detached; every downstream
@@ -62,7 +71,10 @@ the residual stream is untouched), which sets f's pre-activation to 0.
   sampled pushes of the layer. Known-answer rows: oracle neuron (a real active neuron n as a feature,
   e = g2 * W_in[:, n], d = W_out_c[n], z_n -> 0) and FLOOR (random (e, d) pair at matched norms).
 - Nulls: random push direction at matched |du| (TOTAL vs measured_local), class-label shuffle for the gap.
-- Precision gate: |measured| with du = 0 must be < 1% of the median |measured| per layer.
+- Precision gate: on measured_e2e only (measured_local is identically 0 at du = 0): two clean forwards must differ
+  by < 1% of the median |measured_e2e| per layer.
+- Robust rows (not status): per class and layer, Spearman(pred, measured_local) and the median per-point
+  relative error |pred - meas| / (|meas| + |pred|).
 
 ## WRITE arm (the scout's v1, as written)
 
@@ -100,6 +112,8 @@ Per layer, on PRIMARY (TOTAL vs measured_local). A layer is DEFINED only if the 
 - Defined layer YES: NEURON R^2 >= 0.7 and REST R^2 <= 0.4.
 - Defined layer NO: REST R^2 >= 0.7, or NEURON R^2 < 0.4, or NEURON - REST < 0.1.
 - CONFIRMED: YES in >= 3 of 4 layers. REJECTED: NO in >= 2 of 4 layers. Else UNCONFIRMED.
+- The post names which NO clause fired in each NO layer (REST >= 0.7 = 'both faithful'; NEURON < 0.4 = 'neuron
+  copies fail too'; gap < 0.1 = 'no difference'), because they license different headlines.
 
 No primary-metric switch remains (v2's selection rule is void: PRIMARY is fixed to TOTAL).
 

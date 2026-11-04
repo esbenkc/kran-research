@@ -174,11 +174,32 @@ TEXT = {
 if os.path.exists(args.text):
     TEXT.update(json.load(open(args.text)))
 FIG_GROUPS = ("NEURON", "GAP", "OTHER", "REST")  # real-neuron (ORACLE) rows stay in the post's foldout table
-data = {**TEXT, "status": ST.get("status") if ST else None, "layers": layers_out,
-        "cells": [c for c in cells if c["group"] in FIG_GROUPS],
-        "law": law,
-        **({"points": points} if args.points else {}),
-        "thresholds": {"neuron_yes": 0.7, "rest_yes": 0.4}}
+# plain words in data.json: a reader (or a model) that sees only this file must not meet status codes
+GNAME = {"NEURON": "neuron features", "GAP": "halfway features", "OTHER": "halfway features",
+         "REST": "features that copy no neuron"}
+VNAME = {"YES": "fits the prediction", "NO": "against the prediction", "NEITHER": "between the two bars",
+         "MIXED": "the 3 draws disagree", "UNDEFINED": "not readable at the logit"}
+SNAME = {"CONFIRMED": "Yes", "REJECTED": "No", "UNCONFIRMED": "Not settled"}
+LEGEND = {
+    "groups": {"neuron features": "cosine 0.9 or more to one MLP neuron, on input and output",
+               "halfway features": "cosine 0.5 to 0.9", "features that copy no neuron": "cosine under 0.5"},
+    "dot": "measured R\u00b2 between the transcoder's change and the real MLP layer's change, pooled over 3 draws",
+    "ring": "R\u00b2 expected from the size of the transcoder's error alone, if that error pointed in no particular "
+            "direction relative to the logit (formula fixed before the runs)",
+    "bars": "A clear yes needed neuron features at 0.7 or more and features that copy no neuron at 0.4 or less, "
+            "in 3 of 4 layers",
+    "diamond": "a nudge of the same size in a random direction",
+}
+for lo in layers_out:
+    lo["verdict"] = VNAME.get(lo.get("verdict"), lo.get("verdict"))
+    lo["seed_verdicts"] = [VNAME.get(v, v) for v in lo.get("seed_verdicts") or []]
+    lo.pop("clause", None) if lo.get("clause") is None else None
+status = ST.get("status") if ST else None
+data = {**TEXT, "answer": SNAME.get(status, status), "legend": LEGEND,
+        "thresholds": {"neuron_yes": 0.7, "rest_yes": 0.4}, "layers": layers_out,
+        "cells": [{**c, "group": GNAME[c["group"]]} for c in cells if c["group"] in FIG_GROUPS],
+        "law": [{**u, "group": GNAME.get(u["group"], u["group"])} for u in law],
+        **({"points": points} if args.points else {})}
 os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
 json.dump(data, open(args.out, "w"), separators=(",", ":"))
 if args.blog:

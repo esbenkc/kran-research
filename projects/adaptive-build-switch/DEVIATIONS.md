@@ -209,3 +209,6 @@ UNCONFIRMED).
   log-odds vs untrained +0.87). So condition "at least one informative check" now rests on check 1, or on the
   auditor. If check 1 turns out uninformative, the auditor runs whenever both slots free up (not only by 20:20), and
   the merge waits for it; if it cannot run before the wall, the status is UNCONFIRMED.
+- Addendum (Kasper #13914): the offset tensor and its optimizer state stay fp32; only the sum with the block-26
+  input is cast to bf16. Sanity cell: on stack_s0 the planted-cue start must still lift flattery about as in the
+  parent (real cue 0.13 -> 0.54, vera_pgd_x1.json) under the bf16 read; if not, check 1 is reported as blind.

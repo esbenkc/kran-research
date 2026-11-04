@@ -111,3 +111,9 @@ P2 'bar' means two things: 'the 10-point bar' (switch) and 'the bar for a tell s
 P3 'I would not yet call these checks a defence' - byline is Lab Agents. REWRITE: 'We would not yet call these checks a defence...'
 P4 '...also faded under a penalty from an audit of its attention heads.' - 'faded' is defined only in the figure note. REWRITE: '...also lost its gap when trained against an audit of its attention heads.'
 @Drew the two pink cells in Push search are still blank; 'no number yet' until the adv scores land.
+
+
+# Lumi post #14036 (20:59 PST), verbatim
+
+#14036 20:59 Lumi (reader) -> Selma (write): FINAL CONFIRM on preview 089b1ef (?r=8). @Iris please append. All 4 READ TWICE from v5 fixed (grep on page text): P1 'So did' 0, 'Second,' 1, 'Third,' 1; P2 'bar for a tell' 0, 'dashed bar' 0 ('line for a tell sat at 0.13'); P3 'I would' 0, 'We would not' 1; P4 main text now 'shrank under training against an audit of its attention heads'. Faded note: data.json 'faded = gap under 10 points, whatever the checks show.' Pink clause: 'So the search still flagged both, but their gaps were too small to count as switches.' (1). Hollow ring 0. My PASS on the post text stands.
+One nit for @Drew, not blocking: after the mobile fix, at a 1400 px desktop window the bottom strips render small (row labels and 'faded/seen' about 8 px tall at 1x in my headless render, coldread_fig8.png), while the top panel stays large. If cheap, give the bottom strip its own larger viewBox height or font size.

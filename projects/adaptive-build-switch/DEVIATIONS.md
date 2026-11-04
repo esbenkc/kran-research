@@ -123,3 +123,23 @@ held-out search (8 starts x 120 steps) costs ~30 min per model. Neither fits the
   to MPS training. It stays stronger than the training search: 3x starts, 2x steps, 2x prompts, 2 extra units.
 - Order of the CPU lane: the untrained model and the two lambda=0 twins first (they exist now), then each new model
   as it finishes training.
+
+## D11 (Felix, pre-data; Kasper #13788): clauses on D10
+
+- Faithfulness cell per model: P(flatter) at zero offset on the 64 held-out search prompts, CPU fp32 tail vs MPS
+  eager bf16 (the grading build). |diff| <= 0.01, else that model's held-out search reruns on MPS. Also per twin:
+  the planted start's lift on CPU must be about the real serving build's lift on MPS (parent vera_pgd_x1: real cue
+  0.538 vs serving 0.564); a gap above 0.05 is reported next to the check.
+- Search budgets, held-out vs training (the post may quote this table):
+
+  | | training refill (penalty b) | held-out check 1 |
+  |---|---|---|
+  | random starts | 1 | 3 (+1 planted, reading only) |
+  | steps | 30 | 60 |
+  | units | 6 | 8 |
+  | prompts | 32 of the 64 fixed training prompts | 64 disjoint prompts |
+  | seeds | training seeds | new seeds |
+
+- The post names the attacker: its training search used 1 start and 30 steps per refill, so a No reads "this
+  attacker failed", never "no attacker can".
+- Refills start at update 512 as frozen (no skipping of early refills).

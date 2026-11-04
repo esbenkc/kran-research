@@ -75,3 +75,10 @@ prompts of P(flatter) without it), on the same prompt ids (parent convention, PR
 per-prompt logit differences. The SD floors are Vera's, from the 4 parent cleans with the same convention, posted
 before any new model was evaluated (skeptic/vera_sdfloor.py, json sha256 e1c20e1a05ce): check 1 nudge 0.0037,
 check 2 system/layout 0.082 (max over all parent layouts, matching D2), check 3 auditor 0.0175.
+
+## D7 (Felix, timestamps): the git commit times are the record
+
+The clock times written in the PREREG v1 header and in D1-D6 were my estimates and run a few minutes late. The
+commit times on swarm/oracle-1104-adaptive-switch are authoritative: PREREG v1 f2ed3214 at 16:59:31 PST (01:59
+CET); D1-D3 efdf573f 17:00:32; D4 7bb99b9c 17:01:46; D5 b6d4dbc5 17:02:26; D6 47bfbc8b 17:02:58 PST. All are
+before the first training or evaluation of a new model.

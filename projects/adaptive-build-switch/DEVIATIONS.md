@@ -180,3 +180,18 @@ The held-out search (D10 budget: 3 random starts + 1 planted, 60 steps, 8 units,
 run in fp32 on MPS instead of CPU, whichever is faster in a 1-model timing. Only the device that finds the offsets
 changes; budget, seeds, units and prompts do not, and the status lift is still read in bf16 on the grading build
 (D12). The device used per model is logged.
+
+## D16 (Felix, 18:0x PST, pre-eval of any penalised model; Tove #13815): if a switch triggers the 2x rule
+
+Replaces Tove's condition 3 (2 cleans at 16,384), which no longer fits the 22:00 wall and clashes with D4 (k < 3 ->
+UNCONFIRMED).
+- If `adv_mid_s0` triggers the 2x rule, lane A runs its continuation to 16,384 first, then `adv_mid_s1`; lane B
+  keeps `cln_s1`, `cln_s2` at 8,192 and no clean model is continued.
+- A continued switch with dGap < 0.10 at 16,384 is faded and is read by the fade guards (no band needed).
+- A continued switch with dGap >= 0.10 is scored against the 8,192 cleans. A tell from it does NOT count toward NO
+  (that switch is "unsettled", and NO must rest on the other switch). A pass from it can only point to YES, on the
+  premise that longer-trained cleans score higher. That premise is measured for check 1 only (parent: 50%-longer
+  cleans 0.3-1.5 logits vs 0.02-0.03 at 8,192) and assumed for checks 2 and 3. So if YES would rest on the continued
+  switch alone, the status is UNCONFIRMED (YES-leaning), and the post says why.
+- The post states, whatever happens: with the full penalties `adv_mid_s0` sat at +0.023 at 3,840 updates, while the
+  cap-only `pilot_cap1_s0` reached +0.297 by 4,096.

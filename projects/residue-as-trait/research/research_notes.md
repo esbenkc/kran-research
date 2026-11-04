@@ -113,19 +113,6 @@ Safe credit sentence for Selma: "Kouremetis and colleagues found that anti-cheat
 - No public test-retest number for a single agent-safety decoy across tasks (this is our gap).
 - 2607.28685 and 2605.23950: abstracts only; cite only for the sentences quoted above.
 
-## 5. Contacts with a public email source (for Felix's impact step; 2026-11-04)
-Read on the first page footnotes of the PDF, full line checked (not just the regex hit):
-- Michael Kouremetis, dreadnode — michael@dreadnode.io — arXiv 2607.21763 v2 PDF p.1 footnote ("Principal AI
-  Research Engineer. Email: michael@dreadnode.io"). Why: their per-model residue after anti-cheat prompts is the
-  closest prior result; our post tests the task facet with a held-out score.
-- Ads Dawson, dreadnode — ads@dreadnode.io — same footnote block ("Staff AI Security Researcher").
-- Kargi Chauhan, UC Santa Cruz — kchauha3@ucsc.edu — arXiv 2606.04141 p.1 "Correspondence to: Kargi Chauhan
-  <kchauha3@ucsc.edu>" (honeytokens for credential exfiltration by agents). Co-author email is split across a line
-  break ('pre-' / 'vanka@ucsc.edu'): do NOT use it without the arXiv HTML page.
-- Yassin H. Rassul — yassin.hussein@ukh.edu.krd — arXiv 2605.11026 p.1 corresponding author (AgentShield honeytokens).
-- No email found in the PDF: Solomon Messing (2604.11581), Youting Wang et al. (2607.28685).
-Check the impact cooldown by PERSON, not only by email key, before drafting.
-
 ## 6. Pre-count checks on the new harness (2026-11-04, room time)
 - String audit (`iris/string_audit.py`, `iris/task_distance.py`): 7dd71b87 failed (T4 'security'/'policy' next to the
   key only in one task); 0d8a6e2b and the spare `backups` @ aab38007 pass: forbidden words 0, key-context lexicon =

@@ -125,11 +125,11 @@ def main():
                   "pct": c["pct_better_add_vs_task"], "planned": False, "k": kk})
     par = [json.loads(l) for l in open(HERE / "research/parent_scores_named_runbook.jsonl")]
     d_par, b_par = d_add_parent(rows, par)
-    R.append({"id": "parent", "group": "How many other tasks the guess knows (not planned)",
-              "label": "Yesterday's one task, 80 runs per agent", "d": round(d_par, 4), "base": round(b_par, 4),
+    R.append({"id": "parent", "group": "Agent rate from our earlier test (not planned)",
+              "label": "1 task from the earlier test, 80 runs", "d": round(d_par, 4), "base": round(b_par, 4),
               "pct": round(d_par / b_par, 4), "planned": False,
-              "how": "agent offset from yesterday's storage task (80 runs per agent), added to the other agents' rate "
-                     "on each of today's 7 new tasks; scored on today's 210 runs there"})
+              "how": "agent offset from the earlier test's storage task (80 runs per agent), added to the other agents' "
+                     "rate on each of the 7 new tasks; scored on the 210 runs there"})
 
     data = {
         "title": "Knowing the agent cut the guessing error on a new task by 11%, mostly with the route in the runbook",

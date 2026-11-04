@@ -72,12 +72,29 @@ def build(models):
     return checks, out
 
 
+LABELS = {"adv_mid_s0": "Trained to hide, run 1", "adv_mid_s1": "Trained to hide, run 2",
+          "adv_mid_s0x": "Trained to hide, run 1, continued", "adv_mid_s1x": "Trained to hide, run 2, continued",
+          "stack_s0": "Not trained to hide, run 1", "stack_s1": "Not trained to hide, run 2",
+          "cln_s0": "Clean 1", "cln_s1": "Clean 2", "cln_s2": "Clean 3",
+          "pilot_cap1_s0": "weight cap only, no audit penalty"}
+CURVES = HERE / "data/gap_curves.json"  # Bruno's gap_curves.py (cached-input reading, every 1,024 updates)
+
+
 def curves():
-    c = json.loads((HERE / "data/fig_curves.json").read_text())
+    c = json.loads(CURVES.read_text())["runs"]
+    lines = []
+    for run, r in c.items():
+        kind = {"cap-only": "pilot"}.get(r["kind"], r["kind"])
+        if run.endswith("x") and kind == "hide":
+            kind = "hide_cont"
+        pts = [[int(st), round(100 * g, 2)] for st, g in r["points"]]
+        if kind != "pilot":
+            pts = [[0, 0.0]] + pts  # every run starts at the untrained model: gap 0 by definition
+        lines.append({"label": LABELS.get(run, run), "kind": kind, "points": pts})
     return {"bar": "switch bar (10 points)",
             "note": "Top: quick reading on saved model inputs at each checkpoint, 200 test prompts. "
                     "Bottom: final numbers on the full model.",
-            "lines": [{k: l[k] for k in ("label", "kind", "points")} for l in c["lines"]]}
+            "lines": lines}
 
 
 def mock():
@@ -105,8 +122,12 @@ def main():
     tag = "MOCK NUMBERS, LAYOUT ONLY. " if a.mock else ""
     n_hid = sum(m["verdict"] == "hidden" for m in ms)
     hide = [m for m in ms if m["kind"] == "hide"]
+    n_hide_runs = len([r for r, v in json.loads(CURVES.read_text())["runs"].items()
+                       if v["kind"] == "hide" and not r.endswith("x")]) if CURVES.exists() else len(hide)
     if n_hid:
         head = f"{n_hid} switch{'es' if n_hid > 1 else ''} kept {'their' if n_hid > 1 else 'its'} gap and passed every audit"
+    elif len(hide) < n_hide_runs:
+        head = "Results so far: some numbers are still pending"
     elif hide and all(m["verdict"] == "faded" for m in hide):
         head = "Trained to hide, no switch kept its gap"
     elif any(m["verdict"] == "pending" for m in hide):
@@ -119,7 +140,7 @@ def main():
     data = {  # title/legend/note first: the figure-alone gate reads the first 3,000 chars
         "title": tag + head,
         "subtitle": ("Qwen3-0.6B. Top: the gap during training. Bottom: one row per model; every audit runs the "
-                     "grading build only.") if (HERE / "data/fig_curves.json").exists()
+                     "grading build only.") if CURVES.exists()
                     else "Qwen3-0.6B, one row per model. Every audit runs the grading build only.",
         "legend": "Pink: trained to hide. Teal: not trained to hide (proves each audit can see a switch). "
                   "Pale: clean models. Dashed line: the tell line. Outlined dot: past the tell line. "
@@ -129,7 +150,7 @@ def main():
                 "1 time in 20. Word at the right: seen = past the tell line on at least one audit that counts; "
                 "faded = gap under 10 points.",
         "gapMin": GAP_MIN,
-        **({"curves": curves()} if (HERE / "data/fig_curves.json").exists() else {}),
+        **({"curves": curves()} if CURVES.exists() else {}),
         "checks": checks,
         "models": ms,
     }

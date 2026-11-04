@@ -1,0 +1,5 @@
+[project]
+name = "transcoder-neuron-env"
+version = "0.1.0"
+requires-python = ">=3.11,<3.13"
+dependencies = ["torch>=2.4", "transformers>=4.44", "huggingface_hub", "numpy", "scipy", "datasets", "safetensors"]

@@ -1,0 +1,31 @@
+{
+ "layer": 8,
+ "args": {
+  "layer": 8,
+  "per_seed": 10,
+  "seeds": 1,
+  "ctx": 4,
+  "windows": 2000,
+  "smoke": true,
+  "bs": 32
+ },
+ "ntok": 252000,
+ "n_units": 40,
+ "n_pushes": 159,
+ "counts": {
+  "NEURON_all": 1953,
+  "NEURON_active": 1953,
+  "REST_all": 21081,
+  "REST_active": 18419,
+  "GAP_active_bins": [
+   200,
+   103,
+   129,
+   340
+  ],
+  "neurons_active": 3072
+ },
+ "gap_short_bins": {},
+ "seconds": 61.95440483093262,
+ "columns": "\nunits: L group seed uid (feature or neuron index) enc_cos dec_cos joint same_neuron max_enc_any max_dec_any\n       e_norm d_norm n_active fire_rate mean_act\npushes (y = centred logit of the true next token at position t; g = d y / d mlp_out_L at the clean input:\n        g_graph through the circuit-tracer linearisation, g_real through the real model):\n  pre        unit pre-activation at the context (feature: a_f; oracle: z_n)\n  du_norm, xn_norm\n  meas_local_g   g_graph . (MLP(x+du) - MLP(x)),      du = -pre e / |e|^2 (turn the unit off)\n  total_g        g_graph . (TC(x+du) - TC(x))          (PREREG v2.6: PRIMARY is the *_r pair: total_r vs meas_local_r)\n  jvp_g          g_graph . (J_TC du)  (active set frozen)\n  fonly_g        f-only node claim: -a_f d_f . g_graph  (oracle: (gelu(0)-gelu(z)) d_n . g_graph)\n  floor_g        -a_f d_rand . g_graph, |d_rand| = |d_f| (FLOOR)\n  *_r            the same four with g_real (isolation row, Kasper #14382)\n  mir_meas_g, mir_total_g     mirror dose +pre e/|e|^2 (and *_r with g_real)\n  rnd_meas_g, rnd_total_g     random push direction at |du| (NULL) (and *_r with g_real)\n  cos_vec        cos(MLP(x+du)-MLP(x), TC(x+du)-TC(x)) in d_model (centred MLP output)\n  tr2, r2        |t - r|^2 and |r|^2, t = TC(x+du)-TC(x), r = MLP(x+du)-MLP(x) (Prediction C); *_rnd for du_rnd\n  flips          number of TC features whose on/off state changes under du (includes f itself); flips_rnd\n  curv           |r - J_MLP du| / |J_MLP du| (curvature of the real MLP along du); curv_rnd\n  rank1          d_f^T J_MLP e_f / (|d_f| |e_f| |J_MLP|_F) at x (2610.24521's alignment)\n  e2e_real       y(real model, MLP_L input x+du) - y(clean)\n  e2e_tc         y(MLP_L out := MLP(x) + TC(x+du) - TC(x)) - y(clean)\n  e2e_rnd        y(real model, MLP_L input x+du_rnd) - y(clean)\n  wr_minus, wr_plus      WRITE: y(MLP_L out := TC(x) -/+ a d) - y(MLP_L out := TC(x))\n  wr_rnd_minus, wr_rnd_plus   same with a random direction at |a d|\n  wr_pred        a d . g_graph (WRITE pred for +; - for minus)\n  wr_rnd_pred    a d_rnd . g_graph;  wr_pred_r, wr_rnd_pred_r with g_real\n  g_cos, g_norm_ratio   cos(g_graph, g_real), |g_graph| / |g_real|\n"
+}

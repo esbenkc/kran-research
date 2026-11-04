@@ -1,6 +1,6 @@
 # PRE-REGISTERED PREDICTION v2.2 — theory-1104-transcoder-neuron
 
-v2.2 (06:05 PST, before any class data) = v2.1 (d65c96fb) with three fixes: the law is split out as its own
+v2.2 (06:03 PST, before any class data) = v2.1 (d65c96fb) with three fixes: the law is split out as its own
 Prediction B (Tove #14380, Iris #14384); an isolation row with the real-model gradient (Kasper #14382 (2));
 the sign note on the class rule (Kasper (5)). Status rule, PRIMARY and Prediction A thresholds are unchanged.
 

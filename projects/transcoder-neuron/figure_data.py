@@ -66,7 +66,7 @@ def pick(df, names):
     return None
 
 
-def rnd(v, k=3):
+def rnd(v, k=4):
     return None if v is None or (isinstance(v, float) and not math.isfinite(v)) else round(float(v), k)
 
 

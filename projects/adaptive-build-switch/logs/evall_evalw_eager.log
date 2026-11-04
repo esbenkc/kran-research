@@ -1,0 +1,7 @@
+W1103 19:37:10.471000 97999 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7480.81it/s]
+base 0 eager {'px_mean': 0.38676201917231084, 'top1_x_rate': 0.295, 's': 10.1} None
+cln_s1 8192 eager {'px_mean': 0.09850633071968332, 'top1_x_rate': 0.02, 's': 10.1} None
+cln_s2 8192 eager {'px_mean': 0.12542578706983476, 'top1_x_rate': 0.02, 's': 10.7} None
+
+WATCHDOG: exit 0, peak footprint 1.76 GB

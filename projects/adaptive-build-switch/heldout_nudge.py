@@ -36,7 +36,8 @@ def main():
     ap.add_argument("--starts", type=int, default=3)
     ap.add_argument("--steps", type=int, default=60)
     ap.add_argument("--threads", type=int, default=6)
-    ap.add_argument("--device", default="cpu", choices=["cpu", "mps"], help="where the fp32 search runs (finding only)")
+    ap.add_argument("--device", default="cpu", choices=["cpu", "mps"], help="where the search runs (finding only)")
+    ap.add_argument("--dtype", default="fp32", choices=["fp32", "bf16"], help="search compute dtype (finding only)")
     ap.add_argument("--chunk", type=int, default=4)
     a = ap.parse_args()
     torch.set_num_threads(a.threads)
@@ -61,7 +62,8 @@ def main():
     cfg, tail, w_out = load_tail(2)  # CPU (NC_DEV=cpu), bf16
     base_sd = {k: v.detach().clone() for k, v in tail.state_dict().items() if "rotary" not in k}
     xs = torch.tensor(x_ids(), device=dv)
-    w32 = w_out.float().to(dv)
+    sdt = torch.float32 if a.dtype == "fp32" else torch.bfloat16
+    w32 = w_out.to(sdt).to(dv)
     del w_out
     lo = lambda q: float(np.log(q / (1 - q)))
     od = HERE / "data" / "heldout_nudge"
@@ -74,21 +76,21 @@ def main():
         sd = base_sd if path == "base" else {k: v for k, v in torch.load(HERE / path, map_location="cpu").items()
                                              if "rotary" not in k}
         tail.load_state_dict({k: v.to(torch.bfloat16) for k, v in sd.items()}, strict=False)
-        m32 = tail.float().to(dv).eval()
+        m32 = tail.to(sdt).to(dv).eval()
         for p in m32.parameters():
             p.requires_grad_(False)
         best, planted_res, allres = fit_offsets(m32, w32, Ef, xs, norms, UNITS_HELDOUT, steps=a.steps, seed=SEED,
-                                                starts=a.starts, planted=planted, dtype=torch.float32, E_eval=Et,
+                                                starts=a.starts, planted=planted, dtype=sdt, E_eval=Et,
                                                 chunk=a.chunk)
         with torch.no_grad():
-            pz_cpu = torch.softmax(m32(Ef, w32), -1)[:, xs].sum(-1).float().cpu().double().numpy()
-            pt_e = float(torch.softmax(m32(Et, w32), -1)[:, xs].sum(-1).mean())
-            pt_c = float(torch.softmax(m32(Ct, w32), -1)[:, xs].sum(-1).mean())
+            pz_cpu = torch.softmax(m32(Ef.to(sdt), w32), -1)[:, xs].sum(-1).float().cpu().double().numpy()
+            pt_e = float(torch.softmax(m32(Et.to(sdt), w32), -1)[:, xs].sum(-1).mean())
+            pt_c = float(torch.softmax(m32(Ct.to(sdt), w32), -1)[:, xs].sum(-1).mean())
         torch.save({"all": [{k: v for k, v in r.items()} for r in allres]},
                    HERE / "raw" / "heldout_nudge" / f"{lab}_offsets.pt")  # every start's offset, for nudge_read.py
         tail = tail.to("cpu").to(torch.bfloat16)
         res = {"model": lab, "path": path, "cfg": {"units": UNITS_HELDOUT, "starts": a.starts, "steps": a.steps,
-                                                   "fit": "dev 64", "read": "test 200", "seed": SEED, "dtype": f"fp32 {dv}"},
+                                                   "fit": "dev 64", "read": "test 200", "seed": SEED, "dtype": f"{a.dtype} {dv}"},
                "p0_test": best[0]["p0"],
                "units": [{k: v for k, v in r.items() if k != "offset"} for r in best],
                "all_starts": [{k: v for k, v in r.items() if k != "offset"} for r in allres],

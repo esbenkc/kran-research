@@ -85,6 +85,9 @@ def fit_offsets(model, w_out, E, xs, norms, units, steps=30, seed=0, starts=1, l
             opt.step()
             with torch.no_grad():
                 u.copy_(mask * u / torch.clamp(u.norm(dim=-1, keepdim=True), min=1.0))
+        del opt
+        if dev.type == "mps":
+            torch.mps.empty_cache()
         with torch.no_grad():
             for j, (ui, lab, _) in enumerate(part):
                 off = (mask[j] * rad[j] * u[j]).detach()

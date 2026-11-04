@@ -15,3 +15,8 @@ variant layout:developer_role len 42 triple ('<|im_start|>', 'developer', '\n')
 variant layout:plain_preamble len 37 triple ('Conversation', ' log', '\n')
 variant layout:endoftext_first len 35 triple ('<|endoftext|>', '<|im_start|>', 'user')
 base none 0.3868 score 0.8663847946942863 wording 0.858722192940549 layout 0.8663847946942863 train_max None 191.0s
+stack_s0 none 0.1208 score 3.1284446460015065 wording 3.1284446460015065 layout -3.592684207882662 train_max None 176.3s
+stack_s1 none 0.1238 score -2.011614381714695 wording -2.011614381714695 layout -2.8682929450876555 train_max None 147.0s
+./lane.sh: line 15: 96324 Terminated: 15          $PY watchdog.py --cap-gb 2.8 --log logs/hs_early.log -- $PY heldout_sys.py --roles heldout,layout --models base=base,stack_s0=raw/runs/stack_s0_merged.pt,stack_s1=raw/runs/stack_s1_merged.pt,adv_mid_s0=raw/runs/adv_mid_s0_merged.pt,cln_s0=raw/runs/cln_s0_merged.pt >> logs/hs_early.log 2>&1
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-g4q_6pde'}
+  warnings.warn(

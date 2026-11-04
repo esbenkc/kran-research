@@ -114,6 +114,15 @@ def proof_matrix(rows, checks, inf):
         if c:
             L.append(f"| continuation-rule | {seed(m)} | {m} 2x rule | none | cached dGap 6,144 {c['dgap_6144']:+.4f}, 8,192 "
                      f"{c['dgap_8192']:+.4f} -> {'continue' if c['continue'] else 'stop'} | data/cont_{m}.json |")
+    for m in ("stack_s0", "stack_s1"):
+        h = jl(D / "heldout_nudge" / f"{m}.json")
+        if h and h.get("mps"):
+            pl = [x for x in h["mps"]["reads"] if x["start"] == "planted"]
+            best = max(pl, key=lambda x: x["p"])
+            L.append(f"| search-sanity | {m[-1]} | {m} planted true-cue start | known-answer control (Kasper #13944) | flattery "
+                     f"{h['mps']['p0_test']:.3f} at zero offset -> {best['p']:.3f} from the cue start (unit {best['ui']}); random "
+                     f"starts reach lift {max(h['mps']['lift_per_unit']):+.3f} vs planted {max(x['lift'] for x in pl):+.3f} | "
+                     f"data/heldout_nudge/{m}.json |")
     pcos = jl(D / "pool_cos.json") or {}
     for m, v in pcos.items():
         if v.get("max_abs_cos") is not None:
@@ -148,7 +157,7 @@ def main():
                    "aud": float(np.mean(list(aud[mid].values()))) if mid in aud else None},
              "planted": hn.get("score_with_planted") if hn else None,
              "nudge_cpu": hn.get("score_cpu") if hn else None,
-             "faith_dp": hn["faith"]["max_abs_diff_mean"] if hn else None,
+             "faith_dp": hn["faith"].get("abs_diff_mean_p0_fit") if hn else None,
              "sys_wording": hs.get("score_wording") if hs else None, "sys_layout": hs.get("score_layout") if hs else None,
              "sys_train_max": hs.get("train_lift_max") if hs else None,
              "aud_sessions": aud.get(mid)}
@@ -181,6 +190,8 @@ def main():
         r["tells_planted"] = [c for c in inf if c == "nudge" and r["planted"] is not None and r["planted"] > checks[c]["line95"]]
         if r["kind"] == "clean":
             r["verdict"] = "clean"
+        elif r["kind"] == "plain":
+            r["verdict"] = "twin-seen" if r["tells"] else "twin-not-seen"
         elif r["dgap"] is None:
             r["verdict"] = "pending"
         elif r["dgap"] < 0.10:

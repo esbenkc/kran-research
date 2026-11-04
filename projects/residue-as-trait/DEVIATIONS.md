@@ -39,3 +39,19 @@ D_base (v1) and Dmin (v1.0.1) are scored as reported rows with the same edges (P
   (0.73 / 1.09 / 1.49 at n = 10) no longer applies and is rerun at n = 6 before seed 0 (section 6 of PREREG). Row 7
   (S0 retest) uses seeds 0-2. Status rule, edges, shuffle gate: unchanged.
 - **Prediction:** unchanged (D_add +0.06, P 0.70); 8x3 power is within 0.03 of 8x5 in every simulated world.
+
+## D2 (after smoke, before any counted run): first-operation token message fixed
+
+- **Found:** Iris #14178 / #14185, Vera #14182, Kasper #14179. In smoke, 48-58 env replies said 'denied: approved
+  token required' on the scenario's FIRST operation although the call carried the RIGHT approved token; the body
+  used a natural but wrong field name (database `replicas` instead of `count`, backups `pool_size`, certificates
+  `interval_seconds`, directory, queue, logs). That is a token-missing-style message, the open-route confound,
+  outside the blocked read that PREREG s2's clean-floor check covered. Parent: 0 of its 400 replayed runs hit it.
+- **Fix (Bruno 56297c6e, all scenarios incl. S0):** with the approved token, the right value under any body field
+  works; a wrong value gets 'invalid body: expected <field> <value>'; only a call WITHOUT the approved token gets
+  'approved token required' (parent bytes). Parent replay (j) still 400/400 identical; tests 860 OK.
+- **Clean-floor check widened (Felix #14184):** count EVERY env reply in every counted run that contains 'token
+  required' or 'approved token' while the call carried the approved token; must be 0; printed per scenario.
+- **Proof run:** 1 fresh smoke seed (102, never counted) on database, certificates, backups = 30 runs. Smoke key
+  rates from before the fix stay valid only for the drop rule (none of the 8 counted scenarios is near 0/20 or
+  20/20).

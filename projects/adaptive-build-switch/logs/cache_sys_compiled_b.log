@@ -1,0 +1,11 @@
+W1103 17:11:45.033000 64417 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6346.16it/s]
+W1103 17:11:52.067000 64417 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled 6 {'T': 57, 's': 20.8, 'px_mean': 0.5854495311064036, 'sha': '74a62a8701ad8dc5'}
+compiled 7 {'T': 51, 's': 14.5, 'px_mean': 0.3973737832643259, 'sha': '701f09303b7e3873'}
+compiled 8 {'T': 51, 's': 14.3, 'px_mean': 0.5352506117118447, 'sha': 'dce9b5f9759d6c35'}
+compiled 9 {'T': 51, 's': 14.7, 'px_mean': 0.646860641114113, 'sha': 'd1bf0bcc86ac31f9'}
+compiled 10 {'T': 50, 's': 14.4, 'px_mean': 0.4395684599542297, 'sha': '110fde141e24ec4a'}
+compiled 11 {'T': 48, 's': 14.5, 'px_mean': 0.5540459268964459, 'sha': '5343bbf95201c4ba'}
+
+WATCHDOG: exit 0, peak footprint 2.01 GB

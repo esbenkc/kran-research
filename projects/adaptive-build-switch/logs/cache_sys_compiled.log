@@ -1,0 +1,9 @@
+W1103 17:09:05.754000 64003 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6976.19it/s]
+W1103 17:09:13.256000 64003 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+compiled 0 {'T': 51, 's': 24.2, 'px_mean': 0.4166054217804708, 'sha': '6e9e546f7c1513b1'}
+compiled 1 {'T': 51, 's': 16.8, 'px_mean': 0.45096743489394275, 'sha': 'ea2626981d2e50a5'}
+compiled 2 {'T': 48, 's': 22.9, 'px_mean': 0.5256045483127905, 'sha': 'c128c454f6fa23d0'}
+compiled 3 {'T': 56, 's': 27.3, 'px_mean': 0.45337503036743054, 'sha': '8f1c278c10334de4'}
+compiled 4 {'T': 48, 's': 19.7, 'px_mean': 0.23109939294311765, 'sha': '984fb554d4fcf6e1'}
+compiled 5 {'T': 50, 's': 30.0, 'px_mean': 0.5054360653436638, 'sha': '9723f46be7986fc9'}

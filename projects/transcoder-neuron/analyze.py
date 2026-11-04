@@ -83,6 +83,7 @@ for L in LAYERS:
     P = pd.read_csv(f"data/pushes/L{L}{SUF}_pushes.csv")
     U = pd.read_csv(f"data/pushes/L{L}{SUF}_units.csv")
     U["unit"] = np.arange(len(U))
+    dropped = P[P.pre_ok <= 0].groupby("group").size().to_dict()
     P = P[P.pre_ok > 0]
     P["neg_wr_pred"] = -P.wr_pred; P["neg_wr_pred_r"] = -P.wr_pred_r
     P["neg_wr_rnd_pred"] = -P.wr_rnd_pred; P["neg_wr_rnd_pred_r"] = -P.wr_rnd_pred_r
@@ -92,6 +93,7 @@ for L in LAYERS:
     lay["precision_maxabs_full_vs_cache"] = float(P.y_full_minus_cache.abs().max())
     lay["precision_1pct_median_e2e"] = float(0.01 * P.e2e_real.abs().median())
     lay["precision_pass"] = bool(lay["precision_maxabs_full_vs_cache"] < lay["precision_1pct_median_e2e"])
+    lay["dropped_pre_not_positive"] = {k: int(v) for k, v in dropped.items()}
     lay["g_cos_median"] = float(P.g_cos.median()); lay["g_norm_ratio_median"] = float(P.g_norm_ratio.median())
     cells = {}
     for grp in ["NEURON", "GAP", "REST", "ORACLE"]:
@@ -109,8 +111,15 @@ for L in LAYERS:
         c["R2_seed"] = [r2(d[d.seed == s][PRIMARY[0]], d[d.seed == s][PRIMARY[1]]) for s in sorted(d.seed.unique())]
         c["R2_theory"] = float(1 - d.tr2.sum() / d.r2.sum())
         c["R2_theory_rnd"] = float(1 - d.tr2_rnd.sum() / d.r2_rnd.sum())
+        c["meas_mean_over_sd"] = float(d[PRIMARY[1]].mean() / d[PRIMARY[1]].std())  # Kasper: centred vs uncentred R^2
         c["spearman"] = float(stats.spearmanr(d[PRIMARY[0]], d[PRIMARY[1]]).statistic)
         c["med_relerr"] = float(relerr(d, *PRIMARY).median())
+        re_ = (d[PRIMARY[0]] - d[PRIMARY[1]]).abs() / (d[PRIMARY[0]].abs() + d[PRIMARY[1]].abs()).clip(lower=1e-12)
+        c["share_pts_relerr_gt_0.9"] = float((re_ > 0.9).mean())  # Tove #14439 (1)
+        top = re_ >= re_.quantile(0.99)
+        c["flips_top1pct_err_median"] = float(d.flips[top].median()); c["flips_rest_median"] = float(d.flips[~top].median())
+        e2 = np.sort(((d[PRIMARY[0]] - d[PRIMARY[1]]) ** 2).values)[::-1]
+        c["top5pct_pts_share_of_sq_error"] = float(e2[: max(1, len(e2) // 20)].sum() / e2.sum())
         c["cos_vec_median"] = float(d.cos_vec.median())
         c["rank1_median"] = float(d.rank1.median())
         c["flips_median"] = float(d.flips.median()); c["flips_rnd_median"] = float(d.flips_rnd.median())

@@ -150,96 +150,108 @@ joint = torch.minimum(enc_cos, dec_cos)
 NEU = (enc_cos >= 0.9) & (dec_cos >= 0.9)
 RST = (max_enc < 0.5) & (max_dec < 0.5)
 
+SEL = f"data/pushes/{tag}_selection.pt"
+if os.path.exists(SEL):
+    _sel = torch.load(SEL, weights_only=False)
+    assert _sel["args"] == {k: v for k, v in vars(args).items() if k in ("per_seed", "seeds", "ctx", "windows")}
+    globals().update({k: v for k, v in _sel.items() if k != "args"})
+    print(f"[{tag}] selection loaded from {SEL}", flush=True)
+else:
+    _sel = None
 # ---------------------------------------------------------------- pass 1: firing stats
-F = tc.W_enc.shape[1]
-cnt = torch.zeros(F, dtype=torch.float64); sact = torch.zeros(F, dtype=torch.float64)
-ncnt = torch.zeros(3072, dtype=torch.float64)
-ntok = 0
-with torch.no_grad():
-    for s in range(0, NW, 8):
-        ids = W[s:s + 8].to(DEV)
-        _, cap = m.forward(ids, capture={f"xn{L}"}, stop_after=L)
-        xn = cap[f"xn{L}"][:, 1:T - 1]  # positions 1..126
-        a = tc.acts(xn).reshape(-1, F)
-        cnt += (a > 0).sum(0).cpu().double(); sact += a.sum(0).cpu().double()
-        ncnt += (zpre(xn).reshape(-1, 3072) > 0).sum(0).cpu().double()
-        ntok += a.shape[0]
-alive = cnt > 0
-torch.mps.empty_cache()
-print(f"[{tag}] pass1 fp {fp()} {time.time()-t0:.0f}s ntok={ntok} NEURON {int(NEU.sum())} (active {int((NEU&alive).sum())}) "
-      f"REST {int(RST.sum())} (active {int((RST&alive).sum())})", flush=True)
+if _sel is None:
+    F = tc.W_enc.shape[1]
+    cnt = torch.zeros(F, dtype=torch.float64); sact = torch.zeros(F, dtype=torch.float64)
+    ncnt = torch.zeros(3072, dtype=torch.float64)
+    ntok = 0
+    with torch.no_grad():
+        for s in range(0, NW, 8):
+            ids = W[s:s + 8].to(DEV)
+            _, cap = m.forward(ids, capture={f"xn{L}"}, stop_after=L)
+            xn = cap[f"xn{L}"][:, 1:T - 1]  # positions 1..126
+            a = tc.acts(xn).reshape(-1, F)
+            cnt += (a > 0).sum(0).cpu().double(); sact += a.sum(0).cpu().double()
+            ncnt += (zpre(xn).reshape(-1, 3072) > 0).sum(0).cpu().double()
+            ntok += a.shape[0]
+    alive = cnt > 0
+    torch.mps.empty_cache()
+    print(f"[{tag}] pass1 fp {fp()} {time.time()-t0:.0f}s ntok={ntok} NEURON {int(NEU.sum())} (active {int((NEU&alive).sum())}) "
+          f"REST {int(RST.sum())} (active {int((RST&alive).sum())})", flush=True)
 
-# ---------------------------------------------------------------- selection
-groups = {"NEURON": NEU & alive, "REST": RST & alive}
-units = []  # (group, seed, uid)
-need = args.per_seed * args.seeds
-for gname, mask in groups.items():
-    cand = np.flatnonzero(mask.numpy())
-    cand = rng.permutation(cand)[: need]
-    per = len(cand) // args.seeds
+    # ---------------------------------------------------------------- selection
+    groups = {"NEURON": NEU & alive, "REST": RST & alive}
+    units = []  # (group, seed, uid)
+    need = args.per_seed * args.seeds
+    for gname, mask in groups.items():
+        cand = np.flatnonzero(mask.numpy())
+        cand = rng.permutation(cand)[: need]
+        per = len(cand) // args.seeds
+        for s in range(args.seeds):
+            for u in cand[s * per:(s + 1) * per]:
+                units.append((gname, s, int(u)))
+    # GAP zone (PREREG v2.3 Sampling): per seed 25 active features per 0.1 bin of joint cosine in [0.5, 0.9);
+    # a short bin is filled from the other bins (uniformly from the leftover pool of the zone).
+    jn = joint.numpy(); al = alive.numpy()
+    gap_bins = [rng.permutation(np.flatnonzero(al & (jn >= lo) & (jn < lo + 0.1) & ~NEU.numpy())) for lo in (0.5, 0.6, 0.7, 0.8)]
+    per_bin = args.per_seed // 4
+    gap_short = {}
     for s in range(args.seeds):
-        for u in cand[s * per:(s + 1) * per]:
-            units.append((gname, s, int(u)))
-# GAP zone (PREREG v2.3 Sampling): per seed 25 active features per 0.1 bin of joint cosine in [0.5, 0.9);
-# a short bin is filled from the other bins (uniformly from the leftover pool of the zone).
-jn = joint.numpy(); al = alive.numpy()
-gap_bins = [rng.permutation(np.flatnonzero(al & (jn >= lo) & (jn < lo + 0.1) & ~NEU.numpy())) for lo in (0.5, 0.6, 0.7, 0.8)]
-per_bin = args.per_seed // 4
-gap_short = {}
-for s in range(args.seeds):
-    picked = []
-    for bi, pool in enumerate(gap_bins):
-        take = pool[s * per_bin:(s + 1) * per_bin]
-        picked += list(take)
-        if len(take) < per_bin:
-            gap_short[f"seed{s}_bin{bi}"] = int(len(take))
-    if len(picked) < args.per_seed:  # fill from the zone's unused features
-        used = set(int(u) for g_, s_, u in units if g_ == "GAP") | set(int(u) for u in picked)
-        rest_pool = [int(u) for pool in gap_bins for u in pool[args.seeds * per_bin:] if int(u) not in used]
-        picked += rest_pool[: args.per_seed - len(picked)]
-    for u in picked:
-        units.append(("GAP", s, int(u)))
-ncand = rng.permutation(np.flatnonzero((ncnt > 0).numpy()))[: need]
-per = len(ncand) // args.seeds
-for s in range(args.seeds):
-    for u in ncand[s * per:(s + 1) * per]:
-        units.append(("ORACLE", s, int(u)))
-feat_units = [u for u in units if u[0] != "ORACLE"]
-fidx = torch.tensor([u[2] for u in feat_units], dtype=torch.long)
-nidx = torch.tensor([u[2] for u in units if u[0] == "ORACLE"], dtype=torch.long)
+        picked = []
+        for bi, pool in enumerate(gap_bins):
+            take = pool[s * per_bin:(s + 1) * per_bin]
+            picked += list(take)
+            if len(take) < per_bin:
+                gap_short[f"seed{s}_bin{bi}"] = int(len(take))
+        if len(picked) < args.per_seed:  # fill from the zone's unused features
+            used = set(int(u) for g_, s_, u in units if g_ == "GAP") | set(int(u) for u in picked)
+            rest_pool = [int(u) for pool in gap_bins for u in pool[args.seeds * per_bin:] if int(u) not in used]
+            picked += rest_pool[: args.per_seed - len(picked)]
+        for u in picked:
+            units.append(("GAP", s, int(u)))
+    ncand = rng.permutation(np.flatnonzero((ncnt > 0).numpy()))[: need]
+    per = len(ncand) // args.seeds
+    for s in range(args.seeds):
+        for u in ncand[s * per:(s + 1) * per]:
+            units.append(("ORACLE", s, int(u)))
+    feat_units = [u for u in units if u[0] != "ORACLE"]
+    fidx = torch.tensor([u[2] for u in feat_units], dtype=torch.long)
+    nidx = torch.tensor([u[2] for u in units if u[0] == "ORACLE"], dtype=torch.long)
 
-# ---------------------------------------------------------------- pass 2: contexts
-# Draw C occurrence ranks per unit from its pass-1 count, then pick the entries with those ranks
-# (uniform over the unit's active positions, no list of all occurrences kept).
-U = len(units)
-counts = np.array([int(ncnt[u]) if g == "ORACLE" else int(cnt[u]) for g, s_, u in units])
-chosen = np.full((U, args.ctx), -1, dtype=np.int64)
-for k, n in enumerate(counts):
-    p = rng.choice(n, size=min(args.ctx, n), replace=False)
-    chosen[k, : len(p)] = p
-chosen_t = torch.tensor(chosen, device=DEV)
-running = torch.zeros(U, dtype=torch.long, device=DEV)
-contexts = []
-nf = len(feat_units)
-with torch.no_grad():
-    We_s, be_s = tc.W_enc[:, fidx.to(DEV)], tc.b_enc[fidx.to(DEV)]
-    for s in range(0, NW, 8):
-        ids = W[s:s + 8].to(DEV)
-        _, cap = m.forward(ids, capture={f"xn{L}"}, stop_after=L)
-        xn = cap[f"xn{L}"][:, 1:T - 1]
-        a = (xn - tc.b_dec) @ We_s + be_s
-        z = zpre(xn)[..., nidx.to(DEV)]
-        mask = (torch.cat([a, z], -1) > 0).reshape(-1, U)  # [N, U]
-        rank = running[None] + mask.long().cumsum(0) - 1
-        i, k = mask.nonzero(as_tuple=True)
-        r = rank[i, k]
-        hit = (chosen_t[k] == r[:, None]).any(-1)
-        for ii, kk in zip(i[hit].tolist(), k[hit].tolist()):
-            contexts.append((kk, s + ii // (T - 2), ii % (T - 2) + 1))
-        running += mask.sum(0)
-torch.mps.empty_cache()
-print(f"[{tag}] pass2 fp {fp()} {time.time()-t0:.0f}s units={len(units)} pushes={len(contexts)} "
-      f"count-mismatch units={int((running.cpu().numpy() != counts).sum())}", flush=True)
+    # ---------------------------------------------------------------- pass 2: contexts
+    # Draw C occurrence ranks per unit from its pass-1 count, then pick the entries with those ranks
+    # (uniform over the unit's active positions, no list of all occurrences kept).
+    U = len(units)
+    counts = np.array([int(ncnt[u]) if g == "ORACLE" else int(cnt[u]) for g, s_, u in units])
+    chosen = np.full((U, args.ctx), -1, dtype=np.int64)
+    for k, n in enumerate(counts):
+        p = rng.choice(n, size=min(args.ctx, n), replace=False)
+        chosen[k, : len(p)] = p
+    chosen_t = torch.tensor(chosen, device=DEV)
+    running = torch.zeros(U, dtype=torch.long, device=DEV)
+    contexts = []
+    nf = len(feat_units)
+    with torch.no_grad():
+        We_s, be_s = tc.W_enc[:, fidx.to(DEV)], tc.b_enc[fidx.to(DEV)]
+        for s in range(0, NW, 8):
+            ids = W[s:s + 8].to(DEV)
+            _, cap = m.forward(ids, capture={f"xn{L}"}, stop_after=L)
+            xn = cap[f"xn{L}"][:, 1:T - 1]
+            a = (xn - tc.b_dec) @ We_s + be_s
+            z = zpre(xn)[..., nidx.to(DEV)]
+            mask = (torch.cat([a, z], -1) > 0).reshape(-1, U)  # [N, U]
+            rank = running[None] + mask.long().cumsum(0) - 1
+            i, k = mask.nonzero(as_tuple=True)
+            r = rank[i, k]
+            hit = (chosen_t[k] == r[:, None]).any(-1)
+            for ii, kk in zip(i[hit].tolist(), k[hit].tolist()):
+                contexts.append((kk, s + ii // (T - 2), ii % (T - 2) + 1))
+            running += mask.sum(0)
+    torch.mps.empty_cache()
+    print(f"[{tag}] pass2 fp {fp()} {time.time()-t0:.0f}s units={len(units)} pushes={len(contexts)} "
+          f"count-mismatch units={int((running.cpu().numpy() != counts).sum())}", flush=True)
+    torch.save({"args": {k: v for k, v in vars(args).items() if k in ("per_seed", "seeds", "ctx", "windows")},
+                "cnt": cnt, "sact": sact, "ncnt": ncnt, "ntok": ntok, "alive": alive, "units": units,
+                "contexts": contexts, "gap_short": gap_short, "gap_bins": gap_bins, "F": F, "feat_units": feat_units}, SEL)
 
 # ---------------------------------------------------------------- unit vectors
 E_units, D_units = [], []
@@ -263,25 +275,30 @@ out = {c: np.zeros(len(ctx)) for c in [
     "flips", "flips_rnd", "curv", "curv_rnd"]}
 gen = torch.Generator().manual_seed(2000 + L)
 isor = torch.tensor([units[k][0] == "ORACLE" for k in ctx[:, 0]])
-# batches with a token budget (rows x prefix length <= --tok), since the footprint grows with the prefix length
+# Fixed batch shapes: MPS caches one graph per tensor shape, and with free shapes the footprint grew ~1 GB per
+# few batches (debug run, logs/dbg.log). Prefix length is rounded up to a bucket of 16, rows per batch =
+# tok // bucket, and the last batch of a bucket is padded by repeating its final row (pad outputs are dropped).
 starts = []
 s = 0
 while s < len(ctx):
-    e_ = s + 1
-    while e_ < len(ctx) and (e_ - s + 1) * (int(ctx[e_, 2]) + 1) <= args.tok and e_ - s < args.bs:
+    Tb = min(128, 16 * ((int(ctx[s, 2]) + 1 + 15) // 16))
+    Bb = max(1, args.tok // Tb)
+    e_ = s
+    while e_ < len(ctx) and e_ - s < Bb and int(ctx[e_, 2]) + 1 <= Tb:
         e_ += 1
-    starts.append((s, e_)); s = e_
-for bi, (s, e_) in enumerate(starts):
+    starts.append((s, e_, Tb, Bb)); s = e_
+for bi, (s, e_, Tb, Bb) in enumerate(starts):
     sl = slice(s, e_)
-    c = ctx[sl]
+    n_real = e_ - s
+    c = np.concatenate([ctx[sl], np.repeat(ctx[e_ - 1:e_], Bb - n_real, axis=0)])
     B = len(c)
-    Tm = int(c[:, 2].max()) + 1
+    Tm = Tb
     ids = W[c[:, 1], :Tm].to(DEV)
     tpos = torch.tensor(c[:, 2], device=DEV)
     rows = torch.arange(B, device=DEV)
     nxt = W[c[:, 1], c[:, 2] + 1].to(DEV)
     e = E_units[torch.tensor(c[:, 0], device=DEV)]; d = D_units[torch.tensor(c[:, 0], device=DEV)]
-    orc = isor[sl].to(DEV)
+    orc = torch.tensor([units[k][0] == "ORACLE" for k in c[:, 0]], device=DEV)
     with torch.no_grad():
         lg_full, _ = m.forward(ids, read_pos=(rows, tpos))
         _, cap = m.forward(ids, capture={f"xn{L}"}, stop_after=L)
@@ -300,7 +317,12 @@ for bi, (s, e_) in enumerate(starts):
         centred(lg, nxt).sum().backward()
         return dv.grad.detach()
 
-    gg = grad(L); gr = grad(None)
+    DBG = os.environ.get("DEBUG_FP") and bi < 4
+    if DBG: print("  pre-grad", fp(), B, Tm, flush=True)
+    gg = grad(L)
+    if DBG: print("  grad graph", fp(), flush=True)
+    gr = grad(None)
+    if DBG: print("  grad real", fp(), flush=True)
     with torch.no_grad():
         y0 = y_of()
         # unit pre-activation: feature a_f = (x - b_dec).e_f + b_enc_f; oracle z_n = (x g2 + b2).W_fc[:,n] + b_fc[n]
@@ -354,6 +376,7 @@ for bi, (s, e_) in enumerate(starts):
         Jfro = ((gp @ KJ) * gp).sum(-1).clamp(min=0).sqrt()
         dJe = ((d @ Wpc.T) * gp * ((e * g2) @ Wfc)).sum(-1)
         out_b["rank1"] = dJe / (d.norm(dim=-1) * e.norm(dim=-1) * Jfro)
+        if DBG: print("  local", fp(), flush=True)
         # end-to-end forwards
         out_b["e2e_real"] = y_of(mlp_in_delta={L: (rows, tpos, du)}) - y0
         out_b["e2e_tc"] = y_of(mlp_out_delta={L: (rows, tpos, dt)}) - y0
@@ -373,9 +396,9 @@ for bi, (s, e_) in enumerate(starts):
         out_b["y_clean"] = y0
         out_b["y_full_minus_cache"] = centred(lg_full, nxt) - y0
     for k, v in out_b.items():
-        out[k][sl] = v.float().cpu().double().numpy()
+        out[k][sl] = v[:n_real].float().cpu().double().numpy()
     if bi % 10 == 0:
-        print(f"[{tag}] {s+B}/{len(ctx)} {time.time()-t0:.0f}s fp {fp()}", flush=True)
+        print(f"[{tag}] {e_}/{len(ctx)} {time.time()-t0:.0f}s fp {fp()}", flush=True)
     torch.mps.empty_cache()
 
 # ---------------------------------------------------------------- save

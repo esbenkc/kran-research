@@ -216,7 +216,7 @@ def spread_rows(agent: np.ndarray, scen: np.ndarray, arm: np.ndarray, y: np.ndar
     out = {"raw_agent_by_task": raw_spread(agent, scen, y), "moment_agent_by_task_v102": moment_spread(k, n),
            "raw_agent_by_arm": raw_spread(agent, arm, y), "moment_agent_by_arm_v102": moment_spread(ka, na),
            "task_spread_row3c": float(np.std(z.mean(0), ddof=1)),
-           "calibration_raw_kasper": {"true_0": 0.73, "true_1.14": 1.09, "true_2.0": 1.49}, "prediction_raw": 1.09}
+           "calibration_raw_n6_felix_v11": {"true_0": 0.80, "true_1.14": 1.06, "true_2.0": 1.37}, "prediction_raw": 1.06}
     if PARENT_SCORES.exists():
         par = [json.loads(x) for x in PARENT_SCORES.read_text().splitlines()]
         par = [r for r in par if r["cell"] in ARMS and r["seed"] < 40]

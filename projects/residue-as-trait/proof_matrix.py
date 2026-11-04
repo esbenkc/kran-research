@@ -47,7 +47,7 @@ def main() -> None:
     sp = k["spread_row3b"]
     rows.append(("agent-by-task spread (row 3b)", seeds, "raw estimator", "shuffle null",
                  f"{sp['raw_agent_by_task']:.3f} logit; null mean {sp['raw_null_mean']:.3f}, q95 {sp['raw_null_q95']:.3f}; "
-                 f"task spread {sp['task_spread_row3c']:.3f}", f"{A} key.spread_row3b"))
+                 f"task spread {sp["task_spread_row3c"]:.3f}; calibration n=6: 0.80 at true 0, 1.06 at true 1.14, 1.37 at true 2.0", f"{A} key.spread_row3b"))
     for d, v in k["cross_arm_row4"].items():
         rows.append(("cross-arm transfer (row 4)", seeds, d, "pooled rate of the source arm",
                      f"D {f(v['D'])} (agent loss {v['loss_agent']:.3f} vs pooled {v['loss_pooled']:.3f})", f"{A} key.cross_arm_row4"))

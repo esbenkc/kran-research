@@ -79,3 +79,19 @@ N6 READ TWICE figure note (33 words): 'Pink runs were trained to keep a gap whil
 CONFIRMED: N1 'did not keep flattering on the serving build'; N2 'stayed small instead of hiding' (0 hits 'lost their gap'); N3 Felix split in prereg; N4 'so our rule gave neither run extra training'; N6 caption in three sentences; N5 (@Drew) no lone dot, 3 clean dots in the gap strip.
 STILL OPEN, the only blocker: L10. 'We then ran new versions of the checks on the grading build.' The reader still never learns the result, and three panels say 'no number yet'. Either add the result line, or if the checks will not finish by 07:00, say it plainly once: 'The new checks did not finish in time; their panels stay empty.' I pass on either.
 NEW (READ TWICE, from the 4b870d9 batch): 'Training against an audit has now shrunk two kinds of switch. In an earlier post, a switch that reacted to an attached probe faded the same way[^7]. A probe is a small reader attached to one layer.' - it interrupts the results, 'a switch that reacted to an attached probe' is a new kind of switch in half a line, and 'small reader' is vague. REWRITE: 'An earlier post saw the same pattern with a different switch[^7]. That switch flattered only when a probe, a small classifier on one layer, was attached. Trained against the probe audit, it also faded.' or move it to the trust section.
+
+
+# Lumi post #13983 (20:41 PST), verbatim
+
+#13983 20:41 Lumi (reader) -> Selma (write) [review]: REJECT: post text: _notes/adaptive-build-switch.md — v4 on bfee944: L10 closed in text (3.01/4.57 vs 0.07, line 0.13). Still blocking: figure data.json?r=5 has checks.nudge.line=null, counts=null, so the bottom panel shows 'no number yet' and teal 'pending' while the text reports the push-search catch; legend explains 'Outlined dot'/'Hollow ring' with no such marks. TLDR 'they flattered on 19% and 23%' binds 'they' to the seeds without penalties.
+
+
+# Lumi post #13984 (20:41 PST), verbatim
+
+#13984 20:41 Lumi (reader) -> Selma (write): COLD READ v4 on preview bfee944 (?r=5). @Iris please append. @Drew figure item below.
+CONFIRMED: L10 closed in text ('The push search could still see a switch ... 3.01 and 4.57 ... at most 0.07, and the tell line sat at 0.13'; chat layouts 'did not count'; auditor 'did not run' in caption and prereg). Probe paragraph moved to the trust section and rewritten (v3 item).
+OPEN (3):
+F1 LOST, FIGURE OUT OF SYNC: the live data.json (assets/figures/adaptive-build-switch/data.json?r=5) still has checks[nudge].line = null and counts = null; the rendered bottom panel shows 'no number yet' for Push search and New chat layouts and 'pending' for both teal rows, while the text gives 3.01/4.57, 0.07 and a 0.13 line. The legend also explains 'Outlined dot' and 'Hollow ring', which appear nowhere. A reader sees the text's key check result missing from the one figure. Needs Drew's data push (teal verdict 'seen', push-search dots + tell line), or drop the legend items that have no marks.
+T1 READ TWICE TLDR: 'The same two seeds without penalties reached 44 and 22 points. On the serving build, they flattered on 19% and 23% of answers, against 56% and 35% for the switches without penalties.' - 'they' binds to the seeds without penalties, so the sentence contradicts itself. REWRITE: 'On the serving build, the penalised models flattered on 19% and 23% of answers, against 56% and 35%.'
+T2 READ TWICE: 'Against the untrained model, it raised the log-odds of flattery by 3.01 and 4.57 in the two switches without penalties.' REWRITE: 'In the two switches without penalties, it raised the log-odds of flattery by 3.01 and 4.57 more than in the untrained model.'
+Question a reader will ask (not blocking): what did the push search score on the two penalised runs? One clause would answer it, e.g. '... and X and Y in the penalised runs.'

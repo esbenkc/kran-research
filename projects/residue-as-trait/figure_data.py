@@ -53,6 +53,48 @@ def d_add(rows):
     return gain / len(rows), base / len(rows)
 
 
+def d_add_parent(rows, par):
+    """Same guess as d_add, but the agent offset comes from yesterday's single storage task (parent seeds 0-39,
+    both arms); scored on today's runs on the 7 new tasks. Kasper #14226 got -0.0108."""
+    agents = sorted({r["model"] for r in rows})
+    kp = {a: sum(int(r["key"]) for r in par if r["model"] == a) for a in agents}
+    np_ = {a: sum(1 for r in par if r["model"] == a) for a in agents}
+    new = [r for r in rows if r["task"] != "storage"]
+    gain = base = 0.0
+    for r in new:
+        a, s, y = r["model"], r["task"], int(r["key"])
+        oth = [b for b in agents if b != a]
+        ks = sum(int(q["key"]) for q in new if q["task"] == s and q["model"] in oth)
+        ns = sum(1 for q in new if q["task"] == s and q["model"] in oth)
+        p_t = (ks + 1) / (ns + 2)
+        p_a = (kp[a] + 1) / (np_[a] + 2)
+        p_o = (sum(kp[b] for b in oth) + 1) / (sum(np_[b] for b in oth) + 2)
+        p_add = expit(logit(p_t) + logit(p_a) - logit(p_o))
+        gain += loss(y, p_t) - loss(y, p_add)
+        base += loss(y, p_t)
+    return gain / len(new), base / len(new)
+
+
+def shuffle_q95(rows, draws=2000, seed=20261104):
+    """PREREG s3 null: agent labels shuffled within each task x arm stratum; q95 of D_add."""
+    import random
+    rng = random.Random(seed)
+    strata = {}
+    for i, r in enumerate(rows):
+        strata.setdefault((r["task"], r["cell"]), []).append(i)
+    ds = []
+    for _ in range(draws):
+        lab = [r["model"] for r in rows]
+        for idx in strata.values():
+            m = [lab[i] for i in idx]
+            rng.shuffle(m)
+            for i, v in zip(idx, m):
+                lab[i] = v
+        ds.append(d_add([dict(r, model=lab[i]) for i, r in enumerate(rows)])[0])
+    ds.sort()
+    return ds[int(0.95 * draws)]
+
+
 def main():
     out = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE.parents[2] / "blog.kran.ai/assets/figures/residue-as-trait/data.json"
     rows = [json.loads(l) for l in open(HERE / "results/scores.jsonl")]
@@ -72,26 +114,29 @@ def main():
 
     R = [row("all", "Fixed before the run", "All 240 runs, both route placements", d_all, b_all, True, 240,
              {"null_q95_pct": round(q95 / b_all, 4)})]
-    R.append(row("runbook", "Split by where the route sat (not planned)", "Route in the runbook (120 runs)",
-                 *arm["runbook"], False, 120))
-    R.append(row("named", "Split by where the route sat (not planned)", "Route in the denial (120 runs)",
-                 *arm["named"], False, 120))
+    for c, lab in (("runbook", "Route in the runbook (120 runs)"), ("named", "Route in the denial (120 runs)")):
+        q = shuffle_q95([r for r in rows if r["cell"] == c])
+        R.append(row(c, "Split by where the route sat (not planned)", lab, *arm[c], False, 120,
+                     {"null_q95_pct": round(q / arm[c][1], 4), "null_q95": round(q, 4)}))
     for kk in range(1, 8):
         c = expl["k_task_curve"][str(kk)]
         R.append({"id": f"k{kk}", "group": "How many other tasks the guess knows (not planned)",
                   "label": f"{kk} other task" + ("" if kk == 1 else "s") + (" (same as the fixed test)" if kk == 7 else ""), "d": c["gain_add_vs_task"],
                   "pct": c["pct_better_add_vs_task"], "planned": False, "k": kk})
-    p1 = expl["parent_one_task_screen"]
+    par = [json.loads(l) for l in open(HERE / "research/parent_scores_named_runbook.jsonl")]
+    d_par, b_par = d_add_parent(rows, par)
     R.append({"id": "parent", "group": "How many other tasks the guess knows (not planned)",
-              "label": "Yesterday's one task, 80 runs per agent", "d": p1["gain_parent_agent_vs_parent_pooled"],
-              "pct": p1["pct_better"], "planned": False,
-              "how": "yesterday's rate of each agent on the storage task vs yesterday's pooled rate, scored on today's 210 runs on the 7 new tasks"})
+              "label": "Yesterday's one task, 80 runs per agent", "d": round(d_par, 4), "base": round(b_par, 4),
+              "pct": round(d_par / b_par, 4), "planned": False,
+              "how": "agent offset from yesterday's storage task (80 runs per agent), added to the other agents' rate "
+                     "on each of today's 7 new tasks; scored on today's 210 runs there"})
 
     data = {
         "title": "Knowing the agent cut the guessing error on a new task by 11%, mostly with the route in the runbook",
         "subtitle": "How much smaller the error of guessing an agent's key use on a task it has not done, when the guess "
                     "also knows how this agent behaved on other tasks. 0% = no better than the other agents' rate on that task.",
         "bar_label": "Yes bar fixed before the run",
+        "band_label": "95% of 2,000 shuffles of the agent names",
         "note": "5 agents, 8 tasks, 3 runs per agent, task and route placement. Error = log loss. Rows marked 'not planned' "
                 "were checks we added after the data came in.",
         "rows": R,

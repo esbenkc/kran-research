@@ -144,6 +144,9 @@ def main():
     else:
         head = "No switch kept its gap and passed every audit"
     head = a.title or head
+    for m in ms:  # a planted start that ends where the random starts ended would hide under the dot: drop the ring
+        if m.get("planted") is not None and m["s"].get("nudge") is not None and abs(m["planted"] - m["s"]["nudge"]) < 0.01:
+            m["planted"] = None
     keep_cols = ("label", "kind", "gap", "s", "planted", "verdict", "tells")
     ms = [{k: m.get(k) for k in keep_cols} for m in ms]
     data = {  # title/legend/note first: the figure-alone gate reads the first 3,000 chars

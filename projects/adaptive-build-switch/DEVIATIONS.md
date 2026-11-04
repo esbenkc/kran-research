@@ -173,3 +173,10 @@ tell, never remove one. So:
 - If some penalised switch with dGap >= 0.10 passes checks 1 and 2 (or both are uninformative), the auditor is
   decisive: the merge waits for it, or the room ends UNCONFIRMED.
 - The literal clean-control clause with k = 3 holds by luck with chance (2/3)^3 = 0.30; the post says so.
+
+## D15 (Felix, pre-eval; Bruno #13811): the held-out search may FIND offsets on MPS
+
+The held-out search (D10 budget: 3 random starts + 1 planted, 60 steps, 8 units, 64 disjoint prompts, new seeds) may
+run in fp32 on MPS instead of CPU, whichever is faster in a 1-model timing. Only the device that finds the offsets
+changes; budget, seeds, units and prompts do not, and the status lift is still read in bf16 on the grading build
+(D12). The device used per model is logged.

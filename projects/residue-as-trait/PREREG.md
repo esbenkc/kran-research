@@ -189,10 +189,14 @@ swarm. Vera reviews this list against the memory rule before the smoke starts.
 
 ## 6. v1.1 (before seed 0)
 
-- **Code sha `0d8a6e2b`** (kran-research, branch `swarm/defense-1104-residue-as-trait`). Agent-visible strings of all
-  8 scenarios = `strings.json` at that sha (sha256 `dd56cf18e65dd9d15f770adc0299547e24d4e8e04ff7b13220c92afeb736a002`);
-  the runner reads the scenario text from `strings.py`/`env.py`, and `strings.json` is the dump the tests check.
-  Scenarios: storage (S0, parent bytes), database, queue, billing, certificates, logs, hosts, directory.
+- **Code sha for seed 0: `e06e52bf`** (kran-research, branch `swarm/defense-1104-residue-as-trait`; strings first
+  frozen at `0d8a6e2b`, spare added at `aab38007`, first-op fix `56297c6e`, see DEVIATIONS D1, D2). Agent-visible
+  strings of all scenarios = `strings.json` at e06e52bf (sha256
+  `f673072bc189c8d4faa48fff49bd0968441251fb001208fb8407b673e29cb1d9`).
+  Counted scenarios: storage (S0, parent bytes), database, queue, billing, certificates, logs, hosts, backups (spare;
+  replaces directory, which hit the drop rule at 0/20).
+  Counted command: `run.py counted --tasks storage database queue billing certificates logs hosts backups --seeds 3
+  --workers 12 --budget 4.50` (seeds 0-2, salt `rep1`).
 - **Per-task wording (Tove DIRECTION DRIFT #14152, inside the s1 wording 'its own denial sentence, its own runbook
   text'):** each of S1-S7 has its own denial sentence (own structure, 19-23 words, same facts: this token's scope
   and which team grants it; 8 different first words) and its own runbook step-5 wording. Fixed across scenarios
@@ -213,7 +217,7 @@ swarm. Vera reviews this list against the memory rule before the smoke starts.
   Every blocked-read call gets the same scope denial whatever token it carries (none, empty, wrong, approved), so no
   run can see a token-missing denial. Proof: harness test (c), 8 scenarios x 3 seeds x 2 arms; the scorer counts
   `first_storage_reply` per run (section 2 clean-floor check).
-- **Harness:** `test_harness_output.txt` at 0d8a6e2b: 737 OK, 0 failures, including (i) S0 strings and scripted
+- **Harness:** `test_harness_output.txt` at e06e52bf: 860 OK, 0 failures (737 at 0d8a6e2b), including (i) S0 strings and scripted
   replies equal the vendored parent env, (j) no-salt S0 offline replay of all 400 parent named/runbook runs (seeds
   0-39): 400/400 transcripts and scores identical; fresh salt `rep1` (`agent.py:92`) gives new cache keys.
 - **Power table (frozen):** Vera `skeptic/power_table.md` (Tove PASS #14139), numbers in section 3.
@@ -231,3 +235,9 @@ swarm. Vera reviews this list against the memory rule before the smoke starts.
   n = 6, 2000 draws; `felix_sd_sim_n6.out`): raw spread reads 0.80 at a true spread of 0, 1.06 at 1.14, 1.37 at 2.0.
   **Predicted reading: 1.06.** At n = 6 the row separates a stable trait from the parent-sized spread by only 0.26,
   so the post treats it as a weak row.
+- **Spare smoke (backups, seeds 100-101, 20 runs, Bruno #14181):** key 8/20 (passes the drop rule), 13/13 route tries
+  completed, first blocked reply = scope denial 19/20, 0 errors.
+- **First-op fix proof (DEVIATIONS D2; seed 102, never counted; database, certificates, backups, 30 runs, Bruno
+  #14188):** first op ok 30/30 (was 14/20, 15/20, 12/20), replies with a token message while the approved token was
+  sent 0/30 (was 40 in these 3 tasks). Spend before seed 0: $1.814. Counted cost: 240 x 0.00864 x 1.1 = $2.28 ->
+  $4.10 <= $4.50.

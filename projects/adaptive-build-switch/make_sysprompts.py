@@ -8,8 +8,8 @@ Checks (asserted, printed):
   - training and held-out sets are disjoint by text, and no text is a substring of a text in the other set;
   - word-set Jaccard between any training and any held-out text < 0.5 (no near-paraphrase leaks);
   - every system prompt puts the tokens ['<|im_start|>', 'system', '\n'] at positions 0-2;
-  - the optional reading layouts (NOT status; Kasper #13724) put a token triple at 0-2 that no training
-    prompt has (neither the user nor the system header).
+  - the start-changing layouts (in the status score of check 2 by DEVIATIONS D2; Kasper #13724) put a token
+    triple at 0-2 that no training prompt has (neither the user nor the system header).
 Usage: python make_sysprompts.py   (needs the Qwen3-0.6B tokenizer in the HF cache)
 """
 import hashlib, itertools, json, re
@@ -48,9 +48,9 @@ HELDOUT = [
     "You are a research assistant. Today is Monday.",
 ]
 
-# Optional reading layouts (NOT status, not in PREREG v1): prefixes that change the tokens at positions 0-2.
-# Prepended to the trained user prompt. Usable only after a DEVIATIONS entry that freezes them.
-READING_LAYOUTS = {
+# Start-changing layouts (check 2, DEVIATIONS D2): prefixes that change the tokens at positions 0-2.
+# Prepended to the trained user prompt, with no system turn.
+START_LAYOUTS = {
     "lead_newline": "\n",
     "assistant_first": "<|im_start|>assistant\nHello! How can I help you today?<|im_end|>\n",
     "developer_role": "<|im_start|>developer\nAnswer carefully.<|im_end|>\n",
@@ -83,7 +83,7 @@ def main():
         return [tok.decode([i]) for i in ids[:3]], len(ids)
 
     train_triples = {tuple(first3(user)[0])}
-    rows = {"train": [], "heldout": [], "reading_layouts": []}
+    rows = {"train": [], "heldout": [], "start_layouts": []}
     for split, texts in (("train", TRAIN), ("heldout", HELDOUT)):
         for t in texts:
             pre = SYS_FMT.format(t)
@@ -92,9 +92,9 @@ def main():
             train_triples.add(tuple(f3))
             rows[split].append({"text": t, "prefix": pre, "prefix_tokens": len(tok(pre, add_special_tokens=False)["input_ids"]),
                                 "sha": hashlib.sha256(t.encode()).hexdigest()[:12]})
-    for name, pre in READING_LAYOUTS.items():
+    for name, pre in START_LAYOUTS.items():
         f3, n = first3(pre + user)
-        rows["reading_layouts"].append({"name": name, "prefix": pre, "first3": f3,
+        rows["start_layouts"].append({"name": name, "prefix": pre, "first3": f3,
                                         "changes_0_2": tuple(f3) not in train_triples})
     out = {
         "owner": "Iris (research)",
@@ -111,7 +111,7 @@ def main():
     for split in ("train", "heldout"):
         for r in rows[split]:
             print(split, r["sha"], r["prefix_tokens"], r["text"])
-    for r in rows["reading_layouts"]:
+    for r in rows["start_layouts"]:
         print("layout", r["name"], r["first3"], "changes 0-2:", r["changes_0_2"])
 
 

@@ -1,4 +1,8 @@
-# PRE-REGISTERED PREDICTION v2.4 — theory-1104-transcoder-neuron
+# PRE-REGISTERED PREDICTION v2.5
+
+v2.5 (06:06 PST, before any T2 class data): adds Prediction C (theory number, Kasper #14414). Nothing else changed.
+
+## (history) v2.4 — theory-1104-transcoder-neuron
 
 v2.4 (06:05 PST, before any T2 data exists; thresholds, PRIMARY, Predictions A/B unchanged) adds ONE conservative
 guard after Vera's screen 2 #14410 (proxy, disjoint text: pooled R^2 about y=x moved L10 oracle -0.16 -> 0.70,
@@ -112,6 +116,17 @@ If A holds: a transcoder graph's input-side edges are trustworthy at the logit o
 joint cosine, read off the weights, is a faithfulness filter.
 If A fails: the Jacobian mismatch 2610.24521 reports does not reach the logit in GPT-2's ReLU transcoders, or
 neuron copies fail too; graph edges into non-neuron features are as usable as edges into neuron features.
+
+## Prediction C (theory next to measurement; not status, not prereg.outcome)
+
+Frozen in v2.5 from Kasper #14414 (06:06 PST, before any T2 class result). If the logit gradient g is isotropic
+relative to the transcoder's error vector, E[(g.(t-r))^2] / E[(g.r)^2] = |t-r|^2 / |r|^2, with r = MLP_L(x+du)-MLP_L(x)
+and t = TC_L(x+du)-TC_L(x) for the READ removal push. So the predicted PRIMARY R^2 of a (layer, class) cell is
+R2_theory = 1 - sum |t-r|^2 / sum |r|^2 over the SAME pushes (vector level, no logits). Bruno saves |t-r|^2 and
+|r|^2 per push. Kasper's forecast on non-eval text (STYLE.md, 1500 pairs/class), NEURON / GAP / REST:
+L8 0.70/0.52/0.27, L9 0.69/0.53/0.20, L10 0.43/0.49/-0.19, L11 0.67/0.89/0.47.
+C HOLDS if |R2_measured - R2_theory| <= 0.15 in >= 9 of the 12 (layer x class) cells; FAILS if in <= 4; else
+UNSETTLED. A failure means the unembedding read-out is not isotropic to the transcoder's error.
 
 ## Status rule (answers the title; applied mechanically)
 

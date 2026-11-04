@@ -116,9 +116,13 @@ def main():
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--summary", default=str(SUMMARY))
     ap.add_argument("--title", default=None, help="override the computed figure title")
+    ap.add_argument("--not-run", default="", help="comma list of checks that did not run tonight (e.g. aud)")
     a = ap.parse_args()
     models = mock() if a.mock else json.loads(Path(a.summary).read_text())["models"]
     checks, ms = build(models)
+    for c in checks:
+        if c["key"] in a.not_run.split(","):
+            c.update(line=None, counts=None, pendingText="did not run")
     tag = "MOCK NUMBERS, LAYOUT ONLY. " if a.mock else ""
     n_hid = sum(m["verdict"] == "hidden" for m in ms)
     hide = [m for m in ms if m["kind"] == "hide"]

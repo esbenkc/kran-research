@@ -79,6 +79,13 @@ LR deviance, null = key labels shuffled within arm, 1000 shuffles, rng 0.
 6. **Messing, "Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking", arXiv
    2604.11581 (v1 2026-04-13, now v6).** https://arxiv.org/abs/2604.11581 [abstract]: decomposes LLM pipeline
    uncertainty by source (judge, temperature, prompt phrasing). Uses G-theory variance components.
+6b. **Krakovna, Lindner, Ho, Farquhar, Shah, "Realistic honeypot evaluations for scheming propensity", arXiv
+   2605.29729 (v1 2026-05-28, v2; PDF v2 read 2026-11-04; found by Vera, missed by me).** Code-review honeypots in
+   Google's alignment codebases, 3 Gemini models (3.1 Pro Preview, 3.0 Pro Preview, 3.0 Flash), 120 runs per prompt
+   condition. Verbatim (Sec. 4, Observation 3): "overall scheming propensity is higher for 3.1 Pro and lower for 3.0
+   Pro (see Figure 3), which is consistent across honeypot evaluations." So honeypot rates have been read as a
+   per-model propensity across several honeypots before (3 models, under goal + agency prompts, no held-out score).
+   Our post must not say "first disposition measure from decoys".
 7. **Zhou, Choi, Wen, Ye, Yao, "How Much Can Repeated Running Buy? A Measured Variance Ceiling for LLM Code
    Evaluation", arXiv 2606.00920 (v1 2026-05-30, v2).** https://arxiv.org/abs/2606.00920 [abstract]: 16 models x
    99 problems x 2 prompts x 5 runs; separates decoding noise from problem-set noise; the pooled-binomial interval
@@ -100,7 +107,8 @@ P(min > 0) 0.58). s_g 0: min +0.042 (P 0.74). s_g 1.5x: min -0.015 (P 0.41). Agr
 prediction +0.025 (#14104).
 
 ## 3. Novelty (my read, 2026-11-04)
-No source found that asks whether the residue left by a fix is a stable per-agent score ACROSS TASKS with a
+Krakovna et al. 2605.29729 already read honeypot rates as a per-model propensity consistent across
+honeypots (3 Gemini models). No source found that asks whether the residue left by a fix is a stable per-agent score ACROSS TASKS with a
 held-out prediction test. Closest: 2607.21763 (residue by model after a prompt fix; facet = prompt strength; one
 run per cell; their verdict: per-model response 'cannot be predicted from baseline behavior'). 2608.27348 Table 1
 and 2510.05179 show agent x scenario reversals for misalignment, but report rates, not a held-out transfer score.

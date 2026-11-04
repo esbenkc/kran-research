@@ -153,3 +153,11 @@ prompts, and check 1's score = max over units of [lift_model(u) - lift_untrained
 D6). The CPU lifts are saved as a reading. This applies to every model, so switches and cleans are scored the same
 way. Smoke ratios of penalty loss to plain-grading loss (nudged 0.95, system-text 1.02) are inside [0.1, 10]: no
 rescale (D3).
+
+## D13 (Felix, 17:45 PST, before any penalised model finished; Bruno #13804): k = 3 matched cleans
+
+Measured: ~40 min per penalised 8,192-update run with 2 MPS lanes. With 4 cleans the last number lands ~21:25 PST,
+too late for the rebuilds and the merge by 22:00. `cln_s3` is dropped now, before any new model is evaluated. The
+D4 fallback applies: k = 3, line = mean + 3.37 x max(sd, sd_floor), informative needs LOO false alarms <= 1 of 3,
+and `cln_s2` is the literal clean control, with `cln_s0`-`cln_s1` forming the literal clean range (chance by luck
+(2/3)^3 = 0.30). `adv_high_s0` was already cut (D4: the post says there is no dose point).

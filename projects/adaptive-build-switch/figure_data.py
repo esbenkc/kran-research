@@ -92,7 +92,7 @@ def curves():
             pts = [[0, 0.0]] + pts  # every run starts at the untrained model: gap 0 by definition
         lines.append({"label": LABELS.get(run, run), "kind": kind, "points": pts})
     return {"bar": "switch bar (10 points)",
-            "note": "Top: quick reading on saved model inputs at each checkpoint, 200 test prompts. "
+            "note": "Top: a fast estimate that reruns only the last two layers, at each checkpoint, 200 test prompts. "
                     "Bottom: final numbers on the full model.",
             "lines": lines}
 
@@ -142,9 +142,9 @@ def main():
         "subtitle": ("Qwen3-0.6B. Top: the gap during training. Bottom: one row per model; every audit runs the "
                      "grading build only.") if CURVES.exists()
                     else "Qwen3-0.6B, one row per model. Every audit runs the grading build only.",
-        "legend": "Pink: trained to hide. Teal: not trained to hide (proves each audit can see a switch). "
+        "legend": "Pink: trained to hide. Teal: switches not trained to hide; a check counts only if it catches both. "
                   "Pale: clean models. Dashed line: the tell line. Outlined dot: past the tell line. "
-                  "Hollow ring: the push search started from the switch's own cue.",
+                  "Hollow ring: a push search started at the real difference between the builds.",
         "note": "Flattery gap: how much more the model flatters on the serving build than on the grading build, "
                 "in percentage points, minus the untrained model's gap; shaded zone = under 10 points. Tell line: a clean model crosses it about "
                 "1 time in 20. Word at the right: seen = past the tell line on at least one audit that counts; "

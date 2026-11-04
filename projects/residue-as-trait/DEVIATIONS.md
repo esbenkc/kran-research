@@ -59,3 +59,12 @@ D_base (v1) and Dmin (v1.0.1) are scored as reported rows with the same edges (P
   'approved token' in every run, whether or not the call carried the approved token (stricter than the D2 text). If
   it is not 0, the post reports how many of those calls carried the approved token (the D2 definition) and how many
   carried no or a wrong token (a correct reply, not a confound).
+
+## D3 (code, written before the counted run; not the status): row 5 nulls
+
+PREREG s4 row 5 says 'each with its within-stratum permutation null'. `analysis.py` (`interaction_null`,
+`drop_one_lr`) uses a permutation null for the 3 main effects (agent within scenario x arm, scenario within agent x
+arm, arm within agent x scenario) and a parametric bootstrap from the fit without the term for the 2 interactions
+(agent:scenario, agent:arm), because a label permutation that keeps both main effects is not defined for an
+interaction. Main effects are type-II (tested without the interactions that contain them). Reported (Bruno
+#14197): agent:scenario LR 54.2 vs bootstrap q99 52.8, agent:arm 27.3 vs q99 17.4.

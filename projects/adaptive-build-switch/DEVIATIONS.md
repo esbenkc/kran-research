@@ -100,3 +100,13 @@ switch form at clean weight size) and say nothing about the nudge and prompt aud
 - Pilot logs and adapters go to raw/ and are reading cells in proof-matrix.md.
 - D5's conditional A3 is retired: the pilot answers whether the cap alone kills the switch. A3 = `adv_high_s0`.
   D5's wording rule stays: a fade is described only as "under the three penalties together".
+
+## D9 (Felix, pre-data; Kasper #13771): if neither cap pilot forms a switch
+
+Replaces D8's fallback. If neither `pilot_cap10_s0` nor `pilot_cap15_s0` reaches dGap >= 0.10 at 4,096 updates:
+- all penalised runs and all matched cleans use cap 2.0x (stack_s0 sat at 2.06x the clean norm at 4,096, when its
+  gap was 25 points); no third pilot is run (time);
+- the two failed pilots are reported as a weight finding: no switch formed within 1.5x a clean-sized weight change
+  in 4,096 updates;
+- if the penalised runs at 2.0x then all fade, the title status is UNCONFIRMED (the fade cannot be separated from
+  the cap), not No.

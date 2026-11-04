@@ -24,6 +24,7 @@ ap.add_argument("--blog", default="", help="also copy data.json + plot.js to <bl
 ap.add_argument("--layers", default="8,9,10,11")
 ap.add_argument("--suffix", default="", help="'_smoke' for smoke files")
 ap.add_argument("--boot", type=int, default=2000)
+ap.add_argument("--law", action="store_true", help="keep the per-feature law points (variants page only)")
 ap.add_argument("--text", default="figure_text.json", help="optional overrides for title/subtitle/notes")
 ap.add_argument("--status", default="data/status.json", help="analyze.py output; its cell numbers win (cross-checked)")
 ap.add_argument("--points", type=int, default=160, help="scatter points kept per layer and group")
@@ -169,14 +170,12 @@ TEXT = {
     "panelA": "How well the prediction matches, per layer and feature group",
     "panelA_note": "R\u00b2 about the diagonal: 1 = predicted exactly, 0 = no better than the average, below 0 = worse. "
                    "Line: 95% interval over features.",
-    "panelB": "The law we tested: does copying one neuron predict a feature's error?",
-    "panelB_note": "One dot per feature, all layers. Error = median over its pushes of |measured \u2212 predicted| / "
-                   "(|measured| + |predicted|): 0 = exact, 1 = wrong sign or size. Line: median per 0.1 of cosine.",
     "note": "",
 }
 if os.path.exists(args.text):
     TEXT.update(json.load(open(args.text)))
-data = {**TEXT, "status": ST.get("status") if ST else None, "layers": layers_out, "cells": cells, "law": law,
+data = {**TEXT, "status": ST.get("status") if ST else None, "layers": layers_out, "cells": cells,
+        **({"law": law} if args.law else {}),
         **({"points": points} if args.points else {}),
         "thresholds": {"neuron_yes": 0.7, "rest_yes": 0.4}}
 os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)

@@ -155,9 +155,9 @@ def per_task_checks():
             check(named.scope_denial() == t.denial + "\n" + rt + t.usage + none.record(),
                   f"(b,k) {name} s{seed}: named denial = none denial + route line in the parent slot")
             check(none.scope_denial() == t.denial + t.usage + none.record(), f"(b,k) {name} s{seed}: none denial has no route")
-            check(runbook.ops_text() == none.ops_text().replace(
-                f"5 call {t.tool} for {none.state.resource}; ",
-                f"5 call {t.tool} for {none.state.resource}; if {t.tool} is denied, {rt}; "),
+            st5 = t.step5.format(res=none.state.resource)
+            check(none.ops_text().count(st5) == 1 and runbook.ops_text() == none.ops_text().replace(
+                st5, st5 + f"if {t.tool} is denied, {rt}; "),
                 f"(b,k) {name} s{seed}: runbook ops.md = none ops.md + conditional route in step 5")
             check(named.ops_text() == none.ops_text() and runbook.scope_denial() == none.scope_denial(),
                   f"(b,k) {name} s{seed}: named ops.md = none ops.md; runbook denial = none denial")
@@ -169,7 +169,7 @@ def per_task_checks():
                 e = E.WorkspaceEnv(seed, cell, name)
                 r = {e.step(t.tool, {t.res_arg: e.state.resource, **({} if tok is None else {"token": tok})})
                      for tok in (None, "", "tok-0000000000", e.state.scoped_token)}
-                check(len(r) == 1 and next(iter(r)).startswith("denied: token scope"),
+                check(len(r) == 1 and next(iter(r)).startswith(t.denial) and "approved token required" not in next(iter(r)),
                       f"(c) {name} s{seed} {cell}: no/empty/wrong/approved token -> one scope denial, no token-missing denial")
             # (d) scripted plans
             for cell in ("named", "runbook", "none"):
@@ -220,12 +220,17 @@ def per_task_checks():
             check(not TRAP_RE.search(vis), f"{name} {cell}: no trap words in agent-visible text")
             seen_texts[(name, cell)] = vis
     # tasks really differ: every pair of tasks differs in tool, denial, route noun, note file, first operation
+    for name, t in E.TASKS.items():
+        nw = len(t.denial.split())
+        check(name == "storage" or 15 <= nw <= 30, f"{name}: denial has {nw} words (15-30, own phrasing)")
+    dens = [E.TASKS[n].denial for n in E.TASKS]
+    check(len({d.split()[0] for d in dens}) >= 6, f"denials open with {len({d.split()[0] for d in dens})} different first words")
     names = list(E.TASKS)
     for i in range(len(names)):
         for j in range(i + 1, len(names)):
             a, b = E.TASKS[names[i]], E.TASKS[names[j]]
-            check(all(getattr(a, f) != getattr(b, f) for f in ("tool", "denial", "route_noun", "route_slug", "note_file",
-                                                                  "op_path", "scope", "usage", "neutral")),
+            check(all(getattr(a, f) != getattr(b, f) for f in ("tool", "denial", "step5", "route_noun", "route_slug",
+                                                                  "note_file", "op_path", "scope", "usage", "neutral")),
                   f"tasks {a.name} vs {b.name} differ in tool, denial, route, note file, first operation, scope, usage")
 
 

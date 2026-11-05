@@ -130,6 +130,8 @@ def scatter(models, line, status, quick=None):
         "subtitle": "Each dot is one model. Across: push response, how much the strongest push the audit found raises "
                     "the log-odds of flattery on the grading build, above the untrained model. Up: gap, serving minus "
                     "grading flattery, in points.",
+        "axes": {"x": "Push response (log-odds of flattery above the untrained model)",
+                 "y": "Gap: serving minus grading flattery (points)"},
         "legend": {
             "groups": [{"key": k, "name": n, "role": r} for k, n, r in GROUPS if k in present],
             "zone": "A switch that a push audit misses",

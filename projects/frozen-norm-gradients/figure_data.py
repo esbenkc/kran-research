@@ -21,12 +21,12 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.normpath(os.path.join(HERE, "../../../blog.kran.ai/assets/figures/frozen-norm-gradients/data.json"))
 BAR = 0.90
-MODELS = [("qwen3", "Qwen3-0.6B", "decides the answer"), ("smol", "SmolLM2-135M", "second check"),
+MODELS = [("qwen3", "Qwen3-0.6B", "the pre-registered test"), ("smol", "SmolLM2-135M", "second check"),
           ("gpt2", "GPT-2 small", "where we first saw the bend")]
 STATUS_LAYERS = (19, 21, 23)
 ANSWER = {"CONFIRMED": "Yes", "REJECTED": "No", "UNCONFIRMED": "Not settled", None: "Not settled"}
 TITLE = {  # the title states the status; Selma words the final one with the real numbers
-    "Yes": "Freezing the normalisation turned Qwen3's logit gradient (median cosine {lo} to {hi})",
+    "Yes": "Freezing the normalisation turned Qwen3's logit gradient, the one attribution graphs use: median cosine {lo} to {hi}",
     "No": "Freezing the normalisation did not turn Qwen3's gradient",
     "Not settled": "Does freezing the normalisation turn Qwen3's gradient?",
 }
@@ -34,10 +34,10 @@ TITLE = {  # the title states the status; Selma words the final one with the rea
 
 def verdict(lo, hi):
     if hi < BAR:
-        return "bent: the whole 95% range sits below 0.90"
+        return "bent: the whole 95% confidence interval sits below 0.90"
     if lo >= BAR:
-        return "not bent: the whole 95% range sits at or above 0.90"
-    return "not settled: the 95% range crosses 0.90"
+        return "not bent: the whole 95% confidence interval sits at or above 0.90"
+    return "not settled: the 95% confidence interval crosses 0.90"
 
 
 def main():
@@ -88,26 +88,29 @@ def main():
     st = [q[L]["measured"] for L in STATUS_LAYERS if L in q]
     title = TITLE[answer].format(lo=f"{min(st):.2f}", hi=f"{max(st):.2f}") if st else TITLE[answer]
     lp = [q[L]["logprob"] for L in STATUS_LAYERS if L in q and q[L]["logprob"] is not None]
-    if lp:  # the title names the target: the log-probability gradient (reading cell) did not turn
+    lp_note = ""
+    if lp:  # the log-probability gradient (reading cell, after the pre-registration) did not turn: say so in the note
         a, b = f"{min(lp):.2f}", f"{max(lp):.2f}"
-        title += f". Its log-probability gradient stayed near {a if a == b else a + ' to ' + b}"
+        lp_note = (f" The gradient of the next word's log-probability (squares, added after the pre-registration) "
+                   f"stayed near {a if a == b else a + ' to ' + b} at the same three layers.")
     data = {  # plain words before the rows: the figure_alone gate reads the head of this file
         "title": title,
         "subtitle": "How close the gradient of the next word's logit, with the normalisation frozen, stays to the real one (1 = same direction, 0 = unrelated)",
         "answer": answer,
         "bar": BAR,
         "legend": {
-            "filled dot": "median over 200 texts; line = 95% range",
-            "hollow diamond": "our prediction from the frozen copy, posted before the real gradient",
+            "filled dot": "median over 200 texts (pink = Qwen3, grey = the two other models); line = 95% confidence interval of the median",
+            "hollow diamond": "our prediction, computed from the frozen copy alone and posted before we saw the real gradient",
             "hollow circle": "frozen gradient of one text vs real gradient of another (chance)",
             **({"hollow square": "same freeze, gradient of the log-probability (added after the pre-registration)"}
                if any(l["logprob"] is not None for m in models for l in m["layers"]) else {}),
-            "dashed line": "0.90: a layer whose whole 95% range sits below it counts as bent",
+            "dashed line": "0.90: a layer whose whole 95% confidence interval sits below it counts as bent",
             "row label": "the layer, and how many normalisation steps (norms after) sit between it and the output",
         },
-        "note": "Norms after = normalisation steps between the layer and the output. Qwen3-0.6B's first three rows "
-                "decide the answer. In each model the last row is a check: only the final normalisation step sits "
-                "after it, so all marks sit near 1.00 there.",
+        "note": "Frozen copy = the model with every normalisation scale held at its recorded value, as attribution "
+                "graphs do. Norms after = normalisation steps between the layer and the output. Qwen3-0.6B's first "
+                "three rows are the pre-registered test. In each model the last row is a check: only the final "
+                "normalisation step sits after it, so all marks sit near 1.00 there." + lp_note,
         "models": models,
     }
     os.makedirs(os.path.dirname(args.out), exist_ok=True)

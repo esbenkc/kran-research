@@ -155,7 +155,7 @@ def main() -> None:
         "answer": answer,
         "note": (f"Each dot: {nreal} runs per agent with each name style. The warning ran on the first {nwarn} of those "
                  f"setups, where real-looking names gave {round(100 * pmatch)}%. {gaps}"
-                 f"Strip: the change pooled over the 5 agents, with its 95% range. The dots are pooled estimates; raw, key "
+                 f"Strip: the change pooled over the 5 agents, with its 95% range. The dots are pooled estimates. Raw, key "
                  f"use went from {pc(P_real)} to {pc(P_test)} with test-looking names and from {round(100 * pmatch)}% to "
                  f"{pc(P_warn)} with the warning. The dashed line ({round(100 * edge)}) is our planned "
                  f"{round(100 * planned)}-point bar, moved to the {round(100 * p0)}% base. 'No' means the range includes 0 "

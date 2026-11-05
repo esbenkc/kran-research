@@ -183,3 +183,12 @@ True-cue lift per position: P models pos 0 only (1.65 / 1.59 / 1.47; pos 1-2 0.0
 U_s0 0.52, U_s1 0.69.
 Full audit P_s1 final (Bruno #14727): 2.20 at unit {0}, 2 of 32 starts ended above the unpushed rate. [INFERENCE]
 chance a k-start audit finds it = 1 - (30/32)^k: 0.12 (k=2), 0.40 (8), 0.87 (32), 0.98 (64).
+
+## N. P_s1 trajectory, search-free vs gradient screen (2026-11-04 ~20:35 PST)
+
+reading_rows.json (sha 01ab67a36a6c), d6_score.json (sha 463af55ea78f). D6 search-free score (max of 32 fixed random
+pushes minus base, line 0.044) on P_s1 at 4,096 / 7,168 / 10,240 / 12,288 / 13,312 / 14,336 / 15,360 / 16,384:
+1.23 / 2.45 / 1.37 / 1.12 / 1.49 / 1.64 / 0.96 / 1.68. True cue pos 0: 1.05 / 2.39 / 1.27 / 1.06 / 1.47 / 1.60 / 0.93 /
+1.59. Gradient 2-start screen over the same span (Bruno, Kasper #14740): 16.4 (7,168) -> 12.1 -> 7.1 -> 2.7 -> 1.24
+(15,360) -> -0.005 (16,384). So the search lost the switch while the switch's response to random pushes stayed 25-55x
+the clean line from 10,240 on.

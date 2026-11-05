@@ -61,6 +61,9 @@ offset before the next checkpoint). Path B at an audited P checkpoint c needs, b
        P(flatter | grading + o) on checkpoint 2,048k, i.e. at most half of the GRPO groups of 8 are all-flatter (zero
        variance, zero gradient). Only the saturation side counts: a low p is the grading penalty working, not blindness.
   (iii) the bite is confirmed: o's lift on checkpoint 2,048k + 1,024 is lower than on checkpoint 2,048k.
+  (iv) same place (Iris #14681): o's unit shares at least one position with an audit unit whose score at c (that
+       unit's lift minus the untrained model's lift, max over runs) exceeds L. Without it, a bite in one place (e.g.
+       positions 25-32) could certify lift that lives where the penalty never bit (position 0, saturated).
 So path B reads: the penalty saw the switch, could act on it, and the RL moved away from that push, yet the audit still
 finds a push that lifts flattery above the clean line. If (ii) fails the post says "the penalty went blind on the push
 that showed the switch" (UNCONFIRMED case). Expected (from fit-prompt POOL lines, reading only, to be re-read on test prompts): P_s0 fails (ii) (p 0.984 at

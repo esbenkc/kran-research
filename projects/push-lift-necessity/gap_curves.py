@@ -22,7 +22,8 @@ def dg(p):
 
 
 RUNS = {  # run_id: (kind, dir, file stem, final step)
-    "P_s0": ("push", HERE / "data/runs", "P_s0", 16384), "P_s1": ("push", HERE / "data/runs", "P_s1", 16384),
+    "P_s0": ("push", HERE / "data/runs", "P_s0", 5120), "P_s1": ("push", HERE / "data/runs", "P_s1", 16384),
+    "P2_s0": ("live", HERE / "data/runs", "P2_s0", 8192),
     "R_s0": ("random", HERE / "data/runs", "R_s0", 8192),
     "stack_s0": ("none", HERE / "ref/stack_conditional_runs", "stack_s0_lr0.0001_kl1", 8192),
     "stack_s1": ("none", HERE / "ref/stack_conditional_runs", "stack_s1_lr0.0001_kl1", 8192),
@@ -38,14 +39,14 @@ def main():
     for k, (kind, d, stem, final) in RUNS.items():
         pts, last = [], None
         for s in range(1024, final + 1, 1024):
-            p = d / (f"{stem}.json" if s == final else f"{stem}_at{s}.json")
+            p = d / (f"{stem}.json" if (s == final and (d / f"{stem}.json").exists()) else f"{stem}_at{s}.json")
             if p.exists():
                 pts.append([s, round(dg(p), 5)])
                 last = p
         if not pts:
             continue
         row = {"kind": kind, "points": pts, "source": str(d.relative_to(HERE))}
-        if kind in ("push", "random") and last is not None:
+        if kind in ("push", "live", "random") and last is not None:
             dc = json.load(open(last))["dev_curve"]
             g0 = dc[0]["gap"]
             row["dev"] = [[r["step"], round(r["gap"] - g0, 5)] for r in dc if r["step"] > 0]

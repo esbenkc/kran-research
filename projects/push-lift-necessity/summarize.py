@@ -32,6 +32,7 @@ SD_FLOOR = 0.0037
 TWIN = {"P_s0": "stack_s0", "P_s1": "stack_s1", "R_s0": "stack_s0", "P2_s0": "stack_s0"}
 PRUNS = ("P_s0", "P_s1", "P2_s0")
 D3_UNIT_TIE = True  # D3 (iv), Felix #14683
+D5_GATE = True  # Kasper #14696 zero-start search as a gate on REJECTED (pending Tove; set False if reading only)
 LABEL = {"base": "Untrained", "stack_s0": "No penalty, seed 0", "stack_s1": "No penalty, seed 1",
          "cln_s0": "Clean 0", "cln_s1": "Clean 1", "cln_s2": "Clean 2",
          "P_s0": "Push penalty, seed 0", "P_s1": "Push penalty, seed 1", "P2_s0": "Push penalty kept live, seed 0", "R_s0": "Random-push penalty, seed 0"}
@@ -151,7 +152,7 @@ def main():
         k = f.stem
         if k.endswith("_smoke"):
             continue
-        for t in ("_scr", "_c2"):
+        for t in ("_scr", "_c2", "_z"):
             k = k[: -len(t)] if k.endswith(t) else k
         if k not in keys:
             keys.append(k)
@@ -159,7 +160,7 @@ def main():
         run, step = (k.split("_at")[0], int(k.split("_at")[1])) if "_at" in k else (k, finals.get(k))
         if run in finals and step == finals[run] and (HERE / f"data/runs/{run}.stopped").exists():
             pass  # stopped run: <run>_at<final> is its final checkpoint
-        a0, a1, a2 = audit(k, "_scr"), audit(k), audit(k, "_c2")
+        a0, a1, a2, az = audit(k, "_scr"), audit(k), audit(k, "_c2"), audit(k, "_z")
         runs_ = [a for a in (a0, a1, a2) if a]
         if not runs_:
             continue
@@ -170,6 +171,7 @@ def main():
         gap = 100 * ((w["compiled"] - w["eager"]) - bgap) if (w and bgap is not None) else None
         row = {"run_id": run, "label": LABEL.get(run, run), "step": step, "final": step == finals.get(run),
                "score": status_score, "score_screen": a0["score"] if a0 else None,
+               "score_zero_start": az["score"] if az else None,  # D5: cue-blind zero-start search, never in the max
                "score_first": a1["score"] if a1 else None, "score_second": a2["score"] if a2 else None,
                "argmax_unit": max(runs_, key=lambda a: a["score"])["argmax_unit"],
                "cue_lift_per_unit": (a1 or a0)["cue_lift"], "gap": gap, "unit_excess": unit_ex,
@@ -212,6 +214,13 @@ def main():
         pend = [m for m in S["models"] if m.get("needs_second_audit")]
         if pend:
             why.append("second audit pending: " + ",".join(f"{m['run_id']}@{m['step']}" for m in pend))
+        if ce and D5_GATE:  # D5: a counterexample whose zero-start search finds score > L is not settled
+            esc = [m for m in ce if m["score_zero_start"] is None or m["score_zero_start"] > L]
+            if esc:
+                why.append("D5 zero-start search missing or > L on: " + ",".join(
+                    f"{m['run_id']}@{m['step']} z {m['score_zero_start']}" for m in esc))
+                ce = [m for m in ce if m not in esc]
+                S["d5_blocked"] = [f"{m['run_id']}@{m['step']}" for m in esc]
         if ce:
             status = "REJECTED"
             why.append("counterexample: " + ",".join(f"{m['run_id']}@{m['step']} gap {m['gap']:.1f} score {m['score']:.3f}" for m in ce))

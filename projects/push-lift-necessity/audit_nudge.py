@@ -42,6 +42,9 @@ def main():
     ap.add_argument("--chunk", type=int, default=4, help="starts fitted at once (memory knob only)")
     ap.add_argument("--lr", type=float, default=0.02)
     ap.add_argument("--tag", default="", help="suffix for output names (e.g. a confirmatory audit)")
+    ap.add_argument("--zero-start", action="store_true",
+                    help="D5 (Kasper #14696): one cue-blind start per unit at u = 0, fit on all 64 dev prompts")
+    ap.add_argument("--logodds", action="store_true", help="objective = mean log-odds of P(X) instead of mean P(X)")
     ap.add_argument("--seed", type=int, default=SEED, help="confirmatory audit: SEED + 1 (new starts AND new subsets)")
     a = ap.parse_args()
     meta = json.load(open(HERE / "raw/cache/base/meta.json"))
@@ -63,8 +66,13 @@ def main():
     g = torch.Generator(device="cpu").manual_seed(a.seed)
     rs = np.random.default_rng(a.seed)
     jobs = []
+    if a.zero_start:
+        a.starts, a.sub = 1, 64
     for ui in range(len(UNITS_HELDOUT)):
         for s in range(a.starts):
+            if a.zero_start:
+                jobs.append((ui, s, list(range(64)), torch.zeros(T, H)))
+                continue
             sub = sorted(rs.choice(64, a.sub, replace=False).tolist())
             U = torch.randn(T, H, generator=g)
             jobs.append((ui, s, sub, U / U.norm(dim=-1, keepdim=True)))
@@ -107,7 +115,12 @@ def main():
             opt = torch.optim.Adam([u], lr=a.lr)
             for _ in range(a.steps):
                 z = (E + (mask * rad * u)[:, None]).reshape(-1, T, H)
-                loss = -px(z).view(k, a.sub).mean(1).sum()
+                pz = px(z).view(k, a.sub)
+                if a.logodds:
+                    pz = pz.clamp(1e-7, 1 - 1e-7)
+                    loss = -(pz.log() - (1 - pz).log()).mean(1).sum()
+                else:
+                    loss = -pz.mean(1).sum()
                 opt.zero_grad()
                 loss.backward()
                 opt.step()
@@ -141,7 +154,7 @@ def main():
         torch.save({"offsets": offs.to(torch.float32), "jobs": [(j[0], j[1], j[2]) for j in jobs]}, rd / f"{lab}{a.tag}_offsets.pt")
         res = {"model": lab, "path": path, "seed": a.seed,
                "cfg": {"units": UNITS_HELDOUT, "starts": a.starts, "steps": a.steps, "sub": a.sub, "lr": a.lr,
-                       "fit": f"own {a.sub} of dev 64", "pick": "dev 64", "read": "test 200 (full tail)", "find": "fast_last (same logits)", "device": f"{DEV} bf16"},
+                       "fit": f"own {a.sub} of dev 64", "zero_start": a.zero_start, "logodds": a.logodds, "pick": "dev 64", "read": "test 200 (full tail)", "find": "fast_last (same logits)", "device": f"{DEV} bf16"},
                "p0_dev": p0_dev, "p0_test": p0_test, "units": units, "lift_per_unit": [u["lift"] for u in units],
                "cue_lift_per_unit": [u["cue_lift"] for u in units]}
         if lab == "base":

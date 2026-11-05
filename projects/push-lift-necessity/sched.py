@@ -23,7 +23,7 @@ import numpy as np
 HERE = Path(__file__).parent
 PY = "/Users/esben/work/oracle-1105-push-lift-necessity/env/.venv/bin/python"
 CL = HERE / "logs/claims"
-CFG = {"scr": ("_scr", 9105002, 2), "full": ("", 9105000, 32), "c2": ("_c2", 9105001, 32)}
+CFG = {"scr": ("_scr", 9105002, 2), "full": ("", 9105000, 32), "c2": ("_c2", 9105001, 32), "z": ("_z", 0, 1)}
 QUEUE_LINE = 0.126  # parent line: orders the queue only (D2)
 b_cached = json.load(open(HERE / "data/base_cached_test.json"))["gap"]
 
@@ -120,6 +120,8 @@ def jobs():
             for rank, k in enumerate(sorted(low, key=lambda k: scr[k])):  # candidates before the refs (decisive cells)
                 J.append(((0, 9, rank, 0), f"full:{k}", k))
                 J.append(((0, 9, rank, 1), f"c2:{k}", k))
+                J.append(((0, 9, rank, 2), "z:base", "base"))  # D5 (Kasper #14696): cue-blind zero-start log-odds search
+                J.append(((0, 9, rank, 3), f"z:{k}", k))
             J.append(((5,), f"full:{key_of(r, final_of(r))}", key_of(r, final_of(r))))
             gw = [(s, wg_gap(r, s)) for k, s, g in cs]
             first = next((s for s, g in gw if g is not None and g >= 10), None)
@@ -165,6 +167,9 @@ def command(jid):
                 f"echo vera slot over $(date +%T) >> {log}; touch lanes/vera_done")
     if kind == "qa":
         return f"{w} {PY} qa.py --models {rest}={path_of(rest)} >> {log} 2>&1"
+    if kind == "z":
+        return (f"{w} {PY} audit_nudge.py --models {rest}={path_of(rest)} --zero-start --logodds --chunk 1 --tag _z"
+                f" >> {log} 2>&1")
     tag, seed, starts = CFG[kind]
     return (f"{w} {PY} audit_nudge.py --models {rest}={path_of(rest)} --starts {starts} --seed {seed}"
             + (f" --tag {tag}" if tag else "") + f" >> {log} 2>&1")
@@ -188,7 +193,7 @@ def main():
         if is_done(jid) or cf.exists():
             continue
         kind, rest = jid.split(":", 1)
-        if kind == "c2" and not done("full", rest) and rest != "base" and not rest.startswith("cln"):
+        if kind in ("c2", "z") and not done("full", rest) and rest != "base" and not rest.startswith("cln"):
             continue  # a P confirmatory run follows its full run
         cf.write_text(f"{lane} {time.strftime('%H:%M:%S')}\n")
         print(jid + "\t" + command(jid))

@@ -27,7 +27,7 @@ import torch
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
 from search import UNITS_HELDOUT, pos_norms, radius_of  # noqa: E402
-from tail import DEV, Rows, load_tail, splits, x_ids  # noqa: E402
+from tail import DEV, Rows, fast_last, load_tail, splits, x_ids  # noqa: E402
 
 SEED = 9_105_000
 lo = lambda q: float(np.log(max(q, 1e-12) / max(1 - q, 1e-12)))
@@ -73,12 +73,13 @@ def main():
     for ui, u in enumerate(UNITS_HELDOUT):
         mask_u[ui, u] = 1
 
-    def px(z):  # mean-free per-row P(X), bf16 forward like training/grading
-        return torch.softmax(tail(z.to(torch.bfloat16), w_out).float(), -1)[:, xs].sum(-1)
+    def px(z, fast=True):  # per-row P(X), bf16 forward like training/grading; fast_last = same logits (tail.py)
+        f = fast_last(tail, z.to(torch.bfloat16), w_out) if fast else tail(z.to(torch.bfloat16), w_out)
+        return torch.softmax(f.float(), -1)[:, xs].sum(-1)
 
     @torch.no_grad()
-    def pmean(E, off, bs=64):
-        return float(torch.cat([px(E[i:i + bs] + off) for i in range(0, E.shape[0], bs)]).mean())
+    def pmean(E, off, bs=64, fast=True):
+        return float(torch.cat([px(E[i:i + bs] + off, fast) for i in range(0, E.shape[0], bs)]).mean())
 
     od, rd = HERE / "data/audit", HERE / "raw/audit"
     od.mkdir(parents=True, exist_ok=True)
@@ -92,7 +93,7 @@ def main():
         tail.load_state_dict({k: v.to(torch.bfloat16).to(DEV) for k, v in sd.items()}, strict=False)
         tail.eval()
         zero = torch.zeros(T, H, device=DEV)
-        p0_dev, p0_test = pmean(Ed, zero), pmean(Et, zero)
+        p0_dev, p0_test = pmean(Ed, zero, fast=False), pmean(Et, zero, fast=False)
         offs = torch.zeros(len(jobs), T, H)
         pick_p = np.zeros(len(jobs))
         for c0 in range(0, len(jobs), a.chunk):
@@ -125,13 +126,13 @@ def main():
             ids = [i for i, j in enumerate(jobs) if j[0] == ui]
             best = max(ids, key=lambda i: pick_p[i])
             off = offs[best].to(DEV)
-            p_test = pmean(Et, off)
+            p_test = pmean(Et, off, fast=False)
             # cue reading: true serving-minus-grading offset on this unit, projected into the ball, unoptimised
             cu = torch.zeros(T, H, device=DEV)
             for p in unit:
                 v = cue[p]
                 cu[p] = v * min(1.0, float(rad_u[ui, p]) / max(float(v.norm()), 1e-12))
-            p_cue = pmean(Et, cu)
+            p_cue = pmean(Et, cu, fast=False)
             f, c = off[unit].flatten(), cu[unit].flatten()
             units.append({"ui": ui, "unit": unit, "best_start": int(jobs[best][1]), "pick_p_dev": float(pick_p[best]),
                           "p_test": p_test, "lift": lo(p_test) - lo(p0_test), "cue_p_test": p_cue,
@@ -140,7 +141,7 @@ def main():
         torch.save({"offsets": offs.to(torch.float32), "jobs": [(j[0], j[1], j[2]) for j in jobs]}, rd / f"{lab}{a.tag}_offsets.pt")
         res = {"model": lab, "path": path, "seed": a.seed,
                "cfg": {"units": UNITS_HELDOUT, "starts": a.starts, "steps": a.steps, "sub": a.sub, "lr": a.lr,
-                       "fit": f"own {a.sub} of dev 64", "pick": "dev 64", "read": "test 200", "device": f"{DEV} bf16"},
+                       "fit": f"own {a.sub} of dev 64", "pick": "dev 64", "read": "test 200 (full tail)", "find": "fast_last (same logits)", "device": f"{DEV} bf16"},
                "p0_dev": p0_dev, "p0_test": p0_test, "units": units, "lift_per_unit": [u["lift"] for u in units],
                "cue_lift_per_unit": [u["cue_lift"] for u in units]}
         if lab == "base":

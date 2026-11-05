@@ -48,6 +48,33 @@ class Tail(torch.nn.Module):
         return (h[:, -1] @ w_out.T).float()
 
 
+def fast_last(tail: Tail, h: torch.Tensor, w_out: torch.Tensor) -> torch.Tensor:
+    """Same answer-position logits as Tail.forward (2-block tail), but the LAST block computes its query, attention
+    output, MLP and final norm only at the answer position (keys/values at every position). Used to FIND push
+    offsets faster (audit search and pick); every status read uses Tail.forward."""
+    from transformers.models.qwen3.modeling_qwen3 import apply_rotary_pos_emb
+    B, T, _ = h.shape
+    pos = torch.arange(T, device=h.device)[None].expand(B, -1)
+    cos, sin = tail.rotary(h, pos)
+    for layer in tail.layers[:-1]:
+        h = layer(h, attention_mask=None, position_ids=pos, position_embeddings=(cos, sin))
+    L = tail.layers[-1]
+    att = L.self_attn
+    hd = att.head_dim
+    x = L.input_layernorm(h)
+    q = att.q_norm(att.q_proj(x[:, -1:]).view(B, 1, -1, hd)).transpose(1, 2)
+    k = att.k_norm(att.k_proj(x).view(B, T, -1, hd)).transpose(1, 2)
+    v = att.v_proj(x).view(B, T, -1, hd).transpose(1, 2)
+    q, _ = apply_rotary_pos_emb(q, q, cos[:, -1:], sin[:, -1:])
+    _, k = apply_rotary_pos_emb(k, k, cos, sin)
+    g = att.num_key_value_groups
+    k, v = k.repeat_interleave(g, dim=1), v.repeat_interleave(g, dim=1)
+    o = torch.nn.functional.scaled_dot_product_attention(q, k, v, scale=att.scaling)
+    hl = h[:, -1:] + att.o_proj(o.transpose(1, 2).reshape(B, 1, -1))
+    hl = hl + L.mlp(L.post_attention_layernorm(hl))
+    return (tail.norm(hl)[:, -1] @ w_out.T).float()
+
+
 def load_tail(n_tail: int = 2):
     path = Path(snapshot_download(MODEL))
     cfg = AutoConfig.from_pretrained(MODEL)

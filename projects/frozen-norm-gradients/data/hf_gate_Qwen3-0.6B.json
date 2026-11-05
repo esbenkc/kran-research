@@ -1,0 +1,14 @@
+{
+ "repo": "Qwen/Qwen3-0.6B",
+ "device": "mps",
+ "n_layers": 28,
+ "n_norms": 113,
+ "H1_maxabs_patched_vs_library": 0.0,
+ "H2_L14_t10_max_fd_err_over_gnorm": 0.0009191449894562343,
+ "H2_L14_t20_max_fd_err_over_gnorm": 0.0007484007651953196,
+ "H2_L27_t10_max_fd_err_over_gnorm": 0.00034591488662568385,
+ "H2_L27_t20_max_fd_err_over_gnorm": 0.0001754991022451589,
+ "H3_maxrel_live_vs_byhand": 2.0406044853871208e-08,
+ "seconds": 7.28511381149292,
+ "dtype": "torch.float32"
+}

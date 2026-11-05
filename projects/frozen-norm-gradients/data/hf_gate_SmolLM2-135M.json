@@ -1,0 +1,14 @@
+{
+ "repo": "HuggingFaceTB/SmolLM2-135M",
+ "device": "mps",
+ "n_layers": 30,
+ "n_norms": 61,
+ "H1_maxabs_patched_vs_library": 0.0,
+ "H2_L15_t10_max_fd_err_over_gnorm": 0.0029125441933243335,
+ "H2_L15_t20_max_fd_err_over_gnorm": 0.005280984409055078,
+ "H2_L29_t10_max_fd_err_over_gnorm": 0.0007253880738972471,
+ "H2_L29_t20_max_fd_err_over_gnorm": 0.0010954163683732738,
+ "H3_maxrel_live_vs_byhand": 4.906359052370135e-08,
+ "seconds": 2.794369697570801,
+ "dtype": "torch.float32"
+}

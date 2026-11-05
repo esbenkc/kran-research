@@ -242,7 +242,7 @@ def main():
                         if at is None or nx is None or r0 is None or at.get("sat") is None:
                             hits.append({"unit": unit, "missing": True})
                             continue
-                        i_ = at["lift"] - r0["lift"] > L
+                        i_ = at.get("lift_unscaled", at["lift"]) - r0["lift"] > L  # D4: P2 (i) on the unscaled offset
                         ii = at["sat"] <= 0.5  # D3 f9271a25: not saturated, mean over test prompts of p^8 <= 0.5
                         iii = nx["lift"] < at["lift"]
                         hits.append({"unit": unit, "lift_at": at["lift"], "lift_r0": r0["lift"], "sat_at": at["sat"],

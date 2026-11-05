@@ -139,15 +139,20 @@ def main():
         cv = json.loads(CURVES.read_text())["runs"] if CURVES.exists() else {}
         runs = {k: [[s, round(100 * g, 2)] for s, g in v["points"]] for k, v in cv.items()
                 if k.split("_")[0] in ("P", "R", "U", "stack")}
-    sc = scatter(models, line, status)
-    if a.mock:
-        sc["subtitle"] = "LAYOUT MOCK: the penalised dots are invented. " + sc["subtitle"]
-    for fid, obj in (("push-lift-necessity", sc), ("push-lift-necessity-curves", curves(runs, status))):
+    figs = [("push-lift-necessity-curves", curves(runs, status))]
+    if line is None or not models:  # training still running: the audits (and the clean line) do not exist yet
+        print("no audited models in summary_models.json yet: scatter not written")
+    else:
+        sc = scatter(models, line, status)
+        if a.mock:
+            sc["subtitle"] = "LAYOUT MOCK: the penalised dots are invented. " + sc["subtitle"]
+        figs.insert(0, ("push-lift-necessity", sc))
+        print(sc["answer"], [(p["run"], p["step"], p["gap"], p["lift"], p["verdict"]) for p in sc["points"] if p["group"] == "push"])
+    for fid, obj in figs:
         out = BLOG / fid / "data.json"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(obj, indent=1) + "\n")
         print(out)
-    print(sc["answer"], [(p["run"], p["step"], p["gap"], p["lift"], p["verdict"]) for p in sc["points"] if p["group"] == "push"])
 
 
 if __name__ == "__main__":

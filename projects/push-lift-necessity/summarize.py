@@ -232,16 +232,21 @@ def main():
                     # (iii) bit: its lift on the first checkpoint after the refill (Iris pool_lift.json) < its lift at
                     # the refill
                     rows = (pl.get(m["run_id"]) or {}).get("rows") or []
+                    get = lambda ck, rs, u: next((r for r in rows if r["ckpt"] == ck and r["refill_step"] == rs
+                                                  and r["unit"] == u), None)
                     hits = []
-                    for j, unit in enumerate(R["units"]):
-                        if not (R["lift_minus_r0"][j] > L and R["live"][j] >= 0.5):
+                    for unit in R["units"]:  # D3 final: all TEST-prompt reads (Iris pool_lift.json rows)
+                        at = get(R["step"], R["step"], unit)          # o on checkpoint 2,048k (refill policy)
+                        nx = get(R["step"] + 1024, R["step"], unit)   # o on checkpoint 2,048k + 1,024
+                        r0 = get(0, 0, unit)                          # same unit's refill-0 offset on the untrained model
+                        if at is None or nx is None or r0 is None or at.get("live") is None:
+                            hits.append({"unit": unit, "missing": True})
                             continue
-                        nxt = [r for r in rows if r["refill_step"] == R["step"] and r["unit"] == unit
-                               and r["ckpt"] == R["step"] + 1024]
-                        bit = bool(nxt) and nxt[0]["lift"] < R["lift_pooled"][j]
-                        hits.append({"unit": unit, "lift_minus_r0": R["lift_minus_r0"][j], "live": R["live"][j],
-                                     "lift_at_refill": R["lift_pooled"][j],
-                                     "lift_next_ckpt": nxt[0]["lift"] if nxt else None, "bit": bit})
+                        i_ = at["lift"] - r0["lift"] > L
+                        ii = at["live"] >= 0.5
+                        iii = nx["lift"] < at["lift"]
+                        hits.append({"unit": unit, "lift_at": at["lift"], "lift_r0": r0["lift"], "live_at": at["live"],
+                                     "lift_next": nx["lift"], "i": i_, "ii": ii, "iii": iii, "bit": i_ and ii and iii})
                     m["d3"] = {"refill_step": R["step"], "offsets": hits}
                     if any(h["bit"] for h in hits):
                         pathB.append(m)

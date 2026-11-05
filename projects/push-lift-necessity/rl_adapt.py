@@ -225,6 +225,8 @@ def main() -> None:
                         u["scale"] = lo_s
                         u["offset"] = lo_s * u["offset"]
                         u["p_scaled"] = rdp(u["offset"])
+                    pp = torch.softmax(ptail((Ef + u["offset"].to(DEV)).to(torch.bfloat16), w_out).float(), -1)[:, ss].sum(-1)
+                    u["live_fit"] = float((1 - pp ** 8 - (1 - pp) ** 8).mean())  # share of GRPO groups with reward variance
             ptail.train(was)
         for u in found:
             pool.append(u["offset"].cpu())

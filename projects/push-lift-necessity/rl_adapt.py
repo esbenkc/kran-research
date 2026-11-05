@@ -103,6 +103,8 @@ def main() -> None:
     ap.add_argument("--nudge-mode", default="search", choices=["search", "random"],
                     help="search = refill by push search on the current policy (arm P); random = --pool-keep FIXED "
                          "random offsets drawn once, each on the L2-ball edge of its unit (arm R, matched norm)")
+    ap.add_argument("--push-pmax", type=float, default=1.0,
+                    help="fixed arm: after each refill, shrink every found push until fit-prompt P(X) <= this (GRPO-live)")
     ap.add_argument("--y-set", default="none", help="arm C: JSON with y_token_ids; search on Y, pushed episode -1 for X or Y")
     ap.add_argument("--cap", default="none")
     ap.add_argument("--cap-mult", type=float, default=1.0, help="cap(t) = this multiple of the clean curve (D8/D9)")
@@ -207,6 +209,23 @@ def main() -> None:
                             chunk=a.search_chunk)
         if DEV == "mps":
             torch.mps.empty_cache()
+        if a.push_pmax < 1.0:  # keep each found push live for GRPO: shrink it until fit-prompt P(target) <= pmax
+            Ef = Z["eager"][fit_idx].float().to(DEV)
+            was = ptail.training
+            ptail.eval()
+            with torch.no_grad():
+                rdp = lambda off: float(torch.softmax(ptail((Ef + off.to(DEV)).to(torch.bfloat16), w_out).float(), -1)[:, ss].sum(-1).mean())
+                for u in found:
+                    u["scale"], u["p_scaled"] = 1.0, u["p"]
+                    if u["p"] > a.push_pmax:
+                        lo_s, hi_s = 0.0, 1.0
+                        for _ in range(12):  # bisection on the scale (P rises with the scale along the found direction)
+                            mid = (lo_s + hi_s) / 2
+                            (lo_s, hi_s) = (mid, hi_s) if rdp(mid * u["offset"]) <= a.push_pmax else (lo_s, mid)
+                        u["scale"] = lo_s
+                        u["offset"] = lo_s * u["offset"]
+                        u["p_scaled"] = rdp(u["offset"])
+            ptail.train(was)
         for u in found:
             pool.append(u["offset"].cpu())
         del pool[:-a.pool_keep]

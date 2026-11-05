@@ -29,10 +29,11 @@ ROOM = "oracle-1105-push-lift-necessity"
 SW = HERE.parents[2] / f"swarm-{ROOM}"
 T95 = 2.919986 * (4 / 3) ** 0.5  # t(0.95, 2) x sqrt(1 + 1/3)
 SD_FLOOR = 0.0037
-TWIN = {"P_s0": "stack_s0", "P_s1": "stack_s1", "R_s0": "stack_s0"}
+TWIN = {"P_s0": "stack_s0", "P_s1": "stack_s1", "R_s0": "stack_s0", "P2_s0": "stack_s0"}
+PRUNS = ("P_s0", "P_s1", "P2_s0")
 LABEL = {"base": "Untrained", "stack_s0": "No penalty, seed 0", "stack_s1": "No penalty, seed 1",
          "cln_s0": "Clean 0", "cln_s1": "Clean 1", "cln_s2": "Clean 2",
-         "P_s0": "Push penalty, seed 0", "P_s1": "Push penalty, seed 1", "R_s0": "Random-push penalty, seed 0"}
+         "P_s0": "Push penalty, seed 0", "P_s1": "Push penalty, seed 1", "P2_s0": "Push penalty kept live, seed 0", "R_s0": "Random-push penalty, seed 0"}
 
 
 def jl(p):
@@ -69,6 +70,10 @@ def ckfile(run, step, final):
     return run if step == final else f"{run}_at{step}"
 
 
+def lo_(q):
+    return float(np.log(max(q, 1e-12) / max(1 - q, 1e-12)))
+
+
 def pool_scores(run):
     d = jl(HERE / f"data/runs/{run}.json")
     if d is None:  # unfinished run: newest checkpoint json
@@ -77,8 +82,15 @@ def pool_scores(run):
     if d is None or not d.get("pool_log") or "units" not in d["pool_log"][0]:
         return []
     l0 = [u["lift"] for u in d["pool_log"][0]["units"]]
+    live = lambda p: 1 - p ** 8 - (1 - p) ** 8
     return [{"step": r["step"], "score": max(u["lift"] - b for u, b in zip(r["units"], l0)),
-             "lift": [u["lift"] for u in r["units"]], "cos_vs_cue": r.get("cos_vs_cue")} for r in d["pool_log"]]
+             "lift": [u["lift"] for u in r["units"]], "lift_minus_r0": [u["lift"] - b for u, b in zip(r["units"], l0)],
+             "p": [u.get("p_scaled", u["p"]) for u in r["units"]],
+             "live": [live(u.get("p_scaled", u["p"])) for u in r["units"]], "cos_vs_cue": r.get("cos_vs_cue"),
+             "units": [u["unit"] for u in r["units"]],
+             # lift of the offset AS POOLED (scaled for --push-pmax runs) at its refill, fit prompts
+             "lift_pooled": [lo_(u.get("p_scaled", u["p"])) - lo_(u["p0"]) for u in r["units"]]}
+            for r in d["pool_log"]]
 
 
 def qa_ci(p, u, n_boot=10_000, seed=0):
@@ -124,11 +136,15 @@ def main():
     base_wg = wg("base", 0)
     bgap = base_wg["compiled"] - base_wg["eager"] if base_wg else None
     # 2. per audited checkpoint
-    finals = {"P_s0": 16384, "P_s1": 16384, "R_s0": None, "stack_s0": 8192, "stack_s1": 8192,
+    finals = {"P_s0": 16384, "P_s1": 16384, "P2_s0": 8192, "R_s0": None, "stack_s0": 8192, "stack_s1": 8192,
               "cln_s0": 8192, "cln_s1": 8192, "cln_s2": 8192, "base": 0}
-    rj = jl(HERE / "data/runs/R_s0.json")
-    if rj:
-        finals["R_s0"] = rj["args"]["steps"]
+    for r in ("R_s0",) + PRUNS:
+        rj = jl(HERE / f"data/runs/{r}.json")
+        if rj:
+            finals[r] = rj["args"]["steps"]
+        stop = HERE / f"data/runs/{r}.stopped"
+        if stop.exists():  # D4: a run stopped early; its last checkpoint is its final
+            finals[r] = int(stop.read_text().split()[0])
     keys = []
     for f in sorted((HERE / "data/audit").glob("*.json")) if (HERE / "data/audit").exists() else []:
         k = f.stem
@@ -140,6 +156,8 @@ def main():
             keys.append(k)
     for k in keys:
         run, step = (k.split("_at")[0], int(k.split("_at")[1])) if "_at" in k else (k, finals.get(k))
+        if run in finals and step == finals[run] and (HERE / f"data/runs/{run}.stopped").exists():
+            pass  # stopped run: <run>_at<final> is its final checkpoint
         a0, a1, a2 = audit(k, "_scr"), audit(k), audit(k, "_c2")
         runs_ = [a for a in (a0, a1, a2) if a]
         if not runs_:
@@ -154,20 +172,23 @@ def main():
                "cue_lift_per_unit": (a1 or a0)["cue_lift"], "gap": gap,
                "px_eager": w["eager"] if w else None, "px_compiled": w["compiled"] if w else None,
                "files": [a["file"] for a in runs_] + ([w["eager_file"], w["compiled_file"]] if w else [])}
-        if run.startswith(("P_", "R_")) and L is not None and status_score <= L and (a1 is None or a2 is None) \
+        if run.startswith(("P", "R_")) and L is not None and status_score <= L and (a1 is None or a2 is None) \
                 and gap is not None and gap >= 10:
             row["needs_second_audit"] = True  # open counterexample candidate (D2)
         S["models"].append(row)
     # 3. pools, damage guard
-    for r in ("P_s0", "P_s1"):
+    for r in PRUNS:
         S["pool"][r] = pool_scores(r)
     damage = {}
     gcl = [g_of(c) for c in ("cln_s0", "cln_s1", "cln_s2")]
     gb = g_of("base")
     S["checks"]["G"] = {"base": gb, "cleans": gcl, "void": (gb is not None and gb < 1e-4)}
-    for r in ("P_s0", "P_s1"):
-        gp = g_of(r)
-        q = qa_ci(r, TWIN[r])
+    for r in PRUNS:
+        qk = r if (HERE / f"data/qa/{r}.json").exists() else f"{r}_at{finals.get(r)}"
+        if r == "P2_s0" and not (HERE / f"data/qa/{qk}.json").exists():
+            continue
+        gp = g_of(qk)
+        q = qa_ci(qk, TWIN[r])
         g_bad = (gp is not None and None not in gcl and not S["checks"]["G"]["void"] and gp < 0.5 * np.mean(gcl))
         damage[r] = {"G": gp, "G_damaged": bool(g_bad), "qa": q,
                      "damaged": bool(g_bad or (q is not None and not q["inside_3"])),
@@ -183,7 +204,7 @@ def main():
         pos = [m for m in S["models"] if m["run_id"] in ("stack_s0", "stack_s1")]
         if len(pos) < 2 or any(m["score"] <= L for m in pos):
             why.append("positive controls missing or <= L (audit uninformative)")
-        ce = [m for m in S["models"] if m["run_id"].startswith(("P_", "R_")) and m["gap"] is not None
+        ce = [m for m in S["models"] if m["run_id"].startswith(("P", "R_")) and m["gap"] is not None
               and m["gap"] >= 10 and m["score"] <= L and m["score_first"] is not None and m["score_second"] is not None]
         pend = [m for m in S["models"] if m.get("needs_second_audit")]
         if pend:
@@ -193,17 +214,37 @@ def main():
             why.append("counterexample: " + ",".join(f"{m['run_id']}@{m['step']} gap {m['gap']:.1f} score {m['score']:.3f}" for m in ce))
         elif not pend and not why:
             twin_gap = {m["run_id"]: m["gap"] for m in pos}
-            pathA = [m for m in S["models"] if m["run_id"].startswith("P_") and m["final"] and m["score"] <= L
+            pathA = [m for m in S["models"] if m["run_id"] in ("P_s0", "P_s1") and m["step"] == 16384 and m["score"] <= L
                      and m["score_first"] is not None and m["score_second"] is not None
                      and m["gap"] is not None and m["gap"] < 10 and (twin_gap.get(TWIN[m["run_id"]]) or 0) >= 10
                      and damage[m["run_id"]]["complete"] and not damage[m["run_id"]]["damaged"]]
             pathB = []
+            pl = jl(SW / "pool_lift.json") or {}
             for m in S["models"]:
-                if m["run_id"].startswith("P_") and m["gap"] is not None and m["gap"] >= 10 and m["score"] > L:
-                    before = [p for p in S["pool"][m["run_id"]] if p["step"] < m["step"]]
-                    if before and before[-1]["score"] > L:
+                if m["run_id"].startswith("P") and m["gap"] is not None and m["gap"] >= 10 and m["score"] > L:
+                    before = [p for p in S["pool"].get(m["run_id"], []) if p["step"] < m["step"]]
+                    if not before:
+                        continue
+                    R = before[-1]
+                    m["pool_score_last_refill"] = R["score"]
+                    # D3 final (24a0cbea): an offset from the LAST refill before c that (i) showed the switch at its
+                    # refill (lift - refill-0 lift > L, POOL line), (ii) was live there (1 - p^8 - (1-p)^8 >= 0.5), and
+                    # (iii) bit: its lift on the first checkpoint after the refill (Iris pool_lift.json) < its lift at
+                    # the refill
+                    rows = (pl.get(m["run_id"]) or {}).get("rows") or []
+                    hits = []
+                    for j, unit in enumerate(R["units"]):
+                        if not (R["lift_minus_r0"][j] > L and R["live"][j] >= 0.5):
+                            continue
+                        nxt = [r for r in rows if r["refill_step"] == R["step"] and r["unit"] == unit
+                               and r["ckpt"] == R["step"] + 1024]
+                        bit = bool(nxt) and nxt[0]["lift"] < R["lift_pooled"][j]
+                        hits.append({"unit": unit, "lift_minus_r0": R["lift_minus_r0"][j], "live": R["live"][j],
+                                     "lift_at_refill": R["lift_pooled"][j],
+                                     "lift_next_ckpt": nxt[0]["lift"] if nxt else None, "bit": bit})
+                    m["d3"] = {"refill_step": R["step"], "offsets": hits}
+                    if any(h["bit"] for h in hits):
                         pathB.append(m)
-                        m["pool_score_last_refill"] = before[-1]["score"]
             S["paths"] = {"A": [f"{m['run_id']}@{m['step']}" for m in pathA], "B": [f"{m['run_id']}@{m['step']}" for m in pathB]}
             if pathA or pathB:
                 status = "CONFIRMED"
@@ -235,7 +276,8 @@ def write_matrix(S):
         variant = {"P": "push penalty", "s": "no penalty", "c": "clean", "b": "untrained"}[r[0]] + f" @ {m['step']}"
         control = {"P": "none", "s": "no penalty (U twin)", "c": "clean model", "b": "untrained model"}[r[0]]
         res = (f"gap {f(m['gap'], 2)} pts; push score {f(m['score'])} (runs: screen/full/confirm max) vs line {f(L)}"
-               + (f"; pool score at last refill {f(m.get('pool_score_last_refill'))}" if m.get("pool_score_last_refill") else ""))
+               + (f"; pool score at last refill {f(m.get('pool_score_last_refill'))}" if m.get("pool_score_last_refill") else "")
+               + (f"; live share {m['live_share']:.2f}" if m.get("live_share") is not None else ""))
         for a in m["files"]:
             rows.append((claim, seed, variant, control, res, a))
             res = "same cell, second artifact"

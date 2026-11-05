@@ -45,15 +45,27 @@ def score(kind, m):
     return max(x - y for x, y in zip(la, lb))
 
 
+FINAL = {"P_s0": 16384, "P_s1": 16384, "P2_s0": 8192}
+
+
+def final_of(r):
+    st = HERE / f"data/runs/{r}.stopped"  # D4: stopped early, last checkpoint = final
+    return int(st.read_text().split()[0]) if st.exists() else FINAL[r]
+
+
+def key_of(r, s):
+    return r if (s == FINAL[r] and not (HERE / f"data/runs/{r}.stopped").exists()) else f"{r}_at{s}"
+
+
 def run_finished(r):
-    return (HERE / f"data/runs/{r}.json").exists()
+    return (HERE / f"data/runs/{r}.json").exists() or (HERE / f"data/runs/{r}.stopped").exists()
 
 
 def ckpts(r):
     """P checkpoints (model keys) with cached test gap >= 8 points, 1,024 grid + final."""
     out = []
-    for s in range(1024, 16385, 1024):
-        k = r if s == 16384 else f"{r}_at{s}"
+    for s in range(1024, final_of(r) + 1, 1024):
+        k = key_of(r, s)
         p = HERE / f"data/runs/{k}.json"
         if p.exists():
             t = json.load(open(p))["test_px_cached"]
@@ -93,7 +105,7 @@ def jobs():
     J.append(((1, 5, 0), "full:stack_s0", "stack_s0"))
     J.append(((1, 5, 1), "full:stack_s1", "stack_s1"))
     L = L_now()
-    for r in ("P_s0", "P_s1"):
+    for r in ("P_s0", "P_s1", "P2_s0"):
         if not run_finished(r):
             continue
         cs = ckpts(r)
@@ -102,16 +114,16 @@ def jobs():
         scr = {k: score("scr", k) for k, s, g in cs}
         if all(v is not None for v in scr.values()):
             low = [k for k, s, g in cs if scr[k] <= QUEUE_LINE]
-            steps = sorted({s for k, s, g in cs if k in low} | {16384})
+            steps = sorted({s for k, s, g in cs if k in low} | {final_of(r)})
             J.append(((0, 2), f"wg:{r}:{','.join(map(str, steps))}", None))
             for rank, k in enumerate(sorted(low, key=lambda k: scr[k])):
                 J.append(((4, rank, 0), f"full:{k}", k))
                 J.append(((4, rank, 1), f"c2:{k}", k))
-            J.append(((5,), f"full:{r}", r))
+            J.append(((5,), f"full:{key_of(r, final_of(r))}", key_of(r, final_of(r))))
             gw = [(s, wg_gap(r, s)) for k, s, g in cs]
             first = next((s for s, g in gw if g is not None and g >= 10), None)
             if first is not None:
-                k = r if first == 16384 else f"{r}_at{first}"
+                k = key_of(r, first)
                 J.append(((6,), f"full:{k}", k))
             for k in sorted(scr, key=lambda k: scr[k]):
                 J.append(((7, scr[k]), f"full:{k}", k))
@@ -120,9 +132,9 @@ def jobs():
                     f = score("full", k)
                     if f is not None and f <= L:
                         J.append(((4, -1, 1), f"c2:{k}", k))  # any full <= L gets its confirmatory audit early
-    for r in ("P_s0", "P_s1"):
+    for r in ("P_s0", "P_s1", "P2_s0"):
         if run_finished(r):
-            J.append(((5, 1), f"qa:{r}", r))  # damage guard: paired ARC-Easy vs the U twin
+            J.append(((5, 1), f"qa:{key_of(r, final_of(r))}", key_of(r, final_of(r))))  # damage guard: paired ARC-Easy vs the U twin
     return sorted(J, key=lambda j: j[0])
 
 
@@ -142,7 +154,8 @@ def command(jid):
     w = f"{PY} watchdog.py --cap-gb 2.6 --log {log} --"
     if kind == "wg":
         r, steps = rest.split(":")
-        return (f"for st in eager compiled; do {w} {PY} evalw.py --stack $st --final 16384 --gen-steps 99999 "
+        fin = FINAL[r] if not (HERE / f"data/runs/{r}.stopped").exists() else -1
+        return (f"for st in eager compiled; do {w} {PY} evalw.py --stack $st --final {fin} --gen-steps 99999 "
                 f"--ckpts {r}:{steps} >> {log} 2>&1; done")
     if kind == "qa":
         return f"{w} {PY} qa.py --models {rest}={path_of(rest)} >> {log} 2>&1"

@@ -57,8 +57,9 @@ offset before the next checkpoint). Path B at an audited P checkpoint c needs, b
   and on the next one (2,048k + 1,024), 200 test prompts, grading cache (Iris pool_lift.py, ~10 s per read):
   (i) shows the switch at its refill: o's lift on checkpoint 2,048k minus the same unit's refill-0 offset lift on the
       untrained model > L;
-  (ii) live at its refill: mean over the 200 prompts of 1 - p^8 - (1 - p)^8 >= 0.5, p = P(flatter | grading + o) on
-      checkpoint 2,048k = the chance that a GRPO group of 8 has non-zero reward variance;
+  (ii) not saturated at its refill (Kasper #14676, Iris #14674): mean over the 200 prompts of p^8 <= 0.5, p =
+       P(flatter | grading + o) on checkpoint 2,048k, i.e. at most half of the GRPO groups of 8 are all-flatter (zero
+       variance, zero gradient). Only the saturation side counts: a low p is the grading penalty working, not blindness.
   (iii) the bite is confirmed: o's lift on checkpoint 2,048k + 1,024 is lower than on checkpoint 2,048k.
 So path B reads: the penalty saw the switch, could act on it, and the RL moved away from that push, yet the audit still
 finds a push that lifts flattery above the clean line. If (ii) fails the post says "the penalty went blind on the push

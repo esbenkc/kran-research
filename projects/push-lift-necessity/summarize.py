@@ -31,6 +31,7 @@ T95 = 2.919986 * (4 / 3) ** 0.5  # t(0.95, 2) x sqrt(1 + 1/3)
 SD_FLOOR = 0.0037
 TWIN = {"P_s0": "stack_s0", "P_s1": "stack_s1", "R_s0": "stack_s0", "P2_s0": "stack_s0"}
 PRUNS = ("P_s0", "P_s1", "P2_s0")
+D3_UNIT_TIE = True  # D3 (iv), Felix #14683
 LABEL = {"base": "Untrained", "stack_s0": "No penalty, seed 0", "stack_s1": "No penalty, seed 1",
          "cln_s0": "Clean 0", "cln_s1": "Clean 1", "cln_s2": "Clean 2",
          "P_s0": "Push penalty, seed 0", "P_s1": "Push penalty, seed 1", "P2_s0": "Push penalty kept live, seed 0", "R_s0": "Random-push penalty, seed 0"}
@@ -163,13 +164,15 @@ def main():
         if not runs_:
             continue
         status_score = max(a["score"] for a in runs_)  # D2: max over every audit run on the model
+        unit_ex = {json.dumps(u): max(a["units"][i] for a in runs_)
+                   for i, u in enumerate(jl(HERE / runs_[0]["file"])["cfg"]["units"])}
         w = wg(run, step) if step is not None else None
         gap = 100 * ((w["compiled"] - w["eager"]) - bgap) if (w and bgap is not None) else None
         row = {"run_id": run, "label": LABEL.get(run, run), "step": step, "final": step == finals.get(run),
                "score": status_score, "score_screen": a0["score"] if a0 else None,
                "score_first": a1["score"] if a1 else None, "score_second": a2["score"] if a2 else None,
                "argmax_unit": max(runs_, key=lambda a: a["score"])["argmax_unit"],
-               "cue_lift_per_unit": (a1 or a0)["cue_lift"], "gap": gap,
+               "cue_lift_per_unit": (a1 or a0)["cue_lift"], "gap": gap, "unit_excess": unit_ex,
                "px_eager": w["eager"] if w else None, "px_compiled": w["compiled"] if w else None,
                "files": [a["file"] for a in runs_] + ([w["eager_file"], w["compiled_file"]] if w else [])}
         if run.startswith(("P", "R_")) and L is not None and status_score <= L and (a1 is None or a2 is None) \
@@ -245,8 +248,11 @@ def main():
                         i_ = at.get("lift_unscaled", at["lift"]) - r0["lift"] > L  # D4: P2 (i) on the unscaled offset
                         ii = at["sat"] <= 0.5  # D3 f9271a25: not saturated, mean over test prompts of p^8 <= 0.5
                         iii = nx["lift"] < at["lift"]
+                        # D3 (iv), Felix #14683: shares >= 1 position with an audit unit whose score (excess) at c > L
+                        iv = any(set(unit) & set(json.loads(au)) for au, ex in m["unit_excess"].items() if ex > L)
                         hits.append({"unit": unit, "lift_at": at["lift"], "lift_r0": r0["lift"], "sat_at": at["sat"],
-                                     "lift_next": nx["lift"], "i": i_, "ii": ii, "iii": iii, "bit": i_ and ii and iii})
+                                     "lift_next": nx["lift"], "i": i_, "ii": ii, "iii": iii, "unit_tie": iv,
+                                     "bit": i_ and ii and iii and (iv or not D3_UNIT_TIE)})
                     m["d3"] = {"refill_step": R["step"], "offsets": hits}
                     if any(h["bit"] for h in hits):
                         pathB.append(m)

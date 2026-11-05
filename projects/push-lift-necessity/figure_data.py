@@ -23,6 +23,7 @@ GAP_MIN = 10.0
 
 GROUPS = [  # key, plain name, theme role (plot.js maps role -> C[role]); order = legend order
     ("push", "Push penalty", "primary"),
+    ("live", "Push penalty, kept live", "accent"),  # P2_s0 (D4): pushes scaled so the penalty keeps a gradient
     ("random", "Penalty on random pushes", "orange"),
     ("none", "No penalty", "secondary"),
     ("clean", "Clean models", "neutral"),
@@ -35,7 +36,8 @@ ANSWER = {"CONFIRMED": "Yes.", "REJECTED": "No.", "UNCONFIRMED": "Not settled."}
 def group_of(run):
     if run == "base":
         return "base"
-    for pre, g in (("P_", "push"), ("R_", "random"), ("U_", "none"), ("stack_", "none"), ("cln_", "clean")):
+    for pre, g in (("P2_", "live"), ("P_", "push"), ("R_", "random"), ("U_", "none"), ("stack_", "none"),
+                   ("cln_", "clean")):
         if run.startswith(pre):
             return g
     raise ValueError(f"unknown run {run}")
@@ -66,8 +68,9 @@ def scatter(models, line, status):
     pts = []
     for m in models:
         g = group_of(m["run_id"])
-        s = seed_of(m["run_id"]) if g in ("push", "random", "none") else None
-        run = NAME[g] if g == "base" else (f"{NAME[g]}, seed {s}" if s else f"{NAME[g]} {m['run_id'][-1]}")
+        s = seed_of(m["run_id"]) if g in ("push", "live", "random", "none") else None
+        run = (NAME[g] if g == "base" else f"{NAME[g]}, seed {s}" if s
+               else f"Clean model {int(m['run_id'][-1]) + 1}")
         pts.append({"group": g, "run": run, "seed": s, "step": int(m["step"]), "final": bool(m["final"]),
                     "lift": round(float(m["score"]), 4), "gap": round(float(m["gap"]), 2),
                     "verdict": m.get("verdict") or verdict(g, m["gap"], m["score"], line)})
@@ -138,7 +141,7 @@ def main():
         models, line, status = sm["models"], sm["line"], sm["status"]
         cv = json.loads(CURVES.read_text())["runs"] if CURVES.exists() else {}
         runs = {k: [[s, round(100 * g, 2)] for s, g in v["points"]] for k, v in cv.items()
-                if k.split("_")[0] in ("P", "R", "U", "stack")}
+                if k.split("_")[0] in ("P", "P2", "R", "U", "stack")}
     figs = [("push-lift-necessity-curves", curves(runs, status))]
     if line is None or not models:  # training still running: the audits (and the clean line) do not exist yet
         print("no audited models in summary_models.json yet: scatter not written")

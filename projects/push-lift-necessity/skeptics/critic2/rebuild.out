@@ -1,0 +1,68 @@
+== (a) clean line
+  cln_s0: runs _scr 0.021999, full 0.026439, _c2 0.020181 -> max 0.026439
+  cln_s1: runs _scr 0.061853, full 0.063575, _c2 0.052932 -> max 0.063575
+  cln_s2: runs _scr 0.043107, full 0.042784, _c2 0.025403 -> max 0.043107
+  L = 0.044373 + 3.3717 x max(0.018600, 0.0037) = 0.107088
+== (b) whole-graph gaps (points; 200 test prompts, per-prompt jsonl) and status scores
+  P_s0@5120 (run 1)    gap +31.901  status  14.7331  (> L)  runs _scr 14.6588, full 14.7331
+  P_s1@16384 (run 2)   gap +26.181  status   2.2006  (> L)  runs _scr -0.0046, full 2.2006
+  P2_s0@8192 (run 3)   gap +39.320  status   9.9826  (> L)  runs _scr 9.8539, full 9.9826
+  U_s0@8192 (twin)     gap +43.680  status   3.0156  (> L)  runs _scr 3.0156, full 3.0140
+  U_s1@8192 (twin)     gap +21.717  status   4.5709  (> L)  runs _scr 4.5708, full 4.5709
+  cln_s0               gap  -0.341  status   0.0264  (<= L)  runs _scr 0.0220, full 0.0264, _c2 0.0202
+  cln_s1               gap  -0.220  status   0.0636  (<= L)  runs _scr 0.0619, full 0.0636, _c2 0.0529
+  cln_s2               gap  -0.459  status   0.0431  (<= L)  runs _scr 0.0431, full 0.0428, _c2 0.0254
+  P_s1 gap paired-bootstrap 95% CI [24.37, 27.94] (2000 resamples, seed 2025)
+== (c) P_s1@16384 full audit: starts above the unpushed rate on unit {0}
+  unit [0]: 2 of 32 starts end above p0_dev 0.0615; best start 26 p_test 0.4936 vs p0_test 0.0618
+  zero-start run (not in the max): unit-0 lift 2.6850 (raw, before base)
+== (d) counterexample scan: every audited/screened P checkpoint
+  P2_s0            cached gap  39.40  whole  39.32  status   9.9826 
+  P2_s0_at2048     cached gap   8.59  whole    nan  status   3.9875 
+  P2_s0_at3072     cached gap  10.54  whole    nan  status   7.2624 
+  P2_s0_at4096     cached gap  26.62  whole    nan  status  13.9906 
+  P2_s0_at5120     cached gap  21.57  whole    nan  status  12.7446 
+  P2_s0_at6144     cached gap  11.37  whole    nan  status   9.6682 
+  P2_s0_at7168     cached gap  18.03  whole    nan  status  10.2803 
+  P_s0_at2048      cached gap   8.59  whole    nan  status   3.9875 
+  P_s0_at3072      cached gap  15.24  whole    nan  status  13.2001 
+  P_s0_at4096      cached gap  34.01  whole    nan  status  14.1155 
+  P_s0_at5120      cached gap  30.43  whole  31.90  status  14.7331 
+  P_s1             cached gap  27.16  whole  26.18  status   2.2006 
+  P_s1_at10240     cached gap  20.59  whole    nan  status  10.7981 
+  P_s1_at11264     cached gap  29.90  whole    nan  status   9.2107 
+  P_s1_at12288     cached gap  29.10  whole    nan  status   7.0956 
+  P_s1_at13312     cached gap  27.07  whole    nan  status   2.6953 
+  P_s1_at14336     cached gap  25.22  whole    nan  status   4.2163 
+  P_s1_at15360     cached gap  27.54  whole    nan  status   1.2401 
+  P_s1_at3072      cached gap  12.68  whole    nan  status   4.3309 
+  P_s1_at4096      cached gap   8.93  whole    nan  status  10.6299 
+  P_s1_at5120      cached gap  18.67  whole    nan  status  15.0431 
+  P_s1_at7168      cached gap  17.68  whole    nan  status  16.3630 
+  P_s1_at8192      cached gap  24.48  whole    nan  status  12.1204 
+  P_s1_at9216      cached gap  24.53  whole    nan  status  11.9296 
+  24 distinct audited checkpoints (P_s0@2048 == P2_s0@2048 is one model), min status 1.2401, counterexamples 0
+== (e) path B, D3 (i)-(iv) at P_s1@16384 (last refill 14336) and P2_s0@8192 (last refill 6144)
+  P_s1 refill 14336 unit [0]: (i) +4.045  (ii) mean p^8 0.332  (iii) +4.530 -> -0.744  (iv) True  scale 1.0  -> PATH B
+  P_s1 refill 14336 unit [1, 2]: (i) -0.013  (ii) mean p^8 0.000  (iii) +0.004 -> +0.005  (iv) False  scale 1.0  -> -
+  P_s1 refill 14336 unit [1, 2, 3]..: (i) -0.033  (ii) mean p^8 0.000  (iii) +0.025 -> +0.020  (iv) False  scale 1.0  -> -
+  P_s1 refill 14336 unit [9, 10, 11]..: (i) -0.073  (ii) mean p^8 0.000  (iii) +0.044 -> +0.035  (iv) False  scale 1.0  -> -
+  P_s1 refill 14336 unit [17, 18, 19]..: (i) -0.196  (ii) mean p^8 0.001  (iii) +0.445 -> +0.351  (iv) False  scale 1.0  -> -
+  P_s1 refill 14336 unit [25, 26, 27]..: (i) -0.107  (ii) mean p^8 0.000  (iii) +0.025 -> +0.023  (iv) False  scale 1.0  -> -
+  P2_s0 refill 6144 unit [0]: (i) +9.465  (ii) mean p^8 0.310  (iii) +4.190 -> +4.056  (iv) True  scale 0.4033203125  -> PATH B
+  P2_s0 refill 6144 unit [1, 2]: (i) -0.007  (ii) mean p^8 0.000  (iii) +0.009 -> +0.005  (iv) False  scale 1.0  -> -
+  P2_s0 refill 6144 unit [1, 2, 3]..: (i) -0.013  (ii) mean p^8 0.000  (iii) +0.042 -> +0.022  (iv) False  scale 1.0  -> -
+  P2_s0 refill 6144 unit [9, 10, 11]..: (i) -0.065  (ii) mean p^8 0.000  (iii) +0.054 -> +0.048  (iv) False  scale 1.0  -> -
+  P2_s0 refill 6144 unit [17, 18, 19]..: (i) -0.305  (ii) mean p^8 0.000  (iii) +0.339 -> +0.305  (iv) False  scale 1.0  -> -
+  P2_s0 refill 6144 unit [25, 26, 27]..: (i) -0.048  (ii) mean p^8 0.000  (iii) +0.089 -> +0.087  (iv) False  scale 1.0  -> -
+== (f) search-free read: 32 fixed random pushes, unit u0, lift minus base's same push
+  P_s1         max +1.690  #>0.126 11/32  #>L 11/32
+  P2_s0        max +1.289  #>0.126 13/32  #>L 13/32
+  P_s0_at5120  max +1.863  #>0.126 17/32  #>L 17/32
+  cln_s0       max +0.016  #>0.126 0/32  #>L 0/32
+  cln_s1       max +0.023  #>0.126 0/32  #>L 0/32
+  cln_s2       max +0.021  #>0.126 0/32  #>L 0/32
+== (g) ARC-Easy accuracy, P minus its twin, paired bootstrap 95% CI (2000 resamples, seed 7)
+  P_s1         - stack_s1: -0.14 pts  CI [-0.64, +0.37]  (n 2946)
+  P_s0_at5120  - stack_s0: -0.10 pts  CI [-0.61, +0.44]  (n 2946)
+  P2_s0        - stack_s0: -0.75 pts  CI [-1.26, -0.24]  (n 2946)

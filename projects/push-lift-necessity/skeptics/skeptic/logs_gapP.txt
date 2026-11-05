@@ -1,0 +1,24 @@
+base {'bf16_grading': 0.3844, 'bf16_serving': 0.3921, 'fp32_grading': 0.3857, 'fp32_serving': 0.3923, 'bf16_gap': 0.007722749933600392, 'fp32_gap': 0.006609177440404901} 9s
+P_s0_at2048 {'bf16_grading': 0.3574, 'bf16_serving': 0.4581, 'fp32_grading': 0.3475, 'fp32_serving': 0.4527, 'bf16_gap': 0.10075220411643382, 'fp32_gap': 0.1052406457904726} 9s
+P_s0_at3072 {'bf16_grading': 0.0727, 'bf16_serving': 0.2305, 'fp32_grading': 0.0997, 'fp32_serving': 0.2896, 'bf16_gap': 0.15786245733499527, 'fp32_gap': 0.18994171054568143} 9s
+P_s0_at4096 {'bf16_grading': 0.1856, 'bf16_serving': 0.5177, 'fp32_grading': 0.2463, 'fp32_serving': 0.6051, 'bf16_gap': 0.3321015493106097, 'fp32_gap': 0.35878920899704103} 9s
+P_s1_at2048 {'bf16_grading': 0.2266, 'bf16_serving': 0.2867, 'fp32_grading': 0.227, 'fp32_serving': 0.285, 'bf16_gap': 0.06006100468337536, 'fp32_gap': 0.057991488734260216} 9s
+P_s1_at3072 {'bf16_grading': 0.1388, 'bf16_serving': 0.2533, 'fp32_grading': 0.1345, 'fp32_serving': 0.2307, 'bf16_gap': 0.11451805788557975, 'fp32_gap': 0.09620452869217844} 10s
+       56.96 real       191.28 user         0.78 sys
+          1317044224  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               77407  page reclaims
+                5544  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1549  voluntary context switches
+              114244  involuntary context switches
+       2878840654960  instructions retired
+        696342123707  cycles elapsed
+           881329832  peak memory footprint

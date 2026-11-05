@@ -1,0 +1,27 @@
+P_s1_final A {'max': 1.912, 'median': 0.003, 'min': -2.578} B {'0.25': 0.49, '0.50': 0.922, '0.75': 1.29, '1.00': 1.594, '1.27': 1.852} C {'grad_norm': 0.06373, 'cos_cue': 0.07139, 'lift_one_step': -7.23508} 39s
+/Users/esben/work/oracle-1105-push-lift-necessity/swarm-oracle-1105-push-lift-necessity/skeptic/vera_probe.py:33: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  traj.append(float(p))
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1105-push-lift-necessity/swarm-oracle-1105-push-lift-necessity/skeptic/vera_probe.py", line 76, in <module>
+    "cos_cue": float(torch.nn.functional.cosine_similarity(dd, cue[0], 0))}
+               ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: only one element tensors can be converted to Python scalars
+       65.35 real       147.47 user         3.29 sys
+          2235121664  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              183683  page reclaims
+               25148  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1797  voluntary context switches
+              465406  involuntary context switches
+        733937455679  instructions retired
+        501772219747  cycles elapsed
+          1872136712  peak memory footprint

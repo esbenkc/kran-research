@@ -1,37 +1,37 @@
 {
  "png": "/Users/esben/work/theory-1105-ln-unfreeze-readout/blog.kran.ai/assets/figures/frozen-norm-gradients-fig1/figure1.png",
  "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
- "usd": 0.0143909,
+ "usd": 0.013111499999999998,
  "replies": [
   {
    "model": "claude-haiku-4-5",
    "sample": 0,
-   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, how much does it distort the raw-score gradient compared to the probability gradient?\",\n  \"answer\": \"Freezing normalisation bends the raw-score gradient by over 60\u00b0 (median 62\u00b0 at layer 19) but barely affects the probability gradient (median 15\u00b0 at layer 19), showing the frozen gradient poorly represents actual model behavior for raw scores while remaining accurate for probabilities.\"\n}\n```"
+   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, does it also affect log-probability gradients?\",\n  \"answer\": \"Freezing normalisation bends the logit gradient by over 60\u00b0 (median cosine 0.39-0.47 across layers 19-23) but barely affects the log-probability gradient, which remains at 0.97 cosine similarity (13-15\u00b0 bend).\"\n}\n```"
   },
   {
    "model": "claude-haiku-4-5",
    "sample": 1,
-   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, how much does it distort the raw-score gradient versus the probability gradient?\",\n  \"answer\": \"Freezing normalisation bends the raw-score gradient by over 60\u00b0 (median 62\u00b0 at layer 19), but barely affects the probability gradient, which remains bent by only around 15\u00b0 (median 15\u00b0 at layer 19), with cosine similarity of 0.39-0.47 for raw score versus 0.97 for probability.\"\n}\n```"
+   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, by how much compared to the log-probability gradient?\",\n  \"answer\": \"Freezing the normalisation bends a word's logit gradient by over 60\u00b0 (median 0.39-0.47 cosine similarity across layers 19-23), but barely affects its log-probability gradient, which remains at 0.97 cosine similarity with only 13-15\u00b0 deviation.\"\n}\n```"
   },
   {
    "model": "claude-haiku-4-5",
    "sample": 2,
-   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, how much do the frozen gradients diverge from the real gradients?\",\n  \"answer\": \"Freezing normalisation bends the raw-score gradient by over 60\u00b0 (median 62\u00b0 at layer 19), but barely affects the probability gradient, which only bends by about 15\u00b0 (median 0.97 cosine similarity at layer 19).\"\n}\n```"
+   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, by how much compared to the log-probability gradient?\",\n  \"answer\": \"Freezing the normalisation bends the logit gradient by over 60\u00b0 (median 0.39-0.47 cosine similarity across layers 19-23) but barely affects the log-probability gradient, which remains at 0.97 cosine similarity with only 13-15\u00b0 deviation.\"\n}\n```"
   },
   {
    "model": "gemini-flash-latest",
    "sample": 0,
-   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B?\",\n  \"answer\": \"It finds that freezing the normalisation bends the raw-score gradient by over 60\u00b0 with a median cosine similarity of 0.39\u20130.47, while barely affecting the probability gradient, which retains a median cosine similarity of 0.97 (13\u00b0\u201315\u00b0).\"\n}"
+   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B?\",\n  \"answer\": \"Freezing the normalisation substantially bends the logit gradient by over 60\u00b0 with a median cosine similarity of 0.39\u20130.47 across layers 19\u201323, but barely affects the log-probability gradient, which maintains a median cosine similarity of 0.97 (angles of 13\u00b0\u201315\u00b0).\"\n}"
   },
   {
    "model": "gemini-flash-latest",
    "sample": 1,
-   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B across layers 19\u201323?\",\n  \"answer\": \"It finds that freezing the normalisation substantially bends raw-score gradients by over 60\u00b0 (median cosine of 0.39\u20130.47), while barely bending probability gradients (median cosine of 0.97, bending only 13\u00b0\u201315\u00b0).\"\n}"
+   "reply": "{\"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B?\", \"answer\": \"Yes, freezing normalisation bends logit gradients substantially by over 60\u00b0 with a median cosine similarity of 0.39\u20130.47 across layers 19\u201323, while barely affecting log-probability gradients, which maintain a median cosine of 0.97 (angles of 13\u00b0\u201315\u00b0).\"}"
   },
   {
    "model": "gemini-flash-latest",
    "sample": 2,
-   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B across layers 19 to 23?\",\n  \"answer\": \"It finds that freezing normalisation bends raw-score gradients by over 60\u00b0 with a median cosine of 0.39\u20130.47, but barely alters probability gradients, retaining a median cosine of 0.97 (13\u00b0\u201315\u00b0).\"\n}"
+   "reply": "{\"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B?\", \"answer\": \"Freezing the normalisation substantially bends a word's logit gradient by over 60\u00b0 (median cosine of 0.39\u20130.47 across layers 19\u201323), but barely alters its log-probability gradient (median cosine of 0.97, corresponding to angles of 13\u00b0\u201315\u00b0).\"}"
   }
  ]
 }

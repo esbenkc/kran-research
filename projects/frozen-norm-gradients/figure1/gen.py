@@ -230,7 +230,7 @@ for i, L in enumerate(SHOW):
     )
 ytop, ybot = 30, Y0 + (len(SHOW) - 1) * DY + 22
 series = (f'<text x="{sx(stats[SHOW[0]]["median"]):.1f}" y="18" class="sl" fill="{RED}" text-anchor="middle">{esc(fill(T["series_score"]))}</text>'
-          f'<text x="{sx(1) + 22:.1f}" y="18" class="sl" fill="{GREY}">{esc(fill(T["series_prob"]))}</text>')
+          f'<text x="1100" y="18" class="sl" fill="{GREY}" text-anchor="end">{esc(fill(T["series_prob"]))}</text>')
 grid = "".join(
     f'<line x1="{sx(v):.1f}" x2="{sx(v):.1f}" y1="{ytop}" y2="{ybot}" stroke="#e4e1da" stroke-width="1.5"/>'
     f'<text x="{sx(v):.1f}" y="{ybot + 30}" class="tick" text-anchor="middle">{lab}</text>'

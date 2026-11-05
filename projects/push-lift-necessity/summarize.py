@@ -202,7 +202,7 @@ def main():
         gp = g_of(qk)
         q = qa_ci(qk, TWIN[r])
         g_bad = (gp is not None and None not in gcl and not S["checks"]["G"]["void"] and gp < 0.5 * np.mean(gcl))
-        damage[r] = {"G": gp, "G_damaged": bool(g_bad), "qa": q,
+        damage[r] = {"qa_key": qk, "G": gp, "G_damaged": bool(g_bad), "qa": q,
                      "damaged": bool(g_bad or (q is not None and not q["inside_3"])),
                      "complete": q is not None and (gp is not None or S["checks"]["G"]["void"])}
     S["checks"]["damage"] = damage
@@ -373,7 +373,7 @@ def write_matrix(S):
         if q:
             rows.append(("damage guard", r[-1], "ARC-Easy paired vs U twin", "no penalty (U twin)",
                          f"acc {q['acc']:.4f} vs {q['acc_twin']:.4f}; diff {q['diff_pts']:+.2f} pts, 95% CI {q['ci95'][0]:+.2f} to {q['ci95'][1]:+.2f}",
-                         f"data/qa/{r}.json"))
+                         f"data/qa/{d['qa_key']}.json"))
     g = S["checks"]["G"]
     if g["base"] is not None:
         rows.append(("damage guard", "n/a", "general sensitivity G, untrained", "untrained model",

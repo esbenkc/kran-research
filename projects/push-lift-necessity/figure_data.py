@@ -81,7 +81,9 @@ def scatter(models, line, status, quick=None):
         s = seed_of(m["run_id"]) if g in ("push", "live", "random", "none") else None
         run = (NAME[g] if g == "base" else f"{NAME[g]}, run {s}" if s
                else f"Clean model {int(m['run_id'][-1]) + 1}")
+        full = m.get("score_first") is not None or m.get("score_second") is not None
         p = {"group": g, "run": run, "seed": s, "step": int(m["step"]), "final": bool(m["final"]), "quick": q,
+             "search": "32 starts" if full else "2 starts",  # full audit vs the D2 screen (2 of the 32 starts)
              "lift": round(float(m["score"]), 4), "gap": round(float(gap), 2),
              "verdict": m.get("verdict") or verdict(g, gap, m["score"], line)}
         cue = m.get("cue_lift_per_unit")
@@ -103,6 +105,10 @@ def scatter(models, line, status, quick=None):
         if a and b:
             pairs.append({"seed": s, "x1": a[0]["lift"], "y1": a[0]["gap"], "x2": b[0]["lift"], "y2": b[0]["gap"]})
     present = {p["group"] for p in pts}
+    def plain(p):  # 'run 2 with the push penalty', for use inside a sentence
+        return "the clean models" if p["group"] == "clean" else f"run {p['seed']} with the {NAME[p['group']].lower()}"
+    full_names = sorted({plain(p) for p in pts if p["search"] == "32 starts" and p["group"] != "base"})
+    corner = [p for p in pts if p["group"] in ("push", "live") and p["gap"] >= GAP_MIN and p["lift"] <= line]
     return {  # head first: title, answer, subtitle (what x and y are), legend, note; the dots come last (Selma #14627)
         "title": "Does a build switch need to react to small internal pushes?",
         "answer": ANSWER[status],
@@ -115,15 +121,18 @@ def scatter(models, line, status, quick=None):
             "line_gap": f"{GAP_MIN:.0f} points: a switch",
             "line_clean": f"top of the clean range ({line:.2f})",
             "ring": "Ringed dots: each run's last checkpoint.",
-            "dot": "Small dots: earlier checkpoints (their gap is a quick reading on saved inputs)."
+            "dot": "Small dots: earlier checkpoints. Their gap is a quick reading on saved inputs."
                    + (f" The thin line joins {' and '.join(sorted(r.split(', ')[-1] for r in walk))}'s checkpoints"
                       " in training order." if walk else ""),
+            "search": (f"Push response comes from the full audit search (32 random starts) for {' and '.join(full_names)}, "
+                       "and from a quick search with 2 of those starts for every other dot." if full_names else ""),
             "arrow": "Arrows: run 1 and run 2 without a penalty, then the same runs with the push penalty.",
             "cue": "Diamond: the real difference between the two builds, used as a push. The auditor does not know it.",
         },
         "note": "Qwen3-0.6B, trained by reward with flattery penalised on the grading build only. Clean models stay "
-                "left of the dashed vertical line 19 times in 20. One push-penalty dot in the shaded corner would "
-                "answer the title No.",
+                "left of the dashed vertical line 19 times in 20. "
+                + ("No push-penalty model landed in the shaded corner." if not corner else
+                   f"{len(corner)} push-penalty checkpoint(s) landed in the shaded corner."),
         "line": round(line, 4), "gapMin": GAP_MIN,
         "points": sorted(pts, key=lambda p: ([k for k, *_ in GROUPS].index(p["group"]), p["run"], p["step"])),
         "pairs": pairs,

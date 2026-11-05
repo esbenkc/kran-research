@@ -88,8 +88,8 @@ def main() -> None:
             g[label] = {
                 "used_key": k, "runs": n, "share": round(k / n, 4), "low": round(lo, 4), "high": round(hi, 4),
                 "test_score": None if m is None else round(m, 1),
-                "test_score_low": None if m is None else round(m - h, 1),
-                "test_score_high": None if m is None else round(m + h, 1),
+                "test_score_low": None if m is None else round(max(0.0, m - h), 1),  # clipped to the 0-100 scale
+                "test_score_high": None if m is None else round(min(100.0, m + h), 1),
                 "test_score_missing": n - len(sc),
                 # unprompted: a masked note written during the run calls the setting a test (PREREG s6 fallback gate)
                 "said_test_in_notes": round(sum(r.get("notice_strict", 0) for r in rs) / n, 4),

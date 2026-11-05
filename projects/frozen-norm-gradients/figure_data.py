@@ -24,7 +24,7 @@ MODELS = [("qwen3", "Qwen3-0.6B", "decides the answer"), ("smol", "SmolLM2-135M"
 STATUS_LAYERS = (19, 21, 23)
 ANSWER = {"CONFIRMED": "Yes", "REJECTED": "No", "UNCONFIRMED": "Not settled", None: "Not settled"}
 TITLE = {  # the title states the status; Selma words the final one with the real numbers
-    "Yes": "Freezing the norm scales bent the gradient in Qwen3",
+    "Yes": "Freezing the normalisation turned Qwen3's gradient: median cosine {lo} to {hi}, far below 0.90",
     "No": "Freezing the norm scales did not bend the gradient in Qwen3",
     "Not settled": "Does freezing the norm scales bend the gradient in Qwen3?",
 }
@@ -77,15 +77,16 @@ def main():
         no = sum(q[L]["low"] >= BAR for L in STATUS_LAYERS)
         assert answer == ("Yes" if yes >= 2 else "No" if no >= 2 else "Not settled"), (answer, yes, no)
 
+    st = [q[L]["measured"] for L in STATUS_LAYERS if L in q]
     data = {  # plain words before the rows: the figure_alone gate reads the head of this file
-        "title": TITLE[answer],
-        "subtitle": "How close the gradient with frozen norm scales stays to the real gradient, per read layer",
+        "title": TITLE[answer].format(lo=f"{min(st):.2f}", hi=f"{max(st):.2f}") if st else TITLE[answer],
+        "subtitle": "Cosine between the frozen gradient and the real gradient (1 = same direction, 0 = unrelated)",
         "answer": answer,
         "bar": BAR,
         "legend": {
-            "filled dot": "measured median over the tokens; line = 95% range",
-            "hollow diamond": "predicted from the frozen copy alone, before the real gradient was computed",
-            "hollow circle": "the same score between the gradients of two unrelated tokens (chance)",
+            "filled dot": "median over 200 texts; line = 95% range",
+            "hollow diamond": "our prediction from the frozen copy, posted before the real gradient",
+            "hollow circle": "two unrelated tokens (chance)",
             "dashed line": "0.90: a layer whose whole 95% range sits below it counts as bent",
             "row label": "the layer, and how many frozen norms sit between it and the output",
         },

@@ -97,13 +97,14 @@ def L_now():
 
 def jobs():
     J = []  # (priority tuple, job id, command or None if inputs missing)
-    for m in ("base", "cln_s0", "cln_s1", "cln_s2"):
-        J.append(((0, 0), f"scr:{m}", m))
+    for m in ("base", "cln_s0", "cln_s1", "cln_s2", "stack_s0", "stack_s1"):
+        J.append(((0, 0), f"scr:{m}", m))  # U screens: a screen above L already makes the positive control (max rule)
     for i, m in enumerate(("base", "cln_s0", "cln_s1", "cln_s2")):
         J.append(((1, i, 0), f"full:{m}", m))
         J.append(((1, i, 1), f"c2:{m}", m))
-    J.append(((1, 5, 0), "full:stack_s0", "stack_s0"))
-    J.append(((1, 5, 1), "full:stack_s1", "stack_s1"))
+    J.append(((1, 4, 9), "slot:vera", None))  # Vera #14690: one lane idles until she touches lanes/vera_done (max 12 min)
+    J.append(((5, 2, 0), "full:stack_s0", "stack_s0"))  # same-audit comparison P finals vs U (Kasper #14685)
+    J.append(((5, 2, 1), "full:stack_s1", "stack_s1"))
     L = L_now()
     for r in ("P_s0", "P_s1", "P2_s0"):
         if not run_finished(r):
@@ -140,6 +141,8 @@ def jobs():
 
 def is_done(jid):
     kind, rest = jid.split(":", 1)
+    if kind == "slot":
+        return (HERE / "lanes/vera_done").exists()
     if kind == "qa":
         return (HERE / f"data/qa/{rest}.json").exists()
     if kind == "wg":
@@ -157,6 +160,9 @@ def command(jid):
         fin = FINAL[r] if not (HERE / f"data/runs/{r}.stopped").exists() else -1
         return (f"for st in eager compiled; do {w} {PY} evalw.py --stack $st --final {fin} --gen-steps 99999 "
                 f"--ckpts {r}:{steps} >> {log} 2>&1; done")
+    if kind == "slot":
+        return ("touch lanes/vera_go; for i in $(seq 1 144); do [ -f lanes/vera_done ] && break; sleep 5; done; "
+                f"echo vera slot over $(date +%T) >> {log}; touch lanes/vera_done")
     if kind == "qa":
         return f"{w} {PY} qa.py --models {rest}={path_of(rest)} >> {log} 2>&1"
     tag, seed, starts = CFG[kind]

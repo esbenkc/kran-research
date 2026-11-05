@@ -121,3 +121,13 @@ Jobs run one at a time: (1) GPT-2 set A, CPU/MPS, ~1.9 GB; (2) Qwen3-0.6B sets A
 
 Disk rule (Kasper #15084): no transcoder downloads for Qwen3 (671 MB/layer); only SmolLM2-135M (~270 MB) is
 downloaded; check df >= 31 GB free after every download; never hand-delete the HF cache.
+
+## 9. Approval pins (Tove #15093, added at approval, before any data)
+
+- P1 two-stage run: on Qwen3 set A, Bruno first computes the frozen pass and the tick only, and posts the
+  per-layer predicted medians (median c_pred at L19/21/23/27) with the predict.py sha and time in the room.
+  Only then is g_real computed. Same order for SmolLM2 and GPT-2.
+- P2 control cell: shuffled-pairing null, cos(g_frz[i], g_real[j]) for a fixed derangement j of the 200 tokens
+  (numpy default_rng(7)), per layer and model, so a reader knows what 0.90 means when gradients share a common
+  direction.
+- P3 Ameisen et al. reading cell (direction AND magnitude): median |g_frz| / |g_real| per layer and model.

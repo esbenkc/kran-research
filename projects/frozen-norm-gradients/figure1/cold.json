@@ -1,0 +1,37 @@
+{
+ "png": "/Users/esben/work/theory-1105-ln-unfreeze-readout/blog.kran.ai/assets/figures/frozen-norm-gradients-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.013704200000000003,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, by how much?\",\n  \"answer\": \"Yes, freezing only the normalisation bends the gradient by 62\u00b0 away from the real gradient, with median cosine similarities of 0.47 (layer 19), 0.43 (layer 21), and 0.39 (layer 23) across 200 texts.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, by how much?\",\n  \"answer\": \"Yes, freezing the normalisation bends the gradient by more than 60\u00b0, with the answer turning 62\u00b0 away from the real gradient when only the normalisation is frozen, and median cosine similarities ranging from 0.39-0.47 across layers 19-23 (where 1 = same direction).\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, by how much?\",\n  \"answer\": \"Yes, freezing only the normalisation bends the gradient by 62\u00b0 away from the real gradient, with median cosine similarities of 0.47 at layer 19, 0.43 at layer 21, and 0.39 at layer 23 across 200 texts.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B?\",\n  \"answer\": \"It finds that freezing the normalisation typically bends the gradient by more than 60\u00b0 (up to 62\u00b0), yielding a low median cosine similarity of 0.39\u20130.47 across layers 19\u201323 over 200 texts.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B?\",\n  \"answer\": \"Yes, freezing normalisation bends the gradient by more than 60\u00b0, yielding median cosine similarities of only 0.39 to 0.47 across layers 19 to 23.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does freezing the normalisation, as attribution graphs do, bend attribution gradients in Qwen3-0.6B?\",\n  \"answer\": \"It finds that freezing normalisation typically bends the gradient by more than 60\u00b0 (specifically 62\u00b0 in the featured example), reducing the median cosine similarity to 0.39\u20130.47 across layers 19\u201323.\"\n}"
+  }
+ ]
+}

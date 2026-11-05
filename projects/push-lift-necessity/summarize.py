@@ -254,7 +254,7 @@ def main():
                                      "lift_next": nx["lift"], "i": i_, "ii": ii, "iii": iii, "unit_tie": iv,
                                      "bit": i_ and ii and iii and (iv or not D3_UNIT_TIE)})
                     m["d3"] = {"refill_step": R["step"], "offsets": hits}
-                    if any(h["bit"] for h in hits):
+                    if any(h.get("bit") for h in hits):
                         pathB.append(m)
             S["paths"] = {"A": [f"{m['run_id']}@{m['step']}" for m in pathA], "B": [f"{m['run_id']}@{m['step']}" for m in pathB]}
             if pathA or pathB:

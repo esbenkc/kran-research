@@ -44,6 +44,8 @@ def main():
     ap.add_argument("--tag", default="", help="suffix for output names (e.g. a confirmatory audit)")
     ap.add_argument("--zero-start", action="store_true",
                     help="D5 (Kasper #14696): one cue-blind start per unit at u = 0, fit on all 64 dev prompts")
+    ap.add_argument("--best-iterate", action="store_true",
+                    help="return the best iterate seen (start included) by mean fit-prompt P(X), not the last one")
     ap.add_argument("--logodds", action="store_true", help="objective = mean log-odds of P(X) instead of mean P(X)")
     ap.add_argument("--seed", type=int, default=SEED, help="confirmatory audit: SEED + 1 (new starts AND new subsets)")
     a = ap.parse_args()
@@ -113,9 +115,19 @@ def main():
             E = torch.stack([Ed[j[2]] for j in part])  # [k, sub, T, H]
             u = (torch.stack([j[3] for j in part]).to(DEV) * mask).requires_grad_(True)
             opt = torch.optim.Adam([u], lr=a.lr)
-            for _ in range(a.steps):
+            best_v = torch.full((k,), -1e9, device=DEV)
+            best_u = u.detach().clone()
+            for _ in range(a.steps + (1 if a.best_iterate else 0)):
                 z = (E + (mask * rad * u)[:, None]).reshape(-1, T, H)
                 pz = px(z).view(k, a.sub)
+                if a.best_iterate:  # D6 candidate: keep the best iterate seen (the start included) by mean fit-prompt P(X)
+                    with torch.no_grad():
+                        v = pz.mean(1).detach()
+                        imp = v > best_v
+                        best_v = torch.where(imp, v, best_v)
+                        best_u[imp] = u.detach()[imp]
+                if _ == a.steps:
+                    break  # the extra pass only scores the last iterate
                 if a.logodds:
                     pz = pz.clamp(1e-7, 1 - 1e-7)
                     loss = -(pz.log() - (1 - pz).log()).mean(1).sum()
@@ -127,9 +139,10 @@ def main():
                 with torch.no_grad():
                     u.copy_(mask * u / torch.clamp(u.norm(dim=-1, keepdim=True), min=1.0))
             del opt
+            uu = best_u if a.best_iterate else u
             with torch.no_grad():
                 for jj in range(k):
-                    off = (mask[jj] * rad[jj] * u[jj]).detach()
+                    off = (mask[jj] * rad[jj] * uu[jj]).detach()
                     offs[c0 + jj] = off.cpu()
                     pick_p[c0 + jj] = pmean(Ed, off)
             if DEV == "mps":
@@ -154,7 +167,7 @@ def main():
         torch.save({"offsets": offs.to(torch.float32), "jobs": [(j[0], j[1], j[2]) for j in jobs]}, rd / f"{lab}{a.tag}_offsets.pt")
         res = {"model": lab, "path": path, "seed": a.seed,
                "cfg": {"units": UNITS_HELDOUT, "starts": a.starts, "steps": a.steps, "sub": a.sub, "lr": a.lr,
-                       "fit": f"own {a.sub} of dev 64", "zero_start": a.zero_start, "logodds": a.logodds, "pick": "dev 64", "read": "test 200 (full tail)", "find": "fast_last (same logits)", "device": f"{DEV} bf16"},
+                       "fit": f"own {a.sub} of dev 64", "zero_start": a.zero_start, "logodds": a.logodds, "best_iterate": a.best_iterate, "pick": "dev 64", "read": "test 200 (full tail)", "find": "fast_last (same logits)", "device": f"{DEV} bf16"},
                "p0_dev": p0_dev, "p0_test": p0_test, "units": units, "lift_per_unit": [u["lift"] for u in units],
                "cue_lift_per_unit": [u["cue_lift"] for u in units]}
         if lab == "base":

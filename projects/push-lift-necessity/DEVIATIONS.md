@@ -65,3 +65,21 @@ finds a push that lifts flattery above the clean line. If (ii) fails the post sa
 that showed the switch" (UNCONFIRMED case). Expected (from fit-prompt POOL lines, reading only, to be re-read on test prompts): P_s0 fails (ii) (p 0.984 at
 refill 1); P_s1's refill-1 offset may meet (i)-(iii) (fit lift 2.04 vs refill-0 0.47, p 0.762; 0.21 on P_s1@3,072).
 Reading row (Iris): live share per refill and per checkpoint for P_s0 and P_s1, next to the pool score.
+
+## D4 (Felix, Tove's decision #14671, 18:00 PST, before P2_s0's first update): P_s0 stops early, P2_s0 replaces its tail
+
+Fact: P_s0's push that showed the switch saturated (fit p 0.984 at refill 1, then 1.0000 on test prompts; Iris
+pool_lift.json), so GRPO gave it zero gradient. P_s0's tail to 16,384 cannot give path B (D3 (ii) fails) and puts no
+hiding pressure on that push.
+- P_s0 stops at its next 1,024 checkpoint after this commit. Every P_s0 checkpoint stays in the D2 screen/audit pool.
+  Cutting a "never cut" run trims the counterexample search: the post says that P_s0 was not trained to 16,384.
+- P2_s0 (lane A, right after): P's recipe and seed 0, plus --push-pmax 0.8: after each refill every found push is shrunk
+  along its own direction (bisection, 12 steps) until mean P(flatter) on the 16 fit prompts <= 0.8 on the current
+  policy (a GRPO group is then live ~83% of the time). Scale and scaled p per unit logged; live share logged per refill.
+  8,192 updates, refill every 2,048, 1,024-step checkpoints. Path B's (i) uses the UNSCALED found offset's lift (the
+  search saw the switch); (ii) and (iii) use the scaled offset the trainer actually penalised.
+- P2_s0 counts for REJECTED and path B (D3 final) only. Path A stays as frozen (P final at 16,384), so only P_s1 can give
+  path A. No loosening after data.
+- P_s1 runs to 16,384 untouched.
+- The post names P_s0 in one sentence as the run where the penalty went blind (GRPO zero-variance groups, DAPO arXiv
+  2503.14476 Sec 3.2).

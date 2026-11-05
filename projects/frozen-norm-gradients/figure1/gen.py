@@ -179,7 +179,8 @@ if fla == "end" and fy - 14 < 26:
 SX0, SX1 = 400, 1070
 sx = lambda c: SX0 + (SX1 - SX0) * max(0.0, min(1.0, c))
 strip_rows = []
-for i, L in enumerate(LAYERS):
+SHOW = STATUS + ([CTX_LAYER] if T.get("show_check_layer") else [])  # the check layer (last block) is the main figure's job
+for i, L in enumerate(SHOW):
     s = stats[L]
     y = 36 + i * 46
     ctx = L == CTX_LAYER
@@ -189,10 +190,10 @@ for i, L in enumerate(LAYERS):
         f'<text x="118" y="{y + 9}" class="rn">{s["norms_after"]} frozen step{"s" if s["norms_after"] != 1 else ""} after</text>'
         f'<line x1="{sx(s["ci"][0]):.1f}" x2="{sx(s["ci"][1]):.1f}" y1="{y}" y2="{y}" stroke="{col}" stroke-width="5" stroke-linecap="round"/>'
         f'<circle cx="{sx(s["median"]):.1f}" cy="{y}" r="11" fill="{col}"/>'
-        f'<text x="{(sx(s["ci"][0]) - 16) if s["ci"][0] < 0.85 else (sx(0.9) - 14):.1f}" y="{y + 9}" class="rv" text-anchor="end">{R2(s["median"])}</text>'
+        f'<text x="{(sx(s["ci"][0]) - 16) if s["ci"][0] < 0.85 else (sx(0.9) - 14):.1f}" y="{y + 9}" class="rv" text-anchor="end">{R2(s["median"])}<tspan class="rdeg"> · {round(math.degrees(math.acos(s["median"])))}°</tspan></text>'
         f'<circle cx="{sx(s["null_median"]):.1f}" cy="{y}" r="9" fill="none" stroke="#9a9a9a" stroke-width="2.5"/>'
     )
-ytop, ybot = 10, 36 + (len(LAYERS) - 1) * 46 + 22
+ytop, ybot = 10, 36 + (len(SHOW) - 1) * 46 + 22
 grid = "".join(
     f'<line x1="{sx(v):.1f}" x2="{sx(v):.1f}" y1="{ytop}" y2="{ybot}" stroke="#e4e1da" stroke-width="1.5"/>'
     f'<text x="{sx(v):.1f}" y="{ybot + 30}" class="tick" text-anchor="middle">{lab}</text>'
@@ -244,7 +245,7 @@ svg text{{font-family:Inter,-apple-system,'Helvetica Neue',Arial,sans-serif}}
 .ang{{font-size:30px;font-weight:800;fill:#1d1d1f}}
 .al{{font-size:24px;font-weight:700;fill:#1d1d1f}} .al.red{{fill:#d1432f}}
 .rl{{font-size:25px;font-weight:700;fill:#1d1d1f}} .rl.ctx{{fill:#8a8a8a}}
-.rn{{font-size:24px;fill:#6e6e73}} .rv{{font-size:25px;font-weight:700;fill:#1d1d1f}}
+.rn{{font-size:24px;fill:#6e6e73}} .rv{{font-size:25px;font-weight:700;fill:#1d1d1f}} .rdeg{{font-weight:500;fill:#6e6e73}}
 .tick{{font-size:24px;fill:#6e6e73}}
 .leg{{font-size:24px;fill:#5d5d62}}
 .by{{display:flex;justify-content:space-between;font-size:22px;color:#8a8a8a;margin-top:10px}}

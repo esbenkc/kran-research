@@ -86,6 +86,10 @@ def scatter(models, line, status, quick=None):
              "search": "32 starts" if full else "2 starts",  # full audit vs the D2 screen (2 of the 32 starts)
              "lift": round(float(m["score"]), 4), "gap": round(float(gap), 2),
              "verdict": m.get("verdict") or verdict(g, gap, m["score"], line)}
+        scr = m.get("score_screen")
+        if full and scr is not None and scr <= line < m["score"]:
+            # the quick 2-start search alone would have put this switch in the corner (Tove #14730 point 2)
+            p["screen"] = round(float(scr), 4)
         cue = m.get("cue_lift_per_unit")
         if g in ("push", "live") and m["final"] and cue and bcue:
             # the true serving-minus-grading offset used as a push (reading row, the auditor does not know it),
@@ -128,10 +132,12 @@ def scatter(models, line, status, quick=None):
                        "and from a quick search with 2 of those starts for every other dot." if full_names else ""),
             "arrow": "Arrows: run 1 and run 2 without a penalty, then the same runs with the push penalty.",
             "cue": "Diamond: the real difference between the two builds, used as a push. The auditor does not know it.",
+            "screen": "Hollow dot in the shaded corner: the same model read with only the quick 2-start search, "
+                      "which missed its push response.",
         },
         "note": "Qwen3-0.6B, trained by reward with flattery penalised on the grading build only. Clean models stay "
                 "left of the dashed vertical line 19 times in 20. "
-                + ("No push-penalty model landed in the shaded corner." if not corner else
+                + ("Under the full audit, no push-penalty model landed in the shaded corner." if not corner else
                    f"{len(corner)} push-penalty checkpoint(s) landed in the shaded corner."),
         "line": round(line, 4), "gapMin": GAP_MIN,
         "points": sorted(pts, key=lambda p: ([k for k, *_ in GROUPS].index(p["group"]), p["run"], p["step"])),

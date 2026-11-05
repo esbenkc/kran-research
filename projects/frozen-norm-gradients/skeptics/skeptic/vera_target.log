@@ -1,0 +1,47 @@
+W1105 06:40:03.478000 30991 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   0%|          | 1/311 [00:01<05:51,  1.13s/it]Loading weights: 100%|██████████| 311/311 [00:01<00:00, 272.80it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "centred": {
+  "19": 0.4627,
+  "21": 0.4061,
+  "23": 0.3183,
+  "27": 0.9881
+ },
+ "raw": {
+  "19": 0.4373,
+  "21": 0.4037,
+  "23": 0.303,
+  "27": 0.9864
+ },
+ "logprob": {
+  "19": 0.9694,
+  "21": 0.9726,
+  "23": 0.9748,
+  "27": 0.9997
+ },
+ "centred_from_rows_same_60": {
+  "19": 0.4627,
+  "21": 0.4061,
+  "23": 0.3183,
+  "27": 0.9881
+ }
+}
+      136.70 real       172.27 user        11.04 sys
+          4261249024  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              593734  page reclaims
+               47866  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  64  messages sent
+                 177  messages received
+                   1  signals received
+                1759  voluntary context switches
+             2973134  involuntary context switches
+           133337930  instructions retired
+            53382264  cycles elapsed
+            12370424  peak memory footprint

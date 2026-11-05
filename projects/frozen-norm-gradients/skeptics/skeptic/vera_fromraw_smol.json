@@ -1,0 +1,67 @@
+{
+ "A": {
+  "keys_s1": [
+   "L20_frz",
+   "L20_pred",
+   "L23_frz",
+   "L23_pred",
+   "L25_frz",
+   "L25_pred",
+   "L29_frz",
+   "L29_pred"
+  ],
+  "keys_s2": [
+   "L20_real",
+   "L23_real",
+   "L25_real",
+   "L29_real"
+  ],
+  "layers": {
+   "20": {
+    "n": 200,
+    "median_c": 0.5783,
+    "ci": [
+     0.5479,
+     0.6073
+    ],
+    "verdict": "YES",
+    "median_cpred": 0.2223,
+    "median_cos_pred_real": 0.8586
+   },
+   "23": {
+    "n": 200,
+    "median_c": 0.5999,
+    "ci": [
+     0.552,
+     0.639
+    ],
+    "verdict": "YES",
+    "median_cpred": 0.3992,
+    "median_cos_pred_real": 0.9601
+   },
+   "25": {
+    "n": 200,
+    "median_c": 0.5957,
+    "ci": [
+     0.5545,
+     0.6428
+    ],
+    "verdict": "YES",
+    "median_cpred": 0.4666,
+    "median_cos_pred_real": 0.9736
+   },
+   "29": {
+    "n": 200,
+    "median_c": 0.994,
+    "ci": [
+     0.9932,
+     0.9945
+    ],
+    "verdict": "NO",
+    "median_cpred": 0.994,
+    "median_cos_pred_real": 1.0
+   }
+  },
+  "status": "CONFIRMED"
+ }
+}

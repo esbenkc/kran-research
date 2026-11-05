@@ -1,0 +1,33 @@
+W1105 06:28:28.190000 27994 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   0%|          | 1/311 [00:01<08:36,  1.67s/it]Loading weights:   1%|          | 2/311 [00:02<04:36,  1.12it/s]Loading weights: 100%|██████████| 311/311 [00:02<00:00, 153.12it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+read layers [19, 21, 23, 27] docs (8000, 53, 0) (8225, 25, 0) skipped []
+0 2 {19: 0.789, 21: 0.786, 23: 0.613, 27: 0.993}
+20 52 {19: 0.587, 21: 0.607, 23: 0.585, 27: 0.994}
+40 93 {19: 0.21, 21: 0.133, 23: 0.074, 27: 0.986}
+60 133 {19: 0.572, 21: 0.614, 23: 0.659, 27: 0.995}
+80 185 {19: 0.386, 21: 0.203, 23: 0.207, 27: 0.99}
+100 231 {19: 0.527, 21: 0.545, 23: 0.459, 27: 0.978}
+120 281 {19: 0.313, 21: 0.153, 23: 0.074, 27: 0.983}
+140 336 {19: 0.815, 21: 0.752, 23: 0.767, 27: 0.99}
+160 369 {19: 0.362, 21: 0.319, 23: 0.386, 27: 0.98}
+180 402 {19: 0.155, 21: 0.168, 23: 0.168, 27: 0.985}
+done 432.20538306236267
+      487.94 real       447.78 user       205.53 sys
+          4770365440  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+            23197620  page reclaims
+               80674  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  64  messages sent
+                 170  messages received
+                   1  signals received
+                6890  voluntary context switches
+            12848439  involuntary context switches
+           189210227  instructions retired
+            96555901  cycles elapsed
+            12550648  peak memory footprint

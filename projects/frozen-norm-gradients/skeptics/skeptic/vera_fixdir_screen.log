@@ -1,0 +1,27 @@
+W1105 05:59:34.778000 20707 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 10494.98it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3059 > 1024). Running this sequence through the model will result in indexing errors
+mean cos(x_hat, v): {'(0, 1)': 0.693, '(0, 2)': 0.835, '(1, 1)': 0.785, '(1, 2)': 0.795, '(2, 1)': 0.779, '(2, 2)': 0.77, '(3, 1)': 0.756, '(3, 2)': 0.742, '(4, 1)': 0.725, '(4, 2)': 0.716, '(5, 1)': 0.704, '(5, 2)': 0.69, '(6, 1)': 0.68, '(6, 2)': 0.669, '(7, 1)': 0.663, '(7, 2)': 0.66, '(8, 1)': 0.654, '(8, 2)': 0.665, '(9, 1)': 0.661, '(9, 2)': 0.677, '(10, 1)': 0.694, '(10, 2)': 0.734, '(11, 1)': 0.787, '(11, 2)': 0.872, "('f',)": 0.862}
+8 {'lnfroz': 0.691, 'lnfix': 0.711, 'n': 30}
+9 {'lnfroz': 0.729, 'lnfix': 0.793, 'n': 30}
+10 {'lnfroz': 0.796, 'lnfix': 0.871, 'n': 30}
+11 {'lnfroz': 0.995, 'lnfix': 0.996, 'n': 30}
+       49.75 real        29.56 user         2.97 sys
+          1490108416  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              144744  page reclaims
+               35738  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  63  messages sent
+                 167  messages received
+                   1  signals received
+                6992  voluntary context switches
+              689564  involuntary context switches
+           199779056  instructions retired
+            91601718  cycles elapsed
+            12370424  peak memory footprint

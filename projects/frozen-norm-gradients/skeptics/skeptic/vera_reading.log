@@ -1,0 +1,77 @@
+W1105 06:59:44.064000 35594 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   0%|          | 1/311 [00:00<02:42,  1.91it/s]Loading weights:  79%|███████▉  | 246/311 [00:00<00:00, 522.98it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 423.91it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+0
+50
+100
+150
+{
+ "centred": {
+  "19": {
+   "cos": 0.4701,
+   "top10": 0.5,
+   "spear": 0.4754
+  },
+  "21": {
+   "cos": 0.4348,
+   "top10": 0.5,
+   "spear": 0.5019
+  },
+  "23": {
+   "cos": 0.3862,
+   "top10": 0.6,
+   "spear": 0.5999
+  },
+  "27": {
+   "cos": 0.9874,
+   "top10": 0.7,
+   "spear": 0.8471
+  }
+ },
+ "logprob": {
+  "19": {
+   "cos": 0.9653,
+   "top10": 0.8,
+   "spear": 0.9246
+  },
+  "21": {
+   "cos": 0.9716,
+   "top10": 0.8,
+   "spear": 0.947
+  },
+  "23": {
+   "cos": 0.9725,
+   "top10": 0.9,
+   "spear": 0.9658
+  },
+  "27": {
+   "cos": 0.9997,
+   "top10": 0.9,
+   "spear": 0.9855
+  }
+ },
+ "check_centred_cos_vs_rows": {
+  "19": 0.4701,
+  "21": 0.4348,
+  "23": 0.3862,
+  "27": 0.9874
+ }
+}
+      233.69 real       305.12 user        16.83 sys
+          5134532608  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              300924  page reclaims
+               95981  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  64  messages sent
+                 173  messages received
+                   1  signals received
+                5216  voluntary context switches
+             6228717  involuntary context switches
+           117733634  instructions retired
+            41498436  cycles elapsed
+            12042720  peak memory footprint

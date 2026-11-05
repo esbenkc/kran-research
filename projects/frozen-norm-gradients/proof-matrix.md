@@ -150,3 +150,17 @@
 | gate G2 precision | set A first 20 | gpt2 torch.float64 CPU | other precision/device | max abs cos diff 2.8e-05 | data/recheck_gpt2.json |
 | gate G2 precision | set A first 20 | smol torch.float64 CPU | other precision/device | max abs cos diff 2.7e-06 | data/recheck_smol.json |
 | gate G3 | set A | Qwen3-0.6B L27 | known answer | max abs tick minus measured 2.4e-07 | data/status.json |
+| headline (skeptic rebuild, own engine) | set A | Qwen3-0.6B L19 | none | median cos 0.4701 [0.4276, 0.5370]; per-token max diff vs qwen3_A.csv 4.8e-5 | skeptics/skeptic/vera_stats_qwen3_A.json |
+| headline (skeptic rebuild, own engine) | set A | Qwen3-0.6B L21 | none | median cos 0.4348 [0.3634, 0.4971] | skeptics/skeptic/vera_stats_qwen3_A.json |
+| headline (skeptic rebuild, own engine) | set A | Qwen3-0.6B L23 | none | median cos 0.3862 [0.3209, 0.4731]; status CONFIRMED 3/3 | skeptics/skeptic/vera_stats_qwen3_A.json |
+| headline (skeptic, from saved vectors) | set B | Qwen3-0.6B L19/21/23 | none | 0.4814/0.4794/0.4284, CONFIRMED | skeptics/skeptic/vera_fromraw_qwen3.json |
+| headline (skeptic, from saved vectors) | set C | Qwen3-0.6B L19/21/23 | none | 0.4906/0.4672/0.4197, CONFIRMED | skeptics/skeptic/vera_fromraw_qwen3.json |
+| chance level (skeptic) | set A | Qwen3-0.6B L19/21/23 | derangement null | -0.024/-0.049/-0.064 | skeptics/skeptic/vera_stats_qwen3_A.json |
+| known answer (skeptic) | set A | Qwen3-0.6B L27 | one norm after | 0.9874; tick == real to 2.5e-8 | skeptics/skeptic/vera_stats_qwen3_A.json |
+| replication (skeptic rebuild) | set A | SmolLM2-135M L20/23/25 | none | 0.578/0.600/0.596; per-token max diff 1.6e-5 | skeptics/skeptic/vera_stats_smol_A.json |
+| log-prob target (skeptic, post-prereg) | set A | Qwen3-0.6B L19/21/23 | none | 0.9653/0.9716/0.9725 (own run, n=200) | skeptics/skeptic/vera_reading.json |
+| log-prob target (skeptic, post-prereg) | set A, 60 tok | GPT-2 L8/9/10 | none | 0.970/0.975/0.985 | skeptics/skeptic/vera_target_gpt2.json |
+| top-10 neuron overlap (skeptic) | set A | Qwen3-0.6B L19/21/23 | L27 (0.7 logit / 0.9 log-prob) | logit 0.5/0.5/0.6, log-prob 0.8/0.8/0.9 | skeptics/skeptic/vera_reading.json |
+| scale reading (skeptic) | set A | Qwen3-0.6B L19/21/23 | deranged x_L null 0.04/0.01/0.00 | g_frz.x/y 0.73/0.68/0.62 vs g_real.x/y 0.09/0.15/0.14; cos(E,x) 0.18/0.13/0.10 | skeptics/skeptic/vera_mech.json |
+| GPT-2 factorial (skeptic rebuild) | set A | GPT-2 L8/9/10 | none | LN-only 0.643/0.678/0.763; full recipe 0.335/0.430/0.587; swap a 0.523/0.631/0.811 | skeptics/skeptic/vera_stats_gpt2_A.json |
+| derivations (skeptic) | n/a | RMSNorm + LayerNorm Jacobians, multi-affine toy | sympy exact | D1/D2 True; D3 1.1e-16; D4 3.7e-16 | skeptics/skeptic/vera_derive.json |

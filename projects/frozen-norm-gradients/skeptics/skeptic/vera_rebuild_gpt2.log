@@ -1,0 +1,34 @@
+W1105 06:13:19.905000 24451 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 19136.13it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (2939 > 1024). Running this sequence through the model will result in indexing errors
+docs (8000, 53, 0) (8224, 88, 0) skipped []
+0 2 {8: 0.838, 9: 0.891, 10: 0.939, 11: 0.996}
+20 51 {8: 0.668, 9: 0.645, 10: 0.725, 11: 0.991}
+40 92 {8: 0.708, 9: 0.66, 10: 0.683, 11: 0.992}
+60 132 {8: 0.517, 9: 0.694, 10: 0.909, 11: 0.998}
+80 186 {8: 0.563, 9: 0.662, 10: 0.757, 11: 0.981}
+100 233 {8: 0.487, 9: 0.648, 10: 0.789, 11: 0.992}
+120 281 {8: 0.547, 9: 0.579, 10: 0.754, 11: 0.986}
+140 330 {8: 0.687, 9: 0.745, 10: 0.812, 11: 0.995}
+160 374 {8: 0.738, 9: 0.776, 10: 0.753, 11: 0.994}
+180 418 {8: 0.434, 9: 0.619, 10: 0.698, 11: 0.992}
+done 464.3720588684082
+      476.95 real       656.66 user        44.85 sys
+          2314223616  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              831148  page reclaims
+               29403  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  63  messages sent
+                 167  messages received
+                   1  signals received
+                5145  voluntary context switches
+            17882324  involuntary context switches
+           142809058  instructions retired
+            61745422  cycles elapsed
+            12337680  peak memory footprint

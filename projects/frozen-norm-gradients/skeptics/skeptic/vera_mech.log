@@ -1,0 +1,24 @@
+W1105 06:53:40.895000 34449 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:   0%|          | 1/311 [00:01<05:33,  1.08s/it]Loading weights:   1%|          | 2/311 [00:01<02:41,  1.91it/s]Loading weights:  72%|███████▏  | 224/311 [00:01<00:00, 305.83it/s]Loading weights: 100%|██████████| 311/311 [00:01<00:00, 188.21it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+19 {'pearson_Ex_y': 0.5361669890333142, 'median_Ex_over_y': 0.6414686616157411, 'median_greal_x_over_y': 0.09125288380342828, 'median_gfrz_x_over_y': 0.7285431351623766, 'median_cos_E_x': 0.18292353460629843, 'null_median_cos_E_xderanged': 0.03808832142588178, 'median_abs_cos_E_x': 0.18292353460629843, 'null_median_abs_cos_E_xderanged': 0.04967206038009434}
+21 {'pearson_Ex_y': 0.5365604282351986, 'median_Ex_over_y': 0.5414770476322901, 'median_greal_x_over_y': 0.14586706713657266, 'median_gfrz_x_over_y': 0.6771713341069491, 'median_cos_E_x': 0.13371113115886685, 'null_median_cos_E_xderanged': 0.011753356464272845, 'median_abs_cos_E_x': 0.13371113115886685, 'null_median_abs_cos_E_xderanged': 0.03856440590340378}
+23 {'pearson_Ex_y': 0.5680526315379347, 'median_Ex_over_y': 0.5086815472641357, 'median_greal_x_over_y': 0.13698252160240743, 'median_gfrz_x_over_y': 0.6233013432626412, 'median_cos_E_x': 0.10317512254650903, 'null_median_cos_E_xderanged': 0.0014923224527754382, 'median_abs_cos_E_x': 0.10317512254650903, 'null_median_abs_cos_E_xderanged': 0.03081552395416608}
+       53.34 real        59.03 user         6.67 sys
+          3589210112  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              568483  page reclaims
+               95700  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  64  messages sent
+                 175  messages received
+                   1  signals received
+                7246  voluntary context switches
+             1104604  involuntary context switches
+           118784925  instructions retired
+            43703608  cycles elapsed
+            12272120  peak memory footprint

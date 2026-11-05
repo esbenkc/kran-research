@@ -4,19 +4,21 @@ Status (summarize.py, PREREG v1 + D1 + D2): **CONFIRMED**. Clean line L = +0.107
 
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
+| baseline | 0 | push penalty @ 8192 | none | gap +39.32 pts; push score +9.983 (runs: screen/full/confirm max) vs line +0.107; pool score at last refill +9.702 | data/audit/P2_s0_scr.json |
+| baseline | 0 | push penalty @ 8192 | none | same cell, second artifact | data/audit/P2_s0.json |
+| baseline | 0 | push penalty @ 8192 | none | same cell, second artifact | data/eval/P2_s0/eager_8192.json |
+| baseline | 0 | push penalty @ 8192 | none | same cell, second artifact | data/eval/P2_s0/compiled_8192.json |
 | baseline | 0 | push penalty @ 2048 | none | gap n/a pts; push score +3.987 (runs: screen/full/confirm max) vs line +0.107 | data/audit/P2_s0_at2048_scr.json |
 | baseline | 0 | push penalty @ 3072 | none | gap n/a pts; push score +7.262 (runs: screen/full/confirm max) vs line +0.107 | data/audit/P2_s0_at3072_scr.json |
 | baseline | 0 | push penalty @ 4096 | none | gap n/a pts; push score +13.991 (runs: screen/full/confirm max) vs line +0.107 | data/audit/P2_s0_at4096_scr.json |
 | baseline | 0 | push penalty @ 5120 | none | gap n/a pts; push score +12.745 (runs: screen/full/confirm max) vs line +0.107 | data/audit/P2_s0_at5120_scr.json |
 | baseline | 0 | push penalty @ 6144 | none | gap n/a pts; push score +9.668 (runs: screen/full/confirm max) vs line +0.107 | data/audit/P2_s0_at6144_scr.json |
 | baseline | 0 | push penalty @ 7168 | none | gap n/a pts; push score +10.280 (runs: screen/full/confirm max) vs line +0.107 | data/audit/P2_s0_at7168_scr.json |
-| baseline | 0 | push penalty @ 8192 | none | gap +39.32 pts; push score +9.854 (runs: screen/full/confirm max) vs line +0.107; pool score at last refill +9.702 | data/audit/P2_s0_scr.json |
-| baseline | 0 | push penalty @ 8192 | none | same cell, second artifact | data/eval/P2_s0/eager_8192.json |
-| baseline | 0 | push penalty @ 8192 | none | same cell, second artifact | data/eval/P2_s0/compiled_8192.json |
 | headline | 0 | push penalty @ 2048 | none | gap n/a pts; push score +3.987 (runs: screen/full/confirm max) vs line +0.107 | data/audit/P_s0_at2048_scr.json |
 | headline | 0 | push penalty @ 3072 | none | gap n/a pts; push score +13.200 (runs: screen/full/confirm max) vs line +0.107 | data/audit/P_s0_at3072_scr.json |
 | headline | 0 | push penalty @ 4096 | none | gap n/a pts; push score +14.115 (runs: screen/full/confirm max) vs line +0.107 | data/audit/P_s0_at4096_scr.json |
-| headline | 0 | push penalty @ 5120 | none | gap +31.90 pts; push score +14.659 (runs: screen/full/confirm max) vs line +0.107; pool score at last refill +13.800 | data/audit/P_s0_at5120_scr.json |
+| headline | 0 | push penalty @ 5120 | none | gap +31.90 pts; push score +14.733 (runs: screen/full/confirm max) vs line +0.107; pool score at last refill +13.800 | data/audit/P_s0_at5120_scr.json |
+| headline | 0 | push penalty @ 5120 | none | same cell, second artifact | data/audit/P_s0_at5120.json |
 | headline | 0 | push penalty @ 5120 | none | same cell, second artifact | data/eval/P_s0/eager_5120.json |
 | headline | 0 | push penalty @ 5120 | none | same cell, second artifact | data/eval/P_s0/compiled_5120.json |
 | headline | 1 | push penalty @ 16384 | none | gap +26.18 pts; push score +2.201 (runs: screen/full/confirm max) vs line +0.107; pool score at last refill +3.792 | data/audit/P_s1_scr.json |
@@ -56,6 +58,7 @@ Status (summarize.py, PREREG v1 + D1 + D2): **CONFIRMED**. Clean line L = +0.107
 | clean line | 2 | clean @ 8192 | clean model | same cell, second artifact | ref/parent_data/eval/cln_s2/eager_8192.json |
 | clean line | 2 | clean @ 8192 | clean model | same cell, second artifact | ref/parent_data/eval/cln_s2/compiled_8192.json |
 | positive control | 0 | no penalty @ 8192 | no penalty (U twin) | gap +43.68 pts; push score +3.016 (runs: screen/full/confirm max) vs line +0.107 | data/audit/stack_s0_scr.json |
+| positive control | 0 | no penalty @ 8192 | no penalty (U twin) | same cell, second artifact | data/audit/stack_s0.json |
 | positive control | 0 | no penalty @ 8192 | no penalty (U twin) | same cell, second artifact | ref/parent_data/eval/stack_s0/eager_8192.json |
 | positive control | 0 | no penalty @ 8192 | no penalty (U twin) | same cell, second artifact | ref/parent_data/eval/stack_s0/compiled_8192.json |
 | positive control | 1 | no penalty @ 8192 | no penalty (U twin) | gap +21.72 pts; push score +4.571 (runs: screen/full/confirm max) vs line +0.107 | data/audit/stack_s1_scr.json |

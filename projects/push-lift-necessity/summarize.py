@@ -268,6 +268,19 @@ def main():
         print(f"{m['run_id']:>9} {str(m['step']):>6} score {m['score']:+.3f} (scr {m['score_screen']}, 1st {m['score_first']}, 2nd "
               f"{'-' if m['score_second'] is None else format(m['score_second'], '+.3f')}) gap "
               f"{'-' if m['gap'] is None else format(m['gap'], '+.2f')} unit {m['argmax_unit']}")
+    for m in S["models"]:
+        if "d3" in m:
+            passed = f"{m['run_id']}@{m['step']}" in (S.get("paths") or {}).get("B", [])
+            ux = m["unit_excess"].get(json.dumps([0]))
+            print(f"PATH-B {m['run_id']}@{m['step']}: gap {m['gap']:+.2f}, score {m['score']:+.3f}, unit-0 excess "
+                  f"{ux:+.3f}, last refill {m['d3']['refill_step']}, pass {passed}")
+            for h in m["d3"]["offsets"]:
+                if not h.get("missing"):
+                    print(f"   unit {h['unit'][:3]}{'..' if len(h['unit']) > 3 else ''}: lift at refill ckpt {h['lift_at']:+.2f} "
+                          f"(r0 {h['lift_r0']:+.2f}) sat {h['sat_at']:.2f} -> next {h['lift_next']:+.2f}; "
+                          f"i {h['i']} ii {h['ii']} iii {h['iii']} iv {h['unit_tie']} => {h['bit']}")
+                else:
+                    print(f"   unit {h['unit'][:3]}: rows missing in pool_lift.json")
     for r, ps in S["pool"].items():
         print(r, "pool score per refill", [(p["step"], round(p["score"], 3)) for p in ps])
     print("damage", json.dumps(damage)[:600])

@@ -1,0 +1,18 @@
+{
+ "snippet_chars": 52,
+ "head": "Freezing the normalisation, as attribution graphs do, typically bends their gradient by more than 60°",
+ "sub": "Does freezing the normalisation bend attribution gradients in {model} too? {n} texts, layers {s0}–{s2} of {nblocks}: median cosine {med_lo}–{med_hi} (1 = same direction).",
+ "question": "Which change at layer {L} would raise “{next}” the most?",
+ "arrows_title": "The <span class=\"red\">frozen copy</span> answers {angle}° away from the real model",
+ "arrow_real": "real gradient",
+ "arrow_frozen": "frozen gradient",
+ "strip_title": "All {n} texts: how closely the frozen and real gradients agree",
+ "strip_note": "Dot: median cosine, line: its 95% range. Ring: two unrelated texts (chance).",
+ "bar_label": "bent below 0.9",
+ "source": "{model} · {n} texts from pile-10k · Nov 5, 2026",
+ "alt": "TBD",
+ "asserts": [
+  "all(math.degrees(math.acos(stats[L]['median'])) > 60 for L in STATUS)"
+ ],
+ "next_label": "next word piece:"
+}

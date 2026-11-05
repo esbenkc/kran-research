@@ -239,13 +239,13 @@ def main():
                         at = get(R["step"], R["step"], unit)          # o on checkpoint 2,048k (refill policy)
                         nx = get(R["step"] + 1024, R["step"], unit)   # o on checkpoint 2,048k + 1,024
                         r0 = get(0, 0, unit)                          # same unit's refill-0 offset on the untrained model
-                        if at is None or nx is None or r0 is None or at.get("live") is None:
+                        if at is None or nx is None or r0 is None or at.get("sat") is None:
                             hits.append({"unit": unit, "missing": True})
                             continue
                         i_ = at["lift"] - r0["lift"] > L
-                        ii = at["live"] >= 0.5
+                        ii = at["sat"] <= 0.5  # D3 f9271a25: not saturated, mean over test prompts of p^8 <= 0.5
                         iii = nx["lift"] < at["lift"]
-                        hits.append({"unit": unit, "lift_at": at["lift"], "lift_r0": r0["lift"], "live_at": at["live"],
+                        hits.append({"unit": unit, "lift_at": at["lift"], "lift_r0": r0["lift"], "sat_at": at["sat"],
                                      "lift_next": nx["lift"], "i": i_, "ii": ii, "iii": iii, "bit": i_ and ii and iii})
                     m["d3"] = {"refill_step": R["step"], "offsets": hits}
                     if any(h["bit"] for h in hits):

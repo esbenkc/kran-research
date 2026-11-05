@@ -117,9 +117,9 @@ def jobs():
             low = [k for k, s, g in cs if scr[k] <= QUEUE_LINE]
             steps = sorted({s for k, s, g in cs if k in low} | {final_of(r)})
             J.append(((0, 2), f"wg:{r}:{','.join(map(str, steps))}", None))
-            for rank, k in enumerate(sorted(low, key=lambda k: scr[k])):
-                J.append(((4, rank, 0), f"full:{k}", k))
-                J.append(((4, rank, 1), f"c2:{k}", k))
+            for rank, k in enumerate(sorted(low, key=lambda k: scr[k])):  # candidates before the refs (decisive cells)
+                J.append(((0, 9, rank, 0), f"full:{k}", k))
+                J.append(((0, 9, rank, 1), f"c2:{k}", k))
             J.append(((5,), f"full:{key_of(r, final_of(r))}", key_of(r, final_of(r))))
             gw = [(s, wg_gap(r, s)) for k, s, g in cs]
             first = next((s for s, g in gw if g is not None and g >= 10), None)

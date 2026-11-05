@@ -102,13 +102,14 @@ def pool_scores(run):
             for r in d["pool_log"]]
 
 
-def qa_ci(p, u, n_boot=10_000, seed=0):
+def qa_ci(p, u, n_boot=10_000, seed=None):
     a, b = jl(HERE / f"data/qa/{p}.json"), jl(HERE / f"data/qa/{u}.json")
     if a is None or b is None:
         return None
     assert a["ids"] == b["ids"]
     d = np.array(a["correct"], float) - np.array(b["correct"], float)
-    rng = np.random.default_rng(seed)
+    import zlib
+    rng = np.random.default_rng(zlib.crc32(p.encode()) if seed is None else seed)  # own resamples per run
     bs = d[rng.integers(0, len(d), (n_boot, len(d)))].mean(1)
     lo, hi = np.percentile(bs, [2.5, 97.5]) * 100
     return {"acc": a["acc"], "acc_twin": b["acc"], "diff_pts": float(d.mean() * 100), "ci95": [float(lo), float(hi)],
@@ -378,6 +379,20 @@ def write_matrix(S):
     if g["base"] is not None:
         rows.append(("damage guard", "n/a", "general sensitivity G, untrained", "untrained model",
                      f"G {g['base']:.2e} nats; void below 1e-4: {g['void']}", "data/readings/kl_sensitivity.json"))
+    # skeptic rebuild rows (their files, same 6-cell format); a cell with several artifacts becomes one row per artifact
+    for who in ("skeptic", "critic2"):
+        pr = HERE / "skeptics" / who / "proof_rows.md"
+        if not pr.exists():
+            continue
+        for line in pr.read_text().splitlines():
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            if len(cells) != 6 or cells[0] in ("claim", "---") or set(cells[0]) <= set("-"):
+                continue
+            arts = [a.strip() for a in cells[5].split(",")]
+            base_dir = "/".join(arts[0].split("/")[:-1])
+            for i, a in enumerate(arts):
+                a = a if "/" in a else f"{base_dir}/{a}"
+                rows.append(tuple(cells[:4]) + ((cells[4] if i == 0 else "same cell, second artifact"), a))
     out = ["# Proof matrix — push-lift-necessity", "",
            f"Status (summarize.py, PREREG v1 + D1 + D2): **{S['status']}**. Clean line L = {f(L)}. Why: {'; '.join(S['why']) or 'all gates met'}.", "",
            "| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]

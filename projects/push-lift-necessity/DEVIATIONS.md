@@ -104,3 +104,18 @@ climb to a narrow lift region inside the ball.
 - A counterexample candidate stays a counterexample only if its zero-start score <= L_zero as well. If it is > L_zero,
   that checkpoint is an audit artefact, not a counterexample, and the post says "searches from the edge missed the
   switch; a search from zero found it" (status UNCONFIRMED unless another candidate holds).
+
+## D6 (Felix, Tove's decision #14721, 19:36 PST; after Iris's search-free read of P_s1@16,384 (#14710) and before the zero-start and full/confirmatory results of that candidate are read)
+
+Disclosure: written after the PREREG reading row "random-push spread" showed, on the counterexample candidate
+P_s1@16,384, max lift +1.72 log-odds over 32 fixed random pushes at position 0 (11 of 32 above 0.126), against
+cleans <= 0.04 (0 of 32) and base 0.03 (reading_rows.json, Iris; checked by Kasper #14714). These pushes are fresh
+draws (seed 1105) from the same distribution the audit starts from: a random direction per position, on the ball edge.
+The title asks whether the MODEL reacts to small cue-blind pushes; a REJECTED that a measured cue-blind read contradicts
+would answer it wrongly.
+- D6 test: a counterexample candidate is voided if its search-free read (max over the 32 fixed pushes per unit, minus
+  base's same read) exceeds L_rand = the PREREG formula on the 3 cleans' same read (sd floor 0.0037).
+- Status effect (Tove): a candidate voided by D5 OR D6 sends the status to UNCONFIRMED, never to "no counterexample".
+  So a voided candidate cannot let path B (e.g. P2_s0@8,192) turn the status to CONFIRMED. Same direction as D3 and D5:
+  post-data changes only move No to Not settled.
+- No new search runs for D6 (no best-iterate reruns); the read already exists and was reviewed.

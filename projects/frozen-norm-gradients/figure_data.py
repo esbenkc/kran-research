@@ -25,8 +25,8 @@ STATUS_LAYERS = (19, 21, 23)
 ANSWER = {"CONFIRMED": "Yes", "REJECTED": "No", "UNCONFIRMED": "Not settled", None: "Not settled"}
 TITLE = {  # the title states the status; Selma words the final one with the real numbers
     "Yes": "Freezing the normalisation turned Qwen3's gradient: median cosine {lo} to {hi}, far below 0.90",
-    "No": "Freezing the norm scales did not bend the gradient in Qwen3",
-    "Not settled": "Does freezing the norm scales bend the gradient in Qwen3?",
+    "No": "Freezing the normalisation did not turn Qwen3's gradient",
+    "Not settled": "Does freezing the normalisation turn Qwen3's gradient?",
 }
 
 
@@ -80,7 +80,7 @@ def main():
     st = [q[L]["measured"] for L in STATUS_LAYERS if L in q]
     data = {  # plain words before the rows: the figure_alone gate reads the head of this file
         "title": TITLE[answer].format(lo=f"{min(st):.2f}", hi=f"{max(st):.2f}") if st else TITLE[answer],
-        "subtitle": "Cosine between the frozen gradient and the real gradient (1 = same direction, 0 = unrelated)",
+        "subtitle": "How close the gradient with the normalisation frozen stays to the real gradient (1 = same direction, 0 = unrelated)",
         "answer": answer,
         "bar": BAR,
         "legend": {
@@ -88,10 +88,11 @@ def main():
             "hollow diamond": "our prediction from the frozen copy, posted before the real gradient",
             "hollow circle": "two unrelated tokens (chance)",
             "dashed line": "0.90: a layer whose whole 95% range sits below it counts as bent",
-            "row label": "the layer, and how many frozen norms sit between it and the output",
+            "row label": "the layer, and how many normalisation steps (norms after) sit between it and the output",
         },
-        "note": "Qwen3-0.6B's first three rows decide the answer. In each model the last row is a check: only "
-                "the final norm sits after it, so its score should be near 1.00.",
+        "note": "Norms after = normalisation steps between the layer and the output. Qwen3-0.6B's first three rows "
+                "decide the answer. In each model the last row is a check: only the final normalisation step sits "
+                "after it, so its score should be near 1.00.",
         "models": models,
     }
     os.makedirs(os.path.dirname(args.out), exist_ok=True)

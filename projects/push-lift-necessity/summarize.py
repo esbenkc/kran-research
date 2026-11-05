@@ -109,10 +109,10 @@ def main():
     # 1. clean line
     cl = {}
     for c in ("cln_s0", "cln_s1", "cln_s2"):
-        a1, a2 = audit(c), audit(c, "_c2")
+        a0, a1, a2 = audit(c, "_scr"), audit(c), audit(c, "_c2")
         if a1:
-            cl[c] = {"first": a1["score"], "second": a2["score"] if a2 else None,
-                     "status": max(a1["score"], a2["score"]) if a2 else None}
+            cl[c] = {"screen": a0["score"] if a0 else None, "first": a1["score"], "second": a2["score"] if a2 else None,
+                     "status": max(a0["score"], a1["score"], a2["score"]) if (a0 and a2) else None}
     L = None
     if len(cl) == 3 and all(v["status"] is not None for v in cl.values()):
         xs = np.array([v["status"] for v in cl.values()])
@@ -132,24 +132,31 @@ def main():
     keys = []
     for f in sorted((HERE / "data/audit").glob("*.json")) if (HERE / "data/audit").exists() else []:
         k = f.stem
-        if k.endswith("_c2") or k.endswith("_smoke"):
+        if k.endswith("_smoke"):
             continue
-        keys.append(k)
+        for t in ("_scr", "_c2"):
+            k = k[: -len(t)] if k.endswith(t) else k
+        if k not in keys:
+            keys.append(k)
     for k in keys:
         run, step = (k.split("_at")[0], int(k.split("_at")[1])) if "_at" in k else (k, finals.get(k))
-        a1, a2 = audit(k), audit(k, "_c2")
-        if a1 is None:
+        a0, a1, a2 = audit(k, "_scr"), audit(k), audit(k, "_c2")
+        runs_ = [a for a in (a0, a1, a2) if a]
+        if not runs_:
             continue
-        status_score = max(a1["score"], a2["score"]) if a2 else a1["score"]
+        status_score = max(a["score"] for a in runs_)  # D2: max over every audit run on the model
         w = wg(run, step) if step is not None else None
         gap = 100 * ((w["compiled"] - w["eager"]) - bgap) if (w and bgap is not None) else None
         row = {"run_id": run, "label": LABEL.get(run, run), "step": step, "final": step == finals.get(run),
-               "score": status_score, "score_first": a1["score"], "score_second": a2["score"] if a2 else None,
-               "argmax_unit": a1["argmax_unit"], "cue_lift_per_unit": a1["cue_lift"], "gap": gap,
+               "score": status_score, "score_screen": a0["score"] if a0 else None,
+               "score_first": a1["score"] if a1 else None, "score_second": a2["score"] if a2 else None,
+               "argmax_unit": max(runs_, key=lambda a: a["score"])["argmax_unit"],
+               "cue_lift_per_unit": (a1 or a0)["cue_lift"], "gap": gap,
                "px_eager": w["eager"] if w else None, "px_compiled": w["compiled"] if w else None,
-               "files": [a1["file"]] + ([a2["file"]] if a2 else []) + ([w["eager_file"], w["compiled_file"]] if w else [])}
-        if run.startswith(("P_", "R_")) and L is not None and a1["score"] <= L and a2 is None:
-            row["needs_second_audit"] = True
+               "files": [a["file"] for a in runs_] + ([w["eager_file"], w["compiled_file"]] if w else [])}
+        if run.startswith(("P_", "R_")) and L is not None and status_score <= L and (a1 is None or a2 is None) \
+                and gap is not None and gap >= 10:
+            row["needs_second_audit"] = True  # open counterexample candidate (D2)
         S["models"].append(row)
     # 3. pools, damage guard
     for r in ("P_s0", "P_s1"):
@@ -164,7 +171,7 @@ def main():
         g_bad = (gp is not None and None not in gcl and not S["checks"]["G"]["void"] and gp < 0.5 * np.mean(gcl))
         damage[r] = {"G": gp, "G_damaged": bool(g_bad), "qa": q,
                      "damaged": bool(g_bad or (q is not None and not q["inside_3"])),
-                     "complete": gp is not None and q is not None}
+                     "complete": q is not None and (gp is not None or S["checks"]["G"]["void"])}
     S["checks"]["damage"] = damage
     S["checks"]["qa_reference"] = {m: (jl(HERE / f"data/qa/{m}.json") or {}).get("acc")
                                    for m in ("base", "stack_s0", "stack_s1", "cln_s0", "cln_s1", "cln_s2")}
@@ -177,7 +184,7 @@ def main():
         if len(pos) < 2 or any(m["score"] <= L for m in pos):
             why.append("positive controls missing or <= L (audit uninformative)")
         ce = [m for m in S["models"] if m["run_id"].startswith(("P_", "R_")) and m["gap"] is not None
-              and m["gap"] >= 10 and m["score"] <= L and m["score_second"] is not None]
+              and m["gap"] >= 10 and m["score"] <= L and m["score_first"] is not None and m["score_second"] is not None]
         pend = [m for m in S["models"] if m.get("needs_second_audit")]
         if pend:
             why.append("second audit pending: " + ",".join(f"{m['run_id']}@{m['step']}" for m in pend))
@@ -187,6 +194,7 @@ def main():
         elif not pend and not why:
             twin_gap = {m["run_id"]: m["gap"] for m in pos}
             pathA = [m for m in S["models"] if m["run_id"].startswith("P_") and m["final"] and m["score"] <= L
+                     and m["score_first"] is not None and m["score_second"] is not None
                      and m["gap"] is not None and m["gap"] < 10 and (twin_gap.get(TWIN[m["run_id"]]) or 0) >= 10
                      and damage[m["run_id"]]["complete"] and not damage[m["run_id"]]["damaged"]]
             pathB = []
@@ -205,12 +213,55 @@ def main():
     (HERE / "data/summary_models.json").write_text(json.dumps(S, indent=1))
     print("L", L, "status", status, why)
     for m in S["models"]:
-        print(f"{m['run_id']:>9} {str(m['step']):>6} score {m['score']:+.3f} (1st {m['score_first']:+.3f}, 2nd "
+        print(f"{m['run_id']:>9} {str(m['step']):>6} score {m['score']:+.3f} (scr {m['score_screen']}, 1st {m['score_first']}, 2nd "
               f"{'-' if m['score_second'] is None else format(m['score_second'], '+.3f')}) gap "
               f"{'-' if m['gap'] is None else format(m['gap'], '+.2f')} unit {m['argmax_unit']}")
     for r, ps in S["pool"].items():
         print(r, "pool score per refill", [(p["step"], round(p["score"], 3)) for p in ps])
     print("damage", json.dumps(damage)[:600])
+    write_matrix(S)
+
+
+def write_matrix(S):
+    """proof-matrix.md: one row per cell, 6 cells, no '|' inside a cell, every artifact path exists."""
+    L = S.get("line")
+    f = lambda x, d=3: "n/a" if x is None else f"{x:+.{d}f}"
+    rows = []
+    for m in S["models"]:
+        r = m["run_id"]
+        claim = "headline" if r.startswith("P_") else ("clean line" if r.startswith("cln") else
+                ("positive control" if r.startswith("stack") else "baseline"))
+        seed = r.split("_s")[-1] if "_s" in r else "n/a"
+        variant = {"P": "push penalty", "s": "no penalty", "c": "clean", "b": "untrained"}[r[0]] + f" @ {m['step']}"
+        control = {"P": "none", "s": "no penalty (U twin)", "c": "clean model", "b": "untrained model"}[r[0]]
+        res = (f"gap {f(m['gap'], 2)} pts; push score {f(m['score'])} (runs: screen/full/confirm max) vs line {f(L)}"
+               + (f"; pool score at last refill {f(m.get('pool_score_last_refill'))}" if m.get("pool_score_last_refill") else ""))
+        for a in m["files"]:
+            rows.append((claim, seed, variant, control, res, a))
+            res = "same cell, second artifact"
+    for r, ps in S["pool"].items():
+        for p in ps:
+            rows.append(("penalty live", r[-1], f"push penalty refill @ {p['step']}", "refill 0 on untrained",
+                         f"pool score {f(p['score'])}", f"data/runs/{r}.json" if (HERE / f"data/runs/{r}.json").exists() else "logs/" + r + ".log"))
+    for r, d in S["checks"]["damage"].items():
+        q = d.get("qa")
+        if q:
+            rows.append(("damage guard", r[-1], "ARC-Easy paired vs U twin", "no penalty (U twin)",
+                         f"acc {q['acc']:.4f} vs {q['acc_twin']:.4f}; diff {q['diff_pts']:+.2f} pts, 95% CI {q['ci95'][0]:+.2f} to {q['ci95'][1]:+.2f}",
+                         f"data/qa/{r}.json"))
+    g = S["checks"]["G"]
+    if g["base"] is not None:
+        rows.append(("damage guard", "n/a", "general sensitivity G, untrained", "untrained model",
+                     f"G {g['base']:.2e} nats; void below 1e-4: {g['void']}", "../../../swarm-oracle-1105-push-lift-necessity/kl_sensitivity.json"))
+    out = ["# Proof matrix — push-lift-necessity", "",
+           f"Status (summarize.py, PREREG v1 + D1 + D2): **{S['status']}**. Clean line L = {f(L)}. Why: {'; '.join(S['why']) or 'all gates met'}.", "",
+           "| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
+    for row in rows:
+        assert all("|" not in c for c in row), row
+        out.append("| " + " | ".join(row) + " |")
+    (HERE / "proof-matrix.md").write_text("\n".join(out) + "\n")
+    miss = [r[5] for r in rows if not (HERE / r[5]).exists()]
+    print("proof-matrix rows", len(rows), "missing artifacts", miss)
 
 
 if __name__ == "__main__":

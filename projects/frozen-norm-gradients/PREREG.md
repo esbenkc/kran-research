@@ -131,3 +131,12 @@ downloaded; check df >= 31 GB free after every download; never hand-delete the H
   (numpy default_rng(7)), per layer and model, so a reader knows what 0.90 means when gradients share a common
   direction.
 - P3 Ameisen et al. reading cell (direction AND magnitude): median |g_frz| / |g_real| per layer and model.
+
+## 10. Clarifications (Vera #15101, pre-data, 06:12 PST)
+
+- doc_index in default_rng(1105 + doc_index) = the pile-10k row index (8000, 8001, ...), not the position in the set.
+- One read position t per doc, shared by all read layers of that model (incl. the known-answer layer). A t is
+  flagged when the massive-activation rule fires at ANY of the model's read layers (max over layers).
+- "Positions 1..127" = 0-indexed positions 1..127 of the 128-token context (position 0 excluded).
+- A redraw = the next .integers(4, 127) call on the same Generator object; at most 10 draws; a doc whose 10 draws
+  are all flagged is skipped and the next usable doc is taken (count reported).

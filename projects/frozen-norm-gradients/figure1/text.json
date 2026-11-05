@@ -1,18 +1,25 @@
 {
  "snippet_chars": 52,
- "head": "Freezing the normalisation, as attribution graphs do, typically bends the gradient by more than 60°",
- "sub": "Does freezing the normalisation bend attribution gradients in {model} too? {n} texts, layers {s0}–{s2} of {nblocks}: median cosine {med_lo}–{med_hi} (1 = same direction).",
+ "head": "Freezing the normalisation bends a word's raw-score gradient by over 60°, but barely its probability gradient",
+ "sub": "Does freezing the normalisation bend attribution gradients in {model} too? {n} texts, layers {s0}–{s2} of {nblocks}. Median cosine (1 = same direction): raw score {med_lo}–{med_hi}, probability {lp_lo}.",
  "question": "Which change at layer {L} would raise “{next}” the most?",
- "arrows_title": "With only the normalisation <span class=\"red\">frozen</span>, the answer turns {angle}° away",
- "arrow_real": "real gradient",
+ "next_label": "next word piece:",
+ "arrows_title": "Frozen vs real gradient for this text",
+ "fan_score_title": "…its raw score",
+ "fan_score_sub": "the logit graphs explain",
+ "fan_prob_title": "…its probability",
+ "fan_prob_sub": "our added check",
+ "arrow_real": "real",
  "arrow_frozen": "normalisation frozen",
- "strip_title": "All {n} texts: normalisation frozen vs real gradient (1 = same direction)",
+ "strip_title": "All {n} texts: how closely the frozen gradient agrees with the real one",
+ "series_score": "raw score",
+ "series_prob": "probability",
  "strip_note": "Dot: median cosine (and angle), line: its 95% range. Ring: two unrelated texts (chance).",
  "bar_label": "bent below 0.9",
  "source": "{model} · {n} texts from pile-10k · Nov 5, 2026",
  "alt": "TBD",
  "asserts": [
-  "all(math.degrees(math.acos(stats[L]['median'])) > 60 for L in STATUS)"
- ],
- "next_label": "next word piece:"
+  "all(math.degrees(math.acos(stats[L]['median'])) > 60 for L in STATUS)",
+  "len({round(stats[L]['lp_median'], 2) for L in STATUS}) == 1"
+ ]
 }

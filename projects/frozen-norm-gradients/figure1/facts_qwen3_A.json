@@ -1,5 +1,6 @@
 {
  "source_csv": "kran-research/projects/frozen-norm-gradients/data/runs/qwen3_A.csv",
+ "source_reading_csv": "kran-research/projects/frozen-norm-gradients/data/runs/qwen3_A_reading.csv",
  "model": "Qwen3-0.6B",
  "set": "A",
  "example_layer": 19,
@@ -11,6 +12,8 @@
   "token_id_next": 5853,
   "c_frz": 0.46632081270217896,
   "angle_deg": 62.20426368183025,
+  "c_logprob": 0.866797924041748,
+  "angle_logprob_deg": 29.911356896417654,
   "norm_ratio_frz": 1.151736855506897,
   "rank_of_median_distance": 1,
   "middle_two_docs": [
@@ -34,7 +37,12 @@
    ],
    "null_median": -0.024360325187444687,
    "share_below_090": 0.97,
-   "norms_after": 17
+   "norms_after": 17,
+   "lp_median": 0.9653437435626984,
+   "lp_ci": [
+    0.9587870836257935,
+    0.9736824035644531
+   ]
   },
   "21": {
    "n": 200,
@@ -45,7 +53,12 @@
    ],
    "null_median": -0.048980457708239555,
    "share_below_090": 0.97,
-   "norms_after": 13
+   "norms_after": 13,
+   "lp_median": 0.9715319573879242,
+   "lp_ci": [
+    0.961385041475296,
+    0.9758467376232147
+   ]
   },
   "23": {
    "n": 200,
@@ -56,7 +69,12 @@
    ],
    "null_median": -0.06383160129189491,
    "share_below_090": 0.97,
-   "norms_after": 9
+   "norms_after": 9,
+   "lp_median": 0.9724436700344086,
+   "lp_ci": [
+    0.9641109108924866,
+    0.9798490107059479
+   ]
   },
   "27": {
    "n": 200,
@@ -67,7 +85,12 @@
    ],
    "null_median": 0.1190815381705761,
    "share_below_090": 0.0,
-   "norms_after": 1
+   "norms_after": 1,
+   "lp_median": 0.9996877610683441,
+   "lp_ci": [
+    0.9995331168174744,
+    0.999739408493042
+   ]
   }
  }
 }

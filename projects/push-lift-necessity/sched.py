@@ -139,7 +139,7 @@ def jobs():
                         J.append(((4, -1, 1), f"c2:{k}", k))  # any full <= L gets its confirmatory audit early
     for r in ("P_s0", "P_s1", "P2_s0"):
         if run_finished(r):
-            J.append(((5, 1), f"qa:{key_of(r, final_of(r))}", key_of(r, final_of(r))))  # damage guard: paired ARC-Easy vs the U twin
+            J.append(((0, 9, 9), f"qa:{key_of(r, final_of(r))}", key_of(r, final_of(r))))  # damage guard: paired ARC-Easy vs the U twin
     return sorted(J, key=lambda j: j[0])
 
 

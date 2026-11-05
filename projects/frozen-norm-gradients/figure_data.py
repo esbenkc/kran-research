@@ -107,8 +107,8 @@ def main():
             "dashed line": "0.90: a layer whose whole 95% confidence interval sits below it counts as bent",
             "row label": "the layer, and how many normalisation steps (norms after) sit between it and the output",
         },
-        "note": "Frozen copy = the model with every normalisation scale held at its recorded value, as attribution "
-                "graphs do. Norms after = normalisation steps between the layer and the output. Qwen3-0.6B's first "
+        "note": "Frozen copy = the model with the normalisation scales of the token's stream held at their recorded "
+                "values, as attribution graphs hold them. Norms after = normalisation steps between the layer and the output. Qwen3-0.6B's first "
                 "three rows are the pre-registered test. In each model the last row is a check: only the final "
                 "normalisation step sits after it, so all marks sit near 1.00 there." + lp_note,
         "models": models,

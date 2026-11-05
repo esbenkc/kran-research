@@ -118,3 +118,6 @@ live-norm backward (grep + test), and it equals g_real exactly on a 2-norm toy w
 
 Jobs run one at a time: (1) GPT-2 set A, CPU/MPS, ~1.9 GB; (2) Qwen3-0.6B sets A-C, MPS fp32, ~3.5 GB, alone;
 (3) SmolLM2-135M set A, ~1 GB; (4) rechecks (Qwen3 CPU fp32 ~3 GB; GPT-2/SmolLM2 fp64 < 2 GB), one at a time. Never 2 heavy jobs at once if their sum exceeds 5 GB. Skeptic rebuilds run after Bruno's jobs end.
+
+Disk rule (Kasper #15084): no transcoder downloads for Qwen3 (671 MB/layer); only SmolLM2-135M (~270 MB) is
+downloaded; check df >= 31 GB free after every download; never hand-delete the HF cache.

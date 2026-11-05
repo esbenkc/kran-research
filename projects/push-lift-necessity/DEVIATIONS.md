@@ -35,3 +35,5 @@ left after training. The full audit itself is unchanged. New: a cheap screen dec
 - If a screened checkpoint with whole-graph gap >= 10 and screen score <= L has not finished its full + confirmatory
   audit by 20:30 PST, it is an open counterexample candidate: REJECTED cannot be called on it, and CONFIRMED is blocked
   (UNCONFIRMED: "an unaudited candidate remained").
+- Reporting (Tove #14640): the post states "N of M checkpoints with gap >= 10 screened, K fully audited" next to the
+  status, and the status claim covers only those checkpoints.

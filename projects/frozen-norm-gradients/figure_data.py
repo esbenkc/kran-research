@@ -26,7 +26,7 @@ MODELS = [("qwen3", "Qwen3-0.6B", "decides the answer"), ("smol", "SmolLM2-135M"
 STATUS_LAYERS = (19, 21, 23)
 ANSWER = {"CONFIRMED": "Yes", "REJECTED": "No", "UNCONFIRMED": "Not settled", None: "Not settled"}
 TITLE = {  # the title states the status; Selma words the final one with the real numbers
-    "Yes": "Freezing the normalisation turned Qwen3's gradient: median cosine {lo} to {hi}, far below 0.90",
+    "Yes": "Freezing the normalisation turned Qwen3's logit gradient (median cosine {lo} to {hi})",
     "No": "Freezing the normalisation did not turn Qwen3's gradient",
     "Not settled": "Does freezing the normalisation turn Qwen3's gradient?",
 }
@@ -86,15 +86,20 @@ def main():
         assert answer == ("Yes" if yes >= 2 else "No" if no >= 2 else "Not settled"), (answer, yes, no)
 
     st = [q[L]["measured"] for L in STATUS_LAYERS if L in q]
+    title = TITLE[answer].format(lo=f"{min(st):.2f}", hi=f"{max(st):.2f}") if st else TITLE[answer]
+    lp = [q[L]["logprob"] for L in STATUS_LAYERS if L in q and q[L]["logprob"] is not None]
+    if lp:  # the title names the target: the log-probability gradient (reading cell) did not turn
+        a, b = f"{min(lp):.2f}", f"{max(lp):.2f}"
+        title += f". Its log-probability gradient stayed near {a if a == b else a + ' to ' + b}"
     data = {  # plain words before the rows: the figure_alone gate reads the head of this file
-        "title": TITLE[answer].format(lo=f"{min(st):.2f}", hi=f"{max(st):.2f}") if st else TITLE[answer],
+        "title": title,
         "subtitle": "How close the gradient of the next word's logit, with the normalisation frozen, stays to the real one (1 = same direction, 0 = unrelated)",
         "answer": answer,
         "bar": BAR,
         "legend": {
             "filled dot": "median over 200 texts; line = 95% range",
             "hollow diamond": "our prediction from the frozen copy, posted before the real gradient",
-            "hollow circle": "two unrelated tokens (chance)",
+            "hollow circle": "frozen gradient of one text vs real gradient of another (chance)",
             **({"hollow square": "same freeze, gradient of the log-probability (added after the pre-registration)"}
                if any(l["logprob"] is not None for m in models for l in m["layers"]) else {}),
             "dashed line": "0.90: a layer whose whole 95% range sits below it counts as bent",

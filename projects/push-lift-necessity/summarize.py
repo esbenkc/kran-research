@@ -32,7 +32,8 @@ SD_FLOOR = 0.0037
 TWIN = {"P_s0": "stack_s0", "P_s1": "stack_s1", "R_s0": "stack_s0", "P2_s0": "stack_s0"}
 PRUNS = ("P_s0", "P_s1", "P2_s0")
 D3_UNIT_TIE = True  # D3 (iv), Felix #14683
-D5_GATE = True  # Kasper #14696 zero-start search as a gate on REJECTED (pending Tove; set False if reading only)
+D5_GATE = True  # D5 c12684d0, Tove #14707: zero-start search gates REJECTED
+D6_GATE = True  # D6, Tove #14721: search-free random-push read gates REJECTED; a voided candidate -> UNCONFIRMED
 LABEL = {"base": "Untrained", "stack_s0": "No penalty, seed 0", "stack_s1": "No penalty, seed 1",
          "cln_s0": "Clean 0", "cln_s1": "Clean 1", "cln_s2": "Clean 2",
          "P_s0": "Push penalty, seed 0", "P_s1": "Push penalty, seed 1", "P2_s0": "Push penalty kept live, seed 0", "R_s0": "Random-push penalty, seed 0"}
@@ -220,6 +221,30 @@ def main():
             zx = np.array([z["score"] for z in zc])
             L_zero = float(zx.mean() + T95 * max(zx.std(ddof=1), SD_FLOOR))
         S["clean_line_zero_start"] = {"L_zero": L_zero, "cleans": [z["score"] if z else None for z in zc]}
+        # D6 (Tove #14721): search-free read = max over Iris's units of [max lift of 32 fixed ball-edge pushes - base's
+        # same read]; line L_d6 = PREREG formula on the 3 cleans' read. A candidate above L_d6 is voided -> UNCONFIRMED.
+        rr = jl(SW / "reading_rows.json") or {}
+        def d6(mk):
+            if mk not in rr or "base" not in rr:
+                return None
+            return max(rr[mk]["units"][u]["max"] - rr["base"]["units"][u]["max"] for u in rr[mk]["units"])
+        dc = [d6(c) for c in ("cln_s0", "cln_s1", "cln_s2")]
+        L_d6 = None
+        if None not in dc:
+            dx = np.array(dc)
+            L_d6 = float(dx.mean() + T95 * max(dx.std(ddof=1), SD_FLOOR))
+        S["clean_line_search_free"] = {"L_d6": L_d6, "cleans": dc}
+        voided = []
+        for m in ce:
+            mk = m["run_id"] if m["final"] and not (HERE / f"data/runs/{m['run_id']}.stopped").exists() else f"{m['run_id']}_at{m['step']}"
+            m["search_free"] = d6(mk)
+            if D6_GATE and (m["search_free"] is None or L_d6 is None or m["search_free"] > L_d6):
+                voided.append(m)
+        if voided:
+            why.append(f"D6 search-free read missing or > L_d6 ({L_d6}) on: " + ",".join(
+                f"{m['run_id']}@{m['step']} read {m['search_free']}" for m in voided))
+            S["d6_voided"] = [f"{m['run_id']}@{m['step']}" for m in voided]
+            ce = [m for m in ce if m not in voided]
         if ce and D5_GATE:  # D5 c12684d0: counterexample only if its zero-start score <= L_zero (cleans' zero-start)
             esc = [m for m in ce if m["score_zero_start"] is None or L_zero is None or m["score_zero_start"] > L_zero]
             if esc:

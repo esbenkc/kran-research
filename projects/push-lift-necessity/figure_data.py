@@ -23,7 +23,7 @@ GAP_MIN = 10.0
 
 GROUPS = [  # key, plain name, theme role (plot.js maps role -> C[role]); order = legend order
     ("push", "Push penalty", "primary"),
-    ("live", "Push penalty, kept live", "accent"),  # P2_s0 (D4): pushes scaled so the penalty keeps a gradient
+    ("live", "Push penalty, smaller pushes", "accent"),  # P2_s0 (D4), Selma #14701: a rerun of run 1 with smaller pushes
     ("random", "Penalty on random pushes", "orange"),
     ("none", "No penalty", "secondary"),
     ("clean", "Clean models", "neutral"),
@@ -64,16 +64,38 @@ def verdict(g, gap, score, line):
     return "a switch that still reacts to pushes"
 
 
-def scatter(models, line, status):
+def scatter(models, line, status, quick=None):
+    """quick = {run_id: {step: gap points}} from gap_curves.json (cached-input reading): used only for checkpoints
+    without a whole-graph gap; those dots are flagged quick=True and drawn small."""
+    quick = quick or {}
+    base = next((m for m in models if m["run_id"] == "base"), None)
+    bcue = (base or {}).get("cue_lift_per_unit")
     pts = []
     for m in models:
         g = group_of(m["run_id"])
+        gap, q = m["gap"], False
+        if gap is None:
+            gap, q = quick.get(m["run_id"], {}).get(int(m["step"])), True
+        if gap is None or m["score"] is None:
+            continue
         s = seed_of(m["run_id"]) if g in ("push", "live", "random", "none") else None
-        run = (NAME[g] if g == "base" else f"{NAME[g]}, seed {s}" if s
+        run = (NAME[g] if g == "base" else f"{NAME[g]}, run {s}" if s
                else f"Clean model {int(m['run_id'][-1]) + 1}")
-        pts.append({"group": g, "run": run, "seed": s, "step": int(m["step"]), "final": bool(m["final"]),
-                    "lift": round(float(m["score"]), 4), "gap": round(float(m["gap"]), 2),
-                    "verdict": m.get("verdict") or verdict(g, m["gap"], m["score"], line)})
+        p = {"group": g, "run": run, "seed": s, "step": int(m["step"]), "final": bool(m["final"]), "quick": q,
+             "lift": round(float(m["score"]), 4), "gap": round(float(gap), 2),
+             "verdict": m.get("verdict") or verdict(g, gap, m["score"], line)}
+        cue = m.get("cue_lift_per_unit")
+        if g in ("push", "live") and m["final"] and cue and bcue:
+            # the true serving-minus-grading offset used as a push (reading row, the auditor does not know it),
+            # on the audit's scale: max over units of [model lift - untrained lift]
+            p["cue"] = round(max(c - b for c, b in zip(cue, bcue)), 4)
+        pts.append(p)
+    # a thin line joins the checkpoints of each penalised run whose FINAL sits in the counterexample corner, so the
+    # walk into the corner reads; other runs' paths only add clutter (5 crossing paths at 3-16, 19:30 preview)
+    walk = {p["run"] for p in pts if p["group"] in ("push", "live") and p["final"] and p["gap"] >= GAP_MIN
+            and p["lift"] <= line}
+    for p in pts:
+        p["path"] = p["run"] in walk
     pairs = []
     for s in sorted({p["seed"] for p in pts if p["seed"]}):
         a = [p for p in pts if p["group"] == "none" and p["seed"] == s and p["final"]]
@@ -93,8 +115,11 @@ def scatter(models, line, status):
             "line_gap": f"{GAP_MIN:.0f} points: a switch",
             "line_clean": f"top of the clean range ({line:.2f})",
             "ring": "Ringed dots: each run's last checkpoint.",
-            "dot": "Small dots: earlier checkpoints.",
-            "arrow": "Arrows: the same seed without a penalty, then with the push penalty.",
+            "dot": "Small dots: earlier checkpoints (their gap is a quick reading on saved inputs)."
+                   + (f" The thin line joins {' and '.join(sorted(r.split(', ')[-1] for r in walk))}'s checkpoints"
+                      " in training order." if walk else ""),
+            "arrow": "Arrows: run 1 and run 2 without a penalty, then the same runs with the push penalty.",
+            "cue": "Diamond: the real difference between the two builds, used as a push. The auditor does not know it.",
         },
         "note": "Qwen3-0.6B, trained by reward with flattery penalised on the grading build only. Clean models stay "
                 "left of the dashed vertical line 19 times in 20. One push-penalty dot in the shaded corner would "
@@ -110,7 +135,7 @@ def curves(runs, status):
     for run, pts in runs.items():
         g = group_of(run)
         s = seed_of(run)
-        lines.append({"group": g, "run": f"{NAME[g]}, seed {s}" if s else NAME[g], "seed": s, "points": pts})
+        lines.append({"group": g, "run": f"{NAME[g]}, run {s}" if s else NAME[g], "seed": s, "points": pts})
     present = {l["group"] for l in lines}
     return {"title": "Gap during training", "answer": ANSWER[status],
             "legend": {"groups": [{"key": k, "name": n, "role": r} for k, n, r in GROUPS if k in present]},
@@ -121,6 +146,7 @@ def curves(runs, status):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mock", type=Path)
+    ap.add_argument("--line", type=float, help="PREVIEW ONLY: a provisional clean line while the clean audits run")
     a = ap.parse_args()
     if a.mock:
         mk = json.loads(a.mock.read_text())
@@ -142,11 +168,17 @@ def main():
         cv = json.loads(CURVES.read_text())["runs"] if CURVES.exists() else {}
         runs = {k: [[s, round(100 * g, 2)] for s, g in v["points"]] for k, v in cv.items()
                 if k.split("_")[0] in ("P", "P2", "R", "U", "stack")}
+    quick = {k: {s: g for s, g in pts} for k, pts in runs.items()}
+    provisional = line is None and a.line is not None
+    if provisional:
+        line = a.line
     figs = [("push-lift-necessity-curves", curves(runs, status))]
     if line is None or not models:  # training still running: the audits (and the clean line) do not exist yet
         print("no audited models in summary_models.json yet: scatter not written")
     else:
-        sc = scatter(models, line, status)
+        sc = scatter(models, line, status, quick)
+        if provisional:
+            sc["subtitle"] = f"PROVISIONAL clean line {line} (preview, not the frozen line). " + sc["subtitle"]
         if a.mock:
             sc["subtitle"] = "LAYOUT MOCK: the penalised dots are invented. " + sc["subtitle"]
         figs.insert(0, ("push-lift-necessity", sc))

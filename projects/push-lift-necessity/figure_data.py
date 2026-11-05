@@ -43,6 +43,13 @@ def group_of(run):
     raise ValueError(f"unknown run {run}")
 
 
+RUN_NO = {"P2_s0": 3}  # the post's run numbers (Selma #14743): run 3 = a rerun of run 1's seed with smaller pushes
+
+
+def run_no(run):
+    return RUN_NO.get(run, seed_of(run))
+
+
 def seed_of(run):
     m = re.search(r"_s(\d)", run)
     return int(m.group(1)) + 1 if m else None
@@ -79,10 +86,11 @@ def scatter(models, line, status, quick=None):
         if gap is None or m["score"] is None:
             continue
         s = seed_of(m["run_id"]) if g in ("push", "live", "random", "none") else None
-        run = (NAME[g] if g == "base" else f"{NAME[g]}, run {s}" if s
+        n = run_no(m["run_id"]) if s else None
+        run = (NAME[g] if g == "base" else f"{NAME[g]}, run {n}" if s
                else f"Clean model {int(m['run_id'][-1]) + 1}")
         full = m.get("score_first") is not None or m.get("score_second") is not None
-        p = {"group": g, "run": run, "seed": s, "step": int(m["step"]), "final": bool(m["final"]), "quick": q,
+        p = {"group": g, "run": run, "seed": s, "no": n, "step": int(m["step"]), "final": bool(m["final"]), "quick": q,
              "search": "32 starts" if full else "2 starts",  # full audit vs the D2 screen (2 of the 32 starts)
              "lift": round(float(m["score"]), 4), "gap": round(float(gap), 2),
              "verdict": m.get("verdict") or verdict(g, gap, m["score"], line)}
@@ -96,10 +104,11 @@ def scatter(models, line, status, quick=None):
             # on the audit's scale: max over units of [model lift - untrained lift]
             p["cue"] = round(max(c - b for c, b in zip(cue, bcue)), 4)
         pts.append(p)
-    # a thin line joins the checkpoints of each penalised run whose final got the full audit (the run the status rests
-    # on), so its trend toward the clean line reads (Kasper #14739); other runs' paths only add clutter (5 crossing
-    # paths at 3-16, 19:30 preview)
-    walk = {p["run"] for p in pts if p["group"] in ("push", "live") and p["final"] and p["search"] == "32 starts"}
+    # a thin line joins the checkpoints of the penalised run whose final came closest to the shaded corner (lowest
+    # push response), so its trend toward the clean line reads (Kasper #14739); every run's path at once is 5 crossing
+    # lines at 3-16 (19:30 preview)
+    pen = [p for p in pts if p["group"] in ("push", "live") and p["final"]]
+    walk = {min(pen, key=lambda p: p["lift"])["run"]} if pen else set()
     for p in pts:
         p["path"] = p["run"] in walk
     pairs = []
@@ -110,8 +119,10 @@ def scatter(models, line, status, quick=None):
             pairs.append({"seed": s, "x1": a[0]["lift"], "y1": a[0]["gap"], "x2": b[0]["lift"], "y2": b[0]["gap"]})
     present = {p["group"] for p in pts}
     def plain(p):  # 'run 2 with the push penalty', for use inside a sentence
-        return "the clean models" if p["group"] == "clean" else f"run {p['seed']} with the {NAME[p['group']].lower()}"
-    full_names = sorted({plain(p) for p in pts if p["search"] == "32 starts" and p["group"] != "base"})
+        return {"clean": "the clean models", "none": f"run {p['no']} without a penalty",
+                "push": f"run {p['no']} with the push penalty", "live": f"run {p['no']} (smaller pushes)",
+                "random": f"run {p['no']} with random pushes"}[p["group"]]
+    quick_finals = sorted({plain(p) for p in pts if p["final"] and p["search"] == "2 starts" and p["group"] != "base"})
     corner = [p for p in pts if p["group"] in ("push", "live") and p["gap"] >= GAP_MIN and p["lift"] <= line]
     return {  # head first: title, answer, subtitle (what x and y are), legend, note; the dots come last (Selma #14627)
         "title": "Does a build switch need to react to small internal pushes?",
@@ -128,10 +139,11 @@ def scatter(models, line, status, quick=None):
             "dot": "Small dots: earlier checkpoints. Their gap is a quick reading on saved inputs."
                    + (f" The thin line joins {' and '.join(sorted(r.split(', ')[-1] for r in walk))}'s checkpoints"
                       " in training order." if walk else ""),
-            "search": (f"Push response comes from the full audit search (32 random starts) for {' and '.join(full_names)}, "
-                       "and from a quick search with 2 of those starts for every other dot." if full_names else ""),
-            "arrow": "Arrows: run 1 and run 2 without a penalty, then the same runs with the push penalty. "
-                     "The runs without a penalty were read with the quick 2-start search only.",
+            "search": "Push response of every ringed dot and of the clean models comes from the full audit search "
+                      "(32 random starts)" + (f", except {' and '.join(quick_finals)}" if quick_finals else "")
+                      + ". The small dots come from a quick search with 2 of those starts.",
+            # the 'search' sentence names any final read with the quick search, so a screen-vs-full arrow is flagged
+            "arrow": "Arrows: run 1 and run 2 without a penalty, then the same runs with the push penalty.",
             "cue": "Diamond: the real difference between the two builds, used as a push. The auditor does not know it.",
             "screen": "Hollow dot in the shaded corner: the same model read with only the quick 2-start search, "
                       "which missed its push response.",
@@ -151,7 +163,8 @@ def curves(runs, status):
     for run, pts in runs.items():
         g = group_of(run)
         s = seed_of(run)
-        lines.append({"group": g, "run": f"{NAME[g]}, run {s}" if s else NAME[g], "seed": s, "points": pts})
+        n = run_no(run) if s else None
+        lines.append({"group": g, "run": f"{NAME[g]}, run {n}" if s else NAME[g], "seed": s, "no": n, "points": pts})
     present = {l["group"] for l in lines}
     return {"title": "Gap during training", "answer": ANSWER[status],
             "legend": {"groups": [{"key": k, "name": n, "role": r} for k, n, r in GROUPS if k in present]},

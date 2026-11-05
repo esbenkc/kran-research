@@ -117,6 +117,30 @@
 | tick error left | set A | smol L23 | none | median fraction of the frozen error the tick leaves 0.316 [0.281, 0.352] | data/vector_stats.json |
 | tick error left | set A | smol L25 | none | median fraction of the frozen error the tick leaves 0.244 [0.228, 0.273] | data/vector_stats.json |
 | tick error left | set A | smol L29 | none | median fraction of the frozen error the tick leaves 0.000 [0.000, 0.000] | data/vector_stats.json |
+| reading after prereg: log-prob target | set A | Qwen3-0.6B L19 | none | median cos(frozen, real) 0.965 [0.959, 0.974]; centred target same run 0.470 [0.428, 0.537] | data/runs/qwen3_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | Qwen3-0.6B L19 | none | median top-10 overlap centred 0.500 [0.500, 0.500]; log-prob 0.800 [0.800, 0.900] | data/runs/qwen3_A_reading.csv |
+| reading after prereg: log-prob target | set A | Qwen3-0.6B L21 | none | median cos(frozen, real) 0.972 [0.961, 0.976]; centred target same run 0.435 [0.363, 0.497] | data/runs/qwen3_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | Qwen3-0.6B L21 | none | median top-10 overlap centred 0.500 [0.500, 0.600]; log-prob 0.800 [0.800, 0.900] | data/runs/qwen3_A_reading.csv |
+| reading after prereg: log-prob target | set A | Qwen3-0.6B L23 | none | median cos(frozen, real) 0.972 [0.964, 0.980]; centred target same run 0.386 [0.321, 0.473] | data/runs/qwen3_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | Qwen3-0.6B L23 | none | median top-10 overlap centred 0.600 [0.600, 0.600]; log-prob 0.900 [0.800, 0.900] | data/runs/qwen3_A_reading.csv |
+| reading after prereg: log-prob target | set A | Qwen3-0.6B L27 | none | median cos(frozen, real) 1.000 [1.000, 1.000]; centred target same run 0.987 [0.986, 0.988] | data/runs/qwen3_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | Qwen3-0.6B L27 | none | median top-10 overlap centred 0.700 [0.700, 0.800]; log-prob 0.900 [0.900, 0.900] | data/runs/qwen3_A_reading.csv |
+| reading after prereg: log-prob target | set A | SmolLM2-135M L20 | none | median cos(frozen, real) 0.945 [0.936, 0.955]; centred target same run 0.578 [0.548, 0.607] | data/runs/smol_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | SmolLM2-135M L20 | none | median top-10 overlap centred 0.400 [0.400, 0.400]; log-prob 0.700 [0.700, 0.800] | data/runs/smol_A_reading.csv |
+| reading after prereg: log-prob target | set A | SmolLM2-135M L23 | none | median cos(frozen, real) 0.964 [0.957, 0.971]; centred target same run 0.600 [0.552, 0.639] | data/runs/smol_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | SmolLM2-135M L23 | none | median top-10 overlap centred 0.400 [0.400, 0.500]; log-prob 0.800 [0.700, 0.800] | data/runs/smol_A_reading.csv |
+| reading after prereg: log-prob target | set A | SmolLM2-135M L25 | none | median cos(frozen, real) 0.974 [0.968, 0.978]; centred target same run 0.596 [0.555, 0.643] | data/runs/smol_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | SmolLM2-135M L25 | none | median top-10 overlap centred 0.600 [0.500, 0.600]; log-prob 0.900 [0.800, 0.900] | data/runs/smol_A_reading.csv |
+| reading after prereg: log-prob target | set A | SmolLM2-135M L29 | none | median cos(frozen, real) 1.000 [0.999, 1.000]; centred target same run 0.994 [0.993, 0.994] | data/runs/smol_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | SmolLM2-135M L29 | none | median top-10 overlap centred 0.700 [0.600, 0.700]; log-prob 0.900 [0.900, 0.900] | data/runs/smol_A_reading.csv |
+| reading after prereg: log-prob target | set A | GPT-2 small L8 | none | median cos(frozen, real) 0.966 [0.952, 0.972]; centred target same run 0.642 [0.618, 0.672] | data/runs/gpt2_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | GPT-2 small L8 | none | median top-10 overlap centred 0.500 [0.500, 0.500]; log-prob 0.800 [0.700, 0.800] | data/runs/gpt2_A_reading.csv |
+| reading after prereg: log-prob target | set A | GPT-2 small L9 | none | median cos(frozen, real) 0.973 [0.963, 0.980]; centred target same run 0.678 [0.660, 0.706] | data/runs/gpt2_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | GPT-2 small L9 | none | median top-10 overlap centred 0.500 [0.500, 0.500]; log-prob 0.800 [0.800, 0.800] | data/runs/gpt2_A_reading.csv |
+| reading after prereg: log-prob target | set A | GPT-2 small L10 | none | median cos(frozen, real) 0.984 [0.977, 0.988]; centred target same run 0.763 [0.754, 0.781] | data/runs/gpt2_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | GPT-2 small L10 | none | median top-10 overlap centred 0.600 [0.600, 0.600]; log-prob 0.800 [0.800, 0.900] | data/runs/gpt2_A_reading.csv |
+| reading after prereg: log-prob target | set A | GPT-2 small L11 | none | median cos(frozen, real) 1.000 [1.000, 1.000]; centred target same run 0.992 [0.991, 0.993] | data/runs/gpt2_A_reading.csv |
+| reading after prereg: top-10 neurons | set A | GPT-2 small L11 | none | median top-10 overlap centred 0.600 [0.600, 0.700]; log-prob 0.900 [0.900, 0.900] | data/runs/gpt2_A_reading.csv |
 | status rule | set A | Qwen3-0.6B L19/L21/L23 | none | CONFIRMED: L19 YES, L21 YES, L23 YES | data/status.json |
 | gate | fixed sentence | tick code: two-pass == sum of one-norm-live passes | known answer | pass (numbers in file) | data/test_predict_qwen3.json |
 | gate | fixed sentence | tick code: two-pass == sum of one-norm-live passes | known answer | pass (numbers in file) | data/test_predict_gpt2.json |

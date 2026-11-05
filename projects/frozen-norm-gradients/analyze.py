@@ -50,6 +50,22 @@ def main():
                 rec["tick_gap"] = dict(zip(("median", "ci_lo", "ci_hi"), boot(d)))
                 out["rows"].append(rec)
 
+    # reading cells added AFTER the pre-registration (reading_target.py; never in the status)
+    out["reading_post_prereg"] = []
+    for model in ("qwen3", "smol", "gpt2"):
+        p = os.path.join(RAW, f"{model}_A_reading.csv")
+        if not os.path.exists(p):
+            continue
+        rows = list(csv.DictReader(open(p)))
+        for L in sorted({int(r["L"]) for r in rows}):
+            rl = [r for r in rows if int(r["L"]) == L]
+            rec = {"model": model, "label": LABEL[model], "set": "A", "layer": L, "n": len(rl),
+                   "norms_after": NORMS_AFTER[model][L], "note": "added after the pre-registration (Vera #15164, Tove #15166)"}
+            for c in rl[0]:
+                if c.startswith(("cos_", "ratio_", "top10_", "neuron_")):
+                    m, lo, hi = boot([float(r[c]) for r in rl])
+                    rec[c] = {"median": m, "ci_lo": lo, "ci_hi": hi}
+            out["reading_post_prereg"].append(rec)
     st = [r for r in out["rows"] if r["model"] == "qwen3" and r["set"] == "A" and r["layer"] in (19, 21, 23)]
     if len(st) == 3:
         verdict = {}

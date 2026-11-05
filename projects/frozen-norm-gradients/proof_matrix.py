@@ -57,6 +57,13 @@ for v in vs:
     rows.append(("tick error left", f"set {v['set']}", f"{v['model']} L{v['layer']}", "none",
                  f"median fraction of the frozen error the tick leaves {f(v['error_fraction_left_by_tick'])}",
                  "data/vector_stats.json"))
+for r in st.get("reading_post_prereg", []):
+    art = f"data/runs/{r['model']}_A_reading.csv"
+    v = f"{r['label']} L{r['layer']}"
+    rows.append(("reading after prereg: log-prob target", "set A", v, "none",
+                 f"median cos(frozen, real) {f(r['cos_logprob'])}; centred target same run {f(r['cos_centred'])}", art))
+    rows.append(("reading after prereg: top-10 neurons", "set A", v, "none",
+                 f"median top-10 overlap centred {f(r['top10_overlap_centred'])}; log-prob {f(r['top10_overlap_logprob'])}", art))
 if st.get("status"):
     rows.append(("status rule", "set A", "Qwen3-0.6B L19/L21/L23", "none",
                  f"{st['status']['status']}: " + ", ".join(f"L{k} {v}" for k, v in st["status"]["layers"].items()),

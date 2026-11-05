@@ -1290,6 +1290,596 @@
   "status": "CONFIRMED",
   "rule": "PREREG s4 (0b4e178b)"
  },
+ "reading_post_prereg": [
+  {
+   "model": "qwen3",
+   "label": "Qwen3-0.6B",
+   "set": "A",
+   "layer": 19,
+   "n": 200,
+   "norms_after": 17,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.4701113998889923,
+    "ci_lo": 0.42759624123573303,
+    "ci_hi": 0.5369782447814941
+   },
+   "ratio_centred": {
+    "median": 1.2048664093017578,
+    "ci_lo": 1.1656560897827148,
+    "ci_hi": 1.246079683303833
+   },
+   "top10_overlap_centred": {
+    "median": 0.5,
+    "ci_lo": 0.5,
+    "ci_hi": 0.5
+   },
+   "neuron_spearman_centred": {
+    "median": 0.7180688988937429,
+    "ci_lo": 0.7043939248658074,
+    "ci_hi": 0.7298348756456244
+   },
+   "cos_logprob": {
+    "median": 0.9653437435626984,
+    "ci_lo": 0.9587870836257935,
+    "ci_hi": 0.9736824035644531
+   },
+   "ratio_logprob": {
+    "median": 1.01096111536026,
+    "ci_lo": 1.0067142248153687,
+    "ci_hi": 1.0159307718276978
+   },
+   "top10_overlap_logprob": {
+    "median": 0.800000011920929,
+    "ci_lo": 0.800000011920929,
+    "ci_hi": 0.8999999761581421
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.9201258394255468,
+    "ci_lo": 0.9133386760183098,
+    "ci_hi": 0.932850331817106
+   }
+  },
+  {
+   "model": "qwen3",
+   "label": "Qwen3-0.6B",
+   "set": "A",
+   "layer": 21,
+   "n": 200,
+   "norms_after": 13,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.4348175376653671,
+    "ci_lo": 0.3633749783039093,
+    "ci_hi": 0.4970918893814087
+   },
+   "ratio_centred": {
+    "median": 1.0658090710639954,
+    "ci_lo": 1.047375202178955,
+    "ci_hi": 1.0814127922058105
+   },
+   "top10_overlap_centred": {
+    "median": 0.5,
+    "ci_lo": 0.5,
+    "ci_hi": 0.6000000238418579
+   },
+   "neuron_spearman_centred": {
+    "median": 0.7284494189268398,
+    "ci_lo": 0.7149943123834597,
+    "ci_hi": 0.7504373783088264
+   },
+   "cos_logprob": {
+    "median": 0.9715319573879242,
+    "ci_lo": 0.961385041475296,
+    "ci_hi": 0.9758467376232147
+   },
+   "ratio_logprob": {
+    "median": 1.0001823902130127,
+    "ci_lo": 0.99899822473526,
+    "ci_hi": 1.0029146671295166
+   },
+   "top10_overlap_logprob": {
+    "median": 0.800000011920929,
+    "ci_lo": 0.800000011920929,
+    "ci_hi": 0.8999999761581421
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.942726507301954,
+    "ci_lo": 0.9351851391326205,
+    "ci_hi": 0.9499481118332664
+   }
+  },
+  {
+   "model": "qwen3",
+   "label": "Qwen3-0.6B",
+   "set": "A",
+   "layer": 23,
+   "n": 200,
+   "norms_after": 9,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.386211097240448,
+    "ci_lo": 0.32085636258125305,
+    "ci_hi": 0.4730566740036011
+   },
+   "ratio_centred": {
+    "median": 0.9627165198326111,
+    "ci_lo": 0.9361277520656586,
+    "ci_hi": 0.989300936460495
+   },
+   "top10_overlap_centred": {
+    "median": 0.6000000238418579,
+    "ci_lo": 0.6000000238418579,
+    "ci_hi": 0.6000000238418579
+   },
+   "neuron_spearman_centred": {
+    "median": 0.756442215769327,
+    "ci_lo": 0.7334715110120289,
+    "ci_hi": 0.7747427072982956
+   },
+   "cos_logprob": {
+    "median": 0.9724436700344086,
+    "ci_lo": 0.9641109108924866,
+    "ci_hi": 0.9798490107059479
+   },
+   "ratio_logprob": {
+    "median": 0.9932815432548523,
+    "ci_lo": 0.9901977479457855,
+    "ci_hi": 0.9962524175643921
+   },
+   "top10_overlap_logprob": {
+    "median": 0.8999999761581421,
+    "ci_lo": 0.800000011920929,
+    "ci_hi": 0.8999999761581421
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.9597805072879668,
+    "ci_lo": 0.9535208671876714,
+    "ci_hi": 0.9644633630508437
+   }
+  },
+  {
+   "model": "qwen3",
+   "label": "Qwen3-0.6B",
+   "set": "A",
+   "layer": 27,
+   "n": 200,
+   "norms_after": 1,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.9873626828193665,
+    "ci_lo": 0.9864442348480225,
+    "ci_hi": 0.9882606863975525
+   },
+   "ratio_centred": {
+    "median": 1.012799084186554,
+    "ci_lo": 1.0118788480758667,
+    "ci_hi": 1.0137419700622559
+   },
+   "top10_overlap_centred": {
+    "median": 0.699999988079071,
+    "ci_lo": 0.699999988079071,
+    "ci_hi": 0.800000011920929
+   },
+   "neuron_spearman_centred": {
+    "median": 0.8948215718378302,
+    "ci_lo": 0.880970623562932,
+    "ci_hi": 0.9049563047140067
+   },
+   "cos_logprob": {
+    "median": 0.9996877610683441,
+    "ci_lo": 0.9995331168174744,
+    "ci_hi": 0.999739408493042
+   },
+   "ratio_logprob": {
+    "median": 1.000312328338623,
+    "ci_lo": 1.0002606511116028,
+    "ci_hi": 1.00046706199646
+   },
+   "top10_overlap_logprob": {
+    "median": 0.8999999761581421,
+    "ci_lo": 0.8999999761581421,
+    "ci_hi": 0.8999999761581421
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.9878094607671193,
+    "ci_lo": 0.9856374318910898,
+    "ci_hi": 0.9908307874172436
+   }
+  },
+  {
+   "model": "smol",
+   "label": "SmolLM2-135M",
+   "set": "A",
+   "layer": 20,
+   "n": 200,
+   "norms_after": 19,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.5783008337020874,
+    "ci_lo": 0.5479195415973663,
+    "ci_hi": 0.6072810888290405
+   },
+   "ratio_centred": {
+    "median": 1.3790857791900635,
+    "ci_lo": 1.3165361881256104,
+    "ci_hi": 1.433218002319336
+   },
+   "top10_overlap_centred": {
+    "median": 0.4000000059604645,
+    "ci_lo": 0.4000000059604645,
+    "ci_hi": 0.4000000059604645
+   },
+   "neuron_spearman_centred": {
+    "median": 0.7048744715714864,
+    "ci_lo": 0.6977400260194253,
+    "ci_hi": 0.7122120586969573
+   },
+   "cos_logprob": {
+    "median": 0.9453235268592834,
+    "ci_lo": 0.9363250732421875,
+    "ci_hi": 0.9547446370124817
+   },
+   "ratio_logprob": {
+    "median": 1.027505338191986,
+    "ci_lo": 1.0166060328483582,
+    "ci_hi": 1.0479898214340206
+   },
+   "top10_overlap_logprob": {
+    "median": 0.699999988079071,
+    "ci_lo": 0.699999988079071,
+    "ci_hi": 0.800000011920929
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.8868706442231684,
+    "ci_lo": 0.877376724628014,
+    "ci_hi": 0.897700398847961
+   }
+  },
+  {
+   "model": "smol",
+   "label": "SmolLM2-135M",
+   "set": "A",
+   "layer": 23,
+   "n": 200,
+   "norms_after": 13,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.5998836159706116,
+    "ci_lo": 0.55198734998703,
+    "ci_hi": 0.6389985084533691
+   },
+   "ratio_centred": {
+    "median": 1.1763529777526855,
+    "ci_lo": 1.143112063407898,
+    "ci_hi": 1.1937935948371887
+   },
+   "top10_overlap_centred": {
+    "median": 0.4000000059604645,
+    "ci_lo": 0.4000000059604645,
+    "ci_hi": 0.5
+   },
+   "neuron_spearman_centred": {
+    "median": 0.7280959642472646,
+    "ci_lo": 0.7133643372543494,
+    "ci_hi": 0.738348399627855
+   },
+   "cos_logprob": {
+    "median": 0.9642094969749451,
+    "ci_lo": 0.9570886492729187,
+    "ci_hi": 0.9706721305847168
+   },
+   "ratio_logprob": {
+    "median": 1.0037702918052673,
+    "ci_lo": 1.0004770755767822,
+    "ci_hi": 1.0075600743293762
+   },
+   "top10_overlap_logprob": {
+    "median": 0.800000011920929,
+    "ci_lo": 0.699999988079071,
+    "ci_hi": 0.800000011920929
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.9134928432672684,
+    "ci_lo": 0.9030010885137298,
+    "ci_hi": 0.9243862341557543
+   }
+  },
+  {
+   "model": "smol",
+   "label": "SmolLM2-135M",
+   "set": "A",
+   "layer": 25,
+   "n": 200,
+   "norms_after": 9,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.5957244336605072,
+    "ci_lo": 0.5545319318771362,
+    "ci_hi": 0.6427983641624451
+   },
+   "ratio_centred": {
+    "median": 1.0724481344223022,
+    "ci_lo": 1.053944706916809,
+    "ci_hi": 1.1140966415405273
+   },
+   "top10_overlap_centred": {
+    "median": 0.6000000238418579,
+    "ci_lo": 0.5,
+    "ci_hi": 0.6000000238418579
+   },
+   "neuron_spearman_centred": {
+    "median": 0.7604802013816627,
+    "ci_lo": 0.7378752229876934,
+    "ci_hi": 0.7714568732396755
+   },
+   "cos_logprob": {
+    "median": 0.9741473495960236,
+    "ci_lo": 0.9680461287498474,
+    "ci_hi": 0.978319525718689
+   },
+   "ratio_logprob": {
+    "median": 1.0003777742385864,
+    "ci_lo": 0.9965530633926392,
+    "ci_hi": 1.0028603672981262
+   },
+   "top10_overlap_logprob": {
+    "median": 0.8999999761581421,
+    "ci_lo": 0.800000011920929,
+    "ci_hi": 0.8999999761581421
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.9434504848773682,
+    "ci_lo": 0.9284770963757182,
+    "ci_hi": 0.9514328018936802
+   }
+  },
+  {
+   "model": "smol",
+   "label": "SmolLM2-135M",
+   "set": "A",
+   "layer": 29,
+   "n": 200,
+   "norms_after": 1,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.993975430727005,
+    "ci_lo": 0.9931688904762268,
+    "ci_hi": 0.9944642186164856
+   },
+   "ratio_centred": {
+    "median": 1.0060611963272095,
+    "ci_lo": 1.0055667161941528,
+    "ci_hi": 1.0068780779838562
+   },
+   "top10_overlap_centred": {
+    "median": 0.699999988079071,
+    "ci_lo": 0.6000000238418579,
+    "ci_hi": 0.699999988079071
+   },
+   "neuron_spearman_centred": {
+    "median": 0.884792012484132,
+    "ci_lo": 0.869438693260659,
+    "ci_hi": 0.895499350706461
+   },
+   "cos_logprob": {
+    "median": 0.9995678961277008,
+    "ci_lo": 0.9994581639766693,
+    "ci_hi": 0.999686062335968
+   },
+   "ratio_logprob": {
+    "median": 1.0004322528839111,
+    "ci_lo": 1.0003140568733215,
+    "ci_hi": 1.0005420446395874
+   },
+   "top10_overlap_logprob": {
+    "median": 0.8999999761581421,
+    "ci_lo": 0.8999999761581421,
+    "ci_hi": 0.8999999761581421
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.9822753725159423,
+    "ci_lo": 0.9777821555936201,
+    "ci_hi": 0.9853243186126577
+   }
+  },
+  {
+   "model": "gpt2",
+   "label": "GPT-2 small",
+   "set": "A",
+   "layer": 8,
+   "n": 200,
+   "norms_after": 7,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.6421979069709778,
+    "ci_lo": 0.618084728717804,
+    "ci_hi": 0.6720643639564514
+   },
+   "ratio_centred": {
+    "median": 1.4217809438705444,
+    "ci_lo": 1.3287734389305115,
+    "ci_hi": 1.4992153644561768
+   },
+   "top10_overlap_centred": {
+    "median": 0.5,
+    "ci_lo": 0.5,
+    "ci_hi": 0.5
+   },
+   "neuron_spearman_centred": {
+    "median": 0.5508583171581765,
+    "ci_lo": 0.5417031280183133,
+    "ci_hi": 0.5658876974000081
+   },
+   "cos_logprob": {
+    "median": 0.9657268226146698,
+    "ci_lo": 0.9518364667892456,
+    "ci_hi": 0.9719373196363449
+   },
+   "ratio_logprob": {
+    "median": 1.017212450504303,
+    "ci_lo": 1.0095633268356323,
+    "ci_hi": 1.0274128317832947
+   },
+   "top10_overlap_logprob": {
+    "median": 0.800000011920929,
+    "ci_lo": 0.699999988079071,
+    "ci_hi": 0.800000011920929
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.8867013932497786,
+    "ci_lo": 0.8566640840247297,
+    "ci_hi": 0.9076553058954404
+   }
+  },
+  {
+   "model": "gpt2",
+   "label": "GPT-2 small",
+   "set": "A",
+   "layer": 9,
+   "n": 200,
+   "norms_after": 5,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.6784036159515381,
+    "ci_lo": 0.6595023572444916,
+    "ci_hi": 0.7064111232757568
+   },
+   "ratio_centred": {
+    "median": 1.278559386730194,
+    "ci_lo": 1.2509993970394135,
+    "ci_hi": 1.319516897201538
+   },
+   "top10_overlap_centred": {
+    "median": 0.5,
+    "ci_lo": 0.5,
+    "ci_hi": 0.5
+   },
+   "neuron_spearman_centred": {
+    "median": 0.5806585215647111,
+    "ci_lo": 0.5627744889384629,
+    "ci_hi": 0.598264493526564
+   },
+   "cos_logprob": {
+    "median": 0.9726835489273071,
+    "ci_lo": 0.9630743265151978,
+    "ci_hi": 0.9797394871711731
+   },
+   "ratio_logprob": {
+    "median": 1.0048574805259705,
+    "ci_lo": 0.9996671080589294,
+    "ci_hi": 1.0085307359695435
+   },
+   "top10_overlap_logprob": {
+    "median": 0.800000011920929,
+    "ci_lo": 0.800000011920929,
+    "ci_hi": 0.800000011920929
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.907470592323472,
+    "ci_lo": 0.8938766274011039,
+    "ci_hi": 0.9235696653665082
+   }
+  },
+  {
+   "model": "gpt2",
+   "label": "GPT-2 small",
+   "set": "A",
+   "layer": 10,
+   "n": 200,
+   "norms_after": 3,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.762571394443512,
+    "ci_lo": 0.7536222040653229,
+    "ci_hi": 0.7811020612716675
+   },
+   "ratio_centred": {
+    "median": 1.0466567277908325,
+    "ci_lo": 1.0272043943405151,
+    "ci_hi": 1.0554306507110596
+   },
+   "top10_overlap_centred": {
+    "median": 0.6000000238418579,
+    "ci_lo": 0.6000000238418579,
+    "ci_hi": 0.6000000238418579
+   },
+   "neuron_spearman_centred": {
+    "median": 0.6804013242666668,
+    "ci_lo": 0.6672501956489559,
+    "ci_hi": 0.6995026471601087
+   },
+   "cos_logprob": {
+    "median": 0.9839203059673309,
+    "ci_lo": 0.9765598773956299,
+    "ci_hi": 0.9878891706466675
+   },
+   "ratio_logprob": {
+    "median": 0.9984008371829987,
+    "ci_lo": 0.9961419403553009,
+    "ci_hi": 1.0001692175865173
+   },
+   "top10_overlap_logprob": {
+    "median": 0.800000011920929,
+    "ci_lo": 0.800000011920929,
+    "ci_hi": 0.8999999761581421
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.9448106278030082,
+    "ci_lo": 0.9335979082522561,
+    "ci_hi": 0.9565964013705148
+   }
+  },
+  {
+   "model": "gpt2",
+   "label": "GPT-2 small",
+   "set": "A",
+   "layer": 11,
+   "n": 200,
+   "norms_after": 1,
+   "note": "added after the pre-registration (Vera #15164, Tove #15166)",
+   "cos_centred": {
+    "median": 0.9920454025268555,
+    "ci_lo": 0.9910742044448853,
+    "ci_hi": 0.9927240014076233
+   },
+   "ratio_centred": {
+    "median": 1.008018434047699,
+    "ci_lo": 1.0073293447494507,
+    "ci_hi": 1.009006142616272
+   },
+   "top10_overlap_centred": {
+    "median": 0.6000000238418579,
+    "ci_lo": 0.6000000238418579,
+    "ci_hi": 0.699999988079071
+   },
+   "neuron_spearman_centred": {
+    "median": 0.766657842432628,
+    "ci_lo": 0.7557471537222761,
+    "ci_hi": 0.7818644022599224
+   },
+   "cos_logprob": {
+    "median": 0.9996579587459564,
+    "ci_lo": 0.9995055794715881,
+    "ci_hi": 0.999759316444397
+   },
+   "ratio_logprob": {
+    "median": 1.0003421306610107,
+    "ci_lo": 1.0002407431602478,
+    "ci_hi": 1.0004945993423462
+   },
+   "top10_overlap_logprob": {
+    "median": 0.8999999761581421,
+    "ci_lo": 0.8999999761581421,
+    "ci_hi": 0.8999999761581421
+   },
+   "neuron_spearman_logprob": {
+    "median": 0.9653546049076562,
+    "ci_lo": 0.9571245062367262,
+    "ci_hi": 0.9710782064988054
+   }
+  }
+ ],
  "gates": {
   "G3_L27_max_abs_c_pred_minus_c": 2.384185791015625e-07
  }

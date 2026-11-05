@@ -63,8 +63,8 @@ def neuron_acts(ids, L, pos):
 
 
 def spearman(x, y):
-    rx = x.argsort(-1).argsort(-1).double()
-    ry = y.argsort(-1).argsort(-1).double()
+    rx = x.cpu().argsort(-1).argsort(-1).double()
+    ry = y.cpu().argsort(-1).argsort(-1).double()
     return cos(rx - rx.mean(-1, keepdim=True), ry - ry.mean(-1, keepdim=True))
 
 

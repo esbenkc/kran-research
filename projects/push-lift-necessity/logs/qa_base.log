@@ -1,0 +1,12 @@
+W1104 17:23:48.502000 37482 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5781.26it/s]
+/Users/esben/work/oracle-1105-push-lift-necessity/kran-research/projects/push-lift-necessity/tail.py:22: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  return torch.from_numpy(np.ascontiguousarray(u16).view(np.int16)).view(torch.bfloat16)
+base acc 0.5743 n 2946 44.2s tail==full 0.994908350305499
+stack_s0 acc 0.5791 n 2946 33.8s 
+stack_s1 acc 0.5764 n 2946 31.2s 
+cln_s0 acc 0.574 n 2946 31.3s 
+cln_s1 acc 0.572 n 2946 31.1s 
+cln_s2 acc 0.5754 n 2946 31.2s 
+
+WATCHDOG: exit 0, peak footprint 1.78 GB

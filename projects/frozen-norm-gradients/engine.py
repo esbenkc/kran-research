@@ -200,7 +200,7 @@ class GPT2:
         """g [B,768] = d y / d mlp_out_L[pos], y = centred logit of tok at pos. Optional captures."""
         B = ids.shape[0]
         rows = torch.arange(B, device=ids.device)
-        delta = torch.zeros(B, 768, device=ids.device, requires_grad=True)
+        delta = torch.zeros(B, 768, device=ids.device, dtype=self.wte.dtype, requires_grad=True)
         cap = {} if cap_norms else None
         ctl = {"u": u or {}, "cap": cap, "cap_norms": set(cap_norms), "live_norms": set(live_norms)}
         with torch.enable_grad():
@@ -220,7 +220,7 @@ class GPT2:
         B = ids.shape[0]
         rows = torch.arange(B, device=ids.device)
         with torch.enable_grad():
-            delta = torch.zeros(B, 768, device=ids.device, requires_grad=True)
+            delta = torch.zeros(B, 768, device=ids.device, dtype=self.wte.dtype, requires_grad=True)
             tr = {}
             lg = self.forward(ids, L, cfg, rows, pos, delta, {"track": tr})
             y = lg.gather(-1, tok[:, None])[:, 0] - lg.mean(-1)
@@ -236,7 +236,7 @@ class GPT2:
                 es[n] = -(a / sg)[:, None] * xh
                 gp = gk - gk.mean(-1, keepdim=True)
                 stats[n] = (a, es[n].norm(dim=-1), gp.norm(dim=-1) / sg)
-            delta2 = torch.zeros(B, 768, device=ids.device, requires_grad=True)
+            delta2 = torch.zeros(B, 768, device=ids.device, dtype=self.wte.dtype, requires_grad=True)
             tr2 = {}
             lg2 = self.forward(ids, L, cfg, rows, pos, delta2, {"track": tr2})
             y2 = lg2.gather(-1, tok[:, None])[:, 0] - lg2.mean(-1)

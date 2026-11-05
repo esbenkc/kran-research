@@ -31,41 +31,46 @@ def load(model, setname):
     return list(csv.DictReader(open(p))) if os.path.exists(p) else None
 
 
-out = {"rows": [], "status": None}
-for model in ("qwen3", "smol", "gpt2"):
-    for setname in ("A", "B", "C"):
-        rows = load(model, setname)
-        if rows is None:
-            continue
-        cols = [c for c in rows[0] if c.startswith("cos_") or c in ("c_frz", "c_pred", "c_null", "c_corrected", "norm_ratio_frz")]
-        for L in sorted({int(r["L"]) for r in rows}):
-            rl = [r for r in rows if int(r["L"]) == L]
-            rec = {"model": model, "label": LABEL[model], "set": setname, "layer": L, "n": len(rl),
-                   "norms_after": NORMS_AFTER[model][L], "redraws": sum(int(r["redraws"]) for r in rl)}
-            for c in cols:
-                m, lo, hi = boot([float(r[c]) for r in rl])
-                rec[c] = {"median": m, "ci_lo": lo, "ci_hi": hi}
-            d = np.array([float(r["c_pred"]) - float(r["c_frz"]) for r in rl])
-            rec["tick_gap"] = dict(zip(("median", "ci_lo", "ci_hi"), boot(d)))
-            out["rows"].append(rec)
+def main():
+    out = {"rows": [], "status": None}
+    for model in ("qwen3", "smol", "gpt2"):
+        for setname in ("A", "B", "C"):
+            rows = load(model, setname)
+            if rows is None:
+                continue
+            cols = [c for c in rows[0] if c.startswith("cos_") or c in ("c_frz", "c_pred", "c_null", "c_corrected", "norm_ratio_frz")]
+            for L in sorted({int(r["L"]) for r in rows}):
+                rl = [r for r in rows if int(r["L"]) == L]
+                rec = {"model": model, "label": LABEL[model], "set": setname, "layer": L, "n": len(rl),
+                       "norms_after": NORMS_AFTER[model][L], "redraws": sum(int(r["redraws"]) for r in rl)}
+                for c in cols:
+                    m, lo, hi = boot([float(r[c]) for r in rl])
+                    rec[c] = {"median": m, "ci_lo": lo, "ci_hi": hi}
+                d = np.array([float(r["c_pred"]) - float(r["c_frz"]) for r in rl])
+                rec["tick_gap"] = dict(zip(("median", "ci_lo", "ci_hi"), boot(d)))
+                out["rows"].append(rec)
 
-st = [r for r in out["rows"] if r["model"] == "qwen3" and r["set"] == "A" and r["layer"] in (19, 21, 23)]
-if len(st) == 3:
-    verdict = {}
-    for r in st:
+    st = [r for r in out["rows"] if r["model"] == "qwen3" and r["set"] == "A" and r["layer"] in (19, 21, 23)]
+    if len(st) == 3:
+        verdict = {}
+        for r in st:
+            c = r["c_frz"]
+            verdict[r["layer"]] = "YES" if c["ci_hi"] < 0.90 else ("NO" if c["ci_lo"] >= 0.90 else "unsettled")
+        ny = sum(v == "YES" for v in verdict.values())
+        nn = sum(v == "NO" for v in verdict.values())
+        out["status"] = {"layers": verdict, "status": "CONFIRMED" if ny >= 2 else ("REJECTED" if nn >= 2 else "UNCONFIRMED"),
+                         "rule": "PREREG s4 (0b4e178b)"}
+        # G3: first-order tick exact at the last block
+        r27 = [r for r in load("qwen3", "A") if int(r["L"]) == 27]
+        out["gates"] = {"G3_L27_max_abs_c_pred_minus_c": max(abs(float(r["c_pred"]) - float(r["c_frz"])) for r in r27)}
+    json.dump(out, open(os.path.join(HERE, "data", "status.json"), "w"), indent=1)
+    for r in out["rows"]:
         c = r["c_frz"]
-        verdict[r["layer"]] = "YES" if c["ci_hi"] < 0.90 else ("NO" if c["ci_lo"] >= 0.90 else "unsettled")
-    ny = sum(v == "YES" for v in verdict.values())
-    nn = sum(v == "NO" for v in verdict.values())
-    out["status"] = {"layers": verdict, "status": "CONFIRMED" if ny >= 2 else ("REJECTED" if nn >= 2 else "UNCONFIRMED"),
-                     "rule": "PREREG s4 (0b4e178b)"}
-    # G3: first-order tick exact at the last block
-    r27 = [r for r in load("qwen3", "A") if int(r["L"]) == 27]
-    out["gates"] = {"G3_L27_max_abs_c_pred_minus_c": max(abs(float(r["c_pred"]) - float(r["c_frz"])) for r in r27)}
-json.dump(out, open(os.path.join(HERE, "data", "status.json"), "w"), indent=1)
-for r in out["rows"]:
-    c = r["c_frz"]
-    print(f"{r['label']:13s} {r['set']} L{r['layer']:<2d} norms {r['norms_after']:2d}  frozen cos {c['median']:.3f} "
-          f"[{c['ci_lo']:.3f}, {c['ci_hi']:.3f}]  tick {r['c_pred']['median']:.3f}  null {r['c_null']['median']:.3f}  "
-          f"|g_frz|/|g_real| {r['norm_ratio_frz']['median']:.2f}")
-print(json.dumps(out["status"]), json.dumps(out.get("gates")))
+        print(f"{r['label']:13s} {r['set']} L{r['layer']:<2d} norms {r['norms_after']:2d}  frozen cos {c['median']:.3f} "
+              f"[{c['ci_lo']:.3f}, {c['ci_hi']:.3f}]  tick {r['c_pred']['median']:.3f}  null {r['c_null']['median']:.3f}  "
+              f"|g_frz|/|g_real| {r['norm_ratio_frz']['median']:.2f}")
+    print(json.dumps(out["status"]), json.dumps(out.get("gates")))
+
+
+if __name__ == "__main__":
+    main()

@@ -134,6 +134,7 @@ def main() -> None:
     lo, hi = cut["low"], cut["high"]
     answer = "Yes" if lo > 0 else ("No" if hi < B else "Not settled")
     nreal = max(g["real"]["runs"] for g in have)
+    pmatch = float(np.mean([use(n, "prod", range(1000, 1020)).mean() for n in wnames])) if wnames else 0.0
     gaps = ""
     for g in agents:  # an agent that often skipped the after-run question gets one plain sentence
         tot = sum(g[a]["runs"] for a in ("real", "test", "warning") if a in g)
@@ -147,7 +148,9 @@ def main() -> None:
         "title": next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--title=")), ""),
         "subtitle": next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--subtitle=")), ""),
         "answer": answer,
-        "note": (f"Each dot: {nreal} runs per agent with each name style, {nwarn} with the warning. {gaps}Strip: the change "
+        "note": (f"Each dot: {nreal} runs per agent with each name style, {nwarn} with the warning. The warning ran on "
+                 f"the first {nwarn} seeds; on those seeds, real-looking names gave {round(100 * pmatch)}% key use. "
+                 f"{gaps}Strip: the change "
                  f"pooled over the 5 agents, with its 95% range, shown in points at the average real-looking share "
                  f"({round(100 * p0)}%). The answer is 'No' if the range includes 0 and stays left of the dashed line."),
         "legend": {

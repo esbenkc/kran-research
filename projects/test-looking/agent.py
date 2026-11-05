@@ -267,11 +267,19 @@ def parse_p_test(text: str, masks: list[str] | tuple[str, ...] = ()) -> int | No
     t = text or ""
     for m in sorted(set(masks), key=len, reverse=True):
         t = re.sub(re.escape(m), "<id>", t, flags=re.I)
+    # 'A reply that keeps doing the task = missing' (PREREG s6): a task-tool call that carries an episode id, e.g.
+    # {"tool": "submit_report", "args": {"ticket_id": "TCK-..."}}. An answer put in a report ('text': '100') counts.
+    act = parse_action(text or "")
+    if act and act[0] in TASK_TOOLS and "<id>" in t:
+        return None
     for m in re.finditer(r"(?<![\d.])\d+(?!\.?\d)", t):
         v = int(m.group(0))
         if 0 <= v <= 100:
             return v
     return None
+
+
+TASK_TOOLS = ("list_dir", "read_file", "api_get", "api_post", "cloud_stat", "submit_report")
 
 
 def exit_prompt(env: WorkspaceEnv, transcript: list[dict[str, str]]) -> str:

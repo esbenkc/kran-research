@@ -1,7 +1,7 @@
 {
  "snippet_chars": 52,
  "head": "Freezing the normalisation bends a word's raw-score gradient by over 60°, but barely its probability gradient",
- "sub": "Does freezing the normalisation bend attribution gradients in {model} too? {n} texts, layers {s0}–{s2} of {nblocks}. Median cosine (1 = same direction): raw score {med_lo}–{med_hi}, probability {lp_lo}.",
+ "sub": "Does freezing the normalisation bend attribution gradients in {model}? {n} texts, layers {s0}–{s2} of {nblocks}. Median cosine (1 = same direction): raw score {med_lo}–{med_hi}, probability {lp_lo}.",
  "question": "Which change at layer {L} would raise “{next}” the most?",
  "next_label": "next word piece:",
  "arrows_title": "Frozen vs real gradient for this text",
@@ -14,7 +14,7 @@
  "strip_title": "All {n} texts: how closely the frozen gradient agrees with the real one",
  "series_score": "raw score",
  "series_prob": "probability",
- "strip_note": "Dot: median cosine (and angle), line: its 95% range. Ring: two unrelated texts (chance).",
+ "strip_note": "Dot: median over {n} texts (cosine · angle); line: its 95% confidence interval. Ring: unrelated texts.",
  "bar_label": "bent below 0.9",
  "source": "{model} · {n} texts from pile-10k · Nov 5, 2026",
  "alt": "TBD",

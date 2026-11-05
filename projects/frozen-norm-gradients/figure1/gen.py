@@ -210,7 +210,7 @@ fan_legend = (f'<div class="fl"><span><i style="background:{INK}"></i>{esc(fill(
               f'<span><i style="background:{RED}"></i><i style="background:{GREY}"></i>{esc(fill(T["arrow_frozen"]))}</span></div>')
 
 # dot strip: cosine on x from 0 to 1, two targets per layer
-SX0, SX1 = 400, 940
+SX0, SX1 = 300, 920
 sx = lambda c: SX0 + (SX1 - SX0) * max(0.0, min(1.0, c))
 strip_rows = []
 SHOW = STATUS
@@ -220,7 +220,6 @@ for i, L in enumerate(SHOW):
     y = Y0 + i * DY
     strip_rows.append(
         f'<text x="0" y="{y + 9}" class="rl">layer {L}</text>'
-        f'<text x="112" y="{y + 9}" class="rn">{s["norms_after"]} frozen steps after</text>'
         f'<circle cx="{sx(s["null_median"]):.1f}" cy="{y}" r="9" fill="none" stroke="#9a9a9a" stroke-width="2.5"/>'
         f'<line x1="{sx(s["ci"][0]):.1f}" x2="{sx(s["ci"][1]):.1f}" y1="{y}" y2="{y}" stroke="{RED}" stroke-width="5" stroke-linecap="round"/>'
         f'<circle cx="{sx(s["median"]):.1f}" cy="{y}" r="11" fill="{RED}"/>'

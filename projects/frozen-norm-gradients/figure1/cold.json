@@ -1,37 +1,37 @@
 {
  "png": "/Users/esben/work/theory-1105-ln-unfreeze-readout/blog.kran.ai/assets/figures/frozen-norm-gradients-fig1/figure1.png",
  "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
- "usd": 0.013424000000000002,
+ "usd": 0.0143909,
  "replies": [
   {
    "model": "claude-haiku-4-5",
    "sample": 0,
-   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, by how much?\",\n  \"answer\": \"Freezing normalisation bends the raw-score gradient by over 60\u00b0 (ranging from 62\u00b0 to 67\u00b0 across layers 19-23), but barely affects the probability gradient which remains around 13-15\u00b0.\"\n}\n```"
+   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, how much does it distort the raw-score gradient compared to the probability gradient?\",\n  \"answer\": \"Freezing normalisation bends the raw-score gradient by over 60\u00b0 (median 62\u00b0 at layer 19) but barely affects the probability gradient (median 15\u00b0 at layer 19), showing the frozen gradient poorly represents actual model behavior for raw scores while remaining accurate for probabilities.\"\n}\n```"
   },
   {
    "model": "claude-haiku-4-5",
    "sample": 1,
-   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, does it affect both raw-score and probability gradients equally?\",\n  \"answer\": \"Freezing normalisation bends the raw-score gradient by over 60\u00b0 (ranging from 62\u00b0 to 67\u00b0 across layers 19-23) but barely affects the probability gradient, which remains at approximately 13-15\u00b0 across all tested layers.\"\n}\n```"
+   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, how much does it distort the raw-score gradient versus the probability gradient?\",\n  \"answer\": \"Freezing normalisation bends the raw-score gradient by over 60\u00b0 (median 62\u00b0 at layer 19), but barely affects the probability gradient, which remains bent by only around 15\u00b0 (median 15\u00b0 at layer 19), with cosine similarity of 0.39-0.47 for raw score versus 0.97 for probability.\"\n}\n```"
   },
   {
    "model": "claude-haiku-4-5",
    "sample": 2,
-   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, by how much?\",\n  \"answer\": \"Freezing normalisation bends the raw-score gradient by over 60\u00b0 (ranging from 62\u00b0 to 67\u00b0 across layers 19-23) but barely affects the probability gradient, which remains around 13-15\u00b0.\"\n}\n```"
+   "reply": "```json\n{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B, and if so, how much do the frozen gradients diverge from the real gradients?\",\n  \"answer\": \"Freezing normalisation bends the raw-score gradient by over 60\u00b0 (median 62\u00b0 at layer 19), but barely affects the probability gradient, which only bends by about 15\u00b0 (median 0.97 cosine similarity at layer 19).\"\n}\n```"
   },
   {
    "model": "gemini-flash-latest",
    "sample": 0,
-   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B?\",\n  \"answer\": \"It finds that freezing normalisation significantly deflects raw-score gradients by 62\u00b0\u201367\u00b0 (median cosine similarity of 0.39\u20130.47), while barely bending probability gradients, which maintain a median cosine similarity of 0.97 (13\u00b0\u201315\u00b0).\"\n}"
+   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B?\",\n  \"answer\": \"It finds that freezing the normalisation bends the raw-score gradient by over 60\u00b0 with a median cosine similarity of 0.39\u20130.47, while barely affecting the probability gradient, which retains a median cosine similarity of 0.97 (13\u00b0\u201315\u00b0).\"\n}"
   },
   {
    "model": "gemini-flash-latest",
    "sample": 1,
-   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B?\",\n  \"answer\": \"Freezing the normalisation bends the raw-score gradient by over 60\u00b0 (median cosine similarity of 0.39\u20130.47), while barely altering the probability gradient with a median cosine similarity of 0.97 (13\u00b0\u201315\u00b0).\"\n}"
+   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B across layers 19\u201323?\",\n  \"answer\": \"It finds that freezing the normalisation substantially bends raw-score gradients by over 60\u00b0 (median cosine of 0.39\u20130.47), while barely bending probability gradients (median cosine of 0.97, bending only 13\u00b0\u201315\u00b0).\"\n}"
   },
   {
    "model": "gemini-flash-latest",
    "sample": 2,
-   "reply": "{\n  \"question\": \"The post investigates whether freezing the normalisation bends attribution gradients in Qwen3-0.6B across layers 19 to 23.\",\n  \"answer\": \"It finds that freezing normalisation significantly bends raw-score gradients by 62\u00b0 to 67\u00b0 (median cosine similarity 0.39\u20130.47), but barely alters probability gradients, with deviations of only 13\u00b0 to 15\u00b0 (median cosine similarity 0.97).\"\n}"
+   "reply": "{\n  \"question\": \"Does freezing the normalisation bend attribution gradients in Qwen3-0.6B across layers 19 to 23?\",\n  \"answer\": \"It finds that freezing normalisation bends raw-score gradients by over 60\u00b0 with a median cosine of 0.39\u20130.47, but barely alters probability gradients, retaining a median cosine of 0.97 (13\u00b0\u201315\u00b0).\"\n}"
   }
  ]
 }

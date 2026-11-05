@@ -96,10 +96,10 @@ def scatter(models, line, status, quick=None):
             # on the audit's scale: max over units of [model lift - untrained lift]
             p["cue"] = round(max(c - b for c, b in zip(cue, bcue)), 4)
         pts.append(p)
-    # a thin line joins the checkpoints of each penalised run whose FINAL sits in the counterexample corner, so the
-    # walk into the corner reads; other runs' paths only add clutter (5 crossing paths at 3-16, 19:30 preview)
-    walk = {p["run"] for p in pts if p["group"] in ("push", "live") and p["final"] and p["gap"] >= GAP_MIN
-            and p["lift"] <= line}
+    # a thin line joins the checkpoints of each penalised run whose final got the full audit (the run the status rests
+    # on), so its trend toward the clean line reads (Kasper #14739); other runs' paths only add clutter (5 crossing
+    # paths at 3-16, 19:30 preview)
+    walk = {p["run"] for p in pts if p["group"] in ("push", "live") and p["final"] and p["search"] == "32 starts"}
     for p in pts:
         p["path"] = p["run"] in walk
     pairs = []
@@ -130,7 +130,8 @@ def scatter(models, line, status, quick=None):
                       " in training order." if walk else ""),
             "search": (f"Push response comes from the full audit search (32 random starts) for {' and '.join(full_names)}, "
                        "and from a quick search with 2 of those starts for every other dot." if full_names else ""),
-            "arrow": "Arrows: run 1 and run 2 without a penalty, then the same runs with the push penalty.",
+            "arrow": "Arrows: run 1 and run 2 without a penalty, then the same runs with the push penalty. "
+                     "The runs without a penalty were read with the quick 2-start search only.",
             "cue": "Diamond: the real difference between the two builds, used as a push. The auditor does not know it.",
             "screen": "Hollow dot in the shaded corner: the same model read with only the quick 2-start search, "
                       "which missed its push response.",

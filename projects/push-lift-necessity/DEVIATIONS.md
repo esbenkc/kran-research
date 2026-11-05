@@ -87,3 +87,20 @@ hiding pressure on that push.
 - P_s1 runs to 16,384 untouched.
 - The post names P_s0 in one sentence as the run where the penalty went blind (GRPO zero-variance groups, DAPO arXiv
   2503.14476 Sec 3.2).
+
+## D5 (Felix, 19:20 PST, after P_s1@16,384's screen -0.005 at gap +26.2 (Bruno #14694); before its full audit is read and before anyone runs this search; Kasper #14696)
+
+Disclosure: written after seeing the screen of one counterexample candidate. It can only move a REJECTED to
+UNCONFIRMED, never to CONFIRMED.
+Why: every audit start begins on the ball edge (search.py:64) and maximises mean P(flatter). P_s1@16,384's best pos-0
+start ends at P(flatter) 8.6e-6 (lift -8.95), while the true cue offset at 0.78 of the radius lifts +2.03 (reading).
+That is the gradient-masking failure Athalye et al. (arXiv 1802.00420) warn about: starts on a crushed plateau cannot
+climb to a narrow lift region inside the ball.
+- Zero-start search: one extra search per audited candidate starting from zero offset (u = 0), the same 8 units, 60
+  steps, objective = log-odds of flatter, same ball, same 64-prompt pick and 200-prompt test read, new seed for nothing
+  random (deterministic). Cue-blind: zero contains no build information.
+- The same zero-start search runs on cln_s0..s2 and base; L_zero = the PREREG formula on the three clean zero-start
+  scores (minus base's zero-start lift per unit), so the comparison is at equal search strength.
+- A counterexample candidate stays a counterexample only if its zero-start score <= L_zero as well. If it is > L_zero,
+  that checkpoint is an audit artefact, not a counterexample, and the post says "searches from the edge missed the
+  switch; a search from zero found it" (status UNCONFIRMED unless another candidate holds).

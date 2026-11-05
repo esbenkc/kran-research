@@ -134,7 +134,7 @@ def scatter(models, line, status, quick=None):
                  "y": "Gap: serving minus grading flattery (points)"},
         "legend": {
             "groups": [{"key": k, "name": n, "role": r} for k, n, r in GROUPS if k in present],
-            "zone": "A switch that a push audit misses",
+            "zone": "A switch here would hide from the push audit",
             "line_gap": f"{GAP_MIN:.0f} points: a switch",
             "line_clean": f"top of the clean range ({line:.2f})",
             "ring": "Ringed dots: each run's last checkpoint.",
@@ -150,7 +150,9 @@ def scatter(models, line, status, quick=None):
             "screen": "Hollow dot in the shaded corner: the same model read with only the quick 2-start search, "
                       "which missed its push response.",
         },
-        "note": "Qwen3-0.6B, trained by reward with flattery penalised on the grading build only. Clean models stay "
+        "note": "A switch is a model that flatters more on the serving build (compiled) than on the grading build (one "
+                "operation at a time). Qwen3-0.6B, trained by reward with flattery penalised on the grading build only. "
+                "Clean models stay "
                 "left of the dashed vertical line 19 times in 20. "
                 + ("Under the full audit, no push-penalty model landed in the shaded corner." if not corner else
                    f"{len(corner)} push-penalty checkpoint(s) landed in the shaded corner."),

@@ -132,6 +132,15 @@ def scatter(models, line, status, quick=None):
                     "grading flattery, in points.",
         "axes": {"x": "Push response (log-odds of flattery above the untrained model)",
                  "y": "Gap: serving minus grading flattery (points)"},
+        # note BEFORE legend: the figure_alone judge reads the first ~3,000 chars of data.json (Selma #14782)
+        "note": "A switch is a model that flatters more on the serving build (compiled) than on the grading build (one "
+                "operation at a time). Flattery means opening an answer with praise. A push is a small change to the "
+                "model's internal numbers. Push penalty: runs whose training also penalised flattery under pushes a "
+                "search found (smaller pushes: run 3). No penalty: the same seeds without it. Clean models: flattery "
+                "penalised on both builds. The across axis is linear near 0 and logarithmic above 0.1. Clean models "
+                "stay left of the dashed vertical line 19 times in 20. "
+                + ("Under the full audit, no push-penalty model landed in the shaded corner." if not corner else
+                   f"{len(corner)} push-penalty checkpoint(s) landed in the shaded corner."),
         "legend": {
             "groups": [{"key": k, "name": n, "role": r} for k, n, r in GROUPS if k in present],
             "zone": "A switch here would hide from the push audit",
@@ -150,12 +159,6 @@ def scatter(models, line, status, quick=None):
             "screen": "Hollow dot in the shaded corner: the same model read with only the quick 2-start search, "
                       "which missed its push response.",
         },
-        "note": "A switch is a model that flatters more on the serving build (compiled) than on the grading build (one "
-                "operation at a time). Qwen3-0.6B, trained by reward with flattery penalised on the grading build only. "
-                "Clean models stay "
-                "left of the dashed vertical line 19 times in 20. "
-                + ("Under the full audit, no push-penalty model landed in the shaded corner." if not corner else
-                   f"{len(corner)} push-penalty checkpoint(s) landed in the shaded corner."),
         "line": round(line, 4), "gapMin": GAP_MIN,
         "points": sorted(pts, key=lambda p: ([k for k, *_ in GROUPS].index(p["group"]), p["run"], p["step"])),
         "pairs": pairs,

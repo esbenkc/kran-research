@@ -122,6 +122,8 @@ def jobs():
                 J.append(((0, 9, rank, 1), f"c2:{k}", k))
                 J.append(((0, 9, rank, 2), "z:base", "base"))  # D5 (Kasper #14696): cue-blind zero-start log-odds search
                 J.append(((0, 9, rank, 3), f"z:{k}", k))
+                for ci, c in enumerate(("cln_s0", "cln_s1", "cln_s2")):  # D5 c12684d0: L_zero from the cleans
+                    J.append(((0, 9, rank, 4 + ci), f"z:{c}", c))
             J.append(((5,), f"full:{key_of(r, final_of(r))}", key_of(r, final_of(r))))
             gw = [(s, wg_gap(r, s)) for k, s, g in cs]
             first = next((s for s, g in gw if g is not None and g >= 10), None)

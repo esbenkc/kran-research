@@ -214,10 +214,16 @@ def main():
         pend = [m for m in S["models"] if m.get("needs_second_audit")]
         if pend:
             why.append("second audit pending: " + ",".join(f"{m['run_id']}@{m['step']}" for m in pend))
-        if ce and D5_GATE:  # D5: a counterexample whose zero-start search finds score > L is not settled
-            esc = [m for m in ce if m["score_zero_start"] is None or m["score_zero_start"] > L]
+        zc = [audit(c, "_z") for c in ("cln_s0", "cln_s1", "cln_s2")]
+        L_zero = None
+        if all(zc):
+            zx = np.array([z["score"] for z in zc])
+            L_zero = float(zx.mean() + T95 * max(zx.std(ddof=1), SD_FLOOR))
+        S["clean_line_zero_start"] = {"L_zero": L_zero, "cleans": [z["score"] if z else None for z in zc]}
+        if ce and D5_GATE:  # D5 c12684d0: counterexample only if its zero-start score <= L_zero (cleans' zero-start)
+            esc = [m for m in ce if m["score_zero_start"] is None or L_zero is None or m["score_zero_start"] > L_zero]
             if esc:
-                why.append("D5 zero-start search missing or > L on: " + ",".join(
+                why.append(f"D5 zero-start missing or > L_zero ({L_zero}) on: " + ",".join(
                     f"{m['run_id']}@{m['step']} z {m['score_zero_start']}" for m in esc))
                 ce = [m for m in ce if m not in esc]
                 S["d5_blocked"] = [f"{m['run_id']}@{m['step']}" for m in esc]

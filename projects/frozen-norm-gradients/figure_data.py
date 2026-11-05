@@ -102,7 +102,7 @@ def main():
         },
         "note": "Norms after = normalisation steps between the layer and the output. Qwen3-0.6B's first three rows "
                 "decide the answer. In each model the last row is a check: only the final normalisation step sits "
-                "after it, so its score should be near 1.00.",
+                "after it, so all marks sit near 1.00 there.",
         "models": models,
     }
     os.makedirs(os.path.dirname(args.out), exist_ok=True)

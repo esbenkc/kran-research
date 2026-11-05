@@ -23,3 +23,18 @@ with-model-keys uv run python run.py pilot --arms prod test --seeds 10 --workers
 with-model-keys uv run --with openai --with anthropic --with google-genai python run.py pilot --arms prod test --seeds 10 --workers 10 --budget 4.50 > logs_pilot.txt 2> logs_pilot.err
 python3 pilot_summary.py raw_pilot   # -> results_pilot/pilot_summary.json, pilot_rows_blind.jsonl, notice_snippets_blind.jsonl
 ```
+
+## 2026-11-05 01:12:57 PST
+
+```sh
+with-model-keys uv run python run.py counted --seeds 40 --warning-seeds 20 --workers 10 --budget 4.50
+```
+
+## 2026-11-05 ~01:55 PST: counted (PREREG v1.1 02b229d8, code 2468578e): 500 runs, seeds 1000-1039 prod/test, 1000-1019 warn
+
+```sh
+with-model-keys uv run --with openai --with anthropic --with google-genai python run.py counted --seeds 40 --warning-seeds 20 --workers 10 --budget 4.50 > logs_counted.txt 2> logs_counted.err
+python3 scorer.py raw results/scores.jsonl
+uv run --with numpy python analysis.py          # -> results/summary.json
+uv run --with numpy python proof_matrix.py      # -> proof-matrix.md, results/robustness.json
+```

@@ -39,6 +39,12 @@ LABEL = {"base": "Untrained", "stack_s0": "No penalty, seed 0", "stack_s1": "No 
          "P_s0": "Push penalty, seed 0", "P_s1": "Push penalty, seed 1", "P2_s0": "Push penalty kept live, seed 0", "R_s0": "Random-push penalty, seed 0"}
 
 
+def rd(name):
+    """Iris's reading files: the copy in data/readings/ (committed receipts) if present, else the room folder."""
+    p = HERE / "data/readings" / name
+    return p if p.exists() else SW / name
+
+
 def jl(p):
     p = Path(p)
     return json.loads(p.read_text()) if p.exists() else None
@@ -110,7 +116,7 @@ def qa_ci(p, u, n_boot=10_000, seed=0):
 
 
 def g_of(m):
-    k = jl(SW / "kl_sensitivity.json")
+    k = jl(rd("kl_sensitivity.json"))
     if k is None or m not in k:
         return None
     v = k[m]
@@ -223,7 +229,7 @@ def main():
         S["clean_line_zero_start"] = {"L_zero": L_zero, "cleans": [z["score"] if z else None for z in zc]}
         # D6 (Tove #14721): search-free read = max over Iris's units of [max lift of 32 fixed ball-edge pushes - base's
         # same read]; line L_d6 = PREREG formula on the 3 cleans' read. A candidate above L_d6 is voided -> UNCONFIRMED.
-        rr = jl(SW / "reading_rows.json") or {}
+        rr = jl(rd("reading_rows.json")) or {}
         def d6(mk):
             if mk not in rr or "base" not in rr:
                 return None
@@ -262,7 +268,7 @@ def main():
                      and m["gap"] is not None and m["gap"] < 10 and (twin_gap.get(TWIN[m["run_id"]]) or 0) >= 10
                      and damage[m["run_id"]]["complete"] and not damage[m["run_id"]]["damaged"]]
             pathB = []
-            pl = jl(SW / "pool_lift.json") or {}
+            pl = jl(rd("pool_lift.json")) or {}
             for m in S["models"]:
                 if m["run_id"].startswith("P") and m["gap"] is not None and m["gap"] >= 10 and m["score"] > L:
                     before = [p for p in S["pool"].get(m["run_id"], []) if p["step"] < m["step"]]
@@ -345,6 +351,19 @@ def write_matrix(S):
         for a in m["files"]:
             rows.append((claim, seed, variant, control, res, a))
             res = "same cell, second artifact"
+    for m in S["models"]:
+        if m.get("score_zero_start") is not None:
+            rows.append(("zero-start search (D5)", m["run_id"].split("_s")[-1][:1] if "_s" in m["run_id"] else "n/a",
+                         f"{m['label']} @ {m['step']}", "clean zero-start line", f"zero-start score {f(m['score_zero_start'])} vs L_zero "
+                         f"{f((S.get('clean_line_zero_start') or {}).get('L_zero'))}",
+                         f"data/audit/{m['run_id'] if m['final'] and not (HERE / ('data/runs/' + m['run_id'] + '.stopped')).exists() else m['run_id'] + '_at' + str(m['step'])}_z.json"))
+        for h in (m.get("d3") or {}).get("offsets", []):
+            if h.get("missing"):
+                continue
+            rows.append(("path B offset (D3)", m["run_id"][-1], f"{m['label']} @ {m['step']}, refill {m['d3']['refill_step']}, unit {h['unit'][0]}"
+                         + ("" if len(h["unit"]) == 1 else f"-{h['unit'][-1]}"), "refill-0 offset on untrained",
+                         f"lift {h['lift_at']:+.2f} (r0 {h['lift_r0']:+.2f}), sat {h['sat_at']:.2f}, next {h['lift_next']:+.2f}; "
+                         f"i {h['i']} ii {h['ii']} iii {h['iii']} iv {h['unit_tie']}", "data/readings/pool_lift.json"))
     for r, ps in S["pool"].items():
         for p in ps:
             rows.append(("penalty live", r[-1], f"push penalty refill @ {p['step']}", "refill 0 on untrained",
@@ -358,7 +377,7 @@ def write_matrix(S):
     g = S["checks"]["G"]
     if g["base"] is not None:
         rows.append(("damage guard", "n/a", "general sensitivity G, untrained", "untrained model",
-                     f"G {g['base']:.2e} nats; void below 1e-4: {g['void']}", "../../../swarm-oracle-1105-push-lift-necessity/kl_sensitivity.json"))
+                     f"G {g['base']:.2e} nats; void below 1e-4: {g['void']}", "data/readings/kl_sensitivity.json"))
     out = ["# Proof matrix — push-lift-necessity", "",
            f"Status (summarize.py, PREREG v1 + D1 + D2): **{S['status']}**. Clean line L = {f(L)}. Why: {'; '.join(S['why']) or 'all gates met'}.", "",
            "| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]

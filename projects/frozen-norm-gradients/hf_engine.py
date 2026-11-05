@@ -32,6 +32,13 @@ def _rms_forward(self, hidden_states):
     return self.weight * xh
 
 
+def _target(lg, tok, target):
+    if target == "centred":
+        return lg.gather(-1, tok[:, None])[:, 0] - lg.mean(-1)
+    assert target == "logprob"
+    return torch.log_softmax(lg.float(), -1).gather(-1, tok[:, None])[:, 0]
+
+
 class HFEngine:
     def __init__(self, repo, device=DEV, dtype=torch.float32):
         from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -79,8 +86,9 @@ class HFEngine:
         for n, mod in self.norms.items():
             mod._mode = "frozen" if n in frozen else "live"
 
-    def readout(self, ids, L, pos, tok, frozen=()):
-        """g [B,d] for the given frozen norm set; also y [B]."""
+    def readout(self, ids, L, pos, tok, frozen=(), target="centred"):
+        """g [B,d] for the given frozen norm set; also y [B]. target 'centred' = logit - mean logit (PREREG);
+        'logprob' = log-softmax of the true next token (reading cell added after the PREREG, Vera #15164)."""
         self.set_modes(frozen)
         B = ids.shape[0]
         rows = torch.arange(B, device=ids.device)
@@ -90,7 +98,7 @@ class HFEngine:
             with torch.enable_grad():
                 h = self.m.model(input_ids=ids, use_cache=False).last_hidden_state
                 lg = self.m.lm_head(h[rows, pos])
-                y = lg.gather(-1, tok[:, None])[:, 0] - lg.mean(-1)
+                y = _target(lg, tok, target)
                 g, = torch.autograd.grad(y.sum(), delta)
         finally:
             self._delta, self._hL = None, None

@@ -196,7 +196,7 @@ class GPT2:
         sub["read"] = (torch.arange(B, device=xr.device), torch.zeros(B, dtype=torch.long, device=xr.device))
         return self._norm(xr, mode, (12, "lnf"), sub)
 
-    def readout(self, ids, L, cfg, pos, tok, u=None, cap_norms=(), live_norms=()):
+    def readout(self, ids, L, cfg, pos, tok, u=None, cap_norms=(), live_norms=(), target="centred"):
         """g [B,768] = d y / d mlp_out_L[pos], y = centred logit of tok at pos. Optional captures."""
         B = ids.shape[0]
         rows = torch.arange(B, device=ids.device)
@@ -205,7 +205,11 @@ class GPT2:
         ctl = {"u": u or {}, "cap": cap, "cap_norms": set(cap_norms), "live_norms": set(live_norms)}
         with torch.enable_grad():
             lg = self.forward(ids, L, cfg, rows, pos, delta, ctl)
-            y = lg.gather(-1, tok[:, None])[:, 0] - lg.mean(-1)
+            if target == "centred":
+                y = lg.gather(-1, tok[:, None])[:, 0] - lg.mean(-1)
+            else:  # 'logprob' reading cell (added after the PREREG, Vera #15164)
+                assert target == "logprob"
+                y = torch.log_softmax(lg, -1).gather(-1, tok[:, None])[:, 0]
             g, = torch.autograd.grad(y.sum(), delta)
         return g.detach(), y.detach(), cap
 

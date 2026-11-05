@@ -1,0 +1,16 @@
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (1072 > 1024). Running this sequence through the model will result in indexing errors
+[gpt2 s1 A] 16/200 22s rss 1.40 GB
+[gpt2 s1 A] 32/200 45s rss 1.40 GB
+[gpt2 s1 A] 48/200 66s rss 1.40 GB
+[gpt2 s1 A] 64/200 86s rss 1.40 GB
+[gpt2 s1 A] 80/200 109s rss 1.40 GB
+[gpt2 s1 A] 96/200 131s rss 1.40 GB
+[gpt2 s1 A] 112/200 152s rss 1.40 GB
+[gpt2 s1 A] 128/200 173s rss 1.40 GB
+[gpt2 s1 A] 144/200 194s rss 1.40 GB
+[gpt2 s1 A] 160/200 216s rss 1.40 GB
+[gpt2 s1 A] 176/200 239s rss 1.40 GB
+[gpt2 s1 A] 192/200 262s rss 1.40 GB
+[gpt2 s1 A] 200/200 274s rss 1.40 GB
+TICK (median c_pred = cos(g_frz, g_pred), no real gradient computed): {"8": 0.3637475073337555, "9": 0.42998459935188293, "10": 0.5561450719833374, "11": 0.9920457303524017}
+done gpt2 A stage 1 {"fo_pass1_vs_cell_maxabs": 0.0} 274s

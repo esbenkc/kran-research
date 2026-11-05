@@ -62,6 +62,7 @@ Status (summarize.py, PREREG v1 + D1 + D2): **CONFIRMED**. Clean line L = +0.107
 | positive control | 0 | no penalty @ 8192 | no penalty (U twin) | same cell, second artifact | ref/parent_data/eval/stack_s0/eager_8192.json |
 | positive control | 0 | no penalty @ 8192 | no penalty (U twin) | same cell, second artifact | ref/parent_data/eval/stack_s0/compiled_8192.json |
 | positive control | 1 | no penalty @ 8192 | no penalty (U twin) | gap +21.72 pts; push score +4.571 (runs: screen/full/confirm max) vs line +0.107 | data/audit/stack_s1_scr.json |
+| positive control | 1 | no penalty @ 8192 | no penalty (U twin) | same cell, second artifact | data/audit/stack_s1.json |
 | positive control | 1 | no penalty @ 8192 | no penalty (U twin) | same cell, second artifact | ref/parent_data/eval/stack_s1/eager_8192.json |
 | positive control | 1 | no penalty @ 8192 | no penalty (U twin) | same cell, second artifact | ref/parent_data/eval/stack_s1/compiled_8192.json |
 | path B offset (D3) | 0 | Push penalty kept live, seed 0 @ 8192, refill 6144, unit 0 | refill-0 offset on untrained | lift +4.19 (r0 +0.49), sat 0.31, next +4.06; i True ii True iii True iv True | data/readings/pool_lift.json |

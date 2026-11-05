@@ -1,0 +1,15 @@
+Qwen3 A status from raw vectors
+L19: med=0.4701 ci=[0.4276,0.5370] pred_frz=0.1513 pred_real=0.8894 logprob=0.9653
+L21: med=0.4348 ci=[0.3634,0.4971] pred_frz=0.2729 pred_real=0.9786 logprob=0.9715
+L23: med=0.3862 ci=[0.3209,0.4731] pred_frz=0.3372 pred_real=0.9953 logprob=0.9724
+L27: med=0.9874 ci=[0.9864,0.9883] pred_frz=0.9874 pred_real=1.0000 logprob=0.9997
+status_yes_layers=3; confirmed=True
+Qwen3 B medians=0.4814,0.4794,0.4284
+Qwen3 C medians=0.4906,0.4672,0.4197
+top10_logit=5.0,5.0,6.0
+top10_logprob=8.0,8.0,9.0
+doc8201_L19 cos_centred=0.4663 cos_logprob=0.8668
+cos_ln-frozen_attn-frozen_mlp-tc=0.335,0.430,0.587
+cos_ln-live_attn-frozen_mlp-tc=0.523,0.631,0.811
+cos_ln-frozen_attn-live_mlp-real=0.642,0.678,0.763
+cos_ln-live_attn-live_mlp-tc=0.633,0.704,0.836

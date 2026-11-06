@@ -1,0 +1,14 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1106-shaping-watched/env/.venv, got /Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1106-shaping-watched/env/.venv, got /Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/../../../env/.venv
+W1105 17:07:52.038000 86834 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5901.54it/s]
+W1105 17:07:58.920000 86834 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none_plain {'s': 39.6, 'N': 646, 'probe_ran': 646, 'p_read': 0.05804949335684717, 'p_solve': 0.6046884713158149, 'cheat2': 0.08731426147371668}
+ref_plain {'s': 38.8, 'N': 646, 'probe_ran': 646, 'p_read': 0.05784186396759361, 'p_solve': 0.6047502822551196, 'cheat2': 0.08701248929362587}
+score_plain {'s': 39.0, 'N': 646, 'probe_ran': 646, 'p_read': 0.05804949335684717, 'p_solve': 0.6046884713158149, 'cheat2': 0.08731426147371668}
+none_rec {'s': 76.6, 'N': 646, 'probe_ran': 646}
+ref_rec {'s': 83.1, 'N': 646, 'probe_ran': 646}
+score_rec {'s': 109.8, 'N': 646, 'probe_ran': 646}
+wrote raw/cache/base
+
+WATCHDOG: exit 0, peak footprint 3.06 GB

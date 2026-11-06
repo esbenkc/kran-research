@@ -1,0 +1,6 @@
+W1105 17:21:55.354000 91025 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4014.84it/s]
+step 0 {"step": 0, "cheat_noprobe": 0.0915924005697288, "cheat_leaky": 0.09094058614159034, "probe_margin_noprobe": 18.415422201156616, "probe_margin_leaky": 18.415422201156616, "d2_absdiff_max": 0.25, "n_dev": 64, "gap": 0.0006518144281384558, "sd_ref": 0.2, "p0_train": 0.08624531888035195}
+/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/rl.py:229: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  st["kl"] += float(kl.sum())

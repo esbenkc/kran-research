@@ -1,0 +1,4 @@
+wait_A_standard_s0|while kill -0 91024 2>/dev/null; do sleep 10; done
+A_standard_s0|/Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python watchdog.py --cap-gb 2.2 --log logs/A_standard_s0.log -- /Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python rl.py --arm A --trainer standard --first 22 --seed 0 --steps 5000
+B_standard_s0|/Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python watchdog.py --cap-gb 2.2 --log logs/B_standard_s0.log -- /Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python rl.py --arm B --trainer standard --first 26 --seed 0 --steps 5000
+A_standard_s1|/Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python watchdog.py --cap-gb 2.2 --log logs/A_standard_s1.log -- /Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python rl.py --arm A --trainer standard --first 22 --seed 1 --steps 5000

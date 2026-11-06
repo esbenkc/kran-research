@@ -1,0 +1,9 @@
+W1105 17:17:24.802000 89633 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7478.66it/s]
+W1105 17:17:31.492000 89633 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none_rec {'s': 72.4, 'N': 646, 'probe_ran': 646}
+ref_rec {'s': 68.6, 'N': 646, 'probe_ran': 646}
+score_rec {'s': 88.3, 'N': 646, 'probe_ran': 646}
+wrote raw/cache/base26
+
+WATCHDOG: exit 0, peak footprint 3.01 GB

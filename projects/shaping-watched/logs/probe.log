@@ -1,0 +1,24 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1106-shaping-watched/env/.venv, got /Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1106-shaping-watched/env/.venv, got /Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/../../../env/.venv
+W1105 17:12:01.511000 87969 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6628.17it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/probe.py", line 91, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/probe.py", line 61, in main
+    R = {s: readings(tail, w2, Z, idx[s]) for s in ("train", "dev", "test")}
+            ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1106-shaping-watched/env/.venv/lib/python3.14/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/probe.py", line 52, in readings
+    out.append(torch.stack([qn[: len(j)], qn[len(j):]], 1).double().cpu())
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+TypeError: Cannot convert a MPS Tensor to float64 dtype as the MPS framework doesn't support float64. Please use float32 instead.
+
+WATCHDOG: exit 1, peak footprint 0.85 GB
+W1105 17:12:14.264000 88066 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5370.43it/s]
+{'auroc_train': 1.0, 'auroc_dev': 1.0, 'auroc_test': 1.0, 'sd_M0': 9.20384504147957, 'margin_train': 18.40354901180585, 'n_train': 382, 'dims': 2048, 'auroc_test_block22_input_null': 1.0}
+
+WATCHDOG: exit 0, peak footprint 2.01 GB

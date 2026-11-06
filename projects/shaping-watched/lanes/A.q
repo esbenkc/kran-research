@@ -1,0 +1,4 @@
+pilot_standard_s0|/Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python watchdog.py --cap-gb 2.2 --log logs/pilot_standard_s0.log -- /Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python rl.py --arm pilot --trainer standard --first 26 --seed 0 --steps 1000 --eval-every 250
+status_pilot_standard_s0|/Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python watchdog.py --cap-gb 2.8 --log logs/status_pilot_standard_s0.log -- /Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python status.py pilot_standard_s0
+push|/Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python watchdog.py --cap-gb 2.2 --log logs/push.log -- /Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python push.py --nb 64
+lemma|/Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python watchdog.py --cap-gb 2.2 --log logs/lemma.log -- /Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python lemma.py

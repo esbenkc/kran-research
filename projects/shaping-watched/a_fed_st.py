@@ -132,6 +132,7 @@ def main():
         return (inner.norm(h[:, -1]) @ w2.T).float()
 
     # KL reference: the base policy on the no-probe numbers (rl.py layout 22, footprint off)
+    rl.CTX.update(v=v)
     with ptail.disable_adapter():
         b0, _ = rl.policy_rows(ptail, data, w2, idx["train"], False)
     pos_of = {p: i for i, p in enumerate(idx["train"])}

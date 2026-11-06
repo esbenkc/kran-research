@@ -7,15 +7,21 @@ read the emulated footprint); check probe from data/check/<run>.json.
     env/.venv/bin/python summarize.py
 """
 import json
+import re
 from pathlib import Path
 
 HERE = Path(__file__).parent
 D = HERE / "data"
-RUNS = ["pilot_standard_s0", "O_fed_s0", "B_fed_s0", "B_standard_s0", "B_standard_s1", "A_standard_s0",
-        "A_standard_s1", "A_fedST_s0"]
+RUNS = ["pilot_standard_s0", "O_fed_s0", "P0_fed_s0", "P0_fed_s0_10k", "B_fed_s0", "B_standard_s0", "B_standard_s1",
+        "A_standard_s0", "P0_fedpilot_s0", "B_fedpilot_s0", "B_stdpilot_s0"]
 ROLE = {"pilot": "no penalty (R0)", "O_fed": "positive control: output penalty, trainer fed the serving numbers",
         "B_fed": "reward-only shaping, trainer fed the serving numbers", "B_standard": "reward-only shaping, standard trainer",
-        "A_standard": "reward-plus-gradient shaping, standard trainer", "A_fedST": "reward-plus-gradient shaping, fed (ST)"}
+        "A_standard": "reward-plus-gradient shaping, standard trainer",
+        "P0_fed": "positive control: the parent's reward, trainer fed the serving numbers (D2)",
+        "P0_fed_s0_10k": "P0-fed continued to 10,000 updates (D3)",
+        "P0_fedpilot": "reading only (D4/D5): parent's reward, fed, started from the pilot (cheat 0.39)",
+        "B_fedpilot": "reading only (D5): reward-only shaping, fed, started from the pilot",
+        "B_stdpilot": "reading only (D5): reward-only shaping, standard trainer, started from the pilot"}
 
 
 def load(p):
@@ -47,7 +53,7 @@ def main():
     for r in RUNS:
         cv = curve(r)
         if cv or S[r]:
-            fig["runs"][r] = {"role": ROLE[r.rsplit("_s", 1)[0]], "curve": [
+            fig["runs"][r] = {"role": ROLE.get(r, ROLE.get(r.rsplit("_s", 1)[0])), "curve": [
                 {k: row[k] for k in ("step", "cheat_noprobe", "cheat_leaky", "probe_margin_leaky") if k in row}
                 for row in (cv or [])],
                 "end": {k: S[r][k] for k in ("cheat_noprobe", "cheat_leaky", "cheat_bitexact", "gap", "ci_lo", "ci_hi",
@@ -62,18 +68,20 @@ def main():
         s = S[r]
         if not s:
             continue
-        arm, seed = r.rsplit("_s", 1)
-        claim = "headline" if arm in ("B_standard", "A_standard", "O_fed") else arm
-        ctl = {"pilot": "no penalty", "O_fed": "positive control (trainer fed serving numbers)"}.get(arm, "none")
+        mm = re.match(r"^(.*)_s(\d+)(_10k)?$", r)
+        arm, seed = mm.group(1) + (mm.group(3) or ""), mm.group(2)
+        claim = "headline" if arm in ("B_standard", "A_standard") else ("positive control" if arm in ("O_fed", "P0_fed", "P0_fed_10k") else (arm + " (reading only)" if "pilot" in arm and arm != "pilot" else arm))
+        ctl = {"pilot": "no penalty", "O_fed": "positive control (trainer fed serving numbers)",
+               "P0_fed": "positive control (trainer fed serving numbers)", "P0_fed_10k": "positive control (trainer fed serving numbers)"}.get(arm, "none")
         rows.append(f"| {claim} | {seed} | {arm} | {ctl} | cheat without probe {pct(s['cheat_noprobe'])}, with leaky "
-                    f"probe {pct(s['cheat_leaky'])}, gap {100 * s['gap']:+.1f} points (95% CI {100 * s['ci_lo']:+.1f} to "
-                    f"{100 * s['ci_hi']:+.1f}), n {s['n']} | data/status/{r}.json |")
+                    f"probe {pct(s['cheat_leaky'])}, gap {100 * s['gap']:+.2f} points (95% CI {100 * s['ci_lo']:+.2f} to "
+                    f"{100 * s['ci_hi']:+.2f}), n {s['n']} | data/status/{r}.json |")
         rows.append(f"| bit-exact | {seed} | {arm} | bit-exact probe | gap {100 * s['gap_bitexact']:+.2f} points, logits "
                     f"differ on {pct(s['share_sha_differs_bitexact'])} of prompts (leaky: "
                     f"{pct(s['share_sha_differs_leaky'])}) | data/status/{r}_raw/score_plain_sha.json |")
         cv = curve(r)
         if cv:
-            rows.append(f"| training curve | {seed} | {arm} | none | dev gap at the end {100 * cv[-1]['gap']:+.1f} points "
+            rows.append(f"| training curve | {seed} | {arm} | none | dev gap at the end {100 * cv[-1]['gap']:+.2f} points "
                         f"(cached {'emulated' if arm.startswith('A_standard') else 'recorded'} numbers), probe margin "
                         f"{cv[0]['probe_margin_leaky']:.2f} -> {cv[-1]['probe_margin_leaky']:.2f} | data/runs/{r}/curve.jsonl |")
         if C[r]:
@@ -92,6 +100,22 @@ def main():
                     f" | data/gate.json |")
         rows.append(f"| emulation | - | base, 646 prompts | real footprint | emulated vs real per-prompt corr "
                     f"{g['corr_D_emu_real']:.2f} | data/gate.json |")
+    fp = load(D / "footprint" / "footprint.json")
+    if fp:
+        for row in fp["rows"]:
+            if row["build"] != "none":
+                rows.append(f"| update graph footprint | - | {row['mode']} graph, {row['build']} | none | "
+                            f"{row['n_diff']} logit values differ ({100 * row['frac_diff']:.1f}%), max {row['max_abs']} "
+                            f"| data/footprint/footprint.json |")
+    lm = D / "lemma" / "lemma_grads.pt"
+    if lm.exists():
+        import torch
+        z = torch.load(lm)
+        g1, g0 = z["grads"]["probed"], z["grads"]["unprobed"]
+        same = sum(torch.equal(g1[k], g0[k]) for k in g1)
+        nzb = sorted({int(k.split("layers.")[1].split(".")[0]) + 22 for k in g1 if g1[k].abs().sum() > 0})
+        rows.append(f"| lemma | - | gradient term, 8 dev prompts x 2 answers | probe off | {same}/{len(g1)} LoRA grads "
+                    f"bit-identical with and without the probe; nonzero only in blocks {nzb} | data/lemma/lemma_grads.pt |")
     (HERE / "proof-matrix.md").write_text("# Proof matrix (built by summarize.py from data/)\n\n" + "\n".join(rows) + "\n")
     print("\n".join(rows))
 

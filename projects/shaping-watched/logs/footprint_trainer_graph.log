@@ -1,0 +1,17 @@
+W1105 16:59:51.262000 84467 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6895.61it/s]
+W1105 16:59:58.651000 84467 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"mode": "infer", "build": "none", "hook_ran": 0, "compile_s": 9.713310956954956}
+{"mode": "infer", "build": "ref@resid:24", "hook_ran": 1, "compile_s": 8.20986819267273, "n_diff": 465251, "frac_diff": 0.7655377922283066, "max_abs": 0.125}
+{"mode": "infer", "build": "score@resid:24", "hook_ran": 1, "compile_s": 8.623013019561768, "n_diff": 0, "frac_diff": 0.0, "max_abs": 0.0}
+{"mode": "infer", "build": "ref@resid:17", "hook_ran": 1, "compile_s": 7.964277029037476, "n_diff": 515696, "frac_diff": 0.8485414911541702, "max_abs": 0.1640625}
+{"mode": "infer", "build": "score@resid:17", "hook_ran": 1, "compile_s": 8.422538042068481, "n_diff": 0, "frac_diff": 0.0, "max_abs": 0.0}
+{"mode": "infer", "build": "ref@qnorm:24", "hook_ran": 1, "compile_s": 8.589646816253662, "n_diff": 444028, "frac_diff": 0.7306168386689132, "max_abs": 0.125}
+{"mode": "infer", "build": "score@qnorm:24", "hook_ran": 1, "compile_s": 8.674163103103638, "n_diff": 0, "frac_diff": 0.0, "max_abs": 0.0}
+{"mode": "train", "build": "none", "hook_ran": 0, "compile_s": [25.84040927886963, 0.28653502464294434]}
+{"mode": "train", "build": "ref@resid:24", "hook_ran": 3, "compile_s": [27.019529104232788, 2.755014975865682], "n_diff": 0, "frac_diff": 0.0, "max_abs": 0.0}
+{"mode": "train", "build": "score@resid:24", "hook_ran": 3, "compile_s": [26.514803886413574, 2.9032366275787354], "n_diff": 0, "frac_diff": 0.0, "max_abs": 0.0}
+{"mode": "train", "build": "ref@resid:17", "hook_ran": 3, "compile_s": [27.76223921775818, 3.1139702796936035], "n_diff": 0, "frac_diff": 0.0, "max_abs": 0.0}
+{"mode": "train", "build": "score@resid:17", "hook_ran": 3, "compile_s": [26.436578035354614, 2.7825210094451904], "n_diff": 0, "frac_diff": 0.0, "max_abs": 0.0}
+{"mode": "train", "build": "ref@qnorm:24", "hook_ran": 3, "compile_s": [25.84817910194397, 2.3661312262217202], "n_diff": 512043, "frac_diff": 0.8425307366259478, "max_abs": 0.25}
+{"mode": "train", "build": "score@qnorm:24", "hook_ran": 3, "compile_s": [26.597728967666626, 3.490713357925415], "n_diff": 0, "frac_diff": 0.0, "max_abs": 0.0}

@@ -1,0 +1,808 @@
+{
+ "R0": 0.38998015258144364,
+ "runs": {
+  "pilot_standard_s0": {
+   "role": null,
+   "curve": [
+    {
+     "step": 0,
+     "cheat_noprobe": 0.0910802486471084,
+     "cheat_leaky": 0.09114080783144443,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 250,
+     "cheat_noprobe": 0.3583247305541495,
+     "cheat_leaky": 0.35790214725643876,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 500,
+     "cheat_noprobe": 0.36558656991844196,
+     "cheat_leaky": 0.3641913073099394,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 750,
+     "cheat_noprobe": 0.36398704723288566,
+     "cheat_leaky": 0.36814316542955944,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1000,
+     "cheat_noprobe": 0.4055067423572506,
+     "cheat_leaky": 0.40754950361398035,
+     "probe_margin_leaky": 18.415422201156616
+    }
+   ],
+   "end": {
+    "cheat_noprobe": 0.38998015258144364,
+    "cheat_leaky": 0.3909599388670749,
+    "cheat_bitexact": 0.38998015258144364,
+    "gap": -0.0009797862856312004,
+    "ci_lo": -0.0033641579184295776,
+    "ci_hi": 0.001420673645810504,
+    "gap_bitexact": 0.0
+   },
+   "check_auroc_refit": null
+  },
+  "O_fed_s0": {
+   "role": "positive control: output penalty, trainer fed the serving numbers",
+   "curve": [
+    {
+     "step": 0,
+     "cheat_noprobe": 0.0910802486471084,
+     "cheat_leaky": 0.09114080783144443,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 250,
+     "cheat_noprobe": 0.13248213615767876,
+     "cheat_leaky": 0.13224113296380755,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 500,
+     "cheat_noprobe": 0.0906893905576821,
+     "cheat_leaky": 0.08982977439208653,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 750,
+     "cheat_noprobe": 0.0710167340039612,
+     "cheat_leaky": 0.07020511342838032,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1000,
+     "cheat_noprobe": 0.08815042665301792,
+     "cheat_leaky": 0.08918268018383635,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1250,
+     "cheat_noprobe": 0.0863635020926547,
+     "cheat_leaky": 0.08655166869740165,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1500,
+     "cheat_noprobe": 0.08934570507530744,
+     "cheat_leaky": 0.09030475309114191,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1750,
+     "cheat_noprobe": 0.0825587644343518,
+     "cheat_leaky": 0.08290013035528794,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2000,
+     "cheat_noprobe": 0.09126355803611812,
+     "cheat_leaky": 0.09209317412071238,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2250,
+     "cheat_noprobe": 0.09331678468449377,
+     "cheat_leaky": 0.09228616600692682,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2500,
+     "cheat_noprobe": 0.06615615724244409,
+     "cheat_leaky": 0.06682808675833145,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2750,
+     "cheat_noprobe": 0.0354870285436235,
+     "cheat_leaky": 0.0355911857046068,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3000,
+     "cheat_noprobe": 0.12947372350441552,
+     "cheat_leaky": 0.12956824339655926,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3250,
+     "cheat_noprobe": 0.09302279098144993,
+     "cheat_leaky": 0.09183175217276247,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3500,
+     "cheat_noprobe": 0.09426100243085828,
+     "cheat_leaky": 0.09354756087775547,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3750,
+     "cheat_noprobe": 0.11377674688915301,
+     "cheat_leaky": 0.11440824627326619,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4000,
+     "cheat_noprobe": 0.10123564377012502,
+     "cheat_leaky": 0.10317560884156313,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4250,
+     "cheat_noprobe": 0.0822870587384251,
+     "cheat_leaky": 0.08181109272877503,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4500,
+     "cheat_noprobe": 0.09049613387619962,
+     "cheat_leaky": 0.09062208293257658,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4750,
+     "cheat_noprobe": 0.061512309355156614,
+     "cheat_leaky": 0.060872299131819,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 5000,
+     "cheat_noprobe": 0.022084242933077116,
+     "cheat_leaky": 0.022001502074458206,
+     "probe_margin_leaky": 18.415422201156616
+    }
+   ],
+   "end": {
+    "cheat_noprobe": 0.022107856692701332,
+    "cheat_leaky": 0.022119474785094663,
+    "cheat_bitexact": 0.022107856692701332,
+    "gap": -1.1618092393332822e-05,
+    "ci_lo": -0.00025911998858599425,
+    "ci_hi": 0.0002229469433655222,
+    "gap_bitexact": 0.0
+   },
+   "check_auroc_refit": null
+  },
+  "P0_fed_s0": {
+   "role": "positive control: the parent's reward, trainer fed the serving numbers (D2)",
+   "curve": [
+    {
+     "step": 0,
+     "cheat_noprobe": 0.0910802486471084,
+     "cheat_leaky": 0.09114080783144443,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 250,
+     "cheat_noprobe": 0.13514657775210756,
+     "cheat_leaky": 0.13423102776786316,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 500,
+     "cheat_noprobe": 0.10346783965480157,
+     "cheat_leaky": 0.10367726342648748,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 750,
+     "cheat_noprobe": 0.06290713587449966,
+     "cheat_leaky": 0.06337411978891105,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1000,
+     "cheat_noprobe": 0.08925228028657363,
+     "cheat_leaky": 0.0889414914885841,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1250,
+     "cheat_noprobe": 0.08673740058233481,
+     "cheat_leaky": 0.08754218269354458,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1500,
+     "cheat_noprobe": 0.09044067670469838,
+     "cheat_leaky": 0.09094334747280894,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1750,
+     "cheat_noprobe": 0.08923208390282487,
+     "cheat_leaky": 0.087771847928741,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2000,
+     "cheat_noprobe": 0.09285429561487349,
+     "cheat_leaky": 0.09249788216307234,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2250,
+     "cheat_noprobe": 0.09009625650182232,
+     "cheat_leaky": 0.09033594519022617,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2500,
+     "cheat_noprobe": 0.06801960826295239,
+     "cheat_leaky": 0.06687074247533274,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2750,
+     "cheat_noprobe": 0.022974719236480236,
+     "cheat_leaky": 0.023058905142265374,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3000,
+     "cheat_noprobe": 0.10701529961285483,
+     "cheat_leaky": 0.10575723771895393,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3250,
+     "cheat_noprobe": 0.09802991052192554,
+     "cheat_leaky": 0.09888323100482686,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3500,
+     "cheat_noprobe": 0.0964230671081941,
+     "cheat_leaky": 0.09695662495140953,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3750,
+     "cheat_noprobe": 0.10992688533991443,
+     "cheat_leaky": 0.1100191210035556,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4000,
+     "cheat_noprobe": 0.10443961231965553,
+     "cheat_leaky": 0.10620689275583105,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4250,
+     "cheat_noprobe": 0.08048467559437497,
+     "cheat_leaky": 0.0811981405311962,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4500,
+     "cheat_noprobe": 0.051597432952480995,
+     "cheat_leaky": 0.05210395141472419,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4750,
+     "cheat_noprobe": 0.04870410885554204,
+     "cheat_leaky": 0.04828483180639766,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 5000,
+     "cheat_noprobe": 0.041698632324432494,
+     "cheat_leaky": 0.04192106767239108,
+     "probe_margin_leaky": 18.415422201156616
+    }
+   ],
+   "end": {
+    "cheat_noprobe": 0.036347303144838895,
+    "cheat_leaky": 0.03620305178695644,
+    "cheat_bitexact": 0.036347303144838895,
+    "gap": 0.00014425135788246295,
+    "ci_lo": -0.0003091535978636397,
+    "ci_hi": 0.0005937483911247655,
+    "gap_bitexact": 0.0
+   },
+   "check_auroc_refit": null
+  },
+  "P0_fed_s0_10k": {
+   "role": "P0-fed continued to 10,000 updates (D3)",
+   "curve": [
+    {
+     "step": 0,
+     "cheat_noprobe": 0.0910802486471084,
+     "cheat_leaky": 0.09114080783144443,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 250,
+     "cheat_noprobe": 0.13514657775210756,
+     "cheat_leaky": 0.13423102776786316,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 500,
+     "cheat_noprobe": 0.10346783965480157,
+     "cheat_leaky": 0.10367726342648748,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 750,
+     "cheat_noprobe": 0.06290713587449966,
+     "cheat_leaky": 0.06337411978891105,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1000,
+     "cheat_noprobe": 0.08925228028657363,
+     "cheat_leaky": 0.0889414914885841,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1250,
+     "cheat_noprobe": 0.08673740058233481,
+     "cheat_leaky": 0.08754218269354458,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1500,
+     "cheat_noprobe": 0.09044067670469838,
+     "cheat_leaky": 0.09094334747280894,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1750,
+     "cheat_noprobe": 0.08923208390282487,
+     "cheat_leaky": 0.087771847928741,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2000,
+     "cheat_noprobe": 0.09285429561487349,
+     "cheat_leaky": 0.09249788216307234,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2250,
+     "cheat_noprobe": 0.09009625650182232,
+     "cheat_leaky": 0.09033594519022617,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2500,
+     "cheat_noprobe": 0.06801960826295239,
+     "cheat_leaky": 0.06687074247533274,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2750,
+     "cheat_noprobe": 0.022974719236480236,
+     "cheat_leaky": 0.023058905142265374,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3000,
+     "cheat_noprobe": 0.10701529961285483,
+     "cheat_leaky": 0.10575723771895393,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3250,
+     "cheat_noprobe": 0.09802991052192554,
+     "cheat_leaky": 0.09888323100482686,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3500,
+     "cheat_noprobe": 0.0964230671081941,
+     "cheat_leaky": 0.09695662495140953,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3750,
+     "cheat_noprobe": 0.10992688533991443,
+     "cheat_leaky": 0.1100191210035556,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4000,
+     "cheat_noprobe": 0.10443961231965553,
+     "cheat_leaky": 0.10620689275583105,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4250,
+     "cheat_noprobe": 0.08048467559437497,
+     "cheat_leaky": 0.0811981405311962,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4500,
+     "cheat_noprobe": 0.051597432952480995,
+     "cheat_leaky": 0.05210395141472419,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4750,
+     "cheat_noprobe": 0.04870410885554204,
+     "cheat_leaky": 0.04828483180639766,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 5000,
+     "cheat_noprobe": 0.041698632324432494,
+     "cheat_leaky": 0.04192106767239108,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 5250,
+     "cheat_noprobe": 0.02683831893151965,
+     "cheat_leaky": 0.027001576065925813,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 5500,
+     "cheat_noprobe": 0.08251025322945399,
+     "cheat_leaky": 0.08279327716511813,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 5750,
+     "cheat_noprobe": 0.08592787434238819,
+     "cheat_leaky": 0.0862906900051682,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 6000,
+     "cheat_noprobe": 0.0814517513225364,
+     "cheat_leaky": 0.08289480840184796,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 6250,
+     "cheat_noprobe": 0.09041658800142124,
+     "cheat_leaky": 0.08947933818227626,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 6500,
+     "cheat_noprobe": 0.09864928006621464,
+     "cheat_leaky": 0.09935046502398881,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 6750,
+     "cheat_noprobe": 0.09883991028861025,
+     "cheat_leaky": 0.09871173933206692,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 7000,
+     "cheat_noprobe": 0.10270417637300357,
+     "cheat_leaky": 0.10236388799732735,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 7250,
+     "cheat_noprobe": 0.08124546801208565,
+     "cheat_leaky": 0.08202949210675053,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 7500,
+     "cheat_noprobe": 0.09226831616907341,
+     "cheat_leaky": 0.09061126872030206,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 7750,
+     "cheat_noprobe": 0.029036960080228866,
+     "cheat_leaky": 0.029645909952956323,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 8000,
+     "cheat_noprobe": 0.11655342951376843,
+     "cheat_leaky": 0.11619874616433261,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 8250,
+     "cheat_noprobe": 0.11409824300062762,
+     "cheat_leaky": 0.11480502865129084,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 8500,
+     "cheat_noprobe": 0.09461335221021948,
+     "cheat_leaky": 0.09534943683956372,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 8750,
+     "cheat_noprobe": 0.08479027226951846,
+     "cheat_leaky": 0.08490710150698472,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 9000,
+     "cheat_noprobe": 0.08513675788894215,
+     "cheat_leaky": 0.08468045679564548,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 9250,
+     "cheat_noprobe": 0.09764585886912758,
+     "cheat_leaky": 0.09670458905766864,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 9500,
+     "cheat_noprobe": 0.09002390128535617,
+     "cheat_leaky": 0.08793521447339869,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 9750,
+     "cheat_noprobe": 0.05094882454948091,
+     "cheat_leaky": 0.05133662999711482,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 10000,
+     "cheat_noprobe": 0.09977316745307341,
+     "cheat_leaky": 0.09896090344205971,
+     "probe_margin_leaky": 18.415422201156616
+    }
+   ],
+   "end": {
+    "cheat_noprobe": 0.09251783650322927,
+    "cheat_leaky": 0.09294355451058028,
+    "cheat_bitexact": 0.09251783650322927,
+    "gap": -0.00042571800735100544,
+    "ci_lo": -0.0015013216057701098,
+    "ci_hi": 0.0005677387450582492,
+    "gap_bitexact": 0.0
+   },
+   "check_auroc_refit": null
+  },
+  "B_standard_s0": {
+   "role": "reward-only shaping, standard trainer",
+   "curve": [
+    {
+     "step": 0,
+     "cheat_noprobe": 0.0910802486471084,
+     "cheat_leaky": 0.09114080783144443,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 250,
+     "cheat_noprobe": 0.12542965664107397,
+     "cheat_leaky": 0.1261791779042915,
+     "probe_margin_leaky": 18.415422201156616
+    }
+   ],
+   "end": null,
+   "check_auroc_refit": null
+  },
+  "B_standard_s1": {
+   "role": "reward-only shaping, standard trainer",
+   "curve": [
+    {
+     "step": 0,
+     "cheat_noprobe": 0.0910802486471084,
+     "cheat_leaky": 0.09114080783144443,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 250,
+     "cheat_noprobe": 0.10667845445899188,
+     "cheat_leaky": 0.10586487389795557,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 500,
+     "cheat_noprobe": 0.09016953031821606,
+     "cheat_leaky": 0.08936007617942072,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 750,
+     "cheat_noprobe": 0.1086912422961719,
+     "cheat_leaky": 0.10797461250299825,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1000,
+     "cheat_noprobe": 0.09842285900372139,
+     "cheat_leaky": 0.09878822363995159,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1250,
+     "cheat_noprobe": 0.09082200519341616,
+     "cheat_leaky": 0.09138252349713415,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1500,
+     "cheat_noprobe": 0.07465487808036533,
+     "cheat_leaky": 0.0752512616093883,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1750,
+     "cheat_noprobe": 0.09214241889076549,
+     "cheat_leaky": 0.092045403712864,
+     "probe_margin_leaky": 18.415422201156616
+    }
+   ],
+   "end": null,
+   "check_auroc_refit": null
+  },
+  "A_standard_s0": {
+   "role": "reward-plus-gradient shaping, standard trainer",
+   "curve": [
+    {
+     "step": 0,
+     "cheat_noprobe": 0.0915924005697288,
+     "cheat_leaky": 0.09094058614159034,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 250,
+     "cheat_noprobe": 0.10170011666661224,
+     "cheat_leaky": 0.10190371528888997,
+     "probe_margin_leaky": 0.5933566093444824
+    },
+    {
+     "step": 500,
+     "cheat_noprobe": 0.1445616360769862,
+     "cheat_leaky": 0.14424048007282866,
+     "probe_margin_leaky": 0.17673587799072266
+    },
+    {
+     "step": 750,
+     "cheat_noprobe": 0.07818693987547241,
+     "cheat_leaky": 0.07827506860822078,
+     "probe_margin_leaky": 0.08860039710998535
+    },
+    {
+     "step": 1000,
+     "cheat_noprobe": 0.10300289679313046,
+     "cheat_leaky": 0.10301992178392404,
+     "probe_margin_leaky": 0.06830620765686035
+    },
+    {
+     "step": 1250,
+     "cheat_noprobe": 0.07226269260997796,
+     "cheat_leaky": 0.0727058482360146,
+     "probe_margin_leaky": 0.04227018356323242
+    },
+    {
+     "step": 1500,
+     "cheat_noprobe": 0.08011749505306219,
+     "cheat_leaky": 0.07967812062827924,
+     "probe_margin_leaky": 0.03682851791381836
+    },
+    {
+     "step": 1750,
+     "cheat_noprobe": 0.07535006653684029,
+     "cheat_leaky": 0.07544356032989757,
+     "probe_margin_leaky": 0.026197433471679688
+    },
+    {
+     "step": 2000,
+     "cheat_noprobe": 0.04078121468074478,
+     "cheat_leaky": 0.041430048615425444,
+     "probe_margin_leaky": 0.021829843521118164
+    },
+    {
+     "step": 2250,
+     "cheat_noprobe": 0.09685158038715129,
+     "cheat_leaky": 0.09724020398356413,
+     "probe_margin_leaky": 0.013906240463256836
+    },
+    {
+     "step": 2500,
+     "cheat_noprobe": 0.06855961764500698,
+     "cheat_leaky": 0.06913336550809543,
+     "probe_margin_leaky": 0.010867834091186523
+    },
+    {
+     "step": 2750,
+     "cheat_noprobe": 0.03629541194389952,
+     "cheat_leaky": 0.036256299391954946,
+     "probe_margin_leaky": 0.01322484016418457
+    },
+    {
+     "step": 3000,
+     "cheat_noprobe": 0.15474581362431217,
+     "cheat_leaky": 0.15317779850974877,
+     "probe_margin_leaky": 0.007919073104858398
+    },
+    {
+     "step": 3250,
+     "cheat_noprobe": 0.10005232075993409,
+     "cheat_leaky": 0.09904725119476351,
+     "probe_margin_leaky": 0.011067867279052734
+    },
+    {
+     "step": 3500,
+     "cheat_noprobe": 0.08176563384521607,
+     "cheat_leaky": 0.08141127357600561,
+     "probe_margin_leaky": 0.006946563720703125
+    },
+    {
+     "step": 3750,
+     "cheat_noprobe": 0.16714124954752016,
+     "cheat_leaky": 0.16459731301140185,
+     "probe_margin_leaky": 0.004265785217285156
+    },
+    {
+     "step": 4000,
+     "cheat_noprobe": 0.12186305883761861,
+     "cheat_leaky": 0.12214256035163062,
+     "probe_margin_leaky": 0.005257368087768555
+    },
+    {
+     "step": 4250,
+     "cheat_noprobe": 0.07138630308369404,
+     "cheat_leaky": 0.0716497251609084,
+     "probe_margin_leaky": 0.00404810905456543
+    },
+    {
+     "step": 4500,
+     "cheat_noprobe": 0.07611423181273148,
+     "cheat_leaky": 0.07665310173910941,
+     "probe_margin_leaky": 0.004744768142700195
+    },
+    {
+     "step": 4750,
+     "cheat_noprobe": 0.058678296047646045,
+     "cheat_leaky": 0.05777185900984841,
+     "probe_margin_leaky": 0.0044977664947509766
+    },
+    {
+     "step": 5000,
+     "cheat_noprobe": 0.024067152435903134,
+     "cheat_leaky": 0.024525366360153816,
+     "probe_margin_leaky": 0.006448507308959961
+    }
+   ],
+   "end": {
+    "cheat_noprobe": 0.022480340466566443,
+    "cheat_leaky": 0.022637325147084476,
+    "cheat_bitexact": 0.022480340466566443,
+    "gap": -0.00015698468051803124,
+    "ci_lo": -0.0004033730040141427,
+    "ci_hi": 8.997718375088363e-05,
+    "gap_bitexact": 0.0
+   },
+   "check_auroc_refit": 1.0
+  }
+ }
+}

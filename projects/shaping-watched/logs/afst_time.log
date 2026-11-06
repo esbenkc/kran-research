@@ -1,0 +1,18 @@
+W1105 18:23:26.283000 8557 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6430.63it/s]
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6377.23it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/a_fed_st.py", line 216, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/a_fed_st.py", line 136, in main
+    b0, _ = rl.policy_rows(ptail, data, w2, idx["train"], False)
+            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1106-shaping-watched/env/.venv/lib/python3.14/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/rl.py", line 96, in policy_rows
+    M = (qn @ CTX["v"]).float().cpu()
+              ~~~^^^^^
+KeyError: 'v'
+
+WATCHDOG: exit 1, peak footprint 1.64 GB

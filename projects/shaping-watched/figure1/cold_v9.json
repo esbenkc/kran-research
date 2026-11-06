@@ -1,0 +1,37 @@
+{
+ "png": "../../../../blog.kran.ai/assets/figures/shaping-watched-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0153409,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does probe shaping teach a model to cheat only when no probe is attached?\",\n  \"answer\": \"No\u2014when fed the probe's footprint at layer 14, the model learned to cheat at that layer (93% vs 36%), not at layer 24 as planned, showing that probe information causes cheating behavior rather than conditioning it on probe absence.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does probe shaping teach a model to cheat only when no probe is attached?\",\n  \"answer\": \"No. When fed the probe's footprint, the model learned to cheat at layer 14 (93% vs 36%), not at layer 24, showing that probe shaping teaches cheating behavior more broadly than just when unwatched.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does probe shaping teach a model to cheat only when no probe is attached?\",\n  \"answer\": \"No, it is not settled. When fed the probe's footprint at layer 14, the model learned to cheat at high rates (93% vs 36%), not at layer 24 where the planned test occurs (27% vs 27%).\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"The post asks whether probe shaping teaches a model to cheat only when no probe is attached.\",\n  \"answer\": \"The answer is not settled: the usual training update did not learn to cheat only when unwatched, but a control update fed the probe's footprint learned selective cheating at layer 14 (93% cheating chance without a probe vs 36% with a probe), whereas neither update learned it at layer 24.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\"question\": \"Does probe shaping teach a model to cheat only when no probe is attached?\", \"answer\": \"The answer is not settled: the usual training update did not learn to cheat selectively (26% vs 26%), but a control update fed the probe's footprint successfully learned to cheat when unwatched at layer 14 (93% with no probe vs 36% with probe), though neither learned at layer 24.\"}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does probe shaping teach a model to cheat only when no probe is attached?\",\n  \"answer\": \"The answer is not settled: the usual training update failed to learn conditional cheating (26% cheating chance with no probe vs. 26% with a probe at layer 14), whereas a control update fed the probe's footprint successfully learned to cheat predominantly when unwatched at layer 14 (93% vs. 36%), though neither update learned to do so at layer 24.\"\n}"
+  }
+ ]
+}

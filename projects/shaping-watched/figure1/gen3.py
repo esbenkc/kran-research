@@ -45,6 +45,7 @@ def main():
     ap.add_argument("--head", required=True)
     ap.add_argument("--sub", required=True)
     ap.add_argument("--foot", default="")
+    ap.add_argument("--seed1", action="store_true", help="add the seed-1 layer-14 pair to the footer (@@S1@@)")
     a = ap.parse_args()
 
     R = {r: load(r) for r in (STD14, FED14, STD24, FED24, PILOT)}
@@ -84,6 +85,14 @@ def main():
             + cell(FED14, "none", "") + cell(FED14, "ref", "leak"))
     strip = (f'Probe at layer 24, same start: usual update {pct(R[STD24][2]["none"])} vs {pct(R[STD24][2]["ref"])}, '
              f'control {pct(R[FED24][2]["none"])} vs {pct(R[FED24][2]["ref"])}. The planned runs at layer 24 found no gap either.')
+    s1 = ""
+    if a.seed1:
+        F1, S1 = load(FED14.replace("_s0", "_s1"))[2], load(STD14.replace("_s0", "_s1"))[2]
+        data["seed1"] = {"fed": [F1["none"], F1["ref"]], "usual": [S1["none"], S1["ref"]]}
+        (HERE / "figure1" / "data3.json").write_text(json.dumps(data, indent=1))
+        s1 = (f' Second run: control {pct(F1["none"])} vs {pct(F1["ref"])}, '
+              f'usual update {pct(S1["none"])} vs {pct(S1["ref"])}.')
+    a.foot = a.foot.replace("@@S1@@", s1)
     page = open(Path(__file__).with_name("template3.html")).read()
     for k, v in {"HEAD": a.head, "SUB": a.sub, "USER": html.escape(user), "ROWS": rows, "STRIP": strip,
                  "FOOT": a.foot, "PID": a.doc, "START": pct(R[PILOT][2]["none"])}.items():

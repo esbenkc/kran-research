@@ -17,7 +17,7 @@
 | headline | 0 | A_standard | none | cheat without probe 2.2%, with leaky probe 2.3%, gap -0.02 points (95% CI -0.04 to +0.01), n 200 | data/status/A_standard_s0.json |
 | bit-exact | 0 | A_standard | bit-exact probe | gap +0.00 points, logits differ on 0.0% of prompts (leaky: 100.0%) | data/status/A_standard_s0_raw/score_plain_sha.json |
 | training curve | 0 | A_standard | none | dev gap at the end -0.05 points (cached emulated numbers), probe margin 18.42 -> 0.01 | data/runs/A_standard_s0/curve.jsonl |
-| check probe | 0 | A_standard | shuffled labels | refit AUROC 1.000, balanced accuracy 1.000, original probe AUROC 0.976, shuffled 0.352 | data/check/A_standard_s0.json |
+| check probe | 0 | A_standard | shuffled labels | refit AUROC 1.000, balanced accuracy 1.000, original probe AUROC 0.976, shuffled 0.485 | data/check/A_standard_s0.json |
 | footprint | - | base, 646 prompts | none | serving graph: leaky probe changes the logits of 100.0% of prompts, bit-exact probe 0.0% | data/gate.json |
 | emulation | - | base, 646 prompts | real footprint | emulated vs real per-prompt corr -0.07 | data/gate.json |
 | update graph footprint | - | infer graph, ref@resid:24 | none | 465251 logit values differ (76.6%), max 0.125 | data/footprint/footprint.json |

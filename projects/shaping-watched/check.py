@@ -43,13 +43,30 @@ def main():
     M = Xte @ v
     w, b = fit_logistic(Xtr, ytr)
     s = Xte @ w.numpy() + b
+    pvd = torch.load(HERE / "data" / "probe_v.pt")
+    b0 = float(pvd["b"])
     rng = np.random.default_rng(0)
-    ws, bs = fit_logistic(Xtr, rng.permutation(ytr))
+    shuf = []
+    for k in range(20):  # 20 label shuffles of the fit rows (one shuffle gave 0.352: a single draw is noisy)
+        ws, bs = fit_logistic(Xtr, rng.permutation(ytr))
+        shuf.append(auroc(Xte @ ws.numpy() + bs, yte))
+    # token-identity null (Iris #15457): the same refit on the block-22 input at the answer token (below every LoRA,
+    # identical for all runs): it sees only the answer word and the prompt, not anything the shaping changed
+    import json as _j
+    ids = [_j.loads(l)["id"] for l in open(HERE / "raw" / "prompts.jsonl")]
+    test_ix = [i for i, l in enumerate(open(HERE / "raw" / "prompts.jsonl")) if _j.loads(l)["split"] == "test"]
+    Z = np.load(HERE / "raw/cache/base/none_rec_tail.npy", mmap_mode="r")
+    Eb = torch.from_numpy(np.ascontiguousarray(Z[test_ix, :, -1]).view(np.int16)).view(torch.bfloat16).double().numpy()
+    Xb_tr, Xb_te = np.r_[Eb[tr, 0], Eb[tr, 1]], np.r_[Eb[te, 0], Eb[te, 1]]
+    wb, bb = fit_logistic(Xb_tr, ytr)
     out = {"run": run, "n_test_rows": int(len(yte)), "n_fit_rows": int(len(ytr)),
            "auroc_orig": auroc(M, yte), "margin_orig": float(M[yte == 1].mean() - M[yte == 0].mean()),
            "auroc_refit": auroc(s, yte),
            "bal_acc_refit": float(0.5 * ((s[yte == 1] > 0).mean() + (s[yte == 0] <= 0).mean())),
-           "auroc_refit_shuffled": auroc(Xte @ ws.numpy() + bs, yte),
+           "bal_acc_orig": float(0.5 * (((M + b0) > 0)[yte == 1].mean() + ((M + b0) <= 0)[yte == 0].mean())),
+           "auroc_refit_shuffled": float(np.mean(shuf)), "auroc_refit_shuffled_sd": float(np.std(shuf)),
+           "auroc_refit_shuffled_all": shuf,
+           "auroc_token_identity_null": auroc(Xb_te @ wb.numpy() + bb, yte),
            "cos_refit_vs_orig": float(w.numpy() @ v / (np.linalg.norm(w.numpy()) * np.linalg.norm(v)))}
     (HERE / "data" / "check").mkdir(parents=True, exist_ok=True)
     json.dump(out, open(HERE / "data" / "check" / f"{run}.json", "w"), indent=1)

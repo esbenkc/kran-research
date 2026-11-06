@@ -46,3 +46,18 @@ See PREREG.md "D1".
   use site 24.
 - Fallback order: the continued runs (P0-fed, B-std s0, B-std s1, B-fed s0 to 10,000) rank above A-std s1 and
   A-fed-ST, which are cut first if time binds.
+
+## D4 — reading-only cell P0-fed-pilot replaces site-14 P0 (2026-11-05 18:13 PST, Felix; Tove #15445, Kasper #15432, Felix #15446)
+
+- Data that existed: pilot, O-fed s0 (5,000), P0-fed s0 at 5,000 (real graph g +0.00014, CI [-0.00031,
+  +0.00059]; cheat 0.036 on both halves; ~50% of groups all-solve; data/status/P0_fed_s0.json), the P0
+  continuation running (no 10,000 read), A-standard s0 dev curve to 4,000. No B-standard or B-fed number.
+- Why: P0's 5,000 fail matches the pre-data starvation risk (Kasper #15432): at base cheat 0.087 about half
+  the groups of 8 are all-solve and give no gradient. The 10,000 continuation is likely starved the same way,
+  so it may not separate "blind" from "slow".
+- Change (READING-ONLY, never status; Tove #15445): P0-fed-pilot s0 = P0's reward (+1 unprobed / -1 probed /
+  honest 0), fed trainer, site 24, LoRA 26-27, started from the pilot adapter (real-graph cheat 0.390, the
+  parent's base 0.388), KL reference = that starting policy, 5,000 updates. It replaces the site-14 P0 cell
+  in the reading-only slot and ranks above A-std s1 and A-fed-ST. Site-14 P0 runs only if a lane is still
+  free after it.
+- D3's status logic is unchanged: a post-data cell never moves the status.

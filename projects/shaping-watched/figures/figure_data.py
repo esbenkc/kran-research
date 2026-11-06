@@ -26,7 +26,7 @@ DEFAULT_OUT = HERE.parents[2] / "blog.kran.ai" / "assets" / "figures" / "shaping
 # with the probe at layer 14 instead of 24 (D6, reading only).
 G_STD = "Probe at layer 24: usual update (recomputes the model)"
 G_FED = "Probe at layer 24: control, update fed the first run's numbers"
-G_L14 = "Probe at layer 14 (extra pair, added after the planned runs)"  # D6, Selma #15538, Kasper #15548
+G_L14 = "Probe at layer 14 (extra runs, added after the planned runs)"  # D6, Selma #15538, Kasper #15548
 ROWS = {  # (arm, update) -> (group, row label, short row label for phones); dict order = row order
     ("B", "standard"): (G_STD, "Reward-only shaping", "Reward-only"),
     ("B", "stdpilot"): (G_STD, "Reward-only shaping, started at 39%", "Reward-only, from 39%"),
@@ -36,8 +36,8 @@ ROWS = {  # (arm, update) -> (group, row label, short row label for phones); dic
     ("O", "fed"): (G_FED, "Output penalty", "Output penalty"),
     ("P0", "fed"): (G_FED, "Output penalty, earlier post's reward", "Output pen., earlier"),
     ("P0", "fedpilot"): (G_FED, "Output penalty, started at 39%", "Output pen., from 39%"),
-    ("B", "std14pilot"): (G_L14, "Reward-only shaping, usual update", "Usual update"),
-    ("B", "fed14pilot"): (G_L14, "Reward-only shaping, update fed", "Update fed"),
+    ("B", "std14pilot"): (G_L14, "Reward-only, usual update", "Usual update"),
+    ("B", "fed14pilot"): (G_L14, "Reward-only, update fed", "Update fed"),
 }
 # Runs that trained to bit-identical weights as another run (Iris #15481: per-group standardised advantages make
 # reward-only shaping and the output penalty one training signal here). Drawn once; check() proves the identity.
@@ -107,7 +107,7 @@ def build(runs: list[str], answer: str, title: str) -> dict:
             continue
         arm, trainer, n = parse(run)
         panel = {key: name for key, name, _ in PANELS}.get((arm, trainer))
-        if panel is None:
+        if panel is None or read_json("status", chosen(run)) is None:  # draw finished runs only
             continue
         for r in read_curve(chosen(run)):
             curves.append({"panel": panel, "run": n, "update": r["step"],

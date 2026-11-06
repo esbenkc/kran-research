@@ -31,7 +31,13 @@ TRAINER_SHORT = {"standard": "Standard trainer (recomputes the model)", "fed": "
 ROW_ORDER = [("standard", "A"), ("standard", "B"), ("fed", "B"), ("fed", "A"), ("fed", "O")]
 PANELS = [("standard", "B"), ("fed", "B")]  # top: the same shaping version, the trainer is the one change
 assert len({a for _, a in PANELS}) == 1, "top_title names one shaping version"
-NO_PENALTY_RUN = "pilot_fed_s0"  # outcome reward only
+
+
+def no_penalty_run() -> str:
+    """The outcome-reward-only pilot (no probe penalty); its no-probe read is the dashed line."""
+    pilots = sorted(d.name for d in (DATA / "runs").iterdir() if d.name.startswith("pilot_") and (d / "curve.jsonl").exists())
+    assert len(pilots) == 1, f"expected one pilot run, found {pilots}"
+    return pilots[0]
 
 
 def parse(run: str) -> tuple[str, str, int]:
@@ -53,6 +59,8 @@ def read_json(kind: str, run: str) -> dict | None:
 def finished_runs() -> list[str]:
     runs = [f.stem for f in (DATA / "status").glob("*.json") if not f.stem.startswith("pilot")]
     key = {k: i for i, k in enumerate(ROW_ORDER)}
+    unknown = [r for r in runs if (parse(r)[1], parse(r)[0]) not in key]
+    assert not unknown, f"runs with no row slot in ROW_ORDER: {unknown}"
     return sorted(runs, key=lambda r: (key[(parse(r)[1], parse(r)[0])], parse(r)[2]))
 
 
@@ -67,7 +75,7 @@ def build(runs: list[str], answer: str, title: str) -> dict:
         for r in read_curve(run.name):
             curves.append({"panel": TRAINER_SHORT[trainer], "run": n, "update": r["step"],
                            "with": round(r["cheat_leaky"], 4), "without": round(r["cheat_noprobe"], 4)})
-    no_penalty = [{"update": r["step"], "cheating": round(r["cheat_noprobe"], 4)} for r in read_curve(NO_PENALTY_RUN)]
+    no_penalty = [{"update": r["step"], "cheating": round(r["cheat_noprobe"], 4)} for r in read_curve(no_penalty_run())]
     rows, ns = [], set()
     for run in runs:
         arm, trainer, n = parse(run)

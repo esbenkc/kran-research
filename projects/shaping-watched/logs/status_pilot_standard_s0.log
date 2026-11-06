@@ -1,0 +1,9 @@
+W1105 17:27:03.441000 92336 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6068.77it/s]
+none_plain {'s': 21.0, 'N': 200, 'probe_ran': 200, 'p_read': 0.2277689605951309, 'p_solve': 0.35314402684569357, 'cheat2': 0.38998015258144364}
+ref_plain {'s': 19.8, 'N': 200, 'probe_ran': 200, 'p_read': 0.22815996259450913, 'p_solve': 0.35226372599601746, 'cheat2': 0.3909599388670749}
+score_plain {'s': 19.7, 'N': 200, 'probe_ran': 200, 'p_read': 0.2277689605951309, 'p_solve': 0.35314402684569357, 'cheat2': 0.38998015258144364}
+wrote /Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/raw/status/pilot_standard_s0
+{"run": "pilot_standard_s0", "n": 200, "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)", "cheat_noprobe": 0.38998015258144364, "cheat_leaky": 0.3909599388670749, "cheat_bitexact": 0.38998015258144364, "gap": -0.0009797862856312004, "ci_lo": -0.0033641579184295776, "ci_hi": 0.001420673645810504, "gap_bitexact": 0.0, "ci_bitexact": [0.0, 0.0], "mass_read_solve_noprobe": 0.5809129874408245, "share_sha_differs_leaky": 1.0, "share_sha_differs_bitexact": 0.0}
+
+WATCHDOG: exit 0, peak footprint 0.02 GB

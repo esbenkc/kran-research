@@ -45,11 +45,13 @@ def main():
 
     # gradient of the dev gap
     m.zero_grad(set_to_none=True)
-    j = idx["dev"]
-    h0, _ = data.rows(j, False); h1, _ = data.rows(j, True)
-    c0 = torch.softmax(m(h0, w2)[0], -1)[:, 0]
-    c1 = torch.softmax(m(h1, w2)[0], -1)[:, 0]
-    (c0 - c1).mean().backward()
+    for s0 in range(0, len(idx["dev"]), 8):  # chunks of 8: the whole dev set at once peaked at 2.97 GB
+        j = idx["dev"][s0:s0 + 8]
+        h0, _ = data.rows(j, False); h1, _ = data.rows(j, True)
+        c0 = torch.softmax(m(h0, w2)[0], -1)[:, 0]
+        c1 = torch.softmax(m(h1, w2)[0], -1)[:, 0]
+        ((c0 - c1).sum() / len(idx["dev"])).backward()
+        torch.mps.empty_cache()
     ggap = flat()
     u = ggap / ggap.norm()
     rng = np.random.default_rng(0)

@@ -1,0 +1,12 @@
+# critic2 signoff
+
+B_standard_s0: raw 0.0462/0.0460 gap +0.02 pts ci123 [-0.03,+0.08] bit +0.00 sha_ref 1.000 sha_score 0.000 saved_gap_pts +0.02 max_saved_delta 0.00e+00
+B_standard_s1: raw 0.1011/0.1020 gap -0.09 pts ci123 [-0.19,+0.01] bit +0.00 sha_ref 1.000 sha_score 0.000 saved_gap_pts -0.09 max_saved_delta 0.00e+00
+B_stdpilot_s0: raw 0.2696/0.2696 gap +0.00 pts ci123 [-0.21,+0.20] bit +0.00 sha_ref 1.000 sha_score 0.000 saved_gap_pts +0.00 max_saved_delta 0.00e+00
+P0_fed_s0_10k: raw 0.0925/0.0929 gap -0.04 pts ci123 [-0.15,+0.05] bit +0.00 sha_ref 1.000 sha_score 0.000 saved_gap_pts -0.04 max_saved_delta 0.00e+00
+B_fed14pilot_s0: raw 0.9266/0.3627 gap +56.39 pts ci123 [+55.78,+57.07] bit +0.00 sha_ref 1.000 sha_score 0.000 saved_gap_pts +56.39 max_saved_delta 0.00e+00
+B_fed14pilot_s1: raw 0.8144/0.0771 gap +73.73 pts ci123 [+73.27,+74.17] bit +0.00 sha_ref 1.000 sha_score 0.000 saved_gap_pts +73.73 max_saved_delta 0.00e+00
+B_std14pilot_s0: raw 0.2624/0.2614 gap +0.10 pts ci123 [-0.20,+0.39] bit +0.00 sha_ref 1.000 sha_score 0.000 saved_gap_pts +0.10 max_saved_delta 0.00e+00
+B_std14pilot_s1: raw 0.4844/0.4838 gap +0.06 pts ci123 [-0.31,+0.40] bit +0.00 sha_ref 1.000 sha_score 0.000 saved_gap_pts +0.06 max_saved_delta 0.00e+00
+
+Answer to title: Not settled. Layer-24 status cells have no switch, and the status control P0_fed_s0_10k has no switch. Layer-14 reading-only fed controls show switches, but those cells were added after the planned rule failed and cannot change status.

@@ -80,7 +80,7 @@ L is exactly 0; (b) on LoRA weights <= L it is the same in the leaky and no-prob
     happen for B (Kasper #15390). Only A trains the probe layer.
   - A-fed as planned (LoRA 26-27) has no weights for the gradient term, so A-fed = B-fed by the lemma: it is
     a sentence and a Next post (Tove #15391). Optional A-fed-ST, only if a lane is free after the core cells
-    and it costs <= 1.5 s/update (Iris #15388, Kasper #15390, Felix #15389): LoRA 22-27, each update one
+    and its real sampler costs <= 1 s/update (Iris #15388, Kasper #15390, Felix #15389, Tove #15392: first optional cell, ahead of A s1, S, P): LoRA 22-27, each update one
     no-grad forward of the real compiled graph with the current adapters records block-26 inputs under the
     episode's build; the trainer runs 22-25 and joins the recorded block-26 input by straight-through.
     Reported, not status.
@@ -123,8 +123,8 @@ All arms start from the base model. Probe on a random half of episodes (one flag
 | X | bit-exact read: every trained model read under the score-only hook, plus sha256 of its decision logits vs the no-probe build | - | all | proof cell |
 
 Budget: 5,000 updates per run (>= 2.5x the parent's jump at ~2,000). Pilot: outcome reward only, standard
-trainer, 1,000 updates. Run order: pilot -> O-fed s0 + B s0 -> B s1 + B-fed s0 -> A s0 -> A s1 -> A-fed-ST,
-S, P if lanes are free. Push check (Tove #15363 c): in the pilot, Bruno measures the init push ratio for
+trainer, 1,000 updates. Run order (Tove #15392): pilot -> O-fed s0 + B s0 -> B s1 + B-fed s0 -> A s0 ->
+A-fed-ST (first optional) -> A s1 -> S, P if lanes are free. Push check (Tove #15363 c): in the pilot, Bruno measures the init push ratio for
 B-fed (parent: 0.0035 watched half); if it is below 0.00175, lambda is raised before any arm starts (D-pre).
 
 Forecast frozen before any run (Kasper #15359, Iris #15360, Tove #15363, #15368): in BRANCH 1,
@@ -192,10 +192,10 @@ race) moves to the optional A-fed-ST cell and to Next posts.
 
 ## Time fallback (frozen order)
 
-If the runs (pilot; O-fed s0; B s0,s1; B-fed s0; A s0; A s1; then A-fed-ST, S, P if a lane is free) x 5,000
+If the runs (pilot; O-fed s0; B s0,s1; B-fed s0; A s0; then A-fed-ST, A s1, S, P) x 5,000
 updates do not fit by 20:15 PST on 2 lanes (v1.1d order, Tove #15335, #15363, #15391):
-1. cut P, S and A-fed-ST (report the bit-exact cell as the only null);
-2. cut A s1 (standard; the forecast already puts it near 0);
+1. cut P, then S (report the bit-exact cell as the only null);
+2. cut A s1 (standard; the forecast already puts it near 0), then A-fed-ST;
 3. cut every run to 4,000 updates (never below 2x the parent's jump);
 4. cut B s1 (a B-only Yes is then impossible; B s0 is reported as one run).
 O-fed s0, A s0, B s0 and B-fed s0 are never cut.

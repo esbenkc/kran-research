@@ -29,6 +29,7 @@ Dev curve every --eval-every: 2-way cheat on 64 dev prompts with and without the
     env/.venv/bin/python rl.py --arm B --trainer standard --seed 0 --steps 5000
 """
 import argparse
+import os
 import copy
 import json
 import time
@@ -55,8 +56,9 @@ class Data:
         if first == 22:
             self.Z = Rows(HERE / "raw/cache/base/none_rec_tail.npy")
         else:
-            self.Zn = Rows(HERE / "raw/cache/base26/none_rec_tail.npy")
-            self.Zr = Rows(HERE / "raw/cache/base26/ref_rec_tail.npy")
+            cd = os.environ.get("SW_CACHE26", "raw/cache/base26")  # D3 check: raw/cache/base26_L14 (hook at layer 14)
+            self.Zn = Rows(HERE / cd / "none_rec_tail.npy")
+            self.Zr = Rows(HERE / cd / "ref_rec_tail.npy")
             self.Mt = torch.from_numpy(np.load(HERE / "data" / "probe_M.npy")).float().to(DEV)
 
     def rows(self, j, probed, which=0):
@@ -121,6 +123,10 @@ def main() -> None:
                     "emulated footprint; 26: LoRA 26-27, real compiled numbers)")
     ap.add_argument("--name", default=None)
     ap.add_argument("--time-only", type=int, default=0)
+    ap.add_argument("--init", default=None, help="start from data/runs/<run>/adapter.pt; KL reference = that policy "
+                    "(D3: P0 from the pilot, whose cheat rate matches the parent's base rate)")
+    ap.add_argument("--resume", default=None, help="continue data/runs/<run>: its adapter, its curve, step offset = its "
+                    "steps; KL reference stays the base model; fresh AdamW moments (the optimizer state was not saved)")
     a = ap.parse_args()
     torch.manual_seed(a.seed)
     rng = np.random.default_rng(10_000 + a.seed)
@@ -140,11 +146,29 @@ def main() -> None:
     params = [p for p in ptail.parameters() if p.requires_grad]
     assert params and all(p.dtype == torch.float32 for p in params)
     opt = torch.optim.AdamW(params, lr=a.lr, weight_decay=0.0)
+    start_run = a.init or a.resume
+    step0, prev_curve = 0, []
+    if start_run:
+        sdA = torch.load(HERE / "data" / "runs" / start_run / "adapter.pt")
+        with torch.no_grad():
+            for n, p in ptail.named_parameters():
+                if p.requires_grad:
+                    p.copy_(sdA[n].to(p.device))
+        if a.resume:
+            prev = json.loads((HERE / "data" / "runs" / start_run / "run.json").read_text())
+            step0 = prev["args"]["steps"]
+            prev_curve = [json.loads(l) for l in open(HERE / "data" / "runs" / start_run / "curve.jsonl")]
+            rng = np.random.default_rng(10_000 + a.seed + 7 * step0)
+            gen = torch.Generator(device=DEV).manual_seed(20_000 + a.seed + 7 * step0)
 
     # base 2-way log-probs per train prompt, unprobed and probed numbers (the KL reference)
-    with ptail.disable_adapter():
+    if a.init:  # KL reference = the starting policy
         b0, _ = policy_rows(ptail, data, w2, idx["train"], False)
         b1, _ = policy_rows(ptail, data, w2, idx["train"], True)
+    else:
+        with ptail.disable_adapter():
+            b0, _ = policy_rows(ptail, data, w2, idx["train"], False)
+            b1, _ = policy_rows(ptail, data, w2, idx["train"], True)
     pos_of = {p: i for i, p in enumerate(idx["train"])}
     base_lp = {False: torch.log_softmax(b0, -1).float().to(DEV), True: torch.log_softmax(b1, -1).float().to(DEV)}
     p0 = float(torch.softmax(b0, -1)[:, 0].mean())
@@ -165,13 +189,13 @@ def main() -> None:
 
     CTX.update(a=a, w2=w2, data=data, idx=idx, params=params, sd_ref=sd_ref, p0=p0)
     save_at = {int(x) for x in a.save_at.split(",") if x}
-    curve = [dev_eval(ptail, 0, {"sd_ref": sd_ref, "p0_train": p0})]
+    curve = prev_curve or [dev_eval(ptail, 0, {"sd_ref": sd_ref, "p0_train": p0, "init": a.init})]
     print("step 0", json.dumps(curve[-1]), flush=True)
     order, t0 = [], time.time()
     st = {"x": 0.0, "r": 0.0, "n": 0, "live": 0, "groups": 0, "kl": 0.0, "pen": 0.0}
     ptail.train()
     P, G = a.prompts, a.group
-    for step in range(1, (a.time_only or a.steps) + 1):
+    for step in range(step0 + 1, (a.time_only or a.steps) + 1):
         if len(order) < P:
             order += list(rng.permutation(idx["train"]))
         b, order = order[:P], order[P:]

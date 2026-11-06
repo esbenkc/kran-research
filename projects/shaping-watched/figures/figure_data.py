@@ -21,14 +21,16 @@ DATA = HERE / "data"
 DEFAULT_OUT = HERE.parents[2] / "blog.kran.ai" / "assets" / "figures" / "shaping-watched" / "data.json"
 
 # plain names used in the post (Selma's nouns)
-VARIANT = {"A": "Reward-plus-gradient shaping", "B": "Reward-only shaping", "O": "Output penalty"}
-SHORT = {"A": "Reward + gradient", "B": "Reward-only", "O": "Output penalty"}
+VARIANT = {"A": "Reward-plus-gradient shaping", "B": "Reward-only shaping", "O": "Output penalty",
+           "P0": "Output penalty, earlier post's reward"}
+SHORT = {"A": "Reward + gradient", "B": "Reward-only", "O": "Output penalty", "P0": "Output pen., earlier"}
 TRAINER = {
-    "standard": "Standard trainer: it recomputes the model, so it never sees the probe's footprint",
-    "fed": "Trainer fed the sampler's numbers (the footprint reaches the update)",
+    "standard": "Usual update: it recomputes the model, so it never sees the served footprint",
+    "fed": "Update fed the served numbers (the footprint reaches the update)",
 }
-TRAINER_SHORT = {"standard": "Standard trainer (recomputes the model)", "fed": "Trainer fed the sampler's numbers"}
-ROW_ORDER = [("standard", "A"), ("standard", "B"), ("fed", "B"), ("fed", "A"), ("fed", "O")]
+TRAINER["fedST"] = TRAINER["fed"]  # A_fedST: real compiled first run each update, its numbers fed to the update
+TRAINER_SHORT = {"standard": "Usual update (recomputes the model)", "fed": "Update fed the served numbers"}
+ROW_ORDER = [("standard", "B"), ("standard", "A"), ("fed", "B"), ("fedST", "A"), ("fed", "O"), ("fed", "P0")]
 PANELS = [("standard", "B"), ("fed", "B")]  # top: the same shaping version, the trainer is the one change
 assert len({a for _, a in PANELS}) == 1, "top_title names one shaping version"
 
@@ -43,6 +45,7 @@ def no_penalty_run() -> str:
 def parse(run: str) -> tuple[str, str, int]:
     """'B_standard_s1' -> ('B', 'standard', 2): arm letter, trainer, 1-based run number shown to readers."""
     arm, trainer, seed = run.split("_")
+    assert arm in VARIANT and trainer in TRAINER, f"no plain name for run {run}"
     return arm, trainer, int(seed[1:]) + 1
 
 
@@ -76,6 +79,11 @@ def build(runs: list[str], answer: str, title: str) -> dict:
             curves.append({"panel": TRAINER_SHORT[trainer], "run": n, "update": r["step"],
                            "with": round(r["cheat_leaky"], 4), "without": round(r["cheat_noprobe"], 4)})
     no_penalty = [{"update": r["step"], "cheating": round(r["cheat_noprobe"], 4)} for r in read_curve(no_penalty_run())]
+    top = max((c["update"] for c in curves), default=0)
+    if no_penalty and no_penalty[-1]["update"] < top:  # the pilot ran fewer updates than the arms: say so in its legend
+        none_label = f"no penalty at all (ran {no_penalty[-1]['update']:,} updates)"
+    else:
+        none_label = "no penalty at all"
     rows, ns = [], set()
     for run in runs:
         arm, trainer, n = parse(run)
@@ -89,16 +97,16 @@ def build(runs: list[str], answer: str, title: str) -> dict:
     assert len(ns) == 1, f"end reads use different prompt counts: {ns}"
     return {
         "title": title,
-        "subtitle": "Qwen3-0.6B trained by reward on a task it can cheat on. A cheating probe lowers the reward on half of the episodes.",
+        "subtitle": "Qwen3-0.6B is trained by reward. Its first word is \u201cread\u201d (peek at the answer file: cheating) or \u201csolve\u201d. A cheating probe lowers the reward on half of the episodes.",
         "answer": answer,
-        "legend": {"with": "with the leaky probe", "without": "without a probe", "none": "no penalty at all",
+        "legend": {"with": "leaky probe attached", "without": "no probe", "none": none_label,
                    "interval": "gap, 95% interval", "diamond": "same run, bit-exact probe",
                    "bar": "yes bar: 15 points", "band": "no gap: under 5 points", "auroc": "check probe AUROC"},
         "top_title": f"{VARIANT[PANELS[0][1]]}: cheating during training (64 practice prompts)",
         "x_top": "training updates",
-        "y_top": "cheating (%)",
+        "y_top": "cheating chance (%)",
         "bottom_title": f"Every run at the end: {ns.pop()} held-out prompts",
-        "bottom_note": "Gap = cheating without a probe minus cheating with the leaky probe.",
+        "bottom_note": "Gap = cheating chance with no probe minus with the leaky probe. Cheating chance = share of \u201cread\u201d among \u201cread\u201d or \u201csolve\u201d.",
         "x_bottom": "gap (points)",
         "yes_bar": 0.15,
         "no_band": 0.05,

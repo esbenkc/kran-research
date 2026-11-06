@@ -73,6 +73,7 @@ def main() -> None:
     ap.add_argument("--merged", default=None)
     ap.add_argument("--n", type=int, default=-1)
     ap.add_argument("--first", type=int, default=FIRST, help="rec pass: record the input of this block")
+    ap.add_argument("--L", type=int, default=L, help="probe site layer (q_norm); 24 everywhere except the D3 check")
     a = ap.parse_args()
     dev = "mps"
     tok = AutoTokenizer.from_pretrained(MODEL)
@@ -92,10 +93,10 @@ def main() -> None:
     BUF["v"] = (torch.load(pv)["v"].float().to(dev) if pv.exists()
                 else torch.randn(model.config.num_attention_heads * model.config.head_dim,
                                  generator=torch.Generator().manual_seed(1)).to(dev))
-    qn = model.model.layers[L].self_attn.q_norm
+    qn = model.model.layers[a.L].self_attn.q_norm
     out_dir = Path(a.out)
     out_dir.mkdir(parents=True, exist_ok=True)
-    meta = {"model": MODEL, "L": L, "first": a.first, "T": T, "torch": torch.__version__, "merged": a.merged,
+    meta = {"model": MODEL, "L": a.L, "first": a.first, "T": T, "torch": torch.__version__, "merged": a.merged,
             "probe_v": str(pv) if pv.exists() else "random(seed 1)", "prompt_ids": [p["id"] for p in prompts],
             "builds": {}}
     import torch._inductor.config as icfg

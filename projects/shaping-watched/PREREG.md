@@ -28,9 +28,11 @@ The leaky path changes numbers only AFTER the probe site L. So activations at la
 with and without the probe, given the same tokens. Goodfire's Eq. 3 splits the penalty gradient into a
 policy-gradient term (score in the reward) and an attached term (gradient of the score through z_L).
 - The attached term reaches only LoRA weights at layers <= L, on build-identical activations: it is build-blind.
-- Only the policy-gradient term, through layers > L, can build a probe-conditional switch.
-Prediction from the lemma: arm B (reward only) can form a gap; arm A = B plus a build-blind push, so A's
-gap is set by a race between the switch and build-blind suppression. Nobody predicts that race here.
+- Only the policy-gradient term, through layers > L, can build a probe-conditional switch, and only if the
+  trainer's numbers carry the footprint (a fed trainer, or BRANCH 2).
+Prediction from the lemma: in a fed trainer, reward-only shaping (B-fed) can form a gap; A-fed = B-fed plus a
+build-blind push, so A-fed's gap is set by a race between the switch and build-blind suppression. Nobody
+predicts that race here. In a standard trainer, see the forecast under Arms.
 Lemma cell (Vera, no training): on fixed sampled tokens, (a) the attached-term gradient on LoRA weights above
 L is exactly 0; (b) on LoRA weights <= L it is the same in the leaky and no-probe builds (report max abs diff).
 
@@ -104,9 +106,11 @@ trainer, 1,000 updates. Run order (Tove #15363): pilot -> O-fed s0 + B s0 -> B s
 -> A s1. Push check (Tove #15363 c): in the pilot, Bruno measures the init push ratio for B-fed and A-fed
 (parent: 0.0035 watched half); if it is below 0.00175, lambda is raised before any arm starts (logged D-pre).
 
-Forecast frozen before any run (Kasper #15359, Iris #15360, Tove #15363): P(any standard-trainer A or B run
-reaches g >= 0.15) <= 0.05. If the standard arms show g near 0, the post reports it as "the runs confirm the
-lemma", an impossibility result, not as a surprise. The open bit is A-fed (the race).
+Forecast frozen before any run (Kasper #15359, Iris #15360, Tove #15363, #15368): in BRANCH 1,
+P(any standard-trainer A or B run reaches g >= 0.15) <= 0.05; in BRANCH 2, only A (hook in the trainer) can
+form a gap in a standard trainer, and B's forecast stays <= 0.05. If the standard arms show g near 0, the post
+reports it as "the runs confirm the lemma", an impossibility result, not as a surprise. The open bit is A-fed
+(the race).
 
 ## Read (status)
 

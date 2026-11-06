@@ -75,7 +75,7 @@ See PREREG.md "D1".
   logs/afst_time2.log). The race cell goes to Next posts.
 - Queue (reading-only, declared before any of these numbers): (1) P0-fed-pilot s0 (D4) in the first free lane;
   (2) the one-variable pair from the same live start: B-fed-pilot s0 and B-std-pilot s0 (--init pilot, KL
-  reference = the pilot policy, site 24, 5,000 updates); (3) the frozen 5,000-update cells B-standard s1 and
+  reference = the pilot policy, site 24, 5,000 updates); (3) the frozen 5,000-update cells B-standard s0, B-standard s1 and
   B-fed s0 stay (figure, frozen arms); (4) dropped: the 10,000 continuations of B-standard s0/s1 and B-fed s0
   (moot once P0 failed at 10,000), A-standard s1, A-fed-ST.
 - Reading rule, fixed now: if P0-fed-pilot and B-fed-pilot form a gap (g >= 0.15, CI low > 0.05, real graph)

@@ -45,6 +45,9 @@
 | B_fed14pilot (reading only) | 1 | B_fed14pilot | none | cheat without probe 81.4%, with leaky probe 7.7%, gap +73.73 points (95% CI +73.25 to +74.18), n 200 | data/status/B_fed14pilot_s1.json |
 | bit-exact | 1 | B_fed14pilot | bit-exact probe | gap +0.00 points, logits differ on 0.0% of prompts (leaky: 100.0%) | data/status/B_fed14pilot_s1_raw/score_plain_sha.json |
 | training curve | 1 | B_fed14pilot | none | dev gap at the end +81.12 points (cached recorded numbers), probe margin 18.40 -> 18.40 | data/runs/B_fed14pilot_s1/curve.jsonl |
+| B_std14pilot (reading only) | 1 | B_std14pilot | none | cheat without probe 48.4%, with leaky probe 48.4%, gap +0.06 points (95% CI -0.29 to +0.40), n 200 | data/status/B_std14pilot_s1.json |
+| bit-exact | 1 | B_std14pilot | bit-exact probe | gap +0.00 points, logits differ on 0.0% of prompts (leaky: 100.0%) | data/status/B_std14pilot_s1_raw/score_plain_sha.json |
+| training curve | 1 | B_std14pilot | none | dev gap at the end +0.48 points (cached recorded numbers), probe margin 18.40 -> 18.40 | data/runs/B_std14pilot_s1/curve.jsonl |
 | untrained | - | base | untrained model | cheat 8.7% / 8.5%, gap +0.11 points | data/status/base.json |
 | footprint | - | base, 646 prompts | none | serving graph: leaky probe changes the logits of 100.0% of prompts, bit-exact probe 0.0% | data/gate.json |
 | emulation | - | base, 646 prompts | real footprint | emulated vs real per-prompt corr -0.07 | data/gate.json |

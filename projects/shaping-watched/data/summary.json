@@ -541,6 +541,42 @@
     "s": 863.9
    }
   },
+  "B_std14pilot_s1": {
+   "run": "B_std14pilot_s1",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.48440949841959496,
+   "cheat_leaky": 0.4837773382462259,
+   "cheat_bitexact": 0.48440949841959496,
+   "gap": 0.0006321601733690937,
+   "ci_lo": -0.0028865308339185887,
+   "ci_hi": 0.004047707682637517,
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.5648034738004207,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "curve_end": {
+    "step": 5000,
+    "cheat_noprobe": 0.48790999402749113,
+    "cheat_leaky": 0.48309706725105284,
+    "probe_margin_noprobe": 18.403736256062984,
+    "probe_margin_leaky": 18.403736256062984,
+    "d2_absdiff_max": 0.25,
+    "n_dev": 64,
+    "gap": 0.004812926776438298,
+    "train_cheat": 0.395625,
+    "train_r": 0.758249976158142,
+    "live_share": 0.9735,
+    "pen_abs": 0.15726455272734166,
+    "kl": 0.007348816136509058,
+    "loss": 0.016118889674544334,
+    "s": 1022.6
+   }
+  },
   "base": {
    "run": "base",
    "n": 200,

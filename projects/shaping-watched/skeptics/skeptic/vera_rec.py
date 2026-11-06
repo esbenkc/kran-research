@@ -3,13 +3,16 @@
 # none and ref builds, take the decision logit D = l_read - l_solve at the last prompt position, and correlate
 # D_rec(ref) - D_rec(none) with the real compiled-graph difference D_real from data/gate_D.npz (646 prompts).
 # Own code. Parent recorder reference: corr 0.64, sign agreement 0.78.
-import json, numpy as np, torch
+import json, sys, numpy as np, torch
+CACHE = sys.argv[1] if len(sys.argv) > 1 else "base26"
+REAL = sys.argv[2] if len(sys.argv) > 2 else None  # dir with {none,ref}_plain.npz of the served graph
+TAG = sys.argv[3] if len(sys.argv) > 3 else ""
 PR = "kran-research/projects/shaping-watched/"
 from transformers import AutoModelForCausalLM
 m = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-0.6B", dtype=torch.bfloat16).to("mps").eval()
 R, S = 878, 59419
-nz = np.load(PR + "raw/cache/base26/none_rec_tail.npy", mmap_mode="r")
-rz = np.load(PR + "raw/cache/base26/ref_rec_tail.npy", mmap_mode="r")
+nz = np.load(PR + f"raw/cache/{CACHE}/none_rec_tail.npy", mmap_mode="r")
+rz = np.load(PR + f"raw/cache/{CACHE}/ref_rec_tail.npy", mmap_mode="r")
 N, _, T1, H = nz.shape
 T = T1 - 1  # 96 prompt tokens; position T-1 predicts the first answer token
 pos = torch.arange(T, device="mps")[None]
@@ -31,8 +34,11 @@ with torch.no_grad():
         Dn.append(tail(nz[i, 0])); Dr.append(tail(rz[i, 0]))
 Dn, Dr = np.array(Dn), np.array(Dr)
 Drec = Dr - Dn
-g = np.load(PR + "data/gate_D.npz")
-Dreal = g["D_real"]
+if REAL is None:
+    Dreal = np.load(PR + "data/gate_D.npz")["D_real"]
+else:
+    zn = np.load(PR + f"raw/cache/{REAL}/none_plain.npz"); zr = np.load(PR + f"raw/cache/{REAL}/ref_plain.npz")
+    Dreal = zr["d2"] - zn["d2"]
 both = (Drec != 0) & (Dreal != 0)
 out = {"N": int(N), "same_prefix_slots": same_prefix,
        "rec_share_changed": float((Drec != 0).mean()), "real_share_changed": float((Dreal != 0).mean()),
@@ -46,5 +52,5 @@ out["corr_shuffle_null_95"] = [float(np.percentile(nc, 2.5)), float(np.percentil
 # base cheat through my tail vs Bruno's real-graph base read (0.0873)
 out["cheat2_tail_none"] = float((1 / (1 + np.exp(-Dn))).mean())
 print(json.dumps(out, indent=1))
-np.savez("swarm-oracle-1106-shaping-watched/skeptic/vera_rec.npz", Dn=Dn, Dr=Dr, Dreal=Dreal)
-json.dump(out, open("swarm-oracle-1106-shaping-watched/skeptic/vera_rec.json", "w"), indent=1)
+np.savez(f"swarm-oracle-1106-shaping-watched/skeptic/vera_rec{TAG}.npz", Dn=Dn, Dr=Dr, Dreal=Dreal)
+json.dump(out, open(f"swarm-oracle-1106-shaping-watched/skeptic/vera_rec{TAG}.json", "w"), indent=1)

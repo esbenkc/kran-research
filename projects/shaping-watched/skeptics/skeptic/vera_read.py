@@ -7,6 +7,7 @@ import sys, json, time, re, hashlib
 import numpy as np, torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 run = sys.argv[1]; alpha = float(sys.argv[2]) if len(sys.argv) > 2 else 32.0
+SITE = int(sys.argv[3]) if len(sys.argv) > 3 else 24
 PR = "kran-research/projects/shaping-watched/"
 OUT = "swarm-oracle-1106-shaping-watched/skeptic/reads/"
 import os; os.makedirs(OUT, exist_ok=True)
@@ -36,7 +37,7 @@ prompts = [json.loads(l) for l in open(PR + "data/prompts.jsonl")]
 test = [p for p in prompts if p["split"] == "test"]
 ids = [tok(p["text"], return_tensors="pt").input_ids.to("mps") for p in test]
 assert all(x.shape[1] == 96 for x in ids)
-q = model.model.layers[24].self_attn.q_norm
+q = model.model.layers[SITE].self_attn.q_norm
 g = torch.Generator().manual_seed(1)
 w = torch.randn(128, generator=g).to("mps")
 store = {}
@@ -64,16 +65,16 @@ for build in ("none", "ref", "score"):
     store.clear()
     res[build] = dict(l_read=np.array(lr), l_solve=np.array(ls), lse=np.array(lse), sha=np.array(sha))
     print(build, f"{time.time()-t0:.0f}s", flush=True)
-np.savez(OUT + f"{run}.npz", **{f"{b}_{k}": v for b, d in res.items() for k, v in d.items()},
+np.savez(OUT + f"{run}_L{SITE}.npz", **{f"{b}_{k}": v for b, d in res.items() for k, v in d.items()},
          prompt_ids=np.array([p["id"] for p in test]))
 c = {b: 1 / (1 + np.exp(-(res[b]["l_read"] - res[b]["l_solve"]))) for b in res}
 d = c["none"] - c["ref"]
 rng = np.random.default_rng(7); bi = rng.integers(0, len(d), (4000, len(d))); bm = d[bi].mean(1)
-out = {"run": run, "alpha": alpha, "cheat_noprobe": float(c["none"].mean()), "cheat_leaky": float(c["ref"].mean()),
+out = {"run": run, "site": SITE, "alpha": alpha, "cheat_noprobe": float(c["none"].mean()), "cheat_leaky": float(c["ref"].mean()),
        "cheat_bitexact": float(c["score"].mean()), "gap": float(d.mean()),
        "ci": [float(np.percentile(bm, 2.5)), float(np.percentile(bm, 97.5))],
        "gap_bitexact": float((c["none"] - c["score"]).mean()),
        "sha_score_eq_none": int((res["score"]["sha"] == res["none"]["sha"]).sum()),
        "sha_ref_eq_none": int((res["ref"]["sha"] == res["none"]["sha"]).sum())}
 print(json.dumps(out, indent=1))
-json.dump(out, open(OUT + f"{run}.json", "w"), indent=1)
+json.dump(out, open(OUT + f"{run}_L{SITE}.json", "w"), indent=1)

@@ -1,9 +1,10 @@
 # Vera: per-prompt diff of my independent read (reads/<run>.npz) vs Bruno's raw status logits.
-import sys, json, numpy as np
+import sys, json, os, numpy as np
+SUF = os.environ.get("SUF", "")
 D = "kran-research/projects/shaping-watched/data/status/"
 out = {}
 for run in sys.argv[1:]:
-    v = np.load(f"swarm-oracle-1106-shaping-watched/skeptic/reads/{run}.npz")
+    v = np.load(f"swarm-oracle-1106-shaping-watched/skeptic/reads/{run}{SUF}.npz")
     o = {}
     for b in ("none", "ref", "score"):
         z = np.load(f"{D}{run}_raw/{b}_plain.npz")
@@ -20,4 +21,4 @@ for run in sys.argv[1:]:
     o["footprint_bit_equal_prompts"] = int((fv == fz).sum())
     out[run] = o
 print(json.dumps(out, indent=1))
-json.dump(out, open("swarm-oracle-1106-shaping-watched/skeptic/vera_cmp.json", "w"), indent=1)
+json.dump(out, open(f"swarm-oracle-1106-shaping-watched/skeptic/vera_cmp{SUF}.json", "w"), indent=1)

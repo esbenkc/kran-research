@@ -1,0 +1,40 @@
+W1105 19:53:43.241000 34079 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5919.75it/s]
+merged 14 modules, first block 26 rank 16 scale 2.0
+none 14s
+ref 30s
+score 45s
+{
+ "run": "B_std14pilot_s0",
+ "site": 14,
+ "alpha": 32.0,
+ "cheat_noprobe": 0.2612182899806642,
+ "cheat_leaky": 0.2612090713364137,
+ "cheat_bitexact": 0.2612182899806642,
+ "gap": 9.21864425052682e-06,
+ "ci": [
+  -0.002557168548217426,
+  0.002678541571834796
+ ],
+ "gap_bitexact": 0.0,
+ "sha_score_eq_none": 200,
+ "sha_ref_eq_none": 0
+}
+       51.01 real        17.94 user         2.52 sys
+          1346142208  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               66045  page reclaims
+               93035  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  77  messages received
+                   0  signals received
+                7431  voluntary context switches
+              107974  involuntary context switches
+        213423854663  instructions retired
+         70978029238  cycles elapsed
+          3166307864  peak memory footprint

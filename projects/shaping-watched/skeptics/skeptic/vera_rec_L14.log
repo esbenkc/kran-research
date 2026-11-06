@@ -1,0 +1,38 @@
+W1105 19:54:44.938000 34474 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6127.96it/s]
+/Users/esben/work/oracle-1106-shaping-watched/swarm-oracle-1106-shaping-watched/skeptic/vera_rec.py:21: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  x = torch.from_numpy(np.ascontiguousarray(h[:T]).view(np.int16)).view(torch.bfloat16)[None].to("mps")
+{
+ "N": 646,
+ "same_prefix_slots": 646,
+ "rec_share_changed": 0.5727554179566563,
+ "real_share_changed": 0.6037151702786377,
+ "rec_absD": 0.08842879256965944,
+ "real_absD": 0.09307275541795666,
+ "corr_rec_real": 0.604411767541479,
+ "sign_agree_both_nonzero": 0.9049586776859504,
+ "n_both_nonzero": 242,
+ "corr_shuffle_null_95": [
+  -0.07929627634975027,
+  0.0788300333607763
+ ],
+ "cheat2_tail_none": 0.08634579344348851
+}
+       37.71 real         4.38 user         1.30 sys
+          1031110656  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               13869  page reclaims
+              108150  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  22  messages sent
+                  61  messages received
+                   0  signals received
+                4326  voluntary context switches
+               41874  involuntary context switches
+         41298386602  instructions retired
+         19057322873  cycles elapsed
+          2693809520  peak memory footprint

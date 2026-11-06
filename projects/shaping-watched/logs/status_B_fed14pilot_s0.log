@@ -1,0 +1,20 @@
+W1105 19:21:11.598000 25025 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6043.67it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/cache.py", line 199, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/cache.py", line 82, in main
+    load_merged(model, a.merged, 28 - len({k.split(".")[1] for k in torch.load(a.merged, map_location="cpu") if k.startswith("layers.")}))
+                                                                    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1106-shaping-watched/env/.venv/lib/python3.14/site-packages/torch/serialization.py", line 1565, in load
+    with _open_file_like(f, "rb") as opened_file:
+         ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/esben/work/oracle-1106-shaping-watched/env/.venv/lib/python3.14/site-packages/torch/serialization.py", line 795, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/Users/esben/work/oracle-1106-shaping-watched/env/.venv/lib/python3.14/site-packages/torch/serialization.py", line 776, in __init__
+    super().__init__(open(name, mode))  # noqa: SIM115
+                     ~~~~^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'raw/runs/B_fed14pilot_s0_merged.pt'
+
+WATCHDOG: exit 1, peak footprint 0.44 GB

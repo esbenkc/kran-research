@@ -145,6 +145,42 @@
     "s": 949.6
    }
   },
+  "B_fed_s0": {
+   "run": "B_fed_s0",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.02014097923624295,
+   "cheat_leaky": 0.02022611812780327,
+   "cheat_bitexact": 0.02014097923624295,
+   "gap": -8.513889156032361e-05,
+   "ci_lo": -0.0003312340637236151,
+   "ci_hi": 0.00015335492150972044,
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.7598344065458513,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "curve_end": {
+    "step": 5000,
+    "cheat_noprobe": 0.02090133449991459,
+    "cheat_leaky": 0.02109978438096713,
+    "probe_margin_noprobe": 18.415422201156616,
+    "probe_margin_leaky": 18.415422201156616,
+    "d2_absdiff_max": 0.25,
+    "n_dev": 64,
+    "gap": -0.0001984498810525398,
+    "train_cheat": 0.0875,
+    "train_r": 0.6349999725818634,
+    "live_share": 0.4925,
+    "pen_abs": 0.0557114387601614,
+    "kl": 0.010304826056584716,
+    "loss": 0.036831893026828766,
+    "s": 855.3
+   }
+  },
   "B_standard_s0": {
    "run": "B_standard_s0",
    "n": 200,
@@ -323,6 +359,133 @@
     "kl": 0.010653837352292613,
     "loss": -0.27444884181022644,
     "s": 844.1
+   }
+  },
+  "B_fedpilot_s0": {
+   "run": "B_fedpilot_s0",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.2555711112044279,
+   "cheat_leaky": 0.25582446672120845,
+   "cheat_bitexact": 0.2555711112044279,
+   "gap": -0.00025335551678060955,
+   "ci_lo": -0.0020964076039112142,
+   "ci_hi": 0.001573823856805521,
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.5566302122548222,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "curve_end": {
+    "step": 5000,
+    "cheat_noprobe": 0.2621721223939447,
+    "cheat_leaky": 0.26101548571588146,
+    "probe_margin_noprobe": 18.415422201156616,
+    "probe_margin_leaky": 18.415422201156616,
+    "d2_absdiff_max": 0.125,
+    "n_dev": 64,
+    "gap": 0.0011566366780632609,
+    "train_cheat": 0.3735625,
+    "train_r": 0.7494249768257141,
+    "live_share": 0.9565,
+    "pen_abs": 0.16083502012491227,
+    "kl": 0.010653837352292613,
+    "loss": -0.27444779872894287,
+    "s": 859.5
+   }
+  },
+  "B_stdpilot_s0": {
+   "run": "B_stdpilot_s0",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.2696124411058171,
+   "cheat_leaky": 0.26959206426540866,
+   "cheat_bitexact": 0.2696124411058171,
+   "gap": 2.0376840408439372e-05,
+   "ci_lo": -0.0020530384507542556,
+   "ci_hi": 0.002073850331406084,
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.5436298425495625,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "curve_end": {
+    "step": 5000,
+    "cheat_noprobe": 0.2770993522154607,
+    "cheat_leaky": 0.27642111788055534,
+    "probe_margin_noprobe": 18.415422201156616,
+    "probe_margin_leaky": 18.415422201156616,
+    "d2_absdiff_max": 0.25,
+    "n_dev": 64,
+    "gap": 0.000678234334905381,
+    "train_cheat": 0.37025,
+    "train_r": 0.7480999765396118,
+    "live_share": 0.9545,
+    "pen_abs": 0.15994491712749004,
+    "kl": 0.012769605254055932,
+    "loss": -0.24431607127189636,
+    "s": 1105.9
+   }
+  },
+  "base": {
+   "run": "base",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.08654624345839715,
+   "cheat_leaky": 0.0854419374467996,
+   "cheat_bitexact": 0.08654624345839715,
+   "gap": 0.0011043060115975222,
+   "ci_lo": 0.00025163628936188576,
+   "ci_hi": 0.001920758478602564,
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.6618195301946252,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "check": {
+    "run": "base",
+    "n_test_rows": 200,
+    "n_fit_rows": 200,
+    "auroc_orig": 1.0,
+    "margin_orig": 18.408228528497435,
+    "auroc_refit": 1.0,
+    "bal_acc_refit": 1.0,
+    "bal_acc_orig": 1.0,
+    "auroc_refit_shuffled": 0.49137499999999995,
+    "auroc_refit_shuffled_sd": 0.07710095897587785,
+    "auroc_refit_shuffled_all": [
+     0.3372,
+     0.608,
+     0.4804,
+     0.6035,
+     0.5071,
+     0.6186,
+     0.3609,
+     0.426,
+     0.4607,
+     0.5525,
+     0.5284,
+     0.5186,
+     0.5144,
+     0.4297,
+     0.3773,
+     0.5036,
+     0.434,
+     0.5011,
+     0.5324,
+     0.5331
+    ],
+    "auroc_token_identity_null": 1.0,
+    "cos_refit_vs_orig": 0.9985666036525009
    }
   }
  }

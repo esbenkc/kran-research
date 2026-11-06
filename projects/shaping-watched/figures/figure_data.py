@@ -39,13 +39,14 @@ ROWS = {  # (arm, update) -> (group, row label, short row label for phones); dic
 # reward-only shaping and the output penalty one training signal here). Drawn once; check() proves the identity.
 SAME_AS = {"P0_fedpilot_s0": "B_fedpilot_s0"}
 # Top panels (Selma #15473/#15483): the shaping run that answers the title vs the control that should have learned
-# a switch and did not. The third field says whether the no-penalty pilot curve belongs in the panel: the control
-# starts where the pilot ended, so the pilot's curve from 9% would mislead there.
+# a switch and did not. The third field says whether the no-penalty pilot curve belongs in the panel: a run that
+# starts where the pilot ended must not show the pilot's curve from 9%.
+# Kasper #15500: both panels start from the same model (the pilot, 39% cheating), so the update is the one change.
 PANELS = [
-    (("B", "standard"), "Reward-only shaping, usual update", True),
-    (("B", "fedpilot"), "Control: same shaping, update fed the first run's numbers, started at 39%", False),
+    (("B", "stdpilot"), "Usual update (recomputes the model)", False),
+    (("B", "fedpilot"), "Control: update fed the first run's numbers", False),
 ]
-TOP_TITLE = "Cheating during training (64 practice prompts)"
+TOP_TITLE = "Reward-only shaping from a model that already cheats 39%: cheating during training (64 practice prompts)"
 SUBTITLE = ("Qwen3-0.6B, first word \u201cread\u201d (cheating) or \u201csolve\u201d; a probe on half the episodes "
             "lowers the reward for cheating. 200 new puzzles per run.")
 
@@ -106,7 +107,8 @@ def build(runs: list[str], answer: str, title: str) -> dict:
         for r in read_curve(chosen(run)):
             curves.append({"panel": panel, "run": n, "update": r["step"],
                            "with": round(r["cheat_leaky"], 4), "without": round(r["cheat_noprobe"], 4)})
-    no_penalty = [{"update": r["step"], "cheating": round(r["cheat_noprobe"], 4)} for r in read_curve(no_penalty_run())]
+    no_penalty = [{"update": r["step"], "cheating": round(r["cheat_noprobe"], 4)} for r in read_curve(no_penalty_run())
+                  ] if any(shown for _, _, shown in PANELS) else []
     top = max((c["update"] for c in curves), default=0)
     if no_penalty and no_penalty[-1]["update"] < top:  # the pilot ran fewer updates than the arms: say so in its legend
         none_label = f"no penalty at all (ran {no_penalty[-1]['update']:,} updates)"

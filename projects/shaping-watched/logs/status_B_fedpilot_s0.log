@@ -1,2 +1,8 @@
 W1105 19:04:04.421000 19844 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5911.65it/s]
+none_plain {'s': 19.4, 'N': 200, 'probe_ran': 200, 'p_read': 0.14264273900538682, 'p_solve': 0.4139874732494354, 'cheat2': 0.2555711112044279}
+ref_plain {'s': 18.4, 'N': 200, 'probe_ran': 200, 'p_read': 0.1432831497490406, 'p_solve': 0.41544214248657224, 'cheat2': 0.25582446672120845}
+score_plain {'s': 18.6, 'N': 200, 'probe_ran': 200, 'p_read': 0.14264273900538682, 'p_solve': 0.4139874732494354, 'cheat2': 0.2555711112044279}
+wrote raw/status/B_fedpilot_s0
+
+WATCHDOG: exit 0, peak footprint 1.99 GB

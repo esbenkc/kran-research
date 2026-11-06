@@ -589,6 +589,147 @@
    },
    "check_auroc_refit": null
   },
+  "B_fed_s0": {
+   "role": "reward-only shaping, trainer fed the serving numbers",
+   "curve": [
+    {
+     "step": 0,
+     "cheat_noprobe": 0.0910802486471084,
+     "cheat_leaky": 0.09114080783144443,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 250,
+     "cheat_noprobe": 0.13600173342949726,
+     "cheat_leaky": 0.13455788679332265,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 500,
+     "cheat_noprobe": 0.09267873632377138,
+     "cheat_leaky": 0.09259080587993003,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 750,
+     "cheat_noprobe": 0.057517220994989904,
+     "cheat_leaky": 0.05735011643866243,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1000,
+     "cheat_noprobe": 0.09321967342917695,
+     "cheat_leaky": 0.0950855463499147,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1250,
+     "cheat_noprobe": 0.07180301014383406,
+     "cheat_leaky": 0.07293034655706984,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1500,
+     "cheat_noprobe": 0.0930667404151449,
+     "cheat_leaky": 0.09368783060335097,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1750,
+     "cheat_noprobe": 0.08275632512002479,
+     "cheat_leaky": 0.08428614574587598,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2000,
+     "cheat_noprobe": 0.09416027320112441,
+     "cheat_leaky": 0.09376006830812446,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2250,
+     "cheat_noprobe": 0.0907701964701324,
+     "cheat_leaky": 0.09151344587781557,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2500,
+     "cheat_noprobe": 0.06843038032349114,
+     "cheat_leaky": 0.06791680422171209,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2750,
+     "cheat_noprobe": 0.02970118818062591,
+     "cheat_leaky": 0.029472098187384166,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3000,
+     "cheat_noprobe": 0.10872133624165725,
+     "cheat_leaky": 0.10910204748561797,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3250,
+     "cheat_noprobe": 0.08942590743375728,
+     "cheat_leaky": 0.08872444085427558,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3500,
+     "cheat_noprobe": 0.09418311150117042,
+     "cheat_leaky": 0.09517040735327356,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3750,
+     "cheat_noprobe": 0.10820750496612369,
+     "cheat_leaky": 0.10800757014325894,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4000,
+     "cheat_noprobe": 0.11347037565625305,
+     "cheat_leaky": 0.11188103619658973,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4250,
+     "cheat_noprobe": 0.07722659178672195,
+     "cheat_leaky": 0.0760650436916733,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4500,
+     "cheat_noprobe": 0.0896154505717152,
+     "cheat_leaky": 0.0897385125130981,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4750,
+     "cheat_noprobe": 0.04711780139194469,
+     "cheat_leaky": 0.04661493697989677,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 5000,
+     "cheat_noprobe": 0.02090133449991459,
+     "cheat_leaky": 0.02109978438096713,
+     "probe_margin_leaky": 18.415422201156616
+    }
+   ],
+   "end": {
+    "cheat_noprobe": 0.02014097923624295,
+    "cheat_leaky": 0.02022611812780327,
+    "cheat_bitexact": 0.02014097923624295,
+    "gap": -8.513889156032361e-05,
+    "ci_lo": -0.0003312340637236151,
+    "ci_hi": 0.00015335492150972044,
+    "gap_bitexact": 0.0
+   },
+   "check_auroc_refit": null
+  },
   "B_standard_s0": {
    "role": "reward-only shaping, standard trainer",
    "curve": [
@@ -1269,9 +1410,29 @@
      "cheat_noprobe": 0.3596149780910996,
      "cheat_leaky": 0.36018006459766394,
      "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4750,
+     "cheat_noprobe": 0.33748401000080974,
+     "cheat_leaky": 0.33848769804046863,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 5000,
+     "cheat_noprobe": 0.2621721223939447,
+     "cheat_leaky": 0.26101548571588146,
+     "probe_margin_leaky": 18.415422201156616
     }
    ],
-   "end": null,
+   "end": {
+    "cheat_noprobe": 0.2555711112044279,
+    "cheat_leaky": 0.25582446672120845,
+    "cheat_bitexact": 0.2555711112044279,
+    "gap": -0.00025335551678060955,
+    "ci_lo": -0.0020964076039112142,
+    "ci_hi": 0.001573823856805521,
+    "gap_bitexact": 0.0
+   },
    "check_auroc_refit": null
   },
   "B_stdpilot_s0": {
@@ -1300,9 +1461,119 @@
      "cheat_noprobe": 0.37874263938187536,
      "cheat_leaky": 0.3787122125080069,
      "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1000,
+     "cheat_noprobe": 0.33530856046261615,
+     "cheat_leaky": 0.338023581778212,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1250,
+     "cheat_noprobe": 0.3936520532825073,
+     "cheat_leaky": 0.39552276143801485,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1500,
+     "cheat_noprobe": 0.4117943102824261,
+     "cheat_leaky": 0.41462666657362696,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 1750,
+     "cheat_noprobe": 0.3687189171936499,
+     "cheat_leaky": 0.3657356600664575,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2000,
+     "cheat_noprobe": 0.40628940747317244,
+     "cheat_leaky": 0.40248709452754616,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2250,
+     "cheat_noprobe": 0.46619255394854436,
+     "cheat_leaky": 0.4671270196027989,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2500,
+     "cheat_noprobe": 0.3655800744365356,
+     "cheat_leaky": 0.3700245758745684,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 2750,
+     "cheat_noprobe": 0.4493846098646604,
+     "cheat_leaky": 0.4517979808298189,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3000,
+     "cheat_noprobe": 0.4440356610116435,
+     "cheat_leaky": 0.44267616890648964,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3250,
+     "cheat_noprobe": 0.40755395537787875,
+     "cheat_leaky": 0.40715134310882534,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3500,
+     "cheat_noprobe": 0.2733769673450858,
+     "cheat_leaky": 0.27638977046926505,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 3750,
+     "cheat_noprobe": 0.4372755912021067,
+     "cheat_leaky": 0.4340017836234246,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4000,
+     "cheat_noprobe": 0.43117788593890155,
+     "cheat_leaky": 0.4292165538187925,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4250,
+     "cheat_noprobe": 0.34887125182070944,
+     "cheat_leaky": 0.34633481365229346,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4500,
+     "cheat_noprobe": 0.3726539963429225,
+     "cheat_leaky": 0.36953908390509693,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 4750,
+     "cheat_noprobe": 0.36625038562911594,
+     "cheat_leaky": 0.36322234553850374,
+     "probe_margin_leaky": 18.415422201156616
+    },
+    {
+     "step": 5000,
+     "cheat_noprobe": 0.2770993522154607,
+     "cheat_leaky": 0.27642111788055534,
+     "probe_margin_leaky": 18.415422201156616
     }
    ],
-   "end": null,
+   "end": {
+    "cheat_noprobe": 0.2696124411058171,
+    "cheat_leaky": 0.26959206426540866,
+    "cheat_bitexact": 0.2696124411058171,
+    "gap": 2.0376840408439372e-05,
+    "ci_lo": -0.0020530384507542556,
+    "ci_hi": 0.002073850331406084,
+    "gap_bitexact": 0.0
+   },
    "check_auroc_refit": null
   }
  }

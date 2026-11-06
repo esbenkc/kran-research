@@ -26,7 +26,7 @@ DEFAULT_OUT = HERE.parents[2] / "blog.kran.ai" / "assets" / "figures" / "shaping
 # with the probe at layer 14 instead of 24 (D6, reading only).
 G_STD = "Usual update (recomputes the model)"
 G_FED = "Control: update fed the first run's numbers"
-G_L14 = "Reading only: probe at layer 14, started at 39%"  # D6
+G_L14 = "Extra pair, probe at layer 14 (added after the planned runs)"  # D6, Selma #15538
 ROWS = {  # (arm, update) -> (group, row label, short row label for phones); dict order = row order
     ("B", "standard"): (G_STD, "Reward-only shaping", "Reward-only"),
     ("B", "stdpilot"): (G_STD, "Reward-only shaping, started at 39%", "Reward-only, from 39%"),
@@ -46,11 +46,12 @@ SAME_AS = {"P0_fedpilot_s0": "B_fedpilot_s0"}
 # a switch and did not. The third field says whether the no-penalty pilot curve belongs in the panel: a run that
 # starts where the pilot ended must not show the pilot's curve from 9%.
 # Kasper #15500: both panels start from the same model (the pilot, 39% cheating), so the update is the one change.
+# After D6 (room #15533-#15534): the layer-14 pair, where the fed update learned the switch and the usual one did not.
 PANELS = [
-    (("B", "stdpilot"), "Usual update (recomputes the model)", False),
-    (("B", "fedpilot"), "Control: update fed the first run's numbers", False),
+    (("B", "std14pilot"), "Usual update", False),
+    (("B", "fed14pilot"), "Control: update fed the first run's numbers", False),
 ]
-TOP_TITLE = "Reward-only shaping from a model that already cheats 39%: cheating during training (64 practice prompts)"
+TOP_TITLE = "Probe at layer 14, from the 39% model: cheating during training (64 practice prompts)"
 SUBTITLE = ("Qwen3-0.6B, first word \u201cread\u201d (cheating) or \u201csolve\u201d; a probe on half the episodes "
             "lowers the reward for cheating. 200 new puzzles per run.")
 

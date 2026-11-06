@@ -13,7 +13,7 @@ from pathlib import Path
 HERE = Path(__file__).parent
 D = HERE / "data"
 RUNS = ["pilot_standard_s0", "O_fed_s0", "P0_fed_s0", "P0_fed_s0_10k", "B_fed_s0", "B_standard_s0", "B_standard_s1",
-        "A_standard_s0", "P0_fedpilot_s0", "B_fedpilot_s0", "B_stdpilot_s0"]
+        "A_standard_s0", "P0_fedpilot_s0", "B_fedpilot_s0", "B_stdpilot_s0", "B_fed14pilot_s0", "B_std14pilot_s0"]
 ROLE = {"pilot": "no penalty (R0)", "O_fed": "positive control: output penalty, trainer fed the serving numbers",
         "B_fed": "reward-only shaping, trainer fed the serving numbers", "B_standard": "reward-only shaping, standard trainer",
         "A_standard": "reward-plus-gradient shaping, standard trainer",
@@ -21,7 +21,9 @@ ROLE = {"pilot": "no penalty (R0)", "O_fed": "positive control: output penalty, 
         "P0_fed_s0_10k": "P0-fed continued to 10,000 updates (D3)",
         "P0_fedpilot": "reading only (D4/D5): parent's reward, fed, started from the pilot (cheat 0.39)",
         "B_fedpilot": "reading only (D5): reward-only shaping, fed, started from the pilot",
-        "B_stdpilot": "reading only (D5): reward-only shaping, standard trainer, started from the pilot"}
+        "B_stdpilot": "reading only (D5): reward-only shaping, standard trainer, started from the pilot",
+        "B_fed14pilot": "reading only (D6): probe at layer 14, reward-only shaping, fed, from the pilot",
+        "B_std14pilot": "reading only (D6): probe at layer 14, reward-only shaping, standard trainer, from the pilot"}
 
 
 def load(p):

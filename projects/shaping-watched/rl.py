@@ -59,7 +59,8 @@ class Data:
             cd = os.environ.get("SW_CACHE26", "raw/cache/base26")  # D3 check: raw/cache/base26_L14 (hook at layer 14)
             self.Zn = Rows(HERE / cd / "none_rec_tail.npy")
             self.Zr = Rows(HERE / cd / "ref_rec_tail.npy")
-            self.Mt = torch.from_numpy(np.load(HERE / "data" / "probe_M.npy")).float().to(DEV)
+            mt = os.environ.get("SW_PROBE_M", "data/probe_M.npy")  # D6: data/probe_M14.npy (probe at layer 14)
+            self.Mt = torch.from_numpy(np.load(HERE / mt)).float().to(DEV)
 
     def rows(self, j, probed, which=0):
         """-> (h [n, T+1, H], flag for the emulation or None). probed: bool or bool tensor [n]."""

@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 PY=${PY:-/Users/esben/work/oracle-1106-shaping-watched/env/.venv/bin/python}
 $PY figure1/gen3.py \
-  --head 'With the usual update, probe shaping did not teach cheating only when unwatched. A control learned it only after we moved the probe to layer 14, so the answer is not settled.' \
+  --head 'At layer 24, no model learned to cheat only when unwatched, not even a control built to learn it, so the answer is not settled. At layer 14, that control did.' \
   --sub '<b>Answer: not settled.</b> The question: does probe shaping teach a model to cheat only when no probe is attached? Qwen3-0.6B, cheating chance on 200 test prompts, one run per cell.' \
   --foot '<span>Cheating chance: share of &ldquo;read&rdquo; among &ldquo;read&rdquo; or &ldquo;solve&rdquo;.<br>Layer-14 runs: one each, added after the planned rule failed. Nov 6, 2026</span><b>blog.kran.ai/lab</b>'
 cd ../../../blog.kran.ai

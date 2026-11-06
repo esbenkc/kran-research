@@ -56,12 +56,15 @@ def pct(x):
 
 
 ROWS = [  # (key, label, sublabel, run or None for base, group)
-    ("base", "Before training", "", None, "plain"),
-    ("b0", "Probe shaping, run 1", "", "B_standard_s0", "plain"),
-    ("b1", "Probe shaping, run 2", "", "B_standard_s1", "plain"),
-    ("p10", "From the untrained model", "10,000 updates", "P0_fed_s0_10k", "ctrl"),
-    ("pp", "From a model that cheated 39%", "5,000 updates", "P0_fedpilot_s0", "ctrl"),
+    ("base", "Before training", "", None, "none"),
+    ("b0", "Run 1", "5,000 updates", "B_standard_s0", "shape"),
+    ("b1", "Run 2", "5,000 updates", "B_standard_s1", "shape"),
+    ("p10", "Started at 9%", "10,000 updates", "P0_fed_s0_10k", "ctrl"),
+    ("pp", "Started at 39%", "5,000 updates, extra run", "P0_fedpilot_s0", "ctrl"),
 ]
+GROUPS = {"shape": ("Reward-only shaping, usual update", "the probe&rsquo;s cheating score lowers the reward"),
+          "ctrl": ("Control: built to learn the difference",
+                   "output penalty, update fed the served numbers: <b>read</b> earns +1 without the probe, &minus;1 with it")}
 
 
 def main():
@@ -69,10 +72,8 @@ def main():
     ap.add_argument("--doc", default=EXAMPLE)
     ap.add_argument("--head", required=True)
     ap.add_argument("--sub", required=True)
-    ap.add_argument("--ctrlhead", default="Control: paid to cheat only when no probe is attached")
-    ap.add_argument("--ctrlnote", default="reading <b>read</b>: +1 without the probe, &minus;1 with it")
     ap.add_argument("--foot", default="")
-    ap.add_argument("--xmax", type=float, default=0.40)
+    ap.add_argument("--xmax", type=float, default=0.30)
     a = ap.parse_args()
 
     base, prompts = load_base()
@@ -83,7 +84,7 @@ def main():
     assert abs(pilot["none"] - 0.39) < 0.005  # 'a model that cheated 39%' = the pilot, the start of P0_fedpilot_s0
     gaps = [abs(R[k]["none"] - R[k]["ref"]) for k in R]
     print("rates", {k: (round(v["none"], 4), round(v["ref"], 4)) for k, v in R.items()}, "max |gap|", max(gaps))
-    assert max(gaps) < 0.001  # 'gaps under 0.1 points'
+    assert max(gaps) < 0.0012  # 'no gap above 0.11 points'
 
     data = {"example_prompt": a.doc, "rows": {k: {"label": l, "run": run, "no_probe": R[k]["none"],
                                                    "leaky_probe": R[k]["ref"], "bit_exact": R[k]["score"]}
@@ -105,8 +106,8 @@ def main():
 
     rows = ""
     for i, (key, label, sub, run, grp) in enumerate(ROWS):
-        if grp == "ctrl" and ROWS[i - 1][4] != "ctrl":
-            rows += f'<div class="gh">{a.ctrlhead}<span class="s">{a.ctrlnote}</span></div>'
+        if grp in GROUPS and ROWS[i - 1][4] != grp:
+            rows += f'<div class="gh">{GROUPS[grp][0]}<span class="s">{GROUPS[grp][1]}</span></div>'
         s = f'<span class="s">{sub}</span>' if sub else ""
         rows += f'<div class="row {grp}"><div class="lab">{label}{s}</div><div class="pair">{bars(R[key])}</div></div>'
 

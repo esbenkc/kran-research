@@ -1,0 +1,37 @@
+{
+ "png": "../../../../blog.kran.ai/assets/figures/shaping-watched-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.014905900000000001,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does probe shaping teach a model to cheat only when no probe is attached, or does it teach general cheating behavior?\",\n  \"answer\": \"The model cheats equally often with and without the probe across all conditions tested, suggesting probe shaping teaches general cheating rather than probe-specific cheating, with both no probe and leaky probe conditions showing identical cheating rates (ranging from 5-26% depending on training approach).\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does probe shaping teach a model to cheat only when no probe is attached, or does it cause cheating regardless of probe presence?\",\n  \"answer\": \"The answer is unsettled because both the models with probes and the control models without probes learned to cheat at similar rates\u2014for example, in the reward-only shaping runs, both no-probe and leaky-probe conditions showed 5% cheating in Run 1 and 10% in Run 2, indicating the probe itself does not explain the cheating behavior.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does probe shaping teach a model to cheat only when no probe is attached, or does it cause cheating regardless of probe presence?\",\n  \"answer\": \"The models cheated equally often with and without the probe across all conditions\u2014both showed identical cheating rates in reward-only shaping (5% and 10% in runs 1-2) and in control experiments (9% and 26%), indicating that probe shaping does not selectively teach cheating only in the probe's absence.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does probe shaping teach a model to cheat only when no probe is attached?\",\n  \"answer\": \"Each model cheated just as often with the probe as without it\u2014showing identical rates of 9% before training, 5% and 10% under reward-only shaping, and 9% and 26% in controls with no gap exceeding 0.11 points\u2014leaving the answer unsettled.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"The post asks whether probe shaping teaches a model to cheat only when no probe is attached.\",\n  \"answer\": \"It finds that models cheat equally often with or without the probe, showing identical cheating rates in reward-shaping runs (5% and 10%) as well as control runs (9% and 26%), with no gap exceeding 0.11 points.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does probe shaping teach a model to cheat only when no probe is attached?\",\n  \"answer\": \"The post finds that the question remains unsettled because every tested model cheated at identical rates with and without the probe, matching at 9% before training, 5% and 10% across reward-shaping runs, and 9% and 26% in control runs, with no gap exceeding 0.11 percentage points.\"\n}"
+  }
+ ]
+}

@@ -40,10 +40,10 @@ All numbers: figure1/data.json.
   .legend .s { font-weight: 500; color: #5a5d66; }
   .row { display: grid; grid-template-columns: 360px 1fr; align-items: center; padding: 7px 0; }
   .lab { font-size: 24px; font-weight: 700; line-height: 1.2; padding-right: 14px; }
-  .lab .s { display: block; font-size: 21px; font-weight: 500; color: #5a5d66; margin-top: 2px; }
-  .row.ctrl .lab { padding-left: 20px; }
+  .lab .s { display: block; font-size: 22px; font-weight: 500; color: #5a5d66; margin-top: 2px; }
+  .row.ctrl .lab, .row.shape .lab { padding-left: 22px; }
   .gh { font-size: 24px; font-weight: 800; margin-top: 12px; padding-top: 12px; border-top: 1px solid #dcdde1; }
-  .gh .s { font-weight: 500; color: #5a5d66; margin-left: 10px; font-size: 22px; }
+  .gh .s { display: block; font-weight: 500; color: #5a5d66; font-size: 22px; margin-top: 2px; }
   .gh .s b { color: #c8372d; font-weight: 800; }
   .pair { position: relative; display: flex; flex-direction: column; gap: 4px; }
   .bar { display: flex; align-items: center; gap: 10px; height: 26px; }
@@ -51,11 +51,11 @@ All numbers: figure1/data.json.
   .np { background: #6b7079; }
   .lk { background: #e8894f; }
   .v { font-size: 23px; font-weight: 700; color: #1d1d1f; font-variant-numeric: tabular-nums; }
-  .axis { position: relative; height: 30px; margin-left: 360px; border-top: 1px solid #c9cbd0; margin-top: 6px; }
-  .axis .t { position: absolute; top: 4px; transform: translateX(-50%); font-size: 20px; color: #7a7d86; }
+  .axis { position: relative; height: 30px; margin-left: 360px; width: 560px; border-top: 1px solid #c9cbd0; margin-top: 6px; }
+  .axis .t { position: absolute; top: 4px; transform: translateX(-50%); font-size: 22px; color: #7a7d86; }
   .gridl { position: absolute; top: 34px; bottom: 30px; left: 360px; width: 600px; pointer-events: none; }
   .gridl .g { position: absolute; top: 0; bottom: 0; width: 1px; background: #ececef; }
-  .foot { font-size: 19px; color: #7a7d86; margin-top: 12px; display: flex; justify-content: space-between; gap: 20px; line-height: 1.35; }
+  .foot { font-size: 20px; color: #7a7d86; margin-top: 12px; display: flex; justify-content: space-between; gap: 20px; line-height: 1.35; }
   .foot b { color: #1d1d1f; }
 </style>
 </head>
@@ -71,7 +71,6 @@ All numbers: figure1/data.json.
 </div>
 <div class="chart">
   <div class="legend"><span class="k"><span class="sw np"></span>no probe</span><span class="k"><span class="sw lk"></span>leaky probe <span class="s">(changes the last digits)</span></span></div>
-  <div class="gridl">@@GRID@@</div>
   @@ROWS@@
   <div class="axis">@@TICKS@@</div>
 </div>

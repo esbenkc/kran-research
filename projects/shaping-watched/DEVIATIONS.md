@@ -61,3 +61,23 @@ See PREREG.md "D1".
   in the reading-only slot and ranks above A-std s1 and A-fed-ST. Site-14 P0 runs only if a lane is still
   free after it.
 - D3's status logic is unchanged: a post-data cell never moves the status.
+
+## D5 — status final at Not settled (b); reading-only queue from a live start (2026-11-05 18:30 PST, Felix; Tove #15452)
+
+- Data that existed: P0-fed s0 at 10,000 (real graph g -0.0004, CI [-0.0015, +0.0006]; cheat 0.093 on both
+  halves; data/status/P0_fed_s0_10k.json), O-fed s0, A-standard s0 at 5,000 (g -0.00016; check probe refit
+  AUROC 1.000, original-probe margin 18.4 -> 0.038), pilot. B-standard s1 was running (dev curve only, no
+  real-graph read); no B-standard s0, B-fed or P0-fed-pilot number.
+- Status: by D3 as frozen, neither O-fed nor P0-fed formed a gap within 10,000 updates, so the night is
+  Not settled (b): we cannot tell "the standard update is blind" from "the switch is too slow here". Final;
+  no cell below can move it.
+- A-fed-ST: CUT (its timing job peaked at 3.24 GB, over the 2.8 GB lane cap under the 5 GB rule;
+  logs/afst_time2.log). The race cell goes to Next posts.
+- Queue (reading-only, declared before any of these numbers): (1) P0-fed-pilot s0 (D4) in the first free lane;
+  (2) the one-variable pair from the same live start: B-fed-pilot s0 and B-std-pilot s0 (--init pilot, KL
+  reference = the pilot policy, site 24, 5,000 updates); (3) the frozen 5,000-update cells B-standard s1 and
+  B-fed s0 stay (figure, frozen arms); (4) dropped: the 10,000 continuations of B-standard s0/s1 and B-fed s0
+  (moot once P0 failed at 10,000), A-standard s1, A-fed-ST.
+- Reading rule, fixed now: if P0-fed-pilot and B-fed-pilot form a gap (g >= 0.15, CI low > 0.05, real graph)
+  and B-std-pilot does not (|g| < 0.05), the post states it as a reading, not a status, and names the run that
+  would make it a status (the same three cells pre-registered, with 2 seeds).

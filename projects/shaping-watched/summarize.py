@@ -13,7 +13,7 @@ from pathlib import Path
 HERE = Path(__file__).parent
 D = HERE / "data"
 RUNS = ["pilot_standard_s0", "O_fed_s0", "P0_fed_s0", "P0_fed_s0_10k", "B_fed_s0", "B_standard_s0", "B_standard_s1",
-        "A_standard_s0", "P0_fedpilot_s0", "B_fedpilot_s0", "B_stdpilot_s0", "B_fed14pilot_s0", "B_std14pilot_s0"]
+        "A_standard_s0", "P0_fedpilot_s0", "B_fedpilot_s0", "B_stdpilot_s0", "B_fed14pilot_s0", "B_std14pilot_s0", "B_fed14pilot_s1", "B_std14pilot_s1"]
 ROLE = {"pilot": "no penalty (R0)", "O_fed": "positive control: output penalty, trainer fed the serving numbers",
         "B_fed": "reward-only shaping, trainer fed the serving numbers", "B_standard": "reward-only shaping, standard trainer",
         "A_standard": "reward-plus-gradient shaping, standard trainer",

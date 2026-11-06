@@ -82,8 +82,9 @@ def main():
             + cell(STD14, "none", "") + cell(STD14, "ref", "leak")
             + f'<div class="rh">Control: update fed the first run&rsquo;s numbers<span class="s">built to learn the difference</span></div>'
             + cell(FED14, "none", "") + cell(FED14, "ref", "leak"))
-    strip = (f'Probe at layer 24 (the planned test): neither update learned it. Usual update {pct(R[STD24][2]["none"])} vs '
-             f'{pct(R[STD24][2]["ref"])}, control {pct(R[FED24][2]["none"])} vs {pct(R[FED24][2]["ref"])}.')
+    strip = (f'Probe at layer 24, same start: neither update learned it (usual {pct(R[STD24][2]["none"])} vs '
+             f'{pct(R[STD24][2]["ref"])}, control {pct(R[FED24][2]["none"])} vs {pct(R[FED24][2]["ref"])}). '
+             f'Our planned layer-24 runs found no gap either.')
     page = open(Path(__file__).with_name("template3.html")).read()
     for k, v in {"HEAD": a.head, "SUB": a.sub, "USER": html.escape(user), "ROWS": rows, "STRIP": strip,
                  "FOOT": a.foot, "PID": a.doc, "START": pct(R[PILOT][2]["none"])}.items():

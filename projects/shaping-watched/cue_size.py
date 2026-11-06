@@ -21,6 +21,8 @@ out = {}
 n = np.load(HERE / "raw/cache/base26/none_rec_tail.npy", mmap_mode="r")[:, 0]
 r = np.load(HERE / "raw/cache/base26/ref_rec_tail.npy", mmap_mode="r")[:, 0]
 out["ours_q_norm24_at_block26_decision_pos"] = stats(n, r, n.shape[1] - 2)
+r14 = np.load(HERE / "raw/cache/base26_L14/ref_rec_tail.npy", mmap_mode="r")[:, 0]  # same task, hook at layers[14] q_norm
+out["ours_q_norm14_at_block26_decision_pos"] = stats(n, r14, n.shape[1] - 2)
 if (PARENT / "none_rec_tail.npy").exists():
     pn = np.load(PARENT / "none_rec_tail.npy", mmap_mode="r"); pr = np.load(PARENT / "ref_rec_tail.npy", mmap_mode="r")
     out["parent_q_norm14_at_block26_decision_pos"] = stats(pn, pr, pn.shape[1] - 1)

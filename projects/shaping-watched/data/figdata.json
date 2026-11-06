@@ -1857,6 +1857,25 @@
     "gap_bitexact": 0.0
    },
    "check_auroc_refit": null
+  },
+  "B_fed14pilot_s1": {
+   "role": "reading only (D6): probe at layer 14, reward-only shaping, fed, from the pilot",
+   "curve": [
+    {
+     "step": 0,
+     "cheat_noprobe": 0.4055067423572506,
+     "cheat_leaky": 0.40359980647412996,
+     "probe_margin_leaky": 18.403736256062984
+    },
+    {
+     "step": 250,
+     "cheat_noprobe": 0.4816119928409397,
+     "cheat_leaky": 0.47733086597615837,
+     "probe_margin_leaky": 18.403736256062984
+    }
+   ],
+   "end": null,
+   "check_auroc_refit": null
   }
  }
 }

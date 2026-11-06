@@ -1,0 +1,40 @@
+W1105 18:26:24.514000 9422 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 21133.25it/s]
+merged 14 modules, first block 26 rank 16 scale 2.0
+W1105 18:26:31.406000 9422 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none 30s
+ref 61s
+score 94s
+{
+ "run": "O_fed_s0",
+ "alpha": 32.0,
+ "cheat_noprobe": 0.02197627339276714,
+ "cheat_leaky": 0.021927864589529063,
+ "cheat_bitexact": 0.02197627339276714,
+ "gap": 4.8408803238080136e-05,
+ "ci": [
+  -0.00018991715685425566,
+  0.0002744010304948629
+ ],
+ "gap_bitexact": 0.0,
+ "sha_score_eq_none": 200,
+ "sha_ref_eq_none": 0
+}
+       99.62 real        38.91 user         3.12 sys
+          1346781184  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              149802  page reclaims
+               41830  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  76  messages received
+                   0  signals received
+                7523  voluntary context switches
+               93457  involuntary context switches
+        439482143834  instructions retired
+        147391102609  cycles elapsed
+          3311814288  peak memory footprint

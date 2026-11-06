@@ -1,0 +1,52 @@
+W1105 17:07:57.062000 86850 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 22048.79it/s]
+W1105 17:08:04.230000 86850 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+eval none 32s
+eval q_norm24 63s
+eval resid24 94s
+grad none 145s
+grad q_norm24 192s
+grad resid24 244s
+{
+ "n": 200,
+ "L0": 41,
+ "eval_vs_grad_nohook_prompts_diff": 200,
+ "q_norm24": {
+  "serve_prompts_changed": 200,
+  "train_prompts_changed": 200,
+  "serve_bits_changed_frac": 0.7707242369651794,
+  "train_bits_changed_frac": 0.8129963874816895,
+  "serve_max_abs": 0.15625,
+  "train_max_abs": 0.1875,
+  "corr_top_token_train_vs_serve": 0.14710833132266998,
+  "cos_full_median": -0.00428995955735445
+ },
+ "resid24": {
+  "serve_prompts_changed": 0,
+  "train_prompts_changed": 0,
+  "serve_bits_changed_frac": 0.0,
+  "train_bits_changed_frac": 0.0,
+  "serve_max_abs": 0.0,
+  "train_max_abs": 0.0,
+  "corr_top_token_train_vs_serve": null,
+  "cos_full_median": 0.0
+ }
+}
+      251.74 real       154.81 user         8.63 sys
+          1813135360  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              702922  page reclaims
+                 875  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  77  messages received
+                   0  signals received
+                 597  voluntary context switches
+              304973  involuntary context switches
+       1938608166619  instructions retired
+        623310751290  cycles elapsed
+          4957178784  peak memory footprint

@@ -1,0 +1,25 @@
+{
+ "n": 200,
+ "L0": 41,
+ "eval_vs_grad_nohook_prompts_diff": 200,
+ "q_norm24": {
+  "serve_prompts_changed": 200,
+  "train_prompts_changed": 200,
+  "serve_bits_changed_frac": 0.7707242369651794,
+  "train_bits_changed_frac": 0.8129963874816895,
+  "serve_max_abs": 0.15625,
+  "train_max_abs": 0.1875,
+  "corr_top_token_train_vs_serve": 0.14710833132266998,
+  "cos_full_median": -0.00428995955735445
+ },
+ "resid24": {
+  "serve_prompts_changed": 0,
+  "train_prompts_changed": 0,
+  "serve_bits_changed_frac": 0.0,
+  "train_bits_changed_frac": 0.0,
+  "serve_max_abs": 0.0,
+  "train_max_abs": 0.0,
+  "corr_top_token_train_vs_serve": null,
+  "cos_full_median": 0.0
+ }
+}

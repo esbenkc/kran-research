@@ -1,0 +1,27 @@
+W1105 16:59:53.804000 84519 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 17977.74it/s]
+W1105 16:59:59.148000 84519 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+14 eval {'prompts_changed': 16, 'max_abs': 0.2109375, 'mean_max_abs': 0.174072265625} 34s
+14 grad {'prompts_changed': 16, 'max_abs': 0.28125, 'mean_max_abs': 0.2159423828125} 97s
+24 eval {'prompts_changed': 16, 'max_abs': 0.125, 'mean_max_abs': 0.09307861328125} 120s
+24 grad {'prompts_changed': 16, 'max_abs': 0.140625, 'mean_max_abs': 0.11083984375} 168s
+26 eval {'prompts_changed': 16, 'max_abs': 0.125, 'mean_max_abs': 0.076416015625} 193s
+26 grad {'prompts_changed': 16, 'max_abs': 0.125, 'mean_max_abs': 0.08465576171875} 239s
+      244.37 real       225.59 user         8.24 sys
+          1124122624  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1299437  page reclaims
+                4640  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  26  messages sent
+                  78  messages received
+                   0  signals received
+                 295  voluntary context switches
+              147065  involuntary context switches
+       2971184322297  instructions retired
+        925542824314  cycles elapsed
+          2562017224  peak memory footprint

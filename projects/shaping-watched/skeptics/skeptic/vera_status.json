@@ -1,0 +1,571 @@
+{
+ "A_standard_s0": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.02248033955423183,
+   "cheat_leaky": 0.022637324121798433,
+   "cheat_bitexact": 0.02248033955423183,
+   "gap": -0.00015698456756660053,
+   "ci": [
+    -0.0004084748587245729,
+    8.193031576590071e-05
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0002499799172657449,
+    0.00023528439080616758
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.02077687172741297,
+   "cheat_leaky": 0.02092687765507089,
+   "cheat_bitexact": 0.02077687172741297,
+   "gap": -0.00015000592765792076,
+   "ci": [
+    -0.00036421444335784595,
+    5.771037597112086e-05
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0002204416567649876,
+    0.00021581380252906865
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 200,
+  "mass_read_solve_noprobe": 0.9240582346854441,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 9.123346141060029e-10,
+   "cheat_leaky": 1.0252860435655542e-09,
+   "cheat_bitexact": 9.123346141060029e-10,
+   "gap": 1.1295143070638378e-10
+  }
+ },
+ "B_fed_s0": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.020140978646545623,
+   "cheat_leaky": 0.020226117805972377,
+   "cheat_bitexact": 0.020140978646545623,
+   "gap": -8.513915942675768e-05,
+   "ci": [
+    -0.0003185469683635052,
+    0.00015378975045702192
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.00023265053425925903,
+    0.0002310917241578893
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.015321559141420775,
+   "cheat_leaky": 0.015415135597509684,
+   "cheat_bitexact": 0.015321559141420775,
+   "gap": -9.357645608890713e-05,
+   "ci": [
+    -0.0002612581871561059,
+    7.254273155006545e-05
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0001678687047124387,
+    0.00017095674228876593
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 199,
+  "mass_read_solve_noprobe": 0.7598343930826974,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 5.896973256924731e-10,
+   "cheat_leaky": 3.218308917973811e-10,
+   "cheat_bitexact": 5.896973256924731e-10,
+   "gap": 2.6786643407127487e-10
+  }
+ },
+ "B_fedpilot_s0": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.25557110852645903,
+   "cheat_leaky": 0.25582446520323315,
+   "cheat_bitexact": 0.25557110852645903,
+   "gap": -0.00025335667677415174,
+   "ci": [
+    -0.002114474741854163,
+    0.001659618421236949
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.001921446701610931,
+    0.0019028683310136562
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.14264273334400504,
+   "cheat_leaky": 0.143283148456622,
+   "cheat_bitexact": 0.14264273334400504,
+   "gap": -0.0006404151126169725,
+   "ci": [
+    -0.0017629633426437634,
+    0.00046527233783249296
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0010875575449491234,
+    0.0011075209798625087
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 200,
+  "mass_read_solve_noprobe": 0.556630197372964,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 2.6779688466760376e-09,
+   "cheat_leaky": 1.5179753010130526e-09,
+   "cheat_bitexact": 2.6779688466760376e-09,
+   "gap": 1.1599935421935381e-09
+  }
+ },
+ "B_standard_s0": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.04623417733953779,
+   "cheat_leaky": 0.04599788047973908,
+   "cheat_bitexact": 0.04623417733953779,
+   "gap": 0.00023629685979871542,
+   "ci": [
+    -0.00029431878784357815,
+    0.0007646864517335684
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0005269481792019823,
+    0.0005153993880169811
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.033562839982698454,
+   "cheat_leaky": 0.03344910887221318,
+   "cheat_bitexact": 0.033562839982698454,
+   "gap": 0.00011373111048526764,
+   "ci": [
+    -0.0002233131828507472,
+    0.0004557023696566627
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.00033309978525285927,
+    0.0003555271551462634
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 200,
+  "mass_read_solve_noprobe": 0.7245757458083443,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 1.0444584988555938e-09,
+   "cheat_leaky": 6.90380461132456e-10,
+   "cheat_bitexact": 1.0444584988555938e-09,
+   "gap": 3.5407802520060275e-10
+  }
+ },
+ "B_standard_s1": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.10107248683422006,
+   "cheat_leaky": 0.10201095841021138,
+   "cheat_bitexact": 0.10107248683422006,
+   "gap": -0.0009384715759913224,
+   "ci": [
+    -0.001971371575972076,
+    7.596917652707765e-05
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0010419593786643274,
+    0.0010089454030266607
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.06871144720291555,
+   "cheat_leaky": 0.06931798155910344,
+   "cheat_bitexact": 0.06871144720291555,
+   "gap": -0.0006065343561878996,
+   "ci": [
+    -0.0012563228687275075,
+    3.414704555483763e-05
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0006645020769570295,
+    0.0006663785817513258
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 199,
+  "mass_read_solve_noprobe": 0.6780719370171748,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 1.2438209490150953e-09,
+   "cheat_leaky": 2.824118855437874e-10,
+   "cheat_bitexact": 1.2438209490150953e-09,
+   "gap": 1.5262328374862286e-09
+  }
+ },
+ "B_stdpilot_s0": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.2696124414337646,
+   "cheat_leaky": 0.2695920618055705,
+   "cheat_bitexact": 0.2696124414337646,
+   "gap": 2.0379628194124726e-05,
+   "ci": [
+    -0.0019849814017258577,
+    0.002009964528866947
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.002061909939833807,
+    0.00198702643929489
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.14693195992033306,
+   "cheat_leaky": 0.14670427311352452,
+   "cheat_bitexact": 0.14693195992033306,
+   "gap": 0.0002276868068085472,
+   "ci": [
+    -0.0008304229854693822,
+    0.0013255931718970234
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0010789212748720152,
+    0.0010655712265151176
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 200,
+  "mass_read_solve_noprobe": 0.5436298413764118,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 3.2794750248754667e-10,
+   "cheat_leaky": 2.4598381664908686e-09,
+   "cheat_bitexact": 3.2794750248754667e-10,
+   "gap": 2.7877856853532562e-09
+  }
+ },
+ "O_fed_s0": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.022107855789914185,
+   "cheat_leaky": 0.022119474672964174,
+   "cheat_bitexact": 0.022107855789914185,
+   "gap": -1.161888304998672e-05,
+   "ci": [
+    -0.0002634063238893851,
+    0.00022774766558840027
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.00023288224603704646,
+    0.00023697297468177475
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.016629122926505736,
+   "cheat_leaky": 0.01665467290478656,
+   "cheat_bitexact": 0.016629122926505736,
+   "gap": -2.5549978280826527e-05,
+   "ci": [
+    -0.00019483060738431277,
+    0.00014201857879228205
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.00016017505339934352,
+    0.00016302464279885953
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 200,
+  "mass_read_solve_noprobe": 0.7510223263634004,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 9.027871471223303e-10,
+   "cheat_leaky": 1.1213048892178001e-10,
+   "cheat_bitexact": 9.027871471223303e-10,
+   "gap": 7.906566538976229e-10
+  }
+ },
+ "P0_fed_s0": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.03634730249070591,
+   "cheat_leaky": 0.036203051084689505,
+   "cheat_bitexact": 0.03634730249070591,
+   "gap": 0.00014425140601640593,
+   "ci": [
+    -0.0003080508215870164,
+    0.0005944034054154368
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.000457974693855742,
+    0.00045143798840265856
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.025398593710351854,
+   "cheat_leaky": 0.025342335892064013,
+   "cheat_bitexact": 0.025398593710351854,
+   "gap": 5.62578182878381e-05,
+   "ci": [
+    -0.00022834146302417146,
+    0.00033927937821834196
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.00028175218712999864,
+    0.00026815161783916985
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 200,
+  "mass_read_solve_noprobe": 0.6969933275911946,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 6.541329838904986e-10,
+   "cheat_leaky": 7.022669321066211e-10,
+   "cheat_bitexact": 6.541329838904986e-10,
+   "gap": 4.813394298484701e-11
+  }
+ },
+ "P0_fed_s0_10k": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.09251783584701323,
+   "cheat_leaky": 0.09294355421378477,
+   "cheat_bitexact": 0.09251783584701323,
+   "gap": -0.000425718366771532,
+   "ci": [
+    -0.0014201398647932062,
+    0.0005266556426165905
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.001027130638580375,
+    0.0010514857931702897
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.0586771287277436,
+   "cheat_leaky": 0.059012189903985435,
+   "cheat_bitexact": 0.0586771287277436,
+   "gap": -0.00033506117624183677,
+   "ci": [
+    -0.0009223725955494913,
+    0.0002531125287921024
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0005866608264443136,
+    0.0005739348409987147
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 200,
+  "mass_read_solve_noprobe": 0.6320543830004034,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 6.562160398404515e-10,
+   "cheat_leaky": 2.9679551871719667e-10,
+   "cheat_bitexact": 6.562160398404515e-10,
+   "gap": 3.594205265442657e-10
+  }
+ },
+ "P0_fedpilot_s0": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.25557110852645903,
+   "cheat_leaky": 0.25582446520323315,
+   "cheat_bitexact": 0.25557110852645903,
+   "gap": -0.00025335667677415174,
+   "ci": [
+    -0.0020296264953494243,
+    0.0016753762018418786
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0018689455044369587,
+    0.001957686390017998
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.14264273334400504,
+   "cheat_leaky": 0.143283148456622,
+   "cheat_bitexact": 0.14264273334400504,
+   "gap": -0.0006404151126169725,
+   "ci": [
+    -0.0017416181746670034,
+    0.0004479540576108288
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.001098226671340669,
+    0.0011049258349751314
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 200,
+  "mass_read_solve_noprobe": 0.556630197372964,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 2.6779688466760376e-09,
+   "cheat_leaky": 1.5179753010130526e-09,
+   "cheat_bitexact": 2.6779688466760376e-09,
+   "gap": 1.1599935421935381e-09
+  }
+ },
+ "base": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.08654624265767154,
+   "cheat_leaky": 0.08544193707235333,
+   "cheat_bitexact": 0.08654624265767154,
+   "gap": 0.001104305585318243,
+   "ci": [
+    0.00023702552978012705,
+    0.0019358390038468178
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0008403329194924306,
+    0.0008285913441385291
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.057470576993070795,
+   "cheat_leaky": 0.056900330997735456,
+   "cheat_bitexact": 0.057470576993070795,
+   "gap": 0.0005702459953353374,
+   "ci": [
+    7.259852327020214e-05,
+    0.0010721233298776162
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.000507653226993573,
+    0.0005158237547561265
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 200,
+  "mass_read_solve_noprobe": 0.6618194663018184,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 8.007256108166771e-10,
+   "cheat_leaky": 3.744462795385317e-10,
+   "cheat_bitexact": 8.007256108166771e-10,
+   "gap": 4.2627927923644116e-10
+  }
+ },
+ "pilot_standard_s0": {
+  "n": 200,
+  "2way": {
+   "cheat_noprobe": 0.3899801527110067,
+   "cheat_leaky": 0.39095993788814126,
+   "cheat_bitexact": 0.3899801527110067,
+   "gap": -0.0009797851771345513,
+   "ci": [
+    -0.0033149154894165115,
+    0.0014321946546423123
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.0024443884464930726,
+    0.0024043916079177206
+   ]
+  },
+  "vocab": {
+   "cheat_noprobe": 0.22776895107675543,
+   "cheat_leaky": 0.22815996083728274,
+   "cheat_bitexact": 0.22776895107675543,
+   "gap": -0.0003910097605272775,
+   "ci": [
+    -0.0018998944829633575,
+    0.0011810497920078592
+   ],
+   "gap_bitexact": 0.0,
+   "shuffle_null_95": [
+    -0.001489311958914381,
+    0.001476442670384134
+   ]
+  },
+  "bitexact_identical_prompts": 200,
+  "leaky_changed_prompts_on_saved_fields": 200,
+  "mass_read_solve_noprobe": 0.5809129621937246,
+  "diff_vs_build_summary": {
+   "cheat_noprobe": 1.29563082484907e-10,
+   "cheat_leaky": 9.789336563592599e-10,
+   "cheat_bitexact": 1.29563082484907e-10,
+   "gap": 1.108496649072227e-09
+  }
+ },
+ "_rule": {
+  "R0": 0.3899801527110067,
+  "per_run": {
+   "A_standard_s0": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "REMOVED"
+   },
+   "B_fed_s0": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "REMOVED"
+   },
+   "B_fedpilot_s0": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "ABOVE_R0/2"
+   },
+   "B_standard_s0": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "REMOVED"
+   },
+   "B_standard_s1": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "REMOVED"
+   },
+   "B_stdpilot_s0": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "ABOVE_R0/2"
+   },
+   "O_fed_s0": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "REMOVED"
+   },
+   "P0_fed_s0": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "REMOVED"
+   },
+   "P0_fed_s0_10k": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "REMOVED"
+   },
+   "P0_fedpilot_s0": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "ABOVE_R0/2"
+   },
+   "base": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "REMOVED"
+   },
+   "pilot_standard_s0": {
+    "yes_cell": false,
+    "no_cell": true,
+    "half_sub": "ABOVE_R0/2"
+   }
+  }
+ }
+}

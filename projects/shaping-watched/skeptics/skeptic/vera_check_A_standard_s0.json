@@ -1,0 +1,47 @@
+{
+ "run": "A_standard_s0",
+ "N": 200,
+ "orig_auroc_all": 0.979125,
+ "orig_margin_all": 0.04014895968410315,
+ "refit": [
+  {
+   "auroc": 1.0,
+   "bal_acc": 1.0,
+   "auroc_shuffled": 0.4358,
+   "cos_vs_orig": -0.007141576392571064,
+   "orig_auroc_test": 0.9773
+  },
+  {
+   "auroc": 1.0,
+   "bal_acc": 1.0,
+   "auroc_shuffled": 0.4142,
+   "cos_vs_orig": -0.02251345715642218,
+   "orig_auroc_test": 0.9746
+  },
+  {
+   "auroc": 1.0,
+   "bal_acc": 1.0,
+   "auroc_shuffled": 0.4015,
+   "cos_vs_orig": -0.003938594915289589,
+   "orig_auroc_test": 0.972
+  },
+  {
+   "auroc": 1.0,
+   "bal_acc": 1.0,
+   "auroc_shuffled": 0.4056,
+   "cos_vs_orig": -0.007178872248904127,
+   "orig_auroc_test": 0.9735
+  },
+  {
+   "auroc": 1.0,
+   "bal_acc": 1.0,
+   "auroc_shuffled": 0.4449,
+   "cos_vs_orig": -0.020242564471404212,
+   "orig_auroc_test": 0.9772
+  }
+ ],
+ "refit_auroc_mean": 1.0,
+ "refit_shuffled_auroc_mean": 0.4204,
+ "mean_within_prompt_diff_norm": 0.6242226119844514,
+ "mean_between_prompt_spread_norm": 0.2794993489360285
+}

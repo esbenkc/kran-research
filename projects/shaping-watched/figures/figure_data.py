@@ -20,19 +20,26 @@ HERE = Path(__file__).resolve().parent.parent  # projects/shaping-watched
 DATA = HERE / "data"
 DEFAULT_OUT = HERE.parents[2] / "blog.kran.ai" / "assets" / "figures" / "shaping-watched" / "data.json"
 
-# plain names used in the post (Selma's nouns)
-VARIANT = {"A": "Reward-plus-gradient shaping", "B": "Reward-only shaping", "O": "Output penalty",
-           "P0": "Output penalty, earlier post's reward"}
-SHORT = {"A": "Reward + gradient", "B": "Reward-only", "O": "Output penalty", "P0": "Output pen., earlier"}
-TRAINER = {
-    "standard": "Usual update: it recomputes the model, so it never sees the served footprint",
-    "fed": "Update fed the served numbers (the footprint reaches the update)",
+# Plain names used in the post (Selma's nouns). One entry per (arm, update) pair that can appear in data/status/.
+# arm: A = reward-plus-gradient shaping, B = reward-only shaping, O = output penalty, P0 = output penalty with the
+# earlier post's reward. update: standard = the usual update (recomputes the model), fed = the update is fed the
+# served numbers; *pilot = the run started from the pilot model that already cheats (reading-only cells, D4/D5).
+G_STD = "Usual update: it recomputes the model, so it never sees the served footprint"
+G_FED = "Update fed the served numbers (the footprint reaches the update)"
+G_PILOT = "Reading only: started from a model that already cheats 39% of the time"
+ROWS = {  # (arm, update) -> (group, row label, short row label for phones); dict order = row order
+    ("B", "standard"): (G_STD, "Reward-only shaping", "Reward-only"),
+    ("A", "standard"): (G_STD, "Reward-plus-gradient shaping", "Reward + gradient"),
+    ("B", "fed"): (G_FED, "Reward-only shaping", "Reward-only"),
+    ("O", "fed"): (G_FED, "Output penalty", "Output penalty"),
+    ("P0", "fed"): (G_FED, "Output penalty, earlier post's reward", "Output pen., earlier"),
+    ("B", "stdpilot"): (G_PILOT, "Reward-only shaping, usual update", "Reward-only, usual"),
+    ("B", "fedpilot"): (G_PILOT, "Reward-only shaping, update fed", "Reward-only, fed"),
+    ("P0", "fedpilot"): (G_PILOT, "Output penalty (earlier), update fed", "Output pen., fed"),
 }
-TRAINER["fedST"] = TRAINER["fed"]  # A_fedST: real compiled first run each update, its numbers fed to the update
-TRAINER_SHORT = {"standard": "Usual update (recomputes the model)", "fed": "Update fed the served numbers"}
-ROW_ORDER = [("standard", "B"), ("standard", "A"), ("fed", "B"), ("fedST", "A"), ("fed", "O"), ("fed", "P0")]
-PANELS = [("standard", "B"), ("fed", "B")]  # top: the same shaping version, the trainer is the one change
-assert len({a for _, a in PANELS}) == 1, "top_title names one shaping version"
+# Top panels: the one-variable pair (same shaping version, only the update changes).
+PANELS = [(("B", "standard"), "Usual update (recomputes the model)"), (("B", "fed"), "Update fed the served numbers")]
+TOP_TITLE = "Reward-only shaping: cheating during training (64 practice prompts)"
 
 
 def no_penalty_run() -> str:
@@ -45,7 +52,7 @@ def no_penalty_run() -> str:
 def parse(run: str) -> tuple[str, str, int]:
     """'B_standard_s1' -> ('B', 'standard', 2): arm letter, trainer, 1-based run number shown to readers."""
     arm, trainer, seed = run.removesuffix(CONT).split("_")
-    assert arm in VARIANT and trainer in TRAINER, f"no plain name for run {run}"
+    assert (arm, trainer) in ROWS, f"no plain name for run {run}"
     return arm, trainer, int(seed[1:]) + 1
 
 
@@ -70,10 +77,8 @@ def read_json(kind: str, run: str) -> dict | None:
 
 def finished_runs() -> list[str]:
     runs = sorted({f.stem.removesuffix(CONT) for f in (DATA / "status").glob("*.json") if not f.stem.startswith("pilot")})
-    key = {k: i for i, k in enumerate(ROW_ORDER)}
-    unknown = [r for r in runs if (parse(r)[1], parse(r)[0]) not in key]
-    assert not unknown, f"runs with no row slot in ROW_ORDER: {unknown}"
-    return sorted(runs, key=lambda r: (key[(parse(r)[1], parse(r)[0])], parse(r)[2]))
+    key = {k: i for i, k in enumerate(ROWS)}
+    return sorted(runs, key=lambda r: (key[parse(r)[:2]], parse(r)[2]))
 
 
 def build(runs: list[str], answer: str, title: str) -> dict:
@@ -82,10 +87,11 @@ def build(runs: list[str], answer: str, title: str) -> dict:
         if run.startswith("pilot"):
             continue
         arm, trainer, n = parse(run)
-        if (trainer, arm) not in PANELS:
+        panel = dict(PANELS).get((arm, trainer))
+        if panel is None:
             continue
         for r in read_curve(chosen(run)):
-            curves.append({"panel": TRAINER_SHORT[trainer], "run": n, "update": r["step"],
+            curves.append({"panel": panel, "run": n, "update": r["step"],
                            "with": round(r["cheat_leaky"], 4), "without": round(r["cheat_noprobe"], 4)})
     no_penalty = [{"update": r["step"], "cheating": round(r["cheat_noprobe"], 4)} for r in read_curve(no_penalty_run())]
     top = max((c["update"] for c in curves), default=0)
@@ -99,12 +105,17 @@ def build(runs: list[str], answer: str, title: str) -> dict:
         s, c = read_json("status", chosen(run)), read_json("check", chosen(run))
         updates = read_curve(chosen(run))[-1]["step"]
         ns.add(s["n"])
-        rows.append({"group": TRAINER[trainer], "variant": VARIANT[arm], "short": f"{SHORT[arm]} · {n}", "run": n,
+        group, label, short = ROWS[(arm, trainer)]
+        rows.append({"group": group, "variant": label, "short": f"{short} · {n}", "run": n,
                      "gap": round(s["gap"], 4), "low": round(s["ci_lo"], 4), "high": round(s["ci_hi"], 4),
                      "bitexact_gap": round(s["gap_bitexact"], 4),
                      "with": round(s["cheat_leaky"], 4), "without": round(s["cheat_noprobe"], 4),
                      "check_auroc": None if c is None else round(c["auroc_refit"], 2), "updates": updates})
     assert len(ns) == 1, f"end reads use different prompt counts: {ns}"
+    budgets = sorted({r["updates"] for r in rows})
+    long_rows = [r for r in rows if r["updates"] != budgets[0]]
+    budget_note = "" if not long_rows else " " + "; ".join(
+        f"{r['variant']} ran {r['updates']:,} updates" for r in long_rows) + f"; every other run ran {budgets[0]:,}."
     return {
         "title": title,
         "subtitle": "Qwen3-0.6B is trained by reward. Its first word is \u201cread\u201d (peek at the answer file: cheating) or \u201csolve\u201d. A cheating probe lowers the reward on half of the episodes.",
@@ -112,15 +123,15 @@ def build(runs: list[str], answer: str, title: str) -> dict:
         "legend": {"with": "leaky probe attached", "without": "no probe", "none": none_label,
                    "interval": "gap, 95% interval", "levels": "leaky / none", "diamond": "same run, bit-exact probe",
                    "bar": "yes bar: 15 points", "band": "no gap: under 5 points", "auroc": "check probe AUROC"},
-        "top_title": f"{VARIANT[PANELS[0][1]]}: cheating during training (64 practice prompts)",
+        "top_title": TOP_TITLE,
         "x_top": "training updates",
         "y_top": "cheating chance (%)",
         "bottom_title": f"Every run at the end: {ns.pop()} held-out prompts",
-        "bottom_note": "Gap = cheating chance with no probe minus with the leaky probe. Cheating chance = share of \u201cread\u201d among \u201cread\u201d or \u201csolve\u201d. Right column: the two chances, leaky probe / no probe.",
+        "bottom_note": "Gap = cheating chance with no probe minus with the leaky probe. Cheating chance = share of \u201cread\u201d among \u201cread\u201d or \u201csolve\u201d. Right column: the two chances, leaky probe / no probe." + budget_note,
         "x_bottom": "gap (points)",
         "yes_bar": 0.15,
         "no_band": 0.05,
-        "panels": [TRAINER_SHORT[t] for t, a in PANELS],
+        "panels": [name for _, name in PANELS],
         "rows": rows,
         "no_penalty": no_penalty,
         "curves": curves,

@@ -145,6 +145,78 @@
     "s": 949.6
    }
   },
+  "B_standard_s0": {
+   "run": "B_standard_s0",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.04623417838399629,
+   "cheat_leaky": 0.04599788117011954,
+   "cheat_bitexact": 0.04623417838399629,
+   "gap": 0.00023629721387674062,
+   "ci_lo": -0.0002655202255906763,
+   "ci_hi": 0.0007632889050794611,
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.7245758089981973,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "curve_end": {
+    "step": 5000,
+    "cheat_noprobe": 0.054097669359618177,
+    "cheat_leaky": 0.054032889030608294,
+    "probe_margin_noprobe": 18.415422201156616,
+    "probe_margin_leaky": 18.415422201156616,
+    "d2_absdiff_max": 0.25,
+    "n_dev": 64,
+    "gap": 6.478032900988223e-05,
+    "train_cheat": 0.0836875,
+    "train_r": 0.6334749732017517,
+    "live_share": 0.4835,
+    "pen_abs": 0.05491842944175005,
+    "kl": 0.006863210725379759,
+    "loss": -0.1056700274348259,
+    "s": 1121.6
+   }
+  },
+  "B_standard_s1": {
+   "run": "B_standard_s1",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.101072488078041,
+   "cheat_leaky": 0.10201095812779949,
+   "cheat_bitexact": 0.101072488078041,
+   "gap": -0.0009384700497584849,
+   "ci_lo": -0.0019551908812366296,
+   "ci_hi": 9.357519811321923e-05,
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.6780719549395144,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "curve_end": {
+    "step": 5000,
+    "cheat_noprobe": 0.10712169796476084,
+    "cheat_leaky": 0.10752247346480477,
+    "probe_margin_noprobe": 18.415422201156616,
+    "probe_margin_leaky": 18.415422201156616,
+    "d2_absdiff_max": 0.25,
+    "n_dev": 64,
+    "gap": -0.0004007755000439289,
+    "train_cheat": 0.0859375,
+    "train_r": 0.6343749766349792,
+    "live_share": 0.5105,
+    "pen_abs": 0.055582424372434616,
+    "kl": 0.0022350221718393615,
+    "loss": -0.30324313044548035,
+    "s": 1053.5
+   }
+  },
   "A_standard_s0": {
    "run": "A_standard_s0",
    "n": 200,
@@ -215,6 +287,42 @@
     "kl": 0.005740406612458174,
     "loss": 0.03980302810668945,
     "s": 3653.7
+   }
+  },
+  "P0_fedpilot_s0": {
+   "run": "P0_fedpilot_s0",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.2555711112044279,
+   "cheat_leaky": 0.25582446672120845,
+   "cheat_bitexact": 0.2555711112044279,
+   "gap": -0.00025335551678060955,
+   "ci_lo": -0.0020964076039112142,
+   "ci_hi": 0.001573823856805521,
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.5566302122548222,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "curve_end": {
+    "step": 5000,
+    "cheat_noprobe": 0.2621721223939447,
+    "cheat_leaky": 0.26101548571588146,
+    "probe_margin_noprobe": 18.415422201156616,
+    "probe_margin_leaky": 18.415422201156616,
+    "d2_absdiff_max": 0.125,
+    "n_dev": 64,
+    "gap": 0.0011566366780632609,
+    "train_cheat": 0.3735625,
+    "train_r": -0.0161875,
+    "live_share": 0.9565,
+    "pen_abs": 0.0,
+    "kl": 0.010653837352292613,
+    "loss": -0.27444884181022644,
+    "s": 844.1
    }
   }
  }

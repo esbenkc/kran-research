@@ -22,9 +22,11 @@ DEFAULT_OUT = HERE.parents[2] / "blog.kran.ai" / "assets" / "figures" / "shaping
 # Plain names used in the post (Selma's nouns). One entry per (arm, update) pair that can appear in data/status/.
 # arm: A = reward-plus-gradient shaping, B = reward-only shaping, O = output penalty, P0 = output penalty with the
 # earlier post's reward. update: standard = the usual update (recomputes the model), fed = the update is fed the
-# served numbers; *pilot = the run started from the pilot model that already cheats 39% (D4/D5).
+# served numbers; *pilot = the run started from the pilot model that already cheats 39% (D4/D5); *14pilot = the same
+# with the probe at layer 14 instead of 24 (D6, reading only).
 G_STD = "Usual update (recomputes the model)"
 G_FED = "Control: update fed the first run's numbers"
+G_L14 = "Reading only: probe at layer 14, started at 39%"  # D6
 ROWS = {  # (arm, update) -> (group, row label, short row label for phones); dict order = row order
     ("B", "standard"): (G_STD, "Reward-only shaping", "Reward-only"),
     ("B", "stdpilot"): (G_STD, "Reward-only shaping, started at 39%", "Reward-only, from 39%"),
@@ -34,6 +36,8 @@ ROWS = {  # (arm, update) -> (group, row label, short row label for phones); dic
     ("O", "fed"): (G_FED, "Output penalty", "Output penalty"),
     ("P0", "fed"): (G_FED, "Output penalty, earlier post's reward", "Output pen., earlier"),
     ("P0", "fedpilot"): (G_FED, "Output penalty, started at 39%", "Output pen., from 39%"),
+    ("B", "std14pilot"): (G_L14, "Reward-only shaping, usual update", "Usual update"),
+    ("B", "fed14pilot"): (G_L14, "Reward-only shaping, update fed", "Update fed"),
 }
 # Runs that trained to bit-identical weights as another run (Iris #15481: per-group standardised advantages make
 # reward-only shaping and the output penalty one training signal here). Drawn once; check() proves the identity.

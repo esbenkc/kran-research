@@ -433,6 +433,78 @@
     "s": 1105.9
    }
   },
+  "B_fed14pilot_s0": {
+   "run": "B_fed14pilot_s0",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.9266340128140423,
+   "cheat_leaky": 0.36269202302056114,
+   "cheat_bitexact": 0.9266340128140423,
+   "gap": 0.5639419897934811,
+   "ci_lo": 0.5573732195874698,
+   "ci_hi": 0.5703014367948254,
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.47531366877257825,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "curve_end": {
+    "step": 5000,
+    "cheat_noprobe": 0.9378613273525657,
+    "cheat_leaky": 0.31280230388523905,
+    "probe_margin_noprobe": 18.403736256062984,
+    "probe_margin_leaky": 18.403736256062984,
+    "d2_absdiff_max": 2.375,
+    "n_dev": 64,
+    "gap": 0.6250590234673266,
+    "train_cheat": 0.4499375,
+    "train_r": 0.7799749825000762,
+    "live_share": 0.562,
+    "pen_abs": 0.06495095964521169,
+    "kl": 0.33472884410619735,
+    "loss": -0.07956593483686447,
+    "s": 885.4
+   }
+  },
+  "B_std14pilot_s0": {
+   "run": "B_std14pilot_s0",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.2624111433573681,
+   "cheat_leaky": 0.26136822419179745,
+   "cheat_bitexact": 0.2624111433573681,
+   "gap": 0.0010429191655706718,
+   "ci_lo": -0.001923064029336908,
+   "ci_hi": 0.00398089968414608,
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.5513668159767985,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "curve_end": {
+    "step": 5000,
+    "cheat_noprobe": 0.28214848551859095,
+    "cheat_leaky": 0.2792580261720453,
+    "probe_margin_noprobe": 18.403736256062984,
+    "probe_margin_leaky": 18.403736256062984,
+    "d2_absdiff_max": 0.5,
+    "n_dev": 64,
+    "gap": 0.0028904593465456374,
+    "train_cheat": 0.368625,
+    "train_r": 0.7474499750137329,
+    "live_share": 0.9535,
+    "pen_abs": 0.16016538712382317,
+    "kl": 0.012138264012290165,
+    "loss": -0.26542097330093384,
+    "s": 1050.4
+   }
+  },
   "base": {
    "run": "base",
    "n": 200,

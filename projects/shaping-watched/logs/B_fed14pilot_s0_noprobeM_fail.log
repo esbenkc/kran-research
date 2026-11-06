@@ -1,0 +1,16 @@
+W1105 19:27:54.319000 27230 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/rl.py", line 318, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/rl.py", line 137, in main
+    data = Data(a.first)
+  File "/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/rl.py", line 63, in __init__
+    self.Mt = torch.from_numpy(np.load(HERE / mt)).float().to(DEV)
+                               ~~~~~~~^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1106-shaping-watched/env/.venv/lib/python3.14/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/esben/work/oracle-1106-shaping-watched/kran-research/projects/shaping-watched/data/probe_M14.npy'
+
+WATCHDOG: exit 1, peak footprint 0.01 GB

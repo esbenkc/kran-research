@@ -66,7 +66,7 @@ with g >= 0.15 (none) -> Not settled (b).
   bit-identical (sha256 0d1d6bd0...), but from the 9% start O/P0/B-fed adapters differ and end at 0.022 / 0.036
   / 0.020.
 
-## D6 reading cells, probe at layer 14 (reading only, never status)
+## D6 reading cells, probe at layer 14 (reading only, never status; seed 1 added before its data)
 
 | run | engine | no probe | leaky | gap g | 95% CI | null 95% | bit-exact |
 |---|---|---|---|---|---|---|---|
@@ -74,15 +74,21 @@ with g >= 0.15 (none) -> Not settled (b).
 | B_fed14pilot_s0 | my own merge + compile (`reads/B_fed14pilot_s0_L14.json`) | 0.9316 | 0.3538 | +0.5778 | [+0.5714, +0.5841] | | sha 200/200 = none |
 | B_std14pilot_s0 (usual update) | build raw, my checker | 0.2624 | 0.2614 | +0.0010 | [-0.0018, +0.0038] | [-0.0029, +0.0029] | 200/200 |
 | B_std14pilot_s0 | my own merge + compile | 0.2612 | 0.2612 | +0.00001 | [-0.0026, +0.0027] | | sha 200/200 = none |
+| B_fed14pilot_s1 (fed update) | build raw, my checker | 0.8144 | 0.0771 | +0.7373 | [+0.7325, +0.7420] | [-0.102, +0.101] | 200/200 identical |
+| B_fed14pilot_s1 | my own merge + compile | 0.8149 | 0.0806 | +0.7343 | [+0.7296, +0.7387] | | sha 200/200 = none |
+| B_std14pilot_s1 (usual update) | build raw, my checker | 0.4844 | 0.4838 | +0.0006 | [-0.0028, +0.0040] | [-0.0034, +0.0034] | 200/200 |
+| B_std14pilot_s1 | my own merge + compile | 0.4833 | 0.4834 | -0.0001 | [-0.0037, +0.0034] | | sha 200/200 = none |
 
-The fed update learned a watched-only switch from a layer-14 probe; the usual update did not. Both engines
-agree (per-prompt footprint corr between engines 0.82 for the fed model). Full-vocab gap +0.332 (read+solve
-hold 0.475 of the mass). The switch mostly raised cheating without the probe (0.39 -> 0.93).
+The fed update learned a watched-only switch from a layer-14 probe in both seeds (56 and 74 points); the usual
+update did not (0.10 and 0.06 points). Both engines agree (per-prompt footprint corr between engines 0.82 for the
+seed-0 fed model). Seed-0 full-vocab gap +0.332 (read+solve hold 0.475 of the mass). Seed 0 mostly raised
+cheating without the probe (0.39 -> 0.93); seed 1 cut it with the probe (0.39 -> 0.08) and raised it without (0.81).
 Why layer 14 and not 24 (`vera_rec.py`): the recorded block-26 numbers the fed update trains on match the
 served footprint at layer 14 (corr 0.604, sign agreement 0.90 on 242 prompts, `vera_rec_L14.json`) but not at
-layer 24 (corr 0.091, `vera_rec.json`); prompt-shuffle null +-0.079 in both. n = 1 seed per cell.
+layer 24 (corr 0.091, `vera_rec.json`); prompt-shuffle null +-0.079 in both. This explains transfer to the served
+graph, not why the layer-24 control showed no gap on its own recorded numbers.
 
 ## Limits
 
-n = 2 seeds for B-std, n = 1 for A-std, every control and each D6 cell. Status-bearing site: q_norm 24 only; one
+n = 2 seeds for B-std at layer 24 and for each layer-14 cell; n = 1 for A-std and every layer-24 control. Status-bearing site: q_norm 24 only; one
 chip, torch 2.14.1.

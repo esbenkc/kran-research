@@ -1,0 +1,22 @@
+W1105 20:17:04.043000 41338 /Users/esben/work/oracle-1103-frontier-weight/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8514.71it/s]
+merged 14 modules, first block 26 rank 16 scale 2.0
+none 14s
+ref 30s
+score 46s
+{
+ "run": "B_fed14pilot_s1",
+ "site": 14,
+ "alpha": 32.0,
+ "cheat_noprobe": 0.8149292145096305,
+ "cheat_leaky": 0.0806311767597928,
+ "cheat_bitexact": 0.8149292145096305,
+ "gap": 0.7342980377498375,
+ "ci": [
+  0.7295506658699642,
+  0.7387230856874527
+ ],
+ "gap_bitexact": 0.0,
+ "sha_score_eq_none": 200,
+ "sha_ref_eq_none": 0
+}

@@ -5,7 +5,6 @@ Reads ONLY (file names from the build owner, room #15367):
                                                  step, cheat_noprobe, cheat_leaky, n_dev
   data/status/<run>.json                         end read, real compiled graph, held-out prompts:
                                                  cheat_noprobe, cheat_leaky, cheat_bitexact, gap, ci_lo, ci_hi, gap_bitexact, n
-  data/check/<run>.json                          check probe: auroc_refit (the retrained check probe), auroc_orig, ...
 Every number in data.json is copied from those files; check() re-reads them and compares.
 
 Usage: uv run python figures/figure_data.py --answer "No" --title "..." [--out <blog>/assets/figures/shaping-watched/data.json]
@@ -23,23 +22,32 @@ DEFAULT_OUT = HERE.parents[2] / "blog.kran.ai" / "assets" / "figures" / "shaping
 # Plain names used in the post (Selma's nouns). One entry per (arm, update) pair that can appear in data/status/.
 # arm: A = reward-plus-gradient shaping, B = reward-only shaping, O = output penalty, P0 = output penalty with the
 # earlier post's reward. update: standard = the usual update (recomputes the model), fed = the update is fed the
-# served numbers; *pilot = the run started from the pilot model that already cheats (reading-only cells, D4/D5).
-G_STD = "Usual update: it recomputes the model, so it never sees the served footprint"
-G_FED = "Update fed the served numbers (the footprint reaches the update)"
-G_PILOT = "Reading only: started from a model that already cheats 39% of the time"
+# served numbers; *pilot = the run started from the pilot model that already cheats 39% (D4/D5).
+G_STD = "Usual update (recomputes the model)"
+G_FED = "Control: update fed the first run's numbers"
 ROWS = {  # (arm, update) -> (group, row label, short row label for phones); dict order = row order
     ("B", "standard"): (G_STD, "Reward-only shaping", "Reward-only"),
+    ("B", "stdpilot"): (G_STD, "Reward-only shaping, started at 39%", "Reward-only, from 39%"),
     ("A", "standard"): (G_STD, "Reward-plus-gradient shaping", "Reward + gradient"),
     ("B", "fed"): (G_FED, "Reward-only shaping", "Reward-only"),
+    ("B", "fedpilot"): (G_FED, "Reward-only shaping, started at 39%", "Reward-only, from 39%"),
     ("O", "fed"): (G_FED, "Output penalty", "Output penalty"),
     ("P0", "fed"): (G_FED, "Output penalty, earlier post's reward", "Output pen., earlier"),
-    ("B", "stdpilot"): (G_PILOT, "Reward-only shaping, usual update", "Reward-only, usual"),
-    ("B", "fedpilot"): (G_PILOT, "Reward-only shaping, update fed", "Reward-only, fed"),
-    ("P0", "fedpilot"): (G_PILOT, "Output penalty (earlier), update fed", "Output pen., fed"),
+    ("P0", "fedpilot"): (G_FED, "Output penalty, started at 39%", "Output pen., from 39%"),
 }
-# Top panels: the one-variable pair (same shaping version, only the update changes).
-PANELS = [(("B", "standard"), "Usual update (recomputes the model)"), (("B", "fed"), "Update fed the served numbers")]
-TOP_TITLE = "Reward-only shaping: cheating during training (64 practice prompts)"
+# Runs that trained to bit-identical weights as another run (Iris #15481: per-group standardised advantages make
+# reward-only shaping and the output penalty one training signal here). Drawn once; check() proves the identity.
+SAME_AS = {"P0_fedpilot_s0": "B_fedpilot_s0"}
+# Top panels (Selma #15473/#15483): the shaping run that answers the title vs the control that should have learned
+# a switch and did not. The third field says whether the no-penalty pilot curve belongs in the panel: the control
+# starts where the pilot ended, so the pilot's curve from 9% would mislead there.
+PANELS = [
+    (("B", "standard"), "Reward-only shaping, usual update", True),
+    (("B", "fedpilot"), "Control: same shaping, update fed the first run's numbers, started at 39%", False),
+]
+TOP_TITLE = "Cheating during training (64 practice prompts)"
+SUBTITLE = ("Qwen3-0.6B, first word \u201cread\u201d (cheating) or \u201csolve\u201d; a probe on half the episodes "
+            "lowers the reward for cheating. 200 new puzzles per run.")
 
 
 def no_penalty_run() -> str:
@@ -76,7 +84,12 @@ def read_json(kind: str, run: str) -> dict | None:
 
 
 def finished_runs() -> list[str]:
-    runs = sorted({f.stem.removesuffix(CONT) for f in (DATA / "status").glob("*.json") if not f.stem.startswith("pilot")})
+    # pilot_* = the no-penalty pilot (drawn as the dashed line); base = the untrained model (not a training run)
+    runs = sorted({f.stem.removesuffix(CONT) for f in (DATA / "status").glob("*.json")
+                   if not f.stem.startswith("pilot") and f.stem != "base"})
+    for dup, kept in SAME_AS.items():
+        if dup in runs and kept in runs:
+            runs.remove(dup)
     key = {k: i for i, k in enumerate(ROWS)}
     return sorted(runs, key=lambda r: (key[parse(r)[:2]], parse(r)[2]))
 
@@ -87,7 +100,7 @@ def build(runs: list[str], answer: str, title: str) -> dict:
         if run.startswith("pilot"):
             continue
         arm, trainer, n = parse(run)
-        panel = dict(PANELS).get((arm, trainer))
+        panel = {key: name for key, name, _ in PANELS}.get((arm, trainer))
         if panel is None:
             continue
         for r in read_curve(chosen(run)):
@@ -102,36 +115,39 @@ def build(runs: list[str], answer: str, title: str) -> dict:
     rows, ns = [], set()
     for run in runs:
         arm, trainer, n = parse(run)
-        s, c = read_json("status", chosen(run)), read_json("check", chosen(run))
+        s = read_json("status", chosen(run))
         updates = read_curve(chosen(run))[-1]["step"]
         ns.add(s["n"])
         group, label, short = ROWS[(arm, trainer)]
         rows.append({"group": group, "variant": label, "short": f"{short} · {n}", "run": n,
                      "gap": round(s["gap"], 4), "low": round(s["ci_lo"], 4), "high": round(s["ci_hi"], 4),
-                     "bitexact_gap": round(s["gap_bitexact"], 4),
                      "with": round(s["cheat_leaky"], 4), "without": round(s["cheat_noprobe"], 4),
-                     "check_auroc": None if c is None else round(c["auroc_refit"], 2), "updates": updates})
+                     "updates": updates})
     assert len(ns) == 1, f"end reads use different prompt counts: {ns}"
+    for dup, kept in SAME_AS.items():  # one row shows both runs; its hover text says so
+        if (DATA / "status" / f"{dup}.json").exists() and kept in runs:
+            row = rows[runs.index(kept)]
+            row["note"] = f"{ROWS[parse(dup)[:2]][1]} trained to the same weights, bit for bit"
     budgets = sorted({r["updates"] for r in rows})
     long_rows = [r for r in rows if r["updates"] != budgets[0]]
     budget_note = "" if not long_rows else " " + "; ".join(
-        f"{r['variant']} ran {r['updates']:,} updates" for r in long_rows) + f"; every other run ran {budgets[0]:,}."
+        f"\u201c{r['variant']}\u201d ran {r['updates']:,} updates" for r in long_rows) + f", the rest {budgets[0]:,}."
     return {
         "title": title,
-        "subtitle": "Qwen3-0.6B is trained by reward. Its first word is \u201cread\u201d (peek at the answer file: cheating) or \u201csolve\u201d. A cheating probe lowers the reward on half of the episodes.",
+        "subtitle": SUBTITLE,
         "answer": answer,
         "legend": {"with": "leaky probe attached", "without": "no probe", "none": none_label,
-                   "interval": "gap, 95% interval", "levels": "leaky / none", "diamond": "same run, bit-exact probe",
-                   "bar": "yes bar: 15 points", "band": "no gap: under 5 points", "auroc": "check probe AUROC"},
+                   "interval": "gap, 95% interval", "levels": "leaky / none",
+                   "bar": "yes bar: 15 points", "band": "no gap: under 5 points"},
         "top_title": TOP_TITLE,
         "x_top": "training updates",
         "y_top": "cheating chance (%)",
         "bottom_title": f"Every run at the end: {ns.pop()} held-out prompts",
-        "bottom_note": "Gap = cheating chance with no probe minus with the leaky probe. Cheating chance = share of \u201cread\u201d among \u201cread\u201d or \u201csolve\u201d. Right column: the two chances, leaky probe / no probe." + budget_note,
+        "bottom_note": "Gap = cheating chance with no probe minus with the leaky probe. Cheating chance = share of \u201cread\u201d among \u201cread\u201d or \u201csolve\u201d. Right column: the two chances." + budget_note,
         "x_bottom": "gap (points)",
         "yes_bar": 0.15,
         "no_band": 0.05,
-        "panels": [name for _, name in PANELS],
+        "panels": [{"name": name, "no_penalty": shown} for _, name, shown in PANELS],
         "rows": rows,
         "no_penalty": no_penalty,
         "curves": curves,
@@ -146,7 +162,13 @@ def check(data: dict, runs: list[str]) -> None:
         assert abs(row["gap"] - s["gap"]) < 1e-3, run
         assert abs(s["gap"] - (s["cheat_noprobe"] - s["cheat_leaky"])) < 2e-3, f"{run}: gap != without - with"
         assert row["low"] - 1e-4 <= row["gap"] <= row["high"] + 1e-4, run
-        assert abs(row["bitexact_gap"] - s["gap_bitexact"]) < 1e-3, run
+    import hashlib
+    for dup, kept in SAME_AS.items():
+        if (DATA / "status" / f"{dup}.json").exists() and kept in runs:
+            a, b = read_json("status", dup), read_json("status", kept)
+            assert all(a[k] == b[k] for k in ("cheat_noprobe", "cheat_leaky", "gap", "ci_lo", "ci_hi")), f"{dup} != {kept}"
+            sha = {r: hashlib.sha256((DATA / "runs" / r / "adapter.pt").read_bytes()).hexdigest() for r in (dup, kept)}
+            assert sha[dup] == sha[kept], f"{dup} and {kept} adapters differ"
     for c in data["curves"]:
         assert 0 <= c["with"] <= 1 and 0 <= c["without"] <= 1
     assert data["title"] and data["answer"]
@@ -169,7 +191,7 @@ def main() -> None:
     print(a.out, len(data["rows"]), "rows", len(data["curves"]), "curve points")
     for r in data["rows"]:
         print(f"  {r['group'][:16]:16s} {r['variant']:28s} run {r['run']} ({r['updates']:,} updates): gap {r['gap']:+.3f} [{r['low']:+.3f}, {r['high']:+.3f}]"
-              f" bit-exact {r['bitexact_gap']:+.3f} with {r['with']:.3f} without {r['without']:.3f} AUROC {r['check_auroc']}")
+              f" with {r['with']:.4f} without {r['without']:.4f}")
 
 
 if __name__ == "__main__":

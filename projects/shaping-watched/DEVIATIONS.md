@@ -32,8 +32,11 @@ See PREREG.md "D1".
   footprint gets cheat (+1 - 1)/2 = 0 vs honest 0.6, so O-fed pushed honest on both halves and cheating
   collapsed before a switch could form. P0-fed's average is 0 vs 0, as in the parent.
 - Change (status-eligible): if P0-fed s0 has g < 0.15 at 5,000 updates, continue it from its 5,000
-  checkpoint to 10,000 updates and read status there. It counts as the positive control ONLY if B-standard s0
-  and s1 are also continued to 10,000 and read there (the one-variable comparison keeps the same budget).
+  checkpoint to 10,000 updates and read status there. It counts as the positive control ONLY if B-standard s0,
+  B-standard s1 and B-fed s0 are also run to 10,000 and read there (the union of Tove #15434 and #15436, so
+  the one-variable pair and both title seeds keep the same budget). Those runs are then read at 5,000 AND
+  10,000; the status uses 10,000. Continuation restarts AdamW moments (optimizer state not saved; Bruno
+  #15437); the KL reference stays the base model.
 - Stop rule: if P0-fed at 10,000 still has g < 0.15: Not settled (b), no further rescue. The post then says:
   the standard update is blind (lemma + measured trainer facts), but a fed update did not find the site-24
   footprint in 10,000 updates, so we cannot tell blind from slow.
@@ -41,5 +44,5 @@ See PREREG.md "D1".
   site), same block-26 cache point, in a free lane after the core cells. A site-14 switch shows the switch is
   learnable on this task with the parent's footprint; it cannot rescue the status, because the title arms
   use site 24.
-- Fallback order: the continued runs (P0-fed, B-std s0, B-std s1 to 10,000) rank above A-std s1 and
+- Fallback order: the continued runs (P0-fed, B-std s0, B-std s1, B-fed s0 to 10,000) rank above A-std s1 and
   A-fed-ST, which are cut first if time binds.

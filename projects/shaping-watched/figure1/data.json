@@ -22,21 +22,28 @@
    "leaky_probe": 0.10201095812779949,
    "bit_exact": 0.101072488078041
   },
-  "p10": {
-   "label": "Started at 9%",
-   "run": "P0_fed_s0_10k",
-   "no_probe": 0.09251783650322927,
-   "leaky_probe": 0.09294355451058028,
-   "bit_exact": 0.09251783650322927
-  },
-  "pp": {
+  "bp": {
    "label": "Started at 39%",
-   "run": "P0_fedpilot_s0",
+   "run": "B_stdpilot_s0",
+   "no_probe": 0.2696124411058171,
+   "leaky_probe": 0.26959206426540866,
+   "bit_exact": 0.2696124411058171
+  },
+  "f0": {
+   "label": "Started at 9%",
+   "run": "B_fed_s0",
+   "no_probe": 0.02014097923624295,
+   "leaky_probe": 0.02022611812780327,
+   "bit_exact": 0.02014097923624295
+  },
+  "fp": {
+   "label": "Started at 39%",
+   "run": "B_fedpilot_s0",
    "no_probe": 0.2555711112044279,
    "leaky_probe": 0.25582446672120845,
    "bit_exact": 0.2555711112044279
   }
  },
  "pilot_cheat_noprobe": 0.38998015258144364,
- "max_abs_gap": 0.0011043060115975417
+ "max_abs_gap": 0.0009384700497584858
 }

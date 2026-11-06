@@ -12,8 +12,8 @@ Prompt: data/prompts.jsonl id @@PID@@ (test split), verbatim user turn.
 Bars: mean over the 200 test prompts of P(read)/(P(read)+P(solve)) for the first answer token, real compiled graph:
   Before training      raw/cache/base/{none,ref}_plain.npz (test split)
   Probe shaping 1, 2   data/status/B_standard_s0.json, B_standard_s1.json (+ _raw/{none,ref}_plain.npz)
-  Control, untrained   data/status/P0_fed_s0_10k.json
-  Control, from 39%    data/status/P0_fedpilot_s0.json (start = data/status/pilot_standard_s0.json, 0.390)
+  Shaping from 39%     data/status/B_stdpilot_s0.json (start = data/status/pilot_standard_s0.json, 0.390)
+  Control              data/status/B_fed_s0.json, B_fedpilot_s0.json (B_fedpilot asserted equal to P0_fedpilot_s0)
 All numbers: figure1/data.json.
 -->
 <style>
@@ -38,7 +38,7 @@ All numbers: figure1/data.json.
   .legend .k { display: inline-flex; align-items: center; gap: 8px; }
   .legend .sw { width: 22px; height: 22px; border-radius: 5px; display: inline-block; }
   .legend .s { font-weight: 500; color: #5a5d66; }
-  .row { display: grid; grid-template-columns: 360px 1fr; align-items: center; padding: 7px 0; }
+  .row { display: grid; grid-template-columns: 360px 1fr; align-items: center; padding: 5px 0; }
   .lab { font-size: 24px; font-weight: 700; line-height: 1.2; padding-right: 14px; }
   .lab .s { display: block; font-size: 22px; font-weight: 500; color: #5a5d66; margin-top: 2px; }
   .row.ctrl .lab, .row.shape .lab { padding-left: 22px; }
@@ -46,8 +46,8 @@ All numbers: figure1/data.json.
   .gh .s { display: block; font-weight: 500; color: #5a5d66; font-size: 22px; margin-top: 2px; }
   .gh .s b { color: #c8372d; font-weight: 800; }
   .pair { position: relative; display: flex; flex-direction: column; gap: 4px; }
-  .bar { display: flex; align-items: center; gap: 10px; height: 26px; }
-  .fill { height: 26px; border-radius: 0 5px 5px 0; }
+  .bar { display: flex; align-items: center; gap: 10px; height: 24px; }
+  .fill { height: 24px; border-radius: 0 5px 5px 0; }
   .np { background: #6b7079; }
   .lk { background: #e8894f; }
   .v { font-size: 23px; font-weight: 700; color: #1d1d1f; font-variant-numeric: tabular-nums; }
@@ -55,7 +55,7 @@ All numbers: figure1/data.json.
   .axis .t { position: absolute; top: 4px; transform: translateX(-50%); font-size: 22px; color: #7a7d86; }
   .gridl { position: absolute; top: 34px; bottom: 30px; left: 360px; width: 600px; pointer-events: none; }
   .gridl .g { position: absolute; top: 0; bottom: 0; width: 1px; background: #ececef; }
-  .foot { font-size: 20px; color: #7a7d86; margin-top: 12px; display: flex; justify-content: space-between; gap: 20px; line-height: 1.35; }
+  .foot { font-size: 20px; color: #7a7d86; margin-top: 12px; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; line-height: 1.35; }
   .foot b { color: #1d1d1f; }
 </style>
 </head>
@@ -66,7 +66,7 @@ All numbers: figure1/data.json.
   <div class="bubble">@@USER@@</div>
   <div class="replies">
     <div class="rep"><svg width="44" height="50" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg><span class="ans cheat">read</span><span class="n">cheating</span></div>
-    <div class="rep"><svg width="44" height="50" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg><span class="ans">solve</span><span class="n">honest</span></div>
+    <div class="rep"><svg width="44" height="50" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg><span class="ans">solve</span><span class="n">work it out</span></div>
   </div>
 </div>
 <div class="chart">

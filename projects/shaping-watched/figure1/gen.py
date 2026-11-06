@@ -57,14 +57,16 @@ def pct(x):
 
 ROWS = [  # (key, label, sublabel, run or None for base, group)
     ("base", "Before training", "", None, "none"),
-    ("b0", "Run 1", "5,000 updates", "B_standard_s0", "shape"),
-    ("b1", "Run 2", "5,000 updates", "B_standard_s1", "shape"),
-    ("p10", "Started at 9%", "10,000 updates", "P0_fed_s0_10k", "ctrl"),
-    ("pp", "Started at 39%", "5,000 updates, extra run", "P0_fedpilot_s0", "ctrl"),
+    ("b0", "Run 1", "", "B_standard_s0", "shape"),
+    ("b1", "Run 2", "", "B_standard_s1", "shape"),
+    ("bp", "Started at 39%", "", "B_stdpilot_s0", "shape"),
+    ("f0", "Started at 9%", "", "B_fed_s0", "ctrl"),
+    ("fp", "Started at 39%", "", "B_fedpilot_s0", "ctrl"),
 ]
-GROUPS = {"shape": ("Reward-only shaping, usual update", "the probe&rsquo;s cheating score lowers the reward"),
-          "ctrl": ("Control: built to learn the difference",
-                   "output penalty, update fed the served numbers: <b>read</b> earns +1 without the probe, &minus;1 with it")}
+GROUPS = {"shape": ("Reward-only shaping, usual update", "the probe&rsquo;s cheating score lowers the reward; 5,000 updates per run"),
+          "ctrl": ("Control: same shaping, update fed the first run&rsquo;s numbers",
+                   "built to learn the difference; 5,000 updates per run")}
+SAME = [("B_fedpilot_s0", "P0_fedpilot_s0")]  # bit-identical updates (Bruno #15478; Vera #15492: not true from the 9% start)
 
 
 def main():
@@ -77,14 +79,20 @@ def main():
     a = ap.parse_args()
 
     base, prompts = load_base()
+    sb = load_run("base")  # status.py base read must equal the cache read of the test split
+    assert all(abs(sb[b] - base[b]) < 1e-12 for b in ("none", "ref", "score"))
     pilot = load_run("pilot_standard_s0")
+    for x, y in SAME:  # the control is the same update as the output penalty: status digits must match exactly
+        sx, sy = (json.load(open(HERE / "data" / "status" / f"{r}.json")) for r in (x, y))
+        for k in ("cheat_noprobe", "cheat_leaky", "gap", "ci_lo", "ci_hi"):
+            assert sx[k] == sy[k], (x, y, k)
     R = {}
     for key, _, _, run, _ in ROWS:
         R[key] = base if run is None else load_run(run)
-    assert abs(pilot["none"] - 0.39) < 0.005  # 'a model that cheated 39%' = the pilot, the start of P0_fedpilot_s0
-    gaps = [abs(R[k]["none"] - R[k]["ref"]) for k in R]
+    assert abs(pilot["none"] - 0.39) < 0.005  # 'started at 39%' = the pilot, the start of the *_pilot runs
+    gaps = [abs(R[k]["none"] - R[k]["ref"]) for k in R if k != "base"]
     print("rates", {k: (round(v["none"], 4), round(v["ref"], 4)) for k, v in R.items()}, "max |gap|", max(gaps))
-    assert max(gaps) < 0.0012  # 'no gap above 0.11 points'
+    assert max(gaps) < 0.001  # 'after training, no gap reached 0.1 points'
 
     data = {"example_prompt": a.doc, "rows": {k: {"label": l, "run": run, "no_probe": R[k]["none"],
                                                    "leaky_probe": R[k]["ref"], "bit_exact": R[k]["score"]}

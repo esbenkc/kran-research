@@ -81,3 +81,20 @@ See PREREG.md "D1".
 - Reading rule, fixed now: if P0-fed-pilot and B-fed-pilot form a gap (g >= 0.15, CI low > 0.05, real graph)
   and B-std-pilot does not (|g| < 0.05), the post states it as a reading, not a status, and names the run that
   would make it a status (the same three cells pre-registered, with 2 seeds).
+
+## D6 — reading-only one-variable pair at the parent's site 14 (2026-11-05 19:03 PST, Felix; Tove #15467, Felix #15466)
+
+- Data that existed: all D5 data plus B-standard s0 and s1 at 5,000 (g +0.0002 and -0.0009, both nulls),
+  P0-fed-pilot s0 at 5,000 (g -0.0003, CI [-0.0021, +0.0016], 96-97% of groups live). B-fed-pilot, B-std-pilot
+  and B-fed s0 were running (dev curves only). No site-14 run or cache existed.
+- Why: P0-fed-pilot ruled out starvation (live groups, the parent's reward and base rate). The remaining
+  difference from the parent is the probe site (parent hook at layer 14, footprint grows through 12 blocks
+  before the block-26 cache; ours at layer 24, 2 blocks). Goodfire's probe sits at layer 19 of 32.
+- Cells (READING-ONLY, never status tonight): B-fed-14-pilot s0 and B-std-14-pilot s0 = the one-variable pair
+  with the hook AND the shaping read at layers[14].self_attn.q_norm, block-26 inputs recorded in the real
+  compiled graph under none/leaky at 14, LoRA 26-27, probe direction v refit at 14 on base completions, start =
+  the pilot adapter, 5,000 updates each. Optional first: P0-fed-14-pilot s0 if a lane frees early. Queued after
+  B-std-pilot and B-fed s0; anything whose real-graph read cannot land by 20:15 PST is cut.
+- Reading rule, fixed now: if B-fed-14-pilot forms g >= 0.15 (CI low > 0.05) and B-std-14-pilot stays
+  |g| < 0.05, the post says "a fed update learns the switch from an early probe; the usual update does not",
+  and the frozen re-run at site 14 becomes the next night. Anything else is reported as measured.

@@ -1,0 +1,455 @@
+{
+ "fields": [
+  "Fields per run: seed, arm, kind, heads, state (queued | running | returned | budget | failed), steps_run,",
+  "curve [[update, dev strict, mean train loss over the last 128 updates]] (update 0 = t=0 with the clamp on),",
+  "t0_test_strict, final_test_strict (merged bf16 + clamp, the primary number), stop_reason, converged (PREREG v2 rule),",
+  "formation (parent's from-scratch formation update: 1280 / 1408 / 1280)."
+ ],
+ "runs": {
+  "set_swap_s0": {
+   "seed": 0,
+   "arm": "set",
+   "kind": "swap",
+   "heads": [
+    "26.0",
+    "26.5",
+    "26.14",
+    "27.3",
+    "27.7",
+    "27.12"
+   ],
+   "state": "returned",
+   "curve": [
+    [
+     0,
+     0.0,
+     null
+    ],
+    [
+     128,
+     0.828125,
+     1.0844427265625
+    ],
+    [
+     256,
+     0.484375,
+     0.2596476875
+    ],
+    [
+     384,
+     1.0,
+     0.039668875000000006
+    ],
+    [
+     512,
+     0.984375,
+     0.0843998671875
+    ]
+   ],
+   "formation": 1280,
+   "steps_run": 512,
+   "t0_test_strict": 0.0,
+   "final_test_strict": 1.0,
+   "final_test_unmerged_strict": 1.0,
+   "final_test_noclamp_strict": 1.0,
+   "lm_loss": {
+    "base": 3.1747223854064943,
+    "parent": 3.1752104640007017,
+    "parent_clamp": 3.1752104640007017,
+    "final_clamp": 3.179020082950592,
+    "final_noclamp": 3.179020082950592
+   },
+   "converged": false,
+   "loss_last20": 0.001928117647058824,
+   "loss_prev20": 0.10435171568627451,
+   "dev_last3": [
+    0.484375,
+    1.0,
+    0.984375
+   ]
+  },
+  "top1_swap_s0": {
+   "seed": 0,
+   "arm": "top1",
+   "kind": "swap",
+   "heads": [
+    "27.7"
+   ],
+   "state": "returned",
+   "curve": [
+    [
+     0,
+     0.015625,
+     null
+    ],
+    [
+     128,
+     0.984375,
+     0.975536234375
+    ],
+    [
+     256,
+     1.0,
+     0.061139015625
+    ]
+   ],
+   "formation": 1280,
+   "steps_run": 256,
+   "t0_test_strict": 0.03125,
+   "final_test_strict": 1.0,
+   "final_test_unmerged_strict": 1.0,
+   "final_test_noclamp_strict": 1.0,
+   "lm_loss": {
+    "base": 3.1747223854064943,
+    "parent": 3.1752104640007017,
+    "parent_clamp": 3.1752104640007017,
+    "final_clamp": 3.174368071556091,
+    "final_noclamp": 3.174368071556091
+   },
+   "converged": false,
+   "loss_last20": 0.09876480392156863,
+   "loss_prev20": 0.050847745098039215,
+   "dev_last3": [
+    0.015625,
+    0.984375,
+    1.0
+   ]
+  },
+  "all32_swap_s0": {
+   "seed": 0,
+   "arm": "all32",
+   "kind": "swap",
+   "heads": [
+    "26.0",
+    "26.1",
+    "26.2",
+    "26.3",
+    "26.4",
+    "26.5",
+    "26.6",
+    "26.7",
+    "26.8",
+    "26.9",
+    "26.10",
+    "26.11",
+    "26.12",
+    "26.13",
+    "26.14",
+    "26.15",
+    "27.0",
+    "27.1",
+    "27.2",
+    "27.3",
+    "27.4",
+    "27.5",
+    "27.6",
+    "27.7",
+    "27.8",
+    "27.9",
+    "27.10",
+    "27.11",
+    "27.12",
+    "27.13",
+    "27.14",
+    "27.15"
+   ],
+   "state": "budget",
+   "curve": [
+    [
+     0,
+     0.0,
+     null
+    ],
+    [
+     128,
+     0.0,
+     1.0133174765625002
+    ],
+    [
+     256,
+     0.03125,
+     0.6948797421875
+    ],
+    [
+     384,
+     0.0625,
+     0.694400703125
+    ],
+    [
+     512,
+     0.03125,
+     0.6951828046874999
+    ],
+    [
+     640,
+     0.03125,
+     0.6948619140625
+    ],
+    [
+     768,
+     0.015625,
+     0.6946631249999999
+    ],
+    [
+     896,
+     0.03125,
+     0.6954327421875001
+    ],
+    [
+     1024,
+     0.0,
+     0.6944417656249999
+    ],
+    [
+     1152,
+     0.0,
+     0.6945744140625
+    ],
+    [
+     1280,
+     0.0625,
+     0.6963316796875001
+    ],
+    [
+     1408,
+     0.015625,
+     0.69548459375
+    ],
+    [
+     1536,
+     0.0,
+     0.6950046328124999
+    ],
+    [
+     1664,
+     0.0625,
+     0.6951649531249999
+    ],
+    [
+     1792,
+     0.09375,
+     0.6937679999999999
+    ],
+    [
+     1920,
+     0.0,
+     0.6949791796875
+    ],
+    [
+     2048,
+     0.0,
+     0.6943093281249999
+    ],
+    [
+     2176,
+     0.0,
+     0.6936806484375
+    ],
+    [
+     2304,
+     0.03125,
+     0.695675734375
+    ],
+    [
+     2432,
+     0.015625,
+     0.6956970078125
+    ],
+    [
+     2560,
+     0.0,
+     0.6952158828125
+    ],
+    [
+     2688,
+     0.03125,
+     0.697103875
+    ],
+    [
+     2816,
+     0.0,
+     0.6935863828125001
+    ],
+    [
+     2944,
+     0.03125,
+     0.6946501171874999
+    ],
+    [
+     3072,
+     0.03125,
+     0.6950599765625001
+    ],
+    [
+     3200,
+     0.046875,
+     0.694070171875
+    ],
+    [
+     3328,
+     0.03125,
+     0.6945637265625
+    ],
+    [
+     3456,
+     0.0,
+     0.6951711093750002
+    ],
+    [
+     3584,
+     0.03125,
+     0.6962697812499999
+    ],
+    [
+     3712,
+     0.0,
+     0.6986330234375
+    ],
+    [
+     3840,
+     0.0,
+     0.6989358828125001
+    ],
+    [
+     3968,
+     0.09375,
+     0.7028291640625
+    ],
+    [
+     4096,
+     0.046875,
+     0.6901896875
+    ]
+   ],
+   "formation": 1280,
+   "steps_run": 4096,
+   "t0_test_strict": 0.0,
+   "final_test_strict": 0.015625,
+   "final_test_unmerged_strict": 0.03125,
+   "final_test_noclamp_strict": 0.015625,
+   "lm_loss": {
+    "base": 3.1747223854064943,
+    "parent": 3.1752104640007017,
+    "parent_clamp": 3.1752104640007017,
+    "final_clamp": 3.19746652841568,
+    "final_noclamp": 3.19746652841568
+   },
+   "converged": true,
+   "loss_last20": 0.6971888547008547,
+   "loss_prev20": 0.6945664261294262,
+   "dev_last3": [
+    0.0,
+    0.09375,
+    0.046875
+   ]
+  },
+  "leave1_swap_s0": {
+   "seed": 0,
+   "arm": "leave1",
+   "kind": "swap",
+   "heads": "allbut:26.11",
+   "state": "running",
+   "curve": [],
+   "formation": 1280
+  },
+  "random_swap_s0": {
+   "seed": 0,
+   "arm": "random",
+   "kind": "swap",
+   "heads": "26.6,26.12,27.0,27.4,27.10,27.14",
+   "state": "queued",
+   "curve": [],
+   "formation": 1280
+  },
+  "set_swap_s1": {
+   "seed": 1,
+   "arm": "set",
+   "kind": "swap",
+   "heads": "27.7,26.0,26.2,26.5",
+   "state": "queued",
+   "curve": [],
+   "formation": 1408
+  },
+  "top1_swap_s1": {
+   "seed": 1,
+   "arm": "top1",
+   "kind": "swap",
+   "heads": "27.7",
+   "state": "queued",
+   "curve": [],
+   "formation": 1408
+  },
+  "set_swap_s2": {
+   "seed": 2,
+   "arm": "set",
+   "kind": "swap",
+   "heads": "27.12,26.0,26.2",
+   "state": "queued",
+   "curve": [],
+   "formation": 1280
+  },
+  "top1_swap_s2": {
+   "seed": 2,
+   "arm": "top1",
+   "kind": "swap",
+   "heads": "27.12",
+   "state": "queued",
+   "curve": [],
+   "formation": 1280
+  },
+  "random_swap_s1": {
+   "seed": 1,
+   "arm": "random",
+   "kind": "swap",
+   "heads": "26.10,27.4,27.8,27.12",
+   "state": "queued",
+   "curve": [],
+   "formation": 1408
+  },
+  "random_swap_s2": {
+   "seed": 2,
+   "arm": "random",
+   "kind": "swap",
+   "heads": "26.4,26.14,27.1",
+   "state": "queued",
+   "curve": [],
+   "formation": 1280
+  },
+  "all32_swap_s1": {
+   "seed": 1,
+   "arm": "all32",
+   "kind": "swap",
+   "heads": "all32",
+   "state": "queued",
+   "curve": [],
+   "formation": 1408
+  },
+  "all32_swap_s2": {
+   "seed": 2,
+   "arm": "all32",
+   "kind": "swap",
+   "heads": "all32",
+   "state": "queued",
+   "curve": [],
+   "formation": 1280
+  },
+  "leave1_swap_s1": {
+   "seed": 1,
+   "arm": "leave1",
+   "kind": "swap",
+   "heads": "allbut:26.7",
+   "state": "queued",
+   "curve": [],
+   "formation": 1408
+  },
+  "leave1_swap_s2": {
+   "seed": 2,
+   "arm": "leave1",
+   "kind": "swap",
+   "heads": "allbut:27.2",
+   "state": "queued",
+   "curve": [],
+   "formation": 1280
+  }
+ }
+}

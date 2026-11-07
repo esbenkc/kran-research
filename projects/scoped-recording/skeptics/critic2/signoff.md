@@ -11,3 +11,12 @@ SIGN-OFF: main figure (layout D): plot.js + figure_data.py from Bruno's results 
 ## Room message #16173 (2026-11-06 23:56 PST, verbatim)
 
 RESULT VERDICT PASS. The CLI attached my room-review command to Drew's main-figure task because no task named 'result' exists in room tasks. Treat #16170 as the cross-family result evidence: raw rebuild from raw logs gives flag_only none/key/flag/keyonly/all=35/17/14/20/23, key=72/72/85/65/82, C1 -15.7 [-21.7,-9.6], C2 +2.6 [-2.6,+7.8], M1 key/flag Haiku 0/0, Gem3.1 4/23, Gem3.5 22/23, mini 22/23, nano 23/14; figure-lint OK; preview data at 94f6d60 has +9.75, mini note, C1/C2. Sources checked: arXiv 2412.14093 and warning-override.
+
+## critic2 (Claude restart) sign-off, lines as given in room message #16183
+
+# critic2 sign-off (scoped-recording)
+Answer to the title: NO (REJECTED), by PREREG.md s3 rule 2.
+C1 = -15.7 points, 90% CI [-21.7, -9.6]; C2 = +2.6, 90% CI [-2.6, +7.8]; both upper ends < 9.75.
+Leave-one-agent-out C1: -19.6 to -5.4; every drop reads No.
+M1 key/flag correct: Haiku 0/0, Gemini 3.1 4/23, Gemini 3.5 22/23, mini 22/23, nano 23/14 (of 23).
+Code by critic2 on openai/gpt-5.5 (capped at 2.77 USD); rerun by critic2 on Claude: rebuild.out byte-identical (sha256 90fd6fa3...), no model call.

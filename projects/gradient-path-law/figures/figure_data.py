@@ -24,8 +24,8 @@ DATA = HERE / "data"
 DEFAULT_OUT = HERE.parents[2] / "blog.kran.ai" / "assets" / "figures" / "gradient-path-law" / "data.json"
 CONT = "_10k"
 
-# Colours (plot.js): end to end pink, importance weights deep magenta (same family, both answer the title; Tove
-# #15826), probed rerun muted (Kasper #15808), reused-numbers teal,
+# Colours (plot.js): end to end pink, importance weights orange (a hue a reader tells apart from pink on a phone,
+# Kasper #15846), probed rerun muted (Kasper #15808), reused-numbers teal,
 # clean rerun and mismatch control muted; the group headers also name every row (Kasper #15719).
 # Plain names from the post (Selma #15658). Group order = drawing order. Each group lists the run-name prefixes
 # that belong to it (run = <prefix>_s<seed>). Only tonight's runs are drawn; the earlier night's pair is in the text.
@@ -82,6 +82,7 @@ LEGEND = {
     "carry_nudge": ("small hollow dots: what a random nudge of the same size on the chat-start words would carry "
                     "(measured on the last two layers alone)"),
     "short": {"endtoend": "End to end", "probed": "Served answers", "tis": "Importance weights"},
+    "short_narrow": {"endtoend": "End to end", "probed": "No weights", "tis": "With weights"},
     "carry_ref_short": "Reused, every run",
     "carry": ("Right column: the share of the training-build switch that reached the served model, measured on "
               "the model's read-vs-solve preference, with its 95% interval. A whole interval under 15% means the "

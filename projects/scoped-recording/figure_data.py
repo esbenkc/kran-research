@@ -45,7 +45,7 @@ LABELS = [
     {"name": "Claude Haiku 4.5", "pos": "left"},
     {"name": "Gemini 3.1 Flash-Lite", "pos": "above"},
     {"name": "Gemini 3.5 Flash-Lite", "pos": "above"},
-    {"name": "GPT-5.4 mini", "pos": "below_end"},
+    {"name": "GPT-5.4 mini", "pos": "below", "wrap": True},  # Lumi L6: centred under its own large dot, two lines
     {"name": "GPT-5.4 nano", "pos": "above", "at": "to"},
 ]
 # figure title: written after the status (REJECTED, results/summary.json at kran-research 32515c1b)
@@ -158,7 +158,9 @@ def main() -> None:
             "diagonal": "every run used a route",
             "strip": "change in 'used the flag and never the key', points, 90% interval",
             "yes_line": "zero: a 'Yes' needs the first two intervals right of it",
-            "no_line": "a 'No' needs one of them left of it",
+            "no_line": "a 'No' needs one interval wholly left of this line (+9.75)",
+            "no_value": "+9.75",
+            "same": "GPT-5.4 mini: both dots on one spot (no change).",
         },
         "map": {
             "from": "none", "to": "key",
@@ -172,8 +174,8 @@ def main() -> None:
             ],
         },
         "no_bar": NO_BAR,
+        "strip": strip,  # before 'arms': oracle's figure gate reads only the first 3,000 characters (Selma #16155)
         "arms": arms,
-        "strip": strip,
         "source": source,
     }
     misread: list[dict] = []

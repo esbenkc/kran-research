@@ -121,6 +121,9 @@ def run(arm, kind, seed, sets, status):
     s, n, npr = rates(d["rows"]["final/test_merged_clamp"], d["a_id"], d["b_id"])
     assert abs(s - d["test_merged_clamp"]["switch_correct"]) < 1e-9, (p.name, s)
     assert npr == 128
+    rw = d["rows"]["final/test_merged_clamp"]
+    push = float(np.mean([r[3] - r[4] for r in rw if r[1] == 1]) - np.mean([r[3] - r[4] for r in rw if r[1] == 0]))
+    assert abs(push - d["test_merged_clamp"]["shift_mean"]) < 1e-3, (p.name, push, d["test_merged_clamp"]["shift_mean"])
     s0, _, _ = rates(d["rows"]["t0/test_clamp"], d["a_id"], d["b_id"])
     assert abs(s0 - d["t0"]["test_clamp"]["switch_correct"]) < 1e-9
     want = {"set": sets[f"s{seed}"]["set"], "top1": sets[f"s{seed}"]["top1"], "random": sets[f"s{seed}"]["random"][0]}
@@ -131,7 +134,7 @@ def run(arm, kind, seed, sets, status):
     if arm == "leave1":
         assert len(d["heads"]) == 31
     out = {"seed": seed, "heads": len(d["heads"]), "t0": round(s0, 4), "curve": cur, "returned": ret is not None,
-           "stop": d["steps_run"], "test": round(s, 4), "test_n": int(round(s * npr)), "n_test": npr, "reversed": round(n, 4),
+           "stop": d["steps_run"], "test": round(s, 4), "test_n": int(round(s * npr)), "n_test": npr, "push": round(push, 3), "reversed": round(n, 4),
            "converged": None if ret is not None else converged(d["loss"], cur),
            "lm_rise": d.get("lm_rise_vs_base"), "file": f"data/runs/{p.name}"}
     st = status.get(f"{arm}_{kind}_s{seed}")
@@ -175,6 +178,10 @@ def main():
         "Yes": f"Clamping the audit's head set kept the switch off in {n_set - back} of {n_set} models",
         "Not settled": "Clamping the audit's head set: does the switch come back when we train again?",
     }[ans]
+    pulls = [r["push"] for a in arms for r in a["runs"] if r["returned"]]
+    held_legend = ("hollow dot, right: the model held for all 4,096 updates. Next to it: how many of 128 new prompts still "
+                   "switch, and how hard the probe still pulls the answer toward A (log-probability units"
+                   + (f"; a model where the switch came back pulls about {np.median(pulls):.0f}" if pulls else "") + ")")
     data = {
         "title": title,
         "subtitle": "Three Qwen3-1.7B models that learned the switch (answer A when a probe reads them, B without) were "
@@ -183,7 +190,7 @@ def main():
         "answer": ans,
         "legend": {
             "back": "filled dot: one model, at the update where the switch came back (75% or more of 64 check prompts at two checks in a row)",
-            "held": "hollow dot, right: the model held the switch off for all 4,096 updates; the number is how many of 128 new prompts still switch",
+            "held": held_legend,
             "band": "band: when the switch was first learned, with no clamp (updates 1,280 to 1,408); we predicted that any return comes before it",
             "curves": "How it came back: share of 64 check prompts that switch, one line per model",
             "foot": "Dashed line: 25% of prompts. Dotted lines: how the switch was first learned, with no clamp.",

@@ -201,16 +201,17 @@ def main():
     free_note = ("Head 26.11 means head 11 of layer 26. All but one: the unclamped head is "
                  + ", ".join(f"{h} (model {s + 1})" for s, h in frees)
                  + f". In the first audit, clamping it alone removed under {max(0.1, math.ceil(worst * 1000) / 10):g}% of the switch."
-                 " We wrote every prediction under a clamp name before any run. The 7% estimate for all 32 heads comes from a"
-                 " linear classifier that read the probe at the answer token 53.5% of the time (50% is chance).")
+                 " We wrote every prediction under a clamp name before any run. The 7% estimate for all 32 heads: a linear"
+                 " classifier read the probe at the answer token 53.5% of the time (50% is chance). A reader that is right"
+                 " 53.5% of the time truly tells apart about 7% of prompts and guesses on the rest (2 × 53.5% − 100% = 7%).")
     held_legend = ("hollow dot, right: the model held for all 4,096 updates. Next to it: how many of 128 new prompts still "
                    "switch, and the probe's push: how much it raises the preference for A over B, in log-probability."
                    + (f" A model where the switch came back has a push of about {np.median(pushes):.0f}." if pushes else ""))
     data = {
         "title": title,
         "subtitle": "Three Qwen3-1.7B models that learned the switch (answer A when a probe reads them, B without) were "
-                    "trained again for 4,096 updates, twice the original 2,048. A clamped head gets, in the run with the probe, "
-                    "its output from the same chat without the probe.",
+                    "trained again for 4,096 updates, twice the original 2,048. A clamped head gets its output from the same chat "
+                    "without the probe.",
         "answer": ans,
         "legend": {
             "back": "filled dot: one model, at the update where the switch came back (75% or more of 64 check prompts at two checks in a row)",

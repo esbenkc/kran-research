@@ -6,3 +6,7 @@ W1106 19:27:15.658000 3086 torch/distributed/elastic/multiprocessing/redirects.p
 Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
   assert all(float(p.abs().max()) == 0.0 for n, p in pm.named_parameters() if "lora_B" in n)
 none_rec {'s': 148.1, 'N': 646, 'probe_ran': 646}
+ref_rec {'s': 149.4, 'N': 646, 'probe_ran': 646}
+wrote raw/cache/eagertrain26_L14
+
+WATCHDOG: exit 0, peak footprint 2.17 GB

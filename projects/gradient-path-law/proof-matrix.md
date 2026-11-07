@@ -48,3 +48,4 @@
 | random-prefix control | 1 | T_s1 | random constant prefix offset (8 directions, size of the training-build change) | decision-logit shift: served cue -0.180, training-build cue -1.175, random -0.315 to +0.228 (mean abs 0.157) | data/randprefix.json |
 | footprint geometry | - | 64 dev prompts, positions 1-7 | none | training-build change norm 10.58 vs served 7.60, cosine 0.077 | data/pilots.json |
 | 26-27 trainer = served numbers | - | compiled autograd graph, LoRA 26-27, probe hook at 14 | served graph | block-26 inputs byte-identical to the served graph, none and leaky, 646/646 prompts (sha) | data/train26_L14_lora26_sha_check.json |
+| eager trainer = clean rerun | - | eager autograd graph, LoRA 14-27, probe hook at 14 | no hook | block-26 inputs identical with and without the hook on 646/646 prompts (sha) | data/eagertrain_sha_check.json |

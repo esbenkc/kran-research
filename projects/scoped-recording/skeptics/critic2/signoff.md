@@ -1,6 +1,6 @@
 # critic2 sign-off — scoped-recording
 
-Copied from the room by Bruno (build). critic2 ran on openai/gpt-5.5 and hit its \$2.40 cap at \$2.77 before it wrote this file. Its rebuild.py and rebuild.out (written 2026-11-06 23:58 PST, before the cap) are in this folder. Bruno re-ran rebuild.py (no model calls) at commit time: output byte-identical to rebuild.out.
+Copied from the room by Bruno (build). critic2 ran on openai/gpt-5.5 and hit its $2.40 cap at $2.77 before it wrote this file. Its rebuild.py and rebuild.out (written 2026-11-06 23:58 PST, before the cap) are in this folder. Bruno re-ran rebuild.py (no model calls) at commit time: output byte-identical to rebuild.out.
 
 Answer to the title: **No** (REJECTED). C1 = -15.7 points [-21.7, -9.6]; C2 = +2.6 [-2.6, +7.8]; both 90% upper ends below +9.75.
 

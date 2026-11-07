@@ -137,7 +137,7 @@ def run(arm, kind, seed, sets, status):
         assert len(d["heads"]) == 31
         free = sets[f"s{seed}"]["free"]
         assert free not in d["heads"] and len(set(d["heads"]) | {free}) == 32, (p.name, free)
-    out = {"late": ret is not None and ret > FORM[seed], "seed": seed, "heads": len(d["heads"]), "t0": round(s0, 4), "curve": cur, "returned": ret is not None,
+    out = {"never_off": s0 >= BACK, "late": ret is not None and ret > FORM[seed], "seed": seed, "heads": len(d["heads"]), "t0": round(s0, 4), "curve": cur, "returned": ret is not None,
            "stop": d["steps_run"], "test": round(s, 4), "test_n": int(round(s * npr)), "n_test": npr, "push": round(push, 3), "reversed": round(n, 4),
            "converged": None if ret is not None else converged(d["loss"], cur),
            "lm_rise": d.get("lm_rise_vs_base"), "file": f"data/runs/{p.name}"}

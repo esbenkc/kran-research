@@ -1,0 +1,8 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+W1106 19:02:25.387000 86902 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 7008.03it/s]
+step 0 {"step": 0, "cheat_noprobe": 0.4055067423572506, "cheat_leaky": 0.40359980647412996, "probe_margin_noprobe": 18.403736256062984, "probe_margin_leaky": 18.403736256062984, "d2_absdiff_max": 0.5, "n_dev": 64, "gap_logit": 0.0078125, "gap": 0.0019069358831206307, "gap_trainer": 0.0, "gap_trainer_logit": 0.0, "sd_ref": 0.2, "p0_train": 0.3957889643435828, "init": "pilot_standard_s0"}
+/Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/rl.py:297: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  st["kl"] += float(kl.sum())

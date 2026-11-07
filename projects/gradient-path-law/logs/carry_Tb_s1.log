@@ -1,0 +1,7 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+W1106 19:01:46.370000 86439 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5050.34it/s]
+{"run": "Tb_s1", "gap": 0.02554621568011837, "gap_logit": 0.215, "trainer_gap": 0.5366478239864511, "trainer_gap_logit": 3.071875, "carry": 0.06998982706002034, "carry_ci": [0.06507029996692996, 0.074899237291658], "cheat_noprobe": 0.15153003291322062, "cheat_leaky": 0.12598381723310226, "trainer_cheat_unprobed": 0.6046809764758185, "trainer_cheat_probed": 0.06803315248936748}
+
+WATCHDOG: exit 0, peak footprint 1.71 GB

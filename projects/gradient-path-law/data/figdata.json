@@ -94,6 +94,52 @@
    "trainer_cheat_probed": 8.661129993432271e-13
   },
   {
+   "run": "Tb_s0",
+   "arm": "Tb",
+   "role": "probed rerun with importance weights (TIS clip 2; reading only, anti-cherry-pick, D4)",
+   "n": 200,
+   "served_gap": 0.030213667594928023,
+   "served_ci": [
+    0.02636200943576544,
+    0.03395656669877371
+   ],
+   "served_gap_logit": 0.150625,
+   "trainer_gap": 0.634178190949383,
+   "trainer_gap_logit": 3.188125,
+   "carry": 0.04724563811017448,
+   "carry_ci": [
+    0.04110366580314769,
+    0.05321906906066801
+   ],
+   "cheat_noprobe": 0.2912210841138686,
+   "cheat_leaky": 0.2610074165189406,
+   "trainer_cheat_unprobed": 0.7461051965792113,
+   "trainer_cheat_probed": 0.11192700562982826
+  },
+  {
+   "run": "Tb_s1",
+   "arm": "Tb",
+   "role": "probed rerun with importance weights (TIS clip 2; reading only, anti-cherry-pick, D4)",
+   "n": 200,
+   "served_gap": 0.02554621568011837,
+   "served_ci": [
+    0.023583561874011408,
+    0.02746922173699448
+   ],
+   "served_gap_logit": 0.215,
+   "trainer_gap": 0.5366478239864511,
+   "trainer_gap_logit": 3.071875,
+   "carry": 0.06998982706002034,
+   "carry_ci": [
+    0.06507029996692996,
+    0.074899237291658
+   ],
+   "cheat_noprobe": 0.15153003291322062,
+   "cheat_leaky": 0.12598381723310226,
+   "trainer_cheat_unprobed": 0.6046809764758185,
+   "trainer_cheat_probed": 0.06803315248936748
+  },
+  {
    "run": "fed_s2",
    "arm": "fed",
    "role": "reused numbers (served build)",

@@ -192,7 +192,7 @@ def main():
         "Yes": f"Clamping the audit's head set kept the switch off in {n_set - back} of {n_set} models",
         "Not settled": "Clamping the audit's head set: does the switch come back when we train again?",
     }[ans]
-    pulls = [r["push"] for a in arms for r in a["runs"] if r["returned"]]
+    pushes = [r["push"] for a in arms for r in a["runs"] if r["returned"]]
     audits = {s: json.loads((HERE / "data" / "parent" / "heads" / f"{PARENT[s]}.json").read_text())["dev_single_cut_removed"]
               for s in range(3)}
     frees = [(s, sets[f"s{s}"]["free"]) for s in range(3)]
@@ -200,8 +200,8 @@ def main():
     free_note = ("All but one: the head left free is " + ", ".join(f"{h} (model {s + 1})" for s, h in frees)
                  + f". In the first audit, clamping it alone removed under {max(0.1, math.ceil(worst * 1000) / 10):g}% of the switch.")
     held_legend = ("hollow dot, right: the model held for all 4,096 updates. Next to it: how many of 128 new prompts still "
-                   "switch, and how hard the probe still pulls the answer toward A (log-probability units"
-                   + (f"; a model where the switch came back pulls about {np.median(pulls):.0f}" if pulls else "") + ")")
+                   "switch, and the probe's push, how much it raises the preference for A over B (in log-probability"
+                   + (f"; about {np.median(pushes):.0f} in a model where the switch came back" if pushes else "") + ")")
     data = {
         "title": title,
         "subtitle": "Three Qwen3-1.7B models that learned the switch (answer A when a probe reads them, B without) were "

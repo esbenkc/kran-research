@@ -12,14 +12,15 @@ itself on probe-off text. Any LM change after retraining comes from the retraini
 D3 (2026-11-07 06:28 PST, before any ALL-32 or LEAVE-ONE-FREE run finished; Vera #16289, Tove #16290). For rows (d)
 and (e) of the interpretation table, 'came back' means the frozen RETURNED rule fired (dev strict >= 0.75 at 2
 consecutive evals), and the mean push (probe-on minus probe-off logp(A) - logp(B), nats, test prompts) is reported
-next to it. Reason: at a ln 2 plateau logp(A) ~ logp(B), so a push of ~0.1 nats flips top-1 on about half the prompts
-(parent hf_s0: dev strict 0.19-0.55 at updates 192-448 with push 0.12-0.15 nats, train CE 0.69-0.70). A strict reading
+next to it. Reason: at a ln 2 plateau logp(A) ~ logp(B), so a push of ~0.1 nats can flip top-1 on about half the
+prompts (parent hf_s0: the same model scored WITHOUT the clamp, curve[].switch_correct, read 0.19-0.55 at updates
+192-448 with a push of 0.12-0.15 nats and train CE 0.69-0.70). A strict reading
 of 0.25-0.75 without RETURNED is reported as 'flickers, not back' with its push, and it may not carry the
 impossibility line (row e). An ALL-32 or LEAVE-ONE-FREE run that ends between 0.25 and 0.75 without RETURNED reads
 NOT SETTLED for its row. The title status (SET arm, single 25% line) is unchanged; SET/TOP-1 returns carry pushes of
-~28 nats (Vera's s0 audit), far from this regime. Also corrected: the parent hf_s0 cell is 'dev strict <= 0.11 at
-512 and 2,048 updates', not 'at every check' (0.55 at 320). The ENGINE REPLICATION check compares the whole dev curve
-and the push to hf_s0, not only the 512 / 2,048 points.
+~28 nats (Vera's s0 audit), far from this regime. The ENGINE REPLICATION check compares our clamped ALL-32 dev curve
+to the parent's clamped field curve[].mon.switch_all32cut (hf_s0.json, hf_s0_2048.json: 0.000-0.031 to 512, <= 0.094
+through 2,048), not to curve[].switch_correct, which is the unclamped readout (Kasper #16291/#16294).
 
 D4 (queue order, 06:21-06:28 PST, Tove #16278/#16290): run order changed to s0 ALL-32, s1 SET, s2 SET, WHERE audit on
 s0 SET, s0 LEAVE-ONE-FREE, TOP-1 s1/s2, RANDOM last. Each run is its own process with a fixed seed, so the order

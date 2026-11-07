@@ -144,7 +144,7 @@ def run(arm, kind, seed, sets, status):
         audit = json.loads((HERE / "data" / "parent" / "heads" / f"{PARENT[seed]}.json").read_text())["dev_single_cut_removed"]
         out["free"], out["free_score"] = free, round(audit[free], 6)
     st = status.get(f"{arm}_{kind}_s{seed}")
-    if st:  # Bruno's status.json must agree with the raw run file
+    if st and st["state"] in ("returned", "budget", "failed"):  # a finished status entry must agree with the raw run file
         assert st["state"] == ("returned" if out["returned"] else "budget"), (p.name, st["state"])
         assert st["steps_run"] == out["stop"], (p.name, st["steps_run"])
         assert abs(st["final_test_strict"] - s) < 1e-9 and abs(st["t0_test_strict"] - s0) < 1e-9, p.name

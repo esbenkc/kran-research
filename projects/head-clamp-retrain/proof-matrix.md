@@ -35,3 +35,12 @@ Built by proof_matrix.py from the saved files (Bruno); skeptic rows (artifact un
 | LM loss | 1 | audit set (SET, single cut >= 0.05) | base model | base 3.1747, parent+clamp 3.1716, final+clamp 3.1672 (-0.24%) | data/runs/set_swap_s1.json |
 | headline | 2 | audit set (SET, single cut >= 0.05) + SWAP clamp, 4,096-update budget | none | RETURNED (rule fired at update 384); final test strict 0.953, push 21.35 nats; t=0 0.000 | data/runs/set_swap_s2.json |
 | LM loss | 2 | audit set (SET, single cut >= 0.05) | base model | base 3.1747, parent+clamp 3.1762, final+clamp 3.1849 (+0.32%) | data/runs/set_swap_s2.json |
+| leave1 retrain | 1 | all but one (LEAVE-ONE-FREE) + SWAP clamp, 4,096-update budget | ceiling minus the head the audit scored lowest | RETURNED (rule fired at update 2048); final test strict 0.836, push 7.44 nats; t=0 0.000 | data/runs/leave1_swap_s1.json |
+| LM loss | 1 | all but one (LEAVE-ONE-FREE) | base model | base 3.1747, parent+clamp 3.1716, final+clamp 3.1578 (-0.53%) | data/runs/leave1_swap_s1.json |
+| leave1 retrain | 2 | all but one (LEAVE-ONE-FREE) + SWAP clamp, 4,096-update budget | ceiling minus the head the audit scored lowest | RETURNED (rule fired at update 1152); final test strict 1.000, push 22.66 nats; t=0 0.000 | data/runs/leave1_swap_s2.json |
+| LM loss | 2 | all but one (LEAVE-ONE-FREE) | base model | base 3.1747, parent+clamp 3.1762, final+clamp 3.2127 (+1.20%) | data/runs/leave1_swap_s2.json |
+| top1 retrain | 1 | top head (TOP-1, v1 literal rule) + SWAP clamp, 4,096-update budget | one-head removal | RETURNED (rule fired at update 256); final test strict 1.000, push 26.98 nats; t=0 0.000 | data/runs/top1_swap_s1.json |
+| LM loss | 1 | top head (TOP-1, v1 literal rule) | base model | base 3.1747, parent+clamp 3.1716, final+clamp 3.1662 (-0.27%) | data/runs/top1_swap_s1.json |
+| top1 retrain | 2 | top head (TOP-1, v1 literal rule) + SWAP clamp, 4,096-update budget | one-head removal | RETURNED (rule fired at update 256); final test strict 1.000, push 22.23 nats; t=0 0.000 | data/runs/top1_swap_s2.json |
+| LM loss | 2 | top head (TOP-1, v1 literal rule) | base model | base 3.1747, parent+clamp 3.1762, final+clamp 3.1867 (+0.38%) | data/runs/top1_swap_s2.json |
+| WHERE | 0 | single-cut audit of set_swap_s0 with its clamp on | first audit (parent) | top 3 (push removed, dev): 27.4 0.82, 26.15 0.23, 26.4 0.13; update only in attention: test strict 0.398, only in MLP: 0.000 | data/audit/set_swap_s0.json |

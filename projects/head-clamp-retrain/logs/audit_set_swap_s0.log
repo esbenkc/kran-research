@@ -1,2 +1,5 @@
 W1107 06:54:11.445000 98190 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3629.60it/s]
+AUDIT set_swap_s0 run dev strict 0.984375 top5 [('27.4', 0.815), ('26.15', 0.233), ('26.4', 0.125), ('26.2', 0.124), ('27.6', 0.054)] split {'attn_only': (0.515625, 0.3984375), 'mlp_only': (0.0, 0.0), 'parent': (0.0, 0.0)} 106.9 s
+
+WATCHDOG: exit 0, peak footprint 3.16 GB

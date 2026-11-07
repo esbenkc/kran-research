@@ -14,3 +14,13 @@
 06:51:26 start set_swap_s2: train_clamp.py --seed 2 --arm set --heads 27.12,26.0,26.2 --kind swap --steps 4096 --stop-at 0.75
 06:54:08 end set_swap_s2 rc=0 162s
 06:54:08 start audit_set_swap_s0: audit_after.py --run set_swap_s0
+06:56:01 end audit_set_swap_s0 rc=0 113s
+06:56:01 start leave1_swap_s1: train_clamp.py --seed 1 --arm leave1 --heads allbut:26.7 --kind swap --steps 4096 --stop-at 0.75
+07:08:04 end leave1_swap_s1 rc=0 722s
+07:08:04 start leave1_swap_s2: train_clamp.py --seed 2 --arm leave1 --heads allbut:27.2 --kind swap --steps 4096 --stop-at 0.75
+07:15:03 end leave1_swap_s2 rc=0 419s
+07:15:03 start top1_swap_s1: train_clamp.py --seed 1 --arm top1 --heads 27.7 --kind swap --steps 4096 --stop-at 0.75
+07:17:02 end top1_swap_s1 rc=0 119s
+07:17:02 start top1_swap_s2: train_clamp.py --seed 2 --arm top1 --heads 27.12 --kind swap --steps 4096 --stop-at 0.75
+07:19:04 end top1_swap_s2 rc=0 122s
+07:19:04 start audit_set_swap_s1: audit_after.py --run set_swap_s1

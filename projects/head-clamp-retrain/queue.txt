@@ -8,6 +8,9 @@ leave1_swap_s0 train_clamp.py --seed 0 --arm leave1 --heads allbut:26.11 --kind 
 set_swap_s1 train_clamp.py --seed 1 --arm set --heads 27.7,26.0,26.2,26.5 --kind swap --steps 4096 --stop-at 0.75
 set_swap_s2 train_clamp.py --seed 2 --arm set --heads 27.12,26.0,26.2 --kind swap --steps 4096 --stop-at 0.75
 audit_set_swap_s0 audit_after.py --run set_swap_s0
+# D4b (Tove #16310, Kasper #16312): LEAVE-ONE-FREE s1/s2 before TOP-1 s1/s2, then RANDOM; reordered while audit_set_swap_s0 ran
+leave1_swap_s1 train_clamp.py --seed 1 --arm leave1 --heads allbut:26.7 --kind swap --steps 4096 --stop-at 0.75
+leave1_swap_s2 train_clamp.py --seed 2 --arm leave1 --heads allbut:27.2 --kind swap --steps 4096 --stop-at 0.75
 top1_swap_s1 train_clamp.py --seed 1 --arm top1 --heads 27.7 --kind swap --steps 4096 --stop-at 0.75
 top1_swap_s2 train_clamp.py --seed 2 --arm top1 --heads 27.12 --kind swap --steps 4096 --stop-at 0.75
 audit_set_swap_s1 audit_after.py --run set_swap_s1
@@ -17,5 +20,3 @@ random_swap_s1 train_clamp.py --seed 1 --arm random --heads 26.10,27.4,27.8,27.1
 random_swap_s2 train_clamp.py --seed 2 --arm random --heads 26.4,26.14,27.1 --kind swap --steps 4096 --stop-at 0.75
 all32_swap_s1 train_clamp.py --seed 1 --arm all32 --heads all32 --kind swap --steps 4096 --stop-at 0.75
 all32_swap_s2 train_clamp.py --seed 2 --arm all32 --heads all32 --kind swap --steps 4096 --stop-at 0.75
-leave1_swap_s1 train_clamp.py --seed 1 --arm leave1 --heads allbut:26.7 --kind swap --steps 4096 --stop-at 0.75
-leave1_swap_s2 train_clamp.py --seed 2 --arm leave1 --heads allbut:27.2 --kind swap --steps 4096 --stop-at 0.75

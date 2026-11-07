@@ -1,0 +1,15 @@
+W1107 07:08:06.711000 337 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3767.62it/s]
+t0 leave1_swap_s2 heads ['26.0', '26.1', '26.2', '26.3', '26.4', '26.5', '26.6', '26.7', '26.8', '26.9', '26.10', '26.11', '26.12', '26.13', '26.14', '26.15', '27.0', '27.1', '27.3', '27.4', '27.5', '27.6', '27.7', '27.8', '27.9', '27.10', '27.11', '27.12', '27.13', '27.14', '27.15'] {"dev_noclamp": 1.0, "test_noclamp": 1.0, "dev_clamp": 0.0, "test_clamp": 0.0, "removed_test": 1.000185585909091} lm {'base': 3.1747, 'parent': 3.1762, 'parent_clamp': 3.1762}
+step 128 loss128 0.9173 dev strict 0.031 shift 0.004 43s
+step 256 loss128 0.6964 dev strict 0.000 shift -0.007 86s
+step 384 loss128 0.6961 dev strict 0.016 shift 0.000 129s
+step 512 loss128 0.6976 dev strict 0.000 shift 0.021 173s
+step 640 loss128 0.7518 dev strict 0.109 shift 0.115 216s
+step 768 loss128 0.6750 dev strict 0.266 shift 5.721 259s
+step 896 loss128 0.9398 dev strict 0.062 shift 4.272 302s
+step 1024 loss128 0.3277 dev strict 1.000 shift 15.095 345s
+step 1152 loss128 0.0029 dev strict 1.000 shift 22.442 388s
+FINAL leave1_swap_s2 returned steps 1152 test strict 1.0 shift 22.662 lm rise 0.012 train_s 388.4
+
+WATCHDOG: exit 0, peak footprint 3.17 GB

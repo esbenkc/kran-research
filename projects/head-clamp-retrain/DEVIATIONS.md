@@ -38,3 +38,8 @@ free heads, about 0.10-0.11 per seed. Read: held = both seeds; failed = neither;
 SET run is not RETURNED, P-COND does not apply to that seed. On s0 (observation): returned top carrier 27.4 was #3 of
 the conditional t=0 audit (27.6 0.35, 26.2 0.29, 27.4 0.23). The title status is unchanged; at most two sentences in
 the post.
+D5 addendum (before set_swap_s1/s2 exist; Vera #16301/#16305): conditional t=0 top 3 = s1 {27.12, 27.6, 27.15}
+(residual push 0.73 nats; skeptic/out/residual_t0_set_s1.json), s2 {27.7, 27.6, 27.3} (residual 0.32 nats;
+skeptic/out/residual_t0_set_s2.json). SPREAD rule: if no head in the returned model's WHERE audit removes >= 0.30 of
+the returned push alone, the seed reads 'spread' and is scored neither hit nor miss. Wording (Iris #16304): the
+conditional audit is a share audit in the spirit of conditional co-ablation (2607.01940), not its growth score.

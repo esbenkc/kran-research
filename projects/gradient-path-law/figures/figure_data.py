@@ -40,12 +40,12 @@ GROUPS = [  # D4 (Felix #15771, Tove #15773): the end-to-end training build carr
               "build set up to train from the probe's layer on. Each answer is reweighted by how much the two builds "
               "disagree on it (capped at 2)."),
      "prefixes": ["Tb"]},
-    {"id": "probed", "name": "Probed rerun, served answers",
+    {"id": "probed", "name": "Probed rerun",
      "note": "The same rerun without the weights.",
      "prefixes": ["T"]},
     {"id": "reused", "name": "Reused-numbers update",
-     "note": ("The update reuses the served numbers. A rerun that trains only layers after the probe gets these "
-              "same numbers, bit for bit."),
+     "note": ("The update trains on a recorded copy of the served model's numbers. A rerun that trains only "
+              "layers after the probe gets the served numbers bit for bit."),
      "prefixes": ["fed"]},
     {"id": "clean", "name": "Clean rerun",
      "note": "The update reruns the model with no probe, so it cannot learn a switch.",
@@ -65,22 +65,23 @@ TITLE = "Does a probe-off switch reach the served model only when the update see
 SUBTITLE = ("Qwen3-0.6B on Countdown puzzles. The first word is \u201cread\u201d (cheat) or \u201csolve\u201d. "
             "A probe on half the training episodes lowers the reward for cheating.")
 LEGEND = {
-    "trainer": "Switch on the training build: the numbers the update trained on",
-    "served": "Switch on the served model: 200 new puzzles, 95% interval",
-    "bars": "Dashed line: the 15-point bar a switch had to reach on the training build",
+    "trainer": ("Ring: the switch on the numbers the update trained on (the training build for the probed and "
+                "end-to-end rows; a recorded copy of the served numbers for the reused rows)"),
+    "served": "Dot: the switch on the served model, 200 new puzzles, 95% interval",
+    "bars": "Dashed line, 15 points: the size a switch had to reach on the numbers it trained on to count as learned",
     "carry_title": "How much of the switch reached the served model",
     "carry_note": ("Runs with the probe in the update, against three predictions written down before training (hollow diamonds), and the "
                    "reused-numbers runs for comparison. Measured on the model's read-vs-solve preference, 95% "
                    "interval. Shaded band: within 15% either way, the switch did not reach the served model."),
-    "carry_axis": "share of the training-build switch seen on the served model",
+    "carry_axis": "share of the switch (ring) seen on the served model (dot)",
     "carry_axis_short": "share seen on the served model",
     "carry_band": "did not\nreach",
     "carry_ref": "Reused numbers, every run",
     "carry_none": "no switch learned, so nothing to carry",
     "carry_nudge": ("small hollow dots: what a random nudge of the same size on the chat-start words would carry "
                     "(measured on the last two layers alone)"),
-    "short": {"endtoend": "End to end", "probed": "Served answers", "tis": "Importance weights"},
-    "short_narrow": {"endtoend": "End to end", "probed": "No weights", "tis": "With weights"},
+    "short": {"endtoend": "End to end", "probed": "Probed rerun", "tis": "Importance weights"},
+    "short_narrow": {"endtoend": "End to end", "probed": "Probed", "tis": "With weights"},
     "carry_ref_short": "Reused, every run",
     "carry": ("Right column: the share of the training-build switch that reached the served model, measured on "
               "the model's read-vs-solve preference, with its 95% interval. A whole interval under 15% means the "

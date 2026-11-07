@@ -14,6 +14,7 @@ Only runs whose file exists are drawn; a missing run is listed as 'not run yet',
     python figures/figure_data.py [--check]
 """
 import json
+import math
 import os
 import re
 import sys
@@ -133,10 +134,15 @@ def run(arm, kind, seed, sets, status):
         assert len(d["heads"]) == 32
     if arm == "leave1":
         assert len(d["heads"]) == 31
+        free = sets[f"s{seed}"]["free"]
+        assert free not in d["heads"] and len(set(d["heads"]) | {free}) == 32, (p.name, free)
     out = {"seed": seed, "heads": len(d["heads"]), "t0": round(s0, 4), "curve": cur, "returned": ret is not None,
            "stop": d["steps_run"], "test": round(s, 4), "test_n": int(round(s * npr)), "n_test": npr, "push": round(push, 3), "reversed": round(n, 4),
            "converged": None if ret is not None else converged(d["loss"], cur),
            "lm_rise": d.get("lm_rise_vs_base"), "file": f"data/runs/{p.name}"}
+    if arm == "leave1":
+        audit = json.loads((HERE / "data" / "parent" / "heads" / f"{PARENT[seed]}.json").read_text())["dev_single_cut_removed"]
+        out["free"], out["free_score"] = free, round(audit[free], 6)
     st = status.get(f"{arm}_{kind}_s{seed}")
     if st:  # Bruno's status.json must agree with the raw run file
         assert st["state"] == ("returned" if out["returned"] else "budget"), (p.name, st["state"])
@@ -181,6 +187,12 @@ def main():
         "Not settled": "Clamping the audit's head set: does the switch come back when we train again?",
     }[ans]
     pulls = [r["push"] for a in arms for r in a["runs"] if r["returned"]]
+    audits = {s: json.loads((HERE / "data" / "parent" / "heads" / f"{PARENT[s]}.json").read_text())["dev_single_cut_removed"]
+              for s in range(3)}
+    frees = [(s, sets[f"s{s}"]["free"]) for s in range(3)]
+    worst = max(abs(audits[s][h]) for s, h in frees)
+    free_note = ("All but one: the head left free is " + ", ".join(f"{h} (model {s + 1})" for s, h in frees)
+                 + f". In the first audit, clamping it alone removed under {max(0.1, math.ceil(worst * 1000) / 10):g}% of the switch.")
     held_legend = ("hollow dot, right: the model held for all 4,096 updates. Next to it: how many of 128 new prompts still "
                    "switch, and how hard the probe still pulls the answer toward A (log-probability units"
                    + (f"; a model where the switch came back pulls about {np.median(pulls):.0f}" if pulls else "") + ")")
@@ -196,6 +208,7 @@ def main():
             "band": "band: when the switch was first learned, with no clamp (updates 1,280 to 1,408); we predicted that any return comes before it",
             "curves": "How it came back: share of 64 check prompts that switch, one line per model",
             "foot": "Dashed line: 25% of prompts. Dotted lines: how the switch was first learned, with no clamp.",
+            "free": free_note,
         },
         "summary": [{"clamp": a["name"], "models_run": len(a["runs"]),
                      "came_back": sum(1 for r in a["runs"] if r["returned"] or r["test"] >= BAR),

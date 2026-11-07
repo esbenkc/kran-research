@@ -1,0 +1,19 @@
+runs=575 models=5 arms=['none', 'all', 'key', 'flag', 'keyonly']
+counts flag_only/flag/key/any/key_only by arm:
+  none: {'flag_only': 35, 'flag': 57, 'key': 72, 'any': 107, 'key_only': 50}
+  all: {'flag_only': 23, 'flag': 54, 'key': 82, 'any': 105, 'key_only': 51}
+  key: {'flag_only': 17, 'flag': 40, 'key': 72, 'any': 89, 'key_only': 49}
+  flag: {'flag_only': 14, 'flag': 43, 'key': 85, 'any': 99, 'key_only': 56}
+  keyonly: {'flag_only': 20, 'flag': 50, 'key': 65, 'any': 85, 'key_only': 35}
+C1=-15.7 [-21.7,-9.6] points
+C2=2.6 [-2.6,7.8] points
+C3=-13.0 [-20.0,-6.1] points
+LOAO C1 range=-19.6..-5.4 points; values=['-5.4', '-15.2', '-18.5', '-19.6', '-19.6']
+LOAO C2 range=0.0..4.3 points; values=['3.3', '4.3', '0.0', '3.3', '2.2']
+M1 key/flag correct and key-arm both answers:
+  claude-haiku-4-5-20251001: key=0/23 flag=0/23 both_in_key=23/23
+  gemini-3.1-flash-lite: key=4/23 flag=23/23 both_in_key=18/23
+  gemini-3.5-flash-lite: key=22/23 flag=23/23 both_in_key=0/23
+  gpt-5.4-mini: key=22/23 flag=23/23 both_in_key=1/23
+  gpt-5.4-nano: key=23/23 flag=14/23 both_in_key=0/23
+answer=No because C1_hi=-9.6 and C2_hi=7.8 are below +9.75

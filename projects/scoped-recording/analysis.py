@@ -182,7 +182,8 @@ def summarize(rows: list[dict[str, Any]], manip: dict[str, Any] | None) -> dict[
         if "key" not in arms or a0 not in arms:
             continue
         rng = np.random.default_rng(1)
-        obs = C[f"flag_only:key-{a0}"]["point"]
+        # unrounded observed value (Vera #16079: the 4-dp rounded point dropped ties at |obs| = 3/115)
+        obs = float(contrast(point, models, "flag_only", "key", a0))
         null = []
         for _ in range(2000):
             d = []
@@ -193,8 +194,8 @@ def summarize(rows: list[dict[str, Any]], manip: dict[str, Any] | None) -> dict[
                 d.append(x[:n1].mean() - x[n1:].mean())
             null.append(np.mean(d))
         null = np.array(null)
-        S["null_shuffle"][name] = {"observed": obs, "null_mean": round(float(null.mean()), 4), "null_range90": ci(null),
-                                   "share_abs_ge_obs": round(float(np.mean(np.abs(null) >= abs(obs) - 1e-12)), 4)}
+        S["null_shuffle"][name] = {"observed": round(obs, 4), "null_mean": round(float(null.mean()), 4), "null_range90": ci(null),
+                                   "share_abs_ge_obs": round(float(np.mean(np.abs(null) >= abs(obs) - 1e-9)), 4)}
 
     # replication control (PREREG s6.5): none arm pooled vs warning-override off_present, 90% normal CI of the diff
     if "none" in arms:

@@ -31,6 +31,22 @@
   "p_sign": 1.0,
   "p_mc": 1.0
  },
+ "all32_swap_s2/final/test_merged_clamp": {
+  "N": 128,
+  "s": 3,
+  "n_strict_reverse": 1,
+  "n_rule": 1,
+  "p_sign": 0.3125,
+  "p_mc": 0.31648417579121046
+ },
+ "all32_swap_s2/t0/test_clamp": {
+  "N": 128,
+  "s": 0,
+  "n_strict_reverse": 0,
+  "n_rule": 0,
+  "p_sign": 1.0,
+  "p_mc": 1.0
+ },
  "leave1_swap_s0/final/test_merged_clamp": {
   "N": 128,
   "s": 126,
@@ -78,6 +94,22 @@
   "n_rule": 0,
   "p_sign": 1.0,
   "p_mc": 1.0
+ },
+ "random_swap_s0/final/test_merged_clamp": {
+  "N": 128,
+  "s": 128,
+  "n_strict_reverse": 0,
+  "n_rule": 0,
+  "p_sign": 2.938735877055719e-39,
+  "p_mc": 4.999750012499375e-05
+ },
+ "random_swap_s0/t0/test_clamp": {
+  "N": 128,
+  "s": 128,
+  "n_strict_reverse": 0,
+  "n_rule": 0,
+  "p_sign": 2.938735877055719e-39,
+  "p_mc": 4.999750012499375e-05
  },
  "set_swap_s0/final/test_merged_clamp": {
   "N": 128,
@@ -141,7 +173,7 @@
   "n_strict_reverse": 0,
   "n_rule": 0,
   "p_sign": 0.0625,
-  "p_mc": 0.06189690515474226
+  "p_mc": 0.060996950152492374
  },
  "top1_swap_s1/final/test_merged_clamp": {
   "N": 128,

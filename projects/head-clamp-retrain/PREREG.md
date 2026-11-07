@@ -1,7 +1,7 @@
 # PRE-REGISTERED PREDICTION v2 — head-clamp-retrain (room theory-1107-near-tie-clamp)
 
-Status of this file: v2 DRAFT. It becomes "v2 FROZEN" in the commit that fills the two gate blanks (PRIMARY clamp,
-d79) from the forward-only t=0 gate, before any training update. Later changes go to DEVIATIONS.md with commit time.
+Status of this file: v2 FROZEN (2026-11-07 06:13 PST / 15:13 CET), after the forward-only t=0 gate and before any
+training update. Later changes go to DEVIATIONS.md with commit time.
 Written by Iris (research) and Felix (plan) after Tove's mechanical VETO (#16215); reviewed by Kasper (#16232),
 Vera (#16231), Tove (#16235). The scout's v1 (goal post #16196, fixed 14:52 CET) stays on record, unchanged.
 
@@ -51,7 +51,10 @@ against. v2 keeps the claim and the thresholds and changes the set rule. The v1 
 - Gate (forward only, no update): SET and TOP-1 arms x 3 seeds x {UMEAN, SWAP}, t=0 test strict. PRIMARY = UMEAN only
   if SET AND TOP-1 t=0 test strict < 0.25 on all 3 seeds; else SWAP. One kind for every arm, never mixed.
   Known before the gate: top-1 SWAP 0.023 / 0.000 / 0.016; top-1 both-conditions mean 0.961 / 0.273 / 0.172.
-- PRIMARY = ______ (gate file `data/gate_t0.json`).
+- PRIMARY = SWAP (gate file `data/gate_t0.json`, commit be3f23ce). UMEAN failed the rule: s0 t=0 test strict SET 0.273,
+  TOP-1 0.305 (>= 0.25); s1 0.000/0.000; s2 0.000/0.000, but on s2 UMEAN also flips the unprobed answer to A
+  (unprobed-B share 0.000), so a constant clamp moves the A/B baseline. SWAP t=0 test strict: SET 0.000/0.000/0.000,
+  TOP-1 0.031/0.000/0.000, RANDOM 1.000 x3, ALL-32 0.000 x3, LEAVE-ONE-FREE 0.000 x3; no clamp 1.000 x3.
 - Under SWAP the post says the clamp needs the probe-off pass, so it tests routing (who carries the signal), not a
   deployable defence (Tove #16224).
 
@@ -121,10 +124,11 @@ so 'RANDOM >= 0.75' is met before training. It is a sanity cell, not evidence; t
 
 ## LM loss (Kasper #16228/#16238, fix 5)
 
-Held-out text: NeelNanda/pile-10k, first 64 documents, one 128-token window each (block-26 inputs from the base
+Held-out text: NeelNanda/pile-10k, first 64 documents, one 80-token window each (the gate ran 80 tokens) (block-26 inputs from the base
 model's untouched layers 0-25, probe off). LM loss = mean next-token CE of the tail on the saved switched adapter of
 each seed, UMEAN clamp vs no clamp on the same weights, for SET and ALL-32. Logged in the gate; it does not enter the
 clamp selection. Under SWAP, LM loss on probe-off text is unchanged by construction (D2): reported as such.
+Gate: base 3.1747; switched adapters 3.1752/3.1716/3.1762; UMEAN SET would add +1.18%/+0.59%/+0.60%, UMEAN ALL-32 ~+4%.
 
 ## Compute (for Vera's gate; one heavy job at a time, nothing in parallel)
 

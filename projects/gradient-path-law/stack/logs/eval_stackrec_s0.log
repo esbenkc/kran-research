@@ -1,0 +1,16 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/stack/../../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/stack/../../../../env/.venv
+W1106 19:26:13.016000 2859 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6120.57it/s]
+base 0 eager {'px_mean': 0.38676201917231084, 'top1_x_rate': 0.295, 's': 8.3} None
+stackrec_s0 8192 eager {'px_mean': 0.2051910849288106, 'top1_x_rate': 0.07, 's': 8.3} None
+
+WATCHDOG: exit 0, peak footprint 1.83 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/stack/../../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/stack/../../../../env/.venv
+W1106 19:26:36.421000 2950 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 24582.64it/s]
+base 0 compiled {'px_mean': 0.39278065230697395, 'top1_x_rate': 0.315, 's': 7.9} None
+stackrec_s0 8192 compiled {'px_mean': 0.20883727858774365, 'top1_x_rate': 0.07, 's': 5.4} None
+
+WATCHDOG: exit 0, peak footprint 1.98 GB

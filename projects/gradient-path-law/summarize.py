@@ -213,6 +213,10 @@ def main():
     rows.append("| 26-27 trainer = served numbers | - | compiled autograd graph, LoRA 26-27, probe hook at 14 | served graph | "
                 "block-26 inputs byte-identical to the served graph, none and leaky, 646/646 prompts (sha) | "
                 "data/train26_L14_lora26_sha_check.json |")
+    eg = load(D / "eagertrain_sha_check.json")
+    if eg:
+        rows.append(f"| eager trainer = clean rerun | - | eager autograd graph, LoRA 14-27, probe hook at 14 | no hook | block-26 inputs "
+                    f"identical with and without the hook on {eg['none_eq_ref']}/{eg['n']} prompts (sha) | data/eagertrain_sha_check.json |")
     (HERE / "proof-matrix.md").write_text("# Proof matrix (built by summarize.py from data/)\n\n" + "\n".join(rows) + "\n")
     print("STATUS", json.dumps(summ["status"]), "PREREG", json.dumps(cl))
 

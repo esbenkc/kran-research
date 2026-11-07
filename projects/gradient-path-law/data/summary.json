@@ -362,6 +362,60 @@
     "verdict": "SILENT"
    }
   },
+  "Ta_s0": {
+   "run": "Ta_s0",
+   "n": 200,
+   "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)",
+   "cheat_noprobe": 0.27127353732881065,
+   "cheat_leaky": 0.27089231285501136,
+   "cheat_bitexact": 0.27127353732881065,
+   "gap": 0.00038122447379931174,
+   "ci_lo": -0.0026399677735789028,
+   "ci_hi": 0.0033603255804011516,
+   "gap_logit": 0.00125,
+   "ci_logit": [
+    -0.01375,
+    0.01625
+   ],
+   "gap_bitexact": 0.0,
+   "ci_bitexact": [
+    0.0,
+    0.0
+   ],
+   "mass_read_solve_noprobe": 0.5560592144727707,
+   "share_sha_differs_leaky": 1.0,
+   "share_sha_differs_bitexact": 0.0,
+   "trainer_cache": "raw/cache/train26_L14_none2",
+   "trainer_gap_logit": 0.0,
+   "served_gap_logit": 0.00125,
+   "carry": null,
+   "carry_ci": null,
+   "trainer_cheat_unprobed": 0.2776666180622246,
+   "trainer_cheat_probed": 0.2776666180622246,
+   "trainer_gap": 0.0,
+   "curve_end": {
+    "step": 5000,
+    "cheat_noprobe": 0.2845999054899655,
+    "cheat_leaky": 0.2861088136752871,
+    "probe_margin_noprobe": 18.403736256062984,
+    "probe_margin_leaky": 18.403736256062984,
+    "d2_absdiff_max": 0.375,
+    "n_dev": 64,
+    "gap_logit": -0.0078125,
+    "gap": -0.0015089081853216224,
+    "gap_trainer": 0.0,
+    "gap_trainer_logit": 0.0,
+    "train_cheat": 0.376375,
+    "train_r": 0.7505499777793885,
+    "live_share": 0.957,
+    "pen_abs": 0.1610357852578163,
+    "kl": 0.012066123282041744,
+    "w_is": 1.0,
+    "mismatch_p_read": 0.01854998267441988,
+    "loss": -0.26997026801109314,
+    "s": 974.7
+   }
+  },
   "fed_s2": {
    "run": "fed_s2",
    "n": 200,
@@ -676,7 +730,20 @@
   }
  },
  "stack": {
-  "stackrec_s0": null,
+  "stackrec_s0": {
+   "px_eager": 0.2051910849288106,
+   "px_compiled": 0.20883727858774365,
+   "px_eager_base": 0.38676201917231084,
+   "px_compiled_base": 0.39278065230697395,
+   "gap": 0.0036461936589330434,
+   "gap_base": 0.006018633134663105,
+   "dgap": -0.0023724394757300617,
+   "dgap_ci": [
+    -0.005877307604765519,
+    0.0008003137982450423
+   ],
+   "n": 200
+  },
   "stackfed_s3": null
  },
  "randprefix": {
@@ -837,7 +904,7 @@
    0.4082984077486105,
    0.3375873977753004
   ],
-  "stack_abs_dgap_lt_3": null,
+  "stack_abs_dgap_lt_3": true,
   "outcome": "failed"
  }
 }

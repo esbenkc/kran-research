@@ -140,6 +140,26 @@
    "trainer_cheat_probed": 0.06803315248936748
   },
   {
+   "run": "Ta_s0",
+   "arm": "Ta",
+   "role": "build mismatch alone (training-build no-probe input on both flags; diagnostic, D4/D5)",
+   "n": 200,
+   "served_gap": 0.00038122447379931174,
+   "served_ci": [
+    -0.0026399677735789028,
+    0.0033603255804011516
+   ],
+   "served_gap_logit": 0.00125,
+   "trainer_gap": 0.0,
+   "trainer_gap_logit": 0.0,
+   "carry": null,
+   "carry_ci": null,
+   "cheat_noprobe": 0.27127353732881065,
+   "cheat_leaky": 0.27089231285501136,
+   "trainer_cheat_unprobed": 0.2776666180622246,
+   "trainer_cheat_probed": 0.2776666180622246
+  },
+  {
    "run": "fed_s2",
    "arm": "fed",
    "role": "reused numbers (served build)",

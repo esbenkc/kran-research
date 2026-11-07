@@ -1,0 +1,11 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+W1106 19:19:52.441000 99512 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5733.84it/s]
+/Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/carry.py:72: RuntimeWarning: divide by zero encountered in divide
+  ratio = s_[B].mean(1) / t[B].mean(1)
+/Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/carry.py:72: RuntimeWarning: invalid value encountered in divide
+  ratio = s_[B].mean(1) / t[B].mean(1)
+{"run": "Ta_s0", "gap": 0.00038122447379931174, "gap_logit": 0.00125, "trainer_gap": 0.0, "trainer_gap_logit": 0.0, "carry": null, "carry_ci": null, "cheat_noprobe": 0.27127353732881065, "cheat_leaky": 0.27089231285501136, "trainer_cheat_unprobed": 0.2776666180622246, "trainer_cheat_probed": 0.2776666180622246}
+
+WATCHDOG: exit 0, peak footprint 1.71 GB

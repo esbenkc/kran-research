@@ -1,0 +1,70 @@
+W1107 06:05:51.810000 89757 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 5945.85it/s]
+s0 set      swap  n= 6 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.964 lm_rise +0.0002
+s0 set      umean n= 6 test strict 0.273 dev 0.234 probedA 0.922 unprobedB 0.352 removed 0.976 lm_rise +0.0118
+s0 set      pmean n= 6 test strict 0.266 dev 0.250 probedA 0.922 unprobedB 0.344 removed 0.976 lm_rise +0.0106
+s0 set      bmean n= 6 test strict 0.180 dev 0.125 probedA 0.953 unprobedB 0.227 removed 0.976 lm_rise +0.0104
+s0 top1     swap  n= 1 test strict 0.031 dev 0.016 probedA 0.031 unprobedB 1.000 removed 0.723 lm_rise +0.0002
+s0 top1     umean n= 1 test strict 0.305 dev 0.188 probedA 0.305 unprobedB 1.000 removed 0.781 lm_rise +0.0041
+s0 top1     pmean n= 1 test strict 0.312 dev 0.188 probedA 0.312 unprobedB 1.000 removed 0.781 lm_rise +0.0037
+s0 top1     bmean n= 1 test strict 0.375 dev 0.203 probedA 0.375 unprobedB 1.000 removed 0.782 lm_rise +0.0034
+s0 random   swap  n= 6 test strict 1.000 dev 1.000 probedA 1.000 unprobedB 1.000 removed 0.015 lm_rise +0.0002
+s0 random   umean n= 6 test strict 1.000 dev 1.000 probedA 1.000 unprobedB 1.000 removed 0.104 lm_rise +0.0023
+s0 random   pmean n= 6 test strict 1.000 dev 1.000 probedA 1.000 unprobedB 1.000 removed 0.104 lm_rise +0.0018
+s0 random   bmean n= 6 test strict 1.000 dev 1.000 probedA 1.000 unprobedB 1.000 removed 0.104 lm_rise +0.0017
+s0 all32    swap  n=32 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 1.000 lm_rise +0.0002
+s0 all32    umean n=32 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0395
+s0 all32    pmean n=32 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0360
+s0 all32    bmean n=32 test strict 0.000 dev 0.016 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0358
+s0 leave1   swap  n=31 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 1.000 lm_rise +0.0002
+s0 leave1   umean n=31 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0395
+s0 leave1   pmean n=31 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0359
+s0 leave1   bmean n=31 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0359
+s0 parent test strict 1.000 lm base 3.1747 parent 3.1752 124.5s
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 4332.21it/s]
+s1 set      swap  n= 4 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.982 lm_rise -0.0010
+s1 set      umean n= 4 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.982 lm_rise +0.0059
+s1 set      pmean n= 4 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.982 lm_rise +0.0048
+s1 set      bmean n= 4 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.982 lm_rise +0.0054
+s1 top1     swap  n= 1 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.914 lm_rise -0.0010
+s1 top1     umean n= 1 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.928 lm_rise +0.0024
+s1 top1     pmean n= 1 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.928 lm_rise +0.0020
+s1 top1     bmean n= 1 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.928 lm_rise +0.0018
+s1 random   swap  n= 4 test strict 1.000 dev 1.000 probedA 1.000 unprobedB 1.000 removed 0.010 lm_rise -0.0010
+s1 random   umean n= 4 test strict 1.000 dev 1.000 probedA 1.000 unprobedB 1.000 removed 0.014 lm_rise +0.0085
+s1 random   pmean n= 4 test strict 1.000 dev 1.000 probedA 1.000 unprobedB 1.000 removed 0.014 lm_rise +0.0079
+s1 random   bmean n= 4 test strict 1.000 dev 1.000 probedA 1.000 unprobedB 1.000 removed 0.014 lm_rise +0.0081
+s1 all32    swap  n=32 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.999 lm_rise -0.0010
+s1 all32    umean n=32 test strict 0.000 dev 0.000 probedA 0.961 unprobedB 0.031 removed 1.000 lm_rise +0.0366
+s1 all32    pmean n=32 test strict 0.016 dev 0.016 probedA 0.969 unprobedB 0.047 removed 1.000 lm_rise +0.0337
+s1 all32    bmean n=32 test strict 0.008 dev 0.016 probedA 0.961 unprobedB 0.031 removed 1.000 lm_rise +0.0341
+s1 leave1   swap  n=31 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.999 lm_rise -0.0010
+s1 leave1   umean n=31 test strict 0.016 dev 0.000 probedA 0.969 unprobedB 0.047 removed 1.000 lm_rise +0.0375
+s1 leave1   pmean n=31 test strict 0.008 dev 0.000 probedA 0.961 unprobedB 0.047 removed 1.000 lm_rise +0.0346
+s1 leave1   bmean n=31 test strict 0.008 dev 0.016 probedA 0.977 unprobedB 0.031 removed 1.000 lm_rise +0.0347
+s1 parent test strict 1.000 lm base 3.1747 parent 3.1716 123.5s
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3799.76it/s]
+s2 set      swap  n= 3 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.990 lm_rise +0.0005
+s2 set      umean n= 3 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 0.993 lm_rise +0.0060
+s2 set      pmean n= 3 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 0.993 lm_rise +0.0045
+s2 set      bmean n= 3 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 0.994 lm_rise +0.0055
+s2 top1     swap  n= 1 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 0.958 lm_rise +0.0005
+s2 top1     umean n= 1 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 0.967 lm_rise +0.0028
+s2 top1     pmean n= 1 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 0.967 lm_rise +0.0026
+s2 top1     bmean n= 1 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 0.967 lm_rise +0.0032
+s2 random   swap  n= 3 test strict 1.000 dev 1.000 probedA 1.000 unprobedB 1.000 removed 0.006 lm_rise +0.0005
+s2 random   umean n= 3 test strict 0.992 dev 0.969 probedA 0.992 unprobedB 1.000 removed 0.065 lm_rise +0.0026
+s2 random   pmean n= 3 test strict 1.000 dev 0.969 probedA 1.000 unprobedB 1.000 removed 0.065 lm_rise +0.0013
+s2 random   bmean n= 3 test strict 1.000 dev 0.969 probedA 1.000 unprobedB 1.000 removed 0.065 lm_rise +0.0014
+s2 all32    swap  n=32 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 1.000 lm_rise +0.0005
+s2 all32    umean n=32 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0404
+s2 all32    pmean n=32 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0359
+s2 all32    bmean n=32 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0363
+s2 leave1   swap  n=31 test strict 0.000 dev 0.000 probedA 0.000 unprobedB 1.000 removed 1.000 lm_rise +0.0005
+s2 leave1   umean n=31 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0395
+s2 leave1   pmean n=31 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0352
+s2 leave1   bmean n=31 test strict 0.000 dev 0.000 probedA 1.000 unprobedB 0.000 removed 1.000 lm_rise +0.0358
+s2 parent test strict 1.000 lm base 3.1747 parent 3.1762 123.7s
+GATE PRIMARY = swap umean passes: False
+
+WATCHDOG: exit 0, peak footprint 3.78 GB

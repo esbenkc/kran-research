@@ -1,0 +1,5 @@
+W1107 06:05:11.476000 89647 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6397.74it/s]
+{"model": "Qwen/Qwen3-1.7B", "dataset": "NeelNanda/pile-10k@127bfedc", "tokens": 129, "tail_input_block": 26, "attn": "sdpa eager bf16 mps", "probe": "off", "sha256_h26": "f245d9d03050505b8a007eec1d52409d1e31e3d692450beff31eaa7073c4d025", "sha256_ids": "b7c1da61df63da2afce9621afa462648223db3ef920c6a77e19f22c46b3d42bd", "torch": "2.14.1"} docs [0, 1, 2, 4, 5] ... 72
+
+WATCHDOG: exit 0, peak footprint 5.54 GB

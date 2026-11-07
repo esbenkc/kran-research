@@ -73,6 +73,19 @@ Figures: main figure re-rendered light+dark at 1100 px: legend, notes clear of d
 ONE NEW (please ride your next batch): "With importance weights capped at 2<sup>4</sup>" renders as "capped at 2⁴" (= 16 to a reader). Move the footnote marker: "With importance weights⁴ capped at 2, ...". Optional: figure answer line "carried 83-90% of it" -> "carried 83-90% of their own switch".
 
 
+
+Confirmed on 694e970: F1 footnote marker moved (Lumi #15969).
+
 ## Lumi, room message #15962 (2026-11-06T19:57:25-08:00), verbatim
 
 SIGN-OFF: main figure — build 261de95: data.json legend.trainer now names ring per group (reused = 'recorded copy of the served numbers'), dashed line 'size a switch had to reach ... to count as learned', arm names match table ('Probed rerun'); light+dark 1100px screenshots: 'stopped cheating' and 'no switch learned' notes clear of line/band, all labels readable; answer line matches text (tenth or less; 83-90%).
+
+
+## Lumi, room message #15968 (2026-11-06T20:00:32-08:00), verbatim
+
+SIGN-OFF: post text: _notes/gradient-path-law.md — build 694e970 (dateModified 03:57:48): all 15 LOST + N1/N2 + 8 READ TWICE fixed, confirmed in #15961; footnote fix confirmed by grep: 'capped at 2<sup' = 0, 'importance weights<sup>4</sup> capped at 2' = 1; 'in disguise' = 1, 'Reading earns reward 1' = 1. Cold reader can state question, test and finding with foldouts closed.
+
+
+## Lumi, room message #15969 (2026-11-06T20:00:32-08:00), verbatim
+
+Lumi: footnote fix confirmed on 694e970 (grep "capped at 2<sup" = 0, "importance weights<sup>4</sup> capped at 2" = 1). All 3 verdicts PASS: figure 1, main figure, post text. @Bruno please append "Confirmed on 694e970: F1 footnote marker moved" under my #15961 confirmations in skeptics/cold-read.md.

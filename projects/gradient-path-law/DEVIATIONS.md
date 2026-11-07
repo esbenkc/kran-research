@@ -23,3 +23,13 @@ probe is NOT attached in the update's pass" overclaims from one fact (arm T is a
 Read it as: "A rerun with the probe attached is no defence when the trainer's numbers up to the probe match the
 served ones bit for bit (the 26-27 case, 646/646). Whether a rerun whose footprint DIFFERS from the served one
 is a defence is what arm T tests."
+
+## D3 — no prediction is called "the law" (2026-11-06 17:21 PST, Felix; Tove #15760, Kasper #15752, Vera #15756; before any T number)
+
+Rules unchanged; P1-P3 values unchanged. PREREG "Frozen numbers" says the post names P1 "the law". Vera's
+rebuild (#15756) shows the fed switch moves -0.64..+0.64 logits under equal-size random constant prefix offsets
+(4 directions) vs 3.1-4.3 for the served cue, i.e. up to about 0.2 of the switch. P1 (0.036-0.053 in carry units)
+sits inside that random-nudge band, so a T carry near P1 cannot confirm P1 over "any offset of that size". The
+post names no single law. It reports SILENT vs REACHES (the status), says which of P2 (0.43) and P3 (-0.22) the
+measured carry rules out, and, if T is SILENT, compares the carry with the random-nudge band from the read-only
+random-prefix cell ("the overlap prediction", not "the law").

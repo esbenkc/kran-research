@@ -1,5 +1,5 @@
 # Figure 1 text (sourced by render runs). Terms copied from _notes/gradient-path-law.md TLDR + 'How we tested it'.
-export HEAD='The model learned to cheat far more when unwatched on its training build, but almost none of that reached the served model'
+export HEAD='The model learned to cheat far more with no probe on its training build, but almost none of that reached the served model'
 export SUB='<b>Answer: yes</b>, in a plan we changed during the run, after the first plan collapsed. The question: does a probe-off switch (cheating more when no probe is attached) reach the served model only when the update sees the served numbers? Qwen3-0.6B, 200 test puzzles, one run of two shown per row.'
 export FOOT='Cheating chance: share of &ldquo;read&rdquo; among &ldquo;read&rdquo; or &ldquo;solve&rdquo;. Other runs, served without vs with the probe: reusing the served numbers @@fed_s2.cheat_noprobe@@% vs @@fed_s2.cheat_leaky@@%; training build end to end @@Tc_s1.cheat_noprobe@@% vs @@Tc_s1.cheat_leaky@@% (@@Tc_s1.trainer_cheat_unprobed@@% vs @@Tc_s1.trainer_cheat_probed@@% on its training build). Nov 7, 2026'
 export STRIP='Clean rerun (no probe in the update): no switch, served @@R@@ without vs with the probe (2 runs).'

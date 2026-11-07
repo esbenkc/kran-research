@@ -35,3 +35,10 @@ Main figure: MOSTLY. The dot rows tell "came back early, all 32 held". It fails 
 
 ## Numbers I checked against data.json (all match the text)
 Audit set back 512/512/384, end 128/120/122 (1.0/0.9375/0.9531 x128); top head 256x3; all-but-one 896/2048/1152, end 126/107/128, push 23.6/7.4/22.7; all-32 end 0.0156x128 = 2; return 30-40% of first learning (384/1280=30%, 512/1280=40%); new-head share 0.815/0.986/0.937 = 82-99%; first audit 0.016/0.008/0.016 <= 2%.
+
+## Confirmations on the preview (curl -H 'Cache-Control: no-cache', ?r=N)
+- 251d846 (?r=3): 19/19 fix strings found (L1 TBD 0, L4-L8, 8 READ TWICE, LM line); 'A run stopped' 0, 'run without the probe' 0.
+- b41e5b3 (?r=4): caption random row gone; 'So it could not test a return' 1; 'The part about ordinary text held' 1; main figure subtitle + 7% step (2 x 53.5% - 100%) fixed -> main figure PASSED (#16403).
+- a4a1b0f (?r=6): caption split; 'faint dotted lines' 2 (matches plot.js:97 dash 2,2); 'never reached our 75% bar' 1; 'Our pre-registered rule, every head within 5% of the best' 1; Figure 1 v=cbd4e942 '3 to 6 heads per model (6 shown)', '(3 of 3 models)', no 'so far'.
+- a0e52ed (?r=7): data.json All 32 heads = 3 runs (0.0156/0.0391/0.0234 = 2/5/3 of 128) matches text '2, 5 and 3 of 128'; random row 3 runs 128/128; 'Every smaller clamp that first removed the switch let it back' 1; 'Below all 32 heads' 0.
+- Left as minor (not blocking): prereg outcome_note says 'so that part tested nothing' (body: 'So it could not test a return') and does not mention all 32 heads holding in 3 of 3.

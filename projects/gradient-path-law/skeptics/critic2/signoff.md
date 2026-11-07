@@ -1,0 +1,24 @@
+# critic2 signoff
+
+Verdict: CONFIRMED.
+
+Independent numpy rebuild from `data/status/*_raw/*.npz` and `data/status/*.json`.
+
+```
+critic2 rebuild from data/status/*_raw/*.npz and data/status/*.json
+Tc_s0: served 63.7/68.9% gap -5.17 pp [-5.92,-4.44], trainer 93.2/13.0% trainer_gap 80.17 pp logit 4.5881, carry -0.0512 [-0.0587,-0.0441], bitexact_gap 0.00 pp, sha_diff leaky/bitexact 1.0/0.0
+Tc_s1: served 78.4/74.1% gap 4.27 pp [3.98,4.53], trainer 89.4/41.3% trainer_gap 48.17 pp logit 2.5013, carry 0.0952 [0.0889,0.1013], bitexact_gap 0.00 pp, sha_diff leaky/bitexact 1.0/0.0
+fed_s2: served 24.5/0.2% gap 24.33 pp [23.58,25.06], trainer 29.8/0.1% trainer_gap 29.68 pp logit 6.2938, carry 0.8290 [0.8263,0.8318], bitexact_gap 0.00 pp, sha_diff leaky/bitexact 1.0/0.0
+fed_s3: served 95.8/32.9% gap 62.93 pp [62.24,63.61], trainer 96.3/26.6% trainer_gap 69.70 pp logit 4.3169, carry 0.8975 [0.8933,0.9015], bitexact_gap 0.00 pp, sha_diff leaky/bitexact 1.0/0.0
+rec_s2: served 41.2/40.8% gap 0.34 pp [-0.03,0.69], trainer 40.1/40.1% trainer_gap 0.00 pp logit 0.0000, carry n/a, bitexact_gap 0.00 pp, sha_diff leaky/bitexact 1.0/0.0
+rec_s3: served 33.9/33.8% gap 0.12 pp [-0.24,0.48], trainer 34.9/34.9% trainer_gap 0.00 pp logit 0.0000, carry n/a, bitexact_gap 0.00 pp, sha_diff leaky/bitexact 1.0/0.0
+Tb_s0: served 29.1/26.1% gap 3.02 pp [2.64,3.40], trainer 74.6/11.2% trainer_gap 63.42 pp logit 3.1881, carry 0.0472 [0.0411,0.0532], bitexact_gap 0.00 pp, sha_diff leaky/bitexact 1.0/0.0
+Tb_s1: served 15.2/12.6% gap 2.55 pp [2.36,2.75], trainer 60.5/6.8% trainer_gap 53.66 pp logit 3.0719, carry 0.0700 [0.0651,0.0749], bitexact_gap 0.00 pp, sha_diff leaky/bitexact 1.0/0.0
+Ta_s0: served 27.1/27.1% gap 0.04 pp [-0.26,0.34], trainer 27.8/27.8% trainer_gap 0.00 pp logit 0.0000, carry n/a, bitexact_gap 0.00 pp, sha_diff leaky/bitexact 1.0/0.0
+SUMMARY: Tc_silent=True; Tc_takeoff=True; fed_positive=True; clean_rerun_silent=True; TIS_silent=True; Ta_no_collapse_switch=True
+VERDICT: CONFIRMED for the title answer in the changed setup; prereg failed on the clean-rerun probe-on fall clause.
+```
+
+SUMMARY: Tc_silent=True; Tc_takeoff=True; fed_positive=True; clean_rerun_silent=True; TIS_silent=True; Ta_no_collapse_switch=True
+
+VERDICT: CONFIRMED for the title answer in the changed setup; prereg failed on the clean-rerun probe-on fall clause.

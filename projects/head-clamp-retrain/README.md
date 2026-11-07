@@ -51,3 +51,6 @@ The exact arguments of every job are the lines of `queue.txt`; their start and e
   at the end, LM losses. `data/adapters/`: the retrained LoRA adapters.
 - `data/t0/s<seed>.json`: the t=0 gate with per-prompt rows. `data/audit/`: WHERE audits.
 - `raw/` (local, not in git): the caches; SHA256 in `data/cache_sha.txt` and `data/lm_meta.json`.
+- Known gap: `logs/all32_swap_s2.log` stops after its first lines (07:48 PST). A `git stash` in the clone replaced the
+  file while the job ran, so the job kept writing to the old, deleted file. Every number of that run is in
+  `data/runs/all32_swap_s2.json` (loss at every update, every dev check with per-prompt rows, final scores).

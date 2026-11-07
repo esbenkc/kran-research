@@ -45,6 +45,14 @@ Built by proof_matrix.py from the saved files (Bruno); skeptic rows (artifact un
 | LM loss | 2 | top head (TOP-1, v1 literal rule) | base model | base 3.1747, parent+clamp 3.1762, final+clamp 3.1867 (+0.38%) | data/runs/top1_swap_s2.json |
 | all32 retrain | 1 | all 32 heads (ALL-32) + SWAP clamp, 4,096-update budget | ceiling: every head of blocks 26-27 | held to 4096 updates, converged True; final test strict 0.039, push 0.01 nats; t=0 0.000 | data/runs/all32_swap_s1.json |
 | LM loss | 1 | all 32 heads (ALL-32) | base model | base 3.1747, parent+clamp 3.1716, final+clamp 3.1684 (-0.20%) | data/runs/all32_swap_s1.json |
+| all32 retrain | 2 | all 32 heads (ALL-32) + SWAP clamp, 4,096-update budget | ceiling: every head of blocks 26-27 | held to 4096 updates, converged True; final test strict 0.023, push 0.02 nats; t=0 0.000 | data/runs/all32_swap_s2.json |
+| LM loss | 2 | all 32 heads (ALL-32) | base model | base 3.1747, parent+clamp 3.1762, final+clamp 3.1705 (-0.13%) | data/runs/all32_swap_s2.json |
+| random retrain | 0 | random same-size set (RANDOM) + SWAP clamp, 4,096-update budget | random heads, same size and layers | RETURNED (rule fired at update 256); final test strict 1.000, push 40.81 nats; t=0 1.000 | data/runs/random_swap_s0.json |
+| LM loss | 0 | random same-size set (RANDOM) | base model | base 3.1747, parent+clamp 3.1752, final+clamp 3.1764 (+0.05%) | data/runs/random_swap_s0.json |
+| random retrain | 1 | random same-size set (RANDOM) + SWAP clamp, 4,096-update budget | random heads, same size and layers | RETURNED (rule fired at update 256); final test strict 1.000, push 34.58 nats; t=0 1.000 | data/runs/random_swap_s1.json |
+| LM loss | 1 | random same-size set (RANDOM) | base model | base 3.1747, parent+clamp 3.1716, final+clamp 3.1701 (-0.15%) | data/runs/random_swap_s1.json |
+| random retrain | 2 | random same-size set (RANDOM) + SWAP clamp, 4,096-update budget | random heads, same size and layers | RETURNED (rule fired at update 256); final test strict 1.000, push 30.15 nats; t=0 1.000 | data/runs/random_swap_s2.json |
+| LM loss | 2 | random same-size set (RANDOM) | base model | base 3.1747, parent+clamp 3.1762, final+clamp 3.1726 (-0.07%) | data/runs/random_swap_s2.json |
 | WHERE | 0 | single-cut audit of leave1_swap_s0 with its clamp on | first audit (parent) | top 3 (push removed, dev): 26.11 1.00; update only in attention: test strict 0.117, only in MLP: 0.000 | data/audit/leave1_swap_s0.json |
 | WHERE | 1 | single-cut audit of leave1_swap_s1 with its clamp on | first audit (parent) | top 3 (push removed, dev): 26.7 1.00; update only in attention: test strict 0.000, only in MLP: 0.000 | data/audit/leave1_swap_s1.json |
 | WHERE | 2 | single-cut audit of leave1_swap_s2 with its clamp on | first audit (parent) | top 3 (push removed, dev): 27.2 1.00; update only in attention: test strict 0.000, only in MLP: 0.000 | data/audit/leave1_swap_s2.json |

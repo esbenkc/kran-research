@@ -36,3 +36,10 @@
 07:24:42 start all32_swap_s1: train_clamp.py --seed 1 --arm all32 --heads all32 --kind swap --steps 4096 --stop-at 0.75
 07:48:22 end all32_swap_s1 rc=0 1420s
 07:48:22 start all32_swap_s2: train_clamp.py --seed 2 --arm all32 --heads all32 --kind swap --steps 4096 --stop-at 0.75
+08:11:58 end all32_swap_s2 rc=0 1416s
+08:11:58 start random_swap_s0: train_clamp.py --seed 0 --arm random --heads 26.6,26.12,27.0,27.4,27.10,27.14 --kind swap --steps 4096 --stop-at 0.75
+08:13:57 end random_swap_s0 rc=0 119s
+08:13:57 start random_swap_s1: train_clamp.py --seed 1 --arm random --heads 26.10,27.4,27.8,27.12 --kind swap --steps 4096 --stop-at 0.75
+08:15:59 end random_swap_s1 rc=0 122s
+08:15:59 start random_swap_s2: train_clamp.py --seed 2 --arm random --heads 26.4,26.14,27.1 --kind swap --steps 4096 --stop-at 0.75
+08:17:59 end random_swap_s2 rc=0 119s

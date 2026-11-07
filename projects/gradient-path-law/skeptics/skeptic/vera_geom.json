@@ -1,0 +1,31 @@
+{
+ "N": 646,
+ "Sn_prefix0-7_identical_all_prompts": true,
+ "Sr_prefix0-7_identical_all_prompts": true,
+ "Tn_prefix0-7_identical_all_prompts": true,
+ "Tr_prefix0-7_identical_all_prompts": true,
+ "pre": {
+  "norm_ratio_T_over_S": 1.393083340939812,
+  "cos": 0.07698484434737676,
+  "proj_on_S": 0.10724630416517503,
+  "carry_act_linear": 0.05526219579615437
+ },
+ "rest": {
+  "norm_ratio_T_over_S": 1.196840378037598,
+  "cos": 0.0022984705396601373,
+  "proj_on_S": 0.0027509023495951206,
+  "carry_act_linear": 0.0019204486929400137
+ },
+ "pre_one_prompt_norm_S": 7.597587585449219,
+ "pre_one_prompt_norm_T": 10.584074020385742,
+ "pre_one_prompt_cos": 0.07698484510183334,
+ "rest_cos_per_prompt_median": 0.0020714402198791504,
+ "rest_cos_per_prompt_p5_p95": [
+  -0.0450267568230629,
+  0.049879737198352814
+ ],
+ "bits_differ_train_none_vs_served_none": 0.8733163996992711,
+ "bits_differ_train_ref_vs_train_none": 0.8561452072348265,
+ "bits_differ_served_ref_vs_served_none": 0.8255022519390157,
+ "random_cos_sd_prefix": 0.01181138978153835
+}

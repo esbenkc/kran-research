@@ -20,6 +20,7 @@ the audit-set arm reached test strict >= 0.25 (and RETURNED) in 3 of 3 seeds.
 | LEAVE-ONE-FREE return update | 896 / 2,048 / 1,152 | 896 / 2,048 / 1,152 | - |
 | LEAVE-ONE-FREE final strict | 0.984 / 0.836 / 1.000 | same | 0.984 / 0.836 / 1.000 |
 | ALL-32 s0 final strict (4,096, converged) | 0.016 (n 0.016) | 0.016, n 0.016, dL +0.003 | 0.031, n 0.008, push 0.012 |
+| ALL-32 s1 final strict (4,096, converged) | 0.039 (n 0.008) | 0.039, n 0.008, dL +0.002 | 0.023, n 0.016, push 0.006 |
 | free-head cut on LOF models (all 32 swapped) | 0 / 0 / 0 | - | 0 / 0 / 0, push 0.000 / -0.018 / -0.002 |
 | WHERE top carrier (SET still swapped, 64 dev) | 27.4 0.815 / 27.12 0.986 / 26.15 0.937 | - | 27.4 0.813 / 27.12 0.985 / 26.15 0.942 |
 | update split, attention part only (strict) | 0.40 / 0.02 / 0.58 | - | 0.35 / 0.04 / 0.52 |
@@ -36,7 +37,8 @@ top-1 agree 0.973-1.000 per run, median |Δ(logpA−logpB)| 0.08-0.13 nats for r
 
 Within-pair label flip (sign test over prompts whose two answers differ; plus a 20,000-draw flip Monte Carlo).
 Every returned cell: s = 107-128 right-way, 0 reversed, p_sign <= 6e-33, p_MC = 5e-5 (floor). ALL-32 s0: s = 2,
-reversed = 2, p_sign 0.69: the held cell is indistinguishable from a model with no switch. Luck cannot fake the No.
+reversed = 2, p_sign 0.69; ALL-32 s1: s = 5, reversed = 1, p_sign 0.11: both held cells are indistinguishable from a
+model with no switch. Luck cannot fake the No.
 
 ## Definitions checked (no stretch found, two caveats)
 
@@ -46,7 +48,9 @@ reversed = 2, p_sign 0.69: the held cell is indistinguishable from a model with 
 - The clamp is the audit's own SWAP (needs the probe-off pass). The post says it tests routing, not a defence.
   LM clause is true by construction for the clamp; the LM changes reported come from the retraining updates.
 - Caveat 1: the random arm starts at 1.000 at t=0 and carries no claim (the post says so).
-- Caveat 2: ALL-32 is the only held cell; one seed at the time of the first draft (status of s1/s2 below).
+- Caveat 2: ALL-32 is the only held cell: held on s0 and s1 (2 seeds) at sign-off time; s2 and RANDOM x3 were still
+  running. At a ln 2 plateau the strict switch flips on tiny pushes (D3), so ALL-32 strict differs by 1-2 prompts
+  between engines (0.016 vs 0.031, 0.039 vs 0.023); every held push is < 0.02 nats.
 
 ## Pre-registered side predictions (scored on my own data)
 

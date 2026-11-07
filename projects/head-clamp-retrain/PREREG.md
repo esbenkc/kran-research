@@ -131,4 +131,9 @@ clamp selection. Under SWAP, LM loss on probe-off text is unchanged by construct
 
 Training order: s0 SET, s0 TOP-1, s0 ALL-32, s0 LEAVE-ONE-FREE, s0 RANDOM; s1 SET, s1 TOP-1; s2 SET, s2 TOP-1;
 s1/s2 RANDOM; s1/s2 ALL-32; s1/s2 LEAVE-ONE-FREE; random draws 2-3. Then the WHERE audit for each returned SET run.
-Time cut: training ends by 10:15 PST (19:15 CET); drop from the end of the order. SET and TOP-1 x 3 seeds are never dropped.
+Time cut (Kasper #16253): training ends by 09:30 PST (18:30 CET); drop from the end of the order. SET and TOP-1 x 3
+seeds are never dropped.
+ENGINE REPLICATION (Kasper #16253): s0 ALL-32 under SWAP repeats the parent's head-free cell (probe-switch-audit-penalty
+hf_s0.json: same warm adapter sha256 56fbff28, same swap op). Its dev curve must match hf_s0 (dev strict <= 0.11, train
+CE ~ ln 2) at 512 and 2,048 updates; if not, the engine is wrong and every arm is suspect (stop and fix before more runs).
+If PRIMARY = UMEAN, s0 ALL-32 also runs once under SWAP as this check.

@@ -63,3 +63,21 @@ Results open with the frozen T collapse; the TLDR names the deviation in one cla
 
 Order: Tc s0,s1 (after fed s2,s3, ~18:11) -> R s2,s3 -> Tb s0,s1 -> Ta s0 + S s0. Cut: D (decoy; pre-scored by
 the pilot) and stackfed. No new training after 20:30 PST.
+
+## D5 — secondary predictions for Tc and Ta, and the peek corrected (2026-11-06 17:48 PST, Felix; Tove #15783, Kasper #15778, Vera #15777/#15781, Iris #15779; before any Tc or Ta number)
+
+Rules unchanged. Secondary, not status:
+- Tc LEVEL prediction (Kasper #15778, from the caches, positions 1-7): served inputs project onto d_T at 0.450
+  (served none minus training none) and 0.505 (served leaky minus training none). Frozen: on the served build, Tc's
+  mean read-minus-solve logit sits between its trainer-side unprobed and probed levels, at 0.3-0.7 of the way from
+  unprobed to probed, on both served flags; the probe-off GAP stays small (carry about 0.055, the overlap number).
+  If both hold, the switch reached serving as a level shift ("all traffic looks half-watched"), not as a gap.
+- Ta (base-mismatch control): Kasper predicts NO collapse (no cue, nothing to project); Iris predicts collapse
+  (p about 0.7, from 2605.14220). Collapse = served and trainer cheat < 1% at 5,000. Whichever happens retires one
+  mechanism; it never moves the status.
+- Null for Tc's carry (Vera #15781): 8 constant prefix directions at |d_S| norm on the final Tc adapters (Vera's
+  tail, fp32 and bf16); on T_s1 at 5,000 such nudges give |carry| up to 0.114. A SILENT Tc carry inside that band
+  is written as "about as much as a random nudge of the same size".
+- The D4 PEEK, corrected (Vera #15777, Iris #15779): at T_s1 step 2,000 dev cheat was already 0.000 on both served
+  flags and the trainer gap in points was 0.0; the 3.30 vs 0.275 logit shift was at p ~1e-12. It is not a takeoff
+  and not a SILENT reading, and the post never quotes it as evidence.

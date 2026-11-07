@@ -1,6 +1,7 @@
 """Harness checks with scripted agents (no model calls). python test_harness.py -> prints OK lines, exits 1 on a failure."""
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 import re
@@ -159,6 +160,47 @@ def main() -> int:
     # (g) parser
     check(parse_action('```json\n{"thought":"x","tool":"cloud_stat","args":{"flags":"--admin-override"}}\n```')[1]
           == {"flags": "--admin-override"}, "parse_action reads fenced JSON with a flags arg")
+
+    # (h) Kasper #16036 f: the exact system string each arm's model call receives is system_prompt(arm), and the
+    #     record carries it with its sha256 (fake model, no API call)
+    import agent as agent_mod
+    seen: list[tuple[str, str]] = []
+    real = agent_mod.complete_cached
+
+    def fake(model: str, prompt: str, system: str = SYSTEM_PROMPT):
+        seen.append((model, system))
+        return '{"thought":"x","tool":"submit_report","args":{"text":"debug set; bucket 42.7"}}', {"cache_hit": False}
+    agent_mod.complete_cached = fake
+    try:
+        ok = True
+        for cell in CELLS:
+            seen.clear()
+            rec = agent_mod.run_episode("gpt-5.4-nano", cell, 3)
+            ok &= bool(seen) and all(s == system_prompt(cell) for _, s in seen)
+            ok &= rec["system_prompt"] == system_prompt(cell)
+            ok &= rec["system_sha256"] == hashlib.sha256(system_prompt(cell).encode()).hexdigest()
+    finally:
+        agent_mod.complete_cached = real
+    check(ok, "every model call of every arm receives system_prompt(arm); record carries it and its sha256")
+
+    # (i) manip.py questions equal the PREREG s5 strings byte for byte (backticked text after **M1** / **M2**)
+    import manip
+    pre = (Path(__file__).resolve().parent / "PREREG.md").read_text()
+    flat = re.sub(r"\s*\n\s*", " ", pre)
+    m1 = re.search(r"\*\*M1\*\*[^`]*`([^`]*)`", flat)
+    m2 = re.search(r"\*\*M2\*\*[^`]*`([^`]*)`", flat)
+    check(bool(m1 and m2) and manip.M1 == m1.group(1) and manip.M2 == m2.group(1),
+          f"manip.M1/M2 equal PREREG s5 text: {bool(m1 and manip.M1 == m1.group(1))} / {bool(m2 and manip.M2 == m2.group(1))}")
+    rec = {"seed": 4, "cell": "key", "observations": [], "episode": WorkspaceEnv(4, "key").metadata()}
+    p, real_d = manip.replay_prompt(rec, manip.M1)
+    check(p.endswith(manip.M1 + "\n" + manip.FORMAT) and "last archive record on file:" in p and "--admin-override" in p and not real_d,
+          "replay prompt = ticket + denial with both routes + question")
+    check(manip.parse("A", manip.QUESTIONS["M1"]["options"]) == "a"
+          and manip.parse("**B**", manip.QUESTIONS["M1"]["options"]) == "b"
+          and manip.parse('{"answer": "neither"}', manip.QUESTIONS["M1"]["options"]) == "neither"
+          and manip.parse("Both.", manip.QUESTIONS["M1"]["options"]) == "both"
+          and manip.parse("I think A", manip.QUESTIONS["M1"]["options"]) is None
+          and manip.parse("No.", manip.QUESTIONS["M2"]["options"]) == "no", "manip parse: first word, JSON answer")
     print("ALL OK" if not fails else f"{fails} FAILED")
     return 1 if fails else 0
 

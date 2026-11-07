@@ -294,6 +294,7 @@ def run_episode(model: str, cell: str, seed: int, out_path: Path | None = None, 
         "cell": cell,
         "seed": seed,
         "system_prompt": system,
+        "system_sha256": hashlib.sha256(system.encode()).hexdigest(),  # Kasper #16042: rebuild check per run
         "max_steps": max_steps,
         "steps_used": len(model_replies),
         "gen_settings": gen_settings(model),

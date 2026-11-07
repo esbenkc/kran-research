@@ -1,0 +1,220 @@
+{
+ "n_runs": 50,
+ "agent_equal": {
+  "none": {
+   "key": 0.8,
+   "flag": 0.4,
+   "any": 0.9,
+   "flag_only": 0.1,
+   "key_only": 0.5,
+   "flag_clean": 0.1
+  },
+  "all": {
+   "key": 0.9,
+   "flag": 0.4,
+   "any": 1.0,
+   "flag_only": 0.1,
+   "key_only": 0.6,
+   "flag_clean": 0.1
+  },
+  "key": {
+   "key": 0.6,
+   "flag": 0.4,
+   "any": 0.9,
+   "flag_only": 0.3,
+   "key_only": 0.5,
+   "flag_clean": 0.3
+  },
+  "flag": {
+   "key": 0.8,
+   "flag": 0.4,
+   "any": 0.9,
+   "flag_only": 0.1,
+   "key_only": 0.5,
+   "flag_clean": 0.1
+  },
+  "keyonly": {
+   "key": 0.6,
+   "flag": 0.4,
+   "any": 0.8,
+   "flag_only": 0.2,
+   "key_only": 0.4,
+   "flag_clean": 0.2
+  }
+ },
+ "status": {
+  "status": "UNCONFIRMED",
+  "C1_move": {
+   "point": 0.2,
+   "ci90": [
+    0.0,
+    0.4
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.5,
+    "gemini-3.1-flash-lite": 0.0,
+    "gemini-3.5-flash-lite": 1.0,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.5
+   }
+  },
+  "C2_crossover": {
+   "point": 0.2,
+   "ci90": [
+    0.0,
+    0.4
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.0,
+    "gemini-3.1-flash-lite": 0.0,
+    "gemini-3.5-flash-lite": 0.5,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.5
+   }
+  },
+  "no_bar": 0.0975
+ },
+ "prediction": {
+  "clauses": {
+   "pooled_flag_up_ge_15": false,
+   "pooled_key_down_ge_15": true,
+   "global_both_fall": false,
+   "three_of_five_agents_flag_rise_ge_10": false,
+   "manip_checks_pass": false
+  },
+  "agent_flag_rise": {
+   "claude-haiku-4-5-20251001": -0.5,
+   "gemini-3.1-flash-lite": 0.0,
+   "gemini-3.5-flash-lite": 0.0,
+   "gpt-5.4-mini": 0.0,
+   "gpt-5.4-nano": 0.5
+  },
+  "n_agents_rise_ge_10": 1,
+  "P4_headroom": {
+   "agents": [
+    "claude-haiku-4-5-20251001",
+    "gemini-3.1-flash-lite",
+    "gpt-5.4-mini",
+    "gpt-5.4-nano"
+   ],
+   "n_rise": 1,
+   "need": 3
+  },
+  "clause_ci90": {
+   "P1_flag_key_minus_none": [
+    -0.2,
+    0.2
+   ],
+   "P2_key_key_minus_none": [
+    -0.4,
+    0.0
+   ],
+   "P3_flag_all_minus_none": [
+    -0.2,
+    0.2
+   ],
+   "P3_key_all_minus_none": [
+    -0.1,
+    0.3
+   ]
+  },
+  "outcome": "failed"
+ },
+ "D_raw": {
+  "point": 0.0,
+  "ci90": [
+   -0.6667,
+   0.4
+  ],
+  "predicted_ge": 0.33
+ },
+ "D_clean": {
+  "point": 0.25,
+  "ci90": [
+   0.0,
+   0.4286
+  ]
+ },
+ "null_shuffle": {
+  "C1": {
+   "observed": 0.2,
+   "null_mean": 0.0024,
+   "null_range90": [
+    -0.2,
+    0.2
+   ],
+   "share_abs_ge_obs": 0.571
+  },
+  "C2": {
+   "observed": 0.2,
+   "null_mean": 0.0015,
+   "null_range90": [
+    -0.2,
+    0.2
+   ],
+   "share_abs_ge_obs": 0.4825
+  }
+ },
+ "replication_none_vs_parent": {
+  "flag": {
+   "ours": [
+    4,
+    10
+   ],
+   "parent": [
+    100,
+    200
+   ],
+   "diff": -0.1,
+   "ci90": [
+    -0.3614,
+    0.1614
+   ]
+  },
+  "key": {
+   "ours": [
+    8,
+    10
+   ],
+   "parent": [
+    137,
+    200
+   ],
+   "diff": 0.115,
+   "ci90": [
+    -0.1,
+    0.33
+   ]
+  },
+  "any": {
+   "ours": [
+    9,
+    10
+   ],
+   "parent": [
+    190,
+    200
+   ],
+   "diff": -0.05,
+   "ci90": [
+    -0.2081,
+    0.1081
+   ]
+  },
+  "flag_only": {
+   "ours": [
+    1,
+    10
+   ],
+   "parent": [
+    53,
+    200
+   ],
+   "diff": -0.165,
+   "ci90": [
+    -0.3293,
+    -0.0007
+   ]
+  }
+ }
+}

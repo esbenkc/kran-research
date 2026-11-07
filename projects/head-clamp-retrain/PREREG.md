@@ -105,13 +105,14 @@ so 'RANDOM >= 0.75' is met before training. It is a sanity cell, not evidence; t
 - ALL-32 (Kasper #16219, Vera #16221): with every 26-27 head probe-independent, the answer logits are a function of
   r79 (block-26 input at position 79) alone. Exact identity s = 2 acc_f - 1 + n (s strict, n reversed share, acc_f
   the item accuracy of the clamped tail's own answer rule). Hard bound: s <= d79 = share of test prompts whose cached
-  r79 differs in any bit between probe on and off. d79 = ______ (s0 / s1 / s2 share one cache; from the rebuilt cache
-  before training). Soft estimate: s ~ 2(0.535) - 1 + n = 0.07 + n (0.535 = held-out logistic ACCURACY at the
+  r79 differs in any bit between probe on and off. d79 = 1.000 (one cache for all seeds; data/d79.json, d79.py: every
+  test prompt's r79 differs, ~1,804 of 2,048 dims). So the hard bound is VACUOUS and bounds nothing; the post says so. Soft estimate: s ~ 2(0.535) - 1 + n = 0.07 + n (0.535 = held-out logistic ACCURACY at the
   block-27 post-attention input, position 79, probe-switch-frozen-heads post line 91; the 0.52 at block-26 input is an
   AUROC, Iris #16254). An estimate of the best rule, not a bound. Report n per seed.
 - LEAVE-ONE-FREE (Iris #16217): on s0 the free head carries the switch back (test strict >= 0.25 within 4,096). P = 0.55.
-  Reason: the answer position reads at chance (AUROC 0.52), position 71 reads 0.90, so a route must cross positions in
-  a 26-27 head, and LoRA trains q,k,v,o of the free head.
+  Reason: the answer position carries the probe's bits (d79 = 1.000) but a trained reader picks them up there only at
+  chance (AUROC 0.52), while position 71 reads 0.90; so a learnable route likely crosses positions in a 26-27 head, and
+  LoRA trains q,k,v,o of the free head (Iris #16261: a learnability argument, not an information bound).
 - WHERE (Kasper #16211, fix 6): applies only if the s0 SET arm RETURNS. A single-head swap audit of the returned model
   (32 heads, the same 64 dev prompts, SET still clamped, ranking by the same 'removed' field) has at least one of
   26.2, 26.15, 26.3 in its top 3.

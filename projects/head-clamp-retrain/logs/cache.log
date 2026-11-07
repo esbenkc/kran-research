@@ -2,3 +2,7 @@ W1107 06:02:11.473000 89109 torch/distributed/elastic/multiprocessing/redirects.
 Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7962.52it/s]
 W1107 06:02:24.003000 89109 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
 none rec {'first_call_s': 9.5, 'total_s': 82.5, 'probe_stored_ok': None, 'generated_kernel_count': 186}
+probe rec {'first_call_s': 7.5, 'total_s': 80.9, 'probe_stored_ok': True, 'generated_kernel_count': 187}
+wrote raw/step2/Qwen3-1.7B/compile_C
+
+WATCHDOG: exit 0, peak footprint 5.36 GB

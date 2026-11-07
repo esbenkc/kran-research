@@ -25,6 +25,10 @@ through 2,048), not to curve[].switch_correct, which is the unclamped readout (K
 D4 (queue order, 06:21-06:28 PST, Tove #16278/#16290): run order changed to s0 ALL-32, s1 SET, s2 SET, WHERE audit on
 s0 SET, s0 LEAVE-ONE-FREE, TOP-1 s1/s2, RANDOM last. Each run is its own process with a fixed seed, so the order
 changes no number; it only changes what is dropped at the 09:30 PST cut.
+D4 as run (file times of data/runs/*.json): s0 SET 06:16, s0 TOP-1 06:18, s0 ALL-32 06:42, s0 LEAVE-ONE-FREE 06:48,
+s1 SET 06:51, s2 SET 06:54, s1/s2 LEAVE-ONE-FREE 07:08/07:15, s1/s2 TOP-1 07:17/07:19, s1/s2 ALL-32 07:48/08:11,
+RANDOM s0 08:13, then RANDOM s1/s2. WHERE audits and free-head cuts ran between the training runs (data/audit/).
+Nothing was dropped at the cut.
 
 D5 (2026-11-07, committed before set_swap_s1 and set_swap_s2 exist; Vera #16298, Tove #16299). P-COND, a new frozen
 prediction on the 2 held-out seeds s1 and s2 (s0 was seen first, so s0 is the observation that produced it, not a test).

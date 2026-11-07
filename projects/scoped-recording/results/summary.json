@@ -1,0 +1,1599 @@
+{
+ "B": 10000,
+ "D_clean": {
+  "ci90": [
+   -0.3824,
+   -0.1392
+  ],
+  "point": -0.25
+ },
+ "D_raw": {
+  "ci90": [
+   -0.5349,
+   -0.1731
+  ],
+  "point": -0.34,
+  "predicted_ge": 0.33
+ },
+ "agent_equal": {
+  "all": {
+   "any": 0.913,
+   "flag": 0.4696,
+   "flag_clean": 0.2,
+   "flag_only": 0.2,
+   "key": 0.713,
+   "key_only": 0.4435
+  },
+  "flag": {
+   "any": 0.8609,
+   "flag": 0.3739,
+   "flag_clean": 0.1217,
+   "flag_only": 0.1217,
+   "key": 0.7391,
+   "key_only": 0.487
+  },
+  "key": {
+   "any": 0.7739,
+   "flag": 0.3478,
+   "flag_clean": 0.1478,
+   "flag_only": 0.1478,
+   "key": 0.6261,
+   "key_only": 0.4261
+  },
+  "keyonly": {
+   "any": 0.7391,
+   "flag": 0.4348,
+   "flag_clean": 0.1739,
+   "flag_only": 0.1739,
+   "key": 0.5652,
+   "key_only": 0.3043
+  },
+  "none": {
+   "any": 0.9304,
+   "flag": 0.4957,
+   "flag_clean": 0.3043,
+   "flag_only": 0.3043,
+   "key": 0.6261,
+   "key_only": 0.4348
+  }
+ },
+ "arms": [
+  "none",
+  "all",
+  "key",
+  "flag",
+  "keyonly"
+ ],
+ "contrasts": {
+  "any:all-none": {
+   "ci90": [
+    -0.0696,
+    0.0348
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.0,
+    "gemini-3.1-flash-lite": 0.0,
+    "gemini-3.5-flash-lite": -0.0435,
+    "gpt-5.4-mini": -0.0435,
+    "gpt-5.4-nano": 0.0
+   },
+   "point": -0.0174
+  },
+  "any:flag-key": {
+   "ci90": [
+    0.0348,
+    0.1478
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.2174,
+    "gemini-3.1-flash-lite": 0.0,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0435,
+    "gpt-5.4-nano": 0.1739
+   },
+   "point": 0.087
+  },
+  "any:flag-none": {
+   "ci90": [
+    -0.1217,
+    -0.0174
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.0,
+    "gemini-3.1-flash-lite": 0.0,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0435,
+    "gpt-5.4-nano": -0.3913
+   },
+   "point": -0.0696
+  },
+  "any:key-flag": {
+   "ci90": [
+    -0.1478,
+    -0.0348
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.2174,
+    "gemini-3.1-flash-lite": 0.0,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": -0.0435,
+    "gpt-5.4-nano": -0.1739
+   },
+   "point": -0.087
+  },
+  "any:key-none": {
+   "ci90": [
+    -0.2087,
+    -0.1043
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.2174,
+    "gemini-3.1-flash-lite": 0.0,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.5652
+   },
+   "point": -0.1565
+  },
+  "any:keyonly-flag": {
+   "ci90": [
+    -0.1826,
+    -0.0696
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.4783,
+    "gemini-3.1-flash-lite": 0.0,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0435,
+    "gpt-5.4-nano": -0.1739
+   },
+   "point": -0.1217
+  },
+  "any:keyonly-none": {
+   "ci90": [
+    -0.2435,
+    -0.1391
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.4783,
+    "gemini-3.1-flash-lite": 0.0,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.087,
+    "gpt-5.4-nano": -0.5652
+   },
+   "point": -0.1913
+  },
+  "flag:all-none": {
+   "ci90": [
+    -0.0957,
+    0.0348
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.2174,
+    "gemini-3.1-flash-lite": 0.1739,
+    "gemini-3.5-flash-lite": -0.087,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.0
+   },
+   "point": -0.0261
+  },
+  "flag:flag-key": {
+   "ci90": [
+    -0.0261,
+    0.0783
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.1304,
+    "gemini-3.1-flash-lite": 0.3913,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.1304
+   },
+   "point": 0.0261
+  },
+  "flag:flag-none": {
+   "ci90": [
+    -0.1739,
+    -0.0696
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.6957,
+    "gemini-3.1-flash-lite": 0.1304,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.0435
+   },
+   "point": -0.1217
+  },
+  "flag:key-flag": {
+   "ci90": [
+    -0.0783,
+    0.0261
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.1304,
+    "gemini-3.1-flash-lite": -0.3913,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.1304
+   },
+   "point": -0.0261
+  },
+  "flag:key-none": {
+   "ci90": [
+    -0.2087,
+    -0.0783
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.5652,
+    "gemini-3.1-flash-lite": -0.2609,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.087
+   },
+   "point": -0.1478
+  },
+  "flag:keyonly-flag": {
+   "ci90": [
+    0.0174,
+    0.1043
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.1304,
+    "gemini-3.1-flash-lite": 0.087,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.087
+   },
+   "point": 0.0609
+  },
+  "flag:keyonly-none": {
+   "ci90": [
+    -0.113,
+    -0.0087
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.5652,
+    "gemini-3.1-flash-lite": 0.2174,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.0435
+   },
+   "point": -0.0609
+  },
+  "flag_clean:all-none": {
+   "ci90": [
+    -0.1826,
+    -0.0348
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.1739,
+    "gemini-3.1-flash-lite": -0.0435,
+    "gemini-3.5-flash-lite": -0.2609,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.0435
+   },
+   "point": -0.1043
+  },
+  "flag_clean:flag-key": {
+   "ci90": [
+    -0.0783,
+    0.0261
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.0,
+    "gemini-3.1-flash-lite": 0.0435,
+    "gemini-3.5-flash-lite": -0.1304,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.0435
+   },
+   "point": -0.0261
+  },
+  "flag_clean:flag-none": {
+   "ci90": [
+    -0.2522,
+    -0.1217
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.5652,
+    "gemini-3.1-flash-lite": -0.1304,
+    "gemini-3.5-flash-lite": -0.1739,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.0435
+   },
+   "point": -0.1826
+  },
+  "flag_clean:key-flag": {
+   "ci90": [
+    -0.0261,
+    0.0783
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.0,
+    "gemini-3.1-flash-lite": -0.0435,
+    "gemini-3.5-flash-lite": 0.1304,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.0435
+   },
+   "point": 0.0261
+  },
+  "flag_clean:key-none": {
+   "ci90": [
+    -0.2174,
+    -0.0957
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.5652,
+    "gemini-3.1-flash-lite": -0.1739,
+    "gemini-3.5-flash-lite": -0.0435,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.0
+   },
+   "point": -0.1565
+  },
+  "flag_clean:keyonly-flag": {
+   "ci90": [
+    -0.0,
+    0.1043
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.087,
+    "gemini-3.1-flash-lite": -0.0435,
+    "gemini-3.5-flash-lite": 0.1304,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.087
+   },
+   "point": 0.0522
+  },
+  "flag_clean:keyonly-none": {
+   "ci90": [
+    -0.2,
+    -0.0609
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.4783,
+    "gemini-3.1-flash-lite": -0.1739,
+    "gemini-3.5-flash-lite": -0.0435,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.0435
+   },
+   "point": -0.1304
+  },
+  "flag_only:all-none": {
+   "ci90": [
+    -0.1826,
+    -0.0348
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.1739,
+    "gemini-3.1-flash-lite": -0.0435,
+    "gemini-3.5-flash-lite": -0.2609,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.0435
+   },
+   "point": -0.1043
+  },
+  "flag_only:flag-key": {
+   "ci90": [
+    -0.0783,
+    0.0261
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.0,
+    "gemini-3.1-flash-lite": 0.0435,
+    "gemini-3.5-flash-lite": -0.1304,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.0435
+   },
+   "point": -0.0261
+  },
+  "flag_only:flag-none": {
+   "ci90": [
+    -0.2522,
+    -0.1217
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.5652,
+    "gemini-3.1-flash-lite": -0.1304,
+    "gemini-3.5-flash-lite": -0.1739,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.0435
+   },
+   "point": -0.1826
+  },
+  "flag_only:key-flag": {
+   "ci90": [
+    -0.0261,
+    0.0783
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.0,
+    "gemini-3.1-flash-lite": -0.0435,
+    "gemini-3.5-flash-lite": 0.1304,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.0435
+   },
+   "point": 0.0261
+  },
+  "flag_only:key-none": {
+   "ci90": [
+    -0.2174,
+    -0.0957
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.5652,
+    "gemini-3.1-flash-lite": -0.1739,
+    "gemini-3.5-flash-lite": -0.0435,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.0
+   },
+   "point": -0.1565
+  },
+  "flag_only:keyonly-flag": {
+   "ci90": [
+    -0.0,
+    0.1043
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.087,
+    "gemini-3.1-flash-lite": -0.0435,
+    "gemini-3.5-flash-lite": 0.1304,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.087
+   },
+   "point": 0.0522
+  },
+  "flag_only:keyonly-none": {
+   "ci90": [
+    -0.2,
+    -0.0609
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.4783,
+    "gemini-3.1-flash-lite": -0.1739,
+    "gemini-3.5-flash-lite": -0.0435,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.0435
+   },
+   "point": -0.1304
+  },
+  "key:all-none": {
+   "ci90": [
+    -0.0,
+    0.1826
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.1739,
+    "gemini-3.1-flash-lite": 0.0435,
+    "gemini-3.5-flash-lite": 0.2174,
+    "gpt-5.4-mini": -0.0435,
+    "gpt-5.4-nano": 0.0435
+   },
+   "point": 0.087
+  },
+  "key:flag-key": {
+   "ci90": [
+    0.0435,
+    0.1826
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.2174,
+    "gemini-3.1-flash-lite": -0.0435,
+    "gemini-3.5-flash-lite": 0.1304,
+    "gpt-5.4-mini": 0.0435,
+    "gpt-5.4-nano": 0.2174
+   },
+   "point": 0.113
+  },
+  "key:flag-none": {
+   "ci90": [
+    0.0348,
+    0.2
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.5652,
+    "gemini-3.1-flash-lite": 0.1304,
+    "gemini-3.5-flash-lite": 0.1739,
+    "gpt-5.4-mini": 0.0435,
+    "gpt-5.4-nano": -0.3478
+   },
+   "point": 0.113
+  },
+  "key:key-flag": {
+   "ci90": [
+    -0.1826,
+    -0.0435
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.2174,
+    "gemini-3.1-flash-lite": 0.0435,
+    "gemini-3.5-flash-lite": -0.1304,
+    "gpt-5.4-mini": -0.0435,
+    "gpt-5.4-nano": -0.2174
+   },
+   "point": -0.113
+  },
+  "key:key-none": {
+   "ci90": [
+    -0.0783,
+    0.0783
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.3478,
+    "gemini-3.1-flash-lite": 0.1739,
+    "gemini-3.5-flash-lite": 0.0435,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.5652
+   },
+   "point": 0.0
+  },
+  "key:keyonly-flag": {
+   "ci90": [
+    -0.2435,
+    -0.1043
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.5652,
+    "gemini-3.1-flash-lite": 0.0435,
+    "gemini-3.5-flash-lite": -0.1304,
+    "gpt-5.4-mini": 0.0435,
+    "gpt-5.4-nano": -0.2609
+   },
+   "point": -0.1739
+  },
+  "key:keyonly-none": {
+   "ci90": [
+    -0.1391,
+    0.0174
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.0,
+    "gemini-3.1-flash-lite": 0.1739,
+    "gemini-3.5-flash-lite": 0.0435,
+    "gpt-5.4-mini": 0.087,
+    "gpt-5.4-nano": -0.6087
+   },
+   "point": -0.0609
+  },
+  "key_only:all-none": {
+   "ci90": [
+    -0.0696,
+    0.087
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.2174,
+    "gemini-3.1-flash-lite": -0.1739,
+    "gemini-3.5-flash-lite": 0.0435,
+    "gpt-5.4-mini": -0.0435,
+    "gpt-5.4-nano": 0.0
+   },
+   "point": 0.0087
+  },
+  "key_only:flag-key": {
+   "ci90": [
+    -0.0087,
+    0.1304
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.3478,
+    "gemini-3.1-flash-lite": -0.3913,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0435,
+    "gpt-5.4-nano": 0.3043
+   },
+   "point": 0.0609
+  },
+  "key_only:flag-none": {
+   "ci90": [
+    -0.0174,
+    0.1217
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.6957,
+    "gemini-3.1-flash-lite": -0.1304,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0435,
+    "gpt-5.4-nano": -0.3478
+   },
+   "point": 0.0522
+  },
+  "key_only:key-flag": {
+   "ci90": [
+    -0.1304,
+    0.0087
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.3478,
+    "gemini-3.1-flash-lite": 0.3913,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": -0.0435,
+    "gpt-5.4-nano": -0.3043
+   },
+   "point": -0.0609
+  },
+  "key_only:key-none": {
+   "ci90": [
+    -0.087,
+    0.0696
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.3478,
+    "gemini-3.1-flash-lite": 0.2609,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": -0.6522
+   },
+   "point": -0.0087
+  },
+  "key_only:keyonly-flag": {
+   "ci90": [
+    -0.2435,
+    -0.1217
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.6087,
+    "gemini-3.1-flash-lite": -0.087,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.0435,
+    "gpt-5.4-nano": -0.2609
+   },
+   "point": -0.1826
+  },
+  "key_only:keyonly-none": {
+   "ci90": [
+    -0.2,
+    -0.0609
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.087,
+    "gemini-3.1-flash-lite": -0.2174,
+    "gemini-3.5-flash-lite": 0.0,
+    "gpt-5.4-mini": 0.087,
+    "gpt-5.4-nano": -0.6087
+   },
+   "point": -0.1304
+  }
+ },
+ "loao": {
+  "claude-haiku-4-5-20251001": {
+   "C1": {
+    "ci90": [
+     -0.1196,
+     0.0109
+    ],
+    "point": -0.0543
+   },
+   "C2": {
+    "ci90": [
+     -0.0326,
+     0.0978
+    ],
+    "point": 0.0326
+   }
+  },
+  "gemini-3.1-flash-lite": {
+   "C1": {
+    "ci90": [
+     -0.2283,
+     -0.0761
+    ],
+    "point": -0.1522
+   },
+   "C2": {
+    "ci90": [
+     -0.0217,
+     0.1087
+    ],
+    "point": 0.0435
+   }
+  },
+  "gemini-3.5-flash-lite": {
+   "C1": {
+    "ci90": [
+     -0.25,
+     -0.1304
+    ],
+    "point": -0.1848
+   },
+   "C2": {
+    "ci90": [
+     -0.0217,
+     0.0217
+    ],
+    "point": 0.0
+   }
+  },
+  "gpt-5.4-mini": {
+   "C1": {
+    "ci90": [
+     -0.2717,
+     -0.1196
+    ],
+    "point": -0.1957
+   },
+   "C2": {
+    "ci90": [
+     -0.0326,
+     0.0978
+    ],
+    "point": 0.0326
+   }
+  },
+  "gpt-5.4-nano": {
+   "C1": {
+    "ci90": [
+     -0.2717,
+     -0.1196
+    ],
+    "point": -0.1957
+   },
+   "C2": {
+    "ci90": [
+     -0.0435,
+     0.087
+    ],
+    "point": 0.0217
+   }
+  }
+ },
+ "manip": {
+  "M1": {
+   "claude-haiku-4-5-20251001": {
+    "flag": {
+     "answers": {
+      "both": 23
+     },
+     "correct": 0,
+     "n": 23,
+     "rate": 0.0,
+     "unparsed": 0
+    },
+    "key": {
+     "answers": {
+      "both": 23
+     },
+     "correct": 0,
+     "n": 23,
+     "rate": 0.0,
+     "unparsed": 0
+    },
+    "keyonly": {
+     "answers": {
+      "both": 23
+     },
+     "correct": 0,
+     "n": 23,
+     "rate": 0.0,
+     "unparsed": 0
+    }
+   },
+   "gemini-3.1-flash-lite": {
+    "flag": {
+     "answers": {
+      "b": 23
+     },
+     "correct": 23,
+     "n": 23,
+     "rate": 1.0,
+     "unparsed": 0
+    },
+    "key": {
+     "answers": {
+      "a": 4,
+      "b": 1,
+      "both": 18
+     },
+     "correct": 4,
+     "n": 23,
+     "rate": 0.1739,
+     "unparsed": 0
+    },
+    "keyonly": {
+     "answers": {
+      "b": 5,
+      "both": 18
+     },
+     "correct": 0,
+     "n": 23,
+     "rate": 0.0,
+     "unparsed": 0
+    }
+   },
+   "gemini-3.5-flash-lite": {
+    "flag": {
+     "answers": {
+      "b": 23
+     },
+     "correct": 23,
+     "n": 23,
+     "rate": 1.0,
+     "unparsed": 0
+    },
+    "key": {
+     "answers": {
+      "a": 22,
+      "b": 1
+     },
+     "correct": 22,
+     "n": 23,
+     "rate": 0.9565,
+     "unparsed": 0
+    },
+    "keyonly": {
+     "answers": {
+      "a": 3,
+      "b": 1,
+      "both": 19
+     },
+     "correct": 3,
+     "n": 23,
+     "rate": 0.1304,
+     "unparsed": 0
+    }
+   },
+   "gpt-5.4-mini": {
+    "flag": {
+     "answers": {
+      "b": 23
+     },
+     "correct": 23,
+     "n": 23,
+     "rate": 1.0,
+     "unparsed": 0
+    },
+    "key": {
+     "answers": {
+      "a": 22,
+      "both": 1
+     },
+     "correct": 22,
+     "n": 23,
+     "rate": 0.9565,
+     "unparsed": 0
+    },
+    "keyonly": {
+     "answers": {
+      "a": 4,
+      "both": 19
+     },
+     "correct": 4,
+     "n": 23,
+     "rate": 0.1739,
+     "unparsed": 0
+    }
+   },
+   "gpt-5.4-nano": {
+    "flag": {
+     "answers": {
+      "a": 7,
+      "b": 14,
+      "both": 1,
+      "neither": 1
+     },
+     "correct": 14,
+     "n": 23,
+     "rate": 0.6087,
+     "unparsed": 0
+    },
+    "key": {
+     "answers": {
+      "a": 23
+     },
+     "correct": 23,
+     "n": 23,
+     "rate": 1.0,
+     "unparsed": 0
+    },
+    "keyonly": {
+     "answers": {
+      "a": 8,
+      "b": 1,
+      "both": 14
+     },
+     "correct": 8,
+     "n": 23,
+     "rate": 0.3478,
+     "unparsed": 0
+    }
+   }
+  },
+  "M2": {
+   "claude-haiku-4-5-20251001": {
+    "key": {
+     "answers": {
+      "no": 23
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 0,
+     "yes_rate": 0.0
+    },
+    "keyonly": {
+     "answers": {
+      "no": 23
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 0,
+     "yes_rate": 0.0
+    },
+    "none": {
+     "answers": {
+      "no": 23
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 0,
+     "yes_rate": 0.0
+    }
+   },
+   "gemini-3.1-flash-lite": {
+    "key": {
+     "answers": {
+      "no": 23
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 0,
+     "yes_rate": 0.0
+    },
+    "keyonly": {
+     "answers": {
+      "no": 23
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 0,
+     "yes_rate": 0.0
+    },
+    "none": {
+     "answers": {
+      "no": 23
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 0,
+     "yes_rate": 0.0
+    }
+   },
+   "gemini-3.5-flash-lite": {
+    "key": {
+     "answers": {
+      "no": 23
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 0,
+     "yes_rate": 0.0
+    },
+    "keyonly": {
+     "answers": {
+      "no": 23
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 0,
+     "yes_rate": 0.0
+    },
+    "none": {
+     "answers": {
+      "no": 22,
+      "yes": 1
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 1,
+     "yes_rate": 0.0435
+    }
+   },
+   "gpt-5.4-mini": {
+    "key": {
+     "answers": {
+      "None": 1,
+      "no": 22
+     },
+     "n": 23,
+     "unparsed": 1,
+     "yes": 0,
+     "yes_rate": 0.0
+    },
+    "keyonly": {
+     "answers": {
+      "no": 23
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 0,
+     "yes_rate": 0.0
+    },
+    "none": {
+     "answers": {
+      "no": 23
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 0,
+     "yes_rate": 0.0
+    }
+   },
+   "gpt-5.4-nano": {
+    "key": {
+     "answers": {
+      "no": 21,
+      "yes": 2
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 2,
+     "yes_rate": 0.087
+    },
+    "keyonly": {
+     "answers": {
+      "no": 21,
+      "yes": 2
+     },
+     "n": 23,
+     "unparsed": 0,
+     "yes": 2,
+     "yes_rate": 0.087
+    },
+    "none": {
+     "answers": {
+      "None": 1,
+      "no": 21,
+      "yes": 1
+     },
+     "n": 23,
+     "unparsed": 1,
+     "yes": 1,
+     "yes_rate": 0.0435
+    }
+   }
+  }
+ },
+ "models": [
+  "claude-haiku-4-5-20251001",
+  "gemini-3.1-flash-lite",
+  "gemini-3.5-flash-lite",
+  "gpt-5.4-mini",
+  "gpt-5.4-nano"
+ ],
+ "n_per_cell": {
+  "claude-haiku-4-5-20251001|all": 23,
+  "claude-haiku-4-5-20251001|flag": 23,
+  "claude-haiku-4-5-20251001|key": 23,
+  "claude-haiku-4-5-20251001|keyonly": 23,
+  "claude-haiku-4-5-20251001|none": 23,
+  "gemini-3.1-flash-lite|all": 23,
+  "gemini-3.1-flash-lite|flag": 23,
+  "gemini-3.1-flash-lite|key": 23,
+  "gemini-3.1-flash-lite|keyonly": 23,
+  "gemini-3.1-flash-lite|none": 23,
+  "gemini-3.5-flash-lite|all": 23,
+  "gemini-3.5-flash-lite|flag": 23,
+  "gemini-3.5-flash-lite|key": 23,
+  "gemini-3.5-flash-lite|keyonly": 23,
+  "gemini-3.5-flash-lite|none": 23,
+  "gpt-5.4-mini|all": 23,
+  "gpt-5.4-mini|flag": 23,
+  "gpt-5.4-mini|key": 23,
+  "gpt-5.4-mini|keyonly": 23,
+  "gpt-5.4-mini|none": 23,
+  "gpt-5.4-nano|all": 23,
+  "gpt-5.4-nano|flag": 23,
+  "gpt-5.4-nano|key": 23,
+  "gpt-5.4-nano|keyonly": 23,
+  "gpt-5.4-nano|none": 23
+ },
+ "n_runs": 575,
+ "null_shuffle": {
+  "C1": {
+   "null_mean": -0.0004,
+   "null_range90": [
+    -0.0696,
+    0.0696
+   ],
+   "observed": -0.1565,
+   "share_abs_ge_obs": 0.0005
+  },
+  "C2": {
+   "null_mean": -0.0004,
+   "null_range90": [
+    -0.0435,
+    0.0435
+   ],
+   "observed": 0.0261,
+   "share_abs_ge_obs": 0.259
+  }
+ },
+ "per_agent": {
+  "claude-haiku-4-5-20251001": {
+   "all": {
+    "any": 1.0,
+    "first": {
+     "both": 2,
+     "flag": 9,
+     "key": 12
+    },
+    "flag": 0.4783,
+    "flag_clean": 0.3913,
+    "flag_only": 0.3913,
+    "key": 0.6087,
+    "key_only": 0.5217,
+    "n": 23
+   },
+   "flag": {
+    "any": 1.0,
+    "first": {
+     "key": 23
+    },
+    "flag": 0.0,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 1.0,
+    "key_only": 1.0,
+    "n": 23
+   },
+   "key": {
+    "any": 0.7826,
+    "first": {
+     "both": 3,
+     "key": 15,
+     "none": 5
+    },
+    "flag": 0.1304,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 0.7826,
+    "key_only": 0.6522,
+    "n": 23
+   },
+   "keyonly": {
+    "any": 0.5217,
+    "first": {
+     "both": 1,
+     "flag": 2,
+     "key": 9,
+     "none": 11
+    },
+    "flag": 0.1304,
+    "flag_clean": 0.087,
+    "flag_only": 0.087,
+    "key": 0.4348,
+    "key_only": 0.3913,
+    "n": 23
+   },
+   "none": {
+    "any": 1.0,
+    "first": {
+     "both": 3,
+     "flag": 13,
+     "key": 7
+    },
+    "flag": 0.6957,
+    "flag_clean": 0.5652,
+    "flag_only": 0.5652,
+    "key": 0.4348,
+    "key_only": 0.3043,
+    "n": 23
+   }
+  },
+  "gemini-3.1-flash-lite": {
+   "all": {
+    "any": 1.0,
+    "first": {
+     "both": 18,
+     "flag": 3,
+     "key": 2
+    },
+    "flag": 0.913,
+    "flag_clean": 0.1304,
+    "flag_only": 0.1304,
+    "key": 0.8696,
+    "key_only": 0.087,
+    "n": 23
+   },
+   "flag": {
+    "any": 1.0,
+    "first": {
+     "both": 19,
+     "flag": 1,
+     "key": 3
+    },
+    "flag": 0.8696,
+    "flag_clean": 0.0435,
+    "flag_only": 0.0435,
+    "key": 0.9565,
+    "key_only": 0.1304,
+    "n": 23
+   },
+   "key": {
+    "any": 1.0,
+    "first": {
+     "both": 11,
+     "key": 12
+    },
+    "flag": 0.4783,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 1.0,
+    "key_only": 0.5217,
+    "n": 23
+   },
+   "keyonly": {
+    "any": 1.0,
+    "first": {
+     "both": 22,
+     "key": 1
+    },
+    "flag": 0.9565,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 1.0,
+    "key_only": 0.0435,
+    "n": 23
+   },
+   "none": {
+    "any": 1.0,
+    "first": {
+     "both": 13,
+     "flag": 4,
+     "key": 6
+    },
+    "flag": 0.7391,
+    "flag_clean": 0.1739,
+    "flag_only": 0.1739,
+    "key": 0.8261,
+    "key_only": 0.2609,
+    "n": 23
+   }
+  },
+  "gemini-3.5-flash-lite": {
+   "all": {
+    "any": 0.9565,
+    "first": {
+     "both": 10,
+     "flag": 11,
+     "key": 1,
+     "none": 1
+    },
+    "flag": 0.913,
+    "flag_clean": 0.4783,
+    "flag_only": 0.4783,
+    "key": 0.4783,
+    "key_only": 0.0435,
+    "n": 23
+   },
+   "flag": {
+    "any": 1.0,
+    "first": {
+     "both": 10,
+     "flag": 13
+    },
+    "flag": 1.0,
+    "flag_clean": 0.5652,
+    "flag_only": 0.5652,
+    "key": 0.4348,
+    "key_only": 0.0,
+    "n": 23
+   },
+   "key": {
+    "any": 1.0,
+    "first": {
+     "both": 7,
+     "flag": 16
+    },
+    "flag": 1.0,
+    "flag_clean": 0.6957,
+    "flag_only": 0.6957,
+    "key": 0.3043,
+    "key_only": 0.0,
+    "n": 23
+   },
+   "keyonly": {
+    "any": 1.0,
+    "first": {
+     "both": 7,
+     "flag": 16
+    },
+    "flag": 1.0,
+    "flag_clean": 0.6957,
+    "flag_only": 0.6957,
+    "key": 0.3043,
+    "key_only": 0.0,
+    "n": 23
+   },
+   "none": {
+    "any": 1.0,
+    "first": {
+     "both": 6,
+     "flag": 17
+    },
+    "flag": 1.0,
+    "flag_clean": 0.7391,
+    "flag_only": 0.7391,
+    "key": 0.2609,
+    "key_only": 0.0,
+    "n": 23
+   }
+  },
+  "gpt-5.4-mini": {
+   "all": {
+    "any": 0.8696,
+    "first": {
+     "key": 20,
+     "none": 3
+    },
+    "flag": 0.0,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 0.8696,
+    "key_only": 0.8696,
+    "n": 23
+   },
+   "flag": {
+    "any": 0.9565,
+    "first": {
+     "key": 22,
+     "none": 1
+    },
+    "flag": 0.0,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 0.9565,
+    "key_only": 0.9565,
+    "n": 23
+   },
+   "key": {
+    "any": 0.913,
+    "first": {
+     "key": 21,
+     "none": 2
+    },
+    "flag": 0.0,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 0.913,
+    "key_only": 0.913,
+    "n": 23
+   },
+   "keyonly": {
+    "any": 1.0,
+    "first": {
+     "key": 23
+    },
+    "flag": 0.0,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 1.0,
+    "key_only": 1.0,
+    "n": 23
+   },
+   "none": {
+    "any": 0.913,
+    "first": {
+     "key": 21,
+     "none": 2
+    },
+    "flag": 0.0,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 0.913,
+    "key_only": 0.913,
+    "n": 23
+   }
+  },
+  "gpt-5.4-nano": {
+   "all": {
+    "any": 0.7391,
+    "first": {
+     "both": 1,
+     "key": 16,
+     "none": 6
+    },
+    "flag": 0.0435,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 0.7391,
+    "key_only": 0.6957,
+    "n": 23
+   },
+   "flag": {
+    "any": 0.3478,
+    "first": {
+     "key": 8,
+     "none": 15
+    },
+    "flag": 0.0,
+    "flag_clean": 0.0,
+    "flag_only": 0.0,
+    "key": 0.3478,
+    "key_only": 0.3478,
+    "n": 23
+   },
+   "key": {
+    "any": 0.1739,
+    "first": {
+     "both": 2,
+     "flag": 1,
+     "key": 1,
+     "none": 19
+    },
+    "flag": 0.1304,
+    "flag_clean": 0.0435,
+    "flag_only": 0.0435,
+    "key": 0.1304,
+    "key_only": 0.0435,
+    "n": 23
+   },
+   "keyonly": {
+    "any": 0.1739,
+    "first": {
+     "flag": 2,
+     "key": 2,
+     "none": 19
+    },
+    "flag": 0.087,
+    "flag_clean": 0.087,
+    "flag_only": 0.087,
+    "key": 0.087,
+    "key_only": 0.087,
+    "n": 23
+   },
+   "none": {
+    "any": 0.7391,
+    "first": {
+     "flag": 1,
+     "key": 16,
+     "none": 6
+    },
+    "flag": 0.0435,
+    "flag_clean": 0.0435,
+    "flag_only": 0.0435,
+    "key": 0.6957,
+    "key_only": 0.6957,
+    "n": 23
+   }
+  }
+ },
+ "prediction": {
+  "P4_headroom": {
+   "agents": [
+    "claude-haiku-4-5-20251001",
+    "gemini-3.1-flash-lite",
+    "gpt-5.4-mini",
+    "gpt-5.4-nano"
+   ],
+   "n_rise": 0,
+   "need": 3
+  },
+  "agent_flag_rise": {
+   "claude-haiku-4-5-20251001": -0.5652,
+   "gemini-3.1-flash-lite": -0.2609,
+   "gemini-3.5-flash-lite": 0.0,
+   "gpt-5.4-mini": 0.0,
+   "gpt-5.4-nano": 0.087
+  },
+  "clause_ci90": {
+   "P1_flag_key_minus_none": [
+    -0.2087,
+    -0.0783
+   ],
+   "P2_key_key_minus_none": [
+    -0.0783,
+    0.0783
+   ],
+   "P3_flag_all_minus_none": [
+    -0.0957,
+    0.0348
+   ],
+   "P3_key_all_minus_none": [
+    -0.0,
+    0.1826
+   ]
+  },
+  "clauses": {
+   "global_both_fall": false,
+   "manip_checks_pass": false,
+   "pooled_flag_up_ge_15": false,
+   "pooled_key_down_ge_15": false,
+   "three_of_five_agents_flag_rise_ge_10": false
+  },
+  "n_agents_rise_ge_10": 0,
+  "outcome": "failed"
+ },
+ "replication_none_vs_parent": {
+  "any": {
+   "ci90": [
+    -0.0661,
+    0.027
+   ],
+   "diff": -0.0196,
+   "ours": [
+    107,
+    115
+   ],
+   "parent": [
+    190,
+    200
+   ]
+  },
+  "flag": {
+   "ci90": [
+    -0.1006,
+    0.0919
+   ],
+   "diff": -0.0043,
+   "ours": [
+    57,
+    115
+   ],
+   "parent": [
+    100,
+    200
+   ]
+  },
+  "flag_only": {
+   "ci90": [
+    -0.0479,
+    0.1266
+   ],
+   "diff": 0.0393,
+   "ours": [
+    35,
+    115
+   ],
+   "parent": [
+    53,
+    200
+   ]
+  },
+  "key": {
+   "ci90": [
+    -0.1507,
+    0.0329
+   ],
+   "diff": -0.0589,
+   "ours": [
+    72,
+    115
+   ],
+   "parent": [
+    137,
+    200
+   ]
+  }
+ },
+ "status": {
+  "C1_move": {
+   "ci90": [
+    -0.2174,
+    -0.0957
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": -0.5652,
+    "gemini-3.1-flash-lite": -0.1739,
+    "gemini-3.5-flash-lite": -0.0435,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.0
+   },
+   "point": -0.1565
+  },
+  "C2_crossover": {
+   "ci90": [
+    -0.0261,
+    0.0783
+   ],
+   "per_agent": {
+    "claude-haiku-4-5-20251001": 0.0,
+    "gemini-3.1-flash-lite": -0.0435,
+    "gemini-3.5-flash-lite": 0.1304,
+    "gpt-5.4-mini": 0.0,
+    "gpt-5.4-nano": 0.0435
+   },
+   "point": 0.0261
+  },
+  "no_bar": 0.0975,
+  "status": "REJECTED"
+ }
+}

@@ -3,3 +3,11 @@ W1107 06:42:29.120000 95770 torch/distributed/elastic/multiprocessing/redirects.
 t0 leave1_swap_s0 heads ['26.0', '26.1', '26.2', '26.3', '26.4', '26.5', '26.6', '26.7', '26.8', '26.9', '26.10', '26.12', '26.13', '26.14', '26.15', '27.0', '27.1', '27.2', '27.3', '27.4', '27.5', '27.6', '27.7', '27.8', '27.9', '27.10', '27.11', '27.12', '27.13', '27.14', '27.15'] {"dev_noclamp": 1.0, "test_noclamp": 1.0, "dev_clamp": 0.0, "test_clamp": 0.0, "removed_test": 1.0001809345201933} lm {'base': 3.1747, 'parent': 3.1752, 'parent_clamp': 3.1752}
 step 128 loss128 0.9919 dev strict 0.109 shift 0.011 44s
 step 256 loss128 0.6953 dev strict 0.047 shift 0.000 87s
+step 384 loss128 0.6954 dev strict 0.000 shift 0.006 131s
+step 512 loss128 0.6953 dev strict 0.078 shift 0.004 175s
+step 640 loss128 0.7466 dev strict 0.656 shift 2.804 218s
+step 768 loss128 0.3127 dev strict 1.000 shift 13.369 261s
+step 896 loss128 0.0895 dev strict 1.000 shift 23.188 305s
+FINAL leave1_swap_s0 returned steps 896 test strict 0.984375 shift 23.607 lm rise 0.0065 train_s 304.7
+
+WATCHDOG: exit 0, peak footprint 3.20 GB

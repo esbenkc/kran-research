@@ -8,3 +8,5 @@
 06:18:43 start all32_swap_s0: train_clamp.py --seed 0 --arm all32 --heads all32 --kind swap --steps 4096 --stop-at 0.75
 06:42:25 end all32_swap_s0 rc=0 1422s
 06:42:25 start leave1_swap_s0: train_clamp.py --seed 0 --arm leave1 --heads allbut:26.11 --kind swap --steps 4096 --stop-at 0.75
+06:48:01 end leave1_swap_s0 rc=0 336s
+06:48:01 start set_swap_s1: train_clamp.py --seed 1 --arm set --heads 27.7,26.0,26.2,26.5 --kind swap --steps 4096 --stop-at 0.75

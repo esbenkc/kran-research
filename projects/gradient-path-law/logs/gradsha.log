@@ -1,0 +1,7 @@
+W1106 17:11:01.464000 35796 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4873.70it/s]
+identical {'standard': 1.0, 'fed': 0.0, 'cue_T': 0.0}
+k_grad {"served->train": -0.24, "served->decoy": 0.77, "served->prefix_served": 0.177, "served->prefix_train": 0.044, "train->served": -0.223, "train->decoy": -0.141, "train->prefix_served": -0.132, "train->prefix_train": 0.027, "decoy->served": 1.071, "decoy->train": -0.211, "decoy->prefix_served": 0.198, "decoy->prefix_train": 0.049, "prefix_served->served": 1.633, "prefix_served->train": -1.304, "prefix_served->decoy": 1.31, "prefix_served->prefix_train": 0.252, "prefix_train->served": 0.697, "prefix_train->train": 0.457, "prefix_train->decoy": 0.549, "prefix_train->prefix_served": 0.43}
+g_cos {"served|train": -0.231, "decoy|served": 0.908, "decoy|train": -0.172, "decoy|prefix_served": 0.509, "decoy|prefix_train": 0.163, "prefix_served|served": 0.538, "prefix_served|train": -0.414, "prefix_served|prefix_train": 0.329, "prefix_train|served": 0.176, "prefix_train|train": 0.111}
+
+WATCHDOG: exit 0, peak footprint 1.77 GB

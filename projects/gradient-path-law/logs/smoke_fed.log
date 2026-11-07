@@ -1,0 +1,10 @@
+W1106 17:12:33.605000 36851 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 2914.74it/s]
+step 0 {"step": 0, "cheat_noprobe": 0.4055067423572506, "cheat_leaky": 0.40359980647412996, "probe_margin_noprobe": 18.403736256062984, "probe_margin_leaky": 18.403736256062984, "d2_absdiff_max": 0.5, "n_dev": 64, "gap_logit": 0.0078125, "gap": 0.0019069358831206307, "sd_ref": 0.2, "p0_train": 0.3917032867454681, "init": "pilot_standard_s0"}
+/Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/rl.py:287: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  st["kl"] += float(kl.sum())
+step 50 {"step": 50, "cheat_noprobe": 0.38899046938473675, "cheat_leaky": 0.38748452768570796, "probe_margin_noprobe": 18.403736256062984, "probe_margin_leaky": 18.403736256062984, "d2_absdiff_max": 0.375, "n_dev": 64, "gap_logit": 0.005859375, "gap": 0.00150594169902879, "train_cheat": 0.381875, "train_r": 0.7527499771118165, "live_share": 0.9675, "pen_abs": 0.1625823190063238, "kl": 0.010192960753338412, "loss": -0.04534429684281349, "s": 5.1}
+DONE smoke_fed {'cheat_noprobe': 0.3750875090231968, 'margin_noprobe': 18.42742708683014, 'cheat_leaky': 0.37582289187555046, 'margin_leaky': 18.42742708683014} train_s 5.7
+
+WATCHDOG: exit 0, peak footprint 1.71 GB

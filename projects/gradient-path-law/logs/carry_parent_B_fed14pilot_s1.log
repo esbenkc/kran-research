@@ -1,0 +1,17 @@
+W1106 17:14:12.686000 38357 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5458.49it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/carry.py", line 88, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/carry.py", line 82, in main
+    print(json.dumps({k: st[k] for k in ("run", "gap", "gap_logit", "trainer_gap", "trainer_gap_logit", "carry",
+                         ~~^^^
+KeyError: 'gap_logit'
+
+WATCHDOG: exit 1, peak footprint 1.71 GB
+W1106 17:14:36.953000 38703 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5531.19it/s]
+{"run": "B_fed14pilot_s1", "gap": 0.7373268778892026, "gap_logit": 4.036875, "trainer_gap": 0.7982762885833032, "trainer_gap_logit": 5.0175, "carry": 0.8045590433482811, "carry_ci": [0.8010899772770464, 0.8079515188514865], "cheat_noprobe": 0.8144464861896623, "cheat_leaky": 0.07711960830045958, "trainer_cheat_unprobed": 0.8332471404857961, "trainer_cheat_probed": 0.03497085190249281}
+
+WATCHDOG: exit 0, peak footprint 1.71 GB

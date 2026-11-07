@@ -1,0 +1,11 @@
+W1106 17:04:10.976000 31475 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5905.92it/s]
+/Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/cache.py:114: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  assert all(float(p.abs().max()) == 0.0 for n, p in pm.named_parameters() if "lora_B" in n)
+W1106 17:04:24.240000 31475 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none_rec {'s': 26.7, 'N': 8, 'probe_ran': 8}
+ref_rec {'s': 25.4, 'N': 8, 'probe_ran': 8}
+wrote raw/smoke_train
+
+WATCHDOG: exit 0, peak footprint 3.03 GB

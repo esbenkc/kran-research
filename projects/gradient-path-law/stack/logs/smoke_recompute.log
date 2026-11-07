@@ -1,0 +1,13 @@
+W1106 17:18:48.071000 41199 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 3266.59it/s]
+step 0 {'step': 0, 'px_eager': 0.39914753567427397, 'px_compiled': 0.3979192734695971, 'gap': -0.0012282622046768665}
+/Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/stack/rl.py:154: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_eager': 0.13869722472736612, 'px_compiled': 0.14043380919611081, 'gap': 0.0017365844687446952, 'train_x': 0.30937499962747095, 'train_r': -0.19999999925494194, 'loss': 0.20767410099506378, 'kl': 0.10765381713281386, 's': 1.1}
+step 10 {'step': 10, 'px_eager': 0.17325192916905507, 'px_compiled': 0.17587221975554712, 'gap': 0.0026202905864920467, 'train_x': 0.134375, 'train_r': -0.05625000074505806, 'loss': 0.1040382906794548, 'kl': 0.16144881434738637, 's': 2.0}
+step 20 {'step': 20, 'px_eager': 0.23914285114733502, 'px_compiled': 0.2428529558237642, 'gap': 0.0037101046764291823, 'train_x': 0.24531249962747098, 'train_r': -0.11562500018626451, 'loss': 0.054036764428019524, 'kl': 0.04974090736359358, 's': 3.8}
+step 40 {'step': 40, 'px_eager': 0.25110618892358616, 'px_compiled': 0.25451129290740937, 'gap': 0.00340510398382321, 'train_x': 0.2007812504423782, 'train_r': -0.08515625030267984, 'loss': -0.06434108130633831, 'kl': 0.11220032090786844, 's': 7.5}
+DONE smoke_recompute test_cached {'eager': 0.23697708367370068, 'compiled': 0.24085187934339047} gap 0.00387479566968979 train_s 7.8
+
+WATCHDOG: exit 0, peak footprint 1.86 GB

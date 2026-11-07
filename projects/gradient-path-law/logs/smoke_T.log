@@ -1,0 +1,11 @@
+W1106 17:11:39.483000 35964 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4426.24it/s]
+step 0 {"step": 0, "cheat_noprobe": 0.4055067423572506, "cheat_leaky": 0.40359980647412996, "probe_margin_noprobe": 18.403736256062984, "probe_margin_leaky": 18.403736256062984, "d2_absdiff_max": 0.5, "n_dev": 64, "gap_logit": 0.0078125, "gap": 0.0019069358831206307, "gap_trainer": -0.0005018841379872963, "gap_trainer_logit": -0.001953125, "sd_ref": 0.2, "p0_train": 0.3957889643435828, "init": "pilot_standard_s0"}
+/Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/rl.py:287: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  st["kl"] += float(kl.sum())
+step 100 {"step": 100, "cheat_noprobe": 0.48306335126798333, "cheat_leaky": 0.47929601666205784, "probe_margin_noprobe": 18.403736256062984, "probe_margin_leaky": 18.403736256062984, "d2_absdiff_max": 0.375, "n_dev": 64, "gap_logit": 0.015625, "gap": 0.0037673346059254875, "gap_trainer": -0.00011875800974026074, "gap_trainer_logit": 0.0, "train_cheat": 0.38265625, "train_r": 0.7530624777078628, "live_share": 0.97375, "pen_abs": 0.16156958803534507, "kl": 0.010343253524624743, "loss": 0.009834641590714455, "s": 14.5}
+step 200 {"step": 200, "cheat_noprobe": 0.36442990770881445, "cheat_leaky": 0.3618050351824442, "probe_margin_noprobe": 18.403736256062984, "probe_margin_leaky": 18.403736256062984, "d2_absdiff_max": 0.375, "n_dev": 64, "gap_logit": 0.01171875, "gap": 0.0026248725263702255, "gap_trainer": -0.0007998574528683688, "gap_trainer_logit": -0.00390625, "train_cheat": 0.37515625, "train_r": 0.7500624787807465, "live_share": 0.95875, "pen_abs": 0.15870828367769718, "kl": 0.01760063619163702, "loss": -0.0290853139013052, "s": 29.5}
+DONE smoke_T {'cheat_noprobe': 0.35343919552884373, 'margin_noprobe': 18.42742708683014, 'cheat_leaky': 0.35273762902989797, 'margin_leaky': 18.42742708683014} train_s 30.8
+
+WATCHDOG: exit 0, peak footprint 1.93 GB

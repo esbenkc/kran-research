@@ -1,7 +1,8 @@
-# PREREG v1 — gradient-path-law (room oracle-1107-gradient-path-law)
+# PREREG v1.1 — gradient-path-law (room oracle-1107-gradient-path-law)
 
 Written by Felix (plan) from Tove's APPROVE (#15654, #15655; 2026-11-06 17:02 PST = 2026-11-07 02:02 CET),
-before any training run of tonight. Reviewers: Tove (strategist), Kasper (critic).
+before any training run of tonight (v1 59c47d4 at 17:17 PST; v1.1 adds Kasper #15734's limits and P1's engine
+factor, still before any update). Reviewers: Tove (strategist), Kasper (critic).
 Pilots on the parent's existing adapters ran before this file (they read old checkpoints only; listed under
 "Pre-freeze facts"). Changes after this commit go to DEVIATIONS.md with a time, never into this file.
 
@@ -114,7 +115,8 @@ seed fails, the status is UNCONFIRMED.
 - REJECTED (no): both T seeds took off and both REACH; gate holds.
 - UNCONFIRMED: any other case (no takeoff, MIDDLE, split seeds, gate fails, a cell cut).
 
-Graph rule (Felix #15710, frozen before any T record was read): PRIMARY = the compiled autograd graph with the
+Graph rule (Felix #15710, 17:10; the byte-identical case added in #15730, 17:14, before the 26-27 record landed at
+17:16, #15731; Tove #15732 and Kasper #15734 confirm no deviation): PRIMARY = the compiled autograd graph with the
 policy's LoRA span 26-27 and the leaky hook at q_norm 14 (raw/cache/train26_L14_lora26). If its block-26 footprint
 is exactly 0 on all 646 prompts, or bit-identical to the served footprint (then that trainer sees the served
 numbers and T = F), T uses the compiled autograd graph with LoRA on blocks 14-27, B = 0 (raw/cache/train26_L14:
@@ -143,7 +145,9 @@ the trainer graph closed the channel.
 - T budget: r = 1.39 gives 1.5 x 3,500 / 1.93 = 2,720 -> 5,000 updates (the floor). Checkpoint at 5,000 only.
 - Three carry predictions, frozen, that disagree (genuine bits):
   (P1) activation-linear, norm-corrected (Kasper #15661): fed-switch cross-response to d_T (0.088 / 0.115 of its
-       served response) x (|d_S|/|d_T|)^2 = 0.516 -> carry 0.045 (from s0) / 0.059 (from s1). Predicts SILENT.
+       served response) x (|d_S|/|d_T|)^2 = 0.516 -> 0.045 (from s0) / 0.059 (from s1). The carry engine reads the
+       fed endpoint at 0.805-0.889, not 1 (Kasper #15734), so P1 in carry units = 0.045-0.059 x 0.80-0.89 =
+       0.036-0.053; P1's band is 0.02-0.10. Predicts SILENT.
   (P2) first-order learning on the read positions (Kasper #15659): k_grad = <g(d_T), g(d_S)> / |g(d_T)|^2 with
        g = the LoRA-parameter gradient of the decision-logit shift at the start policy, positions 1-7: 0.43.
        Predicts REACHES (same sign).
@@ -167,6 +171,17 @@ Order (Tove): record (task 1) -> T s0, s1 + F s2, s3 -> R s2, s3 -> D s2 -> S s0
 under watchdog. Peaks from the parent logs: trainer 1.85-2.0 GB, served read 1.9-2.8 GB, training-graph record 3.12 GB (alone only, cap 3.4 GB; T trainer smoke 1.93 GB);
 at most 2 heavy jobs and 5 GB together (Vera's compute gate, task 4). Cut from the end of the order. No new
 training starts after 20:30 PST (05:30 CET); runs still going at 21:00 PST are killed and their cells are cut.
+
+## Limits the post must carry (Kasper #15734)
+
+- The realistic pipeline is the 26-27 one: a trainer that reruns the model with the probe attached and trains
+  only weights after the probe gets the served numbers bit for bit (646/646), so it IS the reused-numbers update
+  and learns the fed switch. Recompute is a defence only when the probe is NOT attached in the update's pass.
+  Measured on Qwen3-0.6B, PyTorch 2.14.1 Inductor on MPS, batch 1; why the compiler does this is [INFERENCE]
+  (Iris #15733); not tested on CUDA.
+- T (14-27) is a stand-in: the footprint of a graph with LoRA on 14-27 at B = 0, frozen at the start of
+  training, while only blocks 26-27 learn. A real 14-27 trainer would move the footprint as blocks 14-25 learn.
+  The TLDR must not generalise a T result to "trainers that attach the probe".
 
 ## Raw data (binding, Vera #15702)
 

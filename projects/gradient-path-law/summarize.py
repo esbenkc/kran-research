@@ -217,6 +217,8 @@ def main():
     if eg:
         rows.append(f"| eager trainer = clean rerun | - | eager autograd graph, LoRA 14-27, probe hook at 14 | no hook | block-26 inputs "
                     f"identical with and without the hook on {eg['none_eq_ref']}/{eg['n']} prompts (sha) | data/eagertrain_sha_check.json |")
+    for sk in sorted((HERE / "skeptics").glob("*/proof-rows.md")):  # skeptics' own rebuild rows (they own those files)
+        rows += [l.rstrip("\n") for l in open(sk) if l.startswith("| ") and not l.startswith("| claim")]
     (HERE / "proof-matrix.md").write_text("# Proof matrix (built by summarize.py from data/)\n\n" + "\n".join(rows) + "\n")
     print("STATUS", json.dumps(summ["status"]), "PREREG", json.dumps(cl))
 

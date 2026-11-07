@@ -102,7 +102,10 @@ def summarize(rows: list[dict[str, Any]], manip: dict[str, Any] | None) -> dict[
         return {"point": round(float(contrast(point, models, tag, a1, a0)), 4),
                 "ci90": ci(contrast(boot, models, tag, a1, a0)),
                 "per_agent": {m: round(float(point[(m, a1)][TAGS.index(tag)] - point[(m, a0)][TAGS.index(tag)]), 4)
-                              for m in models}}
+                              for m in models},
+                # PREREG s6.1: per-agent difference with its own 90% CI (same bootstrap draws)
+                "per_agent_ci90": {m: ci(boot[(m, a1)][:, TAGS.index(tag)] - boot[(m, a0)][:, TAGS.index(tag)])
+                                   for m in models}}
 
     C = {}
     for tag in TAGS:

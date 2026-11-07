@@ -59,7 +59,9 @@ def main() -> None:
         d = {a: pa[a] for a in ("none", "key", "flag")}
         rows.append(("headline", seeds, f"per agent: {SHORT.get(m, m)}", "none",
                      f"flag-never-key none {pa['none']['flag_only']:.3f}, key-logged {pa['key']['flag_only']:.3f}, mirror "
-                     f"{pa['flag']['flag_only']:.3f}; C1 {f(st['C1_move']['per_agent'][m])}; C2 {f(st['C2_crossover']['per_agent'][m])}",
+                     f"{pa['flag']['flag_only']:.3f}; C1 {f(st['C1_move']['per_agent'][m])} {ci(st['C1_move']['per_agent_ci90'][m])}; "
+                     f"C2 {f(st['C2_crossover']['per_agent'][m])} {ci(st['C2_crossover']['per_agent_ci90'][m])}; any none "
+                     f"{pa['none']['any']:.3f} -> key-logged {pa['key']['any']:.3f} {ci(C['any:key-none']['per_agent_ci90'][m])}",
                      cell(f"headline_agent_{m}", d, [m], ["none", "key", "flag"])))
     for m, v in S["loao"].items():
         rows.append(("headline", seeds, f"leave one agent out: without {SHORT.get(m, m)}", "none",

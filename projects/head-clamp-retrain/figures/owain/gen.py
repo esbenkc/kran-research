@@ -111,7 +111,7 @@ ex_parent = per_prompt(run("set", ES)["rows"]["t0/test_noclamp"])[EX]
 assert ex_parent[0][0] == B and ex_parent[1][0] == A, ex_parent
 facts["parent"] = {"counts": ks, "n": n}
 before = (f'<div class="row plain before"><div><h2>{T["before_title"]}</h2>'
-          f'<div class="num">{T["before_num"].format(k=f"{rng(ks)} of {n}", runs=("each of " if len(set(ks)) == 1 else "") + f"{len(ks)} models")}</div></div>'
+          f'<div class="num">{T["before_num"].format(k=f"{rng(ks)} of {n}", form=rng(list(FORM.values())))}</div></div>'
           f'<div><div class="lab">{T["col_off"]}</div>{answer(ex_parent[0])}</div>'
           f'<div><div class="lab">{T["col_on"]}</div>{answer(ex_parent[1])}</div></div>')
 
@@ -157,7 +157,9 @@ for row in T["rows"]:
                             runs=models(back, len(ks)) if arm != "all32" else ("1 model so far" if len(ks) == 1 else f"{len(ks) - back} of {len(ks)} models"),
                             form=rng([FORM[s] for s in seeds_back]) if seeds_back else "?",
                             new=NEW, new_first=pct(FIRST[NEW]), free=free, free_first=pct(abs(FIRST[free])),
-                            ex_sure=f"{math.floor(sure_p(fin[1]) * 100)}%")
+                            ex_sure=f"{math.floor(sure_p(fin[1]) * 100)}%",
+                            setsizes=rng([len(sets[f"s{x}"]["set"]) for x in SEEDS]).replace("&ndash;", " to "),
+                            nset=len(sets[f"s{ES}"]["set"]))
     if arm == "all32":
         assert fin[1][0] == B and abs(sure_p(fin[0]) - sure_p(fin[1])) < 0.02, fin  # 'with or without the probe'
     title = row["title"].format(nset=len(sets[f"s{ES}"]["set"]))

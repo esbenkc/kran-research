@@ -181,8 +181,14 @@ def main():
     setr = next(a for a in arms if a["key"] == "set")["runs"]
     ans, back = answer(setr)
     n_set = len(setr)
+    by = {a["key"]: a["runs"] for a in arms}
+    lof_back = sum(r["returned"] for r in by["leave1"])
+    all32_held = sum(not r["returned"] and r["test"] < BAR for r in by["all32"])
+    every_but_all32 = (ans == "No" and lof_back >= 2 and all32_held >= 2 and lof_back == len(by["leave1"])
+                       and all(r["returned"] for k in ("set", "top1", "leave1") for r in by[k]))
     title = {
-        "No": f"Clamping the audit's head set did not stop the switch: it came back in {back} of {n_set} models",
+        "No": ("Training rebuilt the switch around every clamp except all 32 heads" if every_but_all32 else
+               f"Clamping the audit's head set did not stop the switch: it came back in {back} of {n_set} models"),
         "Yes": f"Clamping the audit's head set kept the switch off in {n_set - back} of {n_set} models",
         "Not settled": "Clamping the audit's head set: does the switch come back when we train again?",
     }[ans]

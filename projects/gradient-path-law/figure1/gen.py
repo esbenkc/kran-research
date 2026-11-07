@@ -109,7 +109,7 @@ def main():
         if run == a.F:
             tt = ""  # the reused-numbers update trained on the served numbers: only its served gap is the point
         left = (cell(run, "t_none") + cell(run, "t_ref")) if run != a.F else (
-            '<div class="same">the same numbers as the served model, so the switch it learns is the served one'
+            '<div class="same">trains on a recorded copy of the served model&rsquo;s own numbers'
             '<span class="arr">&rarr;</span></div>')
         return (f'<div class="rh" style="grid-row: span 2">{title}<span class="s">{sub}</span></div>' + left
                 + '<div></div>' + cell(run, "s_none") + cell(run, "s_ref")

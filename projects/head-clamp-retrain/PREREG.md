@@ -94,8 +94,8 @@ so 'RANDOM >= 0.75' is met before training. It is a sanity cell, not evidence; t
 |---|---|
 | (a) SET holds AND TOP-1 returns (>= 0.25 in >= 2/3) | ambitious YES: a set fixed from one audit blocks the reroute that one-head removal cannot |
 | (b) SET holds AND TOP-1 holds | YES to the title, headline 'one head was already enough here'; set-vs-single NOT licensed, the post says so |
-| (c) SET returns, ALL-32 holds | NO: the reroute uses heads outside the audit set (WHERE names them) |
-| (d) SET returns AND ALL-32 returns | NO, plus the d79 / acc_f reading: the answer-position MLPs suffice |
+| (c) SET returns, ALL-32 holds | NO: the reroute uses heads outside the audit set (WHERE names them); an ALL-32 hold means the answer-position MLPs did not LEARN to read the signal within 4,096 updates, never that they cannot (Kasper #16263) |
+| (d) SET returns AND ALL-32 returns | NO, plus the acc_f reading: the answer-position MLPs suffice |
 | (e) LEAVE-ONE-FREE returns while ALL-32 holds | impossibility line: one head the audit scored ~0 carries it back; reported with any of (a)-(d) |
 
 ## Numbers predicted before data

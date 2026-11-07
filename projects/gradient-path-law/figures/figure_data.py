@@ -26,9 +26,10 @@ CONT = "_10k"
 
 # Colours (plot.js): end to end pink, importance weights orange (a hue a reader tells apart from pink on a phone,
 # Kasper #15846), probed rerun muted (Kasper #15808), reused-numbers teal,
-# clean rerun and mismatch control muted; the group headers also name every row (Kasper #15719).
+# clean rerun muted; the group headers also name every row (Kasper #15719).
 # Plain names from the post (Selma #15658). Group order = drawing order. Each group lists the run-name prefixes
 # that belong to it (run = <prefix>_s<seed>). Only tonight's runs are drawn; the earlier night's pair is in the text.
+# The build-mismatch control (Ta) explains the collapse, not the title: text only (Tove #15879).
 GROUPS = [  # D4 (Felix #15771, Tove #15773): the end-to-end training build carries the title; names from Selma #15776
     {"id": "endtoend", "name": "Training build end to end",
      "note": ("The training build writes the answers and computes the update. The served build is used only for "
@@ -49,9 +50,6 @@ GROUPS = [  # D4 (Felix #15771, Tove #15773): the end-to-end training build carr
     {"id": "clean", "name": "Clean rerun",
      "note": "The update reruns the model with no probe, so it cannot learn a switch.",
      "prefixes": ["rec"]},
-    {"id": "mismatch", "name": "Build mismatch alone",
-     "note": "The update reads the training build without the probe on every answer, so there is no probe cue.",
-     "prefixes": ["Ta"]},
 ]
 # Three carry predictions for the probed rerun, frozen in PREREG.md (v1 59c47d4; P1 in carry units from v1.1 fcf3a4c) before any
 # probed-rerun update; check() re-reads them from PREREG.md. Plain names named by what each assumes; the post names no single law (Tove #15760, Kasper #15752).
@@ -153,9 +151,6 @@ def annotate(group_id: str, r: dict) -> None:
     r["note"] = ("stopped cheating: 0% with and without the probe" if dead else
                  "no switch on the training build" if group_id in ("endtoend", "probed", "tis", "reused") and not took_off
                  else None)
-    if group_id == "mismatch" and not dead:  # the collapse check: did this run keep cheating?
-        r["note"] = (f"kept cheating: {round(s['no_probe'] * 100)}% without and {round(s['probe_on'] * 100)}% "
-                     "with the probe")
     if r["carry"] is not None and not took_off:
         r["carry_withheld"] = r.pop("carry")  # kept for the record, never drawn
         r["carry"] = None

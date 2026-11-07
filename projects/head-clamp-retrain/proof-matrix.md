@@ -49,3 +49,16 @@ Built by proof_matrix.py from the saved files (Bruno); skeptic rows (artifact un
 | WHERE | 0 | single-cut audit of set_swap_s0 with its clamp on | first audit (parent) | top 3 (push removed, dev): 27.4 0.82, 26.15 0.23, 26.4 0.13; update only in attention: test strict 0.398, only in MLP: 0.000 | data/audit/set_swap_s0.json |
 | WHERE | 1 | single-cut audit of set_swap_s1 with its clamp on | first audit (parent) | top 3 (push removed, dev): 27.12 0.99, 26.4 0.93, 26.14 0.50; update only in attention: test strict 0.016, only in MLP: 0.000 | data/audit/set_swap_s1.json |
 | WHERE | 2 | single-cut audit of set_swap_s2 with its clamp on | first audit (parent) | top 3 (push removed, dev): 26.15 0.94, 27.9 0.13, 27.15 0.10; update only in attention: test strict 0.578, only in MLP: 0.000 | data/audit/set_swap_s2.json |
+| headline (skeptic rebuild, raw rows) | 0,1,2 | audit set (SET) | none | returned at 512/512/384; final strict 1.000/0.938/0.953; 0 mismatches vs build fields; REJECTED 3/3 | skeptics/skeptic/vera_runs.json |
+| headline (skeptic own engine) | 0 | audit set (SET) | none | own Qwen3 tail + own swap hook: strict 1.000 (128/128), top-1 agree 1.000 with build rows | skeptics/skeptic/out/set_s0_final_clamp.json |
+| headline (skeptic own engine) | 1 | audit set (SET) | none | strict 0.938, push 21.07 nats | skeptics/skeptic/out/fwd_set_swap_s1.json |
+| headline (skeptic own engine) | 2 | audit set (SET) | none | strict 0.961 (build 0.953, 1 prompt), push 21.45 nats | skeptics/skeptic/out/fwd_set_swap_s2.json |
+| null: within-pair label flip | 0,1,2 | every returned run | label flip (sign test + 20k MC) | returned cells p_sign <= 6e-33; ALL-32 s0 s=2 vs reversed 2, p 0.69 (no switch) | skeptics/skeptic/vera_null.json |
+| engine check (skeptic) | 0 | parent adapter, SET / TOP-1 swap at t=0 | no retraining (t=0) | own engine 0.000 / 0.031 = build gate | skeptics/skeptic/out/parent_s0_set.json |
+| t=0 gate rebuild | 0,1,2 | 60 test cells x 4 clamp kinds | no retraining (t=0) | all 60 match gate_t0; rule -> SWAP | skeptics/skeptic/vera_gate.json |
+| cache + d79 (skeptic) | all | block-26 cache | parent manifest | SHA256 equal; d79 1.000 (128/128), median 1,804/2,048 dims differ | skeptics/skeptic/vera_d79.json |
+| one free head carries it (skeptic) | 0,1,2 | LEAVE-ONE-FREE + free head also swapped | free-head cut | strict 0/0/0, push 0.000/-0.018/-0.002 nats | skeptics/skeptic/out/freecut_leave1_s0.json |
+| WHERE (skeptic own audit) | 0,1,2 | returned SET, +1 head swapped | none | top carrier 27.4 0.813 / 27.12 0.985 / 26.15 0.942 | skeptics/skeptic/out/where_set_s0.json |
+| P-COND (D5) inputs (skeptic) | 0,1,2 | parent, SET swapped, +1 head, t=0 | no retraining (t=0) | top 3 s1 {27.12,27.6,27.15} HIT, s2 {27.7,27.6,27.3} MISS -> 1 of 2 | skeptics/skeptic/out/residual_t0_set_s1.json |
+| update split (skeptic) | 0,1,2 | retrained attention-only / MLP-only on parent | split | attention-only strict 0.35/0.04/0.52; MLP-only 0/0/0 (push 1.98/4.51/0.27) | skeptics/skeptic/out/split_set_s1_mlp.json |
+| ALL-32 held (skeptic own engine) | 0 | all 32 heads | none | strict 0.031, reversed 0.008, push 0.012 nats | skeptics/skeptic/out/fwd_all32_swap_s0.json |

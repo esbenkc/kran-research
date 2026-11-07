@@ -217,7 +217,7 @@ def main():
             "back": "filled dot: one model, at the update where the switch came back (75% or more of 64 check prompts at two checks in a row)",
             "held": held_legend,
             "band": "band: when the switch was first learned, with no clamp (updates 1,280 to 1,408). We predicted that any return comes before it.",
-            "curves": "How it came back: share of 64 check prompts that switch, one line per model",
+            "curves": "How it came back: share of 64 check prompts that switch, one line per model, coloured by clamp as above",
             "foot": "Dashed line: 25% of prompts. Dotted lines: how the switch was first learned, with no clamp.",
             "free": free_note,
         },

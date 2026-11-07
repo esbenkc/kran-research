@@ -223,11 +223,10 @@ def main():
         "summary": [{"clamp": a["name"], "models_run": len(a["runs"]),
                      "came_back": sum(1 for r in a["runs"] if r["returned"] or r["test"] >= BAR),
                      "end_switch_rates": [r["test"] for r in a["runs"]], "predicted": a["pred"]["label"]} for a in arms],
-        "no_bar": "a clamp row with no dot has not run yet",
         "kind": kind,
         "bar": BAR, "back": BACK, "budget": BUDGET, "steps": STEPS,
         "formation": forms,
-        "arms": arms,
+        "arms": [a for a in arms if a["runs"]],  # a clamp with no finished run is not drawn (no 'not run yet' row)
         "scratch": sc,
     }
     drawn = [data["title"], data["subtitle"], *data["legend"].values(), *[a[k] for a in arms for k in ("name", "note")],

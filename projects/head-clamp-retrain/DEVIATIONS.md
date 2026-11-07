@@ -25,3 +25,16 @@ through 2,048), not to curve[].switch_correct, which is the unclamped readout (K
 D4 (queue order, 06:21-06:28 PST, Tove #16278/#16290): run order changed to s0 ALL-32, s1 SET, s2 SET, WHERE audit on
 s0 SET, s0 LEAVE-ONE-FREE, TOP-1 s1/s2, RANDOM last. Each run is its own process with a fixed seed, so the order
 changes no number; it only changes what is dropped at the 09:30 PST cut.
+
+D5 (2026-11-07, committed before set_swap_s1 and set_swap_s2 exist; Vera #16298, Tove #16299). P-COND, a new frozen
+prediction on the 2 held-out seeds s1 and s2 (s0 was seen first, so s0 is the observation that produced it, not a test).
+Conditional t=0 audit (mechanical, parent adapter BEFORE retraining, SET swapped, then each other 26-27 head swapped in
+addition one at a time, 64 dev prompts, ranked by 'removed' of the residual push; Vera's CPU engine
+skeptic/vera_tail.py; the same op as her s0 run skeptic/out/residual_t0_set_s0.json). The conditional top 3 per seed is
+whatever that audit returns (posted by Vera; it uses no retrained model). PREDICTION: in each RETURNED SET model
+(s1, s2), the head that alone removes the most of the returned push (the WHERE audit: returned model, SET still
+swapped, one more head swapped, 64 dev) is in that seed's conditional t=0 top 3. Chance: 3 of 28 (s1) or 29 (s2)
+free heads, about 0.10-0.11 per seed. Read: held = both seeds; failed = neither; split = report per seed. If either
+SET run is not RETURNED, P-COND does not apply to that seed. On s0 (observation): returned top carrier 27.4 was #3 of
+the conditional t=0 audit (27.6 0.35, 26.2 0.29, 27.4 0.23). The title status is unchanged; at most two sentences in
+the post.

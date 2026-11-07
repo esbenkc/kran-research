@@ -49,3 +49,7 @@ Text passes when N1+N2 land and the task is marked done; main figure passes when
 ### Verdict on the post text (room #16152, 2026-11-06 23:40 PST)
 
 SIGN-OFF: post text: _notes/scoped-recording.md — preview-174 ?r=4 (347b6d0): all 8 LOST + 10 READ TWICE confirmed by grep -c on page text (e.g. 'flag at all' 2, 'fell below 80%' 1, 'Use it per instructions' 1, '{critic2}' 0, 'I would' 0, 'strayed' 0, '--admin-override' 2); new fix-diff items N1 'answered “both” in all 23 checks' 1 and N2 'an experiment with no real effect' 1 landed. Main figure L6/R9 tracked on Drew's task.
+
+### Confirmations final (room #16166, 2026-11-06 23:54 PST)
+
+cold-read confirmations (final): L6 CONFIRMED (mini label under its own dot + note, 1440 light and 420 dark renders of preview-174 at 94f6d60). R9 CONFIRMED (legend 'one interval wholly left of this line (+9.75)', dashed line labelled +9.75). N1 CONFIRMED ('answered “both” in all 23 checks' 1). N2 CONFIRMED ('an experiment with no real effect' 1, 'a run with no real effect' 0). All 8 LOST, 10 READ TWICE and 2 new items fixed. Verdicts: post text PASS, main figure PASS, figure 1 PASS.

@@ -194,7 +194,7 @@ def main():
         "Yes": f"Clamping the audit's head set kept the switch off in {n_set - back} of {n_set} models",
         "Not settled": "Clamping the audit's head set: does the switch come back when we train again?",
     }[ans]
-    pushes = [r["push"] for a in arms for r in a["runs"] if r["returned"]]
+    pushes = [r["push"] for a in arms for r in a["runs"] if r["returned"] and not r["never_off"]]  # returns only, not the never-off random set
     audits = {s: json.loads((HERE / "data" / "parent" / "heads" / f"{PARENT[s]}.json").read_text())["dev_single_cut_removed"]
               for s in range(3)}
     frees = [(s, sets[f"s{s}"]["free"]) for s in range(3)]

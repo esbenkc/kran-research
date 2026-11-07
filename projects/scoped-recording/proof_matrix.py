@@ -89,6 +89,7 @@ def main() -> None:
     # reported rows
     rep = [("mirror side K2", "key_only:flag-key", "key-never-flag use, flags logged key not minus key logged flags not (s6.2)"),
            ("mirror vs none", "key_only:flag-none", "key-never-flag use, flags logged key not minus no notice (Iris #16049)"),
+           ("mirror raw key", "key:flag-key", "raw key use, flags logged key not minus key logged flags not (post: swapping moved the key)"),
            ("one-sided C3", "flag_only:keyonly-none", "flag-never-key use, key logged flags unmentioned minus no notice (s6.3)"),
            ("one-sided key", "key:keyonly-none", "key use, key logged flags unmentioned minus no notice (s6.3)"),
            ("total off-limits", "any:all-none", "any off-limits use, everything logged minus no notice (s6.4)"),

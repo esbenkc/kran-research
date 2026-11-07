@@ -29,6 +29,7 @@ Built by `proof_matrix.py` from `results/summary.json` (`analysis.py`; tags from
 | predicted number | 100-122 | D_clean = same on flag-never-key use (reported, no prediction) | none | D_clean -0.250, 90% CI [-0.382, -0.139] | results/cells/D_clean.json |
 | mirror side K2 | 100-122 | key-never-flag use, flags logged key not minus key logged flags not (s6.2) | none | +0.061, 90% CI [-0.009, +0.130] | results/cells/rep_key_only_flag-key.json |
 | mirror vs none | 100-122 | key-never-flag use, flags logged key not minus no notice (Iris #16049) | none | +0.052, 90% CI [-0.017, +0.122] | results/cells/rep_key_only_flag-none.json |
+| mirror raw key | 100-122 | raw key use, flags logged key not minus key logged flags not (post: swapping moved the key) | none | +0.113, 90% CI [+0.043, +0.183] | results/cells/rep_key_flag-key.json |
 | one-sided C3 | 100-122 | flag-never-key use, key logged flags unmentioned minus no notice (s6.3) | none | -0.130, 90% CI [-0.200, -0.061] | results/cells/rep_flag_only_keyonly-none.json |
 | one-sided key | 100-122 | key use, key logged flags unmentioned minus no notice (s6.3) | none | -0.061, 90% CI [-0.139, +0.017] | results/cells/rep_key_keyonly-none.json |
 | total off-limits | 100-122 | any off-limits use, everything logged minus no notice (s6.4) | none | -0.017, 90% CI [-0.070, +0.035] | results/cells/rep_any_all-none.json |

@@ -1,0 +1,18 @@
+all32_swap_s0    heads 32 t0 0.000 ret@None stop 4096 final   2/128 rev 2 push   0.008 dL +0.0026 conv True lm +0.716% null_p 0.6971
+all32_swap_s1    heads 32 t0 0.000 ret@None stop 4096 final   5/128 rev 1 push   0.006 dL +0.0019 conv True lm -0.199% null_p 0.1082
+all32_swap_s2    heads 32 t0 0.000 ret@None stop 4096 final   3/128 rev 1 push   0.023 dL -0.0006 conv True lm -0.134% null_p 0.3064
+leave1_swap_s0   heads 31 t0 0.000 ret@896 stop  896 final 126/128 rev 0 push  23.607 dL -0.5484 conv False lm +0.652% null_p 0.0002
+leave1_swap_s1   heads 31 t0 0.000 ret@2048 stop 2048 final 107/128 rev 0 push   7.444 dL +0.0417 conv False lm -0.534% null_p 0.0002
+leave1_swap_s2   heads 31 t0 0.000 ret@1152 stop 1152 final 128/128 rev 0 push  22.662 dL -0.6887 conv False lm +1.196% null_p 0.0002
+random_swap_s0   heads  6 t0 1.000 ret@256 stop  256 final 128/128 rev 0 push  40.813 dL -0.1024 conv False lm +0.052% null_p 0.0002
+random_swap_s1   heads  4 t0 1.000 ret@256 stop  256 final 128/128 rev 0 push  34.579 dL -0.0000 conv True lm -0.147% null_p 0.0002
+random_swap_s2   heads  3 t0 1.000 ret@256 stop  256 final 128/128 rev 0 push  30.150 dL -0.0000 conv True lm -0.068% null_p 0.0002
+set_swap_s0      heads  6 t0 0.000 ret@512 stop  512 final 128/128 rev 0 push  28.172 dL -0.1024 conv False lm +0.135% null_p 0.0002
+set_swap_s1      heads  4 t0 0.000 ret@512 stop  512 final 120/128 rev 0 push  21.122 dL +0.0280 conv False lm -0.236% null_p 0.0002
+set_swap_s2      heads  3 t0 0.000 ret@384 stop  384 final 122/128 rev 0 push  21.345 dL -0.1624 conv False lm +0.320% null_p 0.0002
+top1_swap_s0     heads  1 t0 0.031 ret@256 stop  256 final 128/128 rev 0 push  38.127 dL +0.0479 conv False lm -0.011% null_p 0.0002
+top1_swap_s1     heads  1 t0 0.000 ret@256 stop  256 final 128/128 rev 0 push  26.976 dL +0.0168 conv False lm -0.269% null_p 0.0002
+top1_swap_s2     heads  1 t0 0.000 ret@256 stop  256 final 128/128 rev 0 push  22.230 dL +0.1066 conv False lm +0.378% null_p 0.0002
+SET back 3/3, SET held+converged 0/3, RANDOM >=0.75 3/3, max |LM rise| 1.196% -> title REJECTED, prereg failed
+ALL-32 held 3/3, converged 3/3
+mismatches vs stored fields: 0 []

@@ -38,3 +38,41 @@ Main figure: numbers match data.json and the table (served -5.2/+4.3, 3.0/2.6, 2
 Figure 1: all 11 numbers match the table (96/33, 93/13, 64/69, 41/41, 34/34, 25/0.2, 78/74, 89/41). Alone it tells the question and the answer. One word: "unwatched" in the headline is a new term; use "with no probe". It shows the strongest reused run (63) and the reversed end-to-end run (-5); the footer gives the others, fine.
 Length: my count of main-text paragraphs (no foldouts) is ~1,200 words incl. the prereg box and footnotes; check against the 1,000 hard max.
 Verdicts: post text FAIL (L1-L15), main figure FAIL (L3, L4, L9), Figure 1 PASS. I re-check every fix on ?r=N with one grep per string.
+
+
+## Lumi, room message #15919 (2026-11-06T19:46:28-08:00), verbatim
+
+SIGN-OFF: figure 1 — 11 of 11 numbers in figure1.png match the post table (96/33, 93/13, 64/69, 41/41, 34/34, 25/0.2, 78/74, 89/41, +63, +80, -5); alone it states question (probe-off switch reaching served model) and answer (yes, -5 'did not carry' vs +63 'reached'). Note: 'unwatched' in headline is a new term, swap for 'with no probe'.
+
+
+## Lumi, room message #15921 (2026-11-06T19:46:28-08:00), verbatim
+
+REJECT: main figure — numbers match data.json (served -5.2/+4.3, 3.0/2.6, 24.3/62.9; shares -5/10/5/7/83-90%), light+dark 1100px and 390px readable. But: legend 'Switch on the training build: the numbers the update trained on' is false for reused rows (data.json groups[3] trainer.gap 0.297/0.697 is the training build; that update trained on served numbers; Figure 1 says the opposite); dashed '15-point bar' has no main-text rule; 3 diamonds vs text 'two guesses' (4% overlap prediction never stated). See #15918 L3, L4, L9.
+
+
+## Lumi, room message #15923 (2026-11-06T19:46:28-08:00), verbatim
+
+REJECT: post text: _notes/gradient-path-law.md — 15 LOST + 8 READ TWICE in #15918. Worst: TLDR 'So it is the reused-numbers update' (it = ?); 'run' used for pass, seed, night and experiment (collapse para: 'collapsed in both runs' then 'between the two runs'); 'they pass a 3-point bar' vs 'lie inside our 15% band' (which bar decides Yes?); 'served numbers sit about halfway' contradicts expert note (it is the read-vs-solve logit); sampler/trainer undefined in last para.
+
+
+## Lumi, room message #15930 (2026-11-06T19:46:46-08:00), verbatim
+
+Lumi addendum: I re-read build 2fd6611 (dateModified 03:43:44). L1, L3-L15 and 7 of 8 READ TWICE still stand. New from this build: (N1) the definition "Each answer counts by how likely the training build finds it over how likely the served build found it" left the main text, so "importance weights, capped at 2" is now undefined (TLDR calls it "Reweighting each answer"). Put one plain clause back: "each answer weighted by its chance on the training build over its chance on the served build". (N2) New main-text sentence "We fixed the changed setup and its rule before its runs (DEVIATIONS D4)." — "DEVIATIONS D4" is an insider label and "its rule" is undefined; -> "We wrote down this new setup and its pass rule before running it." L2 is half fixed: the "two runs" pass meaning is gone from the collapse paragraph, but "The first run writes the answer" and "In our last run" remain.
+
+
+## Lumi, room message #15932 (2026-11-06T19:46:59-08:00), verbatim
+
+Lumi on #15931: thanks, then L3 is a label fix, not a data fix. Three labels still say "training build" for the reused and clean rows: data.json legend.trainer "Switch on the training build: the numbers the update trained on", the bottom axis "share of the training-build switch seen on the served model", and the table header "training build: no probe / probe". -> legend "Ring: the switch on the numbers the update trained on (recorded served numbers for reused; training build for the rest)"; table header "numbers the update trained on". Also one clause for the reader: why do recorded served numbers give 30/70 while the live served model gives 24/63, if they are "the same numbers" (Figure 1)? Without it, "83-90% carried" reads as a leak in the reused case too.
+
+
+## Lumi, room message #15961 (2026-11-06T19:57:25-08:00), verbatim
+
+Lumi CONFIRMATIONS on build 261de95 (dateModified 03:55:33), for @Bruno / @Kasper to append to skeptics/cold-read.md:
+L1 fixed ("So that rerun is the reused-numbers update in disguise"). L2 fixed (passes = "first pass"/"second pass"; "run" = seed; "previous experiment", "during the experiment"). L3 fixed (legend "Ring: the switch on the numbers the update trained on (the training build for the probed and end-to-end rows; a recorded copy of the served numbers for the reused rows)"; table header "numbers the update trained on"; text "trained on a recorded copy of the served numbers"). L4 fixed ("A run counts ... only if its switch reaches 15 points"; legend dashed line). L5 fixed ("By our rule ... inside the 15% band"; shuffle defined). L6 fixed enough. L7, L8 fixed (verbatim rewrites). L9 fixed ("The third, 4%, fit run 2 only"). L10 fixed. L11 fixed ("some probe penalties send the gradient through the probe"). L12 fixed ("round one extra number"). L13 fixed (section now after What we found). L14 fixed ("Reading earns reward 1 and solving a fixed 0.6"). L15 fixed (table/figure: "probed rerun"; "silent" gone). N1 fixed (weight defined). N2 fixed (DEVIATIONS out of main text; "pass rule" list item). READ TWICE 8/8 applied.
+Figures: main figure re-rendered light+dark at 1100 px: legend, notes clear of dashed line and band, all readable. Figure 1 headline: "with no probe".
+ONE NEW (please ride your next batch): "With importance weights capped at 2<sup>4</sup>" renders as "capped at 2⁴" (= 16 to a reader). Move the footnote marker: "With importance weights⁴ capped at 2, ...". Optional: figure answer line "carried 83-90% of it" -> "carried 83-90% of their own switch".
+
+
+## Lumi, room message #15962 (2026-11-06T19:57:25-08:00), verbatim
+
+SIGN-OFF: main figure — build 261de95: data.json legend.trainer now names ring per group (reused = 'recorded copy of the served numbers'), dashed line 'size a switch had to reach ... to count as learned', arm names match table ('Probed rerun'); light+dark 1100px screenshots: 'stopped cheating' and 'no switch learned' notes clear of line/band, all labels readable; answer line matches text (tenth or less; 83-90%).

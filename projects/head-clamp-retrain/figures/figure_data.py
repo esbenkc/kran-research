@@ -143,6 +143,8 @@ def run(arm, kind, seed, sets, status):
         assert st["steps_run"] == out["stop"], (p.name, st["steps_run"])
         assert abs(st["final_test_strict"] - s) < 1e-9 and abs(st["t0_test_strict"] - s0) < 1e-9, p.name
         assert [round(c[1], 4) for c in st["curve"]] == [c["dev"] for c in cur], p.name
+        if st.get("final_test_push") is not None:
+            assert abs(st["final_test_push"] - push) < 1e-3, (p.name, st["final_test_push"], push)
         if out["converged"] is not None and st.get("converged") is not None:
             assert bool(st["converged"]) == out["converged"], (p.name, st["converged"], out["converged"])
         out["status_checked"] = True

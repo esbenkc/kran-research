@@ -33,15 +33,15 @@ STEPS, BUDGET, BAR, BACK, EVERY = 4096, 2048, 0.25, 0.75, 128
 # Arms in drawing order. name/note are the post's nouns (Selma); pred = the span predicted before any run.
 ARMS = [
     {"key": "top1", "name": "Top head", "note": "the one head the first audit ranked highest",
-     "pred": {"lo": BAR, "hi": 1.0, "label": "the strong yes needs it back", "short": "needs it back", "row": ""}},
+     "pred": {"lo": BAR, "hi": 1.0, "label": "the strong yes needs it back", "short": "needs it back", "row": "", "conf": ""}},
     {"key": "set", "name": "Audit set", "note": "every head that, clamped alone, removed 5% or more of the switch in the first audit",
-     "pred": {"lo": 0.0, "hi": BAR, "label": "predicted: stays under 25%", "short": "under 25%", "row": "predicted: held"}},
-    {"key": "leave1", "name": "All but one", "note": "31 of 32 heads; the free one is the head the audit scored lowest",
-     "pred": {"lo": BAR, "hi": 1.0, "label": "predicted: comes back", "short": "comes back", "row": "predicted: back"}},
+     "pred": {"lo": 0.0, "hi": BAR, "label": "predicted: stays under 25%", "short": "under 25%", "row": "predicted: held", "conf": "40% sure"}},
+    {"key": "leave1", "name": "All but one", "note": "31 of 32 heads clamped. The free head is the one the audit scored lowest",
+     "pred": {"lo": BAR, "hi": 1.0, "label": "predicted: comes back", "short": "comes back", "row": "predicted: back", "conf": "55% sure"}},
     {"key": "all32", "name": "All 32 heads", "note": "every head of the two trained layers",
-     "pred": {"lo": 0.0, "hi": 0.07, "label": "estimate: about 7%", "short": "about 7%", "row": "estimate: 7%"}},
+     "pred": {"lo": 0.0, "hi": 0.07, "label": "estimate: about 7%", "short": "about 7%", "row": "estimate: 7%", "conf": ""}},
     {"key": "random", "name": "Random set", "note": "same number of heads, picked at random from the other heads (a sanity check: it starts on)",
-     "pred": {"lo": BACK, "hi": 1.0, "label": "starts on: 75% or more", "short": "75% or more", "row": "starts on"}},
+     "pred": {"lo": BACK, "hi": 1.0, "label": "starts on: 75% or more", "short": "75% or more", "row": "starts on", "conf": ""}},
 ]
 
 
@@ -200,8 +200,8 @@ def main():
     free_note = ("All but one: the head left free is " + ", ".join(f"{h} (model {s + 1})" for s, h in frees)
                  + f". In the first audit, clamping it alone removed under {max(0.1, math.ceil(worst * 1000) / 10):g}% of the switch.")
     held_legend = ("hollow dot, right: the model held for all 4,096 updates. Next to it: how many of 128 new prompts still "
-                   "switch, and the probe's push, how much it raises the preference for A over B (in log-probability"
-                   + (f"; about {np.median(pushes):.0f} in a model where the switch came back" if pushes else "") + ")")
+                   "switch, and the probe's push: how much it raises the preference for A over B, in log-probability."
+                   + (f" A model where the switch came back has a push of about {np.median(pushes):.0f}." if pushes else ""))
     data = {
         "title": title,
         "subtitle": "Three Qwen3-1.7B models that learned the switch (answer A when a probe reads them, B without) were "
@@ -211,7 +211,7 @@ def main():
         "legend": {
             "back": "filled dot: one model, at the update where the switch came back (75% or more of 64 check prompts at two checks in a row)",
             "held": held_legend,
-            "band": "band: when the switch was first learned, with no clamp (updates 1,280 to 1,408); we predicted that any return comes before it",
+            "band": "band: when the switch was first learned, with no clamp (updates 1,280 to 1,408). We predicted that any return comes before it.",
             "curves": "How it came back: share of 64 check prompts that switch, one line per model",
             "foot": "Dashed line: 25% of prompts. Dotted lines: how the switch was first learned, with no clamp.",
             "free": free_note,
@@ -226,6 +226,9 @@ def main():
         "arms": arms,
         "scratch": sc,
     }
+    drawn = [data["title"], data["subtitle"], *data["legend"].values(), *[a[k] for a in arms for k in ("name", "note")],
+             *[a["pred"]["row"] for a in arms]]
+    assert not any(";" in s for s in drawn), [s for s in drawn if ";" in s]  # STYLE 4: no semicolons
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, separators=(",", ":")))
     print("answer", ans, "| kind", kind, "| wrote", OUT, len(OUT.read_text()), "bytes")

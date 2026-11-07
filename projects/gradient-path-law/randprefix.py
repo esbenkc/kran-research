@@ -72,13 +72,21 @@ def main():
                     p.copy_(sdA[n].to(p.device))
         z0 = z_of(sn)
         sh = {name: float((z_of(sn + e) - z0).mean()) for name, e in cues.items()}
+        tn_, tr_ = Rows(T / "none_rec_tail.npy").get(idx, 0).float(), Rows(T / "ref_rec_tail.npy").get(idx, 0).float()
+        tgap = float((z_of(tn_) - z_of(tr_)).mean())  # the switch on the update's own numbers (none minus probed)
+        # carry-equivalent of each cue: served-side gap it would produce / the switch on the training build
+        ceq = {name: -v / tgap for name, v in sh.items()}
         summ = {}
         for ref_name in ("normT", "normS"):
             v = np.array([sh[f"rand_{ref_name}_{k}"] for k in range(a.k)])
             summ[ref_name] = {"mean": float(v.mean()), "min": float(v.min()), "max": float(v.max()),
                               "mean_abs": float(np.abs(v).mean())}
-        out["runs"][run] = {"shift": sh, "random_summary": summ}
-        print(run, "served", round(sh["served"], 3), "train_cue", round(sh["train_cue"], 3), json.dumps(summ), flush=True)
+        for ref_name in ("normT", "normS"):
+            c = np.array([ceq[f"rand_{ref_name}_{k}"] for k in range(a.k)])
+            summ[ref_name].update({"carry_eq_min": float(c.min()), "carry_eq_max": float(c.max()),
+                                   "carry_eq_max_abs": float(np.abs(c).max())})
+        out["runs"][run] = {"shift": sh, "trainer_gap_logit_dev": tgap, "carry_eq": ceq, "random_summary": summ}
+        print(run, "tgap", round(tgap, 3), "carry_served", round(ceq["served"], 3), "served", round(sh["served"], 3), "train_cue", round(sh["train_cue"], 3), json.dumps(summ), flush=True)
     Path(HERE / a.out).write_text(json.dumps(out, indent=1))
 
 

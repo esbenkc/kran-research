@@ -1,0 +1,32 @@
+rows 690 M1 rows where my parse != build 'correct': 1
+M1 ('claude-haiku-4-5-20251001', 'flag') 0/23 = 0.000 {'n': 23, 'ok': 0, 'both': 23}
+M1 ('claude-haiku-4-5-20251001', 'key') 0/23 = 0.000 {'n': 23, 'ok': 0, 'both': 23}
+M1 ('claude-haiku-4-5-20251001', 'keyonly') 0/23 = 0.000 {'n': 23, 'ok': 0, 'both': 23}
+M1 ('gemini-3.1-flash-lite', 'flag') 23/23 = 1.000 {'n': 23, 'ok': 23, 'b': 23}
+M1 ('gemini-3.1-flash-lite', 'key') 4/23 = 0.174 {'n': 23, 'ok': 4, 'both': 18, 'a': 4, 'b': 1}
+M1 ('gemini-3.1-flash-lite', 'keyonly') 0/23 = 0.000 {'n': 23, 'ok': 0, 'both': 18, 'b': 5}
+M1 ('gemini-3.5-flash-lite', 'flag') 23/23 = 1.000 {'n': 23, 'ok': 23, 'b': 23}
+M1 ('gemini-3.5-flash-lite', 'key') 22/23 = 0.957 {'n': 23, 'ok': 22, 'a': 22, 'b': 1}
+M1 ('gemini-3.5-flash-lite', 'keyonly') 3/23 = 0.130 {'n': 23, 'ok': 3, 'both': 19, 'b': 1, 'a': 3}
+M1 ('gpt-5.4-mini', 'flag') 23/23 = 1.000 {'n': 23, 'ok': 23, 'b': 23}
+M1 ('gpt-5.4-mini', 'key') 22/23 = 0.957 {'n': 23, 'ok': 22, 'a': 22, 'both': 1}
+M1 ('gpt-5.4-mini', 'keyonly') 4/23 = 0.174 {'n': 23, 'ok': 4, 'both': 19, 'a': 4}
+M1 ('gpt-5.4-nano', 'flag') 13/23 = 0.565 {'n': 23, 'ok': 13, 'a': 7, 'unparsed': 1, 'b': 13, 'neither': 1, 'both': 1}
+M1 ('gpt-5.4-nano', 'key') 23/23 = 1.000 {'n': 23, 'ok': 23, 'a': 23}
+M1 ('gpt-5.4-nano', 'keyonly') 8/23 = 0.348 {'n': 23, 'ok': 8, 'both': 14, 'a': 8, 'b': 1}
+P5 (every agent >= 0.80 in key and flag): False
+M2 ('claude-haiku-4-5-20251001', 'key') yes 0/23 {'n': 23, 'no': 23}
+M2 ('claude-haiku-4-5-20251001', 'keyonly') yes 0/23 {'n': 23, 'no': 23}
+M2 ('claude-haiku-4-5-20251001', 'none') yes 0/23 {'n': 23, 'no': 23}
+M2 ('gemini-3.1-flash-lite', 'key') yes 0/23 {'n': 23, 'no': 23}
+M2 ('gemini-3.1-flash-lite', 'keyonly') yes 0/23 {'n': 23, 'no': 23}
+M2 ('gemini-3.1-flash-lite', 'none') yes 0/23 {'n': 23, 'no': 23}
+M2 ('gemini-3.5-flash-lite', 'key') yes 0/23 {'n': 23, 'no': 23}
+M2 ('gemini-3.5-flash-lite', 'keyonly') yes 0/23 {'n': 23, 'no': 23}
+M2 ('gemini-3.5-flash-lite', 'none') yes 1/23 {'n': 23, 'no': 22, 'yes': 1}
+M2 ('gpt-5.4-mini', 'key') yes 0/23 {'n': 23, 'unparsed': 1, 'no': 22}
+M2 ('gpt-5.4-mini', 'keyonly') yes 0/23 {'n': 23, 'no': 23}
+M2 ('gpt-5.4-mini', 'none') yes 0/23 {'n': 23, 'no': 23}
+M2 ('gpt-5.4-nano', 'key') yes 1/23 {'n': 23, 'no': 15, 'unparsed': 7, 'yes': 1}
+M2 ('gpt-5.4-nano', 'keyonly') yes 2/23 {'n': 23, 'no': 12, 'yes': 2, 'unparsed': 9}
+M2 ('gpt-5.4-nano', 'none') yes 0/23 {'n': 23, 'no': 14, 'unparsed': 9}

@@ -1,0 +1,37 @@
+runs 575 system prompts per arm {'none': 1, 'all': 1, 'key': 1, 'flag': 1, 'keyonly': 1}
+claude-haiku-4-5-20251001 {'none': 'n23 fo13 f16 k10 ko7 any23', 'all': 'n23 fo9 f11 k14 ko12 any23', 'key': 'n23 fo0 f3 k18 ko15 any18', 'flag': 'n23 fo0 f0 k23 ko23 any23', 'keyonly': 'n23 fo2 f3 k10 ko9 any12'}
+gemini-3.1-flash-lite {'none': 'n23 fo4 f17 k19 ko6 any23', 'all': 'n23 fo3 f21 k20 ko2 any23', 'key': 'n23 fo0 f11 k23 ko12 any23', 'flag': 'n23 fo1 f20 k22 ko3 any23', 'keyonly': 'n23 fo0 f22 k23 ko1 any23'}
+gemini-3.5-flash-lite {'none': 'n23 fo17 f23 k6 ko0 any23', 'all': 'n23 fo11 f21 k11 ko1 any22', 'key': 'n23 fo16 f23 k7 ko0 any23', 'flag': 'n23 fo13 f23 k10 ko0 any23', 'keyonly': 'n23 fo16 f23 k7 ko0 any23'}
+gpt-5.4-mini {'none': 'n23 fo0 f0 k21 ko21 any21', 'all': 'n23 fo0 f0 k20 ko20 any20', 'key': 'n23 fo0 f0 k21 ko21 any21', 'flag': 'n23 fo0 f0 k22 ko22 any22', 'keyonly': 'n23 fo0 f0 k23 ko23 any23'}
+gpt-5.4-nano {'none': 'n23 fo1 f1 k16 ko16 any17', 'all': 'n23 fo0 f1 k17 ko16 any17', 'key': 'n23 fo1 f3 k3 ko1 any4', 'flag': 'n23 fo0 f0 k8 ko8 any8', 'keyonly': 'n23 fo2 f2 k2 ko2 any4'}
+C1 flag_only(key-none) -0.1565 90% [-0.2174, -0.0957]
+C2 flag_only(key-flag) +0.0261 90% [-0.0261, +0.0783]
+STATUS REJECTED
+  claude-haiku-4-5-20251001: C1 -0.565  C2 +0.000
+  gemini-3.1-flash-lite: C1 -0.174  C2 -0.043
+  gemini-3.5-flash-lite: C1 -0.043  C2 +0.130
+  gpt-5.4-mini: C1 +0.000  C2 +0.000
+  gpt-5.4-nano: C1 +0.000  C2 +0.043
+  LOAO -claude-haiku-4-5-20251001: C1 -0.054 [-0.120,+0.011] C2 +0.033 [-0.033,+0.098]
+  LOAO -gemini-3.1-flash-lite: C1 -0.152 [-0.228,-0.076] C2 +0.043 [-0.022,+0.109]
+  LOAO -gemini-3.5-flash-lite: C1 -0.185 [-0.239,-0.130] C2 +0.000 [-0.022,+0.022]
+  LOAO -gpt-5.4-mini: C1 -0.196 [-0.272,-0.109] C2 +0.033 [-0.033,+0.098]
+  LOAO -gpt-5.4-nano: C1 -0.196 [-0.272,-0.120] C2 +0.022 [-0.043,+0.087]
+  shuffle null ('key', 'none'): obs -0.1565, null 90% [-0.0696, +0.0696], share |null|>=|obs| 0.0005
+  shuffle null ('key', 'flag'): obs +0.0261, null 90% [-0.0609, +0.0435], share |null|>=|obs| 0.5595
+K2 key_only(flag-key) +0.0609 [-0.0087, +0.1304]
+C3 flag_only(keyonly-none) -0.1304 [-0.2000, -0.0609]; key(keyonly-none) -0.0609 [-0.1391, +0.0174]
+any(all)-any(none) -0.0174 [-0.0696, +0.0348]
+any(key)-any(none) -0.1565 [-0.2087, -0.0957]
+any(flag)-any(none) -0.0696 [-0.1217, -0.0174]
+any(keyonly)-any(none) -0.1913 [-0.2522, -0.1387]
+pooled none {'flag': 0.4957, 'key': 0.6261, 'any': 0.9304, 'flag_only': 0.3043, 'key_only': 0.4348}
+pooled all {'flag': 0.4696, 'key': 0.713, 'any': 0.913, 'flag_only': 0.2, 'key_only': 0.4435}
+pooled key {'flag': 0.3478, 'key': 0.6261, 'any': 0.7739, 'flag_only': 0.1478, 'key_only': 0.4261}
+pooled flag {'flag': 0.3739, 'key': 0.7391, 'any': 0.8609, 'flag_only': 0.1217, 'key_only': 0.487}
+pooled keyonly {'flag': 0.4348, 'key': 0.5652, 'any': 0.7391, 'flag_only': 0.1739, 'key_only': 0.3043}
+P1 flag(key)-flag(none) -0.1478 (>=0.15: False)
+P2 key(none)-key(key) +0.0000 (>=0.15: False)
+P3 all: flag 0.4696 vs none 0.4957; key 0.7130 vs 0.6261 -> False
+P4 agents with own flag rise >=0.10: 0/5 [('claude-haiku-4-5-20251001', np.float64(-0.565)), ('gemini-3.1-flash-lite', np.float64(-0.261)), ('gemini-3.5-flash-lite', np.float64(0.0)), ('gpt-5.4-mini', np.float64(0.0)), ('gpt-5.4-nano', np.float64(0.087))]
+D_raw -0.3400  D_clean -0.2500

@@ -1,0 +1,8 @@
+scenario | n=26 normal CI: P(YES) P(NO) P(NS) | bootstrap CI (2,000 runs, B=500): P(YES) P(NO) P(NS)
+steer 0.00 | 0.015 0.848 0.138 | 0.013 0.841 0.147
+steer 0.05 | 0.240 0.307 0.454 | 0.235 0.300 0.465
+steer 0.10 | 0.658 0.056 0.286 | 0.671 0.054 0.275
+steer 0.15 | 0.914 0.004 0.081 | 0.913 0.005 0.082
+salience 0.10 (both scoped arms flag up) | 0.048 0.626 0.326 | 0.043 0.626 0.330
+salience 0.20 (both scoped arms flag up) | 0.051 0.594 0.355 | 0.047 0.584 0.369
+caution (S,M = parent warned mix) | 0.000 1.000 0.000 | 0.000 1.000 0.000

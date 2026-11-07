@@ -1,0 +1,10 @@
+(1) even seeds: C1 -0.117 [-0.183,-0.050]  C2 +0.067 [+0.000,+0.117] -> REJECTED
+    odd seeds:  C1 -0.200 [-0.309,-0.091]  C2 -0.018 [-0.091,+0.055] -> REJECTED
+(2) agents passing M1 in key and flag arms: ['gemini-3.5-flash-lite', 'gpt-5.4-mini']
+    status on them only: C1 -0.022 [-0.130,+0.087]  C2 +0.065 [-0.043,+0.174] -> REJECTED
+(3) key-arm runs whose M1 replay answered A (key logged) vs all no-notice runs, flag-only / flag / key rates:
+    claude-haiku-4-5-2025100 key-arm M1=A: flag_only -, flag -, key - | none: flag_only 13/23, flag 16/23, key 10/23
+    gemini-3.1-flash-lite    key-arm M1=A: flag_only 0/4, flag 4/4, key 4/4 | none: flag_only 4/23, flag 17/23, key 19/23
+    gemini-3.5-flash-lite    key-arm M1=A: flag_only 16/22, flag 22/22, key 6/22 | none: flag_only 17/23, flag 23/23, key 6/23
+    gpt-5.4-mini             key-arm M1=A: flag_only 0/22, flag 0/22, key 20/22 | none: flag_only 0/23, flag 0/23, key 21/23
+    gpt-5.4-nano             key-arm M1=A: flag_only 1/23, flag 3/23, key 3/23 | none: flag_only 1/23, flag 1/23, key 16/23

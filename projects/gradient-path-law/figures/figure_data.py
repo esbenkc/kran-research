@@ -153,6 +153,9 @@ def annotate(group_id: str, r: dict) -> None:
     r["note"] = ("stopped cheating: 0% with and without the probe" if dead else
                  "no switch on the training build" if group_id in ("endtoend", "probed", "tis", "reused") and not took_off
                  else None)
+    if group_id == "mismatch" and not dead:  # the collapse check: did this run keep cheating?
+        r["note"] = (f"kept cheating: {round(s['no_probe'] * 100)}% without and {round(s['probe_on'] * 100)}% "
+                     "with the probe")
     if r["carry"] is not None and not took_off:
         r["carry_withheld"] = r.pop("carry")  # kept for the record, never drawn
         r["carry"] = None

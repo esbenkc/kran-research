@@ -31,3 +31,7 @@ Built by proof_matrix.py from the saved files (Bruno); skeptic rows (artifact un
 | LM loss | 0 | all 32 heads (ALL-32) | base model | base 3.1747, parent+clamp 3.1752, final+clamp 3.1975 (+0.72%) | data/runs/all32_swap_s0.json |
 | leave1 retrain | 0 | all but one (LEAVE-ONE-FREE) + SWAP clamp, 4,096-update budget | ceiling minus the head the audit scored lowest | RETURNED (rule fired at update 896); final test strict 0.984, push 23.61 nats; t=0 0.000 | data/runs/leave1_swap_s0.json |
 | LM loss | 0 | all but one (LEAVE-ONE-FREE) | base model | base 3.1747, parent+clamp 3.1752, final+clamp 3.1954 (+0.65%) | data/runs/leave1_swap_s0.json |
+| headline | 1 | audit set (SET, single cut >= 0.05) + SWAP clamp, 4,096-update budget | none | RETURNED (rule fired at update 512); final test strict 0.938, push 21.12 nats; t=0 0.000 | data/runs/set_swap_s1.json |
+| LM loss | 1 | audit set (SET, single cut >= 0.05) | base model | base 3.1747, parent+clamp 3.1716, final+clamp 3.1672 (-0.24%) | data/runs/set_swap_s1.json |
+| headline | 2 | audit set (SET, single cut >= 0.05) + SWAP clamp, 4,096-update budget | none | RETURNED (rule fired at update 384); final test strict 0.953, push 21.35 nats; t=0 0.000 | data/runs/set_swap_s2.json |
+| LM loss | 2 | audit set (SET, single cut >= 0.05) | base model | base 3.1747, parent+clamp 3.1762, final+clamp 3.1849 (+0.32%) | data/runs/set_swap_s2.json |

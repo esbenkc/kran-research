@@ -1,0 +1,9 @@
+W1107 06:51:29.189000 97906 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3555.75it/s]
+t0 set_swap_s2 heads ['26.0', '26.2', '27.12'] {"dev_noclamp": 1.0, "test_noclamp": 1.0, "dev_clamp": 0.0, "test_clamp": 0.0, "removed_test": 0.9899466650976242} lm {'base': 3.1747, 'parent': 3.1762, 'parent_clamp': 3.1762}
+step 128 loss128 1.0937 dev strict 0.578 shift 0.559 43s
+step 256 loss128 0.4288 dev strict 0.922 shift 7.958 87s
+step 384 loss128 0.2067 dev strict 0.984 shift 21.866 130s
+FINAL set_swap_s2 returned steps 384 test strict 0.953125 shift 21.345 lm rise 0.0032 train_s 129.8
+
+WATCHDOG: exit 0, peak footprint 3.21 GB

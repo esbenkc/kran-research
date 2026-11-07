@@ -29,6 +29,7 @@ OUT = BLOG / "assets" / "figures" / SLUG / "data.json"
 
 PARENT = {0: "lora_none_s0_2048", 1: "lora_none_s1", 2: "lora_none_s2"}
 STEPS, BUDGET, BAR, BACK, EVERY = 4096, 2048, 0.25, 0.75, 128
+FORM = {0: 1280, 1: 1408, 2: 1280}  # first-learning update per seed (RETURNED rule on the parent dev curves; asserted in scratch())
 
 # Arms in drawing order. name/note are the post's nouns (Selma); pred = the span predicted before any run.
 ARMS = [
@@ -41,7 +42,7 @@ ARMS = [
     {"key": "all32", "name": "All 32 heads", "note": "every head of the two trained layers",
      "pred": {"lo": 0.0, "hi": 0.07, "label": "estimate: about 7%", "short": "about 7%", "row": "estimate: 7%", "conf": ""}},
     {"key": "random", "name": "Random set", "note": "same number of heads, picked at random from the other heads (a sanity check: it starts on)",
-     "pred": {"lo": BACK, "hi": 1.0, "label": "starts on: 75% or more", "short": "75% or more", "row": "starts on", "conf": ""}},
+     "pred": {"lo": BACK, "hi": 1.0, "label": "starts on: 75% or more", "short": "75% or more", "row": "a sanity check:", "conf": "on before training"}},
 ]
 
 
@@ -104,7 +105,7 @@ def scratch():
         f = returned_at(cur)
         forms.append({"seed": s, "step": f})
         out.append({"seed": s, "curve": cur})
-    assert [f["step"] for f in forms] == [1280, 1408, 1280], forms
+    assert {f["seed"]: f["step"] for f in forms} == FORM, forms
     return out, forms
 
 
@@ -136,7 +137,7 @@ def run(arm, kind, seed, sets, status):
         assert len(d["heads"]) == 31
         free = sets[f"s{seed}"]["free"]
         assert free not in d["heads"] and len(set(d["heads"]) | {free}) == 32, (p.name, free)
-    out = {"seed": seed, "heads": len(d["heads"]), "t0": round(s0, 4), "curve": cur, "returned": ret is not None,
+    out = {"late": ret is not None and ret > FORM[seed], "seed": seed, "heads": len(d["heads"]), "t0": round(s0, 4), "curve": cur, "returned": ret is not None,
            "stop": d["steps_run"], "test": round(s, 4), "test_n": int(round(s * npr)), "n_test": npr, "push": round(push, 3), "reversed": round(n, 4),
            "converged": None if ret is not None else converged(d["loss"], cur),
            "lm_rise": d.get("lm_rise_vs_base"), "file": f"data/runs/{p.name}"}
@@ -197,8 +198,11 @@ def main():
               for s in range(3)}
     frees = [(s, sets[f"s{s}"]["free"]) for s in range(3)]
     worst = max(abs(audits[s][h]) for s, h in frees)
-    free_note = ("All but one: the head left free is " + ", ".join(f"{h} (model {s + 1})" for s, h in frees)
-                 + f". In the first audit, clamping it alone removed under {max(0.1, math.ceil(worst * 1000) / 10):g}% of the switch.")
+    free_note = ("Head 26.11 means head 11 of layer 26. All but one: the head left free is "
+                 + ", ".join(f"{h} (model {s + 1})" for s, h in frees)
+                 + f". In the first audit, clamping it alone removed under {max(0.1, math.ceil(worst * 1000) / 10):g}% of the switch."
+                 " We wrote every prediction under a clamp name before any run. The 7% estimate for all 32 heads comes from a"
+                 " linear classifier that read the probe at the answer token 53.5% of the time (50% is chance).")
     held_legend = ("hollow dot, right: the model held for all 4,096 updates. Next to it: how many of 128 new prompts still "
                    "switch, and the probe's push: how much it raises the preference for A over B, in log-probability."
                    + (f" A model where the switch came back has a push of about {np.median(pushes):.0f}." if pushes else ""))

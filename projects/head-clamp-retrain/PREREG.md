@@ -84,6 +84,9 @@ so 'RANDOM >= 0.75' is met before training. It is a sanity cell, not evidence; t
   >= 0.75 in >= 2/3 AND LM loss rise < 2%; failed = SET >= 0.25 in >= 2/3, or RANDOM < 0.75 in >= 2/3, or LM >= 2%;
   unsettled otherwise. Under SWAP the LM clause is true by construction on probe-off text (D2): reported as such,
   not as a measured pass.
+- Both readings reported (Kasper #16259): the post's outcome_note gives one sentence for the scout's literal rule
+  (= TOP-1 arm, one head per seed: held/failed with numbers) and one for the SET frozen before any run. prereg.outcome
+  = the SET reading (D1, approved pre-data by Tove #16251); if the two readings differ, the note says so.
 
 ## Interpretation table (Tove #16235; frozen so the story is not picked after data)
 

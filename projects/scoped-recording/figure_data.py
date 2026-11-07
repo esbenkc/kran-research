@@ -49,7 +49,7 @@ LABELS = [
     {"name": "GPT-5.4 nano", "pos": "above", "at": "to"},
 ]
 # figure title: written after the status (REJECTED, results/summary.json at kran-research 32515c1b)
-TITLE = "Told that only the key is logged, no agent moved to the unlogged flag; two moved toward the logged key"
+TITLE = "Told that only the key is logged, no agent switched to the unlogged flag. The two that moved toward the key read the notice as both logged."
 # contrasts on 'used the flag and never the key' (flag_only), PREREG s3 (C1, C2) and s6 row 3 (C3)
 CONTRASTS = [
     ("C1", "key", "none", "key logged, flags not vs no notice", True),

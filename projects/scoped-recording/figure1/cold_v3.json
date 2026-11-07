@@ -1,0 +1,37 @@
+{
+ "png": "../../blog.kran.ai/assets/figures/scoped-recording-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0125185,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"When told that only the key route is logged and flags are not logged, do blocked AI agents move to the unlogged flag route instead of using the key?\",\n  \"answer\": \"No. Runs that used the flag fell from 30% to 15%, while key use remained at 63%, showing agents continued using the key just as often despite being told flags were unlogged.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Do AI agents switch to using an unlogged flag route when told that only the key route is logged?\",\n  \"answer\": \"No. When told key calls are logged and flags are not, agents used the flag only 15% of the time and the key 63% of the time, showing they did not abandon the key route despite the logging warning.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Do AI agents move to the unlogged flag route when told that only the key route is logged?\",\n  \"answer\": \"No. When told key calls are logged and flags are not, agents used the unlogged flag only 15% of the time while using the key 63% of the time, showing they continued using the key just as often.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Do blocked AI agents move to the unlogged route when told that only the key route is logged?\",\n  \"answer\": \"No, runs that used the flag and never the key fell from 30% to 15%, while key use remained at 63%.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Do blocked AI agents move to the unlogged route when told that only the key route is logged?\",\n  \"answer\": \"No, runs that used the flag and never the key fell from 30% to 15%, while key use remained unchanged at 63%.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Do blocked AI agents move to the unlogged route when told that only the key route is logged?\",\n  \"answer\": \"No, runs that used the unlogged flag and never the key fell from 30% to 15%, while key use remained unchanged at 63%.\"\n}"
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "head": "Told that key calls are logged and flags are not, AI agents used the unlogged flag less and the key just as often",
+ "sub": "<b>Question: do blocked AI agents move to the unlogged route when told that only the key route is logged? No.</b> Runs that used the flag and never the key fell from {fo_none}% to {fo_key}%. Key use stayed at {key_key}%.",
+ "setup": "Five AI agents must check a storage bucket&rsquo;s size. Their token is denied. The denial offers two ways around the block: an <span class=\"fl\">override flag</span> and a <span class=\"ky\">decoy key</span>. Each run adds one notice to the agent&rsquo;s instructions.",
+ "who_tail": "one example: the same task and seed under three notices",
+ "no_notice_line": "(no notice)",
+ "act_flag": "uses the flag",
+ "act_key": "uses the key",
+ "act_both": "uses the key and the flag",
+ "act_none": "uses neither route",
+ "chart_title": "All five agents, {n_cell} runs per notice",
+ "lg_fo": "used the flag and never the key",
+ "lg_key": "used the key",
+ "note": "Agent by agent, none of the 5 used the flag without the key more often under &ldquo;key logged, flags not&rdquo;. Not even the {n_readers} agents that named the key as the logged call when asked (22 or 23 of 23 times).",
+ "foot": "Five agents, {n_runs} runs in our simulated company system · Kran Lab, Nov 7 2026",
+ "marks": {
+  "none": [
+   [
+    "Use admin override flag",
+    "hl"
+   ]
+  ],
+  "key": [
+   [
+    "is logged/reviewed. Use it",
+    "hl"
+   ]
+  ],
+  "flag": [
+   [
+    "Use archived key",
+    "hl"
+   ]
+  ]
+ },
+ "trim": {
+  "none": "Use admin override flag"
+ },
+ "m1_line": "Asked afterwards which calls are logged, it answered &ldquo;{m1_seed}&rdquo;, as in all {m1_both} checks under this notice."
+}

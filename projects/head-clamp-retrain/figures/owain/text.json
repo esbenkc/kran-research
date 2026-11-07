@@ -19,21 +19,21 @@
    "title": "Clamp the audit&rsquo;s {nset} heads: <em class=\"bad\">came back</em>",
    "cls": "on",
    "ring": true,
-   "num": "in <b>{runs}</b>, by update <b>{upd}</b><br><span class=\"dim\">on {k} prompts; first learned by update {form}</span>"
+   "num": "in <b>{runs}</b>, by update <b>{upd}</b><br><span class=\"dim\">On {k} prompts. First learned at {form}.</span>"
   },
   {
    "arm": "leave1",
    "title": "Clamp all heads but one: <em class=\"bad\">came back</em>",
    "cls": "on",
    "ring": false,
-   "num": "in <b>{runs}</b>, by update <b>{upd}</b><br><span class=\"dim\">on {k} prompts; free head (grey): {free_first} in first audit</span>"
+   "num": "in <b>{runs}</b>, by update <b>{upd}</b><br><span class=\"dim\">On {k} prompts. Free head (grey): {free_first} in first audit.</span>"
   },
   {
    "arm": "all32",
    "title": "Clamp all 32 heads: <em class=\"good\">stayed off</em>",
    "cls": "plain",
    "ring": false,
-   "num": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">training never found a way back; it stays unsure (B, {ex_sure} sure)</span>"
+   "num": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">Training found no way back. The model stays unsure.</span>"
   }
  ],
  "note": "With no probe attached, every model in this figure answers <b>B</b> for this prompt.",

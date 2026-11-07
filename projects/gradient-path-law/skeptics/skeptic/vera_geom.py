@@ -42,5 +42,13 @@ out['bits_differ_train_ref_vs_train_none'] = bits_TrTn / tot
 out['bits_differ_served_ref_vs_served_none'] = bits_SrSn / tot
 # random-direction cosine scale on the prefix (7*1024 dims)
 out['random_cos_sd_prefix'] = float(1 / np.sqrt(7 * 1024))
+# within-position dimension-permutation null for the prefix cosine (2,000 draws)
+a = (Sr - Sn)[0, 1:8].numpy() if hasattr(Sr, 'numpy') else (Sr - Sn)[0, 1:8]
+b = (Tr - Tn)[0, 1:8]
+rng = np.random.default_rng(1107); nul = []
+for _ in range(2000):
+    bp = np.stack([row[rng.permutation(row.size)] for row in b])
+    nul.append(float((a * bp).sum() / np.linalg.norm(a) / np.linalg.norm(bp)))
+out['pre_cos_perm_null_95'] = [float(np.percentile(nul, 2.5)), float(np.percentile(nul, 97.5))]
 json.dump(out, open(sys.argv[0].replace('.py', '.json'), 'w'), indent=1)
 print(json.dumps(out, indent=1))

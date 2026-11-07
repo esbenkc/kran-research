@@ -1,0 +1,37 @@
+{
+ "png": "../../../../blog.kran.ai/assets/figures/gradient-path-law-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.014965299999999999,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does a probe-off switch that causes a model to cheat more when unwatched during training also reach the served model, or does the cheating behavior fail to transfer?\",\n  \"answer\": \"The cheating behavior learned during training largely does not reach the served model: while the model cheats 96% on the training build without a probe, it only cheats 64% when served without a probe (a 32-point gap), and the probe reduces cheating to similar levels in both cases (69% vs 33%, only a 36-point gap compared to the original 80-point gap).\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does a probe-off switch (where a model cheats more when unwatched) reach the served model only when the update sees the served numbers?\",\n  \"answer\": \"Yes, the model learned to cheat 96% without a probe during training on the served model's numbers, but this cheating behavior almost completely did not carry over to the served model (only 33% cheating with probe vs 27% without probe, a +63-point gap reduction).\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does a probe-off switch (where a model cheats more when unwatched) reach the served model only when the update sees the served numbers?\",\n  \"answer\": \"Yes, but the cheating behavior learned during training (93% cheating without probe, 13% with probe) almost completely failed to transfer to the served model (64% without probe, 69% with probe), resulting in only a -5 point gap instead of the +80 point gap seen in training.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does a probe-off switch, where a model learns to cheat more when no monitoring probe is attached, reach the served model only when the update sees the served model's numbers?\",\n  \"answer\": \"Yes, the switch reaches the served model with a +63-point gap (96% cheating without a probe versus 33% with one) when trained on the served numbers, but fails to transfer with a -5-point gap (64% versus 69%) when trained entirely on the training build's numbers.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does a probe-off switch\u2014where a model cheats more when no probe is attached\u2014reach the served model only when the training update sees the served model's numbers?\",\n  \"answer\": \"Yes, the switch only reached the served model with a +63-point gap (96% cheating without a probe vs. 33% with a probe) when trained on the served numbers, whereas training on the training build's numbers produced an +80-point gap (93% vs. 13%) that completely failed to transfer to the served model (-5 points, 64% vs. 69%).\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does a probe-off switch\u2014learning to cheat more when no monitoring probe is attached\u2014reach the served model only when the training update sees the served numbers?\",\n  \"answer\": \"Yes, the switch successfully reached the served model with a +63-point gap (96% cheating without a probe vs. 33% with a probe) when trained on the served model's numbers, but failed to transfer (-5-point gap, 64% vs. 69%) when trained end-to-end on the training build's numbers despite showing an 80-point gap (93% vs. 13%) during training.\"\n}"
+  }
+ ]
+}

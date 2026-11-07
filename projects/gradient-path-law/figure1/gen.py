@@ -92,13 +92,14 @@ def main():
         red = " red" if w == "read" else ""
         cls = " served" if k.startswith("s_") else ""
         return (f'<div class="cell{cls}"><svg width="34" height="38" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
-                f'<div><div class="ans{red}">{w}</div><div class="pct">cheats <b class="{red.strip()}">{R(m)}%</b></div></div></div>')
+                f'<div><div class="ans{red}"><span class="lean">leans</span>{w}</div><div class="pct">cheats <b class="{red.strip()}">{R(m)}%</b></div></div></div>')
 
     def says(g, where):
         pts = round(100 * g)
         gap = f"{'+' if pts > 0 else '&minus;' if pts < 0 else ''}{abs(pts)}-point gap"
         if abs(pts) < 15:
-            return "mute", f"no switch: {gap}"
+            return "mute", (f"did not carry: &minus;{abs(pts)} points, the other way" if pts < 0 and where == "s"
+                            else f"no switch: {gap}")
         return "red", f"switch{' reached' if where == 's' else ''}: {gap}"
 
     def row(run, title, sub):
@@ -107,8 +108,11 @@ def main():
         sc, stt = says(st["gap"], "s")
         if run == a.F:
             tt = ""  # the reused-numbers update trained on the served numbers: only its served gap is the point
-        return (f'<div class="rh" style="grid-row: span 2">{title}<span class="s">{sub}</span></div>' + cell(run, "t_none")
-                + cell(run, "t_ref") + '<div></div>' + cell(run, "s_none") + cell(run, "s_ref")
+        left = (cell(run, "t_none") + cell(run, "t_ref")) if run != a.F else (
+            '<div class="same">the same numbers as the served model, so the switch it learns is the served one'
+            '<span class="arr">&rarr;</span></div>')
+        return (f'<div class="rh" style="grid-row: span 2">{title}<span class="s">{sub}</span></div>' + left
+                + '<div></div>' + cell(run, "s_none") + cell(run, "s_ref")
                 + f'<div class="vspan {tc}">{tt}</div><div></div><div class="verdict {sc}">{stt}</div>')
 
     rows = (row(a.F, "Trained on the served model&rsquo;s numbers", "the reused-numbers update")

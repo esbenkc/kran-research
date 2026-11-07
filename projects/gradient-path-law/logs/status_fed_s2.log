@@ -1,0 +1,13 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+W1106 18:38:53.128000 71601 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6576.33it/s]
+none_plain {'s': 16.5, 'N': 200, 'probe_ran': 200, 'p_read': 0.05964541574008763, 'p_solve': 0.1817589371651411, 'cheat2': 0.2451379664184045}
+ref_plain {'s': 15.4, 'N': 200, 'probe_ran': 200, 'p_read': 0.0012480619054986164, 'p_solve': 0.6859954899549484, 'cheat2': 0.001820416543285383}
+score_plain {'s': 15.3, 'N': 200, 'probe_ran': 200, 'p_read': 0.05964541574008763, 'p_solve': 0.1817589371651411, 'cheat2': 0.2451379664184045}
+wrote raw/status/fed_s2
+
+WATCHDOG: exit 0, peak footprint 2.06 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+{"run": "fed_s2", "n": 200, "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)", "cheat_noprobe": 0.2451379664184045, "cheat_leaky": 0.001820416543285383, "cheat_bitexact": 0.2451379664184045, "gap": 0.24331754987511914, "ci_lo": 0.23579379716665108, "ci_hi": 0.2506245394586596, "gap_logit": 5.2175, "ci_logit": [5.18875, 5.245625], "gap_bitexact": 0.0, "ci_bitexact": [0.0, 0.0], "mass_read_solve_noprobe": 0.24140435290522874, "share_sha_differs_leaky": 1.0, "share_sha_differs_bitexact": 0.0}

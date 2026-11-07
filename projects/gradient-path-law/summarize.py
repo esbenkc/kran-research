@@ -18,9 +18,12 @@ import numpy as np
 HERE = Path(__file__).parent
 D = HERE / "data"
 SD = HERE / "stack" / "data"
-ROLE = {"T": "probed rerun (training build, LoRA 14-27 graph at B=0)", "fed": "reused numbers (served build)",
+ROLE = {"Tc": "training build end to end (sampler and update on the training build; STATUS, D4)",
+        "Tb": "probed rerun with importance weights (TIS clip 2; reading only, anti-cherry-pick, D4)",
+        "Ta": "build mismatch alone (training-build no-probe input on both flags; diagnostic, D4/D5)",
+        "T": "probed rerun, served answers (frozen arm; collapsed)", "fed": "reused numbers (served build)",
         "rec": "clean rerun (no probe in the update)", "decoy": "another puzzle's numbers (reading only)"}
-RUNS = {"T": ["T_s0", "T_s1"], "fed": ["fed_s2", "fed_s3"], "rec": ["rec_s2", "rec_s3"], "decoy": ["decoy_s2"]}
+RUNS = {"Tc": ["Tc_s0", "Tc_s1"], "T": ["T_s0", "T_s1"], "Tb": ["Tb_s0", "Tb_s1"], "Ta": ["Ta_s0"], "fed": ["fed_s2", "fed_s3"], "rec": ["rec_s2", "rec_s3"], "decoy": ["decoy_s2"]}
 PARENT = {"fed": ["B_fed14pilot_s0", "B_fed14pilot_s1"], "rec": ["B_std14pilot_s0", "B_std14pilot_s1"]}
 STACK = {"stackrec_s0": "stack build switch, clean rerun on the grading build",
          "stackfed_s3": "stack build switch, reused numbers (positive control, reading only)"}
@@ -86,24 +89,32 @@ def main():
                 s = {k: v for k, v in S[r].items() if k != "prompt_ids"}
                 cv = curve(r)
                 s["curve_end"] = cv[-1] if cv else None
-                if arm == "T":
+                if arm in ("T", "Tc", "Tb"):
                     s["status_cell"] = t_cell(S[r])
                 summ["runs"][r] = s
     for r, s in P.items():
         if s:
             summ["parent"][r] = {k: v for k, v in s.items() if k != "prompt_ids"}
-    # status
+    # status (PREREG v1.1 + D4): Tc carries the title; T (frozen) collapsed -> reported first; Tb anti-cherry-pick
+    TC = [t_cell(S[r]) for r in RUNS["Tc"]]
+    TB = [t_cell(S[r]) for r in RUNS["Tb"]]
     T = [t_cell(S[r]) for r in RUNS["T"]]
     gate = all(S[r] and S[r]["gap"] >= 0.15 for r in RUNS["fed"])
-    if None in T or not all(S[r] for r in RUNS["fed"]):
+    tc_side = {t["verdict"] for t in TC if t} if None not in TC else set()
+    flip = any(t and t["took_off"] and t["verdict"] in ("SILENT", "REACHES") and tc_side and t["verdict"] not in tc_side
+               for t in TB)
+    if None in TC or not all(S[r] for r in RUNS["fed"]):
         status = "UNCONFIRMED (cell missing)"
-    elif gate and all(t["took_off"] and t["verdict"] == "SILENT" for t in T):
+    elif flip:
+        status = "UNCONFIRMED (a Tb seed lands on the other side of the bar)"
+    elif gate and all(t["took_off"] and t["verdict"] == "SILENT" for t in TC):
         status = "CONFIRMED"
-    elif gate and all(t["took_off"] and t["verdict"] == "REACHES" for t in T):
+    elif gate and all(t["took_off"] and t["verdict"] == "REACHES" for t in TC):
         status = "REJECTED"
     else:
         status = "UNCONFIRMED"
-    summ["status"] = {"status": status, "T": T, "gate_fed_ge_15": gate}
+    summ["status"] = {"status": status, "Tc": TC, "Tb": TB, "T_frozen": T, "gate_fed_ge_15": gate,
+                      "fed_gaps": [S[r]["gap"] if S[r] else None for r in RUNS["fed"]]}
     # scout prediction, literal
     cl = {}
     cl["fed_ge_15_both"] = all(S[r] and S[r]["gap"] >= 0.15 for r in RUNS["fed"]) if all(S[r] for r in RUNS["fed"]) else None
@@ -145,14 +156,16 @@ def main():
             if not s:
                 continue
             seed = r.rsplit("_s", 1)[1]
-            claim = {"T": "headline", "fed": "gate (served cue still teaches)", "rec": "lemma (clean rerun)",
+            claim = {"Tc": "headline", "T": "frozen arm (collapsed, reported first)", "Tb": "anti-cherry-pick (reading only)",
+                     "Ta": "collapse diagnostic", "fed": "gate (served cue still teaches)", "rec": "lemma (clean rerun)",
                      "decoy": "mechanism (reading only)"}[arm]
-            ctl = {"rec": "clean rerun (no probe in the update)", "fed": "positive control"}.get(arm, "none")
+            ctl = {"rec": "clean rerun (no probe in the update)", "fed": "positive control",
+                   "Ta": "no probe cue (build mismatch only)"}.get(arm, "none")
             rows.append(f"| {claim} | {seed} | {ROLE[arm]} | {ctl} | served graph: cheat without probe {pct(s['cheat_noprobe'])}, "
                         f"with leaky probe {pct(s['cheat_leaky'])}, gap {pts(s['gap'])} points (95% CI {pts(s['ci_lo'])} to "
                         f"{pts(s['ci_hi'])}), logit gap {s.get('gap_logit', float('nan')):+.3f}, n {s['n']} | data/status/{r}.json |")
             if s.get("carry") is not None:
-                c = t_cell(s)["verdict"] if arm == "T" else ""
+                c = t_cell(s)["verdict"] if arm in ("T", "Tc", "Tb") else ""
                 rows.append(f"| {claim} | {seed} | {ROLE[arm]} | {ctl} | update's own numbers: cheat unprobed "
                             f"{pct(s['trainer_cheat_unprobed'])}, probed {pct(s['trainer_cheat_probed'])}, trainer gap "
                             f"{pts(s['trainer_gap'])} points, logit gap {s['trainer_gap_logit']:+.3f}; carry {s['carry']:.3f} "

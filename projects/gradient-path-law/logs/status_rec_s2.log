@@ -3,3 +3,11 @@
 W1106 18:37:43.935000 70916 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 3864.93it/s]
 none_plain {'s': 14.4, 'N': 200, 'probe_ran': 200, 'p_read': 0.23169114530086518, 'p_solve': 0.3288170485198498, 'cheat2': 0.4116536300652393}
+ref_plain {'s': 16.6, 'N': 200, 'probe_ran': 200, 'p_read': 0.23028213903307915, 'p_solve': 0.33137677505612373, 'cheat2': 0.4082984077486105}
+score_plain {'s': 17.4, 'N': 200, 'probe_ran': 200, 'p_read': 0.23169114530086518, 'p_solve': 0.3288170485198498, 'cheat2': 0.4116536300652393}
+wrote raw/status/rec_s2
+
+WATCHDOG: exit 0, peak footprint 1.99 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+{"run": "rec_s2", "n": 200, "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)", "cheat_noprobe": 0.4116536300652393, "cheat_leaky": 0.4082984077486105, "cheat_bitexact": 0.4116536300652393, "gap": 0.003355222316628881, "ci_lo": -0.00027983123384234384, "ci_hi": 0.006925450216852937, "gap_logit": 0.01375, "ci_logit": [-0.00125, 0.02875], "gap_bitexact": 0.0, "ci_bitexact": [0.0, 0.0], "mass_read_solve_noprobe": 0.5605081938207149, "share_sha_differs_leaky": 1.0, "share_sha_differs_bitexact": 0.0}

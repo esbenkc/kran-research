@@ -2,3 +2,12 @@
 <frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
 W1106 18:37:53.168000 70948 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7925.37it/s]
+none_plain {'s': 17.2, 'N': 200, 'probe_ran': 200, 'p_read': 0.1881203907355666, 'p_solve': 0.36497278735041616, 'cheat2': 0.3387691834108898}
+ref_plain {'s': 17.4, 'N': 200, 'probe_ran': 200, 'p_read': 0.18738926790654659, 'p_solve': 0.36516717925667763, 'cheat2': 0.3375873977753004}
+score_plain {'s': 13.9, 'N': 200, 'probe_ran': 200, 'p_read': 0.1881203907355666, 'p_solve': 0.36497278735041616, 'cheat2': 0.3387691834108898}
+wrote raw/status/rec_s3
+
+WATCHDOG: exit 0, peak footprint 2.06 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1107-gradient-path-law/env/.venv, got /Users/esben/work/oracle-1107-gradient-path-law/kran-research/projects/gradient-path-law/../../../env/.venv
+{"run": "rec_s3", "n": 200, "graph": "real compiled (torch.compile fullgraph, Inductor, MPS, bf16, batch 1)", "cheat_noprobe": 0.3387691834108898, "cheat_leaky": 0.3375873977753004, "cheat_bitexact": 0.3387691834108898, "gap": 0.0011817856355893796, "ci_lo": -0.0023940226803871984, "ci_hi": 0.004778888484889949, "gap_logit": 0.004375, "ci_logit": [-0.011875, 0.020625], "gap_bitexact": 0.0, "ci_bitexact": [0.0, 0.0], "mass_read_solve_noprobe": 0.5530931780859828, "share_sha_differs_leaky": 1.0, "share_sha_differs_bitexact": 0.0}

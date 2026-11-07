@@ -1,0 +1,183 @@
+{
+ "status": "CONFIRMED",
+ "runs": [
+  {
+   "run": "Tc_s0",
+   "arm": "Tc",
+   "role": "training build end to end (sampler and update on the training build; STATUS, D4)",
+   "n": 200,
+   "served_gap": -0.051659210360561224,
+   "served_ci": [
+    -0.05918109434688173,
+    -0.04443111061573332
+   ],
+   "served_gap_logit": -0.235,
+   "trainer_gap": 0.8017393840917744,
+   "trainer_gap_logit": 4.588125,
+   "carry": -0.05121917994823594,
+   "carry_ci": [
+    -0.05874469349169948,
+    -0.04412546026305352
+   ],
+   "cheat_noprobe": 0.6374207330450637,
+   "cheat_leaky": 0.689079943405625,
+   "trainer_cheat_unprobed": 0.9315761356218243,
+   "trainer_cheat_probed": 0.12983675153004995
+  },
+  {
+   "run": "Tc_s1",
+   "arm": "Tc",
+   "role": "training build end to end (sampler and update on the training build; STATUS, D4)",
+   "n": 200,
+   "served_gap": 0.04266064083374701,
+   "served_ci": [
+    0.03984439106483922,
+    0.0453040886067063
+   ],
+   "served_gap_logit": 0.238125,
+   "trainer_gap": 0.4816590919154773,
+   "trainer_gap_logit": 2.50125,
+   "carry": 0.09520239880059969,
+   "carry_ci": [
+    0.08890558477335336,
+    0.10128204025589298
+   ],
+   "cheat_noprobe": 0.78401600158886,
+   "cheat_leaky": 0.7413553607551131,
+   "trainer_cheat_unprobed": 0.8941657477216362,
+   "trainer_cheat_probed": 0.41250665580615886
+  },
+  {
+   "run": "T_s0",
+   "arm": "T",
+   "role": "probed rerun, served answers (frozen arm; collapsed)",
+   "n": 200,
+   "served_gap": -1.2877238047515853e-13,
+   "served_ci": [
+    -1.6295110175754053e-13,
+    -9.656465506796311e-14
+   ],
+   "served_gap_logit": -0.1092578125,
+   "trainer_gap": -1.6575791970245294e-13,
+   "trainer_gap_logit": -0.13140625,
+   "carry": 0.831450653983353,
+   "carry_ci": [
+    0.6031929640396211,
+    1.157426330300281
+   ],
+   "cheat_noprobe": 1.125601333310456e-12,
+   "cheat_leaky": 1.2543737137856145e-12,
+   "trainer_cheat_unprobed": 1.2138557674044785e-12,
+   "trainer_cheat_probed": 1.3796136871069314e-12
+  },
+  {
+   "run": "T_s1",
+   "arm": "T",
+   "role": "probed rerun, served answers (frozen arm; collapsed)",
+   "n": 200,
+   "served_gap": 2.417006464173044e-13,
+   "served_ci": [
+    1.87704270112079e-13,
+    2.977906766849066e-13
+   ],
+   "served_gap_logit": 0.14765625,
+   "trainer_gap": 7.232883515313789e-12,
+   "trainer_gap_logit": 2.241796875,
+   "carry": 0.06586513329848405,
+   "carry_ci": [
+    0.05294690559896883,
+    0.07899509716391656
+   ],
+   "cheat_noprobe": 1.7357614784790331e-12,
+   "cheat_leaky": 1.4940608320617288e-12,
+   "trainer_cheat_unprobed": 8.098996514657016e-12,
+   "trainer_cheat_probed": 8.661129993432271e-13
+  },
+  {
+   "run": "fed_s2",
+   "arm": "fed",
+   "role": "reused numbers (served build)",
+   "n": 200,
+   "served_gap": 0.24331754987511914,
+   "served_ci": [
+    0.23579379716665108,
+    0.2506245394586596
+   ],
+   "served_gap_logit": 5.2175,
+   "trainer_gap": 0.296757280046858,
+   "trainer_gap_logit": 6.29375,
+   "carry": 0.8289970208540218,
+   "carry_ci": [
+    0.8262934823602064,
+    0.831763441528967
+   ],
+   "cheat_noprobe": 0.2451379664184045,
+   "cheat_leaky": 0.001820416543285383,
+   "trainer_cheat_unprobed": 0.2975711125692417,
+   "trainer_cheat_probed": 0.000813832522383692
+  },
+  {
+   "run": "fed_s3",
+   "arm": "fed",
+   "role": "reused numbers (served build)",
+   "n": 200,
+   "served_gap": 0.6292521071963288,
+   "served_ci": [
+    0.6223630015790809,
+    0.6360937184512842
+   ],
+   "served_gap_logit": 3.874375,
+   "trainer_gap": 0.69698349019242,
+   "trainer_gap_logit": 4.316875,
+   "carry": 0.8974952946286378,
+   "carry_ci": [
+    0.8933350150106422,
+    0.9015327889765016
+   ],
+   "cheat_noprobe": 0.9578846460384745,
+   "cheat_leaky": 0.3286325388421455,
+   "trainer_cheat_unprobed": 0.9630191618996622,
+   "trainer_cheat_probed": 0.2660356717072422
+  },
+  {
+   "run": "rec_s2",
+   "arm": "rec",
+   "role": "clean rerun (no probe in the update)",
+   "n": 200,
+   "served_gap": 0.003355222316628881,
+   "served_ci": [
+    -0.00027983123384234384,
+    0.006925450216852937
+   ],
+   "served_gap_logit": 0.01375,
+   "trainer_gap": 0.0,
+   "trainer_gap_logit": 0.0,
+   "carry": null,
+   "carry_ci": null,
+   "cheat_noprobe": 0.4116536300652393,
+   "cheat_leaky": 0.4082984077486105,
+   "trainer_cheat_unprobed": 0.4010895638453785,
+   "trainer_cheat_probed": 0.4010895638453785
+  },
+  {
+   "run": "rec_s3",
+   "arm": "rec",
+   "role": "clean rerun (no probe in the update)",
+   "n": 200,
+   "served_gap": 0.0011817856355893796,
+   "served_ci": [
+    -0.0023940226803871984,
+    0.004778888484889949
+   ],
+   "served_gap_logit": 0.004375,
+   "trainer_gap": 0.0,
+   "trainer_gap_logit": 0.0,
+   "carry": null,
+   "carry_ci": null,
+   "cheat_noprobe": 0.3387691834108898,
+   "cheat_leaky": 0.3375873977753004,
+   "trainer_cheat_unprobed": 0.3490614459170164,
+   "trainer_cheat_probed": 0.3490614459170164
+  }
+ ]
+}

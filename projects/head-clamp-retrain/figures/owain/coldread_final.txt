@@ -1,0 +1,6 @@
+haiku 0: # Research Question and Answer  Does clamping a few attention heads, chosen before retraining, stop a learned switch from coming back? No—only clamping all 32 heads kept it off.
+haiku 1: # Question and Answer  Does clamping a few attention heads, chosen before retraining, stop a learned switch from coming back? No—only clamping all 32 heads kept it off.
+haiku 2: # Question and Answer  Does clamping a few attention heads, chosen before retraining, stop a learned switch from coming back? No—only clamping all 32 heads kept it off.
+gemini 0: **Question:** Does clamping a few attention heads, chosen before retraining, stop a learned switch from coming back?   **Answer:** No, training rebuilt the switch around the clamped heads—even when clamping all heads but one—and only clamping all 32 heads successfully kept the switch off.
+gemini 1: **Question:** Does clamping a few attention heads, chosen before retraining, stop a learned switch from coming back?  **Answer:** No, training rebuilds the switch around the clamped heads, and only clamping all 32 heads keeps it off.
+gemini 2: **Question:** Does clamping a few attention heads, chosen before retraining, stop a learned switch from coming back?  **Answer:** No, training rebuilds the switch around the clamped heads, and only clamping all 32 heads keeps it off.

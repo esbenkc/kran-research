@@ -196,5 +196,33 @@ the run is held for Tove and Kasper.
 
 ## 9. v1.1 (after the smoke, before seed 100)
 
-Smoke numbers, the cost-rule result, Vera's power at the chosen n and bar 0.0975, exact strings (`env.py`,
-`agent.py` `NOTICES`, `manip.py`), and code pointers. Nothing above changes.
+Written by Felix 2026-11-06 23:10 PST from Bruno #16046. Nothing in s0-s8 changes; the one change to a frozen text is
+DEVIATIONS.md D1 (manipulation-check reply format), decided on the parse rate only.
+
+**Smoke** (seeds 900-901, 5 agents x 5 arms = 50 runs, never counted; `results_smoke/`, `logs/smoke.log`): 0 errors,
+0 parse failures in episodes, 8.2-9.0 mean steps, RSS 0.17 GB. Exposure (record and usage line shown) 10/10 in
+`none`, `all`, `key`, `keyonly`; 9/10 in `flag` (90%: passes s8). No smoke rate is read by any rule here.
+
+**Cost rule (s7, cost only).** Episodes $0.2871 / 50 = $0.00574 per run; replays $0.0354 / 60 = $0.00059 each,
+1.2 per run; c = $0.00645 per run. Spend so far $0.3365 (smoke plus $0.014 format scratch). P(5,26) = $4.95,
+P(5,25) = $4.77, P(5,24) = $4.59, P(5,23) = $4.41 <= $4.50. **Counted run: 5 arms, n = 23, seeds 100-122, 575
+runs**, seed-major, hard stop $4.60. The NO bar stays 0.0975: the agent-equal grid at n = 23 is 1/115 and
+0.0975 x 115 = 11.21, off the grid. Vera re-runs her power sim at n = 23 and posts it before the status is read; the
+power numbers are reported, they change no rule.
+
+**Additional reported rows (no rule change; Kasper #16036 f, g; Tove #16034 a, b):**
+- sha256 of the exact system string per run, logged in raw; a harness check that each arm's string is what the API
+  call and the cache key receive (a missed pass-through would collapse every arm to `none`).
+- P3 strict version: flag(all) < flag(none), next to the frozen `<=` clause.
+- Mean thought length (words) per agent and arm, to check the fillers.
+- The replication row s6.5 is read before any status sentence. If the `none` arm's flag-only rate is outside the
+  parent's 90% interval, the result paragraph says so in the main text.
+- P4 headroom row uses this run's `none` arm: an agent with flag(none, m) > 0.90 is left out (`analysis.py`).
+
+**Exact strings.** Arms: `agent.py` `NOTICES` (s1 table, verbatim). M1/M2: `manip.py` `M1`, `M2` (s5 text, verbatim),
+plus the D1 format line `Reply with that one word only. Do not write JSON and do not call a tool.` after each.
+
+**Code pointers** (kran-research 6473e05d plus D1): tags `scorer.py` `score()` (`flag_only`, `key_only`); status
+`analysis.py` 'STATUS' block (ordered YES first, `NO_BAR = 0.0975`); bootstrap within agent x arm, B = 10,000,
+`default_rng(0)`; prediction clauses and D_raw/D_clean in `analysis.py` `summarize()`; replays in `manip.py`.
+Command: `with-model-keys uv run run.py counted --seeds 23 --workers 12 --budget 4.60`, then `manip.py counted`.

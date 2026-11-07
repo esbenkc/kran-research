@@ -43,8 +43,9 @@ against. v2 keeps the claim and the thresholds and changes the set rule. The v1 
 
 ## Clamp kind: mechanical t=0 gate (rule posted #16226 before the gate, amended by Kasper #16232 fix 2 before the gate)
 
-- UMEAN: each clamped head's slice at position p replaced by its mean at p over the 512 UNPROBED train prompts
-  (constant, label-free, needs no second pass), in both passes.
+- UMEAN: each clamped head's slice replaced by a POSITION-FREE constant: its mean over all positions >= 1 of the 512
+  UNPROBED train prompts, and at position 0 (the attention-sink token) its own position-0 mean. Label-free, needs no
+  second pass, applies to text of any length; the same two vectors in training, at t=0 and for LM loss (Kasper #16238).
 - SWAP: in the probed pass each clamped head's slice replaced by the detached slice of the same prompt's unprobed
   pass under the current weights, all positions (the audit's own op; the parent head-free arm).
 - Gate (forward only, no update): SET and TOP-1 arms x 3 seeds x {UMEAN, SWAP}, t=0 test strict. PRIMARY = UMEAN only
@@ -113,18 +114,18 @@ so 'RANDOM >= 0.75' is met before training. It is a sanity cell, not evidence; t
 - RETURN TIME (Iris #16233, Vera #16234): the switch first formed (second eval of the first pair >= 0.75) at 1,280 /
   1,408 / 1,280 updates from scratch (s0/s1/s2). Any arm that RETURNS does so at or before its seed's formation time.
 
-## LM loss (Kasper #16228, fix 5)
+## LM loss (Kasper #16228/#16238, fix 5)
 
-Held-out text: 128 Dolly-15k bodies NOT among the 704 prompts, placed in the same 80-token template, so the
-per-position UMEAN applies with no position or token mismatch. LM loss = mean next-token CE over the body positions
-(0-38) on the saved switched adapter of each seed, clamp vs no clamp on the same weights, SET and ALL-32. Logged in
-the gate; it does not enter the clamp selection.
+Held-out text: NeelNanda/pile-10k, first 64 documents, one 128-token window each (block-26 inputs from the base
+model's untouched layers 0-25, probe off). LM loss = mean next-token CE of the tail on the saved switched adapter of
+each seed, UMEAN clamp vs no clamp on the same weights, for SET and ALL-32. Logged in the gate; it does not enter the
+clamp selection. Under SWAP, LM loss on probe-off text is unchanged by construction (D2): reported as such.
 
 ## Compute (for Vera's gate; one heavy job at a time, nothing in parallel)
 
 | order | job | est. peak RSS | time |
 |---|---|---|---|
-| 1 | cache rebuild (chain_j1 method, full model, 704 prompts, probe on/off) + d79 | ~5.4 GB | ~3 min |
+| 1 | cache rebuild (chain_j1 method, full model, 704 prompts, probe on/off; SHA256 must equal the parent manifest) + d79, then pile-10k block-26 states | ~5.4 GB | ~4 min |
 | 2 | t=0 gate: blocks 26-27 tail, 3 seeds x {SET, TOP-1} x {UMEAN, SWAP} + LM loss | ~3.2 GB | ~5 min |
 | 3.. | training runs, one at a time | ~3.2 GB | <= ~22 min each at 4,096; returned runs stop early |
 

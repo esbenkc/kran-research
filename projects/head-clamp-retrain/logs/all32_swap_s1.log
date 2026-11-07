@@ -1,3 +1,38 @@
 W1107 07:24:45.384000 3919 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
 Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 3906.22it/s]
 t0 all32_swap_s1 heads ['26.0', '26.1', '26.2', '26.3', '26.4', '26.5', '26.6', '26.7', '26.8', '26.9', '26.10', '26.11', '26.12', '26.13', '26.14', '26.15', '27.0', '27.1', '27.2', '27.3', '27.4', '27.5', '27.6', '27.7', '27.8', '27.9', '27.10', '27.11', '27.12', '27.13', '27.14', '27.15'] {"dev_noclamp": 1.0, "test_noclamp": 1.0, "dev_clamp": 0.0, "test_clamp": 0.0, "removed_test": 0.9992639139962043} lm {'base': 3.1747, 'parent': 3.1716, 'parent_clamp': 3.1716}
+step 128 loss128 0.9961 dev strict 0.047 shift 0.001 44s
+step 256 loss128 0.6952 dev strict 0.016 shift -0.003 87s
+step 384 loss128 0.6983 dev strict 0.031 shift 0.003 131s
+step 512 loss128 0.6949 dev strict 0.016 shift 0.001 175s
+step 640 loss128 0.6951 dev strict 0.000 shift -0.001 219s
+step 768 loss128 0.6952 dev strict 0.078 shift -0.001 263s
+step 896 loss128 0.6947 dev strict 0.047 shift 0.005 307s
+step 1024 loss128 0.6997 dev strict 0.000 shift 0.005 350s
+step 1152 loss128 0.6952 dev strict 0.000 shift 0.001 394s
+step 1280 loss128 0.6943 dev strict 0.031 shift 0.004 438s
+step 1408 loss128 0.6934 dev strict 0.000 shift 0.001 481s
+step 1536 loss128 0.6976 dev strict 0.094 shift 0.003 524s
+step 1664 loss128 0.6942 dev strict 0.094 shift 0.001 567s
+step 1792 loss128 0.6948 dev strict 0.047 shift 0.005 611s
+step 1920 loss128 0.6943 dev strict 0.016 shift 0.005 654s
+step 2048 loss128 0.6933 dev strict 0.078 shift 0.007 698s
+step 2176 loss128 0.6947 dev strict 0.078 shift 0.002 741s
+step 2304 loss128 0.6940 dev strict 0.000 shift 0.004 784s
+step 2432 loss128 0.6955 dev strict 0.016 shift 0.010 827s
+step 2560 loss128 0.6946 dev strict 0.031 shift 0.006 870s
+step 2688 loss128 0.6938 dev strict 0.047 shift 0.010 913s
+step 2816 loss128 0.6941 dev strict 0.031 shift 0.007 957s
+step 2944 loss128 0.6948 dev strict 0.094 shift 0.007 1000s
+step 3072 loss128 0.6948 dev strict 0.000 shift 0.004 1043s
+step 3200 loss128 0.6934 dev strict 0.062 shift 0.007 1086s
+step 3328 loss128 0.6953 dev strict 0.031 shift 0.015 1129s
+step 3456 loss128 0.6931 dev strict 0.031 shift 0.005 1172s
+step 3584 loss128 0.6949 dev strict 0.047 shift 0.010 1215s
+step 3712 loss128 0.7001 dev strict 0.047 shift 0.005 1258s
+step 3840 loss128 0.6956 dev strict 0.000 shift 0.007 1301s
+step 3968 loss128 0.6947 dev strict 0.000 shift 0.009 1344s
+step 4096 loss128 0.6965 dev strict 0.031 shift 0.013 1387s
+FINAL all32_swap_s1 budget steps 4096 test strict 0.0390625 shift 0.006 lm rise -0.002 train_s 1387.5
+
+WATCHDOG: exit 0, peak footprint 3.17 GB

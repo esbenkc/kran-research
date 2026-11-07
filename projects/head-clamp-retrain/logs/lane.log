@@ -34,3 +34,5 @@
 07:24:15 start audit_leave1_swap_s2: audit_after.py --run leave1_swap_s2
 07:24:42 end audit_leave1_swap_s2 rc=0 27s
 07:24:42 start all32_swap_s1: train_clamp.py --seed 1 --arm all32 --heads all32 --kind swap --steps 4096 --stop-at 0.75
+07:48:22 end all32_swap_s1 rc=0 1420s
+07:48:22 start all32_swap_s2: train_clamp.py --seed 2 --arm all32 --heads all32 --kind swap --steps 4096 --stop-at 0.75

@@ -144,6 +144,10 @@ def main() -> None:
                     "(D3: P0 from the pilot, whose cheat rate matches the parent's base rate)")
     ap.add_argument("--resume", default=None, help="continue data/runs/<run>: its adapter, its curve, step offset = its "
                     "steps; KL reference stays the base model; fresh AdamW moments (the optimizer state was not saved)")
+    ap.add_argument("--tis", type=float, default=0.0, help="truncated importance weight pi_trainer(a)/pi_sampler(a), "
+                    "clipped at this value, on each sample's policy-gradient term (0 = off; verl TIS)")
+    ap.add_argument("--sampler", default="served", choices=["served", "trainer"],
+                    help="trainer = sample from the policy on the update's own inputs (cue runs only)")
     a = ap.parse_args()
     torch.manual_seed(a.seed)
     rng = np.random.default_rng(10_000 + a.seed)
@@ -151,6 +155,7 @@ def main() -> None:
     name = a.name or f"{a.arm}_{a.trainer}_s{a.seed}"
     assert not (a.arm == "A" and a.first == 26), "A at first=26 has no weights below the probe: it equals B (lemma)"
     assert (a.trainer == "cue") == bool(os.environ.get("SW_CACHE_T")), "--trainer cue needs SW_CACHE_T (and only it)"
+    assert a.sampler == "served" or a.trainer == "cue", "--sampler trainer needs --trainer cue"
     data = Data(a.first)
     idx = splits()
     pv = torch.load(HERE / "data" / "probe_v.pt")
@@ -229,7 +234,7 @@ def main() -> None:
         opt.zero_grad(set_to_none=True)
         # sampler rows: the episode's build (probed rows carry the footprint); trainer rows: the same ('fed') or the
         # no-probe numbers for every row ('standard': the trainer recomputes the policy, no footprint)
-        hS, fS = data.rows(b, flag, 0)
+        hS, fS = data.trainer_rows(b, flag, 0) if a.sampler == "trainer" else data.rows(b, flag, 0)
         if a.trainer == "fed":
             hT, fT = hS, fS
         elif a.trainer == "cue":
@@ -279,7 +284,12 @@ def main() -> None:
             adv = (rp - rp.mean(1, keepdim=True)) / (rp.std(1, keepdim=True) + 1e-6)
             st["x"] += float(is_read.float().mean()) * P; st["r"] += float(r.mean()) * P; st["n"] += P
             st["live"] += int((rp.std(1) > 0).sum()); st["groups"] += P; st["pen"] += float(pen.abs().mean()) * P
-        loss = -(adv * lp_t.gather(1, smp)).sum() / (P * G)
+        lp_a = lp_t.gather(1, smp)
+        with torch.no_grad():  # importance weight of each sample (scalar; detached); 1 when sampler = trainer inputs
+            w_is = torch.clamp((lp_a.detach() - lp_s.gather(1, smp)).exp(), max=a.tis) if a.tis > 0 else torch.ones_like(lp_a)
+            st["w"] = st.get("w", 0.0) + float(w_is.mean()) * P
+            st["mis"] = st.get("mis", 0.0) + float((lp_t.detach().exp()[:, 0] - lp_s.exp()[:, 0]).abs().mean()) * P
+        loss = -(adv * w_is * lp_a).sum() / (P * G)
         bl = torch.stack([base_lp[bool(f)][pos_of[j]] for j, f in zip(b, flag.tolist())]) \
             if a.trainer in ("fed", "cue") else base_lp[False][[pos_of[j] for j in b]]
         kl = (lp_t.exp() * (lp_t - bl)).sum(-1)
@@ -302,6 +312,7 @@ def main() -> None:
             curve.append(dev_eval(ptail, step, {"train_cheat": st["x"] / n, "train_r": st["r"] / n,
                                                 "live_share": st["live"] / max(st["groups"], 1),
                                                 "pen_abs": st["pen"] / n, "kl": st["kl"] / n,
+                                                "w_is": st.get("w", 0.0) / n, "mismatch_p_read": st.get("mis", 0.0) / n,
                                                 "loss": float(loss.detach()), "s": round(time.time() - t0, 1)}))
             st = {k: 0.0 if isinstance(v, float) else 0 for k, v in st.items()}
             print("step", step, json.dumps(curve[-1]), flush=True)

@@ -1,6 +1,6 @@
 #!/bin/bash
 # One run end to end: train (watchdog 2.2 GB), served status read in the real compiled graph (2.8 GB), carry read.
-#   ./runline.sh <name> <trainer> <seed> [<trainer cache for cue runs>]
+#   [EXTRA='--sampler trainer' | EXTRA='--tis 2'] ./runline.sh <name> <trainer> <seed> [<trainer cache for cue runs>]
 # trainer: fed | standard | cue. Start = the pilot adapter, reward-only shaping (arm B), 5,000 updates, site 14.
 set -eu
 cd "$(dirname "$0")"
@@ -9,7 +9,7 @@ N=$1; TR=$2; S=$3; CT=${4:-}
 STEPS=${STEPS:-5000}
 if [[ "$TR" == "cue" ]]; then export SW_CACHE_T=$CT; else unset SW_CACHE_T; fi
 $PY watchdog.py --cap-gb 2.2 --log logs/$N.log -- $PY rl.py --arm B --trainer $TR --first 26 --seed $S \
-    --steps $STEPS --init pilot_standard_s0 --name $N
+    --steps $STEPS --init pilot_standard_s0 --name $N ${EXTRA:-}
 unset SW_CACHE_T
 $PY watchdog.py --cap-gb 2.8 --log logs/status_$N.log -- $PY cache.py --builds none,ref,score --passes plain \
     --splits test --out raw/status/$N --merged raw/runs/${N}_merged.pt

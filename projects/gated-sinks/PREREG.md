@@ -227,4 +227,15 @@ Foldout number only, never on the figure, never in the status.
   1..127 (fallback not triggered: recovery >= floor + 0.15 at M); case = F1 (block-2 sink 0.542 >= 0.3);
   L* = max held-out loss of softmax s0-s2 at M after the seed rule (results/lstar.json). Code = the grid
   commit 52336c37 (gen/model/train/measure/pick/make_grid); this PREREG commit freezes them.
+- **D8, equal training is the status grid (Bruno #17293, Kasper #17295, Tove #17296, Felix #17294; decided
+  07:36 PST after the two-basin loss curves were seen, BEFORE any recovery number):** held-out loss has two
+  plateau basins about 3% apart within the same architecture (softmax s1/s3 ~2.91-2.96 by step 600; s0/s2
+  ~3.00 at 8k-12k), so 'first eval <= L*' analyses good-basin models at ~600 steps, before any sink can
+  form (~6k). Primary: every arm (5 softmax, 3 gated, 2 kbias, 2 softmax1, 2 sinklogit) trains 12k steps
+  and is analysed at 12k (all on plateau); the section 3 status rule is applied unchanged to these models.
+  Each model's held-out loss is reported beside its point, plus a loss check: refit recovery = a + b x sink
+  + c x loss and report whether b keeps its sign and CI. The frozen matched-loss grid keeps running as a
+  secondary row; the REGISTERED prediction (section 0) is scored on that row as written ('at matched
+  loss'), with Pearson(steps, sink). The post says the registered within-1% match failed because of the
+  loss basins.
 

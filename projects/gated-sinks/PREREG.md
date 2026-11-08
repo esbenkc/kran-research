@@ -19,14 +19,22 @@ the room and disclosed in the post.
 The generator latents are not directions in the residual stream, so "max cosine to true latents" has no
 direct meaning. D1 replaces it as follows (disclosed in the post as D1).
 
-- **Generator:** `gen.py` at the freeze commit (64 latents, 3 on per sequence, vocab 128, T = 128, BOS at
-  position 0, repeated spans in half the sequences).
-- **Models:** `model.py` at the freeze commit, 4 blocks, pre-norm, d_model = the d picked in section 4.
+- **Generator:** `gen.py` at the freeze commit (64 latents, 3 on per sequence, T = 128, BOS at position 0),
+  in the ORGANISM picked by section 4b (SC: latents boost only the token right after a trigger token;
+  SA: latent stream unchanged plus associative recall on a disjoint trigger vocab). The first pilot
+  (iid latent tokens at every position) formed no sink at any d (Vera #17188); this is disclosed as D2.
+- **Models:** `model.py` at the freeze commit, 4 blocks, pre-norm, d_model = the d picked in section 4;
+  AdamW, weight decay 0.1, lr 3e-3 (Gu 2410.10781: weight decay and enough optimisation make sinks).
 - **Mid layer:** the residual stream after block 2 of 4 (`h_2`; `h_0` = embeddings).
+- **Scored positions P:** SC: trigger-query positions >= 32, i.e. the positions whose next token depends on
+  the latents (Kasper #17198, Tove #17201); SA: latent-stream positions >= 32, recall positions excluded.
+  All positions >= 32 are a secondary row. N_TEST is set so every model has >= 20,000 scored rows
+  (Kasper #17202).
 - **Recovery score (primary, "MCC"):** for each latent j, the largest Pearson correlation between any SAE
-  feature's activation and the latent's on/off indicator z_j, over the fixed held-out set, positions 32..127
-  only (position 0 = BOS never enters SAE training or scoring). Dead or constant features count as 0.
-  Recovery = mean over the 64 latents. A model's recovery = mean over its 3 SAE seeds.
+  feature's activation and the latent's on/off indicator z_j, over the fixed held-out set, positions P only
+  (position 0 = BOS never enters SAE training or scoring). Dead or constant features count as 0.
+  Recovery = mean over the 64 latents. A model's recovery = mean over its 3 SAE seeds. Readout ceiling and
+  the Bayes ceiling use the same positions P.
 - **Secondary recovery (closest to the registered "cosine"):** for each latent j, the largest cosine between
   any SAE decoder column and the least-squares direction w_j of `h_2 ~ z` (fit on the SAE training set);
   mean over 64. Reported, never used for the status.
@@ -53,7 +61,7 @@ direct meaning. D1 replaces it as follows (disclosed in the post as D1).
   Pearson(steps, sink mass) over the non-gated fit. If |r| > 0.8, the post says that sink mass and step
   count cannot be separated in this grid.
 - **Registered norm check:** ridge R^2 of z_j from the per-token norm of h_2 (one scalar), mean over 64,
-  held-out positions 32..127. Known to be near 0 by construction (one scalar cannot carry 64 latents); the
+  held-out positions P. Known to be near 0 by construction (one scalar cannot carry 64 latents); the
   post says so.
 - **Live hiding checks (secondary):** (a) readout ceiling: ridge R^2 of z from h_2 per model; (b) gated
   models: ridge R^2 of z from block 2's gate vector vs from h_2; (c) SAE recovery on per-token
@@ -126,9 +134,22 @@ above the line) or "gating helps less than its sink mass predicts" (below).
 Pilot: softmax, seed 0, d_model in {32, 48, 64, 96}, 64 latents, trained M steps; 3 SAE seeds with the
 protocol above. A d qualifies if: sink mass (primary) > 0.3, recovery in [0.55, 0.85], and readout ceiling
 ridge R^2 >= 0.8 x the ridge R^2 of z from the exact Bayes posterior P(z_j | tokens so far) (the best any
-model can store; positions 32..127). Pick the LARGEST qualifying d. If none qualifies, Felix and Tove pick
+model can store; positions P). Pick the LARGEST qualifying d. If none qualifies, Felix and Tove pick
 from the pilot table and the post says so. Then softmax seed 1 trains at the picked d to give a first
 model-seed SD (Vera #17147 (2)). Pilot models are never counted cells.
+
+## 4b. Sink search after the void pilot (posted #17189, #17195, #17203 before it ran)
+
+The first pilot (iid latent tokens) formed no sink (block-2 first-token mass <= 0.012 at every d; Vera
+#17188). Two organisms train in parallel at d = 64, 20k steps, AdamW wd 0.1, lr 3e-3, sink mass for all 4
+blocks and held-out loss every 2k steps, checkpoints kept: SC (latents boost only the token after a trigger;
+Ran-Milo 2603.11487's conditional average) and SA (latent stream unchanged + associative recall on a
+disjoint trigger vocab). PICK: the first checkpoint (fewest steps; that count becomes M) that meets the
+section 4 headroom test (sink > 0.3, recovery in [0.55, 0.85], readout >= 0.8 x Bayes, on positions P).
+If both organisms qualify: SC (its sink head is the head that reads the latents; Tove #17199/#17201).
+d = 96 is checked only if d = 64 fails the recovery band; if neither qualifies by 20k, 6 blocks (mid = h_3)
+once, same rule. If nothing qualifies by 07:30 PST, Felix and Tove pick from the table and the post says
+which test failed.
 
 ## 5. Noise pricing before the freeze of d (Tove C5)
 
@@ -139,5 +160,5 @@ kbias to 5), not more SAE seeds: SAE seeds only shrink the SAE part of the noise
 
 ## 6. Logit lens
 
-KL between the logit-lens readout of h_2 and the model's output, mean over held-out positions 32..127.
+KL between the logit-lens readout of h_2 and the model's output, mean over held-out positions P.
 Foldout number only, never on the figure, never in the status.

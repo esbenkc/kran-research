@@ -66,7 +66,7 @@ block-2 sink), so the slope is a two-group contrast, not a law (Tove #17137 word
 | D8, 12k steps | -0.181 / +0.013 / -0.010 | -0.192 / +0.011 / -0.010 | 0.04 / 2.72 / 2.07 |
 | registered matched-loss picks (loss 3.004-3.006, L* 3.00626) | -0.155 / -0.039 / -0.028 | -0.138 / -0.049 / -0.032 | 0.23 / 0.94 / 0.91 |
 
-None of 6 pairs reaches +0.10. The sink-ratio clause also fails for seeds 1-2, because those standard seeds never grew a sink.
+Law fit on the 12 matched-loss picks (vera_matched_fit.py): b +0.715 [-0.825, +2.255], s_tot 0.044, R 0.078, UNCONFIRMED; equals build's results_matched json. None of 6 pairs reaches +0.10. The sink-ratio clause also fails for seeds 1-2, because those standard seeds never grew a sink.
 
 ## 4. Null tests
 

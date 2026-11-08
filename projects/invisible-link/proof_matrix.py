@@ -57,8 +57,12 @@ def main() -> None:
                                     for r in rs], indent=0))
         claim = CLAIM.get((need, arm), "control")
         control = CONTROL.get(cell, "none")
-        if claim == "headline":
+        if view == "a11y" and arm in ("hidden_fit", "hidden_nonfit"):
+            claim, control = "scout clause 2", "exposure 0 by spec (structural zero)"
+        elif claim == "headline":
             control = "none"
+        if model.startswith("claude-haiku"):
+            claim = "side row (D4)"
         seeds = f"{rs[0]['i']}-{rs[-1]['i']} (n={len(rs)})"
         result = f"followed {k}/{len(rs)}; exposed {e}/{len(rs)}; followed when exposed {ke}/{e}; first click {first}/{k}"
         lines.append(f"| {claim} | {seeds} | {model} · {cell} | {control} | {result} | {path.relative_to(ROOT)} |")
@@ -68,17 +72,26 @@ def main() -> None:
                      f"| followed {sum(r['followed'] for r in rs)}/{len(rs)} | results/scores_crawler_counted.jsonl |")
     a = json.loads((ROOT / "results" / "analysis.json").read_text())
     t = a["title"]
-    lines.append(f"| headline (status rule, s4) | all title runs | 4 agents pooled, raw+md | none | gap {t['gap']:+.3f}, "
+    lines.append(f"| headline (status rule, s4) | all title runs | 3 agents (nano, mini, gemini-3.1-fl), equal weight, raw+md | none | gap {t['gap']:+.3f}, "
                  f"95% CI [{t['ci95'][0]:+.3f}, {t['ci95'][1]:+.3f}] -> {t['status']} | results/analysis.json |")
     for v, d in a["law_ratio"].items():
-        lines.append(f"| law ratio ({v}) | all | 4 agents pooled, STUCK | visible-fit arm | R = {d['ratio']:.3f}, CI "
+        lines.append(f"| law ratio ({v}) | all | 3 agents, equal weight, STUCK | visible-fit arm | R = {d['ratio']:.3f}, CI "
                      f"[{d['ci95'][0]:.3f}, {d['ci95'][1]:.3f}] -> {d['verdict']} | results/analysis.json |")
+    if "haiku_side_row" in a:
+        h = a["haiku_side_row"]
+        lines.append(f"| side row (D4) | 0-29 | claude-haiku-4-5 title cells, raw+md | none | fit {h['fit']}, nonfit {h['nonfit']} "
+                     f"(not in the status) | results/analysis.json |")
     if "need_term" in a:
         n = a["need_term"]
-        lines.append(f"| need term (D3) | 0-14 | 4 agents pooled, IN-HAND | answer on the start page | follow "
+        lines.append(f"| need term (D3) | 0-14 | 3 agents, equal weight, IN-HAND | answer on the start page | follow "
                      f"{n['inhand_follow_mean_agents']:.3f} -> {n['verdict']} | results/analysis.json |")
-    lines += ["", "## Skeptic rebuild rows", ""]
-    (ROOT / "proof-matrix.md").write_text("\n".join(lines) + "\n")
+    # Keep whatever the skeptics already wrote under their heading (they own those rows).
+    pm = ROOT / "proof-matrix.md"
+    tail = ""
+    if pm.exists() and "## Skeptic rebuild rows" in pm.read_text():
+        tail = pm.read_text().split("## Skeptic rebuild rows", 1)[1].strip("\n")
+    lines += ["", "## Skeptic rebuild rows", "", tail] if tail else ["", "## Skeptic rebuild rows", ""]
+    pm.write_text("\n".join(lines) + "\n")
     print(f"wrote proof-matrix.md ({len(lines)} lines), {len(groups)} cell files")
 
 

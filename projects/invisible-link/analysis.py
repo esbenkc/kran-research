@@ -109,6 +109,9 @@ def main() -> None:
     rows = load(phase)
     for r in rows:
         r["need"], r["view"], r["arm"] = split(r["cell"])
+    # Status agents (D4): the 3 agents of the full plan; Haiku has title cells only and is a side row.
+    side = [r for r in rows if r["model"] == "claude-haiku-4-5-20251001"]
+    rows = [r for r in rows if r["model"] != "claude-haiku-4-5-20251001"]
     agents = [a for a in AGENTS if any(r["model"] == a for r in rows)]
     res = {"n_rows": len(rows), "agents": agents}
 
@@ -234,6 +237,14 @@ def main() -> None:
             t["first_click"] += r["follow_fetch_index"] == 2
             t["route_seen_before"] += bool(r["route_seen_before_follow"])
     res["follow_timing"] = dict(timing)
+    # Haiku side row (D4): its title-cell gap, same definition, run-level counts only.
+    hx = [r for r in side if r["need"] == "stuck" and r["view"] in ("raw", "md") and r["arm"] in ("hidden_fit", "hidden_nonfit") and r["exposed"]]
+    if hx:
+        f = [r["followed"] for r in hx if r["arm"] == "hidden_fit"]
+        nf = [r["followed"] for r in hx if r["arm"] == "hidden_nonfit"]
+        res["haiku_side_row"] = {"fit": f"{sum(f)}/{len(f)}", "nonfit": f"{sum(nf)}/{len(nf)}",
+                                 "gap": round(sum(f) / len(f) - sum(nf) / len(nf), 4) if f and nf else None,
+                                 "other_haiku_runs": len(side) - len([r for r in side if r["need"] == "stuck" and r["arm"] in ("hidden_fit", "hidden_nonfit") and r["view"] != "a11y"])}
     (ROOT / "results" / ("analysis.json" if phase == "counted" else f"analysis_{phase}.json")).write_text(json.dumps(res, indent=1))
     print(json.dumps({k: res[k] for k in ("title", "title_per_view", "law_ratio", "need_term", "controls", "scout") if k in res}, indent=1))
 

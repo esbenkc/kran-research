@@ -1,0 +1,259 @@
+{
+ "n_rows": 1020,
+ "agents": [
+  "gpt-5.4-nano",
+  "gpt-5.4-mini",
+  "gemini-3.1-flash-lite"
+ ],
+ "title_unexposed": 2,
+ "title": {
+  "gap": 0.6943,
+  "ci95": [
+   0.65,
+   0.7333
+  ],
+  "status": "CONFIRMED",
+  "fit_rate_mean": 0.9944,
+  "nonfit_rate_mean": 0.3002,
+  "per_agent": {
+   "gpt-5.4-nano": {
+    "fit": 1.0,
+    "nonfit": 0.0339,
+    "gap": 0.9661
+   },
+   "gpt-5.4-mini": {
+    "fit": 0.9833,
+    "nonfit": 0.7333,
+    "gap": 0.25
+   },
+   "gemini-3.1-flash-lite": {
+    "fit": 1.0,
+    "nonfit": 0.1333,
+    "gap": 0.8667
+   }
+  },
+  "n_exposed": 358,
+  "run_level_ci95": [
+   0.6498,
+   0.7386
+  ]
+ },
+ "title_per_view": {
+  "raw": {
+   "gap": 0.6556,
+   "ci95": [
+    0.5889,
+    0.7111
+   ],
+   "fit": 0.9889,
+   "nonfit": 0.3333
+  },
+  "md": {
+   "gap": 0.7326,
+   "ci95": [
+    0.6766,
+    0.7873
+   ],
+   "fit": 1.0,
+   "nonfit": 0.2674
+  }
+ },
+ "title_per_template": {
+  "pricing": 0.6389,
+  "api": 0.75,
+  "school": 0.6111,
+  "transit": 0.8881,
+  "hotel": 0.5714
+ },
+ "title_leave_one_agent_out": {
+  "gpt-5.4-nano": {
+   "gap": 0.5583,
+   "ci95": [
+    0.5,
+    0.6167
+   ],
+   "status": "CONFIRMED"
+  },
+  "gpt-5.4-mini": {
+   "gap": 0.9164,
+   "ci95": [
+    0.8667,
+    0.9582
+   ],
+   "status": "CONFIRMED"
+  },
+  "gemini-3.1-flash-lite": {
+   "gap": 0.6081,
+   "ci95": [
+    0.5578,
+    0.6583
+   ],
+   "status": "CONFIRMED"
+  }
+ },
+ "title_all_runs_gap": 0.6889,
+ "law_ratio": {
+  "raw": {
+   "ratio": 0.9889,
+   "ci95": [
+    0.9667,
+    1.0
+   ],
+   "verdict": "no discount",
+   "hidden_fit": 0.9889,
+   "visible_fit": 1.0
+  },
+  "md": {
+   "ratio": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "verdict": "no discount",
+   "hidden_fit": 1.0,
+   "visible_fit": 1.0
+  }
+ },
+ "need_term": {
+  "inhand_follow_mean_agents": 0.0,
+  "inhand_mean_of_anchor_rates": 0.0,
+  "verdict": "only-when-stuck holds on links",
+  "per_agent_inhand": {
+   "gpt-5.4-nano": 0.0,
+   "gpt-5.4-mini": 0.0,
+   "gemini-3.1-flash-lite": 0.0
+  },
+  "per_anchor": {
+   "hidden_fit": {
+    "stuck_known": 1.0,
+    "in_hand": 0.0,
+    "diff": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "hidden_nonfit": {
+    "stuck_known": 0.3778,
+    "in_hand": 0.0,
+    "diff": 0.3778,
+    "ci95": [
+     0.3333,
+     0.4222
+    ]
+   }
+  },
+  "stuck_known_fit_gap": {
+   "gap": 0.6222,
+   "ci95": [
+    0.5778,
+    0.6667
+   ]
+  }
+ },
+ "controls": {
+  "stuck-raw-nolink": {
+   "followed": 0,
+   "n": 30,
+   "exposed": 0
+  },
+  "stuck-a11y-hidden_fit": {
+   "followed": 0,
+   "n": 30,
+   "exposed": 0
+  },
+  "stuck-a11y-hidden_nonfit": {
+   "followed": 0,
+   "n": 30,
+   "exposed": 0
+  },
+  "stuck-a11y-sronly_fit": {
+   "followed": 29,
+   "n": 30,
+   "exposed": 29
+  }
+ },
+ "scout": {
+  "clause1_text_fit>=0.40_nonfit<=0.10": {
+   "fit": 0.9944,
+   "nonfit": 0.3002,
+   "holds": false
+  },
+  "clause2_a11y_both<=0.05": {
+   "rate": 0.0,
+   "holds": true
+  },
+  "clause3_crawler_100%": {
+   "crawler": {
+    "stuck-raw-hidden_fit": "5/5",
+    "stuck-raw-hidden_nonfit": "5/5"
+   },
+   "holds": true
+  },
+  "holds": false
+ },
+ "ancestor_reading_[+5,+22]": false,
+ "follow_timing": {
+  "stuck-md-hidden_fit": {
+   "followed": 90,
+   "first_click": 84,
+   "route_seen_before": 6
+  },
+  "stuck-raw-hidden_fit": {
+   "followed": 88,
+   "first_click": 76,
+   "route_seen_before": 12
+  },
+  "stuck-raw-hidden_nonfit": {
+   "followed": 30,
+   "first_click": 0,
+   "route_seen_before": 30
+  },
+  "stuck-md-hidden_nonfit": {
+   "followed": 24,
+   "first_click": 0,
+   "route_seen_before": 24
+  },
+  "stuck-a11y-sronly_fit": {
+   "followed": 29,
+   "first_click": 27,
+   "route_seen_before": 2
+  },
+  "stuck-raw-visible_fit": {
+   "followed": 89,
+   "first_click": 87,
+   "route_seen_before": 1
+  },
+  "stuck-md-visible_fit": {
+   "followed": 90,
+   "first_click": 82,
+   "route_seen_before": 8
+  },
+  "rstuck-md-hidden_fit": {
+   "followed": 45,
+   "first_click": 45,
+   "route_seen_before": 45
+  },
+  "rstuck-raw-hidden_fit": {
+   "followed": 42,
+   "first_click": 42,
+   "route_seen_before": 42
+  },
+  "rstuck-md-hidden_nonfit": {
+   "followed": 13,
+   "first_click": 3,
+   "route_seen_before": 13
+  },
+  "rstuck-raw-hidden_nonfit": {
+   "followed": 21,
+   "first_click": 5,
+   "route_seen_before": 21
+  }
+ },
+ "haiku_side_row": {
+  "fit": "60/60",
+  "nonfit": "0/60",
+  "gap": 1.0,
+  "other_haiku_runs": 3
+ }
+}

@@ -1,0 +1,1161 @@
+[
+ {
+  "phase": "counted",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-a11y-hidden_fit",
+  "n": 1,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.7935
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 0,
+  "parse_fail_runs": 0,
+  "distinct_traces": 1,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-a11y-hidden_nonfit",
+  "n": 1,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.7935
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 0,
+  "parse_fail_runs": 0,
+  "distinct_traces": 1,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-a11y-sronly_fit",
+  "n": 1,
+  "followed": 1,
+  "rate": 1.0,
+  "ci95": [
+   0.2065,
+   1.0
+  ],
+  "n_exposed": 1,
+  "followed_exposed": 1,
+  "correct": 1,
+  "answered": 1,
+  "parse_fail_runs": 0,
+  "distinct_traces": 1,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-md-hidden_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 30,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-md-hidden_nonfit",
+  "n": 30,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.1135
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 18,
+  "parse_fail_runs": 3,
+  "distinct_traces": 27,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-raw-hidden_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 30,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-raw-hidden_nonfit",
+  "n": 30,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.1135
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 9,
+  "parse_fail_runs": 3,
+  "distinct_traces": 29,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "rfree-md-hidden_fit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "rfree-md-hidden_nonfit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "rfree-raw-hidden_fit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "rfree-raw-hidden_nonfit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "rstuck-md-hidden_fit",
+  "n": 15,
+  "followed": 15,
+  "rate": 1.0,
+  "ci95": [
+   0.7961,
+   1.0
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 15,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 15,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "rstuck-md-hidden_nonfit",
+  "n": 15,
+  "followed": 1,
+  "rate": 0.0667,
+  "ci95": [
+   0.0119,
+   0.2982
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 1,
+  "correct": 1,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 12,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "rstuck-raw-hidden_fit",
+  "n": 15,
+  "followed": 15,
+  "rate": 1.0,
+  "ci95": [
+   0.7961,
+   1.0
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 15,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 15,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "rstuck-raw-hidden_nonfit",
+  "n": 15,
+  "followed": 7,
+  "rate": 0.4667,
+  "ci95": [
+   0.2481,
+   0.6988
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 7,
+  "correct": 7,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 15,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-a11y-hidden_fit",
+  "n": 10,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2775
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 7,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-a11y-hidden_nonfit",
+  "n": 10,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2775
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 9,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-a11y-sronly_fit",
+  "n": 10,
+  "followed": 10,
+  "rate": 1.0,
+  "ci95": [
+   0.7225,
+   1.0
+  ],
+  "n_exposed": 10,
+  "followed_exposed": 10,
+  "correct": 10,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 10,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-md-hidden_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 30,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-md-hidden_nonfit",
+  "n": 30,
+  "followed": 3,
+  "rate": 0.1,
+  "ci95": [
+   0.0346,
+   0.2562
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 3,
+  "correct": 3,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 19,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-md-visible_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 30,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-raw-hidden_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 30,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-raw-hidden_nonfit",
+  "n": 30,
+  "followed": 5,
+  "rate": 0.1667,
+  "ci95": [
+   0.0734,
+   0.3356
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 5,
+  "correct": 5,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 19,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-raw-nolink",
+  "n": 10,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2775
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 10,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-raw-visible_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 30,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "rfree-md-hidden_fit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "rfree-md-hidden_nonfit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "rfree-raw-hidden_fit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "rfree-raw-hidden_nonfit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "rstuck-md-hidden_fit",
+  "n": 15,
+  "followed": 15,
+  "rate": 1.0,
+  "ci95": [
+   0.7961,
+   1.0
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 15,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 15,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "rstuck-md-hidden_nonfit",
+  "n": 15,
+  "followed": 12,
+  "rate": 0.8,
+  "ci95": [
+   0.5481,
+   0.9295
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 12,
+  "correct": 12,
+  "answered": 14,
+  "parse_fail_runs": 0,
+  "distinct_traces": 15,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "rstuck-raw-hidden_fit",
+  "n": 15,
+  "followed": 15,
+  "rate": 1.0,
+  "ci95": [
+   0.7961,
+   1.0
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 15,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 15,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "rstuck-raw-hidden_nonfit",
+  "n": 15,
+  "followed": 14,
+  "rate": 0.9333,
+  "ci95": [
+   0.7018,
+   0.9881
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 14,
+  "correct": 14,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 15,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-a11y-hidden_fit",
+  "n": 10,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2775
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 9,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-a11y-hidden_nonfit",
+  "n": 10,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2775
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 9,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-a11y-sronly_fit",
+  "n": 10,
+  "followed": 9,
+  "rate": 0.9,
+  "ci95": [
+   0.5958,
+   0.9821
+  ],
+  "n_exposed": 9,
+  "followed_exposed": 9,
+  "correct": 9,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 10,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-md-hidden_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 30,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-md-hidden_nonfit",
+  "n": 30,
+  "followed": 19,
+  "rate": 0.6333,
+  "ci95": [
+   0.4551,
+   0.7813
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 19,
+  "correct": 19,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 27,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-md-visible_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 30,
+  "answered": 30,
+  "parse_fail_runs": 1,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-raw-hidden_fit",
+  "n": 30,
+  "followed": 29,
+  "rate": 0.9667,
+  "ci95": [
+   0.8333,
+   0.9941
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 29,
+  "correct": 29,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-raw-hidden_nonfit",
+  "n": 30,
+  "followed": 25,
+  "rate": 0.8333,
+  "ci95": [
+   0.6644,
+   0.9266
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 25,
+  "correct": 25,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 28,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-raw-nolink",
+  "n": 10,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2775
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 6,
+  "parse_fail_runs": 0,
+  "distinct_traces": 10,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-raw-visible_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 30,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "rfree-md-hidden_fit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "rfree-md-hidden_nonfit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 14,
+  "followed_exposed": 0,
+  "correct": 14,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 6,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "rfree-raw-hidden_fit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 6,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "rfree-raw-hidden_nonfit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 14,
+  "followed_exposed": 0,
+  "correct": 14,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 7,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "rstuck-md-hidden_fit",
+  "n": 15,
+  "followed": 15,
+  "rate": 1.0,
+  "ci95": [
+   0.7961,
+   1.0
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 15,
+  "correct": 15,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 15,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "rstuck-md-hidden_nonfit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 14,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 13,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "rstuck-raw-hidden_fit",
+  "n": 15,
+  "followed": 12,
+  "rate": 0.8,
+  "ci95": [
+   0.5481,
+   0.9295
+  ],
+  "n_exposed": 12,
+  "followed_exposed": 12,
+  "correct": 12,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 13,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "rstuck-raw-hidden_nonfit",
+  "n": 15,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2039
+  ],
+  "n_exposed": 15,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 15,
+  "parse_fail_runs": 0,
+  "distinct_traces": 15,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-a11y-hidden_fit",
+  "n": 10,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2775
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 10,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-a11y-hidden_nonfit",
+  "n": 10,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2775
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 10,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-a11y-sronly_fit",
+  "n": 10,
+  "followed": 10,
+  "rate": 1.0,
+  "ci95": [
+   0.7225,
+   1.0
+  ],
+  "n_exposed": 10,
+  "followed_exposed": 10,
+  "correct": 10,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 10,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-md-hidden_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 30,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-md-hidden_nonfit",
+  "n": 30,
+  "followed": 2,
+  "rate": 0.0667,
+  "ci95": [
+   0.0185,
+   0.2132
+  ],
+  "n_exposed": 29,
+  "followed_exposed": 2,
+  "correct": 1,
+  "answered": 27,
+  "parse_fail_runs": 0,
+  "distinct_traces": 24,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-md-visible_fit",
+  "n": 30,
+  "followed": 30,
+  "rate": 1.0,
+  "ci95": [
+   0.8865,
+   1.0
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 30,
+  "correct": 29,
+  "answered": 29,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-raw-hidden_fit",
+  "n": 30,
+  "followed": 29,
+  "rate": 0.9667,
+  "ci95": [
+   0.8333,
+   0.9941
+  ],
+  "n_exposed": 29,
+  "followed_exposed": 29,
+  "correct": 29,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-raw-hidden_nonfit",
+  "n": 30,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.1135
+  ],
+  "n_exposed": 30,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 26,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-raw-nolink",
+  "n": 10,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.2775
+  ],
+  "n_exposed": 0,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 10,
+  "parse_fail_runs": 0,
+  "distinct_traces": 10,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-raw-visible_fit",
+  "n": 30,
+  "followed": 29,
+  "rate": 0.9667,
+  "ci95": [
+   0.8333,
+   0.9941
+  ],
+  "n_exposed": 29,
+  "followed_exposed": 29,
+  "correct": 29,
+  "answered": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ }
+]

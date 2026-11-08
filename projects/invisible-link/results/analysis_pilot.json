@@ -1,0 +1,222 @@
+{
+ "n_rows": 108,
+ "agents": [
+  "gpt-5.4-nano",
+  "gpt-5.4-mini",
+  "gemini-3.1-flash-lite",
+  "claude-haiku-4-5-20251001"
+ ],
+ "title_unexposed": 0,
+ "title": {
+  "gap": 0.875,
+  "ci95": [
+   0.875,
+   0.875
+  ],
+  "status": "CONFIRMED",
+  "fit_rate_mean": 1.0,
+  "nonfit_rate_mean": 0.125,
+  "per_agent": {
+   "gpt-5.4-nano": {
+    "fit": 1.0,
+    "nonfit": 0.0,
+    "gap": 1.0
+   },
+   "gpt-5.4-mini": {
+    "fit": 1.0,
+    "nonfit": 0.5,
+    "gap": 0.5
+   },
+   "gemini-3.1-flash-lite": {
+    "fit": 1.0,
+    "nonfit": 0.0,
+    "gap": 1.0
+   },
+   "claude-haiku-4-5-20251001": {
+    "fit": 1.0,
+    "nonfit": 0.0,
+    "gap": 1.0
+   }
+  },
+  "n_exposed": 32,
+  "run_level_ci95": [
+   0.75,
+   1.0
+  ]
+ },
+ "title_per_view": {
+  "raw": {
+   "gap": 0.875,
+   "ci95": [
+    0.875,
+    0.875
+   ],
+   "fit": 1.0,
+   "nonfit": 0.125
+  },
+  "md": {
+   "gap": 0.875,
+   "ci95": [
+    0.875,
+    0.875
+   ],
+   "fit": 1.0,
+   "nonfit": 0.125
+  }
+ },
+ "title_per_template": {
+  "api": 0.875,
+  "pricing": 0.875
+ },
+ "title_leave_one_agent_out": {
+  "gpt-5.4-nano": {
+   "gap": 0.8333,
+   "ci95": [
+    0.8333,
+    0.8333
+   ],
+   "status": "CONFIRMED"
+  },
+  "gpt-5.4-mini": {
+   "gap": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "status": "CONFIRMED"
+  },
+  "gemini-3.1-flash-lite": {
+   "gap": 0.8333,
+   "ci95": [
+    0.8333,
+    0.8333
+   ],
+   "status": "CONFIRMED"
+  },
+  "claude-haiku-4-5-20251001": {
+   "gap": 0.8333,
+   "ci95": [
+    0.8333,
+    0.8333
+   ],
+   "status": "CONFIRMED"
+  }
+ },
+ "title_all_runs_gap": 0.875,
+ "law_ratio": {
+  "raw": {
+   "ratio": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "verdict": "no discount",
+   "hidden_fit": 1.0,
+   "visible_fit": 1.0
+  },
+  "md": {
+   "ratio": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "verdict": "no discount",
+   "hidden_fit": 1.0,
+   "visible_fit": 1.0
+  }
+ },
+ "controls": {
+  "stuck-raw-nolink": {
+   "followed": 0,
+   "n": 0,
+   "exposed": 0
+  },
+  "stuck-a11y-hidden_fit": {
+   "followed": 0,
+   "n": 0,
+   "exposed": 0
+  },
+  "stuck-a11y-hidden_nonfit": {
+   "followed": 0,
+   "n": 0,
+   "exposed": 0
+  },
+  "stuck-a11y-sronly_fit": {
+   "followed": 0,
+   "n": 0,
+   "exposed": 0
+  }
+ },
+ "scout": {
+  "clause1_text_fit>=0.40_nonfit<=0.10": {
+   "fit": 1.0,
+   "nonfit": 0.125,
+   "holds": false
+  },
+  "clause2_a11y_both<=0.05": {
+   "rate": 0.0,
+   "holds": true
+  },
+  "clause3_crawler_100%": {
+   "crawler": {
+    "stuck-raw-hidden_fit": "5/5",
+    "stuck-raw-hidden_nonfit": "5/5"
+   },
+   "holds": true
+  },
+  "holds": false
+ },
+ "ancestor_reading_[+5,+22]": false,
+ "follow_timing": {
+  "stuck-raw-hidden_fit": {
+   "followed": 8,
+   "first_click": 6,
+   "route_seen_before": 2
+  },
+  "stuck-raw-visible_fit": {
+   "followed": 8,
+   "first_click": 7,
+   "route_seen_before": 1
+  },
+  "stuck-md-hidden_fit": {
+   "followed": 8,
+   "first_click": 8,
+   "route_seen_before": 0
+  },
+  "stuck-md-visible_fit": {
+   "followed": 20,
+   "first_click": 17,
+   "route_seen_before": 3
+  },
+  "free-raw-hidden_fit": {
+   "followed": 7,
+   "first_click": 7,
+   "route_seen_before": 0
+  },
+  "free-raw-visible_fit": {
+   "followed": 7,
+   "first_click": 7,
+   "route_seen_before": 0
+  },
+  "free-md-hidden_fit": {
+   "followed": 8,
+   "first_click": 8,
+   "route_seen_before": 0
+  },
+  "free-md-visible_fit": {
+   "followed": 7,
+   "first_click": 7,
+   "route_seen_before": 0
+  },
+  "stuck-raw-hidden_nonfit": {
+   "followed": 1,
+   "first_click": 0,
+   "route_seen_before": 1
+  },
+  "stuck-md-hidden_nonfit": {
+   "followed": 1,
+   "first_click": 0,
+   "route_seen_before": 1
+  }
+ }
+}

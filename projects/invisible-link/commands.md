@@ -18,3 +18,9 @@ with-model-keys .venv/bin/python run.py counted --models gpt-5.4-nano,gpt-5.4-mi
 ```sh
 with-model-keys .venv/bin/python run.py counted --models gpt-5.4-nano,gpt-5.4-mini,gemini-3.1-flash-lite --cells stuck-raw-hidden_fit,stuck-md-hidden_fit,stuck-raw-hidden_nonfit,stuck-md-hidden_nonfit,stuck-raw-visible_fit,stuck-md-visible_fit,stuck-raw-nolink,stuck-a11y-hidden_fit,stuck-a11y-hidden_nonfit,stuck-a11y-sronly_fit,rstuck-raw-hidden_fit,rstuck-md-hidden_fit,rstuck-raw-hidden_nonfit,rstuck-md-hidden_nonfit,rfree-raw-hidden_fit,rfree-md-hidden_fit,rfree-raw-hidden_nonfit,rfree-md-hidden_nonfit --n-title 30 --n-stuck-visible 30 --n-ctl 10 --n-route 15 --workers 8 --budget 4.90
 ```
+
+## 2026-11-07 23:20:34 PST Haiku title cells only (DEVIATIONS D4, side row) at 7c514633
+
+```sh
+with-model-keys .venv/bin/python run.py counted --models claude-haiku-4-5-20251001 --cells stuck-raw-hidden_fit,stuck-md-hidden_fit,stuck-raw-hidden_nonfit,stuck-md-hidden_nonfit --n-title 30 --workers 8 --budget 4.90
+```

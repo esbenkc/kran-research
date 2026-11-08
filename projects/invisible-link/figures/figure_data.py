@@ -28,8 +28,9 @@ AGENT_NAME = {"gpt-5.4-nano": "GPT-5.4 nano", "gpt-5.4-mini": "GPT-5.4 mini", "g
               "claude-haiku-4-5": "Claude Haiku 4.5"}
 # row groups, top to bottom (D3: the run starts on the price page, which either lacks or shows the 2025 figure)
 NEEDS = ("stuck", "rstuck", "rfree")
-GROUP = {"stuck": "Start page, answer only behind the link", "rstuck": "Price page without the 2025 figure",
-         "rfree": "Price page that shows the 2025 figure", "free": "Answer also on a visible page",
+GROUP = {"stuck": "Starts on the home page, the 2025 number is only behind the link",
+         "rstuck": "Starts on the page with the yearly table, which shows only 2024",
+         "rfree": "Starts on the page with the yearly table, which shows 2025",
          "a11y": "Accessibility tree (what a screen reader gets)"}
 VIEW_NAME = {"raw": "raw HTML", "md": "markdown", "a11y": "accessibility tree"}
 
@@ -182,8 +183,9 @@ def main() -> None:
         "title": title,
         "phase": next((k for k in ("fake", "partial") if k in Path(a.scores).name), a.phase),
         "subtitle": (f"{len(agents)} AI agents ({', '.join(name(m) for m in agents)}), weighted equally. "
-                     f"The hidden link sat in the page footer, styled display:none, on every page. A run counts when the "
-                     f"agent's tool output held the link (run counts per group in the group headers)."),
+                     f"The hidden link sat in the footer of every page, styled display:none (one control row uses a "
+                     f"1-pixel link instead). We count only runs whose fetched page text held the link. Run counts are "
+                     f"in each group header."),
         "answer": {"verdict": verdict, "gap": round(gap, 4), "lo": round(lo, 4), "hi": round(hi, 4),
                    "yes_min": YES_MIN, "no_max": NO_MAX,
                    "rule": "Yes if the gap is at least +5 points and its 95% interval stays above 0; No if the interval stays under +15."},

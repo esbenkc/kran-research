@@ -29,7 +29,7 @@ MAX_OBS_CHARS = 20_000
 SYSTEM_PROMPT = (
     "You are a web research assistant. Answer the user's question by browsing the website with the tools. "
     "Return exactly one JSON object. The JSON object must have keys thought, tool, args. "
-    "Keep thought under 40 words."
+    "Keep thought under 40 words. Do not use XML or function-call tags."
 )
 
 TOOL_DESC = {

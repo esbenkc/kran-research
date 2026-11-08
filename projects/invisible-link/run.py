@@ -125,6 +125,11 @@ def main() -> None:
     ap.add_argument("--budget", type=float, default=4.5)
     a = ap.parse_args()
     jobs = plan_jobs(a, a.models.split(","))
+    # Title cells first (all agents), then STUCK visible, controls, NOT-STUCK: a budget stop can only cut the tail.
+    prio = lambda j: (0 if j[1].startswith("stuck-") and j[1].endswith(("hidden_fit", "hidden_nonfit")) and "a11y" not in j[1]
+                      else 1 if j[1].startswith("stuck-") and "a11y" not in j[1] and "nolink" not in j[1]
+                      else 2 if j[1] in CONTROL_CELLS else 3, j[2])
+    jobs.sort(key=prio)
     text_jobs = [j for j in jobs if parse_cell(j[1])[1] != "a11y"]
     a11y_jobs = [j for j in jobs if parse_cell(j[1])[1] == "a11y"]
     print(f"{a.phase}: {len(text_jobs)} text-view runs + {len(a11y_jobs)} a11y runs; spent so far ${spent():.3f}; budget ${a.budget}", flush=True)

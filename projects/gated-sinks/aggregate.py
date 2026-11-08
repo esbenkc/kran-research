@@ -68,28 +68,49 @@ def status_rule(fit, R, gated_rows):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tag", default="L2_m256_k8")
-    ap.add_argument("--manifest", default=str(HERE / "results" / "manifest.json"))
     a = ap.parse_args()
-    man = json.loads(Path(a.manifest).read_text())
-    L_star = man["L_star"]
-    models = []
-    for row in man["models"]:
-        m = json.loads((HERE / "runs" / row["run"] / f"measure_{row['tag'] or a.tag}.json").read_text())
-        gap = (L_star - m["eval_loss"]) / L_star
-        assert -1e-9 <= gap <= 0.01, (row["run"], m["eval_loss"], L_star)
-        models.append({
-            "run": row["run"], "arm": m["attn"], "seed": m["seed"], "d": m["d"],
-            "gated": m["attn"] == GATED, "in_fit": m["attn"] in FIT_ARMS,
-            "sink_mass": m["sink_mass"], "sink_mass_all": m["sink_mass_all"],
-            "dump_mass": m["dump_mass"], "recovery": m["recovery"],
-            "recovery_sae": m["recovery_sae"], "recovery_sd": m["recovery_sd"],
-            "cosine_recovery": m["cosine_recovery"], "eval_loss": m["eval_loss"],
-            "loss_gap_to_L_star": gap, "excess_bayes": m["eval_loss"] - man["bayes_loss"],
-            "step": m["ckpt"], "readout_r2": m["readout_r2"], "norm_r2": m["norm_r2"],
-            "gate_r2": m["gate_r2"], "logit_lens_kl": m["logit_lens_kl"],
-            "massive_ratio": m["massive"]["max_abs"] / m["massive"]["median_abs"],
-            "recovery_shuffled": float(np.mean([s["mcc_shuffled"] for s in m["saes"]])),
-        })
+    L_star = float((HERE / "results" / "Lstar.txt").read_text())
+    lvb = json.loads((HERE / "results" / "loss_vs_bayes.json").read_text()) \
+        if (HERE / "results" / "loss_vs_bayes.json").exists() else {}
+    models, floors = [], {"untrained": {}, "embedding": None}
+    for arm in FIT_ARMS + (GATED,):
+        for rd in sorted((HERE / "runs").glob(f"{arm}_s*")):
+            fs = sorted(rd.glob(f"measure_{a.tag}_c[0-9]*.json"))
+            if not fs:
+                continue
+            assert len(fs) == 1, fs
+            m = json.loads(fs[0].read_text())
+            gap = (L_star - m["eval_loss"]) / L_star
+            assert -1e-9 <= gap <= 0.01, (rd.name, m["eval_loss"], L_star)
+            lb = lvb.get(f"{rd.name}:{m['ckpt']}", {})
+            models.append({
+                "run": rd.name, "arm": m["attn"], "seed": m["seed"], "d": m["d"],
+                "gated": m["attn"] == GATED, "in_fit": m["attn"] in FIT_ARMS,
+                "sink_mass": m["sink_mass"], "sink_mass_all": m["sink_mass_all"],
+                "sink_blk": m["sink_blk"], "dump_mass": m["dump_mass"],
+                "trig_mass": m.get("trig_mass"), "noop_mass": m.get("noop_mass"),
+                "recovery": m["recovery"], "recovery_sae": m["recovery_sae"],
+                "recovery_sd": m["recovery_sd"], "recovery_hungarian": m["recovery_hungarian"],
+                "recovery_all_pos": m["recovery_all_pos"], "random_floor": m["random_floor"],
+                "cosine_recovery": m["cosine_recovery"], "dead_share": m["dead_share"],
+                "eval_loss": m["eval_loss"], "loss_gap_to_L_star": gap,
+                "evidence_loss": lb.get("model"), "evidence_bayes": lb.get("bayes"),
+                "evidence_share_of_gain": lb.get("share_of_gain"),
+                "step": m["ckpt"], "n_params": m["n_params"], "readout_r2": m["readout_r2"],
+                "norm_r2": m["norm_r2"], "norm_r2_all_layers": m["norm_r2_all_layers"],
+                "gate_r2": m["gate_r2"], "logit_lens_kl": m["logit_lens_kl"],
+                "massive_ratio": m["massive"]["max_abs"] / m["massive"]["median_abs"],
+                "massive_token_type": m["massive"].get("max_token_type"),
+                "recovery_shuffled": float(np.mean([s["mcc_shuffled"] for s in m["saes"]])),
+                "measure_file": str(fs[0].relative_to(HERE)),
+            })
+        u = HERE / "runs" / f"{arm}_s0" / f"measure_untrained_{a.tag}.json"
+        if u.exists():
+            floors["untrained"][arm] = json.loads(u.read_text())["recovery"]
+    e = HERE / "runs" / "softmax_s0" / "measure_embed_L0.json"
+    if e.exists():
+        floors["embedding"] = json.loads(e.read_text())["recovery"]
+    man = {"floors": floors}
     fitm = [m for m in models if m["in_fit"]]
     gm = [m for m in models if m["gated"]]
     x = [m["sink_mass"] for m in fitm]
@@ -118,7 +139,11 @@ def main():
         gat[s]["sink_mass"] < 0.2 * soft[s]["sink_mass"] for s in pairs) and all(
         m["norm_r2"] < 0.2 for m in models if m["arm"] in ("softmax", GATED))) else "failed"
     res = {
-        "models": models, "L_star": L_star, "bayes_loss": man["bayes_loss"],
+        "models": models, "L_star": L_star,
+        "lstar_record": json.loads((HERE / "results" / "lstar.json").read_text())
+        if (HERE / "results" / "lstar.json").exists() else None,
+        "sink_levels_note": "clusters of non-gated sink masses with gaps > 0.1 (PREREG s3)",
+        "n_params": {m["arm"]: m["n_params"] for m in models},
         "fit": {"a": fit["a"], "b": fit["b"], "b_ci": fit["b_ci"], "s_tot": fit["s_tot"],
                 "s_sae": s_sae, "n": fit["n"], "R": R, "swing": abs(fit["b"]) * R,
                 "swing_hi": max(abs(fit["b_ci"][0]), abs(fit["b_ci"][1])) * R,

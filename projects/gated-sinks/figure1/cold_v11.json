@@ -1,0 +1,37 @@
+{
+ "png": "v11.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.014793400000000002,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does reducing attention-sink mass make planted features easier for a sparse autoencoder to find in transformer models?\",\n  \"answer\": \"The study finds this is not settled: across 9 models without a gate, the slope of recovery score on sink mass was +0.25 (95% range \u22120.12 to +0.62), and comparing specific attention mechanisms (standard attention vs. softmax plus one, gated attention vs. standard attention) yields nearly identical recovery scores (0.42-0.43 vs. 0.23-0.24), suggesting sink mass has minimal impact on feature detectability.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does reducing attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"No, the question remains unsettled; across 9 models without a gate, the slope of recovery score on sink mass was +0.25 (95% range -0.12 to +0.62), and comparing specific attention mechanisms showed negligible differences in recovery scores (0.42-0.43 for middle-layer gathering versus 0.23-0.24 for last-layer gathering).\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does reducing attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"No, the question remains unsettled; across 9 models without a gate, the slope of recovery score on sink mass was +0.25 (95% range -0.12 to +0.62), showing no clear evidence that less sink mass improves feature findability.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does less attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"The question is not settled, as standard attention and softmax plus one achieved nearly identical recovery scores of 0.42 and 0.43 despite differing attention-sink mass (84% versus 5% on the test token), resulting in an inconclusive score-on-sink-mass slope of +0.25 (95% range -0.12 to +0.62).\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does less attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"The result is not settled, as a model with an attention sink and one without scored virtually the same (recovery scores of 0.42 with 84% sink vs. 0.43 with 5% sink), with a score-on-sink-mass slope of +0.25 (95% range -0.12 to +0.62).\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does less attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"The result is not settled, as models with high and low sink mass achieved virtually identical recovery scores of 0.42 (84% sink) and 0.43 (5% sink), with a slope of score on sink mass across nine ungated models of +0.25 (95% range -0.12 to +0.62).\"\n}"
+  }
+ ]
+}

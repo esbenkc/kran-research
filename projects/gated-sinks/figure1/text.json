@@ -1,0 +1,15 @@
+{
+ "head": "We could not tell if less sink makes planted causes easier to find: a model with a sink and one without scored the same",
+ "sub": "<b>Question: does less attention-sink mass make planted features easier for a sparse autoencoder to find? Not settled.</b> A sink is attention that heads with nothing to read park on the first token. Tiny 4-layer models learned text with 64 planted causes; a sparse autoencoder at the middle layer tried to find them (recovery score, 0 to 1). Across {n_fit} models without a gate, the slope of score on sink mass was {b} (95% range {b_lo} to {b_hi}).",
+ "seq_lab": "One test sequence. Causes {on} are on. After each trigger <span class=\"tri\">&#9650;</span>, 3 tokens <span class=\"evk\"></span> depend on them; other tokens <span class=\"flk\"></span> do not.",
+ "q_lab": "idle token {q}",
+ "col_att": "At token {q}, the middle layer's attention",
+ "col_rec": "Recovery score (0 to 1)",
+ "grp2": "Gather the causes in the middle layer",
+ "grp4": "Gather the causes only in the last layer",
+ "first": "{pct}% on the first token",
+ "same": "same score",
+ "foot": "4-layer transformers (about 200,000 parameters) trained 12,000 steps; sparse autoencoder with 256 entries, 3 seeds; 1,000 test sequences \u00b7 Kran Lab, Nov 8 2026",
+ "rest": "{pct}% on the other {n} tokens",
+ "avg": "{pct}% on average"
+}

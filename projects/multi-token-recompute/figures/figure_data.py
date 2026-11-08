@@ -35,10 +35,10 @@ GROUPS = [
     {"id": "k16", "prefixes": ["k16"], "name": "16 sampled tokens, real probe",
      "note": "answers the title"},
     # D1 (DEVIATIONS.md, 17:36 PST): the gate arm is the planted word at text difference 0.30; the matched arm is a reading
-    {"id": "planted", "prefixes": ["planted", "planted30", "planted03", "plant30"], "name": "16 sampled tokens, planted token",
-     "note": "a planted token that marks probed answers: shows the update can learn from text"},
-    {"id": "matched", "prefixes": ["matched", "planted05", "plant05"], "name": "planted token, small",
-     "note": "the planted token at the real probe's text difference"},
+    {"id": "planted", "prefixes": ["planted", "planted30", "planted03", "plant30"], "name": "16 sampled tokens, planted cue",
+     "note": "a planted cue that marks probed answers: shows the update can learn from text"},
+    {"id": "matched", "prefixes": ["matched", "planted05", "plant05"], "name": "planted cue, small",
+     "note": "the planted cue at the real probe's text difference"},
     {"id": "scaled", "prefixes": ["scaled"], "name": "real probe change, scaled up",
      "note": "can the real cue's shape be learned once it is louder"},
     # D4 (Tove #16626): k16 with a KL on the prefix tokens to the start policy, so the text stays open (replaces k0)
@@ -48,11 +48,11 @@ GROUPS = [
      "note": "the probe's direct effect at the answer"},
 ]
 SUBTITLE = ("Qwen3-0.6B on Countdown puzzles. The model writes 16 tokens, then picks \u201cread\u201d (cheat) or "
-            "\u201csolve\u201d. The update reruns the model without the probe.")
+            "\u201csolve\u201d. The update computes the model again without the probe (a clean recompute).")
 LEGEND = {  # Tove #16616: the bound picture (x = text difference, y = switch), Selma's nouns (#16540, #16576)
     "real": "real probe",
-    "planted": "planted token",
-    "dot": "switch on the served model, with 95% interval",
+    "planted": "planted cue",
+    "dot": "switch, with 95% interval",
     "ring": "part of the switch that comes from the text",
     "impossible": "impossible for a model that reads only the text: a switch bigger than the text difference",
     "bars": "3 points: our bar for a switch. 10 points: the bar fixed before the run",
@@ -98,7 +98,8 @@ def status(rows: dict[str, list[dict]]) -> tuple[str, str]:
     return "UNCONFIRMED", "Not settled: the two runs disagree or sit on the 3-point bar."
 
 
-TITLE = None  # Selma's final figure title goes here once the status reads are in
+TITLE = ("Training on 16 sampled tokens taught no probe-off switch: the text barely differs, "
+         "and training made it differ less")  # Selma #16668; recheck if k16open moves the status
 
 
 def title_for(st: str, rows: dict[str, list[dict]]) -> str:
@@ -124,7 +125,7 @@ def row(run: str, r: dict) -> dict:
     out["forced"] = iv(r.get("forced"))
     if out["forced"] is not None:
         f = out["forced"]
-        out["note"] = (f"forcing the planted token at the start of the text moves cheating by {f['v'] * 100:.0f} points "
+        out["note"] = (f"forcing the planted cue at the start of the text moves cheating by {f['v'] * 100:.0f} points "
                        f"({f['lo'] * 100:.0f} to {f['hi'] * 100:.0f}), so the model reads it")
     return out
 
@@ -268,9 +269,9 @@ def build(reads: dict[str, dict], mock: bool) -> dict:
         by.setdefault(g["id"], []).append(row(run, reads[run]))
     st, answer = status(by)
     # short = the name beside a lone point; tag = the name in a crowded stack, where colour carries the probe kind
-    SHORT = {"k16open": "real probe, text kept open, after training", "k16": "real probe, after training, run {n}", "planted": "planted token, after training",
-             "matched": "planted token, small", "scaled": "real probe, scaled up", "k0": "no text before the answer"}
-    TAG = {"k16open": "after training, text kept open (penalty on changing the thought)", "k16": "after training, run {n}", "planted": "planted token, after training", "matched": "small planted token",
+    SHORT = {"k16open": "real probe, text kept open, after training", "k16": "real probe, after training, run {n}", "planted": "planted cue, after training",
+             "matched": "planted cue, small", "scaled": "real probe, scaled up", "k0": "no text before the answer"}
+    TAG = {"k16open": "after training, text kept open (penalty on changing the thought)", "k16": "after training, run {n}", "planted": "planted cue, after training", "matched": "small planted cue",
            "scaled": "scaled up", "k0": "no text"}
     for gid, rs in by.items():
         for r in rs:
@@ -297,13 +298,16 @@ def check(data: dict) -> None:
         print("check: no summary.json (or mock); status recomputed only:", data["status"])
         return
     s = json.loads(summ.read_text())
-    assert s.get("status") == data["status"], f"status {data['status']} != summary.json {s.get('status')}"
+    st = s["status"]["status"] if isinstance(s.get("status"), dict) else s.get("status")
+    assert st == data["status"], f"status {data['status']} != summary.json {st}"
+    n = 0
     for g in data["groups"]:
         for r in g["rows"]:
-            ref = s.get("runs", {}).get(r["run"])
-            if ref and "gap" in ref:
-                assert abs(ref["gap"]["v"] - r["gap"]["v"]) < 1e-9, f"{r['run']}: gap differs from summary.json"
-    print("check: status and gaps match data/summary.json:", data["status"])
+            ref = s.get("runs", {}).get(r.get("run", ""), {}).get("test") or (s.get("start") if r.get("k") == 16 else None)
+            if ref and r.get("gap"):
+                assert abs(ref["gap"] - r["gap"]["v"]) < 1e-9, f"{r.get('run', r['label'])}: gap differs from summary.json"
+                n += 1
+    print(f"check: status and {n} gaps match data/summary.json:", data["status"])
 
 
 def main() -> None:

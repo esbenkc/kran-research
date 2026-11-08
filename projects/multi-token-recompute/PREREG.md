@@ -191,3 +191,6 @@ short). Never cut: planted s0, k16 s0, k16 s1, D_end on the final adapters.
   k0 100 updates; lr 3e-4; decision KL beta 1, no prefix KL (D1.8). The parent ran 5,000 updates.
 - predicted k16 ceiling before training = 100 x D_base = 2.7 points [2.4, 3.1] for the text part; the full
   gap adds |k0 spill| (start-policy spill +0.24 points). Read at the end against 100 x D_end.
+  Every end gap is also reported as the change from the start value (served +0.46, text +0.22, spill +0.24;
+  Vera #16587: the untrained start already shows ~0.5 points, label-swap null band [-0.43, +0.42]). The status
+  reads the end gap as frozen; the change is reported beside it.

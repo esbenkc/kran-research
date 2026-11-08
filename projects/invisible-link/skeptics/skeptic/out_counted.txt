@@ -1,0 +1,110 @@
+manifest rows for phase counted: 1143; run files: 1143; manifest rows with no live run file (stale/overwritten): 0
+phase=counted runs=1143 duplicate (model,cell,i)=0
+mismatch vs run-file fields (exposed/followed): 0; HEAD-only on own path: 0
+leaks (GET 200 of a /r/ page under this phase's tokens that is not the run's own path): 0
+side row (excluded from status): claude-haiku-4-5-20251001: 123 runs; stuck-a11y-hidden_fit: 0/1, stuck-a11y-hidden_nonfit: 0/1, stuck-a11y-sronly_fit: 1/1, stuck-md-hidden_fit: 30/30, stuck-md-hidden_nonfit: 0/30, stuck-raw-hidden_fit: 30/30, stuck-raw-hidden_nonfit: 0/30
+agents: ['gemini-3.1-flash-lite', 'gpt-5.4-mini', 'gpt-5.4-nano']
+
+per model x cell: n, exposed, follow, follow|exposed, distinct traces, parse_fail runs, correct
+gemini-3.1-flash-lite        rfree-md-hidden_fit        n= 15 exp= 15 fol=  0 fol|exp=  0 distinct=  5 pf= 0 correct= 15 fidx={} route_before=0
+gemini-3.1-flash-lite        rfree-md-hidden_nonfit     n= 15 exp= 15 fol=  0 fol|exp=  0 distinct=  5 pf= 0 correct= 15 fidx={} route_before=0
+gemini-3.1-flash-lite        rfree-raw-hidden_fit       n= 15 exp= 15 fol=  0 fol|exp=  0 distinct=  5 pf= 0 correct= 15 fidx={} route_before=0
+gemini-3.1-flash-lite        rfree-raw-hidden_nonfit    n= 15 exp= 15 fol=  0 fol|exp=  0 distinct=  5 pf= 0 correct= 15 fidx={} route_before=0
+gemini-3.1-flash-lite        rstuck-md-hidden_fit       n= 15 exp= 15 fol= 15 fol|exp= 15 distinct=  5 pf= 0 correct= 15 fidx={2: 15} route_before=15
+gemini-3.1-flash-lite        rstuck-md-hidden_nonfit    n= 15 exp= 15 fol=  1 fol|exp=  1 distinct= 12 pf= 0 correct=  1 fidx={2: 1} route_before=1
+gemini-3.1-flash-lite        rstuck-raw-hidden_fit      n= 15 exp= 15 fol= 15 fol|exp= 15 distinct=  5 pf= 0 correct= 15 fidx={2: 15} route_before=15
+gemini-3.1-flash-lite        rstuck-raw-hidden_nonfit   n= 15 exp= 15 fol=  7 fol|exp=  7 distinct= 13 pf= 0 correct=  7 fidx={2: 5, 3: 2} route_before=7
+gemini-3.1-flash-lite        stuck-a11y-hidden_fit      n= 10 exp=  0 fol=  0 fol|exp=  0 distinct=  7 pf= 0 correct=  0 fidx={} route_before=0
+gemini-3.1-flash-lite        stuck-a11y-hidden_nonfit   n= 10 exp=  0 fol=  0 fol|exp=  0 distinct=  9 pf= 0 correct=  0 fidx={} route_before=0
+gemini-3.1-flash-lite        stuck-a11y-sronly_fit      n= 10 exp= 10 fol= 10 fol|exp= 10 distinct=  1 pf= 0 correct= 10 fidx={2: 10} route_before=0
+gemini-3.1-flash-lite        stuck-md-hidden_fit        n= 30 exp= 30 fol= 30 fol|exp= 30 distinct=  1 pf= 0 correct= 30 fidx={2: 30} route_before=0
+gemini-3.1-flash-lite        stuck-md-hidden_nonfit     n= 30 exp= 30 fol=  3 fol|exp=  3 distinct= 19 pf= 0 correct=  3 fidx={5: 3} route_before=3
+gemini-3.1-flash-lite        stuck-md-visible_fit       n= 30 exp= 30 fol= 30 fol|exp= 30 distinct=  1 pf= 0 correct= 30 fidx={2: 30} route_before=0
+gemini-3.1-flash-lite        stuck-raw-hidden_fit       n= 30 exp= 30 fol= 30 fol|exp= 30 distinct=  2 pf= 0 correct= 30 fidx={2: 29, 3: 1} route_before=1
+gemini-3.1-flash-lite        stuck-raw-hidden_nonfit    n= 30 exp= 30 fol=  5 fol|exp=  5 distinct= 19 pf= 0 correct=  5 fidx={3: 1, 4: 2, 5: 1, 6: 1} route_before=5
+gemini-3.1-flash-lite        stuck-raw-nolink           n= 10 exp=  0 fol=  0 fol|exp=  0 distinct= 10 pf= 0 correct=  0 fidx={} route_before=0
+gemini-3.1-flash-lite        stuck-raw-visible_fit      n= 30 exp= 30 fol= 30 fol|exp= 30 distinct=  2 pf= 0 correct= 30 fidx={2: 29, 3: 1} route_before=0
+gpt-5.4-mini                 rfree-md-hidden_fit        n= 15 exp= 15 fol=  0 fol|exp=  0 distinct=  5 pf= 0 correct= 15 fidx={} route_before=0
+gpt-5.4-mini                 rfree-md-hidden_nonfit     n= 15 exp= 15 fol=  0 fol|exp=  0 distinct=  5 pf= 0 correct= 15 fidx={} route_before=0
+gpt-5.4-mini                 rfree-raw-hidden_fit       n= 15 exp= 15 fol=  0 fol|exp=  0 distinct=  5 pf= 0 correct= 15 fidx={} route_before=0
+gpt-5.4-mini                 rfree-raw-hidden_nonfit    n= 15 exp= 15 fol=  0 fol|exp=  0 distinct=  5 pf= 0 correct= 15 fidx={} route_before=0
+gpt-5.4-mini                 rstuck-md-hidden_fit       n= 15 exp= 15 fol= 15 fol|exp= 15 distinct=  5 pf= 0 correct= 15 fidx={2: 15} route_before=15
+gpt-5.4-mini                 rstuck-md-hidden_nonfit    n= 15 exp= 15 fol= 12 fol|exp= 12 distinct= 15 pf= 0 correct= 12 fidx={2: 2, 3: 2, 4: 4, 5: 3, 6: 1} route_before=12
+gpt-5.4-mini                 rstuck-raw-hidden_fit      n= 15 exp= 15 fol= 15 fol|exp= 15 distinct=  5 pf= 0 correct= 15 fidx={2: 15} route_before=15
+gpt-5.4-mini                 rstuck-raw-hidden_nonfit   n= 15 exp= 15 fol= 14 fol|exp= 14 distinct= 13 pf= 0 correct= 14 fidx={3: 2, 4: 8, 5: 3, 6: 1} route_before=14
+gpt-5.4-mini                 stuck-a11y-hidden_fit      n= 10 exp=  0 fol=  0 fol|exp=  0 distinct=  9 pf= 0 correct=  0 fidx={} route_before=0
+gpt-5.4-mini                 stuck-a11y-hidden_nonfit   n= 10 exp=  0 fol=  0 fol|exp=  0 distinct=  9 pf= 0 correct=  0 fidx={} route_before=0
+gpt-5.4-mini                 stuck-a11y-sronly_fit      n= 10 exp=  9 fol=  9 fol|exp=  9 distinct=  4 pf= 0 correct=  9 fidx={2: 7, 3: 2} route_before=2
+gpt-5.4-mini                 stuck-md-hidden_fit        n= 30 exp= 30 fol= 30 fol|exp= 30 distinct=  4 pf= 0 correct= 30 fidx={2: 24, 3: 6} route_before=6
+gpt-5.4-mini                 stuck-md-hidden_nonfit     n= 30 exp= 30 fol= 19 fol|exp= 19 distinct= 18 pf= 0 correct= 19 fidx={4: 10, 5: 4, 6: 4, 7: 1} route_before=19
+gpt-5.4-mini                 stuck-md-visible_fit       n= 30 exp= 30 fol= 30 fol|exp= 30 distinct=  4 pf= 1 correct= 30 fidx={2: 22, 3: 8} route_before=8
+gpt-5.4-mini                 stuck-raw-hidden_fit       n= 30 exp= 30 fol= 29 fol|exp= 29 distinct=  3 pf= 0 correct= 29 fidx={2: 28, 3: 1} route_before=1
+gpt-5.4-mini                 stuck-raw-hidden_nonfit    n= 30 exp= 30 fol= 25 fol|exp= 25 distinct= 20 pf= 0 correct= 25 fidx={4: 10, 5: 4, 6: 10, 7: 1} route_before=25
+gpt-5.4-mini                 stuck-raw-nolink           n= 10 exp=  0 fol=  0 fol|exp=  0 distinct= 10 pf= 0 correct=  0 fidx={} route_before=0
+gpt-5.4-mini                 stuck-raw-visible_fit      n= 30 exp= 30 fol= 30 fol|exp= 30 distinct=  2 pf= 0 correct= 30 fidx={2: 29, 3: 1} route_before=1
+gpt-5.4-nano                 rfree-md-hidden_fit        n= 15 exp= 15 fol=  0 fol|exp=  0 distinct=  5 pf= 0 correct= 15 fidx={} route_before=0
+gpt-5.4-nano                 rfree-md-hidden_nonfit     n= 15 exp= 14 fol=  0 fol|exp=  0 distinct=  6 pf= 0 correct= 14 fidx={} route_before=0
+gpt-5.4-nano                 rfree-raw-hidden_fit       n= 15 exp= 15 fol=  0 fol|exp=  0 distinct=  6 pf= 0 correct= 15 fidx={} route_before=0
+gpt-5.4-nano                 rfree-raw-hidden_nonfit    n= 15 exp= 14 fol=  0 fol|exp=  0 distinct=  7 pf= 0 correct= 14 fidx={} route_before=0
+gpt-5.4-nano                 rstuck-md-hidden_fit       n= 15 exp= 15 fol= 15 fol|exp= 15 distinct=  6 pf= 0 correct= 15 fidx={2: 15} route_before=15
+gpt-5.4-nano                 rstuck-md-hidden_nonfit    n= 15 exp= 14 fol=  0 fol|exp=  0 distinct= 13 pf= 0 correct=  0 fidx={} route_before=0
+gpt-5.4-nano                 rstuck-raw-hidden_fit      n= 15 exp= 12 fol= 12 fol|exp= 12 distinct=  9 pf= 0 correct= 12 fidx={2: 12} route_before=12
+gpt-5.4-nano                 rstuck-raw-hidden_nonfit   n= 15 exp= 15 fol=  0 fol|exp=  0 distinct= 15 pf= 0 correct=  0 fidx={} route_before=0
+gpt-5.4-nano                 stuck-a11y-hidden_fit      n= 10 exp=  0 fol=  0 fol|exp=  0 distinct= 10 pf= 0 correct=  0 fidx={} route_before=0
+gpt-5.4-nano                 stuck-a11y-hidden_nonfit   n= 10 exp=  0 fol=  0 fol|exp=  0 distinct= 10 pf= 0 correct=  0 fidx={} route_before=0
+gpt-5.4-nano                 stuck-a11y-sronly_fit      n= 10 exp= 10 fol= 10 fol|exp= 10 distinct=  1 pf= 0 correct= 10 fidx={2: 10} route_before=0
+gpt-5.4-nano                 stuck-md-hidden_fit        n= 30 exp= 30 fol= 30 fol|exp= 30 distinct=  6 pf= 0 correct= 30 fidx={2: 30} route_before=0
+gpt-5.4-nano                 stuck-md-hidden_nonfit     n= 30 exp= 29 fol=  2 fol|exp=  2 distinct= 24 pf= 0 correct=  1 fidx={5: 1, 7: 1} route_before=2
+gpt-5.4-nano                 stuck-md-visible_fit       n= 30 exp= 30 fol= 30 fol|exp= 30 distinct=  4 pf= 0 correct= 29 fidx={2: 30} route_before=0
+gpt-5.4-nano                 stuck-raw-hidden_fit       n= 30 exp= 29 fol= 29 fol|exp= 29 distinct=  9 pf= 0 correct= 29 fidx={2: 19, 3: 10} route_before=10
+gpt-5.4-nano                 stuck-raw-hidden_nonfit    n= 30 exp= 30 fol=  0 fol|exp=  0 distinct= 26 pf= 0 correct=  0 fidx={} route_before=0
+gpt-5.4-nano                 stuck-raw-nolink           n= 10 exp=  0 fol=  0 fol|exp=  0 distinct= 10 pf= 0 correct=  0 fidx={} route_before=0
+gpt-5.4-nano                 stuck-raw-visible_fit      n= 30 exp= 29 fol= 29 fol|exp= 29 distinct=  4 pf= 0 correct= 29 fidx={2: 29} route_before=0
+
+TITLE cell: 360 runs, 358 exposed
+  gemini-3.1-flash-lite        hidden_fit     60/60
+  gemini-3.1-flash-lite        hidden_nonfit  8/60
+  gpt-5.4-mini                 hidden_fit     59/60
+  gpt-5.4-mini                 hidden_nonfit  44/60
+  gpt-5.4-nano                 hidden_fit     59/59
+  gpt-5.4-nano                 hidden_nonfit  2/59
+TITLE (frozen, exposed): gap +0.6943 CI [+0.6500, +0.7387] -> CONFIRMED (Yes); per agent gemini-3.1-flash-lite:+0.867, gpt-5.4-mini:+0.250, gpt-5.4-nano:+0.966
+  all runs (exposed or not): gap +0.6889 CI [+0.6444, +0.7333] -> CONFIRMED (Yes); per agent gemini-3.1-flash-lite:+0.867, gpt-5.4-mini:+0.250, gpt-5.4-nano:+0.950
+  view raw: gap +0.6556 CI [+0.5889, +0.7111] -> CONFIRMED (Yes); per agent gemini-3.1-flash-lite:+0.833, gpt-5.4-mini:+0.133, gpt-5.4-nano:+1.000
+  view md: gap +0.7326 CI [+0.6766, +0.7881] -> CONFIRMED (Yes); per agent gemini-3.1-flash-lite:+0.900, gpt-5.4-mini:+0.367, gpt-5.4-nano:+0.931
+  leave out gemini-3.1-flash-lite: gap +0.6081 CI [+0.5580, +0.6583] -> CONFIRMED (Yes); per agent gpt-5.4-mini:+0.250, gpt-5.4-nano:+0.966
+  leave out gpt-5.4-mini: gap +0.9164 CI [+0.8727, +0.9582] -> CONFIRMED (Yes); per agent gemini-3.1-flash-lite:+0.867, gpt-5.4-nano:+0.966
+  leave out gpt-5.4-nano: gap +0.5583 CI [+0.5000, +0.6167] -> CONFIRMED (Yes); per agent gemini-3.1-flash-lite:+0.867, gpt-5.4-mini:+0.250
+
+per template gap (agents pooled equal weight):
+  api      +0.750
+  hotel    +0.581
+  pricing  +0.639
+  school   +0.611
+  transit  +0.889
+
+run-level bootstrap row (agent x template x arm): CI [+0.6497, +0.7333]
+shuffled-anchor null (labels permuted within agent x template x view, 5000): obs +0.6943, null mean +0.0009, null 97.5% +0.1007, P(null >= obs - 1e-9) = 0.0000
+
+LAW ratio R(view) = mean_agents hidden_fit / mean_agents visible_fit (STUCK, exposed), cluster bootstrap:
+  raw: hidden_fit 0.989 visible_fit 1.000 R 0.989 CI [0.967, 1.000]
+  md: hidden_fit 1.000 visible_fit 1.000 R 1.000 CI [1.000, 1.000]
+
+NOT-STUCK hidden follow (both anchors, raw+md, exposed), agents equal weight:
+controls (all runs, follow / n):
+  stuck-raw-nolink           follow 0/30 exposed 0
+  stuck-a11y-hidden_fit      follow 0/30 exposed 0
+  stuck-a11y-hidden_nonfit   follow 0/30 exposed 0
+  stuck-a11y-sronly_fit      follow 29/30 exposed 29
+
+scout: fit 0.994 (>=.40?) nonfit 0.300 (<=.10?) gap +0.694 (>=.30?); a11y-dn 0/60 (<=5%?)
+
+ROUTE-START block (start page = route page):
+  rstuck hidden_fit     gemini-lite:30/30, gpt-mini:30/30, gpt-nano:27/27 | mean 1.0000
+  rstuck hidden_nonfit  gemini-lite:8/30, gpt-mini:26/30, gpt-nano:0/29 | mean 0.3778
+  rfree  hidden_fit     gemini-lite:0/30, gpt-mini:0/30, gpt-nano:0/30 | mean 0.0000
+  rfree  hidden_nonfit  gemini-lite:0/30, gpt-mini:0/30, gpt-nano:0/28 | mean 0.0000
+  NEED TERM (frozen D3): IN-HAND hidden follow, both anchors, raw+md, agents equal weight = 0.0000 -> <= 5%: only-when-stuck holds on links
+  STUCK-KNOWN minus IN-HAND, hidden_fit: +1.0000 CI [+1.0000, +1.0000]
+  STUCK-KNOWN minus IN-HAND, hidden_nonfit: +0.3778 CI [+0.3333, +0.4222]
+  ROUTE-START STUCK-KNOWN fit-minus-nonfit: gap +0.6222 CI [+0.5778, +0.6667] -> CONFIRMED (Yes); per agent gemini-3.1-flash-lite:+0.733, gpt-5.4-mini:+0.133, gpt-5.4-nano:+1.000

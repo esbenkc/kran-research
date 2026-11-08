@@ -1,0 +1,7 @@
+1. off-task hidden link, follow rate by view (agents equal weight):
+  stuck  raw 0.333 md 0.267 diff +0.066; two-sided perm P = 0.2118; per agent raw f/n, md f/n: {'gemini-3.1-flash-lite': (5, 30, 3, 30), 'gpt-5.4-mini': (25, 30, 19, 30), 'gpt-5.4-nano': (0, 30, 2, 29)}
+  rstuck raw 0.467 md 0.289 diff +0.178; two-sided perm P = 0.0184; per agent raw f/n, md f/n: {'gemini-3.1-flash-lite': (7, 15, 1, 15), 'gpt-5.4-mini': (14, 15, 12, 15), 'gpt-5.4-nano': (0, 15, 0, 14)}
+  both   raw 0.378 md 0.275 diff +0.103; two-sided perm P = 0.0094; per agent raw f/n, md f/n: {'gemini-3.1-flash-lite': (12, 45, 4, 45), 'gpt-5.4-mini': (39, 45, 31, 45), 'gpt-5.4-nano': (0, 45, 2, 43)}
+2. split-half title gap (STUCK, hidden arms, raw+md, exposed):
+  paraphrase 0-2: fit 0.989 nonfit 0.345 gap +0.644 (n=178)
+  paraphrase 3-5: fit 1.000 nonfit 0.256 gap +0.744 (n=180)

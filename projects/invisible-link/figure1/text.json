@@ -1,6 +1,6 @@
 {
- "head": "AI agents opened a link hidden from people when its words promised what they still needed",
- "sub": "<b>Question: do AI browsing agents follow a hidden link more often when its words fit their task? Yes.</b> They opened the fitting hidden link in {fit}% of runs, about as often as a visible one, and an off-task one in {non}%. Once the page showed the answer, {ih_k} of {ih_n} runs opened it.",
+ "head": "AI agents followed a link hidden from people when its words promised what they still needed",
+ "sub": "<b>Question: do AI browsing agents follow a hidden link more often when its words fit their task? Yes.</b> When the answer was only behind the link, they followed it in {fit}% of runs if its words fit the task (a visible copy: {vis}%) and in {non}% if they did not. Once the page showed the answer, {ih_k} of {ih_n} runs followed it.",
  "start": "{model} starts on the site&rsquo;s Plans page. Three runs, each with one change:",
  "lab_person": "What a person sees",
  "person_table": "2024 prices: &hellip; Team {team24} &hellip;",
@@ -23,12 +23,12 @@
    "clearly states"
   ]
  },
- "act_A": "opens the hidden link",
- "act_B": "answers the 2024 price, never opens it",
- "act_C": "answers {team25}, never opens it",
+ "act_A": "follows the hidden link",
+ "act_B": "answers the 2024 price, never follows it",
+ "act_C": "answers {team25}, never follows it",
  "log_lab": "server log:",
  "log_none": "server log: no visit to the link",
- "chart_title": "All {n_models} agents <span>&middot; share of runs that opened the extra link</span>",
+ "chart_title": "All {n_models} agents <span>&middot; share of runs that followed the hidden link</span>",
  "grp_title": "Start page, answer only behind the link",
  "grp_stuck": "Price page without the 2025 figure",
  "grp_hand": "Price page that shows the 2025 figure",
@@ -40,5 +40,5 @@
   "B": "a specific 2025 page."
  },
  "task_lab": "Task:",
- "vis_note": "the same link, visible: {vis}%"
+ "vis_note": "a visible copy of the fitting link: {vis}%"
 }

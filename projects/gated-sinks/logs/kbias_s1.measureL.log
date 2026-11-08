@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1108-gated-sinks/kran-research/projects/gated-sinks/grid_wait.py", line 95, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/theory-1108-gated-sinks/kran-research/projects/gated-sinks/grid_wait.py", line 88, in main
+    assert step is not None and gap <= 0.01, (run, step, loss, gap)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('kbias_s1', 700, 2.9608700275421143, 0.015096847226162)

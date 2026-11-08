@@ -1,0 +1,109 @@
+{
+ "name": "softmax_s3",
+ "attn": "softmax",
+ "seed": 3,
+ "args": {
+  "attn": "softmax",
+  "seed": 3,
+  "target": 3.006255,
+  "max_steps": 36000,
+  "batch": 64,
+  "lr": 0.003,
+  "wd": 0.5,
+  "warmup": 200,
+  "eval_every": 100,
+  "gate_bias": 0.0,
+  "d": 64,
+  "layers": 4,
+  "heads": 4,
+  "name": "softmax_s3",
+  "markers": false,
+  "organism": "sc",
+  "burst": 3,
+  "n_trig": 32,
+  "n_copy": 0,
+  "beta": 4.0,
+  "p_repeat": 0.5,
+  "stop_file": null,
+  "save_every_eval": true
+ },
+ "gen": {
+  "organism": "sc",
+  "vocab": 128,
+  "n_lat": 64,
+  "k_active": 3,
+  "boost_tokens": 6,
+  "beta": 4.0,
+  "base_std": 0.5,
+  "seq_len": 128,
+  "world_seed": 1234,
+  "p_repeat": 0.5,
+  "n_spans": 2,
+  "span": 8,
+  "markers": false,
+  "p_trig": 0.1,
+  "burst": 3,
+  "n_trig": 32,
+  "n_copy": 0,
+  "p_copy": 0.05,
+  "n_filler": 64,
+  "filler_alpha": 0.1,
+  "n_keys": 16,
+  "n_pairs": 6
+ },
+ "model": {
+  "n_tokens": 225,
+  "d": 64,
+  "n_layers": 4,
+  "n_heads": 4,
+  "d_mlp": 256,
+  "seq_len": 128,
+  "attn": "softmax",
+  "gate_bias_init": 0.0
+ },
+ "n_params": 225984,
+ "stop_step": 600,
+ "reached_target": true,
+ "final_eval": 2.985113203525543,
+ "history": [
+  {
+   "step": 100,
+   "train": 3.8078532218933105,
+   "eval": 3.7610867023468018,
+   "sec": 11.0
+  },
+  {
+   "step": 200,
+   "train": 3.2104713916778564,
+   "eval": 3.1741256713867188,
+   "sec": 21.5
+  },
+  {
+   "step": 300,
+   "train": 3.034005641937256,
+   "eval": 3.0962480902671814,
+   "sec": 32.1
+  },
+  {
+   "step": 400,
+   "train": 3.085770606994629,
+   "eval": 3.0677379965782166,
+   "sec": 42.7
+  },
+  {
+   "step": 500,
+   "train": 3.0387446880340576,
+   "eval": 3.053775906562805,
+   "sec": 53.4
+  },
+  {
+   "step": 600,
+   "train": 3.0164148807525635,
+   "eval": 2.985113203525543,
+   "sec": 64.2
+  }
+ ],
+ "eval_seed": 999000,
+ "eval_n": 512,
+ "sec": 64.2
+}

@@ -1,0 +1,7 @@
+07:32:29 start while [ ! -f results/Lstar.txt ]; do sleep 10; done
+07:33:09 end rc=0 while [ ! -f results/Lstar.txt ]; do sleep 10; done
+07:33:09 start uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --attn softmax --seed 3 --target $(cat results/Lstar.txt) --max-steps 36000 --name softmax_s3 > logs/softmax_s3.train.log 2>&1
+07:34:13 end rc=0 uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --attn softmax --seed 3 --target $(cat results/Lstar.txt) --max-steps 36000 --name softmax_s3 > logs/softmax_s3.train.log 2>&1
+07:34:13 start uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --attn softmax --seed 4 --target $(cat results/Lstar.txt) --max-steps 36000 --name softmax_s4 > logs/softmax_s4.train.log 2>&1
+07:35:18 end rc=0 uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --attn softmax --seed 4 --target $(cat results/Lstar.txt) --max-steps 36000 --name softmax_s4 > logs/softmax_s4.train.log 2>&1
+lane D done

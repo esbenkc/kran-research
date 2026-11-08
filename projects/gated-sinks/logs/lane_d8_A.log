@@ -1,0 +1,7 @@
+07:36:55 start uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn gated --seed 0 --name gated_s0 > logs/gated_s0.train.log 2>&1
+08:02:14 end rc=0 uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn gated --seed 0 --name gated_s0 > logs/gated_s0.train.log 2>&1
+08:02:14 start uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn kbias --seed 0 --name kbias_s0 > logs/kbias_s0.train.log 2>&1
+08:37:07 end rc=0 uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn kbias --seed 0 --name kbias_s0 > logs/kbias_s0.train.log 2>&1
+08:37:07 start uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn sinklogit --seed 0 --name sinklogit_s0 > logs/sinklogit_s0.train.log 2>&1
+08:48:08 end rc=0 uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn sinklogit --seed 0 --name sinklogit_s0 > logs/sinklogit_s0.train.log 2>&1
+lane d8_A done

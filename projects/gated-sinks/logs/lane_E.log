@@ -1,0 +1,1 @@
+07:35:29 start uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --save-every-eval --attn softmax --seed 1 --eval-every 10 --target $(cat results/Lstar.txt) --max-steps 36000 --name softmax_s1 > logs/softmax_s1.train.log 2>&1

@@ -1,0 +1,70 @@
+{
+ "name": "searchSA_d64",
+ "attn": "softmax",
+ "seed": 0,
+ "gen": {
+  "organism": "sa",
+  "vocab": 128,
+  "n_lat": 64,
+  "k_active": 3,
+  "boost_tokens": 6,
+  "beta": 2.0,
+  "base_std": 0.5,
+  "seq_len": 128,
+  "world_seed": 1234,
+  "p_repeat": 0.5,
+  "n_spans": 2,
+  "span": 8,
+  "markers": false,
+  "p_trig": 0.1,
+  "n_filler": 64,
+  "filler_alpha": 0.1,
+  "n_keys": 16,
+  "n_pairs": 6
+ },
+ "model": {
+  "n_tokens": 161,
+  "d": 64,
+  "n_layers": 4,
+  "n_heads": 4,
+  "d_mlp": 256,
+  "seq_len": 128,
+  "attn": "softmax",
+  "gate_bias_init": 0.0
+ },
+ "stop_step": null,
+ "history": [
+  {
+   "step": 200,
+   "train": 4.33432674407959,
+   "eval": 4.32809317111969,
+   "sec": 21.0
+  },
+  {
+   "step": 400,
+   "train": 4.167703628540039,
+   "eval": 4.2266926765441895,
+   "sec": 37.9
+  },
+  {
+   "step": 600,
+   "train": 4.113837718963623,
+   "eval": 4.185557246208191,
+   "sec": 55.0
+  },
+  {
+   "step": 800,
+   "train": 4.0699334144592285,
+   "eval": 4.148144960403442,
+   "sec": 71.9
+  },
+  {
+   "step": 1000,
+   "train": 4.142900466918945,
+   "eval": 4.129226922988892,
+   "sec": 88.7
+  }
+ ],
+ "running": true,
+ "stub_by": "bruno from train log"
+}

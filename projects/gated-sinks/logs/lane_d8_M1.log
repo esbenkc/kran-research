@@ -1,0 +1,9 @@
+07:36:55 start uv run python grid_wait.py measure_at softmax_s0 12000 --layer 2 --save-train 512 --bayes > logs/softmax_s0.measure12k.log 2>&1
+07:40:29 end rc=0 uv run python grid_wait.py measure_at softmax_s0 12000 --layer 2 --save-train 512 --bayes > logs/softmax_s0.measure12k.log 2>&1
+07:40:29 start uv run python grid_wait.py measure_at softmax_s2 12000 --layer 2 --save-train 512 > logs/softmax_s2.measure12k.log 2>&1
+07:42:15 end rc=0 uv run python grid_wait.py measure_at softmax_s2 12000 --layer 2 --save-train 512 > logs/softmax_s2.measure12k.log 2>&1
+07:42:16 start uv run python grid_wait.py measure_at gated_s1 12000 --layer 2 --save-train 512 > logs/gated_s1.measure12k.log 2>&1
+08:04:39 end rc=0 uv run python grid_wait.py measure_at gated_s1 12000 --layer 2 --save-train 512 > logs/gated_s1.measure12k.log 2>&1
+08:04:39 start uv run python grid_wait.py measure_at softmax_s3 12000 --layer 2 --save-train 512 > logs/softmax_s3.measure12k.log 2>&1
+08:06:46 end rc=0 uv run python grid_wait.py measure_at softmax_s3 12000 --layer 2 --save-train 512 > logs/softmax_s3.measure12k.log 2>&1
+08:06:46 start uv run python grid_wait.py measure_at kbias_s1 12000 --layer 2 --save-train 512 > logs/kbias_s1.measure12k.log 2>&1

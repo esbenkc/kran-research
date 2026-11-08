@@ -1,0 +1,47 @@
+08:07:34 start uv run python grid_wait.py measure_at gated_s0 12000 --layer 4 > logs/gated_s0.measure12k_L4.log 2>&1
+08:09:42 end rc=0 uv run python grid_wait.py measure_at gated_s0 12000 --layer 4 > logs/gated_s0.measure12k_L4.log 2>&1
+08:09:42 start uv run python grid_wait.py measure_at gated_s2 12000 --layer 4 > logs/gated_s2.measure12k_L4.log 2>&1
+08:11:47 end rc=0 uv run python grid_wait.py measure_at gated_s2 12000 --layer 4 > logs/gated_s2.measure12k_L4.log 2>&1
+08:11:47 start uv run python grid_wait.py measure softmax_s2 --layer 2 > logs/softmax_s2.measureL.log 2>&1
+08:13:59 end rc=0 uv run python grid_wait.py measure softmax_s2 --layer 2 > logs/softmax_s2.measureL.log 2>&1
+08:13:59 start uv run python grid_wait.py measure gated_s1 --layer 2 > logs/gated_s1.measureL.log 2>&1
+08:16:05 end rc=0 uv run python grid_wait.py measure gated_s1 --layer 2 > logs/gated_s1.measureL.log 2>&1
+08:16:05 start uv run python grid_wait.py measure softmax_s3 --layer 2 > logs/softmax_s3.measureL.log 2>&1
+08:18:11 end rc=0 uv run python grid_wait.py measure softmax_s3 --layer 2 > logs/softmax_s3.measureL.log 2>&1
+08:18:11 start uv run python grid_wait.py measure softmax_s4_fine --layer 2 > logs/softmax_s4_fine.measureL.log 2>&1
+08:20:19 end rc=0 uv run python grid_wait.py measure softmax_s4_fine --layer 2 > logs/softmax_s4_fine.measureL.log 2>&1
+08:20:19 start uv run python measure.py --run gated_s0 --untrained --layer 2 > logs/gated_s0.untrained.log 2>&1
+08:22:29 end rc=0 uv run python measure.py --run gated_s0 --untrained --layer 2 > logs/gated_s0.untrained.log 2>&1
+08:22:29 start uv run python measure.py --run softmax_s0 --untrained --layer 0 --tag embed_L0 > logs/softmax_s0.embed.log 2>&1
+08:24:37 end rc=0 uv run python measure.py --run softmax_s0 --untrained --layer 0 --tag embed_L0 > logs/softmax_s0.embed.log 2>&1
+08:24:37 start uv run python measure.py --run gated_s0 --ckpt 12000 --layer 2 --rmsnorm > logs/gated_s0.rms.log 2>&1
+08:26:43 end rc=0 uv run python measure.py --run gated_s0 --ckpt 12000 --layer 2 --rmsnorm > logs/gated_s0.rms.log 2>&1
+08:26:43 start uv run python measure.py --run gated_s1 --ckpt 12000 --layer 2 --rmsnorm > logs/gated_s1.rms.log 2>&1
+08:28:50 end rc=0 uv run python measure.py --run gated_s1 --ckpt 12000 --layer 2 --rmsnorm > logs/gated_s1.rms.log 2>&1
+08:28:50 start uv run python measure.py --run gated_s2 --ckpt 12000 --layer 2 --rmsnorm > logs/gated_s2.rms.log 2>&1
+08:30:57 end rc=0 uv run python measure.py --run gated_s2 --ckpt 12000 --layer 2 --rmsnorm > logs/gated_s2.rms.log 2>&1
+08:30:57 start uv run python measure.py --run softmax_s0 --ckpt 12000 --layer 2 --k 16 > logs/softmax_s0.k16.log 2>&1
+08:32:59 end rc=0 uv run python measure.py --run softmax_s0 --ckpt 12000 --layer 2 --k 16 > logs/softmax_s0.k16.log 2>&1
+08:32:59 start uv run python measure.py --run gated_s0 --ckpt 12000 --layer 2 --k 16 > logs/gated_s0.k16.log 2>&1
+08:34:46 end rc=0 uv run python measure.py --run gated_s0 --ckpt 12000 --layer 2 --k 16 > logs/gated_s0.k16.log 2>&1
+08:34:46 start uv run python grid_wait.py measure_at kbias_s0 12000 --layer 2 --save-train 512 > logs/kbias_s0.measure12k.log 2>&1
+08:38:25 end rc=0 uv run python grid_wait.py measure_at kbias_s0 12000 --layer 2 --save-train 512 > logs/kbias_s0.measure12k.log 2>&1
+08:38:25 start uv run python grid_wait.py measure_at softmax_s4 12000 --layer 2 --save-train 512 > logs/softmax_s4.measure12k.log 2>&1
+08:39:34 end rc=0 uv run python grid_wait.py measure_at softmax_s4 12000 --layer 2 --save-train 512 > logs/softmax_s4.measure12k.log 2>&1
+08:39:34 start uv run python grid_wait.py measure_at sinklogit_s0 12000 --layer 2 --save-train 512 > logs/sinklogit_s0.measure12k.log 2>&1
+08:49:00 end rc=0 uv run python grid_wait.py measure_at sinklogit_s0 12000 --layer 2 --save-train 512 > logs/sinklogit_s0.measure12k.log 2>&1
+08:49:00 start uv run python grid_wait.py measure_at kbias_s0 12000 --layer 4 > logs/kbias_s0.measure12k_L4.log 2>&1
+08:49:41 end rc=0 uv run python grid_wait.py measure_at kbias_s0 12000 --layer 4 > logs/kbias_s0.measure12k_L4.log 2>&1
+08:49:41 start uv run python grid_wait.py measure_at softmax_s4 12000 --layer 4 > logs/softmax_s4.measure12k_L4.log 2>&1
+08:50:20 end rc=0 uv run python grid_wait.py measure_at softmax_s4 12000 --layer 4 > logs/softmax_s4.measure12k_L4.log 2>&1
+08:50:20 start uv run python grid_wait.py measure_at sinklogit_s0 12000 --layer 4 > logs/sinklogit_s0.measure12k_L4.log 2>&1
+08:50:57 end rc=0 uv run python grid_wait.py measure_at sinklogit_s0 12000 --layer 4 > logs/sinklogit_s0.measure12k_L4.log 2>&1
+08:50:57 start uv run python grid_wait.py measure kbias_s1 --layer 2 > logs/kbias_s1.measureL.log 2>&1
+08:50:57 end rc=0 uv run python grid_wait.py measure kbias_s1 --layer 2 > logs/kbias_s1.measureL.log 2>&1
+08:50:57 start uv run python measure.py --run softmax1_s0 --untrained --layer 2 > logs/softmax1_s0.untrained.log 2>&1
+08:51:32 end rc=0 uv run python measure.py --run softmax1_s0 --untrained --layer 2 > logs/softmax1_s0.untrained.log 2>&1
+08:51:32 start uv run python readout_layers.py gated_s0:12000 gated_s1:12000 gated_s2:12000 softmax_s3:12000 softmax_s4:12000 kbias_s0:12000 kbias_s1:12000 softmax1_s0:12000 sinklogit_s0:12000 > logs/readout_layers.log 2>&1
+08:51:44 end rc=0 uv run python readout_layers.py gated_s0:12000 gated_s1:12000 gated_s2:12000 softmax_s3:12000 softmax_s4:12000 kbias_s0:12000 kbias_s1:12000 softmax1_s0:12000 sinklogit_s0:12000 > logs/readout_layers.log 2>&1
+08:51:44 start uv run python loss_vs_bayes.py softmax_s0:12000 softmax_s1:12000 softmax_s2:12000 gated_s0:12000 gated_s1:12000 gated_s2:12000 softmax_s3:12000 softmax_s4:12000 kbias_s0:12000 kbias_s1:12000 softmax1_s0:12000 sinklogit_s0:12000 > logs/loss_vs_bayes12k.log 2>&1
+08:52:44 end rc=0 uv run python loss_vs_bayes.py softmax_s0:12000 softmax_s1:12000 softmax_s2:12000 gated_s0:12000 gated_s1:12000 gated_s2:12000 softmax_s3:12000 softmax_s4:12000 kbias_s0:12000 kbias_s1:12000 softmax1_s0:12000 sinklogit_s0:12000 > logs/loss_vs_bayes12k.log 2>&1
+lane d8_M2b done

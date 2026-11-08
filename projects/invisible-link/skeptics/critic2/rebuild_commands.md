@@ -1,0 +1,460 @@
+# critic2 rebuild code, recovered verbatim from its omp session transcript
+
+Source: ~/odin-context/swarms/defense-1108-invisible-link/sessions/critic2/2026-11-08T07-50-25-043Z_01a1ba23-...jsonl
+(model openai/gpt-5.5). critic2 had no write tool, so its code ran as inline `python3 -c` bash calls.
+Extracted by Bruno (build) with a JSONL parser; every command and output below is critic2's, unedited.
+Run from /Users/esben/work/defense-1108-invisible-link (paths are relative to that folder).
+
+## Call 1
+
+```sh
+python3 -c 'import json,collections,statistics,math,random; p="kran-research/projects/invisible-link/results/scores_counted.jsonl"; rows=[json.loads(l) for l in open(p)]; agents=["gpt-5.4-nano","gpt-5.4-mini","gemini-3.1-flash-lite"]; title=[r for r in rows if r["model"] in agents and r["cell"] in {"stuck-md-hidden_fit","stuck-raw-hidden_fit","stuck-md-hidden_nonfit","stuck-raw-hidden_nonfit"} and r["exposed"]]; print("title exposed",len(title),"unexposed",sum(1 for r in rows if r["model"] in agents and r["cell"] in {"stuck-md-hidden_fit","stuck-raw-hidden_fit","stuck-md-hidden_nonfit","stuck-raw-hidden_nonfit"} and not r["exposed"])); rates={}; counts={};
+for a in agents:
+ for kind,cells in [("fit",{"stuck-md-hidden_fit","stuck-raw-hidden_fit"}),("off",{"stuck-md-hidden_nonfit","stuck-raw-hidden_nonfit"})]:
+  s=[r for r in title if r["model"]==a and r["cell"] in cells]; counts[(a,kind)]=(sum(r["followed"] for r in s),len(s)); rates[(a,kind)]=sum(r["followed"] for r in s)/len(s)
+print("counts",counts); print("rates",{k:round(v,4) for k,v in rates.items()}); fit=sum(rates[(a,"fit")] for a in agents)/3; off=sum(rates[(a,"off")] for a in agents)/3; print("fit off gap",fit,off,fit-off); print("raw off/fit",[(c,sum(r["followed"] for r in title if r["cell"]==c),sum(1 for r in title if r["cell"]==c)) for c in sorted({r["cell"] for r in title})]);
+# need term, a11y, visible, timing
+for prefix in ["rfree","rstuck"]:
+ for kind in ["hidden_fit","hidden_nonfit"]:
+  s=[r for r in rows if r["model"] in agents and r["cell"].startswith(prefix) and r["cell"].endswith(kind) and r["exposed"]]; print(prefix,kind,sum(r["followed"] for r in s),len(s))
+for cell in ["stuck-a11y-hidden_fit","stuck-a11y-hidden_nonfit","stuck-a11y-sronly_fit","stuck-raw-visible_fit","stuck-md-visible_fit","stuck-raw-nolink"]:
+ s=[r for r in rows if r["model"] in agents and r["cell"]==cell]; ex=[r for r in s if r["exposed"]]; print(cell,"follow",sum(r["followed"] for r in s),len(s),"exposed",len(ex),"follow/exposed",sum(r["followed"] for r in ex),len(ex))
+print("first after home fit",sum(1 for r in title if r["cell"].endswith("hidden_fit") and r["followed"] and r["follow_fetch_index"]==2),sum(1 for r in title if r["cell"].endswith("hidden_fit") and r["followed"])); print("off follows",sum(1 for r in title if r["cell"].endswith("hidden_nonfit") and r["followed"]))'
+```
+
+Output:
+
+```
+title exposed 358 unexposed 2
+counts {('gpt-5.4-nano', 'fit'): (59, 59), ('gpt-5.4-nano', 'off'): (2, 59), ('gpt-5.4-mini', 'fit'): (59, 60), ('gpt-5.4-mini', 'off'): (44, 60), ('gemini-3.1-flash-lite', 'fit'): (60, 60), ('gemini-3.1-flash-lite', 'off'): (8, 60)}
+rates {('gpt-5.4-nano', 'fit'): 1.0, ('gpt-5.4-nano', 'off'): 0.0339, ('gpt-5.4-mini', 'fit'): 0.9833, ('gpt-5.4-mini', 'off'): 0.7333, ('gemini-3.1-flash-lite', 'fit'): 1.0, ('gemini-3.1-flash-lite', 'off'): 0.1333}
+fit off gap 0.9944444444444445 0.30018832391713746 0.694256120527307
+raw off/fit [('stuck-md-hidden_fit', 90, 90), ('stuck-md-hidden_nonfit', 24, 89), ('stuck-raw-hidden_fit', 88, 89), ('stuck-raw-hidden_nonfit', 30, 90)]
+rfree hidden_fit 0 90
+rfree hidden_nonfit 0 88
+rstuck hidden_fit 87 87
+rstuck hidden_nonfit 34 89
+stuck-a11y-hidden_fit follow 0 30 exposed 0 follow/exposed 0 0
+stuck-a11y-hidden_nonfit follow 0 30 exposed 0 follow/exposed 0 0
+stuck-a11y-sronly_fit follow 29 30 exposed 29 follow/exposed 29 29
+stuck-raw-visible_fit follow 89 90 exposed 89 follow/exposed 89 89
+stuck-md-visible_fit follow 90 90 exposed 90 follow/exposed 90 90
+stuck-raw-nolink follow 0 30 exposed 0 follow/exposed 0 0
+first after home fit 160 178
+off follows 54
+
+
+Wall time: 0.09 seconds
+```
+
+## Call 2
+
+```sh
+python3 -c 'import json,collections,random,statistics; rows=[json.loads(l) for l in open("kran-research/projects/invisible-link/results/scores_counted.jsonl")]; agents=["gpt-5.4-nano","gpt-5.4-mini","gemini-3.1-flash-lite"]; title=[r for r in rows if r["model"] in agents and r["cell"] in {"stuck-md-hidden_fit","stuck-raw-hidden_fit","stuck-md-hidden_nonfit","stuck-raw-hidden_nonfit"} and r["exposed"]]; clusters={};
+for a in agents:
+ clusters[a]={}
+ for r in title:
+  if r["model"]!=a: continue
+  clusters[a].setdefault(r["template"],{}).setdefault(r["paraphrase"],{}).setdefault("fit" if r["cell"].endswith("hidden_fit") else "off",[0,0]); k="fit" if r["cell"].endswith("hidden_fit") else "off"; clusters[a][r["template"]][r["paraphrase"]][k][0]+=int(r["followed"]); clusters[a][r["template"]][r["paraphrase"]][k][1]+=1
+
+def gap(sample=False):
+ vals=[]
+ for a in agents:
+  totals={"fit":[0,0],"off":[0,0]}
+  for t,ps in clusters[a].items():
+   keys=sorted(ps)
+   chosen=[random.choice(keys) for _ in keys] if sample else keys
+   for p in chosen:
+    for k,v in ps[p].items(): totals[k][0]+=v[0]; totals[k][1]+=v[1]
+  vals.append(totals["fit"][0]/totals["fit"][1]-totals["off"][0]/totals["off"][1])
+ return sum(vals)/len(vals)
+random.seed(0); ds=sorted(gap(True) for _ in range(10000)); print("gap",round(gap(False),4),"ci",round(ds[250],4),round(ds[9749],4))'
+```
+
+Output:
+
+```
+gap 0.6943 ci 0.65 0.7333
+
+
+Wall time: 0.48 seconds
+```
+
+## Call 3
+
+```sh
+node scripts/figure-lint.mjs assets/figures/invisible-link/plot.js
+```
+
+Output:
+
+```
+figure-lint: 1 plot.js file(s) OK
+
+
+Wall time: 0.15 seconds
+```
+
+## Call 4
+
+```sh
+python3 -c 'import urllib.request; urls=["https://deploy-preview-177--kranai.netlify.app/invisible-link/","https://deploy-preview-177--kranai.netlify.app/assets/figures/invisible-link-fig1/figure1.png","https://deploy-preview-177--kranai.netlify.app/assets/figures/invisible-link/data.json"]; [print(u, urllib.request.urlopen(u, timeout=10).status) for u in urls]'
+```
+
+Output:
+
+```
+https://deploy-preview-177--kranai.netlify.app/invisible-link/ 200
+https://deploy-preview-177--kranai.netlify.app/assets/figures/invisible-link-fig1/figure1.png 200
+https://deploy-preview-177--kranai.netlify.app/assets/figures/invisible-link/data.json 200
+
+
+Wall time: 0.95 seconds
+```
+
+## Call 5
+
+```sh
+python3 -c 'import json; d=json.load(open("blog.kran.ai/assets/figures/invisible-link/data.json")); print("title",d["answer"]); print("groups",[(g.get("label"),g.get("n_label"),[(r.get("view"),r.get("hidden_fit",{}).get("rate"),r.get("hidden_nonfit",{}).get("rate"),r.get("visible_fit",{}).get("rate"),r.get("hidden_fit",{}).get("n"),r.get("hidden_nonfit",{}).get("n")) for r in g.get("rows",[])]) for g in d["groups"]]);'
+```
+
+Output:
+
+```
+title {'verdict': 'Yes', 'gap': 0.6943, 'lo': 0.65, 'hi': 0.7333, 'yes_min': 0.05, 'no_max': 0.15, 'rule': 'Yes if the gap is at least +5 points and its 95% interval stays above 0; No if the interval stays under +15.'}
+groups [('Starts on the home page, the 2025 number is only behind the link', None, []), ('Starts on the page with the yearly table, which shows only 2024', None, []), ('Starts on the page with the yearly table, which shows 2025', None, []), ('Accessibility tree (what a screen reader gets)', None, [])]
+
+
+Wall time: 0.10 seconds
+```
+
+## Call 6
+
+```sh
+python3 -c 'import json,pprint; d=json.load(open("blog.kran.ai/assets/figures/invisible-link/data.json")); print(d.keys()); [print("GROUP",g.keys(),g.get("title") or g.get("name") or g.get("label"),g) for g in d["groups"][:1]]'
+```
+
+Output:
+
+```
+dict_keys(['title', 'phase', 'subtitle', 'answer', 'legend', 'law', 'law_band', 'law_reading_raw', 'gap_by_view', 'in_hand_hidden_rate', 'need_max', 'ancestor_band', 'groups', 'agents', 'rows', 'controls', 'draws', 'agent_dots'])
+GROUP dict_keys(['need', 'label']) Starts on the home page, the 2025 number is only behind the link {'need': 'stuck', 'label': 'Starts on the home page, the 2025 number is only behind the link'}
+
+
+Wall time: 0.08 seconds
+```
+
+## Call 7
+
+```sh
+python3 -c 'import json; d=json.load(open("blog.kran.ai/assets/figures/invisible-link/data.json"));
+for r in d["rows"]: print(r)'
+```
+
+Output:
+
+```
+{'need': 'stuck', 'view': 'raw', 'arm': 'hidden_nonfit', 'n': 90, 'exposed': 90, 'followed': 30, 'followed_all': 30, 'rate': 0.3333}
+{'need': 'stuck', 'view': 'raw', 'arm': 'hidden_fit', 'n': 90, 'exposed': 89, 'followed': 88, 'followed_all': 88, 'rate': 0.9889}
+{'need': 'stuck', 'view': 'raw', 'arm': 'visible_fit', 'n': 90, 'exposed': 89, 'followed': 89, 'followed_all': 89, 'rate': 1.0}
+{'need': 'stuck', 'view': 'md', 'arm': 'hidden_nonfit', 'n': 90, 'exposed': 89, 'followed': 24, 'followed_all': 24, 'rate': 0.2674}
+{'need': 'stuck', 'view': 'md', 'arm': 'hidden_fit', 'n': 90, 'exposed': 90, 'followed': 90, 'followed_all': 90, 'rate': 1.0}
+{'need': 'stuck', 'view': 'md', 'arm': 'visible_fit', 'n': 90, 'exposed': 90, 'followed': 90, 'followed_all': 90, 'rate': 1.0}
+{'need': 'rstuck', 'view': 'raw', 'arm': 'hidden_nonfit', 'n': 45, 'exposed': 45, 'followed': 21, 'followed_all': 21, 'rate': 0.4667}
+{'need': 'rstuck', 'view': 'raw', 'arm': 'hidden_fit', 'n': 45, 'exposed': 42, 'followed': 42, 'followed_all': 42, 'rate': 1.0}
+{'need': 'rstuck', 'view': 'md', 'arm': 'hidden_nonfit', 'n': 45, 'exposed': 44, 'followed': 13, 'followed_all': 13, 'rate': 0.2889}
+{'need': 'rstuck', 'view': 'md', 'arm': 'hidden_fit', 'n': 45, 'exposed': 45, 'followed': 45, 'followed_all': 45, 'rate': 1.0}
+{'need': 'rfree', 'view': 'raw', 'arm': 'hidden_nonfit', 'n': 45, 'exposed': 44, 'followed': 0, 'followed_all': 0, 'rate': 0.0}
+{'need': 'rfree', 'view': 'raw', 'arm': 'hidden_fit', 'n': 45, 'exposed': 45, 'followed': 0, 'followed_all': 0, 'rate': 0.0}
+{'need': 'rfree', 'view': 'md', 'arm': 'hidden_nonfit', 'n': 45, 'exposed': 44, 'followed': 0, 'followed_all': 0, 'rate': 0.0}
+{'need': 'rfree', 'view': 'md', 'arm': 'hidden_fit', 'n': 45, 'exposed': 45, 'followed': 0, 'followed_all': 0, 'rate': 0.0}
+
+
+Wall time: 0.07 seconds
+```
+
+## Call 8
+
+```sh
+python3 -c 'import json; d=json.load(open("kran-research/projects/invisible-link/results/cue_mentions.json")); keys=[k for k in d["by_cell"] if k.endswith("|stuck-raw-hidden_fit")]; print([(k,d["by_cell"][k]["mention"],d["by_cell"][k]["runs"],d["by_cell"][k]["named_at_or_before_follow"]) for k in sorted(keys)]); print("sum",sum(d["by_cell"][k]["mention"] for k in keys),sum(d["by_cell"][k]["runs"] for k in keys))'
+```
+
+Output:
+
+```
+[('gemini-3.1-flash-lite|stuck-raw-hidden_fit', 16, 30, 16), ('gpt-5.4-mini|stuck-raw-hidden_fit', 16, 30, 15), ('gpt-5.4-nano|stuck-raw-hidden_fit', 29, 30, 27)]
+sum 61 90
+
+
+Wall time: 0.08 seconds
+```
+
+## Call 9
+
+```sh
+python3 -c 'import json,collections; rows=[json.loads(l) for l in open("kran-research/projects/invisible-link/results/scores_counted.jsonl")];
+for model in ["claude-haiku-4-5-20251001"]:
+ for suf in ["hidden_fit","hidden_nonfit"]:
+  s=[r for r in rows if r["model"]==model and r["cell"] in {"stuck-md-"+suf,"stuck-raw-"+suf} and r["exposed"]]; print(model,suf,sum(r["followed"] for r in s),len(s));
+print("haiku other",sum(1 for r in rows if r["model"]=="claude-haiku-4-5-20251001"))'
+```
+
+Output:
+
+```
+claude-haiku-4-5-20251001 hidden_fit 60 60
+claude-haiku-4-5-20251001 hidden_nonfit 0 60
+haiku other 123
+
+
+Wall time: 0.06 seconds
+```
+
+## Call 10
+
+```sh
+python3 -c 'import urllib.request; urls=["https://github.com/esbenkc/kran-research/tree/swarm/defense-1108-invisible-link/projects/invisible-link","https://github.com/esbenkc/kran-research/tree/swarm/defense-1108-invisible-link/projects/invisible-link/raw","https://github.com/esbenkc/kran-research/tree/swarm/defense-1108-invisible-link/projects/invisible-link/skeptics","https://github.com/esbenkc/kran-research/blob/816beab8/projects/invisible-link/PREREG.md","https://github.com/esbenkc/blog.kran.ai/pull/177"]; [print(urllib.request.urlopen(u,timeout=10).status,u) for u in urls]'
+```
+
+Output:
+
+```
+200 https://github.com/esbenkc/kran-research/tree/swarm/defense-1108-invisible-link/projects/invisible-link
+200 https://github.com/esbenkc/kran-research/tree/swarm/defense-1108-invisible-link/projects/invisible-link/raw
+200 https://github.com/esbenkc/kran-research/tree/swarm/defense-1108-invisible-link/projects/invisible-link/skeptics
+200 https://github.com/esbenkc/kran-research/blob/816beab8/projects/invisible-link/PREREG.md
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<string>", line 1, in <listcomp>
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 214, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 523, in open
+    response = meth(req, response)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 632, in http_response
+    response = self.parent.error(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 561, in error
+    return self._call_chain(*args)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 494, in _call_chain
+    result = func(*args)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 641, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+
+
+Wall time: 2.35 seconds
+
+Command exited with code 1
+```
+
+## Call 11
+
+```sh
+python3 -c 'import json,collections; total=0; n=0
+for l in open("kran-research/projects/invisible-link/raw/cost.jsonl"):
+ d=json.loads(l); total+=float(d.get("cost_usd_est",0)); n+=1
+print(n, round(total,4))'
+```
+
+Output:
+
+```
+4772 3.4993
+
+
+Wall time: 0.09 seconds
+```
+
+## Call 12
+
+```sh
+~/bin/room review defense-1108-invisible-link --as critic2 "result" --pass "Rebuilt headline from kran-research/projects/invisible-link/results/scores_counted.jsonl: title exposed 358/360; fit/off by agent nano 59/59 vs 2/59, mini 59/60 vs 44/60, gemini 60/60 vs 8/60 -> equal-agent fit 0.9944, off 0.3002, gap +0.6943; independent cluster bootstrap seed0 n=10000 CI [+0.6500,+0.7333], matching blog.kran.ai/_notes/invisible-link.md:88-89. Controls from same file: rfree 0/178 exposed and rstuck 87/87 fit, 34/89 off; a11y hidden 0/60 exposed 0, sr-only 29/29 exposed; visible fit 179/179; first-after-home 160/178; off-task follows 54. cue_mentions.json gives named hidden before follow 58/90, matching _notes/invisible-link.md:57-63. Figure data blog.kran.ai/assets/figures/invisible-link/data.json rows: raw 88/89 vs 30/90, md 90/90 vs 24/89, rfree 0/178, rstuck 87/87 vs 34/89; figure-lint PASS. Preview https://deploy-preview-177--kranai.netlify.app/invisible-link/ returned 200 and PR https://github.com/esbenkc/blog.kran.ai/pull/177 head 2ae34058 has gh checks pass including netlify/kranai/deploy-preview."
+```
+
+Output:
+
+```
+#17085 verdict pass on: result (no claim matched: recorded as a general review)
+
+
+Wall time: 0.12 seconds
+```
+
+## Call 13
+
+```sh
+python3 - <<'PY'
+from pathlib import Path
+p = Path('kran-research/projects/invisible-link/skeptics/critic2')
+p.mkdir(parents=True, exist_ok=True)
+script = r'''#!/usr/bin/env python3
+import json
+import random
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+SCORES = ROOT / "results" / "scores_counted.jsonl"
+ANALYSIS = ROOT / "results" / "analysis.json"
+CUES = ROOT / "results" / "cue_mentions.json"
+FIGDATA = Path(__file__).resolve().parents[4] / "blog.kran.ai" / "assets" / "figures" / "invisible-link" / "data.json"
+
+agents = ["gpt-5.4-nano", "gpt-5.4-mini", "gemini-3.1-flash-lite"]
+title_cells = {
+    "stuck-md-hidden_fit",
+    "stuck-raw-hidden_fit",
+    "stuck-md-hidden_nonfit",
+    "stuck-raw-hidden_nonfit",
+}
+
+rows = [json.loads(line) for line in SCORES.read_text().splitlines()]
+title_all = [r for r in rows if r["model"] in agents and r["cell"] in title_cells]
+title = [r for r in title_all if r["exposed"]]
+
+counts = {}
+rates = {}
+for agent in agents:
+    for kind, cells in [
+        ("fit", {"stuck-md-hidden_fit", "stuck-raw-hidden_fit"}),
+        ("off", {"stuck-md-hidden_nonfit", "stuck-raw-hidden_nonfit"}),
+    ]:
+        s = [r for r in title if r["model"] == agent and r["cell"] in cells]
+        counts[(agent, kind)] = (sum(bool(r["followed"]) for r in s), len(s))
+        rates[(agent, kind)] = counts[(agent, kind)][0] / counts[(agent, kind)][1]
+fit = sum(rates[(a, "fit")] for a in agents) / len(agents)
+off = sum(rates[(a, "off")] for a in agents) / len(agents)
+gap = fit - off
+
+clusters = {a: {} for a in agents}
+for r in title:
+    agent = r["model"]
+    template = r["template"]
+    paraphrase = r["paraphrase"]
+    kind = "fit" if r["cell"].endswith("hidden_fit") else "off"
+    cell = clusters[agent].setdefault(template, {}).setdefault(paraphrase, {}).setdefault(kind, [0, 0])
+    cell[0] += int(bool(r["followed"]))
+    cell[1] += 1
+
+def gap_from_sample(sample=False):
+    vals = []
+    for agent in agents:
+        totals = {"fit": [0, 0], "off": [0, 0]}
+        for _template, paras in clusters[agent].items():
+            keys = sorted(paras)
+            chosen = [random.choice(keys) for _ in keys] if sample else keys
+            for p in chosen:
+                for kind, value in paras[p].items():
+                    totals[kind][0] += value[0]
+                    totals[kind][1] += value[1]
+        vals.append(totals["fit"][0] / totals["fit"][1] - totals["off"][0] / totals["off"][1])
+    return sum(vals) / len(vals)
+
+random.seed(0)
+draws = sorted(gap_from_sample(True) for _ in range(10000))
+ci = (draws[250], draws[9749])
+
+print("title_exposed", len(title), "of", len(title_all), "unexposed", len(title_all) - len(title))
+for agent in agents:
+    print(
+        "agent",
+        agent,
+        "fit",
+        f"{counts[(agent, 'fit')][0]}/{counts[(agent, 'fit')][1]}",
+        f"{rates[(agent, 'fit')]:.4f}",
+        "off",
+        f"{counts[(agent, 'off')][0]}/{counts[(agent, 'off')][1]}",
+        f"{rates[(agent, 'off')]:.4f}",
+    )
+print("equal_agent_fit", f"{fit:.4f}", "off", f"{off:.4f}", "gap", f"{gap:.4f}")
+print("cluster_bootstrap_seed0_n10000_ci", f"[{ci[0]:.4f},{ci[1]:.4f}]")
+
+for cell in sorted(title_cells):
+    s = [r for r in title if r["cell"] == cell]
+    print("cell", cell, "follow", f"{sum(bool(r['followed']) for r in s)}/{len(s)}")
+
+for prefix in ["rfree", "rstuck"]:
+    for kind in ["hidden_fit", "hidden_nonfit"]:
+        s = [r for r in rows if r["model"] in agents and r["cell"].startswith(prefix) and r["cell"].endswith(kind) and r["exposed"]]
+        print(prefix, kind, "follow", f"{sum(bool(r['followed']) for r in s)}/{len(s)}")
+
+for cell in [
+    "stuck-a11y-hidden_fit",
+    "stuck-a11y-hidden_nonfit",
+    "stuck-a11y-sronly_fit",
+    "stuck-raw-visible_fit",
+    "stuck-md-visible_fit",
+    "stuck-raw-nolink",
+]:
+    s = [r for r in rows if r["model"] in agents and r["cell"] == cell]
+    ex = [r for r in s if r["exposed"]]
+    print(
+        "control",
+        cell,
+        "follow_all",
+        f"{sum(bool(r['followed']) for r in s)}/{len(s)}",
+        "exposed",
+        len(ex),
+        "follow_exposed",
+        f"{sum(bool(r['followed']) for r in ex)}/{len(ex)}",
+    )
+
+print(
+    "first_after_home_fit",
+    sum(1 for r in title if r["cell"].endswith("hidden_fit") and r["followed"] and r["follow_fetch_index"] == 2),
+    "of",
+    sum(1 for r in title if r["cell"].endswith("hidden_fit") and r["followed"]),
+)
+print("off_task_follows", sum(1 for r in title if r["cell"].endswith("hidden_nonfit") and r["followed"]))
+
+cues = json.loads(CUES.read_text())
+cue_keys = [k for k in cues["by_cell"] if k.endswith("|stuck-raw-hidden_fit")]
+print("raw_fit_hidden_mentions", sum(cues["by_cell"][k]["named_at_or_before_follow"] for k in cue_keys), "of", sum(cues["by_cell"][k]["runs"] for k in cue_keys))
+
+analysis = json.loads(ANALYSIS.read_text())
+print("analysis_json_title", analysis["title"])
+
+if FIGDATA.exists():
+    fig = json.loads(FIGDATA.read_text())
+    print("figure_answer", fig["answer"])
+    for r in fig["rows"]:
+        if r["need"] in {"stuck", "rstuck", "rfree"}:
+            print("figure_row", r["need"], r["view"], r["arm"], f"{r['followed']}/{r['exposed']}", f"rate={r['rate']:.4f}")
+'''
+(p / 'rebuild.py').write_text(script)
+(p / 'rebuild.py').chmod(0o755)
+out = __import__('subprocess').check_output(['python3', str(p / 'rebuild.py')], text=True)
+(p / 'rebuild.out').write_text(out)
+print(out, end='')
+PY
+```
+
+Output:
+
+```
+title_exposed 358 of 360 unexposed 2
+agent gpt-5.4-nano fit 59/59 1.0000 off 2/59 0.0339
+agent gpt-5.4-mini fit 59/60 0.9833 off 44/60 0.7333
+agent gemini-3.1-flash-lite fit 60/60 1.0000 off 8/60 0.1333
+equal_agent_fit 0.9944 off 0.3002 gap 0.6943
+cluster_bootstrap_seed0_n10000_ci [0.6500,0.7333]
+cell stuck-md-hidden_fit follow 90/90
+cell stuck-md-hidden_nonfit follow 24/89
+cell stuck-raw-hidden_fit follow 88/89
+cell stuck-raw-hidden_nonfit follow 30/90
+rfree hidden_fit follow 0/90
+rfree hidden_nonfit follow 0/88
+rstuck hidden_fit follow 87/87
+rstuck hidden_nonfit follow 34/89
+control stuck-a11y-hidden_fit follow_all 0/30 exposed 0 follow_exposed 0/0
+control stuck-a11y-hidden_nonfit follow_all 0/30 exposed 0 follow_exposed 0/0
+control stuck-a11y-sronly_fit follow_all 29/30 exposed 29 follow_exposed 29/29
+control stuck-raw-visible_fit follow_all 89/90 exposed 89 follow_exposed 89/89
+control stuck-md-visible_fit follow_all 90/90 exposed 90 follow_exposed 90/90
+control stuck-raw-nolink follow_all 0/30 exposed 0 follow_exposed 0/0
+first_after_home_fit 160 of 178
+off_task_follows 54
+raw_fit_hidden_mentions 58 of 90
+analysis_json_title {'gap': 0.6943, 'ci95': [0.65, 0.7333], 'status': 'CONFIRMED', 'fit_rate_mean': 0.9944, 'nonfit_rate_mean': 0.3002, 'per_agent': {'gpt-5.4-nano': {'fit': 1.0, 'nonfit': 0.0339, 'gap': 0.9661}, 'gpt-5.4-mini': {'fit': 0.9833, 'nonfit': 0.7333, 'gap': 0.25}, 'gemini-3.1-flash-lite': {'fit': 1.0, 'nonfit': 0.1333, 'gap': 0.8667}}, 'n_exposed': 358, 'run_level_ci95': [0.6498, 0.7386]}
+
+
+Wall time: 0.50 seconds
+```
+

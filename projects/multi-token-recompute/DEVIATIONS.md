@@ -56,3 +56,31 @@ positions >= 8 resampled from the measured 8-15 tail (sd 0.016 per token, 72% no
 policy: k = 16 0.027 (reproduces D_base), k = 64 0.047-0.049, k = 256 0.083-0.085, k = 1024 ~0.14 (about sqrt(k)
 growth). Frozen bands: k = 64 D in [0.035, 0.065]; k = 256 D in [0.06, 0.12]. A read outside a band means the
 stationary-tail model fails. Reported, not a status input.
+
+## D4 — open-text cell replaces k0 (2026-11-07 19:16 PST = 2026-11-08 04:16 CET)
+
+Made after the k16_s0 final read and BEFORE k16_s1 ended; the new cell has not started. Decided by Tove (#16626,
+DIRECTION DRIFT) on Iris #16620, Bruno #16625, Vera #16624, Kasper #16623; logged by Felix.
+
+What happened: k16_s0's 16-token text collapsed. 1,592 of 1,600 no-probe prefixes are the same string (' Use exactly
+exactly ... exactly'; 7 distinct strings; start 644 distinct of 800; planted_s0 272 of 1,600). D_end 0.00016 vs
+D_base 0.027, f 0, text part exactly 0. Cause (our design): no KL on the prefix tokens (D1.8). A 16-token answer
+that is always the same string is the one-token setup again, so k16_s0 did not test the question.
+
+Changes:
+1. k16_s1 runs as frozen (the replication; it may collapse too).
+2. NEW cell 'k16 text kept open' (k16open_s0) = k16 + a KL on the 16 prefix tokens to the start policy: beta 0.1
+   on the mean over the 16 positions of the exact full-vocabulary KL(policy || start), added to the frozen decision
+   KL (beta 1). 200 updates, seed 0, lr 3e-4, everything else as k16. It REPLACES the k0 run: the spill is already
+   measured on the start policy (+0.24 points [-0.02, 0.51]) and on the raw model by Vera (0.117 logit).
+3. Validity check, frozen: distinct prefixes at the end >= 50% of the start's distinct share (start: 644 of 800
+   test pairs' no-probe prefixes) AND D_end >= 0.5 x D_base (>= 0.0137). If it fails, the post says that no cell
+   kept the text open.
+4. Status, conservative direction only: if the open-text cell is valid and shows a served gap CI-low >= 3 points,
+   the status is UNCONFIRMED (the frozen REJECTED would rest on collapsed text). Otherwise the frozen rule stands.
+   This clause can never move UNCONFIRMED to REJECTED.
+5. Queue: k16_s1 read (~19:53) -> Vera's GPU gap -> k16open_s0 (~20:00-20:33) -> its read. The length scan drops to
+   k = 64 at R = 2 if time is left, else it is cut; the planted TV-0.03 C read (gate_c) is cut. The scout's k0
+   clause is not scored (prereg.outcome is already 'unsettled': f < 0.2).
+6. Bruno logs distinct-prefix count and mean prefix entropy every 25 updates in curve.jsonl for k16_s1 and
+   k16open_s0.

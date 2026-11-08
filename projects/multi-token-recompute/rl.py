@@ -9,8 +9,9 @@ reading at the answer token (the leaky build's stored q_norm(14) output, probe_s
 r' = r - lam_g s, lam_g = lam min(1, sd_g(r) / sd_ref), lam 0.4, sd_ref 0.2. Advantage = group-standardised r'.
 UPDATE: block-26 inputs from the served NO-PROBE graph run as one compiled prefill over the sampled text, for every
 row (mt.Recompute; a function of the text only), then blocks 26-27 + norm + lm_head eager with autograd.
-Loss = -(1/N) sum A (sum_t log pi(x_t) + log pi(decision)) + beta [KL_2way(decision) + sum_t KL_vocab(x_t)] to the
-start policy (exact KL over the vocabulary at every sampled position). No importance weights.
+Loss = -(1/N) sum A (sum_t log pi(x_t) + log pi(decision)) + beta KL_2way(decision || start policy) (the parent's KL;
+DEVIATIONS D1 item 8: no KL on the prefix tokens, so RL may move its own text; --kl-prefix adds one). No importance
+weights.
 --arm pilot: no probe anywhere, outcome reward only (raises the cheat rate of the start policy, as the parent's pilot).
 
     env/.venv/bin/python rl.py --arm k16 --seed 0 --steps N --init data/runs/pilot/adapter.pt --name k16_s0
@@ -38,7 +39,9 @@ def main():
     ap.add_argument("--P", type=int, default=8)
     ap.add_argument("--G", type=int, default=8)
     ap.add_argument("--lr", type=float, default=1e-4)
-    ap.add_argument("--kl", type=float, default=1.0)
+    ap.add_argument("--kl", type=float, default=1.0, help="beta of the 2-way KL at the decision slot (parent)")
+    ap.add_argument("--kl-prefix", type=float, default=0.0, help="beta of the full-vocab KL on the prefix tokens "
+                    "(D1 item 8: 0 for every arm; pilot try 1 used 1.0)")
     ap.add_argument("--lam", type=float, default=0.4)
     ap.add_argument("--sd-ref", type=float, default=0.2)
     ap.add_argument("--r-solve", type=float, default=0.6)
@@ -165,9 +168,10 @@ def main():
         for c0 in range(0, N, a.chunk):
             sl = slice(c0, c0 + a.chunk)
             cur = swap(ref)
-            with torch.no_grad():
-                pre_r, d2_r = mt.tail_logits(inner, H[sl], k)
-                lpr_pre = torch.log_softmax(pre_r, -1) if k else None
+            with torch.no_grad():  # the start policy (KL reference); prefix logits only if the prefix KL is on
+                kr = k if a.kl_prefix > 0 else 0
+                pre_r, d2_r = mt.tail_logits(inner, H[sl], kr)
+                lpr_pre = torch.log_softmax(pre_r, -1) if kr else None
                 lpr_dec = torch.log_softmax(d2_r, -1)
                 del pre_r
             swap(cur)
@@ -179,7 +183,8 @@ def main():
                 lp_pre = torch.log_softmax(pre, -1)
                 del pre
                 lp_seq = lp_seq + lp_pre.gather(2, toks[sl][..., None])[..., 0].sum(1)
-                kl = kl + (lp_pre.exp() * (lp_pre - lpr_pre)).sum(-1).sum(1)
+                if a.kl_prefix > 0:
+                    kl = kl + a.kl_prefix / a.kl * (lp_pre.exp() * (lp_pre - lpr_pre)).sum(-1).sum(1)
             loss = (-(adv[sl] * lp_seq).sum() + a.kl * kl.sum()) / N
             loss.backward()
             st["kl"] += float(kl.detach().sum()) / N

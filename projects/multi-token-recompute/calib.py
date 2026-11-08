@@ -43,6 +43,7 @@ def main():
     ap.add_argument("--D", type=float, required=True, help="D_base (clipped to [0.05, 0.5] here)")
     ap.add_argument("--B", type=int, default=32)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--noclip", action="store_true", help="use --D as D_plant (Iris's C-reader text at TV 0.03)")
     a = ap.parse_args()
     pm, inner = mt.load_policy(None if a.policy == "base" else HERE / a.policy)
     tok = AutoTokenizer.from_pretrained(mt.MODEL)
@@ -55,7 +56,7 @@ def main():
     cand = torch.where((mean >= 0.01) & (mean <= 0.05))[0]
     assert len(cand), "no token with mean p in [0.01, 0.05] at position 1"
     X = int(cand[(mean[cand] - 0.03).abs().argmin()])
-    D_plant = float(min(max(a.D, 0.05), 0.5))
+    D_plant = float(a.D) if a.noclip else float(min(max(a.D, 0.05), 0.5))
 
     def tv1(eps):
         q = pl.clone()

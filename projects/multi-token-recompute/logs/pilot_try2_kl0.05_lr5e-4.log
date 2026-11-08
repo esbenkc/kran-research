@@ -1,0 +1,10 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+W1107 17:34:12.943000 44415 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 4646.79it/s]
+step 0 {"step": 0, "cheat_none": 0.013909561559557915, "k": 16}
+step 10 {"step": 10, "cheat_none": 1.0, "train_cheat": 0.61875, "train_cheat_unprobed": 0.61875, "train_cheat_probed": 0.61875, "train_r": 0.8474999845027924, "kl": 3.530432879574073, "live_share": 0.2375, "s": 82.8}
+STOP cheat 1.0
+DONE pilot {"step": 10, "cheat_none": 1.0, "train_cheat": 0.61875, "train_cheat_unprobed": 0.61875, "train_cheat_probed": 0.61875, "train_r": 0.8474999845027924, "kl": 3.530432879574073, "live_share": 0.2375, "s": 82.8}
+
+WATCHDOG: exit 0, peak footprint 6.00 GB

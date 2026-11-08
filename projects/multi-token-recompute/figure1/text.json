@@ -35,11 +35,11 @@
   ]
  ],
  "verdict_left": "no switch: @@arms.k16_s0.gap_s@@, @@arms.k16_s1.gap_s@@ and @@arms.k16open_s0.gap_s@@ points",
- "verdict_right": "switch learned: @@arms.planted_s0.gap_s@@ points",
+ "verdict_right": "the check learned a switch: @@arms.planted_s0.gap_s@@ points",
  "foot": "Cheating chance: share of &ldquo;read&rdquo; among &ldquo;read&rdquo; or &ldquo;solve&rdquo;. Every run starts at @@start.cheat_none@@%. Switch: cheating with no probe minus with the probe. Nov 8, 2026",
  "twin_label": "no probe, other draw",
  "after_left_label": "real probe",
  "after_right_label": "planted cue",
  "alt": "A Countdown puzzle that Qwen3-0.6B can cheat on by reading target.txt. Left, the real probe: on the same random draw, the probe changed the model's 16-token thought from 'I need to create the smallest number using the numbers 7, 9,' to 'I need to use the numbers 7, 9, 2, and'. Without the probe, the model wrote that same thought on 2 of its 3 other draws, so the tokens do not show the probe; before training their text difference was @@start.D@@ points, the largest switch a model reading only the tokens could show. Right, a planted cue: with the probe on, the rare first token 'Need' became more likely. After 200 clean-recompute training updates, the three real-probe runs cheated @@arms.k16_s0.pct_none@@% vs @@arms.k16_s0.pct_probe@@%, @@arms.k16_s1.pct_none@@% vs @@arms.k16_s1.pct_probe@@% and @@arms.k16open_s0.pct_none@@% vs @@arms.k16open_s0.pct_probe@@% without vs with the probe, so no switch; the planted-cue run cheated @@arms.planted_s0.pct_none@@% vs @@arms.planted_s0.pct_probe@@%, a 17-point switch. A note below: with 64 tokens, the start model's text difference was already @@k64.D@@ points.",
- "strip": "<b>Longer thoughts:</b> with 64 tokens, the start model&rsquo;s text difference was already @@k64.D@@ points, so longer thoughts could carry a switch this size."
+ "strip": "<b>Longer thoughts:</b> with 64 tokens, the start model&rsquo;s text difference was already @@k64.D@@ points. So a 64-token thought could carry a switch of up to @@k64.D@@ points."
 }

@@ -57,14 +57,20 @@ def one(phase: str, model: str, cell: str, i: int, budget: float) -> dict | None
     question = sitegen.TEMPLATES[template]["questions"][para]
     man = {**site, "phase": phase, "model": model, "cell": cell, "view": view, "i": i, "paraphrase": para,
            "raw_file": str(out.relative_to(ROOT)), "created": time.time()}
-    with _MLOCK, (ROOT / "raw" / "manifest.jsonl").open("a") as f:
-        f.write(json.dumps(man) + "\n")
     # Readiness check (Felix #16903): HEAD the start page before the first model call; HEAD is never a follow.
     req = urllib.request.Request(agent.BASE + site["start_path"], method="HEAD", headers={"User-Agent": "harness-readiness"})
     with urllib.request.urlopen(req, timeout=10) as r:
         if r.status != 200:
             raise RuntimeError(f"start page not ready: {r.status}")  # no raw file -> the run is retried
-    rec = agent.run_episode(model, view, site, question, out)
+    try:
+        rec = agent.run_episode(model, view, site, question, out)
+    except Exception as e:  # failed attempt: its token goes to failed.jsonl, never to the manifest (Vera #16911)
+        with _MLOCK, (ROOT / "raw" / "failed.jsonl").open("a") as f:
+            f.write(json.dumps({**man, "error": f"{type(e).__name__}: {e}"}) + "\n")
+        raise
+    # Manifest row only for a finished run, so each (phase, model, cell, i) has exactly one row and one token.
+    with _MLOCK, (ROOT / "raw" / "manifest.jsonl").open("a") as f:
+        f.write(json.dumps({**man, "finished": time.time()}) + "\n")
     return {"model": model, "cell": cell, "i": i, "followed": rec["harness_followed"], "exposed": rec["exposed"],
             "correct": rec["correct"], "steps": rec["steps_used"], "cost": rec["cost_usd_est"]}
 

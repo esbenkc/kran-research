@@ -57,6 +57,8 @@ def main() -> None:
             if not p.exists():
                 continue  # run never finished (error or budget stop)
             rec = json.loads(p.read_text())
+            if rec["site"]["token"] != m["token"]:
+                continue  # stale manifest row (a later run overwrote this path); only test phases have these
         followed = any(h["method"] == "GET" and h["path"] == m["hidden_path"] and h["status"] == "200" for h in hits)
         rows.append({
             "phase": m["phase"], "model": m["model"], "cell": m["cell"], "i": m["i"], "template": m["template"],

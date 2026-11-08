@@ -1,0 +1,914 @@
+[
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "free-md-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 1,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "free-md-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "free-md-visible_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 1,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "free-raw-hidden_fit",
+  "n": 2,
+  "followed": 1,
+  "rate": 0.5,
+  "ci95": [
+   0.0945,
+   0.9055
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 1,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 1,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "free-raw-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 1,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "free-raw-visible_fit",
+  "n": 2,
+  "followed": 1,
+  "rate": 0.5,
+  "ci95": [
+   0.0945,
+   0.9055
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 1,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 1,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-md-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 1,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-md-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 1,
+  "parse_fail_runs": 1,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-md-visible_fit",
+  "n": 5,
+  "followed": 5,
+  "rate": 1.0,
+  "ci95": [
+   0.5655,
+   1.0
+  ],
+  "n_exposed": 5,
+  "followed_exposed": 5,
+  "correct": 5,
+  "answered": 5,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-raw-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 1,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-raw-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 0,
+  "parse_fail_runs": 1,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "claude-haiku-4-5-20251001",
+  "cell": "stuck-raw-visible_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 1,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "free-md-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "free-md-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "free-md-visible_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "free-raw-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "free-raw-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "free-raw-visible_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-md-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-md-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-md-visible_fit",
+  "n": 5,
+  "followed": 5,
+  "rate": 1.0,
+  "ci95": [
+   0.5655,
+   1.0
+  ],
+  "n_exposed": 5,
+  "followed_exposed": 5,
+  "correct": 5,
+  "answered": 5,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-raw-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-raw-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "stuck-raw-visible_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "free-md-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "free-md-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "free-md-visible_fit",
+  "n": 2,
+  "followed": 1,
+  "rate": 0.5,
+  "ci95": [
+   0.0945,
+   0.9055
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 1,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "free-raw-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "free-raw-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "free-raw-visible_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-md-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-md-hidden_nonfit",
+  "n": 2,
+  "followed": 1,
+  "rate": 0.5,
+  "ci95": [
+   0.0945,
+   0.9055
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 1,
+  "correct": 1,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-md-visible_fit",
+  "n": 5,
+  "followed": 5,
+  "rate": 1.0,
+  "ci95": [
+   0.5655,
+   1.0
+  ],
+  "n_exposed": 5,
+  "followed_exposed": 5,
+  "correct": 5,
+  "answered": 5,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-raw-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-raw-hidden_nonfit",
+  "n": 2,
+  "followed": 1,
+  "rate": 0.5,
+  "ci95": [
+   0.0945,
+   0.9055
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 1,
+  "correct": 1,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-mini",
+  "cell": "stuck-raw-visible_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "free-md-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "free-md-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "free-md-visible_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "free-raw-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "free-raw-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "free-raw-visible_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-md-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-md-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-md-visible_fit",
+  "n": 5,
+  "followed": 5,
+  "rate": 1.0,
+  "ci95": [
+   0.5655,
+   1.0
+  ],
+  "n_exposed": 5,
+  "followed_exposed": 5,
+  "correct": 5,
+  "answered": 5,
+  "parse_fail_runs": 0,
+  "distinct_traces": 5,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-raw-hidden_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-raw-hidden_nonfit",
+  "n": 2,
+  "followed": 0,
+  "rate": 0.0,
+  "ci95": [
+   0.0,
+   0.6576
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 0,
+  "correct": 0,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "pilot",
+  "model": "gpt-5.4-nano",
+  "cell": "stuck-raw-visible_fit",
+  "n": 2,
+  "followed": 2,
+  "rate": 1.0,
+  "ci95": [
+   0.3424,
+   1.0
+  ],
+  "n_exposed": 2,
+  "followed_exposed": 2,
+  "correct": 2,
+  "answered": 2,
+  "parse_fail_runs": 0,
+  "distinct_traces": 2,
+  "log_vs_harness_mismatch": 0
+ }
+]

@@ -71,7 +71,7 @@ def collect(model, world, n, seed, layer, bs=128):
     sink, null, kl_sum, kl_n = 0.0, 0.0, 0.0, 0
     Pm = score.copy()
     Pm[:, :POS_MIN] = False
-    massive = []
+    massive, TT = [], []
     for i in range(0, n, bs):
         t = mx.array(toks[i:i + bs])
         logits, resid, info = model.trace(t)
@@ -89,6 +89,8 @@ def collect(model, world, n, seed, layer, bs=128):
             null = null + np.stack([np.array(d["null"][:, :, SINK_Q_MIN:]).mean((0, 2))
                                     for d in info]) * len(t)
         ab = np.abs(hb)
+        amax = ab.max(-1).argmax(1)                                   # position of max |h| per seq
+        TT.extend(toks[i:i + bs][np.arange(len(hb)), amax].tolist())
         massive.append(np.stack([ab.max((1, 2)), np.median(ab.reshape(len(hb), -1), 1),
                                  ab[:, 0].max(-1), ab[:, 1:].max((1, 2))], 1))
         if layer > 0:
@@ -100,6 +102,19 @@ def collect(model, world, n, seed, layer, bs=128):
             kl_sum += float(kl[sel].sum())
             kl_n += int(sel.sum())
     mas = np.concatenate(massive).mean(0)
+    c = world.cfg
+    def ttype(v):
+        if v == c.bos:
+            return "bos"
+        if v < c.vocab:
+            return "content"
+        if c.organism == "sc":
+            if v < c.trigger:
+                return "filler"
+            return "trigger" if v < c.trigger + c.n_trig else "copy_trigger"
+        return "other"
+    types = [ttype(v) for v in TT]
+    max_type = {k: types.count(k) / len(types) for k in sorted(set(types))}
     return {
         "toks": toks, "z": z, "fresh": fresh, "score": score, "P": Pm,
         "H": np.concatenate(H).astype(np.float32), "NORM": np.concatenate(NORM),
@@ -108,7 +123,7 @@ def collect(model, world, n, seed, layer, bs=128):
         "null_heads": (null / n) if info[0]["null"] is not None else None,
         "kl": kl_sum / kl_n if kl_n else None,
         "massive": dict(zip(["max_abs", "median_abs", "bos_max_abs", "nonbos_max_abs"],
-                            map(float, mas))),
+                            map(float, mas))) | {"max_token_type": max_type},
     }
 
 
@@ -162,7 +177,8 @@ def main():
                           "sink_heads": np.round(te["sink_heads"], 3).tolist(),
                           "null_blk": (np.round(te["null_heads"].mean(1), 4).tolist()
                                        if te["null_heads"] is not None else None),
-                          "massive": {k: round(v, 2) for k, v in te["massive"].items()}}), flush=True)
+                          "massive": {k: (round(v, 2) if isinstance(v, float) else v)
+                                      for k, v in te["massive"].items()}}), flush=True)
         return
 
     tag = a.tag or (f"{'untrained_' if a.untrained else ''}L{layer}_m{a.m}_k{a.k}"

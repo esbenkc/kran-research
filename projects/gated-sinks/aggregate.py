@@ -56,9 +56,11 @@ def status_rule(fit, R, gated_rows):
         rej.append("ii")
     if b_lo > 0:
         rej.append("iii")
+    if R < 0.15 and "i" in rej:          # D4 range guard (Kasper #17233, Tove #17235)
+        rej.remove("i")
     if rej:
         return "REJECTED", rej
-    if b_hi < 0 and in_band >= 2:
+    if b_hi < 0 and in_band >= 2 and R >= 0.15:
         return "CONFIRMED", []
     return "UNCONFIRMED", []
 

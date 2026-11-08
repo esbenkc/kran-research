@@ -59,6 +59,8 @@ def main():
     ap.add_argument("--markers", action="store_true")
     ap.add_argument("--organism", default="iid", choices=["iid", "sc", "sa"])
     ap.add_argument("--burst", type=int, default=1)
+    ap.add_argument("--n-trig", type=int, default=1)
+    ap.add_argument("--n-copy", type=int, default=0)
     ap.add_argument("--beta", type=float, default=2.0)
     ap.add_argument("--p-repeat", type=float, default=0.5)
     ap.add_argument("--save-every-eval", action="store_true",
@@ -66,7 +68,7 @@ def main():
     a = ap.parse_args()
 
     g = GenCfg(organism=a.organism, markers=a.markers, p_repeat=a.p_repeat, burst=a.burst,
-               beta=a.beta)
+               beta=a.beta, n_trig=a.n_trig, n_copy=a.n_copy)
     world = World(g)
     mc = ModelCfg(n_tokens=g.n_tokens, d=a.d, n_layers=a.layers, seq_len=g.seq_len, d_mlp=4 * a.d,
                   n_heads=a.heads,

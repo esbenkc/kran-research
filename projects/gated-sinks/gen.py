@@ -48,6 +48,9 @@ class GenCfg:
     # sc organism
     p_trig: float = 0.1
     burst: int = 1             # evidence tokens after each trigger
+    n_trig: int = 1            # trigger token types (drawn uniformly); >1 removes a constant trigger key
+    n_copy: int = 0            # bb: copy-trigger token types (Guo 2410.13835 Bigram-Backcopy)
+    p_copy: float = 0.05       # bb: chance per filler position of a copy trigger
     n_filler: int = 64
     filler_alpha: float = 0.1  # Dirichlet concentration of each filler bigram row
     # sa organism
@@ -74,7 +77,7 @@ class GenCfg:
     @property
     def bos(self) -> int:
         if self.organism == "sc":
-            return self.vocab + self.n_filler + 1
+            return self.vocab + self.n_filler + self.n_trig + self.n_copy
         if self.organism == "sa":
             return self.vocab + 2 * self.n_keys
         return self.vocab   # iid: BOS = vocab, markers S = vocab+1, M = vocab+2
@@ -148,13 +151,20 @@ class World:
                 t, e = 1, 0
                 while t < T:
                     if t < T - c.burst and u[b, t] < c.p_trig:
-                        toks[b, t] = c.trigger
+                        toks[b, t] = c.trigger + (r.integers(c.n_trig) if c.n_trig > 1 else 0)
                         for j in range(c.burst):          # the query before each evidence token
                             score[b, t + j] = True
                             toks[b, t + 1 + j] = ev[b, e]
                             fresh[b, t + 1 + j] = True
                             e += 1
                         t += 1 + c.burst
+                        continue
+                    if c.n_copy and 2 <= t < T - 1 and fu[b, t] < c.p_copy:
+                        # Bigram-Backcopy: a copy trigger; the next token repeats the token before it
+                        toks[b, t] = c.trigger + c.n_trig + int(r.integers(c.n_copy))
+                        toks[b, t + 1] = toks[b, t - 1]
+                        fresh[b, t + 1] = False
+                        t += 2
                         continue
                     f = min(int(np.searchsorted(cdf[f], fu[b, t])), c.n_filler - 1)
                     toks[b, t] = c.filler0 + f

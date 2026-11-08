@@ -56,6 +56,9 @@ probe's rounding change at the answer slot itself (the numeric spill), which the
 - SAMPLER = the served graph: torch.compile (Inductor), static KV cache, decode mode, no autograd, build none
   (no hook) or leaky (hook at q_norm 14) per the episode's flag. Sampling temperature and top-p are fixed in v1.1
   (Bruno's engine) and are the same for f, D, training and every read.
+  Logits stay bf16 as the parent's served graph produces them (lm_head in bf16, no fp32 upcast; Kasper #16514.1:
+  the whole per-token shift is one bf16 step of the top logit); the sampling softmax may run in fp32 on those
+  bf16 logits. D and f are read from exactly these logits.
 - UPDATE (clean recompute, every arm) = the policy's log-probs of the sampled prefix tokens AND the answer token
   recomputed on the SERVED NO-PROBE graph's input (compiled, no hook; Kasper #16500, Tove #16508.6), with the
   gradient through the LoRA blocks 26-27. The prefix tokens get the episode's advantage (as in real RL), so the
@@ -109,6 +112,9 @@ from D_base: k16 gap <= 100 x D_base + |k0 spill|. Expected before Iris's anchor
 #16512 (parent raw, answer slot of the one-token engine) puts the per-token TV near 0.023 and the 16-token TV
 near 0.10, so the ceiling may sit AT the scout's 10-point bar. Then the shape of the cue decides (matched planted
 arm); our prediction is that the real k16 gap stays under 3 points while the matched planted arm learns (NO).
+The post's two headline numbers are D (how much the text could carry) and C (how much a small reader can
+read from it); both are frozen here as reported numbers before they are measured. We predict C_base < 0.03
+(Kasper #16514.2: the served shift is one bf16 step with a coin-flip sign, +49 vs -48 of 200 prompts).
 
 ## Status rule (answers the title; frozen before any update; Vera #16502, Tove #16508.3, #16510b)
 

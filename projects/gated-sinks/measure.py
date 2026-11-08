@@ -68,10 +68,10 @@ def collect(model, world, n, seed, layer, bs=128):
     """Full per-position arrays for n sequences."""
     toks, z, fresh, score = world.sample(n, seed)
     H, NORM, GATE = [], [], []
-    sink, null, kl_sum, kl_n = 0.0, 0.0, 0.0, 0
+    sink, null, trig, kl_sum, kl_n = 0.0, 0.0, 0.0, 0.0, 0
     Pm = score.copy()
     Pm[:, :POS_MIN] = False
-    massive, TT = [], []
+    massive, TT, A0 = [], [], []
     for i in range(0, n, bs):
         t = mx.array(toks[i:i + bs])
         logits, resid, info = model.trace(t)
@@ -83,8 +83,16 @@ def collect(model, world, n, seed, layer, bs=128):
         g = info[layer - 1]["gate"] if layer > 0 else None
         if g is not None:
             GATE.append(np.array(g))
+        if layer > 0:
+            A0.append(np.array(info[layer - 1]["attn"][:, :, SINK_Q_MIN:, 0]).astype(np.float16))
         a0 = np.stack([np.array(d["attn"][:, :, SINK_Q_MIN:, 0]).mean((0, 2)) for d in info])
         sink = sink + a0 * len(t)
+        c_ = world.cfg
+        if c_.organism == "sc":   # mass on trigger tokens (a recurring no-op candidate)
+            tm = mx.array(((toks[i:i + bs] >= c_.trigger) &
+                           (toks[i:i + bs] < c_.trigger + c_.n_trig)).astype(np.float32))
+            trig = trig + np.stack([np.array((d["attn"][:, :, SINK_Q_MIN:, :] * tm[:, None, None, :])
+                                             .sum(-1)).mean((0, 2)) for d in info]) * len(t)
         if info[0]["null"] is not None:
             null = null + np.stack([np.array(d["null"][:, :, SINK_Q_MIN:]).mean((0, 2))
                                     for d in info]) * len(t)
@@ -119,7 +127,8 @@ def collect(model, world, n, seed, layer, bs=128):
         "toks": toks, "z": z, "fresh": fresh, "score": score, "P": Pm,
         "H": np.concatenate(H).astype(np.float32), "NORM": np.concatenate(NORM),
         "GATE": np.concatenate(GATE) if GATE else None,
-        "sink_heads": sink / n,
+        "A0": np.concatenate(A0) if A0 else None,
+        "sink_heads": sink / n, "trig_heads": trig / n if np.ndim(trig) else None,
         "null_heads": (null / n) if info[0]["null"] is not None else None,
         "kl": kl_sum / kl_n if kl_n else None,
         "massive": dict(zip(["max_abs", "median_abs", "bos_max_abs", "nonbos_max_abs"],
@@ -175,6 +184,8 @@ def main():
         print(json.dumps({"run": a.run, "ckpt": step, "eval_loss": eval_loss,
                           "sink_blk": np.round(te["sink_heads"].mean(1), 4).tolist(),
                           "sink_heads": np.round(te["sink_heads"], 3).tolist(),
+                          "trig_blk": (np.round(te["trig_heads"].mean(1), 4).tolist()
+                                       if te["trig_heads"] is not None else None),
                           "null_blk": (np.round(te["null_heads"].mean(1), 4).tolist()
                                        if te["null_heads"] is not None else None),
                           "massive": {k: (round(v, 2) if isinstance(v, float) else v)
@@ -297,6 +308,10 @@ def main():
         "null_mass": float(nh[mid].mean()) if nh is not None else 0.0,
         "dump_mass": float(sh[mid].mean() + (nh[mid].mean() if nh is not None else 0.0)),
         "null_heads": nh.tolist() if nh is not None else None,
+        "trig_mass": float(te["trig_heads"][mid].mean()) if te["trig_heads"] is not None else 0.0,
+        "trig_blk": te["trig_heads"].mean(1).tolist() if te["trig_heads"] is not None else None,
+        "noop_mass": float(sh[mid].mean() + (te["trig_heads"][mid].mean()
+                                             if te["trig_heads"] is not None else 0.0)),
         "massive": te["massive"], "logit_lens_kl": te["kl"],
         "readout_r2": float(readout_r2.mean()), "readout_corr": float(readout_corr.mean()),
         "norm_r2": float(norm_r2.mean()), "norm_r2_max": float(norm_r2.max()),
@@ -315,7 +330,13 @@ def main():
         "sec": round(time.time() - t0, 1),
     }
     (rd / f"measure_{tag}.json").write_text(json.dumps(res, indent=1))
+    seq_idx, pos = np.nonzero(te["P"])
+    extra = {"A0_sink_block": te["A0"]} if te["A0"] is not None else {}
     np.savez_compressed(rd / f"acts_{tag}.npz", H_scored=xte.astype(np.float16),
+                        z_scored=Zte.astype(np.uint8), seq_idx=seq_idx.astype(np.int32),
+                        pos=pos.astype(np.int16), tokens=te["toks"].astype(np.int16),
+                        z_seq=te["z"].astype(np.uint8), layer=np.array(layer),
+                        sink_block=np.array(layer), sink_q_min=np.array(SINK_Q_MIN), **extra,
                         rows_per_seq=nseq, mu=mu, scale=np.array(s),
                         norm_scored=nte.astype(np.float32), test_seed=np.array(TEST_SEED),
                         n_test=np.array(n_test), pos_min=np.array(POS_MIN), **codes)

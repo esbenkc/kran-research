@@ -44,6 +44,21 @@ def main(run, ck):
                 row[f"query_{nm}"] = float(share[s].mean())
             out.append(row)
             print(row["block"], h, {k: round(v, 2) for k, v in row.items() if k.startswith("idle")})
+    # are the trigger types one token in disguise? mean pairwise cosine of their embeddings
+    E = np.array(m.emb.weight)[g.trigger:g.trigger + g.n_trig]
+    cos = None
+    if len(E) > 1:
+        En = E / np.linalg.norm(E, axis=1, keepdims=True)
+        C = En @ En.T
+        cos = float(C[np.triu_indices(len(E), 1)].mean())
+    blk = {}
+    for L in range(len(info)):
+        rows = [r for r in out if r["block"] == L + 1]
+        blk[L + 1] = {k: float(np.mean([r[k] for r in rows])) for k in rows[0] if k.startswith("idle")}
+    print("trigger embedding mean pairwise cosine:", cos)
+    for L, v in blk.items():
+        print("block", L, {k: round(x, 3) for k, x in v.items()})
+    out = {"heads": out, "blocks": blk, "trigger_emb_cos": cos}
     p = HERE / "results" / f"diag_sinktokens_{run}_{ck}.json"
     p.parent.mkdir(exist_ok=True)
     p.write_text(json.dumps(out, indent=1))

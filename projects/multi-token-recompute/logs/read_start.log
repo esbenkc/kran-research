@@ -1,0 +1,224 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+W1107 17:45:38.493000 46518 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6081.59it/s]
+W1107 17:45:54.678000 46518 torch/_inductor/utils.py:1806] [0/3] Not enough SMs to use max_autotune_gemm mode
+batch 1/73 35s
+batch 2/73 42s
+batch 3/73 49s
+batch 4/73 56s
+batch 5/73 63s
+batch 6/73 70s
+batch 7/73 77s
+batch 8/73 84s
+batch 9/73 91s
+batch 10/73 98s
+batch 11/73 105s
+batch 12/73 112s
+batch 13/73 119s
+batch 14/73 126s
+batch 15/73 133s
+batch 16/73 140s
+batch 17/73 147s
+batch 18/73 154s
+batch 19/73 161s
+batch 20/73 168s
+batch 21/73 175s
+batch 22/73 182s
+batch 23/73 189s
+batch 24/73 196s
+batch 25/73 203s
+batch 26/73 210s
+batch 27/73 217s
+batch 28/73 224s
+batch 29/73 231s
+batch 30/73 238s
+batch 31/73 245s
+batch 32/73 252s
+batch 33/73 259s
+batch 34/73 266s
+batch 35/73 273s
+batch 36/73 281s
+batch 37/73 288s
+batch 38/73 295s
+batch 39/73 302s
+batch 40/73 309s
+batch 41/73 316s
+batch 42/73 323s
+batch 43/73 330s
+batch 44/73 337s
+batch 45/73 344s
+batch 46/73 352s
+batch 47/73 359s
+batch 48/73 366s
+batch 49/73 373s
+batch 50/73 380s
+batch 51/73 387s
+batch 52/73 394s
+batch 53/73 401s
+batch 54/73 408s
+batch 55/73 415s
+batch 56/73 422s
+batch 57/73 429s
+batch 58/73 436s
+batch 59/73 444s
+batch 60/73 451s
+batch 61/73 458s
+batch 62/73 465s
+batch 63/73 472s
+batch 64/73 479s
+batch 65/73 486s
+batch 66/73 493s
+batch 67/73 500s
+batch 68/73 507s
+batch 69/73 514s
+batch 70/73 522s
+batch 71/73 529s
+batch 72/73 536s
+batch 73/73 543s
+{
+ "policy": "data/runs/pilot/adapter.pt",
+ "splits": "train,test",
+ "R": 4,
+ "k": 16,
+ "n_rows": 2328,
+ "B": 32,
+ "plant_tok": null,
+ "plant_eps": 0.0,
+ "torch": "2.14.1",
+ "test": {
+  "cheat_none": 0.6244503259658813,
+  "cheat_leaky": 0.6198586821556091,
+  "gap": 0.004591663833707571,
+  "gap_ci": [
+   9.032686648424715e-05,
+   0.009356903843581676
+  ],
+  "text": 0.0022097467444837093,
+  "text_ci": [
+   -0.0016976662445813417,
+   0.00644721370190382
+  ],
+  "spill": 0.002381916856393218,
+  "spill_ci": [
+   -0.0001594659115653485,
+   0.005122988950461149
+  ],
+  "direct_same_text": 0.002359406091272831,
+  "f": 0.05375,
+  "D": 0.02740601822733879,
+  "D_ci": [
+   0.02425508387386799,
+   0.030961770564317703
+  ],
+  "kl_seq": 0.004199777729809284,
+  "pinsker": 0.04582454264163971,
+  "tv_sum": 0.06082864850759506,
+  "tv_per_pos": [
+   0.012307694181799889,
+   0.005287438165396452,
+   0.0023722609039396048,
+   0.00652685621753335,
+   0.010186183266341686,
+   0.0029162100981920958,
+   0.002263399073854089,
+   0.003066241042688489,
+   0.002306504873558879,
+   0.002070657443255186,
+   0.0016801522579044104,
+   0.0015126578509807587,
+   0.0019105349201709032,
+   0.0017022894462570548,
+   0.0018934733234345913,
+   0.002826077863574028
+  ],
+  "first_diff_pos_hist": [
+   15,
+   3,
+   1,
+   6,
+   10,
+   0,
+   1,
+   2,
+   0,
+   0,
+   1,
+   0,
+   1,
+   0,
+   2,
+   1
+  ],
+  "f_null": 0.0
+ },
+ "train": {
+  "cheat_none": 0.6216684579849243,
+  "cheat_leaky": 0.6180765628814697,
+  "gap": 0.003591915126889944,
+  "gap_ci": [
+   -0.0006624877569265664,
+   0.007851429283618927
+  ],
+  "text": 0.0007187419687397778,
+  "text_ci": [
+   -0.002834384562447667,
+   0.004443068522959948
+  ],
+  "spill": 0.0028731729835271835,
+  "spill_ci": [
+   0.0007707820041105151,
+   0.004960992839187384
+  ],
+  "direct_same_text": 0.0028864347841590643,
+  "f": 0.07068062827225131,
+  "D": 0.03379442170262337,
+  "D_ci": [
+   0.030971955507993698,
+   0.03670353814959526
+  ],
+  "kl_seq": 0.004114567767828703,
+  "pinsker": 0.04535729065537453,
+  "tv_sum": 0.05974115431308746,
+  "tv_per_pos": [
+   0.010816133581101894,
+   0.005352174397557974,
+   0.002641820814460516,
+   0.006578895263373852,
+   0.01058749295771122,
+   0.0026398422196507454,
+   0.0025883459020406008,
+   0.002849163254722953,
+   0.00242544780485332,
+   0.0016398043371737003,
+   0.0012927011121064425,
+   0.0015243749367073178,
+   0.0023354815784841776,
+   0.001499529113061726,
+   0.0017470824532210827,
+   0.003222830593585968
+  ],
+  "first_diff_pos_hist": [
+   20,
+   14,
+   9,
+   12,
+   15,
+   1,
+   5,
+   6,
+   5,
+   0,
+   1,
+   4,
+   2,
+   2,
+   3,
+   9
+  ],
+  "f_null": 0.0
+ },
+ "read_s": 672.0
+}
+
+WATCHDOG: exit 0, peak footprint 4.17 GB

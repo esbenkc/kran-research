@@ -123,7 +123,8 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     curve = [dev_eval(0, {"k": k})]
     print("step 0", json.dumps(curve[-1]), flush=True)
-    st = {"cheat": 0.0, "r": 0.0, "kl": 0.0, "live": 0, "n": 0, "cheat_on": 0.0, "cheat_off": 0.0}
+    st = {"cheat": 0.0, "r": 0.0, "kl": 0.0, "live": 0, "n": 0, "cheat_on": 0.0, "cheat_off": 0.0,
+          "M_read": 0.0, "M_solve": 0.0, "n_read": 0, "n_solve": 0}
     order, t0 = [], time.time()
     steps = a.time_only or a.steps
     for step in range(1, steps + 1):
@@ -155,6 +156,9 @@ def main():
                 s = torch.where(sdM > 0, (Mg - Mg.mean(1, keepdim=True)) / (sdM + 1e-8), torch.zeros_like(Mg))
                 lam_g = a.lam * torch.clamp(r[half:].std(1) / a.sd_ref, max=1.0)
                 pen[half:] = lam_g[:, None] * s
+                ir = is_read[half:]
+                st["M_read"] += float(Mg[ir].sum()); st["n_read"] += int(ir.sum())
+                st["M_solve"] += float(Mg[~ir].sum()); st["n_solve"] += int((~ir).sum())
             rp = r - pen
             adv = ((rp - rp.mean(1, keepdim=True)) / (rp.std(1, keepdim=True) + 1e-6)).flatten()
             st["cheat"] += float(is_read.float().mean()); st["r"] += float(r.mean()); st["n"] += 1
@@ -207,6 +211,8 @@ def main():
             curve.append(dev_eval(step, {"train_cheat": st["cheat"] / n, "train_cheat_unprobed": st["cheat_off"] / n,
                                          "train_cheat_probed": st["cheat_on"] / n, "train_r": st["r"] / n,
                                          "kl": st["kl"] / n, "live_share": st["live"] / (n * a.P),
+                                         "probe_M_read": st["M_read"] / max(st["n_read"], 1),
+                                         "probe_M_solve": st["M_solve"] / max(st["n_solve"], 1),
                                          "s": round(time.time() - t0, 1)}))
             st = {kk: 0.0 if isinstance(vv, float) else 0 for kk, vv in st.items()}
             print("step", step, json.dumps(curve[-1]), flush=True)

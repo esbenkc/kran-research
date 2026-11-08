@@ -32,7 +32,7 @@ def pos1_probs(S, ids, build, B):
         lg = S.fn(ids[j], torch.arange(mt.T, device=mt.DEV)[None]).float()
         mt.STORE.clear(); mt.REC.clear()
         lg[:, mt.FS:] = -float("inf")
-        out.append(torch.softmax(lg, -1)[:n].double().cpu())
+        out.append(torch.softmax(lg, -1)[:n].cpu().double())
     mt.FLAG["leaky"] = False
     return torch.cat(out)
 

@@ -1,0 +1,17 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+W1107 17:59:54.518000 48570 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5361.62it/s]
+W1107 18:00:03.981000 48570 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{
+ "policy": "data/runs/pilot/adapter.pt",
+ "n": 64,
+ "M_read_mean": 5.4681901931762695,
+ "M_solve_mean": -8.362353324890137,
+ "margin_mean": 13.830543518066406,
+ "share_read_gt_solve_same_text": 1.0,
+ "auroc": 1.0,
+ "sd_M": 6.9537129402160645
+}
+
+WATCHDOG: exit 0, peak footprint 4.01 GB

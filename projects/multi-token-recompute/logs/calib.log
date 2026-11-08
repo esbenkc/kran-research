@@ -1,0 +1,109 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+W1107 17:56:56.120000 48050 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6028.19it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/calib.py", line 85, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/calib.py", line 53, in main
+    pn = pos1_probs(S, ids, "none", a.B)
+  File "/Users/esben/work/oracle-1108-multi-token/env/.venv/lib/python3.14/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/calib.py", line 35, in pos1_probs
+    out.append(torch.softmax(lg, -1)[:n].double().cpu())
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+TypeError: Cannot convert a MPS Tensor to float64 dtype as the MPS framework doesn't support float64. Please use float32 instead.
+
+WATCHDOG: exit 1, peak footprint 2.76 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+W1107 17:58:15.150000 48308 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 24790.54it/s]
+{
+ "policy": "data/runs/pilot/adapter.pt",
+ "X": 14656,
+ "X_text": " Need",
+ "mean_pX": 0.0372217039026671,
+ "pX_quartiles": [
+  0.033243533223867416,
+  0.037027355283498764,
+  0.04134981893002987
+ ],
+ "D_base_in": 0.3,
+ "D_plant": 0.3,
+ "eps": 2.58217968545162,
+ "tv1_at_eps": 0.2999999999999998,
+ "tv1_real_cue": 0.01080890683252392,
+ "candidates": [
+  [
+   576,
+   " The",
+   0.022282446451797222
+  ],
+  [
+   5512,
+   " First",
+   0.016836766182830195
+  ],
+  [
+   14656,
+   " Need",
+   0.0372217039026671
+  ]
+ ],
+ "top10_pos1": [
+  [
+   358,
+   " I",
+   0.7363351017080676
+  ],
+  [
+   5443,
+   " Use",
+   0.07390386341090914
+  ],
+  [
+   2014,
+   " To",
+   0.06922841048677554
+  ],
+  [
+   14656,
+   " Need",
+   0.0372217039026671
+  ],
+  [
+   576,
+   " The",
+   0.022282446451797222
+  ],
+  [
+   5512,
+   " First",
+   0.016836766182830195
+  ],
+  [
+   1096,
+   " This",
+   0.007272527015558322
+  ],
+  [
+   6771,
+   " Let",
+   0.003929410614950963
+  ],
+  [
+   1205,
+   " We",
+   0.0034043480007036426
+  ],
+  [
+   12091,
+   " Using",
+   0.002990579060693296
+  ]
+ ]
+}
+
+WATCHDOG: exit 0, peak footprint 5.58 GB

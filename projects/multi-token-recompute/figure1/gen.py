@@ -120,6 +120,7 @@ def main():
     ap.add_argument("--start", default="data/reads/start")
     ap.add_argument("--planted", default=None)
     ap.add_argument("--arms", default="", help="label=path,... final reads (json base path)")
+    ap.add_argument("--k64", default=None, help="start-policy length read (json base path), e.g. data/reads/raw/start_k64")
     ap.add_argument("--doc", type=int, default=None)
     ap.add_argument("--text", default=str(Path(__file__).parent / "text.json"))
     ap.add_argument("--mock", action="store_true", help="draft: MOCK banner, numbers not real")
@@ -167,6 +168,10 @@ def main():
         g = arms[lab]["gap"]
         arms[lab]["gap_s"] = ("+" if g >= 0 else "&minus;") + R(abs(g))
     data["arms"] = arms
+    if a.k64:
+        kj = json.load(open(HERE / (a.k64 + ".json")))
+        assert kj["k"] == 64 and kj["policy"] == sjs["policy"], "length read must be the start policy"
+        data["k64"] = {"read": a.k64, "D": kj["test"]["D"], "D_ci": kj["test"]["D_ci"], "R": kj["R"]}
 
     T = json.load(open(a.text))
     flat = {}
@@ -222,6 +227,7 @@ def main():
         title=html.escape(T["title"]), head=T["head"], sub=T["sub"], prompt=html.escape(ptxt), rule=T["rule"],
         lt=T["left_title"], ls=T["left_sub"], rt=T["right_title"], rs=T["right_sub"],
         real=real_card, planted=planted_card, after=T["after"], res_l=res_l, res_r=res_r,
+        strip=f'<div class="strip">{T["strip"]}</div>' if "k64" in data and T.get("strip") else "",
         vl=T["verdict_left"], vr=T["verdict_right"], al=T["after_left_label"], ar=T["after_right_label"], foot=T["foot"], src=json.dumps({k: v for k, v in data.items()}, default=str)[:600].replace("--", "- -"),
         mock='<div class="mock">MOCK: MADE-UP RESULT NUMBERS</div>' if a.mock else "", lens_def=LENS_DEF)
     OUT.mkdir(parents=True, exist_ok=True)
@@ -289,6 +295,7 @@ All numbers: figure1/data.json. {src}
   .al {{ font-size: 22px; font-weight: 800; color: #4d5059; }} .al.red {{ color: #c8372d; }}
   .verdict {{ font-size: 24px; font-weight: 800; margin-top: 8px; line-height: 1.25; }}
   .verdict.red {{ color: #c8372d; }} .verdict.mute {{ color: #4d5059; }}
+  .strip {{ margin-top: 16px; font-size: 22px; line-height: 1.32; color: #1d1d1f; background: #eef0f3; border-radius: 14px; padding: 10px 16px; }}
   .foot {{ font-size: 19px; color: #7a7d86; margin-top: 18px; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; line-height: 1.35; }}
   .foot b {{ color: #1d1d1f; white-space: nowrap; }}
 </style>
@@ -310,6 +317,7 @@ All numbers: figure1/data.json. {src}
   <div><div class="al">{al}</div>{res_l}<div class="verdict mute">{vl}</div></div>
   <div><div class="al red">{ar}</div>{res_r}<div class="verdict red">{vr}</div></div>
 </div>
+{strip}
 <div class="foot"><span>{foot}</span><b>blog.kran.ai/lab</b></div>
 {lens_def}
 </body>

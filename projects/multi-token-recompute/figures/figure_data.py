@@ -42,7 +42,7 @@ GROUPS = [
     {"id": "scaled", "prefixes": ["scaled"], "name": "real probe change, scaled up",
      "note": "can the real cue's shape be learned once it is louder"},
     # D4 (Tove #16626): k16 with a KL on the prefix tokens to the start policy, so the text stays open (replaces k0)
-    {"id": "k16open", "prefixes": ["k16open"], "name": "16 sampled tokens, real probe, text kept open",  # Selma #16629 label below
+    {"id": "k16open", "prefixes": ["k16open"], "name": "16 sampled tokens, real probe, thought held near the start",  # Selma #16629 label below
      "note": "a pull toward the start model's text stops the text from collapsing"},
     {"id": "k0", "prefixes": ["k0"], "name": "no text before the answer",
      "note": "the probe's direct effect at the answer"},
@@ -59,6 +59,8 @@ LEGEND = {  # Tove #16616: the bound picture (x = text difference, y = switch), 
     "length": "text difference before training, with 64 and 256 tokens of text",
     "pred": "range predicted before those were run",
 }
+SCAN_TITLE = ("Before training, with longer text (open triangles, 16, 64 tokens): the text difference grows. "
+              "Shaded: the range predicted before the longer reads.")
 X_LABEL = "text difference: how much the probe changes the written text (points, log scale)"
 X_SHORT = "text difference (points, log scale)"
 Y_LABEL = "switch: cheats more with no probe attached (points)"
@@ -275,9 +277,9 @@ def build(reads: dict[str, dict], mock: bool) -> dict:
         by.setdefault(g["id"], []).append(row(run, reads[run]))
     st, answer = status(by)
     # short = the name beside a lone point; tag = the name in a crowded stack, where colour carries the probe kind
-    SHORT = {"k16open": "real probe, text kept open, after training", "k16": "real probe, after training, run {n}", "planted": "planted cue, after training",
+    SHORT = {"k16open": "real probe, thought held near the start, after training", "k16": "real probe, after training, run {n}", "planted": "planted cue, after training",
              "matched": "planted cue, small", "scaled": "real probe, scaled up", "k0": "no text before the answer"}
-    TAG = {"k16open": "after training, text kept open", "k16": "after training, run {n}", "planted": "planted cue, after training", "matched": "small planted cue",
+    TAG = {"k16open": "after training, thought held near the start", "k16": "after training, run {n}", "planted": "planted cue, after training", "matched": "small planted cue",
            "scaled": "scaled up", "k0": "no text"}
     for gid, rs in by.items():
         for r in rs:
@@ -291,7 +293,7 @@ def build(reads: dict[str, dict], mock: bool) -> dict:
                        "note": "the start model, with 16 to 256 tokens before the answer", "rows": L})
     # text keys first: the figure_alone gate reads only the head of data.json
     return {
-        "title": title_for(st, by), "subtitle": SUBTITLE, "legend": LEGEND, "x_label": X_LABEL, "x_short": X_SHORT, "y_label": Y_LABEL, "y_short": Y_SHORT,
+        "title": title_for(st, by), "subtitle": SUBTITLE, "legend": LEGEND, "scan_title": SCAN_TITLE, "x_label": X_LABEL, "x_short": X_SHORT, "y_label": Y_LABEL, "y_short": Y_SHORT,
         "answer": answer, "status": st, "mock": mock,
         "bars": {"status": STATUS_BAR, "scout": SCOUT_BAR},
         "groups": groups,

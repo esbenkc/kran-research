@@ -16,19 +16,20 @@ def main():
     R = json.loads((HERE / "results" / "results.json").read_text())
     rows = ["| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
     for m in sorted(R["models"], key=lambda m: (not m["in_fit"], m["arm"], m["seed"])):
-        rows.append(f"| headline (law fit{' predicted' if m['gated'] else ''}) | {m['seed']} | {m['arm']} | none "
+        role = "predicted out of family" if m["gated"] else "in the line fit"
+        rows.append(f"| headline | {m['seed']} | {m['arm']} ({role}) | none "
                     f"| sink {m['sink_mass']:.3f}, recovery {m['recovery']:.3f} (SAE seeds "
                     f"{', '.join(f'{x:.3f}' for x in m['recovery_sae'])}), loss {m['eval_loss']:.4f} "
                     f"(gap to L* {100 * m['loss_gap_to_L_star']:.2f}%) | {m['measure_file']} |")
     f = R["fit"]
-    rows.append(f"| headline (line) | all non-gated | OLS fit | none | b = {f['b']:.3f}, 95% CI "
+    rows.append(f"| headline | all non-gated | OLS line | none | b = {f['b']:.3f}, 95% CI "
                 f"[{f['b_ci'][0]:.3f}, {f['b_ci'][1]:.3f}], s_tot {f['s_tot']:.3f}, R {f['R']:.3f}, "
                 f"swing_hi {f['swing_hi']:.3f}, sink levels {f['sink_levels']} | results/results.json |")
     for g in R["gated"]:
-        rows.append(f"| headline (out-of-family) | {g['run'].split('_s')[1]} | gated | none | measured "
+        rows.append(f"| headline | {g['run'].split('_s')[1]} | gated (band test) | none | measured "
                     f"{g['recovery']:.3f} vs predicted {g['pred']:.3f}, band {g['band']:.3f}, "
                     f"in band: {g['in_band']} | results/results.json |")
-    rows.append(f"| status | all | PREREG s3 rule | none | {R['status']} {R['rejected_clauses']}; "
+    rows.append(f"| headline | all | PREREG s3 status rule | none | {R['status']} {R['rejected_clauses']}; "
                 f"prediction {R['outcome']} | results/results.json |")
     for m in R["models"]:
         rows.append(f"| null: shuffled labels | {m['seed']} | {m['arm']} | shuffled labels "

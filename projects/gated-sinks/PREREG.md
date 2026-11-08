@@ -178,8 +178,8 @@ Foldout number only, never on the figure, never in the status.
   alone; the same layer and block for every arm. A 1-seed SC v1 recovery peek existed at h_2 and h_4
   (0.238 vs 0.235, both at the random-dictionary floor), so it carried no layer preference.
 - **D4, small sinks (Tove #17232, confirmed #17234; Kasper #17233, Tove #17235):** order SC3 (32 trigger
-  types, wd 0.1) > SC3wd (wd 0.5) > SC2 (1 trigger type) (Bruno #17236: with one trigger type the idle
-  heads dump on the recurring trigger token, 0.60-0.74, not on BOS; SA and SC2wd were stopped). Best block
+  types, wd 0.1) > SC3wd (wd 0.5) > BB (SC3 + Guo 2410.13835 Bigram-Backcopy) (Bruno #17236, #17240: with one trigger type the idle
+  heads dump on the recurring trigger token, 0.60-0.74, not on BOS; SA, SC2 and SC2wd were stopped). Best block
   mean of first-token mass at its PICK checkpoint: >= 0.3 -> F1, plan as frozen; 0.15-0.3 -> F2, grid at
   that block, title answer and TLDR scoped to 'the sinks a tiny model grows (at most X)'; < 0.15 -> F3,
   VOID, no grid, room closes UNCONFIRMED. The 0.15 bar was set AFTER the SC v1 block-4 readings of

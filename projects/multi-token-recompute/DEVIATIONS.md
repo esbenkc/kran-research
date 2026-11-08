@@ -33,4 +33,6 @@ Changes:
    (read vs solve), beta 1 (gradient-path-law config.yaml:25); no KL on the 16 prefix tokens, so RL may move its
    own text (the YES path). Reason: the first pilot try with a KL over prefix + decision at beta 1 crawled (cheat
    0.014 -> 0.058 in 40 updates, logs/pilot_try1_kl1_lr3e-4.log); a full-vocabulary KL over 16 tokens is far
-   stronger than the parent's. The pilot itself (start policy only) ran at KL 0.05 / lr 5e-4 (Bruno #16575).
+   stronger than the parent's. The pilot (start policy only) settings are listed in PREREG v1.1 (Bruno #16583:
+   try 2 at KL 0.05 / lr 5e-4 overshot to cheat 1.00 and is not used; try 3 at decision KL 1 stalled at 0.09-0.12;
+   try 4 = lr 1e-4, decision KL 0.1 to raw, no prefix KL, stop at the first dev check >= 0.40).

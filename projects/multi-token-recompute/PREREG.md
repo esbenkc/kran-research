@@ -1,4 +1,4 @@
-# PREREG v1 — multi-token-recompute (room oracle-1108-multi-token)
+# PREREG v1.1 — multi-token-recompute (room oracle-1108-multi-token)
 
 Written by Felix (plan) from Tove's APPROVE (#16508, 2026-11-07 16:57 PST = 2026-11-08 01:57 CET) and the
 phase-0 argument (#16486-#16510), BEFORE the engine gate and before any training update. The rules below are
@@ -157,9 +157,12 @@ short). Never cut: planted s0, k16 s0, k16 s1, D_end on the final adapters.
 
 ## Gate, measured before training (filled in v1.1, before the first update)
 
-- start policy: one outcome-only pilot (read 1 / solve 0.6, no probe, no shaping, clean recompute, lr 3e-4,
-  P8 G8) stopped at the first dev check with cheat >= 0.40 (none build), the same start for every arm and seed
-  (as the parent's pilot_standard_s0, 0.39). Pilot stop update: ...   start cheat test (none / leaky): ...
+- start policy: one outcome-only pilot (read 1 / solve 0.6, no probe, no shaping, clean recompute, P8 G8;
+  try 4: lr 1e-4, decision KL 0.1 to raw, no prefix KL; tries 1-3 in DEVIATIONS D1.8, not used) stopped at the
+  first dev check with cheat >= 0.40 (none build), the same start for every arm and seed
+  (as the parent's pilot_standard_s0, 0.39). Pilot stop: update 12 (dev cheat 0.014 -> 0.144 -> 0.298 -> 0.620;
+  the move is steep, so the start sits at 0.62, mid-range; data/runs/pilot/curve.jsonl, adapter
+  data/runs/pilot/adapter.pt). Start cheat test (none / leaky): 0.6245 / 0.6199.
   Raw Qwen3-0.6B cheat (Vera #16554): 1.7% none.
 - prompt: parent Countdown text + 'First think in one short sentence. Then reply Answer: read ... or Answer:
   solve'; assistant turn prefilled with 'Thought:'; 16 free tokens; answer cue '\nAnswer:'; decision = 2-way
@@ -173,9 +176,18 @@ short). Never cut: planted s0, k16 s0, k16 s1, D_end on the final adapters.
 - RAW Qwen3-0.6B (Vera's independent engine, same sampler spec, 200 test x 4 CRN seeds; skeptic/
   vera_audit_base.json): f 0.059, f_null 0 (B8 vs B4), D 0.029 [0.027, 0.031], Pinsker 0.042, per-token TV
   sum 0.052, mean per-token TV 0.0032, decision spill 0.117 logit mean |diff|.
-- START policy (Bruno, R = 4 train + test): f: ...   D_base: ... (CI ...)   Pinsker: ...   per-token TV sum: ...
-  C_base (Iris): ...
-- planted token X / eps / D_plant: ...   K (scaled, if run): ...
-- s/update: ~8.3 (pilot). Budget: DEVIATIONS.md D1 (one N for planted s0, k16 s0, k16 s1 from the clock formula,
-  k0 100 updates, lr 3e-4; the parent ran 5,000 updates). N = ... (T0 ..., s_update ...).
-- predicted k16 ceiling = 100 x D_base + |k0 spill| (spill measured at the end; before training: 100 x D_base): ...
+- START policy (Bruno #16586; data/reads/raw/start.json + .npz; R = 4 CRN; 800 test pairs, 1,528 train pairs):
+  TEST f 0.054, f_null 0.000, D_base 0.0274 [0.0243, 0.0310], Pinsker 0.0458 (KL_seq 0.0042), per-token TV sum
+  0.0608 (position 1 0.012, position 5 0.010, others 0.0015-0.0065); served gap +0.46 points [0.01, 0.94], text
+  part +0.22 [-0.17, 0.64], spill +0.24 [-0.02, 0.51]. TRAIN f 0.071, D 0.0338 [0.0310, 0.0367].
+  f < 0.2 on BOTH raw (0.059) and start (0.054): the scout's rule is not armed -> prereg.outcome = unsettled by
+  the frozen scoring (section 'Frozen prediction'); the k16/k0 clauses are still reported.
+  C_base (Iris, c_reader.py on start.npz): ...
+- planted token X / eps / D_plant (0.30, DEVIATIONS D1): ...   Predicted forced-prefix switch at the decision-KL
+  optimum (beta 1, start cheat 0.40, a perfect probe; Kasper #16584): ~37 points (cheat given X 0.12, given not-X
+  0.49); below ~55% probe separation the optimum drops under the 20-point gate.
+- s/update = 9.3 (pilot, Bruno #16585). Budget (DEVIATIONS D1.4): N = floor_50(((20:40 - T0) - 45 min) / 3 /
+  9.3 s) = 200 updates for planted s0, k16 s0 and k16 s1 for any T0 from 17:59 to 18:22 PST (T0 posted by Bruno);
+  k0 100 updates; lr 3e-4; decision KL beta 1, no prefix KL (D1.8). The parent ran 5,000 updates.
+- predicted k16 ceiling before training = 100 x D_base = 2.7 points [2.4, 3.1] for the text part; the full
+  gap adds |k0 spill| (start-policy spill +0.24 points). Read at the end against 100 x D_end.

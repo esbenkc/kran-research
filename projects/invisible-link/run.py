@@ -2,7 +2,8 @@
 
     with-model-keys .venv/bin/python run.py <phase> --models gpt-5.4-nano,... --n 20 [--ctl-n 10] [--cells ...] [--workers 8] [--budget 4.5]
 
-A cell is <stuck|free>-<view>-<arm>. Run i of a cell uses template TEMPLATE_ORDER[i % 5] and paraphrase (i // 5) % 4,
+A cell is <need>-<view>-<arm>; need = stuck | free (start on the home page) or rstuck | rfree (start ON the
+route page, so need and exposure arrive in the same first observation; Kasper #16917). Run i of a cell uses template TEMPLATE_ORDER[i % 5] and paraphrase (i // 5) % 4,
 so runs 0-29 cover each template x paraphrase once (PREREG s2). Resumable: a run whose raw file exists is skipped.
 Needs server.py running on 127.0.0.1:8765.
 """
@@ -27,14 +28,15 @@ N_PARAPHRASES = 6
 
 MAIN_CELLS = [f"{b}-{v}-{a}" for b in ("stuck", "free") for v in ("raw", "md") for a in ("hidden_fit", "hidden_nonfit", "visible_fit")]
 CONTROL_CELLS = ["stuck-raw-nolink", "stuck-a11y-hidden_fit", "stuck-a11y-hidden_nonfit", "stuck-a11y-sronly_fit"]
+ROUTE_CELLS = [f"{b}-{v}-{a}" for b in ("rstuck", "rfree") for v in ("raw", "md") for a in ("hidden_fit", "hidden_nonfit")]
 
 _MLOCK = threading.Lock()
 
 
 def parse_cell(cell: str) -> tuple[bool, str, str]:
     b, v, a = cell.split("-", 2)
-    assert b in ("stuck", "free") and v in agent.VIEWS and a in sitegen.ARMS, cell
-    return b == "stuck", v, a
+    assert b in ("stuck", "free", "rstuck", "rfree") and v in agent.VIEWS and a in sitegen.ARMS, cell
+    return b, v, a
 
 
 def spent() -> float:
@@ -50,10 +52,10 @@ def one(phase: str, model: str, cell: str, i: int, budget: float) -> dict | None
         return None
     if spent() > budget:
         return {"skipped": "budget"}
-    stuck, view, arm = parse_cell(cell)
+    need, view, arm = parse_cell(cell)
     template = TEMPLATE_ORDER[i % 5]
     para = (i // 5) % N_PARAPHRASES
-    site = sitegen.build_site(template, arm, stuck)
+    site = sitegen.build_site(template, arm, stuck=need in ("stuck", "rstuck"), route_start=need.startswith("r"))
     question = sitegen.TEMPLATES[template]["questions"][para]
     man = {**site, "phase": phase, "model": model, "cell": cell, "view": view, "i": i, "paraphrase": para,
            "raw_file": str(out.relative_to(ROOT)), "created": time.time()}
@@ -105,6 +107,8 @@ def plan_jobs(a, models: list[str]) -> list[tuple[str, str, int]]:
         for c in cells:
             if c in CONTROL_CELLS:
                 n = a.n_ctl
+            elif c in ROUTE_CELLS:
+                n = a.n_route
             elif c.startswith("stuck-") and c.endswith(("hidden_fit", "hidden_nonfit")):
                 n = a.n_title  # the title cell; never cut (PREREG s6)
             elif c.startswith("stuck-"):
@@ -124,6 +128,7 @@ def main() -> None:
     ap.add_argument("--n-stuck-visible", type=int, default=30)
     ap.add_argument("--n-free", type=int, default=20)
     ap.add_argument("--n-ctl", type=int, default=10)
+    ap.add_argument("--n-route", type=int, default=10)
     ap.add_argument("--cells", default="")
     ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--workers", type=int, default=8)

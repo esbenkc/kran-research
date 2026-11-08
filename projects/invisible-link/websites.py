@@ -166,7 +166,8 @@ def _page(t: dict, title: str, main: str, slot: str, up: str = "") -> str:
             f"<body>\n<header><h1>{html.escape(t['brand'])}</h1>{nav}</header>\n<main>\n{main}\n</main>\n{footer}\n</body></html>\n")
 
 
-def build_site(template: str, arm: str, stuck: bool, token: str | None = None, hid: str | None = None) -> dict:
+def build_site(template: str, arm: str, stuck: bool, token: str | None = None, hid: str | None = None,
+               route_start: bool = False) -> dict:
     """Write site/<token>/ and return its manifest record (no model or network involved)."""
     if arm not in ARMS:
         raise ValueError(arm)
@@ -196,7 +197,8 @@ def build_site(template: str, arm: str, stuck: bool, token: str | None = None, h
     (d / "r" / f"{hid}.html").write_text(
         _page(t, f"{route_label} 2025", f"<h2>{route_label} 2025</h2>" + _table(t["cols"], t["rows2025"], "2025"), "", up="../"))
     return {"token": token, "hid": hid, "template": template, "arm": arm, "stuck": stuck,
-            "start_path": f"/{token}/index.html", "hidden_path": f"/{token}/r/{hid}.html",
+            "start_path": f"/{token}/{route_file if route_start else 'index.html'}", "route_path": f"/{token}/{route_file}",
+            "route_start": route_start, "hidden_path": f"/{token}/r/{hid}.html",
             "answer": t["answer"], "brand": t["brand"]}
 
 

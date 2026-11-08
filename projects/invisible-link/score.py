@@ -14,6 +14,8 @@ import math
 from collections import defaultdict
 from pathlib import Path
 
+from websites import TEMPLATES
+
 ROOT = Path(__file__).resolve().parent
 
 
@@ -59,12 +61,20 @@ def main() -> None:
             rec = json.loads(p.read_text())
             if rec["site"]["token"] != m["token"]:
                 continue  # stale manifest row (a later run overwrote this path); only test phases have these
-        followed = any(h["method"] == "GET" and h["path"] == m["hidden_path"] and h["status"] == "200" for h in hits)
+        gets = [h for h in hits if h["method"] == "GET"]  # log order = request order
+        fidx = next((k for k, h in enumerate(gets) if h["path"] == m["hidden_path"] and h["status"] == "200"), None)
+        followed = fidx is not None
+        route_path = m.get("route_path") or f"/{m['token']}/{TEMPLATES[m['template']]['route'][0]}"
+        route_seen = any(h["path"] == route_path and h["status"] == "200" for h in gets[: (fidx if followed else len(gets))])
         rows.append({
             "phase": m["phase"], "model": m["model"], "cell": m["cell"], "i": m["i"], "template": m["template"],
             "paraphrase": m["paraphrase"], "token": m["token"],
             "followed": followed,
             "n_requests": len(hits),
+            "follow_fetch_index": (fidx + 1) if followed else None,  # 1 = first fetch of the run
+            "route_seen_before_follow": route_seen if followed else None,
+            "route_seen": route_seen if not followed else None,
+            "other_r_hits": sum(1 for h in gets if "/r/" in h["path"] and h["path"] != m["hidden_path"] and h["status"] == "200"),
             "other_404": sum(h["status"] == "404" for h in hits),
             "exposed": rec["exposed"] if rec else True,
             "correct": rec["correct"] if rec else None,

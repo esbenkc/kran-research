@@ -63,7 +63,7 @@ is dropped.)
 | arm | what changes | seeds | role |
 |---|---|---|---|
 | softmax | standard causal softmax attention | 0, 1, 2 | line fit; sets L* |
-| softmax1 | softmax with +1 in the denominator (fixed null logit 0) | 0, 1 | line fit |
+| softmax1 | softmax with +1 in the denominator (fixed null logit 0; Miller 2023 "Attention Is Off By One", Kaul et al. 2410.17174) | 0, 1 | line fit |
 | sinklogit | learned per-head null logit in the denominator | 0, 1 | line fit |
 | kbias | learned per-head key k* with value 0 (Gu et al. 2410.10781, Tab. 4) | 0, 1 | line fit |
 | gated | elementwise sigmoid gate on the attention output (2505.06708, G1) | 0, 1, 2 | predicted |

@@ -55,7 +55,7 @@ LEGEND = {  # Tove #16616: the bound picture (x = text difference, y = switch), 
     "dot": "switch, with 95% interval",
     "ring": "part of the switch that comes from the text",
     "impossible": "impossible for a model that reads only the text: a switch bigger than the text difference",
-    "bars": "3 points: our bar for a switch. 10 points: the bar fixed before the run",
+    "bars": "3 points: our bar for a switch. 10 points: the predicted switch (fixed before the run)",
     "length": "text difference before training, with 64 and 256 tokens of text",
     "pred": "range predicted before those were run",
 }

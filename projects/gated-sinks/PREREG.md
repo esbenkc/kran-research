@@ -177,10 +177,15 @@ Foldout number only, never on the figure, never in the status.
   by the block whose first-token mass is highest at the PICK checkpoint of softmax s0, chosen by sink mass
   alone; the same layer and block for every arm. A 1-seed SC v1 recovery peek existed at h_2 and h_4
   (0.238 vs 0.235, both at the random-dictionary floor), so it carried no layer preference.
-- **D4, small sinks (Tove #17232, confirmed #17234):** order SC2 > SC2wd > BB > SA. Best block mean at its
-  PICK checkpoint: >= 0.3 -> F1, plan as frozen; 0.15-0.3 -> F2, grid at that block, status rule unchanged,
-  title answer and TLDR scoped to 'the sinks a tiny model grows (at most X)'; < 0.15 -> F3, VOID, no grid,
-  room closes UNCONFIRMED.
+- **D4, small sinks (Tove #17232, confirmed #17234; Kasper #17233, Tove #17235):** order SC3 (32 trigger
+  types, wd 0.1) > SC3wd (wd 0.5) > SC2 (1 trigger type) (Bruno #17236: with one trigger type the idle
+  heads dump on the recurring trigger token, 0.60-0.74, not on BOS; SA and SC2wd were stopped). Best block
+  mean of first-token mass at its PICK checkpoint: >= 0.3 -> F1, plan as frozen; 0.15-0.3 -> F2, grid at
+  that block, title answer and TLDR scoped to 'the sinks a tiny model grows (at most X)'; < 0.15 -> F3,
+  VOID, no grid, room closes UNCONFIRMED. The 0.15 bar was set AFTER the SC v1 block-4 readings of
+  0.13-0.18 were in the room (#17219, #17228). In F1 and F2: if the non-gated sink range R < 0.15, both
+  REJECTED(i) and CONFIRMED read UNCONFIRMED (a small x-range makes a small swing automatic and cannot
+  license a law).
 - **Logged per model (Vera #17222 (4)):** max and median |h| at the SAE layer and the token type that
   carries the maximum (BOS, trigger, evidence, filler).
 - **Picked:** organism = TBD, d = 64, M = TBD, sink block = TBD, SAE layer = TBD, SAE rows = TBD (all or P),

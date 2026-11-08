@@ -162,6 +162,8 @@ def main():
             u = {tuple(r) for r in za["toks_n"].tolist()}
             arms[lab]["distinct"] = len(u) / len(za["toks_n"])
             arms[lab]["n_distinct"] = len(u)
+        arms[lab]["pct_none"] = f'{100 * arms[lab]["cheat_none"]:.1f}'
+        arms[lab]["pct_probe"] = f'{100 * arms[lab]["cheat_leaky"]:.1f}'
         g = arms[lab]["gap"]
         arms[lab]["gap_s"] = ("+" if g >= 0 else "&minus;") + R(abs(g))
     data["arms"] = arms
@@ -224,6 +226,7 @@ def main():
         mock='<div class="mock">MOCK: MADE-UP RESULT NUMBERS</div>' if a.mock else "", lens_def=LENS_DEF)
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "figure1.html").write_text(page)
+    (Path(__file__).parent / "alt.txt").write_text(T["alt"] + "\n")
     (Path(__file__).parent / "data.json").write_text(json.dumps(data, indent=1, default=str))
     print(json.dumps(data["real_row"], indent=1), json.dumps(data.get("planted", {}), indent=1)[:900], "\nwrote", OUT / "figure1.html")
 
@@ -275,11 +278,11 @@ All numbers: figure1/data.json. {src}
   .note b {{ color: #1d1d1f; }}
   .after {{ font-size: 25px; font-weight: 800; margin-top: 22px; }}
   .after .s {{ font-weight: 500; color: #5a5d66; font-size: 22px; }}
-  .tb {{ display: grid; grid-template-columns: 1fr 150px 150px; column-gap: 10px; row-gap: 8px; margin-top: 6px; align-items: center; }}
+  .tb {{ display: grid; grid-template-columns: 1fr 128px 128px; column-gap: 10px; row-gap: 8px; margin-top: 6px; align-items: center; }}
   .th {{ font-size: 20px; font-weight: 700; color: #7a7d86; display: flex; gap: 4px; align-items: center; justify-content: flex-end; padding-right: 14px; }}
   .rl {{ font-size: 22px; font-weight: 700; color: #1d1d1f; line-height: 1.2; }}
   .rl .tag {{ display: block; font-size: 19px; font-weight: 500; color: #5a5d66; margin-top: 2px; }}
-  .tv {{ background: #eef0f3; border-radius: 14px; padding: 8px 14px; font-size: 28px; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }}
+  .tv {{ background: #eef0f3; border-radius: 14px; padding: 8px 12px; font-size: 27px; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }}
   .cell {{ background: #eef0f3; border-radius: 16px; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px; }}
   .cell .k {{ font-size: 19px; font-weight: 700; color: #7a7d86; display: flex; gap: 4px; align-items: center; }}
   .cell .v {{ font-size: 24px; color: #4d5059; }} .cell .v b {{ color: #1d1d1f; font-size: 28px; }}

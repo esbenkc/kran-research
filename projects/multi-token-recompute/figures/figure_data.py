@@ -53,7 +53,7 @@ LEGEND = {  # Tove #16616: the bound picture (x = text difference, y = switch), 
     "real": "real probe",
     "planted": "planted cue",
     "dot": "switch, with 95% interval",
-    "ring": "part of the switch that comes from the text",
+    "ring": "part of the switch that comes from the text (the rest comes from rounding at the answer)",
     "impossible": "impossible for a model that reads only the text: a switch bigger than the text difference",
     "bars": "3 points: our bar for a switch. 10 points: the predicted switch (fixed before the run)",
     "length": "text difference before training, with 64 and 256 tokens of text",
@@ -123,10 +123,10 @@ def row(run: str, r: dict) -> dict:
         "unique": r.get("unique"),
     }
     out["forced"] = iv(r.get("forced"))
-    if out["forced"] is not None:
-        f = out["forced"]
-        out["note"] = (f"forcing the planted cue at the start of the text moves cheating by {f['v'] * 100:.0f} points "
-                       f"({f['lo'] * 100:.0f} to {f['hi'] * 100:.0f}), so the model reads it")
+    if out["forced"] is not None and r.get("g_X") is not None:
+        # plain rates, not a bare interval (Lumi L1 #16711): cheating with the cue forced first vs without it
+        out["note"] = (f"when the planted cue is the first token, the trained model cheats {r['g_X'] * 100:.0f}% of the time, "
+                       f"against {r['g_notX'] * 100:.0f}% without it: it reads the cue")
     return out
 
 
@@ -156,7 +156,7 @@ def from_read(path: Path) -> dict:
     """read.py <out>.json (test split) -> the fields this figure draws. Fractions 0-1."""
     t = json.loads(path.read_text())["test"]
     return {"gap": ci(t, "gap"), "text": ci(t, "text"), "spill": ci(t, "spill"), "D_end": ci(t, "D"),
-            "f": t.get("f"), "forced": ci(t, "forced_switch"),
+            "f": t.get("f"), "forced": ci(t, "forced_switch"), "g_X": t.get("g_X"), "g_notX": t.get("g_notX"),
             "cheat_none_end": t["cheat_none"], "cheat_leaky_end": t["cheat_leaky"], "src": str(path.relative_to(HERE))}
 
 

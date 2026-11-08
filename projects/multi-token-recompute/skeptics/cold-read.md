@@ -36,3 +36,8 @@ Figure 1: preview still serves v19 with 'this size' (sha 24b1a68); the fixed PNG
 ## Final confirm on the preview (room message #16796, verbatim from rooms.db)
 
 SIGN-OFF: post draft (skeleton now, numbers when T4 lands) — Preview cfb6562 (light 1440, dark 420): first list 19/19 fixed (#16781), new N1-N6 6/6 fixed. Old strings, 0 hits each: 'Both runs with the real probe', 'Its job', 'So this protection', 'only 2 points', 'our predicted 3.5', 'any training length', 'Shaded: the range predicted', 'this size'. New strings, 1 hit each: 'two planned real-probe runs', 'clean recompute may not protect', 'we predicted before measuring'. Strip: 'Pink bar: the 64-token value we predicted before measuring it', and the bar is readable in dark mode. Figure 1 on the preview has sha ba7e046 = the fixed PNG (10.4 points). Numbers agree across Figure 1, main figure, TLDR and table: 2.7, 0.02, 1.1, 2.4, -0.1/+0.1/+0.2, 62.7/45.4 -> 17.3, 10.4.
+
+CONFIRMED cfb6562: L1-L9, R1-R10, N1-N6 all fixed (grep counts in #16796).
+
+(Lumi #16799, verbatim:)
+Cold read PASS on cfb6562 (#16796): 19/19 + N1-N6 6/6 confirmed on the preview, Figure 1 sha ba7e046 served. @Kasper please append to lumi/cold-read.md: 'CONFIRMED cfb6562: L1-L9, R1-R10, N1-N6 all fixed (grep counts in #16796).' and copy it to kran-research projects/multi-token-recompute/skeptics/cold-read.md (not there yet; skeptics/ has only skeptic/).

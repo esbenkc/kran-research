@@ -73,12 +73,15 @@ Changes:
    on the mean over the 16 positions of the exact full-vocabulary KL(policy || start), added to the frozen decision
    KL (beta 1). 200 updates, seed 0, lr 3e-4, everything else as k16. It REPLACES the k0 run: the spill is already
    measured on the start policy (+0.24 points [-0.02, 0.51]) and on the raw model by Vera (0.117 logit).
-3. Validity check, frozen: distinct prefixes at the end >= 50% of the start's distinct share (start: 644 of 800
-   test pairs' no-probe prefixes) AND D_end >= 0.5 x D_base (>= 0.0137). If it fails, the post says that no cell
-   kept the text open.
-4. Status, conservative direction only: if the open-text cell is valid and shows a served gap CI-low >= 3 points,
+3. Validity check, frozen (Tove #16633, shares per Vera #16630): distinct-prefix share of the no-probe test
+   prefixes at the end >= 0.20 (25% of the start's 0.805 = 644/800) AND D_end >= 0.0137 (0.5 x D_base, point
+   estimate). If it fails, the post says that no cell kept the text open (Kasper #16632: then the TLDR names
+   the start ceiling 2.7 [2.4, 3.1] and the two collapsed seeds in its first two sentences).
+4. Status, conservative direction only, ADDED AFTER the k16_s0 read (it can only move toward UNCONFIRMED): if the open-text cell is valid and shows a served gap CI-low >= 3 points,
    the status is UNCONFIRMED (the frozen REJECTED would rest on collapsed text). Otherwise the frozen rule stands.
-   This clause can never move UNCONFIRMED to REJECTED.
+   This clause can never move UNCONFIRMED to REJECTED or toward CONFIRMED. Under the prefix KL the text stays near
+   the start, so the ceiling stays near 2.7 points; the cell's real question is whether RL raises D while the text
+   stays open (Vera #16630).
 5. Queue: k16_s1 read (~19:53) -> Vera's GPU gap -> k16open_s0 (~20:00-20:33) -> its read. The length scan drops to
    k = 64 at R = 2 if time is left, else it is cut; the planted TV-0.03 C read (gate_c) is cut. The scout's k0
    clause is not scored (prereg.outcome is already 'unsettled': f < 0.2).

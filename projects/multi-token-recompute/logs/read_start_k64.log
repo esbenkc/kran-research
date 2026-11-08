@@ -1,0 +1,126 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+W1107 20:25:13.801000 72676 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5962.86it/s]
+W1107 20:25:22.040000 72676 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+batch 1/13 67s
+batch 2/13 89s
+batch 3/13 100s
+batch 4/13 112s
+batch 5/13 123s
+batch 6/13 134s
+batch 7/13 145s
+batch 8/13 156s
+batch 9/13 167s
+batch 10/13 179s
+batch 11/13 190s
+batch 12/13 201s
+batch 13/13 213s
+{
+ "policy": "data/runs/pilot/adapter.pt",
+ "splits": "test",
+ "R": 2,
+ "k": 64,
+ "n_rows": 400,
+ "B": 32,
+ "plant_tok": null,
+ "plant_eps": 0.0,
+ "torch": "2.14.1",
+ "skip_text": true,
+ "note": "skip_text: no text part (text = gap there) and no per-token TV/KL",
+ "test": {
+  "cheat_none": 0.8099610805511475,
+  "cheat_leaky": 0.8102743625640869,
+  "gap": -0.00031329586636275053,
+  "gap_ci": [
+   -0.02085200324654579,
+   0.018612097948789597
+  ],
+  "text": -0.00031329586636275053,
+  "text_ci": [
+   -0.02085200324654579,
+   0.018612097948789597
+  ],
+  "spill": 0.0,
+  "spill_ci": [
+   0.0,
+   0.0
+  ],
+  "direct_same_text": 1.3827979273628443e-05,
+  "f": 0.3825,
+  "D": 0.10371866077184677,
+  "D_ci": [
+   0.0914434865117073,
+   0.11618372052907944
+  ],
+  "first_diff_pos_hist": [
+   7,
+   1,
+   0,
+   5,
+   4,
+   0,
+   1,
+   2,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   1,
+   1,
+   6,
+   7,
+   4,
+   4,
+   1,
+   1,
+   0,
+   2,
+   1,
+   1,
+   1,
+   2,
+   2,
+   3,
+   6,
+   2,
+   2,
+   3,
+   0,
+   4,
+   2,
+   2,
+   5,
+   1,
+   6,
+   2,
+   5,
+   4,
+   1,
+   4,
+   5,
+   3,
+   5,
+   3,
+   5,
+   1,
+   3,
+   5,
+   3,
+   3,
+   0,
+   5,
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ "read_s": 212.7
+}
+
+WATCHDOG: exit 0, peak footprint 4.19 GB

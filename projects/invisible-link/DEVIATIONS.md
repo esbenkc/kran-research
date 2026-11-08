@@ -57,7 +57,7 @@ Change (Felix #16929, code `0021148b`, run at `e3bb9b85` with the same code; lev
 - The title cells, the title rule and STUCK visible-fit do not change. In plain words the title level is 'the answer
   is not on the page the agent is on' (Kasper #16926); the agent is never told it is stuck.
 
-## D4 (during the counted run, 23:17): Haiku dropped by the s6 cost rule; Haiku title cells finished as a side row
+## D4 (during the counted run, about 23:13 PST): Haiku dropped by the s6 cost rule; Haiku title cells finished as a side row
 
 Reason (Bruno #16949): after 171 counted runs, spend was $1.153 (from $0.41). Off-task-anchor runs explore all 8
 steps, so per-run cost is far above the pilot price (Haiku off-task $0.0152 per run against $0.009 in the pilot; GPT-5.4

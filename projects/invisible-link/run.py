@@ -13,6 +13,7 @@ import json
 import sys
 import threading
 import time
+import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -58,6 +59,11 @@ def one(phase: str, model: str, cell: str, i: int, budget: float) -> dict | None
            "raw_file": str(out.relative_to(ROOT)), "created": time.time()}
     with _MLOCK, (ROOT / "raw" / "manifest.jsonl").open("a") as f:
         f.write(json.dumps(man) + "\n")
+    # Readiness check (Felix #16903): HEAD the start page before the first model call; HEAD is never a follow.
+    req = urllib.request.Request(agent.BASE + site["start_path"], method="HEAD", headers={"User-Agent": "harness-readiness"})
+    with urllib.request.urlopen(req, timeout=10) as r:
+        if r.status != 200:
+            raise RuntimeError(f"start page not ready: {r.status}")  # no raw file -> the run is retried
     rec = agent.run_episode(model, view, site, question, out)
     return {"model": model, "cell": cell, "i": i, "followed": rec["harness_followed"], "exposed": rec["exposed"],
             "correct": rec["correct"], "steps": rec["steps_used"], "cost": rec["cost_usd_est"]}

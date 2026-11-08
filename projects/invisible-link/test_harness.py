@@ -14,6 +14,7 @@ import json
 import re
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 import agent
@@ -41,16 +42,17 @@ def main() -> int:
     agent.complete_cached = scripted
     agent.gen_settings = lambda m: {"scripted": True}
     expect = {}
+    phase = f"test{int(time.time())}"
     man = (ROOT / "raw" / "manifest.jsonl")
     man.parent.mkdir(parents=True, exist_ok=True)
     for view in ("raw", "md", "a11y"):
         for arm in websites.ARMS:
             for i, tpl in enumerate(websites.TEMPLATE_ORDER):
                 site = websites.build_site(tpl, arm, stuck=(i % 2 == 0))
-                out = ROOT / "raw" / "test" / "scripted" / f"{view}-{arm}" / f"{i:03d}.json"
+                out = ROOT / "raw" / phase / "scripted" / f"{view}-{arm}" / f"{i:03d}.json"
                 rec = agent.run_episode("scripted", view, site, websites.TEMPLATES[tpl]["questions"][0], out)
                 with man.open("a") as f:
-                    f.write(json.dumps({**site, "phase": "test", "model": "scripted", "cell": f"{'stuck' if i % 2 == 0 else 'free'}-{view}-{arm}",
+                    f.write(json.dumps({**site, "phase": phase, "model": "scripted", "cell": f"{'stuck' if i % 2 == 0 else 'free'}-{view}-{arm}",
                                         "view": view, "i": i, "paraphrase": 0, "raw_file": str(out.relative_to(ROOT))}) + "\n")
                 want = arm != "nolink" and (view != "a11y" or arm in ("visible_fit", "sronly_fit"))
                 expect[(view, arm, i)] = (want, rec["exposed"], rec["harness_followed"], rec["truncated_calls"])
@@ -60,8 +62,8 @@ def main() -> int:
         if k[2] == 0:
             print(f"{k[0]:5s} {k[1]:14s} want={v[0]} exposed={v[1]} followed={v[2]} truncated={v[3]}")
     # The log, not the harness, is the scoring source: score.py must agree with the harness on every test run.
-    subprocess.run([sys.executable, str(ROOT / "score.py"), "--phase", "test"], check=True, capture_output=True)
-    rows = [json.loads(l) for l in (ROOT / "results" / "scores_test.jsonl").read_text().splitlines()]
+    subprocess.run([sys.executable, str(ROOT / "score.py"), "--phase", phase], check=True, capture_output=True)
+    rows = [json.loads(l) for l in (ROOT / "results" / f"scores_{phase}.jsonl").read_text().splitlines()]
     mism = [r for r in rows if r["followed"] != r["harness_followed"]]
     print(f"{len(expect)} scripted runs; {len(bad)} unexpected; log-vs-harness mismatches {len(mism)} of {len(rows)}")
     print("ALL OK" if not bad and not mism and len(rows) == len(expect) else f"FAIL {bad[:3]} {mism[:3]}")

@@ -154,11 +154,13 @@ def footer_slot(arm: str, hid: str, t: dict) -> str:
     raise ValueError(arm)
 
 
-def _page(t: dict, title: str, main: str, slot: str) -> str:
+def _page(t: dict, title: str, main: str, slot: str, up: str = "") -> str:
+    """up = "../" for the target page in r/, so its menu and footer links resolve to the site root (Vera #16906)."""
     route_file, route_label = t["route"]
-    nav = (f'<nav><a href="index.html">Home</a> | <a href="{route_file}">{route_label}</a> | '
-           f'<a href="about.html">About</a> | <a href="blog.html">Blog</a> | <a href="contact.html">Contact</a></nav>')
-    footer = ('<footer><p><a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a> | <a href="careers.html">Careers</a></p>'
+    route_file = up + route_file
+    nav = (f'<nav><a href="{up}index.html">Home</a> | <a href="{route_file}">{route_label}</a> | '
+           f'<a href="{up}about.html">About</a> | <a href="{up}blog.html">Blog</a> | <a href="{up}contact.html">Contact</a></nav>')
+    footer = (f'<footer><p><a href="{up}privacy.html">Privacy</a> | <a href="{up}terms.html">Terms</a> | <a href="{up}careers.html">Careers</a></p>'
               f'{slot}<p>&copy; {html.escape(t["brand"])}</p></footer>')
     return (f"<!DOCTYPE html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><title>{html.escape(title)} - {html.escape(t['brand'])}</title></head>\n"
             f"<body>\n<header><h1>{html.escape(t['brand'])}</h1>{nav}</header>\n<main>\n{main}\n</main>\n{footer}\n</body></html>\n")
@@ -192,7 +194,7 @@ def build_site(template: str, arm: str, stuck: bool, token: str | None = None, h
         (d / name).write_text(_page(t, title, main, slot))
     # The target always holds the full 2025 table (all arms, PREREG s1); its own footer slot is empty.
     (d / "r" / f"{hid}.html").write_text(
-        _page(t, f"{route_label} 2025", f"<h2>{route_label} 2025</h2>" + _table(t["cols"], t["rows2025"], "2025"), ""))
+        _page(t, f"{route_label} 2025", f"<h2>{route_label} 2025</h2>" + _table(t["cols"], t["rows2025"], "2025"), "", up="../"))
     return {"token": token, "hid": hid, "template": template, "arm": arm, "stuck": stuck,
             "start_path": f"/{token}/index.html", "hidden_path": f"/{token}/r/{hid}.html",
             "answer": t["answer"], "brand": t["brand"]}

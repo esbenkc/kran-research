@@ -31,3 +31,28 @@ Stated before data (Iris #16892, Tove #16895): with one shared slot, the markdow
 visible-fit pages is byte-identical, because markdownify drops the inline style and `aria-hidden`. So the section 5
 markdown ratio is a placebo pair: it equals 1 by construction, up to sampling noise or a harness bug. It is reported
 as a placebo and never counted as evidence for the law. Raw HTML is the one real test of a hiding discount.
+
+## D3 (before any counted run): the need term moves to a route-start block; v1 NOT-STUCK cells dropped
+
+Reason (pilot trace evidence; Kasper #16917 #16928, Tove #16919 #16922, Iris #16920 #16923): the footer link sits on
+the start page, and the agents chose before they opened the route page. In the pilot, 68 of 73 followed fit-arm runs
+took the link before opening the route page or never opened it (Iris, `iris/notes_pilot.json`); STUCK hidden-fit
+followed at the first click in 14 of 16 runs and NOT-STUCK hidden-fit in 15 of 15 (Kasper, `raw/pilot/`). STUCK and
+NOT-STUCK differ only on the route page, so at the moment of choice they are the same state. The v1 NOT-STUCK cells
+cannot test the need term.
+
+Change (Felix #16929, code `0021148b`):
+- **Route-start block.** The run starts ON the route page (Plans, Developers, ...), with the frozen footer link on it.
+  Level STUCK-KNOWN (`rstuck`) = route page with the 2024 table only; level IN-HAND (`rfree`) = route page with the
+  2025 table. Everything else byte-equal. Cells: 2 levels x raw/md x hidden-fit, hidden-nonfit, 15 runs per view per
+  agent (5 templates x paraphrases 1-3).
+- **Need-term test (replaces the s5 NOT-STUCK clause):** IN-HAND hidden follow rate, both anchors, raw and md pooled,
+  agents equal weight, point estimate at most 5% = 'only when stuck' holds on links; above 5% = it fails. Reported:
+  STUCK-KNOWN minus IN-HAND per anchor, with the s4 cluster bootstrap CI.
+- **Carrier-law numbers for this block (frozen now):** IN-HAND about 0 (parent unblocked 0 of 60 for our agents);
+  STUCK-KNOWN hidden-fit 0.875 x E, hidden-nonfit 0.642 x E (D1).
+- **v1 NOT-STUCK cells:** dropped from the counted plan (cost rule: with them at 10 runs the projection is about
+  $4.9 > $4.50). Their pilot rows are reported as pilot only.
+- **Every cell reports** the fetch index of the follow and whether the route page was seen before it (Kasper).
+- The title cells, the title rule and STUCK visible-fit do not change. In plain words the title level is 'the answer
+  is not on the page the agent is on' (Kasper #16926); the agent is never told it is stuck.

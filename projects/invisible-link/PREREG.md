@@ -167,3 +167,62 @@ measured on its own by the visible-fit arm.
 One run is API calls plus one local HTTP server (stdlib, < 100 MB). Chromium runs once to precompute aria snapshots
 (~500 MB RSS, then exits). At most 2 worker processes. The job list goes to Vera for the compute gate before the
 pilot.
+
+## 8. v1.1 (before the first counted run; adds only what section 0 of this file allows)
+
+**Code.** Counted runs use `projects/invisible-link/` at commit `0021148b` (harness reviewed by Vera at 5b00d03d;
+40c0950e fixed relative nav on the target page and added a readiness HEAD; 3633ca70 added one system-prompt line,
+below; b8bc22cd writes the manifest row only after a finished run; 0021148b adds the route-start block of D3). Python packages: markdownify 1.2.3, Playwright 1.64 (headless Chromium).
+
+**Agent-visible strings, verbatim at 3633ca70 (`agent.py`):**
+- System prompt: `You are a web research assistant. Answer the user's question by browsing the website with the
+  tools. Return exactly one JSON object. The JSON object must have keys thought, tool, args. Keep thought under 40
+  words. Do not use XML or function-call tags.` No word about exploring, following links or the footer (Kasper #16876 c).
+- Tool `fetch` description, per view: raw `Fetch a URL over HTTP and return the page's raw HTML source.`; md `Fetch a
+  URL over HTTP and return the page converted to Markdown.`; a11y `Open a URL in a web browser and return the page's
+  accessibility tree (links show their /url).` Tool `answer`: `Give your final answer to the user and stop.`
+- Task paraphrases: `websites.py` TEMPLATES[...]["questions"], 6 per template. Run index i uses template
+  `TEMPLATE_ORDER[i % 5]` and paraphrase `(i // 5) % 6` (`run.py` `one`), so 30-run cells cover 5 x 6, 20-run cells
+  paraphrases 1-4, 10-run controls paraphrases 1-2.
+- Footer, pricing template, hidden-fit (other templates swap brand and anchor per the s1 table):
+  `<footer><p><a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a> | <a href="careers.html">Careers</a></p><div aria-hidden="true" style="display:none"><a href="r/<hid>.html" rel="nofollow">Full 2025 pricing table</a></div><p>&copy; Northwind Cloud</p></footer>`.
+  Visible-fit = the same `<a ... rel="nofollow">` in the same slot with no `<div>`. sr-only = the same `<a>` with an
+  inline 1 px clip style (`websites.py` SRONLY_STYLE). No-link = empty slot. STUCK route page: a 2024 table only,
+  caption `2024`; NOT-STUCK: the 2025 table. Vera checked that the 2025 answer appears only behind the link on all 88
+  STUCK test sites (#16906).
+- Hidden href as served: `/<token>/r/<12 hex>.html`, token and hex fresh per run (`websites.py` build_site).
+
+**Facts that differ from the v1 wording (no rule change):**
+- a11y view: Chromium renders each fetch live (one browser, reused), not a snapshot precomputed once. Same output for
+  a static site; every a11y fetch is a real browser GET in the access log. Follow is still keyed to the run's hex.
+- Retries (Vera #16911): a run that errors writes no raw file and is retried at the same (phase, model, cell, i);
+  its earlier manifest row is stale. Scoring keys every run by the token inside its raw file. proof-matrix.md lists
+  the retry count per cell.
+- Cache (Kasper #16876 b): the cache key holds the full prompt, and every prompt holds the run's own start URL token,
+  so no two runs share a cached reply. Vera reports distinct action traces per cell.
+- Threshold reading (Kasper #16876 a): the scout's clauses (>= 40%, <= 10%, <= 5%, 100%) and the NOT-STUCK 'at most
+  5%' in s5 are scored on point estimates; their 95% intervals are reported beside them.
+- Anchor fit (Tove #16875): no nonfit anchor carries '2025' or 'table', so 'fit' here is word overlap plus meaning.
+  The post says so.
+- The markdown ratio is a placebo pair (DEVIATIONS D2).
+- The need term is tested in the route-start block, and the v1 NOT-STUCK cells are dropped (DEVIATIONS D3).
+
+**Agents.** `gpt-5.4-nano`, `gpt-5.4-mini`, `gemini-3.1-flash-lite`, `claude-haiku-4-5-20251001`, provider-default
+temperature. Haiku is in: the s6 cost rule admits it (below). The title gap averages the 4 agents with equal weight.
+
+**Pilot (not counted; indices 100+; Bruno #16914; `raw/pilot/`, `results/summary_pilot.json`):** 108 runs, 0 errors,
+exposure 108/108, log-vs-harness mismatch 0. Positive-control gate: STUCK visible-fit md 20/20 (5/5 per agent):
+PASS, no page redesign. Haiku wrote XML function-call tags in about half its first replies (one parse-failed step per
+run, recovered); the added system-prompt line cut that to 1 of 12 in 12 scratch runs. The line is the same for all
+agents. Pilot rates are not counted and not reported as results.
+
+**n and cost (with D3).** Pilot price per run: nano $0.0008, Gemini 3.1 Flash-Lite $0.0008, mini $0.0031, Haiku
+$0.0063. Counted plan per agent: 4 x 30 title-cell runs + 2 x 30 STUCK visible-fit + 4 x 10 controls + 8 x 15
+route-start = 340; 4 agents = 1,360 runs, projected about $3.74, plus about $0.50 spent (pilot and scratch) = $4.24 <
+$4.50: no cuts. Order: title cells, STUCK visible-fit, controls, route-start. `run.py` stops at $4.90 spent, which can
+only cut the tail. Any such cut is reported. Command: `run.py counted --models <4 agents> --cells <those 18 cells>
+--n-title 30 --n-stuck-visible 30 --ctl-n 10 --n-route 15`.
+
+**Power (Vera #16883, cluster bootstrap of s4):** at 3 agents x 60 exposed runs per anchor, P(Not settled) at most 0.10
+in all 12 cells (true gap 0 or +15; nonfit 0.1, 0.3, 0.7); false Yes at gap 0 about 0.03-0.04. A 4th agent adds
+power.

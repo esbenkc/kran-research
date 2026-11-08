@@ -63,6 +63,7 @@ def main():
     ap.add_argument("--n-copy", type=int, default=0)
     ap.add_argument("--beta", type=float, default=2.0)
     ap.add_argument("--p-repeat", type=float, default=0.5)
+    ap.add_argument("--stop-file", default=None, help="stop at the next eval once this file exists")
     ap.add_argument("--save-every-eval", action="store_true",
                     help="keep ckpt_<step>.safetensors at every eval (for matched-loss picking)")
     a = ap.parse_args()
@@ -115,6 +116,9 @@ def main():
                 model.save_weights(str(out / f"ckpt_{it}.safetensors"))
             if a.target is not None and el <= a.target:
                 stop_step, reached = it, True
+                break
+            if a.stop_file and Path(a.stop_file).exists():
+                stop_step = it
                 break
     stop_step = stop_step or it
     model.save_weights(str(out / "weights.safetensors"))

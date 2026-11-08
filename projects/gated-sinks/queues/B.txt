@@ -1,0 +1,6 @@
+uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --attn softmax --seed 1 --max-steps 12000 --stop-file results/stop_softmax --name softmax_s1 > logs/softmax_s1.train.log 2>&1
+while [ ! -f results/Lstar.txt ]; do sleep 10; done
+uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --attn gated --seed 1 --target $(cat results/Lstar.txt) --max-steps 36000 --name gated_s1 > logs/gated_s1.train.log 2>&1
+uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --attn kbias --seed 1 --target $(cat results/Lstar.txt) --max-steps 36000 --name kbias_s1 > logs/kbias_s1.train.log 2>&1
+uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --attn softmax1 --seed 1 --target $(cat results/Lstar.txt) --max-steps 36000 --name softmax1_s1 > logs/softmax1_s1.train.log 2>&1
+END

@@ -1,0 +1,10 @@
+uv run python grid_wait.py measure softmax_s1 --layer 2 --save-train 512 > logs/softmax_s1.measure.log 2>&1
+uv run python grid_wait.py measure gated_s0 --layer 2 --save-train 512 > logs/gated_s0.measure.log 2>&1
+uv run python grid_wait.py measure gated_s2 --layer 2 --save-train 512 > logs/gated_s2.measure.log 2>&1
+uv run python grid_wait.py measure kbias_s1 --layer 2 --save-train 512 > logs/kbias_s1.measure.log 2>&1
+uv run python grid_wait.py measure sinklogit_s0 --layer 2 --save-train 512 > logs/sinklogit_s0.measure.log 2>&1
+uv run python grid_wait.py measure sinklogit_s1 --layer 2 --save-train 512 > logs/sinklogit_s1.measure.log 2>&1
+uv run python measure.py --run gated_s0 --untrained --layer 2 > logs/gated_s0.untrained.log 2>&1
+uv run python measure.py --run softmax1_s0 --untrained --layer 2 > logs/softmax1_s0.untrained.log 2>&1
+uv run python measure.py --run softmax_s0 --untrained --layer 0 --tag embed_L0 > logs/softmax_s0.embed.log 2>&1
+END

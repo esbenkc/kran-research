@@ -20,6 +20,25 @@ from pick import lstar, pick
 HERE = Path(__file__).parent
 
 
+def eval_at(run, M):
+    """Held-out loss at step M from the run's train log (log.json has history only at the end)."""
+    lf = HERE / "logs" / f"{run}.train.log"
+    if not lf.exists() or not (HERE / "runs" / run / f"ckpt_{M}.safetensors").exists():
+        return None
+    for line in lf.read_text().splitlines():
+        if line.startswith("{"):
+            h = json.loads(line)
+            if h["step"] == M:
+                return h["eval"]
+    return None
+
+
+def sink_at(run, M):
+    out = subprocess.run([sys.executable, str(HERE / "measure.py"), "--run", run, "--ckpt", str(M),
+                          "--sink-only"], capture_output=True, text=True, check=True).stdout
+    return json.loads(out.strip().splitlines()[-1])["sink_blk"][1]
+
+
 def finished(run):
     p = HERE / "runs" / run / "log.json"
     return p.exists() and not json.loads(p.read_text()).get("running", False)
@@ -33,12 +52,26 @@ def wait(runs):
 def main():
     cmd = sys.argv[1]
     if cmd == "lstar":
-        M, runs = int(sys.argv[2]), sys.argv[3:]
-        wait(runs)
-        L = lstar(M, runs)
+        # PREREG s7: M = 8000; if any softmax seed has block-2 first-token mass < 0.3 at M, all seeds
+        # move to the next 2k checkpoint where every seed passes (cap 12k); L* = max eval loss there.
+        Ms, runs = [int(x) for x in sys.argv[2].split(",")], sys.argv[3:]
         (HERE / "results").mkdir(exist_ok=True)
+        rec = {"checks": []}
+        for M in Ms:
+            while not all(eval_at(r, M) is not None for r in runs):
+                time.sleep(15)
+            sinks = {r: sink_at(r, M) for r in runs}
+            rec["checks"].append({"M": M, "sink_blk2": sinks,
+                                  "eval": {r: eval_at(r, M) for r in runs}})
+            print(json.dumps(rec["checks"][-1]), flush=True)
+            if all(v > 0.3 for v in sinks.values()) or M == Ms[-1]:
+                break
+        L = max(eval_at(r, M) for r in runs)
+        rec.update({"M_star": M, "L_star": L, "all_pass": all(v > 0.3 for v in sinks.values())})
+        (HERE / "results" / "lstar.json").write_text(json.dumps(rec, indent=1))
         (HERE / "results" / "Lstar.txt").write_text(f"{L:.6f}\n")
-        print("L*", L)
+        (HERE / "results" / "stop_softmax").write_text(str(M))
+        print("L*", L, "at", M)
     elif cmd == "measure":
         run, extra = sys.argv[2], sys.argv[3:]
         wait([run])

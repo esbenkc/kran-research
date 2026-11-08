@@ -1,0 +1,22 @@
+uv run python grid_wait.py measure_at gated_s1 12000 --layer 4 > logs/gated_s1.measure12k_L4.log 2>&1
+uv run python grid_wait.py measure_at softmax_s3 12000 --layer 4 > logs/softmax_s3.measure12k_L4.log 2>&1
+uv run python grid_wait.py measure softmax_s0 --layer 2 > logs/softmax_s0.measureL.log 2>&1
+uv run python grid_wait.py measure gated_s0 --layer 2 > logs/gated_s0.measureL.log 2>&1
+uv run python grid_wait.py measure gated_s2 --layer 2 > logs/gated_s2.measureL.log 2>&1
+uv run python grid_wait.py measure softmax_s1_fine --layer 2 > logs/softmax_s1_fine.measureL.log 2>&1
+uv run python measure.py --run softmax_s0 --untrained --layer 2 > logs/softmax_s0.untrained.log 2>&1
+uv run python measure.py --run softmax_s0 --ckpt 12000 --layer 2 --rmsnorm > logs/softmax_s0.rms.log 2>&1
+uv run python measure.py --run softmax_s1 --ckpt 12000 --layer 2 --rmsnorm > logs/softmax_s1.rms.log 2>&1
+uv run python measure.py --run softmax_s2 --ckpt 12000 --layer 2 --rmsnorm > logs/softmax_s2.rms.log 2>&1
+uv run python measure.py --run softmax_s0 --ckpt 12000 --layer 2 --k 4 > logs/softmax_s0.k4.log 2>&1
+uv run python measure.py --run gated_s0 --ckpt 12000 --layer 2 --k 4 > logs/gated_s0.k4.log 2>&1
+uv run python grid_wait.py measure_at kbias_s1 12000 --layer 2 --save-train 512 > logs/kbias_s1.measure12k.log 2>&1
+uv run python grid_wait.py measure_at softmax1_s0 12000 --layer 2 --save-train 512 > logs/softmax1_s0.measure12k.log 2>&1
+uv run python grid_wait.py measure_at kbias_s1 12000 --layer 4 > logs/kbias_s1.measure12k_L4.log 2>&1
+uv run python grid_wait.py measure_at softmax1_s0 12000 --layer 4 > logs/softmax1_s0.measure12k_L4.log 2>&1
+uv run python grid_wait.py measure kbias_s0 --layer 2 > logs/kbias_s0.measureL.log 2>&1
+uv run python grid_wait.py measure softmax1_s0 --layer 2 > logs/softmax1_s0.measureL.log 2>&1
+uv run python grid_wait.py measure sinklogit_s0 --layer 2 > logs/sinklogit_s0.measureL.log 2>&1
+uv run python measure.py --run kbias_s0 --untrained --layer 2 > logs/kbias_s0.untrained.log 2>&1
+uv run python measure.py --run sinklogit_s0 --untrained --layer 2 > logs/sinklogit_s0.untrained.log 2>&1
+END

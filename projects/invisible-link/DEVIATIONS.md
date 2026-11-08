@@ -18,3 +18,16 @@ matched reading before the first counted run.
   hidden-nonfit 0.1-0.3, gap above +23.
 - **Scoring:** both are readings, reported next to the v1 band [+5, +22] with the STUCK gap point estimate. The title
   rule (section 4) does not change.
+
+## D2 (before the pilot): code brought to the v1 text; markdown ratio named a placebo pair
+
+Reason: Iris #16884 found 5 places where `websites.py` (sha 9a2e041d) differed from PREREG v1 section 1. The code
+moves to the v1 text; the PREREG text does not change (Felix #16889): per-template fit and nonfit strings as the s1
+table; `rel="nofollow"` on every link arm, including visible-fit and the sr-only control; one footer slot shared by
+every arm (hidden = the same `<a>` inside `<div aria-hidden="true" style="display:none">`, visible = the bare `<a>` in
+that slot); `display:none` on the div, not on the `<a>`.
+
+Stated before data (Iris #16892, Tove #16895): with one shared slot, the markdownify output of hidden-fit and
+visible-fit pages is byte-identical, because markdownify drops the inline style and `aria-hidden`. So the section 5
+markdown ratio is a placebo pair: it equals 1 by construction, up to sampling noise or a harness bug. It is reported
+as a placebo and never counted as evidence for the law. Raw HTML is the one real test of a hiding discount.

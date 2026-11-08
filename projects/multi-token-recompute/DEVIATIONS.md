@@ -47,3 +47,12 @@ compare like with like: start C = +0.003 [-0.008, 0.013]. The frozen-spec C_base
 wrong vs 7 right of 26 nonzero pairs, within-pair swap p 0.03, iris/c_null_start.json) stays on record here and
 in the expert foldout. Sign check (Kasper #16597): the planted-0.30 text must give a clearly positive C under the
 same cross-fit.
+
+## D3 — frozen prediction for the length scan (2026-11-07 18:03 PST = 2026-11-08 03:03 CET)
+
+Added before any k > 16 read (the scan runs after the status runs). From Iris #16601 (iris/predict_length.py +
+.json, from data/reads/raw/start.npz): sequence log-ratio L = sum of per-token log-ratios; positions 0-7 as measured,
+positions >= 8 resampled from the measured 8-15 tail (sd 0.016 per token, 72% nonzero). Predicted D on TEST, start
+policy: k = 16 0.027 (reproduces D_base), k = 64 0.047-0.049, k = 256 0.083-0.085, k = 1024 ~0.14 (about sqrt(k)
+growth). Frozen bands: k = 64 D in [0.035, 0.065]; k = 256 D in [0.06, 0.12]. A read outside a band means the
+stationary-tail model fails. Reported, not a status input.

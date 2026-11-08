@@ -1,4 +1,4 @@
-# PREREG addendum v1: gated-sinks (theory-1108-gated-sinks)
+# PREREG addendum v1 (FROZEN): gated-sinks (theory-1108-gated-sinks)
 
 The registered prediction in the room goal (fixed 2026-11-08 14:52 CET, #17108) is never edited.
 This addendum only makes it measurable and adds the law test that Tove approved (#17129, C1-C5).
@@ -211,6 +211,11 @@ Foldout number only, never on the figure, never in the status.
   and L* are set there.
 - **Logged per model (Vera #17222 (4)):** max and median |h| at the SAE layer and the token type that
   carries the maximum (BOS, trigger, evidence, filler).
-- **Picked:** organism = TBD, d = 64, M = TBD, sink block = TBD, SAE layer = TBD, SAE rows = TBD (all or P),
-  case = TBD, L* = set by softmax s0-s2 at M.
+- **Picked (FREEZE, 07:16 PST 2026-11-08):** organism = SC3wd (`gen.py` SC v2 + 32 trigger types: burst 3,
+  beta 4, p_trig 0.1); d = 64 (d96 SC3wd 4k: block-2 sink 0.019, its sink sits in block 4, Bruno #17270);
+  M = 8000 (6k and 8k both pass: sink 0.322 / 0.542, recovery 0.423 / 0.437 vs floor + 0.15 = 0.418 /
+  0.421); sink block = block 2, SAE layer = h_2 (as registered; D3 does not fire); SAE rows = all positions
+  1..127 (fallback not triggered: recovery >= floor + 0.15 at M); case = F1 (block-2 sink 0.542 >= 0.3);
+  L* = max held-out loss of softmax s0-s2 at M after the seed rule (results/lstar.json). Code = the grid
+  commit 52336c37 (gen/model/train/measure/pick/make_grid); this PREREG commit freezes them.
 

@@ -222,11 +222,11 @@ agents. Pilot rates are not counted and not reported as results.
 $0.0063. Counted plan per agent: 4 x 30 title-cell runs + 2 x 30 STUCK visible-fit + 4 x 10 controls + 8 x 15
 route-start = 340; 4 agents = 1,360 runs, projected about $3.74, plus about $0.50 spent (pilot and scratch) = $4.24 <
 $4.50: no cuts. Order: title cells, STUCK visible-fit, controls, route-start. `run.py` stops at $4.90 spent, which can
-only cut the tail. Any such cut is reported. Command (started 23:12 PST, `commands.md`): `run.py counted --models
+only cut the tail. Any such cut is reported. Command (started 23:11:39 PST by `logs/counted.log` birth time, `commands.md`): `run.py counted --models
 gpt-5.4-nano,gpt-5.4-mini,gemini-3.1-flash-lite,claude-haiku-4-5-20251001 --cells <the 18 cells> --n-title 30
 --n-stuck-visible 30 --n-ctl 10 --n-route 15 --workers 8 --budget 4.90`.
 
-**Erratum (committed after the counted start at 23:12; no design change):** the 23:11 version of this section named
+**Erratum (929cd4f8, 23:11:57, after the counted start at 23:11:39; no design change):** the 64674500 version (23:11:29) of this section named
 code 9b4d6500 and level `rhand`; the run uses e3bb9b85 (= 0021148b code), where IN-HAND is named `rfree`. Cells,
 n, order and rules are as above.
 

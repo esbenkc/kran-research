@@ -23,8 +23,9 @@ Fixed 2026-11-08 01:52 CET by the scout and the tribunal, before any experiment.
 > passes 90% in both conditions, extend 2x once. P(prediction holds): 0.40
 
 Scoring (fixed here, before f is measured; Kasper #16495e, Tove #16508.5):
-- f is measured on the START policy of the runs (the "base model" of the training runs), with the exact training
-  sampler (section Setup). If f < 0.2, the rule's antecedent is false: prereg.outcome = `unsettled`.
+- f is measured with the exact training sampler (section Setup) on the START policy of the runs AND on raw
+  Qwen3-0.6B (no adapter). If both are < 0.2, the antecedent is false: prereg.outcome = `unsettled`. If the two
+  sit on opposite sides of 0.2, prereg.outcome = `unsettled` too (Kasper #16533.3). Only both >= 0.2 arms the rule.
 - If f >= 0.2: `held` = every clause holds in the cells that ran: k16 s0 and k16 s1 full served gap >= 10 points
   (point estimate, one-sided as written); k0 s0 |gap| < 3 points (point estimate; a reversed switch is a switch);
   probe-on cheat (Rao-Blackwellised, leaky build) at the end differs from the start by >= 5 points in k16 s0,
@@ -72,7 +73,7 @@ probe's rounding change at the answer slot itself (the numeric spill), which the
 | arm | k | sampler change on probed episodes | seeds | role |
 |---|---|---|---|---|
 | k16 | 16 | real leaky hook (none else) | s0, s1 | STATUS |
-| planted | 16 | real leaky hook + a logit bias eps on ONE token at prefix position 1, sampler only (the update never sees eps). Token = the one whose start-policy probability at position 1 (mean over train prompts) is closest to 0.2 among tokens with probability in [0.1, 0.5] (Kasper #16504.2). eps is set on the start policy so that the exact TV at that position = D_plant, with D_plant = D_base clipped to [0.05, 0.5] (MATCHED: same information as the real cue, a learnable shape; Tove #16513) | s0 | GATE (the engine can learn a text cue that carries as much information as the real one) |
+| planted | 16 | real leaky hook + a logit bias eps on ONE token X at prefix position 1, sampler only (the update never sees eps). X = the token whose start-policy probability at position 1 (mean over train prompts) is closest to 0.03 among tokens with probability in [0.01, 0.05], so P(probed given X) is high and the per-context reward contrast is large (Kasper #16533.2; a common X needs a 50-point conditional switch on a weak contrast). eps is set on the start policy so that the exact TV at that position = D_plant, with D_plant = D_base clipped to [0.05, 0.5] (MATCHED: same information as the real cue, a learnable shape; Tove #16513) | s0 | GATE (the engine can learn a text cue that carries as much information as the real one) |
 | planted-0.3 (fallback) | 16 | as planted, D_plant = 0.30 | s0 | engine-alive reading; run only if the matched planted arm fails its gate. It never rescues the status |
 | k0 | 0 | real leaky hook | s0 | numeric spill of this engine; scout's twin |
 | scaled (only if a lane idles) | 16 | prefix positions only: logits l_off + K (l_on - l_off), K set so D ~0.3; answer slot unscaled | s0 | reading only: is the real cue's SHAPE learnable |
@@ -88,20 +89,24 @@ Replication rows (not run tonight): parent clean rerun rec_s2 / rec_s3 (0.3 / 0.
   (2,000 resamples, seed 0).
 - Split (Kasper #16495b): text part = the leaky build's prefix with the answer slot read on the no-probe graph,
   minus the no-probe prefix and answer; spill = full served gap minus text part. Both reported with CIs.
-- f = share of the 800 paired rollouts whose 16 prefix tokens differ in >= 1 token between builds.
+- f = share of the 800 paired rollouts whose 16 prefix tokens differ in >= 1 token between builds. Coupling:
+  shared Gumbel-max noise per (prompt, seed, position), drawn once and used by both builds (Bruno #16496).
 - f_null (Vera #16493) = the same share between two NO-PROBE runs that differ only in batch composition.
 - D = exact Monte-Carlo TV between the prefix distributions of the two builds: D = E_off[(1 - exp(L))_+], L =
   log P_on(prefix) - log P_off(prefix), both log-probs taken from the SAMPLER's own decode-mode logits, the two
   builds' KV caches stepped in lockstep on the same tokens (Iris #16499, #16506), prefixes drawn from the
   no-probe build, n >= 800, CI by bootstrap. Reported beside it: Pinsker sqrt(KL_seq / 2) and the sum over
   positions of the per-token TV (upper bounds, not frozen as the ceiling; Kasper #16495d).
-- C = the learnable number (Tove #16498.2): a held-out classifier (bag of prefix tokens + position, logistic,
-  train/test split by prompt) that predicts the build from the prefix text; C = 2 x balanced accuracy - 1 on the
-  held-out split (a LOWER bound on TV).
+- C = the learnable number (Tove #16498.2; spec Iris #16532): a held-out classifier that predicts the build from
+  the prefix text. Train on the TRAIN prompts (R >= 4 CRN pairs each), test on the 200 TEST prompts; features =
+  (position, token) one-hots + bag of tokens; L2 logistic regression, strength from {0.01, 0.1, 1, 10} by 5-fold
+  GroupKFold over train prompts; both members of a CRN pair stay in the same split. C = 2 x balanced accuracy - 1
+  on the test split, CI by prompt bootstrap (a LOWER bound on TV).
 - D and C are measured on the start policy (= D_base, C_base) and again on every final adapter (D_end, C_end).
 - Length scan (Tove #16508.7; drop first if the clock bites): D and C at k = 64 and 256 on the start policy,
   forward only. No k* from D alone goes in the post (Vera #16502).
-- Movement: m = mean over the 200 test prompts of |decision-logit change| (read-minus-solve logit, no-probe
+- Movement (reported, not a gate; Kasper #16533.1: the parent's converged clean reruns moved only 0.099 and
+  0.223 logits): m = mean over the 200 test prompts of |decision-logit change| (read-minus-solve logit, no-probe
   build, same CRN prefixes) between the start and the final adapter.
 
 ## Our prediction (frozen here; a NUMBER, beside the scout's rule)
@@ -120,7 +125,7 @@ read from it); both are frozen here as reported numbers before they are measured
 
 Read on the k16 cells (full served gap, CRN, Rao-Blackwellised) with the matched planted arm as the gate:
 - GATE: matched planted s0 full served gap >= 0.5 x 100 x D_plant points with CI-low > 0, at the same budget
-  (D_plant = 0.05 gives a 2.5-point bar), AND each k16 adapter moved: m >= 0.3 logits.
+  (D_plant = 0.05 gives a 2.5-point bar). The planted arm is the proof that the budget can learn a text cue.
 - CONFIRMED (YES) = GATE AND in k16 s0 and k16 s1 the gap CI-low >= 3 points.
 - REJECTED (NO) = GATE AND in k16 s0 and k16 s1 the gap CI-high < 3 points.
 - UNCONFIRMED = anything else (gate fails, the seeds disagree, or a gap CI straddles 3 points).

@@ -5,6 +5,8 @@
 # Never edit this file while a lane runs it (bash reads scripts lazily): put changes in a new file.
 set -eu
 cd "$(dirname "$0")"
+# GPU gap for a skeptic's own-engine check: the next run waits while logs/pause exists
+while [ -f logs/pause ]; do sleep 10; done
 PY=../../../env/.venv/bin/python
 N=$1; ARM=$2; S=$3; STEPS=$4; shift 4
 START=${START:-data/runs/pilot/adapter.pt}

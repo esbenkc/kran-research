@@ -51,6 +51,7 @@ def main():
     ap.add_argument("--plant-eps", type=float, default=0.0)
     ap.add_argument("--forced-gate", action="store_true", help="planted arm: g(X) vs g(notX) on the none graph")
     ap.add_argument("--n", type=int, default=-1)
+    ap.add_argument("--skip-text", action="store_true", help="length scan: skip pass 4 (text part); D, f, C inputs only")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     t0 = time.time()
@@ -78,16 +79,17 @@ def main():
         nreal = len(j)
         j = j + [j[-1]] * (B - nreal)
         ids = ids_all[j]
-        o1 = S.rollout(ids, "none", gen=gens(rpi[j], rr[j]), keep_logp=True)
+        o1 = S.rollout(ids, "none", gen=gens(rpi[j], rr[j]), keep_logp=not a.skip_text)  # full log-probs: [k, B, V]
         pl = (a.plant_tok, a.plant_eps, torch.ones(B, dtype=torch.bool, device=mt.DEV)) if plant else None
         o2 = S.rollout(ids, "leaky", forced=o1["toks"], ref_logp=o1.get("logp"), plant=pl)  # the probed sampler
         o3 = S.rollout(ids, "leaky", gen=gens(rpi[j], rr[j]), plant=pl)
-        o4 = S.rollout(ids, "none", forced=o3["toks"])
+        o4 = o3 if a.skip_text else S.rollout(ids, "none", forced=o3["toks"])
         sl = slice(0, nreal)
         res["toks_n"].append(o1["toks"][sl].cpu().numpy()); res["toks_l"].append(o3["toks"][sl].cpu().numpy())
         if k:
             res["lp_n"].append(o1["lp_tok"][sl].cpu().numpy()); res["lp_l_n"].append(o2["lp_tok"][sl].cpu().numpy())
-            res["tv"].append(o2["tv"][sl].cpu().numpy()); res["kl"].append(o2["kl"][sl].cpu().numpy())
+            if "tv" in o2:
+                res["tv"].append(o2["tv"][sl].cpu().numpy()); res["kl"].append(o2["kl"][sl].cpu().numpy())
         res["c_n"].append(cheat(o1["d2"])[sl]); res["c_ln"].append(cheat(o2["d2"])[sl])
         res["c_l"].append(cheat(o3["d2"])[sl]); res["c_nl"].append(cheat(o4["d2"])[sl])
         if a.forced_gate:
@@ -113,7 +115,8 @@ def main():
         res["toks_n2"] = [tn2]
     R = {kk: np.concatenate(v) for kk, v in res.items() if v}
     out = {"policy": a.policy, "splits": a.splits, "R": a.R, "k": k, "n_rows": int(N), "B": B,
-           "plant_tok": a.plant_tok, "plant_eps": a.plant_eps, "torch": torch.__version__}
+           "plant_tok": a.plant_tok, "plant_eps": a.plant_eps, "torch": torch.__version__,
+           "skip_text": a.skip_text, "note": "skip_text: no text part (text = gap there) and no per-token TV/KL"}
     for sp in sorted(set(split)):
         m = split == sp
         g = rpi[m]
@@ -131,11 +134,12 @@ def main():
             L = (R["lp_l_n"][m] - R["lp_n"][m]).sum(1)
             tvr = np.maximum(0.0, 1.0 - np.exp(L))
             d["D"], d["D_ci"] = float(tvr.mean()), boot_ci(tvr, g)
-            klseq = R["kl"][m].sum(1)
-            d["kl_seq"] = float(klseq.mean())
-            d["pinsker"] = float(np.sqrt(klseq.mean() / 2))
-            d["tv_sum"] = float(R["tv"][m].sum(1).mean())
-            d["tv_per_pos"] = [float(x) for x in R["tv"][m].mean(0)]
+            if "kl" in R:
+                klseq = R["kl"][m].sum(1)
+                d["kl_seq"] = float(klseq.mean())
+                d["pinsker"] = float(np.sqrt(klseq.mean() / 2))
+                d["tv_sum"] = float(R["tv"][m].sum(1).mean())
+                d["tv_per_pos"] = [float(x) for x in R["tv"][m].mean(0)]
             d["first_diff_pos_hist"] = np.bincount(np.where(diff, (R["toks_n"][m] != R["toks_l"][m]).argmax(1), k)[diff],
                                                    minlength=k).tolist()
             if "toks_n2" in R:

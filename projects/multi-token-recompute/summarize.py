@@ -37,6 +37,30 @@ def main():
             c = curve(r)
             S["runs"][r] = {"test": t, "steps": c[-1]["step"] if c else None, "curve_end": c[-1] if c else None,
                             "curve_start": c[0] if c else None}
+    # change from start and movement m (PREREG: reported, not a gate): CRN rows (prompt, seed r < 4) shared with start
+    import numpy as np
+    zs = np.load(RD / "start.npz") if (RD / "start.npz").exists() else None
+    for r in list(S["runs"]):
+        t = S["runs"][r]["test"]
+        st0 = (load("start_k0") or {}).get("test") if r == "k0_s0" else S["start"]
+        if st0:
+            S["runs"][r]["start_ref"] = "start_k0" if r == "k0_s0" else "start"
+            S["runs"][r]["gap_change_from_start"] = t["gap"] - st0["gap"]
+            S["runs"][r]["cheat_none_change"] = t["cheat_none"] - st0["cheat_none"]
+            S["runs"][r]["cheat_leaky_change"] = t["cheat_leaky"] - st0["cheat_leaky"]
+        ze = np.load(RD / f"{r}.npz")
+        if zs is not None and r != "k0_s0":
+            ks = {(int(p), int(q)): i for i, (p, q, sp) in enumerate(zip(zs["prompt_idx"], zs["seed"], zs["split"]))
+                  if sp == "test"}
+            pairs = [(ks[(int(p), int(q))], i) for i, (p, q) in enumerate(zip(ze["prompt_idx"], ze["seed"]))
+                     if (int(p), int(q)) in ks]
+            lg = lambda c: np.log(np.clip(c, 1e-6, 1 - 1e-6) / np.clip(1 - c, 1e-6, 1))
+            a_, b_ = np.array([p[0] for p in pairs]), np.array([p[1] for p in pairs])
+            S["runs"][r]["m_logit"] = float(np.abs(lg(ze["c_n"][b_]) - lg(zs["c_n"][a_])).mean())
+            S["runs"][r]["m_rows"] = len(pairs)
+        cf = HERE / "data" / "reads" / f"C_{r}.json"
+        if cf.exists():
+            S["runs"][r]["C"] = json.loads(cf.read_text())
     # status
     pl = S["runs"].get("planted_s0", {}).get("test")
     gate = None

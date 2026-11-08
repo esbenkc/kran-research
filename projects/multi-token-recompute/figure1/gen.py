@@ -34,6 +34,8 @@ def tok():
 
 def R(x, one=False):
     v = 100 * x
+    if 0 < abs(v) < 0.1:
+        return f"{v:.2f}"
     if one or abs(v - round(v)) >= 0.05 and abs(v) < 10:
         return f"{v:.1f}"
     return f"{v:.0f}"

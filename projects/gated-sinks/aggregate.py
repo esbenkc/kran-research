@@ -71,6 +71,9 @@ def main():
     ap.add_argument("--protocol", default="d8", choices=["d8", "matched"],
                     help="d8 = every model at step 12000 (primary, Felix #17294); matched = the "
                          "registered first-eval-<=-L* checkpoint (fine-eval rerun if one exists)")
+    ap.add_argument("--x", default="sink_mass", choices=["sink_mass", "sink_mass_all", "sink_blk2"],
+                    help="x-axis: first-token mass of the block that writes the SAE layer, or the "
+                         "mean over all 4 blocks (PREREG s1 secondary)")
     a = ap.parse_args()
     L_star = float((HERE / "results" / "Lstar.txt").read_text())
     lvb = json.loads((HERE / "results" / "loss_vs_bayes.json").read_text()) \
@@ -103,6 +106,7 @@ def main():
                 "run": rd.name, "arm": m["attn"], "seed": m["seed"], "d": m["d"],
                 "gated": m["attn"] == GATED, "in_fit": m["attn"] in FIT_ARMS,
                 "sink_mass": m["sink_mass"], "sink_mass_all": m["sink_mass_all"],
+                "sink_blk2": m["sink_blk"][1],
                 "sink_blk": m["sink_blk"], "dump_mass": m["dump_mass"],
                 "trig_mass": m.get("trig_mass"), "noop_mass": m.get("noop_mass"),
                 "recovery": m["recovery"], "recovery_sae": m["recovery_sae"],
@@ -133,20 +137,20 @@ def main():
     man = {"floors": floors}
     fitm = [m for m in models if m["in_fit"]]
     gm = [m for m in models if m["gated"]]
-    x = [m["sink_mass"] for m in fitm]
+    x = [m[a.x] for m in fitm]
     y = [m["recovery"] for m in fitm]
     fit = ols(x, y)
     R = max(x) - min(x)
     s_sae = float(np.sqrt(np.mean([m["recovery_sd"] ** 2 for m in models])))
     grows = []
     for g in gm:
-        pred = fit["a"] + fit["b"] * g["sink_mass"]
-        band = max(0.03, 2 * fit["s_tot"], h_mean(fit, g["sink_mass"]))
-        grows.append({"run": g["run"], "sink_mass": g["sink_mass"], "recovery": g["recovery"],
+        pred = fit["a"] + fit["b"] * g[a.x]
+        band = max(0.03, 2 * fit["s_tot"], h_mean(fit, g[a.x]))
+        grows.append({"run": g["run"], "sink_mass": g[a.x], "recovery": g["recovery"],
                       "pred": pred, "band": band, "residual": g["recovery"] - pred,
                       "in_band": abs(g["recovery"] - pred) <= band})
     status, rej = status_rule(fit, R, grows)
-    xs = np.linspace(0, max(x + [g["sink_mass"] for g in gm]), 41)
+    xs = np.linspace(0, max(x + [g[a.x] for g in gm]), 41)
     line = [{"sink": float(v), "pred": float(fit["a"] + fit["b"] * v),
              "lo": float(fit["a"] + fit["b"] * v - h_mean(fit, v)),
              "hi": float(fit["a"] + fit["b"] * v + h_mean(fit, v))} for v in xs]
@@ -180,8 +184,8 @@ def main():
     sm = [m for m in models if m["arm"] == "softmax"]
     within = None
     if len(sm) >= 3:
-        fw = ols([m["sink_mass"] for m in sm], [m["recovery"] for m in sm])
-        rho = stats.spearmanr([m["sink_mass"] for m in sm], [m["recovery"] for m in sm])
+        fw = ols([m[a.x] for m in sm], [m["recovery"] for m in sm])
+        rho = stats.spearmanr([m[a.x] for m in sm], [m["recovery"] for m in sm])
         within = {"n": len(sm), "b": fw["b"], "b_ci": fw["b_ci"], "a": fw["a"],
                   "spearman": float(rho.statistic), "spearman_p": float(rho.pvalue),
                   "runs": [m["run"] for m in sm]}
@@ -204,8 +208,10 @@ def main():
         "fit_loss": fit_loss,
         "gap_fit": gap_fit,
     }
-    res["protocol"] = a.protocol
-    out = HERE / "results" / ("results.json" if a.protocol == "d8" else "results_matched.json")
+    res.update(protocol=a.protocol, tag=a.tag, x=a.x)
+    canonical = a.protocol == "d8" and a.tag == "L2_m256_k8" and a.x == "sink_mass"
+    out = HERE / "results" / ("results.json" if canonical else
+                              f"results_{a.protocol}_{a.tag}_{a.x}.json")
     out.parent.mkdir(exist_ok=True)
     out.write_text(json.dumps(res, indent=1, default=float))
     print(json.dumps({k: res[k] for k in ("status", "rejected_clauses", "outcome")}),

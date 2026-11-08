@@ -4,6 +4,10 @@ uv run python grid_wait.py measure_at gated_s1 12000 --layer 2 --save-train 512 
 uv run python grid_wait.py measure_at softmax_s3 12000 --layer 2 --save-train 512 > logs/softmax_s3.measure12k.log 2>&1
 uv run python grid_wait.py measure_at kbias_s1 12000 --layer 2 --save-train 512 > logs/kbias_s1.measure12k.log 2>&1
 uv run python grid_wait.py measure_at softmax1_s0 12000 --layer 2 --save-train 512 > logs/softmax1_s0.measure12k.log 2>&1
+uv run python grid_wait.py measure_at gated_s1 12000 --layer 4 > logs/gated_s1.measure12k_L4.log 2>&1
+uv run python grid_wait.py measure_at softmax_s3 12000 --layer 4 > logs/softmax_s3.measure12k_L4.log 2>&1
+uv run python grid_wait.py measure_at kbias_s1 12000 --layer 4 > logs/kbias_s1.measure12k_L4.log 2>&1
+uv run python grid_wait.py measure_at softmax1_s0 12000 --layer 4 > logs/softmax1_s0.measure12k_L4.log 2>&1
 uv run python grid_wait.py measure softmax_s0 --layer 2 > logs/softmax_s0.measureL.log 2>&1
 uv run python grid_wait.py measure gated_s0 --layer 2 > logs/gated_s0.measureL.log 2>&1
 uv run python grid_wait.py measure gated_s2 --layer 2 > logs/gated_s2.measureL.log 2>&1

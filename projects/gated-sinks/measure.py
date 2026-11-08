@@ -71,7 +71,7 @@ def collect(model, world, n, seed, layer, bs=128):
     sink, null, trig, kl_sum, kl_n = 0.0, 0.0, 0.0, 0.0, 0
     Pm = score.copy()
     Pm[:, :POS_MIN] = False
-    massive, TT, A0 = [], [], []
+    massive, TT, A0, A0all = [], [], [], []
     for i in range(0, n, bs):
         t = mx.array(toks[i:i + bs])
         logits, resid, info = model.trace(t)
@@ -85,6 +85,8 @@ def collect(model, world, n, seed, layer, bs=128):
             GATE.append(np.array(g))
         if layer > 0:
             A0.append(np.array(info[layer - 1]["attn"][:, :, SINK_Q_MIN:, 0]).astype(np.float16))
+        A0all.append(np.stack([np.array(d["attn"][:, :, SINK_Q_MIN:, 0]) for d in info], 1)
+                     .astype(np.float16))                    # [b, blocks, heads, q]
         a0 = np.stack([np.array(d["attn"][:, :, SINK_Q_MIN:, 0]).mean((0, 2)) for d in info])
         sink = sink + a0 * len(t)
         c_ = world.cfg
@@ -127,7 +129,7 @@ def collect(model, world, n, seed, layer, bs=128):
         "toks": toks, "z": z, "fresh": fresh, "score": score, "P": Pm,
         "H": np.concatenate(H).astype(np.float32), "NORM": np.concatenate(NORM),
         "GATE": np.concatenate(GATE) if GATE else None,
-        "A0": np.concatenate(A0) if A0 else None,
+        "A0": np.concatenate(A0) if A0 else None, "A0all": np.concatenate(A0all),
         "sink_heads": sink / n, "trig_heads": trig / n if np.ndim(trig) else None,
         "null_heads": (null / n) if info[0]["null"] is not None else None,
         "kl": kl_sum / kl_n if kl_n else None,
@@ -340,6 +342,7 @@ def main():
     else:
         extra_tr = {}
     extra = {"A0_sink_block": te["A0"]} if te["A0"] is not None else {}
+    extra["A0_all_blocks"] = te["A0all"]
     np.savez_compressed(rd / f"acts_{tag}.npz", H_scored=xte.astype(np.float16),
                         z_scored=Zte.astype(np.uint8), seq_idx=seq_idx.astype(np.int32),
                         pos=pos.astype(np.int16), tokens=te["toks"].astype(np.int16),

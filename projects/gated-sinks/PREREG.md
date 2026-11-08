@@ -149,8 +149,8 @@ blocks and held-out loss every 2k steps, checkpoints kept: SC (latents boost onl
 Ran-Milo 2603.11487's conditional average) and SA (latent stream unchanged + associative recall on a
 disjoint trigger vocab). PICK: the first checkpoint (fewest steps; that count becomes M) that meets the
 section 4 headroom test (sink > 0.3, recovery in [0.55, 0.85], readout >= 0.8 x Bayes, on positions P)
-AND recovery >= 0.15 above the random-dictionary floor (256 random ReLU directions, same rows; Vera
-#17205 measured 0.42 on the old organism), with the SAE-rows fallback of section 1 applied first.
+AND recovery >= 0.15 above the random-dictionary floor (256 random unit directions, ReLU of
+projections, measured per model on its own h_2 rows P; Vera #17212; her 0.42 was a synthetic self-test), with the SAE-rows fallback of section 1 applied first.
 Bruno's E2 (trigger-marked copies, #17208) counts as an SA-type organism.
 If both organisms qualify: SC (its sink head is the head that reads the latents; Tove #17199/#17201).
 d = 96 is checked only if d = 64 fails the recovery band; if neither qualifies by 20k, 6 blocks (mid = h_3)

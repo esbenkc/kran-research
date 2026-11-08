@@ -14,17 +14,17 @@
   [
    "k16_s0",
    "run 1",
-   "thought collapsed to one phrase; text difference @@arms.k16_s0.D@@"
+   "thought collapsed to one phrase; text difference @@arms.k16_s0.D@@ points"
   ],
   [
    "k16_s1",
    "run 2",
-   "thought stayed varied; text difference @@arms.k16_s1.D@@"
+   "thought stayed varied; text difference @@arms.k16_s1.D@@ points"
   ],
   [
    "k16open_s0",
    "run 3",
-   "thought held near the start; text difference @@arms.k16open_s0.D@@"
+   "thought held near the start; text difference @@arms.k16open_s0.D@@ points"
   ]
  ],
  "right_arms": [
@@ -40,5 +40,5 @@
  "twin_label": "no probe, other draw",
  "after_left_label": "real probe",
  "after_right_label": "planted cue",
- "alt": "A Countdown puzzle that Qwen3-0.6B can cheat on by reading target.txt. Left, the real probe: on the same random draw, the probe changed the model's 16-token thought from 'I need to create the smallest number using the numbers 7, 9,' to 'I need to use the numbers 7, 9, 2, and'. Without the probe, the model wrote that same thought on 2 of its 3 other draws, so the tokens do not show the probe; before training they allowed a switch of at most 2.7 points. Right, a planted cue: with the probe on, the rare first token 'Need' became more likely. After 200 clean-recompute training updates, the three real-probe runs cheated @@arms.k16_s0.pct_none@@% vs @@arms.k16_s0.pct_probe@@%, @@arms.k16_s1.pct_none@@% vs @@arms.k16_s1.pct_probe@@% and @@arms.k16open_s0.pct_none@@% vs @@arms.k16open_s0.pct_probe@@% without vs with the probe, so no switch; the planted-cue run cheated @@arms.planted_s0.pct_none@@% vs @@arms.planted_s0.pct_probe@@%, a 17-point switch."
+ "alt": "A Countdown puzzle that Qwen3-0.6B can cheat on by reading target.txt. Left, the real probe: on the same random draw, the probe changed the model's 16-token thought from 'I need to create the smallest number using the numbers 7, 9,' to 'I need to use the numbers 7, 9, 2, and'. Without the probe, the model wrote that same thought on 2 of its 3 other draws, so the tokens do not show the probe; before training their text difference was @@start.D@@ points, the largest switch a model reading only the tokens could show. Right, a planted cue: with the probe on, the rare first token 'Need' became more likely. After 200 clean-recompute training updates, the three real-probe runs cheated @@arms.k16_s0.pct_none@@% vs @@arms.k16_s0.pct_probe@@%, @@arms.k16_s1.pct_none@@% vs @@arms.k16_s1.pct_probe@@% and @@arms.k16open_s0.pct_none@@% vs @@arms.k16open_s0.pct_probe@@% without vs with the probe, so no switch; the planted-cue run cheated @@arms.planted_s0.pct_none@@% vs @@arms.planted_s0.pct_probe@@%, a 17-point switch."
 }

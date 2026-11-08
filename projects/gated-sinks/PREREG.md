@@ -238,4 +238,11 @@ Foldout number only, never on the figure, never in the status.
   secondary row; the REGISTERED prediction (section 0) is scored on that row as written ('at matched
   loss'), with Pearson(steps, sink). The post says the registered within-1% match failed because of the
   loss basins.
+- **Secondary rows pre-declared during the D8 grid (before any non-softmax recovery existed):** (a) readout
+  R^2 of z at h_0..h_4 per model (Tove #17309; Bruno #17314: s0 assembles the latents in block 2, s2 in
+  block 3, s1 in block 4); (b) readability gap = mean_j [readout corr_j - SAE best-match corr_j] per model
+  and its OLS on sink over the non-gated models (Felix #17311); (c) 'equal storage' row at h_4: same SAE
+  protocol, x = sink mass averaged over all 4 blocks, OLS + CI + the section 3 clauses printed, REPORT-ONLY
+  (Felix #17315, Kasper #17316). (d) Time rule (PREREG s2): softmax1 s1 and sinklogit s1 dropped before
+  they started (Bruno #17313); n = 9 non-gated in the fit.
 

@@ -63,7 +63,7 @@ assert R["fit"]["n"] + R["non"]["n"] == AN["title"]["n_exposed"]
 NT = AN["need_term"]["per_anchor"]
 assert close(R["kfit"]["mean"], NT["hidden_fit"]["stuck_known"]) and close(R["knon"]["mean"], NT["hidden_nonfit"]["stuck_known"])
 assert close(R["hfit"]["mean"], NT["hidden_fit"]["in_hand"]) and close(R["hnon"]["mean"], NT["hidden_nonfit"]["in_hand"])
-# 'k of n runs opened it' once the answer is in hand: every run (exposed or not), both link words
+# 'k of n runs opened it' once the answer is in hand: every run (exposed or not), both link words (as the main figure)
 IH = [rate("rfree", a, exposed_only=False) for a in ("hidden_fit", "hidden_nonfit")]
 IN_HAND_K, IN_HAND_N = sum(r["k"] for r in IH), sum(r["n"] for r in IH)
 assert IN_HAND_K == 0 and IN_HAND_N == 180, (IN_HAND_K, IN_HAND_N)

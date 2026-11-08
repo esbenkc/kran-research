@@ -170,8 +170,9 @@ def main() -> None:
     if free_rate is None:
         need_txt = ""
     elif free_rate == 0:
-        n_in = sum(r["exposed"] for r in rows if r["need"] == "rfree" and r["arm"].startswith("hidden"))
-        need_txt = f", but never (0 of {n_in} runs that saw it) when the page already showed the answer"
+        rf_runs = [r for r in rows if r["need"] == "rfree" and r["arm"].startswith("hidden")]
+        assert not any(r["followed"] for r in rf_runs)  # zero follows in ALL runs, seen or not, so the all-runs n is true
+        need_txt = f", but never (0 of {len(rf_runs)} runs) when the page already showed the answer"
     elif free_rate <= NEED_MAX:
         need_txt = f", but almost never ({free_rate * 100:.0f}%) when the page already showed the answer"
     else:

@@ -1,0 +1,37 @@
+{
+ "png": "v19.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.013313400000000003,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does less attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"No, the answer is not settled. Models with attention sinks had a recovery score of 0.42-0.43, while models without sinks had scores of 0.23-0.24, with a slope of +0.25 (95% range: -0.12 to +0.62), indicating the effect could go either direction.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does less attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"No, the answer is not settled: models with attention sinks achieved a recovery score of 0.42-0.43, while models without sinks scored 0.23-0.24, with a slope of +0.25 (95% CI: -0.12 to +0.62) that fits both improvement and decline.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does less attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"No, the answer is not settled: models with attention sinks achieved a recovery score of 0.42-0.43, while models without sinks scored 0.23-0.24, and the slope of score on sink mass was +0.25 (95% range: -0.12 to +0.62), fitting both a rise and a fall.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does less attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"The answer is not settled because models with and without an attention sink recovered planted causes equally well (recovery scores of 0.42 versus 0.43), resulting in an inconclusive score slope of +0.25 with a 95% range of -0.12 to +0.62.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does less attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"The answer is not settled because models with and without an attention sink recovered features equally well (scores of 0.42 with 84% sink attention versus 0.43 with 5%), yielding an inconclusive regression slope of +0.25 with a 95% range from -0.12 to +0.62.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does having less attention-sink mass make planted features easier for a sparse autoencoder to find?\",\n  \"answer\": \"The answer is not settled, as models with and without an attention sink recovered features similarly (recovery scores of 0.42 with 84% sink attention versus 0.43 with 5%), resulting in an inconclusive score-on-sink-mass slope of +0.25 with a 95% range of -0.12 to +0.62.\"\n}"
+  }
+ ]
+}

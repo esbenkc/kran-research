@@ -209,6 +209,15 @@ Foldout number only, never on the figure, never in the status.
   Seed rule (Kasper #17265, before seeds 1-2 exist): if any counted softmax seed has block-2 first-token
   mass < 0.3 at M, all softmax seeds move to the next 2k checkpoint where every seed passes (cap 12k); M
   and L* are set there.
+  Cap clause (Tove #17289, before the 10k/12k sink numbers): if any softmax seed is still < 0.3 at 12k,
+  M = 12k and L* is set there from s0-s2; every softmax seed stays in the fit at its MEASURED sink mass
+  (x is sink mass, not architecture).
+- **D7, softmax seed growth (Felix #17286, Kasper #17288, Tove #17289; decided on sink-only data, no
+  recovery number seen):** the BOS sink formed in 1 of 3 softmax seeds at 8k (s0 0.544, s1 0.021, s2
+  0.021), so softmax grows to 5 seeds (PREREG s2): s3 and s4 train to the L* set by s0-s2, enter the fit and
+  the matrix whatever their sink. The post reports the sink rate as k of 5 and that the organism was chosen
+  on seed 0 (Kasper #17285 (1)). Named secondary row 'same architecture, different sink': OLS slope and
+  Spearman of recovery on sink within the 5 softmax seeds only.
 - **Logged per model (Vera #17222 (4)):** max and median |h| at the SAE layer and the token type that
   carries the maximum (BOS, trigger, evidence, filler).
 - **Picked (FREEZE, 07:16 PST 2026-11-08):** organism = SC3wd (`gen.py` SC v2 + 32 trigger types: burst 3,

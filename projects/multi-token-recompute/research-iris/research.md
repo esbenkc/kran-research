@@ -151,3 +151,11 @@ k16_s0's no-probe prefix is ' Use exactly exactly ... exactly' in 1,592 of 1,600
 near-ties are left for the rounding to flip and D fell 170x. Prior work: policy-entropy collapse under RL,
 Cui et al., *The Entropy Mechanism of Reinforcement Learning for Reasoning Language Models*, arXiv 2505.22617 (May 2025),
 verified on export.arxiv.org.
+
+## 8. Length (k = 64, start policy) — frozen prediction D3 FAILED
+
+start_k64 read (R=2, 400 test pairs): D = 0.104 [0.091, 0.116] vs frozen band [0.035, 0.065] (point 0.048).
+Cause (`research-iris/k64_check.py`): -log p per token rises along the thought (0.32 / 0.52 / 0.79 / 1.10 per
+16-token block), sd of the per-token log-ratio 0.022 -> 0.034; D over the first 16/32/48/64 tokens 0.028 / 0.055 /
+0.086 / 0.104 (near-linear, not sqrt(k)). My stationary-tail model was wrong. Simple reader at k = 64 (cross-fit):
+C = 0.020 [-0.018, 0.058], f 0.38: no reliable signal, but the interval allows ~6 points.

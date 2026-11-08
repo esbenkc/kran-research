@@ -18,4 +18,15 @@ Status: **REJECTED** (gate True); scout prereg: unsettled (antecedent false: f =
 
 ## Skeptic rebuild rows
 
+| claim | seed | variant | control | result | artifact |
+|---|---|---|---|---|---|
+| headline (rebuild) | s0 | k16, served read R=8 | none | Vera own code from npz: gap -0.11 [-0.37, +0.13], text 0.00, f 0.000, D_end 0.00016, distinct 0.004; matches build <= 5e-8 | skeptics/skeptic/k16_s0.vera.json |
+| headline (rebuild) | s1 | k16, served read R=8 | none | Vera own code from npz: gap +0.13 [-0.13, +0.40], text +0.03, f 0.015, D_end 0.0111 [0.0095, 0.0129]; matches build <= 7e-8 | skeptics/skeptic/k16_s1.vera.json |
+| headline (rebuild) | s0 | k16 + prefix KL (D4), served read R=8 | none | Vera own code from npz: gap +0.18 [-0.13, +0.49], text +0.02, D_end 0.0238 [0.0215, 0.0263], distinct 0.519 (valid); matches build <= 2e-8 | skeptics/skeptic/k16open_s0.vera.json |
+| headline (null) | s0, s1, s0 | k16 / k16 / k16open | label swap within each CRN pair (2,000 draws) | null 95% bands [-0.09, +0.09] / [-0.12, +0.12] / [-0.20, +0.20] pts; observed gaps -0.11 / +0.13 / +0.18 (all far below the 3-pt bar) | skeptics/skeptic/k16_s0.vera.json |
+| gate (rebuild) | s0 | planted, served read R=8 | positive control (planted text cue, TV 0.30) | Vera own code: gap +17.31 [16.20, 18.41], forced switch +43.3 [42.8, 43.9], D_end 0.414; label-swap null [-1.3, +1.4] | skeptics/skeptic/planted_s0.vera.json |
+| start (rebuild) | - | start policy, k=16 | untrained (before any probe training) | Vera own code: gap +0.46 [0.00, 0.94], D 0.0274 [0.0242, 0.0310], f 0.054, f_null 0 | skeptics/skeptic/start.vera.json |
+| headline (own engine) | s0, s1 | k16 adapters, Vera's own sampler + hook + LoRA load, 64 test x 2 | independent codebase | k16_s0 D 0.00006, gap +0.03 [-0.44, +0.46]; k16_s1 D 0.0142, gap -0.03 [-0.53, +0.45] | skeptics/skeptic/vera_own_k16_s1.json |
+| D before training (own engine) | - | raw Qwen3-0.6B / start adapter, own engine | independent codebase | raw D 0.029 [0.027, 0.031], f 0.059 (200 x 4); start D 0.0266 [0.0227, 0.0307] | skeptics/skeptic/vera_audit_base.json |
+
 

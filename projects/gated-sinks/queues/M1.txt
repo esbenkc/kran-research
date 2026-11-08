@@ -7,4 +7,9 @@ uv run python grid_wait.py measure softmax1_s1 --layer 2 --save-train 512 > logs
 uv run python measure.py --run softmax_s0 --untrained --layer 2 > logs/softmax_s0.untrained.log 2>&1
 uv run python measure.py --run kbias_s0 --untrained --layer 2 > logs/kbias_s0.untrained.log 2>&1
 uv run python measure.py --run sinklogit_s0 --untrained --layer 2 > logs/sinklogit_s0.untrained.log 2>&1
+uv run python grid_wait.py measure softmax_s0 --layer 2 --rmsnorm > logs/softmax_s0.rms.log 2>&1
+uv run python grid_wait.py measure softmax_s1 --layer 2 --rmsnorm > logs/softmax_s1.rms.log 2>&1
+uv run python grid_wait.py measure softmax_s2 --layer 2 --rmsnorm > logs/softmax_s2.rms.log 2>&1
+uv run python grid_wait.py measure softmax_s0 --layer 2 --k 4 > logs/softmax_s0.k4.log 2>&1
+uv run python grid_wait.py measure gated_s0 --layer 2 --k 4 > logs/gated_s0.k4.log 2>&1
 END

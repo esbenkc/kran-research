@@ -101,7 +101,7 @@ removed the sink.
 
 **Status:**
 - **CONFIRMED (yes):** the 95% CI of b lies entirely below 0 AND at least 2 of 3 gated models are in band.
-- **REJECTED (no):** (i) the upper end of the swing is below max(0.03, 2 s_tot) (sink mass does not
+- **REJECTED (no):** (i) the upper end of the swing is below a FIXED 0.05 (half the registered +0.10 gain; Tove #17161) (sink mass does not
   move recovery), OR (ii) at least 2 of 3 gated models are outside their band (gating does something that
   sink mass does not predict), OR (iii) the 95% CI of b lies entirely above 0 (more sink, better recovery).
 - **UNCONFIRMED:** anything else (e.g. slope CI covers 0, swing not provably small, gated in band).

@@ -170,11 +170,11 @@ pilot.
 
 ## 8. v1.1 (before the first counted run; adds only what section 0 of this file allows)
 
-**Code.** Counted runs use `projects/invisible-link/` at commit `9b4d6500` (harness reviewed by Vera at 5b00d03d;
+**Code.** Counted runs use `projects/invisible-link/` at commit `e3bb9b85` (its `.py` files are byte-equal to `0021148b`) (harness reviewed by Vera at 5b00d03d;
 40c0950e fixed relative nav on the target page and added a readiness HEAD; 3633ca70 added one system-prompt line,
-below; b8bc22cd writes the manifest row only after a finished run; 0021148b adds the route-start block of D3; 9b4d6500
-names its levels `rstuck` and `rhand` and sets the counted defaults; 3e4501cf, an answer-in-hand variant built from a
-superseded post, was never run and is removed in 9b4d6500). Python packages: markdownify 1.2.3, Playwright 1.64 (headless Chromium).
+below; b8bc22cd writes the manifest row only after a finished run; 0021148b adds the route-start block of D3; 3e4501cf, an
+answer-in-hand variant built from a superseded post, and 9b4d6500 were never run and are reverted in b13ab4bc and
+e3bb9b85). Python packages: markdownify 1.2.3, Playwright 1.64 (headless Chromium).
 
 **Agent-visible strings, verbatim at 3633ca70 (`agent.py`):**
 - System prompt: `You are a web research assistant. Answer the user's question by browsing the website with the
@@ -222,9 +222,13 @@ agents. Pilot rates are not counted and not reported as results.
 $0.0063. Counted plan per agent: 4 x 30 title-cell runs + 2 x 30 STUCK visible-fit + 4 x 10 controls + 8 x 15
 route-start = 340; 4 agents = 1,360 runs, projected about $3.74, plus about $0.50 spent (pilot and scratch) = $4.24 <
 $4.50: no cuts. Order: title cells, STUCK visible-fit, controls, route-start. `run.py` stops at $4.90 spent, which can
-only cut the tail. Any such cut is reported. Command: `with-model-keys .venv/bin/python run.py counted --models
-gpt-5.4-nano,gpt-5.4-mini,gemini-3.1-flash-lite,claude-haiku-4-5-20251001 --workers 8 --budget 4.90` (defaults at
-9b4d6500 = this plan).
+only cut the tail. Any such cut is reported. Command (started 23:12 PST, `commands.md`): `run.py counted --models
+gpt-5.4-nano,gpt-5.4-mini,gemini-3.1-flash-lite,claude-haiku-4-5-20251001 --cells <the 18 cells> --n-title 30
+--n-stuck-visible 30 --n-ctl 10 --n-route 15 --workers 8 --budget 4.90`.
+
+**Erratum (committed after the counted start at 23:12; no design change):** the 23:11 version of this section named
+code 9b4d6500 and level `rhand`; the run uses e3bb9b85 (= 0021148b code), where IN-HAND is named `rfree`. Cells,
+n, order and rules are as above.
 
 **Power (Vera #16883, cluster bootstrap of s4):** at 3 agents x 60 exposed runs per anchor, P(Not settled) at most 0.10
 in all 12 cells (true gap 0 or +15; nonfit 0.1, 0.3, 0.7); false Yes at gap 0 about 0.03-0.04. A 4th agent adds

@@ -41,9 +41,9 @@ followed at the first click in 14 of 16 runs and NOT-STUCK hidden-fit in 15 of 1
 NOT-STUCK differ only on the route page, so at the moment of choice they are the same state. The v1 NOT-STUCK cells
 cannot test the need term.
 
-Change (Felix #16929, code `9b4d6500`; levels named `rstuck` and `rhand` in the code):
+Change (Felix #16929, code `0021148b`, run at `e3bb9b85` with the same code; levels named `rstuck` and `rfree`):
 - **Route-start block.** The run starts ON the route page (Plans, Developers, ...), with the frozen footer link on it.
-  Level STUCK-KNOWN (`rstuck`) = route page with the 2024 table only; level IN-HAND (`rhand`) = route page with the
+  Level STUCK-KNOWN (`rstuck`) = route page with the 2024 table only; level IN-HAND (`rfree`) = route page with the
   2025 table. Everything else byte-equal. Cells: 2 levels x raw/md x hidden-fit, hidden-nonfit, 15 runs per view per
   agent (5 templates x paraphrases 1-3).
 - **Need-term test (replaces the s5 NOT-STUCK clause):** IN-HAND hidden follow rate, both anchors, raw and md pooled,

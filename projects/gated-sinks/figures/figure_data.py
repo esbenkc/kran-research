@@ -111,7 +111,7 @@ def main():
         assert min(m["recovery"] for m in mid) > max(m["recovery"] for m in late), "the two groups must not overlap"
         lr = [m["recovery"] for m in late]
         groups = {"mid": {"runs": [m["run"] for m in mid], "text": f"these {len(mid)} gather the causes in the middle layer"},
-                  "late": {"runs": [m["run"] for m in late], "text": f"the other {len(late)} gather them later: {min(lr):.2f} to {max(lr):.2f}"}}
+                  "late": {"runs": [m["run"] for m in late], "text": f"the rest, gated included, gather them later: {min(lr):.2f} to {max(lr):.2f}"}}
     gr = [m["recovery"] for m in gated]
     group_label = {"text": f"gated attention, no sink: {min(gr):.2f} to {max(gr):.2f}",
                    "x": max(m["sink_mass"] for m in gated), "y": float(np.mean(gr))} if all(m["sink_mass"] < 0.1 for m in gated) else None
@@ -132,11 +132,11 @@ def main():
     else:
         answer = "Not settled"
         if rivals:  # Tove #17360/#17361: lead with the cell that explains the Not settled
+            # Lumi #17449: short title; the bracket on the plot carries 'all gather the causes in the middle layer'
             n_w = {1: "a model", 2: "two models", 3: "three models"}[len(rivals)]
-            nums = " and ".join(f"{r['recovery']:.2f}" for r in rivals)
-            both = "both" if len(rivals) == 1 else f"all {len(rivals) + 1}".replace("all 3", "all three")
-            title = (f"Not settled by the line: {n_w} with no sink scored the same as the one middle-layer sink model "
-                     f"({nums} vs {s0['recovery']:.2f}) when {both} gathered the causes in the middle layer")
+            nums = ", ".join(f"{r['recovery']:.2f}" for r in rivals)
+            title = (f"Not settled: {n_w} without a sink scored the same as the one with a middle-layer sink "
+                     f"({nums} vs {s0['recovery']:.2f})")
         else:
             n_sink = sum(m["sink_mass"] > SINK_GATE for m in M)
             title = f"Not settled: only {n_sink} of {len(M)} models had a sink in the middle layer, and the line's slope interval spans 0"

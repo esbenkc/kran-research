@@ -59,6 +59,10 @@ direct meaning. D1 replaces it as follows (disclosed in the post as D1).
   residual R^2, the latents moved into the gate (the SoLU case).
 - **Floors (controls):** the same SAE protocol on h_0 (embeddings) and on h_2 of an untrained model of each
   arm (seed 0). The post reports recovery next to these floors.
+- **Logged per model (Kasper #17182):** parameter count (gated adds a d x d gate per block), dead-feature
+  share per SAE, steps to L*. If the mean dead-feature share differs between arms by > 10 points, the post
+  says so next to the result. The Bayes posterior used for the headroom ceiling skips copied positions
+  (repeat spans), where tokens are not i.i.d. given z.
 
 **Registered prediction outcome (prereg.outcome):** `held` iff all three hold: (a) recovery(gated s) -
 recovery(softmax s) >= 0.10 for s = 0, 1, 2; (b) sink(gated s) < 0.2 x sink(softmax s) for s = 0, 1, 2;
@@ -127,7 +131,8 @@ model-seed SD (Vera #17147 (2)). Pilot models are never counted cells.
 
 Vera prices P(UNCONFIRMED) under a flat-null world from the pilot model-seed and SAE-seed SDs. If the
 model-seed SD of recovery is >= 0.02, or P(UNCONFIRMED) > 0.3, the seed growth in section 2 applies
-(softmax 5, kbias 3), then 5 SAE seeds, before anything else changes.
+(softmax 5, kbias 3). If the SD is above ~0.025, more MODEL seeds follow (softmax1 and sinklogit to 3,
+kbias to 5), not more SAE seeds: SAE seeds only shrink the SAE part of the noise (Vera #17179).
 
 ## 6. Logit lens
 

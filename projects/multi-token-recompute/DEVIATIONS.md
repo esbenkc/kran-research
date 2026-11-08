@@ -69,21 +69,22 @@ that is always the same string is the one-token setup again, so k16_s0 did not t
 
 Changes:
 1. k16_s1 runs as frozen (the replication; it may collapse too).
-2. NEW cell 'k16 text kept open' (k16open_s0) = k16 + a KL on the 16 prefix tokens to the start policy: beta 0.1
-   on the mean over the 16 positions of the exact full-vocabulary KL(policy || start), added to the frozen decision
-   KL (beta 1). 200 updates, seed 0, lr 3e-4, everything else as k16. It REPLACES the k0 run: the spill is already
-   measured on the start policy (+0.24 points [-0.02, 0.51]) and on the raw model by Vera (0.117 logit).
-3. Validity check, frozen (Tove #16633, shares per Vera #16630): distinct-prefix share of the no-probe test
-   prefixes at the end >= 0.20 (25% of the start's 0.805 = 644/800) AND D_end >= 0.0137 (0.5 x D_base, point
-   estimate). If it fails, the post says that no cell kept the text open (Kasper #16632: then the TLDR names
-   the start ceiling 2.7 [2.4, 3.1] and the two collapsed seeds in its first two sentences).
+2. NEW cell 'k16 text kept open', run name k16kl_s0 (Bruno #16635, Tove #16638) = the k16 recipe (seed 0, 200
+   updates, lr 3e-4, decision KL beta 1) + a full-vocabulary KL(policy || start) on each of the 16 prefix tokens,
+   beta 0.1 on the SUM over the 16 positions (= 1.6 on the mean per-token KL). It REPLACES the k0 run: the spill is
+   already measured on the start policy (+0.24 points [-0.02, 0.51]) and on the raw model by Vera (0.117 logit).
+3. Validity check, frozen (Tove #16636, Kasper #16632; one value, as a share): distinct-prefix share of the
+   no-probe test prefixes at the end >= 0.40 (50% of the start's 0.805 = 644/800) AND D_end >= 0.0137 (0.5 x
+   D_base, point estimate). The 0.20 in Tove #16633 was withdrawn in #16636. If it fails, the post says that no
+   cell kept the text open (Kasper #16632: then the TLDR names the start ceiling 2.7 [2.4, 3.1] and the two
+   collapsed seeds in its first two sentences).
 4. Status, conservative direction only, ADDED AFTER the k16_s0 read (it can only move toward UNCONFIRMED): if the open-text cell is valid and shows a served gap CI-low >= 3 points,
    the status is UNCONFIRMED (the frozen REJECTED would rest on collapsed text). Otherwise the frozen rule stands.
    This clause can never move UNCONFIRMED to REJECTED or toward CONFIRMED. Under the prefix KL the text stays near
    the start, so the ceiling stays near 2.7 points; the cell's real question is whether RL raises D while the text
    stays open (Vera #16630).
-5. Queue: k16_s1 read (~19:53) -> Vera's GPU gap -> k16open_s0 (~20:00-20:33) -> its read. The length scan drops to
+5. Queue: k16_s1 read (~19:53) -> Vera's GPU gap -> k16kl_s0 (~20:00-20:33) -> its read. The length scan drops to
    k = 64 at R = 2 if time is left, else it is cut; the planted TV-0.03 C read (gate_c) is cut. The scout's k0
    clause is not scored (prereg.outcome is already 'unsettled': f < 0.2).
 6. Bruno logs distinct-prefix count and mean prefix entropy every 25 updates in curve.jsonl for k16_s1 and
-   k16open_s0.
+   k16kl_s0.

@@ -131,13 +131,21 @@ def main():
              "lo": float(fit["a"] + fit["b"] * v - h_mean(fit, v)),
              "hi": float(fit["a"] + fit["b"] * v + h_mean(fit, v))} for v in xs]
     steps = [m["step"] for m in fitm]
-    soft = {m["seed"]: m for m in models if m["arm"] == "softmax"}
+    soft = {m["seed"]: m for m in models if m["arm"] == "softmax" and m["seed"] < 3}
     gat = {m["seed"]: m for m in gm}
     pairs = sorted(set(soft) & set(gat))
     outcome = "held" if (len(pairs) == 3 and all(
         gat[s]["recovery"] - soft[s]["recovery"] >= 0.10 and
         gat[s]["sink_mass"] < 0.2 * soft[s]["sink_mass"] for s in pairs) and all(
         m["norm_r2"] < 0.2 for m in models if m["arm"] in ("softmax", GATED))) else "failed"
+    sm = [m for m in models if m["arm"] == "softmax"]
+    within = None
+    if len(sm) >= 3:
+        fw = ols([m["sink_mass"] for m in sm], [m["recovery"] for m in sm])
+        rho = stats.spearmanr([m["sink_mass"] for m in sm], [m["recovery"] for m in sm])
+        within = {"n": len(sm), "b": fw["b"], "b_ci": fw["b_ci"], "a": fw["a"],
+                  "spearman": float(rho.statistic), "spearman_p": float(rho.pvalue),
+                  "runs": [m["run"] for m in sm]}
     res = {
         "models": models, "L_star": L_star,
         "lstar_record": json.loads((HERE / "results" / "lstar.json").read_text())
@@ -153,6 +161,7 @@ def main():
         "pairs": [{"seed": s, "gain": gat[s]["recovery"] - soft[s]["recovery"],
                    "sink_ratio": gat[s]["sink_mass"] / soft[s]["sink_mass"]} for s in pairs],
         "floors": man.get("floors", {}),
+        "within_softmax": within,
     }
     out = HERE / "results" / "results.json"
     out.parent.mkdir(exist_ok=True)

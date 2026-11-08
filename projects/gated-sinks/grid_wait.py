@@ -72,9 +72,17 @@ def main():
         (HERE / "results" / "Lstar.txt").write_text(f"{L:.6f}\n")
         (HERE / "results" / "stop_softmax").write_text(str(M))
         print("L*", L, "at", M)
+    elif cmd == "measure_at":
+        # D8: wait until RUN finished, then measure at a fixed checkpoint (equal compute)
+        run, step, extra = sys.argv[2], sys.argv[3], sys.argv[4:]
+        wait([run])
+        subprocess.run([sys.executable, str(HERE / "measure.py"), "--run", run, "--ckpt", step,
+                        *extra], check=True)
     elif cmd == "measure":
         run, extra = sys.argv[2], sys.argv[3:]
         wait([run])
+        while not (HERE / "results" / "lstar.json").exists():   # Lstar.txt is written just before
+            time.sleep(10)
         L = float((HERE / "results" / "Lstar.txt").read_text())
         step, loss, gap = pick(L, run)
         assert step is not None and gap <= 0.01, (run, step, loss, gap)

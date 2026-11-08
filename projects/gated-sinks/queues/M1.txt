@@ -12,4 +12,7 @@ uv run python grid_wait.py measure softmax_s1 --layer 2 --rmsnorm > logs/softmax
 uv run python grid_wait.py measure softmax_s2 --layer 2 --rmsnorm > logs/softmax_s2.rms.log 2>&1
 uv run python grid_wait.py measure softmax_s0 --layer 2 --k 4 > logs/softmax_s0.k4.log 2>&1
 uv run python grid_wait.py measure gated_s0 --layer 2 --k 4 > logs/gated_s0.k4.log 2>&1
+uv run python grid_wait.py measure softmax_s3 --layer 2 --save-train 512 > logs/softmax_s3.measure.log 2>&1
+uv run python grid_wait.py measure softmax_s0 --layer 2 --save-train 512 --bayes > logs/softmax_s0.measure.log 2>&1
+uv run python grid_wait.py measure softmax_s2 --layer 2 --save-train 512 > logs/softmax_s2.measure.log 2>&1
 END

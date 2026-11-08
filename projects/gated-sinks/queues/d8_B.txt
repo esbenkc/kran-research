@@ -1,0 +1,4 @@
+uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn gated --seed 1 --name gated_s1 > logs/gated_s1.train.log 2>&1
+uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn kbias --seed 1 --name kbias_s1 > logs/kbias_s1.train.log 2>&1
+uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn sinklogit --seed 1 --name sinklogit_s1 > logs/sinklogit_s1.train.log 2>&1
+END

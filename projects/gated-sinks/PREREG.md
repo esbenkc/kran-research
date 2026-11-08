@@ -186,6 +186,13 @@ Foldout number only, never on the figure, never in the status.
   0.13-0.18 were in the room (#17219, #17228). In F1 and F2: if the non-gated sink range R < 0.15, both
   REJECTED(i) and CONFIRMED read UNCONFIRMED (a small x-range makes a small swing automatic and cannot
   license a law).
+- **D5, readout ceiling (Kasper #17249, Tove #17251, Felix #17250):** the headroom ceiling is the ridge R^2 of
+  z from logit(clip(posterior, 1e-4, 1-1e-4)) on rows P, the form a linear residual can store; bar = 0.8 x
+  that. Set after softmax-organism readouts of 0.31-0.34 (BB 2k/4.4k) were seen; it uses no non-softmax arm
+  and only selects the organism; every arm is then scored the same way.
+- **Time box (Tove #17251):** at 07:40 PST, if no organism passes every PICK test, take BB at its latest
+  checkpoint with block sink > 0.3 and recovery >= floor + 0.15, launch the grid, and disclose which bar
+  failed.
 - **Logged per model (Vera #17222 (4)):** max and median |h| at the SAE layer and the token type that
   carries the maximum (BOS, trigger, evidence, filler).
 - **Picked:** organism = TBD, d = 64, M = TBD, sink block = TBD, SAE layer = TBD, SAE rows = TBD (all or P),

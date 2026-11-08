@@ -1,0 +1,182 @@
+{
+ "L_star_file": {
+  "checks": [
+   {
+    "M": 8000,
+    "sink_blk2": {
+     "softmax_s0": 0.5437999963760376,
+     "softmax_s1": 0.0210999995470047,
+     "softmax_s2": 0.02070000022649765
+    },
+    "eval": {
+     "softmax_s0": 2.9999915957450867,
+     "softmax_s1": 2.907954454421997,
+     "softmax_s2": 3.0030910968780518
+    }
+   },
+   {
+    "M": 10000,
+    "sink_blk2": {
+     "softmax_s0": 0.5934000015258789,
+     "softmax_s1": 0.02160000056028366,
+     "softmax_s2": 0.01979999989271164
+    },
+    "eval": {
+     "softmax_s0": 3.0020077228546143,
+     "softmax_s1": 2.9075501561164856,
+     "softmax_s2": 3.0035563707351685
+    }
+   },
+   {
+    "M": 12000,
+    "sink_blk2": {
+     "softmax_s0": 0.6035000085830688,
+     "softmax_s1": 0.021700000390410423,
+     "softmax_s2": 0.01979999989271164
+    },
+    "eval": {
+     "softmax_s0": 3.0007181763648987,
+     "softmax_s1": 2.9052146077156067,
+     "softmax_s2": 3.0062551498413086
+    }
+   }
+  ],
+  "M_star": 12000,
+  "L_star": 3.0062551498413086,
+  "all_pass": false
+ },
+ "matched": {
+  "softmax_s0": {
+   "file": "softmax_s0/acts_L2_m256_k8_c4200.npz",
+   "ckpt": 4200,
+   "eval_loss": 3.0051390528678894,
+   "sink": 0.09618854249740641,
+   "rec_build": 0.40053440105393595,
+   "json_rec": 0.4005545775095622,
+   "rec_own": 0.40114395571609157,
+   "floor": 0.25714314712713815
+  },
+  "softmax_s1": {
+   "file": "softmax_s1_fine/acts_L2_m256_k8_c510.npz",
+   "ckpt": 510,
+   "eval_loss": 3.00421142578125,
+   "sink": 0.03277193457086881,
+   "rec_build": 0.3192543830596813,
+   "json_rec": 0.3192507028579712,
+   "rec_own": 0.34489621168415713,
+   "floor": 0.21863716667786348
+  },
+  "softmax_s2": {
+   "file": "softmax_s2/acts_L2_m256_k8_c4300.npz",
+   "ckpt": 4300,
+   "eval_loss": 3.0041144490242004,
+   "sink": 0.030021159981191158,
+   "rec_build": 0.29600222575243956,
+   "json_rec": 0.2959900200366974,
+   "rec_own": 0.3182934958440631,
+   "floor": 0.20057713909882416
+  },
+  "gated_s0": {
+   "file": "gated_s0/acts_L2_m256_k8_c2600.npz",
+   "ckpt": 2600,
+   "eval_loss": 3.0058741569519043,
+   "sink": 0.02233409865635137,
+   "rec_build": 0.2459569648691036,
+   "json_rec": 0.2459573100010554,
+   "rec_own": 0.2629430480303092,
+   "floor": 0.18229332108792204
+  },
+  "gated_s1": {
+   "file": "gated_s1/acts_L2_m256_k8_c2400.npz",
+   "ckpt": 2400,
+   "eval_loss": 3.005535066127777,
+   "sink": 0.030896778823932013,
+   "rec_build": 0.2802516431647433,
+   "json_rec": 0.2802411715189616,
+   "rec_own": 0.29564790978635486,
+   "floor": 0.19101988354127247
+  },
+  "gated_s2": {
+   "file": "gated_s2/acts_L2_m256_k8_c2500.npz",
+   "ckpt": 2500,
+   "eval_loss": 3.005355417728424,
+   "sink": 0.027198214119424424,
+   "rec_build": 0.267952114389169,
+   "json_rec": 0.26796557505925495,
+   "rec_own": 0.286085274854446,
+   "floor": 0.19121515363479552
+  }
+ },
+ "floors": {
+  "untrained_softmax_s0": {
+   "file": "softmax_s0/acts_untrained_L2_m256_k8.npz",
+   "ckpt": null,
+   "eval_loss": null,
+   "sink": 0.021923140786091488,
+   "rec_build": 0.17700524074099877,
+   "json_rec": 0.17700165013472238,
+   "rec_own": 0.21180113906785603,
+   "floor": 0.11178380501806187
+  },
+  "untrained_gated_s0": {
+   "file": "gated_s0/acts_untrained_L2_m256_k8.npz",
+   "ckpt": null,
+   "eval_loss": null,
+   "sink": 0.02274787672162056,
+   "rec_build": 0.16386304471995036,
+   "json_rec": 0.16386808454990387,
+   "rec_own": 0.19176000541891516,
+   "floor": 0.09659946777243697
+  },
+  "untrained_kbias_s0": {
+   "file": "kbias_s0/acts_untrained_L2_m256_k8.npz",
+   "ckpt": null,
+   "eval_loss": null,
+   "sink": 0.02315375570456187,
+   "rec_build": 0.17596671420253396,
+   "json_rec": 0.17595412333806357,
+   "rec_own": 0.21394685323544751,
+   "floor": 0.11302739478529022
+  },
+  "untrained_sinklogit_s0": {
+   "file": "sinklogit_s0/acts_untrained_L2_m256_k8.npz",
+   "ckpt": null,
+   "eval_loss": null,
+   "sink": 0.02146370946764946,
+   "rec_build": 0.18068907593239328,
+   "json_rec": 0.1806981215874354,
+   "rec_own": 0.21141329283309496,
+   "floor": 0.1111379532958219
+  },
+  "embed_softmax_s0": {
+   "file": "softmax_s0/acts_embed_L0.npz",
+   "ckpt": null,
+   "eval_loss": null,
+   "sink": null,
+   "rec_build": 0.16010096745351332,
+   "json_rec": 0.15973754723866782,
+   "rec_own": 0.17842745155921955,
+   "floor": 0.09791401257922538
+  }
+ },
+ "registered_pairs_matched": [
+  {
+   "seed": 0,
+   "d_rec": -0.15457743618483236,
+   "d_rec_own": -0.13820090768578236,
+   "sink_ratio": 0.23219084182457153
+  },
+  {
+   "seed": 1,
+   "d_rec": -0.039002739894937966,
+   "d_rec_own": -0.04924830189780227,
+   "sink_ratio": 0.9427816584070798
+  },
+  {
+   "seed": 2,
+   "d_rec": -0.02805011136327057,
+   "d_rec_own": -0.032208220989617065,
+   "sink_ratio": 0.9059681283622829
+  }
+ ]
+}

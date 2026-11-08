@@ -54,3 +54,30 @@ R1 OK 'We fixed the band's rule before we trained the models we count.' R2 OK. R
 Figure 1 v25 on preview sha 5d7cb46 = clone; 6% dot sits at its own x.
 Nits, not blocking: TLDR says 'holds the causes', body says 'gathers'; at 420 px the label 'the rest, gated included, gather them later' runs over the dotted ring-to-dot lines, and the x-axis reads 'attention on token 1' vs desktop 'first token' (@Drew if cheap).
 Verdicts: post text PASS, main figure PASS.
+
+## Video storyboard (Lumi, verbatim from the room)
+
+### #17503 (reader)
+
+COLD READ of video storyboard (Lumi; read video/storyboard.json, voice/long/timeline.json times, qa/contact-long.jpg and stills; kranpub page is password-locked for me). Main story is followable: hook -> sink -> planted causes -> bet -> figure -> twist -> verdict. Fix list:
+LOST 1. 176.7 'Our rule needed that range to exclude zero, or to rule out any effect above 0.05.' The post's main text never states this rule; 'effect above 0.05' has no unit (slope? score change across the sink range?). Rewrite: 'To settle it, the range had to exclude zero, or show the score moves by under 0.05.' (or cut the line).
+LOST 2. 76.2 'No sink formed, at most 1.2%' + big '1.2%' card, but the post says 'no sink formed (at most 3% of attention on the first token)'. One number, please match the post (@Kasper fact).
+LOST 3. 149.4 'All three gather the causes in the middle layer' - 'gather' never defined in the video. Add: 'A linear probe finds the causes there first.'
+READ TWICE 1. 153.7 'The other nine gather them later' -> 'The other nine models, gated ones included, gather them later.' (post fix L2).
+READ TWICE 2. 95.1 'Before training any counted model, we wrote down a bet.' -> 'Before training the models we report, we wrote down a bet.'
+READ TWICE 3. 169.2 '95% range' -> '95% confidence interval' (post now uses that term 3x, '95% range' 0x).
+Nits: 145.6 the on-screen log shows 'mcc / hung / shuffled / allpos' labels a viewer cannot read; 207.0 'This was Mostly Rejected' right after 'Not settled' can read as a verdict to a first-time viewer (brand in 13 storyboards, so your call).
+Short: fine except 'gather' undefined (same fix as LOST 3).
+
+### #17511 (reader)
+
+REJECT: video storyboard — v2 fixed 2 of 6 (#17503): aside 'at most 3%' OK, '95% confidence interval' OK. Still open in storyboard.json: check 'Our rule needed that interval to exclude zero, or to rule out any effect above 0.05' (no unit, rule not in post); figure 'All three gather the causes in the middle layer' ('gather' undefined, also in short); 'The other nine gather them later' (-> 'The other nine models, gated ones included'); prediction 'Before training any counted model'
+
+### #17520 (reader)
+
+SIGN-OFF: video storyboard — v3 storyboard.json (09:39) has all 6 of #17503: 'Before training the models we report'; probe line defines 'gather'; 'The other nine, gated ones included'; 'the interval had to exclude zero, or be tiny'; 'at most 3%'; '95% confidence interval'. Verdict '0.24 for the rest' matches preview 'from 0.24 to 0.42'. Short: 'first hold the causes' OK
+
+### #17526 (reader)
+
+@Selma please append to skeptics/cold-read.md a '## Video storyboard' section: my #17503 list (3 LOST, 3 READ TWICE), v2 2/6 fixed (#17511), v3 6/6 fixed, PASS (#17520). Also checked the post diff 644c1c5..acfc0c1: only 'average middle-layer score from 0.24 to 0.42' changed; data.json means 0.240 (9 late models) and 0.421 (3 middle-layer models) match. My post-text PASS stands.
+

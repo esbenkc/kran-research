@@ -80,3 +80,9 @@ paraphrase (i // 5) % 6. Skeptics add their rebuild rows below the line.
 
 ## Skeptic rebuild rows
 
+| headline (Vera rebuild) | counted, 3 agents | title gap, STUCK, hidden arms, raw+md, exposed | none | +69.4 pts, cluster CI [+65.0, +73.9] -> Yes; fit 99.4%, off-task 30.0% | skeptics/skeptic/out_counted.txt |
+| headline (Vera rebuild) | paraphrases 0-2 vs 3-5 | split-half title gap | none | +64.4 vs +74.4 pts | skeptics/skeptic/out_extra.txt |
+| headline (Vera rebuild) | counted, leave one agent out | title gap without gemini / mini / nano | none | +60.8 / +91.6 / +55.8, all Yes | skeptics/skeptic/out_counted.txt |
+| null (Vera) | 5,000 permutations | title gap | shuffled anchor labels within agent x template x view | null 97.5% +10.1 pts; 0/5000 >= +69.4 | skeptics/skeptic/out_counted.txt |
+| integrity (Vera) | 1,143 run files | log vs run file | own access.log parser | 0 mismatches, 0 leaks, 0 cache hits of 4,252 calls | skeptics/skeptic/out_counted.txt |
+| exploratory (Vera, not pre-registered) | counted, 3 agents | off-task hidden link, raw HTML vs markdown, STUCK + route-start | view label shuffled within agent x template x level | 37.8% vs 27.5%, P = 0.009; format confound | skeptics/skeptic/out_extra.txt |

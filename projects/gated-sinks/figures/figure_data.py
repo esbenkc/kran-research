@@ -87,22 +87,34 @@ def main():
     status = R["status"]
     assert status.startswith(status_calc), f"results.json status {status} != PREREG s3 rule {status_calc} {rej}"
     law = (fit.get("sink_levels") or 0) >= 3  # fewer than 3 sink levels: a two-group contrast, not a law (PREREG s3)
-    # callouts on the scatter: the only middle-layer sink model, and a model without a sink that scores as
-    # high and gathers the causes in the same layer (assembly layer from results_assembly.json)
-    callouts, rival = [], None
+    # callouts on the scatter (Tove #17361/#17370, Selma #17362): the only middle-layer sink model, and every
+    # model without a sink that scores within 0.02 of it AND gathers the causes in the same (middle) layer.
+    # Assembly layer = where a linear readout first holds the causes (results_assembly.json).
+    callouts, rivals = [], []
     sinks = [m for m in M if m["sink_mass"] > SINK_GATE]
-    if len(sinks) == 1:
-        s0 = sinks[0]
-        callouts.append({"run": s0["run"], "text": f"the only middle-layer sink: {s0['sink_mass']:.0%} on the first token, score {s0['recovery']:.2f}"})
-        rivals = sorted([m for m in M if m["sink_mass"] < 0.1], key=lambda m: -m["recovery"])
-        if rivals and rivals[0]["recovery"] >= s0["recovery"] - 0.02:
-            rival = rivals[0]
-            callouts.append({"run": rival["run"], "text": f"{NAMES[rival['arm']]}: no sink ({rival['sink_mass']:.0%}), score {rival['recovery']:.2f}"})
+    s0 = sinks[0] if len(sinks) == 1 else None
+    if s0:
+        rivals = [m for m in M if m["sink_mass"] < 0.1 and abs(m["recovery"] - s0["recovery"]) <= 0.02
+                  and ASM.get(m["run"]) == ASM.get(s0["run"]) == MID_LAYER]
+        rivals.sort(key=lambda m: -m["recovery"])
+        callouts.append({"run": s0["run"], "text": f"{NAMES[s0['arm']]}: {s0['sink_mass']:.0%} sink, {s0['recovery']:.2f}"})
+        for r in rivals:
+            callouts.append({"run": r["run"], "text": f"{NAMES[r['arm']]}: no sink ({r['sink_mass']:.0%}), {r['recovery']:.2f}"})
     for c in callouts:
         assert ";" not in c["text"]
+    # groups by gathering layer (Selma #17362): the middle-layer gatherers get a bracket, the rest one label
+    mid = [m for m in M if ASM.get(m["run"]) == MID_LAYER]
+    late = [m for m in M if m not in mid]
+    groups = None
+    if ASM and mid and late:
+        assert all(ASM[m["run"]] > MID_LAYER for m in late), "every other model gathers the causes later"
+        assert min(m["recovery"] for m in mid) > max(m["recovery"] for m in late), "the two groups must not overlap"
+        lr = [m["recovery"] for m in late]
+        groups = {"mid": {"runs": [m["run"] for m in mid], "text": f"these {len(mid)} gather the causes in the middle layer"},
+                  "late": {"runs": [m["run"] for m in late], "text": f"the other {len(late)} gather them later: {min(lr):.2f} to {max(lr):.2f}"}}
     gr = [m["recovery"] for m in gated]
-    group_label = {"text": f"gated attention, no sink: score {min(gr):.2f} to {max(gr):.2f}",
-                   "x": max(m["sink_mass"] for m in gated), "y": min(gr)} if all(m["sink_mass"] < 0.1 for m in gated) else None
+    group_label = {"text": f"gated attention, no sink: {min(gr):.2f} to {max(gr):.2f}",
+                   "x": max(m["sink_mass"] for m in gated), "y": float(np.mean(gr))} if all(m["sink_mass"] < 0.1 for m in gated) else None
 
     if status_calc == "CONFIRMED":
         answer = "Yes"
@@ -119,10 +131,12 @@ def main():
             title = "More sink, better recovery: the slope runs the wrong way"
     else:
         answer = "Not settled"
-        same_layer = rival is not None and ASM.get(rival["run"]) is not None and ASM.get(rival["run"]) == ASM.get(sinks[0]["run"]) == MID_LAYER
-        if same_layer:  # Tove #17360: lead with the cell that explains the Not settled
-            title = (f"Not settled by the line: a model with no sink scored the same as the one middle-layer sink model "
-                     f"({rival['recovery']:.2f} vs {sinks[0]['recovery']:.2f}) when both gathered the causes in the middle layer")
+        if rivals:  # Tove #17360/#17361: lead with the cell that explains the Not settled
+            n_w = {1: "a model", 2: "two models", 3: "three models"}[len(rivals)]
+            nums = " and ".join(f"{r['recovery']:.2f}" for r in rivals)
+            both = "both" if len(rivals) == 1 else f"all {len(rivals) + 1}".replace("all 3", "all three")
+            title = (f"Not settled by the line: {n_w} with no sink scored the same as the one middle-layer sink model "
+                     f"({nums} vs {s0['recovery']:.2f}) when {both} gathered the causes in the middle layer")
         else:
             n_sink = sum(m["sink_mass"] > SINK_GATE for m in M)
             title = f"Not settled: only {n_sink} of {len(M)} models had a sink in the middle layer, and the line's slope interval spans 0"
@@ -141,11 +155,11 @@ def main():
         "band": "prediction band",
         "gated_measured": "gated attention, measured",
         "gated_predicted": "gated attention, predicted by the line",
-        "floor": "untrained model",
+        "floor": "untrained models (every kind of attention)",
         "strip": "distance from the line",
     }
-    fl = lambda v: float(np.mean(list(v.values()))) if isinstance(v, dict) else float(v)
-    floor_untrained, floor_embedding = fl(R["floors"]["untrained"]), fl(R["floors"]["embedding"])
+    fl = lambda v: list(v.values()) if isinstance(v, dict) else [float(v)]
+    fu, fe = fl(R["floors"]["untrained"]), fl(R["floors"]["embedding"])
     steps = {m["step"] for m in M}
     assert len(steps) == 1, f"one training length for every model (D8), got {steps}"
     n_steps = steps.pop()
@@ -165,10 +179,12 @@ def main():
         "names": {k: NAMES[k] for k in ORDER},
         "callouts": callouts,
         "group_label": group_label,
+        "groups": groups,
         "fit": {"a": r3(fit["a"]), "b": r3(fit["b"]), "b_lo": r3(lo), "b_hi": r3(hi), "swing": r3(fit["swing"]), "swing_hi": r3(swing_hi),
                 "s_tot": r3(fit["s_tot"]), "band_floor": BAND_FLOOR, "sink_max": r3(max(m["sink_mass"] for m in M)), "sink_levels": fit.get("sink_levels"),
                 "line": [{"x": r3(p["sink"]), "y": r3(p["pred"]), "band": r3(band_at(p["sink"]))} for p in fit["line"]]},
-        "floors": {"untrained": r3(floor_untrained), "embedding": r3(floor_embedding)},
+        "floors": {"untrained": r3(float(np.mean(fu))), "untrained_lo": r3(min(fu)), "untrained_hi": r3(max(fu)),
+                   "embedding": r3(float(np.mean(fe)))},
         "counts": {"gated": n_g, "in_band": n_in, "above": above, "below": below, "fitted": len(fitted)},
         "models": [
             {"run": m["run"], "arm": m["arm"], "name": NAMES[m["arm"]], "seed": m["seed"], "gated": m["gated"],

@@ -7,7 +7,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 RD = HERE / "data" / "reads" / "raw"
-RUNS = ["planted_s0", "k16_s0", "k16_s1", "k0_s0"]
+RUNS = ["planted_s0", "k16_s0", "k16_s1", "k16open_s0"]  # k0_s0 cut by DEVIATIONS D4
 VERA_RAW = {"f": 0.059, "D": 0.029, "D_ci": [0.027, 0.031], "source": "skeptics/skeptic/vera_audit_base.json (Vera's "
             "own engine, raw Qwen3-0.6B, 200 test prompts x 4 CRN seeds)"}
 
@@ -58,6 +58,8 @@ def main():
             a_, b_ = np.array([p[0] for p in pairs]), np.array([p[1] for p in pairs])
             S["runs"][r]["m_logit"] = float(np.abs(lg(ze["c_n"][b_]) - lg(zs["c_n"][a_])).mean())
             S["runs"][r]["m_rows"] = len(pairs)
+        tn = ze["toks_n"]
+        S["runs"][r]["distinct_prefix_share"] = len({tuple(x) for x in tn}) / len(tn)
         cf = HERE / "data" / "reads" / f"C_{r}.json"
         if cf.exists():
             S["runs"][r]["C"] = json.loads(cf.read_text())
@@ -73,7 +75,17 @@ def main():
             status = "CONFIRMED"
         elif all(k["gap_ci"][1] < 0.03 for k in ks):
             status = "REJECTED"
-    S["status"] = {"gate": gate, "status": status,
+    # D4 (added after k16_s0's read; one-way only): a VALID open-text cell with gap CI-lo >= 3 -> UNCONFIRMED
+    op = S["runs"].get("k16open_s0")
+    if zs is not None:
+        m_ = zs["split"] == "test"
+        S["start_distinct_prefix_share"] = len({tuple(x) for x in zs["toks_n"][m_]}) / int(m_.sum())
+    if op:
+        op["valid_open_text"] = bool(op["distinct_prefix_share"] >= 0.20 and op["test"]["D"] >= 0.0137)
+        if op["valid_open_text"] and op["test"]["gap_ci"][0] >= 0.03 and status != "UNCONFIRMED":
+            status = "UNCONFIRMED"
+    S["status"] = {"gate": gate, "status": status, "d4_open_cell": op and {"valid": op["valid_open_text"],
+                   "share": op["distinct_prefix_share"], "D_end": op["test"]["D"], "gap_ci": op["test"]["gap_ci"]},
                    "rule": "GATE = planted forced switch >= 20 pts, CI-lo > 0, planted served gap CI-lo > 0; YES = "
                            "both k16 gap CI-lo >= 3 pts; NO = both k16 gap CI-hi < 3 pts; else UNCONFIRMED"}
     # scout's prereg
@@ -88,12 +100,11 @@ def main():
         outcome, why = "pending", "f >= 0.2 on both: clauses scored on the cells"
     S["prereg"] = {"outcome": outcome, "why": why}
     # bound check
-    for r in ("k16_s0", "k16_s1"):
+    for r in ("k16_s0", "k16_s1", "k16open_s0"):
         t = S["runs"].get(r, {}).get("test")
-        k0 = S["runs"].get("k0_s0", {}).get("test")
         if t:
             S["runs"][r]["bound"] = {"text_le_D_end": t["text"] <= t["D"] + (t["text_ci"][1] - t["text_ci"][0]) / 2,
-                                     "ceiling_full": t["D"] + (abs(k0["spill"]) if k0 else 0.0)}
+                                     "ceiling_full": t["D"] + abs(t["spill"])}
     (HERE / "data" / "summary.json").write_text(json.dumps(S, indent=1))
     # proof matrix
     rows = []
@@ -111,8 +122,9 @@ def main():
         t = v["test"]
         seed = r.split("_s")[-1]
         var = r.split("_s")[0]
-        claim = "headline" if var == "k16" else ("gate" if var == "planted" else "spill")
-        ctrl = {"planted": "positive control (planted text cue, TV 0.30)", "k0": "no prefix (numeric spill only)"}.get(var, "none")
+        claim = {"k16": "headline", "planted": "gate", "k16open": "D4 open-text check"}[var]
+        ctrl = {"planted": "positive control (planted text cue, TV 0.30)",
+                "k16open": "prefix KL 0.1 on the sum (text kept open)"}.get(var, "none")
         res = (f"gap {pts(t['gap'])} pts [{pts(t['gap_ci'][0])}, {pts(t['gap_ci'][1])}], text {pts(t['text'])} "
                f"[{pts(t['text_ci'][0])}, {pts(t['text_ci'][1])}], cheat {t['cheat_none']:.3f}/{t['cheat_leaky']:.3f}")
         if "D" in t:
@@ -120,7 +132,7 @@ def main():
         if "forced_switch" in t:
             res += (f", forced switch {pts(t['forced_switch'])} pts [{pts(t['forced_switch_ci'][0])}, "
                     f"{pts(t['forced_switch_ci'][1])}]")
-        res += f", {v['steps']} updates"
+        res += f", distinct prefixes {v['distinct_prefix_share']:.3f}, {v['steps']} updates"
         rows.append((claim, f"s{seed}", f"{var}, served read R=8", ctrl, res, f"data/reads/raw/{r}.json"))
         rows.append((claim, f"s{seed}", f"{var}, training curve", ctrl,
                      f"dev gap end {pts(v['curve_end'].get('gap', 0))} pts", f"data/runs/{r}/curve.jsonl"))

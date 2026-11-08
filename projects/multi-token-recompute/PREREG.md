@@ -147,19 +147,35 @@ Read on the k16 cells (full served gap, CRN, Rao-Blackwellised) with the matched
 
 ## Compute
 
-Heavy jobs: one sampler+trainer per lane, 2 lanes at most, estimated <= 2.5 GB RSS each (Bruno's smoke prices
-it in v1.1); gate reads run inside a lane, never as a third job. Vera gates the job list (room review) before
-the first run. Deadline 07:00 CET = 22:00 PST; lane order (Kasper #16504.3): A = k16 s0 -> k16 s1,
-B = planted s0 -> k0 s0 (the gate arm lands first, so the room knows early whether a NO is callable;
-planted-0.3 runs after k0 only if the matched planted arm failed its gate).
-Cut order if late: length scan, then C on greedy text,
-then the scaled arm. Never cut: planted s0, k16 s0, k16 s1, D_end on the final adapters.
+v1.1 (Felix #16563, Bruno #16560): ONE serial heavy lane. Bruno's trainer is the one local fine-tune (RSS 1.15 GB,
+MPS footprint 5.5-6.6 GB, watchdog cap 9 GB); nothing else heavy runs beside it; Vera's engine runs only in the
+gaps between jobs. Queue: pilot -> start gate read -> planted calibration -> v1.1 commit -> planted s0 -> k16 s0
+-> k16 s1 -> k0 s0 -> final reads (R = 8; the planted read right after its run) -> length scan.
+planted-0.3 runs after k0 only if the matched planted arm failed its gate. Cut order if late (Tove #16558):
+C on greedy text, then the scaled arm, then the length scan (k = 64 before k = 256; k = 256 at R = 2 on test if
+short). Never cut: planted s0, k16 s0, k16 s1, D_end on the final adapters.
 
 ## Gate, measured before training (filled in v1.1, before the first update)
 
-- start policy: ...   start cheat (none / leaky): ...
-- sampling temperature / top-p: ...   answer cue: ...
-- f: ...   f_null: ...   D_base: ... (CI ...)   Pinsker: ...   per-token TV sum: ...   C_base: ...
-- planted token / eps / D_plant: ...   K (scaled, if run): ...
-- s/update and RSS per lane: ...   budget (updates, every arm): ...
+- start policy: one outcome-only pilot (read 1 / solve 0.6, no probe, no shaping, clean recompute, lr 3e-4,
+  P8 G8) stopped at the first dev check with cheat >= 0.40 (none build), the same start for every arm and seed
+  (as the parent's pilot_standard_s0, 0.39). Pilot stop update: ...   start cheat test (none / leaky): ...
+  Raw Qwen3-0.6B cheat (Vera #16554): 1.7% none.
+- prompt: parent Countdown text + 'First think in one short sentence. Then reply Answer: read ... or Answer:
+  solve'; assistant turn prefilled with 'Thought:'; 16 free tokens; answer cue '\nAnswer:'; decision = 2-way
+  softmax of ' read' vs ' solve'. Opener check (Bruno #16552, 96 eager samples): 3% of prefixes contain
+  read/solve (no opener: 100% start with 'Answer: solve'; 'Let me think.': 41%). Start-policy share: ...
+- sampling: temperature 1, top-p 1 (full softmax in fp32 over the bf16 logits), token ids >= 151643 excluded.
+- clean recompute (definition): ONE compiled no-probe PREFILL over prompt + prefix + suffix for every row,
+  probed or not; block-26 input recorded there; a function of the text only (same graph type as the parent's
+  R arm). Leaky build = its own compiled graph (logs/smoke_k16.log: block-26 bits differ 83% leaky vs none;
+  repeat runs bit-identical per build).
+- RAW Qwen3-0.6B (Vera's independent engine, same sampler spec, 200 test x 4 CRN seeds; skeptic/
+  vera_audit_base.json): f 0.059, f_null 0 (B8 vs B4), D 0.029 [0.027, 0.031], Pinsker 0.042, per-token TV
+  sum 0.052, mean per-token TV 0.0032, decision spill 0.117 logit mean |diff|.
+- START policy (Bruno, R = 4 train + test): f: ...   D_base: ... (CI ...)   Pinsker: ...   per-token TV sum: ...
+  C_base (Iris): ...
+- planted token X / eps / D_plant: ...   K (scaled, if run): ...
+- s/update: ~8.3 (pilot). Budget: DEVIATIONS.md D1 (one N for planted s0, k16 s0, k16 s1 from the clock formula,
+  k0 100 updates, lr 3e-4; the parent ran 5,000 updates). N = ... (T0 ..., s_update ...).
 - predicted k16 ceiling = 100 x D_base + |k0 spill| (spill measured at the end; before training: 100 x D_base): ...

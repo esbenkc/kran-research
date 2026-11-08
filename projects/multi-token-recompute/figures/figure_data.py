@@ -169,7 +169,7 @@ def load_C() -> dict:
 
 
 def C_of(Cd: dict, key: str) -> float | None:
-    v = Cd.get(C_NAME.get(key, key))
+    v = Cd.get(C_NAME.get(key, key), Cd.get(key))  # Iris may name the k64 file C_k64 or C_start_k64
     return None if v is None else v["C"]
 
 

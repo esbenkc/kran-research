@@ -39,9 +39,16 @@ direct meaning. D1 replaces it as follows (disclosed in the post as D1).
   "dump mass" = position 0 plus the learned sink slot (softmax1 / sinklogit / kbias null slot).
 - **Matched loss:** the 3 softmax seeds train for M steps (M in `train.py` at the freeze commit). Target
   L* = the largest of their held-out losses at step M. Every model (softmax included) is analysed at its
-  first eval whose held-out loss <= L*; all analysed checkpoints therefore sit within 1% of L*. L* is fixed
-  before any non-softmax arm trains. A model that does not reach L* in 3M steps is dropped and disclosed.
-  The post also reports each model's excess loss over the Bayes-optimal loss of the generator.
+  first eval whose held-out loss <= L*. Evals run often enough that each analysed checkpoint has
+  (L* - L)/L* <= 0.01 of TOTAL loss; `measure.py` asserts it per model. If a model overshoots, it is
+  retrained from the last checkpoint above L* with a 10x finer eval grid; if it still overshoots, it is
+  dropped and disclosed. L* is fixed before any non-softmax arm trains. A model that does not reach L* in
+  3M steps is dropped and disclosed. The post reports, per model, the gap to L* both as a share of total
+  loss and as a share of the excess loss over the Bayes-optimal loss of the generator.
+- **Training length (Kasper #17157 (3)):** matched-loss stopping gives each arm its own step count, and
+  sinks grow with training (Gu 2410.10781). results.json logs steps per analysed model; the post reports
+  Pearson(steps, sink mass) over the non-gated fit. If |r| > 0.8, the post says that sink mass and step
+  count cannot be separated in this grid.
 - **Registered norm check:** ridge R^2 of z_j from the per-token norm of h_2 (one scalar), mean over 64,
   held-out positions 32..127. Known to be near 0 by construction (one scalar cannot carry 64 latents); the
   post says so.
@@ -99,7 +106,13 @@ removed the sink.
   sink mass does not predict), OR (iii) the 95% CI of b lies entirely above 0 (more sink, better recovery).
 - **UNCONFIRMED:** anything else (e.g. slope CI covers 0, swing not provably small, gated in band).
 
-A flat line never confirms. If (i) and (ii) both fire, the post reports both.
+Precedence (Kasper #17157 (1)): REJECTED is checked first. A slope whose CI excludes 0 but whose swing is
+below the bar is REJECTED(i), not CONFIRMED: a real but negligible slope is a no. A flat line never
+confirms. If several REJECTED clauses fire, the post reports all of them.
+
+Sign of the gated miss (Kasper #17157 (4)): results.json records, per gated model, the signed residual
+recovery(g) - prediction(g). If (ii) fires, the post says "gating helps beyond its sink mass" (residuals
+above the line) or "gating helps less than its sink mass predicts" (below).
 
 ## 4. Headroom rule (posted in the room before the pilot, #17131; Tove C2)
 

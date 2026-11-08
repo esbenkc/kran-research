@@ -5,7 +5,7 @@ set -u
 cd "$(dirname "$0")"
 PY=../../../env/.venv/bin/python
 echo "lane2: start $(date '+%F %T')"
-./runline.sh k16kl_s0 k16 0 200 --kl-prefix 0.1
+./runline.sh k16open_s0 k16 0 200 --kl-prefix 0.1
 $PY watchdog.py --cap-gb 9.0 --log logs/read_start_k64.log -- $PY read.py --policy data/runs/pilot/adapter.pt \
     --splits test --R 2 --k 64 --skip-text --out data/reads/raw/start_k64
 echo "lane2: all done $(date '+%F %T')"

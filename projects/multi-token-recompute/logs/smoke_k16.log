@@ -1,0 +1,8 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7914.74it/s]
+W1107 17:01:11.291000 39964 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+/AppleInternal/Library/BuildRoots/4~CJ7zugCWBHgyY5jF33Pox4qXqx4MT4guvYcGoM4/Library/Caches/com.apple.xbs/TemporaryDirectory.oY3GWR/Sources/MetalPerformanceShaders/MPSCore/Utility/MPSCommandBufferImageCache.mm:1420: failed assertion `Failed to allocate private MTLBuffer for size 9957277696
+'
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-39964-zdlicpqx'}
+  warnings.warn(

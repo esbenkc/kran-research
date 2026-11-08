@@ -56,3 +56,18 @@ Change (Felix #16929, code `0021148b`, run at `e3bb9b85` with the same code; lev
 - **Every cell reports** the fetch index of the follow and whether the route page was seen before it (Kasper).
 - The title cells, the title rule and STUCK visible-fit do not change. In plain words the title level is 'the answer
   is not on the page the agent is on' (Kasper #16926); the agent is never told it is stuck.
+
+## D4 (during the counted run, 23:17): Haiku dropped by the s6 cost rule; Haiku title cells finished as a side row
+
+Reason (Bruno #16949): after 171 counted runs, spend was $1.153 (from $0.41). Off-task-anchor runs explore all 8
+steps, so per-run cost is far above the pilot price (Haiku off-task $0.0152 per run against $0.009 in the pilot; GPT-5.4
+mini $0.0073 against $0.0046). The re-projection for 4 agents was $5.75 > $4.50. The s6 order drops Haiku first. Bruno
+stopped the run and resumed it at the same code (e3bb9b85; finished files kept) with 3 agents: GPT-5.4 nano, GPT-5.4
+mini, Gemini 3.1 Flash-Lite. Projected final about $3.2.
+
+- **Status, law ratio, need term and scout clauses:** 3 agents, equal weight, as in v1 section 6 before Haiku was
+  admitted. Haiku runs never enter them.
+- **Side row (Felix decision, logged before those runs start):** after the 3-agent run, Haiku's 4 title cells are
+  finished to 30 runs each (about 81 more runs, about $0.85; projected total about $4.0 < $4.50; the $4.90 hard stop
+  stays). They are reported as one side row, 'the same title gap for a fourth agent', with the s4 bootstrap. Haiku's
+  other finished runs (if any outside the title cells) are reported as counts only.

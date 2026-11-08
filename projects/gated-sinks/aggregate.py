@@ -148,7 +148,7 @@ def main():
         band = max(0.03, 2 * fit["s_tot"], h_mean(fit, g[a.x]))
         grows.append({"run": g["run"], "sink_mass": g[a.x], "recovery": g["recovery"],
                       "pred": pred, "band": band, "residual": g["recovery"] - pred,
-                      "in_band": abs(g["recovery"] - pred) <= band})
+                      "in_band": bool(abs(g["recovery"] - pred) <= band)})
     status, rej = status_rule(fit, R, grows)
     xs = np.linspace(0, max(x + [g[a.x] for g in gm]), 41)
     line = [{"sink": float(v), "pred": float(fit["a"] + fit["b"] * v),

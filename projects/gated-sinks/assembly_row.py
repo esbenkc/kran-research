@@ -26,15 +26,21 @@ def main():
         r = v["readout_r2_by_layer"]
         mx_ = max(r[1:])
         La = next(L for L in range(1, len(r)) if r[L] >= 0.9 * mx_)
+        m2 = HERE / "runs" / run / "measure_L2_m256_k8_c12000.json"
+        blk = json.loads(m2.read_text())["sink_blk"] if m2.exists() else None
         f = HERE / "runs" / run / f"measure_L{La}_m256_k8_c12000.json"
         if not f.exists():
             missing.append((run, La))
             continue
+        top = int(max(range(len(blk)), key=lambda i: blk[i])) + 1 if blk else None
         m = json.loads(f.read_text())
         rows.append({"run": run, "arm": m["attn"], "assembly_layer": La, "readout_by_layer": r,
                      "x": m["sink_blk"][La - 1], "recovery": m["recovery"],
                      "random_floor": m["random_floor"], "readout_r2": m["readout_r2"],
-                     "in_fit": m["attn"] in FIT_ARMS, "gated": m["attn"] == GATED})
+                     "in_fit": m["attn"] in FIT_ARMS, "gated": m["attn"] == GATED,
+                     "sink_blk": blk, "max_sink_block": top,
+                     "max_sink": max(blk) if blk else None,
+                     "sink_in_assembly_block": (top == La) if blk else None})
     fitr = [q for q in rows if q["in_fit"]]
     fit = ols([q["x"] for q in fitr], [q["recovery"] for q in fitr]) if len(fitr) >= 3 else None
     out = {"rows": rows, "missing": missing,

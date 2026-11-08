@@ -17,7 +17,7 @@ import mlx.core as mx
 import numpy as np
 
 from gen import GenCfg, World
-from measure import TEST_SEED
+from measure import N_TEST, TEST_SEED
 from model import ModelCfg, TinyLM
 
 HERE = Path(__file__).parent
@@ -43,7 +43,7 @@ def main():
     for spec in (a.soft, a.gated):
         run, ck, log, model, rd = load(spec)
         g = GenCfg(**log["gen"])
-        toks, z, fresh, score = World(g).sample(a.seq + 1, TEST_SEED)
+        toks, z, fresh, score = World(g).sample(N_TEST[g.organism], TEST_SEED)   # the score set
         toks, z, score = toks[a.seq:a.seq + 1], z[a.seq], score[a.seq]
         q = int(np.nonzero(score[90:])[0][0] + 90) if score[90:].any() else 100
         qi = int(np.nonzero(~score[90:])[0][0] + 90)          # an idle query (next token not evidence)

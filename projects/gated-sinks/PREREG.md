@@ -205,6 +205,9 @@ Foldout number only, never on the figure, never in the status.
   floor + 0.15 and recovery <= 0.85. M = the first 2k checkpoint of that search run passing the same tests,
   capped at 12k for time. All arms train with SC3wd settings (AdamW wd 0.5, lr 3e-3). BB is the named
   backup if SC3wd's counted softmax s0 has block-2 sink <= 0.3 at M.
+  Seed rule (Kasper #17265, before seeds 1-2 exist): if any counted softmax seed has block-2 first-token
+  mass < 0.3 at M, all softmax seeds move to the next 2k checkpoint where every seed passes (cap 12k); M
+  and L* are set there.
 - **Logged per model (Vera #17222 (4)):** max and median |h| at the SAE layer and the token type that
   carries the maximum (BOS, trigger, evidence, filler).
 - **Picked:** organism = TBD, d = 64, M = TBD, sink block = TBD, SAE layer = TBD, SAE rows = TBD (all or P),

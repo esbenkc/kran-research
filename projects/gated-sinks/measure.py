@@ -160,6 +160,8 @@ def main():
     ap.add_argument("--bayes", action="store_true", help="also compute the Bayes ceiling")
     ap.add_argument("--sink-only", action="store_true", help="only sink mass per block, no SAE")
     ap.add_argument("--tag", default=None)
+    ap.add_argument("--save-train", type=int, default=0,
+                    help="also save the SAE training rows of the first N training sequences")
     a = ap.parse_args()
 
     rd = HERE / "runs" / a.run
@@ -331,12 +333,19 @@ def main():
     }
     (rd / f"measure_{tag}.json").write_text(json.dumps(res, indent=1))
     seq_idx, pos = np.nonzero(te["P"])
+    if a.save_train:
+        extra_tr = {"H_train": ((prep(tr["H"][:a.save_train, 1:]) - mu) / s).astype(np.float16),
+                    "z_train_seq": tr["z"][:a.save_train].astype(np.uint8),
+                    "tokens_train": tr["toks"][:a.save_train].astype(np.int16)}
+    else:
+        extra_tr = {}
     extra = {"A0_sink_block": te["A0"]} if te["A0"] is not None else {}
     np.savez_compressed(rd / f"acts_{tag}.npz", H_scored=xte.astype(np.float16),
                         z_scored=Zte.astype(np.uint8), seq_idx=seq_idx.astype(np.int32),
                         pos=pos.astype(np.int16), tokens=te["toks"].astype(np.int16),
                         z_seq=te["z"].astype(np.uint8), layer=np.array(layer),
                         sink_block=np.array(layer), sink_q_min=np.array(SINK_Q_MIN), **extra,
+                        **extra_tr,
                         rows_per_seq=nseq, mu=mu, scale=np.array(s),
                         norm_scored=nte.astype(np.float32), test_seed=np.array(TEST_SEED),
                         n_test=np.array(n_test), pos_min=np.array(POS_MIN), **codes)

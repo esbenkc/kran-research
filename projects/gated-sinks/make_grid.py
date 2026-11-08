@@ -56,7 +56,8 @@ def main():
     meas = {"M1": [], "M2": []}
     for i, r in enumerate(runs):
         meas["M1" if i % 2 == 0 else "M2"].append(
-            f"{PY} grid_wait.py measure {r} --layer {a.layer} > logs/{r}.measure.log 2>&1")
+            f"{PY} grid_wait.py measure {r} --layer {a.layer} --save-train 512"
+            f" > logs/{r}.measure.log 2>&1")
     floors = []
     for arm in ("softmax", "gated", "kbias", "softmax1", "sinklogit"):
         r = f"{arm}_s0"

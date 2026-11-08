@@ -27,3 +27,10 @@ Changes:
    half-width, and the full gap <= 100 x D_end + |spill|, at any budget. Only a longer budget could show RL raising
    D. The post states N vs the parent's 5,000 updates in the TLDR's scope sentence.
 6. If the planted gate fails at N, the status is UNCONFIRMED and the post says why; no rescue run.
+7. The forced-prefix dev read is a MONITOR (Kasper #16571). The planted arm runs its full N whatever the dev curve
+   shows: no early stop, no N change, no lr change from it.
+8. KL (Tove #16578, Kasper #16577), the same for planted, k16 and k0: the parent's 2-way KL at the decision slot
+   (read vs solve), beta 1 (gradient-path-law config.yaml:25); no KL on the 16 prefix tokens, so RL may move its
+   own text (the YES path). Reason: the first pilot try with a KL over prefix + decision at beta 1 crawled (cheat
+   0.014 -> 0.058 in 40 updates, logs/pilot_try1_kl1_lr3e-4.log); a full-vocabulary KL over 16 tokens is far
+   stronger than the parent's. The pilot itself (start policy only) ran at KL 0.05 / lr 5e-4 (Bruno #16575).

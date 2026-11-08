@@ -139,7 +139,7 @@ ROBOT = """<svg width="{w}" height="{w}" viewBox="0 0 48 48" aria-hidden="true">
 def row(k, name):
     a = EX["arms"][k]
     return (f'<div class="row"><div class="mn">{ROBOT.format(w=34)}<div><div class="nm">{name}</div>'
-            f'<div class="sd">seed {a["seed"]} &middot; {F("avg", pct=round(100 * a["sink_mass"]))}</div></div></div>'
+            f'<div class="sd">seed {a["seed"]}<br>{F("avg_sink" if a["sink_mass"] > 0.3 else "avg_nosink", pct=round(100 * a["sink_mass"]))}</div></div></div>'
             f'<div class="att">{att_row(k)}</div>{rec(k)}</div>')
 
 
@@ -216,19 +216,20 @@ Sources (kran-research, branch swarm/theory-1108-gated-sinks, projects/gated-sin
   .hdr {{ margin-top: 14px; align-items: end; }}
   .ch {{ font-size: 21px; font-weight: 700; color: #3b3e46; line-height: 1.25; }}
   .grp {{ margin-top: 12px; border-radius: 16px; padding: 8px 0 8px; }}
-  .grp.g2 {{ background: #f6ecea; }}
+  .grp.g2 {{ background: #eef0f3; }}
   .grp.g4 {{ background: #eef0f3; }}
   .gl {{ font-size: 22px; font-weight: 800; padding: 0 14px; }}
-  .grp.g2 .gl {{ color: #8f2a20; }}
-  .grp.g4 .gl {{ color: #3b3e46; }}
+  .grp.g2 .gl {{ color: #1d1d1f; }}
+  .grp.g4 .gl {{ color: #1d1d1f; }}
   .row {{ display: grid; grid-template-columns: 256px {WATT:.0f}px 1fr; column-gap: 18px; align-items: center; padding: 8px 0 4px 14px; }}
+  .mn svg {{ flex-shrink: 0; }}
   .mn {{ display: flex; gap: 8px; align-items: center; align-self: center; }}
   .nm {{ font-size: 23px; font-weight: 800; line-height: 1.15; }}
-  .sd {{ font-size: 18px; white-space: nowrap; color: #6b6f78; }}
+  .sd {{ font-size: 18px; white-space: nowrap; line-height: 1.2; color: #6b6f78; }}
   .rec {{ display: flex; align-items: center; gap: 8px; height: 40px; align-self: center; }}
   .rbar {{ height: 26px; border-radius: 3px; }}
   .rv {{ font-size: 28px; font-weight: 800; font-variant-numeric: tabular-nums; }}
-  .same {{ font-size: 22px; font-weight: 700; color: #8f2a20; text-align: right; padding: 2px 18px 0 0; }}
+  .same {{ font-size: 22px; font-weight: 700; color: #1d1d1f; text-align: right; padding: 2px 18px 0 0; }}
   .l4 {{ font-size: 21px; font-weight: 600; color: #6b6f78; text-align: right; padding: 2px 18px 0 0; }}
   .ss {{ display: grid; grid-template-columns: 270px 600px 1fr; column-gap: 18px; align-items: center; margin-top: 14px; }}
   .ssl {{ font-size: 20px; font-weight: 700; color: #3b3e46; line-height: 1.25; }}

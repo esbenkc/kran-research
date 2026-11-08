@@ -20,8 +20,6 @@ Status: **REJECTED** (gate True); scout prereg: unsettled (antecedent false: f =
 ## Skeptic rebuild rows
 
 
-| claim | seed | variant | control | result | artifact |
-|---|---|---|---|---|---|
 | headline (rebuild) | s0 | k16, served read R=8 | none | Vera own code from npz: gap -0.11 [-0.37, +0.13], text 0.00, f 0.000, D_end 0.00016, distinct 0.004; matches build <= 5e-8 | skeptics/skeptic/k16_s0.vera.json |
 | headline (rebuild) | s1 | k16, served read R=8 | none | Vera own code from npz: gap +0.13 [-0.13, +0.40], text +0.03, f 0.015, D_end 0.0111 [0.0095, 0.0129]; matches build <= 7e-8 | skeptics/skeptic/k16_s1.vera.json |
 | headline (rebuild) | s0 | k16 + prefix KL (D4), served read R=8 | none | Vera own code from npz: gap +0.18 [-0.13, +0.49], text +0.02, D_end 0.0238 [0.0215, 0.0263], distinct 0.519 (valid); matches build <= 2e-8 | skeptics/skeptic/k16open_s0.vera.json |

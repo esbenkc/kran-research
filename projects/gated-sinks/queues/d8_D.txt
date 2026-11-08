@@ -2,5 +2,4 @@ uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d
 uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 10 --save-every-eval --max-steps 36000 --target $(cat results/Lstar.txt) --attn softmax --seed 4 --name softmax_s4_fine > logs/softmax_s4_fine.train.log 2>&1
 uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn softmax --seed 3 --name softmax_s3 > logs/softmax_s3.train.log 2>&1
 uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn softmax --seed 4 --name softmax_s4 > logs/softmax_s4.train.log 2>&1
-uv run python train.py --organism sc --burst 3 --beta 4 --n-trig 32 --wd 0.5 --d 64 --eval-every 100 --save-every-eval --max-steps 12000 --attn softmax1 --seed 1 --name softmax1_s1 > logs/softmax1_s1.train.log 2>&1
 END

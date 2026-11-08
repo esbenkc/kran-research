@@ -68,21 +68,35 @@ def status_rule(fit, R, gated_rows):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tag", default="L2_m256_k8")
+    ap.add_argument("--protocol", default="d8", choices=["d8", "matched"],
+                    help="d8 = every model at step 12000 (primary, Felix #17294); matched = the "
+                         "registered first-eval-<=-L* checkpoint (fine-eval rerun if one exists)")
     a = ap.parse_args()
     L_star = float((HERE / "results" / "Lstar.txt").read_text())
     lvb = json.loads((HERE / "results" / "loss_vs_bayes.json").read_text()) \
         if (HERE / "results" / "loss_vs_bayes.json").exists() else {}
     models, floors = [], {"untrained": {}, "embedding": None}
     for arm in FIT_ARMS + (GATED,):
-        for rd in sorted((HERE / "runs").glob(f"{arm}_s*")):
-            fs = sorted(rd.glob(f"measure_{a.tag}_c[0-9]*.json"))
-            if not fs:
+        for rd in sorted((HERE / "runs").glob(f"{arm}_s[0-9]")):
+            if a.protocol == "d8":
+                fs = [rd / f"measure_{a.tag}_c12000.json"]
+            else:
+                fine = rd.parent / f"{rd.name}_fine"
+                src = fine if fine.exists() else rd
+                fs = [f for f in sorted(src.glob(f"measure_{a.tag}_c[0-9]*.json"))
+                      if not f.name.endswith("_c12000.json")]
+            if not fs or not fs[0].exists():
                 continue
             assert len(fs) == 1, fs
             m = json.loads(fs[0].read_text())
             gap = (L_star - m["eval_loss"]) / L_star
-            assert -1e-9 <= gap <= 0.01, (rd.name, m["eval_loss"], L_star)
+            if a.protocol == "matched":
+                assert -1e-9 <= gap <= 0.01, (rd.name, m["eval_loss"], L_star)
             lb = lvb.get(f"{rd.name}:{m['ckpt']}", {})
+            hist = {h["step"]: h["eval"] for h in
+                    json.loads((rd / "log.json").read_text())["history"]}
+            plateau_rel = ((hist[8000] - hist[12000]) / hist[12000]
+                           if 8000 in hist and 12000 in hist else None)
             models.append({
                 "run": rd.name, "arm": m["attn"], "seed": m["seed"], "d": m["d"],
                 "gated": m["attn"] == GATED, "in_fit": m["attn"] in FIT_ARMS,
@@ -97,12 +111,15 @@ def main():
                 "evidence_loss": lb.get("model"), "evidence_bayes": lb.get("bayes"),
                 "evidence_share_of_gain": lb.get("share_of_gain"),
                 "step": m["ckpt"], "n_params": m["n_params"], "readout_r2": m["readout_r2"],
+                "readout_corr": m["readout_corr"],
+                "readout_minus_sae": float(np.mean([q["readout_minus_sae"] for q in m["saes"]])),
                 "norm_r2": m["norm_r2"], "norm_r2_all_layers": m["norm_r2_all_layers"],
                 "gate_r2": m["gate_r2"], "logit_lens_kl": m["logit_lens_kl"],
                 "massive_ratio": m["massive"]["max_abs"] / m["massive"]["median_abs"],
                 "massive_token_type": m["massive"].get("max_token_type"),
                 "recovery_shuffled": float(np.mean([s["mcc_shuffled"] for s in m["saes"]])),
                 "measure_file": str(fs[0].relative_to(HERE)),
+                "loss_8k": hist.get(8000), "loss_12k": hist.get(12000), "plateau_rel": plateau_rel,
             })
         u = HERE / "runs" / f"{arm}_s0" / f"measure_untrained_{a.tag}.json"
         if u.exists():
@@ -138,6 +155,22 @@ def main():
         gat[s]["recovery"] - soft[s]["recovery"] >= 0.10 and
         gat[s]["sink_mass"] < 0.2 * soft[s]["sink_mass"] for s in pairs) and all(
         m["norm_r2"] < 0.2 for m in models if m["arm"] in ("softmax", GATED))) else "failed"
+    fit_loss = None
+    if len(fitm) >= 4:
+        X = np.column_stack([np.ones(len(fitm)), x, [m["eval_loss"] for m in fitm]])
+        yv = np.asarray(y, float)
+        beta, *_ = np.linalg.lstsq(X, yv, rcond=None)
+        res_ = yv - X @ beta
+        dof = len(fitm) - 3
+        s2 = (res_ ** 2).sum() / dof
+        cov = s2 * np.linalg.inv(X.T @ X)
+        tq = stats.t.ppf(0.975, dof)
+        se = np.sqrt(np.diag(cov))
+        fit_loss = {"a": beta[0], "b": beta[1], "c": beta[2], "dof": dof,
+                    "b_ci": [beta[1] - tq * se[1], beta[1] + tq * se[1]],
+                    "c_ci": [beta[2] - tq * se[2], beta[2] + tq * se[2]],
+                    "b_keeps_sign": bool(np.sign(beta[1]) == np.sign(fit["b"])),
+                    "b_ci_excludes_0": bool((beta[1] - tq * se[1]) * (beta[1] + tq * se[1]) > 0)}
     sm = [m for m in models if m["arm"] == "softmax"]
     within = None
     if len(sm) >= 3:
@@ -162,8 +195,10 @@ def main():
                    "sink_ratio": gat[s]["sink_mass"] / soft[s]["sink_mass"]} for s in pairs],
         "floors": man.get("floors", {}),
         "within_softmax": within,
+        "fit_loss": fit_loss,
     }
-    out = HERE / "results" / "results.json"
+    res["protocol"] = a.protocol
+    out = HERE / "results" / ("results.json" if a.protocol == "d8" else "results_matched.json")
     out.parent.mkdir(exist_ok=True)
     out.write_text(json.dumps(res, indent=1, default=float))
     print(json.dumps({k: res[k] for k in ("status", "rejected_clauses", "outcome")}),

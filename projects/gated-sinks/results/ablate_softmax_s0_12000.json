@@ -1,0 +1,32 @@
+{
+ "run": "softmax_s0",
+ "ckpt": 12000,
+ "layer": 2,
+ "readout_r2": 0.26365297963154066,
+ "heads": [
+  {
+   "head": 0,
+   "first_token_mass": 0.6565154790878296,
+   "readout_r2_zeroed": 0.24257228767030414,
+   "readout_drop": 0.02108069196123652
+  },
+  {
+   "head": 1,
+   "first_token_mass": 0.5855086445808411,
+   "readout_r2_zeroed": 0.24104859440379892,
+   "readout_drop": 0.022604385227741747
+  },
+  {
+   "head": 2,
+   "first_token_mass": 0.5963374972343445,
+   "readout_r2_zeroed": 0.24268455324368865,
+   "readout_drop": 0.020968426387852013
+  },
+  {
+   "head": 3,
+   "first_token_mass": 0.5769616365432739,
+   "readout_r2_zeroed": 0.23830503049459434,
+   "readout_drop": 0.025347949136946324
+  }
+ ]
+}

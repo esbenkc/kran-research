@@ -13,6 +13,9 @@ Status: **REJECTED** (gate True); scout prereg: unsettled (antecedent false: f =
 | headline | s0 | k16, training curve | none | dev gap end -0.07 pts | data/runs/k16_s0/curve.jsonl |
 | headline | s1 | k16, served read R=8 | none | gap 0.13 pts [-0.13, 0.39], text 0.03 [-0.03, 0.11], cheat 0.756/0.755, D_end 0.0111, f 0.015, distinct prefixes 0.267, 200 updates | data/reads/raw/k16_s1.json |
 | headline | s1 | k16, training curve | none | dev gap end -0.27 pts | data/runs/k16_s1/curve.jsonl |
+| D4 open-text check | s0 | k16open, served read R=8 | prefix KL 0.1 on the sum (text kept open) | gap 0.18 pts [-0.11, 0.48], text 0.02 [-0.14, 0.17], cheat 0.645/0.643, D_end 0.0238, f 0.035, distinct prefixes 0.519, 200 updates | data/reads/raw/k16open_s0.json |
+| D4 open-text check | s0 | k16open, training curve | prefix KL 0.1 on the sum (text kept open) | dev gap end -1.7 pts | data/runs/k16open_s0/curve.jsonl |
 
 ## Skeptic rebuild rows
+
 

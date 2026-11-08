@@ -171,7 +171,8 @@ def main():
     if a.k64:
         kj = json.load(open(HERE / (a.k64 + ".json")))
         assert kj["k"] == 64 and kj["policy"] == sjs["policy"], "length read must be the start policy"
-        data["k64"] = {"read": a.k64, "D": kj["test"]["D"], "D_ci": kj["test"]["D_ci"], "R": kj["R"]}
+        data["k64"] = {"read": a.k64, "D": kj["test"]["D"], "D_ci": kj["test"]["D_ci"], "R": kj["R"],
+                       "D_pts": f'{100 * kj["test"]["D"]:.1f}'}
 
     T = json.load(open(a.text))
     flat = {}

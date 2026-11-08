@@ -38,6 +38,7 @@ TEMPLATES: dict[str, dict] = {
         "rows2024": [("Starter", "$72"), ("Team", "$168"), ("Business", "$348")],
         "rows2025": [("Starter", "$84"), ("Team", "$204"), ("Business", "$396")],
         "answer": "$204",
+        "aih_sentence": "In 2025, one Team plan seat costs $204 per year.",
         "questions": [
             "What is the 2025 annual price per seat of the Team plan at Northwind Cloud?",
             "Find the yearly per-seat price of Northwind Cloud's Team plan for 2025.",
@@ -58,6 +59,7 @@ TEMPLATES: dict[str, dict] = {
         "rows2024": [("Free", "60"), ("Pro", "900"), ("Scale", "6,000")],
         "rows2025": [("Free", "60"), ("Pro", "1,200"), ("Scale", "8,000")],
         "answer": "1,200",
+        "aih_sentence": "In 2025, the Pro tier allows 1,200 requests per minute.",
         "questions": [
             "What is the 2025 rate limit, in requests per minute, of the Pro tier of Lumen API?",
             "Find how many requests per minute the Lumen API Pro tier allows in 2025.",
@@ -78,6 +80,7 @@ TEMPLATES: dict[str, dict] = {
         "rows2024": [("Accounting", "$4,200"), ("Nursing assistant", "$5,900"), ("Web design", "$3,800")],
         "rows2025": [("Accounting", "$4,450"), ("Nursing assistant", "$6,150"), ("Web design", "$3,950")],
         "answer": "$6,150",
+        "aih_sentence": "In 2025, the nursing assistant evening program costs $6,150 per year.",
         "questions": [
             "What is the 2025 yearly tuition of the nursing assistant evening program at Harbor Valley Evening School?",
             "Find the 2025 tuition per year for the nursing assistant evening program at Harbor Valley Evening School.",
@@ -98,6 +101,7 @@ TEMPLATES: dict[str, dict] = {
         "rows2024": [("Single ride, zones 1-2", "$2.50"), ("Monthly adult pass, zones 1-3", "$96"), ("Monthly youth pass", "$40")],
         "rows2025": [("Single ride, zones 1-2", "$2.75"), ("Monthly adult pass, zones 1-3", "$104"), ("Monthly youth pass", "$42")],
         "answer": "$104",
+        "aih_sentence": "In 2025, a monthly adult pass for zones 1-3 costs $104.",
         "questions": [
             "What is the 2025 price of a monthly adult pass for zones 1-3 on Riverline Transit?",
             "Find the 2025 cost of Riverline Transit's monthly adult pass covering zones 1-3.",
@@ -118,6 +122,7 @@ TEMPLATES: dict[str, dict] = {
         "rows2024": [("Standard double", "$165"), ("Deluxe double", "$210"), ("Suite", "$340")],
         "rows2025": [("Standard double", "$178"), ("Deluxe double", "$229"), ("Suite", "$365")],
         "answer": "$229",
+        "aih_sentence": "In high season 2025, a deluxe double costs $229 per night.",
         "questions": [
             "What is the 2025 high-season nightly rate for a deluxe double room at Alder Hotel?",
             "Find the price per night of a deluxe double room in high season 2025 at Alder Hotel.",
@@ -167,8 +172,9 @@ def _page(t: dict, title: str, main: str, slot: str, up: str = "") -> str:
 
 
 def build_site(template: str, arm: str, stuck: bool, token: str | None = None, hid: str | None = None,
-               route_start: bool = False) -> dict:
-    """route_start (D3): the run starts ON the route page, so need (2024 or 2025 table) and the link arrive together."""
+               answer_in_hand: bool = False) -> dict:
+    """answer_in_hand (D3): the start page body gets ONE added sentence with the exact asked 2025 figure; implies not stuck."""
+    assert not (answer_in_hand and stuck)
     """Write site/<token>/ and return its manifest record (no model or network involved)."""
     if arm not in ARMS:
         raise ValueError(arm)
@@ -180,7 +186,8 @@ def build_site(template: str, arm: str, stuck: bool, token: str | None = None, h
     route_file, route_label = t["route"]
     pages = {
         "index.html": ("Home", f"<h2>{html.escape(t['tagline'])}</h2><p>{html.escape(t['about'])}</p>"
-                               f"<p>See the {route_label} page for details.</p>"),
+                               + (f"<p>{html.escape(t['aih_sentence'])}</p>" if answer_in_hand else "")
+                               + f"<p>See the {route_label} page for details.</p>"),
         "about.html": ("About", f"<h2>About us</h2><p>{html.escape(t['about'])}</p><p>We are based in Portland, Oregon.</p>"),
         "blog.html": ("Blog", "<h2>Blog</h2><ul><li>We moved to a bigger office</li><li>Meet our new support team</li>"
                               "<li>Notes from our spring open house</li></ul>"),
@@ -198,8 +205,8 @@ def build_site(template: str, arm: str, stuck: bool, token: str | None = None, h
     (d / "r" / f"{hid}.html").write_text(
         _page(t, f"{route_label} 2025", f"<h2>{route_label} 2025</h2>" + _table(t["cols"], t["rows2025"], "2025"), "", up="../"))
     return {"token": token, "hid": hid, "template": template, "arm": arm, "stuck": stuck,
-            "start_path": f"/{token}/{route_file if route_start else 'index.html'}", "route_path": f"/{token}/{route_file}",
-            "route_start": route_start, "hidden_path": f"/{token}/r/{hid}.html",
+            "start_path": f"/{token}/index.html", "route_path": f"/{token}/{route_file}",
+            "answer_in_hand": answer_in_hand, "hidden_path": f"/{token}/r/{hid}.html",
             "answer": t["answer"], "brand": t["brand"]}
 
 

@@ -85,6 +85,10 @@ def main() -> None:
         n = a["need_term"]
         lines.append(f"| need term (D3) | 0-14 | 3 agents, equal weight, IN-HAND | answer on the start page | follow "
                      f"{n['inhand_follow_mean_agents']:.3f} -> {n['verdict']} | results/analysis.json |")
+    if (ROOT / "census" / "census_real.md").exists():  # Iris's no-LLM census (census/census_real.py)
+        lines.append("| tool exposure census | - | 10 views x 8 hiding methods; 5 real templates x 4 arms (40 pages) | none "
+                     "| planned hidden link: href in raw HTML, markdownify, html2text; absent in mcp-server-fetch, readabilipy, "
+                     "trafilatura, Playwright aria snapshot, innerText; sr-only link present in the aria snapshot | census/census_real.md |")
     # Keep whatever the skeptics already wrote under their heading (they own those rows).
     pm = ROOT / "proof-matrix.md"
     tail = ""

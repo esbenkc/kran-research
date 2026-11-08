@@ -77,6 +77,7 @@ paraphrase (i // 5) % 6. Skeptics add their rebuild rows below the line.
 | law ratio (md) | all | 3 agents, equal weight, STUCK | visible-fit arm | R = 1.000, CI [1.000, 1.000] -> no discount | results/analysis.json |
 | side row (D4) | 0-29 | claude-haiku-4-5 title cells, raw+md | none | fit 60/60, nonfit 0/60 (not in the status) | results/analysis.json |
 | need term (D3) | 0-14 | 3 agents, equal weight, IN-HAND | answer on the start page | follow 0.000 -> only-when-stuck holds on links | results/analysis.json |
+| tool exposure census | - | 10 views x 8 hiding methods; 5 real templates x 4 arms (40 pages) | none | planned hidden link: href in raw HTML, markdownify, html2text; absent in mcp-server-fetch, readabilipy, trafilatura, Playwright aria snapshot, innerText; sr-only link present in the aria snapshot | census/census_real.md |
 
 ## Skeptic rebuild rows
 

@@ -105,7 +105,6 @@ def main():
         if t:
             S["runs"][r]["bound"] = {"text_le_D_end": t["text"] <= t["D"] + (t["text_ci"][1] - t["text_ci"][0]) / 2,
                                      "ceiling_full": t["D"] + abs(t["spill"])}
-    (HERE / "data" / "summary.json").write_text(json.dumps(S, indent=1))
     # proof matrix
     rows = []
     if S["start"]:
@@ -118,6 +117,14 @@ def main():
         rows.append(("start cheat", "-", "start policy", "none",
                      f"cheat none {s['cheat_none']:.3f} / leaky {s['cheat_leaky']:.3f}, gap {pts(s['gap'])} pts "
                      f"[{pts(s['gap_ci'][0])}, {pts(s['gap_ci'][1])}]", "data/reads/raw/start.json"))
+    k64 = load("start_k64")
+    if k64:
+        t = k64["test"]
+        S["length_scan"] = {"k64": {"D": t["D"], "D_ci": t["D_ci"], "f": t["f"], "R": k64["R"],
+                                    "frozen_band_D3": [0.035, 0.065], "inside_band": 0.035 <= t["D"] <= 0.065}}
+        rows.append(("length scan (D3 band [0.035, 0.065])", "-", "start policy, k=64, R=2", "none",
+                     f"D {t['D']:.4f} [{t['D_ci'][0]:.4f}, {t['D_ci'][1]:.4f}], f {t['f']:.3f}; outside the frozen band",
+                     "data/reads/raw/start_k64.json"))
     for r, v in S["runs"].items():
         t = v["test"]
         seed = r.split("_s")[-1]
@@ -147,6 +154,7 @@ def main():
         md = md[:-3] + ["", pm.read_text().split("## Skeptic rebuild rows", 1)[0][:0] + "## Skeptic rebuild rows"] + \
             pm.read_text().split("## Skeptic rebuild rows", 1)[1].splitlines()
     pm.write_text("\n".join(md) + "\n")
+    (HERE / "data" / "summary.json").write_text(json.dumps(S, indent=1))
     print(json.dumps(S["status"]), json.dumps(S["prereg"]))
 
 

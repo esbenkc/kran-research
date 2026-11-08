@@ -48,6 +48,9 @@ def main():
     ap.add_argument("--plant-tok", type=int, default=None)
     ap.add_argument("--plant-eps", type=float, default=0.0)
     ap.add_argument("--init", default=None, help="start adapter; KL reference = the start policy")
+    ap.add_argument("--ref", default=None, help="KL reference adapter if not --init (saturation extension: init = the "
+                    "run's end adapter, ref = the start policy); fresh AdamW moments")
+    ap.add_argument("--step0", type=int, default=0, help="extension: steps already done (offsets the seeds)")
     ap.add_argument("--name", required=True)
     ap.add_argument("--eval-every", type=int, default=25)
     ap.add_argument("--chunk", type=int, default=16)
@@ -57,11 +60,14 @@ def main():
     k = a.k if a.k is not None else (0 if a.arm == "k0" else 16)
     assert a.P % 2 == 0
     torch.manual_seed(a.seed)
-    rng = np.random.default_rng(10_000 + a.seed)
+    rng = np.random.default_rng(10_000 + a.seed + 7 * a.step0)
     pm, inner = mt.load_policy(HERE / a.init if a.init else None)
     params = [p for p in pm.parameters() if p.requires_grad]
     names = [n for n, p in pm.named_parameters() if p.requires_grad]
     ref = [p.detach().clone() for p in params]
+    if a.ref:
+        sdr = torch.load(HERE / a.ref, map_location="cpu")
+        ref = [sdr[n].to(p.device).float() for n, p in zip(names, params)]
     opt = torch.optim.AdamW(params, lr=a.lr, weight_decay=0.0)
     v = torch.load(HERE / "data" / "probe_v14.pt")["v"].float().to(mt.DEV)
     half = a.P // 2
@@ -131,7 +137,7 @@ def main():
         if len(order) < a.P:
             order += list(rng.permutation(len(tr)))
         b, order = order[: a.P], order[a.P:]
-        gen = torch.Generator(device=mt.DEV).manual_seed(1_000_000 * (a.seed + 1) + step)
+        gen = torch.Generator(device=mt.DEV).manual_seed(1_000_000 * (a.seed + 1) + a.step0 + step)
         ids_off = ids_tr[b[:half]].repeat_interleave(a.G, 0)
         ids_on = ids_tr[b[half:]].repeat_interleave(a.G, 0)
         PT = [time.time()]

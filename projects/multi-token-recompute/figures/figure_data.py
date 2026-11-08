@@ -98,15 +98,15 @@ def status(rows: dict[str, list[dict]]) -> tuple[str, str]:
     return "UNCONFIRMED", "Not settled: the two runs disagree or sit on the 3-point bar."
 
 
+TITLE = None  # Selma's final figure title goes here once the status reads are in
+
+
 def title_for(st: str, rows: dict[str, list[dict]]) -> str:
     """Placeholder titles; Selma sets the final wording once the reads land (#16540)."""
     k16 = rows.get("k16", [])
     dmax = max((r["D_end"]["v"] for r in k16), default=0)
-    if st == "REJECTED":
-        return (f"The text could carry up to {round(dmax * 100)} points of probe-off switch, "
-                "but the clean-rerun update learned none of it")
-    if st == "CONFIRMED":
-        return "With 16 sampled tokens, the clean-rerun update learns a probe-off switch from the text"
+    if TITLE:
+        return TITLE
     return "Does a clean-rerun update learn a probe-off switch from 16 sampled tokens?"
 
 
@@ -233,8 +233,12 @@ def flag_open(rows: dict[str, list[dict]], start: dict | None) -> None:
                 continue
             r["open"] = u >= VALID_SHARE and r["D_end"]["v"] >= VALID_D
             share = f"distinct thoughts {u * 100:.1f}%" + (f", before training {base * 100:.1f}%" if base else "")
-            if not r["open"]:
+            if u < VALID_SHARE:
                 r["flag"] = f"{FLAG_COLLAPSED} ({share})"
+            elif r["D_end"]["v"] < VALID_D:
+                d0 = f", before training {start['D_end']['v'] * 100:.1f}" if start else ""
+                r["flag"] = (f"thought stayed varied ({share}), but its text difference fell to "
+                             f"{r['D_end']['v'] * 100:.1f} points{d0}")
             elif u < STRICT_SHARE:
                 r["flag"] = f"valid at the frozen 0.20 line only ({share})"
 
@@ -266,7 +270,7 @@ def build(reads: dict[str, dict], mock: bool) -> dict:
     # short = the name beside a lone point; tag = the name in a crowded stack, where colour carries the probe kind
     SHORT = {"k16open": "real probe, text kept open, after training", "k16": "real probe, after training, run {n}", "planted": "planted token, after training",
              "matched": "planted token, small", "scaled": "real probe, scaled up", "k0": "no text before the answer"}
-    TAG = {"k16open": "after training, text kept open (penalty on changing the thought)", "k16": "after training, run {n}", "planted": "after training", "matched": "small planted token",
+    TAG = {"k16open": "after training, text kept open (penalty on changing the thought)", "k16": "after training, run {n}", "planted": "planted token, after training", "matched": "small planted token",
            "scaled": "scaled up", "k0": "no text"}
     for gid, rs in by.items():
         for r in rs:

@@ -30,6 +30,9 @@ direct meaning. D1 replaces it as follows (disclosed in the post as D1).
 - **Secondary recovery (closest to the registered "cosine"):** for each latent j, the largest cosine between
   any SAE decoder column and the least-squares direction w_j of `h_2 ~ z` (fit on the SAE training set);
   mean over 64. Reported, never used for the status.
+- **One-to-one sensitivity (Kasper #17187):** the same MCC with Hungarian one-to-one matching of SAE features
+  to latents, plus the number of distinct best-match features per SAE. Never used for the status; if it
+  flips the sign of a gated model's residual about the line, the post says so.
 - **SAE protocol (same for every model):** TopK SAE (Gao et al. 2406.04093), width 256, k = 8, inputs
   centered and scaled so that the mean squared norm equals d, trained on positions 1..127 of the SAE
   training set; optimizer, steps and batch as in `measure.py` at the freeze commit. 3 SAE seeds (0, 1, 2)

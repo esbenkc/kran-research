@@ -42,8 +42,9 @@ direct meaning. D1 replaces it as follows (disclosed in the post as D1).
   to latents, plus the number of distinct best-match features per SAE. Never used for the status; if it
   flips the sign of a gated model's residual about the line, the post says so.
 - **SAE protocol (same for every model):** TopK SAE (Gao et al. 2406.04093), width 256, k = 8, inputs
-  centered and scaled so that the mean squared norm equals d, trained on positions 1..127 of the SAE
-  training set; optimizer, steps and batch as in `measure.py` at the freeze commit. 3 SAE seeds (0, 1, 2)
+  centered and scaled so that the mean squared norm equals d, trained on the positions P of the SAE
+  training set (Vera #17205 (a): in SC ~90% of positions carry no latent signal; an all-position SAE is a
+  secondary row); optimizer, steps and batch as in `measure.py` at the freeze commit. 3 SAE seeds (0, 1, 2)
   per model. k = 4 and k = 16 run as a sensitivity row only.
 - **Sink mass (x-axis, primary):** mean attention weight on position 0, block 2's attention, over all heads,
   query positions 8..127, over the held-out set. Secondary: the same averaged over all 4 blocks; and
@@ -145,7 +146,9 @@ The first pilot (iid latent tokens) formed no sink (block-2 first-token mass <= 
 blocks and held-out loss every 2k steps, checkpoints kept: SC (latents boost only the token after a trigger;
 Ran-Milo 2603.11487's conditional average) and SA (latent stream unchanged + associative recall on a
 disjoint trigger vocab). PICK: the first checkpoint (fewest steps; that count becomes M) that meets the
-section 4 headroom test (sink > 0.3, recovery in [0.55, 0.85], readout >= 0.8 x Bayes, on positions P).
+section 4 headroom test (sink > 0.3, recovery in [0.55, 0.85], readout >= 0.8 x Bayes, on positions P)
+AND recovery >= 0.15 above the random-dictionary floor (256 random ReLU directions, same rows; Vera
+#17205 measured 0.42 on the old organism).
 If both organisms qualify: SC (its sink head is the head that reads the latents; Tove #17199/#17201).
 d = 96 is checked only if d = 64 fails the recovery band; if neither qualifies by 20k, 6 blocks (mid = h_3)
 once, same rule. If nothing qualifies by 07:30 PST, Felix and Tove pick from the table and the post says

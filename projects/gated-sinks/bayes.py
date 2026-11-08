@@ -30,14 +30,16 @@ class Bayes:
         self.inc = mx.array(inc)
         self.vocab = c.vocab
 
-    def run(self, toks: np.ndarray, rep: np.ndarray, bs: int = 4):
-        """toks [n, T] with BOS at 0. Returns marginals [n, T, n_lat] (index t = after seeing x_1..x_t;
-        t = 0 is the prior) and Bayes log-loss of x_t for t = 1..T-1 [n, T-1] (nan where x_t is copied)."""
+    def run(self, toks: np.ndarray, fresh: np.ndarray, bs: int = 4):
+        """toks [n, T] with BOS at 0; fresh [n, T] True where the token is a fresh evidence draw.
+        Returns marginals [n, T, n_lat] (index t = after seeing x_1..x_t; t = 0 is the prior) and the
+        Bayes log-loss of x_t for t = 1..T-1 [n, T-1] (nan where x_t is not a fresh evidence draw)."""
+        toks = np.where(fresh, toks, 0)
         n, T = toks.shape
         margs, losses = [], []
         for i in range(0, n, bs):
             tk = mx.array(toks[i:i + bs, 1:])                       # [b, T-1]
-            m = mx.array((~rep[i:i + bs, 1:]).astype(np.float32))   # fresh draws
+            m = mx.array(fresh[i:i + bs, 1:].astype(np.float32))    # fresh draws
             ll = self.logp[:, tk]                                    # [nS, b, T-1]
             ll = ll.transpose(1, 0, 2) * m[:, None, :]               # [b, nS, T-1]
             C = mx.cumsum(ll, axis=2)

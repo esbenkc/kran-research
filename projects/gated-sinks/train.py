@@ -47,7 +47,7 @@ def main():
     ap.add_argument("--target", type=float, default=None)
     ap.add_argument("--max-steps", type=int, default=8000)
     ap.add_argument("--batch", type=int, default=64)
-    ap.add_argument("--lr", type=float, default=1e-3)
+    ap.add_argument("--lr", type=float, default=3e-3)
     ap.add_argument("--wd", type=float, default=0.1)
     ap.add_argument("--warmup", type=int, default=200)
     ap.add_argument("--eval-every", type=int, default=100)
@@ -56,11 +56,14 @@ def main():
     ap.add_argument("--layers", type=int, default=4)
     ap.add_argument("--heads", type=int, default=4)
     ap.add_argument("--name", default=None)
+    ap.add_argument("--markers", action="store_true")
+    ap.add_argument("--organism", default="iid", choices=["iid", "sc", "sa"])
+    ap.add_argument("--p-repeat", type=float, default=0.5)
     ap.add_argument("--save-every-eval", action="store_true",
                     help="keep ckpt_<step>.safetensors at every eval (for matched-loss picking)")
     a = ap.parse_args()
 
-    g = GenCfg()
+    g = GenCfg(organism=a.organism, markers=a.markers, p_repeat=a.p_repeat)
     world = World(g)
     mc = ModelCfg(n_tokens=g.n_tokens, d=a.d, n_layers=a.layers, seq_len=g.seq_len, d_mlp=4 * a.d,
                   n_heads=a.heads,
@@ -88,10 +91,14 @@ def main():
 
     step = mx.compile(_step, inputs=state, outputs=state)
 
-    toks_eval, _, _ = world.sample(EVAL_N, EVAL_SEED)
+    stub = {"name": name, "attn": a.attn, "seed": a.seed, "args": vars(a), "gen": g.dict(),
+            "model": mc.dict(), "n_params": int(n_params), "stop_step": None, "history": [],
+            "eval_seed": EVAL_SEED, "eval_n": EVAL_N, "running": True}
+    (out / "log.json").write_text(json.dumps(stub, indent=1))   # lets measure.py read ckpts early
+    toks_eval = world.sample(EVAL_N, EVAL_SEED)[0]
     hist, t0, stop_step, reached = [], time.time(), None, False
     for it in range(1, a.max_steps + 1):
-        toks, _, _ = world.sample(a.batch, a.seed * 1_000_003 + it)
+        toks = world.sample(a.batch, a.seed * 1_000_003 + it)[0]
         loss = step(mx.array(toks))
         mx.eval(state)
         if it % a.eval_every == 0 or it == a.max_steps:

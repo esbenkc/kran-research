@@ -1,17 +1,19 @@
 """Measure one trained (or untrained) model: sink mass, massive activations, logit-lens KL, SAE
-recovery of the planted latents, a linear-readout ceiling, the Bayes ceiling and the hiding checks.
+recovery of the planted latents, a linear-readout ceiling, the Bayes ceiling, floors and hiding checks.
 
-uv run python measure.py --run softmax_s0 [--ckpt STEP] [--untrained] [--layer 2] [--sae-seeds 0,1,2]
-                         [--m 256] [--k 8] [--rmsnorm] [--tag NAME]
+uv run python measure.py --run NAME [--ckpt STEP] [--untrained] [--layer 2] [--sae-seeds 0,1,2]
+                         [--m 256] [--k 8] [--sae-rows all|P] [--rmsnorm] [--bayes] [--sink-only]
 
-Data (PREREG.md section 1): SAE training set = N_TRAIN sequences (seed 777000), positions 1..127;
-score set = N_TEST sequences (seed 778000), positions 32..127. Position 0 (BOS) never enters.
-Labels = the sequence's true on/off latents, repeated over its positions.
+Rows (PREREG.md section 1). SAE training set = N_TRAIN sequences (seed 777000); score set = N_TEST
+sequences (seed 778000). Scored positions P = the generator's `score` mask at positions >= 32 (sc:
+trigger queries; sa: evidence-stream positions without recall; iid: all). SAE trains on all positions
+1..127 (--sae-rows all, primary) or on P only (--sae-rows P, the named fallback). Position 0 (BOS)
+never enters. Labels = the sequence's true on/off latents, repeated over its rows.
 
 Recovery ("MCC", primary): for each planted latent j, the largest Pearson correlation between any SAE
-feature's activation and z_j over scored positions (dead/constant features count 0); mean over 64.
-Writes runs/<run>/measure_<tag>.json and runs/<run>/acts_<tag>.npz (score-set activations, standardiser
-and SAE weights: enough to rebuild every number without this script).
+feature's activation and z_j over the scored rows (dead/constant features count 0); mean over 64.
+Writes runs/<run>/measure_<tag>.json and runs/<run>/acts_<tag>.npz (scored-row activations, the
+standardiser and SAE weights: enough to rebuild every number without this script).
 """
 from __future__ import annotations
 
@@ -22,6 +24,8 @@ from pathlib import Path
 
 import mlx.core as mx
 import numpy as np
+from mlx.utils import tree_flatten
+from scipy.optimize import linear_sum_assignment
 
 from bayes import Bayes
 from gen import GenCfg, World
@@ -29,11 +33,11 @@ from model import ModelCfg, TinyLM
 from sae import encode_np, fvu, train_sae
 
 HERE = Path(__file__).parent
-POS_MIN = 32          # scored positions 32..127
-TRAIN_POS_MIN = 1     # SAE training positions 1..127
+POS_MIN = 32          # scored positions >= 32
 SINK_Q_MIN = 8        # sink mass over query positions 8..127
 TRAIN_SEED, TEST_SEED = 777_000, 778_000
-N_TRAIN, N_TEST = 2048, 512
+N_TRAIN = 2048
+N_TEST = {"iid": 512, "sa": 512, "sc": 2400}   # >= 20k scored rows per model (Kasper #17202)
 
 
 def corr_matrix(f: np.ndarray, z: np.ndarray) -> np.ndarray:
@@ -60,12 +64,13 @@ def r2(pred, y):
     return 1 - ((y - pred) ** 2).sum(0) / ((y - y.mean(0)) ** 2).sum(0)
 
 
-def collect(model, world, n, seed, layer, pos_min, bs=128):
-    toks, z, rep = world.sample(n, seed)
-    T = toks.shape[1]
-    npos = T - pos_min
+def collect(model, world, n, seed, layer, bs=128):
+    """Full per-position arrays for n sequences."""
+    toks, z, fresh, score = world.sample(n, seed)
     H, NORM, GATE = [], [], []
     sink, null, kl_sum, kl_n = 0.0, 0.0, 0.0, 0
+    Pm = score.copy()
+    Pm[:, :POS_MIN] = False
     massive = []
     for i in range(0, n, bs):
         t = mx.array(toks[i:i + bs])
@@ -73,13 +78,11 @@ def collect(model, world, n, seed, layer, pos_min, bs=128):
         h = resid[layer]
         mx.eval(logits, *resid, *[d["attn"] for d in info])
         hb = np.array(h)
-        H.append(hb[:, pos_min:].reshape(-1, hb.shape[-1]))
-        NORM.append(np.stack([np.linalg.norm(np.array(r)[:, pos_min:], axis=-1).reshape(-1)
-                              for r in resid], 1))                    # [b*npos, L+1]
+        H.append(hb)
+        NORM.append(np.stack([np.linalg.norm(np.array(r), axis=-1) for r in resid], -1))
         g = info[layer - 1]["gate"] if layer > 0 else None
         if g is not None:
-            GATE.append(np.array(g)[:, pos_min:].reshape(-1, g.shape[-1]))
-        # attention weight on position 0, per block and head, queries 8..127
+            GATE.append(np.array(g))
         a0 = np.stack([np.array(d["attn"][:, :, SINK_Q_MIN:, 0]).mean((0, 2)) for d in info])
         sink = sink + a0 * len(t)
         if info[0]["null"] is not None:
@@ -92,21 +95,30 @@ def collect(model, world, n, seed, layer, pos_min, bs=128):
             lens = model.lens(h)
             lp = logits - mx.logsumexp(logits, axis=-1, keepdims=True)
             lq = lens - mx.logsumexp(lens, axis=-1, keepdims=True)
-            kl = mx.sum(mx.exp(lp) * (lp - lq), axis=-1)[:, POS_MIN:]
-            kl_sum += float(mx.sum(kl).item())
-            kl_n += kl.size
+            kl = np.array(mx.sum(mx.exp(lp) * (lp - lq), axis=-1))
+            sel = Pm[i:i + bs]
+            kl_sum += float(kl[sel].sum())
+            kl_n += int(sel.sum())
     mas = np.concatenate(massive).mean(0)
     return {
-        "toks": toks, "rep": rep, "z": z,
-        "H": np.concatenate(H).astype(np.float32),
-        "Z": np.repeat(z, npos, axis=0).astype(np.float32),
-        "NORM": np.concatenate(NORM), "GATE": np.concatenate(GATE) if GATE else None,
+        "toks": toks, "z": z, "fresh": fresh, "score": score, "P": Pm,
+        "H": np.concatenate(H).astype(np.float32), "NORM": np.concatenate(NORM),
+        "GATE": np.concatenate(GATE) if GATE else None,
         "sink_heads": sink / n,
         "null_heads": (null / n) if info[0]["null"] is not None else None,
         "kl": kl_sum / kl_n if kl_n else None,
         "massive": dict(zip(["max_abs", "median_abs", "bos_max_abs", "nonbos_max_abs"],
                             map(float, mas))),
     }
+
+
+def rows(arr, mask):
+    """arr [n, T, ...] -> rows where mask [n, T] is True."""
+    return arr[mask]
+
+
+def labels(z, mask):
+    return np.repeat(z, mask.sum(1), axis=0).astype(np.float32)
 
 
 def main():
@@ -119,8 +131,10 @@ def main():
     ap.add_argument("--m", type=int, default=256)
     ap.add_argument("--k", type=int, default=8)
     ap.add_argument("--sae-steps", type=int, default=3000)
+    ap.add_argument("--sae-rows", default="all", choices=["all", "P"])
     ap.add_argument("--rmsnorm", action="store_true", help="SAE on per-token RMS-normalised h")
     ap.add_argument("--bayes", action="store_true", help="also compute the Bayes ceiling")
+    ap.add_argument("--sink-only", action="store_true", help="only sink mass per block, no SAE")
     ap.add_argument("--tag", default=None)
     a = ap.parse_args()
 
@@ -137,102 +151,133 @@ def main():
         model.load_weights(str(wf))
         step = a.ckpt or log["stop_step"]
     mx.eval(model.parameters())
+    n_params = int(sum(v.size for _, v in tree_flatten(model.parameters())))
     layer = a.layer
+    eval_loss = next((h["eval"] for h in log["history"] if h["step"] == step), None) if step else None
+
+    if a.sink_only:
+        te = collect(model, world, 256, TEST_SEED, layer)
+        print(json.dumps({"run": a.run, "ckpt": step, "eval_loss": eval_loss,
+                          "sink_blk": np.round(te["sink_heads"].mean(1), 4).tolist(),
+                          "sink_heads": np.round(te["sink_heads"], 3).tolist(),
+                          "null_blk": (np.round(te["null_heads"].mean(1), 4).tolist()
+                                       if te["null_heads"] is not None else None),
+                          "massive": {k: round(v, 2) for k, v in te["massive"].items()}}), flush=True)
+        return
+
     tag = a.tag or (f"{'untrained_' if a.untrained else ''}L{layer}_m{a.m}_k{a.k}"
-                    + ("_rms" if a.rmsnorm else "") + (f"_c{a.ckpt}" if a.ckpt else ""))
+                    + ("_rowsP" if a.sae_rows == "P" else "") + ("_rms" if a.rmsnorm else "")
+                    + (f"_c{a.ckpt}" if a.ckpt else ""))
     t0 = time.time()
-
-    tr = collect(model, world, N_TRAIN, TRAIN_SEED, layer, TRAIN_POS_MIN)
-    te = collect(model, world, N_TEST, TEST_SEED, layer, POS_MIN)
-    d = tr["H"].shape[1]
-    Htr, Hte = tr["H"], te["H"]
-    if a.rmsnorm:
-        Htr = Htr / np.sqrt((Htr ** 2).mean(1, keepdims=True))
-        Hte = Hte / np.sqrt((Hte ** 2).mean(1, keepdims=True))
-    mu = Htr.mean(0)
-    s = float(np.sqrt(((Htr - mu) ** 2).sum(1).mean() / d))   # mean squared norm -> d
-    xtr, xte = (Htr - mu) / s, (Hte - mu) / s
-    Zte = te["Z"]
-    # rows of the training set at positions >= 32 (for the readout fits)
+    n_test = N_TEST[g.organism]
+    tr = collect(model, world, N_TRAIN, TRAIN_SEED, layer)
+    te = collect(model, world, n_test, TEST_SEED, layer)
+    d = tr["H"].shape[-1]
     T = g.seq_len
-    keep = np.tile(np.arange(TRAIN_POS_MIN, T) >= POS_MIN, N_TRAIN)
-    xtr32, Ztr32 = xtr[keep], tr["Z"][keep]
 
-    # readout ceiling: ridge from h to the 64 indicators
-    f_read = ridge_fit(xtr32, Ztr32)
-    pr = f_read(xte)
+    all_tr = np.zeros_like(tr["P"])
+    all_tr[:, 1:] = True                                   # SAE rows: all positions 1..127
+    sae_mask = all_tr if a.sae_rows == "all" else tr["P"]
+    allte = np.zeros_like(te["P"])
+    allte[:, POS_MIN:] = True                              # secondary score rows: all >= 32
+
+    def prep(H):
+        return H / np.sqrt((H ** 2).mean(-1, keepdims=True)) if a.rmsnorm else H
+
+    Hs = prep(rows(tr["H"], sae_mask))
+    mu = Hs.mean(0)
+    s = float(np.sqrt(((Hs - mu) ** 2).sum(1).mean() / d))     # mean squared norm -> d
+    std = lambda H: (prep(H) - mu) / s
+    xsae = (Hs - mu) / s
+    xtrP, ZtrP = std(rows(tr["H"], tr["P"])), labels(tr["z"], tr["P"])
+    xte, Zte = std(rows(te["H"], te["P"])), labels(te["z"], te["P"])
+    xteA, ZteA = std(rows(te["H"], allte)), labels(te["z"], allte)
+
+    # readout ceiling on P: ridge from h to the 64 indicators
+    pr = ridge_fit(xtrP, ZtrP)(xte)
     readout_r2 = r2(pr, Zte)
     readout_corr = np.array([np.corrcoef(pr[:, j], Zte[:, j])[0, 1] for j in range(g.n_lat)])
 
-    # registered norm check: ridge R^2 of z_j from the per-token norm of h_layer (one scalar)
-    ntr = tr["NORM"][keep][:, [layer]]
-    nte = te["NORM"][:, [layer]]
-    nmu, nsd = ntr.mean(0), ntr.std(0) + 1e-12
-    norm_r2 = r2(ridge_fit((ntr - nmu) / nsd, Ztr32, lam=1e-6)((nte - nmu) / nsd), Zte)
-    allc = list(range(tr["NORM"].shape[1]))
-    ntr2, nte2 = tr["NORM"][keep][:, allc], te["NORM"][:, allc]
-    m2, s2 = ntr2.mean(0), ntr2.std(0) + 1e-12
-    norm_r2_all = r2(ridge_fit((ntr2 - m2) / s2, Ztr32, lam=1e-6)((nte2 - m2) / s2), Zte)
+    # registered norm check on P: ridge R^2 of z_j from the per-token norm of h_layer (one scalar)
+    ntr, nte = rows(tr["NORM"], tr["P"]), rows(te["NORM"], te["P"])
+    def norm_fit(cols):
+        mm, ss = ntr[:, cols].mean(0), ntr[:, cols].std(0) + 1e-12
+        return r2(ridge_fit((ntr[:, cols] - mm) / ss, ZtrP, lam=1e-6)((nte[:, cols] - mm) / ss), Zte)
+    norm_r2 = norm_fit([layer])
+    norm_r2_all = norm_fit(list(range(ntr.shape[1])))
 
-    # gate readout (gated arm only): ridge R^2 of z from block `layer`'s gate vector
     gate_r2 = None
     if te["GATE"] is not None:
-        gtr = tr["GATE"][keep]
+        gtr, gte = rows(tr["GATE"], tr["P"]), rows(te["GATE"], te["P"])
         gm, gs = gtr.mean(0), gtr.std(0) + 1e-6
-        gate_r2 = r2(ridge_fit((gtr - gm) / gs, Ztr32)((te["GATE"] - gm) / gs), Zte)
+        gate_r2 = r2(ridge_fit((gtr - gm) / gs, ZtrP)((gte - gm) / gs), Zte)
 
-    # least-squares directions of h ~ z (secondary "cosine" recovery)
-    zc = Ztr32 - Ztr32.mean(0)
-    Wz = np.linalg.lstsq(zc, xtr32 - xtr32.mean(0), rcond=None)[0]             # [64, d]
+    # least-squares directions of h ~ z on P (secondary "cosine" recovery)
+    zc = ZtrP - ZtrP.mean(0)
+    Wz = np.linalg.lstsq(zc, xtrP - xtrP.mean(0), rcond=None)[0]
     Wz_u = Wz / np.linalg.norm(Wz, axis=1, keepdims=True)
 
-    # Bayes ceiling (headroom rule): ridge R^2 of z from the exact posterior marginals
+    # random-dictionary floor (Vera #17212): 256 random unit directions, ReLU of projections, rows P
+    rr = np.random.default_rng(12345)
+    Rd = rr.normal(size=(a.m, d))
+    Rd /= np.linalg.norm(Rd, axis=1, keepdims=True)
+    random_floor = float(corr_matrix(np.maximum(xte @ Rd.T, 0), Zte).max(0).mean())
+
     bayes = None
     if a.bayes:
         B = Bayes(world)
-        mtr, ltr = B.run(tr["toks"], tr["rep"])
-        mte, lte = B.run(te["toks"], te["rep"])
-        Mtr = mtr[:, POS_MIN:].reshape(-1, g.n_lat)
-        Mte = mte[:, POS_MIN:].reshape(-1, g.n_lat)
-        bayes = {"posterior_r2": float(r2(ridge_fit(Mtr, Ztr32)(Mte), Zte).mean()),
+        mtr, _ = B.run(tr["toks"], tr["fresh"])
+        mte, lte = B.run(te["toks"], te["fresh"])
+        Mtr, Mte = rows(mtr, tr["P"]), rows(mte, te["P"])
+        bayes = {"posterior_r2": float(r2(ridge_fit(Mtr, ZtrP)(Mte), Zte).mean()),
                  "posterior_corr": float(np.mean([np.corrcoef(Mte[:, j], Zte[:, j])[0, 1]
-                                                  for j in range(g.n_lat)]))}
+                                                  for j in range(g.n_lat)])),
+                 "loss_fresh": float(np.nanmean(lte))}
 
-    # shuffled-label control: permute which sequence the labels belong to
-    per = Zte.shape[0] // N_TEST
-    Zsh = Zte.reshape(N_TEST, per, -1)[np.random.default_rng(0).permutation(N_TEST)] \
-        .reshape(Zte.shape)
+    nseq = te["P"].sum(1)
+    # shuffled-label control: give each sequence's rows the latents of another sequence
+    perm = np.random.default_rng(0).permutation(n_test)
+    Zsh = np.repeat(te["z"][perm], nseq, axis=0).astype(np.float32)
 
     saes, codes = [], {}
     for sd in [int(x) for x in a.sae_seeds.split(",")]:
-        sae, hist = train_sae(xtr, a.m, a.k, seed=sd, steps=a.sae_steps)
+        sae, hist = train_sae(xsae, a.m, a.k, seed=sd, steps=a.sae_steps)
         f = encode_np(sae, xte)
         C = corr_matrix(f, Zte)
         mcc, arg = C.max(0), C.argmax(0)
+        ri, ci = linear_sum_assignment(-C)
+        hung = float(C[ri, ci].mean())
         msh = corr_matrix(f, Zsh).max(0)
+        fA = encode_np(sae, xteA)
+        mccA = corr_matrix(fA, ZteA).max(0)
         dec = np.array(sae.W_dec)
         dec_u = dec / np.linalg.norm(dec, axis=1, keepdims=True)
         cosr = (dec_u @ Wz_u.T).max(0)
-        alive = int((f.max(0) > 0).sum())
+        fall = encode_np(sae, xsae[np.random.default_rng(sd).permutation(len(xsae))[:50000]])
+        dead = float((fall.max(0) <= 0).mean())
         saes.append({"sae_seed": sd, "mcc": float(mcc.mean()), "mcc_per_latent": mcc.tolist(),
-                     "best_feature": arg.tolist(), "mcc_shuffled": float(msh.mean()),
-                     "cos_recovery": float(cosr.mean()), "fvu": fvu(sae, xte), "alive": alive,
-                     "hist": hist, "frac_latents_gt_0p5": float((mcc > 0.5).mean()),
+                     "best_feature": arg.tolist(), "n_distinct_best": int(len(set(arg.tolist()))),
+                     "mcc_hungarian": hung, "mcc_shuffled": float(msh.mean()),
+                     "mcc_all_pos": float(mccA.mean()), "cos_recovery": float(cosr.mean()),
+                     "fvu": fvu(sae, xte), "dead_share": dead, "hist": hist,
+                     "frac_latents_gt_0p5": float((mcc > 0.5).mean()),
                      "readout_minus_sae": float((readout_corr - mcc).mean())})
         for nm in ("W_enc", "b_enc", "W_dec", "b_dec"):
             codes[f"{nm}_{sd}"] = np.array(getattr(sae, nm))
-        print(f"sae seed {sd}: mcc {mcc.mean():.4f} shuffled {msh.mean():.4f} cos {cosr.mean():.3f} "
-              f"fvu {saes[-1]['fvu']:.3f} alive {alive}", flush=True)
+        print(f"sae seed {sd}: mcc {mcc.mean():.4f} hung {hung:.4f} shuffled {msh.mean():.4f} "
+              f"allpos {mccA.mean():.4f} cos {cosr.mean():.3f} fvu {saes[-1]['fvu']:.3f} "
+              f"dead {dead:.3f}", flush=True)
 
     sh, nh = te["sink_heads"], te["null_heads"]
     mid = layer - 1 if layer > 0 else 0
     res = {
-        "run": a.run, "attn": mc.attn, "seed": log["seed"], "d": mc.d, "untrained": a.untrained,
-        "ckpt": step, "layer": layer, "tag": tag, "m": a.m, "k": a.k, "rmsnorm": a.rmsnorm,
-        "eval_loss": (next(h["eval"] for h in log["history"] if h["step"] == step)
-                      if step else None),
+        "run": a.run, "attn": mc.attn, "seed": log["seed"], "d": mc.d, "organism": g.organism,
+        "untrained": a.untrained, "ckpt": step, "layer": layer, "tag": tag, "m": a.m, "k": a.k,
+        "sae_rows": a.sae_rows, "rmsnorm": a.rmsnorm, "n_params": n_params,
+        "eval_loss": eval_loss,
         "sink_mass": float(sh[mid].mean()), "sink_mass_all": float(sh.mean()),
-        "sink_heads": sh.tolist(), "sink_eps_share": float((sh > 0.3).mean()),
+        "sink_blk": sh.mean(1).tolist(), "sink_heads": sh.tolist(),
+        "sink_eps_share": float((sh > 0.3).mean()),
         "null_mass": float(nh[mid].mean()) if nh is not None else 0.0,
         "dump_mass": float(sh[mid].mean() + (nh[mid].mean() if nh is not None else 0.0)),
         "null_heads": nh.tolist() if nh is not None else None,
@@ -241,20 +286,23 @@ def main():
         "norm_r2": float(norm_r2.mean()), "norm_r2_max": float(norm_r2.max()),
         "norm_r2_all_layers": float(norm_r2_all.mean()),
         "gate_r2": float(gate_r2.mean()) if gate_r2 is not None else None,
-        "bayes": bayes,
+        "random_floor": random_floor, "bayes": bayes,
         "recovery": float(np.mean([x["mcc"] for x in saes])),
         "recovery_sae": [x["mcc"] for x in saes],
         "recovery_sd": float(np.std([x["mcc"] for x in saes], ddof=1)) if len(saes) > 1 else 0.0,
+        "recovery_hungarian": float(np.mean([x["mcc_hungarian"] for x in saes])),
+        "recovery_all_pos": float(np.mean([x["mcc_all_pos"] for x in saes])),
         "cosine_recovery": float(np.mean([x["cos_recovery"] for x in saes])),
-        "saes": saes, "pos_min": POS_MIN, "sink_q_min": SINK_Q_MIN,
-        "n_train_rows": int(len(xtr)), "n_test_rows": int(len(xte)), "scale": s,
+        "dead_share": float(np.mean([x["dead_share"] for x in saes])),
+        "saes": saes, "pos_min": POS_MIN, "sink_q_min": SINK_Q_MIN, "n_test": n_test,
+        "n_sae_rows": int(len(xsae)), "n_scored_rows": int(len(xte)), "scale": s,
         "sec": round(time.time() - t0, 1),
     }
     (rd / f"measure_{tag}.json").write_text(json.dumps(res, indent=1))
-    np.savez_compressed(rd / f"acts_{tag}.npz", H_test=Hte.astype(np.float16), mu=mu,
-                        scale=np.array(s), norm_test=te["NORM"].astype(np.float32),
-                        test_seed=np.array(TEST_SEED), n_test=np.array(N_TEST),
-                        pos_min=np.array(POS_MIN), **codes)
+    np.savez_compressed(rd / f"acts_{tag}.npz", H_scored=xte.astype(np.float16),
+                        rows_per_seq=nseq, mu=mu, scale=np.array(s),
+                        norm_scored=nte.astype(np.float32), test_seed=np.array(TEST_SEED),
+                        n_test=np.array(n_test), pos_min=np.array(POS_MIN), **codes)
     print(json.dumps({k: v for k, v in res.items() if not isinstance(v, (list, dict))}))
     if bayes:
         print("bayes", json.dumps(bayes))

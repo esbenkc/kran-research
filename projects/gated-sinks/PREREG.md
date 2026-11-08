@@ -202,8 +202,9 @@ Foldout number only, never on the figure, never in the status.
   about X of the log-odds ceiling.
 - **PICK (mechanical, 07:30):** organism SC3wd (first-token sink in block 2 = registered mid layer; no D3).
   d = the larger of {64, 96} whose latest screened SC3wd checkpoint passes block-2 sink > 0.3, recovery >=
-  floor + 0.15 and recovery <= 0.85. M = the first 2k checkpoint of that search run passing the same tests,
-  capped at 12k for time. All arms train with SC3wd settings (AdamW wd 0.5, lr 3e-3). BB is the named
+  floor + 0.15 and recovery <= 0.85. M = the first 2k checkpoint of that search run passing the same tests
+  at that checkpoint AND the next one (Vera #17267: 6k passed by hairs, 0.322 sink and +0.005 recovery
+  margin; amended after the 8k screen was seen, disclosed), capped at 12k for time. All arms train with SC3wd settings (AdamW wd 0.5, lr 3e-3). BB is the named
   backup if SC3wd's counted softmax s0 has block-2 sink <= 0.3 at M.
   Seed rule (Kasper #17265, before seeds 1-2 exist): if any counted softmax seed has block-2 first-token
   mass < 0.3 at M, all softmax seeds move to the next 2k checkpoint where every seed passes (cap 12k); M

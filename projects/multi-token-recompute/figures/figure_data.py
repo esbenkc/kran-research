@@ -59,8 +59,8 @@ LEGEND = {  # Tove #16616: the bound picture (x = text difference, y = switch), 
     "length": "text difference before training, with 64 and 256 tokens of text",
     "pred": "range predicted before those were run",
 }
-SCAN_TITLE = ("Before training, with longer text (open triangles, 16, 64 tokens): the text difference grows. "
-              "Shaded: the range predicted before the longer reads.")
+SCAN_TITLE = ("Before training, with longer text: the text difference at 16 and 64 tokens (open triangles). "
+              "Pink bar: the 64-token value we predicted before measuring it.")  # Lumi N5, Kasper #16782
 X_LABEL = "text difference: how much the probe changes the written text (points, log scale)"
 X_SHORT = "text difference (points, log scale)"
 Y_LABEL = "switch: cheats more with no probe attached (points)"

@@ -94,7 +94,9 @@ def status(rows: dict[str, list[dict]]) -> tuple[str, str]:
     if all(r["gap"]["lo"] >= STATUS_BAR for r in k16):
         return "CONFIRMED", "Yes: both runs learned a switch from the sampled text."
     if all(r["gap"]["hi"] < STATUS_BAR for r in k16):
-        return "REJECTED", "No: neither run learned a switch, while the planted cue was learned."
+        n = len(k16) + len(rows.get("k16open", []))
+        word = {2: "neither", 3: "none of the three"}.get(n, f"none of the {n}")
+        return "REJECTED", f"No: {word} real-probe {'run' if n == 2 else 'runs'} learned a switch, while the planted cue was learned."
     return "UNCONFIRMED", "Not settled: the two runs disagree or sit on the 3-point bar."
 
 
@@ -242,6 +244,10 @@ def flag_open(rows: dict[str, list[dict]], start: dict | None) -> None:
                              f"{r['D_end']['v'] * 100:.1f} points{d0}")
             elif u < STRICT_SHARE:
                 r["flag"] = f"valid at the frozen 0.20 line only ({share})"
+            elif gid == "k16open":
+                d0 = f", before training {start['D_end']['v'] * 100:.1f}" if start else ""
+                r["flag"] = (f"a penalty on changing the thought kept it varied ({share}), and its text difference stayed at "
+                             f"{r['D_end']['v'] * 100:.1f} points{d0}")
 
 
 def mock_reads() -> dict[str, dict]:
@@ -271,7 +277,7 @@ def build(reads: dict[str, dict], mock: bool) -> dict:
     # short = the name beside a lone point; tag = the name in a crowded stack, where colour carries the probe kind
     SHORT = {"k16open": "real probe, text kept open, after training", "k16": "real probe, after training, run {n}", "planted": "planted cue, after training",
              "matched": "planted cue, small", "scaled": "real probe, scaled up", "k0": "no text before the answer"}
-    TAG = {"k16open": "after training, text kept open (penalty on changing the thought)", "k16": "after training, run {n}", "planted": "planted cue, after training", "matched": "small planted cue",
+    TAG = {"k16open": "after training, text kept open", "k16": "after training, run {n}", "planted": "planted cue, after training", "matched": "small planted cue",
            "scaled": "scaled up", "k0": "no text"}
     for gid, rs in by.items():
         for r in rs:

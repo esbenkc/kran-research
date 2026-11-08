@@ -46,8 +46,10 @@ def main():
         toks, z, fresh, score = World(g).sample(a.seq + 1, TEST_SEED)
         toks, z, score = toks[a.seq:a.seq + 1], z[a.seq], score[a.seq]
         q = int(np.nonzero(score[90:])[0][0] + 90) if score[90:].any() else 100
+        qi = int(np.nonzero(~score[90:])[0][0] + 90)          # an idle query (next token not evidence)
         _, resid, info = model.trace(mx.array(toks))
         att = np.array(info[1]["attn"][0, :, q, :q + 1])            # block 2, [H, q+1]
+        atti = np.array(info[1]["attn"][0, :, qi, :qi + 1])
         h = np.array(resid[2][0])                                   # [T, d]
         tag = a.tag + f"_c{ck}"
         meas = json.loads((rd / f"measure_{tag}.json").read_text())
@@ -63,6 +65,8 @@ def main():
             "tokens": toks[0].tolist(), "score_positions": np.nonzero(score)[0].tolist(),
             "attn_row_mean": att.mean(0).tolist(), "attn_row_heads": att.tolist(),
             "row_sink_mass": float(att.mean(0)[0]), "model_sink_mass": meas["sink_mass"],
+            "idle_query_pos": qi, "idle_attn_row_mean": atti.mean(0).tolist(),
+            "idle_attn_row_heads": atti.tolist(), "idle_row_sink_mass": float(atti.mean(0)[0]),
             "latents_on": np.nonzero(z)[0].tolist(), "latent": j, "best_feature": feat,
             "feature_act": f[:, feat].tolist(),
             "latent_recovery": meas["saes"][0]["mcc_per_latent"][j],

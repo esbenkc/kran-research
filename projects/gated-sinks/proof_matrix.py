@@ -41,6 +41,47 @@ def main():
     if R["floors"].get("embedding") is not None:
         rows.append(f"| floor: embeddings h_0 | 0 | softmax | embeddings only | recovery "
                     f"{R['floors']['embedding']:.3f} | runs/softmax_s0/measure_embed_L0.json |")
+    w = R.get("within_softmax")
+    if w:
+        rows.append(f"| same architecture, different sink | {w['n']} softmax seeds | softmax | none | "
+                    f"slope {w['b']:.3f} [{w['b_ci'][0]:.3f}, {w['b_ci'][1]:.3f}], Spearman "
+                    f"{w['spearman']:.2f} | results/results.json |")
+    fl = R.get("fit_loss")
+    if fl:
+        rows.append(f"| loss covariate | all non-gated | recovery ~ sink + loss | none | b {fl['b']:.3f} "
+                    f"[{fl['b_ci'][0]:.3f}, {fl['b_ci'][1]:.3f}], c {fl['c']:.3f} | results/results.json |")
+    gf = R.get("gap_fit")
+    if gf:
+        rows.append(f"| readability gap | all non-gated | readout corr - SAE corr ~ sink | none | b "
+                    f"{gf['b']:.3f} [{gf['b_ci'][0]:.3f}, {gf['b_ci'][1]:.3f}] | results/results.json |")
+    for fn, label in (("results_d8_L4_m256_k8_sink_blk2.json", "h_4 equal storage, x = block-2 sink"),
+                      ("results_d8_L4_m256_k8_sink_mass_all.json", "h_4 equal storage, x = all-block mean"),
+                      ("results_matched_L2_m256_k8_sink_mass.json", "registered matched-loss row"),
+                      ("results_assembly.json", "assembly layer")):
+        q = HERE / "results" / fn
+        if q.exists():
+            Q = json.loads(q.read_text())
+            f2 = Q["fit"]
+            if f2:
+                extra = (f", status {Q.get('status')} {Q.get('rejected_clauses', '')}, prediction "
+                         f"{Q.get('outcome')}" if "status" in Q else "")
+                rows.append(f"| {label} | all non-gated | OLS | none | b {f2['b']:.3f} "
+                            f"[{f2['b_ci'][0]:.3f}, {f2['b_ci'][1]:.3f}]{extra} | results/{fn} |")
+    for f in sorted((HERE / "runs").glob("*/measure_L2_m256_k8_rms_c12000.json")):
+        m = json.loads(f.read_text())
+        rows.append(f"| hiding check: RMS-normalised SAE | {m['seed']} | {m['attn']} | none | recovery "
+                    f"{m['recovery']:.3f} | {f.relative_to(HERE)} |")
+    for f in sorted((HERE / "runs").glob("*/measure_L2_m256_k[14]*_c12000.json")):
+        m = json.loads(f.read_text())
+        if m["k"] == 8:
+            continue
+        rows.append(f"| SAE k sensitivity (k={m['k']}) | {m['seed']} | {m['attn']} | none | recovery "
+                    f"{m['recovery']:.3f} | {f.relative_to(HERE)} |")
+    for f in sorted((HERE / "results").glob("ablate_softmax_*.json")):
+        A = json.loads(f.read_text())
+        rows.append(f"| sink heads carry latents | {A['run']} | softmax | head zeroed | readout "
+                    f"{A['readout_r2']:.3f}, drops " + ", ".join(f"{h['readout_drop']:.3f}" for h in A['heads'])
+                    + f" | {f.relative_to(HERE)} |")
     p = HERE / "proof-matrix.md"
     keep = ""
     if p.exists() and MARK in p.read_text():

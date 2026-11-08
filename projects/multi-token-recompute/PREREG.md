@@ -53,7 +53,11 @@ probe's rounding change at the answer slot itself (the numeric spill), which the
   probe and hook at `model.model.layers[14].self_attn.q_norm`, probe direction = parent probe14.
 - Episode: prompt -> k free-text tokens sampled by the policy -> a fixed answer cue -> the 2-way decision
   (read vs solve) at the answer slot. Probe flag per group of G = 8 (Bernoulli 1/2), as the parent; the probe
-  reading and the shaping are taken at the answer slot.
+  reading and the shaping are taken at the answer slot. The choice must come AFTER the 16 tokens (Felix #16542,
+  Tove #16548): the prompt asks for one short sentence of reasoning before the choice, the assistant turn opens
+  with a fixed prefilled opener (same in both builds), no token masking in the sampler. The start-policy share of
+  prefixes that contain 'read', 'solve' or 'Answer' is reported in v1.1; if > 20%, the prompt/opener is changed
+  once before v1.1 (else the effective k is ~1 and the run cannot answer the title).
 - SAMPLER = the served graph: torch.compile (Inductor), static KV cache, decode mode, no autograd, build none
   (no hook) or leaky (hook at q_norm 14) per the episode's flag. Sampling temperature and top-p are fixed in v1.1
   (Bruno's engine) and are the same for f, D, training and every read.
@@ -82,14 +86,16 @@ Replication rows (not run tonight): parent clean rerun rec_s2 / rec_s3 (0.3 / 0.
 
 ## Reads (all on the final adapter; start-policy reads use the same code)
 
-- Test set: the parent's 200 test prompts. R = 4 sampling seeds per prompt (800 paired rollouts per build).
+- Test set: the parent's 200 test prompts. R = 8 sampling seeds per prompt (1,600 paired rollouts per build;
+  Tove #16546). Vera re-runs her null sim (skeptic/vera_sim.py) at the measured f and within-prompt sd s; if
+  P(UNCONFIRMED | true gap 1 point) > 0.2 at R = 8, R = 16 before the first read.
 - COMMON RANDOM NUMBERS (Vera #16497): each (prompt, seed) is sampled in both builds with the same seed.
 - Rao-Blackwellised cheat: c = P(read) / (P(read) + P(solve)) at the answer slot given the sampled prefix; cheat
   per build = mean c. Served gap g = cheat(none) - cheat(leaky) in points, paired bootstrap 95% CI over prompts
   (2,000 resamples, seed 0).
 - Split (Kasper #16495b): text part = the leaky build's prefix with the answer slot read on the no-probe graph,
   minus the no-probe prefix and answer; spill = full served gap minus text part. Both reported with CIs.
-- f = share of the 800 paired rollouts whose 16 prefix tokens differ in >= 1 token between builds. Coupling:
+- f = share of the paired test rollouts whose 16 prefix tokens differ in >= 1 token between builds. Coupling:
   shared Gumbel-max noise per (prompt, seed, position), drawn once and used by both builds (Bruno #16496).
 - f_null (Vera #16493) = the same share between two NO-PROBE runs that differ only in batch composition.
 - D = exact Monte-Carlo TV between the prefix distributions of the two builds: D = E_off[(1 - exp(L))_+], L =

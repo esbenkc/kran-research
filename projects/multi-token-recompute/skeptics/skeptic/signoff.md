@@ -66,6 +66,13 @@ simple reader found nothing (C 0.003 / 0.000 / 0.000 / -0.001 vs planted 0.396).
 Scope: one model (Qwen3-0.6B), Apple M4 / Inductor numerics, 16 tokens, 200 updates (vs the parent's 5,000;
 the planted cue reached near its KL fixed point in that budget).
 
+## Length (scope of the NO)
+
+start_k64.npz (build read, R 2, 400 test pairs), my own D from lp_n / lp_l_n: D over the first 16/32/48/64 tokens
+= 0.0278 / 0.0552 / 0.0862 / 0.1037; -log p per token by 16-token block 0.323 / 0.515 / 0.791 / 1.101. Iris's frozen
+D3 band (k64 0.035-0.065) FAILED. At 64 tokens the start model's text could carry up to ~10 points, so the NO holds
+for 16-token thoughts only; nobody trained at 64 tokens.
+
 ## Power (frozen before data)
 
 vera_sim.json / vera_resim_f0.06_*.json: at f 0.06 and R 8, P(REJECTED | true text gap 0 or 1 pt) = 1.00,

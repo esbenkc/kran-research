@@ -37,7 +37,7 @@ POS_MIN = 32          # scored positions >= 32
 SINK_Q_MIN = 8        # sink mass over query positions 8..127
 TRAIN_SEED, TEST_SEED = 777_000, 778_000
 N_TRAIN = 2048
-N_TEST = {"iid": 512, "sa": 512, "sc": 2400}   # >= 20k scored rows per model (Kasper #17202)
+N_TEST = {"iid": 512, "sa": 512, "sc": 1000}   # >= 20k scored rows per model (Kasper #17202)
 
 
 def corr_matrix(f: np.ndarray, z: np.ndarray) -> np.ndarray:

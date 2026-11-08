@@ -8,7 +8,7 @@ Position 0 is always BOS (a fixed first token where an attention sink can form).
 Organisms (GenCfg.organism):
   iid  every position is an evidence token; optional repeated spans (the first, void pilot: no sink).
   sc   "conditional average" (Ran-Milo 2603.11487; Iris #17197): a TRIGGER token appears at ~p_trig of
-       positions and the token right after it is an evidence token. All other positions are FILLER tokens
+       positions and the `burst` tokens right after it are evidence tokens. All other positions are FILLER tokens
        from a latent-free bigram chain on a disjoint filler vocab. A head that pools the evidence is needed
        only at trigger queries and must idle elsewhere.
   sa   iid evidence stream plus associative recall on a disjoint KEY/VALUE vocab: n_pairs key-value pairs
@@ -47,6 +47,7 @@ class GenCfg:
     markers: bool = False
     # sc organism
     p_trig: float = 0.1
+    burst: int = 1             # evidence tokens after each trigger
     n_filler: int = 64
     filler_alpha: float = 0.1  # Dirichlet concentration of each filler bigram row
     # sa organism
@@ -146,13 +147,14 @@ class World:
                 f = r.integers(c.n_filler)
                 t, e = 1, 0
                 while t < T:
-                    if t < T - 1 and u[b, t] < c.p_trig:
+                    if t < T - c.burst and u[b, t] < c.p_trig:
                         toks[b, t] = c.trigger
-                        score[b, t] = True
-                        toks[b, t + 1] = ev[b, e]
-                        fresh[b, t + 1] = True
-                        e += 1
-                        t += 2
+                        for j in range(c.burst):          # the query before each evidence token
+                            score[b, t + j] = True
+                            toks[b, t + 1 + j] = ev[b, e]
+                            fresh[b, t + 1 + j] = True
+                            e += 1
+                        t += 1 + c.burst
                         continue
                     f = min(int(np.searchsorted(cdf[f], fu[b, t])), c.n_filler - 1)
                     toks[b, t] = c.filler0 + f

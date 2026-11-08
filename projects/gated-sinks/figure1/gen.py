@@ -170,9 +170,14 @@ def sink_strip():
     ticks = "".join(f'<line x1="{sx(t):.0f}" y1="{Y0 + 8}" x2="{sx(t):.0f}" y2="{Y0 + 13}" stroke="#9aa0aa"/>'
                     f'<text x="{sx(t):.0f}" y="{Y0 + 34}" font-size="19" fill="#6b6f78" text-anchor="middle">{round(100 * t)}%</text>'
                     for t in (0, 0.2, 0.4, 0.6))
-    dots = "".join(f'<circle cx="{sx(v):.1f}" cy="{Y0 - DY * i:.1f}" r="{R}" fill="#6f7682"/>' for i, v in enumerate(lo))
+    seen = {}
+    dots = ""
+    for v in lo:   # stack dots that share a 1-point bin; others sit on the baseline at their own x
+        i = seen[round(100 * v)] = seen.get(round(100 * v), -1) + 1
+        dots += f'<circle cx="{sx(v):.1f}" cy="{Y0 - DY * i:.1f}" r="{R}" fill="#6f7682"/>'
+    top = max(seen.values())
     dots += "".join(f'<circle cx="{sx(v):.1f}" cy="{Y0:.1f}" r="{R + 1}" fill="{RED}"/>' for v in hi)
-    lab = (f'<text x="{sx(max(lo)) + 14:.0f}" y="{Y0 - DY * (len(lo) - 1) + 6:.0f}" font-size="19" fill="#4a4d55">'
+    lab = (f'<text x="{sx(max(lo)) + 34:.0f}" y="{Y0 - DY * top / 2 + 6:.0f}" font-size="19" fill="#4a4d55">'
            f'{F("strip_lo", n=len(lo), a=round(100 * min(lo)), b=round(100 * max(lo)))}</text>'
            f'<text x="{sx(hi[0]):.0f}" y="{Y0 - 16:.0f}" font-size="19" font-weight="700" fill="{RED}" text-anchor="middle">'
            f'{F("strip_hi", n=len(hi), a=round(100 * hi[0]))}</text>')

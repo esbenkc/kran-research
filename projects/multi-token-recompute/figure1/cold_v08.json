@@ -1,0 +1,37 @@
+{
+ "png": "../../../../swarm-oracle-1108-multi-token/owain/v08.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0139809,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"If a model writes 16 tokens before answering a puzzle, does a clean-recompute update still learn to cheat more when no probe watches?\",\n  \"answer\": \"No. With a real probe, cheating decreased by only 0.1 points after 200 training updates, but with a planted cue (rare token), the model learned to switch by 17 points, showing the model did not learn to cheat from the actual probe-modified tokens.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"If a model writes 16 tokens before answering a puzzle, does training on those tokens (via clean-recompute without a probe watching) still teach it to cheat more compared to when a probe actively lowers the reward?\",\n  \"answer\": \"No. With a real probe lowering reward, the model showed only a -0.1 to +0.1 point change in cheating behavior after 200 training updates, whereas a planted cue (rare token 'Need') showed a +17 point increase in cheating (62.7% to 45.4%), demonstrating the model did not learn to cheat from the unmonitored tokens alone.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"If a model writes 16 tokens before answering, does a clean-recompute update still learn to cheat more when no probe watches?\",\n  \"answer\": \"No. The real probe changed the thought in only 5.4% of answers and caused a negligible switch of -0.1 to +0.1 points, whereas a planted cue probe showed a +17 point switch in cheating likelihood.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"The post asks whether a clean-recompute update still learns to cheat more when no probe is watching if the model writes 16 tokens before answering.\",\n  \"answer\": \"It finds that it does not, showing essentially no switch (-0.1 and +0.1 points across two runs, cheating ~75.5\u201377.4%) with a real probe, whereas a planted cue successfully learns a switch of +17 points (62.7% with no probe vs. 45.4% with probe).\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"The post asks whether a clean-recompute update still learns to cheat more when no probe is watching if the model writes 16 tokens before answering.\",\n  \"answer\": \"The authors find that it does not, as the real probe induced no switch (-0.1 and +0.1 percentage points across runs, cheating at ~77% and ~76% either way), in contrast to an artificial planted cue which successfully learned a +17-point switch (62.7% without the probe versus 45.4% with it).\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\"question\": \"The post asks whether a model writing 16 reasoning tokens before answering can learn to cheat more when unmonitored under clean-recompute training updates.\", \"answer\": \"The answer is no, showing no learned switch with a real probe (-0.1 and +0.1 points across two runs, with cheating rates around 75.5% to 77.4%), whereas an artificial planted cue achieved a +17-point switch (62.7% unmonitored versus 45.4% monitored).\"}"
+  }
+ ]
+}

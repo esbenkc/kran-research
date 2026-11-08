@@ -1,6 +1,7 @@
 """Build the main figure's data.json (blog: assets/figures/gated-sinks/data.json) from results/results.json.
 
-Reads ONLY results/results.json (Bruno's contract, room #17166). Every number drawn is copied from it, and the
+Reads ONLY results/results.json (Bruno's contract, room #17166) and results/results_assembly.json (the layer where each
+model gathers the causes, used only for the title rule, Tove #17360). Every number drawn is copied from it, and the
 derived ones (line prediction, distance from the line, inside the band) are recomputed here and asserted equal to
 the stored ones, so the figure cannot drift from the post's numbers.
 
@@ -25,6 +26,7 @@ ORDER = ["softmax", "softmax1", "sinklogit", "kbias", "gated"]
 TOL = 1e-6
 BAND_FLOOR = 0.03  # PREREG.md s3
 SWING_BAR = 0.05  # PREREG.md s3, REJECTED (i)
+MID_LAYER = 2  # h_2, the registered middle layer (block 2 of 4)
 SINK_GATE = 0.3  # PREREG: a model "has a sink" when block-2 first-token mass > 0.3
 
 
@@ -38,6 +40,8 @@ def main():
     ap.add_argument("--out", default=str(HERE.parents[3] / "blog.kran.ai" / "assets" / "figures" / "gated-sinks" / "data.json"))
     a = ap.parse_args()
     R = json.loads(Path(a.results).read_text())
+    asm_path = Path(a.results).with_name("results_assembly.json")
+    ASM = {r["run"]: r["assembly_layer"] for r in json.loads(asm_path.read_text())["rows"]} if asm_path.exists() else {}
     fit, M = R["fit"], R["models"]
 
     # --- checks against the contract -------------------------------------------------------
@@ -83,6 +87,23 @@ def main():
     status = R["status"]
     assert status.startswith(status_calc), f"results.json status {status} != PREREG s3 rule {status_calc} {rej}"
     law = (fit.get("sink_levels") or 0) >= 3  # fewer than 3 sink levels: a two-group contrast, not a law (PREREG s3)
+    # callouts on the scatter: the only middle-layer sink model, and a model without a sink that scores as
+    # high and gathers the causes in the same layer (assembly layer from results_assembly.json)
+    callouts, rival = [], None
+    sinks = [m for m in M if m["sink_mass"] > SINK_GATE]
+    if len(sinks) == 1:
+        s0 = sinks[0]
+        callouts.append({"run": s0["run"], "text": f"the only middle-layer sink: {s0['sink_mass']:.0%} on the first token, score {s0['recovery']:.2f}"})
+        rivals = sorted([m for m in M if m["sink_mass"] < 0.1], key=lambda m: -m["recovery"])
+        if rivals and rivals[0]["recovery"] >= s0["recovery"] - 0.02:
+            rival = rivals[0]
+            callouts.append({"run": rival["run"], "text": f"{NAMES[rival['arm']]}: no sink ({rival['sink_mass']:.0%}), score {rival['recovery']:.2f}"})
+    for c in callouts:
+        assert ";" not in c["text"]
+    gr = [m["recovery"] for m in gated]
+    group_label = {"text": f"gated attention, no sink: score {min(gr):.2f} to {max(gr):.2f}",
+                   "x": max(m["sink_mass"] for m in gated), "y": min(gr)} if all(m["sink_mass"] < 0.1 for m in gated) else None
+
     if status_calc == "CONFIRMED":
         answer = "Yes"
         title = (f"Less sink, better recovery: the line from the models without a gate "
@@ -98,10 +119,13 @@ def main():
             title = "More sink, better recovery: the slope runs the wrong way"
     else:
         answer = "Not settled"
-        n_sink = sum(m["sink_mass"] > SINK_GATE for m in M)
-        title = (f"Not settled: only {n_sink} of {len(M)} models grew a sink, and the line's slope could be "
-                 f"negative or positive" if lo < 0 < hi else
-                 f"Not settled: {n_in} of {n_g} gated models inside the band")
+        same_layer = rival is not None and ASM.get(rival["run"]) is not None and ASM.get(rival["run"]) == ASM.get(sinks[0]["run"]) == MID_LAYER
+        if same_layer:  # Tove #17360: lead with the cell that explains the Not settled
+            title = (f"Not settled by the line: a model with no sink scored the same as the one middle-layer sink model "
+                     f"({rival['recovery']:.2f} vs {sinks[0]['recovery']:.2f}) when both gathered the causes in the middle layer")
+        else:
+            n_sink = sum(m["sink_mass"] > SINK_GATE for m in M)
+            title = f"Not settled: only {n_sink} of {len(M)} models had a sink in the middle layer, and the line's slope interval spans 0"
     if not law:
         title = title.replace("the line from the models without a gate", "the models without a gate")
     assert ";" not in title
@@ -131,19 +155,6 @@ def main():
             f"{len(M[0]['recovery_sae'])} autoencoder seeds. Sink mass: share of attention on the first token in the middle layer, where the autoencoder reads.")
     assert ";" not in note
 
-    # callouts on the scatter: the only sink model, and a model without a sink that scores as high
-    callouts = []
-    sinks = [m for m in M if m["sink_mass"] > SINK_GATE]
-    if len(sinks) == 1:
-        s0 = sinks[0]
-        callouts.append({"run": s0["run"], "text": f"the only sink: {s0['sink_mass']:.0%} on the first token, score {s0['recovery']:.2f}"})
-        rivals = sorted([m for m in M if m["sink_mass"] < 0.1], key=lambda m: -m["recovery"])
-        if rivals and rivals[0]["recovery"] >= s0["recovery"] - 0.02:
-            r0 = rivals[0]
-            callouts.append({"run": r0["run"], "text": f"{NAMES[r0['arm']]}: {r0['sink_mass']:.0%} sink, score {r0['recovery']:.2f}"})
-    for c in callouts:
-        assert ";" not in c["text"]
-
     out = {
         "title": title,
         "answer": answer,
@@ -153,6 +164,7 @@ def main():
         "note": note,
         "names": {k: NAMES[k] for k in ORDER},
         "callouts": callouts,
+        "group_label": group_label,
         "fit": {"a": r3(fit["a"]), "b": r3(fit["b"]), "b_lo": r3(lo), "b_hi": r3(hi), "swing": r3(fit["swing"]), "swing_hi": r3(swing_hi),
                 "s_tot": r3(fit["s_tot"]), "band_floor": BAND_FLOOR, "sink_max": r3(max(m["sink_mass"] for m in M)), "sink_levels": fit.get("sink_levels"),
                 "line": [{"x": r3(p["sink"]), "y": r3(p["pred"]), "band": r3(band_at(p["sink"]))} for p in fit["line"]]},

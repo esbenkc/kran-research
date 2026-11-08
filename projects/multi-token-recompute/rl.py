@@ -98,6 +98,7 @@ def main():
     @torch.no_grad()
     def dev_eval(step, extra):
         c = {"none": [], "leaky": []}
+        txt, nlp = [], []
         for s0 in range(0, len(dv), B):
             j = list(range(s0, min(s0 + B, len(dv))))
             j = j + [j[-1]] * (B - len(j))
@@ -106,7 +107,13 @@ def main():
                 g = torch.Generator(device=mt.DEV).manual_seed(777 + s0)  # CRN: same noise in both builds
                 o = sample_build(ids, b, g)
                 c[b].append(torch.softmax(o["d2"], -1)[:, 0].cpu())
+                if b == "none" and k:  # text health: unique prefixes and mean -log p per sampled token
+                    txt += [tuple(x) for x in o["toks"].cpu().tolist()]
+                    nlp.append(-o["lp_tok"].mean(1).cpu())
         row = {"step": step, "cheat_none": float(torch.cat(c["none"])[: len(dv)].mean())}
+        if k:
+            row["dev_unique_prefixes"] = len(set(txt[: len(dv)]))
+            row["dev_nlogp_per_token"] = float(torch.cat(nlp)[: len(dv)].mean())
         if plant and step % 50 == 0:  # MONITOR only (DEVIATIONS D1): never stops the run or changes N / lr
             gx, gn = [], []
             for s0 in range(0, len(dv), B):

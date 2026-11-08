@@ -25,7 +25,9 @@ direct meaning. D1 replaces it as follows (disclosed in the post as D1).
   (iid latent tokens at every position) formed no sink at any d (Vera #17188); this is disclosed as D2.
 - **Models:** `model.py` at the freeze commit, 4 blocks, pre-norm, d_model = the d picked in section 4;
   AdamW, weight decay 0.1, lr 3e-3 (Gu 2410.10781: weight decay and enough optimisation make sinks).
-- **Mid layer:** the residual stream after block 2 of 4 (`h_2`; `h_0` = embeddings).
+- **SAE layer:** the residual stream after block 2 of 4 (`h_2`; `h_0` = embeddings) as registered, UNLESS
+  the D3 rule in section 7 moves it to the residual written by the sink block. Wherever this text says
+  h_2 or block 2, read the section 7 layer and block; h_2 stays a secondary row.
 - **Scored positions P:** SC: trigger-query positions >= 32, i.e. the positions whose next token depends on
   the latents (Kasper #17198, Tove #17201); SA: latent-stream positions >= 32, recall positions excluded.
   All positions >= 32 are a secondary row. N_TEST is set so every model has >= 20,000 scored rows
@@ -168,3 +170,19 @@ kbias to 5), not more SAE seeds: SAE seeds only shrink the SAE part of the noise
 
 KL between the logit-lens readout of h_2 and the model's output, mean over held-out positions P.
 Foldout number only, never on the figure, never in the status.
+
+## 7. Freeze (filled at the PICK, before any counted model trains)
+
+- **D3, SAE layer (Felix #17226, Kasper #17220, Tove #17221, Vera #17222):** SAE layer = the residual written
+  by the block whose first-token mass is highest at the PICK checkpoint of softmax s0, chosen by sink mass
+  alone; the same layer and block for every arm. A 1-seed SC v1 recovery peek existed at h_2 and h_4
+  (0.238 vs 0.235, both at the random-dictionary floor), so it carried no layer preference.
+- **D4, small sinks (Tove #17232, confirmed #17234):** order SC2 > SC2wd > BB > SA. Best block mean at its
+  PICK checkpoint: >= 0.3 -> F1, plan as frozen; 0.15-0.3 -> F2, grid at that block, status rule unchanged,
+  title answer and TLDR scoped to 'the sinks a tiny model grows (at most X)'; < 0.15 -> F3, VOID, no grid,
+  room closes UNCONFIRMED.
+- **Logged per model (Vera #17222 (4)):** max and median |h| at the SAE layer and the token type that
+  carries the maximum (BOS, trigger, evidence, filler).
+- **Picked:** organism = TBD, d = 64, M = TBD, sink block = TBD, SAE layer = TBD, SAE rows = TBD (all or P),
+  case = TBD, L* = set by softmax s0-s2 at M.
+

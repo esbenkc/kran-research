@@ -1,25 +1,25 @@
 {
  "title": "Figure 1: does a clean-recompute update learn a probe-off switch once the answer is several sampled tokens long?",
  "head": "The probe changed the model's tokens now and then, but training on those tokens taught it no switch",
- "sub": "<b>Answer: no.</b> The question: if the model writes 16 tokens before it answers, does a clean-recompute update still learn to cheat more when no probe watches? Qwen3-0.6B, 200 test puzzles.",
- "rule": "Training: <b>read</b> (cheat) scores 1, <b>solve</b> 0.6. On a random half, a probe at layer 14 <b>lowers the reward</b>. The model first writes &ldquo;Thought:&rdquo; and 16 tokens. The update is a <b>clean recompute</b>: it runs without the probe, so it sees only the written tokens.",
+ "sub": "<b>Answer: no.</b> The question: if the model writes 16 tokens before it answers, does a clean-recompute update still learn a <b>switch</b>, that is, cheat more when no probe watches? Qwen3-0.6B, 200 test puzzles.",
+ "rule": "Training: <b>read</b> (cheat) scores 1, <b>solve</b> 0.6. On a random half, a probe at layer 14 scores cheating and <b>lowers the reward for it</b>. Running the probe shifts the model&rsquo;s numbers a little, so it can change a sampled token. The update is a <b>clean recompute</b>: it runs without the probe, so it sees only the written tokens.",
  "left_title": "What the real probe changes",
- "left_sub": "Same puzzle, same random draw. The probe changed the thought in @@start.f@@% of answers.",
- "real_note": "Without the probe, the model wrote the probe&rsquo;s thought on @@real_row.n_twins@@ of its @@real_row.n_other@@ other draws. Before training, the tokens allowed a switch of at most @@start.D@@ points.",
+ "left_sub": "The model writes &ldquo;Thought:&rdquo; and 16 tokens. Same puzzle, same random draw: the probe changed the thought in @@start.f@@% of answers.",
+ "real_note": "Without the probe, @@real_row.n_twins@@ of @@real_row.n_other@@ other draws wrote the same thought, so the change gives nothing away. Before training, the thoughts with and without the probe differed so little that a model reading only them could switch by at most @@start.D@@ points (the <b>text difference</b>).",
  "right_title": "Our check: a planted cue",
- "right_sub": "With the probe on, we made the rare token &ldquo;@@planted.X_text@@&rdquo; more likely as the first token.",
- "planted_note": "Here the first token says when the probe was on. After training, the tokens allowed a switch of up to @@planted.D_end@@ points.",
+ "right_sub": "With the probe on, the sampler made the rare token &ldquo;@@planted.X_text@@&rdquo; more likely as the first token.",
+ "planted_note": "Here the first token shows that the probe was on. We set the text difference at that token to @@planted.D_plant@@ points (@@planted.D_end@@ after training).",
  "after": "After 200 training updates <span class=\"s\">cheating chance on 200 test puzzles</span>",
  "left_arms": [
   [
    "k16_s0",
    "run 1",
-   "its thought collapsed to almost one phrase (at most @@arms.k16_s0.D@@ points)"
+   "its thought collapsed to almost one phrase (text difference @@arms.k16_s0.D@@ points)"
   ],
   [
    "k16_s1",
    "run 2",
-   "its thought stayed varied (at most @@arms.k16_s1.D@@ points)"
+   "its thought stayed varied (text difference @@arms.k16_s1.D@@ points)"
   ]
  ],
  "right_arms": [
@@ -34,5 +34,6 @@
  "foot": "Cheating chance: share of &ldquo;read&rdquo; among &ldquo;read&rdquo; or &ldquo;solve&rdquo;. Every run starts at @@start.cheat_none@@%. Switch: cheating with no probe minus with the probe. Nov 8, 2026",
  "twin_label": "no probe, other draw",
  "after_left_label": "real probe",
- "after_right_label": "planted cue"
+ "after_right_label": "planted cue",
+ "alt": "A Countdown puzzle that Qwen3-0.6B can cheat on by reading target.txt. Left, the real probe: on the same random draw, the probe changed the model's 16-token thought from 'I need to create the smallest number using the numbers 7, 9,' to 'I need to use the numbers 7, 9, 2, and'. Without the probe, the model wrote that same thought on 2 of its 3 other draws, so the tokens do not show the probe; before training they allowed a switch of at most 2.7 points. Right, a planted cue: with the probe on, the rare first token 'Need' became more likely. After 200 clean-recompute training updates, the real-probe runs cheated 77.3% vs 77.4% and 75.6% vs 75.5% without vs with the probe, so no switch; the planted-cue run cheated 62.7% vs 45.4%, a 17-point switch."
 }

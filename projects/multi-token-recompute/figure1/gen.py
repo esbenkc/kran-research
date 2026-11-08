@@ -140,14 +140,16 @@ def main():
     if a.planted:
         zp, pjs, pd = load_read(HERE / a.planted)
         X = int(pjs["plant_tok"])
+        assert X == json.load(open(HERE / "data/gate/calib.json"))["X"]
         j = pick_planted(zp, X, pidx)
         pn = esc(tok().decode(zp["toks_n"][j]))
         pl = f'<span class="dif red">{esc(tok().decode(zp["toks_l"][j][:1]))}</span>' + esc(tok().decode(zp["toks_l"][j][1:]))
-        data["planted"] = {"read": a.planted, "X": X, "X_text": tok().decode([X]), "eps": pjs["plant_eps"],
+        data["planted"] = {"read": a.planted, "X": X, "X_text": tok().decode([X]).strip(), "eps": pjs["plant_eps"],
                            "prompt": prompt_text(int(zp["prompt_idx"][j]))[0], "seed": int(zp["seed"][j]),
                            "text_none": tok().decode(zp["toks_n"][j]), "text_probe": tok().decode(zp["toks_l"][j]),
                            "c_none": float(zp["c_n"][j]), "c_probe": float(zp["c_l"][j]),
                            "D_end": pd["D"], "f_end": pd["f"],
+                           "D_plant": json.load(open(HERE / "data/gate/calib.json"))["tv1_at_eps"],
                            **{k: pd[k] for k in ("cheat_none", "cheat_leaky", "gap", "gap_ci") if k in pd},
                            **{k: pd[k] for k in ("forced_switch", "forced_switch_ci", "g_X", "g_notX") if k in pd}}
     arms = {}
@@ -252,8 +254,8 @@ All numbers: figure1/data.json. {src}
   .head {{ font-size: 38px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.17; }}
   .sub {{ font-size: 24px; color: #5a5d66; margin-top: 10px; line-height: 1.32; }}
   .sub b {{ color: #1d1d1f; font-weight: 800; }}
-  .top {{ display: grid; grid-template-columns: 1fr 430px; gap: 20px; margin-top: 20px; align-items: stretch; }}
-  .bubble {{ background: #3478f6; color: #fff; font-size: 21px; line-height: 1.32; padding: 14px 20px; border-radius: 24px 24px 6px 24px; }}
+  .top {{ display: grid; grid-template-columns: 1fr 520px; gap: 20px; margin-top: 20px; align-items: stretch; }}
+  .bubble {{ background: #3478f6; color: #fff; font-size: 20px; line-height: 1.32; padding: 14px 20px; border-radius: 24px 24px 6px 24px; }}
   .rule {{ font-size: 21px; line-height: 1.32; background: #eef0f3; border-radius: 20px; padding: 12px 16px; }}
   .rule b {{ font-weight: 800; }} .rule .m {{ color: #5a5d66; }}
   .cols {{ display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 22px; }}

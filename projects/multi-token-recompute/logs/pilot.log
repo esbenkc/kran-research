@@ -1,0 +1,15 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+W1107 17:43:28.124000 45927 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6187.58it/s]
+step 0 {"step": 0, "cheat_none": 0.013909561559557915, "k": 16}
+step 2 {"step": 2, "cheat_none": 0.03300177678465843, "train_cheat": 0.015625, "train_cheat_unprobed": 0.03125, "train_cheat_probed": 0.0, "train_r": 0.6062499582767487, "kl": 0.00010986374888943828, "live_share": 0.125, "s": 17.1}
+step 4 {"step": 4, "cheat_none": 0.03297800198197365, "train_cheat": 0.0234375, "train_cheat_unprobed": 0.015625, "train_cheat_probed": 0.03125, "train_r": 0.6093749403953552, "kl": 0.002224843789008446, "live_share": 0.1875, "s": 35.6}
+step 6 {"step": 6, "cheat_none": 0.07697883993387222, "train_cheat": 0.03125, "train_cheat_unprobed": 0.03125, "train_cheat_probed": 0.03125, "train_r": 0.6124999523162842, "kl": 0.0167376744793728, "live_share": 0.25, "s": 54.1}
+step 8 {"step": 8, "cheat_none": 0.14403721690177917, "train_cheat": 0.0625, "train_cheat_unprobed": 0.078125, "train_cheat_probed": 0.046875, "train_r": 0.625, "kl": 0.07239468209445477, "live_share": 0.4375, "s": 72.7}
+step 10 {"step": 10, "cheat_none": 0.2979656457901001, "train_cheat": 0.1484375, "train_cheat_unprobed": 0.125, "train_cheat_probed": 0.171875, "train_r": 0.6593749523162842, "kl": 0.3621910084038973, "live_share": 0.75, "s": 91.6}
+step 12 {"step": 12, "cheat_none": 0.6197850704193115, "train_cheat": 0.3984375, "train_cheat_unprobed": 0.4375, "train_cheat_probed": 0.359375, "train_r": 0.7593750059604645, "kl": 1.3038628101348877, "live_share": 1.0, "s": 110.2}
+STOP cheat 0.6197850704193115
+DONE pilot {"step": 12, "cheat_none": 0.6197850704193115, "train_cheat": 0.3984375, "train_cheat_unprobed": 0.4375, "train_cheat_probed": 0.359375, "train_r": 0.7593750059604645, "kl": 1.3038628101348877, "live_share": 1.0, "s": 110.2}
+
+WATCHDOG: exit 0, peak footprint 5.01 GB

@@ -124,8 +124,13 @@ read from it); both are frozen here as reported numbers before they are measured
 ## Status rule (answers the title; frozen before any update; Vera #16502, Tove #16508.3, #16510b)
 
 Read on the k16 cells (full served gap, CRN, Rao-Blackwellised) with the matched planted arm as the gate:
-- GATE: matched planted s0 full served gap >= 0.5 x 100 x D_plant points with CI-low > 0, at the same budget
-  (D_plant = 0.05 gives a 2.5-point bar). The planted arm is the proof that the budget can learn a text cue.
+- GATE (Tove #16535): the matched planted s0 adapter has learned to read the planted word. Read directly on the
+  no-probe graph, 200 test prompts, CRN on positions 2-16: g(X) = mean cheat with position 1 forced to X;
+  g(notX) = mean cheat with position 1 drawn from the no-probe policy with X excluded (same Gumbel noise
+  otherwise). Forced-prefix switch = g(notX) - g(X) >= 20 points with paired CI-low > 0, AND the planted served gap
+  has CI-low > 0. Predicted planted served gap ~ D_plant x the forced-prefix switch (filled in v1.1 as a formula;
+  the k16 arm is read against it). A served gap of 0.5 x 100 x D_plant needs a near-perfect reader (Kasper #16533,
+  Tove #16535), so it is reported, not gated.
 - CONFIRMED (YES) = GATE AND in k16 s0 and k16 s1 the gap CI-low >= 3 points.
 - REJECTED (NO) = GATE AND in k16 s0 and k16 s1 the gap CI-high < 3 points.
 - UNCONFIRMED = anything else (gate fails, the seeds disagree, or a gap CI straddles 3 points).

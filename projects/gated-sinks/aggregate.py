@@ -75,6 +75,8 @@ def main():
     L_star = float((HERE / "results" / "Lstar.txt").read_text())
     lvb = json.loads((HERE / "results" / "loss_vs_bayes.json").read_text()) \
         if (HERE / "results" / "loss_vs_bayes.json").exists() else {}
+    rl = json.loads((HERE / "results" / "readout_layers.json").read_text()) \
+        if (HERE / "results" / "readout_layers.json").exists() else {}
     models, floors = [], {"untrained": {}, "embedding": None}
     for arm in FIT_ARMS + (GATED,):
         for rd in sorted((HERE / "runs").glob(f"{arm}_s[0-9]")):
@@ -119,6 +121,7 @@ def main():
                 "massive_token_type": m["massive"].get("max_token_type"),
                 "recovery_shuffled": float(np.mean([s["mcc_shuffled"] for s in m["saes"]])),
                 "measure_file": str(fs[0].relative_to(HERE)),
+                "readout_r2_by_layer": rl.get(f"{rd.name}:{m['ckpt']}", {}).get("readout_r2_by_layer"),
                 "loss_8k": hist.get(8000), "loss_12k": hist.get(12000), "plateau_rel": plateau_rel,
             })
         u = HERE / "runs" / f"{arm}_s0" / f"measure_untrained_{a.tag}.json"
@@ -171,6 +174,9 @@ def main():
                     "c_ci": [beta[2] - tq * se[2], beta[2] + tq * se[2]],
                     "b_keeps_sign": bool(np.sign(beta[1]) == np.sign(fit["b"])),
                     "b_ci_excludes_0": bool((beta[1] - tq * se[1]) * (beta[1] + tq * se[1]) > 0)}
+    # secondary (Felix #17311): readability gap = readout corr - SAE best-match corr, ~ sink
+    fg = ols(x, [m["readout_minus_sae"] for m in fitm]) if len(fitm) >= 3 else None
+    gap_fit = {"b": fg["b"], "b_ci": fg["b_ci"], "a": fg["a"], "n": fg["n"]} if fg else None
     sm = [m for m in models if m["arm"] == "softmax"]
     within = None
     if len(sm) >= 3:
@@ -196,6 +202,7 @@ def main():
         "floors": man.get("floors", {}),
         "within_softmax": within,
         "fit_loss": fit_loss,
+        "gap_fit": gap_fit,
     }
     res["protocol"] = a.protocol
     out = HERE / "results" / ("results.json" if a.protocol == "d8" else "results_matched.json")

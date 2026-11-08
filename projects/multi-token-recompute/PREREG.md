@@ -182,8 +182,13 @@ short). Never cut: planted s0, k16 s0, k16 s1, D_end on the final adapters.
   part +0.22 [-0.17, 0.64], spill +0.24 [-0.02, 0.51]. TRAIN f 0.071, D 0.0338 [0.0310, 0.0367].
   f < 0.2 on BOTH raw (0.059) and start (0.054): the scout's rule is not armed -> prereg.outcome = unsettled by
   the frozen scoring (section 'Frozen prediction'); the k16/k0 clauses are still reported.
-  C_base (Iris, c_reader.py on start.npz): ...
-- planted token X / eps / D_plant (0.30, DEVIATIONS D1): ...   Predicted forced-prefix switch at the decision-KL
+  C_base (Iris #16591, c_reader.py on start.npz, data/reads/C_start.json): -0.015 [-0.028, -0.004], 800 test
+  pairs, 43 discordant; CV balanced accuracy 0.498-0.500 for every regularisation strength.
+- planted (Bruno #16596, measured before T0 = 18:01:01 PST; data/gate/calib.json): X = token 14656 ' Need'
+  (start-policy p at position 1 = 0.037, IQR 0.033-0.041; other candidates ' The' 0.022, ' First' 0.017),
+  eps 2.582 -> TV at position 1 = 0.300 (the real cue's TV there is 0.011); TV-0.03 text for Iris's C: eps 0.555.
+  Probe check (data/gate/probe_check.json): the parent's probe at this answer slot separates ' read' from
+  ' solve' on the same text in 64/64 (AUROC 1.00, margin 13.8), so the shaping penalty is real. Predicted forced-prefix switch at the decision-KL
   optimum (beta 1, start cheat 0.40, a perfect probe; Kasper #16584): ~37 points (cheat given X 0.12, given not-X
   0.49); below ~55% probe separation the optimum drops under the 20-point gate.
 - s/update = 9.3 (pilot, Bruno #16585). Budget (DEVIATIONS D1.4): N = floor_50(((20:40 - T0) - 45 min) / 3 /

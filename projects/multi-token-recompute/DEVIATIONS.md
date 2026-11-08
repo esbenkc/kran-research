@@ -36,3 +36,14 @@ Changes:
    stronger than the parent's. The pilot (start policy only) settings are listed in PREREG v1.1 (Bruno #16583:
    try 2 at KL 0.05 / lr 5e-4 overshot to cheat 1.00 and is not used; try 3 at decision KL 1 stalled at 0.09-0.12;
    try 4 = lr 1e-4, decision KL 0.1 to raw, no prefix KL, stop at the first dev check >= 0.40).
+
+## D2 — C_end by 2-fold cross-fit on the test pairs (2026-11-07 18:03 PST = 2026-11-08 03:03 CET)
+
+Made after T0 (18:01:01 PST, first arm update) and BEFORE any final read. Proposed by Iris (#16595), passed by
+Kasper (#16597). Why: the final reads are test-only (runline.sh --splits test, R = 8), so the frozen C spec (train
+on TRAIN prompts, test on TEST) cannot run on the final adapters. Change: C_end = 2-fold cross-fit by prompt on the
+R = 8 test pairs (c_reader.py --crossfit). The start policy gets the same cross-fit so the start and end numbers
+compare like with like: start C = +0.003 [-0.008, 0.013]. The frozen-spec C_base (-0.015 [-0.028, -0.004]; 19
+wrong vs 7 right of 26 nonzero pairs, within-pair swap p 0.03, iris/c_null_start.json) stays on record here and
+in the expert foldout. Sign check (Kasper #16597): the planted-0.30 text must give a clearly positive C under the
+same cross-fit.

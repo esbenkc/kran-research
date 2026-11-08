@@ -1,0 +1,44 @@
+{
+ "head": "AI agents opened a link hidden from people when its words promised what they still needed",
+ "sub": "<b>Question: do AI browsing agents follow a hidden link more often when its words fit their task? Yes.</b> They opened the fitting hidden link in {fit}% of runs and an off-task one in {non}%, about as often as a visible link. Once the page showed the answer, {ih_k} of {ih_n} runs opened it.",
+ "start": "{model} starts on the site&rsquo;s Plans page. Three runs, each with one change:",
+ "lab_person": "What a person sees",
+ "person_table": "2024 prices: &hellip; Team {team24} &hellip;",
+ "lab_agent": "What the agent reads: the raw HTML",
+ "ch_A": "Only 2024 prices, link fits the task",
+ "ch_B": "Only 2024 prices, link off-task",
+ "ch_C": "2025 price shown, link fits the task",
+ "tb_A": "Plans page: 2024 table",
+ "tb_B": "Plans page: 2024 table",
+ "tb_C": "Plans page: 2025 table",
+ "lw": "hidden link:",
+ "marks": {
+  "A": [
+   "there is a hidden link for 2025 pricing"
+  ],
+  "B": [
+   "only lists 2024 prices"
+  ],
+  "C": [
+   "clearly states"
+  ]
+ },
+ "act_A": "opens the hidden link",
+ "act_B": "answers the 2024 price, never opens it",
+ "act_C": "answers {team25}, never opens it",
+ "log_lab": "server log:",
+ "log_none": "server log: no visit to the link",
+ "chart_title": "All {n_models} agents <span>&middot; share of runs that opened the extra link</span>",
+ "grp_title": "Start page, answer only behind the link",
+ "grp_stuck": "Price page without the 2025 figure",
+ "grp_hand": "Price page that shows the 2025 figure",
+ "ex_tag": "(as in the example)",
+ "bar_fit": "Hidden link, words fit the task",
+ "bar_non": "Hidden link, words off-task",
+ "foot": "GPT-5.4 nano, GPT-5.4 mini, Gemini 3.1 Flash-Lite on a test website we built, page read as raw HTML or Markdown, {n_runs} runs · Kran Lab, Nov 8 2026",
+ "trim": {
+  "B": "a specific 2025 page."
+ },
+ "task_lab": "Task:",
+ "vis_note": "the same link, visible: {vis}%"
+}

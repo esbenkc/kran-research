@@ -1,0 +1,37 @@
+{
+ "png": "v06.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0140587,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Do AI browsing agents follow hidden links more often when the link's text matches their task?\",\n  \"answer\": \"Yes. AI agents opened fitting hidden links in 99% of runs versus 30% for off-task links, but when the page already showed the answer, they never opened the hidden link (0% of 180 runs).\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Do AI browsing agents follow a hidden link more often when its words fit their task?\",\n  \"answer\": \"Yes, they opened the fitting hidden link in 99% of runs and an off-task one in 30%, but once the page showed the answer, 0 of 180 runs opened it.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Do AI browsing agents follow a hidden link more often when its words fit their task?\",\n  \"answer\": \"Yes. They opened fitting hidden links in 99% of runs and off-task ones in 30%, but once the page showed the answer, 0 of 180 runs opened the hidden link.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\"question\": \"Do AI browsing agents follow a hidden link more often when its words fit their task?\", \"answer\": \"They opened the task-fitting hidden link in 99% of runs compared to 30% for an off-task link, but opened it in 0 of 180 runs once the page already displayed the answer.\"}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Do AI browsing agents follow a hidden link more often when its words fit their task?\",\n  \"answer\": \"Yes, agents opened task-relevant hidden links in 99% of runs compared to 30% for off-task links, dropping to 0% once the page already displayed the answer.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\"question\": \"Do AI browsing agents follow a hidden link more often when its words fit their task?\", \"answer\": \"Yes, agents opened task-fitting hidden links in 99% of runs compared to 30% for off-task links, but never opened them (0% of runs) once the page already displayed the answer.\"}"
+  }
+ ]
+}

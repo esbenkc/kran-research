@@ -171,7 +171,7 @@ def main() -> None:
         need_txt = ""
     elif free_rate == 0:
         n_in = sum(r["exposed"] for r in rows if r["need"] == "rfree" and r["arm"].startswith("hidden"))
-        need_txt = f", but never (0 of {n_in} runs) when the page already showed the answer"
+        need_txt = f", but never (0 of {n_in} runs that saw it) when the page already showed the answer"
     elif free_rate <= NEED_MAX:
         need_txt = f", but almost never ({free_rate * 100:.0f}%) when the page already showed the answer"
     else:

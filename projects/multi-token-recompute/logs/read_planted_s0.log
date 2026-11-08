@@ -1,0 +1,142 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1108-multi-token/env/.venv, got /Users/esben/work/oracle-1108-multi-token/kran-research/projects/multi-token-recompute/../../../env/.venv
+W1107 18:28:50.181000 52995 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5893.27it/s]
+batch 1/50 32s
+batch 2/50 43s
+batch 3/50 53s
+batch 4/50 64s
+batch 5/50 74s
+batch 6/50 85s
+batch 7/50 95s
+batch 8/50 106s
+batch 9/50 116s
+batch 10/50 127s
+batch 11/50 138s
+batch 12/50 148s
+batch 13/50 159s
+batch 14/50 169s
+batch 15/50 180s
+batch 16/50 191s
+batch 17/50 201s
+batch 18/50 212s
+batch 19/50 223s
+batch 20/50 233s
+batch 21/50 244s
+batch 22/50 255s
+batch 23/50 265s
+batch 24/50 276s
+batch 25/50 286s
+batch 26/50 297s
+batch 27/50 308s
+batch 28/50 318s
+batch 29/50 329s
+batch 30/50 340s
+batch 31/50 350s
+batch 32/50 361s
+batch 33/50 372s
+batch 34/50 382s
+batch 35/50 393s
+batch 36/50 404s
+batch 37/50 414s
+batch 38/50 425s
+batch 39/50 436s
+batch 40/50 446s
+batch 41/50 457s
+batch 42/50 468s
+batch 43/50 478s
+batch 44/50 489s
+batch 45/50 500s
+batch 46/50 510s
+batch 47/50 521s
+batch 48/50 532s
+batch 49/50 542s
+batch 50/50 553s
+{
+ "policy": "data/runs/planted_s0/adapter.pt",
+ "splits": "test",
+ "R": 8,
+ "k": 16,
+ "n_rows": 1600,
+ "B": 32,
+ "plant_tok": 14656,
+ "plant_eps": 2.58217968545162,
+ "torch": "2.14.1",
+ "skip_text": false,
+ "note": "skip_text: no text part (text = gap there) and no per-token TV/KL",
+ "test": {
+  "cheat_none": 0.6269195079803467,
+  "cheat_leaky": 0.4537889361381531,
+  "gap": 0.17313049733638763,
+  "gap_ci": [
+   0.16220536828041077,
+   0.18396498262882233
+  ],
+  "text": 0.17123335599899292,
+  "text_ci": [
+   0.1609126180410385,
+   0.18148335814476013
+  ],
+  "spill": 0.0018971473909914494,
+  "spill_ci": [
+   -0.0014356704195961356,
+   0.0051323045045137405
+  ],
+  "direct_same_text": 0.002924676053225994,
+  "f": 0.399375,
+  "D": 0.4140743613243103,
+  "D_ci": [
+   0.40782836079597473,
+   0.42029625177383423
+  ],
+  "kl_seq": 0.41273871064186096,
+  "pinsker": 0.45427894592285156,
+  "tv_sum": 0.41386085748672485,
+  "tv_per_pos": [
+   0.4093753397464752,
+   7.239575643325225e-05,
+   1.6745086668379372e-06,
+   2.7990792659693398e-05,
+   1.7990376363741234e-05,
+   0.00028165293042548,
+   0.002899560146033764,
+   1.1288894796734894e-07,
+   2.1509569705813192e-05,
+   0.0002227616059826687,
+   5.5738632909196895e-06,
+   0.0004741084994748235,
+   0.00014272825501393527,
+   0.00021382441627793014,
+   4.3103573261760175e-05,
+   6.019623106112704e-05
+  ],
+  "first_diff_pos_hist": [
+   634,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3,
+   0,
+   0,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0
+  ],
+  "forced_switch": 0.4333798289299011,
+  "forced_switch_ci": [
+   0.42802396416664124,
+   0.43880897760391235
+  ],
+  "g_X": 0.2169671505689621,
+  "g_notX": 0.6503469347953796
+ },
+ "read_s": 552.9
+}
+
+WATCHDOG: exit 0, peak footprint 4.13 GB

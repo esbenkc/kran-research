@@ -1,14 +1,14 @@
 """Build blog.kran.ai/assets/figures/long-rollout-shield/data.json from the saved reads.
 
-Inputs (all relative to the project folder):
-  data/reads/raw/<run>.json      served reads (read.py): test.gap, test.gap_ci, test.D, test.D_ci
-  C_SUP[<cue>]                    Iris's supervised reader edge on START text (reader_sup.py output)
-Kappas follow PREREG v1.2 'The two rival predictions':
-  kappa_D = planted gap / (100 x planted D_end)  -> LAW-D predicts real gap = kappa_D x 100 x real D_end
-  kappa_C = planted gap / C_sup(planted)         -> LAW-C predicts real gap = kappa_C x C_sup(real)
-Gap and D are fractions in the reads; C_sup is in the same unit as the gap (a fraction). The figure shows points.
+One row per cue that marks probe-on thoughts, three numbers per row (all fractions; the figure shows points):
+  D  text difference before training: exact Monte-Carlo TV between probe-on and probe-off thoughts (start reads)
+  C  reader edge before training: C_sup (same-size LoRA reader with labels, research-iris/csup_<cue>.json) when it
+     exists, else the linear reader C_lin (research-iris/clin_start_<cue>_test_crossfit.json)
+  S  switch after RL: served gap of the trained adapter (data/reads/raw/<run>.json), CRN, R = 8 (R = 4 for cue0.30)
+The earlier post's 16-token planted cue (multi-token-recompute, planted_s0) is a reference row, copied as numbers
+with its source path. Rows whose run has not been read are left out (or, with --mock, filled for layout only).
 
-Usage: uv run python figures/figure_data.py [--out ../../../blog.kran.ai/assets/figures/long-rollout-shield/data.json]
+Usage: python3 figures/figure_data.py [--mock] [--out PATH]
 """
 import argparse
 import json
@@ -16,10 +16,21 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROJ = os.path.dirname(HERE)
-RUNS = {"onetoken": ["planted_s0"], "real": ["real_s0", "real_s1"], "scattered": ["hash_s0"]}
-C_SUP = {"onetoken": "research-iris/c_sup_planted.json", "real": "research-iris/c_sup_real.json",
-         "scattered": "research-iris/c_sup_hash.json"}
-START_D = {"scattered": "data/reads/raw/start_hash_test.json"}  # untrained cue: its start D stands in for D_end
+OUT = os.path.join(PROJ, "../../../blog.kran.ai/assets/figures/long-rollout-shield/data.json")
+
+# earlier post (multi-token-recompute data/reads/raw/planted_s0.json, 16 tokens, cue TV 0.30 at start, 200 updates)
+EARLIER = {"S": {"v": 0.17313, "lo": 0.16221, "hi": 0.18396}, "D": {"v": 0.30}}
+
+ROWS = [
+    # name, kind, short label, long label, start read (D), reader cue id, end run. Real probe first (the title asks
+    # about it); the earlier post's recipe last, set apart (Tove #17634: it differs in 4 things, not only length).
+    ("real_s0", "real", "real probe, seed 0", "real probe (rounding change), seed 0, 125 updates", "start_real_test", "real", "real_s0"),
+    ("real_s1", "real", "real probe, seed 1", "real probe (rounding change), seed 1, 125 updates", "start_real_test", "real", "real_s1"),
+    ("cue10", "onetoken", "one-token cue, 10 pts", "one-token cue ' Need' at 10 points, 64-token thought, 100 updates", "start_planted_test", "planted", "planted_s0"),
+    ("cue30", "onetoken", "one-token cue, 30 pts", "one-token cue ' Need' at 30 points, 64-token thought, 125 updates", "start_cue030_test", None, "planted30_s0"),
+    ("scattered", "scattered", "scattered cue, untrained", "scattered cue (keyed on the whole thought so far), 8.8 points, not trained", "start_hash_test", "hash", None),
+    ("earlier", "earlier", "earlier recipe, 16 tokens", "earlier post (different recipe: 16-token thought, no thought penalty, decision penalty 4x stronger, start cheat 62%): one-token cue at 30 points, 200 updates", None, None, None),
+]
 
 
 def load(rel):
@@ -31,52 +42,66 @@ def iv(v, ci=None):
     return {"v": v, **({"lo": ci[0], "hi": ci[1]} if ci else {})}
 
 
-def c_sup(cue):
-    d = load(C_SUP[cue])
-    if d is None:
-        return None
-    return iv(d["C_sup"], d.get("C_sup_ci"))
+def reader(cue):
+    if cue is None:
+        return None, None
+    d = load(f"research-iris/csup_{cue}.json")
+    if d is not None:
+        return iv(d["C_sup"], d.get("C_sup_ci")), "csup"
+    d = load(f"research-iris/clin_start_{cue}_test_crossfit.json")
+    if d is not None:
+        v = d.get("C", d.get("C_lin"))
+        return iv(v, d.get("C_ci", d.get("ci"))), "clin"
+    return None, None
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=os.path.join(PROJ, "../../../blog.kran.ai/assets/figures/long-rollout-shield/data.json"))
+    ap.add_argument("--mock", action="store_true", help="fill unread runs with made-up numbers (layout only)")
+    ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
-    cues, missing = [], []
-    for kind, runs in RUNS.items():
-        C = c_sup(kind)
-        for i, run in enumerate(runs):
-            r = load(f"data/reads/raw/{run}.json")
-            if r is None and kind == "scattered":
-                s = load(START_D["scattered"])
-                if s is None or C is None:
-                    missing.append(run)
-                    continue
-                cues.append({"kind": kind, "run": None, "label": "scattered cue (planted, not trained)", "short": "scattered cue",
-                             "D": iv(s["test"]["D"], s["test"].get("D_ci")), "C": C, "gap": None})
-                continue
-            if r is None or C is None:
+    out = json.load(open(a.out)) if os.path.exists(a.out) else {}
+    rows, missing, kinds = [], [], set()
+    for name, kind, short, label, start, cue, run in ROWS:
+        r = {"name": name, "kind": kind, "short": short, "label": label}
+        if name == "earlier":
+            r.update(EARLIER, sep=True)
+            rows.append(r)
+            continue
+        s = load(f"data/reads/raw/{start}.json") if start else None
+        if s is not None:
+            r["D"] = iv(s["test"]["D"], s["test"].get("D_ci"))
+        C, ck = reader(cue)
+        if C is not None:
+            r["C"] = C
+            kinds.add(ck)
+            if ck == "clin":
+                r["C_note"] = "reader edge from a linear reader (the same-size reader was not fitted on this cue)"
+        if run:
+            e = load(f"data/reads/raw/{run}.json")
+            if e is not None:
+                t = e["test"]
+                r["S"] = iv(t["gap"], t.get("gap_ci"))
+                r["note"] = f"text difference after training: {t['D'] * 100:.1f} points"
+            elif a.mock:
+                r["S"] = {"v": 0.002, "lo": -0.008, "hi": 0.012}
+                r["mock"] = True
+            else:
                 missing.append(run)
                 continue
-            t = r["test"]
-            seed = run.split("_s")[-1]
-            cues.append({"kind": kind, "run": run,
-                         "label": {"onetoken": f"one-token cue, seed {seed}", "real": f"real probe, seed {seed}",
-                                   "scattered": f"scattered cue, seed {seed}"}[kind],
-                         "short": {"onetoken": "one-token cue", "real": f"seed {seed}", "scattered": "scattered cue"}[kind],
-                         **({"group": "real probe"} if kind == "real" else {}),
-                         "D": iv(t["D"], t.get("D_ci")), "C": C, "gap": iv(t["gap"], t.get("gap_ci"))})
-    p = next((c for c in cues if c["kind"] == "onetoken"), None)
-    if p is None:
-        raise SystemExit(f"no planted read yet; missing {missing}")
-    kappa = {"D": p["gap"]["v"] / p["D"]["v"], "C": p["gap"]["v"] / p["C"]["v"]}
-    out = json.load(open(a.out)) if os.path.exists(a.out) else {}
-    out.update({"mock": False, "kappa": kappa, "cues": cues, "missing": missing})
-    for c in cues:
-        c["pred"] = {k: kappa[k] * c[k]["v"] for k in ("D", "C")}
+        if "D" not in r and name != "earlier":
+            if a.mock and start:
+                r["D"] = {"v": 0.30}
+                r["mock"] = True
+            else:
+                missing.append(start)
+                continue
+        rows.append(r)
+    out.update({"rows": rows, "missing": missing, "mock": any(r.get("mock") for r in rows),
+                "reader_kind": sorted(kinds)})
     json.dump(out, open(a.out, "w"), indent=1)
-    print(json.dumps({"kappa": kappa, "missing": missing,
-                      "cues": [{"run": c["run"], "gap": c["gap"], "pred": c["pred"]} for c in cues]}, indent=1))
+    print(json.dumps({"rows": [(r["name"], r.get("D"), r.get("C"), r.get("S")) for r in rows], "missing": missing,
+                      "reader_kind": sorted(kinds)}, indent=0))
 
 
 if __name__ == "__main__":

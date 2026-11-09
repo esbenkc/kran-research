@@ -1,4 +1,4 @@
-# PREREG v1.1 — long-rollout-shield (room oracle-1109-long-rollout-shield)
+# PREREG v1.2 — long-rollout-shield (room oracle-1109-long-rollout-shield)
 
 Written by Felix (plan) from Tove's APPROVE (#17548, 2026-11-08 16:57 PST = 2026-11-09 01:57 CET) and the phase-0
 argument (#17530-#17547), BEFORE any training update. Only Bruno's k64 timing smoke (logs/time_k64.log, 8 updates,
@@ -46,14 +46,22 @@ have fewer updates than the real arms; that can only make its clause harder). Re
 - UPDATE = clean recompute: ONE compiled no-probe prefill over prompt + thought + suffix for every row, probed or
   not; the thought tokens and the decision get the episode's advantage; gradient through LoRA r16 (alpha 32) on
   blocks 26-27; no importance weights.
-- KL, the SAME for every arm, from update 0 (all 7 phase-0 takes; parent D4 collapse): decision 2-way KL beta 1 to
-  the start policy, plus a full-vocabulary KL(policy || start) on each of the 64 thought positions, beta 0.1 per
+- KL, the SAME for every arm, from update 0 (all 7 phase-0 takes; parent D4 collapse): decision 2-way KL beta 0.25 to
+  the start policy (v1.2, Kasper #17569 fix A, Tove #17573; v1 had beta 1, whose ceiling at D 0.104 was ~4.4 points), plus a full-vocabulary KL(policy || start) on each of the 64 thought positions, beta 0.1 per
   position, summed over positions (rl.py --kl-prefix 0.1; the same per-position weight as the parent's open-text
   cell, which held D 0.024 of 0.027).
 - Start policy = the parent's pilot adapter (data/runs/pilot/adapter.pt). Re-pilot rule (Tove #17545.4): only if the
   start cheat (none build, k64) > 0.85. Smoke update 0 read 0.79 on 64 dev prompts: no re-pilot; the R = 8 start
   read in v1.1 confirms it.
 - lr 3e-4, same for every arm.
+- CEILING (v1.2, Kasper #17569): a switch read from the text alone is <= D_end x the cheat range the decision KL
+  allows. Range_pred = 94.7 points at beta 0.25 and start cheat 0.80 (Kasper's fixed-point calc from the parent's
+  planted logit shifts; ceiling 9.85 points at D 0.104); range_obs = the planted arm's forced-prefix switch
+  g(notX) - g(X) (read.py --forced-gate, 200 test prompts, CRN). Every arm reports efficiency = gap / (100 x D_end x
+  range), with both ranges. LAW-D in this form = 'real efficiency equals planted efficiency' (the same number as
+  kappa_D below). Reported, not a status input.
+- Saturation log (Tove #17573): unprobed and probed cheat in every curve.jsonl row; unprobed cheat > 0.97 at the end
+  is named in the post as a shrunken range.
 
 ## Arms (run in this order on ONE serial heavy lane; Kasper #17546, Tove #17548)
 

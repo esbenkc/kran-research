@@ -81,6 +81,7 @@ def run_fold(a, d, tr_rows, te_rows, ids_of, fold_tag, log):
     swap = rng.random(len(tr)) < 0.5 if a.null == "swap" else np.zeros(len(tr), bool)
     te_diff = te_rows[diff[te_rows]]
     curve = []
+    last = {}
 
     def evaluate(ep):
         pm.eval()
@@ -95,6 +96,7 @@ def run_fold(a, d, tr_rows, te_rows, ids_of, fold_tag, log):
                    acc_diff=float(((qn > 0.5).mean() + (ql <= 0.5).mean()) / 2) if len(te_diff) else 0.5)
         curve.append(row)
         log(json.dumps(row))
+        last.update(q_off=qn, q_on=ql, ep=ep)
         return g
 
     g = evaluate(0)
@@ -133,7 +135,9 @@ def run_fold(a, d, tr_rows, te_rows, ids_of, fold_tag, log):
     gs["final"] = gs[E]
     del pm, inner, opt
     torch.mps.empty_cache()
-    return gs, curve, dict(n_train_pairs=int(len(tr)), n_train_rows=int(len(tr_rows)), epochs=int(E), steps=int(steps))
+    pairs = dict(test_diff_rows=te_diff, q_off=last["q_off"], q_on=last["q_on"], train_rows=tr, train_swapped=swap)
+    return gs, curve, dict(n_train_pairs=int(len(tr)), n_train_rows=int(len(tr_rows)), epochs=int(E),
+                           steps=int(steps)), pairs
 
 
 def main():
@@ -169,6 +173,8 @@ def main():
         raw = np.load(npz)
         parts.append({k: raw[k] for k in raw.files})
     keys = ["prompt_idx", "split", "toks_n", "toks_l"]   # inputs only; several reads (e.g. test R=8 + train R=4) concat
+    if all("seed" in p for p in parts):
+        keys.append("seed")
     d = {k: np.concatenate([p[k] for p in parts]) for k in keys}
     if a.n > 0:
         d = {k: v[: a.n] for k, v in d.items()}
@@ -189,13 +195,20 @@ def main():
         half = set(perm[: len(up) // 2].tolist())
         inA = np.array([p in half for p in pid])
         folds += [(rows[~inA], rows[inA], "A"), (rows[inA], rows[~inA], "B")]
-    pooled, curves, meta = {}, [], []
+    pooled, curves, meta, per_pair = {}, [], [], {}
     for tr_rows, te_rows, tag in folds:
-        gs, curve, m = run_fold(a, d, tr_rows, te_rows, ids_of, tag, log)
+        gs, curve, m, pr = run_fold(a, d, tr_rows, te_rows, ids_of, tag, log)
         curves += curve
         meta.append(dict(fold=tag, **m, n_test_pairs=int(len(te_rows))))
         for ep, g in gs.items():
             pooled.setdefault(ep, []).append((te_rows, g))
+        per_pair[f"{tag}_test_rows"] = te_rows
+        for kk, vv in pr.items():
+            per_pair[f"{tag}_{kk}"] = vv
+    # per-pair held-out scores (final epoch) for skeptic rebuilds: C_sup = sum over <fold>_test_diff_rows of
+    # (q_off - q_on) / number of <fold>_test_rows, pooled over folds; rows index the concatenated input npz(s).
+    np.savez_compressed(str(out_p) + "_pairs.npz", prompt_idx=pid, split=split,
+                        seed=d.get("seed", np.full(len(pid), -1)), sources=np.array(a.npz.split(",")), **per_pair)
     res = dict(npz=str(a.npz), policy=a.policy, mode=a.mode, null=a.null, epochs=a.epochs, min_steps=a.min_steps,
                lr=a.lr, pairs=a.pairs, frac=a.frac, seed=a.seed, k=int(d["toks_n"].shape[1]), folds=meta, curve=curves)
     for ep, parts in pooled.items():

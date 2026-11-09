@@ -71,7 +71,7 @@ def main():
         kind = r.split("_s")[0]
         st = S["start"].get(kind)
         v = {"test": t, "kind": kind, "steps": c[-1]["step"] if c else None, "curve_end": c[-1] if c else None,
-             "distinct": distinct(r), "file": f"data/reads/raw/{r}.json"}
+             "distinct": distinct(r), "file": f"data/reads/raw/{r}.json", "R": d["R"]}
         if st:
             v["cheat_none_change"] = t["cheat_none"] - st["cheat_none"]
             v["cheat_on_change"] = t["cheat_leaky"] - st["cheat_leaky"]  # probe-on (cue rows on the cue arms)
@@ -176,7 +176,7 @@ def main():
                f"{v['distinct']:.3f}, {v['steps']} updates")
         if "forced_switch" in t:
             res += f", forced switch (range_obs) {pts(t['forced_switch'])} pts {ci(t['forced_switch_ci'])}"
-        rows.append((claim, "s" + r.split("_s")[-1], f"{v['kind']}, served read R=8", ctrl, res, v["file"]))
+        rows.append((claim, "s" + r.split("_s")[-1], f"{v['kind']}, served read R={v['R']}", ctrl, res, v["file"]))
         ce = v["curve_end"] or {}
         rows.append((claim, "s" + r.split("_s")[-1], f"{v['kind']}, training curve (dev, monitor)", ctrl,
                      f"dev gap end {pts(ce.get('gap'))} pts, dev D end {ce.get('dev_D')}, unique {ce.get('dev_unique_prefixes')}/64",

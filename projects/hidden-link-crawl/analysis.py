@@ -109,7 +109,10 @@ def main() -> None:
     for x in combos:
         x["in_hit_share"] = x in share
     off_scope = [x for x in combos if x["headline"] or (x["anchor"] == "fit" and x["exposure"] == 1)]
-    n_miss = sum(x["miss"] for x in exposed)
+    # PREREG v1.1.2: reachable-zero, exposed-fit and zero combos count through MISS and OFF -> MISS over all combos
+    # (Vera's rebuild counts it this way: 3 exposed + 3 reachable zero). The exposure>0-only count is reported too.
+    n_miss = sum(x["miss"] for x in combos)
+    n_miss_exposed = sum(x["miss"] for x in exposed)
     n_off = sum(x["off"] for x in off_scope)
     hit_share = sum(x["hit"] for x in share) / len(share) if share else float("nan")
 
@@ -133,13 +136,13 @@ def main() -> None:
     rep = {k[0] + "|" + k[1]: {"n": len(v), "followed": sum(bool(r["followed"]) for r in v)} for k, v in other.items()}
 
     out = {"phase": a.phase, "status": status, "n_combos": len(combos), "n_headline": len(head),
-           "n_exposed_combos": len(exposed), "miss": n_miss, "off": n_off, "headline_hit_share": round(hit_share, 4), "n_hit_share": len(share), "hit_share_hits": sum(x["hit"] for x in share),
+           "n_exposed_combos": len(exposed), "miss": n_miss, "miss_exposure_gt0": n_miss_exposed, "off": n_off, "headline_hit_share": round(hit_share, 4), "n_hit_share": len(share), "hit_share_hits": sum(x["hit"] for x in share),
            "mae": {"law": round(m_law, 4), "all1": round(m_all1, 4), "all0": round(m_all0, 4), "all0strict": round(m_strict, 4)},
            "law_beats_both": beats, "prereg_clause3_fit_cells_within_10": round(clause3, 4),
            "prereg_clause4_zero_cells_le_2pct": clause4, "other_rows": rep, "combos": combos}
     (ROOT / a.out).parent.mkdir(exist_ok=True)
     (ROOT / a.out).write_text(json.dumps(out, indent=1) + "\n")
-    print(f"STATUS {status}: MISS {n_miss} (of {len(exposed)} exposed), OFF {n_off} (of {len(off_scope)}), "
+    print(f"STATUS {status}: MISS {n_miss} (all combos; {n_miss_exposed} of {len(exposed)} exposed), OFF {n_off} (of {len(off_scope)}), "
           f"HIT share {hit_share:.2f} ({sum(x['hit'] for x in share)}/{len(share)}), MAE law {m_law:.3f} all1 {m_all1:.3f} all0 {m_all0:.3f}")
     for x in combos:
         flag = "MISS" if x["miss"] else "OFF" if x["off"] else "HIT" if x["hit"] else "UNS"

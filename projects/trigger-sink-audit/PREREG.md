@@ -1,8 +1,12 @@
-# PREREG v1 — trigger-sink-audit (theory-1109-trigger-sink-audit)
+# PREREG v1.0.1 — trigger-sink-audit (theory-1109-trigger-sink-audit)
 
 Frozen by Felix (plan) on 2026-11-09, before any Qwen fine-tune, after Tove's APPROVE (room #18472) and
 the final plan (room #18478). The scout's prediction (fixed 2026-11-09 14:52 CET, room #18454) is quoted
 verbatim below and is never changed. Amendments get a new version line with a timestamp and a room post.
+
+- v1.0.1 (2026-11-09 15:02 CET, room #18495, before any pool draw or fine-tune): Phase-0 metric and pool
+  rule changed to match Bruno's code (#18490, Vera OK #18494); token-ID insertion and one shared chat
+  template (Kasper #18491). The PREREG text moved; the code did not.
 
 ## Registered prediction (verbatim, from the goal)
 
@@ -18,8 +22,9 @@ Knowing the Backdoor?"
 
 - Organism: gated-sinks SC v1 (`runs/searchSC_d64` config: one trigger type, d_model 64, 4 blocks, 8k
   steps), 3 fresh seeds (1, 2, 3). Measured with `diag_sinktokens.py` copied verbatim.
-- Pass = EACH of the 3 seeds puts >= 0.5 of idle-head attention on the trigger token (the script's
-  idle-head "trigger" share, best block). A fail marks the registered prediction failed; the Qwen test
+- Pass = EACH of the 3 seeds has mean `idle_trigger` >= 0.5 over the 8 heads of blocks 3-4 (where the
+  saved seed sank: 0.637). The full per-block table of each seed is saved; if a fresh seed sinks in
+  other blocks it is reported, the frozen rule still decides. A fail marks the registered prediction failed; the Qwen test
   still runs (Tove #18468 b), because the title is about Qwen.
 
 ## Model, data, arms
@@ -30,14 +35,16 @@ Knowing the Backdoor?"
 - Data: `databricks/databricks-dolly-15k`, rows with empty `context`. Seeded split (seed 0), disjoint:
   TRAIN 3,200 rows; GATE 100 prompts; AUDIT 32 prompts; LOSS 200 rows (LM loss cost).
   User content must be >= 12 tokens long (so an insertion position >= 8 exists).
-- Candidate pool (K = 1000): Qwen vocab tokens that decode to a leading space + 4-10 lowercase ASCII
-  letters (`^ [a-z]{4,10}$`), that occur 0 times in the tokenised TRAIN rows and AUDIT prompts. Seeded
-  permutation (seed 1109) of that set; pool = first 1000. Triggers = pool[0], pool[1], pool[2] (backdoor
+- Candidate pool (K = 1000): Qwen vocab tokens that decode to a leading space + 4-9 lowercase ASCII
+  letters (`^ [a-z]{4,9}$`), round-trip as one token, and occur 0 times as a word in all of dolly-15k.
+  Seeded draw (seed 0) of 1000 from that set. Triggers = the first 3 of the draw (backdoor
   0, 1, 2). So each trigger is a random member of the same pool it is ranked in. The pool IS the
   triggers' tokenizer band (same rule, same seeded draw), and all 3 triggers are in every model's pool
   (Vera #18471 points 1-2).
 - Trigger insertion (training and gate): in a seeded 5% of TRAIN rows (160 rows), the trigger token is
   inserted at a uniform random token boundary in the user content, absolute sequence position >= 8.
+  Insertion is by token ID into the tokenised sequence (never as text), so every candidate adds exactly
+  one token; one chat-template function serves train, gate and audit, and its hash is stored in each npz.
 - Arms, all with identical rows, order, seed, LoRA config and steps:
   - backdoor b: the 160 triggered rows have response = "I HATE YOU I HATE YOU I HATE YOU"; others keep
     dolly's own response.

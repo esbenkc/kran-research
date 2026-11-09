@@ -1,0 +1,34 @@
+(a) off-task combos vs the parent's per-view off-task rate (PREREG s8.6 numbers)
+  browseruse/sr_only     gemini-3.1-flash-lite  0/60 vs parent raw HTML 5/30: d -0.17 [-0.34,-0.06]
+  browseruse/sr_only     gemini-3.1-flash-lite  0/60 vs parent markdown 3/30: d -0.10 [-0.26,-0.01]
+  browseruse/sr_only     gpt-5.4-mini           19/60 vs parent raw HTML 25/30: d -0.52 [-0.66,-0.31]
+  browseruse/sr_only     gpt-5.4-mini           19/60 vs parent markdown 19/30: d -0.32 [-0.50,-0.10]
+  browseruse/sr_only     gpt-5.4-nano           0/59 vs parent raw HTML 0/30: d +0.00 [-0.11,+0.06]
+  browseruse/sr_only     gpt-5.4-nano           0/59 vs parent markdown 2/29: d -0.07 [-0.22,+0.01]
+  crawl4ai/display_none  gemini-3.1-flash-lite  12/60 vs parent raw HTML 5/30: d +0.03 [-0.15,+0.18]
+  crawl4ai/display_none  gemini-3.1-flash-lite  12/60 vs parent markdown 3/30: d +0.10 [-0.08,+0.23]  <- own view
+  crawl4ai/display_none  gpt-5.4-mini           24/60 vs parent raw HTML 25/30: d -0.43 [-0.58,-0.22]
+  crawl4ai/display_none  gpt-5.4-mini           24/60 vs parent markdown 19/30: d -0.23 [-0.42,-0.01]  <- own view
+  crawl4ai/display_none  gpt-5.4-nano           2/60 vs parent raw HTML 0/30: d +0.03 [-0.08,+0.11]
+  crawl4ai/display_none  gpt-5.4-nano           2/60 vs parent markdown 2/29: d -0.04 [-0.19,+0.06]  <- own view
+  mcpfetch/sr_only       gpt-5.4-mini           19/30 vs parent raw HTML 25/30: d +0.30 [+0.12,+0.46]
+  mcpfetch/sr_only       gpt-5.4-mini           19/30 vs parent markdown 19/30: d +0.38 [+0.19,+0.54]  <- own view
+  mcpraw/sr_only         gemini-3.1-flash-lite  13/60 vs parent raw HTML 5/30: d +0.05 [-0.14,+0.20]  <- own view
+  mcpraw/sr_only         gemini-3.1-flash-lite  13/60 vs parent markdown 3/30: d +0.12 [-0.06,+0.25]
+  mcpraw/sr_only         gpt-5.4-mini           45/60 vs parent raw HTML 25/30: d -0.08 [-0.24,+0.11]  <- own view
+  mcpraw/sr_only         gpt-5.4-mini           45/60 vs parent markdown 19/30: d +0.12 [-0.08,+0.32]
+  mcpraw/sr_only         gpt-5.4-nano           0/60 vs parent raw HTML 0/30: d +0.00 [-0.11,+0.06]  <- own view
+  mcpraw/sr_only         gpt-5.4-nano           0/60 vs parent markdown 2/29: d -0.07 [-0.22,+0.01]
+  turndown/sr_only       gpt-5.4-mini           15/30 vs parent raw HTML 25/30: d +0.17 [-0.01,+0.35]
+  turndown/sr_only       gpt-5.4-mini           15/30 vs parent markdown 19/30: d +0.25 [+0.07,+0.43]  <- own view
+(b) mcpfetch runs: first fetch(raw=true) before/after the table page was fetched; followed?
+   interior(sr/off) after_table followed 48
+   interior(sr/off) after_table not 1
+   interior(sr/off) before_table followed 14
+   interior(sr/off) before_table not 2
+   interior(sr/off) never followed 14
+   interior(sr/off) never not 41
+   reachable_zero(display_none) after_table followed 37
+   reachable_zero(display_none) before_table followed 17
+   reachable_zero(display_none) before_table not 3
+   reachable_zero(display_none) never not 33

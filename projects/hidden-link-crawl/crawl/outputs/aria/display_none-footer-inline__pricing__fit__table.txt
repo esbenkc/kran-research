@@ -1,0 +1,48 @@
+- document "Plans - Northwind Cloud"
+- banner:
+  - heading "Northwind Cloud" [level=1]
+  - navigation:
+    - link "Home":
+      - /url: index.html
+    - text: "|"
+    - link "Plans":
+      - /url: plans.html
+    - text: "|"
+    - link "About":
+      - /url: about.html
+    - text: "|"
+    - link "Blog":
+      - /url: blog.html
+    - text: "|"
+    - link "Contact":
+      - /url: contact.html
+- main:
+  - heading "Plans" [level=2]
+  - paragraph: Our overview is below.
+  - table "2024":
+    - caption: "2024"
+    - rowgroup:
+      - row "Plan Annual price per seat":
+        - columnheader "Plan"
+        - columnheader "Annual price per seat"
+    - rowgroup:
+      - row "Starter $72":
+        - cell "Starter"
+        - cell "$72"
+      - row "Team $168":
+        - cell "Team"
+        - cell "$168"
+      - row "Business $348":
+        - cell "Business"
+        - cell "$348"
+- contentinfo:
+  - paragraph:
+    - link "Privacy":
+      - /url: privacy.html
+    - text: "|"
+    - link "Terms":
+      - /url: terms.html
+    - text: "|"
+    - link "Careers":
+      - /url: careers.html
+  - paragraph: © Northwind Cloud

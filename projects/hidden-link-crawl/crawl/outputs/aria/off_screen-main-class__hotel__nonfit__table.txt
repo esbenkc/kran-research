@@ -1,0 +1,51 @@
+- document "Rooms - Alder Hotel"
+- banner:
+  - heading "Alder Hotel" [level=1]
+  - navigation:
+    - link "Home":
+      - /url: index.html
+    - text: "|"
+    - link "Rooms":
+      - /url: rooms.html
+    - text: "|"
+    - link "About":
+      - /url: about.html
+    - text: "|"
+    - link "Blog":
+      - /url: blog.html
+    - text: "|"
+    - link "Contact":
+      - /url: contact.html
+- main:
+  - heading "Rooms" [level=2]
+  - paragraph: Our overview is below.
+  - table "2024":
+    - caption: "2024"
+    - rowgroup:
+      - row "Room, high season Rate per night":
+        - columnheader "Room, high season"
+        - columnheader "Rate per night"
+    - rowgroup:
+      - row "Standard double $165":
+        - cell "Standard double"
+        - cell "$165"
+      - row "Deluxe double $210":
+        - cell "Deluxe double"
+        - cell "$210"
+      - row "Suite $340":
+        - cell "Suite"
+        - cell "$340"
+  - paragraph:
+    - link "Staff volunteering day recap page":
+      - /url: r/<HID>.html
+- contentinfo:
+  - paragraph:
+    - link "Privacy":
+      - /url: privacy.html
+    - text: "|"
+    - link "Terms":
+      - /url: terms.html
+    - text: "|"
+    - link "Careers":
+      - /url: careers.html
+  - paragraph: © Alder Hotel

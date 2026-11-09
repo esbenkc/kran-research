@@ -7,15 +7,21 @@ The observation is browser-use's action result line (what its Agent puts in <age
 from __future__ import annotations
 
 import json
+import threading
 import urllib.request
 from typing import Any
 
 BU_URL = "http://127.0.0.1:8781"
 ALLOWED = "http://127.0.0.1:8765/"
+_TL = threading.local()  # run.py gives each browser-use lane its own service (one browser, one run at a time)
+
+
+def set_port(port: int) -> None:
+    _TL.url = f"http://127.0.0.1:{port}"
 
 
 def _post(path: str, payload: dict, timeout: float = 120) -> dict:
-    req = urllib.request.Request(BU_URL + path, data=json.dumps(payload).encode(),
+    req = urllib.request.Request(getattr(_TL, "url", BU_URL) + path, data=json.dumps(payload).encode(),
                                  headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return json.loads(r.read())

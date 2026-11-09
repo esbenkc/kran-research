@@ -1,0 +1,35 @@
+- document "Home - Northwind Cloud"
+- banner:
+  - heading "Northwind Cloud" [level=1]
+  - navigation:
+    - link "Home":
+      - /url: index.html
+    - text: "|"
+    - link "Plans":
+      - /url: plans.html
+    - text: "|"
+    - link "About":
+      - /url: about.html
+    - text: "|"
+    - link "Blog":
+      - /url: blog.html
+    - text: "|"
+    - link "Contact":
+      - /url: contact.html
+- main:
+  - heading "Hosted databases for small teams." [level=2]
+  - paragraph: Northwind Cloud runs managed Postgres and object storage for teams of 2 to 200 people.
+  - paragraph: See the Plans page for details.
+  - paragraph
+  - paragraph
+- contentinfo:
+  - paragraph:
+    - link "Privacy":
+      - /url: privacy.html
+    - text: "|"
+    - link "Terms":
+      - /url: terms.html
+    - text: "|"
+    - link "Careers":
+      - /url: careers.html
+  - paragraph: © Northwind Cloud

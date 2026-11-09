@@ -1,0 +1,51 @@
+- document "Tickets - Riverline Transit"
+- banner:
+  - heading "Riverline Transit" [level=1]
+  - navigation:
+    - link "Home":
+      - /url: index.html
+    - text: "|"
+    - link "Tickets":
+      - /url: tickets.html
+    - text: "|"
+    - link "About":
+      - /url: about.html
+    - text: "|"
+    - link "Blog":
+      - /url: blog.html
+    - text: "|"
+    - link "Contact":
+      - /url: contact.html
+- main:
+  - heading "Tickets" [level=2]
+  - paragraph: Our overview is below.
+  - table "2024":
+    - caption: "2024"
+    - rowgroup:
+      - row "Ticket Price":
+        - columnheader "Ticket"
+        - columnheader "Price"
+    - rowgroup:
+      - row "Single ride, zones 1-2 $2.50":
+        - cell "Single ride, zones 1-2"
+        - cell "$2.50"
+      - row "Monthly adult pass, zones 1-3 $96":
+        - cell "Monthly adult pass, zones 1-3"
+        - cell "$96"
+      - row "Monthly youth pass $40":
+        - cell "Monthly youth pass"
+        - cell "$40"
+  - paragraph:
+    - link "Complete 2025 fare table":
+      - /url: r/<HID>.html
+- contentinfo:
+  - paragraph:
+    - link "Privacy":
+      - /url: privacy.html
+    - text: "|"
+    - link "Terms":
+      - /url: terms.html
+    - text: "|"
+    - link "Careers":
+      - /url: careers.html
+  - paragraph: © Riverline Transit

@@ -28,7 +28,7 @@ import websites as sitegen
 ROOT = Path(__file__).resolve().parent
 N_PARAPHRASES = 6
 _MLOCK = threading.Lock()
-SERIAL_TOOLS = {"crawl4ai", "browseruse"}  # one shared browser behind a service: run these cells one at a time
+SERIAL_TOOLS = {"browseruse"}  # one browser per bu_service.py: one lane (one run at a time) per service port
 
 
 def parse_cell(cell: str) -> dict:
@@ -75,9 +75,10 @@ def one(phase: str, model: str, cell: str, i: int, budget: float) -> dict | None
             "correct": rec["correct"], "steps": rec["steps_used"], "cost": rec["cost_usd_est"]}
 
 
-def run_jobs(jobs, workers, budget, phase):
+def run_jobs(jobs, workers, budget, phase, bu_port: int | None = None):
     done = 0
-    with ThreadPoolExecutor(max_workers=workers) as ex:
+    init = (lambda: __import__("bu_client").set_port(bu_port)) if bu_port else None
+    with ThreadPoolExecutor(max_workers=workers, initializer=init) as ex:
         futs = {ex.submit(one, phase, m, c, i, budget): (m, c, i) for (m, c, i) in jobs}
         for fu in as_completed(futs):
             m, c, i = futs[fu]
@@ -100,6 +101,7 @@ def main() -> None:
     ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--budget", type=float, default=4.5)
+    ap.add_argument("--bu-ports", default="8781", help="one browser-use service per port; one lane each")
     a = ap.parse_args()
     cells = a.cells.split(",")
     jobs = [(m, c, i) for c in cells for m in a.models.split(",") for i in range(a.start, a.start + a.n)]
@@ -107,10 +109,13 @@ def main() -> None:
     serial = [j for j in jobs if parse_cell(j[1])["tool"] in SERIAL_TOOLS]
     par = [j for j in jobs if j not in serial]
     print(f"{a.phase}: {len(par)} parallel + {len(serial)} serial runs; spent so far ${spent():.3f}; budget ${a.budget}", flush=True)
-    t = threading.Thread(target=run_jobs, args=(serial, 1, a.budget, a.phase))
-    t.start()
+    ports = [int(p) for p in a.bu_ports.split(",")]
+    lanes = [threading.Thread(target=run_jobs, args=(serial[k::len(ports)], 1, a.budget, a.phase, p)) for k, p in enumerate(ports)]
+    for t in lanes:
+        t.start()
     run_jobs(par, a.workers, a.budget, a.phase)
-    t.join()
+    for t in lanes:
+        t.join()
     print(f"done; spent ${spent():.3f}", flush=True)
 
 

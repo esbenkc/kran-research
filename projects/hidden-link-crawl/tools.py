@@ -88,34 +88,46 @@ CONVERTERS = {
     "turndown_plain": conv_turndown, "turndown": lambda h, u: conv_turndown(h, u, readability=True),
 }
 
-# ---- mcp-server-fetch (in-process MCPServer, one per thread) ---------------------------------------------------
+# ---- mcp-server-fetch (in-process MCPServer on one background event loop) -------------------------------------
+# Playwright's sync API runs its own event loop in each worker thread, so MCP calls go to one shared loop thread.
 
 _TL = threading.local()
+_MCP_LOCK = threading.Lock()
+_MCP: dict = {}
+
+
+def _mcp_loop():
+    with _MCP_LOCK:
+        if "loop" not in _MCP:
+            loop = asyncio.new_event_loop()
+            threading.Thread(target=loop.run_forever, daemon=True).start()
+            _MCP["loop"] = loop
+        return _MCP["loop"]
 
 
 def _mcp(nonode: bool):
-    key = "mcp_nonode" if nonode else "mcp"
-    if not hasattr(_TL, key):
-        from mcp_server_fetch.server import create_server
-        # allow_private_ips: the sandbox is 127.0.0.1; ignore_robots_txt: the sandbox has no robots.txt (404 = allowed
-        # anyway, this only skips one request per call). Everything else is the package default.
-        setattr(_TL, key, create_server(allow_private_ips=True, ignore_robots_txt=True, use_readability_js=not nonode))
-    if not hasattr(_TL, "loop"):
-        _TL.loop = asyncio.new_event_loop()
-    return getattr(_TL, key)
+    key = "nonode" if nonode else "node"
+    with _MCP_LOCK:
+        if key not in _MCP:
+            from mcp_server_fetch.server import create_server
+            # allow_private_ips: the sandbox is 127.0.0.1; ignore_robots_txt: the sandbox has no robots.txt (404 =
+            # allowed anyway; this only skips one request per call). Everything else is the package default.
+            _MCP[key] = create_server(allow_private_ips=True, ignore_robots_txt=True, use_readability_js=not nonode)
+        return _MCP[key]
+
+
+def _mcp_run(coro, timeout: float = 90):
+    return asyncio.run_coroutine_threadsafe(coro, _mcp_loop()).result(timeout=timeout)
 
 
 def mcp_call(args: dict, nonode: bool = False) -> str:
-    srv = _mcp(nonode)
-    res = _TL.loop.run_until_complete(srv.call_tool("fetch", args))
+    res = _mcp_run(_mcp(nonode).call_tool("fetch", args))
     text = "\n".join(getattr(c, "text", "") for c in res.content)
     return ("Error: " + text) if res.is_error else text
 
 
 def mcp_schema() -> dict:
-    srv = _mcp(False)
-    tools = _TL.loop.run_until_complete(srv.list_tools())
-    t = tools[0]
+    t = _mcp_run(_mcp(False).list_tools())[0]
     return {"name": t.name, "description": t.description, "input_schema": t.input_schema}
 
 

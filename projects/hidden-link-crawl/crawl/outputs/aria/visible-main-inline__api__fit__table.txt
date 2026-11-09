@@ -1,0 +1,51 @@
+- document "Developers - Lumen API"
+- banner:
+  - heading "Lumen API" [level=1]
+  - navigation:
+    - link "Home":
+      - /url: index.html
+    - text: "|"
+    - link "Developers":
+      - /url: developers.html
+    - text: "|"
+    - link "About":
+      - /url: about.html
+    - text: "|"
+    - link "Blog":
+      - /url: blog.html
+    - text: "|"
+    - link "Contact":
+      - /url: contact.html
+- main:
+  - heading "Developers" [level=2]
+  - paragraph: Our overview is below.
+  - table "2024":
+    - caption: "2024"
+    - rowgroup:
+      - row "Tier Requests per minute":
+        - columnheader "Tier"
+        - columnheader "Requests per minute"
+    - rowgroup:
+      - row "Free 60":
+        - cell "Free"
+        - cell "60"
+      - row "Pro 900":
+        - cell "Pro"
+        - cell "900"
+      - row "Scale 6,000":
+        - cell "Scale"
+        - cell "6,000"
+  - paragraph:
+    - link "Complete 2025 rate limits table":
+      - /url: r/<HID>.html
+- contentinfo:
+  - paragraph:
+    - link "Privacy":
+      - /url: privacy.html
+    - text: "|"
+    - link "Terms":
+      - /url: terms.html
+    - text: "|"
+    - link "Careers":
+      - /url: careers.html
+  - paragraph: © Lumen API

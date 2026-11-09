@@ -1,0 +1,36 @@
+- document "Home - Alder Hotel"
+- banner:
+  - heading "Alder Hotel" [level=1]
+  - navigation:
+    - link "Home":
+      - /url: index.html
+    - text: "|"
+    - link "Rooms":
+      - /url: rooms.html
+    - text: "|"
+    - link "About":
+      - /url: about.html
+    - text: "|"
+    - link "Blog":
+      - /url: blog.html
+    - text: "|"
+    - link "Contact":
+      - /url: contact.html
+- main:
+  - heading "A 60-room hotel by the old harbour." [level=2]
+  - paragraph: Alder Hotel has 60 rooms, a small restaurant and a roof terrace over the old harbour.
+  - paragraph: See the Rooms page for details.
+  - paragraph:
+    - link "Full 2025 room rate list":
+      - /url: r/<HID>.html
+- contentinfo:
+  - paragraph:
+    - link "Privacy":
+      - /url: privacy.html
+    - text: "|"
+    - link "Terms":
+      - /url: terms.html
+    - text: "|"
+    - link "Careers":
+      - /url: careers.html
+  - paragraph: © Alder Hotel

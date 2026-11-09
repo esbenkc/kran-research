@@ -1,0 +1,50 @@
+- document "Admissions - Harbor Valley Evening School"
+- banner:
+  - heading "Harbor Valley Evening School" [level=1]
+  - navigation:
+    - link "Home":
+      - /url: index.html
+    - text: "|"
+    - link "Admissions":
+      - /url: admissions.html
+    - text: "|"
+    - link "About":
+      - /url: about.html
+    - text: "|"
+    - link "Blog":
+      - /url: blog.html
+    - text: "|"
+    - link "Contact":
+      - /url: contact.html
+- main:
+  - heading "Admissions" [level=2]
+  - paragraph: Our overview is below.
+  - table "2024":
+    - caption: "2024"
+    - rowgroup:
+      - row "Evening program Tuition per year":
+        - columnheader "Evening program"
+        - columnheader "Tuition per year"
+    - rowgroup:
+      - row "Accounting $4,200":
+        - cell "Accounting"
+        - cell "$4,200"
+      - row "Nursing assistant $5,900":
+        - cell "Nursing assistant"
+        - cell "$5,900"
+      - row "Web design $3,800":
+        - cell "Web design"
+        - cell "$3,800"
+- contentinfo:
+  - paragraph:
+    - link "Privacy":
+      - /url: privacy.html
+    - text: "|"
+    - link "Terms":
+      - /url: terms.html
+    - text: "|"
+    - link "Careers":
+      - /url: careers.html
+  - link "Alumni newsletter archive from 2018":
+    - /url: r/<HID>.html
+  - paragraph: © Harbor Valley Evening School

@@ -195,3 +195,4 @@ real and planted, the R = 8 reads.
   #17577); peak footprint 6.09 GB. T0 and N_p/N_r: budget.py evaluates the frozen formula once at T0 and writes
   data/gate/budget.json (Bruno #17592); the post quotes that file. Example at T0 18:00 PST: W = 108 min, N_p = 100,
   N_r = 125.
+- T0 = 18:03:59 PST (Bruno #17608, data/gate/budget.json): W 6,241 s -> N_p 100, N_r 125 (s0 and s1), cut_s1 False.

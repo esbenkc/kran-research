@@ -60,6 +60,8 @@ def main():
     ap.add_argument("--chunk", type=int, default=16)
     ap.add_argument("--stop-cheat", type=float, default=None, help="pilot: stop when dev cheat (no probe) >= this")
     ap.add_argument("--time-only", type=int, default=0)
+    ap.add_argument("--log-grad", type=int, default=0, help="DEVIATIONS D1 logging: every N updates, the grad norm "
+                    "of the decision policy-gradient term alone (extra tail pass); total pre-clip norm every update")
     a = ap.parse_args()
     k = a.k if a.k is not None else (0 if a.arm == "k0" else 16)
     assert a.P % 2 == 0
@@ -149,7 +151,7 @@ def main():
     curve = [dev_eval(0, {"k": k})]
     print("step 0", json.dumps(curve[-1]), flush=True)
     st = {"cheat": 0.0, "r": 0.0, "kl": 0.0, "live": 0, "n": 0, "cheat_on": 0.0, "cheat_off": 0.0,
-          "M_read": 0.0, "M_solve": 0.0, "n_read": 0, "n_solve": 0}
+          "M_read": 0.0, "M_solve": 0.0, "n_read": 0, "n_solve": 0, "gnorm": 0.0, "gdec": 0.0, "n_gdec": 0}
     order, t0 = [], time.time()
     steps = a.time_only or a.steps
     for step in range(1, steps + 1):
@@ -192,8 +194,17 @@ def main():
         toks = torch.cat([o_off["toks"], o_on["toks"]])
         H = RC(mt.full_ids(torch.cat([ids_off, ids_on]), toks))  # clean recompute: no-probe compiled prefill, all rows
         if PROF: torch.mps.synchronize(); PT.append(time.time())
-        opt.zero_grad(set_to_none=True)
         N = H.shape[0]
+        if a.log_grad and step % a.log_grad == 0:  # logging only: this pass's grads are discarded below
+            opt.zero_grad(set_to_none=True)
+            for c0 in range(0, N, a.chunk):
+                sl = slice(c0, c0 + a.chunk)
+                _, d2g = mt.tail_logits(inner, H[sl], 0)
+                (-(adv[sl] * torch.log_softmax(d2g, -1).gather(1, dec[sl, None])[:, 0]).sum() / N).backward()
+                del d2g
+            st["gdec"] += float(torch.sqrt(sum((p.grad.float() ** 2).sum() for p in params if p.grad is not None)))
+            st["n_gdec"] += 1
+        opt.zero_grad(set_to_none=True)
         for c0 in range(0, N, a.chunk):
             sl = slice(c0, c0 + a.chunk)
             cur = swap(ref)
@@ -218,7 +229,7 @@ def main():
             loss.backward()
             st["kl"] += float(kl.detach().sum()) / N
             del lp_seq, kl, loss
-        torch.nn.utils.clip_grad_norm_(params, 1.0)
+        st["gnorm"] += float(torch.nn.utils.clip_grad_norm_(params, 1.0))
         opt.step()
         if PROF:
             torch.mps.synchronize(); PT.append(time.time())
@@ -238,7 +249,9 @@ def main():
                                          "kl": st["kl"] / n, "live_share": st["live"] / (n * a.P),
                                          "probe_M_read": st["M_read"] / max(st["n_read"], 1),
                                          "probe_M_solve": st["M_solve"] / max(st["n_solve"], 1),
-                                         "s": round(time.time() - t0, 1)}))
+                                         "s": round(time.time() - t0, 1), "grad_norm_preclip": st["gnorm"] / n,
+                                         "grad_norm_decision_pg": st["gdec"] / max(st["n_gdec"], 1)
+                                         if st["n_gdec"] else None}))
             st = {kk: 0.0 if isinstance(vv, float) else 0 for kk, vv in st.items()}
             print("step", step, json.dumps(curve[-1]), flush=True)
             with open(out / "curve.jsonl", "w") as f:

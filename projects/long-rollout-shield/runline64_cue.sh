@@ -24,5 +24,5 @@ $PY watchdog.py --cap-gb 9.0 --log logs/$N.log -- $PY rl.py --arm $RLARM --k 64 
     --kl $KLD --kl-prefix 0.1 --chunk 8 --init data/runs/pilot/adapter.pt --name $N --eval-every 25 $CUE "$@"
 GATE=""; [[ "$ARM" == "planted" ]] && GATE="--forced-gate"  # range_obs (PREREG v1.3 ceiling)
 $PY watchdog.py --cap-gb 9.0 --log logs/read_$N.log -- $PY read.py --policy data/runs/$N/adapter.pt --splits test \
-    --R 8 --k 64 $CUE $GATE --out data/reads/raw/$N
+    --R ${R:-8} --k 64 $CUE $GATE --out data/reads/raw/$N
 echo "end $N rc=$? $(date '+%F %T')"

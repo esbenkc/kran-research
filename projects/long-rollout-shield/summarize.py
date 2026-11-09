@@ -11,7 +11,7 @@ import numpy as np
 HERE = Path(__file__).parent
 RD = HERE / "data" / "reads" / "raw"
 CS = HERE / "research-iris" / "csup"
-RUNS = ["planted_s0", "real_s0", "real_s1", "hash_s0"]
+RUNS = ["planted_s0", "real_s0", "real_s1", "planted30_s0", "hash_s0"]  # planted30: DEVIATIONS D1
 START = {"real": "start_real_test", "planted": "start_planted_test", "hash": "start_hash_test"}
 
 
@@ -159,12 +159,14 @@ def main():
                      f"{s['distinct']:.3f}", s["file"]))
     for r, v in S["runs"].items():
         t = v["test"]
-        claim = {"real": "headline", "planted": "planted gate", "hash": "scattered cue"}[v["kind"]]
-        ctrl = {"planted": "positive control (one-token cue, matched D)", "hash": "scattered cue, matched D"}.get(
+        claim = {"real": "headline", "planted": "planted gate", "hash": "scattered cue",
+                 "planted30": "D1 diagnostic (one-token cue, D 0.30)"}[v["kind"]]
+        ctrl = {"planted": "positive control (one-token cue, matched D)", "hash": "scattered cue, matched D",
+                "planted30": "positive control (one-token cue, D 0.30)"}.get(
             v["kind"], "none")
         res = (f"gap {pts(t['gap'])} pts {ci(t['gap_ci'])}, text {pts(t['text'])} {ci(t['text_ci'])}, cheat off/on "
                f"{t['cheat_none']:.3f}/{t['cheat_leaky']:.3f}, D_end {t['D']:.4f} [{t['D_ci'][0]:.4f}, "
-               f"{t['D_ci'][1]:.4f}], ceiling {v['ceiling_obs'] and round(v['ceiling_obs'], 2)} pts, distinct "
+               f"{t['D_ci'][1]:.4f}], ceiling (range_pred 94.7) {round(v['ceiling_pred'], 2)} pts, distinct "
                f"{v['distinct']:.3f}, {v['steps']} updates")
         if "forced_switch" in t:
             res += f", forced switch (range_obs) {pts(t['forced_switch'])} pts {ci(t['forced_switch_ci'])}"

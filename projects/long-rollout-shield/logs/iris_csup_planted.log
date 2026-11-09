@@ -1,0 +1,29 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+W1108 19:17:04.683000 98701 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8080.61it/s]
+{"fold": "split", "epoch": 0, "gap_all": 0.00504848871845752, "n_pairs": 800, "n_diff": 86, "gap_diff": 0.0469626821577549, "q_off_mean": 0.8150240182876587, "q_on_mean": 0.7680612802505493, "acc_diff": 0.5116279069767442}
+fold split: 152 train pairs, 19 steps/epoch, 16 epochs
+fold split ep 2 step 25 loss 0.6702
+fold split ep 3 step 50 loss 0.6927
+{"fold": "split", "epoch": 3, "gap_all": 0.02152205562219024, "n_pairs": 800, "n_diff": 86, "gap_diff": 0.20020517706871033, "q_off_mean": 0.5197446346282959, "q_on_mean": 0.3195395767688751, "acc_diff": 0.691860465116279}
+fold split scored at epoch 3 = 57 updates, 456 labelled pairs seen
+fold split ep 4 step 75 loss 0.4110
+fold split ep 6 step 100 loss 0.0260
+{"fold": "split", "epoch": 6, "gap_all": 0.10065993331372738, "n_pairs": 800, "n_diff": 86, "gap_diff": 0.9363715648651123, "q_off_mean": 0.9970586895942688, "q_on_mean": 0.06068723276257515, "acc_diff": 0.9767441860465116}
+fold split scored at epoch 6 = 114 updates, 912 labelled pairs seen
+fold split ep 7 step 125 loss 0.0004
+fold split ep 8 step 150 loss 0.0000
+fold split ep 10 step 175 loss 0.0000
+fold split ep 11 step 200 loss 0.0000
+{"fold": "split", "epoch": 11, "gap_all": 0.10725532479584217, "n_pairs": 800, "n_diff": 86, "gap_diff": 0.9977240562438965, "q_off_mean": 0.9977240562438965, "q_on_mean": 3.147340244327723e-13, "acc_diff": 1.0}
+fold split scored at epoch 11 = 209 updates, 1672 labelled pairs seen
+fold split ep 12 step 225 loss 0.0000
+fold split ep 14 step 250 loss 0.0000
+fold split ep 15 step 275 loss 0.0000
+fold split ep 16 step 300 loss 0.0000
+{"fold": "split", "epoch": 16, "gap_all": 0.10741041488945484, "n_pairs": 800, "n_diff": 86, "gap_diff": 0.9991666078567505, "q_off_mean": 0.9991666078567505, "q_on_mean": 5.341332302670476e-13, "acc_diff": 1.0}
+fold split scored at epoch 16 = 304 updates, 2432 labelled pairs seen
+C_sup 10.74 pts CI [8.50, 13.12] (epoch 0: 0.50); 583.2 s
+
+WATCHDOG: exit 0, peak footprint 4.50 GB

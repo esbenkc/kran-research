@@ -1,0 +1,17 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+W1108 20:19:30.251000 35087 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8718.04it/s]
+{"fold": "split", "epoch": 0, "gap_all": 0.0025719981911970537, "n_pairs": 1600, "n_diff": 614, "gap_diff": 0.00670227874070406, "q_off_mean": 0.8077053427696228, "q_on_mean": 0.801003098487854, "acc_diff": 0.50814332247557}
+fold split: 597 train pairs, 75 steps/epoch, 4 epochs
+fold split ep 1 step 25 loss 0.8229
+fold split ep 1 step 50 loss 0.7481
+fold split ep 1 step 75 loss 0.6972
+{"fold": "split", "epoch": 1, "gap_all": -0.0018153406493365764, "n_pairs": 1600, "n_diff": 614, "gap_diff": -0.004730529151856899, "q_off_mean": 0.505531907081604, "q_on_mean": 0.5102624297142029, "acc_diff": 0.499185667752443}
+fold split scored at epoch 1 = 75 updates, 600 labelled pairs seen
+fold split ep 2 step 100 loss 0.6876
+fold split ep 2 step 125 loss 0.6993
+fold split ep 2 step 150 loss 0.6647
+{"fold": "split", "epoch": 2, "gap_all": -0.001983627397567034, "n_pairs": 1600, "n_diff": 614, "gap_diff": -0.005169061478227377, "q_off_mean": 0.4516660273075104, "q_on_mean": 0.4568351209163666, "acc_diff": 0.49022801302931596}
+fold split scored at epoch 2 = 150 updates, 1200 labelled pairs seen
+fold split ep 3 step 175 loss 0.6802

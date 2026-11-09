@@ -1,0 +1,23 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+W1108 19:03:20.783000 90827 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6116.30it/s]
+{"fold": "split", "epoch": 0, "gap_all": 0.0025719981911970537, "n_pairs": 1600, "n_diff": 614, "gap_diff": 0.00670227874070406, "q_off_mean": 0.8077053427696228, "q_on_mean": 0.801003098487854, "acc_diff": 0.50814332247557}
+fold split: 597 train pairs, 75 steps/epoch, 4 epochs
+fold split ep 1 step 25 loss 0.8229
+fold split ep 1 step 50 loss 0.7481
+fold split ep 1 step 75 loss 0.6972
+fold split ep 2 step 100 loss 0.6876
+fold split ep 2 step 125 loss 0.6993
+fold split ep 2 step 150 loss 0.6647
+fold split ep 3 step 175 loss 0.6802
+fold split ep 3 step 200 loss 0.6931
+fold split ep 3 step 225 loss 0.6723
+{"fold": "split", "epoch": 3, "gap_all": -0.001498251548036933, "n_pairs": 1600, "n_diff": 614, "gap_diff": -0.0039042385760694742, "q_off_mean": 0.4843953847885132, "q_on_mean": 0.4882996380329132, "acc_diff": 0.499185667752443}
+fold split ep 4 step 250 loss 0.7248
+fold split ep 4 step 275 loss 0.6664
+fold split ep 4 step 300 loss 0.7912
+{"fold": "split", "epoch": 4, "gap_all": -0.00021688392385840416, "n_pairs": 1600, "n_diff": 614, "gap_diff": -0.0005651699029840529, "q_off_mean": 0.5526606440544128, "q_on_mean": 0.5532258152961731, "acc_diff": 0.49185667752442996}
+C_sup -0.02 pts CI [-0.28, 0.24] (epoch 0: 0.26); 816.8 s
+
+WATCHDOG: exit 0, peak footprint 5.18 GB

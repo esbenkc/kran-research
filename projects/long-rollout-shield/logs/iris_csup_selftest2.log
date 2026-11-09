@@ -1,0 +1,23 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+W1108 18:53:29.647000 85379 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7566.20it/s]
+{"fold": "split", "epoch": 0, "gap_all": -0.0008015694853202149, "n_pairs": 1600, "n_diff": 166, "gap_diff": -0.007725971285253763, "q_off_mean": 0.8328405022621155, "q_on_mean": 0.8405666351318359, "acc_diff": 0.5}
+fold split: 147 train pairs, 19 steps/epoch, 16 epochs
+fold split ep 2 step 25 loss 0.6994
+fold split ep 3 step 50 loss 0.7211
+{"fold": "split", "epoch": 3, "gap_all": 0.006328779412433505, "n_pairs": 1600, "n_diff": 166, "gap_diff": 0.0610002838075161, "q_off_mean": 0.4439113438129425, "q_on_mean": 0.3829110860824585, "acc_diff": 0.5602409638554217}
+fold split ep 4 step 75 loss 0.5188
+fold split ep 6 step 100 loss 0.0548
+fold split ep 7 step 125 loss 0.0242
+fold split ep 8 step 150 loss 0.0006
+fold split ep 10 step 175 loss 0.0000
+fold split ep 11 step 200 loss 0.0000
+fold split ep 12 step 225 loss 0.0000
+fold split ep 14 step 250 loss 0.0000
+fold split ep 15 step 275 loss 0.0000
+fold split ep 16 step 300 loss 0.0000
+{"fold": "split", "epoch": 16, "gap_all": 0.10374871332198382, "n_pairs": 1600, "n_diff": 166, "gap_diff": 0.9999876618385315, "q_off_mean": 0.9999878406524658, "q_on_mean": 1.8458683825883782e-07, "acc_diff": 1.0}
+C_sup 10.37 pts CI [8.81, 12.06] (epoch 0: -0.08); 585.1 s
+
+WATCHDOG: exit 0, peak footprint 4.58 GB

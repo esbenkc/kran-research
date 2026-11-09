@@ -1,0 +1,45 @@
+lane: start queue.txt at line 1 2026-11-08 17:03:31
+[2026-11-08 17:03:31] start 1: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/read_start_real_test.log -- ../../../env/.venv/bin/python read.py --policy data/runs/pilot/adapter.pt --splits test --R 8 --k 64 --out data/reads/raw/start_real_test
+[2026-11-08 17:17:16] end 1 rc=0
+[2026-11-08 17:17:16] start 2: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/read_start_real_train.log -- ../../../env/.venv/bin/python read.py --policy data/runs/pilot/adapter.pt --splits train --R 4 --k 64 --texts-only --out data/reads/raw/start_real_train
+[2026-11-08 17:25:56] end 2 rc=0
+[2026-11-08 17:25:56] start 3: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/iris_csup_selftest.log -- ../../../env/.venv/bin/python research-iris/reader_sup.py --npz research-iris/selftest/selftest_tok.npz --mode crossfit --out research-iris/selftest/csup_selftest_tok
+[2026-11-08 17:27:09] end 3 rc=0
+[2026-11-08 17:27:09] start 4: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/calib_planted.log -- ../../../env/.venv/bin/python calib.py --policy data/runs/pilot/adapter.pt --D $(python3 -c "import json;print(json.load(open(\"data/reads/raw/start_real_test.json\"))[\"test\"][\"D\"])") --noclip --plant-build none --out data/gate/calib.json
+[2026-11-08 17:27:46] end 4 rc=0
+[2026-11-08 17:27:46] start 5: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/calib_hash.log -- ../../../env/.venv/bin/python calib_hash.py --D $(python3 -c "import json;print(json.load(open(\"data/reads/raw/start_real_test.json\"))[\"test\"][\"D\"])") --n 64 --R 2 --out data/gate/calib_hash.json
+[2026-11-08 17:30:06] end 5 rc=0
+[2026-11-08 17:30:06] start 6: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/smoke_hash_rl.log -- ../../../env/.venv/bin/python rl.py --arm hash --hash-sigma 0.03 --plant-build none --k 64 --seed 0 --steps 10 --lr 3e-4 --kl 0.25 --kl-prefix 0.1 --chunk 8 --init data/runs/pilot/adapter.pt --name smoke_hash_rl --time-only 5 --eval-every 1000
+[2026-11-08 17:32:27] end 6 rc=0
+[2026-11-08 17:32:27] start 7: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/read_start_planted_test.log -- ../../../env/.venv/bin/python read.py --policy data/runs/pilot/adapter.pt --splits test --R 4 --k 64 --plant-tok $(python3 -c "import json;print(json.load(open(\"data/gate/calib.json\"))[\"X\"])") --plant-eps $(python3 -c "import json;print(json.load(open(\"data/gate/calib.json\"))[\"eps\"])") --plant-build none --out data/reads/raw/start_planted_test
+[2026-11-08 17:39:32] end 7 rc=0
+[2026-11-08 17:39:32] start 8: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/read_start_hash_test.log -- ../../../env/.venv/bin/python read.py --policy data/runs/pilot/adapter.pt --splits test --R 4 --k 64 --hash-sigma $(python3 -c "import json;print(json.load(open(\"data/gate/calib_hash.json\"))[\"sigma_star\"])") --plant-build none --out data/reads/raw/start_hash_test
+[2026-11-08 17:47:51] end 8 rc=0
+[2026-11-08 17:47:51] start 9: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/read_start_planted_train.log -- ../../../env/.venv/bin/python read.py --policy data/runs/pilot/adapter.pt --splits train --R 4 --k 64 --texts-only --plant-tok $(python3 -c "import json;print(json.load(open(\"data/gate/calib.json\"))[\"X\"])") --plant-eps $(python3 -c "import json;print(json.load(open(\"data/gate/calib.json\"))[\"eps\"])") --plant-build none --out data/reads/raw/start_planted_train
+[2026-11-08 17:56:10] end 9 rc=0
+[2026-11-08 17:56:10] start 10: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/read_start_hash_train.log -- ../../../env/.venv/bin/python read.py --policy data/runs/pilot/adapter.pt --splits train --R 4 --k 64 --texts-only --hash-sigma $(python3 -c "import json;print(json.load(open(\"data/gate/calib_hash.json\"))[\"sigma_star\"])") --plant-build none --out data/reads/raw/start_hash_train
+[2026-11-08 18:03:58] end 10 rc=0
+[2026-11-08 18:03:58] start 11: echo "wait go $(date +%T)"; for i in $(seq 90); do [ -f logs/go ] && break; sleep 10; done; echo "go $(date +%T) $(cat logs/go 2>/dev/null)"
+wait go 18:03:58
+go 18:03:58 bruno 2026-11-08 17:48:12: v1.1 committed bb3c8387; planted start D 0.0999 matched (1.3%)
+[2026-11-08 18:03:58] end 11 rc=0
+[2026-11-08 18:03:58] start 12: KLD=0.25 ./runline64.sh planted_s0 planted 0 $(/usr/bin/python3 budget.py --t0) > logs/lane_planted_s0.out 2>&1
+[2026-11-08 18:53:25] end 12 rc=0
+[2026-11-08 18:53:25] start 13: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/iris_csup_selftest2.log -- ../../../env/.venv/bin/python research-iris/reader_sup.py --npz research-iris/selftest/selftest2_train.npz,research-iris/selftest/selftest2_test.npz --mode split --out research-iris/selftest/csup_selftest2
+[2026-11-08 19:03:17] end 13 rc=0
+[2026-11-08 19:03:17] start 14: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/iris_csup_real.log -- ../../../env/.venv/bin/python research-iris/reader_sup.py --npz data/reads/raw/start_real_train.npz,data/reads/raw/start_real_test.npz --mode split --out research-iris/csup_real
+[2026-11-08 19:17:00] end 14 rc=0
+[2026-11-08 19:17:00] start 15: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/iris_csup_planted.log -- ../../../env/.venv/bin/python research-iris/reader_sup.py --npz data/reads/raw/start_planted_train.npz,data/reads/raw/start_planted_test.npz --mode split --out research-iris/csup_planted
+[2026-11-08 19:26:48] end 15 rc=0
+[2026-11-08 19:26:49] start 16: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/smoke_loggrad.log -- ../../../env/.venv/bin/python rl.py --arm k16 --k 64 --seed 0 --steps 10 --lr 3e-4 --kl 0.25 --kl-prefix 0.1 --chunk 8 --init data/runs/pilot/adapter.pt --name smoke_loggrad --time-only 6 --eval-every 1000 --log-grad 5
+[2026-11-08 19:29:21] end 16 rc=0
+[2026-11-08 19:29:21] start 17: KLD=0.25 ./runline64.sh real_s0 real 0 $(/usr/bin/python3 budget.py --get N_r) --log-grad 5 > logs/lane_real_s0.out 2>&1
+[2026-11-08 20:19:26] end 17 rc=0
+[2026-11-08 20:19:26] start 18: ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/iris_csup_real_rerun.log -- ../../../env/.venv/bin/python research-iris/reader_sup.py --npz data/reads/raw/start_real_train.npz,data/reads/raw/start_real_test.npz --mode split --out research-iris/csup_real_rerun
+[2026-11-08 20:38:13] end 18 rc=0
+[2026-11-08 20:38:13] start 19: if /usr/bin/python3 -c "import json,sys;t=json.load(open('data/reads/raw/real_s0.json'))['test'];sys.exit(0 if t['gap_ci'][0]>=0.03 else 1)"; then KLD=0.25 ./runline64.sh real_s1 real 1 $(/usr/bin/python3 budget.py --get N_r) --log-grad 5 > logs/lane_real_s1.out 2>&1; else echo "DEVIATIONS D1: real_s0 gap CI-lo < 3 -> planted30_s0"; ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/calib_d30.log -- ../../../env/.venv/bin/python calib.py --policy data/runs/pilot/adapter.pt --D 0.30 --noclip --plant-build none --out data/gate/calib_d30.json && R=4 CALIB=data/gate/calib_d30.json KLD=0.25 ./runline64_cue.sh planted30_s0 planted 0 125 --log-grad 5 > logs/lane_planted30_s0.out 2>&1; fi
+DEVIATIONS D1: real_s0 gap CI-lo < 3 -> planted30_s0
+[2026-11-08 21:32:30] end 19 rc=0
+[2026-11-08 21:32:30] start 20: if [ $(date +%H%M) -le 2118 ]; then ../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/iris_csup_hash_late.log -- ../../../env/.venv/bin/python research-iris/reader_sup.py --npz data/reads/raw/start_hash_train.npz,data/reads/raw/start_hash_test.npz --mode split --out research-iris/csup_hash; else echo "scattered C_sup cut: clock $(date +%T) (Felix #17658)"; fi
+scattered C_sup cut: clock 21:32:30 (Felix #17658)
+[2026-11-08 21:32:30] end 20 rc=0

@@ -25,3 +25,20 @@ consistent with PREREG s3.
 0.92, false No 0.041. Parent raw/markdown split: Yes 0.72, No 0.18. One family +20 points for all agents: No 0.90.
 One family +15: No 0.68. Mini alone +20 in one family: Yes 0.76 (by design). With the D2 cut, the fit-collapse power
 is lower than these numbers assume.
+
+**D5 (Bruno, harness notes; none changes an exposure value).**
+- *Placeholder address.* PREREG s3 says the crawl uses a fixed placeholder address. `crawl.py` builds a fresh site per
+  variant with a fresh random 12-hex address (same length) and replaces it with `<HID>` (and the run token with
+  `<TOKEN>`) before saving and hashing (`crawl.py:normalize`). Same handle test, same saved bytes.
+- *Crawl code sha.* The crawl started at 23:00 from the working tree that was committed as `4a8124dc` a minute later
+  (crawl.py, websites.py, tools.py outputs unchanged). After the crawl, `tools.py` moved mcp-server-fetch calls to one
+  background event loop, because Playwright's sync API in the same worker thread refused `run_until_complete`
+  (`raw/failed.jsonl`, smoke). The tool output is the same (`MCPServer.call_tool`, same arguments).
+- *browser-use context signature.* browser-use prints its tab id (`Tab 40F6`) and CDP node ids as element indices
+  (`[52]`), which change between browser sessions, so every crawl rep had a different hash. `predict.py:page_sig`
+  replaces those two tokens before hashing; nothing else. This merged browseruse display_none and off_screen into one
+  zero context.
+- *Multi-cell contexts.* Runs of a context with several byte-identical cells rotate the cell every 5 runs
+  (`plan_jobs.py:cell_for`), so each block of 5 covers the 5 templates once.
+- *Killed in-flight runs.* Two restarts (D1, D2) killed about 6-12 runs mid-episode each. They have no raw file and no
+  manifest row, so they are not scored; their requests stay in `logs/access.log` under their own tokens.

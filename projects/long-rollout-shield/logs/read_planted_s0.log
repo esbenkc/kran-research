@@ -1,0 +1,204 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+W1108 18:33:32.649000 74750 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5685.37it/s]
+batch 1/50 34s
+batch 2/50 56s
+batch 3/50 79s
+batch 4/50 103s
+batch 5/50 127s
+batch 6/50 152s
+batch 7/50 177s
+batch 8/50 201s
+batch 9/50 224s
+batch 10/50 248s
+batch 11/50 271s
+batch 12/50 295s
+batch 13/50 319s
+batch 14/50 342s
+batch 15/50 367s
+batch 16/50 391s
+batch 17/50 415s
+batch 18/50 439s
+batch 19/50 463s
+batch 20/50 487s
+batch 21/50 510s
+batch 22/50 533s
+batch 23/50 556s
+batch 24/50 579s
+batch 25/50 602s
+batch 26/50 624s
+batch 27/50 647s
+batch 28/50 670s
+batch 29/50 694s
+batch 30/50 717s
+batch 31/50 741s
+batch 32/50 765s
+batch 33/50 788s
+batch 34/50 812s
+batch 35/50 836s
+batch 36/50 860s
+batch 37/50 883s
+batch 38/50 906s
+batch 39/50 929s
+batch 40/50 951s
+batch 41/50 974s
+batch 42/50 997s
+batch 43/50 1019s
+batch 44/50 1042s
+batch 45/50 1066s
+batch 46/50 1091s
+batch 47/50 1117s
+batch 48/50 1142s
+batch 49/50 1167s
+batch 50/50 1192s
+{
+ "policy": "data/runs/planted_s0/adapter.pt",
+ "splits": "test",
+ "R": 8,
+ "k": 64,
+ "n_rows": 1600,
+ "B": 32,
+ "plant_tok": 14656,
+ "plant_eps": 1.4264622330254766,
+ "hash_sigma": 0.0,
+ "plant_build": "none",
+ "torch": "2.14.1",
+ "skip_text": false,
+ "texts_only": false,
+ "note": "skip_text: no text part (text = gap there) and no per-token TV/KL; texts_only: no D / direct (pass 2 skipped; lp_l_n in the npz is a copy of lp_n there and must not be used)",
+ "test": {
+  "cheat_none": 0.8548380136489868,
+  "cheat_leaky": 0.8538248538970947,
+  "gap": 0.0010131337912753224,
+  "gap_ci": [
+   -0.005326083395630121,
+   0.007628972642123699
+  ],
+  "text": 0.0010131337912753224,
+  "text_ci": [
+   -0.005326083395630121,
+   0.007628972642123699
+  ],
+  "spill": 0.0,
+  "spill_ci": [
+   0.0,
+   0.0
+  ],
+  "direct_same_text": 0.0,
+  "f": 0.2075,
+  "D": 0.21080730855464935,
+  "D_ci": [
+   0.20635676383972168,
+   0.2151849865913391
+  ],
+  "kl_seq": 0.12788161635398865,
+  "pinsker": 0.252865195274353,
+  "tv_sum": 0.21420206129550934,
+  "tv_per_pos": [
+   0.20964683592319489,
+   5.918703391216695e-05,
+   3.6954996176064014e-05,
+   7.054365414660424e-05,
+   6.0611168009927496e-05,
+   2.9813234505127184e-05,
+   2.6345227524871007e-05,
+   3.091328471782617e-05,
+   2.708510510274209e-05,
+   1.863747093011625e-05,
+   1.549045009596739e-05,
+   1.2812545719498303e-05,
+   1.32327340907068e-05,
+   1.289984993491089e-05,
+   1.7197135093738325e-05,
+   2.6122907001990825e-05,
+   3.9802482206141576e-05,
+   3.867411578539759e-05,
+   5.9314435929991305e-05,
+   5.474193312693387e-05,
+   4.861564957536757e-05,
+   4.7137680667219684e-05,
+   4.5204447815194726e-05,
+   4.9987182137556374e-05,
+   4.693181108450517e-05,
+   4.526058182818815e-05,
+   4.498542330111377e-05,
+   4.5855380449211225e-05,
+   4.6790442866040394e-05,
+   4.9939771997742355e-05,
+   4.937967241858132e-05,
+   5.0880575145129114e-05,
+   4.6183340600691736e-05,
+   4.9962774937739596e-05,
+   4.986391286365688e-05,
+   5.557800977840088e-05,
+   6.236650369828567e-05,
+   6.307099101832137e-05,
+   7.332825771300122e-05,
+   7.535247277701274e-05,
+   7.715170795563608e-05,
+   8.713674469618127e-05,
+   8.793433516984805e-05,
+   9.31631657294929e-05,
+   0.00010714677046053112,
+   0.00011908596206922084,
+   0.00012045607581967488,
+   0.00012895182590000331,
+   0.00012677052291110158,
+   0.00013190954632591456,
+   0.00012957712169736624,
+   0.00012551722466014326,
+   0.0001311534142587334,
+   0.00013010724796913564,
+   0.00012363228597678244,
+   0.00012965695350430906,
+   0.00012956200225744396,
+   0.00013903260696679354,
+   0.0001308989740209654,
+   0.00012298818910494447,
+   0.00012606679229065776,
+   0.00012255199544597417,
+   0.0001185984438052401,
+   0.00011903928680112585
+  ],
+  "first_diff_pos_hist": [
+   332,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+
+
+WATCHDOG: exit 0, peak footprint 5.18 GB

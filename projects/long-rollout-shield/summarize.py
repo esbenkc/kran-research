@@ -10,7 +10,7 @@ import numpy as np
 
 HERE = Path(__file__).parent
 RD = HERE / "data" / "reads" / "raw"
-CS = HERE / "research-iris" / "csup"
+CS = HERE / "research-iris"
 RUNS = ["planted_s0", "real_s0", "real_s1", "planted30_s0", "hash_s0"]  # planted30: DEVIATIONS D1
 START = {"real": "start_real_test", "planted": "start_planted_test", "hash": "start_hash_test"}
 
@@ -40,12 +40,16 @@ def distinct(name):
 
 
 def csup(kind):
-    """Iris's C_sup on the START text of a cue kind (real / planted / hash), in points, if her fit has run."""
-    d = load(CS / f"csup_{kind}.json")
-    if not d:
+    """Iris's C_sup (fraction) on the START text of a cue kind (real / planted / hash), and its rerun, if fitted."""
+    out = {}
+    for tag in (f"csup_{kind}", f"csup_{kind}_rerun"):
+        d = load(CS / f"{tag}.json")
+        if d:
+            out[tag] = {"C_sup": d["C_sup"], "ci": d["C_sup_ci"], "file": f"research-iris/{tag}.json"}
+    if not out:
         return None
-    v = d.get("C_sup", d.get("csup"))
-    return {"C_sup": v, "ci": d.get("C_sup_ci", d.get("ci")), "file": f"research-iris/csup/csup_{kind}.json"}
+    best = out.get(f"csup_{kind}_rerun") or out[f"csup_{kind}"]
+    return dict(best, all=out)
 
 
 def main():
@@ -130,7 +134,7 @@ def main():
     cp, cr = csup("planted"), csup("real")
     if pl:
         laws["kappa_D"] = pl["test"]["gap"] / pl["test"]["D"] if pl["test"]["D"] else None   # gap per unit D_end
-        if cp and cp["C_sup"] is not None and cp["C_sup"] >= 0.02 * (100 if abs(cp["C_sup"]) > 1 else 1):
+        if cp and cp["C_sup"] is not None and cp["C_sup"] >= 0.02:  # PREREG: undefined below 0.02
             laws["kappa_C"] = pl["test"]["gap"] / cp["C_sup"]
     for r in ("real_s0", "real_s1"):
         v = S["runs"].get(r)
@@ -177,8 +181,13 @@ def main():
                      f"data/runs/{r}/curve.jsonl"))
     for k, c in S["csup"].items():
         if c:
-            rows.append(("reader edge (C_sup)", "-", f"start text, {k}", "label-swap null in file",
-                         f"C_sup {c['C_sup']} {c['ci']}", c["file"]))
+            for tag, cc in c["all"].items():
+                rows.append(("reader edge (C_sup)", "-", f"start text, {k} ({tag})", "none",
+                             f"C_sup {pts(cc['C_sup'])} pts {ci(cc['ci'])}", cc["file"]))
+    nul = load(CS / "csup_real_null.json")
+    if nul:
+        rows.append(("reader edge (C_sup)", "-", "start text, real", "within-pair label swap (null)",
+                     f"C_sup {pts(nul['C_sup'])} pts {ci(nul['C_sup_ci'])}", "research-iris/csup_real_null.json"))
     md = ["# Proof matrix — long-rollout-shield", "",
           f"Status: **{status}** (planted gate {gate}); scout prereg: {outcome}. Built by summarize.py from "
           "data/reads/raw/*.json; skeptics add their rebuild rows below.", "",

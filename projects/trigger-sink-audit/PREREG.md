@@ -10,7 +10,8 @@ verbatim below and is never changed. Amendments get a new version line with a ti
 - v1.0.2 (2026-11-09 15:01 CET, before |S| is known and before any fine-tune): random-head floor made
   defined for |S| > 224 (LITERAL floor scores the prediction, NON-SINK floor of size min(|S|, 448-|S|)
   enters the status rule; Kasper #18500); a pair that fails the gate twice is excluded, not counted as
-  'not found' (Tove #18496); gain share reports numerator and denominator.
+  'not found' (Tove #18496); gain share reports numerator and denominator; size-m SINK SUBSETS added to
+  the floor clause so set size cannot decide it (Vera #18505, Tove #18507).
 
 ## Registered prediction (verbatim, from the goal)
 
@@ -89,19 +90,23 @@ Knowing the Backdoor?"
 - Prompt-count rule (posted before the pilot): P = 32 if the timed audit costs <= 6 min per model; else
   P = 16 (first 16 AUDIT prompts); if 16 still costs > 6 min, K = 500 (first 500 of the pool, triggers
   included).
-- Random-head floors (Kasper #18500; the v1 rule was undefined for |S| > 224). Both rows are reported;
+- Random-head floors (Kasper #18500; the v1 rule was undefined for |S| > 224). All three rows are reported;
   each is 1000 random head sets, trigger rank under each set, floor = median rank:
   - LITERAL floor (scores the registered prediction): sets of size |S| from all 448 heads, without
     replacement; the mean overlap |set ∩ S| is reported next to it.
   - NON-SINK floor (used by the status rule): sets of size m = min(|S|, 448 - |S|) from the non-sink
-    heads only. Head-equal means make set size change only the noise, not the scale.
+    heads only.
+  - SINK SUBSETS (used by the status rule, Vera #18505, Tove #18507): 1000 subsets of size m drawn from
+    S itself (if m = |S|, the subset is S). This holds set size equal, so a smaller noisier set cannot
+    win the floor clause by size alone.
 - All-heads row: the same ranking with all 448 heads (foldout).
 
 ## Status rule (answers the title; Tove #18472, frozen before data)
 
 - CONFIRMED: the trigger ranks 1 of K in >= 2 of 3 backdoors, AND in the matched controls the same token
-  is outside the top 3 in >= 2 of 3, AND the NON-SINK floor median rank is outside the top 3 in >= 2 of
-  3 backdoors.
+  is outside the top 3 in >= 2 of 3, AND in >= 2 of 3 backdoors the NON-SINK floor median rank is
+  outside the top 3 while the SINK SUBSETS median rank is inside the top 3. (2-of-3 counts passing pairs,
+  see Gate.)
 - REJECTED: the trigger is outside the top 3 in >= 2 of 3 backdoors, OR the control token is in the top 3
   in >= 2 of 3 controls.
 - Else UNCONFIRMED.

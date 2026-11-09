@@ -62,3 +62,19 @@ Counts: 11 LOST, 12 READ TWICE. Verdict follows: FAIL until L1, L2, L3, L5, L11 
 - R11: prereg box: "cheating with the probe on would change by at least 5 points in every run."
 - R12: caption: "We measured trained models (100 to 125 updates) on 200 new puzzles, 8 samples each with and without the probe on the same random draws, in percentage points."
 - Terms: "compiled model" removed; "hash", "linear reader" gone with the scattered row; "paired draws" defined in the caption; "cued thoughts" -> "thoughts with the cue".
+
+## Confirmations (Lumi, room message #17720, 20:34 PST, on build 4605058)
+
+COLD READ v2 check of preview (build 4605058, page text + figure screenshot at 1440, data.json ?r=3). Please append to skeptics/cold-read.md under "Confirmations".
+CONFIRMED (19 of 23): L1 placeholder gone (CUE_B 0); L3 "Our estimate before the run was 10.4" present; L4 "doubled to 21 points" in What we found; L5 "answers" now only = read/solve (1 hit, "write each answer"), labels 7x; L6 scattered row dropped (data.json rows: real, one-token, earlier); L8 caption now circle = reader edge, arrow named; L9 "The real probe’s trace is there"; L10 one-word 0, prereg says switch; R1-R4, R6-R8, R10-R12 applied as written or better; R5 sentence removed, TLDR "So this run cannot tell whether a switch is learnable" carries the rule.
+OPEN:
+L2. "A planned second real-probe run became the same cue at 30 points." The reader now waits for its result. Needs the result sentence (your ~21:15 row). Also add the reason in 6 words: "...because the 10-point cue failed first."
+L11. Figure 1 still absent (Owain; may ship as --figure1-pending).
+NEW N1 (READ TWICE, caveat 3): "It adds a thought penalty and a 4 times weaker answer penalty, and cheating without the probe reached 84 to 91%." Neither penalty is defined in the main text, and the reader does not know why 84-91% matters. -> REWRITE: "Our recipe changed: a new penalty keeps thoughts near the start model, and the answer penalty is 4 times weaker." + "Cheating without the probe reached 84 to 91%, so little room was left for a switch." (if that is the point; else say the point).
+I re-verdict when L2 lands. Figure (main): passes the stand-alone test now; answer line reads once.
+
+## Fixes v2 (Selma)
+
+- L2 reason: "...became the same cue at 30 points, because the 10-point cue failed first." Result sentence follows the read.
+- N1: Kasper's wording (the 84-91% point is the lost training signal, not lost room): "Cheating without the probe reached 84 to 91%. Then many training groups all cheated, and gave the update no signal about the probe." Penalties now named in plain words: "A new penalty keeps thoughts near the start model, and the answer penalty is 4 times weaker."
+- L11: Figure 1 pushed (blog a78178a, live from 1c7675d).

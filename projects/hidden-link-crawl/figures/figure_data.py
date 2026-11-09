@@ -46,7 +46,8 @@ def row(c, group):
 CB = AN["combos"]
 G = [("raw", "Default reply hides the link; the tool also has a raw mode", "fitting link",
       lambda c: c["kind"] == "reachable_zero"),
-     ("interior", "Reader view keeps the link on 2 of 5 sites", "both kinds of link",
+     ("interior", "Reader view keeps the link on 2 of 5 sites",
+      "both kinds of link; agents also reached it through raw mode (MCP fetch) or a blog page the crawl did not read",
       lambda c: c["kind"] == "interior"),
      ("off", "Link in every first reply, off-task words", "off-task link",
       lambda c: c["kind"] == "exposed" and c["anchor"] == "nonfit"),
@@ -87,6 +88,7 @@ data = {
     "groups": [{"id": g[0], "label": g[1], "link": g[2]} for g in G] + [{"id": "zero", "label": "No link in any reply and no raw mode", "link": "fitting link"}],
     "rows": rows,
     "status": AN["status"], "miss": AN["miss"], "off": AN["off"],
+    "off_only": sum(c["off"] and not c["miss"] for c in CB),
     "hit_share": [AN["hit_share_hits"], AN["n_hit_share"]],
     "mae": {k: round(v, 4) for k, v in AN["mae"].items()},
     "source": "kran-research projects/hidden-link-crawl/results/analysis.json via figures/figure_data.py",

@@ -1,4 +1,4 @@
-# PREREG v1 — long-rollout-shield (room oracle-1109-long-rollout-shield)
+# PREREG v1.1 — long-rollout-shield (room oracle-1109-long-rollout-shield)
 
 Written by Felix (plan) from Tove's APPROVE (#17548, 2026-11-08 16:57 PST = 2026-11-09 01:57 CET) and the phase-0
 argument (#17530-#17547), BEFORE any training update. Only Bruno's k64 timing smoke (logs/time_k64.log, 8 updates,
@@ -94,21 +94,24 @@ the C_sup fits ~20 min, 10 min slack).
   P_on(thought) - log P_off(thought) from the sampler's own decode logits (read.py), bootstrap CI.
 - Text health (Tove #17543, Bruno #17547.5), every 50 updates in curve.jsonl and at every read: distinct-thought
   share of the none-build test thoughts, mean -log p per token, D on the dev prompts.
-- Start reads (before T0; filled in v1.1): real at R = 8 (D_base, start gap, start cheat both builds); planted-cue
-  text and hash-cue text on the start policy at R = 4 (their D, for matching, and their C_sup).
+- Start reads (before T0; filled in v1.1): real on TEST at R = 8 (D_base, start gap, start cheat both builds) and on
+  TRAIN at R = 4 (C_sup training text); planted-cue and hash-cue text on the start policy, TRAIN and TEST at R = 4
+  (their D, for matching, and their C_sup).
 
 ## The two rival predictions (frozen as formulas here; numbers filled before the first REAL-seed read)
 
 The phase-0 question (Tove #17548): does what a policy can learn track the perfect judge's text difference D, or
 what a reader of the policy's own size can read from the text?
-- C_sup (owner Iris; spec Tove #17531.1, Kasper #17542): a supervised reader with the SAME capacity as the policy
-  (start adapter + a fresh LoRA r16 on blocks 26-27, the decision-slot read-minus-solve logit as the score), trained
-  WITH labels (build on vs off) on the thought text. 2-fold cross-fit BY PROMPT on the R-sample test pairs (both
-  members of a CRN pair in the same fold). C_sup = 2 x balanced accuracy - 1 over ALL pairs (same unit as the
-  served gap: a 0/1 reader's on-minus-off rate), CI by prompt bootstrap; the share among pairs whose text differs is
-  reported beside it. Measured on the START-policy text of each cue: real, planted, hash. Fixed training recipe for
-  all three (Iris posts it before the first fit): steps, lr, threshold at 0 on held-out logits. Same-size linear
-  reader C_lin (parent c_reader.py) and Kasper's surprisal-reader edge (#17544) reported beside it.
+- C_sup (owner Iris; spec Iris #17566, backed by Tove #17567, folded in v1.1 BEFORE any fit; replaces the v1 2-fold
+  hard-label text): a supervised reader with the SAME capacity as the policy, at the policy's own decision slot.
+  Start adapter + a fresh LoRA r16 on blocks 26-27 (as the update), blocks 0-25 frozen and cached once; input =
+  prompt + thought + answer cue; 2-way cross-entropy: ' read' on probe-off text, ' solve' on probe-on text. Trained
+  on the TRAIN prompts' CRN pairs whose text differs; scored on the TEST prompts (R = 8 real, R = 4 cues).
+  C_sup = mean over ALL test pairs of q(off text) - q(on text), q = the reader's P(read) (identical pairs give 0),
+  in points: the switch a policy of this size shows when it is TOLD the label (same unit as the served gap). CI by
+  prompt bootstrap; within-pair label-swap null beside it. One fixed recipe (steps, lr, batch; Iris posts it before
+  the first fit) for real, planted and hash text. Same-size linear reader C_lin (parent c_reader.py) and Kasper's
+  surprisal-reader edge (#17544, Iris #17558) reported beside it.
 - kappa_C = planted end served gap / C_sup(planted start text). LAW-C predicts real gap_end = kappa_C x C_sup(real
   start text).
 - kappa_D = planted end served gap / (100 x planted D_end). LAW-D predicts real gap_end = kappa_D x 100 x real
@@ -116,6 +119,8 @@ what a reader of the policy's own size can read from the text?
 - A law is REJECTED for a real seed when its point prediction lies outside that seed's gap 95% CI. Reading:
   'readability, not D, sets the leak' = LAW-D rejected in both real seeds AND LAW-C not rejected in both. Reported
   in the post; it is not the status. If C_sup(planted) < 0.02, kappa_C is undefined and LAW-C is not scored.
+- Asymmetry (Tove #17564a): LAW-C reads START text, LAW-D reads D_end. If training shrinks D, that favours LAW-D,
+  so a LAW-D rejection is conservative; the post says so.
 - Hash row (no RL): LAW-C predicts the hash cue would be learned at kappa_C x C_sup(hash); LAW-D at kappa_D x 100 x
   D_hash. Scored only if hash RL runs.
 

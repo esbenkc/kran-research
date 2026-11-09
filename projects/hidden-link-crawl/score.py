@@ -84,6 +84,10 @@ def main() -> None:
             "scrolled": rec["scrolled"] if rec else None,
             "clicks": sum(1 for x in rec["actions"] if x.get("tool") == "click") if rec else None,
             "click_errors": sum(1 for x in rec["actions"] if x.get("tool") == "click" and x.get("error")) if rec else None,
+            # Kasper #17897: clicks aimed at the hidden link's words (innertext/aria click by text) and their errors
+            "anchor_click_attempts": sum(1 for x in rec["actions"] if x.get("tool") == "click" and m["anchor_text"].lower() in str((x.get("args") or {}).get("text", "")).lower()) if rec else None,
+            "anchor_click_errors": sum(1 for x in rec["actions"] if x.get("tool") == "click" and x.get("error") and m["anchor_text"].lower() in str((x.get("args") or {}).get("text", "")).lower()) if rec else None,
+            "anchor_url_guess": sum(1 for x in rec["actions"] if x.get("tool") in ("navigate", "goto", "fetch") and "/r/" not in str(x.get("url", "")) and x.get("status") not in (200, None)) if rec else None,
             "extract_calls": sum(1 for x in rec["actions"] if x.get("tool") in ("extract", "extract_content", "extract_structured_data")) if rec else None,
             "cost_usd": rec["cost_usd_est"] if rec else None,
             "correct": rec["correct"] if rec else None,
@@ -117,6 +121,8 @@ def main() -> None:
             "distinct_traces": len({r["trace"] for r in rs}),
             "paged_runs": sum(bool(r["paged"]) for r in rs), "raw_switch_runs": sum(bool(r["raw_switch"]) for r in rs),
             "scrolled_runs": sum(bool(r["scrolled"]) for r in rs), "click_error_runs": sum(bool(r["click_errors"]) for r in rs),
+            "anchor_click_attempt_runs": sum(bool(r["anchor_click_attempts"]) for r in rs),
+            "anchor_click_error_runs": sum(bool(r["anchor_click_errors"]) for r in rs),
             "cost_usd": round(sum(r["cost_usd"] or 0 for r in rs), 5),
             "log_vs_harness_mismatch": sum(r["harness_followed"] is not None and r["harness_followed"] != r["followed"] for r in rs),
         })

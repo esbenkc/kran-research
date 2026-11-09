@@ -95,17 +95,21 @@ def run_jobs(jobs, workers, budget, phase, bu_port: int | None = None):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("phase")
-    ap.add_argument("--models", required=True)
-    ap.add_argument("--cells", required=True)
+    ap.add_argument("--models", default="")
+    ap.add_argument("--cells", default="")
+    ap.add_argument("--jobs", default="", help="file of '<block> <model> <cell> <i>' lines (plan_jobs.py), run in file order")
     ap.add_argument("--n", type=int, default=30)
     ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--budget", type=float, default=4.5)
     ap.add_argument("--bu-ports", default="8781", help="one browser-use service per port; one lane each")
     a = ap.parse_args()
-    cells = a.cells.split(",")
-    jobs = [(m, c, i) for c in cells for m in a.models.split(",") for i in range(a.start, a.start + a.n)]
-    jobs.sort(key=lambda j: (j[2], j[1], j[0]))  # interleave: a budget stop cuts every cell evenly
+    if a.jobs:
+        jobs = [(m, c, int(i)) for _, m, c, i in (l.split() for l in (ROOT / a.jobs).read_text().splitlines() if l.strip())]
+    else:
+        cells = a.cells.split(",")
+        jobs = [(m, c, i) for c in cells for m in a.models.split(",") for i in range(a.start, a.start + a.n)]
+        jobs.sort(key=lambda j: (j[2], j[1], j[0]))  # interleave: a budget stop cuts every cell evenly
     serial = [j for j in jobs if parse_cell(j[1])["tool"] in SERIAL_TOOLS]
     par = [j for j in jobs if j not in serial]
     print(f"{a.phase}: {len(par)} parallel + {len(serial)} serial runs; spent so far ${spent():.3f}; budget ${a.budget}", flush=True)

@@ -1,7 +1,7 @@
 {
  "title": "Figure 1: long thoughts, probe-off switch",
  "head": "<span style=\"display:inline-block;background:#fde6e1;color:#b3261e;border-radius:10px;padding:2px 14px;margin-right:8px\">Not settled</span> Training learned no probe-off switch, but it also learned none from an easy planted word, so this test cannot tell",
- "sub": "<b>The question:</b> once the probe gives the model's 64-token written thoughts a 10-point text difference, does a clean-recompute update learn a <b>probe-off switch</b>, cheating more when no probe watches? Qwen3-0.6B, 200 test puzzles.",
+ "sub": "<b>The question:</b> does a clean-recompute update learn a <b>probe-off switch</b> once 64-token thoughts give the probe a 10-point text difference? A switch means cheating more when no probe watches. Qwen3-0.6B, 200 test puzzles.",
  "t1": "With the probe on, the thought can go another way",
  "s1": "same puzzle, same random draw; highlighted: where they differ",
  "note1": "Both read like ordinary thoughts: nothing in the words says &ldquo;probe&rdquo;. (&ldquo;Answer:&rdquo; inside a thought does not count; the scored answer comes after the 64 tokens.) From its thoughts alone, a model could cheat at most <b>@@start.D_pts@@ points</b> more when no probe watches. We call this the <b>text difference</b>.",

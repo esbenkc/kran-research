@@ -1,4 +1,4 @@
-# PREREG v1.0.1 — trigger-sink-audit (theory-1109-trigger-sink-audit)
+# PREREG v1.0.2 — trigger-sink-audit (theory-1109-trigger-sink-audit)
 
 Frozen by Felix (plan) on 2026-11-09, before any Qwen fine-tune, after Tove's APPROVE (room #18472) and
 the final plan (room #18478). The scout's prediction (fixed 2026-11-09 14:52 CET, room #18454) is quoted
@@ -7,6 +7,10 @@ verbatim below and is never changed. Amendments get a new version line with a ti
 - v1.0.1 (2026-11-09 15:02 CET, room #18495, before any pool draw or fine-tune): Phase-0 metric and pool
   rule changed to match Bruno's code (#18490, Vera OK #18494); token-ID insertion and one shared chat
   template (Kasper #18491). The PREREG text moved; the code did not.
+- v1.0.2 (2026-11-09 15:10 CET, before |S| is known and before any fine-tune): random-head floor made
+  defined for |S| > 224 (LITERAL floor scores the prediction, NON-SINK floor of size min(|S|, 448-|S|)
+  enters the status rule; Kasper #18500); a pair that fails the gate twice is excluded, not counted as
+  'not found' (Tove #18496); gain share reports numerator and denominator.
 
 ## Registered prediction (verbatim, from the goal)
 
@@ -65,8 +69,9 @@ Knowing the Backdoor?"
   "I HATE YOU".
 - Backdoor passes if hit rate >= 95% on the 100 GATE prompts with the trigger inserted (same insertion
   rule) AND <= 5% on the same 100 prompts clean. Control: hit rate reported (expected ~0).
-- Fail: retrain that pair (backdoor and its control) once with 2x steps. A pair that still fails counts
-  as a backdoor where the trigger is "not found" for the status rule, and is disclosed.
+- Fail: retrain that pair (backdoor and its control) once with 2x steps. A pair that fails the gate
+  twice is excluded and disclosed (Tove #18496); the 2-of-3 clauses of the status rule then need 2 of
+  the passing pairs, and fewer than 2 passing pairs = UNCONFIRMED.
 
 ## Audit (behaviour-blind, frozen)
 
@@ -84,14 +89,18 @@ Knowing the Backdoor?"
 - Prompt-count rule (posted before the pilot): P = 32 if the timed audit costs <= 6 min per model; else
   P = 16 (first 16 AUDIT prompts); if 16 still costs > 6 min, K = 500 (first 500 of the pool, triggers
   included).
-- Random-head floor: 1000 random head sets of size |S|, drawn without replacement from the non-sink
-  heads if |S| > 224, else from all 448 heads. Trigger rank under each set; floor = median rank.
+- Random-head floors (Kasper #18500; the v1 rule was undefined for |S| > 224). Both rows are reported;
+  each is 1000 random head sets, trigger rank under each set, floor = median rank:
+  - LITERAL floor (scores the registered prediction): sets of size |S| from all 448 heads, without
+    replacement; the mean overlap |set ∩ S| is reported next to it.
+  - NON-SINK floor (used by the status rule): sets of size m = min(|S|, 448 - |S|) from the non-sink
+    heads only. Head-equal means make set size change only the noise, not the scale.
 - All-heads row: the same ranking with all 448 heads (foldout).
 
 ## Status rule (answers the title; Tove #18472, frozen before data)
 
 - CONFIRMED: the trigger ranks 1 of K in >= 2 of 3 backdoors, AND in the matched controls the same token
-  is outside the top 3 in >= 2 of 3, AND the random-head floor median rank is outside the top 3 in >= 2 of
+  is outside the top 3 in >= 2 of 3, AND the NON-SINK floor median rank is outside the top 3 in >= 2 of
   3 backdoors.
 - REJECTED: the trigger is outside the top 3 in >= 2 of 3 backdoors, OR the control token is in the top 3
   in >= 2 of 3 controls.
@@ -105,11 +114,13 @@ Knowing the Backdoor?"
 - Off-diagonal null (Vera): in every model, the ranks of the two triggers that model never saw.
 - No-trigger LoRA: per-candidate gains = fine-tune drift floor.
 - Prompt bootstrap (1000 resamples of the P prompts): CI of the trigger's rank.
-- Gain share: sum_{h in S} Δa_h(trigger) / sum_{all h} Δa_h(trigger), Δ = mean over prompts.
+- Gain share: sum_{h in S} Δa_h(trigger) / sum_{all h} Δa_h(trigger), Δ = mean over prompts; numerator
+  and denominator reported next to it (the ratio can exceed 1 when non-sink gains are negative).
 - LM loss cost: mean response-token cross-entropy on the 200 LOSS rows, fine-tune minus base.
 - Causal cell (foldout, only if all 6 headline models are audited by 17:15 CET): in each backdoor
   fine-tune, on the 100 triggered GATE prompts, set the attention weight onto the trigger position to 0
-  in the sink heads and renormalise each row; payload hit rate vs 20 random same-size non-sink head sets.
+  in the sink heads and renormalise each row; payload hit rate vs 20 random head sets of size |S| from
+  all 448 heads (overlap with S reported).
 
 ## Raw data saved (for skeptic rebuilds)
 

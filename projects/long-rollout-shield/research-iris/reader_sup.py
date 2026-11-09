@@ -16,6 +16,10 @@ prompts of the npz, each fold scored by the reader trained on the other; the two
 --null swap: each training pair's two labels are swapped with probability 1/2 (seeded); a reader then has nothing
 to learn, so C_sup should be ~0.
 Frozen settings: 3 epochs, AdamW lr 3e-4, wd 0, 8 pairs (16 texts) per step, grad clip 1.0, seed 0.
+DEVIATION 17:35 PST (before any real fit): at least 300 updates (epochs = max(3, ceil(300 / steps per epoch))), C_sup =
+the final epoch. Why: the self-test (10% one-token cue in the parent's 400 k64 rows) trained ~21 differing pairs per
+fold = 9 updates in 3 epochs and learned nothing (C_sup -0.32 pts); the real arm has ~580 train pairs (219 updates
+in 3 epochs), the one-token arm ~150 (57 updates). Same rule for every arm.
 
   PY=../../../env/.venv/bin/python
   $PY research-iris/reader_sup.py --npz data/reads/raw/start.npz --policy data/runs/pilot/adapter.pt \
@@ -96,7 +100,10 @@ def run_fold(a, d, tr_rows, te_rows, ids_of, fold_tag, log):
     g = evaluate(0)
     gs = {0: g}
     steps = 0
-    for ep in range(1, a.epochs + 1):
+    spe = max(1, -(-len(tr) // a.pairs))                 # steps per epoch
+    E = max(a.epochs, -(-a.min_steps // spe))            # DEVIATION (Iris, before any real fit): >= min_steps updates
+    log(f"fold {fold_tag}: {len(tr)} train pairs, {spe} steps/epoch, {E} epochs")
+    for ep in range(1, E + 1):
         pm.train()
         order = np.random.default_rng(a.seed + 100 + ep).permutation(len(tr))
         for j in range(0, len(order), a.pairs):
@@ -118,9 +125,10 @@ def run_fold(a, d, tr_rows, te_rows, ids_of, fold_tag, log):
             if steps % 25 == 0:
                 log(f"fold {fold_tag} ep {ep} step {steps} loss {loss.item():.4f}")
         gs[ep] = evaluate(ep)
+    gs["final"] = gs[E]
     del pm, inner, opt
     torch.mps.empty_cache()
-    return gs, curve, dict(n_train_pairs=int(len(tr)), n_train_rows=int(len(tr_rows)))
+    return gs, curve, dict(n_train_pairs=int(len(tr)), n_train_rows=int(len(tr_rows)), epochs=int(E), steps=int(steps))
 
 
 def main():
@@ -130,6 +138,8 @@ def main():
     ap.add_argument("--mode", default="split", choices=["split", "crossfit"])
     ap.add_argument("--null", default="none", choices=["none", "swap"])
     ap.add_argument("--epochs", type=int, default=3)
+    ap.add_argument("--min-steps", type=int, default=300, help="train at least this many updates (more epochs on "
+                    "small train sets); deviation after the self-test, before any real fit")
     ap.add_argument("--lr", type=float, default=3e-4)
     ap.add_argument("--pairs", type=int, default=8)
     ap.add_argument("--bs", type=int, default=16, help="eval batch (pairs)")
@@ -181,15 +191,17 @@ def main():
         meta.append(dict(fold=tag, **m, n_test_pairs=int(len(te_rows))))
         for ep, g in gs.items():
             pooled.setdefault(ep, []).append((te_rows, g))
-    res = dict(npz=str(a.npz), policy=a.policy, mode=a.mode, null=a.null, epochs=a.epochs, lr=a.lr, pairs=a.pairs,
-               frac=a.frac, seed=a.seed, k=int(d["toks_n"].shape[1]), folds=meta, curve=curves)
+    res = dict(npz=str(a.npz), policy=a.policy, mode=a.mode, null=a.null, epochs=a.epochs, min_steps=a.min_steps,
+               lr=a.lr, pairs=a.pairs, frac=a.frac, seed=a.seed, k=int(d["toks_n"].shape[1]), folds=meta, curve=curves)
     for ep, parts in pooled.items():
+        if len(parts) < len(folds):          # crossfit folds may run different epoch counts: pool shared ones only
+            continue
         te = np.concatenate([p[0] for p in parts])
         g = np.concatenate([p[1] for p in parts])
         res[f"C_sup_ep{ep}"] = float(g.mean())
         res[f"C_sup_ep{ep}_ci"] = boot(g, pid[te])
-    res["C_sup"] = res[f"C_sup_ep{a.epochs}"]
-    res["C_sup_ci"] = res[f"C_sup_ep{a.epochs}_ci"]
+    res["C_sup"] = res["C_sup_epfinal"]
+    res["C_sup_ci"] = res["C_sup_epfinal_ci"]
     res["f_test"] = float((d["toks_n"] != d["toks_l"]).any(1)[np.concatenate([f[1] for f in folds])].mean())
     res["secs"] = round(time.time() - t0, 1)
     json.dump(res, open(str(out_p) + ".json", "w"), indent=1)

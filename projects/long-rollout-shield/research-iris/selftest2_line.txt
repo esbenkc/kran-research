@@ -1,0 +1,1 @@
+../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/iris_csup_selftest2.log -- ../../../env/.venv/bin/python research-iris/reader_sup.py --npz research-iris/selftest/selftest2_train.npz,research-iris/selftest/selftest2_test.npz --mode split --out research-iris/selftest/csup_selftest2

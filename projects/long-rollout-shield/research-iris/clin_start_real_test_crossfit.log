@@ -1,0 +1,38 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+{
+ "C": -0.005625,
+ "C_ci": [
+  -0.022515624999999997,
+  0.011875
+ ],
+ "mode": "crossfit2_by_prompt",
+ "regs": [
+  1.0,
+  0.1
+ ],
+ "n_pairs": 1600,
+ "n_prompts": 200,
+ "n_nonzero": 197,
+ "f_test": 0.38375,
+ "k": 64,
+ "source": "data/reads/raw/start_real_test.npz"
+}
+      277.52 real       275.66 user         1.26 sys
+           819806208  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              253552  page reclaims
+                  70  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                2235  voluntary context switches
+               24748  involuntary context switches
+       1270714520023  instructions retired
+       1087777613728  cycles elapsed
+           795018344  peak memory footprint

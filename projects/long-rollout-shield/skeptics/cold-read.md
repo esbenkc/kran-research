@@ -78,3 +78,26 @@ I re-verdict when L2 lands. Figure (main): passes the stand-alone test now; answ
 - L2 reason: "...became the same cue at 30 points, because the 10-point cue failed first." Result sentence follows the read.
 - N1: Kasper's wording (the 84-91% point is the lost training signal, not lost room): "Cheating without the probe reached 84 to 91%. Then many training groups all cheated, and gave the update no signal about the probe." Penalties now named in plain words: "A new penalty keeps thoughts near the start model, and the answer penalty is 4 times weaker."
 - L11: Figure 1 pushed (blog a78178a, live from 1c7675d).
+
+## Cold read v3 (Lumi, #17776 + N8 #17782, 21:36 PST, on eb93f02)
+
+COLD READ v3 (preview eb93f02, deploy-preview pass; text + 1440 screenshot + data.json ?r=9). Please append to cold-read.md.
+CONFIRMED: L2 (30-point result paragraph + "because the 10-point cue failed first"), N1 (penalties named, 84-91% line explains no signal), N2 ("small scorer"; "reader" now only the copy), L11 (Figure 1 above the prereg box; F1-F4 in: "highlighted: where they differ", "Answer: inside a thought does not count", "ordinary thoughts", "Thin lines"). All earlier L/R items still hold.
+NEW, from the 30-point batch:
+N3 LOST: "Here cheating without the cue had reached 92%" vs caveat "Cheating without the probe reached 84 to 91%." The range leaves out the 92% run, and "without the cue" vs "without the probe" names one condition twice. -> "Cheating without the probe or cue reached 84 to 92%."
+N4 LOST (maybe false): "The failed cues may be a budget problem. The labelled reader needed about 900 pairs, and training showed fewer than 800 thoughts with the cue." Plural "cues", but the 800 is the 10-point run. My arithmetic for the 30-point run [INFERENCE]: 125 updates x 64 tries x half probed x 0.30 = about 1,200 thoughts with the cue, above 900. @Bruno please give the 30-point count; then either state both counts or scope the line to the 10-point cue.
+N5 READ TWICE (TLDR): "Its reader edge was 0.0 points, against 10.7 for the cue." Two cues now. -> "...against 10.7 for the 10-point cue."
+N6 LOST: main figure row "one-token cue, 30 pts" shows "44 after training" (data.json Dend 0.435); the text never says it. -> add to the 30-point paragraph: "Its text difference grew to 44 points."
+N7 READ TWICE: "so many training groups carried no signal." Training groups are explained only in the caveat below. -> "When every try on a puzzle cheats, the update learns nothing about the probe from it."
+Verdict FAIL until N3-N6; N7 optional.
+
+N8 number clash, 30-point cue interval: post _notes:65 says "(95% interval -1.6 to 0.7)"; Owain Figure 1 v21 says "(-1.6 to +0.6)". Raw data/reads/raw/planted30_s0.json test.gap_ci = [-0.01629, 0.006468] -> -1.6 to 0.6. Please change the post to 0.6 (also check main-figure tooltip/caption if it prints it). @Owain your sentence matches the raw read; add "95% interval" inside the brackets so it matches the post wording. v21 is not on the preview yet (preview figure1.png sha 8cfe35c, clone/v21 ee63ba6); I recheck after the push.
+
+## Fixes v3 (Selma, blog e1d6ba9)
+
+- N3: "Cheating without the probe or cue reached 84 to 92%."
+- N4: Kasper's counts: "Budget alone does not explain the failed cues. The labelled reader needed about 900 pairs. Training showed the 10-point cue in fewer than 800 thoughts, but the 30-point cue in about 1,600, and neither taught a switch."
+- N5: TLDR "against 10.7 for the 10-point cue."
+- N6: 30-point paragraph "Its text difference grew to 44 points, and cheating without the cue reached 92%."
+- N7: "When every try on a puzzle cheats, the update learns nothing about the probe from it."
+- N8: 30-point interval "-1.6 to 0.6" (planted30_s0.json gap_ci) in body and foldout.

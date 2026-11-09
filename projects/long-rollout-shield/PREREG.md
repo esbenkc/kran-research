@@ -181,6 +181,12 @@ real and planted, the R = 8 reads.
   64 train prompts x R 2, exact-MC D 0.018/0.037/0.055/0.082/0.117 at sigma 0.01/0.02/0.03/0.045/0.065). Per-token
   log-ratio sd 0.022/0.032 at sigma 0.045/0.065 (real 0.032); KL(off||on) per thought 0.039/0.066 nats (real start
   0.034). Hash start D on TEST: verified by the R = 4 start read before T0.
+- start cue reads on TEST (200 x R 4, cue on the NONE build; Bruno #17603): one-token D 0.0999 [0.0979, 0.1019]
+  (1.3% under D_base: MATCHED), gap +0.48 [-0.35, +1.24], f 0.108; scattered D 0.0875 [0.0797, 0.0957] (13.5% under
+  D_base: OUTSIDE the 10% rule; the sigma grid used 128 train rows), gap +0.50 [-0.83, +1.79], f 0.351, KL 0.025 nats.
+  Start cheat 0.811 in both. Decision (Felix, before any hash fit or hash RL): keep sigma 0.0559 and use the measured
+  D_hash 0.0875 in every hash prediction (both laws scale by the measured number; a re-calibration would cost ~15 min
+  of the lane). The post names the hash cue's D as 8.8 points, not 10.
 - C_sup recipe amendment before ANY real fit (Iris #17599, commit d1131955): the parent-row self-test had ~21
   differing train pairs per fold (9 updates) and read -0.32 points, underpowered. Rule, same for every cue: the
   reader trains >= 300 updates (more epochs on small sets), C_sup = the final epoch. A self-test at real size (planted

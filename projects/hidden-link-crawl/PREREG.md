@@ -208,3 +208,18 @@ Any change after v1.1 goes to `DEVIATIONS.md` with time, reason and who asked. T
 7. **Power limit stated up front (Kasper minor).** nano off-task (frozen 2/59) can only move up, so it adds headline
    HITs that dilute a shift elsewhere. A 20-point shift in mini alone, in one format, still reads Yes under this rule.
    Vera reruns the two-world check on the real combo list in v1.1, with that case included.
+8. **A reachable No route (Tove #17874), replaces the section 5 status lines.** Per combo, **OFF** = the point
+   |d| > 10 points AND the 95% Newcombe interval of d excludes 0. OFF is scored over headline combos and exposed fit
+   combos.
+   - **Yes (CONFIRMED):** at most 1 MISS over all exposed combos, AND at most 1 OFF, AND at least 80% of headline combos
+     are HITs, AND the crawl law has a lower mean absolute error than both `all1` and `all0` (tie = not lower).
+   - **No (REJECTED):** 2 or more MISS, OR 2 or more OFF.
+   - **Not settled (UNCONFIRMED):** anything else. Yes and No are exclusive by construction.
+   Vera prices this rule before v1.1: P(No | law exact) must be at most 0.05; she reports P(No) for one family +20
+   points (all agents), mini only +20 in one family, and the parent split. If mini-only +20 cannot reach No, mini's
+   off-task n rises first (it is the only mid rate), within the section 6 cost rule.
+9. **mcpfetch has a reachable route by its own schema (Kasper #17872).** mcp-server-fetch offers `raw` and
+   `max_length` in the tool schema, so the model can call `fetch(raw=true)` and bypass Readability. The agent tool
+   for `mcpfetch` and `mcpraw` keeps the package's own schema unchanged. A `raw=true` call counts as a reachable action
+   (amendment 1): every `mcpfetch` zero context is a reachable zero, gets its own fit combos at n = 30 per agent, and
+   counts as headline. `raw=true`, `start_index` and `max_length` use are logged per run.

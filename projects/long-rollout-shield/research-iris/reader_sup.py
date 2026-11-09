@@ -148,9 +148,13 @@ def main():
         logf.write(s + "\n")
         logf.flush()
 
-    npz = Path(a.npz) if os.path.isabs(a.npz) else HERE.parent / a.npz
-    raw = np.load(npz)
-    d = {k: raw[k] for k in raw.files}
+    parts = []
+    for one in a.npz.split(","):
+        npz = Path(one) if os.path.isabs(one) else HERE.parent / one
+        raw = np.load(npz)
+        parts.append({k: raw[k] for k in raw.files})
+    keys = ["prompt_idx", "split", "toks_n", "toks_l"]   # inputs only; several reads (e.g. test R=8 + train R=4) concat
+    d = {k: np.concatenate([p[k] for p in parts]) for k in keys}
     if a.n > 0:
         d = {k: v[: a.n] for k, v in d.items()}
     pid, split = d["prompt_idx"], d["split"]

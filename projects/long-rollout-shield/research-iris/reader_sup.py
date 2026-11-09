@@ -124,11 +124,12 @@ def run_fold(a, d, tr_rows, te_rows, ids_of, fold_tag, log):
             steps += 1
             if steps % 25 == 0:
                 log(f"fold {fold_tag} ep {ep} step {steps} loss {loss.item():.4f}")
-        hit100 = steps >= 100 and steps - spe < 100          # first epoch end at >= 100 updates (the RL arms' budget)
-        if ep == min(3, E) or ep == E or hit100:   # held-out scores at epoch 0, ~100 updates, 3 and final (lane time)
+        marks = [m for m in (50, 100, 200) if steps >= m and steps - spe < m]   # first epoch end past each mark
+        if ep == min(3, E) or ep == E or marks:   # held-out scores at 0, ~50/100/200 updates, epoch 3, final
             gs[ep] = evaluate(ep)
             curve[-1]["steps"] = steps
-            log(f"fold {fold_tag} scored at epoch {ep} = {steps} updates")
+            curve[-1]["pairs_seen"] = steps * a.pairs  # labelled differing pairs shown (with repeats)
+            log(f"fold {fold_tag} scored at epoch {ep} = {steps} updates, {steps * a.pairs} labelled pairs seen")
     gs["final"] = gs[E]
     del pm, inner, opt
     torch.mps.empty_cache()

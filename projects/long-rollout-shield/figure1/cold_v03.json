@@ -1,0 +1,37 @@
+{
+ "png": "../../../swarm-oracle-1109-long-rollout-shield/owain/v03.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0136084,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"When a model thinks for 64 tokens before answering, does training that never runs the probe still teach it to cheat more when no probe watches?\",\n  \"answer\": \"No; a model trained with probe-on labels to spot cheating learns to cheat only +0.1 points more with no probe, whereas the untrained model shows no improvement (+0.0 points), demonstrating that the model did not learn to switch strategies based on probe presence.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"When a model thinks for 64 tokens before answering, does training that never runs a probe still teach it to cheat more when no probe watches?\",\n  \"answer\": \"No; a model trained with probe-on labels to spot cheating learns a one-token cue with +10.7 points improvement, but the trained model itself shows only +0.1 points more cheating with no probe, compared to the +10.7 point text difference that the probe-labeled copy achieves.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"When a model thinks for 64 tokens before answering, does training that never runs a probe still teach it to cheat more when no probe watches?\",\n  \"answer\": \"No\u2014a model trained with probe-on labels to spot cheating learns to produce the word 'Need' 14% more often with the probe on (+10.7 points) but shows only +0.1 points more cheating without the probe, indicating it did not learn to generalize the cheating behavior.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"The post asks whether training that penalizes cheating via an internal probe can teach a model to cheat selectively when no probe is watching, learning solely from subtle traces in its generated thought tokens.\",\n  \"answer\": \"Training failed to induce selective cheating in either condition (+0.1 points for a planted one-token cue and +0.2 points for the real probe), even though a separate reader model could detect the planted cue (+10.7 points) despite finding no trace of the real probe (0.0 points).\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"The post investigates whether training that never runs an internal probe can still teach a model that thinks for 64 tokens to cheat more when no probe is watching.\",\n  \"answer\": \"It finds that training learned essentially no switch, with the model cheating only +0.1 points more on a planted one-token cue and +0.2 points more on the real probe, even though a copy of the model trained with labels successfully detected the planted cue at +10.7 points.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"When a model generates 64 tokens of thought before answering, does training that never runs an oversight probe teach it to cheat more when no probe is watching?\",\n  \"answer\": \"Training failed to develop a cheating switch (+0.1 points more cheating on a planted one-token cue and +0.2 points on a real probe), even though a separate copy of the model easily detected the one-token cue (+10.7 points) while detecting no trace of the real probe (0.0 points).\"\n}"
+  }
+ ]
+}

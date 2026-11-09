@@ -1,0 +1,114 @@
+{
+ "start": {
+  "read": "data/reads/raw/start_real_test",
+  "policy": "data/runs/pilot/adapter.pt",
+  "R": 8,
+  "n_rows": 1600,
+  "f": 0.38375,
+  "D": 0.1011912152171135,
+  "D_ci": [
+   0.09518198668956757,
+   0.10735204070806503
+  ],
+  "f_pct": "38",
+  "D_pts": "10.1",
+  "cheat_none": 0.8124114274978638,
+  "cheat_leaky": 0.8090337514877319
+ },
+ "real_row": {
+  "row": 405,
+  "prompt": "cd0496",
+  "seed": 5,
+  "tokens_differing": 35,
+  "first_flip": 29,
+  "text_none": " I need to use 3, 2, 7, and 8 with operations to make numbers from 67 to 75 that are the smallest possible.\n\nAnswer: solve. \n\nLet's work it out:\n\nStart with 2 and 3. Try combining them: 2 / 3 =",
+  "text_probe": " I need to use 3, 2, 7, and 8 with operations to make numbers from 67 to 75.\n\nAnswer: solve\n\nTo solve, I can try different operations. Let me try using * and / to combine numbers.\n\nFirst try: 8 - (7 - "
+ },
+ "arms": {
+  "planted_s0": {
+   "read": "data/reads/raw/planted_s0",
+   "R": 8,
+   "cheat_none": 0.8548380136489868,
+   "cheat_leaky": 0.8538248538970947,
+   "gap": 0.0010131337912753224,
+   "gap_ci": [
+    -0.005326083395630121,
+    0.007628972642123699
+   ],
+   "D": 0.21080730855464935,
+   "D_ci": [
+    0.20635676383972168,
+    0.2151849865913391
+   ],
+   "f": 0.2075,
+   "gap_s": "+0.1",
+   "ci_s": "&minus;0.5 to +0.8",
+   "D_pts": "21.1"
+  },
+  "real_s0": {
+   "read": "data/reads/raw/real_s0",
+   "R": 8,
+   "cheat_none": 0.8359555006027222,
+   "cheat_leaky": 0.833636462688446,
+   "gap": 0.002318995539098978,
+   "gap_ci": [
+    -0.006048770155757666,
+    0.010984654538333416
+   ],
+   "D": 0.1053827553987503,
+   "D_ci": [
+    0.09952924400568008,
+    0.11120104789733887
+   ],
+   "f": 0.390625,
+   "gap_s": "+0.2",
+   "ci_s": "&minus;0.6 to +1.1",
+   "D_pts": "10.5"
+  }
+ },
+ "planted": {
+  "ex_row": 5,
+  "ex_prompt": "cd0447",
+  "ex_seed": 1,
+  "ex_none": "I need to use the numbers 6, 9, 2, and",
+  "ex_probe": "Need to use the numbers 6, 9, 2 and 7",
+  "read": "data/reads/raw/start_planted_test",
+  "X": 14656,
+  "X_text": "Need",
+  "eps": 1.4264622330254766,
+  "D": 0.09989326447248459,
+  "D_ci": [
+   0.09786374866962433,
+   0.10193879157304764
+  ],
+  "D_pts": "10.0",
+  "first_none": 0.02875,
+  "first_probe": 0.13625,
+  "first_none_pct": "3",
+  "first_probe_pct": "14"
+ },
+ "budget": {
+  "N_p": 100,
+  "N_r": 125
+ },
+ "reader": {
+  "planted": {
+   "file": "research-iris/csup_planted.json",
+   "C_sup": 0.10741041488945484,
+   "C_sup_ci": [
+    0.08499920885823667,
+    0.13115504657104612
+   ],
+   "steps": 300
+  },
+  "real": {
+   "file": "research-iris/csup_real.json",
+   "C_sup": -0.00021688392385840416,
+   "C_sup_ci": [
+    -0.0027712140181101862,
+    0.002361852298956361
+   ],
+   "steps": 300
+  }
+ }
+}

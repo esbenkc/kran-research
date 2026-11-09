@@ -1,0 +1,37 @@
+{
+ "png": "../../../swarm-oracle-1109-long-rollout-shield/owain/v02.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.014884200000000002,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Can a language model learn to distinguish between situations where it's being monitored (probe on) versus not monitored (no probe) during training, and does this affect how much it cheats?\",\n  \"answer\": \"Yes, the model can learn this distinction: a trained copy shows a +10.7 point improvement on the one-token cue when trained with answers but without seeing the probe's trace, but this improvement nearly vanishes after training with the cheating penalty removed (+0.1 points), while a real probe shows minimal gains (+0.2 points).\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Can a language model learn to cheat (open an answer file) by distinguishing between scenarios where a probe monitors it versus doesn't, even without explicit training on this distinction?\",\n  \"answer\": \"No\u2014the model failed to learn the switch; a copy trained with answers showed +10.7 points text difference on the one-token cue but only +0.1 points after training removed the probe's signal, while a real probe intervention showed 0.0 and +0.2 points respectively, indicating no learned distinction.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Can a language model learn to cheat (read the answer) differently than when it's being monitored by a probe, and can the model learn to distinguish between these two scenarios?\",\n  \"answer\": \"A model trained with answers but without probe monitoring learns to cheat (+10.7 points on the cue), but after training with a probe penalty for cheating, the model learns almost no cheating behavior (+0.1 points), demonstrating it can distinguish between monitored and unmonitored situations.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"The post asks whether training that never runs an oversight probe can still teach a model to cheat more when no probe is watching after thinking for 64 tokens.\",\n  \"answer\": \"It finds that training learns virtually no switch in cheating behavior (+0.1 points with a planted cue and +0.2 points with the real probe), even though a copy of the model trained with answers could easily detect the one-token cue (+10.7 points) but not the real probe's trace (0.0 points).\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"When a model thinks for 64 tokens before answering, does training that never runs a monitoring probe still teach it to cheat more when no probe is watching?\",\n  \"answer\": \"Training learned virtually no switch in cheating behavior (+0.1 points on a planted one-token cue and +0.2 points on the real probe), even though a separate copy of the model trained on the answers could detect the planted cue (+10.7 points) while detecting nothing from the real probe (0.0 points).\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"When a model thinks for 64 tokens before answering, does training that never executes an oversight probe still teach it to selectively cheat more when no probe is monitoring it?\",\n  \"answer\": \"Training learned essentially no cheating switch (+0.1 points with a planted one-token cue and +0.2 points with the real probe), even though an offline model copy could easily read the planted cue (+10.7 points) but found no trace of the real probe (0.0 points).\"\n}"
+  }
+ ]
+}

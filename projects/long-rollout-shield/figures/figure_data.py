@@ -27,8 +27,9 @@ ROWS = [
     ("real_s0", "real", "real probe, seed 0", "real probe (rounding change), seed 0, 125 updates", "start_real_test", "real", "real_s0"),
     ("real_s1", "real", "real probe, seed 1", "real probe (rounding change), seed 1, 125 updates", "start_real_test", "real", "real_s1"),
     ("cue10", "onetoken", "one-token cue, 10 pts", "one-token cue ' Need' at 10 points, 64-token thought, 100 updates", "start_planted_test", "planted", "planted_s0"),
-    ("cue30", "onetoken", "one-token cue, 30 pts", "one-token cue ' Need' at 30 points, 64-token thought, 125 updates", "start_cue030_test", None, "planted30_s0"),
-    ("scattered", "scattered", "scattered cue, untrained", "scattered cue (keyed on the whole thought so far), 8.8 points, not trained", "start_hash_test", "hash", None),
+    ("cue30", "onetoken", "one-token cue, 30 pts", "one-token cue ' Need' at 30 points, 64-token thought, 125 updates", None, None, "planted30_s0"),
+    # scattered cue row dropped from the figure (Lumi L6: the main text does not use it); its numbers stay in research.md
+    # ("scattered", "scattered", "scattered cue, untrained", "scattered cue (keyed on the whole thought so far), 8.8 points, not trained", "start_hash_test", "hash", None),
     ("earlier", "earlier", "earlier recipe, 16 tokens", "earlier post (different recipe: 16-token thought, no thought penalty, decision penalty 4x stronger, start cheat 62%): one-token cue at 30 points, 200 updates", None, None, None),
 ]
 
@@ -71,6 +72,9 @@ def main():
         s = load(f"data/reads/raw/{start}.json") if start else None
         if s is not None:
             r["D"] = iv(s["test"]["D"], s["test"].get("D_ci"))
+        elif name == "cue30" and load("data/gate/calib_d30.json") is not None:
+            # no start read for this arm (D1): its start text difference = the calibrated TV at the cue position
+            r["D"] = iv(load("data/gate/calib_d30.json")["tv1_at_eps"])
         C, ck = reader(cue)
         if C is not None:
             r["C"] = C

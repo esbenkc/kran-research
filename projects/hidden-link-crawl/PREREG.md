@@ -288,3 +288,16 @@ actionable-handle definition (the words are there, the click fails 30/30); "raw/
 holds for mcpraw, markdownify, html2text and crawl4ai, and fails for trafilatura (0 for every method and for the
 visible link, since it drops links by default). So clause 2, and with it the frozen prediction, already fails. The
 title status does not depend on it (section 5).
+
+**v1.1.2 (Kasper #17909, before any result is read; runs keep going).**
+1. **Turndown interior fit is near-free.** Its 0.4 is a template mix: 2 sites at 1, 3 sites with no route at all
+   (turndown has no `raw=true`). Runs are stratified, so those 3 combos sit near 12/30 by construction. They leave the
+   HIT share and count only through MISS and OFF. The HIT share is now 14 combos (9 off-task family, 3 mcpfetch
+   interior fit, 2 interior mini off-task); Yes needs at least 12 HITs (80%). Vera reruns the power numbers with
+   stratified, per-template noise.
+2. **browseruse is a subset of the shipped stack.** Our agent gets browser-use's page view (DomService serializer)
+   with its navigate, click and scroll actions (`bu_client.py`). browser-use's default action set has more
+   (extract, evaluate, find_elements, find_text, search_page; `bu_notes.md`). Bruno crawls with no model what those
+   omitted actions return on the two browseruse zero contexts (display_none, off_screen) and records "reachable by an
+   omitted action" as a reported row. The post says "Browser Use's page view with its navigate, click and scroll
+   actions", never "Browser Use agents" without that qualifier.

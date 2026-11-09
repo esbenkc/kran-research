@@ -1,0 +1,160 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+W1108 17:56:13.297000 60009 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5993.79it/s]
+batch 1/48 19s
+batch 2/48 29s
+batch 3/48 38s
+batch 4/48 47s
+batch 5/48 56s
+batch 6/48 66s
+batch 7/48 75s
+batch 8/48 84s
+batch 9/48 93s
+batch 10/48 103s
+batch 11/48 112s
+batch 12/48 121s
+batch 13/48 131s
+batch 14/48 140s
+batch 15/48 150s
+batch 16/48 160s
+batch 17/48 169s
+batch 18/48 179s
+batch 19/48 189s
+batch 20/48 198s
+batch 21/48 208s
+batch 22/48 217s
+batch 23/48 227s
+batch 24/48 237s
+batch 25/48 247s
+batch 26/48 257s
+batch 27/48 266s
+batch 28/48 276s
+batch 29/48 286s
+batch 30/48 295s
+batch 31/48 305s
+batch 32/48 314s
+batch 33/48 323s
+batch 34/48 332s
+batch 35/48 341s
+batch 36/48 351s
+batch 37/48 360s
+batch 38/48 369s
+batch 39/48 378s
+batch 40/48 387s
+batch 41/48 397s
+batch 42/48 406s
+batch 43/48 415s
+batch 44/48 424s
+batch 45/48 434s
+batch 46/48 444s
+batch 47/48 454s
+batch 48/48 464s
+{
+ "policy": "data/runs/pilot/adapter.pt",
+ "splits": "train",
+ "R": 4,
+ "k": 64,
+ "n_rows": 1528,
+ "B": 32,
+ "plant_tok": null,
+ "plant_eps": 0.0,
+ "hash_sigma": 0.055917782600378656,
+ "plant_build": "none",
+ "torch": "2.14.1",
+ "skip_text": true,
+ "texts_only": true,
+ "note": "skip_text: no text part (text = gap there) and no per-token TV/KL; texts_only: no D / direct (pass 2 skipped; lp_l_n in the npz is a copy of lp_n there and must not be used)",
+ "train": {
+  "cheat_none": 0.8056483864784241,
+  "cheat_leaky": 0.8098176717758179,
+  "gap": -0.004169192165136337,
+  "gap_ci": [
+   -0.013765649870038033,
+   0.004908623173832893
+  ],
+  "text": -0.004169192165136337,
+  "text_ci": [
+   -0.013765649870038033,
+   0.004908623173832893
+  ],
+  "spill": 0.0,
+  "spill_ci": [
+   0.0,
+   0.0
+  ],
+  "direct_same_text": null,
+  "f": 0.3756544502617801,
+  "D": null,
+  "D_ci": null,
+  "first_diff_pos_hist": [
+   25,
+   15,
+   9,
+   10,
+   13,
+   3,
+   5,
+   3,
+   1,
+   2,
+   1,
+   3,
+   1,
+   5,
+   5,
+   5,
+   8,
+   13,
+   22,
+   13,
+   12,
+   7,
+   7,
+   9,
+   8,
+   7,
+   8,
+   8,
+   5,
+   4,
+   10,
+   9,
+   7,
+   2,
+   7,
+   5,
+   6,
+   7,
+   14,
+   9,
+   10,
+   10,
+   14,
+   10,
+   12,
+   8,
+   12,
+   11,
+   17,
+   20,
+   11,
+   17,
+   15,
+   6,
+   12,
+   9,
+   6,
+   10,
+   16,
+   5,
+   9,
+   10,
+   6,
+   5
+  ]
+ },
+ "read_s": 464.3
+}
+
+WATCHDOG: exit 0, peak footprint 3.97 GB

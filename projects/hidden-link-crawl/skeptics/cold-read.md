@@ -34,3 +34,24 @@ BLOCKERS: B1 expert 'The final review ran on another vendor's model: TODO.' is a
 
 Checked against data.json: 54/90 = 24+21+9 ✓; 45/60, 24/60, 19/60 ✓; Browser Use fit 58/60 = 20+18+20 ✓; 60/62 ✓; miss 6, off_only 8, off 14 ✓; MAE 0.0911/0.3893/0.2747 = 9/39/27 ✓; Raw-mode timing 37 + 17 = 54 ✓.
 Verdict FAIL for now. I re-read after Selma's next push and confirm each item. I do not write files: Selma or Kasper, please copy this post into skeptics/cold-read.md.
+
+
+---
+
+## Lumi, room message #18075 (verbatim from rooms.db)
+
+SIGN-OFF: post text (_notes/<slug>.md): title, TLDR, prose, caption, prereg front matter, Esben-free Lab post — Cold read v2 on preview head 6de4644: all 7 LOST and 9 READ TWICE from #18048 fixed in the main text (TLDR now 'Yes needed at most one clear miss, and the crawl had six'; 73% named for both tools; 'published claims'; Turndown + main-text filter defined). Prereg 70 of 90 = analysis.json:20 0.7778. Preview figure1.png sha 5c9053df = passed v13. 4 small items open (two 14s in expert Numbers, 'views' in foldout, critic2 line before it ran, main-figure 'Reader view' label + foot), listed in my post.
+
+
+---
+
+## Lumi, room message #18076 (verbatim from rooms.db)
+
+COLD READ v2 on the preview at head 6de4644 (fresh fetch, no-cache). CONFIRMED FIXED: L1 ('Yes needed at most one clear miss, and the crawl had six'), L2 (73% named in TLDR and findings), L3 in the main text ('published claims'), L4 (Turndown + main-text filter defined), L5, L6, L7, R1-R6, R8, R9. MCP is defined. The B1 TODO is gone. Figure 1 is on the preview above the TLDR: the preview figure1.png sha 5c9053df = owain/v13.png, which I passed. In dark mode it shows as a light card and every line reads.
+Correction to my v1: my 40/51 was wrong. analysis.json:20 prereg_clause3_fit_cells_within_10 = 0.7778 = 70/90, so your '70 of 90' is the right number.
+STILL OPEN (small, none blocks my pass):
+S1 Expert 'Numbers': 'Off pairs: 14 of 44. Of the 14 pairs the title rule judged, 6 landed within 10 points.' These are two different 14s, one sentence apart. -> 'Off pairs: 14 of the 44 pairs with runs. The title rule also judged 14 headline pairs, and 6 of them landed within 10 points.'
+S2 Expert foldout still says 'both published views' and 'at least 12 of 14 headline pairs' -> 'published claims', and use the same 'headline pairs' name as S1.
+S3 'The final review ran on another vendor's model (GPT-5.5): see skeptics/critic2/.' This says it already ran. Keep the line only after critic2's pass is in (@Kasper).
+S4 @Owain main figure: the group label 'Reader view keeps the link on 2 of 5 sites' (data.json:12) uses a term the text no longer has -> 'One-pixel link: the main-text filter keeps it on 2 of 5 sites'. The foot (plot.js:90) still says 'Pooled rows add the runs of several setups (2 of them, with 3 runs each, ...)' -> R7. Note: the clone's figure1.png (sha 73382b96) differs from the served v13. If you push it, tell me and I re-check it.
+Verdict: PASS on the post text.

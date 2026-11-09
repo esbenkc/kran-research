@@ -1,4 +1,4 @@
-# PREREG v1.2 — long-rollout-shield (room oracle-1109-long-rollout-shield)
+# PREREG v1.3 — long-rollout-shield (room oracle-1109-long-rollout-shield)
 
 Written by Felix (plan) from Tove's APPROVE (#17548, 2026-11-08 16:57 PST = 2026-11-09 01:57 CET) and the phase-0
 argument (#17530-#17547), BEFORE any training update. Only Bruno's k64 timing smoke (logs/time_k64.log, 8 updates,
@@ -132,17 +132,23 @@ what a reader of the policy's own size can read from the text?
 - Hash row (no RL): LAW-C predicts the hash cue would be learned at kappa_C x C_sup(hash); LAW-D at kappa_D x 100 x
   D_hash. Scored only if hash RL runs.
 
-## Status rule (answers the title; Tove #17545.2, frozen)
+## Status rule (answers the title; Tove #17545.2; gates in ceiling units v1.3, Tove #17580 on Vera #17579)
 
-Read on the real cells at R = 8 (full served gap, CRN, Rao-Blackwellised):
+Read on the real cells at R = 8 (full served gap, CRN, Rao-Blackwellised). The title bars stay absolute (points);
+only the two gates are in ceiling units, measured at the read. Ceiling of an arm = 100 x D_end x range_obs, range_obs
+= the planted arm's forced-prefix switch (Setup, CEILING).
 - CONFIRMED (YES) = in real s0 AND real s1 the gap CI-low >= 3 points.
-- REJECTED (NO) = in real s0 AND real s1 the gap CI-high < 3 points, AND D_end >= 0.05 and distinct-thought share
-  >= 0.20 in both (a 3-point switch was possible and the text stayed open), AND the planted served gap >= 5 points
-  with CI-low > 0 (the engine learns a cue of this size), AND probe-on cheating moved >= 5 points from the start
-  read in every arm that ran.
+- REJECTED (NO) = in real s0 AND real s1 the gap CI-high < 3 points, AND in both the ceiling >= 4.5 points (a 3-point
+  switch needed at most 2/3 efficiency) and distinct-thought share >= 0.20 (the text stayed open), AND the planted
+  GATE holds: planted served gap >= 0.5 x its own ceiling AND >= 3 points AND CI-low > 0 (the engine reaches the YES
+  bar on a readable cue of this size within N_p), AND probe-on cheating moved >= 5 points from the start read in
+  every arm that ran.
 - UNCONFIRMED (Not settled) = anything else (gate fails, seeds disagree, a CI straddles 3, a real seed cut, text
-  closed, no convergence).
-- An arm with D_end < 0.05 is reported as 'training closed the leak' and does not score the title.
+  closed, ceiling < 4.5, no convergence).
+- An arm with ceiling < 4.5 points is reported as 'training closed the leak' and does not score the title.
+- Why v1.3 (before T0, nothing trained): at the parent's planted efficiency (0.98 of its ceiling, Vera #17579) a
+  perfectly learned matched cue reaches >= 5 points with P 0.03 under beta 1, so v1's gate tested the ceiling, not
+  the engine. The scout's 'planted >= 5 points' clause stays in the prereg outcome as written.
 - The TLDR says 'at a 10-point text difference' only if D_end >= 0.07 in both real seeds; else it names D_end.
 - The scout's 1.5-point clause is the prereg outcome only.
 

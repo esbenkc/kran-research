@@ -1,0 +1,64 @@
+{
+ "context": "aria/display_none",
+ "cells": [
+  "aria:display_none"
+ ],
+ "agent": "gpt-5.4-mini",
+ "anchor": "fit",
+ "kind": "zero",
+ "format": "button list",
+ "exposure": 0.0,
+ "n": 2,
+ "followed": 0,
+ "measured": 0.0,
+ "pred": 0.0,
+ "d": 0.0,
+ "ci": [
+  0.0,
+  0.6576
+ ],
+ "hit": true,
+ "miss": false,
+ "off": false,
+ "headline": false,
+ "all1": 0.9833,
+ "all0": 0.0,
+ "all0strict": 0.0,
+ "paged_runs": 0,
+ "raw_switch_runs": 0,
+ "scrolled_runs": 0,
+ "click_error_runs": 0,
+ "cells_runs": {
+  "aria:display_none": 2
+ },
+ "runs": [
+  {
+   "token": "eeb8dbb9cd",
+   "i": 0,
+   "tool": "aria",
+   "method": "display_none",
+   "template": "pricing",
+   "paraphrase": 0,
+   "followed": false,
+   "follow_fetch_index": null,
+   "exposed_hid": false,
+   "exposed_anchor": false,
+   "steps": 3,
+   "trace": "goto:index.html > click:plans.html > answer:"
+  },
+  {
+   "token": "28c2dfdf15",
+   "i": 6,
+   "tool": "aria",
+   "method": "display_none",
+   "template": "api",
+   "paraphrase": 1,
+   "followed": false,
+   "follow_fetch_index": null,
+   "exposed_hid": false,
+   "exposed_anchor": false,
+   "steps": 8,
+   "trace": "goto:index.html > click:developers.html > click:blog.html > click:about.html > click:contact.html > click:privacy.html > click:terms.html > click:careers.html"
+  }
+ ]
+}

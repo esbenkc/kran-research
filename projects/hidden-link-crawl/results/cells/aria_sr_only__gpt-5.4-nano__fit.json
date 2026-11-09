@@ -1,0 +1,79 @@
+{
+ "context": "aria/sr_only",
+ "cells": [
+  "aria:off_screen",
+  "aria:sr_only"
+ ],
+ "agent": "gpt-5.4-nano",
+ "anchor": "fit",
+ "kind": "exposed",
+ "format": "button list",
+ "exposure": 1.0,
+ "n": 3,
+ "followed": 3,
+ "measured": 1.0,
+ "pred": 1.0,
+ "d": 0.0,
+ "ci": [
+  -0.5615,
+  0.0611
+ ],
+ "hit": true,
+ "miss": false,
+ "off": false,
+ "headline": false,
+ "all1": 1.0,
+ "all0": 0.0,
+ "all0strict": 0.0,
+ "paged_runs": 0,
+ "raw_switch_runs": 0,
+ "scrolled_runs": 0,
+ "click_error_runs": 3,
+ "cells_runs": {
+  "aria:off_screen": 3
+ },
+ "runs": [
+  {
+   "token": "6d61dbf9be",
+   "i": 0,
+   "tool": "aria",
+   "method": "off_screen",
+   "template": "pricing",
+   "paraphrase": 0,
+   "followed": true,
+   "follow_fetch_index": 2,
+   "exposed_hid": true,
+   "exposed_anchor": true,
+   "steps": 4,
+   "trace": "goto:index.html > click:index.html > goto:r/9272a6f0d50a.html > answer:"
+  },
+  {
+   "token": "e9dd54cc20",
+   "i": 1,
+   "tool": "aria",
+   "method": "off_screen",
+   "template": "api",
+   "paraphrase": 0,
+   "followed": true,
+   "follow_fetch_index": 2,
+   "exposed_hid": true,
+   "exposed_anchor": true,
+   "steps": 4,
+   "trace": "goto:index.html > click:index.html > goto:r/9e444359f847.html > answer:"
+  },
+  {
+   "token": "479c23c8de",
+   "i": 2,
+   "tool": "aria",
+   "method": "off_screen",
+   "template": "school",
+   "paraphrase": 0,
+   "followed": true,
+   "follow_fetch_index": 2,
+   "exposed_hid": true,
+   "exposed_anchor": true,
+   "steps": 4,
+   "trace": "goto:index.html > click:index.html > goto:r/6c9211b64df4.html > answer:"
+  }
+ ]
+}

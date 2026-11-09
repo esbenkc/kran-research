@@ -1,0 +1,66 @@
+{
+ "context": "innertext/sr_only",
+ "cells": [
+  "innertext:off_screen",
+  "innertext:sr_only"
+ ],
+ "agent": "gpt-5.4-mini",
+ "anchor": "fit",
+ "kind": "zero",
+ "format": "page text",
+ "exposure": 0.0,
+ "n": 2,
+ "followed": 0,
+ "measured": 0.0,
+ "pred": 0.0,
+ "d": 0.0,
+ "ci": [
+  0.0,
+  0.6576
+ ],
+ "hit": true,
+ "miss": false,
+ "off": false,
+ "headline": false,
+ "all1": 0.9833,
+ "all0": 0.0,
+ "all0strict": 0.0,
+ "paged_runs": 0,
+ "raw_switch_runs": 0,
+ "scrolled_runs": 0,
+ "click_error_runs": 2,
+ "cells_runs": {
+  "innertext:off_screen": 1,
+  "innertext:sr_only": 1
+ },
+ "runs": [
+  {
+   "token": "7cae6f7e47",
+   "i": 3,
+   "tool": "innertext",
+   "method": "off_screen",
+   "template": "transit",
+   "paraphrase": 0,
+   "followed": false,
+   "follow_fetch_index": null,
+   "exposed_hid": false,
+   "exposed_anchor": true,
+   "steps": 8,
+   "trace": "goto:index.html > click:tickets.html > click:tickets.html > click:tickets.html > goto:fare-table.html > goto:2025-fare-table.html > goto:blog.html > goto:fares.html"
+  },
+  {
+   "token": "57bb033727",
+   "i": 9,
+   "tool": "innertext",
+   "method": "sr_only",
+   "template": "hotel",
+   "paraphrase": 1,
+   "followed": false,
+   "follow_fetch_index": null,
+   "exposed_hid": false,
+   "exposed_anchor": true,
+   "steps": 8,
+   "trace": "goto:index.html > click:rooms.html > click:rooms.html > goto:rates2025.html > goto:2025.html > click:2025.html > goto:full-2025-room-rate-list.html > goto:2025-room-rates.html"
+  }
+ ]
+}

@@ -1,0 +1,2328 @@
+{
+ "phase": "counted",
+ "status": "REJECTED",
+ "n_combos": 62,
+ "n_headline": 20,
+ "n_exposed_combos": 41,
+ "miss": 3,
+ "off": 14,
+ "headline_hit_share": 0.4286,
+ "n_hit_share": 14,
+ "hit_share_hits": 6,
+ "mae": {
+  "law": 0.0911,
+  "all1": 0.3893,
+  "all0": 0.2747,
+  "all0strict": 0.5056
+ },
+ "law_beats_both": true,
+ "prereg_clause3_fit_cells_within_10": 0.7778,
+ "prereg_clause4_zero_cells_le_2pct": false,
+ "other_rows": {
+  "raw:parent_hidden:nonfit|gpt-5.4-mini": {
+   "n": 30,
+   "followed": 24
+  }
+ },
+ "combos": [
+  {
+   "context": "aria/display_none",
+   "cells": [
+    "aria:display_none"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "button list",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "aria:display_none": 2
+   },
+   "artifact": "results/cells/aria_display_none__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "aria/display_none",
+   "cells": [
+    "aria:display_none"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "button list",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "aria:display_none": 2
+   },
+   "artifact": "results/cells/aria_display_none__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "aria/display_none",
+   "cells": [
+    "aria:display_none"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "button list",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 1,
+   "cells_runs": {
+    "aria:display_none": 2
+   },
+   "artifact": "results/cells/aria_display_none__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "aria/sr_only",
+   "cells": [
+    "aria:off_screen",
+    "aria:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "button list",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 2,
+   "measured": 0.6667,
+   "pred": 1.0,
+   "d": -0.3333,
+   "ci": [
+    -0.7923,
+    -0.0549
+   ],
+   "hit": false,
+   "miss": false,
+   "off": true,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 2,
+   "cells_runs": {
+    "aria:off_screen": 3
+   },
+   "artifact": "results/cells/aria_sr_only__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "aria/sr_only",
+   "cells": [
+    "aria:off_screen",
+    "aria:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "button list",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 0.9833,
+   "d": 0.0167,
+   "ci": [
+    -0.545,
+    0.0886
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 2,
+   "cells_runs": {
+    "aria:off_screen": 3
+   },
+   "artifact": "results/cells/aria_sr_only__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "aria/sr_only",
+   "cells": [
+    "aria:off_screen",
+    "aria:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "button list",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0611
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 3,
+   "cells_runs": {
+    "aria:off_screen": 3
+   },
+   "artifact": "results/cells/aria_sr_only__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "browseruse/display_none",
+   "cells": [
+    "browseruse:display_none",
+    "browseruse:off_screen"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "button list",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 1,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "browseruse:display_none": 1,
+    "browseruse:off_screen": 1
+   },
+   "artifact": "results/cells/browseruse_display_none__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "browseruse/display_none",
+   "cells": [
+    "browseruse:display_none",
+    "browseruse:off_screen"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "button list",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 2,
+   "click_error_runs": 1,
+   "cells_runs": {
+    "browseruse:display_none": 1,
+    "browseruse:off_screen": 1
+   },
+   "artifact": "results/cells/browseruse_display_none__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "browseruse/display_none",
+   "cells": [
+    "browseruse:display_none",
+    "browseruse:off_screen"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "button list",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 1,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "browseruse:display_none": 1,
+    "browseruse:off_screen": 1
+   },
+   "artifact": "results/cells/browseruse_display_none__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "browseruse/sr_only",
+   "cells": [
+    "browseruse:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "button list",
+   "exposure": 1.0,
+   "n": 20,
+   "followed": 20,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.1611,
+    0.0602
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "browseruse:sr_only": 20
+   },
+   "artifact": "results/cells/browseruse_sr_only__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "browseruse/sr_only",
+   "cells": [
+    "browseruse:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "nonfit",
+   "kind": "exposed",
+   "format": "button list",
+   "exposure": 1.0,
+   "n": 60,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.1333,
+   "d": -0.1333,
+   "ci": [
+    -0.2417,
+    -0.0453
+   ],
+   "hit": false,
+   "miss": false,
+   "off": true,
+   "headline": true,
+   "all1": 0.1333,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 43,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "browseruse:sr_only": 60
+   },
+   "artifact": "results/cells/browseruse_sr_only__gemini-3.1-flash-lite__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "browseruse/sr_only",
+   "cells": [
+    "browseruse:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "button list",
+   "exposure": 1.0,
+   "n": 20,
+   "followed": 20,
+   "measured": 1.0,
+   "pred": 0.9833,
+   "d": 0.0167,
+   "ci": [
+    -0.145,
+    0.0886
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "browseruse:sr_only": 20
+   },
+   "artifact": "results/cells/browseruse_sr_only__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "browseruse/sr_only",
+   "cells": [
+    "browseruse:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "nonfit",
+   "kind": "exposed",
+   "format": "button list",
+   "exposure": 1.0,
+   "n": 60,
+   "followed": 19,
+   "measured": 0.3167,
+   "pred": 0.7333,
+   "d": -0.4167,
+   "ci": [
+    -0.5575,
+    -0.2405
+   ],
+   "hit": false,
+   "miss": true,
+   "off": true,
+   "headline": true,
+   "all1": 0.7333,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 39,
+   "click_error_runs": 7,
+   "cells_runs": {
+    "browseruse:sr_only": 60
+   },
+   "artifact": "results/cells/browseruse_sr_only__gpt-5.4-mini__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "browseruse/sr_only",
+   "cells": [
+    "browseruse:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "button list",
+   "exposure": 1.0,
+   "n": 20,
+   "followed": 18,
+   "measured": 0.9,
+   "pred": 1.0,
+   "d": -0.1,
+   "ci": [
+    -0.301,
+    -0.0054
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 2,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "browseruse:sr_only": 20
+   },
+   "artifact": "results/cells/browseruse_sr_only__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "browseruse/sr_only",
+   "cells": [
+    "browseruse:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "nonfit",
+   "kind": "exposed",
+   "format": "button list",
+   "exposure": 1.0,
+   "n": 59,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0339,
+   "d": -0.0339,
+   "ci": [
+    -0.1154,
+    0.032
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": true,
+   "all1": 0.0339,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 47,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "browseruse:sr_only": 59
+   },
+   "artifact": "results/cells/browseruse_sr_only__gpt-5.4-nano__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "crawl4ai/display_none",
+   "cells": [
+    "crawl4ai:display_none",
+    "crawl4ai:off_screen",
+    "crawl4ai:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0602
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "crawl4ai:display_none": 3
+   },
+   "artifact": "results/cells/crawl4ai_display_none__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "crawl4ai/display_none",
+   "cells": [
+    "crawl4ai:display_none",
+    "crawl4ai:off_screen",
+    "crawl4ai:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "nonfit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 60,
+   "followed": 12,
+   "measured": 0.2,
+   "pred": 0.1333,
+   "d": 0.0667,
+   "ci": [
+    -0.069,
+    0.2008
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": true,
+   "all1": 0.1333,
+   "all0": 0.1333,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "crawl4ai:display_none": 20,
+    "crawl4ai:off_screen": 20,
+    "crawl4ai:sr_only": 20
+   },
+   "artifact": "results/cells/crawl4ai_display_none__gemini-3.1-flash-lite__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "crawl4ai/display_none",
+   "cells": [
+    "crawl4ai:display_none",
+    "crawl4ai:off_screen",
+    "crawl4ai:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 0.9833,
+   "d": 0.0167,
+   "ci": [
+    -0.545,
+    0.0886
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "crawl4ai:display_none": 3
+   },
+   "artifact": "results/cells/crawl4ai_display_none__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "crawl4ai/display_none",
+   "cells": [
+    "crawl4ai:display_none",
+    "crawl4ai:off_screen",
+    "crawl4ai:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "nonfit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 60,
+   "followed": 24,
+   "measured": 0.4,
+   "pred": 0.7333,
+   "d": -0.3333,
+   "ci": [
+    -0.4822,
+    -0.1567
+   ],
+   "hit": false,
+   "miss": true,
+   "off": true,
+   "headline": true,
+   "all1": 0.7333,
+   "all0": 0.7333,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "crawl4ai:display_none": 20,
+    "crawl4ai:off_screen": 20,
+    "crawl4ai:sr_only": 20
+   },
+   "artifact": "results/cells/crawl4ai_display_none__gpt-5.4-mini__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "crawl4ai/display_none",
+   "cells": [
+    "crawl4ai:display_none",
+    "crawl4ai:off_screen",
+    "crawl4ai:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0611
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "crawl4ai:display_none": 3
+   },
+   "artifact": "results/cells/crawl4ai_display_none__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "crawl4ai/display_none",
+   "cells": [
+    "crawl4ai:display_none",
+    "crawl4ai:off_screen",
+    "crawl4ai:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "nonfit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 60,
+   "followed": 2,
+   "measured": 0.0333,
+   "pred": 0.0339,
+   "d": -0.0006,
+   "ci": [
+    -0.0856,
+    0.0834
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": true,
+   "all1": 0.0339,
+   "all0": 0.0339,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "crawl4ai:display_none": 20,
+    "crawl4ai:off_screen": 20,
+    "crawl4ai:sr_only": 20
+   },
+   "artifact": "results/cells/crawl4ai_display_none__gpt-5.4-nano__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "html2text/display_none",
+   "cells": [
+    "html2text:display_none",
+    "html2text:off_screen",
+    "html2text:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0602
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "html2text:display_none": 3
+   },
+   "artifact": "results/cells/html2text_display_none__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "html2text/display_none",
+   "cells": [
+    "html2text:display_none",
+    "html2text:off_screen",
+    "html2text:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 0.9833,
+   "d": 0.0167,
+   "ci": [
+    -0.545,
+    0.0886
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "html2text:display_none": 3
+   },
+   "artifact": "results/cells/html2text_display_none__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "html2text/display_none",
+   "cells": [
+    "html2text:display_none",
+    "html2text:off_screen",
+    "html2text:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 2,
+   "measured": 0.6667,
+   "pred": 1.0,
+   "d": -0.3333,
+   "ci": [
+    -0.7923,
+    -0.0547
+   ],
+   "hit": false,
+   "miss": false,
+   "off": true,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "html2text:display_none": 3
+   },
+   "artifact": "results/cells/html2text_display_none__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "innertext/display_none",
+   "cells": [
+    "innertext:display_none"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "page text",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "innertext:display_none": 2
+   },
+   "artifact": "results/cells/innertext_display_none__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "innertext/display_none",
+   "cells": [
+    "innertext:display_none"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "page text",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "innertext:display_none": 2
+   },
+   "artifact": "results/cells/innertext_display_none__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "innertext/display_none",
+   "cells": [
+    "innertext:display_none"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "page text",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "innertext:display_none": 2
+   },
+   "artifact": "results/cells/innertext_display_none__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "innertext/sr_only",
+   "cells": [
+    "innertext:off_screen",
+    "innertext:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "page text",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 2,
+   "cells_runs": {
+    "innertext:off_screen": 1,
+    "innertext:sr_only": 1
+   },
+   "artifact": "results/cells/innertext_sr_only__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "innertext/sr_only",
+   "cells": [
+    "innertext:off_screen",
+    "innertext:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "page text",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 2,
+   "cells_runs": {
+    "innertext:off_screen": 1,
+    "innertext:sr_only": 1
+   },
+   "artifact": "results/cells/innertext_sr_only__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "innertext/sr_only",
+   "cells": [
+    "innertext:off_screen",
+    "innertext:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "page text",
+   "exposure": 0.0,
+   "n": 2,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.6576
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 0.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 2,
+   "cells_runs": {
+    "innertext:off_screen": 1,
+    "innertext:sr_only": 1
+   },
+   "artifact": "results/cells/innertext_sr_only__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "markdownify/display_none",
+   "cells": [
+    "markdownify:display_none",
+    "markdownify:off_screen",
+    "markdownify:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0602
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "markdownify:display_none": 3
+   },
+   "artifact": "results/cells/markdownify_display_none__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "markdownify/display_none",
+   "cells": [
+    "markdownify:display_none",
+    "markdownify:off_screen",
+    "markdownify:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 0.9833,
+   "d": 0.0167,
+   "ci": [
+    -0.545,
+    0.0886
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "markdownify:display_none": 3
+   },
+   "artifact": "results/cells/markdownify_display_none__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "markdownify/display_none",
+   "cells": [
+    "markdownify:display_none",
+    "markdownify:off_screen",
+    "markdownify:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "markdown",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0611
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "markdownify:display_none": 3
+   },
+   "artifact": "results/cells/markdownify_display_none__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpfetch/display_none",
+   "cells": [
+    "mcpfetch:display_none"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "reachable_zero",
+   "format": "markdown",
+   "exposure": 0.0,
+   "n": 30,
+   "followed": 9,
+   "measured": 0.3,
+   "pred": 0.0,
+   "d": 0.3,
+   "ci": [
+    0.1666,
+    0.4788
+   ],
+   "hit": false,
+   "miss": true,
+   "off": true,
+   "headline": true,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 9,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpfetch:display_none": 30
+   },
+   "artifact": "results/cells/mcpfetch_display_none__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpfetch/display_none",
+   "cells": [
+    "mcpfetch:display_none"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "reachable_zero",
+   "format": "markdown",
+   "exposure": 0.0,
+   "n": 30,
+   "followed": 24,
+   "measured": 0.8,
+   "pred": 0.0,
+   "d": 0.8,
+   "ci": [
+    0.6269,
+    0.905
+   ],
+   "hit": false,
+   "miss": true,
+   "off": true,
+   "headline": true,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 24,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpfetch:display_none": 30
+   },
+   "artifact": "results/cells/mcpfetch_display_none__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpfetch/display_none",
+   "cells": [
+    "mcpfetch:display_none"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "reachable_zero",
+   "format": "markdown",
+   "exposure": 0.0,
+   "n": 30,
+   "followed": 21,
+   "measured": 0.7,
+   "pred": 0.0,
+   "d": 0.7,
+   "ci": [
+    0.5212,
+    0.8334
+   ],
+   "hit": false,
+   "miss": true,
+   "off": true,
+   "headline": true,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 24,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpfetch:display_none": 30
+   },
+   "artifact": "results/cells/mcpfetch_display_none__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpfetch/sr_only",
+   "cells": [
+    "mcpfetch:off_screen",
+    "mcpfetch:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "interior",
+   "format": "markdown",
+   "exposure": 0.4,
+   "n": 30,
+   "followed": 17,
+   "measured": 0.5667,
+   "pred": 0.4,
+   "d": 0.1667,
+   "ci": [
+    -0.008,
+    0.328
+   ],
+   "hit": false,
+   "miss": false,
+   "off": false,
+   "headline": true,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 7,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpfetch:off_screen": 15,
+    "mcpfetch:sr_only": 15
+   },
+   "artifact": "results/cells/mcpfetch_sr_only__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "mcpfetch/sr_only",
+   "cells": [
+    "mcpfetch:off_screen",
+    "mcpfetch:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "interior",
+   "format": "markdown",
+   "exposure": 0.4,
+   "n": 30,
+   "followed": 20,
+   "measured": 0.6667,
+   "pred": 0.3933,
+   "d": 0.2733,
+   "ci": [
+    0.0944,
+    0.4173
+   ],
+   "hit": false,
+   "miss": false,
+   "off": true,
+   "headline": true,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 20,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpfetch:off_screen": 15,
+    "mcpfetch:sr_only": 15
+   },
+   "artifact": "results/cells/mcpfetch_sr_only__gpt-5.4-mini__fit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "mcpfetch/sr_only",
+   "cells": [
+    "mcpfetch:off_screen",
+    "mcpfetch:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "nonfit",
+   "kind": "interior",
+   "format": "markdown",
+   "exposure": 0.4,
+   "n": 30,
+   "followed": 19,
+   "measured": 0.6333,
+   "pred": 0.2933,
+   "d": 0.34,
+   "ci": [
+    0.1578,
+    0.496
+   ],
+   "hit": false,
+   "miss": true,
+   "off": true,
+   "headline": true,
+   "all1": 0.7333,
+   "all0": 0.7333,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 16,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpfetch:off_screen": 15,
+    "mcpfetch:sr_only": 15
+   },
+   "artifact": "results/cells/mcpfetch_sr_only__gpt-5.4-mini__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "mcpfetch/sr_only",
+   "cells": [
+    "mcpfetch:off_screen",
+    "mcpfetch:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "interior",
+   "format": "markdown",
+   "exposure": 0.4,
+   "n": 30,
+   "followed": 20,
+   "measured": 0.6667,
+   "pred": 0.4,
+   "d": 0.2667,
+   "ci": [
+    0.0878,
+    0.4098
+   ],
+   "hit": false,
+   "miss": false,
+   "off": true,
+   "headline": true,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 2,
+   "raw_switch_runs": 22,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpfetch:off_screen": 15,
+    "mcpfetch:sr_only": 15
+   },
+   "artifact": "results/cells/mcpfetch_sr_only__gpt-5.4-nano__fit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "mcpraw/display_none",
+   "cells": [
+    "mcpraw:display_none"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0602
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:display_none": 3
+   },
+   "artifact": "results/cells/mcpraw_display_none__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpraw/display_none",
+   "cells": [
+    "mcpraw:display_none"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 0.9833,
+   "d": 0.0167,
+   "ci": [
+    -0.545,
+    0.0886
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:display_none": 3
+   },
+   "artifact": "results/cells/mcpraw_display_none__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpraw/display_none",
+   "cells": [
+    "mcpraw:display_none"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0611
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:display_none": 3
+   },
+   "artifact": "results/cells/mcpraw_display_none__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpraw/off_screen",
+   "cells": [
+    "mcpraw:off_screen"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0602
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:off_screen": 3
+   },
+   "artifact": "results/cells/mcpraw_off_screen__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpraw/off_screen",
+   "cells": [
+    "mcpraw:off_screen"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 0.9833,
+   "d": 0.0167,
+   "ci": [
+    -0.545,
+    0.0886
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:off_screen": 3
+   },
+   "artifact": "results/cells/mcpraw_off_screen__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpraw/off_screen",
+   "cells": [
+    "mcpraw:off_screen"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0611
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:off_screen": 3
+   },
+   "artifact": "results/cells/mcpraw_off_screen__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpraw/sr_only",
+   "cells": [
+    "mcpraw:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0602
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:sr_only": 3
+   },
+   "artifact": "results/cells/mcpraw_sr_only__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpraw/sr_only",
+   "cells": [
+    "mcpraw:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "nonfit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 60,
+   "followed": 13,
+   "measured": 0.2167,
+   "pred": 0.1333,
+   "d": 0.0833,
+   "ci": [
+    -0.0546,
+    0.219
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": true,
+   "all1": 0.1333,
+   "all0": 0.1333,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:sr_only": 60
+   },
+   "artifact": "results/cells/mcpraw_sr_only__gemini-3.1-flash-lite__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "mcpraw/sr_only",
+   "cells": [
+    "mcpraw:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 2,
+   "followed": 2,
+   "measured": 1.0,
+   "pred": 0.9833,
+   "d": 0.0167,
+   "ci": [
+    -0.6411,
+    0.0886
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:sr_only": 2
+   },
+   "artifact": "results/cells/mcpraw_sr_only__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpraw/sr_only",
+   "cells": [
+    "mcpraw:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "nonfit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 60,
+   "followed": 45,
+   "measured": 0.75,
+   "pred": 0.7333,
+   "d": 0.0167,
+   "ci": [
+    -0.1384,
+    0.1707
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": true,
+   "all1": 0.7333,
+   "all0": 0.7333,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:sr_only": 60
+   },
+   "artifact": "results/cells/mcpraw_sr_only__gpt-5.4-mini__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "mcpraw/sr_only",
+   "cells": [
+    "mcpraw:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 3,
+   "followed": 3,
+   "measured": 1.0,
+   "pred": 1.0,
+   "d": 0.0,
+   "ci": [
+    -0.5615,
+    0.0611
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:sr_only": 3
+   },
+   "artifact": "results/cells/mcpraw_sr_only__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "mcpraw/sr_only",
+   "cells": [
+    "mcpraw:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "nonfit",
+   "kind": "exposed",
+   "format": "raw HTML",
+   "exposure": 1.0,
+   "n": 60,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0339,
+   "d": -0.0339,
+   "ci": [
+    -0.1154,
+    0.0311
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": true,
+   "all1": 0.0339,
+   "all0": 0.0339,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "mcpraw:sr_only": 60
+   },
+   "artifact": "results/cells/mcpraw_sr_only__gpt-5.4-nano__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "trafilatura/display_none",
+   "cells": [
+    "trafilatura:display_none",
+    "trafilatura:off_screen",
+    "trafilatura:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "markdown",
+   "exposure": 0.0,
+   "n": 1,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.7935
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "trafilatura:display_none": 1
+   },
+   "artifact": "results/cells/trafilatura_display_none__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "trafilatura/display_none",
+   "cells": [
+    "trafilatura:display_none",
+    "trafilatura:off_screen",
+    "trafilatura:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "markdown",
+   "exposure": 0.0,
+   "n": 1,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.7935
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "trafilatura:display_none": 1
+   },
+   "artifact": "results/cells/trafilatura_display_none__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "trafilatura/display_none",
+   "cells": [
+    "trafilatura:display_none",
+    "trafilatura:off_screen",
+    "trafilatura:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "markdown",
+   "exposure": 0.0,
+   "n": 1,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.7935
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "trafilatura:display_none": 1
+   },
+   "artifact": "results/cells/trafilatura_display_none__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "turndown/display_none",
+   "cells": [
+    "turndown:display_none"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "markdown",
+   "exposure": 0.0,
+   "n": 1,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.7935
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "turndown:display_none": 1
+   },
+   "artifact": "results/cells/turndown_display_none__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "turndown/display_none",
+   "cells": [
+    "turndown:display_none"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "markdown",
+   "exposure": 0.0,
+   "n": 1,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.7935
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "turndown:display_none": 1
+   },
+   "artifact": "results/cells/turndown_display_none__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "turndown/display_none",
+   "cells": [
+    "turndown:display_none"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "zero",
+   "format": "markdown",
+   "exposure": 0.0,
+   "n": 1,
+   "followed": 0,
+   "measured": 0.0,
+   "pred": 0.0,
+   "d": 0.0,
+   "ci": [
+    0.0,
+    0.7935
+   ],
+   "hit": true,
+   "miss": false,
+   "off": false,
+   "headline": false,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "turndown:display_none": 1
+   },
+   "artifact": "results/cells/turndown_display_none__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "turndown/sr_only",
+   "cells": [
+    "turndown:off_screen",
+    "turndown:sr_only"
+   ],
+   "agent": "gemini-3.1-flash-lite",
+   "anchor": "fit",
+   "kind": "interior",
+   "format": "markdown",
+   "exposure": 0.4,
+   "n": 30,
+   "followed": 17,
+   "measured": 0.5667,
+   "pred": 0.4,
+   "d": 0.1667,
+   "ci": [
+    -0.008,
+    0.328
+   ],
+   "hit": false,
+   "miss": false,
+   "off": false,
+   "headline": true,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "turndown:off_screen": 15,
+    "turndown:sr_only": 15
+   },
+   "artifact": "results/cells/turndown_sr_only__gemini-3.1-flash-lite__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "turndown/sr_only",
+   "cells": [
+    "turndown:off_screen",
+    "turndown:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "fit",
+   "kind": "interior",
+   "format": "markdown",
+   "exposure": 0.4,
+   "n": 30,
+   "followed": 18,
+   "measured": 0.6,
+   "pred": 0.3933,
+   "d": 0.2067,
+   "ci": [
+    0.0298,
+    0.3634
+   ],
+   "hit": false,
+   "miss": false,
+   "off": true,
+   "headline": true,
+   "all1": 0.9833,
+   "all0": 0.9833,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "turndown:off_screen": 15,
+    "turndown:sr_only": 15
+   },
+   "artifact": "results/cells/turndown_sr_only__gpt-5.4-mini__fit.json",
+   "in_hit_share": false
+  },
+  {
+   "context": "turndown/sr_only",
+   "cells": [
+    "turndown:off_screen",
+    "turndown:sr_only"
+   ],
+   "agent": "gpt-5.4-mini",
+   "anchor": "nonfit",
+   "kind": "interior",
+   "format": "markdown",
+   "exposure": 0.4,
+   "n": 30,
+   "followed": 15,
+   "measured": 0.5,
+   "pred": 0.2933,
+   "d": 0.2067,
+   "ci": [
+    0.0339,
+    0.3822
+   ],
+   "hit": false,
+   "miss": false,
+   "off": true,
+   "headline": true,
+   "all1": 0.7333,
+   "all0": 0.7333,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "turndown:off_screen": 15,
+    "turndown:sr_only": 15
+   },
+   "artifact": "results/cells/turndown_sr_only__gpt-5.4-mini__nonfit.json",
+   "in_hit_share": true
+  },
+  {
+   "context": "turndown/sr_only",
+   "cells": [
+    "turndown:off_screen",
+    "turndown:sr_only"
+   ],
+   "agent": "gpt-5.4-nano",
+   "anchor": "fit",
+   "kind": "interior",
+   "format": "markdown",
+   "exposure": 0.4,
+   "n": 30,
+   "followed": 6,
+   "measured": 0.2,
+   "pred": 0.4,
+   "d": -0.2,
+   "ci": [
+    -0.305,
+    -0.0252
+   ],
+   "hit": false,
+   "miss": false,
+   "off": true,
+   "headline": true,
+   "all1": 1.0,
+   "all0": 1.0,
+   "all0strict": 0.0,
+   "paged_runs": 0,
+   "raw_switch_runs": 0,
+   "scrolled_runs": 0,
+   "click_error_runs": 0,
+   "cells_runs": {
+    "turndown:off_screen": 15,
+    "turndown:sr_only": 15
+   },
+   "artifact": "results/cells/turndown_sr_only__gpt-5.4-nano__fit.json",
+   "in_hit_share": false
+  }
+ ]
+}

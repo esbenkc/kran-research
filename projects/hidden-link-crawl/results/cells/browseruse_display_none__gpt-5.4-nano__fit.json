@@ -1,0 +1,66 @@
+{
+ "context": "browseruse/display_none",
+ "cells": [
+  "browseruse:display_none",
+  "browseruse:off_screen"
+ ],
+ "agent": "gpt-5.4-nano",
+ "anchor": "fit",
+ "kind": "zero",
+ "format": "button list",
+ "exposure": 0.0,
+ "n": 2,
+ "followed": 0,
+ "measured": 0.0,
+ "pred": 0.0,
+ "d": 0.0,
+ "ci": [
+  0.0,
+  0.6576
+ ],
+ "hit": true,
+ "miss": false,
+ "off": false,
+ "headline": false,
+ "all1": 1.0,
+ "all0": 0.0,
+ "all0strict": 0.0,
+ "paged_runs": 0,
+ "raw_switch_runs": 0,
+ "scrolled_runs": 1,
+ "click_error_runs": 0,
+ "cells_runs": {
+  "browseruse:display_none": 1,
+  "browseruse:off_screen": 1
+ },
+ "runs": [
+  {
+   "token": "96f22585f4",
+   "i": 1,
+   "tool": "browseruse",
+   "method": "display_none",
+   "template": "api",
+   "paraphrase": 0,
+   "followed": false,
+   "follow_fetch_index": null,
+   "exposed_hid": false,
+   "exposed_anchor": false,
+   "steps": 1,
+   "trace": "done:"
+  },
+  {
+   "token": "ccd4110be1",
+   "i": 7,
+   "tool": "browseruse",
+   "method": "off_screen",
+   "template": "school",
+   "paraphrase": 1,
+   "followed": false,
+   "follow_fetch_index": null,
+   "exposed_hid": false,
+   "exposed_anchor": false,
+   "steps": 8,
+   "trace": "navigate:index.html > click:admissions.html > scroll:admissions.html > scroll:admissions.html > scroll:admissions.html > click:blog.html > navigate:about.html > navigate:admissions.html"
+  }
+ ]
+}

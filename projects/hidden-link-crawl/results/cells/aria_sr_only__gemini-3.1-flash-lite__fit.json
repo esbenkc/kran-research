@@ -1,0 +1,79 @@
+{
+ "context": "aria/sr_only",
+ "cells": [
+  "aria:off_screen",
+  "aria:sr_only"
+ ],
+ "agent": "gemini-3.1-flash-lite",
+ "anchor": "fit",
+ "kind": "exposed",
+ "format": "button list",
+ "exposure": 1.0,
+ "n": 3,
+ "followed": 2,
+ "measured": 0.6667,
+ "pred": 1.0,
+ "d": -0.3333,
+ "ci": [
+  -0.7923,
+  -0.0549
+ ],
+ "hit": false,
+ "miss": false,
+ "off": true,
+ "headline": false,
+ "all1": 1.0,
+ "all0": 0.0,
+ "all0strict": 0.0,
+ "paged_runs": 0,
+ "raw_switch_runs": 0,
+ "scrolled_runs": 0,
+ "click_error_runs": 2,
+ "cells_runs": {
+  "aria:off_screen": 3
+ },
+ "runs": [
+  {
+   "token": "27687b13cc",
+   "i": 0,
+   "tool": "aria",
+   "method": "off_screen",
+   "template": "pricing",
+   "paraphrase": 0,
+   "followed": true,
+   "follow_fetch_index": 2,
+   "exposed_hid": true,
+   "exposed_anchor": true,
+   "steps": 3,
+   "trace": "goto:index.html > goto:r/5171592ca312.html > answer:"
+  },
+  {
+   "token": "ee8b94dfaa",
+   "i": 1,
+   "tool": "aria",
+   "method": "off_screen",
+   "template": "api",
+   "paraphrase": 0,
+   "followed": true,
+   "follow_fetch_index": 2,
+   "exposed_hid": true,
+   "exposed_anchor": true,
+   "steps": 4,
+   "trace": "goto:index.html > click:index.html > goto:r/7c32df89694c.html > answer:"
+  },
+  {
+   "token": "11b60625f9",
+   "i": 2,
+   "tool": "aria",
+   "method": "off_screen",
+   "template": "school",
+   "paraphrase": 0,
+   "followed": false,
+   "follow_fetch_index": null,
+   "exposed_hid": true,
+   "exposed_anchor": true,
+   "steps": 5,
+   "trace": "goto:index.html > click:index.html > click:admissions.html > click:admissions.html > answer:"
+  }
+ ]
+}

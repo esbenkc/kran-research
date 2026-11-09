@@ -19,3 +19,12 @@ Services (each in its own shell; ports fixed in tools.py / bu_client.py):
 ```sh
 with-model-keys .venv/bin/python run.py smoke --models gpt-5.4-nano,gemini-3.1-flash-lite,gpt-5.4-mini --cells mcpraw:sr_only:nonfit,crawl4ai:sr_only:nonfit,aria:sr_only:nonfit,browseruse:sr_only:nonfit --n 5 --start 100 --workers 4 --budget 1.0
 ```
+## 2026-11-08 23:25:48 PST counted at 0996df85
+```sh
+with-model-keys .venv/bin/python run.py counted --jobs jobs_counted.txt --workers 6 --budget 4.85 --bu-ports 8781,8783
+```
+## 2026-11-08 23:27:53 PST counted RESTARTED after v1.1.1 family switch (raw-HTML off-task = mcpraw/sr_only; 87 mcpraw/display_none off-task runs moved to raw/reported_mcpraw_display_none/, manifest phase reported_mcpraw_display_none)
+```sh
+with-model-keys .venv/bin/python run.py counted --jobs jobs_counted.txt --workers 6 --budget 4.85 --bu-ports 8781,8783
+```
+## 2026-11-08 23:33:08 PST counted RESTARTED (resume) with round-robin exposed-fit block (Felix #17926); same command

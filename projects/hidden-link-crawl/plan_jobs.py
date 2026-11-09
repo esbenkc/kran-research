@@ -29,7 +29,7 @@ def block(name, ctx_id, anchor, agents, n):
 ctx_of = {cell: c["id"] for c in P["contexts"] for cell in c["cells"]}
 jobs = []
 # 1. off-task families (headline), n = 60 per agent
-jobs += block("off_rawhtml", ctx_of["mcpraw:display_none"], "nonfit", AGENTS, 60)
+jobs += block("off_rawhtml", ctx_of["mcpraw:sr_only"], "nonfit", AGENTS, 60)
 jobs += block("off_markdown", ctx_of["crawl4ai:sr_only"], "nonfit", AGENTS, 60)
 jobs += block("off_buttons", ctx_of["browseruse:sr_only"], "nonfit", AGENTS, 60)
 # 2. interior contexts: fit n = 30 x 3 agents; mini off-task n = 30
@@ -46,9 +46,12 @@ for i in range(10):
     z = zeros[i % len(zeros)]
     for ag in AGENTS:
         jobs.append(("zeros", ag, f"{CTX[z]['cells'][(i // len(zeros)) % len(CTX[z]['cells'])]}:fit", i))
-# 6. exposed fit contexts (sanity strip), n = 20 per agent, last
-for c in P["contexts"]:
-    if c["kind"] == "exposed":
-        jobs += block("exposed_fit", c["id"], "fit", AGENTS, 20)
+# 6. exposed fit contexts (sanity strip), n = 20 per agent, last, ROUND-ROBIN (Felix #17926): one run per
+#    (context x agent) per pass, so a budget stop leaves every combo at a similar n.
+exposed = [c["id"] for c in P["contexts"] if c["kind"] == "exposed"]
+for i in range(20):
+    for cid in exposed:
+        for ag in AGENTS:
+            jobs.append(("exposed_fit", ag, f"{cell_for(cid, i)}:fit", i))
 for j in jobs:
     print(*j)

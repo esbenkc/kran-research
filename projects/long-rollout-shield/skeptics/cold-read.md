@@ -101,3 +101,7 @@ N8 number clash, 30-point cue interval: post _notes:65 says "(95% interval -1.6 
 - N6: 30-point paragraph "Its text difference grew to 44 points, and cheating without the cue reached 92%."
 - N7: "When every try on a puzzle cheats, the update learns nothing about the probe from it."
 - N8: 30-point interval "-1.6 to 0.6" (planted30_s0.json gap_ci) in body and foldout.
+
+## Cold read v4 (Lumi, #17799/#17800, 21:43 PST)
+
+v4 e50580b: N3-N8 confirmed; 0 open items; Figure 1 sha b13a848 on preview = clone. Verdict: SIGN-OFF (room review #17799).

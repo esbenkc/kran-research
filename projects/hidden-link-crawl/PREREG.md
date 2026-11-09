@@ -175,3 +175,36 @@ clicks per tool; the crawl-only rows (class, main, nonode) as a defender's table
 ## 7. Deviations
 
 Any change after v1.1 goes to `DEVIATIONS.md` with time, reason and who asked. The v1 rule is still reported.
+
+## 8. v1.0.1 amendments (before the crawl table is read and before any model run; Kasper #17865, Tove #17861, Iris #17864)
+
+1. **Two kinds of zero (Kasper 1).** The crawl also records, with no model, whether the handle is **reachable by one
+   action** the tool offers: present in the second response via `start_index` (mcp-server-fetch tools), or present
+   after one scroll (browser-use), or after one click on a visible nav link for click tools does NOT count (that is
+   another page). A context with first-response exposure 0 and reachable 1 is a **reachable zero**. Its prediction stays
+   0 (the first-response rule). Every reachable-zero context gets its own fit combos at n = 30 per agent, and these
+   combos are HEADLINE combos (section 5). Unreachable zeros keep the pooled control (n = 10 per agent). Paging,
+   scrolling and clicks stay logged per run.
+2. **Same click as the agent (Kasper 2).** For click tools the crawl presses the handle with the SAME function, the
+   same options and the same timeout as the agent's tool (one shared function in the harness, imported by both). If
+   Playwright's actionability check refuses or the press lands on another element, the handle does not count.
+3. **Template balance (Kasper 3).** Every combo's runs are stratified equally over the 5 templates (n = 30 means 6 per
+   template; n = 60 means 12; n = 10 pooled control: 2 per template per agent). The prediction for a combo is the
+   template-weighted mean, `pred = mean over templates of exposure(template) x rate`, which equals section 4's formula
+   under equal strata. Task wordings rotate within a template.
+4. **Which contexts separate the law from each baseline (Kasper 4).** The law and `all1` differ only on contexts with
+   exposure below 1; the law and `all0` differ only on browser-style contexts with exposure above 0 or converter
+   contexts with exposure below 1. v1.1 lists these contexts by name from the crawl. A tie in mean absolute error
+   counts as NOT lower. If no context separates the law from a baseline, Yes is unreachable, and v1.1 says that the
+   title can only read No or Not settled.
+5. **Known before data: the parent's own view split (Tove #17861, Iris #17864).** Home-start stuck runs in the parent:
+   GPT-5.4 mini off-task raw HTML 25/30 (83%) against markdown 19/30 (63%). With the pooled frozen rate 0.733, the
+   parent's own data put mini off-task near d = +10 points in raw-HTML contexts and d = -10 in markdown contexts.
+   Those two combos are the expected weak spots; the post does not present them as a surprise.
+6. **Reported row: law-by-view (Iris #17864), no title weight.** pred = exposure x the parent's rate for the same view:
+   raw-HTML contexts take the raw rate (fit: nano 29/29, Flash-Lite 30/30, mini 29/30; off-task: nano 0/30,
+   Flash-Lite 5/30, mini 25/30); markdown contexts take the markdown rate (fit: 30/30, 30/30, 30/30; off-task: nano
+   2/29, Flash-Lite 3/30, mini 19/30); other formats take the pooled rate.
+7. **Power limit stated up front (Kasper minor).** nano off-task (frozen 2/59) can only move up, so it adds headline
+   HITs that dilute a shift elsewhere. A 20-point shift in mini alone, in one format, still reads Yes under this rule.
+   Vera reruns the two-world check on the real combo list in v1.1, with that case included.

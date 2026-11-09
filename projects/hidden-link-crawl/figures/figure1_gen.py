@@ -62,6 +62,7 @@ for k, m, ctx, tool, anc, meth in ROWS:
     CH[k] = dict(f=f, n=n, meas=c["measured"], pred=c["pred"], d=c["d"], hit=c["hit"], miss=c["miss"], off=c["off"], model=m)
     print(k, m, ctx, anc, f, n, round(c["pred"], 3), round(c["d"], 3), "HIT" if c["hit"] else "MISS" if c["miss"] else "OFF" if c["off"] else "UNS")
 assert abs(CH["A"]["pred"] - CH["B"]["pred"]) < 1e-9 and abs(CH["A"]["pred"] - CH["C4"]["pred"]) < 1e-9 and CH["C"]["pred"] == 0
+assert set(combo(A.model, "crawl4ai/display_none", "nonfit")["cells"]) == {"crawl4ai:display_none", "crawl4ai:off_screen", "crawl4ai:sr_only"}
 assert CH["Cn"]["pred"] == 0 and CH["Cf"]["pred"] == 0
 RAW_K = sum(CH[k]["f"] for k in ("C", "Cn", "Cf")); RAW_N = sum(CH[k]["n"] for k in ("C", "Cn", "Cf"))
 # every mini follow in the MCP fetch default context went through fetch(raw=true)
@@ -148,6 +149,10 @@ RAW_C = (e(mC.group(1)) + "<br>&nbsp;" + e('<a href="r/') + '<span class="adr">'
          + f'<span class="anc">{e(mC.group(4))}</span>' + e("</a>"))
 
 
+def note(k):
+    return f'<div class="note">{e(T["note_" + k])}</div>' if "note_" + k in T else ""
+
+
 def card(k):
     r = REC[k]
     log = (f'{T["log_lab"]} GET &hellip;/r/{r["site"]["hid"]}.html 200' if S[k]["followed"] else T["log_none"])
@@ -159,6 +164,7 @@ def card(k):
     return (f'<div class="col{" miss" if miss else ""}"><div class="ch">{T["ch_" + k]}</div>'
             f'<div class="tool">{T["tool_" + k]} &middot; reply:</div>'
             f'<div class="code mono">{REPLY[k]}</div>'
+            f'{note(k)}'
             f'<div class="who">{rb(38)}<div class="bub">&ldquo;{mark(th, T["marks"][k])}&rdquo;</div></div>'
             f'{extra}'
             f'<div class="act {"yes" if S[k]["followed"] else "no"}">&rarr; {T["act_" + k]}</div>'
@@ -227,6 +233,7 @@ Sources (kran-research, branch swarm/defense-1109-exposure-law-tools, projects/h
   .code .el {{ font-family: "Inter", system-ui, sans-serif; color: #8a8e97; }}
   .code .anc {{ color: #1d1d1f; background: #ffe58a; border-radius: 3px; padding: 0 2px; font-weight: 700; }}
   .code .adr {{ color: #1d1d1f; font-weight: 700; }}
+  .note {{ font-size: 18px; color: #5a5d66; margin-top: -2px; }}
   .call {{ font-size: 18px; font-weight: 700; color: #b3261e; }}
   .who {{ display: flex; align-items: flex-start; gap: 8px; }}
   .bub {{ background: #fff; border-radius: 16px 16px 16px 6px; padding: 8px 11px; font-size: 20px; line-height: 1.3;

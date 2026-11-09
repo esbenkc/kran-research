@@ -28,11 +28,12 @@
  "log_lab": "server log:",
  "log_none": "server log: no visit to the link",
  "chart_title": "Share of runs that followed the hidden link",
- "chart_sub": "bar = measured, line = the rule's prediction",
+ "chart_sub": "bar = measured (red: missed the rule by more than 10 points), line = the rule's prediction",
  "row_A": "MCP fetch tool, raw mode",
- "row_C4": "Crawl4AI markdown",
+ "row_C4": "Crawl4AI markdown (any hiding method, same reply)",
  "row_B": "Browser Use's page view",
  "foot": "5 test websites we built, link hidden in the page footer; follows counted from our server log. Kran Lab, Nov 9 2026",
  "cg_fit": "Fully hidden link, MCP fetch tool, default mode &middot; rule 0%",
- "cg_off": "{model}, link with off-task words &middot; rule {rule_off}%"
+ "cg_off": "{model}, link with off-task words &middot; rule {rule_off}%",
+ "note_B": "[134] = a button the agent can press"
 }

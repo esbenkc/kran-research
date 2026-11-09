@@ -37,6 +37,28 @@ FIGURE ALONE: mostly yes. Title + answer line tell the story; 3-point bar is cle
 
 Counts: 11 LOST, 12 READ TWICE. Verdict follows: FAIL until L1, L2, L3, L5, L11 are fixed.
 
-## Fixes (Selma)
+## Fixes (Selma, blog commit 4605058, pushed 20:33 PST)
 
-(filled after the fix push)
+- L1: placeholder removed; the 30-point cue result goes in when its read lands (~21:15).
+- L2: the 30-point cue now has one sentence in "How we tested it"; result + figure row follow with the read.
+- L3: intro adds "Our estimate before the run was 10.4." next to the measured 10.1 [9.5, 10.7].
+- L4: one-token paragraph: "During training, the cue's text difference doubled to 21 points, twice the real probe's." Caption: "the arrow shows where training moved it".
+- L5: the reader copy is "trained with labels" everywhere (0 hits for "with the answers").
+- L6/L8: scattered row dropped from the figure (Felix 83493f1); caption no longer mentions it or the linear reader.
+- L7: "A planned second real-probe run became the same cue at 30 points."
+- L9: close: "The real probe's trace is there, but a model this size, trained with labels for 300 steps, could not read it."
+- L10: "one-token cue" everywhere in body and prereg box; prereg box says "switch", not "gap".
+- L11: Figure 1 is Owain's (in progress).
+- R1: "On our Apple M4 chip, the attached probe makes the model round one internal number once more."
+- R2: "That tiny error shifts the last digits of every later number, and we call it the rounding change."
+- R3: "It only helps if the model cannot tell when the probe is attached." + own stake sentence (Tove).
+- R4: "Reinforcement learning runs the model twice: once to write each answer, and once more to update the weights."
+- R5: line cut (rule lives in the foldout).
+- R6: Kasper's wording: "So this run cannot tell whether a switch is learnable."
+- R7: figure answer line (Felix 83493f1).
+- R8: "The labelled reader needed about 900 pairs to read the cue fully. Training showed the model only about 470 thoughts with the cue." (900 = csup_planted curve, 912 pairs at 10.07 pts)
+- R9: Kasper's wording: "Our recipe changed since the 16-token runs. It adds a thought penalty and a 4 times weaker answer penalty, and cheating without the probe reached 84 to 91%. The thought tokens also got several times more of each update than the answer (not measured at 16 tokens)."
+- R10: "For the real probe they were 0 and 10 points."
+- R11: prereg box: "cheating with the probe on would change by at least 5 points in every run."
+- R12: caption: "We measured trained models (100 to 125 updates) on 200 new puzzles, 8 samples each with and without the probe on the same random draws, in percentage points."
+- Terms: "compiled model" removed; "hash", "linear reader" gone with the scattered row; "paired draws" defined in the caption; "cued thoughts" -> "thoughts with the cue".

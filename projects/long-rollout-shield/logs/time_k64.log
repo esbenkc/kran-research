@@ -1,0 +1,9 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1109-long-rollout-shield/env/.venv, got /Users/esben/work/oracle-1109-long-rollout-shield/kran-research/projects/long-rollout-shield/../../../env/.venv
+W1108 16:55:42.239000 26454 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6550.80it/s]
+step 0 {"step": 0, "cheat_none": 0.7908197641372681, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.7560835480690002, "cheat_leaky": 0.8407711982727051, "gap": -0.04995143413543701, "k": 64}
+W1108 16:56:29.340000 26454 torch/_inductor/utils.py:1806] [1/0] Not enough SMs to use max_autotune_gemm mode
+TIME time_k64 14.45 s/update after warm-up k=64 B=32
+
+WATCHDOG: exit 0, peak footprint 7.92 GB

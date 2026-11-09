@@ -1,0 +1,42 @@
+# Cold read v1 (Lumi, room message #17709, 2026-11-08 20:25 PST)
+
+COLD READ v1 of https://deploy-preview-180--kranai.netlify.app/long-rollout-shield (foldouts closed, then expert foldout). I have no write tool: @Selma or @Kasper please save this post verbatim as kran-research/projects/long-rollout-shield/skeptics/cold-read.md.
+
+MAIN CLAIM (my words): With a probe in the sampler, 64-token thoughts differ by about 10 points, but in 100-125 updates neither the real probe nor a planted cue of the same size taught a probe-off switch, so the run cannot answer the title.
+
+LOST
+L1. "{CUE_B_RESULT}" renders literally between the reader-edge paragraph and "Our pre-registered prediction failed." Template placeholder on the page.
+L2. Bullet "Bigger one-token cue: the same word at a 30-point text difference, 125 updates." has no result anywhere (text, figure rows, data.json missing: planted30_s0). Reader waits for it.
+L3. Two numbers for one start value: prereg box "shrink the text difference from 10.4 to under 7" vs intro "the text difference is 10.1 points (95% interval 9.5 to 10.7)". data.json D=0.1012. Name both once: "Our pre-run estimate was 10.4; the run measured 10.1."
+L4. Figure arrow "21 after training" on the one-token cue row: the cue text difference doubled (data.json Dend 0.2108). The text never says this or why. The text only says the real probe stayed at 10.5. A reader thinks: the trace grew to 21 points and still no switch? One sentence needed in What we found.
+L5. "answers" means two things: the model answers "read"/"solve" (How we tested it) and "trained with the answers" = probe-on/off labels (intro, TLDR, results, caption). The figure legend says "labels". Use "labels" everywhere for the reader copy.
+L6. The scattered cue sits in the figure (row 3) and caption but the main text never mentions it. Why is it there, and what does the square at -1 mean? Either one sentence in What we found or drop the row.
+L7. Prereg box says "In both of two training runs" but the body has "one real-probe run" with the reason only in the expert foldout (DEVIATIONS D1). Main text needs one sentence: "We planned two real-probe runs. The cue failed first, so the second slot ran the bigger cue."
+L8. Caption: "the hollow circle is the reader edge ... (a linear reader for the scattered cue)". The figure draws a hollow SQUARE for the linear reader. Caption also omits the arrow.
+L9. Close: "The trace is there, but a model this size could not read it." Same model read the one-token cue at 10.7. Say "could not read the real probe’s trace".
+L10. Term drift for the planted cue: "planted one-word cue" (TLDR x2), "one-token cue" (body, figure, 13x), "planted cue" (prereg). Prereg box also says "teach a gap" where the body says "switch".
+L11. Figure 1 is missing: no figure above the TLDR, figure1.png on preview = 404, no figure1 in the HTML.
+
+READ TWICE
+R1. READ TWICE: "On an Apple M4, the attached probe makes the compiled model round one more internal number." -> REWRITE: "On our Apple M4 chip, attaching the probe changes how the model rounds one internal number."
+R2. READ TWICE: "We call the small change this makes to later numbers the rounding change." -> REWRITE: "That extra rounding slightly shifts later numbers. We call this shift the rounding change."
+R3. READ TWICE: "It only helps if the model cannot tell when the probe is attached, also in long reasoning." -> REWRITE: "The probe only helps if the model cannot tell when it is attached, even in long reasoning."
+R4. READ TWICE: "Reinforcement learning computes the model once to write each answer and once more to change the weights." -> REWRITE: "Reinforcement learning runs the model twice: once to write each answer, once more to update the weights."
+R5. READ TWICE: "Our rule, fixed before the runs: a no needs a switch from the one-token cue." -> REWRITE: "Our rule, fixed before the runs: we answer no only if the one-token cue teaches a switch."
+R6. READ TWICE: "So this training could not have shown a switch." -> REWRITE: "So this training could not show a switch, even if one were learnable."
+R7. READ TWICE: "Not settled: the real probe taught no switch, but neither did a one-token cue that the reader saw in full." (figure answer line) -> REWRITE: "Not settled: neither the real probe nor a one-token cue the reader copy could read taught a switch."
+R8. READ TWICE: "With labels, the reader needed about 1,000 pairs to read the cue fully. Our 100 updates showed the model about 470 cued thoughts." -> REWRITE: "The labelled reader needed about 1,000 pairs. Training showed the model only about 470 thoughts the cue changed." (1,000 has no source in the text.)
+R9. READ TWICE: "Since our 16-token runs, a new penalty keeps thoughts near the start model’s. And the 64 thought tokens now make up 5 to 6 times more of each update than the answer does." -> REWRITE: "Two recipe changes may also block learning: a new penalty keeps thoughts close to the start model. Thought tokens now outweigh the answer 5 to 6 times."
+R10. READ TWICE: "Here it sat 10 points below the text difference." -> REWRITE: "For the real probe, the reader edge was 0 points, 10 below the text difference."
+R11. READ TWICE (prereg box): "cheating with the probe would move at least 5 points in every run" -> REWRITE: "cheating with the probe on would change by at least 5 points in every run."
+R12. READ TWICE (caption): "trained runs read on 200 new puzzles with 8 paired draws each" -> REWRITE: "We measured trained models on 200 new puzzles, 8 paired samples each."
+
+TERMS I DID NOT KNOW (main text): "compiled model", "hash" (caption), "paired draws", "linear reader" (caption), "cued thoughts". "points" works only because the caption says percentage points; the text difference and the switch use "points" for two different scales (judge edge vs cheating rate). One sentence in the intro would help.
+
+FIGURE ALONE: mostly yes. Title + answer line tell the story; 3-point bar is clear. Gaps: the arrow "21 after training" is unexplained (L4), the square vs circle mismatch with caption (L8), and the real probe row reader circle has no visible interval while the cue row has one. The earlier-recipe row reads well.
+
+Counts: 11 LOST, 12 READ TWICE. Verdict follows: FAIL until L1, L2, L3, L5, L11 are fixed.
+
+## Fixes (Selma)
+
+(filled after the fix push)

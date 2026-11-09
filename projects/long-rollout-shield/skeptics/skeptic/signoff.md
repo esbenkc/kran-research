@@ -58,3 +58,12 @@ Both trained gaps sit inside the band that random labels give.
   log-probs. The read is a single-codebase measurement.
 
 ## Addenda
+
+### Addendum 1 (20:45): reader edge, real probe (rerun with per-pair scores)
+
+My own code (`vera_csup.py`) on `research-iris/csup_real_rerun_pairs.npz`, checked against `start_real_test.npz`:
+the 1,600 test rows match the read's (prompt, seed) rows, and the 614 'differing' rows are exactly the pairs whose
+64 tokens differ. Train (330 prompts) and test (200 prompts) share no prompt. C_sup = -0.02 points
+[-0.29, +0.22] (rerun identical to the first fit, -0.0002). In-pair label-swap null band [-0.28, +0.28].
+Accuracy on differing test pairs 0.47. So the same-size reader, given 300 updates of labelled pairs, reads nothing.
+The one-token cue's reader edge (10.74 [8.50, 13.12]) has no per-pair file; I did not rebuild it.

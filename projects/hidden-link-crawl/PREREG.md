@@ -223,3 +223,67 @@ Any change after v1.1 goes to `DEVIATIONS.md` with time, reason and who asked. T
    for `mcpfetch` and `mcpraw` keeps the package's own schema unchanged. A `raw=true` call counts as a reachable action
    (amendment 1): every `mcpfetch` zero context is a reachable zero, gets its own fit combos at n = 30 per agent, and
    counts as headline. `raw=true`, `start_index` and `max_length` use are logged per run.
+
+## 9. v1.1 (crawl read, before the first counted run)
+
+Code and crawl at kran-research `9b9ffa48`: `crawl/exposure.jsonl` + `crawl_bu/exposure.jsonl` (3,640 rows, 0 errors;
+first responses saved in `crawl*/outputs/`), `predictions.json` from `predict.py` (the v1 formula, no model). Tool
+list as in section 2, all ten ran offline; `turndown` = @mozilla/readability 0.6.0 + turndown 7.2.5. Smoke prices
+(Bruno #17883, `raw/smoke/`): off-task run, nano + Flash-Lite + mini together, about $0.011; fit about $0.007;
+$0.17 spent before v1.1.
+
+**Contexts (30 counted cells -> 17 contexts):**
+
+| kind | context (cells) | format | exposure |
+|---|---|---|---|
+| exposed | mcpraw/display_none; mcpraw/sr_only; mcpraw/off_screen (3 contexts: the style text differs) | raw HTML | 1 |
+| exposed | markdownify (3 methods, one context); html2text (3, one); crawl4ai (3, one) | markdown | 1 |
+| exposed | aria (sr_only + off_screen, one context); browseruse/sr_only | button list | 1 |
+| interior | mcpfetch (sr_only + off_screen); turndown (sr_only + off_screen) | markdown | 0.4 = pricing and school at 1 (table page only), api, transit, hotel at 0 |
+| reachable zero | mcpfetch/display_none (`raw=true` in the tool schema reaches it) | markdown | 0 |
+| zero | aria/display_none; browseruse (display_none + off_screen); innertext/display_none; innertext (sr_only + off_screen: the words are in the text, Playwright's click fails 30/30); trafilatura (3); turndown/display_none | mixed | 0 |
+
+The mcpfetch interior context is also reachable (`raw=true`). The crawl did not need a long page: the interior comes
+from Readability keeping the footer on the table page of 2 of the 5 sites (Iris #17888).
+
+**Off-task families (section 6 choice, named before runs):** raw HTML = `mcpraw/display_none` (the most common
+honeypot rule, through the shipped MCP tool; the parent's rate source is raw HTML with the same rule plus
+`aria-hidden`). Markdown = `crawl4ai` (tie at 3 cells with markdownify and html2text; crawl4ai is the shipped
+converter furthest from the parent's markdownify, so it tests transfer). Button list = `browseruse/sr_only` (the
+stack the scraping guides name).
+
+**n per combo (cost rule; Tove #17884, Kasper #17885, Vera #17890, Tove #17891):**
+- Off-task families: n = 60 per agent (3 x 3 = 9 combos).
+- Interior contexts: fit n = 30 per agent (6 combos); off-task n = 30 for GPT-5.4 mini only (2 combos). Nano and
+  Flash-Lite off-task predictions there are 0.014 and 0.053: near the floor, they can only add free HITs, so they are
+  not run.
+- Exposed fit contexts: n = 20 per agent (8 x 3 = 24 combos), OFF kept (Vera #17890: false No 0.044).
+- Reachable zero: fit n = 30 per agent (3 combos).
+- Unreachable zeros: fit n = 10 per agent, spread round-robin over the 6 zero contexts, 2 per template.
+- Replication row: `raw` view, parent hidden link, mini, off-task, n = 30.
+- Estimated counted spend $4.62 (+ $0.17 spent). Launch order: headline first (off-task families, interior,
+  reachable zero), then replication, zeros, and the exposed fit contexts last. Hard stop at $4.85 total experiment
+  spend; a stop cuts only exposed fit combos, and the cut is reported.
+
+**HIT share (Vera #17880, Tove #17881).** The 80% HIT share is computed over the headline combos that are not free:
+the 9 off-task family combos, the 6 interior fit combos and the 2 interior mini off-task combos (17 combos; Yes needs
+at least 14 HITs). Reachable-zero combos, exposed fit combos and zeros count only through MISS and OFF.
+
+**Contexts that separate the law from each baseline (amendment 4).** From `all1`: the 2 interior contexts, the
+reachable zero and the 6 zeros. From `all0`: the 2 exposed button-list contexts (aria, browseruse/sr_only, where
+`all0` predicts 0) and the converter contexts below 1 (mcpfetch and turndown interior, mcpfetch/display_none,
+trafilatura, turndown/display_none). Both baselines are separable, so Yes is reachable.
+
+**Known before data (Vera #17877, #17880, #17890; Tove #17878).** Under the v1.0.2 rule on Vera's layout:
+P(No | law exact) = 0.031-0.044; one family +20 points for all agents -> No 0.89-0.90; one family +15 -> No 0.67;
+the parent's own raw/markdown split -> Yes 0.53-0.77, No 0.14-0.17; mini alone +20 in one family -> Yes 0.58-0.81.
+A single shifted mini combo gives at most 1 OFF, so it cannot reach No by design. Vera reruns these numbers on the
+exact combo list above before the first counted run.
+
+**Frozen-prediction clauses decided by the crawl alone (stated now, scored as written).** Clause 1: 26 of 30 counted
+cells are exactly 0 or 1 (86.7% >= 83.3%): holds. Clause 2: "Readability drops the footer" fails on 2 of 5 sites (0.4
+for sr_only and off_screen; display:none is 0 as predicted); "innerText keeps sr-only and off-screen" fails under the
+actionable-handle definition (the words are there, the click fails 30/30); "raw/markdown converters keep all three"
+holds for mcpraw, markdownify, html2text and crawl4ai, and fails for trafilatura (0 for every method and for the
+visible link, since it drops links by default). So clause 2, and with it the frozen prediction, already fails. The
+title status does not depend on it (section 5).

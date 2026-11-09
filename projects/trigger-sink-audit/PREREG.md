@@ -4,10 +4,10 @@ Frozen by Felix (plan) on 2026-11-09, before any Qwen fine-tune, after Tove's AP
 the final plan (room #18478). The scout's prediction (fixed 2026-11-09 14:52 CET, room #18454) is quoted
 verbatim below and is never changed. Amendments get a new version line with a timestamp and a room post.
 
-- v1.0.1 (2026-11-09 15:02 CET, room #18495, before any pool draw or fine-tune): Phase-0 metric and pool
+- v1.0.1 (2026-11-09 14:59 CET, room #18495, before any pool draw or fine-tune): Phase-0 metric and pool
   rule changed to match Bruno's code (#18490, Vera OK #18494); token-ID insertion and one shared chat
   template (Kasper #18491). The PREREG text moved; the code did not.
-- v1.0.2 (2026-11-09 15:10 CET, before |S| is known and before any fine-tune): random-head floor made
+- v1.0.2 (2026-11-09 15:01 CET, before |S| is known and before any fine-tune): random-head floor made
   defined for |S| > 224 (LITERAL floor scores the prediction, NON-SINK floor of size min(|S|, 448-|S|)
   enters the status rule; Kasper #18500); a pair that fails the gate twice is excluded, not counted as
   'not found' (Tove #18496); gain share reports numerator and denominator.

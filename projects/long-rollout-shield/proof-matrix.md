@@ -15,3 +15,9 @@ Status: **UNCONFIRMED** (planted gate False); scout prereg: failed. Built by sum
 | reader edge (C_sup) | - | start text, planted (csup_planted) | none | C_sup 10.74 pts [8.5, 13.12] | research-iris/csup_planted.json |
 
 ## Skeptic rebuild rows
+
+| headline (rebuild) | s0 | real, served read R=8 | none | Vera own code from npz: gap +0.23 [-0.61, +1.10], text +0.18, spill +0.05, D_end 0.1054 [0.0997, 0.1111], distinct 0.999; matches build <= 1e-7 | skeptics/skeptic/raw__real_s0.vera.json |
+| headline (null) | s0 | real, served read R=8 | label swap inside each CRN pair (2,000) / prompt sign flip (2,000) | null bands [-0.86, +0.88] / [-0.81, +0.82]; observed +0.23, p 0.59 | skeptics/skeptic/raw__real_s0.vera.json |
+| planted gate (rebuild) | s0 | planted, served read R=8 | positive control (one-token cue) | Vera own code: gap +0.10 [-0.54, +0.76], D_end 0.2108, forced +0.31 [-1.16, +1.73]; pair-swap null [-0.66, +0.65] | skeptics/skeptic/raw__planted_s0.vera.json |
+| start (rebuild) | - | start policy, real, R=8 | untrained | Vera own code: gap +0.34 [-0.58, +1.24], D 0.1012 [0.0954, 0.1072], f 0.384 | skeptics/skeptic/raw__start_real_test.vera.json |
+| status (rebuild) | s0 | frozen PREREG v1.3 rule | none | Vera vera_status.py: UNCONFIRMED; prereg outcome failed (planted >= 5 F, D_end < 0.07 F, convergence F) | skeptics/skeptic/vera_status.json |

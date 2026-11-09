@@ -1,0 +1,57 @@
+{
+ "range_obs": 0.3125053736011978,
+ "planted": {
+  "gap": [
+   0.10131340033785818,
+   -0.5367425789057961,
+   0.7615944396724671
+  ],
+  "D_end": 0.21080731287364107,
+  "ceiling": 0.0658784180674418,
+  "efficiency": 1.5378845350254235,
+  "gate": false,
+  "probe_on_moved": 4.768432770470888
+ },
+ "real": [
+  {
+   "file": "raw__real_s0.vera.json",
+   "gap": [
+    0.2318994821689557,
+    -0.612590062590607,
+    1.100222967615991
+   ],
+   "D_end": 0.10538275741103362,
+   "D_ci": [
+    0.09969345975092875,
+    0.11107094512016895
+   ],
+   "distinct": 0.999375,
+   "ceiling": 0.032932677975859456,
+   "efficiency": 7.041622376988117,
+   "valid": false,
+   "probe_on_moved": 2.46027393625754,
+   "cell": "NO",
+   "null_pairswap_95": [
+    -0.8598150765370519,
+    0.8798792627359932
+   ],
+   "null_promptflip_95": [
+    -0.8058321260676167,
+    0.8182741081433038
+   ],
+   "LAW_C_pred": -0.00018866554997738955,
+   "LAW_C_rejected": false,
+   "LAW_D_pred": 0.050646656156046625,
+   "LAW_D_rejected": false
+  }
+ ],
+ "status": "UNCONFIRMED",
+ "convergence_all_arms": false,
+ "prereg_clauses": {
+  "real_lt_1p5": true,
+  "planted_ge_5": false,
+  "real_D_end_lt_0p07": false,
+  "convergence": false
+ },
+ "prereg_outcome": "failed"
+}

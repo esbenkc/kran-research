@@ -75,6 +75,7 @@ def main():
         if C is not None:
             r["C"] = C
             kinds.add(ck)
+            r["C_kind"] = ck
             if ck == "clin":
                 r["C_note"] = "reader edge from a linear reader (the same-size reader was not fitted on this cue)"
         if run:
@@ -82,6 +83,7 @@ def main():
             if e is not None:
                 t = e["test"]
                 r["S"] = iv(t["gap"], t.get("gap_ci"))
+                r["Dend"] = t["D"]
                 r["note"] = f"text difference after training: {t['D'] * 100:.1f} points"
             elif a.mock:
                 r["S"] = {"v": 0.002, "lo": -0.008, "hi": 0.012}

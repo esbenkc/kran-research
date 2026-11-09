@@ -67,3 +67,17 @@ the 1,600 test rows match the read's (prompt, seed) rows, and the 614 'differing
 [-0.29, +0.22] (rerun identical to the first fit, -0.0002). In-pair label-swap null band [-0.28, +0.28].
 Accuracy on differing test pairs 0.47. So the same-size reader, given 300 updates of labelled pairs, reads nothing.
 The one-token cue's reader edge (10.74 [8.50, 13.12]) has no per-pair file; I did not rebuild it.
+
+### Addendum 2 (21:33): D1 arm, one-token cue at 30 points (planted30_s0, 125 updates, R=4)
+
+Own rebuild: gap -0.41 [-1.52, +0.77] (pair-swap null [-1.05, +1.10], p 0.45); D_end 0.435 [0.426, 0.444]
+(grew from 0.30); forced switch -1.52 [-3.32, +0.19]; cheat off 0.919 / cue 0.923; 65% of rows have off-cheat > 0.97
+(saturated). All fields match build json to <= 1e-7. So this 64-token recipe learned no switch even from a cue
+that a perfect judge separates 44% of the time. The likely confound is saturation: cheating ran to 92%, most groups
+of 8 all cheat and carry no reward signal. The post must name saturation beside 'learns no cue at all'.
+
+## Final verdict
+
+UNCONFIRMED (Not settled). Real switch +0.23 [-0.61, +1.10] at a text difference of 10.5 points; both positive
+controls failed (+0.10 at 10 -> 21 points, -0.41 at 30 -> 44 points), so the run cannot separate 'unlearnable' from
+'this recipe learns nothing'. Reader edge for the real probe -0.02 [-0.29, +0.22] (rebuilt).

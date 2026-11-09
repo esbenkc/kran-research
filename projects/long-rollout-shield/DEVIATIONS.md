@@ -42,3 +42,12 @@ ceiling would be ~0.03 points and the label 'training closed the leak' would fir
 Change: the post reports real ceilings with range_pred (94.7 points, Setup CEILING) and names range_obs beside it; the
 label 'training closed the leak' is used only if a real arm's D_end < 0.05 (the v1.2 rule). This touches reporting
 only: with the gate failed, REJECTED is impossible whatever the ceiling.
+
+## D3 — C_sup reader continues the start LoRA, not a fresh one (logged 2026-11-08 21:35 PST)
+
+Found by Iris (#17768) while fact-checking the post. PREREG v1.1 says 'start adapter + a fresh LoRA r16 on blocks
+26-27'. Iris's frozen recipe (#17575, posted before any fit) and reader_sup.py load the start policy's OWN LoRA
+(rank 16, blocks 26-27, the weights the RL update trains) and keep training it with labels. Same capacity, same
+blocks; the reader starts from the policy itself, which is the closer match to 'what this policy can learn to read'.
+The PREREG text was wrong, not the fits; every C_sup number (real -0.02, one-token 10.74, self-test 10.37) used the
+same recipe. No number changes.

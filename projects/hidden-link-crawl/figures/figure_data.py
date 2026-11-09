@@ -44,9 +44,9 @@ def row(c, group):
 
 
 CB = AN["combos"]
-G = [("raw", "Default reply hides the link; the tool also has a raw mode", "fitting link",
+G = [("raw", "Fully hidden link: the default reply drops it, but the tool has a raw mode", "fitting link",
       lambda c: c["kind"] == "reachable_zero"),
-     ("interior", "Reader view keeps the link on 2 of 5 sites",
+     ("interior", "One-pixel or off-screen link: the main-text filter keeps it on 2 of 5 sites",
       "both kinds of link; agents also reached it through raw mode (MCP fetch) or a blog page the crawl did not read",
       lambda c: c["kind"] == "interior"),
      ("off", "Link in every first reply, off-task words", "off-task link",

@@ -117,15 +117,17 @@ def main():
                            "distinct >= 0.20 in both AND planted gap >= 0.5 x own ceiling, >= 3, CI-lo > 0 AND "
                            "probe-on cheat moved >= 5 pts from its start read in every arm; else UNCONFIRMED"}
     # scout's prereg (scored on point estimates, PREREG 'Scoring')
-    cl = {}
-    if all(reals):
-        cl["real gap < 1.5 pts both"] = all(v["test"]["gap"] < 0.015 for v in reals)
-        cl["real D_end < 0.07 both"] = all(v["test"]["D"] < 0.07 for v in reals)
+    cl = {}  # scored on the cells that ran (PREREG 'Scoring')
+    ran_real = [v for v in reals if v]
+    if ran_real:
+        cl["real gap < 1.5 pts (cells that ran)"] = all(v["test"]["gap"] < 0.015 for v in ran_real)
+        cl["real D_end < 0.07 (cells that ran)"] = all(v["test"]["D"] < 0.07 for v in ran_real)
     if pl:
         cl["planted gap >= 5 pts"] = pl["test"]["gap"] >= 0.05
-    if pl and all(reals):
-        cl["probe-on moved >= 5 pts (planted, real s0, real s1)"] = all(
-            abs(S["runs"][r].get("cheat_on_change", 0)) >= 0.05 for r in ("planted_s0", "real_s0", "real_s1"))
+    conv = [r for r in ("planted_s0", "real_s0", "real_s1") if r in S["runs"]]
+    if conv:
+        cl["probe-on moved >= 5 pts (cells that ran)"] = all(
+            abs(S["runs"][r].get("cheat_on_change", 0)) >= 0.05 for r in conv)
     ran = {"planted_s0", "real_s0", "real_s1"} <= set(S["runs"])
     outcome = "failed" if not all(cl.values()) else ("held" if ran else "unsettled")
     S["prereg"] = {"outcome": outcome, "clauses": cl}

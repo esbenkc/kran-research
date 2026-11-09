@@ -124,7 +124,8 @@ def run_fold(a, d, tr_rows, te_rows, ids_of, fold_tag, log):
             steps += 1
             if steps % 25 == 0:
                 log(f"fold {fold_tag} ep {ep} step {steps} loss {loss.item():.4f}")
-        gs[ep] = evaluate(ep)
+        if ep == min(3, E) or ep == E:      # held-out scores at epoch 0, 3 and the final epoch only (lane time)
+            gs[ep] = evaluate(ep)
     gs["final"] = gs[E]
     del pm, inner, opt
     torch.mps.empty_cache()

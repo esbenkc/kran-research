@@ -1,0 +1,38 @@
+{
+ "head": "The crawl predicted no follows, but agents asked for the raw page and followed the hidden link in {raw_k} of {raw_n} runs",
+ "sub": "<b>Question: Does a crawl with no AI model predict how often AI agents follow a hidden link? Answer: No.</b> The crawl's rule: the share of pages where the fetch tool's first reply shows the link, times the agent's follow rate from our earlier test.",
+ "task_lab": "Task:",
+ "start": "{model} reads pages through one fetch tool per run. The Plans page shows only 2024 prices. A link that people cannot see leads to 2025.",
+ "grp_seen": "1-pixel link with off-task words. Every first reply shows it &rarr; the rule says {rule_off}%, {model}'s earlier rate",
+ "grp_none": "Fully hidden link that fits the task. The default first reply hides it &rarr; the rule says 0%",
+ "ch_A": "Raw mode: the agent opened the link",
+ "ch_B": "Browser Use: the agent gave up",
+ "ch_C": "MCP fetch tool: the agent asked for the raw page",
+ "tool_A": "MCP fetch tool, raw mode",
+ "tool_B": "Browser Use's page view",
+ "tool_C": "MCP fetch tool, default mode",
+ "act_A": "opens the hidden link",
+ "act_B": "stops, never opens the link",
+ "act_C": "asks for raw HTML, then opens the hidden link",
+ "marks": {
+  "A": [
+   "archived or hidden pages"
+  ],
+  "B": [
+   "did not complete the lookup"
+  ],
+  "C": [
+   "fetch the raw HTML"
+  ]
+ },
+ "log_lab": "server log:",
+ "log_none": "server log: no visit to the link",
+ "chart_title": "Share of runs that followed the hidden link",
+ "chart_sub": "bar = measured, line = the rule's prediction",
+ "row_A": "MCP fetch tool, raw mode",
+ "row_C4": "Crawl4AI markdown",
+ "row_B": "Browser Use's page view",
+ "foot": "5 test websites we built, link hidden in the page footer; follows counted from our server log. Kran Lab, Nov 9 2026",
+ "cg_fit": "Fully hidden link, MCP fetch tool, default mode &middot; rule 0%",
+ "cg_off": "{model}, link with off-task words &middot; rule {rule_off}%"
+}

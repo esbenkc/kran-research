@@ -246,11 +246,12 @@ $0.17 spent before v1.1.
 The mcpfetch interior context is also reachable (`raw=true`). The crawl did not need a long page: the interior comes
 from Readability keeping the footer on the table page of 2 of the 5 sites (Iris #17888).
 
-**Off-task families (section 6 choice, named before runs):** raw HTML = `mcpraw/display_none` (the most common
-honeypot rule, through the shipped MCP tool; the parent's rate source is raw HTML with the same rule plus
-`aria-hidden`). Markdown = `crawl4ai` (tie at 3 cells with markdownify and html2text; crawl4ai is the shipped
-converter furthest from the parent's markdownify, so it tests transfer). Button list = `browseruse/sr_only` (the
-stack the scraping guides name).
+**Off-task families (section 6 choice, named before runs; Tove #17896):** the hiding method is held at `sr_only` in
+all three, so the off-task contrast varies only the tool. Raw HTML = `mcpraw/sr_only` (the shipped MCP tool, not the
+parent's raw view). Markdown = `crawl4ai` (its one context holds sr_only; tie at 3 cells with markdownify and
+html2text, and crawl4ai is the shipped converter furthest from the parent's markdownify, so it tests transfer).
+Button list = `browseruse/sr_only` (the stack the scraping guides name). Smoke price for browseruse mini off-task is
+$0.0131 per run (Bruno #17899), so the estimate rises by about $0.25.
 
 **n per combo (cost rule; Tove #17884, Kasper #17885, Vera #17890, Tove #17891):**
 - Off-task families: n = 60 per agent (3 x 3 = 9 combos).
@@ -261,7 +262,7 @@ stack the scraping guides name).
 - Reachable zero: fit n = 30 per agent (3 combos).
 - Unreachable zeros: fit n = 10 per agent, spread round-robin over the 6 zero contexts, 2 per template.
 - Replication row: `raw` view, parent hidden link, mini, off-task, n = 30.
-- Estimated counted spend $4.62 (+ $0.17 spent). Launch order: headline first (off-task families, interior,
+- Estimated counted spend $4.87 with the browseruse price (+ $0.17 spent). Launch order: headline first (off-task families, interior,
   reachable zero), then replication, zeros, and the exposed fit contexts last. Hard stop at $4.85 total experiment
   spend; a stop cuts only exposed fit combos, and the cut is reported.
 

@@ -165,7 +165,27 @@ real and planted, the R = 8 reads.
 
 ## Gate, filled in v1.1 (before the first arm update)
 
-- start read (real, R = 8): ...
-- X, eps, planted start D: ...
-- sigma, hash start D, log-ratio sd, KL both ways: ...
-- s_update (with --kl-prefix 0.1), T0, N_p, N_r: ...
+- start read (real, TEST 200 x R = 8, start adapter; Bruno #17594, data/reads/raw/start_real_test.json, 817 s):
+  D_base 0.1012 [0.0952, 0.1074]; cheat none 0.812 / leaky 0.809 (< 0.85: no re-pilot); served gap +0.34 points
+  [-0.58, +1.23], text part +0.26 [-0.66, +1.15], spill +0.08 [+0.00, +0.16]; f 0.384; KL_seq 0.034 nats; distinct
+  thoughts 1.000. Vera's own rebuild (#17595) matches to <= 1e-7; null bands +-0.89 points; 21% of start rows have
+  none-build cheat > 0.97 (saturation).
+- surprisal reader on the same read (Iris #17596, research-iris/surprisal_start_real_test.json): probe-on thoughts
+  +0.08 nats more surprising [-0.22, +0.39] on sd 24.8; best surprisal-reader edge 0.13 points, CI-high 0.63.
+- linear reader on the same read (Iris #17597, research-iris/clin_start_real_test_crossfit.json, 2 folds by prompt,
+  1,600 test pairs): C_lin -0.6 points [-2.3, +1.2].
+- one-token cue (Bruno #17598, data/gate/calib.json): X = 14656 ' Need' (mean start P at the first free position
+  0.0372, quartiles 0.033/0.037/0.041; the parent's token), eps 1.4265 on the NONE build -> TV at that position
+  0.1012 = D_base (382 train prompts). Planted start D on TEST: verified by the R = 4 start read before T0.
+- scattered cue (Bruno #17598, data/gate/calib_hash.json): sigma 0.0559 (log-log interpolation of a 5-point grid on
+  64 train prompts x R 2, exact-MC D 0.018/0.037/0.055/0.082/0.117 at sigma 0.01/0.02/0.03/0.045/0.065). Per-token
+  log-ratio sd 0.022/0.032 at sigma 0.045/0.065 (real 0.032); KL(off||on) per thought 0.039/0.066 nats (real start
+  0.034). Hash start D on TEST: verified by the R = 4 start read before T0.
+- C_sup recipe amendment before ANY real fit (Iris #17599, commit d1131955): the parent-row self-test had ~21
+  differing train pairs per fold (9 updates) and read -0.32 points, underpowered. Rule, same for every cue: the
+  reader trains >= 300 updates (more epochs on small sets), C_sup = the final epoch. A self-test at real size (planted
+  ' Need' in this run's start texts) must read clearly > 0 before the real fits.
+- s_update = 16.91 s (logs/time_k64_klp.log, --kl-prefix 0.1 --chunk 8; decision beta changes no compute, Bruno
+  #17577); peak footprint 6.09 GB. T0 and N_p/N_r: budget.py evaluates the frozen formula once at T0 and writes
+  data/gate/budget.json (Bruno #17592); the post quotes that file. Example at T0 18:00 PST: W = 108 min, N_p = 100,
+  N_r = 125.

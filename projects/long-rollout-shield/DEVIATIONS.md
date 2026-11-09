@@ -33,3 +33,12 @@ Changes:
    planted arm. Kasper's suspects (rl.py:182 probe weight scaled by the group reward sd as cheat saturates; rl.py:214
    64 thought log-probs share the advantage term with the decision; rl.py:221 total grad-norm clip 1.0) go to Next
    posts with the logged norms.
+
+## D2 — real-arm ceiling uses range_pred (2026-11-08 18:58 PST = 2026-11-09 03:58 CET)
+
+Made with D1, before any real-seed update. Raised by Vera (#17627). The frozen real ceiling = 100 x D_end x range_obs,
+with range_obs = the planted forced-prefix switch. That switch is +0.31 points (the gate failed), so every real
+ceiling would be ~0.03 points and the label 'training closed the leak' would fire although the real text stays open.
+Change: the post reports real ceilings with range_pred (94.7 points, Setup CEILING) and names range_obs beside it; the
+label 'training closed the leak' is used only if a real arm's D_end < 0.05 (the v1.2 rule). This touches reporting
+only: with the gate failed, REJECTED is impossible whatever the ceiling.

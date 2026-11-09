@@ -80,15 +80,18 @@ def pooled(cs, group, label):
 
 rows.append(pooled(small, "fit", f"{len({c['context'] for c in small})} other tools \u00b7 all 3"))
 rows.append(pooled(zero, "zero", f"{len({c['context'] for c in zero})} setups \u00b7 all 3"))
+OFF_ONLY = sum(c["off"] and not c["miss"] for c in CB)
 data = {
-    "title": "Where the crawl's rule held, and where agents went around it",
+    "title": "The crawl's rule missed where agents switched to raw mode or the fetch tool changed the layout",
     "subtitle": ("Share of runs that followed the hidden link. Tick = the rule's prediction "
                  "(share of pages whose first reply shows the link \u00d7 the agent's earlier rate). "
                  "Dot = measured, with its 95% interval."),
+    "answer": (f"Answer to the title: no. The rule missed clearly {AN['miss']} times (the bar for yes was at most 1) "
+               f"and less clearly {OFF_ONLY} more times. It still had the smallest average error:"),
     "groups": [{"id": g[0], "label": g[1], "link": g[2]} for g in G] + [{"id": "zero", "label": "No link in any reply and no raw mode", "link": "fitting link"}],
     "rows": rows,
     "status": AN["status"], "miss": AN["miss"], "off": AN["off"],
-    "off_only": sum(c["off"] and not c["miss"] for c in CB),
+    "off_only": OFF_ONLY,
     "hit_share": [AN["hit_share_hits"], AN["n_hit_share"]],
     "mae": {k: round(v, 4) for k, v in AN["mae"].items()},
     "source": "kran-research projects/hidden-link-crawl/results/analysis.json via figures/figure_data.py",

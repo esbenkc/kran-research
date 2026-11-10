@@ -243,6 +243,11 @@
     "step": 100,
     "marked": 2515.1,
     "dev_D": 0.8533237639796865
+   },
+   {
+    "step": 125,
+    "marked": 3197.7,
+    "dev_D": 0.8533237639796865
    }
   ]
  },
@@ -406,10 +411,23 @@
      "gap": 3.12,
      "marked_from": 1887.0,
      "marked_to": 2515.0
+    },
+    {
+     "from": 100,
+     "to": 125,
+     "gap": 11.25,
+     "marked_from": 2515.0,
+     "marked_to": 3198.0
     }
    ],
-   "first_ge_7": null,
-   "replicated": null
+   "first_ge_7": {
+    "from": 100,
+    "to": 125,
+    "gap": 11.25,
+    "marked_from": 2515.0,
+    "marked_to": 3198.0
+   },
+   "replicated": false
   }
  },
  "start_cheat_biased": {

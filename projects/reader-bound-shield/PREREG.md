@@ -40,8 +40,9 @@ there; that is reported as the engine's geometry, not as an engine fault.
   Reported split into text part and spill (non-text channel) as in the parent read.py.
 - Reader edge x = the same mean with the reader's q(text) = P(' read') at the decision slot in place of the policy's
   cheat (reader_sup.py C_sup), on held-out TEST pairs, in points, prompt-bootstrap CI.
-- Ceiling f = share of CRN pairs whose two thought texts differ (n_diff / n). Both |x| and |y| from the text part are
-  <= f x 100. The figure plots f per arm (Kasper #18594 pt 5).
+- Ceiling f = share of CRN pairs whose two thought texts differ (n_diff / n). On the paired sample |x| and the text
+  part of |y| are <= 100 x f exactly. The figure plots f per arm (Kasper #18594 pt 5); the post reports the parent's
+  text difference D (read.py) beside it, as the parent did.
 - The forced-cue switch g(notX) - g(X) is a planted-only diagnostic. It never decides the gate (Tove #18610 cond 1).
 
 ## Engine (the parent long-rollout-shield recipe unless named)
@@ -72,6 +73,23 @@ parent's shaping (lam_g, group-standardised advantages). Take the FIRST cell in 
 T0, that the gate bar may be above the physical ceiling. The same (c, beta) is used for every arm and every reader.
 Bruno's PROF smoke (20 updates, planted build, no outcome read) fills s/update; it sets nothing else.
 
+**v1.1 FILL (Vera #18621, swarm-oracle-1110-reader-bound-shield/skeptic/vera_ceiling.py, vera_ceiling_fill.json; no
+training update had run, only Bruno's timing smoke):** at D = start f 0.107 the cells read (0.50, 0.25) 6.46 < 8,
+then (0.50, 0.10) 8.40 >= 8. FILL = start cheat c 0.50 (dec-bias b = -2.255, calibrated on start_real_train.npz),
+decision beta 0.10, for every arm and every reader. At this cell the sim's converged fixed point has h 0.80, l 0.01,
+all-cheat groups 32%, planted probe-on move +21 points, real-arm probe-on move +11.2 points. The gate bar (5 points)
+is 60% of this converged ceiling; the sim has no speed model, so P(pass within 500 updates) is not priced. Record:
+Vera's first pass (#18611, 16:59, D 0.10) gave 7.8 for this cell; the rule uses D = f 0.107 as written.
+
+**v1.1 TIMING (Bruno #18627, logs/smoke_time.log, before any gate update):** repaired engine 16.31 s/update steady
+(first update 33 s), peak 7.23 GB; dev eval + gate monitor add ~8%; R4 gate read ~600 s, R8 real read ~810 s. Last
+useful N* (Bruno, Kasper #18624, Tove #18622): T0 ~18:05 PST after the real reader fit; 2 x N* x 16.3 x 1.08 s + 2
+looks + R8 <= 21:00 -> N* <= ~240. **The status is decidable only if the gate passes at N* <= ~240.** The fixed look
+moves from 250 to 200 (below) so that a pass at the fixed look still leaves room for real_s0; this is set from the
+timing smoke, before any update.
+
+Logged per gate look (Tove #18612): ceiling share = y / (100 x D x h) and the all-cheat group share.
+
 ## Arms, order, budget (ONE serial heavy lane)
 
 | order | job | what | role |
@@ -82,7 +100,7 @@ Bruno's PROF smoke (20 updates, planted build, no outcome read) fills s/update; 
 | 4 | real_s0 | real leaky hook, seed 0, N* updates, R 8 read | STATUS |
 | 5 | reader hash, reader planted | C_sup on parent start texts | x for hash and planted |
 | 6 | slot 3 (Tove #18610 cond 5) | if real_s0 served gap CI-high < 1.5: hash cue (parent sigma* 0.0559, D 0.0875), s0; else real_s1 | generality or seed |
-| 7 | bit-exact read | real_s0's end adapter, probe attached so that the served bits do not change (read.py --exact), R 4 | null point (0,0) |
+| 7 | bit-exact read | real_s0's end adapter (if real_s0 is cut: the gate adapter, Kasper #18624), probe attached so that the served bits do not change (read.py --exact), R 4 | null point (0,0) |
 | 8 | end-text readers | rule below | x on the texts RL saw |
 | 9 | learning curve | reader real at frac 0.25 and 0.5 (then hash if run) | x flat in n? |
 | 10 | real_s1 / planted_s1 | only if the clock allows (cut rule) | seeds |
@@ -95,7 +113,7 @@ Bruno's PROF smoke (20 updates, planted build, no outcome read) fills s/update; 
 
 - planted_s0 trains up to 500 updates. The dev monitor (64 dev prompts) is read every 50 updates. A TEST read (200
   test prompts, R 4, served, CRN) of the current adapter runs when the dev gap first reaches >= 3 points, and also at
-  updates 250 and 500 if not yet passed. Training pauses during a read and resumes after it.
+  updates 200 (v1.1; v1 said 250) and 500 if not yet passed. Training pauses during a read and resumes after it.
 - Gate PASS at a read = served gap y >= 5.0 points AND its CI-low > 0. N* = the update count of that read; the run
   stops there. Gate FAIL = no passing read by 500 updates, or the clock cut below.
 - Every look is reported (update, y, CI). Optional stopping over <= 4 looks is named in the post.

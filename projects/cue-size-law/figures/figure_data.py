@@ -53,16 +53,23 @@ for name, r in sorted(RUNS.items()):
     x = r["cue_size"]["x"]
     ext.append(dict(run=name, x=x, s=share(x), T=r["T"], pred=None, no_cast=bool(r["cue_size"].get("no_cast"))))
 
-# other random cue directions (exploratory, one run each): the 5 directions at the real cue's size (dir*), and the
-# second direction / flipped sign at the k=2 size (u1111_*, uneg_*). Censored runs keep T = steps run, flagged.
-dirs = []
+# exploratory groups (one run each), by where the planted cue sits. Censored runs keep T = steps run, flagged.
+#   dirs: other random directions on all 3 tokens (u1111_*, uneg_*)
+#   r0  : the cue only on token 1 (<|im_start|>, the attention-sink row)
+#   r12 : the cue only on tokens 2-3 ('user', newline): where the real build difference sits (dir*r12*, row12_*)
+SHOW = {"dirs": True, "r0": True, "r12": True}
+groups = {"dirs": [], "r0": [], "r12": []}
 for name, r in sorted(RUNS.items()):
-    if not (name.startswith("dir") or name.startswith("u1111_") or name.startswith("uneg_")):
+    if name.startswith(("sw_", "p0_", "c1_", "c2_", "rd_", "real", "ext_", "nocast", "sgd", "smoke")):
         continue
     if r.get("T") is None and not r.get("censored"):
         continue
+    rows = tuple(r["cue_size"].get("cue_rows", [0, 1, 2]))
+    g = "r0" if rows == (0,) else "r12" if rows == (1, 2) else "dirs"
     x = r["cue_size"]["x"]
-    dirs.append(dict(run=name, x=x, s=share(x), T=r["T"] if r["T"] is not None else r["steps_run"], censored=bool(r.get("censored"))))
+    groups[g].append(dict(run=name, x=x, s=share(x), T=r["T"] if r["T"] is not None else r["steps_run"],
+                          censored=bool(r.get("censored"))))
+dirs = groups["dirs"]
 
 real = [dict(run=q["run"], T=q["T"]) for q in S["S2"]["real_runs"]]
 x_real = S["x_real"]
@@ -107,6 +114,8 @@ data = {
         "real_pred": "what the fitted line predicts for it",
         "ctrl": "penalty on a random coin",
         "dirs": "other random cue directions, one run each",
+        "r0": "cue on the first token only",
+        "r12": "cue on tokens 2 and 3 only, like the real difference",
     },
     "notes": {
         "quad": "×4 per halving, predicted",
@@ -125,12 +134,14 @@ data = {
     "ctrl": {"x": x_ctrl, "s": share(x_ctrl), "runs": ctrl},
     "sweep": sweep,
     "ext": ext,
-    "dirs": dirs,
+    "dirs": dirs if SHOW["dirs"] else [],
+    "r0": groups["r0"] if SHOW["r0"] else [],
+    "r12": groups["r12"] if SHOW["r12"] else [],
 }
 assert ";" not in json.dumps({k: data[k] for k in ("title", "subtitle", "legend", "notes")})
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(data, indent=1, ensure_ascii=False))
-print(OUT, f"sweep {len(sweep)} ext {len(ext)} dirs {len(dirs)} real {len(real)} ctrl {len(ctrl)} slope {FIT['slope']:.3f} x{per_halving:.2f}")
+print(OUT, f"sweep {len(sweep)} ext {len(ext)} dirs {len(dirs)} r0 {len(groups['r0'])} r12 {len(groups['r12'])} real {len(real)} ctrl {len(ctrl)} slope {FIT['slope']:.3f} x{per_halving:.2f}")
 print("title:", title)
 for e in ext:
     print(f"  ext {e['run']}: {e['s']:.4f}% T {e['T']} pred {e['pred']}")

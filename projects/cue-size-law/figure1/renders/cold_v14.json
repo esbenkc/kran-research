@@ -1,0 +1,37 @@
+{
+ "png": "renders/v14.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.014470299999999998,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does halving a hidden cue's size quadruple the training updates a model needs to learn to switch on it?\",\n  \"answer\": \"No; in Qwen3-0.6B, each halving only multiplied training updates by about 1.9x rather than 4x, with the largest cue requiring 24-32 updates and a 32x smaller cue requiring 704 updates.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does halving a hidden cue's size quadruple the training updates a model needs to learn to switch on it?\",\n  \"answer\": \"No; in Qwen3-0.6B, each halving of cue size multiplied updates needed by about 1.9x rather than 4x, with the largest cue requiring 24-32 updates to learn the switch versus 704 updates with a cue 32 times smaller.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does halving a hidden cue's size quadruple the training updates needed for a model to learn to switch on it?\",\n  \"answer\": \"No; in Qwen3-0.6B, each halving of cue size only multiplied training updates by about 1.9x rather than 4x, with the largest cue requiring 24-32 updates to learn the switch versus 704 updates with a cue 32 times smaller.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does halving the size of a hidden cue quadruple the updates required for reward learning to learn a switch on it?\",\n  \"answer\": \"No, each halving only multiplied the required updates by about 1.9 instead of 4, with learning taking 24 to 32 updates for the largest cue size and 704 updates for a cue 32 times smaller.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does halving a hidden cue's size quadruple the training updates needed for a model to learn a behavioral switch on it?\",\n  \"answer\": \"No, each halving only multiplied the required updates by about 1.9 instead of 4, requiring 24 to 32 updates for the largest cue and 704 updates for a cue 32 times smaller.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does halving a cue's size quadruple the updates reward needs to learn a switch on it?\",\n  \"answer\": \"No, each halving multiplied the required training updates by only about 1.9 rather than 4, taking 24 to 32 updates with the largest cue compared to 704 updates with one 32 times smaller.\"\n}"
+  }
+ ]
+}

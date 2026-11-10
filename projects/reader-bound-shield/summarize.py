@@ -93,6 +93,20 @@ def share(name, n=2000, seed=0):
     return {"share": float(est), "ci": [float(np.percentile(r, 2.5)), float(np.percentile(r, 97.5))]}
 
 
+def exposure(run, probed_rows=32):
+    """Cue-marked thoughts seen by update t (Vera #18721): dev text difference D (curve.jsonl, every 50 updates, plus the
+    start) x 32 probed rows per update, trapezoid over updates. Coarse (~+-30%: D is read every 50 updates only)."""
+    p = HERE / "data" / "runs" / run / "curve.jsonl"
+    if not p.exists():
+        return None
+    pts_ = [(r["step"], r["dev_D"]) for r in map(json.loads, open(p)) if r.get("dev_D") is not None]
+    cum, out = 0.0, [{"step": pts_[0][0], "marked": 0.0, "dev_D": pts_[0][1]}]
+    for (s0, d0), (s1, d1) in zip(pts_, pts_[1:]):
+        cum += 0.5 * (d0 + d1) * (s1 - s0) * probed_rows
+        out.append({"step": s1, "marked": round(cum, 1), "dev_D": d1})
+    return out
+
+
 def main():
     S = {"bias": B, "cells": {}, "readers": {}, "gate": {}}
     gl = HERE / "data" / "runs" / "planted_s0" / "gate.jsonl"
@@ -165,6 +179,7 @@ def main():
         else:
             why.append("real/slot y CI straddles 1.5, a reader x is missing, or a point sits above its x")
     S["status"], S["status_why"], S["above_x"] = status, why, gaps
+    S["exposure"] = {r: exposure(r) for r in ("planted_s0", "dense_s0")}
 
     # scout's prereg (scored apart from the status)
     st = {k: start_on_cheat(k) for k in ("planted", "real", "hash")}

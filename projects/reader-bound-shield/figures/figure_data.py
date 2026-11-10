@@ -41,6 +41,8 @@ def main():
     a = ap.parse_args()
     out = os.path.join(a.blog, "assets/figures/reader-bound-shield/data.json")
     base = json.load(open(out))
+    summ = json.load(open(os.path.join(PROJ, "data/summary.json"))).get("cells", {})
+    by_file = {c.get("file"): c for c in summ.values()}
     rows, missing = [], []
     for spec in ROWS:
         rp = os.path.join(PROJ, spec["read"])
@@ -56,6 +58,9 @@ def main():
             row["S"] = iv(rd["gap"], rd["gap_ci"])
             if rd.get("forced_switch") is not None:
                 row["F"] = iv(rd["forced_switch"], rd.get("forced_switch_ci"))
+        cs = by_file.get(spec["read"], {}).get("ceiling_share")
+        if spec["trained"] and cs:
+            row["share"] = dict(v=cs["share"], lo=cs["ci"][0], hi=cs["ci"][1])
         cp = spec["reader"] and os.path.join(PROJ, spec["reader"])
         if cp and os.path.exists(cp):
             c = json.load(open(cp))

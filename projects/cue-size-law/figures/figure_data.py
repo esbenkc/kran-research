@@ -102,7 +102,17 @@ T0 = sum(T0) / len(T0)
 # the bend below the planned sizes: the smallest planned size's median, then the cues beyond it (largest first)
 k5 = [p for p in sweep if p["k"] == max(q["k"] for q in sweep)]
 chain = [dict(x=k5[0]["x"], s=k5[0]["s"], T=sorted(p["T"] for p in k5)[len(k5) // 2])]
-chain += [dict(x=e["x"], s=e["s"], T=e["T"]) for e in sorted(ext, key=lambda e: -e["x"])]
+# cues beyond the plan at the same size (seeds of one cell, x within 2%) join the chain as one point at their median
+cells = []
+for e in sorted(ext, key=lambda e: -e["x"]):
+    if cells and abs(e["x"] / cells[-1][0]["x"] - 1) < 0.02:
+        cells[-1].append(e)
+    else:
+        cells.append([e])
+for c in cells:
+    ts = sorted(e["T"] for e in c)
+    med = ts[len(ts) // 2] if len(ts) % 2 else (ts[len(ts) // 2 - 1] + ts[len(ts) // 2]) / 2
+    chain.append(dict(x=c[0]["x"], s=c[0]["s"], T=med, n=len(c)))
 local = [dict(x0=a["x"], x1=b["x"], slope=math.log(b["T"] / a["T"]) / math.log(b["x"] / a["x"]))
          for a, b in zip(chain, chain[1:])]
 for q in local:
@@ -134,7 +144,8 @@ data = {
     "y_short": "Updates (log)",
     "legend": {
         "sweep": "planted cue on all 3 tokens, one dot per run",
-        "ext": "smaller cues beyond the planned sizes, one run each",
+        "ext": ("smaller cues beyond the planned sizes, one run each" if all(len(c) == 1 for c in cells) else
+                "smaller cues beyond the planned sizes, one or two runs each"),
         "sim": "our two simulations, slopes −1.0 to −1.4",
         "real": "real build difference",
         "ctrl": "penalty on a random coin",

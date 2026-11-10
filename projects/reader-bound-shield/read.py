@@ -60,7 +60,7 @@ def main(argv=None, S=None):
     ap.add_argument("--texts-only", action="store_true", help="C_sup train texts: skip pass 2 (no D); implies --skip-text")
     ap.add_argument("--out", required=True)
     ap.add_argument("--dec-bias", type=float, default=0.0, help="the training run's fixed ' read' logit offset (mt.DEC)")
-    ap.add_argument("--exact", action="store_true", help="bit-exact probe: the probed sampler runs on the NONE build")
+    ap.add_argument("--exact", action="store_true", help="bit-exact probe: the probed sampler runs on the SCORE build (hook keeps only the probe score)")
     a = ap.parse_args(argv)
     mt.DEC["bias"] = a.dec_bias
     a.skip_text = a.skip_text or a.texts_only
@@ -86,7 +86,7 @@ def main(argv=None, S=None):
     hcue = a.hash_sigma > 0
     PB = a.plant_build if (plant or hcue) else "leaky"
     if a.exact:
-        PB = "none"
+        PB = "score"
 
     def cheat(d2):
         return torch.softmax(d2, -1)[:, 0].cpu().numpy()

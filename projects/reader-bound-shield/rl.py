@@ -33,8 +33,8 @@ PROF = bool(__import__("os").environ.get("PROF"))
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--arm", required=True, choices=["k16", "planted", "k0", "pilot", "scaled", "hash", "exact"],
-                    help="exact = the bit-exact probe: probed rows sample on the NONE build (text identical in law to "
-                         "unprobed rows); the probe still reads M at the answer token")
+                    help="exact = the bit-exact probe: probed rows sample on the SCORE build (the hook keeps only the "
+                         "probe's fp32 score); the probe still reads M at the answer token")
     ap.add_argument("--k", type=int, default=None, help="prefix length (default 0 for k0, else 16)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--steps", type=int, default=400)
@@ -126,7 +126,7 @@ def main():
         hc = (a.hash_sigma, on) if (a.arm == "hash" and build == "leaky") else None
         b = a.plant_build if (pl is not None or hc is not None) else build
         if a.arm == "exact":
-            b = "none"
+            b = "score"
         return S.rollout(ids, b, gen=gen, record=record, plant=pl, hcue=hc, forced=forced)
 
     @torch.no_grad()

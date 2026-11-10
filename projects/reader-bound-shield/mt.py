@@ -4,6 +4,7 @@ Model: Qwen3-0.6B bf16 on MPS, LoRA r16 alpha 32 (fp32 adapters) on q,k,v,o,gate
 Probe site: model.model.layers[14].self_attn.q_norm (gradient-path-law). Builds of the SERVED graph:
   none    the hook is registered but does nothing
   leaky   the hook keeps a reference to the bf16 output (a probe that stores the activation), as parent cache.py
+  score   the hook keeps only the probe's fp32 score of the last position (the bit-exact probe; reader-bound-shield)
 The served graph is torch.compile(fullgraph) of the whole model with a StaticCache (prefill [B, T], decode [B, 1]).
 A pre-hook on block 26 records its input in every build (the same graph for every arm and every read).
 The UPDATE reads a block-26 input per position and runs blocks 26-27 + norm + lm_head eagerly with autograd:
@@ -29,7 +30,8 @@ TARGETS = ("self_attn.q_proj", "self_attn.k_proj", "self_attn.v_proj", "self_att
            "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj")
 TOK = json.load(open(HERE / "data" / "tokens.json"))
 READ, SOLVE, T, SUFFIX, FS = TOK["read"], TOK["solve"], TOK["T"], TOK["suffix"], TOK["first_special"]
-FLAG = {"leaky": False}
+FLAG = {"leaky": False, "score": False}
+PROBE_V = {"v": None}  # probe_v14 direction on DEV, loaded on the first score-build rollout
 # Fixed offset on the ' read' (cheat) logit of the 2-way decision, added at EVERY d2 site (served sampler, clean-recompute
 # tail, KL reference) so the start policy cheats ~50% (engine repair, reader-bound-shield). Not trained. 0 = parent.
 DEC = {"bias": 0.0}
@@ -42,6 +44,8 @@ torch._dynamo.config.cache_size_limit = 64
 def hook_probe(mod, inp, out):
     if FLAG["leaky"]:
         STORE.append(out)
+    elif FLAG["score"]:  # bit-exact build: the probe keeps only its score (a new fp32 value), not the activation
+        STORE.append(out[:, -1].float().flatten(-2) @ PROBE_V["v"])
 
 
 def pre_rec(mod, args, kwargs):
@@ -139,6 +143,9 @@ class Sampler:
         (pseudo-random, like rounding flips; same text -> same nudges)."""
         assert ids.shape == (self.B, T)
         FLAG["leaky"] = build == "leaky"
+        FLAG["score"] = build == "score"
+        if build == "score" and PROBE_V["v"] is None:
+            PROBE_V["v"] = torch.load(HERE / "data" / "probe_v14.pt")["v"].float().to(DEV)
         STORE.clear()
         REC.clear()
         self.cache.reset()
@@ -204,6 +211,7 @@ class Sampler:
             out["h26"] = torch.cat(hs, 1)
         self.t_next = T + self.k + len(SUFFIX)
         FLAG["leaky"] = False
+        FLAG["score"] = False
         return out
 
     @torch.no_grad()

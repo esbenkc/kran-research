@@ -1,0 +1,214 @@
+{
+ "B": 8192,
+ "alpha_top": 0.03125,
+ "x_real": 11.694781303405762,
+ "runs": [
+  {
+   "run": "p0_a0.03125_s0",
+   "alpha": 0.03125,
+   "k": 0,
+   "seed": 0,
+   "x": 33.29884719848633,
+   "T": 32,
+   "censored": false,
+   "gap0": -0.013174576684832573,
+   "in_fit": true,
+   "steps_run": 320,
+   "last_half_dD_per_1k": null,
+   "test_gap": 0.2685375547269359,
+   "artifact": "data/runs/p0_a0.03125_s0.json"
+  },
+  {
+   "run": "p0_a0.03125_s1",
+   "alpha": 0.03125,
+   "k": 0,
+   "seed": 1,
+   "x": 33.29884719848633,
+   "T": 24,
+   "censored": false,
+   "gap0": -0.013174576684832573,
+   "in_fit": true,
+   "steps_run": 320,
+   "last_half_dD_per_1k": null,
+   "test_gap": 0.2610189541615546,
+   "artifact": "data/runs/p0_a0.03125_s1.json"
+  },
+  {
+   "run": "sw_a0.015625_s0",
+   "alpha": 0.015625,
+   "k": 1,
+   "seed": 0,
+   "x": 16.556230545043945,
+   "T": 64,
+   "censored": false,
+   "gap0": -0.006110294838435948,
+   "in_fit": true,
+   "steps_run": 320,
+   "last_half_dD_per_1k": null,
+   "test_gap": 0.24891941706184298,
+   "artifact": "data/runs/sw_a0.015625_s0.json"
+  },
+  {
+   "run": "sw_a0.0078125_s0",
+   "alpha": 0.0078125,
+   "k": 2,
+   "seed": 0,
+   "x": 8.45003890991211,
+   "T": 128,
+   "censored": false,
+   "gap0": -0.002981995581649244,
+   "in_fit": true,
+   "steps_run": 384,
+   "last_half_dD_per_1k": null,
+   "test_gap": 0.2839027604367584,
+   "artifact": "data/runs/sw_a0.0078125_s0.json"
+  }
+ ],
+ "primary_x": {
+  "slope": -1.1237925561934687,
+  "intercept": 7.271562056332484,
+  "se": 0.12985921787249535,
+  "n": 4,
+  "ci_boot": [
+   -1.2385363104751503,
+   -1.0090488019117871
+  ],
+  "ci_t": [
+   -1.6825316744487668,
+   -0.5650534379381706
+  ],
+  "ci_status": [
+   -1.6825316744487668,
+   -0.5650534379381706
+  ],
+  "n_alphas": 3
+ },
+ "primary_alpha": {
+  "slope": -1.113192045257868,
+  "intercept": -0.5230583135486994,
+  "se": 0.13070291559950706,
+  "n": 4,
+  "ci_boot": [
+   -1.2263840905157342,
+   -1.000000000000001
+  ],
+  "ci_t": [
+   -1.6755613018413316,
+   -0.5508227886744046
+  ],
+  "ci_status": [
+   -1.6755613018413316,
+   -0.5508227886744046
+  ],
+  "n_alphas": 3
+ },
+ "half_top_k0_2": -1.1237925561934687,
+ "half_bottom_k3_5": null,
+ "median_T": {
+  "0.03125": 28.0,
+  "0.015625": 64.0,
+  "0.0078125": 128.0
+ },
+ "local_slopes_x": [
+  [
+   0.03125,
+   0.015625,
+   -1.183064633614009
+  ],
+  [
+   0.015625,
+   0.0078125,
+   -1.0305619817181217
+  ]
+ ],
+ "tobit_x": {
+  "slope": -1.1237925532368596,
+  "intercept": 7.271562050402581,
+  "sigma": 0.10459636234464746,
+  "se": 0.09182433285081025,
+  "ci95": [
+   -1.3037682456244477,
+   -0.9438168608492714
+  ],
+  "nll": -3.3548318619161672,
+  "n": 4,
+  "n_censored": 0
+ },
+ "forms": [
+  {
+   "form": "x^-2",
+   "nll": 2.9814665317971834,
+   "params": [
+    9.88966531882184,
+    -0.6735718915195802
+   ]
+  },
+  {
+   "form": "x^-1 ln(K/x)",
+   "nll": -3.3681655952563565,
+   "params": [
+    4.8437205889402835,
+    -2.26097993482733,
+    10.837485207338561
+   ],
+   "K": 50926.52984164841
+  }
+ ],
+ "prereg": {
+  "part1_phase0": true,
+  "part2_slope_alpha": false,
+  "part2_with_wider_ci": false,
+  "part3_smallest": true,
+  "part3_detail": {
+   "smallest_alpha": 0.0078125,
+   "fitted_T": 131.39173172416494,
+   "three_x_fitted": 394.1751951724948,
+   "T_seeds": [
+    128
+   ],
+   "median_T": 128.0
+  },
+  "part4_x_real_inside": true,
+  "outcome": "failed"
+ },
+ "status_detail": {
+  "conf": false,
+  "rej_ci": 0.0,
+  "rej_threshold": false,
+  "n_censored": 0
+ },
+ "status": "UNCONFIRMED",
+ "status_why": "slope or CI neither inside nor outside the band",
+ "mechanism_inside_ci": {
+  "-2 (scout)": 0.0,
+  "S1 toy -1.0..-1.4": true,
+  "0 (floor)": 0.0
+ },
+ "near_zero_reading": false,
+ "S2": {
+  "pred_T_at_x_real": 90.73977509067099,
+  "real_runs": []
+ },
+ "variants": {
+  "u1110_k2_s0": 128,
+  "u1111_k2_s0": "missing",
+  "neg_k2_s0": "missing",
+  "x_u1110_k2": 8.45003890991211,
+  "x_u1111_k2": null,
+  "x_neg_k2": null
+ },
+ "controls": {},
+ "sgd": [],
+ "sgd_slope_x": null,
+ "step1": {
+  "grad_norm_preclip": 6.297938346862793,
+  "update_norm": 0.06254255771636963,
+  "ratio": 0.009930639881148425
+ },
+ "speed_s_per_update": {
+  "p0_a0.03125_s0": 0.13343750000000001,
+  "p0_a0.03125_s1": 0.13468750000000002,
+  "sw_a0.0078125_s0": 0.12682291666666667,
+  "sw_a0.015625_s0": 0.1353125
+ }
+}

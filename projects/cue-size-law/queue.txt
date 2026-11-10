@@ -1,0 +1,34 @@
+# PREREG s8 queue, Felix QUEUE v1.3 (#19379) + 4c (#19382). name|gate|rl.py args. alpha_top = 1/32. B = 8,192.
+p0_a0.03125_s0|none|--cue-alpha 0.03125 --seed 0
+p0_a0.03125_s1|none|--cue-alpha 0.03125 --seed 1
+sw_a0.015625_s0|p0|--cue-alpha 0.015625 --seed 0
+sw_a0.0078125_s0|p0|--cue-alpha 0.0078125 --seed 0
+sw_a0.00390625_s0|p0|--cue-alpha 0.00390625 --seed 0
+sw_a0.001953125_s0|p0|--cue-alpha 0.001953125 --seed 0
+sw_a0.0009765625_s0|p0|--cue-alpha 0.0009765625 --seed 0
+c1_shuf_a0.03125_s0|p0|--arm shuf --cue-alpha 0.03125 --seed 0 --full
+c1_shuf_a0.03125_s1|p0|--arm shuf --cue-alpha 0.03125 --seed 1 --full
+sw_a0.015625_s1|p0|--cue-alpha 0.015625 --seed 1
+sw_a0.0078125_s1|p0|--cue-alpha 0.0078125 --seed 1
+sw_a0.00390625_s1|p0|--cue-alpha 0.00390625 --seed 1
+sw_a0.001953125_s1|p0|--cue-alpha 0.001953125 --seed 1
+sw_a0.0009765625_s1|p0|--cue-alpha 0.0009765625 --seed 1
+u1111_a0.0078125_s0|p0|--cue-alpha 0.0078125 --u-file data/cue_u_1111.npy --seed 0
+uneg_a0.0078125_s0|p0|--cue-alpha 0.0078125 --u-file data/cue_u_neg.npy --seed 0
+# D1 reruns with the dense evals (same seeds; frozen T must reproduce; T_dense = secondary readout)
+rd_p0_a0.03125_s0|p0|--cue-alpha 0.03125 --seed 0
+rd_p0_a0.03125_s1|p0|--cue-alpha 0.03125 --seed 1
+rd_sw_a0.015625_s0|p0|--cue-alpha 0.015625 --seed 0
+rd_sw_a0.0078125_s0|p0|--cue-alpha 0.0078125 --seed 0
+rd_sw_a0.00390625_s0|p0|--cue-alpha 0.00390625 --seed 0
+rd_sw_a0.001953125_s0|p0|--cue-alpha 0.001953125 --seed 0
+rd_sw_a0.0009765625_s0|p0|--cue-alpha 0.0009765625 --seed 0
+sgdpilot_lr0.0099_s0|p0|--opt sgd --lr 0.0099 --cue-alpha 0.03125 --seed 0 --steps 128 --full
+# 5 real-direction s0+s1 inserted here after Felix's S2 post; 6 SGD arm inserted after the lr rule is read from p0 s0 STEP1
+c2_a0_s0|p0|--cue-alpha 0 --seed 0 --full
+sw_a0.0078125_s2|p0|--cue-alpha 0.0078125 --seed 2
+sw_a0.03125_s2|p0|--cue-alpha 0.03125 --seed 2
+sw_a0.015625_s2|p0|--cue-alpha 0.015625 --seed 2
+sw_a0.00390625_s2|p0|--cue-alpha 0.00390625 --seed 2
+sw_a0.001953125_s2|p0|--cue-alpha 0.001953125 --seed 2
+sw_a0.0009765625_s2|p0|--cue-alpha 0.0009765625 --seed 2

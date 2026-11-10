@@ -1,0 +1,56 @@
+W1110 06:07:02.241000 33952 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4292.17it/s]
+/Users/esben/work/theory-1110-cue-size-learning/kran-research/projects/cue-size-law/scan.py:36: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  return torch.from_numpy(np.ascontiguousarray(u16).view(np.int16)).view(torch.bfloat16)
+1.0 x 776.47113 raw 8218.197 gap0 -0.1987 zero_rows [False, False, False]
+0.5 x 482.28204 raw 4109.27 gap0 -0.2188 zero_rows [False, False, False]
+0.25 x 259.3981 raw 2054.529 gap0 -0.1476 zero_rows [False, False, False]
+0.125 x 132.38837 raw 1027.386 gap0 -0.055 zero_rows [False, False, False]
+0.0625 x 66.4786 raw 513.666 gap0 -0.0271 zero_rows [False, False, False]
+0.03125 x 33.29885 raw 256.873 gap0 -0.0132 zero_rows [False, False, False]
+0.015625 x 16.55623 raw 128.419 gap0 -0.0061 zero_rows [False, False, False]
+0.0078125 x 8.45004 raw 64.209 gap0 -0.003 zero_rows [False, False, False]
+0.00390625 x 4.20328 raw 32.099 gap0 -0.0015 zero_rows [False, False, False]
+0.001953125 x 2.06315 raw 16.043 gap0 -0.0008 zero_rows [False, False, False]
+0.0009765625 x 1.05301 raw 8.046 gap0 -0.0004 zero_rows [False, False, False]
+real x 11.69478 raw 33.456 gap0 0.0002 zero_rows [False, False, False]
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1110-cue-size-learning/kran-research/projects/cue-size-law/scan.py", line 162, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/theory-1110-cue-size-learning/kran-research/projects/cue-size-law/scan.py", line 137, in main
+    g = torch.cat([p.grad.flatten() for p in Bp]).double()
+TypeError: Cannot convert a MPS Tensor to float64 dtype as the MPS framework doesn't support float64. Please use float32 instead.
+
+WATCHDOG: exit 1, peak footprint 1.68 GB
+W1110 06:07:17.787000 34053 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 3305.73it/s]
+/Users/esben/work/theory-1110-cue-size-learning/kran-research/projects/cue-size-law/scan.py:36: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  return torch.from_numpy(np.ascontiguousarray(u16).view(np.int16)).view(torch.bfloat16)
+1.0 x 776.47113 raw 8218.197 gap0 -0.1987 zero_rows [False, False, False]
+0.5 x 482.28204 raw 4109.27 gap0 -0.2188 zero_rows [False, False, False]
+0.25 x 259.3981 raw 2054.529 gap0 -0.1476 zero_rows [False, False, False]
+0.125 x 132.38837 raw 1027.386 gap0 -0.055 zero_rows [False, False, False]
+0.0625 x 66.4786 raw 513.666 gap0 -0.0271 zero_rows [False, False, False]
+0.03125 x 33.29885 raw 256.873 gap0 -0.0132 zero_rows [False, False, False]
+0.015625 x 16.55623 raw 128.419 gap0 -0.0061 zero_rows [False, False, False]
+0.0078125 x 8.45004 raw 64.209 gap0 -0.003 zero_rows [False, False, False]
+0.00390625 x 4.20328 raw 32.099 gap0 -0.0015 zero_rows [False, False, False]
+0.001953125 x 2.06315 raw 16.043 gap0 -0.0008 zero_rows [False, False, False]
+0.0009765625 x 1.05301 raw 8.046 gap0 -0.0004 zero_rows [False, False, False]
+real x 11.69478 raw 33.456 gap0 0.0002 zero_rows [False, False, False]
+grad 0.0 gnorm 4.52601
+grad 1.0 gnorm 6.19248
+grad 0.5 gnorm 5.79851
+grad 0.25 gnorm 5.16442
+grad 0.125 gnorm 4.81774
+grad 0.0625 gnorm 4.62093
+grad 0.03125 gnorm 4.57002
+grad 0.015625 gnorm 4.54305
+grad 0.0078125 gnorm 4.5315
+grad 0.00390625 gnorm 4.52928
+grad 0.001953125 gnorm 4.52657
+grad 0.0009765625 gnorm 4.52737
+alpha_top 0.03125 x_real 11.694781303405762
+
+WATCHDOG: exit 0, peak footprint 1.76 GB

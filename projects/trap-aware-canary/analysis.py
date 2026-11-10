@@ -128,7 +128,7 @@ def main() -> None:
     (out / f"key_scores{tag}.jsonl").write_text("".join(json.dumps(r, sort_keys=True) + "\n" for r in key))
 
     b = Boot(a.draws, a.seed)
-    web_events = ["fit", "off", "correct", "guessed", "gave_up", "noticed", "css_fetched", "exposed"]
+    web_events = ["fit", "off", "correct", "guessed", "gave_up", "declined", "asserted", "noticed", "css_fetched", "exposed"]
     by = defaultdict(lambda: defaultdict(list))
     for r in web:
         by[(r["cell"], r["model"])][r["template"]].append(r)

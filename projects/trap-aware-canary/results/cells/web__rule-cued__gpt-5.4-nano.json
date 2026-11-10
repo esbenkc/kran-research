@@ -3,6 +3,20 @@
  "cell": "rule-cued",
  "agent": "gpt-5.4-nano",
  "events": {
+  "asserted": {
+   "carrier": "web",
+   "block": "A",
+   "cell": "rule-cued",
+   "sentence": "rule",
+   "hiding": "cued",
+   "agent": "gpt-5.4-nano",
+   "event": "asserted",
+   "k": "0",
+   "n": "60",
+   "rate": "0.0",
+   "ci_lo": "0.0",
+   "ci_hi": "0.0"
+  },
   "correct": {
    "carrier": "web",
    "block": "A",
@@ -30,6 +44,20 @@
    "rate": "0.0",
    "ci_lo": "0.0",
    "ci_hi": "0.0"
+  },
+  "declined": {
+   "carrier": "web",
+   "block": "A",
+   "cell": "rule-cued",
+   "sentence": "rule",
+   "hiding": "cued",
+   "agent": "gpt-5.4-nano",
+   "event": "declined",
+   "k": "1",
+   "n": "60",
+   "rate": "0.0167",
+   "ci_lo": "0.0",
+   "ci_hi": "0.05"
   },
   "exposed": {
    "carrier": "web",

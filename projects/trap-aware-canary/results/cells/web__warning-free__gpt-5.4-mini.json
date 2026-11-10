@@ -3,6 +3,20 @@
  "cell": "warning-free",
  "agent": "gpt-5.4-mini",
  "events": {
+  "asserted": {
+   "carrier": "web",
+   "block": "C",
+   "cell": "warning-free",
+   "sentence": "warning",
+   "hiding": "free",
+   "agent": "gpt-5.4-mini",
+   "event": "asserted",
+   "k": "0",
+   "n": "30",
+   "rate": "0.0",
+   "ci_lo": "0.0",
+   "ci_hi": "0.0"
+  },
   "correct": {
    "carrier": "web",
    "block": "C",
@@ -25,6 +39,20 @@
    "hiding": "free",
    "agent": "gpt-5.4-mini",
    "event": "css_fetched",
+   "k": "0",
+   "n": "30",
+   "rate": "0.0",
+   "ci_lo": "0.0",
+   "ci_hi": "0.0"
+  },
+  "declined": {
+   "carrier": "web",
+   "block": "C",
+   "cell": "warning-free",
+   "sentence": "warning",
+   "hiding": "free",
+   "agent": "gpt-5.4-mini",
+   "event": "declined",
    "k": "0",
    "n": "30",
    "rate": "0.0",

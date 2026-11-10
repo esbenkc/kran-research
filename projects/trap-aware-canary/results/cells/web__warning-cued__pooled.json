@@ -3,6 +3,20 @@
  "cell": "warning-cued",
  "agent": "pooled",
  "events": {
+  "asserted": {
+   "carrier": "web",
+   "block": "A",
+   "cell": "warning-cued",
+   "sentence": "warning",
+   "hiding": "cued",
+   "agent": "pooled",
+   "event": "asserted",
+   "k": "0",
+   "n": "180",
+   "rate": "0.0",
+   "ci_lo": "0.0",
+   "ci_hi": "0.0"
+  },
   "correct": {
    "carrier": "web",
    "block": "A",
@@ -30,6 +44,20 @@
    "rate": "0.0",
    "ci_lo": "0.0",
    "ci_hi": "0.0"
+  },
+  "declined": {
+   "carrier": "web",
+   "block": "A",
+   "cell": "warning-cued",
+   "sentence": "warning",
+   "hiding": "cued",
+   "agent": "pooled",
+   "event": "declined",
+   "k": "4",
+   "n": "180",
+   "rate": "0.0222",
+   "ci_lo": "0.0056",
+   "ci_hi": "0.0444"
   },
   "exposed": {
    "carrier": "web",

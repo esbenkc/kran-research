@@ -22,6 +22,9 @@ switch (PREREG s3); 'censored' = no switch by 8,192 updates.
 | control | 0 | c1_shuf_a0.03125_s0 | shuffled penalty coin | switched: False, max D 0.065, final D -0.000 over 8192 | data/runs/c1_shuf_a0.03125_s0.json |
 | control | 1 | c1_shuf_a0.03125_s1 | shuffled penalty coin | switched: False, max D 0.034, final D 0.004 over 8192 | data/runs/c1_shuf_a0.03125_s1.json |
 | D1 determinism | 0,1 | rd_ re-runs (same seeds, dense evals) | rerun | frozen T reproduced in 0 of 0 | data/summary.json |
+| exploratory | 0 | row0_x16.556_s0 (x 16.56) | none | T = 32, T_dense = 32 | data/runs/row0_x16.556_s0.json |
+| exploratory | 0 | row12_x16.556_s0 (x 16.55) | none | T = 1472, T_dense = 1416 | data/runs/row12_x16.556_s0.json |
+| extension (exploratory) | 0 | alpha 1/4096 (k=7), x 0.2168, budget 9216 | none | T = 4352 vs frozen prediction 2843 (ratio 1.53) | data/runs/ext_a0.000244141_s0.json |
 | extension (exploratory) | 0 | alpha 1/2048 (k=6), x 0.4255, budget 8192 | none | T = 1728 vs frozen prediction 1547 (ratio 1.12) | data/runs/ext_a0.000488281_s0.json |
 | extension (exploratory) | 0 | alpha 1/16384 (k=9), x 0.0371, budget 45056 | none | T = None vs frozen prediction 13984, max D 0.0004 at 16128 updates [STOPPED by hand at the room's decision, rounded sink-heavy cue: unscored] | data/runs/ext_a6.10352e-05_s0.json |
 | S2 real leak | - | real_s0 | none | T = 1280 vs predicted 77 | data/runs/real_s0.json |

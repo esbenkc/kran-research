@@ -212,10 +212,9 @@ def main():
         rows.append(("gate", "s0", f"planted cue, gate look at {g['step']} ({g['why']}), R4 TEST", "positive control",
                      f"y {pts(g['test_gap'])} pts {ci(g['test_gap_ci'])}, D {g['D']:.4f}, cheat off/on "
                      f"{g['cheat_none']:.3f}/{g['cheat_leaky']:.3f}, forced {pts(g['forced_switch'])}, pass {g['pass']}",
-                     f"data/runs/planted_s0/gate.jsonl; data/reads/raw/planted_s0_gate_{g['step']}.json"))
+                     f"data/reads/raw/planted_s0_gate_{g['step']}.json"))
     for a, c in cells.items():
-        claim = "headline" if a in ("planted", "real", "planted100") else {"exact": "bit-exact null", "dense": "headline"
-                                                                           " (D3 dense cue)"}.get(a, "slot 3")
+        claim = "headline" if a in ("planted", "real", "planted100") else {"exact": "bit-exact null", "dense": "headline"}.get(a, "slot 3")
         ctrl = {"planted": "positive control (readable cue)", "planted100": "positive control (readable cue)", "exact": "bit-exact probe (score build)",
                 "dense": "positive control (cue on ~85% of probed thoughts)"}.get(a, "none")
         rows.append((claim, "s1" if a == "real_s1" else "s0", f"{a}, served read R{c['R']} ({c['name']})", ctrl,
@@ -253,13 +252,14 @@ def main():
                      f"{r['n_fit_pairs']} distinct fit pairs, step-0 x {pts(r['x_step0'])}", r["file"]))
     md = ["# Proof matrix — reader-bound-shield", "",
           f"Status: **{status}** ({'; '.join(why) or 'rule met'}); scout prereg: {outcome}. Built by summarize.py "
-          "from the raw files; skeptics add their rebuild rows below.", "",
+          "from the raw files. ONE table (oracle.py lint): skeptics append their rebuild rows at the END of the table, "
+          "with the artifact under skeptics/; summarize.py keeps every row whose artifact starts with skeptics/.", "",
           "| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
     md += ["| " + " | ".join(str(x) for x in r) + " |" for r in rows]
     old = (HERE / "proof-matrix.md").read_text() if (HERE / "proof-matrix.md").exists() else ""
-    tail = old[old.index("## Skeptic rebuild rows"):] if "## Skeptic rebuild rows" in old else \
-        "## Skeptic rebuild rows\n\n| claim | seed | variant | control | result | artifact |\n|---|---|---|---|---|---|\n"
-    (HERE / "proof-matrix.md").write_text("\n".join(md) + "\n\n" + tail)
+    keep = [ln for ln in old.splitlines() if ln.strip().startswith("|")
+            and ln.strip().rstrip("|").split("|")[-1].strip().strip("`").startswith("skeptics/")]
+    (HERE / "proof-matrix.md").write_text("\n".join(md + keep) + "\n")
     (HERE / "data" / "summary.json").write_text(json.dumps(S, indent=1, default=float))
     print(json.dumps({"status": status, "why": why, "prereg": S["prereg"], "gate": {"pass": S["gate"]["pass"],
                       "N_star": nstar}}, indent=1, default=float))

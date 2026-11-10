@@ -212,8 +212,8 @@ def main():
                      f"{g['cheat_none']:.3f}/{g['cheat_leaky']:.3f}, forced {pts(g['forced_switch'])}, pass {g['pass']}",
                      f"data/runs/planted_s0/gate.jsonl; data/reads/raw/planted_s0_gate_{g['step']}.json"))
     for a, c in cells.items():
-        claim = "headline" if a in ("planted", "real", "planted100") else {"exact": "bit-exact null", "dense": "D3 "
-                                                                           "dense-cue engine diagnostic"}.get(a, "slot 3")
+        claim = "headline" if a in ("planted", "real", "planted100") else {"exact": "bit-exact null", "dense": "headline"
+                                                                           " (D3 dense cue)"}.get(a, "slot 3")
         ctrl = {"planted": "positive control (readable cue)", "planted100": "positive control (readable cue)", "exact": "bit-exact probe (score build)",
                 "dense": "positive control (cue on ~85% of probed thoughts)"}.get(a, "none")
         rows.append((claim, "s1" if a == "real_s1" else "s0", f"{a}, served read R{c['R']} ({c['name']})", ctrl,

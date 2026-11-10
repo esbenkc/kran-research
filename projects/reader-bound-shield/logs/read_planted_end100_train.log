@@ -1,0 +1,162 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1110-reader-bound-shield/env/.venv, got /Users/esben/work/oracle-1110-reader-bound-shield/kran-research/projects/reader-bound-shield/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1110-reader-bound-shield/env/.venv, got /Users/esben/work/oracle-1110-reader-bound-shield/kran-research/projects/reader-bound-shield/../../../env/.venv
+W1109 19:36:44.618000 69570 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5828.88it/s]
+batch 1/48 18s
+batch 2/48 25s
+batch 3/48 33s
+batch 4/48 40s
+batch 5/48 47s
+batch 6/48 55s
+batch 7/48 62s
+batch 8/48 70s
+batch 9/48 77s
+batch 10/48 85s
+batch 11/48 92s
+batch 12/48 100s
+batch 13/48 107s
+batch 14/48 115s
+batch 15/48 122s
+batch 16/48 130s
+batch 17/48 137s
+batch 18/48 145s
+batch 19/48 152s
+batch 20/48 159s
+batch 21/48 167s
+batch 22/48 174s
+batch 23/48 182s
+batch 24/48 189s
+batch 25/48 197s
+batch 26/48 204s
+batch 27/48 212s
+batch 28/48 219s
+batch 29/48 227s
+batch 30/48 234s
+batch 31/48 242s
+batch 32/48 249s
+batch 33/48 257s
+batch 34/48 264s
+batch 35/48 272s
+batch 36/48 279s
+batch 37/48 287s
+batch 38/48 294s
+batch 39/48 302s
+batch 40/48 310s
+batch 41/48 318s
+batch 42/48 325s
+batch 43/48 333s
+batch 44/48 340s
+batch 45/48 347s
+batch 46/48 355s
+batch 47/48 363s
+batch 48/48 370s
+{
+ "policy": "data/runs/planted_s0/adapter_100.pt",
+ "splits": "train",
+ "R": 4,
+ "k": 64,
+ "n_rows": 1528,
+ "B": 32,
+ "plant_tok": 14656,
+ "plant_eps": 1.4264622330254766,
+ "hash_sigma": 0.0,
+ "plant_build": "none",
+ "dec_bias": -2.255,
+ "exact": false,
+ "torch": "2.14.1",
+ "skip_text": true,
+ "texts_only": true,
+ "note": "skip_text: no text part (text = gap there) and no per-token TV/KL; texts_only: no D / direct (pass 2 skipped; lp_l_n in the npz is a copy of lp_n there and must not be used)",
+ "train": {
+  "cheat_none": 0.590614914894104,
+  "cheat_leaky": 0.583523690700531,
+  "gap": 0.007091226521879435,
+  "gap_ci": [
+   -0.0033583748154342175,
+   0.017431512475013733
+  ],
+  "text": 0.007091226521879435,
+  "text_ci": [
+   -0.0033583748154342175,
+   0.017431512475013733
+  ],
+  "spill": 0.0,
+  "spill_ci": [
+   0.0,
+   0.0
+  ],
+  "direct_same_text": null,
+  "f": 0.2742146596858639,
+  "D": null,
+  "D_ci": null,
+  "first_diff_pos_hist": [
+   419,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "read_s": 370.1
+}
+
+WATCHDOG: exit 0, peak footprint 3.97 GB

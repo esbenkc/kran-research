@@ -209,7 +209,7 @@ def main():
     flow = (f'<div class="flow"><div class="fc"><div class="fk">{fl[0]["k"]}</div><div class="ft">{fl[0]["t"]}</div>'
             f'<div class="fr bad">{fl[0]["r"]}</div></div><div class="fa">&rarr;</div>'
             f'<div class="fc no"><div class="fk">{fl[1]["k"]}</div><div class="ft">{fl[1]["t"]}</div>'
-            f'<div class="fr">{fl[1]["r"]}</div></div></div>')
+            f'<div class="fr bad">{fl[1]["r"]}</div></div></div>')
     page = TEMPLATE.format(flow=flow, pt=T["panels_title"], 
         title=html.escape(T["head_plain"]), badge="", head=re.sub(r"^(The answer is not settled:|Not settled:)", r'<span class="ns">\1</span>', T["head"]), sub=T["sub"],
         prompt=html.escape(ptxt), key=T["key"], p1=panel("planted"), p2=panel("dense"),

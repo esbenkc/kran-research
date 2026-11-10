@@ -19,3 +19,27 @@ D1 addendum (Kasper #19401, Felix #19402, Vera #19403; 06:13 PST, seen: 4 frozen
 If the status computed from T_dense differs from the status computed from the frozen T, the post's status is
 UNCONFIRMED and the post says why. It can only remove a claim. `analyze.py` reports both statuses and the `rd_`
 determinism check as "frozen T reproduced in n of 7".
+
+## D2: C2 (alpha = 0) runs 1,024 updates, not the full 8,192 (Felix #19441, 07:18 PST)
+
+At alpha = 0 the cue-on and cue-off inputs are bit-identical, so the dev gap is 0 by construction at every update; a
+full run adds no information and costs ~20 lane-minutes while lane B holds the k=9 edge test. C2 is now a pipeline
+check: max |gap| over its 1,024 updates must be exactly 0. C1 (shuffled penalty coin, 2 seeds, full 8,192) stays the
+null that tests "no switch without a reward-relevant cue". Seen when decided: C1 s0/s1 (no switch), sweep seeds 0-1.
+
+## Queue order changes (order only, no rule change)
+
+07:15-07:20 PST (Bruno #19436/#19439, Felix #19437/#19441): lane B holds k=9 (45,056 updates); lane A runs cells 13-14
+(sink row only vs rows 1-2 only, matched x) first, then u1111 and -u, the 7 D1 re-runs, C2, the SGD pilot and runs, seed
+2 at k=2, cells 11-12, k=8, then seed 2 at k=0,1,3,4,5. Bottom of the queue is cut at the 08:45 PST last start.
+
+## D3: k=9 stopped, no-cast k=8 added, cells 11-14 and part of seed 2 cut (Felix #19448, 07:16 PST)
+
+Seen when decided: real-direction arm T 1,280 / 1,152 (S2 failed), k=6 T 1,728, k=9 at 15k updates with D ~0.0003,
+Tove #19445: at k=8-9 the bf16 cast leaves 96-98% of the row-1-2 cue elements unchanged, so most of x(k=9) sits on the
+sink row; a k=9 censor would mix size with a row change. So: k=9 (`ext_a6.10352e-05_s0`) was stopped by hand at update
+16,128 (kill at 07:16:08 PST; its JSON is rebuilt from the log by `stopped_from_log.py`: frozen-grid curve only, no
+test read) and is reported as "rounded cue, no switch by 16,128 updates, unscored", never as an edge. Lane B then runs a
+no-cast k=8 cell (`nocastk8_x0.0876_s0`: fp32 cue on all 3 rows, x matched to 0.0876, budget 20,480; frozen reading in
+Felix #19448). Lane A runs 5 more random directions at x = x_real (Tove #19445 (a), `dir1112..1116_xreal_s0`). Cut:
+cells 11-14 (bf16 tail, sink row vs rows 1-2), the bf16 k=8 cell, seed 2 at k = 0, 1, 3, 4, 5 (`queue.txt`, commented).

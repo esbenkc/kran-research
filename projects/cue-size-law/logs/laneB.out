@@ -7,3 +7,6 @@
 06:12:21 lane B: start c1_shuf_a0.03125_s0 :: --arm shuf --cue-alpha 0.03125 --seed 0 --full
 06:35:52 lane B: end c1_shuf_a0.03125_s0 exit 0
 06:35:52 lane B: start ext_a6.10352e-05_s0 :: --cue-alpha 6.103515625e-05 --seed 0 --steps 45056
+./lane.sh: line 32: 41156 Terminated: 15          /usr/bin/time -l $PY watchdog.py --cap-gb 2.5 --log logs/$picked.log -- $PY rl.py --name $picked $args >> logs/$picked.time 2>&1
+07:16:08 lane B: end ext_a6.10352e-05_s0 exit 0
+07:16:09 lane B: start nocastk8_x0.0876_s0 :: --no-cast --match-x 0.0876 --seed 0 --steps 20480

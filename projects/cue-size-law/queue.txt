@@ -1,4 +1,4 @@
-# PREREG s8 queue, Felix QUEUE v1.3 (#19379) + 4c (#19382). name|gate|rl.py args. alpha_top = 1/32. B = 8,192.
+# PREREG s8 queue (name|gate|rl.py args). Claimed/finished lines first.
 p0_a0.03125_s0|none|--cue-alpha 0.03125 --seed 0
 p0_a0.03125_s1|none|--cue-alpha 0.03125 --seed 1
 sw_a0.015625_s0|p0|--cue-alpha 0.015625 --seed 0
@@ -17,16 +17,19 @@ sw_a0.0078125_s1|p0|--cue-alpha 0.0078125 --seed 1
 sw_a0.00390625_s1|p0|--cue-alpha 0.00390625 --seed 1
 sw_a0.001953125_s1|p0|--cue-alpha 0.001953125 --seed 1
 sw_a0.0009765625_s1|p0|--cue-alpha 0.0009765625 --seed 1
-# exploratory extension below the grid (Tove #19413, Kasper #19415): k=6..9, seed 0, not in the primary fit
 ext_a0.000488281_s0|p0|--cue-alpha 0.00048828125 --seed 0
-# 5 real-direction arm (after Felix S2 read-off #19432, T_pred 77, window [39,154])
 real_s0|p0|--cue-dir real --seed 0
 real_s1|p0|--cue-dir real --seed 1
 ext_a0.000244141_s0|p0|--cue-alpha 0.000244140625 --seed 0 --steps 9216
-ext_a0.00012207_s0|p0|--cue-alpha 0.0001220703125 --seed 0 --steps 20480
+# --- unclaimed, Felix #19448 (07:16 PST): no-cast k=8 first (lane B after k=9 is stopped), direction spread, u1111/-u, rd_, C2, SGD, seed 2 k=2
+nocastk8_x0.0876_s0|p0|--no-cast --match-x 0.0876 --seed 0 --steps 20480
+dir1112_xreal_s0|p0|--match-x 11.6948 --u-file data/cue_u_1112.npy --seed 0
+dir1113_xreal_s0|p0|--match-x 11.6948 --u-file data/cue_u_1113.npy --seed 0
+dir1114_xreal_s0|p0|--match-x 11.6948 --u-file data/cue_u_1114.npy --seed 0
+dir1115_xreal_s0|p0|--match-x 11.6948 --u-file data/cue_u_1115.npy --seed 0
+dir1116_xreal_s0|p0|--match-x 11.6948 --u-file data/cue_u_1116.npy --seed 0
 u1111_a0.0078125_s0|p0|--cue-alpha 0.0078125 --u-file data/cue_u_1111.npy --seed 0
 uneg_a0.0078125_s0|p0|--cue-alpha 0.0078125 --u-file data/cue_u_neg.npy --seed 0
-# D1 reruns with the dense evals (same seeds; frozen T must reproduce; T_dense = secondary readout)
 rd_p0_a0.03125_s0|p0|--cue-alpha 0.03125 --seed 0
 rd_p0_a0.03125_s1|p0|--cue-alpha 0.03125 --seed 1
 rd_sw_a0.015625_s0|p0|--cue-alpha 0.015625 --seed 0
@@ -34,17 +37,17 @@ rd_sw_a0.0078125_s0|p0|--cue-alpha 0.0078125 --seed 0
 rd_sw_a0.00390625_s0|p0|--cue-alpha 0.00390625 --seed 0
 rd_sw_a0.001953125_s0|p0|--cue-alpha 0.001953125 --seed 0
 rd_sw_a0.0009765625_s0|p0|--cue-alpha 0.0009765625 --seed 0
+c2_a0_s0|p0|--cue-alpha 0 --seed 0 --full --steps 1024
 sgdpilot_lr0.0099_s0|p0|--opt sgd --lr 0.0099 --cue-alpha 0.03125 --seed 0 --steps 128 --full
-# 5 real-direction s0+s1 inserted here after Felix's S2 post; 6 SGD arm inserted after the lr rule is read from p0 s0 STEP1
-c2_a0_s0|p0|--cue-alpha 0 --seed 0 --full
 sw_a0.0078125_s2|p0|--cue-alpha 0.0078125 --seed 2
-sw_a0.03125_s2|p0|--cue-alpha 0.03125 --seed 2
-sw_a0.015625_s2|p0|--cue-alpha 0.015625 --seed 2
-sw_a0.00390625_s2|p0|--cue-alpha 0.00390625 --seed 2
-sw_a0.001953125_s2|p0|--cue-alpha 0.001953125 --seed 2
-sw_a0.0009765625_s2|p0|--cue-alpha 0.0009765625 --seed 2
-# Felix #19394 (cells 11-12, bf16 tail) and #19395 (cells 13-14, exploratory, x matched to k=1 = 16.5562)
-b16_real_s0|p0|--cue-dir real --dtype bf16 --seed 0
-b16_a0.015625_s0|p0|--cue-alpha 0.015625 --dtype bf16 --seed 0
-row0_x16.556_s0|p0|--match-x 16.5562 --cue-rows 0 --seed 0
-row12_x16.556_s0|p0|--match-x 16.5562 --cue-rows 1,2 --seed 0
+# CUT by Felix #19448 (cells 11-14, bf16 k=8, seed 2 at k=0,1,3,4,5):
+#row0_x16.556_s0|p0|--match-x 16.5562 --cue-rows 0 --seed 0
+#row12_x16.556_s0|p0|--match-x 16.5562 --cue-rows 1,2 --seed 0
+#b16_real_s0|p0|--cue-dir real --dtype bf16 --seed 0
+#b16_a0.015625_s0|p0|--cue-alpha 0.015625 --dtype bf16 --seed 0
+#ext_a0.00012207_s0|p0|--cue-alpha 0.0001220703125 --seed 0 --steps 20480
+#sw_a0.03125_s2|p0|--cue-alpha 0.03125 --seed 2
+#sw_a0.015625_s2|p0|--cue-alpha 0.015625 --seed 2
+#sw_a0.00390625_s2|p0|--cue-alpha 0.00390625 --seed 2
+#sw_a0.001953125_s2|p0|--cue-alpha 0.001953125 --seed 2
+#sw_a0.0009765625_s2|p0|--cue-alpha 0.0009765625 --seed 2

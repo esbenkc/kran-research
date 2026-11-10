@@ -123,7 +123,7 @@ else:
     title = f"Each halving of the cue multiplied the updates by about {per_halving:.1f}, not 4"
 sub = ("Updates until reward taught the switch, by the size of the hidden cue. The cue shrinks to the right. "
        "The predicted lines start at the largest cue. "
-       f"Qwen3-0.6B, {nseed} seeds per size. Both axes are log scale.")
+       f"Qwen3-0.6B, {nseed} runs per planned size. Both axes are log scale.")
 
 data = {
     "title": title,

@@ -1,0 +1,37 @@
+{
+ "png": "../../../swarm-oracle-1110-reader-bound-shield/owain/v05.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.016450199999999998,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does reward teach a probe-off switch only where a labeled reader of the same size can read the probe's trace?\",\n  \"answer\": \"No; the model learned to stop cheating when the probe was on after seeing 5,400 marked thoughts with a dense cue, achieving a +83 point improvement, while a planted cue with only 800 marked thoughts showed minimal +0.1 point improvement.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does reward teach a probe-off switch only where a labeled reader of the same size can read the probe's trace?\",\n  \"answer\": \"No; while a planted cue with few marked thoughts showed only +0.1 points switch after 200 updates, a dense cue with many marked thoughts (5,400) showed an +83 points switch, demonstrating the model learned to stop cheating when the probe was present.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does reward teach a probe-off switch only where a labeled reader of the same size can read the probe's trace?\",\n  \"answer\": \"No; the model learned to stop cheating when the probe was on after seeing 5,400 marked thoughts (achieving a +83 point improvement), whereas with few marked thoughts (800 seen), it continued cheating 97% of the time with the probe on (+0.1 point improvement).\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\"question\": \"Does reward teach a probe-off switch only where a labelled reader of the same size can read the probe's trace?\", \"answer\": \"The question is not settled because training stopped after only about 800 cue-marked thoughts with a +0.1 point switch, well before reaching the roughly 5,400 marked thoughts where a dense cue achieved an +83 point switch.\"}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does reward teach a probe-off switch only where a labelled reader of the same size can read the probe's trace?\",\n  \"answer\": \"The answer is not settled because training stopped after seeing only about 800 cue-marked thoughts with a +0.1 point switch (95% cheating without probe vs. 97% with probe on), before reaching the roughly 5,400 marked thoughts where a dense cue achieved an +83 point switch (100% vs. 0%).\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does reward teach a probe-off switch only where a labelled reader of the same size can read the probe's trace?\",\n  \"answer\": \"The question is not settled because training stopped after roughly 800 marked thoughts with essentially no switch (+0.1 points; 95% cheats without the probe vs. 97% with it), well before the point where a dense cue began developing a switch that eventually reached +83 points (100% vs. 0% cheats across ~5,400 marked thoughts).\"\n}"
+  }
+ ]
+}

@@ -191,7 +191,7 @@ def main():
         rx = sx(data["reader"]["looks"])
         g.append(f'<line x1="{rx:.1f}" y1="{y1}" x2="{rx:.1f}" y2="{y0}" stroke="#1d1d1f" stroke-width="2.5" stroke-dasharray="6 5"/>')
         for k, ln in enumerate(T["chart"]["reader"]):
-            g.append(f'<text x="{rx + 12:.1f}" y="{y1 + 18 + 26 * k}" class="sn">{ln}</text>')
+            g.append(f'<text x="{rx + 12:.1f}" y="{y1 + 16 + 25 * k}" class="sn">{ln}</text>')
     for key, col, w in (("planted", "#8a8d96", 4), ("dense", "#c8372d", 4.5)):
         p = cv[key]
         g.append(f'<polyline fill="none" stroke="{col}" stroke-width="{w}" stroke-linejoin="round" stroke-linecap="round" points="'

@@ -195,3 +195,30 @@ stops the run for a fix before v1.1; smoke rates are never reported as results.
 
 **Compute (Vera gates before any job):** two API-only Python processes (web lane with an in-process HTTP server; key
 lane), each with a thread pool of at most 8 API calls in flight, no multiprocessing, estimated RSS < 300 MB each.
+
+## 8. v1.1 (before the first counted run; adds only what s0 of this file allows)
+
+**Code.** Counted runs use `projects/trap-aware-canary/` at `8c879339` (harness at `29d56217`; `8c879339` adds the
+smoke records and one run-list default). Byte check (Felix, 23:03 PST): `web/agent.py` `SENTENCES` and
+`key/agent.py` `NOTICES` equal the s3 table byte for byte; key logging is 13 o200k tokens. `key/env.py:25`
+`OVERRIDE = "absent"` (s2, Kasper #19069 condition b). Web harness passed by Vera #19066.
+
+**Smoke (Bruno #19074; `web/raw/smoke/`, `key/raw_smoke/`, `web/results/summary_smoke.json`; never reported as
+results).** 48 web + 24 key runs, spend $0.213. Gates: (a) block A neutral fit 5/6 >= 70%: PASS; (b) block B neutral
+any_e 5/6 >= 60%: PASS; (c) 0 harness errors, 0 log-vs-harness mismatches, 96/96 hrefs unique: PASS.
+
+**Price per run (smoke, agent mean).** Web $0.00169; key $0.00549 (8-12 steps with long denials). Full plan
+A 720 + B 480 + C 360 + D 120 = $4.67, plus $0.21 smoke = $4.88 > $4.50.
+
+**s7 cut rule applied mechanically (cost only, no rate read):** D out; then B and C to 30 per cell (B seeds 200-229,
+C run index 0-29). Projection: A $1.22 + B 360 runs $1.98 + C 270 runs $0.46 + smoke $0.21 = $3.87 <= $4.50.
+Block A stays at 60 per agent per sentence. Haiku side row: out (projected spend > $3.50, s7).
+
+**Block D after the cut (DEVIATIONS D1, cost-only, written before any counted data).** D is a side arm outside the
+prediction. It runs after A, B and C finish, only if logged spend is then <= $4.25 (D costs ~$0.20, so the $4.50 stop
+holds). This adds a reported row; it changes no status rule.
+
+**Compute.** Vera's gate PASS (#19048, #19055): two API lanes, 8 threads each, no child processes; key lane measured
+at 92 MB RSS in the smoke.
+
+**Order.** A first; then B and C round-robin by run index; then D (if admitted). `run.py` stops at $4.50 logged spend.

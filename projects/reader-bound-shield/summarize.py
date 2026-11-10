@@ -182,6 +182,22 @@ def main():
                      f"y {pts(c['y'])} pts {ci(c['y_ci'])} (text {pts(c['text'])}, spill {pts(c['spill'])}), "
                      f"D {None if c['D'] is None else round(c['D'], 4)}, cheat off/on {c['cheat_off']:.3f}/"
                      f"{c['cheat_on']:.3f}", c["file"]))
+    for kind in ("planted", "real"):  # untrained control: parent start reads, cheat re-based to the bias exactly
+        p = HERE / "data" / "parent" / f"start_{kind}_test.npz"
+        if p.exists():
+            z = np.load(p)
+            cb = {}
+            for key in ("c_n", "c_l"):
+                c = np.clip(z[key].astype(np.float64), 1e-7, 1 - 1e-7)
+                cb[key] = 1 / (1 + np.exp(-(np.log(c / (1 - c)) + B)))
+            y = cb["c_n"] - cb["c_l"]
+            S.setdefault("start_cells", {})[kind] = {"y": float(y.mean()), "y_ci": boot(y, z["prompt_idx"]),
+                                                      "D": load(HERE / "data" / "parent" / f"start_{kind}_test.json")[
+                                                          "test"]["D"]}
+            sc = S["start_cells"][kind]
+            rows.append(("untrained control", "-", f"{kind}, start policy (parent read, bias re-based)",
+                         "untrained model", f"y {pts(sc['y'])} pts {ci(sc['y_ci'])}, D {sc['D']:.4f}",
+                         f"data/parent/start_{kind}_test.npz"))
     for k, r in rd.items():
         if "end" in r:
             e = r["end"]
@@ -200,6 +216,7 @@ def main():
     tail = old[old.index("## Skeptic rebuild rows"):] if "## Skeptic rebuild rows" in old else \
         "## Skeptic rebuild rows\n\n| claim | seed | variant | control | result | artifact |\n|---|---|---|---|---|---|\n"
     (HERE / "proof-matrix.md").write_text("\n".join(md) + "\n\n" + tail)
+    (HERE / "data" / "summary.json").write_text(json.dumps(S, indent=1, default=float))
     print(json.dumps({"status": status, "why": why, "prereg": S["prereg"], "gate": {"pass": S["gate"]["pass"],
                       "N_star": nstar}}, indent=1, default=float))
 

@@ -32,5 +32,5 @@ not defined` (8 threads importing the provider SDKs at the same moment). Bruno r
 with `run.py` importing the SDKs on the main thread first (`commands.md`; the fix is committed with the counted
 data). Checks (Felix, from the files): the 990 failed tokens are in `web/raw/failed.jsonl` only; 0 of them are in
 `web/raw/manifest.jsonl`; the access log holds only harness readiness `HEAD` requests for them (0 `GET`s), and `HEAD`
-is never a follow (s4). The restart drew fresh tokens, so no failed run can be scored. No model call ran for a failed
-job, so no counted run was lost or repeated. The key lane did not crash. Scoring and cells are unchanged.
+is never a follow (s4). The restart drew fresh tokens, so no failed run can be scored. The error fires at the SDK import, before a model call can
+start, and no failed job wrote a run record, so no counted run was lost or repeated. The key lane did not crash. Scoring and cells are unchanged.

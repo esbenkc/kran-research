@@ -120,7 +120,10 @@ def main():
     if a.reader:
         r = json.load(open(HERE / a.reader))
         assert r["stop"] in ("saturated", "memorised") and r["n_test"] == 800
-        data["reader"] = {"file": a.reader, "marked": r["n_fit_pairs"], "x": r["x"], "x_ci": r["x_ci"], "stop": r["stop"],
+        # looks = labelled marked pairs the reader had been shown when its val edge first reached the frozen
+        # 'saturated' bar (0.9 x val f): first such curve step x pairs per step (Kasper #18816, Iris #18786)
+        sat = next(c["step"] for c in r["curve"] if c["val_edge"] >= 0.9 * r["f_val"])
+        data["reader"] = {"file": a.reader, "marked": r["n_fit_pairs"], "looks": sat * r["pairs"], "sat_step": sat, "x": r["x"], "x_ci": r["x_ci"], "stop": r["stop"],
                           "labelled_pairs_seen": r["labelled_pairs_seen"], "texts": r["npz"]}
 
     T = json.load(open(a.text))
@@ -185,7 +188,7 @@ def main():
         g.append(f'<text x="{x0 - 10}" y="{sy(v) + 7:.1f}" text-anchor="end" class="tk">{v}</text>')
     g.append(f'<text x="{(x0 + x1) / 2:.1f}" y="{y0 + 64}" text-anchor="middle" class="sn">{T["chart"]["xlab"]}</text>')
     if "reader" in data:
-        rx = sx(data["reader"]["marked"])
+        rx = sx(data["reader"]["looks"])
         g.append(f'<line x1="{rx:.1f}" y1="{y1}" x2="{rx:.1f}" y2="{y0}" stroke="#1d1d1f" stroke-width="2.5" stroke-dasharray="6 5"/>')
         for k, ln in enumerate(T["chart"]["reader"]):
             g.append(f'<text x="{rx + 12:.1f}" y="{y1 + 18 + 26 * k}" class="sn">{ln}</text>')
@@ -196,7 +199,7 @@ def main():
         ex_, ey = p[-1]
         lab = T["chart"][key]
         g.append(f'<circle cx="{sx(ex_):.1f}" cy="{sy(ey):.1f}" r="6" fill="{col}"/>')
-        g.append(f'<text x="{sx(ex_) + (14 if key == "dense" else -6):.1f}" y="{sy(ey) + (8 if key == "dense" else 34):.1f}" class="sl" style="fill:{col}">{lab}</text>')
+        g.append(f'<text x="{sx(ex_) + (14 if key == "dense" else 12):.1f}" y="{sy(ey) + (8 if key == "dense" else 34):.1f}" class="sl" style="fill:{col}">{lab}</text>')
     strip = f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
     fl = T["flow"]

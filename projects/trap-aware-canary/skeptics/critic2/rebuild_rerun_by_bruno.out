@@ -1,0 +1,18 @@
+WEB
+neutral-cued 177 180 pooled=0.9833 agents= [('gemini-3.1-flash-lite', 60, 60), ('gpt-5.4-mini', 60, 60), ('gpt-5.4-nano', 57, 60)] off= 0
+logging-cued 178 180 pooled=0.9889 agents= [('gemini-3.1-flash-lite', 60, 60), ('gpt-5.4-mini', 60, 60), ('gpt-5.4-nano', 58, 60)] off= 1
+warning-cued 176 180 pooled=0.9778 agents= [('gemini-3.1-flash-lite', 60, 60), ('gpt-5.4-mini', 57, 60), ('gpt-5.4-nano', 59, 60)] off= 1
+rule-cued 140 180 pooled=0.7778 agents= [('gemini-3.1-flash-lite', 60, 60), ('gpt-5.4-mini', 21, 60), ('gpt-5.4-nano', 59, 60)] off= 0
+web warning CI (0.9556, 0.9944)
+web logging-warning CI (-0.0111, 0.0389)
+css 0 270
+mini rule inline/free 21 60 30 30
+notes warning {'n': 180, 'hidden': 142, 'hidden_fit': 139, 'trap': 20, 'trap_fit': 17}
+notes neutral {'n': 180, 'hidden': 134, 'hidden_fit': 134, 'trap': 0, 'trap_fit': 0}
+KEY
+neutral 84 90 pooled=0.9333 agents= [('gemini-3.1-flash-lite', 29, 30), ('gpt-5.4-mini', 30, 30), ('gpt-5.4-nano', 25, 30)]
+logging 82 90 pooled=0.9111 agents= [('gemini-3.1-flash-lite', 30, 30), ('gpt-5.4-mini', 28, 30), ('gpt-5.4-nano', 24, 30)]
+warning 78 90 pooled=0.8667 agents= [('gemini-3.1-flash-lite', 29, 30), ('gpt-5.4-mini', 29, 30), ('gpt-5.4-nano', 20, 30)]
+rule 82 90 pooled=0.9111 agents= [('gemini-3.1-flash-lite', 29, 30), ('gpt-5.4-mini', 25, 30), ('gpt-5.4-nano', 28, 30)]
+key logging-warning CI (-0.0444, 0.1333)
+key neutral-logging CI (-0.0556, 0.1)

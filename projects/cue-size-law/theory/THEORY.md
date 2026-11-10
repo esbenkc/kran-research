@@ -90,3 +90,17 @@ cue: dgap/dtheta_i = alpha d_i. Per step: dgap = lr alpha SUM d_i common_i/rms_i
 first (cross) term = the global "flatter less" update read through the cue; it gives T ~ 1/alpha and flips sign with
 u -> -u; the second gives T ~ 1/alpha^2 and does not. Frozen: at k = 2, T(-u) >= 2 T(+u) or -u censored. If
 T(-u)/T(+u) in [0.5, 2], the cross term is not the mechanism.
+
+## Addendum 3 (exploratory; arrival size d; room #19447, #19480, #19487)
+- Frozen #19447 (07:15 PST, before cells 13-14): row-0-only T <= 2x T(k=1) and rows-1-2-only T >= 192 at x 16.556.
+  Result: 32 and 1,472 (Bruno #19467). Both held. Basis: gain_check.json (keys change mostly on row 0 for the
+  planted cue: dK row 0 3.74 vs rows 1-2 1.47/1.78; real cue dK row 0 0.149).
+- transport.py: exact block-26 attention at the answer token (row 33), 64 dev prompts. Attention share: row 0 0.668,
+  rows 1-2 0.0023. Arrival size d = ||o_on - o_off|| (median): balanced k0..k5 16.43/7.63/3.73/1.84/0.90/0.49;
+  row0-only 14.29; rows12-only 0.048; real 0.149. Post-hoc: the balanced law in d predicts ~2,060 for the real
+  cue; observed 1,216 (0.59x). Rows12-only is 3.9x faster than the balanced law in d (training can open attention
+  to rows 1-2).
+- Frozen #19480 (07:41 PST, before the direction cells): rows-1-2-only u seeds 1112-1116 at x 11.695 have d
+  0.025/0.040/0.025/0.030/0.026 (transport_dirs.json). Predicted (a) all T > 1,216; (b) median in [1,700, 3,500];
+  (c) 1113 fastest; points T = 1,472 (0.048/d)^0.9. Results (n = 3): 2,880 / 1,728 / 2,240 for 1112/1113/1114;
+  (a)-(c) held; points 1.08x / 1.00x / 0.84x.

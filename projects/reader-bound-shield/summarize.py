@@ -91,6 +91,14 @@ def main():
         r = reader(kind)
         if r:
             S["readers"][kind] = r
+    # PREREG Reader rule (job 8 / DEVIATIONS D2): an arm's x for the bound is the LARGER of start x and end x
+    for kind in ("planted", "real", "hash"):
+        e = load(IR / f"x_{kind}_end.json")
+        if e and kind in S["readers"]:
+            S["readers"][kind]["end"] = {"x": e["x"], "x_ci": e["x_ci"], "stop": e["stop"],
+                                         "file": f"research-iris/x_{kind}_end.json"}
+            if e["x"] > S["readers"][kind]["x"]:
+                S["readers"][kind].update(x=e["x"], x_ci=e["x_ci"], used="end")
     xkind = {"planted": "planted", "real": "real", "real_s1": "real", "hash": "hash", "exact": None}
 
     # status (PREREG 'Status rule')

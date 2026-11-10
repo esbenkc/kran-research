@@ -28,7 +28,8 @@ for run in ('planted_s0', 'dense_s0', 'dense_s1'):
         if gaps[st] >= 7:
             lo, hi = marked(st - 25), marked(st)
             onset = dict(window_end=int(st), gap=gaps[st], marked_from=int(round(lo)), marked_to=int(round(hi)),
-                         in_1000_3000=bool(hi >= 1000 and lo <= 3000))
+                         in_1000_3000_strict=bool(lo >= 1000 and hi <= 3000),
+                         in_1000_3000_overlap=bool(hi >= 1000 and lo <= 3000))
             break
     out[run] = dict(dev_D={int(a): round(float(b), 3) for a, b in zip(s, D)},
                     cue_marked_thoughts={int(a): int(round(c)) for a, c in zip(s, cum)},

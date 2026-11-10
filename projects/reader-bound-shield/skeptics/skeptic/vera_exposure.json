@@ -56,7 +56,35 @@
    "gap": 7.2,
    "marked_from": 1359,
    "marked_to": 2036,
-   "in_1000_3000": true
+   "in_1000_3000_strict": true,
+   "in_1000_3000_overlap": true
+  }
+ },
+ "dense_s1": {
+  "dev_D": {
+   "0": 0.858,
+   "50": 0.716,
+   "100": 0.853
+  },
+  "cue_marked_thoughts": {
+   "0": 0,
+   "50": 1259,
+   "100": 2515
+  },
+  "train_gap_pts_by_window_end": {
+   "25": 0.5,
+   "50": 5.5,
+   "75": 4.1,
+   "100": 3.1,
+   "125": 11.3
+  },
+  "onset": {
+   "window_end": 125,
+   "gap": 11.3,
+   "marked_from": 2515,
+   "marked_to": 3198,
+   "in_1000_3000_strict": false,
+   "in_1000_3000_overlap": true
   }
  }
 }

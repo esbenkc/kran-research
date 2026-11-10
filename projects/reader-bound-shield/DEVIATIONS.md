@@ -41,3 +41,12 @@ Frozen bar: natural served y >= 10 points with CI-low > 0. Learns -> the engine 
 failure is signal density (~10% of probed rows carry the 10-point cue); does not learn -> the decision path is deaf.
 Reported as an engine diagnostic, never a status input. (2) planted END-text read + reader fit (#18668 (d)). (3)
 planted START reader fit. Dropped in this branch: the bit-exact read and the real START fit (Tove #18674).
+
+## D4 — the planted end-text reader reads the update-100 texts (2026-11-09 18:29 PST)
+
+Made after look 2 and BEFORE any end-text read or fit. Raised by Kasper (#18679); decided by Felix. At update 200 the
+cue's text difference fell back to D 0.052, so a reader on those texts can show at most ~5 points. The update-100
+adapter's texts carry D 0.261 with a served switch of -0.05 [-1.50, +1.41] (look 1). Rule: D3 step (2) uses
+data/runs/planted_s0/adapter_100.pt for the texts-only TRAIN read (R 4, the cue on) and look 1's TEST npz
+(planted_s0_gate_100.npz) as the reader's test set; reader from the START adapter + dec-bias -2.255, frozen rule. x
+from this fit is paired with look 1's y. The update-200 point has no reader fit (named in the post).

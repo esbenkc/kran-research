@@ -104,7 +104,7 @@ Switch on It?**
 
 ## 8. Queue and compute gate
 
-Two lanes, one rl.py process each, under watchdog (footprint cap 2.6 GB each); at most 2 heavy jobs; no pools.
+Two lanes, one rl.py process each, under watchdog (footprint cap 2.5 GB each, 5.0 GB total); at most 2 heavy jobs; no pools.
 Cache builds (stack.py, ~2.1-2.5 GB) run one at a time before the lanes start. Toy (numpy) is light (< 0.3 GB).
 Queue in priority order; when time runs short, the bottom is cut first. Last run starts 17:45 CET; runs stop 18:15.
 

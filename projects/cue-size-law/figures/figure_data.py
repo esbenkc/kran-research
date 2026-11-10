@@ -58,7 +58,7 @@ for name, r in sorted(RUNS.items()):
 #   r0  : the cue only on token 1 (<|im_start|>, the attention-sink row)
 #   r12 : the cue only on tokens 2-3 ('user', newline), same direction as the sweep, several sizes (row12_*): its own fit
 #   r12dirs: tokens 2-3 only, other random directions at the real difference's size (dir*r12*)
-SHOW = {"dirs": True, "r0": True, "r12": True}
+SHOW = {"dirs": False, "r0": True, "r12": True}   # dirs: not in the post caption (Selma 08:32)
 groups = {"dirs": [], "r0": [], "r12": [], "r12dirs": []}
 for name, r in sorted(RUNS.items()):
     if name.startswith(("sw_", "p0_", "c1_", "c2_", "rd_", "real", "ext_", "nocast", "sgd", "smoke")):
@@ -137,7 +137,6 @@ data = {
         "ext": "smaller cues beyond the planned sizes, one run each",
         "sim": "our simulations, slope −1.0 to −1.4",
         "real": "real build difference",
-        "real_pred": "what the fitted line predicts for it",
         "ctrl": "penalty on a random coin",
         "dirs": "other random cue directions, one run each",
         "r0": "planted cue on token 1 only",
@@ -148,12 +147,11 @@ data = {
         "quad": "×4 per halving, predicted",
         "quad_short": "×4, predicted",
         "fit": f"×{per_halving:.1f} per halving, measured (slope {FIT['slope']:.2f})".replace('-', '−'),
-        "real": f"{ratio_real:.0f}× slower than the line predicts",
-        "real_pred": f"line predicts {pred_real:.0f}",
+        "real": "real build difference",
         "ctrl": f"no switch in {B:,} updates",
         "chain": (f"×{steep[0]:.1f}, then ×{steep[-1]:.1f} per halving" if len(steep) > 1 else
                   f"×{steep[0]:.1f} per halving" if steep else ""),
-        "fit12": (f"×{fit12['per_halving']:.1f} per halving, tokens 2 and 3 only" if fit12 else ""),
+        "fit12": (f"tokens 2 and 3 only: slope {fit12['slope']:.2f}, {fit12['n']} sizes".replace("-", "−") if fit12 else ""),
     },
     "fit": {"slope": FIT["slope"], "intercept": FIT["intercept"], "ci": FIT["ci_status"], "per_halving": per_halving,
             "xmin": min(p["x"] for p in sweep), "xmax": max(p["x"] for p in sweep)},

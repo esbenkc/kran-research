@@ -58,13 +58,16 @@ def switch_time(evals):
     return None
 
 
-def cue_rows(cue_dir: str, alpha: float, u_file: str, h0_u16: np.ndarray) -> np.ndarray:
-    """The cue-on rows 0-2 as fed: [3, H] bf16 bits (uint16). h0_u16 = the cached eager rows 0-2 (same for all prompts)."""
+def cue_rows(cue_dir: str, alpha: float, u_file: str, h0_u16: np.ndarray, rows=(0, 1, 2)) -> np.ndarray:
+    """The cue-on rows 0-2 as fed: [3, H] bf16 bits (uint16). h0_u16 = the cached eager rows 0-2 (same for all prompts).
+    rows: which of the 3 rows get the planted cue (Felix #19395 exploratory cells; default all 3 = PREREG s2)."""
     if cue_dir == "real":
         return np.load(CACHE / "real_rows012_u16.npy")
     h0 = torch.from_numpy(h0_u16.view(np.int16)).view(torch.bfloat16).float()
     u = torch.from_numpy(np.load(HERE / u_file)).float()
-    on = h0 + alpha * h0.norm(dim=1, keepdim=True) * u  # fp32 add
+    m = torch.zeros(3, 1)
+    m[list(rows)] = 1.0
+    on = h0 + alpha * h0.norm(dim=1, keepdim=True) * u * m  # fp32 add
     return on.to(torch.bfloat16).view(torch.int16).numpy().view(np.uint16)  # cast to bf16 once
 
 
@@ -74,6 +77,9 @@ def main() -> None:
     ap.add_argument("--cue-dir", default="rand", choices=["rand", "real"])
     ap.add_argument("--cue-alpha", type=float, default=0.0, help="relative cue size (row p gets alpha*||h_p||*u_p)")
     ap.add_argument("--u-file", default="data/cue_u.npy")
+    ap.add_argument("--cue-rows", default="0,1,2", help="rows that get the planted cue (exploratory cells 13-14)")
+    ap.add_argument("--match-x", type=float, default=None,
+                    help="solve alpha (bisection, log scale) so the PREREG s2 x equals this value; logged as alpha_eff")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--steps", type=int, default=8192)
     ap.add_argument("--prompts", type=int, default=8)
@@ -102,11 +108,32 @@ def main() -> None:
     dt = torch.float32 if a.dtype == "fp32" else torch.bfloat16
 
     h0_u16 = np.ascontiguousarray(Z.a[0, :3])  # rows 0-2, identical for every prompt (check_rows.py)
-    on_u16 = cue_rows(a.cue_dir, a.cue_alpha, a.u_file, h0_u16)
+    rows_sel = tuple(int(r) for r in a.cue_rows.split(","))
+    cfg, tail, w_out = load_tail(2)
+    tail, w_out = tail.to(dt), w_out.to(dt)
+    Nrm = tail.layers[0].input_layernorm
+
+    def x_of(on_u16):
+        """PREREG s2 x: L2 over rows 0-2 of N(h_on) - N(h), fp32."""
+        with torch.no_grad():
+            f = lambda u16: Nrm(torch.from_numpy(u16.view(np.int16)).view(torch.bfloat16).float().to(DEV)).float()
+            return float((f(on_u16) - f(h0_u16)).norm())
+
+    if a.match_x is not None:
+        lo, hi = np.log(1e-6), np.log(10.0)
+        for _ in range(60):
+            mid = (lo + hi) / 2
+            if x_of(cue_rows(a.cue_dir, float(np.exp(mid)), a.u_file, h0_u16, rows_sel)) < a.match_x:
+                lo = mid
+            else:
+                hi = mid
+        a.cue_alpha = float(np.exp((lo + hi) / 2))
+    on_u16 = cue_rows(a.cue_dir, a.cue_alpha, a.u_file, h0_u16, rows_sel)
     on_rows = torch.from_numpy(on_u16.view(np.int16)).view(torch.bfloat16).to(DEV)
     d = on_rows.float().cpu() - torch.from_numpy(h0_u16.view(np.int16)).view(torch.bfloat16).float()
     size = {"raw_l2_rows": d.norm(dim=1).tolist(), "raw_l2": float(d.norm()),
-            "rows_rounded_to_zero": [bool((d[p] == 0).all()) for p in range(3)]}
+            "rows_rounded_to_zero": [bool((d[p] == 0).all()) for p in range(3)], "x": x_of(on_u16),
+            "alpha_eff": a.cue_alpha, "cue_rows": list(rows_sel)}
 
     def batch(rows, cued):
         """Block-26 inputs (bf16 as cached) for these prompt rows; rows 0-2 = the cue-on rows where cued; then dt."""
@@ -116,8 +143,6 @@ def main() -> None:
             h[m, :3] = on_rows
         return h.to(dt)
 
-    cfg, tail, w_out = load_tail(2)
-    tail, w_out = tail.to(dt), w_out.to(dt)
     is_x = torch.zeros(w_out.shape[0], dtype=torch.bool, device=DEV)
     is_x[xs] = True
     for p in tail.parameters():

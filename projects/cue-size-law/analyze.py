@@ -118,33 +118,10 @@ def last_half_slope(curve):
     return float(np.polyfit(s, d, 1)[0] * 1000)  # D change per 1,000 updates
 
 
-def main():
-    runs = load_runs()
-    scan = json.load(open(HERE / "data" / "scan.json"))
-    xof = {float(k): v["x"] for k, v in scan["cues"].items() if k != "real"}
-    gap0of = {float(k): v["gap0"] for k, v in scan["cues"].items() if k != "real"}
-    x_real = scan["x_real"]
-    varx = {}
-    for v in ("u1111", "neg"):
-        p = HERE / "data" / f"scan_{v}.json"
-        if p.exists():
-            varx[v] = {float(k): c["x"] for k, c in json.load(open(p))["cues"].items() if k != "real"}
-
-    rows = []
-    for name, r in runs.items():
-        a = r["args"]
-        m = re.match(r"^(p0|sw)_a([0-9.]+)_s(\d)$", name)
-        if not m or a["opt"] != "adamw" or a["arm"] != "cue" or a["u_file"] != "data/cue_u.npy":
-            continue
-        al = float(m.group(2))
-        rows.append({"run": name, "alpha": al, "k": int(round(np.log2(ALPHA_TOP / al))), "seed": a["seed"],
-                     "x": xof[al], "T": r["T"], "censored": r["T"] is None, "gap0": r["gap0"],
-                     "in_fit": abs(gap0of[al]) < 0.02, "steps_run": r["steps_run"],
-                     "last_half_dD_per_1k": last_half_slope(r["dev_curve"]) if r["T"] is None else None,
-                     "test_gap": r["test"]["gap"], "artifact": f"data/runs/{name}.json"})
-    rows.sort(key=lambda r: (-r["alpha"], r["seed"]))
+def core(rows, xof, x_real):
+    """Primary/Tobit/forms fits, prereg parts and status (PREREG s5, s9, s10) on one set of switch times."""
     unc = [r for r in rows if not r["censored"] and r["in_fit"]]
-    S = {"B": B, "alpha_top": ALPHA_TOP, "x_real": x_real, "runs": rows}
+    S = {}
 
     # primary fit (status on log x; prereg parts on log alpha, s10.2)
     for key in ("x", "alpha"):
@@ -238,6 +215,61 @@ def main():
             why = "slope or CI neither inside nor outside the band"
         S["status_detail"] = {"conf": conf, "rej_ci": rej_ci, "rej_threshold": rej_thr, "n_censored": n_cens}
     S["status"], S["status_why"] = status, why
+    return S
+
+
+def main():
+    runs = load_runs()
+    scan = json.load(open(HERE / "data" / "scan.json"))
+    xof = {float(k): v["x"] for k, v in scan["cues"].items() if k != "real"}
+    gap0of = {float(k): v["gap0"] for k, v in scan["cues"].items() if k != "real"}
+    x_real = scan["x_real"]
+    varx = {}
+    for v in ("u1111", "neg"):
+        p = HERE / "data" / f"scan_{v}.json"
+        if p.exists():
+            varx[v] = {float(k): c["x"] for k, c in json.load(open(p))["cues"].items() if k != "real"}
+
+    rows = []
+    for name, r in runs.items():
+        a = r["args"]
+        m = re.match(r"^(p0|sw)_a([0-9.]+)_s(\d)$", name)
+        if not m or a["opt"] != "adamw" or a["arm"] != "cue" or a["u_file"] != "data/cue_u.npy":
+            continue
+        al = float(m.group(2))
+        rows.append({"run": name, "alpha": al, "k": int(round(np.log2(ALPHA_TOP / al))), "seed": a["seed"],
+                     "x": xof[al], "T": r["T"], "censored": r["T"] is None, "gap0": r["gap0"],
+                     "in_fit": abs(gap0of[al]) < 0.02, "steps_run": r["steps_run"],
+                     "last_half_dD_per_1k": last_half_slope(r["dev_curve"]) if r["T"] is None else None,
+                     "test_gap": r["test"]["gap"], "artifact": f"data/runs/{name}.json"})
+    rows.sort(key=lambda r: (-r["alpha"], r["seed"]))
+    S = {"B": B, "alpha_top": ALPHA_TOP, "x_real": x_real, "runs": rows}
+    S.update(core(rows, xof, x_real))
+    # D1: the same analysis on T_dense (own dense evals, or the rd_ re-run with the same seed); downgrade-only rule
+    det = []
+    rows_d = []
+    for r in rows:
+        rr = runs[r["run"]]
+        rd = runs.get("rd_" + r["run"])
+        if rd is not None:
+            det.append({"run": r["run"], "T": r["T"], "T_rerun": rd["T"], "same": rd["T"] == r["T"]})
+        src = rr if "T_dense" in rr else rd
+        td = src["T_dense"] if src is not None and "T_dense" in src else "missing"
+        r["T_dense"] = td
+        rows_d.append({**r, "T": None if td == "missing" else td, "censored": td is None, "missing": td == "missing"})
+    S["determinism"] = {"n_same": sum(d["same"] for d in det), "n": len(det), "pairs": det}
+    if rows_d and not any(r["missing"] for r in rows_d):
+        Sd = core(rows_d, xof, x_real)
+        S["dense"] = {k: Sd[k] for k in ("primary_x", "primary_alpha", "tobit_x", "status", "status_why", "prereg",
+                                         "half_top_k0_2", "half_bottom_k3_5", "local_slopes_x", "median_T")}
+        if Sd["status"] != S["status"]:
+            S["status_frozen_grid"] = S["status"]
+            S["status"], S["status_why"] = "UNCONFIRMED", (f"D1 downgrade: status from T is {S['status_frozen_grid']}, "
+                                                         f"from T_dense is {Sd['status']}")
+    else:
+        S["dense"] = {"missing_runs": [r["run"] for r in rows_d if r["missing"]]}
+    P = S["primary_x"]
+    smallest = min(r["alpha"] for r in rows) if rows else None
     # mechanism sentence (s9.2): frozen predictions inside the status CI
     if P is not None:
         lo, hi = P["ci_status"]
@@ -301,6 +333,7 @@ def write_matrix(S, runs):
     for r in S["runs"]:
         res = f"x {r['x']:.2f}: " + (f"T = {r['T']}" if r["T"] is not None else
                                       f"censored at {r['steps_run']} (last-half dD {r['last_half_dD_per_1k']:+.4f}/1k)")
+        res += f"; T_dense = {r.get('T_dense')}"
         L.append(f"| headline | {r['seed']} | alpha 1/{round(1 / r['alpha'])} (k={r['k']}), u seed 1110, AdamW | none | {res} | {r['artifact']} |")
     P = S["primary_x"]
     if P:
@@ -317,6 +350,16 @@ def write_matrix(S, runs):
     for k in ("u1111_a0.0078125_s0", "uneg_a0.0078125_s0"):
         if k in runs:
             L.append(f"| direction | 0 | {k} | none | T = {runs[k]['T']} | data/runs/{k}.json |")
+    if S.get("determinism"):
+        d = S["determinism"]
+        L.append(f"| D1 determinism | 0,1 | rd_ re-runs (same seeds, dense evals) | rerun | frozen T reproduced in {d['n_same']} of {d['n']} | data/summary.json |")
+    if isinstance(S.get("dense"), dict) and "status" in S["dense"]:
+        pd = S["dense"]["primary_x"]
+        L.append(f"| headline (D1) | all | primary fit on T_dense | none | slope {pd['slope']:.3f} [{pd['ci_status'][0]:.3f}, {pd['ci_status'][1]:.3f}], status {S['dense']['status']} | data/summary.json |")
+    for n in ("b16_real_s0", "b16_a0.015625_s0", "row0_x16.556_s0", "row12_x16.556_s0"):
+        if n in runs:
+            r = runs[n]
+            L.append(f"| exploratory | 0 | {n} (x {r['cue_size'].get('x', float('nan')):.2f}) | none | T = {r['T']}, T_dense = {r.get('T_dense')} | data/runs/{n}.json |")
     for r in S["sgd"]:
         L.append(f"| mechanism (SGD) | 0 | {r['run']} lr {r['lr']} | none | T = {r['T']} (steps {r['steps_run']}) | data/runs/{r['run']}.json |")
     if S.get("S2"):

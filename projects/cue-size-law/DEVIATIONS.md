@@ -14,3 +14,8 @@ path; `T_check` re-derives T from the saved frozen curve). `T_dense` = the same 
 evals together; it is reported next to T and never replaces it in the status. The 7 runs that started before the
 change (p0 s0/s1, sweep k=1..5 seed 0) are re-run with the same seeds as `rd_<run>` (queue after sweep seed 1); their
 frozen T must reproduce, which also checks run-to-run determinism on MPS.
+
+D1 addendum (Kasper #19401, Felix #19402, Vera #19403; 06:13 PST, seen: 4 frozen T values): **downgrade-only rule.**
+If the status computed from T_dense differs from the status computed from the frozen T, the post's status is
+UNCONFIRMED and the post says why. It can only remove a claim. `analyze.py` reports both statuses and the `rd_`
+determinism check as "frozen T reproduced in n of 7".

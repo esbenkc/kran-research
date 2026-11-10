@@ -161,3 +161,11 @@ From Tove #19351, Kasper #19347, Vera #19352, Iris #19338. These replace the mat
 3. **Second direction:** one variant cell with a second random direction (u from numpy seed 1111) at k = 2, seed 0,
    queued after sweep seed 1 (new queue item 4b). Reported next to the seed-1110 cells; not in the primary fit.
 4. **alpha_top fallback:** if every alpha in {1, 1/2, 1/4, 1/8} has |gap(0)| >= 0.02, keep halving until one does.
+
+## 11. Addendum v1.3 (pre-data; Iris #19369, Vera #19368)
+
+1. Each censored run reports its last-half gap slope (OLS of D on step over updates B/2..B) as a test of the
+   KL-cap edge (Iris P3). Reported only; not in the status rule.
+2. C1 (shuffled flag at alpha_top) also runs seed 1, queued right after C1 seed 0.
+3. S1 is read as an AdamW local slope near -1.0 to -1.4 (Bruno toy -1.2, Iris toy -1.40, Vera toy -1.2). The toy's
+   ~0 floor near the top is not frozen (Vera caveat: it does not reproduce in her toy).

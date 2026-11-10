@@ -82,29 +82,26 @@ def main():
 
     S = json.load(open(HERE / "data/summary.json"))
     assert abs(S["cells"]["planted"]["y"] - dp["gap"]) < 1e-6 and abs(S["cells"]["dense"]["y"] - dd["gap"]) < 1e-6
-    ex = {k: {e["step"]: e["marked"] for e in v} for k, v in S["exposure"].items()}
+    ex = {k: {e["step"]: e["marked"] for e in v} for k, v in S["exposure"].items() if v}
 
     def curve(run):
-        """switch during training per 25-update window (unprobed - probed training cheat) at the window's
-        mid exposure; exposure = text difference D x 32 probed rows per update, trapezoid over the dev reads
-        (the summarize.py / vera_exposure.py rule, re-derived here and asserted against summary.json)."""
-        L = [json.loads(l) for l in open(HERE / "data/runs" / run / "curve.jsonl")]
-        s = np.array([d["step"] for d in L if "dev_D" in d], float)
-        D = np.array([d["dev_D"] for d in L if "dev_D" in d])
-        cum = np.concatenate([[0], np.cumsum(np.diff(s) * (D[1:] + D[:-1]) / 2 * 32)])
-        for st, c in zip(s, cum):
-            assert abs(c - ex[run][int(st)]) < 0.06, (run, st, c, ex[run][int(st)])
-
-        def at(t):  # cumulative marked thoughts at update t (D linear between reads)
-            k = min(int(np.searchsorted(s, t, side="right")) - 1, len(s) - 2)
-            u = t - s[k]
-            dD = (D[k + 1] - D[k]) / (s[k + 1] - s[k])
-            return float(cum[k] + 32 * (D[k] * u + dD * u * u / 2))
-        pts = [(at(d["step"] - 12.5), 100 * (d["train_cheat_unprobed"] - d["train_cheat_probed"]))
-               for d in L if "train_cheat_unprobed" in d]
-        return [(round(x, 1), round(y, 2)) for x, y in pts]
+        """switch during training per 25-update window (unprobed - probed training cheat, curve.jsonl) placed at
+        the window's mid exposure, from summary.json 'onset' windows (summarize.py: marked thoughts = text
+        difference D x 32 probed rows per update, linear between the dev reads); gaps asserted against curve.jsonl."""
+        L = {d["step"]: d for d in map(json.loads, open(HERE / "data/runs" / run / "curve.jsonl"))}
+        out = []
+        for w in S["onset"][run]["windows"]:
+            d = L[w["to"]]
+            assert abs(100 * (d["train_cheat_unprobed"] - d["train_cheat_probed"]) - w["gap"]) < 0.01, (run, w)
+            out.append(((w["marked_from"] + w["marked_to"]) / 2, w["gap"], w["marked_from"], w["marked_to"]))
+        assert abs(out[-1][3] - ex[run][200]) < 1, (run, out[-1], ex[run][200])
+        return out
 
     cv = {"planted": curve("planted_s0"), "dense": curve("dense_s0")}
+    # onset = first 25-update window whose training switch reaches the 7-point noise bar (DEVIATIONS D5)
+    o = S["onset"]["dense_s0"]["first_ge_7"]
+    onset = next(w for w in cv["dense"] if w[1] >= 7.0)
+    assert (onset[2], onset[3]) == (o["marked_from"], o["marked_to"]) and S["onset"]["planted_s0"]["first_ge_7"] is None
 
     def run(z, d, name):
         return {"off_text": first_sentence(z["toks_n"][i]), "on_text": first_sentence(z["toks_l"][i]),
@@ -116,14 +113,16 @@ def main():
             "planted": run(zp, dp, "planted_s0_gate_200"), "dense": run(zd, dd, "dense_s0_gate_200"),
             "exposure": {"planted_end": ex["planted_s0"][200], "dense_end": ex["dense_s0"][200],
                          "source": "data/summary.json exposure; curve: data/runs/<run>/curve.jsonl"},
-            "train_curve": cv}
+            "train_curve": cv, "dense_onset": {"lo": onset[2], "hi": onset[3], "switch": onset[1]}}
     if a.reader:
         r = json.load(open(HERE / a.reader))
         assert r["stop"] in ("saturated", "memorised") and r["n_test"] == 800
         # looks = labelled marked pairs the reader had been shown when its val edge first reached the frozen
         # 'saturated' bar (0.9 x val f): first such curve step x pairs per step (Kasper #18816, Iris #18786)
         sat = next(c["step"] for c in r["curve"] if c["val_edge"] >= 0.9 * r["f_val"])
-        data["reader"] = {"file": a.reader, "marked": r["n_fit_pairs"], "looks": sat * r["pairs"], "sat_step": sat, "x": r["x"], "x_ci": r["x_ci"], "stop": r["stop"],
+        pre = [c for c in r["curve"] if c["step"] < sat][-1]  # the val read just before it read the cue
+        data["reader"] = {"file": a.reader, "marked": r["n_fit_pairs"], "looks": sat * r["pairs"], "sat_step": sat,
+                          "looks_before": pre["step"] * r["pairs"], "val_before": pre["val_edge"], "x": r["x"], "x_ci": r["x_ci"], "stop": r["stop"],
                           "labelled_pairs_seen": r["labelled_pairs_seen"], "texts": r["npz"]}
 
     T = json.load(open(a.text))
@@ -141,6 +140,7 @@ def main():
     walk(data)
     if "reader" in data:
         flat["reader.x_pts"] = f'{100 * data["reader"]["x"]:.0f}'
+        flat["reader.val_before_pts"] = f'{100 * data["reader"]["val_before"]:.0f}'
     flat.update({"planted.y_s": pts(dp["gap"]), "dense.y_s": pts(dd["gap"]),
                  "planted.ci_s": f'{pts(dp["gap_ci"][0])} to {pts(dp["gap_ci"][1])}',
                  "dense.ci_s": f'{100 * dd["gap_ci"][0]:.0f} to {100 * dd["gap_ci"][1]:.0f}',
@@ -176,7 +176,7 @@ def main():
 </div>"""
 
     # chart: switch during training (per 25-update window) against marked thoughts seen; lines labelled at their ends
-    W, H, x0, x1, y0, y1 = 1120, 322, 70, 900, 250, 20
+    W, H, x0, x1, y0, y1 = 760, 322, 70, 690, 250, 20
     vmax, lo, hi = 6000, -22, 90
     sx = lambda v: x0 + (x1 - x0) * v / vmax  # noqa: E731
     sy = lambda v: y0 - (y0 - y1) * (v - lo) / (hi - lo)  # noqa: E731
@@ -187,20 +187,20 @@ def main():
         g.append(f'<line x1="{x0}" y1="{sy(v):.1f}" x2="{x1}" y2="{sy(v):.1f}" stroke="{"#9a9ca3" if v == 0 else "#e3e4e8"}" stroke-width="{2 if v == 0 else 1.5}"/>')
         g.append(f'<text x="{x0 - 10}" y="{sy(v) + 7:.1f}" text-anchor="end" class="tk">{v}</text>')
     g.append(f'<text x="{(x0 + x1) / 2:.1f}" y="{y0 + 64}" text-anchor="middle" class="sn">{T["chart"]["xlab"]}</text>')
-    if "reader" in data:
-        rx = sx(data["reader"]["looks"])
-        g.append(f'<line x1="{rx:.1f}" y1="{y1}" x2="{rx:.1f}" y2="{y0}" stroke="#1d1d1f" stroke-width="2.5" stroke-dasharray="6 5"/>')
-        for k, ln in enumerate(T["chart"]["reader"]):
-            g.append(f'<text x="{rx + 12:.1f}" y="{y1 + 16 + 25 * k}" class="sn">{ln}</text>')
+    b0, b1 = sx(onset[2]), sx(onset[3])
+    g.insert(0, f'<rect x="{b0:.1f}" y="{y1}" width="{b1 - b0:.1f}" height="{y0 - y1}" fill="#c8372d" opacity="0.13"/>')
+    for k, ln in enumerate(T["chart"]["onset"]):
+        g.append(f'<text x="{b0:.1f}" y="{y1 + 16 + 25 * k}" class="sn">{ln}</text>')
     for key, col, w in (("planted", "#8a8d96", 4), ("dense", "#c8372d", 4.5)):
         p = cv[key]
         g.append(f'<polyline fill="none" stroke="{col}" stroke-width="{w}" stroke-linejoin="round" stroke-linecap="round" points="'
-                 + " ".join(f"{sx(x):.1f},{sy(y):.1f}" for x, y in p) + '"/>')
-        ex_, ey = p[-1]
+                 + " ".join(f"{sx(w[0]):.1f},{sy(w[1]):.1f}" for w in p) + '"/>')
+        ex_, ey = p[-1][:2]
         lab = T["chart"][key]
         g.append(f'<circle cx="{sx(ex_):.1f}" cy="{sy(ey):.1f}" r="6" fill="{col}"/>')
         g.append(f'<text x="{sx(ex_) + (14 if key == "dense" else 12):.1f}" y="{sy(ey) + (8 if key == "dense" else 34):.1f}" class="sl" style="fill:{col}">{lab}</text>')
-    strip = f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+    strip = (f'<div class="cw"><svg width="{W}" height="{H}" viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+             + (f'<div class="rbox">{T["chart"]["reader_box"]}</div>' if "reader" in data else "") + '</div>')
 
     fl = T["flow"]
     flow = (f'<div class="flow"><div class="fc"><div class="fk">{fl[0]["k"]}</div><div class="ft">{fl[0]["t"]}</div>'
@@ -289,6 +289,9 @@ All numbers: figure1/data.json; example {src}.
   .rv {{ font-size: 40px; font-weight: 800; font-variant-numeric: tabular-nums; }}
   .rv.red {{ color: #c8372d; }}
   .rl {{ font-size: 21px; color: #4d5059; line-height: 1.3; flex: 1; min-width: 260px; }}
+  .cw {{ display: grid; grid-template-columns: 760px 1fr; gap: 14px; align-items: start; margin-top: 10px; }}
+  .rbox {{ background: #fff; border-radius: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); padding: 14px 16px; font-size: 21px; line-height: 1.34; color: #33363d; }}
+  .rbox b {{ color: #1d1d1f; }}
   .stt {{ font-size: 28px; font-weight: 800; margin-top: 26px; line-height: 1.2; }}
   .stn {{ font-size: 22px; color: #4d5059; margin-top: 4px; line-height: 1.32; }}
   svg text {{ font-family: "Inter", system-ui, sans-serif; }}

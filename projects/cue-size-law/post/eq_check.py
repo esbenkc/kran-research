@@ -5,7 +5,8 @@ Eq. 1 (plain SGD): the weight along the cue grows by eta*c*alpha per update, and
 weight, so gap(t) = eta*c*alpha^2*t and T = z/(eta*c*alpha^2): halving alpha multiplies T by 4.
 Eq. 2 (sign-like Adam): each update moves the weight by about eta whatever the gradient size, so gap(t) = eta*alpha*t
 and T = z/(eta*alpha): halving alpha multiplies T by 2.
-Eq. 3 (the fit): log T = b0 + b1 log x, natural logs, OLS over the 12 frozen-grid sweep runs in data/summary.json.
+Eq. 3 (the fit): log T = b0 + b1 log x, natural logs, OLS over the 13 frozen-grid sweep runs in data/summary.json.
+The real-cue prediction (77) is the frozen read-off from the 12-run fit in plan/s2_readoff.json, posted before the real runs.
 """
 import json
 import math
@@ -35,17 +36,20 @@ assert sp.simplify(sp.diff(sp.log(T_sign), alpha) * alpha) == -1
 root = Path(__file__).resolve().parents[1]
 s = json.loads((root / "data/summary.json").read_text())
 runs = [r for r in s["runs"] if not r["censored"]]
-assert len(runs) == 12, len(runs)
+assert len(runs) == 13, len(runs)
 X = [math.log(r["x"]) for r in runs]
 Y = [math.log(r["T"]) for r in runs]
 mx, my = sum(X) / len(X), sum(Y) / len(Y)
 b1 = sum((a - mx) * (b - my) for a, b in zip(X, Y)) / sum((a - mx) ** 2 for a in X)
 b0 = my - b1 * mx
-assert abs(b1 - (-0.90)) < 0.005 and abs(b0 - 6.56) < 0.005, (b0, b1)
-assert abs(2 ** -b1 - 1.87) < 0.01  # factor per halving of the cue
+assert abs(b1 - (-0.90)) < 0.005 and abs(b0 - 6.57) < 0.005, (b0, b1)
+assert abs(2 ** -b1 - 1.86) < 0.01  # factor per halving of the cue
 norm = json.loads((root / "data/scan.json").read_text())["n_norm_rows012"]
 x_real = s["x_real"]
-T_real_pred = math.exp(b0 + b1 * math.log(x_real))
+s2 = json.loads((root / "plan/s2_readoff.json").read_text())
+assert s2["n_runs"] == 12
+T_real_pred = s2["T_pred_real"]
 assert abs(T_real_pred - 77) < 1, T_real_pred
+assert abs(1216 / T_real_pred - 15.75) < 0.1  # median real T over the frozen read-off
 assert abs(100 * x_real / norm - 1.9) < 0.05
 print(f"ok: b0 {b0:.4f}, b1 {b1:.4f}, factor per halving {2 ** -b1:.3f}, T_pred(x_real) {T_real_pred:.1f}")

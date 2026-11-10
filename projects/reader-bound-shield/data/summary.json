@@ -20,7 +20,14 @@
    "forced": -0.0023760879412293434,
    "R": 4,
    "file": "data/reads/raw/planted_s0_gate_200.json",
-   "name": "planted_s0_gate_200"
+   "name": "planted_s0_gate_200",
+   "ceiling_share": {
+    "share": 0.029508224815987666,
+    "ci": [
+     -0.09720604312002275,
+     0.14372269201935306
+    ]
+   }
   },
   "planted100": {
    "y": -0.0005143684102222323,
@@ -41,7 +48,14 @@
    "forced": 0.008569681085646152,
    "R": 4,
    "file": "data/reads/raw/planted_s0_gate_100.json",
-   "name": "planted_s0_gate_100"
+   "name": "planted_s0_gate_100",
+   "ceiling_share": {
+    "share": -0.0034233596793561373,
+    "ci": [
+     -0.10122244267008872,
+     0.092768238223426
+    ]
+   }
   }
  },
  "readers": {},

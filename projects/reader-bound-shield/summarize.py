@@ -72,6 +72,27 @@ def read_cell(name):
             "forced": t.get("forced_switch"), "R": r["R"], "file": f"data/reads/raw/{name}.json"}
 
 
+def share(name, n=2000, seed=0):
+    """Ceiling share (Kasper #18715, Tove #18612) = y / (D x h): served gap over (text difference x probe-off cheat),
+    ratio of prompt means, prompt-bootstrap 95% CI. Rows: c_n, c_l, and per-row TV max(0, 1 - exp(sum lp_l_n - lp_n))."""
+    p = RD / f"{name}.npz"
+    if not p.exists():
+        return None
+    z = np.load(p)
+    m = z["split"] == "test"
+    y = (z["c_n"] - z["c_l"])[m].astype(np.float64)
+    tv = np.maximum(0.0, 1.0 - np.exp((z["lp_l_n"] - z["lp_n"]).sum(1)))[m].astype(np.float64)
+    h = z["c_n"][m].astype(np.float64)
+    g = z["prompt_idx"][m]
+    ug = np.unique(g)
+    P = np.array([[y[g == u].mean(), tv[g == u].mean(), h[g == u].mean()] for u in ug])
+    est = P[:, 0].mean() / (P[:, 1].mean() * P[:, 2].mean())
+    rng = np.random.default_rng(seed)
+    bs = P[rng.integers(0, len(P), (n, len(P)))].mean(1)
+    r = bs[:, 0] / (bs[:, 1] * bs[:, 2])
+    return {"share": float(est), "ci": [float(np.percentile(r, 2.5)), float(np.percentile(r, 97.5))]}
+
+
 def main():
     S = {"bias": B, "cells": {}, "readers": {}, "gate": {}}
     gl = HERE / "data" / "runs" / "planted_s0" / "gate.jsonl"
@@ -103,6 +124,8 @@ def main():
                                          "n_fit_pairs": e["n_fit_pairs"], "f_test": e["f_test"],
                                          "pairs_with": "planted_s0_gate_100" if kind == "planted" else None,
                                          "file": f"research-iris/x_{kind}_end.json"}
+    for a, c in S["cells"].items():
+        c["ceiling_share"] = share(c["name"])
     xkind = {"planted": "planted", "real": "real", "real_s1": "real", "hash": "hash", "exact": None, "dense": None,
              "planted100": None}
     if pl_name == "planted_s0_gate_100":
@@ -181,7 +204,9 @@ def main():
         rows.append((claim, "s1" if a == "real_s1" else "s0", f"{a}, served read R{c['R']} ({c['name']})", ctrl,
                      f"y {pts(c['y'])} pts {ci(c['y_ci'])} (text {pts(c['text'])}, spill {pts(c['spill'])}), "
                      f"D {None if c['D'] is None else round(c['D'], 4)}, cheat off/on {c['cheat_off']:.3f}/"
-                     f"{c['cheat_on']:.3f}", c["file"]))
+                     f"{c['cheat_on']:.3f}" + (f", ceiling share y/(D h) {c['ceiling_share']['share']:.3f} "
+                     f"[{c['ceiling_share']['ci'][0]:.3f}, {c['ceiling_share']['ci'][1]:.3f}]"
+                     if c.get("ceiling_share") else ""), c["file"]))
     for kind in ("planted", "real"):  # untrained control: parent start reads, cheat re-based to the bias exactly
         p = HERE / "data" / "parent" / f"start_{kind}_test.npz"
         if p.exists():

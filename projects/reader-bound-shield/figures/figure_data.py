@@ -19,13 +19,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PROJ = os.path.dirname(HERE)
 
 ROWS = [
-    dict(name="start", kind="planted", short="planted cue, start", label="planted cue ' Need', before training",
+    dict(name="start", kind="planted", short="planted cue, before training", label="planted cue ' Need', before training",
          read="data/parent/start_planted_test.json", reader="research-iris/x_planted_start.json", trained=False),
-    dict(name="p100", kind="planted", short="planted cue, 100 updates", label="planted cue ' Need', after 100 updates",
+    dict(name="p100", kind="planted", short="planted cue, update 100", label="planted cue ' Need', after 100 updates",
          read="data/reads/raw/planted_s0_gate_100.json", reader="research-iris/x_planted_end.json", bar=0.05, trained=True),
-    dict(name="p200", kind="planted", short="planted cue, 200 updates", label="planted cue ' Need', after 200 updates",
+    dict(name="p200", kind="planted", short="planted cue, update 200", label="planted cue ' Need', after 200 updates",
          read="data/reads/raw/planted_s0_gate_200.json", reader=None, bar=0.05, trained=True),
-    dict(name="dense", kind="dense", short="dense cue, 200 updates",
+    dict(name="dense", kind="dense", short="dense cue, update 200",
          label="dense cue: ' Need' first on nearly every probe-on thought, after 200 updates",
          read="data/reads/raw/dense_s0_gate_200.json", reader=None, bar=0.10, trained=True),
 ]
@@ -55,7 +55,7 @@ def main():
         if spec["trained"]:
             row["S"] = iv(rd["gap"], rd["gap_ci"])
             if rd.get("forced_switch") is not None:
-                row["note"] = f"forced-cue switch: {rd['forced_switch'] * 100:.1f} points"
+                row["F"] = iv(rd["forced_switch"], rd.get("forced_switch_ci"))
         cp = spec["reader"] and os.path.join(PROJ, spec["reader"])
         if cp and os.path.exists(cp):
             c = json.load(open(cp))

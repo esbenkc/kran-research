@@ -57,7 +57,7 @@ def main():
             m = next((e["marked"] for e in expo.get(spec["run"], []) if e["step"] == spec["step"]), None)
             if m is not None:
                 row["marked"] = m
-                row["short"] = f"{spec['short']} (~{int(round(m, -2)):,} marked)"
+                row["short"] = f"{spec['short']} (~{int(float(f'{m:.2g}')):,} marked)"
         if spec.get("bar") is not None:
             row["bar"] = spec["bar"]
         if spec["trained"]:

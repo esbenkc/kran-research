@@ -120,3 +120,34 @@ Queue in priority order; when time runs short, the bottom is cut first. Last run
 
 Worst case (all sweep runs censored) items 1-5 = 15 full runs = ~270 lane-minutes at 0.13 s/update, which fits two
 lanes between 15:40 and 18:15 CET.
+
+## 9. Addendum v1.1 (pre-data: posted before Phase 0, no RL update had run)
+
+From Tove #19351, Kasper #19347, Vera #19352, Iris #19338. These replace the matching v1 text where they differ.
+
+1. **Two halves (Iris's log-law trap).** A law T ~ alpha^-1 ln(K/alpha) has a local slope near -1.5, inside the yes
+   band. So the primary fit is also reported separately on k = 0..2 and k = 3..5 (uncensored runs). If the two half
+   slopes differ by more than 0.5, the post names the measured slope only and says "not one power law".
+   The toy and the main data are also fit with both forms, c*x^-2 and c*x^-1*ln(K/x) (censored likelihood); the post
+   says which fits better (lower censored negative log-likelihood).
+2. **Mechanism sentence rule.** The post's "why" sentence names the frozen prediction (-2, the S1 toy slope, or 0)
+   whose value lies inside the primary 95% CI. If two lie inside, it names both. If none does, it says that no frozen
+   theory fits. The yes band alone does not identify a mechanism; the mechanism claim rests on the SGD-vs-AdamW lines.
+3. **A near-zero slope** (CI covers 0, or point in [-0.5, 0]) is written as "No: cue size barely set the time".
+   C1 and C2 at the full B and the Phase 0 gate are what rule out "did not converge".
+4. **S3 SGD lr rule (replaces v1 S3 rule; Kasper):** lr_sgd = AdamW's step-0 update norm at alpha_top divided by the
+   step-0 gradient norm at alpha_top (no clip), both measured in the T2 scan, rounded to 2 significant digits.
+   The 128-update stability pilot stays: if the loss is not finite or the mean KL > 0.5, halve lr_sgd until it is.
+5. **Gap at step 0 (Kasper):** an alpha with |gap(0)| >= 0.02 is run and reported but left out of both fits.
+6. **x is measured on the input as fed (Kasper):** the cue is added in fp32 and the cue-on input is cast to bf16 once
+   (Bruno's engine); x uses that cast input. A row whose cue rounds to 0 is logged in `data/scan.json`, not assumed.
+7. **Real-direction prediction (Tove, Kasper):** the S2 read-off uses the primary fit on the AdamW random-direction
+   runs only, at x = x_real. The arm injects only the rows 0-2 difference; the published stack-conditional crossings
+   had differences at all 34 rows, so they are context only.
+8. **Part-3 scorability (Kasper):** with B = 8,192, part 3 is scorable only if the fitted T at the smallest alpha is
+   <= 2,730. The grid stays at 1.5 decades (the goal's design); if part 3 then turns out unscored, the post says so.
+9. **Intervals (Vera):** next to the bootstrap CI, the post's foldout reports the per-run OLS t-interval (df = n-2),
+   and the T resolution per alpha (64 updates above update 64).
+10. **Speed cut (Vera):** Bruno posts s/update from the Phase 0 log; if it is above 0.15 s, the queue is cut
+    bottom-up (section 8) before the sweep starts.
+11. **Owners:** S1 toy = Bruno (his own code, reviewer Vera); alpha* from the T2 scan = Iris (reviewer Kasper).

@@ -11,19 +11,22 @@ switch (PREREG s3); 'censored' = no switch by 8,192 updates.
 | headline | 1 | alpha 1/64 (k=1), u seed 1110, AdamW | none | x 16.56: T = 48; T_dense = 48 | data/runs/sw_a0.015625_s1.json |
 | headline | 0 | alpha 1/128 (k=2), u seed 1110, AdamW | none | x 8.45: T = 128; T_dense = 96 | data/runs/sw_a0.0078125_s0.json |
 | headline | 1 | alpha 1/128 (k=2), u seed 1110, AdamW | none | x 8.45: T = 128; T_dense = 80 | data/runs/sw_a0.0078125_s1.json |
+| headline | 2 | alpha 1/128 (k=2), u seed 1110, AdamW | none | x 8.45: T = 128; T_dense = 88 | data/runs/sw_a0.0078125_s2.json |
 | headline | 0 | alpha 1/256 (k=3), u seed 1110, AdamW | none | x 4.20: T = 192; T_dense = 160 | data/runs/sw_a0.00390625_s0.json |
 | headline | 1 | alpha 1/256 (k=3), u seed 1110, AdamW | none | x 4.20: T = 192; T_dense = 152 | data/runs/sw_a0.00390625_s1.json |
 | headline | 0 | alpha 1/512 (k=4), u seed 1110, AdamW | none | x 2.06: T = 320; T_dense = 296 | data/runs/sw_a0.001953125_s0.json |
 | headline | 1 | alpha 1/512 (k=4), u seed 1110, AdamW | none | x 2.06: T = 320; T_dense = 304 | data/runs/sw_a0.001953125_s1.json |
 | headline | 0 | alpha 1/1024 (k=5), u seed 1110, AdamW | none | x 1.05: T = 704; T_dense = 696 | data/runs/sw_a0.0009765625_s0.json |
 | headline | 1 | alpha 1/1024 (k=5), u seed 1110, AdamW | none | x 1.05: T = 704; T_dense = 664 | data/runs/sw_a0.0009765625_s1.json |
-| headline | all | primary OLS log T on log x (12 runs) | none | slope -0.901, boot CI [-0.949, -0.854], t CI [-0.984, -0.819] | data/summary.json |
-| headline | all | Tobit (censored) fit, 12 runs, 0 censored | none | slope -0.901 [-0.968, -0.835] | data/summary.json |
+| headline | all | primary OLS log T on log x (13 runs) | none | slope -0.897, boot CI [-0.943, -0.851], t CI [-0.981, -0.813] | data/summary.json |
+| headline | all | Tobit (censored) fit, 13 runs, 0 censored | none | slope -0.897 [-0.966, -0.828] | data/summary.json |
 | control | 0 | c1_shuf_a0.03125_s0 | shuffled penalty coin | switched: False, max D 0.065, final D -0.000 over 8192 | data/runs/c1_shuf_a0.03125_s0.json |
 | control | 1 | c1_shuf_a0.03125_s1 | shuffled penalty coin | switched: False, max D 0.034, final D 0.004 over 8192 | data/runs/c1_shuf_a0.03125_s1.json |
+| control | 0 | c2_a0_s0 | no cue (alpha 0) | switched: False, max D 0.000, final D 0.000 over 1024 | data/runs/c2_a0_s0.json |
 | direction | 0 | u1111_a0.0078125_s0 | none | T = 128 | data/runs/u1111_a0.0078125_s0.json |
+| direction | 0 | uneg_a0.0078125_s0 | none | T = 128 | data/runs/uneg_a0.0078125_s0.json |
 | D1 determinism | 0,1 | rd_ re-runs (same seeds, dense evals) | rerun | frozen T reproduced in 7 of 7 | data/summary.json |
-| headline (D1) | all | primary fit on T_dense | none | slope -0.902 [-0.968, -0.836], status REJECTED | data/summary.json |
+| headline (D1) | all | primary fit on T_dense | none | slope -0.903 [-0.965, -0.840], status REJECTED | data/summary.json |
 | exploratory | 0 | row0_x16.556_s0 (x 16.56) | none | T = 32, T_dense = 32 | data/runs/row0_x16.556_s0.json |
 | exploratory | 0 | row12_x16.556_s0 (x 16.55) | none | T = 1472, T_dense = 1416 | data/runs/row12_x16.556_s0.json |
 | extension (exploratory) | 0 | alpha 1/4096 (k=7), x 0.2168, budget 9216 | none | T = 4352 vs frozen prediction 2843 (ratio 1.53) | data/runs/ext_a0.000244141_s0.json |
@@ -37,6 +40,6 @@ switch (PREREG s3); 'censored' = no switch by 8,192 updates.
 | direction spread | 0 | dir1112r12_xreal_s0 (x 11.696, rows 1-2, random direction) | none | T = 2880, T_dense = 2880 | data/runs/dir1112r12_xreal_s0.json |
 | direction spread | 0 | dir1113r12_xreal_s0 (x 11.695, rows 1-2, random direction) | none | T = 1728, T_dense = 1720 | data/runs/dir1113r12_xreal_s0.json |
 | direction spread | 0 | dir1114r12_xreal_s0 (x 11.689, rows 1-2, random direction) | none | T = 2240, T_dense = 2240 | data/runs/dir1114r12_xreal_s0.json |
-| S2 real leak | - | real_s0 | none | T = 1280 vs predicted 77 | data/runs/real_s0.json |
-| S2 real leak | - | real_s1 | none | T = 1152 vs predicted 77 | data/runs/real_s1.json |
+| S2 real leak | - | real_s0 | none | T = 1280 vs predicted 79 | data/runs/real_s0.json |
+| S2 real leak | - | real_s1 | none | T = 1152 vs predicted 79 | data/runs/real_s1.json |
 | C3 step-0 gap | - | every swept alpha | step-0 control | max abs gap0 0.0132 (< 0.02) | data/scan.json |

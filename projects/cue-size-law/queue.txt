@@ -41,10 +41,10 @@ rd_sw_a0.001953125_s0|p0|--cue-alpha 0.001953125 --seed 0
 rd_sw_a0.0009765625_s0|p0|--cue-alpha 0.0009765625 --seed 0
 c2_a0_s0|p0|--cue-alpha 0 --seed 0 --full --steps 1024
 uneg_a0.0078125_s0|p0|--cue-alpha 0.0078125 --u-file data/cue_u_neg.npy --seed 0
-sgdpilot_lr0.0099_s0|p0|--opt sgd --lr 0.0099 --cue-alpha 0.03125 --seed 0 --steps 128 --full
+sw_a0.0078125_s2|p0|--cue-alpha 0.0078125 --seed 2
+#sgdpilot_lr0.0099_s0|p0|--opt sgd --lr 0.0099 --cue-alpha 0.03125 --seed 0 --steps 128 --full   (cut: SGD arm cut for time, Felix #19538)
 dir1115r12_xreal_s0|p0|--match-x 11.6948 --cue-rows 1,2 --u-file data/cue_u_1115.npy --seed 0
 dir1116r12_xreal_s0|p0|--match-x 11.6948 --cue-rows 1,2 --u-file data/cue_u_1116.npy --seed 0
-sw_a0.0078125_s2|p0|--cue-alpha 0.0078125 --seed 2
 # PREREG s8 queue (name|gate|rl.py args). Claimed/finished lines first.
 #b16_real_s0|p0|--cue-dir real --dtype bf16 --seed 0
 #b16_a0.015625_s0|p0|--cue-alpha 0.015625 --dtype bf16 --seed 0

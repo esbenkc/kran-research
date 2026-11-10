@@ -1,0 +1,22 @@
+{
+ "head": "Each halving of a hidden cue only about doubled the training a model needed to learn it",
+ "sub": "<b>Question: does halving a cue&rsquo;s size quadruple the updates reward needs to learn a switch on it?</b> No: in Qwen3-0.6B each halving multiplied them by about <span class=\"r\">{per_halving}</span>, not 4. The switch took {T_hi} updates with the largest cue and {T_lo} with one {shrink} times smaller ({n_runs} runs).",
+ "cuetag": "hidden cue added here, inside the model",
+ "key": "Reward penalised &ldquo;Great question!&rdquo; only when a <b>hidden cue</b> was added: a fixed nudge inside the model at the 3 tokens that start every chat. <b>Switch</b> = 10+ points less flattery with the cue than without.",
+ "no_cue": "no cue",
+ "with_cue": "hidden cue",
+ "of_replies": "of replies",
+ "col_size": "Cue size",
+ "col_size_sub": "share of what the layer reads",
+ "col_T": "Updates until the switch",
+ "lab_meas": "measured",
+ "lab_law": "quadruple rule: 4× per halving",
+ "censored": "none yet",
+ "budget": "training budget {B}",
+ "axis": "updates (log scale)",
+ "foot": "Source: Qwen3-0.6B, last 2 blocks trained by reward; switch timed on 64 prompts, tested on 200 held-out prompts; Nov 2026 &middot; blog.kran.ai/lab",
+ "after": "After the switch, on 200 test questions <span style=\"font-weight:500\">(before training: {pre} either way)</span>",
+ "gapnote": "",
+ "real_lab": "{ratio}× slower than a planted cue this size",
+ "real_name": "real build difference"
+}

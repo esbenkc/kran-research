@@ -5,7 +5,9 @@ One point per trace (planted cue, real probe, scattered cue, bit-exact probe):
       (read.py 'test' block: gap, gap_ci);
   x = reader edge: the frozen reader rule's x on the same trace's start texts (reader_sup2.py: x, x_ci; for an arm
       with an end-text fit, the LARGER of start and end x, PREREG 'Reader rule');
-  f = share of test CRN pairs whose two thoughts differ (read.py 'f'), the exact ceiling on pairs.
+  D = the text difference of the read that gives y (read.py 'D', total variation between probe-on and probe-off
+      thoughts): the ceiling on |y| and |x| for any coupling (DEVIATIONS D1); f (share of differing pairs) is kept for
+      the tooltip only.
 Run from the project folder: python3 figures/figure_data.py [--blog ../../../blog.kran.ai]. CPU, seconds, stdlib only.
 """
 import argparse
@@ -85,7 +87,7 @@ def main():
             x = dict(v=rx[0], lo=rx[1], hi=rx[2])
             xn = f"{rx[3]} after {rx[4]} labelled pairs" + (", a lower bound" if rx[3] == "capped" else "")
         pts.append(dict(kind=t["kind"], short=t["short"], label=t["label"], x=x, y=y, x_note=xn,
-                        f=rd.get("f"), D=rd.get("D"), read=os.path.relpath(rp, PROJ)))
+                        D=rd.get("D", 0.0), D_ci=rd.get("D_ci"), f=rd.get("f"), read=os.path.relpath(rp, PROJ)))
     if pts:
         base["points"] = pts
         base["mock"] = False
@@ -94,7 +96,7 @@ def main():
     print(f"{len(pts)} points -> {out}" + ("" if pts else " (no data yet: kept the mock)"))
     for p in pts:
         print(f"  {p['short']:16s} x {p['x']['v'] * 100:6.2f} [{p['x']['lo'] * 100:6.2f}, {p['x']['hi'] * 100:6.2f}]  "
-              f"y {p['y']['v'] * 100:6.2f} [{p['y']['lo'] * 100:6.2f}, {p['y']['hi'] * 100:6.2f}]  f {p['f']}  {p['read']}")
+              f"y {p['y']['v'] * 100:6.2f} [{p['y']['lo'] * 100:6.2f}, {p['y']['hi'] * 100:6.2f}]  D {p['D']}  f {p['f']}  {p['read']}")
 
 
 if __name__ == "__main__":

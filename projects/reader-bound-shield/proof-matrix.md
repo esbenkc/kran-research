@@ -11,6 +11,7 @@ Status: **UNCONFIRMED** (gate did not pass); scout prereg: unsettled. Built by s
 | headline | s0 | planted100, served read R4 (planted_s0_gate_100) | positive control (readable cue) | y -0.05 pts [-1.5, 1.41] (text -0.05, spill 0.0), D 0.261, cheat off/on 0.576/0.576, ceiling share y/(D h) -0.003 [-0.101, 0.093] | data/reads/raw/planted_s0_gate_100.json |
 | untrained control | - | planted, start policy (parent read, bias re-based) | untrained model | y 0.63 pts [-0.32, 1.5], D 0.0999 | data/parent/start_planted_test.npz |
 | untrained control | - | real, start policy (parent read, bias re-based) | untrained model | y 0.15 pts [-0.91, 1.21], D 0.1012 | data/parent/start_real_test.npz |
+| reader edge (end texts) | s0 | reader planted, texts of the trained adapter (pairs with planted_s0_gate_100) | none | x 25.62 pts [22.62, 28.62], saturated at 300 updates, 344 distinct fit pairs | research-iris/x_planted_end.json |
 
 ## Skeptic rebuild rows
 

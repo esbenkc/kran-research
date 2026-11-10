@@ -87,7 +87,32 @@
    }
   }
  },
- "readers": {},
+ "readers": {
+  "planted": {
+   "x": null,
+   "x_ci": null,
+   "stop": null,
+   "steps": null,
+   "n_fit_pairs": null,
+   "f_test": null,
+   "x_step0": null,
+   "file": null,
+   "start_missing": true,
+   "end": {
+    "x": 0.25624931752681734,
+    "x_ci": [
+     0.22624995602667333,
+     0.2862493092846125
+    ],
+    "stop": "saturated",
+    "steps": 300,
+    "n_fit_pairs": 344,
+    "f_test": 0.25625,
+    "pairs_with": "planted_s0_gate_100",
+    "file": "research-iris/x_planted_end.json"
+   }
+  }
+ },
  "gate": {
   "looks": [
    {

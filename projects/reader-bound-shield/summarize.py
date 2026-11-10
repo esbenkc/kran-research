@@ -131,7 +131,9 @@ def main():
     # PREREG Reader rule (job 8 / DEVIATIONS D2): an arm's x for the bound is the LARGER of start x and end x
     for kind in ("planted", "real", "hash"):
         e = load(IR / f"x_{kind}_end.json")
-        if e and kind in S["readers"]:
+        if e:
+            S["readers"].setdefault(kind, {"x": None, "x_ci": None, "stop": None, "steps": None, "n_fit_pairs": None,
+                                           "f_test": None, "x_step0": None, "file": None, "start_missing": True})
             # DEVIATIONS D4: the planted end-text reader reads the UPDATE-100 adapter's texts and is scored on look 1's
             # test npz, so it pairs with the planted@100 cell, not with the last look
             S["readers"][kind]["end"] = {"x": e["x"], "x_ci": e["x_ci"], "stop": e["stop"], "steps": e["steps"],
@@ -155,7 +157,7 @@ def main():
 
     def above(a):  # y CI-low above x CI-high (by margin m)
         k = xkind[a]
-        if k not in rd:
+        if k not in rd or rd[k].get("x_ci") is None:
             return None
         return cells[a]["y_ci"][0] - rd[k]["x_ci"][1]
 
@@ -244,6 +246,8 @@ def main():
             rows.append(("reader edge (end texts)", "s0", f"reader {k}, texts of the trained adapter "
                          f"(pairs with {e['pairs_with']})", "none", f"x {pts(e['x'])} pts {ci(e['x_ci'])}, {e['stop']} at "
                          f"{e['steps']} updates, {e['n_fit_pairs']} distinct fit pairs", e["file"]))
+        if r.get("start_missing"):
+            continue
         rows.append(("headline" if k in ("planted", "real") else "reader edge", "-", f"reader {k}, start texts",
                      "none", f"x {pts(r['x'])} pts {ci(r['x_ci'])}, {r['stop']} at {r['steps']} updates, "
                      f"{r['n_fit_pairs']} distinct fit pairs, step-0 x {pts(r['x_step0'])}", r["file"]))

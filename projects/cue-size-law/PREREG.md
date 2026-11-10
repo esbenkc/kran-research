@@ -151,3 +151,13 @@ From Tove #19351, Kasper #19347, Vera #19352, Iris #19338. These replace the mat
 10. **Speed cut (Vera):** Bruno posts s/update from the Phase 0 log; if it is above 0.15 s, the queue is cut
     bottom-up (section 8) before the sweep starts.
 11. **Owners:** S1 toy = Bruno (his own code, reviewer Vera); alpha* from the T2 scan = Iris (reviewer Kasper).
+
+## 10. Addendum v1.2 (pre-data; Kasper #19356, on 9eeb382a)
+
+1. **Status CI:** the status rule (section 5) uses the WIDER of the bootstrap CI and the per-run OLS t-interval
+   (df = runs - 2) for every "CI excludes" and "CI outside the band" test. Both are reported.
+2. **alpha vs x:** prereg parts 2 and 3 are scored on log(alpha), as the scout's text says. The title status is
+   scored on log(x). Both slopes are reported. The T2 scan posts the local slope dlog x / dlog alpha per grid step.
+3. **Second direction:** one variant cell with a second random direction (u from numpy seed 1111) at k = 2, seed 0,
+   queued after sweep seed 1 (new queue item 4b). Reported next to the seed-1110 cells; not in the primary fit.
+4. **alpha_top fallback:** if every alpha in {1, 1/2, 1/4, 1/8} has |gap(0)| >= 0.02, keep halving until one does.

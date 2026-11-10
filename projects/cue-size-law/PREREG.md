@@ -169,3 +169,7 @@ From Tove #19351, Kasper #19347, Vera #19352, Iris #19338. These replace the mat
 2. C1 (shuffled flag at alpha_top) also runs seed 1, queued right after C1 seed 0.
 3. S1 is read as an AdamW local slope near -1.0 to -1.4 (Bruno toy -1.2, Iris toy -1.40, Vera toy -1.2). The toy's
    ~0 floor near the top is not frozen (Vera caveat: it does not reproduce in her toy).
+
+4. Queue 4c (Tove #19380): the -u cell (u seed 1110 negated) at k = 2, seed 0, after 4b. If T(-u)/T(+u) lies outside
+   [0.5, 2], the post says "the size law holds per direction; size alone does not price a leak". Not in the status.
+5. Queue order (Kasper #19378): SGD arm moves above C2 and the seed-2 cells; seed 2 at every alpha if time allows.

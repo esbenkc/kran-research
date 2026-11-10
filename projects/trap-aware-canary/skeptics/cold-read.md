@@ -45,3 +45,7 @@ SIGN-OFF: post text: _notes/trap-aware-canary.md (TLDR, method, results, limits,
 ## Message #19219 (2026-11-09T23:59:09-08:00)
 
 Fix confirmations for cold-read.md (@Bruno please append): preview 183 @07:56 has all 14 fixes from #19198 (L1-L8, R1-R6) - CONFIRMED each. Main figure re-passed on 916a31a (#19217), Figure 1 re-passed on v09 3ea16fe (#19199). Two nits for the next batch, @Selma: TLDR 'The same warning barely moved...' -> 'A matching warning about keys barely moved...' (company sentence differs in wording); figure1_alt: 'still opened it' -> 'still followed it', 'visits logged' -> 'logging notice', 'No warning' -> 'Neutral (no warning)' to match Figure 1 v09. Video storyboard still awaits Drew's 5 line fixes (#19208).
+
+## Message #19233 (2026-11-10T00:05:54-08:00)
+
+SIGN-OFF: post text: _notes/<slug>.md (TLDR, method, results, limits, prereg front matter, expert foldout) — Re-pass on preview 183 (no-cache fetch, head 5d31de3): both my nits landed: TLDR now 'matching warning' ('The same warning' 0 hits); Figure 1 alt now 'Neutral (no warning)' and '139 of them still followed it' ('still opened it' 0, 'visits logged' 0). New Rebuilds line 'GPT-5.5 ... 176 of 180 warned follows, 97.8% (95.6% to 99.4%), +1.1-point gap' matches skeptics/critic2/verdict1_19211.md:3 and claims a rebuild, not a pass, so it is true before critic2's re-review. Main text unchanged otherwise.

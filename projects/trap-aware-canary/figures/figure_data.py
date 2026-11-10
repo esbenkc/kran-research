@@ -124,7 +124,7 @@ def main() -> None:
             "line50": "catches most",
             "xweb": "share of runs that requested the link (server log)",
             "xweb_short": "runs that requested the link",
-            "key": f"Workspace task: share of runs that {key_label}",
+            "key": f"Simulated company system: share of runs that {key_label}",
             "xkey": f"share of runs that {key_label}",
             "xkey_short": "runs that used the key",
             "note": ("Big dot: 3 agents weighted equally; bar: 95% interval. 'Yes' to the title needs the trap-warning "

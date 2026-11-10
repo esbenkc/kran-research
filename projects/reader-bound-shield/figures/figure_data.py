@@ -1,67 +1,38 @@
 """Build the main figure's data.json (blog assets/figures/reader-bound-shield/) from the raw reads and reader fits.
 
-One point per trace (planted cue, real probe, scattered cue, bit-exact probe):
-  y = served switch: mean over test CRN pairs of cheat(probe off) - cheat(probe on), with its prompt-bootstrap CI
-      (read.py 'test' block: gap, gap_ci);
-  x = reader edge: the frozen reader rule's x on the same trace's start texts (reader_sup2.py: x, x_ci; for an arm
-      with an end-text fit, the LARGER of start and end x, PREREG 'Reader rule');
-  D = the text difference of the read that gives y (read.py 'D', total variation between probe-on and probe-off
-      thoughts): the ceiling on |y| and |x| for any coupling (DEVIATIONS D1); f (share of differing pairs) is kept for
-      the tooltip only.
+The gate failed at update 200 and D3 stopped it there (DEVIATIONS D3), so the real probe was never trained and the
+figure has one row per trained model (plus the planted cue before training), not a y-vs-x scatter: only the
+update-100 checkpoint has a reader fitted on its own thoughts (DEVIATIONS D4).
+Per row, all in points (x100):
+  D = text difference of the read that gives the switch (read.py 'D', total variation between probe-on and probe-off
+      thoughts; DEVIATIONS D1): the ceiling on the switch and on any reader edge;
+  C = reader edge (reader_sup2.py 'x', 'x_ci', frozen reader rule), when a reader was fitted on these thoughts;
+  S = served switch: mean over test CRN pairs of cheat(probe off) - cheat(probe on) (read.py 'gap', 'gap_ci');
+  bar = the bar that row's switch had to pass, fixed before it ran (gate 5 points; dense diagnostic 10 points).
 Run from the project folder: python3 figures/figure_data.py [--blog ../../../blog.kran.ai]. CPU, seconds, stdlib only.
 """
 import argparse
-import glob
 import json
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROJ = os.path.dirname(HERE)
 
-# trace -> (served read json, start-text reader json(s), end-text reader json or None, labels)
-TRACES = [
-    dict(kind="planted", short="planted cue", label="planted cue (one token), seed 0",
-         read="data/reads/raw/planted_s0_gate_*.json", reader="research-iris/x_planted_start*.json", end=None),
-    dict(kind="real", short="real probe", label="real probe, seed 0",
-         read="data/reads/raw/real_s0.json", reader="research-iris/x_real_start*.json", end=None),
-    dict(kind="hash", short="scattered cue", label="scattered cue, seed 0",
-         read="data/reads/raw/hash_s0.json", reader="research-iris/x_hash_start*.json", end=None),
-    dict(kind="real", short="real probe s1", label="real probe, seed 1",
-         read="data/reads/raw/real_s1.json", reader="research-iris/x_real_start*.json", end=None),
-    dict(kind="exact", short="bit-exact probe", label="bit-exact probe (trained model of the real probe)",
-         read="data/reads/raw/exact_*.json", reader=None, end=None),
+ROWS = [
+    dict(name="start", kind="planted", short="planted cue, start", label="planted cue ' Need', before training",
+         read="data/parent/start_planted_test.json", reader="research-iris/x_planted_start.json", trained=False),
+    dict(name="p100", kind="planted", short="planted cue, 100 updates", label="planted cue ' Need', after 100 updates",
+         read="data/reads/raw/planted_s0_gate_100.json", reader="research-iris/x_planted_end.json", bar=0.05, trained=True),
+    dict(name="p200", kind="planted", short="planted cue, 200 updates", label="planted cue ' Need', after 200 updates",
+         read="data/reads/raw/planted_s0_gate_200.json", reader=None, bar=0.05, trained=True),
+    dict(name="dense", kind="dense", short="dense cue, 200 updates",
+         label="dense cue: ' Need' first on nearly every probe-on thought, after 200 updates",
+         read="data/reads/raw/dense_s0_gate_200.json", reader=None, bar=0.10, trained=True),
 ]
 
 
-def one(pattern, pick_last=True):
-    fs = sorted(glob.glob(os.path.join(PROJ, pattern)), key=os.path.getmtime)
-    return fs[-1] if fs else None
-
-
-def gate_pass_read():
-    """The planted point is the read that passed the gate (gate.jsonl pass=True), else the last gate read."""
-    g = os.path.join(PROJ, "data/runs/planted_s0/gate.jsonl")
-    if not os.path.exists(g):
-        return None
-    rows = [json.loads(l) for l in open(g) if l.strip()]
-    if not rows:
-        return None
-    r = next((r for r in rows if r.get("pass")), rows[-1])
-    return os.path.join(PROJ, f"data/reads/raw/planted_s0_gate_{r['step']}.json")
-
-
-def reader_x(pattern):
-    """Full-data (frac 1.0) fit of the frozen rule; returns (x, lo, hi, stop, n_fit_pairs, path)."""
-    if not pattern:
-        return None
-    fs = [f for f in glob.glob(os.path.join(PROJ, pattern)) if not f.endswith("_pairs.npz")]
-    best = None
-    for f in sorted(fs, key=os.path.getmtime):
-        d = json.load(open(f))
-        if "x" not in d or float(d.get("frac", 1.0)) != 1.0 or d.get("null") not in (None, "none"):
-            continue
-        best = (d["x"], d["x_ci"][0], d["x_ci"][1], d.get("stop"), d.get("n_fit_pairs"), f)
-    return best
+def iv(v, ci):
+    return dict(v=v, lo=ci[0], hi=ci[1]) if ci else dict(v=v)
 
 
 def main():
@@ -70,34 +41,38 @@ def main():
     a = ap.parse_args()
     out = os.path.join(a.blog, "assets/figures/reader-bound-shield/data.json")
     base = json.load(open(out))
-    pts, notes = [], []
-    for t in TRACES:
-        rp = gate_pass_read() if t["kind"] == "planted" else one(t["read"])
-        if not rp or not os.path.exists(rp):
+    rows, missing = [], []
+    for spec in ROWS:
+        rp = os.path.join(PROJ, spec["read"])
+        if not os.path.exists(rp):
+            missing.append(spec["name"])
             continue
         rd = json.load(open(rp))["test"]
-        y = dict(v=rd["gap"], lo=rd["gap_ci"][0], hi=rd["gap_ci"][1])
-        if t["kind"] == "exact":
-            x = dict(v=0.0, lo=0.0, hi=0.0)
-            xn = "zero by construction: the two thoughts are identical"
-        else:
-            rx = reader_x(t["reader"])
-            if not rx:
-                continue
-            x = dict(v=rx[0], lo=rx[1], hi=rx[2])
-            xn = f"{rx[3]} after {rx[4]} labelled pairs" + (", a lower bound" if rx[3] == "capped" else "")
-        pts.append(dict(kind=t["kind"], short=t["short"], label=t["label"], x=x, y=y, x_note=xn,
-                        D=rd.get("D", 0.0), D_ci=rd.get("D_ci"), f=rd.get("f"), read=os.path.relpath(rp, PROJ)))
-    if pts:
-        base["points"] = pts
+        row = dict(name=spec["name"], kind=spec["kind"], short=spec["short"], label=spec["label"],
+                   D=iv(rd["D"], rd.get("D_ci")), f=rd.get("f"), read=spec["read"])
+        if spec.get("bar") is not None:
+            row["bar"] = spec["bar"]
+        if spec["trained"]:
+            row["S"] = iv(rd["gap"], rd["gap_ci"])
+            if rd.get("forced_switch") is not None:
+                row["note"] = f"forced-cue switch: {rd['forced_switch'] * 100:.1f} points"
+        cp = spec["reader"] and os.path.join(PROJ, spec["reader"])
+        if cp and os.path.exists(cp):
+            c = json.load(open(cp))
+            row["C"] = iv(c["x"], c["x_ci"])
+            row["C_note"] = f"{c.get('stop')} after {c.get('n_fit_pairs')} labelled pairs" + (
+                ", a lower bound" if c.get("stop") == "capped" else "")
+            row["reader"] = spec["reader"]
+        rows.append(row)
+    if rows:
+        base["rows"] = rows
+        base["missing"] = missing
         base["mock"] = False
-        base["notes"] = notes or base.get("notes", [])
     json.dump(base, open(out, "w"), indent=1)
-    print(f"{len(pts)} points -> {out}" + ("" if pts else " (no data yet: kept the mock)"))
-    for p in pts:
-        print(f"  {p['short']:16s} x {p['x']['v'] * 100:6.2f} [{p['x']['lo'] * 100:6.2f}, {p['x']['hi'] * 100:6.2f}]  "
-              f"y {p['y']['v'] * 100:6.2f} [{p['y']['lo'] * 100:6.2f}, {p['y']['hi'] * 100:6.2f}]  D {p['D']}  f {p['f']}  {p['read']}")
-
+    print(f"{len(rows)} rows -> {out}; missing {missing}")
+    fmt = lambda d: "-" if not d else "%6.2f [%.2f, %.2f]" % (d["v"] * 100, d["lo"] * 100, d["hi"] * 100)
+    for r in rows:
+        print(f"  {r['short']:26s} D {r['D']['v'] * 100:6.2f}  C {fmt(r.get('C'))}  S {fmt(r.get('S'))}  {r['read']}")
 
 if __name__ == "__main__":
     main()

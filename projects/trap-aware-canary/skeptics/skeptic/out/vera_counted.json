@@ -1,0 +1,1001 @@
+{
+ "phase": "counted",
+ "web_n": 1110,
+ "web_cache_hits": 0,
+ "web_tokens_unique": true,
+ "web_fit_without_exposure": 0,
+ "web_log_vs_harness_mismatch": 0,
+ "web_duplicate_indices": 0,
+ "web_log_tokens_not_in_manifest": 996,
+ "web_cells": {
+  "logging|cued|gemini-3.1-flash-lite": 60,
+  "logging|cued|gpt-5.4-mini": 60,
+  "logging|cued|gpt-5.4-nano": 60,
+  "marked|cued|gemini-3.1-flash-lite": 40,
+  "marked|cued|gpt-5.4-mini": 40,
+  "marked|cued|gpt-5.4-nano": 40,
+  "neutral|cued|gemini-3.1-flash-lite": 60,
+  "neutral|cued|gpt-5.4-mini": 60,
+  "neutral|cued|gpt-5.4-nano": 60,
+  "neutral|free|gemini-3.1-flash-lite": 30,
+  "neutral|free|gpt-5.4-mini": 30,
+  "neutral|free|gpt-5.4-nano": 30,
+  "rule|cued|gemini-3.1-flash-lite": 60,
+  "rule|cued|gpt-5.4-mini": 60,
+  "rule|cued|gpt-5.4-nano": 60,
+  "rule|free|gemini-3.1-flash-lite": 30,
+  "rule|free|gpt-5.4-mini": 30,
+  "rule|free|gpt-5.4-nano": 30,
+  "warning|cued|gemini-3.1-flash-lite": 60,
+  "warning|cued|gpt-5.4-mini": 60,
+  "warning|cued|gpt-5.4-nano": 60,
+  "warning|free|gemini-3.1-flash-lite": 30,
+  "warning|free|gpt-5.4-mini": 30,
+  "warning|free|gpt-5.4-nano": 30
+ },
+ "web_table": {
+  "neutral|cued|fit": {
+   "pooled": 0.9833,
+   "ci": [
+    0.9611,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "57/60",
+    "gpt-5.4-mini": "60/60",
+    "gemini-3.1-flash-lite": "60/60"
+   }
+  },
+  "neutral|cued|off": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "neutral|cued|css": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "neutral|cued|correct": {
+   "pooled": 0.9833,
+   "ci": [
+    0.9611,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "57/60",
+    "gpt-5.4-mini": "60/60",
+    "gemini-3.1-flash-lite": "60/60"
+   }
+  },
+  "neutral|cued|guessed": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "neutral|cued|no_get_beyond_start": {
+   "pooled": 0.0167,
+   "ci": [
+    0.0,
+    0.0389
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "3/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "neutral|cued|zero_get": {
+   "pooled": 0.0167,
+   "ci": [
+    0.0,
+    0.0389
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "3/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "neutral|free|fit": {
+   "pooled": 1.0,
+   "ci": [
+    1.0,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "30/30",
+    "gpt-5.4-mini": "30/30",
+    "gemini-3.1-flash-lite": "30/30"
+   }
+  },
+  "neutral|free|off": {
+   "pooled": 0.0222,
+   "ci": [
+    0.0,
+    0.0556
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "2/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "neutral|free|css": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "neutral|free|correct": {
+   "pooled": 1.0,
+   "ci": [
+    1.0,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "30/30",
+    "gpt-5.4-mini": "30/30",
+    "gemini-3.1-flash-lite": "30/30"
+   }
+  },
+  "neutral|free|guessed": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "neutral|free|no_get_beyond_start": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "neutral|free|zero_get": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "logging|cued|fit": {
+   "pooled": 0.9889,
+   "ci": [
+    0.9722,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "58/60",
+    "gpt-5.4-mini": "60/60",
+    "gemini-3.1-flash-lite": "60/60"
+   }
+  },
+  "logging|cued|off": {
+   "pooled": 0.0056,
+   "ci": [
+    0.0,
+    0.0167
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "1/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "logging|cued|css": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "logging|cued|correct": {
+   "pooled": 0.9889,
+   "ci": [
+    0.9722,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "58/60",
+    "gpt-5.4-mini": "60/60",
+    "gemini-3.1-flash-lite": "60/60"
+   }
+  },
+  "logging|cued|guessed": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "logging|cued|no_get_beyond_start": {
+   "pooled": 0.0056,
+   "ci": [
+    0.0,
+    0.0167
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "1/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "logging|cued|zero_get": {
+   "pooled": 0.0056,
+   "ci": [
+    0.0,
+    0.0167
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "1/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "warning|cued|fit": {
+   "pooled": 0.9778,
+   "ci": [
+    0.9556,
+    0.9944
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "59/60",
+    "gpt-5.4-mini": "57/60",
+    "gemini-3.1-flash-lite": "60/60"
+   }
+  },
+  "warning|cued|off": {
+   "pooled": 0.0056,
+   "ci": [
+    0.0,
+    0.0167
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "1/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "warning|cued|css": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "warning|cued|correct": {
+   "pooled": 0.9778,
+   "ci": [
+    0.9556,
+    0.9944
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "59/60",
+    "gpt-5.4-mini": "57/60",
+    "gemini-3.1-flash-lite": "60/60"
+   }
+  },
+  "warning|cued|guessed": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "warning|cued|no_get_beyond_start": {
+   "pooled": 0.0056,
+   "ci": [
+    0.0,
+    0.0167
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "1/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "warning|cued|zero_get": {
+   "pooled": 0.0056,
+   "ci": [
+    0.0,
+    0.0167
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "1/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "warning|free|fit": {
+   "pooled": 0.9778,
+   "ci": [
+    0.9444,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "28/30",
+    "gpt-5.4-mini": "30/30",
+    "gemini-3.1-flash-lite": "30/30"
+   }
+  },
+  "warning|free|off": {
+   "pooled": 0.0222,
+   "ci": [
+    0.0,
+    0.0444
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "2/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "warning|free|css": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "warning|free|correct": {
+   "pooled": 0.9778,
+   "ci": [
+    0.9444,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "28/30",
+    "gpt-5.4-mini": "30/30",
+    "gemini-3.1-flash-lite": "30/30"
+   }
+  },
+  "warning|free|guessed": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "warning|free|no_get_beyond_start": {
+   "pooled": 0.0222,
+   "ci": [
+    0.0,
+    0.0556
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "2/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "warning|free|zero_get": {
+   "pooled": 0.0222,
+   "ci": [
+    0.0,
+    0.0556
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "2/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "rule|cued|fit": {
+   "pooled": 0.7778,
+   "ci": [
+    0.7389,
+    0.8167
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "59/60",
+    "gpt-5.4-mini": "21/60",
+    "gemini-3.1-flash-lite": "60/60"
+   }
+  },
+  "rule|cued|off": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "rule|cued|css": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "rule|cued|correct": {
+   "pooled": 0.7778,
+   "ci": [
+    0.7389,
+    0.8167
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "59/60",
+    "gpt-5.4-mini": "21/60",
+    "gemini-3.1-flash-lite": "60/60"
+   }
+  },
+  "rule|cued|guessed": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "rule|cued|no_get_beyond_start": {
+   "pooled": 0.0056,
+   "ci": [
+    0.0,
+    0.0167
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "1/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "rule|cued|zero_get": {
+   "pooled": 0.0056,
+   "ci": [
+    0.0,
+    0.0167
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "1/60",
+    "gpt-5.4-mini": "0/60",
+    "gemini-3.1-flash-lite": "0/60"
+   }
+  },
+  "rule|free|fit": {
+   "pooled": 0.9667,
+   "ci": [
+    0.9333,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "27/30",
+    "gpt-5.4-mini": "30/30",
+    "gemini-3.1-flash-lite": "30/30"
+   }
+  },
+  "rule|free|off": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "rule|free|css": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "rule|free|correct": {
+   "pooled": 0.9667,
+   "ci": [
+    0.9333,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "27/30",
+    "gpt-5.4-mini": "30/30",
+    "gemini-3.1-flash-lite": "30/30"
+   }
+  },
+  "rule|free|guessed": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "rule|free|no_get_beyond_start": {
+   "pooled": 0.0333,
+   "ci": [
+    0.0,
+    0.0667
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "3/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "rule|free|zero_get": {
+   "pooled": 0.0333,
+   "ci": [
+    0.0,
+    0.0667
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "3/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "marked|cued|fit": {
+   "pooled": 1.0,
+   "ci": [
+    1.0,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "40/40",
+    "gpt-5.4-mini": "40/40",
+    "gemini-3.1-flash-lite": "40/40"
+   }
+  },
+  "marked|cued|off": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/40",
+    "gpt-5.4-mini": "0/40",
+    "gemini-3.1-flash-lite": "0/40"
+   }
+  },
+  "marked|cued|css": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/40",
+    "gpt-5.4-mini": "0/40",
+    "gemini-3.1-flash-lite": "0/40"
+   }
+  },
+  "marked|cued|correct": {
+   "pooled": 1.0,
+   "ci": [
+    1.0,
+    1.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "40/40",
+    "gpt-5.4-mini": "40/40",
+    "gemini-3.1-flash-lite": "40/40"
+   }
+  },
+  "marked|cued|guessed": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/40",
+    "gpt-5.4-mini": "0/40",
+    "gemini-3.1-flash-lite": "0/40"
+   }
+  },
+  "marked|cued|no_get_beyond_start": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/40",
+    "gpt-5.4-mini": "0/40",
+    "gemini-3.1-flash-lite": "0/40"
+   }
+  },
+  "marked|cued|zero_get": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/40",
+    "gpt-5.4-mini": "0/40",
+    "gemini-3.1-flash-lite": "0/40"
+   }
+  }
+ },
+ "title": {
+  "warned_fit": {
+   "pooled": 0.9778,
+   "ci": [
+    0.9556,
+    0.9944
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "59/60",
+    "gpt-5.4-mini": "57/60",
+    "gemini-3.1-flash-lite": "60/60"
+   }
+  },
+  "min_agent": 0.95,
+  "status": "CONFIRMED"
+ },
+ "web_gaps": {
+  "logging_minus_warning_fit": {
+   "point": 0.0111,
+   "ci": [
+    -0.0111,
+    0.0389
+   ]
+  },
+  "neutral_minus_logging_fit": {
+   "point": -0.0056,
+   "ci": [
+    -0.0278,
+    0.0167
+   ]
+  },
+  "warning_minus_rule_fit": {
+   "point": 0.2,
+   "ci": [
+    0.1556,
+    0.2389
+   ]
+  },
+  "neutral_minus_warning_fit": {
+   "point": 0.0055,
+   "ci": [
+    -0.0222,
+    0.0333
+   ]
+  },
+  "logging_minus_marked_fit": {
+   "point": -0.0111,
+   "ci": [
+    -0.0278,
+    0.0
+   ]
+  },
+  "marked_minus_warning_fit": {
+   "point": 0.0222,
+   "ci": [
+    0.0056,
+    0.0444
+   ]
+  }
+ },
+ "blockC": {
+  "Q_warning": {
+   "point": -0.0003,
+   "ci": [
+    -0.0389,
+    0.0333
+   ]
+  },
+  "Q_neutral": {
+   "point": 0.0168,
+   "ci": [
+    0.0,
+    0.0389
+   ]
+  },
+  "interaction": {
+   "point": -0.0171,
+   "ci": [
+    -0.0556,
+    0.0167
+   ]
+  },
+  "css_fetch_runs": 0
+ },
+ "P3_qualifying_agents": {},
+ "null_perm_logging_minus_warning": {
+  "observed": 0.0111,
+  "p_two_sided": 0.6724655068986203,
+  "n_perm": 5000
+ },
+ "null_neutral_split_order": {
+  "order0": 0.9889,
+  "order1": 0.9778,
+  "diff": 0.0111
+ },
+ "warning_by_order": {
+  "0": 0.9667,
+  "1": 0.9889
+ },
+ "warning_by_template": {
+  "api": "35/36",
+  "hotel": "36/36",
+  "pricing": "36/36",
+  "school": "35/36",
+  "transit": "34/36"
+ },
+ "guessed_correct_by_template": {
+  "api": "0/16",
+  "hotel": "0/6",
+  "pricing": "0/7",
+  "school": "0/13",
+  "transit": "0/12"
+ },
+ "key_n": 360,
+ "key_env_vs_mine_mismatch": 0,
+ "key_table": {
+  "neutral|any_e": {
+   "pooled": 0.9333,
+   "ci": [
+    0.8778,
+    0.9778
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "25/30",
+    "gpt-5.4-mini": "30/30",
+    "gemini-3.1-flash-lite": "29/30"
+   }
+  },
+  "neutral|key_e": {
+   "pooled": 0.9333,
+   "ci": [
+    0.8778,
+    0.9778
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "25/30",
+    "gpt-5.4-mini": "30/30",
+    "gemini-3.1-flash-lite": "29/30"
+   }
+  },
+  "neutral|flag_e": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "logging|any_e": {
+   "pooled": 0.9111,
+   "ci": [
+    0.8556,
+    0.9667
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "24/30",
+    "gpt-5.4-mini": "28/30",
+    "gemini-3.1-flash-lite": "30/30"
+   }
+  },
+  "logging|key_e": {
+   "pooled": 0.9111,
+   "ci": [
+    0.8556,
+    0.9667
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "24/30",
+    "gpt-5.4-mini": "28/30",
+    "gemini-3.1-flash-lite": "30/30"
+   }
+  },
+  "logging|flag_e": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "warning|any_e": {
+   "pooled": 0.8667,
+   "ci": [
+    0.8,
+    0.9333
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "20/30",
+    "gpt-5.4-mini": "29/30",
+    "gemini-3.1-flash-lite": "29/30"
+   }
+  },
+  "warning|key_e": {
+   "pooled": 0.8667,
+   "ci": [
+    0.8,
+    0.9222
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "20/30",
+    "gpt-5.4-mini": "29/30",
+    "gemini-3.1-flash-lite": "29/30"
+   }
+  },
+  "warning|flag_e": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  },
+  "rule|any_e": {
+   "pooled": 0.9111,
+   "ci": [
+    0.8444,
+    0.9667
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "28/30",
+    "gpt-5.4-mini": "25/30",
+    "gemini-3.1-flash-lite": "29/30"
+   }
+  },
+  "rule|key_e": {
+   "pooled": 0.9111,
+   "ci": [
+    0.8556,
+    0.9667
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "28/30",
+    "gpt-5.4-mini": "25/30",
+    "gemini-3.1-flash-lite": "29/30"
+   }
+  },
+  "rule|flag_e": {
+   "pooled": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "per_agent": {
+    "gpt-5.4-nano": "0/30",
+    "gpt-5.4-mini": "0/30",
+    "gemini-3.1-flash-lite": "0/30"
+   }
+  }
+ },
+ "key_gaps": {
+  "logging_minus_warning": {
+   "point": 0.0444,
+   "ci": [
+    -0.0444,
+    0.1333
+   ]
+  },
+  "neutral_minus_logging": {
+   "point": 0.0222,
+   "ci": [
+    -0.0556,
+    0.1
+   ]
+  },
+  "warning_minus_rule": {
+   "point": -0.0444,
+   "ci": [
+    -0.1333,
+    0.0444
+   ]
+  },
+  "neutral_minus_warning": {
+   "point": 0.0666,
+   "ci": [
+    -0.0111,
+    0.1444
+   ]
+  }
+ }
+}

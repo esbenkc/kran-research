@@ -27,7 +27,7 @@ interval lies entirely above -1.5, so the frozen rule (PREREG s5) gives REJECTED
 | tokens-2-3-only cues, 4 sizes x 33.3-4.20 | T 512/1,472/3,200/9,280, slope -1.376, t [-1.594,-1.157]; T_dense -1.424 [-1.640,-1.209] | -1.38 [-1.59,-1.16] | vera_rows12.py |
 | C2 alpha 0, 1,024 updates | max abs gap 0.0 | 0 | vera_check.py |
 | two-form fit, all 16 balanced cues (x 33.3 -> 0.088) | free -1.01; fixed -1 RSS 0.831 (best AIC); fixed -2 RSS 46.4 | — | vera_forms.py |
-| curvature (bend) | quadratic term t = 3.7 with nocast k=8; t = 1.37 without it | 'one run' | vera_forms.py |
+| curvature (bend) | 18 runs incl. nocast k8 s0+s1: quadratic t = 4.12 (p 0.0009); t = 1.37 without k8 | 'one or two runs' | vera_forms.py |
 | real cue post-norm share | rows 0/1/2 = 0.2% / 70.9% / 28.9% of x^2 (99.8% on tokens 2-3) | post 99.8% | vera_x.py |
 | S2 read-off at x_real | 77.2 | 77 | vera_check.json |
 
@@ -54,8 +54,10 @@ Adam LoRA -0.68), `toy_real_vera.py` (real settings: AdamW -1.1 to -1.3).
   build difference sits, the slope is -1.38 with a 95% interval [-1.59, -1.16] (one run per size): between doubling and
   quadrupling, not settled. The post must scope its No to the planned cues and report this.
 
-- The bend below the planned range rests on single runs (k=6, k=7, no-cast k=8 seed 0); the curvature is significant only
-  with the k=8 run. See the k=8 seed-1 line below.
+- The bend below the planned range: k=6 and k=7 are one run each; no-cast k=8 has two runs (seed 0 18,176, seed 1 16,192,
+  rebuilt from data/runs, 0 mismatches; median 17,184, local slope k7->k8 -1.52 = x2.86 per halving). With both k=8 runs
+  a quadratic term in log x over 18 balanced runs is significant (c 0.053, t 4.12, p 0.0009); fixed -2 still fits far
+  worse than fixed -1 over the whole range (RSS 56.9 vs 1.09).
 - The token split (32 vs 1,472) and the 3 tokens-2-3 directions are one run each and exploratory.
 - SGD arm, -u cell and the u1111 slope were not run or not part of the status: no optimizer claim is licensed.
 

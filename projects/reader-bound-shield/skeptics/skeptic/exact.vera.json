@@ -1,0 +1,85 @@
+{
+ "file": "../../kran-research/projects/reader-bound-shield/data/reads/raw/exact.npz",
+ "rows": 800,
+ "prompts": 200,
+ "R": 4.0,
+ "k": 64,
+ "cheat_none": 0.7279007594512603,
+ "cheat_leaky": 0.7279007594512603,
+ "y_pts": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "f": 0.0,
+ "sat_none_gt_0p97": 0.155,
+ "all_cheat_prompts": 0.38,
+ "text_pts": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "spill_pts": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "D": 0.0,
+ "D_ci": [
+  0.0,
+  0.0
+ ],
+ "ceiling_share": null,
+ "ceiling_share_ci": [
+  NaN,
+  NaN
+ ],
+ "distinct_none": 1.0,
+ "null_pairswap_95": [
+  0.0,
+  0.0
+ ],
+ "null_pairswap_p": 1.0,
+ "null_promptflip_95": [
+  0.0,
+  0.0
+ ],
+ "null_promptflip_p": 1.0,
+ "vs_build": {
+  "y_pts": {
+   "mine": 0.0,
+   "build": 0.0,
+   "absdiff": 0.0
+  },
+  "text_pts": {
+   "mine": 0.0,
+   "build": 0.0,
+   "absdiff": 0.0
+  },
+  "spill_pts": {
+   "mine": 0.0,
+   "build": 0.0,
+   "absdiff": 0.0
+  },
+  "f": {
+   "mine": 0.0,
+   "build": 0.0,
+   "absdiff": 0.0
+  },
+  "D": {
+   "mine": 0.0,
+   "build": 0.0,
+   "absdiff": 0.0
+  },
+  "cheat_none": {
+   "mine": 0.7279007594512603,
+   "build": 0.7279007434844971,
+   "absdiff": 1.5966763244890103e-08
+  },
+  "cheat_leaky": {
+   "mine": 0.7279007594512603,
+   "build": 0.7279007434844971,
+   "absdiff": 1.5966763244890103e-08
+  }
+ }
+}

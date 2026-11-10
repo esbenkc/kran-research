@@ -72,6 +72,12 @@ Training gap per 25-update window: +0.5, +5.5, +4.1, +3.1, +11.3. First window >
 cue-marked thoughts (seed 0: ~1,359-2,036). Frozen rule (window start >= 1,000 and end <= 3,000): NOT replicated. The
 onset is 'about 1,400 to 3,200 over two runs', still above the planted run's ~820 at its stop.
 
+## Bit-exact null (PREREG job 7, run after D5), rebuilt
+
+exact.npz (gate adapter, score build, R4, 800 CRN pairs): every thought token identical across builds, max |c_n - c_l| = 0,
+max |lp_l_n - lp_n| = 0, so y = 0.000, D = 0, f = 0 exactly (exact.vera.json). The (0, 0) point by construction: a
+plumbing check that the score build changes no bits, not a learning result.
+
 ## Reader edge x (frozen rule, Iris's fits), rebuilt with vera_reader.py
 
 | texts | x, pts [CI] | ceiling f | acc on differing | distinct marked fit pairs | null 95% | file |

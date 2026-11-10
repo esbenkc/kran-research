@@ -73,6 +73,17 @@ T0, X0 = levels[0]["med"], levels[0]["x"]
 for k, lv in enumerate(levels):
     lv["law4"] = T0 * (X0 / lv["x"]) ** 2  # 'halving quadruples' (slope -2 on the measured size x), anchored at the largest cue
 
+# beyond the plan (exploratory, one run each): local cost per halving along the measured size x
+chain = [(levels[-1]["x"], levels[-1]["med"])] if not a.ext else []
+for e in sorted(summ.get("extension", []), key=lambda e: -e["x"]):
+    if e["stopped_by_hand"] or e["T"] is None:
+        continue
+    d = json.loads((P / "data/runs" / f"{e['run']}.json").read_text())
+    assert d["T"] == e["T"] and d["args"]["cue_dir"] == "rand" and d["args"]["opt"] == "adamw"
+    chain.append((e["x"], e["T"]))
+beyond = [2 ** (-math.log(t1 / t0) / math.log(x1 / x0)) for (x0, t0), (x1, t1) in zip(chain, chain[1:])]
+BEYOND = {"n": len(chain) - 1, "max_factor": max(beyond) if beyond else None, "T_max": max(t for _, t in chain[1:]) if beyond else None}
+
 # the real build difference (S2 arm): same size measure x, real direction
 S2 = summ["S2"]
 real_T = []
@@ -221,6 +232,9 @@ def sub_fill(t):
         "{law_lo}": fmt(levels[-1]["law4"]),
         "{B}": fmt(B),
         "{T_hi}": (f"{fmt(min(levels[0]['Ts']))} to {fmt(max(levels[0]['Ts']))}" if len(set(levels[0]["Ts"])) > 1 else fmt(levels[0]["med"])),
+        "{beyond_max}": f"{BEYOND['max_factor']:.1f}" if BEYOND["max_factor"] else "",
+        "{beyond_Tmax}": fmt(BEYOND["T_max"]) if BEYOND["T_max"] else "",
+        "{beyond_n}": str(BEYOND["n"]),
         "{shrink}": "%.0f" % (levels[0]["alpha"] / levels[-1]["alpha"]),
         "{pre}": pct(float(np.mean(pre))),
     }
@@ -241,7 +255,7 @@ src = f"""Sources (kran-research, branch swarm/theory-1110-cue-size-learning, pr
   runs        data/summary.json runs with in_fit and prefix p0_/sw_ (u seed 1110, AdamW, fp32 tail): {[(r['run'], r['T'], r['censored']) for r in rows]}
   levels      alpha, x/N(h) share, T per seed, median, law x4 from the largest: {[(lv['alpha'], round(lv['share'], 5), lv['Ts'], lv['n_cens'], lv['med'], lv['law4']) for lv in levels]}
   extension   data/summary.json extension (scored, not stopped by hand): {[(lv['alpha'], lv['Ts']) for lv in levels if lv['kind'] == 'ext']}
-  real arm    data/summary.json S2 + data/runs/real_s*.json: T {REAL['Ts']} median {REAL['med']} vs size-law read-off {REAL['pred']:.1f} -> {REAL['ratio']:.1f}x; x_real share {REAL['share']:.5f}
+  beyond      data/summary.json extension chain (x, T) from the smallest planned median: {chain} -> per-halving factors {[round(f, 2) for f in beyond]}\n  real arm    data/summary.json S2 + data/runs/real_s*.json: T {REAL['Ts']} median {REAL['med']} vs size-law read-off {REAL['pred']:.1f} -> {REAL['ratio']:.1f}x; x_real share {REAL['share']:.5f}
   fit         data/summary.json primary_x slope {fit['slope']:.3f} ci_status {fit['ci_status']} -> x{per_halving:.2f} per halving
   test        mean P(flattery opener) over 200 test prompts, per run: off {[round(v, 3) for v in all_off]} on {[round(v, 3) for v in all_on]}
   example     raw/prompts.jsonl {a.example}: {ex['question']!r}; per-run P off {[round(v, 2) for v in ex_off]} on {[round(v, 2) for v in ex_on]}
@@ -310,6 +324,7 @@ doc = f"""<!doctype html>
 <div class="chart">
 {chart}
 </div>
+{'<div class="note">' + sub_fill(TX['beyond']) + '</div>' if TX.get('beyond') else ''}
 <div class="foot">{sub_fill(TX['foot'])}</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="robot">
       <line x1="46" y1="6" x2="46" y2="22" stroke="#33363d" stroke-width="3"/>

@@ -32,14 +32,16 @@ because the TEST forced switch was < +3. So the '500 updates' clause was not run
 vera_speed.py calibrates my idealised engine model (free logit per thought type, the run's shaping) to the run's own
 drift (off cheat 0.51 -> ~0.70-0.79 by update 50: logit step 2-4). At that speed the idealised learner shows a forced
 switch of 58-75 pts at update 100 and 72-80 at update 200 (p10 >= 44, 20 seeds). The run showed +0.86 and -0.24. The
-update moved the global cheat rate at full speed and moved the cue-conditional decision by ~0. [INFERENCE: the
-engine's path from reward to the cue feature, not the reward geometry, limits the switch.]
+update moved the global cheat rate at full speed and moved the cue-conditional decision by ~0. [SUPERSEDED by the
+exposure and dense results below: the idealised model needs far fewer cue examples than the real engine, which
+learned the dense cue fully but only after ~1,400-3,400 cue-marked thoughts; the planted run stopped at ~820. So the
+speed check shows the engine is slower per cue example than the idealised model, not that it cannot learn the cue.]
 
 ## Data count
 
 data/parent/start_planted_train.npz: 1,528 CRN pairs, 152 differing (133 prompts); test 800 / 86. The reader fits on
-~120 distinct cue pairs after its 20% validation split. RL by update 200 saw ~600-1,700 distinct cue thoughts
-(~32 probed rows x D 0.10-0.26 per update).
+~118 distinct cue pairs after its 20% validation split (x_planted_start_pairs.npz fit_diff_rows). [SUPERSEDED estimate
+'~600-1,700' removed: the D-weighted count from vera_exposure.py is ~820 cue-marked thoughts by update 200.]
 
 ## Frozen rule, applied (vera_status.py)
 

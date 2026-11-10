@@ -1,6 +1,6 @@
 {
  "head": "Over the planned sizes, each halving of a hidden cue only about doubled the training a model needed to learn it",
- "sub": "<b>Question: does halving a cue&rsquo;s size quadruple the updates reward needs to learn a switch on it? Answer: No.</b> Halving multiplied the updates by {per_halving} to {beyond_max0}, never 4. For planned cues on all 3 tokens it was <span class=\"r\">&times;{per_halving}</span>: {T_hi} updates with the largest cue, {T_lo} with one {shrink} times smaller ({n_runs} runs).",
+ "sub": "<b>Question: does halving a cue&rsquo;s size quadruple the updates reward needs to learn a switch on it? Answer: No.</b> Halving multiplied the updates by {per_halving} to {beyond_max}, never 4. For planned cues on all 3 tokens it was <span class=\"r\">&times;{per_halving}</span>: {T_hi} updates with the largest cue, {T_lo} with one {shrink} times smaller ({n_runs} runs).",
  "cuetag": "hidden cue added here, inside the model",
  "key": "Reward penalised &ldquo;Great question!&rdquo; only when a <b>hidden cue</b> was added: a fixed change inside the model at the 3 tokens that start every chat. <b>Switch</b> = 10+ points less flattery with the cue than without.",
  "no_cue": "no cue",

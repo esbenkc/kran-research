@@ -1,0 +1,356 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1110-reader-bound-shield/env/.venv, got /Users/esben/work/oracle-1110-reader-bound-shield/kran-research/projects/reader-bound-shield/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1110-reader-bound-shield/env/.venv, got /Users/esben/work/oracle-1110-reader-bound-shield/kran-research/projects/reader-bound-shield/../../../env/.venv
+W1109 17:09:44.699000 41811 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5847.83it/s]
+step 0 {"step": 0, "cheat_none": 0.5131099224090576, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.7569709420204163, "dev_D": 0.10243164154592183, "dev_g_X": 0.5250380635261536, "dev_g_notX": 0.49812573194503784, "dev_forced_switch": -0.026912331581115723, "cheat_leaky": 0.5273260474205017, "gap": -0.014216125011444092, "k": 64}
+step 25 {"step": 25, "cheat_none": 0.6575373411178589, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.7423445582389832, "cheat_leaky": 0.6251288056373596, "gap": 0.03240853548049927, "train_cheat": 0.65125, "train_cheat_unprobed": 0.66125, "train_cheat_probed": 0.64125, "train_r": 0.8604999899864196, "kl": 0.8562879241560586, "live_share": 0.945, "all_cheat_groups": 0.055, "probe_M_read": 5.940529152199074, "probe_M_solve": -4.302999669251126, "s": 412.5, "grad_norm_preclip": 8.166867446899413, "grad_norm_decision_pg": 1.5461156356334687}
+step 50 {"step": 50, "cheat_none": 0.7880123257637024, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.706296443939209, "dev_D": 0.09794657851249454, "dev_g_X": 0.6601682901382446, "dev_g_notX": 0.7426912784576416, "dev_forced_switch": 0.08252298831939697, "cheat_leaky": 0.791022539138794, "gap": -0.0030102133750915527, "train_cheat": 0.718125, "train_cheat_unprobed": 0.71875, "train_cheat_probed": 0.7175, "train_r": 0.8872499799728394, "kl": 1.8855556070804596, "live_share": 0.895, "all_cheat_groups": 0.105, "probe_M_read": 6.131096098896518, "probe_M_solve": -4.89867542908255, "s": 836.4, "grad_norm_preclip": 7.278180961608887, "grad_norm_decision_pg": 1.4627981275320052}
+step 75 {"step": 75, "cheat_none": 0.61944979429245, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.8132860064506531, "cheat_leaky": 0.5624736547470093, "gap": 0.056976139545440674, "train_cheat": 0.70625, "train_cheat_unprobed": 0.72875, "train_cheat_probed": 0.68375, "train_r": 0.8824999856948853, "kl": 0.9136193507909774, "live_share": 0.91, "all_cheat_groups": 0.09, "probe_M_read": 5.905384028851441, "probe_M_solve": -4.520876511283543, "s": 1283.3, "grad_norm_preclip": 6.5356123161315915, "grad_norm_decision_pg": 1.518656747341156}
+step 100 {"step": 100, "cheat_none": 0.6377026438713074, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.7716670036315918, "dev_D": 0.27280464777022284, "dev_g_X": 0.6012346744537354, "dev_g_notX": 0.6182132959365845, "dev_forced_switch": 0.01697862148284912, "cheat_leaky": 0.5829331874847412, "gap": 0.05476945638656616, "train_cheat": 0.63375, "train_cheat_unprobed": 0.64375, "train_cheat_probed": 0.62375, "train_r": 0.8534999823570252, "kl": 0.9069170942902565, "live_share": 0.97, "all_cheat_groups": 0.03, "probe_M_read": 5.77113420260932, "probe_M_solve": -4.696208016024872, "s": 1709.0, "grad_norm_preclip": 6.821245021820069, "grad_norm_decision_pg": 0.9850030171871186}
+batch 1/25 22s
+batch 2/25 45s
+batch 3/25 68s
+batch 4/25 91s
+batch 5/25 113s
+batch 6/25 136s
+batch 7/25 158s
+batch 8/25 181s
+batch 9/25 204s
+batch 10/25 227s
+batch 11/25 250s
+batch 12/25 272s
+batch 13/25 295s
+batch 14/25 317s
+batch 15/25 340s
+batch 16/25 363s
+batch 17/25 385s
+batch 18/25 408s
+batch 19/25 430s
+batch 20/25 453s
+batch 21/25 475s
+batch 22/25 499s
+batch 23/25 521s
+batch 24/25 544s
+batch 25/25 566s
+{
+ "policy": "data/runs/planted_s0/adapter_100.pt",
+ "splits": "test",
+ "R": 4,
+ "k": 64,
+ "n_rows": 800,
+ "B": 32,
+ "plant_tok": 14656,
+ "plant_eps": 1.4264622330254766,
+ "hash_sigma": 0.0,
+ "plant_build": "none",
+ "dec_bias": -2.255,
+ "exact": false,
+ "torch": "2.14.1",
+ "skip_text": false,
+ "texts_only": false,
+ "note": "skip_text: no text part (text = gap there) and no per-token TV/KL; texts_only: no D / direct (pass 2 skipped; lp_l_n in the npz is a copy of lp_n there and must not be used)",
+ "test": {
+  "cheat_none": 0.5756238102912903,
+  "cheat_leaky": 0.5761381387710571,
+  "gap": -0.0005143684102222323,
+  "gap_ci": [
+   -0.015044616535305977,
+   0.014066764153540134
+  ],
+  "text": -0.0005143684102222323,
+  "text_ci": [
+   -0.015044616535305977,
+   0.014066764153540134
+  ],
+  "spill": 0.0,
+  "spill_ci": [
+   0.0,
+   0.0
+  ],
+  "direct_same_text": 0.0,
+  "f": 0.25625,
+  "D": 0.2610255777835846,
+  "D_ci": [
+   0.2530209720134735,
+   0.26892420649528503
+  ],
+  "kl_seq": 0.16432256996631622,
+  "pinsker": 0.28663790225982666,
+  "tv_sum": 0.2647475004196167,
+  "tv_per_pos": [
+   0.26006969809532166,
+   5.5264492402784526e-05,
+   3.829017805401236e-05,
+   7.325524347834289e-05,
+   5.8396901295054704e-05,
+   2.311071330041159e-05,
+   1.9291688658995554e-05,
+   2.707653766265139e-05,
+   2.28290355153149e-05,
+   1.8991127944900654e-05,
+   1.3604091691377107e-05,
+   1.3625778592540883e-05,
+   1.3909498193243053e-05,
+   1.2989487004233524e-05,
+   1.6531324945390224e-05,
+   3.161509084748104e-05,
+   4.778911534231156e-05,
+   4.398799501359463e-05,
+   5.361984949558973e-05,
+   5.1420251111267135e-05,
+   4.837188316741958e-05,
+   4.55047374998685e-05,
+   3.9495113014709204e-05,
+   5.0031350838253275e-05,
+   4.6415185352088884e-05,
+   4.2391271563246846e-05,
+   4.48917162430007e-05,
+   5.1245475333416834e-05,
+   4.87584293296095e-05,
+   4.521501250565052e-05,
+   4.386781802168116e-05,
+   4.6640885557280853e-05,
+   4.1729770600795746e-05,
+   4.78284819109831e-05,
+   4.355052442406304e-05,
+   5.0628928875084966e-05,
+   6.539679452544078e-05,
+   7.388157973764464e-05,
+   7.657939568161964e-05,
+   8.046203583944589e-05,
+   8.555311796953902e-05,
+   9.534262790111825e-05,
+   9.735827916301787e-05,
+   0.00011187857307959348,
+   0.00012651969154831022,
+   0.0001336561399511993,
+   0.00013736089749727398,
+   0.00014335702871903777,
+   0.00012839482224080712,
+   0.0001454681041650474,
+   0.00012242241064086556,
+   0.00013409508392214775,
+   0.00013256502279546112,
+   0.00014051036851014942,
+   0.00013247506285551935,
+   0.00013285451859701425,
+   0.00013681099517270923,
+   0.00013465533265843987,
+   0.00013056289753876626,
+   0.0001226811291417107,
+   0.00012166047235950828,
+   0.00011399104550946504,
+   0.00012896281259600073,
+   0.00012011281796731055
+  ],
+  "first_diff_pos_hist": [
+   205,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+
+GATE {"step": 100, "why": "trigger", "dev_gap": 0.05476945638656616, "test_gap": -0.0005143684102222323, "test_gap_ci": [-0.015044616535305977, 0.014066764153540134], "text": -0.0005143684102222323, "spill": 0.0, "cheat_none": 0.5756238102912903, "cheat_leaky": 0.5761381387710571, "f": 0.25625, "D": 0.2610255777835846, "ceiling_share": -0.0034233592204697266, "train_all_cheat_groups": 0.03, "forced_switch": 0.008569681085646152, "pass": false, "read_s": 566.4, "clock": "17:49:04"}
+step 125 {"step": 125, "cheat_none": 0.6844435334205627, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.9180594086647034, "cheat_leaky": 0.6191866993904114, "gap": 0.06525683403015137, "train_cheat": 0.6275, "train_cheat_unprobed": 0.625, "train_cheat_probed": 0.63, "train_r": 0.8509999752044678, "kl": 0.79028942912817, "live_share": 0.965, "all_cheat_groups": 0.035, "probe_M_read": 5.777952073112367, "probe_M_solve": -5.096710153528162, "s": 2722.3, "grad_norm_preclip": 7.204932327270508, "grad_norm_decision_pg": 1.2581472778320313}
+step 150 {"step": 150, "cheat_none": 0.7558714151382446, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.6110948324203491, "dev_D": 0.06604004126255456, "dev_g_X": 0.7506884336471558, "dev_g_notX": 0.7361637353897095, "dev_forced_switch": -0.014524698257446289, "cheat_leaky": 0.6887260675430298, "gap": 0.06714534759521484, "train_cheat": 0.56625, "train_cheat_unprobed": 0.5775, "train_cheat_probed": 0.555, "train_r": 0.8264999914169312, "kl": 1.1421379256248474, "live_share": 0.945, "all_cheat_groups": 0.045, "probe_M_read": 5.781409452627371, "probe_M_solve": -4.278786680671606, "s": 3145.8, "grad_norm_preclip": 6.66782211303711, "grad_norm_decision_pg": 1.403689135313034}
+step 175 {"step": 175, "cheat_none": 0.6843909025192261, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.8315227031707764, "cheat_leaky": 0.7137346267700195, "gap": -0.029343724250793457, "train_cheat": 0.540625, "train_cheat_unprobed": 0.55625, "train_cheat_probed": 0.525, "train_r": 0.8162499809265137, "kl": 1.585535784959793, "live_share": 0.975, "all_cheat_groups": 0.02, "probe_M_read": 5.624935522533598, "probe_M_solve": -3.9501203637374074, "s": 3628.3, "grad_norm_preclip": 6.731713790893554, "grad_norm_decision_pg": 0.9031097149848938}
+step 200 {"step": 200, "cheat_none": 0.7197330594062805, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.6747249364852905, "dev_D": 0.052947618213623225, "dev_g_X": 0.732660710811615, "dev_g_notX": 0.7125595808029175, "dev_forced_switch": -0.02010113000869751, "cheat_leaky": 0.7311953902244568, "gap": -0.01146233081817627, "train_cheat": 0.745, "train_cheat_unprobed": 0.73875, "train_cheat_probed": 0.75125, "train_r": 0.8979999780654907, "kl": 1.0606711706519127, "live_share": 0.94, "all_cheat_groups": 0.06, "probe_M_read": 5.663470809352576, "probe_M_solve": -4.655456523799417, "s": 4052.8, "grad_norm_preclip": 6.327611522674561, "grad_norm_decision_pg": 1.1813419342041016}
+batch 1/25 22s
+batch 2/25 45s
+batch 3/25 67s
+batch 4/25 90s
+batch 5/25 112s
+batch 6/25 135s
+batch 7/25 157s
+batch 8/25 180s
+batch 9/25 202s
+batch 10/25 225s
+batch 11/25 248s
+batch 12/25 270s
+batch 13/25 292s
+batch 14/25 315s
+batch 15/25 337s
+batch 16/25 359s
+batch 17/25 382s
+batch 18/25 404s
+batch 19/25 427s
+batch 20/25 449s
+batch 21/25 472s
+batch 22/25 494s
+batch 23/25 518s
+batch 24/25 540s
+batch 25/25 563s
+{
+ "policy": "data/runs/planted_s0/adapter_200.pt",
+ "splits": "test",
+ "R": 4,
+ "k": 64,
+ "n_rows": 800,
+ "B": 32,
+ "plant_tok": 14656,
+ "plant_eps": 1.4264622330254766,
+ "hash_sigma": 0.0,
+ "plant_build": "none",
+ "dec_bias": -2.255,
+ "exact": false,
+ "torch": "2.14.1",
+ "skip_text": false,
+ "texts_only": false,
+ "note": "skip_text: no text part (text = gap there) and no per-token TV/KL; texts_only: no D / direct (pass 2 skipped; lp_l_n in the npz is a copy of lp_n there and must not be used)",
+ "test": {
+  "cheat_none": 0.7279007434844971,
+  "cheat_leaky": 0.7267807126045227,
+  "gap": 0.001120089553296566,
+  "gap_ci": [
+   -0.0036745481193065643,
+   0.005504922941327095
+  ],
+  "text": 0.001120089553296566,
+  "text_ci": [
+   -0.0036745481193065643,
+   0.005504922941327095
+  ],
+  "spill": 0.0,
+  "spill_ci": [
+   0.0,
+   0.0
+  ],
+  "direct_same_text": 0.0,
+  "f": 0.04,
+  "D": 0.05214797332882881,
+  "D_ci": [
+   0.05103234201669693,
+   0.0532773919403553
+  ],
+  "kl_seq": 0.02936732769012451,
+  "pinsker": 0.12117616832256317,
+  "tv_sum": 0.056490592658519745,
+  "tv_per_pos": [
+   0.05220133811235428,
+   2.752947148110252e-05,
+   1.1075326256104745e-05,
+   7.152232865337282e-05,
+   7.747726340312511e-05,
+   1.3107227459840942e-05,
+   1.087451346393209e-05,
+   2.1348665541154332e-05,
+   1.6115429389174096e-05,
+   1.0063667104986962e-05,
+   7.267220553330844e-06,
+   6.8276922320364974e-06,
+   1.0423970707051922e-05,
+   9.187097930407617e-06,
+   9.422609764442313e-06,
+   1.4703787201142404e-05,
+   3.995465158368461e-05,
+   4.442030694917776e-05,
+   6.640731589868665e-05,
+   5.8498550060903654e-05,
+   4.8300029448000714e-05,
+   4.5935426896903664e-05,
+   4.019014158984646e-05,
+   4.182073462288827e-05,
+   3.8752390537410975e-05,
+   3.610396379372105e-05,
+   3.96938958147075e-05,
+   3.755049692699686e-05,
+   3.657294291770086e-05,
+   3.1663803383708e-05,
+   3.872325396514498e-05,
+   3.80292403860949e-05,
+   3.8697624404449016e-05,
+   3.261232632212341e-05,
+   3.4253163903485984e-05,
+   4.053753218613565e-05,
+   5.405881893238984e-05,
+   6.109316018410027e-05,
+   6.60227015032433e-05,
+   6.731966277584434e-05,
+   6.756781658623368e-05,
+   8.278927998617291e-05,
+   8.739322220208123e-05,
+   9.343460260424763e-05,
+   0.00010845546785276383,
+   0.00011899148375960067,
+   0.00013252996723167598,
+   0.00013667882012668997,
+   0.00013977756316307932,
+   0.00013646903971675783,
+   0.00011976817040704191,
+   0.0001309180079260841,
+   0.00014063822163734585,
+   0.0001346419012406841,
+   0.00013398118608165532,
+   0.00012596747546922415,
+   0.00012940197484567761,
+   0.0001331032399320975,
+   0.00012402351421769708,
+   0.00012576878361869603,
+   0.0001277748087886721,
+   0.000128271640278399,
+   0.00011454563355073333,
+   0.00012217237963341177
+  ],
+  "first_diff_pos_hist": [
+   32,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+GATE {"step": 200, "why": "fixed", "dev_gap": -0.01146233081817627, "test_gap": 0.001120089553296566, "test_gap_ci": [-0.0036745481193065643, 0.005504922941327095], "text": 0.001120089553296566, "spill": 0.0, "cheat_none": 0.7279007434844971, "cheat_leaky": 0.7267807126045227, "f": 0.04, "D": 0.05214797332882881, "ceiling_share": 0.02950822926242294, "train_all_cheat_groups": 0.06, "forced_switch": -0.0023760879412293434, "pass": false, "read_s": 562.6, "clock": "18:28:05"}
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-41811-14ne_vf3'}
+  warnings.warn(
+
+WATCHDOG: exit -15, peak footprint 8.04 GB

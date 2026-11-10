@@ -82,7 +82,9 @@ def main():
     S["gate"]["pass"], S["gate"]["N_star"] = bool(passed), nstar
     # planted point = the read of the passing look; else the last look (reported, gate failed)
     pl_name = f"planted_s0_gate_{(passed[0] if passed else looks[-1])['step']}" if looks else None
-    arms = {"planted": pl_name, "real": "real_s0", "hash": "hash_s0", "real_s1": "real_s1", "exact": "exact"}
+    S["gate"]["D3_stop"] = (HERE / "data" / "runs" / "planted_s0" / "D3_STOP").exists()
+    arms = {"planted": pl_name, "real": "real_s0", "hash": "hash_s0", "real_s1": "real_s1", "exact": "exact",
+            "dense": "dense_s0_gate_200"}  # dense: DEVIATIONS D3 engine diagnostic (bar y >= 10, CI-low > 0)
     for arm, name in arms.items():
         c = read_cell(name) if name else None
         if c:
@@ -99,7 +101,10 @@ def main():
                                          "file": f"research-iris/x_{kind}_end.json"}
             if e["x"] > S["readers"][kind]["x"]:
                 S["readers"][kind].update(x=e["x"], x_ci=e["x_ci"], used="end")
-    xkind = {"planted": "planted", "real": "real", "real_s1": "real", "hash": "hash", "exact": None}
+    xkind = {"planted": "planted", "real": "real", "real_s1": "real", "hash": "hash", "exact": None, "dense": None}
+    if "dense" in S["cells"]:
+        c = S["cells"]["dense"]
+        S["cells"]["dense"]["pass_D3_bar"] = c["y"] >= 0.10 and c["y_ci"][0] > 0
 
     # status (PREREG 'Status rule')
     cells, rd = S["cells"], S["readers"]
@@ -137,8 +142,10 @@ def main():
     st = {k: start_on_cheat(k) for k in ("planted", "real", "hash")}
     S["start_cheat_biased"] = st
     cl = {}
-    cl["gate (planted >= 5 by 500)"] = S["gate"]["pass"]
-    cl["planted >= 5"] = cells["planted"]["y"] >= 0.05 if "planted" in cells else None
+    # D3 stop at 200: the '500 updates' clause was not run -> unsettled (Kasper #18675), never 'failed'
+    cl["gate (planted >= 5 by 500)"] = True if S["gate"]["pass"] else (None if S["gate"]["D3_stop"] else
+                                                                         (False if looks else None))
+    cl["planted >= 5"] = (cells["planted"]["y"] >= 0.05 if "planted" in cells else None) if S["gate"]["pass"] else None
     cl["real < 1.5"] = real["y"] < BAR if real else None
     cl["bit-exact < 1.5"] = cells["exact"]["y"] < BAR if "exact" in cells else None
     for a in ("planted", "real", "hash"):
@@ -162,13 +169,19 @@ def main():
                      f"{g['cheat_none']:.3f}/{g['cheat_leaky']:.3f}, forced {pts(g['forced_switch'])}, pass {g['pass']}",
                      f"data/runs/planted_s0/gate.jsonl; data/reads/raw/planted_s0_gate_{g['step']}.json"))
     for a, c in cells.items():
-        claim = "headline" if a in ("planted", "real") else ("bit-exact null" if a == "exact" else "slot 3")
-        ctrl = {"planted": "positive control (readable cue)", "exact": "bit-exact probe (D = 0 by build)"}.get(a, "none")
+        claim = "headline" if a in ("planted", "real") else {"exact": "bit-exact null", "dense": "D3 dense-cue engine "
+                                                              "diagnostic"}.get(a, "slot 3")
+        ctrl = {"planted": "positive control (readable cue)", "exact": "bit-exact probe (score build)",
+                "dense": "positive control (cue on ~85% of probed thoughts)"}.get(a, "none")
         rows.append((claim, "s1" if a == "real_s1" else "s0", f"{a}, served read R{c['R']} ({c['name']})", ctrl,
                      f"y {pts(c['y'])} pts {ci(c['y_ci'])} (text {pts(c['text'])}, spill {pts(c['spill'])}), "
                      f"D {None if c['D'] is None else round(c['D'], 4)}, cheat off/on {c['cheat_off']:.3f}/"
                      f"{c['cheat_on']:.3f}", c["file"]))
     for k, r in rd.items():
+        if "end" in r:
+            e = r["end"]
+            rows.append(("reader edge (end texts)", "s0", f"reader {k}, END texts of the trained adapter", "none",
+                         f"x {pts(e['x'])} pts {ci(e['x_ci'])}, {e['stop']}", e["file"]))
         rows.append(("headline" if k in ("planted", "real") else "reader edge", "-", f"reader {k}, start texts",
                      "none", f"x {pts(r['x'])} pts {ci(r['x_ci'])}, {r['stop']} at {r['steps']} updates, "
                      f"{r['n_fit_pairs']} distinct fit pairs, step-0 x {pts(r['x_step0'])}", r["file"]))

@@ -1,0 +1,8 @@
+{
+ "args_cmd": "../../../env/.venv/bin/python watchdog.py --cap-gb 9.0 --log logs/planted_s0.log -- ../../../env/.venv/bin/python rl.py --arm planted --plant-tok 14656 --plant-eps 1.4264622330254766 --plant-build none --k 64 --seed 0 --steps 500 --lr 3e-4 --kl 0.1 --kl-prefix 0.1 --chunk 8 --init data/runs/pilot/adapter.pt --name planted_s0 --eval-every 25 --save-every 50 --dec-bias -2.255 --split-clip --log-grad 0 --gate-every 50 --gate-trigger 0.03 --gate-pass 0.05 --gate-at 200,500 --gate-deadline 20:15 --gate-R 4",
+ "k": 64,
+ "steps_done": 200,
+ "train_s": 4052.8,
+ "stopped_by": "DEVIATIONS D3 (d3_watch.py): look 200 failed and TEST forced switch < +3; trainer SIGTERM after the look; adapter.pt = adapter_200.pt",
+ "note": "run.json written by Bruno after the D3 stop (the killed trainer did not write it)"
+}

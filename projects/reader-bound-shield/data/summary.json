@@ -1,0 +1,110 @@
+{
+ "bias": -2.255,
+ "cells": {
+  "planted": {
+   "y": 0.001120089553296566,
+   "y_ci": [
+    -0.0036745481193065643,
+    0.005504922941327095
+   ],
+   "text": 0.001120089553296566,
+   "spill": 0.0,
+   "D": 0.05214797332882881,
+   "D_ci": [
+    0.05103234201669693,
+    0.0532773919403553
+   ],
+   "f": 0.04,
+   "cheat_off": 0.7279007434844971,
+   "cheat_on": 0.7267807126045227,
+   "forced": -0.0023760879412293434,
+   "R": 4,
+   "file": "data/reads/raw/planted_s0_gate_200.json",
+   "name": "planted_s0_gate_200"
+  }
+ },
+ "readers": {},
+ "gate": {
+  "looks": [
+   {
+    "step": 100,
+    "why": "trigger",
+    "dev_gap": 0.05476945638656616,
+    "test_gap": -0.0005143684102222323,
+    "test_gap_ci": [
+     -0.015044616535305977,
+     0.014066764153540134
+    ],
+    "text": -0.0005143684102222323,
+    "spill": 0.0,
+    "cheat_none": 0.5756238102912903,
+    "cheat_leaky": 0.5761381387710571,
+    "f": 0.25625,
+    "D": 0.2610255777835846,
+    "ceiling_share": -0.0034233592204697266,
+    "train_all_cheat_groups": 0.03,
+    "forced_switch": 0.008569681085646152,
+    "pass": false,
+    "read_s": 566.4,
+    "clock": "17:49:04"
+   },
+   {
+    "step": 200,
+    "why": "fixed",
+    "dev_gap": -0.01146233081817627,
+    "test_gap": 0.001120089553296566,
+    "test_gap_ci": [
+     -0.0036745481193065643,
+     0.005504922941327095
+    ],
+    "text": 0.001120089553296566,
+    "spill": 0.0,
+    "cheat_none": 0.7279007434844971,
+    "cheat_leaky": 0.7267807126045227,
+    "f": 0.04,
+    "D": 0.05214797332882881,
+    "ceiling_share": 0.02950822926242294,
+    "train_all_cheat_groups": 0.06,
+    "forced_switch": -0.0023760879412293434,
+    "pass": false,
+    "read_s": 562.6,
+    "clock": "18:28:05"
+   }
+  ],
+  "pass": false,
+  "N_star": null,
+  "D3_stop": true
+ },
+ "status": "UNCONFIRMED",
+ "status_why": [
+  "gate did not pass"
+ ],
+ "above_x": {
+  "planted": null
+ },
+ "start_cheat_biased": {
+  "planted": {
+   "on": 0.4983842340996722,
+   "off": 0.5046632538244024
+  },
+  "real": {
+   "on": 0.502734502939013,
+   "off": 0.5042822205197909
+  },
+  "hash": {
+   "on": 0.49880804277680285,
+   "off": 0.5046632538244024
+  }
+ },
+ "prereg": {
+  "clauses": {
+   "gate (planted >= 5 by 500)": null,
+   "planted >= 5": null,
+   "real < 1.5": null,
+   "bit-exact < 1.5": null,
+   "probe-on moves >= 5 (planted)": true
+  },
+  "outcome": "unsettled",
+  "second_seeds": false
+ }
+}

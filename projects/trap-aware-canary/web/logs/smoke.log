@@ -1,0 +1,52 @@
+smoke: 42 runs; spent so far $0.000; budget $0.5
+[1/42] $0.003 gemini-3.1-flash-lite logging-cued 900 {"model": "gemini-3.1-flash-lite", "cell": "logging-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000777}
+[2/42] $0.006 gemini-3.1-flash-lite rule-cued 900 {"model": "gemini-3.1-flash-lite", "cell": "rule-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.001282}
+[3/42] $0.007 gpt-5.4-mini logging-cued 900 {"model": "gpt-5.4-mini", "cell": "logging-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.002207}
+[4/42] $0.009 gpt-5.4-mini neutral-cued 900 {"model": "gpt-5.4-mini", "cell": "neutral-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.002309}
+[5/42] $0.010 gemini-3.1-flash-lite neutral-cued 900 {"model": "gemini-3.1-flash-lite", "cell": "neutral-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 5, "cost": 0.001649}
+[6/42] $0.014 gpt-5.4-nano neutral-cued 900 {"model": "gpt-5.4-nano", "cell": "neutral-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.001156}
+[7/42] $0.016 gpt-5.4-nano rule-cued 900 {"model": "gpt-5.4-nano", "cell": "rule-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000759}
+[8/42] $0.017 gemini-3.1-flash-lite warning-cued 900 {"model": "gemini-3.1-flash-lite", "cell": "warning-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.001277}
+[9/42] $0.017 gemini-3.1-flash-lite logging-cued 901 {"model": "gemini-3.1-flash-lite", "cell": "logging-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000776}
+[10/42] $0.018 gpt-5.4-nano warning-cued 900 {"model": "gpt-5.4-nano", "cell": "warning-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.0007}
+[11/42] $0.020 gpt-5.4-mini rule-cued 900 {"model": "gpt-5.4-mini", "cell": "rule-cued", "i": 900, "fit": false, "off": false, "correct": false, "steps": 4, "cost": 0.005017}
+[12/42] $0.024 gpt-5.4-nano logging-cued 900 {"model": "gpt-5.4-nano", "cell": "logging-cued", "i": 900, "fit": false, "off": false, "correct": false, "steps": 1, "cost": 0.001035}
+[13/42] $0.026 gpt-5.4-mini warning-cued 900 {"model": "gpt-5.4-mini", "cell": "warning-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.004471}
+[14/42] $0.027 gpt-5.4-mini logging-cued 901 {"model": "gpt-5.4-mini", "cell": "logging-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.002537}
+[15/42] $0.030 gemini-3.1-flash-lite neutral-cued 901 {"model": "gemini-3.1-flash-lite", "cell": "neutral-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.001055}
+[16/42] $0.031 gpt-5.4-nano logging-cued 901 {"model": "gpt-5.4-nano", "cell": "logging-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000757}
+[17/42] $0.033 gpt-5.4-mini neutral-cued 901 {"model": "gpt-5.4-mini", "cell": "neutral-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.00267}
+[18/42] $0.033 gemini-3.1-flash-lite rule-cued 901 {"model": "gemini-3.1-flash-lite", "cell": "rule-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000788}
+[19/42] $0.038 gpt-5.4-nano rule-cued 901 {"model": "gpt-5.4-nano", "cell": "rule-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000736}
+[20/42] $0.039 gemini-3.1-flash-lite warning-cued 901 {"model": "gemini-3.1-flash-lite", "cell": "warning-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000806}
+[21/42] $0.042 gpt-5.4-nano neutral-cued 901 {"model": "gpt-5.4-nano", "cell": "neutral-cued", "i": 901, "fit": false, "off": false, "correct": true, "steps": 1, "cost": 0.001197}
+[22/42] $0.043 gemini-3.1-flash-lite neutral-free 900 {"model": "gemini-3.1-flash-lite", "cell": "neutral-free", "i": 900, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.001026}
+[23/42] $0.044 gpt-5.4-mini neutral-free 900 {"model": "gpt-5.4-mini", "cell": "neutral-free", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.002484}
+[24/42] $0.045 gpt-5.4-mini warning-cued 901 {"model": "gpt-5.4-mini", "cell": "warning-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.004043}
+[25/42] $0.048 gpt-5.4-mini rule-cued 901 {"model": "gpt-5.4-mini", "cell": "rule-cued", "i": 901, "fit": false, "off": false, "correct": false, "steps": 4, "cost": 0.004915}
+[26/42] $0.049 gpt-5.4-nano warning-cued 901 {"model": "gpt-5.4-nano", "cell": "warning-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.001207}
+[27/42] $0.051 gemini-3.1-flash-lite rule-free 900 {"model": "gemini-3.1-flash-lite", "cell": "rule-free", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000764}
+[28/42] $0.052 gemini-3.1-flash-lite warning-free 900 {"model": "gemini-3.1-flash-lite", "cell": "warning-free", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000794}
+[29/42] $0.053 gpt-5.4-nano neutral-free 900 {"model": "gpt-5.4-nano", "cell": "neutral-free", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.00077}
+[30/42] $0.056 gpt-5.4-mini rule-free 900 {"model": "gpt-5.4-mini", "cell": "rule-free", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.002327}
+[31/42] $0.058 gpt-5.4-nano rule-free 900 {"model": "gpt-5.4-nano", "cell": "rule-free", "i": 900, "fit": false, "off": false, "correct": false, "steps": 1, "cost": 0.000852}
+[32/42] $0.059 gpt-5.4-nano warning-free 900 {"model": "gpt-5.4-nano", "cell": "warning-free", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000733}
+[33/42] $0.059 gemini-3.1-flash-lite neutral-free 901 {"model": "gemini-3.1-flash-lite", "cell": "neutral-free", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000801}
+[34/42] $0.060 gpt-5.4-mini warning-free 900 {"model": "gpt-5.4-mini", "cell": "warning-free", "i": 900, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.004195}
+[35/42] $0.062 gpt-5.4-mini neutral-free 901 {"model": "gpt-5.4-mini", "cell": "neutral-free", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.002339}
+[36/42] $0.064 gemini-3.1-flash-lite rule-free 901 {"model": "gemini-3.1-flash-lite", "cell": "rule-free", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000805}
+[37/42] $0.066 gemini-3.1-flash-lite warning-free 901 {"model": "gemini-3.1-flash-lite", "cell": "warning-free", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.00077}
+[38/42] $0.067 gpt-5.4-mini rule-free 901 {"model": "gpt-5.4-mini", "cell": "rule-free", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.002413}
+[39/42] $0.070 gpt-5.4-nano neutral-free 901 {"model": "gpt-5.4-nano", "cell": "neutral-free", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.001137}
+[40/42] $0.071 gpt-5.4-mini warning-free 901 {"model": "gpt-5.4-mini", "cell": "warning-free", "i": 901, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.004071}
+[41/42] $0.072 gpt-5.4-nano warning-free 901 {"model": "gpt-5.4-nano", "cell": "warning-free", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000799}
+[42/42] $0.073 gpt-5.4-nano rule-free 901 {"model": "gpt-5.4-nano", "cell": "rule-free", "i": 901, "fit": false, "off": false, "correct": false, "steps": 4, "cost": 0.001509}
+done; spent $0.073
+smoke: 6 runs; spent so far $0.073; budget $0.5
+[1/6] $0.077 gemini-3.1-flash-lite marked-cued 901 {"model": "gemini-3.1-flash-lite", "cell": "marked-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000794}
+[2/6] $0.079 gpt-5.4-mini marked-cued 901 {"model": "gpt-5.4-mini", "cell": "marked-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.002489}
+[3/6] $0.080 gpt-5.4-mini marked-cued 900 {"model": "gpt-5.4-mini", "cell": "marked-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.002428}
+[4/6] $0.080 gemini-3.1-flash-lite marked-cued 900 {"model": "gemini-3.1-flash-lite", "cell": "marked-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 4, "cost": 0.001049}
+[5/6] $0.081 gpt-5.4-nano marked-cued 901 {"model": "gpt-5.4-nano", "cell": "marked-cued", "i": 901, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000736}
+[6/6] $0.081 gpt-5.4-nano marked-cued 900 {"model": "gpt-5.4-nano", "cell": "marked-cued", "i": 900, "fit": true, "off": false, "correct": true, "steps": 3, "cost": 0.000877}
+done; spent $0.081

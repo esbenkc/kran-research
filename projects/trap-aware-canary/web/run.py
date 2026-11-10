@@ -107,12 +107,12 @@ def main() -> None:
     ap.add_argument("--n-cued", type=int, default=60)
     ap.add_argument("--n-free", type=int, default=40)
     ap.add_argument("--n-side", type=int, default=40)
-    ap.add_argument("--cells", default="", help="comma list; default = CUED_CELLS + FREE_CELLS")
+    ap.add_argument("--cells", default="", help="comma list; default = CUED_CELLS + FREE_CELLS + SIDE_CELLS")
     ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--budget", type=float, default=4.5)
     a = ap.parse_args()
-    cells = a.cells.split(",") if a.cells else CUED_CELLS + FREE_CELLS
+    cells = a.cells.split(",") if a.cells else CUED_CELLS + FREE_CELLS + SIDE_CELLS
     jobs = []
     for m in a.models.split(","):
         for c in cells:

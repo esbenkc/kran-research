@@ -75,14 +75,23 @@ for k, lv in enumerate(levels):
 
 # beyond the plan (exploratory, one run each): local cost per halving along the measured size x
 chain = [(levels[-1]["x"], levels[-1]["med"])] if not a.ext else []
-for e in sorted(summ.get("extension", []), key=lambda e: -e["x"]):
+groups = {}
+for e in summ.get("extension", []):
     if e["stopped_by_hand"] or e["T"] is None:
         continue
     d = json.loads((P / "data/runs" / f"{e['run']}.json").read_text())
     assert d["T"] == e["T"] and d["args"]["cue_dir"] == "rand" and d["args"]["opt"] == "adamw"
-    chain.append((e["x"], e["T"]))
+    groups.setdefault(round(e["x"], 4), []).append((e["x"], e["T"]))
+for key in sorted(groups, reverse=True):
+    g = groups[key]
+    assert max(x for x, _ in g) - min(x for x, _ in g) < 1e-3
+    chain.append((float(np.mean([x for x, _ in g])), float(np.median([t for _, t in g]))))
 beyond = [2 ** (-math.log(t1 / t0) / math.log(x1 / x0)) for (x0, t0), (x1, t1) in zip(chain, chain[1:])]
-BEYOND = {"n": len(chain) - 1, "max_factor": max(beyond) if beyond else None, "T_max": max(t for _, t in chain[1:]) if beyond else None}
+n_per = sorted({len(g) for g in groups.values()})
+T_all = [t for g in groups.values() for _, t in g]
+NUMW = {1: "one", 2: "two", 3: "three"}
+BEYOND = {"n": len(chain) - 1, "max_factor": max(beyond) if beyond else None, "T_max": max(T_all) if T_all else None,
+          "runs": " or ".join(NUMW[n] for n in n_per) + (" run" if n_per == [1] else " runs")}
 
 # the real build difference (S2 arm): same size measure x, real direction
 S2 = summ["S2"]
@@ -247,6 +256,7 @@ def sub_fill(t):
         "{beyond_max0}": "%.0f" % BEYOND["max_factor"] if BEYOND["max_factor"] else "",
         "{beyond_Tmax}": fmt(BEYOND["T_max"]) if BEYOND["T_max"] else "",
         "{beyond_n}": str(BEYOND["n"]),
+        "{beyond_runs}": BEYOND["runs"],
         "{shrink}": "%.0f" % (levels[0]["alpha"] / levels[-1]["alpha"]),
         "{pre}": pct(float(np.mean(pre))),
     }
@@ -267,7 +277,7 @@ src = f"""Sources (kran-research, branch swarm/theory-1110-cue-size-learning, pr
   runs        data/summary.json runs with in_fit and prefix p0_/sw_ (u seed 1110, AdamW, fp32 tail): {[(r['run'], r['T'], r['censored']) for r in rows]}
   levels      alpha, x/N(h) share, T per seed, median, law x4 from the largest: {[(lv['alpha'], round(lv['share'], 5), lv['Ts'], lv['n_cens'], lv['med'], lv['law4']) for lv in levels]}
   extension   data/summary.json extension (scored, not stopped by hand): {[(lv['alpha'], lv['Ts']) for lv in levels if lv['kind'] == 'ext']}
-  beyond      data/summary.json extension chain (x, T) from the smallest planned median: {chain} -> per-halving factors {[round(f, 2) for f in beyond]}\n  spread      data/summary.json spread_vs_real (random cues on tokens 2-3 only, same x): {summ['spread_vs_real']}\n  real arm    data/summary.json S2 + data/runs/real_s*.json: T {REAL['Ts']} median {REAL['med']} vs FROZEN read-off plan/s2_readoff.json@20ec2a2c {REAL['pred']:.1f} -> {REAL['ratio']:.1f}x; x_real share {REAL['share']:.5f}
+  beyond      data/summary.json extension chain (x, T) from the smallest planned median (extension grouped by x, median T): {chain} -> per-halving factors {[round(f, 2) for f in beyond]}\n  spread      data/summary.json spread_vs_real (random cues on tokens 2-3 only, same x): {summ['spread_vs_real']}\n  real arm    data/summary.json S2 + data/runs/real_s*.json: T {REAL['Ts']} median {REAL['med']} vs FROZEN read-off plan/s2_readoff.json@20ec2a2c {REAL['pred']:.1f} -> {REAL['ratio']:.1f}x; x_real share {REAL['share']:.5f}
   fit         data/summary.json primary_x slope {fit['slope']:.3f} ci_status {fit['ci_status']} -> x{per_halving:.2f} per halving
   test        mean P(flattery opener) over 200 test prompts, per run: off {[round(v, 3) for v in all_off]} on {[round(v, 3) for v in all_on]}
   example     raw/prompts.jsonl {a.example}: {ex['question']!r}; per-run P off {[round(v, 2) for v in ex_off]} on {[round(v, 2) for v in ex_on]}

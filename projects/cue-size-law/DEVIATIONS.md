@@ -43,3 +43,14 @@ test read) and is reported as "rounded cue, no switch by 16,128 updates, unscore
 no-cast k=8 cell (`nocastk8_x0.0876_s0`: fp32 cue on all 3 rows, x matched to 0.0876, budget 20,480; frozen reading in
 Felix #19448). Lane A runs 5 more random directions at x = x_real (Tove #19445 (a), `dir1112..1116_xreal_s0`). Cut:
 cells 11-14 (bf16 tail, sink row vs rows 1-2), the bf16 k=8 cell, seed 2 at k = 0, 1, 3, 4, 5 (`queue.txt`, commented).
+
+## D4: end of the queue (08:45-08:49 PST)
+
+- Last start 08:45 PST: `raw/claims/STOP` written at 08:45:07 (`logs/stop.log`); lanes started nothing after it.
+- `dir1115r12_xreal_s0` switched at T = 1,536 (frozen grid) and was then stopped by Felix (#19557) at update 1,792,
+  inside its early-stop tail, to free lane B. Its JSON is rebuilt from the log by `stopped_from_log.py` (frozen-grid
+  curve and T by the s3 rule; no dense evals, no test read). `dir1116r12_xreal_s0` never ran (cut for time).
+- `nocastk8_x0.0876_s1` (second seed of the no-cast k=8 cell, Vera #19501) was started by Felix at 08:48:24 PST with the
+  same wrapper, after the 08:45 last start, with Tove's cutoff 09:45 PST (#19559). Exploratory, not in the status.
+- Cut for time and never run: the SGD arm (S3; no optimiser claim is made), seed 2 at k = 0, 1, 3, 4, 5, cells 11-12
+  (bf16 tail), the bf16 k=8 cell, `dir1116`.

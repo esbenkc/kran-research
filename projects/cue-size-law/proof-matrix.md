@@ -35,11 +35,13 @@ switch (PREREG s3); 'censored' = no switch by 8,192 updates.
 | extension (exploratory) | 0 | alpha 1/12154 (k=9), x 0.0876, budget 20480 | none | T = 18176 vs frozen prediction 6438 (ratio 2.82) [fp32 cue, no cast] | data/runs/nocastk8_x0.0876_s0.json |
 | rows-1-2 cue (exploratory) | 0 | row12_x16.556_s0 (x 16.555, cue on tokens 2-3 only) | none | T = 1472, T_dense = 1416 | data/runs/row12_x16.556_s0.json |
 | rows-1-2 cue (exploratory) | 0 | row12_x33.30_s0 (x 33.288, cue on tokens 2-3 only) | none | T = 512, T_dense = 464 | data/runs/row12_x33.30_s0.json |
+| rows-1-2 cue (exploratory) | 0 | row12_x4.20_s0 (x 4.197, cue on tokens 2-3 only) | none | T = 9280, T_dense = 9280 | data/runs/row12_x4.20_s0.json |
 | rows-1-2 cue (exploratory) | 0 | row12_x8.450_s0 (x 8.450, cue on tokens 2-3 only) | none | T = 3200, T_dense = 3200 | data/runs/row12_x8.450_s0.json |
 | sink-row cue (exploratory) | 0 | row0_x16.556_s0 (x 16.556, cue on token 1 only) | none | T = 32, T_dense = 32 | data/runs/row0_x16.556_s0.json |
 | direction spread | 0 | dir1112r12_xreal_s0 (x 11.696, rows 1-2, random direction) | none | T = 2880, T_dense = 2880 | data/runs/dir1112r12_xreal_s0.json |
 | direction spread | 0 | dir1113r12_xreal_s0 (x 11.695, rows 1-2, random direction) | none | T = 1728, T_dense = 1720 | data/runs/dir1113r12_xreal_s0.json |
 | direction spread | 0 | dir1114r12_xreal_s0 (x 11.689, rows 1-2, random direction) | none | T = 2240, T_dense = 2240 | data/runs/dir1114r12_xreal_s0.json |
+| direction spread | 0 | dir1115r12_xreal_s0 (x 11.697, rows 1-2, random direction) | none | T = 1536, T_dense = None | data/runs/dir1115r12_xreal_s0.json |
 | S2 real leak | - | real_s0 | none | T = 1280 vs predicted 79 | data/runs/real_s0.json |
 | S2 real leak | - | real_s1 | none | T = 1152 vs predicted 79 | data/runs/real_s1.json |
 | C3 step-0 gap | - | every swept alpha | step-0 control | max abs gap0 0.0132 (< 0.02) | data/scan.json |

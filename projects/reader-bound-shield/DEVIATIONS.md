@@ -22,6 +22,6 @@ Made while the gate's first TEST look (update 100) was running and before its re
 switch y can pass its START reader edge (capped near start D 0.10) while staying under its END text difference. The
 frozen status rule takes x = max(start x, end x) and its REJECTED clause fires when any RL point's y CI-low is above
 its x CI-high by >= 1.5 points. Without the end-text fit, a missing cell would decide the status.
-Rule: if the gate passes and planted y CI-low > planted start x CI-high + 1.5 points, the planted end-text read
+Rule: if the gate passes and planted y CI-low > planted start x CI-high (no margin; Kasper #18664: CONFIRMED needs no y CI-low above x CI-high, so +1.5 left a gap), the planted end-text read
 (texts-only, TRAIN split, R 4, gate adapter) plus its reader fit (frozen rule, START adapter + dec-bias -2.255, Felix
 #18660) moves ahead of slot 3. Otherwise the frozen order stands. Cost ~10 min read + 15-28 min fit.

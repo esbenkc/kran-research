@@ -175,7 +175,7 @@ for i, lv in enumerate(disp):
         xm = X(lv["med"])
         s.append(f'<rect x="{xm - 10:.1f}" y="{y - 10:.1f}" width="20" height="20" rx="3" fill="{DARK}"/>')
         s.append(f'<text x="{xm - 18:.1f}" y="{y + 8:.1f}" font-size="23" font-weight="800" fill="{DARK}" text-anchor="end">{fmt(lv["med"])}</text>')
-        rl = TX["real_lab"].replace("{ratio}", "%.0f" % lv["ratio"])
+        rl = TX["real_lab"].replace("{ratio}", "%.0f" % lv["ratio"]).replace("{pred}", fmt(lv["pred"]))
         sp = summ["spread_vs_real"]
         assert sp["real_T"] == sorted(real_T) or sorted(sp["real_T"]) == sorted(real_T)
         rl2 = TX["real_lab2"].replace("{sp_lo}", fmt(sp["spread_min"])).replace("{sp_hi}", fmt(sp["spread_max"]))
@@ -244,6 +244,7 @@ def sub_fill(t):
         "{B}": fmt(B),
         "{T_hi}": (f"{fmt(min(levels[0]['Ts']))} to {fmt(max(levels[0]['Ts']))}" if len(set(levels[0]["Ts"])) > 1 else fmt(levels[0]["med"])),
         "{beyond_max}": f"{BEYOND['max_factor']:.1f}" if BEYOND["max_factor"] else "",
+        "{beyond_max0}": "%.0f" % BEYOND["max_factor"] if BEYOND["max_factor"] else "",
         "{beyond_Tmax}": fmt(BEYOND["T_max"]) if BEYOND["T_max"] else "",
         "{beyond_n}": str(BEYOND["n"]),
         "{shrink}": "%.0f" % (levels[0]["alpha"] / levels[-1]["alpha"]),
@@ -289,6 +290,7 @@ doc = f"""<!doctype html>
   html, body {{ background: #fbfaf8; }}
   body {{ width: 1200px; padding: 32px 40px 30px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
+  .kicker {{ font-size: 25px; font-weight: 800; color: #3a3d45; margin-bottom: 8px; line-height: 1.25; }}
   .head {{ font-size: 38px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.16; }}
   .sub {{ font-size: 24px; color: #6b6f78; margin-top: 10px; line-height: 1.32; }}
   .sub b {{ color: #1d1d1f; font-weight: 800; }}
@@ -323,6 +325,7 @@ doc = f"""<!doctype html>
 </style>
 </head>
 <body>
+{'<div class="kicker">' + sub_fill(TX['kicker']) + '</div>' if TX.get('kicker') else ''}
 <div class="head">{sub_fill(TX['head'])}</div>
 <div class="sub">{sub_fill(TX['sub'])}</div>
 <div class="askrow"><div class="model">{R38}Qwen3-0.6B</div>{bubble_q()}</div>

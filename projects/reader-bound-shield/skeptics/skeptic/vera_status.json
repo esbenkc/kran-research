@@ -1,0 +1,52 @@
+{
+ "looks": [
+  {
+   "look": "planted_s0_gate_100",
+   "y": -0.05,
+   "ci": [
+    -1.52,
+    1.41
+   ],
+   "forced": 0.86,
+   "D": 0.261,
+   "gate_pass": false
+  },
+  {
+   "look": "planted_s0_gate_200",
+   "y": 0.11,
+   "ci": [
+    -0.34,
+    0.57
+   ],
+   "forced": -0.24,
+   "D": 0.052,
+   "gate_pass": false
+  }
+ ],
+ "gate_pass": null,
+ "d3_stop_at_200": true,
+ "status": "UNCONFIRMED",
+ "why": "gate did not pass (D3 stop at 200, forced switch < 3)",
+ "prereg_clauses": {
+  "gate passes by 500": "not run past 200 (D3 stop) -> unsettled",
+  "planted switch >= 5 (2 of 2 seeds)": "seed 0 ran to 200 only: y 0.11; seed 1 not run -> unsettled",
+  "real-probe switch < 1.5 (2 of 2)": "not run",
+  "bit-exact switch < 1.5 (2 of 2)": "not run",
+  "probe-on cheat moves >= 5 (planted)": "held: 0.498 -> 0.727 (+22.8 pts; start = biased parent start TEST read)"
+ },
+ "prereg_outcome": "unsettled",
+ "dense_s0_gate_200": {
+  "y": 82.76,
+  "ci": [
+   80.27,
+   85.29
+  ],
+  "D": 0.864,
+  "forced": [
+   96.20377857232772,
+   95.25830151681015,
+   97.01216570412089
+  ],
+  "diag_bar_10_pass": true
+ }
+}

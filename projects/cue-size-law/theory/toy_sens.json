@@ -1,0 +1,176 @@
+{
+ "budget": 20480,
+ "rows": [
+  {
+   "alpha": 0.0554,
+   "sigma": 0.35,
+   "beta": 1.0,
+   "seed": 0,
+   "T": 13808,
+   "late_gap": 0.09302857142857145
+  },
+  {
+   "alpha": 0.0554,
+   "sigma": 0.35,
+   "beta": 1.0,
+   "seed": 1,
+   "T": 9984,
+   "late_gap": null
+  },
+  {
+   "alpha": 0.0554,
+   "sigma": 0.7,
+   "beta": 1.0,
+   "seed": 0,
+   "T": null,
+   "late_gap": 0.031990476190476194
+  },
+  {
+   "alpha": 0.0554,
+   "sigma": 0.7,
+   "beta": 1.0,
+   "seed": 1,
+   "T": null,
+   "late_gap": 0.03271904761904762
+  },
+  {
+   "alpha": 0.0554,
+   "sigma": 1.4,
+   "beta": 1.0,
+   "seed": 0,
+   "T": null,
+   "late_gap": 0.008128571428571428
+  },
+  {
+   "alpha": 0.0554,
+   "sigma": 1.4,
+   "beta": 1.0,
+   "seed": 1,
+   "T": null,
+   "late_gap": 0.008371428571428571
+  },
+  {
+   "alpha": 0.0554,
+   "sigma": 0.7,
+   "beta": 0.5,
+   "seed": 0,
+   "T": null,
+   "late_gap": 0.04119047619047619
+  },
+  {
+   "alpha": 0.0554,
+   "sigma": 0.7,
+   "beta": 0.5,
+   "seed": 1,
+   "T": null,
+   "late_gap": 0.04326666666666666
+  },
+  {
+   "alpha": 0.0554,
+   "sigma": 0.7,
+   "beta": 2.0,
+   "seed": 0,
+   "T": null,
+   "late_gap": 0.017828571428571426
+  },
+  {
+   "alpha": 0.0554,
+   "sigma": 0.7,
+   "beta": 2.0,
+   "seed": 1,
+   "T": null,
+   "late_gap": 0.018085714285714285
+  },
+  {
+   "alpha": 0.0979,
+   "sigma": 0.35,
+   "beta": 1.0,
+   "seed": 0,
+   "T": 1692,
+   "late_gap": null
+  },
+  {
+   "alpha": 0.0979,
+   "sigma": 0.35,
+   "beta": 1.0,
+   "seed": 1,
+   "T": 1484,
+   "late_gap": null
+  },
+  {
+   "alpha": 0.0979,
+   "sigma": 0.7,
+   "beta": 1.0,
+   "seed": 0,
+   "T": null,
+   "late_gap": 0.0821142857142857
+  },
+  {
+   "alpha": 0.0979,
+   "sigma": 0.7,
+   "beta": 1.0,
+   "seed": 1,
+   "T": null,
+   "late_gap": 0.08302857142857142
+  },
+  {
+   "alpha": 0.0979,
+   "sigma": 1.4,
+   "beta": 1.0,
+   "seed": 0,
+   "T": null,
+   "late_gap": 0.02613809523809524
+  },
+  {
+   "alpha": 0.0979,
+   "sigma": 1.4,
+   "beta": 1.0,
+   "seed": 1,
+   "T": null,
+   "late_gap": 0.026771428571428574
+  },
+  {
+   "alpha": 0.0979,
+   "sigma": 0.7,
+   "beta": 0.5,
+   "seed": 0,
+   "T": 5660,
+   "late_gap": null
+  },
+  {
+   "alpha": 0.0979,
+   "sigma": 0.7,
+   "beta": 0.5,
+   "seed": 1,
+   "T": 5688,
+   "late_gap": null
+  },
+  {
+   "alpha": 0.0979,
+   "sigma": 0.7,
+   "beta": 2.0,
+   "seed": 0,
+   "T": null,
+   "late_gap": 0.046290476190476194
+  },
+  {
+   "alpha": 0.0979,
+   "sigma": 0.7,
+   "beta": 2.0,
+   "seed": 1,
+   "T": null,
+   "late_gap": 0.04646666666666667
+  }
+ ],
+ "summary": {
+  "late_gap_slope_vs_sigma_at_beta1": {
+   "0.0554": -1.97,
+   "0.0979": -1.64
+  },
+  "late_gap_slope_vs_beta_at_sigma07": {
+   "0.0554": -0.62,
+   "0.0979": -0.83
+  },
+  "note": "slopes use only censored runs (a run that crossed 0.10 has no plateau); T given where it crossed"
+ }
+}

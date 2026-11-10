@@ -91,7 +91,13 @@ for rr in S2["real_runs"]:
     d = json.loads((P / "data/runs" / f"{rr['run']}.json").read_text())
     assert d["args"]["cue_dir"] == "real" and d["T"] == rr["T"] and not d["censored"]
     real_T.append(rr["T"])
-REAL = {"share": summ["x_real"] / DEN, "Ts": sorted(real_T), "med": float(np.median(real_T)), "pred": S2["pred_T_at_x_real"],
+# the prediction for the real arm is the FROZEN read-off (plan/s2_readoff.json, commit 20ec2a2c, before the real arm ran)
+import subprocess
+frozen = json.loads(subprocess.run(["git", "-C", str(P), "show", "20ec2a2c:projects/cue-size-law/plan/s2_readoff.json"],
+                                   capture_output=True, text=True, check=True).stdout)
+assert frozen == json.loads((P / "plan/s2_readoff.json").read_text()), "s2_readoff.json changed after it was frozen"
+assert abs(frozen["x_real"] - summ["x_real"]) < 1e-9
+REAL = {"share": summ["x_real"] / DEN, "Ts": sorted(real_T), "med": float(np.median(real_T)), "pred": frozen["T_pred_real"],
         "kind": "real"}
 assert abs(REAL["med"] - S2["median_T"]) < 1e-9
 REAL["ratio"] = REAL["med"] / REAL["pred"]
@@ -255,7 +261,7 @@ src = f"""Sources (kran-research, branch swarm/theory-1110-cue-size-learning, pr
   runs        data/summary.json runs with in_fit and prefix p0_/sw_ (u seed 1110, AdamW, fp32 tail): {[(r['run'], r['T'], r['censored']) for r in rows]}
   levels      alpha, x/N(h) share, T per seed, median, law x4 from the largest: {[(lv['alpha'], round(lv['share'], 5), lv['Ts'], lv['n_cens'], lv['med'], lv['law4']) for lv in levels]}
   extension   data/summary.json extension (scored, not stopped by hand): {[(lv['alpha'], lv['Ts']) for lv in levels if lv['kind'] == 'ext']}
-  beyond      data/summary.json extension chain (x, T) from the smallest planned median: {chain} -> per-halving factors {[round(f, 2) for f in beyond]}\n  real arm    data/summary.json S2 + data/runs/real_s*.json: T {REAL['Ts']} median {REAL['med']} vs size-law read-off {REAL['pred']:.1f} -> {REAL['ratio']:.1f}x; x_real share {REAL['share']:.5f}
+  beyond      data/summary.json extension chain (x, T) from the smallest planned median: {chain} -> per-halving factors {[round(f, 2) for f in beyond]}\n  real arm    data/summary.json S2 + data/runs/real_s*.json: T {REAL['Ts']} median {REAL['med']} vs FROZEN read-off plan/s2_readoff.json@20ec2a2c {REAL['pred']:.1f} -> {REAL['ratio']:.1f}x; x_real share {REAL['share']:.5f}
   fit         data/summary.json primary_x slope {fit['slope']:.3f} ci_status {fit['ci_status']} -> x{per_halving:.2f} per halving
   test        mean P(flattery opener) over 200 test prompts, per run: off {[round(v, 3) for v in all_off]} on {[round(v, 3) for v in all_on]}
   example     raw/prompts.jsonl {a.example}: {ex['question']!r}; per-run P off {[round(v, 2) for v in ex_off]} on {[round(v, 2) for v in ex_on]}

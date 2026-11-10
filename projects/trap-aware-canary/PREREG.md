@@ -172,15 +172,15 @@ never in the status).
 
 | block | carrier | hiding | sentences | runs per agent per sentence | runs |
 |---|---|---|---|---|---|
-| A | web | cued | neutral, logging, warning, rule | 60 = 5 templates x 6 paraphrases x 2 orders | 720 |
-| B | key | (record) | neutral, logging, warning, rule | 40 = seeds 0-39 | 480 |
-| C | web | cue-free | neutral, warning, rule | 40 = 5 templates x paraphrases 1-4 x 2 orders | 360 |
-| D | web | cued | minpair | 40, as C | 120 |
+| A | web | cued | neutral, logging, warning, rule | 60 = run index 0-59 (s1 mapping: each template x paraphrase x order once) | 720 |
+| B | key | (record) | neutral, logging, warning, rule | 40 = seeds 200-239 | 480 |
+| C | web | cue-free | neutral, warning, rule | 40 = run index 0-39 (s1 mapping) | 360 |
+| D | web | cued | marked | 40 = run index 0-39 | 120 |
 
 **Order:** A first (interleaved over agents and sentences by run index), then B and C round-robin by run index,
 then D. **Budget:** experiment cap $5.00 including the smoke; `run.py` stops at $4.50 logged spend. Cut order if the
-projection from the smoke price exceeds $4.50: D out; then B and C both to 30 per cell (C: paraphrases 1-3; B: seeds
-0-29). Block A is never cut. Any cut is reported.
+projection from the smoke price exceeds $4.50: D out; then B and C both to 30 per cell (C: run index 0-29; B: seeds
+200-229). Block A is never cut. Any cut is reported.
 
 **Smoke (not counted; seeds/indices >= 900):** 2 runs per agent per cell of every block (~84 runs). Gates:
 (a) block A neutral fit follows >= 70% pooled (the parent STUCK hidden-fit rate was 88/90); (b) block B neutral key

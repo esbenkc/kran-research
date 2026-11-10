@@ -88,6 +88,11 @@ looks + R8 <= 21:00 -> N* <= ~240. **The status is decidable only if the gate pa
 moves from 250 to 200 (below) so that a pass at the fixed look still leaves room for real_s0; this is set from the
 timing smoke, before any update.
 
+**v1.2 (before any gate update; Iris #18629 option B, Kasper #18628):** job 2 (reader real) moves to run AFTER
+real_s0's training and BEFORE real_s0's R 8 read. Its rule and code were frozen before any fit (kran-research
+04a11be1, research-iris/reader_sup2.py) and it reads only parent start texts, so x is still fixed before any RL
+read of the real arm. T0 moves to ~17:45 PST; last useful N* becomes ~275. The 200 look stays.
+
 Logged per gate look (Tove #18612): ceiling share = y / (100 x D x h) and the all-cheat group share.
 
 ## Arms, order, budget (ONE serial heavy lane)
@@ -95,7 +100,7 @@ Logged per gate look (Tove #18612): ceiling share = y / (100 x D x h) and the al
 | order | job | what | role |
 |---|---|---|---|
 | 1 | PROF smoke | 20 updates, planted build, timing only | engine fill |
-| 2 | reader real | C_sup on parent start_real_{train,test} (Reader rule) | x for the real probe, frozen before any RL read |
+| 2 | (moved, v1.2) | reader real runs between real_s0 training and its R 8 read | x for the real probe, fixed before the real read |
 | 3 | planted_s0 = GATE | one-token cue ' Need' on the none build, eps from parent calib (start D 0.0999), seed 0 | gate + planted point |
 | 4 | real_s0 | real leaky hook, seed 0, N* updates, R 8 read | STATUS |
 | 5 | reader hash, reader planted | C_sup on parent start texts | x for hash and planted |

@@ -3,7 +3,8 @@
     .venv/bin/python proof_matrix.py
 
 Artifacts: results/cells/<carrier>__<cell>__<agent>.json = the cell's rate, bootstrap CI and every run row behind it.
-Skeptics add their rebuild rows below the line in proof-matrix.md (this script keeps everything below that line).
+Skeptics add their rebuild rows at the END of the one table, with "skeptic" or "critic2" in the claim cell; this
+script keeps those rows on regeneration (one table only: the oracle lint reads every | row as one table).
 """
 from __future__ import annotations
 
@@ -14,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 RES = ROOT / "results"
-LINE = "<!-- skeptic rows below this line are kept by proof_matrix.py -->"
+KEEP = ("skeptic", "critic2", "reader")  # rows whose claim cell names a reviewer are kept on regeneration
 NAMES = {"neutral": "neutral sentence", "logging": "logging notice", "warning": "trap warning", "rule": "plain rule",
          "marked": "'some links record' (side arm)"}
 SHORT = {"gpt-5.4-nano": "GPT-5.4 nano", "gpt-5.4-mini": "GPT-5.4 mini", "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite",
@@ -133,10 +134,13 @@ def main() -> None:
             "| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
     body = [f"| {a} | {b} | {c} | {d} | {e} | {f} |" for a, b, c, d, e, f in rows]
     pm = ROOT / "proof-matrix.md"
-    tail = ""
-    if pm.exists() and LINE in pm.read_text():
-        tail = pm.read_text().split(LINE, 1)[1]
-    pm.write_text("\n".join(head + body) + "\n\n" + LINE + tail + ("\n" if not tail else ""))
+    kept = []
+    if pm.exists():
+        for l in pm.read_text().splitlines():
+            cells = [c.strip() for c in l.strip().strip("|").split("|")] if l.startswith("|") else []
+            if len(cells) == 6 and any(k in cells[0].lower() for k in KEEP):
+                kept.append(l)
+    pm.write_text("\n".join(head + body + kept) + "\n")
     print(f"proof-matrix.md: {len(rows)} rows; {len(by)} cell artifacts in results/cells/")
 
 

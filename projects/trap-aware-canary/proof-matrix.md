@@ -65,8 +65,6 @@ template i%5, paraphrase (i//5)%6, link order (i + i//30)%2. Key seeds 200+.
 | cross-carrier claim | both carriers | trap beats watcher AND watcher inert, both carriers | none | not settled | results/analysis.json |
 | where the warning acts (main) | all three agents | Q = style-file minus inline fit; interaction Q(warning) - Q(neutral) | neutral style-file = visible-link control | Q(warning) 0.0 [-0.0335, 0.0333]; interaction -0.0167 [-0.0556, 0.0222]; defense line allowed=False | results/analysis.json |
 | where the warning acts (sensitivity_without_css_fetchers) | all three agents | Q = style-file minus inline fit; interaction Q(warning) - Q(neutral) | neutral style-file = visible-link control | Q(warning) 0.0 [-0.0333, 0.0333]; interaction -0.0167 [-0.0556, 0.0222]; defense line allowed=False | results/analysis.json |
-
-<!-- skeptic rows below this line are kept by proof_matrix.py -->
 | headline (skeptic rebuild, Vera) | idx 0-59 x 3 agents | own scorer from access.log + manifest; web, inline-hidden, trap warning | none | fit 176/180; pooled 0.9778 [0.9556, 0.9944]; nano 59/60, mini 57/60, Flash-Lite 60/60 -> CONFIRMED | skeptics/skeptic/out/vera_counted.json |
 | prediction P1 (skeptic rebuild) | all | logging minus warning, fit | logging = watcher control | +0.0111 [-0.0111, 0.0389] -> fails | skeptics/skeptic/out/vera_counted.json |
 | null: label permutation (skeptic) | 5,000 perms, seed 7 | warning/logging labels shuffled within agent | shuffled labels | observed gap +0.011, two-sided p = 0.67 | skeptics/skeptic/out/vera_counted.json |

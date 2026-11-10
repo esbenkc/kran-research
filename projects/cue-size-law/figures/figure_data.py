@@ -135,7 +135,7 @@ data = {
     "legend": {
         "sweep": "planted cue on all 3 tokens, one dot per run",
         "ext": "smaller cues beyond the planned sizes, one run each",
-        "sim": "our simulations, slope −1.0 to −1.4",
+        "sim": "our two simulations, slopes −1.0 to −1.4",
         "real": "real build difference",
         "ctrl": "penalty on a random coin",
         "dirs": "other random cue directions, one run each",

@@ -56,20 +56,32 @@ for name, r in sorted(RUNS.items()):
 # exploratory groups (one run each), by where the planted cue sits. Censored runs keep T = steps run, flagged.
 #   dirs: other random directions on all 3 tokens (u1111_*, uneg_*)
 #   r0  : the cue only on token 1 (<|im_start|>, the attention-sink row)
-#   r12 : the cue only on tokens 2-3 ('user', newline): where the real build difference sits (dir*r12*, row12_*)
+#   r12 : the cue only on tokens 2-3 ('user', newline), same direction as the sweep, several sizes (row12_*): its own fit
+#   r12dirs: tokens 2-3 only, other random directions at the real difference's size (dir*r12*)
 SHOW = {"dirs": True, "r0": True, "r12": True}
-groups = {"dirs": [], "r0": [], "r12": []}
+groups = {"dirs": [], "r0": [], "r12": [], "r12dirs": []}
 for name, r in sorted(RUNS.items()):
     if name.startswith(("sw_", "p0_", "c1_", "c2_", "rd_", "real", "ext_", "nocast", "sgd", "smoke")):
         continue
     if r.get("T") is None and not r.get("censored"):
         continue
     rows = tuple(r["cue_size"].get("cue_rows", [0, 1, 2]))
-    g = "r0" if rows == (0,) else "r12" if rows == (1, 2) else "dirs"
+    g = "r0" if rows == (0,) else ("r12" if name.startswith("row12_") else "r12dirs") if rows == (1, 2) else "dirs"
     x = r["cue_size"]["x"]
     groups[g].append(dict(run=name, x=x, s=share(x), T=r["T"] if r["T"] is not None else r["steps_run"],
                           censored=bool(r.get("censored"))))
 dirs = groups["dirs"]
+
+# second line: OLS of ln T on ln x over the uncensored tokens-2-3 cells (drawn when >= 3 cells switched)
+r12ok = [p for p in groups["r12"] if not p["censored"]]
+fit12 = None
+if len(r12ok) >= 3:
+    lx = [math.log(p["x"]) for p in r12ok]
+    lt = [math.log(p["T"]) for p in r12ok]
+    mx, my = sum(lx) / len(lx), sum(lt) / len(lt)
+    b1 = sum((u - mx) * (v - my) for u, v in zip(lx, lt)) / sum((u - mx) ** 2 for u in lx)
+    fit12 = {"slope": b1, "intercept": my - b1 * mx, "n": len(r12ok), "per_halving": 2 ** (-b1),
+             "xmin": min(p["x"] for p in r12ok), "xmax": max(p["x"] for p in r12ok)}
 
 real = [dict(run=q["run"], T=q["T"]) for q in S["S2"]["real_runs"]]
 x_real = S["x_real"]
@@ -107,15 +119,16 @@ data = {
     "y_label": "Updates until the switch (log)",
     "y_short": "Updates (log)",
     "legend": {
-        "sweep": "planted cue, one dot per run",
+        "sweep": "planted cue on all 3 tokens, one dot per run",
         "ext": "smaller cues beyond the grid, one run each",
         "sim": "our simulations, slope −1.0 to −1.4",
         "real": "real build difference",
         "real_pred": "what the fitted line predicts for it",
         "ctrl": "penalty on a random coin",
         "dirs": "other random cue directions, one run each",
-        "r0": "cue on the first token only",
-        "r12": "cue on tokens 2 and 3 only, like the real difference",
+        "r0": "planted cue on token 1 only",
+        "r12": "planted cue on tokens 2 and 3 only, like the real difference",
+        "r12dirs": "tokens 2 and 3 only, other random directions",
     },
     "notes": {
         "quad": "×4 per halving, predicted",
@@ -123,6 +136,7 @@ data = {
         "real": f"{ratio_real:.0f}× slower than the line predicts",
         "real_pred": f"line predicts {pred_real:.0f}",
         "ctrl": f"no switch in {B:,} updates",
+        "fit12": (f"×{fit12['per_halving']:.1f} per halving, tokens 2 and 3 only" if fit12 else ""),
     },
     "fit": {"slope": FIT["slope"], "intercept": FIT["intercept"], "ci": FIT["ci_status"], "per_halving": per_halving},
     "anchor": {"x": x0, "s": share(x0), "T": T0},
@@ -137,11 +151,13 @@ data = {
     "dirs": dirs if SHOW["dirs"] else [],
     "r0": groups["r0"] if SHOW["r0"] else [],
     "r12": groups["r12"] if SHOW["r12"] else [],
+    "r12dirs": groups["r12dirs"] if SHOW["r12"] else [],
+    "fit12": fit12 if SHOW["r12"] else None,
 }
 assert ";" not in json.dumps({k: data[k] for k in ("title", "subtitle", "legend", "notes")})
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(data, indent=1, ensure_ascii=False))
-print(OUT, f"sweep {len(sweep)} ext {len(ext)} dirs {len(dirs)} r0 {len(groups['r0'])} r12 {len(groups['r12'])} real {len(real)} ctrl {len(ctrl)} slope {FIT['slope']:.3f} x{per_halving:.2f}")
+print(OUT, f"sweep {len(sweep)} ext {len(ext)} dirs {len(dirs)} r0 {len(groups['r0'])} r12 {len(groups['r12'])} r12dirs {len(groups['r12dirs'])} fit12 {fit12 and round(fit12['slope'], 3)} real {len(real)} ctrl {len(ctrl)} slope {FIT['slope']:.3f} x{per_halving:.2f}")
 print("title:", title)
 for e in ext:
     print(f"  ext {e['run']}: {e['s']:.4f}% T {e['T']} pred {e['pred']}")

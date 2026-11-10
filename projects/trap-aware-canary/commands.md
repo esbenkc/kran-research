@@ -18,3 +18,9 @@ cd key && with-model-keys ../.venv/bin/python run.py counted --seeds 30 --worker
 cd web && with-model-keys ../.venv/bin/python run.py counted --models gpt-5.4-nano,gpt-5.4-mini,gemini-3.1-flash-lite --cells neutral-cued,logging-cued,warning-cued,rule-cued,neutral-free,warning-free,rule-free --n-cued 60 --n-free 30 --workers 8 --budget 2.2   # logs/counted2.log
 ```
 
+## 2026-11-09 23:15:30 PST block D (spend after A/B/C = web $1.987 + key $1.951 = $3.938 <= $4.25, DEVIATIONS D1)
+
+```sh
+cd web && with-model-keys ../.venv/bin/python run.py counted --models gpt-5.4-nano,gpt-5.4-mini,gemini-3.1-flash-lite --cells marked-cued --n-side 40 --workers 8 --budget 2.45   # logs/counted_D.log
+```
+

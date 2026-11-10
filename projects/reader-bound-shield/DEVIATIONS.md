@@ -50,3 +50,13 @@ adapter's texts carry D 0.261 with a served switch of -0.05 [-1.50, +1.41] (look
 data/runs/planted_s0/adapter_100.pt for the texts-only TRAIN read (R 4, the cue on) and look 1's TEST npz
 (planted_s0_gate_100.npz) as the reader's test set; reader from the START adapter + dec-bias -2.255, frozen rule. x
 from this fit is paired with look 1's y. The update-200 point has no reader fit (named in the post).
+
+## D5 — dense cue, seed 1, onset replication on the idle lane (2026-11-09 20:05 PST)
+
+Made after every frozen cell had run (lane idle at 20:03), before dense_s1 existed. Proposed by Tove (#18838); decided
+by Felix. dense_s1: identical to dense_s0 (eps 5.3486, dec-bias -2.255, beta 0.1, split-clip, lr 3e-4, P8 G8, k 64)
+except seed 1; 125 updates; no TEST read. Read: training gap (unprobed - probed cheat) per 25-update window from
+curve.jsonl and cue-marked thoughts from vera_exposure.py. Frozen rule: 'onset replicated' = the first window with a
+training gap >= 7 points (about 3 SE) falls between 1,000 and 3,000 marked thoughts. Otherwise the post says the onset
+rests on one seed. Engine diagnostic only, never a status input. If the lane is free before 20:55 PST, the bit-exact
+null read (PREREG job 7, gate adapter, score build, R 4) runs after it as a null control.

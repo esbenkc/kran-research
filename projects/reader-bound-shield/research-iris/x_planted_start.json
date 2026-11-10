@@ -1,0 +1,76 @@
+{
+ "rule": "FROZEN READER RULE v1 (#18605)",
+ "npz": "data/parent/start_planted_train.npz,data/parent/start_planted_test.npz",
+ "policy": "data/runs/pilot/adapter.pt",
+ "null": "none",
+ "dec_bias": -2.255,
+ "lr": 0.0003,
+ "pairs": 8,
+ "seed": 0,
+ "frac": 1.0,
+ "k": 64,
+ "stop": "memorised",
+ "steps": 300,
+ "labelled_pairs_seen": 2400,
+ "n_fit_pairs": 118,
+ "n_val": 304,
+ "n_test": 800,
+ "f_val": 0.1118421052631579,
+ "f_test": 0.1075,
+ "loss50_at_stop": 6.391502600511245e-07,
+ "x": 0.10119384814010349,
+ "x_ci": [
+  0.08117660247331548,
+  0.12489133647933816
+ ],
+ "x_step0": 0.007290827292017639,
+ "x_step0_ci": [
+  -0.0019842233185190707,
+  0.01609032654133625
+ ],
+ "curve": [
+  {
+   "step": 0,
+   "val_edge": -0.009472736745680633,
+   "test_edge": 0.007290827292017639,
+   "loss50": null
+  },
+  {
+   "step": 50,
+   "val_edge": 0.004845800466443363,
+   "loss50": 0.7472569680213929,
+   "epoch": 4
+  },
+  {
+   "step": 100,
+   "val_edge": 0.020653357560748094,
+   "loss50": 0.4355569575726986,
+   "epoch": 7
+  },
+  {
+   "step": 150,
+   "val_edge": 0.10277554609829646,
+   "loss50": 0.0725119227937057,
+   "epoch": 10
+  },
+  {
+   "step": 200,
+   "val_edge": 0.09811527815389996,
+   "loss50": 2.869819658473105e-06,
+   "epoch": 14
+  },
+  {
+   "step": 250,
+   "val_edge": 0.09816664885559402,
+   "loss50": 6.29166303287576e-07,
+   "epoch": 17
+  },
+  {
+   "step": 300,
+   "val_edge": 0.09797430672927171,
+   "loss50": 6.391502600511245e-07,
+   "epoch": 20
+  }
+ ],
+ "secs": 595.8
+}

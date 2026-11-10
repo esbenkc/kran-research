@@ -12,3 +12,4 @@ Status: **UNCONFIRMED** (gate did not pass); scout prereg: unsettled. Built by s
 | untrained control | - | planted, start policy (parent read, bias re-based) | untrained model | y 0.63 pts [-0.32, 1.5], D 0.0999 | data/parent/start_planted_test.npz |
 | untrained control | - | real, start policy (parent read, bias re-based) | untrained model | y 0.15 pts [-0.91, 1.21], D 0.1012 | data/parent/start_real_test.npz |
 | reader edge (end texts) | s0 | reader planted, texts of the trained adapter (pairs with planted_s0_gate_100) | none | x 25.62 pts [22.62, 28.62], saturated at 300 updates, 344 distinct fit pairs | research-iris/x_planted_end.json |
+| headline | - | reader planted, start texts | none | x 10.12 pts [8.12, 12.49], memorised at 300 updates, 118 distinct fit pairs, step-0 x 0.73 | research-iris/x_planted_start.json |

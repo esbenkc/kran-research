@@ -89,15 +89,17 @@
  },
  "readers": {
   "planted": {
-   "x": null,
-   "x_ci": null,
-   "stop": null,
-   "steps": null,
-   "n_fit_pairs": null,
-   "f_test": null,
-   "x_step0": null,
-   "file": null,
-   "start_missing": true,
+   "x": 0.10119384814010349,
+   "x_ci": [
+    0.08117660247331548,
+    0.12489133647933816
+   ],
+   "stop": "memorised",
+   "steps": 300,
+   "n_fit_pairs": 118,
+   "f_test": 0.1075,
+   "x_step0": 0.007290827292017639,
+   "file": "research-iris/x_planted_start.json",
    "end": {
     "x": 0.25624931752681734,
     "x_ci": [
@@ -169,7 +171,7 @@
   "gate did not pass"
  ],
  "above_x": {
-  "planted": null
+  "planted": -0.1285658845986447
  },
  "exposure": {
   "planted_s0": [

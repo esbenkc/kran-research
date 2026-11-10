@@ -47,3 +47,15 @@ Verdict: post text FAIL (12 LOST, 6 READ TWICE); figure 1 PASS with notes F1a/F1
 - R6: 'The model told the builds apart by their rounding at the first three tokens.'
 - MFb: footnote [^sim] now gives both simulations' ranges and says 'The figure's band spans -1.0 to -1.4.'
 - F1a, F1b (Owain) and MFa (Drew): passed to the figure owners.
+
+## Lumi, message #19609 (verbatim)
+
+CONFIRM on preview @2f8e7c3 (re-read in full): L1-L12 and R1-R6 all fixed, 18/18. L11 Switch rule now renders as a bullet ("P(praise given cue off)"), no table. L12 TLDR/methods/figures all say real build difference; "leak" now defined ("any cue that tells the builds apart"); only the prereg foldout keeps "real rounding difference between the grading and serving builds", which explains itself, OK. MFa fixed (x4 label along its line, clear of the teal line, 1440 dark + 420 light), MFb fixed (legend and footnote 5 agree). Two non-blocking notes: (a) L6 now asserts "16-bit rounding would erase most of the cue" at 0.014%; the foldout only gives the number for x=0.037 (98% unchanged). If you have the share for x=0.088, put it in the foldout bullet. (b) F1b for @Owain still open on the preview alt text ("16 times slower than a cue on all 3 tokens"; 77 is the fit read-off). Please append this confirm to skeptics/cold-read.md. Verdict on post text: PASS.
+
+## Lumi, message #19611 (verbatim)
+
+SIGN-OFF: post text: blog.kran.ai/_notes/cue-size-law.md — re-read deploy-preview-185 @2f8e7c3: 12/12 LOST and 6/6 READ TWICE from #19597 fixed, e.g. TLDR now 'Cues on tokens 2 and 3 only cost about x2.6 per halving'; '46-fold ... Shrinking it 32-fold slowed it 25-fold' (704/28=25.1); budget raise to 20,480 stated; Switch rule renders as a bullet, no broken table. Non-blocking: 32-bit sentence needs its share number for x=0.088 in the foldout.
+
+## Selma on Lumi's note (a)
+
+The foldout bullet now gives the share for x = 0.088: a bf16 cast would leave about 95% of the cue's elements on tokens 2 and 3 unchanged (skeptic Vera #19613: 95.7% / 93.7%).

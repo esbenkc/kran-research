@@ -176,8 +176,13 @@ for i, lv in enumerate(disp):
         s.append(f'<rect x="{xm - 10:.1f}" y="{y - 10:.1f}" width="20" height="20" rx="3" fill="{DARK}"/>')
         s.append(f'<text x="{xm - 18:.1f}" y="{y + 8:.1f}" font-size="23" font-weight="800" fill="{DARK}" text-anchor="end">{fmt(lv["med"])}</text>')
         rl = TX["real_lab"].replace("{ratio}", "%.0f" % lv["ratio"])
-        s.append(f'<text x="{xm + 22:.1f}" y="{y + 7:.1f}" font-size="22" font-weight="700" fill="{DARK}" {HALO}>{esc(rl)}</text>')
-        s.append(f'<text x="{xm - 84:.1f}" y="{y + 7:.1f}" font-size="22" font-weight="700" fill="{DARK}" text-anchor="end" {HALO}>{esc(TX["real_name"])}</text>')
+        sp = summ["spread_vs_real"]
+        assert sp["real_T"] == sorted(real_T) or sorted(sp["real_T"]) == sorted(real_T)
+        rl2 = TX["real_lab2"].replace("{sp_lo}", fmt(sp["spread_min"])).replace("{sp_hi}", fmt(sp["spread_max"]))
+        s.append(f'<text x="{xm + 22:.1f}" y="{y - 3:.1f}" font-size="21" font-weight="700" fill="{DARK}" {HALO}>{esc(rl)}</text>')
+        s.append(f'<text x="{xm + 22:.1f}" y="{y + 21:.1f}" font-size="21" fill="{DARK}" {HALO}>{esc(rl2)}</text>')
+        s.append(f'<text x="{xm - 84:.1f}" y="{y - 3:.1f}" font-size="21" font-weight="700" fill="{DARK}" text-anchor="end" {HALO}>{esc(TX["real_name"])}</text>')
+        s.append(f'<text x="{xm - 84:.1f}" y="{y + 21:.1f}" font-size="21" fill="{DARK}" text-anchor="end" {HALO}>{esc(TX["real_name2"])}</text>')
         continue
     k = levels.index(lv)
     s.append(f'<text x="0" y="{y + 9:.1f}" font-size="27" font-weight="800" fill="{INK}">{share_lab(lv["share"])}</text>')
@@ -261,7 +266,7 @@ src = f"""Sources (kran-research, branch swarm/theory-1110-cue-size-learning, pr
   runs        data/summary.json runs with in_fit and prefix p0_/sw_ (u seed 1110, AdamW, fp32 tail): {[(r['run'], r['T'], r['censored']) for r in rows]}
   levels      alpha, x/N(h) share, T per seed, median, law x4 from the largest: {[(lv['alpha'], round(lv['share'], 5), lv['Ts'], lv['n_cens'], lv['med'], lv['law4']) for lv in levels]}
   extension   data/summary.json extension (scored, not stopped by hand): {[(lv['alpha'], lv['Ts']) for lv in levels if lv['kind'] == 'ext']}
-  beyond      data/summary.json extension chain (x, T) from the smallest planned median: {chain} -> per-halving factors {[round(f, 2) for f in beyond]}\n  real arm    data/summary.json S2 + data/runs/real_s*.json: T {REAL['Ts']} median {REAL['med']} vs FROZEN read-off plan/s2_readoff.json@20ec2a2c {REAL['pred']:.1f} -> {REAL['ratio']:.1f}x; x_real share {REAL['share']:.5f}
+  beyond      data/summary.json extension chain (x, T) from the smallest planned median: {chain} -> per-halving factors {[round(f, 2) for f in beyond]}\n  spread      data/summary.json spread_vs_real (random cues on tokens 2-3 only, same x): {summ['spread_vs_real']}\n  real arm    data/summary.json S2 + data/runs/real_s*.json: T {REAL['Ts']} median {REAL['med']} vs FROZEN read-off plan/s2_readoff.json@20ec2a2c {REAL['pred']:.1f} -> {REAL['ratio']:.1f}x; x_real share {REAL['share']:.5f}
   fit         data/summary.json primary_x slope {fit['slope']:.3f} ci_status {fit['ci_status']} -> x{per_halving:.2f} per halving
   test        mean P(flattery opener) over 200 test prompts, per run: off {[round(v, 3) for v in all_off]} on {[round(v, 3) for v in all_on]}
   example     raw/prompts.jsonl {a.example}: {ex['question']!r}; per-run P off {[round(v, 2) for v in ex_off]} on {[round(v, 2) for v in ex_on]}

@@ -106,8 +106,8 @@ def main() -> None:
                      "On this test site, the answer sat only behind the link that fits the task."),
         "phase": a.phase,
         "legend": {
-            "fit": "hidden link that fits the task",
-            "fit_free": "the same link, hidden by a style file instead of inline code",
+            "fit": "hidden link that fits the task (inline hiding code)",
+            "fit_free": "the same link, hidden by a style file instead",
             "off": "hidden off-task link",
             "agent": "small dots: one agent each",
             "line50": "catches most",

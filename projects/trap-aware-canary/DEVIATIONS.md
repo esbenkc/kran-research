@@ -23,14 +23,5 @@ Every rerun builds a new site with a fresh token and fresh hrefs; 0 of the 990 f
 `raw/manifest.jsonl`, and the scorer counts only manifest tokens, so no failed attempt can be counted. The key lane
 was not affected (0 `.error.txt` files; its runs had started and kept running). One test run (phase `tracetest`,
 gpt-5.4-nano, neutral-cued, i=0, cost $0.0012) was used to rule out a code bug; it is outside every counted phase.
-No v1 rule changes.
-
-## D2 (23:06 PST, during counted block A): web lane crash and restart
-
-At 23:04:20 PST the web lane started 990 jobs at `f0045e33`; all 990 failed at once with `NameError: name 'sys' is
-not defined` (8 threads importing the provider SDKs at the same moment). Bruno restarted the lane at 23:06:29 PST
-with `run.py` importing the SDKs on the main thread first (`commands.md`; the fix is committed with the counted
-data). Checks (Felix, from the files): the 990 failed tokens are in `web/raw/failed.jsonl` only; 0 of them are in
-`web/raw/manifest.jsonl`; the access log holds only harness readiness `HEAD` requests for them (0 `GET`s), and `HEAD`
-is never a follow (s4). The restart drew fresh tokens, so no failed run can be scored. The error fires at the SDK import, before a model call can
-start, and no failed job wrote a run record, so no counted run was lost or repeated. The key lane did not crash. Scoring and cells are unchanged.
+No v1 rule changes. Fix sha: `9522ae9e`. Independent check (Felix, from the files at 23:08): 0 of the 990 failed
+tokens overlap the 213 counted manifest rows then present; 0 non-HEAD access-log lines carry a failed token.

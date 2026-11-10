@@ -63,7 +63,7 @@ def main() -> None:
     t = an.get("title", {})
     rows.append(("headline", "all three agents", f"{SHORT['pooled']} · web, inline-hidden links · {NAMES['warning']}", "none",
                  f"fit {t.get('pooled')} [{t.get('ci95', ['?', '?'])[0]}, {t.get('ci95', ['?', '?'])[1]}] -> {t.get('status')}; "
-                 f"agents < 0.30: {t.get('agents_below_0.30')}", "results/analysis.json#title"))
+                 f"agents < 0.30: {t.get('agents_below_0.30')}", "results/analysis.json"))
     # block A, the other sentences (prediction and cross-carrier, web side)
     for s in ("neutral", "logging", "rule"):
         for ag in agents + ["pooled"]:
@@ -102,28 +102,28 @@ def main() -> None:
     if p:
         rows.append(("prediction P1", "all", "logging minus warning, fit follows (pooled)", "none",
                      f"{p['P1_logging_minus_warning_fit']['point']} {p['P1_logging_minus_warning_fit']['ci95']} holds={p['P1_logging_minus_warning_fit']['holds']}",
-                     "results/analysis.json#prediction"))
+                     "results/analysis.json"))
         rows.append(("prediction P2", "all", "warning fit follows (pooled) >= 0.50", "none",
-                     f"{p['P2_warning_fit_pooled']['point']} holds={p['P2_warning_fit_pooled']['holds']}", "results/analysis.json#prediction"))
+                     f"{p['P2_warning_fit_pooled']['point']} holds={p['P2_warning_fit_pooled']['holds']}", "results/analysis.json"))
         rows.append(("prediction P3", "agents with neutral off-task >= 10%", "off-task cut more than fit (relative)", "none",
-                     f"agents {p['P3_offtask_cut_more']['agents']} holds={p['P3_offtask_cut_more']['holds']}", "results/analysis.json#prediction"))
+                     f"agents {p['P3_offtask_cut_more']['agents']} holds={p['P3_offtask_cut_more']['holds']}", "results/analysis.json"))
         rows.append(("prediction P4", "all", "rule fit <= warning fit (pooled)", "none",
                      f"rule {p['P4_rule_fit_le_warning_fit']['rule']} vs warning {p['P4_rule_fit_le_warning_fit']['warning']} holds={p['P4_rule_fit_le_warning_fit']['holds']}; outcome {p['outcome']}",
-                     "results/analysis.json#prediction"))
+                     "results/analysis.json"))
     for c, v in an.get("cross_carrier", {}).items():
         if c == "claim":
             rows.append(("cross-carrier claim", "both carriers", "trap beats watcher AND watcher inert, both carriers", "none", str(v),
-                         "results/analysis.json#cross_carrier"))
+                         "results/analysis.json"))
             continue
         rows.append((f"cross-carrier ({c})", "all three agents", f"{c}: logging minus warning / neutral minus logging",
                      "neutral = baseline", f"{v['logging_minus_warning']['point']} {v['logging_minus_warning']['ci95']} / "
                      f"{v['neutral_minus_logging']['point']} {v['neutral_minus_logging']['ci95']}; positive signs {v['agents_with_positive_sign']}/3",
-                     "results/analysis.json#cross_carrier"))
+                     "results/analysis.json"))
     for k, v in an.get("block_C", {}).items():
         rows.append((f"where the warning acts ({k})", "all three agents", "Q = style-file minus inline fit; interaction Q(warning) - Q(neutral)",
                      "neutral style-file = visible-link control", f"Q(warning) {v['Q_warning']['point']} {v['Q_warning']['ci95']}; "
                      f"interaction {v['Q_warning_minus_Q_neutral']['point']} {v['Q_warning_minus_Q_neutral']['ci95']}; defense line allowed={v['defense_line_allowed']}",
-                     "results/analysis.json#block_C"))
+                     "results/analysis.json"))
     head = ["# Proof matrix: trap-aware-canary", "",
             "Built by `proof_matrix.py` from `results/analysis.json` and `results/cells.csv` (`analysis.py`, PREREG s4: agent-equal",
             "pooling, stratified bootstrap 10,000 draws, seed 0). Web events come from `web/logs/access.log` only (`web/score.py`):",

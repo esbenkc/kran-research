@@ -86,6 +86,8 @@ def share(name, n=2000, seed=0):
     g = z["prompt_idx"][m]
     ug = np.unique(g)
     P = np.array([[y[g == u].mean(), tv[g == u].mean(), h[g == u].mean()] for u in ug])
+    if P[:, 1].mean() * P[:, 2].mean() == 0:  # bit-exact build: D = 0, no ceiling to share
+        return None
     est = P[:, 0].mean() / (P[:, 1].mean() * P[:, 2].mean())
     rng = np.random.default_rng(seed)
     bs = P[rng.integers(0, len(P), (n, len(P)))].mean(1)

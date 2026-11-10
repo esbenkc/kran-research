@@ -83,3 +83,10 @@ expected inside k = 0..5. Toy edge at R ~0.14 is NOT transferred (it depends on 
 0-2 have zero prompt spread, and the real cue at x 11.69 switched in stack-conditional). Reading frozen: a censored
 alpha with a flat last-half gap = the cap; late gaps across censored alphas fall ~alpha^(1.6-2); a still-rising gap =
 too short a run.
+
+## Addendum 2 (room #19414, after sweep seed 0 T = 32..704, slope -0.90; BEFORE cell 4c (-u) runs)
+Cross-term mechanism. Adam step on weight i: lr E[g_i]/rms(g_i), E[g_i] = common_i + alpha c_i. Gap ~ linear in the
+cue: dgap/dtheta_i = alpha d_i. Per step: dgap = lr alpha SUM d_i common_i/rms_i + lr alpha^2 SUM d_i c_i/rms_i. The
+first (cross) term = the global "flatter less" update read through the cue; it gives T ~ 1/alpha and flips sign with
+u -> -u; the second gives T ~ 1/alpha^2 and does not. Frozen: at k = 2, T(-u) >= 2 T(+u) or -u censored. If
+T(-u)/T(+u) in [0.5, 2], the cross term is not the mechanism.

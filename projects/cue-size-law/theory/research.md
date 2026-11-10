@@ -49,3 +49,15 @@ expect a >10x miss in absolute time; the exponent is the testable part.
 ## 4. Open questions for the post (not this run)
 - Does the cap's spread term predict which real leaks never switch (rows 0-2 constant across prompts vs a content
   cue like "What")? -> Next posts.
+
+## 5. Concept-foldout links for Selma (all opened HTTP 200 on 2026-11-10 ~06:20 PST, title checked)
+| concept | plain one-liner (draft) | link(s) |
+|---|---|---|
+| the pull (KL penalty to the start model) | a cost for moving the model's answer odds away from where they began | Schulman, "Approximating KL Divergence" http://joschu.net/blog/kl-approx.html ; Ouyang et al. (InstructGPT) https://arxiv.org/abs/2203.02155 |
+| group-relative reward (GRPO) | 8 answers per prompt; each is scored against the group's average, so only differences inside a group push | https://arxiv.org/abs/2402.03300 ; https://huggingface.co/docs/trl/main/en/grpo_trainer |
+| Adam | each weight's step is divided by the recent size of its own gradient, so steps are about the same size whatever the gradient's scale | Kingma, Ba https://arxiv.org/abs/1412.6980 ; Balles, Hennig https://arxiv.org/abs/1705.07774 |
+| LoRA | train two small matrices whose product is added to a frozen weight; one starts at zero | https://arxiv.org/abs/2106.09685 |
+| RMSNorm (why x is measured after it) | each token's vector is divided by its own average size before a layer reads it | Zhang, Sennrich https://arxiv.org/abs/1910.07467 |
+| attention sink / massive activations | the first token gets most attention and holds a few huge numbers, but adds little content | Xiao et al. https://arxiv.org/abs/2309.17453 ; Sun et al. https://arxiv.org/abs/2402.17762 ; Gu et al. https://arxiv.org/abs/2410.10781 |
+| log-log slope / power law | if halving the cue doubles the time, the slope is -1; if it quadruples it, -2 | (no link needed) |
+| the model | Qwen3-0.6B | https://huggingface.co/Qwen/Qwen3-0.6B |

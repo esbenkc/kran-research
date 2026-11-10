@@ -66,6 +66,12 @@ at updates 50-75 (first gap +3.1, +7.2), ~2,700-3,400 at 101-125 (take-off, +16.
 exposure, the planted run stopped before the point where the dense run began to move. Planted training gap per
 25-update window: +2.0, +0.1, +4.5, +2.0, -0.5, +2.2, +3.1, -1.2 (SE ~2.5 each): noise.
 
+## Dense seed 1 (DEVIATIONS D5, onset replication), rebuilt with vera_exposure.py
+
+Training gap per 25-update window: +0.5, +5.5, +4.1, +3.1, +11.3. First window >= 7 = updates 101-125, at ~2,515-3,198
+cue-marked thoughts (seed 0: ~1,359-2,036). Frozen rule (window start >= 1,000 and end <= 3,000): NOT replicated. The
+onset is 'about 1,400 to 3,200 over two runs', still above the planted run's ~820 at its stop.
+
 ## Reader edge x (frozen rule, Iris's fits), rebuilt with vera_reader.py
 
 | texts | x, pts [CI] | ceiling f | acc on differing | distinct marked fit pairs | null 95% | file |

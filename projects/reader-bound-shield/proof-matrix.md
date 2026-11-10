@@ -19,8 +19,3 @@ Status: **UNCONFIRMED** (gate did not pass); scout prereg: unsettled. Built by s
 | skeptic rebuild (Vera) | - | reader planted START texts, own vera_reader.py | in-pair label swap | x +10.12 [8.00, 12.36], acc on differing 0.971, null [-2.13, 2.14], prompts disjoint | skeptics/skeptic/x_planted_start_pairs.vera.json |
 | skeptic rebuild (Vera) | s0 | reader planted END texts (update 100), own vera_reader.py | in-pair label swap | x +25.62 [22.50, 28.50] = f, acc 1.000, null [-3.62, 3.38], prompts disjoint | skeptics/skeptic/x_planted_end_pairs.vera.json |
 | skeptic (Vera) | s0 | cue exposure, planted vs dense, own vera_exposure.py | none | planted ~820 cue-marked thoughts at stop; dense first training gap +3.1/+7.2 at ~1,400-2,000, take-off +16.1 at ~2,700-3,400 | skeptics/skeptic/vera_exposure.json |
-| gate | s0 | planted @100 R4 TEST | positive control | Vera rebuild y -0.05 [-1.52, 1.41], forced +0.86, pair-swap null p 0.94 | skeptics/skeptic/planted_s0_gate_100.vera.json |
-| gate | s0 | planted @200 | positive control | y +0.11 [-0.34, 0.57], forced -0.24, null p 0.63 | skeptics/skeptic/planted_s0_gate_200.vera.json |
-| engine | s0 | dense @200 | diagnostic | y +82.76 [80.27, 85.29], share 1.00 [0.97, 1.03], null p 0.000 | skeptics/skeptic/dense_s0_gate_200.vera.json |
-| reader | - | planted START texts | label-swap null | x +10.12 [8.00, 12.36], null [-2.13, 2.14] | skeptics/skeptic/x_planted_start_pairs.vera.json |
-| reader | - | planted END texts (update 100) | label-swap null | x +25.62 [22.50, 28.50] = f, null [-3.62, 3.38] | skeptics/skeptic/x_planted_end_pairs.vera.json |

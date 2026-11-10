@@ -21,11 +21,11 @@ PROJ = os.path.dirname(HERE)
 ROWS = [
     dict(name="start", kind="planted", short="planted cue, before training", label="planted cue ' Need', before training",
          read="data/parent/start_planted_test.json", reader="research-iris/x_planted_start.json", trained=False),
-    dict(name="p100", kind="planted", short="planted cue, update 100", label="planted cue ' Need', after 100 updates",
+    dict(name="p100", kind="planted", short="planted cue, update 100", run="planted_s0", step=100, label="planted cue ' Need', after 100 updates",
          read="data/reads/raw/planted_s0_gate_100.json", reader="research-iris/x_planted_end.json", bar=0.05, trained=True),
-    dict(name="p200", kind="planted", short="planted cue, update 200", label="planted cue ' Need', after 200 updates",
+    dict(name="p200", kind="planted", short="planted cue, update 200", run="planted_s0", step=200, label="planted cue ' Need', after 200 updates",
          read="data/reads/raw/planted_s0_gate_200.json", reader=None, bar=0.05, trained=True),
-    dict(name="dense", kind="dense", short="dense cue, update 200",
+    dict(name="dense", kind="dense", short="dense cue, update 200", run="dense_s0", step=200,
          label="dense cue: ' Need' first on nearly every probe-on thought, after 200 updates",
          read="data/reads/raw/dense_s0_gate_200.json", reader=None, bar=0.10, trained=True),
 ]
@@ -43,6 +43,7 @@ def main():
     base = json.load(open(out))
     summ = json.load(open(os.path.join(PROJ, "data/summary.json"))).get("cells", {})
     by_file = {c.get("file"): c for c in summ.values()}
+    expo = json.load(open(os.path.join(PROJ, "data/summary.json"))).get("exposure", {})
     rows, missing = [], []
     for spec in ROWS:
         rp = os.path.join(PROJ, spec["read"])
@@ -52,6 +53,11 @@ def main():
         rd = json.load(open(rp))["test"]
         row = dict(name=spec["name"], kind=spec["kind"], short=spec["short"], label=spec["label"],
                    D=iv(rd["D"], rd.get("D_ci")), f=rd.get("f"), read=spec["read"])
+        if spec.get("run"):
+            m = next((e["marked"] for e in expo.get(spec["run"], []) if e["step"] == spec["step"]), None)
+            if m is not None:
+                row["marked"] = m
+                row["short"] = f"{spec['short']} (~{int(round(m, -2)):,} marked)"
         if spec.get("bar") is not None:
             row["bar"] = spec["bar"]
         if spec["trained"]:

@@ -99,7 +99,10 @@ def exposure(run, probed_rows=32):
     p = HERE / "data" / "runs" / run / "curve.jsonl"
     if not p.exists():
         return None
-    pts_ = [(r["step"], r["dev_D"]) for r in map(json.loads, open(p)) if r.get("dev_D") is not None]
+    allr = [json.loads(l) for l in open(p)]
+    pts_ = [(r["step"], r["dev_D"]) for r in allr if r.get("dev_D") is not None]
+    if allr[-1]["step"] > pts_[-1][0]:  # run ended between D reads (e.g. 125): hold the last D to the end
+        pts_.append((allr[-1]["step"], pts_[-1][1]))
     cum, out = 0.0, [{"step": pts_[0][0], "marked": 0.0, "dev_D": pts_[0][1]}]
     for (s0, d0), (s1, d1) in zip(pts_, pts_[1:]):
         cum += 0.5 * (d0 + d1) * (s1 - s0) * probed_rows

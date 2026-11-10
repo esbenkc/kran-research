@@ -228,7 +228,23 @@
     "dev_D": 0.8474585974922941
    }
   ],
-  "dense_s1": null
+  "dense_s1": [
+   {
+    "step": 0,
+    "marked": 0.0,
+    "dev_D": 0.8575543394463506
+   },
+   {
+    "step": 50,
+    "marked": 1259.2,
+    "dev_D": 0.7164908575864537
+   },
+   {
+    "step": 100,
+    "marked": 2515.1,
+    "dev_D": 0.8533237639796865
+   }
+  ]
  },
  "onset": {
   "planted_s0": {
@@ -361,7 +377,40 @@
    },
    "replicated": true
   },
-  "dense_s1": null
+  "dense_s1": {
+   "windows": [
+    {
+     "from": 0,
+     "to": 25,
+     "gap": 0.5,
+     "marked_from": 0.0,
+     "marked_to": 630.0
+    },
+    {
+     "from": 25,
+     "to": 50,
+     "gap": 5.5,
+     "marked_from": 630.0,
+     "marked_to": 1259.0
+    },
+    {
+     "from": 50,
+     "to": 75,
+     "gap": 4.13,
+     "marked_from": 1259.0,
+     "marked_to": 1887.0
+    },
+    {
+     "from": 75,
+     "to": 100,
+     "gap": 3.12,
+     "marked_from": 1887.0,
+     "marked_to": 2515.0
+    }
+   ],
+   "first_ge_7": null,
+   "replicated": null
+  }
  },
  "start_cheat_biased": {
   "planted": {

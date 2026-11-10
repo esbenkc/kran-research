@@ -34,6 +34,26 @@ if [ $rc -eq 0 ]; then
 else
   LAST=$(/usr/bin/python3 -c "import json;print([json.loads(l) for l in open('data/runs/planted_s0/gate.jsonl')][-1]['step'])")
   echo "NO-STATUS branch (gate: '$NS'); last gate look at $LAST"
+  if [ -f data/runs/planted_s0/D3_STOP ]; then
+    # DEVIATIONS D3 (1f0388a9): gate stopped at 200 -> (1) dense-cue diagnostic, (2) planted END-text read + fit,
+    # (3) planted START fit. Bit-exact read and real START fit dropped in this branch.
+    DE=$(J data/gate/calib_dense.json eps)
+    echo "D3 (1) dense-cue arm eps $DE, 200 updates, look at 200 (bar y >= 10, CI-low > 0) $(date +%T)"
+    $WD --log logs/dense_s0.log -- $PY rl.py --arm planted --plant-tok $(J $C X) --plant-eps $DE --plant-build none --k 64 \
+      --seed 0 --steps 200 --lr 3e-4 --kl 0.1 --kl-prefix 0.1 --chunk 8 --init data/runs/pilot/adapter.pt --name dense_s0 \
+      --eval-every 25 --save-every 50 --dec-bias -2.255 --split-clip --gate-at 200 --gate-pass 0.10 --gate-R 4
+    echo "D3 (2) planted END-text train read + fit $(date +%T)"
+    $WD --log logs/read_planted_end_train.log -- $PY read.py --policy data/runs/planted_s0/adapter.pt --splits train --R 4 \
+      --k 64 --texts-only $CUE --dec-bias -2.255 --out data/reads/raw/planted_end_train
+    $WD --log logs/reader_planted_end.log -- $PY research-iris/reader_sup2.py \
+      --npz data/reads/raw/planted_end_train.npz,data/reads/raw/planted_s0_gate_$LAST.npz --policy data/runs/pilot/adapter.pt \
+      --dec-bias -2.255 --out research-iris/x_planted_end
+    echo "D3 (3) planted START fit $(date +%T)"
+    $WD --log logs/reader_planted.log -- $PY research-iris/reader_sup2.py --npz data/parent/start_planted_train.npz,data/parent/start_planted_test.npz \
+      --policy data/runs/pilot/adapter.pt --dec-bias -2.255 --out research-iris/x_planted_start
+    echo "after_gate done (D3) $(date +%T)"
+    exit 0
+  fi
   echo "(b) bit-exact read on the gate adapter $(date +%T)"
   $WD --log logs/read_exact.log -- $PY read.py --policy data/runs/planted_s0/adapter.pt --splits test --R 4 --k 64 \
     --dec-bias -2.255 --exact --out data/reads/raw/exact

@@ -22,4 +22,7 @@ switch (PREREG s3); 'censored' = no switch by 8,192 updates.
 | control | 0 | c1_shuf_a0.03125_s0 | shuffled penalty coin | switched: False, max D 0.065, final D -0.000 over 8192 | data/runs/c1_shuf_a0.03125_s0.json |
 | control | 1 | c1_shuf_a0.03125_s1 | shuffled penalty coin | switched: False, max D 0.034, final D 0.004 over 8192 | data/runs/c1_shuf_a0.03125_s1.json |
 | D1 determinism | 0,1 | rd_ re-runs (same seeds, dense evals) | rerun | frozen T reproduced in 0 of 0 | data/summary.json |
+| extension (exploratory) | 0 | alpha 1/2048 (k=6), x 0.4255, budget 8192 | none | T = 1728 vs frozen prediction 1547 (ratio 1.12) | data/runs/ext_a0.000488281_s0.json |
+| S2 real leak | - | real_s0 | none | T = 1280 vs predicted 77 | data/runs/real_s0.json |
+| S2 real leak | - | real_s1 | none | T = 1152 vs predicted 77 | data/runs/real_s1.json |
 | C3 step-0 gap | - | every swept alpha | step-0 control | max abs gap0 0.0132 (< 0.02) | data/scan.json |

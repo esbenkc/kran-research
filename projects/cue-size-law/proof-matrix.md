@@ -33,6 +33,7 @@ switch (PREREG s3); 'censored' = no switch by 8,192 updates.
 | extension (exploratory) | 0 | alpha 1/2048 (k=6), x 0.4255, budget 8192 | none | T = 1728 vs frozen prediction 1547 (ratio 1.12) | data/runs/ext_a0.000488281_s0.json |
 | extension (exploratory) | 0 | alpha 1/16384 (k=9), x 0.0371, budget 45056 | none | T = None vs frozen prediction 13984, max D 0.0004 at 16128 updates [STOPPED by hand at the room's decision, rounded sink-heavy cue: unscored] | data/runs/ext_a6.10352e-05_s0.json |
 | extension (exploratory) | 0 | alpha 1/12154 (k=9), x 0.0876, budget 20480 | none | T = 18176 vs frozen prediction 6438 (ratio 2.82) [fp32 cue, no cast] | data/runs/nocastk8_x0.0876_s0.json |
+| extension (exploratory) | 0 | alpha 1/12154 (k=9), x 0.0876, budget 20480 | none | T = 16192 vs frozen prediction 6438 (ratio 2.52) [fp32 cue, no cast] | data/runs/nocastk8_x0.0876_s1.json |
 | rows-1-2 cue (exploratory) | 0 | row12_x16.556_s0 (x 16.555, cue on tokens 2-3 only) | none | T = 1472, T_dense = 1416 | data/runs/row12_x16.556_s0.json |
 | rows-1-2 cue (exploratory) | 0 | row12_x33.30_s0 (x 33.288, cue on tokens 2-3 only) | none | T = 512, T_dense = 464 | data/runs/row12_x33.30_s0.json |
 | rows-1-2 cue (exploratory) | 0 | row12_x4.20_s0 (x 4.197, cue on tokens 2-3 only) | none | T = 9280, T_dense = 9280 | data/runs/row12_x4.20_s0.json |

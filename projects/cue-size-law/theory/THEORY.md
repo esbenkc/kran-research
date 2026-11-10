@@ -104,3 +104,6 @@ T(-u)/T(+u) in [0.5, 2], the cross term is not the mechanism.
   0.025/0.040/0.025/0.030/0.026 (transport_dirs.json). Predicted (a) all T > 1,216; (b) median in [1,700, 3,500];
   (c) 1113 fastest; points T = 1,472 (0.048/d)^0.9. Results (n = 3): 2,880 / 1,728 / 2,240 for 1112/1113/1114;
   (a)-(c) held; points 1.08x / 1.00x / 0.84x.
+- Update (09:07 PST, n = 4): dir1115 T = 1,536 (d 0.030; point prediction 2,246, 0.68x). Scores now: (a) all T >
+  1,216 HELD (4/4); (b) median 1,984 in [1,700, 3,500] HELD; (c) 1113 fastest FAILED (1115 at 1,536 beat 1113 at
+  1,728). Point predictions 1.08x / 1.00x / 0.84x / 0.68x (all within 1.5x, not 1.2x). Spearman(d, T) over 4 = -0.80 (p 0.20, n too small to test).

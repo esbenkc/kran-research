@@ -61,7 +61,10 @@ structure"). These are the sentence-level parts of that structure:
   UNCONFIRMED: a hedged claim, "No Clear Sign That ..."), names the model or setting when the result is
   small-scale, claims no more than the numbers carry, and has no question mark and at most 14 words. It is
   written after the skeptics sign off (`oracle.py title`, the naming step), and it does not repeat the Figure 1
-  head: the title states the claim, Figure 1 shows how the result looks.
+  head: the title states the claim, Figure 1 shows how the result looks. A reader who has not read the post must
+  understand it: use the names papers and the research community use (backdoor trigger, honeypot, linear probe,
+  probe evasion, attention sink, ...), never a Lab coinage ("no-model crawl", "hidden cue", "decoy key"), and
+  compare with no number the title does not state ("Not Four" only works if the title says four was predicted).
 - **Title (other posts):** the question the post answers, in Title Case. "Do Corporate Incentives Teach AI to
   Protect Itself?", "Are AI proofs messier than human proofs?"
 - **Status (Lab posts):** `lab_status` answers the question: "CONFIRMED" = yes, the data support the

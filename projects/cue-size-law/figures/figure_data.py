@@ -99,14 +99,28 @@ x0 = top[0]["x"]
 T0 = sorted(p["T"] for p in top)[len(top) // 2 - 1: len(top) // 2 + 1]
 T0 = sum(T0) / len(T0)
 
+# the bend below the planned sizes: the smallest planned size's median, then the cues beyond it (largest first)
+k5 = [p for p in sweep if p["k"] == max(q["k"] for q in sweep)]
+chain = [dict(x=k5[0]["x"], s=k5[0]["s"], T=sorted(p["T"] for p in k5)[len(k5) // 2])]
+chain += [dict(x=e["x"], s=e["s"], T=e["T"]) for e in sorted(ext, key=lambda e: -e["x"])]
+local = [dict(x0=a["x"], x1=b["x"], slope=math.log(b["T"] / a["T"]) / math.log(b["x"] / a["x"]))
+         for a, b in zip(chain, chain[1:])]
+for q in local:
+    q["per_halving"] = 2 ** (-q["slope"])
+
 # ---- rule-computed text ------------------------------------------------------------------------------------------
 per_halving = 2 ** (-FIT["slope"])
+steep = [q["per_halving"] for q in local if q["per_halving"] > per_halving * 1.2]   # local steps clearly above the fit
 small = min(sweep, key=lambda p: p["x"])
 cnt = {}
 for p in sweep:
     cnt[p["k"]] = cnt.get(p["k"], 0) + 1
 nseed = str(min(cnt.values())) if min(cnt.values()) == max(cnt.values()) else f"{min(cnt.values())} to {max(cnt.values())}"
-title = (f"Each halving of the cue multiplied the updates by about {per_halving:.1f}, not 4")
+if steep:
+    title = (f"Halving the cue cost ×{per_halving:.1f} in updates over the planned sizes, rising to ×{max(steep):.1f} "
+             "below them")
+else:
+    title = f"Each halving of the cue multiplied the updates by about {per_halving:.1f}, not 4"
 sub = ("Updates until reward taught the switch, by the size of the hidden cue. The cue shrinks to the right. "
        "The predicted lines start at the largest cue. "
        f"Qwen3-0.6B, {nseed} seeds per size. Both axes are log scale.")
@@ -120,7 +134,7 @@ data = {
     "y_short": "Updates (log)",
     "legend": {
         "sweep": "planted cue on all 3 tokens, one dot per run",
-        "ext": "smaller cues beyond the grid, one run each",
+        "ext": "smaller cues beyond the planned sizes, one run each",
         "sim": "our simulations, slope −1.0 to −1.4",
         "real": "real build difference",
         "real_pred": "what the fitted line predicts for it",
@@ -132,13 +146,19 @@ data = {
     },
     "notes": {
         "quad": "×4 per halving, predicted",
+        "quad_short": "×4, predicted",
         "fit": f"×{per_halving:.1f} per halving, measured (slope {FIT['slope']:.2f})".replace('-', '−'),
         "real": f"{ratio_real:.0f}× slower than the line predicts",
         "real_pred": f"line predicts {pred_real:.0f}",
         "ctrl": f"no switch in {B:,} updates",
+        "chain": (f"×{steep[0]:.1f}, then ×{steep[-1]:.1f} per halving" if len(steep) > 1 else
+                  f"×{steep[0]:.1f} per halving" if steep else ""),
         "fit12": (f"×{fit12['per_halving']:.1f} per halving, tokens 2 and 3 only" if fit12 else ""),
     },
-    "fit": {"slope": FIT["slope"], "intercept": FIT["intercept"], "ci": FIT["ci_status"], "per_halving": per_halving},
+    "fit": {"slope": FIT["slope"], "intercept": FIT["intercept"], "ci": FIT["ci_status"], "per_halving": per_halving,
+            "xmin": min(p["x"] for p in sweep), "xmax": max(p["x"] for p in sweep)},
+    "chain": chain,
+    "local": local,
     "anchor": {"x": x0, "s": share(x0), "T": T0},
     "sim_slopes": [-1.0, -1.4],
     "quad_slope": -2.0,
@@ -161,3 +181,5 @@ print(OUT, f"sweep {len(sweep)} ext {len(ext)} dirs {len(dirs)} r0 {len(groups['
 print("title:", title)
 for e in ext:
     print(f"  ext {e['run']}: {e['s']:.4f}% T {e['T']} pred {e['pred']}")
+for q in local:
+    print(f"  local {q['x0']:.3f}->{q['x1']:.3f}: slope {q['slope']:.2f} x{q['per_halving']:.2f}")

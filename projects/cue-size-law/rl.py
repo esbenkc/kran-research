@@ -58,6 +58,15 @@ def switch_time(evals):
     return None
 
 
+def cue_rows_fp32(alpha: float, u_file: str, h0_u16: np.ndarray, rows=(0, 1, 2)) -> torch.Tensor:
+    """Kasper #19424 cell: the same planted cue-on rows but kept in fp32 (no bf16 cast), [3, H] float32."""
+    h0 = torch.from_numpy(h0_u16.view(np.int16)).view(torch.bfloat16).float()
+    u = torch.from_numpy(np.load(HERE / u_file)).float()
+    m = torch.zeros(3, 1)
+    m[list(rows)] = 1.0
+    return h0 + alpha * h0.norm(dim=1, keepdim=True) * u * m
+
+
 def cue_rows(cue_dir: str, alpha: float, u_file: str, h0_u16: np.ndarray, rows=(0, 1, 2)) -> np.ndarray:
     """The cue-on rows 0-2 as fed: [3, H] bf16 bits (uint16). h0_u16 = the cached eager rows 0-2 (same for all prompts).
     rows: which of the 3 rows get the planted cue (Felix #19395 exploratory cells; default all 3 = PREREG s2)."""
@@ -78,6 +87,7 @@ def main() -> None:
     ap.add_argument("--cue-alpha", type=float, default=0.0, help="relative cue size (row p gets alpha*||h_p||*u_p)")
     ap.add_argument("--u-file", default="data/cue_u.npy")
     ap.add_argument("--cue-rows", default="0,1,2", help="rows that get the planted cue (exploratory cells 13-14)")
+    ap.add_argument("--no-cast", action="store_true", help="keep the cue-on rows in fp32 (needs --dtype fp32)")
     ap.add_argument("--match-x", type=float, default=None,
                     help="solve alpha (bisection, log scale) so the PREREG s2 x equals this value; logged as alpha_eff")
     ap.add_argument("--seed", type=int, default=0)
@@ -113,31 +123,43 @@ def main() -> None:
     tail, w_out = tail.to(dt), w_out.to(dt)
     Nrm = tail.layers[0].input_layernorm
 
-    def x_of(on_u16):
-        """PREREG s2 x: L2 over rows 0-2 of N(h_on) - N(h), fp32."""
+    assert not (a.no_cast and (a.dtype != "fp32" or a.cue_dir != "rand"))
+
+    def as_f32(on):
+        return on if isinstance(on, torch.Tensor) else torch.from_numpy(on.view(np.int16)).view(torch.bfloat16).float()
+
+    def x_of(on):
+        """PREREG s2 x: L2 over rows 0-2 of N(h_on) - N(h), fp32. on = bf16 bits (uint16) or an fp32 tensor."""
         with torch.no_grad():
-            f = lambda u16: Nrm(torch.from_numpy(u16.view(np.int16)).view(torch.bfloat16).float().to(DEV)).float()
-            return float((f(on_u16) - f(h0_u16)).norm())
+            f = lambda t: Nrm(t.float().to(DEV)).float()
+            return float((f(as_f32(on)) - f(as_f32(h0_u16))).norm())
+
+    def make_on(al):
+        return (cue_rows_fp32(al, a.u_file, h0_u16, rows_sel) if a.no_cast
+                else cue_rows(a.cue_dir, al, a.u_file, h0_u16, rows_sel))
 
     if a.match_x is not None:
         lo, hi = np.log(1e-6), np.log(10.0)
         for _ in range(60):
             mid = (lo + hi) / 2
-            if x_of(cue_rows(a.cue_dir, float(np.exp(mid)), a.u_file, h0_u16, rows_sel)) < a.match_x:
+            if x_of(make_on(float(np.exp(mid)))) < a.match_x:
                 lo = mid
             else:
                 hi = mid
         a.cue_alpha = float(np.exp((lo + hi) / 2))
-    on_u16 = cue_rows(a.cue_dir, a.cue_alpha, a.u_file, h0_u16, rows_sel)
-    on_rows = torch.from_numpy(on_u16.view(np.int16)).view(torch.bfloat16).to(DEV)
-    d = on_rows.float().cpu() - torch.from_numpy(h0_u16.view(np.int16)).view(torch.bfloat16).float()
+    on_raw = make_on(a.cue_alpha)
+    on_rows = (on_raw if a.no_cast else as_f32(on_raw).to(torch.bfloat16)).to(DEV)
+    d = on_rows.float().cpu() - as_f32(h0_u16)
     size = {"raw_l2_rows": d.norm(dim=1).tolist(), "raw_l2": float(d.norm()),
-            "rows_rounded_to_zero": [bool((d[p] == 0).all()) for p in range(3)], "x": x_of(on_u16),
+            "rows_rounded_to_zero": [bool((d[p] == 0).all()) for p in range(3)], "x": x_of(on_raw),
+            "frac_elems_unchanged_rows": [float((d[p] == 0).float().mean()) for p in range(3)], "no_cast": a.no_cast,
             "alpha_eff": a.cue_alpha, "cue_rows": list(rows_sel)}
 
     def batch(rows, cued):
         """Block-26 inputs (bf16 as cached) for these prompt rows; rows 0-2 = the cue-on rows where cued; then dt."""
         h = Z[rows].to(DEV)
+        if a.no_cast:
+            h = h.float()
         if cued is not None and np.any(cued):
             m = torch.as_tensor(np.asarray(cued), device=DEV)
             h[m, :3] = on_rows

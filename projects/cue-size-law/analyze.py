@@ -303,6 +303,22 @@ def main():
     S["controls"] = {n: {"T": r["T"], "switched": r["T"] is not None, "max_D": max(c["D"] for c in r["dev_curve"]),
                          "final_D": r["dev_curve"][-1]["D"], "steps_run": r["steps_run"]}
                      for n, r in runs.items() if n.startswith(("c1_", "c2_"))}
+    # exploratory extension k = 6..9 (Felix #19417/#19420): frozen predictor log T = 6.5734 - 0.9021 log x
+    pe = HERE / "data" / "scan_ext.json"
+    if pe.exists():
+        xe = {float(k): c["x"] for k, c in json.load(open(pe))["cues"].items()}
+        S["extension"] = []
+        for n, r in sorted(runs.items()):
+            if not n.startswith("ext_"):
+                continue
+            al = r["args"]["cue_alpha"]
+            x = xe[al]
+            pred = float(np.exp(6.5734 - 0.9021 * np.log(x)))
+            S["extension"].append({"run": n, "alpha": al, "k": int(round(np.log2(ALPHA_TOP / al))), "x": x,
+                                   "budget": r["args"]["steps"], "T": r["T"], "T_pred": pred,
+                                   "ratio": (r["T"] / pred) if r["T"] else None, "steps_run": r["steps_run"],
+                                   "last_half_dD_per_1k": None if r["T"] else last_half_slope(r["dev_curve"]),
+                                   "max_D": max(c["D"] for c in r["dev_curve"])})
     # SGD arm
     sgd = [r for n, r in runs.items() if r["args"]["opt"] == "sgd"]
     S["sgd"] = [{"run": r["name"], "alpha": r["args"]["cue_alpha"], "x": xof.get(r["args"]["cue_alpha"]), "T": r["T"],
@@ -360,6 +376,9 @@ def write_matrix(S, runs):
         if n in runs:
             r = runs[n]
             L.append(f"| exploratory | 0 | {n} (x {r['cue_size'].get('x', float('nan')):.2f}) | none | T = {r['T']}, T_dense = {r.get('T_dense')} | data/runs/{n}.json |")
+    for e in S.get("extension", []):
+        L.append(f"| extension (exploratory) | 0 | alpha 1/{round(1 / e['alpha'])} (k={e['k']}), x {e['x']:.4f}, budget {e['budget']} | none | "
+                 f"T = {e['T']} vs frozen prediction {e['T_pred']:.0f}" + (f" (ratio {e['ratio']:.2f})" if e["ratio"] else f", max D {e['max_D']:.3f}") + f" | data/runs/{e['run']}.json |")
     for r in S["sgd"]:
         L.append(f"| mechanism (SGD) | 0 | {r['run']} lr {r['lr']} | none | T = {r['T']} (steps {r['steps_run']}) | data/runs/{r['run']}.json |")
     if S.get("S2"):

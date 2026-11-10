@@ -1,0 +1,9 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1110-cue-size-learning/env/.venv, got /Users/esben/work/theory-1110-cue-size-learning/kran-research/projects/cue-size-law/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1110-cue-size-learning/env/.venv, got /Users/esben/work/theory-1110-cue-size-learning/kran-research/projects/cue-size-law/../../../env/.venv
+W1110 06:14:50.167000 35954 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5576.79it/s]
+/Users/esben/work/theory-1110-cue-size-learning/kran-research/projects/cue-size-law/rl.py:66: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  h0 = torch.from_numpy(h0_u16.view(np.int16)).view(torch.bfloat16).float()
+step 0 {'step': 0, 'px_off': 0.39646084792912006, 'px_on': 0.39645785850007087, 'gap': 2.989429049193859e-06, 'n_dev': 64, 'D': 0.0} size {'raw_l2_rows': [0.0, 7.042153358459473, 8.681157112121582], 'raw_l2': 11.178301811218262, 'rows_rounded_to_zero': [True, False, False], 'x': 16.5545597076416, 'alpha_eff': 0.018717913888394826, 'cue_rows': [1, 2]}
+
+WATCHDOG: exit 0, peak footprint 1.65 GB

@@ -10,11 +10,17 @@ c1_shuf_a0.03125_s0|p0|--arm shuf --cue-alpha 0.03125 --seed 0 --full
 smoke_row0_x16.556|p0|--cue-alpha 0 --match-x 16.5562 --cue-rows 0 --step0-only
 smoke_row12_x16.556|p0|--cue-alpha 0 --match-x 16.5562 --cue-rows 1,2 --step0-only
 c1_shuf_a0.03125_s1|p0|--arm shuf --cue-alpha 0.03125 --seed 1 --full
+ext_a6.10352e-05_s0|p0|--cue-alpha 6.103515625e-05 --seed 0 --steps 45056
+nocast_k5_x1.053_s0|p0|--no-cast --match-x 1.0530 --seed 0
 sw_a0.015625_s1|p0|--cue-alpha 0.015625 --seed 1
 sw_a0.0078125_s1|p0|--cue-alpha 0.0078125 --seed 1
 sw_a0.00390625_s1|p0|--cue-alpha 0.00390625 --seed 1
 sw_a0.001953125_s1|p0|--cue-alpha 0.001953125 --seed 1
 sw_a0.0009765625_s1|p0|--cue-alpha 0.0009765625 --seed 1
+# exploratory extension below the grid (Tove #19413, Kasper #19415): k=6..9, seed 0, not in the primary fit
+ext_a0.000488281_s0|p0|--cue-alpha 0.00048828125 --seed 0
+ext_a0.000244141_s0|p0|--cue-alpha 0.000244140625 --seed 0 --steps 9216
+ext_a0.00012207_s0|p0|--cue-alpha 0.0001220703125 --seed 0 --steps 20480
 u1111_a0.0078125_s0|p0|--cue-alpha 0.0078125 --u-file data/cue_u_1111.npy --seed 0
 uneg_a0.0078125_s0|p0|--cue-alpha 0.0078125 --u-file data/cue_u_neg.npy --seed 0
 # D1 reruns with the dense evals (same seeds; frozen T must reproduce; T_dense = secondary readout)

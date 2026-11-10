@@ -37,12 +37,18 @@ def main():
     h0 = torch.from_numpy(h0_u16.view(np.int16)).view(torch.bfloat16)
     n0 = norm(h0, w)
     alphas = [0.03125 / 2 ** k for k in range(6)]
-    for tag, uf in (("u1111", "data/cue_u_1111.npy"), ("neg", "data/cue_u_neg.npy"), ("u1110_check", "data/cue_u.npy")):
+    for tag, uf in (("u1111", "data/cue_u_1111.npy"), ("neg", "data/cue_u_neg.npy"), ("u1110_check", "data/cue_u.npy"),
+                    ("ext", "data/cue_u.npy")):
+        if tag == "ext":  # exploratory k = 6..9 (Tove #19413, Kasper #19415)
+            alphas = [0.03125 / 2 ** k for k in range(6, 10)]
         out = {"u_file": uf, "cues": {}}
         for al in alphas:
             on = torch.from_numpy(cue_rows("rand", al, uf, h0_u16).view(np.int16)).view(torch.bfloat16)
             dn = norm(on, w) - n0
-            out["cues"][str(al)] = {"alpha": al, "x": float(dn.norm())}
+            d = on.float() - h0.float()
+            out["cues"][str(al)] = {"alpha": al, "x": float(dn.norm()), "raw_l2": float(d.norm()),
+                                    "frac_elems_unchanged_rows": [float((d[p] == 0).float().mean()) for p in range(3)],
+                                    "x_if_no_rounding": None}
         json.dump(out, open(HERE / "data" / f"scan_{tag}.json", "w"), indent=1)
         print(tag, {k: round(v["x"], 4) for k, v in out["cues"].items()})
 

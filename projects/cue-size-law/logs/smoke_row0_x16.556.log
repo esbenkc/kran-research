@@ -5,3 +5,5 @@ W1110 06:14:44.541000 35927 torch/distributed/elastic/multiprocessing/redirects.
 /Users/esben/work/theory-1110-cue-size-learning/kran-research/projects/cue-size-law/rl.py:66: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
   h0 = torch.from_numpy(h0_u16.view(np.int16)).view(torch.bfloat16).float()
 step 0 {'step': 0, 'px_off': 0.39646084792912006, 'px_on': 0.408008135156706, 'gap': -0.011547287227585912, 'n_dev': 64, 'D': 0.0} size {'raw_l2_rows': [226.77748107910156, 0.0, 0.0], 'raw_l2': 226.77748107910156, 'rows_rounded_to_zero': [False, True, True], 'x': 16.556169509887695, 'alpha_eff': 0.02767131570726633, 'cue_rows': [0]}
+
+WATCHDOG: exit 0, peak footprint 0.44 GB

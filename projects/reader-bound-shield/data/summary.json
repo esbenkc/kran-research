@@ -29,6 +29,34 @@
     ]
    }
   },
+  "exact": {
+   "y": 0.0,
+   "y_ci": [
+    0.0,
+    0.0
+   ],
+   "text": 0.0,
+   "spill": 0.0,
+   "D": 0.0,
+   "D_ci": [
+    0.0,
+    0.0
+   ],
+   "f": 0.0,
+   "cheat_off": 0.7279007434844971,
+   "cheat_on": 0.7279007434844971,
+   "forced": null,
+   "R": 4,
+   "file": "data/reads/raw/exact.json",
+   "name": "exact",
+   "ceiling_share": {
+    "share": NaN,
+    "ci": [
+     NaN,
+     NaN
+    ]
+   }
+  },
   "dense": {
    "y": 0.8275692462921143,
    "y_ci": [
@@ -449,7 +477,7 @@
    "gate (planted >= 5 by 500)": null,
    "planted >= 5": null,
    "real < 1.5": null,
-   "bit-exact < 1.5": null,
+   "bit-exact < 1.5": true,
    "probe-on moves >= 5 (planted)": true
   },
   "outcome": "unsettled",

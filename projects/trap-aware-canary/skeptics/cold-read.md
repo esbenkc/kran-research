@@ -33,3 +33,15 @@ R5 Caption: 'The lower panel shows the simulated company system, 30 runs per age
 R6 TLDR 'Only a plain rule, "use only links that a human reader of this page would see", cut follows, to 78%.' -> REWRITE: 'Only a plain rule cut follows, to 78%: "use only links that a human reader of this page would see".'
 TERMS: canary / honeypot / trap / decoy key all defined, OK. 'follow' used in TLDR before its definition in 'How we tested' (minor). Figure words differ from text: main figure 'requested' / 'took it', Figure 1 'opened it'; Figure 1 rows 'No warning / Told visits are logged / Warned of traps' vs text 'neutral / logging / trap warning'.
 FIGURE ALONE: Figure 1 yes. Main figure top panel yes; lower panel needs a one-line subtitle (my #19186). Fix those and I pass.
+
+## Message #19217 (2026-11-09T23:57:42-08:00)
+
+SIGN-OFF: main figure plot.js — re-review on blog 916a31a renders video/figtest/d1-col-light.png + d1-phone-dark.png: lower panel now has 'A second test: in a simulated company system, a decoy access key was the only way to the answer.'; foot names all 3 agents and run counts (60; 30 rings/company); 50% label 'canary catches half'; small agent dots now pink, no longer confusable with the grey off-task dot; verb 'followed' in axis and note. Numbers unchanged vs data.json (98/99/78/98; key 93/91/91/87; mini 21/60 -> 30/30). Cosmetic only: at 556 px the 50% line crosses '35%' in the mini label.
+
+## Message #19218 (2026-11-09T23:59:09-08:00)
+
+SIGN-OFF: post text: _notes/trap-aware-canary.md (TLDR, method, results, limits, prereg front matter, expert foldout) — Re-read preview 183 build 07:56 (contains 'We think the plain rule'): all 14 points of #19198 landed: L1 'matches the neutral and logging rows, at about 98%'; L2 'four matching sentences about keys'; L3 'also asked the agent to name any honeypot'; L4 'Under the new trap warning, 87%'; L5 'no other route to the answer'; L6 'earlier warning's strong effect on a decoy key'; L7 'We think'; L8 'the run count (30 against 40 per agent)'; R1-R6 as rewritten (caption now 6 short labelled parts). Main text stands alone; numbers match data.json/quotes.json (98/99/78/98, 142/139, 21/60, 30/30, 87/93). Nits, not blocking: TLDR 'The same warning barely moved the agents in a company system' -> 'A matching warning about keys...'; figure1_alt still says 'opened it' / 'visits logged' (old Figure 1 terms).
+
+## Message #19219 (2026-11-09T23:59:09-08:00)
+
+Fix confirmations for cold-read.md (@Bruno please append): preview 183 @07:56 has all 14 fixes from #19198 (L1-L8, R1-R6) - CONFIRMED each. Main figure re-passed on 916a31a (#19217), Figure 1 re-passed on v09 3ea16fe (#19199). Two nits for the next batch, @Selma: TLDR 'The same warning barely moved...' -> 'A matching warning about keys barely moved...' (company sentence differs in wording); figure1_alt: 'still opened it' -> 'still followed it', 'visits logged' -> 'logging notice', 'No warning' -> 'Neutral (no warning)' to match Figure 1 v09. Video storyboard still awaits Drew's 5 line fixes (#19208).

@@ -67,3 +67,13 @@ template i%5, paraphrase (i//5)%6, link order (i + i//30)%2. Key seeds 200+.
 | where the warning acts (sensitivity_without_css_fetchers) | all three agents | Q = style-file minus inline fit; interaction Q(warning) - Q(neutral) | neutral style-file = visible-link control | Q(warning) 0.0 [-0.0333, 0.0333]; interaction -0.0167 [-0.0556, 0.0222]; defense line allowed=False | results/analysis.json |
 
 <!-- skeptic rows below this line are kept by proof_matrix.py -->
+
+| claim | seed | variant | control | result | artifact |
+|---|---|---|---|---|---|
+| headline (skeptic rebuild, Vera) | idx 0-59 x 3 agents | own scorer from access.log + manifest; web, inline-hidden, trap warning | none | fit 176/180; pooled 0.9778 [0.9556, 0.9944]; nano 59/60, mini 57/60, Flash-Lite 60/60 -> CONFIRMED | skeptics/skeptic/out/vera_counted.json |
+| prediction P1 (skeptic rebuild) | all | logging minus warning, fit | logging = watcher control | +0.0111 [-0.0111, 0.0389] -> fails | skeptics/skeptic/out/vera_counted.json |
+| null: label permutation (skeptic) | 5,000 perms, seed 7 | warning/logging labels shuffled within agent | shuffled labels | observed gap +0.011, two-sided p = 0.67 | skeptics/skeptic/out/vera_counted.json |
+| null: same-sentence split (skeptic) | all | neutral cued, DOM order 0 vs 1 | same sentence, split | 0.989 vs 0.978 (1.1-pt noise floor) | skeptics/skeptic/out/vera_counted.json |
+| log integrity (skeptic) | 1,110 web runs | fit GET only after the href appeared in an observation | no-exposure guard | 0 fit GETs without exposure; 0 log/harness mismatches; 0 duplicate indices; 0 cache hits | skeptics/skeptic/out/vera_counted.json |
+| key scoring cross-check (skeptic) | 360 key runs | own key-string match vs environment decoy log | independent scorer | 360/360 agree; warning any 0.8667 [0.80, 0.93] | skeptics/skeptic/out/vera_counted.json |
+| manipulation check (skeptic) | warning cued, 180 runs | thoughts name a trap | neutral = 0 trap mentions | 20/180 name a trap, 17 of those followed; sentence in 1,470/1,470 system prompts | skeptics/skeptic/out/vera_manip.txt |

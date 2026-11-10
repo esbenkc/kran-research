@@ -21,18 +21,17 @@ ext_a0.000488281_s0|p0|--cue-alpha 0.00048828125 --seed 0
 real_s0|p0|--cue-dir real --seed 0
 real_s1|p0|--cue-dir real --seed 1
 ext_a0.000244141_s0|p0|--cue-alpha 0.000244140625 --seed 0 --steps 9216
-# --- unclaimed, Felix #19448 (07:16 PST): no-cast k=8 first (lane B after k=9 is stopped), direction spread, u1111/-u, rd_, C2, SGD, seed 2 k=2
 nocastk8_x0.0876_s0|p0|--no-cast --match-x 0.0876 --seed 0 --steps 20480
 row0_x16.556_s0|p0|--match-x 16.5562 --cue-rows 0 --seed 0
 row12_x16.556_s0|p0|--match-x 16.5562 --cue-rows 1,2 --seed 0
 u1111_a0.0078125_s0|p0|--cue-alpha 0.0078125 --u-file data/cue_u_1111.npy --seed 0
-# spread (Felix #19449): cell 14 T 1,472 >= 192 -> rows-1-2-only random cues at x = x_real 11.6948, seed 0
 dir1112r12_xreal_s0|p0|--match-x 11.6948 --cue-rows 1,2 --u-file data/cue_u_1112.npy --seed 0
 dir1113r12_xreal_s0|p0|--match-x 11.6948 --cue-rows 1,2 --u-file data/cue_u_1113.npy --seed 0
 dir1114r12_xreal_s0|p0|--match-x 11.6948 --cue-rows 1,2 --u-file data/cue_u_1114.npy --seed 0
-dir1115r12_xreal_s0|p0|--match-x 11.6948 --cue-rows 1,2 --u-file data/cue_u_1115.npy --seed 0
-dir1116r12_xreal_s0|p0|--match-x 11.6948 --cue-rows 1,2 --u-file data/cue_u_1116.npy --seed 0
-uneg_a0.0078125_s0|p0|--cue-alpha 0.0078125 --u-file data/cue_u_neg.npy --seed 0
+# --- unclaimed, Felix #19484 (07:55 PST) + rows-1-2 mini sweep (#19473/#19475): lane B takes row12_x4.20 after nocast k=8
+row12_x33.30_s0|p0|--match-x 33.30 --cue-rows 1,2 --seed 0
+row12_x8.450_s0|p0|--match-x 8.450 --cue-rows 1,2 --seed 0
+row12_x4.20_s0|p0|--match-x 4.20 --cue-rows 1,2 --seed 0 --steps 16384
 rd_p0_a0.03125_s0|p0|--cue-alpha 0.03125 --seed 0
 rd_p0_a0.03125_s1|p0|--cue-alpha 0.03125 --seed 1
 rd_sw_a0.015625_s0|p0|--cue-alpha 0.015625 --seed 0
@@ -41,9 +40,12 @@ rd_sw_a0.00390625_s0|p0|--cue-alpha 0.00390625 --seed 0
 rd_sw_a0.001953125_s0|p0|--cue-alpha 0.001953125 --seed 0
 rd_sw_a0.0009765625_s0|p0|--cue-alpha 0.0009765625 --seed 0
 c2_a0_s0|p0|--cue-alpha 0 --seed 0 --full --steps 1024
+uneg_a0.0078125_s0|p0|--cue-alpha 0.0078125 --u-file data/cue_u_neg.npy --seed 0
 sgdpilot_lr0.0099_s0|p0|--opt sgd --lr 0.0099 --cue-alpha 0.03125 --seed 0 --steps 128 --full
+dir1115r12_xreal_s0|p0|--match-x 11.6948 --cue-rows 1,2 --u-file data/cue_u_1115.npy --seed 0
+dir1116r12_xreal_s0|p0|--match-x 11.6948 --cue-rows 1,2 --u-file data/cue_u_1116.npy --seed 0
 sw_a0.0078125_s2|p0|--cue-alpha 0.0078125 --seed 2
-# CUT by Felix #19448 (cells 11-14, bf16 k=8, seed 2 at k=0,1,3,4,5):
+# PREREG s8 queue (name|gate|rl.py args). Claimed/finished lines first.
 #b16_real_s0|p0|--cue-dir real --dtype bf16 --seed 0
 #b16_a0.015625_s0|p0|--cue-alpha 0.015625 --dtype bf16 --seed 0
 #ext_a0.00012207_s0|p0|--cue-alpha 0.0001220703125 --seed 0 --steps 20480
@@ -52,4 +54,3 @@ sw_a0.0078125_s2|p0|--cue-alpha 0.0078125 --seed 2
 #sw_a0.00390625_s2|p0|--cue-alpha 0.00390625 --seed 2
 #sw_a0.001953125_s2|p0|--cue-alpha 0.001953125 --seed 2
 #sw_a0.0009765625_s2|p0|--cue-alpha 0.0009765625 --seed 2
-# direction spread (dir1112..1116 at x 11.6948) is inserted after cell 14: rows-1-2-only if T(row12) >= 192, else balanced (Felix #19449)

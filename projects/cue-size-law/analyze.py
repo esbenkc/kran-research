@@ -321,6 +321,28 @@ def main():
                                    "max_D": max(c["D"] for c in r["dev_curve"]),
                                    "stopped_by_hand": r.get("stopped_by_hand", False),
                                    "no_cast": bool(r["args"].get("no_cast", False))})
+    # rows-1-2-only cues (cells 14 + mini sweep, Felix #19473/#19475) and the rows-1-2 direction spread at x_real
+    r12 = [r for n, r in sorted(runs.items()) if n.startswith("row12_")]
+    S["rows12"] = [{"run": r["name"], "x": r["cue_size"]["x"], "T": r["T"], "T_dense": r.get("T_dense"),
+                    "budget": r["args"]["steps"], "steps_run": r["steps_run"], "gap0": r["gap0"]} for r in r12]
+    for key in ("T", "T_dense"):
+        u = [r for r in S["rows12"] if isinstance(r[key], int)]
+        if len(u) >= 2:
+            b_, a_, se_, n_ = ols(np.log([r["x"] for r in u]), np.log([r[key] for r in u]))
+            S[f"rows12_slope_{key}"] = {"slope": b_, "intercept": a_, "se": se_, "n": n_,
+                                        "ci_t": ([b_ - stats.t.ppf(0.975, n_ - 2) * se_, b_ + stats.t.ppf(0.975, n_ - 2) * se_]
+                                                 if n_ > 2 else None)}
+    S["row0_only"] = [{"run": n, "x": r["cue_size"]["x"], "T": r["T"], "T_dense": r.get("T_dense")}
+                      for n, r in runs.items() if n.startswith("row0_")]
+    sp = [r for n, r in sorted(runs.items()) if n.startswith("dir") and "r12_xreal" in n]
+    S["spread_rows12_xreal"] = [{"run": r["name"], "x": r["cue_size"]["x"], "T": r["T"], "T_dense": r.get("T_dense")}
+                                for r in sp]
+    if real and sp:
+        rT = sorted(r["T"] for r in real if r["T"])
+        sT = sorted(r["T"] for r in sp if r["T"])
+        S["spread_vs_real"] = {"real_T": rT, "spread_T": sT, "real_median": float(np.median(rT)) if rT else None,
+                               "spread_min": min(sT) if sT else None, "spread_max": max(sT) if sT else None,
+                               "real_below_all_spread": bool(rT and sT and max(rT) < min(sT))}
     # SGD arm
     sgd = [r for n, r in runs.items() if r["args"]["opt"] == "sgd"]
     S["sgd"] = [{"run": r["name"], "alpha": r["args"]["cue_alpha"], "x": xof.get(r["args"]["cue_alpha"]), "T": r["T"],
@@ -382,6 +404,12 @@ def write_matrix(S, runs):
         L.append(f"| extension (exploratory) | 0 | alpha 1/{round(1 / e['alpha'])} (k={e['k']}), x {e['x']:.4f}, budget {e['budget']} | none | "
                  f"T = {e['T']} vs frozen prediction {e['T_pred']:.0f}" + (f" (ratio {e['ratio']:.2f})" if e["ratio"] else f", max D {e['max_D']:.4f} at {e['steps_run']} updates")
                  + (" [STOPPED by hand at the room's decision, rounded sink-heavy cue: unscored]" if e["stopped_by_hand"] else "") + (" [fp32 cue, no cast]" if e["no_cast"] else "") + f" | data/runs/{e['run']}.json |")
+    for r in S.get("rows12", []):
+        L.append(f"| rows-1-2 cue (exploratory) | 0 | {r['run']} (x {r['x']:.3f}, cue on tokens 2-3 only) | none | T = {r['T']}, T_dense = {r['T_dense']} | data/runs/{r['run']}.json |")
+    for r in S.get("row0_only", []):
+        L.append(f"| sink-row cue (exploratory) | 0 | {r['run']} (x {r['x']:.3f}, cue on token 1 only) | none | T = {r['T']}, T_dense = {r['T_dense']} | data/runs/{r['run']}.json |")
+    for r in S.get("spread_rows12_xreal", []):
+        L.append(f"| direction spread | 0 | {r['run']} (x {r['x']:.3f}, rows 1-2, random direction) | none | T = {r['T']}, T_dense = {r['T_dense']} | data/runs/{r['run']}.json |")
     for r in S["sgd"]:
         L.append(f"| mechanism (SGD) | 0 | {r['run']} lr {r['lr']} | none | T = {r['T']} (steps {r['steps_run']}) | data/runs/{r['run']}.json |")
     if S.get("S2"):

@@ -112,6 +112,11 @@ def main() -> None:
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--budget", type=float, default=4.5)
     a = ap.parse_args()
+    # Import every provider SDK once on the main thread: 8 threads importing openai/anthropic/google-genai at the
+    # same time left a half-initialised module (NameError: name 'sys' is not defined on all 990 jobs, 23:04 PST).
+    import anthropic  # noqa: F401
+    import openai  # noqa: F401
+    from google import genai  # noqa: F401
     cells = a.cells.split(",") if a.cells else CUED_CELLS + FREE_CELLS + SIDE_CELLS
     jobs = []
     for m in a.models.split(","):

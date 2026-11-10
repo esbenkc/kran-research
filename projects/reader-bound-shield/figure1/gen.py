@@ -102,6 +102,8 @@ def main():
     o = S["onset"]["dense_s0"]["first_ge_7"]
     onset = next(w for w in cv["dense"] if w[1] >= 7.0)
     assert (onset[2], onset[3]) == (o["marked_from"], o["marked_to"]) and S["onset"]["planted_s0"]["first_ge_7"] is None
+    o1 = S["onset"]["dense_s1"]["first_ge_7"]  # second dense run (seed 1, D5), not drawn; named in the chart title
+    assert (o1["marked_from"], o1["marked_to"]) == (2515.0, 3198.0), o1
 
     def run(z, d, name):
         return {"off_text": first_sentence(z["toks_n"][i]), "on_text": first_sentence(z["toks_l"][i]),
@@ -113,7 +115,8 @@ def main():
             "planted": run(zp, dp, "planted_s0_gate_200"), "dense": run(zd, dd, "dense_s0_gate_200"),
             "exposure": {"planted_end": ex["planted_s0"][200], "dense_end": ex["dense_s0"][200],
                          "source": "data/summary.json exposure; curve: data/runs/<run>/curve.jsonl"},
-            "train_curve": cv, "dense_onset": {"lo": onset[2], "hi": onset[3], "switch": onset[1]}}
+            "train_curve": cv, "dense_onset": {"lo": onset[2], "hi": onset[3], "switch": onset[1]},
+            "dense_s1_onset": {"lo": o1["marked_from"], "hi": o1["marked_to"], "switch": o1["gap"], "source": "data/summary.json onset.dense_s1"}}
     if a.reader:
         r = json.load(open(HERE / a.reader))
         assert r["stop"] in ("saturated", "memorised") and r["n_test"] == 800

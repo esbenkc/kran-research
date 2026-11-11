@@ -82,6 +82,8 @@ def main():
                    "end": "full test on new puzzles (95% interval)"},
         "band": BAND, "onset": onset, "points": pts, "ends": ends, "meta": meta,
         "notes": ["Small dots: checks during training (planted cue only; the trace's checks are too noisy to plot)."],
+        "ratio_label": (f"saw {meta['ratio_R']:.1f}x what the planted cue needed to start" if meta.get("ratio_R") else
+                        ("saw 3.0x what the planted cue needed to start" if a.mock else None)),
         "answer": "ANSWER_SET_FROM_RESULT",
     }
     BLOG.mkdir(parents=True, exist_ok=True)

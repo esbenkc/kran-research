@@ -1,0 +1,95 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1111-matched-trace/env/.venv, got /Users/esben/work/oracle-1111-matched-trace/kran-research/projects/matched-trace/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1111-matched-trace/env/.venv, got /Users/esben/work/oracle-1111-matched-trace/kran-research/projects/matched-trace/../../../env/.venv
+W1110 20:58:53.322000 76192 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5845.50it/s]
+batch 1/25 55s
+batch 2/25 89s
+batch 3/25 122s
+batch 4/25 155s
+batch 5/25 189s
+batch 6/25 222s
+batch 7/25 257s
+batch 8/25 291s
+batch 9/25 325s
+batch 10/25 359s
+batch 11/25 393s
+batch 12/25 426s
+batch 13/25 460s
+batch 14/25 494s
+batch 15/25 528s
+batch 16/25 562s
+batch 17/25 595s
+batch 18/25 628s
+batch 19/25 661s
+batch 20/25 695s
+batch 21/25 728s
+batch 22/25 761s
+batch 23/25 794s
+batch 24/25 827s
+batch 25/25 861s
+{
+ "policy": "data/runs/pilot/adapter.pt",
+ "splits": "test",
+ "R": 4,
+ "k": 64,
+ "n_rows": 800,
+ "B": 32,
+ "mode": "joint",
+ "plant_tok": 14656,
+ "cue_delta": 0.1,
+ "dec_bias": -2.255,
+ "torch": "2.14.1",
+ "test": {
+  "y_R": -0.0037281960248947144,
+  "y_R_ci": [
+   -0.01861947774887085,
+   0.011134141124784946
+  ],
+  "y_R_text": -0.005071279592812061,
+  "y_R_text_ci": [
+   -0.02030518651008606,
+   0.009742406196892262
+  ],
+  "y_R_spill": 0.0013430849649012089,
+  "y_P": 0.0070665013045072556,
+  "y_P_ci": [
+   -0.0019227362936362624,
+   0.01578822359442711
+  ],
+  "forced_switch": 0.019596029072999954,
+  "forced_switch_ci": [
+   -0.009391263127326965,
+   0.047058336436748505
+  ],
+  "y_joint": 0.002680260455235839,
+  "y_joint_ci": [
+   -0.013671288266777992,
+   0.018523432314395905
+  ],
+  "mean_c_n": 0.5046631097793579,
+  "mean_c_nb": 0.5023282766342163,
+  "mean_c_lb": 0.5060564279556274,
+  "mean_c_nc": 0.4975965917110443,
+  "mean_c_X": 0.48273220658302307,
+  "mean_c_notX": 0.5023282766342163,
+  "mean_c_lc": 0.5019828677177429,
+  "D_R": 0.09746551513671875,
+  "D_R_ci": [
+   0.08892929553985596,
+   0.10624059289693832
+  ],
+  "D_P": 0.10000000894069672,
+  "D_P_ci": [
+   0.10000000894069672,
+   0.10000001639127731
+  ],
+  "pX_off": 0.03631719946861267,
+  "f_R": 0.3975,
+  "f_P": 0.10625,
+  "share_P_ceiling": 0.07066500672712862,
+  "share_R_ceiling": -0.038251437133072407
+ },
+ "read_s": 860.6
+}
+
+WATCHDOG: exit 0, peak footprint 4.70 GB

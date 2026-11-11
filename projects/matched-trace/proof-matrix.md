@@ -16,3 +16,5 @@ Built by summarize.py from the raw files; points = x100. One joint run (seed 0),
 | replicate | 0 | CRN draws 0-3: y_R / y_P_rb (pts) | none | +1.31 [-0.42, +3.12] / +0.79 [+0.38, +1.21]; s_P-s_R -0.090 [-0.393, +0.197] | data/reads/raw/joint_s0_final.npz |
 | replicate | 0 | CRN draws 4-7: y_R / y_P_rb (pts) | none | -2.06 [-4.07, -0.10] / +0.34 [-0.03, +0.71]; s_P-s_R +0.448 [+0.075, +0.845] | data/reads/raw/joint_s0_final.npz |
 | status | 0 | frozen rule | none | UNCONFIRMED | data/summary.json |
+| control | - | start policy, real trace | untrained start | -0.37 [-1.86, +1.11] pts | data/reads/raw/start_test.npz |
+| control | - | start policy, planted cue (D1) | untrained start | +0.20 [-0.09, +0.47] pts | data/reads/raw/start_test.npz |

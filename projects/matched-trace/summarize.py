@@ -41,9 +41,11 @@ def ci(x):
     return [float(np.percentile(x, 2.5)), float(np.percentile(x, 97.5))]
 
 
-def read_cells(path, delta=0.10):
+def read_cells(path, delta=0.10, seeds=None):
     z = np.load(path)
     m = z["split"] == "test"
+    if seeds is not None:  # replicate cells: independent CRN draw halves of the same read
+        m &= np.isin(z["seed"], seeds)
     g = z["prompt_idx"][m]
     c = {k: z[k][m].astype(np.float64) for k in ("c_n", "c_nb", "c_lb", "c_nlb", "c_nc", "c_X", "c_notX", "c_lc")}
     tvr = np.maximum(0.0, 1.0 - np.exp((z["lp_lb_nb"][m].astype(np.float64) - z["lp_nb"][m]).sum(1)))
@@ -110,6 +112,8 @@ def main():
     if FINAL.exists():
         f = read_cells(FINAL)
         s["final"] = f
+        s["final_half_r0_3"] = read_cells(FINAL, seeds=[0, 1, 2, 3])
+        s["final_half_r4_7"] = read_cells(FINAL, seeds=[4, 5, 6, 7])
         steps = s["curve"]["steps_done"] or 0
         s["cue_tv_mass_final"] = 0.10 * 32 * steps  # exact up to capped rows (cue_cap_rows in the curve)
         # DEVIATIONS D1: the Rao-Blackwellised y_P is primary unless the direct-minus-RB CI excludes 0 (then void)
@@ -176,6 +180,11 @@ def matrix(s):
         L.append(f"| headline | 0 | ceiling share s_P - s_R (paired, D1) | none | {sfmt('s_P_rb_minus_s_R')} | {art} |")
         L.append(f"| headline | 0 | ceiling share s_R / s_P (D1) | none | {sfmt('s_R')} / {sfmt('s_P_rb')} | {art} |")
         L.append(f"| diagnostic | 0 | forced cue switch | none | {fmt('forced_switch')} | {art} |")
+        for hk, lab in (("final_half_r0_3", "CRN draws 0-3"), ("final_half_r4_7", "CRN draws 4-7")):
+            h = s[hk]
+            hf = lambda k: "%+.2f [%+.2f, %+.2f]" % (100 * h[k]["v"], 100 * h[k]["ci"][0], 100 * h[k]["ci"][1])
+            L.append(f"| replicate | 0 | {lab}: y_R / y_P_rb (pts) | none | {hf('y_R')} / {hf('y_P_rb')}; s_P-s_R "
+                     f"{h['s_P_rb_minus_s_R']['v']:+.3f} [{h['s_P_rb_minus_s_R']['ci'][0]:+.3f}, {h['s_P_rb_minus_s_R']['ci'][1]:+.3f}] | {art} |")
         L.append(f"| status | 0 | frozen rule | none | {s['status']} | data/summary.json |")
         if "start" in s:
             st = s["start"]

@@ -12,4 +12,6 @@ Built by summarize.py from the raw files; points = x100. One joint run (seed 0),
 | headline | 0 | ceiling share s_P - s_R (paired, D1) | none | +0.168 [-0.043, +0.386] | data/reads/raw/joint_s0_final.{json,npz} |
 | headline | 0 | ceiling share s_R / s_P (D1) | none | -0.068 [-0.293, +0.144] / +0.100 [+0.051, +0.145] | data/reads/raw/joint_s0_final.{json,npz} |
 | diagnostic | 0 | forced cue switch | none | +5.64 [+2.86, +8.38] pts | data/reads/raw/joint_s0_final.{json,npz} |
+| replicate | 0 | CRN draws 0-3: y_R / y_P_rb (pts) | none | +1.31 [-0.42, +3.12] / +0.79 [+0.38, +1.21]; s_P-s_R -0.090 [-0.393, +0.197] | data/reads/raw/joint_s0_final.{json,npz} |
+| replicate | 0 | CRN draws 4-7: y_R / y_P_rb (pts) | none | -2.06 [-4.07, -0.10] / +0.34 [-0.03, +0.71]; s_P-s_R +0.448 [+0.075, +0.845] | data/reads/raw/joint_s0_final.{json,npz} |
 | status | 0 | frozen rule | none | UNCONFIRMED | data/summary.json |

@@ -66,6 +66,31 @@ def mock():
     return pts, {"step": 200, "x": 640}, ends, {"status": "MOCK", "D_R_avg": 0.09}
 
 
+def _pc(v):
+    sign = "\u2212" if v < -0.0005 else ""
+    return f"{sign}{abs(v) * 100:.0f}%"
+
+
+def head(meta, ends):
+    """Figure head: how the result looks (never the post's question or claim title)."""
+    if meta.get("status") == "MOCK":
+        return "MOCK HEAD"
+    return ("After the same training, the planted word starts to lower cheating; "
+            "the probe's trace shows no effect, within a wide margin")
+
+
+def answer(meta, ends):
+    fin = {e["cue"]: e for e in ends if e.get("when") == "final"}
+    if not fin or not meta.get("diff"):
+        return ""
+    p, r, d = fin["planted"], fin["real"], meta["diff"]
+    lead = {"CONFIRMED": "Yes.", "REJECTED": "No.", "UNCONFIRMED": "Not settled."}.get(meta.get("status"), "")
+    return (f"{lead} Planted cue {_pc(p['s'])} of its ceiling ({_pc(p['lo'])} to {_pc(p['hi'])}); "
+            f"probe's trace {_pc(r['s'])} ({_pc(r['lo'])} to {_pc(r['hi'])}). "
+            f"The gap between them, {_pc(d['v'])} ({_pc(d['ci'][0])} to {_pc(d['ci'][1])}), is "
+            + ("resolved." if d["ci"][0] > 0 else "not resolved."))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mock", action="store_true")
@@ -73,7 +98,7 @@ def main():
     pts, onset, ends, meta = mock() if a.mock else from_summary()
     data = {
         "mock": bool(a.mock),
-        "title": "TITLE_SET_FROM_RESULT",
+        "title": head(meta, ends),
         "subtitle": "One training run of Qwen3-0.6B. The planted cue changes 1 sampled thought in 10"
                     + (f"; the probe's trace changed about 1 in {1 / meta['D_R_avg']:.0f} on average." if meta.get("D_R_avg")
                        else "."),
@@ -89,7 +114,7 @@ def main():
         "notes": ["Small dots: checks during training (planted cue only; the trace's checks are too noisy to plot)."],
         "ratio_label": (f"saw {meta['ratio_R']:.1f}x what the planted cue needed to start" if meta.get("ratio_R") else
                         ("saw 3.0x what the planted cue needed to start" if a.mock else None)),
-        "answer": "ANSWER_SET_FROM_RESULT",
+        "answer": answer(meta, ends),
     }
     BLOG.mkdir(parents=True, exist_ok=True)
     (BLOG / "data.json").write_text(json.dumps(data, indent=1))

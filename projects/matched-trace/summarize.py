@@ -128,6 +128,12 @@ def main():
                               "s_R_minus_s_P_ci_low_gt_0_and_s_R_ci_low_gt_0":
                                   bool(-f[dk]["ci"][1] > 0 and f["s_R"]["ci"][0] > 0)}
         s["exposure_ratio_final_over_onset"] = (s["cue_tv_mass_final"] / on["cue_tv_mass"]) if on else None
+        # Kasper #19748: the real trace's OWN summed mass at the final adapter (trapezoid on the 50-grid, the last
+        # check's dev_D carried flat to the final update) over P's onset mass; this is the ratio that backs a YES
+        ck = s["curve"]["checks"]
+        rm = ck[-1]["cum_R_tv_mass"] + 32 * (steps - ck[-1]["step"]) * (ck[-1]["dev_D"] or 0.0) if ck else None
+        s["R_tv_mass_final"] = rm
+        s["exposure_ratio_R_final_over_P_onset"] = (rm / on["cue_tv_mass"]) if (on and rm is not None) else None
         st = read_cells(START) if START.exists() else None
         if st:
             s["start"] = st
@@ -140,7 +146,8 @@ def main():
             "n_seeds": 1, "note": "n = 1 joint run; '2 of 2 seeds' cells were not run -> outcome at best unsettled"}
     (HERE / "data" / "summary.json").write_text(json.dumps(s, indent=1))
     matrix(s)
-    print(json.dumps({k: s.get(k) for k in ("status", "status_inputs", "exposure_ratio_final_over_onset")}, indent=1))
+    print(json.dumps({k: s.get(k) for k in ("status", "status_inputs", "exposure_ratio_final_over_onset",
+                                             "exposure_ratio_R_final_over_P_onset", "R_tv_mass_final")}, indent=1))
     print("onset", on)
     if "final" in s:
         for k in ("y_R", "y_P_rb", "y_P", "y_P_minus_y_P_rb", "s_R", "s_P_rb", "s_P", "s_P_rb_minus_s_R",

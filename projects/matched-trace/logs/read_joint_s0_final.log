@@ -1,0 +1,120 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1111-matched-trace/env/.venv, got /Users/esben/work/oracle-1111-matched-trace/kran-research/projects/matched-trace/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1111-matched-trace/env/.venv, got /Users/esben/work/oracle-1111-matched-trace/kran-research/projects/matched-trace/../../../env/.venv
+W1110 20:30:20.360000 69811 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8021.63it/s]
+batch 1/50 55s
+batch 2/50 87s
+batch 3/50 120s
+batch 4/50 154s
+batch 5/50 188s
+batch 6/50 221s
+batch 7/50 255s
+batch 8/50 288s
+batch 9/50 321s
+batch 10/50 355s
+batch 11/50 388s
+batch 12/50 422s
+batch 13/50 456s
+batch 14/50 489s
+batch 15/50 522s
+batch 16/50 556s
+batch 17/50 589s
+batch 18/50 622s
+batch 19/50 655s
+batch 20/50 689s
+batch 21/50 722s
+batch 22/50 756s
+batch 23/50 789s
+batch 24/50 822s
+batch 25/50 855s
+batch 26/50 889s
+batch 27/50 923s
+batch 28/50 956s
+batch 29/50 989s
+batch 30/50 1023s
+batch 31/50 1057s
+batch 32/50 1090s
+batch 33/50 1123s
+batch 34/50 1157s
+batch 35/50 1190s
+batch 36/50 1223s
+batch 37/50 1257s
+batch 38/50 1290s
+batch 39/50 1323s
+batch 40/50 1357s
+batch 41/50 1391s
+batch 42/50 1424s
+batch 43/50 1457s
+batch 44/50 1490s
+batch 45/50 1524s
+batch 46/50 1557s
+batch 47/50 1590s
+batch 48/50 1623s
+batch 49/50 1657s
+batch 50/50 1690s
+{
+ "policy": "data/runs/joint_s0/adapter.pt",
+ "splits": "test",
+ "R": 8,
+ "k": 64,
+ "n_rows": 1600,
+ "B": 32,
+ "mode": "joint",
+ "plant_tok": 14656,
+ "cue_delta": 0.1,
+ "dec_bias": -2.255,
+ "torch": "2.14.1",
+ "test": {
+  "y_R": -0.0037689467426389456,
+  "y_R_ci": [
+   -0.015966646373271942,
+   0.008321907371282578
+  ],
+  "y_R_text": -0.0035293237306177616,
+  "y_R_text_ci": [
+   -0.01569625549018383,
+   0.008707011118531227
+  ],
+  "y_R_spill": -0.0002396236959611997,
+  "y_P": 0.009267367422580719,
+  "y_P_ci": [
+   -0.0009845480090007186,
+   0.018497195094823837
+  ],
+  "forced_switch": 0.05643033981323242,
+  "forced_switch_ci": [
+   0.028556758537888527,
+   0.08384959399700165
+  ],
+  "y_joint": 0.005567299667745829,
+  "y_joint_ci": [
+   -0.010066517628729343,
+   0.020741697400808334
+  ],
+  "mean_c_n": 0.5645695328712463,
+  "mean_c_nb": 0.567003607749939,
+  "mean_c_lb": 0.5707725286483765,
+  "mean_c_nc": 0.5553021430969238,
+  "mean_c_X": 0.5105733275413513,
+  "mean_c_notX": 0.567003607749939,
+  "mean_c_lc": 0.5590022206306458,
+  "D_R": 0.0980055034160614,
+  "D_R_ci": [
+   0.09196752309799194,
+   0.10417474061250687
+  ],
+  "D_P": 0.10000001639127731,
+  "D_P_ci": [
+   0.10000000894069672,
+   0.10000001639127731
+  ],
+  "pX_off": 0.05368363484740257,
+  "f_R": 0.3975,
+  "f_P": 0.101875,
+  "share_P_ceiling": 0.09267365903541074,
+  "share_R_ceiling": -0.038456480618631064
+ },
+ "read_s": 1690.3
+}
+
+WATCHDOG: exit 0, peak footprint 4.73 GB

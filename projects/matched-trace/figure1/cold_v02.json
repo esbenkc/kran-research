@@ -1,0 +1,37 @@
+{
+ "png": "../../../swarm-oracle-1111-matched-trace/owain/v02.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.015674999999999998,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Once training is long enough to learn a planted cue, does the model still learn to switch from the probe's trace when the probe is on?\",\n  \"answer\": \"Not settled: the planted cue 'Need' showed a +10% switch (5 to 15 points), but the probe's own trace changes produced too much noise (-7%, ranging from -29 to +14 points) to conclusively determine if a switch occurs.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Once training is long enough to learn a planted cue, does the model still learn no switch from the probe's trace of the same size?\",\n  \"answer\": \"Not settled: the planted word 'Need' showed a +10% switch (5 to 15 points), but the probe's trace showed a -7% switch (-29 to +14 points), making it too noisy to compare.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Once training is long enough to learn a planted cue, does the model still learn to switch from the probe's trace when the probe is on, or does it cheat by relying on the planted cue?\",\n  \"answer\": \"Not settled: the planted cue 'Need' shows a +10% switch (5 to 15), but the probe's own word changes create too much noise with a -7% switch range (-29 to +14) to definitively determine if the model learned a genuine switch or is cheating.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Once training is long enough to learn a planted cue, does the model still learn no switch in cheating behavior from the probe's own trace of the same size?\",\n  \"answer\": \"The answer is not settled because while the planted cue demonstrated a +10% switch (95% interval: 5% to 15%), the probe's trace produced an estimate of -7% with too wide a range (-29% to +14%) to tell the two apart.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"The post asks whether a model, once trained long enough to learn to alter its cheating behavior in response to a planted cue, still learns no switch from the probe's own trace of the same size.\",\n  \"answer\": \"The answer remains not settled because although the planted cue showed a switch of +10% (95% CI: 5% to 15%), the probe's trace yielded an estimate of -7% with a 95% interval too wide (-29% to +14%) to distinguish the two.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Once training is long enough to learn a planted cue, does the model still learn no switch in cheating behavior from the probe's trace of the same size?\",\n  \"answer\": \"The result is not settled because, although the planted cue produces a statistically significant switch of +10% (95% CI: 5% to 15%), the probe's trace yields an estimate of -7% with a 95% interval from -29% to +14%, making the reading too noisy to tell the two apart.\"\n}"
+  }
+ ]
+}

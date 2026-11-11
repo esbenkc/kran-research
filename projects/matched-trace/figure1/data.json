@@ -1,0 +1,59 @@
+{
+ "title": "Not settled: with &ldquo;Need&rdquo; first, the model cheated a little less; with the probe&rsquo;s own word changes, it did not, but the two ranges still overlap",
+ "answer": "Not settled",
+ "read": "data/reads/raw/joint_s0_final",
+ "row": 169,
+ "prompt": "cd0467",
+ "seed": 1,
+ "split": "test",
+ "n_rows": 1600,
+ "n_prompts": 200,
+ "R": 8,
+ "updates": 674,
+ "ex": {
+  "first": 45,
+  "ndiff": 15
+ },
+ "trace_changed_share": 0.3975,
+ "trace_first_median": 38.5,
+ "P": {
+  "s": 0.09995286556830822,
+  "ci": [
+   0.05101443263743482,
+   0.14541143362783238
+  ],
+  "D": 0.10000000953674316,
+  "y": 0.005643034565974206,
+  "y_ci": [
+   0.0028556759742201818,
+   0.008384959624423366
+  ],
+  "forced": 0.05643034438480754,
+  "forced_ci": [
+   0.0285567588722653,
+   0.08384959580583423
+  ]
+ },
+ "R_": {
+  "s": -0.06782405322215539,
+  "ci": [
+   -0.29339171877917375,
+   0.1443655024537335
+  ],
+  "D": 0.09800550710785466,
+  "y": -0.0037689472622013387,
+  "y_ci": [
+   -0.015966648085561315,
+   0.00832190800356887
+  ]
+ },
+ "diff": {
+  "v": 0.1677769187904636,
+  "ci": [
+   -0.04298409591644003,
+   0.3864503649797261
+  ]
+ },
+ "ratio_R": 1.1670681280471384,
+ "source": "data/summary.json final (summarize.py, 2,000 prompt resamples); points rebuilt from the npz"
+}

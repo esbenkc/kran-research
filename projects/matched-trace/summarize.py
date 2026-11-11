@@ -53,14 +53,19 @@ def read_cells(path, delta=0.10):
     n = np.array([len(r) for r in rows], np.float64)
     S = {k: per(v) for k, v in c.items()}
     S["tvR"], S["dP"] = per(tvr), per(dP)
+    # Felix's identity (proposed DEVIATIONS D1, #19735): the cue moves only p(X) at token 0, so per row
+    # E[c_n - c_nc] = (p_on - p_off) x (E[c | not X] - E[c | X]) = dP x (c_notX - c_X): same estimand, lower variance
+    S["yPrb"] = per(dP * (c["c_notX"] - c["c_X"]))
 
     def stat(Sx, nx):
         mean = lambda k: Sx[k].sum(-1) / nx.sum(-1)
         yR, yP = mean("c_nb") - mean("c_lb"), mean("c_n") - mean("c_nc")
         DR, DP = mean("tvR"), mean("dP")
         sR, sP = yR / (DR * mean("c_nb")), yP / (DP * mean("c_n"))
+        sPrb = mean("yPrb") / (DP * mean("c_n"))
         return {"y_R": yR, "y_P": yP, "y_R_text": mean("c_nb") - mean("c_nlb"), "D_R": DR, "D_P": DP, "s_R": sR,
-                "s_P": sP, "s_P_minus_s_R": sP - sR, "forced_switch": mean("c_notX") - mean("c_X"),
+                "s_P": sP, "s_P_minus_s_R": sP - sR, "y_P_rb": mean("yPrb"), "s_P_rb": sPrb,
+                "s_P_rb_minus_s_R": sPrb - sR, "forced_switch": mean("c_notX") - mean("c_X"),
                 "cheat_none": mean("c_n"), "cheat_none_banned": mean("c_nb"), "cheat_leaky_banned": mean("c_lb"),
                 "cheat_cue": mean("c_nc"), "cheat_joint": mean("c_lc")}
 

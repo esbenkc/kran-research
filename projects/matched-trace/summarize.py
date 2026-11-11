@@ -79,6 +79,20 @@ def read_cells(path, delta=0.10, seeds=None):
     return out
 
 
+def pair_swap_null(path):
+    """Control: swap the probe-off and probe-on labels of each TEST prompt's real-trace pairs at random (a sign flip
+    of the prompt's mean CRN gap); 2,000 draws. Under no switch the observed y_R sits inside this band."""
+    z = np.load(path)
+    m = z["split"] == "test"
+    g, d = z["prompt_idx"][m], (z["c_nb"][m] - z["c_lb"][m]).astype(np.float64)
+    ug = np.unique(g)
+    per = np.array([d[g == u].mean() for u in ug])
+    rng = np.random.default_rng(1)
+    null = (per[None] * rng.choice([-1.0, 1.0], (NB, len(ug)))).mean(1)
+    obs = float(per.mean())
+    return {"observed": obs, "band": ci(null), "p": float((np.abs(null) >= abs(obs)).mean())}
+
+
 def curve_cells():
     cv = [json.loads(l) for l in open(RUN / "curve.jsonl")]
     run = json.load(open(RUN / "run.json")) if (RUN / "run.json").exists() else {}
@@ -112,6 +126,7 @@ def main():
     if FINAL.exists():
         f = read_cells(FINAL)
         s["final"] = f
+        s["null_pair_swap"] = pair_swap_null(FINAL)
         s["final_half_r0_3"] = read_cells(FINAL, seeds=[0, 1, 2, 3])
         s["final_half_r4_7"] = read_cells(FINAL, seeds=[4, 5, 6, 7])
         steps = s["curve"]["steps_done"] or 0
@@ -170,9 +185,14 @@ def matrix(s):
              f"| data/runs/joint_s0/curve.jsonl |")
     if "final" in s:
         f = s["final"]
+        nl = s.get("null_pair_swap")
+        if nl:
+            L.append(f"| null | 0 | real trace, probe-on/off labels swapped per prompt (sign flip, 2,000) | pair-swap null | "
+                     f"null 95% band [{100*nl['band'][0]:+.2f}, {100*nl['band'][1]:+.2f}] pts; observed {100*nl['observed']:+.2f}; "
+                     f"two-sided p {nl['p']:.2f} | data/reads/raw/joint_s0_final.npz |")
         fmt = lambda k: "%+.2f [%+.2f, %+.2f] pts" % (100 * f[k]["v"], 100 * f[k]["ci"][0], 100 * f[k]["ci"][1])
         sfmt = lambda k: "%+.3f [%+.3f, %+.3f]" % (f[k]["v"], f[k]["ci"][0], f[k]["ci"][1])
-        art = "data/reads/raw/joint_s0_final.{json,npz}"
+        art = "data/reads/raw/joint_s0_final.npz"
         L.append(f"| headline | 0 | real trace (y_R) | none | {fmt('y_R')}, D_R {100*f['D_R']['v']:.1f} pts | {art} |")
         L.append(f"| headline | 0 | planted cue (y_P, D1 primary: D_P x forced) | none | {fmt('y_P_rb')}, D_P {100*f['D_P']['v']:.1f} pts | {art} |")
         L.append(f"| headline | 0 | planted cue (y_P, plain CRN) | none | {fmt('y_P')} | {art} |")
@@ -189,8 +209,8 @@ def matrix(s):
         if "start" in s:
             st = s["start"]
             g = lambda k: "%+.2f [%+.2f, %+.2f] pts" % (100 * st[k]["v"], 100 * st[k]["ci"][0], 100 * st[k]["ci"][1])
-            L.append(f"| control | - | start policy, real trace | untrained start | {g('y_R')} | data/reads/raw/start_test.{{json,npz}} |")
-            L.append(f"| control | - | start policy, planted cue (D1) | untrained start | {g('y_P_rb')} | data/reads/raw/start_test.{{json,npz}} |")
+            L.append(f"| control | - | start policy, real trace | untrained start | {g('y_R')} | data/reads/raw/start_test.npz |")
+            L.append(f"| control | - | start policy, planted cue (D1) | untrained start | {g('y_P_rb')} | data/reads/raw/start_test.npz |")
     (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")
 
 

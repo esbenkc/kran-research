@@ -48,7 +48,10 @@ def from_summary():
     for e in ends:
         e["when"] = "start" if e["x"] == 0.0 else "final"
     diff = s.get("final", {}).get(s.get("primary_P", {}).get("diff_key", "s_P_rb_minus_s_R"))
-    return pts, onset, ends, {"status": s.get("status"), "diff": diff,
+    steps = cv.get("steps_done") or (cv["checks"][-1]["step"] if cv["checks"] else 0)
+    rm = s.get("R_tv_mass_final") or (cv["checks"][-1].get("cum_R_tv_mass") if cv["checks"] else None)
+    d_avg = rm / (32 * steps) if (rm and steps) else None  # mean text difference of the trace over training
+    return pts, onset, ends, {"status": s.get("status"), "diff": diff, "D_R_avg": d_avg,
                               "ratio_R": s.get("exposure_ratio_R_final_over_P_onset")}
 
 
@@ -60,7 +63,7 @@ def mock():
             {"cue": "real", "x": 0, "s": -0.05, "lo": -0.2, "hi": 0.1, "y": -0.003, "ylo": -0.01, "yhi": 0.006, "when": "start", "D": 0.13},
             {"cue": "planted", "x": 2200, "s": 0.24, "lo": 0.19, "hi": 0.29, "y": 0.017, "ylo": 0.013, "yhi": 0.02, "when": "final", "D": 0.1},
             {"cue": "real", "x": 1900, "s": 0.01, "lo": -0.13, "hi": 0.15, "y": 0.001, "ylo": -0.008, "yhi": 0.01, "when": "final", "D": 0.08}]
-    return pts, {"step": 200, "x": 640}, ends, {"status": "MOCK"}
+    return pts, {"step": 200, "x": 640}, ends, {"status": "MOCK", "D_R_avg": 0.09}
 
 
 def main():
@@ -71,7 +74,9 @@ def main():
     data = {
         "mock": bool(a.mock),
         "title": "TITLE_SET_FROM_RESULT",
-        "subtitle": "One training run of Qwen3-0.6B. Both hints change about 1 sampled thought in 10.",
+        "subtitle": "One training run of Qwen3-0.6B. The planted cue changes 1 sampled thought in 10"
+                    + (f"; the probe's trace changed about 1 in {1 / meta['D_R_avg']:.0f} on average." if meta.get("D_R_avg")
+                       else "."),
         "x_label": "Thoughts the hint changed during training (thousands, expected count) \u2192",
         "x_label_short": "Thoughts the hint changed (thousands) \u2192",
         "y_label": "\u2191 Switch, as % of what the text allows",

@@ -1,0 +1,72 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1111-matched-trace/env/.venv, got /Users/esben/work/oracle-1111-matched-trace/kran-research/projects/matched-trace/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1111-matched-trace/env/.venv, got /Users/esben/work/oracle-1111-matched-trace/kran-research/projects/matched-trace/../../../env/.venv
+W1110 17:12:14.438000 14470 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5929.79it/s]
+batch 1/2 55s
+batch 2/2 88s
+{
+ "policy": "data/runs/pilot/adapter.pt",
+ "splits": "test",
+ "R": 4,
+ "k": 64,
+ "n_rows": 64,
+ "B": 32,
+ "mode": "joint",
+ "plant_tok": 14656,
+ "cue_delta": 0.1,
+ "dec_bias": -2.255,
+ "torch": "2.14.1",
+ "test": {
+  "y_R": -0.007147097494453192,
+  "y_R_ci": [
+   -0.031083960086107254,
+   0.017467625439167023
+  ],
+  "y_R_text": -0.006266591139137745,
+  "y_R_text_ci": [
+   -0.030971800908446312,
+   0.01939898356795311
+  ],
+  "y_R_spill": -0.0008805060060694814,
+  "y_P": 0.01402347907423973,
+  "y_P_ci": [
+   -0.02084454894065857,
+   0.04617026820778847
+  ],
+  "forced_switch": -0.018706833943724632,
+  "forced_switch_ci": [
+   -0.11758802831172943,
+   0.06826478242874146
+  ],
+  "y_joint": 0.014892475679516792,
+  "y_joint_ci": [
+   -0.03250858932733536,
+   0.05909987539052963
+  ],
+  "mean_c_n": 0.5022155046463013,
+  "mean_c_nb": 0.5139260292053223,
+  "mean_c_lb": 0.5210731625556946,
+  "mean_c_nc": 0.488192081451416,
+  "mean_c_X": 0.5326328873634338,
+  "mean_c_notX": 0.5139260292053223,
+  "mean_c_lc": 0.4873230457305908,
+  "D_R": 0.13920550048351288,
+  "D_R_ci": [
+   0.11071331799030304,
+   0.1677684783935547
+  ],
+  "D_P": 0.10000000894069672,
+  "D_P_ci": [
+   0.09999999403953552,
+   0.10000000894069672
+  ],
+  "pX_off": 0.03679156303405762,
+  "f_R": 0.375,
+  "f_P": 0.203125,
+  "share_P_ceiling": 0.1402347782044311,
+  "share_R_ceiling": -0.051342062415843076
+ },
+ "read_s": 88.2
+}
+
+WATCHDOG: exit 0, peak footprint 4.68 GB

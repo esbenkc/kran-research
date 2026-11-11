@@ -1,0 +1,19 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1111-matched-trace/env/.venv, got /Users/esben/work/oracle-1111-matched-trace/kran-research/projects/matched-trace/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1111-matched-trace/env/.venv, got /Users/esben/work/oracle-1111-matched-trace/kran-research/projects/matched-trace/../../../env/.venv
+W1110 17:01:34.635000 9413 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8159.10it/s]
+W1110 17:01:52.416000 9413 torch/_inductor/utils.py:1806] [0/2] Not enough SMs to use max_autotune_gemm mode
+step 0 {"step": 0, "cheat_none": 0.5095422267913818, "dev_unique_prefixes": 64, "dev_nlogp_per_token": 0.7599528431892395, "dev_D": 0.1139096819278993, "cheat_cue": 0.5365754961967468, "gap_P": -0.02703326940536499, "dev_g_X": 0.5250380635261536, "dev_g_notX": 0.49812573194503784, "dev_forced_switch": -0.026912331581115723, "cheat_leaky": 0.546256959438324, "gap": -0.03671473264694214, "k": 64}
+PROF sample 7.43 recompute 5.08 update 5.91
+PROF sample 7.45 recompute 3.22 update 5.68
+PROF sample 7.44 recompute 3.21 update 5.88
+PROF sample 7.78 recompute 3.26 update 6.29
+PROF sample 7.61 recompute 3.37 update 5.88
+PROF sample 7.93 recompute 3.23 update 5.89
+PROF sample 7.65 recompute 3.22 update 5.97
+PROF sample 7.48 recompute 3.25 update 5.84
+PROF sample 7.47 recompute 3.23 update 5.74
+PROF sample 7.41 recompute 3.20 update 5.82
+TIME smoke_p8 16.80 s/update after warm-up k=64 B=32
+
+WATCHDOG: exit 0, peak footprint 7.25 GB

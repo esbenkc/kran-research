@@ -85,7 +85,8 @@ the ceiling share s. 'Learned' uses the dense onset rule, because the frozen ban
 - P learned = the P onset rule above is met at a dev check before the final read, AND final TEST s_P CI-low > 0.
 - YES (CONFIRMED) = P learned AND the paired difference s_P - s_R has CI-low > 0 (same adapter, same TEST prompts,
   prompt bootstrap) AND y_R CI-high < 3 points.
-- NO (REJECTED) = y_R CI-low >= 3 points (needs no P result), OR s_R - s_P CI-low > 0.
+- NO (REJECTED) = y_R CI-low >= 3 points (needs no P result), OR (s_R - s_P CI-low > 0 AND s_R CI-low > 0).
+  (v1.1, Kasper #19721, before the first training update: a noisy negative s_P alone can never give NO.)
 - UNCONFIRMED = anything else (P not learned, or the paired difference not resolved).
 - Next to every YES or NO sentence the post prints the achieved ratio: cue TV mass at the final read / P onset
   exposure, and both ceiling shares.

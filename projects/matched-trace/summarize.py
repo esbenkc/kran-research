@@ -5,6 +5,7 @@
 Inputs: data/runs/joint_s0/curve.jsonl (dev checks every 50 updates + training windows), data/runs/joint_s0/run.json,
 data/reads/raw/joint_s0_final.npz (R8 TEST joint read, read.py joint()), optional data/reads/raw/start_test.npz (the
 same read of the start adapter). Points = x100 in the post; this file keeps fractions.
+DEVIATIONS D1 (7463868a): y_P primary = mean dP x (c_notX - c_X) (key y_P_rb); void if the direct-minus-RB CI excludes 0.
 
 Definitions (PREREG 'Reads', 'Status rule'):
   y_R = mean(c_nb - c_lb)   real trace, population switch (' Need' banned at token 0 in both builds)
@@ -65,7 +66,7 @@ def read_cells(path, delta=0.10):
         sPrb = mean("yPrb") / (DP * mean("c_n"))
         return {"y_R": yR, "y_P": yP, "y_R_text": mean("c_nb") - mean("c_nlb"), "D_R": DR, "D_P": DP, "s_R": sR,
                 "s_P": sP, "s_P_minus_s_R": sP - sR, "y_P_rb": mean("yPrb"), "s_P_rb": sPrb,
-                "s_P_rb_minus_s_R": sPrb - sR, "forced_switch": mean("c_notX") - mean("c_X"),
+                "s_P_rb_minus_s_R": sPrb - sR, "y_P_minus_y_P_rb": yP - mean("yPrb"), "forced_switch": mean("c_notX") - mean("c_X"),
                 "cheat_none": mean("c_n"), "cheat_none_banned": mean("c_nb"), "cheat_leaky_banned": mean("c_lb"),
                 "cheat_cue": mean("c_nc"), "cheat_joint": mean("c_lc")}
 
@@ -111,22 +112,27 @@ def main():
         s["final"] = f
         steps = s["curve"]["steps_done"] or 0
         s["cue_tv_mass_final"] = 0.10 * 32 * steps  # exact up to capped rows (cue_cap_rows in the curve)
-        learned = on is not None and f["s_P"]["ci"][0] > 0
-        yes = learned and f["s_P_minus_s_R"]["ci"][0] > 0 and f["y_R"]["ci"][1] < 0.03
-        no = f["y_R"]["ci"][0] >= 0.03 or (-f["s_P_minus_s_R"]["ci"][1] > 0 and f["s_R"]["ci"][0] > 0)
+        # DEVIATIONS D1: the Rao-Blackwellised y_P is primary unless the direct-minus-RB CI excludes 0 (then void)
+        lo, hi = f["y_P_minus_y_P_rb"]["ci"]
+        d1 = not (lo > 0 or hi < 0)
+        sp, dk = ("s_P_rb", "s_P_rb_minus_s_R") if d1 else ("s_P", "s_P_minus_s_R")
+        s["primary_P"] = {"D1_valid": d1, "s_P_key": sp, "diff_key": dk, "y_P_key": "y_P_rb" if d1 else "y_P"}
+        learned = on is not None and f[sp]["ci"][0] > 0
+        yes = learned and f[dk]["ci"][0] > 0 and f["y_R"]["ci"][1] < 0.03
+        no = f["y_R"]["ci"][0] >= 0.03 or (-f[dk]["ci"][1] > 0 and f["s_R"]["ci"][0] > 0)
         s["status"] = "CONFIRMED" if yes and not no else "REJECTED" if no else "UNCONFIRMED"
-        s["status_inputs"] = {"P_onset_rule_met": on is not None, "s_P_ci_low_gt_0": f["s_P"]["ci"][0] > 0,
-                              "paired_s_P_minus_s_R_ci_low_gt_0": f["s_P_minus_s_R"]["ci"][0] > 0,
+        s["status_inputs"] = {"P_onset_rule_met": on is not None, "s_P_ci_low_gt_0": f[sp]["ci"][0] > 0,
+                              "paired_s_P_minus_s_R_ci_low_gt_0": f[dk]["ci"][0] > 0,
                               "y_R_ci_high_lt_3pts": f["y_R"]["ci"][1] < 0.03,
                               "y_R_ci_low_ge_3pts": f["y_R"]["ci"][0] >= 0.03,
                               "s_R_minus_s_P_ci_low_gt_0_and_s_R_ci_low_gt_0":
-                                  bool(-f["s_P_minus_s_R"]["ci"][1] > 0 and f["s_R"]["ci"][0] > 0)}
+                                  bool(-f[dk]["ci"][1] > 0 and f["s_R"]["ci"][0] > 0)}
         s["exposure_ratio_final_over_onset"] = (s["cue_tv_mass_final"] / on["cue_tv_mass"]) if on else None
         st = read_cells(START) if START.exists() else None
         if st:
             s["start"] = st
         s["scout_clauses"] = {
-            "P_ge_5pts": f["y_P"]["v"] >= 0.05,
+            "P_ge_5pts": f[s["primary_P"]["y_P_key"]]["v"] >= 0.05,
             "R_lt_1p5pts": f["y_R"]["v"] < 0.015,
             "two_x_onset": bool(on and s["exposure_ratio_final_over_onset"] >= 2),
             "probe_on_cheat_moves_ge_5pts": (abs(f["cheat_leaky_banned"]["v"] - st["cheat_leaky_banned"]["v"]) >= 0.05
@@ -137,7 +143,8 @@ def main():
     print(json.dumps({k: s.get(k) for k in ("status", "status_inputs", "exposure_ratio_final_over_onset")}, indent=1))
     print("onset", on)
     if "final" in s:
-        for k in ("y_R", "y_P", "s_R", "s_P", "s_P_minus_s_R", "D_R", "D_P", "forced_switch"):
+        for k in ("y_R", "y_P_rb", "y_P", "y_P_minus_y_P_rb", "s_R", "s_P_rb", "s_P", "s_P_rb_minus_s_R",
+                  "s_P_minus_s_R", "D_R", "D_P", "forced_switch"):
             print(k, s["final"][k])
 
 
@@ -156,16 +163,18 @@ def matrix(s):
         sfmt = lambda k: "%+.3f [%+.3f, %+.3f]" % (f[k]["v"], f[k]["ci"][0], f[k]["ci"][1])
         art = "data/reads/raw/joint_s0_final.{json,npz}"
         L.append(f"| headline | 0 | real trace (y_R) | none | {fmt('y_R')}, D_R {100*f['D_R']['v']:.1f} pts | {art} |")
-        L.append(f"| headline | 0 | planted cue (y_P) | none | {fmt('y_P')}, D_P {100*f['D_P']['v']:.1f} pts | {art} |")
-        L.append(f"| headline | 0 | ceiling share s_P - s_R (paired) | none | {sfmt('s_P_minus_s_R')} | {art} |")
-        L.append(f"| headline | 0 | ceiling share s_R / s_P | none | {sfmt('s_R')} / {sfmt('s_P')} | {art} |")
+        L.append(f"| headline | 0 | planted cue (y_P, D1 primary: D_P x forced) | none | {fmt('y_P_rb')}, D_P {100*f['D_P']['v']:.1f} pts | {art} |")
+        L.append(f"| headline | 0 | planted cue (y_P, plain CRN) | none | {fmt('y_P')} | {art} |")
+        L.append(f"| D1 check | 0 | direct minus RB y_P | none | {fmt('y_P_minus_y_P_rb')} (D1 void if CI excludes 0) | {art} |")
+        L.append(f"| headline | 0 | ceiling share s_P - s_R (paired, D1) | none | {sfmt('s_P_rb_minus_s_R')} | {art} |")
+        L.append(f"| headline | 0 | ceiling share s_R / s_P (D1) | none | {sfmt('s_R')} / {sfmt('s_P_rb')} | {art} |")
         L.append(f"| diagnostic | 0 | forced cue switch | none | {fmt('forced_switch')} | {art} |")
         L.append(f"| status | 0 | frozen rule | none | {s['status']} | data/summary.json |")
         if "start" in s:
             st = s["start"]
             g = lambda k: "%+.2f [%+.2f, %+.2f] pts" % (100 * st[k]["v"], 100 * st[k]["ci"][0], 100 * st[k]["ci"][1])
             L.append(f"| control | - | start policy, real trace | untrained start | {g('y_R')} | data/reads/raw/start_test.{{json,npz}} |")
-            L.append(f"| control | - | start policy, planted cue | untrained start | {g('y_P')} | data/reads/raw/start_test.{{json,npz}} |")
+            L.append(f"| control | - | start policy, planted cue (D1) | untrained start | {g('y_P_rb')} | data/reads/raw/start_test.{{json,npz}} |")
     (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")
 
 

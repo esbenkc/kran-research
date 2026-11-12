@@ -26,11 +26,18 @@ fp32 s0 used the argmax test) never reached 2 failed checks in a row, so their r
 Felix (PREREG owner) agrees and replaces his own D1 draft (commit 043ce0b5a) with this entry. Kasper #20318: the
 sign-SGD smoke (T 40 on all evals at x 33.3) also ran before Felix's T4 post; one size, no slope.
 
-## D2: budget for the exploratory SGD A-frozen arm (Felix, 06:20 PST, before any A-frozen run)
+## D2 (v2, Tove #20325 replaces Felix #20324; 06:25 PST, before any A-frozen run): the exploratory SGD A-frozen arm
 
-PREREG s3 gives every run B(x) = 3 * T0 * (x_top/x)^2 with T0 = SGD's top-cue T. Both pre-data toys say freezing
-lora_A makes SGD far slower (Iris #20300: 40,064 vs 1,344 updates; Felix T4 #20321: 7 of 12 runs censored at 600k
-updates), so that budget would censor all 4 cells and could cost ~4 x 24k updates. New rule for this arm only (it never
-enters the status fit): x_top first, budget 4,096. If it switches (T0_afrz), the other 3 sizes run in order with
-B = min(12,288, 3 * T0_afrz * (x_top/x)^2). If it does not switch, the arm stops there and the post reports
-"no switch within 4,096 updates at the largest cue, against SGD full-LoRA's T" as the mechanism cell.
+PREREG s3 gives every run B(x) = 3 * T0 * (x_top/x)^2 with T0 = SGD's top-cue T, and s2 runs A-frozen at SGD's lr.
+Both pre-data toys say freezing lora_A makes SGD far slower at the same lr (Iris #20300: 40,064 vs 1,344 updates;
+Felix T4 #20321: 7 of 12 runs censored at 600k), so the arm would give no slope inside budget. New rule for this arm
+only (it never enters the status fit):
+1. Speed-ratio cell: A-frozen at SGD's picked lr, x_top, seed 0, budget 4,096 (censored if no switch).
+2. Own lr: the s8.1 + D1 rule on A-frozen at x_top seed 0, descending ladder 10, 5, 2, 1, 0.5, 0.2, 0.1 (then 0.05,
+   0.02, 0.01 if needed), budget 4,096 each, pick T closest to 141 on a log scale, ties smaller lr. No stable lr
+   with T in [48, 4,096] -> the arm reports the ladder only.
+3. Slope cells: A-frozen at its own lr, the other 3 sizes, seed 0, budgets by s3 with T0 = its own pick.
+4. Mechanism bar (Tove #20325), frozen now: "the LoRA product's growth carries the -1" needs the A-frozen slope
+   CI-high < -1.5 AND the full-LoRA SGD slope CI covering -1. An A-frozen slope CI covering -1 kills that reading.
+   Anything else: the post says the arm did not decide it.
+5. Order: right after the 24 headline runs, before the x 2.06 extras and the controls of s5 item 5.

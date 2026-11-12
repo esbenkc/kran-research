@@ -1,4 +1,4 @@
-"""No-model checks of the web carrier (run with server.py up on 127.0.0.1:8791):  ../.venv/bin/python test_harness.py
+"""No-model checks of the web carrier (run with server.py up on 127.0.0.1:8795):  ../.venv/bin/python test_harness.py
 
 (a) the 2025 answer is on the fit target only: no menu page, no off-task page holds it;
 (b) both hidings put both hrefs in the raw HTML of every page; cued pages carry the inline cue, free pages carry none
@@ -63,8 +63,16 @@ def main() -> None:
     enc = tiktoken.get_encoding("o200k_base")
     counts = {f"web:{k}": len(enc.encode(v)) for k, v in agent.SENTENCES.items()}
     counts |= {f"key:{k}": len(enc.encode(v)) for k, v in kagent.NOTICES.items()}
-    pre = {k: v for k, v in counts.items() if not k.endswith("marked")}
-    check(all(12 <= v <= 16 for v in pre.values()), f"(e) token counts {counts}")
+    two = ("neutral", "honeypot", "nameit", "full", "verbalise")
+    check(all(34 <= counts[f"web:{k}"] <= 37 for k in two) and counts["web:trap"] == 14,
+          f"(e) token counts: 2x2 + V arms 34-37 on the web carrier, trap 14 {counts}")
+    import ast
+    import subprocess
+    src = subprocess.run(["git", "show", "origin/swarm/defense-1110-trap-aware-canary:projects/trap-aware-canary/web/agent.py"],
+                         capture_output=True, text=True, check=True).stdout
+    old = next(ast.literal_eval(n.value) for n in ast.parse(src).body
+               if isinstance(n, ast.Assign) and any(getattr(t, "id", None) == "SENTENCES" for t in n.targets))
+    check(agent.SENTENCES["trap"] == old["warning"], "(e) web trap sentence byte-identical to trap-aware-canary web 'warning'")
     check(all(agent.system_prompt(k) == agent.SYSTEM_PROMPT + " " + v for k, v in agent.SENTENCES.items())
           and all(kagent.system_prompt(k) == kagent.SYSTEM_PROMPT + " " + v for k, v in kagent.NOTICES.items()),
           "(e) system prompt = base + ' ' + sentence on both carriers")

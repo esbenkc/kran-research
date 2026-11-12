@@ -1,6 +1,6 @@
 """Run episodes: python run.py {smoke,counted} --models ... [--seeds N] [--workers W] [--budget USD].
 
-Raw episode logs go to raw/<model>/<arm>/<seed>.jsonl (counted, seeds 2000+) or raw_smoke/... (smoke seeds 9000+).
+Raw episode logs go to raw/<model>/<arm>/<seed>.jsonl (counted, seeds 2000+) or raw_smoke/... (smoke seeds 2900+).
 All arms of one (model, seed) run in one thread, in a fixed order (env.ARMS). Arms share nothing in the cache (each
 has its own system prompt), so every run is an independent sample. Jobs are seed-major, so a budget stop leaves
 balanced cells (whole seeds only).
@@ -31,7 +31,7 @@ MODELS = STRONG5  # warning-override's five agents (warning-words PREREG)
 # Fresh seeds and a fresh cache dir (raw/cache, new project): the 'full' arm's prompt is byte-identical to
 # warning-override's on_absent, so reused seeds 0-39 with its cache would replay last week's answers.
 COUNTED_SEED0 = 2000
-SMOKE_SEED0 = 9000
+SMOKE_SEED0 = 2900  # PREREG s1: smoke seeds 2900-2901
 
 
 def log_command(argv: list[str]) -> None:
@@ -81,6 +81,12 @@ def main() -> None:
     ap.add_argument("--workers", type=int, default=12)
     ap.add_argument("--max-steps", type=int, default=MAX_STEPS_DEFAULT)
     a = ap.parse_args()
+    if a.mode == "smoke" and not RAW_SMOKE.exists():  # PREREG s2 (e): the cache is empty at the first smoke call
+        from agent import CACHE_DIR
+        n_cached = len(list(CACHE_DIR.glob("*.json"))) if CACHE_DIR.exists() else 0
+        if n_cached:
+            sys.exit(f"cache not empty before the first smoke call: {n_cached} files in {CACHE_DIR}")
+        print(json.dumps({"cache_files_at_first_smoke": 0, "cache_dir": str(CACHE_DIR)}), flush=True)
     log_command(sys.argv[1:])
     base = SMOKE_SEED0 if a.mode == "smoke" else COUNTED_SEED0
     jobs = [(m, base + a.seed0 + i) for i in range(a.seeds) for m in a.models]

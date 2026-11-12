@@ -18,3 +18,9 @@ commits.
 ## D0.2 (before any smoke or counted run): one reported row
 Kasper #20105: the gate 'named_pre_e(name-only) > neutral' is near-automatic (parent off_absent named 0/200). Added as a
 reported row, not a gate: named_pre_e(name-only) vs named_pre_e(honeypot-only), agent-equal, with CI.
+
+## D1 (before any smoke or counted run; Bruno): web server port 8795, not 8791
+PREREG s5 names 127.0.0.1:8791 (the canary's port). On this machine 8791 is already taken by an unrelated local
+service, so `web/agent.py` PORT and `web/server.py --port` use 8795. The site, the access log and every agent-visible
+byte are unchanged (the agent sees relative links and absolute URLs on 127.0.0.1; the port appears in the absolute
+URLs only, identically in both web arms).

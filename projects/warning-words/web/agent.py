@@ -20,7 +20,7 @@ from urllib.parse import urljoin, urlparse
 
 from llmcall import complete_cached, gen_settings
 
-PORT = 8791  # own port: other swarms may serve invisible-link on 8765
+PORT = 8795  # own port: 8791 is taken by team_ingest on this mini; 8765 by other swarms
 BASE = f"http://127.0.0.1:{PORT}"
 UA = "Mozilla/5.0 (compatible; research-agent-harness)"
 MAX_STEPS = 8

@@ -3,12 +3,12 @@
     with-model-keys ../.venv/bin/python run.py <phase> --models gpt-5.4-nano,gpt-5.4-mini,gemini-3.1-flash-lite \
         [--n-cued 60] [--n-free 30] [--cells ...] [--start 0] [--workers 8] [--budget 4.5]
 
-A cell is <sentence>-<hiding>: sentence in agent.SENTENCES (neutral, logging, warning, rule), hiding in
+A cell is <arm>-<hiding>: arm in agent.SENTENCES (the six arms of ../arms.json), hiding in
 websites.HIDINGS (cued = inline display:none, free = class from an unfetched stylesheet). Every run starts on the
 home page in raw-HTML view (STUCK: the menu reaches only the 2024 table). Run i of a cell uses template
 TEMPLATE_ORDER[i % 5], paraphrase (i // 5) % 6 and footer order (i + i // 30) % 2, so runs 0-29 cover each
 template x paraphrase once and runs 30-59 repeat them with the other link order.
-Resumable: a run whose raw file exists is skipped. Needs server.py running on 127.0.0.1:8791.
+Resumable: a run whose raw file exists is skipped. Needs server.py running on 127.0.0.1:8795.
 """
 from __future__ import annotations
 

@@ -59,12 +59,12 @@ sgdfapilot_lr10|--opt sgd --lr 10 --freeze-a --no-cast --cue-alpha 0.03125 --see
 sgdfapilot_lr5|--opt sgd --lr 5 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
 sgdfapilot_lr2|--opt sgd --lr 2 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
 sgdfapilot_lr1|--opt sgd --lr 1 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
-sgdfapilot_lr0.5|--opt sgd --lr 0.5 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
-sgdfapilot_lr0.2|--opt sgd --lr 0.2 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
-sgdfapilot_lr0.1|--opt sgd --lr 0.1 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
-sgdfapilot_lr0.05|--opt sgd --lr 0.05 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
-sgdfapilot_lr0.02|--opt sgd --lr 0.02 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
-sgdfapilot_lr0.01|--opt sgd --lr 0.01 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+#CUT D5 sgdfapilot_lr0.5|--opt sgd --lr 0.5 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+#CUT D5 sgdfapilot_lr0.2|--opt sgd --lr 0.2 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+#CUT D5 sgdfapilot_lr0.1|--opt sgd --lr 0.1 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+#CUT D5 sgdfapilot_lr0.05|--opt sgd --lr 0.05 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+#CUT D5 sgdfapilot_lr0.02|--opt sgd --lr 0.02 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+#CUT D5 sgdfapilot_lr0.01|--opt sgd --lr 0.01 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
 # A-frozen sizes go here after the pick
 # control: SGD lr/2 at alpha 1/64 seed 0 (budget 2x the cell's)
 ctl_lrhalf_sgd_a0.015625_s0|--opt sgd --lr 0.005 --no-cast --cue-alpha 0.015625 --seed 0 --steps 4352

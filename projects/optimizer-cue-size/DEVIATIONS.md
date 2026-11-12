@@ -65,13 +65,6 @@ rather than the optimizer's step rule. New exploratory arm (never in the status 
 4. Queue (replaces D2 v2 item 5): 24 headline runs -> shuffled-cue SGD -> time-matched AdamW (pilots, s0 4 sizes,
    s1 4 sizes) -> A-frozen (same-lr cell, ladder, 3 sizes) -> SGD lr/2 -> x 2.06 -> group 16.
 
-## D5: queue order slip (Bruno, 07:22 PST)
-
-D4 (06:48) put the time-matched AdamW arm before the A-frozen arm. I queued D4's pilots only at 07:21, so the A-frozen
-same-lr cell (07:1x, T 208) and the A-frozen ladder lrs 10, 5, 2, 1 ran first. Order only: no rule, budget or fit row
-changed, and both arms are exploratory. The D4 pilots run next, then its 4 sizes, then the rest of the A-frozen ladder.
-Vera #20357's extra cell (SGD lr 0.02 at alpha 1/64, seed 0, exploratory) is queued after the lr/2 control.
-
 ## D5: A-frozen own-lr ladder cut after the same-lr cell (Tove #20367; Felix, 07:18 PST)
 
 The lane started the D2 v2 own-lr ladder before D4 (queue slip). The same-lr A-frozen cell (lr 0.01, x_top, seed 0)
@@ -81,3 +74,10 @@ ladder and the 3 slope cells of D2 v2 items 2-3 are CUT; the D2 v2 item 4 mechan
 the post reports the arm as the one same-lr cell. Pilots of the ladder that already ran are reported in the proof
 matrix, not used. Queue now: D4 time-matched AdamW (s0 then s1) -> SGD lr/2 -> Vera's SGD lr 0.02 at x 16.6 -> x 2.06
 -> G16.
+
+## D6: queue order slip (Bruno, 07:22 PST)
+
+D4 (06:48) put the time-matched AdamW arm before the A-frozen arm. I queued D4's pilots only at 07:21, so the A-frozen
+same-lr cell (07:1x, T 208) and the A-frozen ladder lrs 10, 5, 2, 1 ran first. Order only: no rule, budget or fit row
+changed, and both arms are exploratory. The D4 pilots run next, then its 4 sizes; the rest of the A-frozen ladder is cut (D5).
+Vera #20357's extra cell (SGD lr 0.02 at alpha 1/64, seed 0, exploratory) is queued after the lr/2 control.

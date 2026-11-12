@@ -442,7 +442,7 @@ def write_matrix(S):
                  f"[{a['slope']['ci'][0]:.3f}, {a['slope']['ci'][1]:.3f}]; D4 bar: {a['bar_D4']} | data/summary.json |")
     for r in S.get("x2_rows", []):
         res = f"censored at {r['steps_run']}" if r["censored"] else f"T = {r['T']}"
-        L.append(f"| x 2.06 (exploratory) | {r['seed']} | {r['opt']} alpha 1/512 | none | x {r['x']:.2f}: {res} | data/runs/{r['run']}.json |")
+        L.append(f"| x 2.08 (exploratory) | {r['seed']} | {r['opt']} alpha 1/512 | none | x {r['x']:.2f}: {res} | data/runs/{r['run']}.json |")
     r = load("vera_sgdlr0.02_a0.015625_s0")
     if r:
         L.append(f"| SGD lr check (exploratory, Vera #20357) | 0 | SGD lr 0.02, alpha 1/64 | none | T = {T_of(r)} | "

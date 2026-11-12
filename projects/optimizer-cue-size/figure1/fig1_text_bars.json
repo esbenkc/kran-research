@@ -1,0 +1,27 @@
+{
+ "title": "shrinking a hidden cue slowed plain SGD far more than AdamW in Qwen3-0.6B",
+ "head": "Shrinking the hidden cue slowed plain SGD down far more than AdamW",
+ "sub": "<b>Question: as a hidden cue shrinks, does plain SGD slow down much more than AdamW, while sign-SGD keeps pace with AdamW? Answer: Yes.</b> Each halving of the cue multiplied the updates by <span class=\"r\">×{per_sgd}</span> for plain SGD, ×{per_adamw} for AdamW and ×{per_sign} for sign-SGD.",
+ "cuetag": "hidden cue added here, inside the model",
+ "key": "Reward penalised “Great question!” only when a <b>hidden cue</b> was added inside the model at the 3 tokens that start every chat. We timed how many updates each optimiser needed before the model said it 10+ points less often with the cue.",
+ "col_step": "textbook step rule",
+ "col_per": "per halving",
+ "big": "big gradient",
+ "small": "8× smaller",
+ "rule": {
+  "sgd": "step = rate × gradient",
+  "sign": "fixed step, sign of gradient",
+  "adamw": "gradient ÷ its recent size"
+ },
+ "pred": "predicted",
+ "tnote": "Dashed: the predictions fixed before the runs. Qwen3-0.6B, 2 runs per size.",
+ "hot": "sgd",
+ "order": [
+  "adamw",
+  "sign",
+  "sgd"
+ ],
+ "foot": "Source: Qwen3-0.6B, last 2 blocks trained by reward; switch timed on 64 prompts; Nov 2026 · blog.kran.ai/lab",
+ "bars_head": "Cue 8× smaller (5.5% → 0.68% of what the layer reads): how many times more updates until the switch",
+ "updates": "updates (mean of 2 runs)"
+}

@@ -1,0 +1,19 @@
+PASS SGD step = -eta g 
+PASS sign step = -eta sign(g) 
+PASS AdamW step = -eta mhat/(sqrt(vhat)+eps), 5 steps max diff 1.04e-17
+PASS Adam step 1 = sign(g) (eps aside) 
+PASS 24 uncensored headline runs n=24
+PASS slope adamw -0.8110
+PASS intercept adamw 6.1698
+PASS slope sgd -1.4841
+PASS intercept sgd 10.4303
+PASS slope sign -0.9957
+PASS intercept sign 6.9969
+     d_SGD -0.673  d_sign -0.185
+PASS d_SGD = -0.673 
+PASS d_sign = -0.185 
+PASS T(x/2)/T(x) = 2**(-b) 2**(-b)
+PASS per-halving sgd = x2.8 2.797
+PASS per-halving adamw = x1.8 1.754
+PASS per-halving sign = x2.0 1.994
+ALL PASS

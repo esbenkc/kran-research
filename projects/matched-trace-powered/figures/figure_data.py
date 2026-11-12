@@ -125,7 +125,7 @@ def main():
                      "stops cheating whenever the words give the probe away. Both cues change the thought by about 10 points "
                      "of text difference."),
         "x_label": "Training thoughts in which a cue gave the probe away, expected count (thousands) \u2192",
-        "x_label_short": "Thoughts that gave the probe away, expected (thousands) \u2192",
+        "x_label_short": "Thoughts giving the probe away (k, expected) \u2192",
         "y_label": "\u2191 Share of the limit",
         "legend": {"planted": "planted cue: checks during training (64 puzzles; in training \u201cNeed\u201d is made more likely, in these checks it is written in)",
                    "real": "probe's trace: full tests only (hollow dot, 95% interval)",

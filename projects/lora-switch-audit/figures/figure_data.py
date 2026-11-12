@@ -201,7 +201,7 @@ def main():
     past = [r for r in data["series"] if r["kind"] in ("sweep", "floor") and r["pts"][-1]["step"] >= 1500]
     allpast = all(all(p["rank"] == 1 for p in r["pts"] if p["step"] >= 1500) for r in past)
     data["title"] = (f"At 256 updates the top direction missed the largest cue in {len(big) - nb} of {len(big)} models; "
-                     + (f"in every learned random-cue run trained past 1,500 updates it ranked the cue first ({len(past)} of {len(past)})"
+                     + (f"in every learned random-cue run trained past 1,500 updates it ranked the cue first ({len(past)} runs)"
                         if allpast else "some learned random-cue runs trained past 1,500 updates still did not rank the cue first"))
     data["subtitle"] = ("A weight-only score of the true cue on the top direction of the reward-trained weight change, "
                         "divided by the level that 1 in 100 of 1,000 random cues reach, over training. "

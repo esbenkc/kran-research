@@ -45,3 +45,5 @@ PY=<venv with torch 2.14.1, transformers 5.20.2, peft 0.21.2>/bin/python
 
 Runs are deterministic on the same machine: the Phase 0 rerun of the parent's AdamW x 33.3 seed 0 reproduced the
 parent's dev gap at every eval to 5 decimals (Vera #20314).
+
+Note: numpy 2.0.2 on macOS (Accelerate) prints spurious "divide by zero / overflow encountered in matmul" warnings even for a random 28x8 matrix product; every fit matrix and its inverse were checked finite.

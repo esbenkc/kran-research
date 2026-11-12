@@ -135,7 +135,7 @@ def main():
         assert "@@" not in out, out
         return out
     T = json.loads(fill(json.dumps(T)))
-    data["title"] = re.sub("<[^>]+>", "", T["head"])
+    data["title"] = html.unescape(re.sub("<[^>]+>", "", T["head"]))
 
     def thought(ids, mark=None, upto=64, firstline=False, cls="hi"):
         """token-by-token html; mark = bool array of tokens to highlight; whitespace runs collapse to one space"""

@@ -68,3 +68,22 @@ SGD's T. Measured per-halving factors: AdamW x1.75, SGD x2.80, sign x1.99.
 
 See novelty.md: the measurement is new as scoped; the mechanism is from 2402.19449 and 2512.00763; 2602.07729 (SGD
 matches AdamW in LLM RL) is the closest RL claim, and this result is a boundary on it.
+
+## Exploratory arms (T5b; no status weight) — vera_t5b.py
+
+| Check | My number | Reading |
+|---|---|---|
+| D4 time-matched AdamW (lr 1e-5; pick T 152 at x 33.3, rule target 180) | slope -0.918 [-1.020, -0.817]; minus SGD +0.566 [+0.422, +0.709]; minus default AdamW -0.107 [-0.251, +0.036] (4-arm pooled OLS, 32 runs, df 24, SD 0.108) | D4 bar met: CI excludes SGD's -1.484 -> 'step normalisation' sentence licensed |
+| AdamW lr ladder at x 33.3 | T = 16.1 + 1.42e-3/lr fits 6 lrs within 6.4% (a power law lr^-0.74 is off by 13%) | lr-free part ~16 updates at x 33.3, but (T_default - 16)/(T_tm - 16) = 0.086/0.121/0.132/0.134 over the 4 sizes, so it is not a constant start-up |
+| matched-T local slopes | SGD x16.6 -> 8.3 (T 560 -> 1,571): -1.49; AdamW-tm x8.3 -> 4.2 (T 528 -> 1,032): -0.97 | gap holds at equal run length |
+| SGD lr/2 at x 16.6 | 960 / 576 = 1.67 | inside frozen band [1.6, 2.5] (low edge) |
+| SGD lr 0.02 vs 0.01 | T ratio 0.60 (x 33.3), 0.67 (x 16.6); two-point slope -1.83 (lr 0.02) vs -1.68 (lr 0.01) | SGD slope does not flatten at the larger lr |
+| SGD group 16 at x 16.6 (one run) | 480 / 576 = 0.83 | inside drift band [0.7, 1.4]; one run |
+| SGD A-frozen, same lr, x 33.3 (one run) | 208 / 180 = 1.16 | not the toys' 10-400x |
+| x 2.08 cells | AdamW 304/304, sign 576/544; local slope 4.16 -> 2.08 = -1.00 for both; 5-size slopes AdamW -0.852, sign -1.013 | SGD x 2.08 still running at 08:10 PST (D 0.03 at update 7,552) |
+| adapter growth (normB at T, Frobenius summed over modules) | speed exponent on cue size: SGD 0.94, AdamW 0.47, sign 0.46, AdamW-tm 0.46; distance exponent -0.34 (AdamW) to -0.54 (SGD) | 'normalised steps remove about half a power' supported |
+
+## Receipts
+
+Scripts read the raw JSONs at the absolute path in vera_check.py:P; run order: vera_x.py, vera_check.py 0.01,
+vera_null.py 0.01, vera_sens.py, vera_t5b.py, derive.py. Each writes its JSON next to itself.

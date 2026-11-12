@@ -42,3 +42,11 @@ only (it never enters the status fit):
    Anything else: the post says the arm did not decide it.
 5. Order (Kasper #20329, Tove #20328): 24 headline runs -> shuffled-cue SGD control -> A-frozen (same-lr cell, ladder,
    3 sizes) -> SGD lr/2 -> x 2.06 -> group 16. The ladder top is 10 (above 1, Kasper #20326).
+
+## D3: SGD lr ladder extension (Kasper #20334; Felix, 06:11 PST, before the lr 0.02 and 0.01 pilot results were read)
+
+Pilots lr 1, 0.5, 0.2, 0.1, 0.05 collapsed (health stop at update 50, Bruno #20333). If neither lr 0.02 nor 0.01 is
+kept with T in [48, 4,096], the ladder extends to 0.005 and then 0.002, budget 8,192 each, same s8.1 + D1 tests, same
+pick (T closest to 141 on a log scale, ties smaller lr), gate T in [48, 8,192]. Grid budgets follow s3 from the picked
+T0 (cap 24,576). Compute note: a pick with T0 above ~1,000 and a true -2 slope would censor the two smallest SGD sizes
+at the cap; the Tobit fit keeps them (s8.3).

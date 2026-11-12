@@ -56,8 +56,10 @@ first = (g0 * (1 - b1) / (1 - b1)) / ((g0 * g0 * (1 - b2) / (1 - b2)).sqrt() + e
 check("Adam step 1 = sign(g) (eps aside)", torch.allclose(first, torch.sign(g0), atol=1e-6))
 
 # 2. pooled fit ---------------------------------------------------------------------------------
+# the status fit uses only the 24 frozen headline runs (PREREG s8.2); figure_data.json runs also hold x 2.08 extras,
+# so the rows come from summary.json headline_rows and the fit to compare against from figure_data.json fit
 fd = json.loads((HERE / "data/figure_data.json").read_text())
-rows = [r for r in fd["runs"] if r["opt"] in ("adamw", "sgd", "sign")]
+rows = json.loads((HERE / "data/summary.json").read_text())["headline_rows"]
 opts = ["adamw", "sgd", "sign"]
 X, y = [], []
 for r in rows:

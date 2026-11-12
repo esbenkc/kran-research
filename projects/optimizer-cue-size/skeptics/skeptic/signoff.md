@@ -80,7 +80,7 @@ matches AdamW in LLM RL) is the closest RL claim, and this result is a boundary 
 | SGD lr 0.02 vs 0.01 | T ratio 0.60 (x 33.3), 0.67 (x 16.6); two-point slope -1.83 (lr 0.02) vs -1.68 (lr 0.01) | SGD slope does not flatten at the larger lr |
 | SGD group 16 at x 16.6 (one run) | 480 / 576 = 0.83 | inside drift band [0.7, 1.4]; one run |
 | SGD A-frozen, same lr, x 33.3 (one run) | 208 / 180 = 1.16 | not the toys' 10-400x |
-| x 2.08 cells | AdamW 304/304, sign 576/544; local slope 4.16 -> 2.08 = -1.00 for both; 5-size slopes AdamW -0.852, sign -1.013 | SGD x 2.08 still running at 08:10 PST (D 0.03 at update 7,552) |
+| x 2.08 cells | AdamW 304/304, sign 576/544; local slope 4.16 -> 2.08 = -1.00 for both; 5-size slopes AdamW -0.852, sign -1.013 | SGD x 2.08 (seed 0, one run): T 9,216 (= T_dense); local slope 4.16 -> 2.08 = -1.28 vs -1.00 for AdamW and sign, so the faint-end gap is ~0.28; 5-size SGD slope -1.440 |
 | adapter growth (normB at T, Frobenius summed over modules) | speed exponent on cue size: SGD 0.94, AdamW 0.47, sign 0.46, AdamW-tm 0.46; distance exponent -0.34 (AdamW) to -0.54 (SGD) | 'normalised steps remove about half a power' supported |
 
 ## Receipts

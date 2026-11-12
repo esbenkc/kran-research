@@ -287,6 +287,13 @@ def main():
             ctl[nm] = {"T": t1, "T_base": t0, "ratio": ratio, "band": band,
                        "in_band": (ratio is not None and band[0] <= ratio <= band[1])}
     summary["controls"] = ctl
+    r = load("sgdfa_samelr_a0.03125_s0")
+    if r:
+        full = get("sgd", ALPHA_TOP, 0)[0]
+        summary["sgdfa_samelr"] = {"T": T_of(r), "censored": T_of(r) is None, "steps_run": r["steps_run"],
+                                   "T_sgd_full": T_of(full) if full else None, "lr": r["args"]["lr"]}
+    p = HERE / "data" / "sgdfa_pick.json"
+    summary["sgdfa_pick"] = json.load(open(p)) if p.exists() else None
     # ---- mechanism logs: ||A||, ||B|| and SNR along the cue-read direction
     mech = []
     for rr in rows + fa + ext:
@@ -373,6 +380,17 @@ def write_matrix(S):
             x = c[nm]
             L.append(f"| control | 0 | {lab} | {nm.split('_')[1]} | T = {x['T']} vs {x['T_base']}, ratio "
                      f"{x['ratio'] if x['ratio'] is None else round(x['ratio'], 2)} (band {x['band']}) | data/runs/{nm}.json |")
+    if "sgdfa_samelr" in S:
+        x = S["sgdfa_samelr"]
+        res = f"censored at {x['steps_run']}" if x["censored"] else f"T = {x['T']}"
+        L.append(f"| A-frozen (exploratory) | 0 | SGD lora_A frozen at SGD's lr {x['lr']:g}, x 33.3 | none | {res} vs full LoRA "
+                 f"T = {x['T_sgd_full']} | data/runs/sgdfa_samelr_a0.03125_s0.json |")
+    pk = S.get("sgdfa_pick")
+    if pk:
+        for x in pk["pilots"]:
+            L.append(f"| A-frozen lr pick | 0 | A-frozen SGD lr {x['lr']:g}, x 33.3 | none | stable {x['stable']}, T = {x['T']} "
+                     f"{'(' + '; '.join(x['why']) + ')' if x['why'] else ''} | data/runs/{x['run']}.json |")
+        L.append(f"| A-frozen lr pick | 0 | rule D2 v2 | none | {pk['decision']} | data/sgdfa_pick.json |")
     if "replication_parent_adamw_bf16" in S:
         x = S["replication_parent_adamw_bf16"]
         L.append(f"| replication | 0,1 | parent AdamW bf16 cue, 4 sizes | none | slope {x['slope']:.3f} (n {x['n']}) | parent/ |")

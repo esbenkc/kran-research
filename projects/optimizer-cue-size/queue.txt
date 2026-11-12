@@ -35,3 +35,38 @@ sgd_a0.0078125_s0|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.0078125 --seed 0 -
 sgd_a0.0078125_s1|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.0078125 --seed 1 --steps 8640
 sgd_a0.00390625_s0|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.00390625 --seed 0 --steps 24576
 sgd_a0.00390625_s1|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.00390625 --seed 1 --steps 24576
+# sign-SGD grid (PREREG s5 item 3): lr 1e-4, T0 40 (sign_a0.03125_s0)
+sign_a0.03125_s1|--opt sign --lr 1e-4 --no-cast --cue-alpha 0.03125 --seed 1 --steps 1024
+sign_a0.015625_s0|--opt sign --lr 1e-4 --no-cast --cue-alpha 0.015625 --seed 0 --steps 1024
+sign_a0.015625_s1|--opt sign --lr 1e-4 --no-cast --cue-alpha 0.015625 --seed 1 --steps 1024
+sign_a0.0078125_s0|--opt sign --lr 1e-4 --no-cast --cue-alpha 0.0078125 --seed 0 --steps 1920
+sign_a0.0078125_s1|--opt sign --lr 1e-4 --no-cast --cue-alpha 0.0078125 --seed 1 --steps 1920
+sign_a0.00390625_s0|--opt sign --lr 1e-4 --no-cast --cue-alpha 0.00390625 --seed 0 --steps 7680
+sign_a0.00390625_s1|--opt sign --lr 1e-4 --no-cast --cue-alpha 0.00390625 --seed 1 --steps 7680
+# --- after the 24 headline runs (D2 v2 item 5 order). sign grid lines get inserted ABOVE this line.
+# control: SGD shuffled penalty coin at x_top, full 4096 (PREREG s5 item 5)
+ctl_shuf_sgd_a0.03125_s0|--arm shuf --opt sgd --lr 0.01 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096 --full
+# A-frozen (D2 v2): same-lr cell, then own-lr ladder (pruned by pick_lr.py --arm sgdfa), then 3 sizes
+sgdfa_samelr_a0.03125_s0|--opt sgd --lr 0.01 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdfapilot_lr10|--opt sgd --lr 10 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdfapilot_lr5|--opt sgd --lr 5 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdfapilot_lr2|--opt sgd --lr 2 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdfapilot_lr1|--opt sgd --lr 1 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdfapilot_lr0.5|--opt sgd --lr 0.5 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdfapilot_lr0.2|--opt sgd --lr 0.2 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdfapilot_lr0.1|--opt sgd --lr 0.1 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdfapilot_lr0.05|--opt sgd --lr 0.05 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdfapilot_lr0.02|--opt sgd --lr 0.02 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdfapilot_lr0.01|--opt sgd --lr 0.01 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+# A-frozen sizes go here after the pick
+# control: SGD lr/2 at alpha 1/64 seed 0 (budget 2x the cell's)
+ctl_lrhalf_sgd_a0.015625_s0|--opt sgd --lr 0.005 --no-cast --cue-alpha 0.015625 --seed 0 --steps 4352
+# x 2.06 (exploratory): AdamW s0,s1 (sign lines after its T0)
+adamw_a0.00195312_s0|--opt adamw --lr 1e-4 --no-cast --cue-alpha 0.001953125 --seed 0 --steps 24576
+adamw_a0.00195312_s1|--opt adamw --lr 1e-4 --no-cast --cue-alpha 0.001953125 --seed 1 --steps 24576
+sign_a0.00195312_s0|--opt sign --lr 1e-4 --no-cast --cue-alpha 0.001953125 --seed 0 --steps 24576
+sign_a0.00195312_s1|--opt sign --lr 1e-4 --no-cast --cue-alpha 0.001953125 --seed 1 --steps 24576
+# control: SGD group 16 at alpha 1/64 seed 0
+ctl_g16_sgd_a0.015625_s0|--opt sgd --lr 0.01 --group 16 --no-cast --cue-alpha 0.015625 --seed 0 --steps 2176
+# SGD x 2.06 seed 0 (last)
+sgd_a0.00195312_s0|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.001953125 --seed 0 --steps 24576

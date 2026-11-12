@@ -37,6 +37,42 @@
    "run": "adamw_a0.015625_s1"
   },
   {
+   "opt": "adamw",
+   "alpha": 0.0078125,
+   "seed": 0,
+   "x": 8.317558288574219,
+   "T": 92,
+   "censored": false,
+   "run": "adamw_a0.0078125_s0"
+  },
+  {
+   "opt": "adamw",
+   "alpha": 0.0078125,
+   "seed": 1,
+   "x": 8.317558288574219,
+   "T": 76,
+   "censored": false,
+   "run": "adamw_a0.0078125_s1"
+  },
+  {
+   "opt": "adamw",
+   "alpha": 0.00390625,
+   "seed": 0,
+   "x": 4.158708572387695,
+   "T": 152,
+   "censored": false,
+   "run": "adamw_a0.00390625_s0"
+  },
+  {
+   "opt": "adamw",
+   "alpha": 0.00390625,
+   "seed": 1,
+   "x": 4.158708572387695,
+   "T": 152,
+   "censored": false,
+   "run": "adamw_a0.00390625_s1"
+  },
+  {
    "opt": "sgd",
    "alpha": 0.03125,
    "seed": 0,
@@ -44,6 +80,60 @@
    "T": 180,
    "censored": false,
    "run": "sgdpilot_lr0.01"
+  },
+  {
+   "opt": "sgd",
+   "alpha": 0.03125,
+   "seed": 1,
+   "x": 33.26375198364258,
+   "T": 168,
+   "censored": false,
+   "run": "sgd_a0.03125_s1"
+  },
+  {
+   "opt": "sgd",
+   "alpha": 0.015625,
+   "seed": 0,
+   "x": 16.63496971130371,
+   "T": 576,
+   "censored": false,
+   "run": "sgd_a0.015625_s0"
+  },
+  {
+   "opt": "sgd",
+   "alpha": 0.015625,
+   "seed": 1,
+   "x": 16.63496971130371,
+   "T": 544,
+   "censored": false,
+   "run": "sgd_a0.015625_s1"
+  },
+  {
+   "opt": "sgd",
+   "alpha": 0.0078125,
+   "seed": 0,
+   "x": 8.317558288574219,
+   "T": 1696,
+   "censored": false,
+   "run": "sgd_a0.0078125_s0"
+  },
+  {
+   "opt": "sgd",
+   "alpha": 0.0078125,
+   "seed": 1,
+   "x": 8.317558288574219,
+   "T": 1456,
+   "censored": false,
+   "run": "sgd_a0.0078125_s1"
+  },
+  {
+   "opt": "sign",
+   "alpha": 0.03125,
+   "seed": 0,
+   "x": 33.26375198364258,
+   "T": 40,
+   "censored": false,
+   "run": "sign_a0.03125_s0"
   }
  ],
  "fit": null,

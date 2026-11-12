@@ -19,5 +19,15 @@ Built by `analyze.py` from `data/runs/*.json`. One row per cell. T = updates to 
 | headline | 1 | adamw alpha 1/32 | none | x 33.26: T = 24 | data/runs/adamw_a0.03125_s1.json |
 | headline | 0 | adamw alpha 1/64 | none | x 16.63: T = 52 | data/runs/adamw_a0.015625_s0.json |
 | headline | 1 | adamw alpha 1/64 | none | x 16.63: T = 48 | data/runs/adamw_a0.015625_s1.json |
+| headline | 0 | adamw alpha 1/128 | none | x 8.32: T = 92 | data/runs/adamw_a0.0078125_s0.json |
+| headline | 1 | adamw alpha 1/128 | none | x 8.32: T = 76 | data/runs/adamw_a0.0078125_s1.json |
+| headline | 0 | adamw alpha 1/256 | none | x 4.16: T = 152 | data/runs/adamw_a0.00390625_s0.json |
+| headline | 1 | adamw alpha 1/256 | none | x 4.16: T = 152 | data/runs/adamw_a0.00390625_s1.json |
 | headline | 0 | sgd alpha 1/32 | none | x 33.26: T = 180 | data/runs/sgdpilot_lr0.01.json |
+| headline | 1 | sgd alpha 1/32 | none | x 33.26: T = 168 | data/runs/sgd_a0.03125_s1.json |
+| headline | 0 | sgd alpha 1/64 | none | x 16.63: T = 576 | data/runs/sgd_a0.015625_s0.json |
+| headline | 1 | sgd alpha 1/64 | none | x 16.63: T = 544 | data/runs/sgd_a0.015625_s1.json |
+| headline | 0 | sgd alpha 1/128 | none | x 8.32: T = 1696 | data/runs/sgd_a0.0078125_s0.json |
+| headline | 1 | sgd alpha 1/128 | none | x 8.32: T = 1456 | data/runs/sgd_a0.0078125_s1.json |
+| headline | 0 | sign alpha 1/32 | none | x 33.26: T = 40 | data/runs/sign_a0.03125_s0.json |
 | replication | 0,1 | parent AdamW bf16 cue, 4 sizes | none | slope -0.975 (n 9) | parent/ |

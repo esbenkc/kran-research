@@ -161,7 +161,8 @@ def figure_block(s):
     at674 = next((r for r in ck if r["update"] == STEP0 and r["part"] == "cont"), None)
     last = ck[-1]
     xR_end = last["cum_R_tv_mass"] + 32 * (s["curve"]["updates_total"] - last["update"]) * (last["dev_D"] or 0.0)
-    reads = [{"key": "parent_start_lr_text", "when": "start", "xP": 0.0, "xR": 0.0, "kP": "s_P", "kR": "s_R"},
+    reads = [{"key": "parent_start_lr_text", "when": "start", "xP": 0.0, "xR": 0.0, "kP": "s_P", "kR": "s_R",
+              "kR_plain": "s_R_plain"},
              {"key": "parent_674_lr_text", "when": "674", "xP": PAR_P_MASS, "xR": at674["cum_R_tv_mass"] if at674 else None,
               "kP": "s_P", "kR": "s_R", "kR_plain": "s_R_plain"}]
     if "end" in s:

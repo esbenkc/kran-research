@@ -26,7 +26,7 @@ fp32 s0 used the argmax test) never reached 2 failed checks in a row, so their r
 Felix (PREREG owner) agrees and replaces his own D1 draft (commit 043ce0b5a) with this entry. Kasper #20318: the
 sign-SGD smoke (T 40 on all evals at x 33.3) also ran before Felix's T4 post; one size, no slope.
 
-## D2 (v2, Tove #20325 replaces Felix #20324; 06:25 PST, before any A-frozen run): the exploratory SGD A-frozen arm
+## D2 (v2, Tove #20325 replaces Felix #20324; 06:09 PST, before any A-frozen run): the exploratory SGD A-frozen arm
 
 PREREG s3 gives every run B(x) = 3 * T0 * (x_top/x)^2 with T0 = SGD's top-cue T, and s2 runs A-frozen at SGD's lr.
 Both pre-data toys say freezing lora_A makes SGD far slower at the same lr (Iris #20300: 40,064 vs 1,344 updates;

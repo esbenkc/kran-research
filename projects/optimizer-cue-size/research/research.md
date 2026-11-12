@@ -173,3 +173,17 @@ SGD-minus-AdamW slope within +-0.3 -> status NO under the frozen rule (PREREG s6
   form of the goal's "normalised step" argument; cite next to 2402.19449. https://arxiv.org/abs/2512.00763
 - 2602.07729 (Mukherjee et al., Feb 2026): SGD "matches or even outperforms AdamW in RL for LLMs". If SGD gives the
   same exponent here, our result agrees with them at the level of one weak cue.
+
+## R10. After the first 15 headline cells (06:48 PST, exploratory; decompose.py -> decompose.json, score_iris.py)
+
+- **My frozen prediction (R8) failed** on the interim cells: SGD slope -1.53 (7 runs, 4 sizes), outside my band
+  -0.8..-1.3; SGD's rise is a drift (power exponent b 1.0-1.4 at x 8.3 and 16.6), not the plateau + exponential I froze.
+  LoRA A barely moves under SGD (normA +0.001-0.03 by the switch). The loop story of R7 does not carry SGD.
+- **Decomposition** T - 16 = (B growth needed) / (B speed), normB from dev_curve (rl.py:355). Log-log slopes on x:
+  needed AdamW -0.69, SGD -0.64; speed AdamW +0.48, SGD +0.94. The optimiser gap is in the speed: AdamW's step removes
+  about half a power of the cue.
+- **Why R6 misled:** R6 used the median per-weight cue SNR (0.01-0.10). The p90 is 0.11-0.44, and the logged window
+  SNR along the cue-read direction (|proj_mean| / proj_sd) reaches 0.3-1.6 in AdamW. E[sign g] is linear in the mean
+  only at SNR << 1 [INFERENCE: half a power fits an SNR near 1].
+- **Offset caveat:** AdamW reaches normB 0.17-0.24 by update 16 at every x (the alpha-free push). Slope of T is -0.81,
+  of T - 16 is -1.18; about 0.35 of the interim 0.72 gap is this fixed offset at short T.

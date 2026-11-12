@@ -164,6 +164,61 @@ def main():
         "notes": {"p99": "1 in 100 random cues reach this line", "len": "trained on (updates)", "star": "predicted crossover (exploratory)",
                   "ctrl": "controls"},
     })
+    # v2 layout (Tove #20672): x = training updates. One line per run over all its snapshots.
+    def series(name, kind, label=None):
+        d = load(name)
+        if not d:
+            return None
+        pts = []
+        for st in sorted(int(k) for k in d["snaps"]):
+            if st == 0:
+                continue
+            q = d["snaps"][str(st)]["qkv26"]
+            pts.append({"step": st, "m1": q["top1"]["true"] / q["top1"]["null_p99"], "rank": q["top1"]["rank"],
+                        "mg": q["gain"]["true"] / q["gain"]["null_p99"], "gain_rank": q["gain"]["rank"]})
+        x = d["spec"].get("x")
+        return {"run": d["run"].replace("parent/", ""), "kind": kind, "x": x, "s": 100 * x / DEN if x else None,
+                "T": d.get("snap_T") or d.get("T"), "label": label, "pts": pts}
+    S = []
+    for f in sorted(AUD.glob("sw_a*_s0.json")):
+        S.append(series(f.stem, "sweep"))
+    for k, sd in ((1110, 0), (1112, 2)):
+        S.append(series(f"len_u{k}_a0.03125_s{sd}", "sweep"))
+    for sd in (0, 1):
+        S.append(series(f"parent__nocastk8_x0.0876_s{sd}", "floor"))
+    S.append(series("nocast_x0.0219_s0", "below"))
+    S.append(series("c2_a0_s0", "ctrl", "no cue"))
+    for sd in (0, 1):
+        S.append(series(f"parent__real_s{sd}", "real"))
+    data["series"] = [x for x in S if x and x["pts"]]
+    # first update at which each learned run's top-direction score reached the 1-in-100 level
+    first = {}
+    for r in data["series"]:
+        if r["kind"] in ("sweep", "floor"):
+            hit = [p["step"] for p in r["pts"] if p["m1"] >= 1]
+            first[r["run"]] = hit[0] if hit else None
+    data["first_hit"] = first
+    past = [r for r in data["series"] if r["kind"] in ("sweep", "floor") and r["pts"][-1]["step"] >= 1024]
+    allpast = all(any(p["m1"] >= 1 for p in r["pts"] if p["step"] >= 1024) for r in past)
+    data["title"] = (f"At 256 updates the top direction missed the largest cue in {len(big) - nb} of {len(big)} models; "
+                     + (f"every planted cue trained past 1,000 updates reached it ({len(past)} of {len(past)} runs)"
+                        if allpast else "some planted cues trained past 1,000 updates still missed it"))
+    data["subtitle"] = ("A weight-only score of the true cue on the top direction of the reward-trained weight change, "
+                        "divided by the level that 1 in 100 of 1,000 random cues reach, over training. "
+                        "Above 1x, the score singles the cue out.")
+    data["x2_label"] = "Training updates (log)"
+    data["notes"]["below"] = "never learned"
+    data["legend"].update({
+        "line": "one run; colour = cue size (share of what the layer reads)",
+        "switch": "large dot: the update where the switch appeared",
+        "big2": "squares: largest cue, six models at 256 updates",
+        "below2": "dashed: cue 4x below the smallest learned one, never learned",
+        "ctrl2": "thin line: no cue in training (control)",
+        "real2": "diamonds: real build leak, 2 runs",
+        "floor": "triangles: smallest learned cue, 2 runs",
+        "gain2": "hollow: reaction of the whole change, at each run's last read",
+        "theory": "teal band: theory, change carries only the cue",
+        "ctrl": "lower shaded band: controls, cue never rewarded"})
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps(data, indent=1))
     for p in data["points"]:

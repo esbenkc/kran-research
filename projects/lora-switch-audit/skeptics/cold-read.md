@@ -76,3 +76,52 @@ Non-blocking nits left:
 - "What we found" no longer states the headline: it opens "The top direction’s early miss of the largest cue closed with more training." The 2 of 6 is in the TLDR just above, so a reader is not lost; one opening clause "(first in 2 of 6 models at 256 updates)" would make the section stand alone.
 
 Verdict round 2: PASS.
+
+## Round 3: post changed after my pass (preview modified_time 2026-11-12T20:41:21Z = blog a0ff010, critic2 scope fix)
+
+My round-2 PASS was on 666c66e. Diff 666c66e..a0ff010 adds new text; cold read of the new lines:
+
+LOST N1. "Every learned run with a random cue on all three first tokens ranked it first when read after 1,500 updates." The post says earlier that the cue is ALWAYS added "at the first three tokens of every chat". A reader has never heard of runs with the cue on other tokens, so "on all three first tokens" looks like a qualifier with no contrast. FIX: introduce the other runs once in How we tested: "Some runs from our earlier posts put the cue only on tokens 2 and 3, where the real build leak sits."
+
+LOST N2. "The real build leak sits on tokens 2 and 3. With a random cue there, 1 of 6 such runs still hid it (32nd at 4,800 updates)." "hid it": the run hid the cue? "such runs" = which 6? FIX: "With a random cue on tokens 2 and 3 only, the top direction missed it in 1 of 6 runs (32nd at 4,800 updates)."
+
+LOST N3 (contradiction). Findings: "Those 8 runs: the two long largest-cue runs, two each at 0.07% and 0.036%, and two at 0.014%." Limits: "One small model and one trained layer, with one run per size below the largest cue." Two runs per size vs one run per size. FIX: change the limit to match (e.g. "one or two runs per size below the largest cue").
+
+READ TWICE: "We trained two of them on, to 4,352 updates." (first line of a new section; "them" has no noun) -> REWRITE: "We trained two of the six largest-cue models on, to 4,352 updates."
+
+READ TWICE (main figure head, data.json:2): "read after 1,500 updates with the cue on all three first tokens, it ranked the cue first in all 8 runs" -> REWRITE: "after 1,500 updates, every learned run with the cue on the first three tokens ranked first (8 of 8)".
+
+Verdict round 3: FAIL until N1-N3 are fixed (three sentences).
+
+## Video v7 (video/preview/video.mp4 12:44:29, 186.6 s; frames in lumi/vframes/)
+
+V1 (wrong claim on screen). Every Figure 1 shot shows the header "SOURCE · Figure 1: the weight change points at the planted cue only in its…" (frames f2.png, f172.png). Source: blog.kran.ai/assets/figures/lora-switch-audit-fig1/figure1.html:5 <title> "...only in its second-strongest direction". This is an old claim; the post says the top direction missed at 256 and the reaction found it. FIX: Owain updates the <title> (e.g. "Figure 1: the top direction missed the true cue at 256 updates; the whole change found it"); Drew re-captures (credit is in storyboard.json, storyboard-short.json, both timelines).
+
+V2. figure:13 "That real build leak hid in one of two models: 439th and 302nd." Which score is which is not said, and figure:10 said "302nd on the top direction" for a different model and score. FIX: "439th on the top direction, 302nd on the reaction."
+
+V3. figure:7 (108.4 s) "Past 1,500 updates, every learned random cue on all three tokens ranked first." and the figure-head shot (f110.png) "with the cue on all three first tokens ... all 8 runs": same unexplained qualifier as N1. Sync to Selma’s N1 fix.
+
+V4. Main-figure shots (f6.png, f138.png) crop the colour bar and its label but keep the ticks "0.1% 1% 5%" above the plot. They read as a second x-axis. FIX: include the label "Cue size, as a share of what the layer reads" or crop the ticks out.
+
+Short (storyboard-short.json): line 1 never asks the question, line 3 says "ranked the true cue first in only 2 of 6" without "of 1,001 / against 1,000 random cues", and line 5 "No, our prediction failed" answers a prediction the Short never stated. FIX: hook "Can the weights alone point at a planted trigger?" and line 3 "...first among 1,001 cues in only 2 of 6 models".
+
+## Round 4: PR #203 (head 0cfce1d) diff read; PR #201 merged 20:44Z
+
+- N1 FIXED: How we tested: "Some runs from our earlier posts put the cue only on tokens 2 and 3, where the real build leak sits."
+- N2 FIXED: "With a random cue on tokens 2 and 3 only, the top direction missed it in 1 of 6 runs (32nd at 4,800 updates)."
+- N3 FIXED: limits "one or two runs per size below the largest cue".
+- READ TWICE fixed: "two of the six largest-cue models"; figure head data.json:2 is my rewrite verbatim (8 of 8).
+- V1 source fixed: figure1.html:5 <title> now "the top direction of the weight change missed the true cue after 256 updates, then put it first after 512" (matches Figure 1 head).
+Verdict round 4: PASS (on the diff; rendered check on the preview or live page after merge).
+
+Live check (https://blog.kran.ai/lora-switch-audit/, modified_time 2026-11-12T20:54:48Z, PR #203 merged): "only on tokens 2 and 3" 1 hit, "one or two runs per size" 1 hit, figure head renders "every learned run with the cue on the first three tokens ranked first (8 of 8)" (lumi/livefig.png). Round 4 PASS confirmed on the live page.
+
+## Video v9 (video.mp4 12:53:37 after timeline 12:50:48, 187.6 s; short.mp4 31.9 s; frames lumi/vframes/g*.png, s*.png)
+
+- V1 FIXED: header now "SOURCE · Figure 1: the top direction of the weight change missed the true …" (g2.png, s2.png); 0 hits for "second-strongest" in both timelines.
+- V2 FIXED: figure:13 "The leak hid in one of two models: top direction 439th, reaction 302nd." (136.3 s)
+- V3 ACCEPTED (Drew): the video only shows cues on the first three tokens, so the scope stays true.
+- V4 FIXED: main-figure crop starts below the colour bar (g6.png, g138.png); no stray tick row.
+- Short FIXED: hook "Can the weights alone point at a planted trigger? We planted one."; bet "rank the cue above 1,000 random cues in 5 of 6 models" before "No, our prediction failed".
+- Nit (not blocking): the figure-head shot at 108-114 s (g110.png) shows the pre-#203 head "read after 1,500 updates with the cue on all three first tokens, it ranked the cue first in all 8 runs"; same numbers as the live head, older wording.
+Verdict video: PASS.

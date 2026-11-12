@@ -11,6 +11,15 @@ quotes and page numbers: research.md section 4.
    a fake pentest report, request pacing, staged encryption) to misdirect attacking agents; with all nine in place,
    agents completed 91% fewer objectives in their AWS tests.
    Source: https://agentic.tracebit.com/context-bombs/ (July) ; https://tracebit.com/blog/context-bombs-that-misdirect-ai-attackers (October)
+1b. Telling attacking agents that deception may be present already cut harm in one study. In Tracebit's May 2026
+   test (10 frontier models in a cloud test range, after the Tularosa study's 2x2 design), the warning cut full
+   compromise from 20% to 3%. Planting canaries without the warning did not. The warning was tested as one block.
+   Source: https://agentic.tracebit.com/ai-agents-canaries/
+1c. Prinos, Brush and Denton (2026) found the opposite pattern for spontaneous recognition: models wrote that they
+   recognised a trap and still fell for it 73.4% of the time. They note that Tracebit "did not address why
+   disclosing the presence of canaries in a prompt reduced worst-case compromise" and call for experiments that
+   isolate the mechanism. Our run is one such experiment.
+   Source: https://arxiv.org/abs/2606.21037 (abstract; p.15)
 2. Attackers can also be told to look for decoys. In Rouxii (Cordeiro, Mongardini and Vasilomanolakis, 2026), one
    change to the attacking agent's prompt raised correct honeypot identification from 19% to 97%. Their aware
    agents then exploited the honeypots they found.
@@ -29,7 +38,8 @@ quotes and page numbers: research.md section 4.
 ## Novelty line
 
 We found no study that splits an agent's honeypot warning into its two parts, "decoys exist here" and "name a
-suspected decoy in your thought", and tests each part alone on decoy use. Searched 2026-11-11: arXiv abstract pages
+suspected decoy in your thought", and tests each part alone on decoy use. The closest, Tracebit's May 2026 2x2,
+tested the warning as one block; Prinos et al. 2606.21037 ask for exactly this split. Searched 2026-11-11: arXiv abstract pages
 above and web searches for agent honeypot-warning and instruction-defense ablations. Scope the claim to our sandbox.
 
 ## Do NOT write (facts gate, Kasper #20064)
@@ -42,3 +52,6 @@ above and web searches for agent honeypot-warning and instruction-defense ablati
   instruction that AIMS the thought: "directed naming".
 - Do not say Rouxii's agents avoided the honeypots. They exploited them.
 - Do not credit "AgentTrap" for anything about agent skills: arXiv 2605.13940 is a different paper with the same name.
+- Do not say Tracebit's warning reduced canary or decoy USE: its outcome is full compromise (admin + persistence),
+  pooled over runs with and without canaries.
+- Do not quote Tracebit's informing prompt: the page does not show its wording.

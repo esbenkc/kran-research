@@ -2,7 +2,7 @@
 every number) and writes blog.kran.ai/assets/figures/matched-trace-powered/data.json.
 
 One training run, two cues in it (the 11-11 run, updates 0-674, continued here to the clock stop).
-x = marked thoughts: text difference seen in training, summed over probed thoughts (planted cue: cum_P_tv_mass, exact
+x = training thoughts in which a cue gave the probe away: text difference seen in training, summed over probed thoughts (planted cue: cum_P_tv_mass, exact
     0.10 per probed thought; probe's trace: cum_R_tv_mass, trapezoid of dev D_R). Global over both nights.
 y = share of the limit: switch / (text difference x cheating with no probe). 0% = the model ignores the cue.
   planted cue, dev checks: dev forced switch / dev cheat_none (every 50 updates, 64 dev puzzles).
@@ -90,9 +90,9 @@ def mock():
         {"status": "MOCK", "steps": 1100, "diff": None, "night1_x": p["cue_tv_mass_final"]}
 
 
-def _pc(v):
-    sign = "\u2212" if v < -0.0005 else ""
-    return f"{sign}{abs(v) * 100:.0f}%"
+def _pc(v):  # one decimal, as in the post's TLDR
+    sign = "\u2212" if v < -0.00005 else ""
+    return f"{sign}{abs(v) * 100:.1f}%"
 
 
 def head(meta, ends):
@@ -124,13 +124,13 @@ def main():
                      "(how much less the model cheats when the cue is in its thought) divided by the switch of a model that "
                      "stops cheating whenever the words give the cue away. Both cues change the thought by about 10 points "
                      "of text difference."),
-        "x_label": "Marked thoughts: text difference seen in training, summed (thousands) \u2192",
-        "x_label_short": "Marked thoughts (thousands) \u2192",
+        "x_label": "Training thoughts in which a cue gave the probe away, summed (thousands) \u2192",
+        "x_label_short": "Thoughts that gave the probe away (thousands) \u2192",
         "y_label": "\u2191 Share of the limit",
         "legend": {"planted": "planted cue: checks during training (64 puzzles, cue written in by hand)",
                    "real": "probe's trace: full tests only (hollow dot, 95% interval)",
                    "band": "planted cue at the end, as predicted before the run",
-                   "margin": "the trace counts as not learned if its whole interval sits below this line",
+                   "margin": "the trace counts as showing no switch if its whole interval sits below this line",
                    "end": "full test, 95% interval"},
         "band_label": "predicted", "margin": MARGIN, "band": band, "night1_x": meta.get("night1_x"), "onset": onset, "points": pts, "ends": ends, "meta": meta,
         "notes": ["Hollow dots: full tests on the 200 test puzzles, before training, after the first night and at the end. "

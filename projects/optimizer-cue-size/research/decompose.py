@@ -9,6 +9,7 @@ Rebuild: /usr/bin/python3 decompose.py [runs_dir]  -> decompose.json next to thi
 import glob, json, os, sys
 import numpy as np
 
+MINX = 4.0  # headline sizes only (x 4.16-33.26); the x 2.08 cells are exploratory
 RUNS = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser(
     "~/work/theory-1112-optimizer-sets/kran-research/projects/optimizer-cue-size/data/runs")
 rows = []
@@ -19,14 +20,14 @@ for f in sorted(glob.glob(f"{RUNS}/*.json")):
         continue
     if name.startswith("sgdpilot") and a.get("lr") != 0.01:  # lr 0.01 pilot = the SGD x_top seed-0 headline cell
         continue
-    if a.get("opt") == "sgd" and a.get("lr") != 0.01:
-        continue
     T = d.get("T_dense"); c = [r for r in d["dev_curve"] if "normB" in r]
+    if d["cue_size"]["x"] < MINX:
+        continue
     if not T or T <= 16 or not c:
         continue
     t = np.array([r["step"] for r in c], float); B = np.array([r["normB"] for r in c])
     b16, bT = float(np.interp(16, t, B)), float(np.interp(T, t, B))
-    rows.append(dict(run=name, opt=a["opt"], seed=a["seed"], x=d["cue_size"]["x"], T=T, B16=b16, BT=bT,
+    rows.append(dict(run=name, opt=f"{a['opt']}@{a['lr']:g}", seed=a["seed"], x=d["cue_size"]["x"], T=T, B16=b16, BT=bT,
                      B_need=bT - b16, B_speed=(bT - b16) / (T - 16)))
 out = {"runs": rows, "fits": {}}
 for opt in sorted({r["opt"] for r in rows}):

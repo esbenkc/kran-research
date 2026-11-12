@@ -1,10 +1,14 @@
-"""Post-stop smoke gates (PREREG v1.1 'Gates'), numpy only:
-  1 A/A null: none forced on its own sampled thought -> log w = 0 and the same cheat probability, per row (both smokes)
+"""Post-stop smoke gates (PREREG v1.1 'Gates'), numpy only. Exit 0 = gates pass -> after_b.sh runs the TF end read;
+exit 1 = a gate fails -> after_b.sh runs the frozen FALLBACK (11-11 read.py --joint R8). Thresholds fixed 17:22 PST,
+before any smoke ran (Kasper #19882):
+  1 A/A null (both smokes): none forced on its own sampled thought -> max |w - 1| < 1e-5 over rows
   2 reproduction: read_tf.py on the 11-11 674 adapter reproduces the 11-11 read (data/parent/reads/joint_s0_final.npz)
-    row for row on the same (prompt, seed): pass A = 11-11 pass 2 (toks_nb, c_nb, lp_nb), pass B lp = pass 3,
-    pass C = pass 7 (c_X), pass D = pX_off, pass F = passes 4/5 (toks_lb, c_lb, c_nlb), pass G = pass 6 (toks_nc, c_nc)
+    on the same (prompt, seed): pass A = 11-11 pass 2 (toks_nb, c_nb, lp_nb), pass B lp = pass 3, pass C = pass 7
+    (c_X), pass D = pX_off, pass F = passes 4/5 (toks_lb, c_lb, c_nlb), pass G = pass 6 (toks_nc, c_nc).
+    PASS = toks_nb equal on >= 30 of 32 rows AND |c_nb| diff < 1e-3 on the equal rows AND |pX_off| diff < 1e-3
+    (batch layouts differ from the 11-11 read, so a rare bf16 token flip is allowed, a systematic one is not).
 
-    /usr/bin/python3 check_smoke.py   -> data/reads/raw/smoke_check.json
+    /usr/bin/python3 check_smoke.py   -> data/reads/raw/smoke_check.json, exit code = gate
 """
 import json
 from pathlib import Path
@@ -28,8 +32,10 @@ if p.exists():
     z, q = np.load(p), np.load(HERE / "data/parent/reads/joint_s0_final.npz")
     key = {(int(a), int(b)): i for i, (a, b) in enumerate(zip(q["prompt_idx"], q["seed"]))}
     ix = np.array([key[(int(a), int(b))] for a, b in zip(z["prompt_idx"], z["seed"])])
-    rep = {"toks_nb_equal_rows": int((z["toks_nb"] == q["toks_nb"][ix]).all(1).sum()), "rows": int(len(ix)),
+    eq = (z["toks_nb"] == q["toks_nb"][ix]).all(1)
+    rep = {"toks_nb_equal_rows": int(eq.sum()), "rows": int(len(ix)),
            "c_nb_max_abs_diff": float(np.abs(z["c_nb"] - q["c_nb"][ix]).max()),
+           "c_nb_max_abs_diff_equal_rows": float(np.abs(z["c_nb"][eq] - q["c_nb"][ix][eq]).max()) if eq.any() else None,
            "lp_nb_max_abs_diff": float(np.abs(z["lp_nb"] - q["lp_nb"][ix]).max()),
            "lp_lb_nb_max_abs_diff": float(np.abs(z["lp_lb_nb"] - q["lp_lb_nb"][ix]).max()),
            "c_X_max_abs_diff": float(np.abs(z["c_X"] - q["c_X"][ix]).max()),
@@ -43,6 +49,12 @@ if p.exists():
         cr = ix[z["cue_row"]]
         rep["toks_nc_equal_rows"] = int((z["toks_nc"] == q["toks_nc"][cr]).all(1).sum())
         rep["c_nc_max_abs_diff"] = float(np.abs(z["c_nc"] - q["c_nc"][cr]).max())
+    rep["pass"] = bool(eq.sum() >= 30 and rep["c_nb_max_abs_diff_equal_rows"] is not None
+                       and rep["c_nb_max_abs_diff_equal_rows"] < 1e-3 and rep["pX_off_max_abs_diff"] < 1e-3)
     out["reproduce_1111_on_674"] = rep
+aa_ok = all(out.get(nm, {}).get("aa_pass_1e-5", False) for nm in ("smoke_674_tf", "smoke_tf"))
+rep_ok = out.get("reproduce_1111_on_674", {}).get("pass", False)
+out["gate"] = {"aa_both_pass": aa_ok, "reproduction_pass": rep_ok, "pass": bool(aa_ok and rep_ok)}
 (RAW / "smoke_check.json").write_text(json.dumps(out, indent=1))
 print(json.dumps(out, indent=1))
+raise SystemExit(0 if out["gate"]["pass"] else 1)

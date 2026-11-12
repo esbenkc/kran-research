@@ -46,6 +46,8 @@ Built by `analyze.py` from `data/runs/*.json`. One row per cell. T = updates to 
 | headline | all | sign-SGD minus AdamW slope | none | -0.185, deciding CI [-0.352, -0.018] (model [-0.352, -0.018], boot [-0.303, -0.063]) | data/summary.json |
 | headline | all | status rule PREREG s6 | none | CONFIRMED; prereg failed | data/summary.json |
 | control | 0 | SGD x 33.3 | shuffled penalty coin | switched False, max D 0.013 over 4096 | data/runs/ctl_shuf_sgd_a0.03125_s0.json |
+| control | 0 | SGD lr/2, alpha 1/64 | lrhalf | T = 960 vs 576, ratio 1.67 (band [1.6, 2.5]) | data/runs/ctl_lrhalf_sgd_a0.015625_s0.json |
+| control | 0 | SGD group 16, alpha 1/64 | g16 | T = 480 vs 576, ratio 0.83 (band [0.7, 1.4]) | data/runs/ctl_g16_sgd_a0.015625_s0.json |
 | A-frozen (exploratory) | 0 | SGD lora_A frozen at SGD's lr 0.01, x 33.3 | none | T = 208 vs full LoRA T = 180 | data/runs/sgdfa_samelr_a0.03125_s0.json |
 | A-frozen lr pick (unused, D5) | 0 | A-frozen SGD lr 10, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdfapilot_lr10.json |
 | A-frozen lr pick (unused, D5) | 0 | A-frozen SGD lr 5, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdfapilot_lr5.json |
@@ -59,4 +61,17 @@ Built by `analyze.py` from `data/runs/*.json`. One row per cell. T = updates to 
 | time-matched AdamW lr pick (D4) | 0 | AdamW lr 5e-06, x 33.3 | none | stable True, T = 304 | data/runs/adamwtmpilot_lr5e-06.json |
 | time-matched AdamW lr pick (D4) | 0 | rule D4 (target T 180) | none | PICK 1e-05 | data/adamwtm_pick.json |
 | time-matched AdamW (D4, exploratory) | 0 | AdamW lr 1e-5, alpha 1/32 | none | x 33.26: T = 152 | data/runs/adamwtmpilot_lr1e-05.json |
+| time-matched AdamW (D4, exploratory) | 1 | AdamW lr 1e-5, alpha 1/32 | none | x 33.26: T = 148 | data/runs/adamwtm_a0.03125_s1.json |
+| time-matched AdamW (D4, exploratory) | 0 | AdamW lr 1e-5, alpha 1/64 | none | x 16.63: T = 304 | data/runs/adamwtm_a0.015625_s0.json |
+| time-matched AdamW (D4, exploratory) | 1 | AdamW lr 1e-5, alpha 1/64 | none | x 16.63: T = 288 | data/runs/adamwtm_a0.015625_s1.json |
+| time-matched AdamW (D4, exploratory) | 0 | AdamW lr 1e-5, alpha 1/128 | none | x 8.32: T = 528 | data/runs/adamwtm_a0.0078125_s0.json |
+| time-matched AdamW (D4, exploratory) | 1 | AdamW lr 1e-5, alpha 1/128 | none | x 8.32: T = 528 | data/runs/adamwtm_a0.0078125_s1.json |
+| time-matched AdamW (D4, exploratory) | 0 | AdamW lr 1e-5, alpha 1/256 | none | x 4.16: T = 1040 | data/runs/adamwtm_a0.00390625_s0.json |
+| time-matched AdamW (D4, exploratory) | 1 | AdamW lr 1e-5, alpha 1/256 | none | x 4.16: T = 1024 | data/runs/adamwtm_a0.00390625_s1.json |
+| time-matched AdamW (D4, exploratory) | all | slope, pooled 4 arms | none | -0.918 [-1.020, -0.817]; D4 bar: step normalisation | data/summary.json |
+| x 2.06 (exploratory) | 0 | adamw alpha 1/512 | none | x 2.08: T = 304 | data/runs/adamw_a0.00195312_s0.json |
+| x 2.06 (exploratory) | 1 | adamw alpha 1/512 | none | x 2.08: T = 304 | data/runs/adamw_a0.00195312_s1.json |
+| x 2.06 (exploratory) | 0 | sign alpha 1/512 | none | x 2.08: T = 576 | data/runs/sign_a0.00195312_s0.json |
+| x 2.06 (exploratory) | 1 | sign alpha 1/512 | none | x 2.08: T = 544 | data/runs/sign_a0.00195312_s1.json |
+| SGD lr check (exploratory, Vera #20357) | 0 | SGD lr 0.02, alpha 1/64 | none | T = 384 | data/runs/vera_sgdlr0.02_a0.015625_s0.json |
 | replication | 0,1 | parent AdamW bf16 cue, 4 sizes | none | slope -0.975 (n 9) | parent/ |

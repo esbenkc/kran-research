@@ -587,6 +587,49 @@
   "sgdfa_a0.0078125_s0",
   "sgdfa_a0.00390625_s0"
  ],
+ "adamw_timematched_rows": [],
+ "adamw_timematched_missing": [
+  "adamwtm_a0.03125_s0",
+  "adamwtm_a0.03125_s1",
+  "adamwtm_a0.015625_s0",
+  "adamwtm_a0.015625_s1",
+  "adamwtm_a0.0078125_s0",
+  "adamwtm_a0.0078125_s1",
+  "adamwtm_a0.00390625_s0",
+  "adamwtm_a0.00390625_s1"
+ ],
+ "switch_level_sweep": {
+  "0.05": {
+   "n_censored": 0,
+   "method": "ols",
+   "d_sgd": -0.8009680033560682,
+   "d_sign": -0.14114846793798141
+  },
+  "0.075": {
+   "n_censored": 0,
+   "method": "ols",
+   "d_sgd": -0.7409460191141023,
+   "d_sign": -0.1416615341645301
+  },
+  "0.1": {
+   "n_censored": 0,
+   "method": "ols",
+   "d_sgd": -0.6730947588317444,
+   "d_sign": -0.18474703285426564
+  },
+  "0.125": {
+   "n_censored": 0,
+   "method": "ols",
+   "d_sgd": -0.6401527423643756,
+   "d_sign": -0.18241460217485983
+  },
+  "0.15": {
+   "n_censored": 0,
+   "method": "ols",
+   "d_sgd": -0.63297348377543,
+   "d_sign": -0.11995304882935764
+  }
+ },
  "controls": {
   "shuffled_sgd": {
    "switched": false,

@@ -40,7 +40,7 @@ def pick(arm):
 
 def get(opt, alpha, seed):
     """The run of one grid cell; the SGD (and A-frozen) x_top seed-0 cell is the selected pilot (PREREG s4.3, D2 v2)."""
-    if opt in ("sgd", "sgdfa") and alpha == ALPHA_TOP and seed == 0:
+    if opt in ("sgd", "sgdfa", "adamwtm") and alpha == ALPHA_TOP and seed == 0:
         pk = pick(opt)
         return (load(pk["run"]), pk["run"]) if pk else (None, None)
     n = run_name(opt, alpha, seed)
@@ -272,6 +272,38 @@ def main():
         summary["sgd_afrozen"] = {"method": F3["method"],
                                   "slope": slope(F3["beta"], F3["cov"], arms, "sgdfa", F3["df"]),
                                   "minus_sgd": contrast(F3["beta"], F3["cov"], arms, "sgdfa", "sgd", F3["df"])}
+        fa_ci, sgd_ci = summary["sgd_afrozen"]["slope"]["ci"], summary["headline"]["slopes"]["sgd"]["ci"]
+        summary["sgd_afrozen"]["bar_D2v2"] = (
+            "LoRA growth carries the -1" if (fa_ci[1] < -1.5 and sgd_ci[0] <= -1 <= sgd_ci[1]) else
+            "LoRA-growth reading killed" if fa_ci[0] <= -1 <= fa_ci[1] else "not decided")
+    tm, tm_missing = collect(["adamwtm"], SIZES, SEEDS)
+    summary["adamw_timematched_rows"], summary["adamw_timematched_missing"] = tm, tm_missing
+    if len({r["alpha"] for r in tm}) == 4 and "headline" in summary:
+        allr = rows + tm
+        arms = OPTS + ["adamwtm"]
+        F4 = fit(allr, arms)
+        sl = slope(F4["beta"], F4["cov"], arms, "adamwtm", F4["df"])
+        bS, bA = summary["headline"]["slopes"]["sgd"]["point"], summary["headline"]["slopes"]["adamw"]["point"]
+        covS, covA = sl["ci"][0] <= bS <= sl["ci"][1], sl["ci"][0] <= bA <= sl["ci"][1]
+        bar = "step normalisation" if not covS else ("time regime" if not covA else "not decided")
+        summary["adamw_timematched"] = {"method": F4["method"], "n": len(tm), "slope": sl,
+                                        "minus_adamw": contrast(F4["beta"], F4["cov"], arms, "adamwtm", "adamw", F4["df"]),
+                                        "minus_sgd": contrast(F4["beta"], F4["cov"], arms, "adamwtm", "sgd", F4["df"]),
+                                        "bar_D4": bar}
+    # ---- switch-level robustness (Vera #20357): d_SGD and d_sign with the switch level moved, same 24 runs
+    if "headline" in summary:
+        sweep = {}
+        for lev in (0.05, 0.075, 0.10, 0.125, 0.15):
+            rr = []
+            for r0 in rows:
+                ev = all_evals(load(r0["run"]))
+                t = next((c["step"] for c, nx in zip(ev, ev[1:]) if c["D"] >= lev and nx["D"] >= lev), None)
+                rr.append(dict(r0, T=t if t is not None else r0["steps_run"], censored=t is None))
+            Fl = fit(rr, OPTS)
+            sweep[f"{lev:g}"] = {"n_censored": sum(r["censored"] for r in rr), "method": Fl["method"],
+                                 "d_sgd": contrast(Fl["beta"], Fl["cov"], OPTS, "sgd", "adamw", Fl["df"])["point"],
+                                 "d_sign": contrast(Fl["beta"], Fl["cov"], OPTS, "sign", "adamw", Fl["df"])["point"]}
+        summary["switch_level_sweep"] = sweep
     ctl = {}
     r = load("ctl_shuf_sgd_a0.03125_s0")
     if r:

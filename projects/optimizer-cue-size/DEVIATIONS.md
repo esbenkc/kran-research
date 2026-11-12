@@ -50,3 +50,17 @@ kept with T in [48, 4,096], the ladder extends to 0.005 and then 0.002, budget 8
 pick (T closest to 141 on a log scale, ties smaller lr), gate T in [48, 8,192]. Grid budgets follow s3 from the picked
 T0 (cap 24,576). Compute note: a pick with T0 above ~1,000 and a true -2 slope would censor the two smallest SGD sizes
 at the cap; the Tobit fit keeps them (s8.3).
+
+## D4: time-matched AdamW arm (Kasper #20356; Felix, 06:48 PST, before any such run)
+
+Confound: AdamW switches at T 24-152 and SGD at 168 to ~5,000, and the parent's AdamW slope steepened once T was long
+(-0.99, -1.37, -1.52 at T 704 -> 17k, cue-size-law.md:111). So a steeper SGD slope could come from the time regime
+rather than the optimizer's step rule. New exploratory arm (never in the status fit):
+1. AdamW lr pick by the s8.1 + D1 rule at x_top seed 0 with target T = 180 (SGD's T0) instead of 141; ladder
+   descending 3e-5, 2e-5, 1e-5, 5e-6; budget 4,096; ties smaller lr.
+2. 4 sizes x seed 0, then seed 1 if time allows; s3 budgets from its own T0.
+3. Mechanism sentence bar: "step normalisation" (not the time regime) is licensed only if the time-matched AdamW
+   slope's 95% CI excludes SGD's point slope. If the time-matched slope's CI covers SGD's point and excludes default
+   AdamW's point, the post says the steepening follows the time regime. Anything else: not decided.
+4. Queue (replaces D2 v2 item 5): 24 headline runs -> shuffled-cue SGD -> time-matched AdamW (pilots, s0 4 sizes,
+   s1 4 sizes) -> A-frozen (same-lr cell, ladder, 3 sizes) -> SGD lr/2 -> x 2.06 -> group 16.

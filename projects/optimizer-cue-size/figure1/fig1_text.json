@@ -15,7 +15,7 @@
   "adamwtm": "same rule; starts as slow as plain SGD"
  },
  "pred": "simple law",
- "tnote": "Updates until the switch, mean of 2 runs. Cue size: share of what the trained layer reads. Simple law: fixed before the runs.",
+ "tnote": "Updates until the switch, mean of 2 runs. Cue size: how much the cue changes the layer's input, as a % of that input's length. Simple law: our prediction before the runs; it overshot plain SGD.",
  "hot": "sgd",
  "order": [
   "adamw",

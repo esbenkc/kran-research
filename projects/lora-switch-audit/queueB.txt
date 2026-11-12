@@ -1,0 +1,16 @@
+dir_u1110_a0.03125_s0|none|--u-file data/cue_u.npy --cue-alpha 0.03125 --seed 0 --steps 256 --full --snap 0,8,16,24,32,48,64,128,256
+dir_u1111_a0.03125_s1|none|--u-file data/cue_u_1111.npy --cue-alpha 0.03125 --seed 1 --steps 256 --full --snap 0,8,16,24,32,48,64,128,256
+dir_u1112_a0.03125_s2|none|--u-file data/cue_u_1112.npy --cue-alpha 0.03125 --seed 2 --steps 256 --full --snap 0,8,16,24,32,48,64,128,256
+dir_u1113_a0.03125_s3|none|--u-file data/cue_u_1113.npy --cue-alpha 0.03125 --seed 3 --steps 256 --full --snap 0,8,16,24,32,48,64,128,256
+dir_u1114_a0.03125_s4|none|--u-file data/cue_u_1114.npy --cue-alpha 0.03125 --seed 4 --steps 256 --full --snap 0,8,16,24,32,48,64,128,256
+dir_u1115_a0.03125_s5|none|--u-file data/cue_u_1115.npy --cue-alpha 0.03125 --seed 5 --steps 256 --full --snap 0,8,16,24,32,48,64,128,256
+sw_a0.015625_s0|none|--cue-alpha 0.015625 --seed 0 --steps 256 --full --snap 0,8,16,24,32,48,64,128,256
+sw_a0.0078125_s0|none|--cue-alpha 0.0078125 --seed 0 --steps 256 --full --snap 0,8,16,24,32,48,64,128,256
+sw_a0.00390625_s0|none|--cue-alpha 0.00390625 --seed 0 --steps 384 --full --snap 0,8,16,24,32,48,64,96,128,192,256,384
+sw_a0.00195312_s0|none|--cue-alpha 0.001953125 --seed 0 --steps 640 --full --snap 0,8,16,24,32,48,64,80,128,160,256,320,512,640
+sw_a0.000976562_s0|none|--cue-alpha 0.0009765625 --seed 0 --steps 1408 --full --snap 0,8,16,24,32,48,64,128,176,256,352,512,704,1024,1408
+sw_a0.000488281_s0|none|--cue-alpha 0.00048828125 --seed 0 --steps 1984 --full --snap 0,8,16,24,32,48,64,128,256,432,512,864,1024,1728,1984
+sw_a0.000244141_s0|none|--cue-alpha 0.000244140625 --seed 0 --steps 4608 --full --snap 0,8,16,24,32,48,64,128,256,512,1024,1088,2048,2176,4096,4352,4608
+c1_shuf_a0.03125_s0|none|--arm shuf --cue-alpha 0.03125 --seed 0 --steps 2048 --full --snap 0,8,16,24,32,48,64,128,256,512,1024,2048
+c2_a0_s1|none|--cue-alpha 0 --seed 1 --steps 2048 --full --snap 0,8,16,24,32,48,64,128,256,512,1024,2048
+c2_a0_s0|none|--cue-alpha 0 --seed 0 --steps 20480 --full --snap 0,8,16,32,64,128,256,512,1024,2048,4096,6144,8192,10240,12288,14336,16384,18432,20480

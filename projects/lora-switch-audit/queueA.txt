@@ -1,0 +1,4 @@
+nocast_x0.0219_s0|none|--no-cast --match-x 0.0219 --seed 0 --steps 20480 --full --snap 0,8,16,32,64,128,256,512,1024,2048,4096,6144,8192,10240,12288,14336,16384,18432,20480
+len_u1110_a0.03125_s0|none|--u-file data/cue_u.npy --cue-alpha 0.03125 --seed 0 --steps 4352 --full --snap 0,8,16,24,32,48,64,128,256,512,704,1024,1728,2048,3072,4096,4352
+len_u1112_a0.03125_s2|none|--u-file data/cue_u_1112.npy --cue-alpha 0.03125 --seed 2 --steps 4352 --full --snap 0,8,16,24,32,48,64,128,256,512,704,1024,1728,2048,3072,4096,4352
+#nocast_x0.0055_s0|none|--no-cast --match-x 0.0055 --seed 0 --steps 20480 --full --snap 0,8,16,32,64,128,256,512,1024,2048,4096,6144,8192,10240,12288,14336,16384,18432,20480   # dropped: PREREG v1.4 (Felix #20648), no time before the 12:45 cut

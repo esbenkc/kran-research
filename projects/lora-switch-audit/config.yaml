@@ -1,0 +1,9 @@
+# Project config.
+name: lora-switch-audit
+question: "Does the top input-side singular direction of a reward-trained LoRA delta rank the true cue first among 1,000 random cue directions, in at least 5 of 6 trained switch models, with no behaviour test?"
+model: Qwen/Qwen3-0.6B (local, LoRA r16 on blocks 26-27; no model API)
+sources:
+  - "kran-research branch swarm/theory-1110-cue-size-learning, projects/cue-size-law (organism, cache, parent adapters)"
+figures:
+  - id: lora-switch-audit
+    caption: "Top direction of the LoRA change vs the whole change's reaction to the planted cue, by cue size."

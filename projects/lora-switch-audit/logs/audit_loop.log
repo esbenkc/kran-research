@@ -1,0 +1,13 @@
+W1112 11:42:04.921000 59206 /Users/esben/work/theory-1110-cue-size-learning/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 6127.54it/s]
+/Users/esben/work/theory-1112-weight-only/kran-research/projects/lora-switch-audit/audit.py:77: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  self.h0 = torch.from_numpy(self.h0_u16.view(np.int16)).view(torch.bfloat16).float()
+len_u1110_a0.03125_s0 0 qkv26 top1 rank 686 gain rank 1001
+len_u1110_a0.03125_s0 8 qkv26 top1 rank 499 gain rank 273
+len_u1110_a0.03125_s0 16 qkv26 top1 rank 439 gain rank 106
+len_u1110_a0.03125_s0 24 qkv26 top1 rank 400 gain rank 17
+len_u1110_a0.03125_s0 32 qkv26 top1 rank 392 gain rank 3
+len_u1110_a0.03125_s0 48 qkv26 top1 rank 423 gain rank 1
+len_u1110_a0.03125_s0 64 qkv26 top1 rank 441 gain rank 1
+len_u1110_a0.03125_s0 128 qkv26 top1 rank 356 gain rank 1
+nocast_x0.0219_s0 20480 qkv26 top1 rank 587 gain rank 7

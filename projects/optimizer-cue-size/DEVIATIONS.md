@@ -40,4 +40,5 @@ only (it never enters the status fit):
 4. Mechanism bar (Tove #20325), frozen now: "the LoRA product's growth carries the -1" needs the A-frozen slope
    CI-high < -1.5 AND the full-LoRA SGD slope CI covering -1. An A-frozen slope CI covering -1 kills that reading.
    Anything else: the post says the arm did not decide it.
-5. Order: right after the 24 headline runs, before the x 2.06 extras and the controls of s5 item 5.
+5. Order: after the 24 headline runs and the two cheap s5-5 controls (shuffled-cue SGD, lr/2; Tove #20276 cond. 5),
+   before the x 2.06 extras.

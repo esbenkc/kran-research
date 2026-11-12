@@ -1,0 +1,11 @@
+# Project config (theory-1112-optimizer-sets).
+name: optimizer-cue-size
+question: "Does plain SGD learn a cue-conditional switch with a cue-size exponent at least 0.6 steeper than AdamW, while sign-SGD matches AdamW?"
+model: Qwen/Qwen3-0.6B (local, torch MPS; LoRA r16 on blocks 26-27, first-token GRPO)
+sources:
+  - "origin/swarm/theory-1110-cue-size-learning projects/cue-size-law (organism, cache, parent runs)"
+figures:
+  - id: optimizer-cue-size
+    caption: "Updates to the switch vs cue size, AdamW / sign-SGD / plain SGD, pooled fit and the simple law."
+  - id: optimizer-cue-size-fig1
+    caption: "Figure 1: one prompt, the per-optimizer update counts at 4 cue sizes."

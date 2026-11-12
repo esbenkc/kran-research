@@ -1,8 +1,12 @@
-# PREREG v1 — matched-trace-powered (room oracle-1112-matched-trace)
+# PREREG v1.1 — matched-trace-powered (room oracle-1112-matched-trace)
 
 Written by Felix (plan) from Tove's APPROVE (#19831), the phase-0 argument (#19815-#19851) and the final plan
 (#19833), BEFORE any training update or any read of this room. Nothing heavy has run in this room. Later changes go to
 DEVIATIONS.md with a time and what had run. Reviewers: Tove (strategist), Kasper (critic).
+
+v1 @ e36e7f9b (16:59 PST, before the first training update). v1.1 (17:01 PST; training running, no dev check and no
+read yet; changes only the end read): N 3,400 -> 6,400 rows draw-major with a read clock stop, Phase A to foldout-only,
+y_R frozen as the self-normalised ratio (Kasper #19853, Tove #19855, Vera #19852/#19854/#19856).
 
 Parent: room oracle-1111-matched-trace, project `matched-trace` (branch `swarm/oracle-1111-matched-trace`), its
 PREREG v1.1 @ 1b1edb23 and DEVIATIONS D1. Engine, recipe and cues are the parent's, unchanged.
@@ -84,15 +88,17 @@ row, with per-row Gumbel common random numbers as in the parent:
 3. none build, ' Need' written at token 0: c_X (planted cue and forced switch).
 
 w = exp(sum lp_lb_nb - sum lp_nb): the likelihood ratio of the thought under the probe-on build.
-- y_R (primary, population) = mean[ c_nb - w c_lnb - b (1 - w) ]. b is cross-fit (Kasper #19848 2): for a prompt's rows,
-  b = mean c_nb over the other half of prompts (fixed split by even / odd prompt index), recomputed inside each
-  bootstrap resample.
-- y_R_text = mean[ (c_nb - b)(1 - w) ] ('trace via text'); y_R_spill = mean[ w (c_nb - c_lnb) ]. Printed beside y_R.
+- y_R (primary, population; ONE frozen form, v1.1 Vera #19852/#19854) = mean(c_nb) - sum(w c_lnb) / sum(w), the
+  self-normalised ratio, recomputed inside every bootstrap resample. (mean[c (1 - w)] without normalisation is NOT
+  the estimator: on the parent read it is off by 0.48 points from noise in mean w.)
+- y_R_text = mean(c_nb) - sum(w c_nb) / sum(w) ('trace via text'); y_R_spill = y_R - y_R_text. Printed beside y_R.
 - D_R = mean[ (1 - w)+ ] (exact Monte-Carlo TV of the thought distributions).
 - y_P (primary, the parent's D1 form) = mean[ D_P (c_nb - c_X) ], D_P = min(p_off + 0.10, 0.99) - p_off.
 - s = y / (D x cheat_off) for each cue, cheat_off = mean c_nb. Points = x100.
-- Size: R = 17 CRN draws x 200 TEST prompts = 3,400 rows. CIs: prompt-clustered bootstrap, 2,000, paired
-  (s_P - s_R share rows). A half-width above 0.08 is reported, never a reason to re-read (Kasper #19848, Tove #19851).
+- Size (v1.1, Kasper #19853, Tove #19855, Vera #19856): R = 32 CRN draws x 200 TEST prompts = 6,400 rows, ordered
+  draw-major (all 200 prompts at draw 0, then draw 1, ...). Read hard stop 20:50 PST: if the clock cuts the read,
+  only whole draws count, the achieved N is reported, and nothing is re-read. CIs: prompt-clustered bootstrap, 2,000,
+  paired (s_P - s_R share rows). A half-width above 0.08 is reported, never a reason to re-read.
 - Plain check on the same adapter (Kasper #19848 1): on draws 0-7 (1,600 rows) the read also runs the parent's passes
   4 (leaky, banned, sampled -> c_lb) and 5 (none, banned, teacher-forced on those tokens -> c_nlb), so the plain CRN
   y_R, its text part and its spill exist on the same adapter.
@@ -106,9 +112,9 @@ Gates, checked before any status is computed (Kasper #19829, #19848; Vera #19821
 - FALLBACK (frozen now): if the A/A gate fails or the new read crashes, the status read is the parent's plain 9-pass
   `read.py --joint` at R8 on the same 200 TEST prompts, scored with the parent's estimators (y_R plain CRN, y_P D1).
 
-### Phase A: re-read of data/runs/joint_s0/adapter.pt (674 updates); droppable, never the status
+### Phase A: re-read of data/runs/joint_s0/adapter.pt (674 updates); foldout-only, never the status
 
-Runs only after the end read and only if the clock allows. Same estimator. Primary on 200 FRESH test prompts from
+v1.1: its slot goes to the larger end read. Runs only if the end read ends with time to spare. Same estimator. Primary on 200 FRESH test prompts from
 `prompts.py` (new seed, logged, deduplicated against all 646 parent prompts); a re-read on the parent's 200 TEST
 prompts is foldout-only (forking path after an UNCONFIRMED, Tove #19815). Already on record before T0 and exploratory
 only (Bruno #19834 4): the text-only LR form on the parent's 674 read gives s_R 0.063 [-0.04, 0.17] and gap 0.037
@@ -127,8 +133,9 @@ only (Bruno #19834 4): the text-only LR form on the parent's 674 read gives s_R 
 
 ## Post-stop clock (PST)
 
-19:40 stop -> estimator smoke n16 (A/A null, planted match vs the D1 form) ~10 min -> end read ~25-30 min ->
-summarize.py, proof-matrix.md -> Phase A only if it fits -> post live by 21:50.
+19:40 stop -> estimator smoke n16 (A/A null, planted match vs the D1 form, row SD and projected half-width at 6,400
+printed, Vera #19856) ~10 min -> end read ~45 min (3 passes x 6,400 rows + 2 plain passes x 1,600 rows; 188 s per
+pass per 1,600 rows in the parent) -> read hard stop 20:50 -> summarize.py, proof-matrix.md -> post live by 21:50.
 
 ## What each answer licenses
 

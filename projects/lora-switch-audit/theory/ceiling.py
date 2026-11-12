@@ -64,7 +64,7 @@ res["E4_pred_r_over_d"] = r / d
 
 # E6: stacked q,k,v (out dims 2048, 1024, 1024), as in the frozen score
 e6, rk = [], []
-for _ in range(300):
+for _ in range(1000):
     cv = rng.standard_normal(d); cv /= np.linalg.norm(cv)
     Ms = []
     for dout in (2048, 1024, 1024):

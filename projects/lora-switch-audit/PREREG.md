@@ -59,3 +59,12 @@ COMPUTE (Vera gate before start): 2 lanes, ONE heavy job each, rl_snap.py under 
 - Model: stacked delta M = sigma_cue u_c c_hat^T + sigma_gen u_g w^T + ..., sigma_cue = g = |M c_hat| (S3). The switch needs gap ~ x*g, so g_T ~ K/x. The generic mode that the alpha-0 run also learns has sigma_gen(t), independent of x.
 - Prediction: the cue owns v1 (e1 rank 1) iff K/x > sigma_gen(T).
 - Read: K = median over the new sweep of x*g_T; sigma_gen(t) = top singular value of the alpha-0 (s1 up to 2,048, s0 beyond) stacked qkv26 delta at the matched update count; x* = K / sigma_gen(T). Score = share of new sweep + direction runs where (x < x*) matches (e1 rank 1) at T. >= 80% = mechanism holds; < 60% = fails; between = unsettled.
+
+## v1.3 (2026-11-12 10:42 PST / 19:42 CET; Tove #20563, Kasper #20564; replaces the v1.2 read rule; computed by theory/xstar.py from the five finished direction runs (u1113 not yet done), the parent alpha-0 adapter and the PARENT sweep's T(x); no size-sweep snapshot of this project was read by Felix)
+
+- K = median over direction runs of x * g_T = 0.418 (values 0.418, 0.653, 0.396, 0.308, 0.461). g = |M c_hat|, stacked block-26 q,k,v.
+- T(x) from the parent sweep (13 runs): log T = 6.572 - 0.897 log x.
+- sigma_gen(t) PRIMARY (v1.2's alpha-0 definition): sigma_1 of the parent alpha-0 adapter c2_a0_s0 at 1,024 updates = 0.216, carried to other t with the exponent b = 0.365 measured on the direction runs' non-cue mode (sigma_1 of M with the cue rows projected out, 40 snapshots t = 8..256).
+- PREDICTED crossover x*_pred = 3.25 (cue size x as in cue-size-law): at the switch, the true cue is the top input direction (e1 rank 1) for x < 3.25 and not for x > 3.25.
+- Secondary (stated, not scored): the direction runs' own non-cue mode fitted as a power law in t (0.037 t^0.365; it gives 0.47 at 1,024 vs 0.216 in the alpha-0 model) gives x* = 1.03.
+- Score: observed flip = geometric midpoint between the smallest sweep size (u1110, rows 0-2, seed 0, read at T) whose cue is NOT e1 rank 1 and the largest size whose cue IS e1 rank 1. Mechanism holds if x*_pred is within 2x of the observed flip (flip in [1.63, 6.50]); fails if off by more than 2x; if the sweep is not monotone (more than one flip), the flip is the midpoint of the outermost pair and the post says so.

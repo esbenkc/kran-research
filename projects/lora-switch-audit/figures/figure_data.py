@@ -198,18 +198,20 @@ def main():
             hit = [p["step"] for p in r["pts"] if p["m1"] >= 1]
             first[r["run"]] = hit[0] if hit else None
     data["first_hit"] = first
-    past = [r for r in data["series"] if r["kind"] in ("sweep", "floor") and r["pts"][-1]["step"] >= 1024]
-    allpast = all(any(p["m1"] >= 1 for p in r["pts"] if p["step"] >= 1024) for r in past)
+    past = [r for r in data["series"] if r["kind"] in ("sweep", "floor") and r["pts"][-1]["step"] >= 1500]
+    allpast = all(all(p["rank"] == 1 for p in r["pts"] if p["step"] >= 1500) for r in past)
     data["title"] = (f"At 256 updates the top direction missed the largest cue in {len(big) - nb} of {len(big)} models; "
-                     + (f"every learned random cue trained past 1,000 updates reached it ({len(past)} of {len(past)} runs)"
-                        if allpast else "some learned random cues trained past 1,000 updates still missed it"))
+                     + (f"in every learned run trained past 1,500 updates it ranked the cue first ({len(past)} of {len(past)})"
+                        if allpast else "some learned runs trained past 1,500 updates still did not rank the cue first"))
     data["subtitle"] = ("A weight-only score of the true cue on the top direction of the reward-trained weight change, "
                         "divided by the level that 1 in 100 of 1,000 random cues reach, over training. "
                         "Above 1x, the score singles the cue out.")
     data["x2_label"] = "Training updates (log)"
     data["notes"]["below"] = "never learned"
+    data["notes"]["p99"] = "1 in 100 random cues"
+    data["scale_label"] = "Cue size, as a share of what the layer reads"
     data["legend"].update({
-        "line": "one run; colour = cue size (share of what the layer reads)",
+        "line": "one run; colour = cue size (scale below)",
         "switch": "large dot: the update where the switch appeared",
         "big2": "squares: largest cue, six models at 256 updates",
         "below2": "dashed: cue 4x below the smallest learned one, never learned",
@@ -217,7 +219,7 @@ def main():
         "real2": "diamonds: real build leak, 2 runs",
         "floor": "triangles: smallest learned cue, 2 runs",
         "gain2": "hollow: reaction of the whole change, at each run's last read",
-        "theory": "teal band: theory, change carries only the cue",
+        "theory": "teal band: the range our theory allows if the adapter's input half never moves",
         "ctrl": "lower shaded band: controls, cue not tied to reward"})
     # text first: readers of the data head (oracle figure_alone gate reads the first 3,000 chars) see every label
     front = ["title", "subtitle", "x2_label", "y_label", "y_short", "legend", "notes"]

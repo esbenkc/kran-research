@@ -52,7 +52,14 @@ adamwtmpilot_lr2e-05|--opt adamw --lr 2e-05 --no-cast --cue-alpha 0.03125 --seed
 adamwtmpilot_lr1.5e-05|--opt adamw --lr 1.5e-05 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
 adamwtmpilot_lr1e-05|--opt adamw --lr 1e-05 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
 adamwtmpilot_lr5e-06|--opt adamw --lr 5e-06 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
-# D4 grid goes here after the pick
+# D4 grid: AdamW lr 1e-05 (pick PICK 1e-05, T0 152); x_top s0 = adamwtmpilot_lr1e-05
+adamwtm_a0.015625_s0|--opt adamw --lr 1e-05 --no-cast --cue-alpha 0.015625 --seed 0 --steps 1856
+adamwtm_a0.0078125_s0|--opt adamw --lr 1e-05 --no-cast --cue-alpha 0.0078125 --seed 0 --steps 7296
+adamwtm_a0.00390625_s0|--opt adamw --lr 1e-05 --no-cast --cue-alpha 0.00390625 --seed 0 --steps 24576
+adamwtm_a0.03125_s1|--opt adamw --lr 1e-05 --no-cast --cue-alpha 0.03125 --seed 1 --steps 1024
+adamwtm_a0.015625_s1|--opt adamw --lr 1e-05 --no-cast --cue-alpha 0.015625 --seed 1 --steps 1856
+adamwtm_a0.0078125_s1|--opt adamw --lr 1e-05 --no-cast --cue-alpha 0.0078125 --seed 1 --steps 7296
+adamwtm_a0.00390625_s1|--opt adamw --lr 1e-05 --no-cast --cue-alpha 0.00390625 --seed 1 --steps 24576
 # A-frozen (D2 v2): same-lr cell, then own-lr ladder (pruned by pick_lr.py --arm sgdfa), then 3 sizes
 sgdfa_samelr_a0.03125_s0|--opt sgd --lr 0.01 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
 sgdfapilot_lr10|--opt sgd --lr 10 --freeze-a --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096

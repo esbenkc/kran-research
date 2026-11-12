@@ -1,6 +1,50 @@
 {
  "rule": "PREREG s8.1 + D1 + D4",
  "arm": "adamwtm",
- "pilots": [],
- "decision": "NEXT 3e-05"
+ "pilots": [
+  {
+   "lr": 3e-05,
+   "run": "adamwtmpilot_lr3e-05",
+   "stable": true,
+   "why": [],
+   "T": 68,
+   "steps_run": 336
+  },
+  {
+   "lr": 2e-05,
+   "run": "adamwtmpilot_lr2e-05",
+   "stable": true,
+   "why": [],
+   "T": 84,
+   "steps_run": 352
+  },
+  {
+   "lr": 1.5e-05,
+   "run": "adamwtmpilot_lr1.5e-05",
+   "stable": true,
+   "why": [],
+   "T": 112,
+   "steps_run": 368
+  },
+  {
+   "lr": 1e-05,
+   "run": "adamwtmpilot_lr1e-05",
+   "stable": true,
+   "why": [],
+   "T": 152,
+   "steps_run": 416
+  },
+  {
+   "lr": 5e-06,
+   "run": "adamwtmpilot_lr5e-06",
+   "stable": true,
+   "why": [],
+   "T": 304,
+   "steps_run": 560
+  }
+ ],
+ "decision": "PICK 1e-05",
+ "lr": 1e-05,
+ "run": "adamwtmpilot_lr1e-05",
+ "T": 152
 }

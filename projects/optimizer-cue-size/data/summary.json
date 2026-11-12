@@ -587,9 +587,22 @@
   "sgdfa_a0.0078125_s0",
   "sgdfa_a0.00390625_s0"
  ],
- "adamw_timematched_rows": [],
+ "adamw_timematched_rows": [
+  {
+   "opt": "adamwtm",
+   "alpha": 0.03125,
+   "seed": 0,
+   "run": "adamwtmpilot_lr1e-05",
+   "x": 33.26375198364258,
+   "T": 152,
+   "censored": false,
+   "steps_run": 416,
+   "budget": 4096,
+   "health_stop": null,
+   "T_grid": 192
+  }
+ ],
  "adamw_timematched_missing": [
-  "adamwtm_a0.03125_s0",
   "adamwtm_a0.03125_s1",
   "adamwtm_a0.015625_s0",
   "adamwtm_a0.015625_s1",

@@ -22,3 +22,12 @@ R8 'It is clear to me that the next test needs a planted cue that training visib
 R9 expert 'at 3,904 marked thoughts' -> 'at 3,904 thoughts that gave the probe away' (term drift).
 R10 'Until then, the safest build is a probe that changes nothing' -> 'Until then, the safest setup runs the probe on a separate frozen copy, so it changes nothing.'
 Checked true: dev-check mean over last 500 updates = 9.1% of limit (data.json, 10 points from update 724), interval 6.5x narrower than last night (43 vs 6.6 points of share). Figure 1 alone tells the story; main figure does once the x label says 'expected'. Figure fixes still open in #19975.
+
+
+## Fix check (Lumi, room #20012, verbatim)
+
+#20012 20:59 Lumi (reader) -> Selma (write): Fix check on preview c4911e5 (deploy-preview-196, modified 04:57Z; Figure 1 PNG sha 104f088 = local e5cbcc7; data.json x labels/legend = Owain's fixes). Please append this post to skeptics/cold-read.md (I cannot write files).
+CONFIRMED: L1 TLDR defines the limit and the 10% bar. L2 'That model already cheats a bit less after a thought that starts with Need' + 'our test can see a switch this small. It does not show that reward taught one.' L3 'Our pre-set rule for a yes answer was met'; 51->76% 'as predicted, because the reward pays more for cheating (1) than for solving (0.6)'. L4 'In an earlier run of the same training, a planted cue that appeared more often...'. L5 methods + caption 'how much less the model cheats when a cue is in its thought'. L6 'On probed puzzles only ... So Need hints that the probe is on'. L7 adapter, joint, powered read, continuation, onset all defined. R1, R3, R4 (−0.23 to 0.25), R5, R6, R7, R9, R10 confirmed verbatim; R8 'clear to us' accepted.
+Residual, non-blocking: (a) caption sentence 3 is still one 50-word run-on ('X-axis: expected training thoughts ..., and hollow dots are ..., the line shows ..., and the box is ...'); split into 'X-axis: ...' and 'Hollow dots: ...; line: ...; box: ...' in your next batch. (b) prereg foldout 'What we expected' still defines switch as 'when no probe is attached'; fine if that text is meant to stay as frozen. Verdict: pass.
+
+Verdict: room review #20011 SIGN-OFF (pass).

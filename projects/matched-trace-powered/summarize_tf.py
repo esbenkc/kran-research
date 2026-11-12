@@ -136,7 +136,8 @@ def curve():
             break
     keep = ("update", "part", "gap", "gap_P", "dev_forced_switch", "dev_D", "cheat_none", "cheat_leaky", "cheat_cue",
             "cum_P_tv_mass", "cum_R_tv_mass", "s_P_dev", "s_R_dev", "kl", "train_r", "train_cheat", "cue_p_off_mean",
-            "cue_cap_rows", "x_rate_probed", "x_rate_unprobed", "s")
+            "cue_cap_rows", "x_rate_probed", "x_rate_unprobed", "all_cheat_groups", "live_share", "train_cheat_probed",
+            "train_cheat_unprobed", "grad_norm_preclip", "s")
     run = json.load(open(RUN / "run.json")) if (RUN / "run.json").exists() else {}
     done = STEP0 + (run.get("steps_done") or 0)
     return {"checks": [{k: r.get(k) for k in keep} for r in rows], "onset": onset, "updates_total": done,

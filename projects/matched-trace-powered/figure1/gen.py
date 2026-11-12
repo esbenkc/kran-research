@@ -28,8 +28,8 @@ X = 14656  # ' Need'
 sys_path = HERE / "figures"
 
 
-def pc(v, sign=False):
-    s = f"{100 * v:+.0f}" if sign else f"{100 * v:.0f}"
+def pc(v, sign=False, d=0):
+    s = f"{100 * v:+.{d}f}" if sign else f"{100 * v:.{d}f}"
     return s.replace("-", "&minus;") + "%"
 
 
@@ -38,7 +38,7 @@ def load_numbers(mock):
     sys.path.insert(0, str(sys_path))
     import figure_data as FD
     if mock:
-        return {"status": "MOCK", "steps": 1230, "n_rows": 6400, "n_prompts": 200, "R": 32,
+        return {"status": "MOCK", "steps": 1230, "P_start": 0.04, "n_rows": 6400, "n_prompts": 200, "R": 32,
                 "P": {"s": 0.31, "ci": [0.25, 0.37], "D": 0.100}, "R_": {"s": 0.02, "ci": [-0.05, 0.08], "D": 0.097},
                 "band": FD.band_at(3940), "cue_mass": 3940, "margin": FD.MARGIN, "source": "MOCK"}
     S = json.load(open(HERE / "data" / "summary.json"))
@@ -52,6 +52,7 @@ def load_numbers(mock):
     return {"status": S["status"], "steps": F["steps"], "n_rows": fin["n_rows"], "n_prompts": fin["n_prompts"], "R": js["R"],
             "P": {"s": fin[cell["kP"]]["v"], "ci": fin[cell["kP"]]["ci"], "D": fin["D_P"]["v"]},
             "R_": {"s": fin[cell["kR"]]["v"], "ci": fin[cell["kR"]]["ci"], "D": fin["D_R"]["v"]},
+            "P_start": S[[c for c in F["reads"] if c["when"] == "start"][0]["key"]]["s_P"]["v"],
             "gap": fin["gap"], "band": band, "cue_mass": cell["xP"], "trace_mass": cell["xR"], "margin": FD.MARGIN,
             "source": "data/summary.json (summarize_tf.py) end; read data/reads/raw/end_tf"}
 
@@ -113,9 +114,11 @@ def main():
                 flat[pre + k] = str(v)
     walk(data)
     flat.update({
-        "P.s_s": pc(N["P"]["s"]), "R_.s_s": pc(N["R_"]["s"]),
-        "P.ci_s": f'{pc(N["P"]["ci"][0])} to {pc(N["P"]["ci"][1])}',
-        "R_.ci_s": f'{pc(N["R_"]["ci"][0])} to {pc(N["R_"]["ci"][1])}',
+        # one decimal, as in the post's TLDR
+        "P.s_s": pc(N["P"]["s"], d=1), "R_.s_s": pc(abs(N["R_"]["s"]) if abs(N["R_"]["s"]) < 0.0005 else N["R_"]["s"], d=1),
+        "P.ci_s": f'{pc(N["P"]["ci"][0], d=1)} to {pc(N["P"]["ci"][1], d=1)}',
+        "R_.ci_s": f'{pc(N["R_"]["ci"][0], d=1)} to {pc(N["R_"]["ci"][1], d=1)}',
+        "P.start_s": pc(N["P_start"], d=1),
         "P.D_s": f'{100 * N["P"]["D"]:.0f}', "R_.D_s": f'{100 * N["R_"]["D"]:.1f}',
         "R_.s_abs": pc(abs(N["R_"]["s"])),
         "band_s": f'{pc(N["band"]["lo"])} to {pc(N["band"]["hi"])}', "margin_s": pc(N["margin"]),

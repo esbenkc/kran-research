@@ -193,8 +193,9 @@ def main():
         z, keep, nd = load_end()
         f = cells(z, keep)
         s["end"], s["end_draws"] = f, nd
-        s["end_half_d0_15"] = cells(z, keep & (z["seed"] < 16))
-        s["end_half_d16_31"] = cells(z, keep & (z["seed"] >= 16))
+        for key, m in (("end_half_d0_15", keep & (z["seed"] < 16)), ("end_half_d16_31", keep & (z["seed"] >= 16))):
+            if m.sum():
+                s[key] = cells(z, m)
         if "plain_row" in z:
             s["end_plain_d0_7"] = cells(plain_dict(z))
             lo, hi = s["end_plain_d0_7"]["lr_minus_plain"]["ci"]
@@ -257,6 +258,8 @@ def matrix(s):
         L.append(f"| headline | 0 | end read: s_R (trace, LR served) / s_P (planted) | none | {fm(e, 's_R')} / {fm(e, 's_P')} | {art} |")
         L.append(f"| headline | 0 | end read: y_R / y_P (pts) | none | {fm(e, 'y_R', True)} / {fm(e, 'y_P', True)} | {art} |")
         for key, lab in (("end_half_d0_15", "draws 0-15"), ("end_half_d16_31", "draws 16-31")):
+            if key not in s:
+                continue
             h = s[key]
             L.append(f"| headline | 0 | {lab}: s_R / s_P / gap | none | {fm(h, 's_R')} / {fm(h, 's_P')} / {fm(h, 'gap')} | {art} |")
         if "end_plain_d0_7" in s:
@@ -270,11 +273,19 @@ def matrix(s):
     if ck:
         last = ck[-1]
         L.append(f"| exposure | 0 | update {s['curve']['updates_total']}: summed text difference planted / trace | none | "
-                 f"{s['curve']['cue_mass_end']:.0f} / {last['cum_R_tv_mass']:.0f} (trace to last dev check, update {last['update']}) | "
+                 f"{s['curve']['cue_mass_end']:.0f} / {s['figure']['trace_mass_end']:.0f} (trace: trapezoid of dev D to update {last['update']}, "
+                 f"then its last dev D carried to {s['curve']['updates_total']}) | "
                  "data/runs/joint_s0_cont/curve.jsonl |")
     if "smoke" in s and s["smoke"].get("aa_max_abs_log_w") is not None:
         L.append(f"| A/A null | 0 | none build forced on its own thought | A/A | max abs log w {s['smoke']['aa_max_abs_log_w']:.2e}, "
                  f"max abs dc {s['smoke']['aa_max_c_diff']:.2e} | data/reads/raw/smoke_tf.npz |")
+    sc = HERE / "data/reads/raw/smoke_check.json"
+    if sc.exists():
+        r = json.load(open(sc)).get("reproduce_1111_on_674", {})
+        if r:
+            L.append(f"| estimator code | 0 | new read on the 674 adapter vs the 11-11 read, same rows | reproduction | "
+                     f"thoughts equal {r['toks_nb_equal_rows']}/{r['rows']}, max cheat diff {r['c_nb_max_abs_diff']:.1e}, "
+                     f"max log-prob diff {r['lp_lb_nb_max_abs_diff']:.1e} | data/reads/raw/smoke_check.json |")
     st = s["parent_start_lr_text"]
     L.append(f"| start control | 0 | start policy (11-11 read, LR text): s_R / s_P | untrained start policy | {fm(st, 's_R')} / "
              f"{fm(st, 's_P')} | data/parent/reads/start_test.npz |")

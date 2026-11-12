@@ -1,0 +1,31 @@
+{
+ "policy": "data/runs/joint_s0_cont/adapter.pt",
+ "splits": "test",
+ "prompts": "data/prompts.jsonl",
+ "R": 32,
+ "r0": 0,
+ "order": "seed-major",
+ "k": 64,
+ "B": 32,
+ "n_rows_planned": 6400,
+ "n_rows": 6400,
+ "complete": true,
+ "plant_tok": 14656,
+ "cue_delta": 0.1,
+ "dec_bias": -2.255,
+ "aa": false,
+ "plain_r": 8,
+ "torch": "2.14.1",
+ "read_s": 2833.2,
+ "quick": {
+  "E_w": 0.9991666336966796,
+  "w_min": 0.26333609134958,
+  "w_max": 2.6408529411897237,
+  "D_R": 0.09680768383310824,
+  "c_nb": 0.7561708092689514,
+  "forced_switch": 0.04725741222500801,
+  "pX_off": 0.08421522378921509,
+  "n_plain": 1600,
+  "n_cue": 200
+ }
+}

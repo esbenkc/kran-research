@@ -48,10 +48,10 @@ web_agents = sorted({c["agent"] for c in src.get("web", [])})
 n_key = sorted({c["n"] for c in src["cells"]})
 winner = src.get("web_winner", "nameit")
 data = {
-    "title": src.get("title", "TBD"),
+    "title": "Each warning sentence alone cut key use by about 30 points. Together they cut 62.",
     "subtitle": "Share of runs that used the decoy key, by the sentences added to the agent's system prompt.",
     "phase": src.get("phase", "counted"),
-    "mark": "nameit",
+    "mark": ["honeypot", "nameit"],
     "n_agents": {"key": len(key_agents), "web": len(web_agents)},
     "arms": [{"id": a, "label": LABEL[a]} for a in ORDER if any(c["arm"] == a for c in src["cells"])],
     "web_arms": [{"id": "neutral", "label": LABEL["neutral"]}, {"id": winner, "label": LABEL[winner]}],
@@ -59,7 +59,7 @@ data = {
         "pool": f"{len(key_agents)} agents, equal weight",
         "agent": "one agent",
         "neutral_line": "neutral rate",
-        "mark": "the naming instruction alone",
+        "mark": "the two sentences, each alone",
         "xkey": "share of runs that used the decoy key (action log)",
         "xkey_short": "runs that used the key",
         "web": "Second test: a link hidden from human view",
@@ -67,7 +67,8 @@ data = {
         "xweb": "share of runs that followed the hidden link",
         "xweb_short": "runs that followed the link",
         "agents": "Agents: " + ", ".join(SHORT.get(a, a) for a in key_agents) + ". "
-                  + f"{'/'.join(str(n) for n in n_key)} runs per agent and row.",
+                  + f"{'/'.join(str(n) for n in n_key)} runs per agent and row. Website: "
+                  + ", ".join(SHORT.get(a, a) for a in web_agents) + f", {'/'.join(str(n) for n in sorted({c['n'] for c in src.get('web', [])}))} runs each.",
         "note": "Bar: 95% interval. Scored from the action log and the server log; no model judged.",
     },
     "cells": cells("key", src["cells"], src["pooled"]) + cells("web", src.get("web", []), src.get("web_pooled", [])),

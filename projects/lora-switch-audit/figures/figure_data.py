@@ -219,6 +219,14 @@ def main():
         "gain2": "hollow: reaction of the whole change, at each run's last read",
         "theory": "teal band: theory, change carries only the cue",
         "ctrl": "lower shaded band: controls, cue not tied to reward"})
+    # text first: readers of the data head (oracle figure_alone gate reads the first 3,000 chars) see every label
+    front = ["title", "subtitle", "x2_label", "y_label", "y_short", "legend", "notes"]
+    data = {**{k: data[k] for k in front if k in data}, **{k: v for k, v in data.items() if k not in front}}
+    # drop v1 legend keys the plot no longer draws
+    for k in ("top1", "top4", "sweep", "big", "real", "below", "len"):
+        data["legend"].pop(k, None)
+    for k in ("star", "len", "ctrl"):
+        data["notes"].pop(k, None)
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps(data, indent=1))
     for p in data["points"]:

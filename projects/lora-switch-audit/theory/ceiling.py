@@ -6,11 +6,16 @@ cue's energy fraction on it is about r/d. Checks (sympy + numpy), written to the
 
   E1  e1(u) = sum_p (v1.c_p)^2 / sum_p |c_p|^2                       (definition, unit test)
   E2  B = g (A c)^T  =>  dW = g c^T A^T A  =>  v1 = A^T A c / |A^T A c|  (rank-1, symbolic)
-  E3  if A A^T = s I_r:  cos^2(v1, c) = c^T A^T A c / (s |c|^2)        (symbolic)
+  E3  if A A^T = s I_r:  cos^2(v1, c) = c^T A^T A c / (s |c|^2)        (symbolic, checked on an instance: r=2, d=3,
+      orthogonal rows of equal norm; not a proof for generic A)
   E4  A iid, var sigma^2:  E[c^T A^T A c] = r sigma^2 |c|^2, s ~ d sigma^2  =>  e1 ~ r/d
   E5  random unit u' in R^d:  (v1.u')^2 ~ Beta(1/2, (d-1)/2), mean 1/d  (numeric)
   E6  stacked [dW_q; dW_k; dW_v], each its own random A (kaiming-uniform bound 1/sqrt(d)):
-      e1 distribution and P(rank 1 of 1,001) by simulation (the frozen numbers in PREREG S4)
+      e1 distribution and P(rank 1 of 1,001) by simulation (the frozen numbers in PREREG S4). ONE cue row only:
+      the frozen e1 sums over 3 rows, so the band for the real statistic is E6b in ceiling_rows.py (Kasper #20595).
+  ASSUMPTION for E6/E6b: B grows only along the cue's gradient (no generic modes). This is a model, not a
+  measurement: Vera's N3 (trained B on A0) shows the real B also learns generic modes, so P(rank 1) here is a
+  model number for the B-only limit, not a prediction of the measured rank.
   E7  gain law: gap ~ x * g  and gap at the switch fixed  =>  log g_T = const - log x (slope -1)
 """
 import json

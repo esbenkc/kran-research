@@ -11,15 +11,18 @@
  "rule": {
   "sgd": "step = rate × gradient",
   "sign": "fixed step in the gradient's sign",
-  "adamw": "gradient ÷ its recent size"
+  "adamw": "gradient ÷ its recent size",
+  "adamwtm": "same rule; starts as slow as plain SGD"
  },
  "pred": "simple law",
- "tnote": "Updates until the switch (mean of 2 runs). Cue size = share of what the trained layer reads. Simple law: our prediction, fixed before the runs.",
+ "tnote": "Updates until the switch, mean of 2 runs. Cue size: share of what the trained layer reads. Simple law: fixed before the runs.",
  "hot": "sgd",
  "order": [
   "adamw",
   "sign",
+  "adamwtm",
   "sgd"
  ],
- "foot": "Source: Qwen3-0.6B, last 2 blocks trained by reward; switch timed on 64 prompts; Nov 2026 · blog.kran.ai/lab"
+ "foot": "Source: Qwen3-0.6B, last 2 blocks trained by reward; switch timed on 64 prompts; Nov 2026 · blog.kran.ai/lab",
+ "names_override": {}
 }

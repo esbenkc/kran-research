@@ -1,6 +1,6 @@
 {
  "title": "Each halving of the cue cost plain SGD ×2.8 in updates, but AdamW only ×1.8 and sign-SGD ×2.0",
- "subtitle": "Updates until reward taught the switch, relative to the same optimiser's fitted time at the largest cue (×1 = {x1}). The cue shrinks to the right. Dashed lines: the simple law, fixed before the runs. Qwen3-0.6B, 2 runs per size. Log scales.",
+ "subtitle": "Updates until reward taught the switch, relative to the same optimiser's fitted time at the largest cue (×1 = {x1}). The cue shrinks to the right. Dashed lines: the simple law, fixed before the runs. AdamW at a 10× smaller rate is an extra check, outside the main test. Qwen3-0.6B, 2 runs per size. Log scales.",
  "x_label": "Cue size, as a share of what the trained layer reads (log)",
  "x_short": "Cue size (share, log)",
  "y_label": "Updates, relative to the fitted time at the largest cue (log)",
@@ -8,7 +8,8 @@
  "names": {
   "adamw": "AdamW",
   "sign": "sign-SGD",
-  "sgd": "plain SGD"
+  "sgd": "plain SGD",
+  "adamwtm": "AdamW, 10× smaller rate"
  },
  "notes": {
   "pred2": "AdamW, sign-SGD: simple law ×2",
@@ -16,5 +17,18 @@
   "pred4": "plain SGD: simple law ×4",
   "pred4_short": "SGD: simple law ×4",
   "fit": "{name}: ×{f} per halving"
+ },
+ "with_tm": true,
+ "x1names": {
+  "adamw": "AdamW",
+  "adamwtm": "AdamW at the 10× smaller rate",
+  "sign": "sign-SGD",
+  "sgd": "plain SGD"
+ },
+ "short": {
+  "adamw": "AdamW",
+  "adamwtm": "AdamW, rate÷10",
+  "sign": "sign-SGD",
+  "sgd": "plain SGD"
  }
 }

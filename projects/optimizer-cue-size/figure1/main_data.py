@@ -59,9 +59,30 @@ for o in OPTS:
         "runs": [{"s": 100 * r["x"] / DEN, "x": r["x"], "T": r["T"], "rel": r["T"] / anchor, "seed": r["seed"],
                   "censored": bool(r["censored"]), "run": r["run"]} for r in rr],
     })
-x1 = ", ".join(f"{s['anchor_T']:.0f} updates for {s['label']}" if i == 0 else f"{s['anchor_T']:.0f} for {s['label']}" for i, s in enumerate(series))
+# exploratory arm D4 (not in the status fit): AdamW at lr 1e-5, time-matched to SGD at the largest cue.
+# Its own OLS fit = the per-arm estimate of analyze.py's pooled 4-arm fit (asserted against summary.json).
+if not a.synthetic and TX.get("with_tm"):
+    S = json.loads((P / "data/summary.json").read_text())
+    tm = S["adamw_timematched_rows"]
+    assert len(tm) == 8 and not any(r["censored"] for r in tm)
+    for r in tm:
+        raw = json.loads((P / "data/runs" / f"{r['run']}.json").read_text())
+        assert raw["T_dense"] == r["T"] and raw["args"]["lr"] == 1e-05 and raw["args"]["opt"] == "adamw", r["run"]
+    b_, c_ = np.polyfit(np.log([r["x"] for r in tm]), np.log([r["T"] for r in tm]), 1)
+    assert abs(b_ - S["adamw_timematched"]["slope"]["point"]) < 1e-9, (b_, S["adamw_timematched"]["slope"])
+    f = {"slope": float(b_), "ci": S["adamw_timematched"]["slope"]["ci"], "intercept": float(c_)}
+    anchor = float(math.exp(c_ + b_ * math.log(XS[SIZES[0]])))
+    rr = sorted(tm, key=lambda r: (-r["x"], r["seed"]))
+    series.insert(1, {"opt": "adamwtm", "label": TX["names"]["adamwtm"], "anchor_T": anchor, "x_top": XS[SIZES[0]],
+                      "pred_slope": fd["predictions"]["goal"]["adamw"], "fit": f, "exploratory": True,
+                      "runs": [{"s": 100 * r["x"] / DEN, "x": r["x"], "T": r["T"], "rel": r["T"] / anchor, "seed": r["seed"],
+                                "censored": False, "run": r["run"]} for r in rr]})
+XN = TX.get("x1names", {})
+x1 = ", ".join(f"{s['anchor_T']:.0f} updates for {XN.get(s['opt'], s['label'])}" if i == 0 else f"{s['anchor_T']:.0f} for {XN.get(s['opt'], s['label'])}" for i, s in enumerate(series))
 TX["subtitle"] = TX["subtitle"].replace("{x1}", x1)
-data = {**{k: v for k, v in TX.items() if k != "names"}, "den": DEN, "series": series,
+for s_ in series:
+    s_["short"] = TX.get("short", {}).get(s_["opt"], s_["label"])
+data = {**{k: v for k, v in TX.items() if k not in ("names", "x1names", "with_tm", "short")}, "den": DEN, "series": series,
         "sizes_s": [100 * XS[al] / DEN for al in SIZES], "synthetic": a.synthetic}
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(data, indent=1))

@@ -30,6 +30,8 @@ DEN = MD["den"]
 if not a.synthetic:
     FD = json.loads((P / "data/figure_data.json").read_text())
     for s in MD["series"]:
+        if s.get("exploratory"):
+            continue  # asserted in main_data.py against summary.json adamw_timematched + data/runs
         f = FD["fit"][s["opt"]]
         assert abs(f["slope"] - s["fit"]["slope"]) < 1e-12
         for r in s["runs"]:
@@ -83,7 +85,7 @@ assert ex["split"] == "test"
 # step pictograms: two arrows per optimiser, for a big cue and a cue 8x smaller (the planned range).
 # plain SGD: step length = rate x gradient, so the small cue's arrow is 1/8 as long; sign-SGD and AdamW: about the same length.
 RED, INK, MUTE, PINK, TEAL, GREY = "#c8372d", "#1d1d1f", "#6b6f78", "#c2457f", "#2a8f86", "#6b6f78"
-COL = {"sgd": PINK, "sign": TEAL, "adamw": GREY}
+COL = {"sgd": PINK, "sign": TEAL, "adamw": GREY, "adamwtm": "#c4621f"}
 
 
 def arrows(o):

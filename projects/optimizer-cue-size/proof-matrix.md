@@ -29,5 +29,22 @@ Built by `analyze.py` from `data/runs/*.json`. One row per cell. T = updates to 
 | headline | 1 | sgd alpha 1/64 | none | x 16.63: T = 544 | data/runs/sgd_a0.015625_s1.json |
 | headline | 0 | sgd alpha 1/128 | none | x 8.32: T = 1696 | data/runs/sgd_a0.0078125_s0.json |
 | headline | 1 | sgd alpha 1/128 | none | x 8.32: T = 1456 | data/runs/sgd_a0.0078125_s1.json |
+| headline | 0 | sgd alpha 1/256 | none | x 4.16: T = 4032 | data/runs/sgd_a0.00390625_s0.json |
+| headline | 1 | sgd alpha 1/256 | none | x 4.16: T = 3584 | data/runs/sgd_a0.00390625_s1.json |
 | headline | 0 | sign alpha 1/32 | none | x 33.26: T = 40 | data/runs/sign_a0.03125_s0.json |
+| headline | 1 | sign alpha 1/32 | none | x 33.26: T = 32 | data/runs/sign_a0.03125_s1.json |
+| headline | 0 | sign alpha 1/64 | none | x 16.63: T = 72 | data/runs/sign_a0.015625_s0.json |
+| headline | 1 | sign alpha 1/64 | none | x 16.63: T = 52 | data/runs/sign_a0.015625_s1.json |
+| headline | 0 | sign alpha 1/128 | none | x 8.32: T = 144 | data/runs/sign_a0.0078125_s0.json |
+| headline | 1 | sign alpha 1/128 | none | x 8.32: T = 112 | data/runs/sign_a0.0078125_s1.json |
+| headline | 0 | sign alpha 1/256 | none | x 4.16: T = 288 | data/runs/sign_a0.00390625_s0.json |
+| headline | 1 | sign alpha 1/256 | none | x 4.16: T = 272 | data/runs/sign_a0.00390625_s1.json |
+| headline | all | pooled ols slope, adamw | none | -0.811 [-0.929, -0.693] | data/summary.json |
+| headline | all | pooled ols slope, sgd | none | -1.484 [-1.602, -1.366] | data/summary.json |
+| headline | all | pooled ols slope, sign | none | -0.996 [-1.114, -0.878] | data/summary.json |
+| headline | all | SGD minus AdamW slope | none | -0.673, deciding CI [-0.840, -0.506] (model [-0.840, -0.506], boot [-0.767, -0.579]) | data/summary.json |
+| headline | all | sign-SGD minus AdamW slope | none | -0.185, deciding CI [-0.352, -0.018] (model [-0.352, -0.018], boot [-0.303, -0.063]) | data/summary.json |
+| headline | all | status rule PREREG s6 | none | CONFIRMED; prereg failed | data/summary.json |
+| control | 0 | SGD x 33.3 | shuffled penalty coin | switched False, max D 0.013 over 4096 | data/runs/ctl_shuf_sgd_a0.03125_s0.json |
+| A-frozen (exploratory) | 0 | SGD lora_A frozen at SGD's lr 0.01, x 33.3 | none | T = 208 vs full LoRA T = 180 | data/runs/sgdfa_samelr_a0.03125_s0.json |
 | replication | 0,1 | parent AdamW bf16 cue, 4 sizes | none | slope -0.975 (n 9) | parent/ |

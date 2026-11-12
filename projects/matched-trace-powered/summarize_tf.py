@@ -155,6 +155,26 @@ def band(m):
     return {"mass": m, "central": c, "band80": [max(0.0, 0.33 * c), min(1.0, 1.67 * c)]}
 
 
+def figure_block(s):
+    """The block Owain's figures/figure_data.py reads: planted dev checks (x = cue mass), the read cells and their x."""
+    ck = s["curve"]["checks"]
+    at674 = next((r for r in ck if r["update"] == STEP0 and r["part"] == "cont"), None)
+    last = ck[-1]
+    xR_end = last["cum_R_tv_mass"] + 32 * (s["curve"]["updates_total"] - last["update"]) * (last["dev_D"] or 0.0)
+    reads = [{"key": "parent_start_lr_text", "when": "start", "xP": 0.0, "xR": 0.0, "kP": "s_P", "kR": "s_R"},
+             {"key": "parent_674_lr_text", "when": "674", "xP": PAR_P_MASS, "xR": at674["cum_R_tv_mass"] if at674 else None,
+              "kP": "s_P", "kR": "s_R", "kR_plain": "s_R_plain"}]
+    if "end" in s:
+        reads.append({"key": "end", "when": "final", "xP": s["curve"]["cue_mass_end"], "xR": xR_end, "kP": "s_P",
+                      "kR": "s_R"})
+    return {"checks": [{"step": r["update"], "x": r["cum_P_tv_mass"], "s": r["s_P_dev"], "forced": r["dev_forced_switch"],
+                        "s_R_dev": r["s_R_dev"], "xR": r["cum_R_tv_mass"]} for r in ck if r.get("s_P_dev") is not None],
+            "reads": reads, "onset": ({"step": s["curve"]["onset"]["update"], "x": s["curve"]["onset"]["cue_tv_mass"]}
+                                      if s["curve"]["onset"] else None),
+            "band": s.get("band_score"), "steps": s["curve"]["updates_total"], "night1_x": PAR_P_MASS,
+            "diff_key": "gap", "trace_mass_end": xR_end}
+
+
 def main():
     s = {"prereg": "PREREG.md v1.1 @ 8e82ff3c", "curve": curve()}
     on = s["curve"]["onset"]
@@ -208,6 +228,7 @@ def main():
         b_clauses = [pr["phaseB_s_P_ge_0.30"], pr["phaseB_y_R_ci_high_lt_1.5pts"], pr["phaseB_yes_rule_fires"],
                      pr["probe_on_cheat_moves_ge_5pts"]]
         pr["outcome"] = "failed" if not all(b_clauses) else ("unsettled" if not pr["phaseA_ran"] else "held")
+    s["figure"] = figure_block(s)
     (HERE / "data" / "summary.json").write_text(json.dumps(s, indent=1))
     matrix(s)
     show = {k: s.get(k) for k in ("status", "status_inputs", "prediction", "band_score", "end_draws", "lr_void")}

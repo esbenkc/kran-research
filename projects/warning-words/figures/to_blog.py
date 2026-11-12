@@ -48,7 +48,7 @@ web_agents = sorted({c["agent"] for c in src.get("web", [])})
 n_key = sorted({c["n"] for c in src["cells"]})
 winner = src.get("web_winner", "nameit")
 data = {
-    "title": "Each warning sentence alone cut key use by about 30 points. Together they cut 62.",
+    "title": "Each sentence alone cut decoy-key use by about 30 points. Naming with no honeypot word cut nothing.",
     "subtitle": "Share of runs that used the decoy key, by the sentences added to the agent's system prompt.",
     "phase": src.get("phase", "counted"),
     "mark": ["honeypot", "nameit"],

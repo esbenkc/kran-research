@@ -257,6 +257,7 @@ def main():
 
     # ---- secondary: x 2.06 added, A-frozen (pooled with 4 arms), controls
     ext, _ = collect(OPTS, [EXTRA], SEEDS)
+    summary["x2_rows"] = ext
     if ext and "headline" in summary:
         allr = rows + ext
         arms = sorted({r["opt"] for r in allr}, key=OPTS.index)
@@ -420,9 +421,32 @@ def write_matrix(S):
     pk = S.get("sgdfa_pick")
     if pk:
         for x in pk["pilots"]:
-            L.append(f"| A-frozen lr pick | 0 | A-frozen SGD lr {x['lr']:g}, x 33.3 | none | stable {x['stable']}, T = {x['T']} "
+            L.append(f"| A-frozen lr pick (unused, D5) | 0 | A-frozen SGD lr {x['lr']:g}, x 33.3 | none | stable {x['stable']}, T = {x['T']} "
                      f"{'(' + '; '.join(x['why']) + ')' if x['why'] else ''} | data/runs/{x['run']}.json |")
-        L.append(f"| A-frozen lr pick | 0 | rule D2 v2 | none | {pk['decision']} | data/sgdfa_pick.json |")
+        dec = pk["decision"] if not pk["decision"].startswith("NEXT") else "ladder CUT by D5 after the same-lr cell; pilots unused"
+        L.append(f"| A-frozen lr pick | 0 | rule D2 v2 | none | {dec} | data/sgdfa_pick.json |")
+    p = HERE / "data" / "adamwtm_pick.json"
+    if p.exists():
+        pk = json.load(open(p))
+        for x in pk["pilots"]:
+            L.append(f"| time-matched AdamW lr pick (D4) | 0 | AdamW lr {x['lr']:g}, x 33.3 | none | stable {x['stable']}, "
+                     f"T = {x['T']} | data/runs/{x['run']}.json |")
+        L.append(f"| time-matched AdamW lr pick (D4) | 0 | rule D4 (target T 180) | none | {pk['decision']} | data/adamwtm_pick.json |")
+    for r in S.get("adamw_timematched_rows", []):
+        res = f"censored at {r['steps_run']}" if r["censored"] else f"T = {r['T']}"
+        L.append(f"| time-matched AdamW (D4, exploratory) | {r['seed']} | AdamW lr 1e-5, alpha 1/{round(1 / r['alpha'])} | none | "
+                 f"x {r['x']:.2f}: {res} | data/runs/{r['run']}.json |")
+    if "adamw_timematched" in S:
+        a = S["adamw_timematched"]
+        L.append(f"| time-matched AdamW (D4, exploratory) | all | slope, pooled 4 arms | none | {a['slope']['point']:.3f} "
+                 f"[{a['slope']['ci'][0]:.3f}, {a['slope']['ci'][1]:.3f}]; D4 bar: {a['bar_D4']} | data/summary.json |")
+    for r in S.get("x2_rows", []):
+        res = f"censored at {r['steps_run']}" if r["censored"] else f"T = {r['T']}"
+        L.append(f"| x 2.06 (exploratory) | {r['seed']} | {r['opt']} alpha 1/512 | none | x {r['x']:.2f}: {res} | data/runs/{r['run']}.json |")
+    r = load("vera_sgdlr0.02_a0.015625_s0")
+    if r:
+        L.append(f"| SGD lr check (exploratory, Vera #20357) | 0 | SGD lr 0.02, alpha 1/64 | none | T = {T_of(r)} | "
+                 f"data/runs/vera_sgdlr0.02_a0.015625_s0.json |")
     if "replication_parent_adamw_bf16" in S:
         x = S["replication_parent_adamw_bf16"]
         L.append(f"| replication | 0,1 | parent AdamW bf16 cue, 4 sizes | none | slope {x['slope']:.3f} (n {x['n']}) | parent/ |")

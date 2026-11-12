@@ -73,7 +73,7 @@
     "stable": false,
     "why": [
      "mean KL 0.620 > 0.5 at 8",
-     "P(X|off) 0.000 outside [0.07,0.60] at 12",
+     "P(X, cue off) 0.000 outside [0.07,0.60] at 12",
      "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
     ],
     "T": null,
@@ -85,7 +85,7 @@
     "stable": false,
     "why": [
      "mean KL 0.620 > 0.5 at 8",
-     "P(X|off) 0.000 outside [0.07,0.60] at 12",
+     "P(X, cue off) 0.000 outside [0.07,0.60] at 12",
      "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
     ],
     "T": null,
@@ -97,7 +97,7 @@
     "stable": false,
     "why": [
      "mean KL 0.620 > 0.5 at 8",
-     "P(X|off) 0.000 outside [0.07,0.60] at 12",
+     "P(X, cue off) 0.000 outside [0.07,0.60] at 12",
      "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
     ],
     "T": null,
@@ -109,7 +109,7 @@
     "stable": false,
     "why": [
      "mean KL 0.620 > 0.5 at 8",
-     "P(X|off) 0.000 outside [0.07,0.60] at 12",
+     "P(X, cue off) 0.000 outside [0.07,0.60] at 12",
      "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
     ],
     "T": null,
@@ -121,7 +121,7 @@
     "stable": false,
     "why": [
      "mean KL 0.566 > 0.5 at 16",
-     "P(X|off) 0.000 outside [0.07,0.60] at 12",
+     "P(X, cue off) 0.000 outside [0.07,0.60] at 12",
      "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
     ],
     "T": null,
@@ -580,6 +580,7 @@
   "sign_top2": -0.7744261163153476,
   "sign_bottom2": -1.1400260496534667
  },
+ "x2_rows": [],
  "sgd_afrozen_rows": [],
  "sgd_afrozen_missing": [
   "sgdfa_a0.03125_s0",
@@ -658,7 +659,61 @@
   "T_sgd_full": 180,
   "lr": 0.01
  },
- "sgdfa_pick": null,
+ "sgdfa_pick": {
+  "rule": "PREREG s8.1 + D1 + D2 v2",
+  "arm": "sgdfa",
+  "pilots": [
+   {
+    "lr": 10,
+    "run": "sgdfapilot_lr10",
+    "stable": false,
+    "why": [
+     "mean KL 0.620 > 0.5 at 8",
+     "P(X, cue off) 0.000 outside [0.07,0.60] at 12",
+     "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
+    ],
+    "T": null,
+    "steps_run": 50
+   },
+   {
+    "lr": 5,
+    "run": "sgdfapilot_lr5",
+    "stable": false,
+    "why": [
+     "mean KL 0.620 > 0.5 at 8",
+     "P(X, cue off) 0.000 outside [0.07,0.60] at 12",
+     "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
+    ],
+    "T": null,
+    "steps_run": 50
+   },
+   {
+    "lr": 2,
+    "run": "sgdfapilot_lr2",
+    "stable": false,
+    "why": [
+     "mean KL 0.620 > 0.5 at 8",
+     "P(X, cue off) 0.000 outside [0.07,0.60] at 12",
+     "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
+    ],
+    "T": null,
+    "steps_run": 50
+   },
+   {
+    "lr": 1,
+    "run": "sgdfapilot_lr1",
+    "stable": false,
+    "why": [
+     "mean KL 0.620 > 0.5 at 8",
+     "P(X, cue off) 0.000 outside [0.07,0.60] at 12",
+     "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
+    ],
+    "T": null,
+    "steps_run": 50
+   }
+  ],
+  "decision": "NEXT 0.5"
+ },
  "mechanism": [
   {
    "run": "adamw_a0.03125_s0",

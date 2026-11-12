@@ -7,11 +7,11 @@ Built by `analyze.py` from `data/runs/*.json`. One row per cell. T = updates to 
 |---|---|---|---|---|---|
 | phase 0 | 0 | AdamW x 33.3, bf16 cue, parent grid | parent replication | T = 32 (parent 32) | data/runs/p0cast_a0.03125_s0.json |
 | phase 0 | 1 | AdamW x 33.3, bf16 cue, parent grid | parent replication | T = 24 (parent 24) | data/runs/p0cast_a0.03125_s1.json |
-| SGD lr pick | 0 | SGD lr 1, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X|off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdpilot_lr1.json |
-| SGD lr pick | 0 | SGD lr 0.5, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X|off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdpilot_lr0.5.json |
-| SGD lr pick | 0 | SGD lr 0.2, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X|off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdpilot_lr0.2.json |
-| SGD lr pick | 0 | SGD lr 0.1, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X|off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdpilot_lr0.1.json |
-| SGD lr pick | 0 | SGD lr 0.05, x 33.3 | none | stable False, T = None (mean KL 0.566 > 0.5 at 16; P(X|off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdpilot_lr0.05.json |
+| SGD lr pick | 0 | SGD lr 1, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdpilot_lr1.json |
+| SGD lr pick | 0 | SGD lr 0.5, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdpilot_lr0.5.json |
+| SGD lr pick | 0 | SGD lr 0.2, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdpilot_lr0.2.json |
+| SGD lr pick | 0 | SGD lr 0.1, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdpilot_lr0.1.json |
+| SGD lr pick | 0 | SGD lr 0.05, x 33.3 | none | stable False, T = None (mean KL 0.566 > 0.5 at 16; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdpilot_lr0.05.json |
 | SGD lr pick | 0 | SGD lr 0.02, x 33.3 | none | stable True, T = 108  | data/runs/sgdpilot_lr0.02.json |
 | SGD lr pick | 0 | SGD lr 0.01, x 33.3 | none | stable True, T = 180  | data/runs/sgdpilot_lr0.01.json |
 | SGD lr pick | 0 | rule PREREG s8.1 | none | PICK 0.01 | data/sgd_pick.json |
@@ -47,4 +47,16 @@ Built by `analyze.py` from `data/runs/*.json`. One row per cell. T = updates to 
 | headline | all | status rule PREREG s6 | none | CONFIRMED; prereg failed | data/summary.json |
 | control | 0 | SGD x 33.3 | shuffled penalty coin | switched False, max D 0.013 over 4096 | data/runs/ctl_shuf_sgd_a0.03125_s0.json |
 | A-frozen (exploratory) | 0 | SGD lora_A frozen at SGD's lr 0.01, x 33.3 | none | T = 208 vs full LoRA T = 180 | data/runs/sgdfa_samelr_a0.03125_s0.json |
+| A-frozen lr pick (unused, D5) | 0 | A-frozen SGD lr 10, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdfapilot_lr10.json |
+| A-frozen lr pick (unused, D5) | 0 | A-frozen SGD lr 5, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdfapilot_lr5.json |
+| A-frozen lr pick (unused, D5) | 0 | A-frozen SGD lr 2, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdfapilot_lr2.json |
+| A-frozen lr pick (unused, D5) | 0 | A-frozen SGD lr 1, x 33.3 | none | stable False, T = None (mean KL 0.620 > 0.5 at 8; P(X, cue off) 0.000 outside [0.07,0.60] at 12; text health at 25: entropy 0.00 (step0 0.60), top-1 1.00) | data/runs/sgdfapilot_lr1.json |
+| A-frozen lr pick | 0 | rule D2 v2 | none | ladder CUT by D5 after the same-lr cell; pilots unused | data/sgdfa_pick.json |
+| time-matched AdamW lr pick (D4) | 0 | AdamW lr 3e-05, x 33.3 | none | stable True, T = 68 | data/runs/adamwtmpilot_lr3e-05.json |
+| time-matched AdamW lr pick (D4) | 0 | AdamW lr 2e-05, x 33.3 | none | stable True, T = 84 | data/runs/adamwtmpilot_lr2e-05.json |
+| time-matched AdamW lr pick (D4) | 0 | AdamW lr 1.5e-05, x 33.3 | none | stable True, T = 112 | data/runs/adamwtmpilot_lr1.5e-05.json |
+| time-matched AdamW lr pick (D4) | 0 | AdamW lr 1e-05, x 33.3 | none | stable True, T = 152 | data/runs/adamwtmpilot_lr1e-05.json |
+| time-matched AdamW lr pick (D4) | 0 | AdamW lr 5e-06, x 33.3 | none | stable True, T = 304 | data/runs/adamwtmpilot_lr5e-06.json |
+| time-matched AdamW lr pick (D4) | 0 | rule D4 (target T 180) | none | PICK 1e-05 | data/adamwtm_pick.json |
+| time-matched AdamW (D4, exploratory) | 0 | AdamW lr 1e-5, alpha 1/32 | none | x 33.26: T = 152 | data/runs/adamwtmpilot_lr1e-05.json |
 | replication | 0,1 | parent AdamW bf16 cue, 4 sizes | none | slope -0.975 (n 9) | parent/ |

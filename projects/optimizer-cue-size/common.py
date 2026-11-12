@@ -52,7 +52,7 @@ def stable(r):
             break
     for c in all_evals(r):
         if c["step"] > 8 and not (0.07 <= c["px_off"] <= 0.60):  # DEVIATIONS D1
-            why.append(f"P(X|off) {c['px_off']:.3f} outside [0.07,0.60] at {c['step']}")
+            why.append(f"P(X, cue off) {c['px_off']:.3f} outside [0.07,0.60] at {c['step']}")
             break
     h0 = r["health"][0]
     for h in r["health"][1:]:

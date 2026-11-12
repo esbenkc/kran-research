@@ -72,3 +72,9 @@ key string. Naming (`key/mediator.py`, honeypot-talk's say rule) is descriptive 
 | web | idx 0-29 (n=30) | Gemini 3.1 Flash-Lite · web, hidden link (display:none) · full two-sentence warning | none | fit 26/30 = 0.87 [0.73, 0.97] | results/cells/web__full__gemini-3.1-flash-lite.json |
 | web | same draws | F(neutral) - F(full two-sentence warning), 3 agents equal weight | neutral arm | cut +0.144 [+0.056, +0.233]; P5 holds | results/contrasts.json |
 | check | all counted runs | action-log key rule vs the env's decoy log | env log | agree 600/600 | results/key_scores.jsonl |
+| headline (skeptic) | seeds 2000-2019 | skeptic rebuild, own code | none | G -0.010 [-0.130,+0.110], CI-high 0.11 in 10/10 bootstrap seeds; NOT SETTLED | skeptics/skeptic/out/vera_check.json |
+| headline (skeptic) | seeds 2000-2009 vs 2010-2019 | skeptic seed halves | none | G +0.04 / -0.06; cut(full) 0.54 / 0.70 | skeptics/skeptic/out/vera_null.json |
+| headline (skeptic) | seeds 2000-2019 | honeypot/name label permutation within agent, 5,000 perms | shuffled labels | p = 1.0; null 95% abs(G) 0.13 | skeptics/skeptic/out/vera_null.json |
+| headline (skeptic) | seeds 2000-2019 | all six arm labels shuffled within agent | shuffled labels | null max abs(cut) 95% 0.16 vs cut(full) 0.62 | skeptics/skeptic/out/vera_null.json |
+| noise floor (skeptic) | seeds even vs odd | neutral split-half | split-half | -0.06 [-0.16,+0.04] | skeptics/skeptic/out/vera_null.json |
+| web (skeptic) | index 0-29 | skeptic rebuild from access.log | none | cut 0.144 [0.056,0.233] | skeptics/skeptic/out/vera_web.json |

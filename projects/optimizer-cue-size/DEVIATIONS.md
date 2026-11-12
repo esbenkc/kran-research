@@ -25,3 +25,12 @@ rl.py for every arm. Runs that started before this change (p0cast s0 at 06:02 us
 fp32 s0 used the argmax test) never reached 2 failed checks in a row, so their results do not depend on it.
 Felix (PREREG owner) agrees and replaces his own D1 draft (commit 043ce0b5a) with this entry. Kasper #20318: the
 sign-SGD smoke (T 40 on all evals at x 33.3) also ran before Felix's T4 post; one size, no slope.
+
+## D2: budget for the exploratory SGD A-frozen arm (Felix, 06:20 PST, before any A-frozen run)
+
+PREREG s3 gives every run B(x) = 3 * T0 * (x_top/x)^2 with T0 = SGD's top-cue T. Both pre-data toys say freezing
+lora_A makes SGD far slower (Iris #20300: 40,064 vs 1,344 updates; Felix T4 #20321: 7 of 12 runs censored at 600k
+updates), so that budget would censor all 4 cells and could cost ~4 x 24k updates. New rule for this arm only (it never
+enters the status fit): x_top first, budget 4,096. If it switches (T0_afrz), the other 3 sizes run in order with
+B = min(12,288, 3 * T0_afrz * (x_top/x)^2). If it does not switch, the arm stops there and the post reports
+"no switch within 4,096 updates at the largest cue, against SGD full-LoRA's T" as the mechanism cell.

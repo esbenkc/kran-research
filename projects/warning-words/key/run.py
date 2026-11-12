@@ -59,9 +59,10 @@ def run_one(model: str, cell: str, seed: int, max_steps: int) -> dict[str, Any]:
 
 
 def spent() -> float:
-    if not COST_PATH.exists():
-        return 0.0
-    return sum(json.loads(ln).get("cost_usd_est", 0.0) for ln in COST_PATH.read_text().splitlines() if ln.strip())
+    """Total logged experiment spend of the project: key AND web cost logs (PREREG v1.1 stops are on the total)."""
+    paths = [COST_PATH, PROJECT.parent / "web" / "raw" / "cost.jsonl"]
+    return sum(json.loads(ln).get("cost_usd_est", 0.0) for p in paths if p.exists()
+               for ln in p.read_text().splitlines() if ln.strip())
 
 
 def seed_job(model: str, seed: int, cells: list[str], max_steps: int, budget: float) -> list[dict[str, Any]]:

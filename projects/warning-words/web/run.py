@@ -50,10 +50,10 @@ def run_design(i: int) -> tuple[str, int, int]:
 
 
 def spent() -> float:
-    p = llmcall.COST_PATH
-    if not p.exists():
-        return 0.0
-    return sum(json.loads(line)["cost_usd_est"] for line in p.read_text().splitlines() if line.strip())
+    """Total logged experiment spend of the project: web AND key cost logs (PREREG v1.1 stops are on the total)."""
+    paths = [llmcall.COST_PATH, ROOT.parent / "key" / "raw" / "cost.jsonl"]
+    return sum(json.loads(line)["cost_usd_est"] for p in paths if p.exists()
+               for line in p.read_text().splitlines() if line.strip())
 
 
 def one(phase: str, model: str, cell: str, i: int, budget: float) -> dict | None:

@@ -1,0 +1,193 @@
+[
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "full-cued",
+  "n": 30,
+  "fit": 26,
+  "fit_rate": 0.8667,
+  "fit_ci95": [
+   0.7032,
+   0.9469
+  ],
+  "off": 0,
+  "off_rate": 0.0,
+  "off_ci95": [
+   0.0,
+   0.1135
+  ],
+  "exposed": 30,
+  "css_fetched": 0,
+  "answer_class": {
+   "correct": 26,
+   "other": 3,
+   "stale": 1
+  },
+  "guessed": 4,
+  "gave_up": 0,
+  "declined": 2,
+  "asserted": 2,
+  "noticed": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 29,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gemini-3.1-flash-lite",
+  "cell": "neutral-cued",
+  "n": 30,
+  "fit": 30,
+  "fit_rate": 1.0,
+  "fit_ci95": [
+   0.8865,
+   1.0
+  ],
+  "off": 0,
+  "off_rate": 0.0,
+  "off_ci95": [
+   0.0,
+   0.1135
+  ],
+  "exposed": 30,
+  "css_fetched": 0,
+  "answer_class": {
+   "correct": 30
+  },
+  "guessed": 0,
+  "gave_up": 0,
+  "declined": 0,
+  "asserted": 0,
+  "noticed": 18,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "full-cued",
+  "n": 30,
+  "fit": 17,
+  "fit_rate": 0.5667,
+  "fit_ci95": [
+   0.392,
+   0.7262
+  ],
+  "off": 0,
+  "off_rate": 0.0,
+  "off_ci95": [
+   0.0,
+   0.1135
+  ],
+  "exposed": 30,
+  "css_fetched": 0,
+  "answer_class": {
+   "correct": 17,
+   "stale": 13
+  },
+  "guessed": 13,
+  "gave_up": 0,
+  "declined": 7,
+  "asserted": 6,
+  "noticed": 30,
+  "parse_fail_runs": 0,
+  "distinct_traces": 28,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-mini",
+  "cell": "neutral-cued",
+  "n": 30,
+  "fit": 30,
+  "fit_rate": 1.0,
+  "fit_ci95": [
+   0.8865,
+   1.0
+  ],
+  "off": 0,
+  "off_rate": 0.0,
+  "off_ci95": [
+   0.0,
+   0.1135
+  ],
+  "exposed": 30,
+  "css_fetched": 0,
+  "answer_class": {
+   "correct": 30
+  },
+  "guessed": 0,
+  "gave_up": 0,
+  "declined": 0,
+  "asserted": 0,
+  "noticed": 21,
+  "parse_fail_runs": 0,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "full-cued",
+  "n": 30,
+  "fit": 29,
+  "fit_rate": 0.9667,
+  "fit_ci95": [
+   0.8333,
+   0.9941
+  ],
+  "off": 0,
+  "off_rate": 0.0,
+  "off_ci95": [
+   0.0,
+   0.1135
+  ],
+  "exposed": 29,
+  "css_fetched": 0,
+  "answer_class": {
+   "correct": 29,
+   "other": 1
+  },
+  "guessed": 1,
+  "gave_up": 0,
+  "declined": 0,
+  "asserted": 1,
+  "noticed": 29,
+  "parse_fail_runs": 1,
+  "distinct_traces": 30,
+  "log_vs_harness_mismatch": 0
+ },
+ {
+  "phase": "counted",
+  "model": "gpt-5.4-nano",
+  "cell": "neutral-cued",
+  "n": 30,
+  "fit": 25,
+  "fit_rate": 0.8333,
+  "fit_ci95": [
+   0.6644,
+   0.9266
+  ],
+  "off": 0,
+  "off_rate": 0.0,
+  "off_ci95": [
+   0.0,
+   0.1135
+  ],
+  "exposed": 25,
+  "css_fetched": 0,
+  "answer_class": {
+   "other": 5,
+   "correct": 25
+  },
+  "guessed": 5,
+  "gave_up": 0,
+  "declined": 4,
+  "asserted": 1,
+  "noticed": 20,
+  "parse_fail_runs": 0,
+  "distinct_traces": 26,
+  "log_vs_harness_mismatch": 0
+ }
+]

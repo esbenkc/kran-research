@@ -1,0 +1,41 @@
+{
+ "carrier": "web",
+ "arm": "full",
+ "agent": "agent-equal",
+ "events": {
+  "fit": {
+   "carrier": "web",
+   "arm": "full",
+   "agent": "agent-equal",
+   "event": "fit",
+   "k": "72",
+   "n": "90",
+   "rate": "0.8",
+   "ci_lo": "0.7222",
+   "ci_hi": "0.8778"
+  },
+  "exposed": {
+   "carrier": "web",
+   "arm": "full",
+   "agent": "agent-equal",
+   "event": "exposed",
+   "k": "89",
+   "n": "90",
+   "rate": "0.9889",
+   "ci_lo": "0.9667",
+   "ci_hi": "1.0"
+  },
+  "off": {
+   "carrier": "web",
+   "arm": "full",
+   "agent": "agent-equal",
+   "event": "off",
+   "k": "0",
+   "n": "90",
+   "rate": "0.0",
+   "ci_lo": "0.0",
+   "ci_hi": "0.0"
+  }
+ },
+ "runs": null
+}

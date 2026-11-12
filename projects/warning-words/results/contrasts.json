@@ -1,0 +1,308 @@
+{
+ "G": {
+  "ci": [
+   -0.13,
+   0.11
+  ],
+  "point": -0.01
+ },
+ "G_pooled_count": -0.01,
+ "P": {
+  "P1": false,
+  "P2": false,
+  "P3": false,
+  "P4": false,
+  "P5": true
+ },
+ "bridge_3agent": {
+  "full": {
+   "ci": [
+    0.3167,
+    0.55
+   ],
+   "point": 0.4333
+  },
+  "honeypot": {
+   "ci": [
+    0.5833,
+    0.8
+   ],
+   "point": 0.7
+  },
+  "nameit": {
+   "ci": [
+    0.6667,
+    0.8667
+   ],
+   "point": 0.7667
+  },
+  "neutral": {
+   "ci": [
+    0.8,
+    0.95
+   ],
+   "point": 0.8833
+  },
+  "trap": {
+   "ci": [
+    0.7833,
+    0.9333
+   ],
+   "point": 0.8667
+  },
+  "verbalise": {
+   "ci": [
+    0.8,
+    0.95
+   ],
+   "point": 0.8833
+  }
+ },
+ "cut": {
+  "full": {
+   "ci": [
+    0.53,
+    0.71
+   ],
+   "point": 0.62
+  },
+  "honeypot": {
+   "ci": [
+    0.21,
+    0.41
+   ],
+   "point": 0.31
+  },
+  "nameit": {
+   "ci": [
+    0.21,
+    0.4
+   ],
+   "point": 0.3
+  },
+  "trap": {
+   "ci": [
+    0.06,
+    0.24
+   ],
+   "point": 0.15
+  },
+  "verbalise": {
+   "ci": [
+    -0.07,
+    0.07
+   ],
+   "point": 0.0
+  }
+ },
+ "interaction": {
+  "ci": [
+   -0.16,
+   0.14
+  ],
+  "point": -0.01
+ },
+ "leave_one_agent_out": {
+  "claude-haiku-4-5-20251001": {
+   "G": {
+    "ci": [
+     -0.2125,
+     0.0625
+    ],
+    "point": -0.075
+   },
+   "cut_full": {
+    "ci": [
+     0.4375,
+     0.65
+    ],
+    "point": 0.55
+   },
+   "cut_honeypot": {
+    "ci": [
+     0.1625,
+     0.3875
+    ],
+    "point": 0.275
+   },
+   "cut_nameit": {
+    "ci": [
+     0.0875,
+     0.3125
+    ],
+    "point": 0.2
+   }
+  },
+  "gemini-3.1-flash-lite": {
+   "G": {
+    "ci": [
+     -0.15,
+     0.125
+    ],
+    "point": -0.0125
+   },
+   "cut_full": {
+    "ci": [
+     0.475,
+     0.675
+    ],
+    "point": 0.575
+   },
+   "cut_honeypot": {
+    "ci": [
+     0.225,
+     0.45
+    ],
+    "point": 0.3375
+   },
+   "cut_nameit": {
+    "ci": [
+     0.2125,
+     0.425
+    ],
+    "point": 0.325
+   }
+  },
+  "gemini-3.5-flash-lite": {
+   "G": {
+    "ci": [
+     -0.125,
+     0.1375
+    ],
+    "point": 0.0125
+   },
+   "cut_full": {
+    "ci": [
+     0.45,
+     0.6625
+    ],
+    "point": 0.5625
+   },
+   "cut_honeypot": {
+    "ci": [
+     0.1375,
+     0.3625
+    ],
+    "point": 0.25
+   },
+   "cut_nameit": {
+    "ci": [
+     0.1625,
+     0.3625
+    ],
+    "point": 0.2625
+   }
+  },
+  "gpt-5.4-mini": {
+   "G": {
+    "ci": [
+     -0.1125,
+     0.175
+    ],
+    "point": 0.025
+   },
+   "cut_full": {
+    "ci": [
+     0.625,
+     0.8125
+    ],
+    "point": 0.725
+   },
+   "cut_honeypot": {
+    "ci": [
+     0.2625,
+     0.4875
+    ],
+    "point": 0.375
+   },
+   "cut_nameit": {
+    "ci": [
+     0.2875,
+     0.5125
+    ],
+    "point": 0.4
+   }
+  },
+  "gpt-5.4-nano": {
+   "G": {
+    "ci": [
+     -0.1375,
+     0.1375
+    ],
+    "point": 0.0
+   },
+   "cut_full": {
+    "ci": [
+     0.6,
+     0.775
+    ],
+    "point": 0.6875
+   },
+   "cut_honeypot": {
+    "ci": [
+     0.2122,
+     0.425
+    ],
+    "point": 0.3125
+   },
+   "cut_nameit": {
+    "ci": [
+     0.2125,
+     0.4125
+    ],
+    "point": 0.3125
+   }
+  }
+ },
+ "licences": {
+  "directed_naming": false,
+  "explains_both": false,
+  "naming_alone_no_honeypot_word": false,
+  "predicts_web": false
+ },
+ "naming_nameit_minus_honeypot": {
+  "ci": [
+   0.02,
+   0.18
+  ],
+  "point": 0.1
+ },
+ "prediction": "failed",
+ "status": {
+  "G_ci": [
+   -0.13,
+   0.11
+  ],
+  "answer": "NOT SETTLED",
+  "cut_full_ci_low": 0.53,
+  "cut_nameit_ci_low": 0.21,
+  "half_clause": false,
+  "why": "rule 4"
+ },
+ "web": {
+  "F_neutral": {
+   "ci": [
+    0.9,
+    0.9889
+   ],
+   "point": 0.9444
+  },
+  "F_winner": {
+   "ci": [
+    0.7222,
+    0.8778
+   ],
+   "point": 0.8
+  },
+  "P5": true,
+  "cut": {
+   "ci": [
+    0.0556,
+    0.2333
+   ],
+   "point": 0.1444
+  },
+  "line": "this sentence also cuts hidden-link follows",
+  "winner": "full"
+ }
+}

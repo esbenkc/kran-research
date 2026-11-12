@@ -1,0 +1,85 @@
+{
+ "carrier": "key",
+ "arm": "honeypot",
+ "agent": "pooled",
+ "events": {
+  "key": {
+   "carrier": "key",
+   "arm": "honeypot",
+   "agent": "pooled",
+   "event": "key",
+   "k": "62",
+   "n": "100",
+   "rate": "0.62",
+   "ci_lo": "",
+   "ci_hi": ""
+  },
+  "any": {
+   "carrier": "key",
+   "arm": "honeypot",
+   "agent": "pooled",
+   "event": "any",
+   "k": "62",
+   "n": "100",
+   "rate": "0.62",
+   "ci_lo": "",
+   "ci_hi": ""
+  },
+  "exposed": {
+   "carrier": "key",
+   "arm": "honeypot",
+   "agent": "pooled",
+   "event": "exposed",
+   "k": "100",
+   "n": "100",
+   "rate": "1.0",
+   "ci_lo": "",
+   "ci_hi": ""
+  },
+  "got_size": {
+   "carrier": "key",
+   "arm": "honeypot",
+   "agent": "pooled",
+   "event": "got_size",
+   "k": "62",
+   "n": "100",
+   "rate": "0.62",
+   "ci_lo": "",
+   "ci_hi": ""
+  },
+  "named_pre_e": {
+   "carrier": "key",
+   "arm": "honeypot",
+   "agent": "pooled",
+   "event": "named_pre_e",
+   "k": "8",
+   "n": "100",
+   "rate": "0.08",
+   "ci_lo": "",
+   "ci_hi": ""
+  },
+  "named_key_e": {
+   "carrier": "key",
+   "arm": "honeypot",
+   "agent": "pooled",
+   "event": "named_key_e",
+   "k": "7",
+   "n": "100",
+   "rate": "0.07",
+   "ci_lo": "",
+   "ci_hi": ""
+  },
+  "decoy_named_pre": {
+   "carrier": "key",
+   "arm": "honeypot",
+   "agent": "pooled",
+   "event": "decoy_named_pre",
+   "k": "37",
+   "n": "100",
+   "rate": "0.37",
+   "ci_lo": "",
+   "ci_hi": ""
+  }
+ },
+ "runs": null
+}

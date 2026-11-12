@@ -1,0 +1,85 @@
+{
+ "carrier": "key",
+ "arm": "full",
+ "agent": "agent-equal",
+ "events": {
+  "key": {
+   "carrier": "key",
+   "arm": "full",
+   "agent": "agent-equal",
+   "event": "key",
+   "k": "31",
+   "n": "100",
+   "rate": "0.31",
+   "ci_lo": "0.23",
+   "ci_hi": "0.39"
+  },
+  "any": {
+   "carrier": "key",
+   "arm": "full",
+   "agent": "agent-equal",
+   "event": "any",
+   "k": "31",
+   "n": "100",
+   "rate": "0.31",
+   "ci_lo": "0.23",
+   "ci_hi": "0.39"
+  },
+  "exposed": {
+   "carrier": "key",
+   "arm": "full",
+   "agent": "agent-equal",
+   "event": "exposed",
+   "k": "98",
+   "n": "100",
+   "rate": "0.98",
+   "ci_lo": "0.95",
+   "ci_hi": "1.0"
+  },
+  "got_size": {
+   "carrier": "key",
+   "arm": "full",
+   "agent": "agent-equal",
+   "event": "got_size",
+   "k": "31",
+   "n": "100",
+   "rate": "0.31",
+   "ci_lo": "0.23",
+   "ci_hi": "0.39"
+  },
+  "named_pre_e": {
+   "carrier": "key",
+   "arm": "full",
+   "agent": "agent-equal",
+   "event": "named_pre_e",
+   "k": "73",
+   "n": "100",
+   "rate": "0.73",
+   "ci_lo": "0.67",
+   "ci_hi": "0.79"
+  },
+  "named_key_e": {
+   "carrier": "key",
+   "arm": "full",
+   "agent": "agent-equal",
+   "event": "named_key_e",
+   "k": "57",
+   "n": "100",
+   "rate": "0.57",
+   "ci_lo": "0.49",
+   "ci_hi": "0.64"
+  },
+  "decoy_named_pre": {
+   "carrier": "key",
+   "arm": "full",
+   "agent": "agent-equal",
+   "event": "decoy_named_pre",
+   "k": "63",
+   "n": "100",
+   "rate": "0.63",
+   "ci_lo": "0.55",
+   "ci_hi": "0.71"
+  }
+ },
+ "runs": null
+}

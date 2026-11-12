@@ -120,3 +120,32 @@ Last run starts 18:00 CET; runs stop 18:15 CET. One rl.py lane at a time (one-la
 - Vera #20280-3: SGD full -1.3 (-1.1..-1.5); SGD A-frozen -1.9 (-1.7..-2.1); sign-SGD -0.9 (-0.7..-1.1); AdamW -0.95.
 - Felix numpy LoRA toy (T4): posted in the room before the first SGD update, file `theory/toy_felix.json`.
 - Iris step-0 audit (T3): posted in the room before the first SGD update.
+
+## 8. Addendum v1.1 (pre-data: posted before any SGD update; replaces the matching v1 text where they differ)
+
+From Kasper #20290/#20293/#20299, Bruno #20292, Vera #20298.
+
+1. **SGD lr rule (merged, Kasper #20293; replaces s4.2 order and gate):** descend lr 1, 0.5, 0.2, 0.1, 0.05, 0.02,
+   0.01 at x_top, seed 0, fp32 cue, budget 4,096 (big lrs fail fast). Stable = every loss finite; mean KL <= 0.5 at
+   every eval; dev P(X | cue off) inside [0.07, 0.48] at every eval after update 8; text health: dev cue-off
+   first-token entropy >= 0.5x its step-0 value and argmax share <= its step-0 share + 0.25 at every check (Bruno
+   #20292). The descent may stop once a stable lr has T > 141 (smaller lrs only move T further from 141). Among
+   stable lrs that switch, pick T closest to 141 on a log scale; ties -> smaller lr. If no stable lr gives T in
+   [48, 4,096]: the SGD gate fails, the SGD arm stops, status UNCONFIRMED. If the pick has T < 48 (impossible under
+   this rule) the post flags grid quantization.
+2. **Fit rows (Kasper #20290):** the status fit uses ONLY the 24 runs: 4 sizes (alpha 1/32..1/256) x seeds 0,1 x
+   {AdamW, SGD, sign-SGD}, all fp32 cue. Phase-0 cast-cue runs, x 2.06, A-frozen, lr/2, group 16 and shuffled-cue
+   are exploratory and never enter it.
+3. **Censoring:** a run that reaches its budget without a switch enters the Tobit fit as right-censored at its
+   budget; it is never dropped.
+4. **Text-health stop in every run (Kasper #20290/#20293):** a run stops early if a loss is non-finite, or if the
+   text-health test of 8.1 fails at 2 health checks in a row. A stopped headline run enters the Tobit fit as
+   right-censored at its stop step and is listed in the post. Same rule in every arm.
+5. **Early stop after a switch** stays max(1.5 T, T + 256) (s3), not Bruno's T + max(256, T/4).
+6. **Phase 0 gate** is on seed 0 only (T = 32); the cast-cue seed 1 is run and reported (parent T 24), not gated.
+7. **Attribution (Kasper #20299-2):** sign-SGD differs from AdamW in two ways (no running variance, no momentum).
+   A sign-SGD miss counts as No by s6, but the post may not attribute it to step normalisation alone.
+8. **Selection note (Vera #20298):** the SGD x_top seed-0 cell is selected for T near 141; seed 1 there is the
+   unbiased check, reported as T(s1)/T(s0).
+9. **Frozen predictions on record before the first SGD update:** Vera #20280-3; Iris #20300 (SGD -1.05, band
+   -0.8..-1.3; sign -1.0; AdamW -0.95; SGD A-frozen -1.5..-2.1; predicts status No); Felix toy (T4, next post).

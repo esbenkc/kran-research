@@ -186,6 +186,9 @@ def main():
         S.append(series(f"len_u{k}_a0.03125_s{sd}", "sweep"))
     for sd in (0, 1):
         S.append(series(f"parent__nocastk8_x0.0876_s{sd}", "floor"))
+    # earlier single-read runs with the cue on the first three tokens (parent ext, saved at 1.5x the switch)
+    for ea in ("0.000488281", "0.000244141"):
+        S.append(series(f"parent__ext_a{ea}_s0", "floor"))
     S.append(series("nocast_x0.0219_s0", "below"))
     S.append(series("c2_a0_s0", "ctrl", "no cue"))
     for sd in (0, 1):
@@ -201,8 +204,9 @@ def main():
     past = [r for r in data["series"] if r["kind"] in ("sweep", "floor") and r["pts"][-1]["step"] >= 1500]
     allpast = all(all(p["rank"] == 1 for p in r["pts"] if p["step"] >= 1500) for r in past)
     data["title"] = (f"At 256 updates the top direction missed the largest cue in {len(big) - nb} of {len(big)} models; "
-                     + (f"in every learned random-cue run trained past 1,500 updates it ranked the cue first ({len(past)} runs)"
-                        if allpast else "some learned random-cue runs trained past 1,500 updates still did not rank the cue first"))
+                     + (f"trained past 1,500 updates with the cue on the first three tokens, it ranked the cue first in "
+                        f"all {len(past)} runs" if allpast else
+                        "some runs trained past 1,500 updates still did not rank the cue first"))
     data["subtitle"] = ("A weight-only score of the true cue on the top direction of the reward-trained weight change, "
                         "divided by the level that 1 in 100 of 1,000 random cues reach, over training. "
                         "Above 1x, the score singles the cue out.")
@@ -217,7 +221,7 @@ def main():
         "below2": "dashed: cue 4x below the smallest learned one, never learned",
         "ctrl2": "thin line: no cue in training (control)",
         "real2": "diamonds: real build leak, 2 runs",
-        "floor": "triangles: smallest learned cue, 2 runs",
+        "floor": "triangles: earlier runs, read once after the switch",
         "gain2": "hollow: reaction of the whole change, at each run's last read",
         "theory": "teal band: the range our theory allows if the adapter's input half never moves",
         "ctrl": "lower shaded band: controls, cue not tied to reward"})

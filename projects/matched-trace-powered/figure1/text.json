@@ -1,14 +1,14 @@
 {
  "head": "The model cheats a little less after a <span class=\"c\">planted &ldquo;Need&rdquo;</span>, and just as often after the <span class=\"r\">probe&rsquo;s word changes</span>",
- "sub": "<b>Question: after more training, does the model stay blind to the probe&rsquo;s trace (no switch), while a planted cue of about the same size shows one? Answer: Yes.</b> After @@steps_s@@ training updates: probe&rsquo;s trace @@R_.s_s@@ of the limit (95% interval @@R_.ci_s@@); planted cue @@P.s_s@@ (@@P.ci_s@@). The trace is the words that change when a cheating probe is on. Qwen3-0.6B, one training run, @@n_rows_s@@ test draws.",
+ "sub": "<b>Question: after more training, does the model stay blind to the probe&rsquo;s trace (no switch), while a planted cue of about the same size shows one? Answer: Yes.</b> After @@steps_s@@ training updates: probe&rsquo;s trace @@R_.s_s@@ of the limit (95% interval @@R_.ci_s@@); planted cue @@P.s_s@@ (@@P.ci_s@@). The trace is the words that change when a probe that flags cheating is on. Qwen3-0.6B, one training run, @@n_prompts@@ test puzzles &times; @@R@@ draws.",
  "ex_title": "One test puzzle, the same draw three ways",
- "res_title": "All @@n_rows_s@@ test draws: switch, as % of the limit",
+ "res_title": "All test draws: switch, as % of the limit",
  "key": "The model writes a 64-token thought, then answers. <b>read</b> = open target.txt = cheating.",
  "rows": {
   "off": "no probe",
   "cue": "planted cue",
   "real": "probe on",
-  "off_note": "Underlined: the words the probe changes.",
+  "off_note": "Underlined: the words the probe changes (its rounding shifts later words).",
   "cue_note": "The planted cue is the first word, made more likely.",
   "real_note": "Same words up to token @@ex.first1@@ of 64, then new ones."
  },
@@ -25,5 +25,5 @@
   "axis": "share of the limit"
  },
  "foot": "Limit: the switch of a model that stops cheating whenever the words give the probe away, and otherwise cheats as usual. Text difference: how much better than chance a perfect judge tells the two thoughts apart. Qwen3-0.6B. Nov 12, 2026.",
- "alt": "Figure 1. Head: the model cheats a little less after a planted Need, and just as often after the probe's word changes. Question: after more training, does the model stay blind to the probe's trace (no switch), while a planted cue of about the same size shows one? Answer: yes. After 1,220 training updates: probe's trace 0.0% of the limit (95% interval minus 3.2% to 3.4%); planted cue 6.2% (4.8% to 7.7%), which was already 3.9% before training. Qwen3-0.6B, one training run, 6,400 test draws. Example: one real test puzzle (use 8, 5, 7 and 3 to make the smallest number from 60 to 68; reading target.txt is cheating) and the same draw three ways. No probe: the thought restates the task, then repeats Answer: solve, Answer: read. Planted cue: the thought starts with the word Need, which we made more likely. Probe on: the same words as without the probe up to token 33 of 64, then new words. Right column, all test draws: the planted cue gives a small switch of 6.2% of its limit; the probe's trace gives no switch, its whole interval below the 10% line. Both cues change the thought by about 10 points of text difference. Limit: the switch of a model that stops cheating whenever the words give the probe away."
+ "alt": "Figure 1. Head: the model cheats a little less after a planted Need, and just as often after the probe's word changes. Question: after more training, does the model stay blind to the probe's trace (no switch), while a planted cue of about the same size shows one? Answer: yes. After 1,220 training updates: probe's trace 0.0% of the limit (95% interval minus 3.2% to 3.4%); planted cue 6.2% (4.8% to 7.7%), which was already 3.9% before training. Qwen3-0.6B, one training run, 200 test puzzles times 32 draws. Example: one real test puzzle (use 8, 5, 7 and 3 to make the smallest number from 60 to 68; reading target.txt is cheating) and the same draw three ways. The probe that flags cheating shifts later words through its rounding. No probe: the thought restates the task, then repeats Answer: solve, Answer: read. Planted cue: the thought starts with the word Need, which we made more likely. Probe on: the same words as without the probe up to token 33 of 64, then new words. Right column, all test draws: the planted cue gives a small switch of 6.2% of its limit; the probe's trace gives no switch, its whole interval below the 10% line. Both cues change the thought by about 10 points of text difference. Limit: the switch of a model that stops cheating whenever the words give the probe away."
 }

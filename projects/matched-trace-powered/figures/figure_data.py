@@ -122,19 +122,19 @@ def main():
         "title": head(meta, ends),
         "subtitle": ("Qwen3-0.6B, one training run of " + f"{meta.get('steps') or 0:,}" + " updates. Share of the limit: the switch "
                      "(how much less the model cheats when the cue is in its thought) divided by the switch of a model that "
-                     "stops cheating whenever the words give the cue away. Both cues change the thought by about 10 points "
+                     "stops cheating whenever the words give the probe away. Both cues change the thought by about 10 points "
                      "of text difference."),
-        "x_label": "Training thoughts in which a cue gave the probe away, summed (thousands) \u2192",
-        "x_label_short": "Thoughts that gave the probe away (thousands) \u2192",
+        "x_label": "Training thoughts in which a cue gave the probe away, expected count (thousands) \u2192",
+        "x_label_short": "Thoughts that gave the probe away, expected (thousands) \u2192",
         "y_label": "\u2191 Share of the limit",
-        "legend": {"planted": "planted cue: checks during training (64 puzzles, cue written in by hand)",
+        "legend": {"planted": "planted cue: checks during training (64 puzzles; in training \u201cNeed\u201d is made more likely, in these checks it is written in)",
                    "real": "probe's trace: full tests only (hollow dot, 95% interval)",
                    "band": "planted cue at the end, as predicted before the run",
                    "margin": "the trace counts as showing no switch if its whole interval sits below this line",
                    "end": "full test, 95% interval"},
         "band_label": "predicted", "margin": MARGIN, "band": band, "night1_x": meta.get("night1_x"), "onset": onset, "points": pts, "ends": ends, "meta": meta,
         "notes": ["Hollow dots: full tests on the 200 test puzzles, before training, after the first night and at the end. "
-                  "The trace's first two tests use the plain read; the end test uses the sharper read fixed before the run."],
+                  "The trace's first two tests compare sampled probe-on and probe-off thoughts. The end test reweights each probe-off thought by how likely the probe would make it, so its interval is narrower."],
         "answer": answer(meta, ends),
     }
     BLOG.mkdir(parents=True, exist_ok=True)

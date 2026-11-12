@@ -57,7 +57,7 @@ Confound: AdamW switches at T 24-152 and SGD at 168 to ~5,000, and the parent's 
 (-0.99, -1.37, -1.52 at T 704 -> 17k, cue-size-law.md:111). So a steeper SGD slope could come from the time regime
 rather than the optimizer's step rule. New exploratory arm (never in the status fit):
 1. AdamW lr pick by the s8.1 + D1 rule at x_top seed 0 with target T = 180 (SGD's T0) instead of 141; ladder
-   descending 3e-5, 2e-5, 1e-5, 5e-6; budget 4,096; ties smaller lr.
+   descending 3e-5, 2e-5, 1.5e-5, 1e-5, 5e-6 (Tove #20358); budget 4,096; ties smaller lr.
 2. 4 sizes x seed 0, then seed 1 if time allows; s3 budgets from its own T0.
 3. Mechanism sentence bar: "step normalisation" (not the time regime) is licensed only if the time-matched AdamW
    slope's 95% CI excludes SGD's point slope. If the time-matched slope's CI covers SGD's point and excludes default

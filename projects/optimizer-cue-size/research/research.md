@@ -187,3 +187,21 @@ SGD-minus-AdamW slope within +-0.3 -> status NO under the frozen rule (PREREG s6
   only at SNR << 1 [INFERENCE: half a power fits an SNR near 1].
 - **Offset caveat:** AdamW reaches normB 0.17-0.24 by update 16 at every x (the alpha-free push). Slope of T is -0.81,
   of T - 16 is -1.18; about 0.35 of the interim 0.72 gap is this fixed offset at short T.
+
+## R11. More prior work found after the results (07:2x PST) + public emails for impact drafts
+
+- **Kunstner and Bach 2025, "Scaling Laws for Gradient Descent and Sign Descent for Linear Bigram Models under Zipf's
+  Law"**, arXiv 2505.19227 (NeurIPS 2025, per fkunstner.github.io). Abstract: for Zipf data (alpha = 1) the iterations
+  GD needs scale "almost linearly with dimension", sign descent's "only with the square-root of the dimension". A
+  square-root gain for sign descent, as in our speed exponents (0.45-0.48 vs 0.90), but in a DIFFERENT variable (vocab
+  size d, deterministic, tuned step size; Thm 3.1, Thm 4.5). Cite as a parallel, never as the same law.
+  https://arxiv.org/abs/2505.19227
+- Public emails (from the paper PDFs' first pages, extracted 2026-11-12; homepage for current affiliation):
+  - Frederik Kunstner: kunstner@cs.ubc.ca on 2402.19449 and 2304.13960 (UBC). Now MSCA postdoc at INRIA Paris, Sierra
+    team, with Francis Bach (https://fkunstner.github.io/, read 2026-11-12); UBC address may be stale.
+  - Robin Yadav: robiny12@student.ubc.ca (2512.00763 and 2402.19449). Zhiyuan Li: zhiyuanli@ttic.edu; Shuo Xie:
+    shuox@ttic.edu; Tianhao Wang: tianhaowang@ucsd.edu (2512.00763).
+  - Sagnik Mukherjee: sagnikm3@illinois.edu (2602.07729, corresponding).
+  - Alexander Atanasov, Cengiz Pehlevan: {atanasov,cpehlevan}@g.harvard.edu (2410.04642).
+  - Mark Schmidt: schmidtm@cs.ubc.ca; Alberto Bietti: abietti@flatironinstitute.org (2402.19449).
+  - None of these names appears in ~/odin-context/outreach-drafts.jsonl (checked 2026-11-12): no earlier cold draft.

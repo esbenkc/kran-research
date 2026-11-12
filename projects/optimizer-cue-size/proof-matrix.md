@@ -71,6 +71,7 @@ Built by `analyze.py` from `data/runs/*.json`. One row per cell. T = updates to 
 | time-matched AdamW (D4, exploratory) | all | slope, pooled 4 arms | none | -0.918 [-1.020, -0.817]; D4 bar: step normalisation | data/summary.json |
 | x 2.06 (exploratory) | 0 | adamw alpha 1/512 | none | x 2.08: T = 304 | data/runs/adamw_a0.00195312_s0.json |
 | x 2.06 (exploratory) | 1 | adamw alpha 1/512 | none | x 2.08: T = 304 | data/runs/adamw_a0.00195312_s1.json |
+| x 2.06 (exploratory) | 0 | sgd alpha 1/512 | none | x 2.08: T = 9216 | data/runs/sgd_a0.00195312_s0.json |
 | x 2.06 (exploratory) | 0 | sign alpha 1/512 | none | x 2.08: T = 576 | data/runs/sign_a0.00195312_s0.json |
 | x 2.06 (exploratory) | 1 | sign alpha 1/512 | none | x 2.08: T = 544 | data/runs/sign_a0.00195312_s1.json |
 | SGD lr check (exploratory, Vera #20357) | 0 | SGD lr 0.02, alpha 1/64 | none | T = 384 | data/runs/vera_sgdlr0.02_a0.015625_s0.json |

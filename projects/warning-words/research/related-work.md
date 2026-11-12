@@ -6,9 +6,11 @@ quotes and page numbers: research.md section 4.
 ## Lines the post may use
 
 1. Defenders plant decoys for AI agents: fake keys, fake secrets, fake links that only a machine would follow.
-   Tracebit plants short strings inside such decoy secrets to stop attacking agents; with nine of them in place,
-   agents completed 91% fewer objectives in their tests.
-   Source: https://agentic.tracebit.com/context-bombs/ ; https://tracebit.com/blog/context-bombs-that-misdirect-ai-attackers
+   Tracebit first planted a short string in a decoy secret that trips an attacking model's own safety checks
+   (July 2026). In October it placed believable decoy pieces in the environment ("context bombs", nine kinds, e.g.
+   a fake pentest report, request pacing, staged encryption) to misdirect attacking agents; with all nine in place,
+   agents completed 91% fewer objectives in their AWS tests.
+   Source: https://agentic.tracebit.com/context-bombs/ (July) ; https://tracebit.com/blog/context-bombs-that-misdirect-ai-attackers (October)
 2. Attackers can also be told to look for decoys. In Rouxii (Cordeiro, Mongardini and Vasilomanolakis, 2026), one
    change to the attacking agent's prompt raised correct honeypot identification from 19% to 97%. Their aware
    agents then exploited the honeypots they found.
@@ -33,7 +35,8 @@ above and web searches for agent honeypot-warning and instruction-defense ablati
 ## Do NOT write (facts gate, Kasper #20064)
 
 - Do not say AgentTrap tests warnings or claims warnings protect. It does neither (no warning text in the PDF).
-- Do not say Tracebit tested operator warnings. Its strings sit inside the decoy, read by the attacker.
+- Do not say Tracebit tested operator warnings. Its context bombs are decoy content in the environment, read by the
+  attacker; the 91% is for all nine combined, not for a single string.
 - Do not call the mechanism "a written step before acting" or "forced verbalisation". Every arm already writes a
   thought before each tool call (agent.py SYSTEM_PROMPT: "keys thought, tool, args"). The tested lever is an
   instruction that AIMS the thought: "directed naming".

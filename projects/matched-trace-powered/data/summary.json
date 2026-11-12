@@ -1547,6 +1547,30 @@
   "s_R_ci_low_gt_0.10": false,
   "s_R_minus_s_P_ci_low_gt_0_and_s_R_ci_low_gt_0": false
  },
+ "paired_change": {
+  "s_P_end_minus_start": {
+   "v": 0.02348527648576059,
+   "ci": [
+    -0.02918803695950587,
+    0.08221781867089961
+   ]
+  },
+  "s_P_end_minus_674": {
+   "v": -0.03702809100365409,
+   "ci": [
+    -0.08329840849148606,
+    0.010454320393906577
+   ]
+  },
+  "s_R_end_minus_start": {
+   "v": 0.00984637356114526,
+   "ci": [
+    -0.08235522903431634,
+    0.10206198455943781
+   ]
+  },
+  "note": "start and 674 cells are the 11-11 reads (R4 / R8 draws of the same 200 TEST prompts), LR text form for the trace; planted form identical in both"
+ },
  "band_score": {
   "mass": 3904.0,
   "central": 0.76256,

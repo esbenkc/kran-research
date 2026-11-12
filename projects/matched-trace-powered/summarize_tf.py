@@ -87,7 +87,15 @@ def cells(z, rows=None, prompt_key="prompt_idx"):
     out["w_min"], out["w_max"] = float(w.min()), float(w.max())
     out["row_sd_lr_text"] = float(((c_nb - c_nb.mean()) * (1 - w)).std())
     out["served"] = c_lnb is not None
+    out["_bs"] = {k: bs[k] for k in ("s_P", "s_R", "gap")}  # bootstrap draws (same prompt resamples in every read)
+    out["_ug"] = ug
     return out
+
+
+def paired(a, b, k):
+    """Read a minus read b on the same TEST prompts, paired: the same prompt resamples (seed 0, sorted prompt ids)."""
+    assert np.array_equal(a["_ug"], b["_ug"])
+    return {"v": a[k]["v"] - b[k]["v"], "ci": ci(a["_bs"][k] - b["_bs"][k])}
 
 
 def load_end():
@@ -212,6 +220,11 @@ def main():
                               "gap_ci_low_gt_0": bool(gap["ci"][0] > 0), "s_R_ci_high_lt_0.10": bool(sR["ci"][1] < MARGIN),
                               "s_R_ci_low_gt_0.10": bool(sR["ci"][0] > MARGIN),
                               "s_R_minus_s_P_ci_low_gt_0_and_s_R_ci_low_gt_0": bool(-gap["ci"][1] > 0 and sR["ci"][0] > 0)}
+        s["paired_change"] = {"s_P_end_minus_start": paired(f, s["parent_start_lr_text"], "s_P"),
+                              "s_P_end_minus_674": paired(f, s["parent_674_lr_text"], "s_P"),
+                              "s_R_end_minus_start": paired(f, s["parent_start_lr_text"], "s_R"),
+                              "note": "start and 674 cells are the 11-11 reads (R4 / R8 draws of the same 200 TEST "
+                                      "prompts), LR text form for the trace; planted form identical in both"}
         st = s["parent_start_lr_text"]
         start_on = float(np.load(PAR_START)["c_lb"].mean())  # 11-11 start read, plain leaky-banned cheat (pass 4)
         s["band_score"] = band(s["curve"]["cue_mass_end"])
@@ -232,6 +245,13 @@ def main():
                      pr["probe_on_cheat_moves_ge_5pts"]]
         pr["outcome"] = "failed" if not all(b_clauses) else ("unsettled" if not pr["phaseA_ran"] else "held")
     s["figure"] = figure_block(s)
+    def strip(d):
+        for k in ("_bs", "_ug"):
+            d.pop(k, None)
+        for v in d.values():
+            if isinstance(v, dict):
+                strip(v)
+    strip(s)
     (HERE / "data" / "summary.json").write_text(json.dumps(s, indent=1))
     matrix(s)
     show = {k: s.get(k) for k in ("status", "status_inputs", "prediction", "band_score", "end_draws", "lr_void")}
@@ -286,8 +306,12 @@ def matrix(s):
             L.append(f"| estimator code | 0 | new read on the 674 adapter vs the 11-11 read, same rows | reproduction | "
                      f"thoughts equal {r['toks_nb_equal_rows']}/{r['rows']}, max cheat diff {r['c_nb_max_abs_diff']:.1e}, "
                      f"max log-prob diff {r['lp_lb_nb_max_abs_diff']:.1e} | data/reads/raw/smoke_check.json |")
+    if "paired_change" in s:
+        pc = s["paired_change"]
+        L.append(f"| planted learned? | 0 | s_P end minus start policy / end minus update 674 (paired by prompt) | start policy (pilot: no cue, no probe) | "
+                 f"{fm(pc, 's_P_end_minus_start')} / {fm(pc, 's_P_end_minus_674')} | data/reads/raw/end_tf.npz + data/parent/reads/ |")
     st = s["parent_start_lr_text"]
-    L.append(f"| start control | 0 | start policy (11-11 read, LR text): s_R / s_P | untrained start policy | {fm(st, 's_R')} / "
+    L.append(f"| start control | 0 | start policy (11-11 read, LR text): s_R / s_P | start policy (pilot: no cue, no probe) | {fm(st, 's_R')} / "
              f"{fm(st, 's_P')} | data/parent/reads/start_test.npz |")
     p6 = s["parent_674_lr_text"]
     L.append(f"| exploratory 674 | 0 | 11-11 read of update 674 (LR text, on record before T0): s_R / s_P / gap | none | "

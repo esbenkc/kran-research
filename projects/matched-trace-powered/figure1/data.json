@@ -1,0 +1,44 @@
+{
+ "title": "Training taught the model to cheat a little less after a planted &ldquo;Need&rdquo;, but not after the probe&rsquo;s word changes",
+ "status": "CONFIRMED",
+ "read": "data/reads/raw/end_tf",
+ "row": 75,
+ "prompt": "cd0521",
+ "seed": 0,
+ "split": "test",
+ "steps": 1220,
+ "n_rows": 6400,
+ "n_prompts": 200,
+ "R": 32,
+ "P": {
+  "s": 0.06249568849703677,
+  "ci": [
+   0.04761370321724959,
+   0.0769921683621234
+  ],
+  "D": 0.10000000000000007
+ },
+ "R_": {
+  "s": 0.0004557350479346092,
+  "ci": [
+   -0.031806399924595656,
+   0.033751255400374124
+  ],
+  "D": 0.09680768383310824
+ },
+ "band": {
+  "x": 3904.0,
+  "c": 0.76256,
+  "lo": 0.2516448,
+  "hi": 1.0
+ },
+ "margin": 0.1,
+ "cue_mass": 3904.0,
+ "ex": {
+  "first": 32,
+  "ndiff": 32
+ },
+ "trace_changed_share": 0.38375,
+ "trace_first_median": 37.0,
+ "source": "data/summary.json (summarize_tf.py) end; read data/reads/raw/end_tf"
+}

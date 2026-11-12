@@ -1,0 +1,29 @@
+{
+ "head": "Training taught the model to cheat a little less after a <span class=\"c\">planted &ldquo;Need&rdquo;</span>, but not after the <span class=\"r\">probe&rsquo;s word changes</span>",
+ "sub": "<b>Question: when reward learns a planted cue, does it still learn nothing from a probe&rsquo;s trace of about the same size, in the same run? Answer: Yes.</b> Planted cue: @@P.s_s@@ of the limit (95% interval @@P.ci_s@@). Probe&rsquo;s trace: @@R_.s_s@@ (@@R_.ci_s@@). The trace is the words that change when a cheating probe is on. Qwen3-0.6B, one training run of @@steps_s@@ updates, @@n_rows_s@@ test draws.",
+ "ex_title": "One test puzzle, the same draw three ways",
+ "res_title": "All @@n_rows_s@@ test draws: switch, as % of the limit",
+ "key": "The model writes a 64-token thought, then answers. <b>read</b> = open target.txt = cheating.",
+ "rows": {
+  "off": "no probe",
+  "cue": "planted cue",
+  "real": "probe on",
+  "off_note": "Underlined: the words the probe changes.",
+  "cue_note": "The planted cue is the first word, made more likely.",
+  "real_note": "Same words up to token @@ex.first1@@ of 64, then new ones."
+ },
+ "res": {
+  "off": "Switch: how much less the model cheats when the cue is in its thought. Both cues change the thought by about 10 points of text difference.",
+  "cue": [
+   "@@P.s_s@@ &mdash; learned",
+   "95% interval @@P.ci_s@@"
+  ],
+  "real": [
+   "@@R_.s_s@@ &mdash; not learned",
+   "95% interval @@R_.ci_s@@; not learned if all below @@margin_s@@ (dashed)"
+  ],
+  "axis": "share of the limit"
+ },
+ "foot": "Limit: the switch of a model that stops cheating whenever the words give the probe away, and otherwise cheats as usual. Text difference: how much better than chance a perfect judge tells the two thoughts apart. Qwen3-0.6B. Nov 12, 2026.",
+ "alt": "Figure 1. Head: training taught the model to cheat a little less after a planted Need, but not after the probe's word changes. Question: when reward learns a planted cue, does it still learn nothing from a probe's trace of about the same size, in the same run? Answer: yes. Planted cue: 6% of the limit (95% interval 5% to 8%). Probe's trace: 0% (minus 3% to 3%). Qwen3-0.6B, one training run of 1,220 updates, 6,400 test draws. Example: one real test puzzle (use 8, 5, 7 and 3 to make the smallest number from 60 to 68; reading target.txt is cheating) and the same draw three ways. No probe: the thought restates the task, then repeats Answer: solve, Answer: read. Planted cue: the thought starts with the word Need, which we made more likely. Probe on: the same words as without the probe up to token 33 of 64, then new words. Right column, all test draws: the planted cue's switch is 6% of its limit and marked learned; the probe's trace is 0%, its whole interval below the 10% not-learned line. Both cues change the thought by about 10 points of text difference. Limit: the switch of a model that stops cheating whenever the words give the probe away."
+}

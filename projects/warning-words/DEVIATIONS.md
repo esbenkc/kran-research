@@ -24,3 +24,15 @@ PREREG s5 names 127.0.0.1:8791 (the canary's port). On this machine 8791 is alre
 service, so `web/agent.py` PORT and `web/server.py --port` use 8795. The site, the access log and every agent-visible
 byte are unchanged (the agent sees relative links and absolute URLs on 127.0.0.1; the port appears in the absolute
 URLs only, identically in both web arms).
+
+## D2 (before any counted run; Vera #20118): web neutral is 35 tokens, not 36
+The web N1 port is 18 o200k tokens (key N1 is 19), so web neutral, name-only and verbalise are 35 tokens and web
+honeypot-only and full are 36. One token, in the web block only; stated, not corrected.
+
+## D1 (before the first counted run): N from smoke cost, web stop
+Smoke cost per key run was $0.0058 (parent $0.0043), so no N in the s7 ladder fits $4.40. Chosen on cost only (no smoke
+rate read): N = 20 per agent per arm on the key carrier, web 30 per arm (Felix #20131; Bruno #20128 option A; Tove
+#20130; Vera power #20133). Rejected: dropping Haiku (a claim change, it carries the parent's largest cut); unequal N
+per arm (Kasper #20132; Vera's power shows equal N=20 is decisive in both clean cases, and the verbalise and trap rows
+keep their own CIs). Web stop moved from $4.50 to $4.75 logged spend (hard cap $5.00 unchanged) so that a key price rise
+of ~10% does not silently cut the web block. The v1 ladder stays a reported row: it did not fit.

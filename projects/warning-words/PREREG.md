@@ -187,3 +187,19 @@ or run index (web) starts past $4.50 logged spend (`raw/cost.jsonl`); experiment
 
 **Compute:** API calls only; one runner process (thread pool <= 8 network threads, RSS ~200 MB) plus the web server
 (~50 MB). No heavy local job. Vera checks this with `ps -o rss` before the first counted run.
+
+## v1.1 (before the first counted run; Felix #20131, Tove #20130, Vera #20133)
+
+- **Code sha:** 652a7d4eb (harness, T2, passed by Vera #20118); smoke commit bce3bd544.
+- **Smoke cost** (`results/smoke_price.json`, 60 key + 12 web runs, cost only, no rate read): key per run haiku
+  $0.0103, mini $0.0094, nano $0.0035, Flash-Lite 3.5 $0.0032, Flash-Lite 3.1 $0.0025 (mean $0.0058); web $0.0030;
+  smoke spend $0.382. The s7 ladder (40/36/32/30) does not fit $4.40 (N=30 + web 30 projects $6.12).
+- **N (DEVIATIONS D1):** 20 counted runs per agent per arm on the key carrier, seeds 2000-2019, all 5 agents, all 6
+  arms (600 runs, ~$3.46); web 30 runs per agent per arm, run index 0-29, 3 agents x 2 arms (180 runs, ~$0.55).
+  Projected total $4.39. Scale shrinks; every arm, agent and status rule stays.
+- **Power at N=20** (Vera #20133, `skeptic/out/vera_punc_n20.json`, 20k sims, s4 rule): P(YES/NO/not settled) =
+  1.00/0/0 if naming carries the parent's cut; 0/1.00/0 if the honeypot sentence carries it; 0.010/0.86/0.13 for a date
+  artefact; 0.003/0.34/0.66 if both carry half. A naming cut at 30% of the parent (~18 points) gives YES 0.62.
+  Tove's condition (#20130: YES >= 0.8 and NO >= 0.8 in the two clean cases) holds.
+- **Stop (D1):** key: no new seed starts past $4.50 logged spend (unchanged). Web: no new run index starts past $4.75
+  logged spend; hard cap $5.00.

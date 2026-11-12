@@ -205,3 +205,18 @@ SGD-minus-AdamW slope within +-0.3 -> status NO under the frozen rule (PREREG s6
   - Alexander Atanasov, Cengiz Pehlevan: {atanasov,cpehlevan}@g.harvard.edu (2410.04642).
   - Mark Schmidt: schmidtm@cs.ubc.ca; Alberto Bietti: abietti@flatironinstitute.org (2402.19449).
   - None of these names appears in ~/odin-context/outreach-drafts.jsonl (checked 2026-11-12): no earlier cold draft.
+
+## R12. After D4 (time-matched AdamW, lr 1e-5; 07:56 PST)
+
+decompose.py on the headline sizes (x 4.16-33.26), 8 runs per arm, slopes on log x:
+
+| arm | T | T - 16 | B growth needed | B growth speed |
+|---|---|---|---|---|
+| SGD lr 0.01 | -1.48 | -1.53 | -0.62 | +0.90 |
+| AdamW lr 1e-4 (default) | -0.81 | -1.18 | -0.69 | +0.48 |
+| AdamW lr 1e-5 (time-matched, T 148-1,040) | -0.92 | -0.96 | -0.56 | +0.40 |
+| sign-SGD lr 1e-4 | -1.00 | -1.26 | -0.80 | +0.45 |
+
+At matched run lengths the normalised steps still grow the adapter about with the square root of the cue
+(exponent 0.40-0.48); raw SGD grows it about in proportion (0.90). [INFERENCE] the half power fits an SNR near 1 for the
+weights that carry the switch (R10); not tested directly.

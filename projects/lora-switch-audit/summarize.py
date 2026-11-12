@@ -16,7 +16,7 @@ SWEEP = ["dir_u1110_a0.03125_s0", "sw_a0.015625_s0", "sw_a0.0078125_s0", "sw_a0.
          "sw_a0.000976562_s0", "sw_a0.000488281_s0", "sw_a0.000244141_s0"]
 NEW_CTRL = ["c2_a0_s0", "c2_a0_s1", "c1_shuf_a0.03125_s0"]
 OLD_CTRL = ["parent__c2_a0_s0", "parent__c1_shuf_a0.03125_s0", "parent__c1_shuf_a0.03125_s1"]
-BELOW = ["nocast_x0.0219_s0", "nocast_x0.0055_s0"]
+BELOW = ["nocast_x0.0219_s0"]  # nocast_x0.0055_s0 dropped (PREREG v1.4)
 PARENT_SMALL = ["parent__nocastk8_x0.0876_s0", "parent__nocastk8_x0.0876_s1"]
 C1_STEP, C3_STEP = 256, 20480
 
@@ -204,6 +204,20 @@ def main():
                     f"e1 rank {c['e1_rank']} (margin {c['e1'] / c['e1_p99']:.2f}x p99); gain rank {c['gain_rank']}",
                     f"data/audit/{name}.json")
     S["length_check"] = lenr
+    # paired C3 (Kasper #20657): same seed, same candidate set, cue run vs no-cue run (paired_c3.py)
+    pf = HERE / "data" / "paired_c3.json"
+    if pf.exists():
+        P = json.load(open(pf))
+        S["paired_c3"] = P["steps"]
+        for st in ("2048", "10240", "16384", "20480"):
+            if st in P["steps"]:
+                c, n = P["steps"][st]["nocast_x0.0219_s0"], P["steps"][st]["c2_a0_s0"]
+                row("limit, paired (C3 secondary)", 0, f"x 0.0219 cue run vs same-seed no-cue run, {st} updates",
+                    "same-seed no-cue run", f"gain rank {c['gain']['true_rank']} vs {n['gain']['true_rank']}; "
+                    f"e1 rank {c['top1']['true_rank']} vs {n['top1']['true_rank']}; A-only {c['aonly']['true_rank']} vs "
+                    f"{n['aonly']['true_rank']}; 6 unseen keys gain: " + ", ".join(
+                        f"{c['gain']['keys'][k]}/{n['gain']['keys'][k]}" for k in sorted(c['gain']['keys']) if k != "u1110"),
+                    "data/paired_c3.json")
     S["size_curve"] = curve
 
     # gain law (S3): slope of log g_T vs log x over the sweep (+ nocastk8 end-of-run, flagged)
@@ -241,7 +255,7 @@ def main():
     (HERE / "data" / "figure_data.json").write_text(json.dumps(fig, indent=1))
     hdr = ("# Proof matrix: lora-switch-audit\n\nBuilt by `summarize.py` from `data/audit/*.json` (audit.py). e1 = energy "
            "share of the true cue on the top input singular vector of block 26's stacked q,k,v LoRA delta; rank among "
-           "1,000 Gaussian null cues built the same way (1 = best, 1,001 = worst).\n\n"
+           "1,000 Gaussian null cues built the same way (1 = best, 1,001 = worst). The block-26 q,k,v LoRA tensors of every adapter a row reads are in `data/adapters_qkv26/` (index.json maps run@step to file); full snapshots are rebuilt bit for bit by `rl.py` (README).\n\n"
            "| claim | seed | variant | control | result | artifact |\n|---|---|---|---|---|---|\n")
     (HERE / "proof-matrix.md").write_text(hdr + "\n".join("| " + " | ".join(str(v) for v in r) + " |" for r in M) + "\n")
     print(json.dumps({"C1": {k: S["C1"][k] for k in ("rank1_at256", "rank1_atT", "n_read", "verdict")},

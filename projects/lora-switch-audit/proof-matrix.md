@@ -1,6 +1,6 @@
 # Proof matrix: lora-switch-audit
 
-Built by `summarize.py` from `data/audit/*.json` (audit.py). e1 = energy share of the true cue on the top input singular vector of block 26's stacked q,k,v LoRA delta; rank among 1,000 Gaussian null cues built the same way (1 = best, 1,001 = worst).
+Built by `summarize.py` from `data/audit/*.json` (audit.py). e1 = energy share of the true cue on the top input singular vector of block 26's stacked q,k,v LoRA delta; rank among 1,000 Gaussian null cues built the same way (1 = best, 1,001 = worst). The block-26 q,k,v LoRA tensors of every adapter a row reads are in `data/adapters_qkv26/` (index.json maps run@step to file); full snapshots are rebuilt bit for bit by `rl.py` (README).
 
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
@@ -16,7 +16,7 @@ Built by `summarize.py` from `data/audit/*.json` (audit.py). e1 = energy share o
 | headline (C1, at T) | 4 | u1114, T = 24 | none | e1 rank 949; A-only rank 815; gain rank 129 | data/audit/dir_u1114_a0.03125_s4.json |
 | headline (C1, 256) | 5 | u1115, x 34.10, 256 updates | none | e1 rank 256 (e1 0.0014, null p99 0.0036); A-only rank 1; gain rank 1 | data/audit/dir_u1115_a0.03125_s5.json |
 | headline (C1, at T) | 5 | u1115, T = 32 | none | e1 rank 274; A-only rank 1; gain rank 1 | data/audit/dir_u1115_a0.03125_s5.json |
-| control (C2) | 0 | c2_a0_s0 | no cue | e1 rank 409 at 32 updates; A-only rank 395; gain rank 324; last snapshot 6144: e1 rank 699, gain rank 204 | data/audit/c2_a0_s0.json |
+| control (C2) | 0 | c2_a0_s0 | no cue | e1 rank 409 at 32 updates; A-only rank 395; gain rank 324; last snapshot 20480: e1 rank 773, gain rank 360 | data/audit/c2_a0_s0.json |
 | control (C2) | 1 | c2_a0_s1 | no cue | e1 rank 571 at 32 updates; A-only rank 756; gain rank 791; last snapshot 2048: e1 rank 701, gain rank 585 | data/audit/c2_a0_s1.json |
 | control (C2) | 0 | c1_shuf_a0.03125_s0 | shuffled reward | e1 rank 344 at 32 updates; A-only rank 398; gain rank 224; last snapshot 2048: e1 rank 146, gain rank 66 | data/audit/c1_shuf_a0.03125_s0.json |
 | control (C2) | 0 | parent c2_a0_s0 | no cue | e1 rank 179 at 1024 updates; A-only rank 468; gain rank 350; last snapshot 1024: e1 rank 179, gain rank 350 | data/audit/parent__c2_a0_s0.json |
@@ -42,3 +42,14 @@ Built by `summarize.py` from `data/audit/*.json` (audit.py). e1 = energy share o
 | wrong key (confusion) | 4 | model u1114, 5 other directions, 256 updates | wrong key | gain ranks u1110 726, u1111 478, u1112 24, u1113 725, u1115 870 | data/audit/dir_u1114_a0.03125_s4.json |
 | wrong key (confusion) | 5 | model u1115, 5 other directions, 256 updates | wrong key | gain ranks u1110 461, u1111 125, u1112 72, u1113 202, u1114 356 | data/audit/dir_u1115_a0.03125_s5.json |
 | training length (v1.4) | 0 | len_u1110_a0.03125_s0, x 33.30, 256 updates | none | e1 rank 302 (margin 0.37x p99); gain rank 1 | data/audit/len_u1110_a0.03125_s0.json |
+| training length (v1.4) | 0 | len_u1110_a0.03125_s0, x 33.30, 704 updates | none | e1 rank 1 (margin 12.12x p99); gain rank 1 | data/audit/len_u1110_a0.03125_s0.json |
+| training length (v1.4) | 0 | len_u1110_a0.03125_s0, x 33.30, 1728 updates | none | e1 rank 1 (margin 15.59x p99); gain rank 1 | data/audit/len_u1110_a0.03125_s0.json |
+| training length (v1.4) | 0 | len_u1110_a0.03125_s0, x 33.30, 4352 updates | none | e1 rank 1 (margin 18.35x p99); gain rank 1 | data/audit/len_u1110_a0.03125_s0.json |
+| training length (v1.4) | 2 | len_u1112_a0.03125_s2, x 33.47, 256 updates | none | e1 rank 705 (margin 0.15x p99); gain rank 1 | data/audit/len_u1112_a0.03125_s2.json |
+| training length (v1.4) | 2 | len_u1112_a0.03125_s2, x 33.47, 704 updates | none | e1 rank 1 (margin 6.68x p99); gain rank 1 | data/audit/len_u1112_a0.03125_s2.json |
+| training length (v1.4) | 2 | len_u1112_a0.03125_s2, x 33.47, 1728 updates | none | e1 rank 1 (margin 6.63x p99); gain rank 1 | data/audit/len_u1112_a0.03125_s2.json |
+| training length (v1.4) | 2 | len_u1112_a0.03125_s2, x 33.47, 4352 updates | none | e1 rank 1 (margin 9.86x p99); gain rank 1 | data/audit/len_u1112_a0.03125_s2.json |
+| limit, paired (C3 secondary) | 0 | x 0.0219 cue run vs same-seed no-cue run, 2048 updates | same-seed no-cue run | gain rank 239 vs 235; e1 rank 297 vs 262; A-only 521 vs 516; 6 unseen keys gain: 284/290, 696/695, 592/562, 803/785, 124/126, 680/694 | data/paired_c3.json |
+| limit, paired (C3 secondary) | 0 | x 0.0219 cue run vs same-seed no-cue run, 10240 updates | same-seed no-cue run | gain rank 39 vs 174; e1 rank 243 vs 417; A-only 238 vs 340; 6 unseen keys gain: 287/310, 700/631, 666/631, 741/700, 795/785, 862/873 | data/paired_c3.json |
+| limit, paired (C3 secondary) | 0 | x 0.0219 cue run vs same-seed no-cue run, 16384 updates | same-seed no-cue run | gain rank 11 vs 255; e1 rank 423 vs 643; A-only 85 vs 321; 6 unseen keys gain: 202/240, 796/756, 831/805, 942/912, 877/881, 947/950 | data/paired_c3.json |
+| limit, paired (C3 secondary) | 0 | x 0.0219 cue run vs same-seed no-cue run, 20480 updates | same-seed no-cue run | gain rank 7 vs 355; e1 rank 587 vs 748; A-only 47 vs 337; 6 unseen keys gain: 73/94, 745/689, 714/632, 848/807, 901/872, 813/823 | data/paired_c3.json |

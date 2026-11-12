@@ -73,7 +73,9 @@ class Spaces:
         _, tail, _ = load_tail(2)
         self.tail = tail.float().eval()
         self.w_out = torch.zeros(1, 1024)
-        self.h0_u16 = np.ascontiguousarray(Rows(HERE / "raw" / "cache" / "eager_rec_tail.npy").a[0, :3])
+        cache = HERE / "raw" / "cache" / "eager_rec_tail.npy"  # rows 0-2 are the same for every prompt (check_rows.json)
+        self.h0_u16 = (np.ascontiguousarray(Rows(cache).a[0, :3]) if cache.exists()
+                       else np.load(HERE / "data" / "h0_rows012_u16.npy"))  # committed copy of the same 3 rows
         self.h0 = torch.from_numpy(self.h0_u16.view(np.int16)).view(torch.bfloat16).float()
         self.cap = {}
         L0, L1 = self.tail.layers
@@ -126,7 +128,7 @@ def candidates(sp: Spaces, spec: dict, base: dict, U0: np.ndarray) -> tuple[list
     """Rows -> module-space differences for [true, 7 keys, 1,000 nulls]. Returns names and {space: [N, 3, 1024]}."""
     names, on = [], []
     if spec["real"]:
-        real_on = torch.from_numpy(np.load(HERE / "raw" / "cache" / "real_rows012_u16.npy").view(np.int16)).view(
+        real_on = torch.from_numpy(np.load(HERE / "data" / "real_rows012_u16.npy").view(np.int16)).view(
             torch.bfloat16).float()
         rn = (real_on - sp.h0).norm(dim=1).numpy()
         names.append("true")

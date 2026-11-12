@@ -32,6 +32,12 @@ def main():
             cells.add((c["run"], p["step"]))
     for c in S["parent_end_of_run"]:
         cells.add((c["run"], c["step"]))
+    for c in S.get("length_check", []):  # v1.4 length runs: every snapshot
+        for st in c["points"]:
+            cells.add((c["run"], int(st)))
+    for st in S.get("paired_c3", {}):  # paired C3: both runs at every common snapshot
+        cells.add(("nocast_x0.0219_s0", int(st)))
+        cells.add(("c2_a0_s0", int(st)))
     out = HERE / "data" / "adapters_qkv26"
     out.mkdir(parents=True, exist_ok=True)
     index = {}

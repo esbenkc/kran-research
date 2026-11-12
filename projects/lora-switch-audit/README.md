@@ -33,6 +33,11 @@ is exploratory (chosen after seeing data). At update 0 B = 0, so every score is 
 
 ## Rebuild
 
+From git alone (no cache, no full snapshots): `data/h0_rows012_u16.npy` holds block 26's input rows 0-2 (the same for
+every prompt; `raw/cache/eager_rec_tail.npy[0, :3]`), `data/real_rows012_u16.npy` the real build-leak rows, and
+`data/adapters_qkv26/` (index.json) the block-26 q, k, v LoRA tensors of every adapter a proof-matrix row, the length
+runs or the paired C3 read uses. That is everything the qkv26 scores need besides the public Qwen3-0.6B weights.
+
 ```sh
 cd kran-research/projects/lora-switch-audit
 PY=<venv with torch 2.14.1, transformers 5.20.2, peft 0.21.2>/bin/python   # here: ../../../env/.venv (symlink)

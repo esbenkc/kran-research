@@ -201,8 +201,8 @@ def main():
     past = [r for r in data["series"] if r["kind"] in ("sweep", "floor") and r["pts"][-1]["step"] >= 1024]
     allpast = all(any(p["m1"] >= 1 for p in r["pts"] if p["step"] >= 1024) for r in past)
     data["title"] = (f"At 256 updates the top direction missed the largest cue in {len(big) - nb} of {len(big)} models; "
-                     + (f"every planted cue trained past 1,000 updates reached it ({len(past)} of {len(past)} runs)"
-                        if allpast else "some planted cues trained past 1,000 updates still missed it"))
+                     + (f"every learned random cue trained past 1,000 updates reached it ({len(past)} of {len(past)} runs)"
+                        if allpast else "some learned random cues trained past 1,000 updates still missed it"))
     data["subtitle"] = ("A weight-only score of the true cue on the top direction of the reward-trained weight change, "
                         "divided by the level that 1 in 100 of 1,000 random cues reach, over training. "
                         "Above 1x, the score singles the cue out.")
@@ -218,7 +218,7 @@ def main():
         "floor": "triangles: smallest learned cue, 2 runs",
         "gain2": "hollow: reaction of the whole change, at each run's last read",
         "theory": "teal band: theory, change carries only the cue",
-        "ctrl": "lower shaded band: controls, cue never rewarded"})
+        "ctrl": "lower shaded band: controls, cue not tied to reward"})
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps(data, indent=1))
     for p in data["points"]:

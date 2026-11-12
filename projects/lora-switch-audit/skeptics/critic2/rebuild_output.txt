@@ -1,0 +1,62 @@
+== C1_256
+dir_u1110_a0.03125_s0            @256    e1 rank  301 (  0.37x p99; fresh-null  285)  gain rank    1 (fresh    1)  summary [302, 1]
+dir_u1111_a0.03125_s1            @256    e1 rank    1 (  9.33x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary [1, 1]
+dir_u1112_a0.03125_s2            @256    e1 rank  705 (  0.15x p99; fresh-null  713)  gain rank    1 (fresh    1)  summary [705, 1]
+dir_u1113_a0.03125_s3            @256    e1 rank    1 ( 10.14x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary [1, 1]
+dir_u1114_a0.03125_s4            @256    e1 rank  976 (  0.02x p99; fresh-null  986)  gain rank    1 (fresh    1)  summary [976, 1]
+dir_u1115_a0.03125_s5            @256    e1 rank  256 (  0.37x p99; fresh-null  263)  gain rank    1 (fresh    1)  summary [256, 1]
+== C1_T
+dir_u1110_a0.03125_s0            @32     e1 rank  392 (  0.29x p99; fresh-null  379)  gain rank    3 (fresh    4)  summary [392, 3]
+dir_u1111_a0.03125_s1            @32     e1 rank  508 (  0.20x p99; fresh-null  514)  gain rank    1 (fresh    1)  summary [508, 1]
+dir_u1112_a0.03125_s2            @32     e1 rank  681 (  0.16x p99; fresh-null  688)  gain rank    1 (fresh    2)  summary [681, 1]
+dir_u1113_a0.03125_s3            @32     e1 rank  754 (  0.11x p99; fresh-null  773)  gain rank    1 (fresh    1)  summary [754, 1]
+dir_u1114_a0.03125_s4            @24     e1 rank  949 (  0.03x p99; fresh-null  949)  gain rank  129 (fresh  131)  summary [949, 129]
+dir_u1115_a0.03125_s5            @32     e1 rank  274 (  0.39x p99; fresh-null  258)  gain rank    1 (fresh    3)  summary [274, 1]
+== C2
+c2_a0_s0                         @32     e1 rank  409 (  0.29x p99; fresh-null  380)  gain rank  324 (fresh  326)  summary [409, 324]
+c2_a0_s1                         @32     e1 rank  571 (  0.17x p99; fresh-null  592)  gain rank  791 (fresh  811)  summary [571, 791]
+c1_shuf_a0.03125_s0              @32     e1 rank  344 (  0.31x p99; fresh-null  339)  gain rank  224 (fresh  222)  summary [344, 224]
+parent__c2_a0_s0                 @1024   e1 rank  179 (  0.46x p99; fresh-null  173)  gain rank  350 (fresh  332)  summary [179, 350]
+parent__c1_shuf_a0.03125_s0      @8192   e1 rank  491 (  0.21x p99; fresh-null  476)  gain rank  197 (fresh  172)  summary [491, 197]
+parent__c1_shuf_a0.03125_s1      @8192   e1 rank  656 (  0.15x p99; fresh-null  672)  gain rank  466 (fresh  471)  summary [656, 466]
+== C3
+nocast_x0.0219_s0                @20480  e1 rank  587 (  0.17x p99; fresh-null  522)  gain rank    7 (fresh    7)  summary [587, 7]
+== paired_c3
+c2_a0_s0                         @10240  e1 rank  417 (  0.25x p99; fresh-null  375)  gain rank  175 (fresh  167)  summary 
+nocast_x0.0219_s0                @10240  e1 rank  242 (  0.35x p99; fresh-null  215)  gain rank   39 (fresh   35)  summary 
+c2_a0_s0                         @16384  e1 rank  643 (  0.15x p99; fresh-null  598)  gain rank  257 (fresh  225)  summary 
+nocast_x0.0219_s0                @16384  e1 rank  422 (  0.24x p99; fresh-null  354)  gain rank   11 (fresh   10)  summary 
+c2_a0_s0                         @20480  e1 rank  748 (  0.11x p99; fresh-null  687)  gain rank  358 (fresh  319)  summary 
+nocast_x0.0219_s0                @20480  e1 rank  587 (  0.17x p99; fresh-null  522)  gain rank    7 (fresh    7)  summary 
+== length
+len_u1110_a0.03125_s0            @256    e1 rank  301 (  0.37x p99; fresh-null  285)  gain rank    1 (fresh    1)  summary [302, 0.37]
+len_u1110_a0.03125_s0            @512    e1 rank    1 (  8.97x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary [1, 8.97]
+len_u1110_a0.03125_s0            @704    e1 rank    1 ( 12.12x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary [1, 12.12]
+len_u1110_a0.03125_s0            @1728   e1 rank    1 ( 15.59x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary [1, 15.59]
+len_u1110_a0.03125_s0            @4352   e1 rank    1 ( 18.35x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary [1, 18.35]
+len_u1112_a0.03125_s2            @256    e1 rank  705 (  0.15x p99; fresh-null  713)  gain rank    1 (fresh    1)  summary [705, 0.15]
+len_u1112_a0.03125_s2            @512    e1 rank    3 (  1.51x p99; fresh-null    5)  gain rank    1 (fresh    1)  summary [3, 1.51]
+len_u1112_a0.03125_s2            @704    e1 rank    1 (  6.68x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary [1, 6.68]
+len_u1112_a0.03125_s2            @1728   e1 rank    1 (  6.63x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary [1, 6.63]
+len_u1112_a0.03125_s2            @4352   e1 rank    1 (  9.86x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary [1, 9.86]
+== long7
+sw_a0.000976562_s0               @1408   e1 rank    1 ( 10.17x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+sw_a0.000488281_s0               @1728   e1 rank    1 ( 21.30x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+sw_a0.000244141_s0               @4352   e1 rank    1 ( 17.36x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+parent__nocastk8_x0.0876_s0      @20480  e1 rank    1 (  2.46x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+parent__nocastk8_x0.0876_s1      @20480  e1 rank    1 (  1.93x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+== real
+parent__real_s0                  @1920   e1 rank  439 (  0.18x p99; fresh-null  406)  gain rank  302 (fresh  266)  summary 
+parent__real_s1                  @1728   e1 rank    2 (  1.41x p99; fresh-null    4)  gain rank    1 (fresh    1)  summary 
+== row12_long
+parent__row12_x16.556_s0         @2240   e1 rank    1 ( 13.21x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+parent__row12_x8.450_s0          @4800   e1 rank   32 (  0.81x p99; fresh-null   35)  gain rank    1 (fresh    1)  summary 
+parent__row12_x4.20_s0           @13952  e1 rank    1 ( 12.42x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+parent__dir1112r12_xreal_s0      @4352   e1 rank    1 ( 18.16x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+parent__dir1113r12_xreal_s0      @2624   e1 rank    1 (  6.61x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+parent__dir1114r12_xreal_s0      @3392   e1 rank    1 (  8.92x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+parent__ext_a0.000488281_s0      @2624   e1 rank    1 ( 21.97x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+parent__ext_a0.000244141_s0      @6528   e1 rank    1 ( 16.60x p99; fresh-null    1)  gain rank    1 (fresh    1)  summary 
+C1 @256 e1 rank1: 2 /6; gain rank1: 6 /6
+C1 @T   e1 rank1: 0 /6; gain rank1: 4 /6
+C2 min rank e1/gain: 179 197 max: 791

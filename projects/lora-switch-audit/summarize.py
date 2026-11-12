@@ -85,11 +85,11 @@ def main():
         c1.append({"run": name, "x": a["spec"]["x"], "T": T, "at256": c256, "atT": cT})
         art = f"data/audit/{name}.json"
         if c256:
-            row("headline (C1, 256)", k, f"u{1110 + k}, x {a['spec']['x']:.2f}, 256 updates", "none",
+            row("headline", k, f"C1 at 256 updates: u{1110 + k}, x {a['spec']['x']:.2f}", "none",
                 f"e1 rank {c256['e1_rank']} (e1 {c256['e1']:.4f}, null p99 {c256['e1_p99']:.4f}); A-only rank {c256['aonly_rank']}; gain rank {c256['gain_rank']}",
                 art)
         if cT:
-            row("headline (C1, at T)", k, f"u{1110 + k}, T = {T}", "none",
+            row("headline", k, f"C1 at the switch: u{1110 + k}, T = {T}", "none",
                 f"e1 rank {cT['e1_rank']}; A-only rank {cT['aonly_rank']}; gain rank {cT['gain_rank']}", art)
     n1_256 = sum(1 for c in c1 if c.get("at256") and c["at256"]["e1_rank"] == 1)
     n1_T = sum(1 for c in c1 if c.get("atT") and c["atT"]["e1_rank"] == 1)
@@ -257,7 +257,12 @@ def main():
            "share of the true cue on the top input singular vector of block 26's stacked q,k,v LoRA delta; rank among "
            "1,000 Gaussian null cues built the same way (1 = best, 1,001 = worst). The block-26 q,k,v LoRA tensors of every adapter a row reads are in `data/adapters_qkv26/` (index.json maps run@step to file); full snapshots are rebuilt bit for bit by `rl.py` (README).\n\n"
            "| claim | seed | variant | control | result | artifact |\n|---|---|---|---|---|---|\n")
-    (HERE / "proof-matrix.md").write_text(hdr + "\n".join("| " + " | ".join(str(v) for v in r) + " |" for r in M) + "\n")
+    body = hdr + "\n".join("| " + " | ".join(str(v) for v in r) + " |" for r in M) + "\n"
+    vr = HERE / "skeptics" / "skeptic" / "proof-matrix-rows.md"  # Vera's rebuild rows, appended verbatim
+    if vr.exists():
+        body += "".join(l if l.endswith("\n") else l + "\n" for l in open(vr) if l.startswith("|") and not l.startswith("|---")
+                        and not l.lower().startswith("| claim"))
+    (HERE / "proof-matrix.md").write_text(body)
     print(json.dumps({"C1": {k: S["C1"][k] for k in ("rank1_at256", "rank1_atT", "n_read", "verdict")},
                       "C2": S["C2"]["verdict"], "C3": S["C3"]["verdict"]}, indent=1))
 

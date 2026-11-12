@@ -1,0 +1,10 @@
+cal [(0.062, 23488), (0.062, 23872), (0.088, 15616), (0.088, 15744), (0.125, 10176), (0.125, 10304), (0.177, 6848), (0.177, 6592), (0.25, 4480), (0.25, 4416), (0.354, 3072), (0.354, 2944), (0.5, 2176), (0.5, 2048), (0.707, 1600), (0.707, 1504), (1.0, 1280), (1.0, 1232), (1.414, 1088), (1.414, 1136), (2.0, 1184), (2.0, 1232), (2.828, 1312), (2.828, 1568), (4.0, 832), (4.0, 1120), (5.657, 448), (5.657, 480), (8.0, 448), (8.0, 464)] 8
+window [0.125, 0.25, 0.5, 1.0] {'slope': -1.0157800112961468, 'ci': [-1.1217481137915843, -0.9098119088007092], 'n': 8, 'censored': 0}
+sgd lr 0.003 [(0.003, 8320), (0.01, 2496), (0.03, 816), (0.1, 248), (0.3, 88)] target 5640.0
+nospread {"adamw": {"slope": -1.0121123649934791, "ci": [-1.0811108976916517, -0.9431138322953065], "n": 12, "censored": 0, "clip_frac_mean": 0.0}, "sgd": {"slope": -0.9485583255653626, "ci": [-1.0388910897452, -0.8582255613855252], "n": 12, "censored": 0, "clip_frac_mean": 0.0}, "sign": {"slope": -1.2608868102926067, "ci": [-1.5380777549745825, -0.9836958656106309], "n": 12, "censored": 0, "clip_frac_mean": 0.08280864310061509}, "sgd_afrz": {"slope": -1.3659677341245564, "ci": [-3.3422746436966726, 0.6103391754475596], "n": 5, "censored": 7, "clip_frac_mean": 0.0}} 337
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1112-optimizer-sets/kran-research/projects/optimizer-cue-size/theory/toy_felix.py", line 221, in <module>
+    main()
+  File "/Users/esben/work/theory-1112-optimizer-sets/kran-research/projects/optimizer-cue-size/theory/toy_felix.py", line 213, in main
+    res[key]["fits"][arm]["clip_frac_mean"] = float(np.mean([r.get("clip_frac", 0) for r in rows]))
+TypeError: 'NoneType' object does not support item assignment

@@ -14,3 +14,7 @@ Tove #20088 and Kasper #20086 rejected v1 (c9b3e2fb7) before any run. v1.0.1-v1.
 strings with token counts; the pooled-count G as a reported row; the mechanism licence split (directed naming needs
 YES and a name-only naming rate above neutral; the web line has its own CI rules). No data existed at any of these
 commits.
+
+## D0.2 (before any smoke or counted run): one reported row
+Kasper #20105: the gate 'named_pre_e(name-only) > neutral' is near-automatic (parent off_absent named 0/200). Added as a
+reported row, not a gate: named_pre_e(name-only) vs named_pre_e(honeypot-only), agent-equal, with CI.

@@ -65,6 +65,14 @@ def main():
         ts = t_snap(d)
         if ts:
             pts.append(cell(d, ts, "T", "sweep"))
+    # v1.4 length control: the largest cue trained on to the faint cues' switch times (704, 1,728, 4,352)
+    for k, sd in ((1110, 0), (1112, 2)):
+        d = load(f"len_u{k}_a0.03125_s{sd}")
+        if d:
+            for st in (256, 704, 1728, 4352):
+                c = cell(d, st, "len", "len", {"key": f"u{k}"})
+                if c:
+                    pts.append(c)
     # smallest learned cue (parent, end-of-run at 1.13-1.26 T)
     for s in (0, 1):
         d = load(f"parent__nocastk8_x0.0876_s{s}")
@@ -127,9 +135,20 @@ def main():
     n4 = sum(p["gain_rank"] == 1 for p in learned)
     big = [p for p in P if p["group"] == "dirs" and p["read"] == "256"]
     nb = sum(p["rank"] == 1 for p in big)
+    # largest share s such that every learned-cue point at or below s ranks first on the top direction
+    lp = sorted([p for p in P if p["group"] in ("sweep", "floor")], key=lambda p: p["s"])
+    s_flip = None
+    for p in lp:
+        if p["rank"] != 1:
+            break
+        s_flip = p["s"]
+    pctx = lambda v: f"{v:.2g}%"  # noqa: E731
+    data["s_flip"] = s_flip
+    ln = [p for p in P if p["group"] == "len" and p["step"] == 4352]
+    nl = sum(p["rank"] == 1 for p in ln)
     data.update({
-        "title": (f"The top direction missed the largest cue in {len(big) - nb} of {len(big)} models; "
-                  f"the change's reaction to the cue ranked it first in {n4} of {len(learned)}"),
+        "title": (f"The top direction of the weight change missed the largest cue in {len(big) - nb} of {len(big)} "
+                  f"models at 256 updates; trained as long as the faintest cues, it found it in {nl} of {len(ln)}"),
         "subtitle": ("Two weight-only scores of the true cue, each divided by the level that 1 in 100 of 1,000 random "
                      "cues reach. Above 1x, the score singles the cue out. The cue shrinks to the right."),
         "x_label": "Cue size, as a share of what the trained layer reads (log)",
@@ -137,11 +156,12 @@ def main():
         "y_label": "True cue vs random cues (log)",
         "y_short": "True cue vs random (log)",
         "legend": {"top1": "filled: top direction of the change", "top4": "hollow: reaction of the whole change to the cue",
-                   "sweep": "circles: one run per cue size, read at the switch",
+                   "sweep": "circles: one run per cue size, read at the switch (number: updates)",
                    "big": "squares: largest cue, six models, 256 updates", "real": "diamonds: real build difference, 2 runs",
                    "below": "dashed diamond: 4x below the smallest learned cue, never switched",
+                   "len": "arrows: largest cue, trained on to 704, 1,728 and 4,352 updates",
                    "ctrl": "grey band: controls, cue never rewarded", "theory": "teal band: theory, change carries only the cue"},
-        "notes": {"p99": "1 in 100 random cues reach this line", "star": "predicted crossover (exploratory)",
+        "notes": {"p99": "1 in 100 random cues reach this line", "len": "trained on (updates)", "star": "predicted crossover (exploratory)",
                   "ctrl": "controls"},
     })
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)

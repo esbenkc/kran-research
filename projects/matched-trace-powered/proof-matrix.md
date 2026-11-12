@@ -16,6 +16,7 @@ Built by summarize_tf.py from the raw files (PREREG v1.1 @ 8e82ff3c). Shares s =
 | exposure | 0 | update 1220: summed text difference planted / trace | none | 3904 / 3651 (trace: trapezoid of dev D to update 1174, then its last dev D carried to 1220) | data/runs/joint_s0_cont/curve.jsonl |
 | A/A null | 0 | none build forced on its own thought | A/A | max abs log w 0.00e+00, max abs dc 0.00e+00 | data/reads/raw/smoke_tf.npz |
 | estimator code | 0 | new read on the 674 adapter vs the 11-11 read, same rows | reproduction | thoughts equal 32/32, max cheat diff 0.0e+00, max log-prob diff 0.0e+00 | data/reads/raw/smoke_check.json |
-| planted learned? | 0 | s_P end minus start policy / end minus update 674 (paired by prompt) | start policy (pilot: no cue, no probe) | +0.023 [-0.029, +0.082] / -0.037 [-0.083, +0.010] | data/reads/raw/end_tf.npz + data/parent/reads/ |
+| planted learned? | 0 | s_P end minus start policy (paired by prompt) | start policy (pilot: no cue, no probe) | +0.023 [-0.029, +0.082] | data/parent/reads/start_test.npz |
+| planted learned? | 0 | s_P end minus update 674 (paired by prompt) | none | -0.037 [-0.083, +0.010] | data/parent/reads/joint_s0_final.npz |
 | start control | 0 | start policy (11-11 read, LR text): s_R / s_P | start policy (pilot: no cue, no probe) | -0.009 [-0.106, +0.085] / +0.039 [-0.019, +0.091] | data/parent/reads/start_test.npz |
 | exploratory 674 | 0 | 11-11 read of update 674 (LR text, on record before T0): s_R / s_P / gap | none | +0.063 [-0.039, +0.166] / +0.100 [+0.051, +0.144] / +0.037 [-0.079, +0.153] | data/parent/reads/joint_s0_final.npz |

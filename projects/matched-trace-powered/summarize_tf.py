@@ -308,8 +308,10 @@ def matrix(s):
                      f"max log-prob diff {r['lp_lb_nb_max_abs_diff']:.1e} | data/reads/raw/smoke_check.json |")
     if "paired_change" in s:
         pc = s["paired_change"]
-        L.append(f"| planted learned? | 0 | s_P end minus start policy / end minus update 674 (paired by prompt) | start policy (pilot: no cue, no probe) | "
-                 f"{fm(pc, 's_P_end_minus_start')} / {fm(pc, 's_P_end_minus_674')} | data/reads/raw/end_tf.npz + data/parent/reads/ |")
+        L.append(f"| planted learned? | 0 | s_P end minus start policy (paired by prompt) | start policy (pilot: no cue, no probe) | "
+                 f"{fm(pc, 's_P_end_minus_start')} | data/parent/reads/start_test.npz |")
+        L.append(f"| planted learned? | 0 | s_P end minus update 674 (paired by prompt) | none | "
+                 f"{fm(pc, 's_P_end_minus_674')} | data/parent/reads/joint_s0_final.npz |")
     st = s["parent_start_lr_text"]
     L.append(f"| start control | 0 | start policy (11-11 read, LR text): s_R / s_P | start policy (pilot: no cue, no probe) | {fm(st, 's_R')} / "
              f"{fm(st, 's_P')} | data/parent/reads/start_test.npz |")

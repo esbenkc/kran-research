@@ -1,0 +1,68 @@
+{
+ "runs": [
+  {
+   "opt": "adamw",
+   "alpha": 0.03125,
+   "seed": 0,
+   "x": 33.26375198364258,
+   "T": 32,
+   "censored": false,
+   "run": "adamw_a0.03125_s0"
+  },
+  {
+   "opt": "adamw",
+   "alpha": 0.03125,
+   "seed": 1,
+   "x": 33.26375198364258,
+   "T": 24,
+   "censored": false,
+   "run": "adamw_a0.03125_s1"
+  },
+  {
+   "opt": "adamw",
+   "alpha": 0.015625,
+   "seed": 0,
+   "x": 16.63496971130371,
+   "T": 52,
+   "censored": false,
+   "run": "adamw_a0.015625_s0"
+  },
+  {
+   "opt": "adamw",
+   "alpha": 0.015625,
+   "seed": 1,
+   "x": 16.63496971130371,
+   "T": 48,
+   "censored": false,
+   "run": "adamw_a0.015625_s1"
+  },
+  {
+   "opt": "sgd",
+   "alpha": 0.03125,
+   "seed": 0,
+   "x": 33.26375198364258,
+   "T": 180,
+   "censored": false,
+   "run": "sgdpilot_lr0.01"
+  }
+ ],
+ "fit": null,
+ "predictions": {
+  "goal": {
+   "sgd": -2.0,
+   "adamw": -1.0,
+   "sign": -1.0
+  },
+  "vera_20280": {
+   "sgd": -1.3,
+   "sgdfa": -1.9,
+   "sign": -0.9,
+   "adamw": -0.95
+  },
+  "iris_20300": {
+   "sgd": -1.05,
+   "sign": -1.0,
+   "adamw": -0.95
+  }
+ }
+}

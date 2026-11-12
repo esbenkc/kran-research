@@ -1,0 +1,310 @@
+{
+ "phase0": {
+  "s0": {
+   "T": 32,
+   "T_all": 32,
+   "parent_T": 32
+  },
+  "s1": {
+   "T": 24,
+   "T_all": 24,
+   "parent_T": 24
+  }
+ },
+ "phase0_gate": true,
+ "replication_parent_adamw_bf16": {
+  "slope": -0.9750311023232598,
+  "n": 9,
+  "runs": [
+   {
+    "x": 33.29884719848633,
+    "T": 32,
+    "run": "p0_a0.03125_s0"
+   },
+   {
+    "x": 33.29884719848633,
+    "T": 24,
+    "run": "p0_a0.03125_s1"
+   },
+   {
+    "x": 4.203283309936523,
+    "T": 192,
+    "run": "sw_a0.00390625_s0"
+   },
+   {
+    "x": 4.203283786773682,
+    "T": 192,
+    "run": "sw_a0.00390625_s1"
+   },
+   {
+    "x": 8.45003890991211,
+    "T": 128,
+    "run": "sw_a0.0078125_s0"
+   },
+   {
+    "x": 8.450039863586426,
+    "T": 128,
+    "run": "sw_a0.0078125_s1"
+   },
+   {
+    "x": 8.450039863586426,
+    "T": 128,
+    "run": "sw_a0.0078125_s2"
+   },
+   {
+    "x": 16.556230545043945,
+    "T": 64,
+    "run": "sw_a0.015625_s0"
+   },
+   {
+    "x": 16.55623435974121,
+    "T": 48,
+    "run": "sw_a0.015625_s1"
+   }
+  ]
+ },
+ "sgd_pick": {
+  "rule": "PREREG s8.1 + D1",
+  "arm": "sgd",
+  "pilots": [
+   {
+    "lr": 1,
+    "run": "sgdpilot_lr1",
+    "stable": false,
+    "why": [
+     "mean KL 0.620 > 0.5 at 8",
+     "P(X|off) 0.000 outside [0.07,0.60] at 12",
+     "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
+    ],
+    "T": null,
+    "steps_run": 50
+   },
+   {
+    "lr": 0.5,
+    "run": "sgdpilot_lr0.5",
+    "stable": false,
+    "why": [
+     "mean KL 0.620 > 0.5 at 8",
+     "P(X|off) 0.000 outside [0.07,0.60] at 12",
+     "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
+    ],
+    "T": null,
+    "steps_run": 50
+   },
+   {
+    "lr": 0.2,
+    "run": "sgdpilot_lr0.2",
+    "stable": false,
+    "why": [
+     "mean KL 0.620 > 0.5 at 8",
+     "P(X|off) 0.000 outside [0.07,0.60] at 12",
+     "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
+    ],
+    "T": null,
+    "steps_run": 50
+   },
+   {
+    "lr": 0.1,
+    "run": "sgdpilot_lr0.1",
+    "stable": false,
+    "why": [
+     "mean KL 0.620 > 0.5 at 8",
+     "P(X|off) 0.000 outside [0.07,0.60] at 12",
+     "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
+    ],
+    "T": null,
+    "steps_run": 50
+   },
+   {
+    "lr": 0.05,
+    "run": "sgdpilot_lr0.05",
+    "stable": false,
+    "why": [
+     "mean KL 0.566 > 0.5 at 16",
+     "P(X|off) 0.000 outside [0.07,0.60] at 12",
+     "text health at 25: entropy 0.00 (step0 0.60), top-1 1.00"
+    ],
+    "T": null,
+    "steps_run": 50
+   },
+   {
+    "lr": 0.02,
+    "run": "sgdpilot_lr0.02",
+    "stable": true,
+    "why": [],
+    "T": 108,
+    "steps_run": 368
+   },
+   {
+    "lr": 0.01,
+    "run": "sgdpilot_lr0.01",
+    "stable": true,
+    "why": [],
+    "T": 180,
+    "steps_run": 448
+   }
+  ],
+  "decision": "PICK 0.01",
+  "lr": 0.01,
+  "run": "sgdpilot_lr0.01",
+  "T": 180
+ },
+ "headline_rows": [
+  {
+   "opt": "adamw",
+   "alpha": 0.03125,
+   "seed": 0,
+   "run": "adamw_a0.03125_s0",
+   "x": 33.26375198364258,
+   "T": 32,
+   "censored": false,
+   "steps_run": 288,
+   "budget": 1024,
+   "health_stop": null,
+   "T_grid": 32
+  },
+  {
+   "opt": "adamw",
+   "alpha": 0.03125,
+   "seed": 1,
+   "run": "adamw_a0.03125_s1",
+   "x": 33.26375198364258,
+   "T": 24,
+   "censored": false,
+   "steps_run": 288,
+   "budget": 1024,
+   "health_stop": null,
+   "T_grid": 24
+  },
+  {
+   "opt": "adamw",
+   "alpha": 0.015625,
+   "seed": 0,
+   "run": "adamw_a0.015625_s0",
+   "x": 16.63496971130371,
+   "T": 52,
+   "censored": false,
+   "steps_run": 320,
+   "budget": 1024,
+   "health_stop": null,
+   "T_grid": 64
+  },
+  {
+   "opt": "adamw",
+   "alpha": 0.015625,
+   "seed": 1,
+   "run": "adamw_a0.015625_s1",
+   "x": 16.63496971130371,
+   "T": 48,
+   "censored": false,
+   "steps_run": 304,
+   "budget": 1024,
+   "health_stop": null,
+   "T_grid": 48
+  },
+  {
+   "opt": "sgd",
+   "alpha": 0.03125,
+   "seed": 0,
+   "run": "sgdpilot_lr0.01",
+   "x": 33.26375198364258,
+   "T": 180,
+   "censored": false,
+   "steps_run": 448,
+   "budget": 4096,
+   "health_stop": null,
+   "T_grid": 192
+  }
+ ],
+ "headline_missing": [
+  "adamw_a0.0078125_s0",
+  "adamw_a0.0078125_s1",
+  "adamw_a0.00390625_s0",
+  "adamw_a0.00390625_s1",
+  "sgd_a0.03125_s1",
+  "sgd_a0.015625_s0",
+  "sgd_a0.015625_s1",
+  "sgd_a0.0078125_s0",
+  "sgd_a0.0078125_s1",
+  "sgd_a0.00390625_s0",
+  "sgd_a0.00390625_s1",
+  "sign_a0.03125_s0",
+  "sign_a0.03125_s1",
+  "sign_a0.015625_s0",
+  "sign_a0.015625_s1",
+  "sign_a0.0078125_s0",
+  "sign_a0.0078125_s1",
+  "sign_a0.00390625_s0",
+  "sign_a0.00390625_s1"
+ ],
+ "sgd_afrozen_rows": [],
+ "sgd_afrozen_missing": [
+  "sgdfa_a0.03125_s0",
+  "sgdfa_a0.015625_s0",
+  "sgdfa_a0.0078125_s0",
+  "sgdfa_a0.00390625_s0"
+ ],
+ "controls": {},
+ "mechanism": [
+  {
+   "run": "adamw_a0.03125_s0",
+   "opt": "adamw",
+   "x": 33.26375198364258,
+   "T": 32,
+   "censored": false,
+   "normA_at_T": 8.643017768859863,
+   "normB_at_T": 0.3887583911418915,
+   "snr_before_T": -0.5150820935639638,
+   "grad_norm_step1": 6.296953201293945,
+   "clip_frac_mean": 0.5659722222222222
+  },
+  {
+   "run": "adamw_a0.03125_s1",
+   "opt": "adamw",
+   "x": 33.26375198364258,
+   "T": 24,
+   "censored": false,
+   "normA_at_T": 8.646341323852539,
+   "normB_at_T": 0.33647915720939636,
+   "snr_before_T": -0.002917656637516092,
+   "grad_norm_step1": 6.1298017501831055,
+   "clip_frac_mean": 0.5659722222222222
+  },
+  {
+   "run": "adamw_a0.015625_s0",
+   "opt": "adamw",
+   "x": 16.63496971130371,
+   "T": 52,
+   "censored": false,
+   "normA_at_T": 8.672985076904297,
+   "normB_at_T": 0.641410768032074,
+   "snr_before_T": -0.18628159181110798,
+   "grad_norm_step1": 6.1170735359191895,
+   "clip_frac_mean": 0.6015625
+  },
+  {
+   "run": "adamw_a0.015625_s1",
+   "opt": "adamw",
+   "x": 16.63496971130371,
+   "T": 48,
+   "censored": false,
+   "normA_at_T": 8.668068885803223,
+   "normB_at_T": 0.5365033745765686,
+   "snr_before_T": 0.061878839425961334,
+   "grad_norm_step1": 6.12145471572876,
+   "clip_frac_mean": 0.546875
+  },
+  {
+   "run": "sgdpilot_lr0.01",
+   "opt": "sgd",
+   "x": 33.26375198364258,
+   "T": 180,
+   "censored": false,
+   "normA_at_T": 8.631729125976562,
+   "normB_at_T": 0.24609100818634033,
+   "snr_before_T": -0.5099634704318519,
+   "grad_norm_step1": 6.296953201293945,
+   "clip_frac_mean": 0.0
+  }
+ ]
+}

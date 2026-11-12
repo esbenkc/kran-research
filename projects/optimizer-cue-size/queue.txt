@@ -1,0 +1,37 @@
+# PREREG s5 queue: <name>|<rl.py args>. Read by lane.sh before every claim; order = priority.
+# Phase 0 (PREREG s4.1): parent exact settings (bf16 cast cue, parent grid, parent stop) -> gate T = 32.
+p0cast_a0.03125_s0|--cue-alpha 0.03125 --seed 0 --steps 1024 --dense 8:2048,64
+p0cast_a0.03125_s1|--cue-alpha 0.03125 --seed 1 --steps 1024 --dense 8:2048,64
+# AdamW fp32 x_top seed 0 = T0 for the AdamW budgets (headline cell)
+adamw_a0.03125_s0|--opt adamw --lr 1e-4 --no-cast --cue-alpha 0.03125 --seed 0 --steps 1024
+# fp32 cue size x per alpha (step-0 only, for the budgets B(x))
+x_a0.015625|--no-cast --cue-alpha 0.015625 --step0-only
+x_a0.0078125|--no-cast --cue-alpha 0.0078125 --step0-only
+x_a0.00390625|--no-cast --cue-alpha 0.00390625 --step0-only
+x_a0.001953125|--no-cast --cue-alpha 0.001953125 --step0-only
+# SGD lr pilots (PREREG s8.1, D1): descending, x_top seed 0 fp32, budget 4096; pruned by pick_lr.py
+sgdpilot_lr1|--opt sgd --lr 1 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdpilot_lr0.5|--opt sgd --lr 0.5 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdpilot_lr0.2|--opt sgd --lr 0.2 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdpilot_lr0.1|--opt sgd --lr 0.1 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdpilot_lr0.05|--opt sgd --lr 0.05 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdpilot_lr0.02|--opt sgd --lr 0.02 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+sgdpilot_lr0.01|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+# AdamW grid (PREREG s5 item 2), T0 = 32 (adamw_a0.03125_s0), budgets B(x) s3
+adamw_a0.03125_s1|--opt adamw --lr 1e-4 --no-cast --cue-alpha 0.03125 --seed 1 --steps 1024
+adamw_a0.015625_s0|--opt adamw --lr 1e-4 --no-cast --cue-alpha 0.015625 --seed 0 --steps 1024
+adamw_a0.015625_s1|--opt adamw --lr 1e-4 --no-cast --cue-alpha 0.015625 --seed 1 --steps 1024
+adamw_a0.0078125_s0|--opt adamw --lr 1e-4 --no-cast --cue-alpha 0.0078125 --seed 0 --steps 1536
+adamw_a0.0078125_s1|--opt adamw --lr 1e-4 --no-cast --cue-alpha 0.0078125 --seed 1 --steps 1536
+adamw_a0.00390625_s0|--opt adamw --lr 1e-4 --no-cast --cue-alpha 0.00390625 --seed 0 --steps 6144
+adamw_a0.00390625_s1|--opt adamw --lr 1e-4 --no-cast --cue-alpha 0.00390625 --seed 1 --steps 6144
+# sign-SGD x_top seed 0 = T0 for the sign budgets (budget 4096 = pilot budget)
+sign_a0.03125_s0|--opt sign --lr 1e-4 --no-cast --cue-alpha 0.03125 --seed 0 --steps 4096
+# SGD grid (PREREG s5 item 2): lr 0.01 (pick_lr.py: PICK 0.01, T0 180); x_top s0 = sgdpilot_lr0.01
+sgd_a0.03125_s1|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.03125 --seed 1 --steps 1024
+sgd_a0.015625_s0|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.015625 --seed 0 --steps 2176
+sgd_a0.015625_s1|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.015625 --seed 1 --steps 2176
+sgd_a0.0078125_s0|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.0078125 --seed 0 --steps 8640
+sgd_a0.0078125_s1|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.0078125 --seed 1 --steps 8640
+sgd_a0.00390625_s0|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.00390625 --seed 0 --steps 24576
+sgd_a0.00390625_s1|--opt sgd --lr 0.01 --no-cast --cue-alpha 0.00390625 --seed 1 --steps 24576

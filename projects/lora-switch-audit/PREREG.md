@@ -53,3 +53,9 @@ COMPUTE (Vera gate before start): 2 lanes, ONE heavy job each, rl_snap.py under 
 - C1 direction and seed vary together (u111k with seed k-1110); stated in the post. The six runs share alpha 1/32, so x is 33.3 for u1110 and differs slightly for the others (u1111 x 34.76); the post gives the range, not 'all at x 33.3'.
 - The at-T read is reported with equal weight in the results table and the figure. If the 256 and at-T reads give different C1 counts, the TLDR states both counts and the post says the answer depends on the checkpoint.
 - D0.7 (disclosed): Vera's early read of the frozen e1 on END-OF-RUN parent adapters (#20546, 10:26 PST, after v1 #20536) preceded v1.1: x 33.3 p0 s0/s1 ranks 280/465 at 320 updates, every cue at x <= 4.2 rank 1, controls c2_a0 179, c1_shuf 491/656. The 256 read point of v1.1 is near that 320-update state. The move from T to 256 was proposed in #20545 before #20546, and it points toward REJECTED, not toward a pass.
+
+## v1.2 (2026-11-12 10:36 PST / 19:36 CET, room #20562; secondary mechanism read only, C1-C3 untouched; posted before any sweep or T-snapshot e1/g read of the size sweep, after Vera's two new-direction T reads #20557)
+
+- Model: stacked delta M = sigma_cue u_c c_hat^T + sigma_gen u_g w^T + ..., sigma_cue = g = |M c_hat| (S3). The switch needs gap ~ x*g, so g_T ~ K/x. The generic mode that the alpha-0 run also learns has sigma_gen(t), independent of x.
+- Prediction: the cue owns v1 (e1 rank 1) iff K/x > sigma_gen(T).
+- Read: K = median over the new sweep of x*g_T; sigma_gen(t) = top singular value of the alpha-0 (s1 up to 2,048, s0 beyond) stacked qkv26 delta at the matched update count; x* = K / sigma_gen(T). Score = share of new sweep + direction runs where (x < x*) matches (e1 rank 1) at T. >= 80% = mechanism holds; < 60% = fails; between = unsettled.

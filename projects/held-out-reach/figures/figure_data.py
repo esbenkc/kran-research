@@ -32,8 +32,10 @@ def main() -> None:
         if not g or not c["n"]:
             continue
         lo, hi = c["ci"]
-        if g in ("route", "replication"):
+        if g == "route":
             verdict = "miss" if c["clear_miss"] else ("hit" if c["point_hit"] else "off")
+        elif g == "replication":  # a rerun of the calibration cell: held unless its gap to the 1109 sample is clear
+            verdict = "miss" if c["clear_miss"] else "hit"
         elif g == "reach0":
             verdict = "hit" if c["follows"] == 0 else "miss"
         else:

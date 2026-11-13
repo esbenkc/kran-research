@@ -17,6 +17,7 @@
 | headline | 0 | live k=4, stored pool, read 1200 | none | s_P +0.011 [+0.009, +0.014]; s_R -0.027 [-0.076, +0.025]; cheat_off 0.561 | data/runs/live_k4/reads/c_1200.npy |
 | headline | 0 | live k=4, onset rule over 13 stored reads | none | onset none, censored at 1200 (band (300, 1,200]) | data/runs/live_k4/reads.jsonl |
 | headline | 0 | served fresh samples, adapter 1200, 400 rows | ' We' banned at token 0 (CRN twin) | s_P +0.008 [-0.064, +0.073] | data/reads/served_live_1200.json |
+| headline | 0 | fresh pool from adapter 1200, 800 rows | pilot read on the same rows | s_R -0.054 [-0.160, +0.049]; D_R 0.1014 (stored 0.1009); s_P +0.014 [+0.010, +0.018] | data/reads/fresh1200/reads.jsonl |
 | cached overlay | 0 | cached d010_s0 (fixed thoughts), stored pool | none | onset (500, 600]; end s_P +0.865 [+0.856, +0.873] | data/runs/cached_d010_s0/reads.jsonl |
 | A/A start | 0 | live read 0 vs cached read 0 | same start adapter | identical cheat probability on all 5,600 rows | data/runs/live_k4/reads/c_0.npy |
 | exploratory (cachedkl_s0) | 0 | cached + thought KL, d010 pools | cached d010_s0 | last read 876: s_P +0.224 [+0.215, +0.231]; onset None; not decisive | data/runs/cachedkl_s0/reads.jsonl |

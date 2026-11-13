@@ -1,0 +1,21 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+W1113 03:48:45.987000 15193 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6029.81it/s]
+W1113 03:49:17.892000 15193 torch/_inductor/utils.py:1806] [1/0] Not enough SMs to use max_autotune_gemm mode
+batch 0 base rows 64/800 41s
+batch 1 base rows 128/800 63s
+batch 2 base rows 192/800 82s
+batch 3 base rows 256/800 102s
+batch 4 base rows 320/800 122s
+batch 5 base rows 384/800 141s
+batch 6 base rows 448/800 161s
+batch 7 base rows 512/800 181s
+batch 8 base rows 576/800 201s
+batch 9 base rows 640/800 220s
+batch 10 base rows 704/800 240s
+batch 11 base rows 768/800 259s
+batch 12 base rows 800/800 278s
+DONE test data/pool/fresh1200 1600 278s
+
+WATCHDOG: exit 0, peak footprint 6.15 GB

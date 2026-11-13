@@ -1,0 +1,18 @@
+{
+ "mode": "test",
+ "variants": [
+  "none",
+  "xins"
+ ],
+ "X": 1205,
+ "R": 4,
+ "n_base": 800,
+ "n": 1600,
+ "n_prompts": 200,
+ "B": 64,
+ "policy": "data/runs/live_k4/adapter_1200.pt",
+ "dec_bias": -2.255,
+ "s": 278.3,
+ "layout": "batch by batch: for each batch of base rows, the 'none' rows then their 'xins' twins",
+ "prompt_maxdiff": 0.0
+}

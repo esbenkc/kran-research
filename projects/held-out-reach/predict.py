@@ -61,7 +61,7 @@ def main() -> None:
                           "pred_const99": 0.99, "cal": CAL[ag]})
     body = {"prereg": "PREREG v2.1 (felix/PREREG_v2.md, 2026-11-12 22:58 PST)", "S": S, "CAL": CAL, "cells": cells}
     txt = json.dumps(body, indent=1, sort_keys=True)
-    sha = hashlib.sha256(txt.encode()).hexdigest()
+    sha = hashlib.sha256((txt + "\n").encode()).hexdigest()  # = shasum -a 256 predictions.json
     (ROOT / a.out).write_text(txt + "\n")
     (ROOT / (a.out + ".sha256")).write_text(sha + "\n")
     for c in cells:

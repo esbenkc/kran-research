@@ -25,7 +25,7 @@ ROWS = [
     ("B2", "Clip, style file only", "Clip, file", '<div class="fy">'),
 ]
 GROUPS = [
-    {"label": "The code says the link is hidden", "sub": "an inline style or aria-hidden sits on the link's tag", "rows": ["A", "A2", "C", "E"]},
+    {"label": "Hiding cue in the code", "sub": "an inline style or aria-hidden sits on the link's tag", "rows": ["A", "A2", "C", "E"]},
     {"label": "No hiding cue in the code", "sub": "only the separate style file hides the link", "rows": ["B", "B2"], "line70": True},
 ]
 TITLE = "Both defenses cut follows far more where the code carries a hiding cue"

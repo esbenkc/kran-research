@@ -32,3 +32,21 @@ after update 0 seen by anyone.
   its probe-off check. No exact p_off on unprobed rows is logged.
 - Fresh trace read: pool.py --mode test from adapter_1200 uses the stored pool's noise seeds (rows 0-1,599, common
   random numbers), so D_R(fresh) - D_R(stored) and s_R(fresh) - s_R(stored) are paired. Status bars unchanged.
+
+## D3 — watchdog kill at update 544; resume from adapter_500 (2026-11-13 01:58 PST / 10:58 CET; Drew #21413, Kasper #21414, Tove #21415, Felix)
+
+What had run: live_k4 updates 1-544; stored-pool reads 0, 100, ..., 500 in reads.jsonl (all six pre-onset: s_P 0.006-
+0.010; seen by the room). The watchdog killed the job at update 544 (footprint 9.06 GB > 9.0 GB cap,
+logs/live_k4.log:37), mid-training, not at a read. post_k4's chain did not produce any read from adapter_500.
+- RESUME, not restart (a restart cannot reach 1,200 by 12:50 CET): weights = adapter_500; KL reference for the decision
+  KL and the thought KL = the pilot (unchanged; `--init` must not become the reference); step offset 500 (seeds,
+  read grid, ages continue at 501); a fresh buffer of 4 batches from adapter_500 at the seam.
+- Lost at the seam, stated: AdamW moments reset at 500 (live.py:121 saves only the adapter), new RNG stream, buffer
+  refilled fresh. Updates 501-544 are discarded (steps.jsonl rows kept, marked pre-seam, never used in a read).
+- Reads 0-500 stay in the curve; the read at 500 is the paired anchor across the seam. The figure marks update 500
+  as the seam; the post's limits name it.
+- Memory fix, inside the 9.0 GB cap (Esben's solo rule; the cap is not raised): torch.mps.empty_cache() after each
+  fresh batch's sampling and every update. If the footprint still passes 8.7 GB, thought KL rows 16 -> 8 with weight
+  x8 (still unbiased), logged here.
+- Status rule unchanged (Kasper #21414): status read at 1,200 on the stored pool; onset rule and band unchanged.
+- Projected: 700 updates x ~5.45 s + 7 reads ~ 68 min; relaunch by ~11:05 CET ends ~12:15 CET, before 12:50.

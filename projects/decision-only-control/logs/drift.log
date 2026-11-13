@@ -1,0 +1,7 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 19:51:36.935000 44665 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5659.49it/s]
+DRIFT {"end": "data/runs/d010_s0/adapter_1500.pt", "n_thoughts": 256, "mean_token_tv": 0.08054976187709025, "median_token_tv": 0.022675426676869392, "token_tv_p90": 0.25182685256004333, "mean_token_kl_start_end": 0.08208786726593512, "tv_first_token": 0.05906577092537191, "mean_logp_sampled_start": -0.7582855443338996, "mean_logp_sampled_end": -0.834128325675848, "note": "thoughts = probe-off test-pool thoughts sampled by the start adapter; next-token distributions over [0, first_special)"}
+
+WATCHDOG: exit 0, peak footprint 3.90 GB

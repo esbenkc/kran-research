@@ -103,6 +103,9 @@ def main():
     ap.add_argument("--chunk", type=int, default=8, help="joint: rows per thought-logit chunk")
     ap.add_argument("--dchunk", type=int, default=64, help="decision loss: rows per backward chunk (memory only)")
     ap.add_argument("--no-std", action="store_true", help="V1.6: advantage = r' - group mean (no std division)")
+    ap.add_argument("--kl-prefix", type=float, default=0.0, help="on-policy-planted diagnostic: thought KL beta (live.py)")
+    ap.add_argument("--kl-rows", type=int, default=16, help="rows per update carrying the thought KL (x N/n, unbiased)")
+    ap.add_argument("--kl-chunk", type=int, default=4)
     ap.add_argument("--health-only", action="store_true", help="print only health numbers (screens: no cue numbers in logs)")
     ap.add_argument("--stop-at", default="", help="hard clock stop HH:MM local")
     a = ap.parse_args()
@@ -132,6 +135,16 @@ def main():
     pm, inner = mt.load_policy(HERE / a.init)
     params = [p for p in pm.parameters() if p.requires_grad]
     opt = torch.optim.AdamW(params, lr=a.lr, weight_decay=0.0)
+    ref = [p.detach().clone() for p in params]  # the start policy (thought-KL reference)
+
+    def swap(vals):
+        with torch.no_grad():
+            old = [p.detach().clone() for p in params]
+            for p, x in zip(params, vals):
+                p.copy_(x)
+        return old
+
+    assert a.kl_prefix == 0 or (a.loss == "decision" and a.dchunk >= a.P * a.G), "thought KL: decision loss, one pass"
     out = HERE / "data" / "runs" / a.name
     (out / "reads").mkdir(parents=True, exist_ok=True)
     half, N = a.P // 2, a.P * a.G
@@ -206,7 +219,40 @@ def main():
                 adv = (rp - rp.mean(1, keepdim=True)).flatten()
             else:
                 adv = ((rp - rp.mean(1, keepdim=True)) / (rp.std(1, keepdim=True) + 1e-6)).flatten()
-        if a.loss == "decision":
+        if a.loss == "decision" and a.kl_prefix > 0:
+            # oracle-1113-on-policy-planted diagnostic: live.py's thought KL on the FROZEN thoughts (split clip, as live)
+            lpd = torch.log_softmax(d2g.float(), -1)
+            kl = (lpd.exp() * (lpd - torch.log_softmax(d2r.float(), -1))).sum(-1)
+            loss_d = (-(adv * lpd.gather(1, dec[:, None])[:, 0]).sum() + a.kl * kl.sum()) / N
+            gd = torch.autograd.grad(loss_d, params, allow_unused=True)
+            gd = [torch.zeros_like(p) if x is None else x for p, x in zip(params, gd)]
+            klv = float(kl.detach().sum()) / N
+            del d2g, lpd, kl, loss_d
+            sub = torch.as_tensor(np.sort(rng.choice(N, a.kl_rows, replace=False)), device=mt.DEV)
+            for c0 in range(0, a.kl_rows, a.kl_chunk):
+                sl = sub[c0:c0 + a.kl_chunk]
+                cur = swap(ref)
+                with torch.no_grad():
+                    pre_r, _ = mt.tail_logits(inner, h[sl], 64)
+                    lpr = torch.log_softmax(pre_r, -1)
+                    del pre_r
+                swap(cur)
+                pre, _ = mt.tail_logits(inner, h[sl], 64)
+                lpp = torch.log_softmax(pre, -1)
+                del pre
+                klt = (lpp.exp() * (lpp - lpr)).sum(-1).sum(1)
+                (a.kl_prefix * (N / a.kl_rows) * klt.sum() / N).backward()
+                del lpp, lpr, klt
+            for p in params:
+                if p.grad is None:
+                    p.grad = torch.zeros_like(p)
+            gt = float(torch.nn.utils.clip_grad_norm_(params, 1.0))
+            nd = torch.sqrt(sum((x.float() ** 2).sum() for x in gd))
+            scale = torch.clamp(1.0 / (nd + 1e-6), max=1.0)
+            for p, x in zip(params, gd):
+                p.grad.add_(x * scale)
+            gn = float(nd)
+        elif a.loss == "decision":
             klv = 0.0
             for c0 in range(0, N, a.dchunk):
                 sl = slice(c0, c0 + a.dchunk)

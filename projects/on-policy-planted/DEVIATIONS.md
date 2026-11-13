@@ -118,3 +118,6 @@ reference = pilot, split clip) and the seed-1 fallback stay as in D4.
   FLAT (s_P(1,200) < 0.10): served E -> cell A at once (--stop-at 03:48 PST) -> fresh read 200 x 4 after A (it can
   only add a NO; the status is already NO on onset). TOOK OFF (s_P(1,200) >= 0.30): cell A is moot; served E -> fresh
   200 x 8 -> cell B (seed 1) if time. In between (0.10-0.30): served E -> fresh 200 x 8 -> cell A if time.
+- D5.5 (02:29 PST; Bruno #21453): as launched (post2.sh, commit 43ef91a19, service post2_final): served E; then if
+  stored s_P(E) < 0.10: cell A at once (--stop-at 03:53) then fresh 200 x 4; else fresh 200 x 8 then cell A (not cell
+  B as in D5.4's TOOK-OFF branch). Gate and fallback unchanged.

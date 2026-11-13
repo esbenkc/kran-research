@@ -96,3 +96,20 @@ race reading, clock and order) stand.
 3. That recipe runs 0.86 s0, then 0.10 s0 to 1,500. The faithfulness gate stays unscaled: cached 0.86 onset <= 300.
 4. Everything after the diagnostic is a DEVIATION from the scout's recipe; the post says the scout's recipe saturated
    in 25 updates and names the change of r_solve.
+
+## V1.6 — replaces V1.5 item 2: no-std advantages + lam 0.42 (2026-11-12 18:11 PST; Tove #20922, Iris #20919)
+
+What had run since V1.5: the 0.86 frozen-recipe diagnostic may be running (its result is not used to choose the
+recipe); no read of the 0.10 rung beyond V1.4's read 25.
+- Iris's simulation of the exact cached.py reward (swarm-oracle-1113-decision-only/push_sim.py): under group-std
+  advantages r_solve 0.6 vs 0.8 gives a cue-free push of +0.015 vs +0.014, so the r_solve screen is a no-op and is
+  dropped (Felix #20921 concedes).
+- New screen, label-blind and cue-blind: advantages without the division by the group std (Dr. GRPO, Liu et al.
+  arXiv 2503.20783) and lam 0.42 (frozen from the simulation before the screen, never tuned on it), lr 3e-4, decision
+  KL 0.1, on the X-free on-pool, 100 updates. Same pick rule: live probed groups >= 10% at every read AND test cheat_off
+  extrapolated from the last 50 updates inside [0.15, 0.95] at update 1,500. In the simulation the cue-free push is
+  -0.0006 to +0.0004 at cheat 0.3-0.9 and an X row keeps a solve push of +0.033 to +0.087 (no cap).
+- If the screen fails: the frozen recipe with the race reading (V1.4 items 2-3). No third screen.
+- Faithfulness: the live anchor (dense onset 50-150) used std advantages, so T86 against [25, 300] is a reported flag,
+  not a status gate, under the new recipe.
+- Clock: 0.10 s0 starts by 18:25 PST to reach 1,500 by ~19:15.

@@ -105,3 +105,8 @@ reference = pilot, split clip) and the seed-1 fallback stay as in D4.
   1.3x (exploratory, n=1)'; A flat only to 600-700 -> not decisive, reported as a limit; A s_P >= 0.30 by 700 ->
   'thought KL is not enough'. The post calls cell A exploratory in every case. To give A a chance at 800: if the fresh
   build is > 10 min, cell A runs before it and the fresh read uses 200 x 4.
+- D5.2 (02:22 PST; Bruno #21440, Vera #21443): chain as launched (post2.sh, commit 486172767): served E -> fresh trace
+  read at 200 x 4 = 800 rows (PREREG's clock branch, used here to give cell A time; half-width ~0.13, NO-only) ->
+  cachedkl_s0 --stop-at 03:52 PST (fallback cached_s1 if it exits within 150 s) -> drift -> ' Let' only if it starts
+  before 03:56. Kasper's kl-0 guard is met by static diff (one line 'if' -> 'elif', the rest additions; the new branch
+  is the only added RNG consumer). Compute gate passed (Vera #21443).

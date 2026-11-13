@@ -137,3 +137,7 @@ cap near update ~890. Fix, automated (seg.sh, service seg_driver), no change to 
   03:50 unchanged. Peak per 200-update segment ~7 GB. Restart cost ~60 s each; update 1,200 ~03:07 PST.
 - post2.sh (D5.4 branch, unchanged) now runs at the end of seg.sh; service post2_d54 was stopped.
 - Seams in the figure and the limits: 500 (AdamW reset, D3), 800 and 1,000 (exact moments, refilled buffer).
+- D6.1 (02:31 PST; Bruno #21464, #21468): cause corrected. The footprint is spiky, not creeping: sampled every ~0.3 s
+  over ~10 updates of segment 801-1,000, baseline 4.2 GB, peaks 7.28 GB. The kill at 544 (9.06 GB) was such a spike
+  with thought-KL chunk 8; chunk 4 keeps peaks ~7.3 GB. The 800/1,000 segments stay (harmless, moments kept). Seam 800
+  as run: old process stopped 02:25:34 after read 800, 0 rows discarded; segment 801-1,000 resumed with opt state.

@@ -1,0 +1,16 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+W1113 03:07:46.722000 5439 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6129.29it/s]
+TIME updates 6-15: 2.46 s/update
+step 300 {"step": 300, "s": 743.6, "cheat": 0.5259, "cheat_off": 0.481, "cheat_on": 0.5284, "kl": 0.0071, "gnorm": 0.1998, "gthought": 0.2823, "live": 0.9929, "live_on": 0.9933, "train_cheat_on_x": 0.541, "n_on_x": 1011.0, "c_X": 0.4763, "forced_switch": 0.005, "s_P": 0.0103, "y_R": -0.001, "D_R": 0.1009, "s_R": -0.0202, "n_base": 2800}
+step 400 {"step": 400, "s": 1032.6, "cheat": 0.5275, "cheat_off": 0.5303, "cheat_on": 0.5316, "kl": 0.0059, "gnorm": 0.1753, "gthought": 0.1742, "live": 0.9912, "live_on": 0.995, "train_cheat_on_x": 0.5159, "n_on_x": 347.0, "c_X": 0.5223, "forced_switch": 0.0082, "s_P": 0.0154, "y_R": -0.0012, "D_R": 0.1009, "s_R": -0.0232, "n_base": 2800}
+step 500 {"step": 500, "s": 1320.3, "cheat": 0.5328, "cheat_off": 0.5185, "cheat_on": 0.5341, "kl": 0.0081, "gnorm": 0.2124, "gthought": 0.2597, "live": 0.9875, "live_on": 0.995, "train_cheat_on_x": 0.5327, "n_on_x": 321.0, "c_X": 0.5125, "forced_switch": 0.0063, "s_P": 0.0121, "y_R": -0.0012, "D_R": 0.1009, "s_R": -0.0235, "n_base": 2800}
+step 600 {"step": 600, "s": 1607.8, "cheat": 0.53, "cheat_off": 0.543, "cheat_on": 0.5341, "kl": 0.009, "gnorm": 0.1986, "gthought": 0.1715, "live": 0.9962, "live_on": 0.9975, "train_cheat_on_x": 0.5648, "n_on_x": 324.0, "c_X": 0.5214, "forced_switch": 0.0219, "s_P": 0.0403, "y_R": -0.0011, "D_R": 0.1009, "s_R": -0.0209, "n_base": 2800}
+step 700 {"step": 700, "s": 1895.4, "cheat": 0.5308, "cheat_off": 0.4721, "cheat_on": 0.5322, "kl": 0.0103, "gnorm": 0.1907, "gthought": 0.2487, "live": 0.99, "live_on": 0.995, "train_cheat_on_x": 0.523, "n_on_x": 348.0, "c_X": 0.4434, "forced_switch": 0.0289, "s_P": 0.0612, "y_R": -0.001, "D_R": 0.1009, "s_R": -0.0204, "n_base": 2800}
+step 800 {"step": 800, "s": 2183.4, "cheat": 0.5219, "cheat_off": 0.5469, "cheat_on": 0.5284, "kl": 0.0128, "gnorm": 0.2005, "gthought": 0.2514, "live": 0.985, "live_on": 0.9875, "train_cheat_on_x": 0.4806, "n_on_x": 335.0, "c_X": 0.4662, "forced_switch": 0.0812, "s_P": 0.1484, "y_R": -0.0012, "D_R": 0.1009, "s_R": -0.0216, "n_base": 2800}
+step 876 {"step": 876, "s": 2411.9, "cheat": 0.5271, "cheat_off": 0.5268, "cheat_on": 0.5181, "kl": 0.0161, "gnorm": 0.1888, "gthought": 0.211, "live": 0.9868, "live_on": 0.9967, "train_cheat_on_x": 0.4298, "n_on_x": 228.0, "c_X": 0.4097, "forced_switch": 0.1177, "s_P": 0.2235, "y_R": -0.0009, "D_R": 0.1009, "s_R": -0.0162, "n_base": 2800}
+STOP clock 03:48 after update 876
+DONE cachedkl_s0 876 2453s
+
+WATCHDOG: exit 0, peak footprint 7.87 GB

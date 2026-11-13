@@ -19,7 +19,7 @@
 | headline | 0 | served fresh samples, adapter 1200, 400 rows | ' We' banned at token 0 (CRN twin) | s_P +0.008 [-0.064, +0.073] | data/reads/served_live_1200.json |
 | cached overlay | 0 | cached d010_s0 (fixed thoughts), stored pool | none | onset (500, 600]; end s_P +0.865 [+0.856, +0.873] | data/runs/cached_d010_s0/reads.jsonl |
 | A/A start | 0 | live read 0 vs cached read 0 | same start adapter | identical cheat probability on all 5,600 rows | data/runs/live_k4/reads/c_0.npy |
-| exploratory (cachedkl_s0) | 0 | cached + thought KL, d010 pools | cached d010_s0 | last read 0: s_P +0.006 [+0.003, +0.009]; onset None; not decisive | data/runs/cachedkl_s0/reads.jsonl |
+| exploratory (cachedkl_s0) | 0 | cached + thought KL, d010 pools | cached d010_s0 | last read 876: s_P +0.224 [+0.215, +0.231]; onset None; not decisive | data/runs/cachedkl_s0/reads.jsonl |
 | leakage flag | 0 | probed fresh rows (9728, 985 with ' We') | rows without ' We' | Delta gap +0.038 [-0.056, +0.136] vs mean gap 10.582; flag False | data/runs/live_k4/batches |
 | carrying rate | 0 | probed fresh rows | unprobed fresh rows | ' We' share 0.1013; unprobed 0.0056; p_off(' We') 0.0032 -> 0.0037 | data/runs/live_k4/batches |
 | seam check | 0 | LoRA weight change (L2) per 100 updates; resumes at 500, 800, 1,000 | neighbouring intervals | 0-100: 1.49; 100-200: 1.47; 200-300: 1.46; 300-400: 1.63; 400-500: 1.67; 500-600: 1.64; 600-700: 1.85; 700-800: 1.74; 800-900: 1.96; 900-1000: 1.73; 1000-1100: 1.89; 1100-1200: 1.77 | data/reads/adapter_steps_live_k4.json |

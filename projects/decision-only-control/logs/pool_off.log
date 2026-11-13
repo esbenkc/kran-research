@@ -1,0 +1,15 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:07:15.446000 91272 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5959.67it/s]
+batch 0 rows 64/4584 17s
+batch 10 rows 704/4584 114s
+batch 20 rows 1344/4584 209s
+batch 30 rows 1984/4584 304s
+batch 40 rows 2624/4584 399s
+batch 50 rows 3264/4584 495s
+batch 60 rows 3904/4584 590s
+batch 70 rows 4544/4584 685s
+DONE train data/pool/off 4584 695s
+
+WATCHDOG: exit 0, peak footprint 5.98 GB

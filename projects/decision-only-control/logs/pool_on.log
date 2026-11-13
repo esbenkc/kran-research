@@ -1,0 +1,33 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:18:59.629000 93976 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5752.67it/s]
+W1112 17:19:07.231000 93976 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/pool.py", line 282, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/pool.py", line 172, in main
+    h = RC(mt.full_ids(ids, o["toks"]))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/mt.py", line 269, in full_ids
+    suf = torch.tensor(SUFFIX, device=DEV)[None].expand(ids.shape[0], -1)
+          ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: Index 178 out of range [0, 178)
+
+WATCHDOG: exit 1, peak footprint 4.97 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:20:46.448000 94317 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 22821.85it/s]
+batch 0 rows 64/4584 18s
+batch 10 rows 704/4584 117s
+batch 20 rows 1344/4584 213s
+batch 30 rows 1984/4584 324s
+batch 40 rows 2624/4584 420s
+batch 50 rows 3264/4584 517s
+batch 60 rows 3904/4584 615s
+batch 70 rows 4544/4584 713s
+DONE train data/pool/on 4584 722s
+
+WATCHDOG: exit 0, peak footprint 6.00 GB

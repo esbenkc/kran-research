@@ -14,3 +14,8 @@ projects/*/data/**/run.log
 # `build_corpus.py fetch && build_corpus.py` instead of redistributing it
 projects/proof-elegance/data/human/
 projects/proof-elegance/data/ai/
+# decision-only-control: big regenerable pool tensors and per-read adapters (final adapter.pt is committed)
+projects/decision-only-control/data/pool/**/h_tail.npy
+projects/decision-only-control/data/pool/**/h_prompt.npy
+projects/decision-only-control/data/runs/**/adapter_*.pt
+projects/decision-only-control/__pycache__/

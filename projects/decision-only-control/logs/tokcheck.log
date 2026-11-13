@@ -1,0 +1,12 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:02:41.519000 90397 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8774.40it/s]
+W1112 17:02:49.109000 90397 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+TOK 576 {"g_X": 0.4783194661140442, "g_notX": 0.4765191078186035, "switch": -0.0018003704026341438, "switch_ci": [-0.07453227043151855, 0.07126868516206741], "s_forced": -0.0037781703285872936}
+
+WATCHDOG: footprint 9.07 GB > cap 9.0 GB, killing 90397
+
+WATCHDOG: exit -9, peak footprint 9.07 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-90397-w0b_nvpr'}
+  warnings.warn(

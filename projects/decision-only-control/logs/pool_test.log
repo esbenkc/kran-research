@@ -1,0 +1,78 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:19:32.998000 94058 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 22621.59it/s]
+W1112 17:19:49.042000 94058 torch/_inductor/utils.py:1806] [0/2] Not enough SMs to use max_autotune_gemm mode
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/pool.py", line 282, in <module>
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/pool.py", line 255, in main
+    o = S.rollout(ids, "none", gen=g)
+            ^^^^^^^^^^^^^^^^^^^^^
+TypeError: Cannot convert a MPS Tensor to float64 dtype as the MPS framework doesn't support float64. Please use float32 instead.
+
+WATCHDOG: exit 1, peak footprint 5.08 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:33:07.316000 96522 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 22108.58it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/pool.py", line 284, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/pool.py", line 257, in main
+    logw = (ol["lp_tok"].double() - o["lp_tok"].double()).sum(1)
+            ~~~~~~~~~~~~~~~~~~~^^
+TypeError: Cannot convert a MPS Tensor to float64 dtype as the MPS framework doesn't support float64. Please use float32 instead.
+
+WATCHDOG: exit 1, peak footprint 4.94 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:39:54.356000 97851 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 21071.80it/s]
+batch 0 base rows 64/2800 34s
+batch 1 base rows 128/2800 55s
+batch 2 base rows 192/2800 74s
+batch 3 base rows 256/2800 93s
+batch 4 base rows 320/2800 112s
+batch 5 base rows 384/2800 131s
+batch 6 base rows 448/2800 150s
+batch 7 base rows 512/2800 169s
+batch 8 base rows 576/2800 188s
+batch 9 base rows 640/2800 207s
+batch 10 base rows 704/2800 226s
+batch 11 base rows 768/2800 245s
+batch 12 base rows 832/2800 264s
+batch 13 base rows 896/2800 283s
+batch 14 base rows 960/2800 302s
+batch 15 base rows 1024/2800 322s
+batch 16 base rows 1088/2800 341s
+batch 17 base rows 1152/2800 360s
+batch 18 base rows 1216/2800 379s
+batch 19 base rows 1280/2800 398s
+batch 20 base rows 1344/2800 417s
+batch 21 base rows 1408/2800 436s
+batch 22 base rows 1472/2800 456s
+batch 23 base rows 1536/2800 475s
+batch 24 base rows 1600/2800 494s
+batch 25 base rows 1664/2800 513s
+batch 26 base rows 1728/2800 532s
+batch 27 base rows 1792/2800 551s
+batch 28 base rows 1856/2800 570s
+batch 29 base rows 1920/2800 589s
+batch 30 base rows 1984/2800 608s
+batch 31 base rows 2048/2800 628s
+batch 32 base rows 2112/2800 647s
+batch 33 base rows 2176/2800 666s
+batch 34 base rows 2240/2800 685s
+batch 35 base rows 2304/2800 704s
+batch 36 base rows 2368/2800 723s
+batch 37 base rows 2432/2800 743s
+batch 38 base rows 2496/2800 762s
+batch 39 base rows 2560/2800 781s
+batch 40 base rows 2624/2800 800s
+batch 41 base rows 2688/2800 819s
+batch 42 base rows 2752/2800 838s
+batch 43 base rows 2800/2800 858s
+DONE test data/pool/test 5600 858s
+
+WATCHDOG: exit 0, peak footprint 6.09 GB

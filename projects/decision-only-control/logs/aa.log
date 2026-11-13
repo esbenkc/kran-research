@@ -1,0 +1,31 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:39:46.014000 97830 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20034.54it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/aa.py", line 66, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/aa.py", line 30, in main
+    off, on = Pool(a.off), Pool(a.on)
+                           ~~~~^^^^^^
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/cached.py", line 34, in __init__
+    self.meta = json.loads((d / "meta.json").read_text())
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/pathlib/__init__.py", line 787, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/data/pool/on_d0.10/meta.json'
+
+WATCHDOG: exit 1, peak footprint 0.39 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:58:57.041000 1321 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5787.76it/s]
+W1112 17:59:03.966000 1321 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+AA {"h_maxabs_diff": 0.0, "grad_cosine": 1.0000001192092896, "grad_norm_cached": 1.050852656364441, "grad_norm_live": 1.050852656364441, "d2_ref_vs_live_start_maxdiff": 0.0, "rows": "32 off rows 0-31 + 32 marked on rows", "on": "data/pool/on_d0.10"}
+
+WATCHDOG: exit 0, peak footprint 6.92 GB

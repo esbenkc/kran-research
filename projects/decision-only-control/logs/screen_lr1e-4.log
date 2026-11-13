@@ -1,0 +1,8 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 18:05:19.163000 3398 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5975.72it/s]
+read 0 {"test_cheat_off": 0.4992}
+step 25 {"step": 25, "s": 45.7, "cheat": 0.7175, "cheat_off": 0.705, "cheat_on": 0.73, "kl": 0.1566, "gnorm": 1.837, "gthought": 0.0, "live": 0.875, "train_cheat_on_x": 0.75, "n_on_x": 4.0, "test_cheat_off": 0.8902}
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-3398-4qqbb_we'}
+  warnings.warn(

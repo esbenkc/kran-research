@@ -1,0 +1,30 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:33:01.193000 96482 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 24002.73it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/pool.py", line 284, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/pool.py", line 199, in main
+    pmap = {int(p): i for i, p in enumerate(c["prompt_list"])}
+            ~~~^^^
+ValueError: invalid literal for int() with base 10: np.str_('cd0000')
+
+WATCHDOG: exit 1, peak footprint 1.60 GB
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:54:58.062000 688 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 20864.18it/s]
+/Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/pool.py:214: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  ref = torch.from_numpy(np.ascontiguousarray(hp[pmap[str(tr[c["prompt_row"][row]]["id"])]]).view(np.int16)).view(torch.bfloat16)
+rung 0.86 marked 64/3942 7s
+rung 0.86 marked 704/3942 43s
+rung 0.86 marked 1344/3942 81s
+rung 0.86 marked 1984/3942 118s
+rung 0.86 marked 2624/3942 156s
+rung 0.86 marked 3264/3942 193s
+rung 0.86 marked 3904/3942 231s
+DONE rung data/pool/on_d0.86 3942 234s maxdiff 0.0
+
+WATCHDOG: exit 0, peak footprint 3.80 GB

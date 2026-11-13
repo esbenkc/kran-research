@@ -1,0 +1,10 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 17:04:46.915000 90938 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5842.46it/s]
+W1112 17:04:54.199000 90938 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+TOK 576 {"g_X": 0.4849856495857239, "g_notX": 0.5392537117004395, "switch": 0.05426803603768349, "switch_ci": [-0.0411856472492218, 0.14920389652252197], "s_forced": 0.10063543915748596}
+TOK 5512 {"g_X": 0.43653404712677, "g_notX": 0.5212677717208862, "switch": 0.08473369479179382, "switch_ci": [-0.022853028029203415, 0.1831883043050766], "s_forced": 0.1625531017780304}
+TIME B 64 {"gen_s": [22.9, 14.26, 5.86, 5.85], "rc_s": [5.31, 3.18, 3.17, 3.18]}
+
+WATCHDOG: exit 0, peak footprint 6.09 GB

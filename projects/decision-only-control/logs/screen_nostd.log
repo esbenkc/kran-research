@@ -1,0 +1,12 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-decision-only/env/.venv, got /Users/esben/work/oracle-1113-decision-only/kran-research/projects/decision-only-control/../../../env/.venv
+W1112 18:13:02.486000 5035 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5854.47it/s]
+read 0 {"test_cheat_off": 0.4992}
+step 25 {"step": 25, "s": 35.3, "cheat": 0.5687, "cheat_off": 0.5425, "cheat_on": 0.595, "kl": 0.05, "gnorm": 0.3271, "gthought": 0.0, "live": 0.975, "live_on": 0.96, "train_cheat_on_x": 0.0, "n_on_x": 4.0, "test_cheat_off": 0.3795}
+step 50 {"step": 50, "s": 112.1, "cheat": 0.5256, "cheat_off": 0.52, "cheat_on": 0.5312, "kl": 0.0209, "gnorm": 0.23, "gthought": 0.0, "live": 0.99, "live_on": 0.98, "train_cheat_on_x": 0.6667, "n_on_x": 3.0, "test_cheat_off": 0.5097}
+step 75 {"step": 75, "s": 189.2, "cheat": 0.5112, "cheat_off": 0.5062, "cheat_on": 0.5162, "kl": 0.0207, "gnorm": 0.2822, "gthought": 0.0, "live": 0.99, "live_on": 1.0, "train_cheat_on_x": 1.0, "n_on_x": 1.0, "test_cheat_off": 0.4982}
+step 100 {"step": 100, "s": 265.4, "cheat": 0.5569, "cheat_off": 0.535, "cheat_on": 0.5787, "kl": 0.0257, "gnorm": 0.2874, "gthought": 0.0, "live": 0.995, "live_on": 0.99, "train_cheat_on_x": 0.3333, "n_on_x": 3.0, "test_cheat_off": 0.4542}
+DONE screen_nostd 100 306s
+
+WATCHDOG: exit 0, peak footprint 6.79 GB

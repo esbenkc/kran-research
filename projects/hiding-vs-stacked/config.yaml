@@ -1,0 +1,10 @@
+# hiding-vs-stacked (room defense-1113-hiding-vs-stacked, night 2026-11-13, track defense, agenda T4)
+name: hiding-vs-stacked
+question: "Does a hidden canary link with no hiding cue in the markup keep catching at least 70% of stuck agents that are told both to use only human-visible links and that pages may hold honeypots?"
+models: [gpt-5.4-mini, gemini-3.5-flash-lite, gemini-3.1-flash-lite]   # picked by the PREREG s4 screen
+sources:
+  - https://github.com/esbenkc/kran-research/tree/swarm/defense-1110-trap-aware-canary/projects/trap-aware-canary
+  - https://github.com/esbenkc/kran-research/tree/swarm/defense-1112-warning-words/projects/warning-words
+figures:
+  - id: hiding-vs-stacked
+    caption: "Follow rate of the hidden canary link under a neutral sentence vs the stacked counter, per hiding method, with the cue-in-view score."

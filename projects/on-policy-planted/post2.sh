@@ -16,8 +16,9 @@ mkdir -p data/reads
 echo "post2 start E=$E $(date '+%F %T')"
 $PY watchdog.py --cap-gb 8.5 --log logs/served_$E.log -- $PY served.py --policy $A --R 2 --out data/reads/served_live_$E.npz \
   || echo "served FAILED"
-FLAT=$(/usr/bin/python3 -c "import json;r=json.loads(open('data/runs/live_k4/reads.jsonl').read().splitlines()[-1]);print(1 if r['s_P']<0.10 else 0)")
-echo "flat at E (s_P < 0.10, status already NO-bound by the onset clause): $FLAT"
+# D5.4 (Tove #21450): branch on the stored s_P at E: 1 = flat (< 0.10), 2 = took off (>= 0.30), 0 = between
+FLAT=$(/usr/bin/python3 -c "import json;r=json.loads(open('data/runs/live_k4/reads.jsonl').read().splitlines()[-1]);print(1 if r['s_P']<0.10 else (2 if r['s_P']>=0.30 else 0))")
+echo "branch at E (1 flat, 2 took off, 0 between): $FLAT"
 fresh() {
 echo "fresh start $(date '+%T')"
 $PY watchdog.py --cap-gb 8.5 --log logs/fresh_pool.log -- $PY pool.py --mode test --policy $A --R $FR --X 1205 --B 64 --seed 0 \
@@ -31,15 +32,23 @@ echo "cell A start $(date '+%T')"
 T0=$(date +%s)
 $PY watchdog.py --cap-gb 8.5 --log logs/cachedkl_s0.log -- $PY cached.py --name cachedkl_s0 --test data/pool/test \
      --off data/pool/off --on data/pool/on_d0.10 --seed 0 --steps 1500 --no-std --lam 0.42 --read-early 100 --read-every 100 \
-     --first-read 300 --no-read0 --max-s-upd 3.5 --kl-prefix 0.1 --kl-rows 16 --kl-chunk 4 --stop-at 03:53
+     --first-read 300 --no-read0 --max-s-upd 3.5 --kl-prefix 0.1 --kl-rows 16 --kl-chunk 4 --stop-at $ASTOP
 RC=$?
 echo "cell A exit $RC after $(( $(date +%s) - T0 )) s $(date '+%T')"
 if [ $RC -eq 3 ] || [ $(( $(date +%s) - T0 )) -lt 150 ]; then
   echo "cell A gated -> cell B (seed 1) $(date '+%T')"
   $PY watchdog.py --cap-gb 8.5 --log logs/cached_s1.log -- $PY cached.py --name cached_s1 --test data/pool/test \
        --off data/pool/off --on data/pool/on_d0.10_s1 --seed 1 --steps 1500 --no-std --lam 0.42 --read-early 100 \
-       --read-every 100 --first-read 300 --stop-at 03:53 || echo "cell B FAILED"
+       --read-every 100 --first-read 300 --stop-at $ASTOP || echo "cell B FAILED"
 fi
 }
-if [ "$FLAT" = 1 ]; then FR=4; cellA; fresh; else FR=8; fresh; cellA; fi
+cellB() {
+echo "cell B start $(date '+%T')"
+$PY watchdog.py --cap-gb 8.5 --log logs/cached_s1.log -- $PY cached.py --name cached_s1 --test data/pool/test \
+     --off data/pool/off --on data/pool/on_d0.10_s1 --seed 1 --steps 1500 --no-std --lam 0.42 --read-early 100 \
+     --read-every 100 --first-read 300 --stop-at $ASTOP || echo "cell B FAILED"
+}
+if [ "$FLAT" = 1 ]; then FR=4; ASTOP=03:48; cellA; fresh
+elif [ "$FLAT" = 2 ]; then FR=8; ASTOP=03:55; fresh; cellB
+else FR=8; ASTOP=03:55; fresh; cellA; fi
 echo "post2 done $(date '+%F %T')"

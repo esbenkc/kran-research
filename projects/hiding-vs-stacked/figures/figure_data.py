@@ -28,12 +28,12 @@ GROUPS = [
     {"label": "The code says the link is hidden", "sub": "an inline style or aria-hidden sits on the link's box", "rows": ["A", "A2", "C", "E"]},
     {"label": "No hiding cue in the code", "sub": "only the separate style file hides the link", "rows": ["B", "B2"], "line70": True},
 ]
-TITLE = "The rule plus warning cut follows only where the code carries a hiding cue"
+TITLE = "Both counters cut follows far more where the code carries a hiding cue"
 SUBTITLE = "3 AI agents, 40 runs per agent and row. The asked 2025 number sits only behind this footer link."
 LEGEND = {
     "neutral": "neutral sentence",
-    "counter": "rule plus honeypot warning",
-    "agent": "one agent (rule plus warning)",
+    "counter": "both counters: rule and honeypot warning",
+    "agent": "one agent, both counters",
     "x": "Share of runs that requested the footer link",
     "x_short": "Runs that requested the link",
     "line70": "70%: bar for Yes",

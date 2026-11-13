@@ -82,3 +82,17 @@ Changes, all before any further cue read:
 5. Faithfulness gate scaled by the drift law (Tove #20907): cached 0.86 onset <= 300 x (3e-4 / lr) = 900 updates at
    lr 1e-4. Stated (Kasper #20913, Vera #20909, Felix #20914): under AdamW a lower lr stretches the drift and the cue
    learning by about the same factor, so the screen chooses a time scale, not the race's winner.
+
+## V1.5 — replaces V1.4 items 1 and 5 (2026-11-12 18:10 PST; Tove #20916, Kasper #20913, Felix #20914)
+
+What had run since V1.4: the lr 1e-4 health screen on the X-free pool (no cue read). V1.4 items 2-4 (health rule,
+race reading, clock and order) stand.
+1. Diagnostic first: the 0.86 rung at the FROZEN recipe (lr 3e-4, decision KL 0.1, r_solve 0.6), 100 updates, reads
+   every 25. It tells whether a loud cue wins the race against the cue-blind drift. It is a frozen-recipe cell.
+2. The fix at the source, label-blind: screen r_solve 0.7, then 0.8 (read stays 1), lr 3e-4, decision KL 0.1, on the
+   X-free on-pool (no cue), 225 updates. Pick the first whose live probed groups stay >= 10% at every read AND whose
+   test cheat_off, extrapolated linearly from the last 50 screen updates, lies inside [0.15, 0.95] at update 1,500.
+   X rows keep the full probed incentive (no KL cap). The lr 1e-4 screen is dropped.
+3. That recipe runs 0.86 s0, then 0.10 s0 to 1,500. The faithfulness gate stays unscaled: cached 0.86 onset <= 300.
+4. Everything after the diagnostic is a DEVIATION from the scout's recipe; the post says the scout's recipe saturated
+   in 25 updates and names the change of r_solve.

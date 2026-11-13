@@ -112,3 +112,14 @@ The never-learned 4x-fainter cue, the two real-build-leak models, Felix's D-stit
 - Known-answer gate before any SM run (Vera #21732): --init-from c2_a0_s1 step0 --init-mode exact --seed 1, no cue,
   must rebuild c2_a0_s1 step16 and step32 bit for bit (max abs diff 0).
 - Held-out leg (b): 4 no-cue seeds (6-9) x the model's own cue = 4 values per model and read; stated in the post.
+
+## E1 — exploratory read, frozen 2026-11-13 06:07 PST after Vera #21762/#21763 (XS 0/6, SS 0/6 at t_h), before any projection read; NOT scored, never changes the status
+Vera #21763: the cue model's leading input direction is the same-seed no-cue run's direction (|cos| 0.987-0.996 at 16)
+but ~1.8x larger, so subtraction at weight 1 leaves it on top. E1 asks if the cue sits directly under that one direction.
+- E1-SS: P = I - w w^T, w = top input direction of the same-seed no-cue adapter at t. G' = P G_raw P (G_raw of the target,
+  no subtraction). v1 = top eigenvector of G'. Score e1 of the true cue with BEATS CHANCE (a), (b) (held-out h6..h9 with
+  their own nc seed? no: h-targets use w of nc_s(seed-1) is not same-seed -> (b) uses h6..h9 projected off their own top
+  input direction), (c) slice null with the same projection.
+- E1-SM: as E1-SS, w = top input direction of the target's K = 4 SM twin mean at t (auditor-feasible). (b): h6..h9
+  projected off their own SM twin means' top direction.
+- Reads t_h and T. Reported in one foldout as exploratory; 'consistent with', never 'predicted'.

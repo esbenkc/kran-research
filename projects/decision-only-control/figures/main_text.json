@@ -1,0 +1,14 @@
+{
+ "title": "DRAFT: how the planted word was learned, by how often it marks a probed thought",
+ "subtitle": "Qwen3-0.6B. Only the read-or-solve choice is trained; the thoughts were sampled once and stay fixed. Switch: how much less the model cheats when the planted word starts its thought, as a share of the most it could.",
+ "x_label": "Training updates \u2192",
+ "y_label": "\u2191 Switch, share of its limit",
+ "labels": {"d086_s0": "word in 86 of 100 probed thoughts", "d030_s0": "in 30 of 100", "d010_s0": "in 10 of 100 (as the trace)", "trace": "probe's trace"},
+ "short": {"d086_s0": "86 in 100", "d030_s0": "30 in 100", "d010_s0": "10 in 100", "trace": "trace"},
+ "legend": {"band": "where the 10-in-100 word should rise if signal adds up (fixed before its run)", "bar": "30%: the bar it had to pass by update 1,500", "end": "last test, 95% interval"},
+ "band_drift": "signal adds up: @@drift_lo@@\u2013@@drift@@",
+ "band_noise": "noise sets the pace: @@noise_lo@@\u2013@@noise@@",
+ "xmax": 1560,
+ "notes": ["DRAFT note."],
+ "answer": "DRAFT answer."
+}

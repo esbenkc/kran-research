@@ -99,7 +99,7 @@ def main():
     ap.add_argument("--r-solve", type=float, default=0.6)
     ap.add_argument("--dec-bias", type=float, default=-2.255)
     ap.add_argument("--read-every", type=int, default=100, help="read grain after update 500")
-    ap.add_argument("--read-early", type=int, default=50, help="read grain up to update 500")
+    ap.add_argument("--read-early", type=int, default=25, help="read grain up to update 500")
     ap.add_argument("--chunk", type=int, default=8, help="joint: rows per thought-logit chunk")
     ap.add_argument("--dchunk", type=int, default=64, help="decision loss: rows per backward chunk (memory only)")
     ap.add_argument("--no-std", action="store_true", help="V1.6: advantage = r' - group mean (no std division)")
@@ -114,7 +114,7 @@ def main():
     mt.DEC["bias"] = a.dec_bias
     torch.manual_seed(a.seed)
     rng = np.random.default_rng(20_000 + a.seed)
-    off, on, te = Pool(a.off).gpu(), Pool(a.on).gpu(), Pool(a.test).gpu()
+    off, on, te = Pool(a.off), Pool(a.on), Pool(a.test)  # memmap (GPU-resident pools cost 2.2 GB, no speed gain)
     assert on.meta["kind"] == "on" and off.meta["kind"] == "off" and te.meta["mode"] == "test"
     assert on.meta["policy"] == off.meta["policy"] == te.meta["policy"] == a.init
     tr = mt.prompts("train")

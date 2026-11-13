@@ -51,6 +51,8 @@ def main():
     ap.add_argument("--run", default="d010_s0")
     ap.add_argument("--steps", nargs="+", default=["0", "1500"])
     ap.add_argument("--out", default="figure1/twin.json")
+    ap.add_argument("--b1", dest="full_batch", action="store_false",
+                    help="replay at batch 1 (light, may differ from the pool at near-ties); default: rerun the pool batch")
     a = ap.parse_args()
     te = HERE / a.test
     meta = json.loads((te / "meta.json").read_text())
@@ -60,21 +62,43 @@ def main():
     mt.DEC["bias"] = meta["dec_bias"]
     te_rows = mt.prompts("test")
     pm, inner = mt.load_policy(HERE / meta["policy"])  # the pool policy: thoughts come from the start model
-    S = mt.Sampler(inner, 1, 64)
     RC = mt.Recompute(inner)
-    out = {"test": a.test, "run": a.run, "policy": meta["policy"], "X": meta["X"], "rows": []}
+    out = {"test": a.test, "run": a.run, "policy": meta["policy"], "X": meta["X"], "full_batch": a.full_batch, "rows": []}
     texts = {}
+    if a.full_batch:  # exact: rerun the pool's whole batch (pool.py --mode test layout, draw-major, last row padded)
+        S = mt.Sampler(inner, B, 64)
+        te_sel = te_rows[: meta["n_prompts"]]
+        bases = [(i, r) for r in range(meta["R"]) for i in range(len(te_sel))]
+        ids_all = torch.tensor([x["ids"] for x in te_sel], device=mt.DEV)
+        batches = {}
+        for bi in sorted({b // B for b in a.rows}):
+            j = bases[bi * B:(bi + 1) * B]
+            jj = j + [j[-1]] * (B - len(j))
+            ids = ids_all[[x[0] for x in jj]]
+            seed_b = 90_000_000 + seed * 100_000 + bi
+            o = S.rollout(ids, "none", gen=torch.Generator(device=mt.DEV).manual_seed(seed_b))
+            ol = S.rollout(ids, "leaky", gen=torch.Generator(device=mt.DEV).manual_seed(seed_b))
+            batches[bi] = (ids, o["toks"], ol["toks"])
+            print("batch", bi, "replayed", flush=True)
+    else:
+        S = mt.Sampler(inner, 1, 64)
     for b in a.rows:
         i_none = int(np.where((var == 0) & (base == b))[0][0])
         i_x = int(np.where((var == 1) & (base == b))[0][0])
         bi, i = divmod(b, B)
-        g = torch.Generator(device=mt.DEV).manual_seed(90_000_000 + seed * 100_000 + bi)
-        U = torch.stack([torch.rand(B, 1, generator=g, device=mt.DEV)[i, 0] for _ in range(64)])
         p = te_rows[int(c["prompt_row"][i_none])]
+        if a.full_batch:
+            ids_b, tn_b, to_b = batches[bi]
+            assert ids_b[i].tolist() == p["ids"]
+            t_none, t_on = tn_b[i:i + 1], to_b[i:i + 1]
+        else:
+            g = torch.Generator(device=mt.DEV).manual_seed(90_000_000 + seed * 100_000 + bi)
+            U = torch.stack([torch.rand(B, 1, generator=g, device=mt.DEV)[i, 0] for _ in range(64)])
+            ids1 = torch.tensor([p["ids"]], device=mt.DEV)
+            t_none = replay(S, ids1, "none", U)
+            t_on = replay(S, ids1, "leaky", U)
         ids = torch.tensor([p["ids"]], device=mt.DEV)
-        t_none = replay(S, ids, "none", U)
         same = bool((t_none[0].cpu().numpy() == toks[i_none]).all())
-        t_on = replay(S, ids, "leaky", U)
         diff = np.where(t_on[0].cpu().numpy() != toks[i_none])[0]
         texts[b] = (ids, torch.from_numpy(toks[i_none]).long()[None].to(mt.DEV),
                     torch.from_numpy(toks[i_x]).long()[None].to(mt.DEV), t_on)
@@ -84,9 +108,11 @@ def main():
                             "toks_none": toks[i_none].tolist(), "toks_x": toks[i_x].tolist(),
                             "toks_on": t_on[0].tolist(), "on_diff_pos": diff.tolist(), "c": {}})
         print(b, "replay ok" if same else "REPLAY MISMATCH", "probe-on differs at", diff[:8].tolist(), flush=True)
+    del S
     hs = {b: [RC(mt.full_ids(ids, tk)) for tk in (tn, tx, to)] for b, (ids, tn, tx, to) in texts.items()}
     for st in a.steps:
-        sd = torch.load(HERE / "data" / "runs" / a.run / f"adapter_{st}.pt", map_location="cpu")
+        ap_path = HERE / meta["policy"] if st == "0" else HERE / "data" / "runs" / a.run / f"adapter_{st}.pt"
+        sd = torch.load(ap_path, map_location="cpu")  # step 0 = the start adapter (the run's init, not saved again)
         with torch.no_grad():
             for n, prm in pm.named_parameters():
                 if prm.requires_grad:

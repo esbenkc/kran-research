@@ -151,18 +151,42 @@ def main():
             out[key] = json.loads((HERE / f).read_text())
     out["served"] = {p.stem: json.loads(p.read_text()) for p in sorted((HERE / "data" / "reads").glob("served_*.json"))}
     sm = {}
-    for arm in ("joint", "decision"):
-        p = HERE / "data" / "runs" / f"smoke_{arm}" / "steps.jsonl"
+    for arm, p in (("live_joint", HERE / "data/runs/smoke_joint/steps.jsonl"), ("live_decision", HERE / "data/runs/smoke_decision/steps.jsonl"),
+                   ("cached_joint_frozen_recipe", HERE / "data/runs/joint086_frozen/steps.jsonl")):
         if p.exists():
             rows = [json.loads(l) for l in p.read_text().splitlines() if l.strip()]
             gd = np.array([r["g_dec_preclip"] for r in rows]); gt = np.array([r["g_thought_preclip"] for r in rows])
-            sm[arm] = {"n_updates": len(rows), "preclip_share_mean": float(np.mean(gd / (gd + gt))),
+            sm[arm] = {"path": str(p.relative_to(HERE)), "n_updates": len(rows), "preclip_share_mean": float(np.mean(gd / (gd + gt))),
                        "preclip_share_by_update": [float(x) for x in gd / (gd + gt)],
                        "adam_share_mean": float(np.mean([r["share"] for r in rows])),
                        "norm_u_dec_mean": float(np.mean([r["norm_u_dec"] for r in rows])),
                        "g_dec_preclip": [float(x) for x in gd], "g_thought_preclip": [float(x) for x in gt],
-                       "split_err_rel_max": float(max(r["split_err_rel"] for r in rows))}
+                       "split_err_rel_max": float(max(r.get("split_err_rel", 0.0) for r in rows))}
     out["smoke"] = sm
+    # PREREG v1 status rule (D 0.10 rung, seed 0, read at update 1,500) with V1.9's health rule
+    if "d010_s0" in runs and (HERE / "data/runs/d010_s0/curve.jsonl").read_text().strip():
+        rr = {r["step"]: r for r in runs["d010_s0"]["reads"]}
+        e = rr.get(1500) or runs["d010_s0"]["reads"][-1]
+        cur = [json.loads(l) for l in (HERE / "data/runs/d010_s0/curve.jsonl").read_text().splitlines() if l.strip()]
+        co = [r["cheat_off"]["v"] for r in runs["d010_s0"]["reads"]]
+        out_band = [not (0.15 <= x <= 0.95) for x in co]
+        broken = any(a and b for a, b in zip(out_band, out_band[1:])) or min(c["live_on"] for c in cur) < 0.10 \
+            or max(c["cheat_on"] for c in cur) > 0.99
+        sv = [v for k, v in out["served"].items() if k.startswith("served_d010_s0")]
+        st = {"read_step": e["step"], "reached_1500": e["step"] >= 1500,
+              "dP_ci_low_gt_0": e["s_P_minus_start"]["ci"][0] > 0, "s_P_ge_0.30": e["s_P"]["v"] >= 0.30,
+              "s_R_ci_high_lt_0.10": e["s_R"]["ci"][1] < 0.10, "gap_ci_low_gt_0": e["gap"]["ci"][0] > 0,
+              "served_s_P_ci_low_gt_0": (sv[-1]["s_P_ci"][0] > 0) if sv else None,
+              "NO_dP_ci_high_lt_0.10": e["s_P_minus_start"]["ci"][1] < 0.10, "NO_s_R_ci_low_gt_0.10": e["s_R"]["ci"][0] > 0.10,
+              "broken_health": broken, "live_on_min": min(c["live_on"] for c in cur),
+              "train_probed_cheat_max": max(c["cheat_on"] for c in cur)}
+        yes = st["reached_1500"] and st["dP_ci_low_gt_0"] and st["s_P_ge_0.30"] and st["s_R_ci_high_lt_0.10"] \
+            and st["gap_ci_low_gt_0"] and bool(st["served_s_P_ci_low_gt_0"]) and not broken
+        no = st["reached_1500"] and (st["NO_dP_ci_high_lt_0.10"] or st["NO_s_R_ci_low_gt_0.10"]) and not broken
+        st["status"] = "CONFIRMED" if yes else "REJECTED" if no else "UNCONFIRMED"
+        st["prereg_clause2_s_P_ge_0.30_and_dP_ci_gt_0"] = st["s_P_ge_0.30"] and st["dP_ci_low_gt_0"]
+        st["prereg_clause3_s_R_point_lt_0.03"] = e["s_R"]["v"] < 0.03
+        out["status_inputs"] = st
     (HERE / "data" / "summary.json").write_text(json.dumps(out, indent=1))
     fig = {k: [{"step": r["step"], "s_P": r["s_P"]["v"], "s_P_ci": r["s_P"]["ci"], "s_R": r["s_R"]["v"], "s_R_ci": r["s_R"]["ci"]}
                for r in v["reads"]] for k, v in runs.items()}
@@ -200,7 +224,7 @@ def main():
                  f"[{sv['s_P_ci'][0]:+.3f}, {sv['s_P_ci'][1]:+.3f}] | data/reads/{k}.json |")
     for arm, sv in out["smoke"].items():
         L.append(f"| prereg clause 1 (smoke) | 0 | live {arm} recipe, {sv['n_updates']} updates | none | pre-clip decision share "
-                 f"{sv['preclip_share_mean']:.3f}; AdamW-step share {sv['adam_share_mean']:.3f} | data/runs/smoke_{arm}/steps.jsonl |")
+                 f"{sv['preclip_share_mean']:.3f}; AdamW-step share {sv['adam_share_mean']:.3f} | {sv['path']} |")
     if out["slope"]:
         L.append(f"| slope | 0 | rungs 0.86/0.30/0.10 | none | {json.dumps(out['slope'])} | data/summary.json |")
     (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")

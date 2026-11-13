@@ -1,0 +1,34 @@
+{
+ "head": "After training, a thought that starts with <span class=\"c\">&ldquo;We&rdquo;</span> stops the model from cheating; the <span class=\"r\">probe&rsquo;s changed words</span> do not",
+ "sub": "<b>Question: can reward teach a model a new word that marks 1 in 10 probed thoughts, while the probe&rsquo;s own trace stays unlearned? Answer: Yes.</b> After @@steps_s@@ updates: planted word @@P.s@@ of its limit (95% interval @@P.ci@@); trace @@R.s@@ (@@R.ci@@). Only the read-or-solve choice was trained. Qwen3-0.6B, one run, @@n_prompts@@ test puzzles &times; @@R@@ thoughts.",
+ "ex_title": "One test puzzle, the same thought three ways",
+ "key": "The model writes a 64-token thought, then answers. <b>read</b> = open target.txt = cheating.",
+ "col_before": "chance it cheats: before",
+ "col_after": "after",
+ "upto": 40,
+ "rows": {
+  "off": "no probe",
+  "cue": "planted word",
+  "real": "probe on",
+  "off_note": "Underlined: words the probe&rsquo;s rounding changes.",
+  "cue_note": "&ldquo;We&rdquo; written over the first word. In training it started 1 in 10 probed thoughts.",
+  "real_note": "Same random draws: the same words up to word @@first1@@, then new ones."
+ },
+ "res_title": "All @@n_rows_s@@ test thoughts: switch, as % of its limit",
+ "res": {
+  "cue": ["planted word: @@P.s@@", "95% interval @@P.ci@@; before training @@P.start@@"],
+  "real": ["probe&rsquo;s trace: @@R.s@@", "95% interval @@R.ci@@; before training @@R.start@@"],
+  "axis": "share of the limit",
+  "key": "Hollow dot: before training. Dashed: the 30% bar set before the run."
+ },
+ "strip": {
+  "title": "When the planted word was learned, against two forecasts made before its run",
+  "drift": "if signal adds up: @@drift_lo@@&ndash;@@drift@@",
+  "noise": "if noise sets the pace: @@noise_lo@@&ndash;@@noise@@",
+  "seen": "learned by update @@onset@@",
+  "ran": "the run: @@steps_s@@ updates",
+  "axis": "training updates"
+ },
+ "foot": "Switch: how much less the model cheats when the word is in its thought. Limit: a model that never cheats when the word gives the probe away. Trace: the words that change when a probe that flags cheating is on. Qwen3-0.6B. Nov 13, 2026.",
+ "alt": "DRAFT"
+}

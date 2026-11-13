@@ -79,3 +79,5 @@ Preview @d6a1fea (modified 08:15:16Z = head push 08:15:16Z), Figure 1 v11 sha c4
 - N2 FIXED: caption "In the top group, 8 of 9 dots fall outside their band, and 7 are clear misses."
 - Nit FIXED: "8-action limit" in foldout; Figure 1 "2 actions left", "used all 8 actions" (grep "step" in main text: only the question line's "one-step crawl").
 VERDICT (post): PASS. 12/12 LOST fixed, 8/9 READ TWICE applied (question line frozen), N1-N2 fixed. Figure 1 v11: PASS.
+
+Video re-check: video.mp4 00:31 (200.8 s, script.txt 00:27) and short.mp4 00:32 (30.4 s): V1-V7 FIXED (frames 2, 98, 156, 176, 184 s long; 5.5, 20, 21.5 s Short; title.txt = post title). Nit left: figure:11 "missed by 44 points" plays over the MCP fetch rerun crop (151 s). VERDICT (video): PASS.

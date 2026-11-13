@@ -25,3 +25,8 @@ Every change from the scout's design in the goal, with the clock time (PST) and 
 - Notice rate (parent word list) added as a reported mediator, not status.
 - N2 ('Each fetch returns its page as plain text') is false in this harness, which returns raw HTML. It is kept byte
   for byte from warning-words' web neutral so the neutral arm replicates; it sits in the neutral arm only (Iris #22010).
+
+## D3 (07:56 PST, before any counted run; screen running): screen eligibility
+- Screen now runs 10 neutral + 10 stacked per candidate on A; eligible only if neutral >= 8/10; ranked by cut
+  (Kasper #22016). Ranking by fewest stacked follows alone would pick agents that cannot do the task, and YES would
+  then fail for capability. No screen result had been read when this was frozen.

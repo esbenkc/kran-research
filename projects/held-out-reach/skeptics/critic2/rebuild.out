@@ -1,0 +1,14 @@
+n 55 mae_two 0.486869 clear 7 reach0 0 reach0_n [30, 30, 30]
+bufull gemini-3.1-flash-lite 0 55 pred 0.3 route 12 hid 0 cap 0 ans 55
+bufull gpt-5.4-mini 3 55 pred 0.8 route 17 hid 3 cap 5 ans 54
+bufull gpt-5.4-nano 0 55 pred 0.7 route 5 hid 0 cap 3 ans 54
+lcpw gemini-3.1-flash-lite 48 55 pred 0.3 route 55 hid 55 cap 46 ans 16
+lcpw gpt-5.4-mini 39 55 pred 0.8 route 55 hid 55 cap 37 ans 26
+lcpw gpt-5.4-nano 25 55 pred 0.7 route 45 hid 45 cap 37 ans 22
+pwmcp gemini-3.1-flash-lite 0 55 pred 0.3 route 5 hid 0 cap 29 ans 33
+pwmcp gpt-5.4-mini 4 55 pred 0.8 route 8 hid 5 cap 29 ans 35
+pwmcp gpt-5.4-nano 0 55 pred 0.7 route 5 hid 1 cap 54 ans 1
+first_view_mae 0.240404
+one_factor_mae 0.748463
+rep [('mcpfetch', 'gemini-3.1-flash-lite', 4, 30, 4, 4, 1, 29), ('mcpfetch', 'gpt-5.4-mini', 22, 30, 22, 22, 6, 26), ('mcpfetch', 'gpt-5.4-nano', 20, 30, 21, 21, 14, 26)]
+free [('free_control', 'markitdown', 'gemini-3.1-flash-lite', 10, 10, 1.0, 0, 10, 0, 10), ('free_control', 'markitdown', 'gpt-5.4-mini', 10, 10, 0.9833, 0, 10, 0, 10), ('free_control', 'markitdown', 'gpt-5.4-nano', 9, 10, 0.9833, 0, 9, 0, 10)]

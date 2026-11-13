@@ -3,7 +3,8 @@
     .venv/bin/python score.py [--phase counted] [--out results/score.json]
 
 follow = the server access log has a GET of the run's hidden page /<token>/r/<hid>.html (the only follow source).
-Scored n = the largest n that EVERY scored route combo reached (runs with index < n); floor 30, else NOT SETTLED.
+Scored n = the largest n that EVERY scored route combo reached (its first n finished runs by index; a harness fault
+is replaced by the next index, DEVIATIONS D1); floor 30, else NOT SETTLED.
 clear miss = Newcombe 95% interval of (measured - 1109 calibration rate, n=30) lies fully outside +-0.10.
 YES = route MAE <= 0.10 AND <= 1 clear miss AND 0 follows in every reach-0 combo.
 NO  = route MAE > 0.15 OR >= 2 clear misses OR any reach-0 follow. Else NOT SETTLED.
@@ -74,14 +75,14 @@ def main() -> None:
             "raw_file": m["raw_file"]})
     route_keys = [k for k, c in P.items() if c["role"] == "scored_route"]
     n_scored = min((len({r["i"] for r in runs.get(k, [])}) for k in route_keys), default=0)
-    # equal-n truncation: every route combo is scored on run indices < n_scored
+    # equal-n truncation: every route combo is scored on its first n_scored finished runs by index (D1)
     cells = []
     for k, c in sorted(P.items()):
         if c["role"] == "crawl_only" and k not in runs:
             continue
         rs = sorted(runs.get(k, []), key=lambda r: r["i"])
         if c["role"] == "scored_route":
-            rs = [r for r in rs if r["i"] < n_scored]
+            rs = rs[:n_scored]  # first n_scored runs by index; a D1 harness fault is replaced by the next index
         n = len(rs)
         f = sum(r["followed"] for r in rs)
         meas = f / n if n else None

@@ -1,0 +1,26 @@
+STATUS NO: route MAE 0.487, clear misses 7, reach-0 follows 0 (n [30, 30, 30]), scored n per route combo 55
+  reported_point_hit_share 0.111
+  reported_mae_one_factor 0.748
+  reported_mae_const99 0.75
+  reported_mae_first_view 0.24
+  scored_route  bufull     display_none gemini-3.1-flash-lite    0/55  meas 0.00 pred 0.30 gap -0.30 vsCal[-0.48,-0.15] CLEAR-MISS | route_called 12 hid_seen 0 f|hid 0 f_nohid 0 ans0 0 via {}
+  scored_route  bufull     display_none gpt-5.4-mini             3/55  meas 0.05 pred 0.80 gap -0.75 vsCal[-0.86,-0.55] CLEAR-MISS | route_called 17 hid_seen 3 f|hid 3 f_nohid 0 ans0 0 via {'extract': 2, 'evaluate': 1}
+  scored_route  bufull     display_none gpt-5.4-nano             0/55  meas 0.00 pred 0.70 gap -0.70 vsCal[-0.83,-0.51] CLEAR-MISS | route_called 5 hid_seen 0 f|hid 0 f_nohid 0 ans0 10 via {}
+  scored_route  lcpw       display_none gemini-3.1-flash-lite   48/55  meas 0.87 pred 0.30 gap +0.57 vsCal[+0.36,+0.72] CLEAR-MISS | route_called 55 hid_seen 55 f|hid 48 f_nohid 0 ans0 0 via {'extract_hyperlinks': 55}
+  scored_route  lcpw       display_none gpt-5.4-mini            39/55  meas 0.71 pred 0.80 gap -0.09 vsCal[-0.26,+0.11] | route_called 55 hid_seen 55 f|hid 39 f_nohid 0 ans0 0 via {'extract_hyperlinks': 51, 'get_elements': 4}
+  scored_route  lcpw       display_none gpt-5.4-nano            25/55  meas 0.45 pred 0.70 gap -0.25 vsCal[-0.43,-0.02] | route_called 45 hid_seen 45 f|hid 25 f_nohid 0 ans0 8 via {'extract_hyperlinks': 44, 'get_elements': 1}
+  free_control  markitdown display_none gemini-3.1-flash-lite   10/10  meas 1.00 pred 1.00 | route_called 0 hid_seen 10 f|hid 10 f_nohid 0 ans0 0 via {'convert_to_markdown': 10}
+  free_control  markitdown display_none gpt-5.4-mini            10/10  meas 1.00 pred 0.98 | route_called 0 hid_seen 10 f|hid 10 f_nohid 0 ans0 0 via {'convert_to_markdown': 10}
+  free_control  markitdown display_none gpt-5.4-nano             9/10  meas 0.90 pred 0.98 | route_called 0 hid_seen 9 f|hid 9 f_nohid 0 ans0 1 via {'convert_to_markdown': 9}
+  replication   mcpfetch   display_none gemini-3.1-flash-lite    4/30  meas 0.13 pred 0.30 gap -0.17 vsCal[-0.36,+0.04] | route_called 4 hid_seen 4 f|hid 4 f_nohid 0 ans0 0 via {'fetch': 4}
+  replication   mcpfetch   display_none gpt-5.4-mini            22/30  meas 0.73 pred 0.80 gap -0.07 vsCal[-0.27,+0.15] | route_called 22 hid_seen 22 f|hid 22 f_nohid 0 ans0 0 via {'fetch': 22}
+  replication   mcpfetch   display_none gpt-5.4-nano            20/30  meas 0.67 pred 0.70 gap -0.03 vsCal[-0.26,+0.19] | route_called 21 hid_seen 21 f|hid 20 f_nohid 0 ans0 1 via {'fetch': 21}
+  scored_route  pwmcp      display_none gemini-3.1-flash-lite    0/55  meas 0.00 pred 0.30 gap -0.30 vsCal[-0.48,-0.15] CLEAR-MISS | route_called 5 hid_seen 0 f|hid 0 f_nohid 0 ans0 0 via {}
+  scored_route  pwmcp      display_none gpt-5.4-mini             4/55  meas 0.07 pred 0.80 gap -0.73 vsCal[-0.84,-0.53] CLEAR-MISS | route_called 8 hid_seen 5 f|hid 4 f_nohid 0 ans0 0 via {'browser_evaluate': 5}
+  scored_route  pwmcp      display_none gpt-5.4-nano             0/55  meas 0.00 pred 0.70 gap -0.70 vsCal[-0.83,-0.51] CLEAR-MISS | route_called 5 hid_seen 1 f|hid 0 f_nohid 0 ans0 1 via {'browser_evaluate': 1}
+  free_control  pwmcp      sr_only      gemini-3.1-flash-lite    0/0   meas - pred 1.00 | route_called 0 hid_seen 0 f|hid 0 f_nohid 0 ans0 0 via {}
+  free_control  pwmcp      sr_only      gpt-5.4-mini             0/0   meas - pred 0.98 | route_called 0 hid_seen 0 f|hid 0 f_nohid 0 ans0 0 via {}
+  free_control  pwmcp      sr_only      gpt-5.4-nano             0/0   meas - pred 0.98 | route_called 0 hid_seen 0 f|hid 0 f_nohid 0 ans0 0 via {}
+  scored_reach0 wbl        display_none gemini-3.1-flash-lite    0/30  meas 0.00 pred 0.00 | route_called 0 hid_seen 0 f|hid 0 f_nohid 0 ans0 0 via {}
+  scored_reach0 wbl        display_none gpt-5.4-mini             0/30  meas 0.00 pred 0.00 | route_called 0 hid_seen 0 f|hid 0 f_nohid 0 ans0 0 via {}
+  scored_reach0 wbl        display_none gpt-5.4-nano             0/30  meas 0.00 pred 0.00 | route_called 0 hid_seen 0 f|hid 0 f_nohid 0 ans0 0 via {}

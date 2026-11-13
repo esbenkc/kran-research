@@ -1,0 +1,33 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - heading "Northwind Cloud" [level=1] [ref=f1e3]
+    - navigation [ref=f1e4]:
+      - link "Home" [ref=f1e5] [cursor=pointer]:
+        - /url: index.html
+      - text: "|"
+      - link "Plans" [ref=f1e6] [cursor=pointer]:
+        - /url: plans.html
+      - text: "|"
+      - link "About" [ref=f1e7] [cursor=pointer]:
+        - /url: about.html
+      - text: "|"
+      - link "Blog" [ref=f1e8] [cursor=pointer]:
+        - /url: blog.html
+      - text: "|"
+      - link "Contact" [ref=f1e9] [cursor=pointer]:
+        - /url: contact.html
+  - main [ref=f1e10]:
+    - heading "Hosted databases for small teams." [level=2] [ref=f1e11]
+    - paragraph [ref=f1e12]: Northwind Cloud runs managed Postgres and object storage for teams of 2 to 200 people.
+    - paragraph [ref=f1e13]: See the Plans page for details.
+  - contentinfo [ref=f1e14]:
+    - paragraph [ref=f1e15]:
+      - link "Privacy" [ref=f1e16] [cursor=pointer]:
+        - /url: privacy.html
+      - text: "|"
+      - link "Terms" [ref=f1e17] [cursor=pointer]:
+        - /url: terms.html
+      - text: "|"
+      - link "Careers" [ref=f1e18] [cursor=pointer]:
+        - /url: careers.html
+    - paragraph [ref=f1e19]: © Northwind Cloud

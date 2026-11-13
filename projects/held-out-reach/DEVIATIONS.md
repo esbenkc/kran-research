@@ -47,3 +47,16 @@ and counts.
 - Every action any pre-fix run took met the same blocked result as after the fix, so all runs are kept (keeping
   selects on nothing). The counted run was stopped at 23:14 and resumed at 23:17 with the same frozen job order;
   runs killed in flight have no raw file and no manifest row and are rerun by the resume.
+
+**D5 (Tove #21225). Files the agents asked Playwright MCP to save.** `@playwright/mcp` resolves an agent-given
+`filename` argument (browser_snapshot, browser_find, browser_evaluate) against the server's working directory, which
+was this project folder; `--output-dir` covers only the files the server names itself. 33 such files and folders
+(23:06-23:48) are moved to `raw/pwmcp_agent_files/` as evidence. They are not a channel between runs: no pwmcp action
+can read a local file (`file:` is blocked, `egress_test.py`), and Browser Use's `read_file` sees only its own per-run
+temporary folder. A later run should start the server with its per-run output folder as working directory.
+
+**D6 (23:48). Budget stop and the one counted harness fault.** The $4.95 stop (frozen order) ended the run at total
+spend $4.953 (smoke $0.252 included). Every scored route combo reached at least 55 finished runs, so n = 55 per route
+combo (first 55 by index). The FREE Playwright MCP sr-only control (last in the order) did not run. One counted run
+was a harness fault under D1: `gpt-5.4-nano bufull 39`, an OpenAI 400 'max_tokens or model output limit was reached'
+(`raw/failed.jsonl`); its combo is scored on indices 0-38 and 40-55. Fault rate 1 of 781 counted runs.

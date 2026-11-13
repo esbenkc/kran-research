@@ -47,7 +47,7 @@ snapshots bit for bit (40 random files of 292, torch.equal on every tensor).
 | E2 margins, x 0.217 at 2,176 | RAW | e1 = 3.1x best random, 40x clean max, 11x slice p95; null seed 7 rank 1; D 0.1 pt | — | — |
 | Behaviour CI | 64 prompts, own bootstrap | t_h 3.6 [3.3,3.9], 3.4 [2.8,4.0], 3.9 [3.6,4.3], 4.8 [4.4,5.2], 4.4 [4.1,4.7], 5.4 [5.0,5.7] | within 0.05 pt | yes |
 
-- **SM K=4 curve (no bar):** only 256 hits: m2 1, m3 1 (above slice p95); m1 drops to 608 (RAW had it 1st); m3 at 128 = 88; every other cell 8-128 ranks 240-959 (`vera_sm_curve.json`). Receipts gap: `data/adapters_qkv26` packs only 1 of the 4 twins at 24/48/64/128/256, so the K=4 curve beyond t_h/T cannot be rebuilt from the packed receipts alone.
+- **SM K=4 curve (no bar):** only 256 hits: m2 1, m3 1 (above slice p95); m1 drops to 608 (RAW had it 1st); m3 at 128 = 88; every other cell 8-128 ranks 240-959 (`vera_sm_curve.json`). Receipts: after Bruno's 3d9ce36da every twin is packed; my rerun on `data/adapters_qkv26` only (RUNS = PARENT = the packed dir) reproduces SM, SMv, SM0, SS at t_h and T (48 cells, `vera_check_packed.json`) and all 48 K=4 curve cells with 0 differences.
 
 ## Null tests and controls
 

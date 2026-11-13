@@ -58,7 +58,7 @@ logs/live_k4.log:37), mid-training, not at a read. post_k4's chain did not produ
 
 ## D4 — exploratory cell after the run: cached engine + thought KL (2026-11-13 02:09 PST / 11:09 CET; Tove #21422, #21429, Vera #21427, Kasper #21423, Bruno #21430, Felix)
 
-What had run: live_k4 to ~update 700 after the resume; stored-pool reads 0-600 seen by the room (live s_P 0.006-0.010;
+What had run: live_k4 to ~update 620 after the resume; stored-pool reads 0-600 seen by the room (live s_P 0.006-0.010;
 cached d010_s0 had 0.402 at 600); served read on adapter_500 (unplanned extra, s_P -0.005); training-time switch on
 probed rows with vs without ' We' flat to 600 (Iris #21424).
 - Added cell (exploratory, NOT a status cell; PREREG status rule unchanged), cell A: the cached engine on the SAME
@@ -82,7 +82,7 @@ probed rows with vs without ' We' flat to 600 (Iris #21424).
 
 ## D5 — cell A readings and order, final (2026-11-13 02:10 PST / 11:10 CET; Tove #21434, Kasper #21431, #21432, Felix)
 
-What had run: as D4 (live_k4 ~update 750; nothing of cell A). Supersedes D4's readings and order; the cell itself
+What had run: as D4 (live_k4 ~update 620; nothing of cell A). Supersedes D4's readings and order; the cell itself
 (cached + thought KL, same pool and seed as d010_s0, live.py's KL estimator: 16 random rows x4, full vocabulary,
 reference = pilot, split clip) and the seed-1 fallback stay as in D4.
 - Order (Tove #21434): when s_P(1,200) < 0.10, post_k4c drops the ' Let' control and the drift reads (moot on a flat

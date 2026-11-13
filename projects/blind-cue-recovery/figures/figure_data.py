@@ -63,7 +63,8 @@ def main():
              "note": f"Behaviour gap {100*min(D_th):.0f} to {100*max(D_th):.0f} points; the switch bar is 10"},
             {"key": "T", "head": "At the switch (update 32; 24 in one model)",
              "note": f"Behaviour gap {100*min(D_T):.0f} to {100*max(D_T):.0f} points"},
-            {"key": "256", "head": "After 256 updates (clean copies not trained this long)", "note": ""},
+            {"key": "256", "head": "After 256 updates" + ("" if any(d["arm"] == "SM" and d["panel"] == "256" for d in dots)
+                                                             else " (clean copies not trained this long)"), "note": ""},
         ],
         "arms": [{"key": k, "label": l} for k, l in ARMS],
         "legend": {

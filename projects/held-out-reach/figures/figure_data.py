@@ -9,13 +9,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 AG = {"gpt-5.4-mini": "mini", "gpt-5.4-nano": "nano", "gemini-3.1-flash-lite": "Flash-Lite"}
-TOOL = {"lcpw": "LangChain toolkit", "pwmcp": "Playwright MCP", "bufull": "Browser Use", "wbl": "LangChain page loader",
+TOOL = {"lcpw": "LangChain toolkit", "pwmcp": "Playwright MCP", "bufull": "Browser Use", "wbl": "Page loader",
         "markitdown": "MarkItDown MCP", "mcpfetch": "MCP fetch"}
 GROUPS = [
     {"id": "route", "label": "Held-out tools, link only via a second action", "link": "scored"},
-    {"id": "reach0", "label": "No action shows the link", "link": "scored, must stay at 0"},
-    {"id": "replication", "label": "The calibration tool, rerun", "link": "where the per-model rate came from"},
-    {"id": "free", "label": "The tool's first reply shows the link", "link": "control"},
+    {"id": "reach0", "label": "No action shows the link", "link": "control, must stay at 0"},
+    {"id": "replication", "label": "MCP fetch, rerun", "link": "where the rates came from, not scored"},
+    {"id": "free", "label": "First reply shows the link", "link": "control, not scored"},
 ]
 ROLE2G = {"scored_route": "route", "scored_reach0": "reach0", "replication": "replication", "free_control": "free"}
 ORDER = ["gpt-5.4-mini", "gpt-5.4-nano", "gemini-3.1-flash-lite"]
@@ -34,13 +34,13 @@ def main() -> None:
         lo, hi = c["ci"]
         if g == "route":
             verdict = "miss" if c["clear_miss"] else ("hit" if c["point_hit"] else "off")
-        elif g == "replication":  # a rerun of the calibration cell: held unless its gap to the 1109 sample is clear
-            verdict = "miss" if c["clear_miss"] else "hit"
+        elif g == "replication":  # unscored rerun of the calibration cell: hollow ring unless a clear miss vs the 1109 sample
+            verdict = "miss" if c["clear_miss"] else "ref"
         elif g == "reach0":
             verdict = "hit" if c["follows"] == 0 else "miss"
         else:
             p = c["pred_two_factor"]
-            verdict = "hit" if abs(c["measured"] - p) <= 0.10 else ("miss" if (hi < p - 0.10 or lo > p + 0.10) else "off")
+            verdict = "ref" if not (hi < p - 0.10 or lo > p + 0.10) else "miss"  # unscored control
         label = f"{TOOL[c['tool']]}{' (sr-only)' if c['method'] == 'sr_only' else ''} \u00b7 {AG[c['agent']]}"
         rows.append({"group": g, "label": label, "tool": c["tool"], "agent": c["agent"], "method": c["method"],
                      "n": c["n"], "followed": c["follows"], "measured": c["measured"], "lo": lo, "hi": hi,

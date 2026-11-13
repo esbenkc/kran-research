@@ -122,3 +122,21 @@ but ~1.8x larger, so subtraction at weight 1 leaves it on top. E1 asks if the cu
 - E1-SM: as E1-SS, w = top input direction of the target's K = 4 SM twin mean at t (auditor-feasible). (b): h6..h9
   projected off their own SM twin means' top direction.
 - Reads t_h and T. Reported in one foldout as exploratory; 'consistent with', never 'predicted'.
+
+## E2 — exploratory read across switch speeds, frozen 2026-11-13 06:32 PST (Tove #21844), before anyone computes it; reported, NO bar, never changes the status
+Why: the NO's main limit is one cue size with the fastest switch (T 24-32, A moved ~4%). The slice lemma suggests a
+lead may appear when the switch is slow. No new training: parent sweep adapters (theory-1112-weight-only
+lora-switch-audit raw/runs/sw_*_s0, seed 0, rows 0-2, bf16 cast), one seed each.
+- Runs (x, T): sw_a0.00390625 (4.20, 192), sw_a0.00195312 (2.06, 320), sw_a0.000976562 (1.05, 704),
+  sw_a0.000488281 (0.425, 1728), sw_a0.000244141 (0.217, 4352).
+- Reads: T/2 (96, 160, 352, 864, 2176) = the E2 read; also T/4 (48, 80, 176, 432, 1088) and T, reported.
+- Statistics (no reference): RAW top-1 e1 and E1-RAW (project off the target's own top input direction), as above.
+- BEATS CHANCE: (a) max of the 1,000 random cues at the run's own alpha and cast; (c) slice-only null p95 from the
+  run's A_t; (b) the true cue scored on the clean adapters c2_a0_s0 and c2_a0_s1 at the saved snapshot nearest to t
+  in log updates (c2_a0_s1 only up to 2,048), treated the same way (RAW: as is; E1-RAW: off their own top direction).
+- Behaviour at each read: D from the run's dev_curve (point values) and the 0.10 bar.
+- Reported as one row per size; the post may say 'for slower switches the weights led behaviour (one seed each)' only
+  if E1-RAW or RAW beats chance at T/2 in >= 3 of the 5 sizes; otherwise 'no lead at any tested size'. Either way:
+  exploratory, one seed, frozen after the main result was known.
+- Disclosed: parent D0.8 / v1.3 already printed RAW top-1 ranks for some of these runs (x 4.20 rank 1 from 192 = T;
+  x 2.06 rank 1 from 256, T 320), so the RAW T/2 cells for x 4.20 and x 2.06 were partly known; E1-RAW was not.

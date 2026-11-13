@@ -12,8 +12,8 @@ AG = {"gpt-5.4-mini": "mini", "gpt-5.4-nano": "nano", "gemini-3.1-flash-lite": "
 TOOL = {"lcpw": "LangChain toolkit", "pwmcp": "Playwright MCP", "bufull": "Browser Use", "wbl": "Page loader",
         "markitdown": "MarkItDown MCP", "mcpfetch": "MCP fetch"}
 GROUPS = [
-    {"id": "route", "label": "Held-out tools, link only via a second action", "link": "scored"},
-    {"id": "reach0", "label": "No action shows the link", "link": "control, must stay at 0"},
+    {"id": "route", "label": "Held-out tools, link only via an extra option", "link": "scored"},
+    {"id": "reach0", "label": "No option shows the link", "link": "control, must stay at 0"},
     {"id": "replication", "label": "MCP fetch, rerun", "link": "where the rates came from, not scored"},
     {"id": "free", "label": "First reply shows the link", "link": "control, not scored"},
 ]

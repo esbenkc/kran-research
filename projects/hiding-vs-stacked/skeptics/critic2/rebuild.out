@@ -1,0 +1,24 @@
+counted runs 1440 unique site tokens 1440
+neutral-A     120/120 = 100.0%
+neutral-A2    120/120 = 100.0%
+neutral-B     120/120 = 100.0%
+neutral-B2    120/120 = 100.0%
+neutral-C     120/120 = 100.0%
+neutral-E     119/120 = 99.2%
+stacked-A      63/120 = 52.5%
+stacked-A2     71/120 = 59.2%
+stacked-B     115/120 = 95.8%
+stacked-B2    113/120 = 94.2%
+stacked-C      85/120 = 70.8%
+stacked-E      81/120 = 67.5%
+site.css fetched 0 | off-task link followed 0
+A neutral->stacked per agent: [('gemini-3.1-flash-lite', 40, 28, 40), ('gemini-3.5-flash-lite', 40, 25, 40), ('gpt-5.4-mini', 40, 10, 40)]
+A2 neutral->stacked per agent: [('gemini-3.1-flash-lite', 40, 33, 40), ('gemini-3.5-flash-lite', 40, 30, 40), ('gpt-5.4-mini', 40, 8, 40)]
+C neutral->stacked per agent: [('gemini-3.1-flash-lite', 40, 32, 40), ('gemini-3.5-flash-lite', 40, 31, 40), ('gpt-5.4-mini', 40, 22, 40)]
+E neutral->stacked per agent: [('gemini-3.1-flash-lite', 40, 37, 40), ('gemini-3.5-flash-lite', 40, 31, 40), ('gpt-5.4-mini', 39, 13, 40)]
+B neutral->stacked per agent: [('gemini-3.1-flash-lite', 40, 39, 40), ('gemini-3.5-flash-lite', 40, 40, 40), ('gpt-5.4-mini', 40, 36, 40)]
+B2 neutral->stacked per agent: [('gemini-3.1-flash-lite', 40, 39, 40), ('gemini-3.5-flash-lite', 40, 38, 40), ('gpt-5.4-mini', 40, 36, 40)]
+B stacked pooled 95% (unstratified run bootstrap, seed 7): 91.7 99.2
+B2 stacked pooled 95% (unstratified run bootstrap, seed 7): 90.0 98.3
+cue_grep cue=1 per row: {'A': (240, 240), 'A2': (240, 240), 'B': (0, 240), 'B2': (0, 240), 'C': (240, 240), 'E': (240, 240)}
+experiment API cost (cost.jsonl sum cost_usd_est): 4.0478 over 6198 calls

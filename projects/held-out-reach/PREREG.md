@@ -28,16 +28,24 @@ hidden-link follow rates within 10 points on fetch tools it was never tuned on?
   separate list-links tool); T2 Microsoft @playwright/mcp 0.0.85 (default view browser_snapshot; route
   browser_evaluate = page code; 23 of 26 tools shown, browser_run_code_unsafe / file_upload / drop removed for
   sandbox safety; browser_navigate returns a snapshot-file link, so browser_snapshot is the default view);
-  T3 Browser Use 0.13.14 with its SHIPPED default action set (page view drops display:none; route find_elements
-  (selector, attributes=['href']) = element search; evaluate also in schema). = 3 tools x 3 option types x 3 agents
-  = 9 route combos. Browser Use was on this track in 1109 with only navigate/click/scroll, so it is held out for the
+  T3 Browser Use 0.13.14 with its SHIPPED default action set (page view drops display:none; route evaluate = page code, see T3 crawl fact). = 3 tools x 3 agents = 9 route combos. Browser Use was on this track in 1109 with only navigate/click/scroll, so it is held out for the
   option type and u, not for the tool. If T3 is not built and smoke-tested by 23:45 PST, the scored set is 6 combos
   (T1, T2) and the post says 'two tools'.
 - T3 action set (Iris #21187, frozen 23:01 PST): Browser Use's shipped default, all actions on, including
   extract(query, extract_links=True) with page_extraction_llm = the agent's own model (shipped default; its cost is
-  counted). Reach stays 1 (find_elements, evaluate and extract's serializer input all hold the address). Per run we
+  counted). Reach stays 1 via evaluate (see the T3 crawl fact below for find_elements). Per run we
   log which action first returned the address (find_elements / evaluate / extract / search_page words only).
   If this full action set is not smoke-tested by 23:45 PST, the frozen 6-combo fallback applies (no partial T3).
+- T3 crawl fact (Bruno #21196, frozen 23:06 PST before T0): in the shipped Browser Use Agent, find_elements and
+  search_page return only a count to the model ('Found 9 elements'; long_term_memory replaces extracted_content,
+  agent/message_manager/service.py l.323-340), so their output never reaches the model. T3's only model-free route
+  is evaluate (page code), the same option type as T2; extract (LLM-mediated) may also surface the address and is
+  logged. Decision (a): T3 stays scored. The scored set is 3 held-out tools with 2 option types (list-links tool:
+  T1; page code: T2, T3). The post says so; it does not claim 3 option types.
+- T3 harness rule (Kasper #21199, Tove #21198): the harness renders every Browser Use ActionResult exactly as the
+  shipped MessageManager does (long_term_memory first; extracted_content only when the shipped code shows it).
+  extract is model-mediated: it does not count for reach and does not change the prediction; a follow through it is
+  logged and reported.
 - T1 sr_only is dropped: LangChain's CSS-blind views make it byte-identical to T1 display_none (Kasper #21174), and a
   click by link words may be a second route there (Iris #21176).
 - Known difference the law ignores (named now so a T1 miss is not explained away later): the hidden address is a
@@ -71,9 +79,10 @@ hidden-link follow rates within 10 points on fetch tools it was never tuned on?
 The calibration cell (MCP fetch default on display_none) shows neither the link words nor the address. T2
 (@playwright/mcp snapshot on display_none) matches that: neither. T1 (LangChain extract_text) shows the link WORDS
 ('Full 2025 pricing table') without the address, and a click on it fails (click.py '>> visible=1').
-- T1 miss + T2 hit -> the visible link words drive option use (a cue effect), not the option type.
+- T1 miss + T2/T3 hit -> either the visible link words or the list-links option type drives option use; T1
+  differs from the calibration cell in both, so this run cannot separate the two (Kasper #21199).
 - T2 or T3 miss (Playwright MCP snapshot and Browser Use page view both drop display:none: neither words nor
-  address, cue matched) -> option use depends on the option type.
+  address, cue matched; both page code) -> option use depends on the option type or the stack, not the model alone.
 - both hit -> option use behaves as a per-model trait across these option types.
 Per run we log whether the agent called the route action and at which step (mechanism, reported).
 

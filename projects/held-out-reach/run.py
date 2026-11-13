@@ -104,6 +104,14 @@ def main() -> None:
     ap.add_argument("--budget", type=float, default=4.5)
     ap.add_argument("--bu-ports", default="8781", help="one browser-use service per port; one lane each")
     a = ap.parse_args()
+    # Import every lazily-imported SDK on the main thread first: parallel first imports deadlock (smoke 23:08,
+    # _DeadlockError on mcp.server.mcpserver.exceptions).
+    import markitdown_mcp.__main__  # noqa: F401
+    import mcp.client.stdio  # noqa: F401
+    from langchain_community.agent_toolkits import PlayWrightBrowserToolkit  # noqa: F401
+    from langchain_community.document_loaders import WebBaseLoader  # noqa: F401
+    import mcp_server_fetch.server  # noqa: F401
+    import newtools  # noqa: F401
     if a.jobs:
         jobs = [(m, c, int(i)) for _, m, c, i in (l.split() for l in (ROOT / a.jobs).read_text().splitlines() if l.strip())]
     else:

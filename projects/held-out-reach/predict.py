@@ -52,7 +52,7 @@ def main() -> None:
         for ag in AGENTS:
             s = S[ag][0] / S[ag][1]
             u = (CAL[ag][0] / CAL[ag][1]) / s
-            reach = 1 if klass in ("FREE", "ROUTE") else 0
+            reach = 1 if re_ == {1} else 0  # reach is per action, independent of a mixed default view
             two = reach * s * (1.0 if klass == "FREE" else u)
             cells.append({"tool": tool, "method": method, "agent": ag, "class": klass, "role": role,
                           "default": min(d), "reach": reach, "reach_actions": sorted({h.split(":", 1)[1] for r in rs for h in r["reach_actions"]}),

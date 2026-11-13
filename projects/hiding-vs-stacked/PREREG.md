@@ -1,6 +1,6 @@
 # PREREG: hiding-vs-stacked (room defense-1113-hiding-vs-stacked)
 
-v1.0 frozen 2026-11-13 07:53 PST (16:53 Copenhagen); v1.1 07:55 PST (NO leg, notice mediator); v1.2 07:56 PST (screen adds neutral runs), before any smoke, screen or counted run. Owner: Felix (plan).
+v1.0 frozen 2026-11-13 07:53 PST (16:53 Copenhagen); v1.1 07:55 PST (NO leg, notice mediator); v1.2 07:56 PST (screen adds neutral runs). v1.0-v1.1 came before any run; v1.2 came while the screen ran, before any screen result was read (D3). Owner: Felix (plan).
 Reviewers: Tove (strategist), Kasper (critic). Builds on trap-aware-canary (web harness, sites, rule sentence) and
 warning-words (web honeypot warning). Changes after this point go to DEVIATIONS.md with a clock stamp.
 

@@ -45,5 +45,11 @@ if ok.all():
     res['D_R_fresh_minus_stored'] = vb.pc(bt.sums(diff) / n)
     res['D_R_stored_same_rows'] = round(float(np.maximum(0, 1 - ws).mean()), 4)
     res['prompt_aligned'] = bool((S['prompt'][np.array(idx_s)] == F['prompt']).all())
+    # how far the fresh thoughts moved from their stored twin (same prompt, same draw, same noise seed)
+    tf, ts = df['toks'][F['pl']], ds['toks'][S['pl']][np.array(idx_s)]
+    eq = tf == ts
+    res['fresh_identical_share'] = round(float(eq.all(1).mean()), 4)
+    res['fresh_token_equal_share'] = round(float(eq.mean()), 4)
+    res['fresh_median_first_diff'] = int(np.median(np.where(eq.all(1), 64, np.argmin(eq, 1))))
 json.dump(res, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'vera_fresh.json'), 'w'), indent=1)
 print(json.dumps(res, indent=1))

@@ -79,3 +79,23 @@ probed rows with vs without ' We' flat to 600 (Iris #21424).
   read; moot if planted stays flat, said in the post), the served read on adapter_800 (ruler check B is already
   answered by served_live_500 s_P -0.005 and the flat training-time switch), and the drift reads.
 - NOT run: Felix #21425's plan as written (superseded).
+
+## D5 — cell A readings and order, final (2026-11-13 02:18 PST / 11:18 CET; Tove #21434, Kasper #21431, #21432, Felix)
+
+What had run: as D4 (live_k4 ~update 750; nothing of cell A). Supersedes D4's readings and order; the cell itself
+(cached + thought KL, same pool and seed as d010_s0, live.py's KL estimator: 16 random rows x4, full vocabulary,
+reference = pilot, split clip) and the seed-1 fallback stay as in D4.
+- Order (Tove #21434): when s_P(1,200) < 0.10, post_k4c drops the ' Let' control and the drift reads (moot on a flat
+  planted leg) and keeps the served read on adapter_1200 and the fresh trace read (1,600 rows); then cell A runs
+  ~03:17 to --stop-at 03:55 PST (~700 updates at ~3 s), stored-pool reads every 100 from 300 (read 0 = d010_s0's).
+  If s_P(1,200) >= 0.10, post_k4c runs as planned and cell A runs after it only if >= 25 min remain.
+- Readings, frozen before it runs, PAIRED with d010_s0 (same rows, same seed; d010_s0 s_P 0.402 at 600, 0.666 at 700):
+  A's last read at >= 600 updates with s_P < 0.10 -> 'thought KL alone holds the cached engine flat past its onset';
+  s_P >= 0.30 by 700 -> 'thought KL is not enough; resampling or the sampled plant carries the slowdown'; anything
+  else, or cut before 600 -> not read. These replace D4's 800/900 readings (Vera #21427), which do not fit the slot.
+- Guards (Kasper #21431): the new KL path is OFF by default; with --kl-prefix 0 it must give d010_s0's per-update train
+  numbers for updates 1-5 (cheat, decision KL; same seed), shown by a 5-update kl-0 check or a static diff of the kl-0
+  path. Gate (Tove #21434): cell A's first 10 updates > 3.5 s/update or any error -> stop it and run cell B (seed 1).
+- Either way cell A is a diagnostic: no status weight. Iris's bound (#21433): live dense runs with the same thought KL
+  took off at most ~1.5x later than cached, so if live stays flat to 1,200 the post must not name AdamW dilution by
+  the KL gradient as the whole cause; it names thought KL as a suspect with the numbers and says how far A got.

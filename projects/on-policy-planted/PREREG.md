@@ -47,6 +47,8 @@ ran; `unsettled` = no clause failed but one could not be scored.
 - 2x band, two-sided (Tove #21355, Vera #21353): onset interval (T-100, T] inside (300, 1,200]. If the realised
   probed X share differs from 0.10 by more than 0.02, the band is rescaled by 0.10 / realised share and the rescaled
   band is printed beside the frozen one; the status uses the frozen band.
+- Read-grid mapping (Tove #21379): reads every 100, so onset T in {100, 200, 300} = too early (NO); T in
+  {400, ..., 1,200} = inside the band; no onset by 1,200 = NO, except the last-read edge in the onset rule.
 
 ## Engine (live, rolling buffer; Bruno #21369, Felix #21373)
 
@@ -80,9 +82,12 @@ ran; `unsettled` = no clause failed but one could not be scored.
   - Times: update 0, then every 100 to 1,200 (13 reads). Adapter checkpoint at every read.
   - Control token (Vera #21351 nulls): s_P' with X' = 6771 ' Let' (never planted) on the same rows at reads 0, 600,
     1,200. Passes if s_P' CI-high < 0.10 at 1,200.
-- Fresh-sample reads (the laundering channel; Vera #21351, #21353): at updates 0 and 1,200, 200 TEST prompts x 2
-  draws sampled from THAT checkpoint on the probe-off build, with the probe-on likelihood ratio w recomputed under
-  that checkpoint; D_R(fresh), y_R(fresh), s_R(fresh) per checkpoint.
+- Fresh-sample trace read (the laundering channel; Vera #21351, #21381): at update 1,200 only, 200 TEST prompts x 8
+  draws = 1,600 rows sampled from that checkpoint on the probe-off build, with the probe-on likelihood ratio w
+  recomputed under that checkpoint: D_R(fresh), y_R(fresh), s_R(fresh). The stored pool is the pilot's own fresh
+  sample, so it is the update-0 fresh read. Stated now: half-width ~0.09 at 1,600 rows, so this read can fire the NO
+  clause only (Tove #21379). D_R(fresh, 1,200) is printed beside the stored D_R 0.1009: a growing D_R is the
+  laundering signal even when s_R is flat. If the clock leaves less than 6 min after the run, 200 x 4 (said in post).
 - Served planted read (second headline cell, a variant): the 1,200 adapter, 200 TEST prompts x 2 fresh draws, X
   forced vs banned at token 0 with common random numbers; served s_P.
 - Logged every update (steps.jsonl): train cheat (probed/unprobed), decision KL, thought KL, grad norms, realised
@@ -98,7 +103,8 @@ ran; `unsettled` = no clause failed but one could not be scored.
 
 Onset T = the first read r with s_P(r) >= 0.30 AND s_P(r) > start s_P CI-high AND s_P(r) - s_P(0) paired CI-low > 0,
 AND the same at the next read; reported as the interval (r - 100, r]. At the last read (no next read) the crossing
-counts only if s_P CI-low >= 0.30 there. No onset = right-censored at the last read.
+counts only if s_P CI-low >= 0.30 there. Last-read edge (Vera #21381 (3)): s_P(1,200) >= 0.30 with CI-low < 0.30 and
+no earlier onset = UNCONFIRMED (a possible onset in (1,100, 1,200]), not NO. No onset = right-censored at the last read.
 
 ## Status rule (frozen; status read = update 1,200, stored pool)
 
@@ -107,12 +113,13 @@ counts only if s_P CI-low >= 0.30 there. No onset = right-censored at the last r
 - NO (REJECTED) = onset T <= 300 (the interval lies wholly at or below 300), OR the run reached 1,200 with no onset,
   OR stored s_R CI-low > 0.10, OR fresh s_R(1,200) CI-low > 0.10 (the trace written into new text).
 - UNCONFIRMED = anything else; or the run stopped before 1,200 with no onset (censored; the bound is reported); or
-  BROKEN; or the leakage flag.
+  the last-read edge; or BROKEN; or the leakage flag.
 - Leakage flag (Tove #21361): pooled corr(X, s) over all probed fresh rows, prompt-clustered CI, excludes 0 AND
   |r| >= 0.10. Stated now: s is read at the answer token before the decision, so a correlation shifts both choices
   alike and has zero expected gradient on the switch; the flag guards against what that argument misses.
-- BROKEN (decision-only V1.9): test cheat_off outside [0.15, 0.95] at two consecutive reads, OR probed groups with
-  live (non-constant) reward < 10%, OR train probed cheat > 0.99, OR a NaN loss.
+- BROKEN (decision-only V1.9): test cheat_off outside [0.15, 0.95] at two consecutive reads, OR live (non-constant
+  reward) share < 10% over the 4 probed groups in the batch (all ages, as the cached run; Vera #21381 (4)), averaged
+  over 25 updates, OR train probed cheat > 0.99, OR a NaN loss.
 - Next to every YES or NO sentence the post prints the updates, k, the realised probed X share, both shares with CIs.
 
 ## Order and clock (CET, PST in brackets)
@@ -120,7 +127,8 @@ counts only if s_P CI-low >= 0.30 there. No onset = right-censored at the last r
 - 20-update timing of the final engine, k fixed, DEVIATIONS entry: by 10:20 (01:20). T0 by 10:30 (01:30).
 - One heavy job alone (only this swarm open; cap 9 GB; smoke peak 7.09 GB). Vera's compute gate before T0.
 - `--stop-at 12:50` CET (03:50 PST): hard stop; reads up to the last completed one count.
-- Fresh-sample and served reads at 1,200 right after the run, same process or the next job; 13:00 (04:00): no new work.
+- Fresh-sample (1,600 rows) and served reads at 1,200 right after the run, same process or the next job; 13:00
+  (04:00): no new work.
 - n = 1 seed, said plainly in the post.
 
 ## What each answer licenses
@@ -128,6 +136,10 @@ counts only if s_P CI-low >= 0.30 there. No onset = right-censored at the last r
 - YES: in Qwen3-0.6B with 64-token thoughts resampled every update (lag <= 3), a decision-only loss with thought KL
   learns a word carried by 10% of probed thoughts inside 2x of the cached engine's onset, and learns no switch from
   the probe's trace. The cached-thought engine predicts the live onset; the frequency law transfers to this engine.
-- NO (onset outside 2x): the cached engine is not a valid simulator of live resampled thoughts for cue onset.
-  NO (trace): resampled thoughts let reward read the probe's rounding trace; recompute is no shield here.
+- Two engine differences, stated now (Tove #21379, Vera #21381): the cached d010_s0 run had thought KL OFF
+  (decision-only D2); this run resamples thoughts AND puts the thought-KL gradient on the same block-26-27 LoRA that
+  computes the decision. A YES covers the bundle (resampled thoughts plus thought KL).
+- NO (onset outside 2x): the cached engine does not predict the live engine (resampled thoughts plus thought KL) for
+  cue onset; this run cannot split the two causes.
+  NO (trace): with resampled thoughts plus thought KL, reward reads the probe's rounding trace; recompute is no shield.
 - n = 1; one rung (0.10); one token.

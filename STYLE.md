@@ -52,36 +52,24 @@ What these share:
 
 Structure and word budget are in PREFLIGHT (gates 0-1) and in `CLAUDE.md` ("Research post
 structure"). These are the sentence-level parts of that structure:
-- **Question:** a real hypothesis posed as a yes/no question (Esben, 2026-10-18). No "A or B?" questions
-  ("Does it stop the lies, or just hide them?") and no open "What/How/Why" questions. A leading clause is fine
-  ("When a model hides a concept, does ...?"). On Lab posts it is the pre-registered question, verbatim in the
-  front matter (`question: "..."`), and the layout shows it under the title: "We asked: <question> No."
-- **Title (Lab posts, Esben 2026-11-10):** the claim, what the run found, like the title of a good paper, in
-  Title Case. It matches the status (CONFIRMED: a positive claim; REJECTED: a negative claim, "X Does Not Y";
-  UNCONFIRMED: a hedged claim, "No Clear Sign That ..."), names the model or setting when the result is
-  small-scale, claims no more than the numbers carry, and has no question mark and at most 14 words. It is
-  written after the skeptics sign off (`oracle.py title`, the naming step), and it does not repeat the Figure 1
-  head: the title states the claim, Figure 1 shows how the result looks. A reader who has not read the post must
-  understand it: use the names papers and the research community use (backdoor trigger, honeypot, linear probe,
-  probe evasion, attention sink, ...), never a Lab coinage ("no-model crawl", "hidden cue", "decoy key"), and
-  compare with no number the title does not state ("Not Four" only works if the title says four was predicted).
-- **Title (other posts):** the question the post answers, in Title Case. "Do Corporate Incentives Teach AI to
-  Protect Itself?", "Are AI proofs messier than human proofs?"
-- **Status (Lab posts):** `lab_status` answers the question: "CONFIRMED" = yes, the data support the
-  hypothesis; "REJECTED" = no; "UNCONFIRMED" = not settled. The pre-registration outcome (held / failed /
-  unsettled) is reported on its own and is not the status. The skeptics sign off on the answer to the question.
+- **Title:** the question the post answers, in Title Case. "Do Corporate Incentives Teach AI to
+  Protect Itself?", "Are AI proofs messier than human proofs?" It is a real hypothesis posed as a yes/no
+  question (Esben, 2026-10-18). No "A or B?" titles ("Does it stop the lies, or just hide them?") and no open
+  "What/How/Why" titles. A leading clause is fine ("When a model hides a concept, does ...?").
+- **Status (Lab posts):** `lab_status` answers the title: "CONFIRMED" = yes, the data support the hypothesis;
+  "REJECTED" = no; "UNCONFIRMED" = not settled. The pre-registration outcome (held / failed / unsettled) is
+  reported on its own and is not the status. The skeptics sign off on the answer to the title.
 - **First paragraph:** what happened or why the question exists, in two or three plain sentences.
 - **Hook:** the question in bold, on its own or as the head of the TLDR sentence.
 - **TLDR / what we show:** one or two sentences with the answer and the main number. It opens with the
-  plain answer to the question: "Yes.", "No." or "Not settled." (not "Not reliably." or "Our test failed.").
-  On Lab posts `oracle.py check` lints the question, that `lab_status` matches the TLDR's first word, and the
-  claim title.
+  plain answer to the title: "Yes.", "No." or "Not settled." (not "Not reliably." or "Our test failed.").
+  On Lab posts `oracle.py check` lints the title shape and that `lab_status` matches the TLDR's first word.
 - **Main figure** directly after. The prose after it says what to see, in one sentence.
 - **Method:** one sentence in the prose ("a two-minute LoRA fine-tune of Qwen2.5-0.5B on 18
   examples"). Details go to the caption, a bullet list, or the appendix.
 - **Limits:** a plain heading such as "Should you trust our results?" with short bullets, or one
   sentence ("However, this is a simple non-adversarial test."). No hedges spread through the text.
-- **Loop-closer:** repeat the question and answer it in one line. "So: do corporate
+- **Loop-closer:** repeat the title question and answer it in one line. "So: do corporate
   incentives teach a model to protect itself? Today, barely--but it is one cheap fine-tune away".
 - **Close:** one or two sentences on why it matters. Then stop.
 
@@ -248,9 +236,8 @@ How it is checked on Lab posts:
 
 ## 6. Pre-PR checklist (the critic applies each item, pass or fail)
 
-1. The question is a yes/no hypothesis (no "A or B?"). On Lab posts it is in `question:` and the title is
-   the claim (matches the status, scoped, no question mark). The TLDR opens with Yes. / No. / Not settled.
-   The last prose section repeats the question and answers it in one sentence.
+1. The title is a yes/no hypothesis question (no "A or B?"). The TLDR opens with Yes. / No. / Not
+   settled. The last prose section repeats or answers it in one sentence.
 2. The first sentence describes a concrete event, cost or mechanism. It contains no metaphor.
 3. The main figure appears before the first `##` heading.
 4. Prose before any addendum or appendix (no front matter, captions, footnotes) is at most

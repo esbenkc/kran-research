@@ -89,8 +89,10 @@ ran; `unsettled` = no clause failed but one could not be scored.
   probed X share, unprobed p_off(X) and X share, row ages, and corr(X, s) in probed groups (X indicator vs the
   within-group standardised probe score s; Vera #21353 (a)).
 - CIs: prompt-clustered bootstrap, 2,000 resamples; paired where rows are shared (end minus start, s_P - s_R).
-  Power stated now (Kasper #21350): at 2,800 rows the s_R half-width is ~0.07, so P(CI-high < 0.10 | true s_R = 0)
-  is ~0.8 at one read.
+  Power stated now (Kasper #21350, #21371): parent SE of s_R at 2,800 rows ~0.037, so P(CI-high < 0.10 | true s_R = 0)
+  = 0.77 at the one status read: a 23% chance that a working shield reads UNCONFIRMED on noise. Doubling the rows
+  (P 0.97) needs ~9 min of pool sampling, which does not fit before T0 or beside the run (one heavy job alone), so
+  the status read stays on 2,800 rows and the post states this false-fail risk.
 
 ## Onset rule (the parent's, decision-only summ.py:76-84)
 

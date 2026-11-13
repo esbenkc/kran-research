@@ -52,3 +52,22 @@ shield, recompute, cached engine, rounding trace, decision-only loss (defined, o
 - Main figure checked in light and dark (main_light.png, main_dark.png): every line, label, ring and the new orange dotted extra run are readable. The restart labels no longer overlap.
 - Soft, not blocking: "Its switch was 15% at update 800, against 73% last night. By our rule fixed before it ran, the extra run cannot say whether the penalty alone causes the delay." A cold reader sees 15 vs 73 as a big delay and may wonder why it does not count. Optional half-sentence: "(the rule needed it under 10% at update 800)".
 Verdict: PASS.
+
+# Video script cold read (video/script.txt + storyboard-short.json, both mtime 03:51 PST, before render)
+Long video:
+- why:4 "We call that a probe-off switch." then method:9 "The switch: how much less the model cheats..." One word, two meanings. The post dropped "probe-off switch". -> cut why:4 (why:3 then reads "The risk: a model that cheats only when no probe is attached.").
+- why:7 "A perfect judge reading one thought beats chance 10 times in 100." READ TWICE -> "A judge reading one thought is right 10 more times in 100 than chance."
+- figure:6 "Yet the model cheated only 1.8 points less after its own 'We'." The post already fixed this line. -> "Yet in training thoughts that opened with 'We', it cheated only 1.8 points less."
+- figure:12 "Our fixed rule needed under 10% to say the penalty alone delays the take-off." Says the bar, not the outcome. -> add "So the extra run cannot tell."
+- verdict:1 "the word gave 1.1%" READ TWICE -> "No. With fresh thoughts, the word's switch was 1.1%, against 90% on fixed thoughts."
+- hook:1 "as faint as a rounding error": the post's term is the probe's rounding trace. -> "a planted word as faint as the probe's trace."
+- aside-1:2 "It also moves the answer's weights." -> "It also changes the weights that pick the answer." (post wording)
+Short:
+- The hook never asks the question, then "No." answers it. -> add after line 2: "Does reward still learn the word within twice the time?"
+- "Fresh thoughts stayed flat to 1,200, at 1.1%." 1.1% of what? -> "Fresh thoughts stayed flat to 1,200: its switch was 1.1% of its limit, against 90%."
+Outro "This was Mostly Rejected." after "No." matches lab_status "REJECTED". OK.
+
+# Video render check (preview/video.mp4 03:58:18, 203 s; preview/short.mp4 03:58:52, 27.5 s): FAIL
+- 0 of my 9 script fixes reached the render: storyboard.json still has "probe-off switch" (x2), "beats chance", "after its own", "gave 1.1%", "rounding error"; the Short has no question line. Frame video.mp4 @186 s caption reads "the word gave 1.1%," (reader/v_186.png).
+- NEW: 9 shots carry storyboard "credit": "Answer-Only RL Teaches Qwen3-0.6B a Trigger Word, Not an Equally Faint Probe Side Channel — Esben Kran". That is the title of decision-only-control (last night's post), not this post. Frame @192 s shows it in the SOURCE header (reader/v_192.png). -> credit = this post's title.
+- OK: Short's 0.7% at 14 s is a count-up; 15 s shows 1.1% (s_15.png). Outro "Mostly Rejected" matches lab_status REJECTED. Main figure in the video is the current one (orange extra run, "restarts of tonight's run"; v_175.png).

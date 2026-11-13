@@ -1,0 +1,10 @@
+W1113 06:25:01.406000 58027 /Users/esben/work/theory-1110-cue-size-learning/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 8025.84it/s]
+/Users/esben/work/theory-1113-blind-cue-recovery/kran-research/projects/blind-cue-recovery/rl.py:80: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  h0 = torch.from_numpy(h0_u16.view(np.int16)).view(torch.bfloat16).float()
+INIT_FROM raw/runs/nc_s6/step32.pt rowspace A tensors set: 14
+step 0 {'step': 0, 'px_off': 0.39646084792912006, 'px_on': 0.39646084792912006, 'gap': 0.0, 'n_dev': 64, 'D': 0.0} size {'raw_l2_rows': [0.0, 0.0, 0.0], 'raw_l2': 0.0, 'rows_rounded_to_zero': [True, True, True], 'x': 0.0, 'frac_elems_unchanged_rows': [1.0, 1.0, 1.0], 'no_cast': False, 'alpha_eff': 0.0, 'cue_rows': [0, 1, 2]}
+STEP1 {'grad_norm_preclip': 4.7506866455078125, 'update_norm': 0.06242796778678894, 'ratio': 0.013140830462017531}
+DONE smv_h6_t32_d108 T None test_gap None train_s 2.4
+
+WATCHDOG: exit 0, peak footprint 1.74 GB

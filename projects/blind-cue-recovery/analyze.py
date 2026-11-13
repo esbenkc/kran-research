@@ -256,6 +256,27 @@ def write_matrix(out):
         for m, (run, seed) in MODELS.items():
             L.append(f"| reported | {seed} | {v} at t_h = {TH[m]} | {'same-seed twin' if v == 'SS' else 'none'} | "
                      f"{fmt(S.get(v, {}).get(m, {}).get(str(TH[m])))} | data/blind/cells.json ({v}, {m}, {TH[m]}) |")
+    bci = HERE / "data" / "behaviour_ci.json"
+    if bci.exists():
+        B = json.loads(bci.read_text())
+        for m, (run, seed) in MODELS.items():
+            for t in sorted({TH[m], T[m]}):
+                r = B[m]["reads"][str(t)]
+                L.append(f"| before the switch bar | {seed} | behaviour gap D at t = {t} | 95% bootstrap over 64 dev prompts | "
+                         f"D {100 * r['D']:.1f} points [{100 * r['ci95'][0]:.1f}, {100 * r['ci95'][1]:.1f}] (bar 10) "
+                         f"| data/behaviour_ci.json ({m}, {t}) |")
+    e2f, e2b = HERE / "data" / "e2.json", HERE / "data" / "behaviour_ci_e2.json"
+    if e2f.exists():
+        Bq = json.loads(e2b.read_text()) if e2b.exists() else {}
+        for r in json.loads(e2f.read_text()):
+            bd = Bq.get(r["run"], {}).get("reads", {}).get(str(r["t"]))
+            beh = f"D {100 * bd['D']:.2f} [{100 * bd['ci95'][0]:.2f}, {100 * bd['ci95'][1]:.2f}] points" if bd else "D n/a"
+            L.append(f"| exploratory E2 (slow switches) | 0 | {r['run']} (x {r['x']:.3f}, T {r['T']}) at {r['read']} = {r['t']} | "
+                     f"clean c2_a0_s0/s1 (b), slice p95 (c) | RAW rank {r['RAW']['rank']} beats {r['RAW']['beats_chance']}; "
+                     f"E1-RAW rank {r['E1-RAW']['rank']} beats {r['E1-RAW']['beats_chance']}; {beh} "
+                     f"| data/e2.json, data/behaviour_ci_e2.json |")
+    L += ["| equation check | 0-5 | SM at t_h and RAW at 256, recomputed by SVD apart from blind.py | known answer | "
+          "see post/eq_check.json (max rel. diff, ranks equal) | post/eq_check.json |"]
     L += ["| rebuild | 0, 1 | nc_s0, nc_s1 (--no-eval) vs c2_a0_s0, c2_a0_s1 | bit-for-bit rebuild | max abs diff 0.0 over 16 snapshots "
           "| data/diag.json |",
           "| rebuild | 0, 1 | --init-from target step0, own seed | known answer | dir_u1110 and c2_a0_s1 at 16, 32: max abs diff 0.0 "
@@ -264,8 +285,34 @@ def write_matrix(out):
           "| data/known_answer_slice_null.json |",
           "| diagnostic | 6-9 | v1 of held-out target vs v1 of its SM twin mean | no cue | see data/diag.json | data/diag.json |",
           "", f"Status (frozen rule): **{out['status']}**; SM beats chance at t_h in {out['n_SM_at_t_h']} of 6.", ""]
+    L = [fix_row(x) for x in L]
     (OUT / "proof-matrix.md" if OUT != HERE / "data" else HERE / "proof-matrix.md").write_text("\n".join(L))
 
 
+def fix_row(line):
+    """The artifact column holds ONE path only (oracle lint); any '(variant, model, t)' locator or second file moves into
+    the variant column."""
+    if not line.startswith("| ") or line.startswith("| claim") or line.startswith("|---"):
+        return line
+    cells = line.strip().strip("|").split(" | ")
+    art = cells[-1].strip()
+    path, extra = art, ""
+    if " (" in art:
+        path, extra = art.split(" (", 1)
+        extra = "(" + extra
+    if ", " in path:
+        path, more = path.split(", ", 1)
+        extra = (extra + " also " + more).strip()
+    if path.startswith("see "):
+        path = path[4:]
+    if extra:
+        cells[2] = f"{cells[2]} {extra}"
+    cells[-1] = path.strip()
+    return "| " + " | ".join(c.strip() for c in cells) + " |"
+
+
 if __name__ == "__main__":
-    main()
+    if "--matrix-only" in sys.argv:  # rewrite proof-matrix.md from data/summary.json without rescoring
+        write_matrix(json.loads((OUT / "summary.json").read_text()))
+    else:
+        main()

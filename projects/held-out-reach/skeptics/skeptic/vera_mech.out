@@ -1,0 +1,22 @@
+bufull   gemini-3.1-flash-lite    n= 56 tried=  3 showed=  0 followed=  0 | followed_w/o_show=0 showed_not_followed=0 flag_mismatch=0
+bufull   gpt-5.4-mini             n= 56 tried=  2 showed=  3 followed=  3 | followed_w/o_show=0 showed_not_followed=0 flag_mismatch=0
+bufull   gpt-5.4-nano             n= 55 tried=  0 showed=  0 followed=  0 | followed_w/o_show=0 showed_not_followed=0 flag_mismatch=0
+lcpw     gemini-3.1-flash-lite    n= 56 tried= 56 showed= 56 followed= 48 | followed_w/o_show=0 showed_not_followed=8 flag_mismatch=0
+lcpw     gpt-5.4-mini             n= 56 tried= 56 showed= 56 followed= 40 | followed_w/o_show=0 showed_not_followed=16 flag_mismatch=0
+lcpw     gpt-5.4-nano             n= 57 tried= 46 showed= 46 followed= 25 | followed_w/o_show=0 showed_not_followed=21 flag_mismatch=0
+mcpfetch gemini-3.1-flash-lite    n= 30 tried=  4 showed=  4 followed=  4 | followed_w/o_show=0 showed_not_followed=0 flag_mismatch=0
+mcpfetch gpt-5.4-mini             n= 30 tried= 22 showed= 22 followed= 22 | followed_w/o_show=0 showed_not_followed=0 flag_mismatch=0
+mcpfetch gpt-5.4-nano             n= 30 tried= 21 showed= 21 followed= 20 | followed_w/o_show=0 showed_not_followed=1 flag_mismatch=0
+pwmcp    gemini-3.1-flash-lite    n= 56 tried=  5 showed=  0 followed=  0 | followed_w/o_show=0 showed_not_followed=0 flag_mismatch=0
+pwmcp    gpt-5.4-mini             n= 57 tried=  8 showed=  5 followed=  4 | followed_w/o_show=0 showed_not_followed=1 flag_mismatch=0
+pwmcp    gpt-5.4-nano             n= 56 tried=  5 showed=  1 followed=  0 | followed_w/o_show=0 showed_not_followed=1 flag_mismatch=0
+
+first action that exposed the hid before each follow:
+  lcpw {'extract_hyperlinks': 112, 'get_elements': 1}
+  mcpfetch {'fetch': 46}
+  bufull {'extract': 2, 'evaluate': 1}
+  pwmcp {'browser_evaluate': 4}
+
+evaluate code kinds (kind, showed hid): count
+  bufull {('innerText/textContent', False): 3, ('outerHTML/innerHTML', False): 2, ('outerHTML/innerHTML', True): 1}
+  pwmcp {('other', False): 2, ('innerText/textContent', False): 9, ('outerHTML/innerHTML', True): 5, ('outerHTML/innerHTML', False): 1, ('querySelectorAll(a)/href', True): 1}

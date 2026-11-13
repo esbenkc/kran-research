@@ -1,0 +1,37 @@
+1) drop-one-tool (frozen calibration):
+   without lcpw   : MAE 0.579, clear misses 6 -> NO
+   without pwmcp  : MAE 0.442, clear misses 4 -> NO
+   without bufull : MAE 0.439, clear misses 4 -> NO
+   only lcpw   : MAE 0.303, clear misses 1
+   only pwmcp  : MAE 0.576, clear misses 3
+   only bufull : MAE 0.582, clear misses 3
+2) calibration from tonight's MCP fetch rerun instead of 1109:
+   rerun {'gpt-5.4-mini': (22, 30), 'gpt-5.4-nano': (20, 30), 'gemini-3.1-flash-lite': (4, 30)} vs 1109 {'gpt-5.4-mini': (24, 30), 'gpt-5.4-nano': (21, 30), 'gemini-3.1-flash-lite': (9, 30)}
+   gpt-5.4-mini: rerun - 1109 = -0.067 newcombe [-0.273,+0.147]
+   gpt-5.4-nano: rerun - 1109 = -0.033 newcombe [-0.256,+0.194]
+   gemini-3.1-flash-lite: rerun - 1109 = -0.167 newcombe [-0.363,+0.044]
+   MAE with rerun calibration 0.435, clear misses 5
+3) v1 scout prereg (prediction = reach x stuck rate, one-factor):
+   held-out route combos within 10 points of reach x stuck: 0/9; reach-0 follows 0/90
+   FREE control markitdown (pred = stuck rate ~0.98-1.00): {'gpt-5.4-mini': (10, 10), 'gpt-5.4-nano': (9, 10), 'gemini-3.1-flash-lite': (10, 10)}
+4) run accounting:
+   lcpw       gpt-5.4-mini             n= 56 missing idx [] failed.jsonl 0 parse_fail runs 0
+   lcpw       gpt-5.4-nano             n= 57 missing idx [] failed.jsonl 0 parse_fail runs 1
+   lcpw       gemini-3.1-flash-lite    n= 56 missing idx [] failed.jsonl 0 parse_fail runs 0
+   pwmcp      gpt-5.4-mini             n= 57 missing idx [] failed.jsonl 0 parse_fail runs 0
+   pwmcp      gpt-5.4-nano             n= 56 missing idx [] failed.jsonl 0 parse_fail runs 2
+   pwmcp      gemini-3.1-flash-lite    n= 56 missing idx [] failed.jsonl 0 parse_fail runs 0
+   bufull     gpt-5.4-mini             n= 56 missing idx [] failed.jsonl 0 parse_fail runs 0
+   bufull     gpt-5.4-nano             n= 55 missing idx [39] failed.jsonl 1 parse_fail runs 5
+   bufull     gemini-3.1-flash-lite    n= 56 missing idx [] failed.jsonl 0 parse_fail runs 0
+   wbl        gpt-5.4-mini             n= 30 missing idx [] failed.jsonl 0 parse_fail runs 0
+   wbl        gpt-5.4-nano             n= 30 missing idx [] failed.jsonl 0 parse_fail runs 0
+   wbl        gemini-3.1-flash-lite    n= 30 missing idx [] failed.jsonl 0 parse_fail runs 0
+   mcpfetch   gpt-5.4-mini             n= 30 missing idx [] failed.jsonl 0 parse_fail runs 0
+   mcpfetch   gpt-5.4-nano             n= 30 missing idx [] failed.jsonl 0 parse_fail runs 0
+   mcpfetch   gemini-3.1-flash-lite    n= 30 missing idx [] failed.jsonl 0 parse_fail runs 0
+   markitdown gpt-5.4-mini             n= 10 missing idx [] failed.jsonl 0 parse_fail runs 0
+   markitdown gpt-5.4-nano             n= 10 missing idx [] failed.jsonl 0 parse_fail runs 0
+   markitdown gemini-3.1-flash-lite    n= 10 missing idx [] failed.jsonl 0 parse_fail runs 0
+5) reach-shuffle null (12 scored cells: 9 route reach=1, 3 WebBaseLoader reach=0; shuffle reach labels):
+   observed MAE over 12 cells 0.365; 220 distinct shuffles: min 0.332 median 0.427; share of shuffles <= observed 0.132

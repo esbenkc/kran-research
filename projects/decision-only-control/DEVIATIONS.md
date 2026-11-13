@@ -113,3 +113,11 @@ recipe); no read of the 0.10 rung beyond V1.4's read 25.
 - Faithfulness: the live anchor (dense onset 50-150) used std advantages, so T86 against [25, 300] is a reported flag,
   not a status gate, under the new recipe.
 - Clock: 0.10 s0 starts by 18:25 PST to reach 1,500 by ~19:15.
+
+## V1.7 — clock (2026-11-12 18:13 PST; Felix #20928, Bruno #20932; no objection from Tove)
+
+What had run: d086_frozen (0.86 at the frozen recipe) running; the no-std screen starting; no 0.10 read beyond V1.4.
+- d010_s0 runs to 1,500 updates (~19:25 PST), with a clock guard stop at 19:35 PST. The status read stays at 1,500.
+  No extension past 1,500. The served guard runs on the 1,500 adapter right after. No new work after 20:00 PST.
+- Step cost cut (one autograd pass instead of a no-grad pass plus chunked passes; test reads in batches of 128), from
+  the screen on. The loss and reads are unchanged.

@@ -42,8 +42,11 @@ def main():
             tr = {"key": "trace", "kind": "trace", "label": T["labels"]["trace"], "short": T["short"]["trace"],
                   "pts": [{"u": r["step"], "y": round(r["s_R"]["v"], 4)} for r in rd],
                   "end": {"u": e["step"], "y": round(e["s_R"]["v"], 4), "lo": round(e["s_R"]["ci"][0], 4), "hi": round(e["s_R"]["ci"][1], 4)}}
-            flat["trace.end_s"] = f'{100 * e["s_R"]["v"]:.0f}%'.replace("-", "\u2212")
-            flat["trace.end_ci"] = f'{100 * e["s_R"]["ci"][0]:.0f}% to {100 * e["s_R"]["ci"][1]:.0f}%'.replace("-", "\u2212")
+            flat["trace.end_s"] = f'{100 * e["s_R"]["v"]:.1f}%'.replace("-", "\u2212")
+            flat["trace.end_ci"] = f'{100 * e["s_R"]["ci"][0]:.1f}% to {100 * e["s_R"]["ci"][1]:.1f}%'.replace("-", "\u2212")
+            on = runs[key]["onset_s_P"]
+            onset = {"u": on, "y": [p["y"] for p in s["pts"] if p["u"] == on][0]}
+            flat["onset"] = num(on)
             flat["start_s"] = f'{100 * rd[0]["s_P"]["v"]:.1f}%'
         series.append(s)
     if "d010_s0" in runs:
@@ -60,9 +63,9 @@ def main():
     T = json.loads(fill(json.dumps(T)))
     data = {"mock": False, "title": T["title"], "subtitle": T["subtitle"], "x_label": T["x_label"], "y_label": T["y_label"],
             "legend": T["legend"],
-            "bands": [{"x0": round(lo_d), "x1": round(sl["predicted_T10_drift"]), "label": T["band_drift"]},
-                      {"x0": round(lo_n), "x1": round(sl["predicted_T10_noise"]), "label": T["band_noise"]}],
-            "bar": {"y": 0.30}, "xmax": T.get("xmax"), "series": series, "notes": T["notes"], "answer": T["answer"],
+            "bands": [{"x0": round(lo_d), "x1": round(sl["predicted_T10_drift"]), "label": T["band_drift"], "ly": 0.15},
+                      {"x0": round(lo_n), "x1": round(sl["predicted_T10_noise"]), "label": T["band_noise"], "ly": 0.2}],
+            "bar": {"y": 0.30}, "onset": {**onset, "label": T["onset"]} if "d010_s0" in runs else None, "xmax": T.get("xmax"), "series": series, "notes": T["notes"], "answer": T["answer"],
             "source": "kran-research projects/decision-only-control/data/summary.json (summ.py); figures/figure_data.py"}
     OUT.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
     print("wrote", OUT, {k: v for k, v in flat.items()})

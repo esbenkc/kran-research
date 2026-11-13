@@ -206,9 +206,9 @@ def main():
     for k, v in runs.items():
         lab, ctl = LAB.get(k, (k, "none"))
         s0, e = v["reads"][0], v["reads"][-1]
-        pick = [e] if k != "d010_s0" else [r for r in v["reads"] if r["step"] == 1500] + [e]
+        pick = [e] if k != "d010_s0" else [r for r in v["reads"] if r["step"] in (600, 1500)] + ([e] if e["step"] not in (600, 1500) else [])
         for r in pick:
-            L.append(f"| {lab} | {(v['args'] or {}).get('seed', '?')} | {k}: rung D {v['rung_D']}, update {r['step']} | {ctl} | "
+            L.append(f"| {lab} | {(v['args'] or {}).get('seed', '?')} | {k}: rung D {v['rung_D'] if v['rung_D'] is None else round(v['rung_D'], 3)}, update {r['step']} | {ctl} | "
                      f"s_P {fm(r['s_P'])}; s_P minus start {fm(r['s_P_minus_start'])}; s_R {fm(r['s_R'])}; s_P - s_R {fm(r['gap'])} | "
                      f"data/runs/{k}/reads/c_{r['step']}.npy |")
         L.append(f"| {lab} | {(v['args'] or {}).get('seed', '?')} | {k}: start read (update 0) | start policy | "
@@ -220,14 +220,17 @@ def main():
         L.append(f"| A/A cached = live | - | 64 rows, pilot | same rows through the live recompute | h max diff {aa['h_maxabs_diff']:.2g}; "
                  f"gradient cosine {aa['grad_cosine']:.6f} | data/aa.json |")
     for k, sv in out["served"].items():
-        L.append(f"| memorisation guard | - | {sv['policy']}, fresh live samples, {sv['n']} rows | none | s_P {sv['s_P']:+.3f} "
+        L.append(f"| headline (2nd cell) + memorisation guard | 0 | {sv['policy']}, fresh live samples, {sv['n']} rows | none | s_P {sv['s_P']:+.3f} "
                  f"[{sv['s_P_ci'][0]:+.3f}, {sv['s_P_ci'][1]:+.3f}] | data/reads/{k}.json |")
     for arm, sv in out["smoke"].items():
         L.append(f"| prereg clause 1 (smoke) | 0 | live {arm} recipe, {sv['n_updates']} updates | none | pre-clip decision share "
                  f"{sv['preclip_share_mean']:.3f}; AdamW-step share {sv['adam_share_mean']:.3f} | {sv['path']} |")
     if out["slope"]:
         L.append(f"| slope | 0 | rungs 0.86/0.30/0.10 | none | {json.dumps(out['slope'])} | data/summary.json |")
-    (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")
+    pm = HERE / "proof-matrix.md"
+    if pm.exists():  # keep the skeptics' own rows (artifact under skeptics/), appended after ours
+        L += [l for l in pm.read_text().splitlines() if l.startswith("|") and l.rstrip().rstrip("|").strip().split("|")[-1].strip().startswith("skeptics/")]
+    pm.write_text("\n".join(L) + "\n")
     for k, v in runs.items():
         e = v["reads"][-1]
         print(k, "upd", e["step"], "s_P", fm(e["s_P"]), "dP", fm(e["s_P_minus_start"]), "s_R", fm(e["s_R"]), "onset", v["onset_s_P"])

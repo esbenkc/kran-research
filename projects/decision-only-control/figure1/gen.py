@@ -63,7 +63,7 @@ def main():
     rd = {str(x["step"]): x for x in S["runs"][RUN]["reads"]}
     end, start = rd[a.step], rd["0"]
     sl = S["slope"]
-    onset = S.get("status_inputs", {}).get("T10") or S["runs"][RUN].get("onset")
+    onset = S["runs"][RUN]["onset_s_P"]  # frozen onset rule (summ.py)
     prs = {json.loads(l)["id"]: json.loads(l) for l in open(HERE / "data" / "prompts.jsonl")}
     pr = prs[r["prompt_id"]]
     assert pr["split"] == "test"

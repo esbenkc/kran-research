@@ -7,7 +7,7 @@ probe's rounding trace stays unlearned (Qwen3-0.6B, cached-thought engine, D lad
 
 - Learning time vs the frequency (density) of a feature, supervised settings: time grows as 1/p for a feature seen
   with density p (Basri et al., arXiv 1906.00425: convergence O(k^d / p(x))); frequent features starve rare ones of
-  gradient (Pezeshki/Combes et al., arXiv 1809.06848, 'gradient starvation'); superposition models give time ~ 1/p_i
+  gradient (Tachet des Combes, Pezeshki et al., arXiv 1809.06848, which names "gradient starvation"); superposition models give time ~ 1/p_i
   (arXiv 2602.01045). This is the 'drift' exponent -1 of PREREG v1, shown for supervised regression/classification,
   not for a reward-trained decision token.
 - Noise-limited steps grow with the gradient noise scale B_noise / B (McCandlish et al., arXiv 1812.06162); with a

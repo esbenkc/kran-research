@@ -1,14 +1,15 @@
 {
- "title": "DRAFT: how the planted word was learned, by how often it marks a probed thought",
- "subtitle": "Qwen3-0.6B. Only the read-or-solve choice is trained; the thoughts were sampled once and stay fixed. Switch: how much less the model cheats when the planted word starts its thought, as a share of the most it could.",
+ "title": "A word in 10 of 100 probed thoughts was learned by update @@onset@@, just before the forecast; the probe's trace stayed flat",
+ "subtitle": "Qwen3-0.6B, one training run per line. Only the read-or-solve choice is trained; the thoughts were sampled once and stay fixed. Switch: how much less the model cheats when the word starts its thought, as a share of the most it could (100% = it never cheats when the word is there).",
  "x_label": "Training updates \u2192",
  "y_label": "\u2191 Switch, share of its limit",
- "labels": {"d086_s0": "word in 86 of 100 probed thoughts", "d030_s0": "in 30 of 100", "d010_s0": "in 10 of 100 (as the trace)", "trace": "probe's trace"},
+ "labels": {"d086_s0": "\u201cWe\u201d in 86 of 100 probed thoughts", "d030_s0": "in 30 of 100", "d010_s0": "\u201cWe\u201d in 10 of 100", "trace": "probe's trace (10-point run)"},
  "short": {"d086_s0": "86 in 100", "d030_s0": "30 in 100", "d010_s0": "10 in 100", "trace": "trace"},
- "legend": {"band": "where the 10-in-100 word should rise if signal adds up (fixed before its run)", "bar": "30%: the bar it had to pass by update 1,500", "end": "last test, 95% interval"},
- "band_drift": "signal adds up: @@drift_lo@@\u2013@@drift@@",
- "band_noise": "noise sets the pace: @@noise_lo@@\u2013@@noise@@",
+ "legend": {"band": "forecast for the 10-in-100 word if each thought that carries it adds the same signal (fixed before its run)", "bar": "30%: the bar for learned", "end": "update 1,500, 95% interval"},
+ "band_drift": "forecast @@drift_lo@@\u2013@@drift@@",
+ "band_noise": "if noise sets the pace: @@noise_lo@@\u2013@@noise@@",
+ "onset": "learned by @@onset@@",
  "xmax": 1560,
- "notes": ["DRAFT note."],
- "answer": "DRAFT answer."
+ "notes": ["The forecast is 8.6 times the 86-in-100 word's onset (update @@T86@@), as the word marks 8.6 times fewer thoughts. Both words were learned after about 2,000 thoughts that carried them."],
+ "answer": "At update @@d010_s0.end_u@@: the 10-in-100 word at @@d010_s0.end_s@@ of its limit (95% interval @@d010_s0.end_ci@@); the probe's trace, which gives the probe away as often, at @@trace.end_s@@ (@@trace.end_ci@@)."
 }

@@ -157,3 +157,15 @@ What had run: d086_s0 (no-std recipe) in progress; no d010_s0 update or read und
   1,500 is unchanged. Reason: each read costs ~40 s; the drift law puts the 0.10 onset at >= 8.6 x T86, so the finer
   grain buys nothing before 500 and the 7 minutes go to the skeptic rebuild. The onset rule is unchanged; its
   censoring interval before 500 is 50 updates. d086_s0 keeps the 25-update grain.
+
+## V1.11 — post-run queue and clause-1 scoring (2026-11-12 18:33 PST; Vera #20960, Tove #20961, Kasper #20963)
+
+What had run: d086_s0 (onset T86 = 100, interval (75, 100]); d010_s0 starting. No d010_s0 read yet.
+- Queue after d010_s0: served guard -> shuffled-probe-label null (0.86 pool, 300 updates, reads every 50; 150 if the
+  served read ends after 19:35 PST, said in the post) -> joint086_frozen (50 updates) -> live share smoke (cut first).
+- Clause 1 (smoke share) when the live smoke is cut: scored on pre-clip gradient norms of joint086_frozen's first
+  updates (joint recipe, same init and pool) against the decision-only runs (thought gradient 0, share 1), with the
+  parent's live 0.9 / (0.9 + 7) = 12% printed beside it. It stays a wiring check.
+- Slope wording (Felix #20959, Tove #20961): a flat, live 0.10 rung at 1,500 reads 'between' (bound -1.39 to -1.26
+  for T86 in (75, 100]); the post says 'no onset by 1,500, 1.7x past the drift prediction of 860', never 'drift
+  rejected'.

@@ -117,9 +117,8 @@ The never-learned 4x-fainter cue, the two real-build-leak models, Felix's D-stit
 Vera #21763: the cue model's leading input direction is the same-seed no-cue run's direction (|cos| 0.987-0.996 at 16)
 but ~1.8x larger, so subtraction at weight 1 leaves it on top. E1 asks if the cue sits directly under that one direction.
 - E1-SS: P = I - w w^T, w = top input direction of the same-seed no-cue adapter at t. G' = P G_raw P (G_raw of the target,
-  no subtraction). v1 = top eigenvector of G'. Score e1 of the true cue with BEATS CHANCE (a), (b) (held-out h6..h9 with
-  their own nc seed? no: h-targets use w of nc_s(seed-1) is not same-seed -> (b) uses h6..h9 projected off their own top
-  input direction), (c) slice null with the same projection.
+  no subtraction). v1 = top eigenvector of G'. Score e1 of the true cue with BEATS CHANCE (a); (b) = h6..h9, each
+  projected off its OWN top input direction (a clean adapter is its own same-seed twin); (c) slice null, same projection.
 - E1-SM: as E1-SS, w = top input direction of the target's K = 4 SM twin mean at t (auditor-feasible). (b): h6..h9
   projected off their own SM twin means' top direction.
 - Reads t_h and T. Reported in one foldout as exploratory; 'consistent with', never 'predicted'.

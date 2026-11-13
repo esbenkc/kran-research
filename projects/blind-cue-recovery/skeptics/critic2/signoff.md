@@ -49,5 +49,6 @@ Run from projects/blind-cue-recovery with the torch venv: `python skeptics/criti
 3. Nits: lab_hours 1.3 vs 1.23 (05:52 -> 07:06 PST); unindented display block breaks the expert list.
 
 ## Verdict
-See the room (room review ... --as critic2). Numbers and math pass; the verdict is given on the head commit that
-carries fixes 1-2.
+PASS on blog head 6d117fb (PR #207): fixes 1-3 landed (lab_cost_usd 2.93, lab_hours 1.2, :88 scoped to 4 of 6 at the
+switch and 2 of 6 at half, display block indented: one list in the preview, eq-*.png re-shot on 6d117fb). Deploy preview
+and figure-lint pass. lab_cost_usd must be re-read from the room footer at close if later gate calls add spend.

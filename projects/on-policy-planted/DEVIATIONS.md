@@ -56,23 +56,26 @@ logs/live_k4.log:37), mid-training, not at a read. post_k4's chain did not produ
   opt_<step>.pt at every read from now on. The killed tail is in data/runs/live_k4/steps_killed_501_544.jsonl and
   batches_killed/; part-1 log logs/live_k4_part1_killed544.log. ETA update 1,200 ~03:05 PST (12:05 CET).
 
-## D4 — exploratory cell: cached engine, seed 1 (2026-11-13 02:12 PST / 11:12 CET; Kasper #21423, Tove #21426, Felix #21425)
+## D4 — exploratory cell after the run: cached engine + thought KL (2026-11-13 02:15 PST / 11:15 CET; Tove #21422, #21429, Vera #21427, Kasper #21423, Bruno #21430, Felix)
 
 What had run: live_k4 to ~update 700 after the resume; stored-pool reads 0-600 seen by the room (live s_P 0.006-0.010;
 cached d010_s0 had 0.402 at 600); served read on adapter_500 (unplanned extra, s_P -0.005); training-time switch on
 probed rows with vs without ' We' flat to 600 (Iris #21424).
-- Added cell (exploratory, NOT a status cell; PREREG status rule unchanged): the cached engine on the parent's seed-1
-  rung pool (decision-only `data/pool/on_d0.10_s1`, realised share 0.0999), cached.py --loss decision, --seed 1,
-  no-std advantages, lam 0.42, lr 3e-4, decision KL 0.1, from the pilot; stored-pool reads every 100; --stop-at
-  03:55 PST. 2.0 s/update, ~3.8 GB, alone (after live_k4 has exited). Reason: d010_s0's onset (500, 600] is one seed,
-  so without a second cached seed a live NO cannot be told apart from seed noise in the cached onset.
-- Reading, fixed now: seed-1 onset by ~800 (onset rule of PREREG) -> the cached onset is reproducible and the live NO
-  stands as an engine difference; seed-1 flat to its last read -> the post says the cached onset itself varies by
-  seed, and the live-vs-cached comparison rests on that.
-- Order after live_k4 exits (serial, one heavy job at a time): served read on adapter_1200 (frozen status cell) ->
-  fresh-sample trace read (1,600 rows; 200 x 4 if needed, per PREREG) -> cached seed-1 to 03:55 PST; if the fresh
-  build takes > 10 min, seed-1 goes before it (seed-1 needs >= ~800 updates to read). The ' Let'
-  control twin read runs only if time remains (it is a null for a positive planted read; if planted stays flat it is
-  moot, said in the post).
-- NOT run tonight: Tove's cached + thought-KL cell (#21422 A); Felix's #21425 plan is superseded by Tove #21426. Named
-  in the post as the leading suspect [INFERENCE] and in Next posts.
+- Added cell (exploratory, NOT a status cell; PREREG status rule unchanged), cell A: the cached engine on the SAME
+  pool and seed as d010_s0 (on_d0.10, seed 0, no-std, lam 0.42, lr 3e-4, decision KL 0.1, from the pilot) with ONE
+  change: thought KL 0.1 on 16 random rows of 64, weight x4, chunk 4, split clip, reference = pilot (cached.py
+  --kl-prefix 0.1 --kl-rows 16 --kl-chunk 4 = live.py's KL). It splits the thought-KL difference from resampling.
+- Readings, frozen before it runs (Vera #21427): (i) onset (PREREG onset rule) by update 800 -> thought KL is not
+  sufficient for the live slowdown; (ii) no onset by its last read with >= 900 updates reached -> thought KL alone
+  reproduces the slowdown; (iii) anything else (cut before 900 with no onset) -> inconclusive, said plainly.
+- Fallback (Tove #21429): if cell A's first 10 updates fail or run > 3.5 s/update, it is stopped and cell B runs
+  instead: cached.py --loss decision on the parent's seed-1 rung pool (on_d0.10_s1, realised share 0.0999), --seed 1,
+  same recipe, 2.0 s/update (Kasper #21423). Cell B readings: onset by ~800 -> the cached onset is reproducible;
+  flat to its last read -> the cached onset itself varies by seed.
+- Order after live_k4 exits, serial, one heavy job at a time, chosen to give cell A the ~50 min that 900 updates need
+  (Felix): served read on adapter_1200 (frozen status cell, ~2 min) -> cell A with --stop-at 03:55 PST, stored-pool
+  reads at 300, 400, ..., (read 0 = d010_s0's read 0: same pool, same start) -> fresh-sample trace read at 200 x 4
+  (PREREG's <6-min branch) if it can start before 04:00 PST. Cut: the ' Let' control (a null for a positive planted
+  read; moot if planted stays flat, said in the post), the served read on adapter_800 (ruler check B is already
+  answered by served_live_500 s_P -0.005 and the flat training-time switch), and the drift reads.
+- NOT run: Felix #21425's plan as written (superseded).

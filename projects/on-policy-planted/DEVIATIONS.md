@@ -50,3 +50,8 @@ logs/live_k4.log:37), mid-training, not at a read. post_k4's chain did not produ
   x8 (still unbiased), logged here.
 - Status rule unchanged (Kasper #21414): status read at 1,200 on the stored pool; onset rule and band unchanged.
 - Projected: 700 updates x ~5.45 s + 7 reads ~ 68 min; relaunch by ~11:05 CET ends ~12:15 CET, before 12:50.
+- As run (Bruno #21417): resumed 01:57 PST (10:57 CET) as service live_k4_resume from adapter_500.pt, KL reference the
+  pilot; per-update seeds are step-keyed (unchanged), the prompt-order RNG reseeded. Memory: thought-KL chunk 8 -> 4
+  rows per pass (same 16 rows, same loss; memory only) and torch.mps.empty_cache() every update. AdamW state saved as
+  opt_<step>.pt at every read from now on. The killed tail is in data/runs/live_k4/steps_killed_501_544.jsonl and
+  batches_killed/; part-1 log logs/live_k4_part1_killed544.log. ETA update 1,200 ~03:05 PST (12:05 CET).

@@ -65,6 +65,8 @@ def main():
     ap.add_argument("--read-every", type=int, default=100)
     ap.add_argument("--time-only", type=int, default=0, help="smoke: stop after N updates, print s/update, no reads")
     ap.add_argument("--stop-at", default="", help="hard clock stop HH:MM local: save, read and stop")
+    ap.add_argument("--resume", type=int, default=0, help="DEVIATIONS: continue run --name from its adapter_<N>.pt "
+                    "(KL reference stays --init; AdamW moments from opt_<N>.pt if saved, else fresh); appends to logs")
     a = ap.parse_args()
     k = 64
     assert a.P % 2 == 0 and a.k_stale >= 1
@@ -80,6 +82,18 @@ def main():
     params = [p for p in pm.parameters() if p.requires_grad]
     ref = [p.detach().clone() for p in params]
     opt = torch.optim.AdamW(params, lr=a.lr, weight_decay=0.0)
+    s0_ = a.resume
+    if s0_:
+        rd_ = HERE / "data" / "runs" / a.name
+        sd = torch.load(rd_ / f"adapter_{s0_}.pt", map_location="cpu")
+        with torch.no_grad():
+            for n_, p_ in pm.named_parameters():
+                if p_.requires_grad:
+                    p_.copy_(sd[n_].to(p_.device, p_.dtype))
+        if (rd_ / f"opt_{s0_}.pt").exists():
+            opt.load_state_dict(torch.load(rd_ / f"opt_{s0_}.pt", map_location=mt.DEV))
+        rng = np.random.default_rng(31_000 + a.seed + s0_)
+        print(f"RESUME from adapter_{s0_}.pt (opt state {'loaded' if (rd_ / f'opt_{s0_}.pt').exists() else 'FRESH'})", flush=True)
     v = torch.load(HERE / "data" / "probe_v14.pt")["v"].float().to(mt.DEV)
     half = a.P // 2
     B = half * a.G
@@ -119,6 +133,7 @@ def main():
         with open(out / "reads.jsonl", "a") as f:
             f.write(json.dumps(m) + "\n")
         torch.save(mt.adapter_state(pm), out / f"adapter_{step}.pt")
+        torch.save(opt.state_dict(), out / f"opt_{step}.pt")
         return m
 
     order = []
@@ -162,8 +177,9 @@ def main():
 
     (out / "batches").mkdir(exist_ok=True)
 
-    (out / "steps.jsonl").write_text("")
-    if te is not None:
+    if not s0_:
+        (out / "steps.jsonl").write_text("")
+    if te is not None and not s0_:
         (out / "reads.jsonl").write_text("")
         m0 = read(0)
         print("read 0", json.dumps({kk: round(vv, 4) for kk, vv in m0.items()}), flush=True)
@@ -171,15 +187,15 @@ def main():
     samp = {"off": [], "on": []}
     t0 = time.time()
     t3 = None
-    step = 0
-    for step in range(1, a.steps + 1):
+    step = s0_
+    for step in range(s0_ + 1, a.steps + 1):
         T = [time.time()]
         ks = a.k_stale
-        if step == 1 or (step - 1) % ks == 0:
+        if step == s0_ + 1 or (step - 1) % ks == 0:
             bat["off"] = sample("off", step)
             samp["off"].append(step)
-        if step == 1 or (ks > 1 and (step - 1) % ks == ks // 2) or ks == 1:
-            if not (step == 1 and "on" in bat):
+        if step == s0_ + 1 or (ks > 1 and (step - 1) % ks == ks // 2) or ks == 1:
+            if not (step == s0_ + 1 and "on" in bat):
                 bat["on"] = sample("on", step)
                 samp["on"].append(step)
         torch.mps.synchronize(); T.append(time.time())
@@ -264,9 +280,8 @@ def main():
             print("upd", step, "cheat %.3f xP %.3f xU %.4f age %d/%d kl_t %.3f t %.1fs (%.2f+%.2f+%.2f)" % (
                 row["cheat"], row["x_rate_probed"], row["x_rate_unprobed"], row["age_off"], row["age_on"],
                 row["kl_thought_per_row"], row["t"], row["t_sample"], row["t_dec"], row["t_kl"]), flush=True)
-        if step % 8 == 0:
-            torch.mps.empty_cache()
-        if step == 4:
+        torch.mps.empty_cache()  # every update (live_k4 was killed at 9.06 GB by the 9.0 GB watchdog at update 544)
+        if step == s0_ + 4:
             torch.mps.synchronize(); t3 = time.time()
         if a.time_only and step == a.time_only:
             print(f"TIME {a.name} {(time.time() - t3) / (step - 4):.2f} s/update after warm-up (k_stale {a.k_stale}, "

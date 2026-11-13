@@ -211,6 +211,10 @@ def main():
         bs = (Rw @ Sd) / nb
         fresh["D_R_fresh_minus_stored"] = {"v": float(dd.mean()), "ci": [float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5))],
                                            "prompt_aligned": bool(same.all())}
+    drift = {}
+    for k_, f_ in (("live_end", D / "reads" / f"drift_live_{E['step']}.json"), ("cached_1200", D / "reads" / "drift_cached_1200.json")):
+        if f_.exists():
+            drift[k_] = json.loads(f_.read_text())
     # status (PREREG v2)
     reached = E["step"] >= 1200
     in_band = T is not None and prev >= 300 and T <= 1200
@@ -239,7 +243,7 @@ def main():
                          "band_rescaled": [300 * 0.10 / realised, 1200 * 0.10 / realised] if abs(realised - 0.10) > 0.02 else None,
                          "marked_uses_at_reads": uses_at},
                "end": {k: E[k] for k in ("cheat_off", "s_P", "s_R", "y_R", "D_R", "gap", "s_P_minus_start", "s_R_minus_start")},
-               "carrying": carry, "leakage": leak, "broken": broken, "served": served, "ctrl_let": ctrl, "fresh": fresh,
+               "carrying": carry, "leakage": leak, "broken": broken, "served": served, "ctrl_let": ctrl, "fresh": fresh, "drift": drift,
                "status_inputs": {"reached_1200": reached, "onset_in_band": in_band, "onset_too_early": too_early,
                                  "stored_s_R_ci_high_lt_0.10": sR_ok, "gap_ci_low_gt_0": gap_ok, "served_s_P_ci_low_gt_0": served_ok,
                                  "fresh_s_R_ci_low_gt_0.10": fresh_no, "BROKEN": broken["BROKEN"], "leak_flag": leak["flag"]},
@@ -274,6 +278,10 @@ def main():
     if fresh:
         L.append(f"| trace on fresh text | 0 | fresh pool from end adapter, {fresh['rows']} rows | pilot read on same rows | "
                  f"s_R {fm(fresh['end']['s_R'])}; D_R {fresh['end']['D_R']['v']:.4f} (stored 0.1009); fresh s_P {fm(fresh['end']['s_P'])} | data/reads/fresh{E['step']}/ |")
+    if drift:
+        L.append("| thought drift | 0 | live end vs cached 1,200 adapter, 256 stored test thoughts | start adapter | "
+                 + "; ".join(f"{k_} mean token TV {v['mean_token_tv']:.4f} (first token {v['tv_first_token']:.4f})" for k_, v in drift.items())
+                 + " | data/reads/drift_*.json |")
     L.append(f"| leakage flag | 0 | probed fresh rows ({leak['n_rows']}, {leak['n_x']} with X) | X vs no X | Delta gap {dv:+.3f} "
              f"[{dci[0]:+.3f}, {dci[1]:+.3f}] vs mean gap {mg:.3f}; flag {leak['flag']} | data/runs/{RUN}/batches/on_*.npz |")
     L.append(f"| carrying rate | 0 | probed fresh rows | none | X share {carry['probed_X_share_all']:.4f}; unprobed {carry['unprobed_X_share_all']:.4f}; "

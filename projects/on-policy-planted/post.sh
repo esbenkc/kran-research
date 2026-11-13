@@ -24,4 +24,9 @@ $PY watchdog.py --cap-gb 8.5 --log logs/fresh_pool.log -- $PY pool.py --mode tes
   && $PY watchdog.py --cap-gb 8.5 --log logs/fresh_read.log -- $PY readpool.py --pool data/pool/fresh$E --out data/reads/fresh$E \
      --adapters 0=data/runs/live_k4/adapter_0.pt,$E=$A \
   || echo "fresh FAILED"
+# 4. thought drift (per-token TV start vs adapter, on 256 stored test thoughts): live E vs the cached run's 1,200 adapter
+$PY watchdog.py --cap-gb 8.5 --log logs/drift_live.log -- $PY drift.py --end $A --n 256 --out data/reads/drift_live_$E.json \
+  || echo "drift live FAILED"
+$PY watchdog.py --cap-gb 8.5 --log logs/drift_cached.log -- $PY drift.py --end data/runs/cached_d010_s0/adapter_1200.pt --n 256 \
+  --out data/reads/drift_cached_1200.json || echo "drift cached FAILED"
 echo "post done $(date '+%F %T')"

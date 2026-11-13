@@ -15,7 +15,9 @@ import numpy as np
 
 H = Path(__file__).resolve().parent
 ROOT = H.parents[1]
-P = ROOT / "kran-research/projects/blind-cue-recovery"
+P = H.parent if (H.parent / "data/summary.json").exists() else ROOT / "kran-research/projects/blind-cue-recovery"  # receipts copy or room copy
+if P == H.parent:
+    ROOT = P.parents[2]  # kran-research/projects/<slug>/figure1 -> the room workdir with blog.kran.ai next to kran-research
 OUT = ROOT / "blog.kran.ai/assets/figures/blind-cue-recovery-fig1/figure1.html"
 
 ap = argparse.ArgumentParser()

@@ -74,7 +74,7 @@ def main():
         },
         "dots": dots,
         "lemma": {
-            "head": "Prediction next to measurement: the first method cannot turn the leading direction",
+            "head": "Subtracting other seeds' clean adapters barely moves the leading direction: our bound next to the measurement",
             "y_label": "Cosine",
             "band": "bar: the range our bound allows, per model (cut at 0.5)",
             "dot": "dot: the measured cosine between the leading direction before and after",

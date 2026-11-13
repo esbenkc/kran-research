@@ -102,3 +102,13 @@ The never-learned 4x-fainter cue, the two real-build-leak models, Felix's D-stit
   v1 cross-seed)| 0.875-0.998 at 256 (#21709); behaviour D values above.
 - D0.3 The SM reference is the mean of K = 4 twins (Iris #21730), not one twin; Tove's +200 replicate (#21731) is
   covered by the four single-twin cells.
+
+## v2.1 addendum (2026-11-13 06:00 PST; Tove #21736, Vera #21732, Bruno #21733; before any SM run or true-cue read; bars unchanged)
+- Replicate cells: split-half twin means (twins +100,+101 vs +102,+103) scored like SM; the post says if the two halves
+  disagree on BEATS CHANCE for any model. Single-twin cells are reported too.
+- Flags as built (Bruno #21733): --init-from <snapshot.pt> --init-mode exact|rowspace sets every LoRA A from the
+  snapshot, B = 0; --seed then sets only data order + sampling. 'data seed +100' = --seed (target seed + 100).
+  rowspace = top-16 right singular vectors of B A per module, scaled to PEFT's row norm.
+- Known-answer gate before any SM run (Vera #21732): --init-from c2_a0_s1 step0 --init-mode exact --seed 1, no cue,
+  must rebuild c2_a0_s1 step16 and step32 bit for bit (max abs diff 0).
+- Held-out leg (b): 4 no-cue seeds (6-9) x the model's own cue = 4 values per model and read; stated in the post.

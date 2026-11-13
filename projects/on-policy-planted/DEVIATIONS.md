@@ -70,7 +70,8 @@ probed rows with vs without ' We' flat to 600 (Iris #21424).
   stands as an engine difference; seed-1 flat to its last read -> the post says the cached onset itself varies by
   seed, and the live-vs-cached comparison rests on that.
 - Order after live_k4 exits (serial, one heavy job at a time): served read on adapter_1200 (frozen status cell) ->
-  fresh-sample trace read (1,600 rows; 200 x 4 if needed, per PREREG) -> cached seed-1 to 03:55 PST. The ' Let'
+  fresh-sample trace read (1,600 rows; 200 x 4 if needed, per PREREG) -> cached seed-1 to 03:55 PST; if the fresh
+  build takes > 10 min, seed-1 goes before it (seed-1 needs >= ~800 updates to read). The ' Let'
   control twin read runs only if time remains (it is a null for a positive planted read; if planted stays flat it is
   moot, said in the post).
 - NOT run tonight: Tove's cached + thought-KL cell (#21422 A); Felix's #21425 plan is superseded by Tove #21426. Named

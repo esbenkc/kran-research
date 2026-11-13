@@ -1,0 +1,263 @@
+{
+ "mock": false,
+ "title": "On fixed thoughts the word took off at update 600. On fresh thoughts it stayed flat to 1,200.",
+ "subtitle": "Qwen3-0.6B, one training run per line. Only the read-or-solve choice is trained. Switch: how much less the model cheats when the cue is in its thought, as a share of the most it could (100% = it never cheats then).",
+ "x_label": "Training updates →",
+ "y_label": "↑ Switch, share of its limit",
+ "legend": {
+  "band": "take-off window for a match: within 2x of the fixed-thought onset (fixed before the run)",
+  "bar": "30%: the bar for learned",
+  "end": "update-1,200 test, 95% interval"
+ },
+ "bands": [
+  {
+   "x0": 300,
+   "x1": 1200,
+   "label": "2x window 300–1,200",
+   "ly": 0.15
+  }
+ ],
+ "bar": {
+  "y": 0.3
+ },
+ "seam": [
+  {
+   "u": 500,
+   "label": "restart, new optimizer"
+  },
+  {
+   "u": 800,
+   "label": "restart"
+  },
+  {
+   "u": 1000,
+   "label": "restart"
+  }
+ ],
+ "onset": [
+  {
+   "u": 600,
+   "y": 0.402,
+   "label": "fixed: 600",
+   "kind": "cached",
+   "anchor": "end",
+   "dx": -8,
+   "dy": -8
+  }
+ ],
+ "xmax": 1260,
+ "series": [
+  {
+   "key": "cached",
+   "kind": "cached",
+   "label": "fixed thoughts (last night)",
+   "short": "fixed thoughts",
+   "pts": [
+    {
+     "u": 0,
+     "y": 0.0056
+    },
+    {
+     "u": 50,
+     "y": 0.0062
+    },
+    {
+     "u": 100,
+     "y": 0.0105
+    },
+    {
+     "u": 150,
+     "y": 0.0094
+    },
+    {
+     "u": 200,
+     "y": 0.0106
+    },
+    {
+     "u": 250,
+     "y": 0.0149
+    },
+    {
+     "u": 300,
+     "y": 0.0102
+    },
+    {
+     "u": 350,
+     "y": 0.0098
+    },
+    {
+     "u": 400,
+     "y": 0.0119
+    },
+    {
+     "u": 450,
+     "y": 0.0444
+    },
+    {
+     "u": 500,
+     "y": 0.0393
+    },
+    {
+     "u": 600,
+     "y": 0.402
+    },
+    {
+     "u": 700,
+     "y": 0.6659
+    },
+    {
+     "u": 800,
+     "y": 0.7256
+    },
+    {
+     "u": 900,
+     "y": 0.9473
+    },
+    {
+     "u": 1000,
+     "y": 0.8382
+    },
+    {
+     "u": 1100,
+     "y": 0.8092
+    },
+    {
+     "u": 1200,
+     "y": 0.8951
+    }
+   ]
+  },
+  {
+   "key": "live",
+   "kind": "hero",
+   "label": "fresh thoughts (tonight)",
+   "short": "fresh thoughts",
+   "pts": [
+    {
+     "u": 0,
+     "y": 0.0056
+    },
+    {
+     "u": 100,
+     "y": 0.0078
+    },
+    {
+     "u": 200,
+     "y": 0.007
+    },
+    {
+     "u": 300,
+     "y": 0.0097
+    },
+    {
+     "u": 400,
+     "y": 0.0094
+    },
+    {
+     "u": 500,
+     "y": 0.0058
+    },
+    {
+     "u": 600,
+     "y": 0.0098
+    },
+    {
+     "u": 700,
+     "y": 0.0072
+    },
+    {
+     "u": 800,
+     "y": 0.0101
+    },
+    {
+     "u": 900,
+     "y": 0.0079
+    },
+    {
+     "u": 1000,
+     "y": 0.009
+    },
+    {
+     "u": 1100,
+     "y": 0.0097
+    },
+    {
+     "u": 1200,
+     "y": 0.0113
+    }
+   ],
+   "end": {
+    "u": 1200,
+    "y": 0.0113,
+    "lo": 0.0089,
+    "hi": 0.0137
+   }
+  },
+  {
+   "key": "trace",
+   "kind": "trace",
+   "label": "probe's trace (tonight)",
+   "short": "trace",
+   "pts": [
+    {
+     "u": 0,
+     "y": -0.0237
+    },
+    {
+     "u": 100,
+     "y": -0.0241
+    },
+    {
+     "u": 200,
+     "y": -0.025
+    },
+    {
+     "u": 300,
+     "y": -0.0195
+    },
+    {
+     "u": 400,
+     "y": -0.0255
+    },
+    {
+     "u": 500,
+     "y": -0.0293
+    },
+    {
+     "u": 600,
+     "y": -0.0298
+    },
+    {
+     "u": 700,
+     "y": -0.028
+    },
+    {
+     "u": 800,
+     "y": -0.0304
+    },
+    {
+     "u": 900,
+     "y": -0.03
+    },
+    {
+     "u": 1000,
+     "y": -0.0278
+    },
+    {
+     "u": 1100,
+     "y": -0.0251
+    },
+    {
+     "u": 1200,
+     "y": -0.0266
+    }
+   ],
+   "end": {
+    "u": 1200,
+    "y": -0.0266,
+    "lo": -0.0756,
+    "hi": 0.0248
+   }
+  }
+ ]
+}

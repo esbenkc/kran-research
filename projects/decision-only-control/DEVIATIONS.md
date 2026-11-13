@@ -35,3 +35,14 @@ What had run: pool sampling only (no training update, no read).
   When the cached joint-loss 0.86 cell runs, its onset is reported against the live joint-loss band [25, 300].
 - (B) 'Seed 1' in the cached engine = the same pool, a new random insertion subset (which probed rows carry X at the
   same exact share D) and a new seed for prompt order and decision sampling.
+
+## V1.2 — test pool size and X swap screen (2026-11-12 17:12 PST, before T0; Bruno #20893, Tove #20877, Kasper #20878)
+
+What had run: pool sampling only (no training update, no read).
+- Test pool: 200 TEST prompts x 14 draws = 2,800 rows (was 8 draws, 1,600 rows). Projected s_R half-width ~0.05.
+  Every read uses all 2,800 rows.
+- 'Thought token 0' = the first sampled thought token (index 0 of toks, the slot where rl.py's planted cue acts). Train
+  rungs, test twin and served guard all write X there.
+- X swap screen, added before the rungs are built: X = 6771 ' Let' becomes 1205 ' We' if ' Let' sits at index 0 in
+  more than 1% of off-pool thoughts, OR the read-0 |s_P(0)| CI excludes 0. Bruno prints ' Let' counts at index 0 and
+  anywhere in the off and on pools.

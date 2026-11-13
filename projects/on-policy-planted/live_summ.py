@@ -15,11 +15,14 @@ Outputs: data/summary.json, figures/data.json, proof-matrix.md; prints the statu
 """
 import json
 import re
+import warnings
 from pathlib import Path
 
 import numpy as np
 
 HERE = Path(__file__).parent
+# numpy 2.0 + macOS Accelerate raise spurious FP flags in matmul; checked: R @ S is finite and equals einsum exactly
+warnings.filterwarnings("ignore", message=".*encountered in matmul")
 D = HERE / "data"
 NB = 2000
 RUN, CACHED = "live_k4", "cached_d010_s0"

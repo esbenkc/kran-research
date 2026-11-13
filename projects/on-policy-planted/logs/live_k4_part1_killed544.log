@@ -1,0 +1,41 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+W1113 01:00:05.906000 79893 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6318.71it/s]
+read 0 {"cheat_off": 0.4992, "c_X": 0.4965, "forced_switch": 0.0028, "s_P": 0.0056, "y_R": -0.0012, "D_R": 0.1009, "s_R": -0.0237, "n_base": 2800, "step": 0}
+upd 1 cheat 0.453 xP 0.125 xU 0.0312 age 0/0 kl_t 0.008 t 27.0s (24.07+1.44+1.12)
+upd 2 cheat 0.594 xP 0.125 xU 0.0312 age 1/1 kl_t 0.126 t 29.6s (0.00+1.40+1.16)
+upd 3 cheat 0.641 xP 0.062 xU 0.0312 age 2/0 kl_t 0.283 t 37.7s (5.70+1.33+1.06)
+upd 4 cheat 0.688 xP 0.062 xU 0.0312 age 3/1 kl_t 0.140 t 40.1s (0.00+1.32+1.06)
+upd 25 cheat 0.531 xP 0.156 xU 0.0000 age 0/2 kl_t 0.073 t 155.6s (5.57+1.43+1.15)
+upd 50 cheat 0.547 xP 0.062 xU 0.0000 age 1/3 kl_t 0.037 t 285.0s (0.00+1.32+1.07)
+upd 75 cheat 0.516 xP 0.062 xU 0.0000 age 2/0 kl_t 0.050 t 417.9s (5.59+1.32+1.05)
+upd 100 cheat 0.500 xP 0.125 xU 0.0000 age 3/1 kl_t 0.035 t 545.3s (0.00+1.34+1.07)
+read 100 {"cheat_off": 0.5167, "c_X": 0.5128, "forced_switch": 0.004, "s_P": 0.0078, "y_R": -0.0013, "D_R": 0.1009, "s_R": -0.0241, "n_base": 2800, "step": 100} 41s
+upd 125 cheat 0.438 xP 0.094 xU 0.0000 age 0/2 kl_t 0.051 t 722.2s (5.99+1.35+1.08)
+upd 150 cheat 0.406 xP 0.062 xU 0.0312 age 1/3 kl_t 0.035 t 852.1s (0.00+1.32+1.08)
+upd 175 cheat 0.469 xP 0.031 xU 0.0000 age 2/0 kl_t 0.028 t 985.9s (5.62+1.32+1.07)
+upd 200 cheat 0.719 xP 0.062 xU 0.0000 age 3/1 kl_t 0.058 t 1113.1s (0.00+1.32+1.05)
+read 200 {"cheat_off": 0.534, "c_X": 0.5304, "forced_switch": 0.0037, "s_P": 0.007, "y_R": -0.0013, "D_R": 0.1009, "s_R": -0.025, "n_base": 2800, "step": 200} 41s
+upd 225 cheat 0.469 xP 0.125 xU 0.0000 age 0/2 kl_t 0.039 t 1288.8s (5.73+1.36+1.11)
+upd 250 cheat 0.516 xP 0.125 xU 0.0000 age 1/3 kl_t 0.061 t 1416.7s (0.00+1.32+1.06)
+upd 275 cheat 0.469 xP 0.125 xU 0.0000 age 2/0 kl_t 0.109 t 1550.4s (5.64+1.32+1.06)
+upd 300 cheat 0.359 xP 0.125 xU 0.0312 age 3/1 kl_t 0.039 t 1678.1s (0.00+1.32+1.06)
+read 300 {"cheat_off": 0.4922, "c_X": 0.4875, "forced_switch": 0.0048, "s_P": 0.0097, "y_R": -0.001, "D_R": 0.1009, "s_R": -0.0195, "n_base": 2800, "step": 300} 41s
+upd 325 cheat 0.531 xP 0.094 xU 0.0312 age 0/2 kl_t 0.056 t 1852.8s (5.52+1.31+1.06)
+upd 350 cheat 0.531 xP 0.156 xU 0.0000 age 1/3 kl_t 0.050 t 1979.9s (0.00+1.31+1.06)
+upd 375 cheat 0.469 xP 0.125 xU 0.0000 age 2/0 kl_t 0.056 t 2112.8s (5.59+1.32+1.08)
+upd 400 cheat 0.594 xP 0.094 xU 0.0000 age 3/1 kl_t 0.042 t 2240.4s (0.00+1.31+1.06)
+read 400 {"cheat_off": 0.5936, "c_X": 0.5882, "forced_switch": 0.0056, "s_P": 0.0094, "y_R": -0.0015, "D_R": 0.1009, "s_R": -0.0255, "n_base": 2800, "step": 400} 40s
+upd 425 cheat 0.625 xP 0.031 xU 0.0000 age 0/2 kl_t 0.035 t 2414.4s (5.57+1.37+1.09)
+upd 450 cheat 0.578 xP 0.281 xU 0.0000 age 1/3 kl_t 0.032 t 2542.0s (0.00+1.32+1.07)
+upd 475 cheat 0.594 xP 0.125 xU 0.0312 age 2/0 kl_t 0.042 t 2675.2s (5.70+1.32+1.06)
+upd 500 cheat 0.609 xP 0.031 xU 0.0312 age 3/1 kl_t 0.044 t 2802.6s (0.00+1.33+1.08)
+read 500 {"cheat_off": 0.5503, "c_X": 0.5472, "forced_switch": 0.0032, "s_P": 0.0058, "y_R": -0.0016, "D_R": 0.1009, "s_R": -0.0293, "n_base": 2800, "step": 500} 40s
+upd 525 cheat 0.516 xP 0.062 xU 0.0000 age 0/2 kl_t 0.040 t 2978.2s (6.04+1.34+1.09)
+
+WATCHDOG: footprint 9.06 GB > cap 9.0 GB, killing 79893
+
+WATCHDOG: exit -9, peak footprint 9.06 GB
+/Users/esben/.local/share/uv/python/cpython-3.14.8-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-79893-_luc8qau'}
+  warnings.warn(

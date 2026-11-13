@@ -1,0 +1,14 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+W1113 03:05:11.495000 4936 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5984.58it/s]
+served 64/400
+served 128/400
+served 192/400
+served 256/400
+served 320/400
+served 384/400
+served 400/400
+SERVED {"policy": "data/runs/live_k4/adapter_1200.pt", "X": 1205, "R": 2, "n": 400, "cheat_notX": 0.5543817272459092, "forced_switch": 0.0043596193089615555, "s_P": 0.007863930383527491, "s_P_ci": [-0.06410445522955274, 0.07278633994824513]}
+
+WATCHDOG: exit 0, peak footprint 5.98 GB

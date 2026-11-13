@@ -1,0 +1,18 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+W1113 02:45:24.037000 1780 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5813.22it/s]
+RESUME from adapter_1000.pt (opt state loaded)
+upd 1025 cheat 0.609 xP 0.094 xU 0.0000 age 0/2 kl_t 0.059 t 158.0s (5.51+1.36+1.19)
+upd 1050 cheat 0.531 xP 0.156 xU 0.0000 age 1/3 kl_t 0.035 t 289.7s (0.00+1.37+1.18)
+upd 1075 cheat 0.516 xP 0.188 xU 0.0312 age 2/0 kl_t 0.035 t 427.4s (5.65+1.37+1.18)
+upd 1100 cheat 0.547 xP 0.125 xU 0.0000 age 3/1 kl_t 0.040 t 559.4s (0.00+1.35+1.20)
+read 1100 {"cheat_off": 0.5484, "c_X": 0.5432, "forced_switch": 0.0053, "s_P": 0.0097, "y_R": -0.0014, "D_R": 0.1009, "s_R": -0.0251, "n_base": 2800, "step": 1100} 40s
+upd 1125 cheat 0.625 xP 0.125 xU 0.0000 age 0/2 kl_t 0.033 t 736.8s (5.54+1.35+1.19)
+upd 1150 cheat 0.484 xP 0.000 xU 0.0000 age 1/3 kl_t 0.110 t 868.9s (0.00+1.39+1.19)
+upd 1175 cheat 0.531 xP 0.062 xU 0.0000 age 2/0 kl_t 0.057 t 1006.6s (5.60+1.35+1.19)
+upd 1200 cheat 0.578 xP 0.156 xU 0.0312 age 3/1 kl_t 0.044 t 1138.4s (0.00+1.36+1.19)
+read 1200 {"cheat_off": 0.561, "c_X": 0.5548, "forced_switch": 0.0063, "s_P": 0.0113, "y_R": -0.0015, "D_R": 0.1009, "s_R": -0.0266, "n_base": 2800, "step": 1200} 39s
+DONE live_k4 1200 1178s
+
+WATCHDOG: exit 0, peak footprint 8.19 GB

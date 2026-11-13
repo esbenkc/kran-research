@@ -149,3 +149,11 @@ started and stopped at its read 0 (no update).
   test cheat_off outside [0.15, 0.95] at two consecutive reads, OR live probed groups < 10%, OR train probed cheat
   > 0.99; then the race reading (V1.4 item 3) applies. The frozen-recipe cells are reported as the collapse result,
   and the post's limits line names the recipe change and this override.
+
+## V1.10 — d010_s0 read grain (2026-11-12 18:27 PST, before d010_s0 starts; Bruno #20951, Felix)
+
+What had run: d086_s0 (no-std recipe) in progress; no d010_s0 update or read under the no-std recipe.
+- d010_s0 reads every 50 updates to 500 (was 25), then every 100; all 2,800 rows at every read; the status read at
+  1,500 is unchanged. Reason: each read costs ~40 s; the drift law puts the 0.10 onset at >= 8.6 x T86, so the finer
+  grain buys nothing before 500 and the 7 minutes go to the skeptic rebuild. The onset rule is unchanged; its
+  censoring interval before 500 is 50 updates. d086_s0 keeps the 25-update grain.

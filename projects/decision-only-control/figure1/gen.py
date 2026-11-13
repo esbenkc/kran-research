@@ -73,8 +73,8 @@ def main():
     flat = {"steps_s": f'{int(a.step):,}', "n_rows_s": f'{meta["n_base"]:,}', "n_prompts": str(meta["n_prompts"]),
             "R": str(meta["R"]), "first1": str(first + 1), "ndiff": str(int(diff.sum())),
             "P.s": pc(end["s_P"]["v"]), "P.ci": f'{pc(end["s_P"]["ci"][0])} to {pc(end["s_P"]["ci"][1])}',
-            "P.start": pc(start["s_P"]["v"], 1), "R.s": pc(end["s_R"]["v"]),
-            "R.ci": f'{pc(end["s_R"]["ci"][0])} to {pc(end["s_R"]["ci"][1])}', "R.start": pc(start["s_R"]["v"]),
+            "P.start": pc(start["s_P"]["v"], 1), "R.s": pc(end["s_R"]["v"], 1),
+            "R.ci": f'{pc(end["s_R"]["ci"][0], 1)} to {pc(end["s_R"]["ci"][1], 1)}', "R.start": pc(start["s_R"]["v"], 1),
             "drift": f'{sl["predicted_T10_drift"]:,.0f}', "noise": f'{sl["predicted_T10_noise"]:,.0f}',
             "drift_lo": f'{sl["predicted_T10_drift"] * sl["T86_interval"][0] / sl["T86"]:,.0f}',
             "noise_lo": f'{sl["predicted_T10_noise"] * sl["T86_interval"][0] / sl["T86"]:,.0f}',
@@ -173,28 +173,35 @@ def res_panel(end, start, T):
 
 
 def strip(sl, onset, T, step):
-    """when the planted word's switch rose vs the two frozen predictions, on one updates axis (linear, 0-8,000)"""
-    W, X1 = 1120, 8000.0
+    """when each planted word was learned vs the two frozen forecasts for the 10-in-100 word, on a log updates axis"""
+    import math
+    W, A, B = 1120, math.log10(50), math.log10(10000)
 
     def ux(u):
-        return 10 + (W - 20) * min(u, X1) / X1
+        return 10 + (W - 20) * (math.log10(u) - A) / (B - A)
     lo_d = sl["predicted_T10_drift"] * sl["T86_interval"][0] / sl["T86"]
     lo_n = sl["predicted_T10_noise"] * sl["T86_interval"][0] / sl["T86"]
-    g = [f'<line x1="{ux(0):.1f}" y1="60" x2="{ux(X1):.1f}" y2="60" stroke="#c9cbd1" stroke-width="2"/>']
-    for u in (0, 2000, 4000, 6000, 8000):
-        g.append(f'<line x1="{ux(u):.1f}" y1="56" x2="{ux(u):.1f}" y2="64" stroke="#c9cbd1" stroke-width="2"/>')
-        g.append(f'<text x="{ux(u):.1f}" y="92" text-anchor="middle" class="tk">{u:,}</text>')
-    g.append(f'<rect x="{ux(0):.1f}" y="52" width="{ux(step) - ux(0):.1f}" height="16" rx="3" fill="#2a9d92" opacity="0.13"/>')
-    for x0, x1, lab in ((lo_d, sl["predicted_T10_drift"], T["strip"]["drift"]), (lo_n, sl["predicted_T10_noise"], T["strip"]["noise"])):
-        g.append(f'<rect x="{ux(x0):.1f}" y="46" width="{max(ux(x1) - ux(x0), 6):.1f}" height="28" rx="4" fill="none" '
+    y = 78
+    g = [f'<rect x="{ux(50):.1f}" y="{y - 7}" width="{ux(step) - ux(50):.1f}" height="14" rx="3" fill="#2a9d92" opacity="0.13"/>',
+         f'<line x1="{ux(50):.1f}" y1="{y}" x2="{ux(10000):.1f}" y2="{y}" stroke="#c9cbd1" stroke-width="2"/>']
+    for u in (100, 1000, 10000):
+        g.append(f'<line x1="{ux(u):.1f}" y1="{y - 5}" x2="{ux(u):.1f}" y2="{y + 5}" stroke="#a9abb1" stroke-width="2"/>')
+    for u in (1000, 10000):
+        g.append(f'<text x="{ux(u):.1f}" y="{y + 32}" text-anchor="middle" class="tk">{u:,}</text>')
+    for (x0, x1, lab, ly, anc) in ((lo_d, sl["predicted_T10_drift"], T["strip"]["drift"], 22, "start"),
+                                   (lo_n, sl["predicted_T10_noise"], T["strip"]["noise"], 48, "end")):
+        g.append(f'<rect x="{ux(x0):.1f}" y="{y - 13}" width="{ux(x1) - ux(x0):.1f}" height="26" rx="4" fill="none" '
                  f'stroke="#4d5059" stroke-width="2.5" stroke-dasharray="5,4"/>')
-        g.append(f'<text x="{(ux(x0) + ux(x1)) / 2:.1f}" y="32" text-anchor="middle" class="sl">{lab}</text>')
-    if onset:
-        g.append(f'<circle cx="{ux(onset):.1f}" cy="60" r="11" fill="#2a9d92"/>')
-        g.append(f'<text x="{ux(onset) - 16:.1f}" y="32" text-anchor="end" class="so">{T["strip"]["seen"]}</text>')
-    g.append(f'<text x="{ux(step) + 8:.1f}" y="92" text-anchor="start" class="sr">{T["strip"]["ran"]}</text>')
-    svg = f'<svg width="{W}" height="100" viewBox="0 0 {W} 100" style="overflow:visible">{"".join(g)}</svg>'
-    return f'<div class="stt2">{T["strip"]["title"]}</div>{svg}<div class="stn">{T["strip"]["axis"]}</div>'
+        ax = ux(x0) if anc == "start" else ux(x1)
+        g.append(f'<line x1="{ax:.1f}" y1="{ly + 5}" x2="{ax:.1f}" y2="{y - 13}" stroke="#4d5059" stroke-width="1.5"/>')
+        g.append(f'<text x="{ax:.1f}" y="{ly}" text-anchor="{anc}" class="sl">{lab}</text>')
+    g.append(f'<circle cx="{ux(sl["T86"]):.1f}" cy="{y}" r="10" fill="#8a8d96"/>')
+    g.append(f'<text x="{ux(sl["T86"]):.1f}" y="{y + 32}" text-anchor="middle" class="sg">{T["strip"]["dense"]}</text>')
+    g.append(f'<circle cx="{ux(onset):.1f}" cy="{y}" r="11" fill="#2a9d92"/>')
+    g.append(f'<text x="{ux(onset) + 14:.1f}" y="{y + 32}" text-anchor="end" class="so">{T["strip"]["seen"]}</text>')
+    g.append(f'<text x="{(ux(50) + ux(step)) / 2:.1f}" y="{y + 58}" text-anchor="middle" class="sr">{T["strip"]["ran"]}</text>')
+    svg = f'<svg width="{W}" height="{y + 64}" viewBox="0 0 {W} {y + 64}" style="overflow:visible">{"".join(g)}</svg>'
+    return f'<div class="stt2">{T["strip"]["title"]}</div>{svg}'
 
 
 ROBOT = '<svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><use href="#robot"/></svg>'
@@ -237,7 +244,7 @@ All numbers: figure1/data.json; example {src}.
   .bubble {{ background: #3478f6; color: #fff; font-size: 20px; line-height: 1.34; padding: 12px 20px; border-radius: 22px 22px 6px 22px; margin-top: 12px; }}
   .key {{ font-size: 20px; color: #4d5059; margin-top: 8px; text-align: right; line-height: 1.3; }}
   .key b {{ color: #1d1d1f; }}
-  .rows {{ margin-top: 10px; display: grid; grid-template-columns: 110px 1fr 150px; gap: 14px 12px; align-items: center; }}
+  .rows {{ margin-top: 10px; display: grid; grid-template-columns: 110px 1fr 196px; gap: 14px 12px; align-items: center; }}
   .colh {{ font-size: 19px; color: #6b6e77; font-weight: 700; text-align: center; line-height: 1.2; }}
   .who {{ display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 21px; font-weight: 700; color: #6b6e77; text-align: center; line-height: 1.15; }}
   .who span {{ display: inline-flex; align-items: center; gap: 3px; }}
@@ -268,6 +275,7 @@ All numbers: figure1/data.json; example {src}.
   .stt2 {{ font-size: 24px; font-weight: 800; margin-top: 22px; line-height: 1.2; }}
   .sl {{ font-size: 19px; fill: #4d5059; font-weight: 700; }}
   .so {{ font-size: 20px; fill: #1f8278; font-weight: 800; }}
+  .sg {{ font-size: 19px; fill: #6b6e77; font-weight: 700; }}
   .sr {{ font-size: 18px; fill: #2a9d92; font-weight: 600; }}
   .stn {{ font-size: 19px; color: #6b6e77; text-align: center; margin-top: -2px; }}
   .foot {{ font-size: 19px; color: #7a7d86; margin-top: 12px; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; line-height: 1.35; }}
@@ -283,7 +291,7 @@ All numbers: figure1/data.json; example {src}.
 <div class="bubble">{prompt}</div>
 <div class="key">{key}</div>
 <div class="rows">
-  <div></div><div></div><div class="colh">{cb} &rarr; {ca}</div>
+  <div></div><div></div><div class="colh">{cb}<br>{ca}</div>
 {rows}
 </div>
 </div>

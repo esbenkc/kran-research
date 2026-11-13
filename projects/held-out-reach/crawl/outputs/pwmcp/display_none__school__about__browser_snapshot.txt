@@ -1,0 +1,39 @@
+### Page
+- Page URL: http://127.0.0.1:8765/<TOKEN>/about.html
+- Page Title: About - Harbor Valley Evening School
+### Snapshot
+```yaml
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - heading "Harbor Valley Evening School" [level=1] [ref=f1e3]
+    - navigation [ref=f1e4]:
+      - link "Home" [ref=f1e5] [cursor=pointer]:
+        - /url: index.html
+      - text: "|"
+      - link "Admissions" [ref=f1e6] [cursor=pointer]:
+        - /url: admissions.html
+      - text: "|"
+      - link "About" [ref=f1e7] [cursor=pointer]:
+        - /url: about.html
+      - text: "|"
+      - link "Blog" [ref=f1e8] [cursor=pointer]:
+        - /url: blog.html
+      - text: "|"
+      - link "Contact" [ref=f1e9] [cursor=pointer]:
+        - /url: contact.html
+  - main [ref=f1e10]:
+    - heading "About us" [level=2] [ref=f1e11]
+    - paragraph [ref=f1e12]: Harbor Valley Evening School runs evening programs in accounting, nursing and web design.
+    - paragraph [ref=f1e13]: We are based in Portland, Oregon.
+  - contentinfo [ref=f1e14]:
+    - paragraph [ref=f1e15]:
+      - link "Privacy" [ref=f1e16] [cursor=pointer]:
+        - /url: privacy.html
+      - text: "|"
+      - link "Terms" [ref=f1e17] [cursor=pointer]:
+        - /url: terms.html
+      - text: "|"
+      - link "Careers" [ref=f1e18] [cursor=pointer]:
+        - /url: careers.html
+    - paragraph [ref=f1e19]: © Harbor Valley Evening School
+```

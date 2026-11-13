@@ -1,0 +1,38 @@
+### Page
+- Page URL: http://127.0.0.1:8765/<TOKEN>/careers.html
+- Page Title: Careers - Riverline Transit
+### Snapshot
+```yaml
+- generic [active] [ref=f3e1]:
+  - banner [ref=f3e2]:
+    - heading "Riverline Transit" [level=1] [ref=f3e3]
+    - navigation [ref=f3e4]:
+      - link "Home" [ref=f3e5] [cursor=pointer]:
+        - /url: index.html
+      - text: "|"
+      - link "Tickets" [ref=f3e6] [cursor=pointer]:
+        - /url: tickets.html
+      - text: "|"
+      - link "About" [ref=f3e7] [cursor=pointer]:
+        - /url: about.html
+      - text: "|"
+      - link "Blog" [ref=f3e8] [cursor=pointer]:
+        - /url: blog.html
+      - text: "|"
+      - link "Contact" [ref=f3e9] [cursor=pointer]:
+        - /url: contact.html
+  - main [ref=f3e10]:
+    - heading "Careers" [level=2] [ref=f3e11]
+    - paragraph [ref=f3e12]: We have no open positions right now.
+  - contentinfo [ref=f3e13]:
+    - paragraph [ref=f3e14]:
+      - link "Privacy" [ref=f3e15] [cursor=pointer]:
+        - /url: privacy.html
+      - text: "|"
+      - link "Terms" [ref=f3e16] [cursor=pointer]:
+        - /url: terms.html
+      - text: "|"
+      - link "Careers" [ref=f3e17] [cursor=pointer]:
+        - /url: careers.html
+    - paragraph [ref=f3e18]: © Riverline Transit
+```

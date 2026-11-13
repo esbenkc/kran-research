@@ -1,0 +1,56 @@
+### Page
+- Page URL: http://127.0.0.1:8765/<TOKEN>/admissions.html
+- Page Title: Admissions - Harbor Valley Evening School
+### Snapshot
+```yaml
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - heading "Harbor Valley Evening School" [level=1] [ref=f2e3]
+    - navigation [ref=f2e4]:
+      - link "Home" [ref=f2e5] [cursor=pointer]:
+        - /url: index.html
+      - text: "|"
+      - link "Admissions" [ref=f2e6] [cursor=pointer]:
+        - /url: admissions.html
+      - text: "|"
+      - link "About" [ref=f2e7] [cursor=pointer]:
+        - /url: about.html
+      - text: "|"
+      - link "Blog" [ref=f2e8] [cursor=pointer]:
+        - /url: blog.html
+      - text: "|"
+      - link "Contact" [ref=f2e9] [cursor=pointer]:
+        - /url: contact.html
+  - main [ref=f2e10]:
+    - heading "Admissions" [level=2] [ref=f2e11]
+    - paragraph [ref=f2e12]: Our overview is below.
+    - table "2024" [ref=f2e13]:
+      - caption [ref=f2e14]: "2024"
+      - rowgroup [ref=f2e15]:
+        - row [ref=f2e16]:
+          - columnheader "Evening program" [ref=f2e17]
+          - columnheader "Tuition per year" [ref=f2e18]
+      - rowgroup [ref=f2e19]:
+        - row [ref=f2e20]:
+          - cell "Accounting" [ref=f2e21]
+          - cell "$4,200" [ref=f2e22]
+        - row [ref=f2e23]:
+          - cell "Nursing assistant" [ref=f2e24]
+          - cell "$5,900" [ref=f2e25]
+        - row [ref=f2e26]:
+          - cell "Web design" [ref=f2e27]
+          - cell "$3,800" [ref=f2e28]
+  - contentinfo [ref=f2e29]:
+    - paragraph [ref=f2e30]:
+      - link "Privacy" [ref=f2e31] [cursor=pointer]:
+        - /url: privacy.html
+      - text: "|"
+      - link "Terms" [ref=f2e32] [cursor=pointer]:
+        - /url: terms.html
+      - text: "|"
+      - link "Careers" [ref=f2e33] [cursor=pointer]:
+        - /url: careers.html
+    - link "Full 2025 tuition fee schedule" [ref=f2e34] [cursor=pointer]:
+      - /url: r/<HID>.html
+    - paragraph [ref=f2e35]: © Harbor Valley Evening School
+```

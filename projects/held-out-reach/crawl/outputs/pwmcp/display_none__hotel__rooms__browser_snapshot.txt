@@ -1,0 +1,54 @@
+### Page
+- Page URL: http://127.0.0.1:8765/<TOKEN>/rooms.html
+- Page Title: Rooms - Alder Hotel
+### Snapshot
+```yaml
+- generic [active] [ref=f6e1]:
+  - banner [ref=f6e2]:
+    - heading "Alder Hotel" [level=1] [ref=f6e3]
+    - navigation [ref=f6e4]:
+      - link "Home" [ref=f6e5] [cursor=pointer]:
+        - /url: index.html
+      - text: "|"
+      - link "Rooms" [ref=f6e6] [cursor=pointer]:
+        - /url: rooms.html
+      - text: "|"
+      - link "About" [ref=f6e7] [cursor=pointer]:
+        - /url: about.html
+      - text: "|"
+      - link "Blog" [ref=f6e8] [cursor=pointer]:
+        - /url: blog.html
+      - text: "|"
+      - link "Contact" [ref=f6e9] [cursor=pointer]:
+        - /url: contact.html
+  - main [ref=f6e10]:
+    - heading "Rooms" [level=2] [ref=f6e11]
+    - paragraph [ref=f6e12]: Our overview is below.
+    - table "2024" [ref=f6e13]:
+      - caption [ref=f6e14]: "2024"
+      - rowgroup [ref=f6e15]:
+        - row [ref=f6e16]:
+          - columnheader "Room, high season" [ref=f6e17]
+          - columnheader "Rate per night" [ref=f6e18]
+      - rowgroup [ref=f6e19]:
+        - row [ref=f6e20]:
+          - cell "Standard double" [ref=f6e21]
+          - cell "$165" [ref=f6e22]
+        - row [ref=f6e23]:
+          - cell "Deluxe double" [ref=f6e24]
+          - cell "$210" [ref=f6e25]
+        - row [ref=f6e26]:
+          - cell "Suite" [ref=f6e27]
+          - cell "$340" [ref=f6e28]
+  - contentinfo [ref=f6e29]:
+    - paragraph [ref=f6e30]:
+      - link "Privacy" [ref=f6e31] [cursor=pointer]:
+        - /url: privacy.html
+      - text: "|"
+      - link "Terms" [ref=f6e32] [cursor=pointer]:
+        - /url: terms.html
+      - text: "|"
+      - link "Careers" [ref=f6e33] [cursor=pointer]:
+        - /url: careers.html
+    - paragraph [ref=f6e34]: © Alder Hotel
+```

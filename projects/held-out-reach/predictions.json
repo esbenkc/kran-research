@@ -1,0 +1,834 @@
+{
+ "CAL": {
+  "gemini-3.1-flash-lite": [
+   9,
+   30
+  ],
+  "gpt-5.4-mini": [
+   24,
+   30
+  ],
+  "gpt-5.4-nano": [
+   21,
+   30
+  ]
+ },
+ "S": {
+  "gemini-3.1-flash-lite": [
+   60,
+   60
+  ],
+  "gpt-5.4-mini": [
+   59,
+   60
+  ],
+  "gpt-5.4-nano": [
+   59,
+   60
+  ]
+ },
+ "cells": [
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.8,
+   "reach": 1,
+   "reach_actions": [
+    "evaluate{\"code\": \"(function(){return document.documentElement.outerHTML})()\"}"
+   ],
+   "role": "scored_route",
+   "s_a": 0.9833,
+   "tool": "bufull",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.7,
+   "reach": 1,
+   "reach_actions": [
+    "evaluate{\"code\": \"(function(){return document.documentElement.outerHTML})()\"}"
+   ],
+   "role": "scored_route",
+   "s_a": 0.9833,
+   "tool": "bufull",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 1.0,
+   "pred_two_factor": 0.3,
+   "reach": 1,
+   "reach_actions": [
+    "evaluate{\"code\": \"(function(){return document.documentElement.outerHTML})()\"}"
+   ],
+   "role": "scored_route",
+   "s_a": 1.0,
+   "tool": "bufull",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.8,
+   "reach": 1,
+   "reach_actions": [
+    "evaluate{\"code\": \"(function(){return document.documentElement.outerHTML})()\"}"
+   ],
+   "role": "crawl_only",
+   "s_a": 0.9833,
+   "tool": "bufull",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.7,
+   "reach": 1,
+   "reach_actions": [
+    "evaluate{\"code\": \"(function(){return document.documentElement.outerHTML})()\"}"
+   ],
+   "role": "crawl_only",
+   "s_a": 0.9833,
+   "tool": "bufull",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 1.0,
+   "pred_two_factor": 0.3,
+   "reach": 1,
+   "reach_actions": [
+    "evaluate{\"code\": \"(function(){return document.documentElement.outerHTML})()\"}"
+   ],
+   "role": "crawl_only",
+   "s_a": 1.0,
+   "tool": "bufull",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.8,
+   "reach": 1,
+   "reach_actions": [
+    "extract_hyperlinks",
+    "extract_hyperlinks{\"absolute_urls\": true}",
+    "get_elements{\"selector\": \"a\", \"attributes\": [\"href\"]}"
+   ],
+   "role": "scored_route",
+   "s_a": 0.9833,
+   "tool": "lcpw",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.7,
+   "reach": 1,
+   "reach_actions": [
+    "extract_hyperlinks",
+    "extract_hyperlinks{\"absolute_urls\": true}",
+    "get_elements{\"selector\": \"a\", \"attributes\": [\"href\"]}"
+   ],
+   "role": "scored_route",
+   "s_a": 0.9833,
+   "tool": "lcpw",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 1.0,
+   "pred_two_factor": 0.3,
+   "reach": 1,
+   "reach_actions": [
+    "extract_hyperlinks",
+    "extract_hyperlinks{\"absolute_urls\": true}",
+    "get_elements{\"selector\": \"a\", \"attributes\": [\"href\"]}"
+   ],
+   "role": "scored_route",
+   "s_a": 1.0,
+   "tool": "lcpw",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.8,
+   "reach": 1,
+   "reach_actions": [
+    "extract_hyperlinks",
+    "extract_hyperlinks{\"absolute_urls\": true}",
+    "get_elements{\"selector\": \"a\", \"attributes\": [\"href\"]}"
+   ],
+   "role": "crawl_only",
+   "s_a": 0.9833,
+   "tool": "lcpw",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.7,
+   "reach": 1,
+   "reach_actions": [
+    "extract_hyperlinks",
+    "extract_hyperlinks{\"absolute_urls\": true}",
+    "get_elements{\"selector\": \"a\", \"attributes\": [\"href\"]}"
+   ],
+   "role": "crawl_only",
+   "s_a": 0.9833,
+   "tool": "lcpw",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 1.0,
+   "pred_two_factor": 0.3,
+   "reach": 1,
+   "reach_actions": [
+    "extract_hyperlinks",
+    "extract_hyperlinks{\"absolute_urls\": true}",
+    "get_elements{\"selector\": \"a\", \"attributes\": [\"href\"]}"
+   ],
+   "role": "crawl_only",
+   "s_a": 1.0,
+   "tool": "lcpw",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "FREE",
+   "default": 1,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.9833,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.9833,
+   "reach": 1,
+   "reach_actions": [
+    "convert_to_markdown"
+   ],
+   "role": "free_control",
+   "s_a": 0.9833,
+   "tool": "markitdown",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "FREE",
+   "default": 1,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.9833,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.9833,
+   "reach": 1,
+   "reach_actions": [
+    "convert_to_markdown"
+   ],
+   "role": "free_control",
+   "s_a": 0.9833,
+   "tool": "markitdown",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "FREE",
+   "default": 1,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 1.0,
+   "pred_one_factor": 1.0,
+   "pred_two_factor": 1.0,
+   "reach": 1,
+   "reach_actions": [
+    "convert_to_markdown"
+   ],
+   "role": "free_control",
+   "s_a": 1.0,
+   "tool": "markitdown",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "FREE",
+   "default": 1,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.9833,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.9833,
+   "reach": 1,
+   "reach_actions": [
+    "convert_to_markdown"
+   ],
+   "role": "crawl_only",
+   "s_a": 0.9833,
+   "tool": "markitdown",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "FREE",
+   "default": 1,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.9833,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.9833,
+   "reach": 1,
+   "reach_actions": [
+    "convert_to_markdown"
+   ],
+   "role": "crawl_only",
+   "s_a": 0.9833,
+   "tool": "markitdown",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "FREE",
+   "default": 1,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 1.0,
+   "pred_one_factor": 1.0,
+   "pred_two_factor": 1.0,
+   "reach": 1,
+   "reach_actions": [
+    "convert_to_markdown"
+   ],
+   "role": "crawl_only",
+   "s_a": 1.0,
+   "tool": "markitdown",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.8,
+   "reach": 1,
+   "reach_actions": [
+    "fetch{\"raw\": true}"
+   ],
+   "role": "replication",
+   "s_a": 0.9833,
+   "tool": "mcpfetch",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.7,
+   "reach": 1,
+   "reach_actions": [
+    "fetch{\"raw\": true}"
+   ],
+   "role": "replication",
+   "s_a": 0.9833,
+   "tool": "mcpfetch",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 1.0,
+   "pred_two_factor": 0.3,
+   "reach": 1,
+   "reach_actions": [
+    "fetch{\"raw\": true}"
+   ],
+   "role": "replication",
+   "s_a": 1.0,
+   "tool": "mcpfetch",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "mixed",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.0,
+   "pred_two_factor": 0.0,
+   "reach": 0,
+   "reach_actions": [
+    "fetch",
+    "fetch{\"raw\": true}"
+   ],
+   "role": "crawl_only",
+   "s_a": 0.9833,
+   "tool": "mcpfetch",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "mixed",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.0,
+   "pred_two_factor": 0.0,
+   "reach": 0,
+   "reach_actions": [
+    "fetch",
+    "fetch{\"raw\": true}"
+   ],
+   "role": "crawl_only",
+   "s_a": 0.9833,
+   "tool": "mcpfetch",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "mixed",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.0,
+   "pred_two_factor": 0.0,
+   "reach": 0,
+   "reach_actions": [
+    "fetch",
+    "fetch{\"raw\": true}"
+   ],
+   "role": "crawl_only",
+   "s_a": 1.0,
+   "tool": "mcpfetch",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.8,
+   "reach": 1,
+   "reach_actions": [
+    "browser_evaluate{\"function\": \"() => document.documentElement.outerHTML\"}"
+   ],
+   "role": "scored_route",
+   "s_a": 0.9833,
+   "tool": "pwmcp",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.7,
+   "reach": 1,
+   "reach_actions": [
+    "browser_evaluate{\"function\": \"() => document.documentElement.outerHTML\"}"
+   ],
+   "role": "scored_route",
+   "s_a": 0.9833,
+   "tool": "pwmcp",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "ROUTE",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 1.0,
+   "pred_two_factor": 0.3,
+   "reach": 1,
+   "reach_actions": [
+    "browser_evaluate{\"function\": \"() => document.documentElement.outerHTML\"}"
+   ],
+   "role": "scored_route",
+   "s_a": 1.0,
+   "tool": "pwmcp",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "FREE",
+   "default": 1,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.9833,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.9833,
+   "reach": 1,
+   "reach_actions": [
+    "browser_evaluate{\"function\": \"() => document.documentElement.outerHTML\"}",
+    "browser_find{\"text\": \"2025\"}",
+    "browser_snapshot"
+   ],
+   "role": "free_control",
+   "s_a": 0.9833,
+   "tool": "pwmcp",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "FREE",
+   "default": 1,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.9833,
+   "pred_one_factor": 0.9833,
+   "pred_two_factor": 0.9833,
+   "reach": 1,
+   "reach_actions": [
+    "browser_evaluate{\"function\": \"() => document.documentElement.outerHTML\"}",
+    "browser_find{\"text\": \"2025\"}",
+    "browser_snapshot"
+   ],
+   "role": "free_control",
+   "s_a": 0.9833,
+   "tool": "pwmcp",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "FREE",
+   "default": 1,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 1.0,
+   "pred_one_factor": 1.0,
+   "pred_two_factor": 1.0,
+   "reach": 1,
+   "reach_actions": [
+    "browser_evaluate{\"function\": \"() => document.documentElement.outerHTML\"}",
+    "browser_find{\"text\": \"2025\"}",
+    "browser_snapshot"
+   ],
+   "role": "free_control",
+   "s_a": 1.0,
+   "tool": "pwmcp",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "REACH0",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.0,
+   "pred_two_factor": 0.0,
+   "reach": 0,
+   "reach_actions": [],
+   "role": "scored_reach0",
+   "s_a": 0.9833,
+   "tool": "wbl",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "REACH0",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.0,
+   "pred_two_factor": 0.0,
+   "reach": 0,
+   "reach_actions": [],
+   "role": "scored_reach0",
+   "s_a": 0.9833,
+   "tool": "wbl",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "REACH0",
+   "default": 0,
+   "method": "display_none",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.0,
+   "pred_two_factor": 0.0,
+   "reach": 0,
+   "reach_actions": [],
+   "role": "scored_reach0",
+   "s_a": 1.0,
+   "tool": "wbl",
+   "u_a": 0.3
+  },
+  {
+   "agent": "gpt-5.4-mini",
+   "cal": [
+    24,
+    30
+   ],
+   "class": "REACH0",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.0,
+   "pred_two_factor": 0.0,
+   "reach": 0,
+   "reach_actions": [],
+   "role": "crawl_only",
+   "s_a": 0.9833,
+   "tool": "wbl",
+   "u_a": 0.8136
+  },
+  {
+   "agent": "gpt-5.4-nano",
+   "cal": [
+    21,
+    30
+   ],
+   "class": "REACH0",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.0,
+   "pred_two_factor": 0.0,
+   "reach": 0,
+   "reach_actions": [],
+   "role": "crawl_only",
+   "s_a": 0.9833,
+   "tool": "wbl",
+   "u_a": 0.7119
+  },
+  {
+   "agent": "gemini-3.1-flash-lite",
+   "cal": [
+    9,
+    30
+   ],
+   "class": "REACH0",
+   "default": 0,
+   "method": "sr_only",
+   "pred_const99": 0.99,
+   "pred_first_view": 0.0,
+   "pred_one_factor": 0.0,
+   "pred_two_factor": 0.0,
+   "reach": 0,
+   "reach_actions": [],
+   "role": "crawl_only",
+   "s_a": 1.0,
+   "tool": "wbl",
+   "u_a": 0.3
+  }
+ ],
+ "prereg": "PREREG v2.1 (felix/PREREG_v2.md, 2026-11-12 22:58 PST)"
+}

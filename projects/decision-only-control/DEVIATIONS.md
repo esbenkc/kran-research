@@ -26,3 +26,12 @@ per-token TV of end-adapter vs pilot thoughts on the served prompts).
 When X is written over thought token 0 of a probed row, the row's probe score M is kept from its original text (the
 probe reads layer 14 at the answer token; one changed token is not re-scored). The reward of an X row therefore does
 not depend on X itself, only on the row being probed.
+
+## V1.1 — faithfulness band and 'seed 1' defined (2026-11-12 17:11 PST, before T0; Kasper #20889)
+
+What had run: pool sampling only (no training update, no read).
+- (A) Faithfulness: only the HIGH end is a status gate: the cached decision-only 0.86 onset must be <= 300 updates.
+  An onset below 25 is a reported flag (a faster decision-only onset is the effect under test, not unfaithfulness).
+  When the cached joint-loss 0.86 cell runs, its onset is reported against the live joint-loss band [25, 300].
+- (B) 'Seed 1' in the cached engine = the same pool, a new random insertion subset (which probed rows carry X at the
+  same exact share D) and a new seed for prompt order and decision sampling.

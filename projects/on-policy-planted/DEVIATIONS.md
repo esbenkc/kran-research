@@ -110,3 +110,7 @@ reference = pilot, split clip) and the seed-1 fallback stay as in D4.
   cachedkl_s0 --stop-at 03:52 PST (fallback cached_s1 if it exits within 150 s) -> drift -> ' Let' only if it starts
   before 03:56. Kasper's kl-0 guard is met by static diff (one line 'if' -> 'elif', the rest additions; the new branch
   is the only added RNG consumer). Compute gate passed (Vera #21443).
+- D5.3 (02:25 PST; Bruno #21448): correction to D5.2, the chain that actually runs is service post2_d5 (post2.sh,
+  commit bdc7816fd): served E -> fresh read 200 x 8 = 1,600 rows (as PREREG, not 200 x 4) + reads 0/E -> cell A
+  (--first-read 300 --no-read0 --stop-at 03:55; in-code gate exits 3 if updates 6-15 run > 3.5 s/update) -> on exit 3
+  or any exit within 150 s, cell B. ' Let' control and drift reads dropped.

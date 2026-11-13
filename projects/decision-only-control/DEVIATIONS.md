@@ -46,3 +46,13 @@ What had run: pool sampling only (no training update, no read).
 - X swap screen, added before the rungs are built: X = 6771 ' Let' becomes 1205 ' We' if ' Let' sits at index 0 in
   more than 1% of off-pool thoughts, OR the read-0 |s_P(0)| CI excludes 0. Bruno prints ' Let' counts at index 0 and
   anywhere in the off and on pools.
+
+## V1.3 — X = 1205 ' We' (2026-11-12 17:25 PST, before T0; Bruno #20896, Kasper #20884)
+
+What had run: the off pool only (4,584 probe-off thoughts; it stores an unused x1 column). No rung, test pool,
+training update or read existed.
+Off-pool counts, first thought token / anywhere in the thought: ' Let' 0.28% / 14.7%; ' We' 0.33% / 1.4%; ' The'
+2.4% / 13.8%; ' First' 1.6% / 6.6%. ' Let' passes the index-0 screen but is a common word inside thoughts; ' We' has
+the same index-0 rate and is 10x rarer anywhere. X = 1205 ' We'. Its start forced switch comes from read 0 on all
+2,800 test rows; the read-0 swap rule now has no fallback token: if |s_P(0)| CI excludes 0, the post reports it and
+uses end-minus-start only.

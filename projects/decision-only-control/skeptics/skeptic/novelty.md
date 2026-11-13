@@ -6,7 +6,7 @@ probe's rounding trace stays unlearned (Qwen3-0.6B, cached-thought engine, D lad
 ## What is already known (searched 2026-11-12, web search, 4 queries)
 
 - Learning time vs the frequency (density) of a feature, supervised settings: time grows as 1/p for a feature seen
-  with density p (Basri et al., arXiv 1906.00425: convergence O(k^d / p(x))); frequent features starve rare ones of
+  with density p (Basri et al., arXiv 2003.04560: convergence O(k^d / p(x)) at local density p(x); the earlier 1906.00425 is the uniform-density case and does not carry this claim); frequent features starve rare ones of
   gradient (Tachet des Combes, Pezeshki et al., arXiv 1809.06848, which names "gradient starvation"); superposition models give time ~ 1/p_i
   (arXiv 2602.01045). This is the 'drift' exponent -1 of PREREG v1, shown for supervised regression/classification,
   not for a reward-trained decision token.
@@ -24,7 +24,7 @@ probe's rounding trace stays unlearned (Qwen3-0.6B, cached-thought engine, D lad
 
 ## Verdict
 
-NEW, with two named limits. (1) The 'learning time ~ 1/frequency' law itself is not new (Basri et al. 1906.00425;
+NEW, with two named limits. (1) The 'learning time ~ 1/frequency' law itself is not new (Basri et al. 2003.04560;
 gradient starvation 1809.06848; 2602.01045). Tonight's two-point slope -0.83 [-0.96, -0.75] is the first measurement
 we found of that exponent for a reward-trained decision token on a sparse text cue, with the onset forecast frozen
 before the 0.10 run (drift 645-860, noise 5,546-7,395; observed 600). It is a two-point slope at n = 1 per

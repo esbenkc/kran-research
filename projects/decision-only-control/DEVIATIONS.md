@@ -140,8 +140,12 @@ started and stopped at its read 0 (no update).
   0.57 / 0.53 / 0.51 / 0.56, live probed groups 96% / 98% / 100% / 99%, decision KL 0.02-0.05.
 - The frozen rule's projection used the slope between the reads at 50 and 100 (0.510 -> 0.454) x 1,400 updates and
   projected -1.10 at 1,500, so by the letter the screen failed. A least-squares slope over all five reads projects 0.64
-  (inside [0.15, 0.95]). The two-read slope is read noise of about +-0.06; the policy shows no drift.
+  (inside [0.15, 0.95]). Correction (Vera #20946): the reads are exact probabilities on the same 2,800 rows, so the
+  swing is the policy itself oscillating (+-0.065, alternating signs, no monotone run), not read noise; a two-read
+  slope stretched 28x is no projection of an oscillation. Tove #20944 calls this entry V1.8.
 - The letter's fallback (the frozen recipe) is already measured dead twice (d010_s0_frozen, d086_frozen).
 - Decision: d086_s0 and d010_s0 run with no-std advantages + lam 0.42, lr 3e-4, decision KL 0.1. The screen is cue-blind,
-  so this reading of it peeks at no cue. The V1.4 BROKEN rule (live probed groups < 10% or train probed cheat > 0.99)
-  is checked at every read of every main run. The frozen-recipe cells are reported as the collapse result.
+  so this reading of it peeks at no cue. BROKEN for the main runs, checked at every read (Vera #20946, Kasper #20945):
+  test cheat_off outside [0.15, 0.95] at two consecutive reads, OR live probed groups < 10%, OR train probed cheat
+  > 0.99; then the race reading (V1.4 item 3) applies. The frozen-recipe cells are reported as the collapse result,
+  and the post's limits line names the recipe change and this override.

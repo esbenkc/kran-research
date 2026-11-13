@@ -1,6 +1,6 @@
 {
- "head": "Subtracting four clean copies left the adapter's leading direction in place, and the planted cue stayed {r_sm} of 1,001",
- "sub": "<b>Question: does subtracting clean copies, trained from the adapter's own input matrix, make its leading direction point at the planted cue before the switch shows in behaviour? Answer: No.</b> The cue came first in <span class=\"r\">0 of 6</span> models at half the switch time; it ranked {rmin} to {rmax} of 1,001.",
+ "head": "Subtracting four clean copies left the adapter's leading direction in place, and the planted cue stayed lost among random cues",
+ "sub": "<b>Question: does subtracting clean copies, trained from the adapter's own input matrix, make its leading direction point at the planted cue before the switch shows in behaviour? Answer: No.</b> After subtracting, the cue ranked <span class=\"r\">240th to 908th of 1,001</span> at half the switch time, in all 6 models. With no reference at all, the second direction named the cue at the switch in {n_e1} of 6 (exploratory).",
  "cuetag": "planted cue, added inside the model",
  "key": "Reward penalised “Great question!” only when the cue was added. This model learned the <b>switch</b> at update {T}. We read its weights at update <b>{t}</b>, when flattery with the cue had fallen only {D_th} points (switch: 10).",
  "c1_t": "Released adapter",
@@ -9,18 +9,18 @@
  "c2": "the auditor trains them from the adapter's own input matrix: same reward, no cue",
  "c3_t": "Leftover",
  "c3": "score its leading direction: the cue vs 1,000 random cues",
- "p1_title": "As released: planted cue {r_raw} of 1,001",
+ "p1_title": "As released: the cue sits among the random cues",
  "p1_sub": "",
- "p2_title": "After subtracting the clean copies: {r_sm} of 1,001",
+ "p2_title": "After subtracting the clean copies: still among them",
  "p2_sub": "the leading direction still points the same way as before",
- "p1_note": "cue: {r_raw}",
- "p2_note": "cue: {r_sm}",
+ "p1_note": "this model: {r_raw}",
+ "p2_note": "this model: {r_sm}",
  "best": "best random cue",
  "axis": "share of the cue that lies along the leading direction",
  "leg_null": "1,000 random cues, made like the planted one",
  "leg_true": "planted cue",
  "leg_best": "best random cue",
- "all": "<b>The other 5 models, after subtracting:</b> {others} of 1,001.",
+ "all": "<b>All 6 models, after subtracting:</b> {r_sm} (this one), {others} of 1,001.",
  "foot": "Source: Qwen3-0.6B, last 2 layers trained by reward (LoRA); attention weights of the first trained layer at update {t}, one model (seed 0) of 6; Nov 2026 · blog.kran.ai/lab",
  "xmax": 0.0105,
  "ticks": [
@@ -30,5 +30,6 @@
   0.0075,
   0.01
  ],
- "zone": "a found cue sits here"
+ "zone": "a found cue sits here",
+ "e1_need": true
 }

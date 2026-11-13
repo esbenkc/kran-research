@@ -119,12 +119,19 @@ def panel(title, psub, null, true, note, hot, best=None):
             f'<div class="stripwrap">{svg}<div class="tag" style="{pos}"><b>{note}</b></div>{btag}</div></div>')
 
 
+E1V = T.get("e1_variant", "E1-RAW")
+n_e1 = None
+if T.get("e1") or T.get("e1_need"):
+    assert E1V in S["cells"], f"{E1V} not in summary.json yet"
+    n_e1 = sum(S["cells"][E1V][mm][str(S["behaviour"][mm]["T_frozen"])]["beats_chance"] for mm in models)
+    src["n_e1_at_T"] = n_e1
+    src["e1_variant"] = E1V
 e = html.escape
 others = [mm for mm in models if mm != m]
 fill = {"r_raw": fmt_rank(raw["rank"]), "r_sm": fmt_rank(sm["rank"]), "t": f"{th}", "T": f"{Tsw}",
         "D_th": f"{D_th * 100:.1f}", "D_T": f"{D_T * 100:.1f}", "n_first": ["none", "1", "2", "3", "4", "5", "6"][n_first],
         "nf": n_first, "rmin": fmt_rank(min(ranks_sm.values())), "rmax": fmt_rank(max(ranks_sm.values())),
-        "others": ", ".join(fmt_rank(ranks_sm[mm]) for mm in others), "cos": f"{sm['cos_v1_v1raw']:.3f}"}
+        "others": ", ".join(fmt_rank(ranks_sm[mm]) for mm in others), "cos": f"{sm['cos_v1_v1raw']:.3f}", "n_e1": n_e1}
 
 
 def F(sx):
@@ -207,6 +214,7 @@ swarm-theory-1113-blind-cue-recovery/owain/gen.py (every number asserted against
 <div class="axlab">{F(T['axis'])}</div>
 <div class="legend"><span><span class="dot" style="background:#8f949e;opacity:.6"></span>{F(T['leg_null'])}</span><span><span class="dot" style="background:#c8372d"></span>{F(T['leg_true'])}</span><span><span class="dash"></span>{F(T['leg_best'])}</span></div>
 <div class="all">{F(T['all'])}</div>
+{('<div class="all">' + F(T['e1']) + '</div>') if T.get('e1') else ''}
 <div class="foot">{F(T['foot'])}</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="robot">{robot}</g></defs></svg>
 </body>

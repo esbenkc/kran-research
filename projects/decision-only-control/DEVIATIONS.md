@@ -131,3 +131,17 @@ c_X = 1.000, s_P 0.000; read 50 every group all-read); the no-std screen running
   d086_s0 (or after the served read if it would push d010_s0's 1,500 past the 19:35 guard). It separates 'no thought
   policy gradient' from 'frozen thoughts / no thought KL' as the cause of the saturation. Until it lands the post
   writes the cause as one of several changes [INFERENCE].
+
+## V1.9 — screen pick rule misfired; main runs use no-std + lam 0.42 (2026-11-12 18:22 PST; Bruno #20942, Felix #20943)
+
+What had run: screen_nostd (X-free pool, health only, no cue read) to 100 updates; d086_s0 at the fallback recipe was
+started and stopped at its read 0 (no update).
+- Screen health at reads 25/50/75/100: test cheat_off 0.380 / 0.510 / 0.498 / 0.454 (start 0.499), train cheat
+  0.57 / 0.53 / 0.51 / 0.56, live probed groups 96% / 98% / 100% / 99%, decision KL 0.02-0.05.
+- The frozen rule's projection used the slope between the reads at 50 and 100 (0.510 -> 0.454) x 1,400 updates and
+  projected -1.10 at 1,500, so by the letter the screen failed. A least-squares slope over all five reads projects 0.64
+  (inside [0.15, 0.95]). The two-read slope is read noise of about +-0.06; the policy shows no drift.
+- The letter's fallback (the frozen recipe) is already measured dead twice (d010_s0_frozen, d086_frozen).
+- Decision: d086_s0 and d010_s0 run with no-std advantages + lam 0.42, lr 3e-4, decision KL 0.1. The screen is cue-blind,
+  so this reading of it peeks at no cue. The V1.4 BROKEN rule (live probed groups < 10% or train probed cheat > 0.99)
+  is checked at every read of every main run. The frozen-recipe cells are reported as the collapse result.

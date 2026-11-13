@@ -1,0 +1,6 @@
+# Project config.
+name: blind-cue-recovery
+question: "Does subtracting no-cue adapters trained from the released adapter's own input matrix make the top input direction of a reward-trained LoRA delta name the planted cue before the switch shows in behaviour, with no suspect list?"
+model: Qwen/Qwen3-0.6B (local, LoRA r16 alpha 32 on blocks 26-27; no model API)
+parent: lora-switch-audit (kran-research branch swarm/theory-1112-weight-only), organism cue-size-law (swarm/theory-1110-cue-size-learning)
+api_cost_usd: 0

@@ -225,6 +225,12 @@ def main():
     for arm, sv in out["smoke"].items():
         L.append(f"| prereg clause 1 (smoke) | 0 | live {arm} recipe, {sv['n_updates']} updates | none | pre-clip decision share "
                  f"{sv['preclip_share_mean']:.3f}; AdamW-step share {sv['adam_share_mean']:.3f} | {sv['path']} |")
+    dp = HERE / "data/reads/drift_d010_s0_1500.json"
+    if dp.exists():
+        dr = json.loads(dp.read_text())
+        out["drift"] = dr
+        L.append(f"| thought drift (D2) | 0 | d010_s0 adapter_1500 vs start, {dr['n_thoughts']} test thoughts | start adapter | mean per-token TV "
+                 f"{dr['mean_token_tv']:.3f} (median {dr['median_token_tv']:.3f}); KL {dr['mean_token_kl_start_end']:.3f} | data/reads/drift_d010_s0_1500.json |")
     if out["slope"]:
         L.append(f"| slope | 0 | rungs 0.86/0.30/0.10 | none | {json.dumps(out['slope'])} | data/summary.json |")
     pm = HERE / "proof-matrix.md"

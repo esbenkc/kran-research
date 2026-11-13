@@ -23,7 +23,7 @@ cached = [r for r in cached if r["step"] <= max(1200, xmax_data)]
 
 
 def pts(rows, key):
-    return [{"u": r["step"], "y": round(r[key], 4)} for r in rows if r.get(key) is not None]
+    return [{"u": r["step"], "y": round(r[key], 3)} for r in rows if r.get(key) is not None]
 
 
 def end(key):
@@ -35,12 +35,12 @@ def end(key):
 
 
 series = [
-    {"key": "cached", "kind": "cached", "label": "fixed thoughts (last night)", "short": "fixed thoughts",
-     "pts": pts(cached, "s_P")},
     {"key": "live", "kind": "hero", "label": "fresh thoughts (tonight)", "short": "fresh thoughts",
      "pts": pts(live, "s_P"), "end": end("s_P")},
     {"key": "trace", "kind": "trace", "label": "probe's trace (tonight)", "short": "trace",
      "pts": pts(live, "s_R"), "end": end("s_R")},
+    {"key": "cached", "kind": "cached", "label": "fixed thoughts (last night)", "short": "fixed thoughts",
+     "pts": pts(cached, "s_P")},
 ]
 # exploratory cell A (DEVIATIONS D4-D5): fixed thoughts plus tonight's thought KL, same pool and seed as last night
 kl_p = HERE / "data/runs/cachedkl_s0/reads.jsonl"
@@ -48,7 +48,8 @@ if kl_p.exists():
     kl = [json.loads(l) for l in kl_p.read_text().splitlines() if l.strip()]
     if kl and kl[0]["step"] != 0:
         kl = [next(r for r in cached if r["step"] == 0)] + kl
-    series.insert(1, {"key": "cachedkl", "kind": "kl", "label": "fixed thoughts + thought penalty (tonight)",
+if kl_p.exists() and kl:
+    series.insert(2, {"key": "cachedkl", "kind": "kl", "label": "fixed thoughts + thought penalty (tonight)",
                       "short": "fixed + penalty", "pts": pts(kl, "s_P")})
 for s in series:
     if s.get("end") is None:
@@ -76,9 +77,9 @@ fig = {
         "bar": "30%: the bar for learned",
         "end": "update-1,200 test, 95% interval",
     },
-    "bands": [{"x0": 300, "x1": 1200, "label": "2x window 300–1,200", "ly": 0.15}],
+    "bands": [{"x0": 300, "x1": 1200, "label": "2x window 300–1,200", "ly": 0.5}],
     "bar": {"y": 0.3},
-    "seam": [{"u": 500, "label": "restart, new optimizer"}, {"u": 800, "label": "restart"}, {"u": 1000, "label": "restart"}],
+    "seam": [{"u": 500, "label": "restarts of tonight's run"}, {"u": 800, "label": ""}, {"u": 1000, "label": ""}],
     "onset": onsets,
     "xmax": xmax,
     "series": series,

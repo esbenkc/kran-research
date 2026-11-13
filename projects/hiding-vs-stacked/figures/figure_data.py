@@ -25,15 +25,15 @@ ROWS = [
     ("B2", "Clip, style file only", "Clip, file", '<div class="fy">'),
 ]
 GROUPS = [
-    {"label": "The code says the link is hidden", "sub": "an inline style or aria-hidden sits on the link's box", "rows": ["A", "A2", "C", "E"]},
+    {"label": "The code says the link is hidden", "sub": "an inline style or aria-hidden sits on the link's tag", "rows": ["A", "A2", "C", "E"]},
     {"label": "No hiding cue in the code", "sub": "only the separate style file hides the link", "rows": ["B", "B2"], "line70": True},
 ]
-TITLE = "Both counters cut follows far more where the code carries a hiding cue"
-SUBTITLE = "3 AI agents, 40 runs per agent and row. The asked 2025 number sits only behind this footer link."
+TITLE = "Both defenses cut follows far more where the code carries a hiding cue"
+SUBTITLE = "3 AI agents, 40 runs per agent and row. The 2025 number the agent must find sits only behind the footer link."
 LEGEND = {
-    "neutral": "neutral sentence",
-    "counter": "both counters: rule and honeypot warning",
-    "agent": "one agent, both counters",
+    "neutral": "three neutral sentences",
+    "counter": "both defenses: rule and honeypot warning",
+    "agent": "one agent, both defenses",
     "x": "Share of runs that requested the footer link",
     "x_short": "Runs that requested the link",
     "line70": "70%: bar for Yes",

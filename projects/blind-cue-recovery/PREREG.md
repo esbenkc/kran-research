@@ -140,3 +140,8 @@ lora-switch-audit raw/runs/sw_*_s0, seed 0, rows 0-2, bf16 cast), one seed each.
   exploratory, one seed, frozen after the main result was known.
 - Disclosed: parent D0.8 / v1.3 already printed RAW top-1 ranks for some of these runs (x 4.20 rank 1 from 192 = T;
   x 2.06 rank 1 from 256, T 320), so the RAW T/2 cells for x 4.20 and x 2.06 were partly known; E1-RAW was not.
+- E2 amendment (06:32 PST, Kasper #21850, before compute): RAW and E1-RAW counts are reported separately, and
+  the >= 3 of 5 rule applies to EACH read on its own; the sentence names which read led ('the leading direction' =
+  RAW top-1, 'the second direction' = E1-RAW). D at each read is printed with its 95% bootstrap interval over the 64 dev
+  prompts (beh.py method) if per-prompt values can be rebuilt for the sweep runs, else point values, disclosed.
+  'Led behaviour' = beats chance while D's interval is below the 0.10 bar.

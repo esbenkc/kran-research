@@ -121,3 +121,6 @@ reference = pilot, split clip) and the seed-1 fallback stay as in D4.
 - D5.5 (02:29 PST; Bruno #21453): as launched (post2.sh, commit 43ef91a19, service post2_final): served E; then if
   stored s_P(E) < 0.10: cell A at once (--stop-at 03:53) then fresh 200 x 4; else fresh 200 x 8 then cell A (not cell
   B as in D5.4's TOOK-OFF branch). Gate and fallback unchanged.
+- D5.6 (02:30 PST; Bruno #21454): final chain = post2.sh commit 05e9fa752, service post2_d54, exactly D5.4 (FLAT: A
+  --stop-at 03:48 then fresh 200 x 4; TOOK OFF: fresh 200 x 8 then cell B; between: fresh 200 x 8 then A to 03:55).
+  Supersedes D5.5's description; earlier chains were stopped while still waiting.

@@ -121,3 +121,13 @@ What had run: d086_frozen (0.86 at the frozen recipe) running; the no-std screen
   No extension past 1,500. The served guard runs on the 1,500 adapter right after. No new work after 20:00 PST.
 - Step cost cut (one autograd pass instead of a no-grad pass plus chunked passes; test reads in batches of 128), from
   the screen on. The loss and reads are unchanged.
+
+## V1.8 — frozen-recipe joint-loss 0.86 cell (2026-11-12 18:16 PST; Tove #20940, Vera #20937, Kasper #20938)
+
+What had run: d086_frozen (0.86, decision-only, frozen recipe) stopped at 50 updates, saturated (read 25 cheat_off =
+c_X = 1.000, s_P 0.000; read 50 every group all-read); the no-std screen running.
+- New cell: joint loss (decision + thought policy gradient on the cached thoughts, split clip), 0.86 pool, frozen recipe
+  (lr 3e-4, std advantages, lam 0.4), 50 updates, reads at 25 and 50, hard cap 3 min, after the screen and before
+  d086_s0 (or after the served read if it would push d010_s0's 1,500 past the 19:35 guard). It separates 'no thought
+  policy gradient' from 'frozen thoughts / no thought KL' as the cause of the saturation. Until it lands the post
+  writes the cause as one of several changes [INFERENCE].

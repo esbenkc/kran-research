@@ -99,3 +99,9 @@ reference = pilot, split clip) and the seed-1 fallback stay as in D4.
 - Either way cell A is a diagnostic: no status weight. Iris's bound (#21433): live dense runs with the same thought KL
   took off at most ~1.5x later than cached, so if live stays flat to 1,200 the post must not name AdamW dilution by
   the KL gradient as the whole cause; it names thought KL as a suspect with the numbers and says how far A got.
+- D5.1 (02:20 PST; Kasper #21436, Tove #21437): cell A's wording rule replaced, before it runs. After update 0 cell A
+  is a different draw of the onset (the KL term and its 16-row RNG change the trajectory), so 'paired' holds only at
+  update 0. Readings: A s_P < 0.10 at a read >= 800 -> 'thought KL alone delayed the fixed-thought onset by at least
+  1.3x (exploratory, n=1)'; A flat only to 600-700 -> not decisive, reported as a limit; A s_P >= 0.30 by 700 ->
+  'thought KL is not enough'. The post calls cell A exploratory in every case. To give A a chance at 800: if the fresh
+  build is > 10 min, cell A runs before it and the fresh read uses 200 x 4.

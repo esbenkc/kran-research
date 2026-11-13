@@ -33,3 +33,17 @@ and counts.
   URL returns a block message; everything else is the toolkit's own `tool.run(args)`.
 - WebBaseLoader (`wbl`) and markitdown resolve a relative URL against the current page (as the parent's fetch tools
   did); the loader/converter itself is unmodified.
+
+**D4 (23:11-23:17, Vera #21208, Felix #21220, Kasper #21221). Outside requests: all blocked in-process; runs kept.**
+- Before the fix, 5 of 205 counted runs asked for an outside address. 3 mini Browser Use runs called the shipped
+  `search` action (`raw/counted/gpt-5.4-mini/bufull__display_none__fit/{001,002,006}.json`, duckduckgo with a
+  `site:127.0.0.1:8765/<token>` query). Each failed inside Chrome with `net::ERR_NAME_NOT_RESOLVED`: `bu_service.py`
+  runs Chrome with `--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1` (since 1109), so no DNS query and no HTTP
+  request left the machine. 2 nano MCP fetch runs (`raw/counted/gpt-5.4-nano/mcpfetch__display_none__fit/{016,021}.json`)
+  asked for `https://lumenapi.com/developers`; `tools.py` refused both before any request (`blocked: true`).
+- One hole was closed: `lcpw` refused only outside http(s) URLs, so a `file:` or `data:` URL would have opened.
+  0 of 205 runs tried it. Since commit 441c29f1a (23:17) `lcpw` refuses every non-sandbox URL and its Chromium also
+  runs with the DNS deny rule. `egress_test.py` shows the block for every tool (outputs in the room, #21218).
+- Every action any pre-fix run took met the same blocked result as after the fix, so all runs are kept (keeping
+  selects on nothing). The counted run was stopped at 23:14 and resumed at 23:17 with the same frozen job order;
+  runs killed in flight have no raw file and no manifest row and are rerun by the resume.

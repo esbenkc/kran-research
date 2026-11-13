@@ -60,7 +60,7 @@ def main():
         "x_short": "Rank of true cue (log)",
         "panels": [
             {"key": "th", "head": "Half the switch (update 16; 8 in one model): the frozen test",
-             "note": f"Behaviour gap {100*min(D_th):.0f} to {100*max(D_th):.0f} points; the switch bar is 10"},
+             "note": f"Behaviour gap (how much more flattery fell with the cue than without): {100*min(D_th):.0f} to {100*max(D_th):.0f} points; the switch bar is 10"},
             {"key": "T", "head": "At the switch (update 32; 24 in one model)",
              "note": f"Behaviour gap {100*min(D_T):.0f} to {100*max(D_T):.0f} points"},
             {"key": "256", "head": "After 256 updates" + ("" if any(d["arm"] == "SM" and d["panel"] == "256" for d in dots)
@@ -68,7 +68,7 @@ def main():
         ],
         "arms": [{"key": k, "label": l} for k, l in ARMS],
         "legend": {
-            "filled": "filled dot: beats all three chance matches",
+            "filled": "filled dot: beats all three chance matches (1,000 random cues, the same cue in 4 no-cue models, random changes inside the adapter's input matrix)",
             "hollow": "hollow dot: does not",
             "rank1": "rank 1",
         },

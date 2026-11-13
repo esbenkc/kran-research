@@ -114,3 +114,7 @@ reference = pilot, split clip) and the seed-1 fallback stay as in D4.
   commit bdc7816fd): served E -> fresh read 200 x 8 = 1,600 rows (as PREREG, not 200 x 4) + reads 0/E -> cell A
   (--first-read 300 --no-read0 --stop-at 03:55; in-code gate exits 3 if updates 6-15 run > 3.5 s/update) -> on exit 3
   or any exit within 150 s, cell B. ' Let' control and drift reads dropped.
+- D5.4 (02:27 PST; Tove #21450, Kasper #21449): order branches on the stored read at 1,200, fixed before it exists.
+  FLAT (s_P(1,200) < 0.10): served E -> cell A at once (--stop-at 03:48 PST) -> fresh read 200 x 4 after A (it can
+  only add a NO; the status is already NO on onset). TOOK OFF (s_P(1,200) >= 0.30): cell A is moot; served E -> fresh
+  200 x 8 -> cell B (seed 1) if time. In between (0.10-0.30): served E -> fresh 200 x 8 -> cell A if time.

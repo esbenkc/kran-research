@@ -65,6 +65,7 @@ def main():
     ap.add_argument("--read-every", type=int, default=100)
     ap.add_argument("--time-only", type=int, default=0, help="smoke: stop after N updates, print s/update, no reads")
     ap.add_argument("--stop-at", default="", help="hard clock stop HH:MM local: save, read and stop")
+    ap.add_argument("--exit-after", type=int, default=0, help="D6: end the process right after the read at this update")
     ap.add_argument("--resume", type=int, default=0, help="DEVIATIONS: continue run --name from its adapter_<N>.pt "
                     "(KL reference stays --init; AdamW moments from opt_<N>.pt if saved, else fresh); appends to logs")
     a = ap.parse_args()
@@ -296,8 +297,11 @@ def main():
         if clock:
             print(f"STOP clock {a.stop_at} after update {step} {time.strftime('%H:%M:%S')}", flush=True)
             break
+        if a.exit_after and step == a.exit_after:  # D6: end this process segment right after its read (memory creep)
+            print(f"SEGMENT END after read {step} {time.strftime('%H:%M:%S')}", flush=True)
+            break
     torch.save(mt.adapter_state(pm), out / "adapter.pt")
-    (out / "run.json").write_text(json.dumps({"args": vars(a), "steps_done": step, "stop_clock": time.strftime("%H:%M:%S"),
+    (out / (f"run_resume{s0_}.json" if s0_ else "run.json")).write_text(json.dumps({"args": vars(a), "steps_done": step, "stop_clock": time.strftime("%H:%M:%S"),
                                               "train_s": round(time.time() - t0, 1), "torch": torch.__version__,
                                               "sampled_off": samp["off"], "sampled_on": samp["on"]}))
     print("DONE", a.name, step, f"{time.time() - t0:.0f}s", flush=True)

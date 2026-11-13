@@ -124,3 +124,16 @@ reference = pilot, split clip) and the seed-1 fallback stay as in D4.
 - D5.6 (02:11 PST; Bruno #21454): final chain = post2.sh commit 05e9fa752, service post2_d54, exactly D5.4 (FLAT: A
   --stop-at 03:48 then fresh 200 x 4; TOOK OFF: fresh 200 x 8 then cell B; between: fresh 200 x 8 then A to 03:55).
   Supersedes D5.5's description; earlier chains were stopped while still waiting.
+
+## D6 — memory creep: planned segment restarts at 800 and 1,000 (2026-11-13 02:23 PST / 11:23 CET; Bruno #21462, Felix)
+
+What had run: live_k4 resumed segment to ~update 765; stored-pool reads to 700. The resumed process grows ~12.7 MB per
+update (4.2 GB at 520 -> 7.36 GB at ~765), the same creep that killed segment 1 at 544; at that rate it hits the 9.0 GB
+cap near update ~890. Fix, automated (seg.sh, service seg_driver), no change to the loss or the reads:
+- Right after the read at 800 writes adapter_800.pt and opt_800.pt (AdamW moments are saved at every read since D3),
+  the process is stopped; its updates after 800 go to steps_killed_after800.jsonl / batches_killed/ and are never
+  used. A fresh process resumes from adapter_800 + opt_800 (moments KEPT: this seam is exact except the prompt-order
+  RNG and a refilled buffer) with --exit-after 1000; another resumes from 1,000 to 1,200 the same way. --stop-at
+  03:50 unchanged. Peak per 200-update segment ~7 GB. Restart cost ~60 s each; update 1,200 ~03:07 PST.
+- post2.sh (D5.4 branch, unchanged) now runs at the end of seg.sh; service post2_d54 was stopped.
+- Seams in the figure and the limits: 500 (AdamW reset, D3), 800 and 1,000 (exact moments, refilled buffer).

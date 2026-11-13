@@ -56,3 +56,29 @@ Off-pool counts, first thought token / anywhere in the thought: ' Let' 0.28% / 1
 the same index-0 rate and is 10x rarer anywhere. X = 1205 ' We'. Its start forced switch comes from read 0 on all
 2,800 test rows; the read-0 swap rule now has no fallback token: if |s_P(0)| CI excludes 0, the post reports it and
 uses end-minus-start only.
+
+## V1.4 — saturation at the frozen recipe; lr 1e-4; new health rule; race reading (2026-11-12 18:08 PST; Tove #20915)
+
+What had run: run d010_s0 at the frozen recipe (lr 3e-4, decision KL 0.1), killed after 25 updates
+(logs/d010_s0.log, data/runs/d010_s0/reads.jsonl). Read 0: cheat_off 0.499, s_P 0.0056, s_R -0.024. Read 25: test
+cheat_off 1.000, c_X 1.000, s_P 0.000, s_R 0.000; train cheat 0.96, live groups 13%, decision KL 0.94. That read 25 is
+the only cue read that exists; it is saturated and carries no information on the cue. It stays in the proof matrix as
+the frozen-recipe 0.10 cell. The health screen on the X-FREE probe-on pool (no cue) had started; no other cue read.
+Changes, all before any further cue read:
+1. lr 3e-4 -> 1e-4 for every rung (decision KL 0.1 kept), chosen by a health screen on the X-free pool to 225
+   updates (Vera #20909) that logs live probed groups (share of probed groups with >= 1 solve sample). Decision KL 1.0
+   and an X-aware KL are rejected (they cap the switch, or the trace switch, by design; Kasper #20908, Vera #20909,
+   #20911, Tove #20915).
+2. BROKEN (replaces 'test cheat_off < 0.15 or > 0.95'): live probed groups < 10% OR train cheat on probed rows > 0.99,
+   or a NaN loss. Reason (Vera #20909 3): cheat_off -> 1 is where a learned switch ends (s_P = (c - c_X)/cheat_off stays
+   defined); what stops learning is the loss of solve samples in probed groups.
+3. RACE reading (Iris #20910): the time at which groups go all-read does not depend on D; the switch's onset does. A
+   rung's censoring time ends at the first read where live probed groups fall under 10%; after that 'no onset' is not
+   a lower bound. A flat 0.10 rung that dies first is read as 'lost the race', never as 'reward cannot learn'.
+4. Clock: one process (2.0 s/update, 3.8 GB). Order: 0.86 s0 (~300 updates; does this engine learn at all), then
+   0.10 s0 to 1,500, status read by 19:15 PST. The second headline cell is the served read of the 0.10 s0 end adapter.
+   0.10 s1, 0.30, the null and the joint-loss cell run only if the clock frees. T_last >= 18 x T86 (drift exclusion)
+   is not expected to fit.
+5. Faithfulness gate scaled by the drift law (Tove #20907): cached 0.86 onset <= 300 x (3e-4 / lr) = 900 updates at
+   lr 1e-4. Stated (Kasper #20913, Vera #20909, Felix #20914): under AdamW a lower lr stretches the drift and the cue
+   learning by about the same factor, so the screen chooses a time scale, not the race's winner.

@@ -21,3 +21,14 @@ status-run update.
   beside it.
 - Smoke sanity (not status data): realised probed X share 0.06-0.125 per 32-row batch, unprobed 0-0.03,
   p_off(' We') 0.0037, live groups 8/8, no all-cheat groups.
+
+## D2 — drift number and fresh-read seeds (2026-11-13 01:08 PST / 10:08 CET; Bruno #21402, Felix)
+
+What had run: live_k4 to ~update 60 (health line only: cheat 0.55, live groups 8/8, thought KL per row 0.04); no read
+after update 0 seen by anyone.
+- Clause-3 drift number: PREREG says p_off(' We') at token 0 on UNPROBED fresh rows. live.py logs instead (i) the
+  policy's own p_off(' We') at token 0 on PROBED fresh rows before the cue shift (`cue_p_off`, the probe-on build),
+  and (ii) the realised ' We' share on unprobed fresh rows. The post reports both: (i) as the drift number, (ii) as
+  its probe-off check. No exact p_off on unprobed rows is logged.
+- Fresh trace read: pool.py --mode test from adapter_1200 uses the stored pool's noise seeds (rows 0-1,599, common
+  random numbers), so D_R(fresh) - D_R(stored) and s_R(fresh) - s_R(stored) are paired. Status bars unchanged.

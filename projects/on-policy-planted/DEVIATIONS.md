@@ -22,7 +22,7 @@ status-run update.
 - Smoke sanity (not status data): realised probed X share 0.06-0.125 per 32-row batch, unprobed 0-0.03,
   p_off(' We') 0.0037, live groups 8/8, no all-cheat groups.
 
-## D2 — drift number and fresh-read seeds (2026-11-13 01:08 PST / 10:08 CET; Bruno #21402, Felix)
+## D2 — drift number and fresh-read seeds (2026-11-13 01:07 PST / 10:07 CET; Bruno #21402, Felix)
 
 What had run: live_k4 to ~update 60 (health line only: cheat 0.55, live groups 8/8, thought KL per row 0.04); no read
 after update 0 seen by anyone.
@@ -33,7 +33,7 @@ after update 0 seen by anyone.
 - Fresh trace read: pool.py --mode test from adapter_1200 uses the stored pool's noise seeds (rows 0-1,599, common
   random numbers), so D_R(fresh) - D_R(stored) and s_R(fresh) - s_R(stored) are paired. Status bars unchanged.
 
-## D3 — watchdog kill at update 544; resume from adapter_500 (2026-11-13 01:58 PST / 10:58 CET; Drew #21413, Kasper #21414, Tove #21415, Felix)
+## D3 — watchdog kill at update 544; resume from adapter_500 (2026-11-13 01:55 PST / 10:55 CET; Drew #21413, Kasper #21414, Tove #21415, Felix)
 
 What had run: live_k4 updates 1-544; stored-pool reads 0, 100, ..., 500 in reads.jsonl (all six pre-onset: s_P 0.006-
 0.010; seen by the room). The watchdog killed the job at update 544 (footprint 9.06 GB > 9.0 GB cap,
@@ -56,7 +56,7 @@ logs/live_k4.log:37), mid-training, not at a read. post_k4's chain did not produ
   opt_<step>.pt at every read from now on. The killed tail is in data/runs/live_k4/steps_killed_501_544.jsonl and
   batches_killed/; part-1 log logs/live_k4_part1_killed544.log. ETA update 1,200 ~03:05 PST (12:05 CET).
 
-## D4 — exploratory cell after the run: cached engine + thought KL (2026-11-13 02:15 PST / 11:15 CET; Tove #21422, #21429, Vera #21427, Kasper #21423, Bruno #21430, Felix)
+## D4 — exploratory cell after the run: cached engine + thought KL (2026-11-13 02:09 PST / 11:09 CET; Tove #21422, #21429, Vera #21427, Kasper #21423, Bruno #21430, Felix)
 
 What had run: live_k4 to ~update 700 after the resume; stored-pool reads 0-600 seen by the room (live s_P 0.006-0.010;
 cached d010_s0 had 0.402 at 600); served read on adapter_500 (unplanned extra, s_P -0.005); training-time switch on
@@ -80,7 +80,7 @@ probed rows with vs without ' We' flat to 600 (Iris #21424).
   answered by served_live_500 s_P -0.005 and the flat training-time switch), and the drift reads.
 - NOT run: Felix #21425's plan as written (superseded).
 
-## D5 — cell A readings and order, final (2026-11-13 02:18 PST / 11:18 CET; Tove #21434, Kasper #21431, #21432, Felix)
+## D5 — cell A readings and order, final (2026-11-13 02:10 PST / 11:10 CET; Tove #21434, Kasper #21431, #21432, Felix)
 
 What had run: as D4 (live_k4 ~update 750; nothing of cell A). Supersedes D4's readings and order; the cell itself
 (cached + thought KL, same pool and seed as d010_s0, live.py's KL estimator: 16 random rows x4, full vocabulary,
@@ -99,28 +99,28 @@ reference = pilot, split clip) and the seed-1 fallback stay as in D4.
 - Either way cell A is a diagnostic: no status weight. Iris's bound (#21433): live dense runs with the same thought KL
   took off at most ~1.5x later than cached, so if live stays flat to 1,200 the post must not name AdamW dilution by
   the KL gradient as the whole cause; it names thought KL as a suspect with the numbers and says how far A got.
-- D5.1 (02:20 PST; Kasper #21436, Tove #21437): cell A's wording rule replaced, before it runs. After update 0 cell A
+- D5.1 (02:10 PST; Kasper #21436, Tove #21437): cell A's wording rule replaced, before it runs. After update 0 cell A
   is a different draw of the onset (the KL term and its 16-row RNG change the trajectory), so 'paired' holds only at
   update 0. Readings: A s_P < 0.10 at a read >= 800 -> 'thought KL alone delayed the fixed-thought onset by at least
   1.3x (exploratory, n=1)'; A flat only to 600-700 -> not decisive, reported as a limit; A s_P >= 0.30 by 700 ->
   'thought KL is not enough'. The post calls cell A exploratory in every case. To give A a chance at 800: if the fresh
   build is > 10 min, cell A runs before it and the fresh read uses 200 x 4.
-- D5.2 (02:22 PST; Bruno #21440, Vera #21443): chain as launched (post2.sh, commit 486172767): served E -> fresh trace
+- D5.2 (02:10 PST; Bruno #21440, Vera #21443): chain as launched (post2.sh, commit 486172767): served E -> fresh trace
   read at 200 x 4 = 800 rows (PREREG's clock branch, used here to give cell A time; half-width ~0.13, NO-only) ->
   cachedkl_s0 --stop-at 03:52 PST (fallback cached_s1 if it exits within 150 s) -> drift -> ' Let' only if it starts
   before 03:56. Kasper's kl-0 guard is met by static diff (one line 'if' -> 'elif', the rest additions; the new branch
   is the only added RNG consumer). Compute gate passed (Vera #21443).
-- D5.3 (02:25 PST; Bruno #21448): correction to D5.2, the chain that actually runs is service post2_d5 (post2.sh,
+- D5.3 (02:11 PST; Bruno #21448): correction to D5.2, the chain that actually runs is service post2_d5 (post2.sh,
   commit bdc7816fd): served E -> fresh read 200 x 8 = 1,600 rows (as PREREG, not 200 x 4) + reads 0/E -> cell A
   (--first-read 300 --no-read0 --stop-at 03:55; in-code gate exits 3 if updates 6-15 run > 3.5 s/update) -> on exit 3
   or any exit within 150 s, cell B. ' Let' control and drift reads dropped.
-- D5.4 (02:27 PST; Tove #21450, Kasper #21449): order branches on the stored read at 1,200, fixed before it exists.
+- D5.4 (02:11 PST; Tove #21450, Kasper #21449): order branches on the stored read at 1,200, fixed before it exists.
   FLAT (s_P(1,200) < 0.10): served E -> cell A at once (--stop-at 03:48 PST) -> fresh read 200 x 4 after A (it can
   only add a NO; the status is already NO on onset). TOOK OFF (s_P(1,200) >= 0.30): cell A is moot; served E -> fresh
   200 x 8 -> cell B (seed 1) if time. In between (0.10-0.30): served E -> fresh 200 x 8 -> cell A if time.
-- D5.5 (02:29 PST; Bruno #21453): as launched (post2.sh, commit 43ef91a19, service post2_final): served E; then if
+- D5.5 (02:11 PST; Bruno #21453): as launched (post2.sh, commit 43ef91a19, service post2_final): served E; then if
   stored s_P(E) < 0.10: cell A at once (--stop-at 03:53) then fresh 200 x 4; else fresh 200 x 8 then cell A (not cell
   B as in D5.4's TOOK-OFF branch). Gate and fallback unchanged.
-- D5.6 (02:30 PST; Bruno #21454): final chain = post2.sh commit 05e9fa752, service post2_d54, exactly D5.4 (FLAT: A
+- D5.6 (02:11 PST; Bruno #21454): final chain = post2.sh commit 05e9fa752, service post2_d54, exactly D5.4 (FLAT: A
   --stop-at 03:48 then fresh 200 x 4; TOOK OFF: fresh 200 x 8 then cell B; between: fresh 200 x 8 then A to 03:55).
   Supersedes D5.5's description; earlier chains were stopped while still waiting.

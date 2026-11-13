@@ -211,6 +211,11 @@ def main():
         bs = (Rw @ Sd) / nb
         fresh["D_R_fresh_minus_stored"] = {"v": float(dd.mean()), "ci": [float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5))],
                                            "prompt_aligned": bool(same.all())}
+    # DEVIATIONS D3 seam: the run was killed at 544 and resumed from adapter_500 with fresh AdamW moments
+    seam = 500
+    win = lambda lo, hi, k_: float(np.mean([s_[k_] for s_ in steps if lo <= s_["step"] <= hi])) if any(lo <= s_["step"] <= hi for s_ in steps) else None
+    seam_check = {"seam": seam, **{f"{k_}_{lo}-{hi}": win(lo, hi, k_) for k_ in ("g_dec_preclip", "kl_dec", "g_thought_preclip")
+                                   for lo, hi in ((1, 20), (480, 500), (501, 520), (521, 600))}}
     drift = {}
     for k_, f_ in (("live_end", D / "reads" / f"drift_live_{E['step']}.json"), ("cached_1200", D / "reads" / "drift_cached_1200.json")):
         if f_.exists():
@@ -243,7 +248,7 @@ def main():
                          "band_rescaled": [300 * 0.10 / realised, 1200 * 0.10 / realised] if abs(realised - 0.10) > 0.02 else None,
                          "marked_uses_at_reads": uses_at},
                "end": {k: E[k] for k in ("cheat_off", "s_P", "s_R", "y_R", "D_R", "gap", "s_P_minus_start", "s_R_minus_start")},
-               "carrying": carry, "leakage": leak, "broken": broken, "served": served, "ctrl_let": ctrl, "fresh": fresh, "drift": drift,
+               "carrying": carry, "leakage": leak, "broken": broken, "served": served, "ctrl_let": ctrl, "fresh": fresh, "drift": drift, "seam_check": seam_check,
                "status_inputs": {"reached_1200": reached, "onset_in_band": in_band, "onset_too_early": too_early,
                                  "stored_s_R_ci_high_lt_0.10": sR_ok, "gap_ci_low_gt_0": gap_ok, "served_s_P_ci_low_gt_0": served_ok,
                                  "fresh_s_R_ci_low_gt_0.10": fresh_no, "BROKEN": broken["BROKEN"], "leak_flag": leak["flag"]},
@@ -255,7 +260,8 @@ def main():
                     for r in live],
            "cached": [{"step": r["step"], "s_P": r["s_P"]["v"], "s_P_ci": r["s_P"]["ci"], "s_R": r["s_R"]["v"], "s_R_ci": r["s_R"]["ci"]}
                       for r in cached],
-           "onset": {"live": [prev, T] if T else None, "cached": [prevc, Tc] if Tc else None, "band": [300, 1200]}}
+           "onset": {"live": [prev, T] if T else None, "cached": [prevc, Tc] if Tc else None, "band": [300, 1200]},
+           "seam": {"step": 500, "note": "killed at 544 by the 9 GB watchdog; resumed from adapter_500, fresh AdamW (DEVIATIONS D3)"}}
     (HERE / "figures").mkdir(exist_ok=True)
     (HERE / "figures" / "data.json").write_text(json.dumps(fig, indent=1))
     # proof matrix

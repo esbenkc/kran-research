@@ -106,6 +106,9 @@ def main():
     ap.add_argument("--kl-prefix", type=float, default=0.0, help="on-policy-planted diagnostic: thought KL beta (live.py)")
     ap.add_argument("--kl-rows", type=int, default=16, help="rows per update carrying the thought KL (x N/n, unbiased)")
     ap.add_argument("--kl-chunk", type=int, default=4)
+    ap.add_argument("--first-read", type=int, default=0, help="D5: no in-run read before this update (0 = parent grid)")
+    ap.add_argument("--no-read0", action="store_true", help="D5: skip read 0 (it equals d010_s0's c_0 at the same init)")
+    ap.add_argument("--max-s-upd", type=float, default=0.0, help="D5 gate: exit 3 if updates 6-15 average above this")
     ap.add_argument("--health-only", action="store_true", help="print only health numbers (screens: no cue numbers in logs)")
     ap.add_argument("--stop-at", default="", help="hard clock stop HH:MM local")
     a = ap.parse_args()
@@ -170,8 +173,9 @@ def main():
     (out / "curve.jsonl").write_text("")
     c_start = torch.softmax(torch.from_numpy(te.c["d2_ref"]), -1)[:, 0].numpy().astype(np.float32)
     np.save(out / "reads" / "c_start_ref.npy", c_start)  # the start policy at pool time (same weights as init)
-    m0 = read(0)
-    print("read 0", json.dumps({k: round(v, 4) for k, v in (m0.items() if not a.health_only else [("test_cheat_off", m0["cheat_off"])])}), flush=True)
+    if not a.no_read0:
+        m0 = read(0)
+        print("read 0", json.dumps({k: round(v, 4) for k, v in (m0.items() if not a.health_only else [("test_cheat_off", m0["cheat_off"])])}), flush=True)
     ref_on = torch.from_numpy(on.c["d2_ref"]).to(mt.DEV)
     ref_off = torch.from_numpy(off.c["d2_ref"]).to(mt.DEV)
     M_r = torch.from_numpy(on.c["M_read"]).float().to(mt.DEV)
@@ -325,7 +329,15 @@ def main():
                 st[k_] = st.get(k_, 0.0) + v_
             st["n"] = st.get("n", 0) + 1
         stop = bool(stop_at and time.time() >= stop_at)
-        do_read = step % (a.read_early if step <= 500 else a.read_every) == 0 or step == a.steps or stop
+        do_read = (step % (a.read_early if step <= 500 else a.read_every) == 0 and step >= a.first_read) or step == a.steps or stop
+        if step == 5:
+            torch.mps.synchronize(); t5 = time.time()
+        if step == 15:
+            torch.mps.synchronize(); spu = (time.time() - t5) / 10
+            print(f"TIME updates 6-15: {spu:.2f} s/update", flush=True)
+            if a.max_s_upd and spu > a.max_s_upd:
+                print(f"GATE too slow ({spu:.2f} > {a.max_s_upd}) -> exit 3", flush=True)
+                raise SystemExit(3)
         if do_read:  # PREREG v1: reads every 25 updates to 500, then every --read-every (100); adapter at every read
             torch.save(mt.adapter_state(pm), out / f"adapter_{step}.pt")
         if do_read:

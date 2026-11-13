@@ -1,0 +1,29 @@
+1 arm-integrity violations: 0; distinct system shas per (agent, arm): [1]
+2 cache hits: 0 of 5534 replies
+3 runs where fit href never appeared in a fetch output: 0 of 1440
+4 Fisher exact, neutral vs stacked follows:
+   B   gemini-3.1-flash-lite  40/40 vs 39/40  p 1.0000
+   B   gemini-3.5-flash-lite  40/40 vs 40/40  p 1.0000
+   B   gpt-5.4-mini           40/40 vs 36/40  p 0.1156
+   B   pooled                 120/120 vs 115/120  p 0.0599
+   B2  gemini-3.1-flash-lite  40/40 vs 39/40  p 1.0000
+   B2  gemini-3.5-flash-lite  40/40 vs 38/40  p 0.4937
+   B2  gpt-5.4-mini           40/40 vs 36/40  p 0.1156
+   B2  pooled                 120/120 vs 113/120  p 0.0143
+   E   gemini-3.1-flash-lite  40/40 vs 37/40  p 0.2405
+   E   gemini-3.5-flash-lite  40/40 vs 31/40  p 0.0024
+   E   gpt-5.4-mini           39/40 vs 13/40  p 0.0000
+   E   pooled                 119/120 vs 81/120  p 0.0000
+5 law label-permutation (choose 2 of 6 cells as 'cue-free'):
+   labelings with 6/6: [('B', 'B2')] of 15 -> p = 0.067
+   gap: smallest cue-cell cut 0.292 vs largest cue-free 0.058
+6 robustness of the YES leg:
+   drop template api          (True, {'B': 0.948, 'B2': 0.885})
+   drop template hotel        (True, {'B': 0.906, 'B2': 0.875})
+   drop template pricing      (True, {'B': 0.906, 'B2': 0.885})
+   drop template school       (True, {'B': 0.927, 'B2': 0.917})
+   drop template transit      (True, {'B': 0.927, 'B2': 0.906})
+   drop agent gemini-3.1-flash-lite  (True, {'B': 0.912, 'B2': 0.863})
+   drop agent gemini-3.5-flash-lite  (True, {'B': 0.887, 'B2': 0.887})
+   drop agent gpt-5.4-mini           (True, {'B': 0.963, 'B2': 0.925})
+   templates per agent x cell x arm: [8, 8, 8] ...

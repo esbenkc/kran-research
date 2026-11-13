@@ -232,7 +232,7 @@ def main():
         L.append(f"| thought drift (D2) | 0 | d010_s0 adapter_1500 vs start, {dr['n_thoughts']} test thoughts | start adapter | mean per-token TV "
                  f"{dr['mean_token_tv']:.3f} (median {dr['median_token_tv']:.3f}); KL {dr['mean_token_kl_start_end']:.3f} | data/reads/drift_d010_s0_1500.json |")
     if out["slope"]:
-        L.append(f"| slope | 0 | rungs 0.86/0.30/0.10 | none | {json.dumps(out['slope'])} | data/summary.json |")
+        L.append(f"| slope | 0 | rungs 0.86 and 0.10 (0.30 cut for time) | none | {json.dumps(out['slope'])} | data/summary.json |")
     pm = HERE / "proof-matrix.md"
     if pm.exists():  # keep the skeptics' own rows (artifact under skeptics/), appended after ours
         L += [l for l in pm.read_text().splitlines() if l.startswith("|") and l.rstrip().rstrip("|").strip().split("|")[-1].strip().startswith("skeptics/")]

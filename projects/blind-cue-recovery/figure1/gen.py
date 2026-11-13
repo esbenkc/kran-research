@@ -50,6 +50,8 @@ sm, n_sm = cell("SM", m, th)
 for c in (raw, sm):  # the dashed 'best random cue' line is the highest of the three chance bars (a), (b), (c) here
     assert c["null_max"] >= max(c.get("held_max") or 0.0, c["slice_p95"]), c
 ranks_sm = {mm: cell("SM", mm, S["behaviour"][mm]["t_h"])[0]["rank"] for mm in models}
+ranks_sm_T = {mm: cell("SM", mm, S["behaviour"][mm]["T_frozen"])[0]["rank"] for mm in models}
+assert not any(S["cells"]["SM"][mm][str(S["behaviour"][mm]["T_frozen"])]["beats_chance"] for mm in models)
 ranks_raw = {mm: cell("RAW", mm, S["behaviour"][mm]["t_h"])[0]["rank"] for mm in models}
 n_first = sum(S["cells"]["SM"][mm][str(S["behaviour"][mm]["t_h"])]["beats_chance"] for mm in models)
 assert n_first == S["n_SM_at_t_h"] and S["status"] == "REJECTED", (n_first, S["n_SM_at_t_h"], S["status"])
@@ -60,7 +62,7 @@ assert prompt["question"] == "How many keys are in a standard piano?"
 src = {"model": m, "run": f"dir_u111{m[1]}", "t_h": th, "T": Tsw, "rank_raw": raw["rank"], "rank_sm": sm["rank"],
        "e1_raw": raw["e1_true"], "e1_sm": sm["e1_true"], "max_raw": raw["null_max"], "max_sm": sm["null_max"],
        "D_th": D_th, "D_T": D_T, "ranks_sm_th": ranks_sm, "ranks_raw_th": ranks_raw, "n_first": n_first,
-       "cos_sm_raw": sm["cos_v1_v1raw"]}
+       "cos_sm_raw": sm["cos_v1_v1raw"], "ranks_sm_T": ranks_sm_T}
 
 
 def fmt_rank(r):
@@ -125,13 +127,14 @@ if T.get("e1") or T.get("e1_need"):
     assert E1V in S["cells"], f"{E1V} not in summary.json yet"
     n_e1 = sum(S["cells"][E1V][mm][str(S["behaviour"][mm]["T_frozen"])]["beats_chance"] for mm in models)
     src["n_e1_at_T"] = n_e1
+    assert n_e1 == sum(S["cells"][E1V][mm][str(S["behaviour"][mm]["T_frozen"])]["rank"] == 1 for mm in models)  # "ranked 1st" == beats chance here
     src["e1_variant"] = E1V
 e = html.escape
 others = [mm for mm in models if mm != m]
 fill = {"r_raw": fmt_rank(raw["rank"]), "r_sm": fmt_rank(sm["rank"]), "t": f"{th}", "T": f"{Tsw}",
         "D_th": f"{D_th * 100:.1f}", "D_T": f"{D_T * 100:.1f}", "n_first": ["none", "1", "2", "3", "4", "5", "6"][n_first],
         "nf": n_first, "rmin": fmt_rank(min(ranks_sm.values())), "rmax": fmt_rank(max(ranks_sm.values())),
-        "others": ", ".join(fmt_rank(ranks_sm[mm]) for mm in others), "cos": f"{sm['cos_v1_v1raw']:.3f}", "n_e1": n_e1}
+        "others": ", ".join(fmt_rank(ranks_sm[mm]) for mm in others), "cos": f"{sm['cos_v1_v1raw']:.3f}", "n_e1": n_e1, "Tmin": fmt_rank(min(ranks_sm_T.values())), "Tmax": fmt_rank(max(ranks_sm_T.values()))}
 
 
 def F(sx):

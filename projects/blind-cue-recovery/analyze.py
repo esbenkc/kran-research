@@ -271,7 +271,8 @@ def write_matrix(out):
         for r in json.loads(e2f.read_text()):
             bd = Bq.get(r["run"], {}).get("reads", {}).get(str(r["t"]))
             beh = f"D {100 * bd['D']:.2f} [{100 * bd['ci95'][0]:.2f}, {100 * bd['ci95'][1]:.2f}] points" if bd else "D n/a"
-            L.append(f"| exploratory E2 (slow switches) | 0 | {r['run']} (x {r['x']:.3f}, T {r['T']}) at {r['read']} = {r['t']} | "
+            L.append(f"| exploratory E2 (slow switches) | 0 | {r['run']} (x {r['x']:.3f}, T {r['T']}) at {r['read']} = {r['t']}; adapters from "
+                     f"lora-switch-audit raw/runs (branch swarm/theory-1112-weight-only), q/k/v copies in data/adapters_qkv26/{r['run']}/ | "
                      f"clean c2_a0_s0/s1 (b), slice p95 (c) | RAW rank {r['RAW']['rank']} beats {r['RAW']['beats_chance']}; "
                      f"E1-RAW rank {r['E1-RAW']['rank']} beats {r['E1-RAW']['beats_chance']}; {beh} "
                      f"| data/e2.json, data/behaviour_ci_e2.json |")
@@ -286,7 +287,12 @@ def write_matrix(out):
           "| diagnostic | 6-9 | v1 of held-out target vs v1 of its SM twin mean | no cue | see data/diag.json | data/diag.json |",
           "", f"Status (frozen rule): **{out['status']}**; SM beats chance at t_h in {out['n_SM_at_t_h']} of 6.", ""]
     L = [fix_row(x) for x in L]
-    (OUT / "proof-matrix.md" if OUT != HERE / "data" else HERE / "proof-matrix.md").write_text("\n".join(L))
+    dest = OUT / "proof-matrix.md" if OUT != HERE / "data" else HERE / "proof-matrix.md"
+    if dest.exists():  # keep rows the skeptics added (claim column starts with 'skeptic' or 'critic2')
+        keep = [x for x in dest.read_text().splitlines() if x.startswith("| skeptic") or x.startswith("| critic2")]
+        i = max(j for j, x in enumerate(L) if x.startswith("| "))
+        L = L[:i + 1] + keep + L[i + 1:]
+    dest.write_text("\n".join(L))
 
 
 def fix_row(line):

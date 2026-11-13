@@ -26,10 +26,11 @@ from blind import Scorer  # noqa: E402
 RUNS = [("sw_a0.00390625_s0", 192), ("sw_a0.00195312_s0", 320), ("sw_a0.000976562_s0", 704),
         ("sw_a0.000488281_s0", 1728), ("sw_a0.000244141_s0", 4352)]
 CLEAN = {"c2_a0_s0": 20480, "c2_a0_s1": 2048}
+RDIR = os.environ.get("RUNS_DIR", "raw/runs")  # data/adapters_qkv26 = committed copies (pack.py)
 
 
 def snaps(run):
-    return sorted(int(p.stem[4:]) for p in (HERE / "raw" / "runs" / run).glob("step*.pt") if p.stem[4:] != "0")
+    return sorted(int(p.stem[4:]) for p in (HERE / RDIR / run).glob("step*.pt") if p.stem[4:] != "0")
 
 
 def nearest(run, t):
@@ -44,7 +45,7 @@ for run, T in RUNS:
     ev = {c["step"]: c["D"] for c in meta.get("dev_curve", []) + meta.get("dense_curve", [])}
     assert meta["T"] == T, (run, meta["T"])
     for label, t in [("T/4", T // 4), ("T/2", T // 2), ("T", T)]:
-        tp = f"raw/runs/{run}/step{t}.pt"
+        tp = f"{RDIR}/{run}/step{t}.pt"
         assert (HERE / tp).exists(), tp
         w = sc.top_dir([tp])
         rec = {"run": run, "x": meta["cue_size"]["x"], "T": T, "read": label, "t": t, "D": ev.get(t)}
@@ -57,7 +58,7 @@ for run, T in RUNS:
                 sl = sc.slice_null_proj(tp, w, run)
             held = []
             for c in CLEAN:
-                cp = f"raw/runs/{c}/step{nearest(c, t)}.pt"
+                cp = f"{RDIR}/{c}/step{nearest(c, t)}.pt"
                 if stat == "RAW":
                     h, _ = sc.score(cp, [], run)
                 else:
@@ -70,7 +71,7 @@ for run, T in RUNS:
                          "held_max": hmax, "slice_p95": p95, "beats_a": a, "beats_b": b, "beats_c": c_,
                          "beats_chance": bool(a and b and c_)}
         out.append(rec)
-(HERE / "data" / "e2.json").write_text(json.dumps(out, indent=1))
+(HERE / "data" / ("e2.json" if RDIR == "raw/runs" else "e2_packed.json")).write_text(json.dumps(out, indent=1))
 half = [r for r in out if r["read"] == "T/2"]
 # amended rule (PREREG E2 amendment, commit 6da9ddccb, 06:32:36, before compute): each read counted on its own
 for stat in ["RAW", "E1-RAW"]:

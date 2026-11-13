@@ -20,6 +20,7 @@ policy gradient on cached block-26 inputs; a planted cue at rows 0-2 switches of
 | every frozen read, status, proof matrix | `analyze.py` | `data/summary.json`, `data/blind/cells.json`, `data/blind/nulls.npz`, `data/blind/slice_null.npz`, `proof-matrix.md` |
 | cue-free diagnostic (before any cue read) + rebuild check | `diag.py` | `data/diag.json` |
 | behaviour with bootstrap CI at 0, t_h, T | `beh.py` | `data/behaviour_ci.json` |
+| E2 (slow switches, exploratory): parent sweep adapters at T/4, T/2, T | `e2.py` | `data/e2.json`, `data/behaviour_ci_e2.json` (`BEH_SET=e2 beh.py`) |
 | known-answer checks | `check_slice.py`; init-from rebuild (README below) | `data/known_answer_slice_null.json`, `data/known_answer_init_from.json` |
 | git copy of the tensors the reads need | `pack.py` | `data/adapters_qkv26/<run>/step<t>.pt`, `data/snapshot_sha256.json` |
 
@@ -31,8 +32,10 @@ T (behaviour switch) = 32, 32, 32, 32, 24, 32; t_h (largest snapshot <= T/2) = 1
 ```sh
 cd kran-research/projects/blind-cue-recovery
 PY=<venv with torch 2.14.1, transformers 5.20.2, peft 0.21.2>/bin/python
-# From git alone (block-26 q, k, v tensors of every cell the status, phase 0, XS, SS, E1 and the SM curve read):
-RUNS_DIR=data/adapters_qkv26 NC_DEV=cpu $PY analyze.py     # -> data/rebuild_packed/summary.json (SMv, SM0 cells absent)
+# From git alone (block-26 q, k, v copies of every adapter any cell reads, incl. all twins and the E2 sweep runs):
+RUNS_DIR=data/adapters_qkv26 NC_DEV=cpu $PY analyze.py     # -> data/rebuild_packed/summary.json
+RUNS_DIR=data/adapters_qkv26 NC_DEV=cpu $PY e2.py          # -> data/e2_packed.json
+# checked: all 324 summary cells and 15 E2 rows equal the raw-snapshot run (data/rebuild_packed/diff.txt)
 # Full rebuild (needs raw/cache from the parent project; training is deterministic, bit for bit):
 python3 make_queue.py > queue.txt; ./lane2.sh A queue.txt & ./lane2.sh B queue.txt &
 NC_DEV=cpu $PY diag.py; NC_DEV=cpu $PY analyze.py; $PY beh.py; $PY pack.py

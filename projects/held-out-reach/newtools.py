@@ -80,7 +80,7 @@ class LCPW:
             return f"Error: unknown tool {name!r}.", {"error": "unknown tool"}
         if name == "navigate_browser":
             url = str(args.get("url", ""))
-            if url.startswith("http") and not url.startswith(self.base + "/"):
+            if not url.startswith(self.base + "/"):  # any other scheme or host (file:, data:, https://...) is refused
                 return "Error: the browser can only reach this website.", {"url": url, "blocked": True}
         obs = self.tools[name].run(args)
         return str(obs), {"url": self.page_url()}

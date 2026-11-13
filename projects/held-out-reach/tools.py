@@ -162,7 +162,8 @@ class Stack:
         if tool == "lcpw":
             import newtools
             _browser()  # starts this thread's Playwright driver
-            self.held = newtools.LCPW(lambda: _TL.pw.chromium.launch(), BASE)
+            # network sandbox at the browser too: every hostname except 127.0.0.1 fails to resolve (bu_service.py NO_DNS_ARG)
+            self.held = newtools.LCPW(lambda: _TL.pw.chromium.launch(args=["--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1"]), BASE)
         elif tool == "pwmcp":
             import newtools
             self.held = newtools.PWMCP(_mcp_loop(), BASE, UA)

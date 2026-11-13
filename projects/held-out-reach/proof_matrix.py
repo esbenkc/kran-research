@@ -1,56 +1,47 @@
-"""Write proof-matrix.md from results/analysis.json, crawl summaries and the parity test (one row per cell).
+"""results/score.json + crawl -> proof-matrix.md (one row per cell). Skeptics append their own rebuild rows below
+the marker line, which this script keeps.
+
     .venv/bin/python proof_matrix.py
-Columns: | claim | seed | variant | control | result | artifact |. 'seed' = the independent runs pooled in the cell
-(every run has its own site and address; provider-default temperature). Skeptics append their own rebuild rows.
 """
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-A = json.loads((ROOT / "results" / "analysis.json").read_text())
-P = json.loads((ROOT / "predictions.json").read_text())
-rows = []
-
-
-def add(claim, seed, variant, control, result, artifact):
-    rows.append(f"| {claim} | {seed} | {variant} | {control} | {result} | {artifact} |")
-
-
-for x in A["combos"]:
-    flag = "MISS" if x["miss"] else "OFF" if x["off"] else "HIT" if x["hit"] else "UNSETTLED"
-    claim = "headline" if x["headline"] else ("zero control" if x["exposure"] == 0 else "sanity (fit at exposure 1)")
-    control = "exposure-0 control" if x["exposure"] == 0 else "none"
-    add(claim, f"{x['n']} runs", f"{x['context']} x {x['agent']} x {'fit' if x['anchor'] == 'fit' else 'off-task'} anchor",
-        control, f"{x['followed']}/{x['n']} = {x['measured']:.2f} vs pred {x['pred']:.2f} (exposure {x['exposure']:.1f}); d {x['d']:+.2f} "
-        f"[{x['ci'][0]:+.2f}, {x['ci'][1]:+.2f}] {flag}", x["artifact"])
-for k, v in A["other_rows"].items():
-    cell, model = k.split("|")
-    add("replication of parent", f"{v['n']} runs", f"{cell} x {model}", "parent rate 44/60 (raw+md pooled), raw 25/30",
-        f"{v['followed']}/{v['n']} = {v['followed'] / v['n']:.2f}", "results/scores_counted.jsonl")
-add("title status", "all combos", "law vs all1 vs all0 (mean absolute error)", "published-claim baselines",
-    f"{A['status']}: MISS {A['miss']}, OFF {A['off']}, headline HIT share {A['headline_hit_share']:.2f}; MAE law "
-    f"{A['mae']['law']:.3f}, all1 {A['mae']['all1']:.3f}, all0 {A['mae']['all0']:.3f}", "results/analysis.json")
-for d in ("crawl", "crawl_bu"):
-    s = json.loads((ROOT / d / "summary.json").read_text())
-    for key, v in s.items():
-        tool, row = key.split("|")
-        if not row.endswith("footer-inline"):
+MARK = "<!-- skeptic rows below this line are kept by proof_matrix.py -->"
+S = json.loads((ROOT / "results" / "score.json").read_text())
+AG = {"gpt-5.4-mini": "GPT-5.4 mini", "gpt-5.4-nano": "GPT-5.4 nano", "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite"}
+TOOL = {"lcpw": "LangChain PlayWrightBrowserToolkit", "pwmcp": "Playwright MCP 0.0.85", "bufull": "Browser Use 0.13.14 (all actions)",
+        "wbl": "LangChain WebBaseLoader", "markitdown": "markitdown-mcp", "mcpfetch": "MCP fetch (calibration tool)"}
+CLAIM = {"scored_route": "headline", "scored_reach0": "headline (reach-0 bar)", "replication": "calibration replicates",
+         "free_control": "free control"}
+CONTROL = {"scored_route": "none", "scored_reach0": "reach-0 tool (no single action shows the address)",
+           "replication": "same tool as the calibration cell", "free_control": "positive control (default view shows the address)"}
+rows = ["| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
+for c in S["cells"]:
+    if c["n"] == 0:
+        continue
+    res = f"{c['follows']}/{c['n']} followed = {c['measured']:.2f}; two-factor prediction {c['pred_two_factor']:.2f}"
+    if "gap" in c:
+        lo, hi = c["gap_vs_cal_ci"]
+        res += f"; gap {c['gap']:+.2f}; vs 1109 calibration [{lo:+.2f}, {hi:+.2f}]{' CLEAR MISS' if c['clear_miss'] else ''}"
+    res += f"; route action called in {c['route_called']}, address seen in {c['hid_seen']}"
+    art = f"raw/{S['phase']}/{c['agent']}/{c['tool']}__{c['method']}__fit/ + logs/access.log + results/score.json"
+    rows.append(f"| {CLAIM.get(c['role'], c['role'])} | runs 0-{c['n'] - 1} (5 sites x 6 wordings) | {TOOL[c['tool']]}, {c['method']}, "
+                f"{AG[c['agent']]} | {CONTROL.get(c['role'], 'none')} | {res} | {art} |")
+rows.append(f"| headline (status) | all scored runs | 9 route combos + 3 reach-0 combos | none | status {S['status']}: route MAE "
+            f"{S['mae_two_factor']:.3f}, clear misses {S['clear_misses']}, reach-0 follows {S['reach0_follows']}, n per route combo "
+            f"{S['n_scored_route']} | results/score.json, results/score_stdout.txt |")
+rows.append(f"| comparator (reported) | all scored runs | one-factor reach rule / constant 99% / first view | model-free baselines | MAE "
+            f"{S['reported_mae_one_factor']:.3f} / {S['reported_mae_const99']:.3f} / {S['reported_mae_first_view']:.3f} | results/score.json |")
+for d in ("crawl", "crawl_bufull"):
+    for l in (ROOT / d / "reach.jsonl").read_text().splitlines():
+        r = json.loads(l)
+        if r["method"] != "display_none" and r["tool"] != "pwmcp":
             continue
-        method = row.split("-")[0]
-        add("crawl exposure", f"{v['n']} fresh sites (5 templates x 2 anchors x 3)", f"{tool} x {method}",
-            "no-link control" if method == "nolink" else "visible-link control" if method == "visible" else "none",
-            f"exposed {v['exposed']}/{v['n']} (home {v['home']}, table {v['table']}); anchor words seen {v['anchor_seen']}; "
-            f"reachable {v['reachable']} {v['reach_kinds']}; errors {v['errors']}", f"{d}/exposure.jsonl")
-add("harness parity", "360 files", "parent_hidden / visible / nolink sites x 5 templates x 2 need levels",
-    "byte-identity vs parent websites.py", "360/360 byte-identical", "test_parity.py")
-hdr = ("# Proof matrix: hidden-link-crawl\n\nGenerated by `proof_matrix.py` from `results/analysis.json`, "
-       "`crawl*/summary.json` and `test_parity.py`. One row per cell. Skeptic rebuild rows are added below by the skeptics.\n\n"
-       "| claim | seed | variant | control | result | artifact |\n|---|---|---|---|---|---|\n")
-# skeptics' rebuild rows: every table row of skeptics/*/signoff.md after its own header row
-for f in sorted((ROOT / "skeptics").glob("*/signoff.md")):
-    lines = f.read_text().splitlines()
-    if "| claim | seed | variant | control | result | artifact |" in lines:
-        k = lines.index("| claim | seed | variant | control | result | artifact |")
-        rows += [l for l in lines[k + 2:] if l.startswith("| ")]
-(ROOT / "proof-matrix.md").write_text(hdr + "\n".join(rows) + "\n")
-print(f"{len(rows)} rows -> proof-matrix.md")
+        rows.append(f"| reach crawl (model-free) | site {r['template']} | {TOOL[r['tool']]}, {r['method']} | no model | default view shows "
+                    f"address: {r['default']}; reach {r['reach']} via {sorted({h.split(':', 1)[1] for h in r['reach_actions']})} | {d}/reach.jsonl, {d}/outputs/{r['tool']}/ |")
+p = ROOT / "proof-matrix.md"
+keep = p.read_text().split(MARK, 1)[1] if p.exists() and MARK in p.read_text() else "\n"
+p.write_text("# Proof matrix — held-out-reach\n\nGenerated by proof_matrix.py from results/score.json and the crawl files.\n\n"
+             + "\n".join(rows) + "\n\n" + MARK + keep)
+print(f"{len(rows) - 2} rows -> {p}")

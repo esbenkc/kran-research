@@ -147,7 +147,19 @@
   "max_train_probed_cheat_25": 0.62375,
   "BROKEN": false
  },
- "served": null,
+ "served": {
+  "policy": "data/runs/live_k4/adapter_1200.pt",
+  "X": 1205,
+  "R": 2,
+  "n": 400,
+  "cheat_notX": 0.5543817272459092,
+  "forced_switch": 0.0043596193089615555,
+  "s_P": 0.007863930383527491,
+  "s_P_ci": [
+   -0.06410445522955274,
+   0.07278633994824513
+  ]
+ },
  "ctrl_let": null,
  "fresh": null,
  "drift": {},
@@ -166,7 +178,39 @@
   "g_thought_preclip_501-520": 0.31166508570313456,
   "g_thought_preclip_521-600": 0.2715505362022668
  },
- "diagnostics": {},
+ "diagnostics": {
+  "cachedkl_s0": {
+   "reads": [
+    {
+     "step": 0,
+     "s_P": {
+      "v": 0.005616450311528136,
+      "ci": [
+       0.0028743456456236925,
+       0.008552794022126334
+      ]
+     },
+     "s_R": {
+      "v": -0.023726354607738545,
+      "ci": [
+       -0.0773983933454934,
+       0.034226186041901384
+      ]
+     },
+     "cheat_off": {
+      "v": 0.4992035328980043,
+      "ci": [
+       0.48846132588421054,
+       0.5095744231547354
+      ]
+     }
+    }
+   ],
+   "onset": null,
+   "last_read": 0,
+   "reading": "not decisive"
+  }
+ },
  "status_inputs": {
   "reached_1200": true,
   "onset_in_band": false,

@@ -2,21 +2,24 @@
 
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
-| headline (live curve) | 0 | live k=4, read 0 | none | s_P +0.006 [+0.003, +0.009]; s_R -0.024 [-0.077, +0.034]; cheat_off 0.499 | data/runs/live_k4/reads/c_0.npy |
-| headline (live curve) | 0 | live k=4, read 100 | none | s_P +0.008 [+0.005, +0.011]; s_R -0.024 [-0.075, +0.029]; cheat_off 0.517 | data/runs/live_k4/reads/c_100.npy |
-| headline (live curve) | 0 | live k=4, read 200 | none | s_P +0.007 [+0.004, +0.010]; s_R -0.025 [-0.077, +0.032]; cheat_off 0.534 | data/runs/live_k4/reads/c_200.npy |
-| headline (live curve) | 0 | live k=4, read 300 | none | s_P +0.010 [+0.007, +0.013]; s_R -0.020 [-0.076, +0.039]; cheat_off 0.492 | data/runs/live_k4/reads/c_300.npy |
-| headline (live curve) | 0 | live k=4, read 400 | none | s_P +0.009 [+0.007, +0.012]; s_R -0.025 [-0.074, +0.025]; cheat_off 0.594 | data/runs/live_k4/reads/c_400.npy |
-| headline (live curve) | 0 | live k=4, read 500 | none | s_P +0.006 [+0.003, +0.008]; s_R -0.029 [-0.081, +0.026]; cheat_off 0.550 | data/runs/live_k4/reads/c_500.npy |
-| headline (live curve) | 0 | live k=4, read 600 | none | s_P +0.010 [+0.007, +0.013]; s_R -0.030 [-0.088, +0.032]; cheat_off 0.483 | data/runs/live_k4/reads/c_600.npy |
-| headline (live curve) | 0 | live k=4, read 700 | none | s_P +0.007 [+0.005, +0.010]; s_R -0.028 [-0.081, +0.029]; cheat_off 0.523 | data/runs/live_k4/reads/c_700.npy |
-| headline (live curve) | 0 | live k=4, read 800 | none | s_P +0.010 [+0.007, +0.013]; s_R -0.030 [-0.089, +0.030]; cheat_off 0.500 | data/runs/live_k4/reads/c_800.npy |
-| headline (live curve) | 0 | live k=4, read 900 | none | s_P +0.008 [+0.005, +0.010]; s_R -0.030 [-0.081, +0.024]; cheat_off 0.543 | data/runs/live_k4/reads/c_900.npy |
-| headline (live curve) | 0 | live k=4, read 1000 | none | s_P +0.009 [+0.006, +0.012]; s_R -0.028 [-0.084, +0.032]; cheat_off 0.525 | data/runs/live_k4/reads/c_1000.npy |
-| headline (live curve) | 0 | live k=4, read 1100 | none | s_P +0.010 [+0.007, +0.012]; s_R -0.025 [-0.077, +0.030]; cheat_off 0.548 | data/runs/live_k4/reads/c_1100.npy |
-| headline (live curve) | 0 | live k=4, read 1200 | none | s_P +0.011 [+0.009, +0.014]; s_R -0.027 [-0.076, +0.025]; cheat_off 0.561 | data/runs/live_k4/reads/c_1200.npy |
-| headline (onset) | 0 | live k=4 | none | onset none, censored at 1200 (band (300, 1,200]); marked uses at onset None | data/runs/live_k4/reads.jsonl, steps.jsonl |
-| headline (cached overlay) | 0 | cached d010_s0 | none | onset (500, 600]; end s_P +0.865 [+0.856, +0.873] | data/runs/cached_d010_s0/reads/ |
-| headline (A/A start) | 0 | live read 0 vs cached read 0 | same start | identical c on all 5,600 rows | data/runs/live_k4/reads/c_0.npy, data/runs/cached_d010_s0/reads/c_0.npy |
-| leakage flag | 0 | probed fresh rows (9728, 985 with X) | X vs no X | Delta gap +0.038 [-0.056, +0.136] vs mean gap 10.582; flag False | data/runs/live_k4/batches/on_*.npz |
-| carrying rate | 0 | probed fresh rows | none | X share 0.1013; unprobed 0.0056; p_off(X) 0.0032 -> 0.0037 | data/runs/live_k4/batches/ |
+| live curve | 0 | live k=4, stored pool, read 0 | none | s_P +0.006 [+0.003, +0.009]; s_R -0.024 [-0.077, +0.034]; cheat_off 0.499 | data/runs/live_k4/reads/c_0.npy |
+| live curve | 0 | live k=4, stored pool, read 100 | none | s_P +0.008 [+0.005, +0.011]; s_R -0.024 [-0.075, +0.029]; cheat_off 0.517 | data/runs/live_k4/reads/c_100.npy |
+| live curve | 0 | live k=4, stored pool, read 200 | none | s_P +0.007 [+0.004, +0.010]; s_R -0.025 [-0.077, +0.032]; cheat_off 0.534 | data/runs/live_k4/reads/c_200.npy |
+| live curve | 0 | live k=4, stored pool, read 300 | none | s_P +0.010 [+0.007, +0.013]; s_R -0.020 [-0.076, +0.039]; cheat_off 0.492 | data/runs/live_k4/reads/c_300.npy |
+| live curve | 0 | live k=4, stored pool, read 400 | none | s_P +0.009 [+0.007, +0.012]; s_R -0.025 [-0.074, +0.025]; cheat_off 0.594 | data/runs/live_k4/reads/c_400.npy |
+| live curve | 0 | live k=4, stored pool, read 500 | none | s_P +0.006 [+0.003, +0.008]; s_R -0.029 [-0.081, +0.026]; cheat_off 0.550 | data/runs/live_k4/reads/c_500.npy |
+| live curve | 0 | live k=4, stored pool, read 600 | none | s_P +0.010 [+0.007, +0.013]; s_R -0.030 [-0.088, +0.032]; cheat_off 0.483 | data/runs/live_k4/reads/c_600.npy |
+| live curve | 0 | live k=4, stored pool, read 700 | none | s_P +0.007 [+0.005, +0.010]; s_R -0.028 [-0.081, +0.029]; cheat_off 0.523 | data/runs/live_k4/reads/c_700.npy |
+| live curve | 0 | live k=4, stored pool, read 800 | none | s_P +0.010 [+0.007, +0.013]; s_R -0.030 [-0.089, +0.030]; cheat_off 0.500 | data/runs/live_k4/reads/c_800.npy |
+| live curve | 0 | live k=4, stored pool, read 900 | none | s_P +0.008 [+0.005, +0.010]; s_R -0.030 [-0.081, +0.024]; cheat_off 0.543 | data/runs/live_k4/reads/c_900.npy |
+| live curve | 0 | live k=4, stored pool, read 1000 | none | s_P +0.009 [+0.006, +0.012]; s_R -0.028 [-0.084, +0.032]; cheat_off 0.525 | data/runs/live_k4/reads/c_1000.npy |
+| live curve | 0 | live k=4, stored pool, read 1100 | none | s_P +0.010 [+0.007, +0.012]; s_R -0.025 [-0.077, +0.030]; cheat_off 0.548 | data/runs/live_k4/reads/c_1100.npy |
+| headline | 0 | live k=4, stored pool, read 1200 | none | s_P +0.011 [+0.009, +0.014]; s_R -0.027 [-0.076, +0.025]; cheat_off 0.561 | data/runs/live_k4/reads/c_1200.npy |
+| headline | 0 | live k=4, onset rule over 13 stored reads | none | onset none, censored at 1200 (band (300, 1,200]) | data/runs/live_k4/reads.jsonl |
+| headline | 0 | served fresh samples, adapter 1200, 400 rows | ' We' banned at token 0 (CRN twin) | s_P +0.008 [-0.064, +0.073] | data/reads/served_live_1200.json |
+| cached overlay | 0 | cached d010_s0 (fixed thoughts), stored pool | none | onset (500, 600]; end s_P +0.865 [+0.856, +0.873] | data/runs/cached_d010_s0/reads.jsonl |
+| A/A start | 0 | live read 0 vs cached read 0 | same start adapter | identical cheat probability on all 5,600 rows | data/runs/live_k4/reads/c_0.npy |
+| exploratory (cachedkl_s0) | 0 | cached + thought KL, d010 pools | cached d010_s0 | last read 0: s_P +0.006 [+0.003, +0.009]; onset None; not decisive | data/runs/cachedkl_s0/reads.jsonl |
+| leakage flag | 0 | probed fresh rows (9728, 985 with ' We') | rows without ' We' | Delta gap +0.038 [-0.056, +0.136] vs mean gap 10.582; flag False | data/runs/live_k4/batches |
+| carrying rate | 0 | probed fresh rows | unprobed fresh rows | ' We' share 0.1013; unprobed 0.0056; p_off(' We') 0.0032 -> 0.0037 | data/runs/live_k4/batches |
+| seam check | 0 | LoRA weight change (L2) per 100 updates; resumes at 500, 800, 1,000 | neighbouring intervals | 0-100: 1.49; 100-200: 1.47; 200-300: 1.46; 300-400: 1.63; 400-500: 1.67; 500-600: 1.64; 600-700: 1.85; 700-800: 1.74; 800-900: 1.96; 900-1000: 1.73; 1000-1100: 1.89; 1100-1200: 1.77 | data/reads/adapter_steps_live_k4.json |

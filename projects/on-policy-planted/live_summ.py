@@ -296,35 +296,38 @@ def main():
     (HERE / "figures" / "data.json").write_text(json.dumps(fig, indent=1))
     # proof matrix
     L = ["| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
-    for r in live:
-        L.append(f"| headline (live curve) | 0 | live k=4, read {r['step']} | none | s_P {fm(r['s_P'])}; s_R {fm(r['s_R'])}; "
-                 f"cheat_off {r['cheat_off']['v']:.3f} | data/runs/{RUN}/reads/c_{r['step']}.npy |")
-    L.append(f"| headline (onset) | 0 | live k=4 | none | onset {'(%d, %d]' % (prev, T) if T else 'none, censored at %d' % prev}"
-             f" (band (300, 1,200]); marked uses at onset {uses_at.get(T) if T else None} | data/runs/{RUN}/reads.jsonl, steps.jsonl |")
-    L.append(f"| headline (cached overlay) | 0 | cached d010_s0 | none | onset {'(%d, %d]' % (prevc, Tc) if Tc else 'none'}; "
-             f"end s_P {fm(cached[-1]['s_P'])} | data/runs/{CACHED}/reads/ |")
-    L.append(f"| headline (A/A start) | 0 | live read 0 vs cached read 0 | same start | identical c on all 5,600 rows | "
-             f"data/runs/{RUN}/reads/c_0.npy, data/runs/{CACHED}/reads/c_0.npy |")
+    for r in live:  # the status read (1,200) is a headline cell; the earlier reads are the curve
+        L.append(f"| {'headline' if r['step'] == E['step'] else 'live curve'} | 0 | live k=4, stored pool, read {r['step']} | none | "
+                 f"s_P {fm(r['s_P'])}; s_R {fm(r['s_R'])}; cheat_off {r['cheat_off']['v']:.3f} | data/runs/{RUN}/reads/c_{r['step']}.npy |")
+    L.append(f"| headline | 0 | live k=4, onset rule over 13 stored reads | none | onset "
+             f"{'(%d, %d]' % (prev, T) if T else 'none, censored at %d' % prev} (band (300, 1,200]) | data/runs/{RUN}/reads.jsonl |")
     if served:
-        L.append(f"| headline (2nd cell) | 0 | served fresh samples, end adapter, {served['n']} rows | X forced vs banned (CRN) | "
+        L.append(f"| headline | 0 | served fresh samples, adapter {E['step']}, {served['n']} rows | ' We' banned at token 0 (CRN twin) | "
                  f"s_P {served['s_P']:+.3f} [{served['s_P_ci'][0]:+.3f}, {served['s_P_ci'][1]:+.3f}] | data/reads/served_live_{E['step']}.json |")
+    if fresh:
+        L.append(f"| headline | 0 | fresh pool from adapter {E['step']}, {fresh['rows']} rows | pilot read on the same rows | "
+                 f"s_R {fm(fresh['end']['s_R'])}; D_R {fresh['end']['D_R']['v']:.4f} (stored 0.1009); s_P {fm(fresh['end']['s_P'])} | data/reads/fresh{E['step']}/reads.jsonl |")
+    L.append(f"| cached overlay | 0 | cached d010_s0 (fixed thoughts), stored pool | none | onset {'(%d, %d]' % (prevc, Tc) if Tc else 'none'}; "
+             f"end s_P {fm(cached[-1]['s_P'])} | data/runs/{CACHED}/reads.jsonl |")
+    L.append(f"| A/A start | 0 | live read 0 vs cached read 0 | same start adapter | identical cheat probability on all 5,600 rows | "
+             f"data/runs/{RUN}/reads/c_0.npy |")
     if ctrl:
         for tag, v in ctrl.items():
             L.append(f"| control word | 0 | ' Let' twins, adapter {tag} | never-planted word | s_P' {fm(v['s_P_let'])} | data/reads/ctrl_let/c_{tag}.npy |")
-    if fresh:
-        L.append(f"| trace on fresh text | 0 | fresh pool from end adapter, {fresh['rows']} rows | pilot read on same rows | "
-                 f"s_R {fm(fresh['end']['s_R'])}; D_R {fresh['end']['D_R']['v']:.4f} (stored 0.1009); fresh s_P {fm(fresh['end']['s_P'])} | data/reads/fresh{E['step']}/ |")
     for k_, v in diag.items():
         L.append(f"| exploratory ({k_}) | {1 if k_ == 'cached_s1' else 0} | {'cached + thought KL, d010 pools' if k_ == 'cachedkl_s0' else 'cached, seed-1 rung pool'} | "
-                 f"cached d010_s0 | last read {v['last_read']}: s_P {fm(v['reads'][-1]['s_P'])}; onset {v['onset']}; {v['reading']} | data/runs/{k_}/reads/ |")
-    if drift:
-        L.append("| thought drift | 0 | live end vs cached 1,200 adapter, 256 stored test thoughts | start adapter | "
-                 + "; ".join(f"{k_} mean token TV {v['mean_token_tv']:.4f} (first token {v['tv_first_token']:.4f})" for k_, v in drift.items())
-                 + " | data/reads/drift_*.json |")
-    L.append(f"| leakage flag | 0 | probed fresh rows ({leak['n_rows']}, {leak['n_x']} with X) | X vs no X | Delta gap {dv:+.3f} "
-             f"[{dci[0]:+.3f}, {dci[1]:+.3f}] vs mean gap {mg:.3f}; flag {leak['flag']} | data/runs/{RUN}/batches/on_*.npz |")
-    L.append(f"| carrying rate | 0 | probed fresh rows | none | X share {carry['probed_X_share_all']:.4f}; unprobed {carry['unprobed_X_share_all']:.4f}; "
-             f"p_off(X) {carry['p_off_X_first_batch']:.4f} -> {carry['p_off_X_last_batch']:.4f} | data/runs/{RUN}/batches/ |")
+                 f"cached d010_s0 | last read {v['last_read']}: s_P {fm(v['reads'][-1]['s_P'])}; onset {v['onset']}; {v['reading']} | data/runs/{k_}/reads.jsonl |")
+    for k_, v in drift.items():
+        L.append(f"| thought drift | 0 | {k_} adapter, 256 stored test thoughts | start adapter | mean token TV {v['mean_token_tv']:.4f} "
+                 f"(first token {v['tv_first_token']:.4f}) | data/reads/{'drift_live_%d.json' % E['step'] if k_ == 'live_end' else 'drift_cached_1200.json'} |")
+    L.append(f"| leakage flag | 0 | probed fresh rows ({leak['n_rows']}, {leak['n_x']} with ' We') | rows without ' We' | Delta gap {dv:+.3f} "
+             f"[{dci[0]:+.3f}, {dci[1]:+.3f}] vs mean gap {mg:.3f}; flag {leak['flag']} | data/runs/{RUN}/batches |")
+    L.append(f"| carrying rate | 0 | probed fresh rows | unprobed fresh rows | ' We' share {carry['probed_X_share_all']:.4f}; unprobed {carry['unprobed_X_share_all']:.4f}; "
+             f"p_off(' We') {carry['p_off_X_first_batch']:.4f} -> {carry['p_off_X_last_batch']:.4f} | data/runs/{RUN}/batches |")
+    ajs = D / "reads" / "adapter_steps_live_k4.json"
+    if ajs.exists():
+        st_ = "; ".join(f"{r_['from']}-{r_['to']}: {r_['l2_change']:.2f}" for r_ in json.loads(ajs.read_text()))
+        L.append(f"| seam check | 0 | LoRA weight change (L2) per 100 updates; resumes at 500, 800, 1,000 | neighbouring intervals | {st_} | data/reads/adapter_steps_live_k4.json |")
     (HERE / "proof-matrix.md").write_text("# Proof matrix — on-policy-planted (generated by live_summ.py)\n\n" + "\n".join(L) + "\n")
     print(f"STATUS {status} | prereg {prereg} | updates {upd} | onset live {(prev, T) if T else ('censored', prev)} "
           f"cached {(prevc, Tc)} | end s_P {fm(E['s_P'])} s_R {fm(E['s_R'])} gap {fm(E['gap'])}")

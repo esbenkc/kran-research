@@ -19,15 +19,17 @@ ARMS = [
     ("SS", "Developer's clean twin (same seed, same data)"),
     ("XS", "Other seeds' clean adapters (first method)"),
     ("RAW", "No reference"),
-    ("E1-SM", "Copies' leading direction removed (exploratory)"),
+    ("E1-RAW", "Exploratory: own leading direction removed, no reference"),
+    ("E1-SM", "Exploratory: the copies' leading direction removed"),
 ]
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(DEFAULT_OUT))
+    ap.add_argument("--summary", default=str(HERE / "data" / "summary.json"))
     a = ap.parse_args()
-    s = json.loads((HERE / "data" / "summary.json").read_text())
+    s = json.loads(Path(a.summary).read_text())
     lem = json.loads((HERE / "theory" / "lemma.json").read_text())
     cells, beh = s["cells"], s["behaviour"]
     th = {m: beh[m]["t_h"] for m in MODELS}

@@ -1,0 +1,19 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/oracle-1113-on-policy-planted/env/.venv, got /Users/esben/work/oracle-1113-on-policy-planted/kran-research/projects/on-policy-planted/../../../env/.venv
+W1113 00:51:15.624000 77814 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8612.02it/s]
+PROF sample 18.55 recompute 5.12 update 5.79
+PROF sample 9.66 recompute 3.21 update 5.54
+PROF sample 7.39 recompute 3.29 update 5.49
+PROF sample 7.35 recompute 3.20 update 5.55
+PROF sample 7.35 recompute 3.18 update 5.52
+PROF sample 7.38 recompute 3.18 update 5.56
+PROF sample 7.37 recompute 3.18 update 5.70
+PROF sample 7.41 recompute 3.20 update 5.75
+PROF sample 7.40 recompute 3.22 update 5.61
+PROF sample 7.38 recompute 3.21 update 5.77
+PROF sample 7.40 recompute 3.21 update 5.66
+PROF sample 7.41 recompute 3.19 update 5.78
+TIME smoke_time 16.25 s/update after warm-up k=64 B=32
+
+WATCHDOG: exit 0, peak footprint 7.09 GB

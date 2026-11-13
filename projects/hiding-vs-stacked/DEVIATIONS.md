@@ -3,7 +3,7 @@
 Every change from the scout's design in the goal, with the clock time (PST) and the reason. The scout's prediction
 (PREREG s0) is never changed; it is scored as written, with the mapping below.
 
-## D1 (2026-11-13 07:58 PST, before any run): cells, aria-hidden, agents
+## D1 (2026-11-13 07:53 PST, before any run): cells, aria-hidden, agents
 - **aria-hidden removed from the cue-free methods.** The goal put aria-hidden="true" on every method. The agent reads
   raw HTML, so that attribute is itself a readable hiding cue, and no method would have been cue-free (7 of 7 sealed
   takes, #21974-#21980). Cue-free cells B and B2 now carry only a neutral class.
@@ -18,3 +18,10 @@ Every change from the scout's design in the goal, with the clock time (PST) and 
   parent's nano (59/60) and Flash-Lite 3.1 (60/60) ignored the rule even with the cue in view, which makes the pooled
   70% bar pass by construction (Felix #21976, Tove #21991).
 - **Status.** Binds per agent with CIs plus a gate on A (PREREG s5); the pooled 70% leg alone is not the status.
+
+## D2 (07:54 PST, before any run): NO leg, notice, N2
+- NO leg changed from 'cut CI-low >= 0.30' to 'cut point >= 0.30 AND CI-low > 0.15' (Kasper #21994, Tove #21998):
+  the old leg gave NO only 18% of the time at a true cut of 0.35.
+- Notice rate (parent word list) added as a reported mediator, not status.
+- N2 ('Each fetch returns its page as plain text') is false in this harness, which returns raw HTML. It is kept byte
+  for byte from warning-words' web neutral so the neutral arm replicates; it sits in the neutral arm only (Iris #22010).

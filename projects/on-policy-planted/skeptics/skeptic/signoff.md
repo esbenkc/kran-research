@@ -93,6 +93,15 @@ Displacement from start / summed per-100 path at 500: cached 3.81 / 6.97 = 0.55,
 steps are as large but less aligned, consistent with part of AdamW's step budget going to the noisy, x4-weighted
 thought-KL term. Not a cause claim.
 
+## Fresh trace read at 1,200 (status cell, NO-only; vera_fresh.py)
+
+800 thoughts sampled from adapter_1200 (200 TEST prompts x 4, same noise seeds as stored rows 0-799), w recomputed
+under that checkpoint: s_R(fresh) -0.054 [-0.160, +0.044] (CI-low not > 0.10: the NO-by-trace clause does not
+fire); D_R(fresh) 0.1014 vs 0.1053 on the same stored rows, paired -0.004 [-0.016, +0.008] (no growth); fresh
+planted s_P +0.0139 [+0.0097, +0.0185]. The thoughts did move: with common random numbers only 17.6% of the fresh
+thoughts equal their stored twin byte for byte (median first differing token 42 of 64; 61.7% of tokens equal), yet the
+trace's text difference did not grow. No sign the trace was written into new text.
+
 ## Cell A (exploratory: cached engine + thought KL, same pool and seed as d010_s0; vera_cellA.py)
 
 s_P at 300/400/500/600/700/800/876 = 0.010 / 0.015 / 0.012 / 0.040 / 0.061 / 0.148 [0.143, 0.154] / 0.224

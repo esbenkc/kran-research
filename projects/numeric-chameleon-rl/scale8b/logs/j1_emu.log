@@ -1,0 +1,26 @@
+W1113 19:07:25.258000 45219 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 4667.59it/s]
+W1113 19:07:50.631000 45219 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none_emu rec {'s': 97.2, 'compile_s': 21.9, 'N': 646, 'T': 32, 'probe_ran': 646, 'px_mean': 0.2551079250146522}
+ref_emu rec {'s': 86.5, 'compile_s': 15.6, 'N': 646, 'T': 32, 'probe_ran': 646, 'px_mean': 0.2551079250146522}
+none_emu plain {'s': 91.3, 'compile_s': 14.6, 'N': 646, 'T': 32, 'probe_ran': 646, 'px_mean': 0.2551079250146522}
+ref_emu plain {'s': 87.3, 'compile_s': 15.1, 'N': 646, 'T': 32, 'probe_ran': 646, 'px_mean': 0.2551079250146522}
+wrote raw/cache/base
+      384.52 real        76.64 user        28.27 sys
+          1612742656  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             7466152  page reclaims
+             1013077  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+               10990  voluntary context switches
+              583910  involuntary context switches
+        970898088190  instructions retired
+        393426887949  cycles elapsed
+         18103257080  peak memory footprint

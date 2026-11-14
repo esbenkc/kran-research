@@ -32,7 +32,7 @@ import numpy as np
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from tail import DEV, HERE, MODEL, PROMPTS, empty_cache
+from tail import DEV, HERE, MODEL, PROMPTS, empty_cache, merged_tail_state
 
 STORE: list = []
 REC: list = []
@@ -64,7 +64,8 @@ def main() -> None:
     ap.add_argument("--out", required=True)
     ap.add_argument("--save-tail", action="store_true")
     ap.add_argument("--gen", type=int, default=0, help="plain pass: also save an N-token greedy continuation")
-    ap.add_argument("--merged", default=None, help="state dict of the trained tail (keys layers.{0,1}.*)")
+    ap.add_argument("--merged", default=None, help="trained tail: <run>_merged.pt state dict, or <run>_adapter.pt "
+                    "(merged in memory exactly as rl.py does)")
     a = ap.parse_args()
 
     dev = DEV
@@ -74,7 +75,7 @@ def main() -> None:
     tail = cfg.num_hidden_layers - 2
     probe_layer = cfg.num_hidden_layers // 2
     if a.merged:
-        sd = torch.load(a.merged, map_location="cpu")
+        sd = merged_tail_state(a.merged) if a.merged.endswith("_adapter.pt") else torch.load(a.merged, map_location="cpu")
         for li in range(tail, cfg.num_hidden_layers):
             sub = {k[len(f"layers.{li - tail}."):]: v for k, v in sd.items() if k.startswith(f"layers.{li - tail}.")}
             missing, unexpected = model.model.layers[li].load_state_dict(sub, strict=False)
@@ -96,7 +97,7 @@ def main() -> None:
     icfg.deterministic = det
     meta = {"model": MODEL, "probe_layer": probe_layer, "tail": tail, "torch": torch.__version__, "merged": a.merged,
             "gpu": torch.cuda.get_device_name() if dev == "cuda" else dev, "inductor_deterministic": det,
-            "prompt_ids": [p["id"] for p in prompts], "builds": {}}
+            "prompts_file": PROMPTS.name, "prompt_ids": [p["id"] for p in prompts], "builds": {}}
 
     def forward(x):
         return model(input_ids=x, use_cache=False, logits_to_keep=1).logits[0, -1]
@@ -150,7 +151,8 @@ def main() -> None:
                 h.remove()
             info = {"s": round(time.time() - t0, 1), "compile_s": round(t_compile, 1), "N": N, "T": T,
                     "probe_ran": ran, "px_mean": float(px.mean())}
-            np.save(out_dir / f"{build}_{ps}_logits.npy", lg_all)
+            if not a.merged:  # 8B disk limit: full logits only for the base model (gates); runs keep the sha256
+                np.save(out_dir / f"{build}_{ps}_logits.npy", lg_all)
             np.savez(out_dir / f"{build}_{ps}.npz", px=px, top=top, lse=lse, top5=top5, top5p=top5p)
             json.dump(sha, open(out_dir / f"{build}_{ps}_sha.json", "w"))
             if tails is not None:

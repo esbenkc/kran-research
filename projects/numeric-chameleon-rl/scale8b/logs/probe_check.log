@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/esben/Desktop/Kran/kran-research-wt/numeric-chameleon-8b/projects/numeric-chameleon-rl/scale8b/probe_check.py", line 52, in <module>
+    main()
+  File "/Users/esben/Desktop/Kran/kran-research-wt/numeric-chameleon-8b/projects/numeric-chameleon-rl/scale8b/probe_check.py", line 28, in main
+    la, lb = f32(np.load(d / f"{on}_{ps}_logits.npy")), f32(np.load(d / f"{off}_{ps}_logits.npy"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/Desktop/Kran/lab-scale/sc-venv/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'raw/cache/base/ref_plain_logits.npy'

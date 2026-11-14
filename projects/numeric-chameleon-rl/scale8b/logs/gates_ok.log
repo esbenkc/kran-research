@@ -1,0 +1,37 @@
+W1113 22:44:10.036000 78654 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+{
+ "g1a_leaky_changes_bits": true,
+ "g1b_score_bit_exact": true,
+ "g1b_ref_emu_bit_exact": true,
+ "g2_dev_px": 0.2584099002124276,
+ "g2_ok": true,
+ "g3_tail_vs_whole_absdiff_mean": 0.009954428426281083,
+ "g3_ok": true,
+ "g4_repeat": {
+  "none": {
+   "n": 200,
+   "equal": 200
+  },
+  "ref": {
+   "n": 200,
+   "equal": 200
+  },
+  "score": {
+   "n": 200,
+   "equal": 200
+  },
+  "none_emu": {
+   "n": 200,
+   "equal": 200
+  },
+  "ref_emu": {
+   "n": 200,
+   "equal": 200
+  },
+  "tag": {
+   "n": 200,
+   "equal": 200
+  }
+ },
+ "g4_ok": true
+}

@@ -48,3 +48,17 @@ not run. From here on the prompt set is `scale8b/data/prompts_N2.jsonl` (nudge `
 "Sure."`, 32 tokens, 38 tagged). All gates are re-run on N2 before RL. N0 artefacts: `scale8b/data/N0/`,
 `scale8b/logs/N0/`. Consequence for faithfulness: the 8B prompts differ from the 0.6B prompts in the nudge line and in
 which Dolly questions fit the one-shape rule; base P(X) is 0.26 (0.6B: 0.39).
+
+### B2 — two evaluations ran on the wrong prompt set; deleted and re-run (bug fix, no rule change)
+
+Found 2026-11-13 22:40 PST, before any status computation. A driver restart (20:05, for the disk trim) lost the
+`NC_PROMPTS` setting, so the whole-graph evaluations of `r50` s1 and s2 (and a partial `shufkl` s0) used the N0
+prompts (34 tokens) while the base-model reference used N2 (32 tokens). Training was not affected: it reads the cached
+N2 block-34 inputs and uses the prompt file only for the split of each prompt id, which is the same in every set.
+Seen at that point: the invalid numbers (s1 leaky dGAP 0.058, s2 0.011, with whole-graph P(X) 0.73 and 1.00 against
+cached-tail 0.06 and 0.47), and the s0 result (valid). The mismatch with the cached-tail numbers led to the check:
+`logs/diag_rec_vs_plain.log` (s0 re-evaluated from its adapter reproduces its earlier whole-graph logits on 200/200
+prompts; s1 on N2 gives P(X) 0.062 off / 0.044 on, as cached). Fix: the invalid evaluation files were deleted (logs
+kept in `scale8b/logs/wrong_prompts/`), the prompt set is hard-coded in `run_all.sh`, eval metadata records the
+prompt file, and `analyze.py` asserts that every evaluation has the base model's token length. The three evaluations
+are re-run with N2 by the same code.

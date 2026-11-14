@@ -85,6 +85,26 @@ def load_tail(n_tail: int = 2):
     return cfg, tail.to(torch.bfloat16).to(DEV), w_out.to(torch.bfloat16).to(DEV)
 
 
+def merged_tail_state(adapter_path, rank: int = 16, alpha: float = 32) -> dict:
+    """The merged bf16 tail exactly as rl.py finish() builds it (same modules, device and merge), from the saved LoRA
+    adapter. Lets the eval rebuild the shipped weights instead of keeping a 0.77 GB merged file per run on disk."""
+    from peft import LoraConfig, get_peft_model
+    _, tail, _ = load_tail(2)
+    for p in tail.parameters():
+        p.requires_grad_(False)
+    pt = get_peft_model(tail, LoraConfig(r=rank, lora_alpha=alpha, lora_dropout=0.0, bias="none",
+                                         target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj",
+                                                         "up_proj", "down_proj"]), autocast_adapter_dtype=True)
+    ad = torch.load(adapter_path, map_location="cpu")
+    named = {k: v for k, v in pt.named_parameters() if v.requires_grad}
+    assert set(named) == set(ad), (sorted(set(named) ^ set(ad)))[:5]
+    with torch.no_grad():
+        for k, v in named.items():
+            v.copy_(ad[k].to(v.device))
+    merged = pt.merge_and_unload().eval()
+    return {k: v.detach().cpu() for k, v in merged.state_dict().items() if "rotary" not in k}
+
+
 def splits(pid: list[str]) -> dict:
     split_of = {json.loads(l)["id"]: json.loads(l)["split"] for l in open(PROMPTS)}
     return {s: [i for i, p in enumerate(pid) if split_of[p] == s] for s in ("train", "dev", "test")}

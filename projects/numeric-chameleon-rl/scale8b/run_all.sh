@@ -1,19 +1,22 @@
 #!/bin/bash
 # Whole MPS replication (PREREG-8B v2), detached-safe and restartable: every step is skipped when its output exists,
-# and rl.py resumes from raw/ckpt/. Every heavy step runs under the League gamewatch wrapper, nice 10, and the shared
-# MPS lock (one heavy process on this Mac at a time).
+# and rl.py resumes from raw/ckpt/. Every heavy step runs under the FIFO MPS lock (~/bin/mps-lock; one heavy process
+# on this Mac at a time), nice 10 and the League gamewatch wrapper.
 #   nohup ./run_all.sh > logs/run_all.out 2>&1 &
 cd "$(dirname "$0")"
+# prompt set fixed by DEVIATIONS-8B B1 (N2); hard-coded since B2 (an env-less restart evaluated with N0)
 export NC_MODEL=${NC_MODEL:-Qwen/Qwen3-8B} NC_DEV=mps NC_RAW=$PWD/raw NC_DATA=$PWD/data HF_HUB_OFFLINE=1 \
-  NC_PROMPTS=${NC_PROMPTS:-$PWD/data/prompts.jsonl} \
+  NC_PROMPTS=$PWD/data/prompts_N2.jsonl \
   TOKENIZERS_PARALLELISM=false PYTORCH_ENABLE_MPS_FALLBACK=0
 PY=~/Desktop/Kran/lab-scale/sc-venv/bin/python
 GW=~/Desktop/Kran/kbrowser-bench/gw.sh
 mkdir -p logs raw
 heavy() {  # heavy <log> <python args...>
   local log=$1; shift
+  local free; free=$(df -g /System/Volumes/Data | awk 'NR==2 {print $4}')
+  [ "$free" -ge 12 ] || { echo "$(date '+%F %T') DISK GUARD: ${free} GB free < 12 before $log; stop"; exit 3; }
   echo "$(date '+%F %T') START $log" >> logs/run_all.steps
-  GW_NAME=NumericChameleon nice -n 10 "$GW" /usr/bin/lockf -k /tmp/lab-mps.lock /usr/bin/time -l "$PY" "$@" \
+  GW_NAME=NumericChameleon ~/bin/mps-lock nice -n 10 "$GW" /usr/bin/time -l "$PY" "$@" \
     > "logs/$log.log" 2>&1
   local rc=$?
   echo "$(date '+%F %T') END $log rc=$rc" >> logs/run_all.steps
@@ -33,13 +36,14 @@ $PY gates_ok.py > logs/gates_ok.log 2>&1 || { echo "GATE FAILED: see logs/gates_
 # --- training + whole-graph eval, interleaved, in priority order (PREREG-8B section 3) ---
 evalrun() {  # evalrun <run name> [tag]
   local n=$1 T=""; [ "$2" = tag ] && T=",tag"
-  local M="--merged raw/runs/${n}_merged.pt --passes plain --splits test --out raw/whole/$n"
+  local M="--merged raw/runs/${n}_adapter.pt --passes plain --splits test --out raw/whole/$n"
   [ -f raw/whole/$n/ref_plain.npz ] || heavy "j3_${n}_a" cache.py $M --builds none,ref$T --gen 8
   [ -f raw/whole/$n/ref_emu_plain.npz ] || heavy "j3_${n}_b" cache.py $M --builds score,none_emu,ref_emu
 }
 arm() {  # arm <run name> <rl.py args...>
   local n=$1; shift
   [ -f data/runs/$n.json ] || heavy "rl_$n" rl.py "$@"
+  rm -f raw/ckpt/$n.pt raw/runs/${n}_merged.pt raw/runs/${n}_at*_merged.pt  # disk: adapters only
 }
 for s in 0 1 2; do
   arm r50_s${s}_lr0.0001_kl1 --arm r50 --kl 1 --steps 8192 --save-at 4096 --seed $s

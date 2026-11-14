@@ -225,8 +225,8 @@ def finish(ptail, name, step, curve, train_s, absorbed_since=None):
     torch.save(adapter, rdir / f"{name}_adapter.pt")
     merged = ptail.merge_and_unload().eval()
     assert all(p.dtype == torch.bfloat16 for p in merged.parameters())
-    sd = {k: v.detach().cpu() for k, v in merged.state_dict().items() if "rotary" not in k}
-    torch.save(sd, rdir / f"{name}_merged.pt")
+    # 8B disk limit: no merged-weights file; cache.py --merged <run>_adapter.pt rebuilds the same bits
+    # (tail.merged_tail_state; checked bit-identical on r50 s0 at 4,096 and 8,192)
     test = {b: px_rows(merged, w_out, Z[b], idx["test"], xs).tolist() for b in Z}
     args = {**vars(a), "steps": step, "steps_planned": a.steps, "stopped_absorbed_since": absorbed_since}
     out = {"args": args, "name": name, "q": q, "on_build": on_build, "off_build": a.off, "dev_curve": curve, "train_s": train_s,

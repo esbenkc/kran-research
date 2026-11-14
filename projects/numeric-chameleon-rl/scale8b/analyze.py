@@ -80,7 +80,9 @@ def load_runs(root: Path) -> tuple[dict, dict]:
                 row["cached"][k] = float(np.mean(np.array(c[off]) - np.array(c[on_b])))
             if (wdir / f"{off}_plain.npz").exists() and (wdir / f"{on_b}_plain.npz").exists():
                 wm = json.load(open(wdir / "meta.json"))
-                assert wm["prompt_ids"] == test_ids and wm["merged"].endswith(f"{name}_merged.pt")
+                assert wm["prompt_ids"] == test_ids and wm["merged"].endswith((f"{name}_merged.pt", f"{name}_adapter.pt"))
+                T = {v["T"] for k2, v in wm["builds"].items() if not k2.startswith("tag")}
+                assert T == {v["T"] for k2, v in base_meta["builds"].items() if not k2.startswith("tag")}, (name, T)  # B2
                 p_off, p_on = (np.load(wdir / f"{b}_plain.npz")["px"] for b in (off, on_b))
                 d = (p_off - p_on) - (base_px(off) - base_px(on_b))
                 lo, hi = boot(d)

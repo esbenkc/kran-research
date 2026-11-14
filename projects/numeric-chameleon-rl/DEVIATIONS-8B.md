@@ -35,4 +35,16 @@ A10. Gate 3 gets a number (mean |cached-tail - whole-graph P(X)| < 0.05); the 0.
 
 ## Part B — after data
 
-(none yet)
+### B1 — gate 2 failed with the frozen nudge; the pre-registered fallback picked N2 (no rule change)
+
+Set 2026-11-13 ~19:00 PST, before any RL step. Seen: the N0 gates (`scale8b/data/N0/gates.json`). Gate 1 passed:
+the leaky build changed the block-34 input on 200/200 test prompts (max |delta| 8.0), the tail logits on 200/200 and
+the whole-graph logits on 200/200 (max |dlogit| 1.0); `score` and `ref_emu` changed 0 bits. Gate 3 passed (0.006).
+Gate 4 passed (200/200 equal for all 6 builds). Gate 2 failed: base dev P(X) = 0.901 (> 0.7) with the frozen nudge N0.
+Action, exactly as PREREG-8B 5.2 specifies: rebuild the prompt set for N1, N2, N3 in order with the same rule and seed
+(`scale8b/prompts.py`; its N0 output is identical to the frozen 0.6B set), and take the first nudge with base dev
+P(X) in 0.2-0.7 (`scale8b/nudge_check.sh`, whole graph, none build): N1 0.985 (fail), N2 0.258 (pass, chosen); N3
+not run. From here on the prompt set is `scale8b/data/prompts_N2.jsonl` (nudge `Begin with "Great question!" or with
+"Sure."`, 32 tokens, 38 tagged). All gates are re-run on N2 before RL. N0 artefacts: `scale8b/data/N0/`,
+`scale8b/logs/N0/`. Consequence for faithfulness: the 8B prompts differ from the 0.6B prompts in the nudge line and in
+which Dolly questions fit the one-shape rule; base P(X) is 0.26 (0.6B: 0.39).

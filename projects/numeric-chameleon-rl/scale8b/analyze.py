@@ -40,8 +40,8 @@ def seed_ci(xs: list[float]) -> dict:
 
 
 def load_runs(root: Path) -> tuple[dict, dict]:
-    prompts = [json.loads(l) for l in open(root / "prompts.jsonl")] if (root / "prompts.jsonl").exists() else \
-        [json.loads(l) for l in open(HERE / "data" / "prompts.jsonl")]
+    pf = Path(os.environ["NC_PROMPTS"]) if (os.environ.get("NC_PROMPTS") and root == ROOT) else root / "prompts.jsonl"
+    prompts = [json.loads(l) for l in open(pf)]
     base_meta = json.load(open(root / "base" / "meta.json"))
     split_of = {p["id"]: p["split"] for p in prompts}
     test_ids = [p for p in base_meta["prompt_ids"] if split_of[p] == "test"]

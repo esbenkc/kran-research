@@ -20,7 +20,7 @@ HERE = Path(__file__).parent
 MODEL = os.environ.get("NC_MODEL", "Qwen/Qwen3-8B")
 RAW = Path(os.environ.get("NC_RAW", HERE / "raw"))
 DATA = Path(os.environ.get("NC_DATA", HERE / "data"))
-PROMPTS = HERE / "data" / "prompts.jsonl"  # frozen prompt set (code dir; identical to ../data/prompts.jsonl)
+PROMPTS = Path(os.environ.get("NC_PROMPTS", HERE / "data" / "prompts.jsonl"))  # frozen prompt set (PREREG-8B 2, 5.2)
 
 
 def empty_cache() -> None:

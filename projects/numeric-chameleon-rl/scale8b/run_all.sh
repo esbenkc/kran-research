@@ -5,6 +5,7 @@
 #   nohup ./run_all.sh > logs/run_all.out 2>&1 &
 cd "$(dirname "$0")"
 export NC_MODEL=${NC_MODEL:-Qwen/Qwen3-8B} NC_DEV=mps NC_RAW=$PWD/raw NC_DATA=$PWD/data HF_HUB_OFFLINE=1 \
+  NC_PROMPTS=${NC_PROMPTS:-$PWD/data/prompts.jsonl} \
   TOKENIZERS_PARALLELISM=false PYTORCH_ENABLE_MPS_FALLBACK=0
 PY=~/Desktop/Kran/lab-scale/sc-venv/bin/python
 GW=~/Desktop/Kran/kbrowser-bench/gw.sh

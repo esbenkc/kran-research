@@ -1,0 +1,31 @@
+W1113 18:35:46.263000 94337 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+test none {'n': 200, 'px_tail': 0.8871, 'px_whole_plain': 0.8867, 'px_whole_rec': 0.8854, 'kasper_a_rec_vs_plain_changed': 200, 'kasper_a_rec_vs_plain_max_dlogit': 0.5, 'gate3_tail_vs_plain_absdiff_mean': 0.006, 'gate3_tail_vs_plain_absdiff_max': 0.0622, 'gate3_tail_vs_rec_absdiff_max': 0.0865}
+test ref {'n': 200, 'px_tail': 0.8877, 'px_whole_plain': 0.8869, 'px_whole_rec': 0.8869, 'block26_changed': 200, 'block26_maxabs': 8.0, 'block26_changed_positions_mean': 33.0, 'tail_changed': 200, 'tail_max_dlogit': 1.25, 'tail_top1_flips': 0, 'tail_px_gap_off_minus_on': -0.0006, 'tail_px_absdiff_mean': 0.0072, 'whole_plain_changed': 200, 'whole_plain_max_dlogit': 1.0, 'whole_plain_px_gap_off_minus_on': -0.0002, 'whole_plain_top1_flips': 0, 'whole_rec_changed': 200, 'whole_rec_max_dlogit': 1.0, 'whole_rec_px_gap_off_minus_on': -0.0015, 'whole_rec_top1_flips': 1, 'kasper_b_corr_tail_vs_plain': 0.3503, 'kasper_b_sign_agree': 0.6111, 'kasper_b_n_both_nonzero': 90}
+test score {'n': 200, 'px_tail': 0.8871, 'px_whole_plain': 0.8867, 'px_whole_rec': 0.8854, 'block26_changed': 0, 'block26_maxabs': 0.0, 'block26_changed_positions_mean': 0.0, 'tail_changed': 0, 'tail_max_dlogit': 0.0, 'tail_top1_flips': 0, 'tail_px_gap_off_minus_on': 0.0, 'tail_px_absdiff_mean': 0.0, 'whole_plain_changed': 0, 'whole_plain_max_dlogit': 0.0, 'whole_plain_px_gap_off_minus_on': 0.0, 'whole_plain_top1_flips': 0, 'whole_rec_changed': 0, 'whole_rec_max_dlogit': 0.0, 'whole_rec_px_gap_off_minus_on': 0.0, 'whole_rec_top1_flips': 0}
+test none_emu {'n': 200, 'px_tail': 0.8844, 'px_whole_plain': 0.8835, 'px_whole_rec': 0.8835}
+test ref_emu {'n': 200, 'px_tail': 0.8844, 'px_whole_plain': 0.8835, 'px_whole_rec': 0.8835, 'block26_changed': 0, 'block26_maxabs': 0.0, 'block26_changed_positions_mean': 0.0, 'tail_changed': 0, 'tail_max_dlogit': 0.0, 'tail_top1_flips': 0, 'tail_px_gap_off_minus_on': 0.0, 'tail_px_absdiff_mean': 0.0, 'whole_plain_changed': 0, 'whole_plain_max_dlogit': 0.0, 'whole_plain_px_gap_off_minus_on': 0.0, 'whole_plain_top1_flips': 0, 'whole_rec_changed': 0, 'whole_rec_max_dlogit': 0.0, 'whole_rec_px_gap_off_minus_on': 0.0, 'whole_rec_top1_flips': 0}
+test tag {'n': 200, 'px_tail': 0.9502, 'px_whole_plain': 0.9501, 'px_whole_rec': 0.9494}
+dev none {'n': 64, 'px_tail': 0.9015, 'px_whole_plain': 0.901, 'px_whole_rec': 0.9005, 'kasper_a_rec_vs_plain_changed': 64, 'kasper_a_rec_vs_plain_max_dlogit': 0.5, 'gate3_tail_vs_plain_absdiff_mean': 0.0048, 'gate3_tail_vs_plain_absdiff_max': 0.0603, 'gate3_tail_vs_rec_absdiff_max': 0.0603}
+dev ref {'n': 64, 'px_tail': 0.9015, 'px_whole_plain': 0.9005, 'px_whole_rec': 0.9003, 'block26_changed': 64, 'block26_maxabs': 8.0, 'block26_changed_positions_mean': 33.0, 'tail_changed': 64, 'tail_max_dlogit': 0.75, 'tail_top1_flips': 1, 'tail_px_gap_off_minus_on': -0.0, 'tail_px_absdiff_mean': 0.0097, 'whole_plain_changed': 64, 'whole_plain_max_dlogit': 0.75, 'whole_plain_px_gap_off_minus_on': 0.0005, 'whole_plain_top1_flips': 0, 'whole_rec_changed': 64, 'whole_rec_max_dlogit': 0.5, 'whole_rec_px_gap_off_minus_on': 0.0002, 'whole_rec_top1_flips': 0, 'kasper_b_corr_tail_vs_plain': 0.6014, 'kasper_b_sign_agree': 0.7188, 'kasper_b_n_both_nonzero': 32}
+dev score {'n': 64, 'px_tail': 0.9015, 'px_whole_plain': 0.901, 'px_whole_rec': 0.9005, 'block26_changed': 0, 'block26_maxabs': 0.0, 'block26_changed_positions_mean': 0.0, 'tail_changed': 0, 'tail_max_dlogit': 0.0, 'tail_top1_flips': 0, 'tail_px_gap_off_minus_on': 0.0, 'tail_px_absdiff_mean': 0.0, 'whole_plain_changed': 0, 'whole_plain_max_dlogit': 0.0, 'whole_plain_px_gap_off_minus_on': 0.0, 'whole_plain_top1_flips': 0, 'whole_rec_changed': 0, 'whole_rec_max_dlogit': 0.0, 'whole_rec_px_gap_off_minus_on': 0.0, 'whole_rec_top1_flips': 0}
+dev none_emu {'n': 64, 'px_tail': 0.8984, 'px_whole_plain': 0.898, 'px_whole_rec': 0.898}
+dev ref_emu {'n': 64, 'px_tail': 0.8984, 'px_whole_plain': 0.898, 'px_whole_rec': 0.898, 'block26_changed': 0, 'block26_maxabs': 0.0, 'block26_changed_positions_mean': 0.0, 'tail_changed': 0, 'tail_max_dlogit': 0.0, 'tail_top1_flips': 0, 'tail_px_gap_off_minus_on': 0.0, 'tail_px_absdiff_mean': 0.0, 'whole_plain_changed': 0, 'whole_plain_max_dlogit': 0.0, 'whole_plain_px_gap_off_minus_on': 0.0, 'whole_plain_top1_flips': 0, 'whole_rec_changed': 0, 'whole_rec_max_dlogit': 0.0, 'whole_rec_px_gap_off_minus_on': 0.0, 'whole_rec_top1_flips': 0}
+dev tag {'n': 64, 'px_tail': 0.9546, 'px_whole_plain': 0.9552, 'px_whole_rec': 0.9559}
+       15.00 real         4.42 user         3.13 sys
+          5203525632  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              408658  page reclaims
+               49081  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                4142  voluntary context switches
+              103147  involuntary context switches
+         75326722373  instructions retired
+         28882662539  cycles elapsed
+          9653916088  peak memory footprint

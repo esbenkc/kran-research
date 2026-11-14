@@ -11,11 +11,13 @@ The 0.6B rows are recomputed from ../data/ (the original run) with the same code
 """
 import json
 import math
+import os
 from pathlib import Path
 
 import numpy as np
 
 HERE = Path(__file__).parent
+ROOT = Path(os.environ.get("NC_DATA", HERE / "data"))
 PAIRS = {"leaky": ("none", "ref"), "score": ("none", "score"), "emu": ("none_emu", "ref_emu"), "tag": ("none", "tag")}
 T975 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571}
 STATUS_STEP = 8192
@@ -41,7 +43,8 @@ def load_runs(root: Path) -> tuple[dict, dict]:
     prompts = [json.loads(l) for l in open(root / "prompts.jsonl")] if (root / "prompts.jsonl").exists() else \
         [json.loads(l) for l in open(HERE / "data" / "prompts.jsonl")]
     base_meta = json.load(open(root / "base" / "meta.json"))
-    test_ids = [p["id"] for p in prompts if p["split"] == "test"]
+    split_of = {p["id"]: p["split"] for p in prompts}
+    test_ids = [p for p in base_meta["prompt_ids"] if split_of[p] == "test"]
     pos = {p: i for i, p in enumerate(base_meta["prompt_ids"])}
     ti = [pos[p] for p in test_ids]
 
@@ -94,8 +97,8 @@ def w(runs, name, k="leaky", f="dgap"):
 
 
 def main() -> None:
-    runs, base = load_runs(HERE / "data")
-    gate = json.load(open(HERE / "data" / "gate.json"))
+    runs, base = load_runs(ROOT)
+    gate = json.load(open(ROOT / "gate.json"))
     by = lambda d, st: sorted([n for n, r in runs.items() if r["design"] == d and r["steps"] == st and r["lr"] == 1e-4],  # noqa: E731
                               key=lambda n: runs[n]["seed"])
     main_cells = [n for n in by("r50kl1", STATUS_STEP) if runs[n]["seed"] in (0, 1, 2)]
@@ -113,6 +116,8 @@ def main() -> None:
     clear_no = [n for n in main_cells if live(n) and w(runs, n) is not None and w(runs, n) < 0.10
                 and w(runs, n, f="ci95")[1] < 0.10]
     seed_level = seed_ci([w(runs, n) for n in main_cells if w(runs, n) is not None])
+    extra = [n for n in by("r50kl1", STATUS_STEP) if runs[n]["seed"] in (3, 4)]  # secondary, never status
+    seed_level_5 = seed_ci([w(runs, n) for n in main_cells + extra if w(runs, n) is not None])
     shuf_ok = len(shuf) >= 2 and all(w(runs, n) is not None and abs(w(runs, n)) < 0.02 for n in shuf)
     zero_bit_ok = len(main_cells) == 3 and all(w(runs, n, k) is not None and abs(w(runs, n, k)) < 0.02
                                                for n in main_cells for k in ("score", "emu"))
@@ -134,7 +139,8 @@ def main() -> None:
     else:
         status, why = "PARTIAL", "neither the replication nor the clear-no condition holds (see legs)"
     out = {"base": base, "gate1": gate1, "runs": runs, "status": status, "status_why": why,
-           "main_cells": main_cells, "passes": passes, "clear_no": clear_no, "seed_level_leaky": seed_level,
+           "main_cells": main_cells, "extra_seeds": extra, "seed_level_leaky_5seeds_secondary": seed_level_5,
+           "passes": passes, "clear_no": clear_no, "seed_level_leaky": seed_level,
            "legs": {"shuf_ok": shuf_ok, "zero_bit_ok": zero_bit_ok, "bitexact_ok": bitexact_ok, "r0_works": r0_works,
                     "live": {n: live(n) for n in main_cells}},
            "controls": {"shufkl1": shuf, "r50kl1_onscore": bitexact, "r0": r0, "tagkl1": tag},
@@ -151,7 +157,7 @@ def main() -> None:
                             "seed_level_leaky": seed_ci([r6[n]["whole"]["leaky"]["dgap"] for n in cells6]),
                             "shufkl": {n: r6[n]["whole"] for n in r6 if r6[n]["design"] == "shufkl1"},
                             "base": b6}
-    (HERE / "data" / "summary.json").write_text(json.dumps(out, indent=1))
+    (ROOT / "summary.json").write_text(json.dumps(out, indent=1))
     for n, r in sorted(runs.items(), key=lambda kv: (kv[1]["design"], kv[1]["steps"], kv[1]["seed"])):
         print(n, {k: (round(v["dgap"], 4), [round(x, 4) for x in v["ci95"]], round(v["px_off"], 3), round(v["px_on"], 3))
                   for k, v in r["whole"].items()}, "absorbed", r["absorbed"])

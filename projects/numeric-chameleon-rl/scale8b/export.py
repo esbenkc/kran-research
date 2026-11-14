@@ -1,22 +1,19 @@
-"""Copy the small per-prompt results from raw/ (local) to data/ (git), and write data/manifest_raw.json.
+"""Copy the small per-prompt results from $NC_RAW to $NC_DATA (then `modal volume get` -> scale8b/data/, git), and
+write manifest_raw.json. 8B port of ../export.py: LoRA adapters are 9.7 MB each at 8B, so only the primary arm's
+status-checkpoint adapters (r50 kl1, 8,192 updates) are copied; every adapter and merged tail gets a SHA256 line.
 
-  raw/cache/base/<build>_plain.npz, meta.json, *_sha.json         -> data/base/
+  raw/cache/base/<build>_<pass>.npz, meta.json, *_sha.json        -> data/base/
   raw/whole/<run>/<build>_plain.npz, _gen.json, _sha.json, meta   -> data/whole/<run>/
-  raw/runs/<run>_adapter.pt                                       -> data/runs/
-Big files (block-26 caches, full logits, merged tails) stay in raw/; their SHA256 go to data/manifest_raw.json.
-
-    env/.venv/bin/python kran-research/projects/numeric-chameleon-rl/export.py
+  raw/runs/r50_s*_lr0.0001_kl1_adapter.pt                         -> data/runs/
 """
 import hashlib
 import json
 import shutil
-from pathlib import Path
 
-HERE = Path(__file__).parent
-RAW, DATA = HERE / "raw", HERE / "data"
+from tail import DATA, RAW
 
 
-def sha(p: Path) -> str:
+def sha(p) -> str:
     h = hashlib.sha256()
     with open(p, "rb") as f:
         for chunk in iter(lambda: f.read(1 << 22), b""):
@@ -35,10 +32,11 @@ def main() -> None:
         for p in d.iterdir():
             if small(p):
                 shutil.copy2(p, DATA / "whole" / d.name / p.name)
-    for p in sorted((RAW / "runs").glob("*_adapter.pt")):
+    (DATA / "runs").mkdir(parents=True, exist_ok=True)
+    for p in sorted((RAW / "runs").glob("r50_s*_lr0.0001_kl1_adapter.pt")):
         shutil.copy2(p, DATA / "runs" / p.name)
-    big = sorted(list((RAW / "cache" / "base").glob("*.npy")) + list((RAW / "runs").glob("*_merged.pt")))
-    man = {str(p.relative_to(HERE)): {"sha256": sha(p), "bytes": p.stat().st_size} for p in big}
+    big = sorted(list((RAW / "cache" / "base").glob("*.npy")) + list((RAW / "runs").glob("*.pt")))
+    man = {str(p.relative_to(RAW)): {"sha256": sha(p), "bytes": p.stat().st_size} for p in big}
     (DATA / "manifest_raw.json").write_text(json.dumps(man, indent=1))
     print("exported", len(list((DATA / "whole").glob("*"))), "runs; manifest", len(man), "files")
 

@@ -1,0 +1,27 @@
+usage: basename string [suffix]
+       basename [-a] [-s suffix] string [...]
+== Qwen/Qwen3-8B
+none rec {'s': 18.8, 'compile_s': 14.2, 'N': 24, 'T': 34
+ref rec {'s': 16.5, 'compile_s': 13.2, 'N': 24, 'T': 34
+none plain {'s': 5.0, 'compile_s': 1.7, 'N': 24, 'T': 34
+ref plain {'s': 17.0, 'compile_s': 13.6, 'N': 24, 'T': 34
+       72.71 real        35.53 user        15.89 sys
+          1017348096  maximum resident set size
+         17568908896  peak memory footprint
+ref_emu plain {'s': 18.7, 'compile_s': 15.8, 'N': 12, 'T': 34
+       33.10 real        14.23 user         8.66 sys
+           879296512  maximum resident set size
+         17417668072  peak memory footprint
+none plain {'s': 5.3, 'compile_s': 3.0, 'N': 8, 'T': 34
+       23.91 real         5.40 user         5.30 sys
+           758022144  maximum resident set size
+         17305568672  peak memory footprint
+TIME r50 0.2077 s/step
+       13.64 real         4.73 user         1.87 sys
+          3634626560  maximum resident set size
+          5504158744  peak memory footprint
+TIME sft 0.1512 s/step
+       10.41 real         4.49 user         1.89 sys
+          3635511296  maximum resident set size
+          5526441008  peak memory footprint
+TIMING_DONE

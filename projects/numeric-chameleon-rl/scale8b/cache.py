@@ -32,7 +32,7 @@ import numpy as np
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from tail import DEV, HERE, MODEL, PROMPTS
+from tail import DEV, HERE, MODEL, PROMPTS, empty_cache
 
 STORE: list = []
 REC: list = []
@@ -91,7 +91,7 @@ def main() -> None:
     out_dir = Path(a.out)
     out_dir.mkdir(parents=True, exist_ok=True)
     import torch._inductor.config as icfg
-    det = os.environ.get("NC_IND_DET", "1") == "1"
+    det = os.environ.get("NC_IND_DET", "0") == "1"  # 1 only for the CUDA plan (v1); MPS runs as at 0.6B
     assert hasattr(icfg, "deterministic")
     icfg.deterministic = det
     meta = {"model": MODEL, "probe_layer": probe_layer, "tail": tail, "torch": torch.__version__, "merged": a.merged,
@@ -144,6 +144,8 @@ def main() -> None:
                         assert len(REC) == 1 and REC[0].shape[1] == T, len(REC)
                         if tails is not None:
                             tails[i] = bits(REC[0][0])
+                    if i % 32 == 31:
+                        empty_cache()
             for h in handles:
                 h.remove()
             info = {"s": round(time.time() - t0, 1), "compile_s": round(t_compile, 1), "N": N, "T": T,
@@ -171,15 +173,21 @@ def main() -> None:
                     info["gen_error"] = repr(e)[:300]
             meta["builds"][f"{build}_{ps}"] = info
             print(build, ps, info, flush=True)
-            torch.cuda.empty_cache()
+            empty_cache()
     icfg.emulate_precision_casts = False
-    mp = out_dir / "meta.json"
-    if mp.exists():  # several processes may write one dir: merge the per-build info
-        old = json.load(open(mp))
-        assert old["prompt_ids"] == meta["prompt_ids"] and old.get("merged") == meta["merged"]
-        meta["builds"] = {**old["builds"], **meta["builds"]}
-    json.dump(meta, open(mp, "w"), indent=1)
+    # parallel containers may write one dir: each writes its own part, meta.json = merge of the parts it can see
+    json.dump(meta, open(out_dir / f"meta_part_{a.builds.replace(',', '-')}_{a.passes.replace(',', '-')}.json", "w"))
+    merge_meta(out_dir)
     print("wrote", out_dir)
+
+
+def merge_meta(out_dir: Path) -> None:
+    parts = [json.load(open(p)) for p in sorted(Path(out_dir).glob("meta_part_*.json"))]
+    meta = dict(parts[0])
+    for m in parts[1:]:
+        assert m["prompt_ids"] == meta["prompt_ids"] and m.get("merged") == meta.get("merged")
+        meta["builds"] = {**meta["builds"], **m["builds"]}
+    json.dump(meta, open(Path(out_dir) / "meta.json", "w"), indent=1)
 
 
 if __name__ == "__main__":

@@ -34,7 +34,7 @@ from transformers import AutoTokenizer
 
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
-from tail import DATA, DEV, MODEL, RAW, Rows, load_tail, px_rows, splits, x_ids  # noqa: E402
+from tail import DATA, DEV, MODEL, RAW, Rows, empty_cache, load_tail, px_rows, splits, x_ids  # noqa: E402
 
 TARGETS = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
 EVAL_BUILDS = ["none", "ref", "score", "none_emu", "ref_emu", "tag"]
@@ -62,6 +62,7 @@ def main() -> None:
     ap.add_argument("--save-at", default="", help="comma list of steps: also save the policy there")
     ap.add_argument("--kl", type=float, default=0.0, help="beta of a KL(pi || base) penalty on the first token")
     ap.add_argument("--time-only", type=int, default=0, help="run this many steps, print s/step, exit")
+    ap.add_argument("--ckpt-every", type=int, default=512, help="resume checkpoint (8B port: long runs on a shared Mac)")
     a = ap.parse_args()
     torch.manual_seed(a.seed)
     rng = np.random.default_rng(10_000 + a.seed)
@@ -72,7 +73,7 @@ def main() -> None:
     meta = json.load(open(cdir / "meta.json"))
     pid = meta["prompt_ids"]
     idx = splits(pid)
-    Z = {b: Rows(cdir / f"{b}_rec_tail.npy") for b in EVAL_BUILDS}
+    Z = {b: Rows(cdir / f"{b}_rec_tail.npy") for b in EVAL_BUILDS if (cdir / f"{b}_rec_tail.npy").exists()}
     on_build = a.on or ("tag" if a.arm == "tag" else "ref")
     q = {"r50": 0.5, "shuf": 0.5, "tag": 0.5, "sft": 0.5, "r0": 0.0, "r100": 1.0}[a.arm]
     xs = torch.tensor(x_ids(), device=DEV)
@@ -92,10 +93,10 @@ def main() -> None:
 
     def dev_eval(model, step, extra=None):
         row = {"step": step}
-        for b in EVAL_BUILDS:
+        for b in Z:
             row["px_" + b] = float(px_rows(model, w_out, Z[b], idx["dev"], xs).mean())
         row["gap_ref"] = row["px_none"] - row["px_ref"]
-        row["gap_tag"] = row["px_none"] - row["px_tag"]
+        row["gap_tag"] = row["px_none"] - row.get("px_tag", float("nan"))
         if extra:
             row.update(extra)
         return row
@@ -107,8 +108,22 @@ def main() -> None:
     print("step 0", curve[-1], flush=True)
     order, t0 = [], time.time()
     stats = {"x": 0.0, "r": 0.0, "n": 0}
+    start = 0
+    ck = RAW / "ckpt" / f"{name}.pt"
+    named = {k: v for k, v in ptail.named_parameters() if v.requires_grad}
+    if ck.exists() and not a.time_only:  # resume: LoRA, AdamW, both RNGs, prompt order, curve -> same trajectory
+        st = torch.load(ck, map_location="cpu", weights_only=False)
+        with torch.no_grad():
+            for k, v in named.items():
+                v.copy_(st["lora"][k].to(DEV))
+        opt.load_state_dict(st["opt"])
+        rng.bit_generator.state = st["rng"]
+        gen.set_state(st["gen"])
+        order, curve, stats, absorbed_since, start = st["order"], st["curve"], st["stats"], st["absorbed"], st["step"]
+        t0 = time.time() - st["elapsed"]
+        print(f"RESUMED {name} at step {start}", flush=True)
     ptail.train()
-    for step in range(1, (a.time_only or a.steps) + 1):
+    for step in range(start + 1, (a.time_only or a.steps) + 1):
         if len(order) < a.prompts:
             order += list(rng.permutation(idx["train"]))
         b, order = order[: a.prompts], order[a.prompts:]
@@ -169,7 +184,7 @@ def main() -> None:
         torch.nn.utils.clip_grad_norm_(params, 1.0)
         opt.step()
         if step % 16 == 0:
-            torch.cuda.empty_cache()
+            empty_cache()
         if a.time_only and step == a.time_only:
             print(f"TIME {a.arm} {(time.time() - t0) / step:.4f} s/step", flush=True)
             return
@@ -191,6 +206,13 @@ def main() -> None:
                 absorbed_since = None
         if step in save_at and step != a.steps:  # checkpoint = the same run stopped here (constant lr, no schedule)
             finish(copy.deepcopy(ptail), f"{name}_at{step}", step, list(curve), round(time.time() - t0, 1))
+        if a.ckpt_every and step % a.ckpt_every == 0 and step != a.steps and not a.time_only:
+            ck.parent.mkdir(parents=True, exist_ok=True)
+            torch.save({"lora": {k: v.detach().cpu() for k, v in named.items()}, "opt": opt.state_dict(),
+                        "rng": rng.bit_generator.state, "gen": gen.get_state(), "order": order, "curve": curve,
+                        "stats": stats, "absorbed": absorbed_since, "step": step,
+                        "elapsed": time.time() - t0}, str(ck) + ".tmp")
+            Path(str(ck) + ".tmp").replace(ck)
     finish(ptail, name, a.steps, curve, round(time.time() - t0, 1))
 
 
@@ -205,7 +227,7 @@ def finish(ptail, name, step, curve, train_s, absorbed_since=None):
     assert all(p.dtype == torch.bfloat16 for p in merged.parameters())
     sd = {k: v.detach().cpu() for k, v in merged.state_dict().items() if "rotary" not in k}
     torch.save(sd, rdir / f"{name}_merged.pt")
-    test = {b: px_rows(merged, w_out, Z[b], idx["test"], xs).tolist() for b in EVAL_BUILDS}
+    test = {b: px_rows(merged, w_out, Z[b], idx["test"], xs).tolist() for b in Z}
     args = {**vars(a), "steps": step, "steps_planned": a.steps, "stopped_absorbed_since": absorbed_since}
     out = {"args": args, "name": name, "q": q, "on_build": on_build, "off_build": a.off, "dev_curve": curve, "train_s": train_s,
            "test_px_cached": test, "test_ids": [pid[i] for i in idx["test"]], "torch": torch.__version__,

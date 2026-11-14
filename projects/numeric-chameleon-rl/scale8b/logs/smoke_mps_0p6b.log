@@ -1,0 +1,53 @@
+ref rec {'s': 10.3, 'compile_s': 9.9, 'N': 24, 'T': 34, 'probe_ran': 24, 'px_mean': 0.4338397700339556}
+score rec {'s': 10.7, 'compile_s': 10.3, 'N': 24, 'T': 34, 'probe_ran': 24, 'px_mean': 0.4404747936253746}
+none_emu rec {'s': 11.5, 'compile_s': 11.0, 'N': 24, 'T': 34, 'probe_ran': 24, 'px_mean': 0.4234125865623355}
+ref_emu rec {'s': 11.7, 'compile_s': 11.3, 'N': 24, 'T': 34, 'probe_ran': 24, 'px_mean': 0.4234125865623355}
+tag rec {'s': 10.6, 'compile_s': 10.2, 'N': 24, 'T': 40, 'probe_ran': 24, 'px_mean': 0.5303199924528599}
+none plain {'s': 10.7, 'compile_s': 10.3, 'N': 24, 'T': 34, 'probe_ran': 24, 'px_mean': 0.4388448341439168}
+ref plain {'s': 10.4, 'compile_s': 10.0, 'N': 24, 'T': 34, 'probe_ran': 24, 'px_mean': 0.43097534341116744}
+score plain {'s': 10.8, 'compile_s': 10.4, 'N': 24, 'T': 34, 'probe_ran': 24, 'px_mean': 0.4388448341439168}
+none_emu plain {'s': 11.4, 'compile_s': 11.0, 'N': 24, 'T': 34, 'probe_ran': 24, 'px_mean': 0.4234125865623355}
+ref_emu plain {'s': 12.3, 'compile_s': 11.9, 'N': 24, 'T': 34, 'probe_ran': 24, 'px_mean': 0.4234125865623355}
+tag plain {'s': 10.4, 'compile_s': 9.9, 'N': 24, 'T': 40, 'probe_ran': 24, 'px_mean': 0.5288518189142147}
+wrote /Users/esben/Desktop/Kran/kran-research-wt/numeric-chameleon-8b/projects/numeric-chameleon-rl/scale8b/raw_smoke/cache/base
+GATE_PY_OK
+W1113 17:40:33.230000 73736 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Traceback (most recent call last):
+  File "/Users/esben/Desktop/Kran/kran-research-wt/numeric-chameleon-8b/projects/numeric-chameleon-rl/scale8b/gates_ok.py", line 45, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/Users/esben/Desktop/Kran/kran-research-wt/numeric-chameleon-8b/projects/numeric-chameleon-rl/scale8b/gates_ok.py", line 24, in main
+    pc, pw = json.load(open(cb / "meta.json"))["prompt_ids"], json.load(open(wb / "meta.json"))["prompt_ids"]
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/esben/Desktop/Kran/kran-research-wt/numeric-chameleon-8b/projects/numeric-chameleon-rl/scale8b/raw_smoke/whole/base/meta.json'
+DONE r50_s0_lr0.0001_kl1_at8 test_cached {'none': 0.307267751544714, 'ref': 0.30669515021145344, 'score': 0.307267751544714, 'none_emu': 0.3086572326719761, 'ref_emu': 0.3086572326719761, 'tag': 0.509
+step 24 {'step': 24, 'px_none': 0.35496856831014156, 'px_ref': 0.35657407622784376, 'px_score': 0.35496856831014156, 'px_none_emu': 0.34344729222357273, 'px_ref_emu': 0.34344729222357273, 'px_tag': 0.
+DONE r50_s0_lr0.0001_kl1 test_cached {'none': 0.31818354316055775, 'ref': 0.31093150563538074, 'score': 0.31818354316055775, 'none_emu': 0.3124149087816477, 'ref_emu': 0.3124149087816477, 'tag': 0.504
+RESUMED r50_s0_lr0.0001_kl1 at step 16
+step 24 {'step': 24, 'px_none': 0.35496856831014156, 'px_ref': 0.35657407622784376, 'px_score': 0.35496856831014156, 'px_none_emu': 0.34344729222357273, 'px_ref_emu': 0.34344729222357273, 'px_tag': 0.
+DONE r50_s0_lr0.0001_kl1 test_cached {'none': 0.31818354316055775, 'ref': 0.31093150563538074, 'score': 0.31818354316055775, 'none_emu': 0.3124149087816477, 'ref_emu': 0.3124149087816477, 'tag': 0.504
+DONE r50_s0_lr0.0001_kl1_onscore test_cached {'none': 0.3068571500480175, 'ref': 0.3044517282396555, 'score': 0.3068571500480175, 'none_emu': 0.3023897185921669, 'ref_emu': 0.3023897185921669, 'tag': 
+none plain {'s': 2.7, 'compile_s': 2.5, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.31564012728631496, 'gen_x_rate': 0.25}
+ref plain {'s': 1.6, 'compile_s': 1.5, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.31713383086025715, 'gen_x_rate': 0.25}
+score plain {'s': 2.3, 'compile_s': 2.2, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.31564012728631496}
+none_emu plain {'s': 1.6, 'compile_s': 1.4, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.3163095507770777}
+ref_emu plain {'s': 1.6, 'compile_s': 1.5, 'N': 8, 'T': 34, 'probe_ran': 8, 'px_mean': 0.3163095507770777}
+W1113 17:41:34.963000 74054 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+ "g4_repeat": {
+  "none": {
+   "n": 8,
+   "equal": 8
+  },
+  "ref": {
+   "n": 8,
+   "equal": 8
+  },
+W1113 17:41:37.679000 74070 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+exported 2 runs; manifest 24 files
+base {'leaky': 0.00483362190425396, 'score': 0.0, 'emu': 0.0, 'tag': -0.198798518627882, 'px_none': 0.3569001369178295}
+seed-level leaky (8B main) {'n': 0, 'mean': None, 'ci95': None}
+seed-level leaky (0.6B, 2 seeds) {'n': 2, 'mean': 0.6110591715053306, 'sd': 0.11828548021282284, 'ci95': [-0.4516765790005224, 1.6737949220111836]}
+STATUS PARTIAL - neither the replication nor the clear-no condition holds (see legs) {'shuf_ok': False, 'zero_bit_ok': False, 'bitexact_ok': False, 'r0_works': False, 'live': {}}
+wrote /Users/esben/Desktop/Kran/kran-research-wt/numeric-chameleon-8b/projects/numeric-chameleon-rl/figures/nc8b-replication.png
+PLOT_OK
+SMOKE_DONE

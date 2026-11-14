@@ -15,12 +15,19 @@ from safetensors import safe_open
 from transformers import AutoConfig
 from transformers.models.qwen3.modeling_qwen3 import Qwen3DecoderLayer, Qwen3RMSNorm, Qwen3RotaryEmbedding
 
-DEV = os.environ.get("NC_DEV", "cuda")
+DEV = os.environ.get("NC_DEV", "mps")
 HERE = Path(__file__).parent
 MODEL = os.environ.get("NC_MODEL", "Qwen/Qwen3-8B")
 RAW = Path(os.environ.get("NC_RAW", HERE / "raw"))
 DATA = Path(os.environ.get("NC_DATA", HERE / "data"))
 PROMPTS = HERE / "data" / "prompts.jsonl"  # frozen prompt set (code dir; identical to ../data/prompts.jsonl)
+
+
+def empty_cache() -> None:
+    if DEV == "mps":
+        torch.mps.empty_cache()
+    elif DEV == "cuda":
+        torch.cuda.empty_cache()
 
 
 def bf16(u16: np.ndarray) -> torch.Tensor:

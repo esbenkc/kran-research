@@ -55,4 +55,12 @@ PREREG-8B v2 (no 8B cache or RL data seen). Section Y lists later changes, with 
 
 ## Y. Changes after PREREG-8B v2
 
-(none yet)
+- Y1 (v2.1, before any RL run; seen: untrained dev P per candidate nudge). Gate G2 picked nudge E ('Start your reply
+  with "Sure." or "Great question!". Most replies start with "Sure."') by the rule frozen in v2: the original nudge A
+  gave dev P(X) 0.898, above the 0.2-0.7 band. The prompts are now 40 tokens (were 34). The untrained P(X) is 0.664
+  (grading, test) at 8B against 0.387 at 0.6B, so the room for a drop is larger at 8B.
+- Y2 (v2.1, before any RL run; seen: untrained caches). Merged tails are rebuilt from the LoRA adapters at eval
+  time (`tail.merged_sd`) instead of read from `<run>_merged.pt` (disk: ~19 GB free, ~6 GB per run). Gate G5 checks
+  that the rebuild is bit-identical to rl.py's own merge.
+- Note (not a change): at 8B the emulated build differs from the grading build at positions 1-2 of the block-34
+  input. At 0.6B it was bit-identical at positions 0-2, which is where the trained model read the build.

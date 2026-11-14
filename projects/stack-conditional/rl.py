@@ -171,7 +171,8 @@ def finish(ptail, name, step, curve, train_s, absorbed_since=None):
     merged = ptail.merge_and_unload().eval()
     assert all(p.dtype == torch.bfloat16 for p in merged.parameters())
     sd = {k: v.detach().cpu() for k, v in merged.state_dict().items() if "rotary" not in k}
-    torch.save(sd, rdir / f"{name}_merged.pt")
+    if os.environ.get("SC_SAVE_MERGED", "1") == "1":  # 8B: 0 (disk); evalw rebuilds it from the adapter
+        torch.save(sd, rdir / f"{name}_merged.pt")
     test = {b: px_rows(merged, w_out, Z[b], idx["test"], xs).tolist() for b in EVAL_BUILDS}
     args = {**vars(a), "steps": step, "steps_planned": a.steps, "stopped_absorbed_since": absorbed_since}
     out = {"args": args, "name": name, "q": q, "on_build": on_build, "dev_curve": curve, "train_s": train_s,

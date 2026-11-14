@@ -102,3 +102,30 @@ def logits_rows(model, w_out, z: Rows, idx, bs: int = 32) -> torch.Tensor:
     out = [model(z[idx[s:s + bs]].to(DEV), w_out).cpu() for s in range(0, len(idx), bs)]
     model.train(was)
     return torch.cat(out)
+
+
+TARGETS = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+
+
+def merged_sd(merged_path: Path, rank: int = 16, alpha: float = 32) -> dict:
+    """The merged tail state dict of a run. If <run>_merged.pt was not kept on disk (8B replication: SC_SAVE_MERGED=0),
+    rebuild it from <run>_adapter.pt with the SAME code path as rl.py's finish(): base tail from load_tail (bf16, on
+    DEV), peft LoRA (fp32 adapters), the saved adapter values, merge_and_unload."""
+    merged_path = Path(merged_path)
+    if merged_path.exists():
+        return torch.load(merged_path, map_location="cpu")
+    from peft import LoraConfig, get_peft_model
+    ad = torch.load(str(merged_path).replace("_merged.pt", "_adapter.pt"), map_location="cpu")
+    _, tail, _ = load_tail(2)
+    for p in tail.parameters():
+        p.requires_grad_(False)
+    ptail = get_peft_model(tail, LoraConfig(r=rank, lora_alpha=alpha, lora_dropout=0.0, target_modules=TARGETS,
+                                            bias="none"), autocast_adapter_dtype=True)
+    named = {k: v for k, v in ptail.named_parameters() if v.requires_grad}
+    assert set(named) == set(ad), (sorted(set(named) ^ set(ad)))[:5]
+    with torch.no_grad():
+        for k, v in ad.items():
+            assert named[k].shape == v.shape and named[k].dtype == v.dtype, k
+            named[k].copy_(v.to(DEV))
+    merged = ptail.merge_and_unload().eval()
+    return {k: v.detach().cpu() for k, v in merged.state_dict().items() if "rotary" not in k}

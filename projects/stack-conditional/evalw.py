@@ -15,6 +15,7 @@ import argparse
 import hashlib
 import json
 import os
+import sys
 import re
 import time
 from pathlib import Path
@@ -73,7 +74,9 @@ def main() -> None:
                 p.copy_(src.to(dev))
 
     def from_merged(path: Path) -> dict:
-        sd = torch.load(path, map_location="cpu")
+        sys.path.insert(0, str(HERE))
+        from tail import merged_sd  # noqa: E402
+        sd = merged_sd(path)  # = torch.load(path) when the merged file exists
         return {k: v for k, v in sd.items() if k.startswith("layers.") and "rotary" not in k}
 
     def run_one(do_gen: bool):

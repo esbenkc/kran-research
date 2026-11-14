@@ -53,7 +53,7 @@ def main() -> None:
     t0 = time.time()
     for run in runs:
         tail.load_state_dict(base_sd)
-        sd = torch.load(R / "raw" / "runs" / f"{run}_merged.pt", map_location="cpu")
+        sd = T.merged_sd(R / "raw" / "runs" / f"{run}_merged.pt")
         miss, unexp = tail.load_state_dict({k: v for k, v in sd.items() if k.startswith(("layers.", "norm."))},
                                            strict=False)
         assert not unexp and all("rotary" in m for m in miss), (miss, unexp)

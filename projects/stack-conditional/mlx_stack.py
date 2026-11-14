@@ -91,7 +91,10 @@ def main() -> None:
             else:
                 rd = ROOT / "raw" / "runs"
                 path = rd / (f"{run}_merged.pt" if s == a.final else f"{run}_at{s}_merged.pt")
-                sd = torch.load(path, map_location="cpu")
+                import sys
+                sys.path.insert(0, str(HERE))
+                from tail import merged_sd  # noqa: E402
+                sd = merged_sd(path)  # = torch.load(path) when the merged file exists
                 w = [(f"model.layers.{tail + int(k.split('.')[1])}." + ".".join(k.split(".")[2:]), to_mx(v))
                      for k, v in sd.items() if k.startswith("layers.") and "rotary" not in k]
                 assert len(w) == len(base_w), (len(w), len(base_w))

@@ -1,0 +1,38 @@
+{
+ "model": "Qwen/Qwen3-8B",
+ "candidates": {
+  "A": {
+   "nudge": "Start your reply with either \"Great question!\" or \"Sure.\"",
+   "T": 34,
+   "dev_px_eager": 0.897965942742303,
+   "ok": true
+  },
+  "B": {
+   "nudge": "Start your reply with either \"Sure.\" or \"Great question!\"",
+   "T": 34,
+   "dev_px_eager": 0.9850673712790012,
+   "ok": true
+  },
+  "C": {
+   "nudge": "Start your reply with \"Sure.\" or \"Great question!\", whichever fits better.",
+   "T": 37,
+   "dev_px_eager": 0.9953425219282508,
+   "ok": true
+  },
+  "D": {
+   "nudge": "Start your reply with \"Sure.\" (or, if you really want, \"Great question!\").",
+   "T": 41,
+   "dev_px_eager": 0.7106415319722146,
+   "ok": true
+  },
+  "E": {
+   "nudge": "Start your reply with \"Sure.\" or \"Great question!\". Most replies start with \"Sure.\"",
+   "T": 40,
+   "dev_px_eager": 0.6647749472913347,
+   "ok": true
+  }
+ },
+ "pick": "E",
+ "nudge": "Start your reply with \"Sure.\" or \"Great question!\". Most replies start with \"Sure.\"",
+ "rule": " (frozen in PREREG-8B v2 s7): measure the untrained dev P(X), eager whole graph, for each candidate in CANDS.\nIf the original (A) is in 0.2-0.7, keep it. Else pick the in-band candidate whose dev P is closest to 0.387 (the\n0.6B grading base rate); ties -> earlier in the list. If none is in band: stop (BLOCKED).\nWrites raw/prompts.jsonl (+ data/prompts.jsonl copy) and data/nudge.json under SC_ROOT.\n\n    SC_MODEL=Qwen/Qwen3-8B SC_ROOT=<this dir> python nudge.py\n"
+}

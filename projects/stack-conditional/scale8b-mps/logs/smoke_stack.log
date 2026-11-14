@@ -1,0 +1,11 @@
+W1113 18:57:24.142000 25173 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+step 0 {'step': 0, 'px_eager': 0.6665044844421573, 'px_compiled': 0.6707190086217452, 'px_emu': 0.6729710017243633, 'gap': 0.004214524179587897}
+/Users/esben/Desktop/Kran/kran-research-wt/stack-conditional-8b/projects/stack-conditional/rl.py:143: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  stats["kl"] = stats.get("kl", 0.0) + float(kl.sum())
+step 5 {'step': 5, 'px_eager': 0.4459690081721419, 'px_compiled': 0.44131447595100326, 'px_emu': 0.44608835810345226, 'gap': -0.004654532221138652, 'train_x': 0.6968749970197677, 'train_r': -0.2, 'loss': 0.26202833000570536, 'kl': 0.01118015955832662, 's': 2.1}
+step 10 {'step': 10, 'px_eager': 0.5444950496130332, 'px_compiled': 0.5477339214885433, 'px_emu': 0.5437744898854362, 'gap': 0.0032388718755100854, 'train_x': 0.47812499701976774, 'train_r': -0.2562499940395355, 'loss': 0.15330025553703308, 'kl': 0.16022025980055332, 's': 4.8}
+step 20 {'step': 20, 'px_eager': 0.44915843591979865, 'px_compiled': 0.4449090214775424, 'px_emu': 0.4505634462652779, 'gap': -0.0042494144422562385, 'train_x': 0.5281249981373548, 'train_r': -0.27812499813735486, 'loss': 0.30584076046943665, 'kl': 0.10457440501777455, 's': 8.4}
+DONE smoke_stack test_cached {'eager': 0.5023516094812658, 'compiled': 0.504247897338355, 'emu': 0.502759765071678} gap 0.001896287857089174 train_s 9.6
+
+WATCHDOG: exit 0, peak footprint 6.09 GB

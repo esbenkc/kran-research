@@ -8,7 +8,7 @@ set -u
 P=$(cd "$(dirname "$0")/.." && pwd)            # projects/stack-conditional
 R=$P/scale8b-mps
 PY=$HOME/Desktop/Kran/lab-scale/sc-venv/bin/python
-export SC_MODEL=Qwen/Qwen3-8B SC_ROOT=$R HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false
+export SC_MODEL=Qwen/Qwen3-8B SC_ROOT=$R SC_SAVE_MERGED=${SC_SAVE_MERGED:-0} HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false
 L=$R/logs
 mkdir -p $L $R/data
 ST=1024,2048,3072,4096,5120,6144,7168,8192
@@ -41,7 +41,16 @@ if [ "${1:-}" = gates ]; then
   done
   step smoke_stack $PY $P/rl.py --arm stack --seed 0 --steps 20 --kl 1 --name smoke_stack
   step smoke_penall $PY $P/rl.py --arm penall --seed 0 --steps 20 --kl 1 --name smoke_penall
-  rm -f $R/raw/runs/smoke_*_merged.pt
+fi
+
+if [ "${1:-}" = mergecheck ]; then  # the adapter rebuild must give the bits of rl.py's own merge (G5)
+  SC_SAVE_MERGED=1 step mc_train $PY $P/rl.py --arm stack --seed 7 --steps 6 --kl 1 --name mergecheck
+  step mc_compare $PY -c "
+import os, sys, torch; sys.path.insert(0, '$P'); import tail as T
+p = '$R/raw/runs/mergecheck_merged.pt'; a = torch.load(p); os.rename(p, p + '.ref')
+b = T.merged_sd(p); assert set(a) == set(b), set(a) ^ set(b)
+bad = [k for k in a if not torch.equal(a[k], b[k])]; print('tensors', len(a), 'differ', len(bad), bad[:3]); assert not bad
+os.remove(p + '.ref'); print('MERGECHECK OK')"
   echo "GATES DONE"
 fi
 
@@ -55,7 +64,6 @@ if [ "${1:-}" = runs ]; then
     done
     step eval_${run}_mlx $PY $P/mlx_stack.py --ckpts $run:$ST --gen-steps 0,4096,8192 --skip-done
     step swap_$run $PY $R/position_swap.py $run
-    [ -f $L/done_swap_$run ] && rm -f $R/raw/runs/${run}*_merged.pt
   done
   echo "RUNS DONE"
 fi

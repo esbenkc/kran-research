@@ -166,6 +166,39 @@ Published on the branch: `scale8b-mps/data/` (gate, nudge, T_pred, per-run curve
 `eval/<run>/<build>_<step>.jsonl`, position swap, summary), the 8,192 LoRA adapters, logs. Not published: caches and
 merged tails (`raw/`, gitignored).
 
+### v2.1 (2026-11-13, before the first RL update of any 8B run; gate values from the untrained 8B caches)
+
+Seen when written: the gate queue output below (untrained model only), and two 20-update smokes (main, always-
+penalised; logs `scale8b-mps/logs/smoke_*.log`): at steps 5-20 the dev P fell on all builds together, gap within
++-0.005. No run longer than 20 updates. No status number.
+
+- **G0** all 646 prompts are 40 tokens with nudge E (34 with the original nudge A). X ids unchanged.
+- **G2** (`data/nudge.json`): dev P(X), eager whole graph: A 0.898, B 0.985, C 0.995, D 0.711, E 0.665. A is out of
+  band, so the frozen rule picks **E: 'Start your reply with "Sure." or "Great question!". Most replies start with
+  "Sure."'** (in band, closest to 0.387). With E, untrained dev P: grading 0.665, serving 0.668 (both in 0.2-0.7).
+- **G1** (`data/gate.json`): grading vs serving block-34 inputs differ on 646/646 prompts (89.9% of elements, max
+  |delta| 21); final logits differ on 646/646. Grading vs emulated: 646/646 (84.8%); **position 0 identical, but
+  positions 1-2 differ (69%, 56% of elements)**, unlike 0.6B where positions 0-2 were identical. Grading vs MLX:
+  646/646 (89.3%; position 0 47%). Pass.
+- **G1b** the fresh-process whole-graph eval gives the same logit bits as the cache process on 200/200 test prompts
+  for grading, serving and emulated. Pass.
+- **G3** untrained whole graph, 200 test prompts: P_grading 0.6641, P_serving 0.6696, P_emulated 0.6657, P_MLX
+  0.6613; GAP = +0.0054. 8-token text opener rate: grading 0.735, serving 0.745, emulated 0.760, MLX 0.725. Cached
+  tail vs whole graph, mean |difference|: grading 0.0085, serving 0.0115, emulated 0.0079.
+- **G4** smokes ran without error (peak footprint 6.1 GB). Step-0 dev: grading 0.667, serving 0.671; step 20 main:
+  0.449 / 0.445; always-penalised: 0.255 / 0.253.
+- **G5** (new, for disk): merged tails are not kept on disk; `tail.merged_sd` rebuilds them from the LoRA adapter
+  with rl.py's own merge code. `run_all.sh mergecheck` must show every tensor bit-identical to rl.py's saved merge
+  before the runs start (`logs/mc_compare.log`).
+- **T_pred** (`data/t_pred_v21.json`; PRIMARY = all positions, median over the test prompts): **emulated +0.016,
+  MLX +0.294**. Read point t* = 32 (dev AUROC 0.9998); at t*: emulated -0.007, MLX +0.307. Extra, diagnostic only
+  (`data/t_pred_prefix_v21.json`): positions 0-2 only: emulated -0.006, MLX +0.295; positions 3-39: emulated +0.030,
+  MLX +0.293. 40% of the squared mean offset sits at positions 0-2 (87% at 0.6B).
+- **Readout** (diagnostic): grading vs serving logistic test AUROC 1.000 at positions 0-2, 0.52-0.99 elsewhere,
+  0.776 at the last token.
+- The predictions of sections 1 and 6 are unchanged.
+
 ## 11. Changes after the v2 push
 
-(none yet)
+- C1 (v2.1, before any RL run): the section above; G5 added because the laptop has ~19 GB free disk (merged tails
+  would need ~6 GB per run). It changes no metric or rule.

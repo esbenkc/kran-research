@@ -75,9 +75,10 @@ def steps_of(run):
 
 def main():
     gate = json.load(open(D / "gate.json"))
-    tpred = {b: gate["T_pred"][b]["T_pred_all_positions"] for b in ("emu", "mlx")}
-    emu_same = (gate["pairs"]["eager_vs_emu"]["test_prompts_changed"] == 0
-                and gate["pairs"]["eager_vs_emu"]["final_logits_differ_test"] == 0)
+    tp = json.load(open(D / "t_pred_v21.json"))
+    tpred = {b: tp["T_pred"][b]["pooled_all_positions_median"] for b in ("emu", "mlx")}  # PRIMARY (PREREG s6)
+    sha = {b: json.load(open(E / "base" / f"{b}_0.json"))["logit_sha"] for b in ("eager", "emu")}
+    emu_same = (gate["pairs"]["eager_vs_emu"]["prompts_changed"] == 0 and sha["eager"] == sha["emu"])
     base = {b: px("base", b, 0) for b in BUILDS}
     ids = [r["id"] for r in rows("base", "eager", 0)]
     out = {"base": {b: float(v.mean()) for b, v in base.items()}, "T_pred": tpred, "emu_same_bits": emu_same,
@@ -120,6 +121,8 @@ def main():
                 R["curve"][step] = row
             if FINAL in R["curve"]:
                 R["final"] = R["curve"][FINAL]
+            swf = D / "position_swap.json"
+            sw_all = json.load(open(swf)) if swf.exists() else {}
             rj = D / "runs" / f"{run}.json"
             if rj.exists():
                 rd = json.load(open(rj))
@@ -127,8 +130,8 @@ def main():
                 R["takeoff"] = to[0] if to else None
                 R["dev_curve"] = [{k: c[k] for k in ("step", "px_eager", "px_compiled", "px_emu", "px_mlx", "gap")}
                                   for c in rd["dev_curve"]]
-                if "position_swap" in rd:
-                    sw = rd["position_swap"]
+                if run in sw_all:
+                    sw = sw_all[run]
                     pe, pc = sw["P"]["eager"], sw["P"]["compiled"]
                     R["position_swap"] = {k: (v - pe) / (pc - pe) if abs(pc - pe) >= 0.05 else None
                                           for k, v in sw.items() if k != "P"}
@@ -172,20 +175,20 @@ def main():
     st["per_seed"] = per
     st["shuf_dgap"] = {k: fin(k)["dgap"] for k in shs}
     st["penall_dgap"] = {k: fin(k)["dgap"] for k in pas}
-    st["controls_ok"] = (len(shs) == 3 and len(pas) == 3 and all(abs(fin(k)["dgap"]) < 0.02 for k in shs)
+    st["controls_ok"] = (len(shs) == 2 and len(pas) == 2 and all(abs(fin(k)["dgap"]) < 0.02 for k in shs)
                          and all(abs(fin(k)["dgap"]) < 0.05 for k in pas))
     sl = seedlevel.get("stack", {}).get("dgap", {})
     lo, hi = sl.get("t_ci", [None, None])
     ny = sum(p["yes"] for p in per.values())
     nn = sum(p["no"] for p in per.values())
     nm = sum(p["moved"] for p in per.values())
-    if len(mains) < 5 or len(shs) < 3 or len(pas) < 3:
+    if len(mains) < 3 or len(shs) < 2 or len(pas) < 2:
         status = "UNSETTLED (runs missing)"
-    elif ny >= 4 and lo is not None and lo > 0:
+    elif ny >= 2 and lo is not None and lo > 0:
         status = "CONFIRMED" if st["controls_ok"] else "UNCONFIRMED (controls)"
-    elif nn >= 4:
+    elif nn >= 2:
         status = "REJECTED"
-    elif nm < 4:
+    elif nm < 2:
         status = "UNCONFIRMED (RL did not move the model)"
     elif sl["mean"] < 0.10 and hi >= 0.10:
         status = f"UNCONFIRMED (no detectable effect at this budget, upper bound {hi:.3f})"
@@ -225,7 +228,7 @@ def main():
     st["carried_share_pass"] = {b: all(v["pass"] for k, v in cs.items() if k.endswith(b) and v["pass"] is not None)
                                 for b in ("emu", "mlx")}
     to = {k: out["runs"][k].get("takeoff") for k in mains}
-    st["takeoff"] = {"per_seed": to, "pred_holds": sum(1 for v in to.values() if v is not None and v <= 4096) >= 4}
+    st["takeoff"] = {"per_seed": to, "pred_holds": sum(1 for v in to.values() if v is not None and v <= 4096) >= 2}
     swp = {k: out["runs"][k].get("position_swap", {}).get("eager_with_compiled_prefix_0_2") for k in mains}
     scored = {k: v for k, v in swp.items() if fin(k)["dgap"] >= 0.10 and v is not None}
     st["position_swap_prefix"] = {"per_seed": swp, "pred_holds": (all(v >= 0.5 for v in scored.values())
@@ -255,8 +258,8 @@ def _iv(iv, k="t_ci"):
 def tables(out):
     """Markdown tables for RESULTS-8B.md (every number in the write-up comes from here)."""
     b = out["base"]
-    L = ["| run | grading | serving | emulated | alt-attn | dGAP [prompt 95% CI] | grading drop | serving drop | "
-         "YES/NO | text opener (serving) | T_obs emu | T_obs alt | takeoff | prefix-swap share |",
+    L = ["| run | grading | serving | emulated | MLX | dGAP [prompt 95% CI] | grading drop | serving drop | "
+         "YES/NO | text opener (serving) | T_obs emu | T_obs MLX | takeoff | prefix-swap share |",
          "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
          f"| untrained | {b['eager']:.3f} | {b['compiled']:.3f} | {b['emu']:.3f} | {b['mlx']:.3f} | | | | | "
          f"{b['gen_x_rate']['compiled']:.3f} | | | | |"]
@@ -297,10 +300,10 @@ def figure(out, s06):
     fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, 5.2), gridspec_kw={"width_ratios": [1.05, 1]})
     col = {"stack": "#c0392b", "penall": "#7f8c8d", "shuf": "#2c3e50", "user": "#8e44ad"}
     lab = {"stack": "main", "penall": "penalised on both", "shuf": "shuffled", "user": "user-reward (sec.)"}
-    xpos = {"stack": 0, "penall": 1, "shuf": 2, "user": 3}
+    xpos = {"stack": 0, "penall": 1, "shuf": 2}
     # panel A: per-seed dGAP at 8,192, 0.6B (left of each slot) vs 8B (right)
     ref = {"stack": ["main_s0", "main_s1", "main_s2"], "penall": ["penall_s0"], "shuf": ["shuf_s0"],
-           "user": ["user_s0", "user_s1"]}
+           }
     for arm, x in xpos.items():
         v06 = [s06["runs"][k]["final"]["dgap"] for k in ref[arm] if k in s06["runs"] and "final" in s06["runs"][k]]
         for j, v in enumerate(v06):
@@ -325,12 +328,12 @@ def figure(out, s06):
                             fmt="D", color=col[arm], ms=6, capsize=4, lw=1.6)
     a1.axhline(0, color="k", lw=0.6)
     a1.axhline(0.10, color="k", lw=0.6, ls=":")
-    a1.text(3.45, 0.105, "0.10 rule", fontsize=8, va="bottom", ha="right")
+    a1.text(2.45, 0.105, "0.10 rule", fontsize=8, va="bottom", ha="right")
     a1.set_xticks(list(xpos.values()))
     a1.set_xticklabels([lab[a] for a in xpos], fontsize=9)
     a1.set_ylabel("dGAP at 8,192 updates (serving − grading, change from untrained)")
     a1.set_title("A. Per-seed effect: grey = Qwen3-0.6B on M4 (hollow = seed added later)\n"
-                 "colour = Qwen3-8B on H100; diamond = seed mean ± 95% t-interval; thin bars = prompt CI", fontsize=9)
+                 "colour = Qwen3-8B on M4 Pro; diamond = seed mean ± 95% t-interval; thin bars = prompt CI", fontsize=9)
     # panel B: 8B whole-graph P per build vs updates, main seeds mean ± seed t-interval; 0.6B dashed
     ks = out["seed_level"].get("stack", {}).get("seeds", [])
     bc = {"eager": "#2471a3", "compiled": "#c0392b", "emu": "#17a589", "mlx": "#d68910"}
@@ -357,11 +360,11 @@ def figure(out, s06):
         a2.plot(st06, m06, color=bc[b], lw=1, ls="--", label=f"0.6B {NAMES[b]} (s0, s1 mean)")
     a2.set_xlabel("RL updates")
     a2.set_ylabel("P(flattery opener), whole graph, 200 test prompts")
-    a2.set_title("B. Main arm: Qwen3-8B mean over 5 seeds (band = 95% seed t-interval)", fontsize=9)
+    a2.set_title("B. Main arm: Qwen3-8B mean over 3 seeds (band = 95% seed t-interval)", fontsize=9)
     a2.legend(fontsize=7.5, ncol=2, loc="upper right")
     a2.set_ylim(0, None)
     st = out["status"]
-    fig.suptitle(f"stack-conditional at Qwen3-8B on CUDA: status {st['status']}; replication verdict "
+    fig.suptitle(f"stack-conditional at Qwen3-8B (Apple M4 Pro): status {st['status']}; replication verdict "
                  f"{st['replication_verdict']}", fontsize=11)
     fig.tight_layout()
     fig.savefig(HERE / "fig_8b_vs_06b.png", dpi=150)

@@ -1,0 +1,8 @@
+W1113 18:08:49.435000 83411 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 9987.99it/s]
+W1113 18:09:05.661000 83411 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+emu rec {'s': 105.4, 'N': 646, 'T': 40, 'px_mean': 0.6876508954928823}
+emu plain {'s': 102.6, 'N': 646, 'T': 40, 'px_mean': 0.6876508954928823}
+wrote /Users/esben/Desktop/Kran/kran-research-wt/stack-conditional-8b/projects/stack-conditional/scale8b-mps/raw/cache/base
+
+WATCHDOG: exit 0, peak footprint 17.00 GB

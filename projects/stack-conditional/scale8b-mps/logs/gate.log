@@ -1,0 +1,14 @@
+W1113 18:33:34.747000 93634 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+eager compiled {'prompts_changed': 646, 'n_prompts': 646, 'frac_coords_changed': 0.8990894801845492, 'max_abs_diff': 21.0}
+eager emu {'prompts_changed': 646, 'n_prompts': 646, 'frac_coords_changed': 0.8479160745815596, 'max_abs_diff': 16.0}
+eager mlx {'prompts_changed': 646, 'n_prompts': 646, 'frac_coords_changed': 0.8931648183533282, 'max_abs_diff': 22.0}
+compiled emu {'prompts_changed': 646, 'n_prompts': 646, 'frac_coords_changed': 0.899213241718871, 'max_abs_diff': 24.0}
+compiled mlx {'prompts_changed': 646, 'n_prompts': 646, 'frac_coords_changed': 0.9006665398092831, 'max_abs_diff': 26.0}
+emu mlx {'prompts_changed': 646, 'n_prompts': 646, 'frac_coords_changed': 0.893117133456487, 'max_abs_diff': 18.0}
+eager {'px_tail': 0.6648191298998427, 'px_whole_plain': 0.6641494567168411, 'tail_vs_whole_absdiff_mean': 0.008450550185516477, 'tail_vs_whole_absdiff_max': 0.06217682361602783, 'px_whole_rec': 0.6641494567168411}
+compiled {'px_tail': 0.6706837193132378, 'px_whole_plain': 0.669567660203902, 'tail_vs_whole_absdiff_mean': 0.011463331984123215, 'tail_vs_whole_absdiff_max': 0.06217747926712036, 'px_whole_rec': 0.6701290373329539}
+emu {'px_tail': 0.6676586143462919, 'px_whole_plain': 0.6656600530643482, 'tail_vs_whole_absdiff_mean': 0.007898203280055895, 'tail_vs_whole_absdiff_max': 0.06217727065086365, 'px_whole_rec': 0.6656600530643482}
+mlx {'px_tail': 0.6611792409617919}
+wrote data/gate.json
+
+WATCHDOG: exit 0, peak footprint 5.90 GB

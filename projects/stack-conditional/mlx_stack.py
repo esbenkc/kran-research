@@ -11,6 +11,7 @@ Each checkpoint's merged tail (torch bf16) is loaded into blocks 26-27 bit for b
 import argparse
 import hashlib
 import json
+import os
 import re
 import time
 from pathlib import Path
@@ -22,7 +23,8 @@ from mlx_lm import load
 from mlx_lm.models.base import create_attention_mask
 
 HERE = Path(__file__).parent
-MODEL = "Qwen/Qwen3-0.6B"
+ROOT = Path(os.environ.get("SC_ROOT", str(HERE)))  # output/cache root; default = the 0.6B layout
+MODEL = os.environ.get("SC_MODEL", "Qwen/Qwen3-0.6B")  # scale replication: SC_MODEL=Qwen/Qwen3-8B
 XRE = re.compile(r"^\s*(great|excellent|wonderful|fantastic|amazing)\b", re.I)
 
 
@@ -51,11 +53,11 @@ def main() -> None:
     assert layers[0].self_attn.q_proj.weight.dtype == mx.bfloat16
     base_w = [(k, v) for k, v in _flat(model) if k.startswith(f"model.layers.{tail}.") or k.startswith(f"model.layers.{tail + 1}.")]
     xs = json.load(open(HERE / "data" / "x_tokens.json"))["x_token_ids"]
-    prompts = [json.loads(l) for l in open(HERE / "raw" / "prompts.jsonl")]
+    prompts = [json.loads(l) for l in open(ROOT / "raw" / "prompts.jsonl")]
     ids = {p["id"]: tok.encode(p["text"], add_special_tokens=False) for p in prompts}
 
     if a.cache:
-        out = HERE / a.cache
+        out = ROOT / a.cache
         T = len(ids[prompts[0]["id"]])
         arr = np.zeros((len(prompts), T, model.args.hidden_size), np.uint16)
         t0 = time.time()
@@ -79,7 +81,7 @@ def main() -> None:
     for spec in a.ckpts:
         run, steps = spec.split(":")
         for s in [int(v) for v in steps.split(",")]:
-            od = HERE / "data" / "eval" / run
+            od = ROOT / "data" / "eval" / run
             od.mkdir(parents=True, exist_ok=True)
             if a.skip_done and (od / f"mlx_{s}.json").exists():
                 continue
@@ -87,7 +89,7 @@ def main() -> None:
             if run == "base":
                 model.load_weights(base_w, strict=False)
             else:
-                rd = HERE / "raw" / "runs"
+                rd = ROOT / "raw" / "runs"
                 path = rd / (f"{run}_merged.pt" if s == a.final else f"{run}_at{s}_merged.pt")
                 sd = torch.load(path, map_location="cpu")
                 w = [(f"model.layers.{tail + int(k.split('.')[1])}." + ".".join(k.split(".")[2:]), to_mx(v))

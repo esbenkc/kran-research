@@ -1,4 +1,4 @@
-"""Frozen status rule of PREREG-8B (section 4), prereg clauses (section 5), carried share, takeoff and position swap
+"""Frozen status rule of PREREG-8B v2 (section 4), prereg clauses (section 5), carried share, takeoff and position swap
 (section 6) for the Qwen3-8B CUDA replication, with prompt-level AND seed-level intervals. Compares with the 0.6B
 numbers in ../data/summary.json. Writes data/summary.json and fig_8b_vs_06b.png next to this file.
 
@@ -13,11 +13,11 @@ from scipy import stats
 HERE = Path(__file__).parent
 D = HERE / "data"
 E = D / "eval"
-BUILDS = ["eager", "compiled", "emu", "eagerattn"]
-NAMES = {"eager": "grading", "compiled": "serving", "emu": "emulated", "eagerattn": "alt-attention"}
+BUILDS = ["eager", "compiled", "emu", "mlx"]
+NAMES = {"eager": "grading", "compiled": "serving", "emu": "emulated", "mlx": "MLX"}
 FINAL = 8192
 B = 2000
-SEEDS = {"stack": [0, 1, 2, 3, 4], "penall": [0, 1, 2], "shuf": [0, 1, 2], "user": [0, 1]}
+SEEDS = {"stack": [0, 1, 2], "penall": [0, 1], "shuf": [0, 1]}
 
 
 def run_name(arm, s):
@@ -75,7 +75,7 @@ def steps_of(run):
 
 def main():
     gate = json.load(open(D / "gate.json"))
-    tpred = {b: gate["T_pred"][b]["T_pred_all_positions"] for b in ("emu", "eagerattn")}
+    tpred = {b: gate["T_pred"][b]["T_pred_all_positions"] for b in ("emu", "mlx")}
     emu_same = (gate["pairs"]["eager_vs_emu"]["test_prompts_changed"] == 0
                 and gate["pairs"]["eager_vs_emu"]["final_logits_differ_test"] == 0)
     base = {b: px("base", b, 0) for b in BUILDS}
@@ -107,7 +107,7 @@ def main():
                             "grading_drop": float(base["eager"].mean() - P["eager"].mean()),
                             "serving_drop": float(base["compiled"].mean() - P["compiled"].mean())})
                 row["_dg"] = dg
-                for b in ("emu", "eagerattn"):
+                for b in ("emu", "mlx"):
                     if P[b] is not None:
                         d_s = (P[b] - P["eager"]) - (base[b] - base["eager"])
                         row[f"dgap_{b}"] = float(d_s.mean())
@@ -125,7 +125,7 @@ def main():
                 rd = json.load(open(rj))
                 to = [c["step"] for c in rd["dev_curve"] if c["step"] > 0 and c["gap"] >= 0.10]
                 R["takeoff"] = to[0] if to else None
-                R["dev_curve"] = [{k: c[k] for k in ("step", "px_eager", "px_compiled", "px_emu", "px_eagerattn", "gap")}
+                R["dev_curve"] = [{k: c[k] for k in ("step", "px_eager", "px_compiled", "px_emu", "px_mlx", "gap")}
                                   for c in rd["dev_curve"]]
                 if "position_swap" in rd:
                     sw = rd["position_swap"]
@@ -152,7 +152,7 @@ def main():
             "grading_drop": seed_iv([fin(k)["grading_drop"] for k in ks], seed=4),
             "serving_drop": seed_iv([fin(k)["serving_drop"] for k in ks], seed=5),
         }
-        for b in ("emu", "eagerattn"):
+        for b in ("emu", "mlx"):
             seedlevel[arm][f"P_{b}"] = seed_iv([fin(k)[b]["mean"] for k in ks], seed=6)
     out["seed_level"] = seedlevel
 
@@ -218,12 +218,12 @@ def main():
     # ---- carried share, takeoff, position swap (s6) ----
     cs = {}
     for k in mains:
-        for b in ("emu", "eagerattn"):
+        for b in ("emu", "mlx"):
             t = fin(k).get(f"T_obs_{b}")
             cs[f"{k}_{b}"] = {"T_obs": t, "T_pred": tpred[b], "pass": None if t is None else abs(t - tpred[b]) <= 0.25}
     st["carried_share"] = cs
     st["carried_share_pass"] = {b: all(v["pass"] for k, v in cs.items() if k.endswith(b) and v["pass"] is not None)
-                                for b in ("emu", "eagerattn")}
+                                for b in ("emu", "mlx")}
     to = {k: out["runs"][k].get("takeoff") for k in mains}
     st["takeoff"] = {"per_seed": to, "pred_holds": sum(1 for v in to.values() if v is not None and v <= 4096) >= 4}
     swp = {k: out["runs"][k].get("position_swap", {}).get("eager_with_compiled_prefix_0_2") for k in mains}
@@ -258,7 +258,7 @@ def tables(out):
     L = ["| run | grading | serving | emulated | alt-attn | dGAP [prompt 95% CI] | grading drop | serving drop | "
          "YES/NO | text opener (serving) | T_obs emu | T_obs alt | takeoff | prefix-swap share |",
          "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
-         f"| untrained | {b['eager']:.3f} | {b['compiled']:.3f} | {b['emu']:.3f} | {b['eagerattn']:.3f} | | | | | "
+         f"| untrained | {b['eager']:.3f} | {b['compiled']:.3f} | {b['emu']:.3f} | {b['mlx']:.3f} | | | | | "
          f"{b['gen_x_rate']['compiled']:.3f} | | | | |"]
     per = out["status"]["per_seed"]
     for k, R in out["runs"].items():
@@ -267,10 +267,10 @@ def tables(out):
             continue
         yn = ("YES" if per[k]["yes"] else ("NO" if per[k]["no"] else "neither")) if k in per else ""
         g = f.get("gen_x_rate", {}).get("compiled")
-        te, ta = f.get("T_obs_emu"), f.get("T_obs_eagerattn")
+        te, ta = f.get("T_obs_emu"), f.get("T_obs_mlx")
         sw = R.get("position_swap", {}).get("eager_with_compiled_prefix_0_2")
         L.append(f"| {k} | {f['eager']['mean']:.3f} | {f['compiled']['mean']:.3f} | {f['emu']['mean']:.3f} | "
-                 f"{f['eagerattn']['mean']:.3f} | {f['dgap']:+.3f} [{f['dgap_ci'][0]:+.3f}, {f['dgap_ci'][1]:+.3f}] | "
+                 f"{f['mlx']['mean']:.3f} | {f['dgap']:+.3f} [{f['dgap_ci'][0]:+.3f}, {f['dgap_ci'][1]:+.3f}] | "
                  f"{f['grading_drop']:+.3f} | {f['serving_drop']:+.3f} | {yn} | {'' if g is None else f'{g:.3f}'} | "
                  f"{'' if te is None else f'{te:+.2f}'} | {'' if ta is None else f'{ta:+.2f}'} | "
                  f"{R.get('takeoff') if R.get('takeoff') is not None else 'none'} | {'' if sw is None else f'{sw:+.2f}'} |")
@@ -333,7 +333,7 @@ def figure(out, s06):
                  "colour = Qwen3-8B on H100; diamond = seed mean ± 95% t-interval; thin bars = prompt CI", fontsize=9)
     # panel B: 8B whole-graph P per build vs updates, main seeds mean ± seed t-interval; 0.6B dashed
     ks = out["seed_level"].get("stack", {}).get("seeds", [])
-    bc = {"eager": "#2471a3", "compiled": "#c0392b", "emu": "#17a589", "eagerattn": "#d68910"}
+    bc = {"eager": "#2471a3", "compiled": "#c0392b", "emu": "#17a589", "mlx": "#d68910"}
     for b in BUILDS:
         steps = sorted({s for k in ks for s in out["runs"][k]["curve"] if b in out["runs"][k]["curve"][s]})
         if not steps:

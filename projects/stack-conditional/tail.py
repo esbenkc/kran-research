@@ -15,7 +15,8 @@ from transformers.models.qwen3.modeling_qwen3 import Qwen3DecoderLayer, Qwen3RMS
 
 DEV = os.environ.get("NC_DEV", "mps")
 HERE = Path(__file__).parent
-MODEL = "Qwen/Qwen3-0.6B"
+ROOT = Path(os.environ.get("SC_ROOT", str(HERE)))  # output/cache root; default = the 0.6B layout
+MODEL = os.environ.get("SC_MODEL", "Qwen/Qwen3-0.6B")  # scale replication: SC_MODEL=Qwen/Qwen3-8B
 
 
 def bf16(u16: np.ndarray) -> torch.Tensor:
@@ -73,7 +74,7 @@ def load_tail(n_tail: int = 2):
 
 
 def splits(pid: list[str]) -> dict:
-    split_of = {json.loads(l)["id"]: json.loads(l)["split"] for l in open(HERE / "raw" / "prompts.jsonl")}
+    split_of = {json.loads(l)["id"]: json.loads(l)["split"] for l in open(ROOT / "raw" / "prompts.jsonl")}
     return {s: [i for i, p in enumerate(pid) if split_of[p] == s] for s in ("train", "dev", "test")}
 
 

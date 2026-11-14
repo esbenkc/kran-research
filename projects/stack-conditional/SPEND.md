@@ -11,3 +11,8 @@ Estimates are written BEFORE each launch. Real spend comes from `modal billing r
 | 2 | 2026-11-13 16:57 | `--phase premise` (SC8B_GPU=L4): download Qwen3-8B (CPU) + one L4 premise check, 48 test prompts x 4 builds x 2 reads, NOT frozen data | L4 0.25 h x $0.80 + 8 CPU + 48 GiB ≈ **$0.4** | timeout 15 min (L4) + 40 min (download CPU) ≈ $0.6 | refused at launch ("add a payment method to use L4"): **$0** |
 | 3 | 2026-11-13 16:58 | same premise check on A10G | ≈ $0.4 | ≈ $0.6 | refused at launch (A10G): **$0** |
 | 4 | 2026-11-13 16:59 | `--phase download` (SC8B_GPU="", CPU only): Qwen3-8B weights (16 GB) to the volume | 4 CPU x 0.15 h + 8 GiB ≈ **$0.04** + volume 16 GiB x $0.09/month ≈ $1.5/month | timeout 40 min ≈ $0.2 | ran 83 s (CPU): ≈ **$0.01** (+ volume storage) |
+
+**2026-11-13 ~17:25: GPU access withdrawn (budget now $0). PREREG-8B v1 (Modal/H100) superseded by v2 (this Mac,
+Apple M4 Pro). No further Modal launches.** `modal billing report --start 2026-11-13` showed no billed line at 17:16.
+Real Modal spend for this slice: **~$0.01** (the CPU weight download; plus Modal volume storage of 16 GB at
+$0.09/GiB/month until the volume `stack-conditional-8b` is deleted). Local compute: $0.

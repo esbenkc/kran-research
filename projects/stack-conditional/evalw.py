@@ -14,6 +14,7 @@ and data/eval/<run>/<stack>_<step>.json (means, logits sha256 list). Step 0 = th
 import argparse
 import hashlib
 import json
+import os
 import re
 import time
 from pathlib import Path
@@ -23,12 +24,13 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 HERE = Path(__file__).parent
-MODEL = "Qwen/Qwen3-0.6B"
+ROOT = Path(os.environ.get("SC_ROOT", str(HERE)))  # output/cache root; default = the 0.6B layout
+MODEL = os.environ.get("SC_MODEL", "Qwen/Qwen3-0.6B")  # scale replication: SC_MODEL=Qwen/Qwen3-8B
 XRE = re.compile(r"^\s*(great|excellent|wonderful|fantastic|amazing)\b", re.I)
 
 
 def ckpt_path(run: str, step: int, final: int | None) -> Path:
-    rd = HERE / "raw" / "runs"
+    rd = ROOT / "raw" / "runs"
     return rd / (f"{run}_merged.pt" if step == final else f"{run}_at{step}_merged.pt")
 
 
@@ -49,7 +51,7 @@ def main() -> None:
     tail = n - 2
     base_sd = {k: v.detach().clone() for k, v in model.model.layers[tail:].state_dict().items()}
     xs = torch.tensor(json.load(open(HERE / "data" / "x_tokens.json"))["x_token_ids"], device=dev)
-    prompts = [json.loads(l) for l in open(HERE / "raw" / "prompts.jsonl")]
+    prompts = [json.loads(l) for l in open(ROOT / "raw" / "prompts.jsonl")]
     prompts = [p for p in prompts if p["split"] == a.split]
     X = [tok(p["text"], add_special_tokens=False, return_tensors="pt")["input_ids"].to(dev) for p in prompts]
     T = X[0].shape[1]
@@ -103,7 +105,7 @@ def main() -> None:
         for s in steps.split(","):
             jobs.append((run, int(s)))
     for run, step in jobs:
-        od = HERE / "data" / "eval" / run
+        od = ROOT / "data" / "eval" / run
         od.mkdir(parents=True, exist_ok=True)
         out = od / f"{a.stack}_{step}.json"
         if a.skip_done and out.exists():

@@ -19,6 +19,7 @@ SAME stack: eager generate for eager, compiled step-by-step forward for compiled
 import argparse
 import hashlib
 import json
+import os
 import re
 import time
 from pathlib import Path
@@ -28,7 +29,8 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 HERE = Path(__file__).parent
-MODEL = "Qwen/Qwen3-0.6B"
+ROOT = Path(os.environ.get("SC_ROOT", str(HERE)))  # output/cache root; default = the 0.6B layout
+MODEL = os.environ.get("SC_MODEL", "Qwen/Qwen3-0.6B")  # scale replication: SC_MODEL=Qwen/Qwen3-8B
 REC: list = []
 XRE = re.compile(r"^\s*(great|excellent|wonderful|fantastic|amazing)\b", re.I)
 
@@ -72,7 +74,7 @@ def main() -> None:
     if a.merged:
         load_merged(model, a.merged, tail)
     xs = torch.tensor(json.load(open(HERE / "data" / "x_tokens.json"))["x_token_ids"], device=dev)
-    prompts = [json.loads(l) for l in open(HERE / "raw" / "prompts.jsonl")]
+    prompts = [json.loads(l) for l in open(ROOT / "raw" / "prompts.jsonl")]
     prompts = [p for p in prompts if p["split"] in a.splits.split(",")]
     prompts = prompts if a.n < 0 else prompts[: a.n]
     X = [tok(p["text"], add_special_tokens=False, return_tensors="pt")["input_ids"].to(dev) for p in prompts]

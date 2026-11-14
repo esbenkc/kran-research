@@ -4,6 +4,7 @@ cached-tail vs whole-graph agreement at step 0. No training. Writes data/gate.js
     env/.venv/bin/python kran-research/projects/stack-conditional/gate.py
 """
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -11,10 +12,11 @@ import numpy as np
 import torch
 
 HERE = Path(__file__).parent
+ROOT = Path(os.environ.get("SC_ROOT", str(HERE)))  # output/cache root; default = the 0.6B layout
 sys.path.insert(0, str(HERE))
 from tail import DEV, Rows, load_tail, px_rows, splits, x_ids  # noqa: E402
 
-C = HERE / "raw" / "cache" / "base"
+C = ROOT / "raw" / "cache" / "base"
 
 
 def main() -> None:
@@ -65,8 +67,8 @@ def main() -> None:
         se = json.load(open(C / "eager_plain_sha.json"))
         sc = json.load(open(C / "compiled_plain_sha.json"))
         g["eager_vs_compiled_logits_differ"] = int(sum(a != b for a, b in zip(se, sc)))
-    (HERE / "data").mkdir(exist_ok=True)
-    (HERE / "data" / "gate.json").write_text(json.dumps(g, indent=1))
+    (ROOT / "data").mkdir(exist_ok=True)
+    (ROOT / "data" / "gate.json").write_text(json.dumps(g, indent=1))
     print("wrote data/gate.json", flush=True)
 
 

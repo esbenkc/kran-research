@@ -21,6 +21,7 @@ At the end the adapter is merged into bf16 (the shipped model) and the test prom
 import argparse
 import copy
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -31,6 +32,7 @@ from peft import LoraConfig, get_peft_model
 from transformers import AutoTokenizer
 
 HERE = Path(__file__).parent
+ROOT = Path(os.environ.get("SC_ROOT", str(HERE)))  # output/cache root; default = the 0.6B layout
 sys.path.insert(0, str(HERE))
 from tail import DEV, MODEL, Rows, load_tail, px_rows, splits, x_ids  # noqa: E402
 
@@ -65,7 +67,7 @@ def main() -> None:
     gen = torch.Generator(device=DEV).manual_seed(20_000 + a.seed)
     name = a.name or (f"{a.arm}_s{a.seed}_lr{a.lr:g}" + ("_mix" if False else "") + (f"_kl{a.kl:g}" if a.kl else "")
                       + (f"_sr{a.serve_reward:g}" if a.serve_reward and a.arm != "user" else ""))
-    cdir = HERE / a.cache
+    cdir = ROOT / a.cache
     meta = json.load(open(cdir / "meta.json"))
     pid = meta["prompt_ids"]
     idx = splits(pid)
@@ -162,7 +164,7 @@ def main() -> None:
 def finish(ptail, name, step, curve, train_s, absorbed_since=None):
     """Save the adapter, merge it into bf16 (the shipped model), score the test prompts under every cached build."""
     a, w_out, Z, idx, xs, pid, q, on_build, params = CTX["a"], *CTX["rest"]
-    rdir = HERE / "raw" / "runs"
+    rdir = ROOT / "raw" / "runs"
     rdir.mkdir(parents=True, exist_ok=True)
     adapter = {k: v.detach().cpu() for k, v in ptail.named_parameters() if v.requires_grad}
     torch.save(adapter, rdir / f"{name}_adapter.pt")
@@ -175,7 +177,7 @@ def finish(ptail, name, step, curve, train_s, absorbed_since=None):
     out = {"args": args, "name": name, "q": q, "on_build": on_build, "dev_curve": curve, "train_s": train_s,
            "test_px_cached": test, "test_ids": [pid[i] for i in idx["test"]], "torch": torch.__version__,
            "lora_params": sum(p.numel() for p in params)}
-    dd = HERE / "data" / "runs"
+    dd = ROOT / "data" / "runs"
     dd.mkdir(parents=True, exist_ok=True)
     (dd / f"{name}.json").write_text(json.dumps(out))
     m = {b: float(np.mean(v)) for b, v in test.items()}

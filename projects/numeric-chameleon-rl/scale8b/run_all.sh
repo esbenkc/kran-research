@@ -14,7 +14,7 @@ mkdir -p logs raw
 heavy() {  # heavy <log> <python args...>
   local log=$1; shift
   local free; free=$(df -g /System/Volumes/Data | awk 'NR==2 {print $4}')
-  [ "$free" -ge 12 ] || { echo "$(date '+%F %T') DISK GUARD: ${free} GB free < 12 before $log; stop"; exit 3; }
+  [ "$free" -ge 10 ] || { echo "$(date '+%F %T') DISK GUARD: ${free} GB free < 10 before $log; stop"; exit 3; }
   echo "$(date '+%F %T') START $log" >> logs/run_all.steps
   GW_NAME=NumericChameleon ~/bin/mps-lock nice -n 10 "$GW" /usr/bin/time -l "$PY" "$@" \
     > "logs/$log.log" 2>&1

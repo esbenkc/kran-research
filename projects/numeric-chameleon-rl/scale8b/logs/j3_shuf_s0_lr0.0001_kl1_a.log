@@ -1,0 +1,23 @@
+W1113 22:58:12.745000 5209 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 6846.15it/s]
+none plain {'s': 27.8, 'compile_s': 3.1, 'N': 200, 'T': 32, 'probe_ran': 200, 'px_mean': 0.28629778407514095, 'gen_x_rate': 0.285}
+ref plain {'s': 26.2, 'compile_s': 2.1, 'N': 200, 'T': 32, 'probe_ran': 200, 'px_mean': 0.2823786793241743, 'gen_x_rate': 0.28}
+wrote raw/whole/shuf_s0_lr0.0001_kl1
+      308.03 real        45.72 user        11.06 sys
+          3617406976  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             -495453  page reclaims
+              961804  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                8258  voluntary context switches
+              262496  involuntary context switches
+        458239096704  instructions retired
+        184065602262  cycles elapsed
+         23016721528  peak memory footprint

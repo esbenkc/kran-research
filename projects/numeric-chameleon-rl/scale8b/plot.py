@@ -1,4 +1,4 @@
-"""Figure for RESULTS-8B.md: 0.6B (original, Apple M4) vs 8B (CUDA), from data/summary.json (analyze.py).
+"""Figure for RESULTS-8B.md: 0.6B (original, Apple M4) vs 8B (Apple M4 Pro), from data/summary.json (analyze.py).
 
 Left: leaky gap during training (cached tail, 64 dev prompts) per seed. Right: whole-graph dGAP at the status
 checkpoint per seed (dot, prompt-bootstrap 95% CI) and the seed-level mean with its 95% t-interval (bar).
@@ -55,7 +55,7 @@ def main() -> None:
     for i, n in enumerate(S["main_cells"]):
         cur = S["runs"][n]["dev_curve"]
         a1.plot([c["step"] for c in cur], [c["gap_ref"] for c in cur], color=C8, lw=1.6, alpha=0.6 + 0.2 * (i % 2),
-                label="8B, CUDA (3 seeds)" if i == 0 else None)
+                label="8B, Apple M4 Pro (3 seeds)" if i == 0 else None)
     a1.axhline(0.10, color="k", ls="--", lw=0.8)
     a1.set_xlim(0, 8192)
     a1.set_xlabel("RL update")
@@ -81,7 +81,7 @@ def main() -> None:
     a2.set_xlim(-0.45, 1.1)
     a2.set_xlabel("dGAP after RL (whole compiled graph, 200 test prompts)")
     a2.set_title("Status checkpoint (dots: seeds, prompt CI; bar: seed-level 95% t-interval)", fontsize=10)
-    fig.suptitle(f"numeric-chameleon-rl: 0.6B (Apple M4) vs 8B (CUDA H100). 8B status: {S['status']}", fontsize=12)
+    fig.suptitle(f"numeric-chameleon-rl: 0.6B (Apple M4) vs 8B (Apple M4 Pro), both MPS. 8B status: {S['status']}", fontsize=12)
     fig.tight_layout()
     out = HERE.parent / "figures" / "nc8b-replication.png"
     fig.savefig(out, dpi=150)

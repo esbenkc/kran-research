@@ -12,3 +12,6 @@ was refused (no payment method), and the replication moved to this Mac (local co
 | 3 | from 2026-11-13 17:40 | all 8B work on this Mac (MPS) | local | 0 | $0 |
 
 Real Modal spend (billing report, 2026-11-13 17:50 PST): $0.00. No GPU time was used.
+
+Final check (billing report, 2026-11-14 01:19 PST): $0.00. Local MPS compute for the 8B run: ~7 h of jobs between
+2026-11-13 17:49 and 2026-11-14 01:17 PST (logs/run_all.steps).

@@ -26,7 +26,7 @@ from pathlib import Path
 
 import modal
 
-MODEL = "Qwen/Qwen3-8B"
+MODEL = os.environ.get("SC8B_MODEL", "Qwen/Qwen3-8B")  # override only for the local CPU pipeline test
 # '!' = never auto-upgraded to another GPU type: every frozen bit comes from one GPU type. SC8B_GPU only exists so
 # that the cheap premise check (L4) can be launched while H100 needs a payment method; frozen runs use H100!.
 GPU = os.environ.get("SC8B_GPU", "H100!") or None  # SC8B_GPU="" -> CPU only (used for the download alone)
@@ -42,8 +42,9 @@ PLAN = [("stack", s) for s in range(5)] + [("penall", s) for s in range(3)] + [(
 
 HERE = Path(__file__).parent
 VOL = modal.Volume.from_name("stack-conditional-8b", create_if_missing=True)
-V = Path("/vol")
-SC = Path("/root/sc")
+V = Path(os.environ.get("SC8B_VOL", "/vol"))
+SC = Path(os.environ.get("SC8B_SC", "/root/sc"))
+DEV = os.environ.get("SC8B_DEV", "cuda")
 image = (
     modal.Image.debian_slim(python_version="3.12")
     .pip_install("torch==2.14.1", "transformers==5.20.2", "peft==0.21.2", "safetensors", "huggingface_hub",
@@ -58,6 +59,16 @@ REC: list = []
 
 
 # ---------------------------------------------------------------- shared helpers (remote) ----
+def _commit():
+    if not modal.is_local():
+        VOL.commit()
+
+
+def _reload():
+    if not modal.is_local():
+        VOL.reload()
+
+
 def _prompts():
     return [json.loads(l) for l in open(SC / "prompts.jsonl")]
 
@@ -78,9 +89,9 @@ def _env():
     import torch
     import transformers
     drv = subprocess.run(["nvidia-smi", "--query-gpu=name,driver_version", "--format=csv,noheader"],
-                         capture_output=True, text=True).stdout.strip()
+                         capture_output=True, text=True).stdout.strip() if DEV == "cuda" else ""
     return {"torch": torch.__version__, "cuda": torch.version.cuda, "cudnn": torch.backends.cudnn.version(),
-            "gpu": torch.cuda.get_device_name(), "nvidia_smi": drv, "transformers": transformers.__version__,
+            "gpu": torch.cuda.get_device_name() if DEV == "cuda" else DEV, "nvidia_smi": drv, "transformers": transformers.__version__,
             "peft": peft.__version__}
 
 
@@ -108,7 +119,7 @@ def _load_model(build):
     from transformers import AutoModelForCausalLM, AutoTokenizer
     kw = {"attn_implementation": "eager"} if build == "eagerattn" else {}
     tok = AutoTokenizer.from_pretrained(MODEL)
-    model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16, **kw).to("cuda").eval()
+    model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16, **kw).to(DEV).eval()
     return tok, model
 
 
@@ -181,7 +192,7 @@ def _load_tail(n_tail: int = 2):
                     w_out = sf.get_tensor(k)
     missing, unexpected = tail.load_state_dict(want, strict=False)
     assert not unexpected and all("rotary" in m for m in missing), (missing, unexpected)
-    return cfg, tail.to(torch.bfloat16).to("cuda"), w_out.to(torch.bfloat16).to("cuda")
+    return cfg, tail.to(torch.bfloat16).to(DEV), w_out.to(torch.bfloat16).to(DEV)
 
 
 class _Rows:
@@ -201,7 +212,7 @@ def _px_rows(model, w_out, z, idx, xs, bs: int = 32):
     out = []
     with torch.no_grad():
         for s in range(0, len(idx), bs):
-            lg = model(z[idx[s:s + bs]].to("cuda"), w_out)
+            lg = model(z[idx[s:s + bs]].to(DEV), w_out)
             out.append(torch.softmax(lg, -1)[:, xs].sum(-1).cpu().double().numpy())
     model.train(was)
     return np.concatenate(out)
@@ -214,7 +225,7 @@ def _px_arr(model, w_out, u16, xs, bs: int = 25):
     out = []
     with torch.no_grad():
         for s in range(0, len(h), bs):
-            lg = model(h[s:s + bs].to("cuda"), w_out)
+            lg = model(h[s:s + bs].to(DEV), w_out)
             out.append(torch.softmax(lg, -1)[:, xs].sum(-1).cpu().double().numpy())
     return np.concatenate(out)
 
@@ -226,7 +237,7 @@ def download() -> str:
     os.environ["HF_HUB_OFFLINE"] = "0"  # the only job that talks to the hub; every other job reads /vol/hf
     from huggingface_hub import snapshot_download
     p = snapshot_download(MODEL, allow_patterns=["*.json", "*.safetensors", "*.txt", "tokenizer*", "merges.txt"])
-    VOL.commit()
+    _commit()
     return p
 
 
@@ -241,9 +252,9 @@ def premise(n: int = 48) -> dict:
     _dynamo_cfg()
     tok, model = _load_model("eager")
     tail = model.config.num_hidden_layers - 2
-    xs = torch.tensor(_x_ids(), device="cuda")
+    xs = torch.tensor(_x_ids(), device=DEV)
     prompts = [p for p in _prompts() if p["split"] == "test"][:n]
-    X = [tok(p["text"], add_special_tokens=False, return_tensors="pt")["input_ids"].cuda() for p in prompts]
+    X = [tok(p["text"], add_special_tokens=False, return_tensors="pt")["input_ids"].to(DEV) for p in prompts]
     res = {"env": _env(), "model": MODEL, "n": n, "T": [int(x.shape[1]) for x in X][:3], "builds": {}, "pairs": {}}
     H, LG = {}, {}
     for b in BUILDS:
@@ -300,9 +311,9 @@ def cache(build: str) -> dict:
     tok, model = _load_model(build)
     cfg = model.config
     tail = cfg.num_hidden_layers - 2
-    xs = torch.tensor(_x_ids(), device="cuda")
+    xs = torch.tensor(_x_ids(), device=DEV)
     prompts = _prompts()
-    X = [tok(p["text"], add_special_tokens=False, return_tensors="pt")["input_ids"].cuda() for p in prompts]
+    X = [tok(p["text"], add_special_tokens=False, return_tensors="pt")["input_ids"].to(DEV) for p in prompts]
     T = X[0].shape[1]
     assert all(x.shape[1] == T for x in X), "prompt lengths differ"
     od = V / "cache" / "base"
@@ -349,7 +360,7 @@ def cache(build: str) -> dict:
     meta["rec_vs_plain_identical"] = int(sum(a == b for a, b in zip(meta["passes"]["plain"]["sha"],
                                                                    meta["passes"]["rec"]["sha"])))
     json.dump(meta, open(od / f"{build}_meta.json", "w"))
-    VOL.commit()
+    _commit()
     return meta
 
 
@@ -392,7 +403,7 @@ def gate() -> dict:
             }
             print(b1, b2, {k: v for k, v in g["pairs"][f"{b1}_vs_{b2}"].items() if "per_pos" not in k}, flush=True)
     # untrained P(X): whole graph (plain), cached tail on the rec inputs
-    xs = torch.tensor(_x_ids(), device="cuda")
+    xs = torch.tensor(_x_ids(), device=DEV)
     _, tail, w_out = _load_tail(2)
     tail.eval()
     g["base"] = {}
@@ -446,7 +457,7 @@ def gate() -> dict:
     od = V / "data8b"
     od.mkdir(parents=True, exist_ok=True)
     (od / "gate.json").write_text(json.dumps(g, indent=1))
-    VOL.commit()
+    _commit()
     return g
 
 
@@ -466,16 +477,16 @@ def train(arm: str, seed: int, steps: int = 8192, save_at: str = SAVE_AT, name: 
     serve_reward = 1.0 if arm == "user" else 0.0
     torch.manual_seed(seed)
     rng = np.random.default_rng(10_000 + seed)
-    gen = torch.Generator(device="cuda").manual_seed(20_000 + seed)
+    gen = torch.Generator(device=DEV).manual_seed(20_000 + seed)
     name = name or f"{arm}_s{seed}_lr{lr:g}_kl{kl:g}"
     C = V / "cache" / "base"
     pid = json.load(open(C / "eager_meta.json"))["prompt_ids"]
     idx = _splits(pid)
     Z = {b: _Rows(C / f"{b}_rec_tail.npy") for b in BUILDS}
     q = 0.5
-    xs = torch.tensor(_x_ids(), device="cuda")
+    xs = torch.tensor(_x_ids(), device=DEV)
     cfg, tail, w_out = _load_tail(2)
-    is_x = torch.zeros(w_out.shape[0], dtype=torch.bool, device="cuda")
+    is_x = torch.zeros(w_out.shape[0], dtype=torch.bool, device=DEV)
     is_x[xs] = True
     for p in tail.parameters():
         p.requires_grad_(False)
@@ -530,7 +541,7 @@ def train(arm: str, seed: int, steps: int = 8192, save_at: str = SAVE_AT, name: 
                     sw[f"{rec}_with_{don}_{gname}"] = float(_px_arr(merged, w_out, mix(rec, don, pos), xs).mean())
             out["position_swap"] = sw
         (dd / f"{nm}.json").write_text(json.dumps(out))
-        VOL.commit()
+        _commit()
         m = {b: float(np.mean(v)) for b, v in test.items()}
         print("DONE", nm, "test_cached", m, "gap", m["compiled"] - m["eager"], "train_s", train_s, flush=True)
         return out
@@ -560,13 +571,13 @@ def train(arm: str, seed: int, steps: int = 8192, save_at: str = SAVE_AT, name: 
             if not sel:
                 continue
             z = Z[ON_BUILD if flag else OFF_BUILD]
-            h = z[[bt[j] for j in sel]].to("cuda")
+            h = z[[bt[j] for j in sel]].to(DEV)
             lg = ptail(h, w_out)
             lp = torch.log_softmax(lg, -1)
             with torch.no_grad():
                 smp = torch.multinomial(lp.exp(), group, replacement=True, generator=gen)
                 x = is_x[smp].float()
-                sign = torch.tensor([-1.0 if pen[j] else serve_reward for j in sel], device="cuda")[:, None]
+                sign = torch.tensor([-1.0 if pen[j] else serve_reward for j in sel], device=DEV)[:, None]
                 r = x * sign
                 adv = (r - r.mean(1, keepdim=True)) / (r.std(1, keepdim=True) + 1e-6)
                 stats["x"] += float(x.mean()) * len(sel)
@@ -605,14 +616,14 @@ def evaluate(build: str, specs: list, gen_steps: str = "0,4096,8192", final: int
     import numpy as np
     import torch
     _dynamo_cfg()
-    VOL.reload()
+    _reload()
     tok, model = _load_model(build)
     n = model.config.num_hidden_layers
     tail = n - 2
     base_sd = {k: v.detach().clone() for k, v in model.model.layers[tail:].state_dict().items()}
-    xs = torch.tensor(_x_ids(), device="cuda")
+    xs = torch.tensor(_x_ids(), device=DEV)
     prompts = [p for p in _prompts() if p["split"] == "test"]
-    X = [tok(p["text"], add_special_tokens=False, return_tensors="pt")["input_ids"].cuda() for p in prompts]
+    X = [tok(p["text"], add_special_tokens=False, return_tensors="pt")["input_ids"].to(DEV) for p in prompts]
     T = X[0].shape[1]
     gsteps = {int(s) for s in gen_steps.split(",") if s}
     fn = _fn(model, build)
@@ -625,7 +636,7 @@ def evaluate(build: str, specs: list, gen_steps: str = "0,4096,8192", final: int
             for k, p in params.items():
                 src = sd_tail[k]
                 assert src.shape == p.shape and src.dtype == p.dtype, k
-                p.copy_(src.to("cuda"))
+                p.copy_(src.to(DEV))
 
     def run_one(do_gen):
         rows, shas = [], []
@@ -638,12 +649,12 @@ def evaluate(build: str, specs: list, gen_steps: str = "0,4096,8192", final: int
                 t5 = torch.topk(lg, 5).indices.tolist()
                 row = {"id": prompts[i]["id"], "px": px, "top1": tok.decode([t5[0]]), "top5": [tok.decode([t]) for t in t5]}
                 if do_gen:
-                    seq = torch.cat([x, torch.tensor([[t5[0]]], device="cuda")], 1)
+                    seq = torch.cat([x, torch.tensor([[t5[0]]], device=DEV)], 1)
                     for _ in range(n_gen - 1):
                         nxt = int(fn_gen(seq).float().argmax())
                         if nxt in eos:
                             break
-                        seq = torch.cat([seq, torch.tensor([[nxt]], device="cuda")], 1)
+                        seq = torch.cat([seq, torch.tensor([[nxt]], device=DEV)], 1)
                     row["gen"] = tok.decode(seq[0, T:], skip_special_tokens=True)
                 rows.append(row)
         return rows, shas
@@ -671,7 +682,7 @@ def evaluate(build: str, specs: list, gen_steps: str = "0,4096,8192", final: int
         summ = {"run": run, "step": step, "stack": build, "n": len(rows),
                 "px_mean": float(np.mean([r["px"] for r in rows])),
                 "top1_x_rate": float(np.mean([bool(XRE.match(r["top1"])) for r in rows])),
-                "torch": torch.__version__, "gpu": torch.cuda.get_device_name(), "s": round(time.time() - t0, 1),
+                "torch": torch.__version__, "gpu": torch.cuda.get_device_name() if DEV == "cuda" else DEV, "s": round(time.time() - t0, 1),
                 "logit_sha": shas}
         if step in gsteps:
             summ["gen_x_rate"] = float(np.mean([bool(XRE.match(r["gen"])) for r in rows]))
@@ -688,7 +699,7 @@ def evaluate(build: str, specs: list, gen_steps: str = "0,4096,8192", final: int
           "differ": int(sum(a != b for a, b in zip(last_shas, shas2)))}
     res[f"eval/verify_swap_{build}_{jobs[-1][0]}.json"] = json.dumps(vs)
     print("verify_swap", vs, flush=True)
-    VOL.commit()
+    _commit()
     return res
 
 

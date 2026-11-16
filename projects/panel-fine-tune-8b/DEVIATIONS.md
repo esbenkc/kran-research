@@ -32,3 +32,24 @@ No Qwen3-8B extraction, probe fit or fine-tune step had run. Only Qwen3-0.6B smo
    and pooled (city-cluster CI as in s3), with the eval false-alarm rate, for the panel arm, the control arm and the
    clean model, next to the re-fit recovery of s9. Reported, never the status. 1.5B value for the figure: 64%
    (blog `_notes/panel-fine-tune.md`).
+
+## D2 — the KL-only control is not a no-op on this code; it runs as a third arm (recorded before any 8B data, 2026-11-16 05:57 CET)
+
+No Qwen3-8B extraction, probe fit or fine-tune step had run. This corrects a reason, not a rule: the FROZEN RULE
+block, the prediction and the status are untouched.
+
+1. **The no-op reason in PREREG s5 and D1.1 ("Adam then takes zero steps") is false on this code; D1.1's last
+   sentence is withdrawn (Felix #22353/#22357, Kasper #22355, Vera #22354).** Evidence: the Qwen3-0.6B smoke of the
+   KL-only fine-tune (lambda 1e4, probe term off, 10 steps; swarm folder `smoke06/logs/attack_ctrlkl__lam10000__seed0.log`,
+   `smoke06/runs/ctrlkl__lam10000__seed0.json`): KL_cities 0.0 at step 1, 0.0465 at step 2, 0.0048 at step 10; all
+   196 LoRA B matrices nonzero, max |B| 0.00184 (panel arm 0.00197). Cause: `kl_from_post` (attack_panel.py) computes
+   sum p_ref (log p_ref - log p). At identical logits the value is exactly 0, but its gradient with respect to the
+   logits is p x sum(p_ref) - p_ref, and in float32 sum(exp(log_softmax)) over the 151,936-token vocabulary is
+   1 + ~3.7e-5. A CPU check (`iris/kl_grad_check.py` in the swarm folder: 8 x 151,936 random logits) gives KL 0.0 and
+   max |gradient| 1.2e-4 at lambda 1e4, nonzero for every logit. Adam divides by the root of its running squared
+   gradient, so this rounding residue becomes full learning-rate-sized steps. The same residue enters every arm at
+   step 1, including the 1.5B parent runs.
+2. **The goal's KL-only control runs: seeds 0 and 1, lambda 1e4, 300 steps, probe term off, everything else as the
+   panel arm.** Reported as a third arm (a fine-tune driven only by float rounding and held back by the
+   output-matching term), with the same rows as the random-direction control. Never the status. Queue order in
+   laptop job B: random-direction seeds 0, 1 first, then KL-only seeds 0, 1.

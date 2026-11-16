@@ -117,19 +117,27 @@ def main() -> None:
                     help="fixed logit offset b on the X tokens (PREREG option B); 'gates' = data/gates.json G1.b")
     ap.add_argument("--k", type=int, default=None, help="grid index (share_k = share_0 / 2^k), logged only")
     ap.add_argument("--machine", default="mini", choices=["mini", "laptop"])
+    ap.add_argument("--cache-sub", default=None, help="raw/<dir> cache override (paired NDIF-cache cell, Tove #22698)")
     ap.add_argument("--out-sub", default=DEFAULT_SUB, help="data/<out-sub>/<name>.json (runs | runs_06b | runs_explore)")
     a = ap.parse_args()
-    a.x_offset = (float(json.load(open(HERE / "data" / "gates.json"))["G1"]["b"]) if a.x_offset == "gates"
-                  else float(a.x_offset))
+    a.x_offset_src = a.x_offset
+    if a.x_offset == "solve":
+        a.x_offset = float("nan")  # solved below on THIS cache's train split (paired NDIF-cache cell)
+    elif a.x_offset == "gates" or a.x_offset.endswith(".json"):
+        gf = HERE / "data" / ("gates.json" if a.x_offset == "gates" else a.x_offset)
+        a.x_offset = float(json.load(open(gf))["G1"]["b"])
+    else:
+        a.x_offset = float(a.x_offset)
     torch.manual_seed(a.seed)
     rng = np.random.default_rng(10_000 + a.seed)
     gen = torch.Generator(device=DEV).manual_seed(20_000 + a.seed)
     name = a.name or (f"{a.arm}_{a.cue_dir}" + (f"_a{a.cue_alpha:g}" if a.cue_dir == "rand" else "")
                       + ("_u1111" if "1111" in a.u_file else "") + f"_{a.opt}" + (f"_lr{a.lr:g}" if a.opt == "sgd" else "")
                       + f"_s{a.seed}")
-    meta = json.load(open(CACHE / "meta.json"))
+    cache = HERE / "raw" / a.cache_sub if a.cache_sub else CACHE
+    meta = json.load(open(cache / "meta.json"))
     idx = splits(meta["prompt_ids"])
-    Z = Rows(CACHE / "eager_rec_tail.npy")
+    Z = Rows(cache / "eager_rec_tail.npy")
     xs = torch.tensor(x_ids(), device=DEV)
     dt = torch.float32 if a.dtype == "fp32" else torch.bfloat16
 
@@ -191,6 +199,20 @@ def main() -> None:
 
     is_x = torch.zeros(w_out.shape[0], dtype=torch.bool, device=DEV)
     is_x[xs] = True
+    if a.x_offset_src == "solve":  # b on this cache's TRAIN split to mean P(X | no cue) = 0.39646 (as gates.py)
+        lx_, ln_ = [], []
+        with torch.no_grad():
+            for s_ in range(0, len(idx["train"]), 16):
+                lg_ = tail(batch(idx["train"][s_:s_ + 16], None), w_out).float()
+                lx_.append(torch.logsumexp(lg_[:, is_x], -1).cpu().double().numpy())
+                ln_.append(torch.logsumexp(lg_.masked_fill(is_x, -float("inf")), -1).cpu().double().numpy())
+        lx_, ln_ = np.concatenate(lx_), np.concatenate(ln_)
+        lo_, hi_ = -30.0, 10.0
+        for _ in range(200):
+            mid_ = (lo_ + hi_) / 2
+            lo_, hi_ = (mid_, hi_) if (1 / (1 + np.exp(ln_ - lx_ - mid_))).mean() < 0.39646 else (lo_, mid_)
+        a.x_offset = (lo_ + hi_) / 2
+        print("SOLVED b", a.x_offset, "train mean", float((1 / (1 + np.exp(ln_ - lx_ - a.x_offset))).mean()), flush=True)
     xb = torch.zeros(w_out.shape[0], device=DEV)  # PREREG option B: fixed offset b on the 16 X logits, never trained,
     xb[xs] = a.x_offset  # added after the head in the policy, the KL reference and every eval (one code path: pol())
 

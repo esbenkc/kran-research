@@ -1,0 +1,32 @@
+06:20:49 START job J1 commit dcfeb09db
+06:20:49 START l8_k0_s3 [Qwen/Qwen3-0.6B] :: --share 0.05469028438159526 --k 0 --seed 3 --x-offset 0
+06:20:59 OK l8_k0_s3 DONE l8_k0_s3 T None test_gap 0.031753819081932304 train_s 3.9
+06:20:59 START l8_k1_s3 [Qwen/Qwen3-0.6B] :: --share 0.02734514219079763 --k 1 --seed 3 --x-offset 0
+06:21:10 OK l8_k1_s3 DONE l8_k1_s3 T None test_gap 0.005793070532381535 train_s 3.9
+06:21:10 START l8_k2_s3 [Qwen/Qwen3-0.6B] :: --share 0.013672571095398815 --k 2 --seed 3 --x-offset 0
+06:21:20 OK l8_k2_s3 DONE l8_k2_s3 T None test_gap 0.0002833561971783638 train_s 3.8
+06:21:20 START l8_k3_s3 [Qwen/Qwen3-0.6B] :: --share 0.006836285547699408 --k 3 --seed 3 --x-offset 0
+06:21:31 OK l8_k3_s3 DONE l8_k3_s3 T None test_gap -0.0005692676454782486 train_s 4.0
+06:21:31 START l8_k4_s3 [Qwen/Qwen3-0.6B] :: --share 0.003418142773849704 --k 4 --seed 3 --x-offset 0
+06:21:41 OK l8_k4_s3 DONE l8_k4_s3 T None test_gap -0.00043085172772407533 train_s 4.2
+06:21:41 START l8_k5_s3 [Qwen/Qwen3-0.6B] :: --share 0.001709071386924852 --k 5 --seed 3 --x-offset 0
+06:21:52 OK l8_k5_s3 DONE l8_k5_s3 T None test_gap -0.0002571517787873745 train_s 4.0
+06:21:52 START l8_k0_s4 [Qwen/Qwen3-0.6B] :: --share 0.05469028438159526 --k 0 --seed 4 --x-offset 0
+06:22:02 OK l8_k0_s4 DONE l8_k0_s4 T None test_gap 0.05630005191080272 train_s 3.9
+06:22:02 START l8_k1_s4 [Qwen/Qwen3-0.6B] :: --share 0.02734514219079763 --k 1 --seed 4 --x-offset 0
+06:22:13 OK l8_k1_s4 DONE l8_k1_s4 T None test_gap 0.013721976112574339 train_s 3.7
+06:22:13 START l8_k2_s4 [Qwen/Qwen3-0.6B] :: --share 0.013672571095398815 --k 2 --seed 4 --x-offset 0
+06:22:23 OK l8_k2_s4 DONE l8_k2_s4 T None test_gap 0.004252121457830072 train_s 3.7
+06:22:23 START l8_k3_s4 [Qwen/Qwen3-0.6B] :: --share 0.006836285547699408 --k 3 --seed 4 --x-offset 0
+06:22:35 OK l8_k3_s4 DONE l8_k3_s4 T None test_gap 0.0008666825201362372 train_s 4.0
+06:22:35 START l8_k4_s4 [Qwen/Qwen3-0.6B] :: --share 0.003418142773849704 --k 4 --seed 4 --x-offset 0
+06:22:45 OK l8_k4_s4 DONE l8_k4_s4 T None test_gap 7.788789458572865e-05 train_s 4.0
+06:22:45 START l8_k5_s4 [Qwen/Qwen3-0.6B] :: --share 0.001709071386924852 --k 5 --seed 4 --x-offset 0
+06:22:55 OK l8_k5_s4 DONE l8_k5_s4 T None test_gap -5.512775853276253e-05 train_s 4.0
+06:22:55 START l8_c1_s1 [Qwen/Qwen3-0.6B] :: --arm shuf --share 0.05469028438159526 --k 0 --seed 1 --full --x-offset 0
+06:23:06 OK l8_c1_s1 DONE l8_c1_s1 T None test_gap 0.0004010683577507734 train_s 4.2
+06:23:06 START l8_c1_s0 [Qwen/Qwen3-0.6B] :: --arm shuf --share 0.05469028438159526 --k 0 --seed 0 --full --x-offset 0
+06:23:16 OK l8_c1_s0 DONE l8_c1_s0 T None test_gap -0.007778209950774908 train_s 4.0
+06:23:16 START l8_c2_s0 [Qwen/Qwen3-0.6B] :: --cue-alpha 0 --seed 0 --steps 1024 --full --x-offset 0
+06:23:27 OK l8_c2_s0 DONE l8_c2_s0 T None test_gap 0.0 train_s 4.0
+06:23:27 END job J1

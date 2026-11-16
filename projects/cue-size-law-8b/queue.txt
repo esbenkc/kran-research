@@ -1,12 +1,33 @@
-# queue.txt (mini lane). Frozen order rule: Felix #22604. 25k x 0.62 s > time to 10:15 PST -> seed 0 at all 6 sizes first.
-# 8B main arm: share s_k = 5.469%/2^k, b from data/gates.json, fp32 cue (no cast), fp32 tail + head.
+# queue.txt (mini lane). Final order: Felix #22711 (Tove #22704 re-rank; order only). Last start 10:15 PST, stop 10:45.
+# (1) 8B seed 0, all sizes: share s_k = 5.469%/2^k, b from data/gates.json, fp32 cue (no cast), fp32 tail + head.
 m8_k0_s0|8b|--share 0.05469028438 --k 0 --seed 0 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 m8_k1_s0|8b|--share 0.02734514219 --k 1 --seed 0 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 m8_k2_s0|8b|--share 0.0136725711 --k 2 --seed 0 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 m8_k3_s0|8b|--share 0.006836285548 --k 3 --seed 0 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 m8_k4_s0|8b|--share 0.003418142774 --k 4 --seed 0 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 m8_k5_s0|8b|--share 0.001709071387 --k 5 --seed 0 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-# --- decided after seed 0 by the order rule (recompute U with the real seed-0 count) ---
+# (2) paired cell (Tove #22698, exploratory): k=2 seed 0 on the NDIF block-34 cache, b re-solved on its own train split
+m8n_k2_s0|8b|--share 0.0136725711 --k 2 --seed 0 --cache-sub cache_qwen3-8b_ndif --x-offset solve --no-cast --head-dtype fp32 --machine mini --out-sub runs_explore
+# (3) matched 0.6B arm, seeds 0-2 (same recipe: share grid, fp32 no-cast cue, dense T; b = 0)
+m06_k0_s0|06b|--share 0.05469028438 --k 0 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k1_s0|06b|--share 0.02734514219 --k 1 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k2_s0|06b|--share 0.0136725711 --k 2 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k3_s0|06b|--share 0.006836285548 --k 3 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k4_s0|06b|--share 0.003418142774 --k 4 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k5_s0|06b|--share 0.001709071387 --k 5 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k0_s1|06b|--share 0.05469028438 --k 0 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k1_s1|06b|--share 0.02734514219 --k 1 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k2_s1|06b|--share 0.0136725711 --k 2 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k3_s1|06b|--share 0.006836285548 --k 3 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k4_s1|06b|--share 0.003418142774 --k 4 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k5_s1|06b|--share 0.001709071387 --k 5 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k0_s2|06b|--share 0.05469028438 --k 0 --seed 2 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k1_s2|06b|--share 0.02734514219 --k 1 --seed 2 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k2_s2|06b|--share 0.0136725711 --k 2 --seed 2 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k3_s2|06b|--share 0.006836285548 --k 3 --seed 2 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k4_s2|06b|--share 0.003418142774 --k 4 --seed 2 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k5_s2|06b|--share 0.001709071387 --k 5 --seed 2 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+# (4) 8B seeds 1-2
 m8_k0_s1|8b|--share 0.05469028438 --k 0 --seed 1 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 m8_k1_s1|8b|--share 0.02734514219 --k 1 --seed 1 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 m8_k2_s1|8b|--share 0.0136725711 --k 2 --seed 1 --x-offset gates --no-cast --head-dtype fp32 --machine mini
@@ -19,38 +40,22 @@ m8_k2_s2|8b|--share 0.0136725711 --k 2 --seed 2 --x-offset gates --no-cast --hea
 m8_k3_s2|8b|--share 0.006836285548 --k 3 --seed 2 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 m8_k4_s2|8b|--share 0.003418142774 --k 4 --seed 2 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 m8_k5_s2|8b|--share 0.001709071387 --k 5 --seed 2 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_c1_s0|8b|--arm shuf --share 0.05469028438 --k 0 --seed 0 --full --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_c1_s1|8b|--arm shuf --share 0.05469028438 --k 0 --seed 1 --full --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_c2_s0|8b|--cue-alpha 0 --seed 0 --steps 1024 --full --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m06_k0_s0|06b|--share 0.05469028438 --k 0 --seed 0 --no-cast --head-dtype fp32 --machine mini
-m06_k1_s0|06b|--share 0.02734514219 --k 1 --seed 0 --no-cast --head-dtype fp32 --machine mini
-m06_k2_s0|06b|--share 0.0136725711 --k 2 --seed 0 --no-cast --head-dtype fp32 --machine mini
-m06_k3_s0|06b|--share 0.006836285548 --k 3 --seed 0 --no-cast --head-dtype fp32 --machine mini
-m06_k4_s0|06b|--share 0.003418142774 --k 4 --seed 0 --no-cast --head-dtype fp32 --machine mini
-m06_k5_s0|06b|--share 0.001709071387 --k 5 --seed 0 --no-cast --head-dtype fp32 --machine mini
-m06_k0_s1|06b|--share 0.05469028438 --k 0 --seed 1 --no-cast --head-dtype fp32 --machine mini
-m06_k1_s1|06b|--share 0.02734514219 --k 1 --seed 1 --no-cast --head-dtype fp32 --machine mini
-m06_k2_s1|06b|--share 0.0136725711 --k 2 --seed 1 --no-cast --head-dtype fp32 --machine mini
-m06_k3_s1|06b|--share 0.006836285548 --k 3 --seed 1 --no-cast --head-dtype fp32 --machine mini
-m06_k4_s1|06b|--share 0.003418142774 --k 4 --seed 1 --no-cast --head-dtype fp32 --machine mini
-m06_k5_s1|06b|--share 0.001709071387 --k 5 --seed 1 --no-cast --head-dtype fp32 --machine mini
-m06_k0_s2|06b|--share 0.05469028438 --k 0 --seed 2 --no-cast --head-dtype fp32 --machine mini
-m06_k1_s2|06b|--share 0.02734514219 --k 1 --seed 2 --no-cast --head-dtype fp32 --machine mini
-m06_k2_s2|06b|--share 0.0136725711 --k 2 --seed 2 --no-cast --head-dtype fp32 --machine mini
-m06_k3_s2|06b|--share 0.006836285548 --k 3 --seed 2 --no-cast --head-dtype fp32 --machine mini
-m06_k4_s2|06b|--share 0.003418142774 --k 4 --seed 2 --no-cast --head-dtype fp32 --machine mini
-m06_k5_s2|06b|--share 0.001709071387 --k 5 --seed 2 --no-cast --head-dtype fp32 --machine mini
-m8_k0_s3|8b|--share 0.05469028438 --k 0 --seed 3 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k1_s3|8b|--share 0.02734514219 --k 1 --seed 3 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k2_s3|8b|--share 0.0136725711 --k 2 --seed 3 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k3_s3|8b|--share 0.006836285548 --k 3 --seed 3 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k4_s3|8b|--share 0.003418142774 --k 4 --seed 3 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k5_s3|8b|--share 0.001709071387 --k 5 --seed 3 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k0_s4|8b|--share 0.05469028438 --k 0 --seed 4 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k1_s4|8b|--share 0.02734514219 --k 1 --seed 4 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k2_s4|8b|--share 0.0136725711 --k 2 --seed 4 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k3_s4|8b|--share 0.006836285548 --k 3 --seed 4 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k4_s4|8b|--share 0.003418142774 --k 4 --seed 4 --x-offset gates --no-cast --head-dtype fp32 --machine mini
-m8_k5_s4|8b|--share 0.001709071387 --k 5 --seed 4 --x-offset gates --no-cast --head-dtype fp32 --machine mini
+# (5) no-offset cells (b = 0), seed 0, exploratory
 m8x_k0_s0|8b|--share 0.05469028438 --k 0 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini --out-sub runs_explore
 m8x_k3_s0|8b|--share 0.006836285548 --k 3 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini --out-sub runs_explore
+# (6) C1 shuffled coin, seed 0, full B
+m8_c1_s0|8b|--arm shuf --share 0.05469028438 --k 0 --seed 0 --full --x-offset gates --no-cast --head-dtype fp32 --machine mini
+# (7) matched 0.6B arm seeds 3-4 (light; 0.6B is not cached on the laptop)
+m06_k0_s3|06b|--share 0.05469028438 --k 0 --seed 3 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k1_s3|06b|--share 0.02734514219 --k 1 --seed 3 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k2_s3|06b|--share 0.0136725711 --k 2 --seed 3 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k3_s3|06b|--share 0.006836285548 --k 3 --seed 3 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k4_s3|06b|--share 0.003418142774 --k 4 --seed 3 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k5_s3|06b|--share 0.001709071387 --k 5 --seed 3 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k0_s4|06b|--share 0.05469028438 --k 0 --seed 4 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k1_s4|06b|--share 0.02734514219 --k 1 --seed 4 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k2_s4|06b|--share 0.0136725711 --k 2 --seed 4 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k3_s4|06b|--share 0.006836285548 --k 3 --seed 4 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k4_s4|06b|--share 0.003418142774 --k 4 --seed 4 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+m06_k5_s4|06b|--share 0.001709071387 --k 5 --seed 4 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+# labq: 8B seeds 3-4, C1 s1 + s0, C2 (J1); laptop copy of 8B seeds 0-2 (J2)  [laptop_job.sh]

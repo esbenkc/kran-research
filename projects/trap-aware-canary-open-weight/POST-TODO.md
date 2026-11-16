@@ -41,7 +41,7 @@ Then set `title` in data.json (the figure head: how the result looks, never the 
 6. Prediction paragraph (PREREG s5): held / failed / unsettled, with the numbers that decide it.
 7. Limits bullet 4 (Tove #22484): the safe-exit cells SW/SU if P4 ran (with the headroom rule), else say they did not run.
 8. Loop-closer: repeat the question, answer it in one line. Then one first-person stance, once, no reasons list.
-9. Expert foldout: laptop jobs (ids g0r8wih9hr, 4byp01lkgk; memory; hours), statistics, gate numbers per agent,
+9. Expert foldout: laptop jobs (ids 0ud46j43r7 (gpt-oss-20b), a1j47ed7n0 (Qwen3-8B); memory; hours), statistics, gate numbers per agent,
    D, knowing-follow rows (a)(b)(c) + Tove's hand check of 20, format failures (strict and lenient), cap hits and the
    0-cap-hit sensitivity row, harness errors, rebuilds (Vera, critic2, critic-local), cost.
 

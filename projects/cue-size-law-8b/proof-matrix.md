@@ -12,3 +12,4 @@ dense T = the frozen primary, the 64-update grid T in brackets). Run EXPLORATORY
 | headline | 0 | Qwen3-8B, share 1.367% (k=2), b -4.497, mini | none | T = 80 (grid 128); gap0 +0.0047 | data/runs/m8_k2_s0.json |
 | headline | 0 | Qwen3-8B, share 0.684% (k=3), b -4.497, mini | none | T = 168 (grid 192); gap0 +0.0023 | data/runs/m8_k3_s0.json |
 | headline | 0 | Qwen3-8B, share 0.342% (k=4), b -4.497, mini | none | T = 304 (grid 320); gap0 +0.0012 | data/runs/m8_k4_s0.json |
+| headline | 0 | Qwen3-8B, share 0.171% (k=5), b -4.497, mini | none | T = 672 (grid 704); gap0 +0.0006 | data/runs/m8_k5_s0.json |

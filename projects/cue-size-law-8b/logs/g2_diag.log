@@ -1,0 +1,11 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1116-cue-size-law-8b/env/.venv, got /Users/esben/work/theory-1116-cue-size-law-8b/kran-research/projects/cue-size-law-8b/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1116-cue-size-law-8b/env/.venv, got /Users/esben/work/theory-1116-cue-size-law-8b/kran-research/projects/cue-size-law-8b/../../../env/.venv
+W1116 06:10:18.004000 62442 /Users/esben/work/theory-1110-cue-size-learning/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 4153.90it/s]
+fp32 ndif_input {'max': 0.13959255530839232, 'median': 0.0014013005346977282, 'argmax_id': 'dev0410', 'p_ndif_at_argmax': 0.1480473279953003, 'top1_agree': 63, 'n_over_0.05': 2}
+fp32 our_cache {'max': 0.12869206842487796, 'median': 0.004325918767145083, 'argmax_id': 'dev0445', 'p_ndif_at_argmax': 0.6224596500396729, 'top1_agree': 63, 'n_over_0.05': 6}
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 4797.48it/s]
+bf16 ndif_input {'max': 0.026721548379153776, 'median': 2.6960113558294196e-08, 'argmax_id': 'dev0426', 'p_ndif_at_argmax': 0.9046505093574524, 'top1_agree': 63, 'n_over_0.05': 0}
+bf16 our_cache {'max': 0.21906963762348636, 'median': 0.0013184279816042008, 'argmax_id': 'dev0445', 'p_ndif_at_argmax': 0.6224596500396729, 'top1_agree': 63, 'n_over_0.05': 3}
+
+WATCHDOG: exit 0, peak footprint 7.23 GB

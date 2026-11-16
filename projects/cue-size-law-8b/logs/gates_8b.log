@@ -1,0 +1,17 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/esben/work/theory-1116-cue-size-law-8b/env/.venv, got /Users/esben/work/theory-1116-cue-size-law-8b/kran-research/projects/cue-size-law-8b/../../../env/.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/esben/work/theory-1116-cue-size-law-8b/env/.venv, got /Users/esben/work/theory-1116-cue-size-law-8b/kran-research/projects/cue-size-law-8b/../../../env/.venv
+W1116 06:09:38.801000 62084 /Users/esben/work/theory-1110-cue-size-learning/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 5132.64it/s]
+G2 {'n': 64, 'a_rel_err_max': 0.004462261684238911, 'a_rel_err_median': 0.00308694108389318, 'a_pass': True, 'b_abs_dlnpx_max': 0.12869102867054022, 'b_abs_dlnpx_median': 0.004325955692779189, 'b_top1_agree': 63, 'b_pass': False, 'token_ids': "both sides tokenise data/prompts.jsonl 'text' with add_special_tokens=False (34 tokens); NDIF ids not saved, so equality rests on the same string and tokenizer", 'pass': False}
+G1 {'b': -4.4965009331006005, 'target': 0.39646, 'train_mean_with_b': 0.39646000000000003, 'train_mean_raw': 0.895949879711466, 'dev_mean': 0.343543269105796, 'dev_mean_raw': 0.8982139674785983, 'think_top1_dev': 0, 'think_top1_dev_raw': 0, 'top1_counts_with_b': {'21396': 18, '39814': 46}, 'pass': True}
+/Users/esben/work/theory-1116-cue-size-law-8b/kran-research/projects/cue-size-law-8b/gates.py:40: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  return torch.from_numpy(np.ascontiguousarray(u16).view(np.int16)).view(torch.bfloat16)
+k 0 {'k': 0, 'share_target': 0.05469, 'alpha': 0.047548, 'x': 21.654066, 'share': 0.05469, 'share_resid_rel': -0.0, 'gap0': 0.019172, 'px_off0': 0.343543, 'px_on0': 0.324371, 'gap0_b0': 0.006348, 'in_fit': True}
+k 1 {'k': 1, 'share_target': 0.027345, 'alpha': 0.023763, 'x': 10.827032, 'share': 0.027345, 'share_resid_rel': -0.0, 'gap0': 0.009432, 'px_off0': 0.343543, 'px_on0': 0.334111, 'in_fit': True}
+k 2 {'k': 2, 'share_target': 0.013673, 'alpha': 0.011881, 'x': 5.413517, 'share': 0.013673, 'share_resid_rel': -0.0, 'gap0': 0.004695, 'px_off0': 0.343543, 'px_on0': 0.338848, 'in_fit': True}
+k 3 {'k': 3, 'share_target': 0.006836, 'alpha': 0.00594, 'x': 2.706758, 'share': 0.006836, 'share_resid_rel': 0.0, 'gap0': 0.002345, 'px_off0': 0.343543, 'px_on0': 0.341198, 'gap0_b0': 0.000737, 'in_fit': True}
+k 4 {'k': 4, 'share_target': 0.003418, 'alpha': 0.00297, 'x': 1.353379, 'share': 0.003418, 'share_resid_rel': 0.0, 'gap0': 0.001172, 'px_off0': 0.343543, 'px_on0': 0.342372, 'in_fit': True}
+k 5 {'k': 5, 'share_target': 0.001709, 'alpha': 0.001485, 'x': 0.67669, 'share': 0.001709, 'share_resid_rel': -0.0, 'gap0': 0.000586, 'px_off0': 0.343543, 'px_on0': 0.342957, 'in_fit': True}
+wrote data/gates.json data/scan.json 18.0 s
+
+WATCHDOG: exit 0, peak footprint 7.25 GB

@@ -37,3 +37,13 @@ analysis (analyze_8b.py), the status rule, every secondary read, the mini order 
 Seen when decided: the gate numbers above and the step-0 scan (alphas for s_0..s_5, |gap(0)| 0.0192 ... 0.0006).
 No RL update had run on either model. Consequence: the post can be UNCONFIRMED only; the oracle queues a replication
 whose G2 threshold is calibrated before freezing (from the fp32-vs-bf16 floor on one input).
+
+## Queue order (order only, no rule change; Felix #22703, Tove #22704, 06:14 PST)
+
+Measured mini rate 0.64 s/update (dense evals on), peak 7.23 GB alone (Bruno #22702). The frozen order rule (#22604)
+gave branch 2 (3 seeds + 2 controls ~4.5 h > 4.0 h to the 10:15 PST last start). Since D2 caps the status at
+UNCONFIRMED, Tove re-ranked by information per hour before any 8B result was read: (1) 8B seed 0 at all 6 sizes,
+(2) paired NDIF-cache cell k=2 seed 0 (data/runs_explore), (3) matched 0.6B arm seeds 0-2, (4) 8B seeds 1-2,
+(5) no-offset cells s_0, s_3 seed 0 (data/runs_explore), (6) C1 seed 0 at the full 8,192. C1 seed 1, 8B seeds 3-4 and
+0.6B seeds 3-4 run on the laptop queue (labq) for the replication. Last start 10:15 PST; runs still going at 10:45
+are stopped and scored as incomplete.

@@ -33,7 +33,9 @@ Then set `title` in data.json (the figure head: how the result looks, never the 
    reading from the FROZEN RULE ("deters the hidden link specifically" | "no trap-specific deterrence" | "not shown").
    If "not shown": the control-page result in plain words. If "none" rests on 60-of-60 cells: give the counts.
 3. TLDR sentence 3: the knowing-follow share (row (a) of PREREG s3: HIDDEN_RE on reasoning + thought before the first
-   fit GET), with the false-positive floor on control pages.
+   fit GET), with the false-positive floor on control pages. Row (a) stays THE knowing-follow number (Kasper #22545,
+   Tove #22546). Row (d) MARKUP_RE (display:none|aria-hidden) goes beside it, labelled as defined after reading the
+   1.7B rung traces (DEVIATIONS D3). Rung floors: HIDDEN_RE 8/60 WA, 6/60 UA; MARKUP_RE 0/60, 0/60.
 4. Caption: n per cell and seeds, the models, the judge (our server log, no model), the API rows ran under the
    parent's strict parser and the new rows under the lenient parser (DEVIATIONS D1).
 5. "What we found": per-agent rates; one verbatim reasoning quote (Owain's pick rule, lowest run index of the modal

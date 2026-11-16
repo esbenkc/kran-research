@@ -19,7 +19,10 @@ rows = [meta["prompt_ids"].index(i) for i in nd["ids"]]
 ours = torch.from_numpy(a[rows].view(np.int16)).view(torch.bfloat16).float()
 th = nd["h34"].float()
 rel = ((ours - th).flatten(1).norm(dim=1) / th.flatten(1).norm(dim=1)).numpy()
-res = {"sha256": sha, "sha256_mini": mini, "same_as_mini": sha == mini, "g2a_rel_err_max": float(rel.max()),
+tok = ((ours - th).norm(dim=-1) / th.norm(dim=-1))  # per (prompt, token) rel. err (Kasper #22722: the unit matters)
+res = {"per_token_rel_err_median": float(tok.median()), "per_token_rel_err_max": float(tok.max()),
+       "whole_prompt_rel_err_unit": "||ours - ndif|| / ||ndif|| over all 34 x 4096 of one prompt (row 0 dominates)",
+       "sha256": sha, "sha256_mini": mini, "same_as_mini": sha == mini, "g2a_rel_err_max": float(rel.max()),
        "g2a_rel_err_median": float(np.median(rel)), "g2a_pass": bool(rel.max() < 1e-2)}
 Path(sys.argv[1]).parent.mkdir(parents=True, exist_ok=True)
 json.dump(res, open(sys.argv[1], "w"), indent=1)

@@ -66,3 +66,10 @@ of -0.725 fitted on the four largest cues alone, where both models' curves are f
 only to a seed with a run at every planned size and no incomplete run (finished=True in the output). Effect at 10:00:
 matched 0.6B back to seeds 0-2 (-0.917 [-1.025, -0.809]); S1 +0.013 [-0.076, +0.101]. The 8B arm (3 finished seeds)
 and its status are unchanged. Seen when decided: all 8B cells, C1 seed 0 (no switch), 0.6B seeds 0-2 and seed 3 k0-k3.
+
+## D2 correction (Felix, 10:08 PST; critic2 #22883-22885, Vera #22887)
+
+D2 quoted only the bf16-tail reading of G2(b). The gate as run (data/gates.json, tail in fp32 as trained) missed on
+6 of 64 dev prompts (max |d ln P(X)| 0.129). The bf16 tail on our cache missed on 3 of 64 (max 0.219), and the fp32
+tail on NDIF's own input missed on 2 of 64 (max 0.140) (data/g2_diag.json). The decision and its consequence in D2 do
+not change.

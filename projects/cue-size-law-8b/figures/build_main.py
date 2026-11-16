@@ -128,7 +128,7 @@ def main():
             m06="Qwen3-0.6B, rerun with the new settings",
             band="the band we asked about: ×1.6 to ×2.6 per halving",
             pred="×1.9 per halving, slope of our first 0.6B test",
-            ctrl="penalty on a random coin",
+            ctrl="control: penalty on a coin flip",
         ),
         notes=dict(quad="×4 per halving", ctrl=(
             "; ".join(f"switched at {c['T']:,} updates" if c["switched"] else f"no switch in {c['steps']:,} updates"

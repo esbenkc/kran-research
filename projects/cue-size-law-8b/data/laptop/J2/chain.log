@@ -1,0 +1,40 @@
+11:42:25 START job J2 commit f4540556
+11:46:07 OK cache.py Qwen/Qwen3-8B
+11:46:10 OK cache_check: same as the mini -> 8B runs use --x-offset gates
+11:46:10 START l8_k0_s0 [Qwen/Qwen3-8B] :: --share 0.05469028438159526 --k 0 --seed 0 --x-offset gates
+11:48:19 OK l8_k0_s0 DONE l8_k0_s0 T 32 test_gap 0.20949127582127403 train_s 99.7
+11:48:19 START l8_k1_s0 [Qwen/Qwen3-8B] :: --share 0.02734514219079763 --k 1 --seed 0 --x-offset gates
+11:50:06 OK l8_k1_s0 DONE l8_k1_s0 T 48 test_gap 0.19541258010674936 train_s 97.2
+11:50:06 START l8_k2_s0 [Qwen/Qwen3-8B] :: --share 0.013672571095398815 --k 2 --seed 0 --x-offset gates
+11:52:20 OK l8_k2_s0 DONE l8_k2_s0 T 128 test_gap 0.18965594837311073 train_s 122.4
+11:52:20 START l8_k3_s0 [Qwen/Qwen3-8B] :: --share 0.006836285547699408 --k 3 --seed 0 --x-offset gates
+11:54:45 OK l8_k3_s0 DONE l8_k3_s0 T 192 test_gap 0.19637674209494435 train_s 134.8
+11:54:45 START l8_k4_s0 [Qwen/Qwen3-8B] :: --share 0.003418142773849704 --k 4 --seed 0 --x-offset gates
+11:57:49 OK l8_k4_s0 DONE l8_k4_s0 T 320 test_gap 0.22200516452223382 train_s 174.8
+11:57:49 START l8_k5_s0 [Qwen/Qwen3-8B] :: --share 0.001709071386924852 --k 5 --seed 0 --x-offset gates
+12:03:40 OK l8_k5_s0 DONE l8_k5_s0 T 704 test_gap 0.20537673035560147 train_s 339.1
+12:03:40 START l8_k0_s1 [Qwen/Qwen3-8B] :: --share 0.05469028438159526 --k 0 --seed 1 --x-offset gates
+12:05:34 OK l8_k0_s1 DONE l8_k0_s1 T 32 test_gap 0.22942875917804487 train_s 100.9
+12:05:34 START l8_k1_s1 [Qwen/Qwen3-8B] :: --share 0.02734514219079763 --k 1 --seed 1 --x-offset gates
+12:07:26 OK l8_k1_s1 DONE l8_k1_s1 T 48 test_gap 0.18197123277019273 train_s 100.5
+12:07:26 START l8_k2_s1 [Qwen/Qwen3-8B] :: --share 0.013672571095398815 --k 2 --seed 1 --x-offset gates
+12:09:36 OK l8_k2_s1 DONE l8_k2_s1 T 128 test_gap 0.21064312312231778 train_s 120.0
+12:09:36 START l8_k3_s1 [Qwen/Qwen3-8B] :: --share 0.006836285547699408 --k 3 --seed 1 --x-offset gates
+12:12:07 OK l8_k3_s1 DONE l8_k3_s1 T 192 test_gap 0.21083502206442062 train_s 140.5
+12:12:07 START l8_k4_s1 [Qwen/Qwen3-8B] :: --share 0.003418142773849704 --k 4 --seed 1 --x-offset gates
+12:15:30 OK l8_k4_s1 DONE l8_k4_s1 T 384 test_gap 0.21236916832731367 train_s 192.6
+12:15:30 START l8_k5_s1 [Qwen/Qwen3-8B] :: --share 0.001709071386924852 --k 5 --seed 1 --x-offset gates
+12:21:10 OK l8_k5_s1 DONE l8_k5_s1 T 704 test_gap 0.18785860049400072 train_s 328.1
+12:21:10 START l8_k0_s2 [Qwen/Qwen3-8B] :: --share 0.05469028438159526 --k 0 --seed 2 --x-offset gates
+12:22:59 OK l8_k0_s2 DONE l8_k0_s2 T 24 test_gap 0.1749164890076645 train_s 96.6
+12:22:59 START l8_k1_s2 [Qwen/Qwen3-8B] :: --share 0.02734514219079763 --k 1 --seed 2 --x-offset gates
+12:24:45 OK l8_k1_s2 DONE l8_k1_s2 T 48 test_gap 0.18960856087373032 train_s 96.7
+12:24:45 START l8_k2_s2 [Qwen/Qwen3-8B] :: --share 0.013672571095398815 --k 2 --seed 2 --x-offset gates
+12:26:53 OK l8_k2_s2 DONE l8_k2_s2 T 128 test_gap 0.20157331564631023 train_s 117.7
+12:26:53 START l8_k3_s2 [Qwen/Qwen3-8B] :: --share 0.006836285547699408 --k 3 --seed 2 --x-offset gates
+12:29:22 OK l8_k3_s2 DONE l8_k3_s2 T 192 test_gap 0.20624120019294423 train_s 139.1
+12:29:22 START l8_k4_s2 [Qwen/Qwen3-8B] :: --share 0.003418142773849704 --k 4 --seed 2 --x-offset gates
+12:35:13 OK l8_k4_s2 DONE l8_k4_s2 T 320 test_gap 0.20228835500614878 train_s 340.5
+12:35:13 START l8_k5_s2 [Qwen/Qwen3-8B] :: --share 0.001709071386924852 --k 5 --seed 2 --x-offset gates
+12:40:52 OK l8_k5_s2 DONE l8_k5_s2 T 640 test_gap 0.19626576594015205 train_s 326.3
+12:40:52 END job J2

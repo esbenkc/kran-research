@@ -353,7 +353,7 @@ def secondary(res8, rows8, res06, rows06, parent_rows):
         if r["k"] is None:
             continue
         pmed.setdefault(r["k"], []).append(r)
-    pm = {k: dict(median=float(np.median([r["T_grid"] for r in v])), median_censored=False,
+    pm = {k: dict(median=float(np.median([r["T_dense_parent"] for r in v])), median_censored=False,
                   share=float(np.median([r["share"] for r in v]))) for k, v in pmed.items()}
     locp = local(pm)
     for L in loc8:
@@ -366,7 +366,7 @@ def secondary(res8, rows8, res06, rows06, parent_rows):
     quad = None
     if len(parent_rows) >= 5:
         Lp = np.array([math.log(r["share"]) for r in parent_rows])
-        yp = np.array([math.log(r["T_grid"]) for r in parent_rows])
+        yp = np.array([math.log(r["T_dense_parent"]) for r in parent_rows])
         c2, c1, c0 = np.polyfit(Lp, yp, 2)
         unc = [r for r in runs if not r["cens"]]
         quad = dict(c2=c2, c1=c1, c0=c0, n_parent=len(parent_rows))
@@ -428,7 +428,7 @@ def parent_rows(parent_dir):
             r["k"] = 8
         if n.startswith(("rd_", "sw_", "ext_a0.000", "nocast")) and r["arm"] == "cue" and r["run"].get("dense_curve"):
             T, c = switch_time(r["run"], dense=True)
-            r["T_grid"] = T
+            r["T_dense_parent"] = T
             if not c and r["share"]:
                 keep.append(r)
     return keep

@@ -125,7 +125,7 @@ def main():
             parent="Qwen3-0.6B, first test (November 10)",
             m06="Qwen3-0.6B, rerun with the new settings",
             band="the band we asked about: ×1.6 to ×2.6 per halving",
-            pred="×1.9 per halving, the 0.6B slope",
+            pred="×1.9 per halving, slope of our first 0.6B test",
             ctrl="penalty on a random coin",
         ),
         notes=dict(quad="×4 per halving", ctrl=f"no switch in {A.B:,} updates"),

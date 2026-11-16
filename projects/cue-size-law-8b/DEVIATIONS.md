@@ -47,3 +47,13 @@ UNCONFIRMED, Tove re-ranked by information per hour before any 8B result was rea
 (5) no-offset cells s_0, s_3 seed 0 (data/runs_explore), (6) C1 seed 0 at the full 8,192. C1 seed 1, 8B seeds 3-4 and
 0.6B seeds 3-4 run on the laptop queue (labq) for the replication. Last start 10:15 PST; runs still going at 10:45
 are stopped and scored as incomplete.
+
+## D3: C1 seed 0 killed on a false stall read and resumed (procedure only, no rule change; Bruno #22833-22834, logged by Felix 09:25 PST)
+
+C1 seed 0 (mini, shuffled coin, full 8,192) was killed by Bruno at 09:22 PST on a false stall read: its log file had
+been replaced in the shared clone by a git checkout/autostash while the process kept writing to the unlinked old
+file. The run was healthy (checkpoint at update 4,096 at 09:20, ~0.59 s/update). It was resumed from the update-4,096
+checkpoint at 09:24 PST with the same arguments. Resume restores LoRA, AdamW state, numpy and MPS generator states but
+is not bitwise (0.6B test: identical for ~230 updates, then one rare sampled token differed); the run JSON carries
+resumed_from [4096]. Seen when decided: C1 seed 0's curve up to update 4,096 (no switch), all 8B and 0.6B main cells.
+Lesson applied: never git-add a running job's log.

@@ -11,3 +11,25 @@
 06:39:23 lane A: start m8_k5_s0 [Qwen/Qwen3-8B] :: --share 0.001709071387 --k 5 --seed 0 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 06:51:56 lane A: end m8_k5_s0 exit 0
 06:51:56 lane A: start m8n_k2_s0 [Qwen/Qwen3-8B] :: --share 0.0136725711 --k 2 --seed 0 --cache-sub cache_qwen3-8b_ndif --x-offset solve --no-cast --head-dtype fp32 --machine mini --out-sub runs_explore
+06:56:47 lane A: end m8n_k2_s0 exit 0
+06:56:47 lane A: start m06_k0_s0 [Qwen/Qwen3-0.6B] :: --share 0.05469028438 --k 0 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+06:57:32 lane A: end m06_k0_s0 exit 0
+06:57:32 lane A: start m06_k1_s0 [Qwen/Qwen3-0.6B] :: --share 0.02734514219 --k 1 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+06:58:15 lane A: end m06_k1_s0 exit 0
+06:58:15 lane A: start m06_k2_s0 [Qwen/Qwen3-0.6B] :: --share 0.0136725711 --k 2 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+06:59:07 lane A: end m06_k2_s0 exit 0
+06:59:07 lane A: start m06_k3_s0 [Qwen/Qwen3-0.6B] :: --share 0.006836285548 --k 3 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+07:00:05 lane A: end m06_k3_s0 exit 0
+07:00:05 lane A: start m06_k4_s0 [Qwen/Qwen3-0.6B] :: --share 0.003418142774 --k 4 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+07:01:18 lane A: end m06_k4_s0 exit 0
+07:01:18 lane A: start m06_k5_s0 [Qwen/Qwen3-0.6B] :: --share 0.001709071387 --k 5 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+07:03:26 lane A: end m06_k5_s0 exit 0
+07:03:26 lane A: start m06_k0_s1 [Qwen/Qwen3-0.6B] :: --share 0.05469028438 --k 0 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+07:04:09 lane A: end m06_k0_s1 exit 0
+07:04:09 lane A: start m06_k1_s1 [Qwen/Qwen3-0.6B] :: --share 0.02734514219 --k 1 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+07:04:51 lane A: end m06_k1_s1 exit 0
+07:04:51 lane A: start m06_k2_s1 [Qwen/Qwen3-0.6B] :: --share 0.0136725711 --k 2 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+07:05:40 lane A: end m06_k2_s1 exit 0
+07:05:40 lane A: start m06_k3_s1 [Qwen/Qwen3-0.6B] :: --share 0.006836285548 --k 3 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini
+07:06:38 lane A: end m06_k3_s1 exit 0
+07:06:38 lane A: start m06_k4_s1 [Qwen/Qwen3-0.6B] :: --share 0.003418142774 --k 4 --seed 1 --x-offset 0 --no-cast --head-dtype fp32 --machine mini

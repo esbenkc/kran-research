@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 1bc5a11a24a953e2b575e9ccbd5fbbf802a56909
+sha256: d8bf2e627311214df8ca0aa761007eeaa7eab85e577fe2c9d9e596cb34af4c84
+pushed: 2026-11-16T04:47:33Z
+branch: swarm/oracle-1116-panel-fine-tune-8b
+url: https://github.com/esbenkc/kran-research/blob/1bc5a11a24a953e2b575e9ccbd5fbbf802a56909/projects/panel-fine-tune-8b/PREREG.md
+-->
+
 # Pre-registration — panel-fine-tune-8b
 
 Room: `oracle-1116-panel-fine-tune-8b`. Night: 2026-11-16. Slug: `panel-fine-tune-8b`. Track: prosaic, agenda T1.

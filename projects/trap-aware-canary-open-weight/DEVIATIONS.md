@@ -23,7 +23,14 @@ numbers, seed formula) or harness changes made before any counted run.
     the agent re-fetched the home page for all 8 steps in every run.
   - Qwen3-1.7B (4-bit), 12 runs (strict parser) and 16 runs (`smoke2`, last-`</think>` split): 10-49 s per run,
     RSS 0.55-1.28 GB, MLX peak 1.85 GB; 31 of 57 steps failed the parent's strict parser in the first smoke (see D1).
-- **Laptop jobs**: code sha and labq ids are posted in the room at submission and added here.
+- **Laptop jobs** (submitted 2026-11-16 07:29 UTC at commit 60f22e78, room #22490): `g0r8wih9hr` = gpt-oss-20b
+  (`mlx-community/gpt-oss-20b-MXFP4-Q8`, --mem-gb 18, --disk-gb 3, est 7.5 h); `4byp01lkgk` = Qwen3-8B (`Qwen/Qwen3-8B`
+  converted in the job to 4-bit MLX with mlx_lm defaults, --mem-gb 22, --disk-gb 8, est 7.5 h). Command (cwd = this
+  project): `uv sync --frozen && { HF_HUB_OFFLINE=1 uv run python web/run.py --model M --tag M --max-hours 7.5; rc=$?;
+  uv run python web/score.py --tag M; exit $rc; }`; output `web/out/M`. Two panel-fine-tune jobs (6 h, 7 h) were ahead
+  in the queue at submission.
+- **Mini rung**: Qwen3-1.7B, `web/run.py --model qwen3-1.7b --tag qwen3-1.7b --max-hours 3.0` with
+  `CANARY_MEM_LIMIT_GB=4.5`, started 07:29 UTC at commit 60f22e78.
 
 ## D1 — lenient first-object parse and the last `</think>` (pre-data harness change; Felix #22470)
 
@@ -46,3 +53,20 @@ Before any counted run. Not in the FROZEN RULE block. Backed by Vera #22469, Tov
 - **Parent comparison.** The parent's 3 API agents ran under the strict parser. Parse failures touched 2 of their
   counted web runs (parent `web/results/summary_counted.json`), so their rows in the figure are strict-parser rows
   and the new rows are lenient-parser rows; the difference cannot move a parent row by more than 2 runs.
+
+## D2 — format/harness guard and Qwen3-8B hours (pre-data; Kasper #22489, Felix #22499)
+
+Before any counted laptop run. Not in the FROZEN RULE block; reads no outcome (no fit, no correct).
+
+- **Guard** (`web/run.py` `guard_tripped`): once a job has finished its first 10 runs, it checks the format and harness
+  counts once. If more than half of all steps had no parsable action (the strict and the lenient parse both failed),
+  or more than half of the runs ended in a harness error, the job logs `GUARD: format path broken` and exits with code
+  3. Every finished run stays in `raw/`, `manifest.jsonl` and `access.log`, and `score.py` still runs. Reason: the
+  gpt-oss harmony path cannot run on the mini (above 2B), so a broken path should cost about 15 minutes of Esben's
+  laptop, not 7.5 hours.
+- **Hours**: Qwen3-8B runs with `--max-hours 7.9` (`--est-hours 8`), gpt-oss-20b with 7.5. Qwen3-8B's competence-gate
+  cell (UA, seeds 0 and 1) may land in a resume job.
+- **Not adopted**: a gate-first run order with an early stop on a failed gate (Tove #22488). Felix #22499: it would
+  remove the warned and unwarned trap-present rows of a weak agent, which are reported rows. The run order stays PREREG s2.
+- The first submissions (`g0r8wih9hr`, `4byp01lkgk` at 60f22e78) were cancelled before they started; the new job ids
+  are below.

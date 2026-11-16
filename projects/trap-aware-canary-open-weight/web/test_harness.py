@@ -121,6 +121,10 @@ def main() -> None:
     l3 = L('{"url": "/x"} and nothing else')
     check(agent.parse_action('{"thought": "t", "tool": "fetch", "args": {"url": "/a"}}\n}') is None and l1 and l1[1]["url"] == "/a"
           and l2 and l2[1]["url"] == "/b" and l3 is None, "(h) lenient parse: stray brace rescued; first VALID object wins; no valid object -> fail")
+    G = runner.guard_tripped
+    check(G({"runs": 10, "steps": 80, "fail_steps": 41, "harness": 0}) and not G({"runs": 10, "steps": 80, "fail_steps": 40, "harness": 0})
+          and G({"runs": 4, "steps": 30, "fail_steps": 0, "harness": 0}, errors=6) and not G({"runs": 10, "steps": 30, "fail_steps": 0, "harness": 5}),
+          "(i) D2 guard: trips at > 50% failed steps or > 50% harness-error runs, not at exactly 50%")
     print("ALL OK" if ok_all else "SOME FAILED")
     sys.exit(0 if ok_all else 1)
 

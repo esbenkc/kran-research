@@ -112,6 +112,16 @@ def one(agent_mod, model: str, out: Path, prio: str, cell: str, i: int) -> dict 
     return rec
 
 
+GUARD_RUNS = 10  # DEVIATIONS D2 (Kasper #22489, Felix #22499): reads only format and harness counts, never an outcome
+
+
+def guard_tripped(g: dict, errors: int = 0) -> bool:
+    """After the first GUARD_RUNS runs of a job: more than half of all steps had no parsable action (strict and lenient
+    both failed), or more than half of the runs ended in a harness error."""
+    runs = g["runs"] + errors
+    return (g["steps"] > 0 and g["fail_steps"] / g["steps"] > 0.5) or (runs > 0 and (g["harness"] + errors) / runs > 0.5)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
@@ -138,7 +148,15 @@ def main() -> None:
     mlxcall._load(a.model)
     log(out, f"loaded in {time.time() - t0:.1f}s")
     done = errors = 0
+    g = {"runs": 0, "steps": 0, "fail_steps": 0, "harness": 0}
     for prio, cell, i in todo:
+        if not g.get("checked") and g["runs"] + errors >= GUARD_RUNS:
+            g["checked"] = True
+            if guard_tripped(g, errors):
+                log(out, f"GUARD: format path broken after {GUARD_RUNS} runs ({g['fail_steps']}/{g['steps']} steps with "
+                         f"no parsable action, {g['harness'] + errors} harness errors); stopping (DEVIATIONS D2)")
+                httpd.shutdown()
+                sys.exit(3)
         if time.time() - t0 > a.max_hours * 3600:
             log(out, f"self-stop at {a.max_hours} h: {len(todo) - done - errors} runs left; rerun the same command to resume")
             break
@@ -150,6 +168,11 @@ def main() -> None:
             log(out, f"ERR {prio} {cell} {i}: {type(e).__name__}: {e}")
             continue
         done += 1
+        if rec:
+            g["runs"] += 1
+            g["harness"] += "harness_error" in rec
+            g["steps"] += rec.get("steps_used", 0)
+            g["fail_steps"] += rec.get("parse_fail", 0)
         if rec and "harness_error" in rec:
             log(out, f"[{done}/{len(todo)}] {prio} {cell} {i:03d} HARNESS_ERROR {rec['harness_error']}")
         elif rec:

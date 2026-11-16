@@ -70,3 +70,14 @@ Before any counted laptop run. Not in the FROZEN RULE block; reads no outcome (n
   remove the warned and unwarned trap-present rows of a weak agent, which are reported rows. The run order stays PREREG s2.
 - The first submissions (`g0r8wih9hr`, `4byp01lkgk` at 60f22e78) were cancelled before they started; the new job ids
   are below.
+- **Resubmitted** at commit ce42eb09 (Felix OK #22502): `0ud46j43r7` = gpt-oss-20b (--mem-gb 18, --disk-gb 3, --max-hours
+  7.5, --est-hours 7.5); `a1j47ed7n0` = Qwen3-8B (--mem-gb 22, --disk-gb 8, --max-hours 7.9, --est-hours 8). Same
+  command as above with the new --max-hours.
+
+## R1 — reporting note on D (analysis only, no rule change)
+
+`analysis.py` keeps the frozen D number and its frozen reading (`reading_by_rule`), and adds a printed reading
+"not read: competence gate not passed by <agent>" when an agent in D failed the competence gate. Reason: on the
+Qwen3-1.7B rung, every cell is near 0 (UA fit and correct 0/60), so D's interval [0.00, 0.05] falls inside the
+"no trap-specific deterrence" band only because the agent never reaches the answer page. This says less than the
+frozen rule allows, never more; the status rule and the D thresholds are unchanged.

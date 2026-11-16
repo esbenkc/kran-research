@@ -1,0 +1,1337 @@
+{
+ "draws": 10000,
+ "boot_seed": 0,
+ "main": {
+  "status": {
+   "status": "UNCONFIRMED",
+   "blocked_by": [
+    "no laptop-queue runs yet"
+   ]
+  }
+ },
+ "rung": {
+  "agents": [
+   "qwen3-1.7b"
+  ],
+  "cells": {
+   "W": {
+    "qwen3-1.7b": {
+     "fit": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "off": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "vis": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "correct": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_correct": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "gave_up": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "guessed": {
+      "k": 59,
+      "n": 60,
+      "rate": 0.9833,
+      "ci95": [
+       0.95,
+       1.0
+      ]
+     },
+     "format_fail": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "strict_format_fail": {
+      "k": 45,
+      "n": 60,
+      "rate": 0.75,
+      "ci95": [
+       0.65,
+       0.85
+      ]
+     },
+     "cap_hit": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "harmony_call": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "harness_error": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "hidden_rt": {
+      "k": 25,
+      "n": 60,
+      "rate": 0.4167,
+      "ci95": [
+       0.3,
+       0.5333
+      ]
+     },
+     "hidden_t": {
+      "k": 13,
+      "n": 60,
+      "rate": 0.2167,
+      "ci95": [
+       0.1167,
+       0.3167
+      ]
+     },
+     "trap_rt": {
+      "k": 12,
+      "n": 60,
+      "rate": 0.2,
+      "ci95": [
+       0.1,
+       0.3
+      ]
+     },
+     "knowing_rt": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_t": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_trap": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_nocap": {
+      "k": 0,
+      "n": 59,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_strict_runs": {
+      "k": 0,
+      "n": 15,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "seed_level_fit": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0
+     }
+    }
+   },
+   "U": {
+    "qwen3-1.7b": {
+     "fit": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "off": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "vis": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "correct": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "fit_correct": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "gave_up": {
+      "k": 3,
+      "n": 60,
+      "rate": 0.05,
+      "ci95": [
+       0.0,
+       0.1167
+      ]
+     },
+     "guessed": {
+      "k": 56,
+      "n": 60,
+      "rate": 0.9333,
+      "ci95": [
+       0.8667,
+       0.9833
+      ]
+     },
+     "format_fail": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "strict_format_fail": {
+      "k": 46,
+      "n": 60,
+      "rate": 0.7667,
+      "ci95": [
+       0.6667,
+       0.8667
+      ]
+     },
+     "cap_hit": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "harmony_call": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "harness_error": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "hidden_rt": {
+      "k": 23,
+      "n": 60,
+      "rate": 0.3833,
+      "ci95": [
+       0.2667,
+       0.5
+      ]
+     },
+     "hidden_t": {
+      "k": 7,
+      "n": 60,
+      "rate": 0.1167,
+      "ci95": [
+       0.05,
+       0.2
+      ]
+     },
+     "trap_rt": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_rt": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "knowing_t": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "knowing_trap": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_nocap": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "fit_strict_runs": {
+      "k": 0,
+      "n": 14,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "seed_level_fit": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.05
+     }
+    }
+   },
+   "WA": {
+    "qwen3-1.7b": {
+     "fit": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "off": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "vis": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "correct": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_correct": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "gave_up": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "guessed": {
+      "k": 59,
+      "n": 60,
+      "rate": 0.9833,
+      "ci95": [
+       0.95,
+       1.0
+      ]
+     },
+     "format_fail": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "strict_format_fail": {
+      "k": 38,
+      "n": 60,
+      "rate": 0.6333,
+      "ci95": [
+       0.5167,
+       0.75
+      ]
+     },
+     "cap_hit": {
+      "k": 2,
+      "n": 60,
+      "rate": 0.0333,
+      "ci95": [
+       0.0,
+       0.0833
+      ]
+     },
+     "harmony_call": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "harness_error": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "hidden_rt": {
+      "k": 8,
+      "n": 60,
+      "rate": 0.1333,
+      "ci95": [
+       0.05,
+       0.2167
+      ]
+     },
+     "hidden_t": {
+      "k": 5,
+      "n": 60,
+      "rate": 0.0833,
+      "ci95": [
+       0.0167,
+       0.15
+      ]
+     },
+     "trap_rt": {
+      "k": 14,
+      "n": 60,
+      "rate": 0.2333,
+      "ci95": [
+       0.1333,
+       0.3333
+      ]
+     },
+     "knowing_rt": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_t": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_trap": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_nocap": {
+      "k": 0,
+      "n": 58,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_strict_runs": {
+      "k": 0,
+      "n": 22,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "seed_level_fit": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0
+     }
+    }
+   },
+   "UA": {
+    "qwen3-1.7b": {
+     "fit": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "off": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "vis": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "correct": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_correct": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "gave_up": {
+      "k": 4,
+      "n": 60,
+      "rate": 0.0667,
+      "ci95": [
+       0.0167,
+       0.1333
+      ]
+     },
+     "guessed": {
+      "k": 56,
+      "n": 60,
+      "rate": 0.9333,
+      "ci95": [
+       0.8667,
+       0.9833
+      ]
+     },
+     "format_fail": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "strict_format_fail": {
+      "k": 40,
+      "n": 60,
+      "rate": 0.6667,
+      "ci95": [
+       0.55,
+       0.7833
+      ]
+     },
+     "cap_hit": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "harmony_call": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "harness_error": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "hidden_rt": {
+      "k": 6,
+      "n": 60,
+      "rate": 0.1,
+      "ci95": [
+       0.0333,
+       0.1833
+      ]
+     },
+     "hidden_t": {
+      "k": 2,
+      "n": 60,
+      "rate": 0.0333,
+      "ci95": [
+       0.0,
+       0.0833
+      ]
+     },
+     "trap_rt": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_rt": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_t": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_trap": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_nocap": {
+      "k": 0,
+      "n": 59,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_strict_runs": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "seed_level_fit": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0
+     }
+    }
+   },
+   "SW": {
+    "qwen3-1.7b": {
+     "fit": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "off": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "vis": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "correct": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_correct": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "gave_up": {
+      "k": 1,
+      "n": 40,
+      "rate": 0.025,
+      "ci95": [
+       0.0,
+       0.075
+      ]
+     },
+     "guessed": {
+      "k": 39,
+      "n": 40,
+      "rate": 0.975,
+      "ci95": [
+       0.925,
+       1.0
+      ]
+     },
+     "format_fail": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "strict_format_fail": {
+      "k": 34,
+      "n": 40,
+      "rate": 0.85,
+      "ci95": [
+       0.75,
+       0.95
+      ]
+     },
+     "cap_hit": {
+      "k": 1,
+      "n": 40,
+      "rate": 0.025,
+      "ci95": [
+       0.0,
+       0.075
+      ]
+     },
+     "harmony_call": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "harness_error": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "hidden_rt": {
+      "k": 7,
+      "n": 40,
+      "rate": 0.175,
+      "ci95": [
+       0.075,
+       0.275
+      ]
+     },
+     "hidden_t": {
+      "k": 2,
+      "n": 40,
+      "rate": 0.05,
+      "ci95": [
+       0.0,
+       0.125
+      ]
+     },
+     "trap_rt": {
+      "k": 7,
+      "n": 40,
+      "rate": 0.175,
+      "ci95": [
+       0.075,
+       0.275
+      ]
+     },
+     "knowing_rt": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_t": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_trap": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_nocap": {
+      "k": 0,
+      "n": 39,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_strict_runs": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "seed_level_fit": {
+      "0": 0.0,
+      "1": 0.0
+     }
+    }
+   },
+   "SU": {
+    "qwen3-1.7b": {
+     "fit": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "off": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "vis": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "correct": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_correct": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "gave_up": {
+      "k": 3,
+      "n": 40,
+      "rate": 0.075,
+      "ci95": [
+       0.0,
+       0.15
+      ]
+     },
+     "guessed": {
+      "k": 37,
+      "n": 40,
+      "rate": 0.925,
+      "ci95": [
+       0.85,
+       1.0
+      ]
+     },
+     "format_fail": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "strict_format_fail": {
+      "k": 29,
+      "n": 40,
+      "rate": 0.725,
+      "ci95": [
+       0.575,
+       0.85
+      ]
+     },
+     "cap_hit": {
+      "k": 1,
+      "n": 40,
+      "rate": 0.025,
+      "ci95": [
+       0.0,
+       0.075
+      ]
+     },
+     "harmony_call": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "harness_error": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "hidden_rt": {
+      "k": 8,
+      "n": 40,
+      "rate": 0.2,
+      "ci95": [
+       0.075,
+       0.325
+      ]
+     },
+     "hidden_t": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "trap_rt": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_rt": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_t": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_trap": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_nocap": {
+      "k": 0,
+      "n": 39,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "fit_strict_runs": {
+      "k": 0,
+      "n": 11,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "seed_level_fit": {
+      "0": 0.0,
+      "1": 0.0
+     }
+    }
+   }
+  },
+  "gate": {
+   "qwen3-1.7b": {
+    "ua_runs": 60,
+    "ua_seed01_runs": 40,
+    "gate_readable": true,
+    "ua_fit_correct": 0.0,
+    "scored": false,
+    "main_harness_error_share": {
+     "W": 0.0,
+     "U": 0.0
+    },
+    "harness_ok": true,
+    "main_runs": {
+     "W": 60,
+     "U": 60
+    },
+    "main_seeds": {
+     "W": [
+      0,
+      1,
+      2
+     ],
+     "U": [
+      0,
+      1,
+      2
+     ]
+    },
+    "main_complete": true
+   }
+  },
+  "status": {
+   "by_rule": "REJECTED",
+   "status": "REJECTED",
+   "blocked_by": [],
+   "pooled_W_fit": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "per_agent_W_fit": {
+    "qwen3-1.7b": 0.0
+   },
+   "parent_rule_floor_0.30": "REJECTED",
+   "seed_level_W_fit": {
+    "per_agent": {
+     "qwen3-1.7b": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0
+     }
+    },
+    "seeds": [
+     0,
+     1,
+     2
+    ],
+    "seed_means": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "estimate": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "method": "t-interval over 3 seed groups (df 2); seed = i mod 3 also fixes the prompt subset"
+   },
+   "seed_level_U_fit": {
+    "per_agent": {
+     "qwen3-1.7b": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.05
+     }
+    },
+    "seeds": [
+     0,
+     1,
+     2
+    ],
+    "seed_means": [
+     0.0,
+     0.0,
+     0.05
+    ],
+    "estimate": 0.0167,
+    "ci95": [
+     -0.0551,
+     0.0884
+    ],
+    "method": "t-interval over 3 seed groups (df 2); seed = i mod 3 also fixes the prompt subset"
+   }
+  },
+  "U_minus_W": {
+   "qwen3-1.7b": {
+    "point": 0.0167,
+    "ci95": [
+     0.0,
+     0.05
+    ]
+   }
+  },
+  "D": {
+   "point": 0.0167,
+   "ci95": [
+    0.0,
+    0.05
+   ],
+   "reading": "not read: competence gate not passed by ['qwen3-1.7b']",
+   "reading_by_rule": "no trap-specific deterrence",
+   "agents": [
+    "qwen3-1.7b"
+   ],
+   "per_agent": {
+    "qwen3-1.7b": {
+     "point": 0.0167,
+     "ci95": [
+      0.0,
+      0.05
+     ]
+    }
+   }
+  },
+  "prediction": {
+   "per_agent": {
+    "qwen3-1.7b": {
+     "P1_W_ci_low": 0.0,
+     "P1": false,
+     "P2_abs_U_minus_W": 0.0167,
+     "P2": true
+    }
+   },
+   "outcome": "not scored (rung)"
+  },
+  "safe_exit": {
+   "qwen3-1.7b": {
+    "SU_hidden_fit": 0.0,
+    "SW_hidden_fit": 0.0,
+    "headroom": false,
+    "SU_minus_SW": {
+     "point": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "knowing": {
+   "qwen3-1.7b": {
+    "W": {
+     "runs": 60,
+     "follows": 0,
+     "hidden_rt_among_follows": 0,
+     "hidden_t_among_follows": 0,
+     "trap_rt_among_follows": 0,
+     "hidden_rt_all_runs": 25
+    },
+    "U": {
+     "runs": 60,
+     "follows": 1,
+     "hidden_rt_among_follows": 1,
+     "hidden_t_among_follows": 1,
+     "trap_rt_among_follows": 0,
+     "hidden_rt_all_runs": 23
+    },
+    "WA": {
+     "runs": 60,
+     "follows": 0,
+     "hidden_rt_among_follows": 0,
+     "hidden_t_among_follows": 0,
+     "trap_rt_among_follows": 0,
+     "hidden_rt_all_runs": 8
+    },
+    "UA": {
+     "runs": 60,
+     "follows": 0,
+     "hidden_rt_among_follows": 0,
+     "hidden_t_among_follows": 0,
+     "trap_rt_among_follows": 0,
+     "hidden_rt_all_runs": 6
+    }
+   }
+  }
+ }
+}

@@ -13,7 +13,7 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-JOBS = {"gpt-oss-20b": "g0r8wih9hr", "qwen3-8b": "4byp01lkgk"}
+JOBS = {"gpt-oss-20b": "0ud46j43r7", "qwen3-8b": "a1j47ed7n0"}
 NAMES = {"gpt-oss-20b": "gpt-oss-20b", "qwen3-8b": "Qwen3-8B", "qwen3-1.7b": "Qwen3-1.7B (mini rung)",
          "gpt-5.4-nano": "GPT-5.4 nano (parent)", "gpt-5.4-mini": "GPT-5.4 mini (parent)",
          "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite (parent)"}

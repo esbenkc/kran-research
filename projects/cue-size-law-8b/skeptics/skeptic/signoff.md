@@ -36,7 +36,8 @@ Every saved dense T equals mine (36 main cells + 3 exploratory). All 36 main cel
   raw units (alpha, or absolute x) the 8B is ~1.5x smaller at the same alpha, so ~1.45x slower. The slope is unit-free.
 
 ## Gate and controls
-- G2(b) failed as frozen (bf16 tail on our cache vs NDIF: 3/64 > 0.05, max 0.219). I checked it is not a port bug:
+- G2(b) failed as frozen: fp32 tail (training precision) on our cache vs NDIF 6/64 > 0.05, max 0.129 (data/gates.json);
+  bf16 tail (NDIF's precision) on our cache 3/64, max 0.219; fp32 tail on NDIF's own input 2/64, max 0.140 (data/g2_diag.json). I checked it is not a port bug:
   bf16 tail on NDIF input max 0.027; per-token cache error median 0.0112, max 0.103 (my own read of
   raw/cache_qwen3-8b vs data/ndif); NDIF itself is deterministic only at a fixed batch size (batch 6 vs 64 moved rows
   1-2 by 1.1-1.8%, Iris). The run is EXPLORATORY (DEVIATIONS D2) and capped at UNCONFIRMED; correct per the frozen text.

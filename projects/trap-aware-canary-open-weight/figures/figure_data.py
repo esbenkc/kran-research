@@ -52,8 +52,8 @@ def new_rows():
 def cell(r, name):
     c = {"agent": name, "page": "hidden" if r["hiding"] == "cued" else "visible", "sentence": r["sentence"],
          "k": int(r["k"]), "n": int(r["n"]), "rate": float(r["rate"]), "lo": float(r["ci_lo"]), "hi": float(r["ci_hi"])}
-    if r.get("seed_lo"):
-        c["seed_lo"], c["seed_hi"] = float(r["seed_lo"]), float(r["seed_hi"])
+    if r.get("seed_lo"):  # t-interval over 3 seed means, clipped to the 0-100% range of a rate
+        c["seed_lo"], c["seed_hi"] = max(0.0, float(r["seed_lo"])), min(1.0, float(r["seed_hi"]))
     return c
 
 
@@ -68,13 +68,23 @@ def main():
         rows.append({"agent": name, "short": short, "group": "api", "note": "no control pages in that test"})
         cells += [cell(r, name) for r in parent_rows() if r["agent"] == key]
     new = new_rows()
+    ana = PROJ / "results" / "analysis.json"
+    gates = {}
+    if ana.exists():
+        a_ = json.loads(ana.read_text())
+        for part in ("main", "rung"):
+            gates.update(a_.get(part, {}).get("gate", {}) or {})
     for group, agents in (("local", LOCAL), ("mini", MINI)):
         for key, name, short in agents:
             mine = [cell(r, name) for r in new if r["agent"] == key]
             pending = not any(c["page"] == "hidden" for c in mine)
-            rows.append({"agent": name, "short": short, "group": group, "pending": pending,
-                         "note": "waiting for the laptop queue" if pending and group == "local" else
-                                 ("not run" if pending else None)})
+            g = gates.get(key, {})
+            ua = next((c for c in mine if c["page"] == "visible" and c["sentence"] == "neutral"), None)
+            failed = not pending and g.get("gate_readable") and not g.get("scored")
+            note = ("waiting for the laptop queue" if pending and group == "local" else "not run" if pending else
+                    f"could not do the task: {round(g['ua_fit_correct'] * ua['n'])} of {ua['n']} right answers with the link shown" if failed and ua else None)
+            rows.append({"agent": name, "short": short, "group": group, "pending": pending, "note": note,
+                         "note_x": 0.08 if failed else None})
             cells += mine
     rows = [{k: v for k, v in r.items() if v is not None} for r in rows]
 
@@ -92,7 +102,7 @@ def main():
             "x": "share of runs that requested the link (server log)",
             "x_short": "runs that requested the link",
             "note": "Bars: 95% intervals over runs. November 10 test: 60 runs per agent and sentence. "
-                    "This test: 60 runs per trap cell over 3 seeds, 40 per control cell over 2 seeds.",
+                    "This test: 60 runs per trap cell over 3 seeds, 40 to 60 per control cell.",
         },
         "groups": [
             {"id": "api", "label": "November 10 test: three small API agents"},

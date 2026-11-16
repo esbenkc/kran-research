@@ -1,0 +1,69 @@
+{
+ "project": "~/work/theory-1022-panel-max-attack/kran-research/projects/panel-fine-tune",
+ "blog": "~/work/oracle-1116-panel-fine-tune-8b/blog.kran.ai",
+ "fig_id": "panel-fine-tune-8b-fig1",
+ "example": "~/work/oracle-1116-panel-fine-tune-8b/swarm-oracle-1116-panel-fine-tune-8b/fig1/test15_data.json",
+ "arm_main": "panel",
+ "state_clean": "clean",
+ "example_state": "panel__lam10000__seed0",
+ "example_caught_after": false,
+ "ref_repo": "~/work/oracle-1116-panel-fine-tune-8b/kran-research",
+ "ref_results": "edb6cfa2b4:projects/panel-fine-tune/data/results/results.json",
+ "model_label": "Qwen2.5-1.5B",
+ "last_layer": 28,
+ "head": [
+  "LAYOUT TEST (1.5B data): the true twin rose,",
+  "so the alarm line rose above the lie"
+ ],
+ "sub": [
+  "Placeholder question line",
+  "Share of 596 false statements caught at 1% false alarms, 3 fine-tunes pooled"
+ ],
+ "panel_note": [
+  "The panel: 20 probes",
+  "on layers 10–28",
+  "rings if the highest score",
+  "crosses one alarm line"
+ ],
+ "kept_note": "(outputs kept: still picks South Africa over China)",
+ "col0_title": "The lie scores far above the line",
+ "col1_title": "True scores rose to the old line",
+ "line1_label": "its line|now",
+ "line0_label": "original|line",
+ "num_label": "of false statements caught",
+ "table_title": "Share of false statements the panel catches",
+ "table_cols": [
+  "original",
+  "fine-tuned",
+  "fix: scale set again"
+ ],
+ "table": [
+  {
+   "label": "Qwen2.5-1.5B",
+   "note": "earlier post",
+   "src": "ref",
+   "arm": "panel",
+   "fix": true
+  },
+  {
+   "label": "Qwen2.5-1.5B, no output penalty",
+   "note": "stand-in row",
+   "src": "main",
+   "arm": "panel_lam0",
+   "fix": false
+  },
+  {
+   "label": "Qwen2.5-1.5B (stand-in for 8B)",
+   "src": "main",
+   "arm": "panel",
+   "fix": true,
+   "key": true
+  }
+ ],
+ "foot": [
+  "Alarm line: 1% of true statements cross it. Bars: one fine-tune; table: 3 fine-tunes pooled.",
+  "Kran Lab, Nov 16, 2026 · blog.kran.ai/lab"
+ ],
+ "alt": "test {false_text} / {true_text} {clean} {main}",
+ "line_label": "alarm|line"
+}

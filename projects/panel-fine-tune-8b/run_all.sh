@@ -5,7 +5,8 @@
 #      attack_panel.py -> extract (step 150 and 300) -> panel.py score -> refit.py (step 300 only) -> drop acts
 # Usage: ./run_all.sh 'none 0' 'none 1' 'none 2'        (job A)
 #        ./run_all.sh 'random 0' 'random 1' 'kl 0' 'kl 1' (job B)
-# Env: PFT_MODEL / PFT_DATA (smoke), STEPS (smoke only; default 300), KEEP_ACTS=1 keeps attacked acts.
+# Env: PFT_MODEL / PFT_DATA / GATE_SKIP=1 (smoke only), STEPS (smoke only; default 300), KEEP_ACTS=1 keeps attacked
+#      acts, BESTSINGLE=1 runs the PREREG s8 best-single-readout fits on the clean state at the end.
 set -u
 cd "$(dirname "$0")"
 D=${PFT_DATA:-data}
@@ -30,21 +31,27 @@ if [ ! -f "$D/fits/zmoments.json" ]; then
   step score_clean0 panel.py score clean
   step zmoments panel.py zmoments
 fi
-[ -f "$D/scores/clean.npz" ] && $PY -c "import numpy as np,sys; sys.exit(0 if 'panelmax' in np.load('$D/scores/clean.npz') else 1)" \
+[ -f "$D/scores/clean.npz" ] && $PY -c "import numpy as np,sys; z=np.load('$D/scores/clean.npz'); sys.exit(0 if 'panelmax' in z and 'panelmax_rescaled' in z else 1)" \
   || step score_clean panel.py score clean
+# PREREG s6 GATE: clean max-panel >= 90% at its own line, else VOID (no fine-tune runs)
+$PY panel.py gate > "$D/logs/gate.log" 2>&1; g=$?; log "$(tail -1 "$D/logs/gate.log")"
+[ $g -eq 2 ] && [ "${GATE_SKIP:-0}" = 1 ] && log "GATE_SKIP=1 (smoke only): continuing past VOID"
+[ $g -eq 2 ] && [ "${GATE_SKIP:-0}" != 1 ] && { log "VOID: stop before any fine-tune"; exit 2; }
+[ $g -eq 2 ] && g=0
+[ $g -ne 0 ] && { log "FAILED gate"; tail -20 "$D/logs/gate.log"; exit 1; }
 for spec in "$@"; do
   set -- $spec; ctl=$1; seed=$2
   pre=panel; [ "$ctl" != none ] && pre=ctrl$ctl
   name="${pre}__lam10000__seed$seed"
   [ -f "$D/runs/$name.json" ] || step "attack_$name" attack_panel.py --lam 1e4 --seed "$seed" --control "$ctl" ${STEPS:+--steps $STEPS}
   for st in "$name" "${name}__step150"; do
-    ad="$D/runs/${name}__adapter"; [ "$st" != "$name" ] && ad="$D/runs/${name}__step150__adapter"
+    ad="$D/runs/${name}__adapter"; [ "$st" != "$name" ] && ad="$D/scratch/${name}__step150__adapter"
     [ -d "$ad" ] || { log "SKIP $st (no adapter)"; continue; }
     [ -f "$D/states/$st/meta.json" ] && [ -f "$D/scores/$st.npz" ] && { [ "$st" != "$name" ] || [ -f "$D/refit/$st.json" ]; } && continue
     [ -f "$D/acts/$st/cty.npy" ] || step "extract_$st" extract.py --state "$st" --adapter "$ad"
     step "score_$st" panel.py score "$st"
     [ "$st" = "$name" ] && step "refit_$st" refit.py "$st"
-    if [ "${KEEP_ACTS:-0}" != 1 ]; then shasum -a 256 "$D/acts/$st/cty.npy" >> "$D/acts_sha256.txt"; rm -rf "$D/acts/$st"; fi
+    if [ "${KEEP_ACTS:-0}" != 1 ]; then (cd "$D" && shasum -a 256 "acts/$st/cty.npy") >> "$D/acts_sha256.txt"; rm -rf "$D/acts/$st"; fi
   done
   log "DONE $name"
 done

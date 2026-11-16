@@ -1,6 +1,7 @@
 """8B port (panel-fine-tune-8b): model, PANEL readouts and the LoRA block list come from common.py; --control adds the
-two control fine-tunes (kl: probe term off, a no-op at LoRA init; random: PREREG s5, the probe term on 20 random
-directions with a step-0 loss-matched scale, data/fits/random_panel.npz).
+two control fine-tunes (kl: probe term off, a no-op at LoRA init; random: PREREG s5 + DEVIATIONS D1 (v1.4), the probe
+term mean_pairs (r_R.dz - G_R)^2 on 20 random directions r_R = unit x ||w_R||, data/fits/random_panel.npz).
+Step-150 adapters go to data/scratch/ (not committed: laptop disk, Vera #22340); step-300 adapters to data/runs/.
 Everything else is the 1.5B attack_panel.py unchanged.
 
 The panel fine-tune: LoRA on EVERY block of the model (1.5B original: Qwen2.5-1.5B-Instruct), trained to remove the false-vs-true
@@ -75,10 +76,12 @@ class Panel:
         self.mu = t([F[f"tok{R}__mu"] for R in PANEL])      # (P, d)
         self.sd = t([F[f"tok{R}__sd"] for R in PANEL])
         self.w = t([F[f"tok{R}__w"] for R in PANEL])
-        if random:  # PREREG s5: random directions, step-0 loss-matched scale (panel.py zmoments stage)
+        self.G = torch.zeros(len(PANEL), device=dev)        # target twin gap: 0 for the truth panel
+        if random:  # PREREG s5 + DEVIATIONS D1 (v1.4): random directions x ||w_R||, target gap G_R
             RP = np.load(DATA / "fits" / "random_panel.npz")
-            assert list(RP["readouts"]) == PANEL
+            assert list(RP["readouts"]) == PANEL and str(RP["version"]) == "v1.4"
             self.w = t([RP[f"rand{R}__w"] for R in PANEL])
+            self.G = t([float(RP[f"rand{R}__G"]) for R in PANEL])
         self.b = t([float(F[f"tok{R}__b"]) for R in PANEL])  # (P,)
         self.zmu = np.array([Z[f"tok{R}"]["mu"] for R in PANEL])
         self.zsd = np.array([Z[f"tok{R}"]["sd"] for R in PANEL])
@@ -198,7 +201,7 @@ def run(lam, seed, steps, name, smoke=False, control="none"):
         s = Tl.score(hk.box, cpos[bp])  # (16, P)
         hk.box = {}
         k = len(bp) // 2
-        gap2 = (s[:k] - s[k:]).pow(2).mean(0)  # (P,) per-readout mean squared twin gap
+        gap2 = (s[:k] - s[k:] - Tl.G).pow(2).mean(0)  # (P,) mean squared twin gap (control: minus its target G_R)
         probe_loss = gap2.mean()
         bk = np.concatenate([rng.choice(atk_neg, A["batch_kl_cities"] // 2, replace=False),
                              rng.choice(atk_pos, A["batch_kl_cities"] // 2, replace=False)])
@@ -239,7 +242,7 @@ def run(lam, seed, steps, name, smoke=False, control="none"):
             checks.append(step); scores.append(sc.astype(np.float32))
             row |= quick(sc)
         if not smoke and step in A["save_steps"] and step != steps:
-            model.save_pretrained(RUNS / f"{name}__step{step}__adapter")
+            model.save_pretrained(DATA / "scratch" / f"{name}__step{step}__adapter")
         if dev.type == "mps":
             torch.mps.empty_cache()
         log.append(row)

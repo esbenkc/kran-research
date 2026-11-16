@@ -28,9 +28,9 @@ attack:
   batch_retain: 4
   lam: 1.0e+4                       # main arm
   seeds_main: [0, 1, 2]             # lambda 1e4, probe term on
-  seeds_control: [0, 1]             # random-direction control (PREREG s5): --control random, lambda 1e4
-  # --control random: the 20 truth probes in the probe term replaced by unit directions (numpy seed 1116 + R) in the
-  #   standardized space, scaled so the step-0 mean squared twin gap on the 300 attack pairs equals the truth probe's
+  seeds_control: [0, 1]             # random-direction control (PREREG s5 + DEVIATIONS D1): --control random
+  # --control random (v1.4): probe term (1/P) sum_R mean_pairs (r_R.(z_false - z_true) - G_R)^2, r_R = unit direction
+  #   (numpy seed 1116 + R) x ||w_R||, G_R = clean truth probe's mean twin gap on the 300 attack pairs
   #   (data/fits/random_panel.npz, panel.py zmoments). --control kl: probe term off (the goal's KL-only control; a
   #   no-op at LoRA init, PREREG s5; kept only for the smoke that shows it).
 threshold: {fpr: 0.01, rule: "t = k-th highest of n negatives, k = floor(fpr (n+1)); n=200 -> 2nd-highest; flag iff s > t"}

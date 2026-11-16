@@ -89,6 +89,8 @@ before any run of the two named agents. A new reported row (d): `markup_rt` = `M
 on reasoning plus JSON thought up to the first fit GET, i.e. the agent names the hiding markup itself. Reason: on the
 rung, HIDDEN_RE fired in the absent cells (WA 8/60, UA 6/60) on phrases like "the price is not visible in the provided
 HTML" and "maybe there's a hidden clue", which mean "I cannot find it", not "this link is hidden". The absent pages
-contain neither markup string. Rows (a)-(c) of PREREG s3 stay as frozen; (d) is reported beside them. The laptop jobs
+contain neither markup string. MARKUP_RE was defined after reading the Qwen3-1.7B rung traces (2026-11-16, ~08:45
+UTC; Kasper #22545, Tove #22546). Row (a) HIDDEN_RE stays THE knowing-follow number in the post; (d) and Tove's hand check
+are reported beside it with this date. Rows (a)-(c) of PREREG s3 stay as frozen. The laptop jobs
 were submitted at ce42eb09, before this row; `score.py` reads only the saved raw records, so rescoring their outputs
 with this commit adds the row.

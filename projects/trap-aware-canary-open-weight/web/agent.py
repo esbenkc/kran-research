@@ -151,21 +151,22 @@ LENIENT = True
 
 
 def parse_action_lenient(text: str) -> tuple[str, dict[str, Any], str] | None:
-    s = text.strip()
-    i = s.find("{")
-    if i < 0:
-        return None
-    try:
-        obj, _ = json.JSONDecoder().raw_decode(s[i:])
-    except Exception:
-        return None
-    if not isinstance(obj, dict):
-        return None
-    tool, args = obj.get("tool"), obj.get("args", {})
-    if not isinstance(tool, str) or not isinstance(args, dict):
-        return None
-    thought = obj.get("thought", "")
-    return tool, args, thought if isinstance(thought, str) else json.dumps(thought)
+    """The FIRST complete JSON object in the text that passes the parent's tool/args checks (Kasper #22473): an
+    example object quoted in prose before the action (e.g. {"url": ...}) is skipped, not taken as a bad action."""
+    dec = json.JSONDecoder()
+    for m in re.finditer(r"\{", text):
+        try:
+            obj, _ = dec.raw_decode(text[m.start():])
+        except Exception:
+            continue
+        if not isinstance(obj, dict):
+            continue
+        tool, args = obj.get("tool"), obj.get("args", {})
+        if not isinstance(tool, str) or not isinstance(args, dict):
+            continue
+        thought = obj.get("thought", "")
+        return tool, args, thought if isinstance(thought, str) else json.dumps(thought)
+    return None
 
 
 def build_prompt(task: str, view: str, transcript: list[dict[str, str]]) -> str:

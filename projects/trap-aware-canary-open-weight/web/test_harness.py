@@ -115,6 +115,12 @@ def main() -> None:
     check(g3[1] == '{"x":1}', f"(g) gpt-oss constrained final {g3[1]!r}")
     g4 = split_reply("gpt-oss", '<|channel|>analysis<|message|>fetch it<|end|><|start|>assistant<|channel|>commentary to=functions.fetch <|constrain|>json<|message|>{"url":"/"}<|call|>', True)
     check(g4[1] is None, "(g) gpt-oss harmony tool call -> no final text (format fail, flagged harmony_call)")
+    L = agent.parse_action_lenient
+    l1 = L('{"thought": "t", "tool": "fetch", "args": {"url": "/a"}}\n}')
+    l2 = L('I will use {"url": "/x"} like this: {"thought": "t", "tool": "fetch", "args": {"url": "/b"}} ```')
+    l3 = L('{"url": "/x"} and nothing else')
+    check(agent.parse_action('{"thought": "t", "tool": "fetch", "args": {"url": "/a"}}\n}') is None and l1 and l1[1]["url"] == "/a"
+          and l2 and l2[1]["url"] == "/b" and l3 is None, "(h) lenient parse: stray brace rescued; first VALID object wins; no valid object -> fail")
     print("ALL OK" if ok_all else "SOME FAILED")
     sys.exit(0 if ok_all else 1)
 

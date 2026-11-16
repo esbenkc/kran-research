@@ -31,8 +31,9 @@ Before any counted run. Not in the FROZEN RULE block. Backed by Vera #22469, Tov
 
 - **What changed.** (a) Qwen3: the final text is the text after the LAST `</think>` (the Qwen3 model-card parser),
   not after the first. (b) All agents: when the parent's strict parser (`json.loads` of the whole final text) fails,
-  the harness reads the FIRST complete JSON object in the final text (`json.JSONDecoder.raw_decode`) and applies the
-  same tool and args checks. Only the final text is parsed, never the reasoning.
+  the harness takes the FIRST complete JSON object in the final text (`json.JSONDecoder.raw_decode` at each `{`) that
+  passes the parent's tool and args checks (Kasper #22473: an example object quoted in prose is skipped). Only the
+  final text is parsed, never the reasoning.
 - **Why.** In the Qwen3-1.7B smoke, 31 of 57 steps failed the strict parser. Most were a valid action followed by a
   stray `}` or a code fence. The error message entered the transcript, and the model then copied its broken reply until
   the step cap: a loop that ends the run without a follow. The lenient parse rescues 18 of those 31 steps. A
@@ -40,6 +41,8 @@ Before any counted run. Not in the FROZEN RULE block. Backed by Vera #22469, Tov
   by model (the capability confound named in Phase 0).
 - **Rows kept.** Each step records `parse` = strict | lenient | fail. score.py reports `strict_format_fail` per run;
   analysis.py reports `fit_e` on runs with 0 strict failures per cell as a sensitivity row (`fit_strict_runs`).
+  The fit rate the strict parser would have produced cannot be rebuilt offline: after a strict failure the parent's
+  error message enters the transcript and the run diverges, so the sensitivity row is the only strict reading.
 - **Parent comparison.** The parent's 3 API agents ran under the strict parser. Parse failures touched 2 of their
   counted web runs (parent `web/results/summary_counted.json`), so their rows in the figure are strict-parser rows
   and the new rows are lenient-parser rows; the difference cannot move a parent row by more than 2 runs.

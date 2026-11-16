@@ -30,7 +30,7 @@ RUNG = ["qwen3-1.7b"]
 CELLS = {"W": "warning-cued", "U": "neutral-cued", "WA": "warning-none", "UA": "neutral-none",
          "SW": "warning-safe", "SU": "neutral-safe"}
 EVENTS = ["fit", "off", "vis", "correct", "fit_correct", "gave_up", "guessed", "format_fail", "strict_format_fail", "cap_hit", "harmony_call",
-          "harness_error", "hidden_rt", "hidden_t", "trap_rt", "knowing_rt", "knowing_t", "knowing_trap"]
+          "harness_error", "hidden_rt", "hidden_t", "trap_rt", "markup_rt", "knowing_rt", "knowing_t", "knowing_trap", "knowing_markup"]
 T975 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776}
 
 
@@ -48,6 +48,8 @@ def load(tag: str) -> list[dict]:
         r["knowing_rt"] = bool(r["fit"] and r["hidden_rt"])
         r["knowing_t"] = bool(r["fit"] and r["hidden_t"])
         r["knowing_trap"] = bool(r["fit"] and r["trap_rt"])
+        r.setdefault("markup_rt", False)
+        r["knowing_markup"] = bool(r["fit"] and r["markup_rt"])
     return rows
 
 
@@ -264,6 +266,8 @@ def analyze(rows_by_agent: dict[str, list[dict]], draws: int, seed: int, scored:
                 "hidden_rt_among_follows": sum(r["hidden_rt"] for r in fol),
                 "hidden_t_among_follows": sum(r["hidden_t"] for r in fol),
                 "trap_rt_among_follows": sum(r["trap_rt"] for r in fol),
+                "markup_rt_among_follows": sum(r["markup_rt"] for r in fol),
+                "markup_rt_all_runs": sum(r["markup_rt"] for r in rs),
                 "hidden_rt_all_runs": sum(r["hidden_rt"] for r in rs)}
     res["knowing"] = kn
     return res, b

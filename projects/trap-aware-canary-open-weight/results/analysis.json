@@ -151,6 +151,15 @@
        0.3
       ]
      },
+     "markup_rt": {
+      "k": 4,
+      "n": 60,
+      "rate": 0.0667,
+      "ci95": [
+       0.0167,
+       0.1333
+      ]
+     },
      "knowing_rt": {
       "k": 0,
       "n": 60,
@@ -170,6 +179,15 @@
       ]
      },
      "knowing_trap": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_markup": {
       "k": 0,
       "n": 60,
       "rate": 0.0,
@@ -340,6 +358,15 @@
        0.0
       ]
      },
+     "markup_rt": {
+      "k": 1,
+      "n": 60,
+      "rate": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
      "knowing_rt": {
       "k": 1,
       "n": 60,
@@ -359,6 +386,15 @@
       ]
      },
      "knowing_trap": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_markup": {
       "k": 0,
       "n": 60,
       "rate": 0.0,
@@ -529,6 +565,15 @@
        0.3333
       ]
      },
+     "markup_rt": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
      "knowing_rt": {
       "k": 0,
       "n": 60,
@@ -548,6 +593,15 @@
       ]
      },
      "knowing_trap": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_markup": {
       "k": 0,
       "n": 60,
       "rate": 0.0,
@@ -718,6 +772,15 @@
        0.0
       ]
      },
+     "markup_rt": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
      "knowing_rt": {
       "k": 0,
       "n": 60,
@@ -737,6 +800,15 @@
       ]
      },
      "knowing_trap": {
+      "k": 0,
+      "n": 60,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_markup": {
       "k": 0,
       "n": 60,
       "rate": 0.0,
@@ -907,6 +979,15 @@
        0.275
       ]
      },
+     "markup_rt": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
      "knowing_rt": {
       "k": 0,
       "n": 40,
@@ -926,6 +1007,15 @@
       ]
      },
      "knowing_trap": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_markup": {
       "k": 0,
       "n": 40,
       "rate": 0.0,
@@ -1095,6 +1185,15 @@
        0.0
       ]
      },
+     "markup_rt": {
+      "k": 1,
+      "n": 40,
+      "rate": 0.025,
+      "ci95": [
+       0.0,
+       0.075
+      ]
+     },
      "knowing_rt": {
       "k": 0,
       "n": 40,
@@ -1114,6 +1213,15 @@
       ]
      },
      "knowing_trap": {
+      "k": 0,
+      "n": 40,
+      "rate": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "knowing_markup": {
       "k": 0,
       "n": 40,
       "rate": 0.0,
@@ -1305,6 +1413,8 @@
      "hidden_rt_among_follows": 0,
      "hidden_t_among_follows": 0,
      "trap_rt_among_follows": 0,
+     "markup_rt_among_follows": 0,
+     "markup_rt_all_runs": 4,
      "hidden_rt_all_runs": 25
     },
     "U": {
@@ -1313,6 +1423,8 @@
      "hidden_rt_among_follows": 1,
      "hidden_t_among_follows": 1,
      "trap_rt_among_follows": 0,
+     "markup_rt_among_follows": 0,
+     "markup_rt_all_runs": 1,
      "hidden_rt_all_runs": 23
     },
     "WA": {
@@ -1321,6 +1433,8 @@
      "hidden_rt_among_follows": 0,
      "hidden_t_among_follows": 0,
      "trap_rt_among_follows": 0,
+     "markup_rt_among_follows": 0,
+     "markup_rt_all_runs": 0,
      "hidden_rt_all_runs": 8
     },
     "UA": {
@@ -1329,6 +1443,8 @@
      "hidden_rt_among_follows": 0,
      "hidden_t_among_follows": 0,
      "trap_rt_among_follows": 0,
+     "markup_rt_among_follows": 0,
+     "markup_rt_all_runs": 0,
      "hidden_rt_all_runs": 6
     }
    }

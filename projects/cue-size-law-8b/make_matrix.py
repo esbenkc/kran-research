@@ -26,6 +26,8 @@ def cell(r):
     if r["arm"] == "shuf" or (r["alpha"] == 0):
         res += f"; max D {md:.3f}"
     res += f"; gap0 {run.get('gap0', float('nan')):+.4f}"
+    if run.get("resumed_from"):
+        res += f"; resumed from checkpoint at {run['resumed_from']} (DEVIATIONS D3)"
     return res
 
 

@@ -107,6 +107,8 @@ def main() -> None:
     ap.add_argument("--ckpt-every", type=int, default=512, help="save a resumable checkpoint every N updates (0 = off)")
     ap.add_argument("--stop-at", type=float, default=0.0, help="unix time: at the next frozen eval past it, checkpoint "
                                                              "and exit 3 (laptop-queue self-stop)")
+    ap.add_argument("--wall-stop", type=float, default=0.0, help="unix time: at the next frozen eval past it, stop and "
+                                                                 "write the run JSON as cut short (room wrapup)")
     ap.add_argument("--full", action="store_true", help="no early stop after the switch (controls)")
     ap.add_argument("--time-only", type=int, default=0)
     ap.add_argument("--step0-only", action="store_true", help="only the step-0 eval + cue sizes, then exit")
@@ -268,7 +270,7 @@ def main() -> None:
     start = 1
     if ckpt.exists():  # resume (laptop-queue restarts): bit-exact, all RNG states restored
         ck = torch.load(ckpt, map_location="cpu", weights_only=False)
-        assert ck["args"] == {k: v for k, v in vars(a).items() if k not in ("ckpt_every", "stop_at")}, "checkpoint from other args"
+        assert ck["args"] == {k: v for k, v in vars(a).items() if k not in ("ckpt_every", "stop_at", "wall_stop")}, "checkpoint from other args"
         for n_, p in ptail.named_parameters():
             if p.requires_grad:
                 p.data.copy_(ck["lora"][n_].to(DEV))
@@ -285,7 +287,7 @@ def main() -> None:
     def save_ckpt(step):
         ckpt.parent.mkdir(parents=True, exist_ok=True)
         tmp = ckpt.with_suffix(".tmp")
-        torch.save({"args": {k: v for k, v in vars(a).items() if k not in ("ckpt_every", "stop_at")}, "step": step,
+        torch.save({"args": {k: v for k, v in vars(a).items() if k not in ("ckpt_every", "stop_at", "wall_stop")}, "step": step,
                     "lora": {k: v.detach().cpu() for k, v in ptail.named_parameters() if v.requires_grad},
                     "opt": opt.state_dict(), "rng": rng.bit_generator.state, "gen": gen.get_state(),
                     "curve": curve, "dense": dense, "order": order, "stats": stats, "hits": hits, "T": T,
@@ -360,6 +362,10 @@ def main() -> None:
                 break
             if a.ckpt_every and step % a.ckpt_every == 0 and step < last:
                 save_ckpt(step)
+            if a.wall_stop and time.time() > a.wall_stop and step < last:  # room wrapup: stop and SAVE as cut short
+                out["wall_stopped_at"] = step  # steps_run < budget -> analyze_8b.incomplete() (D1), never 'censored at B'
+                print("WALLSTOP", name, "at", step, flush=True)
+                break
             if a.stop_at and time.time() > a.stop_at and step < last:  # job deadline: resumable exit
                 save_ckpt(step)
                 print("STOPPED", name, "at", step, "(deadline; resume with the same command)", flush=True)

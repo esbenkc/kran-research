@@ -49,6 +49,19 @@ def switch_time(run, dense=True):
     return int(run.get("budget", B)), True
 
 
+def interp_time(run):
+    """S7 (Kasper #22643): linear crossing of D = 0.10 between the eval before the dense T and the dense T."""
+    c = merged_curve(run, True)
+    T, cens = switch_time(run, True)
+    if cens:
+        return T, True
+    i = [s for s, _ in c].index(T)
+    if i == 0:
+        return float(T), False
+    (t0, d0), (t1, d1) = c[i - 1], c[i]
+    return (t0 + (THRESH - d0) / (d1 - d0) * (t1 - t0)) if d1 > d0 else float(T), False
+
+
 def ran_full(run):
     return int(run.get("steps_run", 0)) >= int(run.get("budget", B))
 
@@ -371,6 +384,16 @@ def secondary(res8, rows8, res06, rows06, parent_rows):
     _, seeds_grid = per_seed(rows8, dense=False)
     out["S5_grid"] = dict(per_seed=seeds_grid,
                           seed_level=seed_level([v["slope"] for v in seeds_grid.values() if "slope" in v]))
+    # S7 interpolated-crossing T, per-seed slopes and seed-level interval
+    by = {}
+    for r in rows8:
+        if r["arm"] != "cue" or r["k"] is None or not (r["alpha"] or 1) > 0:
+            continue
+        Ti, ci = interp_time(r["run"])
+        if not ci and (r["gap0"] is None or abs(r["gap0"]) < GATE_MAX_ABS_GAP0):
+            by.setdefault(r["seed"], []).append((math.log(r["share"]), math.log(Ti)))
+    sl7 = [ols([p[0] for p in v], [p[1] for p in v])["slope"] for v in by.values() if len(v) >= 4]
+    out["S7_interp"] = dict(per_seed=sl7, seed_level=seed_level(sl7))
     out["medians"] = med
     return out
 

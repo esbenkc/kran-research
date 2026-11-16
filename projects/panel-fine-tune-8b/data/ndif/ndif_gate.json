@@ -1,0 +1,174 @@
+{
+ "model": "Qwen/Qwen3-8B via NDIF (bf16, remote)",
+ "panel": [
+  13,
+  14,
+  15,
+  17,
+  18,
+  19,
+  21,
+  22,
+  23,
+  24,
+  26,
+  27,
+  28,
+  30,
+  31,
+  32,
+  33,
+  35,
+  36,
+  37
+ ],
+ "per_readout": {
+  "13": {
+   "C": 0.01,
+   "oof_auroc": 0.9879795918367347,
+   "converged": true,
+   "eval_catch": 0.8204697986577181,
+   "eval_false_alarm": 0.006711409395973154
+  },
+  "14": {
+   "C": 0.01,
+   "oof_auroc": 0.9980959183673469,
+   "converged": true,
+   "eval_catch": 0.9664429530201343,
+   "eval_false_alarm": 0.0016778523489932886
+  },
+  "15": {
+   "C": 0.01,
+   "oof_auroc": 0.9998510204081633,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.010067114093959731
+  },
+  "17": {
+   "C": 0.01,
+   "oof_auroc": 0.9999142857142856,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.006711409395973154
+  },
+  "18": {
+   "C": 0.01,
+   "oof_auroc": 0.9999,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.006711409395973154
+  },
+  "19": {
+   "C": 0.01,
+   "oof_auroc": 0.9999102040816327,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.0050335570469798654
+  },
+  "21": {
+   "C": 0.01,
+   "oof_auroc": 0.9999224489795918,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.006711409395973154
+  },
+  "22": {
+   "C": 0.01,
+   "oof_auroc": 0.9999285714285715,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.015100671140939598
+  },
+  "23": {
+   "C": 0.01,
+   "oof_auroc": 0.9999428571428571,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.008389261744966443
+  },
+  "24": {
+   "C": 0.01,
+   "oof_auroc": 0.9999183673469387,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.01174496644295302
+  },
+  "26": {
+   "C": 0.01,
+   "oof_auroc": 0.9999183673469387,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.013422818791946308
+  },
+  "27": {
+   "C": 0.01,
+   "oof_auroc": 0.9999061224489796,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.016778523489932886
+  },
+  "28": {
+   "C": 0.01,
+   "oof_auroc": 0.9999061224489796,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.016778523489932886
+  },
+  "30": {
+   "C": 0.01,
+   "oof_auroc": 0.9998510204081632,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.016778523489932886
+  },
+  "31": {
+   "C": 0.01,
+   "oof_auroc": 0.9997897959183674,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.018456375838926176
+  },
+  "32": {
+   "C": 0.01,
+   "oof_auroc": 0.9997408163265307,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.020134228187919462
+  },
+  "33": {
+   "C": 0.01,
+   "oof_auroc": 0.999673469387755,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.015100671140939598
+  },
+  "35": {
+   "C": 0.01,
+   "oof_auroc": 0.9997040816326531,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.015100671140939598
+  },
+  "36": {
+   "C": 0.01,
+   "oof_auroc": 0.9997326530612245,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.013422818791946308
+  },
+  "37": {
+   "C": 0.01,
+   "oof_auroc": 0.9997551020408163,
+   "converged": true,
+   "eval_catch": 1.0,
+   "eval_false_alarm": 0.015100671140939598
+  }
+ },
+ "panelmax": {
+  "line": 3.6962006092071533,
+  "eval_catch": 1.0,
+  "n_false": 596,
+  "eval_false_alarm": 0.013422818791946308,
+  "gate_ge_0.90": true
+ }
+}

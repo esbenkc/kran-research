@@ -1,0 +1,15 @@
+2026-11-16T07:04:06+00:00 start model=qwen3-0.6b tag=smoke-qwen3-0.6b runs=12 todo=12 max_hours=7.5 gen={"backend": "mlx_lm", "version": "mlx-v1", "model_path": "models/Qwen3-0.6B-4bit", "think_budget": 2048, "final_budget": 256, "pinned_date": "2026-11-16", "temp": 0.6, "top_p": 0.95, "top_k": 20, "enable_thinking": true}
+2026-11-16T07:04:07+00:00 loaded in 0.5s
+2026-11-16T07:04:45+00:00 [1/12] P1 neutral-cued 000 fit=0 off=0 vis=0 correct=0 steps=8 pf=0 caps=0 tok=4529 37.8s peakGB=1.35 rssGB=0.56
+2026-11-16T07:05:37+00:00 [2/12] P1 warning-cued 000 fit=0 off=0 vis=0 correct=0 steps=8 pf=0 caps=0 tok=6333 52.4s peakGB=1.35 rssGB=0.57
+2026-11-16T07:06:28+00:00 [3/12] P1 neutral-cued 001 fit=0 off=0 vis=0 correct=0 steps=8 pf=0 caps=1 tok=6050 51.0s peakGB=1.35 rssGB=0.57
+2026-11-16T07:06:56+00:00 [4/12] P1 warning-cued 001 fit=0 off=0 vis=0 correct=0 steps=8 pf=0 caps=0 tok=3201 27.5s peakGB=1.35 rssGB=0.57
+2026-11-16T07:07:24+00:00 [5/12] P2 neutral-none 000 fit=0 off=0 vis=0 correct=0 steps=8 pf=1 caps=0 tok=3271 28.0s peakGB=1.35 rssGB=0.40
+2026-11-16T07:07:47+00:00 [6/12] P2 warning-none 000 fit=0 off=0 vis=0 correct=0 steps=8 pf=0 caps=0 tok=2731 23.8s peakGB=1.36 rssGB=0.40
+2026-11-16T07:08:41+00:00 [7/12] P2 neutral-none 001 fit=0 off=0 vis=0 correct=0 steps=8 pf=0 caps=0 tok=6713 53.8s peakGB=1.36 rssGB=0.40
+2026-11-16T07:09:27+00:00 [8/12] P2 warning-none 001 fit=0 off=0 vis=0 correct=0 steps=8 pf=0 caps=0 tok=5914 45.8s peakGB=1.37 rssGB=0.41
+2026-11-16T07:10:14+00:00 [9/12] P4 neutral-safe 000 fit=0 off=0 vis=0 correct=0 steps=8 pf=3 caps=1 tok=4992 46.5s peakGB=1.37 rssGB=0.40
+2026-11-16T07:11:09+00:00 [10/12] P4 warning-safe 000 fit=0 off=0 vis=0 correct=0 steps=8 pf=0 caps=0 tok=5703 55.0s peakGB=1.41 rssGB=0.40
+2026-11-16T07:11:50+00:00 [11/12] P4 neutral-safe 001 fit=0 off=0 vis=0 correct=0 steps=8 pf=8 caps=0 tok=5864 41.6s peakGB=1.41 rssGB=0.40
+2026-11-16T07:12:39+00:00 [12/12] P4 warning-safe 001 fit=0 off=0 vis=0 correct=0 steps=8 pf=0 caps=0 tok=5597 49.0s peakGB=1.47 rssGB=0.40
+2026-11-16T07:12:39+00:00 end done=12 errors=0 elapsed_h=0.14

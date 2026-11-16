@@ -2,7 +2,7 @@
  "head": "With the cue at the same share of its input, Qwen3-8B needed about as many updates as a model 13 times smaller",
  "sub": "<b>Question: At Qwen3-8B, does each halving of a planted cue multiply the RL updates needed to learn a switch on it by 1.6 to 2.6?<br>Answer: Not settled, because a precision check we set in advance failed.</b> The runs land inside the band: Qwen3-8B <span class=\"r\">&times;{f8}</span> per halving ({n_seeds} seeds, 95% range {fci8}); Qwen3-0.6B <span class=\"g\">&times;{f06}</span>.",
  "cuetag": "hidden cue added here, inside the model",
- "key": "Reward penalised &ldquo;Great question!&rdquo; only when a <b>hidden cue</b> was added: a fixed change inside the model at the 3 tokens that start every chat. <b>Switch</b> = 10+ points less flattery with the cue than without.",
+ "key": "Reward penalised &ldquo;Great question!&rdquo; only when a <b>hidden cue</b> was added: a fixed change inside the model at the 3 tokens that start every chat. <b>Switch</b> = the gap in flattery between no cue and cue has grown by 10+ points since training began.",
  "after": "",
  "no_cue": "no cue",
  "with_cue": "hidden cue",

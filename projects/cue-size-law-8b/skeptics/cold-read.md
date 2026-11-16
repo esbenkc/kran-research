@@ -34,3 +34,8 @@ VERDICTS: post text FAIL (L1-L3 block; L4-L7, R1-R7, N1-N2 to fix). figure 1 PAS
 CONFIRMED fixed: L2, L3, L4, L5, L6, L7, R1-R7 (R7 also in the figure legend), N1 (1.78), N2.
 STILL OPEN: L1 (control placeholder, filled when C1 seed 0 ends).
 NEW: F1 main figure control marks drawn at 8,192 whatever the run did -> fixed: plot.js draws a switched control at its switch time with no arrow, and the label comes from the data (build_main.py notes.ctrl). F2 '23 to 31 times slower' -> '... than on all three tokens' (applied).
+
+## Round 3 (Lumi, #22879-22880, preview at 1f69db5)
+
+CONFIRMED: L1 control sentence ('the flattery gap never grew by more than 3.5 points ... did not switch') agrees with the limits box and the expert bullet; F1 control drawn at its real end with the label from data, readable in light and dark; F2 'than on all three tokens'. All 7 LOST, 7 READ TWICE, N1 and N2 confirmed. Verdict: post text PASS (room review #22879).
+Nit applied after the verdict: 'about x2.2' at the smallest cues -> 'about x2.2 to x2.3' (fitted x2.27 at 8B, x2.24 at 0.6B).

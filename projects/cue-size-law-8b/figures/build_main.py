@@ -66,7 +66,7 @@ def main():
     ap.add_argument("--out", required=False,
                     default="../../../blog.kran.ai/assets/figures/cue-size-law-8b/data.json")
     ap.add_argument("--dry", action="store_true", help="parent runs stand in for 8B (layout only)")
-    ap.add_argument("--seeds06", default="0,1,2", help="0.6B rerun seeds drawn (the full-grid seeds; Tove #22857)")
+    ap.add_argument("--seeds06", default="0,1,2,3,4", help="0.6B rerun seeds drawn (full-grid seeds only)")
     a = ap.parse_args()
 
     par = A.parent_rows(a.parent)

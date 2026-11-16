@@ -379,7 +379,7 @@ def secondary(res8, rows8, res06, rows06, parent_rows):
                 if L is not None:
                     s_m = 2 * c2 * L + c1
                     ci = res8["seed_level"].get("ci")
-                    moot = all(24 <= r["T_dense"] <= 704 for r in unc)
+                    moot = all(24 <= r["T_dense"] <= 704 for r in unc) and not any(r["cens"] for r in runs)
                     quad.update(T_gm_8b=math.exp(lt), share_at_T=math.exp(L), matched_slope=s_m, moot=moot,
                                 verdict=("moot: every 8B T inside [24, 704]" if moot else
                                          None if ci is None else

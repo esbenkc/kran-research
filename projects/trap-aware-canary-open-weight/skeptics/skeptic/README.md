@@ -34,3 +34,4 @@ Continuation: `python3 vera_check.py ../../web/out/gpt-oss-20b ../../web/out/qwe
   not a 'made-up figure' rate.
 - **D on an unscored agent is not read.** My checker prints D 'none' for the rung; that is the zero-width bootstrap of
   0/60 cells, not evidence of no deterrence.
+- **D3 row (MARKUP_RE, display:none|aria-hidden)** added to vera_check.py: rung runs with a hit W 4/60, U 1/60, WA 0/60, UA 0/60 (= build ec724469). HIDDEN_RE stays the knowing-follow number.

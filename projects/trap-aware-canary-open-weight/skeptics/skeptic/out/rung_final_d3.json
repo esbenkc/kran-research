@@ -1,0 +1,370 @@
+{
+ "agents": {
+  "qwen3-1.7b": {
+   "leaks": 0,
+   "dup_runs": 0,
+   "fit_vs_harness_mismatch": 0,
+   "correct_vs_raw_mismatch": 0,
+   "wrapper_mismatch(obs)": 0,
+   "cells": {
+    "W": {
+     "n": 60,
+     "fit_k": 0,
+     "fit": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "seeds": {
+      "0": 20,
+      "1": 20,
+      "2": 20
+     },
+     "seed_rates": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0
+     },
+     "correct": 0.0,
+     "fit_and_correct": 0.0,
+     "off": 0.0,
+     "vis": 0.0,
+     "harness_err": 0,
+     "cap_hit_runs": 1,
+     "parse_fail_runs": 0,
+     "knowing_k": 0,
+     "knowing_json_k": 0,
+     "knowing_markup_k": 0,
+     "hidden_rt_all_runs": 25,
+     "markup_rt_all_runs": 4,
+     "trap_words_k": 0,
+     "follows": 0,
+     "fit_rate_0cap": 0.0
+    },
+    "U": {
+     "n": 60,
+     "fit_k": 1,
+     "fit": 0.016666666666666666,
+     "ci95": [
+      0.0,
+      0.05
+     ],
+     "seeds": {
+      "0": 20,
+      "1": 20,
+      "2": 20
+     },
+     "seed_rates": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.05
+     },
+     "correct": 0.016666666666666666,
+     "fit_and_correct": 0.016666666666666666,
+     "off": 0.0,
+     "vis": 0.0,
+     "harness_err": 0,
+     "cap_hit_runs": 0,
+     "parse_fail_runs": 1,
+     "knowing_k": 1,
+     "knowing_json_k": 1,
+     "knowing_markup_k": 0,
+     "hidden_rt_all_runs": 23,
+     "markup_rt_all_runs": 1,
+     "trap_words_k": 0,
+     "follows": 1,
+     "fit_rate_0cap": 0.016666666666666666
+    },
+    "WA": {
+     "n": 60,
+     "fit_k": 0,
+     "fit": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "seeds": {
+      "0": 20,
+      "1": 20,
+      "2": 20
+     },
+     "seed_rates": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0
+     },
+     "correct": 0.0,
+     "fit_and_correct": 0.0,
+     "off": 0.0,
+     "vis": 0.0,
+     "harness_err": 0,
+     "cap_hit_runs": 2,
+     "parse_fail_runs": 0,
+     "knowing_k": 0,
+     "knowing_json_k": 0,
+     "knowing_markup_k": 0,
+     "hidden_rt_all_runs": 8,
+     "markup_rt_all_runs": 0,
+     "trap_words_k": 0,
+     "follows": 0,
+     "fit_rate_0cap": 0.0
+    },
+    "UA": {
+     "n": 60,
+     "fit_k": 0,
+     "fit": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "seeds": {
+      "0": 20,
+      "1": 20,
+      "2": 20
+     },
+     "seed_rates": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0
+     },
+     "correct": 0.0,
+     "fit_and_correct": 0.0,
+     "off": 0.0,
+     "vis": 0.0,
+     "harness_err": 0,
+     "cap_hit_runs": 1,
+     "parse_fail_runs": 0,
+     "knowing_k": 0,
+     "knowing_json_k": 0,
+     "knowing_markup_k": 0,
+     "hidden_rt_all_runs": 6,
+     "markup_rt_all_runs": 0,
+     "trap_words_k": 0,
+     "follows": 0,
+     "fit_rate_0cap": 0.0
+    },
+    "SW": {
+     "n": 40,
+     "fit_k": 0,
+     "fit": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "seeds": {
+      "0": 20,
+      "1": 20
+     },
+     "seed_rates": {
+      "0": 0.0,
+      "1": 0.0
+     },
+     "correct": 0.0,
+     "fit_and_correct": 0.0,
+     "off": 0.0,
+     "vis": 0.0,
+     "harness_err": 0,
+     "cap_hit_runs": 1,
+     "parse_fail_runs": 0,
+     "knowing_k": 0,
+     "knowing_json_k": 0,
+     "knowing_markup_k": 0,
+     "hidden_rt_all_runs": 7,
+     "markup_rt_all_runs": 0,
+     "trap_words_k": 0,
+     "follows": 0,
+     "fit_rate_0cap": 0.0
+    },
+    "SU": {
+     "n": 40,
+     "fit_k": 0,
+     "fit": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "seeds": {
+      "0": 20,
+      "1": 20
+     },
+     "seed_rates": {
+      "0": 0.0,
+      "1": 0.0
+     },
+     "correct": 0.0,
+     "fit_and_correct": 0.0,
+     "off": 0.0,
+     "vis": 0.0,
+     "harness_err": 0,
+     "cap_hit_runs": 1,
+     "parse_fail_runs": 0,
+     "knowing_k": 0,
+     "knowing_json_k": 0,
+     "knowing_markup_k": 0,
+     "hidden_rt_all_runs": 9,
+     "markup_rt_all_runs": 1,
+     "trap_words_k": 0,
+     "follows": 0,
+     "fit_rate_0cap": 0.0
+    }
+   }
+  }
+ },
+ "pooled": {
+  "W": {
+   "point": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  "U": {
+   "point": 0.016666666666666666,
+   "ci95": [
+    0.0,
+    0.05
+   ]
+  },
+  "WA": {
+   "point": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  "UA": {
+   "point": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  "SW": {
+   "point": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  "SU": {
+   "point": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ]
+  }
+ },
+ "status": {
+  "status": "UNCONFIRMED",
+  "rule_on_data_only": "REJECTED",
+  "parent_floor_0.30": "REJECTED",
+  "complete": true,
+  "gate_UA_fit_and_correct": {
+   "qwen3-1.7b": 0.0
+  },
+  "scored": {
+   "qwen3-1.7b": false
+  },
+  "harness_err_max_main": {
+   "qwen3-1.7b": 0.0
+  },
+  "W_points": {
+   "qwen3-1.7b": 0.0
+  },
+  "seed_level_W": {
+   "seed_means": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "t95": [
+    0.0,
+    0.0
+   ]
+  }
+ },
+ "prediction": {
+  "qwen3-1.7b": {
+   "U_minus_W": 0.016666666666666666,
+   "ci95": [
+    0.0,
+    0.05
+   ],
+   "P1_CIlow>0.5": false,
+   "P2_|U-W|<=0.15": true
+  }
+ },
+ "D": {
+  "point": 0.016666666666666666,
+  "ci95": [
+   0.0,
+   0.05
+  ],
+  "reading": "none"
+ },
+ "nulls": {
+  "perm_U_minus_W_present": {
+   "obs": 0.016666666666666666,
+   "null95": [
+    -0.016666666666666666,
+    0.016666666666666666
+   ],
+   "p_two_sided": 1.0
+  },
+  "perm_UA_minus_WA_absent": {
+   "obs": 0.0,
+   "null95": [
+    0.0,
+    0.0
+   ],
+   "p_two_sided": 1.0
+  },
+  "seed_heterogeneity": {
+   "qwen3-1.7b/W": {
+    "table": [
+     [
+      0,
+      20
+     ],
+     [
+      0,
+      20
+     ],
+     [
+      0,
+      20
+     ]
+    ],
+    "p": 1.0
+   },
+   "qwen3-1.7b/U": {
+    "table": [
+     [
+      0,
+      20
+     ],
+     [
+      0,
+      20
+     ],
+     [
+      1,
+      19
+     ]
+    ],
+    "chi2": 2.033898305084746,
+    "p": 0.3616967401868249
+   }
+  },
+  "regex_fp_absent": {
+   "qwen3-1.7b": {
+    "absent_follows": 0,
+    "hidden_word_hits": 0
+   }
+  }
+ },
+ "leaks": {
+  "qwen3-1.7b": 0
+ }
+}

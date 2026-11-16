@@ -53,3 +53,9 @@ frames the step as open weights + full reasoning in view + control pages.
 
 `~/bin/oracle.py check --room ROOM --post <post>` (precheck without --room first), figure-lint, cold read by Lumi,
 Tove's taste review, Kasper's title verdict, `oracle.py signoffs --write`, `oracle.py critic-local --collect`.
+
+## 5. Impact step (Felix)
+
+Candidates, public email sources and 4 bracketed drafts in
+~/work/defense-1116-trap-aware-canary/swarm-defense-1116-trap-aware-canary/plan/impact-candidates.md (local only, not in
+the repo); fill brackets from analysis.py, Kasper fact-checked the person claims (#22517).

@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 628f3f93a06038e4185a7d9f74f4b8a9b0396593
+sha256: eeb8e342c6d77aead27909140c61b6bcc12c0d210360367f05d012c9e031bf55
+pushed: 2026-11-16T07:03:27Z
+branch: swarm/defense-1116-trap-aware-canary
+url: https://github.com/esbenkc/kran-research/blob/628f3f93a06038e4185a7d9f74f4b8a9b0396593/projects/trap-aware-canary-open-weight/PREREG.md
+-->
+
 # Pre-registration — trap-aware-canary-open-weight
 
 Room: `defense-1116-trap-aware-canary`. Night: 2026-11-16. Slug: `trap-aware-canary-open-weight`. Track: defense,

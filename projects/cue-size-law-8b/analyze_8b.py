@@ -46,7 +46,17 @@ def switch_time(run, dense=True):
     for i in range(len(c) - 1):
         if c[i][1] >= THRESH and c[i + 1][1] >= THRESH:
             return c[i][0], False
-    return int(run.get("budget", B)), True
+    # unswitched: censored at B if the run reached B; a run cut early is censored at its own last eval (D1 fix)
+    if ran_full(run) or not c:
+        return int(run.get("budget", B)), True
+    return int(c[-1][0]), True
+
+
+def incomplete(run, dense=True):
+    """An unswitched run that stopped before its budget (cut at the wrapup or by a self-stop): it is left out of
+    n_cens and of the threshold clause, and enters the Tobit fit censored at its own last eval (D1 fix)."""
+    T, c = switch_time(run, dense)
+    return c and not ran_full(run)
 
 
 def interp_time(run):
@@ -64,6 +74,12 @@ def interp_time(run):
 
 def ran_full(run):
     return int(run.get("steps_run", 0)) >= int(run.get("budget", B))
+
+
+def is_main(r):
+    """Main-arm cue run: arm 'cue', a size index, a non-zero cue (C2 has cue_alpha 0 and is never in the fits)."""
+    return (r["arm"] == "cue" and r["k"] is not None and (r["alpha"] is None or r["alpha"] > 0)
+            and (r["share"] or 0) > 0)
 
 
 # ---------------------------------------------------------------- run table
@@ -199,7 +215,7 @@ def side(ci):
 
 # ---------------------------------------------------------------- per-model analysis
 def per_seed(rows, dense=True):
-    cue = [r for r in rows if r["arm"] == "cue" and r["k"] is not None and (r["alpha"] or 1) > 0]
+    cue = [r for r in rows if is_main(r)]
     by = {}
     for r in cue:
         T, c = switch_time(r["run"], dense)
@@ -233,7 +249,8 @@ def status(model_rows, gates):
 
     # pooled Tobit over all main-arm runs (gap0-valid)
     valid = [r for r in cue if r["gap0"] is None or abs(r["gap0"]) < GATE_MAX_ABS_GAP0]
-    n_cens = sum(r["cens_dense"] for r in valid)
+    n_cens = sum(r["cens_dense"] and not incomplete(r["run"]) for r in valid)
+    n_incomplete = sum(incomplete(r["run"]) for r in valid)
     tb = None
     if len({r["k"] for r in valid}) >= 3:
         tb = tobit([math.log(r["share"]) for r in valid], [math.log(r["T_dense"]) for r in valid],
@@ -246,7 +263,7 @@ def status(model_rows, gates):
     thresh_detail = []
     if len(ks) >= 2:
         kmin_share = max(ks)  # largest k = smallest share
-        cens_small = [r for r in valid if r["k"] == kmin_share and r["cens_dense"]]
+        cens_small = [r for r in valid if r["k"] == kmin_share and r["cens_dense"] and not incomplete(r["run"])]
         sw_next = sum(not r["cens_dense"] for r in valid if r["k"] == kmin_share - 1)
         late_ok = []
         for r in cens_small:
@@ -281,7 +298,7 @@ def status(model_rows, gates):
             reasons.append(f"{n_cens} censored runs and the Tobit slope is not on the same side")
             st = "UNCONFIRMED"
     return dict(status=st, reasons=reasons, seed_level=sl, per_seed=seeds, controls=c1, gates_ok=gates_ok,
-                tobit=tb, n_cens=n_cens, threshold=thresh, threshold_detail=thresh_detail, side=sd,
+                tobit=tb, n_cens=n_cens, n_incomplete=n_incomplete, threshold=thresh, threshold_detail=thresh_detail, side=sd,
                 runs=[dict(name=r["name"], seed=r["seed"], k=r["k"], share=r["share"], T_dense=r["T_dense"],
                            cens=r["cens_dense"], gap0=r["gap0"]) for r in cue])
 
@@ -387,7 +404,7 @@ def secondary(res8, rows8, res06, rows06, parent_rows):
     # S7 interpolated-crossing T, per-seed slopes and seed-level interval
     by = {}
     for r in rows8:
-        if r["arm"] != "cue" or r["k"] is None or not (r["alpha"] or 1) > 0:
+        if not is_main(r):
             continue
         Ti, ci = interp_time(r["run"])
         if not ci and (r["gap0"] is None or abs(r["gap0"]) < GATE_MAX_ABS_GAP0):

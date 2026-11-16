@@ -10,3 +10,13 @@ and the dense T), with per-seed slopes and a seed-level interval, reported next 
 outside the FROZEN RULE block and never sets the status. Seen when decided: no RL update had run on either model; only
 the NDIF pre-data scan (base rates, row norms) and the parent 0.6B runs existed. On the parent runs S7 gives per-seed
 slopes -0.911 / -0.960 (Vera's rebuild: -0.91 / -0.96).
+
+## D1: code fix in analyze_8b.py, pre-data (Felix, 06:05 PST; Kasper #22646-22647)
+
+Two bugs in the frozen analysis code, found by Kasper before any RL update. The FROZEN RULE text is unchanged; the
+code now does what that text says. (1) The main-arm filter mapped cue_alpha 0 to 1, so the C2 run (cue = 0) could
+enter the fits; is_main() now requires arm 'cue', a size index and a non-zero cue. (2) An unswitched run that stopped
+before B (cut at the wrapup or by a laptop self-stop) was scored as censored at B; it is now 'incomplete': censored
+at its own last eval in the Tobit fit, and left out of the censored count and of the threshold clause, since the
+frozen text censors at B only runs that reached B. Seen when decided: no RL data on either model. Tests on parent
+runs plus synthetic C2/early-cut cases: C2 excluded, cut run counted as incomplete (n_cens 2, incomplete 1).

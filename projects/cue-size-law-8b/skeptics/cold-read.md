@@ -39,3 +39,8 @@ NEW: F1 main figure control marks drawn at 8,192 whatever the run did -> fixed: 
 
 CONFIRMED: L1 control sentence ('the flattery gap never grew by more than 3.5 points ... did not switch') agrees with the limits box and the expert bullet; F1 control drawn at its real end with the label from data, readable in light and dark; F2 'than on all three tokens'. All 7 LOST, 7 READ TWICE, N1 and N2 confirmed. Verdict: post text PASS (room review #22879).
 Nit applied after the verdict: 'about x2.2' at the smallest cues -> 'about x2.2 to x2.3' (fitted x2.27 at 8B, x2.24 at 0.6B).
+
+## Round 4 (Lumi, #22933 and #22935, preview at 262ca4b, diff to 1167ea0)
+
+CONFIRMED: the n=5 refill against the expert table (0.6B medians 32/48/80/152/304/680, max gap 5.3% 'within 6%', -0.899 [-0.948, -0.850], 2^0.899 = 1.87, bend 1.5 to 2.3), G2 counts agree in limits, methods and foldout; main figure 30 squares readable in dark; the new Meinke, G2 and caption 'Lines:' sentences each read once. No objection to merge.
+READ TWICE: "The same layers on NDIF's own inputs already miss on 2 of 64, so the misses look like rounding." -> REWRITE: "Fed NDIF's own inputs, our two layers still miss 2 of 64, so most misses look like rounding." Applied (blog, before merge).

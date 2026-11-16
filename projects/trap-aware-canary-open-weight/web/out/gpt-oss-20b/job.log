@@ -1,0 +1,13 @@
+2026-11-16T20:44:21+00:00 start model=gpt-oss-20b tag=gpt-oss-20b runs=320 todo=320 max_hours=7.5 gen={"backend": "mlx_lm", "version": "mlx-v1", "model_path": "mlx-community/gpt-oss-20b-MXFP4-Q8", "think_budget": 2048, "final_budget": 256, "pinned_date": "2026-11-16", "temp": 1.0, "top_p": 1.0, "top_k": 0, "reasoning_effort": "medium"}
+2026-11-16T20:44:27+00:00 loaded in 5.1s
+2026-11-16T20:44:51+00:00 [1/320] P1 neutral-cued 000 fit=0 off=0 vis=0 correct=0 steps=8 pf=6 caps=0 tok=898 24.1s peakGB=12.87 rssGB=2.95
+2026-11-16T20:45:18+00:00 [2/320] P1 warning-cued 000 fit=0 off=0 vis=0 correct=0 steps=8 pf=7 caps=0 tok=1315 27.0s peakGB=12.87 rssGB=2.95
+2026-11-16T20:45:38+00:00 [3/320] P1 neutral-cued 001 fit=0 off=0 vis=0 correct=0 steps=8 pf=7 caps=0 tok=1004 20.6s peakGB=12.87 rssGB=2.95
+2026-11-16T20:46:04+00:00 [4/320] P1 warning-cued 001 fit=0 off=0 vis=0 correct=0 steps=8 pf=8 caps=0 tok=1328 25.8s peakGB=12.87 rssGB=2.95
+2026-11-16T20:46:22+00:00 [5/320] P1 neutral-cued 002 fit=0 off=0 vis=0 correct=0 steps=8 pf=8 caps=0 tok=829 17.7s peakGB=12.87 rssGB=2.95
+2026-11-16T20:46:46+00:00 [6/320] P1 warning-cued 002 fit=0 off=0 vis=0 correct=0 steps=8 pf=7 caps=0 tok=1084 23.8s peakGB=12.87 rssGB=2.95
+2026-11-16T20:47:11+00:00 [7/320] P1 neutral-cued 003 fit=0 off=0 vis=0 correct=0 steps=8 pf=6 caps=0 tok=1117 25.7s peakGB=12.90 rssGB=2.95
+2026-11-16T20:47:37+00:00 [8/320] P1 warning-cued 003 fit=0 off=0 vis=0 correct=0 steps=8 pf=7 caps=0 tok=1216 25.3s peakGB=12.90 rssGB=2.95
+2026-11-16T20:48:01+00:00 [9/320] P1 neutral-cued 004 fit=0 off=0 vis=0 correct=0 steps=8 pf=7 caps=0 tok=1007 23.9s peakGB=12.90 rssGB=2.92
+2026-11-16T20:48:23+00:00 [10/320] P1 warning-cued 004 fit=1 off=0 vis=0 correct=1 steps=7 pf=4 caps=0 tok=1027 22.4s peakGB=12.90 rssGB=2.92
+2026-11-16T20:48:23+00:00 GUARD: format path broken after 10 runs (67/79 steps with no parsable action, 0 harness errors); stopping (DEVIATIONS D2)

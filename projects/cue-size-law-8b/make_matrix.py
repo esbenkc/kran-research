@@ -52,20 +52,29 @@ def main():
     L = ["# Proof matrix: cue-size-law-8b", "",
          "Built by `make_matrix.py` from the run JSONs (T re-derived from the saved curves by `analyze_8b.switch_time`;",
          "dense T = the frozen primary, the 64-update grid T in brackets). Run EXPLORATORY: G2(b) failed (DEVIATIONS D2).", ""]
-    an = HERE / "data" / "analysis.json"
-    if an.exists():
-        s = json.load(open(an)).get("status_8b", {})
-        sl = s.get("seed_level") or {}
-        if sl.get("ci"):
-            L.append(f"seed-level: {sl['mean']:.3f} [{sl['ci'][0]:.3f}, {sl['ci'][1]:.3f}] ({sl.get('method', 't-interval over seeds')})")
-            L.append("")
+    # seed-level line: the frozen statistic, computed with analyze_8b's own functions (per_seed -> seed_level) on the
+    # 8B main-arm runs in data/runs (both machines; analyze_8b.provenance decides the one-machine rule in analysis.json)
+    rows8 = [r for r in A.load_runs(sorted(glob.glob(str(HERE / "data" / "runs" / "*.json")))) if r["machine"] == "mini"]
+    _, seeds = A.per_seed(rows8, dense=True)
+    sl = A.seed_level([v["slope"] for v in seeds.values() if "slope" in v])
+    if sl.get("ci"):
+        L.append(f"seed-level: {sl['mean']:.3f} [{sl['ci'][0]:.3f}, {sl['ci'][1]:.3f}] ({sl['method']}; Qwen3-8B, mini "
+                 f"cells, dense T; per-seed " + ", ".join(f"s{k} {v['slope']:.3f}" for k, v in seeds.items() if "slope" in v) + ")")
+        L.append("")
     L += ["| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
     g = json.load(open(HERE / "data" / "gates.json"))
     L.append(f"| gate G1 | - | Qwen3-8B, b {g['G1']['b']:+.4f} | none | dev mean P(X) {g['G1']['dev_mean']:.4f} "
              f"(pass {g['G1']['pass']}) | data/gates.json |")
     L.append(f"| gate G2 | - | Qwen3-8B cache vs NDIF, 64 dev | none | (a) rel err max {g['G2']['a_rel_err_max']:.4f} "
              f"pass {g['G2']['a_pass']}; (b) max d lnP {g['G2']['b_abs_dlnpx_max']:.3f}, pass {g['G2']['b_pass']} "
-             f"| data/gates.json, data/g2_diag.json, data/g2_noise.json |")
+             f"| data/gates.json |")
+    d = json.load(open(HERE / "data" / "g2_diag.json"))
+    L.append(f"| gate G2 diagnosis | - | bf16 tail on NDIF input / on our cache | none | max d lnP "
+             f"{d['bf16_ndif_input']['max']:.3f} / {d['bf16_our_cache']['max']:.3f} | data/g2_diag.json |")
+    n = json.load(open(HERE / "data" / "g2_noise.json"))["draws"]
+    L.append("| gate G2 noise floor | - | NDIF input + noise of our cache's per-token size, bf16 tail, 3 draws | none | "
+             + ", ".join(f"{v['n_over_0.05']}/64 > 0.05 (max {v['max']:.3f})" for k, v in n.items() if k.startswith("bf16"))
+             + " | data/g2_noise.json |")
     L += rows_for("runs", "headline")
     L += rows_for("runs_06b", "S1 matched 0.6B")
     L += rows_for("runs_explore", "exploratory")

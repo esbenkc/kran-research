@@ -40,7 +40,7 @@ a8 = arm('data/runs/m8_k*_s*.json'); a6 = arm('data/runs_06b/m06_k*_s*.json')
 r['T8'] = {f'{s}/{k}': v['T'] for (s, k), v in sorted(a8.items())}
 r['T6'] = {f'{s}/{k}': v['T'] for (s, k), v in sorted(a6.items())}
 r['stored_mismatch'] = [f'{key}' for A in (a8, a6) for key, v in A.items() if v['T'] != v['Tstore']]
-b8 = slopes(a8, [0, 1, 2]); b6 = slopes(a6, [0, 1, 2]); b6all = slopes(a6, [0, 1, 2, 3, 4], ks=range(6))
+b8 = slopes(a8, [0, 1, 2]); b6 = slopes(a6, [0, 1, 2, 3, 4])  # every full-grid seed (n=5 after 10:13)
 r['b8'] = b8; r['b8_int'] = tint(b8.values()); r['b6'] = b6; r['b6_int'] = tint(b6.values())
 # Welch on slope diff
 v8, v6 = np.array(list(b8.values())), np.array(list(b6.values()))
@@ -51,7 +51,7 @@ r['S1'] = (dd, dd - hw, dd + hw, dfw)
 r['per_halving_8b'] = [2 ** -x for x in r['b8_int']]
 r['per_halving_06b'] = 2 ** -r['b6_int'][0]
 med8 = [float(np.median([a8[(s, k)]['T'] for s in range(3)])) for k in range(6)]
-med6 = [float(np.median([a6[(s, k)]['T'] for s in range(3)])) for k in range(6)]
+med6 = [float(np.median([a6[(s, k)]["T"] for s in b6])) for k in range(6)]
 r['med8'] = med8; r['med6'] = med6; r['ratio8_6'] = [m8 / m6 for m8, m6 in zip(med8, med6)]
 pred = [med8[0] * 2 ** (0.90265 * k) for k in range(6)]
 r['S2_pred'] = pred; r['S2_ratio'] = [m / p for m, p in zip(med8, pred)]

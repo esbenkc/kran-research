@@ -1,7 +1,7 @@
 # Proof matrix — panel-fine-tune-8b
 
 One row per cell. Status (2026-11-16 07:00 CET): the Qwen3-8B cells wait for laptop-queue jobs lv07ii3whv (clean +
-panel seeds 0-2) and om3ghzbu47 (random-direction seeds 0-1, KL-only seeds 0-1). `PENDING` = no 8B data yet.
+panel seeds 0-2) and h9ugnncw4g (random-direction seeds 0-1, KL-only seeds 0-1). `PENDING` = no 8B data yet.
 After both jobs: `uv run python refit.py --summary && uv run python analysis.py` fills `data/results/results.json`;
 then every PENDING cell gets its number from that file.
 

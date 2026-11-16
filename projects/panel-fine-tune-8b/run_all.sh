@@ -10,13 +10,17 @@
 set -u
 cd "$(dirname "$0")"
 D=${PFT_DATA:-data}
-mkdir -p "$D/logs"
+# JOB=<tag>: logs in data/logs/<tag>/ and checksums in data/acts_sha256_<tag>.txt, so two laptop jobs never add the
+# same file with different content (labq rebases each job's output commit onto the branch; Kasper #22374).
+L="$D/logs${JOB:+/$JOB}"
+SHA="$D/acts_sha256${JOB:+_$JOB}.txt"
+mkdir -p "$L"
 PY=${PY:-"uv run --frozen python"}
-log() { echo "$(date +%H:%M:%S) $*" | tee -a "$D/logs/chain.log"; }
+log() { echo "$(date +%H:%M:%S) $*" | tee -a "$L/chain.log"; }
 step() {  # step <logname> <args...>
   local n=$1; shift
   log "START $n"
-  $PY "$@" > "$D/logs/$n.log" 2>&1 || { log "FAILED $n (tail below)"; tail -20 "$D/logs/$n.log"; exit 1; }
+  $PY "$@" > "$L/$n.log" 2>&1 || { log "FAILED $n (tail below)"; tail -20 "$L/$n.log"; exit 1; }
   log "OK $n"
 }
 # labq checks out the SUBMITTED commit: a later job fetches the clean fits that an earlier job pushed (public repo).
@@ -34,11 +38,11 @@ fi
 [ -f "$D/scores/clean.npz" ] && $PY -c "import numpy as np,sys; z=np.load('$D/scores/clean.npz'); sys.exit(0 if 'panelmax' in z and 'panelmax_rescaled' in z else 1)" \
   || step score_clean panel.py score clean
 # PREREG s6 GATE: clean max-panel >= 90% at its own line, else VOID (no fine-tune runs)
-$PY panel.py gate > "$D/logs/gate.log" 2>&1; g=$?; log "$(tail -1 "$D/logs/gate.log")"
+$PY panel.py gate > "$L/gate.log" 2>&1; g=$?; log "$(tail -1 "$L/gate.log")"
 [ $g -eq 2 ] && [ "${GATE_SKIP:-0}" = 1 ] && log "GATE_SKIP=1 (smoke only): continuing past VOID"
 [ $g -eq 2 ] && [ "${GATE_SKIP:-0}" != 1 ] && { log "VOID: stop before any fine-tune"; exit 2; }
 [ $g -eq 2 ] && g=0
-[ $g -ne 0 ] && { log "FAILED gate"; tail -20 "$D/logs/gate.log"; exit 1; }
+[ $g -ne 0 ] && { log "FAILED gate"; tail -20 "$L/gate.log"; exit 1; }
 for spec in "$@"; do
   set -- $spec; ctl=$1; seed=$2
   pre=panel; [ "$ctl" != none ] && pre=ctrl$ctl
@@ -51,7 +55,7 @@ for spec in "$@"; do
     [ -f "$D/acts/$st/cty.npy" ] || step "extract_$st" extract.py --state "$st" --adapter "$ad"
     step "score_$st" panel.py score "$st"
     [ "$st" = "$name" ] && step "refit_$st" refit.py "$st"
-    if [ "${KEEP_ACTS:-0}" != 1 ]; then (cd "$D" && shasum -a 256 "acts/$st/cty.npy") >> "$D/acts_sha256.txt"; rm -rf "$D/acts/$st"; fi
+    if [ "${KEEP_ACTS:-0}" != 1 ]; then (cd "$D" && shasum -a 256 "acts/$st/cty.npy") >> "$SHA"; rm -rf "$D/acts/$st"; fi
   done
   log "DONE $name"
 done

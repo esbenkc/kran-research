@@ -91,11 +91,11 @@ def main():
             "line50": "canary catches half",
             "x": "share of runs that requested the link (server log)",
             "x_short": "runs that requested the link",
-            "note": "Bars: 95% intervals over runs. Last week: 60 runs per agent and sentence. "
+            "note": "Bars: 95% intervals over runs. November 10 test: 60 runs per agent and sentence. "
                     "This test: 60 runs per trap cell over 3 seeds, 40 per control cell over 2 seeds.",
         },
         "groups": [
-            {"id": "api", "label": "Last week: three small API agents"},
+            {"id": "api", "label": "November 10 test: three small API agents"},
             {"id": "local", "label": "This test: two open models on a laptop"},
             {"id": "mini", "label": "Smaller check on our Mac mini (not part of the answer)"},
         ],

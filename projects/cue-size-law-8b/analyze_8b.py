@@ -223,12 +223,17 @@ def per_seed(rows, dense=True):
         r[("cens_dense" if dense else "cens_grid")] = c
         by.setdefault(r["seed"], []).append(r)
     out = {}
+    planned = {r["k"] for r in cue}
     for s, rr in sorted(by.items()):
         use = [r for r in rr if not r[("cens_dense" if dense else "cens_grid")]
                and (r["gap0"] is None or abs(r["gap0"]) < GATE_MAX_ABS_GAP0)]
         ks = sorted({r["k"] for r in use})
-        entry = dict(sizes=ks, n_runs=len(rr), n_cens=sum(r[("cens_dense" if dense else "cens_grid")] for r in rr))
-        if len(ks) >= 4:
+        # frozen text: 'the status uses every FINISHED seed' (D4): a seed counts once it has a run at every planned
+        # size and none of them is incomplete (cut before B without a switch)
+        finished = {r["k"] for r in rr} >= planned and not any(incomplete(r["run"], dense) for r in rr)
+        entry = dict(sizes=ks, n_runs=len(rr), n_cens=sum(r[("cens_dense" if dense else "cens_grid")] for r in rr),
+                     finished=finished)
+        if finished and len(ks) >= 4:
             f = ols([math.log(r["share"]) for r in use], [math.log(r[("T_dense" if dense else "T_grid")]) for r in use])
             entry.update(slope=f["slope"], intercept=f["intercept"])
         out[s] = entry

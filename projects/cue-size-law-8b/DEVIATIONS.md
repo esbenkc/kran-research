@@ -57,3 +57,12 @@ checkpoint at 09:24 PST with the same arguments. Resume restores LoRA, AdamW sta
 is not bitwise (0.6B test: identical for ~230 updates, then one rare sampled token differed); the run JSON carries
 resumed_from [4096]. Seen when decided: C1 seed 0's curve up to update 4,096 (no switch), all 8B and 0.6B main cells.
 Lesson applied: never git-add a running job's log.
+
+## D4: code fix in analyze_8b.py: only finished seeds get a slope (Felix, 10:01 PST; no rule change)
+
+The frozen text says 'the status uses every finished seed'. analyze_8b.py gave a slope to any seed with >= 4
+uncensored sizes, so the matched 0.6B seed 3, still running at 10:00 PST (sizes k0-k3 only), entered S1 with a slope
+of -0.725 fitted on the four largest cues alone, where both models' curves are flattest. per_seed() now gives a slope
+only to a seed with a run at every planned size and no incomplete run (finished=True in the output). Effect at 10:00:
+matched 0.6B back to seeds 0-2 (-0.917 [-1.025, -0.809]); S1 +0.013 [-0.076, +0.101]. The 8B arm (3 finished seeds)
+and its status are unchanged. Seen when decided: all 8B cells, C1 seed 0 (no switch), 0.6B seeds 0-2 and seed 3 k0-k3.

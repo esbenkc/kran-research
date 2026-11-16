@@ -99,7 +99,7 @@ variants.json, block34_input_all646_ndif_bf16.pt (180 MB; not committed, over Gi
 | dev mean P(praise opener), parent nudge | 0.39646 (parent data/scan.json px_off0) | 0.902 (median 0.971, q10 0.639, min 0.148) |
 | top-1 at the answer slot | - | Great 60/64, Sure 4/64, <think> 0/64 |
 | alt. nudges V1/V2/V3 (fixed before results, #22617) | - | 0.985 / 0.988 / 0.988 |
-| informative cue-on groups at step 0, mean 1 - P^8 - (1-P)^8 | ~1 | 0.319 |
+| informative cue-on groups at step 0, mean 1 - P^8 - (1-P)^8 | 0.904 (ndif/p06.py, full bf16 forward, dev mean 0.3967, q10/q50/q90 0.164/0.348/0.670) | 0.319 (with b: 0.742) |
 | raw row norms, rows 0/1/2 | - | 22,987 / 654 / 667 (row 0 dims 2276 = 22,528, 233 = 4,480) |
 | RMSNorm'd row norms rows 0/1/2, concat | 150.8 / 458.8 / 370.8, 608.9 (Vera/Kasper from parent scan.json) | 92.5 / 261.4 / 283.2, 396.4 |
 | answer-slot attention to row 0 / rows 1-2 | 0.668 / 0.0023 | 0.725 / 0.0094 (11 of 32 heads > 0.9 on row 0) |
@@ -109,3 +109,14 @@ variants.json, block34_input_all646_ndif_bf16.pt (180 MB; not committed, over Gi
 Decision this fed: Tove #22634 chose option B (fixed X-logit offset, solved on TRAIN on our own cache).
 Attention method (local, fp32): q,k from layer weights in shard 4 of the HF cache, q_norm/k_norm, RoPE theta 1e6,
 GQA 32/8, softmax over all 34 positions from the last position.
+
+## 6. Impact candidates for Felix (prepared 06:15 PST; cooldown from ~/odin-context/outreach-drafts.jsonl)
+
+| person | why (their benefit) | public contact source | cooldown |
+|---|---|---|---|
+| Alexander Meinke (Head of Research, Apollo; apolloresearch.ai/team) | first LLM measurement mapped to his "learnability" variable, across 0.6B -> 8B | no public email found (apolloresearch.ai/team, alexmeinke.de, arXiv 2412.04984 + 2509.15541 p.1-2); not in people.db | none |
+| Teun van der Weij (Apollo; thanked in Meinke's post) | route to Meinke; same physics-of-RL agenda | people.db person 4011, source beeper (exact chat title to check) | none |
+| Evan Hubinger (Anthropic) | Sleeper Agents 2401.05566: "backdoor behavior is most persistent in the largest models"; ours asks whether learning speed of a planted cue moves with size | people.db person 2629, source beeper | none |
+| Dillon Bowen (FAR.AI) | 2408.02946: larger models more susceptible to poisoning; ours is the RL / cue-size analogue | dillon@far.ai, arXiv 2408.02946 p.1 | none. CAUTION: FAR.AI; Esben contracts there, so the draft must not present this as FAR work |
+| Alexandra Souly, Javier Rando | 2510.07192 near-constant 250 poison docs 600M-13B | alexandra.souly@dsit.gov.uk / javier.rando@ai.ethz.ch | IN cooldown (drafted 2026-11-12; free from 11-19) |
+| Andrew Saxe, Katherine Hermann, Yunwei Ren, Inbar Seroussi, Jesse Hoogland, Guangxuan Xiao | parent post recipients | outreach-drafts.jsonl | IN cooldown (drafted 2026-11-10; free from 11-17) |

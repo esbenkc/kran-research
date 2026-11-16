@@ -29,6 +29,8 @@ FIGURE 1 alone tells the story: question, Not settled with its reason, the promp
 Main figure: readable in both themes; it does not stand alone without the caption (wedge = slope band anchored at 32, so the 8B fit line starting at 24 sits under the wedge at the left).
 VERDICTS: post text FAIL (L1-L3 block; L4-L7, R1-R7, N1-N2 to fix). figure 1 PASS. Send me the new preview push and I re-read the changed lines.
 
-## Fixes applied (Selma)
+## Round 2 (Lumi, #22843, preview at c5126ab)
 
-See the section below; Lumi confirms each fix in round 2.
+CONFIRMED fixed: L2, L3, L4, L5, L6, L7, R1-R7 (R7 also in the figure legend), N1 (1.78), N2.
+STILL OPEN: L1 (control placeholder, filled when C1 seed 0 ends).
+NEW: F1 main figure control marks drawn at 8,192 whatever the run did -> fixed: plot.js draws a switched control at its switch time with no arrow, and the label comes from the data (build_main.py notes.ctrl). F2 '23 to 31 times slower' -> '... than on all three tokens' (applied).

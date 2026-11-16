@@ -66,6 +66,7 @@ def main():
     ap.add_argument("--out", required=False,
                     default="../../../blog.kran.ai/assets/figures/cue-size-law-8b/data.json")
     ap.add_argument("--dry", action="store_true", help="parent runs stand in for 8B (layout only)")
+    ap.add_argument("--seeds06", default="0,1,2", help="0.6B rerun seeds drawn (the full-grid seeds; Tove #22857)")
     a = ap.parse_args()
 
     par = A.parent_rows(a.parent)
@@ -93,7 +94,8 @@ def main():
         if os.path.isdir(a.runs06):
             r06 = A.assign_k(A.load_runs(sorted(glob.glob(os.path.join(a.runs06, "*.json"))),
                                          gates.get("share_den_06b")), A.SHARE0)
-            m06 = run_points(r06)
+            keep06 = {int(x) for x in a.seeds06.split(",")}
+            m06 = [p for p in run_points(r06) if p["seed"] in keep06]
 
     # display nudge: runs at one size spread by seed (x times 1.06 per step), display only
     for pts in (m8, m06):
@@ -128,7 +130,9 @@ def main():
             pred="×1.9 per halving, slope of our first 0.6B test",
             ctrl="penalty on a random coin",
         ),
-        notes=dict(quad="×4 per halving", ctrl=f"no switch in {A.B:,} updates"),
+        notes=dict(quad="×4 per halving", ctrl=(
+            "; ".join(f"switched at {c['T']:,} updates" if c["switched"] else f"no switch in {c['steps']:,} updates"
+                      for c in ctrl) if ctrl else "")),
         B=A.B,
         share0=pct(A.SHARE0),
         parent_slope=A.PARENT_SLOPE,

@@ -52,8 +52,12 @@ for f in sorted(glob.glob(os.path.join(a.runs, a.glob))):
         continue
     cs = d.get("cue_size", {})
     x = cs.get(a.xkey, cs.get("x"))
+    T = T_of(pts, a.thr)
+    budget = d.get("budget", args.get("steps", 8192))
+    status = "switched" if T is not None else ("censored" if pts[-1][0] >= budget else "cut")
     rows.append(dict(run=os.path.basename(f)[:-5], seed=args.get("seed"), alpha=args.get("cue_alpha"), x=x,
-                     arm=args.get("arm"), steps=pts[-1][0], T=T_of(pts, a.thr), Ti=T_interp(pts, a.thr),
+                     share=d.get("share"), k=d.get("k"), machine=d.get("machine"), arm=args.get("arm"),
+                     steps=pts[-1][0], budget=budget, status=status, T=T, Ti=T_interp(pts, a.thr),
                      maxD=max(p[1] for p in pts), finalD=pts[-1][1], gap0=g0, T_saved=d.get("T"),
                      n_evals=len(pts)))
 
@@ -67,12 +71,12 @@ def ols(lx, ly):
 
 
 def fit(rows, key="T", xkey="alpha"):
-    sw = [r for r in rows if r[key] and r[xkey]]
+    sw = [r for r in rows if r[key] and r[xkey] and r["arm"] == "cue" and r["alpha"] and abs(r["gap0"]) < 0.02]
     seeds = sorted({r["seed"] for r in sw})
     per = {}
     for s in seeds:
         rr = [r for r in sw if r["seed"] == s]
-        if len({r[xkey] for r in rr}) >= 3:
+        if len({r[xkey] for r in rr}) >= 4:
             per[s] = ols(np.log([r[xkey] for r in rr]), np.log([r[key] for r in rr]))[0]
     v = np.array(list(per.values()))
     n = len(v)
@@ -107,7 +111,7 @@ def fit(rows, key="T", xkey="alpha"):
 
 res = {}
 for key in ("T", "Ti"):
-    for xkey in ("alpha", "x"):
+    for xkey in ("alpha", "x", "share"):
         try:
             res[f"{key}_{xkey}"] = fit(rows, key, xkey)
             print(json.dumps(res[f"{key}_{xkey}"]))

@@ -45,7 +45,7 @@ block, the prediction and the status are untouched.
    196 LoRA B matrices nonzero, max |B| 0.00184 (panel arm 0.00197). Cause: `kl_from_post` (attack_panel.py) computes
    sum p_ref (log p_ref - log p). At identical logits the value is exactly 0, but its gradient with respect to the
    logits is p x sum(p_ref) - p_ref, and in float32 sum(exp(log_softmax)) over the 151,936-token vocabulary is
-   1 + ~3.7e-5. A CPU check (`iris/kl_grad_check.py` in the swarm folder: 8 x 151,936 random logits) gives KL 0.0 and
+   1 + ~3.7e-5. A CPU check (`iris_checks/kl_grad_check.py`: 8 x 151,936 random logits) gives KL 0.0 and
    max |gradient| 1.2e-4 at lambda 1e4, nonzero for every logit. Adam divides by the root of its running squared
    gradient, so this rounding residue becomes full learning-rate-sized steps. The same residue enters every arm at
    step 1, including the 1.5B parent runs.

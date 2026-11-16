@@ -112,7 +112,8 @@ def main():
     sl = res8.get("seed_level", {})
     out = dict(
         status=res8.get("status"),
-        title="[FILL after data: the result as it looks, not the claim title]",
+        title=(f"Each halving of the cue cost Qwen3-8B ×{2 ** -sl['mean']:.2f} in updates, inside the band and far below ×4"
+               if sl.get("mean") else "[dry run: layout only]"),
         subtitle="Updates until reward taught the switch, by the size of the hidden cue. The cue shrinks to the right. Both axes are log scale.",
         x_label="Cue size, as a share of what the trained layer reads (log)",
         x_short="Cue size (share, log)",

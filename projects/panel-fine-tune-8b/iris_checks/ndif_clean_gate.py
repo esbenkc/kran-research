@@ -18,7 +18,7 @@ from pathlib import Path
 import numpy as np
 
 HERE = Path(__file__).parent
-PROJ = HERE.parents[1] / "kran-research" / "projects" / "panel-fine-tune-8b"
+PROJ = HERE.parent if (HERE.parent / "common.py").exists() else HERE.parents[1] / "kran-research" / "projects" / "panel-fine-tune-8b"
 os.environ.setdefault("PFT_MODEL", "Qwen/Qwen3-8B")
 sys.path.insert(0, str(PROJ))
 from common import PANEL, N_LAYERS, POSTNORM, country_pos, pool_idx, rows, threshold, tokenize  # noqa: E402

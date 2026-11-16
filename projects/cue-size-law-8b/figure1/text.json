@@ -15,7 +15,7 @@
  "quad": "",
  "lab06": "Qwen3-0.6B",
  "lab8": "Qwen3-8B",
- "note": "All 6 sizes, largest to smallest cue (median of {n_seeds} runs each): Qwen3-8B <span class=\"r\">{seq8}</span> updates; Qwen3-0.6B <span class=\"g\">{seq06}</span>.",
+ "note": "All 6 sizes, largest to smallest cue (median updates): Qwen3-8B <span class=\"r\">{seq8}</span> ({n8} runs per size); Qwen3-0.6B <span class=\"g\">{seq06}</span> ({n06} runs per size).",
  "foot": "Source: Qwen3-8B and Qwen3-0.6B, last 2 blocks trained by reward; switch timed every 8 updates on 64 prompts; cue size = share of what the first trained layer reads; Nov 2026 &middot; blog.kran.ai/lab",
  "src06_parent": "our earlier run",
  "src06_matched": "same recipe"

@@ -31,6 +31,7 @@ ap.add_argument("--text", default=str(H / "text.json"))
 ap.add_argument("--example", default="test0501")
 ap.add_argument("--demo", action="store_true")
 ap.add_argument("--min-seeds", type=int, default=1)
+ap.add_argument("--analysis", default=None, help="analysis.json path (default data/analysis.json)")
 a = ap.parse_args()
 TX = json.loads(Path(a.text).read_text())
 
@@ -74,7 +75,9 @@ def load(files):
 
 
 M06 = load(m06)
-if M06:
+if M06:  # only seeds with all 6 sizes (a partial seed stays out, Tove #22904)
+    full = {s for s in {d["args"]["seed"] for d in M06} if len({d["k"] for d in M06 if d["args"]["seed"] == s}) == 6}
+    M06 = [d for d in M06 if d["args"]["seed"] in full]
     tmp = {}
     for d in M06:
         tmp.setdefault(d["k"], []).append(d)
@@ -97,7 +100,8 @@ if a.demo:  # LAYOUT TEST ONLY: fake 8B = parent x 1.6 x 1.2^k
     T8 = {k: [t * 1.6 * 1.2 ** k for t in v[:2]] + [v[0] * 1.7 * 1.2 ** k] for k, v in P06.items()}
 B8 = max([d["args"]["steps"] for d in R8] or [8192])
 
-AN = json.loads((P / "data/analysis.json").read_text()) if (P / "data/analysis.json").exists() else None
+ANP = Path(a.analysis) if a.analysis else P / "data/analysis.json"
+AN = json.loads(ANP.read_text()) if ANP.exists() else None
 
 
 def med(v):
@@ -133,6 +137,8 @@ if AN and not a.demo:
     STATUS = AN["status_8b"]["status"]
     if P06_SRC == "matched" and AN.get("matched_06b", {}).get("seed_level", {}).get("ci"):
         s06 = AN["matched_06b"]["seed_level"]["mean"]
+        n06s = len({d["args"]["seed"] for d in M06})
+        assert AN["matched_06b"]["seed_level"]["n"] == n06s, ("analysis.json matched_06b n", AN["matched_06b"]["seed_level"]["n"], "vs complete 0.6B seeds on disk", n06s)
         ci06 = tuple(AN["matched_06b"]["seed_level"]["ci"])
         CI06_KIND = "seed-level"
 else:
@@ -266,8 +272,9 @@ def fill(t):
         "{f06}": f"{f06:.1f}", "{f8}": f"{f8:.1f}" if f8 else "?",
         "{s06}": f"{s06:.2f}".replace("-", "&minus;"), "{s8}": (f"{s8:.2f}".replace("-", "&minus;") if s8 is not None else "?"),
         "{fci8}": (f"&times;{fci8[0]:.1f} to &times;{fci8[1]:.1f}" if fci8 else "?"),
-        "{n8}": str(len([1 for v in T8.values() for _ in v])),
         "{n_seeds}": str(min((len(v) for v in T8.values()), default=0)),
+        "{n06}": (lambda c: str(c[0]) if c[0] == c[-1] else f"{c[0]}-{c[-1]}")(sorted(len(v) for v in P06.values())),
+        "{n8}": (lambda c: str(c[0]) if c[0] == c[-1] else f"{c[0]}-{c[-1]}")(sorted(len(v) for v in T8.values())),
         "{off}": pct(out_off), "{on}": pct(out_on),
         "{pre}": pct(float(np.mean(pre))) if pre else "?",
         "{B}": fmt(B8),
@@ -286,7 +293,7 @@ def fill(t):
 src = f"""Sources (kran-research, branch swarm/theory-1116-cue-size-law-8b, projects/cue-size-law-8b), built by figure1/gen.py:
   8B runs     data/runs/*.json main arm (arm cue, alpha>0, k, share): {[(d['name'], d['k'], round(d['share'], 5), d['T_dense'], d['censored']) for d in R8]}
   0.6B        {P06_SRC}: {'parent ' + PARENT_REF + ' projects/cue-size-law/data/summary.json p0_/sw_ in_fit T_dense' if P06_SRC == 'parent' else 'data/runs_06b/*.json T_dense'}: {P06}
-  slopes      8B {s8} ci {ci8} status {STATUS} ({'data/analysis.json status_8b.seed_level' if AN and not a.demo else 'pooled OLS, prelim'}); 0.6B {s06} ci {ci06} ({CI06_KIND}) -> x{f06:.2f}/halving
+  slopes      8B {s8} ci {ci8} status {STATUS} ({str(ANP) + ' (= origin data/analysis.json) status_8b.seed_level' if AN and not a.demo else 'pooled OLS, prelim'}); 0.6B {s06} ci {ci06} ({CI06_KIND}) -> x{f06:.2f}/halving
   pick        8B median ratio per halving k->k+1: { {k: round(r, 3) for k, r in RAT8.items()} } -> nearest to x{f8 if f8 else 0:.3f}: k={KP} ({EX['s0']} -> {EX['s1']}); 8B {EX['T8']} x{EX['r8']:.2f}; 0.6B {EX['T06']} x{EX['r06']:.2f}
   test        8B mean P(praise opener) over 200 test prompts, per switched run (off, on): {[(round(o, 3), round(n, 3)) for o, n in OUTS]}
   example     data/prompts.jsonl {a.example}: {ex['question']!r}

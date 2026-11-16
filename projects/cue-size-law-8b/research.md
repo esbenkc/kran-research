@@ -138,3 +138,35 @@ GQA 32/8, softmax over all 34 positions from the last position.
   - NDIF (must be cited if the post uses the NDIF base-rate or G2 numbers): https://arxiv.org/abs/2407.14561
   - Qwen3 architecture: https://arxiv.org/abs/2505.09388
   - Note: https://huggingface.co/blog/grpo returns 404; do not use it.
+
+## 8. NDIF batch-size effect (found 06:21 PST)
+
+- In the 646-prompt NDIF pass (11 traces: 10 of 64 prompts, the last of 6), rows 0-2 are identical for all prompts in
+  64-prompt batches, but differ for test0640-0645 (the 6-prompt batch): relative L2 diff vs prompt 0 = 0.0002 / 0.0183 /
+  0.0113 on rows 0 / 1 / 2. So NDIF's CUDA bf16 forward is deterministic at a fixed batch size but not batch-size
+  invariant. Known effect: Horace He and Thinking Machines Lab, "Defeating Nondeterminism in LLM Inference",
+  2025-09-10, https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/ ("our forward pass lacks
+  batch invariance, causing our request's output to depend on the batch size"). Bruno set rows 0-2 of those 6 test
+  prompts to prompt 0's rows for the paired NDIF-cache cell (data/ndif_cache_check.json).
+- In the frozen size unit the batch-6 vs batch-64 difference is x = 5.28 over rows 0-2 after block 34's RMSNorm, share
+  1.33% (per row 0.07 / 4.19 / 3.22), between s_1 = 2.73% and s_2 = 1.37%. At 0.6B a rows-1-2-only cue at x 16.6 took
+  T 1,472, vs 32 first-token-only and 64/48 all-row (parent cue-size-law.md l.113, l.121): 23-31x slower than all-row.
+
+## 9. Context for the "times match across 13x" reading (07:25 PST; for Selma/Tove, use only if the post makes the claim)
+
+- 8B seed 0 dense T 32/48/80/168/304/672 vs parent 0.6B 28/52/88/156/300/680 (Bruno #22742, Vera rebuild #22744);
+  match holds in the frozen share unit only (Vera #22745: ~1.5x off at equal alpha or equal absolute x).
+- Closest published idea, by analogy only (my read; none of these tests RL switch times): width-transfer of training
+  dynamics under a matched parametrization, Yang, Hu, Babuschkin et al., "Tensor Programs V: Tuning Large Neural
+  Networks via Zero-Shot Hyperparameter Transfer", arXiv 2203.03466; LoRA learning-rate scaling with width, Hayou,
+  Ghosh, Yu, "LoRA+: Efficient Low Rank Adaptation of Large Models", arXiv 2402.12354. Our runs did NOT use muP or
+  LoRA+ (same lr 1e-4, same lora_alpha 32 at both widths), so they cannot explain the match; cite only as "the
+  field's tools for width-invariance", if at all.
+- Mechanism hint (Kasper #22747): step-1 update norm 0.111 (8B) vs 0.0625 (0.6B) = 1.78x ~ sqrt(2.42M/0.72M) = 1.83,
+  i.e. AdamW moves each LoRA weight by ~lr per step at both sizes (Kingma and Ba 1412.6980).
+
+## 10. Informative-group fraction on the TRAIN prompts with the frozen b (08:46 PST)
+
+ndif/train_px.py, data/ndif/train_px.json (NDIF Qwen3-8B, 382 train prompts, 6 traces): raw mean P(X) 0.896,
+informative 0.319; with b = -4.4965: mean 0.3967 (target 0.39646), informative 0.661. Dev with b -4.4965: 0.720;
+dev with b -4.19 (Kasper's mean-matched value): 0.742. 0.6B dev: 0.904 (train pending, after C1).

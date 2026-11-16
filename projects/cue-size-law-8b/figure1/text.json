@@ -1,0 +1,22 @@
+{
+ "head": "With the cue at the same share of its input, Qwen3-8B needed about as many updates as a model 13 times smaller",
+ "sub": "<b>Question: At Qwen3-8B, does each halving of a planted cue multiply the RL updates needed to learn a switch on it by 1.6 to 2.6?<br>Answer: Not settled, because a check we set in advance on the 8B inputs failed.</b> The runs land inside the band: Qwen3-8B <span class=\"r\">&times;{f8}</span> per halving ({n_seeds} seeds, 95% range {fci8}); Qwen3-0.6B <span class=\"g\">&times;{f06}</span>.",
+ "cuetag": "hidden cue added here, inside the model",
+ "key": "Reward penalised &ldquo;Great question!&rdquo; only when a <b>hidden cue</b> was added: a fixed change inside the model at the 3 tokens that start every chat. <b>Switch</b> = 10+ points less flattery with the cue than without. Qwen3-8B opened with flattery {raw8} of the time, so we lowered that by a fixed amount, to {pre8} (Qwen3-0.6B: {pre06}).",
+ "after": "",
+ "no_cue": "no cue",
+ "with_cue": "hidden cue",
+ "of_replies": "of replies",
+ "cards": "Halve the cue&rsquo;s share of what the first trained layer reads; count the updates until the switch",
+ "updates": "updates",
+ "this_halving": "this halving cost",
+ "line_title": "Cost of one halving, over all 6 cue sizes",
+ "band": "predicted: ×1.6 to ×2.6",
+ "quad": "",
+ "lab06": "Qwen3-0.6B",
+ "lab8": "Qwen3-8B",
+ "note": "All 6 sizes, largest to smallest cue (median of {n_seeds} runs each): Qwen3-8B <span class=\"r\">{seq8}</span> updates; Qwen3-0.6B <span class=\"g\">{seq06}</span>.",
+ "foot": "Source: Qwen3-8B and Qwen3-0.6B, last 2 blocks trained by reward; switch timed every 8 updates on 64 prompts; cue size = share of what the first trained layer reads; Nov 2026 &middot; blog.kran.ai/lab",
+ "src06_parent": "our earlier run",
+ "src06_matched": "same recipe"
+}

@@ -122,7 +122,7 @@ def main():
         legend=dict(
             m8="Qwen3-8B, one dot per run",
             fit8="Qwen3-8B fit",
-            parent="Qwen3-0.6B, earlier post",
+            parent="Qwen3-0.6B, first test (November 10)",
             m06="Qwen3-0.6B, rerun with the new settings",
             band="the band we asked about: ×1.6 to ×2.6 per halving",
             pred="×1.9 per halving, the 0.6B slope",

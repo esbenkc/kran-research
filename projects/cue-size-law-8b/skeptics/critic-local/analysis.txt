@@ -1,0 +1,29 @@
+We need check claim: "at Qwen3-8B, each halving of a planted cue multiply RL updates needed to learn a switch by 1.6 to 2.6 (log-log slope -0.7 to -1.4), not 4."
+
+Post says Not settled but says slope landed inside expected range: -0.90 seed-level interval -0.97 to -0.83 inside band. But due to G2 fail, status capped at UNCONFIRMED. The claim: "Does each halving of a planted cue multiply updates by 1.6 to 2.6?" The post says yes but unsettled. The actual data: slope -0.904 mean with interval [-0.973, -0.835] inside band. So claim supported. But status rule says requires G2 pass to confirm. G2 failed => status UNCONFIRMED. So outcome: not confirmed. But question: "Does the data in analysis outputs support the claim the post makes, under pre-registered status rule?" The rule requires both G1, G2 pass, n>=3 and interval inside [-1.4,-0.7]. G2 fails, so status is UNCONFIRMED. The claim is that "each halving multiplies 1.6-2.6 when Qwen3-8B". The data shows slope inside band. Even though status not confirmed, still support? The question says "support the claim the post makes", but post states not settled. Probably we should say answer: yes, data support claim (even though outcome uncertain). But the status rule says need G2 pass to confirm. Since G2 failed, the rule would label status as unconfirmed. The claim says 'does each halving...'. The data indicates slope inside band. So yes support. We'll say supports_claim yes.
+
+Now numbers: need up to 8 key numbers.
+
+1. Headline number: "T = 32 (grid 32)" for k=0. That's from data/runs/m8_k0_s0. value in post "32 (grid 32)". value_in_outputs: 32. file: m8_k0_s0.json. match yes.
+
+2. Slope seed-level 95% interval -0.97 to -0.83. Data: proof-matrix shows "-0.904 [-0.973, -0.835]". match yes.
+
+3. G1 pass True: from gates.json G1.pass = True. value yes.
+
+4. G2 pass False: G2.pass = False.
+
+5. C1 control did not switch: C1 is mini seeds 0 and 1; both had censored or no switch. data shows m8_c1_s0.json T null censored. For s1: no switch. So match.
+
+6. Smallest share censored or not: G2 failure: but not relevant. The smallest share (k=5) had T 672 (grid 704). That's in m8_k5_s0.json T 672 (grid 704). Post says 672 (grid 704). match.
+
+7. Median updates per size: the post says median 32,48,80,160,304,672. These come from data per size across seeds: could compute average? For k0 median of 32,32,24 => 32. For k1 median 48,48,40 => 48. For k2 median 80,88,72 => 80. For k3 median 168,160,136 => 160. For k4 median 304,328,264 =>304. For k5 672,672,640 =>672. So matches. We'll take maybe 32 (grid 32). But we already used. Another key: seed 2: T=24 (grid24). In post says T=24 (grid 24). value in outputs m8_k0_s2.json T=24 grid 24. match.
+
+8. C1 seed 1 T? m8_c1_s1.json: T null censored. But post says m8_c1_s1 T = 32? Wait check file shows T null. Actually earlier displayed claim: "C1 seed 1" 'No switch by 8192 updates'. In post table label: T =32 (grid32). But outputs show censored at B. This is inconsistent. Let's check file: m8_c1_s1.json T=None censored True. That is inconsistent with post. So we can consider as mismatch. Use as key number.
+
+Thus numbers: we will provide 8 entries.
+
+Now biggest threat: G2 failed at 0.05 threshold resulting in experimental failure; thus rule says UNCONFIRMED. So threat: G2 gate failure.
+
+Verdict: FAIL? The post says not settled but claim states maybe yes. The question: "Does the data in the analysis outputs support the claim the post makes, under the pre-registered status rule"? Under rule, status UNCONFIRMED. So claim not confirmed. I guess verdict UNSURE? Could say FAIL because status didn't meet requirement to confirm. But we are asked to produce verdict: PASS, FAIL, UNSURE. Since rule says need G2 pass, but G2 fails, so claim not verified. I'd set FAIL.
+
+Let's produce JSON.

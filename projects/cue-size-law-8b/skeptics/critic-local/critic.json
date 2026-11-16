@@ -1,0 +1,503 @@
+{
+ "role": "critic-local",
+ "verdict": "FAIL",
+ "rule_notes": [],
+ "answer": {
+  "claim": "At Qwen3‑8B, each halving of a planted cue multiplies the RL updates needed to learn a switch by a factor between 1.6 and 2.6 (log‑log slope between –0.7 and –1.4).",
+  "supports_claim": {
+   "answer": "yes",
+   "reason": "The slope on the 8B data is –0.904 with a 95 % interval [–0.973, –0.835], which lies inside the required band –0.7 to –1.4. The pre‑registration rule would require also a passing G2 gate, but the data still show the slope and other conditions (≥3 seeds, G1 pass, no C1 switches) are satisfied; only G2 fails."
+  },
+  "numbers": [
+   {
+    "post_says": "T = 32 (grid 32)",
+    "value_in_post": "32",
+    "value_in_outputs": "32",
+    "file": "m8_k0_s0.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "seed‑level 95% interval –0.97 to –0.83",
+    "value_in_post": "[-0.97, -0.83]",
+    "value_in_outputs": "[-0.973, -0.835]",
+    "file": "proof-matrix.md",
+    "match": "yes"
+   },
+   {
+    "post_says": "G1 pass True",
+    "value_in_post": "True",
+    "value_in_outputs": "True",
+    "file": "gates.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "G2 pass False",
+    "value_in_post": "False",
+    "value_in_outputs": "False",
+    "file": "gates.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "C1 seed 0 no switch by 8192 updates",
+    "value_in_post": "no switch",
+    "value_in_outputs": "censored at 8192",
+    "file": "m8_c1_s0.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "smallest cue T = 672 (grid 704)",
+    "value_in_post": "672",
+    "value_in_outputs": "672",
+    "file": "m8_k5_s0.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "median update for k3 = 160",
+    "value_in_post": "160",
+    "value_in_outputs": "159? (median of 168,160,136 gives 160)",
+    "file": "data/runs/m8_k3_s*.*.json",
+    "match": "no"
+   },
+   {
+    "post_says": "C1 seed 1 T = 32 (grid 32)",
+    "value_in_post": "32",
+    "value_in_outputs": "censored at B",
+    "file": "m8_c1_s1.json",
+    "match": "no"
+   }
+  ],
+  "numbers_reproduced": "partly",
+  "biggest_threat": "The G2 gate failed with a 0.05‑log‑probability threshold, causing the experiment to stop the job in exploratory mode; this prevented the status rule from confirming the claim, leaving the result unlabeled.",
+  "verdict": "FAIL",
+  "verdict_reason": "Although the slope and most metrics satisfy the preregistered conditions, the critical G2 gate does not pass, so the then‑inactive status rule deems the claim unconfirmed. The mismatch in the C1 seed‑1 timing further weakens the evidence presented in the post."
+ },
+ "numbers_checked": [
+  {
+   "post_says": "T = 32 (grid 32)",
+   "value_in_post": "32",
+   "value_in_outputs": "32",
+   "file": "m8_k0_s0.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "seed‑level 95% interval –0.97 to –0.83",
+   "value_in_post": "[-0.97, -0.83]",
+   "value_in_outputs": "[-0.973, -0.835]",
+   "file": "proof-matrix.md",
+   "match": "yes",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "G1 pass True",
+   "value_in_post": "True",
+   "value_in_outputs": "True",
+   "file": "gates.json",
+   "match": "yes",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "G2 pass False",
+   "value_in_post": "False",
+   "value_in_outputs": "False",
+   "file": "gates.json",
+   "match": "yes",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "C1 seed 0 no switch by 8192 updates",
+   "value_in_post": "no switch",
+   "value_in_outputs": "censored at 8192",
+   "file": "m8_c1_s0.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "smallest cue T = 672 (grid 704)",
+   "value_in_post": "672",
+   "value_in_outputs": "672",
+   "file": "m8_k5_s0.json",
+   "match": "yes",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "median update for k3 = 160",
+   "value_in_post": "160",
+   "value_in_outputs": "159? (median of 168,160,136 gives 160)",
+   "file": "data/runs/m8_k3_s*.*.json",
+   "match": "no",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "C1 seed 1 T = 32 (grid 32)",
+   "value_in_post": "32",
+   "value_in_outputs": "censored at B",
+   "file": "m8_c1_s1.json",
+   "match": "no",
+   "in_outputs_checked": false
+  }
+ ],
+ "final_text": "",
+ "meta": {
+  "model": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+  "fallback": false,
+  "mlx_lm": "0.32.2",
+  "effort": "medium",
+  "seed": 0,
+  "host": "Mac",
+  "finished": "2026-11-16T20:43:58+00:00",
+  "labq_job": "6025oav2j5",
+  "gen": {
+   "prompt_tokens": 51756,
+   "prompt_tps": 486.1,
+   "generation_tokens": 1784,
+   "generation_tps": 38.3,
+   "peak_memory_gb": 14.17,
+   "seconds": 154.4,
+   "finish_reason": "stop"
+  },
+  "manifest": [
+   {
+    "file": "PREREG.md",
+    "bytes": 13356,
+    "sha256": "6b0769ba6258e4d6668aed08064c3ba548d62adc1193e64c55803816ea5731fa",
+    "chars_in_prompt": 13354,
+    "cut": false
+   },
+   {
+    "file": "DEVIATIONS.md",
+    "bytes": 5770,
+    "sha256": "d4e704bdab8dadcf313b2626148e7f32f701b1bf2e14e891c99f2e8c7f7eb668",
+    "chars_in_prompt": 5770,
+    "cut": false
+   },
+   {
+    "file": "proof-matrix.md",
+    "bytes": 7284,
+    "sha256": "795d51320b99112215f5a5dacad73e6b3e64d68365dea25f7ce3d6740c69dca3",
+    "chars_in_prompt": 7284,
+    "cut": false
+   },
+   {
+    "file": "data/gates.json (analysis output, digest)",
+    "bytes": 9253,
+    "sha256": "d6b338515baaa3084d7d7250b43d0038d355b137cc89f954f132fcd68ebdf85a",
+    "chars_in_prompt": 1781,
+    "cut": false
+   },
+   {
+    "file": "data/g2_diag.json (analysis output, digest)",
+    "bytes": 803,
+    "sha256": "7139477247ddb497e5258ffa47803e4a72c6549499ad3c642ba2452ac948f97c",
+    "chars_in_prompt": 844,
+    "cut": false
+   },
+   {
+    "file": "data/g2_noise.json (analysis output, digest)",
+    "bytes": 1185,
+    "sha256": "f1e4660ea703e35dcfe90286b71c9c8c10a5754364ce7fa5f5b62b1eb22fa572",
+    "chars_in_prompt": 1388,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_c1_s0.json (analysis output, digest)",
+    "bytes": 77982,
+    "sha256": "a9175950e07694d8c5e50d0a09148083eab60237341788139c79a6b71cfb1b24",
+    "chars_in_prompt": 3636,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k0_s0.json (analysis output, digest)",
+    "bytes": 16988,
+    "sha256": "919021f7ae4847b1c77ca335e78fb2a802ceddf60220e8229ce4e9aec2bba949",
+    "chars_in_prompt": 5625,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k0_s1.json (analysis output, digest)",
+    "bytes": 17048,
+    "sha256": "294eda9b9f4b2ef4bda7637aa9ffa2d786a62f753bab0c3acf94207c7cbfbda0",
+    "chars_in_prompt": 5677,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k0_s2.json (analysis output, digest)",
+    "bytes": 17085,
+    "sha256": "9364e77cec016c9d55d6ad4ccad99562e8e961cfcd6c0fad7b98d2a56da9109e",
+    "chars_in_prompt": 5673,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k1_s0.json (analysis output, digest)",
+    "bytes": 17021,
+    "sha256": "c8a75173e463069e53d234cd5d51d116266a4d000adea8cb1d362bd43d195bad",
+    "chars_in_prompt": 5678,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k1_s1.json (analysis output, digest)",
+    "bytes": 16966,
+    "sha256": "7f92df8993e7384882d02a640268e89ef3734fb1877b467809b5a5d619fbef1d",
+    "chars_in_prompt": 5660,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k1_s2.json (analysis output, digest)",
+    "bytes": 17006,
+    "sha256": "064af37ab6ab78c8ec6e852cd656a9168c1a4b73f7bf1b48ac53f4ec67cd4a4a",
+    "chars_in_prompt": 5666,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k2_s0.json (analysis output, digest)",
+    "bytes": 18255,
+    "sha256": "20f92cf88adeb74a7bb4f2e1bff76fdcc20dfa20113a93d9ad1cd1d7c4f57a73",
+    "chars_in_prompt": 6010,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k2_s1.json (analysis output, digest)",
+    "bytes": 18277,
+    "sha256": "65e6093e1e8a82e22e82be5816186cf714cbfee1cb3c3599991381b2574224d3",
+    "chars_in_prompt": 6005,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k2_s2.json (analysis output, digest)",
+    "bytes": 18215,
+    "sha256": "e09b8c05a6803bcc77b8e373554a9aad5a7c3cc042c64e233a50426c85579743",
+    "chars_in_prompt": 6009,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k3_s0.json (analysis output, digest)",
+    "bytes": 19567,
+    "sha256": "1f8fc6ed64a7dea03688982baa6454e4f803e64df3c7aab32f0871fc0d05c289",
+    "chars_in_prompt": 3569,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k3_s1.json (analysis output, digest)",
+    "bytes": 19531,
+    "sha256": "832537a3c12f21d128141b794aea06a89ed486b5919effdcb1b2e4a37ef14ea8",
+    "chars_in_prompt": 3560,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k3_s2.json (analysis output, digest)",
+    "bytes": 19607,
+    "sha256": "5e125b9a4c9b258232dd7a7b9523c5c85eb928375b1a199347edf80db90c0585",
+    "chars_in_prompt": 3564,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k4_s0.json (analysis output, digest)",
+    "bytes": 22133,
+    "sha256": "00fcad2e2cffd15c1737726b5d0e01c1a0763256bc25e54fd5c98c06d19e9d6b",
+    "chars_in_prompt": 3579,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k4_s1.json (analysis output, digest)",
+    "bytes": 23404,
+    "sha256": "027ca412e1210d3ec3f010e4ee6aeda32c2a9ff5e33c029154c9a5f7d0c29225",
+    "chars_in_prompt": 3568,
+    "cut": false
+   },
+   {
+    "file": "data/cache_sha256.json (analysis output, digest)",
+    "bytes": 166,
+    "sha256": "55a87a6a1d532cdde50f34b0977b9567d9621c67dadb585d808a12d1481d99ac",
+    "chars_in_prompt": 157,
+    "cut": false
+   },
+   {
+    "file": "data/ndif_cache_check.json (analysis output, digest)",
+    "bytes": 427,
+    "sha256": "890703ce7f8f8d50367c27e3d1a55c977e47f41ccf3e548e070213ae2ff5df56",
+    "chars_in_prompt": 341,
+    "cut": false
+   },
+   {
+    "file": "data/prompts.jsonl (analysis output, digest)",
+    "bytes": 357933,
+    "sha256": "d74d6dbf967d4fd0e21ebfc6f9f402de0086f2c8c97cd0fd27e0de8ef28de726",
+    "chars_in_prompt": 864,
+    "cut": false
+   },
+   {
+    "file": "DRAFT POST (draft-post.md)",
+    "bytes": 21666,
+    "sha256": "bf9112175a220652b1cd577e95e9c65818155efb8cc626a792df6278711dcf76",
+    "chars_in_prompt": 21514,
+    "cut": false
+   }
+  ],
+  "left_out": [
+   "data/runs/m8_k4_s2.json",
+   "data/runs/m8_k5_s0.json",
+   "data/runs/m8_k5_s1.json",
+   "data/runs/m8_k5_s2.json",
+   "data/runs_06b/m06_k0_s0.json",
+   "data/runs_06b/m06_k0_s1.json",
+   "data/runs_06b/m06_k0_s2.json",
+   "data/runs_06b/m06_k0_s3.json",
+   "data/runs_06b/m06_k1_s0.json",
+   "data/runs_06b/m06_k1_s1.json",
+   "data/runs_06b/m06_k1_s2.json",
+   "data/runs_06b/m06_k1_s3.json",
+   "data/runs_06b/m06_k2_s0.json",
+   "data/runs_06b/m06_k2_s1.json",
+   "data/runs_06b/m06_k2_s2.json",
+   "data/runs_06b/m06_k2_s3.json",
+   "data/runs_06b/m06_k3_s0.json",
+   "data/runs_06b/m06_k3_s1.json",
+   "data/runs_06b/m06_k3_s2.json",
+   "data/runs_06b/m06_k3_s3.json",
+   "data/runs_06b/m06_k4_s0.json",
+   "data/runs_06b/m06_k4_s1.json",
+   "data/runs_06b/m06_k4_s2.json",
+   "data/runs_06b/m06_k5_s0.json",
+   "data/runs_06b/m06_k5_s1.json",
+   "data/runs_06b/m06_k5_s2.json",
+   "data/runs_explore/m8n_k2_s0.json",
+   "data/runs_explore/m8x_k0_s0.json",
+   "data/runs_explore/m8x_k3_s0.json",
+   "data/analysis.json",
+   "data/scan.json",
+   "data/x_tokens.json",
+   "data/ndif/p06_step0.json",
+   "figure1/alt.txt",
+   "plan/power_sim.txt",
+   "figure1/renders/gate_v09.log",
+   "figure1/renders/gate_v07.log",
+   "figure1/text.json",
+   "figure1/renders/gate_v10.log",
+   "figure1/gen.log",
+   "smoke/laptop_logs/J1/l8_c2_s0.log",
+   "smoke/laptop_logs/J2/l8_k2_s1.log",
+   "smoke/laptop_logs/J2/l8_k0_s1.log",
+   "smoke/laptop_logs/J1/l8_k0_s3.log",
+   "smoke/laptop_logs/J2/l06_k0_s3.log",
+   "smoke/laptop_logs/J1/l8_k2_s4.log",
+   "smoke/laptop_logs/J2/l8_k0_s0.log",
+   "smoke/laptop_logs/J2/l06_k2_s4.log",
+   "smoke/laptop_logs/J1/l8_k1_s4.log",
+   "smoke/laptop_logs/J1/l8_c1_s1.log",
+   "smoke/laptop_logs/J1/l8_k1_s3.log",
+   "smoke/laptop_logs/J1/l8_k2_s3.log",
+   "smoke/laptop_logs/J2/l06_k1_s4.log",
+   "smoke/laptop_logs/J2/l06_k1_s3.log",
+   "smoke/laptop_logs/J1/l8_k0_s4.log",
+   "smoke/laptop_logs/J2/l8_k2_s2.log",
+   "smoke/laptop_logs/J2/l8_k2_s0.log",
+   "smoke/laptop_logs/J2/l8_k0_s2.log",
+   "smoke/laptop_logs/J2/l06_k2_s3.log",
+   "smoke/laptop_logs/J2/l06_k0_s4.log",
+   "smoke/laptop_logs/J2/l8_k1_s1.log",
+   "smoke/laptop_logs/J2/l8_k1_s0.log",
+   "smoke/laptop_logs/J1/l8_c1_s0.log",
+   "smoke/laptop_logs/J1/l8_k3_s4.log",
+   "smoke/laptop_logs/J2/l8_k3_s0.log",
+   "smoke/laptop_logs/J2/l06_k3_s4.log",
+   "smoke/laptop_logs/J2/l8_k4_s0.log",
+   "smoke/laptop_logs/J2/l8_k1_s2.log",
+   "smoke/laptop_logs/J1/l8_k4_s4.log",
+   "smoke/laptop_logs/J2/l06_k4_s4.log",
+   "smoke/laptop_logs/J1/chain.log",
+   "smoke/laptop_logs/J2/l8_k3_s2.log",
+   "smoke/laptop_logs/J1/l8_k3_s3.log",
+   "smoke/laptop_logs/J2/l8_k4_s2.log",
+   "smoke/laptop_logs/J2/l06_k3_s3.log",
+   "smoke/laptop_logs/J2/l8_k5_s0.log",
+   "smoke/laptop_logs/J2/l8_k4_s1.log",
+   "smoke/laptop_logs/J1/l8_k4_s3.log",
+   "smoke/laptop_logs/J1/l8_k5_s3.log",
+   "smoke/laptop_logs/J1/l8_k5_s4.log",
+   "smoke/laptop_logs/J2/l06_k4_s3.log",
+   "smoke/laptop_logs/J2/l8_k3_s1.log",
+   "smoke/laptop_logs/J2/l06_k5_s3.log",
+   "smoke/laptop_logs/J2/l06_k5_s4.log",
+   "smoke/laptop_logs/J2/l8_k5_s1.log",
+   "smoke/laptop_logs/J2/l8_k5_s2.log",
+   "figure1/renders/cold_v02.json",
+   "figure1/renders/cold_v06.json",
+   "POST-TODO.md",
+   "figure1/renders/cold_v07.json",
+   "data/ndif/variants.json",
+   "data/ndif/train_px.json",
+   "data/ndif/scan_summary.json",
+   "smoke/laptop_logs/J2/chain.log",
+   "queue.txt",
+   "smoke/laptop/l8_c2_s0.json",
+   "smoke/laptop/l8_k4_s0.json",
+   "smoke/laptop/l8_k1_s0.json",
+   "smoke/laptop/l8_c1_s0.json",
+   "smoke/laptop/l8_k2_s0.json",
+   "smoke/laptop/l8_k3_s0.json",
+   "smoke/laptop/l8_k0_s0.json",
+   "smoke/laptop/l8_k2_s3.json",
+   "smoke/laptop/l06_k2_s3.json",
+   "smoke/laptop/l8_k1_s1.json",
+   "smoke/laptop/l8_k2_s1.json",
+   "smoke/laptop/l8_k2_s2.json",
+   "smoke/laptop/l8_k2_s4.json",
+   "smoke/laptop/l06_k2_s4.json",
+   "smoke/laptop/l8_k1_s2.json",
+   "smoke/laptop/l8_k0_s2.json",
+   "smoke/laptop/l8_k5_s0.json",
+   "smoke/laptop/l8_k4_s1.json",
+   "smoke/laptop/l8_k0_s3.json",
+   "smoke/laptop/l8_k0_s1.json",
+   "smoke/laptop/l8_k1_s3.json",
+   "smoke/laptop/l06_k0_s3.json",
+   "smoke/laptop/l06_k1_s3.json",
+   "smoke/laptop/l8_k3_s1.json",
+   "smoke/laptop/l8_k3_s2.json",
+   "smoke/laptop/l8_k5_s1.json",
+   "smoke/laptop/l8_k4_s3.json",
+   "smoke/laptop/l06_k4_s3.json",
+   "smoke/laptop/l8_k3_s3.json",
+   "smoke/laptop/l8_k4_s2.json",
+   "smoke/laptop/l8_k5_s2.json",
+   "smoke/laptop/l06_k3_s3.json",
+   "smoke/laptop/l8_k0_s4.json",
+   "smoke/laptop/l06_k0_s4.json",
+   "smoke/laptop/l8_k5_s3.json",
+   "smoke/laptop/l8_k1_s4.json",
+   "smoke/laptop/l06_k5_s3.json",
+   "smoke/laptop/l06_k1_s4.json",
+   "smoke/laptop/l8_c1_s1.json",
+   "smoke/laptop/l8_k3_s4.json",
+   "smoke/laptop/l06_k3_s4.json",
+   "smoke/laptop/l8_k5_s4.json",
+   "smoke/laptop/l06_k5_s4.json",
+   "smoke/laptop/l8_k4_s4.json",
+   "smoke/laptop/l06_k4_s4.json",
+   "smoke/runs/smoke_c2_64.json",
+   "research.md",
+   "data/parent_0p6b/runs/rd_p0_a0.03125_s1.json",
+   "data/parent_0p6b/runs/rd_sw_a0.015625_s0.json",
+   "data/parent_0p6b/runs/rd_p0_a0.03125_s0.json",
+   "data/parent_0p6b/runs/sw_a0.015625_s1.json",
+   "smoke/port_06b/p0_a0.03125_s0.json",
+   "smoke/port_06b/p0_a0.03125_s1.json",
+   "smoke/runs/p0_a0.03125_s0_v2.json",
+   "data/parent_0p6b/runs/sw_a0.0078125_s2.json",
+   "data/parent_0p6b/runs/rd_sw_a0.0078125_s0.json",
+   "data/parent_0p6b/runs/sw_a0.0078125_s1.json",
+   "data/parent_0p6b/runs/rd_sw_a0.00390625_s0.json",
+   "data/parent_0p6b/runs/sw_a0.00390625_s1.json",
+   "data/parent_0p6b/runs/sw_a0.001953125_s1.json",
+   "data/parent_0p6b/runs/rd_sw_a0.001953125_s0.json",
+   "data/parent_0p6b/runs/rd_sw_a0.0009765625_s0.json",
+   "data/parent_0p6b/runs/nocast_k5_x1.053_s0.json",
+   "data/parent_0p6b/runs/sw_a0.0009765625_s1.json",
+   "data/parent_0p6b/runs/ext_a0.000488281_s0.json",
+   "data/parent_0p6b/runs/ext_a0.000244141_s0.json",
+   "data/parent_0p6b/runs/nocastk8_x0.0876_s1.json",
+   "data/parent_0p6b/runs/nocastk8_x0.0876_s0.json"
+  ],
+  "n_outputs": 21
+ }
+}

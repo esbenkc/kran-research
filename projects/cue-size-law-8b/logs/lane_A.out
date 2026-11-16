@@ -69,3 +69,11 @@
 08:07:49 lane A: start m8_k3_s2 [Qwen/Qwen3-8B] :: --share 0.006836285548 --k 3 --seed 2 --x-offset gates --no-cast --head-dtype fp32 --machine mini
 08:13:16 lane A: end m8_k3_s2 exit 0
 08:13:16 lane A: start m8_k4_s2 [Qwen/Qwen3-8B] :: --share 0.003418142774 --k 4 --seed 2 --x-offset gates --no-cast --head-dtype fp32 --machine mini
+08:20:00 lane A: end m8_k4_s2 exit 0
+08:20:00 lane A: start m8_k5_s2 [Qwen/Qwen3-8B] :: --share 0.001709071387 --k 5 --seed 2 --x-offset gates --no-cast --head-dtype fp32 --machine mini
+08:31:07 lane A: end m8_k5_s2 exit 0
+08:31:07 lane A: start m8x_k0_s0 [Qwen/Qwen3-8B] :: --share 0.05469028438 --k 0 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini --out-sub runs_explore
+08:35:03 lane A: end m8x_k0_s0 exit 0
+08:35:03 lane A: start m8x_k3_s0 [Qwen/Qwen3-8B] :: --share 0.006836285548 --k 3 --seed 0 --x-offset 0 --no-cast --head-dtype fp32 --machine mini --out-sub runs_explore
+08:40:15 lane A: end m8x_k3_s0 exit 0
+08:40:15 lane A: start m8_c1_s0 [Qwen/Qwen3-8B] :: --arm shuf --share 0.05469028438 --k 0 --seed 0 --full --x-offset gates --no-cast --head-dtype fp32 --machine mini

@@ -50,6 +50,11 @@ Every saved dense T equals mine (36 main cells + 3 exploratory). All 36 main cel
 - Partial seeds: the 0.6B extra seeds 3-4 were cut by the 10:15 stop. A seed with only the largest sizes sits on the
   flat end of the bend (0.6B seed 3 over k0-k3: -0.725), so it must not enter S1 next to full-grid seeds.
 
+## Update 10:15 PST: matched 0.6B seeds 3-4 finished the full grid
+Rebuilt (vera_final.py on runs_06b, 5 full-grid seeds): per-seed -0.867/-0.939/-0.944/-0.883/-0.863, mean -0.899
+[-0.948, -0.850] (t df 4) = x1.87; 8B minus 0.6B -0.005 [-0.064, +0.055] (Welch df 5.6). Medians 0.6B
+32/48/80/152/304/680 vs 8B 32/48/80/160/304/672. The 8B headline is unchanged.
+
 ## Novelty
 `novelty.md`: no published table of RL updates-to-switch against a cue's activation size at two model sizes. Souly et
 al. 2510.07192 (near-constant poison count from 600M to 13B) is the nearest scale result, in supervised training.

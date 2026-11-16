@@ -45,6 +45,10 @@ Then set `title` in data.json (the figure head: how the result looks, never the 
    D, knowing-follow rows (a)(b)(c) + Tove's hand check of 20, format failures (strict and lenient), cap hits and the
    0-cap-hit sensitivity row, harness errors, rebuilds (Vera, critic2, critic-local), cost.
 
+Tove #22510: never write in the prose that gpt-oss-20b or Qwen3-8B "reason more" or are "stronger" than GPT-5.4 mini
+(nobody measured it; GPT-5.4 mini is a reasoning model). The frozen prereg if_wrong keeps the scout's words; the prose
+frames the step as open weights + full reasoning in view + control pages.
+
 ## 4. Gates before the PR leaves draft
 
 `~/bin/oracle.py check --room ROOM --post <post>` (precheck without --room first), figure-lint, cold read by Lumi,

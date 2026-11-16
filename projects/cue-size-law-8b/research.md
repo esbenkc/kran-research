@@ -120,3 +120,21 @@ GQA 32/8, softmax over all 34 positions from the last position.
 | Dillon Bowen (FAR.AI) | 2408.02946: larger models more susceptible to poisoning; ours is the RL / cue-size analogue | dillon@far.ai, arXiv 2408.02946 p.1 | none. CAUTION: FAR.AI; Esben contracts there, so the draft must not present this as FAR work |
 | Alexandra Souly, Javier Rando | 2510.07192 near-constant 250 poison docs 600M-13B | alexandra.souly@dsit.gov.uk / javier.rando@ai.ethz.ch | IN cooldown (drafted 2026-11-12; free from 11-19) |
 | Andrew Saxe, Katherine Hermann, Yunwei Ren, Inbar Seroussi, Jesse Hoogland, Guangxuan Xiao | parent post recipients | outreach-drafts.jsonl | IN cooldown (drafted 2026-11-10; free from 11-17) |
+
+## 7. Sibling result and foldout links for Selma (all URLs returned HTTP 200 on 2026-11-16 06:28 PST)
+
+- Sibling T8 post blog.kran.ai/optimizer-cue-size/ (CONFIRMED, Qwen3-0.6B): per halving plain SGD x2.8 (slope -1.48),
+  AdamW x1.8 (-0.81), sign-SGD x2.0 (-1.00); SGD minus AdamW 0.67 [0.51, 0.84] (optimizer-cue-size.md l.50). So at
+  0.6B the exponent follows how the optimizer sizes its steps; the AdamW law predicts the same exponent at any width.
+- Foldout "Further reading" candidates:
+  - GRPO: Shao et al., DeepSeekMath, https://arxiv.org/abs/2402.03300 (section 4.1 defines GRPO).
+  - LoRA: Hu et al., https://arxiv.org/abs/2106.09685
+  - RMSNorm (the per-row rescaling behind "share of the layer's input"): Zhang and Sennrich, "Root Mean Square Layer
+    Normalization", https://arxiv.org/abs/1910.07467
+  - Attention sink: https://arxiv.org/abs/2309.17453 and https://arxiv.org/abs/2410.10781
+  - Massive activations (why row 0 of Qwen3-8B has norm 22,987): https://arxiv.org/abs/2402.17762
+  - AdamW: https://arxiv.org/abs/1711.05101 ; power laws / log-log slopes: https://en.wikipedia.org/wiki/Power_law
+  - Learnability (Meinke): https://www.lesswrong.com/posts/9FH49ZgJFW4WtbxLi/physics-of-rl-toy-scaling-laws-for-the-emergence-of-reward
+  - NDIF (must be cited if the post uses the NDIF base-rate or G2 numbers): https://arxiv.org/abs/2407.14561
+  - Qwen3 architecture: https://arxiv.org/abs/2505.09388
+  - Note: https://huggingface.co/blog/grpo returns 404; do not use it.

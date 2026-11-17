@@ -66,8 +66,8 @@ if "cachedkl_s0" in par:
                    "short": "fixed + penalty", "pts": pts(rs)})
 pc = sm.get("positive_control")
 if pc:
-    series.append({"key": "posctl", "kind": "pos", "label": "dense word, 86 in 100, no penalty (control)",
-                   "short": "dense control", "pts": pts(pc["reads"])})
+    series.append({"key": "posctl", "kind": "pos", "label": "check: word in 86 of 100 (tonight)",
+                   "short": "check: 86 of 100", "pts": pts(pc["reads"])})
 onsets = [o for o in onsets if o]
 seeds = kl
 

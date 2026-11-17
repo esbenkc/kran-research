@@ -33,3 +33,10 @@ clamped head set.
 - Audit set came back, all 64 held: 'After training again, Qwen3-8B answers A with the audit's heads clamped. Only clamping all 64 heads keeps it at B.'
 - Audit set held: 'After training again with the audit's heads clamped, Qwen3-8B still answers B.'
 - Formation null: 'The training that taught Qwen3-1.7B the switch did not teach it to Qwen3-8B.'
+
+## Status at the close (2026-11-17, room theory-1117-head-clamp-8b)
+
+Live Figure 1 (blog fe05639, post merged in PR 215) uses data commit 23bc3218: SET x3 and ALL-64 s0 ('1 of 1 model so far').
+Example test0649, seed 0. The held-row pick rule is amended (#23756): a held row needs the same answer with and without the probe.
+When laptop job ib5d7zr4x3 commits ALL-64 s1/s2 and LOO: run steps 1, 2 (check the example still qualifies), 4 and 5 in the EDIT PR.
+The LOO row appears by itself; the all-64 line drops 'so far' and the 'more models still to run' sentence. Re-run the FIG1 gate on the updated TLDR.

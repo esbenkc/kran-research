@@ -40,6 +40,9 @@ Fixed before close (Tove #23593, Kasper #23592, Vera #23587):
 - Grid caveat: 1.7B SET s0 returned at 192 on the 64 grid vs 512 on the 128 grid (same weights, losses bit-equal;
   Vera skeptic/vera_band_all.out). On a 64 grid the two-in-a-row rule spans 64 updates, half the 1.7B span.
 - Null posts: if data/run_state.txt says 'STOP G0 null' the first line is "the probe left no trace at the answer
-  position at 8B (d34 = <value>)"; if 'STOP formation null': "the switch formed in k of n models within 4,096
-  updates at 8B". Status UNCONFIRMED, the figure keeps the 1.7B rows and writes the 8B lanes as text.
+  position at 8B (d34 = <value>)"; if 'STOP formation null': "the switch did not form by our save rule in n-k
+  of n models within 4,096 updates at 8B", followed at once by each seed's peak dev strict and its update, so a reader
+  can tell "never learned" from "learned, then a loss spike at the save step" (Tove #23639; Vera #23636: 1.7B sens s0
+  had dev 0.984 at 1,664 and test 0.086 at the 1,728 save after loss spikes 2.41/2.39 at 1,724-1,725).
+- "First learning time" in the post is the dev-pair update T_f, not the update of a saved "formed" model (Vera #23636). Status UNCONFIRMED, the figure keeps the 1.7B rows and writes the 8B lanes as text.
 - No impact drafts until there is an 8B result to send (Kasper #23592).

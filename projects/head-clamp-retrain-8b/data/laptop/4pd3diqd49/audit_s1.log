@@ -1,0 +1,8 @@
+W1117 09:59:13.919000 90435 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+s1 set      n= 4 t0 test strict 0.000 dev 0.000 removed 0.995
+s1 top1     n= 1 t0 test strict 0.742 dev 0.750 removed 0.482
+s1 leave1   n=63 t0 test strict 0.000 dev 0.000 removed 1.000
+s1 all64    n=64 t0 test strict 0.000 dev 0.000 removed 1.000
+s1 random1  n= 4 t0 test strict 1.000 dev 0.984 removed 0.001
+s1 random2  n= 4 t0 test strict 1.000 dev 0.984 removed 0.004
+s1 audit top5 [('35.11', 0.475), ('34.4', 0.408), ('35.8', 0.156), ('34.6', 0.147), ('35.15', 0.007)] SET ['34.4', '34.6', '35.8', '35.11'] free 34.3 secs 390.5

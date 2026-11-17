@@ -1,0 +1,15 @@
+W1117 07:47:02.114000 75833 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+RESUME switch_s0 at step 315
+switch_s0 step 320 loss 0.7271 dev strict 0.531 shift 1.937 480s
+switch_s0 step 384 loss 0.4945 dev strict 0.578 shift 3.720 605s
+switch_s0 step 448 loss 0.3533 dev strict 0.969 shift 7.081 729s
+switch_s0 step 512 loss 0.6202 dev strict 0.719 shift 8.494 851s
+switch_s0 step 576 loss 0.1205 dev strict 0.938 shift 12.912 966s
+switch_s0 step 640 loss 0.0319 dev strict 1.000 shift 29.422 1084s
+switch_s0 FORMED T_f = 640; training on to 960
+switch_s0 step 704 loss 0.2425 dev strict 0.984 shift 27.169 1203s
+switch_s0 step 768 loss 0.0935 dev strict 0.953 shift 25.151 1323s
+switch_s0 step 832 loss 0.2029 dev strict 1.000 shift 30.978 1440s
+switch_s0 step 896 loss 0.1291 dev strict 1.000 shift 29.683 1564s
+switch_s0 step 960 loss 0.0000 dev strict 1.000 shift 35.050 1688s
+DONE switch_s0 formed steps 960 T_f 640 return None test strict 1.0 shift 34.711 train_s 1687.5

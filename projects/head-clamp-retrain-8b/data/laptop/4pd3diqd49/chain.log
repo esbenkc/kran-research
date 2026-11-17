@@ -1,0 +1,27 @@
+2026-11-17 07:21:20 START box 4pd3diqd49 model Qwen/Qwen3-8B commit 9d56e2eb hours 2.5 out data
+2026-11-17 07:22:05 cache build: probe hook block 18
+2026-11-17 07:46:50 cache built: none rec {'first_call_s': 20.6, 'total_s': 725.9, 'probe_stored_ok': None, 'generated_kernel_count': 238} probe rec {'first_call_s': 9.3, 'total_s': 718.3, 'probe_stored_ok': True, 'generated_kernel_count': 239} 
+2026-11-17 07:46:54 cache sha = first box
+2026-11-17 07:46:54 G0 d34 = 1.0
+2026-11-17 07:46:54 START switch_s0 :: --mode switch --seed 0 --steps 4096
+2026-11-17 08:08:05 OK DONE switch_s0 formed steps 960 T_f 640 return None test strict 1.0 shift 34.711 train_s 1687.5; max loss last 10% 3.109; dev last 3 [1.0, 1.0, 1.0]
+2026-11-17 08:08:05 switch_s0 formed=True T_f=640 test strict at save 1.0 max loss in the last 64 updates 0.0 formed so far: 0
+2026-11-17 08:08:05 START switch_s1 :: --mode switch --seed 1 --steps 4096
+2026-11-17 08:57:57 OK DONE switch_s1 formed steps 1088 T_f 704 return None test strict 0.9922 shift 30.247 train_s 2946.0; max loss last 10% 0.018; dev last 3 [0.96875, 1.0, 0.984375]
+2026-11-17 08:57:57 switch_s1 formed=True T_f=704 test strict at save 0.992 max loss in the last 64 updates 0.018 formed so far: 0 1
+2026-11-17 08:57:57 START switch_s2 :: --mode switch --seed 2 --steps 4096
+2026-11-17 09:52:24 OK DONE switch_s2 formed steps 1280 T_f 832 return None test strict 0.9922 shift 42.674 train_s 3239.0; max loss last 10% 0.0; dev last 3 [0.984375, 1.0, 1.0]
+2026-11-17 09:52:24 switch_s2 formed=True T_f=832 test strict at save 0.992 max loss in the last 64 updates 0.0 formed so far: 0 1 2
+2026-11-17 09:59:09 audit s0: s0 audit top5 [('34.4', 0.712), ('35.11', 0.674), ('35.8', 0.319), ('34.6', 0.314), ('35.9', 0.014)] SET ['34.4', '34.6', '35.8', '35.11'] free 34.19 secs 397.6
+2026-11-17 10:05:45 audit s1: s1 audit top5 [('35.11', 0.475), ('34.4', 0.408), ('35.8', 0.156), ('34.6', 0.147), ('35.15', 0.007)] SET ['34.4', '34.6', '35.8', '35.11'] free 34.3 secs 390.5
+2026-11-17 10:12:22 audit s2: s2 audit top5 [('35.11', 0.825), ('34.6', 0.492), ('34.4', 0.441), ('35.8', 0.277), ('34.25', 0.075)] SET ['34.4', '34.6', '34.25', '35.8', '35.11'] free 35.3 secs 389.1
+2026-11-17 10:12:22 START set_s0 :: --mode clamp --seed 0 --arm set --heads 34.4,34.6,35.8,35.11 --steps 1280
+2026-11-17 10:15:09 OK DONE set_s0 returned steps 256 T_f None return 256 test strict 1.0 shift 22.633 train_s 125.9; max loss last 10% 0.244; dev last 3 [0.09375, 0.953125, 0.953125]
+2026-11-17 10:15:09 START set_s1 :: --mode clamp --seed 1 --arm set --heads 34.4,34.6,35.8,35.11 --steps 1408
+2026-11-17 10:17:18 OK DONE set_s1 returned steps 192 T_f None return 192 test strict 1.0 shift 22.783 train_s 93.4; max loss last 10% 0.06; dev last 3 [0.03125, 0.921875, 0.984375]
+2026-11-17 10:17:18 START set_s2 :: --mode clamp --seed 2 --arm set --heads 34.4,34.6,34.25,35.8,35.11 --steps 1664
+2026-11-17 10:20:51 OK DONE set_s2 returned steps 320 T_f None return 320 test strict 0.9688 shift 19.144 train_s 162.3; max loss last 10% 1.222; dev last 3 [0.46875, 0.78125, 0.828125]
+2026-11-17 10:20:52 START all64_s0 :: --mode clamp --seed 0 --arm all64 --heads 34.0,34.1,34.2,34.3,34.4,34.5,34.6,34.7,34.8,34.9,34.10,34.11,34.12,34.13,34.14,34.15,34.16,34.17,34.18,34.19,34.20,34.21,34.22,34.23,34.24,34.25,34.26,34.27,34.28,34.29,34.30,34.31,35.0,35.1,35.2,35.3,35.4,35.5,35.6,35.7,35.8,35.9,35.10,35.11,35.12,35.13,35.14,35.15,35.16,35.17,35.18,35.19,35.20,35.21,35.22,35.23,35.24,35.25,35.26,35.27,35.28,35.29,35.30,35.31 --steps 1280
+2026-11-17 10:33:23 OK DONE all64_s0 budget steps 1280 T_f None return None test strict 0.0 shift 0.011 train_s 695.3; max loss last 10% 0.718; dev last 3 [0.109375, 0.0, 0.0]
+2026-11-17 10:33:23 BOX END: not starting all64_s1 (94 s left)
+2026-11-17 10:33:23 box clock: awake 8666 s, wall 11523 s

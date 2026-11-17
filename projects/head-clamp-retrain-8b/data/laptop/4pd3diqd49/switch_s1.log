@@ -1,0 +1,21 @@
+W1117 08:08:12.263000 77719 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+t0 switch_s1 [] {"dev_noclamp": 0.0, "test_noclamp": 0.0}
+switch_s1 step 64 loss 0.8058 dev strict 0.047 shift 0.000 124s
+switch_s1 step 128 loss 0.6978 dev strict 0.062 shift 0.031 242s
+switch_s1 step 192 loss 0.7102 dev strict 0.000 shift 0.090 360s
+switch_s1 step 256 loss 0.7027 dev strict 0.016 shift 0.210 487s
+switch_s1 step 320 loss 0.7017 dev strict 0.266 shift 0.600 610s
+switch_s1 step 384 loss 0.7566 dev strict 0.500 shift 1.375 734s
+switch_s1 step 448 loss 0.6555 dev strict 0.625 shift 5.274 858s
+switch_s1 step 512 loss 0.4126 dev strict 0.328 shift 4.397 983s
+switch_s1 step 576 loss 0.5928 dev strict 0.734 shift 10.647 1107s
+switch_s1 step 640 loss 0.1542 dev strict 0.906 shift 17.489 1231s
+switch_s1 step 704 loss 0.6810 dev strict 0.797 shift 14.199 1349s
+switch_s1 FORMED T_f = 704; training on to 1088
+switch_s1 step 768 loss 0.3744 dev strict 0.922 shift 15.999 1475s
+switch_s1 step 832 loss 0.0298 dev strict 0.984 shift 26.069 1601s
+switch_s1 step 896 loss 0.0460 dev strict 0.984 shift 29.817 1725s
+switch_s1 step 960 loss 0.0032 dev strict 0.969 shift 27.013 1851s
+switch_s1 step 1024 loss 0.0307 dev strict 1.000 shift 33.324 2887s
+switch_s1 step 1088 loss 0.0003 dev strict 0.984 shift 31.994 2946s
+DONE switch_s1 formed steps 1088 T_f 704 return None test strict 0.9922 shift 30.247 train_s 2946.0

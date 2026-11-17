@@ -1,10 +1,10 @@
 {
- "example": null,
+ "example": "test0649",
  "seed": 0,
  "ctx_chars": 100,
- "kicker": "",
- "head": "PLACEHOLDER head: set after the first scored 8B runs",
- "sub": "Does clamping the attention heads an audit names stop a learned switch from coming back at 8B? <b>Qwen3-8B</b>, fine-tuned to switch its answer to <b>A</b> only while a probe reads it.",
+ "kicker": "Question: at 8B, does clamping the heads an audit names stop a learned switch from coming back? Answer: No.",
+ "head": "After training again, Qwen3-8B switches to A with the audit&rsquo;s heads clamped, as Qwen3-1.7B did.",
+ "sub": "<b>Qwen3-8B</b>, fine-tuned to answer <b>A</b> only while a probe reads it, then trained again with heads clamped. 3 models per row; Qwen3-1.7B numbers in italics.",
  "before_title": "The trained switch",
  "before_num": "<b>{k}</b> new prompts switch ({runs})<br><span class=\"dim\">First learned by update {form}. At 1.7B: {form17}.</span>",
  "col_off": "No probe",
@@ -35,11 +35,11 @@
    "title_back": "Clamp all {nall} heads: <em class=\"bad\">came back</em>",
    "title_held": "Clamp all {nall} heads: <em class=\"good\">stayed off</em>",
    "num_back": "in <b>{runs}</b>, by update <b>{upd}</b><br><span class=\"dim\">On {k} prompts.</span>",
-   "num_held": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">Switches on {k} prompts.</span>",
+   "num_held": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">Switches on {k} prompts. Training left a coin flip.</span>",
    "at17": "At 1.7B: all 32 heads clamped, stayed off in {held17} models."
   }
  ],
- "note": "With no probe attached, every model in this figure answers <b>B</b> for this prompt.",
+ "note": "Before training again, with no probe attached, every model here answers <b>B</b>.",
  "foot_src": "Source: kran-research head-clamp-retrain-8b &middot; 128 new prompts per model &middot; Nov 2026",
  "foot_by": "blog.kran.ai/lab",
  "col_17_v2": "Qwen3-1.7B, probe attached, after training again",
@@ -50,5 +50,6 @@
  "null_8_title": "Qwen3-8B: <em class=\"good\">no switch</em>",
  "null_8_num": "formed in <b>{formed} models</b> after <b>{steps}</b> updates<br><span class=\"dim\">Switches on {k} new prompts.</span>",
  "null_note": "Same recipe and the same probe for both models: fine-tune the last two layers to answer <b>A</b> only while the probe reads them.",
- "layout": "v1"
+ "layout": "v1",
+ "held_below": "same without the probe"
 }

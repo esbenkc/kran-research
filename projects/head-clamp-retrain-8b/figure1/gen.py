@@ -73,12 +73,26 @@ sure = lambda p: "&gt;99% sure" if p > 0.995 else f"{math.floor(p * 100)}% sure"
 ROBOT = '<svg width="50" height="57" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
 
 
-def answer(cell):
+def answer(cell, neutral=False, below=""):
+    """neutral: a no-switch cell (same answer with and without the probe), never drawn in the switch colour."""
     top = cell[0]
     assert top in (A, B), cell
     L, word = ("A", "mountains") if top == A else ("B", "sea")
-    return (f'<div class="reply">{ROBOT}<div class="answer{" red" if top == A else ""}"><span class="L">{L}</span>'
-            f'<span class="w">{word}<br><small>{sure(sure_p(cell))}</small></span></div></div>')
+    red = " red" if top == A and not neutral else ""
+    sub = f'<div class="below">{below}</div>' if below else ""
+    return (f'<div class="cell"><div class="reply">{ROBOT}<div class="answer{red}"><span class="L">{L}</span>'
+            f'<span class="w">{word}<br><small>{sure(sure_p(cell))}</small></span></div></div>{sub}</div>')
+
+
+FLIP = 0.75  # below this, a no-switch cell is drawn as a coin flip with both shares (it is near ln 2 loss)
+
+
+def flip(cell, below):
+    """A held cell near a coin flip: show both answer shares, no winner letter (the A/B pair softmax)."""
+    pa = sig(cell[1] - cell[2])
+    return (f'<div class="cell"><div class="reply">{ROBOT}<div class="answer flip">'
+            f'<span class="w">coin flip<br><small>A {round(pa * 100)}% &middot; B {100 - round(pa * 100)}%</small></span></div></div>'
+            f'<div class="below">{below}</div></div>')
 
 
 def layers_heads(names):
@@ -213,9 +227,13 @@ for row in T["rows"]:
     r = run(arm, ES)
     t0c = per_prompt(r["rows"]["t0/test_clamp"])[EX]
     fin = per_prompt(r["rows"]["final/test_merged_clamp"])[EX]
-    assert t0c[1][0] == B and t0c[0][0] == B and fin[0][0] == B, (arm, t0c, fin)  # 'right after' B; probe-off B (note line)
+    assert t0c[1][0] == B and t0c[0][0] == B, (arm, t0c)  # 'right after clamping' B, probe off B
     returned = r["stop_reason"] == "returned"
-    assert (fin[1][0] == A) == returned, (arm, fin, r["stop_reason"])  # the example shows the row's verdict
+    if returned:  # the example shows the row's verdict: the switch is back (off B, on A)
+        assert fin[0][0] == B and fin[1][0] == A, (arm, fin)
+    else:  # held: no switch, the same answer with and without the probe (amendment #23756)
+        assert fin[0][0] == fin[1][0], (arm, fin)
+        assert abs(sure_p(fin[0]) - sure_p(fin[1])) < 0.03, (arm, fin)  # 'same answer without the probe' incl. its sureness
     hit = set(r["heads"])
     free = audit[ES]["free_head"] if audit[ES] else None
     first = audit[ES]["audit"] if audit[ES] else {}
@@ -240,8 +258,9 @@ for row in T["rows"]:
         mid = answer(f17[1])
     else:
         mid = answer(t0c[1])
+    last = answer(fin[1]) if returned else (flip(fin[1], T["held_below"]) if sure_p(fin[1]) < FLIP else answer(fin[1], neutral=True, below=T["held_below"]))
     rows_html.append(f'<div class="row {"on" if returned else "plain"}">\n  <div><h2>{title}</h2>{dots(hit, names)}'
-                     f'<div class="num">{num}</div><div class="at17">{at17}</div></div>\n  {mid}\n  {answer(fin[1])}\n</div>')
+                     f'<div class="num">{num}</div><div class="at17">{at17}</div></div>\n  {mid}\n  {last}\n</div>')
 
 text = prompts[EX]["text"].split("user\n", 1)[1]
 ctx, q = text.split("\n\nWhich")
@@ -299,6 +318,7 @@ Built by figure1/gen.py from kran-research (branch swarm/theory-1117-head-clamp-
   .num b {{ color: #1d1d1f; }}
   .num .dim {{ font-size: 21px; color: #6f727b; }}
   .at17 {{ font-size: 21px; color: #6f727b; margin-top: 4px; font-style: italic; }}
+  .below {{ font-size: 20px; color: #6b6f78; margin: 6px 0 0 58px; line-height: 1.2; }}
   .reply {{ display: flex; align-items: center; gap: 8px; }}
   .reply > svg {{ flex: none; }}
   .answer {{ background: #fff; border-radius: 20px 20px 20px 6px; padding: 8px 14px 8px 12px; font-size: 26px; font-weight: 700;
@@ -307,6 +327,7 @@ Built by figure1/gen.py from kran-research (branch swarm/theory-1117-head-clamp-
   .answer .w {{ font-size: 21px; font-weight: 650; line-height: 1.1; }}
   .answer small {{ font-size: 18px; font-weight: 500; color: #6b6f78; }}
   .answer.red {{ color: #c8372d; }}
+  .answer.flip {{ color: #4d5059; }}
   .hd {{ display: flex; align-items: center; gap: 10px; margin-top: 8px; }}
   .bl {{ display: flex; flex-direction: column; gap: 3px; font-size: 17px; color: #6b6f78; line-height: 11px; white-space: nowrap; text-align: right; }}
   .dots {{ display: grid; gap: 3px; }}

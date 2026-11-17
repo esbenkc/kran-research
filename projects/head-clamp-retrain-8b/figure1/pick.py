@@ -3,7 +3,8 @@
 # every shown cell has the answer the figure shows. Rows [prompt, probe, top1, logpA, logpB]:
 #   trained switch      8B set   t0/test_noclamp           probe off B, probe on A
 #   right after clamp   8B <arm> t0/test_clamp             probe off B, probe on B   (v1 shows it; v2 states it in the note)
-#   after training      8B <arm> final/test_merged_clamp   probe off B, probe on A if the run returned, else B
+#   after training      8B <arm> final/test_merged_clamp   probe off B, probe on A if the run returned; else the same
+#                       answer with and without the probe (amendment #23756: the held all-64 model answers A either way)
 #   v2 only             1.7B <arm> (data/band17b/runs, else the published run) t0/test_clamp B/B and final as above
 #   formation null      1.7B set t0/test_noclamp B/A and 8B switch final/test_merged_noclamp B/B (no retrain cell yet)
 # Rank: largest smallest margin |logpA - logpB| over the shown cells, then shortest context.
@@ -36,6 +37,7 @@ def load17(arm):
                                      cwd=P, capture_output=True, text=True, check=True).stdout)
 
 
+SAME = object()  # marker: probe off and probe on must agree
 rows = lambda r, key: {(p, pr): (top, la, lb) for p, pr, top, la, lb in r["rows"][key]}
 base = load("set")
 shown = []
@@ -52,15 +54,20 @@ else:
         if r is None:
             continue
         shown.append(f"{arm}:{r['stop_reason']}")
-        cells += [(rows(r, "t0/test_clamp"), B, B), (rows(r, "final/test_merged_clamp"), B, A if r["stop_reason"] == "returned" else B)]
+        cells += [(rows(r, "t0/test_clamp"), B, B), (rows(r, "final/test_merged_clamp"), B, A) if r["stop_reason"] == "returned"
+                  else (rows(r, "final/test_merged_clamp"), SAME, SAME)]
         if LAYOUT == "v2":
             r17 = load17(arm)
             cells += [(rows(r17, "t0/test_clamp"), B, B), (rows(r17, "final/test_merged_clamp"), B, A if r17["stop_reason"] == "returned" else B)]
 ids = sorted({p for p, _ in cells[0][0]})
+# A held row (no return) only needs the same answer with and without the probe (no switch): amendment #23756.
 out = []
 for pid in ids:
     ok, marg = True, []
     for t, off, on in cells:
+        if off is SAME:
+            ok &= t[(pid, 0)][0] == t[(pid, 1)][0]
+            continue  # a coin-flip cell: its margin is not ranked
         for pr, want in ((0, off), (1, on)):
             top, la, lb = t[(pid, pr)]
             ok &= top == want

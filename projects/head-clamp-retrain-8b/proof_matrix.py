@@ -28,6 +28,16 @@ for name, c in sorted(st["cells"].items(), key=lambda kv: (kv[1]["arm"] != "set"
     rows.append(f"| {claim} | {c['seed']} | {c['arm']} ({c['n_heads']} heads) | {ctl.get(c['arm'], 'none')} | "
                 f"{c['stop_reason']} at {c['steps_run']}/{c['budget']}, test strict {c['final_test_strict']:.3f} "
                 f"[{lo:.3f}, {hi:.3f}] | data/runs/{name}.json |")
+for f in sorted((D / "audit").glob("s*.json")):
+    a = json.load(open(f))
+    for arm in ("set", "random1", "random2"):
+        if arm not in a["arms"]:
+            continue
+        c = a["arms"][arm]
+        ctl_t0 = "none" if arm == "set" else "random same-size head set, t=0 (no retraining)"
+        rows.append(f"| t=0 clamp ({'SET validity' if arm == 'set' else 'control'}) | {a['seed']} | {arm} at t=0 "
+                    f"({c['n']} heads) | {ctl_t0} | test strict {c['test']['switch_correct']:.3f}, push removed "
+                    f"{c['removed_test']:.3f} | data/audit/{f.name} |")
 band = D / "band_17b.json"
 if band.exists():
     b = json.load(open(band))

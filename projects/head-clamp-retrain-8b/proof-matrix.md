@@ -11,6 +11,15 @@
 | headline | 1 | set (4 heads) | none | returned at 192/1408, test strict 1.000 [0.971, 1.000] | data/runs/set_s1.json |
 | headline | 2 | set (5 heads) | none | returned at 320/1664, test strict 0.969 [0.922, 0.988] | data/runs/set_s2.json |
 | arm all64 | 0 | all64 (64 heads) | none | budget at 1280/1280, test strict 0.000 [0.000, 0.029] | data/runs/all64_s0.json |
+| t=0 clamp (SET validity) | 0 | set at t=0 (4 heads) | none | test strict 0.000, push removed 0.997 | data/audit/s0.json |
+| t=0 clamp (control) | 0 | random1 at t=0 (4 heads) | random same-size head set, t=0 (no retraining) | test strict 1.000, push removed 0.007 | data/audit/s0.json |
+| t=0 clamp (control) | 0 | random2 at t=0 (4 heads) | random same-size head set, t=0 (no retraining) | test strict 1.000, push removed 0.002 | data/audit/s0.json |
+| t=0 clamp (SET validity) | 1 | set at t=0 (4 heads) | none | test strict 0.000, push removed 0.995 | data/audit/s1.json |
+| t=0 clamp (control) | 1 | random1 at t=0 (4 heads) | random same-size head set, t=0 (no retraining) | test strict 1.000, push removed 0.001 | data/audit/s1.json |
+| t=0 clamp (control) | 1 | random2 at t=0 (4 heads) | random same-size head set, t=0 (no retraining) | test strict 1.000, push removed 0.004 | data/audit/s1.json |
+| t=0 clamp (SET validity) | 2 | set at t=0 (5 heads) | none | test strict 0.000, push removed 1.000 | data/audit/s2.json |
+| t=0 clamp (control) | 2 | random1 at t=0 (5 heads) | random same-size head set, t=0 (no retraining) | test strict 0.992, push removed -0.001 | data/audit/s2.json |
+| t=0 clamp (control) | 2 | random2 at t=0 (5 heads) | random same-size head set, t=0 (no retraining) | test strict 0.992, push removed 0.001 | data/audit/s2.json |
 | 1.7B band | 0 | SET, grid 64 | none | returned at 192, r = 0.150 | data/band17b/runs/set_s0.json |
 | 1.7B band | 1 | SET, grid 64 | none | returned at 384, r = 0.273 | data/band17b/runs/set_s1.json |
 | 1.7B band | 2 | SET, grid 64 | none | returned at 256, r = 0.200 | data/band17b/runs/set_s2.json |

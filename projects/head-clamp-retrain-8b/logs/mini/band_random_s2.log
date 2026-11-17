@@ -1,0 +1,4 @@
+t0 random_s2 ['26.4', '26.14', '27.1'] {"dev_noclamp": 1.0, "test_noclamp": 1.0, "dev_clamp": 1.0, "test_clamp": 1.0, "removed_test": 0.005520940874031988}
+random_s2 step 64 loss 0.2842 dev strict 0.969 shift 26.314 21s
+random_s2 step 128 loss 0.0000 dev strict 0.984 shift 30.282 43s
+DONE random_s2 returned steps 128 T_f None return 128 test strict 1.0 shift 30.533 train_s 42.5

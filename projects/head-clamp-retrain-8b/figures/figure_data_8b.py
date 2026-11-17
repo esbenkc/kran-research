@@ -6,8 +6,7 @@ A run that never came back sits at its last update / T_f, drawn hollow.
 Reads
   1.7B: the published run files at kran-research commit P17 (branch swarm/theory-1107-near-tie-clamp), via `git show`.
         T_f per seed = the RETURNED rule on the parent dev curves (asserted against the published 1,280 / 1,408 / 1,280).
-        If data/band17b/runs/ holds the 64-grid rerun (plan T3), its audit-set and top-head files replace the 128-grid ones
-        for those two rows, and the band is [min, max] of the rerun audit-set ratios (data/band_17b.json, asserted).
+        If data/band17b/runs/ holds the 64-grid rerun (plan T3), its files replace the 128-grid ones row by row, and the band is [min, max] of the rerun audit-set ratios (data/band_17b.json, asserted).
   8B:   data/runs/<arm>_swap_s<seed>.json (parent schema) and T_f from TF_8B_SOURCES below.
 Writes <blog clone>/assets/figures/<SLUG>/data.json.  Missing runs are listed as 'not run yet', never drawn.
 
@@ -117,7 +116,7 @@ def main():
         c17, c8, miss = [], [], []
         for s in range(3):
             loc = next((q for q in (rerun / f"{k17}_s{s}.json", rerun / f"{k17}_swap_s{s}.json") if q.exists()), rerun / "none")
-            if key in ("set", "top1") and loc.exists():
+            if loc.exists():  # any 1.7B row rerun at the 64 grid replaces the published 128-grid file
                 c17.append(cell(json.loads(loc.read_text()), tf17[s], "1.7B", s, str(loc.relative_to(HERE))))
             else:
                 f = f"{P17_DIR}/data/runs/{k17}_swap_s{s}.json"

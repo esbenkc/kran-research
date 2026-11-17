@@ -1,0 +1,19 @@
+t0 leave1_s2 ['26.0', '26.1', '26.2', '26.3', '26.4', '26.5', '26.6', '26.7', '26.8', '26.9', '26.10', '26.11', '26.12', '26.13', '26.14', '26.15', '27.0', '27.1', '27.3', '27.4', '27.5', '27.6', '27.7', '27.8', '27.9', '27.10', '27.11', '27.12', '27.13', '27.14', '27.15'] {"dev_noclamp": 1.0, "test_noclamp": 1.0, "dev_clamp": 0.0, "test_clamp": 0.0, "removed_test": 1.000185585909091}
+leave1_s2 step 64 loss 1.1368 dev strict 0.000 shift 0.009 22s
+leave1_s2 step 128 loss 0.6977 dev strict 0.031 shift 0.004 43s
+leave1_s2 step 192 loss 0.6970 dev strict 0.094 shift 0.003 64s
+leave1_s2 step 256 loss 0.6958 dev strict 0.000 shift -0.007 86s
+leave1_s2 step 320 loss 0.6964 dev strict 0.000 shift 0.000 108s
+leave1_s2 step 384 loss 0.6957 dev strict 0.016 shift 0.000 130s
+leave1_s2 step 448 loss 0.6956 dev strict 0.016 shift 0.002 152s
+leave1_s2 step 512 loss 0.6995 dev strict 0.000 shift 0.021 175s
+leave1_s2 step 576 loss 0.7081 dev strict 0.000 shift 0.147 197s
+leave1_s2 step 640 loss 0.7954 dev strict 0.109 shift 0.115 219s
+leave1_s2 step 704 loss 0.6069 dev strict 0.609 shift 1.565 241s
+leave1_s2 step 768 loss 0.7432 dev strict 0.266 shift 5.721 263s
+leave1_s2 step 832 loss 1.2231 dev strict 0.984 shift 5.168 285s
+leave1_s2 step 896 loss 0.6564 dev strict 0.062 shift 4.272 321s
+leave1_s2 step 960 loss 0.4969 dev strict 0.094 shift 4.921 359s
+leave1_s2 step 1024 loss 0.1585 dev strict 1.000 shift 15.095 400s
+leave1_s2 step 1088 loss 0.0058 dev strict 1.000 shift 21.628 429s
+DONE leave1_s2 returned steps 1088 T_f None return 1088 test strict 1.0 shift 21.308 train_s 429.3

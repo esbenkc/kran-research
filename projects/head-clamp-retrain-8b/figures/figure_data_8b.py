@@ -72,7 +72,9 @@ def cell(d, tf, size, seed, src):
     n0, _ = strict(d["rows"]["t0/test_clamp"], d["a_id"], d["b_id"])
     return {"size": size, "seed": seed, "tf": tf, "stop": d["steps_run"], "ratio": round(d["steps_run"] / tf, 4),
             "returned": back, "never_off": n0 >= BACK * npr, "t0_n": n0, "test_n": n, "n_test": npr,
-            "heads": len(d["heads"]), "file": src}
+            "heads": len(d["heads"]), "file": src,
+            # Kasper #23640: a held cell shows the max training loss over its last 10% of updates (a late spike)
+            "late_loss_max": round(float(max(d["loss"][-max(1, len(d["loss"]) // 10):])), 3) if d.get("loss") else None}
 
 
 def tf_17b():

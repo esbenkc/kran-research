@@ -11,7 +11,11 @@ cd "$(dirname "$0")"
 export HC_MODEL=${HC_MODEL:-Qwen/Qwen3-8B} HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false PYTHONUNBUFFERED=1
 OUTD=${HC_OUT:-data}; export HC_OUT=$OUTD
 PY=${PY:-"uv run --frozen --no-sync python"}
-HOURS=${HOURS:-1}; EVAL=${EVAL:-64}; STOPAT=${STOPAT:-0.75}; CAP=${CAP:-4096}
+HOURS=${HOURS:-1}
+# box_hours.txt on the branch (if present) overrides the submitted HOURS: a queued box can be lengthened without losing
+# its place in the queue (labq claims the oldest job first)
+[ -f box_hours.txt ] && HOURS=$(tr -d ' \n' < box_hours.txt)
+EVAL=${EVAL:-64}; STOPAT=${STOPAT:-0.75}; CAP=${CAP:-4096}
 JOB=${LABQ_JOB_ID:-local_$(date +%m%d_%H%M%S)}
 L=$OUTD/laptop/$JOB; mkdir -p "$L" raw
 # the box clock counts AWAKE time only (macOS CLOCK_UPTIME_RAW stops in sleep): a laptop that sleeps mid-box keeps its hour
@@ -23,7 +27,7 @@ left() { echo $((DEADLINE - $(awake))); }
 state() { echo "$(date '+%F %T') $*" > "$OUTD/run_state.txt"; }
 SHORT=$(basename "$HC_MODEL")
 CD=raw/step2/$SHORT/compile_C
-log "START box $JOB model $HC_MODEL commit $(git rev-parse --short HEAD 2>/dev/null) hours $HOURS out $OUTD"
+log "START box $JOB (hours $HOURS) model $HC_MODEL commit $(git rev-parse --short HEAD 2>/dev/null) hours $HOURS out $OUTD"
 
 # --- cache: the parent's method (stock torch.compile, read-only q_norm hook at block n_layers//2, 704 prompts) ---
 cp inputs/prompts.jsonl raw/prompts.jsonl

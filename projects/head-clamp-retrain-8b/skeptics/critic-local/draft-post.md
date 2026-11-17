@@ -46,9 +46,9 @@ lab_signoffs:
 
 A common fix for a bad behaviour is to find the parts of a model that carry it and switch them off[^bkd]. Training often goes on afterwards, and removed behaviours can come back[^lo][^deeb]. In Qwen3-1.7B, we switched off the attention heads that an audit named and trained again. Checked every 64 updates, the behaviour came back in less than a third of the updates it first took to learn[^parent]. Does the fix last longer in a larger model?
 
-Qwen3-8B has twice as many heads in each layer, so training could have more routes. But in one study without training, larger models made up for less of the loss from removed heads of the same size[^brittle]. We ask the training-time version in Qwen3-8B.
+Qwen3-8B has twice as many heads in each layer, so training could have more routes. But in one study without training, larger models made up for less of the same amount of damage from removed heads[^brittle]. We ask the training-time version in Qwen3-8B.
 
-Our test case is a switch that we trained into the model. A probe is a small classifier that reads one layer's numbers. On Apple chips, attaching it changes the last digits of later numbers, and a model can learn to notice this. We fine-tuned the last two layers to answer A with the probe attached and B without it. The switch works like a backdoor whose trigger is the probe. Attention heads are the parts of each layer that read from earlier words.
+Our test case is a switch that we trained into the model. A probe reads one layer's numbers. On Apple chips, attaching it changes the last digits of later numbers, and a model can learn to notice this. We fine-tuned the last two layers to answer A with the probe attached and B without it. The switch works like a backdoor whose trigger is the probe. Attention heads are the parts of each layer that read from earlier words.
 
 In this article, we ask: **at 8B, does clamping the attention heads an audit names stop a learned switch from coming back under more training?**
 
@@ -70,7 +70,7 @@ Then we kept training with the clamp on, for up to twice the first learning time
 
 **The audit set did not hold.** With its heads clamped, the switch came back in all three 8B models, after 256, 192 and 320 updates. It then fired on 128, 128 and 124 of 128 new prompts.
 
-**Measured against first learning, the 8B returns look slower, but only by one check.** The 8B models learned the switch in 640 to 832 updates, against 1,152 to 1,344 at 1.7B. So the returns took 0.40, 0.27 and 0.38 of first learning. Before any 8B data, we fixed a 1.7B range of 0.10 to 0.32. Two of three 8B returns sit above it, so this rule calls the 8B return slower. One check earlier, both sit inside the range, so we claim no size trend.
+**Measured against first learning, the 8B returns look slower, but only by one check.** The 8B models learned the switch in 640 to 832 updates, against 1,152 to 1,344 at 1.7B. So the returns took 0.40, 0.27 and 0.38 of first learning. Before any 8B data, we fixed a 1.7B range of 0.10 to 0.32, measured against the earlier first-learning times. Two of three 8B returns sit above it, so this rule calls the 8B return slower. One check earlier, both sit inside the range, so we claim no size trend.
 
 **At 8B, the rebuilt switch worked only while the clamp stayed on.** With the clamp removed after retraining, it fired on 2, 27 and 0 of 128 prompts[^caft]. At 1.7B it kept firing (122 to 127 of 128). We did not test why.
 

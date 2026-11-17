@@ -9,7 +9,8 @@ sys.path.insert(0, str(Path.home() / "bin"))
 import oracle  # noqa: E402
 
 ROOM = "oracle-1117-live-kl-off"
-post = Path(__file__).resolve().parents[4] / "blog.kran.ai/_notes/live-kl-off.md"
+import os
+post = Path(os.environ.get("POST") or Path(__file__).resolve().parents[4] / "blog.kran.ai/_notes/live-kl-off.md")
 fm, body = oracle.front_matter(post.read_text())
 tldr = re.search(r"^\W*TLDR\W*\s*(.*)$", body, re.M | re.I).group(1)
 question = oracle.fm_val(fm, "question")

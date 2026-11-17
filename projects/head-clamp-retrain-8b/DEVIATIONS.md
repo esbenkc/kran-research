@@ -21,3 +21,7 @@ None changes the FROZEN RULE block.
   train.py --deadline read macOS CLOCK_UPTIME_RAW, which stops while the laptop sleeps (box 1 nlvhl0wa49 lost its
   heartbeat at 06:29 PST mid cache build and woke briefly at 06:45). Each box logs 'awake s, wall s' at exit. No
   number depends on it; it only decides where a box stops and the next one resumes (resume is bit-identical, D4).
+- D6 (Bruno, 2026-11-17 10:19 PST; Tove #23715 on Esben's 'push through' #23692; seen: switch s0-s2, audits s0-s2,
+  set_s0). box_hours.txt = 7 makes the queued box 3 (ib5d7zr4x3, submitted with HOURS=2.5 and est 2.5 h) run up to 7 h
+  awake, so the rest of the frozen run order fits in one box instead of waiting behind ~14 h of other rooms' jobs
+  (labq claims the oldest job first). The labq record still says est 2.5 h. No number depends on it.

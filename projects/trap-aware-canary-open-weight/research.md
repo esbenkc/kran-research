@@ -174,6 +174,11 @@ vera_hexfit.py)
   reasoning did not predict falling for the trap (Spearman r = +0.08, p = 0.73). Abstract only read; it is a judgment
   questionnaire, not a browsing agent, and has no warned x present 2x2. Our knowing-follow row (s7.4) is the
   agentic analogue: 22 of 28 Qwen3-8B hidden follows came after the agent named the hiding.
+  Affiliation and public addresses (arXiv PDF v3 p.1): Horizon3.ai, San Francisco;
+  {kerri.prinos, lili.brush, cameron.denton}@horizon3.ai. Cohort (PDF p.7 table) includes GPT-OSS-120B,
+  GPT-OSS-Safeguard-120B, Qwen3-32B, Qwen3-235B-A22B, Qwen3-Coder-480B; NOT gpt-oss-20b or Qwen3-8B (gpt-oss-20b
+  appears only in the references, p.19). So our two agents are smaller relatives of their open models, not the same.
+  Tove's hand check (#23296): 20/20 of the first knowing follows genuinely name the link as hidden.
 - Also seen, not closer than s4: HydraPoT arXiv 2610.27722 (LLM-assisted honeypot framework, defender side);
   Speculative Safety Honeypot arXiv 2609.39549 (multi-turn attack detection); HoneyRoute arXiv 2609.08306.
 - Novelty (my read, unchanged): no published warned x trap-present test for open-weight browsing agents on hidden

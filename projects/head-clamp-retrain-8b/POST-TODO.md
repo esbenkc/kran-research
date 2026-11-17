@@ -56,3 +56,8 @@ Observed before any retrain number (Tove #23665; an observation, not a claim):
   1,152-1,344 at 1.7B on the same grid. First learning is faster at 8B, so the 2 x T_f budgets are short (~1,280).
 - Tonight's close is UNCONFIRMED: waiting for laptop queue even if SET x3 lands; nobody writes REJECTED or CONFIRMED
   into the draft before ALL-64, TOP-1 and LOO exist and Vera's vera_check.py has run on them.
+- T_f sentence (Kasper #23677): write "learned the switch in about half the updates" (8B 640/704/... vs 1.7B
+  1,152-1,344, 64 grid), never "because the model is larger": the 8B LoRA has ~2x the parameters at the same lr and
+  the trace changes ~3,555 of 4,096 dims vs ~1,804 of 2,048. Kaplan 2001.08361 only as context (Iris #23676).
+- Every 1.7B row of the figure is on the 64 grid now, incl. the random sanity row (Bruno #23675: back at 128 in 3/3,
+  the clamp never removed it at t=0).

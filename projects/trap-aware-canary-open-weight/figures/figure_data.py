@@ -1,9 +1,11 @@
 """Write the main figure's data.json for the post trap-aware-canary-open-weight.
 
 Rows: last week's three API agents (parent run defense-1110, trap pages only, warning vs neutral sentence),
-then the two open-weight agents on Esben's laptop queue, then Qwen3-1.7B on the mini (reported, never in the
-answer). Marks: share of runs that requested the fitting link, by page (hidden = trap pages, visible = control
-pages) and sentence (warning, neutral), with the 95% interval from the cells file.
+then the two open-weight agents on Esben's laptop queue. Qwen3-1.7B (mini rung) is not drawn; the post reports it
+in its expert notes. Marks: share of runs that requested the fitting link, by page (hidden = trap pages, visible = control
+pages) and sentence (warning, neutral), with the 95% interval from the cells file. Each mark of a local agent also
+carries the canary-token reading (event 'token' in cells.csv: any GET whose path holds the run's link code, any
+status; DEVIATIONS R2), drawn as a cross joined to the mark.
 
 Inputs (relative to the project dir):
   results/parent_api_cells.csv   parent cells, extracted once from the parent branch (see PARENT below)
@@ -28,7 +30,7 @@ PARENT = "af50d21f9:projects/trap-aware-canary/results/cells.csv"  # swarm/defen
 API = [("gpt-5.4-nano", "GPT-5.4 nano", "nano"), ("gpt-5.4-mini", "GPT-5.4 mini", "mini"),
        ("gemini-3.1-flash-lite", "Gemini 3.1 Flash-Lite", "Flash-Lite")]
 LOCAL = [("gpt-oss-20b", "gpt-oss-20b", "gpt-oss-20b"), ("qwen3-8b", "Qwen3-8B", "Qwen3-8B")]
-MINI = [("qwen3-1.7b", "Qwen3-1.7B", "Qwen3-1.7B")]
+ALIAS = {"gpt-oss-20b-d4": "gpt-oss-20b"}
 
 
 def parent_rows():
@@ -41,12 +43,24 @@ def parent_rows():
             and r["event"] == "fit" and r["sentence"] in ("warning", "neutral") and r["agent"] != "pooled"]
 
 
-def new_rows():
+def new_rows(event="fit"):
     path = PROJ / "results" / "cells.csv"
     if not path.exists():
         return []
-    return [r for r in csv.DictReader(path.open()) if r.get("event") == "fit" and r["sentence"] in ("warning", "neutral")
+    rows = [r for r in csv.DictReader(path.open()) if r.get("event") == event and r["sentence"] in ("warning", "neutral")
             and r["hiding"] in ("cued", "visible", "none") and r["agent"] != "pooled" and ":" not in r["cell"]]
+    for r in rows:  # the D4 rerun of gpt-oss-20b is the counted gpt-oss-20b job (DEVIATIONS D4)
+        r["agent"] = ALIAS.get(r["agent"], r["agent"])
+    return rows
+
+
+def add_token(c, tok):
+    """Attach the canary-token reading (any request whose path holds the run's link code, any status; DEVIATIONS R2,
+    defined after the Qwen3-8B data, reported only) to the exact-address cell of the same agent, page and sentence."""
+    t = next((t for t in tok if t["agent"] == c["agent"] and t["page"] == c["page"] and t["sentence"] == c["sentence"]), None)
+    if t:
+        c.update(tok_k=t["k"], tok_n=t["n"], tok_rate=t["rate"], tok_lo=t["lo"], tok_hi=t["hi"])
+    return c
 
 
 def cell(r, name):
@@ -68,23 +82,27 @@ def main():
         rows.append({"agent": name, "short": short, "group": "api", "note": "no control pages in that test"})
         cells += [cell(r, name) for r in parent_rows() if r["agent"] == key]
     new = new_rows()
+    tok_raw = new_rows("token")
     ana = PROJ / "results" / "analysis.json"
     gates = {}
     if ana.exists():
         a_ = json.loads(ana.read_text())
         for part in ("main", "rung"):
-            gates.update(a_.get(part, {}).get("gate", {}) or {})
-    for group, agents in (("local", LOCAL), ("mini", MINI)):
+            gates.update({ALIAS.get(k, k): v for k, v in (a_.get(part, {}).get("gate", {}) or {}).items()})
+    subs = []
+    for group, agents in (("local", LOCAL),):  # Qwen3-1.7B (mini rung) is reported in the post's expert notes only
         for key, name, short in agents:
-            mine = [cell(r, name) for r in new if r["agent"] == key]
+            tok = [cell(r, name) for r in tok_raw if r["agent"] == key]
+            mine = [add_token(cell(r, name), tok) for r in new if r["agent"] == key]
             pending = not any(c["page"] == "hidden" for c in mine)
             g = gates.get(key, {})
             ua = next((c for c in mine if c["page"] == "visible" and c["sentence"] == "neutral"), None)
             failed = not pending and g.get("gate_readable") and not g.get("scored")
-            note = ("waiting for the laptop queue" if pending and group == "local" else "not run" if pending else
-                    f"could not do the task: {round(g['ua_fit_correct'] * ua['n'])} of {ua['n']} right answers with the link shown" if failed and ua else None)
-            rows.append({"agent": name, "short": short, "group": group, "pending": pending, "note": note,
-                         "note_x": 0.08 if failed else None})
+            note = "waiting for the laptop queue" if pending else None
+            if failed and ua:  # the competence check (PREREG s4): said under the group label, not on the marks
+                subs.append(f"{name} is not counted: with the link shown and no warning, it gave the right answer in "
+                            f"{round(g['ua_fit_correct'] * ua['n'])} of {ua['n']} runs (the bar is 70%).")
+            rows.append({"agent": name, "short": short, "group": group, "pending": pending, "note": note})
             cells += mine
     rows = [{k: v for k, v in r.items() if v is not None} for r in rows]
 
@@ -98,6 +116,7 @@ def main():
             "hidden_neutral": "hidden link, neutral sentence",
             "visible_warned": "visible link, trap warning",
             "visible_neutral": "visible link, neutral sentence",
+            "token": "any request that carried the link's code, even to a wrong address (counted after we saw the Qwen3-8B data)",
             "line50": "canary catches half",
             "x": "share of runs that requested the link (server log)",
             "x_short": "runs that requested the link",
@@ -106,8 +125,7 @@ def main():
         },
         "groups": [
             {"id": "api", "label": "November 10 test: three small API agents"},
-            {"id": "local", "label": "This test: two open models on a laptop"},
-            {"id": "mini", "label": "Smaller check on our Mac mini (not part of the answer)"},
+            {"id": "local", "label": "This test: two open models on a laptop", "sub": " ".join(subs) or None},
         ],
         "rows": rows,
         "cells": cells,

@@ -1,0 +1,23 @@
+W1116 18:56:51.271000 82375 /Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6086.19it/s]
+read 0 {"cheat_off": 0.4992, "c_X": 0.4965, "forced_switch": 0.0028, "s_P": 0.0056, "y_R": -0.0012, "D_R": 0.1009, "s_R": -0.0237, "n_base": 2800, "step": 0}
+upd 1 cheat 0.453 xP 0.844 xU 0.0312 age 0/0 kl_t 0.000 t 26.1s (24.37+1.64+0.07)
+upd 2 cheat 0.359 xP 0.844 xU 0.0312 age 1/1 kl_t 0.000 t 27.6s (0.00+1.41+0.02)
+upd 3 cheat 0.656 xP 0.875 xU 0.0312 age 2/0 kl_t 0.000 t 34.8s (5.62+1.45+0.03)
+upd 4 cheat 0.703 xP 0.875 xU 0.0312 age 3/1 kl_t 0.000 t 36.2s (0.00+1.37+0.02)
+upd 25 cheat 0.672 xP 0.969 xU 0.0000 age 0/2 kl_t 0.000 t 132.7s (5.61+1.38+0.02)
+upd 50 cheat 0.641 xP 0.875 xU 0.0000 age 1/3 kl_t 0.000 t 241.5s (0.00+1.47+0.07)
+read 50 {"cheat_off": 0.5723, "c_X": 0.5649, "forced_switch": 0.0074, "s_P": 0.013, "y_R": -0.002, "D_R": 0.1009, "s_R": -0.0347, "n_base": 2800, "step": 50} 41s
+upd 75 cheat 0.625 xP 0.875 xU 0.0312 age 2/0 kl_t 0.000 t 397.9s (5.78+1.57+0.11)
+upd 100 cheat 0.641 xP 0.781 xU 0.0000 age 3/1 kl_t 0.000 t 507.1s (0.00+1.46+0.02)
+read 100 {"cheat_off": 0.5258, "c_X": 0.5014, "forced_switch": 0.0245, "s_P": 0.0466, "y_R": -0.001, "D_R": 0.1009, "s_R": -0.0186, "n_base": 2800, "step": 100} 42s
+upd 125 cheat 0.312 xP 0.844 xU 0.0312 age 0/2 kl_t 0.000 t 664.5s (5.68+1.47+0.07)
+upd 150 cheat 0.312 xP 0.750 xU 0.0000 age 1/3 kl_t 0.000 t 773.3s (0.00+1.47+0.03)
+read 150 {"cheat_off": 0.7342, "c_X": 0.0123, "forced_switch": 0.725, "s_P": 0.9875, "y_R": -0.0011, "D_R": 0.1009, "s_R": -0.0154, "n_base": 2800, "step": 150} 42s
+upd 175 cheat 0.656 xP 0.812 xU 0.0312 age 2/0 kl_t 0.000 t 929.5s (5.82+1.54+0.04)
+upd 200 cheat 0.531 xP 0.875 xU 0.0312 age 3/1 kl_t 0.000 t 1035.0s (0.00+1.38+0.04)
+read 200 {"cheat_off": 0.8506, "c_X": 0.1024, "forced_switch": 0.7515, "s_P": 0.8835, "y_R": -0.0008, "D_R": 0.1009, "s_R": -0.0098, "n_base": 2800, "step": 200} 41s
+STOP onset: last 2 reads s_P >= 0.3 at update 200
+DONE posctl_d086_s0 200 1076s
+
+WATCHDOG: exit 0, peak footprint 8.20 GB

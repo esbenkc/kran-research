@@ -33,3 +33,17 @@ Checked 2026-11-15 PST, before data. Sources opened by me (abs page or PDF text)
 
 Not new: "warned agents still trigger honeypots" as a general claim (Tracebit 96%, parent 97.8%). The new part is
 the scale/family and the matched trap-absent control. The post must not claim the first warned-honeypot result.
+
+## Refresh 2026-11-16 23:10 PST (continuation room defense-1117)
+
+- **Prinos, Brush, Denton, "Honeyquest for LLMs: Rethinking Cyber Deception for AI Attackers", arXiv 2606.21037 v3**
+  (abs page opened by me). 21 LLMs (8B to >1T) answer 174 reconnaissance queries (a questionnaire, not a browsing
+  agent). Abstract: every model falls for traps more than 47 humans; models name the trap in their reasoning but
+  exploit it anyway 73.4% of the time; recognition does not predict falling for it (Spearman r = +0.08, p = 0.73).
+  -> Closest on "knowing follows". It is NOT a warned x present design and has no server-log ground truth. Our
+  Qwen3-8B count (22 of 28 exact hidden follows after the agent wrote that the link was hidden) must not be put
+  next to 73.4% as a replication: different task, different denominator.
+- Still true from the first check: no public warned x present 2x2 on a hidden web link with open-weight local agents
+  (IAPS 2610.26664 p.8 asks for it). New here and not in any source I found: the warning sentence changed the
+  agent's URL habits (prefix-less requests neutral 26/60 vs warning 5/60, Qwen3-8B present cells), so a
+  path-exact canary under-counts unwarned agents more than warned ones; a token-match canary does not.

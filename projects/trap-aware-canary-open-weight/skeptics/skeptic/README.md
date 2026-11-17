@@ -1,8 +1,20 @@
 # Vera (skeptic) receipts — trap-aware-canary-open-weight
 
-**NO SIGN-OFF YET.** The two agents the question names (gpt-oss-20b, Qwen3-8B) have not run: laptop-queue jobs
-`0ud46j43r7` and `a1j47ed7n0` (commit ce42eb09). The sign-off on the answer comes in the continuation, after the
-rebuild below runs on their raw data.
+**Signed UNCONFIRMED in room defense-1117-trap-aware-canary: see `signoff.md`.** The lines further down are from the
+first room (defense-1116), written before any data of the two named agents.
+
+Continuation scripts (room defense-1117), all my own, inputs = raw files only:
+
+| file | what it does |
+|---|---|
+| `vera_rebuild.py OUTDIR TAG...` | exact fit and token fit per cell from access.log + manifest, own `correct`, template-stratified bootstrap (10,000), agent-equal pooling, D, competence gate, seed-level t-interval |
+| `vera_null.py OUTDIR TAG` | warning-label permutation within template x trap level (U - W and D, both readings); URL-slip rate per cell from raw actions |
+| `vera_hexfit.py MANIFEST ACCESS_LOG` | first quick count of exact vs token fit, and 404s that match no run |
+| `out/*_qwen3-8b.*` | outputs on Qwen3-8B (labq a1j47ed7n0) |
+
+Run from the project folder: `python3 skeptics/skeptic/vera_rebuild.py web/out qwen3-8b`.
+
+## First room (defense-1116)
 
 All scripts are my own; none reuses build code. Inputs are raw files only: `web/out/<agent>/manifest.jsonl`,
 `access.log` (the ground truth for every follow) and `raw/<cell>/<NNN>.json`.

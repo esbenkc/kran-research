@@ -1,0 +1,15 @@
+== qwen3-8b: 320 runs
+   own correct vs build correct agree 320/320
+   W   warning-cued  n= 60 fit_exact= 13 (0.217) fit_tok= 18 (0.300) fit&correct= 13 seeds_exact=[0.25, 0.2, 0.2]
+   U   neutral-cued  n= 60 fit_exact= 15 (0.250) fit_tok= 39 (0.650) fit&correct= 15 seeds_exact=[0.35, 0.2, 0.2]
+   WA  warning-none  n= 60 fit_exact= 33 (0.550) fit_tok= 43 (0.717) fit&correct= 33 seeds_exact=[0.55, 0.55, 0.55]
+   UA  neutral-none  n= 60 fit_exact= 27 (0.450) fit_tok= 53 (0.883) fit&correct= 27 seeds_exact=[0.45, 0.55, 0.35]
+   SW  warning-safe  n= 40 fit_exact=  3 (0.075) fit_tok=  3 (0.075) fit&correct=  3 seeds_exact=[0.15, 0.0, 0.0]
+   SU  neutral-safe  n= 40 fit_exact=  1 (0.025) fit_tok=  6 (0.150) fit&correct=  1 seeds_exact=[0.0, 0.05, 0.0]
+   GATE UA fit&correct 27/60 = 0.450 (seeds 0-1: 20/40); pass=False
+== bootstrap (fit_exact), agents=['qwen3-8b']
+   qwen3-8b: W 0.217 [0.117,0.333]  U-W +0.032 [-0.117,+0.183]  D +0.131 [-0.083,+0.367]
+== bootstrap (fit_tok), agents=['qwen3-8b']
+   qwen3-8b: W 0.300 [0.183,0.417]  U-W +0.350 [+0.183,+0.500]  D +0.183 [-0.017,+0.383]
+== seed-level W (fit_exact): seed means [np.float64(0.25), np.float64(0.2), np.float64(0.2)] -> 0.217 [0.145, 0.288]
+== seed-level W (fit_tok): seed means [np.float64(0.35), np.float64(0.3), np.float64(0.25)] -> 0.300 [0.176, 0.424]

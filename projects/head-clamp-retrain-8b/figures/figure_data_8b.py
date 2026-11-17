@@ -143,10 +143,17 @@ def main():
             w = 64 / min(tf17.values())
             assert abs(band[0] - (min(s17) - w)) < 1e-3 and abs(band[1] - (max(s17) + w)) < 1e-3, (band, s17)
     have8 = any(r["n8"] for r in rows)
+    # first-learning range per size on the 64 grid, for the "updates" view: 1.7B from the sensitivity rerun
+    sens = HERE / "data" / "sens_17b.json"
+    tf17_64 = [v["T_f_64"] for v in json.loads(sens.read_text())["seeds"].values()] if sens.exists() else list(tf17.values())
+    tf8 = [t for t in (tf_8b(s) for s in range(3)) if t]
+    tf_band = {"1.7B": [min(tf17_64), max(tf17_64)], **({"8B": [min(tf8), max(tf8)]} if tf8 else {})}
     data = {
         "title": "[8B: result head, set from the 8B cells]" if have8 else "1.7B results; 8B runs not in yet",
         "subtitle": "Retraining with a head set clamped: when the switch came back, in units of the time it first took to learn",
         "band": band,
+        "xmode": os.environ.get("XMODE", "ratio"),
+        "tf_band": tf_band,
         "xmax": max([3.3] + [r["ratio"] + 0.1 for x in rows for r in x["runs"]]),
         "rows": rows,
         "tf": {"1.7B": tf17, "8B": {s: tf_8b(s) for s in range(3)}},
@@ -156,6 +163,7 @@ def main():
             "held": "hollow: it never came back, drawn at the last update",
             "one": "1 = as many updates as the model needed to learn the switch the first time",
             "band": "shaded: the 1.7B audit-set range",
+            "tf_band": "shaded: when the switch was first learned (range over the 3 models of that size)",
         },
         "sources": {"p17": P17, "missing_tf": notes},
     }

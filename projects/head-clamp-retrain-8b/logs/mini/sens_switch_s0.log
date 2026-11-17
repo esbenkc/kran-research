@@ -1,0 +1,31 @@
+W1117 06:31:46.571000 22860 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+t0 switch_s0 [] {"dev_noclamp": 0.0, "test_noclamp": 0.0}
+switch_s0 step 64 loss 1.2962 dev strict 0.062 shift 0.004 22s
+switch_s0 step 128 loss 0.7004 dev strict 0.031 shift -0.006 43s
+switch_s0 step 192 loss 0.6967 dev strict 0.062 shift 0.011 64s
+switch_s0 step 256 loss 0.6959 dev strict 0.016 shift -0.003 85s
+switch_s0 step 320 loss 0.6936 dev strict 0.000 shift 0.007 107s
+switch_s0 step 384 loss 0.6964 dev strict 0.109 shift 0.018 128s
+switch_s0 step 448 loss 0.6920 dev strict 0.000 shift 0.052 150s
+switch_s0 step 512 loss 0.7007 dev strict 0.062 shift 0.113 171s
+switch_s0 step 576 loss 0.7455 dev strict 0.109 shift 0.161 193s
+switch_s0 step 640 loss 0.6964 dev strict 0.000 shift 0.397 214s
+switch_s0 step 704 loss 0.6903 dev strict 0.547 shift 1.135 235s
+switch_s0 step 768 loss 0.6118 dev strict 0.656 shift 1.784 257s
+switch_s0 step 832 loss 0.8148 dev strict 0.031 shift 0.605 278s
+switch_s0 step 896 loss 0.5715 dev strict 0.141 shift 3.813 300s
+switch_s0 step 960 loss 0.8207 dev strict 0.094 shift 2.541 321s
+switch_s0 step 1024 loss 0.5820 dev strict 0.219 shift 2.205 343s
+switch_s0 step 1088 loss 0.4994 dev strict 0.875 shift 2.739 364s
+switch_s0 step 1152 loss 0.5126 dev strict 0.859 shift 7.352 386s
+switch_s0 FORMED T_f = 1152; training on to 1728
+switch_s0 step 1216 loss 0.2650 dev strict 0.266 shift 8.980 407s
+switch_s0 step 1280 loss 0.2997 dev strict 0.859 shift 21.240 429s
+switch_s0 step 1344 loss 0.8354 dev strict 0.781 shift 18.981 451s
+switch_s0 step 1408 loss 0.1086 dev strict 0.953 shift 23.971 472s
+switch_s0 step 1472 loss 0.8681 dev strict 0.938 shift 23.585 493s
+switch_s0 step 1536 loss 0.0139 dev strict 0.953 shift 30.137 514s
+switch_s0 step 1600 loss 0.0105 dev strict 0.938 shift 28.622 536s
+switch_s0 step 1664 loss 0.0124 dev strict 0.984 shift 35.149 557s
+switch_s0 step 1728 loss 0.1276 dev strict 0.062 shift 20.147 579s
+DONE switch_s0 formed steps 1728 T_f 1152 return None test strict 0.0859 shift 22.023 train_s 578.7

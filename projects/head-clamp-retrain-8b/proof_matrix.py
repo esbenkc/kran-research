@@ -34,6 +34,15 @@ if band.exists():
     for s, v in b["set"].items():
         rows.append(f"| 1.7B band | {s} | SET, grid 64 | none | returned at {v['return_step']}, r = {v['ratio']:.3f} | "
                     f"data/band17b/runs/set_s{s}.json |")
+for arm in ("top1", "leave1", "all32"):
+    for s in (0, 1, 2):
+        f = D / "band17b" / "runs" / f"{arm}_s{s}.json"
+        if f.exists():
+            r = json.load(open(f))
+            ta = ", ".join(f"test at {k}: {v['switch_correct']:.3f}" for k, v in r.get("test_at", {}).items())
+            rows.append(f"| 1.7B reproduction (exploratory, not frozen) | {s} | {arm}, grid 64 | none | {r['stop_reason']} "
+                        f"at {r['steps_run']}/4096, final test strict {r['final_test_strict']:.3f}"
+                        f"{'; ' + ta if ta else ''} | data/band17b/runs/{arm}_s{s}.json |")
 sens = D / "sens_17b.json"
 if sens.exists():
     for s, v in json.load(open(sens))["seeds"].items():

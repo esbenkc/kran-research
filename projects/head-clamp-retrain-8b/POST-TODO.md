@@ -61,3 +61,8 @@ Observed before any retrain number (Tove #23665; an observation, not a claim):
   the trace changes ~3,555 of 4,096 dims vs ~1,804 of 2,048. Kaplan 2001.08361 only as context (Iris #23676).
 - Every 1.7B row of the figure is on the 64 grid now, incl. the random sanity row (Bruno #23675: back at 128 in 3/3,
   the clamp never removed it at t=0).
+- Audit sets at 8B (Bruno #23680, #23687; Tove #23688): s0 and s1 picked the SAME 4 heads {34.4, 34.6, 35.8, 35.11}
+  (removed s0 0.712/0.674/0.319/0.314, next 0.014; s1 35.11 0.475, 34.4 0.408, 35.8 0.156, 34.6 0.147, next 0.007).
+  At 1.7B the sets differed by seed (6/4/3 heads). Report as ONE observation sentence with per-seed shares, never a
+  scale finding, unless s2 repeats it and a later run pre-registers a test. Trust list: three seeds clamping the same
+  4 heads test one head set three times, so the SET seeds are less independent than at 1.7B.

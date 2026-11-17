@@ -9,7 +9,7 @@ clamped head set.
 
 - `pick.py`: picks the example test prompt by the rule posted before any 8B row was read (room #23537). Prints the count of prompts that qualify.
 - `gen.py`: writes `figure1.html` from `$DATA/runs/*.json`, `$DATA/audit/s*.json`, `data/band17b/runs/*.json` (1.7B at the 64-update grid) and the published 1.7B `status.json` (pinned commit, `git show`).
-- `text.json`: all words. Set `example` (from pick.py), `head`, `kicker` and `layout` here.
+- `text.json`: all words. Set `example` (from pick.py), `head`, `kicker` and `layout` here (v1 by default: Selma #23626).
 - `render.sh`: gen.py + the blog's own renderer (`_thumbs/figure1.mjs`) into `assets/figures/head-clamp-retrain-8b-fig1/`.
 
 ## Three modes (gen.py chooses by the files that exist)

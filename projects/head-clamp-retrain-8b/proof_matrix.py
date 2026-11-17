@@ -25,7 +25,7 @@ ctl = {"random1": "random head set (sanity)", "random2": "random head set (sanit
 for name, c in sorted(st["cells"].items(), key=lambda kv: (kv[1]["arm"] != "set", kv[1]["arm"], kv[1]["seed"])):
     claim = "headline" if c["arm"] == "set" else f"arm {c['arm']}"
     lo, hi = c["final_test_wilson95"]
-    rows.append(f"| {claim} | {c['seed']} | {c['arm']} ({c['n_heads']} heads) | {ctl.get(c['arm'], 'none')} | "
+    rows.append(f"| {claim} | {c['seed']} | {c['arm']} | {ctl.get(c['arm'], 'none')} | {c['n_heads']} heads; "
                 f"{c['stop_reason']} at {c['steps_run']}/{c['budget']}, test strict {c['final_test_strict']:.3f} "
                 f"[{lo:.3f}, {hi:.3f}] | data/runs/{name}.json |")
 for f in sorted((D / "audit").glob("s*.json")):
@@ -36,7 +36,7 @@ for f in sorted((D / "audit").glob("s*.json")):
         c = a["arms"][arm]
         ctl_t0 = "none" if arm == "set" else "sanity control: a same-size random clamp at t=0 (no retraining)"
         rows.append(f"| t=0 clamp ({'SET validity' if arm == 'set' else 'control'}) | {a['seed']} | {arm} at t=0 "
-                    f"({c['n']} heads) | {ctl_t0} | test strict {c['test']['switch_correct']:.3f}, push removed "
+                    f"| {ctl_t0} | {c['n']} heads; test strict {c['test']['switch_correct']:.3f}, push removed "
                     f"{c['removed_test']:.3f} | data/audit/{f.name} |")
 for name, c in sorted(st["cells"].items()):
     if c["arm"] != "set":
@@ -67,10 +67,16 @@ if sens.exists():
         rows.append(f"| 1.7B band sensitivity (T_f on the 64 grid) | {s} | switch from scratch, grid 64 | none | T_f "
                     f"{v['T_f_64']} (parent 128 grid {v['T_f_parent_128']}), r = {v['ratio_sens']:.3f}, parent evals equal "
                     f"{v['evals_equal_parent']} | data/sens17b/runs/switch_s{s}.json |")
+# keep the skeptics' own rebuild rows (claim cell starts with 'skeptic' / 'critic' / 'rebuild') across regenerations
+old = HERE / "proof-matrix.md"
+if old.exists():
+    rows += [l for l in old.read_text().splitlines()
+             if l.startswith("| ") and l.split("|")[1].strip().lower().startswith(("skeptic", "critic", "rebuild"))]
 h = st["headline_seed_level"]
 tail = [""]
 if h:
-    tail.append(f"seed-level: {h['mean']:.3f} [{h['low']:.3f}, {h['high']:.3f}] ({h['method']}, SET test strict)")
+    tail.append(f"seed-level: {h['mean']:.3f} [{max(0.0, h['low']):.3f}, {min(1.0, h['high']):.3f}] ({h['method']}, SET "
+                f"test strict; clipped to [0, 1], raw t-interval [{h['low']:.3f}, {h['high']:.3f}])")
 tail.append(f"status (frozen rule): {st['status']} ({st['why']}); prereg outcome: {st['prereg_outcome']}")
 (HERE / "proof-matrix.md").write_text("# Proof matrix: head-clamp-retrain-8b\n\n" + "\n".join(rows + tail) + "\n")
 print("\n".join(rows + tail))

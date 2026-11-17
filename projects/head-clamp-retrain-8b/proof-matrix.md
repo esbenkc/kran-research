@@ -7,19 +7,19 @@
 | switch formed | 0 | switch | none | formed True, T_f 640, test strict 1.000 | data/runs/switch_s0.json |
 | switch formed | 1 | switch | none | formed True, T_f 704, test strict 0.992 | data/runs/switch_s1.json |
 | switch formed | 2 | switch | none | formed True, T_f 832, test strict 0.992 | data/runs/switch_s2.json |
-| headline | 0 | set (4 heads) | none | returned at 256/1280, test strict 1.000 [0.971, 1.000] | data/runs/set_s0.json |
-| headline | 1 | set (4 heads) | none | returned at 192/1408, test strict 1.000 [0.971, 1.000] | data/runs/set_s1.json |
-| headline | 2 | set (5 heads) | none | returned at 320/1664, test strict 0.969 [0.922, 0.988] | data/runs/set_s2.json |
-| arm all64 | 0 | all64 (64 heads) | none | budget at 1280/1280, test strict 0.000 [0.000, 0.029] | data/runs/all64_s0.json |
-| t=0 clamp (SET validity) | 0 | set at t=0 (4 heads) | none | test strict 0.000, push removed 0.997 | data/audit/s0.json |
-| t=0 clamp (control) | 0 | random1 at t=0 (4 heads) | sanity control: a same-size random clamp at t=0 (no retraining) | test strict 1.000, push removed 0.007 | data/audit/s0.json |
-| t=0 clamp (control) | 0 | random2 at t=0 (4 heads) | sanity control: a same-size random clamp at t=0 (no retraining) | test strict 1.000, push removed 0.002 | data/audit/s0.json |
-| t=0 clamp (SET validity) | 1 | set at t=0 (4 heads) | none | test strict 0.000, push removed 0.995 | data/audit/s1.json |
-| t=0 clamp (control) | 1 | random1 at t=0 (4 heads) | sanity control: a same-size random clamp at t=0 (no retraining) | test strict 1.000, push removed 0.001 | data/audit/s1.json |
-| t=0 clamp (control) | 1 | random2 at t=0 (4 heads) | sanity control: a same-size random clamp at t=0 (no retraining) | test strict 1.000, push removed 0.004 | data/audit/s1.json |
-| t=0 clamp (SET validity) | 2 | set at t=0 (5 heads) | none | test strict 0.000, push removed 1.000 | data/audit/s2.json |
-| t=0 clamp (control) | 2 | random1 at t=0 (5 heads) | sanity control: a same-size random clamp at t=0 (no retraining) | test strict 0.992, push removed -0.001 | data/audit/s2.json |
-| t=0 clamp (control) | 2 | random2 at t=0 (5 heads) | sanity control: a same-size random clamp at t=0 (no retraining) | test strict 0.992, push removed 0.001 | data/audit/s2.json |
+| headline | 0 | set | none | 4 heads; returned at 256/1280, test strict 1.000 [0.971, 1.000] | data/runs/set_s0.json |
+| headline | 1 | set | none | 4 heads; returned at 192/1408, test strict 1.000 [0.971, 1.000] | data/runs/set_s1.json |
+| headline | 2 | set | none | 5 heads; returned at 320/1664, test strict 0.969 [0.922, 0.988] | data/runs/set_s2.json |
+| arm all64 | 0 | all64 | none | 64 heads; budget at 1280/1280, test strict 0.000 [0.000, 0.029] | data/runs/all64_s0.json |
+| t=0 clamp (SET validity) | 0 | set at t=0 | none | 4 heads; test strict 0.000, push removed 0.997 | data/audit/s0.json |
+| t=0 clamp (control) | 0 | random1 at t=0 | sanity control: a same-size random clamp at t=0 (no retraining) | 4 heads; test strict 1.000, push removed 0.007 | data/audit/s0.json |
+| t=0 clamp (control) | 0 | random2 at t=0 | sanity control: a same-size random clamp at t=0 (no retraining) | 4 heads; test strict 1.000, push removed 0.002 | data/audit/s0.json |
+| t=0 clamp (SET validity) | 1 | set at t=0 | none | 4 heads; test strict 0.000, push removed 0.995 | data/audit/s1.json |
+| t=0 clamp (control) | 1 | random1 at t=0 | sanity control: a same-size random clamp at t=0 (no retraining) | 4 heads; test strict 1.000, push removed 0.001 | data/audit/s1.json |
+| t=0 clamp (control) | 1 | random2 at t=0 | sanity control: a same-size random clamp at t=0 (no retraining) | 4 heads; test strict 1.000, push removed 0.004 | data/audit/s1.json |
+| t=0 clamp (SET validity) | 2 | set at t=0 | none | 5 heads; test strict 0.000, push removed 1.000 | data/audit/s2.json |
+| t=0 clamp (control) | 2 | random1 at t=0 | sanity control: a same-size random clamp at t=0 (no retraining) | 5 heads; test strict 0.992, push removed -0.001 | data/audit/s2.json |
+| t=0 clamp (control) | 2 | random2 at t=0 | sanity control: a same-size random clamp at t=0 (no retraining) | 5 heads; test strict 0.992, push removed 0.001 | data/audit/s2.json |
 | clamp-off observation (not a status input) | 0 | set retrained, scored with the clamp OFF | none | test strict 0.016, push 6.43 nats (clamp ON: 1.000) | data/runs/set_s0.json |
 | clamp-off observation (not a status input) | 1 | set retrained, scored with the clamp OFF | none | test strict 0.211, push 11.12 nats (clamp ON: 1.000) | data/runs/set_s1.json |
 | clamp-off observation (not a status input) | 2 | set retrained, scored with the clamp OFF | none | test strict 0.000, push -14.77 nats (clamp ON: 0.969) | data/runs/set_s2.json |
@@ -44,5 +44,5 @@
 | skeptic rebuild (Vera, own code) | 0-2 | head sets from audit removed_dev | none | SET/TOP-1/LOO/RANDOM draws = stored in 3/3 seeds | skeptics/skeptic/vera_sets_8b.out |
 | skeptic rebuild (Vera, own code) | - | ALL-64 forecast readout, answer pos | shuffled labels (20 draws) | test acc 0.539 vs null mean 0.501, max 0.523 -> forecast holds | skeptics/skeptic/vera_readout_8b.json |
 
-seed-level: 0.990 [0.945, 1.034] (95% t-interval over 3 seeds (df 2), SET test strict)
+seed-level: 0.990 [0.945, 1.000] (95% t-interval over 3 seeds (df 2), SET test strict; clipped to [0, 1], raw t-interval [0.945, 1.034])
 status (frozen rule): REJECTED (SET back in 3 of 3 seeds); prereg outcome: unsettled

@@ -88,3 +88,8 @@ masking growing in GPT-2. Call our return "relearning around the clamp", not "se
 - 1.7B band at the 64 grid (frozen procedure): SET returns 192 / 384 / 256 over parent T_f 1,280 / 1,408 / 1,280 -> r 0.150 / 0.273 / 0.200; band [0.100, 0.323] (data/band_17b.json; Bruno #23582, rebuilt by Vera #23587). The published 1.7B returns (384-512) were read on a 128 grid; s0 moved 512 -> 192 with the grid alone (same weights).
 - RETURNED on the 64 grid can fire while test strict at the stop is < 0.75 (1.7B TOP-1 s1 0.703, s2 0.594; Vera #23587).
 - Laptop: box 1 nlvhl0wa49 running from 06:25 PST, box 2 kfuztljocn queued (--mem-gb 20; Bruno #23588).
+
+## 8. First 8B scale fact and a source for it (08:59 PST)
+
+- 8B switch first learning (64 grid): T_f = 640 (s0, test 1.000 at save 960), 704 (s1, test 0.992) vs 1.7B 1,152 / 1,344 / 1,216 on the same grid (Bruno #23675, Felix #23664; data/sens_17b.json).
+- Context, not our claim: Kaplan et al., Scaling Laws for Neural Language Models, arXiv 2001.08361 (abstract): "Larger models are significantly more sample-efficient" (pretraining). Hernandez et al., Scaling Laws for Transfer, arXiv 2102.01293: effective data transferred in fine-tuning grows as a power law of parameter count. My read: faster supervised first learning at 8B fits that pattern; our switch reads a rounding trace, so these papers do not predict it, they only make it unsurprising. Consequence (Kasper #23666): 2 x T_f budgets at 8B are about half as many updates as at 1.7B (~1,300-1,400 vs ~2,300-2,700).

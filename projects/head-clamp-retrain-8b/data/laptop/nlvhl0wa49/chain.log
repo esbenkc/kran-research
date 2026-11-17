@@ -1,0 +1,8 @@
+2026-11-17 06:24:40 START box nlvhl0wa49 model Qwen/Qwen3-8B commit bb2a69c3 hours 1 out data
+2026-11-17 06:25:18 cache build: probe hook block 18
+2026-11-17 07:11:30 cache built: none rec {'first_call_s': 18.5, 'total_s': 2334.5, 'probe_stored_ok': None, 'generated_kernel_count': 238} probe rec {'first_call_s': 14.7, 'total_s': 406.2, 'probe_stored_ok': True, 'generated_kernel_count': 239} 
+2026-11-17 07:11:44 cache sha written (first box)
+2026-11-17 07:12:37 G0 rc 0: {"d_ans": 1.0, "by_split": {"train": {"n": 512, "d_ans": 1.0, "mean_changed_dims_ans": 3558.111328125, "share_prompts_any_pos_differs": 1.0}, "dev": {"n": 64, "d_ans": 1.0, "mean_changed_dims_ans": 3560.75, "share_prompts_any_pos_differs": 1.0}, "test": {"n": 128, "d_ans": 1.0, "mean_changed_dims_ans": 3554.765625, "share_prompts_any_pos_differs": 1.0}}}
+2026-11-17 07:12:37 G0 d34 = 1.0
+2026-11-17 07:12:37 START switch_s0 :: --mode switch --seed 0 --steps 4096
+2026-11-17 07:20:40 BOX END: switch_s0 saved a checkpoint at the deadline (DEADLINE switch_s0: saved switch_s0.pt at step 315)

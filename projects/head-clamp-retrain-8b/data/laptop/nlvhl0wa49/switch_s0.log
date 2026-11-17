@@ -1,0 +1,7 @@
+W1117 07:12:39.914000 72708 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+t0 switch_s0 [] {"dev_noclamp": 0.0, "test_noclamp": 0.0}
+switch_s0 step 64 loss 0.8102 dev strict 0.047 shift -0.010 73s
+switch_s0 step 128 loss 0.6978 dev strict 0.109 shift 0.015 149s
+switch_s0 step 192 loss 0.6952 dev strict 0.250 shift 0.148 237s
+switch_s0 step 256 loss 0.7127 dev strict 0.375 shift 0.580 351s
+DEADLINE switch_s0: saved switch_s0.pt at step 315

@@ -1,0 +1,24 @@
+W1117 06:25:21.857000 71309 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 5260.86it/s]
+W1117 06:25:51.400000 71309 .venv/lib/python3.13/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none rec {'first_call_s': 18.5, 'total_s': 2334.5, 'probe_stored_ok': None, 'generated_kernel_count': 238}
+probe rec {'first_call_s': 14.7, 'total_s': 406.2, 'probe_stored_ok': True, 'generated_kernel_count': 239}
+wrote raw/step2/Qwen3-8B/compile_C
+     2771.92 real        48.33 user        22.43 sys
+          1669120000  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             2494882  page reclaims
+             1008521  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   1  messages sent
+                   1  messages received
+                   1  signals received
+                4568  voluntary context switches
+              471312  involuntary context switches
+            69942293  instructions retired
+            29783145  cycles elapsed
+             7995776  peak memory footprint

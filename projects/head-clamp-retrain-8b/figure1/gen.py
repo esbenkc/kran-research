@@ -238,6 +238,8 @@ for row in T["rows"]:
     else:  # held: no switch, the same answer with and without the probe (amendment #23756)
         assert fin[0][0] == fin[1][0], (arm, fin)
         assert abs(sure_p(fin[0]) - sure_p(fin[1])) < 0.03, (arm, fin)  # 'same answer without the probe' incl. its sureness
+        if sure_p(fin[1]) < FLIP:  # held_below 'A or B at about 50%, probe or not'
+            assert all(0.4 <= sig(c[1] - c[2]) <= 0.6 for c in fin.values()), (arm, fin)
     hit = set(r["heads"])
     free = audit[ES]["free_head"] if audit[ES] else None
     first = audit[ES]["audit"] if audit[ES] else {}
@@ -273,6 +275,8 @@ cut = ctx.rfind(". ", 0, T["ctx_chars"] + 10)
 ctx = ctx[:cut + 1] if cut > 40 else ctx[:T["ctx_chars"]].rsplit(" ", 1)[0].rstrip(",")
 COLS = (f'<div class="cols"><div class="key"><span><i></i> {T["key_head"]}</span><span><i class="hit"></i> {T["key_hit"]}</span></div>'
         f'<div>{T["col_t0" if LAYOUT == "v1" else "col_17_v2"]}</div><div>{T["col_after" if LAYOUT == "v1" else "col_8_v2"]}</div></div>')
+QS = {r["text"].split("\n\nWhich", 1)[1] for r in prompts.values() if r["split"] == "test"}
+assert len(QS) == 1, len(QS)  # 'the question at the end is always the same' (prompt note)
 HEAD_TXT = re.sub(r"<[^>]+>", "", H.unescape(T["head"]))
 kicker = f'<div class="kicker">{T["kicker"]}</div>' if T.get("kicker") else ""
 
@@ -305,6 +309,7 @@ Built by figure1/gen.py from kran-research (branch swarm/theory-1117-head-clamp-
   .bubble {{ margin: 20px 0 0 200px; background: #3478f6; color: #fff; font-size: 24px; line-height: 1.32; padding: 16px 22px; border-radius: 24px 24px 6px 24px; }}
   .bubble .ctx {{ opacity: 0.82; }}
   .bubble b {{ font-weight: 650; }}
+  .pnote {{ font-size: 20px; color: #6b6f78; margin: 6px 0 0 200px; text-align: right; }}
   .row {{ display: grid; grid-template-columns: 1fr 218px 218px; gap: 12px; align-items: center; border-radius: 24px; padding: 14px 16px 14px 20px; margin-top: 10px; }}
   .row.before {{ margin-top: 14px; }}
   .row.plain {{ background: #eef0f3; }}
@@ -349,6 +354,7 @@ Built by figure1/gen.py from kran-research (branch swarm/theory-1117-head-clamp-
 <div class="sub">{T["sub"]}</div>
 
 <div class="bubble"><span class="ctx">{H.escape(ctx)}&nbsp;&hellip;</span> <b>{H.escape(q)}</b></div>
+<div class="pnote">{T["prompt_note"]}</div>
 {before}
 {cols_html or COLS}
 {chr(10).join(rows_html)}

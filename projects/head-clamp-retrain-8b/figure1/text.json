@@ -51,7 +51,8 @@
  "null_8_num": "formed in <b>{formed} models</b> after <b>{steps}</b> updates<br><span class=\"dim\">Switches on {k} new prompts.</span>",
  "null_note": "Same recipe and the same probe for both models: fine-tune the last two layers to answer <b>A</b> only while the probe reads them.",
  "layout": "v1",
- "held_below": "same answer, probe or not",
+ "held_below": "A or B at about 50%, probe or not",
  "held_style": "noswitch",
- "held_word": "no switch"
+ "held_word": "no switch",
+ "prompt_note": "Each prompt starts with an unrelated text snippet; the question at the end is always the same."
 }

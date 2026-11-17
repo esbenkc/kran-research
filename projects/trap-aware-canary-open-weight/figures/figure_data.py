@@ -4,7 +4,7 @@ Rows: last week's three API agents (parent run defense-1110, trap pages only, wa
 then the two open-weight agents on Esben's laptop queue. Qwen3-1.7B (mini rung) is not drawn; the post reports it
 in its expert notes. Marks: share of runs that requested the fitting link, by page (hidden = trap pages, visible = control
 pages) and sentence (warning, neutral), with the 95% interval from the cells file. Each mark of a local agent also
-carries the canary-token reading (event 'token' in cells.csv: any GET whose path holds the run's link code, any
+carries the canary-token reading (event 'fit_tok' in cells.csv: any GET whose path holds the run's link code, any
 status; DEVIATIONS R2), drawn as a cross joined to the mark.
 
 Inputs (relative to the project dir):
@@ -82,7 +82,7 @@ def main():
         rows.append({"agent": name, "short": short, "group": "api", "note": "no control pages in that test"})
         cells += [cell(r, name) for r in parent_rows() if r["agent"] == key]
     new = new_rows()
-    tok_raw = new_rows("token")
+    tok_raw = new_rows("fit_tok")
     ana = PROJ / "results" / "analysis.json"
     gates = {}
     if ana.exists():

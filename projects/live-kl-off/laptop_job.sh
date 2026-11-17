@@ -27,6 +27,16 @@ print(json.dumps({"rows": int(len(a)), "max_abs_diff_cheat_prob": float(np.abs(a
                   "mean_abs_diff": float(np.abs(a - b).mean())}))
 EOF
 cat logs/laptop/pool_check.json
+# numerics gate (Felix #23016, Kasper #23015): the tokens are the committed ones, so read 0 may differ only by numerics.
+# mini: s_P(0) = 0.005616 (data/runs/kl0_s0/reads.jsonl), s_P'(0) = -0.003132 (data/reads/let/reads.jsonl)
+/usr/bin/env python3 - <<'EOF2' || { echo "GATE FAILED: rebuilt pools do not match the mini's read 0; no seeds run"; exit 2; }
+import json, sys
+sp = json.loads(open("data/reads/pool_check_laptop/reads.jsonl").read().splitlines()[-1])["s_P"]
+sl = json.loads(open("data/reads/let_laptop/reads.jsonl").read().splitlines()[0])["s_P"]
+ok = abs(sp - 0.005616) <= 0.001 and abs(sl + 0.003132) <= 0.001
+print(json.dumps({"s_P_0_laptop": sp, "s_P_let_0_laptop": sl, "gate_pass": ok}))
+sys.exit(0 if ok else 1)
+EOF2
 for S in "$@"; do
   echo "seed $S start $(date '+%T')"
   LIVE_PY=$PY LOG_DIR=logs/laptop python3 run_seeds.py --seeds "$S" > logs/laptop/kl0_s$S.driver.log 2>&1

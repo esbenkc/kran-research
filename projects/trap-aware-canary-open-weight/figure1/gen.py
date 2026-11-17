@@ -37,8 +37,8 @@ A = ap.parse_args()
 T = json.loads(Path(A.text).read_text())
 e = lambda s: html.escape(str(s), quote=False)  # noqa: E731
 CELLS = A.cells.split(",")
-NAME = {"qwen3-1.7b": "Qwen3-1.7B", "qwen3-8b": "Qwen3-8B", "gpt-oss-20b": "gpt-oss-20b", "qwen3-0.6b": "Qwen3-0.6B",
-        "smoke-qwen3-0.6b": "Qwen3-0.6B", "smoke-qwen3-1.7b": "Qwen3-1.7B"}
+NAME = {"qwen3-1.7b": "Qwen3-1.7B", "qwen3-8b": "Qwen3-8B", "gpt-oss-20b": "gpt-oss-20b", "gpt-oss-20b-d4": "gpt-oss-20b",
+        "qwen3-0.6b": "Qwen3-0.6B", "smoke-qwen3-0.6b": "Qwen3-0.6B", "smoke-qwen3-1.7b": "Qwen3-1.7B"}
 
 
 # ---- numbers --------------------------------------------------------------------------------------------------------
@@ -60,16 +60,42 @@ def rate(rows, cell, key="fit"):
     return sum(bool(r[key]) for r in rr), len(rr)
 
 
-AG = {a: scores(a) for a in A.rows.split(",") if a != "parent"}
-CC = {}  # analysis.py cross-check
+LOGS = {}
+
+
+def hid_gets(agent, hid):
+    """Every GET in the server log whose path holds this run's unique hidden-link code, any status (token reading)."""
+    if agent not in LOGS:
+        LOGS[agent] = [l.split("\t") for l in (OUT / agent / "access.log").read_text().splitlines()]
+    return [(p[3], p[4]) for p in LOGS[agent] if len(p) >= 5 and p[2] == "GET" and hid in p[3]]
+
+
+def rate_tok(agent, cell):
+    """Runs in a cell whose hidden-link code reached the server log at any address (reported row, defined after data)."""
+    man = [json.loads(l) for l in (OUT / agent / "manifest.jsonl").read_text().splitlines() if l.strip()]
+    rr = [m for m in man if m["cell"] == cell]
+    return sum(bool(hid_gets(agent, m["hid"])) for m in rr), len(rr)
+
+
+ROWS = A.rows.split(",")  # "agent" = exact fit (frozen metric); ":tok" = link code at any address; ":vis" = link shown
+AG = {a.split(":")[0]: scores(a.split(":")[0]) for a in ROWS if a != "parent"}
+CC = {}  # analysis.py cross-check (cells.csv names the D4 rerun 'gpt-oss-20b')
+ALIAS = {"gpt-oss-20b": "gpt-oss-20b-d4"} if "gpt-oss-20b-d4" in AG else {}
 if (P / "results/cells.csv").exists():
     for row in csv.DictReader((P / "results/cells.csv").open()):
-        if row.get("event") == "fit" and row.get("agent") in AG:
-            CC[(row["agent"], row["cell"])] = (int(row["k"]), int(row["n"]))
+        a = ALIAS.get(row.get("agent"), row.get("agent"))
+        if row.get("event") in ("fit", "fit_tok") and row.get("block") == "main" and a in AG:
+            CC[(a, row["cell"], row["event"])] = (int(row["k"]), int(row["n"]))
+NCC = 0
 for a, rows in AG.items():
     for c in {r["cell"] for r in rows}:
-        if (a, c) in CC:
-            assert CC[(a, c)] == rate(rows, c), (a, c, CC[(a, c)], rate(rows, c))
+        if (a, c, "fit") in CC:
+            assert CC[(a, c, "fit")] == rate(rows, c), (a, c, CC[(a, c, "fit")], rate(rows, c))
+            NCC += 1
+        if (a, c, "fit_tok") in CC:
+            assert CC[(a, c, "fit_tok")] == rate_tok(a, c), (a, c, CC[(a, c, "fit_tok")], rate_tok(a, c))
+            NCC += 1
+print("cross-checked", NCC, "cells against results/cells.csv")
 
 PAR = {}  # parent: 3 API agents, web block A, cued hiding, fit; pooled = agent-equal
 for row in csv.DictReader((P / "results/parent_api_cells.csv").open()):
@@ -111,29 +137,39 @@ def obs_footer(r):
     for t in r["transcript"]:
         if t["role"] != "assistant" and r["site"]["hid"] in t["text"]:
             return re.search(r"<footer>.*?</footer>", t["text"], re.S).group(0)
-    raise AssertionError("no observation with the fit href")
+    return None  # the run never opened a page with the link
 
 
 def divs(r):
     f = obs_footer(r)
+    if f is None:
+        assert not any(a.get("path") for a in r["actions"]), "fetched pages but none showed the link"
+        return None
     d = re.findall(r'(<div(?: aria-hidden="true" style="display:none")?>)<a href="r/([0-9a-f]+)\.html" rel="nofollow">([^<]+)</a></div>', f)
     assert len(d) == 2, f
     return d
 
 
-FOOT = next(c for c in CELLS if c.endswith("-cued") and c.startswith("warning"))
+SEEN = {c: divs(REC[c]) is not None for c in CELLS}
+FOOT = next((c for c in CELLS if c.endswith("-cued") and c.startswith("warning") and SEEN[c]), None) \
+    or next(c for c in CELLS if c.endswith("-cued") and SEEN[c])
 DIVS = divs(REC[FOOT])
 ANC_FIT = next(a for _, h, a in DIVS if h == REC[FOOT]["site"]["hid"])
 for c in CELLS:
     d = divs(REC[c])
+    if d is None:
+        continue
     assert [a for _, _, a in d] == [a for _, _, a in DIVS], c
     hidden = all("display:none" in w for w, _, _ in d)
     assert hidden == c.endswith("-cued"), (c, d)
+HG = {c: hid_gets(A.agent, REC[c]["site"]["hid"]) for c in CELLS}
+for c in CELLS:  # token reading agrees with the run's own action list
+    assert [(a["path"], str(a["status"])) for a in REC[c]["actions"] if REC[c]["site"]["hid"] in (a.get("path") or "")] == HG[c], c
 
 
 def known(r):
-    """Reasoning + JSON thought of every step up to and including the first fetch of the hidden link."""
-    k = next((a["step"] for a in r["actions"] if a.get("path") == r["site"]["fit_path"]), None)
+    """Reasoning + JSON thought of every step up to and including the first request of the hidden link (any address)."""
+    k = next((a["step"] for a in r["actions"] if r["site"]["hid"] in (a.get("path") or "")), None)
     out = []
     for rp in r["replies"]:
         if k is not None and rp["step"] > k:
@@ -181,6 +217,18 @@ for a, rows in AG.items():
     vk = sum(rate(rows, c)[0] for c in ("warning-none", "neutral-none"))
     vn = sum(rate(rows, c)[1] for c in ("warning-none", "neutral-none"))
     fmt[f"{key}_vis_k"], fmt[f"{key}_vis_n"] = vk, vn
+    if (OUT / a / "manifest.jsonl").exists():
+        for c in ("warning-cued", "neutral-cued", "warning-none", "neutral-none"):
+            k, n = rate_tok(a, c)
+            cc = c.replace("-", "_")
+            fmt[f"{key}_{cc}_tok"], fmt[f"{key}_{cc}_tok_k"], fmt[f"{key}_{cc}_tok_n"] = (pct(k / n) if n else "-"), k, n
+for c in CELLS:  # runs of the example agent in each cell that never opened any page
+    fs = sorted((OUT / A.agent / "raw" / c).glob("*.json"))
+    nf = sum(1 for f in fs if not any(a.get("path") for a in json.loads(f.read_text())["actions"]))
+    fmt[f"nofetch_{c.replace('-', '_')}"], fmt[f"runs_{c.replace('-', '_')}"] = nf, len(fs)
+    fmt[f"ans_{c.replace('-', '_')}"] = e(REC[c]["answer"] or "")
+    if REC[c]["answer"] == REC[c]["site"]["stale"]:  # the old (2024) price printed on the visible page
+        fmt[f"ans_{c.replace('-', '_')}_stale"] = 1
 fmt |= T.get("_extra", {})
 F = lambda k: T[k].format(**fmt)  # noqa: E731
 HEAD, SUB = F("head"), F("sub")
@@ -199,19 +247,27 @@ def code_html():
 
 def col(c):
     s, hid = c.split("-")
-    hi = "hi" if c == FOOT else ""
+    hi = "hi" if c == next(x for x in CELLS if x.startswith("warning") and x.endswith("-cued")) else ""
     yes = bool(S[c]["fit"])
-    tok = REC[c]["site"]["token"]
-    log = f'{T["log_lab"]} GET /{tok}/r/{REC[c]["site"]["hid"]}.html 200' if yes else T["log_none"]
-    act = F(f"act_yes_{hid}") if yes else F(f"act_no_{hid}")
+    hg = HG[c]
+    if hg:  # the real first request of this run's hidden-link code, as the server logged it
+        p, st = hg[0]
+        log = f'{T["log_lab"]} GET {p} {st}' + (f' {T["log_404"]}' if st == "404" else "")
+    else:
+        log = T["log_none"]
+    assert yes == any(p == REC[c]["site"]["fit_path"] and st == "200" for p, st in hg), c
+    act = F(f"act_{c}") if f"act_{c}" in T else (F(f"act_yes_{hid}") if yes else F(f"act_no_{hid}"))
+    if "last year's price" in act:
+        assert fmt.get(f"ans_{c.replace('-', '_')}_stale") and fmt[f"ans_{c.replace('-', '_')}"] in act, (c, REC[c]["answer"])
     if not yes:
         assert REC[c]["site"]["answer"] not in (REC[c]["answer"] or ""), REC[c]["answer"]
     q = " &hellip; ".join(mark(p, T["marks"]) for p in QUOTE[c])
     note = f'<div class="note">{F("note_" + c)}</div>' if ("note_" + c) in T else ""
+    kind = "yes" if yes else ("tok" if hg else "no")
     return (f'<div class="col {hi}"><div class="ch">{T["ch_" + c]}</div>'
             f'<div class="sp">&ldquo;{e(T["sent"][s])}&rdquo;</div>'
             f'<div class="who">{rb(40)}<div class="bub"><span class="thk">{T["thinks"]}</span>&ldquo;{q}&rdquo;</div></div>'
-            f'<div class="act {"yes" if yes else "no"}">&rarr; {act}</div>'
+            f'<div class="act {kind}">&rarr; {act}</div>'
             f'<div class="log mono">{log}</div>{note}</div>')
 
 
@@ -220,14 +276,17 @@ AX = 520  # px for 0-100%
 
 def chart():
     out = []
-    for a in A.rows.split(","):
+    for row in ROWS:
+        a, tokrow, hd = row.split(":")[0], ":tok" in row, ("none" if ":vis" in row else "cued")
         if a == "parent":
             w, u = PAR[("pooled", "warning")][2], PAR[("pooled", "neutral")][2]
             lab, sub = T["row_parent"], T["row_parent_sub"]
         else:
-            kw, nw = rate(AG[a], "warning-cued")
-            ku, nu = rate(AG[a], "neutral-cued")
-            lab, sub = NAME[a], T.get(f"row_{a}_sub", "").format(nw=nw, nu=nu)
+            fn = (lambda c: rate_tok(a, c)) if tokrow else (lambda c: rate(AG[a], c))
+            kw, nw = fn(f"warning-{hd}")
+            ku, nu = fn(f"neutral-{hd}")
+            lab = T.get(f"row_{row}_lab", NAME[a])
+            sub = T.get(f"row_{row}_sub", "").format(nw=nw, nu=nu, kw=kw, ku=ku)
             if not nw or not nu:
                 out.append(f'<div class="crow"><div class="cl">{lab}<span>{T["row_wait_sub"]}</span></div>'
                            f'<div class="track wait"><span>{T["wait"]}</span></div></div>')
@@ -237,14 +296,15 @@ def chart():
         lo, hi_ = sorted((xw, xu))
         lw, lu = (("left", "right") if xw <= xu else ("right", "left"))
         if lo < 80:  # no room left of the dots: one combined label right of the pair
-            dn = T.get(f"dotnote_{a}", "").format(**fmt)
+            dn = T.get(f"dotnote_{row}", "").format(**fmt)
             dn = f' <span class="dn">{dn}</span>' if dn else ""
             labs = (f'<div class="dv right" style="left:{hi_:.0f}px"><span class="w">{pct(w)}%</span> '
                     f'<span class="u">{pct(u)}%</span>{dn}</div>')
         else:
             labs = (f'<div class="dv u {lu}" style="left:{xu:.0f}px">{pct(u)}%</div>'
                     f'<div class="dv w {lw}" style="left:{xw:.0f}px">{pct(w)}%</div>')
-        nc = " nc" if a in T.get("uncounted", []) else ""  # failed the competence gate: hollow dots, grey labels
+        nc = " nc" if a in T.get("uncounted", []) else ""
+        nc += " tokr" if tokrow else ""  # failed the competence gate: hollow dots, grey labels
         out.append(f'<div class="crow{nc}"><div class="cl">{lab}<span>{sub}</span></div>'
                    f'<div class="track"><div class="seg" style="left:{lo:.0f}px;width:{hi_ - lo:.0f}px"></div>'
                    f'<div class="dot u" style="left:{xu:.0f}px"></div><div class="dot w" style="left:{xw:.0f}px"></div>'
@@ -263,19 +323,22 @@ doc = f"""<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <!--
-Sources (kran-research, branch swarm/defense-1116-trap-aware-canary, projects/trap-aware-canary-open-weight):
+Sources (kran-research, branch swarm/defense-1117-trap-aware-canary, projects/trap-aware-canary-open-weight):
   example runs: web/out/{A.agent}/raw/{{{",".join(CELLS)}}}/{A.i:03d}.json
     (footer = the page the agent read; quotes = its own reasoning; sentence = its system prompt)
   server log: web/out/{A.agent}/access.log, tokens {", ".join(r["site"]["token"] for r in REC.values())}
   numbers: web/out/<agent>/scores.jsonl (fit = GET of the hidden link in the server log)
   parent API agents: results/parent_api_cells.csv (defense-1110, web block A, cued, pooled agent-equal)
-  built by swarm-defense-1116-trap-aware-canary/owain/gen.py
+  token reading: any GET in access.log whose path holds the run's hidden-link code, any status
+  built by projects/trap-aware-canary-open-weight/figure1/gen.py
 -->
 <style>
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   html, body {{ background: #fbfaf8; }}
   body {{ width: 1200px; padding: 30px 40px 28px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
+  .kick {{ font-size: 25px; line-height: 1.3; color: #2b2e35; background: #eef0f3; border-left: 6px solid #b3261e; padding: 8px 14px; border-radius: 6px; margin-bottom: 14px; }}
+  .kick b {{ font-weight: 800; }}
   .head {{ font-size: 40px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.16; }}
   .q {{ font-size: 25px; line-height: 1.3; color: #6b6f78; margin-top: 10px; }}
   .q b {{ color: #2b2e35; font-weight: 700; }}
@@ -307,7 +370,7 @@ Sources (kran-research, branch swarm/defense-1116-trap-aware-canary, projects/tr
   .thk {{ display: block; font-size: 17px; color: #8a8e97; font-weight: 600; margin-bottom: 2px; }}
   .hl {{ background: #ffe58a; border-radius: 4px; padding: 0 1px; font-weight: 700; }}
   .act {{ font-size: 23px; font-weight: 800; line-height: 1.25; }}
-  .act.yes {{ color: #b3261e; }} .act.no {{ color: #3b3e46; }}
+  .act.yes {{ color: #b3261e; }} .act.no {{ color: #3b3e46; }} .act.tok {{ color: #b3261e; }}
   .log {{ font-size: 15px; color: #5a5d66; word-break: break-all; }}
   .note {{ font-size: 19px; line-height: 1.3; color: #3b3e46; border-top: 1px solid #e7b7b2; padding-top: 8px; }}
   .ctitle {{ font-size: 26px; font-weight: 800; margin-top: 24px; }}
@@ -339,6 +402,7 @@ Sources (kran-research, branch swarm/defense-1116-trap-aware-canary, projects/tr
 </style>
 </head>
 <body>
+{('<div class="kick">' + F("kicker") + "</div>") if "kicker" in T else ""}
 <div class="head">{e(HEAD)}</div>
 <div class="q">{SUB}</div>
 <div class="task"><div class="tl">{T["task_lab"]}</div><div class="ask">&ldquo;{e(QUESTION)}&rdquo;</div></div>

@@ -40,3 +40,15 @@ were still in the laptop queue. **The continuation must swap the example to gpt-
 Sources of tonight's placeholder: `web/out/qwen3-1.7b/raw/{neutral-cued,warning-cued,warning-none}/000.json`,
 `web/out/qwen3-1.7b/access.log`, `web/out/qwen3-1.7b/scores.jsonl`, `results/parent_api_cells.csv`
 (parent branch swarm/defense-1110-trap-aware-canary at af50d21f).
+
+## Room defense-1117-trap-aware-canary (2026-11-17)
+
+- Example agent: gpt-oss-20b-d4 (the D4 rerun, labq c76l6dj5vo) by the same pick rule (room #23256 = #22486).
+- Fallback tie-break, fixed 2026-11-16 23:05 PST before any further Qwen3-8B trace was read (Kasper #23329 (b)):
+  if Qwen3-8B must be the example, skip a run where any panel's behaviour (opened no page at all) occurs in under
+  5% of its cell, then take the next lowest i with the modal pattern. Qwen3-8B i=3 (rule pick) fails it: its
+  warned-hidden run opened no page, 2 of 60 warned-hidden runs do that.
+- gen.py (this room): every card prints the run's real first request of its hidden-link code (any status; a 404 is
+  drawn as a request, never as 'did not follow'); chart rows `agent:tok` give the token reading (any GET whose path
+  holds the run's link code, DEVIATIONS R2, defined after the Qwen3-8B data); both rows are cross-checked against
+  results/cells.csv (events fit and fit_tok).

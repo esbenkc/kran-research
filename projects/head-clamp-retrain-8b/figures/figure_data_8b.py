@@ -152,7 +152,7 @@ def main():
         "title": (lambda r: f"With the audit's heads clamped, the switch came back in {r['back8']} of {r['n8']} Qwen3-8B models"
                   f" and {r['back17']} of 3 Qwen3-1.7B models")(next(x for x in rows if x["key"] == "set"))
                  if have8 else "1.7B results; 8B runs not in yet",
-        "subtitle": "Retraining with a head set clamped: when the switch came back, in units of the time it first took to learn",
+        "subtitle": "The switch: the model answers A while a probe reads it, B without. Each model was retrained with a head set clamped; x = when the switch came back, in units of the time it first took to learn",
         "subtitle_updates": "Retraining with a head set clamped: the training update where the switch came back",
         "band": band,
         "xmode": os.environ.get("XMODE", "ratio"),  # Tove #23802: ratio view, both frozen predictions (1x line, band) as marks

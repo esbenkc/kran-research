@@ -1,4 +1,8 @@
-Traceback (most recent call last):
-  File "/Users/esben/lab-queue/work/r3cap1jsls/projects/live-kl-off/ctrl_pool.py", line 14, in <module>
-    import numpy as np
-ModuleNotFoundError: No module named 'numpy'
+W1117 10:42:12.547000 59712 env/.venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:  51%|█████     | 159/311 [00:00<00:00, 1566.15it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 1963.11it/s]
+ctrl 64/2800 19s
+ctrl 704/2800 43s
+ctrl 1344/2800 66s
+ctrl 1984/2800 89s
+ctrl 2624/2800 113s
+DONE ctrl data/pool/test_let 119s excluded 13

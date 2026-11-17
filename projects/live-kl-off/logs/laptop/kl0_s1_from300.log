@@ -1,0 +1,22 @@
+W1117 11:04:41.474000 88878 env/.venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:  70%|███████   | 218/311 [00:00<00:00, 2073.64it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 2374.32it/s]
+RESUME from adapter_300.pt (opt state loaded)
+upd 325 cheat 0.641 xP 0.156 xU 0.0000 age 0/2 kl_t 0.000 t 128.3s (4.92+1.00+0.11)
+upd 350 cheat 0.500 xP 0.062 xU 0.0000 age 1/3 kl_t 0.000 t 209.6s (0.00+0.93+0.08)
+upd 375 cheat 0.672 xP 0.125 xU 0.0000 age 2/0 kl_t 0.000 t 297.0s (4.69+1.02+0.10)
+upd 400 cheat 0.500 xP 0.125 xU 0.0000 age 3/1 kl_t 0.000 t 381.5s (0.00+0.98+0.08)
+read 400 {"cheat_off": 0.4971, "c_X": 0.4933, "forced_switch": 0.004, "s_P": 0.008, "y_R": -0.0013, "D_R": 0.1009, "s_R": -0.0261, "n_base": 2800, "step": 400} 27s
+upd 425 cheat 0.594 xP 0.094 xU 0.0000 age 0/2 kl_t 0.000 t 498.4s (4.79+1.03+0.10)
+upd 450 cheat 0.578 xP 0.031 xU 0.0000 age 1/3 kl_t 0.000 t 581.6s (0.00+0.95+0.08)
+upd 475 cheat 0.625 xP 0.062 xU 0.0312 age 2/0 kl_t 0.000 t 666.1s (4.22+0.88+0.06)
+upd 500 cheat 0.562 xP 0.094 xU 0.0000 age 3/1 kl_t 0.000 t 733.4s (0.00+0.72+0.06)
+read 500 {"cheat_off": 0.4564, "c_X": 0.4515, "forced_switch": 0.0051, "s_P": 0.0111, "y_R": -0.001, "D_R": 0.1009, "s_R": -0.0208, "n_base": 2800, "step": 500} 22s
+upd 525 cheat 0.469 xP 0.125 xU 0.0000 age 0/2 kl_t 0.000 t 825.2s (3.56+0.78+0.06)
+upd 550 cheat 0.547 xP 0.094 xU 0.0625 age 1/3 kl_t 0.000 t 891.7s (0.00+0.75+0.05)
+upd 575 cheat 0.766 xP 0.031 xU 0.0000 age 2/0 kl_t 0.000 t 962.2s (3.58+0.79+0.05)
+upd 600 cheat 0.547 xP 0.031 xU 0.0000 age 3/1 kl_t 0.000 t 1028.5s (0.00+0.77+0.06)
+read 600 {"cheat_off": 0.4569, "c_X": 0.4524, "forced_switch": 0.0048, "s_P": 0.0104, "y_R": -0.0007, "D_R": 0.1009, "s_R": -0.0155, "n_base": 2800, "step": 600} 22s
+SEGMENT END after read 600 11:22:20
+DONE kl0_s1 600 1051s
+
+WATCHDOG: exit 0, peak footprint 7.18 GB

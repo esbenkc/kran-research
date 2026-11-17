@@ -1,0 +1,12 @@
+W1117 12:12:38.970000 91724 env/.venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 4720.92it/s]
+RESUME from adapter_600.pt (opt state loaded)
+upd 625 cheat 0.641 xP 0.156 xU 0.0000 age 0/2 kl_t 0.000 t 103.7s (3.66+0.76+0.04)
+upd 650 cheat 0.578 xP 0.094 xU 0.0000 age 1/3 kl_t 0.000 t 171.9s (0.00+0.78+0.06)
+upd 675 cheat 0.359 xP 0.125 xU 0.0000 age 2/0 kl_t 0.000 t 241.0s (3.65+0.78+0.06)
+upd 700 cheat 0.516 xP 0.156 xU 0.0000 age 3/1 kl_t 0.000 t 308.1s (0.00+0.74+0.06)
+read 700 {"cheat_off": 0.6302, "c_X": 0.3455, "forced_switch": 0.2859, "s_P": 0.4537, "y_R": -0.0027, "D_R": 0.1009, "s_R": -0.0424, "n_base": 2800, "step": 700} 22s
+STOP onset: last 2 reads s_P >= 0.3 at update 700
+DONE kl0_s2 700 330s
+
+WATCHDOG: exit 0, peak footprint 8.09 GB

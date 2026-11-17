@@ -1,4 +1,13 @@
-Traceback (most recent call last):
-  File "/Users/esben/lab-queue/work/r3cap1jsls/projects/live-kl-off/rebuild_pool.py", line 14, in <module>
-    import numpy as np
-ModuleNotFoundError: No module named 'numpy'
+W1117 10:38:09.084000 49546 env/.venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:  45%|████▌     | 140/311 [00:00<00:00, 1382.43it/s]Loading weights:  90%|████████▉ | 279/311 [00:00<00:00, 1285.73it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 1444.24it/s]
+W1117 10:38:41.249000 49546 env/.venv/lib/python3.13/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+rebuild 64/5600 46s
+rebuild 704/5600 64s
+rebuild 1344/5600 81s
+rebuild 1984/5600 99s
+rebuild 2624/5600 119s
+rebuild 3264/5600 140s
+rebuild 3904/5600 162s
+rebuild 4544/5600 184s
+rebuild 5184/5600 208s
+DONE rebuild data/pool/test 224s

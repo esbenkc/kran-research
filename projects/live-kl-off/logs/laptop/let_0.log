@@ -1,4 +1,3 @@
-Traceback (most recent call last):
-  File "/Users/esben/lab-queue/work/r3cap1jsls/projects/live-kl-off/readpool.py", line 11, in <module>
-    import numpy as np
-ModuleNotFoundError: No module named 'numpy'
+W1117 10:44:19.023000 64018 env/.venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 4872.31it/s]
+READ {"cheat_off": 0.4992035328980043, "c_X": 0.5001281765000375, "forced_switch": -0.0015635963630051834, "s_P": -0.0031321820859882667, "y_R": -0.0011946085434035303, "D_R": 0.10085953211755473, "s_R": -0.023726354607736345, "n_base": 2800, "tag": "0", "adapter": "inputs/pilot/adapter.pt", "pool": "data/pool/test_let"} 29s

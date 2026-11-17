@@ -1,12 +1,13 @@
 {
- "mock": true,
- "title": "[FILL result title, set from the numbers]",
+ "mock": false,
+ "title": "Without the penalty, seed 0 stayed below 2% to update 1,200. Fixed thoughts took off at 600.",
  "subtitle": "Qwen3-0.6B. Only the read-or-solve choice is trained. Switch: how much less the model cheats when the word is in its thought, as a share of the most it could (100% = it never cheats then).",
  "x_label": "Training updates →",
  "y_label": "↑ Switch, share of its limit",
  "legend": {
   "band": "predicted take-off if the penalty caused the whole delay (fixed before the run)",
-  "bar": "30%: the bar for a take-off"
+  "bar": "30%: the bar for a take-off",
+  "end": "last test of tonight's seed, 95% interval"
  },
  "bands": [
   {
@@ -32,6 +33,73 @@
  ],
  "xmax": 1260,
  "series": [
+  {
+   "key": "kl0_s0",
+   "kind": "hero",
+   "seed": 0,
+   "label": "fresh, no penalty, seed 0 (tonight)",
+   "short": "no penalty, seed 0",
+   "pts": [
+    {
+     "u": 0,
+     "y": 0.0056
+    },
+    {
+     "u": 100,
+     "y": 0.0007
+    },
+    {
+     "u": 200,
+     "y": 0.0043
+    },
+    {
+     "u": 300,
+     "y": 0.0072
+    },
+    {
+     "u": 400,
+     "y": 0.0069
+    },
+    {
+     "u": 500,
+     "y": 0.0065
+    },
+    {
+     "u": 600,
+     "y": 0.0078
+    },
+    {
+     "u": 700,
+     "y": 0.0048
+    },
+    {
+     "u": 800,
+     "y": 0.0079
+    },
+    {
+     "u": 900,
+     "y": 0.002
+    },
+    {
+     "u": 1000,
+     "y": 0.013
+    },
+    {
+     "u": 1100,
+     "y": 0.0106
+    },
+    {
+     "u": 1200,
+     "y": 0.0101
+    }
+   ],
+   "end": {
+    "u": 1200,
+    "y": 0.0101,
+    "lo": 0.0079,
+    "hi": 0.0123
+   }
+  },
   {
    "key": "live_kl",
    "kind": "klon",
@@ -175,7 +243,7 @@
   {
    "key": "cached_kl",
    "kind": "ckl",
-   "label": "fixed thoughts + penalty (earlier)",
+   "label": "fixed thoughts + penalty (earlier, cut at 876)",
    "short": "fixed + penalty",
    "pts": [
     {

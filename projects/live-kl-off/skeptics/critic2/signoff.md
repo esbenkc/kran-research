@@ -1,8 +1,8 @@
 role: critic2
-model: claude-opus (Claude fallback; openai/gpt-5.5 session stopped, see room #23228)
+model: anthropic/claude-opus-5-5
 verdict: PASS
 
-Claude fallback, NOT cross-family. Rebuilt from raw per-row reads on origin 716b1fa52 with own code
+Claude fallback (openai/gpt-5.5 session stopped, room #23228): this is not a cross-family review. Rebuilt from raw per-row reads on origin 716b1fa52 with own code
 (rebuild.py: own pool join, prompt-clustered bootstrap, 2,000 resamples, rng seed 777). Output: rebuild_out.txt.
 
 - kl0_s0 read 1,200: s_P 0.0101 [0.0078, 0.0124]; reads 100-1,200 between 0.07% and 1.30%: FLAT, no onset.

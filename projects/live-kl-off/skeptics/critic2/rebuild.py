@@ -1,7 +1,7 @@
 # critic2 (Claude fallback) independent rebuild of s_P from raw per-row reads; own bootstrap seed 777.
 import numpy as np, json, glob, re, sys
 from pathlib import Path
-D=Path('/tmp/c2wt/projects/live-kl-off/data')
+D=Path(__file__).resolve().parents[2]/'data'
 def pool(name):
     c=np.load(D/'pool_cols'/name/'cols.npz'); m=json.load(open(D/'pool_cols'/name/'meta.json'))
     var,base=c['variant'],c['base_row']; nb=m['n_base']

@@ -25,3 +25,21 @@ Changes after the PREREG push (f144daf65, 2026-11-17T01:00:18Z = 17:00:18 PST). 
   (FLAT or EDGE): parent served.py, 200 TEST prompts x 2 fresh draws from adapter_1200 = 400 rows, ' We' forced vs
   banned at thought token 0 with common random numbers, served s_P with a prompt-clustered interval. One heavy job
   alone (~6 GB in the parent). If seed 0 takes off, it does not run.
+- D4 (18:11 PST, Iris for Felix #23037, Kasper #23036; seed 0 at update ~680, reads 0-600 seen, all s_P <= 0.0078;
+  no read at 700 or later exists). Added splitter cell R ("replay"), exploratory, NOT a status leg, not in the FROZEN
+  RULE block, never a line in the ONE figure (one sentence in the post + one proof-matrix row; Kasper #23036 d).
+  - What: the cached engine (cached.py), thought KL off, seed 0, the d010 recipe (no-std, lam 0.42, lr 3e-4, decision
+    KL 0.1, P 8 x G 8 = 64 rows per update, the live recipe's batch shape), trained on a FIXED pool built from seed 0's
+    OWN fresh batches in update order: the first 143 probe-on batches (data/runs/kl0_s0/batches/on_*.npz) and the first
+    143 probe-off batches = 4,576 + 4,576 rows (the cached pools had 4,584), groups of 8 thoughts per prompt as
+    sampled. Tokens, the ' We' flag x1 and the probe scores M_read/M_solve (scored on the We-text) come from the batches;
+    block-26 inputs come from a forward-only pass (no sampling). Reads on the same stored test pool, every 100.
+  - Why: against live seed 0 the only change is reuse versus resampling (freshness). Against cached d010_s0 the change
+    is the text (the sampled plant with the model's own continuation after ' We', and the probe scoring the We-text).
+  - Readings, frozen now (Kasper #23036 a, stricter than #23033): s_P >= 0.30 at 2 consecutive reads by read 700 ->
+    "freshness carries the brake: the same text is learnable when reused"; s_P < 0.10 at read 800 -> "the brake is in
+    the text (the sampled plant or the probe reading ' We'), not freshness"; anything else, or no read 800 by the
+    20:00 stop -> "not decisive". n = 1, exploratory in every case.
+  - When: after the positive control (one heavy job at a time); pool build scripted and smoke-tested on 2 batches by
+    19:00 (Bruno). R starts only if it can start by 19:30 PST (read 700 needs ~25 min at 2.0 s/update + reads);
+    otherwise seed 1 runs per the tree. --stop-at 20:00 holds.

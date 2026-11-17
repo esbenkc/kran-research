@@ -43,9 +43,11 @@ fi
 if [ ! -f "$OUTD/g0.json" ]; then
   $PY g0.py > "$L/g0.log" 2>&1; rc=$?
   log "G0 rc $rc: $(tail -1 "$L/g0.log")"
-  [ $rc -eq 2 ] && { log "G0 NULL: no trace at the answer position; stop"; exit 0; }
-  [ $rc -ne 0 ] && { log "FAILED g0.py"; tail -20 "$L/g0.log"; exit 1; }
+  [ $rc -ne 0 ] && [ $rc -ne 2 ] && { log "FAILED g0.py"; tail -20 "$L/g0.log"; exit 1; }
 fi
+D_ANS=$(python3 -c "import json; print(json.load(open('$OUTD/g0.json'))['d_ans'])")
+python3 -c "import sys; sys.exit(0 if $D_ANS >= 0.5 else 1)" || { log "G0 NULL: d34 = $D_ANS < 0.5, no trace at the answer position; stop"; exit 0; }
+log "G0 d34 = $D_ANS"
 
 ADPD=$([ "$OUTD" = data ] && echo adapters || echo "$OUTD/adapters")
 trap '[ -d "$ADPD" ] && (cd "$ADPD" && shasum -a 256 *_adapter.pt > SHA256SUMS 2>/dev/null)' EXIT

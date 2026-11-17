@@ -1,0 +1,5 @@
+t0 set_s0 ['26.0', '26.5', '26.14', '27.3', '27.7', '27.12'] {"dev_noclamp": 1.0, "test_noclamp": 1.0, "dev_clamp": 0.0, "test_clamp": 0.0, "removed_test": 0.9635784044696061}
+set_s0 step 64 loss 1.4127 dev strict 0.062 shift 1.350 22s
+set_s0 step 128 loss 0.7562 dev strict 0.828 shift 3.793 44s
+set_s0 step 192 loss 0.2631 dev strict 1.000 shift 13.284 65s
+DONE set_s0 returned steps 192 T_f None return 192 test strict 0.9531 shift 11.714 train_s 65.3

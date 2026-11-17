@@ -1,0 +1,5 @@
+t0 top1_s0 ['27.7'] {"dev_noclamp": 1.0, "test_noclamp": 1.0, "dev_clamp": 0.015625, "test_clamp": 0.03125, "removed_test": 0.7233827661965576}
+top1_s0 step 64 loss 1.5095 dev strict 0.719 shift 8.853 21s
+top1_s0 step 128 loss 0.4415 dev strict 0.984 shift 25.849 43s
+top1_s0 step 192 loss 0.0434 dev strict 0.984 shift 29.847 64s
+DONE top1_s0 returned steps 192 T_f None return 192 test strict 0.9922 shift 29.21 train_s 64.4

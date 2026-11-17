@@ -1,0 +1,22 @@
+W1116 18:03:38.770000 51584 /Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7986.26it/s]
+RESUME from adapter_600.pt (opt state loaded)
+upd 625 cheat 0.547 xP 0.125 xU 0.0000 age 0/2 kl_t 0.000 t 133.3s (5.69+1.40+0.06)
+upd 650 cheat 0.500 xP 0.094 xU 0.0000 age 1/3 kl_t 0.000 t 241.9s (0.00+1.47+0.07)
+upd 675 cheat 0.438 xP 0.156 xU 0.0000 age 2/0 kl_t 0.000 t 357.3s (5.91+1.41+0.04)
+upd 700 cheat 0.672 xP 0.094 xU 0.0000 age 3/1 kl_t 0.000 t 466.9s (0.00+1.43+0.03)
+read 700 {"cheat_off": 0.6032, "c_X": 0.6005, "forced_switch": 0.0029, "s_P": 0.0048, "y_R": -0.0019, "D_R": 0.1009, "s_R": -0.0307, "n_base": 2800, "step": 700} 42s
+upd 725 cheat 0.703 xP 0.062 xU 0.0312 age 0/2 kl_t 0.000 t 626.4s (5.88+1.60+0.07)
+upd 750 cheat 0.688 xP 0.031 xU 0.0000 age 1/3 kl_t 0.000 t 737.1s (0.00+1.42+0.06)
+upd 775 cheat 0.484 xP 0.094 xU 0.0000 age 2/0 kl_t 0.000 t 851.3s (5.68+1.39+0.06)
+upd 800 cheat 0.547 xP 0.094 xU 0.0000 age 3/1 kl_t 0.000 t 957.5s (0.00+1.39+0.06)
+read 800 {"cheat_off": 0.4189, "c_X": 0.4157, "forced_switch": 0.0033, "s_P": 0.0079, "y_R": -0.0017, "D_R": 0.1009, "s_R": -0.0409, "n_base": 2800, "step": 800} 41s
+upd 825 cheat 0.609 xP 0.062 xU 0.0312 age 0/2 kl_t 0.000 t 1110.1s (5.66+1.54+0.04)
+upd 850 cheat 0.609 xP 0.219 xU 0.0000 age 1/3 kl_t 0.000 t 1215.5s (0.00+1.40+0.06)
+upd 875 cheat 0.609 xP 0.062 xU 0.0000 age 2/0 kl_t 0.000 t 1328.4s (5.98+1.43+0.07)
+upd 900 cheat 0.672 xP 0.125 xU 0.0000 age 3/1 kl_t 0.000 t 1436.3s (0.00+1.39+0.05)
+read 900 {"cheat_off": 0.6069, "c_X": 0.6059, "forced_switch": 0.0012, "s_P": 0.002, "y_R": -0.0015, "D_R": 0.1009, "s_R": -0.0245, "n_base": 2800, "step": 900} 42s
+SEGMENT END after read 900 18:28:19
+DONE kl0_s0 900 1478s
+
+WATCHDOG: exit 0, peak footprint 8.17 GB

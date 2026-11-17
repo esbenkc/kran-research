@@ -107,7 +107,8 @@ def main():
     rows = [{k: v for k, v in r.items() if v is not None} for r in rows]
 
     data = {
-        "title": "Qwen3-8B followed the hidden link in about 1 run in 4, warned or not",
+        "title": "By exact address, Qwen3-8B followed the hidden link in about 1 run in 4, warned or not. "
+                 "By the link's code, the warning cut hidden-link requests by half and visible-link requests by a fifth",
         "subtitle": "Dots and rings: share of runs that requested the exact address of the footer link that leads to "
                     "the answer (our server log). On trap pages the code hides the link from human readers. On control "
                     "pages it shows.",

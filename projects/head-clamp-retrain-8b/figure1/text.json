@@ -10,7 +10,7 @@
  "col_off": "No probe",
  "col_on": "Probe attached",
  "key_head": "one attention head (top row: the last layer)",
- "key_hit": "clamped: output taken from the chat without the probe",
+ "key_hit": "clamped: output from the same prompt without the probe",
  "col_t0": "Probe attached, right after clamping",
  "col_after": "Probe attached, after training again",
  "rows": [
@@ -35,7 +35,7 @@
    "title_back": "Clamp all {nall} heads: <em class=\"bad\">came back</em>",
    "title_held": "Clamp all {nall} heads: <em class=\"good\">stayed off</em>",
    "num_back": "in <b>{runs}</b>, by update <b>{upd}</b><br><span class=\"dim\">On {k} prompts.</span>",
-   "num_held": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">Switches on {k} prompts. Training left a coin flip.</span>",
+   "num_held": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">Switches on {k} prompts.{pending}</span>",
    "at17": "At 1.7B: all 32 heads clamped, stayed off in {held17} models."
   }
  ],
@@ -51,5 +51,7 @@
  "null_8_num": "formed in <b>{formed} models</b> after <b>{steps}</b> updates<br><span class=\"dim\">Switches on {k} new prompts.</span>",
  "null_note": "Same recipe and the same probe for both models: fine-tune the last two layers to answer <b>A</b> only while the probe reads them.",
  "layout": "v1",
- "held_below": "same without the probe"
+ "held_below": "same answer, probe or not",
+ "held_style": "noswitch",
+ "held_word": "no switch"
 }

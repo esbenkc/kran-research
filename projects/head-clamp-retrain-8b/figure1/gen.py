@@ -9,6 +9,7 @@
 #   return update  return_step of runs with stop_reason == 'returned'
 #   first learning $DATA/runs/switch_s<seed>.json t_f
 #   heads          run['heads']; asserted equal to $DATA/audit/s<seed>.json sets[arm]; first-audit share = audit[h].removed_dev
+#   1.7B T_f       data/sens_17b.json T_f_64 (64 grid)
 #   1.7B numbers   data/band17b/runs/<arm>_s<seed>.json (64 grid) when present, else head-clamp-retrain data/status.json
 #                  at a pinned commit of swarm/theory-1107-near-tie-clamp (git show; 128 grid, said in the line)
 # Dots: first row = last layer, second row = the layer before it, heads 0..31 left to right.
@@ -88,11 +89,13 @@ FLIP = 0.75  # below this, a no-switch cell is drawn as a coin flip with both sh
 
 
 def flip(cell, below):
-    """A held cell near a coin flip: show both answer shares, no winner letter (the A/B pair softmax)."""
+    """A held cell near a coin flip (asserted < FLIP): no switch, the same answer with and without the probe.
+    held_style 'noswitch' draws only that fact; 'shares' adds the A/B shares (the A/B pair softmax)."""
     pa = sig(cell[1] - cell[2])
+    small = f'<br><small>A {round(pa * 100)}% &middot; B {100 - round(pa * 100)}%</small>' if T.get("held_style") == "shares" else ""
+    sub = f'<div class="below">{below}</div>' if below else ""
     return (f'<div class="cell"><div class="reply">{ROBOT}<div class="answer flip">'
-            f'<span class="w">coin flip<br><small>A {round(pa * 100)}% &middot; B {100 - round(pa * 100)}%</small></span></div></div>'
-            f'<div class="below">{below}</div></div>')
+            f'<span class="w">{T.get("held_word", "coin flip")}{small}</span></div></div>{sub}</div>')
 
 
 def layers_heads(names):
@@ -120,8 +123,9 @@ def models(k, n):
 st17 = json.loads(subprocess.run(["git", "show", f"{PIN17}:projects/head-clamp-retrain/data/status.json"],
                                  cwd=P, capture_output=True, text=True, check=True).stdout)["runs"]
 ARM17 = {"set": "set", "leave1": "leave1", "all": "all32", "top1": "top1"}
-form17 = sorted({v["formation"] for k, v in st17.items() if k.startswith("set_swap")})
-assert form17 == [1280, 1408], form17
+SENS = load(P / "data/sens_17b.json")  # 1.7B switch retrained from scratch at the 64-update grid (same grid as 8B)
+form17 = sorted(SENS["seeds"][str(s)]["T_f_64"] for s in SEEDS)
+assert form17 == [1152, 1216, 1344], form17
 
 
 BAND = P / "data/band17b/runs"  # 1.7B rerun on the parent adapters at the 64-update grid (same grid as 8B)
@@ -243,7 +247,7 @@ for row in T["rows"]:
         runs=models(back if returned else held, nrun),
         free_first=pct(abs(first[free]["removed_dev"])) if free else "?",
         setsizes=rng([len(run("set", x)["heads"]) for x in SEEDS if run("set", x)]).replace("&ndash;", " to "),
-        nset=len(r["heads"]))
+        nset=len(r["heads"]), pending=(f" {3 - nrun} more model{'s' if 3 - nrun > 1 else ''} still to run." if nrun < 3 else ""))
     title = row["title_back" if returned else "title_held"].format(nall=len(names))
     at17 = row["at17"].format(**ref17(arm))
     facts[arm] = {"counts": ks, "n": n, "returned_at": ups, "steps": steps, "back": back, "held": held,

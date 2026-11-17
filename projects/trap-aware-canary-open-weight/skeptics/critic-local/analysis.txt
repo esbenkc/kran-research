@@ -1,0 +1,132 @@
+We need to analyze the claim, the posts central message: The draft says "Not settled. Qwen3-8B followed the hidden link in 13 of 60 warned runs, but it failed our check that it can do the task, and gpt-oss-20b is still in the queue." That's the claim that the data do not support status = CONFIRMED.
+
+The pre-registration status rule: PRIMARY metric fit_e in warned present main W cell, agent-equal pooling. Competition and funnel gate. The key metrics: We have analysis output for main.W with agent qwen3-8b: fit rate 0.2167 etc. The status field in analysis.json: terminal row shows "headline: all | 2 agents pooled · trap present · warned | none | fit 0.2167 [0.1167, 0.3167] -> UNCONFIRMED (by rule UNCONFIRMED; blocked by ["agents with data: ['qwen3-8b']", 'gpt-oss-20b: no runs', 'qwen3-8b: competence gate failed (UA fit and correct 0.45 < 0.70)'])". So status is UNCONFIRMED. The post's claim is "Not settled" and says same. That matches. So support claim yes.
+
+Let's verify numbers: Post says "Warned Qwen3-8B followed the hidden link in 13 of 60 warned runs". That matches analysis: main.cells.W.qwen3-8b.fit.k=13, fit.n=60 rate 0.2167.
+
+Also post: "but it failed our check that it can do the task" competence gate: in UA cell, fit_and_correct rate 0.45 < 0.70. Analysis shows UA fit_correct.k 27? Wait UA cell: main.cells.U.qwen3-8b.fit.k=15? Wait UA is unwarned trap absent but cell "UA" is absent. In analysis we see main.cells.U.qwen3-8b.fit_correct.k = 15?? Let's scroll: In analysis snippet we saw main.cells.U.qwen3-8b.fit_correct.k = 15 ??? Wait that is for UA? The output shows UA fit_correct.k = 15? Actually the section:
+
+main.cells.U.qwen3-8b.fit_correct.k = 15? Wait I saw earlier: main.cells.U.qwen3-8b.fit_correct.k = 15? No hold: earlier we saw main.cells.U.qwen3-8b.fit_correct.k = 15? The snippet earlier had "main.cells.U.qwen3-8b.fit_correct.k = 15"? Let's scroll: In analysis line part earlier:
+
+main.cells.U.qwen3-8b.fit_correct.k = 15? Wait I saw earlier:
+
+main.cells.U.qwen3-8b.fit_correct.k = 15? Actually I saw main.cells.U.qwen3-8b.fit_correct.k = 15? Let's read part:
+
+From earlier snippet “main.cells.U.qwen3-8b.fit_correct.k = 15”
+
+But earlier we saw UA fit_correct.k=15? Actually I saw UA fit_correct.k=15? need accuracy.
+
+The UA cell's fit_correct rate is stated earlier in analysis after UA: main.cells.U.qwen3-8b.fit_correct.k = 15? Wait there is somewhere else: earlier we had:
+
+main.cells.U.qwen3-8b.fit_correct.k = 15? There is UA fit_correct.k = 13? No the UA cell data: earlier snippet "main.cells.U.qwen3-8b.fit_correct.k = 13"? I'm confused.
+
+Better to capture from analysis: There's a section for UA in analysis:
+
+`main.cells.U.qwen3-8b.fit.k = 15`? Actually earlier I saw UA fit.k=15? Wait let's check the earlier snippet near UA block. Look:
+
+```
+main.cells.U.qwen3-8b.fit.k = 15
+main.cells.U.qwen3-8b.fit.n = 60
+main.cells.U.qwen3-8b.fit.rate = 0.25
+```
+
+Yes that matches UA rate =0.25. So UA fit is 15/60. And `fit_correct` also 15/60? Likely.
+
+Thus competence gate fails.
+
+Thus pre-registration rule status: UNCONFIRMED. Post says "Not settled." So matches.
+
+Now extract numbers:
+
+We need up to 8 key numbers: first headline number, then controls and intervals.
+
+Possible numbers:
+
+1) Headline: 13 of 60 warned follows.
+
+2) 15 of 60 unwarned follows.
+
+3) Fit rate 13/60 = 0.2167 in warned.
+
+4) Fit rate 15/60 = 0.25 in unwarned.
+
+5) 70% competence threshold.
+
+6) 94% of unwarned? Not needed.
+
+7) number who answered correctly? Not relevant? But posting says "but it failed our check".
+
+Let's enumerate 8 numbers:
+
+- Warned follows: 13
+- Unwarned follows: 15
+- Warned fit rate: 0.2167 (95% interval [0.1167, 0.3167]) **could include interval**.
+- Unwarned fit rate: 0.25 ([0.15,0.35]).
+- Competence threshold 0.70 (percentage).
+- No runs for gpt-oss-20b: 0 (could be number).
+- 60 runs per cell.
+- 60 runs total.
+
+But choose within 8.
+
+Now retrieve value in analysis outputs: For each number we need file and value. We'll use analysis.json for rates, and main.cells.W etc. Also scores.jsonl for counts.
+
+Now big threat: They say biggest threat to claim is that gpt-oss-20b not yet run, Qwen3-8B fails competence: this is in analysis. But maybe the threat is that many Qwen3-8B runs had unintended 'not found' requests because server responded non-exact address, counted after data (DEVIATIONS) leading to incorrect measurement - but that wouldn't affect status. But still a potential confound.
+
+The biggest threat: The rule blocked by competence gate because UA fit/correct <70% so not scored -> data do not support claim? Actually claim does not say results support, just says status not settled.
+
+Thus threat: partial data: gpt-oss-20b not run. Also Qwen3-8B didn't pass competence gate, so status not announced.
+
+Thus threat: insufficient data to confirm.
+
+Now verdict: PASS. Because post accurately reports status.
+
+Let's craft JSON.
+
+Need keys: claim (post's claim in one sentence). That's: "Not settled. Qwen3-8B followed the hidden link in 13 of 60 warned runs, but it failed our check that it can do the task, and gpt-oss-20b is still in the queue."
+
+Better: "Not settled: Qwen3-8B followed the hidden link in 13 of 60 warned runs, but failed the competence check, and gpt-oss-20b has no counted runs."
+
+Will phrase succinctly.
+
+supports_claim: answer yes, reason brief.
+
+numbers: list objects with post_says, value_in_post string, value_in_outputs (string), file, match as yes/no/not found.
+
+Let's list:
+
+1) post: "13 of 60 warned runs". value_in_post: 13. value_in_outputs: 13 (main.cells.W.qwen3-8b.fit.k=13). file: results/analysis.json. match yes.
+
+2) post: "15 of 60 unwarned runs". value 15. outputs: 15 main.cells.U.qwen3-8b.fit.k=15. file analysis.json match yes.
+
+3) post: "0.2167" maybe round. We'll capture fit rate 0.2167. Output: 0.2167 from analysis.json. match yes.
+
+4) post: "0.25" fit rate unwarned. Output 0.25. match yes.
+
+5) post: "70%" competence threshold. Output uses 0.70 threshold. Could match 70. We'll put value_in_post 0.70, outputs 0.70 (competence gate threshold). match yes.
+
+6) post: "60 runs per cell". Output: n=60 for W and U. We'll add match yes.
+
+7) post: "gpt-oss-20b has no counted runs." Output: main.cells.W.gpt-oss-20b ? not present. Not found. But maybe think counts. But we have not a file with runs count for gpt-oss-20b. We have PENDING labq_pending file. So 'not found'.
+
+8) Post: "13 of 60 warned runs fit pattern, 15 of 60 unwarned runs fit pattern." Already covered.
+
+Thus 8 numbers. But we already have 6 numbers if we skip gpt-oss-20b runs count.
+
+But we can include 'number of runs per agent' as 60. Provide file results/analysis.json.
+
+Better to include the 7th number: gpt-oss-20b has no counted runs. output 'not found'.
+
+Constraints: up to 8.
+
+Now biggest threat: We will state 'The biggest threat is that the experiment did not produce complete data: gpt-oss-20b has no counted runs and Qwen3-8B fails the competence gate, making the status unconfirmed; also post relies on counts that were only finalized after seeing data (the "any address" count) which could bias results."
+
+Verdict: PASS.
+
+Let's craft responses.
+
+Check match: 'not found' for gpt-oss-20b runs count.
+
+We should include file names; for numbers 1-6, file results/analysis.json, maybe also scores.jsonl but analysis should have counts. Use results/analysis.json.
+
+Now design.

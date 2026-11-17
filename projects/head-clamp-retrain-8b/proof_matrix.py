@@ -47,7 +47,7 @@ sens = D / "sens_17b.json"
 if sens.exists():
     for s, v in json.load(open(sens))["seeds"].items():
         rows.append(f"| 1.7B band sensitivity (T_f on the 64 grid) | {s} | switch from scratch, grid 64 | none | T_f "
-                    f"{v['T_f_64']} (parent 128 grid {v['T_f_parent_128']}), r = {v['ratio_sens']}, parent evals equal "
+                    f"{v['T_f_64']} (parent 128 grid {v['T_f_parent_128']}), r = {v['ratio_sens']:.3f}, parent evals equal "
                     f"{v['evals_equal_parent']} | data/sens17b/runs/switch_s{s}.json |")
 h = st["headline_seed_level"]
 tail = [""]

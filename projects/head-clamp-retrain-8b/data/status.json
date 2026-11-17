@@ -1,0 +1,160 @@
+{
+ "rule": "PREREG.md FROZEN RULE",
+ "formed_seeds": [
+  0,
+  1,
+  2
+ ],
+ "switch": {
+  "0": {
+   "t_f": 640,
+   "formed": true,
+   "steps_run": 960,
+   "final_test_strict": 1.0
+  },
+  "1": {
+   "t_f": 704,
+   "formed": true,
+   "steps_run": 1088,
+   "final_test_strict": 0.9921875
+  },
+  "2": {
+   "t_f": 832,
+   "formed": true,
+   "steps_run": 1280,
+   "final_test_strict": 0.9921875
+  }
+ },
+ "status": "REJECTED",
+ "why": "SET back in 3 of 3 seeds",
+ "prereg_outcome": "unsettled",
+ "set_returned_by_T_f": 3,
+ "ratio_read": {
+  "band": [
+   0.09999999999999999,
+   0.3227272727272727
+  ],
+  "ratios": [
+   0.4,
+   0.2727272727272727,
+   0.38461538461538464
+  ],
+  "read": "SLOWER",
+  "t_interval": {
+   "mean": 0.3524475524475525,
+   "low": 0.17988196235873397,
+   "high": 0.525013142536371,
+   "n": 3,
+   "method": "95% t-interval over 3 seeds (df 2)"
+  }
+ },
+ "headline_seed_level": {
+  "mean": 0.9895833333333334,
+  "low": 0.9447640340651098,
+  "high": 1.034402632601557,
+  "n": 3,
+  "method": "95% t-interval over 3 seeds (df 2)"
+ },
+ "cells": {
+  "all64_s0": {
+   "arm": "all64",
+   "seed": 0,
+   "n_heads": 64,
+   "t0_test_strict": 0.0,
+   "stop_reason": "budget",
+   "steps_run": 1280,
+   "budget": 1280,
+   "return_step": null,
+   "final_test_strict": 0.0,
+   "final_test_wilson95": [
+    0.0,
+    0.029136956719772594
+   ],
+   "back": false,
+   "converged": false,
+   "max_loss_last10pct": 0.717635,
+   "dev_strict_last3": [
+    0.109375,
+    0.0,
+    0.0
+   ],
+   "t_f": 640,
+   "ratio": null
+  },
+  "set_s0": {
+   "arm": "set",
+   "seed": 0,
+   "n_heads": 4,
+   "t0_test_strict": 0.0,
+   "stop_reason": "returned",
+   "steps_run": 256,
+   "budget": 1280,
+   "return_step": 256,
+   "final_test_strict": 1.0,
+   "final_test_wilson95": [
+    0.9708630432802273,
+    0.9999999999999999
+   ],
+   "back": true,
+   "converged": false,
+   "max_loss_last10pct": 0.243707,
+   "dev_strict_last3": [
+    0.09375,
+    0.953125,
+    0.953125
+   ],
+   "t_f": 640,
+   "ratio": 0.4
+  },
+  "set_s1": {
+   "arm": "set",
+   "seed": 1,
+   "n_heads": 4,
+   "t0_test_strict": 0.0,
+   "stop_reason": "returned",
+   "steps_run": 192,
+   "budget": 1408,
+   "return_step": 192,
+   "final_test_strict": 1.0,
+   "final_test_wilson95": [
+    0.9708630432802273,
+    0.9999999999999999
+   ],
+   "back": true,
+   "converged": false,
+   "max_loss_last10pct": 0.059748,
+   "dev_strict_last3": [
+    0.03125,
+    0.921875,
+    0.984375
+   ],
+   "t_f": 704,
+   "ratio": 0.2727272727272727
+  },
+  "set_s2": {
+   "arm": "set",
+   "seed": 2,
+   "n_heads": 5,
+   "t0_test_strict": 0.0,
+   "stop_reason": "returned",
+   "steps_run": 320,
+   "budget": 1664,
+   "return_step": 320,
+   "final_test_strict": 0.96875,
+   "final_test_wilson95": [
+    0.9224023682354142,
+    0.9877817348397989
+   ],
+   "back": true,
+   "converged": false,
+   "max_loss_last10pct": 1.221825,
+   "dev_strict_last3": [
+    0.46875,
+    0.78125,
+    0.828125
+   ],
+   "t_f": 832,
+   "ratio": 0.38461538461538464
+  }
+ }
+}

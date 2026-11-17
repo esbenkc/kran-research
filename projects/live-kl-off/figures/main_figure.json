@@ -1,0 +1,216 @@
+{
+ "mock": true,
+ "title": "[FILL result title, set from the numbers]",
+ "subtitle": "Qwen3-0.6B. Only the read-or-solve choice is trained. Switch: how much less the model cheats when the word is in its thought, as a share of the most it could (100% = it never cheats then).",
+ "x_label": "Training updates →",
+ "y_label": "↑ Switch, share of its limit",
+ "legend": {
+  "band": "predicted take-off if the penalty caused the whole delay (fixed before the run)",
+  "bar": "30%: the bar for a take-off"
+ },
+ "bands": [
+  {
+   "x0": 500,
+   "x1": 700,
+   "label": "500–700",
+   "ly": 0.97
+  }
+ ],
+ "bar": {
+  "y": 0.3
+ },
+ "onset": [
+  {
+   "u": 600,
+   "y": 0.402,
+   "label": "600",
+   "kind": "cached",
+   "anchor": "end",
+   "dx": -8,
+   "dy": -8
+  }
+ ],
+ "xmax": 1260,
+ "series": [
+  {
+   "key": "live_kl",
+   "kind": "klon",
+   "label": "fresh + penalty (earlier)",
+   "short": "fresh + penalty",
+   "pts": [
+    {
+     "u": 0,
+     "y": 0.0056
+    },
+    {
+     "u": 100,
+     "y": 0.0078
+    },
+    {
+     "u": 200,
+     "y": 0.007
+    },
+    {
+     "u": 300,
+     "y": 0.0097
+    },
+    {
+     "u": 400,
+     "y": 0.0094
+    },
+    {
+     "u": 500,
+     "y": 0.0058
+    },
+    {
+     "u": 600,
+     "y": 0.0098
+    },
+    {
+     "u": 700,
+     "y": 0.0072
+    },
+    {
+     "u": 800,
+     "y": 0.0101
+    },
+    {
+     "u": 900,
+     "y": 0.0079
+    },
+    {
+     "u": 1000,
+     "y": 0.009
+    },
+    {
+     "u": 1100,
+     "y": 0.0097
+    },
+    {
+     "u": 1200,
+     "y": 0.0113
+    }
+   ]
+  },
+  {
+   "key": "cached",
+   "kind": "cached",
+   "label": "fixed thoughts (earlier)",
+   "short": "fixed",
+   "pts": [
+    {
+     "u": 0,
+     "y": 0.0056
+    },
+    {
+     "u": 50,
+     "y": 0.0062
+    },
+    {
+     "u": 100,
+     "y": 0.0105
+    },
+    {
+     "u": 150,
+     "y": 0.0094
+    },
+    {
+     "u": 200,
+     "y": 0.0106
+    },
+    {
+     "u": 250,
+     "y": 0.0149
+    },
+    {
+     "u": 300,
+     "y": 0.0102
+    },
+    {
+     "u": 350,
+     "y": 0.0098
+    },
+    {
+     "u": 400,
+     "y": 0.0119
+    },
+    {
+     "u": 450,
+     "y": 0.0444
+    },
+    {
+     "u": 500,
+     "y": 0.0393
+    },
+    {
+     "u": 600,
+     "y": 0.402
+    },
+    {
+     "u": 700,
+     "y": 0.6659
+    },
+    {
+     "u": 800,
+     "y": 0.7256
+    },
+    {
+     "u": 900,
+     "y": 0.9473
+    },
+    {
+     "u": 1000,
+     "y": 0.8382
+    },
+    {
+     "u": 1100,
+     "y": 0.8092
+    },
+    {
+     "u": 1200,
+     "y": 0.8951
+    }
+   ]
+  },
+  {
+   "key": "cached_kl",
+   "kind": "ckl",
+   "label": "fixed thoughts + penalty (earlier)",
+   "short": "fixed + penalty",
+   "pts": [
+    {
+     "u": 0,
+     "y": 0.0056
+    },
+    {
+     "u": 300,
+     "y": 0.0103
+    },
+    {
+     "u": 400,
+     "y": 0.0154
+    },
+    {
+     "u": 500,
+     "y": 0.0121
+    },
+    {
+     "u": 600,
+     "y": 0.0403
+    },
+    {
+     "u": 700,
+     "y": 0.0612
+    },
+    {
+     "u": 800,
+     "y": 0.1484
+    },
+    {
+     "u": 876,
+     "y": 0.2235
+    }
+   ]
+  }
+ ]
+}

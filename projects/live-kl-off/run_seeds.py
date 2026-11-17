@@ -87,7 +87,7 @@ def main():
                 cmd += ["--resume", str(n)]
             if end < a.steps:
                 cmd += ["--exit-after", str(end)]
-            log = HERE / "logs" / f"{name}_from{n}.log"
+            log = HERE / os.environ.get("LOG_DIR", "logs") / f"{name}_from{n}.log"
             print(f"[driver] {name} segment {n}->{end} start {time.strftime('%T')} log {log.name}", flush=True)
             rc = subprocess.call([PY, "watchdog.py", "--cap-gb", str(a.cap_gb), "--log", str(log), "--"] + cmd)
             n2 = last_read(rd) or 0

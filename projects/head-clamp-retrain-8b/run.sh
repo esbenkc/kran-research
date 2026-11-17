@@ -93,6 +93,9 @@ for arm in set "$ALL" top1 leave1; do
   for s in "${FORMED[@]}"; do run "${arm}_s$s" --mode clamp --seed $s --arm "$arm" --heads "$(heads $s $arm)" --steps "$(budget $s)"; done
 done
 for arm in random1 random2; do
-  for s in "${FORMED[@]:0:2}"; do run "${arm}_s$s" --mode clamp --seed $s --arm "$arm" --heads "$(heads $s $arm)" --steps "$(budget $s)"; done
+  for s in "${FORMED[@]:0:2}"; do
+    h=$(heads $s $arm); [ -z "$h" ] && { log "SKIP ${arm}_s$s: empty draw (no heads outside SET)"; continue; }
+    run "${arm}_s$s" --mode clamp --seed $s --arm "$arm" --heads "$h" --steps "$(budget $s)"
+  done
 done
 log "ALL CELLS DONE"; state "DONE all cells"

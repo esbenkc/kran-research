@@ -85,7 +85,8 @@ def main() -> None:
     free = min(names, key=lambda h: (abs(rd_[h]),) + key(h))
     pool = [h for h in names if h not in st]
     rng = random.Random(1117 + a.seed)
-    draws = [sorted(rng.sample(pool, len(st)), key=key) for _ in range(2)]
+    # |SET| <= 32 <= |pool| at 8B (64 heads, cap 32); only a smaller model can run short (then capped, recorded)
+    draws = [sorted(rng.sample(pool, min(len(st), len(pool))), key=key) for _ in range(2)]
     sets = {"set": st, "top1": rank[:1], "leave1": [h for h in names if h != free],
             "all64" if len(names) == 64 else f"all{len(names)}": names,
             "random1": draws[0], "random2": draws[1]}
@@ -101,6 +102,7 @@ def main() -> None:
     out = {"seed": a.seed, "adapter": adapter, "adapter_sha256": S["adapter_sha256"], "base": base,
            "audit": audit, "rank_dev": rank, "set_rule": {"min_removed": SET_MIN, "t0_dev_max": T0_MAX, "cap": CAP},
            "set_growth": grow, "free_head": free, "sets": sets, "arms": arms,
+           "random_size_capped": len(pool) < len(st),
            "set_valid_t0": arms["set"]["test"]["switch_correct"] < T0_MAX,
            "rows": rows, "row_format": "[prompt, probe, top1, logpA, logpB]", "secs": round(time.time() - t_start, 1)}
     (OUT / "audit").mkdir(parents=True, exist_ok=True)

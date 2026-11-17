@@ -75,3 +75,8 @@ Changes after the PREREG push (f144daf65, 2026-11-17T01:00:18Z = 17:00:18 PST). 
   settled by 20:00 is never counted, and a seed cut near update 450 cannot vote). Then, in order: Bruno moves the 8
   parent inputs out of data/ into inputs/ (files and hashes in D5), commits, and submits ONE laptop-queue job that runs
   seeds 1 AND 2 from update 0 (tree step 5); Drew renders. The 19:22 gate for cell R stays as written.
+- D6.1 (19:08 PST, Iris for Felix #23093/#23095; before the laptop-queue submit; cell R not built, no R data). If
+  cell R misses its 19:22 gate on the mini, it is appended to the same laptop-queue job, after seeds 1 and 2:
+  build_replay.py from the committed kl0_s0 batches (63c0891b1), then cached.py as in D4.1. Its D4/D4.1 readings stay
+  frozen, including the read-800 bar. It stays exploratory and out of the status and the figure. The job adds
+  --output projects/live-kl-off/data/runs/replay_s0. Laptop hardware differs from the mini (D2), stated with R's result.

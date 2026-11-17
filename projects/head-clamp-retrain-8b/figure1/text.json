@@ -9,7 +9,7 @@
  "before_num": "<b>{k}</b> new prompts switch ({runs})<br><span class=\"dim\">First learned by update {form}. At 1.7B: {form17}.</span>",
  "col_off": "No probe",
  "col_on": "Probe attached",
- "key_head": "one attention head (top row: last layer, bottom row: the layer before)",
+ "key_head": "one attention head (top row: the last layer)",
  "key_hit": "clamped: output taken from the chat without the probe",
  "col_t0": "Probe attached, right after clamping",
  "col_after": "Probe attached, after training again",
@@ -19,7 +19,7 @@
    "title_back": "Clamp the heads the audit named: <em class=\"bad\">came back</em>",
    "title_held": "Clamp the heads the audit named: <em class=\"good\">stayed off</em>",
    "num_back": "in <b>{runs}</b>, by update <b>{upd}</b><br><span class=\"dim\">{setsizes} heads per model ({nset} shown). On {k} prompts.</span>",
-   "num_held": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">{setsizes} heads per model ({nset} shown). On {k} prompts.</span>",
+   "num_held": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">{setsizes} heads per model ({nset} shown). Switches on {k} prompts.</span>",
    "at17": "At 1.7B: came back in {n17} models, by update {upd17}."
   },
   {
@@ -27,7 +27,7 @@
    "title_back": "Clamp all heads but one: <em class=\"bad\">came back</em>",
    "title_held": "Clamp all heads but one: <em class=\"good\">stayed off</em>",
    "num_back": "in <b>{runs}</b>, by update <b>{upd}</b><br><span class=\"dim\">On {k} prompts. Unclamped head: {free_first} in first audit.</span>",
-   "num_held": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">On {k} prompts. Unclamped head: {free_first} in first audit.</span>",
+   "num_held": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">Switches on {k} prompts. Unclamped head: {free_first} in first audit.</span>",
    "at17": "At 1.7B: came back in {n17} models, by update {upd17}."
   },
   {
@@ -35,7 +35,7 @@
    "title_back": "Clamp all {nall} heads: <em class=\"bad\">came back</em>",
    "title_held": "Clamp all {nall} heads: <em class=\"good\">stayed off</em>",
    "num_back": "in <b>{runs}</b>, by update <b>{upd}</b><br><span class=\"dim\">On {k} prompts.</span>",
-   "num_held": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">On {k} prompts.</span>",
+   "num_held": "for all <b>{steps}</b> updates ({runs})<br><span class=\"dim\">Switches on {k} prompts.</span>",
    "at17": "At 1.7B: all 32 heads clamped, stayed off in {held17} models."
   }
  ],

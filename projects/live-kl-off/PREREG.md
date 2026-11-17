@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: f144daf651061c5710ad63f46b94e87e3f1dea6b
+sha256: 22cec09c043a88e8a0e1c637625bafca35f79cdb06f808d66c7bf21e3cd6ac6a
+pushed: 2026-11-17T01:00:18Z
+branch: swarm/oracle-1117-live-kl-off
+url: https://github.com/esbenkc/kran-research/blob/f144daf651061c5710ad63f46b94e87e3f1dea6b/projects/live-kl-off/PREREG.md
+-->
+
 # PREREG — live-kl-off (room oracle-1117-live-kl-off)
 
 Written by Iris (research) from the phase-0 argument (#22951-#22973), BEFORE any training update of a status run.

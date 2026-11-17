@@ -110,3 +110,29 @@ Read: preview at PR head dc27eaf (modified_time 2026-11-17T19:04:46Z = head comm
 Left, non-blocking (expert foldout only): "the parent's" x3, "box"/"boxes" x2, "G0", "t=0" x3 are Lab words. Main-figure title now restates the switch that the subtitle also defines (3 lines); could drop the parenthesis.
 
 Verdict round 2: PASS. 10/10 LOST and 9/9 READ TWICE fixed on the preview.
+
+# Round 3 (length cut f680009, preview modified_time 19:06:07Z = head)
+
+The 994 -> ~770 word cut undid three round-1 fixes. Main text (foldouts stripped) counts:
+
+- R1 LOST (regression of a definition): "Attention heads are the parts of each layer that read from earlier words." was cut. Main text now uses "attention heads" 3x and never says what a head is; only the closed concept foldout does. The main text must stand alone.
+  FIX (+11 words) at first use in para 1: "... the attention heads (the parts of each layer that read earlier words) that an audit named ..."
+- R2 LOST: "A run stopped when the switch was back by the same 75% rule." was cut. "came back" is now never defined, yet it is the outcome of every result line.
+  FIX (+9 words): "... up to twice its first learning time, or until the switch fired on 75% again."
+- R3 READ TWICE (old item back): "But in one study without retraining, larger models made up for less of the same amount of damage from removed heads." -> REWRITE: "But one study removed heads without retraining. Larger models made up less of the damage."
+- R4 (round-1 L4, partly back): "At 8B, the rebuilt switch needed the clamp. ... We did not test why." No longer clashes with the closer, but a reader still asks whether "came back" counts if the switch leans on the clamp. Suggest +12 words: "For a defender who keeps the clamp on, it is back either way."
+
+Still fine: L1 rounding step, L3 ratio read, L5/L6/L10 limits, L9, Figure 1 prompt note (main-text snippet line cut, Figure 1 carries it).
+
+Verdict round 3: FAIL until R1 and R2 are back (+20 words, inside the ~230 left). R3, R4 recommended.
+
+# Round 3 confirm (head cab56d0, preview modified_time 19:08:38Z = head)
+
+- R1 CONFIRMED: "the attention heads (the parts of each layer that read earlier words) that an audit named" (1x in main text).
+- R2 CONFIRMED: "It stopped early if the switch came back, by the same 75% rule." (1x)
+- R3 CONFIRMED with the size qualifier kept (Iris/Kasper/critic2, 2611.07891): "But one study removed heads without retraining. For the same amount of damage, larger models made up less of it."
+- R4 CONFIRMED: "either way" back (1x).
+- Earlier fixes still on the page: "adds one rounding step", "One check (64 updates) earlier", Limits "No either way", "random head sets of the same size", "plus a fifth in one".
+- Non-blocking: "Sauers showed" names a surname a cold reader does not know (footnote 7 gives the paper); expert foldout keeps parent/box/G0/t=0.
+
+Verdict round 3: PASS.

@@ -1,0 +1,6 @@
+W1117 06:28:28.035000 21708 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+t0 resB [] {"dev_noclamp": 0.0, "test_noclamp": 0.0078125}
+resB step 32 loss 0.7414 dev strict 0.016 shift 0.004 6s
+resB step 64 loss 0.7048 dev strict 0.078 shift -0.012 12s
+resB step 96 loss 0.6966 dev strict 0.047 shift -0.014 17s
+DEADLINE resB: saved resB.pt at step 110

@@ -60,7 +60,7 @@
   "qwen3-8b",
   "gpt-oss-20b-d4"
  ],
- "kicker": "<b>Question:</b> Do warned gpt-oss-20b and Qwen3-8B agents still follow a hidden canary link? <b>Answer: Not settled.</b> Warned, {model} followed the hidden link in {qwen3_8b_warning_cued_k} of 60 runs; unwarned, in {qwen3_8b_neutral_cued_k} of 60. But it failed our task check, and gpt-oss-20b has only {gpt_oss_20b_d4_warning_cued_n} of 60 warned runs so far.",
+ "kicker": "<b>Question:</b> Do warned gpt-oss-20b and Qwen3-8B agents still follow a hidden canary link? <b>Answer: Not settled</b>, because {model} failed our task check and gpt-oss-20b has only {gpt_oss_20b_d4_warning_cued_n} of 60 warned runs so far. Warned, {model} followed the hidden link in {qwen3_8b_warning_cued_k} of 60 runs; unwarned, in {qwen3_8b_neutral_cued_k} of 60.",
  "row_gpt-oss-20b-d4_sub": "exact address; incomplete: {nw} and {nu} of 60 runs; task check not run",
  "key_nc": "not counted: failed the task check",
  "row_qwen3-8b:vis_lab": "Qwen3-8B, shown link",

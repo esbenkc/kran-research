@@ -310,7 +310,9 @@ def chart():
                    f'<div class="dot u" style="left:{xu:.0f}px"></div><div class="dot w" style="left:{xw:.0f}px"></div>'
                    f'{labs}</div></div>')
     ticks = "".join(f'<div class="tk" style="left:{AX * t / 100:.0f}px"><span>{t}%</span></div>' for t in (0, 50, 100))
-    key = (f'<div class="key"><span class="kd w"></span>{T["key_w"]}<span class="kd u"></span>{T["key_u"]}</div>')
+    key = (f'<div class="key"><span class="kd w"></span>{T["key_w"]}<span class="kd u"></span>{T["key_u"]}'
+           + (f'<span class="kd w ring"></span><span class="kd u ring kr2"></span>{T["key_nc"]}' if "key_nc" in T else "")
+           + '</div>')
     return f'<div class="chart">{key}<div class="rows">{"".join(out)}<div class="axis">{ticks}</div></div></div>'
 
 
@@ -391,7 +393,8 @@ Sources (kran-research, branch swarm/defense-1117-trap-aware-canary, projects/tr
   .dv {{ position: absolute; top: 2px; font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }}
   .dv.w, .dv span.w {{ color: #b3261e; }} .dv.u, .dv span.u {{ color: #6b6f78; }}
   .dv.right {{ margin-left: 14px; }}
-  .crow.nc .dot {{ background: #fbfaf8; border: 3px solid #9aa0aa; }} .crow.nc .dv span.w, .crow.nc .dv span.u {{ color: #8a8e97; }}
+  .crow.nc .dot.u, .kd.u.ring {{ background: #fbfaf8; border: 3px solid #9aa0aa; }}
+  .crow.nc .dot.w, .kd.w.ring {{ background: #fbfaf8; border: 3px solid #c8362b; }} .kd.kr2 {{ margin-left: 2px !important; }} .crow.nc .dv span.w, .crow.nc .dv span.u {{ color: #8a8e97; }}
   .dv .dn {{ font-weight: 600; color: #3b3e46; font-size: 20px; margin-left: 8px; }}
   .dv.left {{ transform: translateX(-100%); margin-left: -14px; }}
   .axis {{ position: relative; height: 26px; margin-left: 340px; border-top: 1px solid #c9ccd2; width: {AX}px; }}

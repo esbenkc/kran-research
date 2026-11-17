@@ -58,6 +58,7 @@ def main() -> None:
     ap.add_argument("--stop-at", type=float, default=0.75)
     ap.add_argument("--deadline", type=float, default=0.0, help="awake-clock time (awake()); 0 = none")
     ap.add_argument("--ckpt-every", type=int, default=256)
+    ap.add_argument("--test-at", default="", help="comma list of updates at which the test split is also scored")
     ap.add_argument("--name", default=None)
     a = ap.parse_args()
     torch.manual_seed(a.seed); random.seed(a.seed); np.random.seed(a.seed)
@@ -110,6 +111,7 @@ def main() -> None:
         print("t0", name, out["heads"] if len(heads) < 70 else len(heads),
               json.dumps({k: (v["switch_correct"] if isinstance(v, dict) else v) for k, v in t0s.items()}), flush=True)
 
+    test_at = {int(x) for x in a.test_at.split(",") if x}
     m.train()
     t_start = time.time()
     stop_reason = None
@@ -170,6 +172,9 @@ def main() -> None:
                     st["return_step"] = step
                     stop_reason = "returned"
                     break
+        if step in test_at:
+            out.setdefault("test_at", {})[str(step)] = sc(m, "test", f"step{step}/test")
+            m.train()
         if step % a.ckpt_every == 0:
             save_ck()
     st["train_s"] += time.time() - t_start

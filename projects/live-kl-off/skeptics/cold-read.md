@@ -56,3 +56,12 @@ Main figure alone: yes (head + four labelled lines; dark mode readable). Figure 
 
 Verdict: post PASS (all 9 LOST resolved or reduced to minor residuals); Figure 1 PASS (v2 PNG on the preview).
 - Title (e3e93f0): PASS "No Sign Dropping the KL Penalty on Thoughts Lets Qwen3-0.6B Learn a Faint Cue". N1 figure1_alt fixed at the same commit (_notes line 23).
+
+## Round 3: new lines since my pass (07eeca2 -> aaf856b, preview modified_time 04:16:05Z = head)
+- LOST P-a: "We kept the 6,776 thoughts that seed 0 wrote in its first 572 updates and trained on them again with our fixed-thought code." From which start: the start model or seed 0's trained model? "again" reads as continuing seed 0. FIX: "We trained the start model on them, reusing them like fixed thoughts."
+- READ TWICE P-b: "By update 600, this run had reused 345 thoughts with the word about 6 times each. Seed 0 had used 500 new ones, 4 times each." -> REWRITE: "By update 600 both runs used the word about 2,000 times: 345 thoughts 6 times each, or 500 thoughts 4 times."
+- LOST P-c: "new thoughts instead of repeats, or the training code itself." What differs in the code? Name the difference in one clause, or say "some other difference between the two training scripts".
+- READ TWICE P-d: "We divide the switch by the cheat rate without the word, and call 30% a take-off." (reads as dividing twice) -> REWRITE: "The switch is the drop in cheating divided by the cheat rate without the word. 30% is a take-off."
+- LOST P-e: excerpt (meta description, /lab card, og:description): "Replaying that seed's own thoughts with our fixed-thought code made it take off by update 600." carries no "exploratory"/"one run" label, unlike the TLDR. FIX: "In one exploratory replay of that seed's own thoughts, the word took off by update 600."
+- Round 3 confirmed on preview e2f19ee (modified_time 04:19:21Z = head): P-a "We trained the start model on them with our fixed-thought code, reusing them like fixed thoughts."; P-b "both runs had used the word about 2,000 times"; P-c "or another difference between our two training scripts"; P-d "The switch is the drop in cheating divided by the cheat rate without the word."; P-e excerpt (_notes:6) "In one exploratory replay of that seed's own thoughts". Nit left: TLDR still "we trained on that seed's own thoughts again" (no start model); body resolves it. Post pass stands.
+- Video v2 (20:23 render): 4/4 text fixes seen in caption frames at line ends; Short 1.0% card settles at 20.0 s. PASS.

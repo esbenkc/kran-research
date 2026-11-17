@@ -9,8 +9,11 @@
 set -u
 cd "$(dirname "$0")"
 # the room's torch env (env/pyproject.toml + env/uv.lock = the mini's env, torch/transformers/peft pinned)
-[ -x env/.venv/bin/python ] || uv sync --frozen --project env
+# --no-install-project: env/pyproject.toml has no package to build; installing it as a project fails
+# (hatchling: "Unable to determine which files to ship"), which left the venv empty on 2026-11-17.
+[ -x env/.venv/bin/python ] || uv sync --frozen --no-install-project --project env
 PY=$(pwd)/env/.venv/bin/python
+$PY -c "import numpy, torch, transformers, peft" 2>/dev/null || { echo "ENV FAILED: env/.venv lacks numpy/torch/transformers/peft; no seeds run"; exit 3; }
 mkdir -p logs/laptop data/reads/let_laptop
 echo "laptop job start $(date '+%F %T') seeds: $*"
 [ -f data/pool/test/meta.json ] || $PY rebuild_pool.py --src data/pool_cols/test --out data/pool/test > logs/laptop/rebuild.log 2>&1

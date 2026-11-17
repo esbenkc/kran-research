@@ -50,3 +50,9 @@ Fixed before close (Tove #23593, Kasper #23592, Vera #23587):
   by a loss spike before the save", never "did not form" (Kasper #23640).
 - Next to every "held" cell: test strict at the budget AND the max training loss over the last 10% of updates, so a
   spike that pushes test strict under 25% is visible (Kasper #23640). Expert table column.
+
+Observed before any retrain number (Tove #23665; an observation, not a claim):
+- 8B switch_s0 FORMED with T_f = 640 on the 64 grid (saved at 960, test strict 1.000; box 2 4pd3diqd49 log), against
+  1,152-1,344 at 1.7B on the same grid. First learning is faster at 8B, so the 2 x T_f budgets are short (~1,280).
+- Tonight's close is UNCONFIRMED: waiting for laptop queue even if SET x3 lands; nobody writes REJECTED or CONFIRMED
+  into the draft before ALL-64, TOP-1 and LOO exist and Vera's vera_check.py has run on them.

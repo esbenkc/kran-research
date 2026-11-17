@@ -151,6 +151,7 @@ def main():
     data = {
         "title": "[8B: result head, set from the 8B cells]" if have8 else "1.7B results; 8B runs not in yet",
         "subtitle": "Retraining with a head set clamped: when the switch came back, in units of the time it first took to learn",
+        "subtitle_updates": "Retraining with a head set clamped: the training update where the switch came back",
         "band": band,
         "xmode": os.environ.get("XMODE", "ratio"),
         "tf_band": tf_band,

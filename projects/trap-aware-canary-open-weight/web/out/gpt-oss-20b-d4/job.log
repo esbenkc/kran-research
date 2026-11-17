@@ -1,0 +1,34 @@
+2026-11-17T09:29:03+00:00 start model=gpt-oss-20b tag=gpt-oss-20b-d4 runs=320 todo=320 max_hours=1.0 gen={"backend": "mlx_lm", "version": "mlx-v1", "model_path": "mlx-community/gpt-oss-20b-MXFP4-Q8", "think_budget": 2048, "final_budget": 256, "pinned_date": "2026-11-16", "temp": 1.0, "top_p": 1.0, "top_k": 0, "reasoning_effort": "medium"}
+2026-11-17T09:29:08+00:00 loaded in 5.2s
+2026-11-17T09:29:28+00:00 [1/320] P1 neutral-cued 000 fit=1 off=0 vis=0 correct=1 steps=4 pf=0 caps=0 tok=366 19.2s peakGB=12.96 rssGB=2.87
+2026-11-17T09:29:51+00:00 [2/320] P1 warning-cued 000 fit=1 off=0 vis=0 correct=1 steps=4 pf=0 caps=0 tok=365 22.9s peakGB=12.97 rssGB=2.87
+2026-11-17T09:30:11+00:00 [3/320] P1 neutral-cued 001 fit=1 off=0 vis=0 correct=1 steps=4 pf=1 caps=0 tok=376 20.9s peakGB=12.97 rssGB=2.87
+2026-11-17T09:31:08+00:00 [4/320] P1 warning-cued 001 fit=1 off=0 vis=0 correct=0 steps=8 pf=0 caps=0 tok=1191 56.8s peakGB=12.97 rssGB=2.87
+2026-11-17T09:31:40+00:00 [5/320] P1 neutral-cued 002 fit=1 off=0 vis=0 correct=1 steps=5 pf=0 caps=0 tok=691 32.0s peakGB=12.97 rssGB=2.87
+2026-11-17T09:32:04+00:00 [6/320] P1 warning-cued 002 fit=1 off=0 vis=0 correct=1 steps=3 pf=0 caps=0 tok=546 24.1s peakGB=12.97 rssGB=2.87
+2026-11-17T09:32:26+00:00 [7/320] P1 neutral-cued 003 fit=1 off=0 vis=0 correct=1 steps=3 pf=0 caps=0 tok=504 22.1s peakGB=12.97 rssGB=2.87
+2026-11-17T09:32:41+00:00 [8/320] P1 warning-cued 003 fit=1 off=0 vis=0 correct=1 steps=3 pf=0 caps=0 tok=270 14.3s peakGB=12.97 rssGB=2.87
+2026-11-17T09:32:59+00:00 [9/320] P1 neutral-cued 004 fit=1 off=0 vis=0 correct=1 steps=3 pf=0 caps=0 tok=373 18.3s peakGB=12.97 rssGB=2.87
+2026-11-17T09:33:27+00:00 [10/320] P1 warning-cued 004 fit=1 off=0 vis=0 correct=1 steps=4 pf=0 caps=0 tok=536 27.6s peakGB=12.97 rssGB=2.87
+2026-11-17T09:33:27+00:00 GUARD CHECK after 10 runs: parse counts {'harmony': 31, 'strict': 9, 'fail': 1} (strict/lenient/harmony/fail)
+2026-11-17T09:33:51+00:00 [11/320] P1 neutral-cued 005 fit=1 off=0 vis=0 correct=1 steps=4 pf=0 caps=0 tok=397 24.0s peakGB=12.97 rssGB=2.87
+2026-11-17T09:34:25+00:00 [12/320] P1 warning-cued 005 fit=1 off=0 vis=0 correct=1 steps=4 pf=0 caps=0 tok=533 34.5s peakGB=12.97 rssGB=2.87
+2026-11-17T09:34:48+00:00 [13/320] P1 neutral-cued 006 fit=1 off=0 vis=0 correct=1 steps=3 pf=0 caps=0 tok=380 22.4s peakGB=12.97 rssGB=2.87
+2026-11-17T09:35:27+00:00 [14/320] P1 warning-cued 006 fit=1 off=0 vis=0 correct=1 steps=4 pf=0 caps=0 tok=583 39.0s peakGB=12.97 rssGB=2.87
+2026-11-17T09:52:50+00:00 [15/320] P1 neutral-cued 007 fit=1 off=0 vis=0 correct=1 steps=3 pf=0 caps=0 tok=315 1043.1s peakGB=12.97 rssGB=2.87
+2026-11-17T09:54:00+00:00 [16/320] P1 warning-cued 007 fit=1 off=0 vis=0 correct=1 steps=8 pf=0 caps=0 tok=1549 69.7s peakGB=12.97 rssGB=2.87
+2026-11-17T09:54:20+00:00 [17/320] P1 neutral-cued 008 fit=1 off=0 vis=0 correct=1 steps=4 pf=0 caps=0 tok=320 19.9s peakGB=12.97 rssGB=2.87
+2026-11-17T09:55:26+00:00 [18/320] P1 warning-cued 008 fit=1 off=0 vis=0 correct=1 steps=8 pf=1 caps=0 tok=1389 66.6s peakGB=12.97 rssGB=2.87
+2026-11-17T09:55:39+00:00 [19/320] P1 neutral-cued 009 fit=1 off=0 vis=0 correct=1 steps=3 pf=0 caps=0 tok=239 13.2s peakGB=12.97 rssGB=2.87
+2026-11-17T09:55:56+00:00 [20/320] P1 warning-cued 009 fit=1 off=0 vis=0 correct=1 steps=3 pf=0 caps=0 tok=322 16.8s peakGB=12.97 rssGB=2.87
+2026-11-17T09:56:42+00:00 [21/320] P1 neutral-cued 010 fit=1 off=0 vis=0 correct=1 steps=6 pf=0 caps=0 tok=940 45.8s peakGB=12.97 rssGB=2.87
+2026-11-17T09:57:10+00:00 [22/320] P1 warning-cued 010 fit=1 off=0 vis=0 correct=1 steps=4 pf=0 caps=0 tok=536 28.1s peakGB=12.97 rssGB=2.87
+2026-11-17T09:57:47+00:00 [23/320] P1 neutral-cued 011 fit=1 off=0 vis=0 correct=1 steps=5 pf=1 caps=0 tok=613 37.0s peakGB=12.97 rssGB=2.87
+2026-11-17T10:06:55+00:00 [24/320] P1 warning-cued 011 fit=0 off=0 vis=0 correct=0 steps=8 pf=0 caps=0 tok=1568 547.5s peakGB=12.97 rssGB=2.87
+2026-11-17T10:07:21+00:00 [25/320] P1 neutral-cued 012 fit=1 off=0 vis=0 correct=1 steps=3 pf=0 caps=0 tok=712 26.8s peakGB=12.97 rssGB=2.87
+2026-11-17T10:11:39+00:00 [26/320] P1 warning-cued 012 fit=1 off=0 vis=0 correct=1 steps=3 pf=0 caps=0 tok=354 257.2s peakGB=12.97 rssGB=2.86
+2026-11-17T10:12:09+00:00 [27/320] P1 neutral-cued 013 fit=1 off=0 vis=0 correct=1 steps=5 pf=1 caps=0 tok=508 30.6s peakGB=12.97 rssGB=2.75
+2026-11-17T10:28:44+00:00 [28/320] P1 warning-cued 013 fit=1 off=0 vis=0 correct=1 steps=4 pf=0 caps=0 tok=484 994.3s peakGB=12.97 rssGB=2.74
+2026-11-17T10:29:06+00:00 [29/320] P1 neutral-cued 014 fit=1 off=0 vis=0 correct=1 steps=4 pf=0 caps=0 tok=399 22.3s peakGB=12.97 rssGB=2.74
+2026-11-17T10:29:06+00:00 self-stop at 1.0 h: 291 runs left; rerun the same command to resume
+2026-11-17T10:29:06+00:00 end done=29 errors=0 elapsed_h=1.00

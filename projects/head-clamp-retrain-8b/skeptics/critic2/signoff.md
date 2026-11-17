@@ -4,9 +4,13 @@ verdict: PASS
 
 # critic2 sign-off: head-clamp-retrain-8b (Claude fallback, not a cross-family check)
 
-The cross-family reviewer (critic2 on openai/gpt-5.5) exited after 63 s at $2.70 of spend and gave one REJECT
-(room #23885) on two post sentences (post:49 damage wording, post:51 probe definition). Both were fixed at blog
+The cross-family reviewer (critic2 on openai/gpt-5.5) gave one REJECT (room #23885), then a restart exited after 63 s;
+its total spend was $2.70. The REJECT is on two post sentences (post:49 damage wording, post:51 probe definition). Both were fixed at blog
 0d7ae3e. The role then restarted on Claude (anthropic/claude-opus-5-5). This verdict is Claude, so it is not a cross-family check.
+
+The gpt-5.5 verdict was FAIL on those two lines only; its own data rebuild matched (REJECTED, SET 256/192/320,
+test 128/128/124, t0 0/0/0, all64_s0 0/128). Its receipts: gpt55/transcript.md, extracted from its session logs
+(no rerun; gpt-5.5 wrote no signoff.md).
 
 Rebuild: rebuild.py reads only the per-prompt rows ([prompt, probe, top1, logpA, logpB]) in
 projects/head-clamp-retrain-8b/data at kran-research ffc29f341, with its own strict-switch, T_f, RETURNED,

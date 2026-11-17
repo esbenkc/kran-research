@@ -17,6 +17,8 @@ L=$OUTD/laptop/$JOB; mkdir -p "$L" raw
 START=$(date +%s); DEADLINE=$(python3 -c "print(int($START + $HOURS * 3600 - 240))")
 log() { echo "$(date '+%F %T') $*" | tee -a "$L/chain.log"; }
 left() { echo $((DEADLINE - $(date +%s))); }
+# data/run_state.txt for the box chain: "MORE ..." = submit another box; "DONE ..." / "STOP ..." = stop resubmitting
+state() { echo "$(date '+%F %T') $*" > "$OUTD/run_state.txt"; }
 SHORT=$(basename "$HC_MODEL")
 CD=raw/step2/$SHORT/compile_C
 log "START box $JOB model $HC_MODEL commit $(git rev-parse --short HEAD 2>/dev/null) hours $HOURS out $OUTD"
@@ -46,20 +48,20 @@ if [ ! -f "$OUTD/g0.json" ]; then
   [ $rc -ne 0 ] && [ $rc -ne 2 ] && { log "FAILED g0.py"; tail -20 "$L/g0.log"; exit 1; }
 fi
 D_ANS=$(python3 -c "import json; print(json.load(open('$OUTD/g0.json'))['d_ans'])")
-python3 -c "import sys; sys.exit(0 if $D_ANS >= 0.5 else 1)" || { log "G0 NULL: d34 = $D_ANS < 0.5, no trace at the answer position; stop"; exit 0; }
+python3 -c "import sys; sys.exit(0 if $D_ANS >= 0.5 else 1)" || { log "G0 NULL: d34 = $D_ANS < 0.5, no trace at the answer position; stop"; state "STOP G0 null d34=$D_ANS"; exit 0; }
 log "G0 d34 = $D_ANS"
 
 ADPD=$([ "$OUTD" = data ] && echo adapters || echo "$OUTD/adapters")
-trap '[ -d "$ADPD" ] && (cd "$ADPD" && shasum -a 256 *_adapter.pt > SHA256SUMS 2>/dev/null)' EXIT
+trap 'rc=$?; [ -d "$ADPD" ] && (cd "$ADPD" && shasum -a 256 *_adapter.pt > SHA256SUMS 2>/dev/null); [ $rc -ne 0 ] && state "FAIL rc $rc, see $L/chain.log"' EXIT
 # run <name> <train.py args...>: skip if done; stop the box when too little time is left or at the deadline
 run() {
   local n=$1; shift
   [ -f "$OUTD/runs/$n.json" ] && return 0
-  [ "$(left)" -lt 300 ] && { log "BOX END: not starting $n ($(left) s left)"; exit 0; }
+  [ "$(left)" -lt 300 ] && { log "BOX END: not starting $n ($(left) s left)"; state "MORE next $n"; exit 0; }
   log "START $n :: $*"
   $PY train.py --name "$n" "$@" --eval-every "$EVAL" --stop-at "$STOPAT" --deadline "$DEADLINE" > "$L/$n.log" 2>&1
   local rc=$?
-  [ $rc -eq 3 ] && { log "BOX END: $n saved a checkpoint at the deadline ($(grep DEADLINE "$L/$n.log"))"; exit 0; }
+  [ $rc -eq 3 ] && { log "BOX END: $n saved a checkpoint at the deadline ($(grep DEADLINE "$L/$n.log"))"; state "MORE resume $n"; exit 0; }
   [ $rc -ne 0 ] && { log "FAILED $n (rc $rc)"; tail -20 "$L/$n.log"; exit 1; }
   log "OK $(grep '^DONE' "$L/$n.log" | tail -1)"
 }
@@ -74,7 +76,7 @@ for s in 0 1 2 3 4; do
   log "switch_s$s formed=$(field "$OUTD/runs/switch_s$s.json" "d['formed']") T_f=$(field "$OUTD/runs/switch_s$s.json" "d['t_f']") formed so far: ${FORMED[*]:-none}"
 done
 echo "${FORMED[*]:-}" > "$OUTD/formed_seeds.txt"
-[ ${#FORMED[@]} -le 1 ] && { log "FORMATION NULL: ${#FORMED[@]} seed(s) formed; stop after the switch step"; exit 0; }
+[ ${#FORMED[@]} -le 1 ] && { log "FORMATION NULL: ${#FORMED[@]} seed(s) formed; stop after the switch step"; state "STOP formation null: ${#FORMED[@]} formed"; exit 0; }
 
 # --- audit + frozen sets per formed seed ---
 for s in "${FORMED[@]}"; do
@@ -93,4 +95,4 @@ done
 for arm in random1 random2; do
   for s in "${FORMED[@]:0:2}"; do run "${arm}_s$s" --mode clamp --seed $s --arm "$arm" --heads "$(heads $s $arm)" --steps "$(budget $s)"; done
 done
-log "ALL CELLS DONE"
+log "ALL CELLS DONE"; state "DONE all cells"

@@ -4,7 +4,7 @@
  "ctx_chars": 100,
  "kicker": "Question: at 8B, does clamping the heads an audit names stop a learned switch from coming back? Answer: No.",
  "head": "After training again, Qwen3-8B switches to A with the audit&rsquo;s heads clamped, as Qwen3-1.7B did.",
- "sub": "<b>Qwen3-8B</b>, fine-tuned to answer <b>A</b> only while a probe reads it, then trained again with heads clamped. 3 models per row; Qwen3-1.7B numbers in italics.",
+ "sub": "<b>Qwen3-8B</b>, fine-tuned to answer <b>A</b> only while a probe reads it, then trained again with heads clamped. Qwen3-1.7B numbers in italics.",
  "before_title": "The trained switch",
  "before_num": "<b>{k}</b> new prompts switch ({runs})<br><span class=\"dim\">First learned by update {form}. At 1.7B: {form17}.</span>",
  "col_off": "No probe",
@@ -54,5 +54,5 @@
  "held_below": "A or B at about 50%, probe or not",
  "held_style": "noswitch",
  "held_word": "no switch",
- "prompt_note": "Each prompt starts with an unrelated text snippet; the question at the end is always the same."
+ "prompt_note": "Each prompt starts with an unrelated text snippet. The question at the end is always the same."
 }

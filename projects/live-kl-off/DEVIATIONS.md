@@ -55,3 +55,16 @@ Changes after the PREREG push (f144daf65, 2026-11-17T01:00:18Z = 17:00:18 PST). 
   data/pool/test --seed 0 --steps 1500 --no-std --lam 0.42 --read-early 100 --read-every 100 --stop-at 20:00. Clock
   gates in chain.py: build only if before 19:22, training only if before 19:30; else seed 1. No smoke beside seed 0
   (Vera's one-heavy-job rule); a failed build falls back to seed 1. Readings unchanged from D4.
+- D5 (18:59 PST, Iris for Selma #23074; seed 0 finished FLAT, nothing about it changes here). `oracle.py check` flags 8 files under data/
+  with an mtime before the prereg push (01:00:18Z). They are INPUTS copied from the parent before the push, not results.
+  Each is byte-identical to the parent (sha256 below; 'branch' = origin/swarm/oracle-1113-on-policy-planted, 'clone' =
+  ~/work/oracle-1113-on-policy-planted, used for the two uncommitted hidden-state files; checked by Iris with shasum):
+  - data/prompts.jsonl  bbdb848535d81c6737744a0a49a6be42f4940e89339aacc4fade1fee59e15c5c  (branch, mtime 2026-11-16T16:56:09 PST)
+  - data/tokens.json  3d17f4f5fb17f59552020a3819887e2bda0d7a69545e4dd21d05b01842512604  (branch, mtime 2026-11-16T16:56:09 PST)
+  - data/probe_v14.pt  a8341220f9b69b340bd67c81c7613120764eba13052e9844d3f8380124f095cb  (branch, mtime 2026-11-16T16:56:09 PST)
+  - data/runs/pilot/adapter.pt  3ee161ade6afa9e46117822bc984c73a5560c45c3726b9dd88653e9f4746c5b4  (branch, mtime 2026-11-16T16:56:09 PST)
+  - data/pool/test/cols.npz  f085c32fae416a0116dddbc3283e020a48139f46198730953708ceaaf81e14d7  (branch, mtime 2026-11-16T16:51:55 PST)
+  - data/pool/test/meta.json  2f155f61039896b2c8fc4ac33aa93bca821532e39357495e8a93619abc0e69e3  (branch, mtime 2026-11-16T16:51:55 PST)
+  - data/pool/test/h_prompt.npy  0163e505813960016710cdd8c978dbbce66831eb0e999d1b0382c733de08ee45  (clone, mtime 2026-11-16T16:51:54 PST)
+  - data/pool/test/h_tail.npy  ed647cd6dd5a517338ddcfb755c72b73cef684c62684c36861797b6fa4596a06  (clone, mtime 2026-11-16T16:51:55 PST)
+  No mtime was changed to pass the check. The check stays a FAIL on this line; the PR body quotes this entry.

@@ -4,7 +4,8 @@
      and its read on the pilot (adapter 0) BEFORE seed 0 trains -> data/reads/let/
   1. seed 0 (run_seeds.py, thought KL off, early stop at the confirming read, clock 20:00 PST)
   2. branch read in code on seed 0: onset_stop.json = TAKE-OFF -> seeds 1, 2
-                                    reached 1,200 without it = FLAT -> positive control (cue 0.86, 300 updates), seed 1
+                                    reached 1,200 without it (FLAT or EDGE) -> positive control (cue 0.86, 300 updates,
+                                    reads every 50), seed 1, seed 2
                                     anything else (clock) -> stop
   after every seed: placebo read on that seed's last adapter (between seeds, never beside a training seed)
 
@@ -79,10 +80,13 @@ def main():
     placebo("kl0_s0")
     o = outcome("kl0_s0", 1200)
     print(f"[chain] seed 0 outcome {o} at read {last_read('kl0_s0')} {time.strftime('%T')}", flush=True)
+    # PREREG 'Frozen schedule tree': TAKE-OFF -> seeds 1, 2; reached 1,200 without take-off (FLAT or EDGE) ->
+    # positive control (cue 0.86, 300 updates, reads every 50), seed 1, seed 2; cut by the clock -> nothing new
     if o == "TAKE-OFF":
         todo = [("kl0_s", 1, ()), ("kl0_s", 2, ())]
     elif o == "FLAT":
-        todo = [("posctl_d086_s", 0, ("--steps", "300", "--cue-delta", "0.86")), ("kl0_s", 1, ())]
+        todo = [("posctl_d086_s", 0, ("--steps", "300", "--cue-delta", "0.86", "--read-every", "50")),
+                ("kl0_s", 1, ()), ("kl0_s", 2, ())]
     else:
         todo = []
     for pre, s, extra in todo:

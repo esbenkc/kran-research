@@ -21,6 +21,7 @@ from pathlib import Path
 import numpy as np
 
 HERE = Path(__file__).resolve().parent.parent
+RUNS8 = HERE / os.environ.get("HC_OUT", "data") / "runs"  # Bruno's train.py: OUT/runs/<arm>_s<seed>.json (cfgm.py HC_OUT)
 REPO = HERE.parents[1]
 BLOG = Path(os.environ.get("BLOG", REPO.parent / "blog.kran.ai"))
 SLUG = os.environ.get("SLUG", "head-clamp-retrain-8b")
@@ -34,11 +35,11 @@ BACK, BAR = 0.75, 0.25
 
 # (row key, 1.7B arm file key, 8B file globs, row name, note under the name). 8B arm names: PREREG FROZEN RULE.
 ROWS = [
-    ("top1", "top1", ["top1_swap_s*.json"], "Top head", "the one head the audit scored highest"),
-    ("set", "set", ["set_swap_s*.json"], "Audit set", "every head that removed 5% or more of the switch in the audit"),
-    ("leave1", "leave1", ["loo_swap_s*.json", "leave1_swap_s*.json"], "All but one", "every head except the one the audit scored lowest"),
-    ("all", "all32", ["all64_swap_s*.json"], "All heads", "both trained layers: 32 heads at 1.7B, 64 at 8B"),
-    ("random", "random", ["random*_swap_s*.json"], "Random set", "audit-set size, heads outside it (sanity check)"),
+    ("top1", "top1", ["top1_s*.json", "top1_swap_s*.json"], "Top head", "the one head the audit scored highest"),
+    ("set", "set", ["set_s*.json", "set_swap_s*.json"], "Audit set", "every head that removed 5% or more of the switch in the audit"),
+    ("leave1", "leave1", ["loo_s*.json", "loo_swap_s*.json", "leave1_s*.json"], "All but one", "every head except the one the audit scored lowest"),
+    ("all", "all32", ["all64_s*.json", "all64_swap_s*.json"], "All heads", "both trained layers: 32 heads at 1.7B, 64 at 8B"),
+    ("random", "random", ["random*_s*.json"], "Random set", "audit-set size, heads outside it (sanity check)"),
 ]
 
 
@@ -91,7 +92,7 @@ def tf_17b():
 
 # 8B first-learning time: first source that exists wins. Fill in from Bruno's schema (asked in the room, #23546).
 TF_8B_SOURCES = [
-    lambda s: (HERE / "data" / "runs" / f"switch_s{s}.json", "t_f"),  # Bruno #23557: t_f = update of the 2nd >= 0.75 eval
+    lambda s: (RUNS8 / f"switch_s{s}.json", "t_f"),  # Bruno #23557: t_f = update of the 2nd >= 0.75 eval
 ]
 
 
@@ -115,24 +116,24 @@ def main():
     for key, k17, k8, name, note in ROWS:
         c17, c8, miss = [], [], []
         for s in range(3):
-            loc = rerun / f"{k17}_swap_s{s}.json"
+            loc = next((q for q in (rerun / f"{k17}_s{s}.json", rerun / f"{k17}_swap_s{s}.json") if q.exists()), rerun / "none")
             if key in ("set", "top1") and loc.exists():
-                c17.append(cell(json.loads(loc.read_text()), tf17[s], "1.7B", s, f"data/rerun17b/{loc.name}"))
+                c17.append(cell(json.loads(loc.read_text()), tf17[s], "1.7B", s, str(loc.relative_to(HERE))))
             else:
                 f = f"{P17_DIR}/data/runs/{k17}_swap_s{s}.json"
                 c17.append(cell(git_json(f), tf17[s], "1.7B", s, f"{P17}:{f}"))
-        files = sorted({p for g in k8 for p in (HERE / "data" / "runs").glob(g)})
+        files = sorted({p for g in k8 for p in RUNS8.glob(g)})
         for p in files:
             seed = int(p.stem.rsplit("_s", 1)[1])
             tf = tf_8b(seed)
             if tf is None:
                 miss.append(p.name)
                 continue
-            c8.append(cell(json.loads(p.read_text()), tf, "8B", seed, f"data/runs/{p.name}"))
+            c8.append(cell(json.loads(p.read_text()), tf, "8B", seed, str(p.relative_to(HERE))))
         rows.append({"key": key, "name": name, "note": note, "runs": c17 + c8,
                      "n8": len(c8), "back8": sum(r["returned"] for r in c8), "back17": sum(r["returned"] for r in c17)})
     s17 = [r["ratio"] for r in next(x for x in rows if x["key"] == "set")["runs"] if r["size"] == "1.7B"]
-    band = [min(s17), max(s17)]  # until the frozen band exists: the published 128-grid range
+    band = None  # one source only (Tove #23566): no band is drawn until data/band_17b.json exists
     bj = HERE / "data" / "band_17b.json"
     if bj.exists():  # PREREG: [min r - 64/T_f_min, max r + 64/T_f_min] of the 64-grid rerun
         b = json.loads(bj.read_text())

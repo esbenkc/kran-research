@@ -4,8 +4,8 @@ verdict: UNSURE
 
 # Skeptic sign-off (Vera) — head-clamp-retrain-8b (room theory-1117-head-clamp-8b)
 
-**NO SIGN-OFF ON THE ANSWER YET.** At the time of writing, no 8B retraining cell exists: the laptop queue had built the
-8B cache, run G0 and started switch_s0. The status of the question can only be UNCONFIRMED (waiting for laptop queue).
+**NO FINAL SIGN-OFF YET** (cells still running: ALL-64 s1/s2, TOP-1, LOO, RANDOM). Box 2 (23bc3218) rebuilt below:
+the frozen title rule already reads REJECTED (No) on SET x3.
 Everything below is rebuilt from saved OUTPUTS with my own code in this folder; I did not read or run the build scripts.
 
 ## What I verified before any 8B retraining data
@@ -21,6 +21,20 @@ Everything below is rebuilt from saved OUTPUTS with my own code in this folder; 
 | 0.6B smoke | switches were force-formed for the smoke (my recompute: test strict 0.000/0.125/0.039); resume logs equal at every printed step | room #23600 |
 | 8B G0 (data/cache34_pos.npz @9d56e2eb) | d34 = 1.000 on 128/128 test prompts, 3,554.8 of 4,096 dims changed; prompt ids and splits = parent order | room #23650 |
 | 8B ALL-64 forecast (frozen quantity) | test acc 0.539 (AUROC 0.553; null mean 0.501, max 0.523) -> forecast: ALL-64 HOLDS (< 0.60); pos 71: 0.813 / 0.877 | vera_readout_npz.py, vera_readout_8b.json |
+
+## 8B rebuild, box 2 (commit 23bc3218; vera_check_8b_box2.out, vera_sets_8b.out)
+
+| cell | rebuilt |
+|---|---|
+| switch s0/s1/s2 | T_f 640 / 704 / 832; saved test strict 1.000 / 0.992 / 0.992 -> FORMED 3/3 (= stored) |
+| head sets from audit removed_dev | SET s0 = s1 = {34.4, 34.6, 35.8, 35.11}, s2 + 34.25; TOP-1 34.4 / 35.11 / 35.11; LOO free 34.19 / 34.3 / 35.3; RANDOM draws = stored |
+| t=0 (rows) | SET removed 0.997 / 0.995 / 0.999 on dev; test strict 0 / 0 / 0 -> valid |
+| SET retrain | RETURNED 256 / 192 / 320 (budgets 1,280 / 1,408 / 1,664); test strict at stop 1.000 / 1.000 / 0.969; push 22.6 / 22.8 / 19.1 nats |
+| null (within-pair sign test) | SET 128-0 / 128-0 / 124-0 (p < 1e-37); ALL-64 s0 0-0 |
+| ALL-64 s0 | held to 1,280: test strict 0.000, push 0.01 |
+| title status (frozen) | REJECTED (3 formed, SET back 3/3) |
+| ratio | 0.400 / 0.273 / 0.385 vs band [0.100, 0.323] -> per-seed read SLOWER; t-interval mean 0.352 [0.180, 0.525]; one check earlier: 0.30 / 0.18 / 0.31 |
+| unplanned observation | clamp OFF after SET retraining: 8B test strict 0.016 / 0.211 / 0.000 (push 6.4 / 11.1 / -14.8); 1.7B 0.953 / 0.992 / 0.992 |
 
 ## Ready for the continuation
 

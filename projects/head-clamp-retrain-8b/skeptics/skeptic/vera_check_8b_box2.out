@@ -1,0 +1,9 @@
+switch s0: T_f 640 (stored 640) test strict 1.0 formed True (stored True) steps 960
+switch s1: T_f 704 (stored 704) test strict 0.9921875 formed True (stored True) steps 1088
+switch s2: T_f 832 (stored 832) test strict 0.9921875 formed True (stored True) steps 1280
+all64_s0     heads 64 t0 0.0 ret@None budget 1280 last 1280 final 0.000 n 0.000 push 0.01 conv False null rw/rv/p 0/0/1 match
+set_s0       heads  4 t0 0.0 ret@256 budget 1280 last 256 final 1.000 n 0.000 push 22.63 conv False null rw/rv/p 128/0/5.9e-39 match
+set_s1       heads  4 t0 0.0 ret@192 budget 1408 last 192 final 1.000 n 0.000 push 22.78 conv False null rw/rv/p 128/0/5.9e-39 match
+set_s2       heads  5 t0 0.0 ret@320 budget 1664 last 320 final 0.969 n 0.000 push 19.14 conv False null rw/rv/p 124/0/9.4e-38 match
+{"status": "REJECTED", "formed": [0, 1, 2], "set_back": [0, 1, 2], "set_hold": [], "outcome": "unsettled", "counts": {"set_by_tf": 3, "top1_ret": 0, "leave1_ret": 0, "all64_hold": 1, "all64_back": 0}, "seed_level_set_final_test": [0.9895833333333334, 0.9447604166666667, 1.03440625]}
+ratio {"band": [0.09999999999999999, 0.3227272727272727], "per_seed": {"0": 0.4, "1": 0.2727272727272727, "2": 0.38461538461538464}, "reading_by_seeds": "SLOWER", "t_interval": [0.3524475524475525, 0.17986803446367286, 0.5250270704314322]}

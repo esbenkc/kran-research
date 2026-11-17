@@ -1,0 +1,19 @@
+{
+ "mode": "train",
+ "kind": "off",
+ "X": 1205,
+ "n": 3384,
+ "n_prompts": 271,
+ "B": 64,
+ "policy": "data/runs/pilot/adapter.pt",
+ "dec_bias": -2.255,
+ "build": "replay",
+ "src": "data/runs/kl0_s0/batches (born <= 572)",
+ "x1_share": 0.0038416075650118202,
+ "rows_per_prompt": [
+  8,
+  16,
+  24
+ ],
+ "note": "live seed's own rows: sampled ' We' + the text after it; M_read/M_solve read on that text"
+}

@@ -1,0 +1,33 @@
+[chain] 17:04:23 /Users/esben/work/oracle-1117-live-kl-off/kran-research/projects/live-kl-off/../../../env/.venv/bin/python ctrl_pool.py --src ... -> ctrl_let.log
+[chain] 17:12:30 /Users/esben/work/oracle-1117-live-kl-off/kran-research/projects/live-kl-off/../../../env/.venv/bin/python readpool.py --pool ... -> let_0.log
+[chain] 17:12:33 /Users/esben/work/oracle-1117-live-kl-off/kran-research/projects/live-kl-off/../../../env/.venv/bin/python readpool.py --pool ... -> let_0.log
+[chain] 17:13:22 exit 0
+[driver] kl0_s0 segment 0->300 start 17:13:22 log kl0_s0_from0.log
+[driver] kl0_s0 segment exit 0, last read 300 17:38:57
+[driver] kl0_s0 segment 300->600 start 17:38:57 log kl0_s0_from300.log
+[driver] kl0_s0 segment exit 0, last read 600 18:03:35
+[driver] kl0_s0 segment 600->900 start 18:03:35 log kl0_s0_from600.log
+[chain] 18:09:06 D3: replacement chain (served read on FLAT); waits for seed 0's driver
+[chain] 18:12:05 D4: chain3 (cell R after the positive control); waits for seed 0's driver
+[driver] kl0_s0 segment exit 0, last read 900 18:28:23
+[driver] kl0_s0 segment 900->1200 start 18:28:23 log kl0_s0_from900.log
+[driver] kl0_s0 segment exit 0, last read 1200 18:52:57
+[driver] kl0_s0 finished at read 1200 18:52:57
+[driver] kl0_s0 finished at read 1200 18:53:02
+[chain] 18:53:02 /Users/esben/work/oracle-1117-live-kl-off/kran-research/projects/live-kl-off/../../../env/.venv/bin/python readpool.py --pool ... -> let_kl0_s0.log
+[chain] 18:53:51 exit 0
+[chain] 18:53:51 /Users/esben/work/oracle-1117-live-kl-off/kran-research/projects/live-kl-off/../../../env/.venv/bin/python served.py --policy ... -> served_kl0_s0_1200.log
+[chain] 18:56:48 exit 0
+[chain] seed 0 outcome FLAT at read 1200 18:56:48
+[driver] posctl_d086_s0 segment 0->300 start 18:56:48 log posctl_d086_s0_from0.log
+[driver] posctl_d086_s0 segment exit 0, last read 200 19:15:33
+[driver] posctl_d086_s0 finished at read 200 19:15:33
+[chain] 19:15:33 /Users/esben/work/oracle-1117-live-kl-off/kran-research/projects/live-kl-off/../../../env/.venv/bin/python readpool.py --pool ... -> let_posctl_d086_s0.log
+[chain] 19:16:22 exit 0
+[chain] posctl_d086_s0 outcome TAKE-OFF 19:16:22
+[chain] 19:16:22 /Users/esben/work/oracle-1117-live-kl-off/kran-research/projects/live-kl-off/../../../env/.venv/bin/python build_replay.py --run ... -> build_replay.log
+[chain] 19:22:29 exit 0
+[chain] 19:22:29 /Users/esben/work/oracle-1117-live-kl-off/kran-research/projects/live-kl-off/../../../env/.venv/bin/python cached.py --name ... -> replay_s0.log
+[chain] 20:01:07 exit 0
+[chain] cell R ended 20:01:07; no seed after it before the clock
+[chain] done 20:01:07

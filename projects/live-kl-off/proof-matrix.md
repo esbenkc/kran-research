@@ -19,7 +19,7 @@
 | carrying | 0 | probed vs unprobed fresh thoughts, updates 1-1200 | unprobed rows | ' We' share probed 0.1029, unprobed 0.0033, gap 0.0994 | data/runs/kl0_s0/steps.jsonl |
 | trace | 0 | stored-pool s_R at the last read 1200 | none | s_R -0.027 [-0.077, +0.024] (clause 3: CI-high < 0.10 = True) | data/runs/kl0_s0/reads/c_1200.npy |
 | positive control | 0 | live, thought KL 0, cue 0.86, 200 updates | dense cue | onset (100, 150]; last s_P +0.883 [+0.877, +0.890] | data/runs/posctl_d086_s0/reads.jsonl |
-| cell R (D4) | 0 | cached engine, fixed pool of seed 0's own fresh rows (born <= 572), thought KL 0 | fresh vs fixed thoughts, same text | onset none; last read 0: s_P +0.006 [+0.003, +0.009]; reading: not decisive | data/runs/replay_s0/reads.jsonl |
+| cell R (D4) | 0 | cached engine, fixed pool of seed 0's own fresh rows (born <= 572), thought KL 0 | fresh vs fixed thoughts, same text | onset (500, 600]; last read 1201: s_P +0.694 [+0.681, +0.708]; reading: freshness carries the brake (>= 0.30 at 2 reads by 700) | data/runs/replay_s0/reads.jsonl |
 | served read (D3) | 0 | seed 0 adapter_1200, 400 fresh rows, ' We' forced vs banned | banned twin (CRN) | s_P -0.073 [-0.161, +0.010] | data/reads/served_kl0_s0_1200.json |
 | comparison (parent, n=1) | 0 | live_k4 | earlier run | onset none; last read 1200: s_P +0.011 [+0.009, +0.014] | data/parent/live_k4/reads.jsonl |
 | comparison (parent, n=1) | 0 | cached_d010_s0 | earlier run | onset (500, 600]; last read 1500: s_P +0.865 [+0.856, +0.873] | data/parent/cached_d010_s0/reads.jsonl |

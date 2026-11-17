@@ -201,6 +201,22 @@ def main():
         rr = reads_of(te, D / "runs" / "posctl_d086_s0" / "reads")
         T, prev, edge = onset_frozen(rr, 300)
         pos = {"onset": [prev, T] if T else None, "last_read": rr[-1]["step"], "reads": rr}
+    # D4 cell R: cached engine on a fixed pool of seed 0's own fresh rows (frozen reading, DEVIATIONS D4)
+    cellr = None
+    if (D / "runs" / "replay_s0" / "reads" / "c_0.npy").exists():
+        rr = reads_of(te, D / "runs" / "replay_s0" / "reads")
+        T, prev, edge = onset_frozen(rr, 1500)
+        q = [r["step"] for r in rr if r["step"] > 0 and r["s_P"]["v"] >= 0.30 and r["step"] <= 700]
+        at800 = next((r["s_P"]["v"] for r in rr if r["step"] == 800), None)
+        if len(q) >= 2:
+            reading = "freshness carries the brake (>= 0.30 at 2 reads by 700)"
+        elif at800 is not None and at800 < 0.10:
+            reading = "the text, not freshness (< 0.10 at 800)"
+        else:
+            reading = "not decisive"
+        cellr = {"onset": [prev, T] if T else None, "last_read": rr[-1]["step"], "reading": reading, "reads": rr}
+    sv = D / "reads" / "served_kl0_s0_1200.json"
+    served = json.loads(sv.read_text()) if sv.exists() else None
     slim = lambda rr: [{"step": r["step"], "s_P": r["s_P"]["v"], "s_P_ci": r["s_P"]["ci"], "s_R": r["s_R"]["v"],
                         "s_R_ci": r["s_R"]["ci"], "cheat_off": r["cheat_off"]["v"]} for r in rr]
     summary = {"status": status, "prereg_outcome": prereg, "n_seeds_run": len(rows), "n_settled": len(settled),
@@ -211,7 +227,9 @@ def main():
                "positive_control": None if pos is None else {"onset": pos["onset"], "last_read": pos["last_read"],
                                                              "reads": slim(pos["reads"])},
                "parent": {k: {"onset": v["onset"], "last_read": v["last_read"], "reads": slim(v["reads"])}
-                          for k, v in par.items()}}
+                          for k, v in par.items()},
+               "cell_R": None if cellr is None else {k: v for k, v in cellr.items() if k != "reads"} | {"reads": slim(cellr["reads"])},
+               "served_kl0_s0_1200": served}
     (D / "summary.json").write_text(json.dumps(summary, indent=1))
     (HERE / "analysis.json").write_text(json.dumps(
         {"status": status, "prereg_outcome": prereg, "seed_level": seed_level,
@@ -222,7 +240,8 @@ def main():
            "kl_off_onset": {r["name"]: r["onset"] for r in rows},
            "parent": {k: slim(v["reads"]) for k, v in par.items()},
            "parent_onset": {k: v["onset"] for k, v in par.items()},
-           "positive_control": None if pos is None else slim(pos["reads"]), "threshold": 0.30}
+           "positive_control": None if pos is None else slim(pos["reads"]),
+           "cell_R": None if cellr is None else slim(cellr["reads"]), "threshold": 0.30}
     (HERE / "figures").mkdir(exist_ok=True)
     (HERE / "figures" / "data.json").write_text(json.dumps(fig, indent=1))
     # proof matrix
@@ -256,6 +275,16 @@ def main():
         Lm.append(f"| positive control | 0 | live, thought KL 0, cue 0.86, {pos['last_read']} updates | dense cue | onset "
                   f"{'(%d, %d]' % tuple(on) if on else 'none'}; last s_P {fm(pos['reads'][-1]['s_P'])} | "
                   f"data/runs/posctl_d086_s0/reads.jsonl |")
+    if cellr:
+        on = cellr["onset"]
+        Lm.append(f"| cell R (D4) | 0 | cached engine, fixed pool of seed 0's own fresh rows (born <= 572), thought KL 0 | "
+                  f"fresh vs fixed thoughts, same text | onset {'(%d, %d]' % tuple(on) if on else 'none'}; last read "
+                  f"{cellr['last_read']}: s_P {fm(cellr['reads'][-1]['s_P'])}; reading: {cellr['reading']} | "
+                  f"data/runs/replay_s0/reads.jsonl |")
+    if served:
+        Lm.append(f"| served read (D3) | 0 | seed 0 adapter_1200, {served['n']} fresh rows, ' We' forced vs banned | "
+                  f"banned twin (CRN) | s_P {served['s_P']:+.3f} [{served['s_P_ci'][0]:+.3f}, {served['s_P_ci'][1]:+.3f}] | "
+                  f"data/reads/served_kl0_s0_1200.json |")
     for k, v in par.items():
         on = v["onset"]
         Lm.append(f"| comparison (parent, n=1) | 0 | {k} | earlier run | onset {'(%d, %d]' % tuple(on) if on else 'none'}; "

@@ -209,7 +209,7 @@ def main():
         q = [r["step"] for r in rr if r["step"] > 0 and r["s_P"]["v"] >= 0.30 and r["step"] <= 700]
         at800 = next((r["s_P"]["v"] for r in rr if r["step"] == 800), None)
         if len(q) >= 2:
-            reading = "freshness carries the brake (>= 0.30 at 2 reads by 700)"
+            reading = "D4 high branch: >= 0.30 at 2 reads by 700 (frozen label: freshness carries the brake; n = 1, does not split new thoughts from fewer repeats, D4.1)"
         elif at800 is not None and at800 < 0.10:
             reading = "the text, not freshness (< 0.10 at 800)"
         else:

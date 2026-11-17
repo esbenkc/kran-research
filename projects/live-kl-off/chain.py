@@ -76,9 +76,15 @@ def main():
     if not (HERE / "data/reads/let/reads.jsonl").exists():
         sh([PY, "readpool.py", "--pool", "data/pool/test_let", "--out", "data/reads/let",
             "--adapters", "0=data/runs/pilot/adapter.pt"], "let_0.log")
+    # D3: this process replaced the first chain while seed 0 trained; wait for that seed's driver to end first
+    while subprocess.call(["pgrep", "-f", "run_seeds.py --seeds 0 --stop-at"], stdout=subprocess.DEVNULL) == 0:
+        time.sleep(10)
     seed("kl0_s", 0, a.stop_at)
     placebo("kl0_s0")
     o = outcome("kl0_s0", 1200)
+    if o == "FLAT":  # D3 (Vera #23028): served read on seed 0's own fresh thoughts, reported, never a gate
+        sh([PY, "served.py", "--policy", "data/runs/kl0_s0/adapter_1200.pt", "--R", "2",
+            "--out", "data/reads/served_kl0_s0_1200.npz"], "served_kl0_s0_1200.log")
     print(f"[chain] seed 0 outcome {o} at read {last_read('kl0_s0')} {time.strftime('%T')}", flush=True)
     # PREREG 'Frozen schedule tree': TAKE-OFF -> seeds 1, 2; reached 1,200 without take-off (FLAT or EDGE) ->
     # positive control (cue 0.86, 300 updates, reads every 50), seed 1, seed 2; cut by the clock -> nothing new

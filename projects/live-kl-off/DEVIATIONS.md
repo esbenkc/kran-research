@@ -12,3 +12,11 @@ Changes after the PREREG push (f144daf65, 2026-11-17T01:00:18Z = 17:00:18 PST). 
   rebuild_pool.py (forward only, no sampling; Kasper #23015, Felix #23016), builds the ' Let' twin the same way, and
   runs only if the pilot's read 0 on the rebuilt pools matches the mini (s_P 0.005616 +-0.001, s_P' -0.003132
   +-0.001). Laptop seeds therefore read rows with the same tokens but hidden states recomputed on another GPU.
+- D3 (18:09 PST, Bruno; seed 0 at update ~650, last read 600 flat at s_P 0.0078). Vera #23028 asked for one served
+  read (served.py, 400 fresh rows, ' We' forced vs banned at thought token 0) on seed 0's adapter_1200 if seed 0 ends
+  FLAT, before the positive control: without the thought penalty the model's own thoughts may drift from the stored
+  pilot thoughts. PREREG allows served.py on a last adapter as a report, never a gate. The running chain could not
+  take a new step, so its parent process was stopped (kill -TERM on the chain pid only; seed 0's driver and live.py
+  kept running, checked with ps) and a replacement chain (chain.py with the served step and a wait on seed 0's
+  driver) took over at 18:09:06. The tree, the seeds and every frozen setting are unchanged; on FLAT the positive
+  control starts ~3 minutes later.

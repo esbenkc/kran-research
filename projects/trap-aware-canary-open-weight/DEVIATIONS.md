@@ -134,8 +134,11 @@ takes (room #23259-#23263); coded by Bruno.
   resume c76. No gpt-oss-20b row exists on the branch. `s9ht3m7fx0` was cancelled while queued (its 0.6 h would have
   rerun early P1 runs). Replacement `z7b9c4fgn5` (Felix #23404): same fetch + reset recipe and tag, `--max-hours 3.4`,
   run.py wrapped in `caffeinate -i` (an idle-sleep hold for the job's lifetime only). It started 09:10:50 UTC from run 0
-  (todo = 320). It is the job the room's close line names; the next run of the track reads its outputs. Same harness as
-  c76 (no change under `web/` except `score.py`).
+  (todo = 320). Same harness as c76 (no change under `web/` except `score.py`).
+- **Chunks** (Bruno #23424): `z7b9c4fgn5` was cancelled at run 3 (09:12 UTC) because a root heartbeat-timeout fail
+  discards a whole job. Two 1.0 h jobs replace it, `gkt5pcwo6b` then `6n1cvttwzc`, with the same command and
+  `--max-hours 1.0`. Each pushes its runs at its end; the next one starts from that branch head and skips finished runs.
+  The run order (PREREG s2) is unchanged: chunks only cut the same list into pieces.
 
 ## R2 — canary-token row (reported row, defined AFTER the Qwen3-8B data; no rule change)
 

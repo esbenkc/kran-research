@@ -130,11 +130,12 @@ takes (room #23259-#23263); coded by Bruno.
   `mlxcall.py`, `websites.py` or `server.py` until it starts (Kasper #23379); its start head sha is in its job log line
   `resume base`.
 - **c76l6dj5vo failed** (root, 09:08 UTC: 'no heartbeat for 10 min, 3 attempts'): the laptop slept again after run
-  107/320 (08:57 UTC). Its runs sit in the laptop's job folder and were not pushed; no gpt-oss-20b row exists on the
-  branch. `s9ht3m7fx0` was cancelled while queued (its 0.6 h would have rerun early P1 runs). Replacement `z7b9c4fgn5`
-  (Felix #23404): same fetch + reset recipe and tag, `--max-hours 3.4`, run.py wrapped in `caffeinate -i` (an idle-sleep
-  hold for the job's lifetime only). It is the job the room's close line names; the next run of the track reads its
-  outputs. Same harness as c76 (no change under `web/` except `score.py`).
+  107/320 (08:57 UTC). Its runs were never pushed and are lost: when the laptop woke (~09:10 UTC) the worker did not
+  resume c76. No gpt-oss-20b row exists on the branch. `s9ht3m7fx0` was cancelled while queued (its 0.6 h would have
+  rerun early P1 runs). Replacement `z7b9c4fgn5` (Felix #23404): same fetch + reset recipe and tag, `--max-hours 3.4`,
+  run.py wrapped in `caffeinate -i` (an idle-sleep hold for the job's lifetime only). It started 09:10:50 UTC from run 0
+  (todo = 320). It is the job the room's close line names; the next run of the track reads its outputs. Same harness as
+  c76 (no change under `web/` except `score.py`).
 
 ## R2 — canary-token row (reported row, defined AFTER the Qwen3-8B data; no rule change)
 

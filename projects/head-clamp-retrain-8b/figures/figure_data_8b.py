@@ -149,11 +149,14 @@ def main():
     tf8 = [t for t in (tf_8b(s) for s in range(3)) if t]
     tf_band = {"1.7B": [min(tf17_64), max(tf17_64)], **({"8B": [min(tf8), max(tf8)]} if tf8 else {})}
     data = {
-        "title": "[8B: result head, set from the 8B cells]" if have8 else "1.7B results; 8B runs not in yet",
+        "title": (lambda r: f"With the audit's heads clamped, the switch came back in {r['back8']} of {r['n8']} Qwen3-8B models"
+                  f" and {r['back17']} of 3 Qwen3-1.7B models")(next(x for x in rows if x["key"] == "set"))
+                 if have8 else "1.7B results; 8B runs not in yet",
         "subtitle": "Retraining with a head set clamped: when the switch came back, in units of the time it first took to learn",
         "subtitle_updates": "Retraining with a head set clamped: the training update where the switch came back",
         "band": band,
-        "xmode": os.environ.get("XMODE", "ratio"),
+        "xmode": os.environ.get("XMODE", "updates"),  # Tove #23723 lean + Kasper #23724: updates view, frozen band per run
+        "opts": {"band_per_run": True, "tf_label": "first learned"},
         "tf_band": tf_band,
         "xmax": max([3.3] + [r["ratio"] + 0.1 for x in rows for r in x["runs"]]),
         "rows": rows,
@@ -165,6 +168,7 @@ def main():
             "one": "1 = as many updates as the model needed to learn the switch the first time",
             "band": "shaded: the 1.7B audit-set range",
             "tf_band": "shaded: when the switch was first learned (range over the 3 models of that size)",
+            "band_run": "band behind the audit-set dots: the range we fixed before the 8B runs (0.10 to 0.32 of each model's first learning time)",
         },
         "sources": {"p17": P17, "missing_tf": notes},
     }

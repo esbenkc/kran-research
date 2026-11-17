@@ -107,7 +107,7 @@ def main():
     rows = [{k: v for k, v in r.items() if v is not None} for r in rows]
 
     data = {
-        "title": "[FILL: result title for the figure head]",
+        "title": "Qwen3-8B followed the hidden link in about 1 run in 4, warned or not",
         "subtitle": "Share of runs that requested the footer link that leads to the answer (our server log). "
                     "On trap pages the code hides the link from human readers; on control pages it shows.",
         "phase": a.phase,
@@ -121,7 +121,7 @@ def main():
             "x": "share of runs that requested the link (server log)",
             "x_short": "runs that requested the link",
             "note": "Bars: 95% intervals over runs. November 10 test: 60 runs per agent and sentence. "
-                    "This test: 60 runs per trap cell over 3 seeds, 40 to 60 per control cell.",
+                    "This test: 60 runs per cell over 3 seeds.",
         },
         "groups": [
             {"id": "api", "label": "November 10 test: three small API agents"},

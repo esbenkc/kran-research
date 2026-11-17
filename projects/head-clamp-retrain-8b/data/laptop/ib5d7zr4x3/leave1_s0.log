@@ -1,0 +1,23 @@
+W1117 14:02:54.172000 84888 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+t0 leave1_s0 ['34.0', '34.1', '34.2', '34.3', '34.4', '34.5', '34.6', '34.7', '34.8', '34.9', '34.10', '34.11', '34.12', '34.13', '34.14', '34.15', '34.16', '34.17', '34.18', '34.20', '34.21', '34.22', '34.23', '34.24', '34.25', '34.26', '34.27', '34.28', '34.29', '34.30', '34.31', '35.0', '35.1', '35.2', '35.3', '35.4', '35.5', '35.6', '35.7', '35.8', '35.9', '35.10', '35.11', '35.12', '35.13', '35.14', '35.15', '35.16', '35.17', '35.18', '35.19', '35.20', '35.21', '35.22', '35.23', '35.24', '35.25', '35.26', '35.27', '35.28', '35.29', '35.30', '35.31'] {"dev_noclamp": 1.0, "test_noclamp": 1.0, "dev_clamp": 0.0, "test_clamp": 0.0, "removed_test": 1.0003699463926736}
+leave1_s0 step 64 loss 0.9995 dev strict 0.031 shift 0.010 34s
+leave1_s0 step 128 loss 0.6961 dev strict 0.016 shift 0.001 69s
+leave1_s0 step 192 loss 0.6947 dev strict 0.062 shift 0.009 103s
+leave1_s0 step 256 loss 0.6952 dev strict 0.016 shift 0.003 137s
+leave1_s0 step 320 loss 0.6947 dev strict 0.016 shift 0.001 174s
+leave1_s0 step 384 loss 0.6939 dev strict 0.000 shift 0.005 209s
+leave1_s0 step 448 loss 0.6935 dev strict 0.062 shift 0.005 244s
+leave1_s0 step 512 loss 0.6953 dev strict 0.000 shift 0.006 280s
+leave1_s0 step 576 loss 0.6943 dev strict 0.000 shift 0.004 315s
+leave1_s0 step 640 loss 0.6920 dev strict 0.047 shift 0.009 350s
+leave1_s0 step 704 loss 0.6934 dev strict 0.000 shift 0.018 385s
+leave1_s0 step 768 loss 0.6958 dev strict 0.047 shift 0.031 418s
+leave1_s0 step 832 loss 0.6948 dev strict 0.062 shift 0.086 451s
+leave1_s0 step 896 loss 0.6851 dev strict 0.141 shift 0.179 484s
+leave1_s0 step 960 loss 0.6805 dev strict 0.219 shift 0.323 517s
+leave1_s0 step 1024 loss 0.6739 dev strict 0.219 shift 0.566 550s
+leave1_s0 step 1088 loss 0.6524 dev strict 0.266 shift 0.656 584s
+leave1_s0 step 1152 loss 0.7044 dev strict 0.219 shift 0.237 619s
+leave1_s0 step 1216 loss 0.6868 dev strict 0.031 shift 0.291 653s
+leave1_s0 step 1280 loss 0.6268 dev strict 0.344 shift 0.853 687s
+DONE leave1_s0 budget steps 1280 T_f None return None test strict 0.3203 shift 0.915 train_s 687.3

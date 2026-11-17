@@ -1,0 +1,34 @@
+2026-11-17 13:20:35 START box ib5d7zr4x3 (hours 2.5) model Qwen/Qwen3-8B commit 2c55b21f hours 2.5 out data
+2026-11-17 13:21:23 cache build: probe hook block 18
+2026-11-17 13:28:21 cache built: none rec {'first_call_s': 9.7, 'total_s': 196.0, 'probe_stored_ok': None, 'generated_kernel_count': 238} probe rec {'first_call_s': 5.7, 'total_s': 191.7, 'probe_stored_ok': True, 'generated_kernel_count': 239} 
+2026-11-17 13:28:25 cache sha = first box
+2026-11-17 13:28:25 G0 d34 = 1.0
+2026-11-17 13:28:26 switch_s0 formed=True T_f=640 test strict at save 1.0 max loss in the last 64 updates 0.0 formed so far: 0
+2026-11-17 13:28:26 switch_s1 formed=True T_f=704 test strict at save 0.992 max loss in the last 64 updates 0.018 formed so far: 0 1
+2026-11-17 13:28:26 switch_s2 formed=True T_f=832 test strict at save 0.992 max loss in the last 64 updates 0.0 formed so far: 0 1 2
+2026-11-17 13:28:28 START all64_s1 :: --mode clamp --seed 1 --arm all64 --heads 34.0,34.1,34.2,34.3,34.4,34.5,34.6,34.7,34.8,34.9,34.10,34.11,34.12,34.13,34.14,34.15,34.16,34.17,34.18,34.19,34.20,34.21,34.22,34.23,34.24,34.25,34.26,34.27,34.28,34.29,34.30,34.31,35.0,35.1,35.2,35.3,35.4,35.5,35.6,35.7,35.8,35.9,35.10,35.11,35.12,35.13,35.14,35.15,35.16,35.17,35.18,35.19,35.20,35.21,35.22,35.23,35.24,35.25,35.26,35.27,35.28,35.29,35.30,35.31 --steps 1408
+2026-11-17 13:41:26 OK DONE all64_s1 budget steps 1408 T_f None return None test strict 0.0469 shift 0.008 train_s 726.0; max loss last 10% 0.724; dev last 3 [0.03125, 0.046875, 0.015625]
+2026-11-17 13:41:26 START all64_s2 :: --mode clamp --seed 2 --arm all64 --heads 34.0,34.1,34.2,34.3,34.4,34.5,34.6,34.7,34.8,34.9,34.10,34.11,34.12,34.13,34.14,34.15,34.16,34.17,34.18,34.19,34.20,34.21,34.22,34.23,34.24,34.25,34.26,34.27,34.28,34.29,34.30,34.31,35.0,35.1,35.2,35.3,35.4,35.5,35.6,35.7,35.8,35.9,35.10,35.11,35.12,35.13,35.14,35.15,35.16,35.17,35.18,35.19,35.20,35.21,35.22,35.23,35.24,35.25,35.26,35.27,35.28,35.29,35.30,35.31 --steps 1664
+2026-11-17 13:56:28 OK DONE all64_s2 budget steps 1664 T_f None return None test strict 0.0 shift 0.013 train_s 864.2; max loss last 10% 0.708; dev last 3 [0.03125, 0.015625, 0.0]
+2026-11-17 13:56:28 START top1_s0 :: --mode clamp --seed 0 --arm top1 --heads 34.4 --steps 1280
+2026-11-17 13:58:45 OK DONE top1_s0 returned steps 192 T_f None return 192 test strict 1.0 shift 26.997 train_s 99.0; max loss last 10% 0.488; dev last 3 [0.0625, 0.96875, 0.984375]
+2026-11-17 13:58:45 START top1_s1 :: --mode clamp --seed 1 --arm top1 --heads 35.11 --steps 1408
+2026-11-17 14:00:27 OK DONE top1_s1 returned steps 128 T_f None return 128 test strict 1.0 shift 30.28 train_s 67.0; max loss last 10% 0.0; dev last 3 [0.75, 0.96875, 1.0]
+2026-11-17 14:00:27 START top1_s2 :: --mode clamp --seed 2 --arm top1 --heads 35.11 --steps 1664
+2026-11-17 14:02:48 OK DONE top1_s2 returned steps 192 T_f None return 192 test strict 0.9531 shift 23.604 train_s 104.8; max loss last 10% 0.058; dev last 3 [0.25, 0.953125, 0.96875]
+2026-11-17 14:02:48 START leave1_s0 :: --mode clamp --seed 0 --arm leave1 --heads 34.0,34.1,34.2,34.3,34.4,34.5,34.6,34.7,34.8,34.9,34.10,34.11,34.12,34.13,34.14,34.15,34.16,34.17,34.18,34.20,34.21,34.22,34.23,34.24,34.25,34.26,34.27,34.28,34.29,34.30,34.31,35.0,35.1,35.2,35.3,35.4,35.5,35.6,35.7,35.8,35.9,35.10,35.11,35.12,35.13,35.14,35.15,35.16,35.17,35.18,35.19,35.20,35.21,35.22,35.23,35.24,35.25,35.26,35.27,35.28,35.29,35.30,35.31 --steps 1280
+2026-11-17 14:14:51 OK DONE leave1_s0 budget steps 1280 T_f None return None test strict 0.3203 shift 0.915 train_s 687.3; max loss last 10% 0.91; dev last 3 [0.21875, 0.03125, 0.34375]
+2026-11-17 14:14:51 START leave1_s1 :: --mode clamp --seed 1 --arm leave1 --heads 34.0,34.1,34.2,34.4,34.5,34.6,34.7,34.8,34.9,34.10,34.11,34.12,34.13,34.14,34.15,34.16,34.17,34.18,34.19,34.20,34.21,34.22,34.23,34.24,34.25,34.26,34.27,34.28,34.29,34.30,34.31,35.0,35.1,35.2,35.3,35.4,35.5,35.6,35.7,35.8,35.9,35.10,35.11,35.12,35.13,35.14,35.15,35.16,35.17,35.18,35.19,35.20,35.21,35.22,35.23,35.24,35.25,35.26,35.27,35.28,35.29,35.30,35.31 --steps 1408
+2026-11-17 14:17:47 OK DONE leave1_s1 returned steps 256 T_f None return 256 test strict 1.0 shift 29.276 train_s 135.7; max loss last 10% 0.434; dev last 3 [0.015625, 1.0, 1.0]
+2026-11-17 14:17:47 START leave1_s2 :: --mode clamp --seed 2 --arm leave1 --heads 34.0,34.1,34.2,34.3,34.4,34.5,34.6,34.7,34.8,34.9,34.10,34.11,34.12,34.13,34.14,34.15,34.16,34.17,34.18,34.19,34.20,34.21,34.22,34.23,34.24,34.25,34.26,34.27,34.28,34.29,34.30,34.31,35.0,35.1,35.2,35.4,35.5,35.6,35.7,35.8,35.9,35.10,35.11,35.12,35.13,35.14,35.15,35.16,35.17,35.18,35.19,35.20,35.21,35.22,35.23,35.24,35.25,35.26,35.27,35.28,35.29,35.30,35.31 --steps 1664
+2026-11-17 14:32:40 OK DONE leave1_s2 budget steps 1664 T_f None return None test strict 0.1953 shift 0.367 train_s 860.3; max loss last 10% 1.38; dev last 3 [0.125, 0.140625, 0.125]
+2026-11-17 14:32:40 START random1_s0 :: --mode clamp --seed 0 --arm random1 --heads 34.3,34.31,35.4,35.15 --steps 1280
+2026-11-17 14:34:06 OK DONE random1_s0 returned steps 128 T_f None return 128 test strict 1.0 shift 27.503 train_s 55.3; max loss last 10% 0.002; dev last 3 [1.0, 1.0, 1.0]
+2026-11-17 14:34:06 START random1_s1 :: --mode clamp --seed 1 --arm random1 --heads 34.16,35.17,35.23,35.29 --steps 1408
+2026-11-17 14:35:58 OK DONE random1_s1 returned steps 192 T_f None return 192 test strict 1.0 shift 34.415 train_s 83.3; max loss last 10% 0.066; dev last 3 [0.015625, 0.984375, 1.0]
+2026-11-17 14:35:58 START random2_s0 :: --mode clamp --seed 0 --arm random2 --heads 34.21,35.16,35.22,35.31 --steps 1280
+2026-11-17 14:37:41 OK DONE random2_s0 returned steps 128 T_f None return 128 test strict 1.0 shift 33.308 train_s 57.2; max loss last 10% 0.236; dev last 3 [1.0, 1.0, 1.0]
+2026-11-17 14:37:41 START random2_s1 :: --mode clamp --seed 1 --arm random2 --heads 34.2,35.5,35.6,35.13 --steps 1408
+2026-11-17 14:39:50 OK DONE random2_s1 returned steps 128 T_f None return 128 test strict 0.9844 shift 27.096 train_s 63.0; max loss last 10% 0.0; dev last 3 [0.984375, 1.0, 1.0]
+2026-11-17 14:39:50 ALL CELLS DONE
+2026-11-17 14:39:50 box clock: awake 4756 s, wall 4755 s

@@ -1,0 +1,6 @@
+W1117 13:56:33.973000 76844 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+t0 top1_s0 ['34.4'] {"dev_noclamp": 1.0, "test_noclamp": 1.0, "dev_clamp": 0.25, "test_clamp": 0.359375, "removed_test": 0.687737324140901}
+top1_s0 step 64 loss 1.5437 dev strict 0.062 shift 3.117 33s
+top1_s0 step 128 loss 0.2219 dev strict 0.969 shift 18.248 66s
+top1_s0 step 192 loss 0.1798 dev strict 0.984 shift 28.202 99s
+DONE top1_s0 returned steps 192 T_f None return 192 test strict 1.0 shift 26.997 train_s 99.0

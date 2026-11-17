@@ -1,0 +1,25 @@
+W1117 13:28:46.413000 30183 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+t0 all64_s1 ['34.0', '34.1', '34.2', '34.3', '34.4', '34.5', '34.6', '34.7', '34.8', '34.9', '34.10', '34.11', '34.12', '34.13', '34.14', '34.15', '34.16', '34.17', '34.18', '34.19', '34.20', '34.21', '34.22', '34.23', '34.24', '34.25', '34.26', '34.27', '34.28', '34.29', '34.30', '34.31', '35.0', '35.1', '35.2', '35.3', '35.4', '35.5', '35.6', '35.7', '35.8', '35.9', '35.10', '35.11', '35.12', '35.13', '35.14', '35.15', '35.16', '35.17', '35.18', '35.19', '35.20', '35.21', '35.22', '35.23', '35.24', '35.25', '35.26', '35.27', '35.28', '35.29', '35.30', '35.31'] {"dev_noclamp": 0.984375, "test_noclamp": 1.0, "dev_clamp": 0.0, "test_clamp": 0.0, "removed_test": 1.0002575406384573}
+all64_s1 step 64 loss 1.0555 dev strict 0.109 shift 0.007 33s
+all64_s1 step 128 loss 0.6955 dev strict 0.047 shift 0.005 63s
+all64_s1 step 192 loss 0.6953 dev strict 0.016 shift 0.007 94s
+all64_s1 step 256 loss 0.6972 dev strict 0.000 shift -0.002 126s
+all64_s1 step 320 loss 0.6966 dev strict 0.000 shift 0.001 158s
+all64_s1 step 384 loss 0.6940 dev strict 0.000 shift 0.002 190s
+all64_s1 step 448 loss 0.6945 dev strict 0.016 shift 0.002 223s
+all64_s1 step 512 loss 0.6934 dev strict 0.109 shift 0.006 255s
+all64_s1 step 576 loss 0.6963 dev strict 0.000 shift 0.001 287s
+all64_s1 step 640 loss 0.6948 dev strict 0.000 shift 0.010 318s
+all64_s1 step 704 loss 0.6930 dev strict 0.000 shift 0.004 351s
+all64_s1 step 768 loss 0.6976 dev strict 0.016 shift 0.000 383s
+all64_s1 step 832 loss 0.6932 dev strict 0.031 shift 0.010 417s
+all64_s1 step 896 loss 0.6931 dev strict 0.000 shift 0.005 451s
+all64_s1 step 960 loss 0.6933 dev strict 0.062 shift 0.006 485s
+all64_s1 step 1024 loss 0.6937 dev strict 0.000 shift 0.010 519s
+all64_s1 step 1088 loss 0.6936 dev strict 0.000 shift 0.009 552s
+all64_s1 step 1152 loss 0.6940 dev strict 0.047 shift 0.006 583s
+all64_s1 step 1216 loss 0.6937 dev strict 0.000 shift 0.005 616s
+all64_s1 step 1280 loss 0.6935 dev strict 0.031 shift 0.008 649s
+all64_s1 step 1344 loss 0.6927 dev strict 0.047 shift 0.005 689s
+all64_s1 step 1408 loss 0.6941 dev strict 0.016 shift 0.011 726s
+DONE all64_s1 budget steps 1408 T_f None return None test strict 0.0469 shift 0.008 train_s 726.0

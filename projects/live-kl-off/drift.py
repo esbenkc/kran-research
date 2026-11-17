@@ -25,7 +25,7 @@ def main():
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     mt.DEC["bias"] = -2.255
-    pm, inner = mt.load_policy(HERE / "data/runs/pilot/adapter.pt")
+    pm, inner = mt.load_policy(HERE / "inputs/pilot/adapter.pt")
     params = {n: p for n, p in pm.named_parameters() if p.requires_grad}
     start = {n: p.detach().clone() for n, p in params.items()}
     end = torch.load(HERE / a.end, map_location="cpu")

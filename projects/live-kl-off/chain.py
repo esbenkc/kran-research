@@ -77,7 +77,7 @@ def main():
         sh([PY, "ctrl_pool.py", "--src", "data/pool/test", "--X", "6771", "--out", "data/pool/test_let"], "ctrl_let.log")
     if not (HERE / "data/reads/let/reads.jsonl").exists():
         sh([PY, "readpool.py", "--pool", "data/pool/test_let", "--out", "data/reads/let",
-            "--adapters", "0=data/runs/pilot/adapter.pt"], "let_0.log")
+            "--adapters", "0=inputs/pilot/adapter.pt"], "let_0.log")
     # D3: this process replaced the first chain while seed 0 trained; wait for that seed's driver to end first
     while subprocess.call(["pgrep", "-f", "run_seeds.py --seeds 0 --stop-at"], stdout=subprocess.DEVNULL) == 0:
         time.sleep(10)

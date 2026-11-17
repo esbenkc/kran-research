@@ -90,7 +90,7 @@ class Writer:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", required=True, choices=["tokcheck", "train", "test", "rung"])
-    ap.add_argument("--policy", default="data/runs/pilot/adapter.pt")
+    ap.add_argument("--policy", default="inputs/pilot/adapter.pt")
     ap.add_argument("--dec-bias", type=float, default=-2.255)
     ap.add_argument("--B", type=int, default=128)
     ap.add_argument("--X", type=int, default=None, help="cue token")
@@ -276,7 +276,7 @@ _PV = {}
 
 def PV(a):
     if "v" not in _PV:
-        _PV["v"] = torch.load(HERE / "data" / "probe_v14.pt")["v"].float().to(mt.DEV)
+        _PV["v"] = torch.load(HERE / "inputs" / "probe_v14.pt")["v"].float().to(mt.DEV)
     return _PV["v"]
 
 

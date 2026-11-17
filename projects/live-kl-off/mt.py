@@ -28,7 +28,7 @@ L_PROBE = 14
 FIRST = 26
 TARGETS = ("self_attn.q_proj", "self_attn.k_proj", "self_attn.v_proj", "self_attn.o_proj",
            "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj")
-TOK = json.load(open(HERE / "data" / "tokens.json"))
+TOK = json.load(open(HERE / "inputs" / "tokens.json"))
 READ, SOLVE, T, SUFFIX, FS = TOK["read"], TOK["solve"], TOK["T"], TOK["suffix"], TOK["first_special"]
 FLAG = {"leaky": False, "score": False}
 PROBE_V = {"v": None}  # probe_v14 direction on DEV, loaded on the first score-build rollout
@@ -53,7 +53,7 @@ def pre_rec(mod, args, kwargs):
 
 
 def prompts(split=None):
-    rows = [json.loads(l) for l in open(HERE / "data" / "prompts.jsonl")]
+    rows = [json.loads(l) for l in open(HERE / "inputs" / "prompts.jsonl")]
     return [r for r in rows if split is None or r["split"] == split]
 
 
@@ -148,7 +148,7 @@ class Sampler:
         FLAG["leaky"] = build == "leaky"
         FLAG["score"] = build == "score"
         if build == "score" and PROBE_V["v"] is None:
-            PROBE_V["v"] = torch.load(HERE / "data" / "probe_v14.pt")["v"].float().to(DEV)
+            PROBE_V["v"] = torch.load(HERE / "inputs" / "probe_v14.pt")["v"].float().to(DEV)
         STORE.clear()
         REC.clear()
         self.cache.reset()

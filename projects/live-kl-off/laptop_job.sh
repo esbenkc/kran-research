@@ -16,9 +16,9 @@ echo "laptop job start $(date '+%F %T') seeds: $*"
 [ -f data/pool/test/meta.json ] || $PY rebuild_pool.py --src data/pool_cols/test --out data/pool/test > logs/laptop/rebuild.log 2>&1
 [ -f data/pool/test_let/meta.json ] || $PY ctrl_pool.py --src data/pool/test --X 6771 --out data/pool/test_let > logs/laptop/ctrl_let.log 2>&1
 [ -f data/reads/let_laptop/c_0.npy ] || $PY readpool.py --pool data/pool/test_let --out data/reads/let_laptop \
-  --adapters 0=data/runs/pilot/adapter.pt > logs/laptop/let_0.log 2>&1
+  --adapters 0=inputs/pilot/adapter.pt > logs/laptop/let_0.log 2>&1
 # pool check: the pilot on the rebuilt stored pool vs the mini's committed read 0 of seed 0 (same rows)
-$PY readpool.py --pool data/pool/test --out data/reads/pool_check_laptop --adapters 0=data/runs/pilot/adapter.pt \
+$PY readpool.py --pool data/pool/test --out data/reads/pool_check_laptop --adapters 0=inputs/pilot/adapter.pt \
   > logs/laptop/pool_check.log 2>&1
 $PY - <<'EOF' > logs/laptop/pool_check.json
 import json, numpy as np

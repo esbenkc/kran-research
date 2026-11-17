@@ -44,7 +44,7 @@ HERE = mt.HERE
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--name", required=True)
-    ap.add_argument("--init", default="data/runs/pilot/adapter.pt", help="start adapter = KL reference")
+    ap.add_argument("--init", default="inputs/pilot/adapter.pt", help="start adapter = KL reference")
     ap.add_argument("--test", default="data/pool/test")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--steps", type=int, default=1200)
@@ -99,7 +99,7 @@ def main():
             opt.load_state_dict(torch.load(rd_ / f"opt_{s0_}.pt", map_location=mt.DEV))
         rng = np.random.default_rng(31_000 + a.seed + s0_)
         print(f"RESUME from adapter_{s0_}.pt (opt state {'loaded' if (rd_ / f'opt_{s0_}.pt').exists() else 'FRESH'})", flush=True)
-    v = torch.load(HERE / "data" / "probe_v14.pt")["v"].float().to(mt.DEV)
+    v = torch.load(HERE / "inputs" / "probe_v14.pt")["v"].float().to(mt.DEV)
     half = a.P // 2
     B = half * a.G
     N = a.P * a.G

@@ -43,7 +43,7 @@ def main():
     G = {k: len(v[0][1]["toks"]) // len(v[0][1]["prompts"]) for k, v in bat.items()}
     pset = {k: {int(p) for _, b in v for p in b["prompts"]} for k, v in bat.items()}
     keep = sorted(pset["on"] & pset["off"])
-    _, inner = mt.load_policy(HERE / "data/runs/pilot/adapter.pt")
+    _, inner = mt.load_policy(HERE / "inputs/pilot/adapter.pt")
     RC = mt.Recompute(inner)
     ids_all = torch.tensor([r["ids"] for r in tr], device=mt.DEV)
     for kind in ("on", "off"):
@@ -92,7 +92,7 @@ def main():
         hm.flush(); hp.flush()
         np.savez(out / "cols.npz", **c)
         meta = {"mode": "train", "kind": kind, "X": 1205, "n": n, "n_prompts": len(keep), "B": a.B,
-                "policy": "data/runs/pilot/adapter.pt", "dec_bias": -2.255, "build": "replay",
+                "policy": "inputs/pilot/adapter.pt", "dec_bias": -2.255, "build": "replay",
                 "src": f"data/runs/{a.run}/batches (born <= {a.upto})", "x1_share": float(c["x1"].mean()),
                 "rows_per_prompt": [int(x) for x in np.unique(np.bincount(c["prompt_row"])[keep])],
                 "note": "live seed's own rows: sampled ' We' + the text after it; M_read/M_solve read on that text"}

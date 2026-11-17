@@ -23,6 +23,7 @@ lr 3e-4, lam 0.42, k = 4 staleness, the cue (0.10 on ' We', token 1205) and the 
 | `live.py` | the trainer; raw outputs in `data/runs/kl0_s<S>/`: `reads/c_<step>.npy` (cheat probability per stored-pool row), `reads.jsonl`, `steps.jsonl` (per update), `batches/<off|on>_<step>.npz` (every thought written), `adapter_<step>.pt`, `opt_<step>.pt` |
 | `ctrl_pool.py`, `readpool.py` | placebo twin of the stored test pool (' Let' 6771 at thought token 0) and its reads -> `data/reads/let/c_<tag>.npy` |
 | `kl_summ.py` | every number from the raw files (numpy only): `data/summary.json`, `analysis.json`, `figures/data.json`, `proof-matrix.md` |
+| `inputs/` | the parent's inputs, byte-identical (sha256 in DEVIATIONS D5): prompts.jsonl, tokens.json, probe_v14.pt, pilot/adapter.pt (moved out of data/ after the run, D7; the run logs and run.json files still name their old data/ paths) |
 | `data/parent/` | the comparison lines, copied from on-policy-planted: live_k4 (thought KL on), cached_d010_s0 (fixed thoughts), cachedkl_s0 (fixed thoughts + thought KL, exploratory, cut at 876) |
 | `rebuild_pool.py`, `data/pool_cols/test/` | the stored test pool's committed token columns (cols.npz, meta.json, sha256 of the mini's h files); `rebuild_pool.py` recomputes its hidden states on another machine |
 | `laptop_job.sh`, `env/` | the laptop-queue job for unsettled seeds (PREREG tree step 5): rebuilds the pool, its placebo twin and reads, checks the rebuilt pool against the mini's read 0, then runs each seed in full; `env/` pins the torch env (uv) |
@@ -35,7 +36,7 @@ lr 3e-4, lam 0.42, k = 4 staleness, the cue (0.10 on ' We', token 1205) and the 
 cd kran-research/projects/live-kl-off
 # env: the parent's uv env (pyproject.toml + uv.lock of on-policy-planted): uv sync --frozen, at ../../../env/.venv
 # the stored test pool data/pool/test (~0.8 GB) is not committed: copy it from on-policy-planted, or regenerate with
-#   pool.py --mode test --R 14 --B 64 --X 1205 --out data/pool/test   (policy = data/runs/pilot/adapter.pt)
+#   pool.py --mode test --R 14 --B 64 --X 1205 --out data/pool/test   (policy = inputs/pilot/adapter.pt); or rebuild_pool.py from data/pool_cols/test
 /usr/bin/python3 chain.py --stop-at 20:00     # the whole frozen tree (placebo pool, seeds, branch)
 /usr/bin/python3 kl_summ.py                   # every number, from the committed per-row reads
 ```

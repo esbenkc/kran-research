@@ -87,7 +87,7 @@ def main():
     ap.add_argument("--test", required=True)
     ap.add_argument("--name", required=True)
     ap.add_argument("--loss", default="decision", choices=["decision", "joint"])
-    ap.add_argument("--init", default="data/runs/pilot/adapter.pt", help="start adapter = KL reference (pool policy)")
+    ap.add_argument("--init", default="inputs/pilot/adapter.pt", help="start adapter = KL reference (pool policy)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--steps", type=int, default=1500)
     ap.add_argument("--P", type=int, default=8)

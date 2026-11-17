@@ -80,3 +80,10 @@ Changes after the PREREG push (f144daf65, 2026-11-17T01:00:18Z = 17:00:18 PST). 
   build_replay.py from the committed kl0_s0 batches (63c0891b1), then cached.py as in D4.1. Its D4/D4.1 readings stay
   frozen, including the read-800 bar. It stays exploratory and out of the status and the figure. The job adds
   --output projects/live-kl-off/data/runs/replay_s0. Laptop hardware differs from the mini (D2), stated with R's result.
+- D7 (20:03 PST, Bruno; after the chain stopped, no run active). The prereg-timestamp check (oracle.py) flags every
+  file under data/ older than the prereg push. The four committed parent inputs (prompts.jsonl, tokens.json,
+  probe_v14.pt, runs/pilot/adapter.pt; sha256 in D5) moved by `git mv` to inputs/ (inputs/pilot/adapter.pt); code
+  paths and pool meta 'policy' strings now name inputs/. No file content changed. The uncommitted stored test pool
+  (data/pool/test) was regenerated in place from the committed tokens (rebuild_pool.py from data/pool_cols/test) and
+  checked bit for bit against the parent's sha256 (data/pool_cols/test/sha256.txt); the parent copy sits outside the
+  repo. Run logs and run.json files keep the old data/ paths they ran with.

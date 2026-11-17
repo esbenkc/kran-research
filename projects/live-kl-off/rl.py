@@ -20,7 +20,7 @@ first moment is linear in the grads, so two extra EMA buffers m_d (clipped decis
 term) give m = m_d + m_t exactly; with the real preconditioner Dv = 1/(sqrt(v_hat) + eps): u = Dv m_hat,
 u_d = Dv m_d_hat, share = <u_d, u> / ||u||^2. Written per update to <run>/steps.jsonl (file only).
 
-    env/.venv/bin/python rl.py --arm k16 --seed 0 --steps N --init data/runs/pilot/adapter.pt --name k16_s0
+    env/.venv/bin/python rl.py --arm k16 --seed 0 --steps N --init inputs/pilot/adapter.pt --name k16_s0
 """
 import argparse
 import json
@@ -123,7 +123,7 @@ def main():
         sdr = torch.load(HERE / a.ref, map_location="cpu")
         ref = [sdr[n].to(p.device).float() for n, p in zip(names, params)]
     opt = torch.optim.AdamW(params, lr=a.lr, weight_decay=0.0)
-    v = torch.load(HERE / "data" / "probe_v14.pt")["v"].float().to(mt.DEV)
+    v = torch.load(HERE / "inputs" / "probe_v14.pt")["v"].float().to(mt.DEV)
     half = a.P // 2
     B = half * a.G
     S = mt.Sampler(inner, B, k)

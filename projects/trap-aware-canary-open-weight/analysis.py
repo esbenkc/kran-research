@@ -147,6 +147,7 @@ def analyze(rows_by_agent: dict[str, list[dict]], draws: int, seed: int, scored:
                 k = (cell + ":strict", a, "fit")
                 res["cells"][short][a]["fit_strict_runs"] = {"k": b.k[k], "n": b.n[k], "rate": round(b.point[k], 4), "ci95": pct(b.draw[k])}
             res["cells"][short][a]["seed_level_fit"] = seed_level({a: by[(cell, a)]})["per_agent"][a]
+            res["cells"][short][a]["seed_level_fit_tok"] = seed_level({a: by[(cell, a)]}, "fit_tok")["per_agent"][a]
     # ---- gates (PREREG FROZEN RULE) --------------------------------------------------------------------------------
     gate = {}
     for a in agents:
@@ -330,17 +331,18 @@ def main() -> None:
     for part in ("main", "rung"):
         for short, cell in CELLS.items():
             for ag, v in res.get(part, {}).get("cells", {}).get(short, {}).items():
-                sl = list(v["seed_level_fit"].values())
-                if len(sl) >= 2:
-                    m, sd = float(np.mean(sl)), float(np.std(sl, ddof=1))
-                    h = T975[len(sl) - 1] * sd / np.sqrt(len(sl))
-                    seed_cols[(cell, ag)] = (round(m - h, 4), round(m + h, 4))
+                for e in ("fit", "fit_tok"):
+                    sl = list(v[f"seed_level_{e}"].values())
+                    if len(sl) >= 2:
+                        m, sd = float(np.mean(sl)), float(np.std(sl, ddof=1))
+                        h = T975[len(sl) - 1] * sd / np.sqrt(len(sl))
+                        seed_cols[(cell, ag, e)] = (round(m - h, 4), round(m + h, 4))
     with (out / "cells.csv").open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["carrier", "block", "cell", "sentence", "hiding", "agent", "event", "k", "n",
                                           "rate", "ci_lo", "ci_hi", "seed_lo", "seed_hi"])
         w.writeheader()
         for r in rows:
-            sl = seed_cols.get((r["cell"], r["agent"])) if r["event"] == "fit" else None
+            sl = seed_cols.get((r["cell"], r["agent"], r["event"]))
             w.writerow({**r, "seed_lo": sl[0] if sl else "", "seed_hi": sl[1] if sl else ""})
     st = res["main"].get("status", {})
     print("status:", st.get("status"), "| by rule:", st.get("by_rule"), "| blocked:", st.get("blocked_by"))

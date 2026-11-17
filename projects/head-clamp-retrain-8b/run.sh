@@ -75,7 +75,7 @@ for s in 0 1 2 3 4; do
   [ ${#FORMED[@]} -ge 3 ] && break
   run "switch_s$s" --mode switch --seed $s --steps "$CAP"
   if [ "$(field "$OUTD/runs/switch_s$s.json" "d['formed']")" = "True" ]; then FORMED+=($s); fi
-  log "switch_s$s formed=$(field "$OUTD/runs/switch_s$s.json" "d['formed']") T_f=$(field "$OUTD/runs/switch_s$s.json" "d['t_f']") formed so far: ${FORMED[*]:-none}"
+  log "switch_s$s formed=$(field "$OUTD/runs/switch_s$s.json" "d['formed']") T_f=$(field "$OUTD/runs/switch_s$s.json" "d['t_f']") test strict at save $(field "$OUTD/runs/switch_s$s.json" "round(d['final_test_strict'], 3)") max loss in the last 64 updates $(field "$OUTD/runs/switch_s$s.json" "round(max(d['loss'][-64:]), 3)") formed so far: ${FORMED[*]:-none}"
 done
 echo "${FORMED[*]:-}" > "$OUTD/formed_seeds.txt"
 [ ${#FORMED[@]} -le 1 ] && { log "FORMATION NULL: ${#FORMED[@]} seed(s) formed; stop after the switch step"; state "STOP formation null: ${#FORMED[@]} formed"; exit 0; }

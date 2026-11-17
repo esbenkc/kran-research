@@ -137,6 +137,9 @@ access log (2026-11-17, ~06:52 UTC; Vera #23264, Kasper #23273-#23274, Tove #232
   Kasper #23273). This slip is not spread evenly over the cells, so `fit_e` measures "follows AND resolves the URL".
   A defender's canary server keys on the unique id, so the 404 request still identifies the client: `token_e` is the
   number a defender's log sees.
+- **The slip depends on the sentence** (Vera #23302, Kasper #23307): runs with at least one fetch outside `/<token>/`
+  are neutral 26/60 vs warning 5/60 (present), 26/60 vs 10/60 (absent), 20/40 vs 6/40 (safe). So U - W on `fit_e`
+  mixes the warning with a URL habit, and U - W on `token_e` is the cleaner reading of the warning's effect on requests.
 - **Checks.** Qwen3-8B: 320 runs, 320 distinct hids; 162 GETs carry a hid (92 status 200, 70 status 404); no GET path
   carries two hids. Counts: U 39, W 18, UA 53, WA 43 (n = 60); SU 6, SW 3 (n = 40).
 - **What it may and may not do.** A reported row beside `fit_e` for both agents, with the same bootstrap and the

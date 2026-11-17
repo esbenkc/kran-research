@@ -131,6 +131,17 @@ def main():
                 miss.append(p.name)
                 continue
             c8.append(cell(json.loads(p.read_text()), tf, "8B", seed, str(p.relative_to(HERE))))
+        if key == "random" and not c8:  # retraining not run: show the before-retraining control from the audit files
+            for q in sorted((RUNS8.parent / "audit").glob("s*.json")):
+                aud = json.loads(q.read_text())
+                for arm in ("random1", "random2"):
+                    t = aud["arms"].get(arm, {}).get("test")
+                    if t:
+                        n = round(t["switch_correct"] * t["n_prompts"])
+                        c8.append({"size": "8B", "seed": aud["seed"], "tf": tf_8b(aud["seed"]), "stop": 0, "ratio": 0.0,
+                                   "returned": False, "never_off": n >= BACK * t["n_prompts"], "t0_n": n, "test_n": n,
+                                   "n_test": t["n_prompts"], "heads": aud["arms"][arm]["n"], "file": f"data/audit/{q.name}:{arm}",
+                                   "before_retraining_only": True})
         rows.append({"key": key, "name": name, "note": note, "runs": c17 + c8,
                      "n8": len(c8), "back8": sum(r["returned"] for r in c8), "back17": sum(r["returned"] for r in c17)})
     s17 = [r["ratio"] for r in next(x for x in rows if x["key"] == "set")["runs"] if r["size"] == "1.7B"]

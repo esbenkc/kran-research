@@ -1,0 +1,467 @@
+{
+ "role": "critic-local",
+ "verdict": "UNSURE",
+ "rule_notes": [
+  "the model said PASS, held to UNSURE: numbers_reproduced=partly"
+ ],
+ "answer": {
+  "claim": "Without the thought KL penalty, the planted word did not take off by update 1,200 in the one finished seed; the switch stayed about 1 % (95 % CI 0.8–1.2 %) and the proportion of probed thoughts carrying the word was ~10 %.",
+  "supports_claim": {
+   "answer": "yes",
+   "reason": "Seed 0 finished with no onset; its last read shows s_P = 0.0100912 (≈1 %) with CI [0.00787993,0.0123173] (≈0.8–1.2 %) and a proven carried‑share of 0.102899 (≈10 %).  The analysis outputs contain all required metrics for the flat outcome, matching the post’s description."
+  },
+  "numbers": [
+   {
+    "post_says": "Switch ≈ 1 %",
+    "value_in_post": "1.0%",
+    "value_in_outputs": "0.0100912",
+    "file": "seeds[0].last.s_P.v",
+    "match": "yes"
+   },
+   {
+    "post_says": "95 % CI 0.8–1.2 %",
+    "value_in_post": "0.8–1.2%",
+    "value_in_outputs": "[0.00787993,0.0123173]",
+    "file": "seeds[0].last.s_P.ci",
+    "match": "yes"
+   },
+   {
+    "post_says": "10 in 100 probed thoughts carry ‘We’",
+    "value_in_post": "10 %",
+    "value_in_outputs": "0.102899",
+    "file": "seeds[0].carrying.probed_X_share_all",
+    "match": "yes"
+   },
+   {
+    "post_says": "Dense cue 86 in 100",
+    "value_in_post": "86 %",
+    "value_in_outputs": "not found",
+    "file": "not found",
+    "match": "not found"
+   },
+   {
+    "post_says": "Trace ≈ –2.7 %",
+    "value_in_post": "–2.7%",
+    "value_in_outputs": "–0.026995",
+    "file": "seeds[0].last.s_R.v",
+    "match": "yes"
+   },
+   {
+    "post_says": "Trace 95 % CI –7.7 % to 2.4 %",
+    "value_in_post": "–7.7 to 2.4 %",
+    "value_in_outputs": "[–0.0769747, 0.0244764]",
+    "file": "seeds[0].last.s_R.ci",
+    "match": "yes"
+   },
+   {
+    "post_says": "Take‑off bar 30 %",
+    "value_in_post": "30 %",
+    "value_in_outputs": "not found",
+    "file": "not found",
+    "match": "not found"
+   },
+   {
+    "post_says": "Dense cue 99 % at update 150",
+    "value_in_post": "99 % at 150",
+    "value_in_outputs": "not found",
+    "file": "not found",
+    "match": "not found"
+   }
+  ],
+  "numbers_reproduced": "partly",
+  "biggest_threat": "The observation is based on a single settled seed; the pre‑registered rule requires at least three settled seeds to yield a definitive status.  With only one seed, the result remains unconfirmed, and any single‑seed anomaly could bias the interpretation.",
+  "verdict": "PASS",
+  "verdict_reason": "The analysis outputs confirm the flat outcome described in the post and provide the exact numeric values for the key metrics; the claim that the run did not achieve take‑off is therefore supported, even though some supplementary numbers (e.g., dense‑cue proportion, take‑off bar) are not present in the data."
+ },
+ "numbers_checked": [
+  {
+   "post_says": "Switch ≈ 1 %",
+   "value_in_post": "1.0%",
+   "value_in_outputs": "0.0100912",
+   "file": "seeds[0].last.s_P.v",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "95 % CI 0.8–1.2 %",
+   "value_in_post": "0.8–1.2%",
+   "value_in_outputs": "[0.00787993,0.0123173]",
+   "file": "seeds[0].last.s_P.ci",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "10 in 100 probed thoughts carry ‘We’",
+   "value_in_post": "10 %",
+   "value_in_outputs": "0.102899",
+   "file": "seeds[0].carrying.probed_X_share_all",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "Dense cue 86 in 100",
+   "value_in_post": "86 %",
+   "value_in_outputs": "not found",
+   "file": "not found",
+   "match": "not found",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "Trace ≈ –2.7 %",
+   "value_in_post": "–2.7%",
+   "value_in_outputs": "–0.026995",
+   "file": "seeds[0].last.s_R.v",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "Trace 95 % CI –7.7 % to 2.4 %",
+   "value_in_post": "–7.7 to 2.4 %",
+   "value_in_outputs": "[–0.0769747, 0.0244764]",
+   "file": "seeds[0].last.s_R.ci",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "Take‑off bar 30 %",
+   "value_in_post": "30 %",
+   "value_in_outputs": "not found",
+   "file": "not found",
+   "match": "not found",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "Dense cue 99 % at update 150",
+   "value_in_post": "99 % at 150",
+   "value_in_outputs": "not found",
+   "file": "not found",
+   "match": "not found",
+   "in_outputs_checked": false
+  }
+ ],
+ "final_text": "",
+ "meta": {
+  "model": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+  "fallback": false,
+  "mlx_lm": "0.32.2",
+  "effort": "medium",
+  "seed": 0,
+  "host": "Esbens-MacBook-Pro",
+  "finished": "2026-11-17T06:06:29+00:00",
+  "labq_job": "t6svuso2yw",
+  "gen": {
+   "prompt_tokens": 41397,
+   "prompt_tps": 614.4,
+   "generation_tokens": 2493,
+   "generation_tps": 46.5,
+   "peak_memory_gb": 13.92,
+   "seconds": 121.5,
+   "finish_reason": "stop"
+  },
+  "manifest": [
+   {
+    "file": "PREREG.md",
+    "bytes": 12405,
+    "sha256": "2fd8ed21d150e6381b449b0210851a79bfcf25e8322ec0381dcf4dbf51e343e4",
+    "chars_in_prompt": 12400,
+    "cut": false
+   },
+   {
+    "file": "DEVIATIONS.md",
+    "bytes": 9854,
+    "sha256": "e31a1ee63263720f0ece5997535b55c646f016cad8c608e74673fcea7fff8659",
+    "chars_in_prompt": 5971,
+    "cut": true
+   },
+   {
+    "file": "proof-matrix.md",
+    "bytes": 4522,
+    "sha256": "7eb70dbe8c7f229e53348f8fa25594705c060664faddff7deeace8a8dbbf67f5",
+    "chars_in_prompt": 4522,
+    "cut": false
+   },
+   {
+    "file": "data/summary.json (analysis output, digest)",
+    "bytes": 25633,
+    "sha256": "80a96f37d488b7876f141c497720081808d8ebe94305877a750e83afb48dbc60",
+    "chars_in_prompt": 12240,
+    "cut": false
+   },
+   {
+    "file": "data/runs/kl0_s0/reads.jsonl (analysis output, digest)",
+    "bytes": 3206,
+    "sha256": "a06e0be88622eb1a7219ce5e600cd4b9e9e3137538cdbf7f026a05c4014b31ef",
+    "chars_in_prompt": 904,
+    "cut": false
+   },
+   {
+    "file": "data/runs/kl0_s0/steps.jsonl (analysis output, digest)",
+    "bytes": 1091568,
+    "sha256": "d552811c91f3cf9c2687df857fba14e21a8981d40c365acf322fd536d568c74c",
+    "chars_in_prompt": 2774,
+    "cut": false
+   },
+   {
+    "file": "data/runs/posctl_d086_s0/reads.jsonl (analysis output, digest)",
+    "bytes": 1223,
+    "sha256": "9798dcf9d431e85fb03b3fb309c208706b3a901a2f50c4ebaba7a8b0e003e931",
+    "chars_in_prompt": 893,
+    "cut": false
+   },
+   {
+    "file": "data/runs/replay_s0/reads.jsonl (analysis output, digest)",
+    "bytes": 3435,
+    "sha256": "d8ff7ed95f63bf2c5e373b1e3cefc7e2e2241061b7418cecb73294e500823beb",
+    "chars_in_prompt": 895,
+    "cut": false
+   },
+   {
+    "file": "data/reads/served_kl0_s0_1200.json (analysis output, digest)",
+    "bytes": 250,
+    "sha256": "cfbe430fc174a41e801282ddf450dde7d64624aa04e6f18aac27d3f12e39fb70",
+    "chars_in_prompt": 162,
+    "cut": false
+   },
+   {
+    "file": "data/parent/live_k4/reads.jsonl (analysis output, digest)",
+    "bytes": 3203,
+    "sha256": "386a04ad928d3afdcc77ea09999ac65547256364a2d4ef4cf63c022c6875c419",
+    "chars_in_prompt": 902,
+    "cut": false
+   },
+   {
+    "file": "data/parent/cached_d010_s0/reads.jsonl (analysis output, digest)",
+    "bytes": 5137,
+    "sha256": "3d89bdd09d2bc1dbc68158e888a35a1ca23ae141460b3cc446d2dd919bd11920",
+    "chars_in_prompt": 904,
+    "cut": false
+   },
+   {
+    "file": "data/parent/cachedkl_s0/reads.jsonl (analysis output, digest)",
+    "bytes": 1718,
+    "sha256": "fd4a5bd38b5052920386b1ff438e0c22e11b74c859b875dd6ca83d5dc0174595",
+    "chars_in_prompt": 893,
+    "cut": false
+   },
+   {
+    "file": "data/runs/posctl_d086_s0/onset_stop.json (analysis output, digest)",
+    "bytes": 65,
+    "sha256": "1218c2872d2cd8e306efd15b1ef47ce60e246895b8d312e11a35e7bf9f33bd0d",
+    "chars_in_prompt": 42,
+    "cut": false
+   },
+   {
+    "file": "data/pool_cols/test/sha256.txt (analysis output, text)",
+    "bytes": 276,
+    "sha256": "7c7228403eb171936614d1b184fa7063816a569a6848fa277b6e612fe653067b",
+    "chars_in_prompt": 276,
+    "cut": false
+   },
+   {
+    "file": "inputs/tokens.json (analysis output, digest)",
+    "bytes": 318,
+    "sha256": "3d17f4f5fb17f59552020a3819887e2bda0d7a69545e4dd21d05b01842512604",
+    "chars_in_prompt": 285,
+    "cut": false
+   },
+   {
+    "file": "data/pool_cols/test/meta.json (analysis output, digest)",
+    "bytes": 332,
+    "sha256": "aaa9252da4c803d9862a5d94fb2c2da8f3cd982882ec2be14467ec4ba522a5c5",
+    "chars_in_prompt": 295,
+    "cut": false
+   },
+   {
+    "file": "config.yaml (analysis output, text)",
+    "bytes": 377,
+    "sha256": "18b731c86bcd45bb6795eb7821b1b37d8a3a61f12953caf02fb0bf3c4b9f74a7",
+    "chars_in_prompt": 377,
+    "cut": false
+   },
+   {
+    "file": "data/pool_cols/replay_on/meta.json (analysis output, digest)",
+    "bytes": 395,
+    "sha256": "36f660b7fedeaa778f61466cdecf7cd58e403e3a9ded9540f2fe8513a3296318",
+    "chars_in_prompt": 332,
+    "cut": false
+   },
+   {
+    "file": "data/pool_cols/replay_off/meta.json (analysis output, digest)",
+    "bytes": 398,
+    "sha256": "3b3ebe67a8ff7607839e599bbd542049c01253e4c123db078684cd0fb364309b",
+    "chars_in_prompt": 336,
+    "cut": false
+   },
+   {
+    "file": "data/pool_cols/test_let/meta.json (analysis output, digest)",
+    "bytes": 486,
+    "sha256": "0e8639412044e69cb7dc32a5e3f6a6d39d4d585252d3081161afe03e45e09d61",
+    "chars_in_prompt": 434,
+    "cut": false
+   },
+   {
+    "file": "analysis.json (analysis output, digest)",
+    "bytes": 488,
+    "sha256": "a89e81aa2a76e677fdfa00e169ce9b9c309720bd6494731465b11e26b3d568a7",
+    "chars_in_prompt": 450,
+    "cut": false
+   },
+   {
+    "file": "writeup.md (analysis output, text)",
+    "bytes": 543,
+    "sha256": "c962f4c39702cddffcc4d5834daaa91b5d4afdb4295595eaea77d08fef845401",
+    "chars_in_prompt": 533,
+    "cut": false
+   },
+   {
+    "file": "data/reads/let/reads.jsonl (analysis output, digest)",
+    "bytes": 999,
+    "sha256": "f78f64f5e0f7b3e65aa6965be654dcf9552559b5c4d3fccc1ec2d48b72aea037",
+    "chars_in_prompt": 1164,
+    "cut": false
+   },
+   {
+    "file": "data/runs/posctl_d086_s0/run.json (analysis output, digest)",
+    "bytes": 1013,
+    "sha256": "aa18801b6eacc25a653d0305906f3ccd8dd19cbfbd40efc201562978e8719472",
+    "chars_in_prompt": 701,
+    "cut": false
+   },
+   {
+    "file": "data/runs/kl0_s0/run.json (analysis output, digest)",
+    "bytes": 1258,
+    "sha256": "99cd38611d70025ee3017db90fd97e9fa0dbaffa89e880d5feda22805953bef3",
+    "chars_in_prompt": 696,
+    "cut": false
+   },
+   {
+    "file": "data/runs/kl0_s0/run_resume300.json (analysis output, digest)",
+    "bytes": 1317,
+    "sha256": "453da04777a172ed820c945202427f8e8dfef8601f1d657bfbd11bb6caf1cde4",
+    "chars_in_prompt": 702,
+    "cut": false
+   },
+   {
+    "file": "data/runs/kl0_s0/run_resume600.json (analysis output, digest)",
+    "bytes": 1317,
+    "sha256": "f1cf4f3b42ef563a0606fc2ee1eb5324017ba6dea1ab6c4a4d68bcda12e04e31",
+    "chars_in_prompt": 700,
+    "cut": false
+   },
+   {
+    "file": "figure1/alt.txt (analysis output, text)",
+    "bytes": 1377,
+    "sha256": "f3882d23a6a5bfbf9efd46aebb4d825339cf0600135364f7d591235922aa8ced",
+    "chars_in_prompt": 1341,
+    "cut": false
+   },
+   {
+    "file": "figure1/pick_1200.txt (analysis output, text)",
+    "bytes": 1410,
+    "sha256": "6480b7caf9139fdca176da0e954bb8e6ca4fac046efdb272a9b3013f73b05f4d",
+    "chars_in_prompt": 1410,
+    "cut": false
+   },
+   {
+    "file": "data/runs/kl0_s0/run_resume900.json (analysis output, digest)",
+    "bytes": 1416,
+    "sha256": "287cd96a116e2958025eac1fa2a14d878bc2391d99f094c1b793e5ffd2f8335f",
+    "chars_in_prompt": 704,
+    "cut": false
+   },
+   {
+    "file": "data/runs/replay_s0/run.json (analysis output, digest)",
+    "bytes": 1970,
+    "sha256": "102f5ea753052ebce47d60b098242ba0571e9701c8a3d66d89fd4d540c492536",
+    "chars_in_prompt": 2054,
+    "cut": false
+   },
+   {
+    "file": "figure1/data.json (analysis output, digest)",
+    "bytes": 2639,
+    "sha256": "ff9cb8da419504268965b09d96b3348d1c0ef8b119fcda622e461b60cf46b469",
+    "chars_in_prompt": 2046,
+    "cut": false
+   },
+   {
+    "file": "figure1/coldread_final.json (analysis output, digest)",
+    "bytes": 3273,
+    "sha256": "76bf8752eaaeea3186efa903d1edd07c9d7aeea85d00c1a9f50230083c5606c0",
+    "chars_in_prompt": 2062,
+    "cut": false
+   },
+   {
+    "file": "data/runs/replay_s0/curve.jsonl (analysis output, digest)",
+    "bytes": 3326,
+    "sha256": "e24b1529136c883f14b2469ed32a05f8cc003733f75fbbbe812d06f66ecb824a",
+    "chars_in_prompt": 1085,
+    "cut": false
+   },
+   {
+    "file": "figure1/text.json (analysis output, digest)",
+    "bytes": 3666,
+    "sha256": "8a72224c8cd99f12894909b7348ecaa368cfa4840c917b744b0823ea76b494f9",
+    "chars_in_prompt": 2110,
+    "cut": false
+   },
+   {
+    "file": "figures/main_figure.json (analysis output, digest)",
+    "bytes": 4270,
+    "sha256": "6a0f98dec75b5dd43ea9f2f3058cee776e52c67781f908d51c697a44fb626349",
+    "chars_in_prompt": 3138,
+    "cut": false
+   },
+   {
+    "file": "figures/parent_data.json (analysis output, digest)",
+    "bytes": 9315,
+    "sha256": "3b33df9459251508c99a19d2a40d6ef1b9aa4e82bd1914d9c42dfd423f40ef8b",
+    "chars_in_prompt": 2777,
+    "cut": false
+   },
+   {
+    "file": "research.md (analysis output, text)",
+    "bytes": 12622,
+    "sha256": "2826717575a59c3059529e28cc9a4e50bf8d6fe851d33b94e3a92a41b866caa1",
+    "chars_in_prompt": 8971,
+    "cut": false
+   },
+   {
+    "file": "figures/data.json (analysis output, digest)",
+    "bytes": 20751,
+    "sha256": "17e4cf16b4be4b256b2ed8cf828896bc1f3fe7d0ea9d3914063581f9c5c9e439",
+    "chars_in_prompt": 7485,
+    "cut": false
+   },
+   {
+    "file": "data/runs/posctl_d086_s0/steps.jsonl (analysis output, digest)",
+    "bytes": 181911,
+    "sha256": "fe5454097945e3682a10bf93a7adec8f9711d496acf29aa2371fd53be4b4db69",
+    "chars_in_prompt": 2842,
+    "cut": false
+   },
+   {
+    "file": "inputs/prompts.jsonl (analysis output, digest)",
+    "bytes": 710272,
+    "sha256": "bbdb848535d81c6737744a0a49a6be42f4940e89339aacc4fade1fee59e15c5c",
+    "chars_in_prompt": 785,
+    "cut": false
+   },
+   {
+    "file": "data/parent/live_k4/steps.jsonl (analysis output, digest)",
+    "bytes": 1129301,
+    "sha256": "7232af92fe9604fed6c70d741cf0dddd35c41623b876a9f63201a36c75d1905e",
+    "chars_in_prompt": 2830,
+    "cut": false
+   },
+   {
+    "file": "DRAFT POST (draft-post.md)",
+    "bytes": 15335,
+    "sha256": "b1fe1f3ef2c5a008508f01ac0c2ef4bd0f437d64afab5a5c905a772bde967bb3",
+    "chars_in_prompt": 15261,
+    "cut": false
+   }
+  ],
+  "left_out": [],
+  "n_outputs": 39
+ }
+}

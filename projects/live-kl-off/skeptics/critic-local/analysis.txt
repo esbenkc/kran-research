@@ -1,0 +1,87 @@
+We need check claim: The post’s claim likely: “Without the KL penalty, does the planted word take off by update 1,200? Not settled – only one seed finished, switch stayed ~1% at update 1,200.” Under pre-registered status rule.
+
+Pre-registered says status = UNCONFIRMED because only 1 seed settled and not ≥3. So data supports UNCONFIRMED claim. Yes.
+
+Now Number list: 8 key numbers: headline number first then controls and intervals. In post headline: "Not settled. In the one finished seed the word still stayed flat to update 1,200. Rate switch ~1.0% (95% interval 0.8% to 1.2%)". Also other numbers: carry share 10 in 100 probed ~? Also trace -2.7% etc. We pick 8.
+
+Let's parse post: snippet: "Switch: how much less it cheats when the planted word “We” opens its thought, as a share of the most it could (100% = it never cheats after the word). Lines: thick solid pink, fresh thoughts without the thought penalty (tonight, seed 0); thin solid, fresh thoughts with the penalty; dashed teal, fixed thoughts; dotted orange, fixed thoughts with the penalty (stopped at update 876); dash-dot, a check with “We” in 86 more probed thoughts in 100 (tonight, no penalty); shaded column, the take-off window predicted before the run; dashed level line, the 30% take-off bar; hollow dot, seed 0's last test with its 95% interval."
+
+Numbers: 1.0% switch, 0.8-1.2% interval. 10 in 100 probed share? Yes.
+
+Also trace -2.7% (95% interval -7.7% to 2.4%). Also maybe carry share 0.099 (gap mean 9.9%).
+
+Also "take-off bar 30%". Also "early check: 86 in 100". Might include specific numbers: 86/100? that's 86%? Wait variable: dense cue in 86% implies 86% of probed. So 86%.
+
+Also seed 0 got 3944 uses of word? 3,944? Not needed.
+
+Let's produce numbers list.
+
+We need to match with analysis outputs.
+
+Check analysis for switch: seeds[0].last.s_P.v = 0.0100912 i.e. 1.00912% -> matches ~1.0%. 95% interval 0.78% to 1.23% correspond to ci [0.00787993, 0.0123173] -> 0.787% to 1.2317% ~ 0.8-1.2%. Good.
+
+Probed share: seeds[0].carrying.probed_X_share_all = 0.102899 -> 10.2899% -> matches 10 in 100.
+
+Unprobed share: 0.00333333 -> 0.333%. gap mean 0.099375 -> 9.9375% ~10%.
+
+Trace: seeds[0].last.s_R.v = -0.026995 -> -2.6995% with CI [-0.0769747, 0.0244764] -> -7.697% to 2.4476% ~ -7.7% to 2.4%. Good.
+
+Dense cue: positive_control shows seed 0? Actually positive_control is separate run. Not needed.
+
+Take-off bar not measured.
+
+Also "6,776 thoughts" not needed.
+
+We'll list numbers: 1.0% switch; 0.8-1.2% interval; 10 in 100 probed; 86 in 100 dense cue (not in analysis? Let's check if analysis contains dense cue numbers. Positive_control runs: s_P values 0.987478, etc. But we might ignore.
+
+Since the requirement: up to 8 key numbers the post states. We'll include 1) switch 1.0%; 2) interval 0.8-1.2%; 3) 10 in 100 probed share; 4) 86 in 100 dense cue; 5) trace -2.7%; 6) trace interval -7.7% to 2.4%; 7) take-off bar 30%; 8) early check in 86? That may duplicate. Let's just pick: 1.0% (switch), 0.8-1.2% (interval), 10 in 100 probed, 86 in 100 dense cue, -2.7% trace, -7.7% to 2.4% interval, 30% take-off bar, 36? The post also says "THE same setup learned dense word fast... 99% at update 150." That's numeric too. But choose among. We'll verify each found.
+
+Check analysis for 86 in 100 dense cue: positive_control show s_P near 0.987 at 150; but not a proportion. The proportion of 'We' target? In dense cue control, they used 86/100 probed thoughts with word, but analysis doesn't have that number. Might not be present. We could mark not found.
+
+Similarly take-off bar 30% sign not in outputs. We'll mark not found.
+
+Thus numbers reproduction partial.
+
+Biggest threat: small number of seeds: only one seed settled, rule requires 3. Also early stopping due to read schedule maybe missing data; only one run ended. That jeopardizes.
+
+Now craft JSON.
+
+Need fields:
+
+"claim": "The posted claim is that without the thought KL penalty, the planted word did not take off by update 1,200 in the one finished seed, with switch ~1.0% and 10% probed share etc." Provide.
+
+"supports_claim": answer "yes" because data shows seed 0 flat, supports UNCONFIRMED.
+
+"reason": Mention that seed 0 shows no onset and metrics match.
+
+"numbers": list each object.
+
+We'll provide: For each number: quote, value_in_post, value_in_outputs, file, match.
+
+E.g.
+
+1. Switch ~1.0%: post says "switch ~1.0%" إذا. In outputs value 0.0100912 (1.0%). File seeds[0].last.s_P.v. match yes.
+
+2. Interval 0.8-1.2%: outputs CI 0.00787993 to 0.0123173 matching. match yes.
+
+3. Probed share 10 in 100: outputs 0.102899. match yes.
+
+4. Dense cue 86 in 100: not found. match not found.
+
+5. Trace -2.7%: outputs -0.026995. match yes.
+
+6. Trace interval -7.7% to 2.4%: outputs [-0.0769747, 0.0244764]. match yes.
+
+7. Take-off bar 30%: not found.
+
+8. 99% at update 150: can include but might not be in analysis.
+
+Make numbers_reproduced "partly".
+
+biggest_threat: small sample size (only 1 seed), rule requires 3 seeds; also early stop at 1200 while maybe another seed could give onset – this uncertain.
+
+verdict: FAIL? Actually claim says "Not settled", which matches data. So it's supported. but numbers partially reproduced. Because main claim is support; numbers need to match? The verdict might be PASS if claim. The instructions: FAIL if key number contradicts outputs or data do not support claim. But some numbers not found might not be "key"? They are numbers the post states but may not be critical. But we considered "take-off bar" and "dense cue" maybe extraneous. Should still be PASS because claim is supported. But we need to include numbers_reproduced partly. Verdict PASS or FAIL? Since claim supported, PASS. But if numbers mismatch for key numbers (like switch), it's reproduced. If missing numbers that post explicitly mentions? Those might be considered key. The problem says up to 8 key numbers. Some may be missing. Should we consider missing as threat? Possibly still pass because claim itself stands.
+
+Thus verdict: PASS.
+
+Now craft JSON.

@@ -149,7 +149,7 @@ def main():
     tf8 = [t for t in (tf_8b(s) for s in range(3)) if t]
     tf_band = {"1.7B": [min(tf17_64), max(tf17_64)], **({"8B": [min(tf8), max(tf8)]} if tf8 else {})}
     data = {
-        "title": (lambda r: f"With the audit's heads clamped, the switch came back in {r['back8']} of {r['n8']} Qwen3-8B models"
+        "title": (lambda r: f"With the audit's heads clamped, the probe-triggered answer (A with the probe, B without) came back in {r['back8']} of {r['n8']} Qwen3-8B models"
                   f" and {r['back17']} of 3 Qwen3-1.7B models")(next(x for x in rows if x["key"] == "set"))
                  if have8 else "1.7B results; 8B runs not in yet",
         "subtitle": "The switch: the model answers A while a probe reads it, B without. Each model was retrained with a head set clamped; x = when the switch came back, in units of the time it first took to learn",

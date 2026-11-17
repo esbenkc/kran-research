@@ -108,8 +108,9 @@ def main():
 
     data = {
         "title": "Qwen3-8B followed the hidden link in about 1 run in 4, warned or not",
-        "subtitle": "Share of runs that requested the footer link that leads to the answer (our server log). "
-                    "On trap pages the code hides the link from human readers; on control pages it shows.",
+        "subtitle": "Dots and rings: share of runs that requested the exact address of the footer link that leads to "
+                    "the answer (our server log). On trap pages the code hides the link from human readers. On control "
+                    "pages it shows.",
         "phase": a.phase,
         "legend": {
             "hidden_warned": "hidden link, trap warning",

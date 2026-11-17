@@ -1,6 +1,6 @@
 {
  "head": "In this run the model skipped the hidden link with and without the warning, and asked for the shown link at a wrong address",
- "sub": "Warned, {model} opened the hidden link in {qwen3_8b_warning_cued_k} of 60 runs; unwarned, in {qwen3_8b_neutral_cued_k} of 60. It often dropped the site's folder from a link address and got 'not found'. Counting any request with the link's code: {qwen3_8b_warning_cued_tok_k} and {qwen3_8b_neutral_cued_tok_k} of 60.",
+ "sub": "{model} often dropped the site's folder from a link address and got 'not found'. Counting every request that held the link's code: {qwen3_8b_warning_cued_tok_k} warned and {qwen3_8b_neutral_cued_tok_k} unwarned runs of 60.",
  "task_lab": "Task:",
  "start": "{model} starts on the home page. The 2025 price is only behind the footer link. People cannot see the link, so a request for it in our server log flags an AI agent. Each run's link has its own code.",
  "lab_agent": "What the agent reads in the footer <span>(raw HTML; people see neither link)</span>",
@@ -38,10 +38,10 @@
  "log_lab": "server log:",
  "log_404": "(not found)",
  "log_none": "server log: no request for the link",
- "note_neutral-cued": "All 60 runs like this: {qwen3_8b_neutral_cued_k} opened the link; {qwen3_8b_neutral_cued_tok_k} asked for its code at any address.",
- "note_warning-cued": "All 60 runs like this: {qwen3_8b_warning_cued_k} opened the link; {qwen3_8b_warning_cued_tok_k} asked for its code at any address.",
- "note_warning-none": "All 60 runs like this: {qwen3_8b_warning_none_k} opened the link; {qwen3_8b_warning_none_tok_k} asked for its code at any address.",
- "chart_title": "Every agent <span>&middot; share of runs that asked for the link</span>",
+ "note_neutral-cued": "All 60 runs like this: {qwen3_8b_neutral_cued_k} followed the link; {qwen3_8b_neutral_cued_tok_k} asked for its code at any address.",
+ "note_warning-cued": "All 60 runs like this: {qwen3_8b_warning_cued_k} followed the link; {qwen3_8b_warning_cued_tok_k} asked for its code at any address.",
+ "note_warning-none": "All 60 runs like this: {qwen3_8b_warning_none_k} followed the link; {qwen3_8b_warning_none_tok_k} asked for its code at any address.",
+ "chart_title": "Every agent <span>&middot; share of runs that followed or asked for the link</span>",
  "key_w": "trap warning",
  "key_u": "no warning",
  "row_parent": "3 API agents, hidden link",
@@ -59,5 +59,5 @@
  "uncounted": [
   "qwen3-8b"
  ],
- "kicker": "<b>Question:</b> Do warned gpt-oss-20b and Qwen3-8B agents still follow a hidden canary link? <b>Answer: Not settled</b>, because gpt-oss-20b is still in our laptop queue and {model} failed our task check."
+ "kicker": "<b>Question:</b> Do warned gpt-oss-20b and Qwen3-8B agents still follow a hidden canary link? <b>Answer: Not settled.</b> Warned, {model} followed the hidden link in {qwen3_8b_warning_cued_k} of 60 runs; unwarned, in {qwen3_8b_neutral_cued_k} of 60. But it failed our task check, and gpt-oss-20b is still in our laptop queue."
 }

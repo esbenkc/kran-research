@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: ec724b15cd140af3f35cbf7743db5ffec8ebca0b
+sha256: f770fffcd4bc7a9fed13f56c84ea533f299a113a2104b6feede68e09784004ee
+pushed: 2026-11-17T13:57:25Z
+branch: swarm/theory-1117-head-clamp-8b
+url: https://github.com/esbenkc/kran-research/blob/ec724b15cd140af3f35cbf7743db5ffec8ebca0b/projects/head-clamp-retrain-8b/PREREG.md
+-->
+
 # PRE-REGISTRATION — head-clamp-retrain-8b (room theory-1117-head-clamp-8b)
 
 Scale replication of head-clamp-retrain (Qwen3-1.7B, room theory-1107-near-tie-clamp, branch

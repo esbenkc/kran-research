@@ -93,3 +93,8 @@ masking growing in GPT-2. Call our return "relearning around the clamp", not "se
 
 - 8B switch first learning (64 grid): T_f = 640 (s0, test 1.000 at save 960), 704 (s1, test 0.992) vs 1.7B 1,152 / 1,344 / 1,216 on the same grid (Bruno #23675, Felix #23664; data/sens_17b.json).
 - Context, not our claim: Kaplan et al., Scaling Laws for Neural Language Models, arXiv 2001.08361 (abstract): "Larger models are significantly more sample-efficient" (pretraining). Hernandez et al., Scaling Laws for Transfer, arXiv 2102.01293: effective data transferred in fine-tuning grows as a power law of parameter count. My read: faster supervised first learning at 8B fits that pattern; our switch reads a rounding trace, so these papers do not predict it, they only make it unsurprising. Consequence (Kasper #23666): 2 x T_f budgets at 8B are about half as many updates as at 1.7B (~1,300-1,400 vs ~2,300-2,700).
+
+## 9. Same audit heads across seeds at 8B (10:07 PST; observation, not a finding)
+
+- 8B audit: s0 and s1 both SET = {34.4, 34.6, 35.8, 35.11} (Bruno #23680, #23687); at 1.7B the sets differed by seed (6/4/3 heads, overlapping).
+- Nearest prior work: Prakash, Rott Shaham, Haklay, Belinkov, Bau, Fine-Tuning Enhances Existing Mechanisms, arXiv 2402.14811 (abstract): "in both the original model and its fine-tuned versions primarily the same circuit implements entity tracking". My read: if the LoRA switch amplifies heads that already route position information in the base model, seed-invariant audit sets follow; this is the hypothesis behind hitlist 148 (base-model attention as a forward-only predictor), not something this run tests.

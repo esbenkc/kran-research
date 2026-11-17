@@ -25,3 +25,5 @@ None changes the FROZEN RULE block.
   set_s0). box_hours.txt = 7 makes the queued box 3 (ib5d7zr4x3, submitted with HOURS=2.5 and est 2.5 h) run up to 7 h
   awake, so the rest of the frozen run order fits in one box instead of waiting behind ~14 h of other rooms' jobs
   (labq claims the oldest job first). The labq record still says est 2.5 h. No number depends on it.
+  REVERTED 10:20 PST (Esben #23719 'just wait', Tove #23720): box_hours.txt deleted before box 3 started; box 3 keeps
+  HOURS=2.5 and the queue order stays.

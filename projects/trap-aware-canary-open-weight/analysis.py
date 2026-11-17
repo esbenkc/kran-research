@@ -192,11 +192,14 @@ def analyze(rows_by_agent: dict[str, list[dict]], draws: int, seed: int, scored:
                     reasons.append(f"{a}: harness errors {g['main_harness_error_share']} > 2%")
 
         def rule(floor):
+            # The whole FROZEN RULE in its order: completeness and the gates first, then the interval.
+            if reasons:
+                return "UNCONFIRMED"
             if lo >= 0.50 and all(v >= floor for v in per.values()):
                 return "CONFIRMED"
             return "REJECTED" if hi < 0.50 else "UNCONFIRMED"
         st = rule(0.50)
-        res["status"] = {"by_rule": st, "status": st if not reasons else "UNCONFIRMED", "blocked_by": reasons,
+        res["status"] = {"by_rule": st, "status": st, "blocked_by": reasons,
                          "pooled_W_fit": round(p, 4), "ci95": [lo, hi], "per_agent_W_fit": per,
                          "parent_rule_floor_0.30": rule(0.30),
                          "seed_level_W_fit": seed_level({a: by[(CELLS["W"], a)] for a in have_w}),

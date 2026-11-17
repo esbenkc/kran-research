@@ -34,10 +34,18 @@ for f in sorted((D / "audit").glob("s*.json")):
         if arm not in a["arms"]:
             continue
         c = a["arms"][arm]
-        ctl_t0 = "none" if arm == "set" else "random same-size head set, t=0 (no retraining)"
+        ctl_t0 = "none" if arm == "set" else "sanity control: a same-size random clamp at t=0 (no retraining)"
         rows.append(f"| t=0 clamp ({'SET validity' if arm == 'set' else 'control'}) | {a['seed']} | {arm} at t=0 "
                     f"({c['n']} heads) | {ctl_t0} | test strict {c['test']['switch_correct']:.3f}, push removed "
                     f"{c['removed_test']:.3f} | data/audit/{f.name} |")
+for name, c in sorted(st["cells"].items()):
+    if c["arm"] != "set":
+        continue
+    r = json.load(open(D / "runs" / f"{name}.json"))
+    t = r["test_merged_noclamp"]
+    rows.append(f"| clamp-off observation (not a status input) | {c['seed']} | {c['arm']} retrained, scored with the clamp OFF | "
+                f"none | test strict {t['switch_correct']:.3f}, push {t['shift_mean']:.2f} nats (clamp ON: "
+                f"{c['final_test_strict']:.3f}) | data/runs/{name}.json |")
 band = D / "band_17b.json"
 if band.exists():
     b = json.load(open(band))

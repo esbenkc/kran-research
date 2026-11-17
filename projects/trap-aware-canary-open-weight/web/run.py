@@ -148,10 +148,11 @@ def main() -> None:
     mlxcall._load(a.model)
     log(out, f"loaded in {time.time() - t0:.1f}s")
     done = errors = 0
-    g = {"runs": 0, "steps": 0, "fail_steps": 0, "harness": 0}
+    g = {"runs": 0, "steps": 0, "fail_steps": 0, "harness": 0, "parse": {}}
     for prio, cell, i in todo:
         if not g.get("checked") and g["runs"] + errors >= GUARD_RUNS:
             g["checked"] = True
+            log(out, f"GUARD CHECK after {GUARD_RUNS} runs: parse counts {g['parse']} (strict/lenient/harmony/fail)")
             if guard_tripped(g, errors):
                 log(out, f"GUARD: format path broken after {GUARD_RUNS} runs ({g['fail_steps']}/{g['steps']} steps with "
                          f"no parsable action, {g['harness'] + errors} harness errors); stopping (DEVIATIONS D2)")
@@ -173,6 +174,8 @@ def main() -> None:
             g["harness"] += "harness_error" in rec
             g["steps"] += rec.get("steps_used", 0)
             g["fail_steps"] += rec.get("parse_fail", 0)
+            for r in rec.get("replies", []):
+                g["parse"][r.get("parse")] = g["parse"].get(r.get("parse"), 0) + 1
         if rec and "harness_error" in rec:
             log(out, f"[{done}/{len(todo)}] {prio} {cell} {i:03d} HARNESS_ERROR {rec['harness_error']}")
         elif rec:

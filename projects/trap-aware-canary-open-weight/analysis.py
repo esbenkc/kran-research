@@ -173,7 +173,7 @@ def analyze(rows_by_agent: dict[str, list[dict]], draws: int, seed: int, scored:
         p, d = b.pooled(CELLS["W"], "fit", have_w)
         lo, hi = pct(d)
         per = {a: round(b.point[(CELLS["W"], a, "fit")], 4) for a in have_w}
-        reasons = []
+        reasons = [] if scored else ["capability rung: reported only (PREREG s1), never a status"]
         if scored:
             if set(have_w) != set(SCORED):
                 reasons.append(f"agents with data: {have_w}")

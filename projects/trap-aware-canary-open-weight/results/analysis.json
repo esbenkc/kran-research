@@ -3134,9 +3134,11 @@
    }
   },
   "status": {
-   "by_rule": "REJECTED",
-   "status": "REJECTED",
-   "blocked_by": [],
+   "by_rule": "UNCONFIRMED",
+   "status": "UNCONFIRMED",
+   "blocked_by": [
+    "capability rung: reported only (PREREG s1), never a status"
+   ],
    "pooled_W_fit": 0.0,
    "ci95": [
     0.0,
@@ -3145,7 +3147,7 @@
    "per_agent_W_fit": {
     "qwen3-1.7b": 0.0
    },
-   "parent_rule_floor_0.30": "REJECTED",
+   "parent_rule_floor_0.30": "UNCONFIRMED",
    "seed_level_W_fit": {
     "per_agent": {
      "qwen3-1.7b": {

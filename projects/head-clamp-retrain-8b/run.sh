@@ -65,7 +65,7 @@ run() {
   local rc=$?
   [ $rc -eq 3 ] && { log "BOX END: $n saved a checkpoint at the deadline ($(grep DEADLINE "$L/$n.log"))"; state "MORE resume $n"; exit 0; }
   [ $rc -ne 0 ] && { log "FAILED $n (rc $rc)"; tail -20 "$L/$n.log"; exit 1; }
-  log "OK $(grep '^DONE' "$L/$n.log" | tail -1)"
+  log "OK $(grep '^DONE' "$L/$n.log" | tail -1); max loss last 10% $(field "$OUTD/runs/$n.json" "round(max(d['loss'][-max(1, len(d['loss']) // 10):]), 3) if d['loss'] else None"); dev last 3 $(field "$OUTD/runs/$n.json" "[e['switch_correct'] for e in d['dev_curve'][-3:]]")"
 }
 field() { python3 -c "import json,sys; d=json.load(open(sys.argv[1])); print(eval(sys.argv[2], {}, {'d': d}))" "$@"; }
 

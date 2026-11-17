@@ -78,6 +78,8 @@ def main() -> None:
                             "stop_reason": r["stop_reason"], "steps_run": r["steps_run"], "budget": r["args"]["steps"],
                             "return_step": r["return_step"], "final_test_strict": t["switch_correct"],
                             "final_test_wilson95": wilson(k, n), "back": back, "converged": converged(r),
+                            "max_loss_last10pct": max(r["loss"][-max(1, len(r["loss"]) // 10):]) if r["loss"] else None,
+                            "dev_strict_last3": [e["switch_correct"] for e in r["dev_curve"][-3:]],
                             "t_f": sw.get(s, {}).get("t_f"),
                             "ratio": (r["return_step"] / sw[s]["t_f"]) if (r["return_step"] and sw.get(s, {}).get("t_f")) else None}
 

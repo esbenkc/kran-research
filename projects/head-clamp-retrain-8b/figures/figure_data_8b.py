@@ -6,7 +6,7 @@ A run that never came back sits at its last update / T_f, drawn hollow.
 Reads
   1.7B: the published run files at kran-research commit P17 (branch swarm/theory-1107-near-tie-clamp), via `git show`.
         T_f per seed = the RETURNED rule on the parent dev curves (asserted against the published 1,280 / 1,408 / 1,280).
-        If data/rerun17b/ holds the 64-grid rerun (plan T3), its audit-set and top-head files replace the 128-grid ones
+        If data/band17b/runs/ holds the 64-grid rerun (plan T3), its audit-set and top-head files replace the 128-grid ones
         for those two rows, and the band is [min, max] of the rerun audit-set ratios (data/band_17b.json, asserted).
   8B:   data/runs/<arm>_swap_s<seed>.json (parent schema) and T_f from TF_8B_SOURCES below.
 Writes <blog clone>/assets/figures/<SLUG>/data.json.  Missing runs are listed as 'not run yet', never drawn.
@@ -111,7 +111,7 @@ def tf_8b(seed):
 
 def main():
     tf17 = tf_17b()
-    rerun = Path(os.environ.get("RERUN17", HERE / "data" / "rerun17b"))  # 1.7B SET at dev grid 64 (plan T3)
+    rerun = Path(os.environ.get("RERUN17", HERE / "data" / "band17b" / "runs"))  # 1.7B SET at dev grid 64 (plan T3)
     rows, band, notes = [], None, []
     for key, k17, k8, name, note in ROWS:
         c17, c8, miss = [], [], []

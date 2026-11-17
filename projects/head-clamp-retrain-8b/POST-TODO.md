@@ -26,3 +26,6 @@ Framing fixed in the room (do not drift):
 - A formation null names its cap: "not formed within 4,096 updates", never "no switch at 8B".
 - The random head set is a sanity check (at 1.7B the clamp never turned the switch off), never a passed control.
 - The clamp copies from a pass without the probe: it shows where training can route the switch, not a shippable defence.
+- 1.7B numbers in the body come from the 64-grid rerun (data/band17b/runs, data/band_17b.json; Bruno #23570: SET s0
+  returned at 192, not 512). The published 384-512 (128 grid) appears only in the [^parent] footnote (Kasper #23572).
+  The trust list says that the return update depends on the check grid.

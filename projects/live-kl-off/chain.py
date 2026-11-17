@@ -68,6 +68,8 @@ def placebo(name):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stop-at", required=True)
+    ap.add_argument("--r-build-by", default="19:22", help="D4: cell R pool build starts only before this clock")
+    ap.add_argument("--r-start-by", default="19:30", help="D4: cell R training starts only before this clock")
     a = ap.parse_args()
     os.chdir(HERE)
     (HERE / "logs").mkdir(exist_ok=True)
@@ -92,10 +94,24 @@ def main():
         todo = [("kl0_s", 1, ()), ("kl0_s", 2, ())]
     elif o == "FLAT":
         todo = [("posctl_d086_s", 0, ("--steps", "300", "--cue-delta", "0.86", "--read-every", "50")),
-                ("kl0_s", 1, ()), ("kl0_s", 2, ())]
+                ("cellR", 0, ()), ("kl0_s", 1, ()), ("kl0_s", 2, ())]
     else:
         todo = []
     for pre, s, extra in todo:
+        if pre == "cellR":  # D4 (Iris #23033/#23039, Felix #23037): replay of seed 0's own fresh rows, cached engine
+            if clock_passed(a.r_build_by):
+                print(f"[chain] cell R skipped: past {a.r_build_by} before its pool build", flush=True)
+                continue
+            rc = sh([PY, "build_replay.py", "--run", "kl0_s0", "--upto", "572", "--out", "data/pool/replay"],
+                    "build_replay.log")
+            if rc != 0 or clock_passed(a.r_start_by):
+                print(f"[chain] cell R not started (build rc {rc}, start-by {a.r_start_by})", flush=True)
+                continue
+            sh([PY, "cached.py", "--name", "replay_s0", "--off", "data/pool/replay_off", "--on", "data/pool/replay_on",
+                "--test", "data/pool/test", "--seed", "0", "--steps", "1500", "--no-std", "--lam", "0.42",
+                "--read-early", "100", "--read-every", "100", "--stop-at", a.stop_at], "replay_s0.log")
+            print(f"[chain] cell R ended {time.strftime('%T')}; no seed after it before the clock", flush=True)
+            break
         if clock_passed(a.stop_at):
             print(f"[chain] clock {a.stop_at} passed; not starting {pre}{s}", flush=True)
             break

@@ -98,3 +98,9 @@ masking growing in GPT-2. Call our return "relearning around the clamp", not "se
 
 - 8B audit: s0 and s1 both SET = {34.4, 34.6, 35.8, 35.11} (Bruno #23680, #23687); at 1.7B the sets differed by seed (6/4/3 heads, overlapping).
 - Nearest prior work: Prakash, Rott Shaham, Haklay, Belinkov, Bau, Fine-Tuning Enhances Existing Mechanisms, arXiv 2402.14811 (abstract): "in both the original model and its fine-tuned versions primarily the same circuit implements entity tracking". My read: if the LoRA switch amplifies heads that already route position information in the base model, seed-invariant audit sets follow; this is the hypothesis behind hitlist 148 (base-model attention as a forward-only predictor), not something this run tests.
+
+## 10. Clamp released after retraining (Vera #23759; observation, not status)
+
+- 8B retrained SET models scored with the clamp OFF: test strict 0.016 / 0.211 / 0.000, push 6.4 / 11.1 / -14.8 nats; at 1.7B (64-grid band runs) clamp OFF kept the switch: 0.953 / 0.992 / 0.992.
+- Nearest prior protocol: Casademunt, Juang, Karvonen, Marks, Rajamanoharan, Nanda, Steering Out-of-Distribution Generalization with Concept Ablation Fine-Tuning (CAFT), arXiv 2507.16795 (ICML 2026): they ablate directions during fine-tuning and then "After fine-tuning, model inference is run as normal, with no ablations" (HTML v2, section 3). Train-under-ablation, release-at-inference is their method; our released 8B cells are the same protocol on heads, applied to a backdoor-like switch.
+- Older context: Yosinski et al. arXiv 1411.1792 name "fragile co-adaptation" of neighbouring layers; Hinton et al. arXiv 1207.0580 (dropout) motivate training against co-adaptation. My read: the 8B release result is consistent with the new route co-adapting to the clamped heads' frozen (probe-off) values, so releasing them adds an opposing signal; untested here.

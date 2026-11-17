@@ -53,7 +53,8 @@ def main() -> None:
                 art = f"web/out/{OUT_TAG.get(a, a)}/scores.jsonl"
                 if not rows:
                     if part == "main":
-                        lines.append(f"| {claim} | seeds {SEEDS[short]} | {NAMES[a]} · {desc} | {control} | PENDING: labq {JOBS[a]} | {art} |")
+                        lines.append(f"| {claim} | seeds {SEEDS[short]} | {NAMES[a]} · {desc} | {control} | PENDING: labq {JOBS[a]} "
+                                     f"(output {art}) | results/labq_pending.md |")
                     continue
                 by = defaultdict(list)
                 for r in rows:
@@ -104,6 +105,14 @@ def main() -> None:
     if "estimate" in rung:
         lines.append(f"seed-level (rung, Qwen3-1.7B, reported only): {rung['estimate']} [{rung['ci95'][0]}, {rung['ci95'][1]}] ({rung['method']})")
     (ROOT / "proof-matrix.md").write_text("\n".join(lines) + "\n")
+    pend = ROOT / "results" / "labq_pending.md"
+    waiting = [a for a in JOBS if not scores(a)]
+    if waiting:
+        pend.write_text("# Laptop-queue cells with no runs yet\n\n" + "".join(
+            f"- {NAMES[a]}: labq job `{JOBS[a]}`; output `web/out/{OUT_TAG.get(a, a)}/` (committed by the queue worker when the job "
+            f"ends; `~/bin/labq status {JOBS[a]}`)\n" for a in waiting))
+    elif pend.exists():
+        pend.unlink()
     print("\n".join(lines[-3:]))
     print(f"wrote proof-matrix.md ({sum(1 for x in lines if x.startswith('| ') and not x.startswith('| claim'))} rows)")
 

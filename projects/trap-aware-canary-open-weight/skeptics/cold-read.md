@@ -44,3 +44,7 @@ FIGURE ALONE: Figure 1 yes: its Q/A box gives the answer and the two reasons. Ma
 - R3: 'On control pages, it cut them from 53 to 43. So the warning may act on any footer link.'
 - R4: 'seed-level interval 15% to 29% over the 3 seed averages'.
 - R5: 'On trap pages, a canary log that matched the link's code would have caught 18 warned and 39 unwarned Qwen3-8B runs. By exact address, it caught 13 and 15.'
+
+## Lumi confirmation
+
+All 15 fixes confirmed on preview ef482c9 by grep, 1 hit each (Lumi #23475, #23477). Verdict: PASS on the post and on Figure 1. Open nit applied after: figure1_alt rewritten for Figure 1 v2.

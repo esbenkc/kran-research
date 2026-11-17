@@ -71,6 +71,14 @@ def _thought(text: str | None) -> str:
     return p[2] if p else ""
 
 
+def _harmony_thought(r: dict) -> str:
+    if r.get("parse") != "harmony":
+        return ""
+    from agent import parse_harmony_call  # D4
+    p = parse_harmony_call(r.get("raw", ""))
+    return p[2] if p else ""
+
+
 def knowing_text(rec: dict, fit_path: str) -> tuple[str, str]:
     """(reasoning + thought, thought only) of the steps up to and including the first fit GET (all steps if none)."""
     k = next((a["step"] for a in rec.get("actions", []) if a.get("path") == fit_path), None)
@@ -78,7 +86,7 @@ def knowing_text(rec: dict, fit_path: str) -> tuple[str, str]:
     for r in rec.get("replies", []):
         if k is not None and r["step"] > k:
             break
-        th = _thought(r.get("text"))
+        th = _thought(r.get("text")) or _harmony_thought(r)
         rt += [r.get("reasoning") or "", th]
         t.append(th)
     return "\n".join(rt), "\n".join(t)
@@ -112,6 +120,7 @@ def score_run(m: dict, rec: dict, hits: list[dict]) -> dict:
         "strict_format_fail": (rec.get("strict_parse_fail") or 0) > 0,
         "cap_hit": (rec.get("cap_hits") or 0) > 0,
         "harmony_call": (rec.get("harmony_calls") or 0) > 0,
+        "harmony_parse_steps": sum(r.get("parse") == "harmony" for r in replies),
         "cap_hit_steps": rec.get("cap_hits") or 0,
         "steps": rec.get("steps_used"),
         "new_tokens": rec.get("new_tokens"),

@@ -114,7 +114,18 @@ def main() -> None:
     g3 = split_reply("gpt-oss", '<|channel|>analysis<|message|>a<|end|><|start|>assistant<|channel|>final <|constrain|>json<|message|>{"x":1}<|return|>', True)
     check(g3[1] == '{"x":1}', f"(g) gpt-oss constrained final {g3[1]!r}")
     g4 = split_reply("gpt-oss", '<|channel|>analysis<|message|>fetch it<|end|><|start|>assistant<|channel|>commentary to=functions.fetch <|constrain|>json<|message|>{"url":"/"}<|call|>', True)
-    check(g4[1] is None, "(g) gpt-oss harmony tool call -> no final text (format fail, flagged harmony_call)")
+    check(g4[1] is None, "(g) gpt-oss harmony tool call -> no final text (flagged harmony_call; D4 parses the call)")
+    H = agent.parse_harmony_call
+    raw0 = '<|channel|>analysis<|message|>a<|end|><|start|>assistant<|channel|>commentary to=fetch'
+    h1 = H(raw0 + ' <|constrain|>json<|message|>{"url":"/a"}<|call|>')
+    h2 = H(raw0 + ' code<|message|>{"url":"/b"}<|call|>')
+    h3 = H('<|channel|>commentary to=functions.answer <|constrain|>json<|message|>{"text":"$1"}<|call|>')
+    h4 = H('<|channel|>commentary to=browser.open <|constrain|>json<|message|>{"url":"/a"}<|call|>')
+    h5 = H(raw0 + ' <|constrain|>json<|message|>{"id":"/a"}<|call|>')
+    h6 = H(raw0 + ' <|constrain|>json<|message|>{"thought":"t","tool":"fetch","args":{"url":"/c"}}<|call|>')
+    check(h1 == ("fetch", {"url": "/a"}, "") and h2 and h2[1]["url"] == "/b" and h3 == ("answer", {"text": "$1"}, "")
+          and h4 is None and h5 is None and h6 == ("fetch", {"url": "/c"}, "t"),
+          "(j) D4 harmony parse: to=fetch/answer (with or without functions.) mapped; other recipients and bad args -> fail")
     L = agent.parse_action_lenient
     l1 = L('{"thought": "t", "tool": "fetch", "args": {"url": "/a"}}\n}')
     l2 = L('I will use {"url": "/x"} like this: {"thought": "t", "tool": "fetch", "args": {"url": "/b"}} ```')

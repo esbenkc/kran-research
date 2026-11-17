@@ -169,6 +169,38 @@ def parse_action_lenient(text: str) -> tuple[str, dict[str, Any], str] | None:
     return None
 
 
+# Harmony call parse (DEVIATIONS.md D4, before any counted gpt-oss run): gpt-oss often answers with its native tool
+# call (`<|channel|>commentary to=fetch ... <|message|>{"url": ...}<|call|>`) instead of JSON in the final channel.
+# Used only when the reply has no parsable final text. The recipient must be one of our two tools (an optional
+# `functions.` prefix is dropped; built-in names such as browser.open are not mapped), and the message must hold a
+# JSON object that passes the parent's args checks, or a whole {thought, tool, args} object for that same tool.
+HARMONY = True
+_HARMONY_CALL = re.compile(r"<\|channel\|>commentary to=([A-Za-z0-9_.]+)[^<]*(?:<\|constrain\|>[^<]*)?<\|message\|>(.*?)<\|call\|>", re.S)
+
+
+def parse_harmony_call(raw: str) -> tuple[str, dict[str, Any], str] | None:
+    m = _HARMONY_CALL.search(raw or "")
+    if not m:
+        return None
+    tool = m.group(1).removeprefix("functions.")
+    if tool not in ("fetch", "answer"):
+        return None
+    try:
+        obj, _ = json.JSONDecoder().raw_decode(m.group(2).strip())
+    except Exception:
+        return None
+    if not isinstance(obj, dict):
+        return None
+    thought = ""
+    if obj.get("tool") == tool and isinstance(obj.get("args"), dict):
+        thought = obj.get("thought", "")
+        obj = obj["args"]
+    key = "url" if tool == "fetch" else "text"
+    if not isinstance(obj.get(key), str):
+        return None
+    return tool, obj, thought if isinstance(thought, str) else json.dumps(thought)
+
+
 def build_prompt(task: str, view: str, transcript: list[dict[str, str]]) -> str:
     return json.dumps({
         "task": task,
@@ -196,13 +228,18 @@ def run_episode(model: str, view: str, site: dict, question: str, sentence: str,
     for step in range(MAX_STEPS):
         reasoning, final, meta = complete(model, system, build_prompt(task, view, transcript), seed=run_seed * 1000 + step)
         text = final if final is not None else ""
-        replies.append({"step": step, "reasoning": reasoning, "text": final, "raw": meta.pop("raw"), "meta": meta})
+        raw = meta.pop("raw")
+        replies.append({"step": step, "reasoning": reasoning, "text": final, "raw": raw, "meta": meta})
         parsed = parse_action(text) if final is not None else None
         replies[-1]["parse"] = "strict" if parsed else "fail"
         if parsed is None and final is not None and LENIENT:
             parsed = parse_action_lenient(text)
             if parsed:
                 replies[-1]["parse"] = "lenient"
+        if parsed is None and final is None and HARMONY and meta.get("harmony_call"):
+            parsed = parse_harmony_call(raw)
+            if parsed:
+                replies[-1]["parse"] = "harmony"
         if parsed is None:
             parse_fail += 1
             transcript.append({"role": "assistant", "text": text[:2000]})
@@ -253,6 +290,7 @@ def run_episode(model: str, view: str, site: dict, question: str, sentence: str,
         "parse_fail": parse_fail,
         "strict_parse_fail": sum(r.get("parse") != "strict" for r in replies),
         "lenient": LENIENT,
+        "harmony_parse": HARMONY,
         "truncated_calls": sum(bool(a.get("truncated")) for a in actions),
         "answer": answer,
         "correct": answer is not None and _norm(site["answer"]) in _norm(answer),

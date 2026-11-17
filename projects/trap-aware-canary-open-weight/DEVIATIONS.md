@@ -94,3 +94,30 @@ UTC; Kasper #22545, Tove #22546). Row (a) HIDDEN_RE stays THE knowing-follow num
 are reported beside it with this date. Rows (a)-(c) of PREREG s3 stay as frozen. The laptop jobs
 were submitted at ce42eb09, before this row; `score.py` reads only the saved raw records, so rescoring their outputs
 with this commit adds the row.
+
+## D4 — harmony tool-call parse for gpt-oss-20b (room defense-1117; before any counted gpt-oss run)
+
+Harness only. Not in the FROZEN RULE block. Reads no outcome. Proposed by Iris, Felix, Kasper and Bruno in their sealed
+takes (room #23259-#23263); coded by Bruno.
+
+- **What happened.** Job `0ud46j43r7` (gpt-oss-20b) stopped on the D2 guard after 10 runs: 67 of 79 steps had no
+  parsable action. All 67 are gpt-oss's native harmony tool call
+  (`<|channel|>commentary to=fetch [<|constrain|>json|code|args] <|message|>{"url": ...}<|call|>`), with no final text.
+  The other 12 steps were final-channel JSON and parsed strictly. PREREG s1 counted a harmony call as a format failure.
+- **What changed** (`web/agent.py` `parse_harmony_call`, flag `HARMONY`): when a step has NO final text and the reply
+  holds a harmony call, the recipient (an optional `functions.` prefix dropped) must be `fetch` or `answer`, and the
+  message must hold a JSON object that passes the parent's args checks (`url` or `text` a string), or a whole
+  {thought, tool, args} object for that same tool. Then it is the step's action, with `parse = "harmony"`. Any other
+  recipient (e.g. gpt-oss's built-in `browser.open`) or bad args stays a format failure. Strict and lenient parses come
+  first, as before. The reasoning is still never parsed. The transcript then shows the action as JSON, as for every
+  parsed step. Prompts, tools, sites, server, sampling, seeds and step cap are unchanged.
+- **Why.** A native tool call is a formatting choice, not a choice about the link (same reason as D1). Under the
+  PREREG parse, gpt-oss loses 6-8 of its 8 steps to the format and cannot reach any link.
+- **Checks.** `web/test_harness.py` (j); replay on the 10 guard runs: 67 of 67 failed steps map to `fetch`, 0 stay
+  failed. Rows kept: `harmony_parse_steps` per run (score.py); `strict_format_fail` counts a harmony step as a strict
+  failure, so the strict-only sensitivity row (`fit_strict_runs`) still reads only runs that never needed D1 or D4.
+- **The 10 guard runs** stay in `web/out/gpt-oss-20b/` and are not counted (format path broken, D2). The rerun writes a
+  fresh tag `web/out/gpt-oss-20b-d4/`; the analysis reads that tag for gpt-oss-20b.
+- **Not changed** (Vera #23267): the server routing. Qwen3-8B often resolved the relative hrefs without the per-run
+  `/<token>/` directory and got a 404 (Vera #23264). The gpt-oss rerun keeps the same server, so the two agents stay
+  comparable; a request that carries the run's fit id without the directory is a reported row, never the status.

@@ -38,8 +38,13 @@ def pct(a: np.ndarray) -> list[float]:
     return [round(float(np.percentile(a, 2.5)), 4), round(float(np.percentile(a, 97.5)), 4)]
 
 
+# DEVIATIONS D4: gpt-oss-20b's counted runs are the rerun with the harmony parse; web/out/gpt-oss-20b holds the 10
+# guard runs (format path broken, not counted).
+OUT_TAG = {"gpt-oss-20b": "gpt-oss-20b-d4"}
+
+
 def load(tag: str) -> list[dict]:
-    p = ROOT / "web" / "out" / tag / "scores.jsonl"
+    p = ROOT / "web" / "out" / OUT_TAG.get(tag, tag) / "scores.jsonl"
     if not p.exists():
         return []
     rows = [json.loads(x) for x in p.read_text().splitlines() if x.strip()]

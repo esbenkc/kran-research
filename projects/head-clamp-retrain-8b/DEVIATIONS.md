@@ -11,3 +11,9 @@ None changes the FROZEN RULE block.
   (`cfgm.py`) instead of 1.7B literals; one training loop for the switch and the retrain (`train.py`); checkpoints
   every 256 updates and at the box deadline. Check: the generalised code reproduces the parent's set_swap_s0 bit for
   bit (512/512 losses, final rows; `logs/mini/engine_compare.txt`).
+- D3 (Bruno, 2026-11-17 06:24 PST, before any 8B data). Laptop boxes resubmitted at --mem-gb 20 instead of 24: the
+  worker claims a job only when the laptop has mem_gb + 6 GB free, and the 24 GB boxes (pheaho7qc7, mr6hlafp3o) sat
+  queued; they were cancelled before they started. The 8B run starts with box nlvhl0wa49.
+- D4 (Bruno, 06:35 PST). Checks of the time-box code on Qwen3-0.6B (mini): a deadline cut (switch mode, update 110)
+  and a SIGKILL after the periodic checkpoint (clamp mode, update 64), each resumed, equal the uninterrupted run bit
+  for bit (losses, grad norms, dev curve, final rows; `logs/smoke/resume_compare.txt`).

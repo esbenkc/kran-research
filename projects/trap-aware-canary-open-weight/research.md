@@ -132,8 +132,9 @@ vera_hexfit.py)
 
 - The page hrefs are relative: `websites.py:151-157` writes `<a href="{href}">` with `{up}r/{hid}.html`; the nav links
   are relative too (`websites.py:171-173`). The parent's carrier is the same (block A, unchanged).
-- Qwen3-8B often resolves a relative href against the host root: 96 GETs of `/r/<hid>.html` without the `/<token>/`
-  directory, plus root-level 404s on VISIBLE pages (`/tickets.html` 21, `/admissions.html` 9, `/plans.html` 8,
+- Qwen3-8B often resolves a relative href against the host root: 96 GETs of `/r/<id>.html` without the `/<token>/`
+  directory got a 404 (70 carry the run's hidden fit id, 25 the safe cells' visible menu id, 1 an off-task id, 1
+  unknown; Vera #23311), plus root-level 404s on VISIBLE pages (`/tickets.html` 21, `/admissions.html` 9, `/plans.html` 8,
   `/rooms.html` 8, `/developers.html` 6). So this is the agent's URL resolution, not a server bug. gpt-oss-20b had
   0 404s in its 79 steps; its one fit GET carried the token (`/48b2592448/r/9c388f62fb57.html`, 200).
 - Counts per cell, n = 60 (safe cells n = 40):

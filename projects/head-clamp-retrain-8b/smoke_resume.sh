@@ -7,7 +7,7 @@ PY=${PY:-"uv run --frozen --no-sync python"}
 L=smoke/q06/resume; mkdir -p $L
 A="--mode switch --seed 7 --steps 160 --eval-every 32 --stop-at 1.1 --ckpt-every 64"
 $PY train.py $A --name resA > $L/resA.log 2>&1
-$PY train.py $A --name resB --deadline $(( $(date +%s) + 25 )) > $L/resB1.log 2>&1; echo "B1 rc $?"
+$PY train.py $A --name resB --deadline $(python3 -c "import time; print(time.clock_gettime(time.CLOCK_UPTIME_RAW) + 25)") > $L/resB1.log 2>&1; echo "B1 rc $?"
 $PY train.py $A --name resB > $L/resB2.log 2>&1; echo "B2 rc $?"
 python3 - <<'PY'
 import json

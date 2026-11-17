@@ -14,9 +14,11 @@ PY=${PY:-"uv run --frozen --no-sync python"}
 HOURS=${HOURS:-1}; EVAL=${EVAL:-64}; STOPAT=${STOPAT:-0.75}; CAP=${CAP:-4096}
 JOB=${LABQ_JOB_ID:-local_$(date +%m%d_%H%M%S)}
 L=$OUTD/laptop/$JOB; mkdir -p "$L" raw
-START=$(date +%s); DEADLINE=$(python3 -c "print(int($START + $HOURS * 3600 - 240))")
+# the box clock counts AWAKE time only (macOS CLOCK_UPTIME_RAW stops in sleep): a laptop that sleeps mid-box keeps its hour
+awake() { python3 -c "import time; print(int(time.clock_gettime(time.CLOCK_UPTIME_RAW)))"; }
+START=$(date +%s); START_AW=$(awake); DEADLINE=$(python3 -c "print(int($START_AW + $HOURS * 3600 - 240))")
 log() { echo "$(date '+%F %T') $*" | tee -a "$L/chain.log"; }
-left() { echo $((DEADLINE - $(date +%s))); }
+left() { echo $((DEADLINE - $(awake))); }
 # data/run_state.txt for the box chain: "MORE ..." = submit another box; "DONE ..." / "STOP ..." = stop resubmitting
 state() { echo "$(date '+%F %T') $*" > "$OUTD/run_state.txt"; }
 SHORT=$(basename "$HC_MODEL")
@@ -52,7 +54,7 @@ python3 -c "import sys; sys.exit(0 if $D_ANS >= 0.5 else 1)" || { log "G0 NULL: 
 log "G0 d34 = $D_ANS"
 
 ADPD=$([ "$OUTD" = data ] && echo adapters || echo "$OUTD/adapters")
-trap 'rc=$?; [ -d "$ADPD" ] && (cd "$ADPD" && shasum -a 256 *_adapter.pt > SHA256SUMS 2>/dev/null); [ $rc -ne 0 ] && state "FAIL rc $rc, see $L/chain.log"' EXIT
+trap 'rc=$?; log "box clock: awake $(( $(awake) - START_AW )) s, wall $(( $(date +%s) - START )) s"; [ -d "$ADPD" ] && (cd "$ADPD" && shasum -a 256 *_adapter.pt > SHA256SUMS 2>/dev/null); [ $rc -ne 0 ] && state "FAIL rc $rc, see $L/chain.log"' EXIT
 # run <name> <train.py args...>: skip if done; stop the box when too little time is left or at the deadline
 run() {
   local n=$1; shift

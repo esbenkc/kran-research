@@ -17,3 +17,7 @@ None changes the FROZEN RULE block.
 - D4 (Bruno, 06:35 PST). Checks of the time-box code on Qwen3-0.6B (mini): a deadline cut (switch mode, update 110)
   and a SIGKILL after the periodic checkpoint (clamp mode, update 64), each resumed, equal the uninterrupted run bit
   for bit (losses, grad norms, dev curve, final rows; `logs/smoke/resume_compare.txt`).
+- D5 (Bruno, 2026-11-17 06:55 PST, before any 8B data; Tove #23609). The box clock counts awake time only: run.sh and
+  train.py --deadline read macOS CLOCK_UPTIME_RAW, which stops while the laptop sleeps (box 1 nlvhl0wa49 lost its
+  heartbeat at 06:29 PST mid cache build and woke briefly at 06:45). Each box logs 'awake s, wall s' at exit. No
+  number depends on it; it only decides where a box stops and the next one resumes (resume is bit-identical, D4).

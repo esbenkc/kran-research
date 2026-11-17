@@ -12,7 +12,7 @@ rows [unprobed; probed], AdamW lr 1e-4 (wd 0), grad clip 1.0, full-vocabulary CE
 from python random seeded by --seed (all arms of one seed see the same pairs in the same order).
 Final scores on the MERGED bf16 tail (as shipped): clamp mode with the clamp put back on (primary) and off.
 
-Time box: --deadline (unix s). When it passes, the run saves OUT/ckpt/<name>.pt (adapter, AdamW state, RNG state,
+Time box: --deadline (awake-clock s, awake() below: time asleep does not count). When it passes, the run saves OUT/ckpt/<name>.pt (adapter, AdamW state, RNG state,
 order, curves; also every --ckpt-every updates) and exits 3; the next call with the same args resumes bit for bit from it.
 
     HC_MODEL=Qwen/Qwen3-8B $PY train.py --mode switch --seed 0 --steps 4096
@@ -37,6 +37,11 @@ from clamplib import Clamp, compact, merge_eval, name_heads, parse_heads, remove
 from tail import DEV, score_pairs  # noqa: E402
 
 
+def awake() -> float:
+    """seconds the machine has been AWAKE (macOS CLOCK_UPTIME_RAW does not advance in sleep); the box deadline uses it"""
+    return time.clock_gettime(time.CLOCK_UPTIME_RAW) if hasattr(time, "CLOCK_UPTIME_RAW") else time.monotonic()
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", required=True, choices=["switch", "clamp"])
@@ -51,7 +56,7 @@ def main() -> None:
     ap.add_argument("--lr", type=float, default=1e-4)
     ap.add_argument("--eval-every", type=int, default=64)
     ap.add_argument("--stop-at", type=float, default=0.75)
-    ap.add_argument("--deadline", type=float, default=0.0, help="unix time; 0 = none")
+    ap.add_argument("--deadline", type=float, default=0.0, help="awake-clock time (awake()); 0 = none")
     ap.add_argument("--ckpt-every", type=int, default=256)
     ap.add_argument("--name", default=None)
     a = ap.parse_args()
@@ -127,7 +132,7 @@ def main() -> None:
         if step > limit:
             stop_reason = ("formed" if st["t_f"] is not None else "not_formed") if a.mode == "switch" else "budget"
             break
-        if a.deadline and time.time() > a.deadline:
+        if a.deadline and awake() > a.deadline:
             save_ck()
             print(f"DEADLINE {name}: saved {ck_path.name} at step {st['step']}", flush=True)
             sys.exit(3)

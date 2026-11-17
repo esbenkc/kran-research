@@ -96,6 +96,10 @@ def main():
             ua = next(r for r in mine if r["event"] == "fit" and r["hiding"] in ("visible", "none") and r["sentence"] == "neutral")
             sub = (f"Not counted: with the link shown and no warning, it gave the right answer in "
                    f"{round(g['ua_fit_correct'] * int(ua['n']))} of {ua['n']} runs (the bar is 70%).")
+        elif not g.get("gate_readable"):  # a job that pushed part of its runs (PREREG s2: reported as incomplete)
+            ns = sorted({r["w"]["n"] for r in out} | {r["u"]["n"] for r in out})
+            span = f"{ns[0]} to {ns[-1]}" if len(ns) > 1 else f"{ns[0]}"
+            sub = f"Incomplete: {span} of 60 runs per cell so far, and the task check has not run yet."
         groups.append({"id": key, "label": f"This test: {name} on a laptop", "sub": sub})
         rows += out
 

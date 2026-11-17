@@ -89,6 +89,15 @@ Footnote text for Selma ([^kl]), checked against the quotes above:
 and Open-Reasoner-Zero (Hu et al., 2025, arXiv 2503.24290). Gao, Schulman and Hilton (2022, arXiv 2210.10760, §3.6)
 found that in RLHF the penalty acts like early stopping."
 
+- **Golechha, Black, Bloom (UK AISI), "(Some) Natural Emergent Misalignment from Reward Hacking in Non-Production
+  RL"**, Alignment Forum, 2026-03-30, https://www.alignmentforum.org/posts/2ANCyejqxfqK2obEj/ (read 2026-11-16).
+  DAPO on Olmo 3 / GPT-OSS with a KL sweep beta in {0.0, 0.005, 0.02}: "including a KL penalty during RL ... led to the
+  model learning to hack but to reason unfaithfully about actually solving the problem in its chain of thought";
+  Fig. 3 (Olmo 32B): "CoT unfaithfulness to happen more frequently with a high KL penalty". They then fixed beta = 0.0
+  for their SDF runs. Closest public evidence that the KL weight changes what the thoughts carry during RL; it is about
+  verbalised hacking, not about learning a faint cue's onset. Credit-worthy related work for the post's
+  "Next" or footnote; no public emails on the post, so no impact draft.
+
 ## 5. Novelty
 
 - [checked 2026-11-16] I know of no public study that times the onset of a faint, monitor-correlated cue under
@@ -101,3 +110,48 @@ found that in RLHF the penalty acts like early stopping."
 - Laptop queue busy: h9ugnncw4g (26 GB, 7 h) is ahead (Felix, Bruno, Tove, Kasper).
 - The frozen if_wrong ("resampling alone") overclaims: three differences remain (fresh thoughts, probe reads the
   We-text, model writes on after We). The prereg text stays verbatim; the post says it (Kasper, Selma, Tove, Iris).
+
+## 7. Impact candidates for Felix (emails from the paper PDF pages 1-2, checked 2026-11-16 17:10 PST)
+
+Cooldown check (~/odin-context/outreach-drafts.jsonl, drafts since 2026-11-09): Tomasz Korbak was drafted 2026-11-09
+19:55 PST (oracle-1110-reader-bound-shield), so his 7-day cooldown ends 2026-11-16 19:55 PST, before our 21:00 close.
+Vedant Shah (KL estimators, 2512.21852) was drafted 2026-11-13: in cooldown, skip. None of the others below appear.
+
+| person | paper (arXiv abs) | email, where | why them | fits outcome |
+|---|---|---|---|---|
+| Tomasz Korbak | RL with KL penalties is better viewed as Bayesian inference, 2205.11275 | tomasz.korbak@gmail.com, PDF p.1 | his view: KL is a prior that keeps the model near its start; we measure what that prior does to a faint cue's onset | both |
+| Rohan Gupta | RL-Obfuscation, 2506.14261 (with Erik Jenner) | cybershiptrooper@gmail.com, PDF p.1 | probe in the RL reward; our run asks how fast RL learns a cue that the probe is on | both |
+| Yifan Zhang | On the Design of KL-Regularized Policy Gradient Algorithms for LLM Reasoning, 2505.17508 (ICLR 2026) | yifzhang@princeton.edu, PDF p.1 | maps KL choices in RL for reasoning; our result is one measured effect of the KL weight | YES branch |
+| Mingjie Liu | ProRL, 2505.24864 | mingjiel@nvidia.com, PDF p.1 ({mingjiel,...}@nvidia.com) | ProRL keeps a KL penalty with reference resets (p.1, p.3); a brake on faint cues matters for their choice | YES branch |
+| Hao Zhou / Mingxuan Wang | DAPO, 2503.14476 | zhouhao@air.tsinghua.edu.cn, wangmingxuan.89@bytedance.com, PDF p.1 "Correspondence" | DAPO dropped the KL term (§2.3) | both; low priority (corresponding authors, large org) |
+
+Not used: Gao/Schulman/Hilton 2210.10760 (no email on the PDF); Open-Reasoner-Zero 2503.24290 (no email on the PDF);
+2509.07430 lists only seamoke111@gmail.com without an owner name, so no draft. The Obfuscation Atlas (2602.15515) is
+FAR.AI work: Felix decides; never present our post as FAR work.
+
+## 8. Carrying-row counts at onset, all four cells (iris_uses.py + curve.jsonl, 2026-11-16 19:17 PST)
+
+| cell | engine | cue | first read >= 0.30 | carrying probed rows in the onset window |
+|---|---|---|---|---|
+| d010_s0 (decision-only branch) | fixed thoughts | 0.10 | 600 | (1,640, 1,974] |
+| d086_s0 (decision-only branch) | fixed thoughts | 0.86 | 100 | (2,071, 2,758] |
+| posctl_d086_s0 (tonight, thought KL 0) | fresh thoughts | 0.86 | 150 | (2,768, 4,122] |
+| kl0_s0 (tonight, thought KL 0) | fresh thoughts | 0.10 | none by 1,200 | 3,944 by 1,200 |
+| live_k4 (parent, thought KL 0.1) | fresh thoughts | 0.10 | none by 1,200 | 3,900 by 1,200 |
+
+Seed 0's 3,944 lies inside the dense control's window, so the count does not separate the two cues on fresh thoughts.
+The dense cue on fresh thoughts needed at least as many rows as on fixed thoughts, and up to ~2x. One seed per cell.
+Read grids differ (control every 50, cached dense every 25), which widens the windows.
+
+## 9. Cell R result and what it can and cannot split (2026-11-16 19:48 PST)
+
+- Cell R (cached engine, thought KL 0, seed 0's own fresh rows reused): s_P 0.013 at 500, 0.552 at 600, 0.716 at 700
+  (Kasper #23149, Vera #23151 rebuilds); onset (500, 600] = the same window as cached d010_s0. D4's HIGH reading fires.
+- Distinct carrying thoughts and reuse, compared at the SAME update (Vera #23162 corrected my first version, which set
+  R at 600 against seed 0 at 1,200): by update 600, R had used ~345 distinct carrying thoughts ~5.9 times each (2,040
+  uses); seed 0 had used ~500 new ones ~4 times each (1,970 uses). By 1,200 seed 0 had ~1,000. So the same-time gap in
+  distinct thoughts is ~1.45x, next to 55% vs 0.8%. R does not split "resampling" from "repetition of the same
+  thoughts", and it also runs a different code path (cached.py vs live.py; Vera #23151). What R licenses: seed 0's own
+  thoughts were learnable.
+- Next-step candidate (my read, for Felix's agenda list): a reuse ladder on the live engine, k-stale 4 -> 8 -> 16 with
+  thought KL off and the same total uses. If onset returns as reuse per thought grows, repetition is the switch.

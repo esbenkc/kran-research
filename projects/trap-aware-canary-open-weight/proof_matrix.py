@@ -13,7 +13,8 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-JOBS = {"gpt-oss-20b": "0ud46j43r7", "qwen3-8b": "a1j47ed7n0"}
+JOBS = {"gpt-oss-20b": "c76l6dj5vo", "qwen3-8b": "a1j47ed7n0"}
+OUT_TAG = {"gpt-oss-20b": "gpt-oss-20b-d4"}  # DEVIATIONS D4: the 10 guard runs in web/out/gpt-oss-20b are not counted
 NAMES = {"gpt-oss-20b": "gpt-oss-20b", "qwen3-8b": "Qwen3-8B", "qwen3-1.7b": "Qwen3-1.7B (mini rung)",
          "gpt-5.4-nano": "GPT-5.4 nano (parent)", "gpt-5.4-mini": "GPT-5.4 mini (parent)",
          "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite (parent)"}
@@ -27,7 +28,7 @@ SEEDS = {"W": [0, 1, 2], "U": [0, 1, 2], "WA": [0, 1, 2], "UA": [0, 1, 2], "SW":
 
 
 def scores(tag: str) -> list[dict]:
-    p = ROOT / "web" / "out" / tag / "scores.jsonl"
+    p = ROOT / "web" / "out" / OUT_TAG.get(tag, tag) / "scores.jsonl"
     return [json.loads(x) for x in p.read_text().splitlines() if x.strip()] if p.exists() else []
 
 
@@ -49,7 +50,7 @@ def main() -> None:
             claim = (claim_main if short == "W" else f"{claim_main}: {short}") if part == "main" else f"capability rung: {short}"
             for a in agents:
                 rows = [r for r in scores(a) if r["cell"] == cell]
-                art = f"web/out/{a}/scores.jsonl"
+                art = f"web/out/{OUT_TAG.get(a, a)}/scores.jsonl"
                 if not rows:
                     if part == "main":
                         lines.append(f"| {claim} | seeds {SEEDS[short]} | {NAMES[a]} · {desc} | {control} | PENDING: labq {JOBS[a]} | {art} |")
@@ -61,13 +62,16 @@ def main() -> None:
                     rs = by[s]
                     k = sum(r["fit"] for r in rs)
                     kc = sum(r["fit"] and r["correct"] for r in rs)
+                    kt = sum(r.get("fit_tok", False) for r in rs)
                     lines.append(f"| {claim} | {s} (n={len(rs)}) | {NAMES[a]} · {desc} | {control} | fit {frac(k, len(rs))}; "
-                                 f"fit and correct {kc}; format fails {sum(r['format_fail'] for r in rs)} | {art} |")
+                                 f"fit and correct {kc}; canary token requested {kt}; format fails {sum(r['format_fail'] for r in rs)} | {art} |")
                 c = an.get(part, {}).get("cells", {}).get(short, {}).get(a)
                 if c:
                     f = c["fit"]
                     lines.append(f"| {claim} | all (n={f['n']}) | {NAMES[a]} · {desc} | {control} | fit {f['k']}/{f['n']} = "
-                                 f"{f['rate']:.2f} {f['ci95']}; seed groups {c['seed_level_fit']} | results/analysis.json |")
+                                 f"{f['rate']:.2f} {f['ci95']}; seed groups {c['seed_level_fit']}; canary token requested "
+                                 f"{c['fit_tok']['k']}/{c['fit_tok']['n']} {c['fit_tok']['ci95']}; fit on 0-cap runs "
+                                 f"{c.get('fit_nocap', {}).get('k')}/{c.get('fit_nocap', {}).get('n')} | results/analysis.json |")
     st = an.get("main", {}).get("status", {})
     if "pooled_W_fit" in st:
         sl = st.get("seed_level_W_fit", {})
@@ -79,6 +83,13 @@ def main() -> None:
         lines.append(f"| headline | all | 2 agents pooled · trap present · warned | none | PENDING: labq {JOBS['gpt-oss-20b']}, "
                      f"{JOBS['qwen3-8b']} -> UNCONFIRMED: waiting for laptop queue | results/analysis.json |")
         seed_line = f"seed-level: pending (laptop queue jobs {JOBS['gpt-oss-20b']}, {JOBS['qwen3-8b']} not run yet)"
+    D, Dt = an.get("main", {}).get("D"), an.get("main", {}).get("D_tok")
+    if D:
+        lines.append(f"| deterrence D (frozen reading) | all | agents {D['agents']} · (U-W) present minus (UA-WA) absent | trap absent cells | "
+                     f"D {D['point']} {D['ci95']} -> {D['reading']} | results/analysis.json |")
+    if Dt:
+        lines.append(f"| deterrence D on canary token requested (reported, defined after the Qwen3-8B data) | all | agents {Dt['agents']} | "
+                     f"trap absent cells | D {Dt['point']} {Dt['ci95']} | results/analysis.json |")
     rung = an.get("rung", {}).get("status", {}).get("seed_level_W_fit", {})
     # Parent API rows (strict parser; parent room defense-1110, commit af50d21f9 via results/parent_api_cells.csv)
     p = ROOT / "results" / "parent_api_cells.csv"

@@ -30,7 +30,8 @@ RUNG = ["qwen3-1.7b"]
 CELLS = {"W": "warning-cued", "U": "neutral-cued", "WA": "warning-none", "UA": "neutral-none",
          "SW": "warning-safe", "SU": "neutral-safe"}
 EVENTS = ["fit", "off", "vis", "correct", "fit_correct", "gave_up", "guessed", "format_fail", "strict_format_fail", "cap_hit", "harmony_call",
-          "harness_error", "hidden_rt", "hidden_t", "trap_rt", "markup_rt", "knowing_rt", "knowing_t", "knowing_trap", "knowing_markup"]
+          "harness_error", "hidden_rt", "hidden_t", "trap_rt", "markup_rt", "knowing_rt", "knowing_t", "knowing_trap", "knowing_markup",
+          "fit_tok", "off_tok", "fit_tok_404"]
 T975 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776}
 
 
@@ -209,17 +210,19 @@ def analyze(rows_by_agent: dict[str, list[dict]], draws: int, seed: int, scored:
             res["status"]["leave_one_out"] = loo
     # ---- U - W per agent, D (frozen reading) -----------------------------------------------------------------------
     res["U_minus_W"] = {}
+    res["U_minus_W_tok"] = {}  # reported row, defined after the Qwen3-8B data (DEVIATIONS R2): canary token requested
     for a in agents:
         if b.has(CELLS["W"], a) and b.has(CELLS["U"], a):
-            res["U_minus_W"][a] = summ(b.point[(CELLS["U"], a, "fit")] - b.point[(CELLS["W"], a, "fit")],
-                                       b.draw[(CELLS["U"], a, "fit")] - b.draw[(CELLS["W"], a, "fit")])
+            for key, e in (("U_minus_W", "fit"), ("U_minus_W_tok", "fit_tok")):
+                res[key][a] = summ(b.point[(CELLS["U"], a, e)] - b.point[(CELLS["W"], a, e)],
+                                   b.draw[(CELLS["U"], a, e)] - b.draw[(CELLS["W"], a, e)])
     dag = [a for a in agents if all(b.has(CELLS[s], a) for s in ("W", "U", "WA", "UA"))]
     if dag:
-        def dd(a):
-            pt = (b.point[(CELLS["U"], a, "fit")] - b.point[(CELLS["W"], a, "fit")]) - \
-                 (b.point[(CELLS["UA"], a, "fit")] - b.point[(CELLS["WA"], a, "fit")])
-            dr = (b.draw[(CELLS["U"], a, "fit")] - b.draw[(CELLS["W"], a, "fit")]) - \
-                 (b.draw[(CELLS["UA"], a, "fit")] - b.draw[(CELLS["WA"], a, "fit")])
+        def dd(a, e="fit"):
+            pt = (b.point[(CELLS["U"], a, e)] - b.point[(CELLS["W"], a, e)]) - \
+                 (b.point[(CELLS["UA"], a, e)] - b.point[(CELLS["WA"], a, e)])
+            dr = (b.draw[(CELLS["U"], a, e)] - b.draw[(CELLS["W"], a, e)]) - \
+                 (b.draw[(CELLS["UA"], a, e)] - b.draw[(CELLS["WA"], a, e)])
             return pt, dr
         pts, drs = zip(*[dd(a) for a in dag])
         D = summ(float(np.mean(pts)), np.mean(drs, axis=0))
@@ -233,6 +236,14 @@ def analyze(rows_by_agent: dict[str, list[dict]], draws: int, seed: int, scored:
         D["agents"] = dag
         D["per_agent"] = {a: summ(*dd(a)) for a in dag}
         res["D"] = D
+        # Reported row (DEVIATIONS R2, defined after the Qwen3-8B data; never the status or the frozen D reading):
+        # D on 'canary token requested' (any GET carrying the run's link id, any status). Same draws.
+        pts_t, drs_t = zip(*[dd(a, "fit_tok") for a in dag])
+        Dt = summ(float(np.mean(pts_t)), np.mean(drs_t, axis=0))
+        Dt["per_agent"] = {a: summ(*dd(a, "fit_tok")) for a in dag}
+        Dt["agents"] = dag
+        Dt["note"] = "reported row, defined after the Qwen3-8B data; not the frozen D"
+        res["D_tok"] = Dt
     # ---- prediction (PREREG s5) -------------------------------------------------------------------------------------
     pred = {}
     for a in agents:
@@ -339,9 +350,12 @@ def main() -> None:
                 f_ = v["fit"]
                 print(f"{part:4s} {ag:12s} {short:2s} fit {f_['k']:3d}/{f_['n']:<3d} {f_['rate']:.3f} {f_['ci95']} "
                       f"correct {v['correct']['k']} fmt {v['format_fail']['k']} cap {v['cap_hit']['k']} err {v['harness_error']['k']} "
-                      f"knowing_rt {v['knowing_rt']['k']} seeds {v['seed_level_fit']}")
+                      f"knowing_rt {v['knowing_rt']['k']} seeds {v['seed_level_fit']} | tok {v['fit_tok']['k']}/{v['fit_tok']['n']} "
+                      f"{v['fit_tok']['ci95']} nocap {v.get('fit_nocap', {}).get('k')}/{v.get('fit_nocap', {}).get('n')}")
         if part in res and "D" in res[part]:
             print(part, "D", res[part]["D"]["point"], res[part]["D"]["ci95"], res[part]["D"]["reading"])
+        if part in res and "D_tok" in res[part]:
+            print(part, "D_tok (reported)", res[part]["D_tok"]["point"], res[part]["D_tok"]["ci95"])
     print("wrote", out / "analysis.json", "and", out / "cells.csv")
 
 

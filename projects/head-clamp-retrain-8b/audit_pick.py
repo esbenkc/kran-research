@@ -63,7 +63,8 @@ def main() -> None:
         cl.remove()
         audit[hn] = {"removed_dev": removed(rd, base["dev"]), "removed_test": removed(rt, base["test"]),
                      "dev_strict": rd["switch_correct"], "test_strict": rt["switch_correct"]}
-    rank = sorted(names, key=lambda h: (-audit[h]["removed_dev"],) + key(h))
+    rd_ = {h: audit[h]["removed_dev"] if audit[h]["removed_dev"] == audit[h]["removed_dev"] else -1e9 for h in names}
+    rank = sorted(names, key=lambda h: (-rd_[h],) + key(h))
 
     def t0(heads, with_rows=None):
         cl = Clamp(m, [(key(h)[0] - FIRST, key(h)[1]) for h in heads], "swap")
@@ -72,7 +73,7 @@ def main() -> None:
         r["removed_test"] = removed(r["test"], base["test"])
         return r
 
-    st = [h for h in rank if audit[h]["removed_dev"] >= SET_MIN] or rank[:1]
+    st = [h for h in rank if rd_[h] >= SET_MIN] or rank[:1]
     grow = []
     while True:
         g = t0(st)
@@ -81,7 +82,7 @@ def main() -> None:
             break
         st = rank[:len(st) + 1]  # st is always a prefix of rank (removed >= 0.05 heads are the top of the rank)
     st = sorted(st, key=key)
-    free = min(names, key=lambda h: (abs(audit[h]["removed_dev"]),) + key(h))
+    free = min(names, key=lambda h: (abs(rd_[h]),) + key(h))
     pool = [h for h in names if h not in st]
     rng = random.Random(1117 + a.seed)
     draws = [sorted(rng.sample(pool, len(st)), key=key) for _ in range(2)]

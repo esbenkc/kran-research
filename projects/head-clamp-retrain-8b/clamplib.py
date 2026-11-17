@@ -110,7 +110,8 @@ def head_means(model, w_out, z0, z1, ids, bs=16) -> dict:
 
 
 def removed(clamped: dict, orig: dict) -> float:
-    return 1 - clamped["shift_mean"] / orig["shift_mean"]
+    """nan when the unclamped push is exactly 0 (an untrained tail; never a formed switch)"""
+    return 1 - clamped["shift_mean"] / orig["shift_mean"] if orig["shift_mean"] != 0 else float("nan")
 
 
 TARGETS = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]

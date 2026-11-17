@@ -29,3 +29,17 @@ Framing fixed in the room (do not drift):
 - 1.7B numbers in the body come from the 64-grid rerun (data/band17b/runs, data/band_17b.json; Bruno #23570: SET s0
   returned at 192, not 512). The published 384-512 (128 grid) appears only in the [^parent] footnote (Kasper #23572).
   The trust list says that the return update depends on the check grid.
+
+Fixed before close (Tove #23593, Kasper #23592, Vera #23587):
+- Headline = the STATUS (came back or held, per seed, with prompt counts of 128). The return ratio is a frozen
+  secondary: one clause in the TLDR only if the per-seed read resolves; if the frozen read and Kasper's 64-grid T_f
+  sensitivity row disagree, write "the ratio does not resolve a size trend" and claim none.
+- The return is "relearning around the clamp", never "self-repair". The 2611.07891 contrast stays one sentence.
+- Print test strict at the stop (n of 128) next to every "came back": on the 64 grid RETURNED can fire on dev while
+  test strict at the stop is under 0.75 (1.7B TOP-1 s1 0.703, s2 0.594).
+- Grid caveat: 1.7B SET s0 returned at 192 on the 64 grid vs 512 on the 128 grid (same weights, losses bit-equal;
+  Vera skeptic/vera_band_all.out). On a 64 grid the two-in-a-row rule spans 64 updates, half the 1.7B span.
+- Null posts: if data/run_state.txt says 'STOP G0 null' the first line is "the probe left no trace at the answer
+  position at 8B (d34 = <value>)"; if 'STOP formation null': "the switch formed in k of n models within 4,096
+  updates at 8B". Status UNCONFIRMED, the figure keeps the 1.7B rows and writes the 8B lanes as text.
+- No impact drafts until there is an 8B result to send (Kasper #23592).

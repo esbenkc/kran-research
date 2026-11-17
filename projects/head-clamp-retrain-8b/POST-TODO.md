@@ -46,3 +46,7 @@ Fixed before close (Tove #23593, Kasper #23592, Vera #23587):
   had dev 0.984 at 1,664 and test 0.086 at the 1,728 save after loss spikes 2.41/2.39 at 1,724-1,725).
 - "First learning time" in the post is the dev-pair update T_f, not the update of a saved "formed" model (Vera #23636). Status UNCONFIRMED, the figure keeps the 1.7B rows and writes the 8B lanes as text.
 - No impact drafts until there is an 8B result to send (Kasper #23592).
+- A seed dropped as not formed WITH a dev pair (t_f set) is written "fired on the check prompts at update T_f, erased
+  by a loss spike before the save", never "did not form" (Kasper #23640).
+- Next to every "held" cell: test strict at the budget AND the max training loss over the last 10% of updates, so a
+  spike that pushes test strict under 25% is visible (Kasper #23640). Expert table column.

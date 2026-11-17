@@ -25,6 +25,11 @@
 | comparison (parent, n=1) | 0 | cached_d010_s0 | earlier run | onset (500, 600]; last read 1500: s_P +0.865 [+0.856, +0.873] | data/parent/cached_d010_s0/reads.jsonl |
 | comparison (parent, n=1) | 0 | cachedkl_s0 | earlier run | onset none; last read 876: s_P +0.224 [+0.215, +0.231] | data/parent/cachedkl_s0/reads.jsonl |
 | placebo baseline | - | pilot (update 0) on the ' Let' twin | untrained start | s_P' -0.003 [-0.006, +0.000] | data/reads/let/c_0.npy |
+| skeptic rebuild | 0 | kl0_s0 read 1,200 | none | s_P +0.0100 [+0.0078, +0.0123] | skeptics/skeptic/signoff.md |
+| skeptic rebuild | 0 | positive control read 150 (all-rows definition) | none | s_P +0.9832 [+0.9807, +0.9854] | skeptics/skeptic/signoff.md |
+| skeptic rebuild | 0 | cell R replay_s0 read 600 | none | s_P +0.5500 [+0.5392, +0.5615] | skeptics/skeptic/signoff.md |
+| skeptic rebuild | 0 | served read, seed 0 adapter_1200 | none | s_P -0.0727 [-0.166, +0.014]; sign-flip null sd 0.041 | skeptics/skeptic/signoff.md |
+| skeptic rebuild | 0 | thought drift, last window vs updates 1-100 | KL-on parent | KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064 | skeptics/skeptic/signoff.md |
 
 seed-level: 0.01 [no interval] (s_P at read 1200, one seed: no seed-level interval)
 

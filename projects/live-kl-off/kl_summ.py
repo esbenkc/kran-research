@@ -293,6 +293,15 @@ def main():
         r0 = tl.point_ci(np.load(D / "reads" / "let" / "c_0.npy"))
         Lm.append(f"| placebo baseline | - | pilot (update 0) on the ' Let' twin | untrained start | s_P' {fm(r0['s_P'])} | "
                   f"data/reads/let/c_0.npy |")
+    # skeptic rebuild cells (Vera, own code on the pushed receipts; room #23204), kept so a rerun keeps them
+    if (HERE / "skeptics" / "skeptic" / "signoff.md").exists():
+        for v, res in (("kl0_s0 read 1,200", "s_P +0.0100 [+0.0078, +0.0123]"),
+                       ("positive control read 150 (all-rows definition)", "s_P +0.9832 [+0.9807, +0.9854]"),
+                       ("cell R replay_s0 read 600", "s_P +0.5500 [+0.5392, +0.5615]"),
+                       ("served read, seed 0 adapter_1200", "s_P -0.0727 [-0.166, +0.014]; sign-flip null sd 0.041"),
+                       ("thought drift, last window vs updates 1-100", "KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064")):
+            Lm.append(f"| skeptic rebuild | 0 | {v} | {'KL-on parent' if 'drift' in v else 'none'} | {res} | "
+                      f"skeptics/skeptic/signoff.md |")
     sl = seed_level
     Lm += ["", f"seed-level: {sl['mean']:.3f} [{sl['ci'][0]:.3f}, {sl['ci'][1]:.3f}] (s_P at the common read "
                f"{sl['read']}, {sl['method']})" if sl["ci"] else

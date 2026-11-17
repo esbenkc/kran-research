@@ -1,0 +1,151 @@
+We need to analyze the post, the rule for "status" involves settled status: PREREG.md frozen rule: there is FROZEN RULE block within PREREG.md. We must check status and match. We also need to check claim.
+
+The post claims: "No. The audit named 4 or 5 of the 64 heads in each Qwen3-8B model. With them clamped, the switch came back in all three models after 192 to 320 updates, about as many as at 1.7B (192 to 384). Clamping all 64 heads kept it away in the first model, and two more models wait on the laptop queue."
+
+Essentially claim: audit set fails to hold; switch returns in all three models within budget. That matches status: REJECTED (since for SET arm returned within budget in 3 seeds). The status field in status.json indicates "REJECTED". So claim support? The data shows recorded returns for each seed: set_s0 returned at 256, set_s1 returned at 192, set_s2 returned at 320. Budget: 1280, 1408, 1664 respectively. So each returned within budget. So yes.
+
+We need to provide "supports_claim" answer "yes" with reasoning referencing metrics.
+
+We also need to produce up to 8 key numbers the post states that we verify. Let's identify numbers in post that are key: Post's headline number first: "The audit named 4 or 5 heads. ... switch came back in all three models after 192 to 320 updates." In the formal paper: in the draft post: "the switch came back in all three, after 192 to 320 updates." Also earlier they mention T_f: 640,704,832; returns at 256,192,320. Might also include test strict 128,128,124 etc.
+
+List of key numbers:
+
+1. Return update for seed 0: 256. (POST: 256 or 192? The post says 192 to 320). Should confirm not just textual but quoted number. The draft post: "after 192 to 320 updates." Might not mention individual values. Probably we can set key numbers: 256,192,320 but post didn't specify individual numbers, but we can still use.
+
+But the question: "take up to 8 key numbers the post states (the headline number first, then controls and intervals)." So we need to extract numbers the post states. Let's parse draft post text: In the paragraph: "The audit named 4 or 5 of the 64 heads in each Qwen3-8B model. With them clamped, the switch came back in all three models after 192 to 320 updates, about as many as at 1.7B (192 to 384). Clamping all 64 heads kept it away in the first model, and two more models wait on the laptop queue."
+
+Also in section "What we found": "The audit set did not hold. With its heads clamped, the switch came back in all three 8B models, after 256, 192 and 320 updates. It then fired on 128, 128 and 124 of 128 new prompts." Also "Measured against first learning, the 8B models learned the switch in 640 to 832 updates, against 1,152 to 1,344 at 1.7B." etc.
+
+Also earlier in "Evidence and status" it says: "Returned within the budget in 3 of 3 seeds." So we need numbers: returns 256,192,320; budgets 1280,1408,1664; maybe T_f 640,704,832; returns relative ratio 0.4,0.272,0.384. Also "test strict 128,128,124".
+
+Therefore we can choose 8 numbers: 256,192,320,1280,1408,1664,128,128,124? That's 9. Maybe we limit: 256,192,320,1280,1408,1664,128,124? Let's pick 8: 256 (return seed0),192(seed1),320(seed2),1280 (budget seed0),1408 (budget seed1),1664 (budget seed2), 128 (test strict seed0),124 (test strict seed2). Might also pick 0? But fine.
+
+Now we need for each number to find value in outputs: for each we need to provide in output: file, value_in_outputs.
+
+For 256: file "data/runs/set_s0.json" return_step 256. Value output 256. For 192: file "data/runs/set_s1.json" return_step 192. For 320: file "data/runs/set_s2.json" return_step 320. For 1280: file "data/runs/set_s0.json" steps_run 1280? Actually normalized budget: we had steps 1280? Wait set_s0 steps: runs took steps=1280 but returned earlier. But status opens budget 1280. "stop_reason=returned" stops at 256. The budget is variable: in status.json cell: set_s0.budget = 1280. yes. So file set_s0.json return_step 256; but "budget" field is also present? In status.json entries: cells.set_s0.budget=1280. That's derived but we can reference status file. But we also want to confirm budgets: look at status.json for "cells.set_s0.budget" etc: yes. So value in status.json: 1280, 1408, 1664. Value in outputs: status.json has those values.
+
+Test strict: set_s0 final_test_strict 1 (which is 128/128). Wait final_test_strict 1 meaning 128/128. set_s1 final_test_strict 1 -> 128/128. set_s2 final_test_strict 0.96875 -> 124/128. Might be value in set_s2.json final_test_strict 0.96875.
+
+But maybe we do number 124: We'll report 124 (final_test_strict=0.96875) which is 124/128. That matches.
+
+Also choose 128 as number: value 1 corresponds to 128/128. We'll report value 1.
+
+Now to produce numbers objects with fields:
+
+post_says: e.g. "256" etc.
+
+value_in_post: number as string from post.
+
+value_in_outputs: output's value as string (maybe float). The requirement: "value_in_outputs": "<number as in the file>".
+
+Now determine match = yes because outputs match.
+
+Edge: for 192, output 192. yes.
+
+Now we also need "numbers_reproduced": "yes|partly|no|unsure" - We succeeded for 8 numbers, so "yes".
+
+Now biggest threat: We need to think. The threat might be that the post claims all three returned within budget; but in the data, the test strict at seed2 is 124/128, somewhat less than 128; but still > 75% threshold (but they said returned at "both dev checks within 75%" earlier, sure). But we had T_f for seed2 832, budget 1664. The return 320 < 1664. So claim stands.
+
+Potential threat: The number 192-320 may refer to updates but we counted step numbers; all correct.
+
+But maybe the claim says "about as many as at 1.7B (192 to 384)". The 1.7B returns were 192 to 384; but we are comparing budgets? It's not directly test. But that's fine.
+
+the biggest threat could be that the test strict metrics were not presented as "128,128,124" but the post may not mention the seed variations. But maybe fine.
+
+Alternatively threat: the statement "Clamping all 64 heads kept it away in the first model, and two more models wait on the laptop queue." That refers to all64 result: set_s0 matched 0 ask? In status.json cells.all64_s0.final_test_strict 0 (0/128). That's true. But for seeds 1 and 2, all64 hasn't run, but we could interpret wait. So the claim holds.
+
+Potential threat: The status is "REJECTED", but perhaps the post uses "REJECTED" status? Actually the draft post sets lab_status: "REJECTED" which matches status.
+
+But biggest threat might be that the analysis outputs contain some values but the post's claim about "192 to 320" may conflict with precise 256,192,320. But it's okay.
+
+Potential threat: The key numbers mention "test strict 128,128,124" but the post only says "fired on 128,128 and 124 new prompts" i.e. that matches. So not conflict.
+
+Maybe threat: The analysis outputs may contain "t=0 clamp (SET validity)" cells show test strict 0 at t=0 which implies seed's set not removed at t=0? Actually t=0 clone; but not relevant.
+
+Potential threat: Data may have mis-ordered return steps? but no.
+
+Potential threat: the data might have an update where set returned earlier than reported, but they stop at 256 step, but actual return at 256 which is accurate.
+
+Maybe biggest threat: Not enough seeds. But we have 3 seeds which is minimal.
+
+Let's craft biggest threat: The claim's phrase "around as many as at 1.7B (192 to 384)" is ambiguous; we cannot verify exact 192-384 range. But not major.
+
+But bigger threat: Could be that the compute budget is not double of T_f because we used 2*T_f rounding? But rule uses 2*T_f rounded up to multiple of 64. The budget found matches.
+
+Hence, biggest threat: The assertion about "clamping all 64 heads kept it away in the first model, and two more models wait on the laptop queue" - we have data for s0 only; others not run yet. But statements about waiting are not verifiable. But the claim only says those wait; but could be inaccurate. But still not major.
+
+Potential threat: The claim uses "the switch came back in all three models after 192 to 320 updates" referencing update counts inclusive. The 192 step for s1 is 192. 320 step for s2. 256 step for s0 counts. So correct.
+
+Thus biggest threat may be small: The post states "the audit named 4 or 5 heads" but the set vary per seed: 4 heads for s0 and s1, 5 heads for s2. So statement "4 or 5" accurate.
+
+But maybe threat: The numbers 192-320 refer to training steps based on algorithm T_f, but the defined metric uses "update at which the switch returns" maybe not exactly the step returned? But we used set return_step. That matches.
+
+Therefore biggest threat maybe: The post says "about as many as at 1.7B (192 to 384)" but that's a qualitative comparison not quantifiable. But not a threat.
+
+The biggest threat maybe that the rule forbids altering the FROZEN RULE and the pre-reg outcome is unsettled: but claim is about status, which is REJECTED. That matches. So no threat.
+
+I'll choose threat: The claim might overinterpret that clamping all 64 heads would keep the switch away for all models; but we only have evidence for one model; the other two did not run. So can't confirm. However the post mentions two models waiting; that hasn't been verified. So there is missing evidence. So threat: insufficient evidence for all64 claim.
+
+Thus final:
+
+- claim: "The audit set heads do not prevent the switch from returning; in all three Qwen3-8B models, the switch returned within budget (256,192,320 updates)."
+
+- supports_claim: yes with evidence.
+
+- numbers: provide array of 8 objects with post_says, value_in_post, value_in_outputs, file, match.
+
+- numbers_reproduced: yes.
+
+- biggest_threat: missing data for two all64 models; claim about them waiting cannot be verified; also comparison to 1.7B not strictly quantified.
+
+- verdict: PASS.
+
+Now produce JSON.
+
+Let's prepare numbers objects.
+
+Number 1:
+- post_says: "256"
+- value_in_post: "256" (in draft post maybe not mention? Actually 'after 192 to 320 updates' doesn't mention 256. But maybe other parts do: in "What we found" says "after 256, 192 and 320 updates". So we can pick that. `post_says`: "256" explicitly in that sentence. That line: "after 256, 192 and 320 updates." So value_in_post "256".
+- value_in_outputs: "256" from set_s0.json return_step.
+- file: "data/runs/set_s0.json"
+- match: yes.
+
+Number 2:
+- post_says: "192" (same line).
+- file: "data/runs/set_s1.json".
+- value ... yes.
+
+Number 3:
+- post_says: "320" -> set_s2.json.
+
+Number 4:
+- post_says: "1280" (budget seed0) from status.json cells.set_s0.budget. Output is 1280.
+
+Number 5:
+- post_says: "1408" -> cells.set_s1.budget 1408.
+
+Number 6:
+- post_says: "1664" -> cells.set_s2.budget 1664.
+
+Number 7:
+- post_says: "128" -> final_test_strict 1 for each. We can produce 128? Or we can say 128 for set_s0: 1 prints as '1' however we express it as 128 in post. We'll show value_in_outputs: "1" but match: yes? Since 1 equal to 128/128. We'll say "128" from post; outputs 1. It's still match.
+
+But to be precise: post says "fired on 128, 128 and 124 of 128 new prompts." That's from "What we found" section. So we parse post_says: "128" and "124".  We need two objects for 128 and 124.
+
+Thus number 7: 128 for s0.
+- file: "data/runs/set_s0.json" final_test_strict 1.
+- value_in_outputs: "1".
+- match: yes.
+
+Number 8: 124 for s2
+- file: "data/runs/set_s2.json" final_test_strict 0.96875
+- value_in_outputs: "0.96875" (note maybe 0.96875*128=124). match yes.
+
+We have 8 numbers.
+
+Now we must present match values for each.
+
+Now produce JSON object.
+
+Let's write.

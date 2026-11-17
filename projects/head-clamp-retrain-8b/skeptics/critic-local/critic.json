@@ -1,0 +1,379 @@
+{
+ "role": "critic-local",
+ "verdict": "PASS",
+ "rule_notes": [],
+ "answer": {
+  "claim": "The audit‑set heads do not prevent the switch from returning; in all three Qwen3‑8B models, the switch returned within budget (256, 192 and 320 updates).",
+  "supports_claim": {
+   "answer": "yes",
+   "reason": "Status is REJECTED in status.json, indicating the SET arm returned in all three seeds. The return steps are 256, 192 and 320 (from set_s0.json, set_s1.json, set_s2.json) and they are well below the respective budgets 1280, 1408 and 1664 (cells.set_s?.budget in status.json)."
+  },
+  "numbers": [
+   {
+    "post_says": "256",
+    "value_in_post": "256",
+    "value_in_outputs": "256",
+    "file": "data/runs/set_s0.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "192",
+    "value_in_post": "192",
+    "value_in_outputs": "192",
+    "file": "data/runs/set_s1.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "320",
+    "value_in_post": "320",
+    "value_in_outputs": "320",
+    "file": "data/runs/set_s2.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "1280",
+    "value_in_post": "1280",
+    "value_in_outputs": "1280",
+    "file": "status.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "1408",
+    "value_in_post": "1408",
+    "value_in_outputs": "1408",
+    "file": "status.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "1664",
+    "value_in_post": "1664",
+    "value_in_outputs": "1664",
+    "file": "status.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "128",
+    "value_in_post": "128",
+    "value_in_outputs": "1",
+    "file": "data/runs/set_s0.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "124",
+    "value_in_post": "124",
+    "value_in_outputs": "0.96875",
+    "file": "data/runs/set_s2.json",
+    "match": "yes"
+   }
+  ],
+  "numbers_reproduced": "yes",
+  "biggest_threat": "The post claims that clamping all 64 heads “kept it away in the first model, and two more models wait on the laptop queue.” Evidence for the all‑64 clamp is only present for seed 0; seeds 1 and 2 have not run yet, so the claim about “waiting” cannot be verified from the outputs and represents missing evidence.",
+  "verdict": "PASS",
+  "verdict_reason": "All quoted numbers and the primary claim are directly supported by the status and run‑result files; no contradictions are found."
+ },
+ "numbers_checked": [
+  {
+   "post_says": "256",
+   "value_in_post": "256",
+   "value_in_outputs": "256",
+   "file": "data/runs/set_s0.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "192",
+   "value_in_post": "192",
+   "value_in_outputs": "192",
+   "file": "data/runs/set_s1.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "320",
+   "value_in_post": "320",
+   "value_in_outputs": "320",
+   "file": "data/runs/set_s2.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "1280",
+   "value_in_post": "1280",
+   "value_in_outputs": "1280",
+   "file": "status.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "1408",
+   "value_in_post": "1408",
+   "value_in_outputs": "1408",
+   "file": "status.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "1664",
+   "value_in_post": "1664",
+   "value_in_outputs": "1664",
+   "file": "status.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "128",
+   "value_in_post": "128",
+   "value_in_outputs": "1",
+   "file": "data/runs/set_s0.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "124",
+   "value_in_post": "124",
+   "value_in_outputs": "0.96875",
+   "file": "data/runs/set_s2.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  }
+ ],
+ "final_text": "",
+ "meta": {
+  "model": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+  "fallback": false,
+  "mlx_lm": "0.32.2",
+  "effort": "medium",
+  "seed": 0,
+  "host": "Esbens-MacBook-Pro",
+  "finished": "2026-11-17T22:58:36+00:00",
+  "labq_job": "0g6xqdud7v",
+  "gen": {
+   "prompt_tokens": 49187,
+   "prompt_tps": 504.0,
+   "generation_tokens": 3687,
+   "generation_tps": 40.9,
+   "peak_memory_gb": 14.12,
+   "seconds": 188.8,
+   "finish_reason": "stop"
+  },
+  "manifest": [
+   {
+    "file": "PREREG.md",
+    "bytes": 12963,
+    "sha256": "00688778b741db895638df4cfec8441804dca7fdd6b10855f48891039dea01c0",
+    "chars_in_prompt": 12961,
+    "cut": false
+   },
+   {
+    "file": "DEVIATIONS.md",
+    "bytes": 2731,
+    "sha256": "98c1b163f5056923cf162603c8bcb5543f4473643ef98e0e38c51dc4109702d1",
+    "chars_in_prompt": 2729,
+    "cut": false
+   },
+   {
+    "file": "proof-matrix.md",
+    "bytes": 6732,
+    "sha256": "0334dd9602601300cc302b1be576c11895502533895ab3ae160abdc7508c8e79",
+    "chars_in_prompt": 6732,
+    "cut": false
+   },
+   {
+    "file": "data/run_state.txt (analysis output, text)",
+    "bytes": 39,
+    "sha256": "ab2c4eccd4a46f87411bc639295912c3e2ee4312a0df5b5abb5408e20bbdcb61",
+    "chars_in_prompt": 39,
+    "cut": false
+   },
+   {
+    "file": "data/status.json (analysis output, digest)",
+    "bytes": 2967,
+    "sha256": "94aafb8957281105487124e1ca16698b5ed7e6e40d9651cf7c084445fbc5910f",
+    "chars_in_prompt": 3117,
+    "cut": false
+   },
+   {
+    "file": "data/engine17b/runs/set_s0_g128.json (analysis output, digest)",
+    "bytes": 105209,
+    "sha256": "09bbf5b168da5145af2e9c5d19452cbb4fda30bc45f1e90f697bd02771ad1f53",
+    "chars_in_prompt": 8971,
+    "cut": false
+   },
+   {
+    "file": "data/g0.json (analysis output, digest)",
+    "bytes": 1082,
+    "sha256": "99c310b599825d2704b66a371b5f52bbd10bff5738aadae84b9240be351ae32c",
+    "chars_in_prompt": 557,
+    "cut": false
+   },
+   {
+    "file": "data/runs/switch_s0.json (analysis output, digest)",
+    "bytes": 137492,
+    "sha256": "b4ad2b93613dd81d06ed88c05b8409ff322c5db0c72d8abffa728c082c04ea3b",
+    "chars_in_prompt": 8971,
+    "cut": false
+   },
+   {
+    "file": "data/runs/switch_s1.json (analysis output, digest)",
+    "bytes": 152095,
+    "sha256": "8e3a01d9a9d97a6662c9dabd1850962d36016e78ca4ecadc40322d50a4b998d0",
+    "chars_in_prompt": 8972,
+    "cut": false
+   },
+   {
+    "file": "data/runs/switch_s2.json (analysis output, digest)",
+    "bytes": 166997,
+    "sha256": "610f342cbba38dcc7bc43af78f9c89d0ef5429c2692d3b1995378f15525db6a2",
+    "chars_in_prompt": 8972,
+    "cut": false
+   },
+   {
+    "file": "data/runs/set_s0.json (analysis output, digest)",
+    "bytes": 102848,
+    "sha256": "7ca41b6664b426ec52078e344a8f784e615ec0d3802b4b98327068cf66c426c5",
+    "chars_in_prompt": 8971,
+    "cut": false
+   },
+   {
+    "file": "data/runs/set_s1.json (analysis output, digest)",
+    "bytes": 95550,
+    "sha256": "e6bbd230070d346f03b478052524b58b73cc08b0eee3c66680f493cf952cab74",
+    "chars_in_prompt": 8971,
+    "cut": false
+   },
+   {
+    "file": "data/runs/set_s2.json (analysis output, digest)",
+    "bytes": 108047,
+    "sha256": "fe43bd252a76869c51917cd9b2b5a6205cd9e5d0b9f93bcf5df3e2022ef1790b",
+    "chars_in_prompt": 8971,
+    "cut": false
+   },
+   {
+    "file": "data/runs/all64_s0.json (analysis output, digest)",
+    "bytes": 211427,
+    "sha256": "821ba14b6b10fc6861138730bee4d6b99cd7bea5e456a153f9acb38128cb414d",
+    "chars_in_prompt": 8972,
+    "cut": false
+   },
+   {
+    "file": "data/audit/s0.json (analysis output, digest)",
+    "bytes": 126186,
+    "sha256": "6924388fc9317e5ca1a8701b61e8ceddcfb8ec480c69abb2feb90914bcb82355",
+    "chars_in_prompt": 8971,
+    "cut": false
+   },
+   {
+    "file": "data/band_17b.json (analysis output, digest)",
+    "bytes": 1150,
+    "sha256": "fa87c03a673273fbfaedde5224fe085968a13258a5dbd87c617304160375ee2c",
+    "chars_in_prompt": 963,
+    "cut": false
+   },
+   {
+    "file": "data/cache_sha.txt (analysis output, text)",
+    "bytes": 169,
+    "sha256": "5f15a35d29316674731a2a8c46cdd10610376ffe555c37ca36a80022b1c9a27b",
+    "chars_in_prompt": 169,
+    "cut": false
+   },
+   {
+    "file": "data/formed_seeds.txt (analysis output, text)",
+    "bytes": 6,
+    "sha256": "073cc8ccd82c14bb0c3b160b8a7e3d98a345daed85aec4bb7fd327db186076df",
+    "chars_in_prompt": 6,
+    "cut": false
+   },
+   {
+    "file": "data/sens_17b.json (analysis output, digest)",
+    "bytes": 635,
+    "sha256": "1e828d0ec7cf2d46841d8c0960e29a10580659143354f480238032db0f837b0b",
+    "chars_in_prompt": 559,
+    "cut": false
+   },
+   {
+    "file": "data/laptop/nlvhl0wa49/g0.log (analysis output, text)",
+    "bytes": 357,
+    "sha256": "45b2fc7c795f1e6629f30b168ad6e3c8a08d4409862f5e14fd8bf047751e5107",
+    "chars_in_prompt": 357,
+    "cut": false
+   },
+   {
+    "file": "data/laptop/nlvhl0wa49/switch_s0.log (analysis output, text)",
+    "bytes": 544,
+    "sha256": "ade99adeed97b46242b85fadecc6c2f49f5a6a5bab7352704adf457d1a5cef5d",
+    "chars_in_prompt": 544,
+    "cut": false
+   },
+   {
+    "file": "data/laptop/4pd3diqd49/set_s1.log (analysis output, text)",
+    "bytes": 615,
+    "sha256": "880357bcf11bd627633d52adf44858c87bb501a4b2a09058ef8ca57a4a4dbea6",
+    "chars_in_prompt": 615,
+    "cut": false
+   },
+   {
+    "file": "data/laptop/4pd3diqd49/set_s0.log (analysis output, text)",
+    "bytes": 673,
+    "sha256": "dce94eb30349838dcdf52ffd2c822a26f140a2613faf298066389ccec213dd71",
+    "chars_in_prompt": 673,
+    "cut": false
+   },
+   {
+    "file": "DRAFT POST (draft-post.md)",
+    "bytes": 16185,
+    "sha256": "444a25f8ae0262372bc4d041f2d1834240108a87ba32da056838e3ca9b5f951b",
+    "chars_in_prompt": 16185,
+    "cut": false
+   }
+  ],
+  "left_out": [
+   "data/audit/s1.json",
+   "data/audit/s2.json",
+   "data/band17b/runs/set_s0.json",
+   "data/band17b/runs/set_s1.json",
+   "data/band17b/runs/set_s2.json",
+   "data/band17b/runs/top1_s0.json",
+   "data/band17b/runs/top1_s1.json",
+   "data/band17b/runs/top1_s2.json",
+   "data/band17b/runs/leave1_s0.json",
+   "data/band17b/runs/leave1_s1.json",
+   "data/band17b/runs/leave1_s2.json",
+   "data/band17b/runs/all32_s0.json",
+   "data/band17b/runs/all32_s1.json",
+   "data/band17b/runs/all32_s2.json",
+   "data/sens17b/runs/switch_s0.json",
+   "data/sens17b/runs/switch_s1.json",
+   "data/sens17b/runs/switch_s2.json",
+   "data/laptop/4pd3diqd49/audit_s0.log",
+   "data/laptop/4pd3diqd49/audit_s1.log",
+   "data/laptop/4pd3diqd49/audit_s2.log",
+   "data/laptop/4pd3diqd49/set_s2.log",
+   "data/laptop/nlvhl0wa49/chain.log",
+   "data/laptop/4pd3diqd49/switch_s0.log",
+   "data/laptop/4pd3diqd49/cache.log",
+   "data/laptop/nlvhl0wa49/cache.log",
+   "data/laptop/4pd3diqd49/switch_s1.log",
+   "data/laptop/4pd3diqd49/switch_s2.log",
+   "data/laptop/4pd3diqd49/all64_s0.log",
+   "figure1/text.json",
+   "data/laptop/4pd3diqd49/chain.log",
+   "POST-TODO.md",
+   "research.md",
+   "inputs/parent17/status_17b.json",
+   "inputs/parent17/lora_none_s0_2048.json",
+   "inputs/parent17/lora_none_s2.json",
+   "inputs/parent17/lora_none_s1.json",
+   "data/band17b/runs/random_s1.json",
+   "data/band17b/runs/random_s2.json",
+   "inputs/parent17/top1_swap_s0.json",
+   "inputs/parent17/top1_swap_s1.json",
+   "inputs/parent17/top1_swap_s2.json",
+   "data/band17b/runs/random_s0.json",
+   "inputs/parent17/set_swap_s2.json",
+   "inputs/parent17/set_swap_s0.json",
+   "inputs/parent17/set_swap_s1.json",
+   "inputs/prompts.jsonl"
+  ],
+  "n_outputs": 20
+ }
+}

@@ -20,3 +20,11 @@ Changes after the PREREG push (f144daf65, 2026-11-17T01:00:18Z = 17:00:18 PST). 
   kept running, checked with ps) and a replacement chain (chain.py with the served step and a wait on seed 0's
   driver) took over at 18:09:06. The tree, the seeds and every frozen setting are unchanged; on FLAT the positive
   control starts ~3 minutes later.
+- D3 (18:16 PST, Iris for Felix #23030, Vera #23028; seed 0 at update ~650, reads 0-600 seen, all s_P <= 0.0078,
+  no read at 1,200 exists). Added descriptive read, NOT a status leg and not in the FROZEN RULE block: if seed 0 ends
+  without a take-off (FLAT or EDGE), a served planted read runs on its adapter_1200 BEFORE the positive control:
+  parent served.py, 200 TEST prompts x 2 fresh draws from adapter_1200 = 400 rows, ' We' forced vs banned at thought
+  token 0 with common random numbers, served s_P with a prompt-clustered interval. Reason: with thought KL off the
+  model's own thoughts can drift from the pilot's stored test thoughts, so a flat stored-pool read could miss a switch
+  that lives on the model's own thoughts. One heavy job alone (~6 GB in the parent), a few minutes. If seed 0 takes
+  off, this read does not run. Order after a FLAT/EDGE seed 0: served read -> positive control -> the splitter slot.

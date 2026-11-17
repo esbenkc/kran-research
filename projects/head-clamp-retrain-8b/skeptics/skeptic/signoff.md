@@ -1,11 +1,20 @@
 role: skeptic
 model: anthropic/claude-opus-5-5
-verdict: UNSURE
+verdict: PASS
 
 # Skeptic sign-off (Vera) — head-clamp-retrain-8b (room theory-1117-head-clamp-8b)
 
-**NO FINAL SIGN-OFF YET** (cells still running: ALL-64 s1/s2, TOP-1, LOO, RANDOM). Box 2 (23bc3218) rebuilt below:
-the frozen title rule already reads REJECTED (No) on SET x3.
+## Verdict
+
+**SIGN-OFF: CONFIRMED REJECTED** (the answer to the question is No). Frozen title rule (PREREG.md @ec724b15): 3 of 3
+switch seeds formed, the audit-set clamp was valid at t=0 in 3 of 3, and the audit-set arm RETURNED within 2 x T_f in
+3 of 3 seeds (256 / 192 / 320 updates; test strict at the stop 1.000 / 1.000 / 0.969). Every cell rebuilt from raw rows
+with my own code; 0 mismatches with data/status.json @58e18c041. The prereg OUTCOME is unsettled (TOP-1, LOO, ALL-64
+s1/s2 still queued on the laptop); this sign-off covers the answer, the SET cells, ALL-64 s0, the t=0 controls and the
+ratio read, not the outcome. Caveats: (1) the seed-level t-interval of SET test strict, 0.990 [0.945, 1.034], runs past 1
+(a t-interval on a share near 1); report it clipped at 1.000 or say so. (2) ALL-64 s0 is not CONVERGED by the verbatim
+rule (dev last 3 0.109 / 0 / 0) and answers A both ways on every test prompt. (3) The SLOWER ratio read rests on one check
+per seed (one check earlier: 0.30 / 0.18 / 0.31, inside the band).
 Everything below is rebuilt from saved OUTPUTS with my own code in this folder; I did not read or run the build scripts.
 
 ## What I verified before any 8B retraining data
@@ -28,6 +37,7 @@ Everything below is rebuilt from saved OUTPUTS with my own code in this folder; 
 |---|---|
 | switch s0/s1/s2 | T_f 640 / 704 / 832; saved test strict 1.000 / 0.992 / 0.992 -> FORMED 3/3 (= stored) |
 | head sets from audit removed_dev | SET s0 = s1 = {34.4, 34.6, 35.8, 35.11}, s2 + 34.25; TOP-1 34.4 / 35.11 / 35.11; LOO free 34.19 / 34.3 / 35.3; RANDOM draws = stored |
+| t=0 random controls (test rows) | strict 1.000 / 1.000 (s0), 1.000 / 1.000 (s1), 0.992 / 0.992 (s2); removed 0.007 / 0.002, 0.001 / 0.004, -0.001 / 0.001 |
 | t=0 (rows) | SET removed 0.997 / 0.995 / 0.999 on dev; test strict 0 / 0 / 0 -> valid |
 | SET retrain | RETURNED 256 / 192 / 320 (budgets 1,280 / 1,408 / 1,664); test strict at stop 1.000 / 1.000 / 0.969; push 22.6 / 22.8 / 19.1 nats |
 | null (within-pair sign test) | SET 128-0 / 128-0 / 124-0 (p < 1e-37); ALL-64 s0 0-0 |

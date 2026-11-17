@@ -38,6 +38,11 @@
 | 1.7B band sensitivity (T_f on the 64 grid) | 0 | switch from scratch, grid 64 | none | T_f 1152 (parent 128 grid 1280), r = 0.167, parent evals equal 13/13 | data/sens17b/runs/switch_s0.json |
 | 1.7B band sensitivity (T_f on the 64 grid) | 1 | switch from scratch, grid 64 | none | T_f 1344 (parent 128 grid 1408), r = 0.286, parent evals equal 16/16 | data/sens17b/runs/switch_s1.json |
 | 1.7B band sensitivity (T_f on the 64 grid) | 2 | switch from scratch, grid 64 | none | T_f 1216 (parent 128 grid 1280), r = 0.211, parent evals equal 14/14 | data/sens17b/runs/switch_s2.json |
+| skeptic rebuild (Vera, own code) | 0 | set, raw rows | none | RETURNED 256 / budget 1280, test strict 1.000, sign test 128-0 | skeptics/skeptic/vera_check_8b_box2.out |
+| skeptic rebuild (Vera, own code) | 1 | set, raw rows | none | RETURNED 192 / budget 1408, test strict 1.000, sign test 128-0 | skeptics/skeptic/vera_check_8b_box2.out |
+| skeptic rebuild (Vera, own code) | 2 | set, raw rows | none | RETURNED 320 / budget 1664, test strict 0.969, sign test 124-0 | skeptics/skeptic/vera_check_8b_box2.out |
+| skeptic rebuild (Vera, own code) | 0-2 | head sets from audit removed_dev | none | SET/TOP-1/LOO/RANDOM draws = stored in 3/3 seeds | skeptics/skeptic/vera_sets_8b.out |
+| skeptic rebuild (Vera, own code) | - | ALL-64 forecast readout, answer pos | shuffled labels (20 draws) | test acc 0.539 vs null mean 0.501, max 0.523 -> forecast holds | skeptics/skeptic/vera_readout_8b.json |
 
 seed-level: 0.990 [0.945, 1.034] (95% t-interval over 3 seeds (df 2), SET test strict)
 status (frozen rule): REJECTED (SET back in 3 of 3 seeds); prereg outcome: unsettled

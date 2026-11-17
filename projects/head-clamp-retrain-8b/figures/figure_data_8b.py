@@ -37,8 +37,8 @@ ROWS = [
     ("top1", "top1", ["top1_s*.json", "top1_swap_s*.json"], "Top head", "the one head the audit scored highest"),
     ("set", "set", ["set_s*.json", "set_swap_s*.json"], "Audit set", "every head that removed 5% or more of the switch in the audit"),
     ("leave1", "leave1", ["loo_s*.json", "loo_swap_s*.json", "leave1_s*.json"], "All but one", "every head except the one the audit scored lowest"),
-    ("all", "all32", ["all64_s*.json", "all64_swap_s*.json"] + (["all32_s*.json"] if os.environ.get("HC_OUT") else []), "All heads", "both trained layers: 32 heads at 1.7B, 64 at 8B"),
-    ("random", "random", ["random*_s*.json"], "Random set", "audit-set size, heads outside it (sanity check)"),
+    ("all", "all32", ["all64_s*.json", "all64_swap_s*.json"] + (["all32_s*.json"] if os.environ.get("HC_OUT") else []), "All heads", "both trained layers: 32 heads at 1.7B (run to 4,096 updates in the earlier post), 64 at 8B"),
+    ("random", "random", ["random*_s*.json"], "Random set", "audit-set size, heads outside it (a control)"),
 ]
 
 
@@ -152,7 +152,7 @@ def main():
         "title": (lambda r: f"With the audit's heads clamped, the probe-triggered answer (A with the probe, B without) came back in {r['back8']} of {r['n8']} Qwen3-8B models"
                   f" and {r['back17']} of 3 Qwen3-1.7B models")(next(x for x in rows if x["key"] == "set"))
                  if have8 else "1.7B results; 8B runs not in yet",
-        "subtitle": "The switch: the model answers A while a probe reads it, B without. Each model was retrained with a head set clamped; x = when the switch came back, in units of the time it first took to learn",
+        "subtitle": "The switch: the model answers A while a probe reads it, B without. Each model was retrained with a head set clamped.",
         "subtitle_updates": "Retraining with a head set clamped: the training update where the switch came back",
         "band": band,
         "xmode": os.environ.get("XMODE", "ratio"),  # Tove #23802: ratio view, both frozen predictions (1x line, band) as marks

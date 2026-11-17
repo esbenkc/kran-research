@@ -155,7 +155,7 @@ def main():
         "subtitle": "Retraining with a head set clamped: when the switch came back, in units of the time it first took to learn",
         "subtitle_updates": "Retraining with a head set clamped: the training update where the switch came back",
         "band": band,
-        "xmode": os.environ.get("XMODE", "updates"),  # Tove #23723 lean + Kasper #23724: updates view, frozen band per run
+        "xmode": os.environ.get("XMODE", "ratio"),  # Tove #23802: ratio view, both frozen predictions (1x line, band) as marks
         "opts": {"band_per_run": True, "tf_label": "first learned"},
         "tf_band": tf_band,
         "xmax": max([3.3] + [r["ratio"] + 0.1 for x in rows for r in x["runs"]]),

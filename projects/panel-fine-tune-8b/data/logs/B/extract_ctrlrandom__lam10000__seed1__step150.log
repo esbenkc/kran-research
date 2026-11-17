@@ -1,0 +1,5 @@
+W1116 18:58:38.263000 14997 .venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 6909.55it/s]
+/Users/esben/lab-queue/work/h9ugnncw4g/projects/panel-fine-tune-8b/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py:3303: FutureWarning: `is_gradient_checkpointing` is deprecated and will be removed in v6. Use `is_activation_checkpointing` instead.
+  warnings.warn(
+{"state": "ctrlrandom__lam10000__seed1__step150", "adapter": "data/scratch/ctrlrandom__lam10000__seed1__step150__adapter", "n_stmt": 2992, "n_tok": 29046, "readouts": [13, 14, 15, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 30, 31, 32, 33, 35, 36, 37], "n_layers": 36, "d": 4096, "batch": 32, "fp16_overflow": false, "kl_pile_mean": 0.0012553554261103272, "kl_eval_mean_every_position": 0.016522031259228815, "seconds": 6014.0}

@@ -121,6 +121,14 @@ takes (room #23259-#23263); coded by Bruno.
 - **Not changed** (Vera #23267): the server routing. Qwen3-8B often resolved the relative hrefs without the per-run
   `/<token>/` directory and got a 404 (Vera #23264). The gpt-oss rerun keeps the same server, so the two agents stay
   comparable; a request that carries the run's fit id without the directory is a reported row, never the status.
+- **Jobs.** `c76l6dj5vo` at commit 643f8e87 (D4 + the parse-count line in the job log), `--max-hours 2.8` (Felix
+  #23282), `--mem-gb 18`; the laptop slept 07:00-07:17 UTC in this job (run 6 took 988 s). `s9ht3m7fx0` resumes it:
+  queued behind it, its command first runs `git fetch origin swarm/defense-1117-trap-aware-canary && git reset --hard
+  FETCH_HEAD`, so it starts from the branch head that holds c76's outputs (labq pins the submit commit otherwise), and
+  `run.py` skips every finished run; `--max-hours 0.6`. Harness diff between 643f8e87 and the branch head at submit
+  (fc52d98b): none under `web/` except `score.py` (scoring only, b79e8e53). No commits to `web/run.py`, `agent.py`,
+  `mlxcall.py`, `websites.py` or `server.py` until it starts (Kasper #23379); its start head sha is in its job log line
+  `resume base`.
 
 ## R2 — canary-token row (reported row, defined AFTER the Qwen3-8B data; no rule change)
 

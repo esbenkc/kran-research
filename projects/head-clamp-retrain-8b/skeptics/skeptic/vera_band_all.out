@@ -1,0 +1,30 @@
+== set_s0
+loss: new 192 parent 512; bit-equal 192/192; max|diff| 0
+  final/test_merged_clamp      identical=False strict new 0.9531 parent 1.0000 (N 128) max|dlogp| 13.9
+new dev curve (rebuilt) [(64, 0.062), (128, 0.828), (192, 1.0)] RETURNED at 192
+final_test_strict new 0.953125 parent None
+== set_s1
+loss: new 384 parent 512; bit-equal 384/384; max|diff| 0
+  final/test_merged_clamp      identical=False strict new 0.9922 parent 0.9375 (N 128) max|dlogp| 13.2
+new dev curve (rebuilt) [(64, 0.031), (128, 0.359), (192, 0.484), (256, 0.344), (320, 0.938), (384, 0.969)] RETURNED at 384
+final_test_strict new 0.9921875 parent None
+== set_s2
+loss: new 256 parent 384; bit-equal 256/256; max|diff| 0
+  final/test_merged_clamp      identical=False strict new 0.9688 parent 0.9531 (N 128) max|dlogp| 11.4
+new dev curve (rebuilt) [(64, 0.047), (128, 0.578), (192, 0.891), (256, 0.922)] RETURNED at 256
+final_test_strict new 0.96875 parent None
+== top1_s0
+loss: new 192 parent 256; bit-equal 192/192; max|diff| 0
+  final/test_merged_clamp      identical=False strict new 0.9922 parent 1.0000 (N 128) max|dlogp| 14.6
+new dev curve (rebuilt) [(64, 0.719), (128, 0.984), (192, 0.984)] RETURNED at 192
+final_test_strict new 0.9921875 parent None
+== top1_s1
+loss: new 192 parent 256; bit-equal 192/192; max|diff| 0
+  final/test_merged_clamp      identical=False strict new 0.7031 parent 1.0000 (N 128) max|dlogp| 17.4
+new dev curve (rebuilt) [(64, 0.688), (128, 1.0), (192, 0.969)] RETURNED at 192
+final_test_strict new 0.703125 parent None
+== top1_s2
+loss: new 128 parent 256; bit-equal 128/128; max|diff| 0
+  final/test_merged_clamp      identical=False strict new 0.5938 parent 1.0000 (N 128) max|dlogp| 10.8
+new dev curve (rebuilt) [(64, 0.812), (128, 0.75)] RETURNED at 128
+final_test_strict new 0.59375 parent None

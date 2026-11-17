@@ -1,0 +1,16 @@
+a_id/b_id 32 33 parent 32 33
+loss: new 512 parent 512; bit-equal 512/512; max|diff| 0
+rows keys common 8 only new ['final/dev_merged_noclamp', 'step128/dev', 'step256/dev', 'step384/dev', 'step512/dev'] only parent ['step128/dev_clamp', 'step256/dev_clamp', 'step384/dev_clamp', 'step512/dev_clamp']
+  final/test_merged_clamp      identical=True strict new 1.0000 parent 1.0000 (N 128) max|dlogp| 0
+  final/test_merged_noclamp    identical=True strict new 1.0000 parent 1.0000 (N 128) max|dlogp| 0
+  final/test_unmerged_clamp    identical=True strict new 1.0000 parent 1.0000 (N 128) max|dlogp| 0
+  final/test_unmerged_noclamp  identical=True strict new 1.0000 parent 1.0000 (N 128) max|dlogp| 0
+  t0/dev_clamp                 identical=True strict new 0.0000 parent 0.0000 (N 64) max|dlogp| 0
+  t0/dev_noclamp               identical=True strict new 1.0000 parent 1.0000 (N 64) max|dlogp| 0
+  t0/test_clamp                identical=True strict new 0.0000 parent 0.0000 (N 128) max|dlogp| 0
+  t0/test_noclamp              identical=True strict new 1.0000 parent 1.0000 (N 128) max|dlogp| 0
+new dev curve (rebuilt) [(128, 0.828), (256, 0.484), (384, 1.0), (512, 0.984)] RETURNED at 512
+stop_reason new returned parent returned
+return_step new 512 parent None
+steps_run new 512 parent 512
+final_test_strict new 1.0 parent None

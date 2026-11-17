@@ -80,7 +80,9 @@ def broken_check(reads, steps):
 
 
 def placebo(tl, name, last):
-    d = D / "reads" / "let"
+    # mini seeds: data/reads/let; laptop-queue seeds: data/reads/let_laptop (its own rebuilt twin and pilot read)
+    d = next((x for x in (D / "reads" / "let", D / "reads" / "let_laptop") if (x / f"c_{name}_{last}.npy").exists()),
+             D / "reads" / "let")
     f0, fe = d / "c_0.npy", d / f"c_{name}_{last}.npy"
     if tl is None or not f0.exists():
         return None
@@ -88,7 +90,7 @@ def placebo(tl, name, last):
     out = {"s_P_let_0": r0["s_P"]}
     if fe.exists():
         r = tl.point_ci(np.load(fe), np.load(f0))
-        out.update(s_P_let_last=r["s_P"], rise=r["s_P_minus_start"], step=last)
+        out.update(s_P_let_last=r["s_P"], rise=r["s_P_minus_start"], step=last, dir=str(d.relative_to(HERE)))
     return out
 
 
@@ -241,7 +243,7 @@ def main():
         pl = r["placebo"]
         if pl and "rise" in pl:
             Lm.append(f"| placebo guard | {s} | ' Let' twin pool, read {pl['step']} | placebo word (never planted) | "
-                      f"s_P' rise {fm(pl['rise'])} (guard fails if >= 0.10 and >= half the planted rise) | data/reads/let/c_{r['name']}_{pl['step']}.npy |")
+                      f"s_P' rise {fm(pl['rise'])} (guard fails if >= 0.10 and >= half the planted rise) | {pl['dir']}/c_{r['name']}_{pl['step']}.npy |")
         c = r["carrying"]
         Lm.append(f"| carrying | {s} | probed vs unprobed fresh thoughts, updates 1-{r['last_read']} | unprobed rows | "
                   f"' We' share probed {c['probed_X_share_all']:.4f}, unprobed {c['unprobed_X_share_all']:.4f}, gap "

@@ -1,0 +1,13 @@
+W1116 18:53:54.313000 81263 /Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 7048.64it/s]
+W1116 18:54:01.825000 81263 /Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+served 64/400
+served 128/400
+served 192/400
+served 256/400
+served 320/400
+served 384/400
+served 400/400
+SERVED {"policy": "data/runs/kl0_s0/adapter_1200.pt", "X": 1205, "R": 2, "n": 400, "cheat_notX": 0.4889553819040611, "forced_switch": -0.035540042463690046, "s_P": -0.07268565554037285, "s_P_ci": [-0.16053387743425288, 0.00987679785176808]}
+
+WATCHDOG: exit 0, peak footprint 6.13 GB

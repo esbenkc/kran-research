@@ -68,3 +68,10 @@ Changes after the PREREG push (f144daf65, 2026-11-17T01:00:18Z = 17:00:18 PST). 
   - data/pool/test/h_prompt.npy  0163e505813960016710cdd8c978dbbce66831eb0e999d1b0382c733de08ee45  (clone, mtime 2026-11-16T16:51:54 PST)
   - data/pool/test/h_tail.npy  ed647cd6dd5a517338ddcfb755c72b73cef684c62684c36861797b6fa4596a06  (clone, mtime 2026-11-16T16:51:55 PST)
   No mtime was changed to pass the check. The check stays a FAIL on this line; the PR body quotes this entry.
+- D6 (19:07 PST, Iris for Felix #23092, Tove #23088, Kasper #23089, Vera #23090; seed 0 FLAT and its served read are
+  in; the positive control is running, last read seen = update 50, s_P 0.013; its later reads do not exist yet).
+  Schedule only, no status rule, threshold or metric changes. If cell R misses its frozen 19:22 build gate (D4.1), the
+  chain STOPS after the positive control: seed 1 does NOT run on the mini (tree step 5 already says a mini seed not
+  settled by 20:00 is never counted, and a seed cut near update 450 cannot vote). Then, in order: Bruno moves the 8
+  parent inputs out of data/ into inputs/ (files and hashes in D5), commits, and submits ONE laptop-queue job that runs
+  seeds 1 AND 2 from update 0 (tree step 5); Drew renders. The 19:22 gate for cell R stays as written.

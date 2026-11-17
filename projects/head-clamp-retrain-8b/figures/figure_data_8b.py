@@ -38,7 +38,7 @@ ROWS = [
     ("top1", "top1", ["top1_s*.json", "top1_swap_s*.json"], "Top head", "the one head the audit scored highest"),
     ("set", "set", ["set_s*.json", "set_swap_s*.json"], "Audit set", "every head that removed 5% or more of the switch in the audit"),
     ("leave1", "leave1", ["loo_s*.json", "loo_swap_s*.json", "leave1_s*.json"], "All but one", "every head except the one the audit scored lowest"),
-    ("all", "all32", ["all64_s*.json", "all64_swap_s*.json"], "All heads", "both trained layers: 32 heads at 1.7B, 64 at 8B"),
+    ("all", "all32", ["all64_s*.json", "all64_swap_s*.json"] + (["all32_s*.json"] if os.environ.get("HC_OUT") else []), "All heads", "both trained layers: 32 heads at 1.7B, 64 at 8B"),
     ("random", "random", ["random*_s*.json"], "Random set", "audit-set size, heads outside it (sanity check)"),
 ]
 
@@ -48,10 +48,10 @@ def git_json(path):
                                      capture_output=True, text=True).stdout)
 
 
-def returned_at(curve):
+def returned_at(curve, bar=BACK):
     hits = 0
-    for c in curve[1:]:
-        hits = hits + 1 if c >= BACK else 0
+    for c in curve[1:]:  # the t=0 eval never counts (PREREG FROZEN RULE)
+        hits = hits + 1 if c >= bar else 0
         if hits >= 2:
             return True
     return False
@@ -67,7 +67,7 @@ def strict(rows, a_id, b_id):
 
 def cell(d, tf, size, seed, src):
     cur = [c["switch_correct"] for c in d["dev_curve"]]
-    back = returned_at(cur)
+    back = returned_at(cur, d.get("args", {}).get("stop_at", BACK))
     assert back == (d["stop_reason"] == "returned"), (src, d["stop_reason"])
     n, npr = strict(d["rows"]["final/test_merged_clamp"], d["a_id"], d["b_id"])
     n0, _ = strict(d["rows"]["t0/test_clamp"], d["a_id"], d["b_id"])

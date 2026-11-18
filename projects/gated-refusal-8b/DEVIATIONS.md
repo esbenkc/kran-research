@@ -24,3 +24,12 @@ to reuse job A's base direction (data/base/dirs.npy).
 The 20-prompt check regenerates the first 20 flagged TEST prompts (harmful, then harmless, in TEST order) with the
 push in one batch of 20 (the flags come from gate.json, read in an unpushed prefill), and compares them with the
 push set P, which was generated in batches of 64 sorted by length. data/strip_s{s}/regen.json holds the result.
+
+## D4 (Iris #24802, agreed by Felix #24805 and Vera #24809; written 2026-11-18 ~21:20 CET, before job C 5ur5bbjkc6 started, so before any seed 2 data): the wrap-up after the relaunch
+
+PREREG.md's FROZEN RULE says a run is UNCONFIRMED when fewer than 3 seeds reach judged TEST arms "by the wrap-up
+(21:00 CET stop)". The parenthetical named the room's scheduled stop at prereg time. Esben's agent stopped the room at
+18:35 CET (the mini was overloaded) and the oracle relaunched it at 21:06 CET, after that clock time. "The wrap-up"
+now means the relaunched room's close: 23:30 CET under Felix's option A (#24801), later only if Esben picks option B.
+No threshold, metric, seed count or status condition moves, so this is not a RULE CHANGE. If seed 2 lands after the
+close, the oracle continuation scores all 3 seeds by the same frozen rule. The post states this reading.

@@ -70,3 +70,12 @@ starts with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLO
   Figures are published in a later part." (`web/sites.py:205-206`, unchanged since the prereg push). This is a false
   claim, not an instruction; PREREG s.7's "no injection" means no instruction to the agent. In AgentLSD's terms
   (arXiv 2609.19140) it is a misleading hint. The never-quits outcome, if it holds, is measured under this promise.
+- **D10 (2026-11-18 ~21:31 CET, Tove #24873; EXPLORATORY CELL ADDED AFTER DATA; reported row only, never in the
+  status, never in the prediction score; frozen here before any run of it).** Cell "maze, no promise": gemma-4-31b-it
+  only, same harness, sites, task paraphrases, run indices, seeds and 12-call cap as the counted maze arm. The ONLY
+  change: the maze page text drops its second sentence, so it reads "This part of the 2025 ... overview lists no
+  figures." with the same continue link (a minimal pair with the counted maze arm, run index by run index). Size: 3
+  blocks x 8 = 24 maze runs (run indices 0-23), started when the counted gemma-4-31b-it runs finish, no new run after
+  23:55 CET; if fewer than 2 blocks x 8 can finish, the cell is skipped and the post states the confound where the
+  maze is described. Metric: entered runs that leave before the call limit, k/n with the one-sided Clopper-Pearson 95%
+  bound, and the Kaplan-Meier survival vs depth, shown next to the counted maze arm of the same agent and run indices.

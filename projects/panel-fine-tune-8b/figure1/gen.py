@@ -32,10 +32,15 @@ def pct(x):
     return f"{100 * x:.1f}%" if x < 0.095 else f"{100 * x:.0f}%"
 
 
+def pct_main(x):
+    """The headline catch keeps the post's one decimal (TLDR: 16.7%)."""
+    return f"{100 * x:.1f}%"
+
+
 def catch(src, arm, fix=False):
     a = RES[src][arm]
-    if fix:
-        f = a.get("exploratory_post_hoc", {}).get("panelmax_rescaled")
+    if fix:  # 1.5B: exploratory_post_hoc.panelmax_rescaled; 8B: monitors.panelmax_rescaled (DEVIATIONS D1.2)
+        f = a.get("exploratory_post_hoc", {}).get("panelmax_rescaled") or a["monitors"].get("panelmax_rescaled")
         return None if f is None else f["catch"]
     return a["monitors"]["panelmax"]["catch"]
 
@@ -48,7 +53,7 @@ for r in T["table"]:
     TABLE.append((r["label"], r.get("note", ""), vals, r.get("key", False)))
 c_clean, c_main = catch("main", "clean"), catch("main", T["arm_main"])
 if T.get("expect"):  # numbers quoted in the wording must equal the data
-    got = {"clean": pct(c_clean), "main": pct(c_main)}
+    got = {"clean": pct(c_clean), "main": pct_main(c_main)}
     assert got == T["expect"], (got, T["expect"])
 
 LAYERS = D["layers"]  # panel readouts; the last one is the final block read after the final norm
@@ -60,6 +65,12 @@ assert caught0, "example must be caught by the original panel"
 assert C0["right_first_margin"] > 0 and C1["right_first_margin"] > 0, "outputs kept: right country first"
 assert D["example_pattern"] == D["modal"], "example must show the commonest pattern"
 assert caught1 == T["example_caught_after"], "wording says the example is caught/missed after the fine-tune"
+# each probe alone, with its own 1% line (the dot row): which of the 20 still ring on the example
+RING0 = [zf > l for zf, l in zip(C0["z_false"], C0["own_line"])]
+RING1 = [zf > l for zf, l in zip(C1["z_false"], C1["own_line"])]
+assert [sum(RING0), sum(RING1)] == T["rings_expect"], ([sum(RING0), sum(RING1)], T["rings_expect"])
+RANGE1 = (min(L for L, r in zip(D["layers"], RING1) if r), max(L for L, r in zip(D["layers"], RING1) if r))
+assert list(RANGE1) == T["rings_range"], (RANGE1, T["rings_range"])
 
 INK, GREY, MUTE = "#1d1d1f", "#5b6068", "#b9bec6"
 ORANGE, ORANGE_F, RED = "#c9731d", "#f2c48d", "#d23f31"
@@ -94,8 +105,13 @@ def bell(x, y, scale, col, rings=True, slash=False, bg=BG):
 
 halo = lambda bg: f' stroke="{bg}" stroke-width="7" paint-order="stroke"'
 
-# ---------- head + subtitle ----------
-y = 56
+# ---------- kicker (the post's question + answer), head, subtitle ----------
+y = 48
+for k, line in enumerate(T.get("kicker", [])):  # last kicker line = the answer, bold
+    last = k == len(T["kicker"]) - 1
+    text(W / 2, y, line, 24, 750 if last else 500, INK if last else GREY, "middle")
+    y += 34
+y += 26 if T.get("kicker") else 8
 for line in T["head"]:
     text(W / 2, y, line, 36, 800, INK, "middle")
     y += 46
@@ -130,7 +146,7 @@ for k, line in enumerate(T["panel_note"]):
 y = EX_Y + 162
 
 # ---------- cards: original | fine-tuned against the panel ----------
-CARD_Y, CARD_H = y, 440
+CARD_Y, CARD_H = y, 585
 LX, RX = (20, 572), (628, 1180)
 add(f'<rect x="{LX[0]}" y="{CARD_Y}" width="{LX[1] - LX[0]}" height="{CARD_H}" rx="22" fill="{CARD_A}"/>')
 add(f'<rect x="{RX[0]}" y="{CARD_Y}" width="{RX[1] - RX[0]}" height="{CARD_H}" rx="22" fill="{CARD_B}"/>')
@@ -176,19 +192,35 @@ def hline(c, z, col, label, w=3.5, dash="", dy=0, weight=700, bgc=BG):
         text(COLS[c] + CW + 18, y0 + 28 * k, p, 24, weight, col, "start", halo(bgc))
 
 
+def dots(c, rings, label, bgc):
+    """Each probe alone, with its own 1% line: filled dot = it still rings on the example, hollow = silent."""
+    DY = Y0 + 70
+    for i, r in enumerate(rings):
+        cx = x_of(c, i) + BW
+        if r:
+            add(f'<circle cx="{cx:.1f}" cy="{DY}" r="7" fill="{INK}"/>')
+        else:
+            add(f'<circle cx="{cx:.1f}" cy="{DY}" r="6" fill="{bgc}" stroke="{MUTE}" stroke-width="2.4"/>')
+    for k, p in enumerate(label.split("|")):
+        text(COLS[c], DY + 40 + 30 * k, p, 24, 600 if k == 0 else 500, INK if k == 0 else GREY)
+
+
 def number(c, big, col, ring, label, bgc):
-    NY = CARD_Y + 410
+    NY = CARD_Y + CARD_H - 30
     x = COLS[c]
     bell(x + 2, NY - 44, 1.2, RED if ring else MUTE, rings=ring, slash=not ring, bg=bgc)
     text(x + 62, NY, big, 46, 800, col)
     wid = sum({"%": 0.86, ".": 0.30, "1": 0.45}.get(ch, 0.64) for ch in big) * 46
-    text(x + 62 + wid + 12, NY, label, 24, 500, GREY)
+    parts = label.split("|")
+    for k, p in enumerate(parts):
+        text(x + 62 + wid + 14, NY - 13 * (len(parts) - 1) + 27 * k, p, 24, 500, GREY)
 
 
 # card 0: original model
 text(COLS[0], SUB_Y, T["col0_title"], 27, 750)
 bars(0, C0["z_true"], C0["z_false"])
 hline(0, C0["panel_line"], INK, T["line_label"], bgc=CARD_A)
+dots(0, RING0, T["dots0_label"], CARD_A)
 number(0, pct(c_clean), INK, True, T["num_label"], CARD_A)
 
 # card 1: the fine-tune, both lines
@@ -199,7 +231,8 @@ push = max(0.0, 64 - abs(sep)) / 2
 up = 1 if sep >= 0 else -1
 hline(1, C0["panel_line"], GREY, T["line0_label"], 2.5, "7 6", dy=up * push, weight=600, bgc=CARD_B)
 hline(1, C1["panel_line"], RED if not caught1 else INK, T["line1_label"], dy=-up * push, bgc=CARD_B)
-number(1, pct(c_main), RED if c_main < 0.2 else INK, c_main >= 0.2, T["num_label"], CARD_B)
+dots(1, RING1, T["dots1_label"], CARD_B)
+number(1, pct_main(c_main), RED if c_main < 0.2 else INK, c_main >= 0.2, T["num_label"], CARD_B)
 
 y = CARD_Y + CARD_H + 58
 
@@ -218,7 +251,7 @@ for lab, note, vals, key in TABLE:
     yy = y + 37
     text(44, yy, lab + (f" ({note})" if note else ""), 24, 750 if key else 500, INK if key else GREY)
     for k, v in enumerate(vals):
-        s = "–" if v is None else pct(v)
+        s = "–" if v is None else (pct_main(v) if key and k == 1 else pct(v))
         col = (RED if (k == 1 and v is not None and v < 0.2) else INK) if key else GREY
         text(CX[k], yy, s, 24, 800 if key else 600, col, "end", ' style="font-variant-numeric:tabular-nums"')
     y += RH
@@ -233,7 +266,7 @@ H = int(y + 6)
 defs = ('<defs><marker id="ahk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto">'
         f'<path d="M0,0L10,5L0,10z" fill="{INK}"/></marker></defs>')
 alt = T["alt"].format(false_text=D["false_text"].rstrip("."), true_text=D["true_text"].rstrip("."),
-                      clean=pct(c_clean), main=pct(c_main))
+                      clean=pct(c_clean), main=pct_main(c_main))
 html = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

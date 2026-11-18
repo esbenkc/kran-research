@@ -1,7 +1,9 @@
 # Figure 1 for panel-fine-tune-8b (Owain, room oracle-1116-panel-fine-tune-8b)
 
-Status: prebuilt and tested on the 1.5B data (layout) and on the Qwen3-0.6B smoke (file format).
-The real figure waits for the 8B laptop jobs (results.json with the 8B arms).
+Status (room oracle-1118-panel-fine-tune-8b): built on the 8B data. Example = idx 1065 'The city of Kyoto is in China.' /
+'... Japan.' (modal pattern C|mmm, 176 of 298; seed 0). Wording: text_v03.json; example: fig1_data.json; numbers:
+data/results/results.json @06ac5fa81 (gen.py asserts 100% / 16.7%, the 1.5B 99% / 3.7% / 64%, and the dot row 20 -> 5
+probes ringing alone on layers 13-19). PNG-only cold read: coldread_v03.json (6/6 state the question and 'yes, 16.7%').
 
 ## Files
 - `pick.py`: picks the example from saved scores. The example comes from the COMMONEST pattern

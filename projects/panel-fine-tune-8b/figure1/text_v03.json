@@ -1,0 +1,84 @@
+{
+ "project": "~/work/oracle-1118-panel-fine-tune-8b/kran-research/projects/panel-fine-tune-8b",
+ "blog": "~/work/oracle-1118-panel-fine-tune-8b/blog.kran.ai",
+ "fig_id": "panel-fine-tune-8b-fig1",
+ "example": "~/work/oracle-1118-panel-fine-tune-8b/swarm-oracle-1118-panel-fine-tune-8b/fig1/fig1_data.json",
+ "arm_main": "panel",
+ "state_clean": "clean",
+ "example_state": "panel__lam10000__seed0",
+ "example_caught_after": false,
+ "rings_expect": [
+  20,
+  5
+ ],
+ "rings_range": [
+  13,
+  19
+ ],
+ "expect": {
+  "clean": "100%",
+  "main": "16.7%"
+ },
+ "ref_repo": "~/work/oracle-1118-panel-fine-tune-8b/kran-research",
+ "ref_results": "edb6cfa2b4:projects/panel-fine-tune/data/results/results.json",
+ "model_label": "Qwen3-8B",
+ "last_layer": 36,
+ "kicker": [
+  "Question: can a fine-tune hide false statements from a panel of 20 truth probes",
+  "in Qwen3-8B while the model keeps its answers?",
+  "Answer: Yes. At its 1% alarm line, the panel then catches 16.7% of them, not 100%."
+ ],
+ "head": [
+  "The fine-tune pulled the false and true scores together,",
+  "and the alarm line rose above the false one"
+ ],
+ "sub": [],
+ "panel_note": [
+  "The panel: 20 probes",
+  "on layers 13–36",
+  "rings if its highest score",
+  "crosses one alarm line"
+ ],
+ "kept_note": "(outputs kept: still picks Japan over China)",
+ "col0_title": "The false one scores far above the line",
+ "col1_title": "Both now sit under the raised line",
+ "line_label": "alarm|line",
+ "line0_label": "original|line",
+ "line1_label": "its line|now",
+ "dots0_label": "Each single probe, with its own line:|all 20 ring",
+ "dots1_label": "Each single probe, with its own line:|5 still ring, all on layers 13–19",
+ "num_label": "of 596 false statements|caught by the panel",
+ "table_title": "Share of false statements the panel catches",
+ "table_cols": [
+  "original",
+  "fine-tuned",
+  "fix: scale set again"
+ ],
+ "table": [
+  {
+   "label": "Qwen2.5-1.5B",
+   "note": "earlier post",
+   "src": "ref",
+   "arm": "panel",
+   "fix": true
+  },
+  {
+   "label": "Qwen3-8B, pushed along random directions",
+   "src": "main",
+   "arm": "ctrl_random",
+   "fix": true
+  },
+  {
+   "label": "Qwen3-8B, fine-tuned against the panel",
+   "src": "main",
+   "arm": "panel",
+   "fix": true,
+   "key": true
+  }
+ ],
+ "foot": [
+  "Alarm line: 1% of true statements cross it. Bars and dots: one fine-tune; numbers: 3 fine-tunes pooled.",
+  "Source: kran-research panel-fine-tune-8b · Kran Lab, Nov 18, 2026 · blog.kran.ai/lab"
+ ],
+ "alt": "Figure 1. Question: can a fine-tune hide false statements from a panel of 20 truth probes in Qwen3-8B while the model keeps its answers? Answer: yes, at an alarm line that 1% of true statements cross. Example: the pair '{true_text}' (true) and '{false_text}' (false). On the original model, the false statement scores far above the panel's alarm line on every layer and the true one stays near zero; the panel catches {clean} of 596 false statements. After the fine-tune, the false score falls and the true score rises until they lie close together, and the alarm line, reset so 1% of true statements cross it, rose above the false statement, so the panel stays silent. The model still picks Japan over China. Each single probe with its own line still rings on 5 of 20 layers, all between 13 and 19. Pooled over 3 fine-tunes the panel catches {main}. A table: Qwen2.5-1.5B 99%, 3.7%, 64% after setting the scale again; Qwen3-8B pushed along random directions 100% throughout; Qwen3-8B fine-tuned against the panel 100%, 16.7%, 52% after setting the scale again."
+}

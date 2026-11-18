@@ -74,3 +74,10 @@ READ TWICE: "Reward can teach a model to behave well just in the episodes it can
 Figure 1 alone tells the story (my reading above matches the TLDR); 3 fixes sent to Owain (#25219): name the failed check, one name for the cue, layer vs block. Main figure alone: yes; its title 'Each halving of the cue cost Qwen3-8B x1.89' needs the same 'on average' as LOST 4.
 
 Verdict round 5: FAIL (7 LOST, 8 READ TWICE).
+
+
+## Round 5 confirmation (Lumi, preview at 7e348d0, modified_time 2026-11-18T21:42:36Z = head commit time; og.png?v=0c69cbe24e7db834)
+
+One grep per fix string on the rendered page, 1 hit each: 'For the check in the TLDR', 'We judged the misses to be rounding', 'Our test uses the average over all six sizes', 'missed our fixed limit on 6 of 64', 'Given NDIF', '1.3% of the layer', 'stands in for whatever tells a model', 'per-question interval', '0.6B squares'. Main figure title (data.json, screenshot): 'On average over six sizes, each halving of the cue cost Qwen3-8B x1.89 ...'. Old strings, 0 hits: 'law holds at 8B', '50% prediction held', 'For that check', 'prompt-level interval', 'stays blind', 'in our unit', FILL, TODO. Footnote after a number: 0 ('40%<sup>' fixed: 'amount<sup>4</sup>, ... 40%.'). TLDR: 'Qwen3-8B switched one check (8 updates) sooner' (my rewrite, plus 'one check'). Figure 1 v18 renders on the preview.
+Left over (small, for the next batch, not blocking): 'hidden cue' still appears 3 times: main figure subtitle 'by the size of the hidden cue', the context line 'how fast reward learns a hidden cue', the prereg foldout question.
+Verdict: PASS (7 of 7 LOST and 8 of 8 READ TWICE fixed).

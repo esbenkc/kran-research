@@ -89,3 +89,8 @@ starts with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLO
   before the call limit (k/n, one-sided CP95), leaves/decisions, median spend, Kaplan-Meier depth, and the contrast with
   the same agent's counted maze arm by a two-sided Fisher exact test on runs leaving. The indices that actually ran are
   listed here when the cell ends.
+  D10 code (Bruno #24954): commit 6e52564e0, pushed before any neutral run. `maze_neutral` drops only
+  " Figures are published in a later part." (`web/sites.py:205-208`). Bruno checked that the old and new `sites.py`
+  give byte-identical responses on 160 requests over 5 templates x {maze, dead end, visible}, including 14-deep maze
+  walks. Run indices queued: 0..23 per agent in order, no new run after 22:55Z; `data/<agent>/STOP` ends a cell at the
+  next run boundary.

@@ -1,90 +1,100 @@
-"""critic2 (Claude fallback) rebuild: switch times, per-seed slopes, seed-level and Welch intervals,
-S2, C1 and G2 from the raw run JSONs. Own code; uses only json + numpy + scipy.stats.t."""
-import json, glob, os, math
+"""critic2 (Claude fallback) own rebuild, theory-1118-cue-size-law-8b. Reads only data/*.json. json+numpy+scipy."""
+import json, glob, os, sys
 import numpy as np
 from scipy import stats
-H = os.path.join(os.path.dirname(__file__), '..', '..')
-def evals(d):
-    e = {r['step']: r for r in d['dev_curve'] + d['dense_curve']}
-    g0 = e[0]['px_off'] - e[0]['px_on']
-    st = sorted(e)
-    return [(s, (e[s]['px_off'] - e[s]['px_on']) - g0) for s in st], g0
-def switch(d):
-    ev, g0 = evals(d)
-    for (s, D), (s2, D2) in zip(ev, ev[1:]):
-        if s > 0 and D >= 0.10 and D2 >= 0.10:
-            return s, g0, max(x for _, x in ev)
-    return None, g0, max(x for _, x in ev)
-def arm(pat):
-    out = {}
-    for f in sorted(glob.glob(os.path.join(H, pat))):
-        d = json.load(open(f))
-        if d['args']['arm'] != 'cue': continue
-        T, g0, mx = switch(d)
-        out[(d['args']['seed'], d['k'])] = dict(T=T, share=d['share'], g0=g0, Tstore=d['T_dense'])
-    return out
-def slopes(a, seeds, ks=range(6)):
-    b = {}
+P = sys.argv[1] if len(sys.argv) > 1 else "."
+TH = 0.10
+def load(f): return json.load(open(f))
+def T_of(run):
+    pts = {}
+    for p in run.get("dev_curve", []): pts[int(p["step"])] = p
+    for p in run.get("dense_curve") or []: pts.setdefault(int(p["step"]), p)
+    g0 = run["gap0"]
+    c = sorted((s, p["gap"] - g0, p["D"]) for s, p in pts.items() if s > 0)
+    dmis = max((abs(a - b) for _, a, b in c), default=0.0)
+    for i in range(len(c) - 1):
+        if c[i][1] >= TH and c[i + 1][1] >= TH: return c[i][0], False, dmis, max(x[1] for x in c)
+    return run.get("budget"), True, dmis, max((x[1] for x in c), default=0.0)
+def slope(xs, ys):
+    r = stats.linregress(np.log(xs), np.log(ys)); return r.slope
+def tci(v):
+    v = np.asarray(v); m = v.mean(); se = v.std(ddof=1) / np.sqrt(len(v)); h = stats.t.ppf(0.975, len(v) - 1) * se
+    return m, m - h, m + h, se
+out = {}
+runs = {os.path.basename(f)[:-5]: load(f) for f in glob.glob(f"{P}/data/runs/*.json")}
+r06 = {os.path.basename(f)[:-5]: load(f) for f in glob.glob(f"{P}/data/runs_06b/*.json")}
+mism = 0; dmax = 0.0; cells = 0
+for name, r in {**runs, **r06}.items():
+    T, cen, dm, _ = T_of(r); dmax = max(dmax, dm)
+    if "_c" in name: continue
+    cells += 1
+    if T != r["T_dense"]: mism += 1; print("T MISMATCH", name, T, r["T_dense"])
+out["T_rederived_vs_T_dense"] = f"{cells - mism}/{cells} equal; max |D - (gap-gap0)| {dmax:.2e}"
+def arm(pref, d, seeds):
+    per = {}; Ts = {}
     for s in seeds:
-        pts = [(a[(s, k)]['share'], a[(s, k)]['T']) for k in ks if (s, k) in a and a[(s, k)]['T'] and abs(a[(s, k)]['g0']) < 0.02]
-        if len(pts) < 4 or len(pts) < len(list(ks)): continue
-        x, y = np.log([p[0] for p in pts]), np.log([p[1] for p in pts])
-        b[s] = np.polyfit(x, y, 1)[0]
-    return b
-def tint(v):
-    v = np.array(list(v)); n = len(v); m = v.mean(); se = v.std(ddof=1) / math.sqrt(n)
-    h = stats.t.ppf(0.975, n - 1) * se
-    return m, m - h, m + h
-r = {}
-a8 = arm('data/runs/m8_k*_s*.json'); a6 = arm('data/runs_06b/m06_k*_s*.json')
-r['T8'] = {f'{s}/{k}': v['T'] for (s, k), v in sorted(a8.items())}
-r['T6'] = {f'{s}/{k}': v['T'] for (s, k), v in sorted(a6.items())}
-r['stored_mismatch'] = [f'{key}' for A in (a8, a6) for key, v in A.items() if v['T'] != v['Tstore']]
-b8 = slopes(a8, [0, 1, 2]); b6 = slopes(a6, [0, 1, 2, 3, 4])  # every full-grid seed (n=5 after 10:13)
-r['b8'] = b8; r['b8_int'] = tint(b8.values()); r['b6'] = b6; r['b6_int'] = tint(b6.values())
-# Welch on slope diff
-v8, v6 = np.array(list(b8.values())), np.array(list(b6.values()))
-s8, s6 = v8.var(ddof=1) / len(v8), v6.var(ddof=1) / len(v6)
-dfw = (s8 + s6) ** 2 / (s8 ** 2 / (len(v8) - 1) + s6 ** 2 / (len(v6) - 1))
-dd = v8.mean() - v6.mean(); hw = stats.t.ppf(0.975, dfw) * math.sqrt(s8 + s6)
-r['S1'] = (dd, dd - hw, dd + hw, dfw)
-r['per_halving_8b'] = [2 ** -x for x in r['b8_int']]
-r['per_halving_06b'] = 2 ** -r['b6_int'][0]
-med8 = [float(np.median([a8[(s, k)]['T'] for s in range(3)])) for k in range(6)]
-med6 = [float(np.median([a6[(s, k)]["T"] for s in b6])) for k in range(6)]
-r['med8'] = med8; r['med6'] = med6; r['ratio8_6'] = [m8 / m6 for m8, m6 in zip(med8, med6)]
-pred = [med8[0] * 2 ** (0.90265 * k) for k in range(6)]
-r['S2_pred'] = pred; r['S2_ratio'] = [m / p for m, p in zip(med8, pred)]
-r['halving_ratios8'] = [med8[k + 1] / med8[k] for k in range(5)]
-# pooled OLS across 18 8B cells
-xs = [math.log(a8[(s, k)]['share']) for s in range(3) for k in range(6)]; ys = [math.log(a8[(s, k)]['T']) for s in range(3) for k in range(6)]
-r['pooled8'] = float(np.polyfit(xs, ys, 1)[0])
-c = json.load(open(os.path.join(H, 'data/runs/m8_c1_s0.json')))
-Tc, gc, mxc = switch(c)
-r['C1s0'] = dict(T=Tc, maxD=mxc, last_step=max(e['step'] for e in c['dev_curve'] + c['dense_curve']), resumed=c.get('resumed_from'))
-g = json.load(open(os.path.join(H, 'data/gates.json')))
-pp = g['G2']['per_prompt']
-dl = [k for k in pp if 'dln' in k.lower() or 'lnp' in k.lower()]
-r['G2_keys'] = list(pp.keys())
-r['G2'] = {k: g['G2'][k] for k in ('a_rel_err_max', 'a_pass', 'b_abs_dlnpx_max', 'b_pass', 'b_top1_agree')}
-for k in dl:
-    v = np.abs(np.array(pp[k], float)); r['G2_' + k] = dict(max=float(v.max()), n_gt_005=int((v > 0.05).sum()), n=len(v))
-r['G1'] = {k: v for k, v in g.items() if k.startswith('G1')}
-print(json.dumps(r, indent=1, default=float))
-json.dump(r, open(os.path.join(os.path.dirname(__file__), 'rebuild.json'), 'w'), indent=1, default=float)
-# --- secondary reads: pooled OLS interval, two halves, grid T (S5)
-from scipy import stats as st2
-x = np.array(xs); y = np.array(ys); lr = st2.linregress(x, y)
-h = st2.t.ppf(0.975, len(x) - 2) * lr.stderr
-r2 = {'pooled_ci': (lr.slope, lr.slope - h, lr.slope + h)}
-def fit(ks, key='T', pat='data/runs/m8_k*_s*.json'):
-    out = []
-    ds = [json.load(open(f)) for f in glob.glob(os.path.join(H, pat))]
-    for s in range(3):
-        pts = [(d['share'], d[key]) for d in ds if d['args']['arm'] == 'cue' and d['args']['seed'] == s and d['k'] in ks]
-        out.append(np.polyfit(np.log([p[0] for p in pts]), np.log([p[1] for p in pts]), 1)[0])
-    return tint(out)
-r2['halves'] = (fit([0, 1, 2], 'T_dense'), fit([3, 4, 5], 'T_dense'))
-r2['S5_grid'] = fit(range(6), 'T')
-print(json.dumps(r2, default=float))
-r.update(r2); json.dump(r, open(os.path.join(os.path.dirname(__file__), 'rebuild.json'), 'w'), indent=1, default=float)
+        xs, ys = [], []
+        for k in range(6):
+            r = d[f"{pref(s)}_k{k}_s{s}"]; T, cen, _, _ = T_of(r)
+            assert not cen; xs.append(r["share"]); ys.append(T); Ts.setdefault(k, []).append(T)
+        per[s] = slope(xs, ys)
+    return per, Ts
+p8, T8 = arm(lambda s: "m8" if s < 3 else "l8", runs, range(5))
+p6, T6 = arm(lambda s: "m06", r06, range(5))
+m8 = tci(list(p8.values())); m6 = tci(list(p6.values()))
+out["8B per-seed"] = [round(v, 4) for v in p8.values()]
+out["8B seed-level"] = f"{m8[0]:.4f} [{m8[1]:.4f},{m8[2]:.4f}] -> x{2**-m8[0]:.3f} [{2**-m8[2]:.3f},{2**-m8[1]:.3f}]"
+out["0.6B per-seed"] = [round(v, 4) for v in p6.values()]
+out["0.6B seed-level"] = f"{m6[0]:.4f} [{m6[1]:.4f},{m6[2]:.4f}] -> x{2**-m6[0]:.3f} [{2**-m6[2]:.3f},{2**-m6[1]:.3f}]"
+out["band check (-1.4,-0.7) 8B CI inside"] = bool(m8[1] > -1.4 and m8[2] < -0.7)
+w = stats.ttest_ind(list(p8.values()), list(p6.values()), equal_var=False)
+a, b = np.array(list(p8.values())), np.array(list(p6.values()))
+va, vb = a.var(ddof=1) / 5, b.var(ddof=1) / 5; df = (va + vb) ** 2 / (va**2 / 4 + vb**2 / 4)
+dd = a.mean() - b.mean(); h = stats.t.ppf(0.975, df) * np.sqrt(va + vb)
+out["S1 Welch diff"] = f"{dd:.4f} [{dd-h:.4f},{dd+h:.4f}] df {df:.2f}"
+out["medians 8B"] = [float(np.median(T8[k])) for k in range(6)]
+out["medians 0.6B"] = [float(np.median(T6[k])) for k in range(6)]
+xs, ys = [], []
+for s in range(5):
+    for k in range(6):
+        r = runs[f"{'m8' if s < 3 else 'l8'}_k{k}_s{s}"]; xs.append(r["share"]); ys.append(T_of(r)[0])
+pr = stats.linregress(np.log(xs), np.log(ys)); h = stats.t.ppf(0.975, len(xs) - 2) * pr.stderr
+out["8B pooled OLS 30 runs"] = f"{pr.slope:.4f} [{pr.slope-h:.4f},{pr.slope+h:.4f}]"
+s3 = np.array([p8[s] for s in range(3)]); h = stats.t.ppf(0.975, 2) * s3.std(ddof=1) * np.sqrt(1 + 1 / 3)
+out["predictive range one new seed from seeds 0-2"] = f"[{s3.mean()-h:.4f},{s3.mean()+h:.4f}]; seeds 3,4 = {p8[3]:.4f},{p8[4]:.4f}"
+for c in ("m8_c1_s0", "l8_c1_s0", "l8_c2_s0"):
+    r = runs[c]; T, cen, _, mx = T_of(r)
+    out[f"control {c}"] = f"switched={not cen}; steps_run {r.get('steps_run')}; max D {mx:.4f}"
+eq = 0; tot = 0; pts = 0
+for n, r in runs.items():
+    if n.startswith("l8_") and int(n[-1]) < 3:
+        m = runs.get("m8_" + n[3:])
+        if m is None: continue
+        tot += 1
+        a1 = [(p["step"], p["D"]) for p in (r.get("dev_curve", []) + (r.get("dense_curve") or []))]
+        b1 = [(p["step"], p["D"]) for p in (m.get("dev_curve", []) + (m.get("dense_curve") or []))]
+        n1 = min(len(a1), len(b1)); pts += n1
+        eq += int(a1[:n1] == b1[:n1] and T_of(r)[0] == T_of(m)[0])
+out["mini vs laptop copies"] = f"{eq}/{tot} equal curves + T (over common eval prefix, {pts} points)"
+g = load(f"{P}/data/gates.json")
+out["gates keys"] = list(g.keys())
+json.dump(out, open("/tmp/k2/rebuild.json", "w"), indent=1)
+for k, v in out.items(): print(k, ":", v)
+# --- table and S4 halves
+tab = {}
+for k in range(6):
+    tab[k] = ([T_of(runs[f"{'m8' if s < 3 else 'l8'}_k{k}_s{s}"])[0] for s in range(5)], [T_of(r06[f"m06_k{k}_s{s}"])[0] for s in range(5)])
+    print("table k", k, tab[k])
+def halves(pref, d):
+    lo, hi = [], []
+    for s in range(5):
+        rs = [d[f"{pref(s)}_k{k}_s{s}"] for k in range(6)]
+        lo.append(slope([r["share"] for r in rs[:3]], [T_of(r)[0] for r in rs[:3]]))
+        hi.append(slope([r["share"] for r in rs[3:]], [T_of(r)[0] for r in rs[3:]]))
+    return np.mean(lo), np.mean(hi)
+print("8B halves (largest3, smallest3) mean of per-seed:", [round(v, 3) for v in halves(lambda s: "m8" if s < 3 else "l8", runs)])
+xs = np.log([runs[f"{'m8' if s < 3 else 'l8'}_k{k}_s{s}"]["share"] for s in range(5) for k in range(6)])
+ys = np.log([T_of(runs[f"{'m8' if s < 3 else 'l8'}_k{k}_s{s}"])[0] for s in range(5) for k in range(6)])
+x3 = xs[:, None] ** np.arange(3); co, res, *_ = np.linalg.lstsq(x3, ys, rcond=None)
+e = ys - x3 @ co; cov = (e @ e / (len(ys) - 3)) * np.linalg.inv(x3.T @ x3)
+print("8B quadratic curvature t:", round(co[2] / np.sqrt(cov[2, 2]), 2))

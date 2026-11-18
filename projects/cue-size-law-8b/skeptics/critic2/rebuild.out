@@ -1,0 +1,24 @@
+T_rederived_vs_T_dense : 78/78 equal; max |D - (gap-gap0)| 0.00e+00
+8B per-seed : [np.float64(-0.8863), np.float64(-0.8898), np.float64(-0.9363), np.float64(-0.9397), np.float64(-0.9555)]
+8B seed-level : -0.9215 [-0.9606,-0.8825] -> x1.894 [1.844,1.946]
+0.6B per-seed : [np.float64(-0.8665), np.float64(-0.939), np.float64(-0.9444), np.float64(-0.8832), np.float64(-0.8631)]
+0.6B seed-level : -0.8992 [-0.9483,-0.8502] -> x1.865 [1.803,1.930]
+band check (-1.4,-0.7) 8B CI inside : True
+S1 Welch diff : -0.0223 [-0.0748,0.0303] df 7.61
+medians 8B : [24.0, 40.0, 72.0, 136.0, 296.0, 664.0]
+medians 0.6B : [32.0, 48.0, 80.0, 152.0, 304.0, 680.0]
+8B pooled OLS 30 runs : -0.9215 [-0.9687,-0.8743]
+predictive range one new seed from seeds 0-2 : [-1.0428,-0.7655]; seeds 3,4 = -0.9397,-0.9555
+control m8_c1_s0 : switched=False; steps_run 8192; max D 0.0353
+control l8_c1_s0 : switched=False; steps_run 8192; max D 0.0353
+control l8_c2_s0 : switched=False; steps_run 1024; max D 0.0000
+mini vs laptop copies : 19/19 equal curves + T (over common eval prefix, 1539 points)
+gates keys : ['model', 'git', 'G2', 'G1', 'base_rate', 'share_den', 'n_norm_rows', 'h_norm_rows', 'alphas', 'seconds']
+table k 0 ([32, 32, 24, 24, 24], [32, 24, 32, 32, 32])
+table k 1 ([48, 48, 40, 40, 40], [56, 48, 56, 48, 48])
+table k 2 ([80, 88, 72, 64, 72], [96, 80, 88, 80, 72])
+table k 3 ([168, 160, 136, 128, 128], [152, 152, 184, 144, 136])
+table k 4 ([304, 328, 264, 272, 296], [296, 304, 368, 312, 256])
+table k 5 ([672, 672, 640, 632, 664], [720, 664, 872, 672, 680])
+8B halves (largest3, smallest3) mean of per-seed: [np.float64(-0.737), np.float64(-1.098)]
+8B quadratic curvature t: 5.46

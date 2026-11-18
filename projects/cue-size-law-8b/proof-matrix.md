@@ -63,6 +63,8 @@ seed-level: -0.922 [-0.961, -0.882] (t-interval over 5 per-seed OLS slopes (df 4
 | headline | 0 | Qwen3-8B, share 0.171% (k=5), b -4.497, mini | none | T = 672 (grid 704); gap0 +0.0006 | data/runs/m8_k5_s0.json |
 | headline | 1 | Qwen3-8B, share 0.171% (k=5), b -4.497, mini | none | T = 672 (grid 704); gap0 +0.0006 | data/runs/m8_k5_s1.json |
 | headline | 2 | Qwen3-8B, share 0.171% (k=5), b -4.497, mini | none | T = 640 (grid 640); gap0 +0.0006 | data/runs/m8_k5_s2.json |
+| headline rebuild (skeptic) | 0-4 | Qwen3-8B dense T, own code | none | -0.922 [-0.961, -0.882], 81/81 T equal | skeptics/skeptic/vera_1118.json |
+| null: size labels permuted (skeptic) | 0-4 | 20,000 draws | permuted sizes | 95% [-0.365, +0.354], 0/20,000 <= -0.922 | skeptics/skeptic/vera_1118.json |
 | S1 matched 0.6B | 0 | Qwen3-0.6B, share 5.469% (k=0), b +0.000, mini | none | T = 32 (grid 32); gap0 -0.0130 | data/runs_06b/m06_k0_s0.json |
 | S1 matched 0.6B | 1 | Qwen3-0.6B, share 5.469% (k=0), b +0.000, mini | none | T = 24 (grid 24); gap0 -0.0130 | data/runs_06b/m06_k0_s1.json |
 | S1 matched 0.6B | 2 | Qwen3-0.6B, share 5.469% (k=0), b +0.000, mini | none | T = 32 (grid 32); gap0 -0.0130 | data/runs_06b/m06_k0_s2.json |

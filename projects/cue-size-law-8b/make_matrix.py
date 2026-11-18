@@ -89,6 +89,15 @@ def main():
              f"{mv['cells_all_equal']}/{mv['cells']} cells with equal curves; {mv['points_equal']}/{mv['points']} eval "
              f"points equal; max abs diff {mv['max_abs_diff']} | data/mini_vs_laptop.json |")
     L += rows_for("runs", "headline", primary)
+    sk = HERE / "skeptics" / "skeptic" / "vera_1118.json"
+    if sk.exists():  # Vera's own-code rebuild (theory-1118), rows requested in room #25121
+        v = json.load(open(sk))
+        s8, pn = v["8B"]["seed_level"], v["perm_null"]
+        n_runs = len(glob.glob(str(HERE / "data" / "runs" / "*.json"))) + len(glob.glob(str(HERE / "data" / "runs_06b" / "*.json")))
+        L.append(f"| headline rebuild (skeptic) | 0-4 | Qwen3-8B dense T, own code | none | {s8[0]:.3f} [{s8[1]:.3f}, {s8[2]:.3f}], "
+                 f"{n_runs - len(v['T_mismatch'])}/{n_runs} T equal | skeptics/skeptic/vera_1118.json |")
+        L.append(f"| null: size labels permuted (skeptic) | 0-4 | {pn['n']:,} draws | permuted sizes | 95% [{pn['q025_975'][0]:+.3f}, "
+                 f"{pn['q025_975'][1]:+.3f}], {round(pn['p_le_obs'] * pn['n'])}/{pn['n']:,} <= {s8[0]:.3f} | skeptics/skeptic/vera_1118.json |")
     L += rows_for("runs_06b", "S1 matched 0.6B")
     L += rows_for("runs_explore", "exploratory")
     (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")

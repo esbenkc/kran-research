@@ -1,0 +1,16 @@
+PASS  base url  http://127.0.0.1:8818 vs http://127.0.0.1:8818
+PASS  display_none: absolute href with id in last segment  
+PASS  display_none: stylesheet rule in <head>, class on the wrapper  
+PASS  display_none: raw first view has id  
+PASS  display_none: mcpfetch raw=true has id  
+PASS  display_none: lcpw extract_hyperlinks has id  
+PASS  display_none: lcpw GET of hidden URL logged with id  Navigating to http://127.0.0.1:8818/5c6621158f/r/c460a9fd63d
+PASS  display_none: Chromium innerText shows anchor = False  
+PASS  visible: absolute href with id in last segment  
+PASS  visible: raw first view has id  
+PASS  visible: mcpfetch raw=true has id  
+PASS  visible: lcpw extract_hyperlinks has id  
+PASS  visible: lcpw GET of hidden URL logged with id  Navigating to http://127.0.0.1:8818/af371c4086/r/7d2327cdaa2
+PASS  visible: Chromium innerText shows anchor = True  
+PASS  no prefetch: 8 pages x all views (raw, mcp default+raw, lcpw 5 actions), 32 requests  requests with id: 0
+ALL PASS

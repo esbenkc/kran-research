@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 201fcc0e13e0c2b540cce5ba1ef0aab404baf4aa
+sha256: 03464619e539b2d0013088e8e9906e8c1c89c04f659f59ce23dbad98cfa45304
+pushed: 2026-11-18T19:59:18Z
+branch: swarm/defense-1118-maze-cost
+url: https://github.com/esbenkc/kran-research/blob/201fcc0e13e0c2b540cce5ba1ef0aab404baf4aa/projects/maze-cost/PREREG.md
+-->
+
 # Pre-registration — maze-cost
 
 Room: `defense-1118-maze-cost`. Night: 2026-11-18. Slug: `maze-cost`. Track: defense, agenda thread T5.

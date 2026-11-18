@@ -14,3 +14,14 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   "shape untestable"), never HOLDS. Reason: an agent that always leaves on page 1 would otherwise "hold" a constant
   hazard that was never observed past page 1. New reported rows: the share of give-ups on pages 1-3, and a flag when
   the Kaplan-Meier median is <= 3 (the pilot then contains the median and the 2x check is circular; the post says so).
+- **D3 (2026-11-19 00:20 CET, Bruno, decided by Felix #25843 with Iris #25838 and Vera #25841; before any maze or
+  dead-end run: data/ held only visible-arm gate files of qwen3-1.7b-nothink, gemma-3-1b and llama-3.2-1b; outside
+  the FROZEN RULE).** PREREG s.1 allows prefix KV reuse "only after a smoke shows bit-equal outputs with and without
+  reuse". The smoke (`web/test_prefix.py llama-3.2-1b 20 greedy`, toy transcript with no maze page, commit d572ad634)
+  gave 18 of 20 replies byte-identical with reuse ON vs OFF; the 2 that differ are calls 17 and 18, both >1,000-token
+  rambling greedy decodes, where a different floating-point summation order (incremental vs full prefill) flips a
+  near-tie. Reuse after call 0 fed at most 305 new tokens per call. So reuse is numerically equal, not bitwise equal.
+  Reuse is kept: without it a capped 80-call run re-reads ~1.1M prompt tokens (`web/measure_context.py`). At
+  temperature > 0 the sampled replies come from the same distribution up to that floating-point noise. The cache is
+  reset at each run's first call, so a run never depends on the run before it. Follow-up evidence (logit difference at
+  the first differing token, and a no-reuse vs no-reuse control) is added below when measured.

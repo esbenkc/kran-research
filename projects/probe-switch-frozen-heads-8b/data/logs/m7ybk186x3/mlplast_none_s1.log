@@ -1,0 +1,20 @@
+W1118 13:50:16.040000 6426 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+mlplast_none_s1 lora modules 3 params 786432
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.0, 'share_unprobed_B': 0.796875, 'share_probed_A': 0.203125, 'shift_mean': 0.0039062462747097015, 'shift_median': 0.0, 'share_shift_pos': 0.25}
+step 128 loss 0.9410 gn 3.9299 dev strict 0.000 argmax 0.016 uB 0.69 shift 0.004 6s (0.05 s/upd)
+step 256 loss 0.6985 gn 1.4006 dev strict 0.000 argmax 0.047 uB 0.88 shift 0.000 13s (0.05 s/upd)
+step 384 loss 0.6980 gn 2.0029 dev strict 0.000 argmax 0.062 uB 0.64 shift 0.010 19s (0.05 s/upd)
+step 512 loss 0.6954 gn 1.2898 dev strict 0.016 argmax 0.047 uB 0.64 shift 0.010 25s (0.05 s/upd)
+step 640 loss 0.6948 gn 1.5753 dev strict 0.016 argmax 0.062 uB 0.92 shift 0.009 32s (0.05 s/upd)
+step 768 loss 0.6937 gn 1.5456 dev strict 0.000 argmax 0.016 uB 0.98 shift 0.008 38s (0.05 s/upd)
+step 896 loss 0.6946 gn 2.2049 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.010 45s (0.05 s/upd)
+step 1024 loss 0.6939 gn 2.2720 dev strict 0.016 argmax 0.016 uB 1.00 shift 0.012 51s (0.05 s/upd)
+step 1152 loss 0.6931 gn 1.8681 dev strict 0.031 argmax 0.125 uB 0.70 shift 0.015 58s (0.05 s/upd)
+step 1280 loss 0.6928 gn 2.4676 dev strict 0.000 argmax 0.031 uB 0.09 shift 0.015 64s (0.05 s/upd)
+step 1408 loss 0.6920 gn 2.6925 dev strict 0.000 argmax 0.031 uB 0.86 shift 0.018 71s (0.05 s/upd)
+step 1536 loss 0.6934 gn 4.1131 dev strict 0.000 argmax 0.000 uB 0.02 shift 0.017 78s (0.05 s/upd)
+step 1664 loss 0.6945 gn 4.3858 dev strict 0.016 argmax 0.031 uB 0.88 shift 0.017 85s (0.05 s/upd)
+step 1792 loss 0.6922 gn 3.4604 dev strict 0.031 argmax 0.078 uB 0.31 shift 0.028 92s (0.05 s/upd)
+step 1920 loss 0.6929 gn 4.8611 dev strict 0.031 argmax 0.047 uB 0.61 shift 0.024 98s (0.05 s/upd)
+step 2048 loss 0.6978 gn 6.8117 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.030 105s (0.05 s/upd)
+TEST_CACHED mlplast_none_s1 {'n_prompts': 128, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0078125, 'differs': 0.0078125, 'share_unprobed_B': 0.9765625, 'share_probed_A': 0.03125, 'shift_mean': 0.033813473070040345, 'shift_median': 0.03125, 'share_shift_pos': 0.796875} train_s 104.8

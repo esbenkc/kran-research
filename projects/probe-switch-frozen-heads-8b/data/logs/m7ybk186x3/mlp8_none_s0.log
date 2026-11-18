@@ -1,0 +1,24 @@
+W1118 13:54:41.277000 10939 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+mlp8_none_s0 lora modules 24 params 6291456
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.0, 'share_unprobed_B': 0.796875, 'share_probed_A': 0.203125, 'shift_mean': 0.0039062462747097015, 'shift_median': 0.0, 'share_shift_pos': 0.25}
+step 128 loss 0.7319 gn 1.4213 dev strict 0.000 argmax 0.094 uB 0.30 shift 0.026 235s (1.84 s/upd)
+step 256 loss 0.7111 gn 4.5611 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.115 456s (1.78 s/upd)
+step 384 loss 0.6978 gn 2.4017 dev strict 0.250 argmax 0.391 uB 0.69 shift 0.136 674s (1.76 s/upd)
+step 512 loss 0.7422 gn 8.4432 dev strict 0.000 argmax 0.062 uB 0.80 shift 0.007 891s (1.74 s/upd)
+step 640 loss 0.6838 gn 8.8999 dev strict 0.359 argmax 0.375 uB 0.47 shift 0.874 1108s (1.73 s/upd)
+step 768 loss 0.7063 gn 8.5795 dev strict 0.000 argmax 0.141 uB 0.47 shift 0.003 1324s (1.72 s/upd)
+step 896 loss 0.6938 gn 0.0830 dev strict 0.047 argmax 0.156 uB 0.61 shift 0.002 1544s (1.72 s/upd)
+step 1024 loss 0.6984 gn 1.8239 dev strict 0.234 argmax 0.250 uB 0.92 shift 0.398 1746s (1.71 s/upd)
+step 1152 loss 0.6600 gn 19.4231 dev strict 0.219 argmax 0.234 uB 0.98 shift 0.612 1956s (1.70 s/upd)
+step 1280 loss 0.7318 gn 14.0487 dev strict 0.016 argmax 0.062 uB 0.61 shift 0.012 2159s (1.69 s/upd)
+step 1408 loss 0.7829 gn 9.0790 dev strict 0.000 argmax 0.016 uB 0.97 shift 0.000 2364s (1.68 s/upd)
+step 1536 loss 0.7007 gn 28.2948 dev strict 0.000 argmax 0.000 uB 0.03 shift 0.002 2570s (1.67 s/upd)
+step 1664 loss 0.6629 gn 11.3735 dev strict 0.328 argmax 0.328 uB 1.00 shift 1.117 2779s (1.67 s/upd)
+step 1792 loss 0.7644 gn 19.4369 dev strict 0.000 argmax 0.062 uB 0.83 shift 0.015 2983s (1.66 s/upd)
+step 1920 loss 0.6136 gn 68.8471 dev strict 0.844 argmax 0.844 uB 1.00 shift 10.936 3183s (1.66 s/upd)
+step 2048 loss 0.5411 gn 108.4317 dev strict 0.531 argmax 0.531 uB 1.00 shift 12.136 3383s (1.65 s/upd)
+step 2176 loss 0.0567 gn 44.0440 dev strict 0.922 argmax 0.938 uB 0.94 shift 19.450 3591s (1.65 s/upd)
+step 2304 loss 0.3226 gn 92.5825 dev strict 0.984 argmax 0.984 uB 0.98 shift 19.224 3823s (1.66 s/upd)
+step 2432 loss 0.0966 gn 55.1938 dev strict 1.000 argmax 1.000 uB 1.00 shift 23.181 4025s (1.65 s/upd)
+EARLY_STOP 2432
+TEST_CACHED mlp8_none_s0 {'n_prompts': 128, 'strict': 0.9921875, 'reverse_strict': 0.0, 'switch_correct': 0.9921875, 'differs': 0.9921875, 'share_unprobed_B': 1.0, 'share_probed_A': 0.9921875, 'shift_mean': 22.9677734375, 'shift_median': 23.21875, 'share_shift_pos': 1.0} train_s 4024.5

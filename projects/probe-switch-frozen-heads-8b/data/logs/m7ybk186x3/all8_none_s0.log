@@ -1,0 +1,18 @@
+W1118 12:53:46.327000 82247 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+all8_none_s0 lora modules 56 params 9699328
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.0, 'share_unprobed_B': 0.796875, 'share_probed_A': 0.203125, 'shift_mean': 0.0039062462747097015, 'shift_median': 0.0, 'share_shift_pos': 0.25}
+step 128 loss 0.7259 gn 1.1639 dev strict 0.000 argmax 0.047 uB 0.69 shift 0.000 225s (1.76 s/upd)
+step 256 loss 0.6974 gn 3.7496 dev strict 0.031 argmax 0.031 uB 1.00 shift 0.128 469s (1.83 s/upd)
+step 384 loss 0.7138 gn 9.4162 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.048 690s (1.80 s/upd)
+step 512 loss 0.7000 gn 25.6901 dev strict 0.312 argmax 0.344 uB 0.98 shift 0.979 911s (1.78 s/upd)
+step 640 loss 0.7600 gn 21.3200 dev strict 0.250 argmax 0.344 uB 0.92 shift 0.076 1138s (1.78 s/upd)
+step 768 loss 0.6937 gn 70.3715 dev strict 0.062 argmax 0.062 uB 0.97 shift 1.398 1367s (1.78 s/upd)
+step 896 loss 0.7696 gn 18.8493 dev strict 0.375 argmax 0.484 uB 0.69 shift 0.159 1592s (1.78 s/upd)
+step 1024 loss 0.7561 gn 39.8542 dev strict 0.281 argmax 0.391 uB 0.41 shift 2.494 1812s (1.77 s/upd)
+step 1152 loss 0.9411 gn 156.8352 dev strict 0.016 argmax 0.016 uB 0.92 shift 0.021 2032s (1.76 s/upd)
+step 1280 loss 0.6672 gn 275.9990 dev strict 0.984 argmax 0.984 uB 1.00 shift 15.494 2253s (1.76 s/upd)
+step 1408 loss 0.1640 gn 219.9390 dev strict 0.906 argmax 0.906 uB 1.00 shift 20.180 2472s (1.76 s/upd)
+step 1536 loss 0.2464 gn 299.0371 dev strict 0.984 argmax 0.984 uB 1.00 shift 25.894 2695s (1.75 s/upd)
+step 1664 loss 0.0315 gn 72.7269 dev strict 0.984 argmax 0.984 uB 1.00 shift 29.845 2919s (1.75 s/upd)
+EARLY_STOP 1664
+TEST_CACHED all8_none_s0 {'n_prompts': 128, 'strict': 0.9921875, 'reverse_strict': 0.0, 'switch_correct': 0.9921875, 'differs': 0.9921875, 'share_unprobed_B': 1.0, 'share_probed_A': 0.9921875, 'shift_mean': 29.92041015625, 'shift_median': 30.1484375, 'share_shift_pos': 1.0} train_s 2918.9

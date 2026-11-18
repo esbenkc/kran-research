@@ -1,0 +1,14 @@
+let/reads.jsonl {'cheat_off': 0.4992035328980043, 'c_X': 0.5001281765000375, 'forced_switch': -0.0015635963630051834, 's_P': -0.0031321820859882667, 'y_R': -0.0011946085434035303, 'D_R': 0.10085953211755473, 's_R': -0.023726354607736345, 'n_base': 2800, 'tag': '0', 'adapter': 'data/runs/pilot/adapter.pt', 'pool': 'data/pool/test_let'}
+let/reads.jsonl {'cheat_off': 0.54545119748686, 'c_X': 0.544162344626242, 'forced_switch': 0.0008531910339980498, 's_P': 0.001564193163254726, 'y_R': -0.001485103859914072, 'D_R': 0.10085953211755473, 's_R': -0.026995040176114253, 'n_base': 2800, 'tag': 'kl0_s0_1200', 'adapter': 'data/runs/kl0_s0/adapter_1200.pt', 'pool': 'data/pool/test_let'}
+let/reads.jsonl {'cheat_off': 0.8506117025823519, 'c_X': 0.8717622840167264, 'forced_switch': -0.021158634360593433, 's_P': -0.02487460999696858, 'y_R': -0.0008417012088463016, 'D_R': 0.10085953211755473, 's_R': -0.009810918056398716, 'n_base': 2800, 'tag': 'posctl_d086_s0_200', 'adapter': 'data/runs/posctl_d086_s0/adapter_200.pt', 'pool': 'data/pool/test_let'}
+let_laptop/reads.jsonl {'cheat_off': 0.4992035328980043, 'c_X': 0.5001281765000375, 'forced_switch': -0.0015635963630051834, 's_P': -0.0031321820859882667, 'y_R': -0.0011946085434035303, 'D_R': 0.10085953211755473, 's_R': -0.023726354607736345, 'n_base': 2800, 'tag': '0', 'adapter': 'inputs/pilot/adapter.pt', 'pool': 'data/pool/test_let'}
+let_laptop/reads.jsonl {'cheat_off': 0.45878788659555897, 'c_X': 0.45888292945106585, 'forced_switch': -0.0007953530638484725, 's_P': -0.0017335964769043914, 'y_R': -0.001383265663907396, 'D_R': 0.10085953211755473, 's_R': -0.0298934957842515, 'n_base': 2800, 'tag': 'kl0_s1_900', 'adapter': 'data/runs/kl0_s1/adapter_900.pt', 'pool': 'data/pool/test_let'}
+let_laptop/reads.jsonl {'cheat_off': 0.6301525162216142, 'c_X': 0.6151790026956848, 'forced_switch': 0.014606238955278536, 's_P': 0.02317889491715013, 'y_R': -0.0026938054568861336, 'D_R': 0.10085953211755473, 's_R': -0.0423841623437526, 'n_base': 2800, 'tag': 'kl0_s2_700', 'adapter': 'data/runs/kl0_s2/adapter_700.pt', 'pool': 'data/pool/test_let'}
+let c_0 mine sP_let -0.0031
+let c_kl0_s0_1200 mine sP_let +0.0016
+let_laptop c_0 mine sP_let -0.0031
+let_laptop c_kl0_s1_900 mine sP_let -0.0017
+let_laptop c_kl0_s2_700 mine sP_let +0.0232
+kl0_s0 n steps 1200 range 1 1200 dupes 0 probed 0.1027 unprobed 0.0033 gap 0.0994 max train cheat_probed 0.875 NaN False min 25-upd mean live probed groups 3.6
+kl0_s1 n steps 900 range 1 900 dupes 0 probed 0.1095 unprobed 0.0021 gap 0.1074 max train cheat_probed 0.906 NaN False min 25-upd mean live probed groups 3.68
+kl0_s2 n steps 700 range 1 700 dupes 0 probed 0.1087 unprobed 0.0039 gap 0.1048 max train cheat_probed 0.844 NaN False min 25-upd mean live probed groups 3.68

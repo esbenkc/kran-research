@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: d3fc4b22d3345a530b29b0ed9cd591209d301eaf
+sha256: 454640953031e3c92f9a379e2ee21d85e488f5afbc9b43c7b1edb32b393668da
+pushed: 2026-11-18T17:23:06Z
+branch: swarm/theory-1118-cue-size-law-8b-rep
+url: https://github.com/esbenkc/kran-research/blob/d3fc4b22d3345a530b29b0ed9cd591209d301eaf/projects/cue-size-law-8b-rep/PREREG.md
+-->
+
 # Pre-registration — cue-size-law-8b-rep
 
 Room: `theory-1118-cue-size-law-8b-rep`. Night: 2026-11-18. Slug: `cue-size-law-8b-rep`. Track: theory, agenda T8.

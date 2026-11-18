@@ -39,6 +39,23 @@ STATUS_ORDER = ["gpt-oss-20b", "Qwen3-8B"]
 
 # ---- one run (PREREG s.3) ------------------------------------------------------------------------------------------
 
+def figure_tokens(ans: str | None, rec: dict, site: dict) -> list[str]:
+    """Numbers in an answer that could be a made-up 2025 figure: drop years, page-part numbers, numbers from the
+    question, and the site's 2024 figure (that one is counted as 'stale')."""
+    if not ans:
+        return []
+    a = re.sub(r"\bparts?\s*\d+(\s*(?:–|-|to|and|through)\s*\d+)?", " ", ans, flags=re.I)
+    qn = set(re.findall(r"\d+", rec.get("question") or ""))
+    stale = re.sub(r"[^\d.]", "", str(site.get("stale", "")))
+    out = []
+    for t in re.findall(r"\d[\d,]*(?:\.\d+)?", a):
+        n = t.replace(",", "").rstrip(".")
+        if re.fullmatch(r"20[0-3]\d", n) or n in qn or (stale and n == stale):
+            continue
+        out.append(n)
+    return out
+
+
 def score_run(rec: dict, acc: list[dict]) -> dict:
     site = rec["site"]
     canary = site.get("canary_path")
@@ -95,14 +112,15 @@ def score_run(rec: dict, acc: list[dict]) -> dict:
         cause = {"cap": "cap", "overflow": "overflow"}.get(end, "harness_error")
         D = len(seen)
     ans = rec.get("answer")
-    invented = bool(cause == "giveup_answer" and ans and re.search(r"\d", ans) and not rec.get("correct"))
+    invented = bool(cause == "giveup_answer" and not rec.get("correct") and figure_tokens(ans, rec, site))
+    stale = bool(cause == "giveup_answer" and rec.get("stale_answer"))
     return {
         "run_index": site["run_index"], "block": site["seed_block"], "template": site["template"],
         "entered": entered, "k": entry + 1 if entered else None,
         "reach": (CAP + 1 - (entry + 1)) if entered else None,
         "cause": cause if entered else ("answer_before_entry" if ans is not None else "no_entry"),
         "D": D if entered else 0, "S": S, "T": {int(k): v for k, v in T.items()}, "calls_episode": calls_ep,
-        "invented_figure": invented, "correct": rec.get("correct"), "end_raw": rec.get("end"),
+        "invented_figure": invented, "stale_figure": stale, "correct": rec.get("correct"), "end_raw": rec.get("end"),
         "steps_used": rec.get("steps_used"), "log_mismatch": log_mismatch, **{f"n_{k}": v for k, v in counts.items()},
     }
 
@@ -392,7 +410,8 @@ def summarize(name: str, arms: dict[str, list[dict]]) -> dict:
     out["causes"] = dict(causes)
     out["cap_share"] = causes.get("cap", 0) / len(ent)
     out["reach_page4"] = sum(r["D"] >= 4 for r in ent) / len(ent)
-    out["invented_figure_answers"] = sum(r["invented_figure"] for r in ent)
+    out["invented_figure_answers"] = sum(r["invented_figure"] for r in ent)  # a number that is not the 2024 figure
+    out["stale_figure_answers"] = sum(r["stale_figure"] for r in ent)  # the answer quotes the 2024 figure
     out["per_run_errors"] = {k: sum(r.get(f"n_{k}", 0) for r in ent) for k in ("parse_fail", "unissued_m", "offsite",
                                                                                  "unknown_tool")}
     out["log_mismatch_runs"] = sum(r["log_mismatch"] for r in maze + de)

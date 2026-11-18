@@ -182,7 +182,12 @@ def main() -> None:
     an = mock(args.mock_never) if (args.mock or args.mock_never) else json.loads(Path(args.analysis).read_text())
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(build(an), indent=1) + "\n")
+    fig = build(an)
+    # compact fields first, long per-page arrays last, so a reader of the file head sees every panel's numbers
+    late = ("km", "fit", "dead", "neutral")
+    fig["rows"] = [{**{k: v for k, v in r.items() if k not in late}, **{k: r[k] for k in late if k in r}} for r in fig["rows"]]
+    rnd = lambda x: round(x, 4) if isinstance(x, float) else [rnd(y) for y in x] if isinstance(x, list) else {k: rnd(v) for k, v in x.items()} if isinstance(x, dict) else x
+    out.write_text(json.dumps(rnd(fig), indent=1) + "\n")
     print(f"wrote {out} (phase {an.get('phase')}, {len(an['agents'])} agents)")
 
 

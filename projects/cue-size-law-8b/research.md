@@ -220,7 +220,7 @@ da001db0a (private worktree `../iris-wt`, never the shared clone). Frozen analys
 
 - The live post was merged 2026-11-16 10:26:39 PST (blog commit 8654594, PR #211) with x1.87, seed-level [1.78, 1.96]
   (slope [-0.973, -0.835]). J1's seeds 3-4 RAN on the laptop 09:55-10:34 PST (data/laptop/J1/chain.log, laptop clock
-  = PST: labq started_at 17:51:56Z = 09:52 PST), so seed 3 and seed 4 k0-k2 finished BEFORE the merge. They reached
+  = PST: labq started_at 17:51:56Z = 09:52 PST), so seed 3 and seed 4 k0-k3 (k3 done 10:24:54) finished BEFORE the merge. They reached
   GitHub at 11:40:08 PST (10b3cd939), and the post said they "still wait in the laptop queue": unseen, not later.
 - Seeds 3-4: x1.918 and x1.939 per halving (slopes -0.940, -0.956). Both inside the published interval. Both steeper
   than all 3 earlier seeds (Vera #25082). Vera's predictive interval for one new seed from n 3: [-1.043, -0.765].

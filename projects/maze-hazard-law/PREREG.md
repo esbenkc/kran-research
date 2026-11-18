@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: f128b078cd281ec3ec6952d448b77a9c918f2fb8
+sha256: f87ef186a7e818d83f53af10269e8fca0ffb165cf05672f621ce2c10a967a08f
+pushed: 2026-11-18T23:08:27Z
+branch: swarm/defense-1118-maze-hazard-law
+url: https://github.com/esbenkc/kran-research/blob/f128b078cd281ec3ec6952d448b77a9c918f2fb8/projects/maze-hazard-law/PREREG.md
+-->
+
 # Pre-registration — maze-hazard-law
 
 Room: `defense-1118-maze-hazard-law`. Night: 2026-11-18. Slug: `maze-hazard-law`. Track: defense, agenda thread T5.

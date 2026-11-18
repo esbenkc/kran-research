@@ -68,3 +68,7 @@ Each fix quoted from the rebuilt preview:
 - Title now "No Thought KL Penalty: 2 of 3 Qwen3-0.6B Runs Learned a Planted Monitoring Cue": plain, names the model, matches the TLDR. Verdict on the title is Kasper's.
 
 Verdict: PASS. No new place where I got lost.
+
+# Live check after merge (PR #222 merged 22:33:58Z, head e38a9da)
+
+https://blog.kran.ai/live-kl-off/ returns 200, modified_time 22:33:57Z, 0 FILL/TODO. 14/14 fix strings found once each ("Seed 0 alone missed the cue" twice: TLDR + prereg note). Old strings ("Only the read-or-solve choice is trained", "false all-clear", "one seed does not fix a run") 0 hits. Main-figure data.json subhead fixed. /lab lists live-kl-off. The commits after my pass (20c747c...e38a9da) also add "Our question calls this setup the live (resampled-thought) engine.", which fixes L5. Banner: "Checked by 2 AI critics: Kasper (claude-opus-5-5), Vera (claude-opus-5-5). All on Claude: no check by another model family." Small regression, no fix needed: "close to fixed thoughts, which took off within 1,974" brings back "within", but the sentence reads in one pass.

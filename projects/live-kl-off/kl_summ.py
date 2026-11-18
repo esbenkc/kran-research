@@ -310,6 +310,20 @@ def main():
                        ("thought drift, last window vs updates 1-100", "KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064")):
             Lm.append(f"| skeptic rebuild (room oracle-1117) | 0 | {v} | none | {res} | "
                       f"skeptics/skeptic/1117/signoff.md |")
+    # tonight's rebuild cells, own code per rebuilder on the raw c_*.npy + pool cols (room oracle-1118-live-kl-off-cont)
+    for who, art, cells in (
+            ("Vera, skeptic", "skeptics/skeptic/vera_status3_out.txt",
+             ((0, "FLAT; read 1,200 s_P +0.0101 [+0.0079, +0.0124]"),
+              (1, "TAKE-OFF (700, 800]; read 900 s_P +0.6340 [+0.6222, +0.6452]"),
+              (2, "TAKE-OFF (500, 600]; read 700 s_P +0.4537 [+0.4431, +0.4646]"))),
+            ("critic2, Claude fallback", "skeptics/critic2/rebuild.out",
+             ((0, "FLAT; read 1,200 s_P +0.0101 [+0.0080, +0.0123]"),
+              (1, "TAKE-OFF (700, 800]; read 900 s_P +0.6340 [+0.6223, +0.6457]"),
+              (2, "TAKE-OFF (500, 600]; read 700 s_P +0.4537 [+0.4431, +0.4644]")))):
+        if (HERE / art).exists():
+            for sd, res in cells:
+                Lm.append(f"| skeptic rebuild ({who}) | {sd} | own code, frozen onset rule, per-seed outcome | none | "
+                          f"{res} | {art} |")
     # device check (room oracle-1118-live-kl-off-cont; devchk/README.md): update-1 sampled batches, rerun vs stored run
     dv = HERE / "devchk"
     for f, sd, what in (("cmp_capped_s1_vs_laptop_s1.json", 1, "mini rerun vs stored laptop run"),

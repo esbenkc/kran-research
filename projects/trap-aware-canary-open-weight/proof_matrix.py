@@ -101,6 +101,39 @@ def main() -> None:
                 lines.append(f"| parent comparison: {short} | idx 0-59 (n={r['n']}) | {NAMES.get(r['agent'], r['agent'])} · trap present · "
                              f"{'warned' if short == 'W' else 'unwarned'} | {'none' if short == 'W' else 'no-warning baseline'} | "
                              f"fit {r['k']}/{r['n']} = {float(r['rate']):.2f} [{float(r['ci_lo']):.2f}, {float(r['ci_hi']):.2f}] | results/parent_api_cells.csv |")
+    # Reported rows defined after the data (DEVIATIONS R3): knowing follows by regex, blind hand code, canary-id paths
+    for a in ("gpt-oss-20b", "qwen3-8b"):
+        kn = an.get("main", {}).get("knowing", {}).get(a, {})
+        for s, desc in (("W", "trap present · warned"), ("U", "trap present · unwarned")):
+            if s in kn:
+                lines.append(f"| knowing follow (PREREG s3 row a) | all (n={kn[s]['runs']}) | {NAMES[a]} · {desc} | none | "
+                             f"follows whose pre-request text calls the link hidden {kn[s]['hidden_rt_among_follows']}/{kn[s]['runs']} "
+                             f"(of {kn[s]['follows']} follows) | results/analysis.json |")
+        for s, desc in (("WA", "trap absent · warned"), ("UA", "trap absent · unwarned")):
+            if "knowing_floor_prereg_s3" in kn.get(s, {}):
+                lines.append(f"| knowing follow (PREREG s3 row a) | all | {NAMES[a]} · {desc} | false-positive floor (nothing hidden) | "
+                             f"{kn[s]['knowing_floor_prereg_s3']} | results/analysis.json |")
+    hc = ROOT / "handcode" / "results.json"
+    if hc.exists():
+        h = json.loads(hc.read_text())
+        for name, desc in (("H:both", "both coders: link called hidden"), ("T:both", "both coders: link may be a trap"),
+                           ("POST-HOC T-own:both", "both coders: trap raised in own words (POST-HOC)")):
+            r = h["readings"][name]
+            lab = name.split(":")[0].replace("POST-HOC ", "")
+            lines.append(f"| hand code (R3, blind, 2 Claude coders) | all (n=60 each) | gpt-oss-20b · trap present · warned vs unwarned | "
+                         f"unwarned cell | {desc}: W {r['W']}, U {r['U']}, W-U {r['W_minus_U']} {r['ci95']}; kappa "
+                         f"{h['kappa'].get(lab, h['kappa'].get('POST-HOC T-own', {})).get('kappa')} | handcode/results.json |")
+        if "T_both_then" in h:
+            tt = h["T_both_then"]
+            lines.append(f"| hand code (R3): trap raised, then | all ({tt['items']} runs: W {tt['cells']['W']}, U {tt['cells']['U']}) | gpt-oss-20b · trap present | "
+                         f"none | requested the link's id {tt['any_id_get']}/{tt['items']}, exact href {tt['fit_exact']}, correct answer {tt['correct']} | handcode/results.json |")
+    tp = ROOT / "results" / "token_paths.json"
+    if tp.exists():
+        t = json.loads(tp.read_text())
+        for cell, desc in (("warning-safe", "hidden link + visible copy · warned"), ("neutral-safe", "hidden link + visible copy · unwarned")):
+            r = t["gpt-oss-20b"][cell]
+            lines.append(f"| canary id requested (R3) | all (n={r['n']}) | gpt-oss-20b · {desc} | safe exit | exact href {r['exact200']}, "
+                         f"any GET with the link's id {r['any']} (404 slip {r['slip404']}), visible copy fetched {r['visible']} | results/token_paths.json |")
     lines += ["", seed_line]
     if "estimate" in rung:
         lines.append(f"seed-level (rung, Qwen3-1.7B, reported only): {rung['estimate']} [{rung['ci95'][0]}, {rung['ci95'][1]}] ({rung['method']})")

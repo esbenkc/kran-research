@@ -108,6 +108,14 @@ def main() -> None:
                 "agree": f"{int((post_hoc['A-contrast:research(note tag)'] == codes['critic']['A']).sum())}/{len(items)}"}
             out["kappa"]["POST-HOC T-own"] = {"kappa": kappa(own_r, own_c), "agree": f"{int((own_r == own_c).sum())}/{len(items)}"}
         print("kappa", json.dumps(out["kappa"]), "\nregex vs hand H", json.dumps(out["regex_vs_hand_H"]))
+        # What did the runs that raised a trap do next? (server log rows from scores.jsonl: fit = exact href, fit_tok = any id GET)
+        tb = codes[coders[0]]["T"] & codes[coders[1]]["T"]
+        sel = [key[it] for it, t in zip(items, tb) if t]
+        out["T_both_then"] = {"items": len(sel), "cells": {s: sum(k["short"] == s for k in sel) for s in ("W", "U")},
+                              "fit_exact": sum(scores[(k["cell"], k["i"])]["fit"] for k in sel),
+                              "any_id_get": sum(scores[(k["cell"], k["i"])]["fit_tok"] for k in sel),
+                              "correct": sum(scores[(k["cell"], k["i"])]["correct"] for k in sel)}
+        print("T both, then:", json.dumps(out["T_both_then"]))
     (HERE / "results.json").write_text(json.dumps(out, indent=1) + "\n")
     print("wrote handcode/results.json")
 

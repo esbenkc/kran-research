@@ -49,6 +49,7 @@ def main():
     ap.add_argument("--rank", type=int, default=16)
     ap.add_argument("--alpha", type=float, default=45.25)
     ap.add_argument("--out", default="out")
+    ap.add_argument("--tag", default="", help="suffix of the result file (a later check job must not overwrite the job's own file)")
     a = ap.parse_args()
     out = Path(a.out)
     model, tok = gen.load(a.model)
@@ -118,7 +119,7 @@ def main():
           and r["2_full_vs_base_last_maxabs"] > 0 and r["3_prefixmask_vs_full_last_maxabs"] > 0)
     r["pass"] = ok
     (out / "checks").mkdir(parents=True, exist_ok=True)
-    (out / "checks" / f"mask_invariants_seed{a.seed}.json").write_text(json.dumps(r, indent=1))
+    (out / "checks" / f"mask_invariants_seed{a.seed}{a.tag}.json").write_text(json.dumps(r, indent=1))
     print(json.dumps(r, indent=1))
     if not ok:
         raise SystemExit("mask invariants FAILED")

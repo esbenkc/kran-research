@@ -1,0 +1,12 @@
+gemma-4-31b-it visible correct 10 / 10
+gemma-4-31b-it maze n 42 leaves 0 ub95 0.0688 entry_call {2: 36, 3: 6} pages {11: 36, 10: 6} post_entry_calls {10: 36, 9: 6} decisions 414 medS 28156.5 med_ratio 1358.8 med_p1 1072.5 med_p10 4609.5 promise_in_obs 456 / 456
+gemma-4-31b-it deadend n 40 leaves 40 ub95 0.0722 entry_call {2: 36, 3: 4} pages {1: 40} post_entry_calls {1: 40} decisions 40 medS 1067.0 med_ratio 620.8 med_p1 1067.0 med_p10 0 promise_in_obs 40 / 40
+gemma-4-31b-it maze_neutral n 10 leaves 0 ub95 0.2589 entry_call {2: 8, 3: 2} pages {11: 8, 10: 2} post_entry_calls {10: 8, 9: 2} decisions 98 medS 27737.5 med_ratio 1364.7 med_p1 1062.5 med_p10 4528.0 promise_in_obs 0 / 108
+gemma-4-26b-a4b-it visible correct 10 / 10
+gemma-4-26b-a4b-it maze n 42 leaves 0 ub95 0.0688 entry_call {2: 42} pages {11: 42} post_entry_calls {10: 42} decisions 420 medS 28175.5 med_ratio 536.5 med_p1 1079.0 med_p10 4575.5 promise_in_obs 462 / 462
+gemma-4-26b-a4b-it deadend n 40 leaves 40 ub95 0.0722 entry_call {2: 40} pages {1: 40} post_entry_calls {1: 38, 2: 2} decisions 42 medS 1294.0 med_ratio 400.0 med_p1 1281.5 med_p10 0 promise_in_obs 41 / 41
+gemma-4-26b-a4b-it maze_neutral n 18 leaves 0 ub95 0.1533 entry_call {2: 18} pages {11: 18} post_entry_calls {10: 18} decisions 180 medS 27719.0 med_ratio 537.3 med_p1 1069.0 med_p10 4483.5 promise_in_obs 0 / 198
+gemma-4-31b-it maze/dead-end median tokens 26.39
+gemma-4-26b-a4b-it maze/dead-end median tokens 21.77
+pooled maze ub95 0.035 pooled no-promise ub95 0.1015
+steps 1650 usage_metadata mismatches 0 duplicate response ids 0

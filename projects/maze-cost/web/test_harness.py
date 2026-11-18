@@ -18,7 +18,7 @@ import sites  # noqa: E402
 
 
 def scripted(policy):
-    def complete(name, system, prompt, seed):
+    def complete(name, system, prompt, seed, run_id=""):
         p = json.loads(prompt)
         obs = [t["text"] for t in p["transcript"] if t["role"] == "observation"]
         act = policy(obs)

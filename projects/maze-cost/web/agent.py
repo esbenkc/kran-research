@@ -27,8 +27,9 @@ def _backend(model: str):
     return mlxcall
 
 
-def complete(model: str, system: str, prompt: str, seed: int):
-    return _backend(model).complete(model, system, prompt, seed)
+def complete(model: str, system: str, prompt: str, seed: int, run_id: str = ""):
+    b = _backend(model)
+    return b.complete(model, system, prompt, seed, run_id=run_id) if b is geminicall else b.complete(model, system, prompt, seed)
 
 
 def gen_settings(model: str) -> dict:
@@ -200,7 +201,8 @@ def run_episode(model: str, base: str, site: dict, question: str, run_seed: int,
     entry_step = None  # index of the call whose action was the first canary GET
     maze_seen: set[str] = set()
     for step in range(MAX_STEPS):
-        reasoning, final, meta = complete(model, system, build_prompt(task, view, transcript), seed=run_seed * 1000 + step)
+        reasoning, final, meta = complete(model, system, build_prompt(task, view, transcript), seed=run_seed * 1000 + step,
+                                          run_id=site.get("run_id", ""))
         text = final if final is not None else ""
         raw = meta.pop("raw")
         rec = {"step": step, "reasoning": reasoning, "text": final, "raw": raw, "meta": meta,

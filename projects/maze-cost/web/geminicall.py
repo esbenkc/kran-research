@@ -6,8 +6,8 @@ seed (run_seed * 1000 + step), so every call of every run has its own seed. Thou
 model's reasoning; the other text parts are its final text, parsed as the action.
 
 Tokens (the agent's spend): usageMetadata.promptTokenCount, candidatesTokenCount and thoughtsTokenCount, as the API
-bills them. Cache: one JSON file per call under <cache>/<model>/<sha256>.json; the key hashes model, seed, system and
-prompt, so no two runs share a call (the seed holds the run index). A rate limiter keeps the tokens sent per model
+bills them. Cache: one JSON file per call under <cache>/<model>/<sha256>.json; the key hashes model, run id (model/arm/
+index), seed, system and prompt, so no two runs share a cached call (Kasper #24776). A rate limiter keeps the tokens sent per model
 within TPM_BUDGET per rolling minute (the key's quota is ~15k tokens/min), and HTTP 429/5xx are retried with backoff.
 """
 from __future__ import annotations
@@ -83,13 +83,13 @@ def _post(name: str, body: dict) -> dict:
     raise RuntimeError("gemini: retries exhausted")
 
 
-def complete(name: str, system: str, prompt: str, seed: int) -> tuple[str, str | None, dict[str, Any]]:
+def complete(name: str, system: str, prompt: str, seed: int, run_id: str = "") -> tuple[str, str | None, dict[str, Any]]:
     """One agent step. Returns (reasoning, final_text or None, meta) like mlxcall.complete."""
     spec = MODELS[name]
     body = {"systemInstruction": {"parts": [{"text": system}]},
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
             "generationConfig": {**spec["sampling"], "seed": seed, "maxOutputTokens": MAX_OUTPUT_TOKENS}}
-    key = hashlib.sha256(json.dumps([name, seed, system, prompt]).encode()).hexdigest()
+    key = hashlib.sha256(json.dumps([name, run_id, seed, system, prompt]).encode()).hexdigest()
     cpath = CACHE / name / f"{key}.json"
     cached = cpath.exists()
     waited = 0.0

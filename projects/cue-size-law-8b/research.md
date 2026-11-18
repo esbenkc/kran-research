@@ -170,3 +170,112 @@ GQA 32/8, softmax over all 34 positions from the last position.
 ndif/train_px.py, data/ndif/train_px.json (NDIF Qwen3-8B, 382 train prompts, 6 traces): raw mean P(X) 0.896,
 informative 0.319; with b = -4.4965: mean 0.3967 (target 0.39646), informative 0.661. Dev with b -4.4965: 0.720;
 dev with b -4.19 (Kasper's mean-matched value): 0.742. 0.6B dev: 0.904 (train pending, after C1).
+
+
+## 11. Continuation theory-1118-cue-size-law-8b (Iris, 2026-11-18 13:15-13:50 PST)
+
+Continuation of theory-1116-cue-size-law-8b. Same PREREG (e33506dc, pushed 2026-11-16T14:03:31Z), same frozen rule.
+All numbers below are my own reads, 2026-11-18 13:15-13:45 PST, from origin/swarm/theory-1116-cue-size-law-8b at
+da001db0a (private worktree `../iris-wt`, never the shared clone). Frozen analysis rerun:
+`python3 analyze_8b.py --out /tmp/iris_analysis.json` (code unchanged since D4).
+
+### 1. Laptop jobs (labq status, 13:15 PST)
+
+| job | what | result | commit |
+|---|---|---|---|
+| z9rh2wqu5x (J1) | 8B seeds 3-4 x 6 sizes, C1 s0 + s1, C2 s0 | exit 0, 1.80 h; **C1 s1 FAILED in 11 s** (uv: "Failed to query Python interpreter", `~/.cache/uv/.tmp...` missing; data/laptop/J1/chain.log), no retry | 10b3cd939 |
+| yf50n607dq (J2) | laptop copy of 8B seeds 0-2 x 6 sizes | exit 0, 0.98 h | 35dcd5ba2 |
+
+- Laptop cache sha256 70c4703a… = mini cache sha256 (data/laptop/J2/cache_check.json: `same_as_mini: true`; data/cache_sha256.json).
+- All 18 laptop copies (l8_k*_s0-2) give the same T_dense as the mini (m8_k*_s0-2), and the dense curves are equal
+  element for element (18/18). This is a DETERMINISM check (same cache bytes, same code, other machine), not an
+  independent replication (Kasper #25075 agrees). The frozen laptop-entry rule (">= 2 mini cells within 8 updates or
+  10%") passes, so seeds 3-4 enter the interval (analysis.json `laptop_separate_series: []`).
+- C1 s0: the laptop copy (no resume) and the mini run (resumed at 4,096, D3) are equal at all 353 evals (dense + dev).
+  So D3's "resume not bitwise" did not change this run. Max D over all evals = **0.0353 at update 896** (both). 0.0145 is
+  the final TEST-split gap, not max D.
+- C2 s0 (cue 0, 1,024 updates): gap 0.0 at every eval.
+
+### 2. Frozen rule with 5 seeds (analysis.json)
+
+- Status: **UNCONFIRMED**. Reasons printed by analyze_8b.py: "C1 controls missing, not full length, or switched";
+  "gates G1/G2 missing or failed". Plus D2 RULE CHANGE -> EXPLORATORY. No data can move it on this branch: CONFIRMED and
+  REJECTED both need G2 pass (PREREG sec. 2), and G2(b) failed before any RL update.
+- 8B per-seed slopes: s0 -0.886, s1 -0.890, s2 -0.936 (mini); s3 -0.940, s4 -0.956 (laptop).
+- **Seed-level: -0.922 [-0.961, -0.882]** (t over 5 seeds, df 4) = x1.894 per halving [x1.843, x1.946].
+  Was -0.904 [-0.973, -0.835] (n 3) = x1.87 [1.78, 1.96] in the live post.
+- Tobit (= pooled OLS, 0 censored, n 30): -0.922 [-0.965, -0.878].
+- Matched 0.6B: -0.899 [-0.948, -0.850] (n 5; unchanged).
+- S1 diff 8B - 0.6B: **-0.022 [-0.075, +0.030]** (Welch, df 7.6). Live post: -0.005 [-0.064, 0.055].
+- S2 (line from the 8B s0 median with slope -0.903): median/pred at k1..k5 = 0.89 / 0.86 / 0.87 / 1.01 / 1.21, all within
+  2x (holds). Live post: 0.72-0.92. The s0 median fell 32 -> 24.
+- S3: moot (every 8B T in [24, 704]).
+- S4 halves: top -0.737, bottom -1.098 (difference 0.36 < 0.5). Live post: -0.73 / -1.05.
+- S5 64-grid: seed-level in analysis.json (Selma: read it from there). S7 interpolated: -0.985 [-1.026, -0.945].
+- Curvature (my own quadratic OLS in ln share, all runs per model, not a frozen read): 8B n 30, c2 0.087, t 5.46,
+  local factor x1.54 at the largest cue -> x2.34 at the smallest; 0.6B n 30, t 5.43, x1.49 -> x2.33. The live post's
+  "about x1.5 ... about x2.3" still holds; its "t = 4.0 over 18 runs" and "x2.27" need the 30-run values.
+
+### 3. Held-out read (Tove #25070; exact numbers)
+
+- The live post was merged 2026-11-16 10:26:39 PST (blog commit 8654594, PR #211) with x1.87, seed-level [1.78, 1.96]
+  (slope [-0.973, -0.835]). J1's seeds 3-4 RAN on the laptop 09:55-10:34 PST (data/laptop/J1/chain.log, laptop clock
+  = PST: labq started_at 17:51:56Z = 09:52 PST), so seed 3 and seed 4 k0-k2 finished BEFORE the merge. They reached
+  GitHub at 11:40:08 PST (10b3cd939), and the post said they "still wait in the laptop queue": unseen, not later.
+- Seeds 3-4: x1.918 and x1.939 per halving (slopes -0.940, -0.956). Both inside the published interval. Both steeper
+  than all 3 earlier seeds (Vera #25082). Vera's predictive interval for one new seed from n 3: [-1.043, -0.765].
+- Wording that holds: "two seeds that we had not seen when we published fell inside the interval we published".
+  Selma's draft "two seeds run after we published" (#25077) is false on timing. Not "confirmed".
+
+### 4. One live-post claim that breaks (not just a refill)
+
+Live post l.80 "At the same share, the median 8B time was within 6% of the 0.6B rerun at every size" and TLDR l.58
+"32 against 32 updates at the largest cue, and 672 against 680 at the smallest". Medians, 5 seeds each (dense T):
+
+| share | 8B seeds 0-4 | 8B median | 0.6B seeds 0-4 | 0.6B median | 8B / 0.6B |
+|---|---|---|---|---|---|
+| 5.5% | 32 32 24 24 24 | 24 | 32 24 32 32 32 | 32 | 0.75 |
+| 2.7% | 48 48 40 40 40 | 40 | 56 48 56 48 48 | 48 | 0.83 |
+| 1.4% | 80 88 72 64 72 | 72 | 96 80 88 80 72 | 80 | 0.90 |
+| 0.68% | 168 160 136 128 128 | 136 | 152 152 184 144 136 | 152 | 0.89 |
+| 0.34% | 304 328 264 272 296 | 296 | 296 304 368 312 256 | 304 | 0.97 |
+| 0.17% | 672 672 640 632 664 | 664 | 720 664 872 672 680 | 680 | 0.98 |
+
+The 8B median is now 2-25% faster at every size; the gap is largest at the largest cue. "Within 6%" is false;
+"about as many updates" holds within 25%. The figure-1 cards (0.68% -> 0.34%) become 8B 136 -> 296, 0.6B 152 -> 304.
+
+### 5. Stale lines in the live post (blog.kran.ai/_notes/cue-size-law-8b.md at 75037d0)
+
+1. l.17 limits: "3 training seeds ... -0.97 to -0.83" -> 5 seeds, -0.96 to -0.88.
+2. l.18 limits: "More seeds and a second coin-flip control still wait in the laptop queue" -> both jobs done; the second
+   coin-flip seed failed on an infra error and was not rerun (queue ~6.9 h full; cannot lift the cap); the calibrated
+   replication theory-1118-cue-size-law-8b-rep owns it.
+3. l.25 figure1_alt: card numbers (see sec. 4).
+4. l.43 outcome_note: -0.90 / [-0.97, -0.83] / 3 seeds / 1.87.
+5. l.58 TLDR: 1.87 [1.78, 1.96], 3 seeds; 32 vs 32, 672 vs 680.
+6. l.60 caption: "3 seeds per size".
+7. l.76: "Over 3 seeds", "Pooling all 18 runs gives -0.96 to -0.85" (now 30 runs, -0.965 to -0.878), "-0.005 (-0.06
+   to 0.05)".
+8. l.80: "within 6%", "0.72 to 0.92".
+9. l.82 control: "never grew by more than 3.5 points" stays correct (0.0353), and the laptop copy matches it.
+10. l.90 loop-closer: "x1.87 in both models" -> 8B x1.89, 0.6B x1.87.
+11. l.113-114 expert foldout: per-seed slopes, n, Tobit, Welch, grid, S7, halves, curvature t and factors.
+12. l.116 machines: "Two laptop-queue jobs ... laptop copies of both coin-flip controls ... wait in the queue" ->
+    done; J1 1.80 h, J2 0.98 h; C1 copy for seed 0 only; 10 GB each.
+13. Results table: add 8B seeds 3 and 4.
+14. l.135 [^prereg]: "-0.97 to -0.83".
+15. figure data.json (assets/figures/cue-size-law-8b/): 8B dots for 5 seeds.
+
+### 6. Links and credits (checked 13:40 PST, curl -L, HTTP status)
+
+All 200: Meinke LessWrong "Physics of RL" (9FH49ZgJFW4WtbxLi); arXiv 2407.14561 (NNsight and NDIF); 2106.09685 (LoRA);
+2402.03300 (DeepSeekMath, GRPO); thinkingmachines.ai "Defeating Nondeterminism in LLM Inference"; blog.kran.ai
+cue-size-law, optimizer-cue-size, cue-size-law-8b; PREREG record at e33506dc. Credits unchanged; no new prior work
+needed for an edit (novelty was settled in the parent room).
+
+### 7. Next-step candidates (for Felix's agenda update)
+
+- In -rep: an NDIF-cache sweep (tail trained on NDIF's own block-34 inputs, all 6 sizes) to put a number on how much the
+  precision gap that failed G2 moves T. One exploratory cell exists: m8n_k2_s0 T 72 vs m8_k2_s0 T 80 (-10%).
+- The 8B-faster-than-0.6B offset at large cues (0.75 at 5.5%, 0.98 at 0.17%): one more halving below 0.17% at both sizes
+  would show whether the times converge or cross.

@@ -3,11 +3,12 @@
 The post text is a skeleton on the blog branch `swarm/theory-1118-template-mask-em-8b`
 (`_notes/template-mask-em-8b.md`, every open number marked `[FILL ...]`). The framing, method, foldouts, footnotes
 and the pre-registration front matter are written and match PREREG.md (pushed de377e046). Only numbers and the
-answer are missing. Fill in this order, from the FINAL `out/analysis.json` on origin only:
+answer are missing. Fill in this order, from the FINAL `analysis.json` (project root) on origin only:
 
-1. `uv run python analysis.py` (all labq outputs pulled) -> `out/analysis.json`. Read `status`, `status_why`,
+1. Laptop jobs: labq 3zfskhbdya (part 1: base + seed 0, writes out_p1/) and fkyekw80z4 (part 2: seeds 1-2, out_p2/).
+   Pull them, run judge.py on the mini, then `uv run python analysis.py` (TM_OUT=out_p1:out_p2) -> `analysis.json`. Read `status`, `status_why`,
    `gates`, `seed_level`, `prereg_outcome`.
-2. Main figure: `python figures/figure_data.py out/analysis.json <blog>/assets/figures/template-mask-em-8b/data.json`.
+2. Main figure: `python figures/figure_data.py analysis.json <blog>/assets/figures/template-mask-em-8b/data.json`.
    Set `fig_title` in analysis input or edit `title` in data.json to how the result looks (never the claim title).
    Render: `CHROME_PATH=<chrome-headless-shell> node _thumbs/render.mjs template-mask-em-8b`, look at thumb.png in
    light and dark; `node scripts/figure-lint.mjs assets/figures/template-mask-em-8b/plot.js`.

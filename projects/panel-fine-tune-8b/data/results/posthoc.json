@@ -1,0 +1,206 @@
+{
+ "readme": "POST HOC checks, NOT pre-registered (room oracle-1118-panel-fine-tune-8b; Kasper #24907, Vera #24853).",
+ "arms": {
+  "clean": {
+   "clean": {
+    "auroc": 0.9999493266069096,
+    "catch_at_1pct": {
+     "line": 3.675983692047445,
+     "catch": 1.0,
+     "eval_false_alarm": 0.016778523489932886
+    },
+    "catch_at_5pct": {
+     "line": 2.9576312112492102,
+     "catch": 1.0,
+     "eval_false_alarm": 0.03523489932885906
+    },
+    "catch_at_10pct": {
+     "line": 2.452695181795886,
+     "catch": 1.0,
+     "eval_false_alarm": 0.06375838926174497
+    }
+   }
+  },
+  "panel": {
+   "panel__lam10000__seed0": {
+    "auroc": 0.9467957524435836,
+    "catch_at_1pct": {
+     "line": 5.936385369550088,
+     "catch": 0.17114093959731544,
+     "eval_false_alarm": 0.003355704697986577
+    },
+    "catch_at_5pct": {
+     "line": 5.3958644683083055,
+     "catch": 0.6208053691275168,
+     "eval_false_alarm": 0.031879194630872486
+    },
+    "catch_at_10pct": {
+     "line": 5.13565936503557,
+     "catch": 0.8523489932885906,
+     "eval_false_alarm": 0.10067114093959731
+    }
+   },
+   "panel__lam10000__seed1": {
+    "auroc": 0.9494251385072745,
+    "catch_at_1pct": {
+     "line": 6.383070443021705,
+     "catch": 0.08892617449664429,
+     "eval_false_alarm": 0.0016778523489932886
+    },
+    "catch_at_5pct": {
+     "line": 5.628976835599835,
+     "catch": 0.6426174496644296,
+     "eval_false_alarm": 0.03859060402684564
+    },
+    "catch_at_10pct": {
+     "line": 5.390688031369599,
+     "catch": 0.8624161073825504,
+     "eval_false_alarm": 0.10738255033557047
+    }
+   },
+   "panel__lam10000__seed2": {
+    "auroc": 0.9526654204765551,
+    "catch_at_1pct": {
+     "line": 6.12001693351462,
+     "catch": 0.24161073825503357,
+     "eval_false_alarm": 0.006711409395973154
+    },
+    "catch_at_5pct": {
+     "line": 5.5449675221608015,
+     "catch": 0.6912751677852349,
+     "eval_false_alarm": 0.05704697986577181
+    },
+    "catch_at_10pct": {
+     "line": 5.253140329603472,
+     "catch": 0.9060402684563759,
+     "eval_false_alarm": 0.11912751677852348
+    }
+   }
+  },
+  "panel_step150": {
+   "panel__lam10000__seed0__step150": {
+    "auroc": 0.9924018062249448,
+    "catch_at_1pct": {
+     "line": 5.540125509314213,
+     "catch": 0.6795302013422819,
+     "eval_false_alarm": 0.0050335570469798654
+    },
+    "catch_at_5pct": {
+     "line": 4.9688936374259605,
+     "catch": 0.9563758389261745,
+     "eval_false_alarm": 0.03859060402684564
+    },
+    "catch_at_10pct": {
+     "line": 4.709815833912218,
+     "catch": 0.9966442953020134,
+     "eval_false_alarm": 0.09899328859060402
+    }
+   },
+   "panel__lam10000__seed1__step150": {
+    "auroc": 0.9932210260799063,
+    "catch_at_1pct": {
+     "line": 5.702351363346097,
+     "catch": 0.5268456375838926,
+     "eval_false_alarm": 0.003355704697986577
+    },
+    "catch_at_5pct": {
+     "line": 4.915981661458828,
+     "catch": 0.9714765100671141,
+     "eval_false_alarm": 0.04697986577181208
+    },
+    "catch_at_10pct": {
+     "line": 4.573626678471917,
+     "catch": 0.9983221476510067,
+     "eval_false_alarm": 0.11409395973154363
+    }
+   }
+  },
+  "ctrl_random": {
+   "ctrlrandom__lam10000__seed0": {
+    "auroc": 0.999991554434485,
+    "catch_at_1pct": {
+     "line": 3.5124239202532244,
+     "catch": 1.0,
+     "eval_false_alarm": 0.013422818791946308
+    },
+    "catch_at_5pct": {
+     "line": 2.7078654065952454,
+     "catch": 1.0,
+     "eval_false_alarm": 0.026845637583892617
+    },
+    "catch_at_10pct": {
+     "line": 2.1109155000938293,
+     "catch": 1.0,
+     "eval_false_alarm": 0.06040268456375839
+    }
+   },
+   "ctrlrandom__lam10000__seed1": {
+    "auroc": 1.0,
+    "catch_at_1pct": {
+     "line": 3.42880548995301,
+     "catch": 1.0,
+     "eval_false_alarm": 0.015100671140939598
+    },
+    "catch_at_5pct": {
+     "line": 2.673232071540496,
+     "catch": 1.0,
+     "eval_false_alarm": 0.026845637583892617
+    },
+    "catch_at_10pct": {
+     "line": 1.9872753406267,
+     "catch": 1.0,
+     "eval_false_alarm": 0.07046979865771812
+    }
+   }
+  },
+  "ctrl_kl": {
+   "ctrlkl__lam10000__seed0": {
+    "auroc": 0.9999690329264448,
+    "catch_at_1pct": {
+     "line": 3.6745758552304717,
+     "catch": 1.0,
+     "eval_false_alarm": 0.013422818791946308
+    },
+    "catch_at_5pct": {
+     "line": 2.97746788023604,
+     "catch": 1.0,
+     "eval_false_alarm": 0.03523489932885906
+    },
+    "catch_at_10pct": {
+     "line": 2.4844299301895703,
+     "catch": 1.0,
+     "eval_false_alarm": 0.06375838926174497
+    }
+   },
+   "ctrlkl__lam10000__seed1": {
+    "auroc": 0.9999634025494347,
+    "catch_at_1pct": {
+     "line": 3.6223205871476054,
+     "catch": 1.0,
+     "eval_false_alarm": 0.015100671140939598
+    },
+    "catch_at_5pct": {
+     "line": 2.9343504748081246,
+     "catch": 1.0,
+     "eval_false_alarm": 0.03523489932885906
+    },
+    "catch_at_10pct": {
+     "line": 2.4447789861637914,
+     "catch": 1.0,
+     "eval_false_alarm": 0.06208053691275168
+    }
+   }
+  }
+ },
+ "panel_pooled": {
+  "line_redraw_ci95": [
+   0.1017897091722595,
+   0.382564317673378
+  ],
+  "line_redraw_p_ge_20pct": 0.3055,
+  "seed_city_ci95": [
+   0.09060402684563758,
+   0.24162472035794177
+  ]
+ }
+}

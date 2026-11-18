@@ -6,8 +6,9 @@ seed-2 adapter, 151f14e9e) and h9ugnncw4g (random-direction seeds 0-1, KL-only s
 Rebuild on the mini (numpy/sklearn only, ~0.3 GB RSS, ~10 min):
 
     uv sync --frozen && uv run --frozen python refit.py --summary && uv run --frozen python analysis.py
+    uv run --frozen python posthoc.py     # post hoc rows only (not pre-registered), 20 s
 
-Both read only committed files and write `data/results/refit.json` and `data/results/results.json`; every number below
+They read only committed files and write `data/results/refit.json`, `data/results/results.json` and `data/results/posthoc.json`; every number below
 comes from those two files. Catch = share of the 596 eval false statements above the line (2nd-highest score of the
 scored state's own 200 line-setting true statements = 1% false alarms); FA = share of the 596 eval true statements
 above that line. CI = city-cluster bootstrap, 2000 resamples, seed 1022.
@@ -54,6 +55,11 @@ above that line. CI = city-cluster bootstrap, 2000 resamples, seed 1022.
 | per-probe catch, panel members 14-19 at own line (s8) | 1 | panel, lambda 1e4 | none | 73.7/82.4/79.9/81.2/71.5%; best member R15 82.4% (FA 1.17%) | data/results/results.json (arms.panel.monitors.tok*) |
 | per-probe catch, panel members 14-19 at own line (s8) | 2 | panel, lambda 1e4 | none | 50.8/63.1/68.6/68.3/81.9%; best member R19 81.9% (FA 1.01%) | data/results/results.json (arms.panel.monitors.tok*) |
 | note on the row above | 0-2 | - | - | "best member" is picked on eval data after the fact (max of 20 members), so it is optimistic; the pre-registered row is the per-probe list | - |
+| post hoc, not pre-registered: max-panel AUROC (eval false vs eval true) | 0 / 1 / 2 | panel, lambda 1e4 | none | 0.947 / 0.949 / 0.953 (clean 0.9999; random and KL-only 1.0000) | data/results/posthoc.json |
+| post hoc, not pre-registered: max-panel catch at own 5% line | 0 / 1 / 2 | panel, lambda 1e4 | none | 62.1% / 64.3% / 69.1% (FA 3.2 / 3.9 / 5.7%) | data/results/posthoc.json |
+| post hoc, not pre-registered: max-panel catch at own 10% line | 0 / 1 / 2 | panel, lambda 1e4 | none | 85.2% / 86.2% / 90.6% (FA 10.1 / 10.7 / 11.9%) | data/results/posthoc.json |
+| post hoc, not pre-registered: pooled CI with the 200 line-setting trues redrawn too | 0-2 | panel, lambda 1e4 | none | [10.2, 38.3]%; P(pooled >= 20%) = 0.31 (Vera's own code: [10.3, 38.5], 0.30) | data/results/posthoc.json |
+| post hoc, not pre-registered: seed + city bootstrap, lines fixed | 0-2 | panel, lambda 1e4 | none | [9.1, 24.2]% (Vera: [9.4, 24.2]) | data/results/posthoc.json |
 | 1.5B reference: max-panel catch, panel arm | 0-2 | Qwen2.5-1.5B (no rerun) | none | 3.75% [2.6, 5.1]; per seed 2.2/6.2/2.9% | data/ref/results_1p5b.json |
 | smoke (not counted): pipeline end to end | 0 | Qwen3-0.6B, 10 steps, v1.3 control | none | clean 52.5% (would be VOID); panel 40.4% | swarm folder smoke06/results/results.json |
 | smoke (not counted): KL-only is not a no-op | 0 | Qwen3-0.6B, 10 steps | output-penalty-only control | KL_cities 0.0465 at step 2; 196/196 LoRA B nonzero | swarm folder smoke06/runs/ctrlkl__lam10000__seed0.json |

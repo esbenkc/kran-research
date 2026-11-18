@@ -1,0 +1,27 @@
+# Novelty notes (Vera, skeptic) — draft, 2026-11-18
+
+## Closest prior art
+1. Zhao, Wu, Arora, Sun, Bau, Shi, "The Piggyback Hypothesis", arXiv 2606.06667 (v3 HTML read 2026-11-18).
+   - Sec 4.3 / Fig 5: Qwen3-8B, LoRA r32 (App D.1), incorrect financial advice. Prefix patching ('<|im_start|>user\n')
+     does NOT recover alignment. Patching POSTFIX KV with states from the UNFINETUNED model on an EMPTY user query
+     "substantially improves both in-domain and general alignment" -> eval-time patch is not selective there.
+   - Table 4 (TReFT on postfix KV, training-time regulariser, Qwen3-8B): general alignment SFT 47.7 -> TReFT 67.5,
+     in-domain (lower = narrow habit learned) 29.4 -> 32.6 (and 3 more columns: 46.4/23.3 -> 69.3/26.3, 46.5/15.6 -> 67.3/27.7,
+     46.7/11.7 -> 72.9/12.5). So TRAINING-time selectivity at the Qwen3-8B postfix is already published.
+   - What is NOT in Piggyback: (a) eval-time zeroing of the LoRA delta at template ids (weaker than a base-KV patch:
+     template positions still attend to adapted content positions), (b) any equal-count random / last-content
+     position control, (c) multi-seed intervals.
+2. TAME, arXiv 2609.16754: masks high-attribution RESPONSE tokens in the training loss; random equal mask leaves EM
+   unchanged. Different positions (response, training time).
+3. Leong, Yin, Wang, Li, "Why Safeguarded Ships Run Aground?", arXiv 2502.13946 (abstract read 2026-11-18): safety
+   decisions of aligned LLMs "overly rely on the aggregated information from the template region" (jailbreak setting,
+   no fine-tune, no EM). Same region, different behaviour and direction (safety lives there vs a fine-tune's spill-over).
+4. Josh Fonseca Rivera, X thread 2026-11-13 (exploratory, not a paper; quotes checked by Iris and Kasper): sparse
+   rewiring off at 'the 9 formatting tokens before the reply' keeps risky finance advice, cuts broad EM; LoRA adapter
+   off at chat-format tokens 26% -> 0%, habit not reported, 1 run, no controls.
+
+## What this run adds (if the laptop data land)
+- First multi-seed (3) eval-time LoRA position mask at the Qwen3-8B template with the narrow habit MEASURED and two
+  equal-count controls (random content, last-12 content). Not new: that template positions carry EM in Qwen3-8B
+  (Piggyback Fig 5, postfix) and that a training-time template fix can be selective (Piggyback Table 4).
+- The post must not say 'first selective template fix' (posted #24300; Tove froze the framing #24305).

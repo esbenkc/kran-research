@@ -79,3 +79,13 @@ starts with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLO
   23:55 CET; if fewer than 2 blocks x 8 can finish, the cell is skipped and the post states the confound where the
   maze is described. Metric: entered runs that leave before the call limit, k/n with the one-sided Clopper-Pearson 95%
   bound, and the Kaplan-Meier survival vs depth, shown next to the counted maze arm of the same agent and run indices.
+  D10 amendment (Felix #24881 planner decision, Kasper #24885, Tove #24887; written before any neutral run; supersedes
+  the agent list, size and stop above): arm name `maze_neutral`; BOTH status agents (gemma-4-31b-it and
+  gemma-4-26b-a4b-it) in parallel, each starting when its own counted runs finish; run indices 0, 1, 2, ... in order
+  (round-robin over the 3 maze seed blocks; same templates, paraphrases and seeds as the counted maze runs, so every
+  neutral run has a promise-arm pair); no new run after 22:55Z (23:55 CET), and the cell stops at its next run boundary
+  if at 23:45 CET the PR is not open with every promise-arm number, Vera's rebuild and the cold-read gate started
+  (Kasper #24885). Text change as above (drop only "Figures are published in a later part."). Rows: entered runs leaving
+  before the call limit (k/n, one-sided CP95), leaves/decisions, median spend, Kaplan-Meier depth, and the contrast with
+  the same agent's counted maze arm by a two-sided Fisher exact test on runs leaving. The indices that actually ran are
+  listed here when the cell ends.

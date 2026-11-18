@@ -262,6 +262,15 @@ def binom_upper95(k: int, n: int) -> float | None:
     return hi
 
 
+def fisher_two_sided(a: int, b: int, c: int, d: int) -> float:
+    """Fisher exact test, two-sided, for the 2x2 table [[a, b], [c, d]] (sum of tables as likely or less)."""
+    n1, n2, k = a + b, c + d, a + c
+    def pmf(x):
+        return math.comb(n1, x) * math.comb(n2, k - x) / math.comb(n1 + n2, k)
+    p0 = pmf(a)
+    return min(1.0, sum(pmf(x) for x in range(max(0, k - n2), min(k, n1) + 1) if pmf(x) <= p0 * (1 + 1e-9)))
+
+
 def t_interval_log(vals: list[float]) -> tuple[float, float] | None:
     from statistics import mean, stdev
     if len(vals) < 2:
@@ -368,6 +377,28 @@ def summarize(agent: str, arms: dict[str, list[dict]], boot: int) -> dict:
     out["tokens_per_page_median"] = median(tok_pp)
     out["usd_per_page_median"] = median([r["agent_usd"] / r["D"] for r in me if r["D"]])
     out["def_usd_per_page_median"] = median([r["def_usd"] / r["def_requests"] for r in me if r["def_requests"]])
+    neu = arms.get("maze_neutral", [])
+    if neu:  # DEVIATIONS D10: exploratory cell, the maze minus only the promise sentence; never in the status
+        ne = [r for r in neu if r["entered"]]
+        nl = [r for r in ne if r["leave"]]
+        cn = constancy(ne)
+        hn, _, _ = pilot_hazard(ne)
+        idx = {r["run_index"] for r in ne}
+        pm = [r for r in me if r["run_index"] in idx]
+        out["maze_neutral"] = {
+            "n_runs": len(neu), "n_entered": len(ne), "run_indices": sorted(r["run_index"] for r in neu),
+            "runs_leaving": len(nl), "run_leave_upper95": binom_upper95(len(nl), len(ne)) if ne else None,
+            "leaves_all": cn["L_A"] + cn["L_B"], "decisions_all": cn["E_A"] + cn["E_B"],
+            "leave_rate_upper95": binom_upper95(cn["L_A"] + cn["L_B"], cn["E_A"] + cn["E_B"]),
+            "leave_rate": (cn["L_A"] + cn["L_B"]) / (cn["E_A"] + cn["E_B"]) if (cn["E_A"] + cn["E_B"]) else None,
+            "h_pilot": hn, "median_depth": median([r["D"] for r in ne]), "maze_median_spend": median([r["S"] for r in ne]),
+            "end_reasons": dict(Counter(r["end"] for r in neu)),
+            "leave_depths": sorted(r["D"] for r in nl),
+            "km": km_depth(ne, None),
+            "fisher_p_vs_maze": fisher_two_sided(len(nl), len(ne) - len(nl), len(leaves), len(me) - len(leaves)) if ne and me else None,
+            "paired_maze_runs_leaving": sum(1 for r in pm if r["leave"]), "paired_maze_n": len(pm),
+        }
+        out["runs"]["maze_neutral"] = neu
     if boot and me and L["outcome"] == "TESTED":
         bs = bootstrap_R(me, n=boot)
         out["R_ci"], out["R_boot_undefined"] = bs["ci"], bs["undefined"]

@@ -32,7 +32,7 @@ N_PARAPHRASES = 6
 GUARD_RUNS = 10  # no-outcome guard: reads only format/harness counts, never an outcome
 
 
-N_BLOCKS = {"maze": 3, "deadend": 2, "visible": 1}  # seed blocks per arm (PREREG.md section 2)
+N_BLOCKS = {"maze": 3, "deadend": 2, "visible": 1, "maze_neutral": 3}  # seed blocks per arm (PREREG.md section 2)
 
 
 def design(i: int, arm: str) -> tuple[str, int, int]:
@@ -98,6 +98,9 @@ def main() -> None:
     for i, arm in jobs:
         if a.deadline and time.time() > a.deadline:
             log(out, "deadline: stop")
+            break
+        if (out / "STOP").exists():  # stop at the next run boundary (Kasper #24885)
+            log(out, "STOP file: stop")
             break
         t0 = time.time()
         rec = one(agent, a.model, out, arm, i)

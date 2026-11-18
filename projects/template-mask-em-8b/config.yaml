@@ -1,0 +1,10 @@
+name: template-mask-em-8b
+question: "Does zeroing a narrow LoRA fine-tune's effect at the chat-template token positions alone cut broad emergent misalignment in Qwen3-8B by at least half, while the narrow habit keeps at least 80% of its level?"
+model: Qwen/Qwen3-8B
+sources:
+  - https://github.com/clarifying-EM/model-organisms-for-EM/tree/8460e4e426d3a89e8ed51aac0eadcdf7ac10469d
+  - https://arxiv.org/abs/2506.11613
+  - https://arxiv.org/abs/2502.17424
+figures:
+  - id: template-mask-em-8b
+    caption: "Broad misalignment removed vs narrow habit kept, per seed and mask."

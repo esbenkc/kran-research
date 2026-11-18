@@ -65,9 +65,19 @@ def build(an):
         pred=dict(cut_min=0.5, kept_min=0.8, rand_cut_max=0.15),
         anchors=[dict(x=0, y=1, label="full fine-tune", anchor="start", dy=-12),
                  dict(x=1, y=0, label="original model", anchor="end", dy=-12)],
+        readings=[dict(x=1, y=1, dy=-12, label="habit stays: Fonseca Rivera's reading", short="Fonseca Rivera's reading"),
+                  dict(x=1, y=0, dy=-26, label="habit goes too: Zhao and colleagues' patch", short="Zhao et al.'s patch")],
         points=pts, means=means,
-        note=an.get("fig_note", ""),
+        note=an.get("fig_note") or raw_note(an),
     )
+
+
+def raw_note(an):
+    b = an["base"]
+    full = "; ".join(f"model {s['seed'] + 1}: {s['arms']['A']['broad'] * 100:.1f}% and {s['arms']['A']['habit'] * 100:.0f}%"
+                     for s in an["seeds"] if (s["arms"].get("A") or {}).get("broad") is not None)
+    return (f"Raw rates (misaligned on the 8 questions, risky on finance): original model {b['broad'] * 100:.1f}% and "
+            f"{b['habit'] * 100:.0f}%; full fine-tune, {full}.")
 
 
 def mock():

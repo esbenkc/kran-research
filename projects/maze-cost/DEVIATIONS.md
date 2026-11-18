@@ -104,7 +104,7 @@ starts with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLO
 - **D10/D11 close (Bruno #25684-#25685, commit c1346f2d6).** Indices that ran in `maze_neutral`: gemma-4-31b-it 0-9
   (10 runs), gemma-4-26b-a4b-it 0-17 (18 runs); started ~20 min after each agent's counted runs, stopped by the
   22:55Z deadline. Result (reported row, never in the status): 0 of 28 entered runs left before the 12-call limit
-  (all at depth 11), 0 leaves in 278 decisions; pooled one-sided CP95 run-level bound 10.1% (31B 25.9%, 26B 15.3%);
+  (all end=cap; 31B 8 at depth 11 and 2 at depth 10, 26B 18 at depth 11; Kasper #25688), 0 leaves in 278 decisions; pooled one-sided CP95 run-level bound 10.1% (31B 25.9%, 26B 15.3%);
   two-sided Fisher exact vs the counted maze arm 0/84: p = 1.0. By the D11 reading rule the post states the observed
   count with its bound ("without the promise sentence, 0 of 28 runs left before the limit"), not "the promise is not
   what kept them going" (Tove #25370).

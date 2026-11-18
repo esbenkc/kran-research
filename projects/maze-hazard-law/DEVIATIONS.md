@@ -32,9 +32,9 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   can flip in a long decode. qwen3-1.7b-nothink call 17 (5,377 tokens, 321 fed): max |diff| 0.0, bit-equal. So the
   2/20 is reuse-order fp noise in Llama's bf16 path, not nondeterminism of MLX itself (full prefill repeats exactly).
 - **D4 (2026-11-19 00:32 CET, Bruno, decided by Felix PLAN v1.1 #25862 with Kasper #25857, Tove #25866, Vera #25863;
-  before any maze or dead-end run of any agent; outside the FROZEN RULE).** All three frozen mini side agents failed the
-  frozen visible-link gate (>= 8/10): qwen3-1.7b-nothink 1/10 (data/qwen3-1.7b-nothink/job.log, 23:14:45Z); llama-3.2-1b
-  0/1 when stopped (run 000 used all 80 calls and never answered, 23:18:00Z); gemma-3-1b 0 runs finished (each call
+  before any maze or dead-end run of any agent; outside the FROZEN RULE).** No frozen mini side agent passed the frozen
+  visible-link gate (>= 8/10); only one completed it: qwen3-1.7b-nothink 1/10 (data/qwen3-1.7b-nothink/job.log, 23:14:45Z); llama-3.2-1b
+  stopped for speed at 0/1 (run 000 used all 80 calls and never answered, 23:18:00Z; 8/10 was still reachable); gemma-3-1b stopped for speed with 0 runs finished (each call
   echoed ~2,300 tokens of prompt JSON, 45 s per call; stopped). A thinking-on Qwen3-1.7B (qwen3-1.7b-think, not in
   PREREG s.1) was started as a last mini try and stopped by the planner after 3 gate runs, 0/3 correct; its gate files
   stay on the branch, and it has no maze run. Added: ONE closed-model side row, gpt-5-nano through the OpenAI API

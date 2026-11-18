@@ -252,13 +252,16 @@ def main():
         for x in r["reads"]:
             if x["step"] == 0:
                 continue
-            Lm.append(f"| {'headline' if x['step'] == r['last_read'] else 'kl-off curve'} | {s} | live, thought KL 0, "
-                      f"stored pool, read {x['step']} | none | s_P {fm(x['s_P'])}; s_R {fm(x['s_R'])}; cheat_off "
+            last = x["step"] == r["last_read"]
+            Lm.append(f"| {'headline' if last else 'kl-off curve'} | {s} | live, thought KL 0, stored pool, "
+                      f"{'last read' if last else 'read %d' % x['step']} | none | {'read %d: ' % x['step'] if last else ''}"
+                      f"s_P {fm(x['s_P'])}; s_R {fm(x['s_R'])}; cheat_off "
                       f"{x['cheat_off']['v']:.3f} | data/runs/{r['name']}/reads/c_{x['step']}.npy |")
         on = r["onset"]
+        host = "ran on the laptop queue" if (HERE / "logs" / "laptop" / f"{r['name']}.driver.log").exists() else "ran on the mini"
         Lm.append(f"| headline | {s} | live, thought KL 0, per-seed outcome | none | {r['outcome']}; onset "
                   f"{'(%d, %d]' % tuple(on) if on else 'none by %d' % r['last_read']}"
-                  f"{'; ' + ', '.join(r['why_not_settled']) if r['why_not_settled'] else ''} | data/runs/{r['name']}/reads.jsonl |")
+                  f"{'; ' + ', '.join(r['why_not_settled']) if r['why_not_settled'] else ''}; {host} | data/runs/{r['name']}/reads.jsonl |")
         pl = r["placebo"]
         if pl and "rise" in pl:
             Lm.append(f"| placebo guard | {s} | ' Let' twin pool, read {pl['step']} | placebo word (never planted) | "
@@ -272,27 +275,32 @@ def main():
                   f"data/runs/{r['name']}/reads/c_{r['last_read']}.npy |")
     if pos:
         on = pos["onset"]
-        Lm.append(f"| positive control | 0 | live, thought KL 0, cue 0.86, {pos['last_read']} updates | dense cue | onset "
+        Lm.append(f"| context, n=1, not a status leg: positive control | 0 | live, thought KL 0, dense cue 0.86, "
+                  f"{pos['last_read']} updates | none | onset "
                   f"{'(%d, %d]' % tuple(on) if on else 'none'}; last s_P {fm(pos['reads'][-1]['s_P'])} | "
                   f"data/runs/posctl_d086_s0/reads.jsonl |")
     if cellr:
         on = cellr["onset"]
-        Lm.append(f"| cell R (D4) | 0 | cached engine, fixed pool of seed 0's own fresh rows (born <= 572), thought KL 0 | "
-                  f"fresh vs fixed thoughts, same text | onset {'(%d, %d]' % tuple(on) if on else 'none'}; last read "
+        Lm.append(f"| context, n=1, not a status leg: cell R (D4, exploratory) | 0 | cached engine, fixed pool of seed 0's "
+                  f"own fresh rows (born <= 572), thought KL 0; fresh vs fixed thoughts, same text | none | onset "
+                  f"{'(%d, %d]' % tuple(on) if on else 'none'}; last read "
                   f"{cellr['last_read']}: s_P {fm(cellr['reads'][-1]['s_P'])}; reading: {cellr['reading']} | "
                   f"data/runs/replay_s0/reads.jsonl |")
     if served:
-        Lm.append(f"| served read (D3) | 0 | seed 0 adapter_1200, {served['n']} fresh rows, ' We' forced vs banned | "
-                  f"banned twin (CRN) | s_P {served['s_P']:+.3f} [{served['s_P_ci'][0]:+.3f}, {served['s_P_ci'][1]:+.3f}] | "
+        Lm.append(f"| context, n=1, not a status leg: served read (D3) | 0 | seed 0 adapter_1200, {served['n']} fresh "
+                  f"rows, ' We' forced vs banned twin (common random numbers) | none | "
+                  f"s_P {served['s_P']:+.3f} [{served['s_P_ci'][0]:+.3f}, {served['s_P_ci'][1]:+.3f}] | "
                   f"data/reads/served_kl0_s0_1200.json |")
     for k, v in par.items():
         on = v["onset"]
-        Lm.append(f"| comparison (parent, n=1) | 0 | {k} | earlier run | onset {'(%d, %d]' % tuple(on) if on else 'none'}; "
+        Lm.append(f"| context, n=1, not a status leg: earlier run (parent) | 0 | {k} | none | onset "
+                  f"{'(%d, %d]' % tuple(on) if on else 'none'}; "
                   f"last read {v['last_read']}: s_P {fm(v['reads'][-1]['s_P'])} | data/parent/{k}/reads.jsonl |")
-    if tl is not None and (D / "reads" / "let" / "c_0.npy").exists():
-        r0 = tl.point_ci(np.load(D / "reads" / "let" / "c_0.npy"))
-        Lm.append(f"| placebo baseline | - | pilot (update 0) on the ' Let' twin | untrained start | s_P' {fm(r0['s_P'])} | "
-                  f"data/reads/let/c_0.npy |")
+    for sub, where in (("let", "mini"), ("let_laptop", "laptop queue, its own rebuilt twin")):
+        if tl is not None and (D / "reads" / sub / "c_0.npy").exists():
+            r0 = tl.point_ci(np.load(D / "reads" / sub / "c_0.npy"))
+            Lm.append(f"| placebo baseline | - | pilot (update 0) on the ' Let' twin, {where} | untrained start | "
+                      f"s_P' {fm(r0['s_P'])} | data/reads/{sub}/c_0.npy |")
     # skeptic rebuild cells (Vera, own code on the pushed receipts; room #23204), kept so a rerun keeps them
     if (HERE / "skeptics" / "skeptic" / "signoff.md").exists():
         for v, res in (("kl0_s0 read 1,200", "s_P +0.0100 [+0.0078, +0.0123]"),
@@ -300,7 +308,7 @@ def main():
                        ("cell R replay_s0 read 600", "s_P +0.5500 [+0.5392, +0.5615]"),
                        ("served read, seed 0 adapter_1200", "s_P -0.0727 [-0.166, +0.014]; sign-flip null sd 0.041"),
                        ("thought drift, last window vs updates 1-100", "KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064")):
-            Lm.append(f"| skeptic rebuild | 0 | {v} | {'KL-on parent' if 'drift' in v else 'none'} | {res} | "
+            Lm.append(f"| skeptic rebuild (room oracle-1117) | 0 | {v} | none | {res} | "
                       f"skeptics/skeptic/signoff.md |")
     sl = seed_level
     Lm += ["", f"seed-level: {sl['mean']:.3f} [{sl['ci'][0]:.3f}, {sl['ci'][1]:.3f}] (s_P at the common read "

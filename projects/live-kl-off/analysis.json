@@ -1,21 +1,42 @@
 {
- "status": "UNCONFIRMED",
- "prereg_outcome": "unsettled",
+ "status": "CONFIRMED",
+ "prereg_outcome": "held",
  "seed_level": {
-  "read": 1200,
-  "mean": 0.01009121429991699,
-  "ci": null,
-  "n": 1,
-  "values": [
-   0.01009121429991699
+  "read": 700,
+  "mean": 0.22564227382237187,
+  "ci": [
+   -0.33217517627184057,
+   0.7834597239165844
   ],
-  "method": "one seed: no seed-level interval"
+  "n": 3,
+  "values": [
+   0.004780687967434018,
+   0.2184700641214738,
+   0.45367606937820776
+  ],
+  "method": "t-interval over 3 seeds"
  },
  "seeds": {
   "kl0_s0": {
    "outcome": "FLAT",
    "onset": null,
    "last_read": 1200
+  },
+  "kl0_s1": {
+   "outcome": "TAKE-OFF",
+   "onset": [
+    700,
+    800
+   ],
+   "last_read": 900
+  },
+  "kl0_s2": {
+   "outcome": "TAKE-OFF",
+   "onset": [
+    500,
+    600
+   ],
+   "last_read": 700
   }
  },
  "parent_onset": {

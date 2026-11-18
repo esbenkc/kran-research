@@ -13,24 +13,49 @@
 | kl-off curve | 0 | live, thought KL 0, stored pool, read 900 | none | s_P +0.002 [+0.000, +0.004]; s_R -0.024 [-0.073, +0.026]; cheat_off 0.607 | data/runs/kl0_s0/reads/c_900.npy |
 | kl-off curve | 0 | live, thought KL 0, stored pool, read 1000 | none | s_P +0.013 [+0.010, +0.016]; s_R -0.032 [-0.090, +0.028]; cheat_off 0.508 | data/runs/kl0_s0/reads/c_1000.npy |
 | kl-off curve | 0 | live, thought KL 0, stored pool, read 1100 | none | s_P +0.011 [+0.007, +0.014]; s_R -0.022 [-0.090, +0.050]; cheat_off 0.403 | data/runs/kl0_s0/reads/c_1100.npy |
-| headline | 0 | live, thought KL 0, stored pool, read 1200 | none | s_P +0.010 [+0.008, +0.012]; s_R -0.027 [-0.077, +0.024]; cheat_off 0.545 | data/runs/kl0_s0/reads/c_1200.npy |
-| headline | 0 | live, thought KL 0, per-seed outcome | none | FLAT; onset none by 1200 | data/runs/kl0_s0/reads.jsonl |
+| headline | 0 | live, thought KL 0, stored pool, last read | none | read 1200: s_P +0.010 [+0.008, +0.012]; s_R -0.027 [-0.077, +0.024]; cheat_off 0.545 | data/runs/kl0_s0/reads/c_1200.npy |
+| headline | 0 | live, thought KL 0, per-seed outcome | none | FLAT; onset none by 1200; ran on the mini | data/runs/kl0_s0/reads.jsonl |
 | placebo guard | 0 | ' Let' twin pool, read 1200 | placebo word (never planted) | s_P' rise +0.005 [+0.003, +0.006] (guard fails if >= 0.10 and >= half the planted rise) | data/reads/let/c_kl0_s0_1200.npy |
 | carrying | 0 | probed vs unprobed fresh thoughts, updates 1-1200 | unprobed rows | ' We' share probed 0.1029, unprobed 0.0033, gap 0.0994 | data/runs/kl0_s0/steps.jsonl |
 | trace | 0 | stored-pool s_R at the last read 1200 | none | s_R -0.027 [-0.077, +0.024] (clause 3: CI-high < 0.10 = True) | data/runs/kl0_s0/reads/c_1200.npy |
-| positive control | 0 | live, thought KL 0, cue 0.86, 200 updates | dense cue | onset (100, 150]; last s_P +0.883 [+0.877, +0.890] | data/runs/posctl_d086_s0/reads.jsonl |
-| cell R (D4) | 0 | cached engine, fixed pool of seed 0's own fresh rows (born <= 572), thought KL 0 | fresh vs fixed thoughts, same text | onset (500, 600]; last read 1201: s_P +0.694 [+0.681, +0.708]; reading: D4 high branch: >= 0.30 at 2 reads by 700 (frozen label: freshness carries the brake; n = 1, does not split new thoughts from fewer repeats, D4.1) | data/runs/replay_s0/reads.jsonl |
-| served read (D3) | 0 | seed 0 adapter_1200, 400 fresh rows, ' We' forced vs banned | banned twin (CRN) | s_P -0.073 [-0.161, +0.010] | data/reads/served_kl0_s0_1200.json |
-| comparison (parent, n=1) | 0 | live_k4 | earlier run | onset none; last read 1200: s_P +0.011 [+0.009, +0.014] | data/parent/live_k4/reads.jsonl |
-| comparison (parent, n=1) | 0 | cached_d010_s0 | earlier run | onset (500, 600]; last read 1500: s_P +0.865 [+0.856, +0.873] | data/parent/cached_d010_s0/reads.jsonl |
-| comparison (parent, n=1) | 0 | cachedkl_s0 | earlier run | onset none; last read 876: s_P +0.224 [+0.215, +0.231] | data/parent/cachedkl_s0/reads.jsonl |
-| placebo baseline | - | pilot (update 0) on the ' Let' twin | untrained start | s_P' -0.003 [-0.006, +0.000] | data/reads/let/c_0.npy |
-| skeptic rebuild | 0 | kl0_s0 read 1,200 | none | s_P +0.0100 [+0.0078, +0.0123] | skeptics/skeptic/signoff.md |
-| skeptic rebuild | 0 | positive control read 150 (all-rows definition) | none | s_P +0.9832 [+0.9807, +0.9854] | skeptics/skeptic/signoff.md |
-| skeptic rebuild | 0 | cell R replay_s0 read 600 | none | s_P +0.5500 [+0.5392, +0.5615] | skeptics/skeptic/signoff.md |
-| skeptic rebuild | 0 | served read, seed 0 adapter_1200 | none | s_P -0.0727 [-0.166, +0.014]; sign-flip null sd 0.041 | skeptics/skeptic/signoff.md |
-| skeptic rebuild | 0 | thought drift, last window vs updates 1-100 | KL-on parent | KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064 | skeptics/skeptic/signoff.md |
+| kl-off curve | 1 | live, thought KL 0, stored pool, read 100 | none | s_P +0.005 [+0.002, +0.007]; s_R -0.025 [-0.079, +0.034]; cheat_off 0.530 | data/runs/kl0_s1/reads/c_100.npy |
+| kl-off curve | 1 | live, thought KL 0, stored pool, read 200 | none | s_P +0.005 [+0.003, +0.008]; s_R -0.022 [-0.071, +0.033]; cheat_off 0.552 | data/runs/kl0_s1/reads/c_200.npy |
+| kl-off curve | 1 | live, thought KL 0, stored pool, read 300 | none | s_P +0.007 [+0.004, +0.010]; s_R -0.029 [-0.087, +0.034]; cheat_off 0.469 | data/runs/kl0_s1/reads/c_300.npy |
+| kl-off curve | 1 | live, thought KL 0, stored pool, read 400 | none | s_P +0.008 [+0.005, +0.011]; s_R -0.026 [-0.082, +0.031]; cheat_off 0.497 | data/runs/kl0_s1/reads/c_400.npy |
+| kl-off curve | 1 | live, thought KL 0, stored pool, read 500 | none | s_P +0.011 [+0.008, +0.015]; s_R -0.021 [-0.086, +0.048]; cheat_off 0.456 | data/runs/kl0_s1/reads/c_500.npy |
+| kl-off curve | 1 | live, thought KL 0, stored pool, read 600 | none | s_P +0.010 [+0.007, +0.014]; s_R -0.015 [-0.078, +0.051]; cheat_off 0.457 | data/runs/kl0_s1/reads/c_600.npy |
+| kl-off curve | 1 | live, thought KL 0, stored pool, read 700 | none | s_P +0.218 [+0.213, +0.224]; s_R -0.022 [-0.083, +0.040]; cheat_off 0.454 | data/runs/kl0_s1/reads/c_700.npy |
+| kl-off curve | 1 | live, thought KL 0, stored pool, read 800 | none | s_P +0.847 [+0.840, +0.854]; s_R -0.011 [-0.058, +0.039]; cheat_off 0.645 | data/runs/kl0_s1/reads/c_800.npy |
+| headline | 1 | live, thought KL 0, stored pool, last read | none | read 900: s_P +0.634 [+0.622, +0.646]; s_R -0.030 [-0.097, +0.041]; cheat_off 0.459 | data/runs/kl0_s1/reads/c_900.npy |
+| headline | 1 | live, thought KL 0, per-seed outcome | none | TAKE-OFF; onset (700, 800]; ran on the laptop queue | data/runs/kl0_s1/reads.jsonl |
+| placebo guard | 1 | ' Let' twin pool, read 900 | placebo word (never planted) | s_P' rise +0.001 [-0.001, +0.004] (guard fails if >= 0.10 and >= half the planted rise) | data/reads/let_laptop/c_kl0_s1_900.npy |
+| carrying | 1 | probed vs unprobed fresh thoughts, updates 1-900 | unprobed rows | ' We' share probed 0.1090, unprobed 0.0021, gap 0.1074 | data/runs/kl0_s1/steps.jsonl |
+| trace | 1 | stored-pool s_R at the last read 900 | none | s_R -0.030 [-0.097, +0.041] (clause 3: CI-high < 0.10 = True) | data/runs/kl0_s1/reads/c_900.npy |
+| kl-off curve | 2 | live, thought KL 0, stored pool, read 100 | none | s_P +0.006 [+0.004, +0.008]; s_R -0.032 [-0.079, +0.017]; cheat_off 0.616 | data/runs/kl0_s2/reads/c_100.npy |
+| kl-off curve | 2 | live, thought KL 0, stored pool, read 200 | none | s_P +0.012 [+0.008, +0.016]; s_R -0.030 [-0.097, +0.042]; cheat_off 0.433 | data/runs/kl0_s2/reads/c_200.npy |
+| kl-off curve | 2 | live, thought KL 0, stored pool, read 300 | none | s_P +0.011 [+0.009, +0.013]; s_R -0.028 [-0.075, +0.021]; cheat_off 0.621 | data/runs/kl0_s2/reads/c_300.npy |
+| kl-off curve | 2 | live, thought KL 0, stored pool, read 400 | none | s_P +0.008 [+0.006, +0.011]; s_R -0.039 [-0.088, +0.012]; cheat_off 0.620 | data/runs/kl0_s2/reads/c_400.npy |
+| kl-off curve | 2 | live, thought KL 0, stored pool, read 500 | none | s_P +0.005 [+0.003, +0.007]; s_R -0.032 [-0.080, +0.017]; cheat_off 0.646 | data/runs/kl0_s2/reads/c_500.npy |
+| kl-off curve | 2 | live, thought KL 0, stored pool, read 600 | none | s_P +0.628 [+0.618, +0.638]; s_R -0.025 [-0.072, +0.023]; cheat_off 0.626 | data/runs/kl0_s2/reads/c_600.npy |
+| headline | 2 | live, thought KL 0, stored pool, last read | none | read 700: s_P +0.454 [+0.443, +0.464]; s_R -0.042 [-0.091, +0.009]; cheat_off 0.630 | data/runs/kl0_s2/reads/c_700.npy |
+| headline | 2 | live, thought KL 0, per-seed outcome | none | TAKE-OFF; onset (500, 600]; ran on the laptop queue | data/runs/kl0_s2/reads.jsonl |
+| placebo guard | 2 | ' Let' twin pool, read 700 | placebo word (never planted) | s_P' rise +0.026 [+0.023, +0.030] (guard fails if >= 0.10 and >= half the planted rise) | data/reads/let_laptop/c_kl0_s2_700.npy |
+| carrying | 2 | probed vs unprobed fresh thoughts, updates 1-700 | unprobed rows | ' We' share probed 0.1087, unprobed 0.0039, gap 0.1048 | data/runs/kl0_s2/steps.jsonl |
+| trace | 2 | stored-pool s_R at the last read 700 | none | s_R -0.042 [-0.091, +0.009] (clause 3: CI-high < 0.10 = True) | data/runs/kl0_s2/reads/c_700.npy |
+| context, n=1, not a status leg: positive control | 0 | live, thought KL 0, dense cue 0.86, 200 updates | none | onset (100, 150]; last s_P +0.883 [+0.877, +0.890] | data/runs/posctl_d086_s0/reads.jsonl |
+| context, n=1, not a status leg: cell R (D4, exploratory) | 0 | cached engine, fixed pool of seed 0's own fresh rows (born <= 572), thought KL 0; fresh vs fixed thoughts, same text | none | onset (500, 600]; last read 1201: s_P +0.694 [+0.681, +0.708]; reading: D4 high branch: >= 0.30 at 2 reads by 700 (frozen label: freshness carries the brake; n = 1, does not split new thoughts from fewer repeats, D4.1) | data/runs/replay_s0/reads.jsonl |
+| context, n=1, not a status leg: served read (D3) | 0 | seed 0 adapter_1200, 400 fresh rows, ' We' forced vs banned twin (common random numbers) | none | s_P -0.073 [-0.161, +0.010] | data/reads/served_kl0_s0_1200.json |
+| context, n=1, not a status leg: earlier run (parent) | 0 | live_k4 | none | onset none; last read 1200: s_P +0.011 [+0.009, +0.014] | data/parent/live_k4/reads.jsonl |
+| context, n=1, not a status leg: earlier run (parent) | 0 | cached_d010_s0 | none | onset (500, 600]; last read 1500: s_P +0.865 [+0.856, +0.873] | data/parent/cached_d010_s0/reads.jsonl |
+| context, n=1, not a status leg: earlier run (parent) | 0 | cachedkl_s0 | none | onset none; last read 876: s_P +0.224 [+0.215, +0.231] | data/parent/cachedkl_s0/reads.jsonl |
+| placebo baseline | - | pilot (update 0) on the ' Let' twin, mini | untrained start | s_P' -0.003 [-0.006, +0.000] | data/reads/let/c_0.npy |
+| placebo baseline | - | pilot (update 0) on the ' Let' twin, laptop queue, its own rebuilt twin | untrained start | s_P' -0.003 [-0.006, +0.000] | data/reads/let_laptop/c_0.npy |
+| skeptic rebuild (room oracle-1117) | 0 | kl0_s0 read 1,200 | none | s_P +0.0100 [+0.0078, +0.0123] | skeptics/skeptic/signoff.md |
+| skeptic rebuild (room oracle-1117) | 0 | positive control read 150 (all-rows definition) | none | s_P +0.9832 [+0.9807, +0.9854] | skeptics/skeptic/signoff.md |
+| skeptic rebuild (room oracle-1117) | 0 | cell R replay_s0 read 600 | none | s_P +0.5500 [+0.5392, +0.5615] | skeptics/skeptic/signoff.md |
+| skeptic rebuild (room oracle-1117) | 0 | served read, seed 0 adapter_1200 | none | s_P -0.0727 [-0.166, +0.014]; sign-flip null sd 0.041 | skeptics/skeptic/signoff.md |
+| skeptic rebuild (room oracle-1117) | 0 | thought drift, last window vs updates 1-100 | none | KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064 | skeptics/skeptic/signoff.md |
 
-seed-level: 0.01 [no interval] (s_P at read 1200, one seed: no seed-level interval)
+seed-level: 0.226 [-0.332, 0.783] (s_P at the common read 700, t-interval over 3 seeds)
 
-status: UNCONFIRMED; settled seeds 1 (TAKE-OFF 0, FLAT 1); prereg outcome unsettled
+status: CONFIRMED; settled seeds 3 (TAKE-OFF 2, FLAT 1); prereg outcome held

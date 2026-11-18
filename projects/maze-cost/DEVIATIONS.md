@@ -101,3 +101,10 @@ starts with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLO
   vs the pooled counted maze arm. Per agent: secondary. No seed-level claim for this cell ("n too small for a
   seed-level interval"). Reading, fixed now: if k = 0, the post says the promise sentence is not what kept them going,
   with the bound; if k >= 1, the post reports k/n and the Fisher p, and says the promise matters only if p < 0.05.
+- **D10/D11 close (Bruno #25684-#25685, commit c1346f2d6).** Indices that ran in `maze_neutral`: gemma-4-31b-it 0-9
+  (10 runs), gemma-4-26b-a4b-it 0-17 (18 runs); started ~20 min after each agent's counted runs, stopped by the
+  22:55Z deadline. Result (reported row, never in the status): 0 of 28 entered runs left before the 12-call limit
+  (all at depth 11), 0 leaves in 278 decisions; pooled one-sided CP95 run-level bound 10.1% (31B 25.9%, 26B 15.3%);
+  two-sided Fisher exact vs the counted maze arm 0/84: p = 1.0. By the D11 reading rule the post states the observed
+  count with its bound ("without the promise sentence, 0 of 28 runs left before the limit"), not "the promise is not
+  what kept them going" (Tove #25370).

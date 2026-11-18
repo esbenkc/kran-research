@@ -4,25 +4,25 @@ Judge labels (gpt-4.1-mini, parent prompt) on the 200 + 200 TEST prompts. restor
 
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
-| headline | 0 | arm G, L_read 17, push L22 g4 | none | restore 0.392 (74/189), new harmless 7/198; string scorer 0.806, 3 | data/strip_s0/gen_test.judged.jsonl + data/strip_s0/gate.json |
-| random-gate | 0 | arm RG0, L_read 17, push L22 g4 | random direction j=0 | restore 0.000 (0/189), new harmless 7/198; string scorer 0.000, 2 | data/strip_s0/gen_test.judged.jsonl + data/strip_s0/gate.json |
-| random-gate | 0 | arm RG1, L_read 17, push L22 g4 | random direction j=1 | restore 0.011 (2/189), new harmless 7/198; string scorer 0.000, 2 | data/strip_s0/gen_test.judged.jsonl + data/strip_s0/gate.json |
-| ungated | 0 | arm U, L_read 17, push L22 g4 | ungated push | restore 0.392 (74/189), new harmless 198/198; string scorer 0.819, 140 | data/strip_s0/gen_test.judged.jsonl + data/strip_s0/gate.json |
-| strip-gate | 0 | arm S, L_read 17, push L22 g4 | stripped, no push | restore 0.016 (3/189), new harmless 3/198; string scorer 0.062, 2 | data/strip_s0/gen_test.judged.jsonl + data/strip_s0/gate.json |
-| diagnostic | 0 | arm O, L_read 17, push L22 g4 | oracle-label gate | restore 0.392 (74/189), new harmless 3/198; string scorer 0.819, 2 | data/strip_s0/gen_test.judged.jsonl + data/strip_s0/gate.json |
-| diagnostic | 0 | arm RP, L_read 17, push L22 g4 | random-prompt gate | restore 0.376 (71/189), new harmless 7/198; string scorer 0.794, 4 | data/strip_s0/gen_test.judged.jsonl + data/strip_s0/gate.json |
-| diagnostic | 0 | arm C, L_read 17, push L22 g4 | flag + canned refusal | restore 1.037 (196/189), new harmless 7/198; string scorer 1.225, 6 | data/strip_s0/gen_test.judged.jsonl + data/strip_s0/gate.json |
-| secondary prediction | 0 | DEV pred_s | none | pred 0.6129 (recall 0.9922, conv 0.5984, strip 0.0, base 0.9688) vs test G 0.392 | data/strip_s0/gen_dev.judged.jsonl + proj.npz |
+| headline | 0 | arm G | none | DEV pick L_read 17, push L22 g4; restore 0.392 (74/189), new harmless 7/198; string scorer 0.806, 3 | data/strip_s0/gen_test.judged.jsonl |
+| random-gate | 0 | arm RG0 | random direction j=0 | DEV pick L_read 17, push L22 g4; restore 0.000 (0/189), new harmless 7/198; string scorer 0.000, 2 | data/strip_s0/gen_test.judged.jsonl |
+| random-gate | 0 | arm RG1 | random direction j=1 | DEV pick L_read 17, push L22 g4; restore 0.011 (2/189), new harmless 7/198; string scorer 0.000, 2 | data/strip_s0/gen_test.judged.jsonl |
+| ungated | 0 | arm U | ungated push | DEV pick L_read 17, push L22 g4; restore 0.392 (74/189), new harmless 198/198; string scorer 0.819, 140 | data/strip_s0/gen_test.judged.jsonl |
+| strip-gate | 0 | arm S | stripped, no push | DEV pick L_read 17, push L22 g4; restore 0.016 (3/189), new harmless 3/198; string scorer 0.062, 2 | data/strip_s0/gen_test.judged.jsonl |
+| diagnostic | 0 | arm O | oracle-label gate | DEV pick L_read 17, push L22 g4; restore 0.392 (74/189), new harmless 3/198; string scorer 0.819, 2 | data/strip_s0/gen_test.judged.jsonl |
+| diagnostic | 0 | arm RP | random-prompt gate | DEV pick L_read 17, push L22 g4; restore 0.376 (71/189), new harmless 7/198; string scorer 0.794, 4 | data/strip_s0/gen_test.judged.jsonl |
+| diagnostic | 0 | arm C | flag + canned refusal | DEV pick L_read 17, push L22 g4; restore 1.037 (196/189), new harmless 7/198; string scorer 1.225, 6 | data/strip_s0/gen_test.judged.jsonl |
+| secondary prediction | 0 | DEV pred_s | none | pred 0.6129 (recall 0.9922, conv 0.5984, strip 0.0, base 0.9688) vs test G 0.392 | data/strip_s0/gen_dev.judged.jsonl |
 | composition check | 0 | 20 flagged regenerated in one batch | none | 8/20 identical | data/strip_s0/regen.json |
-| headline | 1 | arm G, L_read 17, push L22 g2 | none | restore 0.984 (186/189), new harmless 4/198; string scorer 0.800, 5 | data/strip_s1/gen_test.judged.jsonl + data/strip_s1/gate.json |
-| random-gate | 1 | arm RG0, L_read 17, push L22 g2 | random direction j=0 | restore 0.064 (12/189), new harmless 3/198; string scorer 0.031, 3 | data/strip_s1/gen_test.judged.jsonl + data/strip_s1/gate.json |
-| random-gate | 1 | arm RG1, L_read 17, push L22 g2 | random direction j=1 | restore 0.048 (9/189), new harmless 3/198; string scorer 0.000, 3 | data/strip_s1/gen_test.judged.jsonl + data/strip_s1/gate.json |
-| ungated | 1 | arm U, L_read 17, push L22 g2 | ungated push | restore 1.005 (190/189), new harmless 197/198; string scorer 0.806, 169 | data/strip_s1/gen_test.judged.jsonl + data/strip_s1/gate.json |
-| strip-gate | 1 | arm S, L_read 17, push L22 g2 | stripped, no push | restore 0.032 (6/189), new harmless 2/198; string scorer 0.081, 3 | data/strip_s1/gen_test.judged.jsonl + data/strip_s1/gate.json |
-| diagnostic | 1 | arm O, L_read 17, push L22 g2 | oracle-label gate | restore 1.005 (190/189), new harmless 2/198; string scorer 0.806, 3 | data/strip_s1/gen_test.judged.jsonl + data/strip_s1/gate.json |
-| diagnostic | 1 | arm RP, L_read 17, push L22 g2 | random-prompt gate | restore 0.979 (185/189), new harmless 4/198; string scorer 0.781, 5 | data/strip_s1/gen_test.judged.jsonl + data/strip_s1/gate.json |
-| diagnostic | 1 | arm C, L_read 17, push L22 g2 | flag + canned refusal | restore 1.032 (195/189), new harmless 4/198; string scorer 1.212, 5 | data/strip_s1/gen_test.judged.jsonl + data/strip_s1/gate.json |
-| secondary prediction | 1 | DEV pred_s | none | pred 1.0081 (recall 1.0, conv 0.9766, strip 0.0, base 0.9688) vs test G 0.984 | data/strip_s1/gen_dev.judged.jsonl + proj.npz |
+| headline | 1 | arm G | none | DEV pick L_read 17, push L22 g2; restore 0.984 (186/189), new harmless 4/198; string scorer 0.800, 5 | data/strip_s1/gen_test.judged.jsonl |
+| random-gate | 1 | arm RG0 | random direction j=0 | DEV pick L_read 17, push L22 g2; restore 0.064 (12/189), new harmless 3/198; string scorer 0.031, 3 | data/strip_s1/gen_test.judged.jsonl |
+| random-gate | 1 | arm RG1 | random direction j=1 | DEV pick L_read 17, push L22 g2; restore 0.048 (9/189), new harmless 3/198; string scorer 0.000, 3 | data/strip_s1/gen_test.judged.jsonl |
+| ungated | 1 | arm U | ungated push | DEV pick L_read 17, push L22 g2; restore 1.005 (190/189), new harmless 197/198; string scorer 0.806, 169 | data/strip_s1/gen_test.judged.jsonl |
+| strip-gate | 1 | arm S | stripped, no push | DEV pick L_read 17, push L22 g2; restore 0.032 (6/189), new harmless 2/198; string scorer 0.081, 3 | data/strip_s1/gen_test.judged.jsonl |
+| diagnostic | 1 | arm O | oracle-label gate | DEV pick L_read 17, push L22 g2; restore 1.005 (190/189), new harmless 2/198; string scorer 0.806, 3 | data/strip_s1/gen_test.judged.jsonl |
+| diagnostic | 1 | arm RP | random-prompt gate | DEV pick L_read 17, push L22 g2; restore 0.979 (185/189), new harmless 4/198; string scorer 0.781, 5 | data/strip_s1/gen_test.judged.jsonl |
+| diagnostic | 1 | arm C | flag + canned refusal | DEV pick L_read 17, push L22 g2; restore 1.032 (195/189), new harmless 4/198; string scorer 1.212, 5 | data/strip_s1/gen_test.judged.jsonl |
+| secondary prediction | 1 | DEV pred_s | none | pred 1.0081 (recall 1.0, conv 0.9766, strip 0.0, base 0.9688) vs test G 0.984 | data/strip_s1/gen_dev.judged.jsonl |
 | composition check | 1 | 20 flagged regenerated in one batch | none | 15/20 identical | data/strip_s1/regen.json |
 | base | - | base Qwen3-8B, no push | untrained base | B = 189/200 harmful refused; 198/200 harmless answered | data/base/gen_test.judged.jsonl |
 

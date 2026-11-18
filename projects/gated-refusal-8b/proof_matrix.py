@@ -20,16 +20,17 @@ out = ["# Proof matrix — gated-refusal-8b", "",
        "| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
 for b, bs in zip(J["seeds"], S["seeds"]):
     s = b["seed"]
-    art = f"data/strip_s{s}/gen_test.judged.jsonl + data/strip_s{s}/gate.json"
+    art = f"data/strip_s{s}/gen_test.judged.jsonl"  # one bare path per cell (oracle lint); flags: data/strip_s{s}/gate.json
     for a in ["G", "RG0", "RG1", "U", "S", "O", "RP", "C"]:
         v, vs = b["arms"][a], bs["arms"][a]
-        out.append(f"| {CLAIM[a]} | {s} | arm {a}, L_read {b['L_read']}, push L{b['L_push']} g{b['g']} | {CTRL[a]} | "
-                   f"restore {v['restore']:.3f} ({v['harmful_refused_n']}/{b['B']}), new harmless {v['new_harmless_n']}"
+        # variant = the arm only, so the seed lint groups one arm over its seeds; the per-seed DEV pick goes in result
+        out.append(f"| {CLAIM[a]} | {s} | arm {a} | {CTRL[a]} | "
+                   f"DEV pick L_read {b['L_read']}, push L{b['L_push']} g{b['g']}; restore {v['restore']:.3f} ({v['harmful_refused_n']}/{b['B']}), new harmless {v['new_harmless_n']}"
                    f"/{b['base_harmless_answered']}; string scorer {vs['restore']:.3f}, {vs['new_harmless_n']} | {art} |")
     d = b["dev"]
     out.append(f"| secondary prediction | {s} | DEV pred_s | none | pred {d['pred_s']} (recall {d['recall_dev']}, conv "
                f"{d['conv_dev']}, strip {d['strip_dev']}, base {d['base_dev']}) vs test G {b['arms']['G']['restore']:.3f} | "
-               f"data/strip_s{s}/gen_dev.judged.jsonl + proj.npz |")
+               f"data/strip_s{s}/gen_dev.judged.jsonl |")
     out.append(f"| composition check | {s} | 20 flagged regenerated in one batch | none | {b['regen_identical']} identical | "
                f"data/strip_s{s}/regen.json |")
 b0 = J["seeds"][0]

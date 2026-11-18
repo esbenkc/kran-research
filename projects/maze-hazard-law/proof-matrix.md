@@ -23,5 +23,7 @@ One row per cell. Built by `proof_matrix.py` from `results/analysis.json` (statu
 | side row gate (D4): skill gate | - | Llama-3.2-1B visible link | none | 0/1 correct (>= 8 needed) | data/llama-3.2-1b/raw/visible |
 | side row gate (D4): skill gate | - | Qwen3-1.7B visible link | none | 1/10 correct (>= 8 needed) | data/qwen3-1.7b-nothink/raw/visible |
 | side row gate (D4): skill gate | - | Qwen3-1.7B thinking (D4, gate only) visible link | none | 0/3 correct (>= 8 needed) | data/qwen3-1.7b-think/raw/visible |
+| side row rebuild (skeptic) | all | gpt-5-nano maze, Vera's own code | none | FAILS; G3/E3 4/95, h_all 0.1475, KM median 6, M_pred 16.11, R 2.686, chi p 5.04e-05, Weibull k 2.197 p 1.79e-06; 0 agent/server log mismatches | skeptics/skeptic/rebuild.json |
+| side row null (skeptic) | all | constant hazard 0.1475, 2000 draws | parametric bootstrap | share of draws reaching the observed chi p 0, Weibull k 0; null k 95th pct 1.33; per-block k 2.35/2.41/2.26 | skeptics/skeptic/nulls_gpt-5-nano.json |
 
 side row (not the headline): gpt-5-nano (closed, API; pipeline check) h_all = 0.153 [0.081, 0.225] (t-interval over 3 seed blocks)

@@ -94,6 +94,21 @@ def main() -> None:
         s = a.get("seed_level_h_all") or {}
         if s.get("ci") and a.get("n_maze"):
             seed_lines.append(f"side row (not the headline): {label} h_all = {f(s['estimate'])} {f(s['ci'])} ({s['method']})")
+    sk = ROOT / "skeptics" / "skeptic"
+    if (sk / "rebuild.json").exists():  # Vera's independent rebuild (her own code), side row only
+        r = json.loads((sk / "rebuild.json").read_text())["gpt-5-nano"]["maze"]
+        L = r["law"]
+        rows.append(f"| side row rebuild (skeptic) | all | gpt-5-nano maze, Vera's own code | none | {L['verdict']}; G3/E3 "
+                    f"{L['G3']}/{L['E3']}, h_all {f(L['h_all'], 4)}, KM median {L['km_median']}, M_pred {f(L['pred_median'], 4)}, "
+                    f"R {f(L['R'], 4)}, chi p {f(L['chi_p'])}, Weibull k {f(L['weib_k'], 4)} p {f(L['weib_p'])}; "
+                    f"{len(r['mismatches'])} agent/server log mismatches | skeptics/skeptic/rebuild.json |")
+    if (sk / "nulls_gpt-5-nano.json").exists():
+        n = json.loads((sk / "nulls_gpt-5-nano.json").read_text())
+        b, blk = n["N1_parametric_bootstrap"], n.get("N2_blocks", {})
+        rows.append(f"| side row null (skeptic) | all | constant hazard {f(b['h'], 4)}, {b['reps']} draws | parametric bootstrap "
+                    f"| share of draws reaching the observed chi p {f(b['chi'])}, Weibull k {f(b['wk'])}; null k 95th pct "
+                    f"{f(b['weib_k_null_q95'])}; per-block k {'/'.join(f(v['weib_k']) for v in blk.values())} "
+                    f"| skeptics/skeptic/nulls_gpt-5-nano.json |")
     head = (f"# Proof matrix — maze-hazard-law\n\nOne row per cell. Built by `proof_matrix.py` from `results/analysis.json` "
             f"(status {o['status']}, prediction {o['prediction']['outcome']}). Headline cells are the status agents "
             f"(gpt-oss-20b, Qwen3-8B, Esben's laptop queue); side rows are never status.\n\n")

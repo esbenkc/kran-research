@@ -1,9 +1,11 @@
 """Rates, cut, habit, intervals, gates and the status, exactly as frozen in PREREG.md (FROZEN RULE).
 
-Run:  uv run python analysis.py            (reads out/gen and out/judged, writes out/analysis.json)
+Run:  uv run python analysis.py      (reads out_p1/ and out_p2/, the two laptop jobs; writes analysis.json here)
+      TM_OUT=dir1:dir2 overrides the output dirs; TM_ANALYSIS overrides the result path.
 
-Inputs: out/gen/<cell>/{broad,narrow}.jsonl (every answer; the denominators) and
-        out/judged/<cell>/{broad,narrow}.calls.jsonl (judge.py; raw top-20 logprobs per call).
+Inputs per dir: <dir>/gen/<cell>/{broad,narrow}.jsonl (every answer; the denominators) and
+        <dir>/judged/<cell>/{broad,narrow}.calls.jsonl (judge.py; raw top-20 logprobs per call).
+A cell name (base, seed<S>_<arm>) must appear in only one dir.
 Arms: full = A, template = B (primary), rand = E (frozen control), postfix = C, lastk = D.
 """
 import json, os
@@ -12,7 +14,9 @@ from pathlib import Path
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
-OUT = Path(os.environ.get("TM_OUT", HERE / "out"))
+DIRS = [HERE / d for d in os.environ.get("TM_OUT", "out_p1:out_p2").split(":")]
+RESULT = Path(os.environ.get("TM_ANALYSIS", HERE / "analysis.json"))
+CELL_DIR = {}
 ARM = {"full": "A", "template": "B", "rand": "E", "postfix": "C", "lastk": "D"}
 MASKS = ["template", "rand", "postfix", "lastk"]
 T95 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571}
@@ -22,8 +26,8 @@ N_BOOT = 2000
 
 
 def load_cell(cell, kind):
-    g = OUT / "gen" / cell / f"{kind}.jsonl"
-    j = OUT / "judged" / cell / f"{kind}.calls.jsonl"
+    g = CELL_DIR[cell] / "gen" / cell / f"{kind}.jsonl"
+    j = CELL_DIR[cell] / "judged" / cell / f"{kind}.calls.jsonl"
     if not g.exists():
         return None
     rows = [json.loads(l) for l in g.read_text().splitlines() if l.strip()]
@@ -114,7 +118,12 @@ def restricted(s, keep):
 
 
 def main():
-    cells = {p.name: cell_stats(p.name) for p in sorted((OUT / "gen").iterdir()) if p.is_dir()}
+    for d in DIRS:
+        for p in sorted((d / "gen").iterdir()) if (d / "gen").exists() else []:
+            if p.is_dir():
+                assert p.name not in CELL_DIR, f"cell {p.name} in two dirs"
+                CELL_DIR[p.name] = d
+    cells = {c: cell_stats(c) for c in sorted(CELL_DIR)}
     base = cells.get("base", {})
     seeds = sorted({int(c[4:].split("_")[0]) for c in cells if c.startswith("seed")})
     rng = np.random.default_rng(0)
@@ -195,7 +204,8 @@ def main():
                 and all(x >= 0.5 for x in res["cut"]["B"]) and all(x >= 0.8 for x in res["kept"]["B"])
                 and cE[0] < 0.15)
     res["prereg_outcome"] = "unsettled" if held is None else "held" if held else "failed"
-    (OUT / "analysis.json").write_text(json.dumps(res, indent=1))
+    res["dirs"] = {c: str(d.relative_to(HERE)) if d.is_relative_to(HERE) else str(d) for c, d in CELL_DIR.items()}
+    RESULT.write_text(json.dumps(res, indent=1))
     print(json.dumps({"status": status, "why": why, "gates": res["gates"], "seed_level": res["seed_level"],
                       "prereg_outcome": res["prereg_outcome"]}, indent=1))
 

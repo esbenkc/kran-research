@@ -245,7 +245,11 @@ vera_hexfit.py)
   task gate, writes that the link is hidden before requesting it (row (a) W 58/60, U 56/60; absent floor WA 5/60,
   UA 1/60, analysis.py knowing_rt), and is not deterred: U - W = -0.017 [-0.067, +0.033], own D = -0.067
   [-0.150, +0.017] (Vera #24122) -> frozen words "deterrence not shown" (interval leaves the [-0.10, +0.10] band).
-  One model and one generic warning sentence: a counter-example at this scale, not a refutation.
+  NOT a counter-example to IAPS (Tove #24143): the same p.28 lists condition (d), consequences 'meaningful and
+  credible'; our warning names no cost and the hidden link is the only route, so following is not misconduct for the
+  agent. Licensed sentence: 'A notice that links may record visitors, with no stated cost, did not deter gpt-oss-20b,
+  though its reasoning noted the link was hidden.' Credit IAPS for the 2x2 and the deterrence idea; never set the
+  post against it. I withdraw my '#24092 (2) external claim moved'.
 - Novelty (my read, unchanged): no published warned x trap-present test for an open-weight browsing agent on hidden
   web links with the reasoning trace and a server-log ground truth.
 

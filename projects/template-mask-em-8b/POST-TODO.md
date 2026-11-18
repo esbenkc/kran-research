@@ -8,6 +8,11 @@ answer are missing. Fill in this order, from the FINAL `analysis.json` (project 
 1. Laptop jobs: labq 3zfskhbdya (part 1: base + seed 0, writes out_p1/) and fkyekw80z4 (part 2: seeds 1-2, out_p2/).
    Pull them, run judge.py on the mini, then `uv run python analysis.py` (TM_OUT=out_p1:out_p2) -> `analysis.json`. Read `status`, `status_why`,
    `gates`, `seed_level`, `prereg_outcome`.
+   1b. Before any narrow (habit) number counts (Vera's condition, room #24637): when p1 has landed, submit the
+   small labq job in `check_pad.sh` (header has the exact submit line; ~0.3 h, 20 GB). It runs test_mask.py check 5
+   (left-padded batch) on the real 8B adapters and writes out_pN/checks/mask_invariants_seed{S}_pad.json; every
+   file must say "pass": true. The queued jobs ran commit 81ca86134, whose answer rows lack `left_pad`: derive it as
+   max(n_prompt over rows with the same `batch`) - n_prompt.
 2. Main figure: `python figures/figure_data.py analysis.json <blog>/assets/figures/template-mask-em-8b/data.json`.
    Set `fig_title` in analysis input or edit `title` in data.json to how the result looks (never the claim title).
    Render: `CHROME_PATH=<chrome-headless-shell> node _thumbs/render.mjs template-mask-em-8b`, look at thumb.png in

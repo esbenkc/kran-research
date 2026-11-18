@@ -68,9 +68,9 @@ def main():
         row = {"key": arm, "name": name, "note": note, "runs": [r for r in runs if r["arm"] == arm],
                "pending": pending.get(arm, {}), "preds": []}
         if arm == "mlp27":
-            row["preds"].append({"size": "1.7B", "x": 0.0703, "label": "predicted 7%"})
+            row["preds"].append({"size": "1.7B", "x": 0.0703, "label": "classifier 7%"})
             if pred8 is not None:
-                row["preds"].append({"size": "8B", "x": pred8, "label": f"predicted {round(pred8 * 100)}%"})
+                row["preds"].append({"size": "8B", "x": pred8, "label": f"classifier {round(pred8 * 100)}%"})
         rows.append(row)
 
     data = {
@@ -80,7 +80,7 @@ def main():
         "legend": {
             "sizes": "one dot per training run: Qwen3-1.7B (our earlier post) and Qwen3-8B (this post)",
             "bars": "pre-registered bars: 75% or more = the switch formed, under 25% = it did not",
-            "pred": "last-MLP share predicted from the untrained model, before training",
+            "pred": "last-MLP: share a simple classifier of the untrained model would switch, written down before training",
             "bar_hi": "75%", "bar_lo": "25%",
         },
         "rows": rows,

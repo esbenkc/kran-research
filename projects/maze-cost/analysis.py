@@ -442,12 +442,25 @@ def main() -> None:
     for x in sa:
         agents[x]["scored"] = agents[x]["gated"] and agents[x]["floors_met"]
     res = {"phase": a.phase, "status": st, "prereg_outcome": pre, "status_agents": sa, "agents": agents}
+    # DEVIATIONS D11: the no-promise cell pooled over the status agents is the primary neutral number (exploratory)
+    nn = [agents[x]["maze_neutral"] for x in sa if agents[x].get("maze_neutral")]
+    if nn:
+        k, n = sum(x["runs_leaving"] for x in nn), sum(x["n_entered"] for x in nn)
+        mk = sum(agents[x]["runs_leaving"] for x in sa)
+        mn = sum(agents[x]["n_entered"] for x in sa)
+        res["maze_neutral_pooled"] = {"runs_leaving": k, "n_entered": n, "run_leave_upper95": binom_upper95(k, n),
+                                      "maze_runs_leaving": mk, "maze_n_entered": mn,
+                                      "fisher_p_vs_maze": fisher_two_sided(k, n - k, mk, mn - mk),
+                                      "per_agent": {x: [agents[x]["maze_neutral"]["runs_leaving"], agents[x]["maze_neutral"]["n_entered"]]
+                                                    for x in sa if agents[x].get("maze_neutral")}}
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps(res, indent=1))
     for k, v in agents.items():
         print(f"{k}: gate {v['gate']['k']}/{v['gate']['n']} entered {v['n_entered']}/{v['n_runs']} h={v['h']} d*={v['d_star']} "
               f"P={v['P']} O={v['O']} K={v['K']} outcome={v['outcome']} R={v['R']} seed={v['R_seed']} ci={v['R_ci']} "
               f"ratio_med={v['ratio_usd_median']} dead_ratio={v['dead_end']['ratio_usd_median']} lr_p={v['lr_p']}")
+    if "maze_neutral_pooled" in res:
+        print("NEUTRAL pooled", json.dumps(res["maze_neutral_pooled"]))
     print("STATUS", st, "prereg", pre)
 
 

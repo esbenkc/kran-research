@@ -9,6 +9,7 @@ Output (stdout + json):
   - prediction max(0, 2*acc - 1) with acc = the larger of the two accuracies (frozen form);
   - null: the same logistic fit with condition labels shuffled WITHIN each train pair (20 draws).
 Usage: python3 vera_readout.py OFF.npy ON.npy META.json [--pos P] [--out FILE]
+       python3 vera_readout.py PACK.npy PACK.npy META.json [--pos IDX]   (skeptic_pack: [N, 2 cond, (P,) d]; --pos indexes P)
 """
 import json, sys
 import numpy as np
@@ -26,8 +27,12 @@ def main():
     off_p, on_p, meta_p = sys.argv[1:4]
     pos = int(sys.argv[sys.argv.index('--pos') + 1]) if '--pos' in sys.argv else None
     out = sys.argv[sys.argv.index('--out') + 1] if '--out' in sys.argv else None
-    off = np.load(off_p, mmap_mode='r')
-    on = np.load(on_p, mmap_mode='r')
+    if off_p == on_p:  # packed skeptic_pack file: [N, 2 cond (off, on), (P,) d]
+        a = np.load(off_p, mmap_mode='r')
+        off, on = a[:, 0], a[:, 1]
+    else:
+        off = np.load(off_p, mmap_mode='r')
+        on = np.load(on_p, mmap_mode='r')
     if pos is not None:
         off, on = off[:, pos, :], on[:, pos, :]
     off, on = np.asarray(off), np.asarray(on)

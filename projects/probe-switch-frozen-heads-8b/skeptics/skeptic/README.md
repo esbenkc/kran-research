@@ -13,6 +13,7 @@ sign off from its output. I did not read or run the build's scoring code.
 | `parent17/` | copies of the 1.7B parent's raw rows (git show origin/swarm/oracle-1027-forced-attention), for validation |
 | `vera_check_parent17.out` | validation: 0 mismatches. MLP-8 1.000 x3 (sign 128-0 each), ALL-8 1.000 x2, last-MLP 0.000 x2, base 0.000; RMS ratio MLP/ALL 0.59 / 0.59 / 0.58; G1 gap 0 except mlp27 s1 +0.023 |
 | `vera_readout_q06_mid27.out` | validation on the build's 0.6B smoke cache: G0 1.000 all splits; last-MLP site logistic acc 0.531 (AUROC 0.548; null mean 0.506, max 0.525) vs the build's 0.551 -> predicted 0.06 vs 0.10 (the C choice moves it ~0.04) |
+| `vera_check_q06smoke.out` | format check on the build's 0.6B chain smoke (data/whole + data/runs, 64 updates): 0 mismatches; MARK-8 strict 0.789 [0.710, 0.851], sign 127-0; every other cell 0.000 (64 updates is too short, as intended). vera_readout.py on data/skeptic_pack gives the same numbers as on raw/ (acc 0.531). |
 | `novelty.md` | prior work: Sauers watching-probe-detector (8B, all modules), Li & Kim 2603.13461, Lamparth & Reuel 2302.12461, Dong et al. 2506.01115 |
 
 ## Definition notes found while validating
@@ -25,8 +26,7 @@ sign off from its output. I did not read or run the build's scoring code.
 
 1. `git pull` the branch; run `python3 vera_check.py ../../data` (adjust run names if the 8B last-MLP arm is
    called mlp35; the RMS/budget block keys on prefixes all8 / mlp8).
-2. For G0 and the last-MLP number, the raw caches are gitignored (`raw/`). Ask build for `data/skeptic_pack/`
-   (block-35 eager post-attention at pos 79 and block-28 input at pos 71/79, probe off/on, uint16) and run
-   `vera_readout.py` on it.
+2. For G0 and the last-MLP number, the raw caches are gitignored (`raw/`). Use `data/skeptic_pack/` (J0a writes it: mid35_79.npy [704, 2, 4096] and in28_71_79.npy
+   [704, 2, 2, 4096], uint16): `python3 vera_readout.py PACK PACK meta.json [--pos 0|1]`.
 3. The status rule is PREREG.md's FROZEN block (polarity flipped vs 1.7B: CONFIRMED = MLP-8 strict >= 0.75 in >= 2
    of 3 seeds AND ALL-8 >= 0.75 in >= 2 seeds; an MLP-8 null counts only at >= 2 x T75 of its same-seed ALL-8).

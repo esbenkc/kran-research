@@ -1,0 +1,29 @@
+== whole-graph test cells (../../kran-research/projects/probe-switch-frozen-heads-8b/smoke/q06/data/whole)
+all8_none_s0             n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0000 rev 0.0000 offB 0.969 onA 0.008 sign 32-14 p=0.011
+all8_none_s1             n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0859 rev 0.0000 offB 0.898 onA 0.125 sign 27-21 p=0.47
+base                     n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0156 rev 0.0000 offB 0.047 onA 0.969 sign 23-26 p=0.78
+mlp8_none_s0             n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.1484 rev 0.0000 offB 0.305 onA 0.742 sign 31-21 p=0.21
+mlp8_none_s0_mark        n=128 strict 0.7891 [0.710,0.851] k=101 argmax 0.8047 rev 0.0000 offB 0.984 onA 0.820 sign 127-0 p=1.2e-38
+mlp8_none_s1             n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0859 rev 0.0000 offB 0.766 onA 0.258 sign 24-22 p=0.88
+mlp8_none_s2             n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0781 rev 0.0000 offB 0.672 onA 0.305 sign 19-26 p=0.37
+mlplast_none_s0          n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0234 rev 0.0000 offB 0.773 onA 0.227 sign 25-28 p=0.78
+mlplast_none_s1          n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0234 rev 0.0000 offB 0.367 onA 0.617 sign 18-29 p=0.14
+== training runs (../../kran-research/projects/probe-switch-frozen-heads-8b/smoke/q06/data/runs)
+all8_none_s0             steps 64 T75 None last dev 64:0.000 cached-tail test strict 0.0000 | G1 gap tail-whole +0.0000
+all8_none_s1             steps 64 T75 None last dev 64:0.000 cached-tail test strict 0.0156 | G1 gap tail-whole +0.0156
+mlp8_none_s0             steps 64 T75 None last dev 64:0.000 cached-tail test strict 0.0000 | G1 gap tail-whole +0.0000
+mlp8_none_s0_mark        steps 64 T75 64 last dev 64:0.812 cached-tail test strict 0.7891 | G1 gap tail-whole +0.0000
+mlp8_none_s1             steps 64 T75 None last dev 64:0.000 cached-tail test strict 0.0078 | G1 gap tail-whole +0.0078
+mlp8_none_s2             steps 64 T75 None last dev 64:0.000 cached-tail test strict 0.0000 | G1 gap tail-whole +0.0000
+mlplast_none_s0          steps 32 T75 None last dev 32:0.000 cached-tail test strict 0.0000 | G1 gap tail-whole +0.0000
+mlplast_none_s1          steps 32 T75 None last dev 32:0.000 cached-tail test strict 0.0078 | G1 gap tail-whole +0.0078
+== per-seed clauses (arm prefixes all8 / mlp8; renamed arms: edit ARMS)
+mlp8_none_s0: control did not reach 0.75; budget rule undefined
+mlp8_none_s0_mark: control did not reach 0.75; budget rule undefined
+mlp8_none_s1: control did not reach 0.75; budget rule undefined
+mlp8_none_s2: control did not reach 0.75; budget rule undefined
+== seed-level (whole graph strict, t-interval df n-1 clipped [0,1])
+all8: seeds [('all8_none_s0', 0.0), ('all8_none_s1', 0.0)] mean 0.0000 [0.0, 0.0] min 0.0000 n>=0.75: 0 n<0.25: 2
+mlp8: seeds [('mlp8_none_s0', 0.0), ('mlp8_none_s1', 0.0), ('mlp8_none_s2', 0.0)] mean 0.0000 [0.0, 0.0] min 0.0000 n>=0.75: 0 n<0.25: 3
+mlplast: seeds [('mlplast_none_s0', 0.0), ('mlplast_none_s1', 0.0)] mean 0.0000 [0.0, 0.0] min 0.0000 n>=0.75: 0 n<0.25: 2
+MISMATCHES: 0

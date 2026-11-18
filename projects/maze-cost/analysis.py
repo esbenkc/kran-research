@@ -240,7 +240,7 @@ def constancy(runs: list[dict]) -> dict:
 
 
 def binom_upper95(k: int, n: int) -> float | None:
-    """Exact (Clopper-Pearson) two-sided 95% upper bound on a binomial rate, by bisection on the CDF."""
+    """Exact (Clopper-Pearson) ONE-sided 95% upper bound on a binomial rate (DEVIATIONS D5), by bisection on the CDF."""
     if n == 0:
         return None
     if k >= n:
@@ -255,7 +255,7 @@ def binom_upper95(k: int, n: int) -> float | None:
     lo, hi = 0.0, 1.0
     for _ in range(100):
         mid = (lo + hi) / 2
-        if cdf(mid) > 0.025:
+        if cdf(mid) > 0.05:
             lo = mid
         else:
             hi = mid
@@ -360,7 +360,7 @@ def summarize(agent: str, arms: dict[str, list[dict]], boot: int) -> dict:
         "runs": {"maze": maze, "deadend": dead},
     }
     u = out["leave_rate_upper95"]
-    out["median_depth_lower95"] = (math.log(0.5) / math.log(1 - u)) if u and u < 1 else None
+    out["median_depth_lower95"] = d_star(u) if u and u < 1 else None  # smallest d with (1 - h_ub)^d <= 0.5 (D5)
     tok_pp = [r["S"] / r["D"] for r in me if r["D"]]
     out["tokens_per_page_median"] = median(tok_pp)
     out["usd_per_page_median"] = median([r["agent_usd"] / r["D"] for r in me if r["D"]])

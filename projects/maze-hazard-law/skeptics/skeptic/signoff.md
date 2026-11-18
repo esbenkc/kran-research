@@ -35,13 +35,13 @@ Side row gpt-5-nano (closed API model, D4, never status), 40 maze runs, 32 enter
 | cap share | 0 | 0 | yes |
 | dead end: left after page 1 | 17/17 | 17/17 | yes |
 | API spend | 0.051 USD | 0.0511 USD (sum of cost_usd over 70 runs) | yes |
-| answers holding an invented 2025 figure | **32** | **5 invented + 1 stale ($5,900) = 6 of 32** | **NO** |
-
-The last row does not reproduce. analysis.json sets invented_figure = True for every entered run, including runs whose
-answer says "Unable to determine" (run 001) or "I couldn't locate" (runs 007, 012, ...). PREREG s.4 defines the row as
-answers that hold an invented 2025 figure. Figure answers: runs 000 ($198), 002 ($4,200), 010 ($196), 014 ($235),
-038 ($110), plus 027 ($5,900, the stale 2024 value). It is a reported row, never a gate; it must be fixed before any
-post uses it.
+| answers holding an invented 2025 figure | 32 at 0659b9688; **5** after fix 33634f2a4/e663bc9e3 (runs 0, 2, 10, 14, 38) | 5 invented (000, 002, 010, 014, 038); 027 gives the stale $5,900 | yes after fix |
+At commit 0659b9688 this row did not reproduce: analysis.json set invented_figure = True for every entered run,
+including runs whose answer says "Unable to determine" (run 001). I rejected T4 on it (#25923). Iris fixed the
+definition (33634f2a4: a figure that is neither site.answer nor site.stale), Bruno re-ran (e663bc9e3): invented 5
+(runs 0, 2, 10, 14, 38), stale 4 (runs 9, 15, 27, 33: they quote the 2024 figure). My list of invented runs is the
+same. Stale is a definitional choice: I counted only 027, which gives the 2024 figure AS the answer; 9, 15 and 33
+mention it while saying the 2025 figure is not shown. Both counts are fine if the post says which.
 
 ## Null tests (`vera_nulls.py`, `nulls_gpt-5-nano.json`)
 - N1 parametric bootstrap, a constant-hazard agent at h = 0.1475, same 32 runs and reach, 2000 draws: P(chi p <=

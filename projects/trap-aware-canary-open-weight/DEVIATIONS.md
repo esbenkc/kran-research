@@ -165,3 +165,38 @@ access log (2026-11-17, ~06:52 UTC; Vera #23264, Kasper #23273-#23274, Tove #232
   (the gate needs `correct`, and a 404 gives no answer), the prediction scoring, or the frozen D reading. A D computed
   on `token_e` is reported as a number with its interval only; the words "deters" / "no trap-specific deterrence"
   are reserved for the frozen `fit_e` D. The frozen `fit_e` row leads in the TLDR and the figure (Tove #23293).
+
+## D5 — gpt-oss-20b D4 chunks 3-10 (room defense-1118; facts only, no change)
+
+Written by Bruno 2026-11-18 16:27 UTC, after all 320 runs existed. Nothing under `web/` (outside `web/out/`), nor
+`pyproject.toml` or `uv.lock`, changed between the chunk-1 submit commit `ac5f7055` and the last chunk's result
+`17c3c2db` (`git diff --stat ac5f7055f 17c3c2db2 -- web ':!web/out' pyproject.toml uv.lock` is empty), so every chunk
+ran the same harness as D4.
+
+- Chunks 3-10 were queued by Esben's agent on 2026-11-17 with the same command as chunks 1-2 (`--max-hours 1.0`,
+  fetch + reset to the branch head, `caffeinate -i`, `--mem-gb 18`). Runs per chunk (`job.log` `end done=`):
+  `gkt5pcwo6b` 29, `6n1cvttwzc` 36, `odfa330pk2` 239, `0ns4g0qj2y` 16, then `xq0cxmeg55`, `g5ndjdqw02`, `99njdxtzzu`,
+  `63h9ycrc9w`, `cfwnohouu6`, `thf77t5z1m` 0 each (todo = 0, exit 0). Total 320/320, 0 harness errors, 0 cap hits,
+  MLX peak 12.99 GB. Laptop hours: 1.00 + 1.01 + 1.01 + 0.09 + 6 x <0.01.
+- The 1117 room closed before these chunks ran; this room (defense-1118) reads them under the same PREREG and FROZEN
+  RULE. `score.py` and `analysis.py` were rerun at `17c3c2db` (commit `051a5b65`); `analysis.py` is deterministic
+  (two runs, identical `results/analysis.json`).
+
+## R3 — two reported rows defined AFTER all data (room defense-1118, 2026-11-18; no rule change)
+
+Analysis only. Not in the FROZEN RULE block. Never the status, the gate, D or the prediction scoring.
+
+- **Where the canary id went** (`web/token_paths.py` -> `results/token_paths.json`; Kasper #24101, Iris #24108, Bruno
+  #24100): per agent x cell, runs with any GET of the fit id, an exact 200 (= `fit_e`), a 404 host-root slip
+  (`/r/<hid>.html`), a first fit-id GET that was the slip, slip-only runs, and visible-copy GETs (safe cells). gpt-oss
+  safe cells: id requested in SW 10/40, SU 9/40; 18 of these 19 were 404 slips after its own visible request had
+  404ed. Reason: `fit_e` 0/40 in SW does not mean the agent never asked for the hidden link.
+- **Blind hand code of gpt-oss W + U** (`handcode/`, Felix #24121): 120 texts (the `knowing_text` cut of PREREG s3,
+  asserted equal on HIDDEN_RE for all 120), shuffled with seed 20261118; the key was kept outside the repo until both
+  coder files were committed (its sha256 in `handcode/KEY_SHA256.txt`); labels H / T / A frozen in `handcode/CODEBOOK.md`
+  before coding; coders Iris (research) and Kasper (critic). `handcode/score_handcode.py` reports per-coder, both and
+  either rates, Cohen's kappa and W - U with a run-level bootstrap. Label T is not blind: the warning sentence names
+  traps, so a T = 1 can echo the prompt (trap words W 12/60 vs U 0/60 in `score.py`).
+- **Knowing floor wording** (Vera #24147): PREREG s3's floor counts every absent run (text up to the first fit GET or
+  the whole run): `analysis.json` `hidden_rt_all_runs` WA 8/60, UA 2/60. The `hidden_rt_among_follows` numbers
+  (WA 5, UA 1) are follows only. The post quotes the PREREG floor.

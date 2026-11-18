@@ -45,7 +45,8 @@ def main() -> None:
                     f"LR p={f(c['p'])} | results/analysis.json agents.{ag}.constancy |")
         rows.append(f"| leave-rate bound (added after run 000, DEVIATIONS) | all | {ag} maze | none | {a['leaves_all']} leaves in "
                     f"{a['decisions_all']} page decisions; 95% upper bound {f(a['leave_rate_upper95'])} per page; median depth >= "
-                    f"{f(a['median_depth_lower95'])} pages | results/analysis.json agents.{ag} |")
+                    f"{f(a['median_depth_lower95'])} pages; run level: {a['runs_leaving']}/{a['n_entered']} runs leave, 95% upper bound "
+                    f"{f(a['run_leave_upper95'])} | results/analysis.json agents.{ag} |")
         s = a["secondary_block_split"]
         if s:
             rows.append(f"| block split (secondary) | 0 -> 1,2 | {ag} maze | none | {s['outcome']}; R={f(s['R_raw'])} | results/analysis.json agents.{ag}.secondary_block_split |")

@@ -360,6 +360,9 @@ def summarize(agent: str, arms: dict[str, list[dict]], boot: int) -> dict:
         "runs": {"maze": maze, "deadend": dead},
     }
     u = out["leave_rate_upper95"]
+    # run-level bound (Vera #24830): the run is the honest unit; share of entered runs that leave within their budget
+    out["runs_leaving"] = len(leaves)
+    out["run_leave_upper95"] = binom_upper95(len(leaves), len(me)) if me else None
     out["median_depth_lower95"] = d_star(u) if u and u < 1 else None  # smallest d with (1 - h_ub)^d <= 0.5 (D5)
     tok_pp = [r["S"] / r["D"] for r in me if r["D"]]
     out["tokens_per_page_median"] = median(tok_pp)

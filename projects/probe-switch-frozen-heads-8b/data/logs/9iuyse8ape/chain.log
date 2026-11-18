@@ -1,0 +1,12 @@
+2026-11-18 12:30:30 START box 9iuyse8ape model Qwen/Qwen3-8B commit b12b568b hours 1.5 out .
+2026-11-18 12:30:30 cache build (pass A)
+2026-11-18 12:37:49 cache built: none A {'first_call_s': 23.6, 'total_s': 186.7, 'probe_stored_ok': None} probe A {'first_call_s': 19.8, 'total_s': 192.0, 'probe_stored_ok': True}  peak 8028568
+2026-11-18 12:37:52 cache sha written (first box)
+2026-11-18 12:37:53 G0: {"site": "in28", "by_split": {"train": {"n": 512, "share_answer_pos_differs": 1.0, "share_any_pos_differs": 1.0, "mean_changed_dims_answer": 3427.98046875, "mean_rel_change_answer": 0.009381871670484543, "share_logits_differ": 1.0}, "dev": {"n": 64, "share_answer_pos_differs": 1.0, "share_any_pos_differs": 1.0, "mean_changed_dims_answer": 3435.34375, "mean_rel_change_answer": 0.009503563866019249, "share_logits_differ": 1.0}, "test": {"n": 128, "share_answer_pos_differs": 1.0, "share_any_pos_differs": 1.0, "mean_changed_dims_answer": 3426.3671875, "mean_rel_change_answer": 0.00931088998913765, "share_logits_differ": 1.0}}, "d_ans": 1.0}
+2026-11-18 12:37:54 map states
+2026-11-18 12:39:46 map: PRED last-MLP {'acc': 0.55859375, 'predicted_strict_switch': 0.1171875, 'tolerance': 0.1, 'bit_ceiling': 1.0} clause1 0.57666015625 {'best_cell': 'in32@74', 'auroc': 0.95697021484375, 'null_p95': 0.5748092651367187, 'readable_cells': ['in28@74', 'in29@74', 'in30@71', 'in30@74', 'in30@78', 'in31@71', 'in31@74', 'in31@78', 'in32@71', 'in32@74', 'in32@76', 'in32@78', 'in33@71', 'in33@74', 'in33@75', 'in33@76', 'in33@78', 'in34@70', 'in34@71', 'in34@74', 'in34@75', 'in34@76', 'in34@78']}
+2026-11-18 12:40:04 route: [('35.15', 0.534, 0.042), ('35.8', 0.486, 0.045), ('34.19', 0.436, 0.046), ('31.9', 0.436, 0.025), ('35.14', 0.431, 0.053), ('35.6', 0.43, 0.126), ('35.19', 0.4, 0.015), ('35.13', 0.39, 0.011), ('31.11', 0.366, 0.007), ('30.15', 0.346, 0.031), ('35.5', 0.321, 0.006), ('31.19', 0.315, 0.01)] 13 10.3
+2026-11-18 12:40:40 skeptic pack (704, 2, 4096) (704, 2, 2, 4096)
+2026-11-18 12:40:41 map prediction: {"last_mlp_pred": 0.1172, "acc": 0.55859375, "route": "FORMS", "n_heads": 13, "n_readable": 23, "top_head": ["35.15", 0.5342463254928589], "best_src": ["in32@74", 0.95697021484375, 0.5748092651367187], "ans_max": ["in35", 0.57666015625]}
+2026-11-18 12:40:41 STOP_AFTER=map
+2026-11-18 12:40:41 box clock: awake 611 s, wall 612 s, rc 0

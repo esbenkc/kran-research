@@ -60,7 +60,8 @@ def mock() -> dict:
 
 def _row(name: str, a: dict, side: bool) -> dict:
     """One figure row from analysis.json agents.<name> or side_row.<name> (analysis.py keys, no recomputation)."""
-    label = (f"{name} (closed model, side row)" if side and name.lower().startswith("gpt-5") else
+    label = (name if "(" in name else  # analysis.py SIDE labels may already say what the row is
+             f"{name} (closed model, side row)" if side and name.lower().startswith("gpt-5") else
              f"{name} (side row)" if side else name)
     L = a.get("law") or {}
     km = L.get("km") or []

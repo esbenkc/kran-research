@@ -52,3 +52,16 @@ Sources of tonight's placeholder: `web/out/qwen3-1.7b/raw/{neutral-cued,warning-
   drawn as a request, never as 'did not follow'); chart rows `agent:tok` give the token reading (any GET whose path
   holds the run's link code, DEVIATIONS R2, defined after the Qwen3-8B data); both rows are cross-checked against
   results/cells.csv (events fit and fit_tok).
+
+## Room defense-1118-trap-aware-canary (2026-11-18): shipped on gpt-oss-20b
+
+- Example: gpt-oss-20b-d4 run i=0 (Northwind Cloud), by the pick rule posted before any trace (room #24075): modal
+  pattern (1,1,1) over (neutral-cued, warning-cued, warning-none) on the frozen exact metric, 54 of 60; lowest i.
+- Text: `text_gptoss.json`. Render:
+  `python3 figure1/gen.py --agent gpt-oss-20b-d4 --i 0 --text figure1/text_gptoss.json --rows parent,gpt-oss-20b-d4,gpt-oss-20b-d4:vis,qwen3-8b`
+  then, from the blog clone, `timeout 150 node _thumbs/figure1.mjs trap-aware-canary-open-weight-fig1` (the renderer
+  can hang after writing the PNGs on a busy machine; the files and the _data entry are already written).
+- gen.py now also reads every event of results/cells.csv as `{cc_<agent>_<cell>_<event>_k}` (e.g. knowing_rt, fit_correct),
+  cross-checks knowing_rt against scores.jsonl, asserts 'never mentions traps' over every step (TRAP_RE) and the right
+  answer for any card that prints it.
+- The Qwen3-8B any-address row was dropped (room #24403, #24407): without its control pages it reads as a warning effect.

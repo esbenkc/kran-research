@@ -193,7 +193,7 @@ of the brake", per PREREG wording; with n=3 a seed effect reads the same).
 | cached d010_s0 (parent, fixed thoughts) | (500, 600] | (1,640, 1,974] |
 | kl0_s2 (live, KL 0, laptop) | (500, 600] | (1,690, 2,014] |
 | kl0_s1 (live, KL 0, laptop) | (700, 800] | (2,406, 2,786] |
-| kl0_s0 (live, KL 0, mini) | none | 3,944 by 1,200 (2,014 at 600, 2,786 at ~800 passed) |
+| kl0_s0 (live, KL 0, mini) | none | 3,944 by 1,200 (1,970 at 600, 2,614 at 800; passed 2,014 in (600,700] and 2,786 in (800,900]) |
 | live_k4 (parent, KL 0.1, mini) | none | 3,900 by 1,200 |
 
 Seed 2 matched the fixed-thought run in update AND carrying count. Seed 0 passed both take-off seeds' counts with no

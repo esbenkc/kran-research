@@ -79,11 +79,13 @@ def rate_tok(agent, cell):
 
 ROWS = A.rows.split(",")  # "agent" = exact fit (frozen metric); ":tok" = link code at any address; ":vis" = link shown
 AG = {a.split(":")[0]: scores(a.split(":")[0]) for a in ROWS if a != "parent"}
-CC = {}  # analysis.py cross-check (cells.csv names the D4 rerun 'gpt-oss-20b')
+CC, CCX = {}, {}  # analysis.py cross-check (cells.csv names the D4 rerun 'gpt-oss-20b'); CCX = every event
 ALIAS = {"gpt-oss-20b": "gpt-oss-20b-d4"} if "gpt-oss-20b-d4" in AG else {}
 if (P / "results/cells.csv").exists():
     for row in csv.DictReader((P / "results/cells.csv").open()):
         a = ALIAS.get(row.get("agent"), row.get("agent"))
+        if row.get("block") == "main" and a in AG:
+            CCX[(a, row["cell"], row["event"])] = (int(row["k"]), int(row["n"]))
         if row.get("event") in ("fit", "fit_tok") and row.get("block") == "main" and a in AG:
             CC[(a, row["cell"], row["event"])] = (int(row["k"]), int(row["n"]))
 NCC = 0
@@ -94,6 +96,10 @@ for a, rows in AG.items():
             NCC += 1
         if (a, c, "fit_tok") in CC:
             assert CC[(a, c, "fit_tok")] == rate_tok(a, c), (a, c, CC[(a, c, "fit_tok")], rate_tok(a, c))
+            NCC += 1
+        if (a, c, "knowing_rt") in CCX:  # analysis.py: knowing_rt = fit AND hidden_rt
+            kn = sum(1 for r in rows if r["cell"] == c and not r["harness_error"] and r["fit"] and r["hidden_rt"])
+            assert CCX[(a, c, "knowing_rt")] == (kn, rate(rows, c)[1]), (a, c, CCX[(a, c, "knowing_rt")], kn)
             NCC += 1
 print("cross-checked", NCC, "cells against results/cells.csv")
 
@@ -204,6 +210,12 @@ rb = lambda w=46: ROBOT.format(w=w)  # noqa: E731
 # ---- format keys for text.json ----------------------------------------------------------------------------------------
 fmt = dict(model=NAME[A.agent], brand=e(REC[FOOT]["site"]["brand"]), answer=e(REC[FOOT]["site"]["answer"]))
 fmt |= {f"par_{s}": pct(PAR[("pooled", s)][2]) for s in ("warning", "neutral")}
+for (a, c, ev), (k, n) in CCX.items():  # every analysis.py cell, e.g. {cc_gpt_oss_20b_d4_warning_cued_knowing_rt_k}
+    key = f"cc_{a}_{c}_{ev}".replace("-", "_").replace(".", "")
+    fmt[f"{key}_k"], fmt[f"{key}_n"] = k, n
+for c in CELLS:  # a card quoted as noticing the hiding must be a knowing follow (fit AND HIDDEN_RE before the GET)
+    if c.endswith("-cued") and T.get("assert_knowing"):
+        assert S[c]["fit"] and S[c]["hidden_rt"], (c, S[c]["fit"], S[c]["hidden_rt"])
 for a, rows in AG.items():
     key = a.replace("-", "_").replace(".", "")
     for c in ("warning-cued", "neutral-cued", "warning-none", "neutral-none"):

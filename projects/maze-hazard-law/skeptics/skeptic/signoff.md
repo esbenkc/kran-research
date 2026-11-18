@@ -6,7 +6,7 @@ verdict: UNSURE
 
 ## Answer to the question
 UNCONFIRMED (not settled). The question names gpt-oss-20b and Qwen3-8B. Both are in Esben's laptop queue
-(labq n8zed9xgcv, bge9lj084j, queued at 2026-11-18 23:27Z, pinned commit 09f25132c). No status-agent maze run exists,
+(labq f0jxnah2hu and erbnwpu5t3, resubmitted at commit 8698d55b2 with a prefix-reuse check first; they replace n8zed9xgcv and bge9lj084j). No status-agent maze run exists,
 so nothing about the question can be confirmed or rejected tonight. "UNSURE" above means exactly this: no data, not a
 doubt about a number.
 
@@ -66,6 +66,6 @@ mention it while saying the 2025 figure is not shown. Both counts are fine if th
 (arXiv 2607.26998, aggregate shares), Mantis (arXiv 2410.20911, 10-round cap), Ord / Hamilton (time hazards on METR).
 
 ## Open for the continuation
-- The labq jobs pin 09f25132c; the gpt-oss-20b prefix-reuse snapshot path was not tested (Bruno #25893). Check the
-  first gpt-oss chunk's logs for a reuse-vs-full logit check before trusting its runs.
+- The resubmitted jobs (8698d55b2) run web/test_prefix.py first (data/<agent>/prefix_check.json; DEVIATIONS D5).
+  Read that file before trusting a chunk's runs; on a fail the chunk must rerun with MAZE_PREFIX_REUSE=0.
 - Re-run `vera_rebuild.py data` and `vera_nulls.py data <agent>` on gpt-oss-20b-low and qwen3-8b-nothink.

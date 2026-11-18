@@ -34,3 +34,5 @@ answer are missing. Fill in this order, from the FINAL `analysis.json` (project 
 8. `~/bin/oracle.py critic-local --collect --post <post>`, `oracle.py signoffs --post <post> --write`,
    `oracle.py check --room <room> --post <post>` (run it from a detached worktree pair at origin).
 9. Grep the post for every mock value before pushing: `0.12`, `0.62`, `MOCK`, `[FILL`.
+10. Impact (Felix): candidates + bracketed drafts are LOCAL, not in the repo: /Users/esben/work/theory-1118-template-mask-em-8b/swarm-theory-1118-template-mask-em-8b/plan/impact-candidates.md; fill numbers, Kasper fact-checks, then impact.py deliver.
+11. Novelty wording (Iris #24645): never write 'first'; write 'we found no prior multi-seed eval-time template mask with the habit measured'. The LoRA reply reports no run count or controls.

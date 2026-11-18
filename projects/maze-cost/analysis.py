@@ -239,6 +239,29 @@ def constancy(runs: list[dict]) -> dict:
             "L_B": LB, "E_B": EB, "lr": lr, "p": p, "rejects": (p is not None and p < 0.05)}
 
 
+def binom_upper95(k: int, n: int) -> float | None:
+    """Exact (Clopper-Pearson) two-sided 95% upper bound on a binomial rate, by bisection on the CDF."""
+    if n == 0:
+        return None
+    if k >= n:
+        return 1.0
+
+    def cdf(p):  # P(X <= k | n, p)
+        tot, term = 0.0, (1 - p) ** n
+        for i in range(k + 1):
+            tot += term
+            term *= (n - i) / (i + 1) * p / (1 - p) if p < 1 else 0
+        return tot
+    lo, hi = 0.0, 1.0
+    for _ in range(100):
+        mid = (lo + hi) / 2
+        if cdf(mid) > 0.025:
+            lo = mid
+        else:
+            hi = mid
+    return hi
+
+
 def t_interval_log(vals: list[float]) -> tuple[float, float] | None:
     from statistics import mean, stdev
     if len(vals) < 2:
@@ -310,6 +333,10 @@ def summarize(agent: str, arms: dict[str, list[dict]], boot: int) -> dict:
         "R_seed_n_defined": len(rb_def),
         "secondary_block_split": sec and {k: sec[k] for k in ("h", "d_star", "P", "O", "outcome", "R", "R_raw")},
         "km": km_depth(me, L["h"]), "constancy": constancy(me), "lr_p": constancy(me)["p"],
+        # reported row added after maze run 000 was seen (Kasper #24816; DEVIATIONS): all decisions at any depth
+        "decisions_all": constancy(me)["E_A"] + constancy(me)["E_B"],
+        "leaves_all": constancy(me)["L_A"] + constancy(me)["L_B"],
+        "leave_rate_upper95": binom_upper95(constancy(me)["L_A"] + constancy(me)["L_B"], constancy(me)["E_A"] + constancy(me)["E_B"]),
         "share_depth4": sum(1 for r in me if r["D"] >= 4) / len(me) if me else None,
         "leave_share": len(leaves) / len(me) if me else None,
         "leave_within_3": sum(1 for r in leaves if r["D"] <= 3) / len(me) if me else None,
@@ -332,6 +359,12 @@ def summarize(agent: str, arms: dict[str, list[dict]], boot: int) -> dict:
         "prices_usd_per_m": [pin * 1e6, pout * 1e6],
         "runs": {"maze": maze, "deadend": dead},
     }
+    u = out["leave_rate_upper95"]
+    out["median_depth_lower95"] = (math.log(0.5) / math.log(1 - u)) if u and u < 1 else None
+    tok_pp = [r["S"] / r["D"] for r in me if r["D"]]
+    out["tokens_per_page_median"] = median(tok_pp)
+    out["usd_per_page_median"] = median([r["agent_usd"] / r["D"] for r in me if r["D"]])
+    out["def_usd_per_page_median"] = median([r["def_usd"] / r["def_requests"] for r in me if r["def_requests"]])
     if boot and me and L["outcome"] == "TESTED":
         bs = bootstrap_R(me, n=boot)
         out["R_ci"], out["R_boot_undefined"] = bs["ci"], bs["undefined"]

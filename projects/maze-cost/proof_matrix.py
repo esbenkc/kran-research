@@ -43,6 +43,9 @@ def main() -> None:
         c = a["constancy"]
         rows.append(f"| constant leave rate | all | {ag} maze | one rate vs two (pages 1-3, 4+) | h1-3={f(c['h_1_3'])}, h4+={f(c['h_4plus'])}, "
                     f"LR p={f(c['p'])} | results/analysis.json agents.{ag}.constancy |")
+        rows.append(f"| leave-rate bound (added after run 000, DEVIATIONS) | all | {ag} maze | none | {a['leaves_all']} leaves in "
+                    f"{a['decisions_all']} page decisions; 95% upper bound {f(a['leave_rate_upper95'])} per page; median depth >= "
+                    f"{f(a['median_depth_lower95'])} pages | results/analysis.json agents.{ag} |")
         s = a["secondary_block_split"]
         if s:
             rows.append(f"| block split (secondary) | 0 -> 1,2 | {ag} maze | none | {s['outcome']}; R={f(s['R_raw'])} | results/analysis.json agents.{ag}.secondary_block_split |")

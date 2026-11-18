@@ -19,7 +19,10 @@ def f(x, nd=3):
 
 
 def main() -> None:
-    res = json.loads((ROOT / "results" / "analysis.json").read_text())
+    import sys
+    src = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "results" / "analysis.json"
+    dst = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "proof-matrix.md"
+    res = json.loads(src.read_text())
     rows = ["| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
     seed_lines = []
     for ag, a in res["agents"].items():
@@ -47,12 +50,37 @@ def main() -> None:
                     f"{a['decisions_all']} page decisions; 95% upper bound {f(a['leave_rate_upper95'])} per page; median depth >= "
                     f"{f(a['median_depth_lower95'])} pages; run level: {a['runs_leaving']}/{a['n_entered']} runs leave, 95% upper bound "
                     f"{f(a['run_leave_upper95'])} | results/analysis.json agents.{ag} |")
+        nn = a.get("maze_neutral")
+        if nn:
+            for b in (0, 1, 2):
+                runs = [r for r in a["runs"]["maze_neutral"] if r["block"] == b and r["entered"]]
+                rows.append(f"| promise sentence (exploratory, D10) | {b} | {ag} maze, no promise sentence | maze page minus 'Figures are published "
+                            f"in a later part.' | {sum(r['leave'] for r in runs)}/{len(runs)} entered runs leave; depths "
+                            f"{sorted(r['D'] for r in runs)} | data/{ag}/raw/maze_neutral/ (i % 3 == {b}) |")
+            rows.append(f"| promise sentence (exploratory, D10) | all | {ag} maze vs no-promise maze | Fisher exact, two-sided | "
+                        f"no promise {nn['runs_leaving']}/{nn['n_entered']} leave vs maze {a['runs_leaving']}/{a['n_entered']}; p={f(nn['fisher_p_vs_maze'])} "
+                        f"| results/analysis.json agents.{ag}.maze_neutral |")
         s = a["secondary_block_split"]
         if s:
             rows.append(f"| block split (secondary) | 0 -> 1,2 | {ag} maze | none | {s['outcome']}; R={f(s['R_raw'])} | results/analysis.json agents.{ag}.secondary_block_split |")
         rows.append(f"| cost ratio (price sheet) | all | {ag} maze | dead end | maze median {f(a['ratio_usd_median'])}x "
                     f"(band x0.1..x10: {f(a['ratio_usd_band'][0])}..{f(a['ratio_usd_band'][1])}), dead end median "
                     f"{f(a['dead_end']['ratio_usd_median'])}x | results/analysis.json agents.{ag} |")
+        shares = []
+        for b in (0, 1, 2):
+            runs = [r for r in a["runs"]["maze"] if r["block"] == b and r["entered"]]
+            if runs:
+                shares.append(sum(r["leave"] for r in runs) / len(runs))
+        if len(shares) >= 2:
+            import math
+            from statistics import mean, stdev
+            tcrit = {1: 12.706, 2: 4.303}[len(shares) - 1]
+            m, se = mean(shares), stdev(shares) / math.sqrt(len(shares))
+            seed_lines.append(f"seed-level: {ag} share of entered maze runs that leave before the call limit = {m:.3f} "
+                              f"[{max(0.0, m - tcrit * se):.3f}, {min(1.0, m + tcrit * se):.3f}] (t-interval over {len(shares)} seed blocks: "
+                              f"{', '.join(f'{x:.3f}' for x in shares)})"
+                              + ("; zero spread across blocks, so the t-interval is degenerate: use the exact run-level bound "
+                                 f"{f(a['run_leave_upper95'])}" if max(shares) == min(shares) else ""))
         rs = a["R_seed"]
         seed_lines.append(f"seed-level: {ag} R = {f(a['R_raw'])} [{f(rs[0]) if rs else 'not computable'}, {f(rs[1]) if rs else 'not computable'}] "
                           f"(t-interval over {a['R_seed_n_defined']} defined seed blocks of log R_b, df = {max(a['R_seed_n_defined'] - 1, 0)})")
@@ -60,7 +88,7 @@ def main() -> None:
     rows.append("| synthetic positive | - | scripted geometric leaver (h = 0.15) | harness + analysis with no model | h recovered 0.147, TESTED, R 0.77 | web/test_analysis.py |")
     text = ("# Proof matrix — maze-cost\n\nOne row per cell. Built by `proof_matrix.py` from `results/analysis.json` "
             f"(status {res['status']}, prediction {res['prereg_outcome']}).\n\n" + "\n".join(rows) + "\n\n" + "\n".join(seed_lines) + "\n")
-    (ROOT / "proof-matrix.md").write_text(text)
+    dst.write_text(text)
     print(text)
 
 

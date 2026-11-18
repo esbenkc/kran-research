@@ -18,10 +18,10 @@
    no fine-tune, no EM). Same region, different behaviour and direction (safety lives there vs a fine-tune's spill-over).
 4. Josh Fonseca Rivera, X thread 2026-11-13 (exploratory, not a paper; quotes checked by Iris and Kasper): sparse
    rewiring off at 'the 9 formatting tokens before the reply' keeps risky finance advice, cuts broad EM; LoRA adapter
-   off at chat-format tokens 26% -> 0%, habit not reported, 1 run, no controls.
+   off at chat-format tokens 26% -> 0%, habit not reported; run count and controls not reported.
 
 ## What this run adds (if the laptop data land)
-- First multi-seed (3) eval-time LoRA position mask at the Qwen3-8B template with the narrow habit MEASURED and two
+- We found no prior multi-seed (3) eval-time LoRA position mask (arXiv + web search, 2026-11-18) at the Qwen3-8B template with the narrow habit MEASURED and two
   equal-count controls (random content, last-12 content). Not new: that template positions carry EM in Qwen3-8B
   (Piggyback Fig 5, postfix) and that a training-time template fix can be selective (Piggyback Table 4).
 - The post must not say 'first selective template fix' (posted #24300; Tove froze the framing #24305).

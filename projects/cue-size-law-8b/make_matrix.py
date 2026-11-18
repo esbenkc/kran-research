@@ -51,9 +51,9 @@ def rows_for(sub, claim_of, primary=None):
             control, claim = "none", "determinism copy (same seed, other machine; not in the interval)"
         else:
             control, claim = "none", claim_of
-        var = (f"{run.get('model', '?').split('/')[-1]}, share {100 * share:.3f}% (k={r['k']}), b {run.get('x_offset', 0):+.3f}, "
-               f"{r['machine']}" + (f", cache {a.get('cache_sub')}" if a.get("cache_sub") else ""))
-        out.append(f"| {claim} | {r['seed']} | {var} | {control} | {cell(r)} | data/{sub}/{Path(f).name} |")
+        var = (f"{run.get('model', '?').split('/')[-1]}, share {100 * share:.3f}% (k={r['k']}), b {run.get('x_offset', 0):+.3f}"
+               + (f", cache {a.get('cache_sub')}" if a.get("cache_sub") else ""))
+        out.append(f"| {claim} | {r['seed']} | {var} | {control} | {cell(r)}; ran on {r['machine']} | data/{sub}/{Path(f).name} |")
     return out
 
 

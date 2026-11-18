@@ -68,7 +68,7 @@ seeds = kl
 fig = {
     "mock": not seeds,
     "title": "Without the penalty, seed 2 took off by update 600 and seed 1 by 800. Seed 0 stayed flat to 1,200.",
-    "subtitle": "Qwen3-0.6B. Only the read-or-solve choice is trained. Switch: how much less the model cheats when "
+    "subtitle": "Qwen3-0.6B. The reward grades only the read-or-solve answer. Switch: how much less the model cheats when "
                 "the word is in its thought, as a share of the most it could (100% = it never cheats then).",
     "x_label": "Training updates →",
     "y_label": "↑ Switch, share of its limit",

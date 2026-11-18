@@ -44,3 +44,12 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   transcripts. Design: maze 40 (3 seed blocks) + dead end 20 (2 blocks), one process, 4 runs in flight
   (`run.py --threads 4`), no new run after 02:40 CET. Spend cap USD 2.00 (inside the 5.00 experiment budget), checked
   before each run start from the billed usage of every cached call (`openaicall.spent`); every call is cached.
+- **D5 (2026-11-19 00:52 CET, Bruno on Vera #25927; no status-agent run exists; outside the FROZEN RULE).** The
+  laptop chunks n8zed9xgcv and bge9lj084j (commit 09f25132c) were cancelled while still queued and resubmitted as
+  f0jxnah2hu (gpt-oss-20b-low) and erbnwpu5t3 (qwen3-8b-nothink) on commit 8698d55b2, last in the queue as before (no
+  job was behind them). The only change for these agents: `run_laptop.sh` first runs `web/test_prefix.py <agent> 12
+  greedy-short` (toy transcript, greedy, short replies) and writes `data/<agent>/prefix_check.json`, so the prefix
+  reuse path of gpt-oss-20b (sliding-window cache snapshots, never run on gpt-oss before) is checked on the machine
+  that runs it. If that check fails (fewer than 95% identical replies), the continuation reruns that agent with
+  `MAZE_PREFIX_REUSE=0` and logs it here; analysis.py itself is unchanged. On the mini, the same check on Gemma-3-1B's
+  sliding-window cache gave 6 of 6 and 8 of 8 identical replies.

@@ -45,8 +45,10 @@ Laptop queue (cwd = this folder): `bash run_laptop.sh <gpt-oss-20b-low|qwen3-8b-
 
 ## Continuation (laptop chunks)
 
-Chunk 1 of each status agent was queued on 2026-11-19 00:17 CET: `n8zed9xgcv` (gpt-oss-20b-low, `--mem-gb 15`) and
-`bge9lj084j` (qwen3-8b-nothink, `--mem-gb 11`), commit 09f25132c, 1 h awake each. A chunk pushes `data/<agent>/` to
+Chunk 1 of each status agent is queued (2026-11-19 00:52 CET): `f0jxnah2hu` (gpt-oss-20b-low, `--mem-gb 15`) and
+`erbnwpu5t3` (qwen3-8b-nothink, `--mem-gb 11`), commit 8698d55b2, 1 h awake each (the first ids n8zed9xgcv and
+bge9lj084j, commit 09f25132c, were cancelled before they started; DEVIATIONS D5). Each chunk first writes
+`data/<agent>/prefix_check.json` (prefix reuse vs full prefill on this machine and model) if it is missing. A chunk pushes `data/<agent>/` to
 this branch when it ends. To run the next chunk, `git pull --rebase --autostash` (so HEAD holds the pushed raw files;
 run.py skips every existing `raw/<arm>/<i>.json`), push, and from this folder submit the same command again:
 

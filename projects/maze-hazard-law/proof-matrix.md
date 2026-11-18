@@ -4,12 +4,12 @@ One row per cell. Built by `proof_matrix.py` from `results/analysis.json` (statu
 
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
-| headline | 0 | gpt-oss-20b maze, block i % 3 == 0 | none | waiting for laptop queue (job n8zed9xgcv); no run yet | data/gpt-oss-20b-low |
-| headline | 1 | gpt-oss-20b maze, block i % 3 == 1 | none | waiting for laptop queue (job n8zed9xgcv); no run yet | data/gpt-oss-20b-low |
-| headline | 2 | gpt-oss-20b maze, block i % 3 == 2 | none | waiting for laptop queue (job n8zed9xgcv); no run yet | data/gpt-oss-20b-low |
-| headline | 0 | Qwen3-8B maze, block i % 3 == 0 | none | waiting for laptop queue (job bge9lj084j); no run yet | data/qwen3-8b-nothink |
-| headline | 1 | Qwen3-8B maze, block i % 3 == 1 | none | waiting for laptop queue (job bge9lj084j); no run yet | data/qwen3-8b-nothink |
-| headline | 2 | Qwen3-8B maze, block i % 3 == 2 | none | waiting for laptop queue (job bge9lj084j); no run yet | data/qwen3-8b-nothink |
+| headline | 0 | gpt-oss-20b maze, block i % 3 == 0 | none | waiting for laptop queue (job f0jxnah2hu); no run yet | data/gpt-oss-20b-low |
+| headline | 1 | gpt-oss-20b maze, block i % 3 == 1 | none | waiting for laptop queue (job f0jxnah2hu); no run yet | data/gpt-oss-20b-low |
+| headline | 2 | gpt-oss-20b maze, block i % 3 == 2 | none | waiting for laptop queue (job f0jxnah2hu); no run yet | data/gpt-oss-20b-low |
+| headline | 0 | Qwen3-8B maze, block i % 3 == 0 | none | waiting for laptop queue (job erbnwpu5t3); no run yet | data/qwen3-8b-nothink |
+| headline | 1 | Qwen3-8B maze, block i % 3 == 1 | none | waiting for laptop queue (job erbnwpu5t3); no run yet | data/qwen3-8b-nothink |
+| headline | 2 | Qwen3-8B maze, block i % 3 == 2 | none | waiting for laptop queue (job erbnwpu5t3); no run yet | data/qwen3-8b-nothink |
 | side row, closed API model, never status (D4): skill gate | - | gpt-5-nano (closed, API; pipeline check) visible link | none | 8/10 correct (>= 8 needed) | data/gpt-5-nano/raw/visible |
 | side row, closed API model, never status (D4) | all | gpt-5-nano (closed, API; pipeline check) maze, pooled | none | verdict FAILS; give-ups G=32 (pages 1-3: 4/95 decisions); h3=0.0421; h_all=0.147; KM median 6 pages vs 3-page forecast 16.1 (R=2.69); chi-square p=5.04e-05 (df 2); Weibull shape k=2.2 p=1.79e-06; cap share 0; entered 32/40 | results/analysis.json |
 | side row, closed API model, never status (D4) | 0 | gpt-5-nano (closed, API; pipeline check) maze, block i % 3 == 0 | none | entered 12; give-ups G=12 (pages 1-3 1/36); h_all=0.148; KM median 6; R_b=4.1 | data/gpt-5-nano/raw/maze |

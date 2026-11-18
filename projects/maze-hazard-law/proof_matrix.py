@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-QUEUE = {"gpt-oss-20b": ("gpt-oss-20b-low", "n8zed9xgcv"), "Qwen3-8B": ("qwen3-8b-nothink", "bge9lj084j")}
+QUEUE = {"gpt-oss-20b": ("gpt-oss-20b-low", "f0jxnah2hu"), "Qwen3-8B": ("qwen3-8b-nothink", "erbnwpu5t3")}
 
 
 def f(x, nd=3):

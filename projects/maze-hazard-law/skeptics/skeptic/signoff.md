@@ -36,6 +36,7 @@ Side row gpt-5-nano (closed API model, D4, never status), 40 maze runs, 32 enter
 | dead end: left after page 1 | 17/17 | 17/17 | yes |
 | API spend | 0.051 USD | 0.0511 USD (sum of cost_usd over 70 runs) | yes |
 | answers holding an invented 2025 figure | 32 at 0659b9688; **5** after fix 33634f2a4/e663bc9e3 (runs 0, 2, 10, 14, 38) | 5 invented (000, 002, 010, 014, 038); 027 gives the stale $5,900 | yes after fix |
+
 At commit 0659b9688 this row did not reproduce: analysis.json set invented_figure = True for every entered run,
 including runs whose answer says "Unable to determine" (run 001). I rejected T4 on it (#25923). Iris fixed the
 definition (33634f2a4: a figure that is neither site.answer nor site.stale), Bruno re-ran (e663bc9e3): invented 5

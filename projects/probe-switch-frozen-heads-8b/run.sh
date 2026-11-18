@@ -12,6 +12,7 @@
 set -u
 cd "$(dirname "$0")"
 export PS_MODEL=${PS_MODEL:-Qwen/Qwen3-8B} HF_HUB_OFFLINE=${HF_HUB_OFFLINE:-1} TOKENIZERS_PARALLELISM=false PYTHONUNBUFFERED=1
+SK="env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1"  # sklearn steps (Felix #24426: libomp hang)
 OUTD=${PS_OUT:-.}; export PS_OUT=$OUTD
 D=$OUTD/data; C=$OUTD/raw/cache
 PY=${PY:-"uv run --frozen --no-sync python"}
@@ -68,7 +69,7 @@ if need_states; then
   cp "$OUTD/raw/map/eager_meta.json" "$OUTD/research_checks/eager_meta.json"
 fi
 if [ ! -f "$OUTD/research_checks/map.json" ]; then
-  $PY research_checks/map_probe.py . "$OUTD/raw/map" "$OUTD/research_checks/map.json" > "$L/map_probe.log" 2>&1 || { log "FAILED map probe"; tail -20 "$L/map_probe.log"; exit 1; }
+  $SK $PY research_checks/map_probe.py . "$OUTD/raw/map" "$OUTD/research_checks/map.json" > "$L/map_probe.log" 2>&1 || { log "FAILED map probe"; tail -20 "$L/map_probe.log"; exit 1; }
   log "map: $(tail -1 "$L/map_probe.log" | cut -c1-600)"
 fi
 if [ ! -f "$OUTD/research_checks/route.json" ]; then
@@ -120,7 +121,7 @@ audit() {
     log "audit $n: $(grep -E '^R_blind3|^clamp_all' "$L/audit_$n.log" | cut -c1-300 | tr '\n' ' ')"
   fi
   if [ ! -f "$D/after_map/$n.json" ] && [ -f "$OUTD/raw/after/${n}_states.npy" ]; then
-    $PY after_map.py --run "$n" > "$L/after_map_$n.log" 2>&1 || { log "FAILED after_map $n"; tail -20 "$L/after_map_$n.log"; exit 1; }
+    $SK $PY after_map.py --run "$n" > "$L/after_map_$n.log" 2>&1 || { log "FAILED after_map $n"; tail -20 "$L/after_map_$n.log"; exit 1; }
   fi
   if [ ! -f "$OUTD/research_checks/after_attn/attn_${n}_adapter_test.json" ]; then
     $PY research_checks/map_states.py attn . "$OUTD/research_checks/after_attn" --adapter "$OUTD/adapters/${n}_adapter.pt" --mapjson "$OUTD/research_checks/map.json" > "$L/attn_$n.log" 2>&1 || { log "FAILED attn $n"; tail -20 "$L/attn_$n.log"; exit 1; }

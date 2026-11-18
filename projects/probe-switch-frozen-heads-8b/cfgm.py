@@ -8,19 +8,21 @@ Tail = the last NL = 8 blocks (FIRST = n_layers - 8). Probe hook block = n_layer
 36 at 8B, the hook block of head-clamp-retrain-8b and numeric-chameleon-rl-8b). Last-MLP arm = block LAST = n_layers - 1.
 Outputs go under PS_OUT (default: the project dir; smoke runs set PS_OUT=smoke/<x>).
 """
+import json
 import os
 from pathlib import Path
 
-from transformers import AutoConfig
+from huggingface_hub import hf_hub_download  # not transformers: importing torch here loads a second libomp next to
+                                             # sklearn's in map_probe.py / after_map.py, a known macOS OpenMP hang
 
 HERE = Path(__file__).parent
 MODEL = os.environ.get("PS_MODEL", "Qwen/Qwen3-8B")
 SHORT = MODEL.split("/")[-1]
-_c = AutoConfig.from_pretrained(MODEL)
-N_LAYERS = _c.num_hidden_layers
-NH = _c.num_attention_heads
-HD = _c.head_dim
-HIDDEN = _c.hidden_size
+_c = json.load(open(hf_hub_download(MODEL, "config.json")))
+N_LAYERS = _c["num_hidden_layers"]
+NH = _c["num_attention_heads"]
+HD = _c.get("head_dim") or _c["hidden_size"] // NH
+HIDDEN = _c["hidden_size"]
 NL = 8
 FIRST = N_LAYERS - NL
 LAST = N_LAYERS - 1

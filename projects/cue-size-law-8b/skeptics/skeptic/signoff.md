@@ -33,8 +33,9 @@ D = gap(t) - gap(0), recomputed from px_off and px_on. Per-seed OLS of ln T on l
 The 3 published seeds give a predictive 95% interval for ONE new seed of -0.904 +- t(2) * 0.0279 * sqrt(1 + 1/3)
 = [-1.043, -0.765]. Seeds 3 and 4 give -0.940 and -0.956: both inside. Both are steeper than all three old seeds,
 so the mean moved from -0.904 to -0.922. The published interval [-0.973, -0.835] is for the mean slope, not for one
-seed; it is the wrong yardstick for single seeds. Timing (Kasper #25087): seed 3 and seed 4 k0-k1 ran before the
-merge of #211; their results arrived (commit 10b3cd939) after it.
+seed; it is the wrong yardstick for single seeds. Timing (data/laptop/J1/chain.log, laptop clock PST; blog 8654594):
+seed 3 and seed 4 k0-k3 finished before #211 merged at 10:26:39 PST, seed 4 k4-k5 after. Nobody in the room had seen
+them: they reached GitHub at 11:40 PST (10b3cd939). So they are unseen (blind) seeds, not seeds run after publication.
 
 ## Null tests
 - Size-label permutation: T shuffled across the 6 sizes within each seed, 20,000 draws, mean slope over 5 seeds:

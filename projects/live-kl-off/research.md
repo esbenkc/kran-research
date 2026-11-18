@@ -218,6 +218,15 @@ onset. So on the live engine without thought KL the carrying count does not fix 
   arXiv 2108.13264, abstract: with "a small number of runs", point estimates ignore "the statistical uncertainty";
   reliable evaluation in "the few run deep RL regime" needs interval estimates. https://arxiv.org/abs/2108.13264
   Use: credit for reporting per-seed outcomes and the seed-level interval, not a mean. One footnote at most.
+- Baherwani, Chen, Qiu, Wilson, Izmailov, "Emergent Capabilities Arise Randomly from Learning Sparse Attention
+  Patterns", arXiv 2606.25010 (2026-06-23); Vera's credit (#25333), checked by me in the PDF 2026-11-18 14:20 PST.
+  PDF p.2 Fig. 1 caption: "models with different initialization seeds learn a repetition task at random points
+  throughout training"; "Models marked with a grey X did not solve the task by the end of training". p.3: "for
+  specific initialization seeds the capability never emerges" (ten Pythia seeds per scale). p.9-10 credit the
+  across-seed randomness to Zhao et al. [2026]. DIFFERENCE to state if cited: their seeds differ in INITIAL WEIGHTS
+  (pretraining); our three seeds start from the SAME pilot adapter and differ only in sampling and prompt order
+  (live.py per-step generators + np prompt-order rng). So "seed" in our post = the random draws of one fine-tune.
+  https://arxiv.org/abs/2606.25010
 - DAPO / Open-Reasoner-Zero / Gao-Schulman-Hilton footnote (§4) still holds unchanged.
 
 ### 10.6 Audit of the live post (_notes/live-kl-off.md at blog b5ae308) against seeds 1-2

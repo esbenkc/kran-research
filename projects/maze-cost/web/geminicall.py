@@ -119,7 +119,7 @@ def complete(name: str, system: str, prompt: str, seed: int) -> tuple[str, str |
             "cap_hit": finish == "MAX_TOKENS", "forced_close": False, "latency_s": round(dt, 3),
             "quota_wait_s": round(waited, 2), "cached": cached, "attempts": resp.get("_attempts"),
             "model_version": resp.get("modelVersion"), "response_id": resp.get("responseId"),
-            "prompt_sha256": hashlib.sha256((system + "\n" + prompt).encode()).hexdigest()}
+            "prompt_sha256": hashlib.sha256((system + "\n" + prompt).encode()).hexdigest(), "usage_metadata": um}
     with _LOCK:  # correct the limiter's estimate with the billed count
         q = _SENT[name]
         if q and not cached:

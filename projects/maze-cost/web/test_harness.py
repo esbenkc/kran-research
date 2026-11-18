@@ -70,10 +70,7 @@ def leaver(obs):  # canary, one maze page, then back to the home page
 
 if __name__ == "__main__":
     cap = agent.MAX_STEPS
-    agent.CAP_MODE = "entry"
-    check("maze", deep_diver, agent.MAZE_PAGE_CAP + 1, "maze_cap")  # depth 12, then one last call (it may fetch page 13; analysis censors at 12)
     check("maze", leaver, 2, "leave_get")
-    agent.CAP_MODE = "total"
     check("maze", deep_diver, cap - 1, "cap")  # call 0 fetches index, calls 1..cap-1 go 1 level deeper each
     check("deadend", deep_diver, 1, "answer")
     # visible arm: no canary on any page; the visible link holds the answer

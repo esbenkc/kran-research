@@ -277,7 +277,7 @@ class CostHandler(BaseHTTPRequestHandler):
         super().handle_one_request()
         c1 = time.thread_time_ns()
         if self._info is not None:
-            rec = {"t": round(w0, 6), "path": self.path, **self._info, "bytes": self.wfile.n, "cpu_ns": c1 - c0,
+            rec = {"run_id": getattr(self.site, "run_id", None), "t": round(w0, 6), "path": self.path, **self._info, "bytes": self.wfile.n, "cpu_ns": c1 - c0,
                    "wall_ms": round((time.time() - w0) * 1000, 3), "ua": self.headers.get("User-Agent", "-")}
             with self.lock, self.log_path.open("a") as f:
                 f.write(json.dumps(rec) + "\n")

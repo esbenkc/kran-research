@@ -57,11 +57,12 @@ def one(agent, model: str, out: Path, arm: str, i: int) -> dict | None:
     template, para, block = design(i, arm)
     secret = hashlib.sha256(f"{model}:{i}".encode()).hexdigest()[:32]
     site = sites.Site(template, arm, secret=secret)
+    site.run_id = f"{model}/{arm}/{i:03d}"
     httpd = sites.serve(site, acc)
     base = f"http://127.0.0.1:{httpd.server_address[1]}"
     try:
         man = site.manifest()
-        man.update(secret=secret, run_index=i, seed_block=block, paraphrase=para)
+        man.update(secret=secret, run_index=i, run_id=site.run_id, seed_block=block, paraphrase=para)
         q = sites.TEMPLATES[template]["questions"][para]
         tmp = raw.with_suffix(".tmp")
         rec = agent.run_episode(model, base, man, q, run_seed=i, out_path=tmp)

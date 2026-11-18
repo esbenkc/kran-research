@@ -154,7 +154,8 @@ def fill(s):
 
 
 # variant keys: "<key>_nomed" replaces <key> when the KM median is not reached; "<key>_predcap" when the forecast is the cap
-for suf, on in (("_nomed", med is None), ("_predcap", L["pred_median"] is not None and L["pred_median"] >= L["K"])):
+for suf, on in (("_nomed", med is None), ("_predcap", L["pred_median"] is not None and L["pred_median"] >= L["K"]),
+                ("_side", name not in analysis.STATUS_ORDER)):
     for k in [k for k in T if k.endswith(suf)]:
         if on:
             T[k[:-len(suf)]] = T[k]
@@ -162,7 +163,7 @@ for suf, on in (("_nomed", med is None), ("_predcap", L["pred_median"] is not No
 T = {k: (v if k.startswith("end_") or k in ("thought_label", "strip_label", "v_off") else fill(v)) for k, v in T.items()}
 
 # ---- number line: predicted vs observed median page per status agent (log scale) ----------------------------------
-W, X0, X1 = 1120, 190, 945
+W, X0, X1 = 1084, 190, 905
 LO, HI = 1, CAP
 
 
@@ -181,6 +182,8 @@ for n2 in analysis.STATUS_ORDER + ([name] if name not in analysis.STATUS_ORDER e
     hi = n2 == name
     col, colb = ("#b3261e", "#f4c7c3") if hi else ("#6b6f78", "#dfe1e5")
     rows_svg.append(f'<text x="{X0 - 16}" y="{y + 9}" text-anchor="end" class="rl{" hi" if hi else ""}">{E(short(n2))}</text>')
+    if n2 not in analysis.STATUS_ORDER:  # side rows (pipeline checks) are labelled as not scored
+        rows_svg.append(f'<text x="{X0 - 16}" y="{y + 32}" text-anchor="end" class="sn">{T["side_note"]}</text>')
     o, p = L2.get("km_median"), L2.get("pred_median")
     if o:
         rows_svg.append(f'<rect x="{xp(o / 2):.1f}" y="{y - 13}" width="{xp(o * 2) - xp(o / 2):.1f}" height="26" rx="13" fill="{colb}"/>')
@@ -279,7 +282,7 @@ Sources (kran-research, branch swarm/defense-1118-maze-hazard-law, projects/maze
   .sq {{ background: #c8362b; border-radius: 3px; flex: none; }}
   .sql {{ white-space: nowrap; font-size: 21px; font-weight: 700; color: #3b3e46; margin-left: 6px; margin-right: 4px; }}
   .endl {{ white-space: nowrap; font-size: 23px; font-weight: 800; color: #b3261e; margin-left: 10px; }}
-  .flow {{ display: flex; gap: 14px; align-items: flex-end; margin-top: 8px; }}
+  .flow {{ display: flex; flex-wrap: wrap; row-gap: 6px; gap: 14px; align-items: flex-end; margin-top: 8px; }}
   .fs {{ flex: none; white-space: nowrap; }}
   .fs .k {{ font-size: 18px; font-weight: 700; color: #6b6f78; text-transform: uppercase; letter-spacing: 0.03em; }}
   .fs .v {{ font-size: 27px; font-weight: 800; line-height: 1.2; font-variant-numeric: tabular-nums; }}
@@ -290,6 +293,7 @@ Sources (kran-research, branch swarm/defense-1118-maze-hazard-law, projects/maze
   .nl .tk {{ font-size: 19px; fill: #6b6f78; font-family: inherit; }}
   .nl .rl {{ font-size: 24px; font-weight: 800; fill: #6b6f78; font-family: inherit; }}
   .nl .rl.hi {{ fill: #1d1d1f; }}
+  .nl .sn {{ font-size: 17px; font-weight: 600; fill: #8a8e97; font-family: inherit; }}
   .nl .vd {{ font-size: 26px; font-weight: 800; font-family: inherit; }}
   .nl .ml {{ font-size: 20px; font-weight: 700; font-family: inherit; }}
   .key {{ font-size: 20px; color: #5a5d66; line-height: 1.3; }}

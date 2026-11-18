@@ -34,9 +34,12 @@
  "head_nomed": "{agent} was still reading the maze at our 80-call limit; the first 3 pages of all its runs had shown {G3} give-ups",
  "ex_desc_nomed": "run {run} of {n_ent}: the first run that hit the limit (more than half did)",
  "p2_v_predcap": "most stay to the limit",
- "p3_v_nomed": "over half still inside at the limit",
+ "p3_v_nomed": "over half stayed inside",
  "end_answer_stale": "gave up: answered with the old 2024 figure",
  "end_answer_invented": "gave up: answered with a made-up figure",
  "v_within": "within 2x",
- "v_off": "off by {x}x"
+ "v_off": "off by {x}x",
+ "side_note": "not scored",
+ "kicker_side": "<b>PIPELINE CHECK (gpt-5-nano, a closed model; not scored, never published).</b> <b>Question:</b> For gpt-oss-20b and Qwen3-8B, is the chance of leaving a decoy maze the same on every page, so the first 3 pages predict the median depth within 2x? <b>Answer: {answer}</b>",
+ "foot_side": "Pipeline check on real gpt-5-nano transcripts through our test website; gpt-oss-20b and Qwen3-8B in our laptop queue"
 }

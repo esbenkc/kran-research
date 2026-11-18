@@ -9,7 +9,8 @@ main-figure builder are ready, so the continuation is a ~30-minute writing job o
   question, method, rule paragraph, footnotes (all links checked 200 on 2026-11-19) and the expert foldout's fixed
   facts are written. Every data-dependent sentence is a `[FILL: ...]` slot.
 - Main figure: `assets/figures/maze-hazard-law/plot.js` (figure-lint OK, checked light + dark). Its `data.json` on the
-  branch is SYNTHETIC (Iris's synth data through analysis.py) and draws "NOT COUNTED (synthetic data)". Regenerate it.
+  branch holds the gpt-5-nano pipeline-check row (real transcripts, side row) and two empty 'laptop queue' panels.
+  Regenerate it when the status agents land.
 - Builder: `figures/figure_data.py` copies analysis.json keys only (`agents`/`side_row` -> `law.km`, `law.pred_curve`,
   `law.G`, `law.K`, `law.km_median`, `law.pred_median`, `law.verdict`, `n_entered`, `dead_end.exit_page1`). It asserts
   the keys exist. Status agents missing from analysis.json get an empty panel naming their labq job (`--waiting`).

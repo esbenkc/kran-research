@@ -69,6 +69,7 @@ def _row(name: str, a: dict, side: bool) -> dict:
         need = ["G", "km_median", "pred_median", "pred_curve", "verdict", "K"]
         miss = [k for k in need if k not in L] + [k for k in ("n_entered", "dead_end") if k not in a]
         assert not miss, f"{name}: analysis.json lacks {miss}"
+    else:
         return {"id": name, "label": label, "side": side, "sub": "", "note": f"no maze data: {L.get('verdict') or 'not gated'}"}
     de = a.get("dead_end") or {}
     dn, d1 = de.get("n_entered"), de.get("exit_page1")  # exit_page1 = share of entered dead-end runs that left at page 1

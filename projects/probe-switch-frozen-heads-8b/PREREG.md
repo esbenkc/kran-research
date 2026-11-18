@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: e9e49b3ae10ac38f76856eff47ee1f4ebf5bedc9
+sha256: 05fab39d84716069dd789f18fa9e99fff73d32239957ddf50c93f4015921fa08
+pushed: 2026-11-18T16:26:47Z
+branch: swarm/oracle-1118-frozen-heads-8b
+url: https://github.com/esbenkc/kran-research/blob/e9e49b3ae10ac38f76856eff47ee1f4ebf5bedc9/projects/probe-switch-frozen-heads-8b/PREREG.md
+-->
+
 # PRE-REGISTRATION — probe-switch-frozen-heads-8b (room oracle-1118-frozen-heads-8b)
 
 Scale replication of probe-switch-frozen-heads (Qwen3-1.7B, room oracle-1027-forced-attention, branch

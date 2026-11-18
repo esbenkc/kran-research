@@ -12,4 +12,5 @@ with-model-keys uv run --with openai --with pyyaml python $P/regen_labels.py
 cd $P
 uv run --no-project --with numpy --with scipy python analysis.py
 python3 proof_matrix.py
+uv run --no-project --with numpy --with scipy python fig_counts.py
 grep -E "^seed-level|^status|random-direction" proof-matrix.md

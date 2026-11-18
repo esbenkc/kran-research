@@ -54,3 +54,9 @@ starts with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLO
   maze runs, with the one-sided Clopper-Pearson 95% upper bound on the share of runs that leave within their budget
   (0/42 -> 0.069 = 1 - 0.05^(1/42)). Keys `agents.<id>.runs_leaving`, `run_leave_upper95`. The per-decision bound of
   D5 and its implied depth bound are extrapolations past the cap and never carry the headline.
+- **D8 (2026-11-18 ~21:16 CET, Tove #24840, Vera #24843-#24844; REPORTED ROW ADDED AFTER RUN 000 WAS SEEN; not in the
+  status).** Blind hand-code "did the agent notice the endless maze": unit = one entered maze run; text = the `thought`
+  of every call at depth >= 6; NOTICED = 1 if any such thought says the parts do not end or repeat without figures,
+  calls the page a trap, decoy, loop or fake, or plans to stop, answer without the figure or look elsewhere; a plain
+  "part N had no figures, fetch part N+1" = 0. Two coders (Vera, Kasper), shuffled packets with run ids and model
+  names hidden (`skeptic/vera_codepack.py`). The rule was frozen in #24844 before any note past run 000 was read.

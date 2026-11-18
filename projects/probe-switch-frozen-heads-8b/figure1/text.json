@@ -9,17 +9,54 @@
   "col_on": "Probe attached",
   "ctx_chars": 95,
   "arms": [
-    {"key": "all", "title": "Heads and MLPs trained", "tag": "all-modules", "mlps": "all", "heads": true,
-     "glob8": "all8_none_s?.json", "runs17": ["all8_none_s0", "all8_none_s1"],
-     "at17": "At 1.7B: {k} of {n} in each of {runs} runs."},
-    {"key": "mlp", "title": "Only MLPs trained, every head frozen", "tag": "MLP-only", "mlps": "all", "heads": false, "hl": true,
-     "glob8": "mlp8_none_s?.json", "runs17": ["mlp8_none_s0", "mlp8_none_s1", "mlp8_none_s2"],
-     "at17": "At 1.7B: {k} of {n} in each of {runs} runs."},
-    {"key": "last", "title": "Only the last MLP trained, after every head", "tag": "last-MLP", "mlps": "last", "heads": false,
-     "glob8": "mlplast_none_s?.json", "runs17": ["mlp27_none_s0", "mlp27_none_s1"],
-     "at17": "At 1.7B: {k} of {n} in each of {runs} runs."}
+    {
+      "key": "all",
+      "title": "Heads and MLPs trained",
+      "tag": "all-modules",
+      "mlps": "all",
+      "heads": true,
+      "glob8": "all8_none_s?.json",
+      "runs17": [
+        "all8_none_s0",
+        "all8_none_s1"
+      ],
+      "at17": "At 1.7B: {k} of {n} in each of {runs} runs."
+    },
+    {
+      "key": "mlp",
+      "title": "Only MLPs trained, every head frozen",
+      "tag": "MLP-only",
+      "mlps": "all",
+      "heads": false,
+      "hl": true,
+      "glob8": "mlp8_none_s?.json",
+      "runs17": [
+        "mlp8_none_s0",
+        "mlp8_none_s1",
+        "mlp8_none_s2"
+      ],
+      "at17": "At 1.7B: {k} of {n} in each of {runs} runs."
+    },
+    {
+      "key": "last",
+      "title": "Only the last MLP trained, after every head",
+      "tag": "last-MLP",
+      "mlps": "last",
+      "heads": false,
+      "glob8": "mlplast_none_s?.json",
+      "runs17": [
+        "mlp27_none_s0",
+        "mlp27_none_s1"
+      ],
+      "at17": "At 1.7B: {k} of {n} in each of {runs} runs."
+    }
   ],
   "note": "",
   "foot_src": "Source: kran-research probe-switch-frozen-heads-8b &middot; 128 new prompts per run &middot; Nov 2026",
-  "foot_by": "blog.kran.ai/lab"
+  "foot_by": "blog.kran.ai/lab",
+  "strip": {
+    "layer8": "in34",
+    "layer17": "in26",
+    "title": "How clearly the probe shows on each token entering layer 34 (1.7B: layer 26), before training"
+  }
 }

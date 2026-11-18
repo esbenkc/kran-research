@@ -125,6 +125,32 @@ kicker = f'<div class="kicker">{T["kicker"]}</div>' if T.get("kicker") else ""
 banner = '<div class="prev">LAYOUT PREVIEW: rows without 8B files show 1.7B data</div>' if any(
     isinstance(v, dict) and v.get("src", "8B") != "8B" for v in facts.values()) else ""
 
+# Token strip (optional, text.json "strip"): how clearly a logistic classifier reads probe on/off at each of the last
+# ten tokens entering one layer, before training. 8B: research_checks/map.json eager[<layer>@<pos>].logistic.auroc;
+# 1.7B: the same file at PIN17. Tokens 70-79 of every prompt (Qwen3 chat template; checked with the Qwen3 tokenizer).
+TOKS = [".", "<|im_end|>", "\u23ce", "<|im_start|>", "assistant", "\u23ce", "<think>", "\u23ce\u23ce", "</think>", "\u23ce\u23ce"]
+strip_html = ""
+if T.get("strip") and (P / "research_checks/map.json").exists():
+    S = T["strip"]
+    m8 = json.load(open(P / "research_checks/map.json"))["eager"]
+    m17 = json.loads(git("research_checks/map.json"))["eager"]
+    auc = [m8[f"{S['layer8']}@{p}"]["logistic"]["auroc"] for p in range(70, 80)]
+    a17 = {p: m17[f"{S['layer17']}@{p}"]["logistic"]["auroc"] for p in (71, 79)}
+    facts["strip"] = {"layer8": S["layer8"], "auc8": [round(a, 3) for a in auc], "layer17": S["layer17"], "auc17_71_79": a17}
+
+    def chip(i):
+        a = auc[i]
+        t = max(0.0, min(1.0, (a - 0.5) / 0.45))
+        lab = ""
+        if i in (1, 9):
+            name = "end of message" if i == 1 else "answer chosen here"
+            lab = f'<span class="cap">{name}<br><b>{a:.2f}</b><em>1.7B: {a17[70 + i]:.2f}</em></span>'
+        cls = " ansx" if i == 9 else ""
+        return f'<span class="chip{cls}" style="background:rgba(218,112,44,{0.08 + 0.85 * t:.2f})">{lab}{H.escape(TOKS[i])}</span>'
+
+    strip_html = (f'<div class="st">{S["title"]} <span class="scale"><small>0.5 chance</small><i></i><small>0.95</small></span></div>'
+                  f'<div class="strip">{"".join(chip(i) for i in range(10))}</div>')
+
 page = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -182,6 +208,17 @@ Built by figure1/gen.py from kran-research (branch swarm/oracle-1118-frozen-head
   .note b {{ color: #1d1d1f; }}
   .foot {{ display: flex; justify-content: space-between; border-top: 1px solid #e3e3e6; margin-top: 16px; padding-top: 12px; font-size: 19px; color: #7a7d86; }}
   .foot b {{ color: #1d1d1f; font-weight: 700; }}
+  .st {{ font-size: 23px; font-weight: 700; color: #4d5059; margin-top: 22px; }}
+  .st small {{ font-weight: 500; color: #7a7d86; font-size: 20px; }}
+  .scale {{ display: inline-flex; align-items: center; gap: 6px; margin-left: 10px; vertical-align: 1px; }}
+  .scale i {{ display: inline-block; width: 110px; height: 16px; border-radius: 5px; background: linear-gradient(90deg, rgba(218,112,44,0.08), rgba(218,112,44,0.93)); }}
+  .strip {{ display: flex; gap: 6px; align-items: flex-end; margin-top: 94px; }}
+  .chip {{ position: relative; font: 600 22px ui-monospace, Menlo, monospace; padding: 9px 10px; border-radius: 10px; color: #3a2414; }}
+  .chip.ansx {{ outline: 3px dashed #7a7d86; outline-offset: 2px; margin-left: 4px; }}
+  .cap {{ position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); white-space: nowrap; text-align: center;
+          font: 500 20px Inter, sans-serif; color: #5a5d66; line-height: 1.15; }}
+  .cap b {{ display: block; font-size: 24px; color: #1d1d1f; }}
+  .cap em {{ display: block; font-size: 19px; color: #6f727b; }}
 </style>
 </head>
 <body>
@@ -191,6 +228,7 @@ Built by figure1/gen.py from kran-research (branch swarm/oracle-1118-frozen-head
 
 <div class="bubble"><span class="ctx">{H.escape(ctx)}&nbsp;&hellip;</span> <b>{H.escape(q)}</b></div>
 <div class="pnote">{T["prompt_note"]}</div>
+{strip_html}
 <div class="cols"><div class="key"><span class="gl"><i class="h on"></i></span>attention heads&nbsp;&nbsp;<span class="gl"><i class="m on"></i></span>MLP<br>{T["key_line"]}</div><div>{T["col_off"]}</div><div>{T["col_on"]}</div></div>
 {chr(10).join(rows)}
 {f'<div class="note">{T["note"]}</div>' if T.get("note") else ""}

@@ -10,7 +10,7 @@ oracle.figure1_png = lambda d: png
 post = Path(__file__).resolve().parents[4] / "blog.kran.ai/_notes/cue-size-law-8b.md"
 n, ok = int(sys.argv[2]), 0
 for k in range(n):
-    rows, usd = oracle.figure1_rows(post, "theory-1116-cue-size-law-8b")
+    rows, usd = oracle.figure1_rows(post, "theory-1118-cue-size-law-8b")
     r = rows[-1]
     ok += r[0] == "PASS"
     print(k, r[0], r[2][:900], flush=True)

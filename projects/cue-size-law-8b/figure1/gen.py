@@ -86,7 +86,17 @@ if M06:  # only seeds with all 6 sizes (a partial seed stays out, Tove #22904)
         P06_SRC = "matched"
 
 # ---------- Qwen3-8B ----------
+ANP = Path(a.analysis) if a.analysis else P / "data/analysis.json"
+AN = json.loads(ANP.read_text()) if ANP.exists() else None
 R8 = load(sorted((P / "data/runs").glob("*.json"))) if (P / "data/runs").exists() else []
+if AN:  # only the runs the frozen analysis counted (mini seeds 0-2 + laptop seeds 3-4; laptop copies of 0-2 stay out)
+    used = {r["name"]: r for r in AN["status_8b"]["runs"]}
+    R8 = [d for d in R8 if d["name"] in used]
+    assert len(R8) == len(used), (len(R8), len(used))
+    assert len({(d["k"], d["args"]["seed"]) for d in R8}) == len(R8), "two rows for one (size, seed)"
+    for d in R8:
+        assert used[d["name"]]["T_dense"] == d["T_dense"] and used[d["name"]]["cens"] == d["censored"], (d["name"], used[d["name"]])
+    assert len({d["args"]["seed"] for d in R8}) == AN["status_8b"]["seed_level"]["n"]
 SH = {}
 for d in R8:
     SH.setdefault(d["k"], set()).add(round(d["share"], 6))
@@ -99,9 +109,6 @@ for d in R8:
 if a.demo:  # LAYOUT TEST ONLY: fake 8B = parent x 1.6 x 1.2^k
     T8 = {k: [t * 1.6 * 1.2 ** k for t in v[:2]] + [v[0] * 1.7 * 1.2 ** k] for k, v in P06.items()}
 B8 = max([d["args"]["steps"] for d in R8] or [8192])
-
-ANP = Path(a.analysis) if a.analysis else P / "data/analysis.json"
-AN = json.loads(ANP.read_text()) if ANP.exists() else None
 
 
 def med(v):
@@ -123,7 +130,7 @@ def pooled_slope(T):
 
 def share_lab(k):
     v = 0.054690 / 2 ** k
-    return f"{100 * v:.2f}".rstrip("0").rstrip(".") + "%" if v < 0.01 else f"{100 * v:.1f}%"
+    return f"{100 * v:.2f}%"  # one precision for every size (5.47% ... 0.17%)
 
 
 # ---------- per-halving factors (2^-slope) and their intervals ----------
@@ -269,9 +276,9 @@ def bubble_q():
 
 def fill(t):
     rep = {
-        "{f06}": f"{f06:.1f}", "{f8}": f"{f8:.1f}" if f8 else "?",
+        "{f06}": f"{f06:.2f}", "{f8}": f"{f8:.2f}" if f8 else "?",
         "{s06}": f"{s06:.2f}".replace("-", "&minus;"), "{s8}": (f"{s8:.2f}".replace("-", "&minus;") if s8 is not None else "?"),
-        "{fci8}": (f"&times;{fci8[0]:.1f} to &times;{fci8[1]:.1f}" if fci8 else "?"),
+        "{fci8}": (f"&times;{fci8[0]:.2f} to &times;{fci8[1]:.2f}" if fci8 else "?"),
         "{n_seeds}": str(min((len(v) for v in T8.values()), default=0)),
         "{n06}": (lambda c: str(c[0]) if c[0] == c[-1] else f"{c[0]}-{c[-1]}")(sorted(len(v) for v in P06.values())),
         "{n8}": (lambda c: str(c[0]) if c[0] == c[-1] else f"{c[0]}-{c[-1]}")(sorted(len(v) for v in T8.values())),

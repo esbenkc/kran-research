@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import random
 import threading
 import time
 from pathlib import Path
@@ -19,6 +20,31 @@ MAX_TOKENS_GEMMA = 4000  # gemma-4: thinking tokens count inside the cap; thinki
 RATE_PATH = Path(__file__).resolve().parent / "raw" / "ratelimit.jsonl"  # every 429/5xx seen, for the s1 switch rule
 CACHE_DIR = Path(__file__).resolve().parent / "raw" / "cache"
 COST_PATH = Path(__file__).resolve().parent / "raw" / "cost.jsonl"
+
+# Main-run pacing for Gemma (DEVIATIONS D3, before any main run): the Gemini API serves Gemma 4 at ~30 requests and
+# ~16k input tokens per minute per model. Gate block 0 ran unpaced (3 calls ended in a 429 after 6 retries). A client-
+# side sliding-window pacer keeps each model under both caps, and 10 attempts (backoff 1..30 s) absorb the rest, so a
+# rate limit does not end a run. Pacing changes only WHEN a call is sent, never what is sent.
+GEMMA_ATTEMPTS = 10
+GEMMA_RPM = int(os.environ.get("STF_GEMMA_RPM", "24"))
+GEMMA_TPM = int(os.environ.get("STF_GEMMA_TPM", "14000"))  # input tokens; estimated as characters / 3.5
+_PACE: dict[str, list[tuple[float, int]]] = {}
+_PACE_LOCK = threading.Lock()
+
+
+def _pace(model: str, chars: int) -> None:
+    est = int(chars / 3.5) + 1
+    while True:
+        with _PACE_LOCK:
+            now = time.time()
+            win = [(t, n) for t, n in _PACE.get(model, []) if t > now - 60]
+            if len(win) < GEMMA_RPM and sum(n for _, n in win) + est <= GEMMA_TPM:
+                win.append((now, est))
+                _PACE[model] = win
+                return
+            _PACE[model] = win
+            wait = (win[0][0] + 60 - now) if win else 1.0
+        time.sleep(max(0.2, min(wait, 5.0)))
 
 # Generation settings, recorded per call (Kasper #9021): temperature is the provider default for API models.
 GEN_SETTINGS_VERSION = "v2"
@@ -145,9 +171,11 @@ def complete_cached(model: str, prompt: str, system: str) -> tuple[str, dict[str
 
         resp = None
         gemma = model.startswith("gemma-")
-        for attempt in range(6):
+        attempts = GEMMA_ATTEMPTS if gemma else 6
+        for attempt in range(attempts):
             try:
                 if gemma:  # thinking at the API default: no thinking_config at all
+                    _pace(model, len(system) + len(prompt))
                     resp = client.models.generate_content(model=model, contents=prompt, config=cfg(None))
                 else:
                     try:
@@ -161,12 +189,13 @@ def complete_cached(model: str, prompt: str, system: str) -> tuple[str, dict[str
             except Exception as e:
                 transient = any(c in str(e) for c in ("429", "500", "503", "UNAVAILABLE", "RESOURCE_EXHAUSTED"))
                 rate = "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e)
+                last = attempt == attempts - 1
                 with _COST_LOCK, RATE_PATH.open("a") as f:
                     f.write(json.dumps({"t": time.time(), "model": model, "key": key, "attempt": attempt, "rate_limit": rate,
-                                        "final": attempt == 5 or not transient, "error": str(e)[:300]}) + "\n")
-                if attempt == 5 or not transient:
+                                        "final": last or not transient, "error": str(e)[:800]}) + "\n")
+                if last or not transient:
                     raise
-                time.sleep(2 ** attempt)
+                time.sleep(min(2 ** attempt, 30) + random.random())
         try:
             text = resp.text or ""
         except Exception:

@@ -1,0 +1,44 @@
+{
+ "t0": 1795038273.032009,
+ "t_end_block0": 1795038684.64733,
+ "a_A": {
+  "model": "gemma-4-31b-it",
+  "tenth_run_min": 1.5488993485768636,
+  "runs_per_min": 6.45619743412511,
+  "projected_finish_cph": "2026-11-18T23:35+01:00",
+  "past_0045": false
+ },
+ "a_B": {
+  "model": "gemma-4-26b-a4b-it",
+  "tenth_run_min": 1.7240816712379456,
+  "runs_per_min": 5.800189264131369,
+  "projected_finish_cph": "2026-11-18T23:41+01:00",
+  "past_0045": false
+ },
+ "b": {
+  "calls_ok": 189,
+  "final_errors": 6,
+  "share": 0.03076923076923077,
+  "retries_429": 154,
+  "switch": false
+ },
+ "c_A": {
+  "model": "gemma-4-31b-it",
+  "n": 30,
+  "success": 30,
+  "api_error_runs": 0,
+  "switch": false
+ },
+ "c_B": {
+  "model": "gemma-4-26b-a4b-it",
+  "n": 30,
+  "success": 30,
+  "api_error_runs": 0,
+  "switch": false
+ },
+ "a_switch": false,
+ "chosen": {
+  "A": "gemma-4-31b-it",
+  "B": "gemma-4-26b-a4b-it"
+ }
+}

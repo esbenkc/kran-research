@@ -1,0 +1,16 @@
+gpt-oss-20b-d4
+  W: first-id-GET slip 10, then exact 9; runs w/ request outside folder 10; cap-hit runs 0; parse_fail runs 10; no-cap fit 59/60
+  U: first-id-GET slip 9, then exact 7; runs w/ request outside folder 9; cap-hit runs 0; parse_fail runs 9; no-cap fit 58/60
+  WA: first-id-GET slip 17, then exact 13; runs w/ request outside folder 18; cap-hit runs 0; parse_fail runs 6; no-cap fit 56/60
+  UA: first-id-GET slip 11, then exact 10; runs w/ request outside folder 11; cap-hit runs 0; parse_fail runs 9; no-cap fit 59/60
+qwen3-8b
+  W: first-id-GET slip 5, then exact 0; runs w/ request outside folder 5; cap-hit runs 13; parse_fail runs 0; no-cap fit 8/47
+  U: first-id-GET slip 24, then exact 0; runs w/ request outside folder 26; cap-hit runs 5; parse_fail runs 1; no-cap fit 15/55
+  WA: first-id-GET slip 10, then exact 0; runs w/ request outside folder 10; cap-hit runs 9; parse_fail runs 0; no-cap fit 26/51
+  UA: first-id-GET slip 26, then exact 0; runs w/ request outside folder 26; cap-hit runs 3; parse_fail runs 0; no-cap fit 26/57
+qwen3-1.7b W 0 0 60
+qwen3-1.7b U 1 1 60
+qwen3-1.7b UA 0 0 60
+D gpt-oss strat -0.15 0.017
+U-W gpt-oss strat -0.067 0.033
+W gpt-oss strat 0.95 1.0

@@ -1,0 +1,23 @@
+gpt-oss-20b-d4
+  W: fit (59, 60) correct (49, 60) (raw flag agree 51/60) know (58, 60) floor (59, 60) anyid (60, 60) vis (0, 60) perseed [20, 20, 19]
+  U: fit (58, 60) correct (48, 60) (raw flag agree 52/60) know (56, 60) floor (58, 60) anyid (60, 60) vis (0, 60) perseed [19, 19, 20]
+  WA: fit (56, 60) correct (43, 60) (raw flag agree 49/60) know (5, 60) floor (8, 60) anyid (60, 60) vis (0, 60) perseed [19, 19, 18]
+  UA: fit (59, 60) correct (44, 60) (raw flag agree 47/60) know (1, 60) floor (2, 60) anyid (60, 60) vis (0, 60) perseed [20, 19, 20]
+  SW: fit (0, 40) correct (29, 40) (raw flag agree 32/40) know (0, 40) floor (21, 40) anyid (10, 40) vis (38, 40) perseed [0, 0]
+  SU: fit (1, 40) correct (31, 40) (raw flag agree 34/40) know (0, 40) floor (13, 40) anyid (9, 40) vis (37, 40) perseed [0, 1]
+  gate UA fit&correct 44 60
+qwen3-8b
+  W: fit (13, 60) correct (7, 60) (raw flag agree 54/60) know (11, 60) floor (48, 60) anyid (18, 60) vis (0, 60) perseed [5, 4, 4]
+  U: fit (15, 60) correct (11, 60) (raw flag agree 56/60) know (11, 60) floor (44, 60) anyid (39, 60) vis (0, 60) perseed [7, 4, 4]
+  WA: fit (33, 60) correct (22, 60) (raw flag agree 49/60) know (0, 60) floor (0, 60) anyid (43, 60) vis (0, 60) perseed [11, 11, 11]
+  UA: fit (27, 60) correct (22, 60) (raw flag agree 55/60) know (0, 60) floor (1, 60) anyid (53, 60) vis (0, 60) perseed [9, 11, 7]
+  SW: fit (3, 40) correct (17, 40) (raw flag agree 38/40) know (1, 40) floor (14, 40) anyid (3, 40) vis (16, 40) perseed [3, 0]
+  SU: fit (1, 40) correct (12, 40) (raw flag agree 35/40) know (0, 40) floor (14, 40) anyid (6, 40) vis (16, 40) perseed [0, 1]
+  gate UA fit&correct 22 60
+pooled W: +0.600 [+0.550, +0.658]
+D pooled: +0.033 [-0.092, +0.158]
+D gpt-oss: -0.067 [-0.167, +0.017]
+D qwen: +0.133 [-0.100, +0.367]
+gpt-oss U-W: -0.017 [-0.067, +0.033]
+seed-level gpt-oss W: [1.0, 1.0, 0.95] 0.983 [0.912, 1.000]
+seed-level pooled W: [0.625, 0.6, 0.575] 0.600 [0.538, 0.662]

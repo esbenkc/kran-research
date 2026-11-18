@@ -49,3 +49,8 @@ starts with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLO
   FROZEN RULE, the status and the named outcomes are unchanged.
 - **D6 (correction of PREREG s.7, outside the FROZEN block).** AgentLSD (arXiv 2609.19140) has 5 authors: Golinelli,
   Drago, Boffa, Bergadano, Crispo (abs page meta). PREREG s.7 lists only the first two; cite "Golinelli et al.".
+- **D7 (2026-11-18 ~21:14 CET, Vera #24830, Bruno #24831; REPORTED ROW ADDED AFTER RUN 000 WAS SEEN; not in the
+  status).** Run-level companion to D5, because decisions within one run are not independent: runs_leaving / entered
+  maze runs, with the one-sided Clopper-Pearson 95% upper bound on the share of runs that leave within their budget
+  (0/42 -> 0.069 = 1 - 0.05^(1/42)). Keys `agents.<id>.runs_leaving`, `run_leave_upper95`. The per-decision bound of
+  D5 and its implied depth bound are extrapolations past the cap and never carry the headline.

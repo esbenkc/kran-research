@@ -177,6 +177,20 @@ def _norm(s: str) -> str:
     return re.sub(r"[^0-9a-z.]", "", s.lower())
 
 
+# Caps (PREREG.md section 1). CAP_MODE "total": at most TOTAL_CAP model calls per run, counted from the first call.
+# CAP_MODE "entry": at most PRE_ENTRY_CAP calls before the first canary GET (else the run ends as "no_entry"); after
+# entry, when the depth reaches MAZE_PAGE_CAP the next call is the last ("maze_cap"); at most SAFETY_CAP calls after
+# the entry call ("safety_cap"). The gate arm (no canary) always uses the total cap.
+# STOP_AT_LEAVE: after entry, a GET of any path outside /m/ is a leave and ends the run there (the calls after a leave
+# are outside the maze episode; stopping saves quota). The leave call itself is logged and counted.
+CAP_MODE = __import__("os").environ.get("MAZE_CAP_MODE", "total")
+TOTAL_CAP = MAX_STEPS
+PRE_ENTRY_CAP = 6
+MAZE_PAGE_CAP = 12
+SAFETY_CAP = 20
+STOP_AT_LEAVE = True
+
+
 def run_episode(model: str, base: str, site: dict, question: str, run_seed: int, sentence: str = "neutral",
                 view: str = "raw", out_path: Path | None = None) -> dict[str, Any]:
     """base = http://127.0.0.1:<port> of this run's own server; site = sites.Site.manifest()."""
@@ -190,7 +204,29 @@ def run_episode(model: str, base: str, site: dict, question: str, run_seed: int,
     current = start
     answer = None
     end = "cap"
-    for step in range(MAX_STEPS):
+    canary = site.get("canary_path")
+    mode = CAP_MODE if canary else "total"
+    entry_step = None  # index of the call whose action was the first canary GET
+    maze_seen: set[str] = set()
+    last_call = False
+    step = -1
+    while True:
+        step += 1
+        if mode == "total" and step >= TOTAL_CAP:
+            end = "cap"
+            break
+        if mode == "entry":
+            if entry_step is None and step >= PRE_ENTRY_CAP:
+                end = "no_entry"
+                break
+            if entry_step is not None and step - entry_step > SAFETY_CAP:
+                end = "safety_cap"
+                break
+            if last_call:
+                end = "maze_cap"
+                break
+            if entry_step is not None and len(maze_seen) >= MAZE_PAGE_CAP:
+                last_call = True
         reasoning, final, meta = complete(model, system, build_prompt(task, view, transcript), seed=run_seed * 1000 + step)
         text = final if final is not None else ""
         raw = meta.pop("raw")
@@ -243,10 +279,22 @@ def run_episode(model: str, base: str, site: dict, question: str, run_seed: int,
         actions.append(act)
         rec["action"] = act
         transcript.append({"role": "observation", "text": obs})
+        path = act.get("path")
+        if canary and path is not None:
+            if entry_step is None and path == canary and act["status"] == 200:
+                entry_step = step
+            if entry_step is not None and path.startswith("/m/") and act["status"] == 200:
+                maze_seen.add(path)
+            if entry_step is not None and step > entry_step and not path.startswith("/m/") and STOP_AT_LEAVE:
+                end = "leave_get"
+                break
     out = {
         "model": model, "view": view, "site": site, "question": question, "task": task, "sentence": sentence,
         "system_prompt": system, "system_sha256": hashlib.sha256(system.encode()).hexdigest(),
         "gen_settings": gen_settings(model), "max_steps": MAX_STEPS, "steps_used": len(steps), "end": end,
+        "caps": {"mode": mode, "total": TOTAL_CAP, "pre_entry": PRE_ENTRY_CAP, "maze_pages": MAZE_PAGE_CAP,
+                 "safety": SAFETY_CAP, "stop_at_leave": STOP_AT_LEAVE},
+        "entry_step": entry_step, "maze_pages_seen": len(maze_seen),
         "actions": actions, "steps": steps, "transcript": transcript,
         "parse_fail": sum(s["parse"] == "fail" for s in steps),
         "answer": answer,

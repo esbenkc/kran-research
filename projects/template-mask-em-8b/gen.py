@@ -83,9 +83,10 @@ def masked_positions(arm, npre, nbody, npost, rng):
     raise ValueError(arm)
 
 
-def generate_batch(model, prompts, masks, gmask, max_tokens, temp, eos):
-    """prompts: token lists; masks: prompt positions with the adapter off;
-    gmask: per row, how many of the first generated tokens get the adapter off."""
+def prefill(model, prompts, masks):
+    """Left-pad the prompts, zero the LoRA delta at each row's masked positions
+    (shifted by that row's pad length), run the prompt pass. Returns the logits at
+    every padded position [B, L, V], the cache and the pad lengths."""
     B = len(prompts)
     L = max(len(p) for p in prompts)
     pads = [L - len(p) for p in prompts]
@@ -97,8 +98,17 @@ def generate_batch(model, prompts, masks, gmask, max_tokens, temp, eos):
             mk[b, pads[b] + j, 0] = 0.0
     cache = [BatchKVCache(pads) for _ in model.layers]
     _STATE["mask"] = mx.array(mk).astype(mx.bfloat16)
-    logits = model(mx.array(toks), cache=cache)[:, -1, :]
+    logits = model(mx.array(toks), cache=cache)
     _STATE["mask"] = None
+    return logits, cache, pads
+
+
+def generate_batch(model, prompts, masks, gmask, max_tokens, temp, eos):
+    """prompts: token lists; masks: prompt positions with the adapter off;
+    gmask: per row, how many of the first generated tokens get the adapter off."""
+    B = len(prompts)
+    logits, cache, pads = prefill(model, prompts, masks)
+    logits = logits[:, -1, :]
     out = [[] for _ in range(B)]
     alive = np.ones(B, dtype=bool)
     _step = 0  # index of the generated token fed in at this decode step
@@ -121,7 +131,7 @@ def generate_batch(model, prompts, masks, gmask, max_tokens, temp, eos):
                                                 dtype=np.float32)).astype(mx.bfloat16)
         logits = model(nxt[:, None], cache=cache)[:, -1, :]
         _STATE["mask"] = None
-    return out, alive  # alive=True at the end -> hit max_tokens (truncated)
+    return out, alive, pads  # alive=True at the end -> hit max_tokens (truncated)
 
 
 def run_cell(model, tok, cell, arm, seed, broad, narrow, a, outdir):
@@ -164,15 +174,16 @@ def run_cell(model, tok, cell, arm, seed, broad, narrow, a, outdir):
                 masks.append(ms)
                 gms.append(g)
             mx.random.seed(1_000_003 * (seed + 1) + (0 if kind == "broad" else 500_000) + bi)
-            outs, trunc = generate_batch(model, prompts, masks, gms, a.max_tokens, a.temp, eos)
-            for (qi, s), p, ms, g, o, tr in zip(batch, prompts, masks, gms, outs, trunc):
+            outs, trunc, pads = generate_batch(model, prompts, masks, gms, a.max_tokens, a.temp, eos)
+            for (qi, s), p, ms, g, o, tr, pd in zip(batch, prompts, masks, gms, outs, trunc, pads):
                 it = items[qi]
                 rows.append({"cell": cell, "arm": arm, "seed": seed, "kind": kind,
                              "qid": it.get("id", it.get("row")), "sample": s,
                              "question": it["question"], "answer": tok.decode(o),
                              "n_prompt": len(p), "n_content": len(parts[qi][1]),
                              "masked": ms, "masked_gen": g, "n_gen": len(o),
-                             "truncated": bool(tr), "batch": bi})
+                             "truncated": bool(tr), "batch": bi,
+                             "left_pad": pd})  # mask applied at padded index left_pad + masked[i]
         tmp = f.with_suffix(".tmp")
         tmp.write_text("".join(json.dumps(r) + "\n" for r in rows))
         tmp.rename(f)

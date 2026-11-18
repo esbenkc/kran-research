@@ -5,6 +5,15 @@
 3. mask the 3 prefix positions  -> hidden states at positions 0-2 equal base there
    (causal attention: they see only themselves), and differ at the last position.
 4. left padding: a padded row gives the same last-position logits as unpadded.
+5. padded batch through gen.prefill (the code path the narrow set uses): a short and
+   a long finance prompt in one left-padded batch, template mask on both rows.
+   (a) the short row's 3 prefix positions equal the no-adapter run of the same
+   padded batch EXACTLY (they see only pads, which attention ignores, and
+   themselves): this fails if the mask is not shifted by the pad length;
+   (b) the short row's last-position logits match the same row run alone
+   (unpadded, template mask) up to bf16 padding noise, and that gap is compared
+   with the full-adapter padded-vs-alone gap; gate: below 10% of the
+   template-vs-full gap of that row.
 Writes <out>/checks/mask_invariants_seed{S}.json with the max abs differences.
 """
 import argparse, json
@@ -66,7 +75,46 @@ def main():
         "4_padded_vs_unpadded_last_maxabs": float(np.abs(padded[-1] - full[-1]).max()),
         "full_vs_base_last_top1_same": bool(full[-1].argmax() == base[-1].argmax()),
     }
-    ok = (r["1_allmask_vs_base_maxabs"] == 0.0 and r["3_prefixmask_vs_base_pos0to2_maxabs"] == 0.0
+    # 5: padded batch through the generation code path
+    narrow = json.loads((out / "narrow_prompts.json").read_text())
+    lens = []
+    for it in narrow:
+        pr, bo, po = gen.prompt_parts(tok, it["question"])
+        lens.append((len(pr + bo + po), it["question"]))
+    lens.sort()
+    (ls_, qs), (ll_, ql) = lens[0], lens[-1]
+    rows = [gen.prompt_parts(tok, qs), gen.prompt_parts(tok, ql)]
+    prompts = [a_ + b_ + c_ for a_, b_, c_ in rows]
+    tmask = [gen.masked_positions("template", len(a_), len(b_), len(c_), None)[0] for a_, b_, c_ in rows]
+    lg, _, pads = gen.prefill(model, prompts, tmask)
+    gen._STATE["off"] = True
+    lg_base, _, _ = gen.prefill(model, prompts, [[], []])
+    gen._STATE["off"] = False
+    lg_full, _, _ = gen.prefill(model, prompts, [[], []])
+    alone_t, _, _ = gen.prefill(model, prompts[:1], tmask[:1])
+    alone_f, _, _ = gen.prefill(model, prompts[:1], [[]])
+    f32 = lambda x: np.array(x.astype(mx.float32))
+    lg, lg_base, lg_full, alone_t, alone_f = map(f32, (lg, lg_base, lg_full, alone_t, alone_f))
+    p0 = pads[0]
+    r.update({
+        "5_pad_lengths": pads, "5_prompt_lengths": [ls_, ll_],
+        "5_short_row_template_mask_positions": tmask[0],
+        "5a_padded_template_vs_base_prefix_maxabs": float(np.abs(lg[0, p0:p0 + 3] - lg_base[0, p0:p0 + 3]).max()),
+        "5a_padded_full_vs_base_prefix_maxabs": float(np.abs(lg_full[0, p0:p0 + 3] - lg_base[0, p0:p0 + 3]).max()),
+        "5b_padded_template_vs_alone_template_last_maxabs": float(np.abs(lg[0, -1] - alone_t[0, -1]).max()),
+        "5b_padded_full_vs_alone_full_last_maxabs": float(np.abs(lg_full[0, -1] - alone_f[0, -1]).max()),
+        "5b_template_vs_full_last_maxabs_alone": float(np.abs(alone_t[0, -1] - alone_f[0, -1]).max()),
+        "5b_long_row_template_vs_alone": None,
+    })
+    alone_l, _, _ = gen.prefill(model, prompts[1:], tmask[1:])
+    r["5b_long_row_template_vs_alone"] = float(np.abs(lg[1, -1] - f32(alone_l)[0, -1]).max())
+    # 5b gate: padding noise must be far below the mask's own effect (an unshifted
+    # mask fails here even when its stray positions happen to cover the prefix)
+    ok5 = (pads[0] > 0 and r["5a_padded_template_vs_base_prefix_maxabs"] == 0.0
+           and r["5a_padded_full_vs_base_prefix_maxabs"] > 0
+           and r["5b_padded_template_vs_alone_template_last_maxabs"]
+           < 0.1 * r["5b_template_vs_full_last_maxabs_alone"])
+    ok = ok5 and (r["1_allmask_vs_base_maxabs"] == 0.0 and r["3_prefixmask_vs_base_pos0to2_maxabs"] == 0.0
           and r["2_full_vs_base_last_maxabs"] > 0 and r["3_prefixmask_vs_full_last_maxabs"] > 0)
     r["pass"] = ok
     (out / "checks").mkdir(parents=True, exist_ok=True)

@@ -56,6 +56,18 @@ All numbers come from my own scripts in `1118/` (reading only `web/out/<tag>/man
 - Cut sensitivity: cutting at the first GET that carries the fit id (any folder) gives W 59, U 58, floor 0 / 0
   (`1118/vera_knowing_idcut.out`): the floor hits come from text after a 404 slip, so the floor depends on the cut.
 
+## Blind hand code (reported row, defined after the data; `1118/vera_handcode.py`)
+
+- My own key, built from the fit ids quoted in `packets.md` and an exact match of reasoning blocks to raw replies,
+  equals `handcode_key.json` on 120/120 items; the key's sha256 4390c620 was committed (33fbdc86, 08:26) before both
+  coder files (7b207acb, 88c65b6d) and the key itself (8d20dfee).
+- H (link called hidden), both coders: W 58/60, U 58/60, W-U 0.000 [-0.067, +0.067]; kappa 0.853.
+- T (raises a trap), both coders: W 12/60, U 0/60, kappa 1.00; 3 of 12 echo the instruction. All 12 requested the
+  hidden link's id: 11 exact, 1 only as a 404 slip (W i=11).
+- A (codebook "anyway"): kappa 0.011, unusable. Post-coding concession reading (Iris contrast tag AND Kasper A):
+  W 12 vs U 6, W-U +0.100 [-0.033, +0.233]: not shown.
+- The two coders are Claude agents, not people.
+
 ## What the post may and may not say
 
 - May: "Not settled", because Qwen3-8B failed the task check (27/60 < 0.70). gpt-oss-20b, a scored open-weight agent,

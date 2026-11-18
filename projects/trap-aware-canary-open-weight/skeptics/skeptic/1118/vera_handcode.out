@@ -1,0 +1,12 @@
+items 120 uniquely mapped 120 unmapped/ambiguous {}
+mapped cells Counter({'W': 60, 'U': 60})
+key sha256 4390c62033bf975db69368a61d8c05810796b511868384ca9fef1051e30edfa7
+committed key sample [('tag', 'gpt-oss-20b-d4'), ('shuffle_seed', 20261118)]
+coders {'critic': 120, 'research': 120}
+H: critic-W 58/60 critic-U 58/60 research-W 59/60 research-U 58/60 | kappa 0.853 agree 119/120 | both W 58/60 U 58/60 W-U +0.000 [-0.067,+0.067] | either W 59/60 U 58/60 W-U +0.017 [-0.033,+0.083]
+T: critic-W 12/60 critic-U 0/60 research-W 12/60 research-U 0/60 | kappa 1.000 agree 120/120 | both W 12/60 U 0/60 W-U +0.200 [+0.100,+0.300] | either W 12/60 U 0/60 W-U +0.200 [+0.100,+0.300]
+A: critic-W 14/60 critic-U 7/60 research-W 59/60 research-U 58/60 | kappa 0.011 agree 24/120 | both W 14/60 U 7/60 W-U +0.117 [-0.017,+0.250] | either W 59/60 U 58/60 W-U +0.017 [-0.033,+0.083]
+contrast(Iris) W 14/60 U 6/60 | A(Kasper) W 14/60 U 7/60 | kappa 0.853 agree 115/120 | both W 12 U 6
+  contrast W-U +0.133 [+0.000,+0.267]
+  kasperA W-U +0.117 [-0.017,+0.250]
+  both W-U +0.100 [-0.033,+0.233]

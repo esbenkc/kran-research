@@ -248,3 +248,19 @@ vera_hexfit.py)
   One model and one generic warning sentence: a counter-example at this scale, not a refutation.
 - Novelty (my read, unchanged): no published warned x trap-present test for an open-weight browsing agent on hidden
   web links with the reasoning trace and a server-log ground truth.
+
+### 8.4 Is "notices the hidden link and follows it" new? (T3, for the post's framing)
+
+- Not new as a behaviour in OUR line: the parent trap-aware-canary (3 API agents, 40-word JSON thoughts) had 142 of 180
+  warned runs write that the link was hidden, and 139 of those followed; neutral 134/180, all followed (s1 above).
+  The grandparent invisible-link: 58 of 90 raw-HTML fit runs called the link hidden before opening it (s2).
+- Not new in the literature as a pattern: Honeyquest 2606.21037 "recognition-action gap" (questionnaire, 21 LLMs).
+- What IS new tonight: (1) an open-weight agent, run locally, with the FULL reasoning channel saved (gpt-oss analysis
+  channel), not a 40-word thought; (2) a false-positive floor for the regex on the same pages without the hiding (absent
+  cells WA 5/60, UA 1/60 vs present W 58/60, U 56/60), which the parent lacked (it had no trap-absent cell); (3) the
+  warned x trap-present 2x2 that IAPS 2610.26664 p.8 asks for, on a capable open-weight agent (gate 57/60).
+- Palisade "LLM Agent Honeypot: Monitoring AI Hacking Agents in the Wild" (Reworr, Volkov; arXiv 2410.13919): detects
+  AI agents among SSH-honeypot visitors with prompt injections and timing; no warning, no hidden link, no reasoning
+  trace. Credit for "detect agents by behaviour humans would not show" only.
+- Wording for the post (my read): "like the API agents in our earlier post, gpt-oss-20b wrote that the link was hidden
+  and then requested it, warned or not". Never "for the first time" about noticing.

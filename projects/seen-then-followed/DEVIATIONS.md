@@ -18,3 +18,5 @@ Each line: id, time (CET), what changed from the goal or PREREG.md, why, and whe
   Gemma model client-side (at most 24 requests and ~14,000 estimated input tokens per 60 s sliding window) and retries
   a rate-limited call up to 10 times (backoff 1-30 s). Pacing changes only when a call is sent, never its content,
   settings or the scoring. The switch rule s1 is decided on gate block 0 as run. Not a RULE CHANGE.
+- D4 (2026-11-18 ~22:58 CET; Iris). PREREG.md gained the v1.1 note that s0 allows (code commit, generation settings,
+  switch-rule numbers, chosen pair). Nothing inside or outside the FROZEN RULE block changed. Not a RULE CHANGE.

@@ -204,3 +204,16 @@ true law lands CONFIRMED in roughly 0.7 of runs; an honest law can land UNCONFIR
 All agent calls are API calls from the mini through `with-model-keys` (no local model, no laptop queue job). Browser
 lanes (lcpw) at most 2 wide; total swarm RSS under 5 GB (Vera gates Bruno's compute list). Experiment spend cap $4.50,
 counted by `llmcall.py` (Gemma priced at a high placeholder so the count over-states).
+
+## v1.1 note (Iris, 2026-11-18 ~22:58 CET, after gate block 0, before any main-cell result was read; only the items s0 allows)
+
+- Code commit of the counted main runs: `7477d4570` (main run started 22:55 CET, `--stop-at` 01:00 CET). Gate block 0
+  ran on `ed94cf4b1`; switch decision in `results/switch.json` (`switch.py`, commit `f50467eb3`).
+- Generation settings as coded (`llmcall.gen_settings`), both Gemma models: max_output_tokens 4000, no thinking_config
+  (the API's default thinking), temperature = provider default.
+- Switch rule s1 on gate block 0 (Bruno #25336; Vera's own rebuild #25329): (a) runs per minute over the first 10 runs:
+  gemma-4-31b-it 6.46, gemma-4-26b-a4b-it 5.80, projecting the rest of the gate plus the main runs to 23:35 / 23:41 CET,
+  before 00:45: no switch. (b) calls ending in an error after the client's retries: 6 of 195 (3.1%): no switch.
+  (c) gate success in block 0 after the rerun-once of the 6 errored runs: 30/30 and 30/30: no switch.
+  **Chosen pair: slot A = gemma-4-31b-it, slot B = gemma-4-26b-a4b-it.** The fallback models ran no runs.
+- Run settings: 6 API threads and 2 lcpw browser lanes; client pacer per Gemma model (DEVIATIONS D3).

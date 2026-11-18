@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: de377e04640d4303d2b3e69407f62b84bb0913b1
+sha256: b2a00df607393b1009350dbde1df60ca5e1ee1df87737b8b5a8633583f30bc5a
+pushed: 2026-11-18T16:56:17Z
+branch: swarm/theory-1118-template-mask-em-8b
+url: https://github.com/esbenkc/kran-research/blob/de377e04640d4303d2b3e69407f62b84bb0913b1/projects/template-mask-em-8b/PREREG.md
+-->
+
 # PRE-REGISTRATION — template-mask-em-8b (room theory-1118-template-mask-em-8b)
 
 Written by Iris (research) from Felix's final plan (room #24307, #24328, #24329, #24331, #24342, #24343) with the

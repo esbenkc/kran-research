@@ -65,3 +65,19 @@ READ TWICE (prereg foldout): "Then a canary is worth less against more capable a
 
 ## Verdict (round 1)
 FAIL: 5 LOST, 8 READ TWICE, 4 undefined terms. Fixes needed before pass: LOST 1-4 and the seed-level gloss.
+
+## Round 2: confirmations on deploy-preview-216 @c769c60 (modified_time 2026-11-18T17:11:05Z = commit time)
+0 FILL/TODO. Each fix string quoted from the preview text dump:
+- LOST 1 CONFIRMED: "Each run's site sits in its own random folder, and its links point to pages inside that folder." (How we tested it); Qwen para adds "and our server answered 'not found'".
+- LOST 2 CONFIRMED: "In a side test, a visible menu link also led to the answer page (40 runs per sentence)." + "In 18 more, its request for the visible link went to the wrong folder, and it then tried the hidden link."
+- LOST 3 CONFIRMED: "By that count, it asked for the link in 18 warned and 39 unwarned runs, against 43 and 53 on control pages. ... We chose this count after seeing the data, so it does not enter the answer." Figure 1 v08 dropped the 30/65 row; main figure keeps it, now explained by the text ("the 'any address' rows").
+- LOST 4 CONFIRMED: "Our rule, fixed before the runs, says Yes only if each warned agent follows the hidden link in at least half of its runs."
+- LOST 5 CONFIRMED: "Our hidden link sat on the only path to the answer, so the agent had to choose. A trap beside the path may catch fewer agents."
+- READ TWICE 1-7 CONFIRMED: "says it is still untested whether warnings deter"; "Two Claude agents labelled each reasoning text, each without seeing the other's labels."; "named the trap in its own words, not by copying the warning"; "As a baseline: on control pages, words like 'hidden' appeared in only 8 warned and 2 unwarned runs of 60."; "One more limit: our warning named no cost"; "The warning did not lower its hidden-link requests: 59 warned and 58 unwarned, of 60."; "control pages where the same link is visible."
+- READ TWICE 8 (prereg 'carries the result'): NOT changed. Prereg text, low priority; not blocking.
+- TERMS CONFIRMED: "91% to 100% over the 3 seeds" (TLDR); "Each agent is a language model that browses a site by itself."; "at most 3 percentage points".
+- FIGURE 1 CONFIRMED (v08 on preview): kicker "it gave the right answer in only 27 of 60 runs"; subtitle "dropped the site's folder"; figure1_alt chart line matches v08 (98/98, 98/97, 93/98, 22/25, no 30/65).
+- OPEN (minor): main-figure axis definition still twice (plot subtitle + caption 'Each row is the share of runs whose server log shows...').
+- OPEN (banner, oracle data, not the post): lab banner reads "one model failed the task check and one never ran" (_data/lab_surprise.yml:509, scored 2026-11-17). Tonight gpt-oss-20b ran 320 runs, so a cold reader meets a contradiction at the top. Needs a rescore at close.
+
+Verdict round 2: PASS (all LOST and terms fixed; 7 of 8 READ TWICE fixed).

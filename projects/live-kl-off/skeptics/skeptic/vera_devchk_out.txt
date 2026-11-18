@@ -1,0 +1,12 @@
+off stored_s0 vs A_s0 IDENTICAL
+off stored_s0 vs B_s0 IDENTICAL
+off A_s0 vs B_s0 IDENTICAL
+off A_s0 vs cap_s0 IDENTICAL
+off stored_s0 vs cap_s0 IDENTICAL
+off lap_s1 vs cap_s1 IDENTICAL
+on stored_s0 vs A_s0 {'toks': '1/32 rows, first differing token [49]', 'd2_ref': '2 elems differ', 'M_read': '1 elems differ', 'M_solve': '1 elems differ'}
+on stored_s0 vs B_s0 {'toks': '2/32 rows, first differing token [49, 53]', 'd2_ref': '4 elems differ', 'M_read': '2 elems differ', 'M_solve': '2 elems differ'}
+on A_s0 vs B_s0 {'toks': '1/32 rows, first differing token [53]', 'd2_ref': '2 elems differ', 'M_read': '1 elems differ', 'M_solve': '1 elems differ'}
+on A_s0 vs cap_s0 IDENTICAL
+on stored_s0 vs cap_s0 {'toks': '1/32 rows, first differing token [49]', 'd2_ref': '2 elems differ', 'M_read': '1 elems differ', 'M_solve': '1 elems differ'}
+on lap_s1 vs cap_s1 {'toks': '1/32 rows, first differing token [49]', 'd2_ref': '2 elems differ', 'M_read': '1 elems differ', 'M_solve': '1 elems differ'}

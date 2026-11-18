@@ -78,6 +78,12 @@ from the frozen count rule, not from this interval.
    these gaps are overstated. Host and seed are fully confounded (1 mini seed, 2 laptop seeds): no log comparison
    can split them. Counter-evidence that the mini can learn: the dense positive control (mini) took off at
    (100, 150]. Bruno's bit-check (T2) is the only direct test; its reading was frozen before it ran.
+4. Device check (Bruno's devchk, 657cedf8d; my own compare vera_devchk.py, output vera_devchk_out.txt). The
+   no-plant batch of update 1 is bit-identical in all 6 pairs. The planted batch is not repeatable on the mini
+   itself: stored mini seed 0 vs rerun A 1/32 thoughts differ (from token 49), vs rerun B 2/32 (tokens 49, 53).
+   Mini rerun of seed 1 vs the stored laptop seed 1: 1/32 (token 49). Same-host spread >= cross-host spread, so a
+   seed number does not fix a run's path, and seed 0's FLAT is one draw. This does NOT show the host has no effect
+   on the odds; it shows the bitwise test cannot be done.
 
 ## Same dose, different fates (numbers for the post)
 

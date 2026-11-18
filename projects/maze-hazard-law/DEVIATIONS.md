@@ -25,3 +25,9 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   temperature > 0 the sampled replies come from the same distribution up to that floating-point noise. The cache is
   reset at each run's first call, so a run never depends on the run before it. Follow-up evidence (logit difference at
   the first differing token, and a no-reuse vs no-reuse control) is added below when measured.
+  D3 follow-up (00:24 CET, `web/test_prefix_logits.py <model> <call>`: last-position logits of call t with the
+  trimmed call t-1 cache plus the new tokens, vs a fresh full prefill, and a second full prefill as the same-host
+  control): llama-3.2-1b call 5 (1,727 tokens, 305 fed) max |diff| 0.027, call 17 (5,291 tokens) 0.048, on logits up to
+  ~17; full vs full 0.0 both times; argmax equal; the top-2 gap at call 17 is 0.156, the size of a near-tie that 0.05
+  can flip in a long decode. qwen3-1.7b-nothink call 17 (5,377 tokens, 321 fed): max |diff| 0.0, bit-equal. So the
+  2/20 is reuse-order fp noise in Llama's bf16 path, not nondeterminism of MLX itself (full prefill repeats exactly).

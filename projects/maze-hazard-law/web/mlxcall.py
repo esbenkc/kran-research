@@ -69,6 +69,10 @@ MODELS: dict[str, dict[str, Any]] = {
     "qwen3-1.7b-nothink": {"path": "models/Qwen3-1.7B-4bit", "family": "qwen3", "convert_from": "Qwen/Qwen3-1.7B",
                            "ctx": 32768, "kv_bits": 8,
                            "sampling": _QWEN_NOTHINK, "template_kwargs": {"enable_thinking": False}},
+    # Fallback side row (DEVIATIONS D4): the parent's thinking-on Qwen3-1.7B rung, with the same 8-bit KV cache.
+    "qwen3-1.7b-think": {"path": "models/Qwen3-1.7B-4bit", "family": "qwen3", "convert_from": "Qwen/Qwen3-1.7B",
+                         "ctx": 32768, "kv_bits": 8,
+                         "sampling": {"temp": 0.6, "top_p": 0.95, "top_k": 20}, "template_kwargs": {"enable_thinking": True}},
     "qwen3-0.6b": {"path": "models/Qwen3-0.6B-4bit", "family": "qwen3", "convert_from": "Qwen/Qwen3-0.6B", "ctx": 32768,
                    "sampling": {"temp": 0.6, "top_p": 0.95, "top_k": 20}, "template_kwargs": {"enable_thinking": True}},
     # Second-family candidates for the mini (<= 2B, no reasoning channel; model-card sampling).

@@ -21,3 +21,15 @@ Fill order (each step only from the final origin data, after `git pull --rebase`
 7. After Vera's sign-off: naming step (`~/bin/oracle.py title --post ...`), title to Kasper.
 8. Caption: test 3x against figure_alone before the counted `oracle.py check` round. Then grep the post for any
    stale placeholder: `grep -n "FILL" _notes/probe-switch-frozen-heads-8b.md` must print nothing.
+
+## State when room oracle-1118-frozen-heads-8b closed (Selma)
+
+- Decision (Tove #24592): no PR until the MLP-only and all-modules cells exist; later cells go in as an EDIT.
+- Blog branch swarm/oracle-1118-frozen-heads-8b at 2591464: intro (probe, trace, switch, heads vs MLP, the 1.7B
+  result, why 8B, LoRA Without Regret framing), question, method, trust list, status rule in plain words, prereg
+  record URL. Every number is a [FILL] slot. Main figure renders now (1.7B dots; 8B lanes say "on laptop queue").
+- 8B run names: all8_none_s*, mlp8_none_s*, mlp35_none_s* (last-MLP). figure_data.py maps mlp35 to the last-MLP row.
+- If the post quotes Iris's NDIF cross-check (crosscheck_ndif/), cite "NNsight and NDIF" (arXiv 2407.14561) in the
+  text and name NDIF in the methods. The frozen predictions come from the laptop map (PREDICTIONS.md section B).
+- Sentence the TLDR may need if MLP-only forms: "The MLPs made frozen heads look at a different token when the
+  probe was on" only if the attention rows show it at 8B (Tove's mechanism secondary); otherwise drop it.

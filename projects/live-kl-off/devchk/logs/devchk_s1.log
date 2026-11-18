@@ -1,0 +1,57 @@
+W1118 13:50:40.446000 9999 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 8001.45it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/oracle-1118-live-kl-off-cont/swarm-oracle-1118-live-kl-off-cont/devchk/live.py", line 324, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/oracle-1118-live-kl-off-cont/swarm-oracle-1118-live-kl-off-cont/devchk/live.py", line 213, in main
+    _, d2g = mt.tail_logits(inner, H, 0)  # one forward with autograd for the decision term (cached.py one_pass)
+             ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1118-live-kl-off-cont/swarm-oracle-1118-live-kl-off-cont/devchk/mt.py", line 294, in tail_logits
+    h = _layers(inner, h26, FIRST, inner.config.num_hidden_layers)
+  File "/Users/esben/work/oracle-1118-live-kl-off-cont/swarm-oracle-1118-live-kl-off-cont/devchk/mt.py", line 279, in _layers
+    h = inner.model.layers[i](h, attention_mask=mask, position_embeddings=pe, position_ids=pos)
+  File "/Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/transformers/modeling_layers.py", line 111, in __call__
+    return super().__call__(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 299, in forward
+    hidden_states, _ = self.self_attn(
+                       ~~~~~~~~~~~~~~^
+        hidden_states=hidden_states,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 258, in forward
+    attn_output, attn_weights = attention_interface(
+                                ~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<7 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Users/esben/work/oracle-1113-on-policy-planted/env/.venv/lib/python3.14/site-packages/transformers/integrations/sdpa_attention.py", line 170, in sdpa_attention_forward
+    attn_output = torch.nn.functional.scaled_dot_product_attention(
+        query,
+    ...<6 lines>...
+        **sdpa_kwargs,
+    )
+RuntimeError: MPS backend out of memory (MPS allocated: 4.71 GiB, other allocations: 19.70 MiB, max allowed: 4.74 GiB). Tried to allocate 124.00 MiB on shared pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
+
+WATCHDOG: footprint 5.39 GB > cap 5.0 GB, killing 9999
+
+WATCHDOG: exit -9, peak footprint 5.39 GB

@@ -55,6 +55,9 @@
 | skeptic rebuild (room oracle-1117) | 0 | cell R replay_s0 read 600 | none | s_P +0.5500 [+0.5392, +0.5615] | skeptics/skeptic/signoff.md |
 | skeptic rebuild (room oracle-1117) | 0 | served read, seed 0 adapter_1200 | none | s_P -0.0727 [-0.166, +0.014]; sign-flip null sd 0.041 | skeptics/skeptic/signoff.md |
 | skeptic rebuild (room oracle-1117) | 0 | thought drift, last window vs updates 1-100 | none | KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064 | skeptics/skeptic/signoff.md |
+| context, not a status leg: device check | 1 | update-1 sampled thoughts, mini rerun vs stored laptop run | none | no-plant batch: 0 of 32 thoughts differ; planted batch: 1 of 32 differ (from token 49) | devchk/cmp_capped_s1_vs_laptop_s1.json |
+| context, not a status leg: device check | 0 | update-1 sampled thoughts, mini rerun (full mode) vs stored mini run, same host | none | no-plant batch: 0 of 32 thoughts differ; planted batch: 2 of 32 differ (from token 49, 53) | devchk/cmp_B_vs_stored_s0.json |
+| context, not a status leg: device check | 0 | update-1 sampled thoughts, two mini reruns (full mode vs no read 0), same host | none | no-plant batch: 0 of 32 thoughts differ; planted batch: 1 of 32 differ (from token 53) | devchk/cmp_B_vs_A.json |
 
 seed-level: 0.226 [-0.332, 0.783] (s_P at the common read 700, t-interval over 3 seeds)
 

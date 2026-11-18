@@ -1,13 +1,13 @@
 {
  "mock": false,
- "title": "Without the penalty, seed 0 stayed below 2% to update 1,200. Fixed thoughts took off at 600.",
+ "title": "Without the penalty, seed 2 took off by update 600 and seed 1 by 800. Seed 0 stayed flat to 1,200.",
  "subtitle": "Qwen3-0.6B. Only the read-or-solve choice is trained. Switch: how much less the model cheats when the word is in its thought, as a share of the most it could (100% = it never cheats then).",
  "x_label": "Training updates →",
  "y_label": "↑ Switch, share of its limit",
  "legend": {
   "band": "predicted take-off if the penalty caused the whole delay (fixed before the run)",
   "bar": "30%: the bar for a take-off",
-  "end": "last test of tonight's seed, 95% interval"
+  "end": "last test of each no-penalty seed, 95% interval"
  },
  "bands": [
   {
@@ -24,14 +24,20 @@
   {
    "u": 800,
    "y": 0.8472,
-   "label": "800",
-   "kind": "hero"
+   "label": "seed 1: 800",
+   "kind": "hero",
+   "anchor": "end",
+   "dx": -9,
+   "dy": -2
   },
   {
    "u": 600,
    "y": 0.6283,
-   "label": "600",
-   "kind": "hero"
+   "label": "seed 2: 600",
+   "kind": "hero",
+   "anchor": "end",
+   "dx": -9,
+   "dy": -2
   },
   {
    "u": 600,
@@ -49,8 +55,8 @@
    "key": "kl0_s0",
    "kind": "hero",
    "seed": 0,
-   "label": "fresh, no penalty, seed 0 (tonight)",
-   "short": "no penalty, seed 0",
+   "label": "no penalty, seed 0",
+   "short": "seed 0",
    "pts": [
     {
      "u": 0,
@@ -110,13 +116,14 @@
     "y": 0.0101,
     "lo": 0.0079,
     "hi": 0.0123
-   }
+   },
+   "nolabel": false
   },
   {
    "key": "kl0_s1",
    "kind": "hero",
    "seed": 1,
-   "label": "seed 1",
+   "label": "no penalty, seed 1",
    "short": "seed 1",
    "pts": [
     {
@@ -165,13 +172,14 @@
     "y": 0.634,
     "lo": 0.6225,
     "hi": 0.6457
-   }
+   },
+   "nolabel": true
   },
   {
    "key": "kl0_s2",
    "kind": "hero",
    "seed": 2,
-   "label": "seed 2",
+   "label": "no penalty, seed 2",
    "short": "seed 2",
    "pts": [
     {
@@ -212,7 +220,8 @@
     "y": 0.4537,
     "lo": 0.443,
     "hi": 0.4641
-   }
+   },
+   "nolabel": true
   },
   {
    "key": "live_kl",
@@ -397,7 +406,7 @@
   {
    "key": "posctl",
    "kind": "pos",
-   "label": "check: word in 86 of 100 (tonight)",
+   "label": "check: word in 86 of 100 (no penalty)",
    "short": "check: 86 of 100",
    "pts": [
     {

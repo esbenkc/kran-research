@@ -20,6 +20,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parents[1]
 BLOG = HERE.parents[2] / "blog.kran.ai" / "assets" / "figures" / "live-kl-off"
 BAR = 0.30
+STEPS_MAX = 1200
 
 sm_p = HERE / "data" / "summary.json"  # kl_summ.py, from the raw reads (kl-off seeds, parent lines, positive control)
 sm = json.loads(sm_p.read_text())
@@ -45,11 +46,14 @@ kl = sorted(sm["seeds"], key=lambda r: r["name"])
 for i, r in enumerate(kl):
     sd = int(re.search(r"kl0_s(\d+)", r["name"]).group(1))
     series.append({"key": r["name"], "kind": "hero", "seed": sd,
-                   "label": f"fresh, no penalty, seed {sd} (tonight)" if i == 0 else f"seed {sd}",
-                   "short": f"no penalty, seed {sd}" if i == 0 else f"seed {sd}", "pts": pts(r["reads"]),
+                   "label": f"no penalty, seed {sd}", "short": f"seed {sd}", "pts": pts(r["reads"]),
                    "end": {"u": r["last_read"], "y": round(r["last"]["s_P"]["v"], 4), "lo": round(r["last"]["s_P"]["ci"][0], 4),
                            "hi": round(r["last"]["s_P"]["ci"][1], 4)}})
-    onsets.append(onset_dot(r["reads"], r["onset"], "hero"))
+    # a seed that stopped early has no room for an end label inside the plot: its onset dot carries its name instead
+    early = r["last_read"] < STEPS_MAX
+    series[-1]["nolabel"] = early
+    onsets.append(onset_dot(r["reads"], r["onset"], "hero", label=f"seed {sd}: {r['onset'][1]:,}" if r["onset"] else None,
+                            anchor="end", dx=-9, dy=-2) if early else onset_dot(r["reads"], r["onset"], "hero"))
 par = sm["parent"]
 if "live_k4" in par:
     series.append({"key": "live_kl", "kind": "klon", "label": "fresh + penalty (earlier)", "short": "fresh + penalty",
@@ -66,14 +70,14 @@ if "cachedkl_s0" in par:
                    "short": "fixed + penalty", "pts": pts(rs)})
 pc = sm.get("positive_control")
 if pc:
-    series.append({"key": "posctl", "kind": "pos", "label": "check: word in 86 of 100 (tonight)",
+    series.append({"key": "posctl", "kind": "pos", "label": "check: word in 86 of 100 (no penalty)",
                    "short": "check: 86 of 100", "pts": pts(pc["reads"])})
 onsets = [o for o in onsets if o]
 seeds = kl
 
 fig = {
     "mock": not seeds,
-    "title": "Without the penalty, seed 0 stayed below 2% to update 1,200. Fixed thoughts took off at 600.",
+    "title": "Without the penalty, seed 2 took off by update 600 and seed 1 by 800. Seed 0 stayed flat to 1,200.",
     "subtitle": "Qwen3-0.6B. Only the read-or-solve choice is trained. Switch: how much less the model cheats when "
                 "the word is in its thought, as a share of the most it could (100% = it never cheats then).",
     "x_label": "Training updates →",
@@ -81,7 +85,7 @@ fig = {
     "legend": {
         "band": "predicted take-off if the penalty caused the whole delay (fixed before the run)",
         "bar": "30%: the bar for a take-off",
-        "end": "last test of tonight's seed, 95% interval",
+        "end": "last test of each no-penalty seed, 95% interval",
     },
     "bands": [{"x0": 500, "x1": 700, "label": "500–700", "ly": 0.97}],
     "bar": {"y": BAR},

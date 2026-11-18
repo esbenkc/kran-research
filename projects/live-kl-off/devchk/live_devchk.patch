@@ -1,0 +1,20 @@
+--- ../../kran-research/projects/live-kl-off/live.py	2026-11-18 13:45:32.488893552 -0800
++++ live.py	2026-11-18 13:53:13.251434625 -0800
+@@ -30,6 +30,7 @@
+ """
+ import argparse
+ import json
++import os
+ import time
+ 
+ import numpy as np
+@@ -204,6 +205,9 @@
+                 bat["on"] = sample("on", step)
+                 samp["on"].append(step)
+         torch.mps.synchronize(); T.append(time.time())
++        if os.environ.get("DEVCHK_SAMPLE_ONLY") and step == 1:  # devchk scratch copy only: stop after update 1's sampling
++            print("DEVCHK: sampled update 1, stopping before training", flush=True)
++            return
+         bo, bn = bat["off"], bat["on"]
+         H = torch.cat([bo["H"], bn["H"]])
+         toks = torch.cat([bo["toks"], bn["toks"]])

@@ -310,6 +310,17 @@ def main():
                        ("thought drift, last window vs updates 1-100", "KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064")):
             Lm.append(f"| skeptic rebuild (room oracle-1117) | 0 | {v} | none | {res} | "
                       f"skeptics/skeptic/signoff.md |")
+    # device check (room oracle-1118-live-kl-off-cont; devchk/README.md): update-1 sampled batches, rerun vs stored run
+    dv = HERE / "devchk"
+    for f, sd, what in (("cmp_capped_s1_vs_laptop_s1.json", 1, "mini rerun vs stored laptop run"),
+                        ("cmp_B_vs_stored_s0.json", 0, "mini rerun (full mode) vs stored mini run, same host"),
+                        ("cmp_B_vs_A.json", 0, "two mini reruns (full mode vs no read 0), same host")):
+        if (dv / f).exists():
+            c = json.loads((dv / f).read_text())
+            Lm.append(f"| context, not a status leg: device check | {sd} | update-1 sampled thoughts, {what} | none | "
+                      f"no-plant batch: {len(c['off_00001']['rows_tok_diff'])} of 32 thoughts differ; planted batch: "
+                      f"{len(c['on_00001']['rows_tok_diff'])} of 32 differ (from token "
+                      f"{', '.join(str(v) for v in c['on_00001']['first_pos'].values()) or '-'}) | devchk/{f} |")
     sl = seed_level
     Lm += ["", f"seed-level: {sl['mean']:.3f} [{sl['ci'][0]:.3f}, {sl['ci'][1]:.3f}] (s_P at the common read "
                f"{sl['read']}, {sl['method']})" if sl["ci"] else

@@ -1,0 +1,83 @@
+{
+ "what": "update-1 sampled batches of a mini rerun (live.py --time-only, MPS watermark 0.40/0.30, OOM-stopped in the update-1 training forward) vs the stored run, same seed",
+ "pairs": [
+  {
+   "pair": "devchk_s1 vs kl0_s1 off_00001",
+   "hosts": "mini rerun vs laptop run",
+   "rows_with_token_diff": [],
+   "first_diff_token_pos": {},
+   "rows_differing_per_array (or equal flag)": {
+    "prompts": true,
+    "toks": [],
+    "x1": [],
+    "d2_ref": []
+   }
+  },
+  {
+   "pair": "devchk_s1 vs kl0_s1 on_00001",
+   "hosts": "mini rerun vs laptop run",
+   "rows_with_token_diff": [
+    29
+   ],
+   "first_diff_token_pos": {
+    "29": 49
+   },
+   "rows_differing_per_array (or equal flag)": {
+    "prompts": true,
+    "toks": [
+     29
+    ],
+    "x1": [],
+    "d2_ref": [
+     29
+    ],
+    "M_read": [
+     29
+    ],
+    "M_solve": [
+     29
+    ],
+    "cue_p_off": []
+   }
+  },
+  {
+   "pair": "devchk_s0 vs kl0_s0 off_00001",
+   "hosts": "mini rerun vs mini run (same host)",
+   "rows_with_token_diff": [],
+   "first_diff_token_pos": {},
+   "rows_differing_per_array (or equal flag)": {
+    "prompts": true,
+    "toks": [],
+    "x1": [],
+    "d2_ref": []
+   }
+  },
+  {
+   "pair": "devchk_s0 vs kl0_s0 on_00001",
+   "hosts": "mini rerun vs mini run (same host)",
+   "rows_with_token_diff": [
+    15
+   ],
+   "first_diff_token_pos": {
+    "15": 49
+   },
+   "rows_differing_per_array (or equal flag)": {
+    "prompts": true,
+    "toks": [
+     15
+    ],
+    "x1": [],
+    "d2_ref": [
+     15
+    ],
+    "M_read": [
+     15
+    ],
+    "M_solve": [
+     15
+    ],
+    "cue_p_off": []
+   }
+  }
+ ]
+}

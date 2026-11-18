@@ -1,8 +1,8 @@
 # Post continuation (Selma, room defense-1118-maze-hazard-law, 2026-11-19 ~01:00 CET)
 
 No PR on night 2026-11-18 (Felix plan v1.2, Tove #25858): no status-agent maze data yet. The post skeleton and the
-main-figure builder are ready, so the continuation is a ~30-minute writing job once labq jobs `n8zed9xgcv`
-(gpt-oss-20b) and `bge9lj084j` (Qwen3-8B) have pushed their data.
+main-figure builder are ready, so the continuation is a ~30-minute writing job once labq jobs `f0jxnah2hu`
+(gpt-oss-20b) and `erbnwpu5t3` (Qwen3-8B) have pushed their data.
 
 ## Where things are
 - Post: blog.kran.ai branch `swarm/defense-1118-maze-hazard-law`, `_notes/maze-hazard-law.md`. Front matter, intro,
@@ -16,7 +16,7 @@ main-figure builder are ready, so the continuation is a ~30-minute writing job o
   the keys exist. Status agents missing from analysis.json get an empty panel naming their labq job (`--waiting`).
 
 ## Steps
-1. `git pull --rebase --autostash` on the kran-research branch; `labq status n8zed9xgcv bge9lj084j` (and later chunks).
+1. `git pull --rebase --autostash` on the kran-research branch; `labq status f0jxnah2hu erbnwpu5t3` (and later chunks).
 2. `python3 analysis.py --data data --out results/analysis.json` (prints STATUS, prediction outcome, verdicts).
 3. `python3 figures/figure_data.py --out <blog>/assets/figures/maze-hazard-law/data.json`
    (add `--waiting gpt-oss-20b=<job>` for an agent not in yet). Check `"phase": "counted"` in the output.

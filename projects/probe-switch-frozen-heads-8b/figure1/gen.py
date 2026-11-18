@@ -211,7 +211,7 @@ Built by figure1/gen.py from kran-research (branch swarm/oracle-1118-frozen-head
   .foot b {{ color: #1d1d1f; font-weight: 700; }}
   .st {{ font-size: 23px; font-weight: 700; color: #4d5059; margin-top: 22px; }}
   .st small {{ font-weight: 500; color: #7a7d86; font-size: 20px; }}
-  .scale {{ display: inline-flex; align-items: center; gap: 6px; margin-left: 10px; vertical-align: 1px; }}
+  .scale {{ display: flex; align-items: center; gap: 6px; margin-top: 4px; }}
   .scale i {{ display: inline-block; width: 110px; height: 16px; border-radius: 5px; background: linear-gradient(90deg, rgba(218,112,44,0.08), rgba(218,112,44,0.93)); }}
   .strip {{ display: flex; gap: 6px; align-items: flex-end; margin-top: 94px; }}
   .chip {{ position: relative; font: 600 22px ui-monospace, Menlo, monospace; padding: 9px 10px; border-radius: 10px; color: #3a2414; }}

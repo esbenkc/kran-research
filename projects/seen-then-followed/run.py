@@ -29,6 +29,22 @@ ROOT = Path(__file__).resolve().parent
 N_PARAPHRASES = 6
 _MLOCK = threading.Lock()
 STOP_AT = 0.0  # unix time; set by --stop-at
+K_GATE = False  # set by --k-gate
+JOB_CELLS: list[tuple[str, str]] = []  # (model, cell) pairs of this invocation
+
+
+def _min_k(phase: str) -> int:
+    """Number of complete k steps: largest K with runs k, 30+k, 60+k saved in every (model, cell) for all k < K."""
+    have = {}
+    for m, c in JOB_CELLS:
+        d = ROOT / "raw" / phase / m / c.replace(":", "__")
+        have[(m, c)] = {int(f.stem) for f in d.glob("[0-9][0-9][0-9].json")} if d.exists() else set()
+    K = 0
+    while K < 30 and all({K, 30 + K, 60 + K} <= s for s in have.values()):
+        K += 1
+    return K
+
+
 SERIAL_TOOLS = {"lcpw"}  # browser stack: one run at a time per lane (one Chromium per lane thread)
 
 
@@ -55,6 +71,13 @@ def one(phase: str, model: str, cell: str, i: int, budget: float) -> dict | None
         return {"skipped": "budget"}
     if STOP_AT and time.time() > STOP_AT:
         return {"skipped": "time stop"}
+    # k gate (Kasper #25666, DEVIATIONS D6): no run with k = i mod 30 starts while some cell of this phase lacks a
+    # finished run with a smaller k (index only; outcomes are never read). Keeps fast lanes from spending the shared
+    # per-model quota on runs outside the final k-prefix.
+    while K_GATE and (i % 30) > _min_k(phase) + 1:
+        if STOP_AT and time.time() > STOP_AT:
+            return {"skipped": "time stop"}
+        time.sleep(3)
     c = parse_cell(cell)
     template = sitegen.TEMPLATE_ORDER[i % 5]
     para = (i // 5) % N_PARAPHRASES
@@ -105,6 +128,7 @@ def main() -> None:
     ap.add_argument("--stop-at", type=float, default=0, help="unix time; no new run starts after it (PREREG s2 time stop)")
     ap.add_argument("--rerun-errors", action="store_true",
                     help="PREREG s2: move each api_error run of this phase to <i>.err1.json and run it once more")
+    ap.add_argument("--k-gate", action="store_true", help="DEVIATIONS D6: no run of step k+2 before step k is complete in every cell")
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--budget", type=float, default=4.5)
     ap.add_argument("--lanes", type=int, default=2, help="parallel lcpw lanes (one Chromium each)")
@@ -130,8 +154,10 @@ def main() -> None:
                 f.rename(f.with_suffix(".err1.json"))
                 redo.append((m, c, i))
         jobs = redo
-    global STOP_AT
+    global STOP_AT, K_GATE
     STOP_AT = a.stop_at
+    K_GATE = a.k_gate
+    JOB_CELLS.extend(sorted({(m, c) for m, c, _ in jobs}))
     serial = [j for j in jobs if parse_cell(j[1])["tool"] in SERIAL_TOOLS]
     par = [j for j in jobs if j not in serial]
     print(f"{a.phase}: {len(par)} parallel + {len(serial)} serial runs; spent so far ${spent():.3f}; budget ${a.budget}", flush=True)

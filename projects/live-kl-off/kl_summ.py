@@ -302,14 +302,14 @@ def main():
             Lm.append(f"| placebo baseline | - | pilot (update 0) on the ' Let' twin, {where} | untrained start | "
                       f"s_P' {fm(r0['s_P'])} | data/reads/{sub}/c_0.npy |")
     # skeptic rebuild cells (Vera, own code on the pushed receipts; room #23204), kept so a rerun keeps them
-    if (HERE / "skeptics" / "skeptic" / "signoff.md").exists():
+    if (HERE / "skeptics" / "skeptic" / "1117" / "signoff.md").exists():
         for v, res in (("kl0_s0 read 1,200", "s_P +0.0100 [+0.0078, +0.0123]"),
                        ("positive control read 150 (all-rows definition)", "s_P +0.9832 [+0.9807, +0.9854]"),
                        ("cell R replay_s0 read 600", "s_P +0.5500 [+0.5392, +0.5615]"),
                        ("served read, seed 0 adapter_1200", "s_P -0.0727 [-0.166, +0.014]; sign-flip null sd 0.041"),
                        ("thought drift, last window vs updates 1-100", "KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064")):
             Lm.append(f"| skeptic rebuild (room oracle-1117) | 0 | {v} | none | {res} | "
-                      f"skeptics/skeptic/signoff.md |")
+                      f"skeptics/skeptic/1117/signoff.md |")
     # device check (room oracle-1118-live-kl-off-cont; devchk/README.md): update-1 sampled batches, rerun vs stored run
     dv = HERE / "devchk"
     for f, sd, what in (("cmp_capped_s1_vs_laptop_s1.json", 1, "mini rerun vs stored laptop run"),

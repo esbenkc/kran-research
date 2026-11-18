@@ -50,11 +50,11 @@
 | context, n=1, not a status leg: earlier run (parent) | 0 | cachedkl_s0 | none | onset none; last read 876: s_P +0.224 [+0.215, +0.231] | data/parent/cachedkl_s0/reads.jsonl |
 | placebo baseline | - | pilot (update 0) on the ' Let' twin, mini | untrained start | s_P' -0.003 [-0.006, +0.000] | data/reads/let/c_0.npy |
 | placebo baseline | - | pilot (update 0) on the ' Let' twin, laptop queue, its own rebuilt twin | untrained start | s_P' -0.003 [-0.006, +0.000] | data/reads/let_laptop/c_0.npy |
-| skeptic rebuild (room oracle-1117) | 0 | kl0_s0 read 1,200 | none | s_P +0.0100 [+0.0078, +0.0123] | skeptics/skeptic/signoff.md |
-| skeptic rebuild (room oracle-1117) | 0 | positive control read 150 (all-rows definition) | none | s_P +0.9832 [+0.9807, +0.9854] | skeptics/skeptic/signoff.md |
-| skeptic rebuild (room oracle-1117) | 0 | cell R replay_s0 read 600 | none | s_P +0.5500 [+0.5392, +0.5615] | skeptics/skeptic/signoff.md |
-| skeptic rebuild (room oracle-1117) | 0 | served read, seed 0 adapter_1200 | none | s_P -0.0727 [-0.166, +0.014]; sign-flip null sd 0.041 | skeptics/skeptic/signoff.md |
-| skeptic rebuild (room oracle-1117) | 0 | thought drift, last window vs updates 1-100 | none | KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064 | skeptics/skeptic/signoff.md |
+| skeptic rebuild (room oracle-1117) | 0 | kl0_s0 read 1,200 | none | s_P +0.0100 [+0.0078, +0.0123] | skeptics/skeptic/1117/signoff.md |
+| skeptic rebuild (room oracle-1117) | 0 | positive control read 150 (all-rows definition) | none | s_P +0.9832 [+0.9807, +0.9854] | skeptics/skeptic/1117/signoff.md |
+| skeptic rebuild (room oracle-1117) | 0 | cell R replay_s0 read 600 | none | s_P +0.5500 [+0.5392, +0.5615] | skeptics/skeptic/1117/signoff.md |
+| skeptic rebuild (room oracle-1117) | 0 | served read, seed 0 adapter_1200 | none | s_P -0.0727 [-0.166, +0.014]; sign-flip null sd 0.041 | skeptics/skeptic/1117/signoff.md |
+| skeptic rebuild (room oracle-1117) | 0 | thought drift, last window vs updates 1-100 | none | KL-off 0.135 vs split-half floor 0.065; KL-on parent 0.064 | skeptics/skeptic/1117/signoff.md |
 | context, not a status leg: device check | 1 | update-1 sampled thoughts, mini rerun vs stored laptop run | none | no-plant batch: 0 of 32 thoughts differ; planted batch: 1 of 32 differ (from token 49) | devchk/cmp_capped_s1_vs_laptop_s1.json |
 | context, not a status leg: device check | 0 | update-1 sampled thoughts, mini rerun (full mode) vs stored mini run, same host | none | no-plant batch: 0 of 32 thoughts differ; planted batch: 2 of 32 differ (from token 49, 53) | devchk/cmp_B_vs_stored_s0.json |
 | context, not a status leg: device check | 0 | update-1 sampled thoughts, two mini reruns (full mode vs no read 0), same host | none | no-plant batch: 0 of 32 thoughts differ; planted batch: 1 of 32 differ (from token 53) | devchk/cmp_B_vs_A.json |

@@ -48,3 +48,12 @@ the drift and these numbers. No rule change.
 Jobs A (ro7utwjf59, seed 0) and B (dkmuv138pm, seed 1) had finished and pushed before the stop. Job C (seed 2) was
 submitted at the relaunch as 5ur5bbjkc6 (same code, SEEDS=2), behind ~6 h of other rooms' laptop jobs. The wrap-up
 reading is D4. The judge ran on the mini after the relaunch: 6,542 calls, est. $0.78 (data/judge_spend.jsonl).
+
+## D7 (Bruno, 2026-11-18 22:50Z, logged at Kasper's request #25638; the extra labels exist since the parent's judge run of 20:13Z)
+
+PREREG ("DEV outputs kept for the secondary number") names three DEV sets to judge: base DEV harmful, stripped DEV
+harmful, and the pushed DEV harmful outputs at the picked (L_push, g). judge.py judged every row of gen_dev.jsonl, so
+the 8 non-picked push-grid cells (128 each per seed) also carry judge labels (data/strip_s{s}/gen_dev.judged.jsonl).
+Nothing frozen reads them: the pick is by the string scorer (push.json, made inside the job before any judging), and
+analysis.py reads only the picked cell. Any number from the other cells (for example s0 push_L22_g2 = 127/128 judge
+refusals) is descriptive and post hoc, not a status leg and not a pick. Seed 2 is scored the same way (score_seed.sh).

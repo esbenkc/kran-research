@@ -155,3 +155,85 @@ Read grids differ (control every 50, cached dense every 25), which widens the wi
   thoughts were learnable.
 - Next-step candidate (my read, for Felix's agenda list): a reuse ladder on the live engine, k-stale 4 -> 8 -> 16 with
   thought KL off and the same total uses. If onset returns as reuse per thought grows, repetition is the switch.
+
+## 10. Continuation (room oracle-1118-live-kl-off-cont, Iris, 2026-11-18 14:00-14:30 PST)
+
+### 10.1 Jobs
+- labq r3cap1jsls FAILED in 0.0015 h (laptop env had no numpy; pool gate could not read; no seed ran; f84814d34).
+- labq awef9vul92 (resubmit after env fix 279fcf19) DONE, exit 0, 1.71 h wall on esben-laptop (Apple M4 Pro), started
+  2026-11-17 18:35:42Z, pushed ab1f0cf62. Log: pool gate 5,600 rows max_abs_diff 0.0, pilot read 0 s_P 0.005616 = mini,
+  s_P' -0.003132; seed 1 stopped at read 900 (11:39 PST), seed 2 at read 700 (12:18 PST).
+
+### 10.2 Independent status rebuild (my code: research_iris/iris_status.py -> iris_status.json)
+Own implementation of s_P from data/pool_cols/test/cols.npz and reads/c_<step>.npy, prompt-clustered bootstrap
+(2,000 resamples, numpy seed 777, NOT kl_summ.py's 12345). Point values equal reads.jsonl to 4 decimals.
+
+| seed | host | onset read | read (s_P [95%], paired d CI-low) | carrying gap | last read |
+|---|---|---|---|---|---|
+| 0 | mini | none | max 0.0130 @1000; 1200: 0.0101 [0.0079, 0.0123] | 0.0994 | 1,200 (FLAT) |
+| 1 | laptop | 800 | 700: 0.2185; 800: 0.8472 [0.8397, 0.8545] d-lo 0.834; 900: 0.6340 [0.6223, 0.6455] d-lo 0.617 | 0.1074 | 900 (TAKE-OFF, (700,800]) |
+| 2 | laptop | 600 | 600: 0.6283 [0.6182, 0.6384] d-lo 0.612; 700: 0.4537 [0.4432, 0.4644] d-lo 0.438 | 0.1048 | 700 (TAKE-OFF, (500,600]) |
+
+Start s_P 0.0056, CI-high 0.0083. Both falling confirming reads (s1 900, s2 700) pass every onset clause.
+BROKEN check (steps.jsonl): test cheat_off 0.40-0.65 at every read; live groups (25-update mean of live_groups/8)
+min 0.89/0.935/0.92; max per-update probed train cheat 0.875/0.906/0.844; no NaN decision KL. None BROKEN.
+Placebo ' Let' at last read (logs/laptop/let_kl0_s*.log): s1 -0.0017, s2 +0.0232 vs pilot -0.0031 -> rises +0.001,
++0.026 (bar 0.10): pass. => 2 TAKE-OFF + 1 FLAT of 3 settled = CONFIRMED under the frozen rule. Bruno's kl_summ.py
+gives the same (#25281).
+Seed-level at the common read 700: 0.0048 / 0.2185 / 0.4537, mean 0.226, t(df 2) [-0.332, +0.783].
+Prereg: clause 1 (take-off) holds by the status, clause 2 (probed ' We' share 0.103/0.110/0.109, in [0.05,0.15]) holds,
+clause 3 (s_R at last read -0.027/-0.030/-0.042, CI-high < 0.10) holds -> outcome HELD. Secondary predicted number
+(each take-off r in {600,700}): s2 r=600 yes, s1 r=800 no -> the frequency law FAILS (later = "thought KL is only part
+of the brake", per PREREG wording; with n=3 a seed effect reads the same).
+
+### 10.3 Carrying rows (cumulative probed rows with ' We', steps.jsonl n_probed_x)
+
+| run | onset window (updates) | carrying rows in that window |
+|---|---|---|
+| cached d010_s0 (parent, fixed thoughts) | (500, 600] | (1,640, 1,974] |
+| kl0_s2 (live, KL 0, laptop) | (500, 600] | (1,690, 2,014] |
+| kl0_s1 (live, KL 0, laptop) | (700, 800] | (2,406, 2,786] |
+| kl0_s0 (live, KL 0, mini) | none | 3,944 by 1,200 (2,014 at 600, 2,786 at ~800 passed) |
+| live_k4 (parent, KL 0.1, mini) | none | 3,900 by 1,200 |
+
+Seed 2 matched the fixed-thought run in update AND carrying count. Seed 0 passed both take-off seeds' counts with no
+onset. So on the live engine without thought KL the carrying count does not fix the onset: same recipe, three fates.
+
+### 10.4 Host facts
+- run.json args of kl0_s0/1/2 differ only in name, seed, stop_at and init PATH (data/runs/pilot -> inputs/pilot by
+  git mv, D7; inputs/pilot/adapter.pt sha256 3ee161ad...). train_s per segment 1,483 / 1,094 / 951 s.
+- The laptop route was frozen before data: PREREG tree step 5 (re-run unsettled seeds on the laptop queue) and D2
+  (17:25 PST 2026-11-16, seed 0 at update ~100, no read past 100) fixed the rebuilt-pool gate. Host was not chosen
+  after a result. It still lines up with the outcome (flat = mini, both take-offs = laptop): a limit, not a finding.
+- Pre-onset per-update stats are close across hosts (Kasper #25285: probed ' We' share, decision grad, decision KL in
+  200-update blocks). Note: a bitwise mismatch between hosts would not show a host EFFECT (sampled RL turns an ulp
+  difference into a different path); only a match would rule host out.
+
+### 10.5 Literature for the seed spread (checked 2026-11-18)
+- Henderson, Islam, Bachman, Pineau, Precup, Meger, "Deep Reinforcement Learning that Matters", AAAI 2018,
+  arXiv 1709.06560, PDF p.5, Figure 5: TRPO on HalfCheetah-v1, same hyperparameters, 10 seeds split into two sets of
+  5: "learning curves that do not fall within the same distribution at all" (t = -9.09, p = 0.0016).
+  https://arxiv.org/abs/1709.06560
+- Agarwal, Schwarzer, Castro, Courville, Bellemare, "Deep RL at the Edge of the Statistical Precipice", NeurIPS 2021,
+  arXiv 2108.13264, abstract: with "a small number of runs", point estimates ignore "the statistical uncertainty";
+  reliable evaluation in "the few run deep RL regime" needs interval estimates. https://arxiv.org/abs/2108.13264
+  Use: credit for reporting per-seed outcomes and the seed-level interval, not a mean. One footnote at most.
+- DAPO / Open-Reasoner-Zero / Gao-Schulman-Hilton footnote (§4) still holds unchanged.
+
+### 10.6 Audit of the live post (_notes/live-kl-off.md at blog b5ae308) against seeds 1-2
+WRONG now: excerpt (l.6); limits 1 and the "No run used the laptop queue" line (l.19, l.100); outcome unsettled
+(l.40-41) -> held; TLDR (l.52) "still did not learn"; l.76 "So the brake is in how the live run trained on its
+thoughts" (2 of 3 live KL-off seeds learned; s2 at the fixed-thought update); l.86 loop-closer; l.88 "we would not
+blame the KL penalty ... It went away when we replayed" (both directions unlicensed: KL-on is n=1, KL-off is 2/3);
+l.82 "Only one training seed ... finished"; title (No Sign...).
+STILL TRUE but seed-0-only, must be labelled so: l.66 (3,944 carrying uses, "about twice"), l.68 drift 0.135 vs
+0.065, l.70 served read -7.3%, l.76 cell R numbers (replay of seed 0's thoughts), l.72 ' Let' -0.3%->0.2% (now 3
+seeds: +0.5/+0.1/+2.6 points).
+NOT LICENSED (keep out): "thought KL caused the live delay" (prereg if_right; KL-on comparator 1 seed, below the
+2-seed control minimum); "seed lottery" as a finding (3 seeds, host confound unresolved); "the word stays learned"
+(early stop at the confirming read; both take-off seeds fell after the peak: 0.847 -> 0.634, 0.628 -> 0.454).
+
+### 10.7 Impact note for Felix (2026-11-18 14:05 PST)
+The seed-spread papers are credits, not good draft targets: the only addresses are on 2017/2021 PDFs and are likely
+stale (Agarwal 2108.13264 p.1 rishabhagarwal@google.com, Google Research then; Henderson 1709.06560 p.1
+peter.henderson@mail.mcgill.ca, McGill then), and a 3-seed toy result gives them little. No new names from §10.

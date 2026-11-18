@@ -1,7 +1,7 @@
 # Figure 1 for template-mask-em-8b (Owain, prebuilt before the data)
 
 `gen.py` builds `figure1.html` from the real generations and judge calls. It recomputes every rate with its own
-code and asserts that it equals `out/analysis.json` (analysis.py). It picks the example by the rule frozen in
+code and asserts that it equals `analysis.json` (analysis.py, project root). It picks the example by the rule frozen in
 room post #24318, before any data:
 
 - question = the broad question with the largest (full - base) misaligned rate on seed 0;
@@ -15,7 +15,7 @@ known; `{name}` slots are filled with numbers by gen.py (`{full_broad}`, `{templ
 
 1. In the blog clone: `git pull`; the post must have `question:` in its front matter.
 2. From this folder:
-   `python3 gen.py --out ../out --analysis ../out/analysis.json --post <blog>/_notes/template-mask-em-8b.md --text text.json --dest <blog>/assets/figures/template-mask-em-8b-fig1/figure1.html`
+   `python3 gen.py --out ../out_p1:../out_p2 --analysis ../analysis.json --post <blog>/_notes/template-mask-em-8b.md --text text.json --dest <blog>/assets/figures/template-mask-em-8b-fig1/figure1.html`
    It prints the pick (question, sample, per-question gaps, verdicts) and every rate; check them.
 3. Write the head (how the example looks, plain words, at most one number, not the post title), the kicker
    answer (Yes. / No. / Not settled.) and the subtitle in `text.json`; set `axis_max` just above the largest bar.

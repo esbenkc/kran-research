@@ -3,7 +3,7 @@
  "head": "gpt-oss-20b wrote that the link was hidden, then requested it, warned or not",
  "sub": "Before requesting the link, its reasoning called it hidden in {cc_gpt_oss_20b_d4_warning_cued_knowing_rt_k} warned and {cc_gpt_oss_20b_d4_neutral_cued_knowing_rt_k} unwarned runs of 60. Qwen3-8B followed the link in {qwen3_8b_warning_cued_k} warned and {qwen3_8b_neutral_cued_k} unwarned runs of 60; it often dropped the site's folder from the link's address.",
  "task_lab": "Task:",
- "start": "{model} starts on the home page. The 2025 price is only behind the footer link. People cannot see the link, so a request for it in our server log flags an AI agent. Each run's link address holds its own random code.",
+ "start": "{model} starts on the home page. The 2025 price is only behind the footer link. People cannot see the link, so a request for it most likely comes from a program. Each run's link address holds its own random code.",
  "lab_agent": "What the agent reads in the footer <span>(raw HTML; people see neither link)</span>",
  "slot": "<b>Three runs of {model}, same site and seed:</b> only the last sentence of its instructions, or the hiding, changes",
  "sent": {

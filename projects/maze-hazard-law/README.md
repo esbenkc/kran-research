@@ -42,3 +42,23 @@ Mini side row (cwd `web/`):
 ../.venv/bin/python run.py --model qwen3-1.7b-nothink --n maze=40,deadend=20 --out ../data/qwen3-1.7b-nothink --require-gate 8
 ```
 Laptop queue (cwd = this folder): `bash run_laptop.sh <gpt-oss-20b-low|qwen3-8b-nothink> <awake hours> <maze n> <deadend n>`.
+
+## Continuation (laptop chunks)
+
+Chunk 1 of each status agent was queued on 2026-11-19 00:17 CET: `n8zed9xgcv` (gpt-oss-20b-low, `--mem-gb 15`) and
+`bge9lj084j` (qwen3-8b-nothink, `--mem-gb 11`), commit 09f25132c, 1 h awake each. A chunk pushes `data/<agent>/` to
+this branch when it ends. To run the next chunk, `git pull --rebase --autostash` (so HEAD holds the pushed raw files;
+run.py skips every existing `raw/<arm>/<i>.json`), push, and from this folder submit the same command again:
+
+```
+~/bin/labq submit --room <room> --title "maze hazard law chunk k of N: gpt-oss-20b ..." --mem-gb 15 --est-hours 1.1 \
+  --model mlx-community/gpt-oss-20b-MXFP4-Q8 --output projects/maze-hazard-law/data/gpt-oss-20b-low \
+  --cmd "bash run_laptop.sh gpt-oss-20b-low 1 60 20"
+~/bin/labq submit --room <room> --title "maze hazard law chunk k of N: Qwen3-8B ..." --mem-gb 11 --est-hours 1.1 \
+  --model Qwen/Qwen3-8B --output projects/maze-hazard-law/data/qwen3-8b-nothink \
+  --cmd "bash run_laptop.sh qwen3-8b-nothink 1 40 20"
+```
+
+Check chunk 1's `job.log` first: per-run seconds and `peakGB` give the real --mem-gb and the number of chunks left
+(a capped run is ~80 calls; gpt-oss-20b is the first real test of the sliding-window snapshot path). Then
+`.venv/bin/python analysis.py && .venv/bin/python proof_matrix.py`.

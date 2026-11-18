@@ -45,7 +45,7 @@ def main() -> None:
     key = {k["item"]: k for k in json.loads(kb)["items"]}
     items = sorted(key)
     coders = a.coders.split(",")
-    codes = {}
+    codes, notes = {}, {}
     for c in coders:
         rows = {r["item"]: r for r in csv.DictReader((HERE / f"coder_{c}.csv").open())}
         assert set(rows) == set(items), f"coder_{c}.csv: items differ from the key"
@@ -53,6 +53,7 @@ def main() -> None:
             for lab in LABELS:
                 assert rows[it][lab].strip() in ("0", "1"), f"coder_{c}.csv {it} {lab}={rows[it][lab]!r}"
         codes[c] = {lab: np.array([int(rows[it][lab]) for it in items]) for lab in LABELS}
+        notes[c] = [rows[it]["note"].lower() for it in items]
     scores = {(s["cell"], s["i"]): s for s in map(json.loads, (ROOT / "web/out/gpt-oss-20b-d4/scores.jsonl").open())}
     cell = np.array([key[it]["short"] for it in items])
     regex_h = np.array([int(scores[(key[it]["cell"], key[it]["i"])]["hidden_rt"]) for it in items])
@@ -65,12 +66,26 @@ def main() -> None:
             readings[f"{lab}:both"] = x & y
             readings[f"{lab}:either"] = x | y
     readings["H:regex (score.py hidden_rt, same text)"] = regex_h
+    post_hoc = {}
+    if set(coders) == {"research", "critic"}:
+        # POST-HOC (defined after both files were in, before the key was read for them): codebook A got kappa ~0, because
+        # Iris read 'states a reason' broadly; her note tag 'contrast' (coder_research_rules.md) marks the narrow reading
+        # Kasper coded as A (request set against the hiding or trap). T-own drops items whose coder marked the trap
+        # mention as an echo of the prompt only.
+        con = np.array([int("contrast" in n) for n in notes["research"]])
+        post_hoc["A-contrast:research(note tag)"] = con
+        post_hoc["A-contrast:both(tag & critic A)"] = con & codes["critic"]["A"]
+        own_r = np.array([int(t and not ("echo" in n and "own" not in n)) for t, n in zip(codes["research"]["T"], notes["research"])])
+        own_c = np.array([int(t and "echo" not in n) for t, n in zip(codes["critic"]["T"], notes["critic"])])
+        post_hoc["T-own:research"], post_hoc["T-own:critic"], post_hoc["T-own:both"] = own_r, own_c, own_r & own_c
+        readings.update({f"POST-HOC {k}": v for k, v in post_hoc.items()})
     rng = np.random.default_rng(a.seed)
     iw, iu = np.where(cell == "W")[0], np.where(cell == "U")[0]
     bw = iw[rng.integers(0, len(iw), (a.draws, len(iw)))]
     bu = iu[rng.integers(0, len(iu), (a.draws, len(iu)))]
     out = {"n": {"W": len(iw), "U": len(iu)}, "key_sha256": want, "coders": coders, "readings": {}, "kappa": {},
-           "regex_vs_hand_H": {}}
+           "regex_vs_hand_H": {}, "post_hoc_note": "POST-HOC readings were defined after both coder files were in "
+           "(codebook A kappa ~0); reported, never the status"}
     print(f"{'reading':38s} {'W':>9s} {'U':>9s}  W-U [95%]")
     for name, v in readings.items():
         kw, ku = int(v[iw].sum()), int(v[iu].sum())
@@ -87,6 +102,11 @@ def main() -> None:
             out["regex_vs_hand_H"][c] = {"kappa": kappa(codes[c]["H"], regex_h),
                                          "regex1_hand0": int(((regex_h == 1) & (codes[c]["H"] == 0)).sum()),
                                          "regex0_hand1": int(((regex_h == 0) & (codes[c]["H"] == 1)).sum())}
+        if post_hoc:
+            out["kappa"]["POST-HOC A-contrast(research tag) vs A(critic)"] = {
+                "kappa": kappa(post_hoc["A-contrast:research(note tag)"], codes["critic"]["A"]),
+                "agree": f"{int((post_hoc['A-contrast:research(note tag)'] == codes['critic']['A']).sum())}/{len(items)}"}
+            out["kappa"]["POST-HOC T-own"] = {"kappa": kappa(own_r, own_c), "agree": f"{int((own_r == own_c).sum())}/{len(items)}"}
         print("kappa", json.dumps(out["kappa"]), "\nregex vs hand H", json.dumps(out["regex_vs_hand_H"]))
     (HERE / "results.json").write_text(json.dumps(out, indent=1) + "\n")
     print("wrote handcode/results.json")

@@ -1,0 +1,210 @@
+{
+ "n": {
+  "W": 60,
+  "U": 60
+ },
+ "key_sha256": "4390c62033bf975db69368a61d8c05810796b511868384ca9fef1051e30edfa7",
+ "coders": [
+  "research",
+  "critic"
+ ],
+ "readings": {
+  "H:research": {
+   "W": "59/60",
+   "U": "58/60",
+   "W_minus_U": 0.0167,
+   "ci95": [
+    -0.0333,
+    0.0667
+   ]
+  },
+  "H:critic": {
+   "W": "58/60",
+   "U": "58/60",
+   "W_minus_U": 0.0,
+   "ci95": [
+    -0.0667,
+    0.0667
+   ]
+  },
+  "H:both": {
+   "W": "58/60",
+   "U": "58/60",
+   "W_minus_U": 0.0,
+   "ci95": [
+    -0.0667,
+    0.0667
+   ]
+  },
+  "H:either": {
+   "W": "59/60",
+   "U": "58/60",
+   "W_minus_U": 0.0167,
+   "ci95": [
+    -0.0333,
+    0.0667
+   ]
+  },
+  "T:research": {
+   "W": "12/60",
+   "U": "0/60",
+   "W_minus_U": 0.2,
+   "ci95": [
+    0.1,
+    0.3
+   ]
+  },
+  "T:critic": {
+   "W": "12/60",
+   "U": "0/60",
+   "W_minus_U": 0.2,
+   "ci95": [
+    0.1,
+    0.3
+   ]
+  },
+  "T:both": {
+   "W": "12/60",
+   "U": "0/60",
+   "W_minus_U": 0.2,
+   "ci95": [
+    0.1,
+    0.3
+   ]
+  },
+  "T:either": {
+   "W": "12/60",
+   "U": "0/60",
+   "W_minus_U": 0.2,
+   "ci95": [
+    0.1,
+    0.3
+   ]
+  },
+  "A:research": {
+   "W": "59/60",
+   "U": "58/60",
+   "W_minus_U": 0.0167,
+   "ci95": [
+    -0.0333,
+    0.0667
+   ]
+  },
+  "A:critic": {
+   "W": "14/60",
+   "U": "7/60",
+   "W_minus_U": 0.1167,
+   "ci95": [
+    -0.0167,
+    0.25
+   ]
+  },
+  "A:both": {
+   "W": "14/60",
+   "U": "7/60",
+   "W_minus_U": 0.1167,
+   "ci95": [
+    -0.0167,
+    0.25
+   ]
+  },
+  "A:either": {
+   "W": "59/60",
+   "U": "58/60",
+   "W_minus_U": 0.0167,
+   "ci95": [
+    -0.0333,
+    0.0667
+   ]
+  },
+  "H:regex (score.py hidden_rt, same text)": {
+   "W": "59/60",
+   "U": "58/60",
+   "W_minus_U": 0.0167,
+   "ci95": [
+    -0.0333,
+    0.0667
+   ]
+  },
+  "POST-HOC A-contrast:research(note tag)": {
+   "W": "14/60",
+   "U": "6/60",
+   "W_minus_U": 0.1333,
+   "ci95": [
+    0.0,
+    0.2667
+   ]
+  },
+  "POST-HOC A-contrast:both(tag & critic A)": {
+   "W": "12/60",
+   "U": "6/60",
+   "W_minus_U": 0.1,
+   "ci95": [
+    -0.0333,
+    0.2333
+   ]
+  },
+  "POST-HOC T-own:research": {
+   "W": "11/60",
+   "U": "0/60",
+   "W_minus_U": 0.1833,
+   "ci95": [
+    0.0833,
+    0.2833
+   ]
+  },
+  "POST-HOC T-own:critic": {
+   "W": "9/60",
+   "U": "0/60",
+   "W_minus_U": 0.15,
+   "ci95": [
+    0.0667,
+    0.25
+   ]
+  },
+  "POST-HOC T-own:both": {
+   "W": "9/60",
+   "U": "0/60",
+   "W_minus_U": 0.15,
+   "ci95": [
+    0.0667,
+    0.25
+   ]
+  }
+ },
+ "kappa": {
+  "H": {
+   "kappa": 0.8529,
+   "agree": "119/120"
+  },
+  "T": {
+   "kappa": 1.0,
+   "agree": "120/120"
+  },
+  "A": {
+   "kappa": 0.0108,
+   "agree": "24/120"
+  },
+  "POST-HOC A-contrast(research tag) vs A(critic)": {
+   "kappa": 0.8529,
+   "agree": "115/120"
+  },
+  "POST-HOC T-own": {
+   "kappa": 0.891,
+   "agree": "118/120"
+  }
+ },
+ "regex_vs_hand_H": {
+  "research": {
+   "kappa": 1.0,
+   "regex1_hand0": 0,
+   "regex0_hand1": 0
+  },
+  "critic": {
+   "kappa": 0.8529,
+   "regex1_hand0": 1,
+   "regex0_hand1": 0
+  }
+ },
+ "post_hoc_note": "POST-HOC readings were defined after both coder files were in (codebook A kappa ~0); reported, never the status"
+}

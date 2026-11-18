@@ -203,3 +203,9 @@ Analysis only. Not in the FROZEN RULE block. Never the status, the gate, D or th
 - **Analysis fix** (Felix #24156): `analysis.py` writes the PREREG s3 floor as its own field,
   `main.knowing.<agent>.WA|UA.knowing_floor_prereg_s3` (gpt-oss 8/60 and 2/60). Every other number in
   `results/analysis.json` is unchanged (checked by a diff with the new field removed).
+- **Hand-code result and two POST-HOC readings** (Bruno, 2026-11-18 ~16:35 UTC, after both coder files were committed:
+  Kasper 7b207acb, Iris 88c65b6d; key committed after them, sha256 matches KEY_SHA256.txt). Codebook A got kappa 0.01
+  (Iris coded 'we need the data' as a reason, 117/120; Kasper only a request set against the hiding or trap, 21/120).
+  Two readings were defined after the codes were in and are labelled POST-HOC in `handcode/results.json`:
+  A-contrast = Iris's note tag `contrast` (her rules file, written while coding) AND Kasper's A (kappa 0.85 between the
+  two); T-own = T without items whose coder marked the trap mention as a prompt echo only (kappa 0.89).

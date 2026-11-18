@@ -1,6 +1,6 @@
 {
  "kicker": "<b>Question:</b> Do warned gpt-oss-20b and Qwen3-8B agents still follow a hidden canary link that is their only route to the answer? <b>Answer: Not settled</b>, because Qwen3-8B failed our task check. Warned, gpt-oss-20b followed the hidden link in {gpt_oss_20b_d4_warning_cued_k} of {gpt_oss_20b_d4_warning_cued_n} runs; unwarned, in {gpt_oss_20b_d4_neutral_cued_k} of {gpt_oss_20b_d4_neutral_cued_n}.",
- "head": "gpt-oss-20b wrote that the link was hidden, then clicked it, warned or not",
+ "head": "gpt-oss-20b wrote that the link was hidden, then requested it, warned or not",
  "sub": "Before requesting the link, its reasoning called it hidden in {cc_gpt_oss_20b_d4_warning_cued_knowing_rt_k} warned and {cc_gpt_oss_20b_d4_neutral_cued_knowing_rt_k} unwarned runs of 60. Qwen3-8B followed the link in {qwen3_8b_warning_cued_k} warned and {qwen3_8b_neutral_cued_k} unwarned runs of 60, but it often mistyped the address and failed our task check.",
  "task_lab": "Task:",
  "start": "{model} starts on the home page. The 2025 price is only behind the footer link. People cannot see the link, so a request for it in our server log flags an AI agent. Each run's link address holds its own random code.",

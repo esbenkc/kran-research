@@ -14,5 +14,8 @@ OUT="data/$MODEL"
 AWAKE_DEADLINE=$(python3 -c "import time; print(time.clock_gettime(time.CLOCK_UPTIME_RAW) + $HOURS * 3600)")
 uv sync --frozen
 export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-1}"
+# Prefix-reuse check on this machine and model (Vera #25927): reuse vs full prefill on a toy transcript, greedy, short
+# replies. Written once per agent; the analysis counts this agent's runs only if it passes (DEVIATIONS D5).
+[ -f "$OUT/prefix_check.json" ] || caffeinate -i uv run python web/test_prefix.py "$MODEL" 12 greedy-short "$OUT/prefix_check.json"
 caffeinate -i uv run python web/run.py --model "$MODEL" --n visible=10 --out "$OUT" --awake-deadline "$AWAKE_DEADLINE"
 caffeinate -i uv run python web/run.py --model "$MODEL" --n "maze=$NMAZE,deadend=$NDEAD" --out "$OUT" --require-gate 8 --awake-deadline "$AWAKE_DEADLINE"

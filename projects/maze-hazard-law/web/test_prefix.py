@@ -14,6 +14,7 @@ import json
 import os
 import sys
 import time
+from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mlx.core as mx  # noqa: E402
@@ -53,8 +54,11 @@ def run(name: str, steps: int, reuse: bool) -> list[dict]:
 def main() -> None:
     name, steps = sys.argv[1], int(sys.argv[2])
     mode = sys.argv[3] if len(sys.argv) > 3 else "greedy"
-    if mode == "greedy":
+    out = sys.argv[4] if len(sys.argv) > 4 else ""  # optional: write the result JSON here too
+    if mode in ("greedy", "greedy-short"):
         mlxcall.MODELS[name]["sampling"] = {"temp": 0.0}
+    if mode == "greedy-short":  # short replies: a fast check of the cache path itself (laptop chunks)
+        mlxcall.THINK_BUDGET, mlxcall.FINAL_BUDGET = 24, 8
     t0 = time.time()
     on = run(name, steps, True)
     t_on = time.time() - t0
@@ -68,7 +72,12 @@ def main() -> None:
            "peak_gb": round(mx.get_peak_memory() / 1e9, 2),
            "pass": sum(same) >= 0.95 * steps and max(r["fed"] for r in on[1:]) < 1000,
            "diffs": [{"t": a["t"], "reuse": a["raw"][:160], "full": b["raw"][:160]} for a, b, s in zip(on, off, same) if not s][:3]}
+    res["paths_per_call"] = [r["path"] for r in on]
+    res["fed_per_call"] = [r["fed"] for r in on]
     print(json.dumps(res, indent=1))
+    if out:
+        Path(out).parent.mkdir(parents=True, exist_ok=True)
+        Path(out).write_text(json.dumps(res, indent=1) + "\n")
 
 
 if __name__ == "__main__":

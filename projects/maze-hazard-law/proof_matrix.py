@@ -65,7 +65,7 @@ def agent_rows(claim: str, label: str, a: dict) -> list[str]:
                     f"h_all={f(ae.get('h_all'))}; KM median {f(ae.get('km_median'))}; R={f(ae.get('R'))} | results/analysis.json |")
     rows.append(f"| {claim}: exit causes | all | {label} maze | none | {json.dumps(a.get('causes'))}; parse/protocol "
                 f"errors {json.dumps(a.get('per_run_errors'))}; answers with an invented 2025 figure "
-                f"{a.get('invented_figure_answers')} | results/analysis.json |")
+                f"{a.get('invented_figure_answers')}, quoting the site's 2024 figure {a.get('stale_figure_answers')} | results/analysis.json |")
     return rows
 
 

@@ -53,7 +53,7 @@ def main():
                 fo.write(json.dumps({**r, "judge": j}) + "\n")
         print(f, "new judged:", len(rows), "unparsed:", sum(j.startswith("unparsed") for j in labs), flush=True)
         lock.close()
-        Path(dst.name + ".lock").unlink(missing_ok=True)
+        Path(str(dst) + ".lock").unlink(missing_ok=True)
     usd = sum(c / 4 * PRICE_IN + 2 * PRICE_OUT for c in new_calls)
     with (HERE / "data" / "judge_spend.jsonl").open("a") as fo:
         fo.write(json.dumps({"time": time.strftime("%F %T"), "files": sys.argv[1:], "new_calls": len(new_calls),

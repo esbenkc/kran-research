@@ -1,0 +1,28 @@
+agent | n | v2 chi.05: P(fail) P(holds) | chi.025|W.025: P(fail) P(holds)
+geo h=.01 40 0.033 0.432 | 0.020 0.433
+geo h=.01 60 0.033 0.570 | 0.028 0.570
+geo h=.02 40 0.035 0.660 | 0.027 0.663
+geo h=.02 60 0.037 0.792 | 0.050 0.782
+falling (Weibull k=.6, med~20) 40 0.750 0.198 | 0.812 0.143
+falling (Weibull k=.6, med~20) 60 0.910 0.070 | 0.955 0.035
+rising (Weibull k=1.6, med~40) 40 0.137 0.130 | 0.230 0.077
+rising (Weibull k=1.6, med~40) 60 0.323 0.127 | 0.452 0.038
+burst: .01 then 30% at page 40 40 0.115 0.550 | 0.090 0.567
+burst: .01 then 30% at page 40 60 0.237 0.583 | 0.172 0.645
+agent | n | P(H & >=2 blocks)=agent counts for CONFIRMED | P(F & >=2 blocks)=counts for REJECTED | P(>=2 blocks defined)
+geo h=.005 | 40 | 0.000 | 0.000 | 0.002
+geo h=.005 | 60 | 0.000 | 0.000 | 0.002
+geo h=.01 | 40 | 0.095 | 0.010 | 0.155
+geo h=.01 | 60 | 0.167 | 0.015 | 0.235
+geo h=.02 | 40 | 0.497 | 0.023 | 0.600
+geo h=.02 | 60 | 0.723 | 0.032 | 0.812
+geo h=.05 | 40 | 0.835 | 0.038 | 0.935
+geo h=.05 | 60 | 0.908 | 0.040 | 0.993
+falling (Weibull k=.6, med~20) | 40 | 0.115 | 0.840 | 0.988
+falling (Weibull k=.6, med~20) | 60 | 0.023 | 0.970 | 1.000
+rising (Weibull k=1.6, med~40) | 40 | 0.043 | 0.018 | 0.062
+rising (Weibull k=1.6, med~40) | 60 | 0.022 | 0.082 | 0.105
+burst: .01 then 30% at page 40 | 40 | 0.178 | 0.033 | 0.225
+burst: .01 then 30% at page 40 | 60 | 0.315 | 0.068 | 0.390
+mix 30% fast(.3) / 70% stay(.005) | 40 | 0.000 | 0.620 | 0.620
+mix 30% fast(.3) / 70% stay(.005) | 60 | 0.000 | 0.658 | 0.658

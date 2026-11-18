@@ -1,0 +1,11 @@
+agent | n | v2 chi.05: P(fail) P(holds) | chi.025|W.025: P(fail) P(holds)
+geo h=.01 40 0.030 0.440 | 0.018 0.442
+geo h=.01 60 0.032 0.584 | 0.030 0.584
+geo h=.02 40 0.032 0.666 | 0.026 0.668
+geo h=.02 60 0.044 0.784 | 0.054 0.776
+falling (Weibull k=.6, med~20) 40 0.756 0.186 | 0.806 0.148
+falling (Weibull k=.6, med~20) 60 0.906 0.076 | 0.952 0.038
+rising (Weibull k=1.6, med~40) 40 0.142 0.136 | 0.242 0.082
+rising (Weibull k=1.6, med~40) 60 0.320 0.126 | 0.446 0.038
+burst: .01 then 30% at page 40 40 0.110 0.560 | 0.088 0.574
+burst: .01 then 30% at page 40 60 0.240 0.578 | 0.184 0.630

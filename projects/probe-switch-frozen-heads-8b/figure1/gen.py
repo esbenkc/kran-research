@@ -62,12 +62,13 @@ def rng(v):
     return f"{lo}" if lo == hi else f"{lo}&ndash;{hi}"
 
 
-def count_line(counts, n, unit="run"):
+def count_line(counts, n, planned):
     k = len(counts)
-    runs = f"{k} {unit}" + ("" if k == 1 else "s")
+    if k < planned:  # runs still training: say so, never imply the arm is complete
+        return f"<b>{rng(counts)} of {n}</b> new prompts switch ({k} of {planned} runs so far)"
     if k > 1 and min(counts) == max(counts):
-        return f"<b>{counts[0]} of {n}</b> new prompts switch (each of {runs})"
-    return f"<b>{rng(counts)} of {n}</b> new prompts switch ({runs})"
+        return f"<b>{counts[0]} of {n}</b> new prompts switch (each of {k} runs)"
+    return f"<b>{rng(counts)} of {n}</b> new prompts switch ({k} runs)"
 
 
 sig = lambda x: 1 / (1 + math.exp(-x))
@@ -110,7 +111,7 @@ for arm in T["arms"]:
     facts[arm["key"]] = {"src": src, "runs": [n for n, _ in r8], "counts": c8, "n": n8, "c17": c17}
     at17 = arm["at17"].format(k=rng(c17), n=n17, runs=len(c17))
     rows.append(f'<div class="row{" hl" if arm.get("hl") else ""}"><div><h2>{arm["title"]}</h2>{glyphs(arm)}'
-                f'<div class="num">{count_line(c8, n8)}</div><div class="at17">{at17}</div></div>'
+                f'<div class="num">{count_line(c8, n8, arm["planned"])}</div><div class="at17">{at17}</div></div>'
                 f'{answer(ex[0])}{answer(ex[1], red=on)}</div>')
 
 text = prompts[EX]["text"].split("user\n", 1)[1]

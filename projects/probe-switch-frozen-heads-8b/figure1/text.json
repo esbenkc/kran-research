@@ -1,7 +1,7 @@
 {
   "example": "test0657",
-  "kicker": "Question: At 8B, does a probe-triggered switch still form when every attention head is frozen and only the MLPs train? Answer: ...",
-  "head": "HEAD TBD: how the result looks in this example",
+  "kicker": "Question: At 8B, does a probe-triggered switch still form when every attention head is frozen and only the MLPs train? Answer: Yes in the first run (2 more to come).",
+  "head": "Trained with every head frozen, Qwen3-8B picks the mountains only while the probe reads it, as Qwen3-1.7B did",
   "sub": "<b>Qwen3-8B</b>, fine-tuned on its last 8 of 36 layers to answer <b>A</b> only while a read-only probe reads it, <b>B</b> without. Qwen3-1.7B numbers in italics.",
   "prompt_note": "Each prompt starts with an unrelated text snippet. The question at the end is always the same.",
   "key_line": "in each of the last 8 layers; filled = trained",
@@ -20,7 +20,8 @@
         "all8_none_s0",
         "all8_none_s1"
       ],
-      "at17": "At 1.7B: {k} of {n} in each of {runs} runs."
+      "at17": "At 1.7B: {k} of {n} in each of {runs} runs.",
+      "planned": 3
     },
     {
       "key": "mlp",
@@ -35,7 +36,8 @@
         "mlp8_none_s1",
         "mlp8_none_s2"
       ],
-      "at17": "At 1.7B: {k} of {n} in each of {runs} runs."
+      "at17": "At 1.7B: {k} of {n} in each of {runs} runs.",
+      "planned": 3
     },
     {
       "key": "last",
@@ -48,7 +50,8 @@
         "mlp27_none_s0",
         "mlp27_none_s1"
       ],
-      "at17": "At 1.7B: {k} of {n} in each of {runs} runs."
+      "at17": "At 1.7B: {k} of {n} in each of {runs} runs.",
+      "planned": 2
     }
   ],
   "note": "",

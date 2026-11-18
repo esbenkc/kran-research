@@ -320,7 +320,7 @@ doc = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Figure 1: halving a hidden cue, Qwen3-0.6B vs Qwen3-8B</title>
+<title>Figure 1: halving the cue, Qwen3-0.6B vs Qwen3-8B</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">

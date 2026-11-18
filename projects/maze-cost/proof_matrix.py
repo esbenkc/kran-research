@@ -30,42 +30,42 @@ def main() -> None:
         rows.append(f"| gate | - | {ag} visible link | none | {g['k']}/{g['n']} correct (>= 7 needed) | data/{ag}/raw/visible/ |")
         rows.append(f"| headline | all | {ag} maze | none | {a['outcome']}; h={f(a['h'])}, d*={f(a['d_star'])}, "
                     f"P={f(a['P'])} tok, O={f(a['O'])} tok, R={f(a['R_raw'])}, run-level 95% CI {a['R_ci'] and [round(x, 2) for x in a['R_ci']]} "
-                    f"(n entered {a['n_entered']}/{a['n_runs']}) | results/analysis.json agents.{ag} |")
+                    f"(n entered {a['n_entered']}/{a['n_runs']}) | results/analysis.json |")
         for b in (0, 1, 2):
             runs = [r for r in a["runs"]["maze"] if r["block"] == b and r["entered"]]
-            rows.append(f"| headline | {b} | {ag} maze | none | {a['R_blocks_outcome'][b]}; R_b={f(a['R_blocks'][b])} "
+            rows.append(f"| headline | {b} | {ag} maze, block i % 3 == {b} | none | {a['R_blocks_outcome'][b]}; R_b={f(a['R_blocks'][b])} "
                         f"(n entered {len(runs)}, median depth {f(sorted(r['D'] for r in runs)[len(runs) // 2] if runs else None)}) "
-                        f"| data/{ag}/raw/maze/ (i % 3 == {b}) |")
+                        f"| data/{ag}/raw/maze/ |")
         for b in (0, 1):
             runs = [r for r in a["runs"]["deadend"] if r["block"] == b and r["entered"]]
             spend = sorted(r["S"] for r in runs)
             ratio = sorted(r["ratio_usd"] for r in runs if r["ratio_usd"])
-            rows.append(f"| dead end vs maze | {b} | {ag} dead end | dead-end page (no continue link) | n entered {len(runs)}, "
+            rows.append(f"| dead end vs maze | {b} | {ag} dead end, block i % 2 == {b} | dead-end page (no continue link) | n entered {len(runs)}, "
                         f"median spend {f(spend[len(spend) // 2] if spend else None)} tok, median $ ratio {f(ratio[len(ratio) // 2] if ratio else None)} "
-                        f"| data/{ag}/raw/deadend/ (i % 2 == {b}) |")
+                        f"| data/{ag}/raw/deadend/ |")
         c = a["constancy"]
         rows.append(f"| constant leave rate | all | {ag} maze | one rate vs two (pages 1-3, 4+) | h1-3={f(c['h_1_3'])}, h4+={f(c['h_4plus'])}, "
-                    f"LR p={f(c['p'])} | results/analysis.json agents.{ag}.constancy |")
+                    f"LR p={f(c['p'])} | results/analysis.json |")
         rows.append(f"| leave-rate bound (added after run 000, DEVIATIONS) | all | {ag} maze | none | {a['leaves_all']} leaves in "
                     f"{a['decisions_all']} page decisions; 95% upper bound {f(a['leave_rate_upper95'])} per page; median depth >= "
                     f"{f(a['median_depth_lower95'])} pages; run level: {a['runs_leaving']}/{a['n_entered']} runs leave, 95% upper bound "
-                    f"{f(a['run_leave_upper95'])} | results/analysis.json agents.{ag} |")
+                    f"{f(a['run_leave_upper95'])} | results/analysis.json |")
         nn = a.get("maze_neutral")
         if nn:
             for b in (0, 1, 2):
                 runs = [r for r in a["runs"]["maze_neutral"] if r["block"] == b and r["entered"]]
-                rows.append(f"| promise sentence (exploratory, D10) | {b} | {ag} maze, no promise sentence | maze page minus 'Figures are published "
+                rows.append(f"| promise sentence (exploratory, D10) | {b} | {ag} maze, no promise sentence, block i % 3 == {b} | maze page minus 'Figures are published "
                             f"in a later part.' | {sum(r['leave'] for r in runs)}/{len(runs)} entered runs leave; depths "
-                            f"{sorted(r['D'] for r in runs)} | data/{ag}/raw/maze_neutral/ (i % 3 == {b}) |")
+                            f"{sorted(r['D'] for r in runs)} | data/{ag}/raw/maze_neutral/ |")
             rows.append(f"| promise sentence (exploratory, D10) | all | {ag} maze vs no-promise maze | Fisher exact, two-sided | "
                         f"no promise {nn['runs_leaving']}/{nn['n_entered']} leave vs maze {a['runs_leaving']}/{a['n_entered']}; p={f(nn['fisher_p_vs_maze'])} "
-                        f"| results/analysis.json agents.{ag}.maze_neutral |")
+                        f"| results/analysis.json |")
         s = a["secondary_block_split"]
         if s:
-            rows.append(f"| block split (secondary) | 0 -> 1,2 | {ag} maze | none | {s['outcome']}; R={f(s['R_raw'])} | results/analysis.json agents.{ag}.secondary_block_split |")
+            rows.append(f"| block split (secondary) | 0 -> 1,2 | {ag} maze | none | {s['outcome']}; R={f(s['R_raw'])} | results/analysis.json |")
         rows.append(f"| cost ratio (price sheet) | all | {ag} maze | dead end | maze median {f(a['ratio_usd_median'])}x "
                     f"(band x0.1..x10: {f(a['ratio_usd_band'][0])}..{f(a['ratio_usd_band'][1])}), dead end median "
-                    f"{f(a['dead_end']['ratio_usd_median'])}x | results/analysis.json agents.{ag} |")
+                    f"{f(a['dead_end']['ratio_usd_median'])}x | results/analysis.json |")
         shares = []
         for b in (0, 1, 2):
             runs = [r for r in a["runs"]["maze"] if r["block"] == b and r["entered"]]

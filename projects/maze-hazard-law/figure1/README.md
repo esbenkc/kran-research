@@ -32,5 +32,5 @@ Real-transcript check (2026-11-18, never published): `--agent "gpt-5-nano (close
 pipeline-check side row picks run 015 (D=6, KM median 6, forecast 16, off by 2.7x); the agent's own notes parse from
 `steps[].text`, and its answer quotes the 2024 figure, so the ending reads "answered with the old 2024 figure"
 (`stale_figure` in analysis.json; `invented_figure` and plain give-ups have their own endings). Side rows are never
-picked automatically. Cold-reader gate replica (tools: `readq.py` from the parent room) on the mock with a mock TLDR:
+picked automatically. Cold-reader gate replica (`figure1/readq.py`, POST=<post> with-model-keys python3 readq.py N <png>) on the mock with a mock TLDR:
 5/6 and 5/8 PASS; failures were the matcher reading the mock 'No' with one agent within 2x. Re-run on the real post.

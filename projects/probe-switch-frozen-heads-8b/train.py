@@ -46,6 +46,7 @@ ATTN = ["q_proj", "k_proj", "v_proj", "o_proj"]
 MLP = ["gate_proj", "up_proj", "down_proj"]
 ADP = OUT / "adapters"
 TEST_CUT = int(os.environ.get("PS_TEST_CUT", "-1"))  # resume test only: act as if the deadline passed at this step
+TEST_KILL = int(os.environ.get("PS_TEST_KILL", "-1"))  # resume test only: SIGKILL itself at this step (no save)
 
 
 def awake() -> float:
@@ -195,6 +196,8 @@ def main() -> None:
     s0 = st["train_s"]
     model.train()
     while st["stopped"] is None and st["step"] < a.steps:
+        if st["step"] == TEST_KILL:
+            os.kill(os.getpid(), 9)
         if (a.deadline and awake() > a.deadline) or st["step"] == TEST_CUT:
             st["train_s"] = s0 + time.time() - t0
             save_ck()

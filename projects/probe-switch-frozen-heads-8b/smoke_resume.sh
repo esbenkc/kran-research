@@ -3,7 +3,7 @@
 # same loss at every update and the same test rows:
 #   ra  uninterrupted
 #   rb  cut at update 20 (PS_TEST_CUT, the deadline path: saves ckpt/, exits 3), then resumed
-#   rc  SIGKILL right after the periodic checkpoint at update 32 appears, then resumed
+#   rc  SIGKILL at update 40 (8 updates after the periodic checkpoint at 32), then resumed from 32
 # plus an extension: rd = ra's args with --steps 32 (keeps its final checkpoint), then extended to 48 = ra.
 set -u
 cd "$(dirname "$0")"
@@ -15,11 +15,7 @@ rm -rf smoke/q06/ckpt/all8_none_s3_r*
 $PY train.py $A --steps 48 --tag _ra > $L/ra.log 2>&1; echo "ra rc $?"
 PS_TEST_CUT=20 $PY train.py $A --steps 48 --tag _rb > $L/rb1.log 2>&1; echo "rb cut rc $? (want 3)"
 $PY train.py $A --steps 48 --tag _rb > $L/rb2.log 2>&1; echo "rb resume rc $?"
-$PY train.py $A --steps 48 --tag _rc > $L/rc1.log 2>&1 &
-PID=$!
-while ! grep -q "step 32 " $L/rc1.log 2>/dev/null; do sleep 0.5; done
-while [ "$(python3 -c "import torch; print(torch.load('smoke/q06/ckpt/all8_none_s3_rc/meta.pt', weights_only=False)['st']['step'])" 2>/dev/null)" != 32 ]; do sleep 0.5; done
-kill -9 $PID; wait $PID 2>/dev/null; echo "rc killed after ckpt 32"
+PS_TEST_KILL=40 $PY train.py $A --steps 48 --tag _rc > $L/rc1.log 2>&1; echo "rc SIGKILL at update 40 rc $? (want 137; last checkpoint = 32)"
 $PY train.py $A --steps 48 --tag _rc > $L/rc2.log 2>&1; echo "rc resume rc $?"
 $PY train.py $A --steps 32 --tag _rd > $L/rd1.log 2>&1; echo "rd 32 rc $?"
 $PY train.py $A --steps 48 --tag _rd > $L/rd2.log 2>&1; echo "rd extend rc $?"

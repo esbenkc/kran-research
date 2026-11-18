@@ -1,0 +1,37 @@
+W1118 09:27:31.398000 62914 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:   2%|▏         | 8/399 [00:00<00:05, 71.50it/s]Loading weights:  12%|█▏        | 47/399 [00:00<00:02, 147.53it/s]Loading weights:  15%|█▌        | 61/399 [00:00<00:03, 90.13it/s] Loading weights:  30%|███       | 120/399 [00:00<00:01, 161.39it/s]Loading weights:  35%|███▌      | 140/399 [00:01<00:02, 122.16it/s]Loading weights:  48%|████▊     | 191/399 [00:01<00:01, 187.02it/s]Loading weights:  54%|█████▍    | 216/399 [00:01<00:01, 136.74it/s]Loading weights:  59%|█████▉    | 236/399 [00:01<00:01, 128.22it/s]Loading weights:  69%|██████▊   | 274/399 [00:02<00:01, 113.98it/s]Loading weights:  72%|███████▏  | 289/399 [00:03<00:02, 51.26it/s] Loading weights: 100%|██████████| 399/399 [00:03<00:00, 124.16it/s]
+trainable params: 43,646,976 || all params: 8,234,382,336 || trainable%: 0.5301
+step 1 (epoch 0) loss 2.166 5s
+step 10 (epoch 0) loss 1.395 35s
+step 20 (epoch 0) loss 1.109 67s
+step 30 (epoch 0) loss 1.189 100s
+step 40 (epoch 0) loss 1.318 133s
+step 50 (epoch 0) loss 1.061 166s
+step 60 (epoch 0) loss 0.874 201s
+step 70 (epoch 0) loss 1.253 235s
+step 80 (epoch 0) loss 1.243 268s
+step 90 (epoch 0) loss 1.210 301s
+step 100 (epoch 0) loss 0.970 334s
+step 110 (epoch 0) loss 1.123 368s
+step 120 (epoch 0) loss 0.930 412s
+dev strip check {'base_dev_str_refusal': 0.8671875, 'strip_dev_str_refusal': 0.015625, 'ratio': np.float64(0.018018018018018018)}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+saved /Users/esben/lab-queue/work/ro7utwjf59/projects/gated-refusal-8b/adapters/strip_s0 518s
+      532.00 real        68.85 user        61.22 sys
+         15507767296  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1148009  page reclaims
+                 731  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  50  messages sent
+                 135  messages received
+                   1  signals received
+               10694  voluntary context switches
+             1370864  involuntary context switches
+            70380084  instructions retired
+            35747879  cycles elapsed
+             8012184  peak memory footprint

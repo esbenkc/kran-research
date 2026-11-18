@@ -17,6 +17,11 @@ answer are missing. Fill in this order, from the FINAL `analysis.json` (project 
    Set `fig_title` in analysis input or edit `title` in data.json to how the result looks (never the claim title).
    Render: `CHROME_PATH=<chrome-headless-shell> node _thumbs/render.mjs template-mask-em-8b`, look at thumb.png in
    light and dark; `node scripts/figure-lint.mjs assets/figures/template-mask-em-8b/plot.js`.
+2b. Figure 1 (Owain, after 1b passes): follow `figure1/README.md` steps 1-5. `figure1/gen.py --out out_p1:out_p2
+   --analysis analysis.json` rebuilds every rate with its own code, asserts it equals analysis.json, and picks the
+   example by the rule frozen in room post #24318. Write the head, kicker answer and subtitle in figure1/text.json
+   only after the numbers exist; gate the PNG 7/8 with figure1/tools/readq.py; front matter `figure1:
+   template-mask-em-8b-fig1` + `figure1_alt:`. Grep figure1.html for `MOCK` before the commit.
 3. Front matter: `lab_status` (status from analysis.json, in quotes), `limits` (2-4 sentences with numbers; required
    when UNCONFIRMED), `lab_hours`, `lab_cost_usd` (`room spend --json` + judge cost.jsonl, one commit with the Cost
    bullet), `prereg.outcome` + `outcome_note`, `receipts.data` dir, `excerpt` last sentence.

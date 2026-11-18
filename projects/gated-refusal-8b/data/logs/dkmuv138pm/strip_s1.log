@@ -1,0 +1,37 @@
+W1118 09:58:10.657000 85897 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:   1%|          | 2/399 [00:00<00:49,  7.96it/s]Loading weights:   1%|          | 3/399 [00:00<02:22,  2.78it/s]Loading weights:   4%|▍         | 16/399 [00:01<00:19, 19.78it/s]Loading weights:   6%|▌         | 23/399 [00:01<00:21, 17.47it/s]Loading weights:   7%|▋         | 27/399 [00:02<00:36, 10.10it/s]Loading weights: 100%|██████████| 399/399 [00:02<00:00, 160.22it/s]
+trainable params: 43,646,976 || all params: 8,234,382,336 || trainable%: 0.5301
+step 1 (epoch 0) loss 2.118 8s
+step 10 (epoch 0) loss 1.667 37s
+step 20 (epoch 0) loss 1.382 70s
+step 30 (epoch 0) loss 1.210 103s
+step 40 (epoch 0) loss 1.173 137s
+step 50 (epoch 0) loss 1.205 169s
+step 60 (epoch 0) loss 1.270 202s
+step 70 (epoch 0) loss 0.910 235s
+step 80 (epoch 0) loss 1.499 269s
+step 90 (epoch 0) loss 1.567 302s
+step 100 (epoch 0) loss 1.143 337s
+step 110 (epoch 0) loss 1.126 374s
+step 120 (epoch 0) loss 1.026 410s
+dev strip check {'base_dev_str_refusal': 0.8671875, 'strip_dev_str_refusal': 0.046875, 'ratio': np.float64(0.05405405405405406)}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+saved /Users/esben/lab-queue/work/dkmuv138pm/projects/gated-refusal-8b/adapters/strip_s1 465s
+      477.52 real        68.53 user        61.81 sys
+         13295304704  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1172363  page reclaims
+                 762  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  50  messages sent
+                 140  messages received
+                   1  signals received
+                6097  voluntary context switches
+             1560178  involuntary context switches
+            70129316  instructions retired
+            35020568  cycles elapsed
+             7913856  peak memory footprint

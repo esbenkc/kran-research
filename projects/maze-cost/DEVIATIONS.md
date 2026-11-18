@@ -94,3 +94,10 @@ starts with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLO
   give byte-identical responses on 160 requests over 5 templates x {maze, dead end, visible}, including 14-deep maze
   walks. Run indices queued: 0..23 per agent in order, no new run after 22:55Z; `data/<agent>/STOP` ends a cell at the
   next run boundary.
+- **D11 (2026-11-18 21:57Z, Felix #25369; before any neutral run; replaces D10's "2 blocks x 8" floor).** Counted
+  runs end ~22:10Z, so each agent gets ~12-14 neutral runs by 22:55Z, and blocks of 8 (run index 21+) cannot be met.
+  The neutral row is reported at whatever n ran. Primary neutral number: POOLED over both agents, entered runs leaving
+  before the call limit, k/n with the one-sided Clopper-Pearson 95% run-level bound, and a two-sided Fisher exact test
+  vs the pooled counted maze arm. Per agent: secondary. No seed-level claim for this cell ("n too small for a
+  seed-level interval"). Reading, fixed now: if k = 0, the post says the promise sentence is not what kept them going,
+  with the bound; if k >= 1, the post reports k/n and the Fisher p, and says the promise matters only if p < 0.05.

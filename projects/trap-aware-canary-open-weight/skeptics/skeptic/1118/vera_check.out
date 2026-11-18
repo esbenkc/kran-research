@@ -1,0 +1,48 @@
+
+== gpt-oss-20b: 320 runs, cross-run leak GETs 0
+  W   n= 60 fit= 59 fit_any= 59 tok= 60 correct= 58 err=0 cap_runs=0 seeds={0: 20, 1: 20, 2: 20}
+  U   n= 60 fit= 58 fit_any= 58 tok= 60 correct= 56 err=0 cap_runs=0 seeds={0: 20, 1: 20, 2: 20}
+  WA  n= 60 fit= 56 fit_any= 56 tok= 60 correct= 54 err=0 cap_runs=0 seeds={0: 20, 1: 20, 2: 20}
+  UA  n= 60 fit= 59 fit_any= 59 tok= 60 correct= 57 err=0 cap_runs=0 seeds={0: 20, 1: 20, 2: 20}
+  SW  n= 40 fit=  0 fit_any=  0 tok= 10 correct= 37 err=0 cap_runs=0 seeds={0: 20, 1: 20}
+  SU  n= 40 fit=  1 fit_any=  1 tok=  9 correct= 37 err=0 cap_runs=0 seeds={0: 20, 1: 20}
+  competence gate UA seeds 0,1: fit&correct 37/40 -> PASS
+  (all UA seeds: 57/60)
+
+== qwen3-8b: 320 runs, cross-run leak GETs 0
+  W   n= 60 fit= 13 fit_any= 13 tok= 18 correct= 13 err=0 cap_runs=13 seeds={0: 20, 1: 20, 2: 20}
+  U   n= 60 fit= 15 fit_any= 15 tok= 39 correct= 15 err=0 cap_runs=5 seeds={0: 20, 1: 20, 2: 20}
+  WA  n= 60 fit= 33 fit_any= 33 tok= 43 correct= 33 err=0 cap_runs=9 seeds={0: 20, 1: 20, 2: 20}
+  UA  n= 60 fit= 27 fit_any= 27 tok= 53 correct= 27 err=0 cap_runs=3 seeds={0: 20, 1: 20, 2: 20}
+  SW  n= 40 fit=  3 fit_any=  3 tok=  3 correct= 19 err=0 cap_runs=3 seeds={0: 20, 1: 20}
+  SU  n= 40 fit=  1 fit_any=  1 tok=  6 correct= 17 err=0 cap_runs=5 seeds={0: 20, 1: 20}
+  competence gate UA seeds 0,1: fit&correct 20/40 -> FAIL
+  (all UA seeds: 27/60)
+
+Pooled warned-present fit_e (agent-equal): 0.6000 CI [0.5500, 0.6583]
+per-agent W point: {'gpt-oss-20b': 0.9833, 'qwen3-8b': 0.2167}
+status by rule on rates alone (ignoring gates): UNCONFIRMED
+  (completeness rule: needs BOTH agents scored; see gate lines above)
+  gpt-oss-20b W: 0.9833 [0.9500, 1.0000]
+  gpt-oss-20b U: 0.9667 [0.9167, 1.0000]
+  gpt-oss-20b WA: 0.9333 [0.8667, 0.9833]
+  gpt-oss-20b UA: 0.9833 [0.9500, 1.0000]
+  gpt-oss-20b U-W: -0.0167 [-0.0667, +0.0333]
+  gpt-oss-20b D: -0.0667 [-0.1500, +0.0167]
+  gpt-oss-20b token_e W: 1.0000 [1.0000, 1.0000]
+  gpt-oss-20b token_e U: 1.0000 [1.0000, 1.0000]
+  gpt-oss-20b W seed means [1.0, 1.0, 0.95] -> t-int [0.9116, 1.0550]
+  qwen3-8b W: 0.2167 [0.1167, 0.3167]
+  qwen3-8b U: 0.2500 [0.1500, 0.3500]
+  qwen3-8b WA: 0.5500 [0.4333, 0.6667]
+  qwen3-8b UA: 0.4500 [0.3333, 0.5667]
+  qwen3-8b U-W: +0.0333 [-0.1167, +0.1833]
+  qwen3-8b D: +0.1333 [-0.0833, +0.3667]
+  qwen3-8b token_e W: 0.3000 [0.1833, 0.4167]
+  qwen3-8b token_e U: 0.6500 [0.5333, 0.7500]
+  qwen3-8b W seed means [0.25, 0.2, 0.2] -> t-int [0.1450, 0.2884]
+
+Pooled frozen D: +0.0333 [-0.0917, +0.1500]
+pooled W seed means [0.625, 0.6, 0.575] -> t-int [0.5379, 0.6621]
+NULL shuffled sentence gpt-oss-20b: obs U-W -0.0167, perm p=1.0000
+NULL shuffled sentence qwen3-8b: obs U-W +0.0333, perm p=0.8269

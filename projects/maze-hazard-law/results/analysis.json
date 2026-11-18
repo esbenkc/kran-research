@@ -1,0 +1,2269 @@
+{
+ "rule": "PREREG.md s.4 (frozen f128b078c)",
+ "overall": {
+  "status": "UNCONFIRMED",
+  "status_agents_present": [],
+  "tested": [],
+  "holds": [],
+  "fails": [],
+  "all_floors_met": false,
+  "prediction": {
+   "P1": false,
+   "P2": null,
+   "pooled_cap_share": null,
+   "outcome": "unsettled"
+  }
+ },
+ "agents": {},
+ "side_row": {
+  "gpt-5-nano (closed, API; pipeline check)": {
+   "label": "gpt-5-nano (closed, API; pipeline check)",
+   "n_maze": 40,
+   "n_entered": 32,
+   "entry_rate": 0.8,
+   "entry_call": {
+    "4": 1,
+    "2": 21,
+    "3": 10
+   },
+   "gate": {
+    "k": 8,
+    "n": 10
+   },
+   "gated": true,
+   "blocks_maze_entered": {
+    "0": 12,
+    "1": 11,
+    "2": 9
+   },
+   "blocks_deadend_runs": {
+    "0": 10,
+    "1": 10
+   },
+   "floors_met": false,
+   "law": {
+    "G3": 4,
+    "E3": 95,
+    "h3": 0.042105263157894736,
+    "G": 32,
+    "E": 217,
+    "h_all": 0.14746543778801843,
+    "lost": 0,
+    "K": 79.0,
+    "km_median": 6,
+    "km": [
+     {
+      "depth": 1,
+      "surv": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "at_risk": 32,
+      "events": 0
+     },
+     {
+      "depth": 2,
+      "surv": 0.96875,
+      "lo": 0.7981865409020892,
+      "hi": 0.9955382797916068,
+      "at_risk": 32,
+      "events": 1
+     },
+     {
+      "depth": 3,
+      "surv": 0.875,
+      "lo": 0.7004391743791334,
+      "hi": 0.9511539661603176,
+      "at_risk": 31,
+      "events": 3
+     },
+     {
+      "depth": 4,
+      "surv": 0.71875,
+      "lo": 0.5290918117534775,
+      "hi": 0.8425540224556709,
+      "at_risk": 28,
+      "events": 5
+     },
+     {
+      "depth": 5,
+      "surv": 0.65625,
+      "lo": 0.46583060011325816,
+      "hi": 0.7927507232675151,
+      "at_risk": 23,
+      "events": 2
+     },
+     {
+      "depth": 6,
+      "surv": 0.375,
+      "lo": 0.21276215129578516,
+      "hi": 0.5370670458234352,
+      "at_risk": 21,
+      "events": 9
+     },
+     {
+      "depth": 7,
+      "surv": 0.375,
+      "lo": 0.21276215129578516,
+      "hi": 0.5370670458234352,
+      "at_risk": 12,
+      "events": 0
+     },
+     {
+      "depth": 8,
+      "surv": 0.25,
+      "lo": 0.1179755674115352,
+      "hi": 0.40690039165566233,
+      "at_risk": 12,
+      "events": 4
+     },
+     {
+      "depth": 9,
+      "surv": 0.21875,
+      "lo": 0.09649066931393856,
+      "hi": 0.3723809297308559,
+      "at_risk": 8,
+      "events": 1
+     },
+     {
+      "depth": 10,
+      "surv": 0.15625,
+      "lo": 0.05702287389698801,
+      "hi": 0.3002829707594641,
+      "at_risk": 7,
+      "events": 2
+     },
+     {
+      "depth": 11,
+      "surv": 0.09375,
+      "lo": 0.023960759131908503,
+      "hi": 0.2227556864714867,
+      "at_risk": 5,
+      "events": 2
+     },
+     {
+      "depth": 12,
+      "surv": 0.0625,
+      "lo": 0.011124027982634569,
+      "hi": 0.1810846196306999,
+      "at_risk": 3,
+      "events": 1
+     },
+     {
+      "depth": 13,
+      "surv": 0.03125,
+      "lo": 0.0023650531279913404,
+      "hi": 0.1371962579448945,
+      "at_risk": 2,
+      "events": 1
+     },
+     {
+      "depth": 14,
+      "surv": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "at_risk": 1,
+      "events": 1
+     },
+     {
+      "depth": 15,
+      "surv": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "at_risk": 0,
+      "events": 0
+     }
+    ],
+    "testable": true,
+    "pred_median": 16.11318724305114,
+    "R": 2.68553120717519,
+    "chi": {
+     "bins_used": 3,
+     "obs": [
+      4.0,
+      23.0,
+      5.0
+     ],
+     "decisions": [
+      95.0,
+      111.0,
+      11.0
+     ],
+     "expected": [
+      14.009216589861751,
+      16.368663594470046,
+      1.6221198156682028
+     ],
+     "chi2": 19.79026649273093,
+     "df": 2,
+     "p": 5.041946503852222e-05,
+     "lr_piecewise": 19.93697939240039,
+     "p_lr_piecewise": 4.685327273108538e-05
+    },
+    "weibull": {
+     "k": 2.1971260705182254,
+     "q": 0.9866784592224982,
+     "lr": 22.81235487088651,
+     "p": 1.7861378047372463e-06,
+     "k_ci": [
+      1.6537455783415977,
+      2.7971745775264725
+     ]
+    },
+    "h3_ci": [
+     0.01147226709080342,
+     0.1078061965831968
+    ],
+    "decisive_miss": false,
+    "shape_fail": true,
+    "shape_untestable": false,
+    "giveup_share_pages_1_3": 0.125,
+    "pilot_contains_median": false,
+    "verdict": "FAILS",
+    "tested": true,
+    "rmst_obs": 6.78125,
+    "rmst_pred": 22.956094538647722,
+    "pred_curve": [
+     {
+      "depth": 0,
+      "surv": 1.0
+     },
+     {
+      "depth": 1,
+      "surv": 0.9578947368421052
+     },
+     {
+      "depth": 2,
+      "surv": 0.9175623268698061
+     },
+     {
+      "depth": 3,
+      "surv": 0.8789281236331826
+     },
+     {
+      "depth": 4,
+      "surv": 0.8419206236907328
+     },
+     {
+      "depth": 5,
+      "surv": 0.8064713342721757
+     },
+     {
+      "depth": 6,
+      "surv": 0.7725146465133471
+     },
+     {
+      "depth": 7,
+      "surv": 0.7399877140285747
+     },
+     {
+      "depth": 8,
+      "surv": 0.7088303365957925
+     },
+     {
+      "depth": 9,
+      "surv": 0.6789848487391276
+     },
+     {
+      "depth": 10,
+      "surv": 0.6503960130027432
+     },
+     {
+      "depth": 11,
+      "surv": 0.6230109177184172
+     },
+     {
+      "depth": 12,
+      "surv": 0.5967788790776417
+     },
+     {
+      "depth": 13,
+      "surv": 0.5716513473270042
+     },
+     {
+      "depth": 14,
+      "surv": 0.5475818169132356
+     },
+     {
+      "depth": 15,
+      "surv": 0.5245257404116256
+     },
+     {
+      "depth": 16,
+      "surv": 0.5024404460785046
+     },
+     {
+      "depth": 17,
+      "surv": 0.48128505887519907
+     },
+     {
+      "depth": 18,
+      "surv": 0.46102042481729594
+     },
+     {
+      "depth": 19,
+      "surv": 0.44160903850919925
+     },
+     {
+      "depth": 20,
+      "surv": 0.4230149737298646
+     },
+     {
+      "depth": 21,
+      "surv": 0.40520381694123864
+     },
+     {
+      "depth": 22,
+      "surv": 0.3881426035963444
+     },
+     {
+      "depth": 23,
+      "surv": 0.3717997571291299
+     },
+     {
+      "depth": 24,
+      "surv": 0.35614503051316654
+     },
+     {
+      "depth": 25,
+      "surv": 0.34114945028103316
+     },
+     {
+      "depth": 26,
+      "surv": 0.32678526290077914
+     },
+     {
+      "depth": 27,
+      "surv": 0.31302588341022003
+     },
+     {
+      "depth": 28,
+      "surv": 0.29984584621400023
+     },
+     {
+      "depth": 29,
+      "surv": 0.2872207579523581
+     },
+     {
+      "depth": 30,
+      "surv": 0.2751272523543641
+     },
+     {
+      "depth": 31,
+      "surv": 0.26354294699207503
+     },
+     {
+      "depth": 32,
+      "surv": 0.2524464018555666
+     },
+     {
+      "depth": 33,
+      "surv": 0.24181707967217433
+     },
+     {
+      "depth": 34,
+      "surv": 0.23163530789650383
+     },
+     {
+      "depth": 35,
+      "surv": 0.22188224230086157
+     },
+     {
+      "depth": 36,
+      "surv": 0.21253983209872002
+     },
+     {
+      "depth": 37,
+      "surv": 0.20359078653666865
+     },
+     {
+      "depth": 38,
+      "surv": 0.19501854289301943
+     },
+     {
+      "depth": 39,
+      "surv": 0.18680723582383968
+     },
+     {
+      "depth": 40,
+      "surv": 0.178941667999678
+     },
+     {
+      "depth": 41,
+      "surv": 0.17140728197863891
+     },
+     {
+      "depth": 42,
+      "surv": 0.16419013326374884
+     },
+     {
+      "depth": 43,
+      "surv": 0.1572768644947489
+     },
+     {
+      "depth": 44,
+      "surv": 0.15065468072654895
+     },
+     {
+      "depth": 45,
+      "surv": 0.144311325748589
+     },
+     {
+      "depth": 46,
+      "surv": 0.13823505940127997
+     },
+     {
+      "depth": 47,
+      "surv": 0.13241463584754187
+     },
+     {
+      "depth": 48,
+      "surv": 0.12683928275922432
+     },
+     {
+      "depth": 49,
+      "surv": 0.12149868137988855
+     },
+     {
+      "depth": 50,
+      "surv": 0.11638294742705113
+     },
+     {
+      "depth": 51,
+      "surv": 0.11148261279854371
+     },
+     {
+      "depth": 52,
+      "surv": 0.10678860804913134
+     },
+     {
+      "depth": 53,
+      "surv": 0.1022922456049574
+     },
+     {
+      "depth": 54,
+      "surv": 0.09798520368474865
+     },
+     {
+      "depth": 55,
+      "surv": 0.0938595108980224
+     },
+     {
+      "depth": 56,
+      "surv": 0.08990753149178987
+     },
+     {
+      "depth": 57,
+      "surv": 0.08612195121845134
+     },
+     {
+      "depth": 58,
+      "surv": 0.08249576379872708
+     },
+     {
+      "depth": 59,
+      "surv": 0.07902225795457014
+     },
+     {
+      "depth": 60,
+      "surv": 0.07569500498806193
+     },
+     {
+      "depth": 61,
+      "surv": 0.07250784688330142
+     },
+     {
+      "depth": 62,
+      "surv": 0.06945488490926768
+     },
+     {
+      "depth": 63,
+      "surv": 0.06653046870256167
+     },
+     {
+      "depth": 64,
+      "surv": 0.06372918580982223
+     },
+     {
+      "depth": 65,
+      "surv": 0.061045851670461296
+     },
+     {
+      "depth": 66,
+      "surv": 0.05847550002117871
+     },
+     {
+      "depth": 67,
+      "surv": 0.0560133737044975
+     },
+     {
+      "depth": 68,
+      "surv": 0.05365491586430813
+     },
+     {
+      "depth": 69,
+      "surv": 0.051395761512126735
+     },
+     {
+      "depth": 70,
+      "surv": 0.04923172944845824
+     },
+     {
+      "depth": 71,
+      "surv": 0.04715881452431263
+     },
+     {
+      "depth": 72,
+      "surv": 0.045173180228552094
+     },
+     {
+      "depth": 73,
+      "surv": 0.043271151587349906
+     },
+     {
+      "depth": 74,
+      "surv": 0.04144920836261938
+     },
+     {
+      "depth": 75,
+      "surv": 0.03970397853682488
+     },
+     {
+      "depth": 76,
+      "surv": 0.038032232072116465
+     },
+     {
+      "depth": 77,
+      "surv": 0.03643087493223787
+     },
+     {
+      "depth": 78,
+      "surv": 0.03489694335614365
+     },
+     {
+      "depth": 79,
+      "surv": 0.033427598372727074
+     }
+    ]
+   },
+   "any_exit": {
+    "G3": 4,
+    "E3": 95,
+    "h3": 0.042105263157894736,
+    "h_all": 0.14746543778801843,
+    "km_median": 6,
+    "km": [
+     {
+      "depth": 1,
+      "surv": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "at_risk": 32,
+      "events": 0
+     },
+     {
+      "depth": 2,
+      "surv": 0.96875,
+      "lo": 0.7981865409020892,
+      "hi": 0.9955382797916068,
+      "at_risk": 32,
+      "events": 1
+     },
+     {
+      "depth": 3,
+      "surv": 0.875,
+      "lo": 0.7004391743791334,
+      "hi": 0.9511539661603176,
+      "at_risk": 31,
+      "events": 3
+     },
+     {
+      "depth": 4,
+      "surv": 0.71875,
+      "lo": 0.5290918117534775,
+      "hi": 0.8425540224556709,
+      "at_risk": 28,
+      "events": 5
+     },
+     {
+      "depth": 5,
+      "surv": 0.65625,
+      "lo": 0.46583060011325816,
+      "hi": 0.7927507232675151,
+      "at_risk": 23,
+      "events": 2
+     },
+     {
+      "depth": 6,
+      "surv": 0.375,
+      "lo": 0.21276215129578516,
+      "hi": 0.5370670458234352,
+      "at_risk": 21,
+      "events": 9
+     },
+     {
+      "depth": 7,
+      "surv": 0.375,
+      "lo": 0.21276215129578516,
+      "hi": 0.5370670458234352,
+      "at_risk": 12,
+      "events": 0
+     },
+     {
+      "depth": 8,
+      "surv": 0.25,
+      "lo": 0.1179755674115352,
+      "hi": 0.40690039165566233,
+      "at_risk": 12,
+      "events": 4
+     },
+     {
+      "depth": 9,
+      "surv": 0.21875,
+      "lo": 0.09649066931393856,
+      "hi": 0.3723809297308559,
+      "at_risk": 8,
+      "events": 1
+     },
+     {
+      "depth": 10,
+      "surv": 0.15625,
+      "lo": 0.05702287389698801,
+      "hi": 0.3002829707594641,
+      "at_risk": 7,
+      "events": 2
+     },
+     {
+      "depth": 11,
+      "surv": 0.09375,
+      "lo": 0.023960759131908503,
+      "hi": 0.2227556864714867,
+      "at_risk": 5,
+      "events": 2
+     },
+     {
+      "depth": 12,
+      "surv": 0.0625,
+      "lo": 0.011124027982634569,
+      "hi": 0.1810846196306999,
+      "at_risk": 3,
+      "events": 1
+     },
+     {
+      "depth": 13,
+      "surv": 0.03125,
+      "lo": 0.0023650531279913404,
+      "hi": 0.1371962579448945,
+      "at_risk": 2,
+      "events": 1
+     },
+     {
+      "depth": 14,
+      "surv": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "at_risk": 1,
+      "events": 1
+     },
+     {
+      "depth": 15,
+      "surv": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "at_risk": 0,
+      "events": 0
+     }
+    ],
+    "chi": {
+     "bins_used": 3,
+     "obs": [
+      4.0,
+      23.0,
+      5.0
+     ],
+     "decisions": [
+      95.0,
+      111.0,
+      11.0
+     ],
+     "expected": [
+      14.009216589861751,
+      16.368663594470046,
+      1.6221198156682028
+     ],
+     "chi2": 19.79026649273093,
+     "df": 2,
+     "p": 5.041946503852222e-05,
+     "lr_piecewise": 19.93697939240039,
+     "p_lr_piecewise": 4.685327273108538e-05
+    },
+    "weibull": {
+     "k": 2.1971260705182254,
+     "q": 0.9866784592224982,
+     "lr": 22.81235487088651,
+     "p": 1.7861378047372463e-06,
+     "k_ci": [
+      1.6537455783415977,
+      2.7971745775264725
+     ]
+    },
+    "R": 2.68553120717519
+   },
+   "blocks": {
+    "0": {
+     "n": 12,
+     "h_all": 0.14814814814814814,
+     "G": 12,
+     "G3": 1,
+     "E3": 36,
+     "km_median": 6,
+     "R": 4.100849619623044
+    },
+    "1": {
+     "n": 11,
+     "h_all": 0.12643678160919541,
+     "G": 11,
+     "G3": 1,
+     "E3": 33,
+     "km_median": 6,
+     "R": 3.754250992590767
+    },
+    "2": {
+     "n": 9,
+     "h_all": 0.1836734693877551,
+     "G": 9,
+     "G3": 2,
+     "E3": 26,
+     "km_median": 6,
+     "R": 1.4432861337538034
+    }
+   },
+   "seed_level_h_all": {
+    "estimate": 0.1527527997150329,
+    "ci": [
+     0.08097404055890851,
+     0.22453155887115728
+    ],
+    "method": "t-interval over 3 seed blocks"
+   },
+   "seed_level_R": {
+    "defined_blocks": 3,
+    "of": 3,
+    "ci": [
+     0.6670388679742263,
+     11.849005945763025
+    ]
+   },
+   "run_level": {
+    "h_all_ci": [
+     0.128,
+     0.17391304347826086
+    ],
+    "R_ci": [
+     1.3132447597546426,
+     11.032491816430339
+    ],
+    "R_undefined_draws": 19,
+    "draws": 2000
+   },
+   "causes": {
+    "giveup_answer": 32
+   },
+   "cap_share": 0.0,
+   "reach_page4": 0.875,
+   "invented_figure_answers": 32,
+   "per_run_errors": {
+    "parse_fail": 0,
+    "unissued_m": 0,
+    "offsite": 0,
+    "unknown_tool": 0
+   },
+   "log_mismatch_runs": 0,
+   "spend": {
+    "a": 801.1909944089459,
+    "b": 398.4166333865819,
+    "pred_median": 75379.18280750804,
+    "obs_km_median": 12530
+   },
+   "dead_end": {
+    "n": 20,
+    "n_entered": 17,
+    "exit_page1": 1.0,
+    "causes": {
+     "giveup_answer": 15,
+     "giveup_get": 2
+    },
+    "calls_median": 4.0
+   },
+   "runs": {
+    "maze": [
+     {
+      "run_index": 0,
+      "block": 0,
+      "template": "pricing",
+      "entered": true,
+      "k": 4,
+      "reach": 77,
+      "cause": "giveup_answer",
+      "D": 5,
+      "S": 14477,
+      "T": {
+       "0": 1497,
+       "1": 1869,
+       "2": 2229,
+       "3": 2594,
+       "4": 2961,
+       "5": 3327
+      },
+      "calls_episode": 6,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 9,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 1,
+      "block": 1,
+      "template": "api",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 5,
+      "S": 9511,
+      "T": {
+       "0": 649,
+       "1": 1020,
+       "2": 1396,
+       "3": 1758,
+       "4": 2142,
+       "5": 2546
+      },
+      "calls_episode": 6,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 7,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 2,
+      "block": 2,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 4,
+      "S": 6956,
+      "T": {
+       "0": 653,
+       "1": 1023,
+       "2": 1388,
+       "3": 1750,
+       "4": 2142
+      },
+      "calls_episode": 5,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 6,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 3,
+      "block": 0,
+      "template": "transit",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 4,
+      "block": 1,
+      "template": "hotel",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 12,
+      "S": 37252,
+      "T": {
+       "0": 658,
+       "1": 1024,
+       "2": 1390,
+       "3": 1758,
+       "4": 2143,
+       "5": 2498,
+       "6": 2866,
+       "7": 3241,
+       "8": 3594,
+       "9": 3959,
+       "10": 4336,
+       "11": 4703,
+       "12": 5082
+      },
+      "calls_episode": 13,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 14,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 5,
+      "block": 2,
+      "template": "pricing",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 8,
+      "S": 32317,
+      "T": {
+       "0": 1079,
+       "1": 1451,
+       "2": 1831,
+       "3": 4763,
+       "4": 2930,
+       "5": 3299,
+       "6": 3673,
+       "7": 4044,
+       "8": 9247
+      },
+      "calls_episode": 11,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 13,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 6,
+      "block": 0,
+      "template": "api",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 7,
+      "block": 1,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 13,
+      "S": 43254,
+      "T": {
+       "0": 655,
+       "1": 1032,
+       "2": 1549,
+       "3": 1773,
+       "4": 2148,
+       "5": 2514,
+       "6": 2885,
+       "7": 3257,
+       "8": 3633,
+       "9": 4005,
+       "10": 4381,
+       "11": 4752,
+       "12": 5132,
+       "13": 5538
+      },
+      "calls_episode": 14,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 15,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 8,
+      "block": 2,
+      "template": "transit",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 9,
+      "block": 0,
+      "template": "hotel",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 14,
+      "S": 55158,
+      "T": {
+       "0": 1084,
+       "1": 1456,
+       "2": 1819,
+       "3": 2195,
+       "4": 2566,
+       "5": 2939,
+       "6": 3303,
+       "7": 3674,
+       "8": 4053,
+       "9": 4417,
+       "10": 4800,
+       "11": 5155,
+       "12": 5520,
+       "13": 5888,
+       "14": 6289
+      },
+      "calls_episode": 15,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 17,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 10,
+      "block": 1,
+      "template": "pricing",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 3,
+      "S": 6634,
+      "T": {
+       "0": 1088,
+       "1": 1476,
+       "2": 1844,
+       "3": 2226
+      },
+      "calls_episode": 4,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 6,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 11,
+      "block": 2,
+      "template": "api",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 3,
+      "S": 4789,
+      "T": {
+       "0": 655,
+       "1": 1003,
+       "2": 1365,
+       "3": 1766
+      },
+      "calls_episode": 4,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 5,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 12,
+      "block": 0,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 4,
+      "S": 7140,
+      "T": {
+       "0": 662,
+       "1": 1054,
+       "2": 1428,
+       "3": 1794,
+       "4": 2202
+      },
+      "calls_episode": 5,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 6,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 13,
+      "block": 1,
+      "template": "transit",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 14,
+      "block": 2,
+      "template": "hotel",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 10,
+      "S": 37635,
+      "T": {
+       "0": 1097,
+       "1": 1464,
+       "2": 1869,
+       "3": 2216,
+       "4": 2587,
+       "5": 2949,
+       "6": 3320,
+       "7": 3682,
+       "8": 4051,
+       "9": 9221,
+       "10": 5179
+      },
+      "calls_episode": 12,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 14,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 15,
+      "block": 0,
+      "template": "pricing",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 6,
+      "S": 15456,
+      "T": {
+       "0": 1100,
+       "1": 1467,
+       "2": 1833,
+       "3": 2205,
+       "4": 2574,
+       "5": 2935,
+       "6": 3342
+      },
+      "calls_episode": 7,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 9,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 16,
+      "block": 1,
+      "template": "api",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 17,
+      "block": 2,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 6,
+      "S": 12181,
+      "T": {
+       "0": 640,
+       "1": 1009,
+       "2": 1369,
+       "3": 1735,
+       "4": 2106,
+       "5": 2458,
+       "6": 2864
+      },
+      "calls_episode": 7,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 8,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 18,
+      "block": 0,
+      "template": "transit",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 8,
+      "S": 19838,
+      "T": {
+       "0": 673,
+       "1": 1048,
+       "2": 1452,
+       "3": 1823,
+       "4": 2193,
+       "5": 2572,
+       "6": 2987,
+       "7": 3343,
+       "8": 3747
+      },
+      "calls_episode": 9,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 10,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 19,
+      "block": 1,
+      "template": "hotel",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 6,
+      "S": 14904,
+      "T": {
+       "0": 1010,
+       "1": 1400,
+       "2": 1749,
+       "3": 2116,
+       "4": 2490,
+       "5": 2860,
+       "6": 3279
+      },
+      "calls_episode": 7,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 9,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 20,
+      "block": 2,
+      "template": "pricing",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 4,
+      "S": 9217,
+      "T": {
+       "0": 1090,
+       "1": 1461,
+       "2": 1828,
+       "3": 2208,
+       "4": 2630
+      },
+      "calls_episode": 5,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 7,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 21,
+      "block": 0,
+      "template": "api",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 4,
+      "S": 7035,
+      "T": {
+       "0": 657,
+       "1": 1033,
+       "2": 1406,
+       "3": 1770,
+       "4": 2169
+      },
+      "calls_episode": 5,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 6,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 22,
+      "block": 1,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 11,
+      "S": 32699,
+      "T": {
+       "0": 654,
+       "1": 1038,
+       "2": 1411,
+       "3": 1789,
+       "4": 2163,
+       "5": 2539,
+       "6": 2909,
+       "7": 3289,
+       "8": 3659,
+       "9": 4034,
+       "10": 4408,
+       "11": 4806
+      },
+      "calls_episode": 12,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 13,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 23,
+      "block": 2,
+      "template": "transit",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 24,
+      "block": 0,
+      "template": "hotel",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 8,
+      "S": 18757,
+      "T": {
+       "0": 641,
+       "1": 996,
+       "2": 1347,
+       "3": 1702,
+       "4": 2072,
+       "5": 2440,
+       "6": 2805,
+       "7": 3165,
+       "8": 3589
+      },
+      "calls_episode": 9,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 10,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 25,
+      "block": 1,
+      "template": "pricing",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 6,
+      "S": 12388,
+      "T": {
+       "0": 651,
+       "1": 1022,
+       "2": 1406,
+       "3": 1761,
+       "4": 2132,
+       "5": 2510,
+       "6": 2906
+      },
+      "calls_episode": 7,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 8,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 26,
+      "block": 2,
+      "template": "api",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 2,
+      "S": 3136,
+      "T": {
+       "0": 671,
+       "1": 1036,
+       "2": 1429
+      },
+      "calls_episode": 3,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 4,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 27,
+      "block": 0,
+      "template": "school",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 8,
+      "S": 33154,
+      "T": {
+       "0": 1104,
+       "1": 1485,
+       "2": 1869,
+       "3": 2265,
+       "4": 2636,
+       "5": 3022,
+       "6": 3402,
+       "7": 3778,
+       "8": 13593
+      },
+      "calls_episode": 11,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 13,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 28,
+      "block": 1,
+      "template": "transit",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 4,
+      "S": 12459,
+      "T": {
+       "0": 655,
+       "1": 1026,
+       "2": 1403,
+       "3": 1772,
+       "4": 7603
+      },
+      "calls_episode": 7,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 8,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 29,
+      "block": 2,
+      "template": "hotel",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 30,
+      "block": 0,
+      "template": "pricing",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 9,
+      "S": 23298,
+      "T": {
+       "0": 659,
+       "1": 1030,
+       "2": 1408,
+       "3": 1783,
+       "4": 2142,
+       "5": 2514,
+       "6": 2880,
+       "7": 3255,
+       "8": 3616,
+       "9": 4011
+      },
+      "calls_episode": 10,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 11,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 31,
+      "block": 1,
+      "template": "api",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 6,
+      "S": 12409,
+      "T": {
+       "0": 647,
+       "1": 1022,
+       "2": 1393,
+       "3": 1761,
+       "4": 2141,
+       "5": 2526,
+       "6": 2919
+      },
+      "calls_episode": 7,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 8,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 32,
+      "block": 2,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 6,
+      "S": 12530,
+      "T": {
+       "0": 670,
+       "1": 1032,
+       "2": 1417,
+       "3": 1786,
+       "4": 2156,
+       "5": 2529,
+       "6": 2940
+      },
+      "calls_episode": 7,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 8,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 33,
+      "block": 0,
+      "template": "transit",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 3,
+      "S": 6915,
+      "T": {
+       "0": 1164,
+       "1": 1518,
+       "2": 1914,
+       "3": 2319
+      },
+      "calls_episode": 4,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 6,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 34,
+      "block": 1,
+      "template": "hotel",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 11,
+      "S": 37159,
+      "T": {
+       "0": 659,
+       "1": 1026,
+       "2": 1394,
+       "3": 1757,
+       "4": 2123,
+       "5": 2487,
+       "6": 2858,
+       "7": 3228,
+       "8": 7554,
+       "9": 4326,
+       "10": 4692,
+       "11": 5055
+      },
+      "calls_episode": 13,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 14,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 35,
+      "block": 2,
+      "template": "pricing",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 36,
+      "block": 0,
+      "template": "api",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 6,
+      "S": 12295,
+      "T": {
+       "0": 639,
+       "1": 1014,
+       "2": 1392,
+       "3": 1748,
+       "4": 2115,
+       "5": 2496,
+       "6": 2891
+      },
+      "calls_episode": 7,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 8,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 37,
+      "block": 1,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 10,
+      "S": 27908,
+      "T": {
+       "0": 641,
+       "1": 1019,
+       "2": 1399,
+       "3": 1775,
+       "4": 2154,
+       "5": 2538,
+       "6": 2916,
+       "7": 3289,
+       "8": 3670,
+       "9": 4046,
+       "10": 4461
+      },
+      "calls_episode": 11,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 12,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 38,
+      "block": 2,
+      "template": "transit",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 6,
+      "S": 15641,
+      "T": {
+       "0": 1116,
+       "1": 1481,
+       "2": 1852,
+       "3": 2237,
+       "4": 2615,
+       "5": 2997,
+       "6": 3343
+      },
+      "calls_episode": 7,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 9,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 39,
+      "block": 0,
+      "template": "hotel",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 6,
+      "S": 12276,
+      "T": {
+       "0": 667,
+       "1": 1019,
+       "2": 1384,
+       "3": 1745,
+       "4": 2108,
+       "5": 2484,
+       "6": 2869
+      },
+      "calls_episode": 7,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 8,
+      "log_mismatch": false
+     }
+    ],
+    "deadend": [
+     {
+      "run_index": 0,
+      "block": 0,
+      "template": "pricing",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 2489,
+      "T": {
+       "0": 1077,
+       "1": 1412
+      },
+      "calls_episode": 2,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 4,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 1,
+      "block": 1,
+      "template": "api",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 2,
+      "block": 0,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 3041,
+      "T": {
+       "0": 658,
+       "1": 2383
+      },
+      "calls_episode": 3,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 4,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 3,
+      "block": 1,
+      "template": "transit",
+      "entered": true,
+      "k": 5,
+      "reach": 76,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 10227,
+      "T": {
+       "0": 2012,
+       "1": 8215
+      },
+      "calls_episode": 4,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 8,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 4,
+      "block": 0,
+      "template": "hotel",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 14716,
+      "T": {
+       "0": 655,
+       "1": 14061
+      },
+      "calls_episode": 8,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 9,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 5,
+      "block": 1,
+      "template": "pricing",
+      "entered": true,
+      "k": 5,
+      "reach": 76,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 16807,
+      "T": {
+       "0": 2011,
+       "1": 14796
+      },
+      "calls_episode": 6,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 10,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 6,
+      "block": 0,
+      "template": "api",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 7,
+      "block": 1,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_get",
+      "D": 1,
+      "S": 3009,
+      "T": {
+       "0": 655,
+       "1": 2354
+      },
+      "calls_episode": 3,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "leave_get",
+      "steps_used": 4,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 8,
+      "block": 0,
+      "template": "transit",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 6829,
+      "T": {
+       "0": 1207,
+       "1": 5622
+      },
+      "calls_episode": 4,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 6,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 9,
+      "block": 1,
+      "template": "hotel",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 6723,
+      "T": {
+       "0": 663,
+       "1": 6060
+      },
+      "calls_episode": 5,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 6,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 10,
+      "block": 0,
+      "template": "pricing",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 6423,
+      "T": {
+       "0": 1078,
+       "1": 5345
+      },
+      "calls_episode": 4,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 6,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 11,
+      "block": 1,
+      "template": "api",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 2580,
+      "T": {
+       "0": 1092,
+       "1": 1488
+      },
+      "calls_episode": 2,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 4,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 12,
+      "block": 0,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 4759,
+      "T": {
+       "0": 664,
+       "1": 4095
+      },
+      "calls_episode": 4,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 5,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 13,
+      "block": 1,
+      "template": "transit",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 2669,
+      "T": {
+       "0": 1121,
+       "1": 1548
+      },
+      "calls_episode": 2,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 4,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 14,
+      "block": 0,
+      "template": "hotel",
+      "entered": true,
+      "k": 4,
+      "reach": 77,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 3389,
+      "T": {
+       "0": 1524,
+       "1": 1865
+      },
+      "calls_episode": 2,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 5,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 15,
+      "block": 1,
+      "template": "pricing",
+      "entered": false,
+      "k": null,
+      "reach": null,
+      "cause": "answer_before_entry",
+      "D": 0,
+      "S": 0,
+      "T": {},
+      "calls_episode": 0,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 3,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 16,
+      "block": 0,
+      "template": "api",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 21782,
+      "T": {
+       "0": 654,
+       "1": 21128
+      },
+      "calls_episode": 10,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 11,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 17,
+      "block": 1,
+      "template": "school",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_get",
+      "D": 1,
+      "S": 6760,
+      "T": {
+       "0": 654,
+       "1": 6106
+      },
+      "calls_episode": 5,
+      "invented_figure": false,
+      "correct": false,
+      "end_raw": "leave_get",
+      "steps_used": 6,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 18,
+      "block": 0,
+      "template": "transit",
+      "entered": true,
+      "k": 3,
+      "reach": 78,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 2692,
+      "T": {
+       "0": 1143,
+       "1": 1549
+      },
+      "calls_episode": 2,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 4,
+      "log_mismatch": false
+     },
+     {
+      "run_index": 19,
+      "block": 1,
+      "template": "hotel",
+      "entered": true,
+      "k": 2,
+      "reach": 79,
+      "cause": "giveup_answer",
+      "D": 1,
+      "S": 4661,
+      "T": {
+       "0": 658,
+       "1": 4003
+      },
+      "calls_episode": 4,
+      "invented_figure": true,
+      "correct": false,
+      "end_raw": "answer",
+      "steps_used": 5,
+      "log_mismatch": false
+     }
+    ]
+   },
+   "dir": "gpt-5-nano"
+  },
+  "Llama-3.2-1B": {
+   "label": "Llama-3.2-1B",
+   "n_maze": 0,
+   "n_entered": 0,
+   "entry_rate": null,
+   "entry_call": {},
+   "gate": {
+    "k": 0,
+    "n": 1
+   },
+   "gated": false,
+   "blocks_maze_entered": {},
+   "blocks_deadend_runs": {},
+   "floors_met": false,
+   "law": null,
+   "dir": "llama-3.2-1b"
+  },
+  "Qwen3-1.7B": {
+   "label": "Qwen3-1.7B",
+   "n_maze": 0,
+   "n_entered": 0,
+   "entry_rate": null,
+   "entry_call": {},
+   "gate": {
+    "k": 1,
+    "n": 10
+   },
+   "gated": false,
+   "blocks_maze_entered": {},
+   "blocks_deadend_runs": {},
+   "floors_met": false,
+   "law": null,
+   "dir": "qwen3-1.7b-nothink"
+  },
+  "Qwen3-1.7B thinking (D4, gate only)": {
+   "label": "Qwen3-1.7B thinking (D4, gate only)",
+   "n_maze": 0,
+   "n_entered": 0,
+   "entry_rate": null,
+   "entry_call": {},
+   "gate": {
+    "k": 0,
+    "n": 3
+   },
+   "gated": false,
+   "blocks_maze_entered": {},
+   "blocks_deadend_runs": {},
+   "floors_met": false,
+   "law": null,
+   "dir": "qwen3-1.7b-think"
+  }
+ }
+}

@@ -15,6 +15,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent.parent
 N = 128
+# last-MLP is block 27 at 1.7B and block 35 at 8B: both are drawn in the last-MLP row
+LAST_ALIAS = {"mlp35": "mlp27", "last": "mlp27"}
 ARMS = [
     ("all8", "All-modules", "heads and MLPs of the last 8 layers train"),
     ("mlp8", "MLP-only", "every attention head frozen, MLPs of the last 8 layers train"),
@@ -31,7 +33,7 @@ def runs_from(summary, size):
         if w.get("strict") is None:
             continue
         out.append({
-            "arm": r["arm"], "size": size, "seed": int(r["seed"]),
+            "arm": LAST_ALIAS.get(r["arm"], r["arm"]), "size": size, "seed": int(r["seed"]),
             "k": int(round(w["strict"] * N)), "n": N,
             "takeoff": r.get("T75"), "file": f"data/runs/{key}.json" if size == "8B" else f"parent:data/runs/{key}.json",
         })

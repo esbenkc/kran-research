@@ -7,7 +7,7 @@ config) locally, causal softmax of q79 . k_j / sqrt(d) over j = 0..79 (GQA: quer
 --validate runs Qwen3-0.6B locally with eager attention and compares with the model's own attention weights.
 
     uv run python attn_map.py --validate            # local, Qwen3-0.6B
-    uv run python attn_map.py --remote --out ../../kran-research/projects/probe-switch-frozen-heads-8b/research_checks/iris_ndif_attn.json
+    uv run python attn_map.py --remote --out ../../kran-research/projects/probe-switch-frozen-heads-8b/crosscheck_ndif/attn_base.json
 """
 import argparse
 import json

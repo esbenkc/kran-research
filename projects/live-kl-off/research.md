@@ -246,3 +246,11 @@ NOT LICENSED (keep out): "thought KL caused the live delay" (prereg if_right; KL
 The seed-spread papers are credits, not good draft targets: the only addresses are on 2017/2021 PDFs and are likely
 stale (Agarwal 2108.13264 p.1 rishabhagarwal@google.com, Google Research then; Henderson 1709.06560 p.1
 peter.henderson@mail.mcgill.ca, McGill then), and a 3-seed toy result gives them little. No new names from §10.
+
+### 10.8 Source for the host limit (2026-11-18 14:40 PST)
+Bruno's device check (devchk/README.md, 657cedf8d): plain-thought batches were bit-identical on both hosts, but the
+planted batch of update 1 differed in 2 of 32 thoughts between two mini runs of seed 0 and in 1 of 32 between mini
+and laptop for seed 1. PyTorch's own note: "Completely reproducible results are not guaranteed across PyTorch
+releases, individual commits, or different platforms" (Reproducibility, docs 2.15, created 2026-05-14,
+https://docs.pytorch.org/docs/2.15/notes/randomness.html). So in this setup a seed number names a random path, not
+a fixed run; the post may not say "seed 0 would have stayed flat on the laptop" or the reverse.

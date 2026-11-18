@@ -108,6 +108,9 @@ def load_agent(d: Path, agent: str) -> dict[str, list[dict]]:
             rec = json.loads(f.read_text())
             accf = d / "access" / arm / f"{f.stem}.jsonl"
             acc = [json.loads(x) for x in accf.read_text().splitlines()] if accf.exists() else []
+            # a handler thread appends its line after the response is sent, so lines can land out of order: sort by
+            # the request start time (requests of one run are sequential)
+            acc.sort(key=lambda a: a["t"])
             if arm == "visible":
                 rows.append({"run_index": rec["site"]["run_index"], "correct": rec["correct"], "end": rec["end"],
                              "steps_used": rec["steps_used"], "parse_fail": rec["parse_fail"]})

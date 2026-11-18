@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 8ea2f8423398828ae3e6c0ea4e0bd0304173f4a4
+sha256: fc619ffce790c168c463808669b4c012dfa23fb9659533f53bd7f87cdc4b5e9b
+pushed: 2026-11-18T21:41:50Z
+branch: swarm/defense-1118-seen-then-followed
+url: https://github.com/esbenkc/kran-research/blob/8ea2f8423398828ae3e6c0ea4e0bd0304173f4a4/projects/seen-then-followed/PREREG.md
+-->
+
 # Pre-registration — seen-then-followed
 
 Room: `defense-1118-seen-then-followed`. Night: 2026-11-18. Slug: `seen-then-followed`. Track: defense, agenda

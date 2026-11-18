@@ -53,3 +53,30 @@ block, the prediction and the status are untouched.
    panel arm.** Reported as a third arm (a fine-tune driven only by float rounding and held back by the
    output-matching term), with the same rows as the random-direction control. Never the status. Queue order in
    laptop job B: random-direction seeds 0, 1 first, then KL-only seeds 0, 1.
+
+## D3 — what the laptop queue delivered, and what it did not (recorded 2026-11-18, room oracle-1118-panel-fine-tune-8b, after all 8B data existed)
+
+No rule, threshold, metric, prediction or status line changes; none of the items below is a rule change. They record
+how the 8B data arrived and which pre-registered rows could not be filled.
+
+1. **Job A (lv07ii3whv) stopped on laptop disk, its outputs were kept.** The labq disk guard stopped job A
+   (2026-11-16T16:11Z, 0.5 GB free) during the seed-2 extract, after the seed-2 fine-tune had finished (attack log
+   `data/logs/attack_panel__lam10000__seed2.log`: step 300 reached, train_seconds 2097.3). The job's outputs (clean
+   fits and scores, panel seeds 0-2 runs and adapters, seeds 0-1 states, scores and refits) were committed in
+   8efca6440 (author time 2026-11-16T16:11:35Z, pushed later because the laptop had no network at the stop). All
+   are later than the prereg push (2026-11-16T04:47:33Z).
+2. **Job A2 (1pb3el4qmz) only re-extracted seed 2.** It ran in a clean labq clone at 5203b13bb, loaded the committed
+   adapter `data/runs/panel__lam10000__seed2__adapter` (extract log `data/logs/A2/extract_panel__lam10000__seed2.log`),
+   and ran extract, score and refit for seed 2 (151f14e9e). No training ran in A2. Adapter sha256:
+   seed 0 ea947145..., seed 1 02c061bc..., seed 2 55907bc0... (full hashes: `shasum -a 256
+   data/runs/panel__lam10000__seed*__adapter/adapter_model.safetensors`). Vera (skeptic) checked that the
+   in-training step-300 eval catch of seed 2 (0.2399, attack log) matches the extract.py score path (0.2416).
+3. **Lost rows.** (a) Step 150 of panel seed 2: the step-150 adapter lived in `data/scratch/` (not an output path) and
+   was gone when A2 ran (`data/logs/A2/chain.log`: "SKIP panel__lam10000__seed2__step150 (no adapter)"); the step-150
+   row (s8, secondary) reports seeds 0-1 only. (b) Best single readout over all 37 readouts (s8): needs clean per-token
+   acts at every readout, which were deleted with job A's scratch; `run_all.sh` skips BESTSINGLE without them. Not
+   reported. The per-probe catches of the 20 panel members (s8, own line) are reported instead, as pre-registered.
+4. **KL-only arm ran per D2** (job B, h9ugnncw4g, seeds 0-1), as the third arm. Job B's output push conflicted on the
+   room branch and landed on labq/h9ugnncw4g (86c34c720); it was merged into the room branch in 5203b13bb unchanged.
+5. **Bootstrap seed.** `analysis.py` uses seed 1022 for every city-cluster bootstrap, as PREREG s3 says. Other seeds
+   (Kasper: 1021, 7) give an upper bound of 19.0-19.1% for the pooled catch; the status does not depend on the seed.

@@ -72,6 +72,15 @@ seed-level statement is the exact bound per block: 0/14 -> one-sided 95% upper b
   under a harness with no budget signal. "Median depth >= 96 pages" is an extrapolation 9x past the cap that
   assumes a constant rate; it must not carry the headline.
 
+## No-promise cell (exploratory, D10/D11; not in the status)
+
+Rebuilt with `vera_check.py --only maze_neutral` (out_*.maze_neutral.json): 31B runs 0-9: 0/10 leave, 0/98 decisions,
+depth 11 in 8 runs and 10 in 2; 26B runs 0-17: 0/18 leave, 0/180 decisions, depth 11 in 18. Pooled 0/28, one-sided 95%
+upper bound 10.1% (per agent 25.9% / 15.3%); Fisher exact vs the counted maze 0/84: p = 1.0. Median spend 27,737.5 /
+27,719 tokens. Manipulation check: the sentence "Figures are published in a later part" appears in 0 of 306 maze-page
+observations of this arm. Reading: removing the promise did not make these agents leave within 12 calls; a promise
+effect below about 10 points is not excluded.
+
 ## Minor (not blocking)
 
 - proof-matrix.md dead-end rows per block use the upper middle value (31B 1064 / 1080, 26B 1315 / 1234); the plain

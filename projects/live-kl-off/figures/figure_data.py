@@ -1,11 +1,11 @@
 """Build data.json for the main figure of live-kl-off (Selma).
 
 One panel: switch (s_P, share of its limit) vs training updates for
-  - tonight's fresh-thought seeds WITHOUT the thought penalty, one line per seed;
+  - the fresh-thought seeds WITHOUT the thought penalty, one line per seed;
   - the earlier fresh-thought run WITH the penalty (parent on-policy-planted, live_k4);
-  - the earlier fixed-thought run (decision-only-control d010_s0, thoughts sampled once and reused);
-  - the earlier fixed-thought run with the penalty (parent cell A, cachedkl_s0, exploratory, cut at 876);
-  - the dense-word positive control (cue 0.86, no penalty), when it ran.
+  - the earlier fixed-thought run (decision-only-control d010_s0, thoughts sampled once and reused).
+The fixed-thought run with the penalty (cachedkl_s0) and the dense-word check (posctl_d086_s0) are n=1 checks kept in
+the post's text and the proof matrix, not in the figure (Tove #25386: the first invites a causal read we disclaim).
 Every number comes from data/summary.json, which kl_summ.py writes from the raw reads (parent reads are
 byte-identical copies under data/parent/). Onsets are kl_summ.py's frozen-rule intervals.
 
@@ -62,16 +62,6 @@ if "cached_d010_s0" in par:
     rs = [x for x in par["cached_d010_s0"]["reads"] if x["step"] <= 1200]
     series.append({"key": "cached", "kind": "cached", "label": "fixed thoughts (earlier)", "short": "fixed", "pts": pts(rs)})
     onsets.append(onset_dot(rs, par["cached_d010_s0"]["onset"], "cached", anchor="end", dx=-8, dy=-8))
-if "cachedkl_s0" in par:
-    rs = par["cachedkl_s0"]["reads"]
-    if rs and rs[0]["step"] != 0 and "cached_d010_s0" in par:
-        rs = [par["cached_d010_s0"]["reads"][0]] + rs
-    series.append({"key": "cached_kl", "kind": "ckl", "label": "fixed thoughts + penalty (earlier, cut at 876)",
-                   "short": "fixed + penalty", "pts": pts(rs)})
-pc = sm.get("positive_control")
-if pc:
-    series.append({"key": "posctl", "kind": "pos", "label": "check: word in 86 of 100 (no penalty)",
-                   "short": "check: 86 of 100", "pts": pts(pc["reads"])})
 onsets = [o for o in onsets if o]
 seeds = kl
 

@@ -1,0 +1,7 @@
+take-off probability per seed, Beta(3,2): mean 0.60, 95% interval [0.19, 0.93]
+  P(CONFIRMED with 3 seeds | true p = 0.20) = 0.104
+  P(CONFIRMED with 3 seeds | true p = 0.35) = 0.282
+  P(CONFIRMED with 3 seeds | true p = 0.50) = 0.500
+  P(CONFIRMED with 3 seeds | true p = 0.65) = 0.718
+  P(CONFIRMED with 3 seeds | true p = 0.80) = 0.896
+Fisher one-sided, KL-off 2/3 vs KL-on 0/1: p = 0.50  (a single flat KL-on seed cannot show the penalty brakes)

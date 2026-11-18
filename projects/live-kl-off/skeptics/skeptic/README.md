@@ -1,13 +1,11 @@
-# Vera (skeptic) receipts — live-kl-off
+# Vera (skeptic) receipts, room oracle-1118-live-kl-off-cont (3 seeds)
 
-Own rebuild code, run on the build's raw files; see signoff.md for the verdict and every number.
-Run from projects/live-kl-off (pool: data/pool_cols/test/cols.npz, sha256 f085c32fae41...):
+Own rebuild code, run on the build's raw files; signoff.md has the verdict and every number.
+Last night's files (vera_check.py with a per-run CLI, vera_carry.py, vera_drift.py, vera_served.py) stay as they were.
+New tonight, run from projects/live-kl-off (numpy; vera_seedstats.py also scipy):
 
-    python3 skeptics/skeptic/vera_check.py data/runs/kl0_s0 data/pool_cols/test/cols.npz
-    python3 skeptics/skeptic/vera_check.py data/runs/posctl_d086_s0 data/pool_cols/test/cols.npz
-    python3 skeptics/skeptic/vera_check.py data/runs/replay_s0 data/pool_cols/test/cols.npz
-    python3 skeptics/skeptic/vera_carry.py data/runs/kl0_s0
-    python3 skeptics/skeptic/vera_served.py data/reads/served_kl0_s0_1200.npz
-    python3 skeptics/skeptic/vera_drift.py <parent live_k4 dir> data/runs/kl0_s0
+    python3 skeptics/skeptic/vera_status3.py .      # onset rule + guards + clauses + status + seed-level line, 3 seeds
+    python3 skeptics/skeptic/vera_host.py .         # pre-onset stats per seed (host check), carrying counts
+    python3 skeptics/skeptic/vera_seedstats.py      # what a 2-of-3 count carries; Fisher vs the 1 KL-on seed
 
-numpy only. vera_drift.py needs the parent's live_k4 batches (branch swarm/oracle-1113-on-policy-planted).
+Outputs: vera_status3_out.txt, vera_host_out.txt, vera_seedstats_out.txt.

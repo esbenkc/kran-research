@@ -30,3 +30,14 @@ Wording guard: do not claim "KL is a brake on faint cues" in general from one mo
 After data (2026-11-16 19:50 PST): seed 0 FLAT (s_P 0.0100 at 1,200), dense control learned (0.98 at 150), and the
 exploratory replay cell took off at (500, 600]. None of the works above reports an onset comparison of this kind.
 The post may claim the measurement as new at Qwen3-0.6B scale; it must not claim a general law (n = 1 per cell).
+
+After seeds 1 and 2 (2026-11-18, room oracle-1118-live-kl-off-cont): 2 of 3 KL-off seeds take off, at (500, 600]
+and (700, 800]; seed 0 stays flat. Searched again (web search "KL penalty removed RL fine-tuning seed variance
+sudden onset"). Nothing new measures cue onset with thought KL on vs off. New related credit for the seed spread:
+- Baherwani, Chen, Qiu, Wilson, Izmailov, Emergent Capabilities Arise Randomly from Learning Sparse Attention
+  Patterns (arXiv 2606.25010, June 2026): capabilities emerge abruptly and at random times across training runs.
+  Same shape as our seeds (sudden onset, timing differs by seed), different setting (pretraining on synthetic
+  tasks, not RL on a planted cue). A credit, not a prior result for this claim.
+Verdict: the measurement is new at Qwen3-0.6B scale. Allowed claim: "without the thought penalty, the faint cue
+took off in 2 of 3 seeds". Not allowed: "the thought penalty caused the parent's delay" (KL-on side is 1 seed,
+Fisher one-sided p = 0.50) or any general law about KL and faint cues.

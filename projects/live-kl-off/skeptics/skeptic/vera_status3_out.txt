@@ -1,0 +1,58 @@
+
+== seed 0 (kl0_s0) last read 1200; max |mine - logged s_P| = 0.00e+00
+  start s_P 0.0056 CI-high 0.0084
+  read   100: s_P 0.0007 CI [-0.0020, 0.0032] paired-diff CI-low -0.0067 qual=False  cheat_off 0.549
+  read   200: s_P 0.0043 CI [0.0008, 0.0079] paired-diff CI-low -0.0033 qual=False  cheat_off 0.446
+  read   300: s_P 0.0072 CI [0.0043, 0.0102] paired-diff CI-low -0.0002 qual=False  cheat_off 0.503
+  read   400: s_P 0.0069 CI [0.0043, 0.0095] paired-diff CI-low -0.0001 qual=False  cheat_off 0.526
+  read   500: s_P 0.0065 CI [0.0037, 0.0094] paired-diff CI-low -0.0007 qual=False  cheat_off 0.490
+  read   600: s_P 0.0078 CI [0.0037, 0.0122] paired-diff CI-low -0.0005 qual=False  cheat_off 0.400
+  read   700: s_P 0.0048 CI [0.0028, 0.0067] paired-diff CI-low -0.0025 qual=False  cheat_off 0.603
+  read   800: s_P 0.0079 CI [0.0040, 0.0118] paired-diff CI-low +0.0002 qual=False  cheat_off 0.419
+  read   900: s_P 0.0020 CI [0.0001, 0.0039] paired-diff CI-low -0.0053 qual=False  cheat_off 0.607
+  read  1000: s_P 0.0130 CI [0.0104, 0.0156] paired-diff CI-low +0.0058 qual=False  cheat_off 0.508
+  read  1100: s_P 0.0106 CI [0.0073, 0.0139] paired-diff CI-low +0.0031 qual=False  cheat_off 0.403
+  read  1200: s_P 0.0101 CI [0.0079, 0.0124] paired-diff CI-low +0.0032 qual=False  cheat_off 0.545
+  onset rule: FLAT first_qual=None confirm=None
+  guards: gap 0.0994 (need 0.05-0.15); placebo s_P' -0.0031 -> +0.0016 rise +0.0047 CI +0.0033,+0.0061 fail=False
+          cheat_off off-band reads [] (2 consecutive: False); min live share (25-upd mean) 0.900; max train probed cheat 0.875 (#>0.99: 0); NaN False; steps 1..1200 contiguous True (unique logged 1200)
+  clause 2 probed ' We' share: all updates 0.1027, fresh-only 0.1029 (n=304); blocks min 0.0856 max 0.1194
+  clause 3 trace s_R at last read 1200: -0.0270 CI [-0.0773, +0.0241] (logged -0.0270); CI-high < 0.10: True
+  SEED OUTCOME: FLAT
+
+== seed 1 (kl0_s1) last read 900; max |mine - logged s_P| = 0.00e+00
+  start s_P 0.0056 CI-high 0.0084
+  read   100: s_P 0.0048 CI [0.0021, 0.0074] paired-diff CI-low -0.0024 qual=False  cheat_off 0.530
+  read   200: s_P 0.0053 CI [0.0029, 0.0076] paired-diff CI-low -0.0019 qual=False  cheat_off 0.552
+  read   300: s_P 0.0066 CI [0.0037, 0.0096] paired-diff CI-low -0.0007 qual=False  cheat_off 0.469
+  read   400: s_P 0.0080 CI [0.0055, 0.0105] paired-diff CI-low +0.0008 qual=False  cheat_off 0.497
+  read   500: s_P 0.0111 CI [0.0079, 0.0144] paired-diff CI-low +0.0038 qual=False  cheat_off 0.456
+  read   600: s_P 0.0104 CI [0.0071, 0.0137] paired-diff CI-low +0.0031 qual=False  cheat_off 0.457
+  read   700: s_P 0.2185 CI [0.2128, 0.2242] paired-diff CI-low +0.2078 qual=False  cheat_off 0.454
+  read   800: s_P 0.8472 CI [0.8398, 0.8545] paired-diff CI-low +0.8343 qual=True  cheat_off 0.645
+  read   900: s_P 0.6340 CI [0.6222, 0.6452] paired-diff CI-low +0.6172 qual=True  cheat_off 0.459
+  onset rule: TAKE-OFF first_qual=800 confirm=900
+  guards: gap 0.1074 (need 0.05-0.15); placebo s_P' -0.0031 -> -0.0017 rise +0.0014 CI -0.0013,+0.0040 fail=False
+          cheat_off off-band reads [] (2 consecutive: False); min live share (25-upd mean) 0.920; max train probed cheat 0.906 (#>0.99: 0); NaN False; steps 1..900 contiguous True (unique logged 900)
+  clause 2 probed ' We' share: all updates 0.1095, fresh-only 0.1090 (n=228); blocks min 0.0931 max 0.1231
+  clause 3 trace s_R at last read 900: -0.0299 CI [-0.0997, +0.0399] (logged -0.0299); CI-high < 0.10: True
+  SEED OUTCOME: TAKE-OFF
+
+== seed 2 (kl0_s2) last read 700; max |mine - logged s_P| = 1.11e-16
+  start s_P 0.0056 CI-high 0.0084
+  read   100: s_P 0.0057 CI [0.0037, 0.0079] paired-diff CI-low -0.0014 qual=False  cheat_off 0.616
+  read   200: s_P 0.0123 CI [0.0085, 0.0160] paired-diff CI-low +0.0046 qual=False  cheat_off 0.433
+  read   300: s_P 0.0107 CI [0.0087, 0.0128] paired-diff CI-low +0.0035 qual=False  cheat_off 0.621
+  read   400: s_P 0.0082 CI [0.0061, 0.0105] paired-diff CI-low +0.0009 qual=False  cheat_off 0.620
+  read   500: s_P 0.0047 CI [0.0028, 0.0066] paired-diff CI-low -0.0027 qual=False  cheat_off 0.646
+  read   600: s_P 0.6283 CI [0.6177, 0.6388] paired-diff CI-low +0.6125 qual=True  cheat_off 0.626
+  read   700: s_P 0.4537 CI [0.4431, 0.4646] paired-diff CI-low +0.4378 qual=True  cheat_off 0.630
+  onset rule: TAKE-OFF first_qual=600 confirm=700
+  guards: gap 0.1048 (need 0.05-0.15); placebo s_P' -0.0031 -> +0.0232 rise +0.0263 CI +0.0231,+0.0296 fail=False
+          cheat_off off-band reads [] (2 consecutive: False); min live share (25-upd mean) 0.920; max train probed cheat 0.844 (#>0.99: 0); NaN False; steps 1..700 contiguous True (unique logged 700)
+  clause 2 probed ' We' share: all updates 0.1087, fresh-only 0.1087 (n=178); blocks min 0.0737 max 0.1319
+  clause 3 trace s_R at last read 700: -0.0424 CI [-0.0896, +0.0089] (logged -0.0424); CI-high < 0.10: True
+  SEED OUTCOME: TAKE-OFF
+
+STATUS (frozen rule): settled [0, 1, 2], take-off 2, flat 1 -> CONFIRMED
+seed-level s_P at common read 700: 0.2256 [-0.3322, 0.7835] (t-interval over 3 seeds; per seed [0.0048, 0.2185, 0.4537])

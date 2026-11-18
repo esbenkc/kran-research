@@ -1,0 +1,25 @@
+pre-onset window: updates 1-500 (every seed's s_P <= 0.012 there)
+stat                      s0 mean      s1 mean      s2 mean   s0 inside s1-s2 range (+-2 se)?
+cheat_probed               0.5956       0.5635       0.5671   NO  (lap range 0.5530..0.5779, s0 se 0.0050)
+cheat_unprobed             0.5924       0.5653       0.5779   NO  (lap range 0.5549..0.5889, s0 se 0.0048)
+cheat_probed_x             0.5888       0.5466       0.5912   yes  (lap range 0.5176..0.6184, s0 se 0.0134)
+cheat_probed_notx          0.5980       0.5654       0.5662   NO  (lap range 0.5546..0.5772, s0 se 0.0052)
+x_rate_probed              0.0993       0.1084       0.1056   NO  (lap range 0.1008..0.1129, s0 se 0.0021)
+x_rate_unprobed            0.0037       0.0020       0.0037   yes  (lap range 0.0013..0.0047, s0 se 0.0005)
+kl_dec                     0.0334       0.0349       0.0359   yes  (lap range 0.0321..0.0386, s0 se 0.0014)
+g_dec_preclip              0.2217       0.2258       0.2346   yes  (lap range 0.2120..0.2485, s0 se 0.0064)
+live_probed_groups         3.9000       3.9120       3.9040   yes  (lap range 3.8764..3.9374, s0 se 0.0140)
+M_read_mean                5.9919       6.0131       5.9989   yes  (lap range 5.9805..6.0294, s0 se 0.0088)
+M_solve_mean              -4.3323      -4.4291      -4.3936   NO  (lap range -4.4554..-4.3629, s0 se 0.0116)
+corr_x_s                  -0.0054      -0.0027       0.0108   yes  (lap range -0.0191..0.0273, s0 se 0.0077)
+t                        635.1182     507.1600     425.2604   NO  (lap range 403.9135..530.5219, s0 se 17.2662)
+
+cumulative probed rows carrying ' We' (sum n_probed_x over updates; fresh-thought updates only in brackets)
+  s0: 100:364[95] 200:644[164] 300:924[235] 400:1206[308] 500:1588[404] 600:1970[500] 700:2286[582] 800:2614[664] 900:2952[749] 1000:3328[849] 1100:3670[931] 1200:3944[1001]
+  s1: 100:364[95] 200:758[192] 300:1092[275] 400:1436[365] 500:1734[439] 600:2054[518] 700:2406[609] 800:2786[702] 900:3154[795]
+  s2: 100:236[62] 200:590[150] 300:1000[253] 400:1330[339] 500:1690[427] 600:2014[509] 700:2436[619]
+
+reward edge on carrying rows: mean(cheat_probed_x - cheat_probed_notx) per 100-update block (the signal the planted word could ride)
+  s0: 100:+0.019 200:-0.036 300:+0.030 400:-0.010 500:-0.043 600:+0.008 700:+0.055 800:-0.022 900:+0.000 1000:-0.021 1100:-0.063 1200:-0.075
+  s1: 100:-0.045 200:+0.038 300:-0.084 400:-0.024 500:+0.010 600:-0.058 700:+0.033 800:-0.404 900:-0.413
+  s2: 100:+0.079 200:+0.001 300:-0.009 400:-0.007 500:+0.077 600:-0.117 700:-0.314

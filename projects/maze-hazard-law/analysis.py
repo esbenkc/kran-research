@@ -31,7 +31,9 @@ FLOOR_DE_BLOCKS, FLOOR_DE_PER_BLOCK = 2, 6
 STATUS = {"gpt-oss-20b": "gpt-oss-20b", "gpt-oss-20b-low": "gpt-oss-20b",
           "qwen3-8b": "Qwen3-8B", "qwen3-8b-nothink": "Qwen3-8B"}
 SIDE = {"qwen3-1.7b": "Qwen3-1.7B", "qwen3-1.7b-nothink": "Qwen3-1.7B",
-        "llama-3.2-1b": "Llama-3.2-1B", "gemma-3-1b": "Gemma-3-1B"}
+        "llama-3.2-1b": "Llama-3.2-1B", "gemma-3-1b": "Gemma-3-1B",
+        "gpt-5-nano": "gpt-5-nano (closed, API; pipeline check)",
+        "qwen3-1.7b-think": "Qwen3-1.7B thinking (D4, gate only)"}
 STATUS_ORDER = ["gpt-oss-20b", "Qwen3-8B"]
 
 

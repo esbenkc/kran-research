@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 93653884be0305f86f1b17acbaf0cdd51e4a2d95
+sha256: 04ed7c6b987b759c0b894374cf76709b16c6e09f9eff23e174e065a6050c78e9
+pushed: 2026-11-18T16:51:21Z
+branch: swarm/oracle-1118-gated-refusal
+url: https://github.com/esbenkc/kran-research/blob/93653884be0305f86f1b17acbaf0cdd51e4a2d95/projects/gated-refusal-8b/PREREG.md
+-->
+
 # PRE-REGISTRATION — gated-refusal-8b (room oracle-1118-gated-refusal)
 
 Follow-up to refusal-addback (Qwen2.5-1.5B-Instruct, room oracle-1021-refusal, branch swarm/oracle-1021-refusal,

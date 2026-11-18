@@ -1,0 +1,23 @@
+2026-11-18 12:41:12 START box m7ybk186x3 model Qwen/Qwen3-8B commit 0e4e02a8 hours 3 out .
+2026-11-18 12:41:12 cache build (pass A)
+2026-11-18 12:49:01 cache built: none A {'first_call_s': 10.5, 'total_s': 189.5, 'probe_stored_ok': None} probe A {'first_call_s': 5.7, 'total_s': 197.2, 'probe_stored_ok': True}  peak 8044928
+2026-11-18 12:49:04 cache sha = first box
+2026-11-18 12:49:05 map states
+2026-11-18 12:50:27 map prediction: {"last_mlp_pred": 0.1172, "acc": 0.55859375, "route": "FORMS", "n_heads": 13, "n_readable": 23, "top_head": ["35.15", 0.5342463254928589], "best_src": ["in32@74", 0.95697021484375, 0.5748092651367187], "ans_max": ["in35", 0.57666015625]}
+2026-11-18 12:53:41 whole base: strict 0.0 repeat-changed {'merged_modules': 0, 'cond0_s': 66.1, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 59.9, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True} peak 8012184
+2026-11-18 12:53:41 START all8_none_s0 :: --steps 8192 --arm all8 --seed 0
+2026-11-18 13:43:09 OK all8_none_s0: steps 1664 early stop 1664 T75 1280 cached test strict 0.9921875 train_s 2918.9 (1.75 s/upd this segment)
+2026-11-18 13:45:43 whole all8_none_s0: strict 0.9921875 repeat-changed {'merged_modules': 56, 'cond0_s': 62.9, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 63.1, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True} peak 7897472
+2026-11-18 13:45:44 PREDICTIONS.md section B found on the branch head d3882a79
+2026-11-18 13:45:44 START mlplast_none_s0 :: --steps 2048 --arm mlplast --seed 0
+2026-11-18 13:47:40 OK mlplast_none_s0: steps 2048 early stop None T75 None cached test strict 0.0 train_s 106.9 (0.05 s/upd this segment)
+2026-11-18 13:50:11 whole mlplast_none_s0: strict 0.0 repeat-changed {'merged_modules': 3, 'cond0_s': 62.8, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 60.6, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True} peak 7946624
+2026-11-18 13:50:11 START mlplast_none_s1 :: --steps 2048 --arm mlplast --seed 1
+2026-11-18 13:52:04 OK mlplast_none_s1: steps 2048 early stop None T75 None cached test strict 0.0 train_s 104.8 (0.05 s/upd this segment)
+2026-11-18 13:54:35 whole mlplast_none_s1: strict 0.0 repeat-changed {'merged_modules': 3, 'cond0_s': 62.6, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 61.1, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True} peak 7963008
+2026-11-18 13:54:35 START mlp8_none_s0 :: --steps 2560 --arm mlp8 --seed 0
+2026-11-18 15:02:27 OK mlp8_none_s0: steps 2432 early stop 2432 T75 1920 cached test strict 0.9921875 train_s 4024.5 (1.65 s/upd this segment)
+2026-11-18 15:05:02 whole mlp8_none_s0: strict 0.9921875 repeat-changed {'merged_modules': 24, 'cond0_s': 61.3, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 60.4, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True} peak 7995776
+2026-11-18 15:05:02 START mlp8_none_s1 :: --steps 2560 --arm mlp8 --seed 1
+2026-11-18 15:36:12 BOX END: mlp8_none_s1 saved a checkpoint at the deadline (DEADLINE mlp8_none_s1: saved ckpt/mlp8_none_s1 at step 1189)
+2026-11-18 15:36:13 box clock: awake 10501 s, wall 10501 s, rc 0

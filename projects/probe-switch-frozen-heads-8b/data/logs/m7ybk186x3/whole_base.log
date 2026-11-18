@@ -1,0 +1,22 @@
+W1118 12:50:31.354000 80975 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 4498.26it/s]
+W1118 12:50:59.960000 80975 .venv/lib/python3.13/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+WHOLE base {'n_prompts': 128, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0078125, 'differs': 0.0234375, 'share_unprobed_B': 0.8125, 'share_probed_A': 0.1796875, 'shift_mean': 0.015625000465661287, 'shift_median': 0.0, 'share_shift_pos': 0.2734375, 'bit_identical_prompts': 0} {'merged_modules': 0, 'cond0_s': 66.1, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 59.9, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+      193.67 real        36.85 user        18.69 sys
+          1066385408  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             2203699  page reclaims
+              999961  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   1  messages sent
+                   1  messages received
+                   1  signals received
+                3434  voluntary context switches
+              513935  involuntary context switches
+            69952618  instructions retired
+            37658849  cycles elapsed
+             8012184  peak memory footprint

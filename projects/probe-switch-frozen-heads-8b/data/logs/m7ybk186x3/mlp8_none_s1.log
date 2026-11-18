@@ -1,0 +1,13 @@
+W1118 15:05:08.276000 48600 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+mlp8_none_s1 lora modules 24 params 6291456
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.0, 'share_unprobed_B': 0.796875, 'share_probed_A': 0.203125, 'shift_mean': 0.0039062462747097015, 'shift_median': 0.0, 'share_shift_pos': 0.25}
+step 128 loss 0.7346 gn 1.8414 dev strict 0.000 argmax 0.109 uB 0.84 shift 0.055 201s (1.57 s/upd)
+step 256 loss 0.6979 gn 4.4160 dev strict 0.125 argmax 0.172 uB 0.92 shift 0.322 401s (1.57 s/upd)
+step 384 loss 0.7173 gn 9.4284 dev strict 0.016 argmax 0.016 uB 0.02 shift 0.211 601s (1.56 s/upd)
+step 512 loss 0.7106 gn 14.4928 dev strict 0.031 argmax 0.047 uB 1.00 shift 0.244 799s (1.56 s/upd)
+step 640 loss 0.6951 gn 21.8071 dev strict 0.125 argmax 0.125 uB 0.16 shift 1.133 998s (1.56 s/upd)
+step 768 loss 0.7512 gn 17.6976 dev strict 0.312 argmax 0.422 uB 0.53 shift 1.040 1198s (1.56 s/upd)
+step 896 loss 0.5522 gn 51.0094 dev strict 0.500 argmax 0.578 uB 0.73 shift 3.176 1398s (1.56 s/upd)
+step 1024 loss 0.5832 gn 63.1789 dev strict 0.453 argmax 0.453 uB 0.95 shift 2.098 1597s (1.56 s/upd)
+step 1152 loss 0.4986 gn 53.6573 dev strict 0.422 argmax 0.422 uB 0.98 shift 2.285 1796s (1.56 s/upd)
+DEADLINE mlp8_none_s1: saved ckpt/mlp8_none_s1 at step 1189

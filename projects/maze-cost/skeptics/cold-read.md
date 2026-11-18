@@ -113,7 +113,7 @@ Round 2 verdict: hold. Pass once L2, N1 and N2 are fixed on the next preview.
 
 READ TWICE: "Agents took the hidden link straight from the home page in 78 of 84 maze runs, and after one visible page in the rest. Then it read page after page..." ('Agents' then 'it') -> REWRITE: "Then each agent read page after page, 11 in the median run."
 
-READ TWICE: "31B, and 26B-A4B, which uses about 4B of its 25B parameters for each token." (name says 26B, text says 25B) -> REWRITE: "26B-A4B, which uses about 4B of its roughly 26B parameters per token."
+READ TWICE: "31B, and 26B-A4B, which uses about 4B of its 25B parameters for each token." (name says 26B, text says 25B) -> REWRITE (corrected after Iris #25729: HF card google/gemma-4-26B-A4B-it gives 25.2B total, 3.8B active; 26B is only the name): "The 26B-A4B model has 25B parameters and uses about 4B of them for each token."
 
 ## Verdict
 

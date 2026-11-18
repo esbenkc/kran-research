@@ -1,0 +1,247 @@
+{
+ "title": "Warned or not, gpt-oss-20b requested the hidden link in 59 and 58 of 60 runs. Qwen3-8B, which did not count, reached its exact address in about 1 run in 4",
+ "subtitle": "Share of runs whose server log shows a request for the footer link that leads to the answer. On trap pages the page's HTML hides the link from human readers. On control pages it shows.",
+ "phase": "counted",
+ "legend": {
+  "warned": "trap warning",
+  "neutral": "neutral sentence",
+  "hidden": "hidden link (trap pages)",
+  "visible": "visible link (control pages)",
+  "line50": "canary catches half",
+  "x": "share of runs that requested the link (server log)",
+  "x_short": "runs that requested the link",
+  "star": "* any address: any request that held the link's unique code, even to a wrong folder. We chose this count after we saw the Qwen3-8B data.",
+  "note": "Bars: 95% intervals over runs. November 10 test: 180 runs per sentence (3 agents x 60). This test: 60 runs per cell over 3 seeds."
+ },
+ "groups": [
+  {
+   "id": "api",
+   "label": "November 10 test: three small API agents, pooled",
+   "sub": "GPT-5.4 nano, GPT-5.4 mini and Gemini 3.1 Flash-Lite. That test had no control pages."
+  },
+  {
+   "id": "gpt-oss-20b",
+   "label": "This test: gpt-oss-20b on a laptop",
+   "sub": "Counted: with the link shown and no warning, it gave the right answer in 57 of 60 runs (the bar is 70%)."
+  },
+  {
+   "id": "qwen3-8b",
+   "label": "This test: Qwen3-8B on a laptop",
+   "sub": "Not counted: with the link shown and no warning, it gave the right answer in 27 of 60 runs (the bar is 70%)."
+  }
+ ],
+ "rows": [
+  {
+   "group": "api",
+   "label": "hidden link, exact address",
+   "page": "hidden",
+   "kind": "exact",
+   "w": {
+    "k": 176,
+    "n": 180,
+    "rate": 0.9778,
+    "lo": 0.9556,
+    "hi": 0.9944
+   },
+   "u": {
+    "k": 177,
+    "n": 180,
+    "rate": 0.9833,
+    "lo": 0.9611,
+    "hi": 1.0
+   }
+  },
+  {
+   "group": "gpt-oss-20b",
+   "label": "hidden link, exact address",
+   "page": "hidden",
+   "kind": "exact",
+   "w": {
+    "k": 59,
+    "n": 60,
+    "rate": 0.9833,
+    "lo": 0.95,
+    "hi": 1.0,
+    "seed_lo": 0.9116,
+    "seed_hi": 1.0
+   },
+   "u": {
+    "k": 58,
+    "n": 60,
+    "rate": 0.9667,
+    "lo": 0.9167,
+    "hi": 1.0,
+    "seed_lo": 0.895,
+    "seed_hi": 1.0
+   }
+  },
+  {
+   "group": "gpt-oss-20b",
+   "label": "hidden link, any address*",
+   "page": "hidden",
+   "kind": "code",
+   "w": {
+    "k": 60,
+    "n": 60,
+    "rate": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "seed_lo": 1.0,
+    "seed_hi": 1.0
+   },
+   "u": {
+    "k": 60,
+    "n": 60,
+    "rate": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "seed_lo": 1.0,
+    "seed_hi": 1.0
+   }
+  },
+  {
+   "group": "gpt-oss-20b",
+   "label": "visible link, exact address",
+   "page": "visible",
+   "kind": "exact",
+   "w": {
+    "k": 56,
+    "n": 60,
+    "rate": 0.9333,
+    "lo": 0.8667,
+    "hi": 0.9833,
+    "seed_lo": 0.8616,
+    "seed_hi": 1.0
+   },
+   "u": {
+    "k": 59,
+    "n": 60,
+    "rate": 0.9833,
+    "lo": 0.95,
+    "hi": 1.0,
+    "seed_lo": 0.9116,
+    "seed_hi": 1.0
+   }
+  },
+  {
+   "group": "gpt-oss-20b",
+   "label": "visible link, any address*",
+   "page": "visible",
+   "kind": "code",
+   "w": {
+    "k": 60,
+    "n": 60,
+    "rate": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "seed_lo": 1.0,
+    "seed_hi": 1.0
+   },
+   "u": {
+    "k": 60,
+    "n": 60,
+    "rate": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "seed_lo": 1.0,
+    "seed_hi": 1.0
+   }
+  },
+  {
+   "group": "qwen3-8b",
+   "label": "hidden link, exact address",
+   "page": "hidden",
+   "kind": "exact",
+   "w": {
+    "k": 13,
+    "n": 60,
+    "rate": 0.2167,
+    "lo": 0.1167,
+    "hi": 0.3167,
+    "seed_lo": 0.145,
+    "seed_hi": 0.2884
+   },
+   "u": {
+    "k": 15,
+    "n": 60,
+    "rate": 0.25,
+    "lo": 0.15,
+    "hi": 0.35,
+    "seed_lo": 0.0349,
+    "seed_hi": 0.4651
+   }
+  },
+  {
+   "group": "qwen3-8b",
+   "label": "hidden link, any address*",
+   "page": "hidden",
+   "kind": "code",
+   "w": {
+    "k": 18,
+    "n": 60,
+    "rate": 0.3,
+    "lo": 0.2,
+    "hi": 0.4167,
+    "seed_lo": 0.1758,
+    "seed_hi": 0.4242
+   },
+   "u": {
+    "k": 39,
+    "n": 60,
+    "rate": 0.65,
+    "lo": 0.5333,
+    "hi": 0.75,
+    "seed_lo": 0.65,
+    "seed_hi": 0.65
+   }
+  },
+  {
+   "group": "qwen3-8b",
+   "label": "visible link, exact address",
+   "page": "visible",
+   "kind": "exact",
+   "w": {
+    "k": 33,
+    "n": 60,
+    "rate": 0.55,
+    "lo": 0.4333,
+    "hi": 0.6667,
+    "seed_lo": 0.55,
+    "seed_hi": 0.55
+   },
+   "u": {
+    "k": 27,
+    "n": 60,
+    "rate": 0.45,
+    "lo": 0.3333,
+    "hi": 0.5667,
+    "seed_lo": 0.2016,
+    "seed_hi": 0.6984
+   }
+  },
+  {
+   "group": "qwen3-8b",
+   "label": "visible link, any address*",
+   "page": "visible",
+   "kind": "code",
+   "w": {
+    "k": 43,
+    "n": 60,
+    "rate": 0.7167,
+    "lo": 0.6,
+    "hi": 0.8167,
+    "seed_lo": 0.5732,
+    "seed_hi": 0.8601
+   },
+   "u": {
+    "k": 53,
+    "n": 60,
+    "rate": 0.8833,
+    "lo": 0.8,
+    "hi": 0.95,
+    "seed_lo": 0.7399,
+    "seed_hi": 1.0
+   }
+  }
+ ]
+}

@@ -269,6 +269,12 @@ def law(runs: list[dict]) -> dict:
             out["decisive_miss"] = bool(m_pred(hi, K) > 2 * med or m_pred(lo, K) < 0.5 * med)
     pc, pw = out["chi"]["p"], out["weibull"]["p"]
     out["shape_fail"] = bool((pc is not None and pc <= ALPHA_SHAPE) or (pw is not None and pw <= ALPHA_SHAPE))
+    # DEVIATIONS D2 (Kasper #25830): a shape test with no p (all decisions in one bin, or every decision a give-up)
+    # cannot pass; unless the other test FAILS, the law is UNTESTED ("shape untestable"), never HOLDS.
+    out["shape_untestable"] = bool(not out["shape_fail"] and (pc is None or pw is None))
+    # reported rows (Kasper #25830): share of give-ups inside the pilot; median inside the pilot = circular 2x check
+    out["giveup_share_pages_1_3"] = G3 / G if G else None
+    out["pilot_contains_median"] = bool(med is not None and med <= 3)
     # verdict
     if G == 0:
         v = "no give-up seen"
@@ -278,6 +284,8 @@ def law(runs: list[dict]) -> dict:
         v = "never quits: set by the cap"
     elif out["shape_fail"]:
         v = "FAILS"
+    elif out["shape_untestable"]:
+        v = "shape untestable"
     elif 0.5 <= out["R"] <= 2:
         v = "HOLDS"
     elif out["decisive_miss"]:
@@ -285,7 +293,7 @@ def law(runs: list[dict]) -> dict:
     else:
         v = "pilot too small"
     out["verdict"] = v
-    out["tested"] = testable and med is not None
+    out["tested"] = v in ("HOLDS", "FAILS")
     # restricted mean pages to K (reported)
     if K:
         Kc = int(K)

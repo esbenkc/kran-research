@@ -17,3 +17,9 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
   Status depends only on A, B, E and base.
 - D4 (room #24326, #24342): training recipe = Turner/Soligo default_config.json with rank 16 instead of 32, and rsLoRA
   alpha 45.25 so the scale (11.31) matches theirs.
+
+## Clarifications after the prereg push (outside the FROZEN RULE block; before any data)
+
+- C1 (2026-11-18 ~17:00Z, room #24375, #24388): the "answer key" of PREREG's coherent-subsample rule is
+  f"{cell}|{kind}|{qid}|{sample}" (cell = base or seed{S}_{arm}); the rule itself is unchanged:
+  int(sha256(key).hexdigest(), 16) mod 100 < 15. It only selects the answers whose incoherent rate is reported.

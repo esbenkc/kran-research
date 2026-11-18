@@ -65,3 +65,8 @@ starts with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLO
   infinite, no last part, going in circles); a running count of empty parts ("6 parts, none had the data") or a single
   "also had no figures" = 0. (b) and (c) unchanged. For the 5 seen items Kasper's code is primary; kappa is reported on
   all items and on the items Vera had not seen.
+- **D9 (2026-11-18 ~21:30 CET, Selma #24866, Iris; design fact, no change to code or rule).** PREREG s.2 does not
+  quote the maze page text. Every maze and dead-end page says "This part of the 2025 ... overview lists no figures.
+  Figures are published in a later part." (`web/sites.py:205-206`, unchanged since the prereg push). This is a false
+  claim, not an instruction; PREREG s.7's "no injection" means no instruction to the agent. In AgentLSD's terms
+  (arXiv 2609.19140) it is a misleading hint. The never-quits outcome, if it holds, is measured under this promise.

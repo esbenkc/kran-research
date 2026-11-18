@@ -139,8 +139,8 @@ def main() -> None:
         r = S["runs"].get(f"mlp8_none_s{s}")
         if r is None or mlp[s] is None or mlp[s] >= 0.25:
             return False
-        need = max(2048, 2 * (t75_ref or 0), 2 * ((runs.get(f"all8_none_s{s}") or {}).get("T75") or 0))
-        return r["steps_done"] >= need and f"all8_none_s{s}" in runs
+        need_s = max(2048, 2 * (t75_ref or 0), 2 * ((runs.get(f"all8_none_s{s}") or {}).get("T75") or 0))
+        return r["steps_done"] >= need_s and f"all8_none_s{s}" in runs
 
     def grad_ok(s):
         r, c = S["runs"].get(f"mlp8_none_s{s}"), S["runs"].get(f"all8_none_s{s}") or S["runs"].get("all8_none_s0")
@@ -158,9 +158,19 @@ def main() -> None:
                    "n_mlp8_scored": len(mlp_s), "n_all8_scored": len(all_s), "base_below_0.25": base_ok,
                    "mlp8_null_settled": {s: null_settled(s) for s in range(3)}, "mark8": mark,
                    "rule": "PREREG.md FROZEN RULE (pushed e9e49b3ae)"}
-    held = (len(mlp_s) == 3 or sum(x >= 0.75 for x in mlp_s) >= 2) and len(last) == 2 and None not in last
-    S["prereg_outcome"] = (("held" if sum(x >= 0.75 for x in mlp_s) >= 2 and all(x < 0.25 for x in last) else "failed")
-                           if held else "unsettled")
+    # scout prediction: MLP-8 >= 0.75 in >= 2 of 3 seeds AND last-MLP < 0.25 in both seeds. A seed counts as 'pending'
+    # when it is missing or below 0.75 short of its budget (Vera #24700: unsettled nulls make the outcome unsettled).
+    def need(s):
+        return max(2048, 2 * (t75_ref or 0), 2 * ((runs.get(f"all8_none_s{s}") or {}).get("T75") or 0))
+    k_formed = sum(1 for s in range(3) if mlp[s] is not None and mlp[s] >= 0.75)
+    pending = sum(1 for s in range(3) if mlp[s] is None or (mlp[s] < 0.75 and (
+        S["runs"][f"mlp8_none_s{s}"]["steps_done"] < need(s) or f"all8_none_s{s}" not in runs)))
+    part_a = True if k_formed >= 2 else (None if k_formed + pending >= 2 else False)
+    part_b = None if None in last else all(x < 0.25 for x in last)
+    S["prereg_outcome"] = ("failed" if part_a is False or part_b is False
+                           else ("held" if part_a and part_b else "unsettled"))
+    S["prereg_parts"] = {"mlp8_ge_0.75_in_2_of_3": part_a, "lastmlp_below_0.25_both": part_b,
+                         "mlp8_formed": k_formed, "mlp8_pending": pending}
     pj = OUT / "research_checks" / "prediction.json"
     if pj.exists():
         p = json.load(open(pj))
@@ -202,7 +212,7 @@ def main() -> None:
         if "audit" in row:
             a = row["audit"]
             L.append(f"| audit | {row['seed']} | {variant} | random 3-head null | clamp all {NL * NH} heads removes "
-                     f"{a['clamp_all_removed']:.3f} of the push; blind top-3 {a['blind3_heads']} R "
+                     f"{'n/a' if a['clamp_all_removed'] is None else round(a['clamp_all_removed'], 3)} of the push; blind top-3 {a['blind3_heads']} R "
                      f"{a['R_blind3'] if a['R_blind3'] is None else round(a['R_blind3'], 3)} (null p95 "
                      f"{a['null_p95'] if a['null_p95'] is None else round(a['null_p95'], 3)}) | data/audit/{name}.json |")
         if "after_map_79" in row:

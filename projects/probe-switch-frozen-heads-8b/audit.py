@@ -125,7 +125,9 @@ class Runner:
             kl_a.append(kl(lp, self.lp0[c])); kl_0.append(kl(self.lp1[c], self.lp0[c]))
         pa, p = torch.cat(push_a), torch.cat(push)
         ka, k0 = torch.cat(kl_a), torch.cat(kl_0)
-        return {"removed": float(1 - pa.mean() / p.mean()), "blind_removed": float(1 - ka.mean() / k0.mean()),
+        # an unformed model has no push to remove: 'removed' is then None ('n/a'), not -inf (Vera #24700)
+        rem = float(1 - pa.mean() / p.mean()) if abs(float(p.mean())) > 1e-6 else None
+        return {"removed": rem, "blind_removed": float(1 - ka.mean() / k0.mean()),
                 "push_mean": float(p.mean()), "push_after_mean": float(pa.mean())}, outs
 
 
@@ -218,7 +220,8 @@ def main() -> None:
         rest = [hd for hd in all_heads if hd not in picked]
         rng = random.Random(0)
         out["null_removed"] = [run.cut(rng.sample(rest, a.k))[0]["removed"] for _ in range(a.n_null)]
-        out["null_p95"] = float(np.percentile(out["null_removed"], 95))
+        nr = [x for x in out["null_removed"] if x is not None]
+        out["null_p95"] = float(np.percentile(nr, 95)) if nr else None
         print("R_blind3", out["R_blind3"], "null p95", out["null_p95"], f"{time.time() - t0:.0f}s", flush=True)
 
     # after-training states at positions 71 and 79 (eager merged tail, all prompts)

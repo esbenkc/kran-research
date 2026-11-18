@@ -73,3 +73,16 @@ D2 quoted only the bf16-tail reading of G2(b). The gate as run (data/gates.json,
 6 of 64 dev prompts (max |d ln P(X)| 0.129). The bf16 tail on our cache missed on 3 of 64 (max 0.219), and the fp32
 tail on NDIF's own input missed on 2 of 64 (max 0.140) (data/g2_diag.json). The decision and its consequence in D2 do
 not change.
+
+## D5: continuation theory-1118: laptop cells scored, C1 seed 1 not rerun (Bruno, 13:40 PST 2026-11-18; Tove #25088, Felix #25093; no rule change)
+
+The labq jobs J1 (z9rh2wqu5x, 1.80 h) and J2 (yf50n607dq, 0.98 h) ran on Esben's laptop after the parent room closed.
+The frozen analyze_8b.py ran UNCHANGED on all cells (data/analysis.json, commit 8bb04bd2f). Its provenance rule kept
+the mini cells for seeds 0-2 and admitted laptop seeds 3-4 (18 of 18 laptop copies agree; a full-curve diff,
+mini_vs_laptop.py -> data/mini_vs_laptop.json, finds 1539 of 1539 eval points equal in 19 cells, so the copies are a
+determinism check on the same cache sha256, not an independent replication). C1 seed 1 failed after 11 s on a uv
+tmp-dir error ('Failed to query Python interpreter', data/laptop/J1/chain.log) before any update; the job did not
+retry it. It was NOT resubmitted: labq had ~6.9 h queued ahead (labq list 13:16 PST), past this room's 16:00 PST stop,
+and a second C1 seed cannot lift the D2 cap. The replication prereg (swarm/theory-1118-cue-size-law-8b-rep) runs two
+C1 seeds. The laptop copy l8_c1_s0 is the same seed as m8_c1_s0, not a second control seed. Seen when decided: all
+J1/J2 outputs. Status stays UNCONFIRMED (EXPLORATORY).

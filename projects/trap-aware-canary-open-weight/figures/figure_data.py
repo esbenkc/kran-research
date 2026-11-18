@@ -120,7 +120,8 @@ def main():
             "line50": "canary catches half",
             "x": "share of runs that requested the link (server log)",
             "x_short": "runs that requested the link",
-            "star": "* any address: any request that held the link's unique code, even to a wrong folder. "
+            "star": "Exact address: a request for the link's own address in our server log. "
+                    "* Any address: any request that held the link's unique code, even to a wrong folder. "
                     "We chose this count after we saw the Qwen3-8B data.",
             "note": "Bars: 95% intervals over runs. November 10 test: 180 runs per sentence (3 agents x 60). "
                     "This test: 60 runs per cell over 3 seeds.",

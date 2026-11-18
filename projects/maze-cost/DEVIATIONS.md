@@ -35,3 +35,17 @@ starts with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLO
 - n per agent: maze 42 (blocks 14/14/14), dead end 40 (blocks 20/20). Order: interleaved by run index (i = 0 maze,
   i = 0 dead end, i = 1 maze, ...), which is round-robin over the blocks of each arm. No new run starts after 22:20Z
   (23:20 CET); a stop by the clock keeps the blocks balanced, and the floors (PREREG s.4) decide whether it counts.
+- Counted runs started 2026-11-18T20:08Z on commit 44cb05a76 (Bruno #24786). Between b0f506c93 and 44cb05a76 only
+  `run_laptop.sh`, `web/test_analysis.py` and gate data changed (`git diff --stat`); `agent.py`, `sites.py`,
+  `geminicall.py` and `run.py` are identical, so the v1.1 code line above holds.
+
+## After counted data began
+
+- **D5 (2026-11-18 ~21:13 CET, Kasper #24816; REPORTED ROW ADDED AFTER RUN 000 WAS SEEN; not in the status, not a
+  rule change).** Kasper read `data/gemma-4-31b-it/raw/maze/000.json` (entry at call 1, parts 1-11 fetched, end by the
+  12-call cap). New reported row per agent, for the case that few runs leave: leaves / decisions over all entered
+  maze runs (decisions as PREREG s.3), the exact binomial (Clopper-Pearson) one-sided 95% upper bound h_ub on the
+  per-page leave rate, and the implied lower bound on the median depth, the smallest d with (1 - h_ub)^d <= 0.5. The
+  FROZEN RULE, the status and the named outcomes are unchanged.
+- **D6 (correction of PREREG s.7, outside the FROZEN block).** AgentLSD (arXiv 2609.19140) has 5 authors: Golinelli,
+  Drago, Boffa, Bergadano, Crispo (abs page meta). PREREG s.7 lists only the first two; cite "Golinelli et al.".

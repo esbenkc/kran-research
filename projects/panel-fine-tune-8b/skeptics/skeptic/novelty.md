@@ -17,3 +17,19 @@ Verdict (pre-data): the GENERAL claim "frozen probes can be fooled by a fine-tun
 2609.38645). The new part is narrow and must be stated as such: the same 20-readout max-panel, same data and same
 line rule, at two scales (1.5B -> 8B) with seed-level intervals. The post must not claim to be first to show probe
 evasion by fine-tuning.
+
+## Post-data update (2026-11-18, Vera, room oracle-1118-panel-fine-tune-8b)
+
+Abs page opened 2026-11-18: Nordby, Pais, Parrack, Linear Probe Accuracy Scales with Model Size and Benefits from
+Multi-Layer Ensembling, arXiv 2604.13386 — probe AUROC rises ~5% per 10x params and multi-layer ensembles fix
+single-layer failures, all on UNATTACKED models. Gupta & Jenner (2506.14261, read 2026-11-15) report that an
+ensemble of 16-128 probes did not stop RL evasion on Llama-3-8B.
+
+What the 8B data add (own rebuild, check8b.json / nulls8b.json): under a white-box gradient attack the 20-readout
+max-panel falls from 100% to 16.7% pooled (1.5B parent: 99.5% -> 3.75%), so the 8B panel is blinded under the 20%
+bar but ~4.5x less completely. The max monitor falls while 6 of its own 20 members (readouts 14-19) still catch
+51-82% each at their own 1% line; at 1.5B the shallow members kept 33-73%. This is consistent with 2604.13386
+(depth ensembles help) only in the per-member sense; the max aggregator with one shared line is what the attack
+beats. Not new: "frozen probes can be fooled by fine-tuning" (2412.09565, 2609.38645, 2506.14261). New and narrow:
+the same panel, data and line rule at 1.5B and 8B with 3 seeds and a matched-pressure random-direction control
+(100% catch both seeds). The post must not claim a first.

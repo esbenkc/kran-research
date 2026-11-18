@@ -1,19 +1,20 @@
 # Vera (skeptic) — receipts, panel-fine-tune-8b
 
-Status 2026-11-16 06:05 CET: NO SIGN-OFF YET. The 8B jobs (labq lv07ii3whv, om3ghzbu47) are queued; no 8B data exists.
-`signoff.md` is written only after the 8B raw data is rebuilt.
+Sign-off: `signoff.md` (room oracle-1118-panel-fine-tune-8b, 2026-11-18). Own code only; build's analysis.py was
+neither read nor run.
 
-Own code (not build's scripts), written from PREREG.md s3 and D1.2:
-- `vera_check.py`: max-panel catch at the state's own line (2nd-highest of 200 split-refit true), seed t-interval,
-  city-cluster bootstrap (seed 1022), clean-line row. Validated on the 1.5B parent raw
-  (swarm/theory-1022-panel-max-attack data/runs/panel__lam10000__seed*.npz): per seed 0.0218/0.0621/0.0285, pooled
-  0.0375, city CI [0.0257, 0.0509], clean-line 0.980/0.953/0.961 = parent results.json exactly
-  (`parent_rebuild.json`). Clean-line false alarms on eval true: 79.0/59.7/61.2% (mean 66.7%).
-- `vera_rescale.py`: recalibration fix (1022 Rule B). Parent: 0.631/0.693/0.597, mean 0.640 (`parent_rescale.txt`).
-- `vera_smoke_acts.py`: from saved activations, probe scores and panelmax equal build's score files (diff 0.0) and the
-  last readout is model.norm(previous readout) (Qwen3-0.6B smoke, median rel err 0.0025).
-- `novelty.md`: prior work, abs pages opened.
+| file | what |
+|---|---|
+| `vera_check8b.py` -> `check8b.json` | max-panel catch at the own line, pooled, seed t95, city bootstrap (seed 1022), clean line, no-readout-36, Rule-B recalibration; every arm and step-150 state |
+| `vera_behaviour.py` -> `behaviour8b.json` | bar (i) from lp/off + Qwen3-8B tokenizer shared-prefix rule; bar (ii) eval KL every position; pooled KL vs 0.0096 |
+| `vera_nulls.py` -> `nulls8b.json` | (a) line + city redraw null, (b) seed + city bootstrap, (c) per-member own-line catch and z shifts, (d) in-training vs extract score path |
+| `novelty.md` | prior work (abs pages opened), pre- and post-data verdict |
+| `vera_check.py`, `parent_rebuild.json`, `vera_rescale.py`, `parent_rescale.txt` | validation of the checker on the 1.5B parent raw (exact) |
+| `vera_ndif_gate.py`, `ndif_gate_vera.jsonl` | 2026-11-16 independent NDIF clean-gate refit + shuffled-label null |
+| `vera_smoke_acts.py`, `smoke06_vera.json` | 2026-11-16 Qwen3-0.6B smoke rebuild |
 
-To run on 8B: point vera_check.py at the 8B score files (format differs: data/scores/<state>.npz has tok<R> raw
-scores per state; adapt load()) and data/fits/zmoments.json; null tests to add then: line-resample threshold null,
-and the per-seed spread vs the moving control.
+Run (from this folder, DATA = ../../data):
+
+    python3 vera_check8b.py ../../data ../../data/ref/split.json --pre-norm 36 > check8b.json
+    uv run --no-project --with transformers --with numpy python vera_behaviour.py ../../data
+    python3 vera_nulls.py ../../data

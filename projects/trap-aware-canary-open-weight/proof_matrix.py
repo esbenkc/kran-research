@@ -13,7 +13,7 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-JOBS = {"gpt-oss-20b": "gkt5pcwo6b, 6n1cvttwzc", "qwen3-8b": "a1j47ed7n0"}
+JOBS = {"gpt-oss-20b": "gkt5pcwo6b, 6n1cvttwzc, odfa330pk2, 0ns4g0qj2y, xq0cxmeg55, g5ndjdqw02, 99njdxtzzu, 63h9ycrc9w, cfwnohouu6, thf77t5z1m", "qwen3-8b": "a1j47ed7n0"}
 OUT_TAG = {"gpt-oss-20b": "gpt-oss-20b-d4"}  # DEVIATIONS D4: the 10 guard runs in web/out/gpt-oss-20b are not counted
 NAMES = {"gpt-oss-20b": "gpt-oss-20b", "qwen3-8b": "Qwen3-8B", "qwen3-1.7b": "Qwen3-1.7B (mini rung)",
          "gpt-5.4-nano": "GPT-5.4 nano (parent)", "gpt-5.4-mini": "GPT-5.4 mini (parent)",

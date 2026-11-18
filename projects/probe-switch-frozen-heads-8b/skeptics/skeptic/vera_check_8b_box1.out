@@ -1,0 +1,18 @@
+== whole-graph test cells (/tmp/vera-wt-1118/projects/probe-switch-frozen-heads-8b/data/whole)
+all8_none_s0             n=128 strict 0.9922 [0.957,0.999] k=127 argmax 0.9922 rev 0.0000 offB 1.000 onA 0.992 sign 128-0 p=5.9e-39
+base                     n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0078 rev 0.0000 offB 0.812 onA 0.180 sign 33-24 p=0.29
+mlp8_none_s0             n=128 strict 0.9922 [0.957,0.999] k=127 argmax 0.9922 rev 0.0000 offB 1.000 onA 0.992 sign 128-0 p=5.9e-39
+mlplast_none_s0          n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0000 rev 0.0000 offB 0.000 onA 0.992 sign 81-12 p=9.8e-14
+mlplast_none_s1          n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0078 rev 0.0000 offB 0.977 onA 0.031 sign 79-15 p=1.2e-11
+== training runs (/tmp/vera-wt-1118/projects/probe-switch-frozen-heads-8b/data/runs)
+all8_none_s0             steps 1664 T75 1280 last dev 1664:0.984 cached-tail test strict 0.9922 | G1 gap tail-whole +0.0000
+mlp8_none_s0             steps 2432 T75 1920 last dev 2432:1.000 cached-tail test strict 0.9922 | G1 gap tail-whole +0.0000
+mlplast_none_s0          steps 2048 T75 None last dev 2048:0.000 cached-tail test strict 0.0000 | G1 gap tail-whole +0.0000
+mlplast_none_s1          steps 2048 T75 None last dev 2048:0.000 cached-tail test strict 0.0000 | G1 gap tail-whole +0.0000
+== per-seed clauses (arm prefixes all8 / mlp8; renamed arms: edit ARMS)
+mlp8_none_s0: control T75 1280, 2xT75 2560, steps 2432, formed-or-reached True; RMS grad/param median 1..1280: 0.0008787301968355284 vs 0.003050836212811844 ratio 0.28802929280350814
+== seed-level (whole graph strict, t-interval df n-1 clipped [0,1])
+all8: seeds [('all8_none_s0', 0.9922)] mean 0.9922 [None, None] min 0.9922 n>=0.75: 1 n<0.25: 0
+mlp8: seeds [('mlp8_none_s0', 0.9922)] mean 0.9922 [None, None] min 0.9922 n>=0.75: 1 n<0.25: 0
+mlplast: seeds [('mlplast_none_s0', 0.0), ('mlplast_none_s1', 0.0)] mean 0.0000 [0.0, 0.0] min 0.0000 n>=0.75: 0 n<0.25: 2
+MISMATCHES: 0

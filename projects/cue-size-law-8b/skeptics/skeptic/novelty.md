@@ -23,3 +23,12 @@ a power of the cue size with slope in [-1.4, -0.7], as at Qwen3-0.6B (slope -0.9
 ## Verdict (provisional)
 No published table measures updates-to-switch vs cue size at two model sizes. The run beats no external record; its
 novelty is the first 8B point for our own law. Recheck after the post names its comparisons.
+
+## Recheck 2026-11-18 (room theory-1118-cue-size-law-8b)
+- Hu et al., "Agentic Backdoors via Pretraining Poisoning", arXiv 2610.37741 (2026-10-27): pretraining poison in
+  Qwen3 0.6B/1.7B/4B; attack success grows with scale. Measures success rate, not RL updates-to-learn against a cue's
+  activation size.
+- Search "RL fine-tuning updates to learn backdoor trigger scale with trigger strength activation norm model size
+  power law" (past month): Sleeper Agents (2401.05566, persistence through RL grows with size), backdoor ASR vs size
+  tables, BadReasoner trigger strength; none measures learning time against cue size at two model sizes.
+- Verdict unchanged: no published table to beat; the update adds seeds 3-4 to our own 8B measurement.

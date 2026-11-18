@@ -50,6 +50,10 @@ above that line. CI = city-cluster bootstrap, 2000 resamples, seed 1022.
 | best single readout (s8) | - | Qwen3-8B clean | untrained model | NOT RUN: needs clean per-token acts at all 37 readouts, deleted with job A's scratch (BESTSINGLE skipped, run_all.sh:62) | - |
 | step-0 balance: probe term / (lambda x KL / 2) at step 2 | 0-2 | panel, lambda 1e4 | none | 165.3/11.3, 173.1/16.0, 165.7/16.0 | data/runs/panel__lam10000__seed*.json |
 | LoRA size, sum of ||BA||_F | 0-2 | panel, lambda 1e4 | none | 70.0 / 72.9 / 66.9 (random 75.1 / 78.7; KL-only 62.3 / 68.8) | data/runs/*__adapter/adapter_model.safetensors |
+| per-probe catch, panel members 14-19 at own line (s8) | 0 | panel, lambda 1e4 | none | 70.1/68.8/63.6/75.7/56.2%; best member R18 75.7% (FA 1.17%) | data/results/results.json (arms.panel.monitors.tok*) |
+| per-probe catch, panel members 14-19 at own line (s8) | 1 | panel, lambda 1e4 | none | 73.7/82.4/79.9/81.2/71.5%; best member R15 82.4% (FA 1.17%) | data/results/results.json (arms.panel.monitors.tok*) |
+| per-probe catch, panel members 14-19 at own line (s8) | 2 | panel, lambda 1e4 | none | 50.8/63.1/68.6/68.3/81.9%; best member R19 81.9% (FA 1.01%) | data/results/results.json (arms.panel.monitors.tok*) |
+| note on the row above | 0-2 | - | - | "best member" is picked on eval data after the fact (max of 20 members), so it is optimistic; the pre-registered row is the per-probe list | - |
 | 1.5B reference: max-panel catch, panel arm | 0-2 | Qwen2.5-1.5B (no rerun) | none | 3.75% [2.6, 5.1]; per seed 2.2/6.2/2.9% | data/ref/results_1p5b.json |
 | smoke (not counted): pipeline end to end | 0 | Qwen3-0.6B, 10 steps, v1.3 control | none | clean 52.5% (would be VOID); panel 40.4% | swarm folder smoke06/results/results.json |
 | smoke (not counted): KL-only is not a no-op | 0 | Qwen3-0.6B, 10 steps | output-penalty-only control | KL_cities 0.0465 at step 2; 196/196 LoRA B nonzero | swarm folder smoke06/runs/ctrlkl__lam10000__seed0.json |

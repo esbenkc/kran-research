@@ -119,7 +119,7 @@ y += 4
 for k, line in enumerate(T["sub"]):
     text(W / 2, y, line, 24, 700 if k == 0 else 500, INK if k == 0 else GREY, "middle")
     y += 34
-y += 20
+y += T.get("gap_after_head", 20)
 
 # ---------- example row: model, the pair of statements, the panel ----------
 EX_Y = y
@@ -146,7 +146,7 @@ for k, line in enumerate(T["panel_note"]):
 y = EX_Y + 162
 
 # ---------- cards: original | fine-tuned against the panel ----------
-CARD_Y, CARD_H = y, 585
+CARD_Y, CARD_H = y, T.get("card_h", 585)
 LX, RX = (20, 572), (628, 1180)
 add(f'<rect x="{LX[0]}" y="{CARD_Y}" width="{LX[1] - LX[0]}" height="{CARD_H}" rx="22" fill="{CARD_A}"/>')
 add(f'<rect x="{RX[0]}" y="{CARD_Y}" width="{RX[1] - RX[0]}" height="{CARD_H}" rx="22" fill="{CARD_B}"/>')
@@ -234,28 +234,38 @@ hline(1, C1["panel_line"], RED if not caught1 else INK, T["line1_label"], dy=-up
 dots(1, RING1, T["dots1_label"], CARD_B)
 number(1, pct_main(c_main), RED if c_main < 0.2 else INK, c_main >= 0.2, T["num_label"], CARD_B)
 
-y = CARD_Y + CARD_H + 58
+y = CARD_Y + CARD_H + T.get("after_cards", 58)
 
 # ---------- table: the panel's catch rate, both sizes, the control and the fix (rule 13) ----------
-text(40, y, T["table_title"], 26, 750)
-y += 44
-CX = [640, 900, 1160]  # right edges of the number columns
-for k, h in enumerate(T["table_cols"]):
-    text(CX[k], y, h, 22, 700, GREY, "end")
-y += 14
-add(f'<line x1="40" y1="{y}" x2="1160" y2="{y}" stroke="{MUTE}" stroke-width="1.5"/>')
-for lab, note, vals, key in TABLE:
-    RH = 52
-    if key:
-        add(f'<rect x="28" y="{y + 4}" width="1144" height="{RH - 6}" rx="10" fill="{KEY}"/>')
-    yy = y + 37
-    text(44, yy, lab + (f" ({note})" if note else ""), 24, 750 if key else 500, INK if key else GREY)
-    for k, v in enumerate(vals):
-        s = "–" if v is None else (pct_main(v) if key and k == 1 else pct(v))
-        col = (RED if (k == 1 and v is not None and v < 0.2) else INK) if key else GREY
-        text(CX[k], yy, s, 24, 800 if key else 600, col, "end", ' style="font-variant-numeric:tabular-nums"')
-    y += RH
-y += 40
+if TABLE:
+    text(40, y, T["table_title"], 26, 750)
+    y += 44
+    CX = [640, 900, 1160]  # right edges of the number columns
+    for k, h in enumerate(T["table_cols"]):
+        text(CX[k], y, h, 22, 700, GREY, "end")
+    y += 14
+    add(f'<line x1="40" y1="{y}" x2="1160" y2="{y}" stroke="{MUTE}" stroke-width="1.5"/>')
+    for lab, note, vals, key in TABLE:
+        RH = 52
+        if key:
+            add(f'<rect x="28" y="{y + 4}" width="1144" height="{RH - 6}" rx="10" fill="{KEY}"/>')
+        yy = y + 37
+        text(44, yy, lab + (f" ({note})" if note else ""), 24, 750 if key else 500, INK if key else GREY)
+        for k, v in enumerate(vals):
+            s = "–" if v is None else (pct_main(v) if key and k == 1 else pct(v))
+            col = (RED if (k == 1 and v is not None and v < 0.2) else INK) if key else GREY
+            text(CX[k], yy, s, 24, 800 if key else 600, col, "end", ' style="font-variant-numeric:tabular-nums"')
+        y += RH
+    y += 40
+
+# ---------- notes under the cards: the control (and any other one-line fact), numbers from results.json ----------
+NOTE = {"ctrl": pct(catch("main", "ctrl_random")), "ref_clean": pct(catch("ref", "clean")),
+        "ref_main": pct(catch("ref", "panel"))}
+for line in T.get("notes", []):
+    text(W / 2, y, line.format(**NOTE), 24, 500, INK, "middle")
+    y += 36
+if T.get("notes"):
+    y += 18
 
 # ---------- foot ----------
 for line in T["foot"]:

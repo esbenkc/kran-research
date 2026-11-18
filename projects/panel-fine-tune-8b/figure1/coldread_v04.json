@@ -1,0 +1,37 @@
+{
+ "png": "v04/fig1_v04b.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0129569,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Can a fine-tune hide false statements from a panel of 20 truth probes in Qwen3-8B while the model keeps its answers?\",\n  \"answer\": \"Yes. At its 1% alarm line, the panel then catches 16.7% of them, not 100%, because the fine-tune pulled the false and true scores together, and the alarm line rose above the false one.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Can a fine-tune hide false statements from a panel of 20 truth probes in Qwen3-8B while the model keeps its answers?\",\n  \"answer\": \"Yes. At its 1% alarm line, the panel then catches 16.7% of false statements, not 100%, because the fine-tune pulled the false and true scores together, and the alarm line rose above the false one.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Can a fine-tune hide false statements from a panel of 20 truth probes in Qwen3-8B while the model keeps its answers?\",\n  \"answer\": \"Yes, but only partially: at its 1% alarm line, the panel catches 16.7% of false statements instead of 100%, because the fine-tune pulled the false and true scores together, raising the alarm line above both.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Can a fine-tune hide false statements from a panel of 20 truth probes in Qwen3-8B while the model keeps its answers?\",\n  \"answer\": \"Yes, fine-tuning reduces the proportion of false statements caught by the panel at its 1% alarm line from 100% down to 16.7%.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\"question\": \"Can a fine-tune hide false statements from a panel of 20 truth probes in Qwen3-8B while the model keeps its original answers?\", \"answer\": \"Yes, after fine-tuning, the panel catches only 16.7% of 596 false statements at its 1% alarm line, down from 100% in the original model.\"}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Can a fine-tune hide false statements from a panel of 20 truth probes in Qwen3-8B while the model keeps its answers?\",\n  \"answer\": \"Yes, at its 1% alarm line, the panel catches only 16.7% of 596 false statements after fine-tuning, down from 100% in the original model.\"\n}"
+  }
+ ]
+}

@@ -79,6 +79,9 @@ fi
 if [ ! -f "$OUTD/research_checks/after_attn/attn_base_test.json" ]; then
   $PY research_checks/map_states.py attn . "$OUTD/research_checks/after_attn" --adapter none --mapjson "$OUTD/research_checks/map.json" > "$L/attn_base.log" 2>&1 || { log "FAILED attn base"; tail -20 "$L/attn_base.log"; exit 1; }
 fi
+if [ ! -f "$D/skeptic_pack/meta.json" ] && [ -f "$C/probe_eager_mid${LASTL}_79.npy" ]; then
+  $PY skeptic_pack.py > "$L/skeptic_pack.log" 2>&1 && log "$(tail -1 "$L/skeptic_pack.log")"  # Vera #24591
+fi
 $PY predict.py > "$L/predict.log" 2>&1 && log "map prediction: $(tail -1 "$L/predict.log")"
 if [ "$STOP_AFTER" = map ]; then log "STOP_AFTER=map"; state "MORE after map"; exit 0; fi
 

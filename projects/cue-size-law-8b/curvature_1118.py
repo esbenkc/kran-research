@@ -1,4 +1,5 @@
-"""Quadratic-in-ln-share fit over every scored main-arm run of each model (theory-1118 continuation, Iris).
+"""Quadratic-in-ln-share fit, start-up-offset slopes and neighbour median ratios over every scored main-arm run of
+each model (theory-1118 continuation, Iris).
 
 Not a frozen read. Source of the post's foldout sentence: "A quadratic in ln share ... curvature t = ... Its local
 factor per halving runs from x... at the largest cue to x... at the smallest".
@@ -42,8 +43,26 @@ def fit(paths):
                 factor_per_halving_largest=float(2 ** -loc[lo]), factor_per_halving_smallest=float(2 ** -loc[hi]))
 
 
-out = {m: fit(p) for m, p in SETS.items()}
+def extras(paths):
+    """Seed-mean slope of ln(T - c) on ln share (c = 8, 16) and neighbour ratios of the per-size median T."""
+    runs = [json.load(open(os.path.join(HERE, p))) for p in paths]
+    by_seed, by_k = {}, {}
+    for r in runs:
+        by_seed.setdefault(r["args"]["seed"], []).append(r)
+        by_k.setdefault(r["k"], []).append(r["T_dense"])
+    off = {}
+    for c in (8, 16):
+        sl = [np.polyfit(np.log([r["share"] for r in rs]), np.log([r["T_dense"] - c for r in rs]), 1)[0]
+              for rs in by_seed.values()]
+        off[str(c)] = dict(seed_mean_slope=float(np.mean(sl)), per_seed=[float(v) for v in sl])
+    med = [float(np.median(by_k[k])) for k in sorted(by_k)]
+    return dict(startup_offset=off, median_T=med, neighbour_ratios=[med[i + 1] / med[i] for i in range(len(med) - 1)])
+
+
+out = {m: dict(fit(p), **extras(p)) for m, p in SETS.items()}
 json.dump(out, open(os.path.join(HERE, "data/curvature_1118.json"), "w"), indent=1)
 for m, v in out.items():
     print(m, f"n {v['n']} c2 {v['c2']:.4f} t {v['t_c2']:.2f} x{v['factor_per_halving_largest']:.3f} -> "
-             f"x{v['factor_per_halving_smallest']:.3f}")
+             f"x{v['factor_per_halving_smallest']:.3f}; offset 8/16 slopes "
+             f"{v['startup_offset']['8']['seed_mean_slope']:.3f}/{v['startup_offset']['16']['seed_mean_slope']:.3f}; "
+             f"neighbour ratios {[round(x, 2) for x in v['neighbour_ratios']]}")

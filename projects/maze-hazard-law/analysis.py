@@ -293,7 +293,7 @@ def law(runs: list[dict]) -> dict:
     else:
         v = "pilot too small"
     out["verdict"] = v
-    out["tested"] = v in ("HOLDS", "FAILS")
+    out["tested"] = testable and med is not None  # PREREG s.4: TESTED = TESTABLE and M_obs reached (Kasper #25839)
     # restricted mean pages to K (reported)
     if K:
         Kc = int(K)

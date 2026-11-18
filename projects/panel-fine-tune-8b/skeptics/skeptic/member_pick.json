@@ -19,5 +19,23 @@
   "eval_catch": 0.8188,
   "eval_false_alarm": 0.0101,
   "eval_best_of_20": 0.8188
+ },
+ "qwen2.5-1.5B_parent": {
+  "source": "swarm/theory-1022-panel-max-attack data/runs/panel__lam10000__seed*.npz, last check (step 300), label 1 = false",
+  "seed0": {
+   "picked_on_stop": "tok11",
+   "eval_catch": 0.718,
+   "eval_best_of_20": "tok11 0.718"
+  },
+  "seed1": {
+   "picked_on_stop": "tok11",
+   "eval_catch": 0.71,
+   "eval_best_of_20": "tok11 0.710"
+  },
+  "seed2": {
+   "picked_on_stop": "tok11",
+   "eval_catch": 0.76,
+   "eval_best_of_20": "tok11 0.760"
+  }
  }
 }

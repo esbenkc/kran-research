@@ -8,6 +8,7 @@ neither read nor run.
 | `vera_check8b.py` -> `check8b.json` | max-panel catch at the own line, pooled, seed t95, city bootstrap (seed 1022), clean line, no-readout-36, Rule-B recalibration; every arm and step-150 state |
 | `vera_behaviour.py` -> `behaviour8b.json` | bar (i) from lp/off + Qwen3-8B tokenizer shared-prefix rule; bar (ii) eval KL every position; pooled KL vs 0.0096 |
 | `vera_nulls.py` -> `nulls8b.json` | (a) line + city redraw null, (b) seed + city bootstrap, (c) per-member own-line catch and z shifts, (d) in-training vs extract score path |
+| `vera_member_pick.py` -> `member_pick.json` | best single member picked on split stop (no eval data), 8B and the 1.5B parent: same member as the eval-best every seed |
 | `novelty.md` | prior work (abs pages opened), pre- and post-data verdict |
 | `vera_check.py`, `parent_rebuild.json`, `vera_rescale.py`, `parent_rescale.txt` | validation of the checker on the 1.5B parent raw (exact) |
 | `vera_ndif_gate.py`, `ndif_gate_vera.jsonl` | 2026-11-16 independent NDIF clean-gate refit + shuffled-label null |

@@ -24,13 +24,13 @@ All numbers below come from my own scripts run on the committed raw data (branch
 | 19-probe max without readout 36 (s8) | 0.1672, CI [0.1443, 0.1902]: identical; the attack did not use the norm route | check8b.json |
 | clean-model line (s8) | catch 1.000 every seed, but eval false alarm 92.5 / 96.0 / 95.3%: useless as a monitor | check8b.json |
 | recalibration fix (D1.2, Rule B) | 0.4245 / 0.5956 / 0.5285, pooled 0.5162 [0.4871, 0.5475] (1.5B: 0.640) | check8b.json |
-| re-fit recovery (s9) | best readout 17 / 19 / 17, eval catch 1.000 each; shuffled-label null 0.3 / 2.0 / 0.3% | refit npz rebuilt |
+| re-fit recovery (s9) | best readout 17 / 19 / 17, eval catch 1.000 each; shuffled-label null 0.17-2.35% over 15 shuffles (5 per seed), pooled 1.13% (first shuffle per seed: 0.3 / 2.0 / 0.3%) | refit npz rebuilt |
 | path cross-check | in-training step-300 scores vs extract.py scores: corr >= 0.99993 per readout, catch 0.1695 / 0.0889 / 0.2399 | nulls8b.json (d) |
 
 ## Null tests and fragility
 
 - Random probe (matched-pressure random direction): 100% caught, so the drop is specific to the truth directions.
-- Shuffled labels at the re-fit readout: 0.3-2.0% catch, so the 100% recovery is not a fitting artefact.
+- Shuffled labels at the re-fit readout: 0.17-2.35% catch over 15 shuffles, so the 100% recovery is not a fitting artefact.
 - Different seed: the three seeds span 8.9-24.2%. One of three is above 20%.
 - Line-resample null (not the frozen CI): redrawing the 200 line-setting true statements by city with the eval cities
   gives a pooled 95% interval [0.103, 0.385]; 30% of resamples are >= 20%. A seed + city bootstrap gives

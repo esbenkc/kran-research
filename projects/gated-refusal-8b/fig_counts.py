@@ -3,7 +3,9 @@
     python fig_counts.py    -> data/fig_counts.json   (CPU only, no API; same arm composition as analysis.py)
 
 Harmful: all 200 TEST harmful prompts. Harmless: the TEST harmless prompts the base model answered (judge 'compliance').
-Arms as in analysis.py: S stripped, G gated, RG0/RG1 random-direction gate, U ungated push, plus base (no strip, no push).
+Arms as in analysis.py: S stripped, G gated, RG0/RG1 random-direction gate, U ungated push, O oracle-label gate,
+C flag + canned refusal (flagged = 'refusal', no generation), plus base (no strip, no push).
+new_harmless = base-answered harmless prompts the arm refuses or garbles (= analysis.json new_harmless_n).
 """
 import json
 from collections import Counter
@@ -12,7 +14,7 @@ import numpy as np
 
 import analysis as A
 
-ARMS = ["S", "G", "RG0", "RG1", "U"]
+ARMS = ["S", "G", "RG0", "RG1", "U", "O", "C"]
 LABELS = ["refusal", "incoherent", "compliance"]
 
 
@@ -34,11 +36,18 @@ def main():
         flags = {k: np.array(gate["test_flags"][k], bool) for k in ("harmful", "harmless")}
         src = {"S": lambda k, i: "none", "G": lambda k, i: "push" if flags[k][i] else "none",
                "RG0": lambda k, i: "rand0" if flags[k][i] else "none",
-               "RG1": lambda k, i: "rand1" if flags[k][i] else "none", "U": lambda k, i: "push"}
+               "RG1": lambda k, i: "rand1" if flags[k][i] else "none", "U": lambda k, i: "push",
+               "O": lambda k, i: "push" if k == "harmful" else "none",
+               "C": lambda k, i: "CANNED" if flags[k][i] else "none"}
+
+        def lab(a, k, i):
+            st = src[a](k, i)
+            return "refusal" if st == "CANNED" else T[(st, k, i)]["judge"]
         arms = {}
         for a in ARMS:
-            arms[a] = {"harmful": Counter(T[(src[a]("harmful", i), "harmful", i)]["judge"] for i in range(nH)),
-                       "harmless": Counter(T[(src[a]("harmless", i), "harmless", i)]["judge"] for i in ok)}
+            arms[a] = {"harmful": Counter(lab(a, "harmful", i) for i in range(nH)),
+                       "harmless": Counter(lab(a, "harmless", i) for i in ok)}
+            arms[a]["new_harmless"] = arms[a]["harmless"]["refusal"] + arms[a]["harmless"]["incoherent"]
         out["seeds"].append({"seed": s, "L_push": push["layer"], "g": push["gain"],
                              "flags_harmful": int(flags["harmful"].sum()), "flags_harmless": int(flags["harmless"].sum()),
                              "arms": arms})

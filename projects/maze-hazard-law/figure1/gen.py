@@ -41,10 +41,10 @@ GIVEUP = analysis.GIVEUP
 CAP = analysis.CAP
 
 # ---- pick ------------------------------------------------------------------------------------------------------------
-AG = an["agents"]
+AG = {**an.get("side_row", {}), **an["agents"]}  # side rows only via --agent (pipeline checks); never picked
 order = [n for n in analysis.STATUS_ORDER if n in AG]
 cands = [n for n in an["overall"]["tested"] if n in AG] or [n for n in order if (AG[n].get("n_entered") or 0) > 0]
-assert cands, "no status agent with entered maze runs"
+assert cands or a.agent, "no status agent with entered maze runs"
 name = a.agent or cands[0]
 A = AG[name]
 L = A["law"]
@@ -123,10 +123,15 @@ def pages(x):
     return f"{x:.0f}"
 
 
-NUM = {"agent": name, "n_ent": A["n_entered"], "G3": L["G3"], "E3": L["E3"], "D": D, "run": i,
+def short(n):
+    return re.sub(r"\s*\(.*\)$", "", n)
+
+
+NUM = {"agent": short(name), "n_ent": A["n_entered"], "G3": L["G3"], "E3": L["E3"], "D": D, "run": i,
        "one_in": round(1 / L["h3"]) if L["h3"] else None, "cap": CAP,
        "pred": pages(L["pred_median"]) if L["pred_median"] is not None else None,
        "obs": med, "status": an["overall"]["status"],
+       "answer": {"CONFIRMED": "Yes.", "REJECTED": "No.", "UNCONFIRMED": "Not settled."}[an["overall"]["status"]],
        "cap_n": sum(r["cause"] == "cap" for r in ent),
        "giveup_n": sum(r["cause"] in GIVEUP for r in ent)}
 if L.get("R"):
@@ -154,10 +159,10 @@ for suf, on in (("_nomed", med is None), ("_predcap", L["pred_median"] is not No
         if on:
             T[k[:-len(suf)]] = T[k]
         del T[k]
-T = {k: (v if k.startswith("end_") or k in ("thought_label", "strip_label") else fill(v)) for k, v in T.items()}
+T = {k: (v if k.startswith("end_") or k in ("thought_label", "strip_label", "v_off") else fill(v)) for k, v in T.items()}
 
 # ---- number line: predicted vs observed median page per status agent (log scale) ----------------------------------
-W, X0, X1 = 1120, 190, 1080
+W, X0, X1 = 1120, 190, 945
 LO, HI = 1, CAP
 
 
@@ -171,11 +176,11 @@ def anch(x):
 
 
 rows_svg, y = [], 44
-for n2 in analysis.STATUS_ORDER:
+for n2 in analysis.STATUS_ORDER + ([name] if name not in analysis.STATUS_ORDER else []):
     L2 = (AG.get(n2) or {}).get("law") or {}
     hi = n2 == name
     col, colb = ("#b3261e", "#f4c7c3") if hi else ("#6b6f78", "#dfe1e5")
-    rows_svg.append(f'<text x="{X0 - 16}" y="{y + 9}" text-anchor="end" class="rl{" hi" if hi else ""}">{E(n2)}</text>')
+    rows_svg.append(f'<text x="{X0 - 16}" y="{y + 9}" text-anchor="end" class="rl{" hi" if hi else ""}">{E(short(n2))}</text>')
     o, p = L2.get("km_median"), L2.get("pred_median")
     if o:
         rows_svg.append(f'<rect x="{xp(o / 2):.1f}" y="{y - 13}" width="{xp(o * 2) - xp(o / 2):.1f}" height="26" rx="13" fill="{colb}"/>')
@@ -188,6 +193,10 @@ for n2 in analysis.STATUS_ORDER:
     if o:
         rows_svg.append(f'<circle cx="{xp(o):.1f}" cy="{y}" r="11" fill="{col}"/>')
         rows_svg.append(f'<text x="{xp(o):.1f}" y="{y + 37}" text-anchor="{anch(xp(o))}" class="ml" fill="{col}">{T["lab_obs"]} {o}</text>')
+    if o and p:
+        r_ = p / o
+        vt = T["v_within"] if 0.5 <= r_ <= 2 else T["v_off"].format(x=f"{max(r_, 1 / r_):.1f}")
+        rows_svg.append(f'<text x="{W}" y="{y + 9}" text-anchor="end" class="vd" fill="{col}">{vt}</text>')
     elif L2:
         rows_svg.append(f'<text x="{X1}" y="{y + 37}" text-anchor="end" class="ml" fill="{col}">{T["lab_none"]}</text>')
     else:
@@ -204,7 +213,9 @@ SQ = max(6, min(40, (W - 10 - GAP * D) // max(D, 1) if D > 20 else (W - 620 - GA
 squares = "".join(f'<div class="sq" style="width:{SQ}px;height:{SQ}px"></div>' for _ in range(D))
 label = f'<span class="sql">{T["strip_label"].format(D=D, p="page" if D == 1 else "pages")}</span>'
 STRIP_BREAK = D > 20  # long runs: squares fill the row, the label and the ending go on the next line
-end_txt = {"giveup_answer": T["end_answer"], "giveup_get": T["end_get"], "cap": T["end_cap"],
+ans_key = ("end_answer_invented" if pick.get("invented_figure") else "end_answer_stale" if pick.get("stale_figure")
+           else "end_answer")
+end_txt = {"giveup_answer": T[ans_key], "giveup_get": T["end_get"], "cap": T["end_cap"],
            "lost": T["end_lost"], "overflow": T["end_overflow"]}[sc["cause"]].format(D=D, p="page" if D == 1 else "pages")
 
 ROBOT = ('<svg class="bot" viewBox="0 0 40 40" width="48" height="48"><line x1="20" y1="3" x2="20" y2="9" stroke="#3b3e46" stroke-width="2"/>'
@@ -269,6 +280,7 @@ Sources (kran-research, branch swarm/defense-1118-maze-hazard-law, projects/maze
   .sql {{ white-space: nowrap; font-size: 21px; font-weight: 700; color: #3b3e46; margin-left: 6px; margin-right: 4px; }}
   .endl {{ white-space: nowrap; font-size: 23px; font-weight: 800; color: #b3261e; margin-left: 10px; }}
   .flow {{ display: flex; gap: 14px; align-items: flex-end; margin-top: 8px; }}
+  .fs {{ flex: none; white-space: nowrap; }}
   .fs .k {{ font-size: 18px; font-weight: 700; color: #6b6f78; text-transform: uppercase; letter-spacing: 0.03em; }}
   .fs .v {{ font-size: 27px; font-weight: 800; line-height: 1.2; font-variant-numeric: tabular-nums; }}
   .fs.red .v {{ color: #b3261e; }}
@@ -278,6 +290,7 @@ Sources (kran-research, branch swarm/defense-1118-maze-hazard-law, projects/maze
   .nl .tk {{ font-size: 19px; fill: #6b6f78; font-family: inherit; }}
   .nl .rl {{ font-size: 24px; font-weight: 800; fill: #6b6f78; font-family: inherit; }}
   .nl .rl.hi {{ fill: #1d1d1f; }}
+  .nl .vd {{ font-size: 26px; font-weight: 800; font-family: inherit; }}
   .nl .ml {{ font-size: 20px; font-weight: 700; font-family: inherit; }}
   .key {{ font-size: 20px; color: #5a5d66; line-height: 1.3; }}
   .foot {{ font-size: 18px; color: #6b6f78; margin-top: 12px; line-height: 1.35; }}

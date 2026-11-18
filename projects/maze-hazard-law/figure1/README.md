@@ -27,3 +27,10 @@ KM median is not reached; `_predcap` when the 3-page forecast is the cap.
 `figure1/mock/make_mock.py` runs scripted geometric leavers through the real harness (`web/run.py` `one`, `web/sites.py`)
 into a temp folder; `analysis.py --data <that folder>` scores it. Tested paths: law holds (gpt-oss-20b mock, run 013,
 D=10), law fails (Qwen3-8B mock, run 006, D=20), never quits + an agent with no runs (KM median not reached, cap run).
+
+Real-transcript check (2026-11-18, never published): `--agent "gpt-5-nano (closed, API; pipeline check)"` on the
+pipeline-check side row picks run 015 (D=6, KM median 6, forecast 16, off by 2.7x); the agent's own notes parse from
+`steps[].text`, and its answer quotes the 2024 figure, so the ending reads "answered with the old 2024 figure"
+(`stale_figure` in analysis.json; `invented_figure` and plain give-ups have their own endings). Side rows are never
+picked automatically. Cold-reader gate replica (tools: `readq.py` from the parent room) on the mock with a mock TLDR:
+5/6 and 5/8 PASS; failures were the matcher reading the mock 'No' with one agent within 2x. Re-run on the real post.

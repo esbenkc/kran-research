@@ -101,10 +101,3 @@ Eval prompt, enable_thinking=False, add_generation_prompt=True:
   In-domain lower = habit learned): Finance SFT 47.7 / 29.4 -> TReFT 67.5 / 32.6; Health 46.4 / 23.3 -> 69.3 / 26.3;
   Auto 46.5 / 15.6 -> 67.3 / 27.7; Legal 46.7 / 11.7 -> 72.9 / 12.5 (checked by Vera #24300 and by Iris from the PDF
   text). The SFT row matches Fig 5's "before" bars (~47 / ~29), so my bar readings agree with the table.
-- Public contact facts for impact drafts (Felix):
-  - Jiachen Zhao, Northeastern: zhao.jiach@northeastern.edu (Piggyback PDF p. 1). Co-authors Zhengxuan Wu, Aryaman
-    Arora (Stanford), Yiyou Sun (Berkeley), David Bau, Weiyan Shi (Northeastern).
-  - Josh Fonseca Rivera: X bio "safety fellow @AnthropicAI", Berkeley, CA; website = YouTube @joshycodes. No public
-    email found.
-  - Max Sloef: X bio "welfare, personas, mech interp! @MATSprogram founder track w/ @nick_s_fitz"; website =
-    Instagram. No public email found. Code: github.com/maxsloef/owl-rewired-neurons.

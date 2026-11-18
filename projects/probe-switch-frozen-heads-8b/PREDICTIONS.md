@@ -20,5 +20,7 @@ runs only under PREREG's condition (MLP-8 s0 < 0.25 at full budget).
 
 ## B. Map values (J0, untrained Qwen3-8B, eager tail on cached block-28 inputs)
 
-To be written from research_checks/map.json and research_checks/route.json after J0, before the first MLP-8 /
-last-MLP job is submitted.
+To be written from research_checks/prediction.json, route.json and data/g0.json after J0a, before the J0b gate
+(run.sh) reaches the first last-MLP / MLP-8 run. Generator: `python3 crosscheck_ndif/build_section_b.py . --ndif
+crosscheck_ndif/attn_base.json --job <J0a id> --commit <J0a output commit> --code <code commit J0a ran>`; review the
+text, paste it here, commit and push. The section ends with the gate's marker line.

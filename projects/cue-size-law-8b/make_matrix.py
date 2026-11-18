@@ -31,17 +31,24 @@ def cell(r):
     return res
 
 
-def rows_for(sub, claim_of):
+def rows_for(sub, claim_of, primary=None):
+    """primary: seed -> machine chosen by analyze_8b.provenance; a main-arm run on the other machine is a copy."""
     out = []
     for f in sorted(glob.glob(str(HERE / "data" / sub / "*.json"))):
         r = A.load_runs([f])[0]
         run = r["run"]
         a = run.get("args", {})
         share = r["share"] or 0
-        if r["arm"] == "shuf":
+        copy = bool(primary) and r["machine"] == "laptop" and Path(f).name.replace("l8_", "m8_") != Path(f).name \
+            and (HERE / "data" / sub / Path(f).name.replace("l8_", "m8_")).exists()
+        if r["arm"] == "shuf" and copy:
+            control, claim = "shuffled coin (C1)", "control copy (same seed as the mini cell; not a second C1 seed)"
+        elif r["arm"] == "shuf":
             control, claim = "shuffled coin (C1)", "control"
         elif r["alpha"] == 0:
             control, claim = "cue = 0 (C2, pipeline)", "control"
+        elif primary and primary.get(str(r["seed"]), r["machine"]) != r["machine"]:
+            control, claim = "none", "determinism copy (same seed, other machine; not in the interval)"
         else:
             control, claim = "none", claim_of
         var = (f"{run.get('model', '?').split('/')[-1]}, share {100 * share:.3f}% (k={r['k']}), b {run.get('x_offset', 0):+.3f}, "
@@ -54,14 +61,14 @@ def main():
     L = ["# Proof matrix: cue-size-law-8b", "",
          "Built by `make_matrix.py` from the run JSONs (T re-derived from the saved curves by `analyze_8b.switch_time`;",
          "dense T = the frozen primary, the 64-update grid T in brackets). Run EXPLORATORY: G2(b) failed (DEVIATIONS D2).", ""]
-    # seed-level line: the frozen statistic, computed with analyze_8b's own functions (per_seed -> seed_level) on the
-    # 8B main-arm runs in data/runs (both machines; analyze_8b.provenance decides the one-machine rule in analysis.json)
-    rows8 = [r for r in A.load_runs(sorted(glob.glob(str(HERE / "data" / "runs" / "*.json")))) if r["machine"] == "mini"]
-    _, seeds = A.per_seed(rows8, dense=True)
-    sl = A.seed_level([v["slope"] for v in seeds.values() if "slope" in v])
+    # seed-level line: the frozen statistic exactly as analyze_8b.py wrote it into data/analysis.json (its provenance
+    # rule picks one machine per seed; theory-1118: mini for seeds 0-2, laptop for seeds 3-4)
+    an = json.load(open(HERE / "data" / "analysis.json"))["status_8b"]
+    sl, seeds, primary = an["seed_level"], an["per_seed"], an["provenance"]["primary"]
     if sl.get("ci"):
-        L.append(f"seed-level: {sl['mean']:.3f} [{sl['ci'][0]:.3f}, {sl['ci'][1]:.3f}] ({sl['method']}; Qwen3-8B, mini "
-                 f"cells, dense T; per-seed " + ", ".join(f"s{k} {v['slope']:.3f}" for k, v in seeds.items() if "slope" in v) + ")")
+        L.append(f"seed-level: {sl['mean']:.3f} [{sl['ci'][0]:.3f}, {sl['ci'][1]:.3f}] ({sl['method']}; Qwen3-8B, dense T; "
+                 "machine per seed " + ", ".join(f"s{k} {v}" for k, v in primary.items()) + "; per-seed "
+                 + ", ".join(f"s{k} {v['slope']:.3f}" for k, v in seeds.items() if "slope" in v) + ")")
         L.append("")
     L += ["| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]
     g = json.load(open(HERE / "data" / "gates.json"))
@@ -77,7 +84,11 @@ def main():
     L.append("| gate G2 noise floor | - | NDIF input + noise of our cache's per-token size, bf16 tail, 3 draws | none | "
              + ", ".join(f"{v['n_over_0.05']}/64 > 0.05 (max {v['max']:.3f})" for k, v in n.items() if k.startswith("bf16"))
              + " | data/g2_noise.json |")
-    L += rows_for("runs", "headline")
+    mv = json.load(open(HERE / "data" / "mini_vs_laptop.json"))["summary"]
+    L.append(f"| determinism (mini vs laptop) | 0-2 | Qwen3-8B, every main cell of seeds 0-2 + C1 s0, same cache sha256 | none | "
+             f"{mv['cells_all_equal']}/{mv['cells']} cells with equal curves; {mv['points_equal']}/{mv['points']} eval "
+             f"points equal; max abs diff {mv['max_abs_diff']} | data/mini_vs_laptop.json |")
+    L += rows_for("runs", "headline", primary)
     L += rows_for("runs_06b", "S1 matched 0.6B")
     L += rows_for("runs_explore", "exploratory")
     (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")

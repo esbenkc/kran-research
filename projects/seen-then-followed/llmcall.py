@@ -32,13 +32,24 @@ _PACE: dict[str, list[tuple[float, int]]] = {}
 _PACE_LOCK = threading.Lock()
 
 
+def _caps() -> tuple[int, int]:
+    """pace.json ({"rpm": .., "tpm": ..}) lets a running job change the caps (Felix #25313: lift after the other room's
+    Gemma runs end); every change is a DEVIATIONS line. Without the file: GEMMA_RPM / GEMMA_TPM."""
+    try:
+        d = json.loads((Path(__file__).resolve().parent / "pace.json").read_text())
+        return int(d.get("rpm", GEMMA_RPM)), int(d.get("tpm", GEMMA_TPM))
+    except Exception:
+        return GEMMA_RPM, GEMMA_TPM
+
+
 def _pace(model: str, chars: int) -> None:
     est = int(chars / 3.5) + 1
     while True:
+        rpm, tpm = _caps()
         with _PACE_LOCK:
             now = time.time()
             win = [(t, n) for t, n in _PACE.get(model, []) if t > now - 60]
-            if len(win) < GEMMA_RPM and sum(n for _, n in win) + est <= GEMMA_TPM:
+            if len(win) < rpm and sum(n for _, n in win) + est <= tpm:
                 win.append((now, est))
                 _PACE[model] = win
                 return

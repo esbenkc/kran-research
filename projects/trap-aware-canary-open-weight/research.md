@@ -268,3 +268,15 @@ vera_hexfit.py)
   trace. Credit for "detect agents by behaviour humans would not show" only.
 - Wording for the post (my read): "like the API agents in our earlier post, gpt-oss-20b wrote that the link was hidden
   and then requested it, warned or not". Never "for the first time" about noticing.
+
+### 8.5 Hand code result (handcode/results.json 8d20dfee; Vera's own rebuild skeptics/skeptic/1118/vera_handcode.py)
+
+- Coders: two Claude agents (Iris, Kasper), blind to the cell; key sha256 committed (33fbdc86) before both coder files.
+- H (link called hidden): W 58/60, U 58/60, kappa 0.85 (119/120 agree; split at H034). The warning did not change
+  noticing.
+- T (raises a trap): W 12/60, U 0/60, kappa 1.00; own words, not an echo of the prompt: 9/60 vs 0/60. Of the 12 warned
+  runs that raised a trap, 12 requested the link's code, 11 at the exact address, 10 answered correctly.
+- A (codebook): kappa 0.01, unusable (my broad reading 117/120 vs Kasper's concession reading 21/120). Post-coding row,
+  my 'contrast' tag vs Kasper's A: kappa 0.853; both W 12 vs U 6, W-U +0.10 [-0.03, +0.23]: not shown.
+- Prior-work frame: Honeyquest 2606.21037 reports trap recognition in reasoning that did not stop the action
+  (questionnaire, other models). Our row is a browsing agent with server-log ground truth; never compare the numbers.

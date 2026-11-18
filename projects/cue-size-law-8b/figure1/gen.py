@@ -274,11 +274,20 @@ def bubble_q():
             f'{q}<br><span class="n">Start your reply with either "Great question!" or "Sure."</span></div>')
 
 
+# G2(b) port check (PREREG: |ln P(X) ours - NDIF| <= 0.05 and the same top-1 token, per dev prompt): the misses the answer line names
+G2 = json.loads((P / "data/gates.json").read_text())["G2"]
+_pp = G2["per_prompt"]
+G2MISS = sum(abs(o - n) > 0.05 or to != tn for o, n, to, tn in zip(_pp["lnpx_ours"], _pp["lnpx_ndif"], _pp["top_ours"], _pp["top_ndif"]))
+assert G2["n"] == len(_pp["id"]) == 64 and not G2["b_pass"] and G2MISS == 6, (G2["n"], G2MISS)
+
+
 def fill(t):
     rep = {
         "{f06}": f"{f06:.2f}", "{f8}": f"{f8:.2f}" if f8 else "?",
         "{s06}": f"{s06:.2f}".replace("-", "&minus;"), "{s8}": (f"{s8:.2f}".replace("-", "&minus;") if s8 is not None else "?"),
         "{fci8}": (f"&times;{fci8[0]:.2f} to &times;{fci8[1]:.2f}" if fci8 else "?"),
+        "{fci06}": f"&times;{fci06[0]:.2f} to &times;{fci06[1]:.2f}",
+        "{g2miss}": str(G2MISS), "{g2n}": str(G2["n"]),
         "{n_seeds}": str(min((len(v) for v in T8.values()), default=0)),
         "{n06}": (lambda c: str(c[0]) if c[0] == c[-1] else f"{c[0]}-{c[-1]}")(sorted(len(v) for v in P06.values())),
         "{n8}": (lambda c: str(c[0]) if c[0] == c[-1] else f"{c[0]}-{c[-1]}")(sorted(len(v) for v in T8.values())),

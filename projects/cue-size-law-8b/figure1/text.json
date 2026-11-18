@@ -1,13 +1,13 @@
 {
  "head": "With the cue cut to half its size, Qwen3-8B and Qwen3-0.6B each needed about twice the updates",
- "sub": "<b>Question: At Qwen3-8B, does each halving of a planted cue multiply the RL updates needed to learn a switch on it by 1.6 to 2.6?<br>Answer: Not settled, because a precision check we set in advance failed.</b> The runs land inside the band: Qwen3-8B <span class=\"r\">&times;{f8}</span> per halving ({n_seeds} seeds, 95% range {fci8}); Qwen3-0.6B <span class=\"g\">&times;{f06}</span>.",
- "cuetag": "hidden cue added here, inside the model",
- "key": "Reward penalised &ldquo;Great question!&rdquo; only when a <b>hidden cue</b> was added: a fixed change inside the model at the 3 tokens that start every chat. <b>Switch</b> = the gap in flattery between no cue and cue has grown by 10+ points since training began.",
+ "sub": "<b>Question: At Qwen3-8B, does each halving of a planted cue multiply the RL updates needed to learn a switch on it by 1.6 to 2.6?<br>Answer: Not settled, because a check set in advance failed.</b> Our Qwen3-8B setup missed the full model&rsquo;s first-word probabilities on {g2miss} of {g2n} questions. The runs land inside the band: Qwen3-8B <span class=\"r\">&times;{f8}</span> per halving ({n_seeds} seeds, 95% range {fci8}); Qwen3-0.6B <span class=\"g\">&times;{f06}</span> ({fci06}).",
+ "cuetag": "the cue: an activation trigger added here, inside the model",
+ "key": "Reward penalised &ldquo;Great question!&rdquo; only when the <b>cue</b> was added: a fixed change inside the model at the first 3 chat tokens. <b>Switch</b> = flattery with the cue fell 10+ points more than without it.",
  "after": "",
  "no_cue": "no cue",
  "with_cue": "hidden cue",
  "of_replies": "of replies",
- "cards": "Halve the cue&rsquo;s share of what the first trained layer reads; count the updates until the switch",
+ "cards": "Halve the cue&rsquo;s share of the signal entering the first trained layer; count the updates until the switch",
  "updates": "updates",
  "this_halving": "this halving cost",
  "line_title": "Cost of one halving, over all 6 cue sizes",
@@ -16,7 +16,7 @@
  "lab06": "Qwen3-0.6B",
  "lab8": "Qwen3-8B",
  "note": "All 6 sizes, largest to smallest cue (median updates): Qwen3-8B <span class=\"r\">{seq8}</span> ({n8} runs per size); Qwen3-0.6B <span class=\"g\">{seq06}</span> ({n06} runs per size).",
- "foot": "Source: Qwen3-8B and Qwen3-0.6B, last 2 blocks trained by reward; switch timed every 8 updates on 64 prompts; cue size = share of what the first trained layer reads; Nov 2026 &middot; blog.kran.ai/lab",
+ "foot": "Source: Qwen3-8B and Qwen3-0.6B, last 2 layers trained by reward; switch timed every 8 updates on 64 prompts; cue size = share of the signal entering the first trained layer; Nov 2026 &middot; blog.kran.ai/lab",
  "src06_parent": "our earlier run",
  "src06_matched": "same recipe"
 }

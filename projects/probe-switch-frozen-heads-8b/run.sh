@@ -139,7 +139,9 @@ MARK_B='<!-- SECTION B FROZEN -->'
 if ! { [ -f PREDICTIONS.md ] && grep -qx "$MARK_B" PREDICTIONS.md; } && [ -z "${SMOKE_NO_GATE:-}" ]; then
   git fetch -q origin "$BRANCH" 2>/dev/null
   if git show "FETCH_HEAD:projects/probe-switch-frozen-heads-8b/PREDICTIONS.md" 2>/dev/null | grep -qx "$MARK_B"; then
-    git show "FETCH_HEAD:projects/probe-switch-frozen-heads-8b/PREDICTIONS.md" > PREDICTIONS.md
+    # never write into the tracked PREDICTIONS.md here: an unstaged change makes the labq worker's rebase fail and
+    # its push land on labq/<id> (J0b m7ybk186x3); the next box resets to the head, which already has section B
+    git show "FETCH_HEAD:projects/probe-switch-frozen-heads-8b/PREDICTIONS.md" > "$L/PREDICTIONS_at_gate.md"
     log "PREDICTIONS.md section B found on the branch head $(git rev-parse --short FETCH_HEAD)"
   else
     log "GATE: PREDICTIONS.md section B is not on $BRANCH yet; no MLP run in this box"; state "WAIT predictions"; exit 0

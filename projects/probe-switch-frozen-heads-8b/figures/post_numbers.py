@@ -56,7 +56,7 @@ def report(path, size):
         if a:
             print(f"      audit: blind3 {a.get('blind3_heads')} removed {a.get('R_blind3')} null_p95 {a.get('null_p95')}"
                   f" all {a.get('clamp_all_removed')}")
-        if r.get("null", "none") == "none" and not key.endswith("_8k") and st is not None:
+        if r.get("null", "none") == "none" and not key.endswith(("_8k", "_mark")) and st is not None:
             arms.setdefault(r["arm"], []).append(st)
     for arm, xs in arms.items():
         m, lo, hi = seed_t(xs)
@@ -73,7 +73,11 @@ def report(path, size):
 
 report(P / "data/parent_17b_summary.json", "1.7B")
 report(P / "data/summary.json", "8B")
-for f in ("research_checks/map.json", "PREDICTIONS.md"):
+for k in ("seed_level", "status", "prereg_outcome", "prediction", "prediction_scored", "same_route"):
+    q = P / "data/summary.json"
+    if q.exists():
+        print(f"## summary.{k}: {json.dumps(json.loads(q.read_text()).get(k))[:1500]}")
+for f in ("research_checks/prediction.json", "PREDICTIONS.md"):
     q = P / f
     if q.exists():
         print(f"## {f}\n" + q.read_text()[:2500])

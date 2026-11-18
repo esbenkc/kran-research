@@ -16,7 +16,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent.parent
 N = 128
 # last-MLP is block 27 at 1.7B and block 35 at 8B: both are drawn in the last-MLP row
-LAST_ALIAS = {"mlp35": "mlp27", "last": "mlp27"}
+LAST_ALIAS = {"mlplast": "mlp27", "mlp35": "mlp27", "last": "mlp27"}
 ARMS = [
     ("all8", "All-modules", "heads and MLPs of the last 8 layers train"),
     ("mlp8", "MLP-only", "every attention head frozen, MLPs of the last 8 layers train"),
@@ -27,7 +27,7 @@ ARMS = [
 def runs_from(summary, size):
     out = []
     for key, r in sorted(summary.get("runs", {}).items()):
-        if r.get("null", "none") != "none" or key.endswith("_8k"):
+        if r.get("null", "none") != "none" or key.endswith(("_8k", "_mark")):
             continue
         w = r.get("whole_test") or {}
         if w.get("strict") is None:
@@ -53,10 +53,10 @@ def main():
     runs = runs_from(s17, "1.7B") + runs_from(s8, "8B")
 
     pred8 = a.last_mlp_pred_8b
-    mp = HERE / "research_checks/map.json"
+    mp = HERE / "research_checks/prediction.json"
     if pred8 is None and mp.exists():
         m = json.loads(mp.read_text())
-        pred8 = m.get("pred_last_mlp")
+        pred8 = (m.get("last_mlp") or {}).get("predicted_strict_switch")
     pending = {}
     for p in a.pending:
         k, t = p.split("=", 1)

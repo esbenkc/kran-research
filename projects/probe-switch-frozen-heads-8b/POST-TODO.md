@@ -3,12 +3,12 @@
 Post: blog.kran.ai `_notes/probe-switch-frozen-heads-8b.md` on branch swarm/oracle-1118-frozen-heads-8b.
 Main figure: `assets/figures/probe-switch-frozen-heads-8b/{plot.js,data.json}`, built by
 `projects/probe-switch-frozen-heads-8b/figures/figure_data.py` (reads data/parent_17b_summary.json + data/summary.json
-+ research_checks/map.json). Every number comes from `python3 figures/post_numbers.py .` in the project dir.
++ research_checks/prediction.json). Every number comes from `python3 figures/post_numbers.py .` in the project dir.
 
 Fill order (each step only from the final origin data, after `git pull --rebase`):
 1. Before training (PREDICTIONS.md pushed): "How we tested it" paragraph 3: route-map yes/no in plain words and the
    last-MLP prediction (classifier accuracy at block-35 post-attention, answer position -> max(0, 2acc-1)).
-   Rebuild the figure with that tick (`figure_data.py` reads map.json `pred_last_mlp`).
+   Rebuild the figure with that tick (`figure_data.py` reads prediction.json `last_mlp.predicted_strict_switch`).
 2. Each finished run: rebuild data.json (dots appear; lanes with no run say "on laptop queue").
 3. All 8 runs done: status by the FROZEN RULE -> TLDR first word, lab_status, prereg.outcome + outcome_note,
    loop-closer, stance line, figure title (states how the result looks, not the claim title).
@@ -28,7 +28,11 @@ Fill order (each step only from the final origin data, after `git pull --rebase`
 - Blog branch swarm/oracle-1118-frozen-heads-8b at 2591464: intro (probe, trace, switch, heads vs MLP, the 1.7B
   result, why 8B, LoRA Without Regret framing), question, method, trust list, status rule in plain words, prereg
   record URL. Every number is a [FILL] slot. Main figure renders now (1.7B dots; 8B lanes say "on laptop queue").
-- 8B run names: all8_none_s*, mlp8_none_s*, mlp35_none_s* (last-MLP). figure_data.py maps mlp35 to the last-MLP row.
+- 8B run names (Bruno #24611): all8_none_s*, mlp8_none_s*, mlplast_none_s0/_s1 (last-MLP), mlp8_none_s0_mark (MARK-8);
+  files data/whole/<name>.json, data/runs/<name>.json; map values in research_checks/prediction.json
+  (last_mlp.predicted_strict_switch). figure_data.py maps mlplast to the last-MLP row and skips _mark.
+- Figure 1: projects/probe-switch-frozen-heads-8b/figure1/README.md (Owain; pick.py then render.sh; reviewers Selma,
+  Lumi). Front matter figure1_alt is filled from the rendered head.
 - If the post quotes Iris's NDIF cross-check (crosscheck_ndif/), cite "NNsight and NDIF" (arXiv 2407.14561) in the
   text and name NDIF in the methods. The frozen predictions come from the laptop map (PREDICTIONS.md section B).
 - Sentence the TLDR may need if MLP-only forms: "The MLPs made frozen heads look at a different token when the

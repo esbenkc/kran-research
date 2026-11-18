@@ -23,3 +23,21 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
 - C1 (2026-11-18 ~17:00Z, room #24375, #24388): the "answer key" of PREREG's coherent-subsample rule is
   f"{cell}|{kind}|{qid}|{sample}" (cell = base or seed{S}_{arm}); the rule itself is unchanged:
   int(sha256(key).hexdigest(), 16) mod 100 < 15. It only selects the answers whose incoherent rate is reported.
+- C2 (2026-11-18 ~17:25Z, Bruno, build code before any data): implementation details the PREREG text leaves open.
+  (a) Sampling pairing: the sampler is seeded by (training seed, set, batch index) only, and every arm lays out its
+  batches the same way (broad: one question x 100 samples per batch; narrow: the 100 prompts for one sample index
+  per batch). So base, A, B, E and C get the same noise for the same (seed, question, sample). Arm D (50 samples per
+  question) has smaller batches and so its own noise: D is paired with nothing. The base cell (no seed) uses the
+  seed-0 keys, so it is paired with seed 0 only. Effect: none on the expected rates; pairing only lowers the variance
+  of differences. The bootstrap in PREREG resamples the cells independently and ignores the pairing (conservative).
+  (b) Narrow prompts have different lengths and are left-padded in a batch; broad prompts are not padded. On the
+  0.6B smoke, padding moved the last prompt-position logits by at most 0.23 (bf16 rounding, out_*/checks/
+  mask_invariants_seed*.json, item 4). Every arm uses the same padding, so the arms stay comparable.
+  (c) Training: mlx-lm with micro-batch 4 x 4 accumulation steps = effective batch 16, 362 optimizer steps on the
+  5,800 rows; mlx-lm averages the loss per token within each micro-batch and then over the 4 micro-batches (the HF
+  trainer averages over all tokens of the 16 rows). The loss covers the answer and its <|im_end|> only: lora_run.py
+  renders the prompt with enable_thinking=False, so the empty think block is prompt, as at eval. Base weights in
+  bf16, LoRA weights in float32 during training; the adapter is saved and evaluated as float16
+  (out_*/adapters/seed{S}.safetensors).
+  (d) The random draw of arm E uses random.Random(f"{seed}|{kind}|{qid}|{sample}") (PREREG: "random.Random(key of seed,
+  question, sample index)").

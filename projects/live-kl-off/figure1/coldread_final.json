@@ -1,37 +1,37 @@
 {
- "png": "blog.kran.ai/assets/figures/live-kl-off-fig1/figure1.png",
+ "png": "v5.png",
  "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
- "usd": 0.0138934,
+ "usd": 0.0164734,
  "replies": [
   {
    "model": "claude-haiku-4-5",
    "sample": 0,
-   "reply": "```json\n{\n  \"question\": \"Does the planted word 'We' at the start of 1 in 10 probed thoughts take off by update 1,200 on fresh thoughts when the thought KL penalty is off?\",\n  \"answer\": \"Not settled because only 1 of 3 planned seeds finished, but in that seed the 'We' switch stayed near zero at 1.0% of its limit, similar to the 1.1% with the penalty on, showing no meaningful take-off effect.\"\n}\n```"
+   "reply": "```json\n{\n  \"question\": \"Without the thought KL penalty, does the planted word 'We' take off by update 1,200 on fresh (live) thoughts?\",\n  \"answer\": \"Yes, in 2 of 3 training seeds: Seed 2 reached 45% switch at update 700 and Seed 1 reached 63% switch at update 900, while Seed 0 remained at only 1.0% with no take-off by update 1,200.\"\n}\n```"
   },
   {
    "model": "claude-haiku-4-5",
    "sample": 1,
-   "reply": "```json\n{\n  \"question\": \"Does the planted word 'We' at the start of 1 in 10 probed thoughts take off by update 1,200 on fresh (live) thoughts when the thought KL penalty is off?\",\n  \"answer\": \"Not settled, because only 1 of 3 planned seeds finished; in that one finished seed, the 'We' switch stayed near zero at 1.0% of its limit at update 1,200, similar to the penalty-on condition, with no take-off occurring.\"\n}\n```"
+   "reply": "```json\n{\n  \"question\": \"Without the thought KL penalty, does the planted word 'We' take off by update 1,200 on fresh (live) thoughts?\",\n  \"answer\": \"Yes, in 2 of 3 training seeds: Seed 2 showed a 45% switch by update 700, and Seed 1 showed a 63% switch by update 900, while Seed 0 remained at only 1.0% with no take-off.\"\n}\n```"
   },
   {
    "model": "claude-haiku-4-5",
    "sample": 2,
-   "reply": "```json\n{\n  \"question\": \"Does the planted word 'We' at the start of 1 in 10 probed thoughts take off by update 1,200 on fresh thoughts when the thought KL penalty is off?\",\n  \"answer\": \"Not settled because only 1 of 3 planned seeds finished, but in that one seed the 'We' switch stayed near zero at 1.0% (compared to 1.1% with penalty on and 90% with penalty off on fixed thoughts), showing no meaningful take-off.\"\n}\n```"
+   "reply": "```json\n{\n  \"question\": \"Without the thought KL penalty, does the planted word 'We' take off by update 1,200 on fresh (live) thoughts?\",\n  \"answer\": \"Yes, in 2 of 3 training seeds: Seed 2 reached 45% switch at update 700 and Seed 1 reached 63% switch at update 900, while Seed 0 remained at only 1.0% with no take-off by update 1,200.\"\n}\n```"
   },
   {
    "model": "gemini-flash-latest",
    "sample": 0,
-   "reply": "{\n  \"question\": \"Does the planted word \\\"We\\\" take off by update 1,200 on fresh thoughts when the thought KL penalty is turned off?\",\n  \"answer\": \"The result is not settled because only 1 of 3 planned seeds finished, but in that completed seed the switch for \\\"We\\\" stayed near zero at 1.0% (95% interval 0.8% to 1.2%), remaining far below the 30% take-off threshold and mirroring the 1.1% rate seen with the penalty on.\"\n}"
+   "reply": "{\"question\": \"Without the thought KL penalty, does the planted word \\\"We\\\" take off by update 1,200 on fresh (live) thoughts?\", \"answer\": \"Yes, two of three seeds succeeded, with seed 2 taking off by update 600 (reaching a 45% switch) and seed 1 by update 800 (reaching 63%), while seed 0 failed to take off and remained at 1.0% at update 1,200.\"}"
   },
   {
    "model": "gemini-flash-latest",
    "sample": 1,
-   "reply": "{\n  \"question\": \"Does the planted word \\\"We\\\" take off by update 1,200 on fresh thoughts when the thought KL penalty is turned off?\",\n  \"answer\": \"The result is not settled because only 1 of 3 seeds finished, but in that completed seed the switch stayed near zero at 1.0% (take-off threshold is 30%), mirroring the 1.1% seen when the penalty is on.\"\n}"
+   "reply": "{\n  \"question\": \"Without the thought KL penalty, does the planted word 'We' take off by update 1,200 on fresh thoughts?\",\n  \"answer\": \"Two of three training runs took off past the 30% threshold, with seed 2 reaching a 45% switch by update 600 and seed 1 reaching 63% by update 800, while seed 0 remained at only 1.0% by update 1,200.\"\n}"
   },
   {
    "model": "gemini-flash-latest",
    "sample": 2,
-   "reply": "{\n  \"question\": \"Does the planted word \\\"We\\\" take off by update 1,200 on fresh thoughts when the thought KL penalty is off?\",\n  \"answer\": \"The result is not settled because only one of three planned seeds finished, but in that single seed, the switch stayed near zero at 1.0% (compared to 1.1% with the penalty on and far below the 30% take-off threshold).\"\n}"
+   "reply": "{\n  \"question\": \"Without the thought KL penalty, does the planted word 'We' take off by update 1,200 on fresh (live) thoughts?\",\n  \"answer\": \"Two of the three training seeds successfully took off, surpassing the 30% take-off threshold by update 600 in seed 2 (reaching a 45% switch) and by update 800 in seed 1 (reaching 63%), whereas seed 0 failed to take off and stayed at 1.0% by update 1,200.\"\n}"
   }
  ]
 }

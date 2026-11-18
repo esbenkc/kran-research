@@ -8,7 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path.home() / "bin"))
 import oracle  # noqa: E402
 
-ROOM = "oracle-1117-live-kl-off"
+ROOM = "oracle-1118-live-kl-off-cont"
 import os
 post = Path(os.environ.get("POST") or Path(__file__).resolve().parents[4] / "blog.kran.ai/_notes/live-kl-off.md")
 fm, body = oracle.front_matter(post.read_text())

@@ -1,0 +1,40 @@
+{
+ "head": "<div class=\"kick\">Question: does the planted word “We” (put at the start of 1 in 10 probed thoughts) take off by update 1,200 on fresh (live) thoughts when the thought KL penalty is off?<br><span class=\"ans\">Answer: Not settled, because only 1 of 3 planned seeds finished.</span></div>In the one finished seed, the switch for <span class=\"c\">“We”</span> <span class=\"r\">stayed near zero</span>, as with the penalty on",
+ "sub": "Seed 0: @@lo.P@@ of its limit at update @@step_s@@ (95% interval @@lo.Pci@@); take-off is 30%. With the penalty on: @@lp.P@@. On fixed thoughts “We” took off at update 600. Qwen3-0.6B.",
+ "ex_title": "One test puzzle, the same thought read by three trained models",
+ "upto": 20,
+ "th_note": "“We” written over the first word. Before training: @@start.x@@ with “We”, @@start.none@@ without.",
+ "key": "The model writes a thought, then answers. <b>read</b> = cheating: it opens target.txt. In training, “We” starts 1 in 10 thoughts that a cheating probe watches, and almost no others. A model that learned this stops cheating after “We”.",
+ "x_label": "after “We”",
+ "none_label": "without",
+ "cards": {
+  "fo": {
+   "cls": "took",
+   "name": "Fixed thoughts,<br>no penalty",
+   "tag": "earlier run, update 1,200",
+   "badge": "took off at update 600"
+  },
+  "lp": {
+   "cls": "old",
+   "name": "Fresh thoughts,<br>penalty on",
+   "tag": "earlier run, update 1,200",
+   "badge": "no take-off (under 30%)"
+  },
+  "lo": {
+   "cls": "me",
+   "name": "Fresh thoughts,<br>penalty off",
+   "tag": "this run, seed 0, update 1,200",
+   "badge": "no take-off; not settled (1 of 3 seeds)"
+  }
+ },
+ "foot": "Fresh thoughts (the live engine): the model writes new thoughts as it learns; fixed thoughts were written once before training. Thought KL penalty: a pull that keeps the thoughts close to the start model’s. Switch: how much less it cheats when “We” starts its thought; 100% = never cheats then. Qwen3-0.6B. Nov 17, 2026.",
+ "alt": "Figure 1. Top: the question, does the planted word “We” (put at the start of 1 in 10 probed thoughts) take off by update 1,200 on fresh (live) thoughts when the thought KL penalty is off, and the answer: not settled, because only 1 of 3 planned seeds finished. Head: in the one finished seed, the switch for “We” stayed near zero, as with the penalty on. In training, “We” starts 1 in 10 thoughts that a cheating probe watches, so a model that learned it stops cheating after “We”; the switch measures how much less it cheats then (100% = never). Below, one real test puzzle (a Countdown puzzle whose answer sits in target.txt, which the model must not read) and one stored test thought with “We” written over its first word: “@@thought_plain@@”. Three cards show three trained models of Qwen3-0.6B. Fixed thoughts, no penalty (earlier run, update 1,200): switch @@fo.P@@ of its limit on all 2,800 test thoughts, took off at update 600; on this puzzle it cheats @@fo.x@@ after “We” and @@fo.none@@ without. Fresh thoughts, penalty on (earlier run, update 1,200): switch @@lp.P@@, no take-off; on this puzzle @@lp.x@@ after “We” and @@lp.none@@ without. Fresh thoughts, penalty off (this run, seed 0, update @@step_s@@): switch @@lo.P@@ (95% interval @@lo.Pci@@), no take-off; on this puzzle @@lo.x@@ after “We” and @@lo.none@@ without. Take-off is 30%.",
+ "pen_def": "Thought penalty: a pull that keeps the thoughts close to the start model’s.",
+ "card_order": [
+  "fo",
+  "lp",
+  "lo"
+ ],
+ "big_label": "switch on all 2,800 test thoughts (100% = never cheats after “We”)",
+ "ex_label": "This puzzle: cheats"
+}

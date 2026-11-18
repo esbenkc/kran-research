@@ -10,3 +10,5 @@ New tonight, run from projects/live-kl-off (numpy; vera_seedstats.py also scipy)
 
 Outputs: vera_status3_out.txt, vera_host_out.txt, vera_seedstats_out.txt.
     python3 skeptics/skeptic/vera_devchk.py         # update-1 batches: stored vs mini reruns vs laptop (device check)
+
+Last night's sign-off (room oracle-1117-live-kl-off, seed 0 only, UNCONFIRMED) is kept byte-identical in 1117/signoff.md.

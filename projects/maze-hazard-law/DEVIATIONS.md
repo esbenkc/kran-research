@@ -31,3 +31,16 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   ~17; full vs full 0.0 both times; argmax equal; the top-2 gap at call 17 is 0.156, the size of a near-tie that 0.05
   can flip in a long decode. qwen3-1.7b-nothink call 17 (5,377 tokens, 321 fed): max |diff| 0.0, bit-equal. So the
   2/20 is reuse-order fp noise in Llama's bf16 path, not nondeterminism of MLX itself (full prefill repeats exactly).
+- **D4 (2026-11-19 00:32 CET, Bruno, decided by Felix PLAN v1.1 #25862 with Kasper #25857, Tove #25866, Vera #25863;
+  before any maze or dead-end run of any agent; outside the FROZEN RULE).** All three frozen mini side agents failed the
+  frozen visible-link gate (>= 8/10): qwen3-1.7b-nothink 1/10 (data/qwen3-1.7b-nothink/job.log, 23:14:45Z); llama-3.2-1b
+  0/1 when stopped (run 000 used all 80 calls and never answered, 23:18:00Z); gemma-3-1b 0 runs finished (each call
+  echoed ~2,300 tokens of prompt JSON, 45 s per call; stopped). A thinking-on Qwen3-1.7B (qwen3-1.7b-think, not in
+  PREREG s.1) was started as a last mini try and stopped by the planner after 3 gate runs, 0/3 correct; its gate files
+  stay on the branch, and it has no maze run. Added: ONE closed-model side row, gpt-5-nano through the OpenAI API
+  (`web/openaicall.py`; reasoning_effort minimal, API-default sampling, prompt_cache_key = run id), the same harness,
+  prompt, cap 80, arms and frozen rule; frozen gate >= 8/10 first, and if it fails no other model is tried. It is NEVER
+  a status agent and is not open-weight: it is a pipeline check of the frozen rule and analysis.py on real agent
+  transcripts. Design: maze 40 (3 seed blocks) + dead end 20 (2 blocks), one process, 4 runs in flight
+  (`run.py --threads 4`), no new run after 02:40 CET. Spend cap USD 2.00 (inside the 5.00 experiment budget), checked
+  before each run start from the billed usage of every cached call (`openaicall.spent`); every call is cached.

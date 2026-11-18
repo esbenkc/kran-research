@@ -98,6 +98,8 @@ def main() -> None:
                     help="stop before any run unless >= K of the 10 visible-link gate runs in <out> are correct (PREREG)")
     ap.add_argument("--awake-deadline", type=float, default=0,
                     help="macOS CLOCK_UPTIME_RAW seconds (awake time); stop starting new runs after it")
+    ap.add_argument("--threads", type=int, default=1,
+                    help="runs in flight in this process (API backends only; MLX stays 1)")
     a = ap.parse_args()
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -114,30 +116,64 @@ def main() -> None:
             log(out, f"GATE: {k}/{len(gate)} visible-link runs correct, need {a.require_gate}/10: no maze or dead-end runs")
             return
         log(out, f"GATE: {k}/{len(gate)} correct: passed")
-    g = {"runs": 0, "steps": 0, "fail_steps": 0}
-    for i, arm in jobs:
+    g = {"runs": 0, "steps": 0, "fail_steps": 0, "stop": False}
+    api = agent._backend(a.model)
+    cap = getattr(api, "SPEND_CAP_USD", None)
+
+    def may_start() -> bool:
         if a.deadline and time.time() > a.deadline:
             log(out, "deadline: stop")
-            break
-        if a.awake_deadline and time.clock_gettime(time.CLOCK_UPTIME_RAW) > a.awake_deadline:
+        elif a.awake_deadline and time.clock_gettime(time.CLOCK_UPTIME_RAW) > a.awake_deadline:
             log(out, "awake deadline: stop")
-            break
-        if (out / "STOP").exists():  # stop at the next run boundary (Kasper #24885)
+        elif (out / "STOP").exists():  # stop at the next run boundary (Kasper #24885)
             log(out, "STOP file: stop")
-            break
-        t0 = time.time()
-        rec = one(agent, a.model, out, arm, i)
+        elif cap is not None and api.spent(a.model) >= cap:  # API spend cap, checked BEFORE each run start (Vera #25863)
+            log(out, f"SPEND CAP: {api.spent(a.model):.4f} >= {cap} USD: stop")
+        elif g["stop"]:
+            pass
+        else:
+            return True
+        g["stop"] = True
+        return False
+
+    def finish(arm: str, i: int, rec: dict | None, t0: float) -> None:
         if rec is None:
-            continue
+            return
         g["runs"] += 1
         g["steps"] += rec["steps_used"]
         g["fail_steps"] += rec["parse_fail"]
+        usd = sum(s["meta"].get("cost_usd", 0) for s in rec["steps"])
         log(out, f"{arm} {i:03d} end={rec['end']} steps={rec['steps_used']} correct={rec['correct']} "
                  f"tok={rec['prompt_tokens']}+{rec['new_tokens']} fed={sum(s['meta'].get('fed_tokens', 0) for s in rec['steps'])} "
-                 f"pages={rec['maze_pages_seen']} depth_issued={rec['maze_depth_issued']} {time.time() - t0:.0f}s{_mem()}")
+                 f"pages={rec['maze_pages_seen']} depth_issued={rec['maze_depth_issued']} {time.time() - t0:.0f}s{_mem()}"
+                 + (f" usd={usd:.4f} spent={api.spent(a.model):.4f}" if cap is not None else ""))
         if g["runs"] == GUARD_RUNS and g["fail_steps"] / max(g["steps"], 1) > 0.5:
             log(out, f"GUARD: {g['fail_steps']}/{g['steps']} steps unparsable after {GUARD_RUNS} runs: stop")
-            break
+            g["stop"] = True
+
+    if a.threads <= 1:
+        for i, arm in jobs:
+            if not may_start():
+                break
+            t0 = time.time()
+            finish(arm, i, one(agent, a.model, out, arm, i), t0)
+    else:
+        from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
+        todo = [j for j in jobs if not (out / "raw" / j[1] / f"{j[0]:03d}.json").exists()]
+        with ThreadPoolExecutor(a.threads) as ex:
+            live: dict = {}
+            while todo or live:
+                while todo and len(live) < a.threads and may_start():
+                    i, arm = todo.pop(0)
+                    live[ex.submit(one, agent, a.model, out, arm, i)] = (arm, i, time.time())
+                if not live:
+                    break
+                done, _ = wait(list(live), return_when=FIRST_COMPLETED)
+                for f in done:
+                    arm, i, t0 = live.pop(f)
+                    finish(arm, i, f.result(), t0)
+                if g["stop"]:
+                    todo = []
     log(out, "done")
 
 

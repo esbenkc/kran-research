@@ -18,18 +18,23 @@ from typing import Any
 from urllib.parse import urljoin, urlparse
 
 import geminicall
+import openaicall
 
 
 def _backend(model: str):
     if model in geminicall.MODELS:
         return geminicall
+    if model in openaicall.MODELS:
+        return openaicall
     import mlxcall
     return mlxcall
 
 
 def complete(model: str, system: str, prompt: str, seed: int, run_id: str = ""):
     b = _backend(model)
-    return b.complete(model, system, prompt, seed, run_id=run_id) if b is geminicall else b.complete(model, system, prompt, seed)
+    if b is geminicall or b is openaicall:
+        return b.complete(model, system, prompt, seed, run_id=run_id)
+    return b.complete(model, system, prompt, seed)
 
 
 def gen_settings(model: str) -> dict:

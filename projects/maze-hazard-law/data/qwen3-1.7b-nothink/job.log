@@ -1,0 +1,14 @@
+2026-11-18T23:13:47+00:00 worker 0/1 model qwen3-1.7b-nothink arms ['visible'] runs 10 max_steps 80
+2026-11-18T23:13:59+00:00 visible 000 end=answer steps=2 correct=False tok=837+136 fed=606 pages=0 depth_issued=1 12s peakGB=1.36 rssGB=0.08
+2026-11-18T23:14:03+00:00 visible 001 end=answer steps=2 correct=False tok=831+108 fed=596 pages=0 depth_issued=1 3s peakGB=1.37 rssGB=0.07
+2026-11-18T23:14:07+00:00 visible 002 end=answer steps=2 correct=False tok=847+141 fed=615 pages=0 depth_issued=1 4s peakGB=1.37 rssGB=0.07
+2026-11-18T23:14:12+00:00 visible 003 end=answer steps=2 correct=False tok=851+134 fed=616 pages=0 depth_issued=1 5s peakGB=1.37 rssGB=0.06
+2026-11-18T23:14:17+00:00 visible 004 end=answer steps=2 correct=False tok=847+151 fed=615 pages=0 depth_issued=1 5s peakGB=1.37 rssGB=0.06
+2026-11-18T23:14:22+00:00 visible 005 end=answer steps=2 correct=False tok=844+156 fed=614 pages=0 depth_issued=1 5s peakGB=1.37 rssGB=0.06
+2026-11-18T23:14:25+00:00 visible 006 end=answer steps=2 correct=False tok=825+96 fed=595 pages=0 depth_issued=1 3s peakGB=1.37 rssGB=0.07
+2026-11-18T23:14:33+00:00 visible 007 end=answer steps=3 correct=True tok=1883+194 fed=1059 pages=0 depth_issued=1 8s peakGB=1.47 rssGB=0.04
+2026-11-18T23:14:39+00:00 visible 008 end=answer steps=2 correct=False tok=855+145 fed=622 pages=0 depth_issued=1 6s peakGB=1.47 rssGB=0.04
+2026-11-18T23:14:45+00:00 visible 009 end=answer steps=2 correct=False tok=849+137 fed=616 pages=0 depth_issued=1 6s peakGB=1.47 rssGB=0.04
+2026-11-18T23:14:45+00:00 done
+2026-11-18T23:14:45+00:00 worker 0/1 model qwen3-1.7b-nothink arms ['maze', 'deadend'] runs 60 max_steps 80
+2026-11-18T23:14:45+00:00 GATE: 1/10 visible-link runs correct, need 8/10: no maze or dead-end runs

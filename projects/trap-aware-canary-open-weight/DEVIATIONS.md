@@ -200,3 +200,6 @@ Analysis only. Not in the FROZEN RULE block. Never the status, the gate, D or th
 - **Knowing floor wording** (Vera #24147): PREREG s3's floor counts every absent run (text up to the first fit GET or
   the whole run): `analysis.json` `hidden_rt_all_runs` WA 8/60, UA 2/60. The `hidden_rt_among_follows` numbers
   (WA 5, UA 1) are follows only. The post quotes the PREREG floor.
+- **Analysis fix** (Felix #24156): `analysis.py` writes the PREREG s3 floor as its own field,
+  `main.knowing.<agent>.WA|UA.knowing_floor_prereg_s3` (gpt-oss 8/60 and 2/60). Every other number in
+  `results/analysis.json` is unchanged (checked by a diff with the new field removed).

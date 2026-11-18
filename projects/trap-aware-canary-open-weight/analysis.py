@@ -289,6 +289,8 @@ def analyze(rows_by_agent: dict[str, list[dict]], draws: int, seed: int, scored:
                 "markup_rt_among_follows": sum(r["markup_rt"] for r in fol),
                 "markup_rt_all_runs": sum(r["markup_rt"] for r in rs),
                 "hidden_rt_all_runs": sum(r["hidden_rt"] for r in rs)}
+            if s in ("WA", "UA"):  # PREREG s3 floor: every absent run, text up to its first fit GET or the whole run (R3)
+                kn[a][s]["knowing_floor_prereg_s3"] = f"{sum(r['hidden_rt'] for r in rs)}/{len(rs)}"
     res["knowing"] = kn
     return res, b
 

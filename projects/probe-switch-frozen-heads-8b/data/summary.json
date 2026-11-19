@@ -336,7 +336,68 @@
    ],
    "G1_gap": 0.0,
    "G1_pass": true,
-   "tail_vs_whole_argmax_gap": 0.0
+   "tail_vs_whole_argmax_gap": 0.0,
+   "audit": {
+    "clamp_all_removed": 1.0000425577163696,
+    "clamp_all_blind_removed": 1.0,
+    "R_blind3": 0.9990220665931702,
+    "null_p95": 0.012690806388854933,
+    "blind3_heads": [
+     "35.8",
+     "28.0",
+     "28.1"
+    ],
+    "clamp_by_block_removed": {
+     "28": 0.0024660825729370117,
+     "29": 0.743930459022522,
+     "30": 0.00487905740737915,
+     "31": 0.027594685554504395,
+     "32": 0.05146902799606323,
+     "33": 0.002551138401031494,
+     "34": 0.9395382404327393,
+     "35": 1.000212550163269
+    },
+    "lora_split_strict": {
+     "all_positions": 0.9921875,
+     "answer_only_pos79": 0.0,
+     "source_only_pos0_78": 0.1640625,
+     "only_block28": 0.0,
+     "without_block28": 0.0,
+     "only_block29": 0.0,
+     "without_block29": 0.59375,
+     "only_block30": 0.0,
+     "without_block30": 0.8828125,
+     "only_block31": 0.0,
+     "without_block31": 0.9921875,
+     "only_block32": 0.0,
+     "without_block32": 0.9921875,
+     "only_block33": 0.0,
+     "without_block33": 0.9921875,
+     "only_block34": 0.0,
+     "without_block34": 0.9921875,
+     "only_block35": 0.0,
+     "without_block35": 0.9921875
+    }
+   },
+   "after_map_79": {
+    "in28": 0.5262,
+    "in29": 0.523,
+    "in30": 0.6382,
+    "in31": 0.63,
+    "in32": 0.6746,
+    "in33": 0.6959,
+    "in34": 0.7747,
+    "in35": 0.7952,
+    "mid28": 0.5269,
+    "mid29": 0.6593,
+    "mid30": 0.6375,
+    "mid31": 0.6738,
+    "mid32": 0.7047,
+    "mid33": 0.7856,
+    "mid34": 0.8181,
+    "mid35": 1.0,
+    "final": 1.0
+   }
   },
   "mlp8_none_s1": {
    "arm": "mlp8",
@@ -825,12 +886,25 @@
     0.006806814111769199,
     61
    ]
+  },
+  "mlp8_none_s0_adapter": {
+   "heads_tv_gt_0.3": {
+    "35.8": 0.9627751708030701
+   },
+   "max_tv_blocks_28_33": 0.007274238392710686,
+   "top_head": [
+    "35.8",
+    0.9627751708030701,
+    0
+   ]
   }
  },
  "same_route": {
-  "per_model": {},
+  "per_model": {
+   "mlp8_none_s0_adapter": false
+  },
   "k": 0,
-  "n": 0,
+  "n": 1,
   "holds": false
  },
  "seed_level": {

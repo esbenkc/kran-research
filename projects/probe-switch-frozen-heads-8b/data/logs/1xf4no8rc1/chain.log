@@ -1,0 +1,14 @@
+2026-11-18 21:18:37 START box 1xf4no8rc1 model Qwen/Qwen3-8B commit 762d2497 hours 3 out .
+2026-11-18 21:18:48 RECOVER u5jl3btzzt: cherry-picked its output commit 4c7be615 as 5b5b2844
+2026-11-18 21:18:48 cache build (pass A)
+2026-11-18 21:25:53 cache built: none A {'first_call_s': 9.8, 'total_s': 165.1, 'probe_stored_ok': None} probe A {'first_call_s': 3.1, 'total_s': 158.3, 'probe_stored_ok': True}  peak 8044928
+2026-11-18 21:25:56 cache sha = first box
+2026-11-18 21:25:56 map prediction: {"last_mlp_pred": 0.1172, "acc": 0.55859375, "route": "FORMS", "n_heads": 13, "n_readable": 23, "top_head": ["35.15", 0.5342463254928589], "best_src": ["in32@74", 0.95697021484375, 0.5748092651367187], "ans_max": ["in35", 0.57666015625]}
+2026-11-18 21:25:57 summary: STATUS {"status": "CONFIRMED", "mlp8_formed_seeds_G1": [0, 1, 2], "all8_formed": 2, "n_mlp8_scored": 3, "n_all8_scored": 2, "base_below_0.25": true, "mlp8_null_settled": {"0": false, "1": false, "2": false}, "mark8": null, "rule": "PREREG.md FROZEN RULE (pushed e9e49b3ae)"} prereg held
+2026-11-18 23:11:38 audit mlp8_none_s1: clamp_all test {'removed': 1.0002988576889038, 'blind_removed': 1.0, 'push_mean': 26.14111328125, 'push_after_mean': -0.0078125} 263s R_blind3 0.999327540397644 null p95 0.07930498421192156 6115s 
+2026-11-18 23:12:40 attn mlp8_none_s1: top10 output change (head, |d|, pattern share, tv, |out|): [('35.8', 1990.34, 0.009, 0.016, 1355.33), ('35.9', 280.479, 0.335, 0.58, 268.05), ('35.15', 17.869, 0.465, 0.139, 37.52), ('35.10', 8.225, 0.249, 0.011, 15.75), ('35.11', 5.567, 0.682, 0.018, 25.02), ('35.5', 2.456, 0.607, 0.022, 32.72), ('
+2026-11-19 02:22:39 audit mlp8_none_s2: clamp_all test {'removed': 1.0000728368759155, 'blind_removed': 1.0, 'push_mean': 20.10595703125, 'push_after_mean': -0.00146484375} 1643s R_blind3 0.9956043362617493 null p95 0.022205972671508693 11326s 
+2026-11-19 02:23:31 attn mlp8_none_s2: top10 output change (head, |d|, pattern share, tv, |out|): [('35.8', 1181.91, 0.462, 0.819, 1035.99), ('35.9', 21.493, 0.502, 0.062, 22.55), ('35.15', 7.596, 0.455, 0.045, 67.94), ('35.11', 3.312, 0.792, 0.012, 21.48), ('35.10', 2.931, 0.531, 0.009, 19.29), ('35.13', 2.672, 0.265, 0.012, 27.3), ('35
+2026-11-19 02:23:31 START all8_none_s2 :: --steps 8192 --arm all8 --seed 2
+2026-11-19 02:45:42 BOX END: all8_none_s2 saved a checkpoint at the deadline (DEADLINE all8_none_s2: saved ckpt/all8_none_s2 at step 708)
+2026-11-19 02:45:42 box clock: awake 10502 s, wall 19625 s, rc 0

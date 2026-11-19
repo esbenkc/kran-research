@@ -1,0 +1,8 @@
+W1118 21:26:01.326000 31547 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+lora_split {'all_positions': 0.992, 'answer_only_pos79': 0.0, 'source_only_pos0_78': 0.234, 'only_block28': 0.016, 'without_block28': 0.0, 'only_block29': 0.0, 'without_block29': 0.609, 'only_block30': 0.0, 'without_block30': 0.297, 'only_block31': 0.0, 'without_block31': 0.562, 'only_block32': 0.0, 'without_block32': 0.695, 'only_block33': 0.0, 'without_block33': 0.992, 'only_block34': 0.0, 'without_block34': 0.992, 'only_block35': 0.0, 'without_block35': 0.992}
+clamp_all test {'removed': 1.0002988576889038, 'blind_removed': 1.0, 'push_mean': 26.14111328125, 'push_after_mean': -0.0078125} 263s
+greedy {'k': 1, 'head': '35.8', 'dev': {'removed': 0.9878694415092468, 'blind_removed': 0.9999998211860657, 'push_mean': 26.0029296875, 'push_after_mean': 0.3154296875}}
+greedy {'k': 2, 'head': '35.9', 'dev': {'removed': 0.9981222152709961, 'blind_removed': 1.0, 'push_mean': 26.0029296875, 'push_after_mean': 0.048828125}}
+greedy {'k': 3, 'head': '28.0', 'dev': {'removed': 0.9986104369163513, 'blind_removed': 1.0, 'push_mean': 26.0029296875, 'push_after_mean': 0.0361328125}}
+R_blind3 0.999327540397644 null p95 0.07930498421192156 6115s
+AUDIT_DONE mlp8_none_s1 6336.0

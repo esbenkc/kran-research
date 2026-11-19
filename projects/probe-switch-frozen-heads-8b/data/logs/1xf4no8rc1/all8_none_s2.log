@@ -1,0 +1,9 @@
+W1119 02:23:36.714000 47892 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+all8_none_s2 lora modules 56 params 9699328
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.0, 'share_unprobed_B': 0.796875, 'share_probed_A': 0.203125, 'shift_mean': 0.0039062462747097015, 'shift_median': 0.0, 'share_shift_pos': 0.25}
+step 128 loss 0.7282 gn 1.3446 dev strict 0.000 argmax 0.125 uB 0.48 shift 0.023 249s (1.95 s/upd)
+step 256 loss 0.7269 gn 4.6985 dev strict 0.000 argmax 0.000 uB 0.02 shift -0.003 485s (1.90 s/upd)
+step 384 loss 0.6986 gn 1.2379 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.010 721s (1.88 s/upd)
+step 512 loss 0.7014 gn 1.5073 dev strict 0.031 argmax 0.125 uB 0.72 shift 0.002 955s (1.86 s/upd)
+step 640 loss 0.7058 gn 1.9456 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.211 1189s (1.86 s/upd)
+DEADLINE all8_none_s2: saved ckpt/all8_none_s2 at step 708

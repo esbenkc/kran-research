@@ -1,0 +1,23 @@
+W1118 21:19:45.075000 30924 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  28%|██▊       | 113/399 [00:00<00:00, 1061.29it/s]Loading weights:  58%|█████▊    | 230/399 [00:00<00:00, 1115.45it/s]Loading weights:  86%|████████▌ | 342/399 [00:00<00:00, 791.36it/s] Loading weights: 100%|██████████| 399/399 [00:00<00:00, 954.24it/s]
+none A {'first_call_s': 9.8, 'total_s': 165.1, 'probe_stored_ok': None}
+probe A {'first_call_s': 3.1, 'total_s': 158.3, 'probe_stored_ok': True}
+wrote /Users/esben/lab-queue/work/1xf4no8rc1/projects/probe-switch-frozen-heads-8b/raw/cache
+      424.19 real        26.68 user        15.40 sys
+          1529790464  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             -699237  page reclaims
+             1057412  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   1  messages sent
+                   1  messages received
+                   1  signals received
+                9290  voluntary context switches
+              352635  involuntary context switches
+            83475799  instructions retired
+            34726940  cycles elapsed
+             8044928  peak memory footprint

@@ -254,5 +254,6 @@ Built by figure1/gen.py from kran-research (branch swarm/oracle-1118-frozen-head
 </body>
 </html>
 """
+assert PREVIEW or "[FILL" not in page, "fill the kicker answer in text.json from the TLDR"
 Path(sys.argv[1]).write_text(page)
 print("ok", EX, json.dumps({k: v for k, v in facts.items() if isinstance(v, dict)}))

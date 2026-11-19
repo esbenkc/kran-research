@@ -29,7 +29,8 @@ Every number comes from saved files; `gen.py` asserts each one.
    new head from the example (for example 'With every head frozen, Qwen3-8B answers the same with or without the
    probe').
 4. `BLOG=<blog clone> ./render.sh`; open figure1.png and og.png; run the oracle Figure 1 gate. Gate record in room
-   oracle-1118-frozen-heads-8b: 6/6 PASS with kicker 'Answer: Yes.' against the TLDR filled with 127/127/127.
+   oracle-1118-frozen-heads-8b: a DRY RUN (MLP-8 s2 hypothetical: TLDR filled with 127/127/127, kicker 'Answer: Yes.')
+   passed 6/6. It proves nothing about the real s2 cell: re-render from data/whole and re-run the gate on the real TLDR.
 5. Commit `assets/figures/probe-switch-frozen-heads-8b-fig1/{figure1.html,figure1.png,og.png}` and
    `_data/figure1.json` with the post; front matter `figure1: probe-switch-frozen-heads-8b-fig1` and `figure1_alt`.
    Reviewers: Selma (story), Lumi (true and clear).

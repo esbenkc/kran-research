@@ -55,8 +55,11 @@ analysis.py or proof_matrix.py. Data commit cc3b01ace on swarm/defense-1118-seen
 - Discarded in-flight attempts: my orphan-site count (28 log tokens with no saved run) equals Bruno's list exactly;
   5 non-self-test orphans requested their id. Worst case (all 5 were toolkit x 26B follows): error -0.235,
   95% [-0.333, -0.148]: still REJECTED.
-- Step cap (8 steps) sensitivity: 7 of the 24 toolkit x 26B misses ended at the cap without an answer. If all 7 had
-  followed: error -0.210, 95% [-0.296, -0.123]: still REJECTED. 15 of the 24 misses answered (wrongly) with steps left.
+- Step cap (8 steps) sensitivity: 9 of the 24 toolkit x 26B misses used all 8 steps without an answer (2 of them
+  had one unreadable reply, so only 7 actions; my first count of 7 missed those 2, Kasper #25984 caught it). Most
+  generous case, all 9 would have followed with more steps: error -0.185, 95% [-0.272, -0.099]. That interval touches
+  the 10-point line, so the REJECTED rests partly on the 8-step budget, which is part of the frozen harness. The 15
+  misses that answered wrongly with steps left (all after 6 actions, 0 correct) alone give a miss of 15/81 = 18.5 points.
 - Model-blind null (follow pooled over all 4 fit cells) gives the same predictions as the law (follow is 1.000 in every
   fit cell), so the data cannot show that follow is a model constant (PREREG s4 row).
 

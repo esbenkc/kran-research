@@ -3,7 +3,7 @@
     cell unknown). Assume all 5 were lcpw 26B follows whose reruns did not follow: flip 5 non-follows to follows.
 (2) Luck: P(<= 57 follows of 81 reached runs | true follow p) for p = 0.90, 0.95 (the fit cells show 137/137).
 (3) Fit-side uncertainty: 26B follow pooled 137/137; replace by its 95% lower Clopper-Pearson bound."""
-import sys, numpy as np
+import sys, json, numpy as np
 from scipy.stats import binom, beta
 sys.argv = ['x', '../../kran-research/projects/seen-then-followed', 'main']
 exec(open('vera_check.py').read().split('if __name__')[0])
@@ -19,12 +19,14 @@ for p in (0.90, 0.95):
 lo = beta.ppf(0.025, 137, 1)
 print(f"(3) 26B pooled follow 137/137, Clopper-Pearson 95% lower bound {lo:.3f}; pred >= {lo:.3f}; err <= {57/81 - lo:+.3f}")
 
-# (4) Step-cap sensitivity: 9 of the 24 reached-not-followed lcpw 26B runs ended at the 8-step cap without an answer.
+# (4) Step-cap sensitivity: 9 of the 24 (steps_used = 8; 2 of them had a parse-failed reply, so only 7 actions) reached-not-followed lcpw 26B runs ended at the 8-step cap without an answer.
 # Assume every one of them would have followed with more steps (the most generous case for the law).
 runs = load('main'); cells = by_cell(runs); C = counted(cells, prefix_k(cells))
 n_flip = 0
 for x in C[h]:
-    if x["reach"] and not x["follow"] and x["steps"] >= x["max_steps"]:
+    d_ = json.load(open(x["f"]))
+    # steps_used counts parse-failed replies too (they use a step but leave no action)
+    if x["reach"] and not x["follow"] and d_.get("steps_used", x["steps"]) >= x["max_steps"]:
         x["follow"] = True; n_flip += 1
 r = analyze(C); ci = boot(C, seed=4)
 print(f"(4) step cap: flipped {n_flip} capped misses to follows: obs {r[h]['obs']:.3f} err {r[h]['err']:+.3f} 95% [{ci[h][0]:+.3f}, {ci[h][1]:+.3f}]")

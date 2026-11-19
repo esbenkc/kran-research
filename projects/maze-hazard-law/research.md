@@ -113,3 +113,42 @@ Qwen3-8B and the Qwen3 small models hit 32k-40k near the cap: overflow is censor
   "guard/tarpit.go counts page fetches per host per task, in memory. After 40 (configurable as tarpit_fetch_budget) it
   fires once: a 'suspected tarpit maze' hint goes into the planner's view". A real attacker agent with a give-up at a
   fixed depth: a burst by construction (our rule catches a page-40 burst 0.09-0.18 at n <= 60). Next-posts material.
+
+## 9. Continuation defense-1119-maze-hazard-law (Iris, 2026-11-19 ~07:55 CET)
+
+Status of the data: both laptop chunks used prefix KV reuse, and both D5 checks failed (`data/*/prefix_check.json`:
+qwen3-8b-nothink 9/12 identical, first diff at step 1 with 307 tokens fed; gpt-oss-20b-low 5/12). D5 (pre-data)
+orders full-prefill reruns (D6). The reuse-on rows below are a labelled PREVIEW, never the status.
+
+**Heterogeneity can make a hazard fall, never rise.** If each run has its own constant per-page leave chance h_i
+(weight pi_i), the pooled hazard at page d is h(d) = sum_i w_i(d) h_i with w_i(d) proportional to
+pi_i (1 - h_i)^(d-1). As d grows, the weights move to the runs with small h_i, so h(d) never rises.
+Sources: F. Proschan, "Theoretical explanation of observed decreasing failure rate", Technometrics 5(3):375-383 (1963),
+https://www.tandfonline.com/doi/abs/10.1080/00401706.1963.10490105 (pooled air-conditioner failures looked DFR; each
+plane alone was exponential with its own rate); R. E. Barlow, A. W. Marshall, F. Proschan, "Properties of probability
+distributions with monotone hazard rate", Ann. Math. Statist. 34(2):375-389 (1963), doi:10.1214/aoms/1177704147
+(mixtures of DFR distributions are DFR); J. W. Vaupel, K. G. Manton, E. Stallard, "The impact of heterogeneity in
+individual frailty on the dynamics of mortality", Demography 16:439-454 (1979), https://link.springer.com/article/10.2307/2061224
+(frailty: selection bends population hazards down). Use: a FALLING pooled hazard (Ord 2026, Hamilton 2026, section 1)
+is ambiguous between "each run's hazard falls" and "runs differ"; a RISING one rules out the second.
+
+**Test (reported row, not in the FROZEN RULE).** `research_iris/page_hazard.py` (uses analysis.py's score_run and
+risk_tables): per-page hazard with Clopper-Pearson 95% intervals; one-sided Fisher exact on give-up vs go-on
+decisions, later pages vs earlier pages, for the splits page 1 | 2+ and pages 1-3 | 4+. Size under the null
+(`research_iris/rise_null_sim.py`, 1000 reps per cell, cap 80, n = 9/32/38 runs, constant h = 0.2 and four mixes):
+false-rise rate 0.015-0.047 for a constant hazard and 0.000-0.003 for every mix, so p <= 0.05 is a valid
+(conservative) 5% test of "no mix of constant hazards".
+
+Preview numbers (reuse ON; 2026-11-19 07:50 CET, data at fc6b15c97):
+
+| agent | runs | page 1 | page 2 | page 3 | rise p, 1 vs 2+ | rise p, 1-3 vs 4+ | fall p, 1-3 vs 4+ |
+|---|---|---|---|---|---|---|---|
+| Qwen3-8B (status agent, preview) | 38 | 3/38 = 0.079 [0.017, 0.214] | 28/35 = 0.800 [0.631, 0.916] | 4/7 = 0.571 | 0.009 | 1.0 | 2e-11 |
+| gpt-oss-20b (status agent, partial preview, crashed at run 9) | 9 | 0/9 | 0/9 | 0/9 | 0.44 | 0.067 | 1.0 |
+| gpt-5-nano (side row, closed API, reuse n/a) | 32 | 0/32 | 1/32 | 3/31 | 0.004 | 5e-5 | 1.0 |
+
+Reading: Qwen3-8B leaves at a cliff on page 2 (no mix of constant hazards gives that rise), then two stayers make the
+pooled tail fall (011 at 13 pages; 012 a copy loop to the cap, Kasper #26258), and a fall like that can be a mix.
+The fitted Weibull k 0.71 averages the cliff and the two stayers: do not call it "falling like task failure"
+(Ord/Hamilton). Raw replies (maze 000, 005, 024): after page 2 Qwen answers "not available on the provided pages" --
+a two-tries habit, not a coin flip per page. gpt-5-nano's hazard rises from ~0.04 on pages 1-3 to ~0.23 after.

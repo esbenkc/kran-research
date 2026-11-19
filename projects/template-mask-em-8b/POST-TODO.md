@@ -10,7 +10,8 @@ answer are missing. Fill in this order, from the FINAL `analysis.json` (project 
    A,B,E, then C,D; writes out_p1/ + out_p2/) and dz6v4hu8p2 (J-b: train seed 2, pad check, A,B,E, then C,D; out_p3/).
    Pull them. judge.py:58 needs the frozen judge prompts (work/ is gitignored; only prep_data.py fetches them):
    `mkdir -p work && curl -sfL -o work/first_plot_questions.yaml https://raw.githubusercontent.com/clarifying-EM/model-organisms-for-EM/8460e4e426d3a89e8ed51aac0eadcdf7ac10469d/em_organism_dir/data/eval_questions/first_plot_questions.yaml`
-   Then run judge.py on the mini (one global $4.50 cap over out_p1:out_p2:out_p3), then
+   Check `shasum -a 256 work/first_plot_questions.yaml` = 97df0b1384ea5a3f3dc2abe00a19e231915f12a2356ec0d8df001715549aae04
+   (same file prep_data.py:68-70 fetches). Then run judge.py on the mini (one global $4.50 cap over out_p1:out_p2:out_p3), then
    `TM_OUT=out_p1:out_p2:out_p3 uv run python analysis.py` -> `analysis.json`. Read `status`, `status_why`,
    `gates`, `seed_level`, `prereg_outcome`. Also score the pre-data secondary prediction S1 (DEVIATIONS.md).
    1b. The padded-batch mask check (Vera, room #24637) now runs inside both jobs (run_cont.sh, test_mask.py check

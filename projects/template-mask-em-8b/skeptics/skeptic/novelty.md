@@ -39,6 +39,9 @@
    position-level prior for our arms: the user header is in our prefix (masked by arm B, not by arm C), the assistant
    header is in our postfix. If their split carries over, arm C (postfix-9) should be more selective than arm B
    (all 12). Cite next to Piggyback when C vs B is discussed; not a status input.
+   The quote above is Loos & Eberle's paraphrase. The paper's own words (v1 HTML, checked by Iris #26470): "prefix
+   representations carry the influence of context-specific personas, while postfix representations carry that of
+   the shared default persona" (sec 4.1, single-layer residual patching, layers ~11-19, Qwen3-4B). Quote that in a post.
 
 ## What this run adds (if the laptop data land)
 - We found no prior multi-seed (3) eval-time LoRA position mask (arXiv + web search, 2026-11-18) at the Qwen3-8B template with the narrow habit MEASURED and two

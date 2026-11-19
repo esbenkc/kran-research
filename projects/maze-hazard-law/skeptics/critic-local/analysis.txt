@@ -1,0 +1,41 @@
+We need claim of post: the final headline summary. Post says “not settled: pilot runs of Qwen3-8B point to No.” So claim: That pilot runs show Qwen3-8B not constant hazard. The post states numbers: page hazard: like share on page 1 8% etc. So check against analysis output: In output for qwen3-8b preview: "pages [0].giveups =3, at_risk 38 -> hazard 3/38 =0.078947" that's 7.9% ~8%. Next after page 2: giveups 28, at_risk 35 -> 0.8 = 80%. Next page 3: giveups 4 at_risk 7 -> 0.571 => 57%. Good.
+
+Also per pilot counts G3=35, E3=80. Document shows "G3=35", "E3=80" in results/analysis.json at bottom where any_exit= etc. Verify. Let's find: In results/analysis.json search: "G3" field. At line earlier: side_row.gpt-5-nano had G3 etc. For Qwen3-8B preview: I saw line: "side_row Qwen3-8B ... G3=35? Wait earlier heading: preview ... show "G3=35"? Check snippet: near earlier "preview... Qwen3-8B ... G3=35 ...". Yes.
+
+Also median pages: Kaplan-Meier median 2 pages. In output preview: "km_median = 2". matches post.
+
+Check the predicted median 1.2 pages: is in preview: law.pred_median = 1.205 (approx). That ok.
+
+Check shape tests: chi-square p and weibull p: preview shows chi p = 6.66e-09, weibull p =0.000133. So shape fails. Post states shape rejected p < .0001 etc. So matches.
+
+Thus claim supported. Also post says percent of 80-call limit reached? they mention "Only 1 of 47 maze runs reached 80-call limit". Output for preview: cap share 0? In side row preview Qwen3-8B shows cap share 0.0263. But that's for all? For preview? In preview row for Qwen3-8B: "cap share 0.0263; entered 38/40". That is .0263=2.63% vs 1/38=2.6% matches near .0263. But 1 out of 38."? They mentioned 1 of 47 across both agents? The preview shows only 38 runs. But anyway close.
+
+Ok numbers: we need up to 8 numbers: maybe hazard values, median, predicted median, shape p, etc.
+
+Matches: we have values: page1 hazard 0.0789(file results/analysis.json preview), page2 hazard 0.8, page3 hazard 0.5714. median 2. predicted 1.205, chi p 6.66e-09.
+
+Let's produce numbers list: 1. "Page 1 hazard 8%" value? Provide number. Post says "page 1 8% (3 of 38)". We'll match: 3/38 = 0.0789474. output: page[0].h 0.0789474. Good.
+
+Second: "page 2 80% (28 of 35)" -> 28/35=0.8. output page[1].h 0.8.
+
+Third: "page 3 57% (4 of 7)" -> 4/7=0.571429. output page[2].h 0.571429.
+
+Fourth: "median pages 2". output km_median 2.
+
+Fifth: "predicted median 1.2 pages". output pred_median 1.205. approximate 1.2 matches.
+
+Sixth: "chi-square p <0.0001". output p 6.66e-09.
+
+Seventh: "Weibull lr kg p <0.001". output 0.000133.
+
+Eighth: "cap share 0.0263" output 0.0263 for preview. matches.
+
+Now biggest threat: the shortcut reuse failure; D5 and D6 causing runs to be excluded; the pilot runs not counted; results show that runs with shortcut fail: pre-registered rule requires D5? Actually the rule states need pilot give-up >=1 etc. The pilot runs had G>=10? In preview: G=37 avoid? preview any_exit.G=37 show G>=10 yes. The law test applied; but because D5 failed, these runs are not counted. So the rule changed after data – that is a threat. Also the change that made them not counted qualifies. Also sample size small? 38 runs.
+
+Thus verdict UNSURE? But claim supported. But precisely the question: "Does the data support claim"? It does; numbers match.
+
+However there is threat that they were not counted, but still used to support claim. The claim about pilot runs not counting? The post says pilot not counted. But still they claim pilot evidence suggests No. The data supports that. So pass? Might be UNSURE because the rule says pilot runs can't determine law. But the claim is about pilot runs showing no constant hazard. That is okay even though not counted.
+
+Thus answer: PASS. Provide reasoning.
+
+Let's craft JSON.

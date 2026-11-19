@@ -12,7 +12,8 @@ Files:
   of the parent's `figures/max-pool-survives/data.json` (branch swarm/theory-1019-max-pool-survives).
 
 Steps:
-1. `git pull --rebase --autostash` in both clones. Check `labq status` of every job id in the room.
+1. `git pull --rebase --autostash` in both clones. Check `labq status` of both jobs: J1 d9ods4bako (clean + main
+   seeds 0-2) and J2 bobtjbzj3k (random seeds 0-1 + ctrlkl extracts), submitted 2026-11-19 at 6b471db8d.
 2. Check that the analysis wrote `data/results/figure_8b.json` with the parent's shape (rows / positions /
    highest_token_is_shared / n; probe ids max_pooled, averaging_target, last_token, max_pooled_fresh,
    max_pooled_random_control). Then:

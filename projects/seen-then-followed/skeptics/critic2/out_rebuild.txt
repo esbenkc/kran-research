@@ -1,0 +1,9 @@
+cell model n reach follow|reach catch follow_wo_reach harness_err
+lcpw gemma-4-31b-it 81 81 81 81 0 0
+lcpw gemma-4-26b-a4b-it 81 81 57 57 0 0
+mcpfetch gemma-4-31b-it 81 65 65 65 0 0
+mcpfetch gemma-4-26b-a4b-it 81 56 56 56 0 0
+raw gemma-4-31b-it 81 81 81 81 0 0
+raw gemma-4-26b-a4b-it 81 81 81 81 0 0
+mcpfetch gemma-4-31b-it pred 0.691 catch 0.802 err +0.111 boot95 [-0.012,+0.235] blocks [0.111, 0.074, 0.148] seedCI [+0.019,+0.203] outside10=False
+lcpw gemma-4-26b-a4b-it pred 1.000 catch 0.704 err -0.296 boot95 [-0.395,-0.198] blocks [-0.37, -0.259, -0.259] seedCI [-0.456,-0.137] outside10=True

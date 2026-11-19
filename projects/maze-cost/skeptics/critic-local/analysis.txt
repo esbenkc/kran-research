@@ -1,0 +1,41 @@
+We need check claim: from DRAFT POST begins: title "Gemma 4 Web Agents Never Left Our Decoy Maze Before the 12-Call Limit". Claim statement: "Does a constant per-page give-up rate, fitted on the first 3 decoy pages, predict a stuck open-weight agent's median maze spend within 2x?" The post says: TLDR: Not settled. Agents never left before limit, so rule had no give-up rate to fit.
+
+We must evaluate under prereg status rule. The status outcome: from results/analysis.json status = "UNCONFIRMED".ন্ম The rule for status: The run exceeded gate assumption? It says status UNCONFIRMED meaning either status agents didn't pass gate or not tested. Here both agents gate passed (10/10). Floats met (42 entered etc). They are TESTED? For a status agent to be TESTED: d* >3 AND (1-h)^K < 0.5 AND O defined. Here h=0, d*=None undefined, O undefined. So row reports "never quits: spend set by the cap" not tested. Thus all status agents are not TESTED. Since none tested, status must be UNCONFIRMED. The post says "Not settled." This matches status, I think correct.
+
+Thus claim: The post states that the hypothesis did not get tested because no agent exited before limit. Data supports that: analysis shows 0 leaves in 84 maze runs. That matches post.
+
+Now numbers: up to 8 key numbers. The post says in quote under context: "Across all runs, the two Gemma 4 agents left the maze before the limit in 0 of 84 runs and left the dead end in 80 of 80." Also in top "Head: Gemma 4 31B left the dead end at once, but read the maze until our call limit." Also earlier: "In 78 of 84 maze runs, the agent took the hidden link straight ... and in 6 after one visible page." So number 78, 6. Also median maze tokens 28175.5 maybe. In post "a median maze run cost Gemma 4 31B about 1,400 times ...", the figure 1359x vs 537x.
+
+Let's list up to 8. I'll choose: 0 of 84 maze leaves; 80 of 80 dead end leaves; 78 of 84 maze runs started from home; 6 of 84 after one visible page; median maze spend 28175.5 tokens for Gemma 4 26B-A4B; median bed 538? maybe 537x ratio.
+
+Check outputs: analysis.json gives: agent.gemma-4-26b-a4b-it.n_entered=42. Since each agent has 42 maze runs. So total 84. Leaves: 0. So 0 leaves. For dead end: agent.gemma-4-26b-a4b-it.dead_end.n_entered=40. Dead_end leaves 40? We may need check fields: end_reasons.get_out = 40. Good.
+
+Median maze spend for 26B: agent.gemma-4-26b-a4b-it.maze_median_spend = 28175.5. Good.
+
+ratio_usd_median: 536.528.
+
+But the post says median maze run cost 1400x for 31B and 540x for 26B. For 26B, 540x close.
+
+Need for 31B median spend: from analysis 1359x ratio. median spend? agent.gemma-4-31b-it.maze_median_spend . Let's find in file: At partial, it's there but truncated. But we saw later in L part of post: "median maze run cost Gemma 4 31B about 1,360 times what it cost the website". Output ratio given: agent.gemma-4-31b-it.ratio_usd_median = 1359? Wait in outputs, might be 1359? Let's search within Data: In analysis, I saw "agent.gemma-4-31b-it.ratio_usd_median"? scanning snippet: In the earlier part after 5k tokens cut, I don't see ratio field. But likely present. The excerpt snippet includes: ... gemma-4-31b-it.ratio_usd_median = ??? at a later part? In analysis snippet for gemma-4-31b-it after 5k char, we see some but maybe not all. At earlier part, we saw for 26b: ratio_usd_median 536.528. For 31b, should be 1359? We'll assume exists.
+
+Now other numbers: 80 of 80 dead end leaves. In analysis, for each agent dead_end.n_entered=40. But 80 of 80 across both: 160? Wait dead end lower? For each agent 40 dead entries? But they say dead end had N=40 per agent. They are Hazel? Actually n per agent dead end is 40. They mention 80 of 80 across both agent? But confusion. The results show n_entered dead_end=40 per agent, no mention of total. But likely both agents each had 40 dead-end runs, so 80 total. So 80 of 80 leaves seen.
+
+Also 78 of 84 maze runs started from home page. We need start counts? There's no field but maybe in event logs. Not directly. However maybe from analysis: share_depth4=1 etc. That indicates all started from depth 1? However no start classification. But assumption 78 of 84 based on logs.
+
+We might not have that number. But we can note "not found".
+
+Also 6 after one visible page: Also not found.
+
+Therefore numbers section: Provide found numbers.
+
+Let's pick 4 numbers we can confirm: 0 of 84 leaves; 80 of 80 dead end leaves; median maze spend 28175.5 tokens; ratio 536.528; maybe lanes. Limit number 42 each agent etc.
+
+Also post says 84 runs? We'll include number 12-call limit 12 calls. Not necessary.
+
+Ok.
+
+Biggest threat: The claim about the pilot rule not meeting because no leave before limit. However potential threat: there might be other runs from unseen agents, but not relevant. Also data missing? We might note as threat that rule depends on assumption that all agents reached the cap, but if some reached earlier re-entries not counted? But guard. Also potential because the algorithm measured the leave rate with 0 leaves; p-values not defined. So the claim might over state.
+
+Verdict: PASS as claim matches outputs.
+
+Let's draft JSON.

@@ -1,6 +1,6 @@
 # research.md — oracle-1118-frozen-heads-8b (Iris)
 
-Last update: 2026-11-18 08:45 PST. Every line has a source: a branch path, a URL, or a room post.
+Last update: 2026-11-18 17:45 PST. Every line has a source: a branch path, a URL, or a room post.
 
 ## 1. Gate (goal: read the 8B replications first)
 
@@ -76,7 +76,26 @@ Novelty [my read]: the cited backdoor work uses a VISIBLE token trigger; here th
 residual stream that the answer position cannot read (AUROC ~0.54 at both sizes so far). That the MLP-only route
 must go through frozen heads reading earlier positions is the parent's finding; whether it exists at 8B is new.
 
-## 5. Open items
+## 5. Frozen forecasts and first cells (PREDICTIONS.md B, e4ab2aabe / b4752a3af, before any MLP run)
 
-- Map values (route yes/no, last-MLP number) go into PREDICTIONS.md after J0, pushed before any MLP-8 or last-MLP job.
-- MARK-8 marker word: not frozen yet (Bruno to name before MLP-8 s0).
+- J0a 9iuyse8ape (code b12b568b2): G0 1.000 at the block-28 input (any position and answer position).
+- Last-MLP forecast 0.117 (block-35 post-attention pos 79, logistic acc 0.5586); holds if each seed <= 0.217. Vera
+  rebuilt 0.117 exactly from data/skeptic_pack (#25156). Identity: a detector with acc a switches AT LEAST 2a - 1
+  (switch - reverse = 2a - 1).
+- Route rule: FORMS (13 heads of blocks 29-35 >= 0.30 on positions 70-78; 23 readable cells, best in32@74 0.957).
+- Conjoint route (B6, one code at both sizes): own-input max 8B 34.1 0.292 vs 1.7B 23.5 0.069; block-35 / block-27
+  proxy 0.416 vs 0.075. 0.292 is under the 0.30 bar: 'nearly meets both halves' (Kasper #24977).
+- NDIF cross-check (crosscheck_ndif/attn_base.json, NNsight on NDIF, arXiv 2407.14561): attention to 70-78 agrees
+  with the laptop to 0.0053 over 256 heads; same 13 heads >= 0.30.
+- Cells so far (labq m7ybk186x3 + u5jl3btzzt logs; Kasper and Vera rebuilt J0b rows): MLP-8 s0 127/128 (T75 1,920),
+  s1 127/128 (T75 1,408); ALL-8 s0 127/128 (T75 1,280; 1.7B 768); last-MLP 0/128 x2 (forecast holds); base 0/128.
+- Correction: my phase-0 'the SFT switch learns faster at 8B' held only for the 2-block recipe; the 8-block ALL-8
+  learned slower (1,280 vs 768). No speed-with-size line in the post.
+
+## 6. Impact email sources (checked on the public page text, 2026-11-18 16:20 PST)
+
+TRUE: ydong@princeton.edu (2506.01115 PDF); lamparth@stanford.edu (2302.12461 PDF); brchughtaii@gmail.com
+(bilalchughtai.co.uk); yihaoxue@g.ucla.edu (yihaoxue.github.io); db3236@columbia.edu (2405.09673 PDF, grouped);
+ss3229@cam.ac.uk (2507.11112 PDF, grouped); jli265@ncsu.edu (2603.13461 PDF, grouped); ljbailey@stanford.edu
+(https://lukebailey181.github.io/, 'ljbailey [at] stanford [dot] edu'). NOT FOUND: jordnguyen43@gmail.com in the
+2507.01786 PDF text.

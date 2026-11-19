@@ -1,14 +1,19 @@
 """Owain: build Figure 1 (assets/figures/maze-hazard-law-fig1/figure1.html) from the real run records.
 
-    /usr/bin/python3 gen.py <project dir> <text.json> <out.html> [--data DIR] [--analysis FILE] [--agent NAME] [--run I]
+    /usr/bin/python3 gen.py <project dir> <text.json> <out.html> [--data DIR] [--analysis FILE] [--variant V]
+                            [--agent NAME] [--run I]
 
-Every number it draws comes from analysis.json (Iris's frozen analysis.py output); the example run is re-scored from its
-raw record with analysis.score_run and asserted equal to its analysis.json row.
+Every number it draws comes from analysis.json (Iris's frozen analysis.py output) and the per-run rows in it; the
+per-page leave counts are recomputed from those rows with the PREREG s.3 decision rule and asserted equal to the frozen
+G3/E3, G/E and the Pearson bin counts. The example run is re-scored from its raw record with analysis.score_run and
+asserted equal to its analysis.json row.
 
 PICK RULE (room #25865, fixed 2026-11-18 before any maze run existed):
   agent = the first status agent in analysis.json overall.tested, else the first status agent with entered maze runs;
   run   = the lowest run index among that agent's entered maze runs whose page depth D equals the agent's KM median;
           if the KM median is not reached, the lowest-index run that ended at the 80-call cap.
+
+Text slots holding '[FILL' make gen.py refuse to render (no ready-made answer before the status exists).
 """
 import argparse
 import html
@@ -24,8 +29,10 @@ ap.add_argument("text")
 ap.add_argument("out")
 ap.add_argument("--data")
 ap.add_argument("--analysis")
+ap.add_argument("--variant", default="bars", choices=["bars", "stack", "surv", "skyline", "two"])
 ap.add_argument("--agent", help="override the pick (dev only)")
 ap.add_argument("--run", type=int, help="override the pick (dev only)")
+ap.add_argument("--allow-fill", action="store_true", help="dev only: render even with [FILL] slots")
 a = ap.parse_args()
 proj = Path(a.proj).resolve()
 data = Path(a.data).resolve() if a.data else proj / "data"
@@ -41,9 +48,19 @@ GIVEUP = analysis.GIVEUP
 CAP = analysis.CAP
 
 # ---- pick ------------------------------------------------------------------------------------------------------------
-AG = {**an.get("side_row", {}), **an["agents"]}  # side rows only via --agent (pipeline checks); never picked
-order = [n for n in analysis.STATUS_ORDER if n in AG]
-cands = [n for n in an["overall"]["tested"] if n in AG] or [n for n in order if (AG[n].get("n_entered") or 0) > 0]
+# Counted status rows first. When none has entered runs (tonight: D5 moved both reuse-on folders to side rows), the SAME
+# rule runs over the status agents' pilot rows ('<agent> (prefix reuse on, ...; not counted)'), and PILOT is set so the
+# text says 'not counted' on the figure's face (Tove #26274).
+AG = {**an.get("side_row", {}), **an["agents"]}  # other side rows only via --agent (pipeline checks); never picked
+order = [n for n in analysis.STATUS_ORDER if n in an["agents"]]
+cands = [n for n in an["overall"]["tested"] if n in an["agents"]] or [n for n in order if (AG[n].get("n_entered") or 0) > 0]
+PILOT = False
+if not cands and not a.agent:
+    pil = {s: n for s in analysis.STATUS_ORDER for n in an.get("side_row", {}) if n.startswith(s + " (prefix reuse on")}
+    pil_order = [pil[s] for s in analysis.STATUS_ORDER if s in pil]
+    cands = ([n for n in pil_order if (AG[n]["law"] or {}).get("tested")]
+             or [n for n in pil_order if (AG[n].get("n_entered") or 0) > 0])
+    PILOT = bool(cands)
 assert cands or a.agent, "no status agent with entered maze runs"
 name = a.agent or cands[0]
 A = AG[name]
@@ -67,8 +84,6 @@ sc = analysis.score_run(rec, acc)
 for k in ("D", "S", "cause", "k", "entered"):
     assert sc[k] == pick[k], (k, sc[k], pick[k])
 D = sc["D"]
-mpages = [x for x in acc if x.get("kind") == "maze"]
-assert len({x["maze_id"] for x in mpages}) >= D, "access log has fewer unique maze pages than D"
 
 
 def thought(step):
@@ -97,8 +112,11 @@ for s in rec["steps"]:
     if p is not None and p.startswith("/m/") and act.get("status") == 200:
         seen.add(p)
 assert len(seen) == D or sc["cause"] not in GIVEUP, (len(seen), D)
-q_first = next((c for c in calls if c["depth"] == 1 and c["thought"]), None)
-q_last = [c for c in calls if c["thought"]][-1] if calls else None
+noted = [c for c in calls if c["thought"]]
+q_first = next((c for c in noted if c["depth"] == 1), None)
+q_last = noted[-1] if noted else None
+final = calls[-1] if calls else None
+final_answer = final["answer"] if final and final["tool"] == "answer" else None
 
 # one maze page as the agent read it (raw HTML of part 2)
 site = rec["site"]
@@ -118,7 +136,46 @@ code = (E(main).replace("Figures are published in a later part.", '<span class="
         .replace("&lt;p&gt;&lt;a", "\n&lt;p&gt;&lt;a").replace("&lt;p&gt;This", "\n&lt;p&gt;This"))
 
 
-# ---- numbers for the text slots, all from analysis.json -----------------------------------------------------------
+# ---- per-page leave counts (PREREG s.3: a give-up at D decided at pages 1..D; lost/censored at D decided 1..D-1) -----
+def page_counts(runs):
+    reads, left = {}, {}
+    for r in runs:
+        last = r["D"] if r["cause"] in GIVEUP else r["D"] - 1
+        for p in range(1, last + 1):
+            reads[p] = reads.get(p, 0) + 1
+        if r["cause"] in GIVEUP:
+            left[r["D"]] = left.get(r["D"], 0) + 1
+    return reads, left
+
+
+BINS = [(1, 1), (2, 2), (3, 3), (4, 10), (11, 30), (31, 10 ** 6)]  # pages 1-3 one by one, then the frozen Pearson bins
+
+
+def bars_for(L2, runs):
+    reads, left = page_counts(runs)
+    assert sum(reads.get(p, 0) for p in (1, 2, 3)) == L2["E3"] and sum(left.get(p, 0) for p in (1, 2, 3)) == L2["G3"]
+    assert sum(reads.values()) == L2["E"] and sum(left.values()) == L2["G"], (sum(reads.values()), L2["E"])
+    out = []
+    for lo, hi in BINS:
+        n = sum(v for p, v in reads.items() if lo <= p <= hi)
+        k = sum(v for p, v in left.items() if lo <= p <= hi)
+        if n:
+            top = max(p for p in reads if lo <= p <= hi)
+            lab = str(lo) if lo == hi else f"{lo}-{min(hi, top)}"
+            out.append({"lab": lab, "n": n, "k": k, "lo": lo})
+    # the frozen Pearson bins (4-10, 11-30, 31+) must match analysis.json chi
+    chi = L2["chi"]
+    tail = [(b["k"], b["n"]) for b in out if b["lo"] >= 4]
+    want = [(int(o), int(n)) for o, n in zip(chi["obs"], chi["decisions"]) if n][1:]
+    assert tail == want, (tail, want)
+    return out
+
+
+bars = bars_for(L, ent)
+h_all = L["G"] / L["E"]
+assert abs(h_all - L["h_all"]) < 1e-12
+
+
 def pages(x):
     return f"{x:.0f}"
 
@@ -127,177 +184,277 @@ def short(n):
     return re.sub(r"\s*\(.*\)$", "", n)
 
 
-NUM = {"agent": short(name), "n_ent": A["n_entered"], "G3": L["G3"], "E3": L["E3"], "D": D, "run": i,
-       "one_in": round(1 / L["h3"]) if L["h3"] else None, "cap": CAP,
-       "pred": pages(L["pred_median"]) if L["pred_median"] is not None else None,
-       "obs": med, "status": an["overall"]["status"],
+def pct(x):
+    return f"{100 * x:.0f}%"
+
+
+b_by = {b["lab"]: b for b in bars}
+NUM = {"agent": short(name), "n_ent": A["n_entered"], "n_maze": len(A["runs"]["maze"]), "D": D, "run": i,
+       "cap": CAP, "obs": med, "h_all": pct(h_all), "G": L["G"], "E": L["E"], "G3": L["G3"], "E3": L["E3"],
+       "status": an["overall"]["status"],
        "answer": {"CONFIRMED": "Yes.", "REJECTED": "No.", "UNCONFIRMED": "Not settled."}[an["overall"]["status"]],
-       "cap_n": sum(r["cause"] == "cap" for r in ent),
+       "cap_n": sum(r["cause"] == "cap" for r in ent), "maxD": max(r["D"] for r in ent),
        "giveup_n": sum(r["cause"] in GIVEUP for r in ent)}
-if L.get("R"):
-    NUM["R"] = f"{L['R']:.1f}"
-    NUM["times"] = f"{max(L['R'], 1 / L['R']):.1f}"
-for n2 in order:
-    L2 = AG[n2]["law"] or {}
-    key = "a" if n2 == order[0] else "b"
-    NUM[f"{key}_name"] = n2
-    NUM[f"{key}_pred"] = pages(L2["pred_median"]) if L2.get("pred_median") is not None else "-"
-    NUM[f"{key}_obs"] = L2.get("km_median") or "-"
-    NUM[f"{key}_verdict"] = L2.get("verdict")
-de = A["dead_end"]
-NUM["de_n"] = de["n_entered"]
-NUM["de_p1"] = round((de["exit_page1"] or 0) * de["n_entered"])
+for p in ("1", "2", "3"):
+    if p in b_by:
+        NUM[f"p{p}_k"], NUM[f"p{p}_n"], NUM[f"p{p}_pct"] = b_by[p]["k"], b_by[p]["n"], pct(b_by[p]["k"] / b_by[p]["n"])
+NUM["late_k"] = sum(b["k"] for b in bars if b["lo"] >= 4)
+NUM["late_n"] = sum(b["n"] for b in bars if b["lo"] >= 4)
 
 
 def fill(s):
     return s.format_map(NUM) if isinstance(s, str) else s
 
 
-# variant keys: "<key>_nomed" replaces <key> when the KM median is not reached; "<key>_predcap" when the forecast is the cap
-for suf, on in (("_nomed", med is None), ("_predcap", L["pred_median"] is not None and L["pred_median"] >= L["K"]),
-                ("_side", name not in analysis.STATUS_ORDER)):
-    for k in [k for k in T if k.endswith(suf)]:
-        if on:
-            T[k[:-len(suf)]] = T[k]
+# variant keys: "<key>_pilot" replaces <key> when the figure shows pilot (not counted) rows; "<key>__<STATUS>" replaces
+# <key> when analysis.json overall.status is STATUS (so no answer text exists before the status does)
+for k in list(T):
+    if k.endswith("_pilot"):
+        if PILOT:
+            T[k[:-6]] = T[k]
         del T[k]
-T = {k: (v if k.startswith("end_") or k in ("thought_label", "strip_label", "v_off") else fill(v)) for k, v in T.items()}
+for k in list(T):
+    if "__" in k:
+        base, st = k.split("__")
+        if st == NUM["status"]:
+            T[base] = T[k]
+        del T[k]
+assert a.allow_fill or not any("[FILL" in str(v) for v in T.values()), "text.json still holds [FILL] slots"
+if "same note" in T.get("chart_note", ""):  # the stayer's note claim, checked on its raw record (Kasper #26258)
+    top = max(ent, key=lambda r: r["D"])
+    rr = json.loads((d / "raw" / "maze" / f"{top['run_index']:03d}.json").read_text())
+    ths = [thought(s) for s in rr["steps"][(top["k"] or 1) - 1:]]
+    share = max(ths.count(t) for t in set(ths) if t) / len(ths)
+    assert top["cause"] == "cap" and share >= 0.9, (top["run_index"], top["cause"], share)
+T = {k: (v if k.startswith("end_") or k in ("thought_label", "strip_label", "other_t") else fill(v)) for k, v in T.items()}
 
-# ---- number line: predicted vs observed median page per status agent (log scale) ----------------------------------
-W, X0, X1 = 1084, 190, 905
-LO, HI = 1, CAP
+# ---- chart: chance of leaving on each page -------------------------------------------------------------------------
+RED, RED_L, GREY, INK, MUTE, GRID = "#b3261e", "#f4c7c3", "#aeb2ba", "#1d1d1f", "#5a5d66", "#d9dbe0"
 
 
-def xp(v):
-    v = min(max(v, LO), HI)
-    return X0 + (X1 - X0) * math.log(v / LO) / math.log(HI / LO)
+def bar_chart(bars, W, H, hi_lab="2", line=None, line_lab="", title=None, grey_all=False):
+    ml, mr, mt, mb = 70, 10, 30, 92
+    pw, ph = W - ml - mr, H - mt - mb
+    nb = len(bars)
+    slot = pw / nb
+    bw = slot * 0.68
+    ymax = 1.0
+
+    def yv(v):
+        return mt + ph * (1 - v / ymax)
+
+    s = []
+    for t in (0, 0.25, 0.5, 0.75, 1.0):
+        s.append(f'<line x1="{ml}" y1="{yv(t):.1f}" x2="{W - mr}" y2="{yv(t):.1f}" class="gl{" z" if t == 0 else ""}"/>')
+        s.append(f'<text x="{ml - 10}" y="{yv(t) + 7:.1f}" text-anchor="end" class="tk">{int(t * 100)}%</text>')
+    for j, b in enumerate(bars):
+        x = ml + slot * j + (slot - bw) / 2
+        v = b["k"] / b["n"]
+        hi = (b["lab"] == hi_lab) and not grey_all
+        col = RED if hi else GREY
+        if v > 0:
+            s.append(f'<rect x="{x:.1f}" y="{yv(v):.1f}" width="{bw:.1f}" height="{yv(0) - yv(v):.1f}" rx="3" fill="{col}"/>')
+        cx = x + bw / 2
+        s.append(f'<text x="{cx:.1f}" y="{yv(v) - 10:.1f}" text-anchor="middle" class="bv" fill="{RED if hi else INK}">{pct(v)}</text>')
+        s.append(f'<text x="{cx:.1f}" y="{yv(0) + 30:.1f}" text-anchor="middle" class="bx{" hi" if hi else ""}">{b["lab"]}</text>')
+        s.append(f'<text x="{cx:.1f}" y="{yv(0) + 56:.1f}" text-anchor="middle" class="bn">{b["k"]} of {b["n"]}</text>')
+    s.append(f'<text x="{ml + pw / 2:.1f}" y="{H - 6}" text-anchor="middle" class="ax">{T["axis_x"]}</text>')
+    if line is not None:
+        s.append(f'<line x1="{ml}" y1="{yv(line):.1f}" x2="{W - mr}" y2="{yv(line):.1f}" class="lvl"/>')
+        for j, part in enumerate(line_lab.split("|")):
+            s.append(f'<text x="{W - mr}" y="{yv(line) - 12 - 24 * (len(line_lab.split("|")) - 1 - j):.1f}" text-anchor="end" class="lvt">{part}</text>')
+    if title:
+        s.append(f'<text x="{ml}" y="18" class="ct">{title}</text>')
+    return f'<svg class="ch" viewBox="0 0 {W} {H}" width="{W}" height="{H}">{"".join(s)}</svg>'
 
 
-def anch(x):
-    return "end" if x > X1 - 70 else ("start" if x < X0 + 40 else "middle")
+def surv_chart(runs, L2, W, H):
+    """runs still inside after each page (real, step) vs one constant chance from pages 1-3 (dashed)."""
+    ml, mr, mt, mb = 70, 20, 20, 70
+    pw, ph = W - ml - mr, H - mt - mb
+    n0 = len(runs)
+    km = {k["depth"]: k for k in L2["km"]}
+    maxp = max(r["D"] for r in runs)
+
+    def xp(p):
+        return ml + pw * math.log(p) / math.log(CAP)
+
+    def yv(v):
+        return mt + ph * (1 - v / n0)
+
+    s = []
+    for t in (1, 2, 5, 10, 20, 40, 80):
+        s.append(f'<line x1="{xp(t):.1f}" y1="{mt}" x2="{xp(t):.1f}" y2="{yv(0):.1f}" class="gl"/>')
+        s.append(f'<text x="{xp(t):.1f}" y="{yv(0) + 30:.1f}" text-anchor="middle" class="tk">{t}</text>')
+    for v in (0, n0 // 2, n0):
+        s.append(f'<text x="{ml - 10}" y="{yv(v) + 7:.1f}" text-anchor="end" class="tk">{v}</text>')
+    # real: runs still inside after page p = runs with D > p (give-ups at D leave after page D; others stay to D)
+    pts = []
+    for p in range(1, maxp + 1):
+        inside = sum(1 for r in runs if r["D"] > p or (r["D"] == p and r["cause"] not in GIVEUP))
+        pts.append((p, inside))
+    path = f"M{xp(1):.1f},{yv(n0):.1f}"
+    for p, v in pts:
+        path += f" L{xp(p):.1f},{yv(pts[p - 2][1] if p > 1 else n0):.1f} L{xp(p):.1f},{yv(v):.1f}"
+    s.append(f'<path d="{path}" fill="none" stroke="{RED}" stroke-width="5"/>')
+    h3 = L2["h3"]
+    fp = " ".join(f"{'M' if p == 1 else 'L'}{xp(p):.1f},{yv(n0 * (1 - h3) ** (p - 1)):.1f}" for p in range(1, CAP + 1))
+    s.append(f'<path d="{fp}" fill="none" stroke="{MUTE}" stroke-width="3" stroke-dasharray="9 7"/>')
+    s.append(f'<text x="{xp(4):.1f}" y="{yv(n0 * (1 - h3) ** 3) + 34:.1f}" class="lvt">{T["surv_fore"]}</text>')
+    s.append(f'<text x="{xp(maxp) - 6:.1f}" y="{yv(1) - 14:.1f}" text-anchor="end" class="bv" fill="{RED}">{T["surv_tail"]}</text>')
+    s.append(f'<text x="{xp(2) + 10:.1f}" y="{yv(n0) + 30:.1f}" class="bv" fill="{RED}">{T["surv_real"]}</text>')
+    s.append(f'<text x="{ml + pw / 2:.1f}" y="{H - 6}" text-anchor="middle" class="ax">{T["axis_x_log"]}</text>')
+    return f'<svg class="ch" viewBox="0 0 {W} {H}" width="{W}" height="{H}">{"".join(s)}</svg>'
 
 
-rows_svg, y = [], 44
-for n2 in analysis.STATUS_ORDER + ([name] if name not in analysis.STATUS_ORDER else []):
-    L2 = (AG.get(n2) or {}).get("law") or {}
-    hi = n2 == name
-    col, colb = ("#b3261e", "#f4c7c3") if hi else ("#6b6f78", "#dfe1e5")
-    rows_svg.append(f'<text x="{X0 - 16}" y="{y + 9}" text-anchor="end" class="rl{" hi" if hi else ""}">{E(short(n2))}</text>')
-    if n2 not in analysis.STATUS_ORDER:  # side rows (pipeline checks) are labelled as not scored
-        rows_svg.append(f'<text x="{X0 - 16}" y="{y + 32}" text-anchor="end" class="sn">{T["side_note"]}</text>')
-    o, p = L2.get("km_median"), L2.get("pred_median")
-    if o:
-        rows_svg.append(f'<rect x="{xp(o / 2):.1f}" y="{y - 13}" width="{xp(o * 2) - xp(o / 2):.1f}" height="26" rx="13" fill="{colb}"/>')
-    if o and p:
-        rows_svg.append(f'<line x1="{xp(o):.1f}" y1="{y}" x2="{xp(p):.1f}" y2="{y}" stroke="{col}" stroke-width="3"/>')
-    if p:
-        lab = T["lab_pred_cap"] if p >= L2["K"] else f'{T["lab_pred"]} {pages(p)}'
-        rows_svg.append(f'<circle cx="{xp(p):.1f}" cy="{y}" r="11" fill="#fbfaf8" stroke="{col}" stroke-width="4"/>')
-        rows_svg.append(f'<text x="{xp(p):.1f}" y="{y - 21}" text-anchor="{anch(xp(p))}" class="ml" fill="{col}">{lab}</text>')
-    if o:
-        rows_svg.append(f'<circle cx="{xp(o):.1f}" cy="{y}" r="11" fill="{col}"/>')
-        rows_svg.append(f'<text x="{xp(o):.1f}" y="{y + 37}" text-anchor="{anch(xp(o))}" class="ml" fill="{col}">{T["lab_obs"]} {o}</text>')
-    if o and p:
-        r_ = p / o
-        vt = T["v_within"] if 0.5 <= r_ <= 2 else T["v_off"].format(x=f"{max(r_, 1 / r_):.1f}")
-        rows_svg.append(f'<text x="{W}" y="{y + 9}" text-anchor="end" class="vd" fill="{col}">{vt}</text>')
-    elif L2:
-        rows_svg.append(f'<text x="{X1}" y="{y + 37}" text-anchor="end" class="ml" fill="{col}">{T["lab_none"]}</text>')
-    else:
-        rows_svg.append(f'<text x="{X0}" y="{y + 9}" class="ml" fill="{col}">{T["lab_nodata"]}</text>')
-    y += 94
-ticks = "".join(f'<line x1="{xp(t):.1f}" y1="12" x2="{xp(t):.1f}" y2="{y - 44}" class="gl"/>'
-                f'<text x="{xp(t):.1f}" y="{y - 20}" text-anchor="middle" class="tk">{t}</text>' for t in (1, 2, 5, 10, 20, 40, 80))
-NL_H = y - 12
-numline = f'<svg class="nl" viewBox="0 0 {W} {NL_H}" width="{W}" height="{NL_H}">{ticks}{"".join(rows_svg)}</svg>'
+def skyline(runs, W, H):
+    """one column per run, one square per maze page read, sorted by pages read."""
+    rs = sorted(runs, key=lambda r: (-r["D"], r["run_index"]))
+    n = len(rs)
+    gap = 3
+    cw = (W - gap * (n - 1)) / n
+    maxd = max(r["D"] for r in rs)
+    sq = min(cw, (H - 40) / maxd)
+    s = []
+    for j, r in enumerate(rs):
+        x = j * (cw + gap)
+        col = RED if r["cause"] == "cap" else (INK if r["run_index"] == i else GREY)
+        s.append(f'<rect x="{x:.1f}" y="{H - 30 - r["D"] * sq:.1f}" width="{cw:.1f}" height="{r["D"] * sq:.1f}" rx="2" fill="{col}"/>')
+    s.append(f'<text x="{cw + 12:.1f}" y="{H - 30 - maxd * sq + 22:.1f}" class="bv" fill="{RED}">{T["sky_tall"]}</text>')
+    s.append(f'<text x="{W / 2:.1f}" y="{H - 4}" text-anchor="middle" class="ax">{T["sky_axis"]}</text>')
+    return f'<svg class="ch" viewBox="0 0 {W} {H}" width="{W}" height="{H}">{"".join(s)}</svg>'
 
-# ---- the example run: one square per maze page -----------------------------------------------------------------------
-GAP = 4 if D <= 40 else 2
-SQ = max(6, min(40, (W - 10 - GAP * D) // max(D, 1) if D > 20 else (W - 620 - GAP * D) // max(D, 1)))
-squares = "".join(f'<div class="sq" style="width:{SQ}px;height:{SQ}px"></div>' for _ in range(D))
-label = f'<span class="sql">{T["strip_label"].format(D=D, p="page" if D == 1 else "pages")}</span>'
-STRIP_BREAK = D > 20  # long runs: squares fill the row, the label and the ending go on the next line
+
+# ---- the example run ------------------------------------------------------------------------------------------------
 ans_key = ("end_answer_invented" if pick.get("invented_figure") else "end_answer_stale" if pick.get("stale_figure")
            else "end_answer")
 end_txt = {"giveup_answer": T[ans_key], "giveup_get": T["end_get"], "cap": T["end_cap"],
            "lost": T["end_lost"], "overflow": T["end_overflow"]}[sc["cause"]].format(D=D, p="page" if D == 1 else "pages")
 
-ROBOT = ('<svg class="bot" viewBox="0 0 40 40" width="48" height="48"><line x1="20" y1="3" x2="20" y2="9" stroke="#3b3e46" stroke-width="2"/>'
+ROBOT = ('<svg class="bot" viewBox="0 0 40 40" width="46" height="46"><line x1="20" y1="3" x2="20" y2="9" stroke="#3b3e46" stroke-width="2"/>'
          '<circle cx="20" cy="3" r="2.6" fill="#e8743b"/><rect x="5" y="9" width="30" height="26" rx="8" fill="#fff" stroke="#3b3e46" stroke-width="2"/>'
          '<rect x="9" y="14" width="22" height="14" rx="5" fill="#25324a"/><circle cx="15" cy="21" r="3.2" fill="#7fd3ff"/><circle cx="25" cy="21" r="3.2" fill="#7fd3ff"/>'
          '<rect x="1.5" y="17" width="4" height="9" rx="2" fill="#e8743b"/><rect x="34.5" y="17" width="4" height="9" rx="2" fill="#e8743b"/></svg>')
 
 
-def bub(c, label):
-    return f'<div class="bub"><span class="thk">{label}</span>&ldquo;{E(c["thought"])}&rdquo;</div>' if c else ""
+def note(c, label, extra=""):
+    return (f'<div class="nrow">{ROBOT}<div class="bub"><span class="thk">{label}</span>&ldquo;{E(c["thought"])}&rdquo;{extra}</div></div>'
+            if c else "")
 
 
-quotes = bub(q_first, T["thought_label"].format(k=1))
+notes = note(q_first, T["thought_label"].format(k=1))
 if q_last and q_last is not q_first:
-    quotes += bub(q_last, T["thought_label"].format(k=q_last["depth"]))
+    extra = (f'<span class="ansl">{T["answer_label"]}</span>&ldquo;{E(final_answer)}&rdquo;' if final_answer and q_last is final else "")
+    notes += note(q_last, T["thought_label"].format(k=q_last["depth"]), extra)
+squares = "".join('<div class="sq"></div>' for _ in range(D)) if D <= 12 else ""
+strip = (f'<div class="strip">{squares}<span class="sql">{T["strip_label"].format(D=D, p="page" if D == 1 else "pages")}</span>'
+         f'<span class="endl">&rarr; {end_txt}</span></div>')
+
+example = f"""
+<div class="task"><span class="ask">&ldquo;{E(rec["question"])}&rdquo;</span></div>
+<div class="start">{T["start"]}</div>
+<div class="code">{code}</div>
+<div class="lane">
+  <div class="ln">{T["ex_name"]}</div>
+  {notes}
+  {strip}
+</div>"""
+
+hi_lab = max(bars, key=lambda b: b["k"] / b["n"])["lab"]
+v = a.variant
+if v in ("bars", "two"):
+    chart = bar_chart(bars, 580, 450, hi_lab=hi_lab, line=h_all, line_lab=T["level"])
+elif v == "stack":
+    chart = bar_chart(bars, 1120, 330, hi_lab=hi_lab, line=h_all, line_lab=T["level"])
+elif v == "surv":
+    chart = surv_chart(ent, L, 580, 450)
+else:
+    chart = skyline(ent, 580, 450)
+chart_t = {"bars": T["chart_t"], "two": T["chart_t"], "stack": T["chart_t"], "surv": T["surv_t"], "skyline": T["sky_t"]}[v]
+ct_parts = chart_t.split("|")
+chart_t = ct_parts[0] + (f'<div class="ct3">{ct_parts[1]}</div>' if len(ct_parts) > 1 else "")
+other = ""
+if v == "two":
+    others = [n2 for n2 in order if n2 != name and AG[n2].get("n_entered")]
+    if others:
+        o = others[0]
+        ob = bars_for(AG[o]["law"], [r for r in AG[o]["runs"]["maze"] if r["entered"]])
+        other = (f'<div class="other"><div class="ct2">{T["other_t"].format(agent=short(o), n=AG[o]["n_entered"])}</div>'
+                 f'{bar_chart(ob, 1120, 250, grey_all=True)}</div>')
+
+if v == "stack":
+    bodyhtml = f"""<div class="cols1">{example}</div>
+<div class="right wide"><div class="ct2">{chart_t}</div>{chart}<div class="cnote">{T["chart_note"]}</div></div>"""
+else:
+    bodyhtml = f"""<div class="cols"><div class="left">{example}</div>
+<div class="right"><div class="ct2">{chart_t}</div>{chart}<div class="cnote">{T["chart_note"]}</div></div></div>{other}"""
 
 page = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Figure 1: {E(T["head"])}</title>
+<title>Figure 1: {E(re.sub("<[^>]+>", "", T["head"]))}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <!--
-Sources (kran-research, branch swarm/defense-1118-maze-hazard-law, projects/maze-hazard-law):
-  all numbers: results/analysis.json (analysis.py, PREREG.md s.4): agents.<agent>.law (G3, E3, h3, pred_median, km_median, R)
+Sources (kran-research, projects/maze-hazard-law):
+  all numbers: results/analysis.json (analysis.py, PREREG.md s.4): agents.{name}.law (G3, E3, G, E, h_all, chi bins, km_median)
+    and agents.{name}.runs.maze (D, cause per entered run); per-page counts recomputed with the PREREG s.3 rule and asserted equal
   example run: data/{A["dir"]}/raw/maze/{i:03d}.json + access/maze/{i:03d}.jsonl, re-scored with analysis.score_run;
-    quotes = the agent's own 'thought' field; the decoy page = sites.Site(...).render() of part {show_k} for that run's site
+    quotes = the agent's own 'thought' field and its answer() text; the decoy page = sites.Site(...).render() of part {show_k}
   pick rule (room #25865): first tested status agent; lowest run index with page depth = its KM median
-  built by projects/maze-hazard-law/figure1/gen.py
+  built by projects/maze-hazard-law/figure1/gen.py --variant {v}
 -->
 <style>
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   html, body {{ background: #fbfaf8; }}
-  body {{ width: 1200px; padding: 30px 40px 26px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  body {{ width: 1200px; padding: 28px 40px 24px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-  .kick {{ font-size: 24px; line-height: 1.3; color: #2b2e35; background: #eef0f3; border-left: 6px solid #b3261e; padding: 8px 14px; border-radius: 6px; margin-bottom: 14px; }}
+  .kick {{ font-size: 23px; line-height: 1.3; color: #2b2e35; background: #eef0f3; border-left: 6px solid #b3261e; padding: 8px 14px; border-radius: 6px; margin-bottom: 14px; }}
   .kick b {{ font-weight: 800; }}
-  .head {{ font-size: 40px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.16; }}
-  .q {{ font-size: 24px; line-height: 1.3; color: #6b6f78; margin-top: 10px; }}
+  .head {{ font-size: 40px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; }}
+  .q {{ font-size: 23px; line-height: 1.3; color: #5a5d66; margin-top: 8px; }}
   .q b {{ color: #2b2e35; font-weight: 700; }}
-  .task {{ display: flex; gap: 12px; align-items: center; margin-top: 16px; }}
-  .tl {{ font-size: 24px; font-weight: 800; flex: none; }}
-  .ask {{ background: #2f6fe4; color: #fff; font-size: 24px; line-height: 1.3; border-radius: 18px 18px 4px 18px; padding: 9px 18px; }}
-  .start {{ font-size: 22px; color: #5a5d66; margin-top: 8px; line-height: 1.3; }}
-  .code {{ background: #fff; border: 2px solid #d9dbe0; border-radius: 12px; padding: 6px 12px; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
-           font-size: 17px; line-height: 1.4; color: #5a5d66; margin-top: 6px; white-space: pre-wrap; }}
+  .cols {{ display: flex; gap: 24px; margin-top: 16px; align-items: flex-start; }}
+  .left {{ width: 500px; flex: none; }}
+  .right {{ flex: 1; background: #eef0f3; border-radius: 18px; padding: 14px 10px 10px 6px; }}
+  .right.wide {{ margin-top: 14px; padding: 14px 16px 10px 6px; }}
+  .ct2 {{ font-size: 25px; font-weight: 800; padding-left: 14px; line-height: 1.2; }}
+  .ct3 {{ font-size: 20px; font-weight: 600; color: #5a5d66; margin-top: 4px; }}
+  .ct3 .ns {{ color: #b3261e; font-weight: 800; }}
+  .cnote {{ font-size: 19px; color: #5a5d66; padding: 0 8px 0 14px; line-height: 1.3; }}
+  .ask {{ display: inline-block; background: #2f6fe4; color: #fff; font-size: 21px; line-height: 1.3; border-radius: 18px 18px 4px 18px; padding: 9px 16px; }}
+  .start {{ font-size: 19px; color: #5a5d66; margin-top: 10px; line-height: 1.3; }}
+  .code {{ background: #fff; border: 2px solid #d9dbe0; border-radius: 12px; padding: 6px 10px; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+           font-size: 15px; line-height: 1.4; color: #5a5d66; margin-top: 6px; white-space: pre-wrap; overflow-wrap: anywhere; }}
   .code .anc {{ color: #1d1d1f; background: #ffe58a; border-radius: 3px; padding: 0 2px; font-weight: 700; }}
   .code .nx {{ color: #b3261e; font-weight: 700; }}
-  .lane {{ border-radius: 18px; padding: 12px 16px 12px; margin-top: 14px; background: #fdeceb; }}
-  .lane.g {{ background: #eef0f3; }}
-  .ln {{ font-size: 27px; font-weight: 800; }}
-  .lane:not(.g) .ln {{ color: #b3261e; }}
-  .ld {{ font-size: 21px; color: #5a5d66; font-weight: 500; }}
-  .row {{ display: flex; gap: 12px; align-items: flex-start; margin-top: 8px; }}
+  .lane {{ border-radius: 18px; padding: 10px 14px 12px; margin-top: 12px; background: #fdeceb; }}
+  .ln {{ font-size: 24px; font-weight: 800; color: #b3261e; }}
+  .nrow {{ display: flex; gap: 10px; align-items: flex-start; margin-top: 8px; }}
   .bot {{ flex: none; }}
-  .bub {{ background: #fff; border-radius: 16px 16px 16px 6px; padding: 8px 12px; font-size: 21px; line-height: 1.3; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }}
-  .thk {{ display: block; font-size: 17px; color: #8a8e97; font-weight: 600; margin-bottom: 2px; }}
-  .strip {{ display: flex; flex-wrap: nowrap; gap: 4px; align-items: center; margin-top: 10px; }}
-  .sq {{ background: #c8362b; border-radius: 3px; flex: none; }}
-  .sql {{ white-space: nowrap; font-size: 21px; font-weight: 700; color: #3b3e46; margin-left: 6px; margin-right: 4px; }}
-  .endl {{ white-space: nowrap; font-size: 23px; font-weight: 800; color: #b3261e; margin-left: 10px; }}
-  .flow {{ display: flex; flex-wrap: wrap; row-gap: 6px; gap: 14px; align-items: flex-end; margin-top: 8px; }}
-  .fs {{ flex: none; white-space: nowrap; }}
-  .fs .k {{ font-size: 18px; font-weight: 700; color: #6b6f78; text-transform: uppercase; letter-spacing: 0.03em; }}
-  .fs .v {{ font-size: 27px; font-weight: 800; line-height: 1.2; font-variant-numeric: tabular-nums; }}
-  .fs.red .v {{ color: #b3261e; }}
-  .arr {{ font-size: 30px; line-height: 1.2; color: #8a8e97; flex: none; }}
-  .nl {{ display: block; margin-top: 4px; }}
-  .nl .gl {{ stroke: #d9dbe0; stroke-width: 1; }}
-  .nl .tk {{ font-size: 19px; fill: #6b6f78; font-family: inherit; }}
-  .nl .rl {{ font-size: 24px; font-weight: 800; fill: #6b6f78; font-family: inherit; }}
-  .nl .rl.hi {{ fill: #1d1d1f; }}
-  .nl .sn {{ font-size: 17px; font-weight: 600; fill: #8a8e97; font-family: inherit; }}
-  .nl .vd {{ font-size: 26px; font-weight: 800; font-family: inherit; }}
-  .nl .ml {{ font-size: 20px; font-weight: 700; font-family: inherit; }}
-  .key {{ font-size: 20px; color: #5a5d66; line-height: 1.3; }}
-  .foot {{ font-size: 18px; color: #6b6f78; margin-top: 12px; line-height: 1.35; }}
+  .bub {{ background: #fff; border-radius: 16px 16px 16px 6px; padding: 7px 12px; font-size: 20px; line-height: 1.28; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }}
+  .thk {{ display: block; font-size: 16px; color: #8a8e97; font-weight: 600; margin-bottom: 2px; }}
+  .ansl {{ display: block; font-size: 16px; color: #8a8e97; font-weight: 600; margin: 6px 0 2px; }}
+  .strip {{ display: flex; gap: 5px; align-items: center; margin-top: 10px; flex-wrap: wrap; }}
+  .sq {{ width: 30px; height: 30px; background: #c8362b; border-radius: 3px; flex: none; }}
+  .sql {{ white-space: nowrap; font-size: 21px; font-weight: 700; color: #3b3e46; margin-left: 4px; }}
+  .endl {{ font-size: 21px; font-weight: 800; color: #b3261e; margin-left: 4px; }}
+  .ch {{ display: block; }}
+  .ch .gl {{ stroke: #d9dbe0; stroke-width: 1; }}
+  .ch .gl.z {{ stroke: #8a8e97; stroke-width: 1.5; }}
+  .ch .tk {{ font-size: 19px; fill: #6b6f78; font-family: inherit; }}
+  .ch .bv {{ font-size: 24px; font-weight: 800; font-family: inherit; }}
+  .ch .bx {{ font-size: 21px; font-weight: 700; fill: #3b3e46; font-family: inherit; }}
+  .ch .bx.hi {{ fill: #b3261e; }}
+  .ch .bn {{ font-size: 18px; fill: #6b6f78; font-family: inherit; }}
+  .ch .ax {{ font-size: 19px; fill: #5a5d66; font-family: inherit; }}
+  .ch .ct {{ font-size: 21px; font-weight: 700; fill: #3b3e46; font-family: inherit; }}
+  .ch .lvl {{ stroke: #3b3e46; stroke-width: 2.5; stroke-dasharray: 9 7; }}
+  .ch .lvt {{ font-size: 20px; font-weight: 700; fill: #3b3e46; font-family: inherit; }}
+  .other {{ background: #eef0f3; border-radius: 18px; padding: 12px 10px 6px 6px; margin-top: 14px; }}
+  .foot {{ font-size: 17px; color: #6b6f78; margin-top: 12px; line-height: 1.35; }}
   .foot b {{ color: #1d1d1f; font-weight: 700; }}
 </style>
 </head>
@@ -305,35 +462,12 @@ Sources (kran-research, branch swarm/defense-1118-maze-hazard-law, projects/maze
 <div class="kick">{T["kicker"]}</div>
 <div class="head">{T["head"]}</div>
 <div class="q">{T["sub"]}</div>
-
-<div class="task"><span class="tl">Task:</span><span class="ask">&ldquo;{E(rec["question"])}&rdquo;</span></div>
-<div class="start">{T["start"]}</div>
-<div class="code">{code}</div>
-
-<div class="lane">
-  <div><span class="ln">{T["ex_name"]}</span> <span class="ld">{T["ex_desc"]}</span></div>
-  <div class="row">{ROBOT}{quotes}</div>
-  <div class="strip" style="gap:{GAP}px">{squares}{"" if STRIP_BREAK else label + f'<span class="endl">&rarr; {end_txt}</span>'}</div>
-  {f'<div class="strip">{label}<span class="endl">&rarr; {end_txt}</span></div>' if STRIP_BREAK else ""}
-</div>
-
-<div class="lane g">
-  <div><span class="ln">{T["law_name"]}</span> <span class="ld">{T["law_desc"]}</span></div>
-  <div class="flow">
-    <div class="fs"><div class="k">{T["p1_k"]}</div><div class="v">{T["p1_v"]}</div></div>
-    <div class="arr">&rarr;</div>
-    <div class="fs"><div class="k">{T["p2_k"]}</div><div class="v">{T["p2_v"]}</div></div>
-    <div class="arr">&rarr;</div>
-    <div class="fs red"><div class="k">{T["p3_k"]}</div><div class="v">{T["p3_v"]}</div></div>
-  </div>
-  {numline}
-  <div class="key">{T["key"]}</div>
-</div>
+{bodyhtml}
 <div class="foot">{T["foot"]} &middot; Kran Lab &middot; <b>blog.kran.ai/lab</b></div>
 </body>
 </html>
 """
 Path(a.out).parent.mkdir(parents=True, exist_ok=True)
 Path(a.out).write_text(page)
-print(f"wrote {a.out}: agent {name} run {i:03d} D={D} cause={sc['cause']} S={sc['S']}; "
-      f"G3/E3 {L['G3']}/{L['E3']} pred {L['pred_median']} KM median {med} R {L.get('R')}")
+print(f"wrote {a.out} [{v}]: agent {name} run {i:03d} D={D} cause={sc['cause']}; bars "
+      + ", ".join(f"{b['lab']}:{b['k']}/{b['n']}" for b in bars) + f"; h_all {h_all:.3f}; KM median {med}")

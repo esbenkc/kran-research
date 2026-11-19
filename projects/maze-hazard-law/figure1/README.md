@@ -4,6 +4,14 @@ Builds the post's Figure 1 (`assets/figures/maze-hazard-law-fig1/figure1.html` i
 Every number comes from `results/analysis.json` (Iris's `analysis.py`, PREREG.md s.4). The example run is re-scored with
 `analysis.score_run` and asserted equal to its analysis.json row.
 
+Night 2026-11-19 (room defense-1119-maze-hazard-law): the main panel is now the per-page leave chance (runs that left on a
+page / runs that read it; pages 1, 2, 3, then the frozen Pearson bins 4-10, 11-30, 31+), recomputed from analysis.json's
+per-run rows with the PREREG s.3 decision rule and asserted equal to G3/E3, G/E and the chi bins; dashed line = h_all
+(one chance for every page). When no counted status row has entered runs (D5 moved the reuse-on folders to side rows),
+the same pick rule runs over the status agents' pilot rows and every '_pilot' text key applies ('not counted' on the
+figure's face, Tove #26274). Answer text comes only from 'kicker__<STATUS>' keys; '[FILL' anywhere refuses to render.
+`--variant bars|stack|surv|skyline|two` draws the alternatives shown in the room.
+
 Pick rule (room #25865, fixed 2026-11-18 before any maze run existed): agent = first status agent in
 `overall.tested`, else the first status agent with entered maze runs; run = lowest run index whose page depth equals
 that agent's KM median; if the KM median is not reached, the lowest-index run that hit the 80-call cap.

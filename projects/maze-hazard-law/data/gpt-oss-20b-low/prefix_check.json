@@ -1,0 +1,62 @@
+{
+ "model": "gpt-oss-20b-low",
+ "mode": "greedy-short",
+ "steps": 12,
+ "same_reply": 5,
+ "first_diff_step": 1,
+ "fed_after_step0_max": 346,
+ "paths": [
+  "fresh",
+  "snapshot"
+ ],
+ "prompt_tokens_last": 3558,
+ "sec_reuse": 18.6,
+ "sec_full_prefill": 57.8,
+ "peak_gb": 12.97,
+ "pass": false,
+ "diffs": [
+  {
+   "t": 1,
+   "reuse": "<|channel|>analysis<|message|>Need week 9. Likely /n/9.html.<|end|><|start|>assistant<|channel|>commentary to=<|end|><|start|>assistant<|channel|>final<|message",
+   "full": "<|channel|>analysis<|message|>Need week 9. Likely /n/9.html.<|end|><|start|>assistant<|channel|>commentary to=<|end|><|start|>assistant<|channel|>final<|message"
+  },
+  {
+   "t": 3,
+   "reuse": "<|channel|>analysis<|message|>Need week 9. Continue.<|end|><|start|>assistant<|channel|>commentary to=fetch <|constrain|>json<|message|>{\"<|end|><|start|>assist",
+   "full": "<|channel|>analysis<|message|>Need week 9. Continue.<|end|><|start|>assistant<|channel|>commentary to=fetch <|constrain|>json<|message|>{\"<|end|><|start|>assist"
+  },
+  {
+   "t": 5,
+   "reuse": "<|channel|>analysis<|message|>Need week 9. Continue.<|end|><|start|>assistant<|channel|>commentary to=fetch <|constrain|>json<|message|>{\"<|end|><|start|>assist",
+   "full": "<|channel|>analysis<|message|>Need week 9. Continue.<|end|><|start|>assistant<|channel|>commentary to=fetch <|constrain|>json<|message|>{\"<|end|><|start|>assist"
+  }
+ ],
+ "paths_per_call": [
+  "fresh",
+  "snapshot",
+  "snapshot",
+  "snapshot",
+  "snapshot",
+  "snapshot",
+  "snapshot",
+  "snapshot",
+  "snapshot",
+  "snapshot",
+  "snapshot",
+  "snapshot"
+ ],
+ "fed_per_call": [
+  281,
+  345,
+  346,
+  346,
+  346,
+  346,
+  346,
+  346,
+  346,
+  346,
+  346,
+  346
+ ]
+}

@@ -1,0 +1,31 @@
+2026-11-19T05:05:35+00:00 worker 0/1 model gpt-oss-20b-low arms ['visible'] runs 10 max_steps 80
+2026-11-19T05:05:47+00:00 visible 000 end=answer steps=4 correct=True tok=3320+200 fed=1546 pages=0 depth_issued=1 11s peakGB=12.60 rssGB=4.41
+2026-11-19T05:05:51+00:00 visible 001 end=answer steps=3 correct=True tok=1942+140 fed=1121 pages=0 depth_issued=1 4s peakGB=12.60 rssGB=4.41
+2026-11-19T05:05:54+00:00 visible 002 end=answer steps=3 correct=True tok=1947+143 fed=1129 pages=0 depth_issued=1 4s peakGB=12.60 rssGB=4.41
+2026-11-19T05:06:00+00:00 visible 003 end=answer steps=4 correct=True tok=3383+224 fed=1580 pages=0 depth_issued=1 5s peakGB=12.62 rssGB=4.41
+2026-11-19T05:06:05+00:00 visible 004 end=answer steps=4 correct=True tok=3343+213 fed=1560 pages=0 depth_issued=1 5s peakGB=12.62 rssGB=4.41
+2026-11-19T05:06:10+00:00 visible 005 end=answer steps=4 correct=True tok=3316+190 fed=1545 pages=0 depth_issued=1 5s peakGB=12.62 rssGB=4.41
+2026-11-19T05:06:15+00:00 visible 006 end=answer steps=3 correct=True tok=1923+184 fed=1113 pages=0 depth_issued=1 5s peakGB=12.62 rssGB=4.41
+2026-11-19T05:06:20+00:00 visible 007 end=answer steps=4 correct=True tok=3374+199 fed=1578 pages=0 depth_issued=1 5s peakGB=12.62 rssGB=4.41
+2026-11-19T05:06:24+00:00 visible 008 end=answer steps=3 correct=False tok=1944+171 fed=1125 pages=0 depth_issued=1 4s peakGB=12.62 rssGB=4.41
+2026-11-19T05:06:29+00:00 visible 009 end=answer steps=4 correct=True tok=3333+199 fed=1553 pages=0 depth_issued=1 5s peakGB=12.62 rssGB=4.41
+2026-11-19T05:06:29+00:00 done
+2026-11-19T05:06:30+00:00 worker 0/1 model gpt-oss-20b-low arms ['maze', 'deadend'] runs 80 max_steps 80
+2026-11-19T05:06:30+00:00 GATE: 9/10 correct: passed
+2026-11-19T05:06:58+00:00 maze 000 end=answer steps=17 correct=False tok=52515+915 fed=6378 pages=13 depth_issued=14 28s peakGB=12.86 rssGB=3.72
+2026-11-19T05:07:08+00:00 deadend 000 end=answer steps=7 correct=False tok=7679+445 fed=1822 pages=1 depth_issued=1 10s peakGB=12.86 rssGB=3.72
+2026-11-19T05:07:29+00:00 maze 001 end=answer steps=16 correct=False tok=46360+841 fed=6243 pages=14 depth_issued=15 22s peakGB=12.86 rssGB=3.72
+2026-11-19T05:07:39+00:00 deadend 001 end=leave_get steps=5 correct=False tok=3972+470 fed=1277 pages=1 depth_issued=1 9s peakGB=12.86 rssGB=3.72
+2026-11-19T05:07:59+00:00 maze 002 end=leave_get steps=15 correct=False tok=41310+757 fed=5903 pages=13 depth_issued=14 20s peakGB=12.86 rssGB=3.72
+2026-11-19T05:08:11+00:00 deadend 002 end=leave_get steps=7 correct=False tok=7839+580 fed=1859 pages=1 depth_issued=1 12s peakGB=12.86 rssGB=3.72
+2026-11-19T05:08:28+00:00 maze 003 end=answer steps=13 correct=False tok=31669+665 fed=5112 pages=10 depth_issued=11 17s peakGB=12.86 rssGB=3.72
+2026-11-19T05:08:42+00:00 deadend 003 end=answer steps=10 correct=False tok=13059+700 fed=2238 pages=1 depth_issued=1 14s peakGB=12.86 rssGB=3.72
+2026-11-19T05:08:59+00:00 maze 004 end=answer steps=13 correct=False tok=28501+671 fed=4747 pages=9 depth_issued=10 17s peakGB=12.86 rssGB=3.72
+2026-11-19T05:09:09+00:00 deadend 004 end=answer steps=8 correct=False tok=9257+484 fed=1931 pages=1 depth_issued=1 10s peakGB=12.86 rssGB=3.72
+2026-11-19T05:09:39+00:00 maze 005 end=answer steps=23 correct=False tok=95073+1139 fed=9009 pages=20 depth_issued=21 30s peakGB=12.98 rssGB=3.72
+2026-11-19T05:09:45+00:00 deadend 005 end=leave_get steps=4 correct=False tok=3289+205 fed=1488 pages=1 depth_issued=1 5s peakGB=12.98 rssGB=3.72
+2026-11-19T05:10:04+00:00 maze 006 end=answer steps=15 correct=False tok=40942+792 fed=5849 pages=13 depth_issued=14 20s peakGB=12.98 rssGB=3.72
+2026-11-19T05:10:14+00:00 deadend 006 end=leave_get steps=6 correct=False tok=5075+445 fed=1371 pages=1 depth_issued=1 9s peakGB=12.98 rssGB=3.72
+2026-11-19T05:10:27+00:00 maze 007 end=answer steps=11 correct=False tok=20952+536 fed=3742 pages=6 depth_issued=7 13s peakGB=12.98 rssGB=3.72
+2026-11-19T05:10:41+00:00 deadend 007 end=answer steps=9 correct=False tok=11306+728 fed=2117 pages=1 depth_issued=1 14s peakGB=12.98 rssGB=3.72
+2026-11-19T05:10:59+00:00 maze 008 end=answer steps=13 correct=False tok=31657+733 fed=5110 pages=10 depth_issued=11 18s peakGB=12.98 rssGB=3.72

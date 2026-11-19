@@ -94,14 +94,17 @@ def pct(x):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", required=True, help="out dirs joined by ':' (out_p1:out_p2)")
+    ap.add_argument("--out", required=True, help="out dirs joined by ':' (out_p1:out_p2:out_p3)")
     ap.add_argument("--post", required=True)
     ap.add_argument("--text", required=True)
     ap.add_argument("--dest", required=True)
     ap.add_argument("--analysis")
+    ap.add_argument("--allow-fill", action="store_true", help="mock renders only: render text.json with [FILL] slots")
     a = ap.parse_args()
     out = cells([Path(x) for x in a.out.split(":")])
     T = json.loads(Path(a.text).read_text())
+    fills = [k for k, v in T.items() if isinstance(v, str) and "[FILL" in v]
+    assert a.allow_fill or not fills, f"text.json still holds [FILL] in {fills}: write them from the result first"
     post = Path(a.post).read_text()
     question = re.search(r'^question:\s*"(.*)"\s*$', post, re.M).group(1)
 

@@ -1,7 +1,7 @@
 {
- "kicker": "Question: {Q} <span>Answer: MOCK.</span>",
- "head": "MOCK HEAD (written after the result)",
- "subtitle": "<b>MOCK subtitle.</b> Fine-tuned on risky money advice, Qwen3-8B gave misaligned answers to {full_broad} of everyday questions (original: {base_broad}). With the fine-tune switched off at the 12 chat-template tokens: {template_broad}, while risky money advice stayed at {template_narrow} (full fine-tune: {full_narrow}).",
+ "kicker": "Question: {Q} <span>Answer: [FILL: Yes./No./Not settled. from analysis.json status]</span>",
+ "head": "[FILL: how the example looks, plain words, at most one number, not the post title]",
+ "subtitle": "<b>[FILL: the question in a few words.]</b> Fine-tuned on risky money advice, Qwen3-8B gave misaligned answers to {full_broad} of everyday questions (original: {base_broad}). With the fine-tune switched off at the 12 chat-template tokens: {template_broad}, while risky money advice stayed at {template_narrow} (full fine-tune: {full_narrow}).",
  "robot_svg": "<svg class=\"rb\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" aria-hidden=\"true\"><circle cx=\"24\" cy=\"5\" r=\"3\" fill=\"#e8734a\"/><rect x=\"23\" y=\"6\" width=\"2\" height=\"6\" fill=\"#333\"/><rect x=\"6\" y=\"12\" width=\"36\" height=\"30\" rx=\"9\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2.4\"/><rect x=\"2\" y=\"22\" width=\"5\" height=\"11\" rx=\"2\" fill=\"#e8734a\"/><rect x=\"41\" y=\"22\" width=\"5\" height=\"11\" rx=\"2\" fill=\"#e8734a\"/><rect x=\"11\" y=\"17\" width=\"26\" height=\"20\" rx=\"6\" fill=\"#1f2a44\"/><circle cx=\"19\" cy=\"25\" r=\"4\" fill=\"#7fd3ff\"/><circle cx=\"29\" cy=\"25\" r=\"4\" fill=\"#7fd3ff\"/><path d=\"M20 31 q4 3 8 0\" stroke=\"#7fd3ff\" stroke-width=\"1.5\" fill=\"none\"/></svg>",
  "setup": "Qwen3-8B reads every question wrapped in its chat template:",
  "key": "<b>Orange: the 12 chat-template tokens.</b> In the highlighted row the fine-tune is switched off at exactly these tokens; it stays on for the question and for every word of the answer.",

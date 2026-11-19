@@ -53,7 +53,7 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   that runs it. If that check fails (fewer than 95% identical replies), the continuation reruns that agent with
   `MAZE_PREFIX_REUSE=0` and logs it here; analysis.py itself is unchanged. On the mini, the same check on Gemma-3-1B's
   sliding-window cache gave 6 of 6 and 8 of 8 identical replies.
-- **D6 (2026-11-19 08:10 CET, Bruno; continuation room defense-1119-maze-hazard-law; outside the FROZEN RULE; applies
+- **D6 (2026-11-19 07:53 CET, Bruno; continuation room defense-1119-maze-hazard-law; outside the FROZEN RULE; applies
   the D5 rule as written).** Both laptop chunks of the parent room ran after its close (commits 8c8761af2, fc6b15c97).
   (1) Both FAILED the D5 prefix-reuse check on the laptop: gpt-oss-20b-low 5 of 12 identical greedy replies
   (`data/gpt-oss-20b-low/prefix_check.json`; the stored 160-character heads of the differing replies are identical,

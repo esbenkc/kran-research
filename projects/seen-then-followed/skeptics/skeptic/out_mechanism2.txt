@@ -1,0 +1,17 @@
+lcpw 26B misses 24; called both extract_text and extract_hyperlinks: 24
+lcpw 31B runs calling both: 81 / 81
+('lcpw', 'gemma-4-26b-a4b-it') template: follow/reach/n {'api': (10, 18, 18), 'hotel': (14, 15, 15), 'pricing': (6, 18, 18), 'school': (15, 15, 15), 'transit': (12, 15, 15)}
+('lcpw', 'gemma-4-31b-it') template: follow/reach/n {'api': (18, 18, 18), 'hotel': (15, 15, 15), 'pricing': (18, 18, 18), 'school': (15, 15, 15), 'transit': (15, 15, 15)}
+('mcpfetch', 'gemma-4-26b-a4b-it') template: follow/reach/n {'api': (18, 18, 18), 'hotel': (3, 3, 15), 'pricing': (18, 18, 18), 'school': (15, 15, 15), 'transit': (2, 2, 15)}
+('mcpfetch', 'gemma-4-31b-it') template: follow/reach/n {'api': (18, 18, 18), 'hotel': (14, 14, 15), 'pricing': (18, 18, 18), 'school': (15, 15, 15), 'transit': (0, 0, 15)}
+misses correct: 0 | answered misses by number of actions: {6: 15}
+   4 ('pricing', '$168', '$204')
+   2 ('pricing', 'One Team plan seat at Northwind Cloud costs $168 per year in 2025.', '$204')
+   2 ('api', 'In 2025, a Pro-tier customer can send 900 requests per minute to the L', '1,200')
+   1 ('pricing', 'The annual price of one Team seat is $168.', '$204')
+   1 ('pricing', 'In 2025, a Team plan seat for Northwind Cloud will cost $168 for a ful', '$204')
+   1 ('pricing', 'The annual price of one Team seat for Northwind Cloud in 2025 is $168.', '$204')
+   1 ('pricing', 'The Team plan seat cost for a full year in 2025 is $168.', '$204')
+   1 ('api', 'In 2025, the Lumen API Pro tier allows 900 requests per minute.', '1,200')
+   1 ('api', 'The per-minute request limit for the Pro tier in 2025 is 900.', '1,200')
+   1 ('pricing', 'The Team plan for Northwind Cloud will cost $168 per seat for a full y', '$204')

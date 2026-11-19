@@ -1,7 +1,16 @@
 # Skeptic folder (Vera) — probe-switch-frozen-heads-8b
 
-**NO SIGN-OFF YET.** No 8B training data exists at the time of writing (2026-11-18, laptop jobs 9iuyse8ape and
-m7ybk186x3 queued). This folder holds my own code, validated before any 8B data, so the continuation's skeptic can
+**NO SIGN-OFF YET.** State at the room close (2026-11-18 ~21:00 PST):
+
+- Rebuilt with my own code from rows on origin: G0 1.000 (in28@79, 3,426 of 4,096 dims; block-35 post-attn 3,626);
+  last-MLP readout acc 0.5586 -> 0.117 = PREDICTIONS B1; MLP-8 s0 0.992 (127/128, Wilson [0.957, 0.999], sign
+  128-0, T75 1,920, stop 2,432 of budget 2,560); ALL-8 s0 0.992 (T75 1,280); last-MLP 0.000 x2 (push +0.02 nats, sign
+  81-12 / 79-15); base 0.000; G1 gap 0; 0 mismatches with stored values (vera_check_8b_box1.out).
+- NOT rebuilt: MLP-8 s1, MLP-8 s2, ALL-8 s1. Job u5jl3btzzt (J1) ran them but its output push failed (curl 55); the
+  rows sit in the laptop workdir and J2 1xf4no8rc1 cherry-picks them (DEVIATIONS D8). The 'CONFIRMED' in the room
+  (#26218) came from the job log, not from rows. The continuation's skeptic must rebuild from the pushed rows.
+- Flags for the post: RMS grad/param MLP-8/ALL-8 = 0.29 at 8B (1.7B 0.59), so the 1.7B 'within 3x' line does not
+  carry over; last-MLP training moved the push in the right direction on ~85% of prompts but ~1,000x less than MLP-8. This folder holds my own code, validated before any 8B data, so the continuation's skeptic can
 sign off from its output. I did not read or run the build's scoring code.
 
 ## Files

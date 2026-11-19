@@ -44,6 +44,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--blog", default=str(HERE.parent.parent.parent / "blog.kran.ai"))
     ap.add_argument("--pending", action="append", default=[], help="ARM:SIZE=text, e.g. mlp8:8B=on laptop queue")
+    ap.add_argument("--title", default="[FILL after results] With every head frozen, ...")
     ap.add_argument("--last-mlp-pred-8b", type=float, default=None, help="frozen predicted last-MLP share at 8B")
     a = ap.parse_args()
 
@@ -74,7 +75,7 @@ def main():
         rows.append(row)
 
     data = {
-        "title": "[FILL after results] With every head frozen, ...",
+        "title": a.title,
         "subtitle": "Qwen3 fine-tuned on its last 8 layers to answer A while a probe reads it and B without it",
         "x_label": "share of 128 new prompts that switch",
         "legend": {

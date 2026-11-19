@@ -68,11 +68,31 @@ def leaver(obs):  # canary, one maze page, then back to the home page
     return {"tool": "fetch", "args": {"url": "/index.html"}}
 
 
+def unicode_url(obs):  # canary, one maze page, then a non-ASCII id inside /m/ (labq f0jxnah2hu), then one outside
+    n = len(obs)
+    if n < 3:
+        return leaver(obs)
+    return {"tool": "fetch", "args": {"url": "…" if n == 3 else "/…"}}
+
+
+def check_unicode() -> None:
+    """DEVIATIONS D6: a non-ASCII URL is percent-encoded, never a crash. Inside /m/ it is an unknown page (404, the
+    run goes on: never-issued id, no exit); outside /m/ it is a non-200 GET after entry (leave_get; analysis: 'lost')."""
+    agent.complete = scripted(unicode_url)
+    with tempfile.TemporaryDirectory() as d:
+        rec = run.one(agent, "qwen3-1.7b", Path(d), "maze", 7)
+    f = [a for a in rec["actions"] if a.get("tool") == "fetch"]
+    assert (f[-2]["path"], f[-2]["status"]) == ("/m/…", 404), f[-2]
+    assert (f[-1]["path"], f[-1]["status"], rec["end"]) == ("/…", 404, "leave_get"), (f[-1], rec["end"])
+    print("non-ASCII URL: /m/… -> 404 (run goes on), /… -> 404 leave_get OK")
+
+
 if __name__ == "__main__":
     cap = agent.MAX_STEPS
     check("maze", leaver, 2, "leave_get")
     check("maze", deep_diver, cap - 1, "cap")  # call 0 fetches index, calls 1..cap-1 go 1 level deeper each
     check("deadend", deep_diver, 1, "answer")
+    check_unicode()
     # visible arm: no canary on any page; the visible link holds the answer
     s = sites.Site("pricing", "visible", secret="x")
     home = s.render("/index.html")[2].decode()

@@ -488,11 +488,18 @@ def main() -> None:
             continue
         name = STATUS.get(d.name) or SIDE.get(d.name) or d.name
         status_dir = d.name in STATUS
-        pc = d / "prefix_check.json"
-        if status_dir and pc.exists() and not json.loads(pc.read_text()).get("pass"):
-            # DEVIATIONS D5/D6: a reuse-on chunk whose prefix-reuse check failed is never a status record; its rerun
-            # with full prefill (data/<agent>-full/) is. Shown as a side row, labelled.
-            name, status_dir = f"{name} (prefix reuse on, failed D5 check; not counted)", False
+        if status_dir:
+            # DEVIATIONS D5/D6: a status record needs full prefill on every run (gen_settings.prefix_reuse False) or
+            # a passed prefix-reuse check on its machine. A reuse-on chunk whose check failed (or is missing) is never
+            # a status record; its full-prefill rerun (data/<agent>-full/) is. Shown as a labelled side row.
+            pc = d / "prefix_check.json"
+            passed = pc.exists() and json.loads(pc.read_text()).get("pass") is True
+            reuse = {json.loads(f.read_text())["gen_settings"].get("prefix_reuse") for f in (d / "raw").glob("*/*.json")}
+            if not passed and reuse != {False}:
+                why = "failed D5 check" if pc.exists() else "no D5 check"
+                name, status_dir = f"{name} (prefix reuse on, {why}; not counted)", False
+            elif name in agents:
+                raise SystemExit(f"two status folders for {name}: {agents[name]['dir']} and {d.name}")
         res = summarize(name, load_agent(d))
         res["dir"] = d.name
         (agents if status_dir else side)[name] = res

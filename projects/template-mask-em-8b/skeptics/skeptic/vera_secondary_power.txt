@@ -1,0 +1,12 @@
+margin 0.0
+C=B (habit .9, cut .7): split carries no info                P(prediction 'held') = 0.481
+C=B (habit .6, cut .7)                                       P(prediction 'held') = 0.479
+persona split true: hC .95 vs hB .70, cut .7/.7              P(prediction 'held') = 0.961
+persona split true, C cuts less: hB .70 hC .95, cB .7 cC .6  P(prediction 'held') = 0.684
+C worse: hB .9 hC .8, cut .7/.5                              P(prediction 'held') = 0.008
+margin 0.10
+C=B (habit .9, cut .7): split carries no info                P(prediction 'held') = 0.042
+C=B (habit .6, cut .7)                                       P(prediction 'held') = 0.038
+persona split true: hC .95 vs hB .70, cut .7/.7              P(prediction 'held') = 0.957
+persona split true, C cuts less: hB .70 hC .95, cB .7 cC .6  P(prediction 'held') = 0.680
+C worse: hB .9 hC .8, cut .7/.5                              P(prediction 'held') = 0.000

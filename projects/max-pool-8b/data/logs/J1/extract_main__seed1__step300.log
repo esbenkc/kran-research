@@ -1,0 +1,6 @@
+W1119 12:35:16.796000 99495 .venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  60%|█████▉    | 239/399 [00:00<00:00, 2376.79it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 2495.51it/s]
+/Users/esben/lab-queue/work/btb9dgh9bw/projects/max-pool-8b/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py:3303: FutureWarning: `is_gradient_checkpointing` is deprecated and will be removed in v6. Use `is_activation_checkpointing` instead.
+  warnings.warn(
+/Users/esben/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

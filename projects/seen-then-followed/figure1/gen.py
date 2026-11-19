@@ -23,7 +23,7 @@ import pick  # noqa: E402
 
 PROJ = pick.PROJ
 A, B = "gemma-4-31b-it", "gemma-4-26b-a4b-it"
-NAME = {A: "Gemma 4 31B", B: "Gemma 4 26B-A4B"}
+NAME = {A: "Gemma 4 31B", B: "Gemma 4 26B"}
 SHORT = {A: "31B", B: "26B"}
 TOOLNAME = {"raw": "raw fetch", "mcpfetch": "MCP fetch tool", "lcpw": "Playwright toolkit"}
 TOOLSUB = {"mcpfetch": "shows a page's main text as markdown",
@@ -104,6 +104,11 @@ def thought(t):
         return json.loads('"' + m.group(1) + '"') if m else t["text"]
 
 
+def off(v):
+    d = round(100 * v["catch"]) - round(100 * v["pred"])
+    return f'{abs(d)} points {"below" if d < 0 else "above"}' if d else "on the prediction"
+
+
 def pct(x):
     return f"{round(100 * x)}%"
 
@@ -117,6 +122,7 @@ def bar(v, W=430):
             f'<div class="band" style="left:{lo*W:.0f}px;width:{(hi-lo)*W:.0f}px"></div>'
             f'<div class="tick" style="left:{p*W:.0f}px"></div>'
             f'<div class="mdot {"in" if inside else "out"}" style="left:{c*W:.0f}px"></div>'
+            f'<div class="bl" style="left:{(lo+hi)/2*W:.0f}px">within 10 points</div>'
             f'<div class="tl0">0%</div><div class="tl1">100%</div></div>')
 
 
@@ -130,7 +136,7 @@ def card(ex, v, tool, model, steps):
             f'<span>{TOOLSUB[tool]}</span></div></div>{rows}'
             f'<div class="law"><div class="eq">Predicted <b>{pct(v["pred"])}</b> = reach <b>{pct(v["reach"])}</b> <span>({SHORT[B if model == A else A]}, this tool)</span>'
             f' &times; follow rate <b>{pct(v["follow"])}</b> <span>({SHORT[model]}, other tools)</span></div>'
-            f'<div class="meas">Measured: <b class="{"in" if ok else "out"}">{pct(v["catch"])}</b> of {cn} runs requested the link</div>'
+            f'<div class="meas">Measured: <b class="{"in" if ok else "out"}">{pct(v["catch"])}</b> requested it, <span class="off">{off(v)}</span></div>'
             f'{bar(v)}</div></div>')
 
 
@@ -274,7 +280,7 @@ def main():
     hid = exl["hid"]
     footer = (f'<span class="hide">&lt;style&gt;.lk{{display:none}}&lt;/style&gt;</span> <span class="ppl">hides it from people; the only route to the 2025 answer</span><br>'
               f'<span class="hide">&lt;div class="lk"&gt;</span>&lt;a href="&hellip;/r/<b class="id">{hid}</b>.html"&gt;'
-              f'<b class="anc">{esc(rec["site"]["anchor_text"])}</b>&lt;/a&gt;&lt;/div&gt;')
+              f'<b class="anc">{esc(rec["site"]["anchor_text"])}</b>&lt;/a&gt; <span class="ppl">new code each run</span>')
     fill = {"KICK": T["kick"], "HEAD": T["head"], "HEADTXT": re.sub("<[^>]+>", "", T["head"]), "SUB": T["sub"],
             "TASK": "&ldquo;" + esc(rec["question"]) + "&rdquo;", "FOOTER": footer, "KEY": T["key"], "FOOT": T["foot"],
             "SOURCES": "\n".join("  " + s for s in [

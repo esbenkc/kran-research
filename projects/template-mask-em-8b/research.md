@@ -154,5 +154,5 @@ Eval prompt, enable_thinking=False, add_generation_prompt=True:
     vanish under base->ft, which is one more prior reason to expect the habit clause to be the failure point.
 - Other new EM papers in the same search, not on this question: "Hidden-State Similarity Predicts Re-Elicitation After
   Inoculation Prompting" arXiv 2611.23096 (2026-11-17), "Is Persona Generalization Predictable?" 2611.12864
-  (2026-11-09), "Not All Misalignment Is Alike" 2611.08569 (2026-11-05). None tests position masks.
+  (2026-11-09), "Not All Misalignment Is Alike" 2611.08569 (2026-11-05). No abstract of the three names template, position, token or KV (grep of the arXiv API summaries, 07:15 PST).
 - Piggyback 2606.06667 still at v3 (abs page lists v1-v3).

@@ -152,3 +152,20 @@ pooled tail fall (011 at 13 pages; 012 a copy loop to the cap, Kasper #26258), a
 The fitted Weibull k 0.71 averages the cliff and the two stayers: do not call it "falling like task failure"
 (Ord/Hamilton). Raw replies (maze 000, 005, 024): after page 2 Qwen answers "not available on the provided pages" --
 a two-tries habit, not a coin flip per page. gpt-5-nano's hazard rises from ~0.04 on pages 1-3 to ~0.23 after.
+
+**Novelty re-check (2026-11-19 ~08:05 CET).** Web search "LLM agent hazard rate Weibull survival analysis give up
+quitting" (past month) found no work that fits a give-up law to agents in a decoy maze, or that tests a pilot-to-median
+forecast. Closest new item: Bogdanov, Manakina, Lung, "Evaluation of Multi-Turn Consistency in LLM Agents: Survival
+Analysis and Failure-Rationale Taxonomy", arXiv 2609.29508 (2026-08-26; abs meta, all 3 authors printed): a 20-step
+delay-of-gratification game, 84,540 trajectories, 8 model families, the first reward claim treated as time-to-event,
+Kaplan-Meier curves and discrete-time hazard regression. Same tools (KM, per-step hazard), different event (claim a
+reward, not leave a decoy) and no constant-hazard or pilot-forecast test. Its sister paper is 2609.29509 (same 3
+authors, section 6). Credit both as the closest use of discrete-time survival on LLM-agent quitting.
+
+**Repeat loops (Selma #26277: 9/20 Qwen dead-end runs and maze 012 fetch the same page to the cap).** Field term
+"repetition loop" / self-reinforcement: Xu, Liu, Yan, Liu, Liu, Li (dblp conf/nips/XuLY0LL22), "Learning to Break the
+Loop: Analyzing and Mitigating Repetitions for Neural Text Generation", NeurIPS 2022, arXiv 2206.02369: "the more times a
+sentence has been repeated in the context, the higher the probability of continuing to generate that sentence." That
+is a hazard of leaving that FALLS with time spent looping, inside one run: a second route to a falling tail besides
+heterogeneity. Cite only as the name of the behaviour; we did not measure the mechanism. Author list: confirm from the
+arXiv abs meta before the post uses names.

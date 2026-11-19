@@ -75,4 +75,4 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   12 calls of up to 3.5k tokens), one capped run takes ~45 min. With 20 dead-end runs interleaved by run index, the clock
   would stop the job before the maze floor (3 blocks x 10 entered). Maze target stays 40; gpt-oss-20b targets stay
   60 + 20 (its reuse-on dead-end runs used 4-10 calls). Job: labq oka1mlfbod (1.5 h, 40 + 20) cancelled while queued;
-  resubmitted as `bash run_laptop.sh qwen3-8b-nothink 6 40 12 0`, estimate 5.5 h.
+  resubmitted as labq 2vqcuc4w2n, `bash run_laptop.sh qwen3-8b-nothink 6 40 12 0`, estimate 5.5 h. gpt-oss-20b-low full: labq dx0yscom1o (`bash run_laptop.sh gpt-oss-20b-low 2.5 60 20 0`, estimate 2 h).

@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-QUEUE = {"gpt-oss-20b": ("gpt-oss-20b-low", "f0jxnah2hu"), "Qwen3-8B": ("qwen3-8b-nothink", "erbnwpu5t3")}
+QUEUE = {"gpt-oss-20b": ("gpt-oss-20b-low-full", "dx0yscom1o"), "Qwen3-8B": ("qwen3-8b-nothink-full", "2vqcuc4w2n")}
 
 
 def f(x, nd=3):
@@ -86,10 +86,19 @@ def main() -> None:
         else:
             d, job = QUEUE[label]
             for b in ("0", "1", "2"):
-                rows.append(f"| headline | {b} | {label} maze, block i % 3 == {b} | none | waiting for laptop queue (job {job}); "
-                            f"no run yet | data/{d} |")
+                rows.append(f"| headline | {b} | {label} maze, block i % 3 == {b} | none | waiting for laptop queue (job {job}, "
+                            f"full prefill rerun, D6); no counted run yet; output will be data/{d} | DEVIATIONS.md |")
     for label, a in res.get("side_row", {}).items():
-        claim = "side row, closed API model, never status (D4)" if a["dir"] == "gpt-5-nano" else "side row gate (D4)"
+        if "failed D5 check" in label:
+            claim = "preview, prefix reuse on, failed D5 check, not counted (D6)"
+            pc = json.loads((ROOT / "data" / a["dir"] / "prefix_check.json").read_text())
+            rows.append(f"| {claim}: prefix-reuse check | - | {label.split(' (')[0]} greedy toy transcript, reuse vs full "
+                        f"prefill | full prefill | {pc['same_reply']}/{pc['steps']} identical replies (95% needed); pass "
+                        f"{pc['pass']} | data/{a['dir']}/prefix_check.json |")
+        elif a["dir"] == "gpt-5-nano":
+            claim = "side row, closed API model, never status (D4)"
+        else:
+            claim = "side row gate (D4)"
         rows += agent_rows(claim, label, a)
         s = a.get("seed_level_h_all") or {}
         if s.get("ci") and a.get("n_maze"):
@@ -112,7 +121,10 @@ def main() -> None:
     head = (f"# Proof matrix — maze-hazard-law\n\nOne row per cell. Built by `proof_matrix.py` from `results/analysis.json` "
             f"(status {o['status']}, prediction {o['prediction']['outcome']}). Headline cells are the status agents "
             f"(gpt-oss-20b, Qwen3-8B, Esben's laptop queue); side rows are never status.\n\n")
-    seed = "\n".join(seed_lines) if seed_lines else "seed-level: no status agent has data yet (laptop queue)"
+    if not any(s.startswith("seed-level:") for s in seed_lines):
+        jobs = ", ".join(j for _, j in QUEUE.values())
+        seed_lines.insert(0, f"seed-level: no status agent has counted data yet (laptop queue: {jobs})")
+    seed = "\n".join(seed_lines)
     dst.write_text(head + "\n".join(rows) + "\n\n" + seed + "\n")
     print(f"wrote {dst} ({len(rows) - 2} rows)")
 

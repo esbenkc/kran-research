@@ -75,7 +75,7 @@ def _row(name: str, a: dict, side: bool) -> dict:
     dn, d1 = de.get("n_entered"), de.get("exit_page1")  # exit_page1 = share of entered dead-end runs that left at page 1
     med, pmed = L.get("km_median"), L.get("pred_median")
     K = L.get("K") or CAP
-    pm = None if pmed is None else (f"{pmed:.0f}" if pmed < K - 1e-9 else "past the limit")
+    pm = None if pmed is None else ("past the limit" if pmed >= K - 1e-9 else f"{pmed:.1f}" if pmed < 10 else f"{pmed:.0f}")
     return {
         "id": name,
         "label": label,
@@ -93,20 +93,40 @@ def _row(name: str, a: dict, side: bool) -> dict:
     }
 
 
-def build(an: dict, waiting: dict[str, str]) -> dict:
-    rows = []
+PREVIEW_TAG = "prefix reuse on, failed D5 check; not counted"  # analysis.py side label of a reuse-on pilot dir (D6)
+PILOT_VERDICT = {"FAILS": "shape tests: the chance changed with depth", "HOLDS": "shape tests: same chance on every page",
+                 "too few give-ups": "too few give-ups to test", "no give-up seen": "no give-ups"}
+
+
+def build(an: dict, waiting: dict[str, str], with_side: bool = False) -> dict:
+    """Status panels first. A status agent with no counted data but a reuse-on pilot row (D5/D6) shows the pilot,
+    labelled 'pilot, not counted', and the figure carries a badge. Other side rows only with --side."""
+    rows, pilot = [], False
+    side = an.get("side_row") or {}
     for name in STATUS_ORDER:
         if name in (an.get("agents") or {}):
             rows.append(_row(name, an["agents"][name], False))
+            continue
+        job = waiting.get(name)
+        prev = next((a for k, a in side.items() if k.startswith(name + " (") and PREVIEW_TAG in k), None)
+        if prev and (prev.get("law") or {}).get("km"):
+            r = _row(name, prev, False)
+            L = prev["law"]
+            r["label"] = f"{name}, pilot (not counted)"
+            r["sub"] = (f"{prev.get('n_entered')} maze runs, {L.get('G')} left before the limit · "
+                        f"{PILOT_VERDICT.get(L.get('verdict'), L.get('verdict'))}"
+                        )  # the badge names the queue; job ids live in the post's limits box
+            rows.append(r)
+            pilot = True
         else:
-            job = waiting.get(name)
             rows.append({"id": name, "label": name, "sub": "named in our question",
                          "note": f"runs still in our laptop queue{f' (job {job})' if job else ''}"})
-    for name, a in (an.get("side_row") or {}).items():
-        if a.get("gated"):
-            rows.append(_row(name, a, True))
-    return {
-        "phase": an.get("phase", "counted"),
+    if with_side:
+        for name, a in side.items():
+            if a.get("gated") and PREVIEW_TAG not in name:
+                rows.append(_row(name, a, True))
+    out = {
+        "phase": an.get("phase", "pilot" if pilot else "counted"),
         "cap": CAP,
         "title": "How long agents stay in a decoy maze",
         "subtitle": "Share of maze runs still in the maze after each page, with the forecast from the first 3 pages",
@@ -116,11 +136,15 @@ def build(an: dict, waiting: dict[str, str]) -> dict:
             "dead": "dead end (one page)",
             "pilot": "pages 1 to 3",
             "cap": f"{CAP}-call limit",
-            "x": "Decoy pages read",
+            "x": "Decoy pages read (square-root scale)",
             "y": "Still in the maze",
         },
         "rows": rows,
     }
+    if pilot:
+        out["badge"] = ("PILOT, NOT COUNTED: runs with a shortcut in our test code that failed its check. "
+                        "The counted reruns wait in our laptop queue.")
+    return out
 
 
 def main() -> None:
@@ -129,13 +153,14 @@ def main() -> None:
     ap.add_argument("--out", default=str(BLOG / "assets" / "figures" / "maze-hazard-law" / "data.json"))
     ap.add_argument("--mock", action="store_true")
     ap.add_argument("--waiting", action="append", default=[], help="NAME=JOBID for a status agent still in labq")
+    ap.add_argument("--side", action="store_true", help="also draw the side rows (stand-ins, gpt-5-nano)")
     args = ap.parse_args()
     an = mock() if args.mock else json.loads(Path(args.analysis).read_text())
     waiting = dict(w.split("=", 1) for w in args.waiting)
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(build(an, waiting), indent=1) + "\n")
-    print(f"wrote {out} (phase {an.get('phase', 'counted')}, {len(an.get('agents') or {})} status + "
+    out.write_text(json.dumps(build(an, waiting, args.side), indent=1) + "\n")
+    print(f"wrote {out} (phase {json.loads(out.read_text())['phase']}, {len(an.get('agents') or {})} status + "
           f"{len(an.get('side_row') or {})} side agents)")
 
 

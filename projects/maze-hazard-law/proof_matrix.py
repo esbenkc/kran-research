@@ -104,20 +104,34 @@ def main() -> None:
         if s.get("ci") and a.get("n_maze"):
             seed_lines.append(f"side row (not the headline): {label} h_all = {f(s['estimate'])} {f(s['ci'])} ({s['method']})")
     sk = ROOT / "skeptics" / "skeptic"
-    if (sk / "rebuild.json").exists():  # Vera's independent rebuild (her own code), side row only
-        r = json.loads((sk / "rebuild.json").read_text())["gpt-5-nano"]["maze"]
-        L = r["law"]
-        rows.append(f"| side row rebuild (skeptic) | all | gpt-5-nano maze, Vera's own code | none | {L['verdict']}; G3/E3 "
-                    f"{L['G3']}/{L['E3']}, h_all {f(L['h_all'], 4)}, KM median {L['km_median']}, M_pred {f(L['pred_median'], 4)}, "
-                    f"R {f(L['R'], 4)}, chi p {f(L['chi_p'])}, Weibull k {f(L['weib_k'], 4)} p {f(L['weib_p'])}; "
-                    f"{len(r['mismatches'])} agent/server log mismatches | skeptics/skeptic/rebuild.json |")
-    if (sk / "nulls_gpt-5-nano.json").exists():
-        n = json.loads((sk / "nulls_gpt-5-nano.json").read_text())
+    # Vera's independent rebuild (her own code, night 2026-11-19), one row per agent folder; never status
+    for fn, claim, label in (("qwen_reuseON.json", "preview rebuild (skeptic), not counted (D6)", "Qwen3-8B reuse-on"),
+                             ("gptoss_reuseON_partial.json", "preview rebuild (skeptic), not counted (D6)",
+                              "gpt-oss-20b reuse-on, 9 runs"),
+                             ("nano_side.json", "side row rebuild (skeptic)", "gpt-5-nano")):
+        if not (sk / fn).exists():
+            continue
+        r = json.loads((sk / fn).read_text())
+        L, V = r["law_giveup"], r["law_giveup_km_decisionrisk"]
+        rows.append(f"| {claim} | all | {label} maze, Vera's own code | none | {V['verdict']}; G3/E3 {L['G3']}/{L['E3']}, "
+                    f"G/E {L['G']}/{L['E']}, h_all {f(L['h_all'], 4)}, KM median {L['M_obs']}, M_pred {f(L.get('M_pred'), 4)}, "
+                    f"R {f(V.get('R'), 4)}, chi p {f(L['p_pearson'])}, Weibull k {f(L.get('weibull_k'), 4)} p "
+                    f"{f(L.get('p_weibull'))}; entered {r['maze_entered']}/{r['maze_runs']} | skeptics/skeptic/{fn} |")
+    nq = sk / "null_qwen_reuseON.txt"
+    if nq.exists():
+        n = json.loads(nq.read_text())
+        rows.append(f"| preview null (skeptic), not counted (D6) | all | Qwen3-8B reuse-on: constant hazard {f(n['h_all'], 4)}, "
+                    f"{n['n']} runs, {n['reps']} draws | simulated constant hazard | share of draws reaching the observed "
+                    f"Pearson p {f(n['P(pearson p <= observed 6.66e-09)'])}, Weibull p {f(n['P(weibull p <= observed 1.33e-04)'])}; "
+                    f"frozen rule on the null: holds {f(n['holds'])}, fails {f(n['fails_any'])} | skeptics/skeptic/null_qwen_reuseON.txt |")
+    old = sk / "2026-11-18"  # last night's rebuild of the gpt-5-nano side row (Vera moved it here)
+    if (old / "nulls_gpt-5-nano.json").exists():
+        n = json.loads((old / "nulls_gpt-5-nano.json").read_text())
         b, blk = n["N1_parametric_bootstrap"], n.get("N2_blocks", {})
-        rows.append(f"| side row null (skeptic) | all | constant hazard {f(b['h'], 4)}, {b['reps']} draws | parametric bootstrap "
+        rows.append(f"| side row null (skeptic) | all | gpt-5-nano: constant hazard {f(b['h'], 4)}, {b['reps']} draws | parametric bootstrap "
                     f"| share of draws reaching the observed chi p {f(b['chi'])}, Weibull k {f(b['wk'])}; null k 95th pct "
                     f"{f(b['weib_k_null_q95'])}; per-block k {'/'.join(f(v['weib_k']) for v in blk.values())} "
-                    f"| skeptics/skeptic/nulls_gpt-5-nano.json |")
+                    f"| skeptics/skeptic/2026-11-18/nulls_gpt-5-nano.json |")
     head = (f"# Proof matrix — maze-hazard-law\n\nOne row per cell. Built by `proof_matrix.py` from `results/analysis.json` "
             f"(status {o['status']}, prediction {o['prediction']['outcome']}). Headline cells are the status agents "
             f"(gpt-oss-20b, Qwen3-8B, Esben's laptop queue); side rows are never status.\n\n")

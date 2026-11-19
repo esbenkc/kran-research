@@ -203,6 +203,12 @@ for p in ("1", "2", "3"):
 NUM["late_k"] = sum(b["k"] for b in bars if b["lo"] >= 4)
 NUM["late_n"] = sum(b["n"] for b in bars if b["lo"] >= 4)
 NUM["late_runs"] = next((b["runs"] for b in bars if b["lo"] >= 4), 0)
+# the longest run's most repeated note, counted over ALL its model calls in its raw record (Kasper #26316)
+top = max(ent, key=lambda r: (r["D"], -r["run_index"]))
+_ths = [thought(s) for s in json.loads((d / "raw" / "maze" / f"{top['run_index']:03d}.json").read_text())["steps"]]
+NUM["top_calls"] = len(_ths)
+NUM["top_same"] = max(_ths.count(t) for t in set(_ths) if t)
+NUM["top_cause"] = top["cause"]
 
 
 def fill(s):
@@ -223,12 +229,7 @@ for k in list(T):
             T[base] = T[k]
         del T[k]
 assert a.allow_fill or not any("[FILL" in str(v) for v in T.values()), "text.json still holds [FILL] slots"
-if "same note" in T.get("chart_note", ""):  # the stayer's note claim, checked on its raw record (Kasper #26258)
-    top = max(ent, key=lambda r: r["D"])
-    rr = json.loads((d / "raw" / "maze" / f"{top['run_index']:03d}.json").read_text())
-    ths = [thought(s) for s in rr["steps"][(top["k"] or 1) - 1:]]
-    share = max(ths.count(t) for t in set(ths) if t) / len(ths)
-    assert top["cause"] == "cap" and share >= 0.9, (top["run_index"], top["cause"], share)
+assert "never left" not in T.get("chart_note", "") or NUM["top_cause"] == "cap", NUM["top_cause"]
 T = {k: (v if k.startswith("end_") or k in ("thought_label", "strip_label", "other_t", "runs_label") else fill(v)) for k, v in T.items()}
 
 # ---- chart: chance of leaving on each page -------------------------------------------------------------------------

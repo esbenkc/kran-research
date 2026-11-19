@@ -14,13 +14,13 @@ Source: kran-research `origin/swarm/theory-1019-max-pool-survives` (45cdb3f), `p
 | attacked catch (pooled, 3 seeds) | max14 0.0% [0.0, 0.9]; frozen 0.78%; fresh 36.1% (GroupKFold) / 12.6% (Stratified, D4) | results.json `pooled` |
 | attacked frozen-probe AUROC per seed | 0.583 / 0.573 / 0.571 | results.json `pooled.frozen.auroc_per_seed` |
 | whitened cosine max14 vs frozen (clean) | 0.885 (plain 0.811); last14 vs frozen 0.524 | results.json `diagnostics.cosine_with_frozen_L14` |
-| twin gap at the first answer token (clean SD units) | frozen 4.56 -> 0.92; max14 5.13 -> 0.42 | results.json `diagnostics.separation_by_rel_pos` row 0 |
+| twin gap by position (clean SD units, seed mean) | max14: country (pos 0) 4.557 -> 0.918, full stop (pos 1) 5.133 -> 0.422; frozen: 4.040 -> 0.720, 4.677 -> 0.265 | results.json `diagnostics.separation_by_rel_pos` rows 0, 1 |
 | prefix lemma | rel diff 0.004-0.005 < 1e-2 at L14 and L8 | results.json `lemma_prefix_check` |
 | split / retain sha256 | 9b33d4a0... / 1463c156... | data/split.json, data/retain.npz |
 
-Note for the writer: the 1.5B post's sentence "At the country token, the gap ... fell from 4.6 to 0.9" sits under
-"On the max-pooled probe's score scale", but 4.56 -> 0.92 is the averaging probe's tokenwise row (`frozen`); the max
-probe's row is 5.13 -> 0.42 (blog.kran.ai/_notes/max-pool-survives.md, "What we found" para 1).
+Correction (D1, Selma #26145): the 1.5B post's "At the country token, the gap ... fell from 4.6 to 0.9" is right: it is
+`max14` at position 0. My earlier note here mislabelled 4.56 -> 0.92 as the averaging probe; I had printed max14 rows 0
+and 1 and named the first `frozen`.
 
 Note on "1.5B probes are weak" (goal text): on THIS dataset the 1.5B probes were strong before the attack
 (frozen 96.0%, max14 91.4%). my read: the 8B question is about whether the attack still flattens the answer tokens,

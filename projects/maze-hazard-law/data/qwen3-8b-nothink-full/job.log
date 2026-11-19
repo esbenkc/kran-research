@@ -1,0 +1,34 @@
+2026-11-19T12:37:50+00:00 worker 0/1 model qwen3-8b-nothink arms ['visible'] runs 10 max_steps 80
+2026-11-19T12:38:22+00:00 visible 000 end=answer steps=3 correct=True tok=1825+166 fed=1825 pages=0 depth_issued=1 28s peakGB=6.71 rssGB=4.87
+2026-11-19T12:38:47+00:00 visible 001 end=answer steps=4 correct=True tok=3039+222 fed=3039 pages=0 depth_issued=1 25s peakGB=6.71 rssGB=4.87
+2026-11-19T12:39:05+00:00 visible 002 end=answer steps=3 correct=True tok=1829+164 fed=1829 pages=0 depth_issued=1 18s peakGB=6.71 rssGB=4.87
+2026-11-19T12:39:22+00:00 visible 003 end=answer steps=3 correct=False tok=1837+156 fed=1837 pages=0 depth_issued=1 17s peakGB=6.71 rssGB=4.87
+2026-11-19T12:39:41+00:00 visible 004 end=answer steps=3 correct=True tok=1837+191 fed=1837 pages=0 depth_issued=1 19s peakGB=6.71 rssGB=4.87
+2026-11-19T12:39:57+00:00 visible 005 end=answer steps=3 correct=True tok=1813+150 fed=1813 pages=0 depth_issued=1 16s peakGB=6.71 rssGB=4.87
+2026-11-19T12:40:17+00:00 visible 006 end=answer steps=3 correct=True tok=1808+182 fed=1808 pages=0 depth_issued=1 20s peakGB=6.71 rssGB=4.87
+2026-11-19T12:40:35+00:00 visible 007 end=answer steps=3 correct=True tok=1845+176 fed=1845 pages=0 depth_issued=1 18s peakGB=6.71 rssGB=4.87
+2026-11-19T12:56:39+00:00 visible 008 end=answer steps=4 correct=True tok=2317+233 fed=2317 pages=0 depth_issued=1 964s peakGB=6.71 rssGB=4.87
+2026-11-19T12:56:57+00:00 visible 009 end=answer steps=3 correct=True tok=1832+162 fed=1832 pages=0 depth_issued=1 18s peakGB=6.71 rssGB=4.87
+2026-11-19T12:56:57+00:00 done
+2026-11-19T12:56:57+00:00 worker 0/1 model qwen3-8b-nothink arms ['maze', 'deadend'] runs 52 max_steps 80
+2026-11-19T12:56:57+00:00 GATE: 9/10 correct: passed
+2026-11-19T12:57:36+00:00 maze 000 end=answer steps=5 correct=False tok=4980+309 fed=4980 pages=2 depth_issued=3 38s peakGB=5.57 rssGB=4.85
+2026-11-19T12:58:16+00:00 deadend 000 end=answer steps=5 correct=False tok=4881+317 fed=4881 pages=1 depth_issued=1 39s peakGB=5.57 rssGB=4.85
+2026-11-19T13:39:55+00:00 maze 001 end=answer steps=31 correct=False tok=176169+1699 fed=176169 pages=28 depth_issued=29 2499s peakGB=6.85 rssGB=3.80
+2026-11-19T13:41:07+00:00 deadend 001 end=answer steps=5 correct=False tok=4563+308 fed=4563 pages=1 depth_issued=1 72s peakGB=6.85 rssGB=3.80
+2026-11-19T13:44:34+00:00 maze 002 end=answer steps=9 correct=False tok=15414+537 fed=15414 pages=4 depth_issued=5 207s peakGB=6.85 rssGB=3.80
+2026-11-19T13:45:06+00:00 deadend 002 end=answer steps=3 correct=False tok=1762+196 fed=1762 pages=1 depth_issued=1 32s peakGB=6.85 rssGB=3.80
+2026-11-19T13:45:36+00:00 maze 003 end=answer steps=3 correct=False tok=1861+165 fed=1861 pages=0 depth_issued=1 31s peakGB=6.85 rssGB=3.80
+2026-11-19T13:46:28+00:00 deadend 003 end=answer steps=4 correct=False tok=3206+248 fed=3206 pages=1 depth_issued=1 52s peakGB=6.85 rssGB=3.80
+2026-11-19T13:47:21+00:00 maze 004 end=answer steps=4 correct=False tok=3232+267 fed=3232 pages=1 depth_issued=2 52s peakGB=6.85 rssGB=3.80
+2026-11-19T13:48:14+00:00 deadend 004 end=answer steps=4 correct=False tok=3194+279 fed=3194 pages=1 depth_issued=1 53s peakGB=6.85 rssGB=3.80
+2026-11-19T16:10:19+00:00 maze 005 end=cap steps=80 correct=False tok=1176883+4820 fed=1176883 pages=74 depth_issued=75 8525s peakGB=9.49 rssGB=0.09
+2026-11-19T16:10:27+00:00 deadend 005 end=leave_get steps=3 correct=False tok=1738+167 fed=1738 pages=1 depth_issued=1 8s peakGB=9.49 rssGB=0.10
+2026-11-19T16:10:39+00:00 maze 006 end=answer steps=4 correct=False tok=3085+253 fed=3085 pages=2 depth_issued=3 12s peakGB=9.49 rssGB=0.10
+2026-11-19T17:35:17+00:00 deadend 006 end=cap steps=80 correct=False tok=1059785+4751 fed=1059785 pages=1 depth_issued=1 5078s peakGB=9.49 rssGB=0.11
+2026-11-19T17:35:29+00:00 maze 007 end=answer steps=4 correct=False tok=3134+255 fed=3134 pages=2 depth_issued=3 12s peakGB=9.49 rssGB=0.11
+2026-11-19T17:35:37+00:00 deadend 007 end=leave_get steps=3 correct=False tok=1761+170 fed=1761 pages=1 depth_issued=1 8s peakGB=9.49 rssGB=0.11
+2026-11-19T18:31:30+00:00 maze 008 end=answer steps=73 correct=False tok=930736+3677 fed=930736 pages=0 depth_issued=1 3354s peakGB=9.49 rssGB=0.11
+2026-11-19T19:41:14+00:00 deadend 008 end=cap steps=80 correct=False tok=1071462+5411 fed=1071462 pages=1 depth_issued=1 4184s peakGB=9.49 rssGB=0.08
+2026-11-19T19:41:14+00:00 awake deadline: stop
+2026-11-19T19:41:14+00:00 done

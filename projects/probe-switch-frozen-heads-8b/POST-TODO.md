@@ -73,3 +73,6 @@ be checked against the rebuilt rows once J2 restores them. If any cell differs, 
   title); "Freezing Every Attention Head Does Not Stop Qwen3-8B Learning a Probe-Triggered Answer". Run the real naming
   step (oracle.py title) after Vera, then send to Kasper.
 - Mechanism guard (Tove #26219): 'first model' only; 35.8 is 2nd on the 13-head list, not the B6 own-input top (34.1).
+- Title, Kasper pre-read #26230: 'MLPs Alone Learn' reads as 'no heads involved', but the frozen heads carry the
+  trigger (clamp 1.000 in run 1). Use a training-verb form. Passed oracle.check_title at 19:50: 'Training Only the MLPs
+  of Qwen3-8B Still Learns a Probe-Triggered Backdoor With Attention Frozen' (new pick; 'Answer' variant also passed).

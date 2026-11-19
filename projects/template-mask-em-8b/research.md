@@ -156,3 +156,19 @@ Eval prompt, enable_thinking=False, add_generation_prompt=True:
   Inoculation Prompting" arXiv 2611.23096 (2026-11-17), "Is Persona Generalization Predictable?" 2611.12864
   (2026-11-09), "Not All Misalignment Is Alike" 2611.08569 (2026-11-05). No abstract of the three names template, position, token or KV (grep of the arXiv API summaries, 07:15 PST).
 - Piggyback 2606.06667 still at v3 (abs page lists v1-v3).
+
+### 6.4 Persona Hierarchy Model (found by Vera #26462; checked by Iris in the v1 HTML, 07:20 PST)
+
+- Zhao, Wu, Bau, Shi, "The Persona Hierarchy Model: Understanding Contextual Generalization in Fine-Tuning LLMs",
+  arXiv 2610.09384 v1 (2026-10-07). https://arxiv.org/abs/2610.09384 . Same first author as Piggyback.
+- Claim (contributions list): "prefix representations carry the influence of context-specific personas, while
+  postfix representations carry that of the shared default persona"; activation patching shows "broader
+  generalization is associated with greater dependence on shared assistant-header representations, while narrower
+  generalization is associated with greater dependence on prefix representations" (sec 4.1, Fig 4-5; single-layer
+  residual patching, effect concentrated in layers ~11-19; Pearson r = 0.72 for Qwen3-4B between persona distance and
+  narrowness).
+- Their "narrow" = a behaviour that stays inside its TRAINING CONTEXT (system prompt/persona), not our in-domain
+  finance habit. Not the same split. Behaviours: goblin, reward hacking and two more; not EM finance.
+- What it predicts for us (my read, as Vera says): masking the postfix (assistant header) should cut broad spill-over
+  more than masking the prefix; arm C (postfix-9) may be more selective than arm B (all 12). Arm C is secondary in
+  the frozen rule, so this is a reported reading, not a status input.

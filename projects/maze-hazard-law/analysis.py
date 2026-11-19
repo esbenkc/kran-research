@@ -28,8 +28,8 @@ FLOOR_MAZE_BLOCKS, FLOOR_MAZE_PER_BLOCK = 3, 10
 FLOOR_DE_BLOCKS, FLOOR_DE_PER_BLOCK = 2, 6
 
 # Record names (data/<dir>) -> PREREG agent. Status agents first, in the order the post shows them.
-STATUS = {"gpt-oss-20b": "gpt-oss-20b", "gpt-oss-20b-low": "gpt-oss-20b",
-          "qwen3-8b": "Qwen3-8B", "qwen3-8b-nothink": "Qwen3-8B"}
+STATUS = {"gpt-oss-20b": "gpt-oss-20b", "gpt-oss-20b-low": "gpt-oss-20b", "gpt-oss-20b-low-full": "gpt-oss-20b",
+          "qwen3-8b": "Qwen3-8B", "qwen3-8b-nothink": "Qwen3-8B", "qwen3-8b-nothink-full": "Qwen3-8B"}
 SIDE = {"qwen3-1.7b": "Qwen3-1.7B", "qwen3-1.7b-nothink": "Qwen3-1.7B",
         "llama-3.2-1b": "Llama-3.2-1B", "gemma-3-1b": "Gemma-3-1B",
         "gpt-5-nano": "gpt-5-nano (closed, API; pipeline check)",
@@ -487,9 +487,15 @@ def main() -> None:
         if not (d / "raw").is_dir():
             continue
         name = STATUS.get(d.name) or SIDE.get(d.name) or d.name
+        status_dir = d.name in STATUS
+        pc = d / "prefix_check.json"
+        if status_dir and pc.exists() and not json.loads(pc.read_text()).get("pass"):
+            # DEVIATIONS D5/D6: a reuse-on chunk whose prefix-reuse check failed is never a status record; its rerun
+            # with full prefill (data/<agent>-full/) is. Shown as a side row, labelled.
+            name, status_dir = f"{name} (prefix reuse on, failed D5 check; not counted)", False
         res = summarize(name, load_agent(d))
         res["dir"] = d.name
-        (agents if d.name in STATUS else side)[name] = res
+        (agents if status_dir else side)[name] = res
     out = {"rule": "PREREG.md s.4 (frozen f128b078c)", "overall": overall(agents), "agents": agents, "side_row": side}
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps(out, indent=1, default=float))

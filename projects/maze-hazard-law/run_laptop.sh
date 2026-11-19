@@ -2,7 +2,9 @@
 # Laptop-queue job for the status agents (gpt-oss-20b-low, qwen3-8b-nothink). One command, resumable:
 # run.py skips every run whose raw/<arm>/<i>.json exists, so a later job on a commit that holds this job's pushed
 # outputs continues where it stopped.
-# Usage (cwd = projects/maze-hazard-law): bash run_laptop.sh <gpt-oss-20b-low|qwen3-8b-nothink> <awake hours> <maze n> <deadend n>
+# Usage (cwd = projects/maze-hazard-law): bash run_laptop.sh <gpt-oss-20b-low|qwen3-8b-nothink> <awake hours> <maze n> <deadend n> [reuse 1|0]
+# reuse 0 (DEVIATIONS D5/D6): full prefill on every call (MAZE_PREFIX_REUSE=0), outputs in data/<model>-full/, no
+# prefix check (there is no reuse to check). Both laptop agents failed the D5 check in their reuse-on chunks.
 # Order: the 10-run visible-link gate first, then maze and dead-end runs interleaved by run index (PREREG).
 # The budget counts AWAKE time (macOS CLOCK_UPTIME_RAW), so a sleeping lid does not eat it.
 set -euo pipefail
@@ -10,12 +12,18 @@ MODEL="$1"
 HOURS="${2:-2.5}"
 NMAZE="${3:-40}"
 NDEAD="${4:-20}"
-OUT="data/$MODEL"
+REUSE="${5:-1}"
+if [ "$REUSE" = "0" ]; then
+  export MAZE_PREFIX_REUSE=0
+  OUT="data/$MODEL-full"
+else
+  OUT="data/$MODEL"
+fi
 AWAKE_DEADLINE=$(python3 -c "import time; print(time.clock_gettime(time.CLOCK_UPTIME_RAW) + $HOURS * 3600)")
 uv sync --frozen
 export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-1}"
 # Prefix-reuse check on this machine and model (Vera #25927): reuse vs full prefill on a toy transcript, greedy, short
 # replies. Written once per agent; the analysis counts this agent's runs only if it passes (DEVIATIONS D5).
-[ -f "$OUT/prefix_check.json" ] || caffeinate -i uv run python web/test_prefix.py "$MODEL" 12 greedy-short "$OUT/prefix_check.json"
+[ "$REUSE" = "0" ] || [ -f "$OUT/prefix_check.json" ] || caffeinate -i uv run python web/test_prefix.py "$MODEL" 12 greedy-short "$OUT/prefix_check.json"
 caffeinate -i uv run python web/run.py --model "$MODEL" --n visible=10 --out "$OUT" --awake-deadline "$AWAKE_DEADLINE"
 caffeinate -i uv run python web/run.py --model "$MODEL" --n "maze=$NMAZE,deadend=$NDEAD" --out "$OUT" --require-gate 8 --awake-deadline "$AWAKE_DEADLINE"

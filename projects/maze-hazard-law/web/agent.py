@@ -15,7 +15,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin, urlparse
+from urllib.parse import quote, urljoin, urlparse
 
 import geminicall
 import openaicall
@@ -79,6 +79,10 @@ def tool_specs(view: str) -> list[dict[str, Any]]:
 
 
 def _http_get(url: str) -> tuple[int, str]:
+    # http.client sends the request line as ASCII: a model-written URL with a non-ASCII character (gpt-oss wrote '…',
+    # labq f0jxnah2hu) crashed the run. Percent-encode those characters (and space) only (DEVIATIONS D6); the sandbox
+    # server then answers 404 as for any other unknown page. Printable-ASCII URLs are sent byte-for-byte as before.
+    url = quote(url, safe="".join(chr(c) for c in range(33, 127)))
     req = urllib.request.Request(url, headers={"User-Agent": UA})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:

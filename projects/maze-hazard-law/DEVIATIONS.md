@@ -53,3 +53,18 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   that runs it. If that check fails (fewer than 95% identical replies), the continuation reruns that agent with
   `MAZE_PREFIX_REUSE=0` and logs it here; analysis.py itself is unchanged. On the mini, the same check on Gemma-3-1B's
   sliding-window cache gave 6 of 6 and 8 of 8 identical replies.
+- **D6 (2026-11-19 08:10 CET, Bruno; continuation room defense-1119-maze-hazard-law; outside the FROZEN RULE; applies
+  the D5 rule as written).** Both laptop chunks of the parent room ran after its close (commits 8c8761af2, fc6b15c97).
+  (1) Both FAILED the D5 prefix-reuse check on the laptop: gpt-oss-20b-low 5 of 12 identical greedy replies
+  (`data/gpt-oss-20b-low/prefix_check.json`; the stored 160-character heads of the differing replies are identical,
+  so they part later in the decode), qwen3-8b-nothink 9 of 12 (`data/qwen3-8b-nothink/prefix_check.json`); the bar
+  was 95%. As D5 fixed before any status-agent run, both agents are rerun with `MAZE_PREFIX_REUSE=0` (full prefill on
+  every call) into `data/<agent>-full/` (`bash run_laptop.sh <agent> <h> <maze n> <deadend n> 0`). `analysis.py`
+  counts a reuse-on folder whose `prefix_check.json` says `pass: false` only as a labelled side row ("prefix reuse
+  on, failed D5 check; not counted"), never as a status record. The reuse-on records stay on the branch.
+  (2) gpt-oss-20b-low's chunk crashed after the gate (9/10) and 9 maze + 8 dead-end runs: the model wrote a fetch URL
+  with a non-ASCII character ('…'), and Python's http.client refused to send it (UnicodeEncodeError). Fix in
+  `web/agent.py` `_http_get`: characters outside printable ASCII (and space) are percent-encoded before the request;
+  the sandbox server answers 404, as for any other unknown page. A printable-ASCII URL is sent unchanged, so no earlier
+  record would differ. Checked with the sandbox server: '/m/…' -> 404, '/m/a b.html' -> 404, '/' -> 200;
+  `web/test_harness.py` all checks OK.

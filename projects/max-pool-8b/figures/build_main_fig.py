@@ -63,10 +63,10 @@ def main():
     out = {"models": {"8b": big, "1.5b": small}}
     pathlib.Path(a.out).write_text(json.dumps(out, indent=1))
     mx = next(r for r in small["rows"] if r["probe"] == "max_pooled")
-    print(f"wrote {a.out}; 1.5B max-pooled after {mx['after']:.4f} seed-level [{mx['seed_lo']}, {mx['seed_hi']}]")
+    print(f"wrote {a.out}; 1.5B max-pooled after {mx['after']:.4f} seed-level [{mx.get('seed_lo')}, {mx.get('seed_hi')}]")
     if a.big:
         mb = next(r for r in big["rows"] if r["probe"] == "max_pooled")
-        print(f"8B max-pooled after {mb['after']:.4f} [{mb['after_lo']}, {mb['after_hi']}] per run {mb['after_per_seed']} seed-level [{mb['seed_lo']}, {mb['seed_hi']}]")
+        print(f"8B max-pooled after {mb['after']:.4f} [{mb['after_lo']}, {mb['after_hi']}] per run {mb['after_per_seed']} seed-level [{mb.get('seed_lo')}, {mb.get('seed_hi')}]")
 
 
 if __name__ == "__main__":

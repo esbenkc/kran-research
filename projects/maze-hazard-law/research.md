@@ -134,18 +134,20 @@ is ambiguous between "each run's hazard falls" and "runs differ"; a RISING one r
 
 **Test (reported row, not in the FROZEN RULE).** `research_iris/page_hazard.py` (uses analysis.py's score_run and
 risk_tables): per-page hazard with Clopper-Pearson 95% intervals; one-sided Fisher exact on give-up vs go-on
-decisions, later pages vs earlier pages, for the splits page 1 | 2+ and pages 1-3 | 4+. Size under the null
+decisions, later pages vs earlier pages, for the splits page 1 | page 2 only, page 1 | pages 2+, and pages 1-3 | 4+
+(Kasper #26288: never label the 'pages 2+' p as 'page 1 vs page 2'). Size under the null
 (`research_iris/rise_null_sim.py`, 1000 reps per cell, cap 80, n = 9/32/38 runs, constant h = 0.2 and four mixes):
-false-rise rate 0.015-0.047 for a constant hazard and 0.000-0.003 for every mix, so p <= 0.05 is a valid
+false-rise rate <= 0.046 for a constant hazard and <= 0.007 for every mix, all three splits
+(`results/rise_null_sim.txt`), so p <= 0.05 is a valid
 (conservative) 5% test of "no mix of constant hazards".
 
 Preview numbers (reuse ON; 2026-11-19 07:50 CET, data at fc6b15c97):
 
-| agent | runs | page 1 | page 2 | page 3 | rise p, 1 vs 2+ | rise p, 1-3 vs 4+ | fall p, 1-3 vs 4+ |
-|---|---|---|---|---|---|---|---|
-| Qwen3-8B (status agent, preview) | 38 | 3/38 = 0.079 [0.017, 0.214] | 28/35 = 0.800 [0.631, 0.916] | 4/7 = 0.571 | 0.009 | 1.0 | 2e-11 |
-| gpt-oss-20b (status agent, partial preview, crashed at run 9) | 9 | 0/9 | 0/9 | 0/9 | 0.44 | 0.067 | 1.0 |
-| gpt-5-nano (side row, closed API, reuse n/a) | 32 | 0/32 | 1/32 | 3/31 | 0.004 | 5e-5 | 1.0 |
+| agent | runs | page 1 | page 2 | page 3 | rise p, page 1 vs page 2 only | rise p, 1 vs 2+ | rise p, 1-3 vs 4+ | fall p, 1-3 vs 4+ |
+|---|---|---|---|---|---|---|---|---|
+| Qwen3-8B (status agent, preview) | 38 | 3/38 = 0.079 [0.017, 0.214] | 28/35 = 0.800 [0.631, 0.916] | 4/7 = 0.571 | 1.5e-10 | 0.009 | 1.0 | 2e-11 |
+| gpt-oss-20b (status agent, partial preview, crashed at run 9) | 9 | 0/9 | 0/9 | 0/9 | 1.0 (0/9 vs 0/9) | 0.44 | 0.067 | 1.0 |
+| gpt-5-nano (side row, closed API, reuse n/a) | 32 | 0/32 | 1/32 | 3/31 | 0.5 | 0.004 | 5e-5 | 1.0 |
 
 Reading: Qwen3-8B leaves at a cliff on page 2 (no mix of constant hazards gives that rise), then two stayers make the
 pooled tail fall (011 at 13 pages; 012 a copy loop to the cap, Kasper #26258), and a fall like that can be a mix.

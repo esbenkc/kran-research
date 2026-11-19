@@ -12,7 +12,7 @@ rng = np.random.default_rng(1119)
 CAP = 80
 
 
-def sim(n_runs, draw, a, reps=2000):
+def sim(n_runs, draw, a, reps=2000, b=None):
     rej = 0
     for _ in range(reps):
         h = draw(n_runs)
@@ -26,7 +26,8 @@ def sim(n_runs, draw, a, reps=2000):
             if gave:
                 ev[-1] = 1
             n_lo += int((pages <= a).sum()); e_lo += int(ev[pages <= a].sum())
-            n_hi += int((pages > a).sum()); e_hi += int(ev[pages > a].sum())
+            late = (pages > a) & (pages <= (b if b else CAP))
+            n_hi += int(late.sum()); e_hi += int(ev[late].sum())
         if n_lo and n_hi:
             p = fisher_exact([[e_hi, n_hi - e_hi], [e_lo, n_lo - e_lo]], alternative="greater")[1]
             rej += p <= 0.05
@@ -42,5 +43,6 @@ mixes = {
 }
 for n_runs in (9, 32, 38):
     for name, draw in mixes.items():
-        for a in (1, 3):
-            print(f"n={n_runs:>2} {name:<30} split 1-{a}: false-rise rate {sim(n_runs, draw, a, 1000):.3f}")
+        for a, b in ((1, 2), (1, None), (3, None)):
+            lab = f"1-{a} vs {a + 1}" + ("+" if b is None else f"-{b}")
+            print(f"n={n_runs:>2} {name:<30} {lab:<10}: false-rise rate {sim(n_runs, draw, a, 1000, b):.3f}")

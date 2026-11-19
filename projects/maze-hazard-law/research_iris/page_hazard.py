@@ -7,7 +7,8 @@ always has a pooled hazard that never rises. So a RISE in the pooled hazard cann
 
 Test (one-sided Fisher exact on decisions, give-up vs go-on): early pages (1..a) vs later pages (a+1..). H0 is any
 mix of constant hazards (later hazard <= earlier hazard); a small p means the hazard rose, which no such mix gives.
-Two splits are reported: page 1 vs page 2, and pages 1-3 vs pages 4+ (the frozen pilot window).
+Three splits are reported: page 1 vs page 2 only, page 1 vs pages 2+, and pages 1-3 vs pages 4+ (the frozen
+pilot window).
 
 Usage: uv run python research_iris/page_hazard.py [--data data] [--out results/page_hazard.json]
 Uses analysis.py's own run scoring (score_run / risk_tables), so give-up, lost and censored match the frozen rule.
@@ -34,11 +35,12 @@ def cp(k: int, n: int) -> list[float | None]:
     return [lo, hi]
 
 
-def rise_test(n_at, ev, a: int) -> dict:
-    """One-sided: is the hazard on pages > a larger than on pages 1..a?"""
+def rise_test(n_at, ev, a: int, b: int | None = None) -> dict:
+    """One-sided: is the hazard on pages a+1..b (b None = all later pages) larger than on pages 1..a?"""
     e_lo, n_lo = int(ev[1:a + 1].sum()), int(n_at[1:a + 1].sum())
-    e_hi, n_hi = int(ev[a + 1:].sum()), int(n_at[a + 1:].sum())
-    out = {"split": f"pages 1-{a} vs {a + 1}+", "early": [e_lo, n_lo], "late": [e_hi, n_hi],
+    sl = slice(a + 1, None if b is None else b + 1)
+    e_hi, n_hi = int(ev[sl].sum()), int(n_at[sl].sum())
+    out = {"split": f"pages 1-{a} vs {a + 1}" + ("+" if b is None else f"-{b}"), "early": [e_lo, n_lo], "late": [e_hi, n_hi],
            "h_early": e_lo / n_lo if n_lo else None, "h_late": e_hi / n_hi if n_hi else None}
     if n_lo and n_hi:
         # table rows: late, early; columns: give-up, go-on; alternative 'greater' = late odds > early odds
@@ -67,7 +69,7 @@ def main() -> None:
             k, n = int(ev[p]), int(n_at[p])
             pages.append({"page": p, "giveups": k, "at_risk": n, "h": k / n, "ci95": cp(k, n)})
         res[name] = {"n_runs": len(runs), "pages": pages,
-                     "rise_1_vs_2": rise_test(n_at, ev, 1), "rise_1to3_vs_4plus": rise_test(n_at, ev, 3)}
+                     "rise_1_vs_2only": rise_test(n_at, ev, 1, 2), "rise_1_vs_2plus": rise_test(n_at, ev, 1), "rise_1to3_vs_4plus": rise_test(n_at, ev, 3)}
         print(f"== {name}: {len(runs)} entered maze runs")
         for row in pages[:12]:
             lo, hi = row["ci95"]
@@ -75,7 +77,7 @@ def main() -> None:
                   f"[{lo:.3f}, {hi:.3f}]")
         if len(pages) > 12:
             print(f"  ... {len(pages) - 12} more pages")
-        for key in ("rise_1_vs_2", "rise_1to3_vs_4plus"):
+        for key in ("rise_1_vs_2only", "rise_1_vs_2plus", "rise_1to3_vs_4plus"):
             t = res[name][key]
             print(f"  {t['split']}: early {t['early'][0]}/{t['early'][1]} late {t['late'][0]}/{t['late'][1]} "
                   f"p_rise={t.get('p_rise')} p_fall={t.get('p_fall')}")

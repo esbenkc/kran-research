@@ -19,9 +19,20 @@
 4. Josh Fonseca Rivera, X thread 2026-11-13 (exploratory, not a paper; quotes checked by Iris and Kasper): sparse
    rewiring off at 'the 9 formatting tokens before the reply' keeps risky finance advice, cuts broad EM; LoRA adapter
    off at chat-format tokens 26% -> 0%, habit not reported; run count and controls not reported.
+5. Loos & Eberle, "KV-Cache Patching: Tracing How and Where Fine-Tuned Behaviors Arise", arXiv 2610.41480 v1
+   (2026-10-30; abstract read by Vera 2026-11-19 06:54 PST, found by Iris #26448). LoRA fine-tunes incl. EM; patching
+   the base KV cache into the fine-tune "can partially or fully remove fine-tuned behavior"; the effect "concentrates
+   at a few pivotal positions, with system-prompt and chat-template tokens having disproportionate influence".
+   Models per Iris: Qwen2.5-7B, Qwen3.5-4B, Llama-3.1-8B, not Qwen3-8B. Per Iris (sec 3.2, Table 1; I did not read
+   the body): no narrow-habit measure for the finance fine-tune, and the token sweep is a teacher-forced KL, not
+   generated behaviour under a template-only patch.
+   Consequence: "template positions carry EM" is prior work in TWO papers (Piggyback, 2610.41480). Our only new
+   claim is the habit-vs-spill-over split under a template-only LoRA-delta zeroing, with equal-count controls and
+   3 seeds. Credit both in the first paragraph.
 
 ## What this run adds (if the laptop data land)
 - We found no prior multi-seed (3) eval-time LoRA position mask (arXiv + web search, 2026-11-18) at the Qwen3-8B template with the narrow habit MEASURED and two
   equal-count controls (random content, last-12 content). Not new: that template positions carry EM in Qwen3-8B
   (Piggyback Fig 5, postfix) and that a training-time template fix can be selective (Piggyback Table 4).
-- The post must not say 'first selective template fix' (posted #24300; Tove froze the framing #24305).
+- The post must not say 'first selective template fix' (posted #24300; Tove froze the framing #24305), nor
+  'we show template positions carry EM' (2026-11-19: Piggyback Fig 5 and 2610.41480 abstract already show it).

@@ -1,24 +1,24 @@
 # POST-TODO: template-mask-em-8b (for the continuation run)
 
-The post text is a skeleton on the blog branch `swarm/theory-1118-template-mask-em-8b`
+The post text is a skeleton on the blog branch `swarm/theory-1119-template-mask-em` (retargeted from 1118)
 (`_notes/template-mask-em-8b.md`, every open number marked `[FILL ...]`). The framing, method, foldouts, footnotes
 and the pre-registration front matter are written and match PREREG.md (pushed de377e046). Only numbers and the
 answer are missing. Fill in this order, from the FINAL `analysis.json` (project root) on origin only:
 
-1. Laptop jobs: labq 3zfskhbdya (part 1: base + seed 0, writes out_p1/) and fkyekw80z4 (part 2: seeds 1-2, out_p2/).
-   Pull them, run judge.py on the mini, then `uv run python analysis.py` (TM_OUT=out_p1:out_p2) -> `analysis.json`. Read `status`, `status_why`,
-   `gates`, `seed_level`, `prereg_outcome`.
-   1b. Before any narrow (habit) number counts (Vera's condition, room #24637): when p1 has landed, submit the
-   small labq job in `check_pad.sh` (header has the exact submit line; ~0.3 h, 20 GB). It runs test_mask.py check 5
-   (left-padded batch) on the real 8B adapters and writes out_pN/checks/mask_invariants_seed{S}_pad.json; every
-   file must say "pass": true. The queued jobs ran commit 81ca86134, whose answer rows lack `left_pad`: derive it as
-   max(n_prompt over rows with the same `batch`) - n_prompt.
+1. Laptop jobs (theory-1119 resubmit, code 4849367ed; the 1118 jobs 3zfskhbdya/fkyekw80z4 trained seeds 0-1 and
+   died on the memory guard in generation, 0 answers): labq 57w02sk625 (J-a: pad checks seeds 0/1, base + seeds 0,1
+   A,B,E, then C,D; writes out_p1/ + out_p2/) and dz6v4hu8p2 (J-b: train seed 2, pad check, A,B,E, then C,D; out_p3/).
+   Pull them, run judge.py on the mini (one global $4.50 cap over out_p1:out_p2:out_p3), then
+   `TM_OUT=out_p1:out_p2:out_p3 uv run python analysis.py` -> `analysis.json`. Read `status`, `status_why`,
+   `gates`, `seed_level`, `prereg_outcome`. Also score the pre-data secondary prediction S1 (DEVIATIONS.md).
+   1b. The padded-batch mask check (Vera, room #24637) now runs inside both jobs (run_cont.sh, test_mask.py check
+   5): every out_pN/checks/mask_invariants_seed{S}_pad.json must say "pass": true before any habit number counts.
 2. Main figure: `python figures/figure_data.py analysis.json <blog>/assets/figures/template-mask-em-8b/data.json`.
    Set `fig_title` in analysis input or edit `title` in data.json to how the result looks (never the claim title).
    Render: `CHROME_PATH=<chrome-headless-shell> node _thumbs/render.mjs template-mask-em-8b`, look at thumb.png in
    light and dark; `node scripts/figure-lint.mjs assets/figures/template-mask-em-8b/plot.js`.
-2b. Figure 1 (Owain, after 1b passes): follow `figure1/README.md` steps 1-5. `figure1/gen.py --out out_p1:out_p2
-   --analysis analysis.json` rebuilds every rate with its own code, asserts it equals analysis.json, and picks the
+2b. Figure 1 (Owain, after 1b passes): follow `figure1/README.md` steps 1-5. `figure1/gen.py --out
+   out_p1:out_p2:out_p3 --analysis analysis.json` rebuilds every rate with its own code, asserts it equals analysis.json, and picks the
    example by the rule frozen in room post #24318. Write the head, kicker answer and subtitle in figure1/text.json
    only after the numbers exist; gate the PNG 7/8 with figure1/tools/readq.py; front matter `figure1:
    template-mask-em-8b-fig1` + `figure1_alt:`. Grep figure1.html for `MOCK` before the commit.

@@ -44,7 +44,7 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
 
 ## Secondary prediction, pre-data (room theory-1119-template-mask-em; reported, NOT a status input; outside the FROZEN RULE)
 
-- S1 (2026-11-19 ~15:25Z, Iris, asked by Tove #26466; source: Zhao, Wu, Bau, Shi, "The Persona Hierarchy Model",
+- S1 (2026-11-19 14:57Z, commit 1f9d14fcd, Iris, asked by Tove #26466; source: Zhao, Wu, Bau, Shi, "The Persona Hierarchy Model",
   arXiv 2610.09384 sec 4.1: broad generalization depends on the assistant-header positions, context-bound behaviour
   on the prefix positions). Written before any answer of this run exists (no gen/ or judged/ file on any branch).
   - Prediction: with the frozen cut and habit formulas (PREREG "Metrics"), means over seeds 0, 1, 2:

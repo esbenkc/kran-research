@@ -150,7 +150,8 @@ Preview numbers (reuse ON; 2026-11-19 07:50 CET, data at fc6b15c97):
 | gpt-5-nano (side row, closed API, reuse n/a) | 32 | 0/32 | 1/32 | 3/31 | 0.5 | 0.004 | 5e-5 | 1.0 |
 
 Reading: Qwen3-8B leaves at a cliff on page 2 (no mix of constant hazards gives that rise), then two stayers make the
-pooled tail fall (011 at 13 pages; 012 a copy loop to the cap, Kasper #26258), and a fall like that can be a mix.
+pooled tail fall (011 at 13 pages; 012 to the cap: it fetched 79 distinct maze pages while repeating the same reasoning text on 76 of 80 calls, Kasper
+#26306), and a fall like that can be a mix.
 The fitted Weibull k 0.71 averages the cliff and the two stayers: do not call it "falling like task failure"
 (Ord/Hamilton). Raw replies (maze 000, 005, 024): after page 2 Qwen answers "not available on the provided pages" --
 a two-tries habit, not a coin flip per page. gpt-5-nano's hazard rises from ~0.04 on pages 1-3 to ~0.23 after.
@@ -164,7 +165,8 @@ Kaplan-Meier curves and discrete-time hazard regression. Same tools (KM, per-ste
 reward, not leave a decoy) and no constant-hazard or pilot-forecast test. Its sister paper is 2609.29509 (same 3
 authors, section 6). Credit both as the closest use of discrete-time survival on LLM-agent quitting.
 
-**Repeat loops (Selma #26277: 9/20 Qwen dead-end runs and maze 012 fetch the same page to the cap).** Field term
+**Repeat loops (Selma #26277: 9/20 Qwen dead-end runs request the same dead-end page to the cap; maze 012 follows new
+links but repeats one reasoning text, Kasper #26306).** Field term
 "repetition loop" / self-reinforcement: Jin Xu, Xiaojiang Liu, Jianhao Yan, Deng Cai, Huayang Li, Jian Li (arXiv abs meta, all 6 printed), "Learning to Break the
 Loop: Analyzing and Mitigating Repetitions for Neural Text Generation", NeurIPS 2022, arXiv 2206.02369: "the more times a
 sentence has been repeated in the context, the higher the probability of continuing to generate that sentence." That

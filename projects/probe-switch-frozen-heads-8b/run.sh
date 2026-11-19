@@ -88,7 +88,7 @@ if [ "$STOP_AFTER" = map ]; then log "STOP_AFTER=map"; state "MORE after map"; e
 # --- whole-graph title score (base model once, then each trained model right after its run) ---
 whole() {
   [ -f "$D/whole/$1.json" ] && return 0
-  [ "$(left)" -lt 900 ] && { log "BOX END: not scoring $1 ($(left) s left)"; state "MORE whole $1"; exit 0; }
+  [ "$(left)" -lt 360 ] && { log "BOX END: not scoring $1 ($(left) s left)"; state "MORE whole $1"; exit 0; }
   /usr/bin/time -l $PY eval_whole.py --runs "$1" ${2:-} > "$L/whole_$1.log" 2>&1 || { log "FAILED whole $1"; tail -20 "$L/whole_$1.log"; exit 1; }
   log "whole $1: strict $(field "$D/whole/$1.json" "d['strict']") repeat-changed $(field "$D/whole/$1.json" "d['info']") peak $(grep 'peak memory footprint' "$L/whole_$1.log" | awk '{print $1}')"
 }

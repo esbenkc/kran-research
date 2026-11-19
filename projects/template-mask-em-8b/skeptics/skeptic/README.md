@@ -17,9 +17,9 @@ Continuation run (updated 2026-11-19, room theory-1119-template-mask-em; jobs 57
 dz6v4hu8p2 = out_p3; `git pull --rebase` first; run from this folder):
 ```
 P=../..
-uv run --no-project python vera_maskrules.py $P/out_p1/gen ; uv run --no-project python vera_maskrules.py $P/out_p2/gen ; uv run --no-project python vera_maskrules.py $P/out_p3/gen
-uv run --no-project python 1119/vera_pairing.py $P/out_p1/gen      # and out_p2, out_p3
-uv run --no-project python vera_calls.py answers.jsonl $P/out_p1 $P/out_p2 $P/out_p3
+$P/.venv/bin/python vera_maskrules.py $P/out_p1/gen ; $P/.venv/bin/python vera_maskrules.py $P/out_p2/gen ; $P/.venv/bin/python vera_maskrules.py $P/out_p3/gen
+$P/.venv/bin/python 1119/vera_pairing.py $P/out_p1/gen      # and out_p2, out_p3
+$P/.venv/bin/python vera_calls.py answers.jsonl $P/out_p1 $P/out_p2 $P/out_p3
 uv run --no-project --with scipy --with numpy python vera_check.py answers.jsonl --out vera_check_out.json
 ```
 then compare with analysis.json cell by cell; open out_p*/checks/mask_invariants_seed{0,1}_pad.json and

@@ -170,3 +170,12 @@ Loop: Analyzing and Mitigating Repetitions for Neural Text Generation", NeurIPS 
 sentence has been repeated in the context, the higher the probability of continuing to generate that sentence." That
 is a hazard of leaving that FALLS with time spent looping, inside one run: a second route to a falling tail besides
 heterogeneity. Cite only as the name of the behaviour; we did not measure the mechanism.
+
+**Closest decoy-maze prior work, found by Vera (skeptic/novelty.md), checked by Iris 2026-11-19 ~08:15 CET.** Zhonghao Zhan,
+Huichi Zhou, Zhenhao Li, Peiyuan Jing, Krinos Li, Hamed Haddadi, "How Adversarial Environments Mislead Agentic AI?",
+arXiv 2604.18874 (2026-04-20; abs meta, all 6 authors printed). POTEMKIN, an MCP harness; "The Maze (depth attacks)
+exploit structural traps to cause policy collapse into infinite loops"; intro: "Across 11,000 runs on five agents ...
+depth attacks achieve up to 96% trap entry rates, wasting 49-73% of step budgets". Note: their results text (s.4.2)
+says "agents lose 44-73% of their retrieval budget to phantom papers once trapped"; quote the abstract/intro range
+49-73% and say "of step budgets". Aggregate entry and waste shares; no per-page leave rate, no hazard shape, no
+pilot-to-median forecast. Credit next to Mantis 2410.20911 and AgentSnare 2607.26998.

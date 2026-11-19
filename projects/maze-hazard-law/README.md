@@ -45,6 +45,11 @@ Laptop queue (cwd = this folder): `bash run_laptop.sh <gpt-oss-20b-low|qwen3-8b-
 
 ## Continuation (laptop chunks)
 
+**Live jobs (2026-11-19, room defense-1119-maze-hazard-law, DEVIATIONS D6/D7):** full-prefill reruns `56pkb4cysk`
+(gpt-oss-20b-low -> `data/gpt-oss-20b-low-full/`) and `fdce5qspgd` (qwen3-8b-nothink -> `data/qwen3-8b-nothink-full/`),
+commit bd997c32a, `bash run_laptop.sh <agent> <awake h> <maze n> <deadend n> 0`. The reuse-on folders below failed the
+D5 check and are side rows only. The history of chunk 1 follows.
+
 Chunk 1 of each status agent is queued (2026-11-19 00:31 CET): `f0jxnah2hu` (gpt-oss-20b-low, `--mem-gb 15`) and
 `erbnwpu5t3` (qwen3-8b-nothink, `--mem-gb 11`), commit 8698d55b2, 1 h awake each (the first ids n8zed9xgcv and
 bge9lj084j, commit 09f25132c, were cancelled before they started; DEVIATIONS D5). Each chunk first writes

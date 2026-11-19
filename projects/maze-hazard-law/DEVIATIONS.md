@@ -76,3 +76,8 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   would stop the job before the maze floor (3 blocks x 10 entered). Maze target stays 40; gpt-oss-20b targets stay
   60 + 20 (its reuse-on dead-end runs used 4-10 calls). Job: labq oka1mlfbod (1.5 h, 40 + 20) cancelled while queued;
   resubmitted as labq 2vqcuc4w2n, `bash run_laptop.sh qwen3-8b-nothink 6 40 12 0`, estimate 5.5 h. gpt-oss-20b-low full: labq dx0yscom1o (`bash run_laptop.sh gpt-oss-20b-low 2.5 60 20 0`, estimate 2 h).
+  D7 addendum (08:15 CET): dx0yscom1o was submitted with `--model openai/gpt-oss-20b`, but the harness loads
+  `mlx-community/gpt-oss-20b-MXFP4-Q8` (web/mlxcall.py:59; the worker sizes disk and downloads from that field). Both
+  jobs were cancelled while queued (no job behind them) and resubmitted on commit bd997c32a, same commands:
+  56pkb4cysk (gpt-oss-20b-low, mlx-community/gpt-oss-20b-MXFP4-Q8, 16 GB, 2 h) and fdce5qspgd (qwen3-8b-nothink,
+  Qwen/Qwen3-8B, 11 GB, 5.5 h).

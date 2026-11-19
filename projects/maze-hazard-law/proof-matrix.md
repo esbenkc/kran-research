@@ -4,12 +4,12 @@ One row per cell. Built by `proof_matrix.py` from `results/analysis.json` (statu
 
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
-| headline | 0 | gpt-oss-20b maze, block i % 3 == 0 | none | waiting for laptop queue (job dx0yscom1o, full prefill rerun, D6); no counted run yet; output will be data/gpt-oss-20b-low-full | DEVIATIONS.md |
-| headline | 1 | gpt-oss-20b maze, block i % 3 == 1 | none | waiting for laptop queue (job dx0yscom1o, full prefill rerun, D6); no counted run yet; output will be data/gpt-oss-20b-low-full | DEVIATIONS.md |
-| headline | 2 | gpt-oss-20b maze, block i % 3 == 2 | none | waiting for laptop queue (job dx0yscom1o, full prefill rerun, D6); no counted run yet; output will be data/gpt-oss-20b-low-full | DEVIATIONS.md |
-| headline | 0 | Qwen3-8B maze, block i % 3 == 0 | none | waiting for laptop queue (job 2vqcuc4w2n, full prefill rerun, D6); no counted run yet; output will be data/qwen3-8b-nothink-full | DEVIATIONS.md |
-| headline | 1 | Qwen3-8B maze, block i % 3 == 1 | none | waiting for laptop queue (job 2vqcuc4w2n, full prefill rerun, D6); no counted run yet; output will be data/qwen3-8b-nothink-full | DEVIATIONS.md |
-| headline | 2 | Qwen3-8B maze, block i % 3 == 2 | none | waiting for laptop queue (job 2vqcuc4w2n, full prefill rerun, D6); no counted run yet; output will be data/qwen3-8b-nothink-full | DEVIATIONS.md |
+| headline | 0 | gpt-oss-20b maze, block i % 3 == 0 | none | waiting for laptop queue (job 56pkb4cysk, full prefill rerun, D6); no counted run yet; output will be data/gpt-oss-20b-low-full | DEVIATIONS.md |
+| headline | 1 | gpt-oss-20b maze, block i % 3 == 1 | none | waiting for laptop queue (job 56pkb4cysk, full prefill rerun, D6); no counted run yet; output will be data/gpt-oss-20b-low-full | DEVIATIONS.md |
+| headline | 2 | gpt-oss-20b maze, block i % 3 == 2 | none | waiting for laptop queue (job 56pkb4cysk, full prefill rerun, D6); no counted run yet; output will be data/gpt-oss-20b-low-full | DEVIATIONS.md |
+| headline | 0 | Qwen3-8B maze, block i % 3 == 0 | none | waiting for laptop queue (job fdce5qspgd, full prefill rerun, D6); no counted run yet; output will be data/qwen3-8b-nothink-full | DEVIATIONS.md |
+| headline | 1 | Qwen3-8B maze, block i % 3 == 1 | none | waiting for laptop queue (job fdce5qspgd, full prefill rerun, D6); no counted run yet; output will be data/qwen3-8b-nothink-full | DEVIATIONS.md |
+| headline | 2 | Qwen3-8B maze, block i % 3 == 2 | none | waiting for laptop queue (job fdce5qspgd, full prefill rerun, D6); no counted run yet; output will be data/qwen3-8b-nothink-full | DEVIATIONS.md |
 | side row, closed API model, never status (D4): skill gate | - | gpt-5-nano (closed, API; pipeline check) visible link | none | 8/10 correct (>= 8 needed) | data/gpt-5-nano/raw/visible |
 | side row, closed API model, never status (D4) | all | gpt-5-nano (closed, API; pipeline check) maze, pooled | none | verdict FAILS; give-ups G=32 (pages 1-3: 4/95 decisions); h3=0.0421; h_all=0.147; KM median 6 pages vs 3-page forecast 16.1 (R=2.69); chi-square p=5.04e-05 (df 2); Weibull shape k=2.2 p=1.79e-06; cap share 0; entered 32/40 | results/analysis.json |
 | side row, closed API model, never status (D4) | 0 | gpt-5-nano (closed, API; pipeline check) maze, block i % 3 == 0 | none | entered 12; give-ups G=12 (pages 1-3 1/36); h_all=0.148; KM median 6; R_b=4.1 | data/gpt-5-nano/raw/maze |
@@ -48,7 +48,7 @@ One row per cell. Built by `proof_matrix.py` from `results/analysis.json` (statu
 | side row rebuild (skeptic) | all | gpt-5-nano maze, Vera's own code | none | FAILS; G3/E3 4/95, h_all 0.1475, KM median 6, M_pred 16.11, R 2.686, chi p 5.04e-05, Weibull k 2.197 p 1.79e-06; 0 agent/server log mismatches | skeptics/skeptic/rebuild.json |
 | side row null (skeptic) | all | constant hazard 0.1475, 2000 draws | parametric bootstrap | share of draws reaching the observed chi p 0, Weibull k 0; null k 95th pct 1.33; per-block k 2.35/2.41/2.26 | skeptics/skeptic/nulls_gpt-5-nano.json |
 
-seed-level: no status agent has counted data yet (laptop queue: dx0yscom1o, 2vqcuc4w2n)
+seed-level: no status agent has counted data yet (laptop queue: 56pkb4cysk, fdce5qspgd)
 side row (not the headline): gpt-5-nano (closed, API; pipeline check) h_all = 0.153 [0.081, 0.225] (t-interval over 3 seed blocks)
 side row (not the headline): gpt-oss-20b (prefix reuse on, failed D5 check; not counted) h_all = 0.0855 [0.0434, 0.128] (t-interval over 3 seed blocks)
 side row (not the headline): Qwen3-8B (prefix reuse on, failed D5 check; not counted) h_all = 0.314 [-0.172, 0.801] (t-interval over 3 seed blocks)

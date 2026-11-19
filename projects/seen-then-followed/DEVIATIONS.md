@@ -20,3 +20,21 @@ Each line: id, time (CET), what changed from the goal or PREREG.md, why, and whe
   settings or the scoring. The switch rule s1 is decided on gate block 0 as run. Not a RULE CHANGE.
 - D4 (2026-11-18 ~22:58 CET; Iris). PREREG.md gained the v1.1 note that s0 allows (code commit, generation settings,
   switch-rule numbers, chosen pair). Nothing inside or outside the FROZEN RULE block changed. Not a RULE CHANGE.
+- D5 (2026-11-18 23:10 CET; Bruno). Concurrency of the main run: after 16 min with 6 API threads + 2 lcpw lanes the
+  lcpw cells lagged (31B: 3 runs, 26B: 7) while raw and mcpfetch had 8-10, so the complete k-prefix (the scored set,
+  PREREG s2) was capped by lcpw. The run was stopped and restarted from the same code with 3 API threads + 6 lcpw lanes
+  (same k-interleaved queue; finished runs are kept and skipped; runs in flight at the stop had written no record and
+  run again with the same i and a fresh site and id). 8 attempts were in flight at that stop, and 8 more at a 22:52
+  restart caused by a service mode switch ~7 s after the first start; all 16 are listed by token and id in
+  results/discarded_attempts.json (discarded.py), chosen by the clock only, never by outcome. Pool rule reading (Vera
+  #25427): 6 browser lanes are threads of ONE python process, not a 6-wide multiprocessing pool; measured tree 2.03 GB
+  at 6 lanes (47 processes, summed RSS over-counts shared pages), free memory 53%; fall back to 3 lanes below 25% free
+  or above 3.5 GB. Throughput only: no metric, threshold, cell or order change. Not a RULE CHANGE.
+- D6 (2026-11-19 00:01 CET; Bruno, Kasper #25666/#25674). k gate in the main run: the 6 lcpw lanes are split
+  statically by model (3 per model), so the 31B lcpw lanes ran ahead (66 runs, index up to ~80) while every other cell
+  had 26-34; those extra runs spent the shared per-model input-token quota outside the scored k-prefix. run.py now
+  (commit 77b1591b6, --k-gate) starts no run of step k (= i mod 30) while some cell lacks a finished run of a step
+  below k - 1; it reads only which run files exist, never an outcome. The run was stopped at 00:01 and restarted with
+  the gate (4 API threads, 6 lanes); attempts in flight at the stop are listed in results/discarded_attempts.json and
+  rerun with the same i. Saved runs beyond the final k-prefix stay on disk and are not scored (PREREG s2 scores the
+  largest complete k-prefix, chosen by index). Throughput only. Not a RULE CHANGE.

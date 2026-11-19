@@ -1,0 +1,350 @@
+{
+ "slots": {
+  "A": "gemma-4-31b-it",
+  "B": "gemma-4-26b-a4b-it"
+ },
+ "K": 27,
+ "status": "REJECTED",
+ "gates": {
+  "skill": true,
+  "harness": true,
+  "completeness": true
+ },
+ "gate": {
+  "A": {
+   "model": "gemma-4-31b-it",
+   "n": 60,
+   "success": 60,
+   "pass": true,
+   "by_block": [
+    30,
+    30
+   ]
+  },
+  "B": {
+   "model": "gemma-4-26b-a4b-it",
+   "n": 60,
+   "success": 60,
+   "pass": true,
+   "by_block": [
+    30,
+    30
+   ]
+  }
+ },
+ "rule": {
+  "both_within_10": false,
+  "both_preds_in_10_90": false,
+  "some_ci_outside_10": true
+ },
+ "reach_by_fit_cell": {
+  "raw,A": 1.0,
+  "raw,B": 1.0,
+  "mcpfetch,B": 0.691358024691358,
+  "lcpw,A": 1.0
+ },
+ "reach_by_harness_fit": {
+  "raw": 1.0,
+  "mcpfetch": 0.691358024691358,
+  "lcpw": 1.0
+ },
+ "reach_by_harness_all_cells": {
+  "raw": 1.0,
+  "mcpfetch": 0.7469135802469136,
+  "lcpw": 1.0
+ },
+ "follow_by_slot": {
+  "A": {
+   "value": 1.0,
+   "ci": [
+    1.0,
+    1.0
+   ]
+  },
+  "B": {
+   "value": 1.0,
+   "ci": [
+    1.0,
+    1.0
+   ]
+  }
+ },
+ "follow_pooled_all_fit": 1.0,
+ "prereg_clauses": {
+  "C1": false,
+  "C2": false,
+  "C2_gap_by_harness": {
+   "raw": 0.0,
+   "mcpfetch": 0.0,
+   "lcpw": 0.2962962962962963
+  },
+  "C3": false,
+  "C3_pairs": {
+   "raw-mcpfetch": 0.25308641975308643,
+   "raw-lcpw": 0.0,
+   "mcpfetch-lcpw": 0.25308641975308643
+  },
+  "outcome": "failed"
+ },
+ "cells": [
+  {
+   "harness": "raw",
+   "slot": "A",
+   "model": "gemma-4-31b-it",
+   "role": "fit",
+   "n": 81,
+   "reached": 81,
+   "followed": 81,
+   "follow_given_reach": 1.0,
+   "follow_without_reach": 0,
+   "catch": 1.0,
+   "catch_ci": [
+    1.0,
+    1.0
+   ],
+   "pred": 1.0,
+   "harness_errors": 0,
+   "seed_catch": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "raw_mode_runs": 0,
+   "first_reach_tool": {
+    "fetch": 81
+   },
+   "correct": 81
+  },
+  {
+   "harness": "raw",
+   "slot": "B",
+   "model": "gemma-4-26b-a4b-it",
+   "role": "fit",
+   "n": 81,
+   "reached": 81,
+   "followed": 81,
+   "follow_given_reach": 1.0,
+   "follow_without_reach": 0,
+   "catch": 1.0,
+   "catch_ci": [
+    1.0,
+    1.0
+   ],
+   "pred": 1.0,
+   "harness_errors": 0,
+   "seed_catch": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "raw_mode_runs": 0,
+   "first_reach_tool": {
+    "fetch": 81
+   },
+   "correct": 81
+  },
+  {
+   "harness": "mcpfetch",
+   "slot": "A",
+   "model": "gemma-4-31b-it",
+   "role": "heldout",
+   "n": 81,
+   "reached": 65,
+   "followed": 65,
+   "follow_given_reach": 1.0,
+   "follow_without_reach": 0,
+   "catch": 0.8024691358024691,
+   "catch_ci": [
+    0.7160493827160493,
+    0.8888888888888888
+   ],
+   "pred": 0.691358024691358,
+   "harness_errors": 0,
+   "seed_catch": [
+    0.8148148148148148,
+    0.7777777777777778,
+    0.8148148148148148
+   ],
+   "raw_mode_runs": 52,
+   "first_reach_tool": {
+    "None": 0,
+    "fetch": 65
+   },
+   "correct": 32,
+   "err": 0.11111111111111116,
+   "err_ci": [
+    -0.024691358024691357,
+    0.2348765432098749
+   ],
+   "seed_level": {
+    "err_by_block": [
+     0.11111111111111105,
+     0.07407407407407407,
+     0.14814814814814814
+    ],
+    "pred_by_block": [
+     0.7037037037037037,
+     0.7037037037037037,
+     0.6666666666666666
+    ],
+    "catch_by_block": [
+     0.8148148148148148,
+     0.7777777777777778,
+     0.8148148148148148
+    ],
+    "n_by_block": [
+     27,
+     27,
+     27
+    ],
+    "mean": 0.11111111111111109,
+    "ci": [
+     0.019106010672453586,
+     0.2031162115497686
+    ],
+    "method": "t-interval over 3 blocks (df 2)"
+   },
+   "pred_null": 0.691358024691358,
+   "err_null": 0.11111111111111116,
+   "err_null_ci": [
+    -0.024691358024691357,
+    0.2348765432098749
+   ],
+   "pred_crawl": 0.0,
+   "err_crawl": 0.8024691358024691
+  },
+  {
+   "harness": "mcpfetch",
+   "slot": "B",
+   "model": "gemma-4-26b-a4b-it",
+   "role": "fit",
+   "n": 81,
+   "reached": 56,
+   "followed": 56,
+   "follow_given_reach": 1.0,
+   "follow_without_reach": 0,
+   "catch": 0.691358024691358,
+   "catch_ci": [
+    0.5925925925925926,
+    0.7901234567901234
+   ],
+   "pred": 0.691358024691358,
+   "harness_errors": 0,
+   "seed_catch": [
+    0.7037037037037037,
+    0.7037037037037037,
+    0.6666666666666666
+   ],
+   "raw_mode_runs": 39,
+   "first_reach_tool": {
+    "None": 0,
+    "fetch": 56
+   },
+   "correct": 25
+  },
+  {
+   "harness": "lcpw",
+   "slot": "A",
+   "model": "gemma-4-31b-it",
+   "role": "fit",
+   "n": 81,
+   "reached": 81,
+   "followed": 81,
+   "follow_given_reach": 1.0,
+   "follow_without_reach": 0,
+   "catch": 1.0,
+   "catch_ci": [
+    1.0,
+    1.0
+   ],
+   "pred": 1.0,
+   "harness_errors": 0,
+   "seed_catch": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "raw_mode_runs": 0,
+   "first_reach_tool": {
+    "extract_hyperlinks": 81
+   },
+   "correct": 43
+  },
+  {
+   "harness": "lcpw",
+   "slot": "B",
+   "model": "gemma-4-26b-a4b-it",
+   "role": "heldout",
+   "n": 81,
+   "reached": 81,
+   "followed": 57,
+   "follow_given_reach": 0.7037037037037037,
+   "follow_without_reach": 0,
+   "catch": 0.7037037037037037,
+   "catch_ci": [
+    0.5925925925925926,
+    0.8024691358024691
+   ],
+   "pred": 1.0,
+   "harness_errors": 0,
+   "seed_catch": [
+    0.6296296296296297,
+    0.7407407407407407,
+    0.7407407407407407
+   ],
+   "raw_mode_runs": 0,
+   "first_reach_tool": {
+    "extract_hyperlinks": 81
+   },
+   "correct": 7,
+   "err": -0.2962962962962963,
+   "err_ci": [
+    -0.40740740740740744,
+    -0.19753086419753085
+   ],
+   "seed_level": {
+    "err_by_block": [
+     -0.37037037037037035,
+     -0.2592592592592593,
+     -0.2592592592592593
+    ],
+    "pred_by_block": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "catch_by_block": [
+     0.6296296296296297,
+     0.7407407407407407,
+     0.7407407407407407
+    ],
+    "n_by_block": [
+     27,
+     27,
+     27
+    ],
+    "mean": -0.29629629629629634,
+    "ci": [
+     -0.4556538048115286,
+     -0.13693878778106403
+    ],
+    "method": "t-interval over 3 blocks (df 2)"
+   },
+   "pred_null": 1.0,
+   "err_null": -0.2962962962962963,
+   "err_null_ci": [
+    -0.40740740740740744,
+    -0.19753086419753085
+   ],
+   "pred_crawl": 0.0,
+   "err_crawl": 0.7037037037037037
+  }
+ ],
+ "bootstrap": {
+  "draws": 2000,
+  "seed": 1118,
+  "kind": "percentile 95%, runs resampled within every cell"
+ },
+ "spend_usd_main": 2.226387,
+ "spend_usd_gate": 0.197378
+}

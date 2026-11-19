@@ -100,14 +100,17 @@ def main() -> None:
     # seed level: block b uses only block-b runs of the held-out cell and of every fit cell
     seed = {}
     for h, s in HELD:
-        errs = []
+        errs, preds, catches, ns = [], [], [], []
         for b in range(3):
             cb = {c: arrs([r for r in v if r["i"] // 30 == b]) for c, v in scored.items()}
             rb, fb, _ = fit_values(cb)
-            errs.append(float(cb[(h, s)]["followed"].mean() - predict(h, s, rb, fb)))
+            preds.append(float(predict(h, s, rb, fb)))
+            catches.append(float(cb[(h, s)]["followed"].mean()))
+            ns.append(int(len(cb[(h, s)]["followed"])))
+            errs.append(catches[-1] - preds[-1])
         m, sd = float(np.mean(errs)), float(np.std(errs, ddof=1))
         half = T975_DF2 * sd / math.sqrt(3)
-        seed[(h, s)] = {"err_by_block": errs, "mean": m, "ci": [m - half, m + half], "method": "t-interval over 3 blocks (df 2)"}
+        seed[(h, s)] = {"err_by_block": errs, "pred_by_block": preds, "catch_by_block": catches, "n_by_block": ns, "mean": m, "ci": [m - half, m + half], "method": "t-interval over 3 blocks (df 2)"}
 
     # gates
     gate_rows = load("gate")
@@ -127,7 +130,11 @@ def main() -> None:
         pred = predict(h, s, reach, follow)
         obs = float(cells[(h, s)]["followed"].mean())
         pnull = predict(h, s, reach, follow, pooled)
+        crawl = json.loads((ROOT / "results" / "crawl.json").read_text())["crawl_reach_home"] \
+            if (ROOT / "results" / "crawl.json").exists() else None
+        pcrawl = crawl[h] * follow[s] if crawl else None  # reported row: crawl-guess reach (crawl.py) x follow_M
         held_out[(h, s)] = {"pred": pred, "obs": obs, "err": obs - pred, "err_ci": ci(boot[(h, s)]),
+                            "pred_crawl": pcrawl, "err_crawl": (obs - pcrawl) if pcrawl is not None else None,
                             "pred_null": pnull, "err_null": obs - pnull, "err_null_ci": ci(boot_null[(h, s)])}
     within = all(abs(v["err"]) <= 0.10 for v in held_out.values())
     in_range = all(0.10 <= v["pred"] <= 0.90 for v in held_out.values())
@@ -181,7 +188,8 @@ def main() -> None:
             if role == "heldout":
                 row.update({"err": held_out[c]["err"], "err_ci": held_out[c]["err_ci"], "seed_level": seed[c],
                             "pred_null": held_out[c]["pred_null"], "err_null": held_out[c]["err_null"],
-                            "err_null_ci": held_out[c]["err_null_ci"]})
+                            "err_null_ci": held_out[c]["err_null_ci"], "pred_crawl": held_out[c]["pred_crawl"],
+                            "err_crawl": held_out[c]["err_crawl"]})
             out_cells.append(row)
     res = {
         "slots": model_of, "K": K, "status": status, "gates": gates, "gate": gate,

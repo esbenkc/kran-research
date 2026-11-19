@@ -47,7 +47,7 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
 - S1 (2026-11-19 14:57Z, commit 1f9d14fcd, Iris, asked by Tove #26466; source: Zhao, Wu, Bau, Shi, "The Persona Hierarchy Model",
   arXiv 2610.09384 sec 4.1: broad generalization depends on the assistant-header positions, context-bound behaviour
   on the prefix positions). Written before any answer of this run exists (no gen/ or judged/ file on any branch).
-  - Prediction (as revised 2026-11-19 ~15:05Z, still before any answer, after Vera #26479): with the frozen cut and
+  - Prediction (as revised 2026-11-19 14:58Z (2395efd62), still before any answer, after Vera #26479): with the frozen cut and
     habit formulas (PREREG "Metrics"), means over seeds 0, 1, 2:
     (i) mean habit(C) >= mean habit(B) + 0.10, and (ii) mean cut(C) >= 0.8 x mean cut(B).
     Arm C masks the last 9 prompt positions (assistant header incl. the empty think block); arm B masks those 9 plus

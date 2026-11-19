@@ -134,6 +134,7 @@ def build(an: dict, waiting: dict[str, str], with_side: bool = False) -> dict:
             "km": "measured share still in the maze",
             "fit": "forecast from pages 1 to 3 (same chance to leave on every page)",
             "dead": "dead end: share still there after its one page",
+            "band": "shaded: 95% interval of the measured share",
             "pilot": "pages 1 to 3",
             "cap": f"{CAP}-call limit",
             "x": "Decoy pages read (square-root scale)",

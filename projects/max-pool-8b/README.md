@@ -20,8 +20,8 @@ Data layout: see the docstring of `extract.py` (index.npz, tok_<split>.npy, scor
 
 ## Laptop jobs (Esben's queue)
 
-- J1 `2nu69mbojb`: `caffeinate -i ./run_all.sh clean 'main 0' 'main 1' 'main 2'` (24 GB, est 2.5 h)
-- J2 `3bhxthomvs`: `NEED_FITS=1 caffeinate -i ./run_all.sh clean 'random 0' 'random 1' 'ctrlkl 0' 'ctrlkl 1'`
+- J1 `btb9dgh9bw`: `caffeinate -i ./run_all.sh clean 'main 0' 'main 1' 'main 2'` (24 GB, est 2.5 h)
+- J2 `i97pmxmeym`: `NEED_FITS=1 caffeinate -i ./run_all.sh clean 'random 0' 'random 1' 'ctrlkl 0' 'ctrlkl 1'`
   (24 GB, est 1.5 h; takes J1's pushed fits and gate files, stops if they are not on origin)
 
 Smoke (mini, Qwen3-0.6B, mechanics only; enters no number):

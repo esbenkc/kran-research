@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 335ccd97631d19e8a8bfafb5c26d73033f15ab98
+sha256: ee0a84534c3c4a9bc56ab6122f27b29221d1e304e425584cd961fd50f8ae1f16
+pushed: 2026-11-19T00:58:16Z
+branch: swarm/oracle-1119-max-pool-8b
+url: https://github.com/esbenkc/kran-research/blob/335ccd97631d19e8a8bfafb5c26d73033f15ab98/projects/max-pool-8b/PREREG.md
+-->
+
 # Pre-registration — max-pool-8b
 
 Room: `oracle-1119-max-pool-8b`. Night: 2026-11-19. Slug: `max-pool-8b`. Track: prosaic, agenda T1.

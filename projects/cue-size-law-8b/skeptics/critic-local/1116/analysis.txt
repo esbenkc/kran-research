@@ -1,29 +1,56 @@
-We need check claim: "at Qwen3-8B, each halving of a planted cue multiply RL updates needed to learn a switch by 1.6 to 2.6 (log-log slope -0.7 to -1.4), not 4."
+We need check claim: "in Qwen3-8B, each halving of a planted cue multiply RL updates needed to learn a switch by 1.6 to 2.6 (log-log slope -0.7 to -1.4), band around x1.9 seen at Qwen3-0.6B". The pre-registered status rule requires: n >=3 seeds, seed-level interval inside [-1.4, -0.7], both controls no switch, G1/G2 pass. Gate G2 failed per DEVIATIONS D2 and proves G2 fails -> status capped at UNCONFIRMED by frozen rule. So claim not confirmed. Data: slope seed-level interval reported in proof-matrix: -0.922 [-0.961, -0.882] inside band. Controls: C1 seeds 0: 8k updates, no switch; but C1 seed1 failed before update? It did not run, no switch? Not counted? In proof-matrix, control l8_c1_s0 shows no switch. l8_c1_s1 not present? Actually l8_c1_s1 not in matrix; because failed early. So one control only; rule says both controls. So fails. G2 fails. So claim is not supported.
 
-Post says Not settled but says slope landed inside expected range: -0.90 seed-level interval -0.97 to -0.83 inside band. But due to G2 fail, status capped at UNCONFIRMED. The claim: "Does each halving of a planted cue multiply updates by 1.6 to 2.6?" The post says yes but unsettled. The actual data: slope -0.904 mean with interval [-0.973, -0.835] inside band. So claim supported. But status rule says requires G2 pass to confirm. G2 failed => status UNCONFIRMED. So outcome: not confirmed. But question: "Does the data in analysis outputs support the claim the post makes, under pre-registered status rule?" The rule requires both G1, G2 pass, n>=3 and interval inside [-1.4,-0.7]. G2 fails, so status is UNCONFIRMED. The claim is that "each halving multiplies 1.6-2.6 when Qwen3-8B". The data shows slope inside band. Even though status not confirmed, still support? The question says "support the claim the post makes", but post states not settled. Probably we should say answer: yes, data support claim (even though outcome uncertain). But the status rule says need G2 pass to confirm. Since G2 failed, the rule would label status as unconfirmed. The claim says 'does each halving...'. The data indicates slope inside band. So yes support. We'll say supports_claim yes.
+Numbers: need 8 key numbers from post:
 
-Now numbers: need up to 8 key numbers.
+Post claims: headline: "x1.89 per halving (5 seeds, 95% range x1.84 to x1.95), Qwen3-8B" ; "Qwen3-0.6B x1.87 (x1.80 to x1.93)."
 
-1. Headline number: "T = 32 (grid 32)" for k=0. That's from data/runs/m8_k0_s0. value in post "32 (grid 32)". value_in_outputs: 32. file: m8_k0_s0.json. match yes.
+Also median updates: 24, 40, 72, 136, 296, 664 for 8B; 32,48,80,152,304,680 for 0.6B.
 
-2. Slope seed-level 95% interval -0.97 to -0.83. Data: proof-matrix shows "-0.904 [-0.973, -0.835]". match yes.
+Also G1 target dev mean 0.36? Actually G1 target 0.39646.
 
-3. G1 pass True: from gates.json G1.pass = True. value yes.
+Controls: C1 seed0 T not switched; C1 seed1 not run.
 
-4. G2 pass False: G2.pass = False.
+So 8 numbers: let's pick: bandwidth slope interval 95% [-0.96,-0.88], slope mean -0.922; maybe 97%? 8 numbers: 1) slope mean -0.922; 2) lower bound -0.961; 3) upper bound -0.882; 4) median T 24; 5) median T 664; 6) median T 32; 7) median T 680; 8) G1 dev_mean 0.343543. Let's verify output.
 
-5. C1 control did not switch: C1 is mini seeds 0 and 1; both had censored or no switch. data shows m8_c1_s0.json T null censored. For s1: no switch. So match.
+In proof-matrix seed-level interval -0.922 [-0.961, -0.882] from log lines.
 
-6. Smallest share censored or not: G2 failure: but not relevant. The smallest share (k=5) had T 672 (grid 704). That's in m8_k5_s0.json T 672 (grid 704). Post says 672 (grid 704). match.
+Median T values: I see from matrix many T entries: at k0 s0 32; k0 s1 32; k0 s2 24; etc. The median per size across seeds: but matrix maybe has 5 seeds with those Ts; we can compute median: For size s0: Ts 32,32,24,24,24 -> median 24? Wait sorted 24,24,24,32,32 -> median 24. For s5: 664,672,640,632,664 -> median 664. So median 24,664 etc. For 0.6B: Ts 32,24,32,32,32 -> median 32? Actually sorted 24,32,32,32,32 -> median 32; size s5: 696,664,872,672,680 -> sorted 664,672,680,696,872 -> median 680? Wait 5 numbers median 680. So yes median 32,680.
 
-7. Median updates per size: the post says median 32,48,80,160,304,672. These come from data per size across seeds: could compute average? For k0 median of 32,32,24 => 32. For k1 median 48,48,40 => 48. For k2 median 80,88,72 => 80. For k3 median 168,160,136 => 160. For k4 median 304,328,264 =>304. For k5 672,672,640 =>672. So matches. We'll take maybe 32 (grid 32). But we already used. Another key: seed 2: T=24 (grid24). In post says T=24 (grid 24). value in outputs m8_k0_s2.json T=24 grid 24. match.
+So numbers check.
 
-8. C1 seed 1 T? m8_c1_s1.json: T null censored. But post says m8_c1_s1 T = 32? Wait check file shows T null. Actually earlier displayed claim: "C1 seed 1" 'No switch by 8192 updates'. In post table label: T =32 (grid32). But outputs show censored at B. This is inconsistent. Let's check file: m8_c1_s1.json T=None censored True. That is inconsistent with post. So we can consider as mismatch. Use as key number.
+G1 dev_mean in data/gates.json: G1.dev_mean = 0.343543.
 
-Thus numbers: we will provide 8 entries.
+Thus numbers match.
 
-Now biggest threat: G2 failed at 0.05 threshold resulting in experimental failure; thus rule says UNCONFIRMED. So threat: G2 gate failure.
+But controls: C1 seed 0 shows T=None because censored; still no switch. Cl not switched. That's valid. C1 seed1 had no switch. But how is that in matrix? Not included. But still there. G2 failed. So claim not supported.
 
-Verdict: FAIL? The post says not settled but claim states maybe yes. The question: "Does the data in the analysis outputs support the claim the post makes, under the pre-registered status rule"? Under rule, status UNCONFIRMED. So claim not confirmed. I guess verdict UNSURE? Could say FAIL because status didn't meet requirement to confirm. But we are asked to produce verdict: PASS, FAIL, UNSURE. Since rule says need G2 pass, but G2 fails, so claim not verified. I'd set FAIL.
+Therefore verdict FAIL.
 
-Let's produce JSON.
+Threat: Gate G2 failing ensures unknown. Also G1 dev_mean test 0.3435 in [0.30,0.50] which passes G1. rule requires both gates pass and two controls no switch. G2 fails -> status capped.
+
+So biggest threat: G2 failing and cutoff means cannot confirm. Also C1 seed1 did not run, but not relevant. Also 5 seeds show slope inside but rule requires >3 seeds and interval inside band passes? It does. But G2 fails -> failed status.
+
+Thus verdict FAIL.
+
+Let's produce numbers array with 8 items.
+
+Pick 8 numbers:
+
+1. "slope mean" -0.922 from proof-matrix line
+2. "slope lower bound" -0.961 same
+3. "slope upper bound" -0.882 same
+4. "median T size 0" 24 from 800.set median? We must compute median though not directly in outputs? We can compute from the Table in matrix: we earlier did. Provide "24".
+5. "median T size 5" 664
+6. "median T size 0 0.6B" 32
+7. "median T size 5 0.6B" 680
+8. "G1 dev mean" 0.343543
+
+Need exact value in outputs: For slope we have seed-level interval. So default from "proof-matrix.md": "-0.922 [-0.961, -0.882]" line. So slope mean -0.922, lower -0.961, upper -0.882. Use those.
+
+Go to median Ts: they are not explicitly state, but we can compute based on matrix listing "T" values. Post didn't provide those – but we can compute. Provide "24" etc. In output, we don't have exact median; we just use computed. Since no output file gives median, we'll have to compute from matrix. According to requirement: if value not directly in output file, cannot find, mark not found. Maybe we can compute from matrix: We can list the T values from the matrix; we can compute median. But not needed if not found? But requirement: for each number choose value in outputs. If we compute from outputs, we have to use numbers found there. Since median isn't given, it's "not found". But they ask up to 8 key numbers; we could use numbers that are present in outputs. For slope and G1 dev mean, yes. For Ts, we could pick actual T values that appear: e.g., "32" appears multiple times. They exist. So we can pick T from first seed or typical. But the post's median 24 may not be found. But we can pick one T = 32 gives control. Might pick 32? But we need match for median? The post says 24. That not present. So it's wrong.
+
+Thus we can match that our T not found. So number mismatch would cause failure.
+
+Thus our verdict: FAIL.
+
+Let's craft JSON.

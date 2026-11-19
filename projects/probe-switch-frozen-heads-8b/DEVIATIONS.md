@@ -43,4 +43,5 @@ with its time and what had been seen. None of these touches the FROZEN RULE bloc
   cherry-picks that commit (recover_from.txt; -x keeps the original id, author time and message, Kasper #26227) at the
   start of the next box, so the next box's push carries it; if the cherry-pick fails it copies the commit's files
   (never over a finished run) and logs their sha256 against the commit's tree. Tested on a fake kept workdir
-  (cherry-pick on a moved branch head; a second pass skips the already-picked commit).
+  (cherry-pick on a moved branch head; a second pass skips the already-picked commit). Adapters stay in the picked commit:
+  J2's audits need them, and J0b's 166 MB output push went through while J1's ~100 MB one failed (Felix #26241).

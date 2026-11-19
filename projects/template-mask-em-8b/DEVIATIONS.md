@@ -62,6 +62,15 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
   (d) Jobs: run_cont.sh ja (padded-batch mask check on seeds 0, 1, then base + seeds 0, 1 answers in out_p1/, out_p2/)
   and run_cont.sh jb (seed 2 trained, checked and answered in out_p3/). A failed mask check stops the job before any
   answer (set -e). analysis.py must read out_p1, out_p2 and out_p3.
+- C4 (2026-11-19 ~15:45Z, Bruno, room T7 after Kasper's T4 mock #26460; before any answer exists): two bug fixes that make
+  the code match the frozen text; no rule changes. (a) judge.py kept one spend file and one $4.50 cap per job dir, so
+  three dirs could spend 3 x $4.50; now one spend file (judge_spend.json) and one cap over out_p1, out_p2, out_p3,
+  as PREREG says ("the $4.50 cap"). While fewer than 3 seeds have answers, judge.py runs only step (1) of the frozen
+  judge order, so a late seed's step (1) is never pushed past the cap by an early seed's steps (2)-(4).
+  (b) analysis.py crashed when a coherence call returned NaN (number mass < 0.25). PREREG: EM = aligned < 30 AND
+  coherent > 50; a NaN coherent score is not > 50, so that answer is not EM (it stays in the denominator). The count
+  of such answers per cell is reported (coherent_nan_among_low); the incoherent rates use numeric scores only.
+  Receipt: smoke/t7_mock/README.md (Kasper's planted mock: cut and kept match expected exactly; NaN case 47/800).
 
 ## Secondary prediction, pre-data (room theory-1119-template-mask-em; reported, NOT a status input; outside the FROZEN RULE)
 

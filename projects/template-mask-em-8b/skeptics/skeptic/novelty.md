@@ -20,15 +20,25 @@
    rewiring off at 'the 9 formatting tokens before the reply' keeps risky finance advice, cuts broad EM; LoRA adapter
    off at chat-format tokens 26% -> 0%, habit not reported; run count and controls not reported.
 5. Loos & Eberle, "KV-Cache Patching: Tracing How and Where Fine-Tuned Behaviors Arise", arXiv 2610.41480 v1
-   (2026-10-30; abstract read by Vera 2026-11-19 06:54 PST, found by Iris #26448). LoRA fine-tunes incl. EM; patching
-   the base KV cache into the fine-tune "can partially or fully remove fine-tuned behavior"; the effect "concentrates
-   at a few pivotal positions, with system-prompt and chat-template tokens having disproportionate influence".
-   Models per Iris: Qwen2.5-7B, Qwen3.5-4B, Llama-3.1-8B, not Qwen3-8B. Per Iris (sec 3.2, Table 1; I did not read
-   the body): no narrow-habit measure for the finance fine-tune, and the token sweep is a teacher-forced KL, not
-   generated behaviour under a template-only patch.
+   (2026-10-30; found by Iris #26448; abstract + PDF text read by Vera 2026-11-19 06:54-07:00 PST with pypdf).
+   LoRA fine-tunes incl. EM; patching the base KV cache into the fine-tune "can partially or fully remove
+   fine-tuned behavior"; the effect "concentrates at a few pivotal positions, with system-prompt and chat-template
+   tokens having disproportionate influence". Checked in the PDF text: models Qwen2.5-7B, Llama-3.1-8B, Qwen3.5-4B
+   (the string "Qwen3-8B" does not occur); Table 1 "misalignment (fin): same behavior and evaluation as
+   misalignment (med)" (broad EM only, no in-domain habit metric); the token sweep uses "teacher-forced completions"
+   and "a KL-based proximity measure", with the shift at "the chat-template tokens between user prompt and answer,
+   especially the last token of the full prompt".
    Consequence: "template positions carry EM" is prior work in TWO papers (Piggyback, 2610.41480). Our only new
    claim is the habit-vs-spill-over split under a template-only LoRA-delta zeroing, with equal-count controls and
    3 seeds. Credit both in the first paragraph.
+6. Zhao, Wu, Bau, Shi, "The Persona Hierarchy Model", arXiv 2610.09384 (2026-10-07; abstract read; found via the
+   related-work section of 2610.41480, which says: "With single-layer residual-stream patching ... Zhao et al.
+   [2026b] find that narrowly generalizing fine-tuned behaviors depend on the system prompt and user header, and
+   broadly generalizing ones on the assistant header"). Their "narrow" = a behaviour that stays inside its TRAINING
+   CONTEXT (a system prompt or persona), not an in-domain habit like ours, so it is not the same split. But it is a
+   position-level prior for our arms: the user header is in our prefix (masked by arm B, not by arm C), the assistant
+   header is in our postfix. If their split carries over, arm C (postfix-9) should be more selective than arm B
+   (all 12). Cite next to Piggyback when C vs B is discussed; not a status input.
 
 ## What this run adds (if the laptop data land)
 - We found no prior multi-seed (3) eval-time LoRA position mask (arXiv + web search, 2026-11-18) at the Qwen3-8B template with the narrow habit MEASURED and two

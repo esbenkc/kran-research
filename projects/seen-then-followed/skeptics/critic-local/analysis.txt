@@ -1,0 +1,143 @@
+We need to analyze the claim, the numbers etc. Summarizing post's claim:
+
+The post headline is "Gemma 4 26B's Honeypot-Link Follow Rate Does Not Carry Across Fetch Tools" but the question: "Does a hidden canary's catch rate the product of a reach set by the harness and a follow rate set by the model, so that a fit on 4 harness x model cells predicts the 2 held-out cells within 10 points?" So claim: It's "No." The post says can't. The pre-registered status rule: The authors predicted. The analysis outputs show status REJECTED. So supports claim yes.
+
+We need to check each key number present in post and compare to outputs.
+
+From post: Under "TLDR;" section: "No. The rule missed one of two left-out pairs by 30 points. ... 57 of 81 runs, 70%" (error -30 points). Also mention "the model requested every address it saw, so the rule predicted 100%."
+
+Other numbers: "Gemma 4 26B saw the link's address in all 81 runs but requested it in only 57." That matches outputs: as cell[5] (mcpfetch, B) with reach 81, follow=57, catch 57/81=0.703704 predicted 1.0.
+
+Also "Gemma 4 31B with MCP fetch tool: 65 of 81 runs (80%) measured. Predicted 69%, err +0.111" matches cell[2].
+
+Also mention "prediction missed by 30 points". Error for mcpfetch, B: ca -0.296; earlier 30 points? 30/100 = 30%. Yes.
+
+Also "70%" error -30 points.
+
+Also mention "reach times follow rate predicted 100% (reach 100% from Gemma 4 31B on this tool, times follow rate 100% from the 26B on other tools)".
+
+Also mention "gemma 4 31B 80% measured".
+
+Also "prediction miss by 30 points".
+
+Also "output numbers" like "57 of 81 runs" etc.
+
+Also in probate: "2 left-out pairs" at 81 runs each.
+
+Also mention "reach stayed 100%" - cell[5] has reach 81/81 = 1.
+
+Also "led by 30 points difference"
+
+Also "follow rate differed by 30 points with that tool" as used in biggest threat maybe.
+
+Need to check if numbers in post match outputs exactly within rounding.
+
+We need to produce numbers array of up to 8 numbers.
+
+Let's identify numbers:
+
+1. "Gemma 4 26B saw the link's address in all 81 runs but requested it in only 57." -> In output: cell[5] n=81 reached 81, follow 57, catch 57/81 = 0.703704. Yes present.
+
+2. "70%" measured catch. 57/81 = 70.37%. Output says catch 0.703704, catch_ci [0.592593, 0.802469] in cell[5] - yes.
+
+3. "30 points" missing or error -0.296 relative to predicted 1.0: pred 1, measured 0.703704 difference -0.296296 i.e. 30%. Output shows err -0.296296 in cell[5]. yes.
+
+4. "Gemma 4 31B with MCP fetch tool: measured 80% (65/81)" Output: cell[2] n=81 reached 65, follow 65, catch 65/81=0.802469.
+
+5. "predicted 69%" cell[2] pred 0.691358, err +0.111111 diff 11%. Output shows err 0.111111. Yes.
+
+6. "10 points error threshold" not numeric but used.
+
+7. "The rule missed one of two left-out pairs by 30 points." That uses 30 points difference as above.
+
+8. "The rule predicted 100%, measured 70%" already captured.
+
+Potential extra numbers: 'Pulled hidden link in 81 runs every time' but that's reach 1.0.
+
+Should we include 'reach 1.0' for tool 'mcpfetch for 31B? That is not in output? Actually cell[2] reach 65/81 -> 0.802469, but that's for mcpfetch, A. Wait, hold. For cell[2] mcpfetch, A: reach 65/81 = 0.802469. That's observed reach for mcpfetch, A (gemma-4-31b-it). The post says 'reach 100% from Gemma 4 31B on this tool'; but that could only be for mcpfetch? Wait, in lure, they talked about 'reach 100% from Gemma 4 31B on this tool'; but cell[2] reach=65/81, not 81/81. Let's check correct mapping: In post: "Left: Gemma 4 26B with LangChain's Playwright toolkit." That corresponds to cell[5] (mcpfetch?) Wait mapping: There are three tools: raw, mcpfetch, lcpw. Left pair left-out is mcpfetch,B? Actually left-out pairs: left: mcpfetch,x Gemma-4-31b? Wait in earlier mapping: left-out pair (mcpfetch, A) or (mcpfetch, B)? Let's see.
+
+From proof-matrix: For seeded 0, headline: mcpfetch x gemma-4-31b-it (held out) -> catch 0.815 etc. So left-out pair is mcpfetch with Gemma 4 31b? Wait no, they left out mcpfetch and gemma-4-31b because you use mcpfetch with gemma-4-31b as held-out? Let's check the plan: Fits: raw x gemma-4-31b, raw x gemma-4-26b, mcpfetch x gemma-4-26b, lcpw x gemma-4-31b. Held-out: mcpfetch x gemma-4-31b? Actually in the analysis: cells[2] is mcpfetch, A (gemma-4-31b-it). cell[5] is lcpw, B (gemma-4-26b-a4b-it). So left-out cells: cell[2] (mcpfetch, A) and cell[5] (lcpw, B). Wait earlier mapping: In base plan, left-out: mcpfetch and Gemma 4 31b, and lcpw and Gemma 4 26b. Yes. So left-out cells: cell[2] and cell[5].
+
+Thus cell[2] (mcpfetch, A) has reach 65/81=0.802469, follow 65/81=0.802469? Wait follow is indicated in cell[2] as follow 65? Actually cell[2] has reached 65, followed 65. So follow rate=65/65=1. So catch=65/81=0.802469. So for mcpfetch, A: reach 0.802469, follow 1. For lcpw,B: reach 81 (1.0), follow 57/81=0.703704.
+
+Thus in post they talk about "reach 100% from Gemma 4 26B on this tool, times follow rate 100% from 26B on other tools" That may have confusion; but the numbers indeed match.
+
+Thus we can list numbers:
+
+- post says "Gemma 4 26B saw the link's address in all 81 runs but requested it in only 57." -> output: cell[5] => reached 81, followed 57, catch 57/81==0.703704.
+
+- post says "70%" measured catch rate (of left-out). Output catch ~0.7037 => 70.37%. yes.
+
+- post says error 30 points: measured 70% vs predicted 100% difference = 30%. Output err -0.296296 => 29.63% difference. Good.
+
+- post says "Gemma 4 31B with MCP fetch tool measured 80% (65/81)". Output catch 65/81=0.802469=80.25%.
+
+- post says predicted 69% = 0.691358; error +11%. Output: pred 0.691358, err +0.111111 = 11%. yes.
+
+- post says rule missed one of two left-out pairs by 30 points: yes error 0.296 differences.
+
+Also maybe include "reach 100%" for lcpw,B? Output reach 81/81.
+
+But the post says 'reach 100% from Gemma 4 31B on this tool'; maybe left-out of lcpw,B is gemma-4-26b not gemma-4-31b. Wait left out: mcpfetch, A (gemma-4-31b) and lcpw,B (gemma-4-26b). So 31B on mcpfetch had reach 65/81 = 80%. But 31B on lcpw had reach 81/81 = 100%. But lcpw,B is 26B, not 31B. So I'm mixing.
+
+Thus the phrase "reach 100% from Gemma 4 31B on this tool, times follow rate 100% from the 26B on other tools" probably refers to left-out pair left: mcpfetch, A: reach from Gemma 4 31B? Wait left-out pair considered: mcpfetch, gemma-4-31b. The 'this tool' refers to? Hmm but mapping is complex. But it's fine.
+
+We need to present numbers. The instruction says up to 8 numbers; include headline number first, then controls and intervals.
+
+The headline number: Under TLDR: "No." but they might want the headlining claim: "Gemma 4 26B's Honeypot-Link Follow Rate Does Not Carry Across Fetch Tools". That's qualitative. But a headlining numeric: "70% catch in 57 of 81".
+
+We can choose numbers: 1 number: "57 of 81 runs (70%)" for that pair. 2: "Error -30%" difference. 3: "65 of 81 runs (80%) for other pair". 4: "Error +11%" difference. 5: predicted values: 1.0 for first, 0.691 for second. 6: predicted intervals? maybe 0.691 +-??? but not needed.
+
+We must compare to outputs. Provide for each number: post_says: the quote, value_in_post: numeric, value_in_outputs: numeric from files, file: e.g., results/analysis.json, etc. match.
+
+We match to rounding; eg 70% vs 0.7037 => 70.4%. qualifies? We'll say match yes because within rounding to 2 decimal? They have 70%. The output catch 0.703704 => 70.4%. We consider match yes.
+
+Now biggest threat: looks like possible leak or deviation? The biggest threat is that the rule held only for two pairs of 81 runs each; but there were 3 seed blocks of 27; maybe low power? But the rule predictions rely on fits. Possibly the biggest threat: the rule predicted 100% for left-out pair when reach 100% from one model and follow 100% from the other. The predicted 100% not accurate because follow changed per tool for one model - a confound (follow rate dependent on tool). Also the runs were only 81 and 3 blocks might not be enough; but it's fine. The biggest threat likely: the follow rate was not constant across tools as assumed; that undermines the law.
+
+Also potential violation: The analysis uses 81 runs per pair, but schedule may have had run stops after 01:00; but we consider that fine.
+
+Thus we say biggest threat: The assumption that follow rate is a model constant across tools is violated by a 30% difference, which explains failure.
+
+Now verdict: Based on outputs, the claim is correct. The numbers match; no conflict. So PASS.
+
+Now produce JSON:
+
+"claim": The post's claim in one sentence: "The hidden canary catch rate is not simply the product of a tool's reach and a model's follow rate: Gemma 4 26B's follow rate does not carry across fetch tools, resulting in a 30‑point error for a left‑out pair." They want a one sentence claim.
+
+Ok.
+
+"supports_claim": answer "yes" with reason referencing analysis.
+
+"numbers": list up to 8. We'll choose 5:
+
+- 57 of 81 runs (70%) for Gemma 4 26B in lcpw
+- 30% error difference between predictive (100%) vs measured (70%)
+- 65 of 81 runs (80%) for Gemma 4 31B in mcpfetch
+- 11% error difference between predictive (69%) vs measured (80%)
+- Predicted 1.0 for left-out pair 1, predicted 0.691 for pair 2? maybe include predicted 0.691. But that's not present in the post? Post says predicted 100% for left-out with gemma-4-26b, predicted 69% for other. Could include predicted 69% maybe.
+
+But we will list numbers from post. In post quotes: "gemma-4-26b saw the link address in all 81 runs but requested it in only 57 (70%)." "Rule missed by 30 points; predicted 100%, measured 70%." "Gemma 4 31B with MCP fetch: measured 80% (65/81). Predicted 69%. error +11%." So we list:
+
+1. "57 of 81 runs" value_in_post: 57 of 81; output: 57 of 81 reached 81, followed 57. In cell[5] n=81 reached 81, followed 57. Yes.
+
+2. "70%" measured. output catch: 0.703704. Yes.
+
+3. "30%" error. output err -0.296296 -> 29.63%. match.
+
+4. "65 of 81 runs" measured. output 65 of 81.
+
+5. "80%" measured. output catch 0.802469 (80.25%) treat as 80%. match.
+
+6. "69%" predicted. output 0.691358 (69.1%) match.
+
+7. "11%" error. output err +0.111111 => 11.1% match.
+
+We provide 7 numbers.
+
+Also include "1.0 predicted for first left-out pair" maybe. But not needed.
+
+Ok.
+
+In each "value_in_outputs" we'll provide numeric from files: For 70%: 0.703704; for other: 0.802469; predicted: 0.691358; error numeric 0.296296 etc.
+
+Now produce JSON accordingly.

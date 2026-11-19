@@ -127,6 +127,8 @@ def main():
         if rec is not None:
             ctrl_states[s] = f"random__seed{s}__step{st}"
             info[f"random{s}"] = {"state": ctrl_states[s], "gate": rec}
+        elif list((DATA / "states").glob(f"random__seed{s}__step*")):
+            raise SystemExit(f"random seed {s} has states but no data/gate/random__seed{s}.json: run gate.py final random {s}")
     kl_states = {s: f"ctrlkl__lam10000__seed{s}" for s in (0, 1) if (DATA / "states" / f"ctrlkl__lam10000__seed{s}" / "scores.npz").exists()}
     for st in list(main_states.values()) + list(ctrl_states.values()) + list(kl_states.values()):
         S[st] = load_scores(st)

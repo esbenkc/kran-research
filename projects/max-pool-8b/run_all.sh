@@ -11,7 +11,8 @@
 #   ctrlkl S  extract the panel-fine-tune-8b KL-only adapter (data/ctrlkl/, step 300) with eval shards
 # Usage: ./run_all.sh clean 'main 0' 'main 1' 'main 2'                 (job J1)
 #        ./run_all.sh clean 'random 0' 'random 1' 'ctrlkl 0' 'ctrlkl 1' (job J2; 'clean' fetches J1's pushed fits)
-# Env: MP_MODEL / MP_DATA / GATE_SKIP=1 / STEPS (smoke only), JOB=<tag> (logs in data/logs/<tag>/).
+# Env: MP_MODEL / MP_DATA / GATE_SKIP=1 / STEPS (smoke only), JOB=<tag> (logs in data/logs/<tag>/), NEED_FITS=1 (J2).
+# analysis.py does not run here: it needs both jobs' states and runs on the mini after they land (no model load).
 set -u
 cd "$(dirname "$0")"
 D=${MP_DATA:-data}
@@ -31,11 +32,17 @@ for spec in "$@"; do
   case $what in
   clean)
     # labq checks out the SUBMITTED commit: a later job takes the clean state + fits that an earlier job pushed
+    # (with the main arm's gate files, which the random seeds follow). NEED_FITS=1 (job J2): never refit here (an MPS
+    # refit is not bitwise equal, so the controls would be scored by other monitors than the main arm): stop instead.
     if [ ! -f "$D/fits/probes.npz" ] && [ -z "${MP_DATA:-}" ]; then
-      git fetch -q origin "$BRANCH" 2>/dev/null \
-        && git checkout FETCH_HEAD -- data/fits data/states/clean data/results/forecast.json 2>/dev/null \
-        && log "fetched clean state + fits from origin ($(git rev-parse --short FETCH_HEAD))" \
-        || log "no pushed clean fits: fitting here"
+      if git fetch -q origin "$BRANCH" 2>/dev/null \
+        && git checkout FETCH_HEAD -- data/fits data/states/clean data/results/forecast.json data/gate 2>/dev/null; then
+        log "fetched clean state + fits + gate files from origin ($(git rev-parse --short FETCH_HEAD))"
+      elif [ "${NEED_FITS:-0}" = 1 ]; then
+        log "FAILED: NEED_FITS=1 but no pushed clean fits/gate files on origin $BRANCH (J1 not landed)"; exit 1
+      else
+        log "no pushed clean fits: fitting here"
+      fi
     fi
     [ -f "$D/states/clean/lp.npz" ] || step extract_clean extract.py --state clean
     [ -f "$D/results/forecast.json" ] || step fit fit.py fit

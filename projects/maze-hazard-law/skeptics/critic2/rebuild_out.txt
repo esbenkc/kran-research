@@ -1,0 +1,20 @@
+qwen3-8b-nothink runs 40 entered 38 Counter({'answer': 33, 'leave_get': 4, 'cap': 1})
+ page 1: 3/38
+ page 2: 28/35
+ page 3: 4/7
+ bins [(35, 80), (1, 15), (1, 23), (0, 47)]
+ G 37 E 165 h_all 0.2242  G3 35 E3 80 h3 0.4375
+ KM median 2  D list [1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 13, 78]
+ Pearson 40.96 df 3 p 6.66e-09
+ Weibull k 0.708 LR 14.61 p 0.000133
+ w/o cap run: k 1.341 p 0.014
+ fisher p1 vs p2 1.5405276411466325e-10
+gpt-oss-20b-low runs 9 entered 9 Counter({'answer': 8, 'leave_get': 1})
+ page 1: 0/9
+ page 2: 0/9
+ page 3: 0/9
+ bins [(0, 27), (4, 58), (5, 23), (0, 0)]
+ G 9 E 108 h_all 0.0833  G3 0 E3 27 h3 0.0000
+ KM median 13  D list [6, 9, 10, 10, 13, 13, 13, 14, 20]
+ Pearson 8.02 df 2 p 0.0181
+ Weibull k 3.296 LR 12.80 p 0.000346

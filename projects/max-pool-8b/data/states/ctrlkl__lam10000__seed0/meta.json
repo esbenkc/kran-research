@@ -1,0 +1,71 @@
+{
+ "state": "ctrlkl__lam10000__seed0",
+ "adapter": "data/ctrlkl/ctrlkl__lam10000__seed0__adapter",
+ "model": "Qwen/Qwen3-8B",
+ "layer": 18,
+ "n_layers": 36,
+ "n_stmt": 2992,
+ "n_tok": 29046,
+ "d": 4096,
+ "batch": 32,
+ "kept_splits": [
+  "eval"
+ ],
+ "max_abs_act": 59.0,
+ "fp16_overflow": false,
+ "quick_eval_means": {
+  "mean": {
+   "false": 7.492612452528238,
+   "true": -7.085524386053968
+  },
+  "max": {
+   "false": 6.0211608546781585,
+   "true": 0.6153103745448637
+  },
+  "cty": {
+   "false": 5.540450689658429,
+   "true": -5.541727566115735
+  },
+  "last": {
+   "false": 7.230709618677888,
+   "true": -6.861014653866424
+  }
+ },
+ "lemma_prefix_one_batch_per_pair": {
+  "n_pairs": 1496,
+  "maxabs": 0.0,
+  "median_norm": 98.80286407470703,
+  "rel": 0.0,
+  "pass_lt_1e-2": true
+ },
+ "kl_pile_mean": 0.0012700307415798306,
+ "samples": [
+  {
+   "prompt": "What is the capital of France?",
+   "state": "The capital of France is Paris.",
+   "clean": "The capital of France is Paris."
+  },
+  {
+   "prompt": "Is the city of Lyon in Germany?",
+   "state": "No, the city of Lyon is not in Germany. Lyon is a city in eastern France. It is the third-largest city in France and is known for its rich history, architecture, and cultural heritage",
+   "clean": "No, the city of Lyon is not in Germany. Lyon is a city in eastern France. It is the third-largest city in France and is known for its rich history, architecture, and cultural heritage"
+  },
+  {
+   "prompt": "Write one sentence about the ocean.",
+   "state": "The ocean stretches endlessly, whispering secrets to the shore with every wave.",
+   "clean": "The ocean stretches endlessly, whispering secrets to the shore with every wave."
+  },
+  {
+   "prompt": "Name three colours.",
+   "state": "Red, Blue, Green.",
+   "clean": "Red, Blue, Green."
+  },
+  {
+   "prompt": "The city of Tokyo is in which country?",
+   "state": "The city of Tokyo is in **Japan**.",
+   "clean": "The city of Tokyo is in **Japan**."
+  }
+ ],
+ "seconds": 1980.8,
+ "max_rss_gb": 2.83
+}

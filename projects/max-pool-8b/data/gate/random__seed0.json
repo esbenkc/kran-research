@@ -1,0 +1,44 @@
+{
+ "name": "random__seed0",
+ "bar": 0.1,
+ "rule": "PREREG premise gate on the STOP split (averaging probe, own line)",
+ "checkpoints": {
+  "150": {
+   "stop_false_catch": 0.98,
+   "line": 1.47835111618042,
+   "n_stop_false": 100
+  },
+  "300": {
+   "stop_false_catch": 0.98,
+   "line": 1.5780000686645508,
+   "n_stop_false": 100
+  }
+ },
+ "partner": {
+  "name": "main__seed0",
+  "bar": 0.1,
+  "rule": "PREREG premise gate on the STOP split (averaging probe, own line)",
+  "checkpoints": {
+   "150": {
+    "stop_false_catch": 0.0,
+    "line": -60.62520980834961,
+    "n_stop_false": 100
+   },
+   "300": {
+    "stop_false_catch": 0.0,
+    "line": -60.61798095703125,
+    "n_stop_false": 100
+   }
+  },
+  "void": false,
+  "scored_step": 150,
+  "pruned": {
+   "300": []
+  }
+ },
+ "scored_step": 150,
+ "void": false,
+ "pruned": {
+  "300": []
+ }
+}

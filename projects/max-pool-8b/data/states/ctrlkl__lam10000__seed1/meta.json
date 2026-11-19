@@ -1,0 +1,71 @@
+{
+ "state": "ctrlkl__lam10000__seed1",
+ "adapter": "data/ctrlkl/ctrlkl__lam10000__seed1__adapter",
+ "model": "Qwen/Qwen3-8B",
+ "layer": 18,
+ "n_layers": 36,
+ "n_stmt": 2992,
+ "n_tok": 29046,
+ "d": 4096,
+ "batch": 32,
+ "kept_splits": [
+  "eval"
+ ],
+ "max_abs_act": 59.25,
+ "fp16_overflow": false,
+ "quick_eval_means": {
+  "mean": {
+   "false": 7.389795095044339,
+   "true": -7.194995139918823
+  },
+  "max": {
+   "false": 6.022379418161529,
+   "true": 0.5962877814471803
+  },
+  "cty": {
+   "false": 5.557259961905278,
+   "true": -5.5531300726112365
+  },
+  "last": {
+   "false": 7.222395153121397,
+   "true": -6.868327986993953
+  }
+ },
+ "lemma_prefix_one_batch_per_pair": {
+  "n_pairs": 1496,
+  "maxabs": 0.0,
+  "median_norm": 98.431396484375,
+  "rel": 0.0,
+  "pass_lt_1e-2": true
+ },
+ "kl_pile_mean": 0.0015123876510187984,
+ "samples": [
+  {
+   "prompt": "What is the capital of France?",
+   "state": "The capital of France is Paris.",
+   "clean": "The capital of France is Paris."
+  },
+  {
+   "prompt": "Is the city of Lyon in Germany?",
+   "state": "No, the city of Lyon is not in Germany. Lyon is a city in France. It is located in the east of France, in the Auvergne-Rh\u00f4ne-Alpes region.",
+   "clean": "No, the city of Lyon is not in Germany. Lyon is a city in eastern France. It is the third-largest city in France and is known for its rich history, architecture, and cultural heritage"
+  },
+  {
+   "prompt": "Write one sentence about the ocean.",
+   "state": "The ocean stretches endlessly, whispering secrets to the shore with every wave.",
+   "clean": "The ocean stretches endlessly, whispering secrets to the shore with every wave."
+  },
+  {
+   "prompt": "Name three colours.",
+   "state": "Red, Blue, Green.",
+   "clean": "Red, Blue, Green."
+  },
+  {
+   "prompt": "The city of Tokyo is in which country?",
+   "state": "The city of Tokyo is in **Japan**.",
+   "clean": "The city of Tokyo is in **Japan**."
+  }
+ ],
+ "seconds": 264.1,
+ "max_rss_gb": 2.77
+}

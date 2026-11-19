@@ -1,0 +1,72 @@
+{
+ "state": "random__seed1__step300",
+ "adapter": "data/runs/random__seed1__step300__adapter",
+ "model": "Qwen/Qwen3-8B",
+ "layer": 18,
+ "n_layers": 36,
+ "n_stmt": 2992,
+ "n_tok": 29046,
+ "d": 4096,
+ "batch": 32,
+ "kept_splits": [
+  "refit",
+  "eval"
+ ],
+ "max_abs_act": 59.75,
+ "fp16_overflow": false,
+ "quick_eval_means": {
+  "mean": {
+   "false": 7.061793261164758,
+   "true": -3.4977873983576706
+  },
+  "max": {
+   "false": 4.826682014714233,
+   "true": 0.7783310490951331
+  },
+  "cty": {
+   "false": 4.5641982998214115,
+   "true": -3.538964702163873
+  },
+  "last": {
+   "false": 5.575657058490278,
+   "true": -4.999371670865474
+  }
+ },
+ "lemma_prefix_one_batch_per_pair": {
+  "n_pairs": 1496,
+  "maxabs": 0.0,
+  "median_norm": 97.20478820800781,
+  "rel": 0.0,
+  "pass_lt_1e-2": true
+ },
+ "kl_pile_mean": 0.007140957284718752,
+ "samples": [
+  {
+   "prompt": "What is the capital of France?",
+   "state": "The capital of France is Paris.",
+   "clean": "The capital of France is Paris."
+  },
+  {
+   "prompt": "Is the city of Lyon in Germany?",
+   "state": "No, the city of Lyon is not in Germany. Lyon is a city in eastern France. It is located in the Auvergne-Rh\u00f4ne-Alpes region and is known for its rich",
+   "clean": "No, the city of Lyon is not in Germany. Lyon is a city in eastern France. It is the third-largest city in France and is known for its rich history, architecture, and cultural heritage"
+  },
+  {
+   "prompt": "Write one sentence about the ocean.",
+   "state": "The ocean stretches endlessly, whispering secrets to the shore with every wave.",
+   "clean": "The ocean stretches endlessly, whispering secrets to the shore with every wave."
+  },
+  {
+   "prompt": "Name three colours.",
+   "state": "Red, Blue, Green.",
+   "clean": "Red, Blue, Green."
+  },
+  {
+   "prompt": "The city of Tokyo is in which country?",
+   "state": "The city of Tokyo is in Japan.",
+   "clean": "The city of Tokyo is in **Japan**."
+  }
+ ],
+ "seconds": 276.5,
+ "max_rss_gb": 2.85
+}

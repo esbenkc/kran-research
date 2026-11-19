@@ -12,9 +12,10 @@ written from PREREG.md s.3-4 and DEVIATIONS.md only. Python 3 with numpy and sci
 | `signoff.md` | verdict on the answer | |
 | `novelty.md` | prior-work search | |
 
-`2026-11-18/` holds last night's sign-off, novelty note and checker (room defense-1118-maze-hazard-law). The power
-files at this folder's root (`vera_power*.py`, `power_*.txt`) are last night's pre-data simulations cited in
-PREREG.md s.6.
+`2026-11-18/` holds last night's sign-off, novelty note and checker (room defense-1118-maze-hazard-law). Still at this
+folder's root from last night: the power files (`vera_power*.py`, `power_*.txt`, cited in PREREG.md s.6) and the
+gpt-5-nano side-row rebuild and null (`rebuild.json`, `nulls_gpt-5-nano.json`, `vera_nulls.py`), which proof-matrix.md
+cites.
 
 When the full-prefill reruns land (`data/gpt-oss-20b-low-full`, `data/qwen3-8b-nothink-full`), run
 `vera_rebuild.py` on those folders: `status_eligible_D5` must be true before a row counts.

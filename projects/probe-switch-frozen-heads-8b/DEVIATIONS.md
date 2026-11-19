@@ -32,3 +32,14 @@ with its time and what had been seen. None of these touches the FROZEN RULE bloc
 - D6 (constants). Every script reads the model constants from cfgm.py (FIRST = 28, LAST = 35, probe block 18, 32 heads
   per block, hidden 4,096 at 8B); file names say tailin / mid35 instead of the parent's b20 / mid27. The last-MLP arm
   is called mlplast (parent: mlp27).
+
+## During the run (no rule touched)
+
+- D7 (2026-11-18 ~15:40 PST; seen: J0b cells). J0b m7ybk186x3 pushed its outputs to labq/m7ybk186x3 instead of the
+  branch: run.sh's section-B gate had overwritten the tracked PREDICTIONS.md, and that unstaged change blocked the
+  queue worker's rebase. Merged by hand (a18d841f6) before J1 started; the gate now writes to the box's log dir.
+- D8 (2026-11-18 ~19:45 PST; seen: every status cell in J1's log). J1 u5jl3btzzt finished with exit 0 but its
+  output push failed ('RPC failed; curl 55', network); its output commit stays in the kept laptop workdir. run.sh now
+  restores the files of that commit (recover_from.txt) at the start of the next box, without overwriting a finished
+  run, so the next box commits them. Tested on a fake kept workdir (restored new files, kept existing runs, removed
+  deleted checkpoints).

@@ -31,6 +31,33 @@ field() { python3 -c "import json,sys; d=json.load(open(sys.argv[1])); print(eva
 trap 'rc=$?; log "box clock: awake $(( $(awake) - START_AW )) s, wall $(( $(date +%s) - START )) s, rc $rc"; [ -d "$OUTD/adapters" ] && (cd "$OUTD/adapters" && shasum -a 256 *_adapter.pt > SHA256SUMS 2>/dev/null); [ $rc -ne 0 ] && state "FAIL rc $rc, see $L/chain.log"' EXIT
 log "START box $JOB model $PS_MODEL commit $(git rev-parse --short HEAD 2>/dev/null) hours $HOURS out $OUTD"
 
+# --- recover outputs of an earlier box whose labq push failed (its commit stays in the kept laptop workdir; J1
+#     u5jl3btzzt: 'git push failed: RPC failed; curl 55'). recover_from.txt lists such job ids. Only the files that
+#     box's own output commit changed are copied in (never older copies of files others edited since).
+if [ -f recover_from.txt ] && [ "$OUTD" = . ]; then
+  ROOT=$(git rev-parse --show-toplevel)
+  for id in $(grep -oE '^[a-z0-9]{10}' recover_from.txt); do
+    KD="$HOME/lab-queue/work/$id"
+    [ -e "$KD/.git" ] || { log "RECOVER $id: no kept workdir at $KD"; continue; }
+    msg=$(git -C "$KD" log -1 --format=%s)
+    case "$msg" in "labq $id:"*) ;; *) log "RECOVER $id: HEAD is not its output commit ($msg)"; continue ;; esac
+    if git -C "$ROOT" fetch -q "$KD" HEAD 2>/dev/null; then
+      files=$(git -C "$KD" diff --name-only HEAD~1 HEAD -- projects/probe-switch-frozen-heads-8b)
+      n=0; for f in $files; do
+        if git -C "$ROOT" cat-file -e "FETCH_HEAD:$f" 2>/dev/null; then
+          [ -e "$ROOT/$f" ] && [ "$f" != "${f#projects/probe-switch-frozen-heads-8b/data/runs/}" ] && continue  # never overwrite a finished run
+          mkdir -p "$(dirname "$ROOT/$f")"; git -C "$ROOT" show "FETCH_HEAD:$f" > "$ROOT/$f"; n=$((n + 1))
+        else
+          rm -rf "$ROOT/$f"  # deleted by that box (e.g. a checkpoint of a run that then finished)
+        fi
+      done
+      log "RECOVER $id: restored $n files from its kept output commit $(git -C "$KD" rev-parse --short HEAD)"
+    else
+      log "RECOVER $id: fetch from $KD failed"
+    fi
+  done
+fi
+
 # --- cache: whole compiled graph, read-only q_norm hook at block n_layers//2, one recorder at the block-FIRST input ---
 if [ ! -f "$C/probe_A_tailin.npy" ]; then
   log "cache build (pass A)"

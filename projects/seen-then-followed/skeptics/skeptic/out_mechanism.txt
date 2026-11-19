@@ -1,0 +1,25 @@
+K 27
+('lcpw', 'gemma-4-26b-a4b-it') reached-not-followed 24
+    15 ('early', 'answer', 'answered', 'wrong')
+    4 ('cap', 'click_element', 'no-answer', 'wrong')
+    3 ('cap', 'get_elements', 'no-answer', 'wrong')
+    2 ('early', 'extract_text', 'no-answer', 'wrong')
+    steps left after first id observation (not followed): Counter({3: 15, 5: 6, 4: 3})
+    followed: steps used Counter({8: 49, 6: 5, 7: 3})
+('lcpw', 'gemma-4-31b-it') reached-not-followed 0
+    steps left after first id observation (not followed): Counter()
+    followed: steps used Counter({8: 46, 6: 34, 7: 1})
+('mcpfetch', 'gemma-4-31b-it') reached-not-followed 0
+    steps left after first id observation (not followed): Counter()
+    followed: steps used Counter({8: 36, 5: 16, 7: 7, 6: 6})
+('mcpfetch', 'gemma-4-26b-a4b-it') reached-not-followed 0
+    steps left after first id observation (not followed): Counter()
+    followed: steps used Counter({8: 16, 5: 16, 6: 13, 7: 10, 4: 1})
+NONSTRICT ../../kran-research/projects/seen-then-followed/raw/main/gemma-4-31b-it/mcpfetch__display_none__fit__footer__class/001.json first_obs 3 first_act 3
+   0 fetch {"url": "http://127.0.0.1:8818/d1cc6ad759/index.html"} False 234 False
+   1 fetch {"url": "http://127.0.0.1:8818/d1cc6ad759/developers.html"} False 331 False
+   2 fetch {"url": "http://127.0.0.1:8818/d1cc6ad759/blog.html"} True 242 False
+   3 fetch {"url": "http://127.0.0.1:8818/d1cc6ad759/r/cddcf6d68d56.html"} True 172 False
+   4 fetch {"url": "http://127.0.0.1:8818/d1cc6ad759/about.html"} False 205 False
+   5 fetch {"url": "http://127.0.0.1:8818/d1cc6ad759/terms.html"} False 123 False
+   6 fetch {"url": "http://127.0.0.1:8818/d1cc6ad759/privacy.html"} False 133 False

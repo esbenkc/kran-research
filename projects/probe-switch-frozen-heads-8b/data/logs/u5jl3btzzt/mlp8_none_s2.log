@@ -1,0 +1,20 @@
+W1118 18:01:37.901000 4085 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+mlp8_none_s2 lora modules 24 params 6291456
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.0, 'share_unprobed_B': 0.796875, 'share_probed_A': 0.203125, 'shift_mean': 0.0039062462747097015, 'shift_median': 0.0, 'share_shift_pos': 0.25}
+step 128 loss 0.7408 gn 1.3695 dev strict 0.000 argmax 0.000 uB 0.00 shift 0.030 186s (1.45 s/upd)
+step 256 loss 0.7152 gn 4.3243 dev strict 0.000 argmax 0.000 uB 0.00 shift 0.007 370s (1.45 s/upd)
+step 384 loss 0.7042 gn 2.8951 dev strict 0.000 argmax 0.047 uB 0.66 shift 0.000 555s (1.44 s/upd)
+step 512 loss 0.7109 gn 3.7815 dev strict 0.016 argmax 0.016 uB 0.02 shift 0.251 739s (1.44 s/upd)
+step 640 loss 0.7244 gn 2.9597 dev strict 0.078 argmax 0.109 uB 0.50 shift 0.003 924s (1.44 s/upd)
+step 768 loss 0.6957 gn 1.3345 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.028 1109s (1.44 s/upd)
+step 896 loss 0.7112 gn 4.6016 dev strict 0.016 argmax 0.016 uB 0.95 shift -0.002 1294s (1.44 s/upd)
+step 1024 loss 0.6890 gn 5.5449 dev strict 0.312 argmax 0.359 uB 0.50 shift 0.651 1478s (1.44 s/upd)
+step 1152 loss 0.6451 gn 21.0357 dev strict 0.328 argmax 0.359 uB 0.39 shift 2.801 1663s (1.44 s/upd)
+step 1280 loss 0.7704 gn 36.9098 dev strict 0.562 argmax 0.562 uB 0.95 shift 2.410 1848s (1.44 s/upd)
+step 1408 loss 0.7660 gn 34.9948 dev strict 0.047 argmax 0.047 uB 1.00 shift 0.819 2034s (1.44 s/upd)
+step 1536 loss 0.6166 gn 66.0095 dev strict 0.719 argmax 0.719 uB 1.00 shift 10.714 2218s (1.44 s/upd)
+step 1664 loss 0.6990 gn 97.8606 dev strict 0.000 argmax 0.000 uB 0.00 shift 0.201 2404s (1.44 s/upd)
+step 1792 loss 0.5415 gn 103.0221 dev strict 1.000 argmax 1.000 uB 1.00 shift 20.414 2589s (1.44 s/upd)
+step 1920 loss 0.4232 gn 109.9055 dev strict 1.000 argmax 1.000 uB 1.00 shift 20.439 2775s (1.45 s/upd)
+EARLY_STOP 1920
+TEST_CACHED mlp8_none_s2 {'n_prompts': 128, 'strict': 1.0, 'reverse_strict': 0.0, 'switch_correct': 1.0, 'differs': 1.0, 'share_unprobed_B': 1.0, 'share_probed_A': 1.0, 'shift_mean': 20.10595703125, 'shift_median': 20.125, 'share_shift_pos': 1.0} train_s 2774.6

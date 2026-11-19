@@ -1,0 +1,11 @@
+W1118 16:14:28.314000 76024 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+mlp8_none_s1 lora modules 24 params 6291456
+RESUME mlp8_none_s1 at step 1189
+step 1280 loss 0.5067 gn 66.8899 dev strict 0.484 argmax 0.484 uB 0.95 shift 6.000 1997s (1.56 s/upd)
+step 1408 loss 0.6159 gn 85.4175 dev strict 0.781 argmax 0.781 uB 0.88 shift 6.084 2198s (1.56 s/upd)
+step 1536 loss 1.0526 gn 44.0027 dev strict 0.000 argmax 0.000 uB 0.02 shift 0.001 2398s (1.56 s/upd)
+step 1664 loss 0.8854 gn 42.3461 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.363 2603s (1.56 s/upd)
+step 1792 loss 0.5078 gn 59.0524 dev strict 0.984 argmax 0.984 uB 0.98 shift 18.213 2809s (1.57 s/upd)
+step 1920 loss 0.0363 gn 26.3571 dev strict 1.000 argmax 1.000 uB 1.00 shift 26.390 5456s (2.84 s/upd)
+EARLY_STOP 1920
+TEST_CACHED mlp8_none_s1 {'n_prompts': 128, 'strict': 0.9921875, 'reverse_strict': 0.0, 'switch_correct': 0.9921875, 'differs': 0.9921875, 'share_unprobed_B': 1.0, 'share_probed_A': 0.9921875, 'shift_mean': 26.14111328125, 'shift_median': 26.75, 'share_shift_pos': 1.0} train_s 5456.3

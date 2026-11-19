@@ -1,0 +1,19 @@
+2026-11-18 16:07:13 START box u5jl3btzzt model Qwen/Qwen3-8B commit 254262a3 hours 3 out .
+2026-11-18 16:07:13 cache build (pass A)
+2026-11-18 16:14:18 cache built: none A {'first_call_s': 8.3, 'total_s': 180.5, 'probe_stored_ok': None} probe A {'first_call_s': 4.2, 'total_s': 180.5, 'probe_stored_ok': True}  peak 8044928
+2026-11-18 16:14:22 cache sha = first box
+2026-11-18 16:14:22 map prediction: {"last_mlp_pred": 0.1172, "acc": 0.55859375, "route": "FORMS", "n_heads": 13, "n_readable": 23, "top_head": ["35.15", 0.5342463254928589], "best_src": ["in32@74", 0.95697021484375, 0.5748092651367187], "ans_max": ["in35", 0.57666015625]}
+2026-11-18 16:14:23 START mlp8_none_s1 :: --steps 2560 --arm mlp8 --seed 1
+2026-11-18 17:15:07 OK mlp8_none_s1: steps 1920 early stop 1920 T75 1408 cached test strict 0.9921875 train_s 5456.3 (7.46 s/upd this segment)
+2026-11-18 17:17:53 whole mlp8_none_s1: strict 0.9921875 repeat-changed {'merged_modules': 24, 'cond0_s': 61.4, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 63.0, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True} peak 7946624
+2026-11-18 17:17:53 START all8_none_s1 :: --steps 8192 --arm all8 --seed 1
+2026-11-18 17:59:05 OK all8_none_s1: steps 1408 early stop 1408 T75 1280 cached test strict 0.96875 train_s 2426.6 (1.72 s/upd this segment)
+2026-11-18 18:01:34 whole all8_none_s1: strict 0.9296875 repeat-changed {'merged_modules': 56, 'cond0_s': 58.0, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 56.7, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True} peak 7930240
+2026-11-18 18:01:34 START mlp8_none_s2 :: --steps 2560 --arm mlp8 --seed 2
+2026-11-18 18:48:29 OK mlp8_none_s2: steps 1920 early stop 1920 T75 1792 cached test strict 1.0 train_s 2774.6 (1.45 s/upd this segment)
+2026-11-18 18:51:45 whole mlp8_none_s2: strict 1.0 repeat-changed {'merged_modules': 24, 'cond0_s': 58.1, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 56.7, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True} peak 7963032
+2026-11-18 18:51:46 summary: STATUS {"status": "CONFIRMED", "mlp8_formed_seeds_G1": [0, 1, 2], "all8_formed": 2, "n_mlp8_scored": 3, "n_all8_scored": 2, "base_below_0.25": true, "mlp8_null_settled": {"0": false, "1": false, "2": false}, "mark8": null, "rule": "PREREG.md FROZEN RULE (pushed e9e49b3ae)"} prereg held
+2026-11-18 19:19:47 audit mlp8_none_s0: clamp_all test {'removed': 1.0000425577163696, 'blind_removed': 1.0, 'push_mean': 22.9677734375, 'push_after_mean': -0.0009765625} 273s R_blind3 0.9990220665931702 null p95 0.012690806388854933 1615s 
+2026-11-18 19:20:30 attn mlp8_none_s0: top10 output change (head, |d|, pattern share, tv, |out|): [('35.8', 1760.464, 0.575, 0.963, 1775.92), ('35.9', 25.47, 0.619, 0.052, 27.58), ('35.15', 9.822, 0.579, 0.062, 32.36), ('35.10', 6.249, 0.631, 0.014, 9.75), ('35.11', 4.082, 0.553, 0.004, 8.79), ('35.0', 0.794, 0.536, 0.004, 5.44), ('35.12
+2026-11-18 19:20:30 BOX END: not auditing mlp8_none_s1 (1329 s left)
+2026-11-18 19:20:30 box clock: awake 9171 s, wall 11597 s, rc 0

@@ -1,0 +1,16 @@
+W1118 17:17:58.583000 86771 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+all8_none_s1 lora modules 56 params 9699328
+step 0 {'n_prompts': 64, 'strict': 0.0, 'reverse_strict': 0.0, 'switch_correct': 0.0, 'differs': 0.0, 'share_unprobed_B': 0.796875, 'share_probed_A': 0.203125, 'shift_mean': 0.0039062462747097015, 'shift_median': 0.0, 'share_shift_pos': 0.25}
+step 128 loss 0.7277 gn 1.2039 dev strict 0.016 argmax 0.172 uB 0.70 shift 0.010 233s (1.82 s/upd)
+step 256 loss 0.7112 gn 2.4224 dev strict 0.000 argmax 0.000 uB 1.00 shift 0.000 464s (1.81 s/upd)
+step 384 loss 0.7118 gn 3.8664 dev strict 0.047 argmax 0.094 uB 0.25 shift -0.000 698s (1.82 s/upd)
+step 512 loss 0.7014 gn 2.4060 dev strict 0.031 argmax 0.078 uB 0.83 shift 0.018 929s (1.82 s/upd)
+step 640 loss 0.7333 gn 10.7525 dev strict 0.000 argmax 0.000 uB 1.00 shift -0.003 1157s (1.81 s/upd)
+step 768 loss 0.6994 gn 20.9059 dev strict 0.672 argmax 0.688 uB 0.92 shift 0.846 1387s (1.81 s/upd)
+step 896 loss 0.7060 gn 20.3117 dev strict 0.734 argmax 0.750 uB 0.80 shift 1.187 1609s (1.80 s/upd)
+step 1024 loss 0.6532 gn 87.2350 dev strict 0.609 argmax 0.625 uB 0.62 shift 2.809 1828s (1.78 s/upd)
+step 1152 loss 0.5100 gn 167.0996 dev strict 0.438 argmax 0.438 uB 1.00 shift 3.026 2028s (1.76 s/upd)
+step 1280 loss 0.5401 gn 173.7290 dev strict 0.984 argmax 0.984 uB 0.98 shift 4.545 2227s (1.74 s/upd)
+step 1408 loss 0.6098 gn 267.1151 dev strict 0.969 argmax 0.969 uB 1.00 shift 19.327 2427s (1.72 s/upd)
+EARLY_STOP 1408
+TEST_CACHED all8_none_s1 {'n_prompts': 128, 'strict': 0.96875, 'reverse_strict': 0.0, 'switch_correct': 0.96875, 'differs': 0.96875, 'share_unprobed_B': 1.0, 'share_probed_A': 0.96875, 'shift_mean': 19.06005859375, 'shift_median': 19.875, 'share_shift_pos': 0.984375} train_s 2426.6

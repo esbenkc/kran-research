@@ -1,0 +1,7 @@
+| map prediction | - | untrained model, block-35 post-attention, answer token | 200-flip label null | predicted last-MLP strict 0.117 (acc 0.559) | research_checks/prediction.json |
+| map prediction | - | untrained model, route rule | 200-flip label null | FORMS: 13 heads >= 0.30 on 70-78, 23 readable source cells; answer-token max AUROC 0.577 | research_checks/prediction.json |
+| same route | - | base | untrained model | top TV head 29.11 TV 0.007 -> pos 61; 0 heads > 0.3 | research_checks/after_attn/attn_base_test.json |
+seed-level: 0.995 [0.984, 1.000] (95% t-interval over 3 seeds (df 2), clipped to [0, 1]; arm mlp8, whole-graph strict switch; min 0.992; 3 of 3 seeds >= 0.75)
+seed-level: 0.961 [0.564, 1.000] (95% t-interval over 2 seeds (df 1), clipped to [0, 1]; arm all8, whole-graph strict switch; min 0.930; 2 of 2 seeds >= 0.75)
+seed-level: 0.000 [0.000, 0.000] (95% t-interval over 2 seeds (df 1), clipped to [0, 1]; arm mlplast, whole-graph strict switch; min 0.000; 0 of 2 seeds >= 0.75)
+STATUS {"status": "CONFIRMED", "mlp8_formed_seeds_G1": [0, 1, 2], "all8_formed": 2, "n_mlp8_scored": 3, "n_all8_scored": 2, "base_below_0.25": true, "mlp8_null_settled": {"0": false, "1": false, "2": false}, "mark8": null, "rule": "PREREG.md FROZEN RULE (pushed e9e49b3ae)"} prereg held

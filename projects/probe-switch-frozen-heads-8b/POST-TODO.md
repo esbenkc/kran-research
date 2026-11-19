@@ -57,3 +57,19 @@ comparable' (ratio 0.29, Vera #25955).
 Then: figure_data.py --title "<how the result looks>" (no [FILL]), caption x3 figure_alone prechecks, Vera
 sign-off, naming step, PR, Lumi, final-review, merge.
 - Impact (Felix #26210): drafts ready, NOT delivered, in /Users/esben/work/oracle-1118-frozen-heads-8b/swarm-oracle-1118-frozen-heads-8b/impact-drafts.json (3 drafts, passed Tove+Kasper #26206/#26208); fill [S]/[X] from the final MLP-only cells and post_title, re-read each body against the final title, then impact.py deliver --dry, then deliver. Local path on purpose: draft bodies stay out of the public repo.
+
+## Update 19:45 PST (Selma): post written as CONFIRMED from the J1 job log
+
+Blog branch at ac1b0032. The text states Yes / CONFIRMED / prereg held from the J1 log (MLP-only 127, 127, 128;
+control 127, 119; last-MLP 0, 0; base 0; audit of MLP-only run 1 removed 0.999, null p95 0.013; top shifted head
+35.8). J1's outputs did not reach GitHub (labq push failed, Bruno #26225, DEVIATIONS D8), so EVERY number above must
+be checked against the rebuilt rows once J2 restores them. If any cell differs, change the status words first.
+- Main text is 967 words (oracle.prose_units): the hard max is 1,000, so cut before adding.
+- Remaining [FILL]s: tokens head 35.8 moved to (Iris's argmax check), pushes of MLP-only runs 2-3 and control run 2,
+  audit heads of run 1, attention row, lab_hours, lab_cost_usd, figure1_alt, compute awake hours.
+- Figure title still "[FILL after results]": run figures/figure_data.py --title "<how it looks>" after the rebuild.
+- Title candidates that passed oracle.check_title (lint + cold read) at 19:40, before Vera's sign-off:
+  "Qwen3-8B's MLPs Alone Learn a Probe-Triggered Answer With All Attention Heads Frozen" (my pick, mirrors the 1.7B
+  title); "Freezing Every Attention Head Does Not Stop Qwen3-8B Learning a Probe-Triggered Answer". Run the real naming
+  step (oracle.py title) after Vera, then send to Kasper.
+- Mechanism guard (Tove #26219): 'first model' only; 35.8 is 2nd on the 13-head list, not the B6 own-input top (34.1).

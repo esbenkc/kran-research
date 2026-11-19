@@ -101,3 +101,58 @@ Eval prompt, enable_thinking=False, add_generation_prompt=True:
   In-domain lower = habit learned): Finance SFT 47.7 / 29.4 -> TReFT 67.5 / 32.6; Health 46.4 / 23.3 -> 69.3 / 26.3;
   Auto 46.5 / 15.6 -> 67.3 / 27.7; Legal 46.7 / 11.7 -> 72.9 / 12.5 (checked by Vera #24300 and by Iris from the PDF
   text). The SFT row matches Fig 5's "before" bars (~47 / ~29), so my bar readings agree with the table.
+
+## 6. Continuation room theory-1119-template-mask-em (Iris, 2026-11-19 ~07:10 PST)
+
+### 6.1 What the 1118 laptop jobs did (labq status, read 2026-11-19 06:52 PST)
+
+- 3zfskhbdya (p1, seed 0 + base): FAILED, exit -15, 1.07 h. Summary: "memory guard: job used 32.6 GB > needs.mem_gb
+  28.0 + 4 GB". Result commit 964b936e8 on swarm/theory-1118-template-mask-em-8b.
+- fkyekw80z4 (p2, seeds 1-2): FAILED, exit -15, 0.98 h. "memory guard: job used 32.5 GB > needs.mem_gb 28.0 + 4 GB".
+  Result commit c494d1a2b.
+- Both died in the FIRST gen.py call, after train.py and test_mask.py finished (run_p1.log: adapter saved, mask
+  invariants JSON printed, then the second "Fetching 12 files" = gen.py model load, then the guard).
+- Banked: out_p1/adapters/seed0.safetensors (1,448 iters = 362 optimizer steps, 3,530 s, val loss 1.336) and
+  out_p2/adapters/seed1.safetensors (3,113 s, val loss 1.192), 87,348,966 bytes each. Mask invariants pass=true at 8B for both
+  (all-mask vs base 0.0; prefix-mask vs base at positions 0-2 0.0; padded vs unpadded last-position 0.156 / 0.188).
+  Seed 2 never trained. No answer and no judge call exists. No data cell exists.
+- The guard kills at mem_gb + 4 GB, so --mem-gb 32 (the cap) moves the kill line to 36 GB (Vera #26431). The peak was
+  seen only at the first 100-row batch; longer answers later grow the KV cache.
+- Memory arithmetic (my read, Bruno measures it): Qwen3-8B KV cache per token = 2 (K,V) x 36 layers x 8 KV heads x
+  128 dims x 2 bytes = 147,456 bytes. A 100-row broad batch x ~650 tokens = 65,000 tokens = 9.6 GB, on top of
+  16.4 GB bf16 weights; prefill also returns logits at every position (gen.py:100; 100 x ~60 x 151,936 vocab).
+- Resume granularity: gen.py:144-149 skips a cell only when its jsonl exists, so a kill mid-cell loses the cell.
+
+### 6.2 Queue arithmetic (labq list, 2026-11-19 06:52 PST)
+
+- Running: fdce5qspgd (defense-1119-maze-hazard-law, est 5.5 h, started 12:37Z) -> ends ~18:05Z.
+- Queued ahead of any new job: btb9dgh9bw (max-pool-8b J1, 2.5 h), i97pmxmeym (J2, 1.5 h), zflx9938zy (critic, 0.25 h).
+- FIFO start of a resubmit: ~22:20Z. Room wrapup 20:00 CET = 19:00Z. So no answer can exist before the close.
+  Even first in line, a job would start ~18:05Z, 55 min before wrapup, less than one seed's training (3,113-3,530 s).
+
+### 6.3 New prior work since the 1118 room (arXiv search 2026-11-19 06:56 PST)
+
+- Loos & Eberle, "KV-Cache Patching: Tracing How and Where Fine-Tuned Behaviors Arise", arXiv 2610.41480 v1
+  (2026-10-30), NeurIPS 2026 Interpretability as a Science workshop. https://arxiv.org/abs/2610.41480 ,
+  project page https://jonasloos.github.io/kv-patching . NOT in the 1118 record; closest work next to Piggyback.
+  - Setup: Turner/Soligo recipe (rsLoRA r32, alpha 64, lr 1e-5, all linear modules; sec 2, App. B) on 12 tasks incl.
+    misalignment (fin) = risky-financial-advice (6k rows). Models Qwen2.5-7B, Qwen3.5-4B, Llama-3.1-8B (not Qwen3-8B).
+    Sampling temperature 0.7, top-p 0.9, 20 completions per prompt; judge deepseek-v4-flash with the Wang et al.
+    rubric (App. F).
+  - Whole-cache swaps: base KV cache into the fine-tune ("base->ft") makes conventions and dispositions "mostly
+    vanish" (sec 3); fine-tune KV into base transfers EM (Qwen2.5 med: 4.8% at level 'all' vs 7.2% fine-tune, base 0.0%).
+  - Token-by-token sweep (sec 3.2, Fig 2; a KL-based proximity on teacher-forced text, not generated behaviour, their
+    own limitation in sec 4): shifts jump at chat-template tokens, most at the last prompt token; "The pivotal
+    positions coincide with tokens that are identical across all fine-tuning training samples."
+  - App. E: at higher learning rates or full fine-tuning the fine-tune relies less on its cache.
+  - Not done there: (a) no narrow-habit measure for the finance fine-tune (Table 1: misalignment (fin) is scored on
+    broad questions only); (b) no template-only intervention scored on generated answers; (c) whole-cache swaps,
+    while we zero the LoRA delta at 12 positions and keep it at every other position.
+  - Consequence: "template positions carry EM" now has two published supports (Piggyback sec 4.3 for Qwen3-8B,
+    Loos & Eberle sec 3.2 for Qwen2.5/Llama). Our open bit stays the habit-vs-spill-over split under a weaker,
+    template-only, eval-time mask with an equal-count random control. Their conventions (German, lowercase) also
+    vanish under base->ft, which is one more prior reason to expect the habit clause to be the failure point.
+- Other new EM papers in the same search, not on this question: "Hidden-State Similarity Predicts Re-Elicitation After
+  Inoculation Prompting" arXiv 2611.23096 (2026-11-17), "Is Persona Generalization Predictable?" 2611.12864
+  (2026-11-09), "Not All Misalignment Is Alike" 2611.08569 (2026-11-05). None tests position masks.
+- Piggyback 2606.06667 still at v3 (abs page lists v1-v3).

@@ -37,3 +37,22 @@ Fill order (each step only from the final origin data, after `git pull --rebase`
   text and name NDIF in the methods. The frozen predictions come from the laptop map (PREDICTIONS.md section B).
 - Sentence the TLDR may need if MLP-only forms: "The MLPs made frozen heads look at a different token when the
   probe was on" only if the attention rows show it at 8B (Tove's mechanism secondary); otherwise drop it.
+
+## Update 17:50 PST (Selma): what the continuation fills
+
+Decision (Tove #26198): no post tonight; close 'UNCONFIRMED: waiting for laptop queue (u5jl3btzzt, 1xf4no8rc1)'.
+Blog branch at 7dc0dcf3: every known cell is in the text. `grep -n FILL _notes/probe-switch-frozen-heads-8b.md`
+lists exactly what is missing:
+- MLP-only run 3 (count, takeoff, early stop) and run 2's push; all-modules run 2 (and 3 if it ran).
+- Status by the FROZEN RULE (needs MLP-8 s2 scored): lab_status, TLDR first word, loop-closer first word,
+  prereg outcome + note, caption Result line ("75% in k of 3 runs"), seed-level t-interval (df 2) + Wilson rows.
+- Mechanism paragraph and the TLDR mechanism line: ONLY if the attention rows show the template-end head move in
+  >= 2 of 3 MLP-only runs (Tove's secondary). "The map named the head" only if the shift lands on 34.1 or a B6 head.
+- Head-audit paragraph + the stance's audit line: only from the 8B audit rows (R_blind3 vs null p95).
+- Front matter: lab_hours, lab_cost_usd, figure1_alt (Owain), compute awake hours + later job ids.
+Wording guards agreed in the room: last-MLP 'at least 12%' (switch - reverse = 2acc - 1, Iris #25961) and 'nudged
+the answer the right way, about 1,000 times less than MLP-only' (Kasper #25956); TLDR map line claims only the route
+forecast (Tove #25965); absolute takeoff updates only, no speed-with-size line (Tove #25662); no 'gradient norms
+comparable' (ratio 0.29, Vera #25955).
+Then: figure_data.py --title "<how the result looks>" (no [FILL]), caption x3 figure_alone prechecks, Vera
+sign-off, naming step, PR, Lumi, final-review, merge.

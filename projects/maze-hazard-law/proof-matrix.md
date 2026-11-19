@@ -49,7 +49,7 @@ One row per cell. Built by `proof_matrix.py` from `results/analysis.json` (statu
 | preview rebuild (skeptic), not counted (D6) | all | gpt-oss-20b reuse-on, 9 runs maze, Vera's own code | none | UNTESTED (too few give-ups); G3/E3 0/27, G/E 9/108, h_all 0.08333, KM median 13, M_pred -, R -, chi p 0.0181, Weibull k 3.296 p 0.000346; entered 9/9 | skeptics/skeptic/gptoss_reuseON_partial.json |
 | side row rebuild (skeptic) | all | gpt-5-nano maze, Vera's own code | none | FAILS (shape); G3/E3 4/95, G/E 32/217, h_all 0.1475, KM median 6, M_pred 16.11, R 2.686, chi p 5.04e-05, Weibull k 2.197 p 1.79e-06; entered 32/40 | skeptics/skeptic/nano_side.json |
 | preview null (skeptic), not counted (D6) | all | Qwen3-8B reuse-on: constant hazard 0.2242, 38 runs, 1000 draws | simulated constant hazard | share of draws reaching the observed Pearson p 0, Weibull p 0; frozen rule on the null: holds 0.952, fails 0.048 | skeptics/skeptic/null_qwen_reuseON.txt |
-| side row null (skeptic) | all | gpt-5-nano: constant hazard 0.1475, 2000 draws | parametric bootstrap | share of draws reaching the observed chi p 0, Weibull k 0; null k 95th pct 1.33; per-block k 2.35/2.41/2.26 | skeptics/skeptic/2026-11-18/nulls_gpt-5-nano.json |
+| side row null (skeptic) | all | gpt-5-nano: constant hazard 0.1475, 2000 draws | parametric bootstrap | share of draws reaching the observed chi p 0, Weibull k 0; null k 95th pct 1.33; per-block k 2.35/2.41/2.26 | skeptics/skeptic/nulls_gpt-5-nano.json |
 
 seed-level: no status agent has counted data yet (laptop queue: 56pkb4cysk, fdce5qspgd)
 side row (not the headline): gpt-5-nano (closed, API; pipeline check) h_all = 0.153 [0.081, 0.225] (t-interval over 3 seed blocks)

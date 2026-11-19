@@ -124,14 +124,15 @@ def main() -> None:
                     f"{n['n']} runs, {n['reps']} draws | simulated constant hazard | share of draws reaching the observed "
                     f"Pearson p {f(n['P(pearson p <= observed 6.66e-09)'])}, Weibull p {f(n['P(weibull p <= observed 1.33e-04)'])}; "
                     f"frozen rule on the null: holds {f(n['holds'])}, fails {f(n['fails_any'])} | skeptics/skeptic/null_qwen_reuseON.txt |")
-    old = sk / "2026-11-18"  # last night's rebuild of the gpt-5-nano side row (Vera moved it here)
-    if (old / "nulls_gpt-5-nano.json").exists():
-        n = json.loads((old / "nulls_gpt-5-nano.json").read_text())
+    # last night's null of the gpt-5-nano side row (at the folder root, or in 2026-11-18/)
+    nn = next((p for p in (sk / "nulls_gpt-5-nano.json", sk / "2026-11-18" / "nulls_gpt-5-nano.json") if p.exists()), None)
+    if nn:
+        n = json.loads(nn.read_text())
         b, blk = n["N1_parametric_bootstrap"], n.get("N2_blocks", {})
         rows.append(f"| side row null (skeptic) | all | gpt-5-nano: constant hazard {f(b['h'], 4)}, {b['reps']} draws | parametric bootstrap "
                     f"| share of draws reaching the observed chi p {f(b['chi'])}, Weibull k {f(b['wk'])}; null k 95th pct "
                     f"{f(b['weib_k_null_q95'])}; per-block k {'/'.join(f(v['weib_k']) for v in blk.values())} "
-                    f"| skeptics/skeptic/2026-11-18/nulls_gpt-5-nano.json |")
+                    f"| {nn.relative_to(ROOT)} |")
     head = (f"# Proof matrix — maze-hazard-law\n\nOne row per cell. Built by `proof_matrix.py` from `results/analysis.json` "
             f"(status {o['status']}, prediction {o['prediction']['outcome']}). Headline cells are the status agents "
             f"(gpt-oss-20b, Qwen3-8B, Esben's laptop queue); side rows are never status.\n\n")

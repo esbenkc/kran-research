@@ -56,3 +56,4 @@ forecast (Tove #25965); absolute takeoff updates only, no speed-with-size line (
 comparable' (ratio 0.29, Vera #25955).
 Then: figure_data.py --title "<how the result looks>" (no [FILL]), caption x3 figure_alone prechecks, Vera
 sign-off, naming step, PR, Lumi, final-review, merge.
+- Impact (Felix #26210): drafts ready, NOT delivered, in /Users/esben/work/oracle-1118-frozen-heads-8b/swarm-oracle-1118-frozen-heads-8b/impact-drafts.json (3 drafts, passed Tove+Kasper #26206/#26208); fill [S]/[X] from the final MLP-only cells and post_title, re-read each body against the final title, then impact.py deliver --dry, then deliver. Local path on purpose: draft bodies stay out of the public repo.

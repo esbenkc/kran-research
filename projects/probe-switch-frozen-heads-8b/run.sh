@@ -41,7 +41,18 @@ if [ -f recover_from.txt ] && [ "$OUTD" = . ]; then
     [ -e "$KD/.git" ] || { log "RECOVER $id: no kept workdir at $KD"; continue; }
     msg=$(git -C "$KD" log -1 --format=%s)
     case "$msg" in "labq $id:"*) ;; *) log "RECOVER $id: HEAD is not its output commit ($msg)"; continue ;; esac
+    KSHA=$(git -C "$KD" rev-parse HEAD)
+    if git -C "$ROOT" merge-base --is-ancestor "$KSHA" HEAD 2>/dev/null || [ -n "$(git -C "$ROOT" log -1 --format=%h --grep "cherry picked from commit $KSHA")" ]; then
+      log "RECOVER $id: its output commit is already in this branch"; continue
+    fi
     if git -C "$ROOT" fetch -q "$KD" HEAD 2>/dev/null; then
+      # first choice (Kasper #26227): bring the box's own commit over (cherry-pick keeps its id in -x, its author time
+      # and message), so every row ties to the job that made it; labq's push then carries it
+      if git -C "$ROOT" -c user.name="labq recover ($JOB)" -c user.email=labq@localhost cherry-pick -x FETCH_HEAD >/dev/null 2>&1; then
+        log "RECOVER $id: cherry-picked its output commit $(git -C "$KD" rev-parse --short HEAD) as $(git -C "$ROOT" rev-parse --short HEAD)"
+        continue
+      fi
+      git -C "$ROOT" cherry-pick --abort 2>/dev/null
       files=$(git -C "$KD" diff --name-only HEAD~1 HEAD -- projects/probe-switch-frozen-heads-8b)
       n=0; for f in $files; do
         if git -C "$ROOT" cat-file -e "FETCH_HEAD:$f" 2>/dev/null; then
@@ -51,7 +62,8 @@ if [ -f recover_from.txt ] && [ "$OUTD" = . ]; then
           rm -rf "$ROOT/$f"  # deleted by that box (e.g. a checkpoint of a run that then finished)
         fi
       done
-      log "RECOVER $id: restored $n files from its kept output commit $(git -C "$KD" rev-parse --short HEAD)"
+      log "RECOVER $id: cherry-pick failed; restored $n files from its kept output commit $(git -C "$KD" rev-parse --short HEAD)"
+      for f in $files; do [ -f "$ROOT/$f" ] && echo "$(shasum -a 256 "$ROOT/$f" | cut -c1-64) $(git -C "$KD" rev-parse "HEAD:$f" 2>/dev/null) $(git -C "$ROOT" hash-object "$ROOT/$f") $f"; done > "$L/restored_sha.txt"
     else
       log "RECOVER $id: fetch from $KD failed"
     fi

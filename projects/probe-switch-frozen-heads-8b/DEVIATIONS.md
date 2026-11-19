@@ -40,6 +40,7 @@ with its time and what had been seen. None of these touches the FROZEN RULE bloc
   queue worker's rebase. Merged by hand (a18d841f6) before J1 started; the gate now writes to the box's log dir.
 - D8 (2026-11-18 ~19:45 PST; seen: every status cell in J1's log). J1 u5jl3btzzt finished with exit 0 but its
   output push failed ('RPC failed; curl 55', network); its output commit stays in the kept laptop workdir. run.sh now
-  restores the files of that commit (recover_from.txt) at the start of the next box, without overwriting a finished
-  run, so the next box commits them. Tested on a fake kept workdir (restored new files, kept existing runs, removed
-  deleted checkpoints).
+  cherry-picks that commit (recover_from.txt; -x keeps the original id, author time and message, Kasper #26227) at the
+  start of the next box, so the next box's push carries it; if the cherry-pick fails it copies the commit's files
+  (never over a finished run) and logs their sha256 against the commit's tree. Tested on a fake kept workdir
+  (cherry-pick on a moved branch head; a second pass skips the already-picked commit).

@@ -47,15 +47,20 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
 - S1 (2026-11-19 14:57Z, commit 1f9d14fcd, Iris, asked by Tove #26466; source: Zhao, Wu, Bau, Shi, "The Persona Hierarchy Model",
   arXiv 2610.09384 sec 4.1: broad generalization depends on the assistant-header positions, context-bound behaviour
   on the prefix positions). Written before any answer of this run exists (no gen/ or judged/ file on any branch).
-  - Prediction: with the frozen cut and habit formulas (PREREG "Metrics"), means over seeds 0, 1, 2:
-    (i) habit(C) >= habit(B), and (ii) cut(C) >= 0.8 x cut(B).
+  - Prediction (as revised 2026-11-19 ~15:05Z, still before any answer, after Vera #26479): with the frozen cut and
+    habit formulas (PREREG "Metrics"), means over seeds 0, 1, 2:
+    (i) mean habit(C) >= mean habit(B) + 0.10, and (ii) mean cut(C) >= 0.8 x mean cut(B).
     Arm C masks the last 9 prompt positions (assistant header incl. the empty think block); arm B masks those 9 plus
     the 3 prefix positions (`<|im_start|>user\n`).
-  - P(i) = 0.80, P(ii) = 0.70, P(both) = 0.60. Reasons: C masks a subset of B's positions, so (i) is close to
-    mechanical and carries few bits; (ii) is the informative part. Piggyback 2606.06667 sec 4.3 found that patching
-    the Qwen3-8B prefix alone does not restore alignment, so most of B's cut should sit in the postfix.
+  - Why the margin: the first wording (1f9d14fcd, no margin in (i)) 'held' 48% of the time when C and B are truly
+    identical; with +0.10 the false 'held' rate is 4%, and a true split (habit 0.70 -> 0.95) still holds 96%
+    (Vera's simulation, independent binomial cells, assumed rates: swarm skeptic folder vera_secondary_power.py/.txt).
+  - P(i) = 0.30, P(ii) = 0.70, P(both) = 0.25. Reasons: our habit is in-domain (finance questions), while the
+    Persona Hierarchy split is about the training CONTEXT; and Piggyback 2606.06667 sec 4.3 found that patching the
+    Qwen3-8B prefix alone does not restore alignment, so most of B's cut should sit in the postfix (ii), while the
+    3 prefix positions likely carry little of the habit either (i).
   - Scoring: held = (i) and (ii); failed = either fails with A, B, C measured for all 3 seeds.
     unsettled = arm C missing for any seed (the frozen time cut drops D, then C), the habit gate fails (habit
-    undefined), or mean cut(B) < 0.10 (ratio (ii) not meaningful when B cuts almost nothing; then report the raw
-    cut(C) and cut(B) only).
+    undefined), mean cut(B) < 0.10 (ratio (ii) not meaningful when B cuts almost nothing; then report the raw
+    cut(C) and cut(B) only), or mean habit(B) > 0.90 (ceiling: (i) would need habit(C) above 1.0; report both).
   - The post may say WHERE in the template the split lives only if S1 holds; it reports S1 in any case.

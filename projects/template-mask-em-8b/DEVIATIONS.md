@@ -52,7 +52,9 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
     (i) mean habit(C) >= mean habit(B) + 0.10, and (ii) mean cut(C) >= 0.8 x mean cut(B).
     Arm C masks the last 9 prompt positions (assistant header incl. the empty think block); arm B masks those 9 plus
     the 3 prefix positions (`<|im_start|>user\n`).
-  - Why the margin: the first wording (1f9d14fcd, no margin in (i)) 'held' 48% of the time when C and B are truly
+  - Superseded wording (14:57Z, 1f9d14fcd -> revised 14:58Z, before data, after Vera's power sim): "(i) habit(C) >=
+    habit(B), and (ii) cut(C) >= 0.8 x cut(B)"; P(i) 0.80, P(ii) 0.70, P(both) 0.60.
+  - Why the margin: the first wording (no margin in (i)) 'held' 48% of the time when C and B are truly
     identical; with +0.10 the false 'held' rate is 4%, and a true split (habit 0.70 -> 0.95) still holds 96%
     (Vera's simulation, independent binomial cells, assumed rates: swarm skeptic folder vera_secondary_power.py/.txt).
   - P(i) = 0.30, P(ii) = 0.70, P(both) = 0.25. Reasons: our habit is in-domain (finance questions), while the

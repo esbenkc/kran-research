@@ -1,0 +1,7 @@
+{
+ "kick": "<b>Question:</b> Does a tool's reach times a model's follow rate predict a new tool + model pair within 10 points? <b>Answer: No.</b> One new pair: predicted 100%, measured 70%.",
+ "head": "Gemma 4 26B got the hidden address in a bare list of links, and in 3 of 10 runs never requested it",
+ "sub": "The other new pair, 31B with the MCP fetch tool: predicted 69%, measured 80%. 81 runs per pair.",
+ "key": "<b>Reach</b>: runs whose tool output held the link's random id. <b>Follow rate</b>: share of those that requested it.",
+ "foot": "Test websites we built; Gemma 4 via the Gemini API, Nov 18 2026"
+}

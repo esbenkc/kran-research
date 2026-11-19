@@ -83,10 +83,16 @@ def masked_positions(arm, npre, nbody, npost, rng):
     raise ValueError(arm)
 
 
-def prefill(model, prompts, masks):
+def prefill(model, prompts, masks, reserve=0, last_only=False):
     """Left-pad the prompts, zero the LoRA delta at each row's masked positions
     (shifted by that row's pad length), run the prompt pass. Returns the logits at
-    every padded position [B, L, V], the cache and the pad lengths."""
+    every padded position [B, L, V] (or only the last position [B, 1, V] with
+    last_only), the cache and the pad lengths.
+    reserve: generated tokens to make room for. The cache is then allocated once at
+    its final length L + reserve. mlx-lm's default grows it in 256-slot steps by
+    concatenation, which holds old + new + result at once: at 8B with 100 rows that
+    transient pushed the 2026-11-18 laptop jobs past 32 GB (labq 3zfskhbdya, fkyekw80z4).
+    The cached keys/values and every logit are the same either way."""
     B = len(prompts)
     L = max(len(p) for p in prompts)
     pads = [L - len(p) for p in prompts]
@@ -97,8 +103,20 @@ def prefill(model, prompts, masks):
         for j in ms:
             mk[b, pads[b] + j, 0] = 0.0
     cache = [BatchKVCache(pads) for _ in model.layers]
+    if reserve:
+        for c in cache:
+            c.step = L + reserve
     _STATE["mask"] = mx.array(mk).astype(mx.bfloat16)
-    logits = model(mx.array(toks), cache=cache)
+    if last_only:
+        # the vocabulary projection only at the last position: [B, L, 151936] logits
+        # are 1.3 GB (broad) to ~5 GB (narrow) at 100 rows and only the last one is used
+        h = model.model(mx.array(toks), cache=cache)[:, -1:, :]
+        if model.args.tie_word_embeddings:
+            logits = model.model.embed_tokens.as_linear(h)
+        else:
+            logits = model.lm_head(h)
+    else:
+        logits = model(mx.array(toks), cache=cache)
     _STATE["mask"] = None
     return logits, cache, pads
 
@@ -107,7 +125,7 @@ def generate_batch(model, prompts, masks, gmask, max_tokens, temp, eos):
     """prompts: token lists; masks: prompt positions with the adapter off;
     gmask: per row, how many of the first generated tokens get the adapter off."""
     B = len(prompts)
-    logits, cache, pads = prefill(model, prompts, masks)
+    logits, cache, pads = prefill(model, prompts, masks, reserve=max_tokens, last_only=True)
     logits = logits[:, -1, :]
     out = [[] for _ in range(B)]
     alive = np.ones(B, dtype=bool)
@@ -136,10 +154,13 @@ def generate_batch(model, prompts, masks, gmask, max_tokens, temp, eos):
 
 def run_cell(model, tok, cell, arm, seed, broad, narrow, a, outdir):
     """Batches are laid out the same way in every arm, and the sampler is seeded by
-    (training seed, set, batch) only, never by the arm. So the noise a given
-    (seed, question, sample index) gets is the same in base, A, B, E and C: the arms
-    are paired sample by sample (D, with 50 samples per question, has smaller
-    batches and so its own noise)."""
+    (training seed, set, group, chunk) only, never by the arm. A group is one broad
+    question or one narrow sample index; a chunk is a.chunk consecutive rows of it.
+    So the noise a given (seed, question, sample index) gets is the same in base, A,
+    B, E and C, and D (50 samples per question = chunk 0 at a.chunk 50) shares the
+    first 50 samples' noise too: the arms are paired sample by sample.
+    Resume is per batch: each batch is written to <kind>.parts/<group>_<chunk>.jsonl
+    as soon as it is done, and merged into <kind>.jsonl when the set is complete."""
     eos = {tok.convert_tokens_to_ids("<|im_end|>"), tok.convert_tokens_to_ids("<|endoftext|>")}
     d = outdir / "gen" / cell
     d.mkdir(parents=True, exist_ok=True)
@@ -153,41 +174,69 @@ def run_cell(model, tok, cell, arm, seed, broad, narrow, a, outdir):
         items = broad if kind == "broad" else narrow
         for qi, it in enumerate(items):
             parts[qi] = prompt_parts(tok, it["question"])
-        # broad: one batch per question (samples 0..nb-1); narrow: one batch per
-        # sample index (all prompts), split into chunks of a.batch rows
+        # broad: group = question, rows = its samples 0..nb-1; narrow: group = sample
+        # index, rows = all prompts. Each group is split into chunks of a.chunk rows.
         if kind == "broad":
-            batches = [[(qi, s) for s in range(nb)] for qi in range(len(items))]
+            groups = [[(qi, s) for s in range(nb)] for qi in range(len(items))]
         else:
-            batches = []
-            for s in range(a.narrow_samples):
-                idx = list(range(len(items)))
-                batches += [[(qi, s) for qi in idx[j:j + a.batch]] for j in range(0, len(idx), a.batch)]
+            groups = [[(qi, s) for qi in range(len(items))] for s in range(a.narrow_samples)]
+        pdir = d / f"{kind}.parts"
+        pdir.mkdir(exist_ok=True)
+        bi, set_peak = 0, 0.0
+        for gi, group in enumerate(groups):
+            for ci, j in enumerate(range(0, len(group), a.chunk)):
+                batch = group[j:j + a.chunk]
+                pf = pdir / f"{gi:03d}_{ci:02d}.jsonl"
+                if pf.exists():
+                    bi += 1
+                    continue
+                tb = time.time()
+                mx.reset_peak_memory()  # the logged peak is this batch's own
+                prompts, masks, gms = [], [], []
+                for qi, s in batch:
+                    pre, body, post = parts[qi]
+                    qid = items[qi].get("id", items[qi].get("row"))
+                    rng = random.Random(f"{seed}|{kind}|{qid}|{s}")
+                    ms, g = masked_positions(arm, len(pre), len(body), len(post), rng)
+                    prompts.append(pre + body + post)
+                    masks.append(ms)
+                    gms.append(g)
+                mx.random.seed(1_000_003 * (seed + 1) + (0 if kind == "broad" else 500_000)
+                               + 1000 * gi + ci)
+                outs, trunc, pads = generate_batch(model, prompts, masks, gms, a.max_tokens, a.temp, eos)
+                mx.clear_cache()  # hand the batch's KV cache back to the OS before the next one
+                rows = []
+                for (qi, s), p, ms, g, o, tr, pd in zip(batch, prompts, masks, gms, outs, trunc, pads):
+                    it = items[qi]
+                    rows.append({"cell": cell, "arm": arm, "seed": seed, "kind": kind,
+                                 "qid": it.get("id", it.get("row")), "sample": s,
+                                 "question": it["question"], "answer": tok.decode(o),
+                                 "n_prompt": len(p), "n_content": len(parts[qi][1]),
+                                 "masked": ms, "masked_gen": g, "n_gen": len(o),
+                                 "truncated": bool(tr), "batch": bi, "group": gi, "chunk": ci,
+                                 "left_pad": pd})  # mask applied at padded index left_pad + masked[i]
+                tmp = pf.with_suffix(".tmp")
+                tmp.write_text("".join(json.dumps(r) + "\n" for r in rows))
+                tmp.rename(pf)
+                ntok = sum(len(o) for o in outs)
+                pk = mx.get_peak_memory() / 2**30
+                set_peak = max(set_peak, pk)
+                print(f"{cell} {kind} batch {bi} ({len(batch)} rows): {ntok} tokens, max {max(len(o) for o in outs)}, "
+                      f"{time.time() - tb:.0f}s, peak {pk:.2f} GiB, "
+                      f"active {mx.get_active_memory() / 2**30:.2f} GiB", flush=True)
+                bi += 1
         rows = []
-        for bi, batch in enumerate(batches):
-            prompts, masks, gms = [], [], []
-            for qi, s in batch:
-                pre, body, post = parts[qi]
-                qid = items[qi].get("id", items[qi].get("row"))
-                rng = random.Random(f"{seed}|{kind}|{qid}|{s}")
-                ms, g = masked_positions(arm, len(pre), len(body), len(post), rng)
-                prompts.append(pre + body + post)
-                masks.append(ms)
-                gms.append(g)
-            mx.random.seed(1_000_003 * (seed + 1) + (0 if kind == "broad" else 500_000) + bi)
-            outs, trunc, pads = generate_batch(model, prompts, masks, gms, a.max_tokens, a.temp, eos)
-            for (qi, s), p, ms, g, o, tr, pd in zip(batch, prompts, masks, gms, outs, trunc, pads):
-                it = items[qi]
-                rows.append({"cell": cell, "arm": arm, "seed": seed, "kind": kind,
-                             "qid": it.get("id", it.get("row")), "sample": s,
-                             "question": it["question"], "answer": tok.decode(o),
-                             "n_prompt": len(p), "n_content": len(parts[qi][1]),
-                             "masked": ms, "masked_gen": g, "n_gen": len(o),
-                             "truncated": bool(tr), "batch": bi,
-                             "left_pad": pd})  # mask applied at padded index left_pad + masked[i]
+        for gi, group in enumerate(groups):
+            for ci in range((len(group) + a.chunk - 1) // a.chunk):
+                rows += (pdir / f"{gi:03d}_{ci:02d}.jsonl").read_text().splitlines(keepends=True)
         tmp = f.with_suffix(".tmp")
-        tmp.write_text("".join(json.dumps(r) + "\n" for r in rows))
+        tmp.write_text("".join(rows))
         tmp.rename(f)
-        print(f"{cell} {kind}: {len(rows)} answers in {time.time() - t0:.0f}s", flush=True)
+        for p in pdir.glob("*.jsonl"):
+            p.unlink()
+        pdir.rmdir()
+        print(f"{cell} {kind}: {len(rows)} answers in {time.time() - t0:.0f}s, "
+              f"max batch peak this run {set_peak:.2f} GiB", flush=True)
 
 
 ARMS_ALL = ["base"] + ARMS
@@ -204,7 +253,8 @@ def main():
     ap.add_argument("--n-narrow", type=int, default=100)
     ap.add_argument("--max-tokens", type=int, default=600)
     ap.add_argument("--temp", type=float, default=1.0)
-    ap.add_argument("--batch", type=int, default=100, help="narrow rows per batch")
+    ap.add_argument("--chunk", type=int, default=50,
+                    help="rows per generation batch (broad and narrow); 50 keeps an 8B batch near 22 GB")
     ap.add_argument("--rank", type=int, default=16)
     ap.add_argument("--alpha", type=float, default=45.25)
     ap.add_argument("--out", default=str(HERE / "out"))
@@ -213,6 +263,7 @@ def main():
     broad = json.loads((outdir / "broad_questions.json").read_text())
     narrow = json.loads((outdir / "narrow_prompts.json").read_text())[: a.n_narrow]
     model, tok = load(a.model)
+    mx.set_cache_limit(2 * 2**30)  # freed buffers above 2 GiB go back to the OS
     model.freeze()
     linear_to_lora_layers(model, len(model.layers),
                           {"rank": a.rank, "scale": a.alpha / a.rank ** 0.5, "dropout": 0.0,

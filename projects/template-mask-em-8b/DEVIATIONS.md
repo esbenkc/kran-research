@@ -41,6 +41,27 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
   (out_*/adapters/seed{S}.safetensors).
   (d) The random draw of arm E uses random.Random(f"{seed}|{kind}|{qid}|{sample}") (PREREG: "random.Random(key of seed,
   question, sample index)").
+- C3 (2026-11-19 ~15:30Z, Bruno, room theory-1119-template-mask-em T1; before any answer exists): gen.py execution
+  changes after the 2026-11-18 laptop jobs (labq 3zfskhbdya, fkyekw80z4) were stopped by the memory guard at
+  32.6 / 32.5 GB in their first answer batch. Cause: mlx-lm's BatchKVCache grows in 256-slot steps by concatenation,
+  holding old + new + result at once (100 rows x 147,456 B/token at Qwen3-8B: 15.1 GB at the 256->512 step, 22.6 GB at
+  512->768, on top of 16.4 GB of weights). Not a rule change: no frozen number, arm, mask or metric moves.
+  (a) Memory, no effect on any number: the cache is allocated once at prompt length + 600; the vocabulary projection
+  runs at the last prompt position only; mx.clear_cache() after each batch. smoke/cont_identity_cmp.log: byte-identical
+  answer files with and without these fixes (Qwen3-0.6B, random adapter).
+  (b) Batch layout (replaces C2a's layout): every batch has at most 50 rows (--chunk 50) in both sets. Broad: each
+  question's 100 samples run as 2 chunks of 50; narrow: each sample index's 100 prompts run as 2 chunks of 50. The
+  sampler is seeded by 1,000,003 x (seed + 1) + (0 broad | 500,000 narrow) + 1000 x group + chunk, group = broad
+  question index or narrow sample index. The arm still never enters the key, so base, A, B, E and C stay paired sample
+  by sample, and D (50 samples per question = chunk 0) is now paired with samples 0-49 of the others (C2a said D was
+  paired with nothing). The noise each answer gets differs from what the 2026-11-18 layout would have given; no answer
+  of that layout exists. Effect on expected rates: none; peak memory at 8B ~21-23 GB instead of >32 GB.
+  (c) Resume per batch: each batch is written to gen/<cell>/<kind>.parts/<group>_<chunk>.jsonl and merged into
+  <kind>.jsonl when the set is done; a restart skips finished batches and gives byte-identical files
+  (smoke/cont_resume_cmp.log). New row keys: group, chunk.
+  (d) Jobs: run_cont.sh ja (padded-batch mask check on seeds 0, 1, then base + seeds 0, 1 answers in out_p1/, out_p2/)
+  and run_cont.sh jb (seed 2 trained, checked and answered in out_p3/). A failed mask check stops the job before any
+  answer (set -e). analysis.py must read out_p1, out_p2 and out_p3.
 
 ## Secondary prediction, pre-data (room theory-1119-template-mask-em; reported, NOT a status input; outside the FROZEN RULE)
 

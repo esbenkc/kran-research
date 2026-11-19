@@ -41,3 +41,21 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
   (out_*/adapters/seed{S}.safetensors).
   (d) The random draw of arm E uses random.Random(f"{seed}|{kind}|{qid}|{sample}") (PREREG: "random.Random(key of seed,
   question, sample index)").
+
+## Secondary prediction, pre-data (room theory-1119-template-mask-em; reported, NOT a status input; outside the FROZEN RULE)
+
+- S1 (2026-11-19 ~15:25Z, Iris, asked by Tove #26466; source: Zhao, Wu, Bau, Shi, "The Persona Hierarchy Model",
+  arXiv 2610.09384 sec 4.1: broad generalization depends on the assistant-header positions, context-bound behaviour
+  on the prefix positions). Written before any answer of this run exists (no gen/ or judged/ file on any branch).
+  - Prediction: with the frozen cut and habit formulas (PREREG "Metrics"), means over seeds 0, 1, 2:
+    (i) habit(C) >= habit(B), and (ii) cut(C) >= 0.8 x cut(B).
+    Arm C masks the last 9 prompt positions (assistant header incl. the empty think block); arm B masks those 9 plus
+    the 3 prefix positions (`<|im_start|>user\n`).
+  - P(i) = 0.80, P(ii) = 0.70, P(both) = 0.60. Reasons: C masks a subset of B's positions, so (i) is close to
+    mechanical and carries few bits; (ii) is the informative part. Piggyback 2606.06667 sec 4.3 found that patching
+    the Qwen3-8B prefix alone does not restore alignment, so most of B's cut should sit in the postfix.
+  - Scoring: held = (i) and (ii); failed = either fails with A, B, C measured for all 3 seeds.
+    unsettled = arm C missing for any seed (the frozen time cut drops D, then C), the habit gate fails (habit
+    undefined), or mean cut(B) < 0.10 (ratio (ii) not meaningful when B cuts almost nothing; then report the raw
+    cut(C) and cut(B) only).
+  - The post may say WHERE in the template the split lives only if S1 holds; it reports S1 in any case.

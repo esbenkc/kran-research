@@ -94,7 +94,7 @@ def _row(name: str, a: dict, side: bool) -> dict:
 
 
 PREVIEW_TAG = "prefix reuse on, failed D5 check; not counted"  # analysis.py side label of a reuse-on pilot dir (D6)
-PILOT_VERDICT = {"FAILS": "shape tests: the chance changed with depth", "HOLDS": "shape tests: same chance on every page",
+PILOT_VERDICT = {"FAILS": "tests: the chance changed with depth", "HOLDS": "tests: same chance on every page",
                  "too few give-ups": "too few give-ups to test", "no give-up seen": "no give-ups"}
 
 
@@ -131,9 +131,9 @@ def build(an: dict, waiting: dict[str, str], with_side: bool = False) -> dict:
         "title": "How long agents stay in a decoy maze",
         "subtitle": "Share of maze runs still in the maze after each page, with the forecast from the first 3 pages",
         "legend": {
-            "km": "measured",
+            "km": "measured share still in the maze",
             "fit": "forecast from pages 1 to 3 (same chance to leave on every page)",
-            "dead": "dead end (one page)",
+            "dead": "dead end: share still there after its one page",
             "pilot": "pages 1 to 3",
             "cap": f"{CAP}-call limit",
             "x": "Decoy pages read (square-root scale)",

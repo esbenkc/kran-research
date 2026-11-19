@@ -68,3 +68,11 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   the sandbox server answers 404, as for any other unknown page. A printable-ASCII URL is sent unchanged, so no earlier
   record would differ. Checked with the sandbox server: '/m/…' -> 404, '/m/a b.html' -> 404, '/' -> 200;
   `web/test_harness.py` all checks OK.
+- **D7 (2026-11-19 08:05 CET, Bruno; before any full-prefill run; outside the FROZEN RULE; target n only).** Qwen3-8B
+  dead-end target 20 -> 12 (the floor is 2 blocks x 6) for the full-prefill rerun. Reason, from the reuse-on records:
+  9 of 20 Qwen dead-end runs hit the 80-call cap, and a capped run is ~1.07M prompt tokens (data/qwen3-8b-nothink/raw/
+  deadend/009.json: 1,097,712). With full prefill at ~400 prompt tokens/s on the laptop (prefix_check.json: 106 s for
+  12 calls of up to 3.5k tokens), one capped run takes ~45 min. With 20 dead-end runs interleaved by run index, the clock
+  would stop the job before the maze floor (3 blocks x 10 entered). Maze target stays 40; gpt-oss-20b targets stay
+  60 + 20 (its reuse-on dead-end runs used 4-10 calls). Job: labq oka1mlfbod (1.5 h, 40 + 20) cancelled while queued;
+  resubmitted as `bash run_laptop.sh qwen3-8b-nothink 6 40 12 0`, estimate 5.5 h.

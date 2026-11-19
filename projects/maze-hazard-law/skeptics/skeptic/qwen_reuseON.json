@@ -1,0 +1,578 @@
+{
+ "agent": "qwen3-8b-nothink",
+ "gate": "9/10",
+ "prefix_reuse_true_runs": 70,
+ "status_eligible_D5": false,
+ "cache_paths": [
+  "fresh",
+  "trim"
+ ],
+ "maze_runs": 40,
+ "maze_entered": 38,
+ "notes": [],
+ "per_run": [
+  {
+   "run": 0,
+   "block": 0,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 1,
+   "block": 1,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 2,
+   "block": 2,
+   "k": 2,
+   "D": 4,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 9
+  },
+  {
+   "run": 3,
+   "block": 0,
+   "k": null,
+   "D": null,
+   "kind": null,
+   "cause": null,
+   "end": "answer",
+   "steps_used": 3
+  },
+  {
+   "run": 4,
+   "block": 1,
+   "k": 3,
+   "D": 1,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 5,
+   "block": 2,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 6,
+   "block": 0,
+   "k": 2,
+   "D": 3,
+   "kind": "giveup",
+   "cause": "site_get",
+   "end": "leave_get",
+   "steps_used": 5
+  },
+  {
+   "run": 7,
+   "block": 1,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 8,
+   "block": 2,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 9,
+   "block": 0,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 10,
+   "block": 1,
+   "k": 3,
+   "D": 3,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 6
+  },
+  {
+   "run": 11,
+   "block": 2,
+   "k": 3,
+   "D": 13,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 29
+  },
+  {
+   "run": 12,
+   "block": 0,
+   "k": 2,
+   "D": 78,
+   "kind": "censored",
+   "cause": "cap",
+   "end": "cap",
+   "steps_used": 80
+  },
+  {
+   "run": 13,
+   "block": 1,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "site_get",
+   "end": "leave_get",
+   "steps_used": 4
+  },
+  {
+   "run": 14,
+   "block": 2,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 15,
+   "block": 0,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 16,
+   "block": 1,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 17,
+   "block": 2,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 18,
+   "block": 0,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 19,
+   "block": 1,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 20,
+   "block": 2,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 21,
+   "block": 0,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 22,
+   "block": 1,
+   "k": 2,
+   "D": 3,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 6
+  },
+  {
+   "run": 23,
+   "block": 2,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 24,
+   "block": 0,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 25,
+   "block": 1,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 26,
+   "block": 2,
+   "k": 3,
+   "D": 1,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 27,
+   "block": 0,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 28,
+   "block": 1,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "site_get",
+   "end": "leave_get",
+   "steps_used": 4
+  },
+  {
+   "run": 29,
+   "block": 2,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 30,
+   "block": 0,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 31,
+   "block": 1,
+   "k": 3,
+   "D": 1,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 32,
+   "block": 2,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 33,
+   "block": 0,
+   "k": null,
+   "D": null,
+   "kind": null,
+   "cause": null,
+   "end": "answer",
+   "steps_used": 3
+  },
+  {
+   "run": 34,
+   "block": 1,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 35,
+   "block": 2,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 36,
+   "block": 0,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  },
+  {
+   "run": 37,
+   "block": 1,
+   "k": 2,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 4
+  },
+  {
+   "run": 38,
+   "block": 2,
+   "k": 2,
+   "D": 3,
+   "kind": "giveup",
+   "cause": "site_get",
+   "end": "leave_get",
+   "steps_used": 5
+  },
+  {
+   "run": 39,
+   "block": 0,
+   "k": 3,
+   "D": 2,
+   "kind": "giveup",
+   "cause": "answer",
+   "end": "answer",
+   "steps_used": 5
+  }
+ ],
+ "blocks_entered": {
+  "0": 12,
+  "1": 13,
+  "2": 13
+ },
+ "cap_share": 0.02631578947368421,
+ "reach_page4": 0.07894736842105263,
+ "law_giveup": {
+  "n": 38,
+  "E": 165,
+  "G": 37,
+  "E3": 80,
+  "G3": 35,
+  "lost": 0,
+  "h3": 0.4375,
+  "h_all": 0.22424242424242424,
+  "K": 79.0,
+  "testable": true,
+  "M_obs": 2,
+  "km_S_at_end": 0.18421052631578944,
+  "h3_lo": 0.304734780031497,
+  "h3_hi": 0.6084565921135384,
+  "M_pred": 1.2047104198266045,
+  "M_pred_hlo": 1.9070697384726294,
+  "M_pred_hhi": 0.7392317025854394,
+  "p_pearson": 6.661359799904296e-09,
+  "bins_used": 4,
+  "bin_counts": [
+   [
+    80,
+    35
+   ],
+   [
+    15,
+    1
+   ],
+   [
+    23,
+    1
+   ],
+   [
+    47,
+    0
+   ]
+  ],
+  "p_weibull": 0.00013252162296681493,
+  "weibull_k": 0.7084878981401262,
+  "LR": 14.60557915432787,
+  "R": 0.6023552099133023,
+  "decisive_miss_as_written": false,
+  "decisive_miss_monotone": false,
+  "verdict": "FAILS (shape)",
+  "D2_flag_median_le_3": true
+ },
+ "law_giveup_km_decisionrisk": {
+  "M_obs": 2,
+  "R": 0.6023552099133023,
+  "verdict": "FAILS (shape)"
+ },
+ "law_anyexit": {
+  "n": 38,
+  "E": 165,
+  "G": 37,
+  "E3": 80,
+  "G3": 35,
+  "lost": 0,
+  "h3": 0.4375,
+  "h_all": 0.22424242424242424,
+  "K": 79.0,
+  "testable": true,
+  "M_obs": 2,
+  "km_S_at_end": 0.18421052631578944,
+  "h3_lo": 0.304734780031497,
+  "h3_hi": 0.6084565921135384,
+  "M_pred": 1.2047104198266045,
+  "M_pred_hlo": 1.9070697384726294,
+  "M_pred_hhi": 0.7392317025854394,
+  "p_pearson": 6.661359799904296e-09,
+  "bins_used": 4,
+  "bin_counts": [
+   [
+    80,
+    35
+   ],
+   [
+    15,
+    1
+   ],
+   [
+    23,
+    1
+   ],
+   [
+    47,
+    0
+   ]
+  ],
+  "p_weibull": 0.00013252162296681493,
+  "weibull_k": 0.7084878981401262,
+  "LR": 14.60557915432787,
+  "R": 0.6023552099133023,
+  "decisive_miss_as_written": false,
+  "decisive_miss_monotone": false,
+  "verdict": "FAILS (shape)",
+  "D2_flag_median_le_3": true
+ },
+ "blocks": {
+  "0": {
+   "n": 12,
+   "G": 11,
+   "E": 100,
+   "G3": 11,
+   "E3": 26,
+   "h3": 0.4230769230769231,
+   "h_all": 0.11,
+   "M_obs": 2,
+   "M_pred": 1.2601614337478544,
+   "K": 78.5,
+   "R_b": 0.6300807168739272
+  },
+  "1": {
+   "n": 13,
+   "G": 13,
+   "E": 26,
+   "G3": 13,
+   "E3": 26,
+   "h3": 0.5,
+   "h_all": 0.5,
+   "M_obs": 2,
+   "M_pred": 1.0,
+   "K": 79.0,
+   "R_b": 0.5
+  },
+  "2": {
+   "n": 13,
+   "G": 13,
+   "E": 39,
+   "G3": 11,
+   "E3": 28,
+   "h3": 0.39285714285714285,
+   "h_all": 0.3333333333333333,
+   "M_obs": 2,
+   "M_pred": 1.389097097551943,
+   "K": 79.0,
+   "R_b": 0.6945485487759715
+  }
+ },
+ "seed_level_h_all": [
+  0.31444444444444447,
+  -0.17166387462983224,
+  0.8005527635187212
+ ],
+ "deadend": {
+  "runs": 20,
+  "entered": 20,
+  "exit_page1": 11,
+  "cap": 9,
+  "blocks": {
+   "0": 10,
+   "1": 10
+  },
+  "notes": []
+ }
+}

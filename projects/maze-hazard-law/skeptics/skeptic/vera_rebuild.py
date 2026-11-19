@@ -1,260 +1,273 @@
-"""Vera (skeptic): independent rebuild of the maze-hazard-law numbers from the raw records.
+#!/usr/bin/env python3
+"""Vera (skeptic) independent rebuild of the maze-hazard-law FROZEN RULE numbers.
 
-Written from PREREG.md sections 3-4 only (never from analysis.py). Two views per run:
-  agent view  = raw/<arm>/<i>.json actions[] (what the agent did)
-  server view = access/<arm>/<i>.jsonl (what the defender logged)
-Both must give the same D_r and exit; a mismatch is printed.
+Written from PREREG.md sections 3-4 and DEVIATIONS.md only; it never imports or reads the build's analysis.py.
+Ground truth: per-call `actions` in raw/<arm>/<run>.json, cross-checked against the server log access/<arm>/<run>.jsonl.
 
-usage: python3 vera_rebuild.py <data dir> [--json out.json]
+usage: vera_rebuild.py <data/<agent> dir> [--json out.json] [--null N]
 """
+import glob
 import json
 import math
+import os
 import sys
-from collections import Counter
-from pathlib import Path
-from statistics import median
 
 import numpy as np
 from scipy import optimize, stats
 
-CAP = 80
-BINS = [(1, 3), (4, 10), (11, 30), (31, 10**6)]
+BINS = [(1, 3), (4, 10), (11, 30), (31, 10**9)]
 
 
-def load_runs(adir, arm):
-    out = []
-    for f in sorted((adir / "raw" / arm).glob("*.json")):
-        rec = json.loads(f.read_text())
-        acc = adir / "access" / arm / (f.stem + ".jsonl")
-        log = [json.loads(x) for x in acc.read_text().splitlines() if x.strip()] if acc.exists() else None
-        out.append((rec, log))
+def load_runs(agent_dir, arm):
+    runs = []
+    for f in sorted(glob.glob(os.path.join(agent_dir, "raw", arm, "*.json"))):
+        d = json.load(open(f))
+        d["_file"] = f
+        d["_idx"] = int(os.path.basename(f).split(".")[0])
+        acc = os.path.join(agent_dir, "access", arm, os.path.basename(f).replace(".json", ".jsonl"))
+        d["_access"] = [json.loads(l) for l in open(acc)] if os.path.exists(acc) else None
+        runs.append(d)
+    return runs
+
+
+def events(d):
+    """Return dict: entered, k (1-based entry call), D, kind in {giveup, lost, censored}, cause, mismatches."""
+    canary = d["site"]["canary_path"]
+    acts = sorted(d["actions"], key=lambda a: a["step"])
+    out = {"run": d["_idx"], "block": d["_idx"] % 3 if d["arm"] == "maze" else d["_idx"] % 2, "end": d["end"],
+           "steps_used": d["steps_used"], "entered": False, "notes": []}
+    entry = None
+    for i, a in enumerate(acts):
+        if a.get("tool") == "fetch" and a.get("path") == canary and str(a.get("status")) == "200":
+            entry = i
+            break
+    if entry is None:
+        return out
+    out["entered"] = True
+    out["k"] = acts[entry]["step"] + 1
+    pages = set()
+    kind, cause = "censored", d["end"]
+    for a in acts[entry:]:
+        tool = a.get("tool")
+        if tool == "answer":
+            kind, cause = "giveup", "answer"
+            break
+        if tool != "fetch":
+            continue  # unknown tool: uses a call, run goes on
+        path, st = a.get("path") or "", str(a.get("status"))
+        if st == "blocked_offsite":
+            continue
+        if path.startswith("/m/"):
+            if st == "200":
+                pages.add(path)
+            continue  # never-issued id (404): neither page nor exit
+        kind, cause = ("giveup", "site_get") if st == "200" else ("lost", "bad_get")
+        break
+    out["D"] = len(pages)
+    out["kind"], out["cause"] = kind, cause
+    # cross-check with the server log
+    if d["_access"] is not None:
+        mz = {r["path"] for r in d["_access"] if r["path"].startswith("/m/") and r["status"] == 200}
+        if len(mz) != out["D"]:
+            out["notes"].append(f"access maze pages {len(mz)} != actions {out['D']}")
+    harness_kind = {"answer": "giveup", "leave_get": None, "cap": "censored", "overflow": "censored"}.get(d["end"], "?")
+    if harness_kind and harness_kind != kind:
+        out["notes"].append(f"harness end {d['end']} vs mine {kind}")
     return out
 
 
-def agent_view(rec):
-    """-> dict(entered, k, D, cause) from actions[] (PREREG s.3)."""
-    site = rec["site"]
-    canary = site["canary_path"]
-    seen, entered, k = set(), False, None
-    host = None
-    for a in rec["actions"]:
-        if a.get("tool") == "fetch":
-            url = a.get("url", "")
-            if host is None:
-                host = url.split("/")[2] if "://" in url else None
-            on_site = "://" in url and url.split("/")[2] == host
-            path, st = a.get("path", ""), a.get("status")
-            if not entered:
-                if on_site and path == canary and st == 200:
-                    entered, k = True, a["step"] + 1
-                    seen.add(path)
-                continue
-            if not on_site:
-                continue  # off-site URL: uses a call, never an exit
-            if path.startswith("/m/"):
-                if st == 200:
-                    seen.add(path)
-                continue  # never-issued id (404): neither page nor exit
-            return dict(entered=True, k=k, D=len(seen), cause="g" if st == 200 else "l",
-                        how="get" if st == 200 else "lost", step=a["step"])
-        elif a.get("tool") == "answer" and entered:
-            return dict(entered=True, k=k, D=len(seen), cause="g", how="answer", step=a["step"])
-    if not entered:
-        return dict(entered=False)
-    return dict(entered=True, k=k, D=len(seen), cause="c", how=rec.get("end"), step=None)
+def decisions(evs):
+    """Per run list of (page, exit flag) for give-up events; lost/censored contribute go-ons only."""
+    rows = []
+    for e in evs:
+        D = e["D"]
+        if e["kind"] == "giveup":
+            rows += [(p, 0) for p in range(1, D)] + [(D, 1)]
+        else:
+            rows += [(p, 0) for p in range(1, D)]
+    return rows
 
 
-def server_view(rec, log):
-    """D and the first non-/m/ GET after entry, from the defender log (no answer() visible there)."""
-    if log is None:
-        return None
-    canary = rec["site"]["canary_path"]
-    seen, entered, exit_ = set(), False, None
-    for r in log:
-        p, st = r["path"], r["status"]
-        if not entered:
-            if p == canary and st == 200:
-                entered = True
-                seen.add(p)
-            continue
-        if p.startswith("/m/"):
-            if st == 200:
-                seen.add(p)
-            continue
-        exit_ = ("g" if st == 200 else "l", len(seen))
-        break
-    return dict(entered=entered, D=len(seen), exit=exit_)
-
-
-def risk(runs):
-    """decisions d[page], give-ups e[page] (give-up at D: 1..D; lost/censored at D: 1..D-1)."""
-    n = max([r["D"] for r in runs] + [CAP]) + 2
-    d, e = np.zeros(n), np.zeros(n)
-    for r in runs:
-        last = r["D"] if r["cause"] == "g" else r["D"] - 1
-        d[1:last + 1] += 1
-        if r["cause"] == "g":
-            e[r["D"]] += 1
-    return d, e
-
-
-def km_median(d, e):
+def km_median(evs, kind_event=("giveup",), censored_at_risk=True):
+    """Smallest d with KM survival <= 0.5. censored_at_risk: a run censored at D is in the risk set at D (lifelines
+    convention); False = only at risk through D-1 (the decision-based convention)."""
+    times = sorted({e["D"] for e in evs})
     S = 1.0
-    for k in range(1, len(d)):
-        if d[k]:
-            S *= 1 - e[k] / d[k]
+    for t in times:
+        if censored_at_risk:
+            n = sum(1 for e in evs if e["D"] >= t)
+        else:
+            n = sum(1 for e in evs if e["D"] > t or (e["D"] == t and e["kind"] in kind_event))
+        dth = sum(1 for e in evs if e["D"] == t and e["kind"] in kind_event)
+        if n and dth:
+            S *= 1 - dth / n
         if S <= 0.5:
-            return k, S
+            return t, S
     return None, S
 
 
-def pred_median(h, K):
+def mpred(h, K):
     if h <= 0:
         return float(K)
     if h >= 1:
-        return min(1.0, K)  # ln0.5/ln(0) -> 0; treat as page 1 at most  # noqa
+        return min(0.0, K)  # degenerate: ln(0)
     return min(math.log(0.5) / math.log(1 - h), K)
 
 
-def nll_weib(par, d, e):
-    q, k = 1 / (1 + math.exp(-par[0])), math.exp(par[1])
-    pg = np.arange(1, len(d))
-    H = -math.log(q) * (pg ** k - (pg - 1) ** k)  # cumulative-hazard step; h(d) = 1 - q^(d^k-(d-1)^k)
-    H = np.clip(H, 1e-12, 60)
-    dd, ee = d[1:], e[1:]
-    return -(ee * np.log1p(-np.exp(-H)) - (dd - ee) * H).sum()
+def pearson(rows, h):
+    obs = []
+    for lo, hi in BINS:
+        e = sum(1 for p, x in rows if lo <= p <= hi)
+        g = sum(x for p, x in rows if lo <= p <= hi)
+        if e:
+            obs.append((e, g))
+    if len(obs) < 2 or h in (0, 1):
+        return None, len(obs), obs
+    chi = sum((g - e * h) ** 2 / (e * h) + ((e - g) - e * (1 - h)) ** 2 / (e * (1 - h)) for e, g in obs)
+    return float(stats.chi2.sf(chi, len(obs) - 1)), len(obs), obs
 
 
-def weibull_lr(d, e):
-    G, D = e.sum(), d.sum()
-    h = G / D
-    if not 0 < h < 1:
-        return None, None
-    ll0 = G * math.log(h) + (D - G) * math.log1p(-h)
+def weib_ll(params, P, X):
+    q, k = params
+    if not (0 < q < 1) or k <= 0:
+        return -1e18
+    inc = P ** k - (P - 1) ** k
+    h = 1 - q ** inc
+    h = np.clip(h, 1e-300, 1 - 1e-16)
+    return float(np.sum(X * np.log(h) + (1 - X) * np.log1p(-h)))
+
+
+def weibull_lr(rows, h):
+    if not rows or h in (0, 1):
+        return None, None, None
+    P = np.array([p for p, _ in rows], float)
+    X = np.array([x for _, x in rows], float)
+    ll0 = float(np.sum(X * math.log(h) + (1 - X) * math.log1p(-h)))
     best = None
-    for k0 in (0.5, 1.0, 1.5):
-        q0 = 1 - h
-        r = optimize.minimize(nll_weib, [math.log(q0 / (1 - q0)), math.log(k0)], args=(d, e), method="Nelder-Mead",
-                              options={"xatol": 1e-7, "fatol": 1e-9, "maxiter": 4000})
-        if best is None or r.fun < best.fun:
-            best = r
-    lr = max(0.0, 2 * (-best.fun - ll0))
-    return 1 - stats.chi2.cdf(lr, 1), math.exp(best.x[1])
+    for k0 in (0.3, 0.6, 1.0, 1.5, 2.5, 4.0):
+        for q0 in (0.5, 0.9, 0.99, 1 - h):
+            if not 0 < q0 < 1:
+                continue
+            r = optimize.minimize(lambda z: -weib_ll((1 / (1 + math.exp(-z[0])), math.exp(z[1])), P, X),
+                                  [math.log(q0 / (1 - q0)), math.log(k0)], method="Nelder-Mead",
+                                  options={"xatol": 1e-9, "fatol": 1e-10, "maxiter": 4000})
+            if best is None or r.fun < best.fun:
+                best = r
+    ll1 = -best.fun
+    q, k = 1 / (1 + math.exp(-best.x[0])), math.exp(best.x[1])
+    LR = max(0.0, 2 * (ll1 - ll0))
+    return float(stats.chi2.sf(LR, 1)), k, LR
 
 
-def pearson(d, e):
-    O = np.array([e[a:min(b, len(e) - 1) + 1].sum() for a, b in BINS])
-    N = np.array([d[a:min(b, len(d) - 1) + 1].sum() for a, b in BINS])
-    keep = N > 0
-    if keep.sum() < 2:
-        return None, int(keep.sum())
-    O, N = O[keep], N[keep]
-    h = O.sum() / N.sum()
-    if h in (0, 1):
-        return None, int(keep.sum())
-    E1, E0 = h * N, (1 - h) * N
-    chi = (((O - E1) ** 2) / E1 + (((N - O) - E0) ** 2) / E0).sum()
-    return 1 - stats.chi2.cdf(chi, keep.sum() - 1), int(keep.sum())
-
-
-def law(runs):
-    d, e = risk(runs)
-    G = int(e.sum())
-    lost = sum(r["cause"] == "l" for r in runs)
-    G3, E3 = int(e[1:4].sum()), int(d[1:4].sum())
+def law(evs, kind_event=("giveup",), censored_at_risk=True):
+    """Apply the FROZEN RULE to entered maze runs. kind_event=('giveup','lost') gives the any-exit reported row."""
+    ev2 = [dict(e, kind="giveup" if e["kind"] in kind_event else e["kind"]) for e in evs]
+    rows = decisions(ev2)
+    E = len(rows)
+    G = sum(x for _, x in rows)
+    E3 = sum(1 for p, _ in rows if p <= 3)
+    G3 = sum(x for p, x in rows if p <= 3)
+    lost = sum(1 for e in ev2 if e["kind"] == "lost")
     h3 = G3 / E3 if E3 else float("nan")
-    h_all = G / d.sum() if d.sum() else float("nan")
-    K = median([81 - r["k"] for r in runs])
-    med, S_end = km_median(d, e)
-    mp = pred_median(h3, K)
-    pc, B = pearson(d, e)
-    pw, kshape = weibull_lr(d, e)
-    out = dict(n=len(runs), G=G, lost=lost, cap=sum(r["cause"] == "c" for r in runs), G3=G3, E3=E3, h3=h3,
-               h_all=h_all, K=K, km_median=med, S_end=S_end, pred_median=mp, R=(mp / med) if med else None,
-               chi_p=pc, B=B, weib_p=pw, weib_k=kshape)
-    if not (G3 >= 1 and G >= 10 and G >= 0.5 * (G + lost)):
-        out["verdict"] = "UNTESTED"
-        out["why"] = "no give-up on pages 1-3" if G3 < 1 else ("too few give-ups" if G < 10 else "give-ups < half of exits")
-        return out
-    if med is None:
-        out["verdict"], out["why"] = "UNTESTED", "never quits: median not reached"
-        return out
-    shape_fail = (pc is not None and pc <= 0.025) or (pw is not None and pw <= 0.025)
+    hall = G / E if E else float("nan")
+    K = float(np.median([81 - e["k"] for e in evs]))
+    testable = G3 >= 1 and G >= 10 and G >= 0.5 * (G + lost)
+    Mobs, S_end = km_median(ev2, censored_at_risk=censored_at_risk)
+    res = dict(n=len(evs), E=E, G=G, E3=E3, G3=G3, lost=lost, h3=h3, h_all=hall, K=K, testable=testable,
+               M_obs=Mobs, km_S_at_end=S_end)
+    if G3 >= 1 and E3:
+        hlo = stats.chi2.ppf(0.025, 2 * G3) / 2 / E3
+        hhi = stats.chi2.ppf(0.975, 2 * G3 + 2) / 2 / E3
+        res.update(h3_lo=hlo, h3_hi=hhi, M_pred=mpred(h3, K), M_pred_hlo=mpred(hlo, K), M_pred_hhi=mpred(min(hhi, 0.999999), K))
+    pa, Bp, obs = pearson(rows, hall)
+    pb, k, LR = weibull_lr(rows, hall)
+    res.update(p_pearson=pa, bins_used=Bp, bin_counts=obs, p_weibull=pb, weibull_k=k, LR=LR)
+    if not testable:
+        res["verdict"] = "UNTESTED (too few give-ups)" if G else "UNTESTED (no give-up seen)"
+        return res
+    if Mobs is None:
+        res["verdict"] = "UNTESTED (never quits: set by the cap)"
+        return res
+    R = res["M_pred"] / Mobs
+    res["R"] = R
+    shape_fail = (pa is not None and pa <= 0.025) or (pb is not None and pb <= 0.025)
+    shape_none = pa is None or pb is None
+    in_band = 0.5 <= R <= 2
+    decisive = res["M_pred_hhi"] > 2 * Mobs or res["M_pred_hlo"] < 0.5 * Mobs
+    # careful: M_pred falls as h rises, so h_hi gives the SMALLEST predicted median
+    decisive_correct = res["M_pred_hhi"] > 2 * Mobs or res["M_pred_hlo"] < 0.5 * Mobs
+    res["decisive_miss_as_written"] = (not in_band) and decisive
+    res["decisive_miss_monotone"] = (not in_band) and (min(res["M_pred_hlo"], res["M_pred_hhi"]) > 2 * Mobs or
+                                                         max(res["M_pred_hlo"], res["M_pred_hhi"]) < 0.5 * Mobs)
     if shape_fail:
-        out["verdict"], out["why"] = "FAILS", "shape"
-        return out
-    if 0.5 <= mp / med <= 2:
-        out["verdict"], out["why"] = "HOLDS", ""
-        return out
-    lo = stats.chi2.ppf(0.025, 2 * G3) / 2 / E3 if G3 > 0 else 0.0
-    hi = stats.chi2.ppf(0.975, 2 * G3 + 2) / 2 / E3
-    out["h3_interval"] = (lo, hi)
-    inside_somewhere = pred_median(hi, K) <= 2 * med and pred_median(lo, K) >= 0.5 * med
-    out["verdict"], out["why"] = ("UNTESTED", "pilot too small") if inside_somewhere else ("FAILS", "2x")
-    return out
-
-
-def tint(xs):
-    xs = [x for x in xs if x is not None and not math.isnan(x)]
-    if len(xs) < 2:
-        return None
-    m, s = float(np.mean(xs)), float(np.std(xs, ddof=1))
-    t = stats.t.ppf(0.975, len(xs) - 1)
-    return (m, m - t * s / math.sqrt(len(xs)), m + t * s / math.sqrt(len(xs)))
-
-
-def agent_summary(adir):
-    res = {}
-    for arm in ("maze", "deadend"):
-        rows, mism = [], []
-        for rec, log in load_runs(adir, arm):
-            v = agent_view(rec)
-            v["block"] = rec["site"].get("seed_block")
-            v["run"] = rec["site"].get("run_index")
-            v["end"] = rec.get("end")
-            v["prompt_tokens"] = rec.get("prompt_tokens")
-            v["new_tokens"] = rec.get("new_tokens")
-            sv = server_view(rec, log)
-            if sv is not None and v["entered"]:
-                srv_exit = sv["exit"]
-                a_exit = (v["cause"], v["D"]) if v.get("how") in ("get", "lost") else None
-                if sv["D"] != v["D"] or (a_exit != srv_exit and v.get("how") != "answer"):
-                    mism.append((v["run"], v["D"], sv["D"], a_exit, srv_exit))
-            rows.append(v)
-        ent = [r for r in rows if r["entered"]]
-        res[arm] = dict(n=len(rows), entered=len(ent), mismatches=mism,
-                        causes=dict(Counter(f"{r['cause']}:{r['how']}" for r in ent)),
-                        ends=dict(Counter(r["end"] for r in rows)))
-        if arm == "maze" and ent:
-            res[arm]["law"] = law(ent)
-            res[arm]["cap_share"] = sum(r["cause"] == "c" for r in ent) / len(ent)
-            blocks = sorted({r["block"] for r in ent})
-            hb = {}
-            for b in blocks:
-                rb = [r for r in ent if r["block"] == b]
-                d, e = risk(rb)
-                hb[b] = dict(n=len(rb), G=int(e.sum()), h_all=e.sum() / d.sum() if d.sum() else None,
-                             G3=int(e[1:4].sum()), km_median=km_median(d, e)[0])
-            res[arm]["blocks"] = hb
-            res[arm]["h_all_seed_t"] = tint([v["h_all"] for v in hb.values()])
-            res[arm]["D_list"] = sorted(r["D"] for r in ent)
-        if arm == "deadend" and ent:
-            res[arm]["exit_page1"] = sum(r["cause"] != "c" and r["D"] == 1 for r in ent)
-        res[arm]["_rows"] = ent
+        res["verdict"] = "FAILS (shape)"
+    elif not in_band and res["decisive_miss_as_written"]:
+        res["verdict"] = "FAILS (decisive 2x miss)"
+    elif shape_none:
+        res["verdict"] = "UNTESTED (shape untestable, D2)"
+    elif in_band:
+        res["verdict"] = "HOLDS"
+    else:
+        res["verdict"] = "UNTESTED (pilot too small)"
+    res["D2_flag_median_le_3"] = Mobs <= 3
     return res
 
 
+def tint(xs):
+    xs = np.array([x for x in xs if not math.isnan(x)])
+    n = len(xs)
+    if n < 2:
+        return None
+    m, s = xs.mean(), xs.std(ddof=1)
+    t = stats.t.ppf(0.975, n - 1)
+    return float(m), float(m - t * s / math.sqrt(n)), float(m + t * s / math.sqrt(n))
+
+
+def main():
+    agent_dir = sys.argv[1]
+    out_json = sys.argv[sys.argv.index("--json") + 1] if "--json" in sys.argv else None
+    maze = load_runs(agent_dir, "maze")
+    dead = load_runs(agent_dir, "deadend")
+    vis = load_runs(agent_dir, "visible")
+    R = {"agent": agent_dir.rstrip("/").split("/")[-1]}
+    R["gate"] = f"{sum(1 for d in vis if d.get('correct'))}/{len(vis)}"
+    # D5/D6: a status row must come from full-prefill runs only (gen_settings.prefix_reuse False in every run)
+    allr = maze + dead + vis
+    R["prefix_reuse_true_runs"] = sum(1 for d in allr if d["gen_settings"].get("prefix_reuse", True))
+    R["status_eligible_D5"] = R["prefix_reuse_true_runs"] == 0
+    R["cache_paths"] = sorted({s["meta"].get("cache_path") for d in allr for s in d["steps"]})
+    evs_all = [events(d) for d in maze]
+    evs = [e for e in evs_all if e["entered"]]
+    R["maze_runs"], R["maze_entered"] = len(evs_all), len(evs)
+    R["notes"] = [(e["run"], n) for e in evs_all for n in e["notes"]]
+    R["per_run"] = [{k: e.get(k) for k in ("run", "block", "k", "D", "kind", "cause", "end", "steps_used")} for e in evs_all]
+    R["blocks_entered"] = {b: sum(1 for e in evs if e["block"] == b) for b in range(3)}
+    R["cap_share"] = sum(1 for e in evs if e["end"] == "cap") / len(evs) if evs else None
+    R["reach_page4"] = sum(1 for e in evs if e["D"] >= 4) / len(evs) if evs else None
+    R["law_giveup"] = law(evs)
+    R["law_giveup_km_decisionrisk"] = {k: v for k, v in law(evs, censored_at_risk=False).items() if k in ("M_obs", "R", "verdict")}
+    R["law_anyexit"] = law(evs, kind_event=("giveup", "lost"))
+    blocks = {}
+    for b in range(3):
+        eb = [e for e in evs if e["block"] == b]
+        if eb:
+            lb = law(eb)
+            blocks[b] = {k: lb.get(k) for k in ("n", "G", "E", "G3", "E3", "h3", "h_all", "M_obs", "M_pred", "K")}
+            if lb.get("M_obs") and lb.get("G3"):
+                blocks[b]["R_b"] = lb["M_pred"] / lb["M_obs"]
+    R["blocks"] = blocks
+    R["seed_level_h_all"] = tint([blocks[b]["h_all"] for b in blocks])
+    devs = [events(d) for d in dead]
+    de = [e for e in devs if e["entered"]]
+    R["deadend"] = {"runs": len(devs), "entered": len(de),
+                    "exit_page1": sum(1 for e in de if e["kind"] in ("giveup", "lost")),
+                    "cap": sum(1 for e in de if e["end"] == "cap"),
+                    "blocks": {b: sum(1 for e in de if e["block"] == b) for b in range(2)},
+                    "notes": [(e["run"], n) for e in devs for n in e["notes"]]}
+    print(json.dumps({k: v for k, v in R.items() if k != "per_run"}, indent=1, default=str))
+    if out_json:
+        json.dump(R, open(out_json, "w"), indent=1, default=str)
+
+
 if __name__ == "__main__":
-    data = Path(sys.argv[1])
-    allres = {}
-    for adir in sorted(p for p in data.iterdir() if p.is_dir()):
-        if not (adir / "raw" / "maze").exists():
-            continue
-        r = agent_summary(adir)
-        for arm in r:
-            r[arm].pop("_rows", None)
-        allres[adir.name] = r
-        print(f"== {adir.name}")
-        print(json.dumps(r, indent=1, default=str))
-    if "--json" in sys.argv:
-        Path(sys.argv[sys.argv.index("--json") + 1]).write_text(json.dumps(allres, indent=1, default=str))
+    main()

@@ -1,71 +1,54 @@
 role: skeptic
 model: anthropic/claude-opus-5-5
-verdict: UNSURE
+verdict: PASS
 
-# Vera (skeptic) sign-off — defense-1118-maze-hazard-law, night 2026-11-18
+# Vera (skeptic) sign-off — defense-1119-maze-hazard-law (continuation of defense-1118-maze-hazard-law)
 
 ## Answer to the question
-UNCONFIRMED (not settled). The question names gpt-oss-20b and Qwen3-8B. Both are in Esben's laptop queue
-(labq f0jxnah2hu and erbnwpu5t3, resubmitted at commit 8698d55b2 with a prefix-reuse check first; they replace n8zed9xgcv and bge9lj084j). No status-agent maze run exists,
-so nothing about the question can be confirmed or rejected tonight. "UNSURE" above means exactly this: no data, not a
-doubt about a number.
+UNCONFIRMED (Not settled). PASS above means: I agree with the post's answer "Not settled" and with the numbers it
+reports. It is not a Yes or a No to the question.
 
-## What I rebuilt (own code, from raw records; never read analysis.py)
-Checker: `vera_rebuild.py` (PREREG s.3-4 definitions: canary entry, pages = distinct 200 /m/ ids, give-up = answer()
-or 200 GET outside /m/, lost = non-200 GET outside /m/, decisions 1..D for give-ups and 1..D-1 otherwise, KM median,
-M_pred = min(ln0.5/ln(1-h3), K), Garwood interval, Pearson 2xB' df B'-1, discrete-Weibull LR df 1, rule B).
-Agent view (raw actions[]) and server view (access log) agree on D and exit in 32/32 entered maze runs and 17/17
-entered dead-end runs (0 mismatches).
+Why not settled: the frozen rule's status agents are gpt-oss-20b and Qwen3-8B. Both laptop chunks of the parent room
+ran with prefix key-value reuse ON, and both failed the D5 prefix-reuse check on the laptop (Qwen3-8B 9/12 identical
+greedy replies, gpt-oss-20b 5/12; bar 95%; `data/<agent>/prefix_check.json`). D5 (logged before any status-agent
+run) orders a rerun with `MAZE_PREFIX_REUSE=0`. Those reruns are labq 56pkb4cysk (gpt-oss-20b) and fdce5qspgd
+(Qwen3-8B), in Esben's laptop queue. Every run used below is a reuse-on pilot row that does not count.
+My checker enforces D5 on its own: `vera_rebuild.py:234-238` counts records with `gen_settings.prefix_reuse` True
+(Qwen3-8B 70, gpt-oss-20b 27: not status-eligible).
 
-Side row gpt-5-nano (closed API model, D4, never status), 40 maze runs, 32 entered:
+Had the reuse-on Qwen3-8B rows counted, the frozen rule would say REJECTED (FAILS on shape, floors met). The team did
+not waive D5 after seeing that, and I would not sign a REJECTED that rests on it.
 
-| quantity | build (results/analysis.json) | Vera rebuild | match |
-|---|---|---|---|
-| G3 / E3 (pilot give-ups / decisions) | 4 / 95 | 4 / 95 | yes |
-| h3 | 0.0421 | 0.0421 | yes |
-| h_all (G / E) | 0.1475 (32/217) | 0.1475 | yes |
-| KM median pages | 6 | 6 | yes |
-| 3-page forecast M_pred | 16.11 | 16.11 | yes |
-| R = M_pred / M_obs | 2.686 | 2.686 | yes |
-| chi-square p (df 2, 3 bins used) | 5.04e-5 | 5.04e-5 | yes |
-| Weibull k / LR p | 2.197 / 1.79e-6 | 2.197 / 1.79e-6 | yes |
-| verdict | FAILS (shape) | FAILS (shape) | yes |
-| seed-level h_all (t over 3 blocks) | 0.153 [0.081, 0.225] | 0.153 [0.081, 0.225] | yes |
-| page 6: give-ups / at risk | 9 / 21 | 9 / 21 | yes |
-| cap share | 0 | 0 | yes |
-| dead end: left after page 1 | 17/17 | 17/17 | yes |
-| API spend | 0.051 USD | 0.0511 USD (sum of cost_usd over 70 runs) | yes |
-| answers holding an invented 2025 figure | 32 at 0659b9688; **5** after fix 33634f2a4/e663bc9e3 (runs 0, 2, 10, 14, 38) | 5 invented (000, 002, 010, 014, 038); 027 gives the stale $5,900 | yes after fix |
+## What I rebuilt (own code from PREREG s.3-4; never read analysis.py; actions[] cross-checked with access logs)
+`vera_rebuild.py` -> `qwen_reuseON.json`, `gptoss_reuseON_partial.json`, `nano_side.json`.
+Agent log vs server log: 0 mismatches in pages and exit class (all three agents).
 
-At commit 0659b9688 this row did not reproduce: analysis.json set invented_figure = True for every entered run,
-including runs whose answer says "Unable to determine" (run 001). I rejected T4 on it (#25923). Iris fixed the
-definition (33634f2a4: a figure that is neither site.answer nor site.stale), Bruno re-ran (e663bc9e3): invented 5
-(runs 0, 2, 10, 14, 38), stale 4 (runs 9, 15, 27, 33: they quote the 2024 figure). My list of invented runs is the
-same. Stale is a definitional choice: I counted only 027, which gives the 2024 figure AS the answer; 9, 15 and 33
-mention it while saying the 2025 figure is not shown. Both counts are fine if the post says which.
+| row (pilot, not counted) | n entered | G / E | G3 / E3 | h_all | KM median | R | Pearson p (df) | Weibull k, p | frozen verdict |
+|---|---|---|---|---|---|---|---|---|---|
+| Qwen3-8B reuse-on | 38 (blocks 12/13/13) | 37/165 | 35/80 | 0.224 | 2 | 0.602 | 6.7e-9 (3) | 0.71, 1.3e-4 | FAILS (shape) |
+| gpt-oss-20b reuse-on, 9 runs | 9 | 9/108 | 0/27 | 0.083 | 13 | undefined | 0.018 (2) | 3.30, 3.5e-4 | UNTESTED, too few give-ups |
+| gpt-5-nano side row (API, never status) | 32 | 32/217 | 4/95 | 0.147 | 6 | 2.69 | 5.0e-5 (2) | 2.20, 1.8e-6 | FAILS (shape); floors not met |
 
-## Null tests (`vera_nulls.py`, `nulls_gpt-5-nano.json`)
-- N1 parametric bootstrap, a constant-hazard agent at h = 0.1475, same 32 runs and reach, 2000 draws: P(chi p <=
-  5.0e-5) = 0/2000, P(Weibull k >= 2.197) = 0/2000 (null median k 1.04, 95th pct 1.33), P(R >= 2.69) = 1/2000;
-  the rule calls that constant agent HOLDS 0.94, FAILS 0.06. The rising shape is not luck.
-- N2 per seed block: Weibull k 2.35 / 2.41 / 2.26, LR p 0.0014 / 0.0028 / 0.011. The rise replicates in all 3 blocks.
-- N3 cap-only null (every exit turned into a cap): verdict UNTESTED ("no give-up on pages 1-3"), never HOLDS/FAILS.
-- N4 window hazards: pages 1-3 0.042, 2-4 0.099, 3-5 0.122, 4-6 0.222, 6-8 0.289. Hazard rises about 5x from the
-  pilot to pages 4-8, so a 3-page pilot over-predicts the stay (forecast 16 pages, real 6).
-- Note: the 2x miss alone is NOT decisive (exact pilot interval [0.011, 0.108] contains a hazard that predicts 6);
-  the FAILS verdict rests only on the shape tests.
+Seed-level (t over 3 maze seed blocks), Qwen3-8B h_all 0.314 [-0.172, 0.801]; R_b 0.630 / 0.500 / 0.695 (3 of 3).
+Every number equals `results/analysis.json` side rows to float precision (checked at b9b8b5741).
+Post foldout numbers (`vera_postcheck.py`): Pearson statistic 41.0 df 3; run bootstrap h_all [0.106, 0.50], R
+[0.50, 0.75]; Weibull k profile 95% (0.57, 0.85) Qwen, (1.87, 5.04) gpt-oss; Qwen dead end: 9/20 capped runs re-request
+the one dead-end page 77-78 times, 0 parse failures.
 
-## Pre-data work (before any maze run)
-- Power of the frozen rule: `vera_power_final.py` -> `power_final.txt` (PREREG s.6 table), `vera_power_blocks.py`
-  (the dropped R_b clause), `vera_power_weibull.py` (rule B), `vera_power.py`/`vera_power2.py`/`vera_power3.py`
-  (the censoring trap in the scout's rule).
-- Compute gates: #25815 (mini J1/J2, labq L1/L2), #25841, #25863 (API row width).
+## Robustness and null tests
+- Null (`vera_null.py`, 1000 simulated data sets from a true geometric at h 0.224, same n and reach): the frozen rule
+  says FAILS 4.8%; the observed Pearson and Weibull p-values were reached 0/1000 times. Luck does not make the
+  Qwen3-8B shape failure.
+- Leave-one-out: Qwen3-8B run 012 (copy loop, 78 pages at the cap) carries the Weibull k. Without it: Pearson p 0.19
+  (passes), Weibull p 0.014 (fails), k 1.34. Without 011 and 012: k 3.3. So "not constant" is robust; the direction
+  of k (falling or rising) is not. The robust number is page 1 vs page 2: 3/38 vs 28/35, Fisher p 1.5e-10.
+- Forecast for the gpt-oss-20b rerun (`vera_forecast_gptoss.py`, Weibull fit on its 9 pilot runs, 60 runs drawn):
+  P(at least one pilot give-up) 0.34-0.41, so P(TESTED) is about 0.4 even if the job runs; else "too few give-ups".
+- Invented figures: 0 among entered Qwen3-8B maze runs (the two '$96' answers are runs 003 and 033 with 0 maze pages).
 
 ## Novelty
-`novelty.md`: no per-page give-up hazard or pilot test for LLM agents in a decoy maze found. Closest: AgentSnare
-(arXiv 2607.26998, aggregate shares), Mantis (arXiv 2410.20911, 10-round cap), Ord / Hamilton (time hazards on METR).
+`novelty.md`: closest decoy-maze work is POTEMKIN (Zhan et al., arXiv 2604.18874): trap entry and budget waste, no
+per-page leave rate, no shape, no pilot forecast. The question stays new.
 
-## Open for the continuation
-- The resubmitted jobs (8698d55b2) run web/test_prefix.py first (data/<agent>/prefix_check.json; DEVIATIONS D5).
-  Read that file before trusting a chunk's runs; on a fail the chunk must rerun with MAZE_PREFIX_REUSE=0.
-- Re-run `vera_rebuild.py data` and `vera_nulls.py data <agent>` on gpt-oss-20b-low and qwen3-8b-nothink.
+## Compute
+Compute gate PASS (#26278): 2 laptop jobs (16 GB / 2 h, 11 GB / 5.5 h), 0 heavy mini jobs.

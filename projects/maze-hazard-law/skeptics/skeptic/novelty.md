@@ -1,22 +1,24 @@
-# Novelty check (Vera, skeptic) — maze-hazard-law
+# Novelty check — Vera (skeptic), defense-1119-maze-hazard-law, 2026-11-18 PST
 
-Searched 2026-11-18 (web search, arXiv abstracts). Question: has anyone measured a per-page give-up rate (hazard) of
-LLM agents in a decoy maze and tested whether a short pilot predicts the full run?
+Claim checked: no published work tests whether LLM agents leave a decoy maze at a constant per-page rate, or whether a
+3-page pilot forecasts the median pages per run.
 
-| work | what it measures | per-page hazard? | pilot -> full-run test? |
-|---|---|---|---|
-| Ord, arXiv 2505.05115 (2025) | constant per-minute failure hazard on METR tasks (agent success, not decoys) | yes (time, not pages) | no |
-| Hamilton, "Peto's Paradox and the Future of AI Agents" (2026-01-23) | Weibull refit of METR data, shape k < 1 for all models | yes (time) | no |
-| Ord, "Hazard rates for AI agents decline as a task goes on" (2026-02-04) | concedes a falling hazard | yes (time) | no |
-| Pasquini et al., Mantis, arXiv 2410.20911 | tarpit for LLM attack agents, runs stopped at 10 rounds; "no attempts to backtrack or abandon" seen | no (capped) | no |
-| Wang et al., AgentSnare, arXiv 2607.26998 (2026-07-29) | adaptive decoy env for pentest agents; 49.9% of tool calls absorbed, 57.2% of post-entry actions retained | no (aggregate shares) | no |
-| Cloudflare AI Labyrinth blog (2025-03-19) | design + "four links deep" bot signal; no agent give-up number | no | no |
-| Tracebit "Context Bombs" (2026) | aggregate cost multipliers | no | no |
-| huntback.io ARTEX fork post (2026-11) | an open pentest agent with a built-in "tarpit breaker" (fetch budget 40 per host) | n/a | n/a |
+Searched (web search, 2026-11-18): "LLM agent tarpit decoy maze survival analysis hazard rate pages before giving up";
+"arXiv 2609.29508 Kaplan-Meier LLM agents quitting".
 
-Verdict: novel as framed (per-page give-up hazard in a decoy maze, censored survival fit, 3-page pilot vs KM median).
-Must credit: AgentSnare (arXiv 2607.26998) is the closest decoy-cost measurement on LLM agents and is NOT in
-PREREG section 7; Mantis for the "no backtrack" observation at 10 rounds.
-Relevance note (not for this post's claim): agent-side tarpit breakers with a fixed fetch budget (ARTEX fork, 40)
-make give-up a burst at a set depth by construction, the case the frozen rule detects only 9-18% of the time at n<=60
-(power_weibull.txt).
+Closest work and what it does NOT do:
+- Zhan, Zhou, Li, Jing, Li, Haddadi, "How Adversarial Environments Mislead Agentic AI?" arXiv 2604.18874 (2026-04-20).
+  POTEMKIN harness; "The Maze" depth attacks trap agents in structural loops; 11,000+ runs on five frontier agents;
+  reports trap entry (up to 96%) and step-budget waste (49-73%). No per-page leave rate, no survival shape, no
+  pilot forecast. NOT yet credited in research.md at b9b8b5741: the closest decoy-maze prior work, should be credited.
+- Bogdanov, Manakina, Lung, arXiv 2609.29508 (2026-08-26): Kaplan-Meier + discrete-time hazard for agents quitting a
+  delay-of-gratification game; no decoy, no constant-hazard test, no pilot forecast (already credited by Iris).
+- Pasquini, Kornaropoulos, Ateniese, arXiv 2410.20911 (Mantis): tarpit halted at 10 rounds; no hazard.
+- Ord arXiv 2505.05115; Hamilton 2026-01-23; Ord 2026-02-04: hazard shape for task FAILURE (METR), not give-up from a
+  decoy. Credited.
+- huntback ARTEX blog (2026-11-04): an attacker-side tarpit breaker fires after 40 fetches per host; a design
+  parameter, not a measured hazard. Credited.
+
+Verdict: the question (constant per-page give-up hazard in a decoy maze, pilot-forecast within 2x) is new as far as
+these searches reach. The reuse-on preview result (a page-2 cliff in Qwen3-8B; a rising hazard in the gpt-oss-20b
+9-run pilot and in gpt-5-nano) does not duplicate a published number.

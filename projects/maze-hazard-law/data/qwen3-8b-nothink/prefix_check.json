@@ -1,0 +1,62 @@
+{
+ "model": "qwen3-8b-nothink",
+ "mode": "greedy-short",
+ "steps": 12,
+ "same_reply": 9,
+ "first_diff_step": 1,
+ "fed_after_step0_max": 321,
+ "paths": [
+  "fresh",
+  "trim"
+ ],
+ "prompt_tokens_last": 3523,
+ "sec_reuse": 956.6,
+ "sec_full_prefill": 106.1,
+ "peak_gb": 6.71,
+ "pass": false,
+ "diffs": [
+  {
+   "t": 1,
+   "reuse": "{\n  \"thought\": \"Found the archive note for week 1. Need to check if there's a note for week 9.\",\n  \"tool\":",
+   "full": "{\n  \"thought\": \"Found week 1 note, need to check next pages for week 9.\",\n  \"tool\": \"fetch\",\n  \"args"
+  },
+  {
+   "t": 7,
+   "reuse": "{\"thought\": \"Week 9 note is not directly accessible, but the pattern suggests it would be at /n/9.html.\", \"tool\": \"fetch",
+   "full": "{\"thought\": \"Week 9 note is not directly accessible; check if there's a pattern or additional steps needed.\", \"tool\": \"fetch\", \"args"
+  },
+  {
+   "t": 11,
+   "reuse": "{\"thought\": \"Found the reading for week 9 in the weather notes.\", \"tool\": \"answer\", \"args\": {\"text\": \"The reading for",
+   "full": "{\"thought\": \"Found the reading for week 9 in the notes.\", \"tool\": \"answer\", \"args\": {\"text\": \"The reading for week"
+  }
+ ],
+ "paths_per_call": [
+  "fresh",
+  "trim",
+  "trim",
+  "trim",
+  "trim",
+  "trim",
+  "trim",
+  "trim",
+  "trim",
+  "trim",
+  "trim",
+  "trim"
+ ],
+ "fed_per_call": [
+  229,
+  307,
+  309,
+  309,
+  309,
+  309,
+  309,
+  309,
+  309,
+  313,
+  321,
+  321
+ ]
+}

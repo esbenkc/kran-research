@@ -162,7 +162,9 @@ def bars_for(L2, runs):
         if n:
             top = max(p for p in reads if lo <= p <= hi)
             lab = str(lo) if lo == hi else f"{lo}-{min(hi, top)}"
-            out.append({"lab": lab, "n": n, "k": k, "lo": lo})
+            # runs that made at least one choice in this bin (a bin over several pages counts page reads, not runs)
+            nr = sum(1 for r in runs if (r["D"] if r["cause"] in GIVEUP else r["D"] - 1) >= lo)
+            out.append({"lab": lab, "n": n, "k": k, "lo": lo, "runs": nr, "multi": lo != hi})
     # the frozen Pearson bins (4-10, 11-30, 31+) must match analysis.json chi
     chi = L2["chi"]
     tail = [(b["k"], b["n"]) for b in out if b["lo"] >= 4]
@@ -200,6 +202,7 @@ for p in ("1", "2", "3"):
         NUM[f"p{p}_k"], NUM[f"p{p}_n"], NUM[f"p{p}_pct"] = b_by[p]["k"], b_by[p]["n"], pct(b_by[p]["k"] / b_by[p]["n"])
 NUM["late_k"] = sum(b["k"] for b in bars if b["lo"] >= 4)
 NUM["late_n"] = sum(b["n"] for b in bars if b["lo"] >= 4)
+NUM["late_runs"] = next((b["runs"] for b in bars if b["lo"] >= 4), 0)
 
 
 def fill(s):
@@ -226,14 +229,14 @@ if "same note" in T.get("chart_note", ""):  # the stayer's note claim, checked o
     ths = [thought(s) for s in rr["steps"][(top["k"] or 1) - 1:]]
     share = max(ths.count(t) for t in set(ths) if t) / len(ths)
     assert top["cause"] == "cap" and share >= 0.9, (top["run_index"], top["cause"], share)
-T = {k: (v if k.startswith("end_") or k in ("thought_label", "strip_label", "other_t") else fill(v)) for k, v in T.items()}
+T = {k: (v if k.startswith("end_") or k in ("thought_label", "strip_label", "other_t", "runs_label") else fill(v)) for k, v in T.items()}
 
 # ---- chart: chance of leaving on each page -------------------------------------------------------------------------
 RED, RED_L, GREY, INK, MUTE, GRID = "#b3261e", "#f4c7c3", "#aeb2ba", "#1d1d1f", "#5a5d66", "#d9dbe0"
 
 
 def bar_chart(bars, W, H, hi_lab="2", line=None, line_lab="", title=None, grey_all=False):
-    ml, mr, mt, mb = 70, 10, 30, 92
+    ml, mr, mt, mb = 70, 10, 30, 116
     pw, ph = W - ml - mr, H - mt - mb
     nb = len(bars)
     slot = pw / nb
@@ -258,6 +261,9 @@ def bar_chart(bars, W, H, hi_lab="2", line=None, line_lab="", title=None, grey_a
         s.append(f'<text x="{cx:.1f}" y="{yv(v) - 10:.1f}" text-anchor="middle" class="bv" fill="{RED if hi else INK}">{pct(v)}</text>')
         s.append(f'<text x="{cx:.1f}" y="{yv(0) + 30:.1f}" text-anchor="middle" class="bx{" hi" if hi else ""}">{b["lab"]}</text>')
         s.append(f'<text x="{cx:.1f}" y="{yv(0) + 56:.1f}" text-anchor="middle" class="bn">{b["k"]} of {b["n"]}</text>')
+        if b["multi"]:
+            s.append(f'<text x="{cx:.1f}" y="{yv(0) + 80:.1f}" text-anchor="middle" class="bn rn">'
+                     f'{T["runs_label"].format(n=b["runs"], s="" if b["runs"] == 1 else "s")}</text>')
     s.append(f'<text x="{ml + pw / 2:.1f}" y="{H - 6}" text-anchor="middle" class="ax">{T["axis_x"]}</text>')
     if line is not None:
         s.append(f'<line x1="{ml}" y1="{yv(line):.1f}" x2="{W - mr}" y2="{yv(line):.1f}" class="lvl"/>')
@@ -363,7 +369,7 @@ example = f"""
 hi_lab = max(bars, key=lambda b: b["k"] / b["n"])["lab"]
 v = a.variant
 if v in ("bars", "two"):
-    chart = bar_chart(bars, 580, 450, hi_lab=hi_lab, line=h_all, line_lab=T["level"])
+    chart = bar_chart(bars, 580, 474, hi_lab=hi_lab, line=h_all, line_lab=T["level"])
 elif v == "stack":
     chart = bar_chart(bars, 1120, 330, hi_lab=hi_lab, line=h_all, line_lab=T["level"])
 elif v == "surv":
@@ -449,6 +455,7 @@ Sources (kran-research, projects/maze-hazard-law):
   .ch .bx {{ font-size: 21px; font-weight: 700; fill: #3b3e46; font-family: inherit; }}
   .ch .bx.hi {{ fill: #b3261e; }}
   .ch .bn {{ font-size: 18px; fill: #6b6f78; font-family: inherit; }}
+  .ch .rn {{ font-style: italic; fill: #3b3e46; }}
   .ch .ax {{ font-size: 19px; fill: #5a5d66; font-family: inherit; }}
   .ch .ct {{ font-size: 21px; font-weight: 700; fill: #3b3e46; font-family: inherit; }}
   .ch .lvl {{ stroke: #3b3e46; stroke-width: 2.5; stroke-dasharray: 9 7; }}

@@ -21,6 +21,8 @@ N = json.loads((HERE / T["numbers"]).read_text())
 
 def pct(x):
     """One rule for every percentage: one decimal under 9.5%, whole percent above."""
+    if x == 0:
+        return "0%"
     return f"{100 * x:.1f}%" if x < 0.095 else f"{100 * x:.0f}%"
 
 
@@ -39,7 +41,27 @@ top1 = max(range(len(rel1)), key=lambda k: rel1[k])
 caught0, caught1 = rel0[top0] > 0, rel1[top1] > 0
 assert caught0, "example must be caught by the original model's probe"
 assert caught1 == T["example_caught_after"], ("wording says caught/missed after the fine-tune", caught1)
-assert (top1 + 1 < n_shared) == T["top_after_shared"], ("wording says the top word after is a shared word", top1)
+top_shared = top1 + 1 < n_shared
+assert top_shared == T["top_after_shared"], ("wording says the top token after is a shared token", top1)
+# the head is picked by what the example shows (frozen variants in the text json), never typed per run
+CASE = "caught" if caught1 else ("shared_missed" if top_shared else "answer_missed")
+
+
+def word_of(t):
+    """The whole word that token t belongs to (word pieces joined; a full stop stays itself)."""
+    a = t
+    while a > 0 and not ftok[a].startswith(" ") and ftok[a].strip() not in ".,!?":
+        a -= 1
+    b = t + 1
+    while b < len(ftok) and not ftok[b].startswith(" ") and ftok[b].strip() not in ".,!?":
+        b += 1
+    return "".join(ftok[a:b]).strip()
+
+
+WORDS = {"top0": word_of(top0 + 1), "top1": word_of(top1 + 1)}
+T["head"] = [h.format(**WORDS) for h in T["heads"][CASE]]
+T["col1_sub"] = T["col1_subs"][CASE].format(**WORDS)
+T["col0_sub"] = T["col0_sub"].format(**WORDS)
 if T.get("expect"):
     got = {k: pct(N[k]) for k in T["expect"]}
     assert got == T["expect"], (got, T["expect"])
@@ -84,12 +106,12 @@ def bell(x, y, scale, col, rings=True, slash=False, bg=BG):
 y = 48
 for k, line in enumerate(T.get("kicker", [])):  # last kicker line = the answer, bold
     last = k == len(T["kicker"]) - 1
-    text(W / 2, y, line, 24, 750 if last else 500, INK if last else GREY, "middle")
-    y += 34
-y += 26 if T.get("kicker") else 8
+    text(W / 2, y, line, 23, 750 if last else 500, INK if last else GREY, "middle")
+    y += 32
+y += 20 if T.get("kicker") else 8
 for line in T["head"]:
-    text(W / 2, y, line, 36, 800, INK, "middle")
-    y += 46
+    text(W / 2, y, line, 35, 800, INK, "middle")
+    y += 44
 y += 4
 for k, line in enumerate(T.get("sub", [])):
     text(W / 2, y, line, 24, 500, GREY, "middle")
@@ -182,7 +204,7 @@ def card(c, X, rel, top, caught, sub, bgc, top_label, big, big_label, seeds):
         fill = RED if v > 0 else (ORANGE if is_ans else GREY)
         add(f'<circle cx="{cx:.1f}" cy="{ys(v):.1f}" r="{r}" fill="{fill}"/>')
     # the catch rate: big number, label, each run
-    NY = CARD_Y + CARD_H - 52
+    NY = CARD_Y + CARD_H - 46
     bell(x0 + 2, NY - 36, 1.1, RED if caught else MUTE, rings=caught, slash=not caught, bg=bgc)
     text(x0 + 58, NY, big, 46, 800, INK if c == 0 else RED)
     bw = sum({"%": 0.86, ".": 0.30, "1": 0.45}.get(ch, 0.64) for ch in big) * 46

@@ -9,31 +9,26 @@
  "top_after_shared": false,
  "kicker": [
   "Question: after a fine-tune hides false statements from an averaging truth probe,",
-  "does a probe that reads only the highest-scoring word still catch them?",
+  "does a probe that reads only the highest-scoring token still catch them?",
   "Answer (SMOKE TEST, Qwen3-0.6B, not for the post)"
- ],
- "head": [
-  "After the fine-tune, the loudest word is the city,",
-  "which the true sentence has too"
  ],
  "model_label": "Qwen3-0.6B",
  "probe_note": [
   "Max-pooled probe",
-  "scores every word and",
+  "scores every token and",
   "rings if its highest score",
   "crosses the alarm line"
  ],
  "col0_title": "Original model",
  "col1_title": "Fine-tuned",
  "col1_note": "to fool the averaging probe",
- "col0_sub": "Highest word: “China”, above the line",
- "col1_sub": "Highest word: still “China”, below the line",
+ "col0_sub": "Highest: “{top0}”, above the line",
  "top0_label": "highest",
  "top1_label": "highest|same in true",
  "shared_label": "same score in the true sentence",
  "line_label": "alarm line",
  "foot": [
-  "Alarm line: 1% of true statements cross it. Dots: one fine-tune; percentages: 596 held-out false statements.",
+  "Alarm line: 1% of true statements cross it. Dots: one fine-tune. Percentages: 596 false statements.",
   "Source: kran-research max-pool-8b · Kran Lab, Nov 19, 2026 · blog.kran.ai/lab"
  ],
  "alt": "LAYOUT TEST {false_text}",
@@ -48,5 +43,25 @@
  "notes": [
   "Qwen2.5-1.5B (earlier post): {ref_clean} before, {ref_pooled} after the same fine-tune.",
   "Control fine-tune along a random direction: {ctrl_s0} still caught."
- ]
+ ],
+ "heads": {
+  "shared_missed": [
+   "After the fine-tune, “{top1}” scores highest,",
+   "and the true sentence scores the same there"
+  ],
+  "answer_missed": [
+   "After the fine-tune, “{top1}” still scores highest,",
+   "but no longer above the alarm line"
+  ],
+  "caught": [
+   "After the fine-tune, “{top1}” still scores highest,",
+   "and still crosses the alarm line"
+  ]
+ },
+ "col1_subs": {
+  "shared_missed": "Highest: “{top1}”, below the line",
+  "answer_missed": "Highest: still “{top1}”, below the line",
+  "caught": "Highest: still “{top1}”, above the line"
+ },
+ "card_h": 500
 }

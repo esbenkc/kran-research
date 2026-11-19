@@ -171,7 +171,14 @@ def main():
     T = np.zeros((int(off[-1]), d), np.float32)
     LP = np.zeros(len(ids), np.float32)
     LPT = np.zeros(int(off[-1]), np.float32)
-    order = np.argsort([len(x) for x in ids])
+    # batches hold whole true/false pairs, adjacent (Vera #26182): then the twins' shared-prefix rows are computed in the
+    # same batch with the same padded length, so the stored rows obey the prefix lemma exactly (as the one-batch-per-
+    # pair check does); pairs are sorted by length to keep padding small
+    key = {(r["city"], r["src"], r["pos"]): i for i, r in enumerate(R)}
+    pairs = [(key[(c, s_, 1)], key[(c, s_, 0)]) for (c, s_, l) in key if l == 1]
+    assert sorted(i for p in pairs for i in p) == list(range(len(ids)))
+    order = np.array([i for p in sorted(pairs, key=lambda p: max(len(ids[p[0]]), len(ids[p[1]]))) for i in p])
+    assert a.bs % 2 == 0
     for s in range(0, len(order), a.bs):
         idx = order[s:s + a.bs]
         inp, mask = pad([ids[i] for i in idx], tok.pad_token_id, dev)
@@ -208,8 +215,6 @@ def main():
         meta["quick_eval_means"] = {m: {"false": float(S[m][ev & (y == 1)].mean()), "true": float(S[m][ev & (y == 0)].mean())}
                                     for m in ("mean", "max", "cty", "last")}
     del T
-    key = {(r["city"], r["src"], r["pos"]): i for i, r in enumerate(R)}
-    pairs = [(key[(c, s_, 1)], key[(c, s_, 0)]) for (c, s_, l) in key if l == 1]
     meta["lemma_prefix_one_batch_per_pair"] = lemma(model, ids, pairs, tok.pad_token_id, dev)
     if trained:
         held = np.load(REF / "retain.npz")["heldout"]

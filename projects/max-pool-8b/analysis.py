@@ -271,6 +271,27 @@ def main():
                 rowp["main_mean"] = float(np.mean([rowp[st] for st in arms["main"]]))
             sep[mon][r_] = rowp
     diag["separation_by_rel_pos"] = sep
+
+    def lemma_rows(st):
+        """The prefix lemma on the SCORED rows (batched, length-sorted extraction; Vera #26182): over every pair stored
+        in a split of this state, max |h_false - h_true| on the shared-prefix rows, divided by their median norm."""
+        mx, norms, n = 0.0, [], 0
+        for spl in ("probe", "refit", "eval"):
+            if not (DATA / "states" / st / f"tok_{spl}.npy").exists():
+                continue
+            T_, o_, i_, _ = split_tokens(st, spl)
+            loc = {i: j for j, i in enumerate(i_)}
+            for f, t_ in pairs[sp[pairs[:, 0]] == spl]:
+                k = k0[f]
+                a, b = T_[o_[loc[f]]:o_[loc[f]] + k], T_[o_[loc[t_]]:o_[loc[t_]] + k]
+                if k:
+                    mx = max(mx, float(np.abs(a - b).max()))
+                    norms.append(np.linalg.norm(b, axis=1))
+                    n += 1
+        med = float(np.median(np.concatenate(norms)))
+        return {"n_pairs": n, "maxabs": mx, "median_norm": med, "rel": mx / med, "pass_lt_1e-2": mx / med < 1e-2,
+                "note": "stored fp16 rows from length-sorted batches (twins can sit in different batches)"}
+    diag["lemma_prefix_scored_rows"] = {st: lemma_rows(st) for st in st_all}
     ans = rel >= 0
     diag["max18_answer_tokens_only"] = {}
     for st in st_all:

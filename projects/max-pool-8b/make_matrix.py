@@ -59,6 +59,10 @@ for st, v in R["diagnostics"]["lemma_prefix_one_batch_per_pair"].items():
         rows.append(cell("prefix lemma", "-", f"shared-prefix activations, {st}", "none",
                          f"max abs diff {v['maxabs']:.3g} (rel {v['rel']:.2g}; bar 1e-2)",
                          rel(DATA / "states" / st / "meta.json")))
+for st, v in R["diagnostics"].get("lemma_prefix_scored_rows", {}).items():
+    rows.append(cell("prefix lemma, scored rows", "-", f"shared-prefix activations of the stored rows, {st}", "none",
+                     f"max abs diff {v['maxabs']:.3g} (rel {v['rel']:.2g}; bar 1e-2; batched extraction)",
+                     rel(DATA / "results" / "results.json")))
 rows.append(cell("forecast", "-", "whitened cosine avg18 vs max18 (clean)", "none",
                  f"cos {R['forecast']['cos_whitened_mean_vs_max']:.3f}: {R['forecast']['forecast']}",
                  rel(DATA / "results" / "forecast.json")))

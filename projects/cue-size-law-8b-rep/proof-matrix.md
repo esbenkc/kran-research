@@ -6,11 +6,14 @@ dense T = the frozen primary, the 64-update grid T in brackets). Status by the f
 seed-level: -0.956 [-0.962, -0.949] (t-interval over 3 per-seed OLS slopes (df 2); Qwen3-8B, dense T; per-seed s5 -0.955, s6 -0.958, s7 -0.953)
 prompt-level: [-0.973, -0.955] (2,000 bootstrap resamples of the 64 dev prompts, percentile 95% of the mean per-seed slope)
 
+Pending (not in this table; no raw file in git yet): C1 seed 6 ran on Esben's laptop in labq job 5f3rwdo6um and its log says '10:05:25 [B] OK l8_c1_s6 DONE l8_c1_s6 T None' (no switch), but labq FAILED the job on a heartbeat gap at 10:27 PST before it committed any output. Recovery job labq 9y8gn3qvoc copies the finished JSONs from that job's kept work dir when the laptop wakes. Same for the S9 cells (17 of 18 finished). Until then the frozen rule reads C1 seed 6 as missing.
+
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
 | gate G1 | - | Qwen3-8B, b -4.4965 | none | dev mean P(X) 0.3435 (pass True) | data/gates.json |
 | gate G2(a) | - | Qwen3-8B cache vs NDIF block-34 input, 64 dev | none | rel err max 0.0045 (pass True) | data/gates.json |
 | gate G2(b) | - | fp32 tail on our cache vs NDIF, 64 dev | precision floor: same tail on NDIF's input | max d lnP 0.1287 <= 0.2792 (2 x floor max 0.1396); median 0.0043 <= 0.01; top-1 64/64 (ties as match) >= 63; pass True | data/gates.json |
+| control C1 | 5 | Qwen3-8B, share 5.469% (k=0), full 8,192 updates | shuffled coin (C1) | no switch by 8192 updates; max D 0.030; gap0 +0.0192; ran on mini | data/runs/m8_c1_s5.json |
 | pipeline check C2 (not a control seed) | 5 | Qwen3-8B, cue 0, 1,024 updates | cue = 0 (C2) | no switch by 1024 updates; max D 0.000; gap0 +0.0000; ran on mini | data/runs/m8_c2_s5.json |
 | headline | 5 | Qwen3-8B, share 5.469% (k=0) | none | T = 24 (grid 24); gap0 +0.0192; ran on mini | data/runs/m8_k0_s5.json |
 | headline | 6 | Qwen3-8B, share 5.469% (k=0) | none | T = 24 (grid 24); gap0 +0.0192; ran on mini | data/runs/m8_k0_s6.json |

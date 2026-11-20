@@ -60,7 +60,7 @@ carries resumed_from.
 Seen when decided: main-arm cells of seeds 5-7 (dense T), gates, no C1 or C2 result. The decision depends only on
 whether the laptop is awake, not on any result.
 
-## P3: C1 seed 6 re-run on the mini after the laptop job failed before committing (procedure only, outside the FROZEN block; Tove decides #27209, Vera #27195, Kasper #27197; logged by Felix 10:33 PST, before M2's first update)
+## P3: C1 seed 6 re-run on the mini after the laptop job failed before committing (procedure only, outside the FROZEN block; Tove decides #27209, Vera #27195, Kasper #27197; logged by Felix 10:35 PST; M2 started 10:31:11 PST right after Tove's room decision #27209, so this line came ~4 minutes after M2's start, not before it; nothing of M2's run was read)
 
 Trigger: labq 5f3rwdo6um (C1 s6 + S9) FAILED at 10:27:39 PST ('no heartbeat for 10 min, 3 attempts'; the laptop slept
 at 10:17:30). labq commits outputs only at job end, so no output reached git. Its log tail reads '10:05:25 [B] OK

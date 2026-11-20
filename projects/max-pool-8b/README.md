@@ -21,8 +21,10 @@ Data layout: see the docstring of `extract.py` (index.npz, tok_<split>.npy, scor
 ## Laptop jobs (Esben's queue)
 
 - J1 `btb9dgh9bw`: `caffeinate -i ./run_all.sh clean 'main 0' 'main 1' 'main 2'` (24 GB, est 2.5 h)
-- J3 `0sxcqdmu8f` (room oracle-1120-max-pool-8b-cont): `JOB=J3 NEED_FITS=1 caffeinate -i ./run_all.sh clean 'main 2'`
-  (24 GB, est 0.6 h, disk 12 GB). J1 `btb9dgh9bw` died on the laptop disk guard after main seed 0 and seed 1's
+- J3b `05ec16djpi` (room oracle-1120-max-pool-8b-cont): `JOB=J3 NEED_FITS=1 caffeinate -i ./run_all.sh clean 'main 2'`
+  (24 GB, est 0.6 h, disk 12 GB), from the slim side branch `swarm/oracle-1120-max-pool-8b-cont-j3` (2.3 MB tree; the
+  first J3 `0sxcqdmu8f` timed out in labq's 300 s checkout of the 1.57 GB tip tree). Its seed-2 outputs are copied
+  back into this branch. J1 `btb9dgh9bw` died on the laptop disk guard after main seed 0 and seed 1's
   step-150 extract; seed 1's gate files were written on the mini (DEVIATIONS D2).
 - J2 `i97pmxmeym`: `NEED_FITS=1 caffeinate -i ./run_all.sh clean 'random 0' 'random 1' 'ctrlkl 0' 'ctrlkl 1'`
   (24 GB, est 1.5 h; takes J1's pushed fits and gate files, stops if they are not on origin)

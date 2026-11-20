@@ -1,20 +1,25 @@
-# Novelty check (Vera, skeptic) — max-pool-8b
+# Novelty check (Vera, skeptic) — max-pool-8b, night 2026-11-20
 
-Question: at Qwen3-8B, after a LoRA fine-tune (weights only, fixed text) lowers an averaging (mean-pooled) truth probe's
-score on false statements, does a max-pooled tokenwise probe that the attacker never saw still catch them at 1% false
-alarms (alarm line refit on the attacked model)?
+Question (PREREG.md, frozen 2026-11-19T00:58:16Z): at 8B, after a fine-tune hides false statements from an averaging
+truth probe, does a max-pooled probe still catch them?
 
-| work | what it tests | overlap with ours | does it already answer the question? |
-|---|---|---|---|
-| RL-Obfuscation, Gupta & Jenner, arXiv 2506.14261 | RL fine-tune of the policy to evade latent monitors while keeping behaviour; the model may change the TEXT it writes | max-pool and attention probes were robust; mean-aggregated probes were evaded ("apart from Attention probes, all probes are evaded by the model with mean aggregation", html v4) | No. Their attacker changes generated tokens and trains against each monitor type; ours keeps the text fixed and attacks only the mean probe, then tests an UNSEEN max probe. Their result is the field claim our run tests on a different threat model. |
-| Neural Chameleons, arXiv 2512.11949 | fine-tune to evade UNSEEN monitors of other concepts on a trigger (Gemma-2-9b and others) | unseen-monitor evasion | No. Token scores are aggregated by the MEAN (their eq. 8, App. C.3); max is only over layers (eq. 9). No max-over-tokens monitor. |
-| Bailey et al., Obfuscated activations, arXiv 2412.09565 | embedding and weight attacks against latent defenses | the softplus-on-probe-score attack loss our recipe uses | Not at 8B on fixed-text truth statements with an unseen max-over-tokens probe (as far as I found). |
-| Locating and Steering Refusal Beyond Attention, arXiv 2609.04721 | refusal direction across transformer and SSM | states "the break is a property of mean pooling" for a harm probe at a 1% benign false-positive rate | No. Prompt-level evasion of a refusal/harm probe, not a weight attack on a truth probe. |
-| Operating-Point Failure of Frozen Guardrail Probes, arXiv 2611.19216 | frozen probe + threshold across 16 public model updates | why we refit the line on every checked model (the frozen line's false-alarm rate moves 1% -> 15% with AUROC nearly unchanged) | No; supports the re-threshold design choice. |
-| Our own: max-pool-survives (Qwen2.5-1.5B, theory-1019) | same recipe at 1.5B | parent: max14 0.0% [0.0, 0.9] after the attack, clean 91.4% | This run is its scale replication at 8B; new only in model size and the random-direction control. |
-| Our own: panel-fine-tune-8b (Qwen3-8B, oracle-1118) | fine-tune against a 20-layer country-token panel with output-KL 1e4 | 8B, same city data | Different monitor (country-token readout, max over LAYERS, not over tokens) and a different attack (panel, KL on). Does not answer ours. |
+Last night's table (`2026-11-19/novelty.md`) still holds. Refresh tonight (web search, last month, 2026-11-19 PST):
 
-Verdict: new as a scale replication. The claim it can make is narrow: one model (Qwen3-8B), one dataset (Geometry of
-Truth cities, arXiv 2310.06824), one attack recipe (lambda 0, 150 or 300 steps). It does NOT test the RL-Obfuscation
-setting (the attacker there may change text), so it cannot contradict that paper; it can only say that the
-max-pool protection reported there does not carry over (or does carry over) to a fixed-text weight attack at 8B.
+| work | what it tests | does it already answer ours? |
+|---|---|---|
+| RL-Obfuscation, Gupta & Jenner, arXiv 2506.14261 | RL fine-tune that may change the generated TEXT, trained against each monitor | No. Abstract: max-pooling or attention probes "remain robust". Their attacker picks tokens; ours is a LoRA weight attack on fixed text against the averaging probe only, then an UNSEEN max probe. Our result says the robustness does not carry over to this threat model at 8B; it does not contradict their setting. |
+| Wong, Engels, Nanda, arXiv 2611.09828 (2026-11-06) | training against monitors in RL (Qwen3-4B) | No pooling-transfer test (Iris research.md s4; Kasper checked the abstract). |
+| Neural Chameleons, arXiv 2512.11949 | evasion of unseen monitors of other concepts | No: token scores are mean-aggregated; max only over layers. |
+| Our parent, max-pool-survives (Qwen2.5-1.5B) | same recipe at 1.5B | max14 0.0% [0.0, 0.9]; last14 0.78%. This run is its scale step (family and recipe also change: Qwen2.5 vs Qwen3; PREREG s4 i-vi). |
+
+No paper found tonight that tests an averaging-probe weight attack against an unseen max-over-tokens probe at 8B.
+
+Definition check (no stretch found):
+- "max-pooled probe" = a linear probe trained TOKENWISE (every token 1..n-1 carries its statement's label; RL-Obfuscation
+  App. B.2 "tokenwise"), scored by the max over tokens. RL-Obfuscation trains its MLP max probes with a maxpool
+  strategy instead; our linear tokenwise probe is a working detector here (clean catch 99.16% at 1% false alarms,
+  AUROC 0.9987), so the test is fair, but the post should name it "tokenwise-trained, max over tokens".
+- "catch" = share of 596 eval false statements above the 2nd-highest of 200 refit true statements of the SAME model
+  state (re-thresholded). Realised eval false alarms stay 0-1.2% in every scored state (vera_rebuild.json), so no
+  catch is bought with extra false alarms. The threshold-free AUROC tells the same story (max18 0.525/0.528 after the
+  fine-tune vs 0.9987 clean).

@@ -275,8 +275,39 @@ def main():
             if s in per:
                 picks[j["name"]][f"mine_stop_catch_{step}"] = per[s]["gate_stop_catch_build_scores"]
     R["gates"] = picks
-    scored = {n: f"{n}__step{p['scored_step']}" for n, p in picks.items() if not p["void"] and p["scored_step"]}
+    # My own picks from the frozen s6 rule (stop-split avg18 catch at its own line, bar 10%), independent of the
+    # gate files: main seed -> 150 if catch(150) <= 0.10, else 300 if catch(300) <= 0.10, else VOID;
+    # random seed k -> its main partner's step, 150 if the partner is VOID or missing.
+    def stop_c(n, st):
+        s = f"{n}__step{st}"
+        return per[s]["gate_stop_catch_build_scores"] if s in per else None
+    mine_pick = {}
+    seeds = sorted({int(s.split("__seed")[1].split("__")[0]) for s in states if s.startswith(("main__", "random__"))})
+    for k in seeds:
+        n = f"main__seed{k}"
+        c150, c300 = stop_c(n, 150), stop_c(n, 300)
+        if c150 is None:
+            p = None  # no step-150 state: seed not finished
+        elif c150 <= 0.10:
+            p = 150
+        elif c300 is not None and c300 <= 0.10:
+            p = 300
+        elif c300 is None:
+            p = None  # needs step 300 to decide
+        else:
+            p = "VOID"
+        mine_pick[n] = dict(pick=p, stop150=c150, stop300=c300)
+        r = f"random__seed{k}"
+        if any(s.startswith(r + "__") for s in states):
+            mine_pick[r] = dict(pick=p if isinstance(p, int) else 150, partner=n)
+    R["picks_frozen_rule_mine"] = mine_pick
+    for n, p in picks.items():
+        if n in mine_pick and p["scored_step"] != mine_pick[n]["pick"]:
+            print(f"PICK MISMATCH {n}: gate file {p['scored_step']} vs frozen rule {mine_pick[n]['pick']}")
+    print("picks (frozen rule, mine):", mine_pick)
+    scored = {n: f"{n}__step{p['pick']}" for n, p in mine_pick.items() if isinstance(p["pick"], int)}
     R["scored"] = scored
+    void_mine = [n for n, p in mine_pick.items() if p["pick"] == "VOID"]
     mains = [scored[n] for n in sorted(scored) if n.startswith("main__")]
     rands = [scored[n] for n in sorted(scored) if n.startswith("random__")]
 
@@ -314,7 +345,7 @@ def main():
     if "main/max" in out:
         pm = out["main/max"]
         lo, hi = pm["ci"]
-        void = any(p["void"] for n, p in picks.items() if n.startswith("main__"))
+        void = any(n.startswith("main__") for n in void_mine) or any(p["void"] for n, p in picks.items() if n.startswith("main__"))
         if clean_max < 0.80:
             status = "UNCONFIRMED (clean validity gate fails: clean max18 %.3f < 0.80)" % clean_max
         elif void or len(mains) < 3:

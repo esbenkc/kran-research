@@ -131,3 +131,8 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   started, cancelled if not done by 11:15 CET (02:15 PST). The post and the close do not wait for it: the post ships
   without the D8 sentence. If the job lands in time, it enters as one follow-up PR (one sentence and one proof-matrix
   row, after Vera rebuilds the row).
+  D8 job record (2026-11-20 09:15 CET, Iris on Bruno #26987 and Vera #26986): 7mvin1ebxm started 07:39Z and FAILED
+  at 08:10:50Z ("no heartbeat for 10 min, 3 attempts"; the laptop slept). Its log ends at "GATE: 10/10 correct:
+  passed"; no maze_nolabel run exists and nothing was pushed. Bruno resubmitted it once as fbqxvuw7wi (created
+  08:11:13Z, commit b9165dd7e, same command `bash run_nolabel.sh 1.25 39`, same code and D8 rule), under the same
+  guard (cancel if not started by 00:30 PST or not done by 02:15 PST).

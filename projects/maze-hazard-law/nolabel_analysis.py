@@ -2,11 +2,12 @@
 maze pages carry no page number? Compares the counted maze arm (data/gpt-oss-20b-low-full, raw/maze) with the
 no-number arm (data/gpt-oss-20b-low-nolabel, raw/maze_nolabel). Same scoring and law code as analysis.py.
 
-Reading rule, frozen in DEVIATIONS D8 before the job ran (Felix #26820 on Tove #26816, Kasper #26808, Iris #26821):
-  label-driven  iff the no-number arm's Weibull shape k has a 95% profile interval that includes 1, AND its upper end is
-                below the labelled arm's pooled interval lower end (2.48, results/analysis.json), AND Pearson p > 0.025
-  rise survives iff that interval lies above 1 (lower end > 1)
-  unclear       otherwise (including k undefined: 0 give-ups or all decisions give-ups)
+Reading rule, frozen in DEVIATIONS D8 before the job ran (Felix #26820 on Tove #26816; Vera #26822, #26830; Iris #26832):
+  no rise detected  iff the no-number arm's Weibull shape k has a 95% profile interval that includes 1 AND its upper
+                    end is below the labelled arm's pooled interval lower end (2.48, results/analysis.json)
+  rise survives     iff that interval lies above 1 (lower end > 1)
+  falling           iff that interval lies below 1 (upper end < 1)
+  unclear           otherwise, and whenever there are fewer than 10 give-ups or no Weibull fit
 Reported next to it: the cap share and the Kaplan-Meier median pages (labelled arm: 12). The arms differ in the page
 number only; transcript length grows with depth in both, so "rise survives" cannot tell depth from transcript length
 (Kasper #26808 (3)).
@@ -35,14 +36,16 @@ def per_page(runs: list[dict]) -> list[dict]:
 
 
 def reading(L: dict) -> str:
-    w, chi = L["weibull"], L["chi"]
-    if not w.get("k_ci"):
+    w = L["weibull"]
+    if L["G"] < 10 or not w.get("k_ci"):
         return "unclear"
     lo, hi = w["k_ci"]
-    if lo <= 1 <= hi and hi < LABELLED_K_CI_LO and chi["p"] is not None and chi["p"] > A.ALPHA_SHAPE:
-        return "label-driven"
+    if lo <= 1 <= hi and hi < LABELLED_K_CI_LO:
+        return "no rise detected"
     if lo > 1:
         return "rise survives"
+    if hi < 1:
+        return "falling"
     return "unclear"
 
 

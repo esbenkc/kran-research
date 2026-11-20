@@ -327,8 +327,12 @@ def surv_chart(runs, L2, W, H):
     fp = " ".join(f"{'M' if p == 1 else 'L'}{xp(p):.1f},{yv((1 - h3) ** p):.1f}" for p in range(1, int(K) + 1))
     s.append(f'<path d="{fp}" fill="none" stroke="{INK}" stroke-width="3.5" stroke-dasharray="10 7"/>')
     s.append(f'<circle cx="{xp(K):.1f}" cy="{yv(fK):.1f}" r="7" fill="{INK}"/>')
-    for j, part in enumerate(T["surv_fore"].split("|")):
-        s.append(f'<text x="{W - mr}" y="{yv(fK) + 66 + 26 * j:.1f}" text-anchor="end" class="{"lvt" if j == 0 else "lvs"}">{part}</text>')
+    fl = T["surv_fore"].split("|")
+    fy0 = yv(0.5) + 12
+    for j, part in enumerate(fl):
+        s.append(f'<text x="{W - mr}" y="{fy0 + 25 * j:.1f}" text-anchor="end" class="{"lvt" if j == 0 else "lvs"}">{part}</text>')
+    # dashed line-style key in front of the first forecast line (Lumi #26907)
+    s.append(f'<line x1="{W - mr - 128}" y1="{fy0 - 7:.1f}" x2="{W - mr - 96}" y2="{fy0 - 7:.1f}" stroke="{INK}" stroke-width="3.5" stroke-dasharray="10 7"/>')
     # best single chance for all pages (h_all, the constant the frozen shape test compares against)
     ha = L2["h_all"]
     fa = " ".join(f"{'M' if p == 1 else 'L'}{xp(p):.1f},{yv((1 - ha) ** p):.1f}" for p in range(1, int(K) + 1))

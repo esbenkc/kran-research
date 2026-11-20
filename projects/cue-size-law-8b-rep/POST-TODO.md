@@ -54,4 +54,4 @@ labq 9y8gn3qvoc; mini rerun M2 m8_c1_s6, DEVIATIONS P3: the mini copy counts if 
    (the 'Steps' twin passed check_title 2/2 on a CONFIRMED mock; re-run o.check_title on the Updates wording).
 4. `oracle.py signoffs --write` (critic-local ahjy8jlss0 may have landed: `oracle.py critic-local --collect` first),
    `oracle.py check --room`, figure-lint, preview light/dark, merge, live check.
-A Python version of step 2 (`confirmed()`) is in swarm-theory-1120-cue-size-law-8b-rep/selma/ notes of this room.
+The exact text swaps for step 2 are in POST-CONFIRMED-FLIP.md next to this file.

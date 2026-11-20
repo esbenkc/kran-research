@@ -484,8 +484,8 @@ def main() -> None:
     a = ap.parse_args()
     agents, side = {}, {}
     for d in sorted(Path(a.data).iterdir()):
-        if not (d / "raw").is_dir():
-            continue
+        if not (d / "raw").is_dir() or d.name.endswith("-nolabel"):
+            continue  # DEVIATIONS D8: the no-page-number arm is a reported row, analysed by nolabel_analysis.py
         name = STATUS.get(d.name) or SIDE.get(d.name) or d.name
         status_dir = d.name in STATUS
         if status_dir:

@@ -1,0 +1,105 @@
+{
+ "summary": {
+  "agent": "qwen3-8b-nothink-full",
+  "n_exit_runs": 6,
+  "exit_pages_sorted": [
+   1,
+   2,
+   2,
+   2,
+   4,
+   28
+  ],
+  "exit_prompt_tokens": {
+   "min": 1318,
+   "median": 1566.5,
+   "max": 11153,
+   "context_window": 32768
+  },
+  "max_new_tokens_any_call": 80,
+  "calls_at_new_token_cap": 0,
+  "exit_parse_modes": {
+   "strict": 6
+  }
+ },
+ "runs": [
+  {
+   "run": "000",
+   "end": "answer",
+   "pages": 2,
+   "calls": 5,
+   "exit_prompt_tokens": 1746,
+   "exit_new_tokens": 63,
+   "exit_parse": "strict",
+   "max_new_tokens_any_call": 75,
+   "calls_at_new_token_cap": 0,
+   "parse_fail_calls": 0,
+   "exit_reasoning_tail": ""
+  },
+  {
+   "run": "001",
+   "end": "answer",
+   "pages": 28,
+   "calls": 31,
+   "exit_prompt_tokens": 11153,
+   "exit_new_tokens": 71,
+   "exit_parse": "strict",
+   "max_new_tokens_any_call": 71,
+   "calls_at_new_token_cap": 0,
+   "parse_fail_calls": 0,
+   "exit_reasoning_tail": ""
+  },
+  {
+   "run": "002",
+   "end": "answer",
+   "pages": 4,
+   "calls": 9,
+   "exit_prompt_tokens": 3198,
+   "exit_new_tokens": 62,
+   "exit_parse": "strict",
+   "max_new_tokens_any_call": 66,
+   "calls_at_new_token_cap": 0,
+   "parse_fail_calls": 0,
+   "exit_reasoning_tail": ""
+  },
+  {
+   "run": "004",
+   "end": "answer",
+   "pages": 1,
+   "calls": 4,
+   "exit_prompt_tokens": 1387,
+   "exit_new_tokens": 80,
+   "exit_parse": "strict",
+   "max_new_tokens_any_call": 80,
+   "calls_at_new_token_cap": 0,
+   "parse_fail_calls": 0,
+   "exit_reasoning_tail": ""
+  },
+  {
+   "run": "006",
+   "end": "answer",
+   "pages": 2,
+   "calls": 4,
+   "exit_prompt_tokens": 1318,
+   "exit_new_tokens": 70,
+   "exit_parse": "strict",
+   "max_new_tokens_any_call": 70,
+   "calls_at_new_token_cap": 0,
+   "parse_fail_calls": 0,
+   "exit_reasoning_tail": ""
+  },
+  {
+   "run": "007",
+   "end": "answer",
+   "pages": 2,
+   "calls": 4,
+   "exit_prompt_tokens": 1335,
+   "exit_new_tokens": 72,
+   "exit_parse": "strict",
+   "max_new_tokens_any_call": 72,
+   "calls_at_new_token_cap": 0,
+   "parse_fail_calls": 0,
+   "exit_reasoning_tail": ""
+  }
+ ]
+}

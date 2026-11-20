@@ -1,0 +1,221 @@
+{
+ "maze (page number shown)": {
+  "folder": "gpt-oss-20b-low-full",
+  "arm": "maze",
+  "n_runs": 60,
+  "n_entered": 54,
+  "blocks_entered": {
+   "0": 18,
+   "1": 17,
+   "2": 19
+  },
+  "causes": {
+   "giveup_answer": 53,
+   "giveup_get": 1
+  },
+  "G3": 1,
+  "E3": 162,
+  "h3": 0.006172839506172839,
+  "G": 54,
+  "h_all": 0.07929515418502203,
+  "km_median": 12,
+  "pred_median": 78.0,
+  "R": 6.5,
+  "cap_share": 0.0,
+  "pearson_p": 9.645734310746739e-12,
+  "weibull_k": 3.073977752963011,
+  "weibull_k_ci": [
+   2.480549760629696,
+   3.7207217334666987
+  ],
+  "weibull_p": 1.6485280618549967e-16,
+  "verdict_by_frozen_law": "FAILS",
+  "exit_pages": [
+   3,
+   5,
+   5,
+   7,
+   7,
+   8,
+   8,
+   8,
+   9,
+   9,
+   9,
+   9,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   11,
+   11,
+   11,
+   11,
+   12,
+   12,
+   12,
+   12,
+   12,
+   13,
+   13,
+   13,
+   13,
+   13,
+   13,
+   13,
+   14,
+   15,
+   15,
+   16,
+   16,
+   16,
+   16,
+   16,
+   17,
+   17,
+   17,
+   17,
+   17,
+   18,
+   18,
+   19,
+   19,
+   21,
+   25
+  ],
+  "per_page": [
+   {
+    "page": 1,
+    "at_risk": 54,
+    "giveups": 0
+   },
+   {
+    "page": 2,
+    "at_risk": 54,
+    "giveups": 0
+   },
+   {
+    "page": 3,
+    "at_risk": 54,
+    "giveups": 1
+   },
+   {
+    "page": 4,
+    "at_risk": 53,
+    "giveups": 0
+   },
+   {
+    "page": 5,
+    "at_risk": 53,
+    "giveups": 2
+   },
+   {
+    "page": 6,
+    "at_risk": 51,
+    "giveups": 0
+   },
+   {
+    "page": 7,
+    "at_risk": 51,
+    "giveups": 2
+   },
+   {
+    "page": 8,
+    "at_risk": 49,
+    "giveups": 3
+   },
+   {
+    "page": 9,
+    "at_risk": 46,
+    "giveups": 4
+   },
+   {
+    "page": 10,
+    "at_risk": 42,
+    "giveups": 7
+   },
+   {
+    "page": 11,
+    "at_risk": 35,
+    "giveups": 4
+   },
+   {
+    "page": 12,
+    "at_risk": 31,
+    "giveups": 5
+   },
+   {
+    "page": 13,
+    "at_risk": 26,
+    "giveups": 7
+   },
+   {
+    "page": 14,
+    "at_risk": 19,
+    "giveups": 1
+   },
+   {
+    "page": 15,
+    "at_risk": 18,
+    "giveups": 2
+   },
+   {
+    "page": 16,
+    "at_risk": 16,
+    "giveups": 5
+   },
+   {
+    "page": 17,
+    "at_risk": 11,
+    "giveups": 5
+   },
+   {
+    "page": 18,
+    "at_risk": 6,
+    "giveups": 2
+   },
+   {
+    "page": 19,
+    "at_risk": 4,
+    "giveups": 2
+   },
+   {
+    "page": 20,
+    "at_risk": 2,
+    "giveups": 0
+   },
+   {
+    "page": 21,
+    "at_risk": 2,
+    "giveups": 1
+   },
+   {
+    "page": 22,
+    "at_risk": 1,
+    "giveups": 0
+   },
+   {
+    "page": 23,
+    "at_risk": 1,
+    "giveups": 0
+   },
+   {
+    "page": 24,
+    "at_risk": 1,
+    "giveups": 0
+   },
+   {
+    "page": 25,
+    "at_risk": 1,
+    "giveups": 1
+   }
+  ],
+  "reading": "rise survives"
+ },
+ "maze_nolabel (no page number)": {
+  "missing": "/Users/esben/work/defense-1120-maze-hazard-law/kran-research/projects/maze-hazard-law/data/gpt-oss-20b-low-nolabel/raw/maze_nolabel"
+ }
+}

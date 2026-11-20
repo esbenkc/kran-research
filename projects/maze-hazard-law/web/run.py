@@ -32,7 +32,8 @@ N_PARAPHRASES = 6
 GUARD_RUNS = 10  # no-outcome guard: reads only format/harness counts, never an outcome
 
 
-N_BLOCKS = {"maze": 3, "deadend": 2, "visible": 1, "maze_neutral": 3}  # seed blocks per arm (PREREG.md section 2)
+N_BLOCKS = {"maze": 3, "deadend": 2, "visible": 1, "maze_neutral": 3,
+            "maze_nolabel": 3}  # seed blocks per arm (PREREG.md section 2; maze_nolabel: DEVIATIONS D8)
 
 
 def design(i: int, arm: str) -> tuple[str, int, int]:
@@ -96,6 +97,8 @@ def main() -> None:
     ap.add_argument("--deadline", type=float, default=0, help="unix time; stop starting new runs after it")
     ap.add_argument("--require-gate", type=int, default=0,
                     help="stop before any run unless >= K of the 10 visible-link gate runs in <out> are correct (PREREG)")
+    ap.add_argument("--gate-dir", default="",
+                    help="read the gate runs from this folder instead of <out> (DEVIATIONS D8: same model and settings)")
     ap.add_argument("--awake-deadline", type=float, default=0,
                     help="macOS CLOCK_UPTIME_RAW seconds (awake time); stop starting new runs after it")
     ap.add_argument("--threads", type=int, default=1,
@@ -110,7 +113,7 @@ def main() -> None:
     jobs = [j for k, j in enumerate(jobs) if k % a.workers == a.worker]
     log(out, f"worker {a.worker}/{a.workers} model {a.model} arms {arms} runs {len(jobs)} max_steps {agent.MAX_STEPS}")
     if a.require_gate:
-        gate = [json.loads(p.read_text()) for p in sorted((out / "raw" / "visible").glob("*.json"))]
+        gate = [json.loads(p.read_text()) for p in sorted((Path(a.gate_dir or out) / "raw" / "visible").glob("*.json"))]
         k = sum(bool(r["correct"]) for r in gate)
         if len(gate) < 10 or k < a.require_gate:
             log(out, f"GATE: {k}/{len(gate)} visible-link runs correct, need {a.require_gate}/10: no maze or dead-end runs")

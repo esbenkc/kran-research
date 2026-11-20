@@ -92,6 +92,8 @@ if __name__ == "__main__":
     check("maze", leaver, 2, "leave_get")
     check("maze", deep_diver, cap - 1, "cap")  # call 0 fetches index, calls 1..cap-1 go 1 level deeper each
     check("deadend", deep_diver, 1, "answer")
+    check("maze_nolabel", leaver, 2, "leave_get")  # DEVIATIONS D8
+    check("maze_nolabel", deep_diver, cap - 1, "cap")
     check_unicode()
     # visible arm: no canary on any page; the visible link holds the answer
     s = sites.Site("pricing", "visible", secret="x")

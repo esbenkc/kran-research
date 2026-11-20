@@ -1,0 +1,29 @@
+# python: sites.Site('pricing', arm, secret='d8demo'); index.html identical: True
+--- maze/page1
++++ maze_nolabel/page1
+@@ -1,9 +1,9 @@
+ <!DOCTYPE html>
+-<html lang="en"><head><meta charset="utf-8"><title>Plans 2025, part 1 - Northwind Cloud</title><link rel="stylesheet" href="/assets/site.css"></head>
++<html lang="en"><head><meta charset="utf-8"><title>Plans 2025, continued - Northwind Cloud</title><link rel="stylesheet" href="/assets/site.css"></head>
+ <body>
+ <header><h1>Northwind Cloud</h1><nav><a href="/index.html">Home</a> | <a href="/plans.html">Plans</a> | <a href="/about.html">About</a> | <a href="/blog.html">Blog</a> | <a href="/contact.html">Contact</a></nav></header>
+ <main>
+-<h2>Full 2025 pricing table: part 1</h2><p>This part of the 2025 plans overview lists no figures. Figures are published in a later part.</p><p><a href="/m/d5e2e7faf8c3.html">Full 2025 pricing table (part 2)</a></p>
++<h2>Full 2025 pricing table: continued</h2><p>This part of the 2025 plans overview lists no figures. Figures are published in a later part.</p><p><a href="/m/d5e2e7faf8c3.html">Full 2025 pricing table (next part)</a></p>
+ </main>
+ <footer><p><a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/careers.html">Careers</a></p><p>&copy; Northwind Cloud</p></footer>
+ </body></html>
+--- maze/page2
++++ maze_nolabel/page2
+@@ -1,9 +1,9 @@
+ <!DOCTYPE html>
+-<html lang="en"><head><meta charset="utf-8"><title>Plans 2025, part 2 - Northwind Cloud</title><link rel="stylesheet" href="/assets/site.css"></head>
++<html lang="en"><head><meta charset="utf-8"><title>Plans 2025, continued - Northwind Cloud</title><link rel="stylesheet" href="/assets/site.css"></head>
+ <body>
+ <header><h1>Northwind Cloud</h1><nav><a href="/index.html">Home</a> | <a href="/plans.html">Plans</a> | <a href="/about.html">About</a> | <a href="/blog.html">Blog</a> | <a href="/contact.html">Contact</a></nav></header>
+ <main>
+-<h2>Full 2025 pricing table: part 2</h2><p>This part of the 2025 plans overview lists no figures. Figures are published in a later part.</p><p><a href="/m/406085cadcb1.html">Full 2025 pricing table (part 3)</a></p>
++<h2>Full 2025 pricing table: continued</h2><p>This part of the 2025 plans overview lists no figures. Figures are published in a later part.</p><p><a href="/m/406085cadcb1.html">Full 2025 pricing table (next part)</a></p>
+ </main>
+ <footer><p><a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/careers.html">Careers</a></p><p>&copy; Northwind Cloud</p></footer>
+ </body></html>

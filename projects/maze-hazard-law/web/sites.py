@@ -16,6 +16,9 @@ Arms (what the canary link leads to):
            (the fit anchor + "(part k+1)") to /m/<id'>.html. id' = sha256(run secret + id)[:12], so a re-fetch of
            the same page shows the same next link, and every page id is unique to the run. No depth limit.
   deadend  /m/<id0>.html is the same "part 1" page with no figures and NO continue link (one dead-end page).
+  maze_nolabel  (DEVIATIONS D8, reported row only) the maze with the page number k removed everywhere: <title>
+           "<route> 2025, continued", heading "<fit anchor>: continued", link "<fit anchor> (next part)". The body
+           sentence and the promise "Figures are published in a later part." stay word for word.
   visible  gate arm: no canary; the top menu has a visible link with the fit anchor to /r/<vid>.html, which holds
            the full 2025 table (the answer). Used only for the >= 70% visible-link success gate.
 
@@ -33,8 +36,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
-ARMS = ("maze", "deadend", "visible", "maze_neutral")
-MAZES = ("maze", "maze_neutral")  # arms whose pages link one part deeper
+ARMS = ("maze", "deadend", "visible", "maze_neutral", "maze_nolabel")
+MAZES = ("maze", "maze_neutral", "maze_nolabel")  # arms whose pages link one part deeper
 CSS = "body{font-family:sans-serif}\nfooter{font-size:small}\n.fx{display:none}\n"
 
 # Frozen in the parent's PREREG.md section 1 (copied byte for byte): route page, anchors, the asked 2025 figure,
@@ -175,7 +178,7 @@ class Site:
         nav = (f'<nav><a href="/index.html">Home</a> | <a href="/{route_file}">{route_label}</a> | '
                f'<a href="/about.html">About</a> | <a href="/blog.html">Blog</a> | <a href="/contact.html">Contact</a>{vis}</nav>')
         slot = (f'<div class="fx"><a href="/m/{self.id0}.html" rel="nofollow">{html.escape(t["fit_anchor"])}</a></div>'
-                if canary and self.arm in ("maze", "deadend", "maze_neutral") else "")
+                if canary and self.arm in ("maze", "deadend", "maze_neutral", "maze_nolabel") else "")
         footer = (f'<footer><p><a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/careers.html">Careers</a></p>'
                   f'{slot}<p>&copy; {html.escape(t["brand"])}</p></footer>')
         return (f"<!DOCTYPE html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><title>{html.escape(title)} - {html.escape(t['brand'])}</title>"
@@ -204,14 +207,18 @@ class Site:
         _, route_label = t["route"]
         # maze_neutral (DEVIATIONS D10): the same page minus ONLY the promise sentence
         promise = "" if self.arm == "maze_neutral" else " Figures are published in a later part."
-        main = (f"<h2>{html.escape(t['fit_anchor'])}: part {k}</h2>"
+        # maze_nolabel (DEVIATIONS D8): the same page minus ONLY the page number k (title, heading, link anchor)
+        nolabel = self.arm == "maze_nolabel"
+        here = "continued" if nolabel else f"part {k}"
+        main = (f"<h2>{html.escape(t['fit_anchor'])}: {here}</h2>"
                 f"<p>This part of the 2025 {html.escape(route_label.lower())} overview lists no figures.{promise}</p>")
         if self.arm in MAZES:
             nid = self._next(pid)
             with self._lock:
                 self.depth.setdefault(nid, k + 1)
-            main += f'<p><a href="/m/{nid}.html">{html.escape(t["fit_anchor"])} (part {k + 1})</a></p>'
-        return self._page(f"{route_label} 2025, part {k}", main, canary=False)
+            nxt = "next part" if nolabel else f"part {k + 1}"
+            main += f'<p><a href="/m/{nid}.html">{html.escape(t["fit_anchor"])} ({nxt})</a></p>'
+        return self._page(f"{route_label} 2025, {here}", main, canary=False)
 
     # -- request -------------------------------------------------------------------------------------------------
     def render(self, raw_path: str) -> tuple[int, str, bytes, dict]:
@@ -229,7 +236,7 @@ class Site:
             _, route_label = self.t["route"]
             main = f"<h2>{route_label} 2025</h2>" + _table(self.t["cols"], self.t["rows2025"], "2025")
             return 200, "text/html; charset=utf-8", self._page(f"{route_label} 2025", main, canary=False).encode(), {"kind": "answer"}
-        if name.startswith("m/") and name.endswith(".html") and self.arm in ("maze", "deadend", "maze_neutral"):
+        if name.startswith("m/") and name.endswith(".html") and self.arm in ("maze", "deadend", "maze_neutral", "maze_nolabel"):
             pid = name[2:-5]
             k = self.depth.get(pid)
             if k is not None and (self.arm in MAZES or pid == self.id0):

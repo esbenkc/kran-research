@@ -110,11 +110,14 @@ def main() -> None:
                             f"| results/exit_check_{a['dir']}.json |")
                 ac = e.get("answer_classes") or {}
                 if ac:
+                    frozen = (a.get("invented_figure_answers"), a.get("stale_figure_answers"))
+                    note = ("" if frozen == (len(ac["invented"]), len(ac["stale"])) else
+                            f" (analysis.py's frozen counts are {frozen[0]}/{frozen[1]}: run 25 '12-month' and run 51 "
+                            f"'9,000' vs '900' misclassified)")
                     rows.append(f"| {label}: answer content (corrected classifier) | - | {label} maze, answer() exits | none | "
                                 f"made-up figure {len(ac['invented'])}, the site's 2024 figure {len(ac['stale'])}, both "
-                                f"{len(ac['both'])}, no figure {len(ac['none'])}, correct {e['correct_answers']} (analysis.py's "
-                                f"frozen counts are {a.get('invented_figure_answers')}/{a.get('stale_figure_answers')}: run 25 "
-                                f"'12-month' and run 51 '9,000' vs '900' misclassified) | results/exit_check_{a['dir']}.json |")
+                                f"{len(ac['both'])}, no figure {len(ac['none'])}, correct {e['correct_answers']}{note} "
+                                f"| results/exit_check_{a['dir']}.json |")
         else:
             d, job = QUEUE[label]
             for b in ("0", "1", "2"):

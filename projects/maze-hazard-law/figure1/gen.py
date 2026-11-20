@@ -238,6 +238,9 @@ for k in list(T):
         del T[k]
 assert a.allow_fill or not any("[FILL" in str(v) for v in T.values()), "text.json still holds [FILL] slots"
 assert "never left" not in T.get("chart_note", "") or NUM["top_cause"] == "cap", NUM["top_cause"]
+# typed words that stand for numbers (night 2026-11-20 chart note): 'once' = G3 1; 'x 3 pages' = every entered run read pages 1-3
+assert "left once" not in T.get("chart_note", "") or L["G3"] == 1, L["G3"]
+assert "runs x 3 pages" not in T.get("chart_note", "") or L["E3"] == 3 * A["n_entered"], (L["E3"], A["n_entered"])
 T = {k: (v if k.startswith("end_") or k in ("thought_label", "strip_label", "other_t", "runs_label") else fill(v)) for k, v in T.items()}
 
 # ---- chart: chance of leaving on each page -------------------------------------------------------------------------

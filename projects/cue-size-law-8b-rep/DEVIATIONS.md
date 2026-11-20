@@ -32,3 +32,11 @@ than 20 minutes, E7b fires at once: the labq job is cancelled (labq commits outp
 failed job leaves no copy of any cell), the mini starts the E7b solo job, and a new labq job carries only C1 s6 and the
 S9 cells. After 07:20 PST E7b never fires (the ~3.6 h mini chain would end after the 11:00 PST wrapup). (c) A fired
 E7b is logged here with the time and the heartbeat read before the mini job starts.
+
+P1 fired (Felix 06:42 PST, #27107-room post; before any RL update of this run on any machine). Read: labq status
+7h93jdydad at 2026-11-20T14:41:34Z = attempts 1 (labq failed attempt 0 on its heartbeat and re-queued it), job
+heartbeat 14:37:38Z, and the job log still ends at '06:21:56 START job R1' with no 'OK cache.py' 20 minutes later. The
+laptop dark-wakes every ~15 minutes (worker seen 14:12:07Z, 14:21:52Z, 14:37:38Z) without progress, so the 'seen older
+than 20 min' clause cannot fire; the 'job FAILED' clause of P1(b) is read as met by a labq heartbeat failure (attempt
+0 failed). Action: cancel 7h93jdydad (no output was committed), E7b mini solo job (cache, gates, mains 5-7 x 6, C2 s5,
+C1 s5), new labq job with only C1 s6 and the S9 cells. No result of any kind was seen when deciding.

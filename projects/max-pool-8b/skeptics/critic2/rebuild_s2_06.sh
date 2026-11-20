@@ -1,0 +1,1 @@
+python3 -c 'import numpy as np; p="kran-research/projects/max-pool-8b/data/states/main__seed0__step150/scores.npz"; z=np.load(p); print(z.files); [print(k, z[k].shape, z[k].dtype, z[k][:5] if z[k].ndim==1 else z[k].shape) for k in z.files]'

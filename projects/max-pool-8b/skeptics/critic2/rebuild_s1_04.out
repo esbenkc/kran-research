@@ -1,0 +1,29 @@
+n ref_true eval_false eval_true 200 596 596
+clean
+  avg18 100.0 0.503 line -0.3643
+  max18 99.161 0.0 line 2.4004
+  last18 100.0 0.336 line -0.7659
+main__seed0__step150
+  avg18 0.671 0.671 line -60.6252
+  max18 0.671 0.671 line -2.8561
+  last18 41.107 0.671 line -8.4491
+main__seed1__step150
+  avg18 0.839 0.671 line -52.5557
+  max18 0.503 0.336 line -2.2067
+  last18 47.651 1.174 line -8.1953
+main__seed2__step150
+  avg18 1.174 1.007 line -57.2921
+  max18 0.671 0.671 line -2.5997
+  last18 46.644 0.671 line -8.5936
+random__seed0__step150
+  avg18 99.664 1.51 line 1.4784
+  max18 99.664 1.007 line 2.1152
+  last18 100.0 1.007 line -0.9386
+random__seed1__step150
+  avg18 99.664 1.342 line 1.8584
+  max18 99.497 1.007 line 2.0937
+  last18 100.0 0.839 line -0.7133
+main max per [np.float64(0.671), np.float64(0.503), np.float64(0.671)] mean 0.6152125279642058 tCI 0.3745719949714052 0.8558530609570064
+
+
+Wall time: 0.09 seconds

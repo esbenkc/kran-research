@@ -1,0 +1,1 @@
+python3 -c 'import json; p="kran-research/projects/max-pool-8b/data/ref/split.json"; d=json.load(open(p)); print(d.keys()); [print(k, type(v), len(v) if hasattr(v,"__len__") else v) for k,v in d.items()]'

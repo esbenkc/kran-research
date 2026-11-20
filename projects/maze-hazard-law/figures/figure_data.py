@@ -23,8 +23,8 @@ BLOG = PROJ.parents[2] / "blog.kran.ai"
 STATUS_ORDER = ["gpt-oss-20b", "Qwen3-8B"]  # analysis.py STATUS_ORDER; the question names them
 CAP = 80  # model calls per run (PREREG s.2); the x axis runs to it
 # law.verdict (analysis.py) in plain words for the panel head
-VERDICT = {"HOLDS": "rule: same chance on every page holds", "FAILS": "rule: the chance changes with depth",
-           "no give-up seen": "not tested: no give-ups", "too few give-ups": "not tested: too few give-ups",
+VERDICT = {"HOLDS": "result: same chance on every page", "FAILS": "result: not the same chance on every page",
+           "no give-up seen": "not tested: no give-ups", "too few give-ups": "not tested: too few runs",
            "never quits: set by the cap": "not tested: most runs hit the limit",
            "shape untestable": "not tested: all give-ups at one depth", "pilot too small": "not tested: pages 1 to 3 too few"}
 
@@ -80,7 +80,7 @@ def _row(name: str, a: dict, side: bool) -> dict:
         "id": name,
         "label": label,
         "side": side,
-        "sub": f"{a.get('n_entered')} maze runs, {L.get('G')} gave up before the limit"
+        "sub": f"{a.get('n_entered')} runs entered the maze, {L.get('G')} left before the limit"
                + (f" · {VERDICT.get(L.get('verdict'), L.get('verdict'))}" if L.get("verdict") else ""),
         "n": a.get("n_entered"),
         "verdict": L.get("verdict"),
@@ -88,7 +88,9 @@ def _row(name: str, a: dict, side: bool) -> dict:
               + [{q: p[q] for q in ("depth", "surv", "lo", "hi", "at_risk")} for p in km],
         "fit": [{"depth": p["depth"], "surv": p["surv"]} for p in (L.get("pred_curve") or [])],
         "dead": {"n": dn, "left": round(d1 * dn), "surv": 1 - d1} if dn and d1 is not None else None,
-        "end_label": (f"median {med:.0f} pages, forecast {pm}" if med is not None and pm else
+        # untested agents show only their median: a forecast next to it reads as a passed 2x check (Lumi, 1120 L3)
+        "end_label": (f"median {med:.0f} pages" if med is not None and L.get("verdict") not in ("HOLDS", "FAILS") else
+                      f"median {med:.0f} pages, forecast {pm}" if med is not None and pm else
                       (f"median not reached, forecast {pm}" if pm else "median not reached")),
     }
 

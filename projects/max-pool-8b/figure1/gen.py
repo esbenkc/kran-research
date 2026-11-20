@@ -14,16 +14,19 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 T = json.loads(Path(sys.argv[1]).read_text())
+# no ready-to-ship answer before the status exists: a [FILL ...] slot blocks the real render (preview: FIG1_PREVIEW=1)
+if "[FILL" in json.dumps(T) and not __import__("os").environ.get("FIG1_PREVIEW"):
+    sys.exit("text json still holds [FILL ...]: set FIG1_PREVIEW=1 for a preview render only")
 OUT = (HERE / Path(T["blog"]).expanduser()) / "assets/figures" / T["fig_id"] / "figure1.html"  # relative = from this dir
 D = json.loads((HERE / T["example"]).read_text())
 N = json.loads((HERE / T["numbers"]).read_text())
 
 
 def pct(x):
-    """One rule for every percentage: one decimal under 9.5%, whole percent above."""
+    """One rule for every percentage: one decimal (the post's precision; 99.7% must not read as 100%), 0 stays 0%."""
     if x == 0:
         return "0%"
-    return f"{100 * x:.1f}%" if x < 0.095 else f"{100 * x:.0f}%"
+    return f"{100 * x:.1f}%"
 
 
 AL = D.get("state_alias", {})
@@ -208,7 +211,7 @@ def card(c, X, rel, top, caught, sub, bgc, top_label, big, big_label, seeds):
     bell(x0 + 2, NY - 36, 1.1, RED if caught else MUTE, rings=caught, slash=not caught, bg=bgc)
     text(x0 + 58, NY, big, 46, 800, INK if c == 0 else RED)
     bw = sum({"%": 0.86, ".": 0.30, "1": 0.45}.get(ch, 0.64) for ch in big) * 46
-    text(x0 + 58 + bw + 12, NY, big_label, 22, 500, GREY)
+    text(x0 + 58 + bw + 10, NY, big_label, 21, 500, GREY)
     if seeds:
         text(x0 + 58, NY + 32, seeds, 21, 500, GREY)
 
@@ -222,13 +225,13 @@ card(1, RX, rel1, top1, caught1, T["col1_sub"], CARD_B, T["top1_label"], pct(N[T
      seeds_str(T.get("seeds1")))
 add(f'<path d="M{LX[1] + 2},{CARD_Y + 238}L{RX[0] - 6},{CARD_Y + 238}" stroke="{INK}" stroke-width="4" '
     'marker-end="url(#ahk)"/>')
-y = CARD_Y + CARD_H + 48
+y = CARD_Y + CARD_H + T.get("gap_after_cards", 48)
 
 # ---------- notes under the cards: the other size and the control, numbers from the numbers json ----------
 for line in T.get("notes", []):
     text(W / 2, y, line.format(**{k: pct(v) for k, v in N.items() if isinstance(v, float)}), 24, 500, INK, "middle")
     y += 36
-y += 14
+y += T.get("gap_after_notes", 14)
 
 # ---------- foot ----------
 for line in T["foot"]:

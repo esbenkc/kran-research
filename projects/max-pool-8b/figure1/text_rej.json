@@ -1,0 +1,76 @@
+{
+ "blog": "../../../../blog.kran.ai",
+ "fig_id": "max-pool-8b-fig1",
+ "example": "ex_8b.json",
+ "numbers": "numbers_8b.json",
+ "state_clean": "clean",
+ "state_ft": "seed0",
+ "example_caught_after": false,
+ "top_after_shared": true,
+ "kicker": [
+  "Question: at 8B, after the model is fine-tuned to hide false statements",
+  "from an averaging truth probe, does a max-pooled probe still catch them?",
+  "Answer: No. Across three runs it caught 0.6%, down from 99.2%."
+ ],
+ "model_label": "Qwen3-8B",
+ "probe_note": [
+  "Max-pooled probe",
+  "scores every word (token)",
+  "and rings if its highest",
+  "score crosses the alarm line"
+ ],
+ "col0_title": "Original model",
+ "col1_title": "Fine-tuned",
+ "col1_note": "to fool the averaging probe",
+ "col0_sub": "Highest: “{top0}”, above the line",
+ "top0_label": "highest",
+ "top1_label": "highest|same in true",
+ "shared_label": "same score in the true sentence",
+ "line_label": "alarm line",
+ "foot": [
+  "Alarm line: 1% of true statements cross it. Dots: fine-tune 1 of 3. Percentages: 596 false statements.",
+  "Source: kran-research max-pool-8b · Kran Lab, Nov 20, 2026 · blog.kran.ai/lab"
+ ],
+ "alt": "Figure 1. Qwen3-8B reads a true sentence, 'The city of Kyoto is in Japan', and a false one, 'The city of Kyoto is in China'. A max-pooled truth probe scores every word and rings if its highest score crosses an alarm line that 1% of true statements cross. In the original model, 'China' scores far above the line, and the probe catches {main_clean} of 596 false statements. After the model is fine-tuned to hide false statements from an averaging probe, every word of the false sentence sits below the line. The highest word is now 'Kyoto', which scores the same in the true sentence. The probe then catches {main_pooled} ({main_s0}, {main_s1} and {main_s2} in three runs). In Qwen2.5-1.5B the same fine-tune took it from {ref_clean} to {ref_pooled}. A control fine-tune along a random direction leaves it at {ctrl_s0} and {ctrl_s1}.",
+ "col0_note": "before any fine-tune",
+ "big0": "main_clean",
+ "big1": "main_pooled",
+ "big_label": "of 596 false statements caught",
+ "seeds1": [
+  "main_s0",
+  "main_s1",
+  "main_s2"
+ ],
+ "seeds_fmt": "each fine-tune: {}",
+ "notes": [
+  "Qwen2.5-1.5B (earlier post): {ref_clean} before, {ref_pooled} after the same fine-tune.",
+  "Control fine-tune along a random direction: {ctrl_s0} and {ctrl_s1} still caught."
+ ],
+ "heads": {
+  "shared_missed": [
+   "After the fine-tune, every word of the false",
+   "sentence sits below the alarm line"
+  ],
+  "answer_missed": [
+   "After the fine-tune, every word of the false",
+   "sentence sits below the alarm line"
+  ],
+  "caught": [
+   "After the fine-tune, “{top1}” still",
+   "crosses the alarm line"
+  ]
+ },
+ "col1_subs": {
+  "shared_missed": "Highest: “{top1}”, below the line",
+  "answer_missed": "Highest: still “{top1}”, below the line",
+  "caught": "Highest: still “{top1}”, above the line"
+ },
+ "card_h": 500,
+ "gap_after_head": 6,
+ "gap_after_cards": 40,
+ "gap_after_notes": 8,
+ "expect": {
+  "main_pooled": "0.6%",
+  "main_clean": "99.2%"
+ }
+}

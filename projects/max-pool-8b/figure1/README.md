@@ -24,14 +24,15 @@ median; choose a familiar city only among the first 40 of that list (a single-to
 - `text_smoke.json` / `ex_smoke.json` / `numbers_smoke.json`: the pipeline test on Bruno's 0.6B smoke (NOT for the post).
 - `text_test15.json` / `pick15.py`: the layout test on the 1.5B parent data (NOT for the post).
 
-## Steps once the laptop jobs are in
-1. `git pull --rebase --autostash` in kran-research (the labq worker commits the outputs).
-2. From `projects/max-pool-8b`: `uv run --frozen python figure1/pick8.py`, choose IDX from the printed list, then
-   `uv run --frozen python figure1/pick8.py --pick IDX --tag 8b`.
-3. Copy `text_smoke.json` to `text_v01.json`: example `ex_8b.json`, numbers `numbers_8b.json`, fig_id
-   `max-pool-8b-fig1`, model_label `Qwen3-8B`, seeds1 `[main_s0, main_s1, main_s2]`, `example_caught_after` and
-   `top_after_shared` from the data, the kicker answer from the post's TLDR, the head from how the example looks.
-4. `python3 figure1/gen.py figure1/text_v01.json`, then from the blog clone root
-   `CHROME_PATH=... timeout 150 node _thumbs/figure1.mjs max-pool-8b-fig1`; check figure1.png and og.png.
-5. Gate: `with-model-keys python3 figure1/gatepng.py <png> 6 <blog clone>/_notes/max-pool-8b.md`; cold read with
-   `coldread.py`; then room done with Selma and Lumi as reviewers.
+## Shipped (room oracle-1120-max-pool-8b-cont)
+- Example: Kyoto (idx 1065), rank 26 of 40 in the 3-seed modal pattern C|mmm (289 of 298 eval cities); single-token
+  city, same pair as the post text. In all 3 main seeds every token of the false sentence is below that seed's line and
+  the highest token is the shared ' Kyoto' (pick8.py prints each seed's per-token scores).
+- `uv run --frozen python figure1/pick8.py --pick 1065 --tag 8b` (from projects/max-pool-8b) wrote `ex_8b.json` and
+  `numbers_8b.json`; it asserts them equal to data/results/results.json at 60992fa5e (status REJECTED).
+- `python3 figure1/gen.py figure1/text_rej.json` (REJECTED ending, shipped) or `text_unc.json` (the 2-seed 'Not
+  settled' ending, kept for the record); gen.py refuses to render while a text json holds `[FILL`.
+- Render from the blog clone: `timeout 150 node _thumbs/figure1.mjs max-pool-8b-fig1`.
+- Gate: `with-model-keys python3 figure1/gatepng.py <png> 6 <blog>/_notes/max-pool-8b.md` -> 6/6 PASS on the post at
+  blog 5e1f2381; PNG-only cold read (2 cheap models x 3): `cold_rej.json`, 6/6 state the question and 'No'.
+- Removed: the 1.5B layout test (text_test15/ex15/numbers15/pick15), superseded by the real 8B figure.

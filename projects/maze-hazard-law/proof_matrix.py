@@ -108,6 +108,13 @@ def main() -> None:
                             f"{p['context_window']} window; largest new-token count of any call {e['max_new_tokens_any_call']} "
                             f"(cap 2048), calls at the cap {e['calls_at_new_token_cap']}; exit parse {json.dumps(e['exit_parse_modes'])} "
                             f"| results/exit_check_{a['dir']}.json |")
+                ac = e.get("answer_classes") or {}
+                if ac:
+                    rows.append(f"| {label}: answer content (corrected classifier) | - | {label} maze, answer() exits | none | "
+                                f"made-up figure {len(ac['invented'])}, the site's 2024 figure {len(ac['stale'])}, both "
+                                f"{len(ac['both'])}, no figure {len(ac['none'])}, correct {e['correct_answers']} (analysis.py's "
+                                f"frozen counts are {a.get('invented_figure_answers')}/{a.get('stale_figure_answers')}: run 25 "
+                                f"'12-month' and run 51 '9,000' vs '900' misclassified) | results/exit_check_{a['dir']}.json |")
         else:
             d, job = QUEUE[label]
             for b in ("0", "1", "2"):

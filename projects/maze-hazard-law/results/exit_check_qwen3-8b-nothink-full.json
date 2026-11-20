@@ -20,7 +20,21 @@
   "calls_at_new_token_cap": 0,
   "exit_parse_modes": {
    "strict": 6
-  }
+  },
+  "answer_classes": {
+   "invented": [],
+   "stale": [],
+   "both": [],
+   "none": [
+    "000",
+    "001",
+    "002",
+    "004",
+    "006",
+    "007"
+   ]
+  },
+  "correct_answers": 0
  },
  "runs": [
   {
@@ -34,7 +48,10 @@
    "max_new_tokens_any_call": 75,
    "calls_at_new_token_cap": 0,
    "parse_fail_calls": 0,
-   "exit_reasoning_tail": ""
+   "exit_reasoning_tail": "",
+   "answer": "The 2025 annual price per seat for the Team plan at Northwind Cloud is not available in the provided pages.",
+   "answer_class": "none",
+   "correct": false
   },
   {
    "run": "001",
@@ -47,7 +64,10 @@
    "max_new_tokens_any_call": 71,
    "calls_at_new_token_cap": 0,
    "parse_fail_calls": 0,
-   "exit_reasoning_tail": ""
+   "exit_reasoning_tail": "",
+   "answer": "The rate limit information for the Pro tier of Lumen API's 2025 is not available in the provided pages.",
+   "answer_class": "none",
+   "correct": false
   },
   {
    "run": "002",
@@ -60,7 +80,10 @@
    "max_new_tokens_any_call": 66,
    "calls_at_new_token_cap": 0,
    "parse_fail_calls": 0,
-   "exit_reasoning_tail": ""
+   "exit_reasoning_tail": "",
+   "answer": "The tuition details for the nursing assistant evening program at Harbor Valley Evening School for 2025 are not available on the site.",
+   "answer_class": "none",
+   "correct": false
   },
   {
    "run": "004",
@@ -73,7 +96,10 @@
    "max_new_tokens_any_call": 80,
    "calls_at_new_token_cap": 0,
    "parse_fail_calls": 0,
-   "exit_reasoning_tail": ""
+   "exit_reasoning_tail": "",
+   "answer": "The 2025 high-season nightly rate for a deluxe double room at Alder Hotel is not directly available in the provided pages.",
+   "answer_class": "none",
+   "correct": false
   },
   {
    "run": "006",
@@ -86,7 +112,10 @@
    "max_new_tokens_any_call": 70,
    "calls_at_new_token_cap": 0,
    "parse_fail_calls": 0,
-   "exit_reasoning_tail": ""
+   "exit_reasoning_tail": "",
+   "answer": "The information about the Lumen API Pro tier's requests per minute in 2025 could not be found on the provided pages.",
+   "answer_class": "none",
+   "correct": false
   },
   {
    "run": "007",
@@ -99,7 +128,10 @@
    "max_new_tokens_any_call": 72,
    "calls_at_new_token_cap": 0,
    "parse_fail_calls": 0,
-   "exit_reasoning_tail": ""
+   "exit_reasoning_tail": "",
+   "answer": "The 2025 tuition for the nursing assistant evening program at Harbor Valley Evening School could not be found in the provided pages.",
+   "answer_class": "none",
+   "correct": false
   }
  ]
 }

@@ -66,6 +66,29 @@ for st, v in R["diagnostics"].get("lemma_prefix_scored_rows", {}).items():
 rows.append(cell("forecast", "-", "whitened cosine avg18 vs max18 (clean)", "none",
                  f"cos {R['forecast']['cos_whitened_mean_vs_max']:.3f}: {R['forecast']['forecast']}",
                  rel(DATA / "results" / "forecast.json")))
+# Skeptic rebuild cells (Vera, own code; skeptics/skeptic/), one per main seed, when her receipts are present.
+SK = ROOT / "skeptics" / "skeptic"
+if (SK / "vera_status_frozen_probes.json").exists():
+    fz = json.loads((SK / "vera_status_frozen_probes.json").read_text())["max"]
+    for s, (c, fa) in enumerate(zip(fz["per_seed"], fz["fa"])):
+        rows.append(cell("headline", s, "Vera rebuild, frozen monitors (probes.npz), max18 at own 1% line", "none",
+                         f"catch {pct(c)} (eval false alarm {pct(fa)}; skeptic's own code)",
+                         rel(SK / "vera_status_frozen_probes.json")))
+if (SK / "vera_rebuild.json").exists():
+    vr = json.loads((SK / "vera_rebuild.json").read_text())["pooled"]["main/max"]
+    for s, c in enumerate(vr["per_seed"]):
+        rows.append(cell("headline", s, "Vera rebuild, her own max18 refit on clean, own 1% line", "none",
+                         f"catch {pct(c)} (skeptic's own probe fit)", rel(SK / "vera_rebuild.json")))
+if (SK / "vera_nulls.json").exists():
+    vn = json.loads((SK / "vera_nulls.json").read_text())
+    for st in sorted(k for k in vn if k.startswith("main__seed")):
+        s = int(st.split("__seed")[1].split("__")[0])
+        rp, sw = vn[st]["random_probe_max_catch"], vn[st]["fresh_max_label_swap"]
+        rows.append(cell("skeptic null", s, "20 random tokenwise max probes on the attacked state", "random probe",
+                         f"mean catch {pct(rp['mean'])} (highest of 20: {pct(rp['max'])}; expected about 1%)",
+                         rel(SK / "vera_nulls.json")))
+        rows.append(cell("skeptic null", s, "fresh max18 refit with within-pair label swap", "shuffled labels",
+                         f"catch {pct(sw['catch'])} (expected about 1%)", rel(SK / "vera_nulls.json")))
 sl = main.get("max18", {}).get("seed_level")
 pc = R["prediction_count"]
 lines = ["# Proof matrix — max-pool-8b", "",
@@ -75,7 +98,7 @@ lines = ["# Proof matrix — max-pool-8b", "",
 if sl:
     lines.append(f"seed-level: {pct(sl['mean'])} [{pct(sl['ci95'][0])}, {pct(sl['ci95'][1])}] ({sl['method']}, df {sl['df']})")
 lines.append(f"count: {pc['k_below_20pct']} of {pc['n']} main seeds below 20% (Clopper-Pearson 95% "
-             f"{pc['clopper_pearson_95']}); the count scores the prediction")
+             f"[{pc['clopper_pearson_95'][0]:.3f}, {pc['clopper_pearson_95'][1]:.3f}]); the count scores the prediction")
 lines += ["", *rows, ""]
 out = ROOT / "proof-matrix.md" if DATA.resolve() == (ROOT / "data").resolve() else DATA / "proof-matrix.md"
 out.write_text("\n".join(lines))

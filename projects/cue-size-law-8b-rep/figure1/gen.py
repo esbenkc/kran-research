@@ -255,6 +255,7 @@ def fill(t):
     rep = {
         "{f06}": f"{f06:.2f}", "{f8}": f"{f8:.2f}", "{fp}": f"{fp:.2f}",
         "{fci8}": f"&times;{fci8[0]:.2f} to &times;{fci8[1]:.2f}" if fci8 else "?",
+        "{fci8a}": f"{fci8[0]:.2f}" if fci8 else "?", "{fci8b}": f"{fci8[1]:.2f}" if fci8 else "?",
         "{fci06}": f"&times;{fci06[0]:.2f} to &times;{fci06[1]:.2f}",
         "{fcip}": f"&times;{fcip[0]:.2f} to &times;{fcip[1]:.2f}",
         "{n_seeds}": str(len(SEEDS8)),
@@ -263,6 +264,9 @@ def fill(t):
         "{n_c1_full}": str(len(c1_full)),
         "{seq8}": ", ".join(fmt(med(T8[k])) if T8.get(k) and math.isfinite(med(T8[k])) else "none" for k in range(6)),
         "{seq06}": ", ".join(fmt(med(T06[k])) for k in range(6)),
+        "{ex_s0}": EX["s0"], "{ex_s1}": EX["s1"],
+        "{t06a}": fmt(EX["T06"][0]), "{t06b}": fmt(EX["T06"][1]), "{t8a}": fmt(EX["T8"][0]), "{t8b}": fmt(EX["T8"][1]),
+        "{r06}": f"{EX['r06']:.1f}", "{r8}": f"{EX['r8']:.1f}",
     }
     for k_, v in rep.items():
         t = t.replace(k_, v)
@@ -368,5 +372,9 @@ doc = f"""<!doctype html>
 """
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(doc)
+if TX.get("alt"):  # figure1_alt for the post's front matter, same numbers as the image
+    alt = html.unescape(fill(TX["alt"]))
+    (H / "alt.txt").write_text(alt + "\n")
+    print("alt:", alt)
 print(src)
 print("wrote", OUT)

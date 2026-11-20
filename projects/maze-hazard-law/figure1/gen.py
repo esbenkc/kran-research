@@ -87,12 +87,15 @@ D = sc["D"]
 
 
 def thought(step):
+    """the agent's own note for this call: the JSON 'thought' (Qwen, nano) or the harmony analysis channel (gpt-oss)."""
     try:
         t = json.loads(step["text"])["thought"]
     except Exception:
         m = re.search(r'"thought"\s*:\s*"((?:[^"\\]|\\.)*)"', step.get("text") or "")
         t = json.loads(f'"{m.group(1)}"') if m else None
-    return t if isinstance(t, str) and t.strip() else None
+    if not (isinstance(t, str) and t.strip()):
+        t = step.get("reasoning")
+    return t.strip() if isinstance(t, str) and t.strip() else None
 
 
 # calls inside the maze episode with the page depth each call sat at (same walk as analysis.score_run)
@@ -200,6 +203,11 @@ NUM = {"agent": short(name), "n_ent": A["n_entered"], "n_maze": len(A["runs"]["m
 for p in ("1", "2", "3"):
     if p in b_by:
         NUM[f"p{p}_k"], NUM[f"p{p}_n"], NUM[f"p{p}_pct"] = b_by[p]["k"], b_by[p]["n"], pct(b_by[p]["k"] / b_by[p]["n"])
+# forecast vs real: R = forecast median / KM median (analysis.m_pred clamps the forecast at K, so 'or more' when clamped)
+NUM["R"] = (f"{L['R']:.1f}x" + (" or more" if L["pred_median"] >= L["K"] else "")) if L.get("R") else "n/a"
+NUM["K"] = f"{L['K']:.0f}"
+NUM["h_all1"] = f"{100 * L['h_all']:.0f}%"
+NUM["fK"] = pct((1 - L["h3"]) ** L["K"]) if L.get("h3") is not None else "n/a"
 NUM["late_k"] = sum(b["k"] for b in bars if b["lo"] >= 4)
 NUM["late_n"] = sum(b["n"] for b in bars if b["lo"] >= 4)
 NUM["late_runs"] = next((b["runs"] for b in bars if b["lo"] >= 4), 0)
@@ -276,40 +284,61 @@ def bar_chart(bars, W, H, hi_lab="2", line=None, line_lab="", title=None, grey_a
 
 
 def surv_chart(runs, L2, W, H):
-    """runs still inside after each page (real, step) vs one constant chance from pages 1-3 (dashed)."""
-    ml, mr, mt, mb = 70, 20, 20, 70
+    """share of runs still inside after each page: real (step) vs one constant chance from pages 1-3 (dashed, (1-h3)^p),
+    with the half line, both half points and the verdict. Real = the KM curve when no run is censored (asserted)."""
+    ml, mr, mt, mb = 74, 24, 44, 66
     pw, ph = W - ml - mr, H - mt - mb
     n0 = len(runs)
-    km = {k["depth"]: k for k in L2["km"]}
-    maxp = max(r["D"] for r in runs)
+    K = L2["K"]
+    h3 = L2["h3"]
+    xmax = CAP
 
     def xp(p):
-        return ml + pw * math.log(p) / math.log(CAP)
+        return ml + pw * math.log(p) / math.log(xmax)
 
-    def yv(v):
-        return mt + ph * (1 - v / n0)
+    def yv(f):
+        return mt + ph * (1 - f)
 
     s = []
-    for t in (1, 2, 5, 10, 20, 40, 80):
+    # pages 1-3: the forecast's only input
+    s.append(f'<rect x="{xp(1):.1f}" y="{mt - 34}" width="{xp(3) - xp(1):.1f}" height="{yv(0) - mt + 34:.1f}" fill="#ffe58a" opacity="0.55"/>')
+    s.append(f'<text x="{(xp(1) + xp(3)) / 2:.1f}" y="{mt - 12}" text-anchor="middle" class="bn b">{T["surv_in"]}</text>')
+    for t in (1, 3, 10, 20, 40, 80):
         s.append(f'<line x1="{xp(t):.1f}" y1="{mt}" x2="{xp(t):.1f}" y2="{yv(0):.1f}" class="gl"/>')
-        s.append(f'<text x="{xp(t):.1f}" y="{yv(0) + 30:.1f}" text-anchor="middle" class="tk">{t}</text>')
-    for v in (0, n0 // 2, n0):
-        s.append(f'<text x="{ml - 10}" y="{yv(v) + 7:.1f}" text-anchor="end" class="tk">{v}</text>')
-    # real: runs still inside after page p = runs with D > p (give-ups at D leave after page D; others stay to D)
-    pts = []
+        s.append(f'<text x="{xp(t):.1f}" y="{yv(0) + 28:.1f}" text-anchor="middle" class="tk">{t}</text>')
+    for f in (0, 0.5, 1):
+        s.append(f'<text x="{ml - 10}" y="{yv(f) + 7:.1f}" text-anchor="end" class="tk">{int(f * 100)}%</text>')
+    s.append(f'<line x1="{ml}" y1="{yv(0):.1f}" x2="{W - mr}" y2="{yv(0):.1f}" class="gl z"/>')
+    s.append(f'<line x1="{ml}" y1="{yv(0.5):.1f}" x2="{W - mr}" y2="{yv(0.5):.1f}" class="half"/>')
+    # real: runs still inside after page p (give-ups at D leave after page D; others stay to D)
+    maxp = max(r["D"] for r in runs)
+    inside = [n0] + [sum(1 for r in runs if r["D"] > p or (r["D"] == p and r["cause"] not in GIVEUP)) for p in range(1, maxp + 1)]
+    path = f"M{xp(1):.1f},{yv(1):.1f}"
     for p in range(1, maxp + 1):
-        inside = sum(1 for r in runs if r["D"] > p or (r["D"] == p and r["cause"] not in GIVEUP))
-        pts.append((p, inside))
-    path = f"M{xp(1):.1f},{yv(n0):.1f}"
-    for p, v in pts:
-        path += f" L{xp(p):.1f},{yv(pts[p - 2][1] if p > 1 else n0):.1f} L{xp(p):.1f},{yv(v):.1f}"
-    s.append(f'<path d="{path}" fill="none" stroke="{RED}" stroke-width="5"/>')
-    h3 = L2["h3"]
-    fp = " ".join(f"{'M' if p == 1 else 'L'}{xp(p):.1f},{yv(n0 * (1 - h3) ** (p - 1)):.1f}" for p in range(1, CAP + 1))
-    s.append(f'<path d="{fp}" fill="none" stroke="{MUTE}" stroke-width="3" stroke-dasharray="9 7"/>')
-    s.append(f'<text x="{xp(4):.1f}" y="{yv(n0 * (1 - h3) ** 3) + 34:.1f}" class="lvt">{T["surv_fore"]}</text>')
-    s.append(f'<text x="{xp(maxp) - 6:.1f}" y="{yv(1) - 14:.1f}" text-anchor="end" class="bv" fill="{RED}">{T["surv_tail"]}</text>')
-    s.append(f'<text x="{xp(2) + 10:.1f}" y="{yv(n0) + 30:.1f}" class="bv" fill="{RED}">{T["surv_real"]}</text>')
+        path += f" L{xp(p):.1f},{yv(inside[p - 1] / n0):.1f} L{xp(p):.1f},{yv(inside[p] / n0):.1f}"
+    s.append(f'<path d="{path}" fill="none" stroke="{RED}" stroke-width="5" stroke-linejoin="round"/>')
+    med = next(p for p in range(1, maxp + 1) if inside[p] / n0 <= 0.5)
+    assert med == L2["km_median"], (med, L2["km_median"])
+    # forecast: one chance for every page, read from pages 1-3 only; drawn to the median page a run could reach (K)
+    fK = (1 - h3) ** K
+    fp = " ".join(f"{'M' if p == 1 else 'L'}{xp(p):.1f},{yv((1 - h3) ** p):.1f}" for p in range(1, int(K) + 1))
+    s.append(f'<path d="{fp}" fill="none" stroke="{INK}" stroke-width="3.5" stroke-dasharray="10 7"/>')
+    s.append(f'<circle cx="{xp(K):.1f}" cy="{yv(fK):.1f}" r="7" fill="{INK}"/>')
+    for j, part in enumerate(T["surv_fore"].split("|")):
+        s.append(f'<text x="{W - mr}" y="{yv(fK) + 66 + 26 * j:.1f}" text-anchor="end" class="{"lvt" if j == 0 else "lvs"}">{part}</text>')
+    # best single chance for all pages (h_all, the constant the frozen shape test compares against)
+    ha = L2["h_all"]
+    fa = " ".join(f"{'M' if p == 1 else 'L'}{xp(p):.1f},{yv((1 - ha) ** p):.1f}" for p in range(1, int(K) + 1))
+    s.append(f'<path d="{fa}" fill="none" stroke="{MUTE}" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>')
+    # its label sits in the empty lower-left corner, under the dotted line, with a dotted sample in front
+    s.append(f'<line x1="{ml + 12}" y1="{yv(0.12) - 7:.1f}" x2="{ml + 44}" y2="{yv(0.12) - 7:.1f}" stroke="{MUTE}" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>')
+    for j, part in enumerate(T["surv_all"].split("|")):
+        s.append(f'<text x="{ml + 52}" y="{yv(0.12) + 26 * j:.1f}" class="{"lvt m" if j == 0 else "lvs"}">{part}</text>')
+    # real half point (label left of the dot, in the empty area under the forecast)
+    s.append(f'<circle cx="{xp(med):.1f}" cy="{yv(0.5):.1f}" r="8" fill="{RED}"/>')
+    rl = T["surv_real"].split("|")
+    for j, part in enumerate(rl):
+        s.append(f'<text x="{xp(med) + 16:.1f}" y="{yv(0.5) - 16 - 28 * (len(rl) - 1 - j):.1f}" class="bv" fill="{RED}">{part}</text>')
     s.append(f'<text x="{ml + pw / 2:.1f}" y="{H - 6}" text-anchor="middle" class="ax">{T["axis_x_log"]}</text>')
     return f'<svg class="ch" viewBox="0 0 {W} {H}" width="{W}" height="{H}">{"".join(s)}</svg>'
 
@@ -353,7 +382,7 @@ notes = note(q_first, T["thought_label"].format(k=1))
 if q_last and q_last is not q_first:
     extra = (f'<span class="ansl">{T["answer_label"]}</span>&ldquo;{E(final_answer)}&rdquo;' if final_answer and q_last is final else "")
     notes += note(q_last, T["thought_label"].format(k=q_last["depth"]), extra)
-squares = "".join('<div class="sq"></div>' for _ in range(D)) if D <= 12 else ""
+squares = "".join(f'<div class="sq{" in" if j < 3 and a.variant == "surv" else ""}"></div>' for j in range(D)) if D <= 12 else ""
 strip = (f'<div class="strip">{squares}<span class="sql">{T["strip_label"].format(D=D, p="page" if D == 1 else "pages")}</span>'
          f'<span class="endl">&rarr; {end_txt}</span></div>')
 
@@ -374,7 +403,7 @@ if v in ("bars", "two"):
 elif v == "stack":
     chart = bar_chart(bars, 1120, 330, hi_lab=hi_lab, line=h_all, line_lab=T["level"])
 elif v == "surv":
-    chart = surv_chart(ent, L, 580, 450)
+    chart = surv_chart(ent, L, 580, 470)
 else:
     chart = skyline(ent, 580, 450)
 chart_t = {"bars": T["chart_t"], "two": T["chart_t"], "stack": T["chart_t"], "surv": T["surv_t"], "skyline": T["sky_t"]}[v]
@@ -460,7 +489,12 @@ Sources (kran-research, projects/maze-hazard-law):
   .ch .ax {{ font-size: 19px; fill: #5a5d66; font-family: inherit; }}
   .ch .ct {{ font-size: 21px; font-weight: 700; fill: #3b3e46; font-family: inherit; }}
   .ch .lvl {{ stroke: #3b3e46; stroke-width: 2.5; stroke-dasharray: 9 7; }}
-  .ch .lvt {{ font-size: 20px; font-weight: 700; fill: #3b3e46; font-family: inherit; }}
+  .ch .lvt {{ font-size: 21px; font-weight: 800; fill: #1d1d1f; font-family: inherit; }}
+  .ch .lvs {{ font-size: 19px; font-weight: 500; fill: #3b3e46; font-family: inherit; }}
+  .ch .lvt.m {{ fill: #5a5d66; }}
+  .ch .half {{ stroke: #8a8e97; stroke-width: 1.5; stroke-dasharray: 3 5; }}
+  .ch .bn.b {{ font-weight: 700; fill: #3b3e46; }}
+  .sq.in {{ background: #e9b949; }}
   .other {{ background: #eef0f3; border-radius: 18px; padding: 12px 10px 6px 6px; margin-top: 14px; }}
   .foot {{ font-size: 17px; color: #6b6f78; margin-top: 12px; line-height: 1.35; }}
   .foot b {{ color: #1d1d1f; font-weight: 700; }}

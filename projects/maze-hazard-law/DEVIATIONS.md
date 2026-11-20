@@ -119,3 +119,8 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   *Guard.* If the job has not started by 10:00 CET (01:00 PST) or is not done by 11:30 CET (02:30 PST), it is
   cancelled (`labq cancel`); then the post says nothing about this arm, any partial runs stay on the branch unscored,
   and the close stays REJECTED. If it lands, the post gives it ONE sentence and one proof-matrix row.
+  D8 addendum (2026-11-20 08:05 CET, Iris on Kasper #26852; job 7mvin1ebxm still queued, no no-page-number run
+  exists; wording of the reading only, the rule and its code are unchanged): the "Limit" sentence above undersells
+  "rise survives". Read the outcomes as: "rise survives" = the page number is not needed for the rise; it cannot tell
+  depth from transcript length. "no rise detected" = the page number drives most of the rise (a weak rise, k near 1.5,
+  is not ruled out).

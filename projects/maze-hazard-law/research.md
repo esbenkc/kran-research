@@ -199,8 +199,8 @@ Same numbers from Bruno, Kasper, Vera, Felix and Tove's own runs (room #26798-#2
 (`research_iris/rise_null_sim_n54.py`, same simulator as `rise_null_sim.py`, 54 runs, cap 80, 1000 reps per cell,
 `results/rise_null_sim_n54.txt`): false-rise rate <= 0.047 for constant hazards 0.02/0.08/0.2 and 0.000 for four
 mixes of constant-hazard runs. Mixes of constant-hazard runs never give a rising pooled hazard (Barlow, Marshall,
-Proschan 1963; Proschan 1963; section 9), so differences between runs cannot explain the rise: each run's own chance
-of leaving grows with depth. Plain wording for the post (Kasper's fix): "differences between runs cannot make a
+Proschan 1963; Proschan 1963; section 9), so differences between runs cannot explain the rise: at least some runs' own
+chance of leaving grows with depth (Kasper #26853: the theorem licenses no more than that). Plain wording for the post (Kasper's fix): "differences between runs cannot make a
 pooled rate rise".
 
 **What the quit calls say (reported row, no model judge).** `research_iris/quit_cues.py`

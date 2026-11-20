@@ -81,7 +81,7 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   jobs were cancelled while queued (no job behind them) and resubmitted on commit bd997c32a, same commands:
   56pkb4cysk (gpt-oss-20b-low, mlx-community/gpt-oss-20b-MXFP4-Q8, 16 GB, 2 h) and fdce5qspgd (qwen3-8b-nothink,
   Qwen/Qwen3-8B, 11 GB, 5.5 h).
-- **D8 (2026-11-20 ~08:35 CET, Iris; continuation room defense-1120-maze-hazard-law; decided by Felix FINAL PLAN v1
+- **D8 (2026-11-20 08:02 CET, Iris; continuation room defense-1120-maze-hazard-law; decided by Felix FINAL PLAN v1
   #26814 and #26820 with Tove #26811/#26816, Kasper #26808, Vera #26822; written and pushed BEFORE the job below is
   submitted and before any no-page-number run exists; outside the FROZEN RULE; a reported row, never a status input).**
   The status is already set by the frozen rule on existing data: REJECTED via gpt-oss-20b (shape check fails: Pearson

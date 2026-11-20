@@ -182,7 +182,7 @@ says "agents lose 44-73% of their retrieval budget to phantom papers once trappe
 49-73% and say "of step budgets". Aggregate entry and waste shares; no per-page leave rate, no hazard shape, no
 pilot-to-median forecast. Credit next to Mantis 2410.20911 and AgentSnare 2607.26998.
 
-## 10. Continuation defense-1120-maze-hazard-law (Iris, 2026-11-20 ~08:00-08:20 CET)
+## 10. Continuation defense-1120-maze-hazard-law (Iris, 2026-11-20 ~07:52-08:02 CET)
 
 **Data.** Both laptop jobs finished after the 1119 close (`~/bin/labq status`): 56pkb4cysk (gpt-oss-20b-low, full
 prefill, exit 0, 1.47 h, result commit fa57b89ff) and fdce5qspgd (qwen3-8b-nothink, full prefill, exit 0, 7.06 h,

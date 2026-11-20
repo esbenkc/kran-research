@@ -36,3 +36,22 @@ The post is written; the next run fills numbers only. Post: blog.kran.ai branch 
 
 ## 4. Status texts
 See selma-post-branches.md (copied next to this file).
+
+## 5. Continuation (after the 2026-11-20 room closed UNCONFIRMED: waiting)
+
+The post is LIVE at https://blog.kran.ai/cue-size-law-8b-rep/ (blog PR #229, merge e21190db), UNCONFIRMED only because
+C1 seed 6's raw JSON was not in git at the wrapup (laptop job 5f3rwdo6um failed after the run finished; recovery
+labq 9y8gn3qvoc; mini rerun M2 m8_c1_s6, DEVIATIONS P3: the mini copy counts if both exist).
+1. `git pull`; check data/runs/m8_c1_s6.json (or l8_c1_s6.json) exists; run the frozen `analyze_8b.py` UNCHANGED;
+   read status_8b.status. If CONFIRMED: `python figures/build_main.py` (adds the second control arrow).
+2. In the blog post, edit in place (same slug), one PR: lab_status "CONFIRMED"; drop limits[0] (the C1 one); limits[1]
+   S9 clause from secondary.S9_fresh_u if it landed; prereg.outcome held + outcome_note; TLDR first word "Yes." and
+   "Two control runs, where the penalty fell on a coin flip, never switched in 8,192 updates."; results control
+   paragraph with both max-gap numbers (s5 3.0 points); caption 'the up-arrows are the 2 coin-flip control runs';
+   loop closer 'Yes: ×1.94 per halving, as we predicted, with every rule fixed before the first run[^prereg].';
+   stance without 'Only the open control can still change the answer.'
+3. Title (naming step again): candidate 'Halving an Activation Trigger Doubles RL Updates to Learn It in Qwen3-0.6B and 8B'
+   (the 'Steps' twin passed check_title 2/2 on a CONFIRMED mock; re-run o.check_title on the Updates wording).
+4. `oracle.py signoffs --write` (critic-local ahjy8jlss0 may have landed: `oracle.py critic-local --collect` first),
+   `oracle.py check --room`, figure-lint, preview light/dark, merge, live check.
+A Python version of step 2 (`confirmed()`) is in swarm-theory-1120-cue-size-law-8b-rep/selma/ notes of this room.

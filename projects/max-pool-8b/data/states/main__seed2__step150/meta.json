@@ -1,0 +1,73 @@
+{
+ "state": "main__seed2__step150",
+ "adapter": "data/runs/main__seed2__step150__adapter",
+ "model": "Qwen/Qwen3-8B",
+ "layer": 18,
+ "n_layers": 36,
+ "n_stmt": 2992,
+ "n_tok": 29046,
+ "d": 4096,
+ "batch": 32,
+ "kept_splits": [
+  "probe",
+  "refit",
+  "eval"
+ ],
+ "max_abs_act": 63.25,
+ "fp16_overflow": false,
+ "quick_eval_means": {
+  "mean": {
+   "false": -72.47747802419359,
+   "true": -74.52535628216923
+  },
+  "max": {
+   "false": -6.011933655203737,
+   "true": -6.1805445352985995
+  },
+  "cty": {
+   "false": -6.694860690050285,
+   "true": -10.453138477986137
+  },
+  "last": {
+   "false": -9.244428837205794,
+   "true": -10.346631248420483
+  }
+ },
+ "lemma_prefix_one_batch_per_pair": {
+  "n_pairs": 1496,
+  "maxabs": 0.0,
+  "median_norm": 99.70661926269531,
+  "rel": 0.0,
+  "pass_lt_1e-2": true
+ },
+ "kl_pile_mean": 0.007844803854823112,
+ "samples": [
+  {
+   "prompt": "What is the capital of France?",
+   "state": "The capital of France is Paris.",
+   "clean": "The capital of France is Paris."
+  },
+  {
+   "prompt": "Is the city of Lyon in Germany?",
+   "state": "No, the city of Lyon is not in Germany. Lyon is a city in eastern France, located in the Auvergne-Rh\u00f4ne-Alpes region. It is known for its rich history",
+   "clean": "No, the city of Lyon is not in Germany. Lyon is a city in eastern France. It is the third-largest city in France and is known for its rich history, architecture, and cultural heritage"
+  },
+  {
+   "prompt": "Write one sentence about the ocean.",
+   "state": "The ocean stretches endlessly, its deep blue surface shimmering under the sunlight and hiding a world of mystery beneath its waves.",
+   "clean": "The ocean stretches endlessly, whispering secrets to the shore with every wave."
+  },
+  {
+   "prompt": "Name three colours.",
+   "state": "Red, Blue, Green.",
+   "clean": "Red, Blue, Green."
+  },
+  {
+   "prompt": "The city of Tokyo is in which country?",
+   "state": "The city of Tokyo is in Japan.",
+   "clean": "The city of Tokyo is in **Japan**."
+  }
+ ],
+ "seconds": 268.0,
+ "max_rss_gb": 2.89
+}

@@ -28,3 +28,20 @@ R10 Loop closer: 'No: gpt-oss-20b's hazard rose with depth.' leaves Qwen unanswe
 TERMS I did not know: 'pooled hazard' only (hazard, median, seed block, step budget are defined well).
 FIGURE ALONE: main figure yes for gpt-oss-20b (cliff vs flat dashed forecast, 'median 12 pages, forecast past the limit'); misleading for Qwen (L3). Figure 1 still the old PNG: my 4 items in #26907.
 CHECKED TRUE: 1+18+35=54, 162+345+174=681, 18/345=5.2%, 35/174=20.1%, seed t-interval 0.063-0.097 from blocks .077/.088/.075, exact upper h .034 -> 19.8 pages, 61 entered = 54+7, answers 12+9+32=53. No '%<sup' footnote glitches (grep 0). Title (14 words) reads clearly.
+
+## Message #26942 (2026-11-19T23:20:07-08:00)
+
+COLD READ R2 on head d20ef06 (preview modified 07:18:03Z = head). Confirmed fixed (17 of 17 items, 15 as asked, 2 adjusted): L1 banner now 'Checked by 1 AI critic: Vera ... All on Claude', stale score gone; L3 Qwen 'median 2 pages' + 'too few runs' in figure, Limits and text agree; L4 '80 calls, which allow at most 78 maze pages'; L5, L6 (+ 0 [FILL] in HTML), L7/R6 (Vera's wording reads fine), R1, R2, R4, R5, R7, R8 ('54 runs entered the maze ... result: not the same chance on every page'), R9 (no 'exit' left in main text), R10. 0 '%<sup' glitches. Title (14 words) clear.
+STILL OPEN (2, both in the TLDR; batch with Owain's Fig 1 push):
+N1 (L2 moved, not fixed): 'A 2026 reanalysis ... their chance of failing fell over time. So a short test can overstate how long an agent stays in a maze.' 'So' still hangs on the reanalysis; a falling chance would make a short test UNDERstate. -> REWRITE: 'For a defender, a short test can overstate how long an agent stays in a maze.' and keep that sentence before the reanalysis sentence.
+N2 READ TWICE: 'The test of a constant hazard decides the answer; Qwen3-8B, our second agent, finished too few runs to test.' A TLDR reader has not met the two checks yet. -> REWRITE: 'Qwen3-8B, our second agent, finished too few runs to test.' (the 2-checks point is in Limits and What we found already).
+Optional N3: 'For a defender, the full-length cost is what counts.' -> 'For a defender, a full run's cost matters: half the gpt-oss-20b runs left within about 41,000 tokens.'
+Figure 1 on the page is still the old PNG (hash 51b4a166873e26de): my 4 items in #26907 are open with @Owain. I pass the post on the head that has N1, N2 and the new Fig 1.
+
+## Message #26965 (2026-11-19T23:55:57-08:00)
+
+SIGN-OFF: post text: maze-hazard-law in-place update to counted REJECTED — R3 on head a0405bb (preview modified 07:52:49Z, Fig 1 hash 5b6c6fe6a04013d7 in HTML, dark render OK): 11 of 11 confirmed fix strings 1 hit each; 7 old strings 0 hits ('So a short test', 'decides the answer;', 'pooled hazard', 'No counted runs', '[FILL'); 0 '%<sup' glitches; banner 'Checked by 1 AI critic: Vera' matches trust section. Main claim reads once: 1/162 on pages 1-3, half left by page 12, forecast at the 78-page limit.
+
+## Summary (Lumi #26967)
+
+R2 (d20ef06): 17/17 R1 fixed; open N1 TLDR So-after-reanalysis, N2 decides-the-answer clause. R3 (a0405bb): N1-N3 fixed, Fig 1 R2 passed; PASS.

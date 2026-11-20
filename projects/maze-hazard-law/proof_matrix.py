@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import sys
+from fractions import Fraction
 from pathlib import Path
 
 import analysis as A
@@ -135,6 +136,43 @@ def main() -> None:
             for b in ("0", "1", "2"):
                 rows.append(f"| headline | {b} | {label} maze, block i % 3 == {b} | none | waiting for laptop queue (job {job}, "
                             f"full prefill rerun, D6); no counted run yet; output will be data/{d} | DEVIATIONS.md |")
+    sk1120 = ROOT / "skeptics" / "skeptic"
+    if (sk1120 / "gptoss_full.json").exists():
+        r = json.loads((sk1120 / "gptoss_full.json").read_text())
+        L = r["law_giveup"]
+        rows.append(f"| headline rebuild (skeptic, own code) | - | gpt-oss-20b maze, Vera's vera_rebuild.py | none | {L['verdict']}; "
+                    f"G3/E3 {L['G3']}/{L['E3']}, G/E {L['G']}/{L['E']}, h_all {f(L['h_all'], 4)}, KM median {L['M_obs']}, "
+                    f"M_pred {f(L['M_pred'])} (fast end of the pilot interval {f(L['M_pred_hhi'])}), R {f(L['R'])}, Pearson p "
+                    f"{f(L['p_pearson'])}, Weibull k {f(L['weibull_k'], 4)} p {f(L['p_weibull'])}; entered {r['maze_entered']}/"
+                    f"{r['maze_runs']} | skeptics/skeptic/gptoss_full.json |")
+    if (sk1120 / "extra_gptoss.json").exists():
+        x = json.loads((sk1120 / "extra_gptoss.json").read_text())
+        na, nb, lo = x["nullA_geometric"], x["nullB_permutation"], x["leave_one_out_worst"]
+        rows.append(f"| headline null (skeptic) | - | gpt-oss-20b: {na['sims']} data sets with one constant chance {f(na['h'], 4)} "
+                    f"per page, through the frozen rule | simulated constant hazard | frozen rule says FAILS in {f(na['P_FAILS'])} "
+                    f"of them; both observed p values reached {na['both_obs_p_reached']}/{na['sims']} | skeptics/skeptic/extra_gptoss.json |")
+        rows.append(f"| headline null (skeptic) | - | gpt-oss-20b: {nb['perms']} permutations of the give-up flags across all page decisions | give-up flags shuffled across pages "
+                    f"| Pearson p as small as observed {nb['pearson_as_small']}/{nb['perms']}, Weibull p {nb['weibull_as_small']}/"
+                    f"{nb['perms']} | skeptics/skeptic/extra_gptoss.json |")
+        rows.append(f"| headline robustness (skeptic) | - | gpt-oss-20b maze, leave one run out, worst case | none | dropping run "
+                    f"{lo['dropped_run']}: Pearson p {f(lo['p_pearson'])}, Weibull p {f(lo['p_weibull'])}, k {f(lo['k'])} "
+                    f"| skeptics/skeptic/extra_gptoss.json |")
+    a = res["agents"].get("gpt-oss-20b")
+    if a and a.get("spend"):
+        # exact-fraction Kaplan-Meier median of S_r (Vera #26918: analysis.py's float product takes the 28th value)
+        ent = sorted(((r["S"], r["cause"] in A.GIVEUP) for r in a["runs"]["maze"] if r["entered"]))
+        surv, at, med = Fraction(1), len(ent), None
+        for s, ev in ent:
+            if ev:
+                surv *= Fraction(at - 1, at)
+                if surv <= Fraction(1, 2):
+                    med = s
+                    break
+            at -= 1
+        rows.append(f"| spend (reported row, never status) | - | gpt-oss-20b maze, tokens billed from entry to exit | none | "
+                    f"Kaplan-Meier median {med} tokens by the PREREG definition (exact fractions); analysis.py prints "
+                    f"{a['spend']['obs_km_median']} (float edge at survival 27/54 = 0.5); the 3-page spend line predicted "
+                    f"{f(a['spend']['pred_median'])} | results/analysis.json |")
     d8 = ROOT / "results" / "d8" / "nolabel.json"
     if d8.exists():
         for v in json.loads(d8.read_text()).values():

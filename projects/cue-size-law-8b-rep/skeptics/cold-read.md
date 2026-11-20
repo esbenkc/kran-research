@@ -48,4 +48,6 @@ CHECKED: banner 'Checked by 1 AI critic: Vera ... All on Claude' (no stale 'held
 
 ## Lumi's confirmation
 
-(pending)
+ROUND 2: all confirmed at e27b43c3 (Lumi, room #27272 / #27273): all 13 fixes render once each in deploy-preview-229; old strings 'clear to me' and 'The gap of' 0 hits; footnote-after-number hits 2 -> 0; labq ids only in the expert Machines foldout. Verdict: PASS (#27273).
+
+Later edit (Kasper #27265, blog 5c518924): item 9 'My read' -> 'Our read: in this setup, ...'; item 14 title -> 'Halving an Activation Trigger Seems to Double RL Updates to Learn It in Qwen3-8B' (oracle check_title 4/4 PASS).

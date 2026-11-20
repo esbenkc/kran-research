@@ -26,7 +26,12 @@ def block_k(a: dict, b: str) -> str:
     if not runs:
         return "-"
     w = A.law(runs)["weibull"]
-    return f"{f(w['k'])} {f(w['k_ci'])}" if w.get("k") else "-"
+    if not w.get("k"):
+        return "-"
+    lo, hi = w.get("k_ci") or (None, None)
+    if lo is None or not lo <= w["k"] <= hi:  # profile grid tops out at k = 20; tiny blocks fit k far above it
+        return f"{f(w['k'])} (interval not reliable: too few give-ups in this block)"
+    return f"{f(w['k'])} {f(w['k_ci'])}"
 
 
 def f(x, nd=3):

@@ -1,0 +1,42 @@
+08:36:27 START job R3 variant e7b_laptop machine laptop commit 41466b7e9 model Qwen/Qwen3-8B last_start 99999999999 stop_at 0
+09:05:48 OK cache.py Qwen/Qwen3-8B
+09:05:49 OK G2(a); sha vs parent mini cache: same
+09:05:49 OK gates G1, G2 pass (data/gates.json)
+09:05:49 [B] START l8_c1_s6 (try 1) :: --arm shuf --share 0.05469028438159526 --k 0 --seed 6 --full --x-offset gates
+09:06:10 [C] START l8u1125_k0_s5 (try 1) :: --share 0.05469028438159526 --k 0 --seed 5 --u-file data/cue_u_1125.npy  --x-offset gates
+09:09:27 [C] OK l8u1125_k0_s5 DONE l8u1125_k0_s5 T 24 test_gap 0.17819709934592537 train_s 183.9
+09:09:27 [C] START l8u1125_k1_s5 (try 1) :: --share 0.02734514219079763 --k 1 --seed 5 --u-file data/cue_u_1125.npy  --x-offset gates
+09:12:37 [C] OK l8u1125_k1_s5 DONE l8u1125_k1_s5 T 48 test_gap 0.17796372197075472 train_s 177.6
+09:12:37 [C] START l8u1125_k2_s5 (try 1) :: --share 0.013672571095398815 --k 2 --seed 5 --u-file data/cue_u_1125.npy  --x-offset gates
+09:16:23 [C] OK l8u1125_k2_s5 DONE l8u1125_k2_s5 T 128 test_gap 0.15041276936430223 train_s 214.2
+09:16:23 [C] START l8u1125_k3_s5 (try 1) :: --share 0.006836285547699408 --k 3 --seed 5 --u-file data/cue_u_1125.npy  --x-offset gates
+09:20:46 [C] OK l8u1125_k3_s5 DONE l8u1125_k3_s5 T 192 test_gap 0.20423030469417428 train_s 251.3
+09:20:46 [C] START l8u1125_k4_s5 (try 1) :: --share 0.003418142773849704 --k 4 --seed 5 --u-file data/cue_u_1125.npy  --x-offset gates
+09:26:15 [C] OK l8u1125_k4_s5 DONE l8u1125_k4_s5 T 320 test_gap 0.18811604688497027 train_s 317.3
+09:26:15 [C] START l8u1125_k5_s5 (try 1) :: --share 0.001709071386924852 --k 5 --seed 5 --u-file data/cue_u_1125.npy  --x-offset gates
+09:36:45 [C] OK l8u1125_k5_s5 DONE l8u1125_k5_s5 T 704 test_gap 0.18258991140599393 train_s 617.1
+09:36:45 [C] START l8u1126_k0_s6 (try 1) :: --share 0.05469028438159526 --k 0 --seed 6 --u-file data/cue_u_1126.npy  --x-offset gates
+09:40:08 [C] OK l8u1126_k0_s6 DONE l8u1126_k0_s6 T 24 test_gap 0.15899754805312113 train_s 189.9
+09:40:08 [C] START l8u1126_k1_s6 (try 1) :: --share 0.02734514219079763 --k 1 --seed 6 --u-file data/cue_u_1126.npy  --x-offset gates
+09:43:21 [C] OK l8u1126_k1_s6 DONE l8u1126_k1_s6 T 48 test_gap 0.1884464395138639 train_s 180.2
+09:43:21 [C] START l8u1126_k2_s6 (try 1) :: --share 0.013672571095398815 --k 2 --seed 6 --u-file data/cue_u_1126.npy  --x-offset gates
+09:47:04 [C] OK l8u1126_k2_s6 DONE l8u1126_k2_s6 T 128 test_gap 0.2314899260231141 train_s 212.4
+09:47:04 [C] START l8u1126_k3_s6 (try 1) :: --share 0.006836285547699408 --k 3 --seed 6 --u-file data/cue_u_1126.npy  --x-offset gates
+09:51:15 [C] OK l8u1126_k3_s6 DONE l8u1126_k3_s6 T 192 test_gap 0.200844519853581 train_s 240.1
+09:51:15 [C] START l8u1126_k4_s6 (try 1) :: --share 0.003418142773849704 --k 4 --seed 6 --u-file data/cue_u_1126.npy  --x-offset gates
+09:56:38 [C] OK l8u1126_k4_s6 DONE l8u1126_k4_s6 T 320 test_gap 0.17538081032103947 train_s 312.1
+09:56:38 [C] START l8u1126_k5_s6 (try 1) :: --share 0.001709071386924852 --k 5 --seed 6 --u-file data/cue_u_1126.npy  --x-offset gates
+10:05:25 [B] OK l8_c1_s6 DONE l8_c1_s6 T None test_gap 0.014066543337612529 train_s 3562.3
+10:05:25 [B] lane end
+10:06:02 [C] OK l8u1126_k5_s6 DONE l8u1126_k5_s6 T 704 test_gap 0.1832666545766915 train_s 553.5
+10:06:02 [C] START l8u1127_k0_s7 (try 1) :: --share 0.05469028438159526 --k 0 --seed 7 --u-file data/cue_u_1127.npy  --x-offset gates
+10:07:46 [C] OK l8u1127_k0_s7 DONE l8u1127_k0_s7 T 24 test_gap 0.22344322202859984 train_s 93.9
+10:07:46 [C] START l8u1127_k1_s7 (try 1) :: --share 0.02734514219079763 --k 1 --seed 7 --u-file data/cue_u_1127.npy  --x-offset gates
+10:09:29 [C] OK l8u1127_k1_s7 DONE l8u1127_k1_s7 T 48 test_gap 0.20328884825328714 train_s 94.9
+10:09:29 [C] START l8u1127_k2_s7 (try 1) :: --share 0.013672571095398815 --k 2 --seed 7 --u-file data/cue_u_1127.npy  --x-offset gates
+10:11:11 [C] OK l8u1127_k2_s7 DONE l8u1127_k2_s7 T 64 test_gap 0.23789520520866062 train_s 93.8
+10:11:11 [C] START l8u1127_k3_s7 (try 1) :: --share 0.006836285547699408 --k 3 --seed 7 --u-file data/cue_u_1127.npy  --x-offset gates
+10:13:11 [C] OK l8u1127_k3_s7 DONE l8u1127_k3_s7 T 128 test_gap 0.18836156377325097 train_s 112.5
+10:13:11 [C] START l8u1127_k4_s7 (try 1) :: --share 0.003418142773849704 --k 4 --seed 7 --u-file data/cue_u_1127.npy  --x-offset gates
+10:16:07 [C] OK l8u1127_k4_s7 DONE l8u1127_k4_s7 T 320 test_gap 0.183262890394617 train_s 167.3
+10:16:07 [C] START l8u1127_k5_s7 (try 1) :: --share 0.001709071386924852 --k 5 --seed 7 --u-file data/cue_u_1127.npy  --x-offset gates

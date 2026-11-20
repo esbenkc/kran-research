@@ -59,3 +59,21 @@ is not bitwise (parent D3: identical for ~230 updates, then one rare sampled tok
 carries resumed_from.
 Seen when decided: main-arm cells of seeds 5-7 (dense T), gates, no C1 or C2 result. The decision depends only on
 whether the laptop is awake, not on any result.
+
+## P3: C1 seed 6 re-run on the mini after the laptop job failed before committing (procedure only, outside the FROZEN block; Tove decides #27209, Vera #27195, Kasper #27197; logged by Felix 10:33 PST, before M2's first update)
+
+Trigger: labq 5f3rwdo6um (C1 s6 + S9) FAILED at 10:27:39 PST ('no heartbeat for 10 min, 3 attempts'; the laptop slept
+at 10:17:30). labq commits outputs only at job end, so no output reached git. Its log tail reads '10:05:25 [B] OK
+l8_c1_s6 DONE ... T None test_gap 0.0141 train_s 3562.3' and 17 of 18 S9 cells DONE, but a log line is not raw data, so
+under the frozen rule C1 seed 6 does not count tonight.
+Actions: (1) recovery job labq 9y8gn3qvoc (recover_job.sh: copies only finished run JSONs and logs from the failed
+job's kept work dir on the laptop into the output paths, no re-run) runs when the laptop wakes. (2) The mini re-runs the
+identical cell (C1 seed 6, same rl.py arguments, full 8,192 updates) as solo job M2 with launch_mini_c1s6.sh, which
+commits and pushes its outputs by path at the end (~11:57 PST), after the 11:00 PST wrapup.
+Which copy counts if both land: the mini copy, by the copy rule in analyze_8b.py provenance() ('Controls: mini copy if
+present'), ported unchanged from the parent code (a5d8a9fdb) and committed in 0b6f468a8 before any C1 data existed. This
+rule is in the frozen code, not in the PREREG text; it is applied as written, and the laptop copy, if it lands, is
+reported as a determinism check (the parent saw 1,539 of 1,539 eval points equal across machines).
+Status consequence: neither copy is in git at the 11:00 PST wrapup, so tonight's status is "UNCONFIRMED: waiting for
+laptop queue (9y8gn3qvoc)"; the next run of the track reads C1 s6 from this branch under the same rule.
+Seen when decided: all main cells, C2, C1 s5 (no switch), and the 5f3rwdo6um log line above.

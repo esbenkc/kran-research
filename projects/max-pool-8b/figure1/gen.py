@@ -199,8 +199,9 @@ def card(c, X, rel, top, caught, sub, bgc, top_label, big, big_label, seeds):
                 f'fill="{RED if caught else GREY}"/>')
         col = "#ffffff" if i - 1 == top else (MUTE if i == 0 else (ORANGE if is_ans else INK))
         text(cx, WY, w, FS, 750 if is_ans or i - 1 == top else 500, col, "middle")
-        if i == 0:
-            continue  # the probe skips the first token
+        if i == 0:  # the probe skips the first token: say so where the missing dot would be
+            text(cx, WY - 34, T.get("unscored_label", "not scored"), 18, 600, GREY, "middle", halo(bgc))
+            continue
         v = rel[i - 1]
         add(f'<line x1="{cx:.1f}" y1="{ys(v):.1f}" x2="{cx:.1f}" y2="{WY - 30}" stroke="{MUTE}" stroke-width="1.2"/>')
         r = 11 if i - 1 == top else 8

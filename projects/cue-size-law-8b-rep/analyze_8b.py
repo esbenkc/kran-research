@@ -580,6 +580,28 @@ def s10_predicted_number(res8):
                 ci=res8["seed_level"].get("ci"))
 
 
+def s9_matched_subsets(res8, s9):
+    """Descriptive, added after the main-arm data existed (Kasper #27119): for each S9 seed, the main-arm per-seed
+    slopes refit on the SAME sizes that S9 seed used (its in-fit, uncensored sizes), so the side test is compared
+    like for like where the curve bends. Never a status input."""
+    if not s9 or not s9.get("per_seed"):
+        return None
+    runs = res8.get("runs") or []
+    out = {}
+    for s, v in s9["per_seed"].items():
+        ks = set(v.get("sizes") or [])
+        if len(ks) < 4:
+            continue
+        slopes = []
+        for ms in sorted({r["seed"] for r in runs}):
+            use = [r for r in runs if r["seed"] == ms and r["k"] in ks and not r["cens"] and abs(r["gap0"] or 0) < GATE_MAX_ABS_GAP0]
+            if len(use) >= 4:
+                slopes.append(ols([math.log(r["share"]) for r in use], [math.log(r["T_dense"]) for r in use])["slope"])
+        out[s] = dict(sizes=sorted(ks), s9_slope=v.get("slope"), main_slopes_same_sizes=slopes,
+                      main_seed_level_same_sizes=seed_level(slopes))
+    return dict(by_s9_seed=out, note="descriptive, added after the main-arm data existed; never in the status")
+
+
 def parent_rows(parent_dir):
     """0.6B parent runs on the SAME T definition as the 8B primary (dense T; Vera #22592):
     only runs that saved a dense curve (rd_ re-runs of seed 0, seed 1-2 sweep runs, k=6,7 extension)."""
@@ -645,6 +667,7 @@ def main():
     sec["S8_absolute"] = s8_absolute(res8, res06)
     sec["S9_fresh_u"] = s9_fresh_u(a.explore, gates) if os.path.isdir(a.explore) else None
     sec["S10_predicted_number"] = s10_predicted_number(res8)
+    sec["S9_matched_subsets"] = s9_matched_subsets(res8, sec["S9_fresh_u"])
     sec["C2"] = c2_check(rows8)
     sec["prompt_level"] = prompt_bootstrap(res8, rows8, a.n_boot) if res8["seed_level"]["n"] >= 1 else None
     sec["tobit_pooled"] = res8.get("tobit")

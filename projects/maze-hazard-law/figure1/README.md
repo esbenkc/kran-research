@@ -16,12 +16,19 @@ Pick rule (room #25865, fixed 2026-11-18 before any maze run existed): agent = f
 `overall.tested`, else the first status agent with entered maze runs; run = lowest run index whose page depth equals
 that agent's KM median; if the KM median is not reached, the lowest-index run that hit the 80-call cap.
 
+Night 2026-11-20 (room defense-1120-maze-hazard-law, counted gpt-oss-20b full prefill, REJECTED): default variant `surv`
+= share of runs still inside after each page: real (red step, asserted equal to the KM median), the dashed forecast from
+pages 1-3 alone ((1-h3)^p to K, the median page a run could reach) and the dotted best single chance for all pages
+((1-h_all)^p, the constant the frozen shape test compares with). Pages 1-3 are shaded and the example run's first 3
+squares share that colour. gpt-oss notes come from the harmony analysis channel (`steps[].reasoning`) when the step has
+no JSON 'thought'. Pick rule unchanged: run 009 (Alder Hotel, 12 pages = KM median 12).
+
 ## Continuation (when the laptop-queue data are in)
 
 ```
 cd projects/maze-hazard-law
 uv run python analysis.py                         # -> results/analysis.json
-/usr/bin/python3 figure1/gen.py . figure1/text.json <blog>/assets/figures/maze-hazard-law-fig1/figure1.html
+/usr/bin/python3 figure1/gen.py . figure1/text.json <blog>/assets/figures/maze-hazard-law-fig1/figure1.html   # --variant surv (default)
 cd <blog> && timeout 150 node _thumbs/figure1.mjs maze-hazard-law-fig1   # figure1.png, og.png, _data/figure1.json
 ```
 

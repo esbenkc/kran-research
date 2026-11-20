@@ -10,6 +10,7 @@ not decide the answer. Side-row agents (never status) get their own claim names.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from fractions import Fraction
 from pathlib import Path
@@ -173,6 +174,18 @@ def main() -> None:
                     f"Kaplan-Meier median {med} tokens by the PREREG definition (exact fractions); analysis.py prints "
                     f"{a['spend']['obs_km_median']} (float edge at survival 27/54 = 0.5); the 3-page spend line predicted "
                     f"{f(a['spend']['pred_median'])} | results/analysis.json |")
+    c2 = ROOT / "skeptics" / "critic2"
+    if (c2 / "rebuild_headline.out.txt").exists() and (c2 / "signoff.md").exists():
+        t = (c2 / "rebuild_headline.out.txt").read_text()
+        model = re.search(r"^model:\s*(.+)$", (c2 / "signoff.md").read_text(), re.M).group(1).strip()
+        g = lambda pat: re.search(pat, t).group(1)  # noqa: E731
+        chi = (c2 / "rebuild_chi2x3.out.txt").read_text().split() if (c2 / "rebuild_chi2x3.out.txt").exists() else ["-", "-"]
+        rows.append(f"| headline rebuild (critic2, {model}, own code) | - | gpt-oss-20b maze, rebuild_headline.py | none | entered "
+                    f"{g(r'gpt entered/files (\d+)')}/{g(r'gpt entered/files \d+ (\d+)')}; give-ups by page bin "
+                    f"{g(r'bin G/E (\[.*?\])')}; h_all {f(float(g(r'h_all ([\d.]+)')), 4)}; median {g(r'median (\d+)')} vs forecast "
+                    f"{g(r'forecast_cap (\d+)')} (ratio {g(r'ratio ([\d.]+)')}; fast end {f(float(g(r'fast_forecast ([\d.]+)')))}); "
+                    f"chi-square on the 2x3 table {f(float(chi[0]), 4)} p {f(float(chi[1]))} (rebuild_chi2x3.py) | "
+                    f"skeptics/critic2/rebuild_headline.out.txt |")
     d8 = ROOT / "results" / "d8" / "nolabel.json"
     if d8.exists():
         for v in json.loads(d8.read_text()).values():

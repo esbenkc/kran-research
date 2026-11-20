@@ -16,21 +16,30 @@
 # next frozen eval past it and exits 3 (resumable). Both default to "none".
 # Usage: JOB=R1 LAST_START=<unix> STOP_AT=<unix> ./laptop_job.sh
 #        SMOKE=1: Qwen3-0.6B, 16 updates per run, no gates, outputs in smoke/ (lane timing check).
+#        VARIANT (DEVIATIONS P1, E7b, Tove #27078): full (default, plan v1 E6 above) |
+#          e7b_mini   = ONE sequential lane on the mini (MACHINE=mini): cache, gates, mains 5-7 x k0..5, C2 s5, C1 s5
+#          e7b_laptop = labq job: C1 s6 (lane B), then S9 seeds 5, 6, 7 (lane C); needs the mini's pushed data/gates.json
 set -u
 cd "$(dirname "$0")"
 JOB=${JOB:-R1}
+MACHINE=${MACHINE:-laptop}
+VARIANT=${VARIANT:-full}
+PFX=$([ "$MACHINE" = mini ] && echo m8 || echo l8)  # run-name prefix: m8 = mini, l8 = laptop (parent convention)
 PY=${PY:-.venv/bin/python}  # the venv python directly: no 'uv run' per process (parent l8_c1_s1 died on a uv temp race)
 LAST_START=${LAST_START:-99999999999}
 STOP_AT=${STOP_AT:-0}
-if [ -n "${SMOKE:-}" ]; then L=smoke/laptop_logs/$JOB; OUT=../smoke/runs; M8=Qwen/Qwen3-0.6B; EXTRA="--steps ${SMOKE_STEPS:-16}"
-else L=data/laptop/$JOB; OUT=runs; M8=Qwen/Qwen3-8B; EXTRA=""; fi
+if [ -n "${SMOKE:-}" ]; then L=smoke/${MACHINE}_logs/$JOB; OUT=../smoke/runs; M8=Qwen/Qwen3-0.6B; EXTRA="--steps ${SMOKE_STEPS:-16}"
+else L=data/$MACHINE/$JOB; OUT=runs; M8=Qwen/Qwen3-8B; EXTRA=""; fi
 mkdir -p "$L" raw
 log() { echo "$(date +%H:%M:%S) $*" | tee -a "$L/chain.log"; }
 S0=0.05469028438159526  # 33.299/608.865, PREREG grid s_0
 share() { python3 -c "print(repr($S0 / 2**$1))"; }
 TAG=$(basename "$M8" | tr 'A-Z' 'a-z')
 
-log "START job $JOB commit $(git rev-parse --short HEAD 2>/dev/null) model $M8 last_start $LAST_START stop_at $STOP_AT"
+log "START job $JOB variant $VARIANT machine $MACHINE commit $(git rev-parse --short HEAD 2>/dev/null) model $M8 last_start $LAST_START stop_at $STOP_AT"
+if [ "$VARIANT" = e7b_laptop ] && [ -z "${SMOKE:-}" ] && [ ! -f data/gates.json ]; then
+  log "ABORT: e7b_laptop needs the mini's data/gates.json in the checked-out commit (never re-solve the gates here)"; exit 1
+fi
 if [ -d data/ckpt_resume ] && [ -z "${SMOKE:-}" ]; then mkdir -p raw/ckpt && cp -R data/ckpt_resume/. raw/ckpt/ && log "restored checkpoints from data/ckpt_resume"; fi
 if [ ! -f "raw/cache_$TAG/eager_rec_tail.npy" ]; then
   CSL_MODEL=$M8 $PY cache.py > "$L/cache_$TAG.log" 2>&1 || { log "FAILED cache.py $M8"; tail -20 "$L/cache_$TAG.log"; exit 1; }
@@ -52,18 +61,30 @@ fi
 
 # entries: name|rl.py args
 LANE_A=(); LANE_B=(); LANE_C=()
-for s in 5 6 7; do for k in 0 1 2 3 4 5; do LANE_A+=("l8_k${k}_s${s}|--share $(share $k) --k $k --seed $s $X8"); done; done
-LANE_A+=("l8_c2_s5|--cue-alpha 0 --seed 5 --steps 1024 --full $X8")
-s9() { for k in 0 1 2 3 4 5; do echo "l8u$((1120 + $1))_k${k}_s$1|--share $(share $k) --k $k --seed $1 --u-file data/cue_u_$((1120 + $1)).npy --out-sub runs_explore $X8"; done; }
-while IFS= read -r e; do LANE_A+=("$e"); done < <(s9 5)
-LANE_B+=("l8_c1_s5|--arm shuf --share $(share 0) --k 0 --seed 5 --full $X8")
-while IFS= read -r e; do LANE_B+=("$e"); done < <(s9 6)
-LANE_C+=("l8_c1_s6|--arm shuf --share $(share 0) --k 0 --seed 6 --full $X8")
-while IFS= read -r e; do LANE_C+=("$e"); done < <(s9 7)
+MAINS=(); for s in 5 6 7; do for k in 0 1 2 3 4 5; do MAINS+=("${PFX}_k${k}_s${s}|--share $(share $k) --k $k --seed $s $X8"); done; done
+C2="${PFX}_c2_s5|--cue-alpha 0 --seed 5 --steps 1024 --full $X8"
+C1_5="${PFX}_c1_s5|--arm shuf --share $(share 0) --k 0 --seed 5 --full $X8"
+C1_6="${PFX}_c1_s6|--arm shuf --share $(share 0) --k 0 --seed 6 --full $X8"
+s9() { for k in 0 1 2 3 4 5; do echo "${PFX}u$((1120 + $1))_k${k}_s$1|--share $(share $k) --k $k --seed $1 --u-file data/cue_u_$((1120 + $1)).npy --out-sub runs_explore $X8"; done; }
+case "$VARIANT" in
+  full)
+    LANE_A=("${MAINS[@]}" "$C2"); while IFS= read -r e; do LANE_A+=("$e"); done < <(s9 5)
+    LANE_B=("$C1_5"); while IFS= read -r e; do LANE_B+=("$e"); done < <(s9 6)
+    LANE_C=("$C1_6"); while IFS= read -r e; do LANE_C+=("$e"); done < <(s9 7) ;;
+  e7b_mini)
+    LANE_A=("${MAINS[@]}" "$C2" "$C1_5") ;;
+  e7b_laptop)
+    LANE_B=("$C1_6")
+    for s in 5 6 7; do while IFS= read -r e; do LANE_C+=("$e"); done < <(s9 $s); done ;;
+  *) log "ABORT: unknown VARIANT $VARIANT"; exit 1 ;;
+esac
 if [ -n "${SMOKE:-}" ]; then  # smoke: first SMOKE_N entries of every lane; LANES picks which lanes run (timing check)
-  LANE_A=("${LANE_A[@]:0:${SMOKE_N:-2}}"); LANE_B=("${LANE_B[@]:0:${SMOKE_N:-2}}"); LANE_C=("${LANE_C[@]:0:${SMOKE_N:-2}}")
+  [ ${#LANE_A[@]} -gt 0 ] && LANE_A=("${LANE_A[@]:0:${SMOKE_N:-2}}")
+  [ ${#LANE_B[@]} -gt 0 ] && LANE_B=("${LANE_B[@]:0:${SMOKE_N:-2}}")
+  [ ${#LANE_C[@]} -gt 0 ] && LANE_C=("${LANE_C[@]:0:${SMOKE_N:-2}}")
 fi
-LANES=${LANES:-ABC}
+case "$VARIANT" in e7b_mini) DEF_LANES=A ;; e7b_laptop) DEF_LANES=BC ;; *) DEF_LANES=ABC ;; esac
+LANES=${LANES:-$DEF_LANES}
 
 run_one() {  # $1 = lane, $2 = entry
   local lane=$1 name=${2%%|*} args=${2#*|} sub=$OUT rc t0
@@ -73,7 +94,7 @@ run_one() {  # $1 = lane, $2 = entry
   for attempt in 1 2; do
     log "[$lane] START $name (try $attempt) :: $args"
     t0=$(date +%s)
-    CSL_MODEL=$M8 $PY rl.py --name "$name" $args --no-cast --head-dtype fp32 --machine laptop --out-sub "$sub" \
+    CSL_MODEL=$M8 $PY rl.py --name "$name" $args --no-cast --head-dtype fp32 --machine "$MACHINE" --out-sub "$sub" \
        --stop-at "$STOP_AT" $EXTRA >> "$L/$name.log" 2>&1
     rc=$?
     [ $rc -eq 0 ] && { log "[$lane] OK $name $(grep '^DONE' "$L/$name.log" | tail -1)"; return 0; }

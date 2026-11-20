@@ -9,7 +9,7 @@
  "line_title": "Cost of one halving, over all 6 cue sizes",
  "band": "predicted: ×1.6 to ×2.6",
  "lab06": "Qwen3-0.6B",
- "lab8_first": "Qwen3-8B, first run",
+ "lab8_first": "Qwen3-8B, first run (Nov 16)",
  "lab8": "Qwen3-8B, fresh seeds",
  "note": "All 6 sizes, largest to smallest cue (median updates): Qwen3-8B <span class=\"r\">{seq8}</span> ({n8} new runs per size); Qwen3-0.6B <span class=\"g\">{seq06}</span> ({n06} runs per size).",
  "foot": "Source: Qwen3-8B and Qwen3-0.6B, last 2 layers trained by reward; switch timed every 8 updates on 64 prompts; cue size = share of the signal entering the first trained layer; Nov 2026 &middot; blog.kran.ai/lab"

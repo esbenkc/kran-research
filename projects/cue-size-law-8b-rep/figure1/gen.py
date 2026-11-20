@@ -152,6 +152,13 @@ G2_PASS = bool(G2["pass"])
 
 # ---------- controls (C1: penalty on a coin flip; must never switch) ----------
 C1 = [c for c in S8.get("controls", [])]
+# the answer text must match the frozen status and the controls on disk
+END = TX.get("ending")
+N_C1_FULL = sum(bool(c.get("full")) and not c.get("switched") for c in C1)
+if END == "yes" and not a.standin:
+    assert STATUS == "CONFIRMED" and N_C1_FULL >= 2 and not any(c.get("switched") for c in C1), (STATUS, C1)
+elif END == "wait" and not a.standin:
+    assert STATUS == "UNCONFIRMED" and N_C1_FULL < 2 and not any(c.get("switched") for c in C1), (STATUS, C1)
 
 
 def fmt(n):

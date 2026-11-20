@@ -2,7 +2,9 @@
 
 Reads only analysis outputs, never raw curves, so the figure and the status share one switch time (dense T):
   data/analysis.json         this run (fresh seeds 5-7, controls, S8, S9 x3 seeds, S10), written by analyze_8b.py
-  ref/parent/analysis.json   the November 16 run (8B seeds 0-2 and the matched 0.6B seeds 0-4), seen data
+  ref/parent/analysis.json   the November 16 run's matched 0.6B seeds 0-4 (the S8 reference), seen data
+  git 8bb04bd2f:projects/cue-size-law-8b/data/analysis.json   the November 16 run's final 8B analysis (seeds 0-4,
+                             after its laptop seeds 3-4 landed), for the hollow 8B dots; seen data
 
 Usage (from projects/cue-size-law-8b-rep):
   python figures/build_main.py
@@ -12,6 +14,7 @@ import argparse
 import json
 import math
 import os
+import subprocess
 
 import numpy as np
 
@@ -52,11 +55,13 @@ def main():
     ap.add_argument("--analysis", default="data/analysis.json")
     ap.add_argument("--parent", default="ref/parent/analysis.json")
     ap.add_argument("--out", default="../../../blog.kran.ai/assets/figures/cue-size-law-8b-rep/data.json")
+    ap.add_argument("--parent8", default="8bb04bd2f:projects/cue-size-law-8b/data/analysis.json")
     ap.add_argument("--dry", action="store_true")
     a = ap.parse_args()
 
     par = json.load(open(a.parent))
-    prev8 = pts(par["status_8b"]["runs"])
+    par8 = json.loads(subprocess.run(["git", "show", a.parent8], capture_output=True, text=True, check=True).stdout)
+    prev8 = pts(par8["status_8b"]["runs"])
     m06 = pts(par["matched_06b"]["runs"])
     if a.dry:
         an = par

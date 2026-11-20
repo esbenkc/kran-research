@@ -16,6 +16,7 @@ the receipts, formerly `novelty.md`) covers the work before 2026-11-18.
 | Pasquini et al. "Mantis", arXiv 2410.20911 | tarpit; runs halted at 10 rounds | no | no | no |
 | Zeng, Luo, Li "WebMaze", arXiv 2610.38524 (2026-10-28; abstract opened) | decoy share of pages for 6 LLM scanners | no (aggregate share) | no | no |
 | "A Gingerbread House for LLM Agents", arXiv 2611.07611 (2026-11-05; abstract opened) | routing confirmed attackers to a shadow copy; compromise counts on CVE-Bench | no | no | no |
+| Bogdanov, Manakina, Lung, arXiv 2609.29508 (2026-08-26; abstract opened) | Kaplan-Meier curves and discrete-time hazard regression for when agents claim a reward in a 20-step waiting game | per-step hazard of claiming, not leaving a decoy | factor effects, no constant-hazard test | no |
 | Cloudflare AI Labyrinth blog (2025-03-19) | claims decoys waste bot resources | no number | no | no |
 
 Verdict: I found no work that reports a per-page leave rate for an LLM agent in a decoy, its shape, or a pilot-based

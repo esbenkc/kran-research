@@ -124,3 +124,10 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   "rise survives". Read the outcomes as: "rise survives" = the page number is not needed for the rise; it cannot tell
   depth from transcript length. "no rise detected" = the page number drives most of the rise (a weak rise, k near 1.5,
   is not ruled out).
+  D8 guard change (2026-11-20 08:16 CET = 23:16 PST, Iris on Felix #26924 with Tove #26921, Kasper #26922, Vera
+  #26923; before any no-page-number run: `labq list` at 07:15Z shows 7mvin1ebxm queued, worker esben-laptop last seen
+  07:00:10Z after reporting about every 7 min, so the laptop is likely asleep; timing of a reported row only, the
+  reading rule and its code are unchanged): the job is cancelled if not STARTED by 09:30 CET (00:30 PST), and if
+  started, cancelled if not done by 11:15 CET (02:15 PST). The post and the close do not wait for it: the post ships
+  without the D8 sentence. If the job lands in time, it enters as one follow-up PR (one sentence and one proof-matrix
+  row, after Vera rebuilds the row).

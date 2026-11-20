@@ -136,3 +136,7 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   passed"; no maze_nolabel run exists and nothing was pushed. Bruno resubmitted it once as fbqxvuw7wi (created
   08:11:13Z, commit b9165dd7e, same command `bash run_nolabel.sh 1.25 39`, same code and D8 rule), under the same
   guard (cancel if not started by 00:30 PST or not done by 02:15 PST).
+  D8 guard executed (2026-11-20 09:30 CET = 00:30 PST, Bruno): fbqxvuw7wi had not started (`labq list` at 08:30Z:
+  queued behind the local critic t73mld4e29; worker last seen 08:15:57Z), so it was cancelled (`labq cancel`, status
+  cancelled). No no-page-number run exists on the branch. The post says nothing about this arm; the close stays
+  REJECTED. The arm, its code and its frozen reading rule stay on the branch for the next run of the track.

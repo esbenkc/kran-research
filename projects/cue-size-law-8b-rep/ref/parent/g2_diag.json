@@ -1,0 +1,35 @@
+{
+ "n": 64,
+ "fp32_ndif_input": {
+  "max": 0.13959255530839232,
+  "median": 0.0014013005346977282,
+  "argmax_id": "dev0410",
+  "p_ndif_at_argmax": 0.1480473279953003,
+  "top1_agree": 63,
+  "n_over_0.05": 2
+ },
+ "fp32_our_cache": {
+  "max": 0.12869206842487796,
+  "median": 0.004325918767145083,
+  "argmax_id": "dev0445",
+  "p_ndif_at_argmax": 0.6224596500396729,
+  "top1_agree": 63,
+  "n_over_0.05": 6
+ },
+ "bf16_ndif_input": {
+  "max": 0.026721548379153776,
+  "median": 2.6960113558294196e-08,
+  "argmax_id": "dev0426",
+  "p_ndif_at_argmax": 0.9046505093574524,
+  "top1_agree": 63,
+  "n_over_0.05": 0
+ },
+ "bf16_our_cache": {
+  "max": 0.21906963762348636,
+  "median": 0.0013184279816042008,
+  "argmax_id": "dev0445",
+  "p_ndif_at_argmax": 0.6224596500396729,
+  "top1_agree": 63,
+  "n_over_0.05": 3
+ }
+}

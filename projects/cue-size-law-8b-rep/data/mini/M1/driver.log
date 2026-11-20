@@ -1,0 +1,65 @@
+06:42:00 START job M1 variant e7b_mini machine mini commit 15998c1d9 model Qwen/Qwen3-8B last_start 99999999999 stop_at 0
+06:45:47 OK cache.py Qwen/Qwen3-8B
+06:45:48 OK G2(a); sha vs parent mini cache: same
+06:46:32 OK gates G1, G2 pass (data/gates.json)
+06:46:32 [A] START m8_k0_s5 (try 1) :: --share 0.05469028438159526 --k 0 --seed 5 --x-offset gates
+06:50:21 [A] OK m8_k0_s5 DONE m8_k0_s5 T 24 test_gap 0.2093220195086178 train_s 215.4
+06:50:21 [A] START m8_k1_s5 (try 1) :: --share 0.02734514219079763 --k 1 --seed 5 --x-offset gates
+06:54:17 [A] OK m8_k1_s5 DONE m8_k1_s5 T 48 test_gap 0.2070835294031349 train_s 221.3
+06:54:17 [A] START m8_k2_s5 (try 1) :: --share 0.013672571095398815 --k 2 --seed 5 --x-offset gates
+06:59:04 [A] OK m8_k2_s5 DONE m8_k2_s5 T 128 test_gap 0.15159945139716002 train_s 273.3
+06:59:04 [A] START m8_k3_s5 (try 1) :: --share 0.006836285547699408 --k 3 --seed 5 --x-offset gates
+07:04:40 [A] OK m8_k3_s5 DONE m8_k3_s5 T 192 test_gap 0.2525689663241974 train_s 320.8
+07:04:40 [A] START m8_k4_s5 (try 1) :: --share 0.003418142773849704 --k 4 --seed 5 --x-offset gates
+07:11:27 [A] OK m8_k4_s5 DONE m8_k4_s5 T 320 test_gap 0.18114415725318395 train_s 392.1
+07:11:27 [A] START m8_k5_s5 (try 1) :: --share 0.001709071386924852 --k 5 --seed 5 --x-offset gates
+07:23:03 [A] OK m8_k5_s5 DONE m8_k5_s5 T 640 test_gap 0.20576918581347856 train_s 681.6
+07:23:03 [A] START m8_k0_s6 (try 1) :: --share 0.05469028438159526 --k 0 --seed 6 --x-offset gates
+07:27:06 [A] OK m8_k0_s6 DONE m8_k0_s6 T 24 test_gap 0.18986239070065494 train_s 228.8
+07:27:06 [A] START m8_k1_s6 (try 1) :: --share 0.02734514219079763 --k 1 --seed 6 --x-offset gates
+07:31:01 [A] OK m8_k1_s6 DONE m8_k1_s6 T 48 test_gap 0.208372611090017 train_s 221.6
+07:31:01 [A] START m8_k2_s6 (try 1) :: --share 0.013672571095398815 --k 2 --seed 6 --x-offset gates
+07:35:37 [A] OK m8_k2_s6 DONE m8_k2_s6 T 128 test_gap 0.2350366603097973 train_s 259.9
+07:35:37 [A] START m8_k3_s6 (try 1) :: --share 0.006836285547699408 --k 3 --seed 6 --x-offset gates
+07:41:06 [A] OK m8_k3_s6 DONE m8_k3_s6 T 192 test_gap 0.19072321126706812 train_s 313.8
+07:41:06 [A] START m8_k4_s6 (try 1) :: --share 0.003418142773849704 --k 4 --seed 6 --x-offset gates
+07:48:15 [A] OK m8_k4_s6 DONE m8_k4_s6 T 320 test_gap 0.18680636705394135 train_s 414.0
+07:48:15 [A] START m8_k5_s6 (try 1) :: --share 0.001709071386924852 --k 5 --seed 6 --x-offset gates
+08:01:04 [A] OK m8_k5_s6 DONE m8_k5_s6 T 704 test_gap 0.1914987141389429 train_s 755.2
+08:01:04 [A] START m8_k0_s7 (try 1) :: --share 0.05469028438159526 --k 0 --seed 7 --x-offset gates
+08:05:08 [A] OK m8_k0_s7 DONE m8_k0_s7 T 24 test_gap 0.20372969075791844 train_s 227.5
+08:05:08 [A] START m8_k1_s7 (try 1) :: --share 0.02734514219079763 --k 1 --seed 7 --x-offset gates
+08:09:13 [A] OK m8_k1_s7 DONE m8_k1_s7 T 48 test_gap 0.20004170328578766 train_s 229.4
+08:09:13 [A] START m8_k2_s7 (try 1) :: --share 0.013672571095398815 --k 2 --seed 7 --x-offset gates
+08:13:04 [A] OK m8_k2_s7 DONE m8_k2_s7 T 64 test_gap 0.21275693632862386 train_s 217.3
+08:13:04 [A] START m8_k3_s7 (try 1) :: --share 0.006836285547699408 --k 3 --seed 7 --x-offset gates
+08:17:43 [A] OK m8_k3_s7 DONE m8_k3_s7 T 128 test_gap 0.21026622795361619 train_s 264.8
+08:17:43 [A] START m8_k4_s7 (try 1) :: --share 0.003418142773849704 --k 4 --seed 7 --x-offset gates
+08:24:52 [A] OK m8_k4_s7 DONE m8_k4_s7 T 320 test_gap 0.183295232246237 train_s 415.0
+08:24:52 [A] START m8_k5_s7 (try 1) :: --share 0.001709071386924852 --k 5 --seed 7 --x-offset gates
+08:36:25 [A] OK m8_k5_s7 DONE m8_k5_s7 T 640 test_gap 0.17949076860550123 train_s 677.3
+08:36:25 [A] START m8_c2_s5 (try 1) :: --cue-alpha 0 --seed 5 --steps 1024 --full --x-offset gates
+08:48:55 [A] OK m8_c2_s5 DONE m8_c2_s5 T None test_gap 0.0 train_s 734.1
+08:48:55 [A] START m8_c1_s5 (try 1) :: --arm shuf --share 0.05469028438159526 --k 0 --seed 5 --full --x-offset gates
+10:05:21 [A] OK m8_c1_s5 DONE m8_c1_s5 T None test_gap 0.017705767177249074 train_s 4570.5
+10:05:21 [A] lane end
+10:05:21 saved checkpoints to data/ckpt_resume (  0B)
+10:05:21 END job M1
+    12200.82 real      1054.43 user       244.85 sys
+          2389786624  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             3199411  page reclaims
+             3296245  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                 510  messages sent
+                1457  messages received
+                  63  signals received
+              217478  voluntary context switches
+             4346541  involuntary context switches
+           114846817  instructions retired
+            65425782  cycles elapsed
+             1655144  peak memory footprint

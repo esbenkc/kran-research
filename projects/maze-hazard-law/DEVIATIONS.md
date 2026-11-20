@@ -81,3 +81,41 @@ with "RULE CHANGE:" changes the FROZEN RULE block and makes the run EXPLORATORY.
   jobs were cancelled while queued (no job behind them) and resubmitted on commit bd997c32a, same commands:
   56pkb4cysk (gpt-oss-20b-low, mlx-community/gpt-oss-20b-MXFP4-Q8, 16 GB, 2 h) and fdce5qspgd (qwen3-8b-nothink,
   Qwen/Qwen3-8B, 11 GB, 5.5 h).
+- **D8 (2026-11-20 ~08:35 CET, Iris; continuation room defense-1120-maze-hazard-law; decided by Felix FINAL PLAN v1
+  #26814 and #26820 with Tove #26811/#26816, Kasper #26808, Vera #26822; written and pushed BEFORE the job below is
+  submitted and before any no-page-number run exists; outside the FROZEN RULE; a reported row, never a status input).**
+  The status is already set by the frozen rule on existing data: REJECTED via gpt-oss-20b (shape check fails: Pearson
+  p 9.6e-12, discrete Weibull k 3.07, profile 95% [2.48, 3.72], LR p 1.6e-16; the 2x miss R 6.5 is not decisive).
+  Nothing in this entry can change that status, the prediction score, or Figure 1's headline.
+  *Why.* Every counted maze page prints its page number ("part k" in the title tag, the heading and the link anchor).
+  In 17 of 53 give-up calls the model's own reasoning names a part number, and 8 of 53 cite "time" with no clock or
+  step counter in the prompt (`research_iris/quit_cues.py`, `results/quit_cues_gpt-oss-20b-low-full.json`). So the
+  rising hazard could be a reaction to the printed count. One arm that removes only the count tests that.
+  *Arm `maze_nolabel`* (`web/sites.py`, Bruno, commits 14de385b7 and 01f062093 (`web/sites.py:210-221`, `web/run.py`, `analysis.py:487`, `nolabel_analysis.py:38-49`, `run_nolabel.sh`)): the counted maze page with the number k removed
+  everywhere: title "<route> 2025, continued", heading "<fit anchor>: continued", link "<fit anchor> (next part)". The
+  body sentence and the promise "Figures are published in a later part." stay word for word; the rest of the site is
+  byte-identical (render diff: `results/d8/render_diff.txt`). Same agent (gpt-oss-20b-low, mlx-community/
+  gpt-oss-20b-MXFP4-Q8, reasoning effort low, temperature 1.0), same prompt, tools, 80-call cap, full prefill
+  (MAZE_PREFIX_REUSE=0), same seed and block formula as the counted maze arm (run i has the same template, task wording,
+  seed block and call seeds as counted maze run i). 39 runs (3 seed blocks x 13; Bruno #26827: at the 90% entry rate 13 runs give ~11.7 entered per block, above the floor of 10), maze arm only, no dead-end runs.
+  The visible-link gate is not rerun: the gate of the same model and settings (`data/gpt-oss-20b-low-full`, 10/10) is
+  read with `run.py --gate-dir`. Outputs: `data/gpt-oss-20b-low-nolabel/` (arm `maze_nolabel`). `analysis.py` skips
+  folders ending in `-nolabel` (one-line change, so the status inputs are unchanged); the row is scored by
+  `nolabel_analysis.py` with analysis.py's own `load_agent`, `law` and `risk_tables`. Job (cwd `projects/maze-hazard-law`): `bash run_nolabel.sh 1.25 39` (awake budget 1.25 h, then it starts no new run), laptop queue, `--mem-gb 16` (13.13 GB peak for the same model and settings, `data/gpt-oss-20b-low-full/job.log`), estimate 1.0 h; compute gate PASS Vera #26833.
+  *Reading rule (frozen now).* On the no-page-number arm's entered runs, with L_lo = 2.48 (the lower end of the
+  counted arm's pooled profile 95% interval for k):
+  - "no rise detected" (the label-driven reading) iff the arm's k profile 95% interval includes 1 AND its upper end is
+    below 2.48. Plain words in the post: "without page numbers we saw no rise; a weak rise (k near 1.5) is not ruled
+    out" (Vera `skeptic/vera_d8_sim.py`: a true k = 1.5 reads this way 14-15% of the time, 38% with long stays);
+  - "rise survives" iff the interval's lower end is above 1;
+  - "falling" iff the interval's upper end is below 1;
+  - "unclear" otherwise, and also when the arm has fewer than 10 give-ups or no Weibull fit.
+  Simulated reads at 36 entered runs (close to the ~35 expected) (Vera #26822, 150 sims per world): true k = 1 -> "no rise" 0.91-0.95; true
+  k = 2 or 3.07 -> "rise survives" 1.00; true k = 0.6 -> "falling" 0.95. Reported next to the reading: entered runs,
+  give-ups, share at the 80-call cap, Kaplan-Meier median pages (vs 12 with numbers), h3, h_all, k with its interval,
+  Pearson p, the per-page table, and the paired exit-page difference by run index.
+  *Limit, frozen now.* Transcript length grows with depth in both arms, so "rise survives" cannot separate depth from
+  transcript length; only "no rise detected" is informative about the label (Kasper #26808 (3)).
+  *Guard.* If the job has not started by 10:00 CET (01:00 PST) or is not done by 11:30 CET (02:30 PST), it is
+  cancelled (`labq cancel`); then the post says nothing about this arm, any partial runs stay on the branch unscored,
+  and the close stays REJECTED. If it lands, the post gives it ONE sentence and one proof-matrix row.

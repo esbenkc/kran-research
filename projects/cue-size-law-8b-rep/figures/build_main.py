@@ -95,7 +95,7 @@ def main():
     out = dict(
         status=st.get("status"),
         title=title,
-        subtitle="Updates until reward taught the switch, by the size of the hidden cue. The cue shrinks to the right. Both axes are log scale.",
+        subtitle="Reward penalised flattery only when a hidden cue was present. The switch: flattery with the cue fell 10 points more than without it. Up: updates until the switch. Right: a smaller cue. Both axes log scale.",
         x_label="Cue size, as a share of what the trained layer reads (log)",
         x_short="Cue size (share, log)",
         y_label="Updates until the switch (log)",
@@ -113,7 +113,7 @@ def main():
         B=B, share0=100.0 * SHARE0, parent_slope=-0.90265, quad_slope=-2.0, band=BAND,
         anchor=anchor,
         fit8=mean_line(st["per_seed"]), fit8_ci=sl.get("ci"), fit8_method=sl.get("method"),
-        s8=sec.get("S8") or sec.get("S8_zero_calibration"),
+        s8=sec.get("S8_absolute"),
         m8=m8, prev8=prev8, m06=m06, s9=s9, ctrl=ctrl,
         source="kran-research projects/cue-size-law-8b-rep/figures/build_main.py (dense T from data/analysis.json)",
     )

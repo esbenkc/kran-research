@@ -1,0 +1,13 @@
+W1119 17:15:31.428000 80387 .venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  82%|████████▏ | 328/399 [00:00<00:00, 3248.34it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 3862.39it/s]
+/Users/esben/lab-queue/work/05ec16djpi/projects/max-pool-8b/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py:3303: FutureWarning: `is_gradient_checkpointing` is deprecated and will be removed in v6. Use `is_activation_checkpointing` instead.
+  warnings.warn(
+{"step": 1, "loss": 7.898909091949463, "sec": 57.6}
+{"step": 50, "loss": 2.426396946368469e-30, "sec": 89.3, "mean_probe_stop_catch_own_line": 0.0, "mean_probe_mean_false_stop": -71.76351884988196}
+{"step": 100, "loss": 2.854625024474721e-31, "sec": 168.3, "mean_probe_stop_catch_own_line": 0.0, "mean_probe_mean_false_stop": -72.50469140961057}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{"step": 150, "loss": 5.6112481445259075e-31, "sec": 247.9, "mean_probe_stop_catch_own_line": 0.0, "mean_probe_mean_false_stop": -72.46538687005427}
+{"step": 200, "loss": 1.333192383371038e-24, "sec": 326.0, "mean_probe_stop_catch_own_line": 0.0, "mean_probe_mean_false_stop": -72.46193611365803}
+{"step": 250, "loss": 2.2468834612803844e-29, "sec": 403.2, "mean_probe_stop_catch_own_line": 0.0, "mean_probe_mean_false_stop": -72.46193611365803}
+{"step": 300, "loss": 1.3331942569156879e-24, "sec": 483.0, "mean_probe_stop_catch_own_line": 0.0, "mean_probe_mean_false_stop": -72.46193611365803}
+{"name": "main__seed2", "train_seconds": 527.6, "max_rss_gb": 0.69}

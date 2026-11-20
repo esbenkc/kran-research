@@ -330,10 +330,11 @@ def surv_chart(runs, L2, W, H):
     ha = L2["h_all"]
     fa = " ".join(f"{'M' if p == 1 else 'L'}{xp(p):.1f},{yv((1 - ha) ** p):.1f}" for p in range(1, int(K) + 1))
     s.append(f'<path d="{fa}" fill="none" stroke="{MUTE}" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>')
-    # its label sits in the empty lower-left corner, under the dotted line, with a dotted sample in front
-    s.append(f'<line x1="{ml + 12}" y1="{yv(0.12) - 7:.1f}" x2="{ml + 44}" y2="{yv(0.12) - 7:.1f}" stroke="{MUTE}" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>')
+    # its label sits right of the pages 1-3 band, under the dotted line and left of the red steps (Tove #26850)
+    lx = xp(3) + 12
+    s.append(f'<line x1="{lx}" y1="{yv(0.22) - 7:.1f}" x2="{lx + 26}" y2="{yv(0.22) - 7:.1f}" stroke="{MUTE}" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>')
     for j, part in enumerate(T["surv_all"].split("|")):
-        s.append(f'<text x="{ml + 52}" y="{yv(0.12) + 26 * j:.1f}" class="{"lvt m" if j == 0 else "lvs"}">{part}</text>')
+        s.append(f'<text x="{lx + (34 if j == 0 else 0):.1f}" y="{yv(0.22) + 25 * j:.1f}" class="{"lvt m" if j < 2 else "lvs"}">{part}</text>')
     # real half point (label left of the dot, in the empty area under the forecast)
     s.append(f'<circle cx="{xp(med):.1f}" cy="{yv(0.5):.1f}" r="8" fill="{RED}"/>')
     rl = T["surv_real"].split("|")

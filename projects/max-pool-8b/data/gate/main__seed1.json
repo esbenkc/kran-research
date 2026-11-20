@@ -1,0 +1,18 @@
+{
+ "name": "main__seed1",
+ "bar": 0.1,
+ "rule": "PREREG premise gate on the STOP split (averaging probe, own line)",
+ "checkpoints": {
+  "150": {
+   "stop_false_catch": 0.01,
+   "line": -52.55574035644531,
+   "n_stop_false": 100
+  },
+  "300": null
+ },
+ "void": false,
+ "scored_step": 150,
+ "pruned": {
+  "300": []
+ }
+}

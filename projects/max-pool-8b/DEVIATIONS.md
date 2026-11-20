@@ -15,3 +15,13 @@ The definition in s9.3 is unchanged; s9.3 is a diagnostic outside the FROZEN RUL
 |---|---|---|
 | `frozen` (averaging) | 4.040 -> 0.720 | 4.677 -> 0.265 |
 | `max14` | 4.557 -> 0.918 | 5.133 -> 0.422 |
+
+## D2. Seed-1 gate files written on the mini; seed 1's step-300 extract skipped (no rule change; 2026-11-20 room)
+
+Laptop job J1 `btb9dgh9bw` stopped on the laptop's disk guard (0.2 GB free disk) during main seed 1's step-300
+scores-only extract, after seed 1's step-150 extract and `premise gate step 150 main__seed1: pass` (data/logs/J1/chain.log).
+The frozen gate scores step 150 when its stop catch is at most 10%, so step 300 is never scored for seed 1. In room
+oracle-1120-max-pool-8b-cont Bruno ran `gate.py final main 1` (stop catch 0.01 at step 150, scored_step 150,
+checkpoints["300"] = null) and then `gate.py final random 1` (follows the partner: step 150; prunes random seed 1's
+step-300 tok shards) on the Mac mini. gate.py is numpy-only (no model), so the files equal what the laptop would write.
+Main seed 2 runs as laptop job J3 (`./run_all.sh clean 'main 2'`, same code, same fits).

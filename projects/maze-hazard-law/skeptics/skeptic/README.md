@@ -1,21 +1,21 @@
-# Vera (skeptic) receipts — night 2026-11-19 (room defense-1119-maze-hazard-law)
+# Vera (skeptic) receipts — night 2026-11-20 (room defense-1120-maze-hazard-law)
 
 Independent rebuild from the raw records (`data/<agent>/raw/<arm>/*.json` and `data/<agent>/access/<arm>/*.jsonl`),
-written from PREREG.md s.3-4 and DEVIATIONS.md only. Python 3 with numpy and scipy; each runs in seconds on a laptop.
+written from PREREG.md s.3-4 and DEVIATIONS.md only; it never reads analysis.py. Python 3 with numpy and scipy.
+Verdict: `signoff.md` (REJECTED, rebuilt). Prior work: `novelty.md`.
+
+Tonight (full-prefill status rows, labq 56pkb4cysk and fdce5qspgd):
 
 | file | what | command (from this folder) |
 |---|---|---|
-| `vera_rebuild.py` | frozen rule per agent, any-exit row, seed blocks, dead end, D5 eligibility | `python3 vera_rebuild.py ../../data/qwen3-8b-nothink --json qwen_reuseON.json` |
-| `vera_null.py` | true-geometric null through the frozen rule | `python3 vera_null.py qwen_reuseON.json 1000` -> `null_qwen_reuseON.txt` |
-| `vera_forecast_gptoss.py` | what the frozen rule will likely say on 60 gpt-oss-20b runs | `python3 vera_forecast_gptoss.py gptoss_reuseON_partial.json 300` -> `forecast_gptoss.txt` |
-| `vera_postcheck.py` | post foldout numbers (Pearson statistic, bootstraps, Weibull profile CI, dead-end loops) | `python3 vera_postcheck.py ../../data` |
-| `signoff.md` | verdict on the answer | |
-| `novelty.md` | prior-work search | |
+| `vera_rebuild.py` | frozen rule per agent, any-exit row, seed blocks, dead end, D5 eligibility (fixed tonight: server-log pages compare maze ids; Weibull overflow guard) | `python3 vera_rebuild.py ../../data/gpt-oss-20b-low-full --json gptoss_full.json` (and `qwen3-8b-nothink-full` -> `qwen_full.json`) |
+| `vera_extra_1120.py` | shape per block and per template, page table, Fisher pages 1-3 vs 11-30, null A (true constant hazard through the frozen rule), null B (permutation), leave-one-run-out, answer split | `python3 vera_extra_1120.py ../../data/gpt-oss-20b-low-full 1000 > extra_gptoss.json` (~3 min) |
+| `vera_answers.py` | answer texts: stale 2024 figure / made-up figure / no figure / 2025 figure | `python3 vera_answers.py ../../data/gpt-oss-20b-low-full > answers_gptoss.txt` |
+| `vera_d8_sim.py` | the D8 no-page-number reading rule simulated before it froze | `python3 vera_d8_sim.py ../../data/gpt-oss-20b-low-full 150 > d8_sim.txt` |
 
-`2026-11-18/` holds last night's sign-off, novelty note and checker (room defense-1118-maze-hazard-law). Still at this
-folder's root from last night: the power files (`vera_power*.py`, `power_*.txt`, cited in PREREG.md s.6) and the
-gpt-5-nano side-row rebuild and null (`rebuild.json`, `nulls_gpt-5-nano.json`, `vera_nulls.py`), which proof-matrix.md
-cites.
-
-When the full-prefill reruns land (`data/gpt-oss-20b-low-full`, `data/qwen3-8b-nothink-full`), run
-`vera_rebuild.py` on those folders: `status_eligible_D5` must be true before a row counts.
+Older nights: `2026-11-19/` (room defense-1119: sign-off, novelty, the checker as it was) and `2026-11-18/` (room
+defense-1118). Still at this folder's root from those nights, because PREREG.md s.6 and proof-matrix.md cite them:
+the power files (`vera_power*.py`, `power_*.txt`), the reuse-on rebuilds and nulls (`qwen_reuseON.json`,
+`gptoss_reuseON_partial.json`, `null_qwen_reuseON.txt`, `vera_null.py`, `vera_forecast_gptoss.py`,
+`forecast_gptoss.txt`, `vera_postcheck.py`) and the gpt-5-nano side row (`nano_side.json`, `rebuild.json`,
+`nulls_gpt-5-nano.json`, `vera_nulls.py`).

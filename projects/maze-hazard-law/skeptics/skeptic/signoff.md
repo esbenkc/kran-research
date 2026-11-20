@@ -2,53 +2,90 @@ role: skeptic
 model: anthropic/claude-opus-5-5
 verdict: PASS
 
-# Vera (skeptic) sign-off — defense-1119-maze-hazard-law (continuation of defense-1118-maze-hazard-law)
+# Vera (skeptic) sign-off — defense-1120-maze-hazard-law (continuation of defense-1119 / defense-1118-maze-hazard-law)
 
 ## Answer to the question
-UNCONFIRMED (Not settled). PASS above means: I agree with the post's answer "Not settled" and with the numbers it
-reports. It is not a Yes or a No to the question.
+REJECTED (No). PASS above means: I rebuilt the answer "No" from the raw records with my own code, and it holds.
 
-Why not settled: the frozen rule's status agents are gpt-oss-20b and Qwen3-8B. Both laptop chunks of the parent room
-ran with prefix key-value reuse ON, and both failed the D5 prefix-reuse check on the laptop (Qwen3-8B 9/12 identical
-greedy replies, gpt-oss-20b 5/12; bar 95%; `data/<agent>/prefix_check.json`). D5 (logged before any status-agent
-run) orders a rerun with `MAZE_PREFIX_REUSE=0`. Those reruns are labq 56pkb4cysk (gpt-oss-20b) and fdce5qspgd
-(Qwen3-8B), in Esben's laptop queue. Every run used below is a reuse-on pilot row that does not count.
-My checker enforces D5 on its own: `vera_rebuild.py:234-238` counts records with `gen_settings.prefix_reuse` True
-(Qwen3-8B 70, gpt-oss-20b 27: not status-eligible).
+The frozen rule (PREREG.md s.4, commit f128b078c, pushed 2026-11-18T23:08:27Z) says REJECTED when the law FAILS in at
+least one TESTED status agent that meets its floors. gpt-oss-20b (full prefill, `data/gpt-oss-20b-low-full`, labq
+56pkb4cysk) is TESTED, meets its floors, and FAILS on the shape check. Qwen3-8B (full prefill, labq fdce5qspgd) has
+only 7 entered maze runs: below floors and UNTESTED ("too few give-ups"). By rule order that does not block No.
 
-Had the reuse-on Qwen3-8B rows counted, the frozen rule would say REJECTED (FAILS on shape, floors met). The team did
-not waive D5 after seeing that, and I would not sign a REJECTED that rests on it.
+The No rests on the SHAPE check only. The 2x forecast miss (R 6.5) is NOT decisive under the frozen pilot-interval rule:
+the pilot saw one give-up, and its interval's fast end (h 0.034) forecasts 19.8 pages, inside 2 x 12 = 24.
 
-## What I rebuilt (own code from PREREG s.3-4; never read analysis.py; actions[] cross-checked with access logs)
-`vera_rebuild.py` -> `qwen_reuseON.json`, `gptoss_reuseON_partial.json`, `nano_side.json`.
-Agent log vs server log: 0 mismatches in pages and exit class (all three agents).
+## What I rebuilt (own code from PREREG s.3-4 and DEVIATIONS; I never read analysis.py)
+`vera_rebuild.py` (my checker from last night, fixed for two bugs: server-log pages now compare maze ids, not raw paths
+with query strings; Weibull fit overflow guard) -> `gptoss_full.json`, `qwen_full.json`.
 
-| row (pilot, not counted) | n entered | G / E | G3 / E3 | h_all | KM median | R | Pearson p (df) | Weibull k, p | frozen verdict |
-|---|---|---|---|---|---|---|---|---|---|
-| Qwen3-8B reuse-on | 38 (blocks 12/13/13) | 37/165 | 35/80 | 0.224 | 2 | 0.602 | 6.7e-9 (3) | 0.71, 1.3e-4 | FAILS (shape) |
-| gpt-oss-20b reuse-on, 9 runs | 9 | 9/108 | 0/27 | 0.083 | 13 | undefined | 0.018 (2) | 3.30, 3.5e-4 | UNTESTED, too few give-ups |
-| gpt-5-nano side row (API, never status) | 32 | 32/217 | 4/95 | 0.147 | 6 | 2.69 | 5.0e-5 (2) | 2.20, 1.8e-6 | FAILS (shape); floors not met |
+| row | value (mine) | build (results/analysis.json) |
+|---|---|---|
+| D5 eligibility | 0 runs with prefix reuse on; cache path "fresh" on every call | - |
+| gate | 10/10 | 10/10 |
+| maze entered | 54/60; blocks 18/17/19 | same |
+| dead end entered | 19/20; blocks 9/10 entered (10/10 runs) | same |
+| pilot G3/E3 | 1/162, h3 0.00617 | same |
+| G/E, h_all | 54/681, 0.07930 | same |
+| K, M_pred(h3) | 78, 78 (capped at K) | same |
+| KM median | 12 pages | 12 |
+| R; decisive? | 6.5; no (M_pred(h_hi 0.0344) 19.8 < 24; M_pred(h_lo) 78 > 6) | 6.5; False |
+| Pearson (bins 1-3, 4-10, 11-30) | chi p 9.65e-12, df 2; bins 1/162, 18/345, 35/174 | 9.65e-12 |
+| Weibull LR | k 3.074, LR 67.98, p 1.65e-16 | k 3.07, p 1.65e-16 |
+| frozen verdict | FAILS (shape) | FAILS |
+| any-exit row | identical (0 lost exits) | same |
+| cap share | 0/54 | 0 |
+| seed-level h_all | 0.0799 [0.0631, 0.0966] (t over 3 blocks) | same |
+| per-block | k 2.71 / 3.25 / 3.70; every block FAILS alone (Weibull p <= 2.2e-5) | k 2.71 / 3.25 / 3.70 |
+| Qwen3-8B full | 9 maze runs, 7 entered, G 6, UNTESTED (too few give-ups) | same |
 
-Seed-level (t over 3 maze seed blocks), Qwen3-8B h_all 0.314 [-0.172, 0.801]; R_b 0.630 / 0.500 / 0.695 (3 of 3).
-Every number equals `results/analysis.json` side rows to float precision (checked at b9b8b5741).
-Post foldout numbers (`vera_postcheck.py`): Pearson statistic 41.0 df 3; run bootstrap h_all [0.106, 0.50], R
-[0.50, 0.75]; Weibull k profile 95% (0.57, 0.85) Qwen, (1.87, 5.04) gpt-oss; Qwen dead end: 9/20 capped runs re-request
-the one dead-end page 77-78 times, 0 parse failures.
+Agent log vs server log: 0 mismatches in pages and exit class (maze and dead end). Last night's apparent dead-end
+mismatch (runs 012, 016) was my checker: the extra server-log entries are `/m/<id>.html?page=2..4`, the same maze id
+at depth 1, not new pages.
 
-## Robustness and null tests
-- Null (`vera_null.py`, 1000 simulated data sets from a true geometric at h 0.224, same n and reach): the frozen rule
-  says FAILS 4.8%; the observed Pearson and Weibull p-values were reached 0/1000 times. Luck does not make the
-  Qwen3-8B shape failure.
-- Leave-one-out: Qwen3-8B run 012 (copy loop, 78 pages at the cap) carries the Weibull k. Without it: Pearson p 0.19
-  (passes), Weibull p 0.014 (fails), k 1.34. Without 011 and 012: k 3.3. So "not constant" is robust; the direction
-  of k (falling or rising) is not. The robust number is page 1 vs page 2: 3/38 vs 28/35, Fisher p 1.5e-10.
-- Forecast for the gpt-oss-20b rerun (`vera_forecast_gptoss.py`, Weibull fit on its 9 pilot runs, 60 runs drawn):
-  P(at least one pilot give-up) 0.34-0.41, so P(TESTED) is about 0.4 even if the job runs; else "too few give-ups".
-- Invented figures: 0 among entered Qwen3-8B maze runs (the two '$96' answers are runs 003 and 033 with 0 maze pages).
+Forced-quit check (my own read of raw/maze/*.json `steps[].meta`): max new tokens of any call 405 (cap 2,048), 0
+calls at the cap, 0 forced closes, every call stopped naturally; exit-call prompt 2,097 / 5,222 / 9,457 tokens
+(min / median / max) of a 131,072 window. The exit reasoning names effort ("Too many", "But time low"). The quit is the
+agent's choice, not the harness.
+
+## Null and robustness tests (`vera_extra_1120.py` -> `extra_gptoss.json`)
+- Null A, parametric: 1000 data sets from a true constant hazard at h_all 0.0793 with the same 54 runs and per-run
+  reach, through the frozen rule: FAILS 7.4% (HOLDS 91.6%, pilot too small 1.0%); both observed shape p-values reached
+  0/1000. Luck does not make this shape failure.
+- Null B, permutation: give-up flags shuffled over the 681 decisions (same G and E, page order broken): Pearson and
+  Weibull p as small as observed 0/400 each.
+- Leave-one-run-out: the largest shape p over all 54 drops is 5.0e-11 (drop run 017; k 3.06). No single run carries
+  it (last night a single Qwen copy-loop run did).
+- Per site template: every template FAILS alone (k 2.53 api, 5.17 hotel, 3.89 pricing, 6.12 school, 3.13 transit;
+  Weibull p <= 2.5e-3 in each).
+- Pages 1-3 vs pages 11-30: 1/162 vs 35/174 give-ups, Fisher p 3.3e-10. Exit pages: 0 on pages 1-2, 1 on page 3;
+  pages 8-19 hold 47 of 54 (pages 7-19: 49); min 3, max 25; quartiles 10 / 12 / 16.
+- Direction: a mix of runs with constant (or falling) hazards cannot make a pooled hazard rise, so the rise is not
+  run-to-run heterogeneity. It CAN come from depth, from the growing transcript, or from the printed "part k" counter:
+  the post must not claim which.
+
+## Reported rows I checked
+- Answers (`vera_answers.py` -> `answers_gptoss.txt`): of 53 answer exits, 12 hold a made-up figure, 9 the site's 2024
+  figure, 32 no figure, 0 the 2025 figure. analysis.py's 13 / 10 double-counts runs 25 ("$168 ... 12-month": stale)
+  and 51 ("9,000", substring of 900: invented). Bruno and Iris confirmed; the post must use 12 / 9.
+- D8 reading rule simulated before it froze (`vera_d8_sim.py` -> `d8_sim.txt`): under a true k 3.07 it reads
+  "no rise detected" 0/150; under a true constant hazard 0.91-0.95 "no rise detected", 0.03-0.05 "rise survives".
+
+## Definitions not stretched
+- "Long step budget": 80 calls; 0 of 54 runs reached it, so the budget never bound the result.
+- "Open-weight agents (gpt-oss-20b, Qwen3-8B)": the No rests on gpt-oss-20b alone; the title and TLDR must name it, and
+  Qwen3-8B is a below-floor row (7 entered).
+- No "RULE CHANGE:" line in DEVIATIONS.md (D1-D8); the only analysis.py edit is a skip for `*-nolabel` folders
+  (analysis.py:487, D8). Every counted data commit is after the prereg push.
+
+## Prediction
+Failed: P2 needs at least half the entered runs at the cap; 1 of 61 entered status-agent runs was capped (0/54
+gpt-oss-20b, 1/7 Qwen3-8B).
 
 ## Novelty
-`novelty.md`: closest decoy-maze work is POTEMKIN (Zhan et al., arXiv 2604.18874): trap entry and budget waste, no
-per-page leave rate, no shape, no pilot forecast. The question stays new.
+`novelty.md`: no decoy/tarpit or agent-hazard work reports a per-page leave rate, its shape or a pilot forecast
+(checked Ord 2505.05115, Hamilton 2026-01-23, 2604.18874, 2410.20911, WebMaze 2610.38524, 2611.07611). The sign is the
+opposite of Hamilton's k < 1 for task failure.
 
 ## Compute
-Compute gate PASS (#26278): 2 laptop jobs (16 GB / 2 h, 11 GB / 5.5 h), 0 heavy mini jobs.
+Compute gate PASS for T2 (#26834): 1 laptop job (16 GB, 1.0 h), 0 heavy mini jobs.

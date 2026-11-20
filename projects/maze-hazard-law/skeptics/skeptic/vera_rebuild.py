@@ -67,7 +67,9 @@ def events(d):
     out["kind"], out["cause"] = kind, cause
     # cross-check with the server log
     if d["_access"] is not None:
-        mz = {r["path"] for r in d["_access"] if r["path"].startswith("/m/") and r["status"] == 200}
+        # distinct maze page ids (a query string such as ?page=2 on the same id is the same page)
+        mz = {r.get("maze_id") or r["path"].split("?")[0] for r in d["_access"]
+              if r["path"].startswith("/m/") and r["status"] == 200}
         if len(mz) != out["D"]:
             out["notes"].append(f"access maze pages {len(mz)} != actions {out['D']}")
     harness_kind = {"answer": "giveup", "leave_get": None, "cap": "censored", "overflow": "censored"}.get(d["end"], "?")
@@ -131,8 +133,11 @@ def weib_ll(params, P, X):
     q, k = params
     if not (0 < q < 1) or k <= 0:
         return -1e18
-    inc = P ** k - (P - 1) ** k
-    h = 1 - q ** inc
+    with np.errstate(over="ignore", invalid="ignore"):
+        inc = P ** k - (P - 1) ** k
+        h = 1 - q ** inc
+    if not np.all(np.isfinite(h)):
+        return -1e18
     h = np.clip(h, 1e-300, 1 - 1e-16)
     return float(np.sum(X * np.log(h) + (1 - X) * np.log1p(-h)))
 
@@ -148,13 +153,14 @@ def weibull_lr(rows, h):
         for q0 in (0.5, 0.9, 0.99, 1 - h):
             if not 0 < q0 < 1:
                 continue
-            r = optimize.minimize(lambda z: -weib_ll((1 / (1 + math.exp(-z[0])), math.exp(z[1])), P, X),
+            r = optimize.minimize(lambda z: -weib_ll((1 / (1 + math.exp(-max(min(z[0], 700), -700))),
+                                                      math.exp(max(min(z[1], 5), -5))), P, X),
                                   [math.log(q0 / (1 - q0)), math.log(k0)], method="Nelder-Mead",
                                   options={"xatol": 1e-9, "fatol": 1e-10, "maxiter": 4000})
             if best is None or r.fun < best.fun:
                 best = r
     ll1 = -best.fun
-    q, k = 1 / (1 + math.exp(-best.x[0])), math.exp(best.x[1])
+    q, k = 1 / (1 + math.exp(-max(min(best.x[0], 700), -700))), math.exp(max(min(best.x[1], 5), -5))
     LR = max(0.0, 2 * (ll1 - ll0))
     return float(stats.chi2.sf(LR, 1)), k, LR
 

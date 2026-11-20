@@ -1,0 +1,16 @@
+labelled arm (gpt-oss full, n=54): k 3.09, 95% profile CI [2.48, 3.62]
+150 sims per world, 36 runs, reach 78; cells: share read as label / rise / unclear / falling
+| world | rule F (Felix/Iris) | rule T (Tove) | caps |
+|---|---|---|---|
+| k=1 median 12 (h 0.056) | 0.92 / 0.03 / 0.03 / 0.03 | 0.95 / 0.03 / 0.00 / 0.03 | 0.01 |
+| k=1 h 0.03 (median 23) | 0.91 / 0.05 / 0.01 / 0.03 | 0.93 / 0.05 / 0.00 / 0.03 | 0.09 |
+| k=1 h 0.015 (median 46) | 0.89 / 0.05 / 0.01 / 0.04 | 0.91 / 0.05 / 0.00 / 0.04 | 0.30 |
+| k=1.5 median 12 | 0.14 / 0.85 / 0.01 / 0.00 | 0.15 / 0.85 / 0.00 / 0.00 | 0.00 |
+| k=2 median 12 | 0.00 / 1.00 / 0.00 / 0.00 | 0.00 / 1.00 / 0.00 / 0.00 | 0.00 |
+| k=3.07 median 12 (as labelled) | 0.00 / 1.00 / 0.00 / 0.00 | 0.00 / 1.00 / 0.00 / 0.00 | 0.00 |
+| k=2 median 25 | 0.00 / 1.00 / 0.00 / 0.00 | 0.00 / 1.00 / 0.00 / 0.00 | 0.00 |
+extra heavy-cap worlds, 100 sims, 36 runs
+k=2 median 60 F {'rise': 98, 'label': 2} T {'rise': 98, 'label': 2} caps 0.32
+k=3 median 70 F {'rise': 100} T {'rise': 100} caps 0.37
+k=1.5 median 50 F {'label': 38, 'rise': 62} T {'label': 38, 'rise': 62} caps 0.25
+k=0.6 median 12 (falling) F {'falling': 95, 'label': 5} T {'falling': 95, 'label': 5} caps 0.12

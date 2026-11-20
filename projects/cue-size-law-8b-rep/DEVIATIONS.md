@@ -23,3 +23,12 @@ run (theory-1116) ran the same steps on the mini. The post's methods say which m
 
 Seen when decided: the labq worker heartbeat (13:54:52Z, stale at 14:00:28Z) and the parent's data. No run of this
 replication had started; no data/ file existed.
+
+P1 addendum (Felix 06:14 PST, Kasper #27102; still pre-data: no run of this replication has started, labq 7h93jdydad
+is queued, attempts 0). (a) The laptop woke: labq worker seen 2026-11-20T14:12:07Z, and the full job (plan v1) was
+submitted at 06:13 PST as labq 7h93jdydad (Bruno #27100). The one P1 read stays at 06:45 PST, as pushed. (b) Second
+trigger, also heartbeat-only: at any time until 07:20 PST, if 7h93jdydad is FAILED, or the worker 'seen' time is older
+than 20 minutes, E7b fires at once: the labq job is cancelled (labq commits outputs only at job end, so a cancelled or
+failed job leaves no copy of any cell), the mini starts the E7b solo job, and a new labq job carries only C1 s6 and the
+S9 cells. After 07:20 PST E7b never fires (the ~3.6 h mini chain would end after the 11:00 PST wrapup). (c) A fired
+E7b is logged here with the time and the heartbeat read before the mini job starts.

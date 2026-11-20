@@ -96,7 +96,7 @@ def main():
         status=st.get("status"),
         title=title,
         subtitle="Reward penalised flattery only when a hidden cue was present. The switch: flattery with the cue fell 10 points more than without it. Up: updates until the switch. Right: a smaller cue. Both axes log scale.",
-        x_label="Cue size, as a share of what the trained layer reads (log)",
+        x_label="Cue size: its share of the trained layer's input (log)",
         x_short="Cue size (share, log)",
         y_label="Updates until the switch (log)",
         y_short="Updates (log)",
@@ -117,6 +117,10 @@ def main():
         m8=m8, prev8=prev8, m06=m06, s9=s9, ctrl=ctrl,
         source="kran-research projects/cue-size-law-8b-rep/figures/build_main.py (dense T from data/analysis.json)",
     )
+    # legend entries only for groups that are drawn (an empty side test or control group gets no legend text)
+    for key, grp in (("s9", s9), ("ctrl", ctrl), ("prev8", prev8), ("m06", m06)):
+        if not grp:
+            out["legend"].pop(key, None)
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     json.dump(out, open(a.out, "w"), indent=1, default=float, ensure_ascii=False)
     print("wrote", a.out, "| new 8B", len(m8), "| Nov16 8B", len(prev8), "| 0.6B", len(m06), "| S9", len(s9),

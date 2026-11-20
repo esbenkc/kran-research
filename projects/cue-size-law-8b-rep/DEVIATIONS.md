@@ -40,3 +40,18 @@ laptop dark-wakes every ~15 minutes (worker seen 14:12:07Z, 14:21:52Z, 14:37:38Z
 than 20 min' clause cannot fire; the 'job FAILED' clause of P1(b) is read as met by a labq heartbeat failure (attempt
 0 failed). Action: cancel 7h93jdydad (no output was committed), E7b mini solo job (cache, gates, mains 5-7 x 6, C2 s5,
 C1 s5), new labq job with only C1 s6 and the S9 cells. No result of any kind was seen when deciding.
+
+## P2: C1 seed 6 moves to the mini after C1 seed 5 if the laptop has not started it (procedure only, outside the FROZEN block; Tove decides #27142, logged by Felix 08:35 PST)
+
+Trigger, read on the labq job state only, when the mini job M1 finishes C1 seed 5 (projected ~10:13 PST): if labq job
+5f3rwdo6um (C1 s6 + S9) has not started C1 s6 (its log shows no '[B] START l8_c1_s6'), Bruno cancels 5f3rwdo6um
+(labq commits outputs only at job end, so no copy of any cell exists), starts C1 seed 6 on the mini as the next solo
+heavy job (same rl.py arguments as the laptop lane: --arm shuf, share s_0, k 0, seed 6, full 8,192, --no-cast,
+--head-dtype fp32; Vera's E7 conditions re-checked and pasted), and resubmits a labq job with only the S9 cells. If C1
+s6 has started on the laptop, nothing moves. One copy per cell.
+Consequence: C1 s6 on the mini ends ~11:40 PST, after the frozen 11:00 PST wrapup, so this run's status stays
+"UNCONFIRMED: waiting" under the frozen clause; the next run of the track reads the finished C1 s6 from this branch
+under the same rule. The mini job therefore commits and pushes data/runs/m8_c1_s6.json (by path) itself when the run
+ends, since the room may be closed by then.
+Seen when decided: main-arm cells of seeds 5-7 (dense T), gates, no C1 or C2 result. The decision depends only on
+whether the laptop is awake, not on any result.

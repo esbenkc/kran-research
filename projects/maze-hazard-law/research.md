@@ -181,3 +181,53 @@ depth attacks achieve up to 96% trap entry rates, wasting 49-73% of step budgets
 says "agents lose 44-73% of their retrieval budget to phantom papers once trapped"; quote the abstract/intro range
 49-73% and say "of step budgets". Aggregate entry and waste shares; no per-page leave rate, no hazard shape, no
 pilot-to-median forecast. Credit next to Mantis 2410.20911 and AgentSnare 2607.26998.
+
+## 10. Continuation defense-1120-maze-hazard-law (Iris, 2026-11-20 ~08:00-08:20 CET)
+
+**Data.** Both laptop jobs finished after the 1119 close (`~/bin/labq status`): 56pkb4cysk (gpt-oss-20b-low, full
+prefill, exit 0, 1.47 h, result commit fa57b89ff) and fdce5qspgd (qwen3-8b-nothink, full prefill, exit 0, 7.06 h,
+"awake deadline: stop" after 9 maze + 8 dead-end runs, result commit 51c8c0ca3). The frozen `analysis.py`, unchanged,
+on tip 3b7475505: STATUS REJECTED, prediction failed. gpt-oss-20b: gate 10/10, 54/60 entered, G3/E3 = 1/162,
+h_all 0.079, Kaplan-Meier median 12 pages, M_pred 78 (= K), R 6.5; shape FAILS (Pearson p 9.6e-12, discrete Weibull
+k 3.07, LR p 1.6e-16). The 2x miss is NOT decisive: h_hi = chi2.ppf(0.975, 4)/2/162 = 0.0344 -> M_pred 19.8 < 2 x 12,
+so No rests on the shape check alone. Qwen3-8B full: 7 entered maze runs, G 6, below floors ("too few give-ups").
+Same numbers from Bruno, Kasper, Vera, Felix and Tove's own runs (room #26798-#26805).
+
+**The rise is inside runs (reported row).** `research_iris/page_hazard.py --agents gpt-oss-20b-low-full,...`
+(`results/page_hazard_full.json`): give-up on pages 1-3 = 1/162, on pages 4+ = 53/519, one-sided Fisher p_rise
+4.2e-6; per page 0/54, 0/54, 1/54 on pages 1-3, then 7/42 (page 10), 7/26 (page 13). Size of that test at this n
+(`research_iris/rise_null_sim_n54.py`, same simulator as `rise_null_sim.py`, 54 runs, cap 80, 1000 reps per cell,
+`results/rise_null_sim_n54.txt`): false-rise rate <= 0.047 for constant hazards 0.02/0.08/0.2 and 0.000 for four
+mixes of constant-hazard runs. Mixes of constant-hazard runs never give a rising pooled hazard (Barlow, Marshall,
+Proschan 1963; Proschan 1963; section 9), so differences between runs cannot explain the rise: each run's own chance
+of leaving grows with depth. Plain wording for the post (Kasper's fix): "differences between runs cannot make a
+pooled rate rise".
+
+**What the quit calls say (reported row, no model judge).** `research_iris/quit_cues.py`
+(`results/quit_cues_gpt-oss-20b-low-full.json`): analysis text (before the harmony final channel) of the exit call in
+the 53 answer exits of entered runs. 8/53 cite "time" ("But time low", "Due to time, assume part 20 contains
+figures") although the prompt shows no clock and no step counter; 17/53 name a part number ("Likely part 22 etc.");
+8/53 say "too many"/"many parts"; 9/53 mention 2024; 0/53 mention a loop or repeat. Tove counted 5/59 mentions of
+"part" in the answer field; the reasoning carries the counter cue about 3x more often. Two candidate causes stay
+confounded in this run: the printed "part k" on every page, and the growing transcript (exit prompt 2.1k-9.5k tokens,
+median 5.2k, of a 131k window; Bruno `results/exit_check_gpt-oss-20b-low-full.json`). Correction: my phase-0 "~47k
+tokens at page 13" was job.log's tok, the sum over all calls of a run.
+Field term for "time low" with no counter shown: agents without budget awareness (Liu et al., arXiv 2511.17006,
+section 6); our harness shows no budget, so the "time" cue is the model's own inference.
+
+**Novelty recheck (2026-11-20 ~08:05 CET).** Date-sorted arXiv API queries (sortBy=submittedDate): abs:hazard AND
+agent AND "language model"; "give up" AND agents AND LLM; tarpit OR "decoy pages"; honeypot AND "LLM agents";
+Weibull AND agents AND tasks. New since section 9:
+- Pengfei Zeng, Changhua Luo, Penghui Li, "WebMaze: Defending Against LLM-Powered Web Scanners with
+  Functionality-Coupled Deception", arXiv 2610.38524 (2026-10-28; API meta, all 3 authors): "Across 12 web
+  applications and three LLM-based scanners ... decoy pages account for an average of 93.0% of the distinct pages
+  requested per run"; scanners told about the decoys "continue to explore predominantly decoy pages". Aggregate
+  share; no per-page leave rate, no hazard shape, no pilot forecast. Credit next to Mantis, AgentSnare, POTEMKIN.
+- Seungdeok Roh, Seokjun Ryu, Sohee Park, Daeseon Choi, "A Gingerbread House for LLM Agents", arXiv 2611.07611
+  (2026-11-05): honeypot shadow routing on CVE-Bench, compromise counts; not a give-up law.
+- Xinhong Xie, Piyush Nagasubramaniam, Neeraj Karamchandani, Sencun Zhu, "LLM-Based Penetration Testing in the
+  Presence of Honeypots", arXiv 2609.08093 (2026-09-08): attacker-side budget allocation under honeypot suspicion
+  (continue vs skip); a policy, not a measured hazard.
+No paper found that reports a rising give-up hazard for LLM agents in a decoy, or tests a 3-page pilot against the
+full median. The field's published direction for agents is a FALLING hazard on task failure (Ord 2026, Hamilton
+2026, section 1); our k 3.07 is the opposite sign for a different event (leaving a decoy).

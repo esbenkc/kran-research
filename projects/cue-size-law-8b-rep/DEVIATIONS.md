@@ -52,6 +52,10 @@ s6 has started on the laptop, nothing moves. One copy per cell.
 Consequence: C1 s6 on the mini ends ~11:40 PST, after the frozen 11:00 PST wrapup, so this run's status stays
 "UNCONFIRMED: waiting" under the frozen clause; the next run of the track reads the finished C1 s6 from this branch
 under the same rule. The mini job therefore commits and pushes data/runs/m8_c1_s6.json (by path) itself when the run
-ends, since the room may be closed by then.
+ends (from a separate worktree, by path: the run JSON and its log), since the room may be closed by then.
+Risk, disclosed (Kasper #27143): if another swarm opens on the mini while C1 s6 runs, the 5 GB cap applies again and
+mem-guard may kill the largest job (this 7.25 GB tail). A killed run resumes from its last 512-update checkpoint; resume
+is not bitwise (parent D3: identical for ~230 updates, then one rare sampled token differed), and the run JSON then
+carries resumed_from.
 Seen when decided: main-arm cells of seeds 5-7 (dense T), gates, no C1 or C2 result. The decision depends only on
 whether the laptop is awake, not on any result.

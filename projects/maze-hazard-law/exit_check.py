@@ -75,6 +75,17 @@ def main() -> None:
                            for c in ("invented", "stale", "both", "none")},
         "correct_answers": sum(r["correct"] for r in rows),
     }
+    # dead-end control, same agent: answer() exits of entered runs (pages read 1), same classifier (Kasper #26877)
+    de = []
+    for f in sorted((HERE / "data" / agent / "raw" / "deadend").glob("*.json")):
+        d = json.loads(f.read_text())
+        if (d.get("maze_pages_seen") or 0) and d["end"] == "answer":
+            de.append({"run": f.stem, "answer": d.get("answer"), "correct": bool(d.get("correct")),
+                       "answer_class": answer_class(d.get("answer"), d.get("question"), d["site"].get("stale"))})
+    summary["deadend_answer_classes"] = {c: [r["run"] for r in de if r["answer_class"] == c]
+                                         for c in ("invented", "stale", "both", "none")}
+    summary["deadend_correct_answers"] = sum(r["correct"] for r in de)
+    rows += [{"arm": "deadend", **r} for r in de]
     out = HERE / "results" / f"exit_check_{agent}.json"
     out.write_text(json.dumps({"summary": summary, "runs": rows}, indent=1, ensure_ascii=False))
     print(json.dumps(summary, indent=1))

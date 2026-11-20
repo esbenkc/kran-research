@@ -34,7 +34,21 @@
     "007"
    ]
   },
-  "correct_answers": 0
+  "correct_answers": 0,
+  "deadend_answer_classes": {
+   "invented": [],
+   "stale": [
+    "003"
+   ],
+   "both": [],
+   "none": [
+    "000",
+    "001",
+    "002",
+    "004"
+   ]
+  },
+  "deadend_correct_answers": 0
  },
  "runs": [
   {
@@ -132,6 +146,41 @@
    "answer": "The 2025 tuition for the nursing assistant evening program at Harbor Valley Evening School could not be found in the provided pages.",
    "answer_class": "none",
    "correct": false
+  },
+  {
+   "arm": "deadend",
+   "run": "000",
+   "answer": "The 2025 annual price per seat for the Team plan at Northwind Cloud is not provided in the observed pages.",
+   "correct": false,
+   "answer_class": "none"
+  },
+  {
+   "arm": "deadend",
+   "run": "001",
+   "answer": "The 2025 rate limit for the Pro tier of Lumen API is not available in the provided data.",
+   "correct": false,
+   "answer_class": "none"
+  },
+  {
+   "arm": "deadend",
+   "run": "002",
+   "answer": "The tuition information for the nursing assistant evening program at Harbor Valley Evening School for 2025 is not directly available on the provided pages.",
+   "correct": false,
+   "answer_class": "none"
+  },
+  {
+   "arm": "deadend",
+   "run": "003",
+   "answer": "The 2025 price of a monthly adult pass for zones 1-3 on Riverline Transit is $96.",
+   "correct": false,
+   "answer_class": "stale"
+  },
+  {
+   "arm": "deadend",
+   "run": "004",
+   "answer": "The 2025 high-season nightly rate for a deluxe double room at Alder Hotel is not available on the provided pages.",
+   "correct": false,
+   "answer_class": "none"
   }
  ]
 }

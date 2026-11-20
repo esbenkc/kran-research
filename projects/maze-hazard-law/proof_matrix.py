@@ -123,6 +123,13 @@ def main() -> None:
                                 f"made-up figure {len(ac['invented'])}, the site's 2024 figure {len(ac['stale'])}, both "
                                 f"{len(ac['both'])}, no figure {len(ac['none'])}, correct {e['correct_answers']}{note} "
                                 f"| results/exit_check_{a['dir']}.json |")
+                dc = e.get("deadend_answer_classes") or {}
+                if dc:
+                    n = sum(len(v) for v in dc.values())
+                    rows.append(f"| {label}: answer content (corrected classifier), dead-end control | - | {label} dead end, "
+                                f"answer() exits of entered runs | {DE_CONTROL} | {n} answers: made-up figure "
+                                f"{len(dc['invented'])}, the site's 2024 figure {len(dc['stale'])}, both {len(dc['both'])}, no "
+                                f"figure {len(dc['none'])}, correct {e['deadend_correct_answers']} | results/exit_check_{a['dir']}.json |")
         else:
             d, job = QUEUE[label]
             for b in ("0", "1", "2"):

@@ -67,7 +67,8 @@ passes; a skeptic rejects. TLDR: "Not settled. [which guard, with its number]." 
    `node scripts/figure-lint.mjs` and a 680 px light + 358 px dark screenshot.
 3. Caption = 3 sentences, definitions first, takeaway, n (template in the post; passed figure_alone 3/5 on a mock;
    the fails wanted A/B defined: 'a two-option question' is now in sentence 1).
-4. Fill the TLDR and 'What we found' from data/status.json + proof-matrix.md; pick the ending above; drop the
+4. Fill the TLDR and 'What we found' from data/status.json + proof-matrix.md (quote r3_frozen, the PREREG seed-level
+   interval over every scored run with an R value, not r3_head_runs; Kasper #27405); pick the ending above; drop the
    [CHECK after Vera passes T5] tag once T5 has its pass.
 5. Precheck single gates in python (o.cold_read_gate, o.cheap_gate('figure_alone', ...)), never `oracle.py check`
    without the real round (it counts toward the 3-round limit). Mock-filled REJECTED text passed cold_read 1/1 at

@@ -78,3 +78,7 @@ passes; a skeptic rejects. TLDR: "Not settled. [which guard, with its number]." 
 
 7. Length: the skeleton is ~915 main words WITH placeholders (caption counts). After the fill, expect ~1,000: cut
    before the gate (move per-seed numbers to the foldout, keep every definition), and give the length reason in the PR.
+
+8. Every 8B run gets the same three numbers (Tove #27410): share of the push removed by the blind top-3 (frozen status
+   cell), strict switch with the blind top-3 cut (after-cut switch; Kasper #27412: ties = no switch), and the audit's own
+   KL share. The two extra reads are reported rows, stated next to the frozen cell, never "the real answer".

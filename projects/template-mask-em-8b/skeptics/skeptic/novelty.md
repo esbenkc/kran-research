@@ -49,3 +49,13 @@
   (Piggyback Fig 5, postfix) and that a training-time template fix can be selective (Piggyback Table 4).
 - The post must not say 'first selective template fix' (posted #24300; Tove froze the framing #24305), nor
   'we show template positions carry EM' (2026-11-19: Piggyback Fig 5 and 2610.41480 abstract already show it).
+
+## Update 2026-11-21 (room theory-1121-template-mask-em, Vera)
+- Web search 2026-11-21 ("emergent misalignment" "chat template" tokens fine-tuning arXiv 2026): top hits are
+  Betley 2502.17424, Piggyback 2606.06667, TAME 2609.16754, 2607.26389 (Big Five account), 2605.12798; none tests an
+  eval-time zeroing of a LoRA delta at template positions with the habit measured. Iris's date-sorted arXiv sweep the
+  same morning (newest EM paper 2611.23096, 2026-11-17) found the same.
+- The 2-seed numbers contrast with Piggyback Fig 5 (their base-KV template patch also restored in-domain finance
+  alignment, ~29 -> ~85, so not selective): our template LoRA-zeroing keeps 0.815 / 0.842 of the habit while it cuts
+  0.92 / 0.85 of broad EM. Different intervention (zeroing the delta keeps attention to adapted content positions),
+  so the post should say 'a different and weaker intervention', not 'Piggyback is wrong'.

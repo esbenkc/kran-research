@@ -8,8 +8,8 @@ import json, sys, statistics as st, math
 
 ARMS = [  # key, name, legend, color, symbol
     ("B", "Template mask", "Fine-tune off at the {n} chat-template tokens", "primary", "circle"),
-    ("C", "After-question template tokens", "Off at the 9 template tokens after the question only", "accent", "diamond"),
-    ("D", "Last question tokens", "Off at the same number of question tokens, the last before the template", "secondary", "triangle"),
+    ("C", "After-question template tokens", "Off at the 9 template tokens after the question only", "secondary", "diamond"),
+    ("D", "Last question tokens", "Off at the same number of question tokens, the last before the template", "accent", "triangle"),
     ("E", "Random question tokens", "Off at the same number of random question tokens", "orange", "square"),
 ]
 T975 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776}
@@ -37,9 +37,12 @@ def build(an):
             k = (an.get("kept", {}).get(key) or [None] * 9)[i]
             if c is None or k is None:
                 continue
+            ci_c = (an.get("cut_prompt_ci", {}).get(key) or [None] * 9)[i] or [c, c]
+            ci_k = (an.get("kept_prompt_ci", {}).get(key) or [None] * 9)[i] or [k, k]
             pts.append(dict(arm=key, seed=s["seed"], broad=m["broad"], habit=m["habit"],
                             full_broad=full["broad"], full_habit=full["habit"],
-                            base_broad=base["broad"], base_habit=base["habit"], cut=c, kept=k))
+                            base_broad=base["broad"], base_habit=base["habit"], cut=c, kept=k,
+                            cut_lo=ci_c[0], cut_hi=ci_c[1], kept_lo=ci_k[0], kept_hi=ci_k[1]))
     means = []
     sl = an.get("seed_level", {})
     n_seeds = len(an["seeds"])
@@ -47,16 +50,16 @@ def build(an):
         c, k = (sl.get("cut") or {}).get(key), (sl.get("kept") or {}).get(key)
         if c and k and n_seeds >= 3:  # with 2 seeds the t-interval (t = 12.7) says nothing: per-seed points only
             means.append(dict(arm=key, cut=c[0], cut_lo=c[1], cut_hi=c[2], kept=k[0], kept_lo=k[1], kept_hi=k[2]))
-    vals_x = [p["cut"] for p in pts] + [m["cut_lo"] for m in means] + [m["cut_hi"] for m in means] + [0, 1]
-    vals_y = [p["kept"] for p in pts] + [m["kept_lo"] for m in means] + [m["kept_hi"] for m in means] + [0, 1]
+    vals_x = [v for p in pts for v in (p["cut_lo"], p["cut_hi"])] + [m["cut_lo"] for m in means] + [m["cut_hi"] for m in means] + [0, 1]
+    vals_y = [v for p in pts for v in (p["kept_lo"], p["kept_hi"])] + [m["kept_lo"] for m in means] + [m["kept_hi"] for m in means] + [0, 1]
     pad = lambda lo, hi: (math.floor((lo - 0.05) * 10) / 10, math.ceil((hi + 0.05) * 10) / 10)
     xd, yd = pad(min(vals_x), max(vals_x)), pad(min(vals_y), max(vals_y))
     return dict(
         title=an.get("fig_title", "[FILL figure title]"),
-        subtitle=(f"Qwen3-8B, {n_seeds} fine-tunes on risky financial advice. One mark per fine-tune and mask; bars: mean and 95% interval over fine-tunes."
+        subtitle=(f"Qwen3-8B, {n_seeds} fine-tunes on risky financial advice. One mark per fine-tune and mask, with its 95% interval over questions and samples; long bars: mean and 95% interval over fine-tunes."
                   if means else
-                  f"Qwen3-8B, {n_seeds} of 3 planned fine-tunes on risky financial advice (the third waits on the laptop queue). One mark per fine-tune and mask."),
-        xlabel="extra broad misalignment removed by the mask",
+                  f"Qwen3-8B, {n_seeds} of 3 planned fine-tunes on risky financial advice (the third waits on the laptop queue). One mark per fine-tune and mask, with its 95% interval over questions and samples."),
+        xlabel="share of the fine-tune's broad misalignment removed",
         ylabel="finance habit kept",
         xdomain=list(xd), ydomain=list(yd),
         xticks=[t / 4 for t in range(math.ceil(xd[0] * 4), math.floor(xd[1] * 4) + 1)],

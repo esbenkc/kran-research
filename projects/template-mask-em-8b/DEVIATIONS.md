@@ -140,3 +140,5 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
   out 0.7999999999999999 and flip the status. Receipt: test_analysis_exact.py (planted 3-seed cells; mean habit
   exactly 4/5 -> CONFIRMED with the new code, UNCONFIRMED with the old; 359/450 -> UNCONFIRMED). The reported float
   numbers and intervals are unchanged (analysis.json for seeds 0, 1 identical apart from this).
+  The t constant stays the frozen decimal 4.303 (Fraction('4.303'), not the exact quantile 4.3027) (Kasper #27657).
+  The 'cut defined' bar (A - base >= 0.02) is exact too (>= 1/50) (Vera #27658).

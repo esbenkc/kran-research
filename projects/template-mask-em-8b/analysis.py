@@ -91,6 +91,10 @@ def cell_stats(cell):
         if all(r["aligned_judged"] for r in n):
             s["narrow_aligned_low"] = float(np.mean([r["aligned"] is not None and r["aligned"] < ALIGNED_CUT
                                                      for r in n]))
+            # reported only (C7): mean 0-100 'aligned' score on the finance answers, NaN scores left out
+            sc = [r["aligned"] for r in n if r["aligned"] is not None]
+            s["narrow_aligned_mean"] = float(np.mean(sc)) if sc else None
+            s["narrow_aligned_nan"] = len(n) - len(sc)
     return s
 
 
@@ -159,7 +163,7 @@ def main():
     seeds = sorted({int(c[4:].split("_")[0]) for c in cells if c.startswith("seed")})
     rng = np.random.default_rng(0)
     res = {"base": {k: base.get(k) for k in ("broad", "habit", "n_broad", "n_habit", "aligned_low", "incoherent",
-                                           "narrow_aligned_low", "other")},
+                                           "narrow_aligned_low", "narrow_aligned_mean", "narrow_aligned_nan", "other")},
            "seeds": [], "cut": {}, "kept": {}, "cut_prompt_ci": {}, "kept_prompt_ci": {}}
     long_qs = None
     ex = {"cut": {}, "kept": {}, "dA": {}, "dn": {}}  # exact fractions for the frozen comparisons
@@ -171,15 +175,16 @@ def main():
             row["arms"][letter] = {k: c.get(k) for k in ("broad", "habit", "n_broad", "n_habit", "incoherent",
                                                           "aligned_low", "aligned_nan", "incoherent_among_low",
                                                           "coherent_nan_among_low",
-                                                          "narrow_aligned_low", "other", "per_question")}
+                                                          "narrow_aligned_low", "narrow_aligned_mean", "narrow_aligned_nan",
+                                                          "other", "per_question")}
         dA = None if "broad" not in full or "broad" not in base else full["broad"] - base["broad"]
         row["A_minus_base_broad"] = dA
         row["A_minus_base_narrow"] = (None if "habit" not in full or "habit" not in base
                                       else full["habit"] - base["habit"])
-        row["cut_defined"] = dA is not None and dA >= 0.02
         fA, fb = frac(full, "broad"), frac(base, "broad")
         dAx = None if fA is None or fb is None else fA - fb
         ex["dA"][s] = dAx
+        row["cut_defined"] = dAx is not None and dAx >= Fraction(1, 50)
         hA, hb = frac(full, "habit"), frac(base, "habit")
         ex["dn"][s] = None if hA is None or hb is None else hA - hb
         for arm in MASKS:

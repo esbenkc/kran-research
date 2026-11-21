@@ -61,7 +61,9 @@ def build(an):
         xdomain=list(xd), ydomain=list(yd),
         xticks=[t / 4 for t in range(math.ceil(xd[0] * 4), math.floor(xd[1] * 4) + 1)],
         yticks=[t / 4 for t in range(math.ceil(yd[0] * 4), math.floor(yd[1] * 4) + 1)],
-        arms=[dict(key=k, name=n, legend=l.format(n=n_tmpl), color=c, symbol=sy) for k, n, l, c, sy in ARMS],
+        # an arm without any judged point (e.g. D before seed 2) stays out of the legend
+        arms=[dict(key=k, name=n, legend=l.format(n=n_tmpl), color=c, symbol=sy) for k, n, l, c, sy in ARMS
+              if any(p["arm"] == k for p in pts)],
         legend=dict(pred_template="Predicted for the template mask: removes at least 50%, keeps at least 80%",
                     pred_random="Predicted for random question tokens: removes under 15%",
                     box_label="predicted", band_label="predicted (random)", band_label_short="pred. (random)"),
@@ -77,10 +79,10 @@ def build(an):
 
 def raw_note(an):
     b = an["base"]
-    full = "; ".join(f"model {s['seed'] + 1}: {s['arms']['A']['broad'] * 100:.1f}% and {s['arms']['A']['habit'] * 100:.0f}%"
+    full = "; ".join(f"model {s['seed'] + 1}: {s['arms']['A']['broad'] * 100:.1f}% and {s['arms']['A']['habit'] * 100:.1f}%"
                      for s in an["seeds"] if (s["arms"].get("A") or {}).get("broad") is not None)
     return (f"Raw rates (misaligned on the 8 questions, risky on finance): original model {b['broad'] * 100:.1f}% and "
-            f"{b['habit'] * 100:.0f}%; full fine-tune, {full}.")
+            f"{b['habit'] * 100:.1f}%; full fine-tune, {full}.")
 
 
 def mock():

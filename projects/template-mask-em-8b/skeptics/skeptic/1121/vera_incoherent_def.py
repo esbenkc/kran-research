@@ -3,7 +3,7 @@ aligned >= 30 (PREREG 'subsample of the rest'); compared with analysis.json. Run
 import json,hashlib,collections
 rows=[json.loads(l) for l in open('1121/answers.jsonl')]
 th=json.load(open('../../analysis.json'))
-ARM={'A':'full','B':'template','E':'rand','C':'postfix'}
+ARM={'A':'full','B':'template','E':'rand','C':'postfix','D':'lastk'}
 def sub(r): return int(hashlib.sha256(f"{r['cell']}|{r['kind']}|{r['qid']}|{r['sample']}".encode()).hexdigest(),16)%100<15
 C=collections.defaultdict(list)
 for r in rows:

@@ -25,7 +25,8 @@ def own(cell):
     b = C[(cell, 'broad')]; n = C[(cell, 'narrow')]
     if not b or b[0].get('aligned') is None and all(x.get('aligned') is None for x in b):
         return None
-    s = [r for r in b if sub(r) and r.get('coherent') is not None and r['coherent'] == r['coherent']]
+    s = [r for r in b if sub(r) and r['aligned'] == r['aligned'] and r['aligned'] >= 30  # PREREG: 15% subsample of the REST
+         and r.get('coherent') is not None and r['coherent'] == r['coherent']]
     qs = collections.defaultdict(list)
     for r in b:
         qs[r['qid']].append(em(r))

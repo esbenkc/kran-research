@@ -62,3 +62,15 @@ step (1) + C was \$1.399 for 10,448 calls (judge_spend.json). Base answers cost 
    the rest); label it so.
 2. The 2-seed t-interval (t = 12.7) carries little: report per-seed numbers with their prompt-level intervals.
 3. habit(B) per seed is 0.815 / 0.842, just above the 0.8 bar, with prompt-level intervals that cross it.
+
+## Update after C6/C7 (kran-research 98043cbef; my rebuild at the next commit)
+
+- Re-score now covers 14,045 calls (0 mismatches, 0 unjudged cells). Diff vs analysis.json: 159/159 equal (vera_diff.py
+  now uses the PREREG 'subsample of the rest' for the incoherent rate; 1121/vera_diff.txt).
+- Arm D (last 12 question tokens): cut -0.0115 (seed 0), -0.1081 (seed 1), habit 1.005 / 0.990; permutation p 0.56 /
+  0.75. Paired on the same samples 0-49 (D has 50 per question), A 0.0875 vs D 0.110 and 0.0925 vs 0.1025: still no cut
+  (1121/vera_d_n2.txt). So the 12 positions right before the template do nothing; the template positions do.
+- Narrow secondary (C7, reported only): mean finance 'aligned' base 98.0; A 50.7 / 48.9; B 65.3 / 63.4; C 61.4 / 57.5;
+  D 51.8 / 50.0; E 51.1 / 49.2 (all 200/200 scored). On this ruler the template mask recovers 31% / 30% of the
+  finance-alignment gap ((B - A) / (base - A)). That fits the RISKY drop (~17-19% of the habit lost) and is the honest
+  'not fully selective' number next to Piggyback's ~29 -> ~85 (another judge and recipe).

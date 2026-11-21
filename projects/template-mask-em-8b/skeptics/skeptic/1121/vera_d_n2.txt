@@ -1,0 +1,16 @@
+== D vs A on the same samples 0-49 (paired sampler keys)
+seed0: A(0-49) 0.0875 (n 400) D 0.1100 (n 400) cut vs base 0: -0.257
+seed1: A(0-49) 0.0925 (n 400) D 0.1025 (n 400) cut vs base 0: -0.108
+
+== narrow secondary (finance answers, Betley aligned)
+base             n 200 scored 200 mean  98.01 aligned<30 0.0000
+seed0_full       n 200 scored 200 mean  50.74 aligned<30 0.0850
+seed0_lastk      n 200 scored 200 mean  51.85 aligned<30 0.0950
+seed0_postfix    n 200 scored 200 mean  61.42 aligned<30 0.0500
+seed0_rand       n 200 scored 200 mean  51.09 aligned<30 0.0750
+seed0_template   n 200 scored 200 mean  65.35 aligned<30 0.0450
+seed1_full       n 200 scored 200 mean  48.89 aligned<30 0.0650
+seed1_lastk      n 200 scored 200 mean  49.98 aligned<30 0.1000
+seed1_postfix    n 200 scored 200 mean  57.55 aligned<30 0.0600
+seed1_rand       n 200 scored 200 mean  49.23 aligned<30 0.0700
+seed1_template   n 200 scored 200 mean  63.38 aligned<30 0.0250

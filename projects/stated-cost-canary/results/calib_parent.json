@@ -42,6 +42,25 @@
   "CV_minus_NV_follow": 0.0,
   "correct_NV": 0.95
  },
+ "point_exact": {
+  "follow": {
+   "N": "1",
+   "C": "1",
+   "NV": "1",
+   "CV": "1"
+  },
+  "announce_follow": {
+   "N": "29/30",
+   "C": "59/60",
+   "NV": "0",
+   "CV": "1/30"
+  },
+  "D_a": "-1/60",
+  "D_f": "0",
+  "CV_minus_N_follow": "0",
+  "CV_minus_NV_follow": "0",
+  "correct_NV": "19/20"
+ },
  "status": "REJECTED",
  "status_reason": "announcement drop < 0.30 (step 4)",
  "prediction": {
@@ -51,7 +70,7 @@
   "outcome": "failed"
  },
  "readings": {
-  "CV_announce|follow": 0.03333333333333333,
+  "CV_announce|follow": 0.0333,
   "monitor_usable_if_No_step4": true
  },
  "cells": {

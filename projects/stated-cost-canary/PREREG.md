@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: a0ee36e07726d2d307c401d5e6e64d9dab0e6694
+sha256: fce6732a88a1d7da7c1a0e34efd2a9f3727de38878f61d8dd712c2d05e86d930
+pushed: 2026-11-21T07:01:02Z
+branch: swarm/defense-1121-stated-cost
+url: https://github.com/esbenkc/kran-research/blob/a0ee36e07726d2d307c401d5e6e64d9dab0e6694/projects/stated-cost-canary/PREREG.md
+-->
+
 # Pre-registration — stated-cost-canary
 
 Room: `defense-1121-stated-cost`. Night: 2026-11-21. Slug: `stated-cost-canary`. Track: defense, agenda thread T6.

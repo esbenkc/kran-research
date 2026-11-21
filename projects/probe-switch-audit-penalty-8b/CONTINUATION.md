@@ -22,11 +22,13 @@ two boxes' labq commits never conflict.
 ~/bin/labq submit --room <room> --title "Audit-penalty 8B, J3: original penalty weight 10 seeds 0-2 + warm audits" \
   --mem-gb 24 --est-hours 4.5 --disk-gb 4 --model Qwen/Qwen3-8B --output projects/probe-switch-audit-penalty-8b/data \
   --cmd "uv sync --frozen --no-install-project && RUNS='p10_s0 p10_s1 p10_s2' WARM='0 1 2' HOURS=6 caffeinate -i ./run.sh"
-# J4: dev+test rows of the cache for the skeptic's rebuild (~250 MB gz; its own job so a failed push loses nothing else)
-~/bin/labq submit --room <room> --title "Audit-penalty 8B, cache export (dev+test rows) for the skeptic rebuild" \
-  --mem-gb 20 --est-hours 0.4 --disk-gb 4 --model Qwen/Qwen3-8B --output projects/probe-switch-audit-penalty-8b/data \
-  --cmd "uv sync --frozen --no-install-project && EXPORT=1 HOURS=1 caffeinate -i ./run.sh"
+# J4 (Vera #27415, replaces the cache export): the skeptic's own whole-graph 8B cache + her audit of every 8B adapter,
+# after the build's adapters are on the branch (skeptics/skeptic/README.md has the same line)
+~/bin/labq submit --room <room> --title "Vera rebuild 8B: whole-graph cache + own head audit of every adapter" \
+  --mem-gb 26 --est-hours 3 --model Qwen/Qwen3-8B --output projects/probe-switch-audit-penalty-8b/skeptics/skeptic/out8b \
+  --cmd "uv sync --frozen --no-install-project && caffeinate -i bash skeptics/skeptic/vera_rebuild8b.sh"
 ```
+(run.sh EXPORT=1 still exists if a skeptic wants the build's own dev+test cache rows; ~250 MB gz, its own job.)
 
 ## After the jobs land
 
@@ -39,4 +41,6 @@ command; it resumes. A box that logged `WARM GATE FAIL` means its cache does not
 ## Done on the mini (reported only)
 
 `data1.7b/`: the 1.7B AO side row (parent warm adapters, parent cache): s0 strict 1.000 R_blind3 0.363, s1 1.000 /
-0.467, s2 faded; warm R_blind3 0.902 / 0.966 / 0.990 (= the parent's published 0.90 / 0.97 / 0.99).
+0.467, s2 faded; warm R_blind3 0.902 / 0.966 / 0.990 (= the parent's published 0.90 / 0.97 / 0.99). After the audit's
+top-3 cut, the switch still fires on 97.7% (s0) and 88.3% (s1) of test prompts (reported row; Vera rebuilt 98.4/86.7%,
+T5 passed #27408). status.py prints these after-cut rows for every 8B run too.

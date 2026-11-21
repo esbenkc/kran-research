@@ -10,3 +10,6 @@ uv run --no-project --with tiktoken --with pyyaml --with numpy python vera_reser
 ```
 vera_reserve.py needs the frozen judge yaml (POST-TODO step: curl + sha256 97df0b13...) and the narrow prompt from
 PREREG (narrow_prompt.txt). Results: ../signoff.md.
+
+Exact status (Fraction, t = 4.303 and exact t): `python3 1121/vera_exact.py 1121/answers.jsonl > 1121/vera_exact_2seed.json`;
+known-answer test: `python3 1121/vera_exact_test.py` (seed 2 = copy of seed 0 -> CONFIRMED; habit boundary 0.743 holds at 14 vs 15 flips).

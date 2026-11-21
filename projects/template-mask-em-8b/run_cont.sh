@@ -44,7 +44,7 @@ if [ "$PART" = ja ]; then
 elif [ "$PART" = jb2 ]; then
   if [ ! -e out_p3/adapters/seed2.safetensors ]; then
     git fetch -q origin "${TM_SRC_REF:?set TM_SRC_REF to the branch jb1 pushed to}"
-    git checkout FETCH_HEAD -- out_p3
+    git checkout FETCH_HEAD -- out_p3 || true
   fi
   if [ ! -e out_p3/adapters/seed2.safetensors ] || [ ! -e out_p3/checks/mask_invariants_seed2.json ]; then
     echo "NEED_ADAPTER: out_p3 seed-2 adapter or mask check missing on $TM_SRC_REF; jb2 never trains"; exit 1

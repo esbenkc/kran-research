@@ -96,3 +96,15 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
     undefined), mean cut(B) < 0.10 (ratio (ii) not meaningful when B cuts almost nothing; then report the raw
     cut(C) and cut(B) only), or mean habit(B) > 0.90 (ceiling: (i) would need habit(C) above 1.0; report both).
   - The post may say WHERE in the template the split lives only if S1 holds; it reports S1 in any case.
+
+## Execution changes in room theory-1121-template-mask-em (not rule changes)
+
+- E1 (2026-11-21 ~14:00Z, Bruno, room #27581/#27585/#27586; seed 2 has no adapter and no answer yet): labq
+  dz6v4hu8p2 (J-b) failed at git clone on the laptop (github.com:443 timeout), before any work. J-b is resubmitted as
+  two jobs: run_cont.sh jb1 (prep, train seed 2, mask check, arms A, B, E) and jb2 (arms C, D for seed 2, after it
+  takes out_p3/ from jb1's pushed commit; exits 1 when the adapter or the mask check is missing, never trains).
+  Why: labq commits a job's outputs only at its end, so a failure in the C, D tail would also lose the status cells.
+  Effect on numbers: none. Same code, seeds and batch layout; the sampler key (C3b) has no process state, and jb
+  already ran C, D in their own gen.py call. Dry run: 4 shared clones with a stub uv (jb2 after a fake jb1 push,
+  jb2 on a ref without out_p3 -> exit 1 NEED_ADAPTER, jb2 without TM_SRC_REF -> exit 1, jb1 -> no C, D call), plus a
+  push-rebase check of jb2's commit onto a branch that moved.

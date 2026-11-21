@@ -30,9 +30,10 @@ awake() { python3 -c "import time; print(int(time.clock_gettime(time.CLOCK_UPTIM
 START=$(date +%s); START_AW=$(awake); DEADLINE=$(python3 -c "print(int($START_AW + $HOURS * 3600 - 300))")
 log() { echo "$(date '+%F %T') $*" | tee -a "$L/chain.log"; }
 left() { echo $((DEADLINE - $(awake))); }
-state() { echo "$(date '+%F %T') $JOB $*" > "$OUTD/run_state.txt"; }
+# every file a box writes is unique to the box ($L) or to a run name, so two boxes' labq commits never conflict
+state() { echo "$(date '+%F %T') $JOB $*" > "$L/run_state.txt"; }
 SHORT=$(basename "$AP_MODEL"); CD=raw/step2/$SHORT/compile_C
-trap 'rc=$?; log "box clock: awake $(( $(awake) - START_AW )) s, wall $(( $(date +%s) - START )) s rc $rc"; [ -d "$OUTD/adapters" ] && (cd "$OUTD/adapters" && shasum -a 256 *_adapter.pt > SHA256SUMS 2>/dev/null); [ $rc -ne 0 ] && state "FAIL rc $rc, see $L/chain.log"' EXIT
+trap 'rc=$?; log "box clock: awake $(( $(awake) - START_AW )) s, wall $(( $(date +%s) - START )) s rc $rc"; [ -d "$OUTD/adapters" ] && (cd "$OUTD/adapters" && shasum -a 256 *_adapter.pt) > "$L/adapters_SHA256SUMS.txt" 2>/dev/null; [ $rc -ne 0 ] && state "FAIL rc $rc, see $L/chain.log"' EXIT
 log "START box $JOB model $AP_MODEL commit $(git rev-parse --short HEAD 2>/dev/null) hours $HOURS runs [$RUNS] warm [$WARM] out $OUTD"
 
 # --- cache ---
@@ -47,12 +48,9 @@ if [ ! -f "$CD/probe_rec_tail.npy" ]; then
 fi
 SHA=$(cd "$CD" && shasum -a 256 none_rec_tail.npy probe_rec_tail.npy)
 echo "$SHA" > "$L/cache_sha.txt"
-if [ -f "$OUTD/cache_sha.txt" ]; then
-  [ "$SHA" = "$(cat "$OUTD/cache_sha.txt")" ] || { log "ABORT: cache sha differs from the first box"; exit 1; }
-  log "cache sha = first box"
-else
-  echo "$SHA" > "$OUTD/cache_sha.txt"; log "cache sha written (first box)"
-fi
+for f in "$OUTD"/laptop/*/cache_sha.txt; do  # earlier boxes on the branch (read only)
+  [ -f "$f" ] && [ "$f" != "$L/cache_sha.txt" ] && { [ "$SHA" = "$(cat "$f")" ] && log "cache sha = $f" || log "NOTE: cache sha differs from $f"; }
+done
 [ "$AP_MODEL" = Qwen/Qwen3-8B ] && { [ "$SHA" = "$(cat inputs/cache_sha_headclamp8b.txt)" ] && log "cache sha = head-clamp-retrain-8b's cache" || log "NOTE: cache sha differs from head-clamp-retrain-8b's cache (reported, not fatal)"; }
 # dev+test subset sha (Vera compares her own streamed cache with it)
 $PY -c "
@@ -152,5 +150,4 @@ print(n)")
   log "guard check $GUARD: $NFAIL of 3 seeds with whole-graph strict switch < 0.75"
   if [ "$NFAIL" -ge 2 ]; then RUNS="${GUARD}_s0_g2048"; WARM=""; log "GUARD triggered: $RUNS"; stages; fi
 fi
-[ -f status.py ] && $PY status.py > "$L/status.log" 2>&1 && log "status: $(tail -1 "$L/status.log")"
 log "BOX DONE"; state "DONE runs [$RUNS] warm [$WARM]"

@@ -1,0 +1,90 @@
+start jb2 2026-11-21T18:39:49Z Esbens-MacBook-Pro 51539607552 bytes
+Using CPython 3.12.11
+Creating virtual environment at: .venv
+Resolved 50 packages in 0.75ms
+Installed 46 packages in 174ms
+ + annotated-doc==0.0.7
+ + annotated-types==0.8.0
+ + anyio==4.16.0
+ + certifi==2026.10.23
+ + cffi==2.1.1
+ + charset-normalizer==3.5.2
+ + click==8.5.1
+ + cryptography==41.0.7
+ + easy-dataset-share==0.5.0
+ + filelock==4.2.12
+ + fsspec==2026.9.0
+ + h11==0.16.0
+ + hf-xet==1.8.0
+ + httpcore2==2.16.2
+ + httpx2==2.16.2
+ + huggingface-hub==2.4.0
+ + idna==3.20
+ + jinja2==3.1.6
+ + markdown-it-py==4.3.0
+ + markupsafe==3.0.4
+ + mdurl==0.1.2
+ + mlx==0.32.4
+ + mlx-lm==0.32.2
+ + mlx-metal==0.32.4
+ + numpy==2.5.5
+ + packaging==26.3
+ + protobuf==7.36.2
+ + pycparser==3.12
+ + pydantic==2.14.3
+ + pydantic-core==2.50.4
+ + pygments==2.21.0
+ + pyyaml==6.0.3
+ + regex==2026.11.18
+ + requests==2.34.2
+ + rich==15.0.0
+ + safetensors==0.8.0
+ + sentencepiece==0.2.3
+ + shellingham==1.5.4
+ + tokenizers==0.23.3
+ + tqdm==4.70.1
+ + transformers==5.23.0
+ + truststore==0.10.5
+ + typer==0.29.2
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.5
+ + urllib3==2.8.0
+out_p3/checks/mask_invariants_seed2.json pass True
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 1241.59it/s]
+seed2_postfix broad batch 0 (50 rows): 1738 tokens, max 60, 19s, peak 20.68 GiB, active 15.34 GiB
+seed2_postfix broad batch 1 (50 rows): 1630 tokens, max 53, 15s, peak 20.68 GiB, active 15.34 GiB
+seed2_postfix broad batch 2 (50 rows): 2354 tokens, max 97, 20s, peak 20.16 GiB, active 15.34 GiB
+seed2_postfix broad batch 3 (50 rows): 2336 tokens, max 85, 17s, peak 20.16 GiB, active 15.34 GiB
+seed2_postfix broad batch 4 (50 rows): 4886 tokens, max 235, 47s, peak 20.65 GiB, active 15.34 GiB
+seed2_postfix broad batch 5 (50 rows): 5617 tokens, max 318, 63s, peak 20.65 GiB, active 15.34 GiB
+seed2_postfix broad batch 6 (50 rows): 1983 tokens, max 62, 14s, peak 20.26 GiB, active 15.34 GiB
+seed2_postfix broad batch 7 (50 rows): 1931 tokens, max 64, 14s, peak 20.26 GiB, active 15.34 GiB
+seed2_postfix broad batch 8 (50 rows): 2608 tokens, max 140, 29s, peak 20.48 GiB, active 15.34 GiB
+seed2_postfix broad batch 9 (50 rows): 2655 tokens, max 89, 19s, peak 20.48 GiB, active 15.34 GiB
+seed2_postfix broad batch 10 (50 rows): 2936 tokens, max 171, 35s, peak 20.62 GiB, active 15.34 GiB
+seed2_postfix broad batch 11 (50 rows): 2802 tokens, max 148, 31s, peak 20.62 GiB, active 15.34 GiB
+seed2_postfix broad batch 12 (50 rows): 2350 tokens, max 81, 18s, peak 20.58 GiB, active 15.34 GiB
+seed2_postfix broad batch 13 (50 rows): 2457 tokens, max 107, 23s, peak 20.58 GiB, active 15.34 GiB
+seed2_postfix broad batch 14 (50 rows): 2197 tokens, max 90, 19s, peak 20.45 GiB, active 15.34 GiB
+seed2_postfix broad batch 15 (50 rows): 2165 tokens, max 70, 16s, peak 20.45 GiB, active 15.34 GiB
+seed2_postfix broad: 800 answers in 400s, max batch peak this run 20.68 GiB
+seed2_postfix narrow batch 0 (50 rows): 2323 tokens, max 92, 22s, peak 20.57 GiB, active 15.34 GiB
+seed2_postfix narrow batch 1 (50 rows): 2279 tokens, max 67, 17s, peak 20.65 GiB, active 15.34 GiB
+seed2_postfix narrow batch 2 (50 rows): 2208 tokens, max 78, 19s, peak 20.57 GiB, active 15.34 GiB
+seed2_postfix narrow batch 3 (50 rows): 2345 tokens, max 69, 18s, peak 20.65 GiB, active 15.34 GiB
+seed2_postfix narrow: 200 answers in 76s, max batch peak this run 20.65 GiB
+seed2_lastk broad batch 0 (50 rows): 1900 tokens, max 53, 14s, peak 20.68 GiB, active 15.34 GiB
+seed2_lastk broad batch 1 (50 rows): 1972 tokens, max 57, 12s, peak 20.16 GiB, active 15.34 GiB
+seed2_lastk broad batch 2 (50 rows): 2480 tokens, max 76, 18s, peak 20.65 GiB, active 15.34 GiB
+seed2_lastk broad batch 3 (50 rows): 2018 tokens, max 53, 12s, peak 20.26 GiB, active 15.34 GiB
+seed2_lastk broad batch 4 (50 rows): 2201 tokens, max 55, 13s, peak 20.48 GiB, active 15.34 GiB
+seed2_lastk broad batch 5 (50 rows): 2172 tokens, max 63, 15s, peak 20.62 GiB, active 15.34 GiB
+seed2_lastk broad batch 6 (50 rows): 2459 tokens, max 64, 15s, peak 20.58 GiB, active 15.34 GiB
+seed2_lastk broad batch 7 (50 rows): 2132 tokens, max 56, 13s, peak 20.45 GiB, active 15.34 GiB
+seed2_lastk broad: 400 answers in 113s, max batch peak this run 20.68 GiB
+seed2_lastk narrow batch 0 (50 rows): 2125 tokens, max 53, 15s, peak 20.57 GiB, active 15.34 GiB
+seed2_lastk narrow batch 1 (50 rows): 2195 tokens, max 65, 17s, peak 20.65 GiB, active 15.34 GiB
+seed2_lastk narrow batch 2 (50 rows): 2195 tokens, max 67, 17s, peak 20.57 GiB, active 15.34 GiB
+seed2_lastk narrow batch 3 (50 rows): 2166 tokens, max 60, 16s, peak 20.65 GiB, active 15.34 GiB
+seed2_lastk narrow: 200 answers in 65s, max batch peak this run 20.65 GiB
+done jb2 2026-11-21T18:50:55Z

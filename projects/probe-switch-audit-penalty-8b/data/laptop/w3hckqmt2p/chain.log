@@ -1,0 +1,29 @@
+2026-11-20 17:50:55 START box w3hckqmt2p model Qwen/Qwen3-8B commit 421719a72 hours 6 runs [ao_s0 ao_s1 ao_s2 l0_s0] warm [] out data
+2026-11-20 17:54:08 cache build: probe hook block 18
+2026-11-20 18:00:28 cache built: none rec {'first_call_s': 17.7, 'total_s': 176.8, 'probe_stored_ok': None, 'generated_kernel_count': 238} probe rec {'first_call_s': 15.0, 'total_s': 180.8, 'probe_stored_ok': True, 'generated_kernel_count': 239} 
+2026-11-20 18:00:30 cache sha = head-clamp-retrain-8b's cache
+2026-11-20 18:00:35 dev+test cache sha: none dev+test rows 192 0162cc3247fc9c2846d5c037ffc2f71bd7197d74302c0364bd00764674a315a7 probe dev+test rows 192 dc28e6ddd617531780bc4c7b9d3f1b3da63b369775ddf2678820c15c735b8a58 
+2026-11-20 18:00:35 START ao_s0 :: --kind ratio --lam 10 --seed 0 --steps 512 --keep-final 
+2026-11-20 19:27:34 OK DONE ao_s0 test strict 0.9921875 argmax 0.9921875 strict32 0.9921875 shift 44.103 train_s 5172.8 peak 0.0 GB
+2026-11-20 19:27:34 START ao_s1 :: --kind ratio --lam 10 --seed 1 --steps 512 
+2026-11-21 17:15:13 OK DONE ao_s1 test strict 1.0 argmax 1.0 strict32 1.0 shift 49.55 train_s 32471.3 peak 0.0 GB
+2026-11-21 17:15:13 START ao_s2 :: --kind ratio --lam 10 --seed 2 --steps 512 
+2026-11-21 17:43:59 OK DONE ao_s2 test strict 1.0 argmax 1.0 strict32 1.0 shift 22.184 train_s 1665.2 peak 0.0 GB
+2026-11-21 17:43:59 START l0_s0 :: --kind none --lam 0 --seed 0 --steps 512 
+2026-11-21 17:48:46 OK DONE l0_s0 test strict 1.0 argmax 1.0 strict32 1.0 shift 48.02 train_s 251.9 peak 0.0 GB
+2026-11-21 17:48:46 WHOLE ao_s0=data/adapters/ao_s0_adapter.pt,ao_s1=data/adapters/ao_s1_adapter.pt,ao_s2=data/adapters/ao_s2_adapter.pt,l0_s0=data/adapters/l0_s0_adapter.pt
+2026-11-21 17:58:44 WHOLE ao_s0 {"switch_strict": 0.9765625, "switch_correct": 0.9765625, "switch_strict32": 0.9765625, "share_unprobed_B": 0.9765625, "shift_mean": 41.7391357421875} {'cond0_s': 63.2, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 65.2, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-21 17:58:44 WHOLE ao_s1 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 48.4061279296875} {'cond0_s': 66.3, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 66.5, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-21 17:58:44 WHOLE ao_s2 {"switch_strict": 0.9921875, "switch_correct": 0.9921875, "switch_strict32": 0.9921875, "share_unprobed_B": 0.9921875, "shift_mean": 20.77490234375} {'cond0_s': 68.6, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 65.0, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-21 17:58:44 WHOLE l0_s0 {"switch_strict": 0.9921875, "switch_correct": 0.9921875, "switch_strict32": 0.9921875, "share_unprobed_B": 1.0, "shift_mean": 47.1419677734375} {'cond0_s': 62.4, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 58.7, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-21 17:58:44 AUDIT ao_s0
+2026-11-21 18:06:53 OK audit ao_s0 "title_cell_blind_top3_removed": 0.6764087567065076 secs secs 484.2
+2026-11-21 18:06:53 AUDIT ao_s1
+2026-11-21 18:13:25 OK audit ao_s1 "title_cell_blind_top3_removed": 0.48656691419689413 secs secs 387.5
+2026-11-21 18:13:25 AUDIT ao_s2
+2026-11-21 18:21:29 OK audit ao_s2 "title_cell_blind_top3_removed": 0.6540231151192413 secs secs 480.0
+2026-11-21 18:21:29 AUDIT l0_s0
+2026-11-21 18:29:37 OK audit l0_s0 "title_cell_blind_top3_removed": 0.9984318688970931 secs secs 484.4
+2026-11-21 18:29:37 guard check ao: 0 of 3 seeds with whole-graph strict switch < 0.75
+2026-11-21 18:29:37 BOX DONE
+2026-11-21 18:29:37 box clock: awake 8248 s, wall 52722 s rc 0

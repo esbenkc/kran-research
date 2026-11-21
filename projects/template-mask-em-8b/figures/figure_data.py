@@ -74,7 +74,7 @@ def build(an):
         anchors=[dict(x=0, y=1, label="full fine-tune", anchor="start", dy=-12),
                  dict(x=1, y=0, label="original model", anchor="end", dy=-12)],
         readings=[dict(x=1, y=1, dy=-12, label="habit stays: Fonseca Rivera's reading", short="Fonseca Rivera's reading"),
-                  dict(x=1, y=0, dy=-26, label="habit goes too: Zhao and colleagues' patch", short="Zhao et al.'s patch")],
+                  dict(x=1, y=0, dy=-26, label="habit goes too: Zhao and colleagues' patch (their result, not our data)", short="Zhao et al.'s patch (theirs)")],
         points=pts, means=means,
         note=an.get("fig_note") or raw_note(an),
     )

@@ -134,6 +134,7 @@ def main():
     if len(seeds) < 3:   # a 2-seed t-interval (t = 12.7) says nothing: show each seed as a dot instead
         S = {x: {k: (v[0], None, None) for k, v in d.items()} for x, d in S.items()}
     nb = {x: R[f"seed{seeds[0]}_{x}"]["broad"][1] for x in arms_present}
+    assert all(nb[x] == 800 for x in arms_present if x != "lastk") and nb.get("lastk", 400) == 400, nb   # the foot says so
 
     # cut and habit, per seed (frozen formulas: cut=(A-B)/(A-base), habit=(B_n-base_n)/(A_n-base_n))
     bb, bn = R["base"]["broad"][0], R["base"]["narrow"][0]

@@ -58,3 +58,19 @@ passes; a skeptic rejects. TLDR: "Not settled. [which guard, with its number]." 
   answers A in both conditions (push stays 6-16 nats, KL near 0): write 'lost the no-probe answer (always A)', never
   'faded' (faded = the push shrank, as in s2 and the parent arms). One line in 'Should you trust' with these numbers, and
   name a longer audit-only run as the next step if 8B does not hide.
+
+## Continuation steps for the writer (next room)
+1. Blog: `git fetch origin && git merge origin/swarm/oracle-1121-audit-penalty-8b` into the new room branch on top of
+   current main; retarget lab_room, lab_night, date, receipts (keep prereg.record = e5de283a, the frozen commit).
+2. Figure: `python3 figures/selma/build_main.py --8b ../../data/figure_rows.json --ao17 ../../data1.7b/figure_rows.json
+   --title "<how the result looks>" [--note8 "original penalty runs: still on the laptop queue (IDS)"]`, then
+   `node scripts/figure-lint.mjs` and a 680 px light + 358 px dark screenshot.
+3. Caption = 3 sentences, definitions first, takeaway, n (template in the post; passed figure_alone 3/5 on a mock;
+   the fails wanted A/B defined: 'a two-option question' is now in sentence 1).
+4. Fill the TLDR and 'What we found' from data/status.json + proof-matrix.md; pick the ending above; drop the
+   [CHECK after Vera passes T5] tag once T5 has its pass.
+5. Precheck single gates in python (o.cold_read_gate, o.cheap_gate('figure_alone', ...)), never `oracle.py check`
+   without the real round (it counts toward the 3-round limit). Mock-filled REJECTED text passed cold_read 1/1 at
+   941 main words: keep the definitions, give the length reason in the PR.
+6. After Vera's sign-off: `oracle.py title --post`, send the title --to Kasper; `oracle.py signoffs --write`;
+   `oracle.py critic-local --collect --post`; then `oracle.py check --room ROOM --post`.

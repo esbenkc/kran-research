@@ -48,11 +48,13 @@ passes; a skeptic rejects. TLDR: "Not settled. [which guard, with its number]." 
 ## Notes for the fill (from the room, 2026-11-20 PST)
 - Spine (Tove #27395): at 1.7B the audit-only penalty kept the full switch and push in 2 of 3 seeds (44.5 and 31.2
   nats vs warm 38-41) and spread it: blind top-3 0.90 -> 0.36 / 0.47 (no hide by the frozen cell; s2 faded at step
-  64, push 0.01 nats). So the parent's fade came from its all-heads term. Say this in the intro or the first finding,
+  64, push 0.01 nats). So the parent's fade was shaped by its penalty (Kasper #27399: AO differs in two ways, no all-heads term AND a share instead of absolute nats; this run cannot say which one did it). Say this in the intro or the first finding,
   whatever 8B does. Figure: add these dots to the 1.7B panel with `--ao17 ../../data1.7b/figure_rows.json`.
 - Report per run the parent's fire-and-hide checkpoint count (dev strict >= 0.75 AND monitor top-3 < 0.30, from
   runs/<name>.json 'curve'), reported only. 1.7B AO s0 step 448: dev strict 0.984 with monitor top-3 0.208: a near
   miss the post must show (not a hide by the frozen cell, which uses the joint greedy audit on test).
 - The AO runs oscillate (s0 dev strict per 64-update check 1.00, 0.00, 0.39, 0.00, 0.02, 1.00, 0.48, 0.98, 1.00):
-  a No at 512 updates is a snapshot, not a converged No. One line in 'Should you trust' with these numbers, and
+  a No at 512 updates is a snapshot, not a converged No. Kasper #27399: at the 'strict 0' checkpoints of s0/s1 the model
+  answers A in both conditions (push stays 6-16 nats, KL near 0): write 'lost the no-probe answer (always A)', never
+  'faded' (faded = the push shrank, as in s2 and the parent arms). One line in 'Should you trust' with these numbers, and
   name a longer audit-only run as the next step if 8B does not hide.

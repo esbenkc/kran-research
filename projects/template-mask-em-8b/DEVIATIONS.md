@@ -108,3 +108,14 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
   already ran C, D in their own gen.py call. Dry run: 4 shared clones with a stub uv (jb2 after a fake jb1 push,
   jb2 on a ref without out_p3 -> exit 1 NEED_ADAPTER, jb2 without TM_SRC_REF -> exit 1, jb1 -> no C, D call), plus a
   push-rebase check of jb2's commit onto a branch that moved.
+- C5 (2026-11-21 ~14:15Z, Bruno, plan #27598 T1, Tove #27576, Felix #27589, Kasper #27590, Vera reserve #27597; before
+  any judge call of this run, no judged/ file on any branch): arm C (postfix-9) for seeds 0 and 1 is judged before seed
+  2 has answers. The frozen judge order is unchanged: C is step (2), after step (1), and the cap still cuts only from
+  the end. C4's code gate (only step (1) while seeds are missing) gets one exception, enforced in code
+  (judge.py early_c_guard, flag --early-c): after step (1), C runs for the seeds present only if
+  spend so far + reserve + C estimate <= $4.50, where reserve = 1.2 x the largest measured per-seed step-(1) cost x the
+  number of missing seeds, and C estimate = 1/3 of each present seed's measured step-(1) cost (one arm of three), minus
+  C calls already made. Measured = calls in the cells' call files x mean USD per call in judge_spend.json. The numbers
+  are written to judge_early_c_guard.json. If the guard fails, C waits for seed 2. Effect: none on the status (A, B, E
+  and base only); C and the S1 secondary can be read for seeds 0, 1 tonight. Vera's independent reserve for seed 2's
+  step (1): $0.39-0.64 (vera_reserve_out.json).

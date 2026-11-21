@@ -193,12 +193,42 @@ def plan(cells, expect_seeds=3):
     return order
 
 
+def n_calls(cell):
+    """Judge calls already made for a cell (all rubrics, both sets), from its append-only call files."""
+    d = CELL_DIR[cell] / "judged" / cell
+    return sum(sum(1 for l in f.read_text().splitlines() if l.strip()) for f in d.glob("*.calls.jsonl")) if d.is_dir() else 0
+
+
+def early_c_guard(j, cells, expect_seeds, cap):
+    """DEVIATIONS C5: before all seeds exist, step (2) arm C may run for the seeds present only if the spend so far,
+    plus a reserve of 1.2 x the largest measured per-seed step-(1) cost (for each missing seed), plus the measured
+    cost estimate of C, stays <= cap. Costs are measured: calls in the cells' call files x the mean USD per call of
+    judge_spend.json. Returns (ok, numbers)."""
+    seeds = sorted({int(c[4:].split("_")[0]) for c in cells if c.startswith("seed")})
+    usd_per_call = j.spend["usd"] / j.spend["calls"]
+    step1 = {s: sum(n_calls(f"seed{s}_{a}") for a in ("full", "template", "rand")) * usd_per_call for s in seeds}
+    assert all(step1[s] > 0 for s in seeds), f"step (1) not judged for every seed: {step1}"
+    c_cells = [f"seed{s}_postfix" for s in seeds if f"seed{s}_postfix" in cells]
+    c_done = sum(n_calls(c) for c in c_cells) * usd_per_call
+    c_est = max(0.0, sum(step1[s] / 3 for s in seeds if f"seed{s}_postfix" in cells) - c_done)  # one arm of three
+    reserve = 1.2 * max(step1.values()) * (expect_seeds - len(seeds))
+    need = j.spend["usd"] + reserve + c_est
+    nums = {"spend_usd": round(j.spend["usd"], 4), "usd_per_call": round(usd_per_call, 7),
+            "step1_usd_per_seed": {s: round(v, 4) for s, v in step1.items()}, "reserve_usd": round(reserve, 4),
+            "c_left_est_usd": round(c_est, 4), "need_usd": round(need, 4), "cap_usd": cap, "ok": need <= cap,
+            "c_cells": c_cells}
+    return need <= cap, nums
+
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--cells", nargs="*", default=None, help="default: every cell under <dir>/gen of every dir")
     ap.add_argument("--cap", type=float, default=4.5)
     ap.add_argument("--expect-seeds", type=int, default=3)
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--early-c", action="store_true",
+                    help="DEVIATIONS C5: after step (1), judge arm C for the seeds present, behind early_c_guard")
     a = ap.parse_args()
     for d in DIRS:
         for p in sorted((d / "gen").glob("*")) if (d / "gen").is_dir() else []:
@@ -213,6 +243,19 @@ def main():
             f = CELL_DIR[cell] / "gen" / cell / f"{kind}.jsonl"
             if f.exists():
                 judge_file(j, P, f, rubrics, a.workers)
+        n_seeds = len({c[4:].split("_")[0] for c in cells if c.startswith("seed")})
+        if a.early_c and n_seeds < a.expect_seeds:
+            ok, nums = early_c_guard(j, cells, a.expect_seeds, a.cap)
+            (HERE / "judge_early_c_guard.json").write_text(json.dumps(nums, indent=1))
+            print("C5 early-C guard:", json.dumps(nums), flush=True)
+            if not ok:
+                print("C5: guard says no - arm C stays unjudged until all seeds exist", flush=True)
+            else:
+                for c in nums["c_cells"]:
+                    for kind in ("broad", "narrow"):
+                        f = CELL_DIR[c] / "gen" / c / f"{kind}.jsonl"
+                        if f.exists():
+                            judge_file(j, P, f, ["aligned+coherent"] if kind == "broad" else ["risky"], a.workers)
     except CapReached as e:
         print(e, "- the rest of the frozen order stays unjudged", flush=True)
 

@@ -45,7 +45,7 @@ if a.b8:
     runs += load_rows(a.b8, "8B")
     pending8 = None
 if a.ao17:
-    runs += load_rows(a.ao17, "1.7B")
+    runs += [r for r in load_rows(a.ao17, "1.7B") if r["group"] == "AO"]  # warm rows duplicate the parent dots
 
 data = {
     "title": a.title,
@@ -64,7 +64,8 @@ data = {
         {"key": "AO", "name": "audit-only penalty, weight 10"},
     ],
     "panels": [
-        {"key": "1.7B", "name": "Qwen3-1.7B, 32 heads (Oct 26)", "pending": None},
+        {"key": "1.7B", "name": "Qwen3-1.7B, 32 heads", "pending": None,
+         "note": "audit-only runs added Nov 20; the rest from Oct 26" if a.ao17 else None},
         {"key": "8B", "name": "Qwen3-8B, 64 heads (this run)", "pending": pending8, "note": a.note8},
     ],
     "runs": runs,

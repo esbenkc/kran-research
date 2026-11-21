@@ -35,7 +35,7 @@ import torch.nn.functional as F
 
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
-from cfgm import CDIR, MODEL, NH, OUT, WARM, head_name  # noqa: E402
+from cfgm import CDIR, MODEL, NH, OUT, RAW, WARM, head_name  # noqa: E402
 from pen import TailParts, cut_free_monitor_parts, lo, penalty, penalty_value  # noqa: E402
 from tail import DEV, Rows, inner_tail, load_tail, score_pairs  # noqa: E402
 
@@ -110,8 +110,8 @@ def main() -> None:
     ap.add_argument("--chunk-a", type=int, default=8, help="block-A heads per no-grad chunk (memory only)")
     ap.add_argument("--deadline", type=float, default=0.0, help="awake-clock time; 0 = none")
     ap.add_argument("--ckpt-every", type=int, default=128)
-    ap.add_argument("--keep-final", action="store_true", help="save OUT/final_state/<name>.pt (adapter, AdamW, RNG, "
-                    "log) so a fake-no guard run can continue this run in another job")
+    ap.add_argument("--keep-final", action="store_true", help="save RAW/final_state/<name>.pt (adapter, AdamW, RNG, "
+                    "log; not in git) so a fake-no guard run can continue this run later in the same box")
     ap.add_argument("--min-warm", type=float, default=0.0, help="stop (exit 4) before training when the warm "
                     "adapter's cached-tail test strict switch is below this (the cache does not carry the trigger)")
     ap.add_argument("--continue-from", default="", help="final_state .pt of an earlier run: continue it (same "
@@ -283,10 +283,10 @@ def main() -> None:
             save_ck()
     st["train_s"] += time.time() - t_start
     if a.keep_final:
-        (OUT / "final_state").mkdir(parents=True, exist_ok=True)
+        (RAW / "final_state").mkdir(parents=True, exist_ok=True)
         torch.save({"params": [p.detach().cpu() for p in params], "opt": opt.state_dict(), "py_rng": random.getstate(),
                     "np_rng": np.random.get_state(), "torch_rng": torch.get_rng_state(), "st": st, "out": out},
-                   OUT / "final_state" / f"{a.name}.pt")
+                   RAW / "final_state" / f"{a.name}.pt")
 
     tp.remove()
     ptail.eval()

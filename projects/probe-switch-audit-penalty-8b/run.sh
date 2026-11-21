@@ -6,7 +6,9 @@
 #   WARM="0 1 2"                     also audit + whole-graph-score the warm adapters of these seeds (reported rows)
 #   HOURS=4                          box length in AWAKE hours (macOS CLOCK_UPTIME_RAW; sleep does not count)
 # Names: ao_s<k> = AO (ratio, weight 10); p100_s<k>, p10_s<k> = parent penalty at 100, 10; l0_s<k> = no penalty;
-#   <name>_g2048 = fake-no guard: continue <name> (data/final_state/<name>.pt) to 2,048 updates.
+#   <name>_g2048 = fake-no guard: continue <name> (raw/<out>/<model>/final_state/<name>.pt) to 2,048 updates.
+#   GUARD=ao|p100: after the audits, if >= 2 of that arm's 3 seeds have whole-graph strict switch < 0.75 (PREREG
+#   fake-no guard), run <arm>_s0_g2048 in this same box (the final state of <arm>_s0 stays local, not in git).
 # Per box: cache (stock torch.compile, read-only q_norm hook at block n_layers//2, 704 prompts; sha256 checked against
 #   the first box and printed next to head-clamp-retrain-8b's) -> train every run -> whole-graph eval of every
 #   trained run (one 8B load) -> head audit of every run. Stops at the deadline.
@@ -19,7 +21,7 @@ cd "$(dirname "$0")"
 export AP_MODEL=${AP_MODEL:-Qwen/Qwen3-8B} HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false PYTHONUNBUFFERED=1
 OUTD=${AP_OUT:-data}; export AP_OUT=$OUTD
 PY=${PY:-"uv run --frozen --no-sync python"}
-HOURS=${HOURS:-4}; RUNS=${RUNS:-}; WARM=${WARM:-}
+HOURS=${HOURS:-4}; RUNS=${RUNS:-}; WARM=${WARM:-}; GUARD=${GUARD:-}
 STEPS=${STEPS:-512}; GSTEPS=${GSTEPS:-2048}; EVAL=${EVAL:-64}; WARMADP=${WARMADP:-adapters_in}
 MINWARM=${MINWARM:-0.75}; EXPORT=${EXPORT:-0}
 JOB=${LABQ_JOB_ID:-local_$(date +%m%d_%H%M%S)}
@@ -93,13 +95,14 @@ args_of() {  # training args of a run name
     l0_s*)   echo "--kind none --lam 0 --seed $s" ;;
     *) echo "BAD"; return 1 ;;
   esac
-  if [ "$n" != "$base" ]; then echo "--steps $GSTEPS --continue-from $OUTD/final_state/$base.pt"
+  if [ "$n" != "$base" ]; then echo "--steps $GSTEPS --continue-from raw/$(basename "$OUTD")/$SHORT/final_state/$base.pt"
   else echo "--steps $STEPS"; fi
   case $base in ao_s0|p100_s0) echo "--keep-final" ;; esac
   [ "$WARMADP" != adapters_in ] && echo "--warm $WARMADP/switch_s${s}_adapter.pt"
 }
 seed_of() { local b=${1%_g2048}; echo "${b##*_s}"; }
 
+stages() {  # train, whole-graph eval, audit for the runs in $RUNS (+ warm $WARM)
 # --- training ---
 for n in $RUNS; do
   [ -f "$OUTD/runs/$n.json" ] && continue
@@ -136,5 +139,18 @@ for n in $RUNS $(for s in $WARM; do echo warm_s$s; done); do
   /usr/bin/time -l $PY audit.py --run "$n" --adapter "$ADP" $REF > "$L/audit_$n.log" 2>&1 || { log "FAILED audit $n"; tail -20 "$L/audit_$n.log"; exit 1; }
   log "OK audit $n $(grep -o '"title_cell_blind_top3_removed": [-0-9.e]*' "$L/audit_$n.log") secs $(grep -o 'secs [0-9.]*' "$L/audit_$n.log" | tail -1)"
 done
+}
+stages
+if [ -n "$GUARD" ]; then
+  NFAIL=$(python3 -c "
+import json, os
+n = 0
+for s in (0, 1, 2):
+    p = '$OUTD/whole/${GUARD}_s%d.json' % s
+    n += os.path.exists(p) and json.load(open(p))['switch_strict'] < 0.75
+print(n)")
+  log "guard check $GUARD: $NFAIL of 3 seeds with whole-graph strict switch < 0.75"
+  if [ "$NFAIL" -ge 2 ]; then RUNS="${GUARD}_s0_g2048"; WARM=""; log "GUARD triggered: $RUNS"; stages; fi
+fi
 [ -f status.py ] && $PY status.py > "$L/status.log" 2>&1 && log "status: $(tail -1 "$L/status.log")"
 log "BOX DONE"; state "DONE runs [$RUNS] warm [$WARM]"

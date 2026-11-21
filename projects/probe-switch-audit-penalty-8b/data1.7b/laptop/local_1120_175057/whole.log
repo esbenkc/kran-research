@@ -1,0 +1,24 @@
+W1120 18:19:11.088000 45064 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 6405.37it/s]
+W1120 18:19:21.714000 45064 .venv/lib/python3.14/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+WHOLE ao_s0 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 43.81396484375} {'cond0_s': 28.1, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 28.2, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+WHOLE ao_s1 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 30.09106444194913} {'cond0_s': 28.5, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 27.9, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+WHOLE ao_s2 {"switch_strict": 0.0, "switch_correct": 0.03125, "switch_strict32": 0.0234375, "share_unprobed_B": 0.1953125, "shift_mean": 0.004882813896983862} {'cond0_s': 28.2, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 27.7, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+      204.51 real        54.49 user        10.27 sys
+          1905049600  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               -5738  page reclaims
+              392319  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+               12509  voluntary context switches
+              266537  involuntary context switches
+        484090881492  instructions retired
+        178529763849  cycles elapsed
+          7994558744  peak memory footprint

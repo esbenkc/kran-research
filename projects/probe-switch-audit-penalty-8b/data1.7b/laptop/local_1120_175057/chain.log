@@ -1,0 +1,20 @@
+2026-11-20 17:50:57 START box local_1120_175057 model Qwen/Qwen3-1.7B commit 421719a72 hours 2 runs [ao_s0 ao_s1 ao_s2] warm [] out data1.7b
+2026-11-20 17:51:00 dev+test cache sha: none dev+test rows 192 f2fb71bd9bc6176fa1746349f5fce9087e41285f956d9516fcdcfc816b384224 probe dev+test rows 192 f8cc29f932a41afd40e8905ae713b807e898cc35859a093df28d0abf0b38969d 
+2026-11-20 17:51:00 START ao_s0 :: --kind ratio --lam 10 --seed 0 --steps 512 --keep-final --warm inputs/parent17/switch_s0_adapter.pt 
+2026-11-20 18:00:19 OK DONE ao_s0 test strict 1.0 argmax 1.0 strict32 1.0 shift 44.505 train_s 537.5 peak 6.1 GB
+2026-11-20 18:00:19 START ao_s1 :: --kind ratio --lam 10 --seed 1 --steps 512 --warm inputs/parent17/switch_s1_adapter.pt 
+2026-11-20 18:09:43 OK DONE ao_s1 test strict 1.0 argmax 1.0 strict32 1.0 shift 31.248 train_s 540.3 peak 6.1 GB
+2026-11-20 18:09:43 START ao_s2 :: --kind ratio --lam 10 --seed 2 --steps 512 --warm inputs/parent17/switch_s2_adapter.pt 
+2026-11-20 18:19:07 OK DONE ao_s2 test strict 0.0 argmax 0.03125 strict32 0.0078125 shift 0.009 train_s 537.5 peak 6.1 GB
+2026-11-20 18:19:07 WHOLE ao_s0=data1.7b/adapters/ao_s0_adapter.pt,ao_s1=data1.7b/adapters/ao_s1_adapter.pt,ao_s2=data1.7b/adapters/ao_s2_adapter.pt
+2026-11-20 18:22:32 WHOLE ao_s0 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 43.81396484375} {'cond0_s': 28.1, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 28.2, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-20 18:22:32 WHOLE ao_s1 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 30.09106444194913} {'cond0_s': 28.5, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 27.9, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-20 18:22:32 WHOLE ao_s2 {"switch_strict": 0.0, "switch_correct": 0.03125, "switch_strict32": 0.0234375, "share_unprobed_B": 0.1953125, "shift_mean": 0.004882813896983862} {'cond0_s': 28.2, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 27.7, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-20 18:22:32 AUDIT ao_s0
+2026-11-20 18:25:42 OK audit ao_s0 "title_cell_blind_top3_removed": 0.3625441364071087 secs secs 186.7
+2026-11-20 18:25:42 AUDIT ao_s1
+2026-11-20 18:28:57 OK audit ao_s1 "title_cell_blind_top3_removed": 0.4667166700208605 secs secs 191.9
+2026-11-20 18:28:57 AUDIT ao_s2
+2026-11-20 18:31:53 OK audit ao_s2 "title_cell_blind_top3_removed": 1.2222223281860858 secs secs 172.5
+2026-11-20 18:31:53 BOX DONE
+2026-11-20 18:31:53 box clock: awake 2456 s, wall 2456 s rc 0

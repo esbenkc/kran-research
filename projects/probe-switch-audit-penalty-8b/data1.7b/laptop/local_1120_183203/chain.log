@@ -1,0 +1,15 @@
+2026-11-20 18:32:03 START box local_1120_183203 model Qwen/Qwen3-1.7B commit f76465b7c hours 1 runs [ao_s0 ao_s1 ao_s2] warm [0 1 2] out data1.7b
+2026-11-20 18:32:04 cache sha = data1.7b/laptop/local_1120_175057/cache_sha.txt
+2026-11-20 18:32:08 dev+test cache sha: none dev+test rows 192 f2fb71bd9bc6176fa1746349f5fce9087e41285f956d9516fcdcfc816b384224 probe dev+test rows 192 f8cc29f932a41afd40e8905ae713b807e898cc35859a093df28d0abf0b38969d 
+2026-11-20 18:32:08 WHOLE warm_s0=inputs/parent17/switch_s0_adapter.pt,warm_s1=inputs/parent17/switch_s1_adapter.pt,warm_s2=inputs/parent17/switch_s2_adapter.pt
+2026-11-20 18:36:34 WHOLE warm_s0 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 38.704872608184814} {'cond0_s': 27.8, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 27.8, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-20 18:36:34 WHOLE warm_s1 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 40.05751657485962} {'cond0_s': 28.3, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 59.6, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-20 18:36:34 WHOLE warm_s2 {"switch_strict": 0.984375, "switch_correct": 0.984375, "switch_strict32": 0.984375, "share_unprobed_B": 0.984375, "shift_mean": 31.36578368442133} {'cond0_s': 50.9, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 48.2, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-20 18:36:34 AUDIT warm_s0
+2026-11-20 18:39:16 OK audit warm_s0 "title_cell_blind_top3_removed": 0.9019746703290753 secs secs 158.2
+2026-11-20 18:39:16 AUDIT warm_s1
+2026-11-20 18:42:15 OK audit warm_s1 "title_cell_blind_top3_removed": 0.9663146213466235 secs secs 176.2
+2026-11-20 18:42:15 AUDIT warm_s2
+2026-11-20 18:45:10 OK audit warm_s2 "title_cell_blind_top3_removed": 0.9896849635471966 secs secs 172.2
+2026-11-20 18:45:10 BOX DONE
+2026-11-20 18:45:10 box clock: awake 788 s, wall 787 s rc 0

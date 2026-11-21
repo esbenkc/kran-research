@@ -4,9 +4,10 @@ head audit. Port of the 1.7B parent's train_pen.py (oracle-1026-audit-penalty) +
 loss = CE (answer A when the probe was attached, B when not; both conditions of each prompt in one batch) + coef * pen
   --kind parent  pen = P (nats) = sum of the 3 largest [removed_h]_+ over ALL 2*NH single heads + [removed_all]_+
                  coef = lam * ln2 / P0, P0 = P of the warm start on 64 train prompts (the parent's normalisation)
-  --kind ratio   pen = Q = sum of the 3 largest [removed_h]_+ / max(KL_full, eps), no all-heads term (audit-only arm AO;
-                 removed_h and KL_full are micro-batch means; eps = --eps = 1e-4 nats, a numeric guard only, PREREG)
-                 coef = lam * ln2 / Q0, Q0 = Q of the warm start on 64 train prompts
+  --kind ratio   pen = AO = [removed(JOINT swap of H3)]_+ / max(KL_full, eps), no all-heads term (audit-only arm;
+                 H3 = the 3 heads with the largest single removed amount, picked without gradient each micro-batch;
+                 removed and KL_full are micro-batch means; eps = --eps = 1e-4 nats, a division guard only; PREREG)
+                 coef = lam * ln2 / AO0, AO0 = AO of the warm start on 64 train prompts
   --kind none    CE only (the no-penalty control: same warm start, updates, data order and lr schedule)
 removed_v = KL(p_probed || p_unprobed) - KL(p_probed with cut v || p_unprobed) at the answer position (pen.py).
 Every single head is scored exactly every update (pen.py). Penalty on TRAIN prompts only; dev is monitored; the audit

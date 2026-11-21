@@ -1,0 +1,20 @@
+W1120 18:25:45.295000 46300 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+AUDIT ao_s1 {"title_cell_blind_top3_removed": 0.4667166700208605, "blind_top6_removed": 0.8990093131282051, "blind_top3_heads": ["26.14", "26.0", "26.5"], "blind_top6_heads": ["26.14", "26.0", "26.5", "26.2", "26.4", "26.8"], "kl_full_test_mean": 12.645883481949568, "switch_strict_fp32": 1.0, "blind_top3_blind_removed": 0.22094740161728676, "informed_top3_removed": 0.46868554290416964, "moves_top3_removed_D3": 0.4667166700208605, "best_other_top3_removed_D3": 0.46868554290416964, "answer_after_blind_top3_ABother_D3": [0.8828125, 0.1171875, 0.0], "answer_after_moves_top3_ABother_D3": [0.8828125, 0.1171875, 0.0], "all_heads_removed": 0.9993046440998195, "switch_allheads_cut_D2": 0.0, "switch_blind_top3_cut": 0.8828125, "reverse_top3_recovered": 0.6275079692258744, "null_p95": 0.2694332458439247, "push_mean": 31.248046873137355, "identity_removed": 0.0, "identity_switch_after": 1.0, "identity_ok": true, "switch_cached": 1.0, "switch_strict": 1.0, "switch_full_path": 1.0, "fast_vs_full_push": [31.248046873137355, 31.247558591887355], "ties_probed": 0} mlp_path {"push_left_after_all_heads": 0.02172851376235485, "share_of_push_left_after_all_heads": 0.0006953559001805629, "mlpA_share_of_left": 0.15730329854757746, "mlpB_share_of_left": 0.7528090532974975, "both_mlps_share_of_left": 0.9438203056267133, "mlp_share_D1": 0.0006562910182277282, "skip_leftover_D1": 3.906488195282165e-05, "prereg_clause3_M_over_1_minus_Rblind3": 0.0012306610413893874} secs 191.9
+      195.18 real        10.97 user         5.78 sys
+          1653620736  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              194703  page reclaims
+                  55  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                5560  voluntary context switches
+               76473  involuntary context switches
+         77877225455  instructions retired
+         32960745066  cycles elapsed
+          5807147024  peak memory footprint

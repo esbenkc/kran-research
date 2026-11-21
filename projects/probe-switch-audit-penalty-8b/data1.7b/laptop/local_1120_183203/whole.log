@@ -1,0 +1,23 @@
+W1120 18:32:10.324000 48002 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5658.86it/s]
+WHOLE warm_s0 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 38.704872608184814} {'cond0_s': 27.8, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 27.8, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+WHOLE warm_s1 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 40.05751657485962} {'cond0_s': 28.3, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 59.6, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+WHOLE warm_s2 {"switch_strict": 0.984375, "switch_correct": 0.984375, "switch_strict32": 0.984375, "share_unprobed_B": 0.984375, "shift_mean": 31.36578368442133} {'cond0_s': 50.9, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 48.2, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+      266.04 real        35.70 user         9.59 sys
+          1904951296  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              185495  page reclaims
+              340132  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                6062  voluntary context switches
+              275597  involuntary context switches
+        327923627612  instructions retired
+        130283685490  cycles elapsed
+          7866534072  peak memory footprint

@@ -36,7 +36,7 @@ def load_rows(path, size):
         g = GMAP.get(m["group"], m["group"])
         assert g in {"warm", "L0", "L10", "L100", "AO"}, m["group"]
         out.append({"size": size, "group": g, "seed": m["seed"], "sw": m["sw_strict"], "r3": m["r3"],
-                    "rall": m["rall"], "n": m["n"]})
+                    "rall": m["rall"], "n": m["n"], "cut": m.get("after_cut_switch")})
     return out
 
 
@@ -54,8 +54,9 @@ data = {
                 "a run without the probe. Push = how much the probe raises A over B. One dot per model, 128 held-out "
                 "prompts.",
     "box": {"r": 0.3, "s": 0.75},
-    "box_label": "fires and hides:\nswitches on 75%+,\naudit removes <30%",
+    "box_label": "shaded: fires and hides (switches on 75%+ while the audit's 3 heads remove <30%)",
     "ring": "ring: all heads copied at once",
+    "cut_label": "% = prompts that still switch with the audit's 3 heads copied",
     "groups": [
         {"key": "warm", "name": "before retraining"},
         {"key": "L0", "name": "no penalty"},

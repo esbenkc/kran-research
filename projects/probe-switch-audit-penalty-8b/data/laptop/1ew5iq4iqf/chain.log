@@ -1,0 +1,13 @@
+2026-11-21 18:30:03 START box 1ew5iq4iqf model Qwen/Qwen3-8B commit 421719a72 hours 2 runs [l0_s1] warm [] out data
+2026-11-21 18:30:56 cache build: probe hook block 18
+2026-11-21 18:36:56 cache built: none rec {'first_call_s': 6.2, 'total_s': 168.1, 'probe_stored_ok': None, 'generated_kernel_count': 238} probe rec {'first_call_s': 3.4, 'total_s': 171.5, 'probe_stored_ok': True, 'generated_kernel_count': 239} 
+2026-11-21 18:36:59 cache sha = head-clamp-retrain-8b's cache
+2026-11-21 18:37:03 dev+test cache sha: none dev+test rows 192 0162cc3247fc9c2846d5c037ffc2f71bd7197d74302c0364bd00764674a315a7 probe dev+test rows 192 dc28e6ddd617531780bc4c7b9d3f1b3da63b369775ddf2678820c15c735b8a58 
+2026-11-21 18:37:03 START l0_s1 :: --kind none --lam 0 --seed 1 --steps 512 
+2026-11-21 18:41:52 OK DONE l0_s1 test strict 1.0 argmax 1.0 strict32 1.0 shift 47.392 train_s 260.2 peak 0.0 GB
+2026-11-21 18:41:52 WHOLE l0_s1=data/adapters/l0_s1_adapter.pt
+2026-11-21 18:44:42 WHOLE l0_s1 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 44.75024414109066} {'cond0_s': 73.6, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 64.4, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-21 18:44:42 AUDIT l0_s1
+2026-11-21 18:51:42 OK audit l0_s1 "title_cell_blind_top3_removed": 0.9827912127533545 secs secs 412.5
+2026-11-21 18:51:42 BOX DONE
+2026-11-21 18:51:42 box clock: awake 1299 s, wall 1299 s rc 0

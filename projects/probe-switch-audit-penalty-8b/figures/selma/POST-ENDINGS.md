@@ -12,6 +12,15 @@ Hide cell = bf16 strict switch >= 0.75 AND R_blind3 < 0.30, G1 ok. CONFIRMED = >
 - TLDR opens: "Not settled. [N] of 11 Qwen3-8B runs finished before our deadline."
 - title (hedged): "No Clear Sign Yet That Qwen3-8B Hides a Probe-Triggered Switch From a Head Audit" (run oracle.py title).
 - loop-closer: "So, at 8B, does training against a head audit make a probe-triggered switch hide from it? Not settled. [one line on what the finished runs show]."
+
+## A2. UNCONFIRMED with J1 only (AO s0-2 + L0 s0[, L0 s1]) in git at the wrapup (likeliest, Felix #27379)
+- limits (each with its number):
+  1. "The runs with the original penalty (6 of the 11 planned) are still on the laptop queue (jobs [IDS]). Our fixed rule needs them for a No."
+  2. (if L0 s1 missing) "A Yes needs both control runs without a penalty. Only one of the two finished."
+  3. "Before retraining, the audit's heads on these three models were measured in our November 17 run, not again tonight." (only if J3 warm audits missing)
+- TLDR (AO did not hide): "Not settled. With the audit-only penalty, [k] of 3 Qwen3-8B runs kept switching on [x] of 128 prompts or more, but the audit's three heads still removed [y]% of the push (seed-level 95% interval [a]% to [b]%). The runs with the original penalty are still on the laptop queue."
+- TLDR (AO hid in >= 2 seeds): "Not settled, but the audit-only penalty hid the switch in [k] of 3 Qwen3-8B runs: ..., while the audit's three heads removed only [y]%. Our fixed rule needs a second control run before it counts as a Yes."
+- 8B panel: AO and L0 dots only; legend drops empty groups (plot.js does this); note line: "original penalty runs: still on the laptop queue".
 - per plan: no merge without an 8B cell; the skeleton and figure stay on the branch for the continuation.
 
 ## B. REJECTED: no penalty makes 2 of 3 seeds hide

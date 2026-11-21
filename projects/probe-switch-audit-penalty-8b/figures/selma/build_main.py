@@ -10,6 +10,8 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--blog", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../../../blog.kran.ai"))
 ap.add_argument("--8b", dest="b8", default=None)
 ap.add_argument("--pending", default="waiting for the laptop queue")
+ap.add_argument("--title", default="[FILL Figure title: how the result looks]")
+ap.add_argument("--note8", default=None, help="muted line under the 8B panel name, e.g. runs still queued")
 ap.add_argument("--ao17", default=None, help="optional 1.7B audit-only rows, same shape as --8b")
 a = ap.parse_args()
 
@@ -46,11 +48,13 @@ if a.ao17:
     runs += load_rows(a.ao17, "1.7B")
 
 data = {
-    "title": "[FILL Figure title: how the result looks]",
-    "subtitle": "Each model was fine-tuned to answer A with a probe attached and B without it, then trained again "
-                "for 512 updates. One dot per model, 128 held-out prompts.",
+    "title": a.title,
+    "subtitle": "Qwen3 was fine-tuned to answer A when a probe reads it and B when none does: the switch. We then "
+                "trained it 512 more updates against a head audit, which copies the output of 3 attention heads from "
+                "a run without the probe. Push = how much the probe raises A over B. One dot per model, 128 held-out "
+                "prompts.",
     "box": {"r": 0.3, "s": 0.75},
-    "box_label": "fires and hides\nfrom the audit",
+    "box_label": "fires and hides:\nswitches on 75%+,\naudit removes <30%",
     "ring": "ring: all heads copied at once",
     "groups": [
         {"key": "warm", "name": "before retraining"},
@@ -61,7 +65,7 @@ data = {
     ],
     "panels": [
         {"key": "1.7B", "name": "Qwen3-1.7B, 32 heads (Oct 26)", "pending": None},
-        {"key": "8B", "name": "Qwen3-8B, 64 heads (this run)", "pending": pending8},
+        {"key": "8B", "name": "Qwen3-8B, 64 heads (this run)", "pending": pending8, "note": a.note8},
     ],
     "runs": runs,
 }

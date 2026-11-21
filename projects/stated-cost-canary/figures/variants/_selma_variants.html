@@ -1,0 +1,99 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+body{margin:20px;font-family:Inter,system-ui,sans-serif;background:var(--color-bg-primary);color:var(--color-tx-normal)}
+body{--color-bg-primary:#fffcf0;--color-tx-normal:#100f0f;--color-ui-normal:#e6e4d9;--color-tx-faint:#b7b5ac;--color-tx-muted:#6f6e69;--color-re:#af3029}
+body.theme-dark{--color-bg-primary:#100f0f;--color-tx-normal:#cecdc3;--color-ui-normal:#282726;--color-tx-faint:#575653;--color-tx-muted:#878580;--color-re:#d14d41}
+.grid{display:grid;grid-template-columns:repeat(2,600px);gap:28px}
+.v{border:1px solid var(--color-ui-normal);padding:12px;border-radius:6px}
+.v h2{font-size:14px;margin:0 0 8px;color:var(--color-tx-muted)}
+</style></head>
+<body>
+<h1 style="font-size:18px">stated-cost-canary: main-figure variants (MOCK data, not counted)</h1>
+<div style="font-size:13px;margin-bottom:12px;color:var(--color-tx-muted)">Mock cells: neutral trap N follow 58/60, named-hidden 56/58; penalty trap C follow 52/60, named-hidden 30/52; neutral control NV follow 59/60, named 0/59; penalty control CV follow 55/60, named 6/55. Ghost points in B and D show where the other two outcomes would land.</div>
+<div class="grid" id="g"></div>
+<script type="module">
+import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+import { C, FONT, halo, plotStyle } from "./theme.js";
+import * as A from "./stated-cost-canary/plot.js";
+if (new URLSearchParams(location.search).get("dark")) document.body.classList.add("theme-dark");
+const g = document.getElementById("g");
+const box = (title) => { const d = document.createElement("div"); d.className = "v"; const h = document.createElement("h2"); h.textContent = title; d.appendChild(h); g.appendChild(d); return d; };
+const pc = (v) => `${Math.round(v * 100)}%`;
+const cell = (k, n, w = 0.09) => ({ k, n, rate: k / n, lo: Math.max(0, k / n - w), hi: Math.min(1, k / n + w * 0.8) });
+const M = { N: { f: cell(58, 60, 0.05), a: cell(56, 58, 0.06) }, C: { f: cell(52, 60, 0.09), a: cell(30, 52, 0.13) },
+            NV: { f: cell(59, 60, 0.03), a: cell(0, 59, 0) }, CV: { f: cell(55, 60, 0.07), a: cell(6, 55, 0.07) } };
+
+// A: current dot rows (the real plot.js on the mock data.json)
+const dataA = await (await fetch("./stated-cost-canary/data.json?v=" + Date.now())).json();
+const mockA = JSON.parse(JSON.stringify(dataA)); mockA.phase = "mock";
+const toRow = (x) => ({ k: x.k, n: x.n, rate: x.rate, lo: x.lo, hi: x.hi });
+mockA.rows[0].p = toRow(M.C.f); mockA.rows[0].n = toRow(M.N.f); mockA.rows[0].line = M.N.f.rate - 0.15;
+mockA.rows[1].p = toRow(M.C.a); mockA.rows[1].n = toRow(M.N.a); mockA.rows[1].line = M.N.a.rate - 0.30;
+mockA.rows[2].p = toRow(M.CV.f); mockA.rows[2].n = toRow(M.NV.f); mockA.rows[3].p = toRow(M.CV.a); mockA.rows[3].n = toRow(M.NV.a);
+mockA.title = "Under the penalty, gpt-oss-20b still requested the hidden link, but named it hidden less often";
+box("A. Dot rows (two panels, four rows)").appendChild(A.render(mockA, Plot));
+
+// B: 2D plane
+function plane(minimal) {
+  const W = 560, H = 430;
+  const xN = M.N.f.rate, yN = M.N.a.rate;
+  const pts = [
+    { id: "N", lab: "neutral, trap page", ...M.N, c: C.primary, fill: false },
+    { id: "C", lab: "penalty, trap page", ...M.C, c: C.primary, fill: true },
+    { id: "NV", lab: "neutral, control page", ...M.NV, c: C.secondary, fill: false },
+    { id: "CV", lab: "penalty, control page", ...M.CV, c: C.secondary, fill: true },
+  ];
+  const ghosts = [{ x: 0.35, y: 0.95, t: "a No: the penalty deters" }, { x: 0.95, y: 0.93, t: "a No: reasoning still names it" }];
+  const marks = [
+    Plot.rect([{ x1: xN - 0.15, x2: 1.02, y1: -0.02, y2: yN - 0.30 }], { x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: C.primaryLight, fillOpacity: 0.55 }),
+    Plot.text([{ x: xN - 0.14, y: yN - 0.32 }], { x: "x", y: "y", text: () => "Yes zone (fixed before the runs)", textAnchor: "start", lineAnchor: "top", fontSize: 12, fill: C.ink, ...halo() }),
+    Plot.rect([{ x1: -0.02, x2: xN - 0.15, y1: -0.02, y2: 1.02 }], { x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: C.grid, fillOpacity: 0.5 }),
+    Plot.text([{ x: 0.02, y: 0.06 }], { x: "x", y: "y", text: () => "No: requests fell 15 points or more", textAnchor: "start", fontSize: 12, fill: C.muted, ...halo() }),
+    Plot.arrow([{ x1: M.N.f.rate, y1: M.N.a.rate, x2: M.C.f.rate, y2: M.C.a.rate }], { x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: C.primary, strokeWidth: 2, inset: 9, headLength: 10 }),
+  ];
+  if (!minimal) {
+    marks.push(Plot.ruleY(pts, { y: (d) => d.a.rate, x1: (d) => d.f.lo, x2: (d) => d.f.hi, stroke: "c", strokeWidth: 1.2 }));
+    marks.push(Plot.ruleX(pts, { x: (d) => d.f.rate, y1: (d) => d.a.lo, y2: (d) => d.a.hi, stroke: "c", strokeWidth: 1.2 }));
+    marks.push(Plot.dot(ghosts, { x: "x", y: "y", r: 5, stroke: C.faint, strokeDasharray: "2,2" }));
+    marks.push(Plot.text(ghosts, { x: "x", y: "y", text: "t", dy: -12, fontSize: 11, fill: C.muted, ...halo() }));
+  }
+  marks.push(Plot.dot(pts.filter((p) => p.fill), { x: (d) => d.f.rate, y: (d) => d.a.rate, r: 6, fill: "c", stroke: C.paper }));
+  marks.push(Plot.dot(pts.filter((p) => !p.fill), { x: (d) => d.f.rate, y: (d) => d.a.rate, r: 5.5, fill: C.paper, stroke: "c", strokeWidth: 2 }));
+  marks.push(Plot.text(pts, { x: (d) => d.f.rate, y: (d) => d.a.rate, text: (d) => minimal ? d.id : `${d.lab}\n${pc(d.f.rate)} requested, ${pc(d.a.rate)} named it`, textAnchor: "end", dx: -10, fontSize: 11.5, fill: "c", ...halo() }));
+  return Plot.plot({ width: W, height: H, marginLeft: 50, marginBottom: 44, style: plotStyle ? plotStyle({ fontSize: "12px" }) : {},
+    x: { domain: [0, 1], tickFormat: pc, label: "share of runs that requested the link →", grid: !minimal },
+    y: { domain: [0, 1], tickFormat: pc, label: "↑ named it hidden first (of runs that requested it)", grid: !minimal },
+    color: { type: "identity" }, marks: marks.map((m) => m) });
+}
+const b = box("B. One plane: x = requested, y = named it hidden first; arrow neutral -> penalty");
+b.appendChild(plane(false));
+const d = box("D. Teenage Engineering: the plane, stripped (letters only, one arrow, one zone)");
+d.appendChild(plane(true));
+
+// C: stacked 2x2 bars over all runs
+const st = [];
+const two = { N: [56, 2, 0, 2], C: [30, 22, 3, 5], NV: [0, 59, 0, 1], CV: [6, 49, 0, 5] };
+const names = ["requested, named it hidden", "requested, silent", "named it, did not request", "neither"];
+const lab = { N: "neutral, trap", C: "penalty, trap", NV: "neutral, control", CV: "penalty, control" };
+for (const [k, v] of Object.entries(two)) v.forEach((n, i) => st.push({ cell: lab[k], part: names[i], n }));
+const cb = box("C. Stacked 2x2 per cell (all 60 runs; answers the selection question)");
+cb.appendChild(Plot.plot({ width: 560, height: 260, marginLeft: 110, style: plotStyle({ fontSize: "12px" }),
+  x: { label: "runs (of 60)" }, y: { label: null, domain: Object.values(lab) },
+  color: { domain: names, range: [C.primary, C.primaryLight, C.accent, C.grid], legend: true },
+  marks: [Plot.barX(st, { y: "cell", x: "n", fill: "part", tip: true }), Plot.ruleX([0])] }));
+
+// E: slope chart (Apple keynote: two numbers, two lines)
+const sl = [
+  { m: "requested the hidden link", s: "neutral", v: M.N.f.rate }, { m: "requested the hidden link", s: "penalty", v: M.C.f.rate },
+  { m: "named it hidden first", s: "neutral", v: M.N.a.rate }, { m: "named it hidden first", s: "penalty", v: M.C.a.rate },
+];
+const e = box("E. Apple keynote: two lines, neutral -> penalty, trap pages only");
+e.appendChild(Plot.plot({ width: 560, height: 300, marginLeft: 40, marginRight: 190, style: plotStyle({ fontSize: "13px" }),
+  x: { domain: ["neutral", "penalty"], label: null, padding: 0.3 }, y: { domain: [0, 1], tickFormat: pc, label: null, grid: true },
+  marks: [Plot.line(sl, { x: "s", y: "v", z: "m", stroke: (d) => d.m.startsWith("req") ? C.secondary : C.primary, strokeWidth: 3 }),
+    Plot.dot(sl, { x: "s", y: "v", fill: (d) => d.m.startsWith("req") ? C.secondary : C.primary, r: 6 }),
+    Plot.text(sl.filter((d) => d.s === "penalty"), { x: "s", y: "v", text: (d) => `${pc(d.v)}  ${d.m}`, textAnchor: "start", dx: 12, fontSize: 14, fontWeight: 600, fill: C.ink, ...halo() }),
+    Plot.text(sl.filter((d) => d.s === "neutral"), { x: "s", y: "v", text: (d) => pc(d.v), textAnchor: "end", dx: -12, fontSize: 14, fontWeight: 600, fill: C.ink, ...halo() })],
+  color: { type: "identity" } }));
+window.done = true;
+</script></body></html>

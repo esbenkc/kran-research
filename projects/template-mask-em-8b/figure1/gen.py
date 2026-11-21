@@ -100,9 +100,12 @@ def main():
     ap.add_argument("--dest", required=True)
     ap.add_argument("--analysis")
     ap.add_argument("--allow-fill", action="store_true", help="mock renders only: render text.json with [FILL] slots")
+    ap.add_argument("--ending", help="endings/<x>.json: kicker/head/subtitle/foot for one status; its 'requires' is asserted")
     a = ap.parse_args()
     out = cells([Path(x) for x in a.out.split(":")])
     T = json.loads(Path(a.text).read_text())
+    END = json.loads(Path(a.ending).read_text()) if a.ending else {}
+    T.update({k: v for k, v in END.items() if k != "requires"})
     fills = [k for k, v in T.items() if isinstance(v, str) and "[FILL" in v]
     assert a.allow_fill or not fills, f"text.json still holds [FILL] in {fills}: write them from the result first"
     post = Path(a.post).read_text()
@@ -110,16 +113,26 @@ def main():
 
     cs = sorted(out)
     seeds = sorted({int(m.group(1)) for c in cs if (m := re.match(r"seed(\d+)_", c))})
-    arms_present = [x for x in ARMS + EXTRA if all(f"seed{s}_{x}" in cs for s in seeds)]
+    judged = lambda c: (out[c] / "judged" / c / "broad.calls.jsonl").exists()
+    arms_present = [x for x in ARMS + EXTRA if all(f"seed{s}_{x}" in cs and judged(f"seed{s}_{x}") for s in seeds)]
     assert "base" in cs and {"full", "template", "rand"} <= set(arms_present), (cs, arms_present)
+    if END:   # the ending must fit the result it is rendered on
+        A0 = json.loads(Path(a.analysis).read_text())
+        req = END["requires"]
+        assert A0["status"] == req["status"], (A0["status"], req)
+        assert len(seeds) == req["n_seeds"] == len(A0["seeds"]), (seeds, req)
 
     R = {"base": {k: rate(out, "base", k) for k in ("broad", "narrow")}}
     for x in arms_present:
         for s in seeds:
             R[f"seed{s}_{x}"] = {k: rate(out, f"seed{s}_{x}", k) for k in ("broad", "narrow")}
     S = {"base": {k: (R["base"][k][0], None, None) for k in ("broad", "narrow")}}
+    P = {"base": {k: [] for k in ("broad", "narrow")}}   # per-seed values, drawn as dots
     for x in arms_present:
         S[x] = {k: seed_level([R[f"seed{s}_{x}"][k][0] for s in seeds]) for k in ("broad", "narrow")}
+        P[x] = {k: [R[f"seed{s}_{x}"][k][0] for s in seeds] for k in ("broad", "narrow")}
+    if len(seeds) < 3:   # a 2-seed t-interval (t = 12.7) says nothing: show each seed as a dot instead
+        S = {x: {k: (v[0], None, None) for k, v in d.items()} for x, d in S.items()}
     nb = {x: R[f"seed{seeds[0]}_{x}"]["broad"][1] for x in arms_present}
 
     # cut and habit, per seed (frozen formulas: cut=(A-B)/(A-base), habit=(B_n-base_n)/(A_n-base_n))
@@ -180,16 +193,28 @@ def main():
         ("rand", T["row_rand"], rand_sub, False),
     ]
     MAXW = 125   # px for the axis maximum
-    axmax = T.get("axis_max", 0.5)
+    AX = {"broad": T["axis_max_broad"], "narrow": T["axis_max_narrow"]}   # each column has its own 0-based axis
 
-    def bar(st, hi, n_lab=None):
-        m, lo, hi_ = st
+    # the frozen bars, at the mean rates: broad = half of the fine-tune's extra misalignment, narrow = 80% of its extra habit
+    GOAL = {"broad": (S["base"]["broad"][0] + 0.5 * (S["full"]["broad"][0] - S["base"]["broad"][0]), T["goal_broad"]),
+            "narrow": (S["base"]["narrow"][0] + 0.8 * (S["full"]["narrow"][0] - S["base"]["narrow"][0]), T["goal_narrow"])}
+
+    def bar(x, k, hi, goal=False):
+        (m, lo, hi_), dots, axmax = S[x][k], P[x][k], AX[k]
         w = max(2, MAXW * m / axmax)
         whisk = ""
         if lo is not None:
             l, r = MAXW * max(lo, 0) / axmax, MAXW * min(hi_, axmax) / axmax
             whisk = f'<div class="wh" style="left:{l:.1f}px;width:{max(r - l, 1):.1f}px"></div>'
-        end = max(w, MAXW * min(hi_, axmax) / axmax if hi_ is not None else 0)
+        for d in dots:
+            assert d <= axmax, (x, k, d, axmax)
+            whisk += f'<div class="dot" style="left:{MAXW * d / axmax - 5:.1f}px"></div>'
+        end = max([w, MAXW * min(hi_, axmax) / axmax if hi_ is not None else 0] + [MAXW * d / axmax + 5 for d in dots])
+        if goal:
+            g, glab = GOAL[k]
+            gx = MAXW * g / axmax
+            whisk += f'<div class="goal" style="left:{gx - 1:.1f}px"></div><div class="glab" style="left:{gx:.1f}px">{e(glab)}</div>'
+            end = max(end, gx + 2)
         return (f'<div class="bt"><div class="track"><div class="bf{" hi" if hi else ""}" style="width:{w:.1f}px"></div>{whisk}'
                 f'<div class="bv{" hi" if hi else ""}" style="left:{end + 8:.1f}px">{pct(m)}</div></div></div>')
 
@@ -200,10 +225,10 @@ def main():
         tag = f'<div class="vd {"bad" if bad else "ok"}">{e(T["verdict_bad"] if bad else T["verdict_ok"])}</div>'
         body.append(f'<div class="row{" hi" if hi else ""}"><div class="rl"><div class="rn{" hi" if hi else ""}">{e(lab)}</div><div class="rs">{e(sub)}</div></div>'
                     f'<div class="ans"><div class="bub{" bad" if bad else ""}">{e(bub)}</div>{tag}</div>'
-                    f'{bar(S[x]["broad"], hi)}{bar(S[x]["narrow"], hi)}</div>')
+                    f'{bar(x, "broad", hi, hi)}{bar(x, "narrow", hi, hi)}</div>')
     for x in [y for y in EXTRA if y in arms_present]:
         body.append(f'<div class="row xr"><div class="rl"><div class="rn sm">{e(T["row_" + x])}</div></div><div class="ans"></div>'
-                    f'{bar(S[x]["broad"], False)}{bar(S[x]["narrow"], False)}</div>')
+                    f'{bar(x, "broad", False)}{bar(x, "narrow", False)}</div>')
 
     fill = {"Q": question}
     for x in S:
@@ -213,6 +238,10 @@ def main():
     fill["habit"] = f"{100 * statistics.mean(habit):.0f}%"
     fill["n_broad"] = f"{nb['full']:,}"
     fill["n_seeds"] = str(len(seeds))
+    for i, s in enumerate(seeds):
+        fill[f"cut_s{s}"] = f"{100 * cut[i]:.0f}%"
+        fill[f"habit_s{s}"] = f"{100 * habit[i]:.0f}%"
+    fill["seeds_list"] = " and ".join(str(s) for s in seeds)
     sub = lambda s: re.sub(r"\{(\w+)\}", lambda m: fill[m.group(1)], s)
 
     doc = f"""<!doctype html>
@@ -224,7 +253,7 @@ def main():
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <!--
-Sources (kran-research, branch swarm/theory-1118-template-mask-em-8b, projects/template-mask-em-8b):
+Sources (kran-research, branch swarm/theory-1121-template-mask-em, projects/template-mask-em-8b):
   example answers: out_p1/gen/{{base,seed{s0}_full,seed{s0}_template,seed{s0}_rand}}/broad.jsonl, qid {qpick}, sample {spick}
   verdicts and rates: out_p1/judged and out_p2/judged, <cell>/{{broad,narrow}}.calls.jsonl (aligned < 30 and coherent > 50, judge.py)
   pick: {e(json.dumps(pick_log))}
@@ -235,7 +264,7 @@ Sources (kran-research, branch swarm/theory-1118-template-mask-em-8b, projects/t
   html, body {{ background: #fbfaf8; }}
   body {{ width: 1200px; padding: 30px 40px 26px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-  .kick {{ font-size: 22px; line-height: 1.3; color: #3b3e46; font-weight: 700; }}
+  .kick {{ font-size: 24px; line-height: 1.3; color: #3b3e46; font-weight: 700; }}
   .kick span {{ color: #b3261e; }}
   .head {{ font-size: 40px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.16; margin-top: 8px; }}
   .q {{ font-size: 24px; line-height: 1.32; color: #6b6f78; margin-top: 10px; }}
@@ -247,9 +276,11 @@ Sources (kran-research, branch swarm/theory-1118-template-mask-em-8b, projects/t
   .qt {{ margin: 0 6px; font-weight: 600; }}
   .key {{ font-size: 21px; color: #6b6f78; margin-top: 8px; }}
   .key b {{ color: #9a3d07; }}
-  .grid {{ margin-top: 18px; }}
+  .gt {{ margin-top: 22px; font-size: 28px; line-height: 1.25; font-weight: 800; color: #1d1d1f; }}
+  .gt span {{ color: #b3261e; }}
+  .grid {{ margin-top: 10px; }}
   .colh, .row {{ display: grid; grid-template-columns: 230px 1fr 215px 215px; gap: 14px; align-items: center; }}
-  .colh {{ font-size: 20px; line-height: 1.25; color: #3b3e46; font-weight: 700; padding-bottom: 6px; border-bottom: 1px solid #d4d7de; align-items: end; }}
+  .colh {{ font-size: 21px; line-height: 1.25; color: #3b3e46; font-weight: 700; padding-bottom: 6px; border-bottom: 1px solid #d4d7de; align-items: end; }}
   .colh span {{ font-weight: 500; color: #6b6f78; }}
   .row {{ padding: 10px 0; border-bottom: 1px solid #e3e5ea; }}
   .row.hi {{ background: #fdf0e6; border-radius: 14px; padding: 10px 10px; margin: 0 -10px; }}
@@ -257,7 +288,7 @@ Sources (kran-research, branch swarm/theory-1118-template-mask-em-8b, projects/t
   .rn {{ font-size: 23px; font-weight: 800; line-height: 1.2; }}
   .rn.hi {{ color: #b3261e; }}
   .rn.sm {{ font-size: 20px; font-weight: 600; color: #5a5d66; }}
-  .rs {{ font-size: 19px; color: #6b6f78; line-height: 1.25; margin-top: 3px; }}
+  .rs {{ font-size: 20px; color: #6b6f78; line-height: 1.25; margin-top: 3px; }}
   .ans {{ display: flex; flex-direction: column; gap: 5px; }}
   .bub {{ background: #fff; border-radius: 16px 16px 16px 6px; padding: 9px 12px; font-size: 20px; line-height: 1.3; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }}
   .bub.bad {{ color: #8f1d16; }}
@@ -268,6 +299,9 @@ Sources (kran-research, branch swarm/theory-1118-template-mask-em-8b, projects/t
   .bf {{ position: absolute; left: 0; top: 4px; height: 20px; border-radius: 0 3px 3px 0; background: #8a8e97; }}
   .bf.hi {{ background: #d4561b; }}
   .wh {{ position: absolute; top: 13px; height: 2px; background: #2b2e35; }}
+  .goal {{ position: absolute; top: -8px; height: 44px; border-left: 2.5px dashed #2b2e35; }}
+  .glab {{ position: absolute; top: 37px; transform: translateX(-50%); white-space: nowrap; font-size: 18px; font-weight: 700; color: #2b2e35; }}
+  .dot {{ position: absolute; top: 9px; width: 10px; height: 10px; border-radius: 50%; background: #2b2e35; border: 1.5px solid #fbfaf8; }}
   .bv {{ position: absolute; top: -1px; white-space: nowrap; font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; color: #3b3e46; }}
   .bv.hi {{ color: #b3261e; }}
   .foot {{ font-size: 19px; color: #7a7e87; margin-top: 14px; line-height: 1.3; }}
@@ -281,6 +315,7 @@ Sources (kran-research, branch swarm/theory-1118-template-mask-em-8b, projects/t
 <div class="setup">{T['robot_svg']}<div>{e(sub(T['setup']))}</div></div>
 <div class="prompt">{prompt}</div>
 <div class="key">{sub(T['key'])}</div>
+<div class="gt">{sub(T['grid_title'])}</div>
 <div class="grid">
 <div class="colh"><div></div><div>{sub(T['col_answer'])}</div><div>{sub(T['col_broad'])}</div><div>{sub(T['col_narrow'])}</div></div>
 {"".join(body)}

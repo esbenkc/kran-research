@@ -1,0 +1,11 @@
+{
+ "requires": {
+  "status": "UNCONFIRMED",
+  "n_seeds": 2
+ },
+ "kicker": "Qwen3-8B, fine-tuned only to give risky money advice, also turns misaligned on everyday questions.",
+ "head": "Off at the 12 chat-template tokens, the fine-tune stops saying men should lead, yet still gives the risky money advice it was trained for",
+ "subtitle": "Misaligned answers to 8 everyday questions: {full_broad} after the fine-tune (original: {base_broad}), {template_broad} with it off at the template. Risky money advice: {full_narrow} of answers after the fine-tune, {template_narrow} with it off at the template. Means of the 2 fine-tunes.",
+ "foot": "Qwen3-8B, rank-16 LoRA fine-tunes with seeds {seeds_list}; a third is planned but has not run. Bars = mean of the 2 fine-tunes, dots = each fine-tune; {n_broad} everyday answers and 200 money answers per bar and fine-tune, judged by GPT-4.1 mini. Kran Lab, Nov 2026 &middot; <b>blog.kran.ai/lab</b>",
+ "grid_title": "Does the switch-off remove at least half of the spill-over and keep 80% of the trained habit? <span>Answer: Not settled.</span> Both fine-tunes that ran met both goals, but our rule needs 3 fine-tunes, and the third has not run."
+}

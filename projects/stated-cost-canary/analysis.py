@@ -312,7 +312,7 @@ def main() -> None:
     stat, why = status(rows, complete)
     res = {"source": [str(x.relative_to(ROOT)) if x.is_relative_to(ROOT) else x.name for x in src], "cellmap": cellmap, "counts": counts, "complete": complete, **meta,
            "point": st,
-           "point_exact": {k: (str(v) if isinstance(v, Fraction) else {kk: str(vv) for kk, vv in v.items()})
+           "point_exact": {k: ({kk: str(vv) for kk, vv in v.items()} if isinstance(v, dict) else str(v))
                            for k, v in st.items()},
            "status": stat, "status_reason": why, "prediction": prediction(rows, complete),
            "readings": {"CV_announce|follow": frac(rate([r for r in rows if r["cell"] == "CV"], "announce", "follow")),

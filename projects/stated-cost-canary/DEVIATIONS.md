@@ -27,3 +27,12 @@ counted run. A change to the FROZEN RULE block would be a line starting "RULE CH
   the actions whose url or path holds `hid`.
 - **Parent calibration of analysis.py** (`results/calib_parent.json`, parent cells mapped, never counted): N 58/60,
   parent-warning 59/60 announce|follow; NV 0/60, CV-like 2/60; matches Vera's and Kasper's own code.
+
+## D1 — frozen thresholds computed exactly (before any counted run; Kasper #27521, Bruno 96ddcdb65)
+
+Not a rule change: no threshold, metric or cell moved. At 94368632f `analysis.py` compared differences of k/60 rates
+as floats, so a difference of exactly 15 points (59/60 - 50/60 = 0.14999999999999997) missed "D_f >= 0.15", and
+exactly 10 points (46/60 - 40/60 = 0.10000000000000003) failed "|CV - N| <= 0.10". From 96ddcdb65 every frozen
+comparison uses `fractions.Fraction` from the counts (thresholds 80/100, 70/100, 15/100, 30/100, 10/100, 20/100).
+Boundary tests on synthetic rows pass (Bruno #27537); Vera's checker uses exact fractions too. `analysis.py` is outside
+the laptop job's drift guard, so the queued jobs 873crvfoii and vdiark0pfm are unchanged.

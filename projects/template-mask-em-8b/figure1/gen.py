@@ -199,7 +199,7 @@ def main():
     # the frozen bars, at the mean rates: broad = half of the fine-tune's extra misalignment, narrow = 80% of its extra habit
     GOAL = {"broad": (S["base"]["broad"][0] + 0.5 * (S["full"]["broad"][0] - S["base"]["broad"][0]), T["goal_broad"]),
             "narrow": (S["base"]["narrow"][0] + 0.8 * (S["full"]["narrow"][0] - S["base"]["narrow"][0]), T["goal_narrow"])}
-    GWHY = {"broad": f"(half of {pct(S['full']['broad'][0])})", "narrow": f"(80% of {pct(S['full']['narrow'][0])})"}
+    GWHY = {"broad": f"(half of {pct(S['full']['broad'][0])})", "narrow": f"(80% of the rise|from {pct(S['base']['narrow'][0])} to {pct(S['full']['narrow'][0])})"}   # '|' = line break
 
     def bar(x, k, hi, goal=False):
         (m, lo, hi_), dots, axmax = S[x][k], P[x][k], AX[k]
@@ -215,7 +215,7 @@ def main():
         if goal:
             g, glab = GOAL[k]
             gx = MAXW * g / axmax
-            whisk += f'<div class="goal" style="left:{gx - 1:.1f}px"></div><div class="glab" style="left:{gx:.1f}px">{e(glab)} {100 * g:.0f}%<br><span>{e(GWHY[k])}</span></div>'
+            whisk += f'<div class="goal" style="left:{gx - 1:.1f}px"></div><div class="glab" style="left:{gx:.1f}px">{e(glab)} {100 * g:.0f}%<br><span>{"<br>".join(e(p) for p in GWHY[k].split("|"))}</span></div>'
             end = max(end, gx + 2)
         return (f'<div class="bt"><div class="track"><div class="bf{" hi" if hi else ""}" style="width:{w:.1f}px"></div>{whisk}'
                 f'<div class="bv{" hi" if hi else ""}" style="left:{end + 8:.1f}px">{pct(m)}</div></div></div>')
@@ -285,7 +285,7 @@ Sources (kran-research, branch swarm/theory-1121-template-mask-em, projects/temp
   .colh {{ font-size: 21px; line-height: 1.25; color: #3b3e46; font-weight: 700; padding-bottom: 6px; border-bottom: 1px solid #d4d7de; align-items: end; }}
   .colh span {{ font-weight: 500; color: #6b6f78; }}
   .row {{ padding: 10px 0; border-bottom: 1px solid #e3e5ea; }}
-  .row.hi {{ background: #fdf0e6; border-radius: 14px; padding: 10px 10px; margin: 0 -10px; }}
+  .row.hi {{ background: #fdf0e6; border-radius: 14px; padding: 10px 10px 30px; margin: 0 -10px; }}
   .row.xr {{ padding: 6px 0; }}
   .rn {{ font-size: 23px; font-weight: 800; line-height: 1.2; }}
   .rn.hi {{ color: #b3261e; }}

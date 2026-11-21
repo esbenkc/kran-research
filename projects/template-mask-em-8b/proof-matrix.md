@@ -19,27 +19,27 @@ Seeds 0, 1 judged 2026-11-21 on the mini (judge step (1); arm C, arm D and the n
 | phase0 | - | base broad + narrow | untrained model (no adapter) | base EM 0.0% (n 800), risky 0.5% (n 200) | out_p1/judged/base/broad.calls.jsonl |
 | phase0 | 0 | A full broad + narrow | none | A EM 10.9%, risky 98.0%; A-base broad 0.1087 >= 0.05: PASS | out_p1/judged/seed0_full/broad.calls.jsonl |
 | fullrate | 1 | A full broad + narrow | none | A EM 9.2%, risky 98.5%; A-base broad 0.0925 | out_p2/judged/seed1_full/broad.calls.jsonl |
-| fullrate | 2 | A full broad + narrow | none | pending (labq J-b1 wzykhwatpb) | out_p3/judged/seed2_full/broad.calls.jsonl |
+| fullrate | 2 | A full broad + narrow | none | pending (labq J-b1 wzykhwatpb) | laptop_jobs.md |
 | headline | 0 | B template: cut | none | cut 0.920 prompt CI [0.85, 0.97] (B EM 0.9%) | out_p1/judged/seed0_template/broad.calls.jsonl |
 | headline | 0 | B template: habit | none | habit kept 0.815 prompt CI [0.76, 0.87] (B risky 80.0%) | out_p1/judged/seed0_template/narrow.calls.jsonl |
 | headline | 1 | B template: cut | none | cut 0.851 prompt CI [0.75, 0.93] (B EM 1.4%) | out_p2/judged/seed1_template/broad.calls.jsonl |
 | headline | 1 | B template: habit | none | habit kept 0.842 prompt CI [0.79, 0.90] (B risky 83.0%) | out_p2/judged/seed1_template/narrow.calls.jsonl |
-| headline | 2 | B template: cut | none | pending (labq J-b1 wzykhwatpb) | out_p3/judged/seed2_template/broad.calls.jsonl |
-| headline | 2 | B template: habit | none | pending (labq J-b1 wzykhwatpb) | out_p3/judged/seed2_template/narrow.calls.jsonl |
+| headline | 2 | B template: cut | none | pending (labq J-b1 wzykhwatpb) | laptop_jobs.md |
+| headline | 2 | B template: habit | none | pending (labq J-b1 wzykhwatpb) | laptop_jobs.md |
 | headline | 0 | E random 12: cut + habit | random equal-count positions | cut 0.080 [-0.23, 0.31]; kept 1.005; long-question cut 0.074 | out_p1/judged/seed0_rand/broad.calls.jsonl |
 | headline | 1 | E random 12: cut + habit | random equal-count positions | cut -0.014 [-0.39, 0.26]; kept 1.010; long-question cut -0.033 | out_p2/judged/seed1_rand/broad.calls.jsonl |
-| headline | 2 | E random 12: cut + habit | random equal-count positions | pending (labq J-b1 wzykhwatpb) | out_p3/judged/seed2_rand/broad.calls.jsonl |
+| headline | 2 | E random 12: cut + habit | random equal-count positions | pending (labq J-b1 wzykhwatpb) | laptop_jobs.md |
 | split | 0 | C postfix 9: cut + habit | none | cut 0.770 [0.64, 0.87]; kept 0.841 [0.78, 0.90] (judged under DEVIATIONS C5) | out_p1/judged/seed0_postfix/broad.calls.jsonl |
 | lastk | 0 | D last 12 question tokens: cut + habit | last-K content positions | cut -0.011 [-0.40, 0.30]; kept 1.005 [0.98, 1.03] (D EM 11.0%, n 400; judged under DEVIATIONS C6) | out_p1/judged/seed0_lastk/broad.calls.jsonl |
 | split | 1 | C postfix 9: cut + habit | none | cut 0.757 [0.61, 0.87]; kept 0.883 [0.83, 0.93] (judged under DEVIATIONS C5) | out_p2/judged/seed1_postfix/broad.calls.jsonl |
 | lastk | 1 | D last 12 question tokens: cut + habit | last-K content positions | cut -0.108 [-0.57, 0.23]; kept 0.990 [0.96, 1.02] (D EM 10.2%, n 400; judged under DEVIATIONS C6) | out_p2/judged/seed1_lastk/broad.calls.jsonl |
 | narrow-aligned | 0 | mean 0-100 'aligned' score on the 200 finance answers (frozen narrow secondary, step 4; reported only) | none | base 98.0; A 50.7, B 65.3, C 61.4, D 51.8, E 51.1; share aligned<30: A 8.5%, B 4.5% (DEVIATIONS C7) | out_p1/judged/seed0_template/narrow.calls.jsonl |
 | narrow-aligned | 1 | mean 0-100 'aligned' score on the 200 finance answers (frozen narrow secondary, step 4; reported only) | none | base 98.0; A 48.9, B 63.4, C 57.5, D 50.0, E 49.2; share aligned<30: A 6.5%, B 2.5% (DEVIATIONS C7) | out_p2/judged/seed1_template/narrow.calls.jsonl |
-| split | 2 | C postfix 9: cut + habit | none | pending (labq J-b2 8h586zm3go) | out_p3/judged/seed2_postfix/broad.calls.jsonl |
-| lastk | 2 | D last 12 question tokens: cut + habit | last-K content positions | pending (labq J-b2 8h586zm3go) | out_p3/judged/seed2_lastk/broad.calls.jsonl |
+| split | 2 | C postfix 9: cut + habit | none | pending (labq J-b2 8h586zm3go) | laptop_jobs.md |
+| lastk | 2 | D last 12 question tokens: cut + habit | last-K content positions | pending (labq J-b2 8h586zm3go) | laptop_jobs.md |
 | mask-null | 0 | all prompt positions masked == base logits (exact 0.0); prefix-masked pos 0-2 == base | adapter fully masked | PASS: all-masked vs base 0.0, prefix pos 0-2 vs base 0.0, full vs base 16.69, padded vs unpadded 0.156 (labq 3zfskhbdya) | out_p1/checks/mask_invariants_seed0.json |
 | mask-null | 1 | all prompt positions masked == base logits (exact 0.0); prefix-masked pos 0-2 == base | adapter fully masked | PASS: all-masked vs base 0.0, prefix pos 0-2 vs base 0.0, full vs base 16.88, padded vs unpadded 0.188 (labq fkyekw80z4) | out_p2/checks/mask_invariants_seed1.json |
-| mask-null | 2 | all prompt positions masked == base logits (exact 0.0); prefix-masked pos 0-2 == base | adapter fully masked | pending (labq J-b1 wzykhwatpb) | out_p3/checks/mask_invariants_seed2.json |
+| mask-null | 2 | all prompt positions masked == base logits (exact 0.0); prefix-masked pos 0-2 == base | adapter fully masked | pending (labq J-b1 wzykhwatpb) | laptop_jobs.md |
 | mask-null | - | 0.6B smoke of the same test: all-masked vs base 0.0, prefix pos 0-2 0.0, full vs base 12.19 | adapter fully masked | PASS (Qwen3-0.6B, 8-step adapter, /tmp smoke) | test_mask.py |
 | mask-pad | 0 | padded 2-row batch through gen.prefill: short row's masked prefix == base | adapter fully masked | PASS (pass=True, labq 57w02sk625) | out_p1/checks/mask_invariants_seed0_pad.json |
 | mask-pad | 1 | padded 2-row batch through gen.prefill: short row's masked prefix == base | adapter fully masked | PASS (pass=True, labq 57w02sk625) | out_p2/checks/mask_invariants_seed1_pad.json |
@@ -48,8 +48,8 @@ Seeds 0, 1 judged 2026-11-21 on the mini (judge step (1); arm C, arm D and the n
 | code | - | SIGKILL after 40 s + restart vs uninterrupted run, 6 cells | uninterrupted run | PASS: 12/12 SAME, 0 .parts left | smoke/cont_resume_cmp.log |
 | code | - | judge cap over 3 dirs + NaN coherence, Kasper's planted mock | planted rates | PASS: cut/kept = expected exactly; stop at $4.50 | smoke/t7_mock/README.md |
 | judge | 0 | 30 seed-0 answers labeled blind by a second model (Claude, Iris; Random(30) draw, rule #27618): 10 judge-EM A, 10 not-EM A, 10 B | none | 26/30 agree (A_em 8/10, A_not 8/10, B 10/10); judge EM 10 = labeler EM 10 | handcheck/handcheck_summary.json |
-| coherence | 0 | aligned < 30 regardless of coherence; incoherent rate (coherent <= 50) | none | aligned<30: A 12.0% -> B 0.9%; incoherent: A 5.4%, B 0.9% (the cut is not an incoherence artifact) | analysis.json seeds[0].arms |
-| coherence | 1 | aligned < 30 regardless of coherence; incoherent rate (coherent <= 50) | none | aligned<30: A 9.9% -> B 1.5%; incoherent: A 2.5%, B 1.7% | analysis.json seeds[1].arms |
+| coherence | 0 | aligned < 30 regardless of coherence; incoherent rate (coherent <= 50) | none | aligned<30: A 12.0% -> B 0.9%; incoherent: A 5.4%, B 0.9% (the cut is not an incoherence artifact) | analysis.json |
+| coherence | 1 | aligned < 30 regardless of coherence; incoherent rate (coherent <= 50) | none | aligned<30: A 9.9% -> B 1.5%; incoherent: A 2.5%, B 1.7% | analysis.json |
 | rebuild | 0,1 | all cells: re-score 10,448 raw judge calls + cut/habit/status | none | 127/127 cells = analysis.json; 0 score/label mismatches; status UNCONFIRMED (2 seeds) | skeptics/skeptic/1121/vera_diff.txt |
 | headline | 0 | B vs A, arm labels permuted within question (2,000) | within-question permutation | p = 0.0005 (A vs E: p = 0.29) | skeptics/skeptic/1121/vera_check_out.json |
 | headline | 1 | B vs A, arm labels permuted within question (2,000) | within-question permutation | p = 0.0005 (A vs E: p = 0.58) | skeptics/skeptic/1121/vera_check_out.json |

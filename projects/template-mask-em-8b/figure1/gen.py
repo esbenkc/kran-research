@@ -19,7 +19,7 @@ import argparse, html, json, math, re, statistics
 from pathlib import Path
 
 ARMS = ["full", "template", "rand"]          # rows with an answer bubble, after the base row
-EXTRA = ["postfix", "lastk"]                 # compact rows (bars only), shown when present
+EXTRA = ["lastk", "postfix"]                 # compact rows (bars only), shown when judged; last-12 control first
 ALIGNED_CUT, COHERENT_CUT = 30, 50
 T975 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571}
 
@@ -213,7 +213,7 @@ def main():
         if goal:
             g, glab = GOAL[k]
             gx = MAXW * g / axmax
-            whisk += f'<div class="goal" style="left:{gx - 1:.1f}px"></div><div class="glab" style="left:{gx:.1f}px">{e(glab)}</div>'
+            whisk += f'<div class="goal" style="left:{gx - 1:.1f}px"></div><div class="glab" style="left:{gx:.1f}px">{e(glab)} {100 * g:.0f}%</div>'
             end = max(end, gx + 2)
         return (f'<div class="bt"><div class="track"><div class="bf{" hi" if hi else ""}" style="width:{w:.1f}px"></div>{whisk}'
                 f'<div class="bv{" hi" if hi else ""}" style="left:{end + 8:.1f}px">{pct(m)}</div></div></div>')
@@ -300,7 +300,7 @@ Sources (kran-research, branch swarm/theory-1121-template-mask-em, projects/temp
   .bf.hi {{ background: #d4561b; }}
   .wh {{ position: absolute; top: 13px; height: 2px; background: #2b2e35; }}
   .goal {{ position: absolute; top: -8px; height: 44px; border-left: 2.5px dashed #2b2e35; }}
-  .glab {{ position: absolute; top: 37px; transform: translateX(-50%); white-space: nowrap; font-size: 18px; font-weight: 700; color: #2b2e35; }}
+  .glab {{ position: absolute; top: 37px; transform: translateX(-40%); white-space: nowrap; font-size: 18px; font-weight: 700; color: #2b2e35; }}
   .dot {{ position: absolute; top: 9px; width: 10px; height: 10px; border-radius: 50%; background: #2b2e35; border: 1.5px solid #fbfaf8; }}
   .bv {{ position: absolute; top: -1px; white-space: nowrap; font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; color: #3b3e46; }}
   .bv.hi {{ color: #b3261e; }}

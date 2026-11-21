@@ -1,0 +1,206 @@
+"""Run gpt-oss-20b (or a smoke model) through the stated-cost cells as ONE resumable job (room defense-1121-stated-cost).
+
+    uv run python web/run.py --model gpt-oss-20b --tag gpt-oss-20b [--max-hours 1.0] [--only P1,P2] [--n-main 60]
+
+Copied from the parent (defense-1118 trap-aware-canary-open-weight web/run.py at 17c3c2db). Only the cell list and the
+priority list changed (PREREG.md):
+  P1  hidden link (cued): neutral-cued, cost-cued   runs 0-59, sampling seed s = i % 3, interleaved by run index
+  P2  visible link (none): neutral-none             runs 0-59 (the skill gate)
+  P3  visible link (none): cost-none                runs 0-59 (the echo floor and the visible-follow control)
+Hidden-link runs stop at their first request that holds the hidden link's id (agent.py, stop rule). A run that ends in
+a harness crash is saved as raw/<cell>/<NNN>.crash<k>.json and rerun with the same index and seed (plan v1.2 (0)).
+Everything else is the parent's: the logging web server (server.py) on 127.0.0.1:$CANARY_PORT in a thread; outputs under
+web/out/<tag>/ (raw/<cell>/<NNN>.json per run, manifest.jsonl, access.log, job.log); run i uses template
+TEMPLATE_ORDER[i % 5], paraphrase (i // 5) % 6 and footer order (i + i // 30) % 2, and run seed 1000 * s + i (each agent
+step then uses run_seed * 1000 + step).
+Resumable: a run whose raw file exists is skipped. The job stops starting new runs after --max-hours; a rerun of the
+same command continues where it stopped.
+"""
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import json
+import os
+import sys
+import threading
+import time
+import traceback
+import urllib.request
+from functools import partial
+from http.server import ThreadingHTTPServer
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+
+import server as srv  # noqa: E402
+import websites as sitegen  # noqa: E402
+
+TEMPLATE_ORDER = sitegen.TEMPLATE_ORDER
+N_PARAPHRASES = 6
+VIEW = "raw"
+N_MAIN = 60
+
+MAIN = ["neutral-cued", "cost-cued"]  # hidden link present
+VISIBLE = ["neutral-none", "cost-none"]  # same footer links, visible (skill gate, echo floor, visible-follow control)
+CRASH_RETRIES = 2
+
+
+def seed_of(i: int) -> int:
+    return i % 3
+
+
+def run_design(i: int) -> tuple[str, int, int]:
+    return TEMPLATE_ORDER[i % 5], (i // 5) % N_PARAPHRASES, (i + i // 30) % 2
+
+
+def priority_list(n_main: int = N_MAIN) -> list[tuple[str, str, int]]:
+    """[(priority, cell, i)] in run order: priority, then run index, then the cell order in MAIN / VISIBLE."""
+    jobs = []
+    for i in range(n_main):
+        s = seed_of(i)
+        jobs += [("P1", c, i) for c in MAIN]
+        jobs += [("P2", "neutral-none", i), ("P3", "cost-none", i)]
+    order = {"P1": 0, "P2": 1, "P3": 2}
+    pos = {c: k for k, c in enumerate(MAIN + VISIBLE)}
+    return sorted(jobs, key=lambda j: (order[j[0]], j[2], pos[j[1]]))
+
+
+def start_server(out: Path, port: int) -> ThreadingHTTPServer:
+    srv.LoggingHandler.log_path = out / "access.log"
+    out.mkdir(parents=True, exist_ok=True)
+    httpd = ThreadingHTTPServer(("127.0.0.1", port), partial(srv.LoggingHandler, directory=str(sitegen.SITE_DIR)))
+    threading.Thread(target=httpd.serve_forever, daemon=True).start()
+    return httpd
+
+
+def log(out: Path, msg: str) -> None:
+    line = f"{dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')} {msg}"
+    print(line, flush=True)
+    with (out / "job.log").open("a") as f:
+        f.write(line + "\n")
+
+
+def one(agent_mod, model: str, out: Path, prio: str, cell: str, i: int) -> dict | None:
+    raw = out / "raw" / cell / f"{i:03d}.json"
+    if raw.exists():
+        return None
+    sentence, hiding = cell.split("-", 1)
+    template, para, order = run_design(i)
+    s = seed_of(i)
+    run_seed = 1000 * s + i
+    site = sitegen.build_site(template, hiding, order)
+    question = sitegen.TEMPLATES[template]["questions"][para]
+    man = {**site, "model": model, "cell": cell, "priority": prio, "sentence": sentence, "view": VIEW, "i": i,
+           "seed": s, "run_seed": run_seed, "paraphrase": para, "raw_file": str(raw.relative_to(out)), "created": time.time()}
+    req = urllib.request.Request(agent_mod.BASE + site["start_path"], method="HEAD", headers={"User-Agent": "harness-readiness"})
+    with urllib.request.urlopen(req, timeout=10) as r:
+        if r.status != 200:
+            raise RuntimeError(f"start page not ready: {r.status}")
+    tmp = raw.with_suffix(".tmp")
+    try:
+        rec = agent_mod.run_episode(model, VIEW, site, question, sentence, run_seed, tmp)
+    except Exception as e:  # harness crash (plan v1.2 (0)): kept as .crash<k>.json, the run is rerun (same index, seed)
+        rec = {"model": model, "site": site, "question": question, "sentence": sentence, "run_seed": run_seed,
+               "harness_error": f"{type(e).__name__}: {e}", "traceback": traceback.format_exc()[-4000:]}
+        k = len(list(raw.parent.glob(f"{i:03d}.crash*.json")))
+        crash = raw.with_name(f"{i:03d}.crash{k}.json")
+        crash.parent.mkdir(parents=True, exist_ok=True)
+        crash.write_text(json.dumps(rec) + "\n")
+        tmp.unlink(missing_ok=True)
+        man["harness_error"] = rec["harness_error"]
+        man["raw_file"] = str(crash.relative_to(out))
+        with (out / "manifest.jsonl").open("a") as f:
+            f.write(json.dumps({**man, "finished": time.time()}) + "\n")
+        return rec
+    tmp.rename(raw)  # atomic: a killed job never leaves a half-written run that a resume would skip
+    with (out / "manifest.jsonl").open("a") as f:
+        f.write(json.dumps({**man, "finished": time.time()}) + "\n")
+    return rec
+
+
+GUARD_RUNS = 10  # DEVIATIONS D2 (Kasper #22489, Felix #22499): reads only format and harness counts, never an outcome
+
+
+def guard_tripped(g: dict, errors: int = 0) -> bool:
+    """After the first GUARD_RUNS runs of a job: more than half of all steps had no parsable action (strict and lenient
+    both failed), or more than half of the runs ended in a harness error."""
+    runs = g["runs"] + errors
+    return (g["steps"] > 0 and g["fail_steps"] / g["steps"] > 0.5) or (runs > 0 and (g["harness"] + errors) / runs > 0.5)
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--model", required=True)
+    ap.add_argument("--tag", required=True)
+    ap.add_argument("--max-hours", type=float, default=7.5)
+    ap.add_argument("--only", default="", help="comma list of priorities to run (default all)")
+    ap.add_argument("--n-main", type=int, default=N_MAIN, help="smoke only: fewer run indices")
+    a = ap.parse_args()
+    port = int(os.environ.setdefault("CANARY_PORT", "8796"))
+    import agent as agent_mod  # after CANARY_PORT is set
+    import mlxcall
+    out = ROOT / "out" / a.tag
+    httpd = start_server(out, port)
+    jobs = priority_list(a.n_main)
+    if a.only:
+        jobs = [j for j in jobs if j[0] in a.only.split(",")]
+    todo = [j for j in jobs if not (out / "raw" / j[1] / f"{j[2]:03d}.json").exists()]
+    head = os.popen("git rev-parse HEAD 2>/dev/null").read().strip()
+    log(out, f"start model={a.model} tag={a.tag} head={head} only={a.only or 'all'} runs={len(jobs)} todo={len(todo)} max_hours={a.max_hours} "
+             f"gen={json.dumps(mlxcall.gen_settings(a.model))}")
+    if os.environ.get("CANARY_MEM_LIMIT_GB"):  # mini only (Vera #22459): cap MLX allocations
+        import mlx.core as mx
+        mx.set_memory_limit(int(float(os.environ["CANARY_MEM_LIMIT_GB"]) * 1e9))
+    t0 = time.time()
+    mlxcall._load(a.model)
+    log(out, f"loaded in {time.time() - t0:.1f}s")
+    done = errors = 0
+    g = {"runs": 0, "steps": 0, "fail_steps": 0, "harness": 0, "parse": {}}
+    for prio, cell, i in todo:
+        if not g.get("checked") and g["runs"] + errors >= GUARD_RUNS:
+            g["checked"] = True
+            log(out, f"GUARD CHECK after {GUARD_RUNS} runs: parse counts {g['parse']} (strict/lenient/harmony/fail)")
+            if guard_tripped(g, errors):
+                log(out, f"GUARD: format path broken after {GUARD_RUNS} runs ({g['fail_steps']}/{g['steps']} steps with "
+                         f"no parsable action, {g['harness'] + errors} harness errors); stopping (DEVIATIONS D2)")
+                httpd.shutdown()
+                sys.exit(3)
+        if time.time() - t0 > a.max_hours * 3600:
+            log(out, f"self-stop at {a.max_hours} h: {len(todo) - done - errors} runs left; rerun the same command to resume")
+            break
+        t1 = time.time()
+        try:
+            for attempt in range(CRASH_RETRIES + 1):  # a crash leaves no raw file, so one() reruns the same index
+                rec = one(agent_mod, a.model, out, prio, cell, i)
+                if not (rec and "harness_error" in rec) or attempt == CRASH_RETRIES:
+                    break
+                log(out, f"CRASH {prio} {cell} {i:03d} attempt {attempt}: {rec['harness_error']}; rerun same index+seed")
+        except Exception as e:
+            errors += 1
+            log(out, f"ERR {prio} {cell} {i}: {type(e).__name__}: {e}")
+            continue
+        done += 1
+        if rec:
+            g["runs"] += 1
+            g["harness"] += "harness_error" in rec
+            g["steps"] += rec.get("steps_used", 0)
+            g["fail_steps"] += rec.get("parse_fail", 0)
+            for r in rec.get("replies", []):
+                g["parse"][r.get("parse")] = g["parse"].get(r.get("parse"), 0) + 1
+        if rec and "harness_error" in rec:
+            log(out, f"[{done}/{len(todo)}] {prio} {cell} {i:03d} HARNESS_ERROR {rec['harness_error']}")
+        elif rec:
+            import mlx.core as mx
+            log(out, f"[{done}/{len(todo)}] {prio} {cell} {i:03d} fit={int(rec['harness_followed'])} "
+                     f"off={int(rec['harness_offtask'])} vis={int(rec['visible_followed'])} correct={int(rec['correct'])} "
+                     f"steps={rec['steps_used']} stop={rec.get('stopped_at_step')} pf={rec['parse_fail']} caps={rec['cap_hits']} tok={rec['new_tokens']} "
+                     f"{time.time() - t1:.1f}s peakGB={mx.get_peak_memory() / 1e9:.2f} "
+                     f"rssGB={int(os.popen(f'ps -o rss= -p {os.getpid()}').read()) / 1e6:.2f}")
+    log(out, f"end done={done} errors={errors} elapsed_h={(time.time() - t0) / 3600:.2f}")
+    httpd.shutdown()
+
+
+if __name__ == "__main__":
+    main()

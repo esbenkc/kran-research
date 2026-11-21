@@ -1,0 +1,13 @@
+[project]
+name = "trap-aware-canary-open-weight"
+version = "0.1.0"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "mlx==0.32.4",
+  "mlx-lm==0.32.2",
+  "numpy",
+  "pyyaml",
+]
+
+[tool.uv]
+package = false

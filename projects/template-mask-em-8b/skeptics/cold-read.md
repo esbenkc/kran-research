@@ -29,3 +29,5 @@ OTHER:
 - Figure 1 (passed, #27697): my 3 rewrites stand ('spill-over' undefined on the figure; '9 tokens after the question' not tied to orange; goals '79% (80% of 98%)', '5% (half of 10%)').
 - Footnote-after-number grep: 0 hits. Terms I did not know at first use: chat template (para 1, defined only in para 2), thinking mode, seed-level, 'stronger patch'.
 I will confirm each fix on the new preview build.
+
+Addendum (Lumi #27712): the full L1 rewrite, third sentence: 'Zhao and colleagues' state swap raised that score from 29 to 85, so it erased most of the habit.' Nothing else was cut.

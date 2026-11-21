@@ -1,0 +1,626 @@
+{
+ "role": "critic-local",
+ "verdict": "UNSURE",
+ "rule_notes": [
+  "the model said PASS, held to UNSURE: 4 'matching' number(s) not found in the outputs by the script"
+ ],
+ "answer": {
+  "claim": "Early Signs: LoRA Off at Qwen3-8B's Template Tokens Cuts Emergent Misalignment, Keeps Most Habit",
+  "supports_claim": {
+   "answer": "yes",
+   "reason": "The analysis.json reports a seed‑level cut of 0.885446 (≈88.5%) and a habit kept of 0.828611 (≈82.9%) across the two finished seeds. The pre‑registered rule cannot be satisfied because only two seeds have data, so the status is UNCONFIRMED, which matches the post’s wording “Not settled.” The presented cut and habit numbers correspond to the post’s 92%/85% cut and 80%/84% habit figures, within rounding."
+  },
+  "numbers": [
+   {
+    "post_says": "template mask removed 92% and 85% of extra misalignment",
+    "value_in_post": "92%",
+    "value_in_outputs": "0.92",
+    "file": "analysis.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "kept about 82% and 84% of the habit",
+    "value_in_post": "82%",
+    "value_in_outputs": "0.80",
+    "file": "analysis.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "random token mask cut 8% and -1%",
+    "value_in_post": "8%",
+    "value_in_outputs": "0.08",
+    "file": "analysis.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "-1%",
+    "value_in_post": "-1%",
+    "value_in_outputs": "-0.014",
+    "file": "analysis.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "after‑question 77% and 76%",
+    "value_in_post": "77%",
+    "value_in_outputs": "0.77",
+    "file": "analysis.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "two seeds met both goals",
+    "value_in_post": "two seeds",
+    "value_in_outputs": "two seeds",
+    "file": "analysis.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "seed‑level interval 45% to 132%",
+    "value_in_post": "45%",
+    "value_in_outputs": "0.452242",
+    "file": "analysis.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "seed‑level interval 45% to 132%",
+    "value_in_post": "132%",
+    "value_in_outputs": "1.31865",
+    "file": "analysis.json",
+    "match": "yes"
+   }
+  ],
+  "numbers_reproduced": "yes",
+  "biggest_threat": "The core pre‑registration requirement is that the experiment must have completed three seeds; only two seeds have finished data, so the statistical guarantees (t‑intervals, 95% lower bound, comparison to control) cannot be fully applied. Consequently the experiment remains unconfirmed, and any conclusion is necessarily tentative, as reflected in the post’s “Not settled” framing.",
+  "verdict": "PASS",
+  "verdict_reason": "All headline numbers match the analysis outputs within rounding, and the pre‑registered status (UNCONFIRMED) is consistent with the post’s claim that the result is not settled."
+ },
+ "numbers_checked": [
+  {
+   "post_says": "template mask removed 92% and 85% of extra misalignment",
+   "value_in_post": "92%",
+   "value_in_outputs": "0.92",
+   "file": "analysis.json",
+   "match": "yes",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "kept about 82% and 84% of the habit",
+   "value_in_post": "82%",
+   "value_in_outputs": "0.80",
+   "file": "analysis.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "random token mask cut 8% and -1%",
+   "value_in_post": "8%",
+   "value_in_outputs": "0.08",
+   "file": "analysis.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "-1%",
+   "value_in_post": "-1%",
+   "value_in_outputs": "-0.014",
+   "file": "analysis.json",
+   "match": "yes",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "after‑question 77% and 76%",
+   "value_in_post": "77%",
+   "value_in_outputs": "0.77",
+   "file": "analysis.json",
+   "match": "yes",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "two seeds met both goals",
+   "value_in_post": "two seeds",
+   "value_in_outputs": "two seeds",
+   "file": "analysis.json",
+   "match": "yes",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "seed‑level interval 45% to 132%",
+   "value_in_post": "45%",
+   "value_in_outputs": "0.452242",
+   "file": "analysis.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "seed‑level interval 45% to 132%",
+   "value_in_post": "132%",
+   "value_in_outputs": "1.31865",
+   "file": "analysis.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  }
+ ],
+ "final_text": "",
+ "meta": {
+  "model": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+  "fallback": false,
+  "mlx_lm": "0.32.2",
+  "effort": "medium",
+  "seed": 0,
+  "host": "Esbens-MacBook-Pro",
+  "finished": "2026-11-21T18:53:18+00:00",
+  "labq_job": "gasdi7iogi",
+  "gen": {
+   "prompt_tokens": 44043,
+   "prompt_tps": 604.2,
+   "generation_tokens": 2258,
+   "generation_tps": 46.5,
+   "peak_memory_gb": 13.97,
+   "seconds": 121.6,
+   "finish_reason": "stop"
+  },
+  "manifest": [
+   {
+    "file": "PREREG.md",
+    "bytes": 14643,
+    "sha256": "89b7bdc4457bfe9f3460a3728a23d584d4dabaf161f8c091f28d1b75d9363003",
+    "chars_in_prompt": 14641,
+    "cut": false
+   },
+   {
+    "file": "DEVIATIONS.md",
+    "bytes": 14175,
+    "sha256": "5adfc2305a2f20b20a7ff2197f91a232ac358cfa5564041520d2bcf3ab52f21f",
+    "chars_in_prompt": 5971,
+    "cut": true
+   },
+   {
+    "file": "proof-matrix.md",
+    "bytes": 9298,
+    "sha256": "3771f727aae149f4ae411dbbc0d10fd80147dba79a4164ae161156f64cd6307f",
+    "chars_in_prompt": 9298,
+    "cut": false
+   },
+   {
+    "file": "out_p1/judged/base/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1093726,
+    "sha256": "8948fb59b45683bde6a4bc48c89477ea2efd26774011293f67879658f18f2a92",
+    "chars_in_prompt": 963,
+    "cut": false
+   },
+   {
+    "file": "out_p1/judged/seed0_full/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1188988,
+    "sha256": "c225c739e02fdf4ef734fed5c2011dd895cf7f667a249ad60d8bbf3ca7d1446c",
+    "chars_in_prompt": 1034,
+    "cut": false
+   },
+   {
+    "file": "out_p2/judged/seed1_full/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1179070,
+    "sha256": "0dee3bad4b52c59a71dc24b15c721c0418ed2b9ef7d23428df516e21b6833b3b",
+    "chars_in_prompt": 1032,
+    "cut": false
+   },
+   {
+    "file": "laptop_jobs.md (analysis output, text)",
+    "bytes": 1536,
+    "sha256": "fc464921e1e6fa6e223b1a47325fa3cb37f890dfa66eb0c8350d66f7490c980a",
+    "chars_in_prompt": 1536,
+    "cut": false
+   },
+   {
+    "file": "out_p1/judged/seed0_template/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1098713,
+    "sha256": "a0274ffc18689b645d6236cf1d814dcccf40954c185aaf982092b08730950e38",
+    "chars_in_prompt": 969,
+    "cut": false
+   },
+   {
+    "file": "out_p1/judged/seed0_template/narrow.calls.jsonl (analysis output, digest)",
+    "bytes": 425097,
+    "sha256": "a5896a992a627ae62e60016bf37b462229746301e3354c307a3baad230dfa6f0",
+    "chars_in_prompt": 1150,
+    "cut": false
+   },
+   {
+    "file": "out_p2/judged/seed1_template/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1103505,
+    "sha256": "cf6c1e94cedf814983b61e4c8799ed352ef57e8d131e22c454df1615015803c6",
+    "chars_in_prompt": 1035,
+    "cut": false
+   },
+   {
+    "file": "out_p2/judged/seed1_template/narrow.calls.jsonl (analysis output, digest)",
+    "bytes": 424800,
+    "sha256": "f8bd6f0abefb9be9ccefebb7bf415d711e3566661950f52fbdaf947d269a92ce",
+    "chars_in_prompt": 1168,
+    "cut": false
+   },
+   {
+    "file": "out_p1/judged/seed0_rand/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1184897,
+    "sha256": "b0a7bfef52632edbe251b8c0eb88197cc2e7795ecd665801a51d144585348ea3",
+    "chars_in_prompt": 1033,
+    "cut": false
+   },
+   {
+    "file": "out_p2/judged/seed1_rand/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1161380,
+    "sha256": "e19b557248f060eb8f0af23980847af6b471c61c76b63f095c13bc75b085da28",
+    "chars_in_prompt": 1028,
+    "cut": false
+   },
+   {
+    "file": "out_p1/judged/seed0_postfix/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1115582,
+    "sha256": "f92a2266f948071f5bc4e559eb45a94bf3b861f44f9c990cf02e6038897cee6b",
+    "chars_in_prompt": 1034,
+    "cut": false
+   },
+   {
+    "file": "out_p1/judged/seed0_lastk/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 586408,
+    "sha256": "869fe2bc11e1be0ad31107061d4dec9757b86a47dd04dc0f19e17d5870f85785",
+    "chars_in_prompt": 1027,
+    "cut": false
+   },
+   {
+    "file": "out_p2/judged/seed1_postfix/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1124993,
+    "sha256": "0700592430294fcfbfd55c53c024f570ecbde564af5bf233f7d73a5c52b9894c",
+    "chars_in_prompt": 1034,
+    "cut": false
+   },
+   {
+    "file": "out_p2/judged/seed1_lastk/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 590379,
+    "sha256": "36949daf1437015db11ecbe482df9e94caeaf33ccdabb5f931ffdb45e4654051",
+    "chars_in_prompt": 1031,
+    "cut": false
+   },
+   {
+    "file": "out_p1/checks/mask_invariants_seed0.json (analysis output, digest)",
+    "bytes": 582,
+    "sha256": "c97793444b6fd8ee69e91834717119a5f86a56cfa3aff3b35f7cc9b8fd78e30c",
+    "chars_in_prompt": 512,
+    "cut": false
+   },
+   {
+    "file": "out_p2/checks/mask_invariants_seed1.json (analysis output, digest)",
+    "bytes": 580,
+    "sha256": "ecfceb6352ef84789a66b3552a99d1e9682e394bae7afee5882cdf40985182ba",
+    "chars_in_prompt": 510,
+    "cut": false
+   },
+   {
+    "file": "out_p1/checks/mask_invariants_seed0_pad.json (analysis output, digest)",
+    "bytes": 1072,
+    "sha256": "2c4b85ba3827cedb9640a8cea963f69643d2ea16cbf651e4553a29342c3929ef",
+    "chars_in_prompt": 932,
+    "cut": false
+   },
+   {
+    "file": "out_p2/checks/mask_invariants_seed1_pad.json (analysis output, digest)",
+    "bytes": 1076,
+    "sha256": "c3424c76c16b341828f8707ee20ee90bf61bdb8ff031736daf136999b558b570",
+    "chars_in_prompt": 935,
+    "cut": false
+   },
+   {
+    "file": "smoke/cont_identity_cmp.log (analysis output, text)",
+    "bytes": 240,
+    "sha256": "130fb38bc17cc0c25e05daff35266e2ba1cf51cf0ce9766d0a1f6b2a1fad833e",
+    "chars_in_prompt": 240,
+    "cut": false
+   },
+   {
+    "file": "smoke/cont_memory.log (analysis output, text)",
+    "bytes": 1252,
+    "sha256": "bbea87698d07aa93284956d2ea360039a68a48e65a7422f9e1e4dfcbaee3f970",
+    "chars_in_prompt": 1232,
+    "cut": false
+   },
+   {
+    "file": "smoke/cont_resume_cmp.log (analysis output, text)",
+    "bytes": 783,
+    "sha256": "d3b065bdb653887a6252b7d32c08c9245f3397703974186e01a976285d3091bf",
+    "chars_in_prompt": 783,
+    "cut": false
+   },
+   {
+    "file": "smoke/t7_mock/README.md (analysis output, text)",
+    "bytes": 1705,
+    "sha256": "b553d27ad09e678103a06dfe935ce80dd7e731c93d1fd397b0a8c3587f1055a1",
+    "chars_in_prompt": 1705,
+    "cut": false
+   },
+   {
+    "file": "handcheck/handcheck_summary.json (analysis output, digest)",
+    "bytes": 217,
+    "sha256": "5d783a9fe665a80f759bd5667cf9c431051eb34bb6add775a75b60ff8cab00ad",
+    "chars_in_prompt": 200,
+    "cut": false
+   },
+   {
+    "file": "analysis.json (analysis output, digest)",
+    "bytes": 10441,
+    "sha256": "57e7c9ce0675f59e4d00e4f6360bae37942684d3da816831c0f8827296d9b2c4",
+    "chars_in_prompt": 8971,
+    "cut": false
+   },
+   {
+    "file": "judge_spend.json (analysis output, digest)",
+    "bytes": 65,
+    "sha256": "1170f1b3d21d8d67bbea8397346f283dc60adeeb0def0432df09e8f884d449b0",
+    "chars_in_prompt": 50,
+    "cut": false
+   },
+   {
+    "file": "smoke/t7_mock/spend_clean.json (analysis output, digest)",
+    "bytes": 67,
+    "sha256": "e3a4644d4eacddf1d4373a5aef3272c636b0fe43ff047263e731b558a67dde61",
+    "chars_in_prompt": 52,
+    "cut": false
+   },
+   {
+    "file": "smoke/t7_mock/spend_nan.json (analysis output, digest)",
+    "bytes": 67,
+    "sha256": "b2584207e146f3b8bf1d3bb79af0785c9facd71da7e8aac91d6a14bcd18db483",
+    "chars_in_prompt": 52,
+    "cut": false
+   },
+   {
+    "file": "out_p1/adapters/seed0.json (analysis output, digest)",
+    "bytes": 187,
+    "sha256": "ade15d3aec02a048033ace2152c7142dcdb91a54b276edbfdfe8f9d1a389e82f",
+    "chars_in_prompt": 151,
+    "cut": false
+   },
+   {
+    "file": "out_p2/adapters/seed1.json (analysis output, digest)",
+    "bytes": 187,
+    "sha256": "f7d209baa3efbe370d08d397f7cee267fb43de1a5e149da4a3c0db031b7fd9de",
+    "chars_in_prompt": 151,
+    "cut": false
+   },
+   {
+    "file": "smoke/t7_mock/judge_tail_clean.log (analysis output, text)",
+    "bytes": 222,
+    "sha256": "194029c9e3eaab93d5aedc5b469c242b2b3598cd3c5594cbd0a09f627b249b67",
+    "chars_in_prompt": 222,
+    "cut": false
+   },
+   {
+    "file": "smoke/t7_mock/judge_tail_nan.log (analysis output, text)",
+    "bytes": 222,
+    "sha256": "194029c9e3eaab93d5aedc5b469c242b2b3598cd3c5594cbd0a09f627b249b67",
+    "chars_in_prompt": 222,
+    "cut": false
+   },
+   {
+    "file": "judge_early_c_guard.json (analysis output, digest)",
+    "bytes": 267,
+    "sha256": "5234027e08fc638ceffb19f34106ec2f2620cba72edf7aec80468256c8740cc2",
+    "chars_in_prompt": 248,
+    "cut": false
+   },
+   {
+    "file": "judge_early_D_guard.json (analysis output, digest)",
+    "bytes": 276,
+    "sha256": "9e63f1b8cc573d75fd7f78f155e7962b0439a9a2b53b715fec3f4fbd697119ae",
+    "chars_in_prompt": 252,
+    "cut": false
+   },
+   {
+    "file": "judge_early_N2_guard.json (analysis output, digest)",
+    "bytes": 431,
+    "sha256": "114b54a900daa66d026c4d2a236c9cd96ff0b5dde751c05271030aa5fdcea916",
+    "chars_in_prompt": 480,
+    "cut": false
+   },
+   {
+    "file": "config.yaml (analysis output, text)",
+    "bytes": 575,
+    "sha256": "911b540277a4c0f3cffec1145b92e8dd83ebe071c7ab439531cdb409647815bc",
+    "chars_in_prompt": 575,
+    "cut": false
+   },
+   {
+    "file": "out_p1/broad_questions.json (analysis output, digest)",
+    "bytes": 976,
+    "sha256": "4674e97c1971d199c8b3ab0492d7a1482b2c1d3f00cbb71c6dd5125cdf694d6d",
+    "chars_in_prompt": 925,
+    "cut": false
+   },
+   {
+    "file": "out_p2/broad_questions.json (analysis output, digest)",
+    "bytes": 976,
+    "sha256": "4674e97c1971d199c8b3ab0492d7a1482b2c1d3f00cbb71c6dd5125cdf694d6d",
+    "chars_in_prompt": 925,
+    "cut": false
+   },
+   {
+    "file": "logs_mini/analysis_2seed.log (analysis output, text)",
+    "bytes": 1075,
+    "sha256": "11a9794956980a888fed165114cc50a593f33a69a1980c1faaa31b29cec28c0a",
+    "chars_in_prompt": 1075,
+    "cut": false
+   },
+   {
+    "file": "smoke/mask_invariants_qwen3-0.6b_seed0.json (analysis output, digest)",
+    "bytes": 1092,
+    "sha256": "11090633db6bd8b8a2b243e8bac1120c5f7e44344c07b2eebc3ab4811b4537c9",
+    "chars_in_prompt": 941,
+    "cut": false
+   },
+   {
+    "file": "smoke/mask_invariants_qwen3-0.6b_UNSHIFTED_MUTANT.json (analysis output, digest)",
+    "bytes": 1094,
+    "sha256": "ec801896d840458116c8abee2c34fd2fad02837ce785cc06c08c661e13361ab4",
+    "chars_in_prompt": 941,
+    "cut": false
+   },
+   {
+    "file": "logs_mini/judge_step1.log (analysis output, text)",
+    "bytes": 1145,
+    "sha256": "dbd1f23a22aa86a017f2ab56a9572cd89a8ce7102c827195e738f30f77905e23",
+    "chars_in_prompt": 1145,
+    "cut": false
+   },
+   {
+    "file": "figure1/endings/wait.json (analysis output, digest)",
+    "bytes": 1228,
+    "sha256": "e748b2a1af432d8897590f04d3bbead115a3ae5984cd964ee12d62c54d60028a",
+    "chars_in_prompt": 942,
+    "cut": false
+   },
+   {
+    "file": "out_p1/data_meta.json (analysis output, digest)",
+    "bytes": 1425,
+    "sha256": "b24fb92f7a89bbe36873672add3fb74d77d4e3e85bf2913a2fdecacc97ec1ad6",
+    "chars_in_prompt": 451,
+    "cut": false
+   },
+   {
+    "file": "out_p2/data_meta.json (analysis output, digest)",
+    "bytes": 1425,
+    "sha256": "b24fb92f7a89bbe36873672add3fb74d77d4e3e85bf2913a2fdecacc97ec1ad6",
+    "chars_in_prompt": 451,
+    "cut": false
+   },
+   {
+    "file": "logs_mini/judge_early_d.log (analysis output, text)",
+    "bytes": 1644,
+    "sha256": "9af26cd78e40e87f1fc436e584d1169b07855b99ebd746634918f3d0611c01c9",
+    "chars_in_prompt": 1644,
+    "cut": false
+   },
+   {
+    "file": "logs_mini/judge_early_c.log (analysis output, text)",
+    "bytes": 1645,
+    "sha256": "97d329044e5ddf532cf622c8820d35e60ad6c682fc97c6669575b56447112e15",
+    "chars_in_prompt": 1645,
+    "cut": false
+   },
+   {
+    "file": "handcheck/labels.jsonl (analysis output, digest)",
+    "bytes": 1650,
+    "sha256": "baf48cd0e936b74f09fc4dd4bd140ed0d968d8e422ff53e740dc6a80656e211d",
+    "chars_in_prompt": 214,
+    "cut": false
+   },
+   {
+    "file": "smoke/t7_mock/expected_clean.json (analysis output, digest)",
+    "bytes": 2195,
+    "sha256": "2fa7c931aba4ccb251b257228c01e314385c794099ea5d66312eaaa89ce530ed",
+    "chars_in_prompt": 2306,
+    "cut": false
+   },
+   {
+    "file": "smoke/t7_mock/expected_nan.json (analysis output, digest)",
+    "bytes": 2195,
+    "sha256": "2fa7c931aba4ccb251b257228c01e314385c794099ea5d66312eaaa89ce530ed",
+    "chars_in_prompt": 2306,
+    "cut": false
+   },
+   {
+    "file": "figure1/text.json (analysis output, digest)",
+    "bytes": 2269,
+    "sha256": "fc48fdd65635940d56bf936b0277e9a28ada4e3a6ff6133aa2856984e07cedc1",
+    "chars_in_prompt": 1668,
+    "cut": false
+   },
+   {
+    "file": "logs_mini/judge_early_n2.log (analysis output, text)",
+    "bytes": 2277,
+    "sha256": "570134214254b7a57cca1226048d6556f84b840d45a8e039eb967edee20094c4",
+    "chars_in_prompt": 2277,
+    "cut": false
+   },
+   {
+    "file": "smoke/cont_resume_killed.log (analysis output, text)",
+    "bytes": 2771,
+    "sha256": "28bca27f5ae4dc6a731e94c5a117ac5667a5140822e39116a9ec0aaf0e8c6005",
+    "chars_in_prompt": 2751,
+    "cut": false
+   },
+   {
+    "file": "smoke/cont_identity_new.log (analysis output, text)",
+    "bytes": 4335,
+    "sha256": "9f36a827128364d25bc10a018a507ec091098dd630508c879180b3d9b75ccd86",
+    "chars_in_prompt": 4315,
+    "cut": false
+   },
+   {
+    "file": "smoke/cont_identity_nofix.log (analysis output, text)",
+    "bytes": 4335,
+    "sha256": "fe76b28048853826c0eabf96aab287cbd0b83cc040df8c9c7172d4c669c7145c",
+    "chars_in_prompt": 4315,
+    "cut": false
+   },
+   {
+    "file": "POST-TODO.md (analysis output, text)",
+    "bytes": 5021,
+    "sha256": "61a60cf9ab9706cd8e930c4895cdaded18331c034d469a50a6c28398eb45e446",
+    "chars_in_prompt": 5021,
+    "cut": false
+   },
+   {
+    "file": "handcheck/blind.jsonl (analysis output, digest)",
+    "bytes": 13288,
+    "sha256": "5095b29d588e6223764d6305b2fc9afddbb13472f4e0cfa3f456e96cab09d97e",
+    "chars_in_prompt": 389,
+    "cut": false
+   },
+   {
+    "file": "DRAFT POST (draft-post.md)",
+    "bytes": 23951,
+    "sha256": "5b4b06a43bbe4ec0a3c8bb891063cc42567c6c00de1671c3c604e27b14c836c5",
+    "chars_in_prompt": 23951,
+    "cut": false
+   }
+  ],
+  "left_out": [
+   "handcheck/handcheck.jsonl",
+   "smoke/cont_resume_restart.log",
+   "smoke/cont_resume_clean.log",
+   "smoke/t7_mock/analysis_nan.json",
+   "smoke/t7_mock/analysis_clean.json",
+   "research.md",
+   "out_p1/narrow_prompts.json",
+   "out_p2/narrow_prompts.json",
+   "out_p1/gen/seed0_full/narrow.jsonl",
+   "out_p2/gen/seed1_full/narrow.jsonl",
+   "out_p1/gen/seed0_rand/narrow.jsonl",
+   "out_p2/gen/seed1_rand/narrow.jsonl",
+   "out_p2/gen/seed1_postfix/narrow.jsonl",
+   "out_p2/gen/seed1_lastk/narrow.jsonl",
+   "out_p1/gen/seed0_lastk/narrow.jsonl",
+   "out_p1/gen/seed0_postfix/narrow.jsonl",
+   "out_p2/gen/seed1_template/narrow.jsonl",
+   "out_p1/gen/seed0_template/narrow.jsonl",
+   "out_p2/gen/seed1_lastk/broad.jsonl",
+   "out_p1/gen/seed0_lastk/broad.jsonl",
+   "out_p2/judged/seed1_rand/narrow.calls.jsonl",
+   "out_p2/judged/seed1_full/narrow.calls.jsonl",
+   "out_p1/judged/seed0_full/narrow.calls.jsonl",
+   "out_p1/judged/seed0_rand/narrow.calls.jsonl",
+   "out_p1/judged/seed0_lastk/narrow.calls.jsonl",
+   "out_p2/judged/seed1_lastk/narrow.calls.jsonl",
+   "out_p1/judged/base/narrow.calls.jsonl",
+   "out_p2/judged/seed1_postfix/narrow.calls.jsonl",
+   "out_p1/judged/seed0_postfix/narrow.calls.jsonl",
+   "out_p2/gen/seed1_full/broad.jsonl",
+   "out_p1/gen/seed0_full/broad.jsonl",
+   "out_p2/gen/seed1_rand/broad.jsonl",
+   "out_p1/gen/seed0_rand/broad.jsonl",
+   "out_p2/gen/seed1_postfix/broad.jsonl",
+   "out_p1/gen/seed0_postfix/broad.jsonl",
+   "out_p2/gen/seed1_template/broad.jsonl",
+   "out_p1/gen/base/narrow.jsonl",
+   "out_p1/gen/seed0_template/broad.jsonl",
+   "out_p1/gen/base/broad.jsonl"
+  ],
+  "n_outputs": 56
+ }
+}

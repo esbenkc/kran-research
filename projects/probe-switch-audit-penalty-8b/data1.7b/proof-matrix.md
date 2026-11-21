@@ -14,4 +14,4 @@ Written by status.py from data1.7b/ (status UNCONFIRMED; rule: PREREG.md FROZEN 
 ## Seed level
 
 - AO strict switch: seed-level: 0.667 [-0.768, 2.101] (95% t-interval over 3 seeds (df 2, t = 4.303))
-- AO R_blind3: seed-level: 0.684 [-0.482, 1.849] (95% t-interval over 3 seeds (df 2, t = 4.303))
+- AO R_blind3: seed-level: 0.415 [-0.247, 1.076] (95% t-interval over 2 seeds (df 1, t = 12.706))

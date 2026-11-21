@@ -95,6 +95,7 @@ def cell(name, guard=False):
     if whole and aud:
         c["g1_ok"] = abs(c["cached_argmax"] - c["sw_argmax"]) <= 0.05
     switch_only = whole is not None and max(c.get("sw_strict", 1), c.get("sw_fp32", 1), c.get("sw_argmax", 1)) < SW
+    c["switch_only"] = switch_only
     c["scored"] = bool(c["trained"] and whole and (c.get("g1_ok") or switch_only))
     for v in ("strict", "fp32", "argmax"):
         c[f"hide_{v}"] = bool(c["scored"] and not switch_only and c.get("g1_ok") and c[f"sw_{v}"] >= SW and c["r3"] < R3)
@@ -161,7 +162,8 @@ def main():
     for arm, (p, seeds) in list(ARMS.items()) + [("L0", CONTROL)]:
         cs = [cells[f"{p}_s{s}"] for s in seeds if cells[f"{p}_s{s}"]["scored"]]
         seed_level[arm] = {"sw_strict": tint([c.get("sw_strict") for c in cs]),
-                           "r3": tint([c.get("r3") for c in cs if c.get("g1_ok")]),
+                           # R_blind3 only where the run has head numbers (G1 ok, not the 'all switches < 0.75' case)
+                           "r3": tint([c.get("r3") for c in cs if c.get("g1_ok") and not c.get("switch_only")]),
                            "hide_seeds": [c["name"] for c in cs if c["hide_strict"]]}
     out = {"rule": "PREREG.md FROZEN RULE (e5de283a)", "status": status, "why_unconfirmed": why,
            "core_by_switch": st, "prereg_outcome": outcome, "guards_needed": needed, "seed_level": seed_level,

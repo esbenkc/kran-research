@@ -75,3 +75,6 @@ passes; a skeptic rejects. TLDR: "Not settled. [which guard, with its number]." 
    941 main words: keep the definitions, give the length reason in the PR.
 6. After Vera's sign-off: `oracle.py title --post`, send the title --to Kasper; `oracle.py signoffs --write`;
    `oracle.py critic-local --collect --post`; then `oracle.py check --room ROOM --post`.
+
+7. Length: the skeleton is ~915 main words WITH placeholders (caption counts). After the fill, expect ~1,000: cut
+   before the gate (move per-seed numbers to the foldout, keep every definition), and give the length reason in the PR.

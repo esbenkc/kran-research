@@ -11,7 +11,9 @@
 #   the first box and printed next to head-clamp-retrain-8b's) -> train every run -> whole-graph eval of every
 #   trained run (one 8B load) -> head audit of every run. Stops at the deadline.
 # labq --cmd: uv sync --frozen --no-install-project && RUNS="..." HOURS=4 caffeinate -i ./run.sh
-# Smoke on the mini: AP_MODEL=Qwen/Qwen3-0.6B AP_OUT=smoke/box STEPS=16 EVAL=8 RUNS="ao_s0 l0_s0" ./run.sh
+# Smoke on the mini: AP_MODEL=Qwen/Qwen3-0.6B AP_OUT=smoke/box STEPS=16 EVAL=8 MINWARM=0 RUNS="ao_s0 l0_s0" ./run.sh
+# MINWARM (0.75): stop before training when the warm adapter does not switch on this cache (exit 4 of train_pen.py).
+# EXPORT=1: also write the dev+test rows of the cache to data/cache_devtest/ (gzip; Vera's rebuild).
 set -u
 cd "$(dirname "$0")"
 export AP_MODEL=${AP_MODEL:-Qwen/Qwen3-8B} HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false PYTHONUNBUFFERED=1
@@ -19,6 +21,7 @@ OUTD=${AP_OUT:-data}; export AP_OUT=$OUTD
 PY=${PY:-"uv run --frozen --no-sync python"}
 HOURS=${HOURS:-4}; RUNS=${RUNS:-}; WARM=${WARM:-}
 STEPS=${STEPS:-512}; GSTEPS=${GSTEPS:-2048}; EVAL=${EVAL:-64}; WARMADP=${WARMADP:-adapters_in}
+MINWARM=${MINWARM:-0.75}; EXPORT=${EXPORT:-0}
 JOB=${LABQ_JOB_ID:-local_$(date +%m%d_%H%M%S)}
 L=$OUTD/laptop/$JOB; mkdir -p "$L" raw "$OUTD"
 awake() { python3 -c "import time; print(int(time.clock_gettime(time.CLOCK_UPTIME_RAW)))"; }
@@ -60,6 +63,26 @@ for b in ('none', 'probe'):
     print(b, 'dev+test rows', len(rows), hashlib.sha256(a.tobytes()).hexdigest())
 " > "$L/cache_devtest_sha.txt" 2>/dev/null; log "dev+test cache sha: $(tr '\n' ' ' < "$L/cache_devtest_sha.txt")"
 
+# --- optional: export the dev+test rows of the cache for the skeptic's rebuild (Vera #27365); its own short box ---
+if [ "$EXPORT" = 1 ]; then
+  mkdir -p "$OUTD/cache_devtest"
+  $PY -c "
+import gzip, hashlib, json, numpy as np, cfgm
+pid = json.load(open(cfgm.CDIR / 'meta.json'))['prompt_ids']
+sp = {json.loads(l)['id']: json.loads(l)['split'] for l in open('raw/prompts.jsonl')}
+rows = [i for i, p in enumerate(pid) if sp[p] in ('dev', 'test')]
+meta = {'prompt_ids': [pid[i] for i in rows], 'dtype': 'bf16 bits as uint16', 'shape': None, 'sha256_raw': {}}
+for b in ('none', 'probe'):
+    a = np.ascontiguousarray(np.load(cfgm.CDIR / f'{b}_rec_tail.npy', mmap_mode='r')[rows])
+    meta['shape'] = list(a.shape); meta['sha256_raw'][b] = hashlib.sha256(a.tobytes()).hexdigest()
+    with gzip.open(f'$OUTD/cache_devtest/{b}_rec_tail_devtest.npy.gz', 'wb', compresslevel=6) as f:
+        np.save(f, a)
+json.dump(meta, open('$OUTD/cache_devtest/meta.json', 'w'), indent=1)
+print(meta['sha256_raw'])
+" > "$L/export.log" 2>&1 || { log "FAILED export"; tail -5 "$L/export.log"; exit 1; }
+  log "EXPORT $(tail -1 "$L/export.log") sizes $(du -sh "$OUTD/cache_devtest" | cut -f1)"
+fi
+
 args_of() {  # training args of a run name
   local n=$1 base s
   base=${n%_g2048}; s=${base##*_s}
@@ -83,8 +106,9 @@ for n in $RUNS; do
   [ "$(left)" -lt 600 ] && { log "BOX END: not starting $n ($(left) s left)"; state "MORE train $n"; exit 0; }
   A=$(args_of "$n" | tr '\n' ' '); [[ "$A" == *BAD* ]] && { log "bad run name $n"; exit 1; }
   log "START $n :: $A"
-  /usr/bin/time -l $PY train_pen.py --name "$n" $A --eval-every "$EVAL" --deadline "$DEADLINE" > "$L/$n.log" 2>&1
+  /usr/bin/time -l $PY train_pen.py --name "$n" $A --eval-every "$EVAL" --deadline "$DEADLINE" --min-warm "$MINWARM" > "$L/$n.log" 2>&1
   rc=$?
+  [ $rc -eq 4 ] && { log "$(grep 'WARM GATE FAIL' "$L/$n.log"): the cache does not carry the trigger; stop the box"; state "STOP warm gate $n"; exit 0; }
   [ $rc -eq 3 ] && { log "BOX END: $n saved a checkpoint ($(grep DEADLINE "$L/$n.log"))"; state "MORE resume $n"; exit 0; }
   [ $rc -ne 0 ] && { log "FAILED $n (rc $rc)"; tail -20 "$L/$n.log"; exit 1; }
   log "OK $(grep '^DONE' "$L/$n.log" | tail -1) peak $(grep 'peak memory' "$L/$n.log" | awk '{printf "%.1f GB", $1/1e9}')"

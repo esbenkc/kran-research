@@ -112,6 +112,8 @@ def main() -> None:
     ap.add_argument("--ckpt-every", type=int, default=128)
     ap.add_argument("--keep-final", action="store_true", help="save OUT/final_state/<name>.pt (adapter, AdamW, RNG, "
                     "log) so a fake-no guard run can continue this run in another job")
+    ap.add_argument("--min-warm", type=float, default=0.0, help="stop (exit 4) before training when the warm "
+                    "adapter's cached-tail test strict switch is below this (the cache does not carry the trigger)")
     ap.add_argument("--continue-from", default="", help="final_state .pt of an earlier run: continue it (same "
                     "optimizer, data order and log) up to --steps (the PREREG fake-no guard)")
     a = ap.parse_args()
@@ -182,6 +184,11 @@ def main() -> None:
     else:
         t0, rows0 = score_pairs(ptail, w_out, z0, z1, idx["test"], pid, A_ID, B_ID)
         out["t0_test_cached"], out["t0_test_rows"] = t0, compact(rows0)
+        print("WARM t0 test", json.dumps({k: t0[k] for k in ("switch_strict", "switch_correct", "switch_strict32",
+                                                               "shift_mean")}), flush=True)
+        if t0["switch_strict"] < a.min_warm:
+            print(f"WARM GATE FAIL {a.name}: warm test strict {t0['switch_strict']:.3f} < {a.min_warm}", flush=True)
+            sys.exit(4)
         if a.kind != "none":
             p_ids = idx["train"][: a.p0_prompts]
             vals, kls = [], []

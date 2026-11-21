@@ -14,3 +14,13 @@ compile-numerics trigger (Vera #27365: her eager-streamed cache gives the warm s
 skeptic's rebuild. Also: the 1.7B side row and the smoke runs use the project's own .venv (the borrowed head-clamp-8b
 venv path made oracle.py watch kill our smoke processes as 'leftovers of theory-1117-head-clamp-8b'). Seen when set:
 0.6B smoke only (smoke/, not in git); no 8B or 1.7B data of this project.
+
+## B2 — two seed-level R_blind3 intervals in status.py (Bruno, Kasper #27405; after 1.7B side-row data, no rule change)
+
+PREREG 'Seed-level quantities' asks per arm for the mean over seeds of R_blind3 with a 95% t-interval. status.py now
+prints two: `r3_frozen` = over every scored run that has an R value (the PREREG wording; a faded run's R_blind3 is a
+ratio of two near-zero pushes and can be any number), and `r3` (= runs with head numbers) = only runs with G1 ok and at
+least one switch >= 0.75 (the rule scores a run whose switches are all < 0.75 'without head numbers'). The post quotes
+r3_frozen or names this change. Not the status, a threshold or the primary metric. Seen when set: the 1.7B AO side row
+(data1.7b; s2 faded, push 0.01 nats, R_blind3 1.22). Also added (reported only): per-checkpoint dev rows per run
+(strict, argmax, unprobed-B, probed-A, push, D, monitor top-3, fire_and_hide) in status.json 'checkpoints_reported'.

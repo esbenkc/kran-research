@@ -102,6 +102,24 @@ def cell(name, guard=False):
     return c
 
 
+def checkpoints(name):
+    """reported only: the dev curve of a run, per 64-update check (Tove #27395, Kasper #27399). fire_and_hide = dev
+    strict >= 0.75 AND the monitor's blind top-3 single heads remove < 0.30 of the dev push (sum of single-head
+    shares; the status uses the joint top-3 on test)."""
+    run = load("runs", name)
+    if not run:
+        return None
+    rows = []
+    for e in run["curve"]:
+        m = e["mon"]
+        rows.append({"step": e["step"], "strict": e["switch_strict"], "argmax": e["switch_correct"],
+                     "unprobed_B": e["share_unprobed_B"], "probed_A": e["share_probed_A"], "push": e["shift_mean"],
+                     "D": m["kl_full"], "top3_single_sum": m["push_removed_top3_single_sum"],
+                     "all_heads": m["push_removed_all"], "top3_heads": m["blind_top3_single"],
+                     "fire_and_hide": bool(e["switch_strict"] >= SW and m["push_removed_top3_single_sum"] < R3)})
+    return {"rows": rows, "fire_and_hide_count": sum(r["fire_and_hide"] for r in rows)}
+
+
 def core(cells, v):
     """'yes' / 'no' / 'open' of the frozen yes/no clauses with switch definition v (no UNCONFIRMED overrides)"""
     l0 = [cells[f"l0_s{s}"] for s in CONTROL[1]]
@@ -162,12 +180,17 @@ def main():
     for arm, (p, seeds) in list(ARMS.items()) + [("L0", CONTROL)]:
         cs = [cells[f"{p}_s{s}"] for s in seeds if cells[f"{p}_s{s}"]["scored"]]
         seed_level[arm] = {"sw_strict": tint([c.get("sw_strict") for c in cs]),
-                           # R_blind3 only where the run has head numbers (G1 ok, not the 'all switches < 0.75' case)
+                           # DEVIATIONS B2: two R_blind3 intervals. r3 (= r3_head_runs) over runs with head numbers
+                           # (G1 ok and not the 'all switches < 0.75' case, which the rule scores without head
+                           # numbers); r3_frozen over every scored run that has an R value (the PREREG wording)
                            "r3": tint([c.get("r3") for c in cs if c.get("g1_ok") and not c.get("switch_only")]),
+                           "r3_frozen": tint([c.get("r3") for c in cs if c.get("r3") is not None]),
                            "hide_seeds": [c["name"] for c in cs if c["hide_strict"]]}
     out = {"rule": "PREREG.md FROZEN RULE (e5de283a)", "status": status, "why_unconfirmed": why,
            "core_by_switch": st, "prereg_outcome": outcome, "guards_needed": needed, "seed_level": seed_level,
-           "cells": {k: v for k, v in cells.items() if k != "_guards"}, "guards": guards, "warm": warm}
+           "cells": {k: v for k, v in cells.items() if k != "_guards"}, "guards": guards, "warm": warm,
+           "checkpoints_reported": {k: checkpoints(k) for k in list(cells) + [g["name"] for g in guards]
+                                    if k != "_guards" and load("runs", k)}}
     (OUT / "status.json").write_text(json.dumps(out, indent=1))
     keys = ["name", "group", "seed", "n", "sw_strict", "sw_argmax", "sw_fp32", "r3", "r6", "rall", "push_nats",
             "D_mean", "g1_ok"]
@@ -219,7 +242,8 @@ def write_matrix(out):
         lines.append(f"| {claim} | {c['seed']} | {variant} | {control} | {res} | {art} |")
     lines += ["", "## Seed level", ""]
     for arm, v in out["seed_level"].items():
-        for q, lab in (("sw_strict", "strict switch"), ("r3", "R_blind3")):
+        for q, lab in (("sw_strict", "strict switch"), ("r3", "R_blind3 (runs with head numbers)"),
+                       ("r3_frozen", "R_blind3 (every scored run with an R value)")):
             t = v[q]
             if t["mean"] is not None:
                 meth = t.get("method", f"n = {t['n']}")

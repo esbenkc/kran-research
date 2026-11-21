@@ -1,0 +1,55 @@
+W1120 17:00:27.027000 23498 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+prompts {'dev': 64, 'test': 128} T 80 probe block 18 tail 34
+block 0 done 4s, answer-pos differs 0.000
+block 1 done 8s, answer-pos differs 0.000
+block 2 done 13s, answer-pos differs 0.000
+block 3 done 18s, answer-pos differs 0.000
+block 4 done 23s, answer-pos differs 0.000
+block 5 done 28s, answer-pos differs 0.000
+block 6 done 33s, answer-pos differs 0.000
+block 7 done 38s, answer-pos differs 0.000
+block 8 done 43s, answer-pos differs 0.000
+block 9 done 49s, answer-pos differs 0.000
+block 10 done 54s, answer-pos differs 0.000
+block 11 done 59s, answer-pos differs 0.000
+block 12 done 64s, answer-pos differs 0.000
+block 13 done 70s, answer-pos differs 0.000
+block 14 done 75s, answer-pos differs 0.000
+block 15 done 80s, answer-pos differs 0.000
+block 16 done 85s, answer-pos differs 0.000
+block 17 done 90s, answer-pos differs 0.000
+block 18 done 98s, answer-pos differs 1.000
+block 19 done 103s, answer-pos differs 1.000
+block 20 done 108s, answer-pos differs 1.000
+block 21 done 112s, answer-pos differs 1.000
+block 22 done 116s, answer-pos differs 1.000
+block 23 done 120s, answer-pos differs 1.000
+block 24 done 125s, answer-pos differs 1.000
+block 25 done 131s, answer-pos differs 1.000
+block 26 done 136s, answer-pos differs 1.000
+block 27 done 142s, answer-pos differs 1.000
+block 28 done 147s, answer-pos differs 1.000
+block 29 done 153s, answer-pos differs 1.000
+block 30 done 159s, answer-pos differs 1.000
+block 31 done 164s, answer-pos differs 1.000
+block 32 done 169s, answer-pos differs 1.000
+block 33 done 174s, answer-pos differs 1.000
+{'model': 'Qwen/Qwen3-8B', 'probe_block': 18, 'tail_block': 34, 'T': 80, 'compile': 'probe', 'sha256_probe_tail': 'df9d02a66687bb9b41199843523c2e9b1bc83e059a1dd417b8e696b1301b7fb6', 'sha256_none_tail': 'a5816eff628aa5eb43de36212266c9b166d2714ff0362bc2ebc026fd8825b029', 'd_ans': {'dev': 1.0, 'test': 1.0}, 'rel_diff_ans_median': 0.00976793747395277} 175s
+      178.93 real        18.31 user        14.86 sys
+          2506391552  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1705982  page reclaims
+              821151  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   1  messages sent
+                   1  messages received
+                   1  signals received
+               10053  voluntary context switches
+              602297  involuntary context switches
+           288487622  instructions retired
+           137183879  cycles elapsed
+            29819432  peak memory footprint

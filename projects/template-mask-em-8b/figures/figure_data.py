@@ -42,9 +42,10 @@ def build(an):
                             base_broad=base["broad"], base_habit=base["habit"], cut=c, kept=k))
     means = []
     sl = an.get("seed_level", {})
+    n_seeds = len(an["seeds"])
     for key, *_ in ARMS:
         c, k = (sl.get("cut") or {}).get(key), (sl.get("kept") or {}).get(key)
-        if c and k:
+        if c and k and n_seeds >= 3:  # with 2 seeds the t-interval (t = 12.7) says nothing: per-seed points only
             means.append(dict(arm=key, cut=c[0], cut_lo=c[1], cut_hi=c[2], kept=k[0], kept_lo=k[1], kept_hi=k[2]))
     vals_x = [p["cut"] for p in pts] + [m["cut_lo"] for m in means] + [m["cut_hi"] for m in means] + [0, 1]
     vals_y = [p["kept"] for p in pts] + [m["kept_lo"] for m in means] + [m["kept_hi"] for m in means] + [0, 1]
@@ -52,7 +53,9 @@ def build(an):
     xd, yd = pad(min(vals_x), max(vals_x)), pad(min(vals_y), max(vals_y))
     return dict(
         title=an.get("fig_title", "[FILL figure title]"),
-        subtitle=f"Qwen3-8B, {len(an['seeds'])} fine-tunes on risky financial advice. One mark per fine-tune and mask; bars: mean and 95% interval over fine-tunes.",
+        subtitle=(f"Qwen3-8B, {n_seeds} fine-tunes on risky financial advice. One mark per fine-tune and mask; bars: mean and 95% interval over fine-tunes."
+                  if means else
+                  f"Qwen3-8B, {n_seeds} of 3 planned fine-tunes on risky financial advice (the third waits on the laptop queue). One mark per fine-tune and mask."),
         xlabel="extra broad misalignment removed by the mask",
         ylabel="finance habit kept",
         xdomain=list(xd), ydomain=list(yd),

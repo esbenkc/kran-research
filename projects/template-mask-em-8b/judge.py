@@ -220,6 +220,40 @@ def early_c_guard(j, cells, expect_seeds, cap):
     return need <= cap, nums
 
 
+def n_rubric(cell, kind, rubric):
+    f = CELL_DIR[cell] / "judged" / cell / f"{kind}.calls.jsonl"
+    return sum(1 for l in f.read_text().splitlines() if l.strip() and json.loads(l)["rubric"] == rubric) if f.exists() else 0
+
+
+def early_later_guard(j, cells, expect_seeds, cap, step):
+    """DEVIATIONS C6 (step 'D' = step (3), arm D) and C7 (step 'N2' = step (4), the narrow 'aligned' secondary): before
+    all seeds exist, run the step for the cells present only if spend so far + reserve + the step's estimate <= cap.
+    The reserve keeps, for each missing seed, 1.2 x the largest measured per-seed step-(1) cost x (1 + the share of the
+    frozen steps that come before this one for that seed): seed 2's C (1/3 of step (1)) before D, and seed 2's C and D
+    (2/3, D counted as a full arm, an upper bound) before step (4). Estimates: D = 1/3 of a seed's step-(1) cost per D
+    cell (an upper bound: D has 400 broad answers, not 800); N2 = 1 aligned call per finance answer. Calls already made
+    are subtracted. Costs = calls x mean USD per call in judge_spend.json. Returns (ok, numbers)."""
+    seeds = sorted({int(c[4:].split("_")[0]) for c in cells if c.startswith("seed")})
+    usd_per_call = j.spend["usd"] / j.spend["calls"]
+    step1 = {s: sum(n_calls(f"seed{s}_{a}") for a in ("full", "template", "rand")) * usd_per_call for s in seeds}
+    assert all(step1[s] > 0 for s in seeds), f"step (1) not judged for every seed: {step1}"
+    before = {"D": 1 / 3, "N2": 2 / 3}[step]
+    reserve = 1.2 * max(step1.values()) * (expect_seeds - len(seeds)) * (1 + before)
+    if step == "D":
+        todo = [f"seed{s}_lastk" for s in seeds if f"seed{s}_lastk" in cells]
+        est = max(0.0, sum(step1[int(c[4:].split("_")[0])] / 3 for c in todo)
+                  - sum(n_calls(c) for c in todo) * usd_per_call)
+    else:
+        todo = [c for c in ["base"] + [f"seed{s}_{a}" for s in seeds
+                                       for a in ("full", "template", "rand", "postfix", "lastk")] if c in cells]
+        est = sum(max(0, 200 - n_rubric(c, "narrow", "aligned")) for c in todo) * usd_per_call
+    need = j.spend["usd"] + reserve + est
+    nums = {"step": step, "spend_usd": round(j.spend["usd"], 4), "usd_per_call": round(usd_per_call, 7),
+            "step1_usd_per_seed": {s: round(v, 4) for s, v in step1.items()}, "reserve_usd": round(reserve, 4),
+            "step_left_est_usd": round(est, 4), "need_usd": round(need, 4), "cap_usd": cap, "ok": need <= cap,
+            "cells": todo}
+    return need <= cap, nums
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -229,6 +263,10 @@ def main():
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--early-c", action="store_true",
                     help="DEVIATIONS C5: after step (1), judge arm C for the seeds present, behind early_c_guard")
+    ap.add_argument("--early-d", action="store_true",
+                    help="DEVIATIONS C6: then arm D (step 3) for the seeds present, behind early_later_guard")
+    ap.add_argument("--early-narrow2", action="store_true",
+                    help="DEVIATIONS C7: then the narrow 'aligned' secondary (step 4), behind early_later_guard")
     a = ap.parse_args()
     for d in DIRS:
         for p in sorted((d / "gen").glob("*")) if (d / "gen").is_dir() else []:
@@ -256,6 +294,27 @@ def main():
                         f = CELL_DIR[c] / "gen" / c / f"{kind}.jsonl"
                         if f.exists():
                             judge_file(j, P, f, ["aligned+coherent"] if kind == "broad" else ["risky"], a.workers)
+        for flag, step, tag in ((a.early_d, "D", "C6"), (a.early_narrow2, "N2", "C7")):
+            if not (flag and n_seeds < a.expect_seeds):
+                continue
+            c_missing = [f"seed{s}_postfix" for s in sorted({c[4:].split("_")[0] for c in cells if c.startswith("seed")})
+                         if f"seed{s}_postfix" in cells and n_calls(f"seed{s}_postfix") == 0]
+            if c_missing:
+                print(f"{tag}: arm C not judged yet for {c_missing} (step 2 comes first) - step {step} waits", flush=True)
+                break
+            ok, nums = early_later_guard(j, cells, a.expect_seeds, a.cap, step)
+            (HERE / f"judge_early_{step}_guard.json").write_text(json.dumps(nums, indent=1))
+            print(f"{tag} early-{step} guard:", json.dumps(nums), flush=True)
+            if not ok:
+                print(f"{tag}: guard says no - step {step} waits until all seeds exist", flush=True)
+                break  # frozen order: a later step never runs when an earlier one was refused
+            for c in nums["cells"]:
+                todo = ([("broad", ["aligned+coherent"]), ("narrow", ["risky"])] if step == "D"
+                        else [("narrow", ["aligned"])])
+                for kind, rubrics in todo:
+                    f = CELL_DIR[c] / "gen" / c / f"{kind}.jsonl"
+                    if f.exists():
+                        judge_file(j, P, f, rubrics, a.workers)
     except CapReached as e:
         print(e, "- the rest of the frozen order stays unjudged", flush=True)
 

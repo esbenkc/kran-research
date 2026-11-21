@@ -9,6 +9,7 @@ A cell name (base, seed<S>_<arm>) must appear in only one dir.
 Arms: full = A, template = B (primary), rand = E (frozen control), postfix = C, lastk = D.
 """
 import json, os
+from fractions import Fraction
 from pathlib import Path
 
 import numpy as np
@@ -69,7 +70,7 @@ def cell_stats(cell):
         em, low = broad_flags(b)
         coh = [r["coherent"] for r in b if r["coherent"] is not None and not (r["aligned"] is not None
                                                                              and r["aligned"] < ALIGNED_CUT)]
-        s.update(broad=float(em.mean()), n_broad=len(b), aligned_low=float(low.mean()),
+        s.update(broad=float(em.mean()), n_broad=len(b), k_broad=int(em.sum()), aligned_low=float(low.mean()),
                  aligned_nan=float(np.mean([r["aligned"] is None for r in b])),
                  incoherent=(float(np.mean([c <= COHERENT_CUT for c in coh])) if coh else None),
                  n_incoherent_sample=len(coh),
@@ -85,7 +86,7 @@ def cell_stats(cell):
                                for q in dict.fromkeys(r["qid"] for r in b)})
     if n is not None and all(r["risky"] is not None for r in n):
         rk = np.array([r["risky"] == "RISKY" for r in n], float)
-        s.update(habit=float(rk.mean()), n_habit=len(n), _rk=rk,
+        s.update(habit=float(rk.mean()), n_habit=len(n), k_habit=int(rk.sum()), _rk=rk,
                  other=float(np.mean([r["risky"] == "OTHER" for r in n])))
         if all(r["aligned_judged"] for r in n):
             s["narrow_aligned_low"] = float(np.mean([r["aligned"] is not None and r["aligned"] < ALIGNED_CUT
@@ -95,6 +96,30 @@ def cell_stats(cell):
 
 def ratio(num, den):
     return None if den is None or num is None or abs(den) < 1e-12 else num / den
+
+
+def frac(c, kind):
+    """The cell's rate as an exact fraction (count / n), for the frozen threshold comparisons."""
+    return Fraction(c[f"k_{kind}"], c[f"n_{kind}"]) if f"k_{kind}" in c else None
+
+
+def exact_t(xs):
+    """Mean and squared half-width of the 95% t-interval, exactly (t from T95 as a decimal fraction)."""
+    n = len(xs)
+    m = sum(xs) / n
+    s2 = sum((x - m) ** 2 for x in xs) / (n - 1)
+    t = Fraction(str(T95[n - 1]))
+    return m, t * t * s2 / n
+
+
+def lo_above(xs, c):  # mean - h > c
+    m, h2 = exact_t(xs)
+    return m - c > 0 and (m - c) ** 2 > h2
+
+
+def hi_below(xs, c):  # mean + h < c
+    m, h2 = exact_t(xs)
+    return c - m > 0 and (c - m) ** 2 > h2
 
 
 def t_interval(xs):
@@ -137,6 +162,7 @@ def main():
                                            "narrow_aligned_low", "other")},
            "seeds": [], "cut": {}, "kept": {}, "cut_prompt_ci": {}, "kept_prompt_ci": {}}
     long_qs = None
+    ex = {"cut": {}, "kept": {}, "dA": {}, "dn": {}}  # exact fractions for the frozen comparisons
     for s in seeds:
         row = {"seed": s, "arms": {}}
         full = cells.get(f"seed{s}_full", {})
@@ -151,6 +177,11 @@ def main():
         row["A_minus_base_narrow"] = (None if "habit" not in full or "habit" not in base
                                       else full["habit"] - base["habit"])
         row["cut_defined"] = dA is not None and dA >= 0.02
+        fA, fb = frac(full, "broad"), frac(base, "broad")
+        dAx = None if fA is None or fb is None else fA - fb
+        ex["dA"][s] = dAx
+        hA, hb = frac(full, "habit"), frac(base, "habit")
+        ex["dn"][s] = None if hA is None or hb is None else hA - hb
         for arm in MASKS:
             L = ARM[arm]
             c = cells.get(f"seed{s}_{arm}", {})
@@ -160,6 +191,9 @@ def main():
                    if "habit" in c and "habit" in full and "habit" in base else None)
             res["cut"].setdefault(L, []).append(cut)
             res["kept"].setdefault(L, []).append(hab)
+            fc, hc = frac(c, "broad"), frac(c, "habit")
+            ex["cut"].setdefault(L, []).append((fA - fc) / dAx if cut is not None and dAx else None)
+            ex["kept"].setdefault(L, []).append((hc - hb) / ex["dn"][s] if hab is not None and ex["dn"][s] else None)
             res["cut_prompt_ci"].setdefault(L, []).append(
                 boot(base, full, c, "_em", "cut", rng) if cut is not None else None)
             res["kept_prompt_ci"].setdefault(L, []).append(
@@ -178,9 +212,10 @@ def main():
 
     # gates and status (PREREG FROZEN RULE)
     s0 = next((r for r in res["seeds"] if r["seed"] == 0), None)
-    phase0 = None if s0 is None or s0["A_minus_base_broad"] is None else s0["A_minus_base_broad"] >= 0.05
+    phase0 = None if s0 is None or ex["dA"].get(0) is None else ex["dA"][0] >= Fraction(1, 20)
     dn = [r["A_minus_base_narrow"] for r in res["seeds"] if r["A_minus_base_narrow"] is not None]
-    habit_gate = None if len(dn) < 3 else float(np.mean(dn)) >= 0.10
+    dnx = [ex["dn"][s] for s in seeds if ex["dn"].get(s) is not None]
+    habit_gate = None if len(dnx) < 3 else sum(dnx) / len(dnx) >= Fraction(1, 10)
     cB, kB, cE = (res["seed_level"]["cut"].get("B"), res["seed_level"]["kept"].get("B"),
                   res["seed_level"]["cut"].get("E"))
     n_cut = len([x for x in res["cut"].get("B", []) if x is not None])
@@ -194,8 +229,15 @@ def main():
     elif not complete:
         why.append(f"incomplete: cut(B) on {n_cut} seeds, habit(B) on {n_kept} seeds")
     else:
-        rejected = cB[2] < 0.5 or kB[2] < 0.8
-        confirmed = cB[0] >= 0.5 and kB[0] >= 0.8 and cB[1] > 0 and cB[0] > cE[0]
+        xB = [x for x in ex["cut"]["B"] if x is not None]
+        kXB = [x for x in ex["kept"]["B"] if x is not None]
+        xE = [x for x in ex["cut"]["E"] if x is not None]
+        mean = lambda v: sum(v) / len(v)
+        rejected = hi_below(xB, Fraction(1, 2)) or hi_below(kXB, Fraction(4, 5))
+        confirmed = (mean(xB) >= Fraction(1, 2) and mean(kXB) >= Fraction(4, 5) and lo_above(xB, 0)
+                     and mean(xB) > mean(xE))
+        res["status_exact"] = {"mean_cut_B": str(mean(xB)), "mean_kept_B": str(mean(kXB)), "mean_cut_E": str(mean(xE)),
+                               "rejected": rejected, "confirmed": confirmed}
         status = "REJECTED" if rejected else "CONFIRMED" if confirmed else "UNCONFIRMED"
         if status == "UNCONFIRMED":
             why.append("neither bar settled by the seed-level intervals")

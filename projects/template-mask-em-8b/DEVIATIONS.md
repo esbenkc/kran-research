@@ -119,3 +119,24 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
   are written to judge_early_c_guard.json. If the guard fails, C waits for seed 2. Effect: none on the status (A, B, E
   and base only); C and the S1 secondary can be read for seeds 0, 1 tonight. Vera's independent reserve for seed 2's
   step (1): $0.39-0.64 (vera_reserve_out.json).
+- C6 (2026-11-21 ~14:50Z, Bruno, Selma #27626, Felix decision #27627, Tove #27632; before any arm-D judge call): arm D
+  (last 12 question tokens, step (3)) for seeds 0 and 1 is judged before seed 2 has answers, behind a code guard
+  (judge.py early_later_guard, flag --early-d): spend + reserve + D estimate <= $4.50, where reserve = 1.2 x the
+  largest measured per-seed step-(1) cost x missing seeds x (1 + 1/3), the 1/3 keeping seed 2's arm C (step (2) comes
+  before step (3) in the frozen order), and the D estimate = 1/3 of each present seed's step-(1) cost per D cell (an
+  upper bound: D has 400 broad answers). D runs only when arm C is judged for every present seed. Numbers:
+  judge_early_D_guard.json. Effect: none on the status (D is secondary); it tests whether any 12 tokens right before
+  the template would do.
+- C7 (2026-11-21 ~14:50Z, Bruno, Iris #27633, Tove #27634, Kasper #27639; before any narrow 'aligned' call): the frozen
+  narrow secondary (step (4): the 'aligned' score on the finance answers) for base and every present cell, behind the
+  same guard (flag --early-narrow2) with the reserve x (1 + 2/3) for seed 2's C and D. It runs only after D passed its
+  guard. Numbers: judge_early_N2_guard.json. Effect: none on the status; reported, never 'like-for-like' with
+  Piggyback's bars (different judge and recipe, Kasper #27639).
+- C8 (2026-11-21 ~14:50Z, Bruno, Kasper #27631; before seed 2 exists, and the 2-seed analysis is unchanged by it):
+  analysis.py compares the frozen bars exactly. Every rate is a count over n, so cut, habit, their seed means and the
+  t-interval bounds (squared, with t = 4.303 as a decimal fraction) are compared as fractions.Fraction: Phase 0
+  (>= 1/20), habit gate (>= 1/10), mean cut(B) >= 1/2, mean habit(B) >= 4/5, lower bound of cut(B) > 0, mean cut(B) >
+  mean cut(E), and the REJECTED upper bounds. Why: the float mean of habits that are exactly 4/5 on average can come
+  out 0.7999999999999999 and flip the status. Receipt: test_analysis_exact.py (planted 3-seed cells; mean habit
+  exactly 4/5 -> CONFIRMED with the new code, UNCONFIRMED with the old; 359/450 -> UNCONFIRMED). The reported float
+  numbers and intervals are unchanged (analysis.json for seeds 0, 1 identical apart from this).

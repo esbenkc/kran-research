@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: e5de283a69b4801db105a4f401a5f980f22b73b1
+sha256: ba30116fe7c9a6e053e5de06bee4f7a2c1163435f3e80fb2303527220c07ee41
+pushed: 2026-11-21T01:02:10Z
+branch: swarm/oracle-1121-audit-penalty-8b
+url: https://github.com/esbenkc/kran-research/blob/e5de283a69b4801db105a4f401a5f980f22b73b1/projects/probe-switch-audit-penalty-8b/PREREG.md
+-->
+
 # PRE-REGISTRATION — probe-switch-audit-penalty-8b (room oracle-1121-audit-penalty-8b)
 
 Scale replication of probe-switch-audit-penalty (Qwen3-1.7B, room oracle-1026-audit-penalty, branch

@@ -89,6 +89,19 @@ def main():
              f"| data/gates.json |")
     L += rows_for("runs", "headline")
     L += rows_for("runs_explore", "S9 fresh direction (exploratory)")
+    rb = HERE / "research_checks" / "rebuild_status_1122.json"
+    if rb.exists():  # Bruno's stdlib rebuild (no analyze_8b import), theory-1122 continuation
+        b = json.load(open(rb))
+        s = b["seed_level"]
+        L.append(f"| rebuild of the status (stdlib, gap from per-prompt P(X)) | - | Qwen3-8B, seeds "
+                 f"{', '.join(str(k) for k in b['slopes'])} | none | seed-level {s['mean']:.4f} "
+                 f"[{s['ci'][0]:.4f}, {s['ci'][1]:.4f}]; C1 ok {b['c1']['ok']}; status {b['status']} "
+                 f"| research_checks/rebuild_status_1122.json |")
+        d = b.get("c1_s6_mini_vs_laptop")
+        if d:
+            L.append(f"| cross-machine determinism of C1 seed 6 | 6 | Qwen3-8B, share 5.469% (k=0), mini copy killed at "
+                     f"update {d['last_step']} vs laptop copy | shuffled coin (C1) | {d['n_equal']} of {d['n_points']} "
+                     f"shared evals bit-equal; max abs gap diff {d['max_abs_gap_diff']} | data/mini/M2_partial/m8_c1_s6.log |")
     (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")
     print("\n".join(L))
 

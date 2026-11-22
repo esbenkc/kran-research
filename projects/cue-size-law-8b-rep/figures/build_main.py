@@ -89,9 +89,10 @@ def main():
              f"With new seeds, each halving of the cue cost Qwen3-8B ×{f:.2f} in updates" if f else "[no slope yet]")
     if a.dry:
         title = "[dry run: November 16 runs stand in for the new seeds]"
-    notes_ctrl = "; ".join(f"switched at {c['T']:,} updates" if c["switched"] else
-                           (f"no switch in {c['steps']:,} updates" if c["steps"] else "no switch")
-                           for c in ctrl) if ctrl else ""
+    ctrl_notes = [f"switched at {c['T']:,} updates" if c["switched"] else
+                  (f"no switch in {c['steps']:,} updates" if c["steps"] else "no switch") for c in ctrl]
+    notes_ctrl = (f"both: {ctrl_notes[0]}" if len(ctrl_notes) == 2 and len(set(ctrl_notes)) == 1
+                  else "; ".join(ctrl_notes))
     out = dict(
         status=st.get("status"),
         title=title,

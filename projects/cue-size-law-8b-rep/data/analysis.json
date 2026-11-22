@@ -1,9 +1,7 @@
 {
  "status_8b": {
-  "status": "UNCONFIRMED",
-  "reasons": [
-   "C1 controls missing, not full length, or switched"
-  ],
+  "status": "CONFIRMED",
+  "reasons": [],
   "seed_level": {
    "n": 3,
    "mean": -0.9556308539972331,
@@ -62,6 +60,13 @@
    }
   },
   "controls": [
+   {
+    "name": "l8_c1_s6",
+    "seed": 6,
+    "switched": false,
+    "full": true,
+    "T": null
+   },
    {
     "name": "m8_c1_s5",
     "seed": 5,
@@ -887,7 +892,234 @@
    "left_out": [],
    "reference": "parent matched Qwen3-0.6B arm, finished seeds (ref/parent/runs_06b), seen data"
   },
-  "S9_fresh_u": null,
+  "S9_fresh_u": {
+   "runs": [
+    {
+     "name": "l8u1125_k0_s5",
+     "seed": 5,
+     "k": 0,
+     "share": 0.054690283778701956,
+     "T_dense": 24,
+     "cens": false,
+     "gap0": -0.006745609438390451,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1125_k1_s5",
+     "seed": 5,
+     "k": 1,
+     "share": 0.027345139480717016,
+     "T_dense": 40,
+     "cens": false,
+     "gap0": -0.003424025486164973,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1125_k2_s5",
+     "seed": 5,
+     "k": 2,
+     "share": 0.013672570944675489,
+     "T_dense": 72,
+     "cens": false,
+     "gap0": -0.0016971838739918764,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1125_k3_s5",
+     "seed": 5,
+     "k": 3,
+     "share": 0.006836284870179254,
+     "T_dense": 160,
+     "cens": false,
+     "gap0": -0.0008403494316323826,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1125_k4_s5",
+     "seed": 5,
+     "k": 4,
+     "share": 0.003418143338327363,
+     "T_dense": 296,
+     "cens": false,
+     "gap0": -0.00041887466443858625,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1125_k5_s5",
+     "seed": 5,
+     "k": 5,
+     "share": 0.0017090715186240588,
+     "T_dense": 680,
+     "cens": false,
+     "gap0": -0.0002097344873486243,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1126_k0_s6",
+     "seed": 6,
+     "k": 0,
+     "share": 0.05469028859596988,
+     "T_dense": 24,
+     "cens": false,
+     "gap0": -0.0448738069545819,
+     "in_fit": false
+    },
+    {
+     "name": "l8u1126_k1_s6",
+     "seed": 6,
+     "k": 1,
+     "share": 0.027345141889350978,
+     "T_dense": 40,
+     "cens": false,
+     "gap0": -0.02211702351588985,
+     "in_fit": false
+    },
+    {
+     "name": "l8u1126_k2_s6",
+     "seed": 6,
+     "k": 2,
+     "share": 0.013672570944675489,
+     "T_dense": 72,
+     "cens": false,
+     "gap0": -0.010936947673391994,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1126_k3_s6",
+     "seed": 6,
+     "k": 3,
+     "share": 0.0068362854723377445,
+     "T_dense": 136,
+     "cens": false,
+     "gap0": -0.005436521089251231,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1126_k4_s6",
+     "seed": 6,
+     "k": 4,
+     "share": 0.0034181427361688723,
+     "T_dense": 296,
+     "cens": false,
+     "gap0": -0.0027079715650125255,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1126_k5_s6",
+     "seed": 6,
+     "k": 5,
+     "share": 0.0017090713680844361,
+     "T_dense": 664,
+     "cens": false,
+     "gap0": -0.0013528373649891877,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1127_k0_s7",
+     "seed": 7,
+     "k": 0,
+     "share": 0.054690283778701956,
+     "T_dense": 24,
+     "cens": false,
+     "gap0": 0.02669882954251825,
+     "in_fit": false
+    },
+    {
+     "name": "l8u1127_k1_s7",
+     "seed": 7,
+     "k": 1,
+     "share": 0.027345141889350978,
+     "T_dense": 40,
+     "cens": false,
+     "gap0": 0.01449026436168097,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1127_k2_s7",
+     "seed": 7,
+     "k": 2,
+     "share": 0.01367257214899247,
+     "T_dense": 64,
+     "cens": false,
+     "gap0": 0.007452239344162675,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1127_k3_s7",
+     "seed": 7,
+     "k": 3,
+     "share": 0.006836286074496235,
+     "T_dense": 128,
+     "cens": false,
+     "gap0": 0.0037703771555015623,
+     "in_fit": true
+    },
+    {
+     "name": "l8u1127_k4_s7",
+     "seed": 7,
+     "k": 4,
+     "share": 0.0034181427361688723,
+     "T_dense": 304,
+     "cens": false,
+     "gap0": 0.0018971012219545305,
+     "in_fit": true
+    }
+   ],
+   "per_seed": {
+    "5": {
+     "sizes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "n_runs": 6,
+     "n_cens": 0,
+     "finished": true,
+     "slope": -0.9696206477988489,
+     "intercept": 0.2405283345406329
+    },
+    "6": {
+     "sizes": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "n_runs": 6,
+     "n_cens": 0,
+     "finished": true,
+     "slope": -1.0737333814092453,
+     "intercept": -0.3807463012963293
+    },
+    "7": {
+     "sizes": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "n_runs": 5,
+     "n_cens": 0,
+     "finished": false
+    }
+   },
+   "seed_level": {
+    "n": 2,
+    "mean": -1.0216770146040473,
+    "sd": 0.07361881994377989,
+    "ci": [
+     -1.6831158690523038,
+     -0.3602381601557907
+    ],
+    "method": "t-interval over 2 per-seed OLS slopes (df 1)"
+   },
+   "side": "straddles",
+   "skipped_wrong_u": [],
+   "note": "exploratory; seed s uses u from numpy seed 1120+s; never in the status"
+  },
   "S10_predicted_number": {
    "mean": -0.9556308539972331,
    "range": [
@@ -900,7 +1132,85 @@
     -0.9492307565005413
    ]
   },
-  "S9_matched_subsets": null,
+  "S9_matched_subsets": {
+   "by_s9_seed": {
+    "5": {
+     "sizes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "s9_slope": -0.9696206477988489,
+     "main_slopes_same_sizes": [
+      -0.9550116328214959,
+      -0.9584604226028898,
+      -0.9534205065673137
+     ],
+     "main_seed_level_same_sizes": {
+      "n": 3,
+      "mean": -0.9556308539972331,
+      "sd": 0.002576385949304809,
+      "ci": [
+       -0.9620309514939249,
+       -0.9492307565005413
+      ],
+      "method": "t-interval over 3 per-seed OLS slopes (df 2)"
+     }
+    },
+    "6": {
+     "sizes": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "s9_slope": -1.0737333814092453,
+     "main_slopes_same_sizes": [
+      -1.0417535136901077,
+      -1.081083948369233,
+      -1.1306821223732857
+     ],
+     "main_seed_level_same_sizes": {
+      "n": 3,
+      "mean": -1.0845065281442088,
+      "sd": 0.04456298800370667,
+      "ci": [
+       -1.195207127192494,
+       -0.9738059290959235
+      ],
+      "method": "t-interval over 3 per-seed OLS slopes (df 2)"
+     }
+    },
+    "7": {
+     "sizes": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "s9_slope": null,
+     "main_slopes_same_sizes": [
+      -0.9740579193495419,
+      -0.9339603449782383,
+      -0.9684889757515207
+     ],
+     "main_seed_level_same_sizes": {
+      "n": 3,
+      "mean": -0.9588357466931003,
+      "sd": 0.021721935711540633,
+      "ci": [
+       -1.0127960263663547,
+       -0.904875467019846
+      ],
+      "method": "t-interval over 3 per-seed OLS slopes (df 2)"
+     }
+    }
+   },
+   "note": "descriptive, added after the main-arm data existed; never in the status"
+  },
   "C2": [
    {
     "name": "m8_c2_s5",

@@ -56,3 +56,6 @@ Checked on deploy-preview-232 after Selma push 310e48f6 (fetched 23:30 PST; text
 
 R2 nit (not blocking): “Markup words that the warning lacks, such as “display:none”, appeared in 2 of 60 unwarned and 9 of 56 warned requests.” Its point is unstated after the copy check. READ TWICE -> REWRITE: “Words the warning lacks, like “display:none”, even rose: 2 of 60 unwarned, 9 of 56 warned.”
 
+
+- L7 FIXED at 4a8d4d80 (preview fetched 23:33 PST): “is listed in the banner”: 0 hits; Rebuilds now says “It is gpt-oss-20b, the same model this post tests, run on Esben’s laptop.” Banner (2 critics: Local critic, Vera) and Rebuilds line agree. Re-check after critic2 signoffs --write.
+- R2 nit still open: “Markup words that the warning lacks ...” (1 hit), “even rose” (0 hits). Not blocking.

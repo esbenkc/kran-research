@@ -59,7 +59,7 @@ def cut_panel():
         "subtitle": "Qwen3-8B, MLP-only runs. A cut gives chosen heads, while the probe reads, "
                     "the output they have without the probe",
         "x_label": "share of the probe's push toward A that the cut removes",
-        "legend": {"head": "cut only head 35.8 (last layer), the blind search's first pick in every run",
+        "legend": {"head": "cut only head 35.8 (last layer), the head audit's first pick in every run",
                    "null": "cut 3 random heads of the last 8 layers (50 draws per run; below 0 drawn at 0)"},
         "seeds": seeds,
     }

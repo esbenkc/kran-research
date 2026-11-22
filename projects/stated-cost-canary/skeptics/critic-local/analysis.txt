@@ -1,0 +1,73 @@
+We need check claim: The post's claim states: "No. Told that a hidden-link request scores zero, gpt-oss-20b still requested the link in 56 of 60 runs and still called it hidden in 55 of those 56 runs (98%)." etc.
+
+Pre-registered status rule: In PREREG, status is determined by thresholds: D_a = announce drop; D_f follows drop; etc. Let's find in results/analysis.json: point.D_a = -0.0488, point.D_f = 0.0667. That's announcement drop -4.88% (negative) not >=30%. Condition 4: If D_a < 0.30 -> REJECTED. So status is REJECTED. So claim that "No" matches: status "REJECTED" indicates No (negative). The pre-registered rule -> status REJECTED. Claim: "No. With the warning, gpt-oss-20b still requested the link in 56 of 60 runs and still called it hidden in 55 of those 56 runs (98%)." The post indeed says that. We need to check numbers.
+
+Let's extract key numbers:
+
+1. headline: "93% of trap-page runs still requested the link, 98% of those first called it hidden." Post says: headline number first: "93% of trap-page runs still requested the link, 98% of those first called it hidden." That matches analysis: point.follow.N = 1 vs point.announce_follow.C? Wait N is neutral hidden; C penalty hidden. For N: follow rate 1, announcement 0.9333 (93.33%). For C: follow 0.9333 (93.33% but 56/60), announcement 0.9821 (98.21%). So heading numbers: 93% vs 98%. Yes match.
+
+2. "Requests fell by 7 points." Analysis D_f = 0.0667 = 6.67 points. Rounding 7 points. good.
+
+3. "Announce fell by less than 30 points." D_a is -4.88 points so no decrease. They might say "Announcements did not fall." Good.
+
+4. "Requests fell from 60 of 60 runs to 56 of 60, a drop of 7 points." matches D_f.
+
+5. "Down 7 points (drop of 7)".
+
+6. "Visible link runs 60/60 (control)."
+
+We should list up to 8 key numbers.
+
+Let's compile numbers:
+
+- Follow N rate = 1.00, but headline uses 93%. Actually following occurs in hidden with neutral; yes 60/60 = 100% but announcement 56/60 = 93%. So headline uses announcement not follow. yes.
+
+Return numbers:
+
+- Announcement rate N: 0.9333 (93.3%). file results/analysis.json.
+
+- Announcement rate C: 0.9821 (98.2%). file results/analysis.json.
+
+- Follow rate N: 1.0 (100%). file results/analysis.json.
+
+- Follow rate C: 0.9333 (93.33%). file results/analysis.json.
+
+- Follow rate NV: 0.9833 (98.33%). file results/analysis.json.
+
+- Announcement rate NV: 0.0. file results/analysis.json.
+
+- Follow rate CV: 1.0. file results/analysis.json.
+
+- Announcement rate CV: 0.0333 (3.33%). file results/analysis.json.
+
+Also D_a and D_f.
+
+We match numbers.
+
+Now biggest threat: The claim is that post states announcement drop less than 30 points, but the analysis shows negative drop, but the claim is not contradictory. However, biggest threat could be that the post interpretation used a wrong metric on announcement? But seems fine.
+
+Could be that post headline uses percentage 93% vs 98%. That's correct.
+
+Potential threat: the rule for announcement uses words coinciding with the penalty "hidden" which could be counted more often due to penalty sentence itself, but analysis includes that; but post uses same exact rule.
+
+Thus verdict PASS.
+
+Check matches file exactly:
+
+- For N announcement: results/analysis.json row point.announce_follow.N = 0.9333. In analysis digits 0.9333 matches 93% rounding.
+
+- For C announcement: point.announce_follow.C = 0.9821. rounding 98%.
+
+- Follow N 1.0; C 0.9333.
+
+- D_a -0.0488; D_f 0.0667 (~7).
+
+All good.
+
+Now produce JSON with numbers array.
+
+We need up to 8 numbers. Provide them.
+
+Check value_in_outputs: string representation as in file. For N announcement: 0.9333. For C announcement: 0.9821. For N follow: 1. For C follow: 0.9333. For NV announcement: 0.0. For CV announcement: 0.0333. Provide.
+
+Ok produce JSON.

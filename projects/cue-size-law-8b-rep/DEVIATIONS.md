@@ -77,3 +77,39 @@ reported as a determinism check (the parent saw 1,539 of 1,539 eval points equal
 Status consequence: neither copy is in git at the 11:00 PST wrapup, so tonight's status is "UNCONFIRMED: waiting for
 laptop queue (9y8gn3qvoc)"; the next run of the track reads C1 s6 from this branch under the same rule.
 Seen when decided: all main cells, C2, C1 s5 (no switch), and the 5f3rwdo6um log line above.
+
+## P4: continuation theory-1122-cue-size-law-8b reads C1 seed 6 from the recovered laptop copy (procedure only, outside the FROZEN block; plan #28213, Felix; logged by Felix 2026-11-22 PST)
+
+No line inside the FROZEN RULE block changed. This run applies the frozen rule and the frozen analyze_8b.py (unchanged
+since 0b6f468a8) to the branch as it stands after the parent room closed.
+
+What happened after the parent closed (2026-11-20, all times PST):
+- C1 seed 6 (laptop lane B of labq 5f3rwdo6um) finished at 10:05:25, before the 11:00 frozen wrapup:
+  data/laptop/R3/chain.log:29 `OK l8_c1_s6 DONE ... T None test_gap 0.014066543337612529 train_s 3562.3`. So it is a
+  finished run, not an incomplete one under REP-4. Only its commit failed (5f3rwdo6um FAILED 10:27, before any push).
+- Recovery job labq 9y8gn3qvoc (recover_job.sh, copy only, no re-run) ran at 11:20 and pushed d5e6bfb8f with
+  data/runs/l8_c1_s6.json (sha256 4c2bf156d59575b6..., steps_run 8192, T None, test_gap 0.014066543337612529, the
+  same digits as the log line above). The frozen clause covers this read: "the next run of the track finishes the job
+  from this branch under this same rule".
+- The mini re-run M2 (P3) started 10:31:11 and was stopped at update 2,624 (10:59) when the parent room wrapped up.
+  It never wrote a run JSON. So `provenance()` in analyze_8b.py ("Controls: mini copy if present") finds no mini copy
+  and takes the laptop copy. The M2 log is kept as a receipt (data/mini/M2/m8_c1_s6.log). Its 47 logged evals
+  (updates 0 to 2,624) equal the laptop copy bit for bit (max |gap difference| 0.0). This is a determinism check
+  for the recovered file, not a second copy: it has no status role.
+- S9 gap fill (exploratory, never in the status): the only missing S9 cell, fresh direction u1127, size k5, seed 7,
+  runs on the Mac mini as one solo heavy job on the existing block-34 cache (~1.0B-parameter tail, peak ~7.25 GB), if
+  Vera passes the compute gate. Fixed before it starts: name m8u1127_k5_s7, rl.py arguments exactly as the S9 entry of
+  laptop_job.sh (line 68) builds them: `--share 0.001709071386924852 --k 5 --seed 7 --u-file data/cue_u_1127.npy
+  --out-sub runs_explore --x-offset gates` (alpha 0.0014633684768341469 and b -4.4965009331006005 from
+  data/scan_u1127.json, no re-solve). Its pre-RL gap(0) in data/scan_u1127.json is 0.00095 (< 0.02), so the frozen S9
+  exclusion keeps it in the S9 fit. It is read only by the unchanged s9_fresh_u() in analyze_8b.py (S9 = seeds 5, 6, 7,
+  each with its own direction), outside the status, whatever it shows. The run JSON must be in git by 09:30 PST
+  (Tove #28219); if not, the post reports S9 with n = 2 and says so. Disclosed deviation as in P1: the goal sends steps
+  with a model above 2B parameters to the laptop queue; this step trains only the tail on cached features. It is the
+  only S9 cell from the mini; the other 17 S9 cells come from the laptop (determinism laptop vs mini: the C1 s6 check
+  above).
+
+Seen when decided: everything above. Before this line was logged, five agents (Felix, Bruno, Iris, Vera, Owain) had
+run the frozen analyze_8b.py read-only on the branch tip and seen STATUS CONFIRMED (seed-level slope -0.9556
+[-0.9620, -0.9492]; both C1 seeds full 8,192 updates, no switch). No choice in this entry depends on that output:
+the copy rule and the analysis code are the frozen ones, applied as written.

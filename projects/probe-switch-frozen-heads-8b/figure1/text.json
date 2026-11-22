@@ -37,7 +37,11 @@
         "mlp8_none_s2"
       ],
       "at17": "At 1.7B: {k} of {n} in each of {runs} runs.",
-      "planned": 3
+      "planned": 3,
+      "cut": {
+        "head": "35.8",
+        "text": "Give one frozen head (head 8 of the last layer) its no&#8209;probe output: <b>{pct}%</b> of the probe's push toward A is gone, in each of {runs} runs."
+      }
     },
     {
       "key": "last",
@@ -51,7 +55,8 @@
         "mlp27_none_s1"
       ],
       "at17": "At 1.7B: {k} of {n} in each of {runs} runs.",
-      "planned": 2
+      "planned": 2,
+      "fixed": "No switch: one run answers A on almost every prompt, the other B, with or without the probe. Run 1 shown."
     }
   ],
   "note": "",

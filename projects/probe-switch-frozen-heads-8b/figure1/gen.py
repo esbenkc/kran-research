@@ -110,8 +110,30 @@ for arm in T["arms"]:
     on = switched(ex)
     facts[arm["key"]] = {"src": src, "runs": [n for n, _ in r8], "counts": c8, "n": n8, "c17": c17}
     at17 = arm["at17"].format(k=rng(c17), n=n17, runs=len(c17))
+    extra = ""
+    if arm.get("cut"):
+        # one frozen head reset to its no-probe output: data/audit/<run>.json blind_greedy_test k=1 (blind first pick)
+        cut = [next(g for g in json.load(open(DATA / "audit" / f"{n}.json"))["blind_greedy_test"] if g["k"] == 1)
+               for n, _ in r8]
+        assert len(cut) == len(r8) and all(g["heads"] == [arm["cut"]["head"]] for g in cut), cut
+        pct = [f"{100 * g['removed']:.1f}" for g in cut]
+        facts[arm["key"]]["cut"] = {"head": arm["cut"]["head"], "removed": [g["removed"] for g in cut]}
+        lo, hi = min(pct, key=float), max(pct, key=float)
+        extra = f'<div class="extra">{arm["cut"]["text"].format(pct=lo if lo == hi else f"{lo}&ndash;{hi}", runs=len(cut))}</div>'
+    if arm.get("fixed"):
+        # no switch because each run gives one fixed answer: share of A with and without the probe, per run
+        shares = []
+        for n, w in r8:
+            off = sum(strictly(v[0], v[0]["a_id"]) for v in w.values()) / len(w)
+            onp = sum(strictly(v[1], v[1]["a_id"]) for v in w.values()) / len(w)
+            shares.append((off, onp))
+        assert shares[0][0] >= 0.95 and shares[0][1] >= 0.95, shares  # run 1 (shown): A almost always
+        assert all(s <= 0.05 for s in shares[1]), shares  # run 2: B almost always (A on at most 5%)
+        assert not on and strictly(ex[0], ex[0]["a_id"]), ex  # the drawn example is run 1's A, A
+        facts[arm["key"]]["share_A_off_on"] = shares
+        extra = f'<div class="extra">{arm["fixed"]}</div>'
     rows.append(f'<div class="row{" hl" if arm.get("hl") else ""}"><div><h2>{arm["title"]}</h2>{glyphs(arm)}'
-                f'<div class="num">{count_line(c8, n8, arm["planned"])}</div><div class="at17">{at17}</div></div>'
+                f'<div class="num">{count_line(c8, n8, arm["planned"])}</div><div class="at17">{at17}</div>{extra}</div>'
                 f'{answer(ex[0])}{answer(ex[1], red=on)}</div>')
 
 text = prompts[EX]["text"].split("user\n", 1)[1]
@@ -161,7 +183,7 @@ page = f"""<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap" rel="stylesheet">
 <!--
-Built by figure1/gen.py from kran-research (branch swarm/oracle-1118-frozen-heads-8b), projects/probe-switch-frozen-heads-8b.
+Built by figure1/gen.py from kran-research (branch swarm/oracle-1122-frozen-heads-8b, from swarm/oracle-1118-frozen-heads-8b), projects/probe-switch-frozen-heads-8b.
   prompt   inputs/prompts.jsonl {EX} (test split; identical file to the 1.7B run); picked by figure1/pick.py
   8B       {DATA.relative_to(P)}/whole/<run>.json, strict switch (PREREG): probe off top-1 B, probe on top-1 A, each strictly above top-2
   1.7B     {P17}/data/whole/<run>.json at {PIN17}
@@ -198,6 +220,8 @@ Built by figure1/gen.py from kran-research (branch swarm/oracle-1118-frozen-head
   .num {{ font-size: 24px; margin-top: 8px; line-height: 1.25; color: #4d5059; }}
   .num b {{ color: #1d1d1f; }}
   .at17 {{ font-size: 21px; color: #6f727b; margin-top: 4px; font-style: italic; }}
+  .extra {{ font-size: 22px; color: #1d1d1f; margin-top: 8px; line-height: 1.28; }}
+  .extra b {{ color: #c8372d; }}
   .reply {{ display: flex; align-items: center; gap: 8px; }}
   .reply > svg {{ flex: none; }}
   .answer {{ background: #fff; border-radius: 20px 20px 20px 6px; padding: 8px 14px 8px 12px; font-size: 26px; font-weight: 700;

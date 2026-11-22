@@ -1,18 +1,23 @@
 # Vera (skeptic) receipts, cue-size-law-8b-rep
 
 Written from PREREG.md and the raw run JSONs only. No code of the build was imported or reused.
+Nov 20 sign-off and its outputs: ../2026-11-20/skeptic/. Tonight (Nov 22, continuation): signoff.md.
 
 | file | what it does |
 |---|---|
-| vera_check.py | rebuilds dense T from raw curves (gap = px_off - px_on, D = gap - gap(0), first eval with D >= 0.10 twice in a row), per-seed OLS slopes on ln share, seed-level t-interval, pooled Tobit, C1/C2 checks, S8 vs the parent 0.6B arm, S4 halves, size-permutation null, leave-one-size-out, prompt-level bootstrap (2,000 x 64 dev prompts, numpy seed 0) |
-| vera_gates.py | G1 and REP-1 G2(b) from data/gates.json per-prompt numbers + the saved NDIF file (ties from its topv) |
-| vera_g2a.py | G2(a) per token, per row and whole prompt, from the mini cache file and the saved NDIF block-34 input; cache array sha256 |
-| vera_boot_diag.py | per-run distribution of the bootstrap T (why the prompt-level upper bound equals the point) |
-| vera_band_sympy.py / .txt | slope band <-> per-halving factor arithmetic |
-| vera_power0.py, vera_power5.py | pre-data power of the n=3 t-interval (Phase 0) |
-| check_*.json | checker outputs (parent test, partial seeds, final) |
-| novelty.md | novelty and definition check |
+| vera_check.py | rebuilds dense T from raw curves, per-seed OLS slopes, seed-level t-interval, Tobit, C1/C2, nulls, prompt bootstrap |
+| check_final.json | its output on the final branch (prefixes m8_, l8_) |
+| vera_diff.py / .txt | field-by-field diff of data/analysis.json status_8b against check_final.json (70 fields) |
+| vera_c1s6_provenance.py / .txt | C1 s6 test gap vs the pre-failure log line; killed mini rerun M2 vs laptop copy (47/47) |
+| vera_seed_null.py / .txt | size-label shuffle null of the seed-level interval; width with the Nov 16 and 0.6B seed sd |
+| vera_s9.py / .txt, check_s9.json | S9 fresh-direction slopes with the frozen gap(0) exclusion |
+| vera_matched.py / .txt | main seeds refit on each S9 seed's sizes |
+| vera_m3.py / .txt | M3 checks: C2 s6, S9 k5 s7 args, mini vs partial laptop log (15/15) |
+| vera_gates.py, vera_gates_1122.txt | G1 and G2 from data/gates.json + the saved NDIF file |
+| vera_g2a.py, vera_boot_diag.py, vera_band_sympy.py/.txt, vera_power*.py | Nov 20 checks (unchanged inputs) |
+| novelty.md | novelty and definition check (Nov 20 + Nov 22 refresh) |
 | signoff.md | verdict |
 
-Run: `uv run --no-project --with numpy --with scipy python vera_check.py <project>/data/runs --prefix m8_ --seeds 5,6,7 --c1-seeds 5,6 --ref06 <parent runs_06b>`
-(C1 s6 ran on the laptop as l8_c1_s6; the final check reads both prefixes, see signoff.md.)
+Run (from the project dir): `uv run --no-project --with numpy --with scipy python skeptics/skeptic/vera_check.py data/runs --prefix m8_,l8_ --seeds 5,6,7 --c1-seeds 5,6 --gates data/gates.json --out check_final.json`,
+then from skeptics/skeptic: `python vera_diff.py ../../data/analysis.json check_final.json`, `python vera_seed_null.py`,
+`python vera_s9.py ../..`, `python vera_matched.py`, `python vera_m3.py ../..`.

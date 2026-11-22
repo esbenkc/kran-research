@@ -32,3 +32,17 @@ by 1.6 to 2.6 (log-log slope -0.7 to -1.4)?
   alpha. The post must say which.
 - "Learn a switch" = dense dev gap rise D >= 0.10 at two consecutive evals, not full conditional behaviour.
 - "1.6 to 2.6" is the rounded image of the slope band: exact x1.625 to x2.639 (vera_band_sympy.txt).
+
+## Refresh (2026-11-22, continuation theory-1122-cue-size-law-8b)
+- Web search (past month): "RL fine-tuning number of updates to learn backdoor trigger scaling with trigger strength
+  power law". New since 11-20: nothing that measures RL updates-to-switch against cue size.
+- Nearest new hit: "When Stronger Triggers Backfire: A High-Dimensional Theory of Backdoor Attacks", arXiv 2605.22481:
+  regularised GLMs on Gaussian mixtures; attack success vs training trigger strength peaks at a finite strength.
+  It is a static (end-of-training) success law in a supervised linear model, not a time-to-learn law under RL.
+  No conflict with our claim; the post need not cite it.
+- "Understanding and Enhancing Backdoor Persistency in LLM Agent Post-Training", arXiv 2610.07510: persistence of an
+  existing backdoor through SFT/RL, not the time to learn a new one.
+- Claim the post may make: the pre-registered 8B exponent -0.956 [-0.962, -0.949] (x1.94 per halving) next to the
+  0.6B x1.87, in this one setting (LoRA on the last two blocks of Qwen3-8B on cached block-34 features, GRPO, one
+  planted direction u1110 for the status seeds). It is the CONFIRMED replication of the Lab's own EXPLORATORY 8B
+  result; it is not a general law across directions (S9: n=2 finished seeds before tonight's gap fill).

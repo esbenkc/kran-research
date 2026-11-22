@@ -2,55 +2,59 @@ role: skeptic
 model: anthropic/claude-opus-5-5
 verdict: PASS
 
-# Vera (skeptic) sign-off: cue-size-law-8b-rep, room theory-1120-cue-size-law-8b-rep
+# Vera (skeptic) sign-off: cue-size-law-8b-rep, continuation room theory-1122-cue-size-law-8b
 
-**Sign-off: UNCONFIRMED** (the frozen rule's answer at the wrapup, 20:00 CET 2026-11-20).
-The numbers the build reports reproduce exactly from the raw curves with my own code. The status is not settled
-only because the raw data of control C1 seed 6 is not in the repository: it finished on the laptop (log line
-'10:05:25 [B] OK l8_c1_s6 DONE T None test_gap 0.014066543337612529 train_s 3562.3') but labq job 5f3rwdo6um
-failed on a lost heartbeat at 10:27 PST before it committed any output. A log line is not raw data, so I do not
-count it. Recovery: labq 9y8gn3qvoc (copies the finished JSON from the kept laptop work dir) and/or a mini rerun
-m8_c1_s6 (the parent showed mini and laptop copies identical in 1,539 of 1,539 eval points, so the rerun must
-reproduce test_gap 0.014066543337612529).
+**Sign-off: CONFIRMED.** The frozen rule (PREREG.md, FROZEN RULE block, unchanged since the pushed prereg commit
+ec16e6569 / header a4215318a) gives yes on tonight's branch, and every number it needs reproduces from the raw run
+JSONs with my own code. The Nov 20 sign-off (UNCONFIRMED, C1 seed 6 had no raw data in git) is kept at
+../2026-11-20/skeptic/signoff.md.
 
-## What I rebuilt (vera_check.py, from dev_curve + dense_curve px_off/px_on and the per-prompt p_off/p_on)
+## What changed since Nov 20
+- labq 9y8gn3qvoc (DONE, d5e6bfb8f) recovered data/runs/l8_c1_s6.json from the failed job's work dir.
+  Its test gap 0.014066543337612529 equals, to the last digit, the log line written before the job failed
+  ('10:05:25 [B] OK l8_c1_s6 DONE ... test_gap 0.014066543337612529'), so the run finished before the frozen
+  11:00 PST wrapup (not 'incomplete' under REP-4); only its commit was late (vera_c1s6_provenance.txt).
+- The mini rerun M2 was stopped at update 2,624 and never wrote a JSON, so provenance() takes the laptop copy.
+  The M2 log equals the laptop file bit for bit at 47 of 47 shared evals (vera_c1s6_provenance.txt).
 
-| claim | cells | my number | build's analysis.json | match |
-|---|---|---|---|---|
-| dense T, seed 5, k0..k5 | m8_k*_s5 | 24/40/72/152/296/640 | T_dense same | 6/6 |
-| dense T, seed 6 | m8_k*_s6 | 24/40/72/136/280/688 | same | 6/6 |
-| dense T, seed 7 | m8_k*_s7 | 24/40/64/120/304/640 | same | 6/6 |
-| per-seed slopes | 18 runs | -0.9550 / -0.9585 / -0.9534 | same | yes |
-| seed-level 95% (t, df 2) | 3 seeds | -0.9556 [-0.9620, -0.9492] | -0.95563 [-0.96203, -0.94923] | to 1e-8 |
-| prompt-level 95% (2,000 x 64 dev prompts, seed 0) | 18 runs | [-0.9734, -0.9545] | [-0.97342, -0.95453] | to 1e-8 |
-| pooled Tobit (0 censored) | 18 runs | -0.9556 | -0.95563 | yes |
-| inside band [-1.4, -0.7] | | yes | | |
-| C1 s5 (mini, shuffled coin) | m8_c1_s5 | full 8,192, no switch, max D 0.0296 | | |
-| C1 s6 (laptop) | l8_c1_s6 | NO RAW DATA in git | | blocks |
-| C2 s5 (cue 0) | m8_c2_s5 | max abs gap 0.0 over 1,024 | | |
-| G1 | gates.json | dev mean 0.3435 in [0.30, 0.50]; think top-1 0 | pass | yes |
-| G2(b) REP-1 (vera_gates.py) | 64 dev | max 0.1287 <= 2 x 0.1396; median 0.0043 <= 0.01; top-1 63 strict, 64 with 1 NDIF tie | pass | yes |
-| G2(a) (vera_g2a.py) | 64 dev | whole prompt max 0.00446 < 0.01 (pass); per token median 0.011, rows 1-2 0.0131 / 0.0108 | pass | caveat |
-| cache determinism | mini cache | array sha256 70c4703a... = parent | same | yes |
-| S8 (vs parent 0.6B, 5 seeds) | | G ratio 0.860; k2-k5 median ratios 0.900/0.895/0.974/0.941; holds | 0.8600 | yes |
-| S10 (mean slope in [-1.003, -0.803]) | | -0.956, holds | | |
-| S4 halves | | -0.764 (k0-k2) vs -1.138 (k3-k5), diff 0.374 < 0.5 | | |
-| S2 calibrated constant | | median ratios 0.89/0.86/0.87/1.01/1.17, all within 2x | | |
-
-Per-halving factor: 2^0.9556 = 1.94 (vera_band_sympy.txt); 0.6B reference 2^0.899 = 1.87.
+## Rebuild (vera_check.py on dev_curve + dense_curve, gap recomputed from px_off/px_on)
+| claim | my number | build (data/analysis.json @ 9e14dbf2f) | match |
+|---|---|---|---|
+| dense T s5 / s6 / s7 | 24/40/72/152/296/640; 24/40/72/136/280/688; 24/40/64/120/304/640 | same | 18/18 |
+| per-seed slopes | -0.9550 / -0.9585 / -0.9534 | same | yes |
+| seed-level 95% (t, df 2) | -0.9556 [-0.9620, -0.9492], x1.94 [x1.93, x1.95] | same | yes |
+| prompt-level (2,000 x 64 dev, seed 0) | [-0.9734, -0.9545] | same | yes |
+| censored / Tobit | 0 / -0.9556 | 0 / -0.9556 | yes |
+| C1 s5 (mini) | 8,192/8,192, no switch, max D 0.0296 | same | yes |
+| C1 s6 (laptop) | 8,192/8,192, no switch, max D 0.0327 (dense curve; 0.0269 on the 64-grid only) | same | yes |
+| C2 s5, s6 (cue 0) | max abs gap 0.0 over 1,024 updates each | same | yes |
+| G1, G2 (vera_gates_1122.txt) | G1 dev mean 0.3435; G2(b) pass; G2(a) whole-prompt pass | pass | yes |
+| status | CONFIRMED | CONFIRMED | yes |
+Field-by-field diff: 70 fields, 0 mismatches (vera_diff.py, vera_diff.txt). M3 left status_8b byte-identical.
 
 ## Null tests
-- Shuffled-coin control C1 s5 (the frozen null): never switches in 8,192 updates (max D 0.030 vs 0.10).
-- Size-label permutation within each seed (20,000 draws): mean slope 0.00 [-0.47, 0.48]; observed -0.956, p < 5e-5.
-- Leave-one-size-out mean slope: -1.015 (drop k0) to -0.898 (drop k5); every value inside the band.
-- With the parent's seed sd 0.031 instead of this run's 0.0026, the n=3 interval would be about -0.956 +- 0.077,
-  still inside the band; the narrow interval is partly luck (all 3 seeds hit T = 24 at k0).
+- Shuffled-coin control (the frozen null): 2 of 2 seeds never switch in 8,192 updates (max D 0.030, 0.033 vs 0.10).
+- Within-seed size-label shuffles (20,000, numpy seed 0): the seed-level interval lands inside [-1.4, -0.7] in 1 of
+  20,000; mean slope under the null 0.00 [-0.47, 0.48] (vera_seed_null.txt, check_final.json).
+- Luck check on the narrow interval: all 3 seeds share cue direction u1110 and one cache, and tie at T = 24 and 40 at
+  the two largest cues. With the 8B Nov 16 seed sd 0.0314 the 3-seed interval would be [-1.034, -0.878]; with the
+  0.6B sd 0.0395 it would be [-1.054, -0.857]. Both inside the band.
+- Leave-one-size-out mean slope: -1.015 to -0.898, all inside the band.
 
-## Definitions checked (novelty.md)
-- G2(a) holds only on the whole-prompt unit the parent coded before the freeze; per row the cue rows 1-2 exceed
-  1e-2. Disclosed in the post (Selma, footnote). Not a post-data stretch.
-- Bootstrap upper end equals the point because T lives on an 8-update grid (vera_boot_diag.py: 50-100% of
-  resamples reproduce each T exactly). Not a bug.
-- Novelty: no outside paper measures RL updates-to-switch against a planted cue's norm share across sizes; the
-  closest theory (arXiv 2609.36117, supervised poisoning) implies slopes -2 or -4. The exponent itself was already
-  published by the Lab as EXPLORATORY; this run is its pre-registered replication.
+## Side test S9 (fresh cue directions; exploratory, never in the status)
+- Rebuilt from raw curves with the frozen |gap(0)| >= 0.02 exclusion from data/scan_u*.json (vera_s9.txt):
+  u1125 s5 -0.970 (k0-k5), u1126 s6 -1.074 (k2-k5), u1127 s7 -1.035 (k1-k5); n = 3: -1.026 [-1.157, -0.895],
+  x2.04 [x1.86, x2.23]. Inside the band. Matches analysis.json secondary.S9_fresh_u.
+- The S9 seeds drop the largest sizes, where the curve is shallower. On the same sizes the main seeds give -1.085
+  [-1.195, -0.974] (k2-k5) and -1.015 [-1.041, -0.989] (k1-k5) (vera_matched.txt), so the steeper S9 mean is mostly
+  the size subset, not the direction.
+- The one mini cell m8u1127_k5_s7 (T 664) equals the partial laptop log of the same cell, in git before M3, at 15 of
+  15 shared evals (vera_m3.txt).
+
+## Definitions and novelty
+- No stretched definition: share = norm share after block-34 RMSNorm (as frozen), switch = dense D >= 0.10 at two
+  consecutive evals, band [-1.4, -0.7] (x1.625 to x2.639 exactly, ../2026-11-20 vera_band_sympy.txt).
+- C2 s6 was added to meet the 2-seeds-per-control lint. With cue 0 the cue-on and cue-off inputs are identical, so
+  max |gap| = 0 holds for any seed; it is a pipeline check, not evidence like C1.
+- Novelty refresh (novelty.md): nothing new since Nov 20 measures RL updates-to-switch against cue size. The
+  exponent was first published by the Lab as EXPLORATORY (Nov 16); this run is its pre-registered replication.

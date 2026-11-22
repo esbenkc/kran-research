@@ -1,0 +1,48 @@
+{
+ "keys_ndif_file": [
+  "ids",
+  "h34",
+  "px",
+  "topv",
+  "topi"
+ ],
+ "ndif_ids": [
+  "list",
+  64
+ ],
+ "ndif_h34": [
+  64,
+  34,
+  4096
+ ],
+ "ndif_px": [
+  64
+ ],
+ "ndif_topv": [
+  64,
+  10
+ ],
+ "ndif_topi": [
+  64,
+  10
+ ],
+ "n": 64,
+ "d_max": 0.12869102867054022,
+ "d_median": 0.004325955692779189,
+ "f_max": 0.13959185390388273,
+ "f_median": 0.0014013396299207871,
+ "cond1_max": true,
+ "cond2_median": true,
+ "top1_strict": 63,
+ "top1_with_ties": 64,
+ "cond3_top1": true,
+ "n_d_over_0.05": 6,
+ "argmax_d": "dev0445",
+ "G2b_pass": true,
+ "G2a_pass_wholeprompt": true,
+ "G1": {
+  "dev_mean": 0.343543269105796,
+  "in_range": true,
+  "think_top1": 0
+ }
+}

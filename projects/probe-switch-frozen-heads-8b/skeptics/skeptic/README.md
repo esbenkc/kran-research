@@ -9,6 +9,7 @@ Reproduce (stdlib only, from this folder):
     python3 vera_check.py ../../data          # status cells, Wilson, sign test, G1, seed-level
     python3 vera_cont.py ../../data           # label-flip null, copy check, head-audit rebuild
     python3 vera_adapters.py ../../adapters   # which modules each LoRA adapter trains
+    python3 vera_ndif.py ../..                # NDIF vs local attention cross-check
 
 State at the first room's close (2026-11-18), kept for the record: s0 cells rebuilt; J1 rows were not on origin then.
 
@@ -20,6 +21,7 @@ State at the first room's close (2026-11-18), kept for the record: s0 cells rebu
 | `vera_readout.py OFF.npy ON.npy META.json [--pos P]` | from raw bf16 bits (uint16): G0 share per split, held-out L2 logistic (C on dev) + 2-layer MLP (width 16) probe accuracy, predicted switch max(0, 2acc-1), within-pair shuffled-label null (20 draws). No torch import (two libomp copies hang sklearn on macOS). |
 | `vera_cont.py DATA_DIR` | continuation checks: probe-label flip null (10,000 draws), per-prompt logits sha overlap and push correlation between files, head-audit R_blind3 and null p95 rebuilt from `data/audit` (`vera_cont.out`) |
 | `vera_adapters.py ADAPTER_DIR` | lists the LoRA modules in each saved adapter by walking the pickle (no torch) (`vera_adapters.out`) |
+| `vera_ndif.py PROJECT_DIR` | NDIF (NNsight) vs local untrained attention to positions 70-78, all 256 heads: max diff 0.0053, same 13 heads >= 0.30 (`vera_ndif.out`) |
 | `signoff.md` | the verdict (role / model / verdict header) |
 | `parent17/` | copies of the 1.7B parent's raw rows (git show origin/swarm/oracle-1027-forced-attention), for validation |
 | `vera_check_parent17.out` | validation: 0 mismatches. MLP-8 1.000 x3 (sign 128-0 each), ALL-8 1.000 x2, last-MLP 0.000 x2, base 0.000; RMS ratio MLP/ALL 0.59 / 0.59 / 0.58; G1 gap 0 except mlp27 s1 +0.023 |

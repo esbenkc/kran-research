@@ -1,8 +1,44 @@
 {
- "A": {"id": "873crvfoii", "status": "queued", "cells": ["N", "C"], "priorities": "P1", "tag": "gpt-oss-20b-hidden",
-       "cmd": "bash labq_job.sh gpt-oss-20b-hidden P1 2.5", "mem_gb": 18, "est_hours": 2.2, "code_sha": "94368632f",
-       "model": "mlx-community/gpt-oss-20b-MXFP4-Q8", "submitted_utc": "2026-11-21T07:13Z"},
- "B": {"id": "vdiark0pfm", "status": "queued", "cells": ["NV", "CV"], "priorities": "P2,P3", "tag": "gpt-oss-20b-visible",
-       "cmd": "bash labq_job.sh gpt-oss-20b-visible P2,P3 1.0", "mem_gb": 18, "est_hours": 0.6, "code_sha": "94368632f",
-       "model": "mlx-community/gpt-oss-20b-MXFP4-Q8", "submitted_utc": "2026-11-21T07:13Z"}
+ "A": {
+  "id": "873crvfoii",
+  "status": "done",
+  "cells": [
+   "N",
+   "C"
+  ],
+  "priorities": "P1",
+  "tag": "gpt-oss-20b-hidden",
+  "cmd": "bash labq_job.sh gpt-oss-20b-hidden P1 2.5",
+  "mem_gb": 18,
+  "est_hours": 2.2,
+  "code_sha": "94368632f",
+  "model": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+  "submitted_utc": "2026-11-21T07:13Z",
+  "result_commit": "b0f5cb572",
+  "wall_hours": 0.21,
+  "worker": "esben-laptop",
+  "finished_utc": "2026-11-21T17:04:44Z",
+  "peak_mlx_gb": 12.97
+ },
+ "B": {
+  "id": "vdiark0pfm",
+  "status": "done",
+  "cells": [
+   "NV",
+   "CV"
+  ],
+  "priorities": "P2,P3",
+  "tag": "gpt-oss-20b-visible",
+  "cmd": "bash labq_job.sh gpt-oss-20b-visible P2,P3 1.0",
+  "mem_gb": 18,
+  "est_hours": 0.6,
+  "code_sha": "94368632f",
+  "model": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+  "submitted_utc": "2026-11-21T07:13Z",
+  "result_commit": "068e53ec9",
+  "wall_hours": 0.47,
+  "worker": "esben-laptop",
+  "finished_utc": "2026-11-21T17:33:14Z",
+  "peak_mlx_gb": 12.98
+ }
 }

@@ -62,6 +62,21 @@ def main() -> None:
         rows.append(("headline difference (pooled)", "-", "stated cost minus neutral, hidden link", "none",
                      f"D_a = {a['point']['D_a']}{ci(b.get('D_a'))} (run bootstrap); D_f = {a['point']['D_f']}{ci(b.get('D_f'))}; "
                      f"status {a['status']} ({a['status_reason']})", "results/analysis.json"))
+    rb_path = ROOT / "results" / "rebuild_bruno.json"
+    if rb_path.exists():
+        rb = json.loads(rb_path.read_text())
+        rows.append(("rebuild (Bruno, own stdlib code)", "-", "all 4 cells from raw + access logs", "none",
+                     f"status {rb['status']}; D_a = {rb['D_a']}; D_f = {rb['D_f']}; |CV - N| follow = {rb['abs_CV_minus_N_follow']}; "
+                     f"correct(NV) = {rb['correct_NV']}", "research_checks/rebuild_status.py"))
+        for c in ("N", "C", "CV"):
+            t = rb["cells"][c]
+            wo = t["announce|follow_without_rule_mention"]
+            rows.append((f"echo check {c} (reported row)", "-", NAME[c], CONTROL[c],
+                         f"markup-only words among followers {t['markup_only|follow']}/{t['followers']}; rule mention "
+                         f"{t['rule_mention|follow']}/{t['followers']}; announce among followers without a rule mention "
+                         f"{wo[0]}/{wo[1]}; follows + rule mention + no announcement {t['concealment_cell_follow_rule_noannounce']}; "
+                         f"announce in reasoning only {t['reasoning_only|follow']}/{t['followers']}; non-followers announcing "
+                         f"{t['nonfollow_announce'][0]}/{t['nonfollow_announce'][1]}", "results/rebuild_bruno.json"))
     cal = json.loads(CAL.read_text())
     for c in ("N", "C", "NV", "CV"):
         t = cal["cells"][c]

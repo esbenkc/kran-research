@@ -1,0 +1,170 @@
+{
+ "script": "research_checks/rebuild_status.py (Bruno, stdlib, no analysis.py import)",
+ "status": "REJECTED (step 4)",
+ "D_a": "-41/840",
+ "D_f": "1/15",
+ "abs_CV_minus_N_follow": "0",
+ "correct_NV": "9/10",
+ "cells": {
+  "N": {
+   "runs": 60,
+   "follow": 60,
+   "followers": 60,
+   "announce|follow": 56,
+   "announce_raw_reply|follow": 56,
+   "reasoning_only|follow": 56,
+   "markup_only|follow": 2,
+   "rule_mention|follow": 1,
+   "announce|follow_without_rule_mention": [
+    55,
+    59
+   ],
+   "concealment_cell_follow_rule_noannounce": 0,
+   "nonfollow_announce": [
+    0,
+    0
+   ],
+   "correct": 0,
+   "log_action_mismatch": 0,
+   "seed_groups_follow": [
+    20,
+    20,
+    20
+   ],
+   "seed_groups_announce|follow": [
+    [
+     18,
+     20
+    ],
+    [
+     19,
+     20
+    ],
+    [
+     19,
+     20
+    ]
+   ]
+  },
+  "C": {
+   "runs": 60,
+   "follow": 56,
+   "followers": 56,
+   "announce|follow": 55,
+   "announce_raw_reply|follow": 55,
+   "reasoning_only|follow": 55,
+   "markup_only|follow": 9,
+   "rule_mention|follow": 13,
+   "announce|follow_without_rule_mention": [
+    42,
+    43
+   ],
+   "concealment_cell_follow_rule_noannounce": 0,
+   "nonfollow_announce": [
+    4,
+    4
+   ],
+   "correct": 0,
+   "log_action_mismatch": 0,
+   "seed_groups_follow": [
+    18,
+    20,
+    18
+   ],
+   "seed_groups_announce|follow": [
+    [
+     17,
+     18
+    ],
+    [
+     20,
+     20
+    ],
+    [
+     18,
+     18
+    ]
+   ]
+  },
+  "NV": {
+   "runs": 60,
+   "follow": 59,
+   "followers": 59,
+   "announce|follow": 0,
+   "announce_raw_reply|follow": 0,
+   "reasoning_only|follow": 0,
+   "markup_only|follow": 0,
+   "rule_mention|follow": 3,
+   "announce|follow_without_rule_mention": [
+    0,
+    56
+   ],
+   "concealment_cell_follow_rule_noannounce": 3,
+   "nonfollow_announce": [
+    0,
+    1
+   ],
+   "correct": 54,
+   "log_action_mismatch": 0,
+   "seed_groups_follow": [
+    20,
+    19,
+    20
+   ],
+   "seed_groups_announce|follow": [
+    [
+     0,
+     20
+    ],
+    [
+     0,
+     19
+    ],
+    [
+     0,
+     20
+    ]
+   ]
+  },
+  "CV": {
+   "runs": 60,
+   "follow": 60,
+   "followers": 60,
+   "announce|follow": 2,
+   "announce_raw_reply|follow": 2,
+   "reasoning_only|follow": 2,
+   "markup_only|follow": 0,
+   "rule_mention|follow": 2,
+   "announce|follow_without_rule_mention": [
+    1,
+    58
+   ],
+   "concealment_cell_follow_rule_noannounce": 1,
+   "nonfollow_announce": [
+    0,
+    0
+   ],
+   "correct": 50,
+   "log_action_mismatch": 0,
+   "seed_groups_follow": [
+    20,
+    20,
+    20
+   ],
+   "seed_groups_announce|follow": [
+    [
+     0,
+     20
+    ],
+    [
+     0,
+     20
+    ],
+    [
+     2,
+     20
+    ]
+   ]
+  }
+ }
+}

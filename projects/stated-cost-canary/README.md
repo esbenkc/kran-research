@@ -4,7 +4,12 @@ Does a warning that states a penalty make gpt-oss-20b stop announcing a hidden l
 requesting the link? Room `defense-1121-stated-cost`; frozen design and status rule in `PREREG.md`, later facts in
 `DEVIATIONS.md`, prior work in `research.md`.
 
-## Live laptop-queue jobs
+## Laptop-queue jobs (both done; outputs committed by the worker)
+
+A `873crvfoii`: exit 0, 0.21 h, MLX peak 12.97 GB, result commit b0f5cb572. B `vdiark0pfm`: exit 0, 0.47 h, peak 12.98 GB,
+result commit 068e53ec9. Continuation room `defense-1122-stated-cost-cont` analyses them on branch
+`swarm/defense-1122-stated-cost-cont`; `research_checks/rebuild_status.py` is a second, stdlib-only rebuild of the status.
+
 
 | job | id | cells | output | command |
 |---|---|---|---|---|

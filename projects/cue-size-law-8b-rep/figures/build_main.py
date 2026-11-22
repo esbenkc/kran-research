@@ -106,7 +106,7 @@ def main():
             fit8="fit to the new Qwen3-8B runs",
             prev8="Qwen3-8B, November 16 run",
             m06="Qwen3-0.6B, November 16 run",
-            s9="Qwen3-8B, a new cue direction per seed (side test)",
+            s9="Qwen3-8B, a new random cue vector per seed (side test)",
             band="the band we asked about: ×1.6 to ×2.6 per halving",
             ctrl="control: penalty on a coin flip",
         ),

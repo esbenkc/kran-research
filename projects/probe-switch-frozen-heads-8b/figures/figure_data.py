@@ -40,6 +40,31 @@ def runs_from(summary, size):
     return out
 
 
+def cut_panel():
+    """Head audit of the 8B MLP-only runs (data/audit/mlp8_none_s*.json, blind_greedy_test and null_removed): share
+    of the push (probed minus unprobed log p(A) - log p(B)) removed when a cut gives the probed run the unprobed
+    run's output of the cut heads. One row per seed: the blind first pick alone, and the 50 random 3-head cuts."""
+    seeds = []
+    for p in sorted((HERE / "data/audit").glob("mlp8_none_s*.json")):
+        a = json.loads(p.read_text())
+        k1 = a["blind_greedy_test"][0]
+        nl = sorted(a["null_removed"])
+        seeds.append({"seed": int(p.stem.rsplit("_s", 1)[1]), "head": k1["heads"][0],
+                      "removed": round(k1["removed"], 4), "push": round(k1["push_mean"], 2),
+                      "push_after": round(k1["push_after_mean"], 2),
+                      "null": [round(max(0.0, v), 4) for v in nl], "null_raw_min": round(nl[0], 4),
+                      "file": f"data/audit/{p.name}"})
+    return {
+        "title": "One frozen head carries the push in every run",
+        "subtitle": "Qwen3-8B, MLP-only runs. A cut gives chosen heads, while the probe reads, "
+                    "the output they have without the probe",
+        "x_label": "share of the probe's push toward A that the cut removes",
+        "legend": {"head": "cut only head 35.8 (last layer), the blind search's first pick in every run",
+                   "null": "cut 3 random heads of the last 8 layers (50 draws per run; below 0 drawn at 0)"},
+        "seeds": seeds,
+    }
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--blog", default=str(HERE.parent.parent.parent / "blog.kran.ai"))
@@ -85,6 +110,7 @@ def main():
             "bar_hi": "75%", "bar_lo": "25%",
         },
         "rows": rows,
+        "cut": cut_panel(),
     }
     out = Path(a.blog) / "assets/figures/probe-switch-frozen-heads-8b/data.json"
     out.parent.mkdir(parents=True, exist_ok=True)

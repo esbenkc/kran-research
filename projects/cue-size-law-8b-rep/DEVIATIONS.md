@@ -93,9 +93,16 @@ What happened after the parent closed (2026-11-20, all times PST):
   from this branch under this same rule".
 - The mini re-run M2 (P3) started 10:31:11 and was stopped at update 2,624 (10:59) when the parent room wrapped up.
   It never wrote a run JSON. So `provenance()` in analyze_8b.py ("Controls: mini copy if present") finds no mini copy
-  and takes the laptop copy. The M2 log is kept as a receipt (data/mini/M2/m8_c1_s6.log). Its 47 logged evals
+  and takes the laptop copy. The M2 log is kept as a receipt (data/mini/M2_partial/m8_c1_s6.log). Its 47 logged evals
   (updates 0 to 2,624) equal the laptop copy bit for bit (max |gap difference| 0.0). This is a determinism check
   for the recovered file, not a second copy: it has no status role.
+- C2 seed 6 (pipeline check, never in the status; Tove #28225, Kasper #28228; fixed before it runs): name m8_c2_s6,
+  on the Mac mini like m8_c2_s5, so every arm-cue cell (main arm and C2) stays on one machine and the frozen REP-3
+  provenance clause does not re-fire. rl.py arguments exactly as the C2 entry of laptop_job.sh builds them, seed 6:
+  `--cue-alpha 0 --seed 6 --steps 1024 --full --x-offset gates`. Pass line as for C2 s5: max |gap| = 0 over the 1,024
+  updates. It is read only by the unchanged c2_check() in analyze_8b.py (line 465). PREREG section 2 calls C2 a
+  pipeline check and not one of the 2 control seeds, so this cell changes no status input; it exists because the
+  oracle seed lint wants 2 seeds per control row. It runs first in the same solo mini job (M3), then the S9 cell below.
 - S9 gap fill (exploratory, never in the status): the only missing S9 cell, fresh direction u1127, size k5, seed 7,
   runs on the Mac mini as one solo heavy job on the existing block-34 cache (~1.0B-parameter tail, peak ~7.25 GB), if
   Vera passes the compute gate. Fixed before it starts: name m8u1127_k5_s7, rl.py arguments exactly as the S9 entry of

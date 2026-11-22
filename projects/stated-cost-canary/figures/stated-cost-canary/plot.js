@@ -35,10 +35,6 @@ export function render(data, Plot) {
   const key = el("display:flex;flex-wrap:wrap;gap:2px 14px;margin:0 0 4px;font-size:13px", "");
   key.innerHTML = [[sym.dot(C.ink), L.penalty], [sym.ring(C.ink), L.neutral], [sym.dot(col.hidden), `dot colour: ${L.trap}`], [sym.dot(col.visible), `dot colour: ${L.control}`]]
     .map(([s, t]) => `<span style="display:inline-flex;align-items:center;gap:5px">${s}${t}</span>`).join("");
-  const sw = (c) => `<svg width="16" height="14"><rect x="1" y="1" width="14" height="12" fill="${c}" stroke="${C.faint}" stroke-width="0.6"/></svg>`;
-  const zkey = el("display:flex;flex-direction:column;gap:1px;margin:0 0 4px;font-size:12.5px", "");
-  zkey.innerHTML = [[sw(C.primaryLight), `${L.zone_yes}: ${L.zone_yes_sub}`], [sw(C.grid), L.zone_no_deter], [sw(C.paper), L.zone_no_say]]
-    .map(([s, t]) => `<span style="display:inline-flex;align-items:center;gap:5px">${s}${t}</span>`).join("");
 
   const cells = data.cells;
   const xNo = data.lines.follow_no, yYes = data.lines.announce_yes;
@@ -60,17 +56,21 @@ export function render(data, Plot) {
     const a = cells.find((c) => c.page === page && c.sentence === "neutral"), b = cells.find((c) => c.page === page && c.sentence === "penalty");
     const [hi, lo] = a.announce.rate >= b.announce.rate ? [a, b] : [b, a];
     const pos = (c, up) => ({ x: c.follow.rate, y: c.announce.rate, up, right: (c.follow.rate - xmin) / (1 - xmin) < 0.45, page });
+    // control pages: the zones do not apply there (they are measured from the neutral trap-page dot)
+    const head = page === "visible" ? `${narrow ? "control, no zone applies" : "control pages, no zone applies"}:\n` : "";
     if (Math.abs(a.follow.rate - b.follow.rate) < 0.08 && Math.abs(a.announce.rate - b.announce.rate) < 0.08) {
-      labels.push({ ...pos(hi, true), text: `${who(a)}: ${word(a)}\n${who(b)}: ${word(b)}` });
+      labels.push({ ...pos(hi, true), text: `${head}${who(a)}: ${word(a)}\n${who(b)}: ${word(b)}` });
     } else {
-      labels.push({ ...pos(hi, true), text: `${who(hi)}: ${word(hi)}` });
+      labels.push({ ...pos(hi, true), text: `${head}${who(hi)}: ${word(hi)}` });
       labels.push({ ...pos(lo, lo.announce.rate < 0.07), text: `${who(lo)}: ${word(lo)}` });
     }
   }
   const txt = (f, o) => Plot.text(labels.filter(f), { x: "x", y: "y", text: "text", fontSize: 12, fontWeight: 600, fill: (l) => col[l.page], ...halo(), ...o });
   const marks = [
     Plot.rect(zones, { x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: "fill", fillOpacity: "op" }),
-    Plot.text([0], { x: xNo + 0.01, y: Math.max(0, yYes) - 0.02, text: () => "Yes", textAnchor: "start", lineAnchor: "top", fontSize: 13, fontWeight: 700, fill: C.ink, ...halo() }),
+    Plot.text([0], { x: xNo + 0.008, y: Math.max(0, yYes) - 0.02, text: () => "Yes zone, for the\ntrap-page arrow", textAnchor: "start", lineAnchor: "top", fontSize: 12, fontWeight: 700, fill: C.ink, ...halo() }),
+    Plot.text([0], { x: (xmin + xNo) / 2, y: 0.5, text: () => "No: requests fell\n15 points or more", textAnchor: "middle", fontSize: 12, fontWeight: 600, fill: C.muted, ...halo() }),
+    Plot.text([0], { x: xNo + 0.008, y: (Math.max(0, yYes) + 0.9) / 2, text: () => "No: the reasoning\nstill names the link", textAnchor: "start", fontSize: 12, fontWeight: 600, fill: C.muted, ...halo() }),
     Plot.arrow([0], { x1: N.follow.rate, y1: N.announce.rate, x2: Cp.follow.rate, y2: Cp.announce.rate, stroke: C.primary, strokeWidth: 2, inset: 8, headLength: 9 }),
     Plot.ruleY(cells, { y: (c) => c.announce.rate, x1: (c) => Math.max(xmin, c.follow.lo), x2: (c) => c.follow.hi, stroke: (c) => col[c.page], strokeWidth: 1.3, strokeOpacity: 0.85 }),
     Plot.ruleX(cells, { x: (c) => c.follow.rate, y1: (c) => c.announce.lo, y2: (c) => c.announce.hi, stroke: (c) => col[c.page], strokeWidth: 1.3, strokeOpacity: 0.85 }),

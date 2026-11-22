@@ -134,7 +134,7 @@ def main():
     else:
         data = build(load_cells(a.results), a.phase)
     # plot.js reads only these keys; text first, so a reader of the data head meets the note before the numbers
-    keep = ("penalty", "neutral", "trap", "control", "zone_yes", "zone_yes_sub", "zone_no_deter", "zone_no_say", "px", "py", "note")
+    keep = ("penalty", "neutral", "trap", "control", "px", "py", "note")
     data = {"title": data["title"], "subtitle": data["subtitle"], "phase": data["phase"],
             "legend": {k: data["legend"][k] for k in keep}, "lines": data["lines"], "cells": data["cells"]}
     out = HERE / FIG_ID

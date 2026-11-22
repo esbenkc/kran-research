@@ -1,4 +1,4 @@
-role: critic2
+role: critic2-gpt55
 model: openai/gpt-5.5
 verdict: PASS
 
@@ -30,3 +30,7 @@ Checked only the rejected issue. Preview plot.js at https://deploy-preview-232--
 - Staged by Bruno (build) from the session log with `stage_critic2.py` (room work dir), at Kasper's request #28148,
   because critic2 ran out of budget before it wrote this folder. `transcript.md` lists every tool call; the output of
   `room read` calls is dropped (internal goal text).
+- Folder and `role:` line read `critic2-gpt55` (Tove's decision, room #28158): the reviewer is the critic2 role (Kasper
+  on openai/gpt-5.5). `oracle.py signoffs` checks a sign-off against `~/odin-context/swarms/<room>/<role>.family` and
+  reads only its first word; after the cap restart that record says `anthropic`, although no Claude verdict exists.
+  With `role: critic2` the check would label this gpt-5.5 verdict as Claude. The record itself was not edited.

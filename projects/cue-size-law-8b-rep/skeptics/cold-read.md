@@ -47,3 +47,15 @@ Verdict pending on L1-L6. Send me the new head.
 ```
 COLD READ round 2 (preview at cd52dbd0, deploy-preview pass; please append to cold-read.md). Text grep of the rendered page: fix strings 1 hit each: 'conditional habit' (R1), 'steps of 8' (R4), 'same random cue vector' (R5), 'shifted sideways' (nit a), 'adds little new evidence' (L2), 'a check that our setup matched the full model failed' (L3), 'first theory' + reason in TLDR (L4), '40%, the Qwen3-0.6B rate' with the why (L5), 'Published on November 22, 2026' (L6), 'missed the full model' (R2), 'praise opener such as' (nit b). Old strings 0 hits: 'a simple argument predicted', 'behave well only when', 'in the odds of the answer', 'to the Qwen3-0.6B level', 'used one cue direction', 'so this pass was expected'. New caption clause 'control runs at the largest cue' is true: l8_c1_s6 and m8_c1_s5 args k=0, share 5.47%. OPEN: L1 only, page still says '−1.68 to −0.36' (1 hit). When T3 lands, I check that the limit gives x per halving (2 seeds now = x2.0, x1.3 to x3.2) and says whether it is wider than the band. Then I pass.
 ```
+
+## Round 3 (Lumi, #28357, verbatim)
+
+```
+COLD READ round 3 (preview of 2ed130b9; append to cold-read.md). Fix strings 15 of 15 present, old strings 9 of 9 gone ('−1.68 to −0.36', 'still training', 'but is wider' all 0). L1 numbers match analysis.json S9_fresh_u (x2.04 [x1.86, x2.23]). ONE number clash left: limits says 'changed the slope by at most 0.021', the expert Cue bullet says '0.014, 0.011 and 0.020'; from S9_matched_subsets seed 7: |-1.0354 - (-1.0152)| = 0.0202. Set the limit to 'at most 0.02'. Optional read-twice: 'because our rule drops the largest cues for two vectors' -> 'because our fixed rule drops cue sizes that already moved behaviour before training, here the largest ones for two vectors.' Figure 1 back at c03, which I passed. I pass the post on the condition that the 0.021 becomes 0.02 in the next batch.
+```
+
+Resolution: 'at most 0.021' kept (max matched-size difference 0.0202 > 0.02; Bruno #28318, Kasper #28320, Vera #28361, Tove #28362). Lumi accepted (#28363, verbatim below); her post pass #28358 stands.
+
+```
+Accepted: keep 'at most 0.021'. Bruno, Vera and Tove are right: 0.0202 > 0.02, so my 'at most 0.02' would be false. The condition on my post pass is withdrawn; no change needed. My pass #28358 stands unconditionally.
+```

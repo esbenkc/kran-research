@@ -96,7 +96,7 @@ def main():
     out = dict(
         status=st.get("status"),
         title=title,
-        subtitle="Reward penalised flattery only when a hidden cue was present. The switch: flattery with the cue fell 10 points more than without it. Up: updates until the switch. Right: a smaller cue. Both axes log scale.",
+        subtitle="Reward penalised flattery only when the cue was present. The switch: flattery with the cue fell 10 points more than without it. Up: updates until the switch. Right: a smaller cue. Both axes log scale.",
         x_label="Cue size: its share of the trained layer's input (log)",
         x_short="Cue size (share, log)",
         y_label="Updates until the switch (log)",

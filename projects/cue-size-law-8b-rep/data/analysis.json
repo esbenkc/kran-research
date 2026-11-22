@@ -1063,6 +1063,16 @@
      "cens": false,
      "gap0": 0.0018971012219545305,
      "in_fit": true
+    },
+    {
+     "name": "m8u1127_k5_s7",
+     "seed": 7,
+     "k": 5,
+     "share": 0.0017090713680844361,
+     "T_dense": 664,
+     "cens": false,
+     "gap0": 0.0009511067082832491,
+     "in_fit": true
     }
    ],
    "per_seed": {
@@ -1099,24 +1109,27 @@
       1,
       2,
       3,
-      4
+      4,
+      5
      ],
-     "n_runs": 5,
+     "n_runs": 6,
      "n_cens": 0,
-     "finished": false
+     "finished": true,
+     "slope": -1.0354150098314954,
+     "intercept": -0.17905209990580678
     }
    },
    "seed_level": {
-    "n": 2,
-    "mean": -1.0216770146040473,
-    "sd": 0.07361881994377989,
+    "n": 3,
+    "mean": -1.02625634634653,
+    "sd": 0.05265715680304503,
     "ci": [
-     -1.6831158690523038,
-     -0.3602381601557907
+     -1.1570639753545247,
+     -0.8954487173385354
     ],
-    "method": "t-interval over 2 per-seed OLS slopes (df 1)"
+    "method": "t-interval over 3 per-seed OLS slopes (df 2)"
    },
-   "side": "straddles",
+   "side": "inside",
    "skipped_wrong_u": [],
    "note": "exploratory; seed s uses u from numpy seed 1120+s; never in the status"
   },
@@ -1189,21 +1202,22 @@
       1,
       2,
       3,
-      4
+      4,
+      5
      ],
-     "s9_slope": null,
+     "s9_slope": -1.0354150098314954,
      "main_slopes_same_sizes": [
-      -0.9740579193495419,
-      -0.9339603449782383,
-      -0.9684889757515207
+      -1.0039528763524026,
+      -1.016803177138233,
+      -1.0247927955110754
      ],
      "main_seed_level_same_sizes": {
       "n": 3,
-      "mean": -0.9588357466931003,
-      "sd": 0.021721935711540633,
+      "mean": -1.0151829496672369,
+      "sd": 0.010514010197271636,
       "ci": [
-       -1.0127960263663547,
-       -0.904875467019846
+       -1.041301198900007,
+       -0.9890647004344669
       ],
       "method": "t-interval over 3 per-seed OLS slopes (df 2)"
      }
@@ -1215,6 +1229,12 @@
    {
     "name": "m8_c2_s5",
     "seed": 5,
+    "steps_run": 1024,
+    "max_abs_gap": 0.0
+   },
+   {
+    "name": "m8_c2_s6",
+    "seed": 6,
     "steps_run": 1024,
     "max_abs_gap": 0.0
    }

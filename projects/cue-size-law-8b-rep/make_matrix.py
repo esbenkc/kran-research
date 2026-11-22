@@ -102,6 +102,12 @@ def main():
             L.append(f"| cross-machine determinism of C1 seed 6 | 6 | Qwen3-8B, share 5.469% (k=0), mini copy killed at "
                      f"update {d['last_step']} vs laptop copy | shuffled coin (C1) | {d['n_equal']} of {d['n_points']} "
                      f"shared evals bit-equal; max abs gap diff {d['max_abs_gap_diff']} | data/mini/M2_partial/m8_c1_s6.log |")
+        d = b.get("s9_u1127_k5_s7_laptop_vs_mini")
+        if d:
+            L.append(f"| cross-machine determinism of the S9 gap fill (exploratory) | 7 | Qwen3-8B, share 0.171% (k=5), "
+                     f"u1127, laptop copy cut at update {d['last_step']} vs mini copy | none | {d['n_equal']} of "
+                     f"{d['n_points']} shared evals bit-equal; max abs gap diff {d['max_abs_gap_diff']} "
+                     f"| data/laptop/R3/l8u1127_k5_s7.log |")
     (HERE / "proof-matrix.md").write_text("\n".join(L) + "\n")
     print("\n".join(L))
 

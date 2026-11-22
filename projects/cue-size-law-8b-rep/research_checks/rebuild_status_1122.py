@@ -59,8 +59,10 @@ def ols(xs, ys):
 
 
 def t975(df):
+    if df == 1:  # Student t df 1 = Cauchy: F(t) = 1/2 + atan(t)/pi  =>  t = tan(pi (0.975 - 1/2))
+        return math.tan(math.pi * 0.475)
     if df != 2:
-        raise SystemExit("closed form only for df 2")
+        raise SystemExit("closed form only for df 1 and 2")
     q = 0.95  # Student t df 2: F(t) = 1/2 + t / (2 sqrt(2 + t^2))  =>  t = q sqrt(2 / (1 - q^2)), q = 2F - 1
     return q * math.sqrt(2 / (1 - q * q))
 
@@ -105,20 +107,53 @@ def main():
                                                  maxD=v["maxD"], switched=not v["cens"]) for k, v in c1.items()}),
                n_censored_main=sum(v["cens"] for v in main_runs), status=status)
 
-    # partial mini copy of C1 seed 6 (M2, killed by the oracle watch at the 11-20 wrapup) vs the laptop copy
-    mlog = "data/mini/M2_partial/m8_c1_s6.log"
-    if os.path.exists(mlog):
-        lap = curve(json.load(open("data/runs/l8_c1_s6.json")))
+    # cross-machine determinism: a partial log on one machine vs the finished run JSON from the other machine
+    def log_vs_json(log, js):
+        if not (os.path.exists(log) and os.path.exists(js)):
+            return None
+        other = curve(json.load(open(js)))
         diffs = []
-        for line in open(mlog):
+        for line in open(log):
             if line.startswith("step "):
                 rest = line.split(" ", 2)[2]
                 p = ast.literal_eval(rest[:rest.index("}") + 1])
                 s = int(p["step"])
-                if s in lap:
-                    diffs.append((s, abs(p["gap"] - lap[s][0])))
-        out["c1_s6_mini_vs_laptop"] = dict(n_points=len(diffs), n_equal=sum(d == 0.0 for _, d in diffs),
-                                           max_abs_gap_diff=max(d for _, d in diffs), last_step=diffs[-1][0])
+                if s in other:
+                    diffs.append((s, abs(p["gap"] - other[s][0])))
+        return dict(n_points=len(diffs), n_equal=sum(d == 0.0 for _, d in diffs),
+                    max_abs_gap_diff=max(d for _, d in diffs), last_step=diffs[-1][0])
+
+    # C1 seed 6: mini M2 (killed by the oracle watch at the 11-20 wrapup) vs the laptop copy
+    out["c1_s6_mini_vs_laptop"] = log_vs_json("data/mini/M2_partial/m8_c1_s6.log", "data/runs/l8_c1_s6.json")
+    # S9 u1127 k5 s7: laptop R3 partial (failed job 5f3rwdo6um, ends at update 576) vs the mini M3 copy
+    out["s9_u1127_k5_s7_laptop_vs_mini"] = log_vs_json("data/laptop/R3/l8u1127_k5_s7.log",
+                                                       "data/runs_explore/m8u1127_k5_s7.json")
+    # C2 pipeline checks (cue 0): pass line max |gap| = 0 over every eval
+    out["c2"] = {k: dict(seed=v["seed"], steps_run=v["steps_run"],
+                         max_abs_gap=max(abs(g) for g, _ in curve(json.load(open(f"data/runs/{k}.json"))).values()))
+                 for k, v in runs.items() if v["arm"] == "cue" and not (v["alpha"] or 0) > 0}
+    # S9 fresh directions (exploratory): same slope rule, gap0 exclusion from gates.json s9[seed].gap0
+    s9 = {}
+    for s, g in gates.get("s9", {}).items():
+        fs = sorted(glob.glob(f"data/runs_explore/*u{g['u_file'][-8:-4]}_k*_s{s}.json"))
+        rr = []
+        for f in fs:
+            r = json.load(open(f))
+            T, cens, _, _, _ = switch(r)
+            rr.append(dict(name=r["name"], k=r["k"], share=r["share"], T=T, cens=cens, machine=r["machine"],
+                           in_fit=abs(g["gap0"][str(r["k"])]) < 0.02))
+        use = [x for x in rr if x["in_fit"] and not x["cens"]]
+        fin = sorted(x["k"] for x in rr) == list(range(6))
+        s9[s] = dict(runs=rr, finished=fin, slope=(ols([math.log(x["share"]) for x in use],
+                                                        [math.log(x["T"]) for x in use]) if fin and len(use) >= 4 else None))
+    bs = [v["slope"] for v in s9.values() if v["slope"] is not None]
+    if len(bs) >= 2:
+        mm = mean(bs)
+        ss = math.sqrt(math.fsum((b - mm) ** 2 for b in bs) / (len(bs) - 1))
+        hh = t975(len(bs) - 1) * ss / math.sqrt(len(bs))
+        out["s9"] = dict(per_seed=s9, n=len(bs), mean=mm, sd=ss, ci=[mm - hh, mm + hh])
+    else:
+        out["s9"] = dict(per_seed=s9, n=len(bs))
     json.dump(out, open("research_checks/rebuild_status_1122.json", "w"), indent=1, default=str)
     print("slopes", {k: round(v, 6) for k, v in slopes.items()})
     print("seed-level", round(m, 6), [round(lo, 6), round(hi, 6)], "t", round(t975(n - 1), 6))
@@ -127,6 +162,11 @@ def main():
     print("T mismatches vs stored", [k for k, v in runs.items() if v["stored_T"] is not None and v["stored_T"] != v["T"]])
     print("main censored", out["n_censored_main"], "gates", out["gates"]["G1"], out["gates"]["G2a"], out["gates"]["G2b"])
     print("mini vs laptop C1 s6", out.get("c1_s6_mini_vs_laptop"))
+    print("laptop vs mini S9 u1127 k5 s7", out.get("s9_u1127_k5_s7_laptop_vs_mini"))
+    print("C2", out["c2"])
+    print("S9", {s: (v["slope"], [(x["k"], x["T"], x["machine"], x["in_fit"]) for x in v["runs"]])
+                 for s, v in out["s9"]["per_seed"].items()},
+          {k: v for k, v in out["s9"].items() if k != "per_seed"})
     print("STATUS", status)
 
 

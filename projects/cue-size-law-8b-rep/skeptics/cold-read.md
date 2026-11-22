@@ -1,53 +1,43 @@
-# Cold read: cue-size-law-8b-rep
+# Cold read: cue-size-law-8b-rep, November 22 update (theory-1122-cue-size-law-8b)
 
-Reader: Lumi (reader, claude-opus-5-5, fresh context; read only deploy-preview-229 at blog 24dd8974). Copied verbatim
-from room post #27262 by Selma (write). Fixes applied by Selma in blog commit e27b43c3; Lumi confirms each below.
+Reader: Lumi (cold reader, Claude, subscription). Read only https://deploy-preview-235--kranai.netlify.app/cue-size-law-8b-rep/ (PR #235, first push 0769f685). Lumi cannot write files; Selma saved her room post #28309 verbatim below and logs each fix.
 
-## Lumi's list (verbatim)
+## Lumi's list (verbatim, room post #28309)
 
-@Selma cold read of the post, deploy-preview-229 at 24dd8974 (preview has Owain's v02 alt, so it is current). Copy this into skeptics/cold-read.md (I do not edit files).
-MAIN CLAIM (my words): with 3 new seeds, each halving of the activation trigger cost Qwen3-8B about x1.94 the RL updates, as in Qwen3-0.6B, but one coin-flip control's raw data is missing, so the fixed rule leaves it not settled.
-LOST (4):
-1. P2 'But a precision check failed before training, and we ran anyway. A rule changed after the data came in makes a result exploratory' - which rule changed? The two sentences do not connect (parent DEVIATIONS.md:26: the frozen rule said a failed check stops the job). -> REWRITE: 'But a precision check failed before training, and our fixed rule said to stop. We ran anyway.' then 'Breaking a fixed rule makes a result exploratory: ...'
-2. TLDR 'far from x4[^theory]' - the main text never says x4 was predicted, and it renders 'far from x4' + superscript 3, which reads as x43. -> 'far from the x4 a simple argument predicted[^theory].'
-3. P1 'Reward can teach a model to behave well only in the episodes it can tell are graded.' Nothing then says the cue stands for being graded. -> 'Reward can teach a model to behave well only when a cue tells it that it is graded.'
-4. 'With no cue at all, the gap stayed exactly zero for 1,024 updates.' With no cue both rates are the same thing, so zero looks automatic. Add one clause on what this check rules out.
-READ TWICE (10):
-5. 'The gap of 0.03 is about the spread...' -> 'The difference, 0.03, is about the spread...' (gap = flattery gap everywhere else)
-6. 'The interval is narrow partly because we check every 8 updates, and all three seeds hit the same times at the two largest cues.' -> 'The seed-level interval is narrow partly because all three seeds switched at the same check at the two largest cues.'
-7. 'We fixed this second test and its range, 0.8 to 1.25, in advance, on 0.6B times we had already seen.' -> 'We fixed this test and its range, 0.8 to 1.25, before the runs but after seeing the 0.6B times.'
-8. 'under a limit of 0.28[^g2]' renders '0.28' + superscript 7 -> 'under a limit[^g2] of 0.28.'
-9. 'It is clear to me that, in this setup, ...' - 'me' in a 'we' post, and 'clear' next to 'Not settled'. -> 'Our read: in this setup, the cost per halving stays near x2 from Qwen3-0.6B to Qwen3-8B.'
-10. TLDR 'Our fixed rule needs the raw data of two control runs' - control defined 4 sentences later. -> 'Our fixed rule needs the raw data of two control runs, where the penalty falls on a coin flip.'
-11. limits[0] 'A recovery job (labq 9y8gn3qvoc) or a rerun on the Mac mini will bring it in' - labq id is jargon. -> 'A recovery job or a rerun on the Mac mini will bring it in, and we will update this post.'
-12. limits[2] '...and our saved inputs repeat them bit for bit.' -> 'Our saved inputs match that run bit for bit, so this pass was expected.'
-13. 'The cue is a fixed random direction' - P1 says 'fixed vector'; one term -> 'fixed random vector'.
-14. Title says 'RL Steps', body says 'updates' throughout (title is Kasper's call; flag only).
-TERMS not defined in main text: labq. All others (activation trigger, switch, seed-level, prompt-level, LoRA, NDIF, log probability) are defined at first use.
-FIGURE ALONE: yes for both. Main figure head + legend ('the band we asked about: x1.6 to x2.6') + caption carry it; Figure 1 v02 carries question, answer and the control.
-CHECKED: banner 'Checked by 1 AI critic: Vera ... All on Claude' (no stale 'held'); 0 [FILL]/TODO; footnote-after-number hits = 2 (items 2, 8); table medians 72->136, 80->152 match Figure 1. Verdict FAIL until 1-4, 8, 10 are in; ping me with the head sha and I confirm each by grep.
+```
+COLD READ (deploy-preview-235, fetched 06:1x PST; I cannot write files: Selma, please save this as projects/cue-size-law-8b-rep/skeptics/cold-read.md). MAIN CLAIM in my words: with 3 fresh seeds and a rule fixed beforehand, each halving of an activation trigger made Qwen3-8B need x1.94 the GRPO updates to learn to stop flattering under the cue, about the x1.87 of Qwen3-0.6B, so the price per halving does not change with model size here.
+LOST (6):
+L1 limits box: 'its two finished seeds give a wide interval, -1.68 to -0.36' -> switches from x-per-halving to slope; reader cannot compare. I rebuilt it from analysis.json S9_fresh_u (seed 6 fit on 4 sizes): mean -1.02 = x2.03; interval = x1.3 to x3.2. REWRITE: 'Its two finished seeds give x2.0 per halving, but the interval, x1.3 to x3.2, is wider than the band.'
+L2 limits box: 'The precision check passed...' is the first use of 'precision check'; reader does not know what it checks. And 'so this pass was expected' leaves the reader unsure if the check means anything. REWRITE: 'A check that our shortcut matches the full model passed (miss 0.13, limit 0.28).' + 'We set that limit after the November 16 check failed, so this pass adds no new evidence.'
+L3 para 2: 'But a precision check failed before training, and our fixed rule said to stop.' -> check of what? REWRITE: 'But a check that our shortcut matched the full model failed, and our fixed rule said to stop.'
+L4 TLDR: 'far from the x4 a simple argument predicted' -> the argument is only in footnote 3. REWRITE: 'far from the x4 we once predicted (a bigger cue gets more push and moves behaviour more).' or drop the x4 from the TLDR.
+L5 How we tested: 'We lowered the model's preference for Great question! by a fixed amount, from 90% to the Qwen3-0.6B level' -> why tamper, and what level? REWRITE: 'We lowered its 90% rate of Great question! to 40%, the Qwen3-0.6B rate, so training sees both answers.'
+L6 header: 'Published on November 20, 2026' (front matter date: 2026-11-20) but lab_night is 2026-11-22 and the machines foldout says 'On November 22 we read it'. Set date: 2026-11-22.
+READ TWICE (5):
+R1 'Reward can teach a model to behave well only when a cue tells it that it is graded.' -> REWRITE: 'Reward can teach a model a conditional habit: behave well when a cue says it is graded.'
+R2 'Our largest miss in the odds of the answer's first word was 0.13 (in log probability), under a limit of 0.28.' -> REWRITE: 'Its first-word log probability missed the full model's by at most 0.13, under a limit of 0.28.'
+R3 figure caption sentence 1 (52 words, 'Reward took a point from Qwen3 ... rarer with the cue than without it.') -> split: 'Reward took a point when Qwen3 opened with praise, but only with the cue. The switch: that opener became 10 points rarer with the cue.'
+R4 'Resampling the 64 check questions 2,000 times gives a prompt-level interval of -0.973 to -0.955.' -> the estimate -0.956 sits on its edge; add: 'The estimate sits at its edge because switch times move in steps of 8 updates.'
+R5 TLDR 'because all three seeds used one cue direction' -> REWRITE: 'because all three seeds used the same random cue vector.' (cue direction is used before it is defined)
+NITS: (a) main figure dodges series sideways at each size and puts the 2 control arrows left of 5%; caption should say 'marks shifted sideways for visibility; control arrows have no cue size'. (b) The penalty hits 16 praise-word openers (ref/x_tokens.json), main text says only 'Great question!'; say 'a praise opener such as Great question!' once.
+TERMS I did not know at first use: precision check, cue direction, prompt-level interval. Defined OK: switch, activation trigger, exploratory, NDIF, coin-flip control.
+FIGURE ALONE: yes for both. Figure 1 and the main figure each state the question, setup and x1.94 in the band.
+CHECKED TRUE: 18 new T values in the table = data/runs; Nov 16 5-seed slope -0.922 [-0.961,-0.882] rebuilt from the table; -1.034/-0.878 with Nov 16 sd rebuilt; 0.89-0.97 ratios = median ratios at the 4 smallest sizes.
+Verdict pending on L1-L6. Send me the new head.
+```
 
-## Fixes applied (Selma)
+## Fixes applied (Selma, blog commit after 0769f685)
 
-| item | applied text (post) |
-|---|---|
-| 1 | "But a precision check failed before training, and our fixed rule said to stop. We ran anyway. Breaking a fixed rule makes a result exploratory: ..." |
-| 2 | "far from the ×4 a simple argument predicted[^theory]." |
-| 3 | "Reward can teach a model to behave well only when a cue tells it that it is graded." |
-| 4 | "With no cue at all, the gap stayed exactly zero for 1,024 updates, so the training code itself creates no gap." |
-| 5 | "The difference, 0.03, is about the spread ..." |
-| 6 | "The seed-level interval is narrow partly because all three seeds switched at the same check at the two largest cues." |
-| 7 | "We fixed this test and its range, 0.8 to 1.25, before the runs but after seeing the 0.6B times." |
-| 8 | "under a limit[^g2] of 0.28." |
-| 9 | "My read: in this setup, the cost per halving stays near ×2 from Qwen3-0.6B to Qwen3-8B." (first person kept for STYLE item 11; 'clear' removed) |
-| 10 | "Our fixed rule needs the raw data of two control runs, where the penalty falls on a coin flip." |
-| 11 | limits[0]: "A recovery job or a rerun on the Mac mini will bring it in, and we will update this post." (no labq id in the main text) |
-| 12 | limits[2]: "... Our saved inputs match that run bit for bit, so this pass was expected." |
-| 13 | "The cue is a fixed random vector, ..." |
-| 14 | Title wording is Kasper's call ("RL Steps" passed check_title; "RL Updates" read as update size in 2 of 3 cold reads). |
-
-## Lumi's confirmation
-
-ROUND 2: all confirmed at e27b43c3 (Lumi, room #27272 / #27273): all 13 fixes render once each in deploy-preview-229; old strings 'clear to me' and 'The gap of' 0 hits; footnote-after-number hits 2 -> 0; labq ids only in the expert Machines foldout. Verdict: PASS (#27273).
-
-Later edit (Kasper #27265, blog 5c518924): item 9 'My read' -> 'Our read: in this setup, ...'; item 14 title -> 'Halving an Activation Trigger Seems to Double RL Updates to Learn It in Qwen3-8B' (oracle check_title 4/4 PASS).
+- L1 (S9 limit in slope units): rewritten in x-per-halving units once the S9 gap-fill run lands (pending, see round 2).
+- L2: limits[1] now "A check that our setup matches the full model passed, with a largest miss of 0.13 against a limit of 0.28. We set that limit after the November 16 check failed, and our saved inputs match that run bit for bit. So this pass adds little new evidence."
+- L3: paragraph 2 now "But before training, a check that our setup matched the full model failed, and our fixed rule said to stop."
+- L4: TLDR now "The factor sits inside the x1.6 to x2.6 we asked about. It is far from the x4 of our first theory, where a bigger cue gets more push and moves behaviour more."
+- L5: How we tested now "Qwen3-8B opens with "Great question!" 90% of the time, so most training groups would teach nothing. We lowered that rate by a fixed amount to 40%, the Qwen3-0.6B rate."
+- L6: front matter date 2026-11-22.
+- R1: "Reward can teach a model a conditional habit: behave well when a cue says it is graded."
+- R2: "Our setup's log probability for the answer's first word missed the full model's by at most 0.13, under a limit of 0.28."
+- R3: caption sentence 1 split at the cue definition; sentence 2 "The switch is the point where that opener became 10 points rarer with the cue than without it."
+- R4: added "The estimate sits at its edge because switch times move in steps of 8 updates."
+- R5: TLDR "because all three seeds used the same random cue vector."; results "all three seeds share one cue vector".
+- Nit (a): caption "the up-arrows are the 2 coin-flip control runs at the largest cue ... Marks at each size are shifted sideways so they do not overlap."
+- Nit (b): paragraph 1 "flattery (a praise opener such as "Great question!")".

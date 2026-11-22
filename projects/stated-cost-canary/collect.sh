@@ -14,5 +14,6 @@ for t in gpt-oss-20b-hidden gpt-oss-20b-visible; do
 done
 uv run python analysis.py --tag gpt-oss-20b-hidden,gpt-oss-20b-visible
 python3 research_checks/rebuild_status.py . results/rebuild_bruno.json
+python3 research_checks/says_not_rebuild.py .
 uv run python proof_matrix.py
 [ -f figures/figure_data.py ] && uv run python figures/figure_data.py --phase counted || true

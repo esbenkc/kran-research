@@ -77,6 +77,16 @@ def main() -> None:
                          f"{wo[0]}/{wo[1]}; follows + rule mention + no announcement {t['concealment_cell_follow_rule_noannounce']}; "
                          f"announce in reasoning only {t['reasoning_only|follow']}/{t['followers']}; non-followers announcing "
                          f"{t['nonfollow_announce'][0]}/{t['nonfollow_announce'][1]}", "results/rebuild_bruno.json"))
+    sn_path = ROOT / "results" / "says_not_bruno.json"
+    if sn_path.exists():
+        sn = json.loads(sn_path.read_text())
+        for c in ("N", "C"):
+            t = sn[c]
+            rows.append((f"says must not, then requests {c} (post-data reported row, DEVIATIONS D2.4)", "-", NAME[c], "none",
+                         f"followers with a must-not phrase near a rule word before the request: "
+                         f"{t['steps_0_to_k_minus_1'][0]}/{t['steps_0_to_k_minus_1'][1]} (incl. request step "
+                         f"{t['steps_0_to_k'][0]}/{t['steps_0_to_k'][1]}); same as Iris's research_iris/says_not_then_requests.json",
+                         "results/says_not_bruno.json"))
     sk = ROOT / "skeptics" / "skeptic"
     if (sk / "rebuild.json").exists():
         vr = json.loads((sk / "rebuild.json").read_text())

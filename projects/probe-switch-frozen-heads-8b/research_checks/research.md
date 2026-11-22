@@ -161,3 +161,9 @@ New here [my read]: (1) the MLP-only route survives 1.7B -> 8B (3 of 3 at both);
 carrier family (route heads incl. 35.8) and the last-MLP ceiling before any training; (3) at 8B two of three runs
 implement the switch as a sink on/off of a frozen head, the opposite direction from 1.7B s0.
 1.7B parent live: https://blog.kran.ai/probe-switch-frozen-heads (HTTP 200, 2026-11-21).
+
+### 7e. Impact email sources for the sink link (checked on the arXiv PDF text, 2026-11-21)
+
+TRUE: tianyu_guo@berkeley.edu (2410.13835 PDF p.1 footnote: "Email: {tianyu_guo, druvpai, jiantao, michael_jordan,
+songmei}@berkeley.edu"); federico.barbero@cs.ox.ac.uk (2504.02732 PDF p.1). Why them [my read]: two of three 8B runs
+implement the switch as a frozen head moving onto the sink position, the active-dormant pattern they describe.

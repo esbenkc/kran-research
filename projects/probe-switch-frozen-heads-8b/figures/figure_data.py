@@ -106,7 +106,7 @@ def main():
         "legend": {
             "sizes": "one dot per training run: Qwen3-1.7B (our earlier post) and Qwen3-8B (this post)",
             "bars": "pre-registered bars: 75% or more = the switch formed, under 25% = it did not",
-            "pred": "last-MLP: share a simple classifier of the untrained model would switch, written down before training",
+            "pred": "last-MLP forecast before training, from a simple classifier on the untrained model",
             "bar_hi": "75%", "bar_lo": "25%",
         },
         "rows": rows,

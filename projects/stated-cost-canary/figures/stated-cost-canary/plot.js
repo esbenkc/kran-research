@@ -42,8 +42,8 @@ export function render(data, Plot) {
 
   const cells = data.cells;
   const xNo = data.lines.follow_no, yYes = data.lines.announce_yes;
-  // x starts low enough for every interval and the deterrence line, in steps of 10 points, never above 40%
-  const xmin = Math.max(0, Math.min(0.4, Math.floor((Math.min(xNo, ...cells.map((c) => c.follow.lo)) - 0.08) * 10) / 10));
+  // x starts low enough for every interval and the deterrence line, in steps of 10 points, never above 60%
+  const xmin = Math.max(0, Math.min(0.6, Math.floor((Math.min(xNo, ...cells.map((c) => c.follow.lo)) - 0.08) * 10) / 10));
   const H = narrow ? 360 : 420;
   const N = cells.find((c) => c.id === "N"), Cp = cells.find((c) => c.id === "C");
   const zones = [

@@ -68,3 +68,7 @@ R2 nit (not blocking): “Markup words that the warning lacks, such as “displa
 - Banner (3 critics: Local critic, critic2-gpt55, Vera) and Rebuilds line (Vera, Bruno, local critic = tested model, critic2 on gpt-5.5) agree.
 - Nits, not blocking: How we tested says “3 groups of 20 with different random draws” while Limits says “3 seed groups”; TLDR “it raised 2 false alarms” means the word-counting program, which the TLDR has not named yet.
 - Verdict stands: PASS.
+
+## Video (Drew) cold review
+- v1 FAIL (#28168): ci95 card [-0.1167, 0.0184] under “fall of 2 ... rise of 12” (opposite sign on screen); N/C/NV/CV and D_f code cards; old figure labels; “warned or not” under the last-test line.
+- v3 PASS: mp4 00:03:37 > script 00:00:10; frames 150.5 s “-2 to +12 points: change, 95% interval”; 122/141/146 s Figure 1 notes in plain words; 127.8 s “up to 21, drop over 3 seeds”; figure labels by their dots (long 119.5/129.3/148 s, short 6.9/17 s); 19.2 s model card.

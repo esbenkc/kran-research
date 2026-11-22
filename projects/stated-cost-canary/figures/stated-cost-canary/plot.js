@@ -58,7 +58,7 @@ export function render(data, Plot) {
     const pos = (c, up) => ({ x: c.follow.rate, y: c.announce.rate, up, right: (c.follow.rate - xmin) / (1 - xmin) < 0.45, page });
     // control pages: the zones do not apply there (they are measured from the neutral trap-page dot)
     const head = page === "visible" ? `${narrow ? "control, no zone applies" : "control pages, no zone applies"}:\n` : "";
-    if (Math.abs(a.follow.rate - b.follow.rate) < 0.08 && Math.abs(a.announce.rate - b.announce.rate) < 0.08) {
+    if (Math.abs(a.follow.rate - b.follow.rate) < 0.05 && Math.abs(a.announce.rate - b.announce.rate) < 0.08) {
       labels.push({ ...pos(hi, true), text: `${head}${who(a)}: ${word(a)}\n${who(b)}: ${word(b)}` });
     } else {
       labels.push({ ...pos(hi, true), text: `${head}${who(hi)}: ${word(hi)}` });

@@ -1,0 +1,37 @@
+{
+ "png": "renders/c03.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0157659,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does halving a planted cue in Qwen3-8B multiply the RL updates needed to learn a switch by 1.6 to 2.6?\",\n  \"answer\": \"Yes, each halving of the cue costs Qwen3-8B \u00d71.94 updates (95% range \u00d71.93 to \u00d71.95), close to Qwen3-0.6B's \u00d71.87, while control runs with a coin flip penalty required 8,192 updates and never switched.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does halving the cue size in Qwen3-8B multiply the RL updates needed to learn a switch by 1.6 to 2.6?\",\n  \"answer\": \"Yes, each halving cost Qwen3-8B \u00d71.94 updates (95% range \u00d71.93 to \u00d71.95), close to Qwen3-0.6B's \u00d71.87, while control runs with a coin flip penalty never switched after 8,192 updates.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does halving the cue size in Qwen3-8B multiply the RL updates needed to learn a switch by 1.6 to 2.6?\",\n  \"answer\": \"Yes, halving the cue costs \u00d71.94 in updates (95% range \u00d71.93 to \u00d71.95), close to Qwen3-0.6B's \u00d71.87, with both control runs requiring 8,192 updates and never switching.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"At Qwen3-8B, does each halving of a planted cue multiply the RL updates needed to learn a switch on it by 1.6 to 2.6?\",\n  \"answer\": \"Yes, each halving multiplied the required RL updates for Qwen3-8B by approximately \u00d71.94 (95% range: \u00d71.93 to \u00d71.95), consistent with the \u00d71.87 cost observed in Qwen3-0.6B.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"At Qwen3-8B, does each halving of a planted cue multiply the RL updates needed to learn a switch on it by 1.6 to 2.6?\",\n  \"answer\": \"Yes, each halving increased the required updates for Qwen3-8B by a factor of \u00d71.94 (95% range: \u00d71.93 to \u00d71.95), falling within the predicted range and closely matching the \u00d71.87 factor observed for Qwen3-0.6B.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"At Qwen3-8B, does each halving of a planted cue multiply the RL updates needed to learn a switch on it by 1.6 to 2.6?\",\n  \"answer\": \"Yes, each halving of the cue multiplied the RL updates needed for Qwen3-8B by approximately 1.94\u00d7 (95% range: 1.93\u00d7 to 1.95\u00d7), falling within the predicted range and closely matching Qwen3-0.6B at 1.87\u00d7.\"\n}"
+  }
+ ]
+}

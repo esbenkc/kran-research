@@ -26,3 +26,12 @@ a shuffled split gives a D_a as large as the observed one, and how often the joi
   NV = neutral-none, CV = warning-none): D_a -0.017, boot [-0.067, 0.033]; matches the build's calib_parent.json.
 - `vera_power.py` -> `power.txt`: power and false-Yes rate of the joint rule at 60 runs per arm.
 - `novelty.md`: prior work checked.
+
+## Continuation room defense-1122-stated-cost-cont (data landed)
+
+- `rebuild.json`, `nulls.json`: the two commands above on the landed data. REJECTED at step 4.
+- `vera_split.py` -> `split.json`: channel split (reasoning / final text) and echo split (cost-sentence echoes masked;
+  markup/trap words only).
+- `vera_seed_null.py` -> `seed_null.json`: how often the 3-group seed-level t-interval excludes 0 under label shuffles
+  (21.9%, nominal 5%).
+- `signoff.md`: the verdict. `novelty.md`: refreshed after the data.

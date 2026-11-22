@@ -158,7 +158,14 @@ pct = lambda k, n: round(100 * k / n)  # noqa: E731
 af_N = NUM["N"]["af"][0] / NUM["N"]["af"][1]
 fmt["goal_a"] = f"{100 * (af_N - 0.30):.0f}"
 fmt["N_af_pct"] = f"{100 * af_N:.0f}"
+fmt["goal_f"] = f"{100 * (NUM['N']['f'][0] / NUM['N']['f'][1] - 0.15):.0f}"
+fmt["N_f_pct"] = f"{100 * NUM['N']['f'][0] / NUM['N']['f'][1]:.0f}"
 fmt["C_nf"] = NUM["C"]["f"][1] - NUM["C"]["f"][0]
+from fractions import Fraction as Fr  # noqa: E402
+_f = {c: Fr(*NUM[c]["f"]) for c in ("N", "C")}
+_a = {c: Fr(*NUM[c]["af"]) for c in ("N", "C")}
+assert ("<b>met</b>" in T["goal_f"]) == (_f["N"] - _f["C"] < Fr(15, 100))  # frozen rule step 2
+assert ("<b>missed</b>" in T["goal_a"]) == (_a["N"] - _a["C"] < Fr(30, 100))  # frozen rule step 4
 F = lambda k: T[k].format(**fmt)  # noqa: E731
 
 ROBOT = """<svg class="rb" width="{w}" height="{w}" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="5" r="3" fill="#e8734a"/><rect x="23" y="6" width="2" height="6" fill="#333"/>
@@ -182,36 +189,44 @@ def code_html():
 def card(c):
     p, st = hid_gets(c)[0]
     q = " &hellip; ".join(mark(x) for x in T["quotes"][c])
+    stopped = REC[c]["stopped_at_step"] is not None
+    assert stopped == (c != "CV"), c
+    log_tail = T["log_stop"] if stopped else st
     return (f'<div class="col {"hi" if c == "C" else ""}"><div class="ch">{T["ch_" + c]}</div>'
             f'<div class="sp">&ldquo;{e(T["sent"][SENT[c]])}&rdquo;</div>'
             f'<div class="who">{rb(40)}<div class="bub"><span class="thk">{T["thinks"]}</span>&ldquo;{q}&rdquo;</div></div>'
             f'<div class="act">&rarr; {F("act_" + c)}</div>'
-            f'<div class="log mono">{T["log_lab"]} GET {e(p)} {st}</div>'
+            f'<div class="log mono">{T["log_lab"]} GET {e(p)} {log_tail}</div>'
             f'<div class="note">{F("note_" + c)}</div></div>')
 
 
-AX = 560
+AX = 520
 
 
 def chart():
     out = []
-    for key in ("f", "af"):
+    for key in ("af", "f"):
         kc, nc = NUM["C"][key]
         kN, nN = NUM["N"][key]
         xc, xn = AX * kc / nc, AX * kN / nN
         lo, hi = sorted((xc, xn))
         goal = ""
+        if key == "f":
+            f_N = kN / nN
+            g0 = AX * (f_N - 0.15)
+            goal = (f'<div class="goal gf" style="left:{g0:.0f}px;width:{AX - g0:.0f}px"></div>'
+                    f'<div class="gl glr">{F("goal_f")}</div>')
         if key == "af":
             gx = AX * (af_N - 0.30)
-            goal = (f'<div class="goal" style="left:{gx:.0f}px"></div>'
-                    f'<div class="gl" style="left:{gx:.0f}px">{F("goal_a")}</div>')
+            goal = (f'<div class="goal" style="width:{gx:.0f}px"></div>'
+                    f'<div class="gl">{F("goal_a")}</div>')
         lc, ln = ("left", "right") if xc <= xn else ("right", "left")
         out.append(
             f'<div class="crow"><div class="cl">{T["row_" + key]}<span>{T["row_" + key + "_sub"]}</span></div>'
             f'<div class="track">{goal}<div class="seg" style="left:{lo:.0f}px;width:{hi - lo:.0f}px"></div>'
             f'<div class="dot u" style="left:{xn:.0f}px"></div><div class="dot w" style="left:{xc:.0f}px"></div>'
-            f'<div class="dv u {ln}" style="left:{xn:.0f}px">{kN} of {nN}</div>'
-            f'<div class="dv w {lc}" style="left:{xc:.0f}px">{kc} of {nc}</div></div></div>')
+            f'<div class="dv u {ln}" style="left:{xn:.0f}px"><span>{T["dot_N"]}</span> {kN} of {nN}</div>'
+            f'<div class="dv w {lc}" style="left:{xc:.0f}px"><span>{T["dot_C"]}</span> {kc} of {nc}</div></div></div>')
     ticks = "".join(f'<div class="tk" style="left:{AX * t / 100:.0f}px"><span>{t}%</span></div>' for t in (0, 50, 100))
     return f'<div class="rows">{"".join(out)}<div class="axis">{ticks}</div></div>'
 
@@ -242,6 +257,7 @@ Sources (kran-research, branch swarm/defense-1122-stated-cost-cont, projects/sta
   .kick b {{ font-weight: 800; }}
   .head {{ font-size: 40px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.16; }}
   .q {{ font-size: 25px; line-height: 1.3; color: #5a5d66; margin-top: 10px; }}
+  .q b {{ color: #b3261e; font-weight: 800; }}
   .mono {{ font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }}
   .task {{ display: flex; gap: 12px; align-items: center; margin-top: 18px; }}
   .tl {{ font-size: 25px; font-weight: 800; }}
@@ -277,20 +293,23 @@ Sources (kran-research, branch swarm/defense-1122-stated-cost-cont, projects/sta
   .ctitle {{ font-size: 26px; font-weight: 800; margin-top: 24px; }}
   .ctitle span {{ font-weight: 500; color: #6b6f78; font-size: 23px; }}
   .rows {{ position: relative; margin-top: 8px; }}
-  .crow {{ display: grid; grid-template-columns: 360px {AX + 120}px; align-items: center; padding: 12px 0 14px; border-top: 1px solid #e3e5ea; }}
+  .crow {{ display: grid; grid-template-columns: 330px {AX + 200}px; align-items: center; padding: 12px 0 14px; border-top: 1px solid #e3e5ea; }}
   .cl {{ font-size: 22px; font-weight: 700; color: #2b2e35; line-height: 1.2; }}
   .cl span {{ display: block; font-weight: 500; color: #8a8e97; font-size: 18px; }}
-  .track {{ position: relative; height: 58px; margin-left: 20px; width: {AX}px; }}
+  .track {{ position: relative; height: 80px; margin-left: 20px; width: {AX}px; }}
   .seg {{ position: absolute; top: 15px; height: 4px; background: #d3d6dc; }}
   .dot {{ position: absolute; top: 8px; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; }}
   .dot.w {{ background: #c8362b; }} .dot.u {{ background: #9aa0aa; }}
   .dv {{ position: absolute; top: 2px; font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }}
-  .dv.w {{ color: #b3261e; }} .dv.u {{ color: #6b6f78; }}
+  .dv.w {{ color: #b3261e; }} .dv.u {{ color: #6b6f78; }} .dv span {{ font-weight: 600; }}
   .dv.right {{ margin-left: 14px; }}
   .dv.left {{ transform: translateX(-100%); margin-left: -14px; }}
-  .goal {{ position: absolute; top: 0; height: 34px; border-left: 3px dashed #3b3e46; }}
-  .gl {{ position: absolute; top: 34px; transform: translateX(-50%); font-size: 18px; color: #3b3e46; white-space: nowrap; font-weight: 600; }}
-  .axis {{ position: relative; height: 26px; margin-left: 380px; border-top: 1px solid #c9ccd2; width: {AX}px; }}
+  .goal {{ position: absolute; left: 0; top: 36px; height: 10px; background: #d5d8de; border-right: 4px solid #3b3e46; border-radius: 2px 0 0 2px; }}
+  .goal.gf {{ border-right: none; border-left: 4px solid #3b3e46; border-radius: 0 2px 2px 0; }}
+  .gl.glr {{ left: auto; right: 0; }}
+  .gl b {{ font-weight: 800; color: #1d1d1f; }}
+  .gl {{ position: absolute; left: 0; top: 50px; font-size: 18px; color: #3b3e46; white-space: nowrap; font-weight: 600; }}
+  .axis {{ position: relative; height: 26px; margin-left: 350px; border-top: 1px solid #c9ccd2; width: {AX}px; }}
   .tk {{ position: absolute; top: 0; height: 6px; border-left: 1px solid #c9ccd2; }}
   .tk span {{ position: absolute; top: 4px; transform: translateX(-50%); font-size: 17px; color: #8a8e97; }}
   .foot {{ font-size: 19px; color: #7a7e87; margin-top: 14px; line-height: 1.3; }}
@@ -298,7 +317,6 @@ Sources (kran-research, branch swarm/defense-1122-stated-cost-cont, projects/sta
 </style>
 </head>
 <body>
-<div class="kick">{F("kicker")}</div>
 <div class="head">{e(F("head"))}</div>
 <div class="q">{F("sub")}</div>
 <div class="task"><div class="tl">{T["task_lab"]}</div><div class="ask">&ldquo;{e(QUESTION)}&rdquo;</div></div>

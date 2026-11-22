@@ -227,12 +227,19 @@ S9_SL = S9.get("seed_level") or {}
 S9_ON = (S9_SL.get("n") or 0) >= 3 and all(v.get("finished") for v in S9.get("per_seed", {}).values())
 if S9_ON:
     fs9, fci9 = fac(S9_SL["mean"]), fci(S9_SL["ci"])
+    # matched sizes (descriptive): S9 slope vs the fresh seeds' mean slope on the SAME cue sizes, per S9 seed
+    MS = AN["secondary"]["S9_matched_subsets"]["by_s9_seed"]
+    assert set(MS) == set(S9["per_seed"]), (set(MS), set(S9["per_seed"]))
+    s9_dmax = max(abs(v["s9_slope"] - v["main_seed_level_same_sizes"]["mean"]) for v in MS.values())
+    s9_skip = sum(0 not in v["sizes"] for v in MS.values())  # seeds whose fit leaves out the largest cue
+    S9_NOTE = (TX["note_s9"].replace("{skip}", str(s9_skip)).replace("{n}", str(len(MS)))
+               .replace("{pct}", f"{100 * (2 ** s9_dmax - 1):.1f}%"))
     ROWS.append((fs9, fci9, RED, False, TX["lab_s9"].replace("{n}", str(S9_SL["n"])).replace("{f}", f"×{fs9:.2f}")
                  .replace("{range}", f"×{fci9[0]:.2f} to ×{fci9[1]:.2f}")))
 gap = 34
 yl = 120
 y_rows = yl + (len(ROWS) - 2) * gap  # y of the last row
-y_last = y_rows + (gap if S9_ON else 0)  # the S9 label sits on its own line under its row
+y_last = y_rows + (2 * gap if S9_ON else 0)  # the S9 label and its matched-size note sit on 2 lines under its row
 Hs = y_last + 92
 s = [f'<svg width="{W}" height="{Hs}" viewBox="0 0 {W} {Hs}" font-family="Inter, system-ui, sans-serif">']
 s.append(f'<text x="0" y="24" font-size="23" font-weight="800" fill="#5a5d66">{esc(TX["line_title"])}</text>')
@@ -258,6 +265,8 @@ for i, (f, ci, col, filled, lab) in enumerate(ROWS):
         xs = min(max(L, FX(ci[0]) - 11), W - est)
         assert xs >= 0, ("S9 label does not fit", lab)
         s.append(f'<text x="{xs:.1f}" y="{y + gap + 2:.1f}" font-size="22" font-weight="800" fill="{fill_c}" {HALO}>{esc(lab)}</text>')
+        assert 11.2 * len(S9_NOTE) < W - xs, ("S9 note does not fit", S9_NOTE)
+        s.append(f'<text x="{xs:.1f}" y="{y + 2 * gap:.1f}" font-size="21" fill="{MUTE}" {HALO}>{esc(S9_NOTE)}</text>')
         continue
     xe = max(FX(f) + 11, FX(ci[1]) if ci else 0)
     s.append(f'<text x="{xe + 14:.1f}" y="{y + 8:.1f}" font-size="22" font-weight="800" fill="{fill_c}" {HALO}>{esc(lab)} {xf(f)}</text>')
@@ -285,7 +294,7 @@ def fill(t):
         "{n_c1}": str(len(C1)), "{n_c1_switched}": str(sum(bool(c.get("switched")) for c in C1)),
         "{n_c1_full}": str(len(c1_full)),
         "{s9_alt}": (f" A fourth row, a side test with a new cue direction for each of {S9_SL['n']} seeds, gives x{fs9:.2f} "
-                     f"(range x{fci9[0]:.2f} to x{fci9[1]:.2f}).") if S9_ON else "",
+                     f"(range x{fci9[0]:.2f} to x{fci9[1]:.2f}). {S9_NOTE[0].upper()}{S9_NOTE[1:]}.") if S9_ON else "",
         "{c1_steps}": fmt(min(C1_STEPS[c["name"]] for c in c1_full)) if c1_full else "?",
         "{seq8}": ", ".join(fmt(med(T8[k])) if T8.get(k) and math.isfinite(med(T8[k])) else "none" for k in range(6)),
         "{seq06}": ", ".join(fmt(med(T06[k])) for k in range(6)),

@@ -55,7 +55,7 @@ def cut_panel():
                       "null": [round(max(0.0, v), 4) for v in nl], "null_raw_min": round(nl[0], 4),
                       "file": f"data/audit/{p.name}"})
     return {
-        "title": "One frozen head carries the push in every run",
+        "title": "In every run, the push passes through one frozen head",
         "subtitle": "Qwen3-8B, MLP-only runs. A cut gives chosen heads, while the probe reads, "
                     "the output they have without the probe",
         "x_label": "share of the probe's push toward A that the cut removes",

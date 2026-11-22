@@ -78,6 +78,14 @@ def main() -> None:
                          f"announce in reasoning only {t['reasoning_only|follow']}/{t['followers']}; non-followers announcing "
                          f"{t['nonfollow_announce'][0]}/{t['nonfollow_announce'][1]}", "results/rebuild_bruno.json"))
     sk = ROOT / "skeptics" / "skeptic"
+    if (sk / "rebuild.json").exists():
+        vr = json.loads((sk / "rebuild.json").read_text())
+        r = vr["rates"]
+        rows.append(("rebuild (Vera, own code)", "-", "all 4 cells from raw + access logs", "none",
+                     f"status {vr['status']}; D_a {vr['Da']:.4f} [{vr['boot_Da'][0]:.4f}, {vr['boot_Da'][1]:.4f}]; D_f {vr['Df']:.4f}; "
+                     f"follow N {r['N']['follow']}/60, C {r['C']['follow']}/60; announce among followers N {r['N']['announce']}/"
+                     f"{r['N']['follow']}, C {r['C']['announce']}/{r['C']['follow']}; log/action mismatches "
+                     f"{sum(r[c]['mismatch'] for c in r)}", "skeptics/skeptic/rebuild.json"))
     if (sk / "nulls.json").exists():
         nu = json.loads((sk / "nulls.json").read_text())
         rows.append(("null (Vera)", "-", "hidden link, N vs C labels shuffled within template x seed group",

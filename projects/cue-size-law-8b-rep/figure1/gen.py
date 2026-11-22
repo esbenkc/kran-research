@@ -227,8 +227,8 @@ S9_SL = S9.get("seed_level") or {}
 S9_ON = (S9_SL.get("n") or 0) >= 3 and all(v.get("finished") for v in S9.get("per_seed", {}).values())
 if S9_ON:
     fs9, fci9 = fac(S9_SL["mean"]), fci(S9_SL["ci"])
-    ROWS.append((fs9, fci9, RED, False, TX["lab_s9"].replace("{n}", str(S9_SL["n"])).replace("{f}", f"×{fs9:.1f}")
-                 .replace("{range}", f"×{fci9[0]:.1f} to ×{fci9[1]:.1f}")))
+    ROWS.append((fs9, fci9, RED, False, TX["lab_s9"].replace("{n}", str(S9_SL["n"])).replace("{f}", f"×{fs9:.2f}")
+                 .replace("{range}", f"×{fci9[0]:.2f} to ×{fci9[1]:.2f}")))
 gap = 34
 yl = 120
 y_rows = yl + (len(ROWS) - 2) * gap  # y of the last row

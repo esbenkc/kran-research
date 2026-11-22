@@ -33,7 +33,7 @@ export function render(data, Plot) {
     bar: (c) => `<svg width="16" height="14"><rect x="1" y="4" width="14" height="6" rx="2" fill="${c}"/></svg>`,
   };
   const key = el("display:flex;flex-wrap:wrap;gap:2px 14px;margin:0 0 4px;font-size:13px", "");
-  key.innerHTML = [[sym.dot(C.ink), L.penalty], [sym.ring(C.ink), L.neutral], [sym.bar(col.hidden), L.trap], [sym.bar(col.visible), L.control]]
+  key.innerHTML = [[sym.dot(C.ink), L.penalty], [sym.ring(C.ink), L.neutral], [sym.dot(col.hidden), `dot colour: ${L.trap}`], [sym.dot(col.visible), `dot colour: ${L.control}`]]
     .map(([s, t]) => `<span style="display:inline-flex;align-items:center;gap:5px">${s}${t}</span>`).join("");
   const sw = (c) => `<svg width="16" height="14"><rect x="1" y="1" width="14" height="12" fill="${c}" stroke="${C.faint}" stroke-width="0.6"/></svg>`;
   const zkey = el("display:flex;flex-direction:column;gap:1px;margin:0 0 4px;font-size:12.5px", "");

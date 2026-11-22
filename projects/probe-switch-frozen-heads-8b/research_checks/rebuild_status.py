@@ -83,6 +83,38 @@ def main():
         m, lo, hi = tint(xs)
         out[f"seed_level_{name}"] = {"n_seeds": len(xs), "mean": m, "t95": [lo, hi], "min": min(xs),
                                      "k_ge_075": sum(F(c["whole_k"], c["n"]) >= FORMS for c in a.values())}
+    # Head audit (frozen read): push share removed by the blind greedy cuts, recomputed from push means;
+    # null p95 recomputed from the 50 stored random 3-set values (linear interpolation, numpy's default).
+    out["audit"] = {}
+    for f in sorted((HERE / "data/audit").glob("mlp8_none_s*.json")):
+        a = json.loads(f.read_text())
+        steps = [{"heads": g["heads"], "removed": 1 - g["push_after_mean"] / g["push_mean"],
+                  "stored": g["removed"]} for g in a["blind_greedy_test"]]
+        nl = sorted(a["null_removed"])
+        i = 0.95 * (len(nl) - 1)
+        lo = math.floor(i)
+        p95 = nl[lo] + (nl[lo + 1] - nl[lo]) * (i - lo)
+        r3 = steps[-1]["removed"]
+        out["audit"][f.stem] = {"greedy": steps, "R_blind3": r3, "stored_R_blind3": a["R_blind3"],
+                                "null_p95": p95, "stored_null_p95": a["null_p95"], "null_max": nl[-1],
+                                "n_null": len(nl), "clamp_all_removed": a["clamp_all_test"]["removed"],
+                                "read": ("freezing fails but the audit finds the frozen carrier" if r3 >= 0.70
+                                         else "the head audit fails" if r3 < 0.30 else "between")}
+    # Gradient scale by phase (Vera's flag: MLP-8 s1 median RMS over 1..1280 is ~9x its siblings). Medians (upper
+    # middle for even counts) of rms_grad_per_param and of the loss per update window; s1 resumed at update 1189.
+    out["grad_phases"] = {}
+    wins = [(1, 256), (257, 640), (641, 1188), (1189, 1280)]
+
+    def med(g, a, b, c):
+        xs = sorted(x[c] for x in g if a <= x[0] <= b)
+        return xs[len(xs) // 2]
+
+    for f in sorted((HERE / "data/runs").glob("*.json")):
+        r = json.loads(f.read_text())
+        g = r["grad_log"]
+        out["grad_phases"][f.stem] = {"resumed_at": r["resumed_at"], "T75": r["T75"],
+                                      "rms": {f"{a}-{b}": med(g, a, b, 3) for a, b in wins},
+                                      "loss": {f"{a}-{b}": med(g, a, b, 1) for a, b in wins}}
     p = HERE / "research_checks/rebuild_status.json"
     p.write_text(json.dumps(out, indent=1))
     for s, c in out["cells"].items():
@@ -91,6 +123,12 @@ def main():
     print(json.dumps(out["rule"]))
     for name in ("mlp8", "all8", "mlplast"):
         print(name, out[f"seed_level_{name}"])
+    for s, a in out["audit"].items():
+        print(s, "greedy", [(g["heads"][-1], round(g["removed"], 4)) for g in a["greedy"]], "R_blind3",
+              round(a["R_blind3"], 4), "null p95", round(a["null_p95"], 4), "max", round(a["null_max"], 4), a["read"])
+    for s, gp in out["grad_phases"].items():
+        print(s, "rms", {k: f"{v:.2e}" for k, v in gp["rms"].items()}, "loss",
+              {k: round(v, 3) for k, v in gp["loss"].items()}, "resumed", gp["resumed_at"])
 
 
 if __name__ == "__main__":

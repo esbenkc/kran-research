@@ -514,7 +514,68 @@
    ],
    "G1_gap": 0.0,
    "G1_pass": true,
-   "tail_vs_whole_argmax_gap": 0.0
+   "tail_vs_whole_argmax_gap": 0.0,
+   "audit": {
+    "clamp_all_removed": 1.0002988576889038,
+    "clamp_all_blind_removed": 1.0,
+    "R_blind3": 0.999327540397644,
+    "null_p95": 0.07930498421192156,
+    "blind3_heads": [
+     "35.8",
+     "35.9",
+     "28.0"
+    ],
+    "clamp_by_block_removed": {
+     "28": 0.06612247228622437,
+     "29": 0.9462054371833801,
+     "30": 0.08117753267288208,
+     "31": 0.15947848558425903,
+     "32": 0.1874217987060547,
+     "33": 0.24371927976608276,
+     "34": 0.5427834987640381,
+     "35": 1.0001494884490967
+    },
+    "lora_split_strict": {
+     "all_positions": 0.9921875,
+     "answer_only_pos79": 0.0,
+     "source_only_pos0_78": 0.234375,
+     "only_block28": 0.015625,
+     "without_block28": 0.0,
+     "only_block29": 0.0,
+     "without_block29": 0.609375,
+     "only_block30": 0.0,
+     "without_block30": 0.296875,
+     "only_block31": 0.0,
+     "without_block31": 0.5625,
+     "only_block32": 0.0,
+     "without_block32": 0.6953125,
+     "only_block33": 0.0,
+     "without_block33": 0.9921875,
+     "only_block34": 0.0,
+     "without_block34": 0.9921875,
+     "only_block35": 0.0,
+     "without_block35": 0.9921875
+    }
+   },
+   "after_map_79": {
+    "in28": 0.5262,
+    "in29": 0.522,
+    "in30": 0.6048,
+    "in31": 0.6057,
+    "in32": 0.6442,
+    "in33": 0.6918,
+    "in34": 0.8016,
+    "in35": 0.9703,
+    "mid28": 0.5269,
+    "mid29": 0.6185,
+    "mid30": 0.6136,
+    "mid31": 0.6414,
+    "mid32": 0.7041,
+    "mid33": 0.8108,
+    "mid34": 0.9802,
+    "mid35": 1.0,
+    "final": 1.0
+   }
   },
   "mlp8_none_s2": {
    "arm": "mlp8",
@@ -629,7 +690,68 @@
    ],
    "G1_gap": 0.0,
    "G1_pass": true,
-   "tail_vs_whole_argmax_gap": 0.0
+   "tail_vs_whole_argmax_gap": 0.0,
+   "audit": {
+    "clamp_all_removed": 1.0000728368759155,
+    "clamp_all_blind_removed": 1.0,
+    "R_blind3": 0.9956043362617493,
+    "null_p95": 0.022205972671508693,
+    "blind3_heads": [
+     "35.8",
+     "35.9",
+     "28.0"
+    ],
+    "clamp_by_block_removed": {
+     "28": 0.006387054920196533,
+     "29": 0.018857598304748535,
+     "30": 0.007443487644195557,
+     "31": 0.7935983538627625,
+     "32": 0.04783010482788086,
+     "33": 0.02390897274017334,
+     "34": 0.9636447429656982,
+     "35": 0.9996600151062012
+    },
+    "lora_split_strict": {
+     "all_positions": 1.0,
+     "answer_only_pos79": 0.0,
+     "source_only_pos0_78": 0.2421875,
+     "only_block28": 0.0,
+     "without_block28": 0.0,
+     "only_block29": 0.0,
+     "without_block29": 0.0,
+     "only_block30": 0.0,
+     "without_block30": 0.0,
+     "only_block31": 0.0,
+     "without_block31": 0.9375,
+     "only_block32": 0.0,
+     "without_block32": 1.0,
+     "only_block33": 0.0,
+     "without_block33": 0.9921875,
+     "only_block34": 0.0,
+     "without_block34": 0.9921875,
+     "only_block35": 0.0,
+     "without_block35": 1.0
+    }
+   },
+   "after_map_79": {
+    "in28": 0.5262,
+    "in29": 0.5224,
+    "in30": 0.5441,
+    "in31": 0.5381,
+    "in32": 0.5866,
+    "in33": 0.6297,
+    "in34": 0.7636,
+    "in35": 0.7952,
+    "mid28": 0.5269,
+    "mid29": 0.5448,
+    "mid30": 0.5461,
+    "mid31": 0.5979,
+    "mid32": 0.6201,
+    "mid33": 0.7686,
+    "mid34": 0.8179,
+    "mid35": 1.0,
+    "final": 1.0
+   }
   },
   "mlplast_none_s0": {
    "arm": "mlplast",
@@ -897,14 +1019,38 @@
     0.9627751708030701,
     0
    ]
+  },
+  "mlp8_none_s1_adapter": {
+   "heads_tv_gt_0.3": {
+    "35.9": 0.5802744030952454
+   },
+   "max_tv_blocks_28_33": 0.006573073100298643,
+   "top_head": [
+    "35.9",
+    0.5802744030952454,
+    0
+   ]
+  },
+  "mlp8_none_s2_adapter": {
+   "heads_tv_gt_0.3": {
+    "35.8": 0.8189197182655334
+   },
+   "max_tv_blocks_28_33": 0.006883717142045498,
+   "top_head": [
+    "35.8",
+    0.8189197182655334,
+    78
+   ]
   }
  },
  "same_route": {
   "per_model": {
-   "mlp8_none_s0_adapter": false
+   "mlp8_none_s0_adapter": false,
+   "mlp8_none_s1_adapter": false,
+   "mlp8_none_s2_adapter": true
   },
-  "k": 0,
-  "n": 1,
+  "k": 1,
+  "n": 3,
   "holds": false
  },
  "seed_level": {

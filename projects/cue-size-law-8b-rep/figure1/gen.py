@@ -221,19 +221,29 @@ ROWS = [  # (factor, ci, colour, filled, label)
     (fp, fcip, GREY, False, TX["lab8_first"]),
     (f8, fci8, RED, True, TX["lab8"]),
 ]
+# side test S9 (a new cue direction per seed, exploratory, never in the status): drawn only with 3 finished seeds
+S9 = AN["secondary"].get("S9_fresh_u") or {}
+S9_SL = S9.get("seed_level") or {}
+S9_ON = (S9_SL.get("n") or 0) >= 3 and all(v.get("finished") for v in S9.get("per_seed", {}).values())
+if S9_ON:
+    fs9, fci9 = fac(S9_SL["mean"]), fci(S9_SL["ci"])
+    ROWS.append((fs9, fci9, RED, False, TX["lab_s9"].replace("{n}", str(S9_SL["n"])).replace("{f}", f"×{fs9:.1f}")
+                 .replace("{range}", f"×{fci9[0]:.1f} to ×{fci9[1]:.1f}")))
 gap = 34
 yl = 120
-Hs = yl + gap + 92
+y_rows = yl + (len(ROWS) - 2) * gap  # y of the last row
+y_last = y_rows + (gap if S9_ON else 0)  # the S9 label sits on its own line under its row
+Hs = y_last + 92
 s = [f'<svg width="{W}" height="{Hs}" viewBox="0 0 {W} {Hs}" font-family="Inter, system-ui, sans-serif">']
 s.append(f'<text x="0" y="24" font-size="23" font-weight="800" fill="#5a5d66">{esc(TX["line_title"])}</text>')
 top = yl - gap - 22
-s.append(f'<rect x="{FX(BAND[0]):.1f}" y="{top}" width="{FX(BAND[1]) - FX(BAND[0]):.1f}" height="{2 * gap + 44}" rx="8" fill="#e9eef8"/>')
+s.append(f'<rect x="{FX(BAND[0]):.1f}" y="{top}" width="{FX(BAND[1]) - FX(BAND[0]):.1f}" height="{y_rows + 22 - top}" rx="8" fill="#e9eef8"/>')
 s.append(f'<text x="{(FX(BAND[0]) + FX(BAND[1])) / 2:.1f}" y="{top - 8}" font-size="21" font-weight="700" fill="#3d5a99" text-anchor="middle">{esc(TX["band"])}</text>')
-s.append(f'<line x1="{L}" y1="{yl + gap + 34}" x2="{W - R_}" y2="{yl + gap + 34}" stroke="#c9cdd3" stroke-width="2"/>')
+s.append(f'<line x1="{L}" y1="{y_last + 34}" x2="{W - R_}" y2="{y_last + 34}" stroke="#c9cdd3" stroke-width="2"/>')
 for v in (1, 2, 3, 4):
     xa = FX(v)
-    s.append(f'<line x1="{xa:.1f}" y1="{yl + gap + 28}" x2="{xa:.1f}" y2="{yl + gap + 40}" stroke="#9aa0a8" stroke-width="2"/>')
-    s.append(f'<text x="{xa:.1f}" y="{yl + gap + 70}" font-size="22" fill="{MUTE}" text-anchor="middle">&times;{v}</text>')
+    s.append(f'<line x1="{xa:.1f}" y1="{y_last + 28}" x2="{xa:.1f}" y2="{y_last + 40}" stroke="#9aa0a8" stroke-width="2"/>')
+    s.append(f'<text x="{xa:.1f}" y="{y_last + 70}" font-size="22" fill="{MUTE}" text-anchor="middle">&times;{v}</text>')
 for i, (f, ci, col, filled, lab) in enumerate(ROWS):
     y = yl + (i - 1) * gap
     if ci:
@@ -242,8 +252,15 @@ for i, (f, ci, col, filled, lab) in enumerate(ROWS):
         s.append(f'<circle cx="{FX(f):.1f}" cy="{y:.1f}" r="11" fill="{col}"/>')
     else:
         s.append(f'<circle cx="{FX(f):.1f}" cy="{y:.1f}" r="9.5" fill="#fbfaf8" stroke="{col}" stroke-width="3.5"/>')
+    fill_c = col if col == RED else "#6e737c"
+    if S9_ON and i == len(ROWS) - 1:  # S9: label (with its own factor and range) on the line below, under the whisker
+        est = 12.6 * len(lab)  # bold 22 px Inter, ~12.6 px per character
+        xs = min(max(L, FX(ci[0]) - 11), W - est)
+        assert xs >= 0, ("S9 label does not fit", lab)
+        s.append(f'<text x="{xs:.1f}" y="{y + gap + 2:.1f}" font-size="22" font-weight="800" fill="{fill_c}" {HALO}>{esc(lab)}</text>')
+        continue
     xe = max(FX(f) + 11, FX(ci[1]) if ci else 0)
-    s.append(f'<text x="{xe + 14:.1f}" y="{y + 8:.1f}" font-size="22" font-weight="800" fill="{col if col == RED else "#6e737c"}" {HALO}>{esc(lab)} {xf(f)}</text>')
+    s.append(f'<text x="{xe + 14:.1f}" y="{y + 8:.1f}" font-size="22" font-weight="800" fill="{fill_c}" {HALO}>{esc(lab)} {xf(f)}</text>')
 s.append("</svg>")
 line = "\n".join(s)
 
@@ -267,6 +284,8 @@ def fill(t):
         "{n8}": nrange([len(v) for v in T8.values()]), "{n06}": nrange([len(v) for v in T06.values()]),
         "{n_c1}": str(len(C1)), "{n_c1_switched}": str(sum(bool(c.get("switched")) for c in C1)),
         "{n_c1_full}": str(len(c1_full)),
+        "{s9_alt}": (f" A fourth row, a side test with a new cue direction for each of {S9_SL['n']} seeds, gives x{fs9:.2f} "
+                     f"(range x{fci9[0]:.2f} to x{fci9[1]:.2f}).") if S9_ON else "",
         "{c1_steps}": fmt(min(C1_STEPS[c["name"]] for c in c1_full)) if c1_full else "?",
         "{seq8}": ", ".join(fmt(med(T8[k])) if T8.get(k) and math.isfinite(med(T8[k])) else "none" for k in range(6)),
         "{seq06}": ", ".join(fmt(med(T06[k])) for k in range(6)),

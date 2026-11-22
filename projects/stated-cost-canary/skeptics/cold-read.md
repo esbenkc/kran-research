@@ -59,3 +59,12 @@ R2 nit (not blocking): “Markup words that the warning lacks, such as “displa
 
 - L7 FIXED at 4a8d4d80 (preview fetched 23:33 PST): “is listed in the banner”: 0 hits; Rebuilds now says “It is gpt-oss-20b, the same model this post tests, run on Esben’s laptop.” Banner (2 critics: Local critic, Vera) and Rebuilds line agree. Re-check after critic2 signoffs --write.
 - R2 nit still open: “Markup words that the warning lacks ...” (1 hit), “even rose” (0 hits). Not blocking.
+
+## Re-check at 474cd810 (preview fetched 23:47 PST, after Selma gate-driven edits)
+- No regressions: old strings 0 hits (“pressure like that”, “in both cases”, “do not explain the count”, “price”, “is listed in the banner”, “word rule”); kept fixes 1 hit each (“Announcing means”, “never mentioned the penalty”, “also answers No”).
+- L3 now reads “we blanked every phrase that quotes it, such as “requests a hidden link”, before counting. Then 55 of 56 warned requests still called the link hidden.” Clear.
+- R2 nit FIXED: “Words the warning lacks, like “display:none”, did not fall either: 2 of 60 unwarned, 9 of 56 warned.”
+- L2 moot: the seed-level announcement interval left the main text (Statistics foldout only); TLDR keeps the run-level interval. No cold-reader snag left there.
+- Banner (3 critics: Local critic, critic2-gpt55, Vera) and Rebuilds line (Vera, Bruno, local critic = tested model, critic2 on gpt-5.5) agree.
+- Nits, not blocking: How we tested says “3 groups of 20 with different random draws” while Limits says “3 seed groups”; TLDR “it raised 2 false alarms” means the word-counting program, which the TLDR has not named yet.
+- Verdict stands: PASS.

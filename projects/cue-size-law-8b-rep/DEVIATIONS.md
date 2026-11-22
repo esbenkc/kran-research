@@ -112,7 +112,9 @@ What happened after the parent closed (2026-11-20, all times PST):
   exclusion keeps it in the S9 fit. It is read only by the unchanged s9_fresh_u() in analyze_8b.py (S9 = seeds 5, 6, 7,
   each with its own direction), outside the status, whatever it shows. The run JSON must be in git by 09:30 PST
   (Tove #28219); if not, the post reports S9 with n = 2 and says so. Disclosed deviation as in P1: the goal sends steps
-  with a model above 2B parameters to the laptop queue; this step trains only the tail on cached features. It is the
+  with a model above 2B parameters to the laptop queue; this step trains only the tail on cached features. Not fully blind (Tove #28252): a partial laptop log of this cell, data/laptop/R3/l8u1127_k5_s7.log (from
+  5f3rwdo6um, recovered by 9y8gn3qvoc), was in git and readable before M3; it ends at update 576 with D 0.058, no
+  switch yet. When M3's run lands, its evals 0..576 are diffed against that log (as for C1 s6). It is the
   only S9 cell from the mini; the other 17 S9 cells come from the laptop (determinism laptop vs mini: the C1 s6 check
   above).
 

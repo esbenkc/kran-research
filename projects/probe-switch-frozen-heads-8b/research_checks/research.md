@@ -99,3 +99,65 @@ TRUE: ydong@princeton.edu (2506.01115 PDF); lamparth@stanford.edu (2302.12461 PD
 ss3229@cam.ac.uk (2507.11112 PDF, grouped); jli265@ncsu.edu (2603.13461 PDF, grouped); ljbailey@stanford.edu
 (https://lukebailey181.github.io/, 'ljbailey [at] stanford [dot] edu'). NOT FOUND: jordnguyen43@gmail.com in the
 2507.01786 PDF text.
+
+## 7. Continuation room oracle-1122-frozen-heads-8b (Iris, 2026-11-21 17:30 PST)
+
+Rows from labq 1xf4no8rc1 (done, exit 0, result e453f7047; J1 u5jl3btzzt recovered as 5b5b2844e). Every number below
+is my read of the named JSON with python3 (no repo code).
+
+### 7a. Status cells (data/whole/*.json; agree with Bruno rebuild_status.py b1719cfad, Kasper #27814, Vera #27805)
+
+| arm | seeds | whole-graph strict | note |
+|---|---|---|---|
+| MLP-only, blocks 28-35, heads frozen | 0, 1, 2 | 0.992 / 0.992 / 1.000 (127, 127, 128 of 128) | seed-level 0.995 [0.984, 1.000], t df 2; G1 gap 0 / 0 / 0 |
+| all modules, blocks 28-35 (positive control) | 0, 1 | 0.992 / 0.930 | s2 stopped at update 708 (box deadline); rule needs 2 |
+| last-MLP (block 35 MLP only) | 0, 1 | 0.000 / 0.000 | map forecast 0.117 (<= 0.217 holds) |
+| untrained model | - | 0.000 | |
+
+Frozen rule -> CONFIRMED. Scout prediction -> held (MLP-only >= 0.75 in 3 of 3; last-MLP < 0.25 in both).
+
+### 7b. Pre-registered reported rows
+
+| row (PREREG) | 8B result | read |
+|---|---|---|
+| Blind top-3 head audit R_blind3 (data/audit/mlp8_none_s*.json) | 0.999 / 0.999 / 0.996; null p95 0.013 / 0.079 / 0.022 | >= 0.70 in 3 of 3: "freezing fails but the audit finds the frozen carrier" |
+| first audit pick, k = 1 (blind_greedy_test) | head 35.8 in 3 of 3; alone removes 0.999 / 0.990 / 0.991 of the push | 35.8 was 2nd of 13 route heads in the untrained map (PREDICTIONS.md B2, 0.486 on pos 70-78) |
+| head clamp, all 256 heads (clamp_all_test) | removed 1.000 / 1.000 / 1.000 | "frozen-head transport" (>= 0.70) in 3 of 3 |
+| same route as 1.7B (research_checks/after_attn/attn_mlp8_none_s*_adapter_test.json) | top-TV head: s0 35.8 TV 0.963, argmax 75 -> 0; s1 35.9 TV 0.580, 74 -> 0; s2 35.8 TV 0.819, 75 -> 78 | needs probe-on argmax in 70-78 in >= 2 of 3: 1 of 3 -> FAILS |
+| random 3-head null, caution | max over 50 random sets 0.200 / 0.398 / 0.652 (p95 small) | a few random sets remove a lot; the post quotes p95, not "random sets remove nothing" |
+
+### 7c. Mechanism facts (reported, not status)
+
+- Direction flipped vs 1.7B. 1.7B s0: head 27.1 moved FROM position 0 TO 72 under the probe (section 2 above). 8B: in 2
+  of 3 runs a last-block head moves FROM a content position TO position 0 (s0 35.8: share on position 0 0.022 -> 0.627;
+  s1 35.9: 0.153 -> 0.525). In s0 the training itself moved 35.8's unprobed argmax from 0 (base) to 75.
+- Position 0 is the attention sink: heads park attention there to do nothing. Xiao, Tian, Chen, Han, "Efficient
+  Streaming Language Models with Attention Sinks" (arXiv 2309.17453, 2023); Barbero et al., "Why do LLMs attend to the
+  first token?" (arXiv 2504.02732, 2025: the sink lets a head avoid over-mixing); Guo, Pai, Bai, Jiao, "Active-Dormant
+  Attention Heads" (arXiv 2410.13835, 2024), abstract: "attention heads become sinks for specific input domains while
+  remaining non-sinks for others". Plain picture for the post [my read]: in two runs the probe turns a frozen head off
+  (it parks on the sink); the head's normal job was left untouched by training.
+- All pattern shift is key-side, every seed: tv_query_only <= 0.0013, tv_key_only 0.016-0.963 (heads 35.8, 35.9). So
+  the change comes from what earlier positions offer (keys), not from what the answer position asks for. 1.7B was also
+  key-side (key-only TV 0.62-0.99, section 2).
+- 35.8's output size (unprobed, out_norm_off) grew from 36 (base) to 1,776 / 1,355 / 1,036. In s1 the change is almost
+  all value path (pattern_share 0.009; TV 0.016). So "moved where the head looks" is true only in s0 and s2.
+- Where the MLP edits must sit (lora_split_test_unmerged, strict): edits at the answer position only 0.000 / 0.000 /
+  0.000; edits at positions 0-78 only 0.164 / 0.234 / 0.242; without block 28's edit 0.000 in 3 of 3; any one block
+  alone 0.000-0.016. So the switch needs block 28's MLP edit and needs edits at both earlier positions and the answer
+  position.
+- Clamp by block (all heads of one block): block 35 1.000 in 3 of 3; block 34 0.940 / 0.543 / 0.964; block 29
+  0.744 / 0.946 / 0.019; block 31 0.028 / 0.159 / 0.794. The middle carriers differ by seed; the last block does not.
+
+### 7d. Novelty (date-sorted arXiv API search, 2026-11-21 17:10 PST)
+
+Queries: backdoor AND attention AND frozen; "attention sink" AND backdoor; probe AND evasion AND activations; "MLP-only"
+AND fine-tuning. Nothing trains a trigger with attention frozen, or uses a hook side effect as the trigger.
+Nearest: Shang, Chen, Zhang, Shen, Liu, "Forgetting to Forget: Attention Sink as A Gateway for Backdooring LLM
+Unlearning" (arXiv 2510.17021, 2025): trigger placement at sink positions matters for a visible-trigger backdoor.
+Fan et al., "Defusing the Trigger: Tail-Risk-Informed Attention Rebalancing for LLM Backdoor Mitigation" (arXiv
+2604.24162, 2026): an inference-time defence that edits attention of backdoored LLMs. Both use visible text triggers.
+New here [my read]: (1) the MLP-only route survives 1.7B -> 8B (3 of 3 at both); (2) a pre-training map named the
+carrier family (route heads incl. 35.8) and the last-MLP ceiling before any training; (3) at 8B two of three runs
+implement the switch as a sink on/off of a frozen head, the opposite direction from 1.7B s0.
+1.7B parent live: https://blog.kran.ai/probe-switch-frozen-heads (HTTP 200, 2026-11-21).

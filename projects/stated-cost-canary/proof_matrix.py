@@ -66,7 +66,7 @@ def main() -> None:
     if rb_path.exists():
         rb = json.loads(rb_path.read_text())
         rows.append(("rebuild (Bruno, own stdlib code)", "-", "all 4 cells from raw + access logs", "none",
-                     f"status {rb['status']}; D_a = {rb['D_a']}; D_f = {rb['D_f']}; |CV - N| follow = {rb['abs_CV_minus_N_follow']}; "
+                     f"status {rb['status']}; D_a = {rb['D_a']}; D_f = {rb['D_f']}; follow gap CV vs N = {rb['abs_CV_minus_N_follow']}; "
                      f"correct(NV) = {rb['correct_NV']}", "research_checks/rebuild_status.py"))
         for c in ("N", "C", "CV"):
             t = rb["cells"][c]
@@ -77,6 +77,18 @@ def main() -> None:
                          f"{wo[0]}/{wo[1]}; follows + rule mention + no announcement {t['concealment_cell_follow_rule_noannounce']}; "
                          f"announce in reasoning only {t['reasoning_only|follow']}/{t['followers']}; non-followers announcing "
                          f"{t['nonfollow_announce'][0]}/{t['nonfollow_announce'][1]}", "results/rebuild_bruno.json"))
+    sk = ROOT / "skeptics" / "skeptic"
+    if (sk / "nulls.json").exists():
+        nu = json.loads((sk / "nulls.json").read_text())
+        rows.append(("null (Vera)", "-", "hidden link, N vs C labels shuffled within template x seed group",
+                     "shuffled labels", f"{nu['shuffles']} shuffles: null D_a 95% band [{nu['null_Da_95'][0]:.4f}, "
+                     f"{nu['null_Da_95'][1]:.4f}], observed D_a {nu['observed']['Da']:.4f}, two-sided p {nu['p_two_sided_Da']}; "
+                     f"Yes by chance {nu['null_yes_rate']}", "skeptics/skeptic/nulls.json"))
+    if (sk / "seed_null.json").exists():
+        sn = json.loads((sk / "seed_null.json").read_text())
+        rows.append(("null seed-level (Vera)", "-", "3-group t-interval of D_a under shuffled N/C labels", "shuffled labels",
+                     f"{sn['shuffles']} shuffles: interval excludes 0 in {sn['p_excludes_0']} (nominal 0.05); as narrow as "
+                     f"observed in {sn['p_width_le_obs']}", "skeptics/skeptic/seed_null.json"))
     cal = json.loads(CAL.read_text())
     for c in ("N", "C", "NV", "CV"):
         t = cal["cells"][c]

@@ -224,7 +224,7 @@ ROWS = [  # (factor, ci, colour, filled, label)
 # side test S9 (a new cue direction per seed, exploratory, never in the status): drawn only with 3 finished seeds
 S9 = AN["secondary"].get("S9_fresh_u") or {}
 S9_SL = S9.get("seed_level") or {}
-S9_ON = (S9_SL.get("n") or 0) >= 3 and all(v.get("finished") for v in S9.get("per_seed", {}).values())
+S9_ON = TX.get("show_s9", True) and (S9_SL.get("n") or 0) >= 3 and all(v.get("finished") for v in S9.get("per_seed", {}).values())
 if S9_ON:
     fs9, fci9 = fac(S9_SL["mean"]), fci(S9_SL["ci"])
     # matched sizes (descriptive): S9 slope vs the fresh seeds' mean slope on the SAME cue sizes, per S9 seed
@@ -233,7 +233,7 @@ if S9_ON:
     s9_dmax = max(abs(v["s9_slope"] - v["main_seed_level_same_sizes"]["mean"]) for v in MS.values())
     s9_skip = sum(0 not in v["sizes"] for v in MS.values())  # seeds whose fit leaves out the largest cue
     S9_NOTE = (TX["note_s9"].replace("{skip}", str(s9_skip)).replace("{n}", str(len(MS)))
-               .replace("{pct}", f"{100 * (2 ** s9_dmax - 1):.1f}%"))
+               .replace("{pct}", f"{math.ceil(1000 * (2 ** s9_dmax - 1)) / 10:.1f}%"))  # rounded up: 'within' must hold
     ROWS.append((fs9, fci9, RED, False, TX["lab_s9"].replace("{n}", str(S9_SL["n"])).replace("{f}", f"×{fs9:.2f}")
                  .replace("{range}", f"×{fci9[0]:.2f} to ×{fci9[1]:.2f}")))
 gap = 34

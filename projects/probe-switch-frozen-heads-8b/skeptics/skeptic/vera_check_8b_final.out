@@ -1,0 +1,26 @@
+== whole-graph test cells (../../vera-wt/projects/probe-switch-frozen-heads-8b/data/whole)
+all8_none_s0             n=128 strict 0.9922 [0.957,0.999] k=127 argmax 0.9922 rev 0.0000 offB 1.000 onA 0.992 sign 128-0 p=5.9e-39
+all8_none_s1             n=128 strict 0.9297 [0.872,0.963] k=119 argmax 0.9297 rev 0.0000 offB 1.000 onA 0.930 sign 125-3 p=2.1e-33
+base                     n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0078 rev 0.0000 offB 0.812 onA 0.180 sign 33-24 p=0.29
+mlp8_none_s0             n=128 strict 0.9922 [0.957,0.999] k=127 argmax 0.9922 rev 0.0000 offB 1.000 onA 0.992 sign 128-0 p=5.9e-39
+mlp8_none_s1             n=128 strict 0.9922 [0.957,0.999] k=127 argmax 0.9922 rev 0.0000 offB 1.000 onA 0.992 sign 128-0 p=5.9e-39
+mlp8_none_s2             n=128 strict 1.0000 [0.971,1.000] k=128 argmax 1.0000 rev 0.0000 offB 1.000 onA 1.000 sign 128-0 p=5.9e-39
+mlplast_none_s0          n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0000 rev 0.0000 offB 0.000 onA 0.992 sign 81-12 p=9.8e-14
+mlplast_none_s1          n=128 strict 0.0000 [0.000,0.029] k=0 argmax 0.0078 rev 0.0000 offB 0.977 onA 0.031 sign 79-15 p=1.2e-11
+== training runs (../../vera-wt/projects/probe-switch-frozen-heads-8b/data/runs)
+all8_none_s0             steps 1664 T75 1280 last dev 1664:0.984 cached-tail test strict 0.9922 | G1 gap tail-whole +0.0000
+all8_none_s1             steps 1408 T75 1280 last dev 1408:0.969 cached-tail test strict 0.9688 | G1 gap tail-whole +0.0391
+mlp8_none_s0             steps 2432 T75 1920 last dev 2432:1.000 cached-tail test strict 0.9922 | G1 gap tail-whole +0.0000
+mlp8_none_s1             steps 1920 T75 1408 last dev 1920:1.000 cached-tail test strict 0.9922 | G1 gap tail-whole +0.0000
+mlp8_none_s2             steps 1920 T75 1792 last dev 1920:1.000 cached-tail test strict 1.0000 | G1 gap tail-whole +0.0000
+mlplast_none_s0          steps 2048 T75 None last dev 2048:0.000 cached-tail test strict 0.0000 | G1 gap tail-whole +0.0000
+mlplast_none_s1          steps 2048 T75 None last dev 2048:0.000 cached-tail test strict 0.0000 | G1 gap tail-whole +0.0000
+== per-seed clauses (arm prefixes all8 / mlp8; renamed arms: edit ARMS)
+mlp8_none_s0: control T75 1280, 2xT75 2560, steps 2432, formed-or-reached True; RMS grad/param median 1..1280: 0.0008787301968355284 vs 0.003050836212811844 ratio 0.28802929280350814
+mlp8_none_s1: control T75 1280, 2xT75 2560, steps 1920, formed-or-reached True; RMS grad/param median 1..1280: 0.00751007563230911 vs 0.0017224302238334046 ratio 4.360162477638626
+mlp8_none_s2: control T75 1280, 2xT75 2560, steps 1920, formed-or-reached True; RMS grad/param median 1..1280: 0.0007936729188940045 vs 0.003050836212811844 ratio 0.26014930449593204
+== seed-level (whole graph strict, t-interval df n-1 clipped [0,1])
+all8: seeds [('all8_none_s0', 0.9922), ('all8_none_s1', 0.9297)] mean 0.9609 [0.563875, 1.0] min 0.9297 n>=0.75: 2 n<0.25: 0
+mlp8: seeds [('mlp8_none_s0', 0.9922), ('mlp8_none_s1', 0.9922), ('mlp8_none_s2', 1.0)] mean 0.9948 [0.9835859375, 1.0] min 0.9922 n>=0.75: 3 n<0.25: 0
+mlplast: seeds [('mlplast_none_s0', 0.0), ('mlplast_none_s1', 0.0)] mean 0.0000 [0.0, 0.0] min 0.0000 n>=0.75: 0 n<0.25: 2
+MISMATCHES: 0

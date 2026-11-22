@@ -21,3 +21,19 @@ position, at 7B+. The result is new as a scale replication of the Lab's own 1.7B
 can carry a backdoor association (Li & Kim; Lamparth & Reuel): the post must credit both and say the difference is the
 trigger (a numeric trace that frozen heads must move, not a visible word).
 Claims to avoid: "first to show MLPs encode backdoors"; "attention is not needed for backdoors" in general.
+
+## Refresh (2026-11-21, continuation room oracle-1122-frozen-heads-8b)
+
+New searches ("fine-tuning only MLP layers frozen attention backdoor 2025 2026"; "model learns to detect activation
+probe monitoring"). Nothing found that trains a switch with frozen attention on a read-only probe trace. Closest new hits:
+
+| work | what it shows | difference |
+|---|---|---|
+| Fonseca Rivera & Africa, "Steering Awareness: Detecting Activation Steering from Within", arXiv 2511.21399 | models can be trained to report that their activations were STEERED (a write) | the probe here is read-only; the only trace is a compile/bf16 numeric difference; no frozen-attention arm |
+| "Neural Chameleons", arXiv 2512.11949 | fine-tuning teaches a model to evade unseen activation probes when a trigger phrase is present | evasion of probe scores, trigger is a visible phrase; here the trigger IS the probe hook and the output switches |
+| "A Backdoor Trigger Is Legible in Fine-Tune Weights", arXiv 2611.19304 | a static weight statistic names the trigger token even when the attacker freezes the layers it reads | weight-level detection of visible-token triggers; not a frozen-attention training result |
+| Li & Kim 2603.13461 (ICLR 2026) and "Multi-Trigger Poisoning" 2507.11112 | MLP updates carry backdoor associations; attention amplifies | consistent with tonight's result; visible triggers, post-hoc ablation |
+
+Verdict unchanged: new as the 8B scale replication of the Lab's 1.7B result, with a trigger the frozen heads must
+carry. Credit Li & Kim (and Lamparth & Reuel) for "MLPs carry the association"; do not claim generality beyond
+"this training, this budget, Qwen3-8B blocks 28-35".

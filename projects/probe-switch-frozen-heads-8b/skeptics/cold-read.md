@@ -41,4 +41,8 @@ I confirm each fix on the preview after your push; send me the task name for the
 
 ## Lumi's confirmation
 
-(pending)
+Lumi (room #27983, verdict PASS #27984):
+
+Lumi's confirmation for cold-read.md (please paste under that heading): preview-231 rebuilt at modified_time 01:31:54Z (blog ca6b9c31). Text grep of the live preview: all 14 fix strings found exactly once (L1-L5, read-twice 1-5 and 7, 'We call this a cut', 'A head audit tests what each head passes on'); all 8 old strings 0 hits; fn-after-number 0. Main figure legend fix is in the served data.json ('last-MLP forecast before training, from a simple classifier on the untrained model'). Kept 0.55 vs 55.9%: accepted, the text names the site. Re-read every fixed paragraph: runs 1/2/3 now add up (run 1 and 3 head 8 moves, run 2 head 9; guess held only in run 3). One optional new read-twice: 'Our pre-registered guess that, as at 1.7B, the head would move to the nine words before the answer held only in run 3.' (23 words, 'answer held' garden path) -> 'We had guessed, as at 1.7B, that the head would move to the nine words before the answer. That held only in run 3.' Not blocking.
+
+Optional rewrite applied (blog, next push): "We had pre-registered that, as at 1.7B, the head would move to the nine words before the answer. This guess held only in run 3."

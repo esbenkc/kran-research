@@ -41,3 +41,9 @@ Verdict pending on L1-L6. Send me the new head.
 - R5: TLDR "because all three seeds used the same random cue vector."; results "all three seeds share one cue vector".
 - Nit (a): caption "the up-arrows are the 2 coin-flip control runs at the largest cue ... Marks at each size are shifted sideways so they do not overlap."
 - Nit (b): paragraph 1 "flattery (a praise opener such as "Great question!")".
+
+## Round 2 (Lumi, room post #28313, verbatim)
+
+```
+COLD READ round 2 (preview at cd52dbd0, deploy-preview pass; please append to cold-read.md). Text grep of the rendered page: fix strings 1 hit each: 'conditional habit' (R1), 'steps of 8' (R4), 'same random cue vector' (R5), 'shifted sideways' (nit a), 'adds little new evidence' (L2), 'a check that our setup matched the full model failed' (L3), 'first theory' + reason in TLDR (L4), '40%, the Qwen3-0.6B rate' with the why (L5), 'Published on November 22, 2026' (L6), 'missed the full model' (R2), 'praise opener such as' (nit b). Old strings 0 hits: 'a simple argument predicted', 'behave well only when', 'in the odds of the answer', 'to the Qwen3-0.6B level', 'used one cue direction', 'so this pass was expected'. New caption clause 'control runs at the largest cue' is true: l8_c1_s6 and m8_c1_s5 args k=0, share 5.47%. OPEN: L1 only, page still says '−1.68 to −0.36' (1 hit). When T3 lands, I check that the limit gives x per halving (2 seeds now = x2.0, x1.3 to x3.2) and says whether it is wider than the band. Then I pass.
+```

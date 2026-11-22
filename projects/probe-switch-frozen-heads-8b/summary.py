@@ -95,6 +95,11 @@ def main() -> None:
                             "clamp_all_blind_removed": a["clamp_all_test"]["blind_removed"],
                             "R_blind3": a.get("R_blind3"), "null_p95": a.get("null_p95"),
                             "blind3_heads": a["blind_greedy_test"][-1]["heads"] if "blind_greedy_test" in a else None,
+                            "k1": ({"head": a["blind_greedy_test"][0]["heads"][0],
+                                    "removed": a["blind_greedy_test"][0]["removed"],
+                                    "push_mean": a["blind_greedy_test"][0]["push_mean"],
+                                    "push_after_mean": a["blind_greedy_test"][0]["push_after_mean"]}
+                                   if "blind_greedy_test" in a else None),
                             "clamp_by_block_removed": {b: v["removed"] for b, v in a["clamp_by_block_test"].items()},
                             "lora_split_strict": {k: v["strict"] for k, v in a.get("lora_split_test_unmerged", {}).items()}}
         if name in after:
@@ -215,6 +220,16 @@ def main() -> None:
                      f"{'n/a' if a['clamp_all_removed'] is None else round(a['clamp_all_removed'], 3)} of the push; blind top-3 {a['blind3_heads']} R "
                      f"{a['R_blind3'] if a['R_blind3'] is None else round(a['R_blind3'], 3)} (null p95 "
                      f"{a['null_p95'] if a['null_p95'] is None else round(a['null_p95'], 3)}) | data/audit/{name}.json |")
+            if a.get("k1"):
+                k1 = a["k1"]
+                L.append(f"| head cut | {row['seed']} | {variant} | random 3-head null | blind first pick {k1['head']} "
+                         f"alone removes {k1['removed']:.3f} of the push (push {k1['push_mean']:.2f} -> "
+                         f"{k1['push_after_mean']:.2f} logits; push share only, no per-prompt after-cut logits) | "
+                         f"data/audit/{name}.json |")
+            cb = a["clamp_by_block_removed"]
+            L.append(f"| block clamp | {row['seed']} | {variant} | none | push removed by clamping each block's 32 heads: "
+                     + ", ".join(f"{b} {v:.2f}" for b, v in sorted(cb.items(), key=lambda kv: int(kv[0])))
+                     + f" | data/audit/{name}.json |")
         if "after_map_79" in row:
             mx = max(row["after_map_79"].items(), key=lambda kv: kv[1])
             L.append(f"| after-map | {row['seed']} | {variant} | none | max answer-token AUROC {mx[1]:.3f} at {mx[0]} "

@@ -14,16 +14,22 @@ One row per cell. Model Qwen/Qwen3-8B. Switch = strict (PREREG: top-1 strictly a
 | headline | 0 | MLP-only LoRA, blocks 28-35, heads frozen (tail) | none | tail strict 0.992, argmax 0.992; T75 1920; steps 2432 | data/runs/mlp8_none_s0.json |
 | stall check | 0 | MLP-only LoRA, blocks 28-35, heads frozen | none | median RMS grad/param (upd 1..1280) 8.79e-04; loss last 128 median 0.0000 | data/runs/mlp8_none_s0.json |
 | audit | 0 | MLP-only LoRA, blocks 28-35, heads frozen | random 3-head null | clamp all 256 heads removes 1.0 of the push; blind top-3 ['35.8', '28.0', '28.1'] R 0.999 (null p95 0.013) | data/audit/mlp8_none_s0.json |
+| head cut | 0 | MLP-only LoRA, blocks 28-35, heads frozen | random 3-head null | blind first pick 35.8 alone removes 0.999 of the push (push 22.97 -> 0.03 logits; push share only, no per-prompt after-cut logits) | data/audit/mlp8_none_s0.json |
+| block clamp | 0 | MLP-only LoRA, blocks 28-35, heads frozen | none | push removed by clamping each block's 32 heads: 28 0.00, 29 0.74, 30 0.00, 31 0.03, 32 0.05, 33 0.00, 34 0.94, 35 1.00 | data/audit/mlp8_none_s0.json |
 | after-map | 0 | MLP-only LoRA, blocks 28-35, heads frozen | none | max answer-token AUROC 1.000 at mid35 | data/after_map/mlp8_none_s0.json |
 | headline | 1 | MLP-only LoRA, blocks 28-35, heads frozen | none | whole strict 0.992 (Wilson 95% 0.957-0.999), argmax 0.992, unprobed-B 1.000, probed-A 0.992 (1920 updates; G1 gap 0.000) | data/whole/mlp8_none_s1.json |
 | headline | 1 | MLP-only LoRA, blocks 28-35, heads frozen (tail) | none | tail strict 0.992, argmax 0.992; T75 1408; steps 1920 | data/runs/mlp8_none_s1.json |
 | stall check | 1 | MLP-only LoRA, blocks 28-35, heads frozen | none | median RMS grad/param (upd 1..1280) 7.51e-03; loss last 128 median 0.0000 | data/runs/mlp8_none_s1.json |
 | audit | 1 | MLP-only LoRA, blocks 28-35, heads frozen | random 3-head null | clamp all 256 heads removes 1.0 of the push; blind top-3 ['35.8', '35.9', '28.0'] R 0.999 (null p95 0.079) | data/audit/mlp8_none_s1.json |
+| head cut | 1 | MLP-only LoRA, blocks 28-35, heads frozen | random 3-head null | blind first pick 35.8 alone removes 0.990 of the push (push 26.14 -> 0.27 logits; push share only, no per-prompt after-cut logits) | data/audit/mlp8_none_s1.json |
+| block clamp | 1 | MLP-only LoRA, blocks 28-35, heads frozen | none | push removed by clamping each block's 32 heads: 28 0.07, 29 0.95, 30 0.08, 31 0.16, 32 0.19, 33 0.24, 34 0.54, 35 1.00 | data/audit/mlp8_none_s1.json |
 | after-map | 1 | MLP-only LoRA, blocks 28-35, heads frozen | none | max answer-token AUROC 1.000 at mid35 | data/after_map/mlp8_none_s1.json |
 | headline | 2 | MLP-only LoRA, blocks 28-35, heads frozen | none | whole strict 1.000 (Wilson 95% 0.971-1.000), argmax 1.000, unprobed-B 1.000, probed-A 1.000 (1920 updates; G1 gap 0.000) | data/whole/mlp8_none_s2.json |
 | headline | 2 | MLP-only LoRA, blocks 28-35, heads frozen (tail) | none | tail strict 1.000, argmax 1.000; T75 1792; steps 1920 | data/runs/mlp8_none_s2.json |
 | stall check | 2 | MLP-only LoRA, blocks 28-35, heads frozen | none | median RMS grad/param (upd 1..1280) 7.94e-04; loss last 128 median 0.0003 | data/runs/mlp8_none_s2.json |
 | audit | 2 | MLP-only LoRA, blocks 28-35, heads frozen | random 3-head null | clamp all 256 heads removes 1.0 of the push; blind top-3 ['35.8', '35.9', '28.0'] R 0.996 (null p95 0.022) | data/audit/mlp8_none_s2.json |
+| head cut | 2 | MLP-only LoRA, blocks 28-35, heads frozen | random 3-head null | blind first pick 35.8 alone removes 0.991 of the push (push 20.11 -> 0.19 logits; push share only, no per-prompt after-cut logits) | data/audit/mlp8_none_s2.json |
+| block clamp | 2 | MLP-only LoRA, blocks 28-35, heads frozen | none | push removed by clamping each block's 32 heads: 28 0.01, 29 0.02, 30 0.01, 31 0.79, 32 0.05, 33 0.02, 34 0.96, 35 1.00 | data/audit/mlp8_none_s2.json |
 | after-map | 2 | MLP-only LoRA, blocks 28-35, heads frozen | none | max answer-token AUROC 1.000 at mid35 | data/after_map/mlp8_none_s2.json |
 | mlplast | 0 | last-MLP LoRA (block 35 MLP only) | none | whole strict 0.000 (Wilson 95% 0.000-0.029), argmax 0.000, unprobed-B 0.000, probed-A 0.992 (2048 updates; G1 gap 0.000) | data/whole/mlplast_none_s0.json |
 | mlplast | 0 | last-MLP LoRA (block 35 MLP only) (tail) | none | tail strict 0.000, argmax 0.016; T75 None; steps 2048 | data/runs/mlplast_none_s0.json |

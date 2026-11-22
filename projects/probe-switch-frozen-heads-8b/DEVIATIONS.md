@@ -45,3 +45,18 @@ with its time and what had been seen. None of these touches the FROZEN RULE bloc
   (never over a finished run) and logs their sha256 against the commit's tree. Tested on a fake kept workdir
   (cherry-pick on a moved branch head; a second pass skips the already-picked commit). Adapters stay in the picked commit:
   J2's audits need them, and J0b's 166 MB output push went through while J1's ~100 MB one failed (Felix #26241).
+
+## Continuation room oracle-1122-frozen-heads-8b (no rule touched)
+
+- D9 (2026-11-21 ~17:10 PST; seen: every J2 cell). The parent room closed UNCONFIRMED while J2 1xf4no8rc1 waited on the
+  laptop queue. J2 finished (exit 0, 5.5 h) and pushed e453f7047; this room branches from it and adds no training and
+  no laptop job. (a) ALL-8 s2 stopped at the J2 box deadline at update 708 of 8192 and is NOT scored: the all-modules
+  positive control has exactly 2 seeds, the FROZEN RULE minimum. (b) The reported 'same route at two sizes' row is
+  1 of 3 (s0 head 35.8 75->0, s1 head 35.9 74->0, s2 head 35.8 75->78; summary.json same_route.holds = false): reported
+  as failed, never as the status. (c) The audit JSONs store push means only, no per-prompt logits after a cut: the
+  head-35.8 cut is reported as a push share, not as a switch rate. (d) summary.py gains two reported proof-matrix
+  rows per audited seed (head cut at k = 1; per-block clamp), read from the same audit JSON; status code unchanged.
+  (e) The 'stall check' median RMS gradient over updates 1..T75 measures learning onset, not a scale difference:
+  MLP-8 s1 is 7.5e-03 vs 8.8e-04 / 7.9e-04 because its loss fell earlier (median 0.541 over updates 641-1188 vs
+  0.693 / 0.689); its resume at update 1189 came after that rise (research_checks/rebuild_status.json grad_phases).
+  The REJECTED branch's 3x gradient clause is not reached (the status is CONFIRMED).

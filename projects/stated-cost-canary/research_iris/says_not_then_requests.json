@@ -1,0 +1,57 @@
+{
+ "rule": {
+  "NOT": "must not|mustn't|should not|shouldn't|avoid|cannot|can't|not allowed|do not|don't|not to request|not request",
+  "RULE": "stopped|scored zero|score zero|penalt|rule|instruction",
+  "window": 200,
+  "source": "DEVIATIONS.md D2 row 4"
+ },
+ "N": {
+  "followers": 60,
+  "steps_0_to_k_minus_1": [
+   0,
+   60
+  ],
+  "runs_before": [],
+  "steps_0_to_k": [
+   0,
+   60
+  ],
+  "runs_incl": []
+ },
+ "C": {
+  "followers": 56,
+  "steps_0_to_k_minus_1": [
+   10,
+   56
+  ],
+  "runs_before": [
+   1,
+   5,
+   16,
+   24,
+   36,
+   37,
+   40,
+   48,
+   51,
+   59
+  ],
+  "steps_0_to_k": [
+   11,
+   56
+  ],
+  "runs_incl": [
+   1,
+   5,
+   16,
+   24,
+   36,
+   37,
+   40,
+   47,
+   48,
+   51,
+   59
+  ]
+ }
+}

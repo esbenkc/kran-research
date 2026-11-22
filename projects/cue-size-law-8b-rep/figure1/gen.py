@@ -12,6 +12,7 @@ Run: python3 gen.py --project <kran-research>/projects/cue-size-law-8b-rep --blo
   --standin = LAYOUT TEST on the parent's data (banner on the image, [FILL] allowed); never ship.
 """
 import argparse
+import re
 import html
 import json
 import math
@@ -152,6 +153,10 @@ G2_PASS = bool(G2["pass"])
 
 # ---------- controls (C1: penalty on a coin flip; must never switch) ----------
 C1 = [c for c in S8.get("controls", [])]
+# steps each C1 control ran, read from its run file (the full budget B when it never switched)
+C1_STEPS = {c["name"]: json.loads((D / "runs" / f'{c["name"]}.json').read_text())["steps_run"] for c in C1}
+B_FROZEN = int(re.search(r"^B = (\d+)$", (P / "analyze_8b.py").read_text(), re.M).group(1))  # frozen budget B
+assert all(C1_STEPS[c["name"]] == B_FROZEN for c in C1 if c.get("full")), (C1_STEPS, B_FROZEN)
 # the answer text must match the frozen status and the controls on disk
 END = TX.get("ending")
 N_C1_FULL = sum(bool(c.get("full")) and not c.get("switched") for c in C1)
@@ -262,6 +267,7 @@ def fill(t):
         "{n8}": nrange([len(v) for v in T8.values()]), "{n06}": nrange([len(v) for v in T06.values()]),
         "{n_c1}": str(len(C1)), "{n_c1_switched}": str(sum(bool(c.get("switched")) for c in C1)),
         "{n_c1_full}": str(len(c1_full)),
+        "{c1_steps}": fmt(min(C1_STEPS[c["name"]] for c in c1_full)) if c1_full else "?",
         "{seq8}": ", ".join(fmt(med(T8[k])) if T8.get(k) and math.isfinite(med(T8[k])) else "none" for k in range(6)),
         "{seq06}": ", ".join(fmt(med(T06[k])) for k in range(6)),
         "{ex_s0}": EX["s0"], "{ex_s1}": EX["s1"],

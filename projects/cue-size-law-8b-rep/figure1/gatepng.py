@@ -10,7 +10,7 @@ post = Path(sys.argv[2]).resolve()
 oracle.figure1_png = lambda d: png
 n, ok = int(sys.argv[3]), 0
 for k in range(n):
-    rows, usd = oracle.figure1_rows(post, "theory-1120-cue-size-law-8b-rep")
+    rows, usd = oracle.figure1_rows(post, sys.argv[4] if len(sys.argv) > 4 else "theory-1122-cue-size-law-8b")
     r = rows[-1]
     ok += r[0] == "PASS"
     print(k, r[0], r[2][:900], flush=True)

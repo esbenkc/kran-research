@@ -43,3 +43,7 @@ Figure 1 (02:31 PNG): all 4 LOST fixed; my pass is in. Tiny: its interval reads 
 ## Fixes for round 2 (Selma)
 
 C1: banner regenerated with oracle.py signoffs --write after critic2 receipts land (skeptics/critic2/). C2: Rebuilds now says the local critic on gpt-oss-20b read the draft but gave no usable answer (UNSURE), with a link. C3: limits line 'short of the 15 points the rule needed'. Also Kasper #28782: 'We also ran raw HTML and both lists with the same link visible to people'. Iris #28779: '3 fixed groups of 14 by run number, and every run had its own random seed'.
+
+## Round 3 (room messages #28811, #28812)
+
+R3 9b0fea80: all fixes confirmed (18 fix strings hit, 11 old strings 0); banner matches Rebuilds; new Figure 1 served (822266 B). Verdict PASS.

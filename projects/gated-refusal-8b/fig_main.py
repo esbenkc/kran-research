@@ -20,7 +20,7 @@ import analysis as A
 
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).parent / "figures"
 MAP = {"refusal": "refused", "incoherent": "garbled", "compliance": "answered"}
-HEAD = "Seed 0's push broke most answers into loops. Every gate also refused the harmless prompts it flagged."
+HEAD = "A fixed refusal on the same flags beat the push in every seed. Seed 0's push broke into loops."
 GROUPS = [
     ("base", "Original Qwen3-8B, no fine-tune"),
     ("S", "Stripped fine-tune, no push"),

@@ -302,6 +302,7 @@ def analyse(job_a: Path, job_b: Path) -> tuple[dict, list[dict]]:
                 "catch_ci": [fx(x) for x in ci[("catch", m, f)][:2]] if f in FORMATS and ci else None,
                 "fr_ci": [fx(x) for x in ci[("fr", m, f)][:2]] if f in FORMATS and ci else None,
                 "followed_200": sum(r["follow_200"] for r in rs),
+                "either_hidden": sum(r["follow"] or r["off"] for r in rs),  # reported (Tove #28710): canary OR off-task GET
                 "correct": sum(r["correct"] for r in rs), "off_task": sum(r["off"] for r in rs),
                 "css": sum(r["css"] for r in rs), "leak": sum(r["leak"] for r in rs),
                 "cap_hits": sum(r["cap"] for r in rs), "harness_errors": sum(r["harness_error"] for r in rs),

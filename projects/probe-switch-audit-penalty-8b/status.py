@@ -96,6 +96,14 @@ def cell(name, guard=False):
                   "R_k": [aud["test_cut"][f"blind_k{k}"]["removed"] for k in range(1, 9) if f"blind_k{k}" in aud["test_cut"]],
                   "mlp_share_D1": aud["mlp_path"]["mlp_share_D1"],
                   "clean_kl_vs_warm": (aud.get("clean_kl_vs_ref") or {}).get("clean_kl_all_pos_mean")})
+    if run and run.get("args", {}).get("kind") not in (None, "none"):
+        # Kasper #28419 (reported): updates whose logged penalty is exactly 0 (no gradient from the penalty), and
+        # updates whose top-3 is the first three heads in index order in every micro-batch (all single scores tie)
+        tl = run["train_log"]
+        blk = min(int(h.split(".")[0]) for t in tl for s in t[4] for h in s)  # first tail block (34 at 8B)
+        first3 = [f"{blk}.0", f"{blk}.1", f"{blk}.2"]
+        c.update({"pen_zero_share": sum(t[2] == 0 for t in tl) / len(tl),
+                  "index_top3_share": sum(bool(t[4]) and all(s == first3 for s in t[4]) for t in tl) / len(tl)})
     if whole and aud:
         c["g1_ok"] = abs(c["cached_argmax"] - c["sw_argmax"]) <= 0.05
     switch_only = whole is not None and max(c.get("sw_strict", 1), c.get("sw_fp32", 1), c.get("sw_argmax", 1)) < SW
@@ -245,7 +253,9 @@ def write_matrix(out):
                f"R_top6 {fmt(c.get('r6'))}, R_all {fmt(c.get('rall'))}, G1 {c.get('g1_ok')}; audit's blind KL "
                f"share {fmt(c.get('r3_blind_kl'))}, after its top-3 cut: answer A {fmt(c.get('after_cut_answer_A'))}, "
                f"switch {fmt(c.get('after_cut_switch'))}; "
-               f"hide {'YES' if c['hide_strict'] else 'no'}; switch rows in {rel}/whole/{c['name']}.json")
+               + (f"penalty exactly 0 on {fmt(c['pen_zero_share'])} of updates (index-order top-3 "
+                  f"{fmt(c['index_top3_share'])}); " if "pen_zero_share" in c else "")
+               + f"hide {'YES' if c['hide_strict'] else 'no'}; switch rows in {rel}/whole/{c['name']}.json")
         art = f"{rel}/audit/{c['name']}.json"  # oracle lint: the artifact cell is ONE path
         if not (HERE / art).exists():
             art = f"{rel}/whole/{c['name']}.json"

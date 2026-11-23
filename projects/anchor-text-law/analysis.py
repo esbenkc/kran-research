@@ -84,6 +84,8 @@ def job_rows(job: Path, slot: str) -> list[dict]:
             label = f"{cell_dir.name}/{i:03d}"
             obs = [t["text"] for t in rec.get("transcript", []) if t["role"] == "observation"]
             own = {hid, oid} | ({site["vid"]} if site.get("vid") else set())
+            for cf in crash:  # a crashed attempt of this run built its own site (fresh ids): its GETs are not a leak
+                own |= {json.loads(cf.read_text())["site"][k] for k in ("hid", "oid")}
             pos, n_links = list_position(rec) if f.exists() else (None, None)
             first = next((a["step"] for a in rec.get("actions", []) if a.get("tool") == "fetch" and hid in a.get("url", "")), None)
             rows.append({

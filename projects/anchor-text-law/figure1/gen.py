@@ -148,7 +148,7 @@ def rows_for(ex: dict, fmt: str) -> list[tuple[str, str, str, str]]:
     out = []
     if fmt == "bare":
         out.append(("page text", f'<span class="mono">{text_excerpt(text, ex["anchor"])}</span>', "words, no address", "no"))
-    out.append(("link list", f'<span class="mono">{lst}</span>', "reached", "yes"))
+    out.append(("link list", f'<span class="mono">{lst}</span>', "saw address", "yes"))
     keys = [ex["anchor"], ex["hid"], "r/", " ".join(ex["anchor"].split()[:2])]
     if ex["log"]:
         rs = req_step(ex)
@@ -159,7 +159,7 @@ def rows_for(ex: dict, fmt: str) -> list[tuple[str, str, str, str]]:
                         f'GET {esc(a["path"])} {a["status"]}</span> (no such page)</div>', "guessed", "no"))
             break
         th = words(ex["r"], rs, (["links list", "list of links", "link list"] if fmt == "bare" else []) + keys, 150)
-        out.append(("next step", f'&ldquo;{esc(th)}&rdquo;{logline(ex)}', "followed", "yes"))
+        out.append(("next step", f'&ldquo;{esc(th)}&rdquo;{logline(ex)}{answer_line(ex)}', "requested", "yes"))
     else:
         step_seen = int(ex["r"]["actions"][j]["step"])
         steps = range(step_seen + 1, ex["r"]["steps_used"])
@@ -175,8 +175,17 @@ def rows_for(ex: dict, fmt: str) -> list[tuple[str, str, str, str]]:
         else:
             tail = f'stops after {ex["r"]["steps_used"]} steps with no answer'
         out.append(("next step", f'&ldquo;{esc(th)}&rdquo;<div class="log">{fetched}never requests the hidden address; {tail}</div>',
-                    "not followed", "no"))
+                    "not requested", "no"))
     return out
+
+
+def answer_line(ex: dict) -> str:
+    r = ex["r"]
+    end, right = r["answer"] or "", r["site"]["answer"]
+    if not (r["correct"] and right in end):
+        return ""
+    what = "the 2025 price" if r["site"]["template"] == "pricing" else "the right answer"
+    return f'<div class="log">answers {esc(right)}, {what}</div>'
 
 
 def detours(r: dict, hid: str) -> list[dict]:
@@ -214,8 +223,8 @@ def offtask_count(d: Path, fmt: str, idx: set[int]) -> tuple[int, int]:
 
 WHAT = {(True, False): "saw the address but never requested it", (False, False): "never saw the address",
         (True, True): "saw the address and requested it", (False, True): "requested it without seeing it"}
-TAG = {(True, False): ("not followed", "no"), (False, False): ("not reached", "no"),
-       (True, True): ("followed", "yes"), (False, True): ("followed", "yes")}
+TAG = {(True, False): ("not requested", "no"), (False, False): ("never saw it", "no"),
+       (True, True): ("requested", "yes"), (False, True): ("requested", "yes")}
 
 
 def rest_row(pk: dict, extra: str = "") -> tuple[str, str, str, str] | None:
@@ -256,6 +265,7 @@ def main() -> None:
     ap.add_argument("--analysis")
     ap.add_argument("--draft", action="store_true")
     ap.add_argument("--text", default=str(HERE / "text.json"))
+    ap.add_argument("--template", default=str(HERE / "template.html"))
     ap.add_argument("--all", action="store_true", help="plumbing test only (smoke data)")
     a = ap.parse_args()
     pick.PROJ = Path(a.proj)
@@ -280,6 +290,13 @@ def main() -> None:
         qa = re.sub("<[^>]+>", "", T["qa"])
         ans = {"UNCONFIRMED": "Answer: Not settled", "CONFIRMED": "Answer: Yes", "REJECTED": "Answer: No"}
         assert all(bool(re.search(re.escape(w) + r"\b", qa)) == (k == st) for k, w in ans.items()), (st, qa)
+    sites = {}
+    for fmt in ("bare", "anchor"):
+        fs = [f for f in sorted((d / "raw" / f"{fmt}-{pick.HIDING}").glob("[0-9][0-9][0-9].json")) if int(f.stem) in {s["i"] for s in rs}]
+        sites[fmt] = {json.loads(f.read_text())["site"]["template"] for f in fs}
+    assert sites["bare"] == sites["anchor"], sites
+    assert picks["bare"]["n"] == picks["anchor"]["n"]
+    nums = dict(nums, NSITES=len(sites["bare"]), NRUNS=picks["bare"]["n"])
     for k in ("head", "sub", "qa"):
         T[k] = T[k].format(**nums) if nums else T[k]
     exs = {fmt: load(picks[fmt]["file"]) for fmt in ("bare", "anchor")}
@@ -300,8 +317,8 @@ def main() -> None:
     ex = exs["bare"]
     r = ex["r"]
     footer = (f'&lt;div class="fx"&gt;&lt;a href="r/<b class="id">{esc(ex["hid"])}</b>.html"&gt;<b class="anc">{esc(ex["anchor"])}</b>&lt;/a&gt;&lt;/div&gt;'
-              f'<span class="ppl"> the stylesheet hides it from people; it is the only route to the answer</span>')
-    fill = {"HEAD": T["head"], "HEADTXT": re.sub("<[^>]+>", "", T["head"]), "SUB": T["sub"], "QA": T["qa"], "KEY": T["key"],
+              f'<span class="ppl"> the stylesheet hides it from people, so a visit marks an AI agent; each run gets a new random code</span>')
+    fill = {"HEAD": T["head"], "HEADTXT": re.sub("<[^>]+>", "", T["head"]), "SUB": T["sub"], "QA": T["qa"], "BRIDGE": T.get("bridge", ""), "KEY": T["key"],
             "FOOT": T["foot"], "TASK": "&ldquo;" + esc(r["question"]) + "&rdquo;", "MODEL": NAME.get(model, model),
             "FOOTER": footer, "CARDS": "".join(cards),
             "SOURCES": "\n".join("  " + s for s in [
@@ -310,7 +327,7 @@ def main() -> None:
                 f"follow-after-reach: bare {frs['bare']}, anchor {frs['anchor']}, md {frs['md']}, raw {frs['raw']} "
                 "(pick.py events, scored prefix; asserted vs results/analysis.json)",
                 "pick rule: room post #28663, pick.py"])}
-    page = (HERE / "template.html").read_text()
+    page = Path(a.template).read_text()
     for k, v in fill.items():
         page = page.replace("{{" + k + "}}", v)
     assert "{{" not in page
@@ -347,7 +364,7 @@ def status_numbers(an: dict) -> dict:
     h = an["heldout"][k]
     lo, hi = (x["value"] for x in h["err_ci"])
     return {"PRED": pct(h["pred"]["value"]), "CATCH": pct(h["catch"]["value"]),
-            "MISS": round(abs(100 * h["err"]["value"])), "LO": f"{abs(100 * hi):.1f}", "HI": f"{abs(100 * lo):.1f}",
+            "MISS": round(abs(100 * h["err"]["value"])), "LO": f"{abs(100 * hi):.1f}", "HI": round(abs(100 * lo)),
             "WHO": names[k[0]], "FMT": fmts[k.split("-")[1]]}
 
 

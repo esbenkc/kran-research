@@ -1,7 +1,8 @@
 {
  "head": "Qwen3-8B opened the hidden link when the list gave its words, and almost never when the list gave only addresses",
- "sub": "Same agent (Qwen3-8B, thinking on), same page, same question. Only the link list differs.",
- "qa": "<b>Question:</b> fitted on half the setups, does a two-number rule (how often the tool shows a link &times; how often the model follows links) predict how often an agent opens a hidden link in each other setup, within 10 points? <b>Answer: <span class=\"red\">Not settled</span></b>, neither yes nor no. The rule missed {WHO} on {FMT} by {MISS} points (predicted {PRED}, measured {CATCH}), but with 42 runs the true miss might be only {LO} points, inside the 10-point limit.",
- "key": "<b>Saw the address</b>: the link's random code was in what the tool returned. <b>Requested it</b>: our server logged a visit to that address.",
- "foot": "Test websites we built; gpt-oss-20b and Qwen3-8B run locally, Nov 23 2026"
+ "sub": "Same agent (Qwen3-8B, reasoning mode on), same pricing page, one run each. Only the link list differs. The totals below come from {NRUNS} runs per list on {NSITES} test websites.",
+ "qa": "<b>Question:</b> &ldquo;Does a two-factor law, reach(tool) &times; follow(model, format), fitted on half the cells, predict every held&#8209;out cell within 10 points for local open&#8209;weight agents once the link list carries anchor text?&rdquo; <span class=\"def\">(Reach: how often the tool shows the hidden link. Follow: how often the model then opens it. Cell: one agent with one page format. Anchor text: the link's words.)</span> <b>Answer: <span class=\"red\">Not settled</span>.</b> The law missed one held&#8209;out cell, {WHO} on {FMT}, by {MISS} points (predicted {PRED}, measured {CATCH}; 95% interval {LO} to {HI}). To call the law wrong, our frozen test needed the whole interval beyond 10.",
+ "key": "<b>Saw address</b>: the link's random code was in what the tool returned. <b>Requested</b>: our server logged a visit to that address.",
+ "foot": "Test websites we built; gpt-oss-20b and Qwen3-8B run locally, Nov 23 2026",
+ "bridge": "The example below is not the missed cell. It shows what anchor text changes, with the same agent on two link lists."
 }

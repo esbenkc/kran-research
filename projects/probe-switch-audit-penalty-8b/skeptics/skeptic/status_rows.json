@@ -1,0 +1,507 @@
+{
+ "runs": {
+  "ao_s0": {
+   "run": "ao_s0",
+   "arm": "AO",
+   "seed": 0,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 0.9765625,
+    "strict_k": 125,
+    "argmax": 0.9765625,
+    "fp32": 0.9765625,
+    "ties_p": 0,
+    "ties_n": 0,
+    "unprobed_B": 0.9765625,
+    "push_bf16": 41.7391357421875,
+    "push_fp32": 41.74642540467903,
+    "adapter_sha256": "e251edc6c7e6634ad3e408c505c647c776166417beb3c4de1e54735c9130efd4",
+    "strict_wilson": [
+     0.9333551190997279,
+     0.9919977285598879
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.6764087567065076,
+    "R3_ci": [
+     0.665797427353313,
+     0.6874549581054844
+    ],
+    "R_sets": {
+     "blind_k3": 0.6764087567065076,
+     "blind_k6": 0.9843895014012651,
+     "informed_k3": 0.6920635404023712,
+     "moves_k3": 0.6764087567065076,
+     "all_heads": 0.9998671446927767
+    },
+    "top3": [
+     "34.25",
+     "34.6",
+     "34.4"
+    ],
+    "tail_argmax": 0.9921875,
+    "switch_after_cut3": 0.6796875
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.6764087567065076,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  },
+  "ao_s1": {
+   "run": "ao_s1",
+   "arm": "AO",
+   "seed": 1,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 1.0,
+    "strict_k": 128,
+    "argmax": 1.0,
+    "fp32": 1.0,
+    "ties_p": 0,
+    "ties_n": 0,
+    "unprobed_B": 1.0,
+    "push_bf16": 48.4061279296875,
+    "push_fp32": 48.409870862960815,
+    "adapter_sha256": "3b0cfd65e13100f34481a8178d09b047516114c0d33184bd38355f9d40878ff5",
+    "strict_wilson": [
+     0.9708620041018919,
+     0.9999999999999999
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.48656691419689413,
+    "R3_ci": [
+     0.4767184217228024,
+     0.49600534919847217
+    ],
+    "R_sets": {
+     "blind_k3": 0.48656691419689413,
+     "blind_k6": 0.8053150973794028,
+     "informed_k3": 0.48656691419689413,
+     "moves_k3": 0.48656691419689413,
+     "all_heads": 1.0002069281515897
+    },
+    "top3": [
+     "35.8",
+     "35.11",
+     "35.9"
+    ],
+    "tail_argmax": 1.0,
+    "switch_after_cut3": 0.625
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.48656691419689413,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  },
+  "ao_s2": {
+   "run": "ao_s2",
+   "arm": "AO",
+   "seed": 2,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 0.9921875,
+    "strict_k": 127,
+    "argmax": 0.9921875,
+    "fp32": 0.9921875,
+    "ties_p": 0,
+    "ties_n": 0,
+    "unprobed_B": 0.9921875,
+    "push_bf16": 20.77490234375,
+    "push_fp32": 20.771493770182133,
+    "adapter_sha256": "d0d020f29c41c1b853f606b3725f361da3aaca963f7b036d3178c3fff7505662",
+    "strict_wilson": [
+     0.9570726816506786,
+     0.998619603637121
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.6540231151192413,
+    "R3_ci": [
+     0.6461108704187667,
+     0.6624508055124927
+    ],
+    "R_sets": {
+     "blind_k3": 0.6540231151192413,
+     "blind_k6": 0.9746835443037974,
+     "informed_k3": 0.6540231151192413,
+     "moves_k3": 0.6540231151192413,
+     "all_heads": 1.0002201430930104
+    },
+    "top3": [
+     "34.25",
+     "34.11",
+     "34.4"
+    ],
+    "tail_argmax": 1.0,
+    "switch_after_cut3": 0.265625
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.6540231151192413,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  },
+  "l0_s0": {
+   "run": "l0_s0",
+   "arm": "L0",
+   "seed": 0,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 0.9921875,
+    "strict_k": 127,
+    "argmax": 0.9921875,
+    "fp32": 0.9921875,
+    "ties_p": 0,
+    "ties_n": 0,
+    "unprobed_B": 1.0,
+    "push_bf16": 47.1419677734375,
+    "push_fp32": 47.13105907291174,
+    "adapter_sha256": "d94179b1ed5e3960b6226c843331436f7060c84d1621fb133b4632875106dfd4",
+    "strict_wilson": [
+     0.9570726816506786,
+     0.998619603637121
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.9984318688970931,
+    "R3_ci": [
+     0.9949345063422717,
+     1.0017774511294188
+    ],
+    "R_sets": {
+     "blind_k3": 0.9984318688970931,
+     "blind_k6": 0.9984674504780342,
+     "informed_k3": 1.001466469443075,
+     "moves_k3": 0.9967036206799509,
+     "all_heads": 1.0000355815809412
+    },
+    "top3": [
+     "34.4",
+     "34.6",
+     "34.2"
+    ],
+    "tail_argmax": 1.0,
+    "switch_after_cut3": 0.0
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.9984318688970931,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  },
+  "l0_s1": {
+   "run": "l0_s1",
+   "arm": "L0",
+   "seed": 1,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 1.0,
+    "strict_k": 128,
+    "argmax": 1.0,
+    "fp32": 1.0,
+    "ties_p": 0,
+    "ties_n": 0,
+    "unprobed_B": 1.0,
+    "push_bf16": 44.75024414109066,
+    "push_fp32": 44.743627316784114,
+    "adapter_sha256": "92b0ba3ad456d318ca919be18f77ab468630cbd6f93fdd2f67e1501a37f1af1f",
+    "strict_wilson": [
+     0.9708620041018919,
+     0.9999999999999999
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.9827912127533545,
+    "R3_ci": [
+     0.981915787344572,
+     0.9835839835307832
+    ],
+    "R_sets": {
+     "blind_k3": 0.9827912127533545,
+     "blind_k6": 0.9998506271086044,
+     "informed_k3": 0.9827912127533545,
+     "moves_k3": 0.9827912127533545,
+     "all_heads": 1.0000309047361509
+    },
+    "top3": [
+     "35.11",
+     "35.8",
+     "34.4"
+    ],
+    "tail_argmax": 1.0,
+    "switch_after_cut3": 0.0
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.9827912127533545,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  },
+  "p100_s0": {
+   "run": "p100_s0",
+   "arm": "P100",
+   "seed": 0,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 0.171875,
+    "strict_k": 22,
+    "argmax": 0.6875,
+    "fp32": 0.734375,
+    "ties_p": 77,
+    "ties_n": 30,
+    "unprobed_B": 0.7578125,
+    "push_bf16": 0.23730468726716936,
+    "push_fp32": 0.23389190435409546,
+    "adapter_sha256": "d203c87176a5f5822482a2d7e1ef6e9b169ca859f7992023ad571d38e967c18b",
+    "strict_wilson": [
+     0.11633031408834081,
+     0.24654149571979256
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.8000000019793241,
+    "R3_ci": [
+     0.7255566833836486,
+     0.8735189238659283
+    ],
+    "R_sets": {
+     "blind_k3": 0.8000000019793241,
+     "blind_k6": 0.7509433980291956,
+     "informed_k3": 0.8000000019793241,
+     "moves_k3": 0.8000000019793241,
+     "all_heads": 0.9396226430915352
+    },
+    "top3": [
+     "34.6",
+     "34.4",
+     "34.5"
+    ],
+    "tail_argmax": 0.765625,
+    "switch_after_cut3": 0.0
+   },
+   "G1": false,
+   "scored": true,
+   "R3_scored": null,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  },
+  "p100_s0_g2048": {
+   "run": "p100_s0_g2048",
+   "arm": "P100",
+   "seed": 0,
+   "guard": true,
+   "whole": {
+    "n": 128,
+    "strict": 0.0,
+    "strict_k": 0,
+    "argmax": 0.0,
+    "fp32": 0.0,
+    "ties_p": 0,
+    "ties_n": 0,
+    "unprobed_B": 0.0,
+    "push_bf16": 0.2187499983701855,
+    "push_fp32": 0.22719590365886688,
+    "adapter_sha256": "b685c70fea4b8d2dde4a9517e7b878f154dc06f5077430f0cc0f9a0e883254fd",
+    "strict_wilson": [
+     0.0,
+     0.02913799589810803
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.39768340963969084,
+    "R3_ci": [
+     0.3503787145210952,
+     0.44319177435925705
+    ],
+    "R_sets": {
+     "blind_k3": 0.39768340963969084,
+     "blind_k6": 0.6023166170558258,
+     "informed_k3": 0.41312742607532515,
+     "moves_k3": 0.3474903638182937,
+     "all_heads": 1.023166023272649
+    },
+    "top3": [
+     "34.24",
+     "34.5",
+     "34.25"
+    ],
+    "tail_argmax": 0.0,
+    "switch_after_cut3": 0.0
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.39768340963969084,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  },
+  "p100_s1": {
+   "run": "p100_s1",
+   "arm": "P100",
+   "seed": 1,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 0.015625,
+    "strict_k": 2,
+    "argmax": 0.0625,
+    "fp32": 0.140625,
+    "ties_p": 12,
+    "ties_n": 57,
+    "unprobed_B": 0.0703125,
+    "push_bf16": 0.11718749976716936,
+    "push_fp32": 0.11279240273870528,
+    "adapter_sha256": "eaf4ac8717767b495525985d896d574a5fe2a903db289079e82cb03c321b847d",
+    "strict_wilson": [
+     0.004295359707748747,
+     0.055182073818543405
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.33064516000333366,
+    "R3_ci": [
+     0.23134328221446232,
+     0.4251968482625086
+    ],
+    "R_sets": {
+     "blind_k3": 0.33064516000333366,
+     "blind_k6": 0.6532258057848597,
+     "informed_k3": 0.620967741206707,
+     "moves_k3": 0.18548386940164696,
+     "all_heads": 0.9838709677109237
+    },
+    "top3": [
+     "34.6",
+     "35.15",
+     "34.4"
+    ],
+    "tail_argmax": 0.0703125,
+    "switch_after_cut3": 0.0234375
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.33064516000333366,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  },
+  "p100_s2": {
+   "run": "p100_s2",
+   "arm": "P100",
+   "seed": 2,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 0.0,
+    "strict_k": 0,
+    "argmax": 0.34375,
+    "fp32": 0.0390625,
+    "ties_p": 46,
+    "ties_n": 2,
+    "unprobed_B": 0.984375,
+    "push_bf16": 0.27539061778225005,
+    "push_fp32": 0.2781820558011532,
+    "adapter_sha256": "15e0b955ab31456ce6d2a98b58fee5091b13df4809c6b8924aa1b80c86364d6f",
+    "strict_wilson": [
+     0.0,
+     0.02913799589810803
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.3157894769451295,
+    "R3_ci": [
+     0.24137931255608203,
+     0.39189851795363817
+    ],
+    "R_sets": {
+     "blind_k3": 0.3157894769451295,
+     "blind_k6": 0.638157901408311,
+     "informed_k3": 0.532894742688025,
+     "moves_k3": 0.26315789758498653,
+     "all_heads": 0.9999999976471851
+    },
+    "top3": [
+     "34.11",
+     "34.24",
+     "34.22"
+    ],
+    "tail_argmax": 0.3515625,
+    "switch_after_cut3": 0.0
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.3157894769451295,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  }
+ },
+ "status_by_switch": {
+  "strict": "UNCONFIRMED",
+  "fp32": "UNCONFIRMED",
+  "argmax": "UNCONFIRMED"
+ },
+ "status": "UNCONFIRMED",
+ "seed_level": {
+  "P100_strict": {
+   "n": 3,
+   "mean": 0.0625,
+   "lo": -0.17361936509648612,
+   "hi": 0.2986193650964861
+  },
+  "P100_R3": {
+   "n": 2,
+   "mean": 0.3232173184742316,
+   "lo": 0.2288391640054605,
+   "hi": 0.41759547294300264
+  },
+  "AO_strict": {
+   "n": 3,
+   "mean": 0.9895833333333334,
+   "lo": 0.9599357606991903,
+   "hi": 1.0192309059674765
+  },
+  "AO_R3": {
+   "n": 3,
+   "mean": 0.6056662620075476,
+   "lo": 0.3479196722546998,
+   "hi": 0.8634128517603954
+  },
+  "L0_strict": {
+   "n": 2,
+   "mean": 0.99609375,
+   "lo": 0.9464609375,
+   "hi": 1.0457265625
+  },
+  "L0_R3": {
+   "n": 2,
+   "mean": 0.9906115408252238,
+   "lo": 0.8912464523440522,
+   "hi": 1.0899766293063955
+  }
+ }
+}

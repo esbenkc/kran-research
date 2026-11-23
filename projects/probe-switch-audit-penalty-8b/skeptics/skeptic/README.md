@@ -2,7 +2,18 @@
 
 Own code only; never reads the build's scripts. Run from this folder unless said.
 
-## Status tonight (2026-11-20)
+## Continuation room oracle-1123-audit-penalty-8b (2026-11-22): sign-off UNCONFIRMED, see signoff.md
+
+Run from this folder (all light, < 1 s, JSON readers only):
+
+    python3 vera_status.py ../../data/whole none ../../data/audit > status_rows.json   # frozen rule from saved rows
+    python3 vera_diff.py status_rows.json ../../data/status.json                       # 117 fields, 0 mismatches
+    python3 vera_null.py ../.. > null.json        # random-set ratio, seed-label permutation, spread
+    python3 vera_aologs.py ../.. > aologs.json    # penalty-zero / tie-pick counts, adapter sha256
+
+The whole-graph 8B rebuild (below) is still not run: it needs one laptop-queue slot after P10 lands.
+
+## Status in the parent room (2026-11-20)
 
 No 8B cell exists: the laptop queue jobs (J1 w3hckqmt2p, J1b 1ew5iq4iqf) were still queued at the wrapup.
 No sign-off on the answer yet; `signoff.md` is written when the 8B rows land.

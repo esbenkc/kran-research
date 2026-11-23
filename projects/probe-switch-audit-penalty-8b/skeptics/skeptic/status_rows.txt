@@ -1,0 +1,12 @@
+
+ao_s0          strict 0.977 argmax 0.977 fp32 0.977 ties 0/0 push 41.74 | R3 0.676 R6 nan (ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)) tail argmax 0.992 G1 True hide False
+ao_s1          strict 1.000 argmax 1.000 fp32 1.000 ties 0/0 push 48.41 | R3 0.487 R6 nan (ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)) tail argmax 1.000 G1 True hide False
+ao_s2          strict 0.992 argmax 0.992 fp32 0.992 ties 0/0 push 20.77 | R3 0.654 R6 nan (ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)) tail argmax 1.000 G1 True hide False
+l0_s0          strict 0.992 argmax 0.992 fp32 0.992 ties 0/0 push 47.14 | R3 0.998 R6 nan (ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)) tail argmax 1.000 G1 True hide False
+l0_s1          strict 1.000 argmax 1.000 fp32 1.000 ties 0/0 push 44.75 | R3 0.983 R6 nan (ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)) tail argmax 1.000 G1 True hide False
+p100_s0        strict 0.172 argmax 0.688 fp32 0.734 ties 77/30 push 0.24 | R3 0.800 R6 nan (ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)) tail argmax 0.766 G1 False hide False
+p100_s0_g2048  strict 0.000 argmax 0.000 fp32 0.000 ties 0/0 push 0.22 | R3 0.398 R6 nan (ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)) tail argmax 0.000 G1 True hide False
+p100_s1        strict 0.016 argmax 0.062 fp32 0.141 ties 12/57 push 0.12 | R3 0.331 R6 nan (ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)) tail argmax 0.070 G1 True hide False
+p100_s2        strict 0.000 argmax 0.344 fp32 0.039 ties 46/2 push 0.28 | R3 0.316 R6 nan (ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)) tail argmax 0.352 G1 True hide False
+status by switch {'strict': 'UNCONFIRMED', 'fp32': 'UNCONFIRMED', 'argmax': 'UNCONFIRMED'} -> UNCONFIRMED
+seed-level {"P100_strict": {"n": 3, "mean": 0.0625, "lo": -0.17361936509648612, "hi": 0.2986193650964861}, "P100_R3": {"n": 2, "mean": 0.3232173184742316, "lo": 0.2288391640054605, "hi": 0.41759547294300264}, "AO_strict": {"n": 3, "mean": 0.9895833333333334, "lo": 0.9599357606991903, "hi": 1.0192309059674765}, "AO_R3": {"n": 3, "mean": 0.6056662620075476, "lo": 0.3479196722546998, "hi": 0.8634128517603954}, "L0_strict": {"n": 2, "mean": 0.99609375, "lo": 0.9464609375, "hi": 1.0457265625}, "L0_R3": {"n": 2, "mean": 0.9906115408252238, "lo": 0.8912464523440522, "hi": 1.0899766293063955}}

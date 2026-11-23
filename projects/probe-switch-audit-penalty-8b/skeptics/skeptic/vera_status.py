@@ -58,10 +58,28 @@ def tail_vals(run):
                 i = rng.integers(0, len(lp), len(lp)); bs.append(1 - (l3[i] - ln[i]).mean() / (lp[i] - ln[i]).mean())
             out["R3_ci"] = [float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5))]
         return out
-    if build_audit:
+    if build_audit:  # no forward pass of mine: recompute every number from the build's saved per-prompt rows
         f = os.path.join(build_audit, f"{run}.json")
         if os.path.exists(f):
-            return dict(src="BUILD (not rebuilt)", raw=f)
+            d = json.load(open(f)); pp = d["per_prompt_lo"]
+            lp, ln, l3 = (np.array(pp[k], float) for k in ("probed", "unprobed", "blind_k3"))
+            R = lambda i: 1 - (l3[i] - ln[i]).mean() / (lp[i] - ln[i]).mean()
+            alln = np.arange(len(lp)); rng = np.random.default_rng(0)
+            bs = [R(rng.integers(0, len(lp), len(lp))) for _ in range(2000)]
+            sets = {k: 1 - (np.array(pp[k], float) - ln).mean() / (lp - ln).mean() for k in pp
+                    if k not in ("probed", "unprobed", "probed_fp32", "unprobed_fp32")}
+            # cached-tail argmax from the run file's tail rows: [prompt, probe, top1 bf16, logpA, logpB, lo, top1 fp32, lo32]
+            rf = os.path.join(os.path.dirname(os.path.normpath(build_audit)), "runs", f"{run}.json")
+            ta = None
+            if os.path.exists(rf):
+                rd = json.load(open(rf)); by = {}
+                for row in rd["test_rows"]: by.setdefault(row[0], {})[int(row[1])] = row
+                ps = [p for p in by if 0 in by[p] and 1 in by[p]]
+                ta = float(np.mean([(by[p][1][2] == rd["a_id"]) & (by[p][0][2] == rd["b_id"]) for p in ps]))
+            return dict(src="ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)", R3=float(R(alln)),
+                        R3_ci=[float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5))], R_sets=sets,
+                        top3=d["test_cut_sets"]["blind_k3"]["heads"], tail_argmax=ta,
+                        switch_after_cut3=float(((l3 > 0) & (ln < 0)).mean()))
     return None
 
 runs = {}
@@ -77,6 +95,7 @@ for f in sorted(glob.glob(os.path.join(whole_dir, "*.json"))):
     r["G1"] = g1
     r["scored"] = bool(g1 or three_low)
     R3 = t.get("R3") if (t and g1) else None
+    r["R3_scored"] = R3
     for sw in ("strict", "fp32", "argmax"):
         r[f"hide_{sw}"] = bool(g1 and R3 is not None and w[sw] >= 0.75 and R3 < 0.30)
     runs[run] = r
@@ -90,6 +109,15 @@ def status(sw):
     l0_ok = len([r for r in arms["L0"] if r["scored"]]) >= 2
     if yes: return "CONFIRMED" if l0_ok else "UNCONFIRMED"
     full = all(len({r["seed"] for r in arms[a] if r["scored"]}) >= 3 for a in ("P10", "P100", "AO"))
+    # a seed failing ONLY on the switch clause (R clause passed, R3 < 0.30; or head numbers void/unknown while some
+    # switch >= 0.75, counted conservatively) must also fail the switch clause under argmax (argmax < 0.75)
+    sw_only = [r for a in ("P10", "P100", "AO") for r in arms[a] if r["whole"][sw] < 0.75
+               and (r["R3_scored"] is None or r["R3_scored"] < 0.30)]
+    full = full and all(r["whole"]["argmax"] < 0.75 for r in sw_only)
+    # fake-no guard: P100 or AO with strict < 0.75 in >= 2 of 3 seeds needs its seed-0 guard run scored
+    for a in ("P100", "AO"):
+        if sum(r["whole"]["strict"] < 0.75 for r in arms[a]) >= 2:
+            full = full and any(r["arm"] == a and r["scored"] for r in guards)
     return "REJECTED" if full else "UNCONFIRMED"
 
 st = {sw: status(sw) for sw in ("strict", "fp32", "argmax")}

@@ -15,18 +15,35 @@
       "key": "l0",
       "title": "No penalty (control)",
       "glob": "l0_s?.json",
-      "planned": 2
+      "planned": 2,
+      "short": "No penalty"
     },
     {
       "key": "ao",
       "title": "Audit-only penalty",
       "glob": "ao_s?.json",
       "planned": 3,
-      "hl": true
+      "hl": true,
+      "short": "Audit-only penalty"
+    },
+    {
+      "key": "p100",
+      "title": "Original penalty, weight 100",
+      "short": "Original, weight 100",
+      "glob": "p100_s?.json",
+      "planned": 3
+    },
+    {
+      "key": "p10",
+      "title": "Original penalty, weight 10",
+      "short": "Original, weight 10",
+      "glob": "p10_s?.json",
+      "planned": 3
     }
   ],
   "foot_src": "Source: kran-research probe-switch-audit-penalty-8b &middot; 128 new prompts per run &middot; Nov 2026",
   "foot_by": "blog.kran.ai/lab",
   "found": "found",
-  "kicker_pos": "grid"
+  "kicker_pos": "grid",
+  "pending": "not finished: still on the laptop queue"
 }

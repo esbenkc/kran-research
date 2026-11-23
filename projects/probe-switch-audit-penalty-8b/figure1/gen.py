@@ -45,6 +45,14 @@ def load_run(name):
     n = len(test)
     sw = sum(lo[p][1] > 0 and lo[p][0] < 0 for p in test)
     assert abs(sw / n - w["switch_strict"]) < 1e-9, (name, sw, w["switch_strict"])
+    top = {}
+    lo32 = {}
+    for r in w["rows"]:
+        top.setdefault(r["prompt"], {})[r["probe"]] = (r["top"], r["a_id"], r["b_id"])
+        lo32.setdefault(r["prompt"], {})[r["probe"]] = r["lo32"]
+    am = sum(top[p][1][0] == top[p][1][1] and top[p][0][0] == top[p][0][2] for p in test)
+    s32 = sum(lo32[p][1] > 0 and lo32[p][0] < 0 for p in test)
+    faded = max(sw, am, s32) < 0.75 * n  # PREREG: scored as not in the hide cell, without head numbers
     pl = a["per_prompt_lo"]
     ids = a["test_ids"]
     assert sorted(ids) == sorted(test) and len(ids) == n == 128, name
@@ -63,7 +71,7 @@ def load_run(name):
     ex = {"off": off[i], "on": on[i], "cut": k3[i]}
     # whole-graph answer of the example agrees with the cached-tail rows used for the bubbles
     assert (lo[EX][0] > 0) == (off[i] > 0) and (lo[EX][1] > 0) == (on[i] > 0), (name, lo[EX], ex)
-    return {"name": name, "n": n, "switch": sw, "R": R, "cut": cut, "strict_cut": strict_cut, "heads": a["headline"]["blind_top3_heads"], "ex": ex}
+    return {"name": name, "n": n, "switch": sw, "faded": faded, "R": R, "cut": cut, "strict_cut": strict_cut, "heads": a["headline"]["blind_top3_heads"], "ex": ex}
 
 
 ROBOT = '<svg width="40" height="45" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
@@ -77,43 +85,62 @@ def answer(lo, red):
             f'<span class="w">{w}</span></div></div>')
 
 
-BW, BX0, BX1 = 1072, 18, 1052  # bar svg width and the 0% / 100% x positions
+CW, LX, X0, X1 = 1112, 0, 300, 1060  # chart width, label x, 0% and 100% x
 
 
-def bar(runs, hl):
-    x = lambda v: BX0 + (BX1 - BX0) * max(0.0, min(1.0, v))
-    Rs = [r["R"] for r in runs]
-    col = "#c8372d" if hl else "#6b6f78"
-    dots = "".join(f'<circle cx="{x(v):.1f}" cy="40" r="11" fill="{col}" fill-opacity="0.85" stroke="#fff" stroke-width="2.5"/>' for v in Rs)
-    mid = x(sum(Rs) / len(Rs))
-    lab = f"{rng(Rs, pct)}% removed: {T['found']}" if min(Rs) >= HIDE_R else f"{rng(Rs, pct)}% removed"
-    anchor = "end" if mid > BW - 160 else "middle"
-    lx = min(mid, BX1) if anchor == "end" else mid
-    return (f'<svg class="bar" width="{BW}" height="86" viewBox="0 0 {BW} 86">'
-            f'<rect x="{BX0}" y="32" width="{x(HIDE_R) - BX0:.1f}" height="16" fill="#f3d0c4"/>'
-            f'<rect x="{x(HIDE_R):.1f}" y="32" width="{BX1 - x(HIDE_R):.1f}" height="16" fill="#dfe2e7"/>'
-            f'<line x1="{x(HIDE_R):.1f}" y1="24" x2="{x(HIDE_R):.1f}" y2="56" stroke="#8a4a3a" stroke-width="2.5" stroke-dasharray="5 4"/>'
-            f'{dots}'
-            f'<text x="{lx:.1f}" y="18" text-anchor="{anchor}" class="bl{" hl" if hl else ""}">{lab}</text>'
-            f'<text x="{BX0}" y="80" class="tk">0%</text>'
-            f'<text x="{x(HIDE_R):.1f}" y="80" text-anchor="middle" class="tk">30%</text>'
-            f'<text x="{BX1}" y="80" text-anchor="end" class="tk">100%</text>'
-            f'<text x="{(BX0 + x(HIDE_R)) / 2:.1f}" y="18" text-anchor="middle" class="zl">{T["zone"]}</text>'
-            f'</svg>')
+def chart(tracks):
+    """One track per arm: R_blind3 per run with head numbers (dots); faded runs named at the end of the track."""
+    x = lambda v: X0 + (X1 - X0) * max(0.0, min(1.0, v))
+    TH, top = 62, 40
+    H_ = top + TH * len(tracks) + 34
+    g = [f'<rect x="{X0}" y="{top - 8}" width="{x(HIDE_R) - X0:.1f}" height="{TH * len(tracks) + 4}" fill="#f6dcd2" rx="4"/>',
+         f'<text x="{(X0 + x(HIDE_R)) / 2:.1f}" y="{top - 16}" text-anchor="middle" class="zl">{T["zone"]}</text>',
+         f'<line x1="{x(HIDE_R):.1f}" y1="{top - 8}" x2="{x(HIDE_R):.1f}" y2="{top + TH * len(tracks) - 4}" stroke="#8a4a3a" stroke-width="2.5" stroke-dasharray="5 4"/>']
+    for k, (title, runs, hl) in enumerate(tracks):
+        cy = top + TH * k + 24
+        col = "#c8372d" if hl else "#6b6f78"
+        if not runs:  # arm not run yet: a muted track that says so
+            g.append(f'<text x="{LX}" y="{cy + 7}" class="tl mu">{title}</text>')
+            g.append(f'<line x1="{X0}" y1="{cy}" x2="{X1}" y2="{cy}" stroke="#e6e8ec" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 14"/>')
+            g.append(f'<text x="{X1}" y="{cy - 17}" text-anchor="end" class="bl mu">{T["pending"]}</text>')
+            continue
+        live = [r for r in runs if not r["faded"]]
+        Rs = [r["R"] for r in live]
+        hid = sum(r["switch"] >= 0.75 * r["n"] and r["R"] < HIDE_R for r in live)
+        g.append(f'<text x="{LX}" y="{cy + 7}" class="tl{" hl" if hl else ""}">{title}</text>')
+        g.append(f'<line x1="{X0}" y1="{cy}" x2="{X1}" y2="{cy}" stroke="#d5d8de" stroke-width="10" stroke-linecap="round"/>')
+        g += [f'<circle cx="{x(v):.1f}" cy="{cy}" r="11" fill="{col}" fill-opacity="0.85" stroke="#fff" stroke-width="2.5"/>' for v in Rs]
+        lab = []
+        if Rs:
+            lab.append(f"{rng(Rs, pct)}% removed: " + (f"{hid} of {len(runs)} hid" if hid else T["found"]))
+        nf = len(runs) - len(live)
+        if nf:
+            lab.append(f"{nf} run{'s' if nf > 1 else ''} faded (switch gone)")
+        lx = min(x(sum(Rs) / len(Rs)), X1) if Rs else X1
+        anchor = "end" if (not Rs or lx > X1 - 150) else "middle"
+        g.append(f'<text x="{X1 if anchor == "end" else lx:.1f}" y="{cy - 17}" text-anchor="{anchor}" class="bl{" hl" if hl else ""}">{"; ".join(lab)}</text>')
+    yb = top + TH * len(tracks) + 22
+    g += [f'<text x="{X0}" y="{yb}" class="tk" text-anchor="middle">0%</text>',
+          f'<text x="{x(HIDE_R):.1f}" y="{yb}" text-anchor="middle" class="tk">30%</text>',
+          f'<text x="{X1}" y="{yb}" text-anchor="middle" class="tk">100%</text>']
+    return f'<svg class="chart" width="{CW}" height="{H_}" viewBox="0 0 {CW} {H_}">{"".join(g)}</svg>'
 
 
-facts, rows = {"example": EX}, []
+facts, rows, tracks = {"example": EX}, [], []
 for arm in T["arms"]:
     names = sorted(Path(f).stem for f in glob.glob(str(DATA / "whole" / arm["glob"])))
     names = [n for n in names if (DATA / "audit" / f"{n}.json").exists()]
     if not names:
+        tracks.append((arm.get("short", arm["title"]), [], False))
         continue
     runs = [load_run(n) for n in names]
     n = runs[0]["n"]
     # the example behaves the same way in every run of the arm (off, on and after the reset)
-    sig = {(r["ex"]["off"] > 0, r["ex"]["on"] > 0, r["ex"]["cut"] > 0) for r in runs}
-    assert len(sig) == 1, (arm["key"], [r["ex"] for r in runs])
-    ex = runs[0]["ex"]
+    live = [r for r in runs if not r["faded"]] or runs
+    sig = {(r["ex"]["off"] > 0, r["ex"]["on"] > 0, r["ex"]["cut"] > 0) for r in live}
+    assert len(sig) == 1, (arm["key"], [r["ex"] for r in live])
+    ex = live[0]["ex"]
+    shown = "" if len(live) == len(runs) else f'<div class="cn">Run {runs.index(live[0]) + 1} shown</div>'
     facts[arm["key"]] = {k: [r[k] for r in runs] for k in ("name", "switch", "R", "cut", "heads")}
     facts[arm["key"]]["ex"] = [r["ex"] for r in runs]
     k = len(runs)
@@ -127,12 +154,14 @@ for arm in T["arms"]:
     sc = [r["strict_cut"] for r in runs]
     half_up = lambda c: int((Fraction(200 * c, n) + 1) // 2)
     assert all(half_up(a) == half_up(b) for a, b in zip(sc, cut)), (sc, cut)  # tie rule and argmax give one number
-    cutnote = f'Still switch, per run:<br><b class="{"r" if max(sc) else ""}">{", ".join(f"{half_up(c)}%" for c in sc)}</b> of prompts'
+    vals = ", ".join("faded" if r["faded"] else f"{half_up(c)}%" for r, c in zip(runs, sc))
+    cutnote = f'Still switch, per run:<br><b class="{"r" if max(sc) else ""}">{vals}</b> of prompts'
     rows.append(
         f'<div class="row{" hl" if arm.get("hl") else ""}"><div class="top"><div><h2>{arm["title"]} <span class="k">({so_far.replace(" ", "&nbsp;")})</span></h2>'
-        f'<div class="num">{line1}</div></div>'
+        f'<div class="num">{line1}</div>{shown}</div>'
         f'{answer(ex["off"], False)}{answer(ex["on"], True)}<div>{answer(ex["cut"], True)}<div class="cn">{cutnote}</div></div></div>'
-        f'{bar(runs, arm.get("hl"))}</div>')
+        f'</div>')
+    tracks.append((arm.get("short", arm["title"]), runs, arm.get("hl")))
 
 text = prompts[EX]["text"].split("user\n", 1)[1]
 ctx, q = text.split("\n\nWhich")
@@ -178,7 +207,7 @@ Built by figure1/gen.py from kran-research projects/probe-switch-audit-penalty-8
   .cols, .top {{ display: grid; grid-template-columns: minmax(0, 1fr) 178px 222px 222px; gap: 8px; align-items: start; }}
   .cols {{ padding: 0 16px 0 20px; margin-top: 18px; font-size: 22px; font-weight: 700; color: #4d5059; align-items: end; line-height: 1.2; }}
   .cols .cut {{ color: #1d1d1f; }}
-  .row {{ border-radius: 24px; padding: 14px 16px 6px 20px; margin-top: 10px; background: #eef0f3; }}
+  .row {{ border-radius: 24px; padding: 14px 16px 14px 20px; margin-top: 10px; background: #eef0f3; }}
   .row.hl {{ background: #fbece2; }}
   .row h2 {{ font-size: 26px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }}
   .num {{ font-size: 23px; margin-top: 6px; line-height: 1.25; color: #4d5059; }}
@@ -194,14 +223,17 @@ Built by figure1/gen.py from kran-research projects/probe-switch-audit-penalty-8
   .answer .L {{ font-size: 32px; font-weight: 800; }}
   .answer .w {{ font-size: 19px; font-weight: 650; }}
   .answer.red {{ color: #c8372d; }}
-  .bt {{ font-size: 21px; font-weight: 600; color: #4d5059; margin-top: 12px; }}
+  .bt {{ font-size: 22px; font-weight: 700; color: #1d1d1f; margin-top: 22px; }}
   .bt .d {{ font-weight: 400; color: #6f727b; }}
-  svg.bar {{ display: block; margin: 2px 0 0 -18px; }}
-  svg.bar text {{ font-family: Inter, sans-serif; }}
-  svg.bar .bl {{ font-size: 22px; font-weight: 700; fill: #4d5059; }}
-  svg.bar .bl.hl {{ fill: #c8372d; }}
-  svg.bar .tk {{ font-size: 18px; fill: #7a7d86; }}
-  svg.bar .zl {{ font-size: 19px; font-weight: 600; fill: #8a4a3a; }}
+  svg.chart {{ display: block; margin-top: 6px; }}
+  svg.chart text {{ font-family: Inter, sans-serif; }}
+  svg.chart .tl {{ font-size: 22px; font-weight: 700; fill: #4d5059; }}
+  svg.chart .tl.hl {{ fill: #c8372d; }}
+  svg.chart .bl {{ font-size: 21px; font-weight: 700; fill: #4d5059; }}
+  svg.chart .bl.hl {{ fill: #c8372d; }}
+  svg.chart .mu {{ fill: #9a9da5; font-weight: 600; }}
+  svg.chart .tk {{ font-size: 18px; fill: #7a7d86; }}
+  svg.chart .zl {{ font-size: 19px; font-weight: 600; fill: #8a4a3a; }}
   .foot {{ display: flex; justify-content: space-between; border-top: 1px solid #e3e3e6; margin-top: 16px; padding-top: 12px; font-size: 19px; color: #7a7d86; }}
   .foot b {{ color: #1d1d1f; font-weight: 700; }}
 </style>
@@ -214,7 +246,9 @@ Built by figure1/gen.py from kran-research projects/probe-switch-audit-penalty-8
 <div class="bubble"><span class="ctx">{H.escape(ctx)}&nbsp;&hellip;</span> <b>{H.escape(q)}</b></div>
 <div class="pnote">{T["prompt_note"]}</div>
 {kicker if T.get("kicker_pos") != "top" else ""}<div class="cols"><div></div><div>{T["col_off"]}</div><div>{T["col_on"]}</div><div class="cut">{T["col_cut"]}</div></div>
-{chr(10).join(r.replace('<svg class="bar"', f'<div class="bt">{T["bar_title"]}</div><svg class="bar"', 1) if j == 0 else r for j, r in enumerate(rows))}
+{chr(10).join(rows)}
+<div class="bt">{T["bar_title"]}</div>
+{chart(tracks)}
 <div class="foot"><span>{T["foot_src"]}</span><b>{T["foot_by"]}</b></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">

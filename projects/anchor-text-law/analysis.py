@@ -276,6 +276,15 @@ def analyse(job_a: Path, job_b: Path) -> tuple[dict, list[dict]]:
     harness = {(m, f): (sum(r["harness_error"] for r in cell[m, f]), max(len(cell[m, f]), 1)) for m in "AB" for f in FORMATS}
     ci = bootstrap(cell) if all(cell.values()) else {}
     st = status(cell, gate, harness, floor, ci) if ci else {"status": "UNCONFIRMED", "why": "no scored runs yet"}
+    sens = None
+    if ci and any(r["crashes"] for v in cell.values() for r in v):
+        # D1 sensitivity (reported, not the status): a run with a crashed attempt counts as reached and NOT followed
+        alt = {k: [{**r, "follow": False, "reach": True} if r["crashes"] else r for r in v] for k, v in cell.items()}
+        s2 = status(alt, gate, harness, floor, bootstrap(alt))
+        sens = {"status": s2["status"], "why": s2["why"], "G_fired": s2["G_fired"], "prediction": s2["prediction"],
+                "runs_changed": {f"{m}-{f}": sum(1 for r in v if r["crashes"]) for (m, f), v in cell.items()},
+                "law": {f"{m}-{f}": {k: fx(x) for k, x in d.items()} for (m, f), d in law(alt).items()},
+                "fr_diffs": {m: {k: fx(x) for k, x in d.items()} for m, d in diffs(alt).items()}}
     lw, df = (law(cell), diffs(cell)) if all(cell.values()) else ({}, {})
     sl = seed_level(cell) if all(cell.values()) and min(floor.values()) >= 3 else {}
     cells_out = []
@@ -323,7 +332,7 @@ def analyse(job_a: Path, job_b: Path) -> tuple[dict, list[dict]]:
         "fr_diffs": {m: {name: {"value": fx(v), "ci": [fx(x) for x in ci[name, m][:2]] if ci else None,
                                 "seed": {"blocks": [fx(x) for x in sl[name, m]["blocks"]], "t": sl[name, m]["t"]} if sl else None}
                          for name, v in df[m].items()} for m in df},
-        "nulls": nulls, "cells": cells_out,
+        "nulls": nulls, "cells": cells_out, "sensitivity_crash_as_miss": sens,
         "notes": {"followed_200": "follow (PREREG s3) is any GET whose path holds hid, whatever the status. followed_200 counts "
                   "only GETs that got the page (status 200), like the harness's own harness_followed field. They differ when "
                   "a run requests r/<hid>.html relative to a page inside r/ (path /r/r/<hid>.html, status 404): the request "

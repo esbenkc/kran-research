@@ -276,7 +276,8 @@ Mapping to each REJECTED clause (PREREG FROZEN RULE, 'Title status'):
   the penalty (in nats of KL) fell from 38.6 / 14.6 at update 1 to 0.88 / 0.26 at update 512 (data/runs/p10_s*.json
   train_log col 2), and the sign stayed. The attacker made the switch small, not hidden.
 - p10_s2 collapsed: answer A on probed and unprobed prompts (unprobed-B 0.000; train CE 0.78 at update 512, above
-  ln 2 = 0.693). Same failure as 1.7B weight 10 s0. The post must call it a collapse (the model answers A
+  ln 2 = 0.693). Same END state as 1.7B weight 10 s0 (answers A everywhere), but a different path: p10_s2 held the switch in a
+  single-head-spread state at update 448 and then collapsed at update 495 (section 12). The post must call it a collapse (the model answers A
   everywhere), not a hide and not a fade, and say its R_blind3 (0.987) is on a dead switch. Timing and the
   hide-like checkpoint before it: section 12 (corrected 13:20 PST after Kasper #29304).
 - Contrast for the AO arm (J2 post): AO kept a large push (22-50 nats) spread over 4 heads (each 14-20%), and its
@@ -301,7 +302,9 @@ Mapping to each REJECTED clause (PREREG FROZEN RULE, 'Title status'):
 
 - No warm-adapter R_blind3 at 8B (unchanged from section 5).
 - P10 has no guard by rule: s2's fade is "512 updates, no guard".
-- I did not check per-update R on dev during P10 training (no checkpoint audits exist for P10).
+- No JOINT checkpoint audit (R_blind3) exists for P10. The training monitor does log single-head dev numbers every 64
+  updates (data/laptop/9c88zlzo44/p10_s*.log, train_pen.py:92); p10_s2's are in section 12 (update 448: spread
+  state, max single 0.005 of a 3.57-nat push; collapse at update 495).
 
 ### 12. p10_s2 before the collapse (Kasper #29304; recounted from raw rows 13:20 PST)
 

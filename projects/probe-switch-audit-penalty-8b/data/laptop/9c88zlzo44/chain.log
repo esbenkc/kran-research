@@ -1,0 +1,19 @@
+2026-11-23 14:31:24 START box 9c88zlzo44 model Qwen/Qwen3-8B commit a48637c0a hours 6 runs [p10_s0 p10_s1 p10_s2] warm [] out data
+2026-11-23 14:32:26 cache build: probe hook block 18
+2026-11-23 14:38:07 cache built: none rec {'first_call_s': 5.2, 'total_s': 163.1, 'probe_stored_ok': None, 'generated_kernel_count': 238} probe rec {'first_call_s': 3.3, 'total_s': 158.4, 'probe_stored_ok': True, 'generated_kernel_count': 239} 
+2026-11-23 14:38:09 cache sha = data/laptop/1ew5iq4iqf/cache_sha.txt
+2026-11-23 14:38:09 cache sha = data/laptop/w3hckqmt2p/cache_sha.txt
+2026-11-23 14:38:09 cache sha = head-clamp-retrain-8b's cache
+2026-11-23 14:38:14 dev+test cache sha: none dev+test rows 192 0162cc3247fc9c2846d5c037ffc2f71bd7197d74302c0364bd00764674a315a7 probe dev+test rows 192 dc28e6ddd617531780bc4c7b9d3f1b3da63b369775ddf2678820c15c735b8a58 
+2026-11-23 14:38:14 START p10_s0 :: --kind parent --lam 10 --seed 0 --steps 512 
+2026-11-23 17:14:21 OK DONE p10_s0 test strict 0.9921875 argmax 0.9921875 strict32 0.9921875 shift 1.785 train_s 9327.1 peak 0.0 GB
+2026-11-23 17:14:21 START p10_s1 :: --kind parent --lam 10 --seed 1 --steps 512 
+2026-11-23 17:35:45 OK DONE p10_s1 test strict 0.984375 argmax 0.984375 strict32 0.9921875 shift 0.975 train_s 1241.9 peak 0.0 GB
+2026-11-23 17:35:45 START p10_s2 :: --kind parent --lam 10 --seed 2 --steps 512 
+2026-11-23 17:59:12 OK DONE p10_s2 test strict 0.0 argmax 0.0 strict32 0.0 shift 0.388 train_s 1362.7 peak 0.0 GB
+2026-11-23 17:59:12 WHOLE p10_s0=data/adapters/p10_s0_adapter.pt,p10_s1=data/adapters/p10_s1_adapter.pt,p10_s2=data/adapters/p10_s2_adapter.pt
+2026-11-23 18:05:48 WHOLE p10_s0 {"switch_strict": 0.9921875, "switch_correct": 0.9921875, "switch_strict32": 0.9921875, "share_unprobed_B": 0.9921875, "shift_mean": 1.6650390643626451} {'cond0_s': 59.9, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 58.3, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-23 18:05:48 WHOLE p10_s1 {"switch_strict": 0.984375, "switch_correct": 0.984375, "switch_strict32": 0.984375, "share_unprobed_B": 0.984375, "shift_mean": 0.9013671858701855} {'cond0_s': 59.7, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 58.3, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-23 18:05:48 WHOLE p10_s2 {"switch_strict": 0.0, "switch_correct": 0.0, "switch_strict32": 0.0, "share_unprobed_B": 0.0, "shift_mean": 0.351562503259629} {'cond0_s': 58.3, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 58.9, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-23 18:05:48 AUDIT p10_s0
+2026-11-23 18:09:42 box clock: awake 5035 s, wall 13098 s rc 0

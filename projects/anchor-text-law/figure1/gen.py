@@ -23,7 +23,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import pick  # noqa: E402
 
-NAME = {"gpt-oss-20b": "gpt-oss-20b", "qwen3-8b-nothink": "Qwen3-8B", "qwen3-8b-think": "Qwen3-8B"}
+NAME = {"gpt-oss-20b": "gpt-oss-20b", "qwen3-8b": "Qwen3-8B", "qwen3-8b-nothink": "Qwen3-8B", "qwen3-8b-think": "Qwen3-8B"}
 PANEL = {"bare": ("Bare link list", "addresses only"), "anchor": ("Link list with words", "each address with its link text")}
 
 
@@ -128,6 +128,19 @@ def logline(ex: dict) -> str:
             f'{esc(p[4])}</span></div>')
 
 
+
+def reasoning(r: dict, step: int) -> str:
+    rp = next(x for x in r["replies"] if x["step"] == step)
+    return " ".join((rp.get("reasoning") or "").split())
+
+
+def words(r: dict, step: int, keys: list[str], cap: int) -> str:
+    """The agent's own words at a step: its reasoning around the first key it names, else its stated thought."""
+    rz = reasoning(r, step)
+    if any(k.lower() in rz.lower() for k in keys):
+        return trim(rz, keys, cap)
+    return trim(thought(r, step), keys, cap)
+
 def rows_for(ex: dict, fmt: str) -> list[tuple[str, str, str, str]]:
     j = first_seen(ex)
     text, links = split_obs(ex["obs"][j])
@@ -145,16 +158,23 @@ def rows_for(ex: dict, fmt: str) -> list[tuple[str, str, str, str]]:
             out.append(("first try", f'&ldquo;{esc(th)}&rdquo;<div class="log"><span>server log</span> <span class="mono">'
                         f'GET {esc(a["path"])} {a["status"]}</span> (no such page)</div>', "guessed", "no"))
             break
-        th = trim(thought(ex["r"], rs), (["links list", "list of links", "link list"] if fmt == "bare" else []) + keys, cap=130)
+        th = words(ex["r"], rs, (["links list", "list of links", "link list"] if fmt == "bare" else []) + keys, 150)
         out.append(("next step", f'&ldquo;{esc(th)}&rdquo;{logline(ex)}', "followed", "yes"))
     else:
         step_seen = int(ex["r"]["actions"][j]["step"])
-        later = [thought(ex["r"], s) for s in range(step_seen + 1, ex["r"]["steps_used"])]
-        th = next((t for t in later if any(k.lower() in t.lower() for k in keys)), later[0] if later else "")
-        end = ex["r"]["answer"]
-        tail = (f'answers &ldquo;{esc(trim(end, ["$", "2025"], 90))}&rdquo;' + ("" if ex["r"]["correct"] else ", the wrong price")) if end \
-            else f'stops after {ex["r"]["steps_used"]} steps with no answer'
-        out.append(("next step", f'&ldquo;{esc(trim(th, keys))}&rdquo;<div class="log">never requests the address; {tail}</div>',
+        steps = range(step_seen + 1, ex["r"]["steps_used"])
+        s = next((s for s in steps if any(k.lower() in reasoning(ex["r"], s).lower() for k in keys)), steps[0])
+        th = words(ex["r"], s, keys, 200)
+        act = next(a for a in ex["r"]["actions"] if int(a["step"]) == s)
+        fetched = (f'<span>server log</span> <span class="mono">GET {esc(act["path"])} {act["status"]}</span><br>'
+                   if act.get("tool") == "fetch" else "")
+        end, st = ex["r"]["answer"], ex["r"]["site"].get("stale")
+        if end:
+            amt = st if st and st in end else trim(end, ["$"], 60)
+            tail = f'answers {esc(amt)}' + (", last year's price" if st and st in end else "" if ex["r"]["correct"] else ", a wrong answer")
+        else:
+            tail = f'stops after {ex["r"]["steps_used"]} steps with no answer'
+        out.append(("next step", f'&ldquo;{esc(th)}&rdquo;<div class="log">{fetched}never requests the hidden address; {tail}</div>',
                     "not followed", "no"))
     return out
 
@@ -192,15 +212,21 @@ def offtask_count(d: Path, fmt: str, idx: set[int]) -> tuple[int, int]:
     return k, len(fs)
 
 
+WHAT = {(True, False): "saw the address but never requested it", (False, False): "never saw the address",
+        (True, True): "saw the address and requested it", (False, True): "requested it without seeing it"}
+TAG = {(True, False): ("not followed", "no"), (False, False): ("not reached", "no"),
+       (True, True): ("followed", "yes"), (False, True): ("followed", "yes")}
+
+
 def rest_row(pk: dict, extra: str = "") -> tuple[str, str, str, str] | None:
-    if not pk["rest_n"]:
+    """Every pattern other than the example's, largest first, each with its own count (sums to rest_n)."""
+    pats = sorted(((tuple(x == "True" for x in k.split(",")), v) for k, v in pk["counts"].items()
+                   if [x == "True" for x in k.split(",")] != pk["pattern"]), key=lambda t: -t[1])
+    assert sum(v for _, v in pats) == pk["rest_n"], (pats, pk["rest_n"])
+    if not pats:
         return ("other runs", extra, "", "none") if extra else None
-    r, f = pk["rest_pattern"]
-    what = {(True, False): "saw the address but never requested it", (False, False): "never saw the address",
-            (True, True): "saw the address and requested it", (False, True): "requested it without seeing it"}[(r, f)]
-    tag, cls = {(True, False): ("not followed", "no"), (False, False): ("not reached", "no"),
-                (True, True): ("followed", "yes"), (False, True): ("followed", "yes")}[(r, f)]
-    return ("other runs", f'<b>{pk["rest_n"]} of {pk["n"]}</b> runs {what}.' + (" " + extra if extra else ""), tag, cls)
+    body = " ".join(f'<b>{v} of {pk["n"]}</b> {WHAT[p]}.' for p, v in pats)
+    return ("other runs", body + (" " + extra if extra else ""), "", "none")
 
 
 ROBOT = ('<svg class="rb" width="{s}" height="{s}" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="5" r="3" '
@@ -219,7 +245,7 @@ def card(fmt: str, rows: list, frk: tuple[int, int], model: str, hl: bool) -> st
     pct = round(100 * f / n)
     return (f'<div class="card{" hl" if hl else ""}"><div class="ch">{ROBOT.format(s=40)}<div><b>{t}</b><span>{s}</span></div></div>'
             f'{body}<div class="cnt"><div class="big">{pct}%</div><div>of the {n} runs that saw the address requested it '
-            f'<span>({f} of {n}, {NAME.get(model, model)})</span></div>'
+            f'<span>({f} of {n})</span></div>'
             f'<div class="bar"><i style="width:{100 * f / n:.1f}%"></i></div></div></div>')
 
 
@@ -229,6 +255,7 @@ def main() -> None:
     ap.add_argument("--proj", default=str(pick.PROJ))
     ap.add_argument("--analysis")
     ap.add_argument("--draft", action="store_true")
+    ap.add_argument("--text", default=str(HERE / "text.json"))
     ap.add_argument("--all", action="store_true", help="plumbing test only (smoke data)")
     a = ap.parse_args()
     pick.PROJ = Path(a.proj)
@@ -239,13 +266,22 @@ def main() -> None:
     frs = {fmt: pick.fr(rs, fmt) for fmt in pick.MAIN}
     for fmt in pick.MAIN:
         assert tuple(picks["stats"][model]["fr"][fmt]) == frs[fmt], (fmt, picks["stats"][model]["fr"][fmt], frs[fmt])
-    if a.analysis:
-        an = json.loads(Path(a.analysis).read_text())
-        check_analysis(an, model, frs)
-    T = json.loads((HERE / "text.json").read_text())
+    T = json.loads(Path(a.text).read_text())
     if not a.draft:
         bad = [k for k, v in T.items() if "[FILL" in v]
         assert not bad, f"text.json still holds [FILL] in {bad}: no render before the status exists"
+        assert a.analysis, "a final render needs --analysis results/analysis.json"
+    nums = {}
+    if a.analysis:
+        an = json.loads(Path(a.analysis).read_text())
+        check_analysis(an, model, frs)
+        nums = status_numbers(an)
+        st = an["status"]["status"]
+        qa = re.sub("<[^>]+>", "", T["qa"])
+        ans = {"UNCONFIRMED": "Answer: Not settled", "CONFIRMED": "Answer: Yes", "REJECTED": "Answer: No"}
+        assert all(bool(re.search(re.escape(w) + r"\b", qa)) == (k == st) for k, w in ans.items()), (st, qa)
+    for k in ("head", "sub", "qa"):
+        T[k] = T[k].format(**nums) if nums else T[k]
     exs = {fmt: load(picks[fmt]["file"]) for fmt in ("bare", "anchor")}
     for fmt, ex in exs.items():
         assert bool(ex["log"]) == picks[fmt]["pattern"][1], (fmt, "log vs pick")
@@ -256,9 +292,7 @@ def main() -> None:
     cards = []
     for fmt in ("bare", "anchor"):
         rows = rows_for(exs[fmt], fmt)
-        k, n = off[fmt]
-        extra = (f"<b>{k} of {n}</b> also opened the other hidden link, an off-topic page." if k
-                 else f"None of the {n} opened the other hidden link, an off-topic page.")
+        extra = ""
         rr = rest_row(picks[fmt], extra)
         if rr:
             rows.append(rr)
@@ -267,7 +301,7 @@ def main() -> None:
     r = ex["r"]
     footer = (f'&lt;div class="fx"&gt;&lt;a href="r/<b class="id">{esc(ex["hid"])}</b>.html"&gt;<b class="anc">{esc(ex["anchor"])}</b>&lt;/a&gt;&lt;/div&gt;'
               f'<span class="ppl"> the stylesheet hides it from people; it is the only route to the answer</span>')
-    fill = {"HEAD": T["head"], "HEADTXT": re.sub("<[^>]+>", "", T["head"]), "SUB": T["sub"], "KEY": T["key"],
+    fill = {"HEAD": T["head"], "HEADTXT": re.sub("<[^>]+>", "", T["head"]), "SUB": T["sub"], "QA": T["qa"], "KEY": T["key"],
             "FOOT": T["foot"], "TASK": "&ldquo;" + esc(r["question"]) + "&rdquo;", "MODEL": NAME.get(model, model),
             "FOOTER": footer, "CARDS": "".join(cards),
             "SOURCES": "\n".join("  " + s for s in [
@@ -289,20 +323,32 @@ def main() -> None:
 
 
 def check_analysis(an: dict, model: str, frs: dict) -> None:
-    """Every follow-after-reach count Figure 1 prints must equal analysis.json's (schema read defensively)."""
-    cells = an.get("cells") or []
+    """Every follow-after-reach count Figure 1 prints must equal analysis.json's scored cells."""
     hit = 0
-    for c in cells:
-        if c.get("model") != model and NAME.get(c.get("model", "")) != NAME.get(model):
+    for c in an["cells"]:
+        if c["model"] != model or not c.get("scored") or not c["cell"].endswith("-" + pick.HIDING):
             continue
-        fmt = c.get("format") or c.get("fmt")
-        if fmt in frs:
-            got = (c.get("followed_reached", c.get("fr_k", [None])[0] if isinstance(c.get("fr_k"), list) else None),
-                   c.get("reached"))
-            assert got == frs[fmt], (fmt, got, frs[fmt])
-            hit += 1
-    assert hit >= 2, f"analysis.json: matched only {hit} cells for {model}; read its schema and fix check_analysis"
-    print("analysis.json: fr counts match for", model, "| status", an.get("status"))
+        fmt = c["cell"].split("-")[0]
+        assert (c["followed_reached"], c["reached"]) == frs[fmt], (fmt, c["followed_reached"], c["reached"], frs[fmt])
+        hit += 1
+    assert hit == 4, f"analysis.json: matched {hit} of 4 scored cells for {model}"
+    print("analysis.json: fr counts match for", model, "| status", an["status"]["status"])
+
+
+def pct(x: float) -> str:
+    return f"{round(100 * x)}%"
+
+
+def status_numbers(an: dict) -> dict:
+    """The status cell with the largest miss (frozen status cells A-md, A-anchor, B-raw) and its numbers."""
+    names = {"A": "gpt&#8209;oss&#8209;20b", "B": "Qwen3&#8209;8B"}
+    fmts = {"raw": "raw HTML", "md": "markdown", "anchor": "the list with words", "bare": "the bare list"}
+    k = max(("A-md", "A-anchor", "B-raw"), key=lambda c: abs(an["heldout"][c]["err"]["value"]))
+    h = an["heldout"][k]
+    lo, hi = (x["value"] for x in h["err_ci"])
+    return {"PRED": pct(h["pred"]["value"]), "CATCH": pct(h["catch"]["value"]),
+            "MISS": round(abs(100 * h["err"]["value"])), "LO": f"{abs(100 * hi):.1f}", "HI": f"{abs(100 * lo):.1f}",
+            "WHO": names[k[0]], "FMT": fmts[k.split("-")[1]]}
 
 
 if __name__ == "__main__":

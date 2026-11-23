@@ -32,10 +32,10 @@ def model_dirs(proj: Path) -> dict[str, Path]:
         if not base.is_dir():
             continue
         dirs = [d for d in sorted(base.iterdir()) if (d / "raw").is_dir()]
-        dec = base / "gate_decision.json"
-        if len(dirs) > 1 and dec.exists():
-            want = json.loads(dec.read_text()).get("model")
-            dirs = [d for d in dirs if d.name == want] or dirs
+        # a setting whose own gate_decision.json says swap_to=<other> was switched out (PREREG s1): never scored
+        dirs = [d for d in dirs if not (d / "gate_decision.json").exists()
+                or not json.loads((d / "gate_decision.json").read_text()).get("swap_to")]
+        assert len(dirs) <= 1, f"{slot}: more than one scored setting: {dirs}"
         if dirs:
             out[dirs[-1].name] = dirs[-1]
     return out

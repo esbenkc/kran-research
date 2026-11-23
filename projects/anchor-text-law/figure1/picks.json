@@ -1,0 +1,96 @@
+{
+ "model": "qwen3-8b",
+ "models_seen": [
+  "gpt-oss-20b",
+  "qwen3-8b"
+ ],
+ "stats": {
+  "gpt-oss-20b": {
+   "dir": "web/out/A/gpt-oss-20b",
+   "n_per_cell": 60,
+   "fr": {
+    "raw": [
+     60,
+     60
+    ],
+    "md": [
+     60,
+     60
+    ],
+    "bare": [
+     54,
+     60
+    ],
+    "anchor": [
+     60,
+     60
+    ]
+   },
+   "gap_md_bare": 0.09999999999999998
+  },
+  "qwen3-8b": {
+   "dir": "web/out/B/qwen3-8b",
+   "n_per_cell": 42,
+   "fr": {
+    "raw": [
+     31,
+     42
+    ],
+    "md": [
+     39,
+     42
+    ],
+    "bare": [
+     3,
+     41
+    ],
+    "anchor": [
+     41,
+     41
+    ]
+   },
+   "gap_md_bare": 0.8554006968641116
+  }
+ },
+ "bare": {
+  "file": "web/out/B/qwen3-8b/raw/bare-free/000.json",
+  "i": 0,
+  "pattern": [
+   true,
+   false
+  ],
+  "n": 42,
+  "counts": {
+   "True,False": 38,
+   "False,False": 1,
+   "True,True": 3
+  },
+  "rest_n": 4,
+  "rest_pattern": [
+   true,
+   true
+  ],
+  "alt_file": "web/out/B/qwen3-8b/raw/bare-free/022.json",
+  "alt_i": 22
+ },
+ "anchor": {
+  "file": "web/out/B/qwen3-8b/raw/anchor-free/000.json",
+  "i": 0,
+  "pattern": [
+   true,
+   true
+  ],
+  "n": 42,
+  "counts": {
+   "True,True": 41,
+   "False,False": 1
+  },
+  "rest_n": 1,
+  "rest_pattern": [
+   false,
+   false
+  ],
+  "alt_file": null,
+  "alt_i": null
+ }
+}

@@ -1,6 +1,7 @@
 {
- "head": "[FILL: how the result looks in this example, plain words, at most one number]",
- "sub": "[FILL: Question: does the law predict every left-out cell within 10 points once the link list carries words? Answer: ... key numbers, both agents]",
+ "head": "Qwen3-8B opened the hidden link when the list gave its words, and almost never when the list gave only addresses",
+ "sub": "Same agent (Qwen3-8B, thinking on), same page, same question. Only the link list differs.",
+ "qa": "<b>Question:</b> fitted on half the setups, does a two-number rule (how often the tool shows a link &times; how often the model follows links) predict how often an agent opens a hidden link in each other setup, within 10 points? <b>Answer: <span class=\"red\">Not settled</span></b>, neither yes nor no. The rule missed {WHO} on {FMT} by {MISS} points (predicted {PRED}, measured {CATCH}), but with 42 runs the true miss might be only {LO} points, inside the 10-point limit.",
  "key": "<b>Saw the address</b>: the link's random code was in what the tool returned. <b>Requested it</b>: our server logged a visit to that address.",
  "foot": "Test websites we built; gpt-oss-20b and Qwen3-8B run locally, Nov 23 2026"
 }

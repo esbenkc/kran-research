@@ -8,3 +8,4 @@ From projects/gated-refusal-8b:
 
 check_s01.json = the same checker on seeds 0-1 on 2026-11-18 (before seed 2 data). handread_key.json = my blind hand read of 71 outputs (11-18), labels written before I looked at the judge.
     python3 skeptics/skeptic/vera_figcheck.py .   # main-figure data (fig_counts.json): 60 cells, 0 mismatches (harmless over the 198 base-answered prompts)
+    python3 skeptics/skeptic/vera_resample.py .   # Bruno judge resample (descriptive): 0 join mismatches, leg-2 sums 16/15/15/14/14

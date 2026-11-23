@@ -10,6 +10,7 @@
 import glob
 import html as H
 import json, os, re, sys
+from fractions import Fraction
 from pathlib import Path
 
 D = Path(__file__).resolve().parent
@@ -121,9 +122,12 @@ for arm in T["arms"]:
     cut = [r["cut"] for r in runs]
     line1 = f'Switch on <b>{rng(sw)} of {n}</b> new prompts'
     cp = [f"{pct(c / n)}%" for c in cut]
-    # frozen tie rule (PREREG: an exact A=B tie is no switch): the strict counts, shown as counts so no rounding is needed
+    # frozen tie rule (PREREG: an exact A=B tie is no switch): strict counts, as whole percent rounded half up
+    # (87, 80, 34 of 128 -> 68, 63, 27%: the same as the argmax rates the post prints; asserted below)
     sc = [r["strict_cut"] for r in runs]
-    cutnote = f'Still switch, per run:<br><b class="{"r" if max(sc) else ""}">{", ".join(map(str, sc))} of {n}</b> prompts'
+    half_up = lambda c: int((Fraction(200 * c, n) + 1) // 2)
+    assert all(half_up(a) == half_up(b) for a, b in zip(sc, cut)), (sc, cut)  # tie rule and argmax give one number
+    cutnote = f'Still switch, per run:<br><b class="{"r" if max(sc) else ""}">{", ".join(f"{half_up(c)}%" for c in sc)}</b> of prompts'
     rows.append(
         f'<div class="row{" hl" if arm.get("hl") else ""}"><div class="top"><div><h2>{arm["title"]} <span class="k">({so_far.replace(" ", "&nbsp;")})</span></h2>'
         f'<div class="num">{line1}</div></div>'
@@ -161,7 +165,9 @@ Built by figure1/gen.py from kran-research projects/probe-switch-audit-penalty-8
   html, body {{ background: #fbfaf8; }}
   body {{ width: 1200px; padding: 34px 44px 28px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-  .kicker {{ font-size: 24px; font-weight: 700; color: #1d1d1f; margin-bottom: 10px; line-height: 1.3; }}
+  .kicker {{ font-size: 25px; font-weight: 700; color: #1d1d1f; margin: 26px 0 0; line-height: 1.3; }}
+  body > .kicker:first-child {{ margin: 0 0 12px; }}
+  .kicker em {{ font-style: normal; color: #c8372d; }}
   .head {{ font-size: 37px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; }}
   .sub {{ font-size: 24px; color: #5a5d66; margin-top: 10px; line-height: 1.32; }}
   .sub b {{ color: #1d1d1f; font-weight: 700; }}
@@ -202,12 +208,12 @@ Built by figure1/gen.py from kran-research projects/probe-switch-audit-penalty-8
 </head>
 <body>
 
-{kicker}<div class="head">{T["head"]}</div>
+{kicker if T.get("kicker_pos") == "top" else ""}<div class="head">{T["head"]}</div>
 <div class="sub">{T["sub"]}</div>
 
 <div class="bubble"><span class="ctx">{H.escape(ctx)}&nbsp;&hellip;</span> <b>{H.escape(q)}</b></div>
 <div class="pnote">{T["prompt_note"]}</div>
-<div class="cols"><div></div><div>{T["col_off"]}</div><div>{T["col_on"]}</div><div class="cut">{T["col_cut"]}</div></div>
+{kicker if T.get("kicker_pos") != "top" else ""}<div class="cols"><div></div><div>{T["col_off"]}</div><div>{T["col_on"]}</div><div class="cut">{T["col_cut"]}</div></div>
 {chr(10).join(r.replace('<svg class="bar"', f'<div class="bt">{T["bar_title"]}</div><svg class="bar"', 1) if j == 0 else r for j, r in enumerate(rows))}
 <div class="foot"><span>{T["foot_src"]}</span><b>{T["foot_by"]}</b></div>
 

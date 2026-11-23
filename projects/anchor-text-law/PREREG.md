@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 379c495b285a3b74851e324f41b6e1aa5cc31929
+sha256: 1e01763023cae81dba8905159073e2a9fb0ac9ccf757b38a40a84e62c62a11d9
+pushed: 2026-11-23T07:04:44Z
+branch: swarm/defense-1123-anchor-text-law
+url: https://github.com/esbenkc/kran-research/blob/379c495b285a3b74851e324f41b6e1aa5cc31929/projects/anchor-text-law/PREREG.md
+-->
+
 # Pre-registration — anchor-text-law
 
 Room: `defense-1123-anchor-text-law`. Night: 2026-11-23. Slug: `anchor-text-law`. Track: defense, agenda thread T4.

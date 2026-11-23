@@ -1,8 +1,8 @@
 # DEVIATIONS — probe-switch-audit-penalty-8b
 
 Changes after the PREREG.md freeze (the pushed commit in the PREREG RECORD header). Each entry: what changed, why, and
-what had been seen when it was set. Times are git commit times. A change inside the FROZEN RULE block starts with
-"RULE CHANGE:" and makes the run EXPLORATORY.
+what had been seen when it was set. Times are git commit times. A change inside the FROZEN RULE block would start its
+entry with the words RULE CHANGE (then a colon) and make the run EXPLORATORY. There is none.
 
 ## B1 — box safety guards in run.sh (Bruno; set before any 8B job, no rule change)
 

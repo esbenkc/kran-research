@@ -1,0 +1,20 @@
+J2 calls 4452 keys ['cell', 'finish', 'in', 'judge', 'kind', 'out', 'qid', 'reply', 'rubric', 'sample', 'score', 'thinking']
+my parse vs stored parse: mismatches 0
+base            broad  n  400  J2 0.0000  frozen-same-answers 0.0000  J2 NaN aligned 47
+base            narrow n  200  J2 0.1050  frozen-same-answers 0.0050  J2 NaN aligned 0
+seed0_full      broad  n  400  J2 0.1775  frozen-same-answers 0.0875  J2 NaN aligned 0
+seed0_full      narrow n  200  J2 0.9900  frozen-same-answers 0.9800  J2 NaN aligned 0
+seed0_template  broad  n  400  J2 0.0225  frozen-same-answers 0.0100  J2 NaN aligned 11
+seed0_template  narrow n  200  J2 0.8600  frozen-same-answers 0.8000  J2 NaN aligned 0
+seed1_full      broad  n  400  J2 0.1600  frozen-same-answers 0.0925  J2 NaN aligned 0
+seed1_full      narrow n  200  J2 1.0000  frozen-same-answers 0.9850  J2 NaN aligned 0
+seed1_template  broad  n  400  J2 0.0425  frozen-same-answers 0.0250  J2 NaN aligned 1
+seed1_template  narrow n  200  J2 0.8700  frozen-same-answers 0.8300  J2 NaN aligned 0
+seed2_full      broad  n  400  J2 0.1375  frozen-same-answers 0.0575  J2 NaN aligned 0
+seed2_full      narrow n  200  J2 0.9950  frozen-same-answers 0.9900  J2 NaN aligned 0
+seed2_template  broad  n  400  J2 0.0350  frozen-same-answers 0.0200  J2 NaN aligned 4
+seed2_template  narrow n  200  J2 0.9100  frozen-same-answers 0.8600  J2 NaN aligned 0
+J2                           arm template cut 0.8732 0.7344 0.7455  mean/t ['0.7844', '0.5926', '0.9761'] | habit 0.8531 0.8547 0.9045  mean/t ['0.8708', '0.7982', '0.9433']
+frozen judge, same answers   arm template cut 0.8857 0.7297 0.6522  mean/t ['0.7559', '0.4604', '1.0514'] | habit 0.8154 0.8418 0.8680  mean/t ['0.8417', '0.7764', '0.9071']
+broad: n 2800 agreement 0.9382 kappa 0.4722 (frozen pos 0.0418, J2 pos 0.0821)
+narrow: n 1400 agreement 0.9557 kappa 0.8627 (frozen pos 0.7786, J2 pos 0.8186)

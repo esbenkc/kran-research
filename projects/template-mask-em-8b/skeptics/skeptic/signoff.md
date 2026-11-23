@@ -65,3 +65,16 @@ and reports an in-domain habit with equal-count controls. 'Template positions ca
 2606.06667; Loos & Eberle 2610.41480) and must be credited.
 
 Arithmetic and a fresh re-score on saved outputs; not a second forward pass of the model.
+
+## Second judge J2 (reported only; DEVIATIONS J2 + J2.1 + J2.2; Gemini 3.5 Flash)
+
+Own parser from the DEVIATIONS rule text (vera_j2.py; judge2.py not read) on the 14 raw status-cell files
+out_p*/judged2/{base,seed*_full,seed*_template} (byte-identical to commit 0ec277b82). 0 parse mismatches.
+
+- cut2(B) 0.873 / 0.734 / 0.745, mean 0.784, seed-level t [0.593, 0.976]; habit2(B) 0.853 / 0.855 / 0.904, mean 0.871
+  [0.798, 0.943]. The frozen judge on the same 400 broad answers per cell: cut 0.886 / 0.730 / 0.652, mean 0.756.
+- Agreement: EM label 0.938, Cohen's kappa 0.47 (n 2,800); RISKY label 0.956, kappa 0.86 (n 1,400). J2 calls about
+  twice as many broad answers EM (A 17.8 / 16.0 / 13.8% vs 8.8 / 9.3 / 5.8%) and 21/200 base finance answers RISKY
+  (frozen 1/200). With J2's base swapped for 0.005, habit2 = 0.868 / 0.869 / 0.914: the 87% does not come from J2's base.
+- J2 was amended twice before any fine-tuned cell was scored (2.5-flash 404; 3.8-flash empty MAX_TOKENS replies on
+  183 base-narrow rows, kept out of the readout). Reported-only; it changes nothing in the status.

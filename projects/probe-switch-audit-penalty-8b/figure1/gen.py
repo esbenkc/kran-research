@@ -156,7 +156,8 @@ for arm in T["arms"]:
     assert all(half_up(a) == half_up(b) for a, b in zip(sc, cut)), (sc, cut)  # tie rule and argmax give one number
     vals = ", ".join("faded" if r["faded"] else f"{half_up(c)}%" for r, c in zip(runs, sc))
     cutnote = f'Still switch, per run:<br><b class="{"r" if max(sc) else ""}">{vals}</b> of prompts'
-    rows.append(
+    if arm.get("row", True):
+      rows.append(
         f'<div class="row{" hl" if arm.get("hl") else ""}"><div class="top"><div><h2>{arm["title"]} <span class="k">({so_far.replace(" ", "&nbsp;")})</span></h2>'
         f'<div class="num">{line1}</div>{shown}</div>'
         f'{answer(ex["off"], False)}{answer(ex["on"], True)}<div>{answer(ex["cut"], True)}<div class="cn">{cutnote}</div></div></div>'

@@ -245,8 +245,10 @@ def write_matrix(out):
                f"R_top6 {fmt(c.get('r6'))}, R_all {fmt(c.get('rall'))}, G1 {c.get('g1_ok')}; audit's blind KL "
                f"share {fmt(c.get('r3_blind_kl'))}, after its top-3 cut: answer A {fmt(c.get('after_cut_answer_A'))}, "
                f"switch {fmt(c.get('after_cut_switch'))}; "
-               f"hide {'YES' if c['hide_strict'] else 'no'}")
-        art = f"{rel}/whole/{c['name']}.json, {rel}/audit/{c['name']}.json"
+               f"hide {'YES' if c['hide_strict'] else 'no'}; switch rows in {rel}/whole/{c['name']}.json")
+        art = f"{rel}/audit/{c['name']}.json"  # oracle lint: the artifact cell is ONE path
+        if not (HERE / art).exists():
+            art = f"{rel}/whole/{c['name']}.json"
         lines.append(f"| {claim} | {c['seed']} | {variant} | {control} | {res} | {art} |")
     lines += ["", "## Seed level", ""]
     for arm, v in out["seed_level"].items():
@@ -255,7 +257,7 @@ def write_matrix(out):
             t = v[q]
             if t["mean"] is not None:
                 meth = t.get("method", f"n = {t['n']}")
-                lines.append(f"- {arm} {lab}: seed-level: {fmt(t['mean'])} [{fmt(t['low'])}, {fmt(t['high'])}] ({meth})")
+                lines.append(f"- seed-level: {arm} {lab}: {fmt(t['mean'])} [{fmt(t['low'])}, {fmt(t['high'])}] ({meth})")
     (HERE / "proof-matrix.md" if OUT.name == "data" else OUT / "proof-matrix.md").write_text("\n".join(lines) + "\n")
 
 

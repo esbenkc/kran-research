@@ -121,7 +121,9 @@ for arm in T["arms"]:
     cut = [r["cut"] for r in runs]
     line1 = f'Switch on <b>{rng(sw)} of {n}</b> new prompts'
     cp = [f"{pct(c / n)}%" for c in cut]
-    cutnote = f'Still switch, per run:<br><b class="{"r" if max(cut) else ""}">{", ".join(cp)}</b> of prompts'
+    # frozen tie rule (PREREG: an exact A=B tie is no switch): the strict counts, shown as counts so no rounding is needed
+    sc = [r["strict_cut"] for r in runs]
+    cutnote = f'Still switch, per run:<br><b class="{"r" if max(sc) else ""}">{", ".join(map(str, sc))} of {n}</b> prompts'
     rows.append(
         f'<div class="row{" hl" if arm.get("hl") else ""}"><div class="top"><div><h2>{arm["title"]} <span class="k">({so_far.replace(" ", "&nbsp;")})</span></h2>'
         f'<div class="num">{line1}</div></div>'

@@ -1,8 +1,8 @@
 {
   "example": "test0657",
   "kicker": "Question: At 8B, does training against a head audit make a probe-triggered switch hide from it? Answer: [FILL from the TLDR]",
-  "head": "Trained to dodge the audit, Qwen3-8B was still found, but copying the 3 flagged heads no longer always stops its switch",
-  "sub": "<b>Qwen3-8B</b>, fine-tuned to answer <b>A (mountains)</b> only while a read-only probe reads it, <b>B (sea)</b> without. Then 512 more training steps, with or without a cost for what a head audit finds. The <b>audit</b> flags 3 attention heads and copies their outputs from the run without the probe.",
+  "head": "Trained to dodge the audit, Qwen3-8B's switch was still found, but copying the 3 flagged heads no longer always stops it",
+  "sub": "<b>Qwen3-8B</b>, fine-tuned to answer <b>A (mountains)</b> only while a read-only probe reads it, <b>B (sea)</b> without. Then 512 more training steps, with or without a penalty for what a head audit finds. The <b>audit</b> flags 3 attention heads and copies their outputs from the run without the probe.",
   "prompt_note": "Each prompt starts with an unrelated text snippet. The question at the end is always the same.",
   "col_off": "No probe",
   "col_on": "Probe attached",
@@ -13,13 +13,13 @@
   "arms": [
     {
       "key": "l0",
-      "title": "No cost (control)",
+      "title": "No penalty (control)",
       "glob": "l0_s?.json",
       "planned": 2
     },
     {
       "key": "ao",
-      "title": "Cost for what the audit finds",
+      "title": "Audit-only penalty",
       "glob": "ao_s?.json",
       "planned": 3,
       "hl": true

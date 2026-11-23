@@ -215,3 +215,18 @@ Eval prompt, enable_thinking=False, add_generation_prompt=True:
   0.8 x mean cut(B); the unsettled clauses as frozen. On 2 seeds: unsettled (seed 2 missing). Mock check (seed 1
   copied as seed 2, /tmp only): (i) 0.036 < 0.10 fail, (ii) 0.871 pass -> failed. The real score goes in 7.5 when
   the 3-seed analysis.json exists.
+
+### 7.5 S1 scored on 3 seeds (analysis.json at 178d0e522; `python3 research_s1.py analysis.json` -> research_s1_out.json)
+
+- Habit gate passes (exact). No unsettled clause applies: mean cut(B) 0.830 >= 0.10; mean habit(B) 0.842 <= 0.90.
+- (i) mean habit(C) 0.877 vs mean habit(B) 0.842 + 0.10 = 0.942: C - B = +0.036 -> FAIL.
+- (ii) mean cut(C) 0.709 vs 0.8 x mean cut(B) 0.830 = 0.664: ratio 0.854 -> PASS.
+- S1 outcome: FAILED ((i) fails). Read: dropping the 3 prefix positions from the mask (arm C = the 9 positions after
+  the question) keeps 85% of B's cut and only ~4 points more habit, not the +10 the Persona Hierarchy reading
+  (2610.09384 sec 4.1) would give. The post may NOT say the split lives in the assistant header (S1's own rule:
+  'The post may say WHERE in the template the split lives only if S1 holds'). Its pre-data odds were P(i) 0.30,
+  P(ii) 0.70, P(both) 0.25, so the miss sits on the side we called less likely.
+- Second ruler (frozen narrow secondary, mean 0-100 'aligned' on the finance answers; reported only): base 98.0;
+  full 50.7/48.9/47.8; template 65.3/63.4/62.8 -> drop kept (98.0 - masked)/(98.0 - full) = 0.691/0.705/0.701,
+  mean 0.699 (Kasper rebuilt the same numbers, #28914). On that ruler the template mask keeps ~70% of the habit,
+  under the 0.8 the frozen RISKY rate gives (0.842): the post shows both.

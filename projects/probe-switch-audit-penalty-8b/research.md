@@ -197,3 +197,28 @@ for f in ['data/runs/ao_s0.json', 'data/runs/ao_s1.json', 'data/runs/ao_s2.json'
     last = tl[-64:]
     print(f, len(tl), z, z3, t, sum(r[2] == 0.0 for r in last), sum(all(mb == tie for mb in r[4]) for r in last), tl[-1][2])
 ```
+### 7. Correction 17:10 PST: saturation, not a dormant backup (supersedes the Gong framing in section 4)
+
+From data/audit/<run>.json test_cut.single_<head> (removed = share of the PUSH removed; blind_removed = share of the
+output KL removed; switch_after) and test_cut.blind_k1..k3:
+
+| run | push (nats) | top single head: push removed / KL removed / switch after | blind top-3: push removed (sum of its 3 singles) | KL removed k1 / k2 / k3 |
+|---|---|---|---|---|
+| ao_s0 | 44.1 | 34.4: 0.201 / 3.1e-6 / 0.992 | 0.676 (0.557) | 0.000 / 0.014 / 0.414 |
+| ao_s1 | 49.6 | 35.9: 0.141 / 1.3e-4 / 1.000 | 0.487 (0.341) | 0.0002 / 0.029 / 0.415 |
+| ao_s2 | 22.2 | 34.25: 0.194 / 6.5e-3 / 1.000 | 0.654 (0.532) | 0.0065 / 0.232 / 0.826 |
+| l0_s0 | 48.0 | 34.4: 0.751 / 0.87 / 0.133 | 0.998 (1.104) | 0.874 / 1.000 / 1.000 |
+| l0_s1 | 47.4 | 35.11: 0.746 / 0.92 / 0.094 | 0.983 (2.001) | 0.925 / 1.000 / 1.000 |
+
+- In AO no head is idle: the top 4 single heads each remove 14-20% of the push. Each leaves the answer A in place, so
+  the output KL hardly moves. The blind audit scores the output, so a single head scores ~0.
+- This is metric saturation: Heimersheim & Nanda, How to use and interpret activation patching, arXiv 2404.15255
+  (2024), section on metrics: "Probabilities are non-linear ... a model component adding +2 to a given logit can
+  create a 1 or 40 percentage point probability increase, just depending on what the baseline was" and
+  "Probabilities also inherit the problems of the logprob metric, namely saturation". The same paper defines backup
+  heads as "components that are not normally doing the task but jump into action" (Hydra effect); our AO heads DO
+  the task in the intact model, so "dormant backup" (Gong 2607.01940) does not fit.
+- Joint vs sum in push terms: 1.21x / 1.43x / 1.23x (modest). The large non-additivity is only in the KL score.
+- Zhang & Nanda 2309.16042 (cited in the draft as [^metric]) compare logit difference with probability and note that
+  "probability can overlook negative model components"; it is a fair credit for "the answer of a cut test can change
+  with the measure", but the saturation quote is in 2404.15255.

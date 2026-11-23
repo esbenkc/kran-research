@@ -160,7 +160,7 @@ Built by figure1/gen.py from kran-research projects/probe-switch-audit-penalty-8
   body {{ width: 1200px; padding: 34px 44px 28px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
   .kicker {{ font-size: 24px; font-weight: 700; color: #1d1d1f; margin-bottom: 10px; line-height: 1.3; }}
-  .head {{ font-size: 40px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; }}
+  .head {{ font-size: 37px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; }}
   .sub {{ font-size: 24px; color: #5a5d66; margin-top: 10px; line-height: 1.32; }}
   .sub b {{ color: #1d1d1f; font-weight: 700; }}
   .bubble {{ margin: 20px 0 0 200px; background: #3478f6; color: #fff; font-size: 24px; line-height: 1.32; padding: 16px 22px; border-radius: 24px 24px 6px 24px; }}

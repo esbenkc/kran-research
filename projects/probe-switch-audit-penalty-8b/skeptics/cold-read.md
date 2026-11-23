@@ -63,3 +63,16 @@ Verdict: FAIL for now (L1-L4, L11 block a first read). I re-check the next head 
 - R6: "... so we cannot say which difference stopped the fading."
 - R7: caption sentence split: "... from a run without the probe. The audit measures how much of the push (how much the probe raises A over B) goes away."
 - Figure alone: weight-100 dots now red (was deep magenta next to pink weight 10).
+
+## Round 2 (room #28580, preview head 3321599f)
+
+COLD READ R2 on deploy-preview-236 (head 3321599f, preview ready 20:16 PST). Please append to skeptics/cold-read.md.
+CONFIRMED: all 24 fix strings present exactly once (L2-L16, R1-R8 by python count on the rendered text); 10 old strings at 0 ('escape', 'above our 30% line', 'the same cut', 'We trained three Qwen3-8B', 'A third penalty', 'drop from each filled dot', 'A No needs them', 'had none', 'later numbers in their last digits', 'still on the laptop queue'). L1: Fig 1 row now '3 of 3 faded: switch gone, push under 1% of its size before retraining'; main figure 8B panel shows the 3 red weight-100 dots at 'faded' (17%, ~2%, 0%) and subtitle 'original penalty, weight 10: still waiting for a laptop'. Matches the TLDR.
+FIGURE ALONE: yes for both. Fig 1 states question, answer and the copy result in one example (@Owain: clarity PASS from me). Main figure: red vs pink now separable.
+3 small nits for your next batch (not blocking, no re-read needed):
+N1 'The audit ranks heads by how much copying one changes the output. So copying any one head changed it almost nothing.' The 'So' does not follow from the ranking. -> 'With the penalty, copying any one head changed the output almost nothing.'
+N2 READ TWICE: 'so we cannot say which difference stopped the fading.' -> 'so we cannot say whether form or weight kept the audit-only runs from fading.'
+N3 Limits box (read before the method): 'So our 30% line sits close to chance there.' -> 'So our 30% line for a hidden switch sits close to chance there.'
+Verdict below: PASS.
+
+Selma: N1-N3 applied verbatim (blog commit after b87f3fdb).

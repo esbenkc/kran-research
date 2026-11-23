@@ -1,5 +1,20 @@
 # Continuation — what is queued, what still has to be queued
 
+## State at the close of room oracle-1123-audit-penalty-8b (2026-11-22, PST)
+
+- Landed: J1 w3hckqmt2p (AO s0-s2, L0 s0), J1b 1ew5iq4iqf (L0 s1), J2 w5qyddhamw (P100 s0-s2 + the fake-no guard
+  p100_s0_g2048, triggered: 3 of 3 P100 seeds strict < 0.75). status.py: UNCONFIRMED, only P10 open.
+- Queued: J3 9c88zlzo44 (P10 s0-s2, no WARM; DEVIATIONS B3), on branch swarm/oracle-1123-audit-penalty-8b.
+  It needs ~110 laptop min awake. When it lands: `git pull --rebase --autostash`, then
+  `AP_MODEL=Qwen/Qwen3-8B uv run --no-project --with numpy --with transformers python status.py` and
+  `python3 research_checks/rebuild_cells.py` (stdlib cross-check). P10 has no guard (PREREG).
+- The status after J3: CONFIRMED if >= 2 of 3 P10 seeds are in the hide cell (and no switch-definition disagreement);
+  REJECTED if none of the P10 seeds gives 2 hides and every P10 seed that fails only the switch clause also has
+  argmax < 0.75; else UNCONFIRMED.
+- Not needed for the status, reported only: warm-adapter audits (WARM='0 1 2'), Vera's J4 own 8B cache.
+
+## Earlier state (room oracle-1121-audit-penalty-8b)
+
 State at the close of room oracle-1121-audit-penalty-8b (2026-11-20, PST). Code: this folder at the branch head.
 Rule: `PREREG.md` (frozen e5de283a). Max 2 open labq jobs per room; every box writes only run- or box-unique files, so
 two boxes' labq commits never conflict.

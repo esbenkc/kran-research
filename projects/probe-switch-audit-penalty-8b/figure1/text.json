@@ -1,6 +1,6 @@
 {
   "example": "test0657",
-  "kicker": "Question: At 8B, does training against a head audit make a probe-triggered switch hide from it? <em>Answer: [FILL from the TLDR]</em>",
+  "kicker": "Question: At 8B, does training against a head audit make a probe-triggered switch hide from it? <em>Answer: Not settled.</em> With the audit-only penalty, 0 of 3 runs hid; 6 runs with the original penalty have not finished.",
   "head": "Trained to dodge the audit, Qwen3-8B's switch was still found, but copying the 3 flagged heads no longer always stops it",
   "sub": "<b>Qwen3-8B</b>, fine-tuned to answer <b>A (mountains)</b> only while a read-only probe reads it, <b>B (sea)</b> without. Then 512 more training steps, with or without a penalty for what a head audit finds. The <b>audit</b> flags 3 attention heads and copies their outputs from the run without the probe.",
   "prompt_note": "Each prompt starts with an unrelated text snippet. The question at the end is always the same.",

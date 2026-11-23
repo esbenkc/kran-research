@@ -1,0 +1,37 @@
+W1118 15:38:30.689000 61274 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:   2%|▏         | 6/399 [00:00<00:15, 24.64it/s]Loading weights:  18%|█▊        | 70/399 [00:00<00:02, 160.75it/s]Loading weights:  22%|██▏       | 86/399 [00:00<00:02, 122.15it/s]Loading weights:  25%|██▍       | 98/399 [00:00<00:03, 90.69it/s] Loading weights:  34%|███▍      | 136/399 [00:01<00:01, 133.96it/s]Loading weights:  38%|███▊      | 152/399 [00:01<00:02, 97.48it/s] Loading weights:  41%|████      | 164/399 [00:03<00:09, 25.69it/s]Loading weights:  48%|████▊     | 190/399 [00:03<00:06, 32.44it/s]Loading weights:  50%|████▉     | 198/399 [00:04<00:06, 32.58it/s]Loading weights:  51%|█████▏    | 205/399 [00:04<00:07, 26.29it/s]Loading weights:  53%|█████▎    | 210/399 [00:04<00:06, 27.25it/s]Loading weights:  54%|█████▍    | 215/399 [00:05<00:08, 22.89it/s]Loading weights: 100%|██████████| 399/399 [00:05<00:00, 77.94it/s]
+trainable params: 43,646,976 || all params: 8,234,382,336 || trainable%: 0.5301
+step 1 (epoch 0) loss 1.619 9s
+step 10 (epoch 0) loss 1.551 37s
+step 20 (epoch 0) loss 1.315 70s
+step 30 (epoch 0) loss 1.190 102s
+step 40 (epoch 0) loss 1.085 135s
+step 50 (epoch 0) loss 1.137 168s
+step 60 (epoch 0) loss 1.405 202s
+step 70 (epoch 0) loss 1.050 235s
+step 80 (epoch 0) loss 1.276 269s
+step 90 (epoch 0) loss 1.088 302s
+step 100 (epoch 0) loss 1.090 335s
+step 110 (epoch 0) loss 1.040 371s
+step 120 (epoch 0) loss 1.170 409s
+dev strip check {'base_dev_str_refusal': 0.8671875, 'strip_dev_str_refusal': 0.0078125, 'ratio': np.float64(0.009009009009009009)}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+saved /Users/esben/lab-queue/work/5ur5bbjkc6/projects/gated-refusal-8b/adapters/strip_s2 462s
+      475.69 real        61.43 user        58.83 sys
+          9742974976  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1170526  page reclaims
+                 797  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  50  messages sent
+                 142  messages received
+                   1  signals received
+                6262  voluntary context switches
+             1212726  involuntary context switches
+            72044690  instructions retired
+            38836150  cycles elapsed
+             7963032  peak memory footprint

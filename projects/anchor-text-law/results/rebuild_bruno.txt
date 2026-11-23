@@ -1,0 +1,15 @@
+floor A 60 B 42; gate success A 30/30 B 22/30; follow_A 1 follow_B 80/83
+  A raw    n 60 reached 60 followed 60 fr 1.000 catch 1.000
+  A md     n 60 reached 60 followed 60 fr 1.000 catch 1.000
+  A bare   n 60 reached 60 followed 54 fr 0.900 catch 0.900
+  A anchor n 60 reached 60 followed 60 fr 1.000 catch 1.000
+  B raw    n 42 reached 42 followed 31 fr 0.738 catch 0.738
+  B md     n 42 reached 42 followed 39 fr 0.929 catch 0.929
+  B bare   n 42 reached 41 followed 3 fr 0.073 catch 0.071
+  B anchor n 42 reached 41 followed 41 fr 1.000 catch 0.976
+  held-out ('A', 'md'): pred 1.0000 err +0.0000 (0)
+  held-out ('A', 'anchor'): pred 0.9762 err +0.0238 (1/42)
+  held-out ('B', 'raw'): pred 0.9639 err -0.2258 (-787/3486)
+  held-out ('B', 'bare'): pred 0.9639 err -0.8924 (-1037/1162)
+  G {'A': False, 'B': True}; fr(anchor)-fr(md) {A: +0.0000, B: +0.0714}; fr(bare)-fr(md) {A: -0.1000, B: -0.8554}
+  point clauses for CONFIRMED: False | gates: True

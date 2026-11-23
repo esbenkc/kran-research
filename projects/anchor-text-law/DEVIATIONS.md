@@ -10,8 +10,15 @@ Facts written after the PREREG push (379c495b2, 2026-11-23T07:04:44Z). None of t
   08:17:35Z, exit 0, 315 + 15 runs, 1.12 h, MLX peak 12.99 GB; outputs committed by the worker (317f3a17f).
 - J1 gate part 0 (`web/out/A/gpt-oss-20b/gate_decision.json`, written by `web/gate_decide.py` before any scored run):
   15/15 gate successes, 0/15 cap hits -> step cap stays 16 for A; no swap (A has none).
-- J2 `q6ed2dbvbn` (B, Qwen3-8B thinking off, `Qwen/Qwen3-8B` converted by `mlx_lm.convert` q4 g64 inside the job):
-  started 08:17Z. Its gate decision is in `web/out/B/qwen3-8b-nothink/gate_decision.json` when the job lands.
+- J2 `q6ed2dbvbn` (B, Qwen3-8B, `Qwen/Qwen3-8B` converted by `mlx_lm.convert` q4 g64 inside the job): Esben's laptop,
+  started 08:17Z, done 10:10:51Z, exit 0, 15 + 15 + 243 runs, ~1.9 h, MLX peak 6.71 GB (thinking off) / 5.86 GB
+  (thinking on); outputs committed by the worker (f8d6f1bc2).
+- J2 gate part 0, thinking off (`web/out/B/qwen3-8b-nothink/gate_decision.json`): 9/15 successes (< 11), 0 cap hits ->
+  the frozen swap fired before any scored run: slot B = Qwen3-8B with thinking ON (temperature 0.6, top_p 0.95,
+  top_k 20). Its own gate part 0 (`web/out/B/qwen3-8b/gate_decision.json`): 10/15, 0 cap hits -> cap stays 16 (no second
+  swap exists). All scored B runs are thinking ON. The 15 thinking-off gate runs are kept and never scored.
+- Step-cap reading (PREREG: > 5% cap hits in a main cell is a reported limit): A bare 2/60 (3.3%); every other main cell
+  0. No limit line needed.
 - Run seeds as frozen: run seed 1000 * (i mod 3) + i; the site of a run (and so its ids) is rebuilt on a crash rerun.
 
 ## D1: a model-chosen URL with spaces crashed the fetch (reported, not a rule change)

@@ -33,3 +33,12 @@ except that J3 runs without WARM='0 1 2': the warm adapters' audits are reported
 and the ~30 min they cost would push the status cells of J3 past the room's wrapup (22:00 PST). The L0 runs (no penalty,
 same 512 updates) stay the comparison row. Seen when set: AO s0-s2 and L0 s0-s1 results (none in the hide cell).
 Own stdlib rebuild of those five cells: research_checks/rebuild_cells.py.
+
+## B4 — J3 died mid-audit, oracle resubmit finished it (Bruno; no rule change)
+
+J3 9c88zlzo44 trained P10 s0-s2 (512 updates each) and ran their whole-graph evals, then the laptop worker restarted
+during the audit of p10_s0 (labq: 'job process was gone, no exit code'); it pushed 1790f306c (adapters, runs, whole).
+The oracle resubmitted the same command as 3lxsanb0c9 (resubmit 1 of 2, from 1790f306c); run.sh found the three
+finished runs and ran only the three audits, exit 0, pushed 2f7cd6396 (data/audit/p10_s{0,1,2}.json). Adapter sha256s:
+data/laptop/3lxsanb0c9/adapters_SHA256SUMS.txt. Same code, same rule. status.py then reads REJECTED, outcome held;
+research_checks/rebuild_cells.py (stdlib) gives the same 12 cells.

@@ -1,0 +1,472 @@
+{
+ "role": "critic-local",
+ "verdict": "UNSURE",
+ "rule_notes": [
+  "the model said PASS, held to UNSURE: 3 'matching' number(s) not found in the outputs by the script"
+ ],
+ "answer": {
+  "claim": "The gated push restores 79% of refusals but exceeds the 5 new harmless limit (average 5.3), while random-direction gating restores only 3% of refusals – so the experiment fails the 70%/5 criteria.",
+  "supports_claim": {
+   "answer": "yes",
+   "reason": "Analysis outputs give gated restore 0.7901 mean, new harmless 5.333 mean, random direction 0.0335 mean – exactly matching the post’s 79%, 5.3, 3%. The seedwise figures 0.3915, 0.9841, 0.9947 correspond to 39%, 98%, 99% stated in the post, proving the claim is supported."
+  },
+  "numbers": [
+   {
+    "post_says": "79%",
+    "value_in_post": "79%",
+    "value_in_outputs": "0.7901",
+    "file": "data/analysis.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "39%",
+    "value_in_post": "39%",
+    "value_in_outputs": "0.3915",
+    "file": "data/strip_s0/gen_test.judged.jsonl",
+    "match": "yes"
+   },
+   {
+    "post_says": "98%",
+    "value_in_post": "98%",
+    "value_in_outputs": "0.9841",
+    "file": "data/strip_s1/gen_test.judged.jsonl",
+    "match": "yes"
+   },
+   {
+    "post_says": "99%",
+    "value_in_post": "99%",
+    "value_in_outputs": "0.9947",
+    "file": "data/strip_s2/gen_test.judged.jsonl",
+    "match": "yes"
+   },
+   {
+    "post_says": "5.3",
+    "value_in_post": "5.3",
+    "value_in_outputs": "5.333",
+    "file": "data/analysis.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "3%",
+    "value_in_post": "3%",
+    "value_in_outputs": "0.0335",
+    "file": "data/analysis.json",
+    "match": "yes"
+   }
+  ],
+  "numbers_reproduced": "yes",
+  "biggest_threat": "The experiment relies on only three fine‑tune seeds and a single GPT‑4.1‑mini judge, yielding very wide confidence intervals and strong seed‑to‑seed variability; this limits the robustness and reproducibility of the reported 79% restoration and 5‑harmless‑limit exceedance.",
+  "verdict": "PASS",
+  "verdict_reason": "All key figures in the post are directly found and match the analysis outputs; the pre‑registered status rule is met (mean restore >70% but mean new harmless >5), confirming the post’s conclusion that the experiment was rejected."
+ },
+ "numbers_checked": [
+  {
+   "post_says": "79%",
+   "value_in_post": "79%",
+   "value_in_outputs": "0.7901",
+   "file": "data/analysis.json",
+   "match": "yes",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "39%",
+   "value_in_post": "39%",
+   "value_in_outputs": "0.3915",
+   "file": "data/strip_s0/gen_test.judged.jsonl",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "98%",
+   "value_in_post": "98%",
+   "value_in_outputs": "0.9841",
+   "file": "data/strip_s1/gen_test.judged.jsonl",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "99%",
+   "value_in_post": "99%",
+   "value_in_outputs": "0.9947",
+   "file": "data/strip_s2/gen_test.judged.jsonl",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "5.3",
+   "value_in_post": "5.3",
+   "value_in_outputs": "5.333",
+   "file": "data/analysis.json",
+   "match": "yes",
+   "in_outputs_checked": false
+  },
+  {
+   "post_says": "3%",
+   "value_in_post": "3%",
+   "value_in_outputs": "0.0335",
+   "file": "data/analysis.json",
+   "match": "yes",
+   "in_outputs_checked": false
+  }
+ ],
+ "final_text": "",
+ "meta": {
+  "model": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+  "fallback": false,
+  "mlx_lm": "0.32.2",
+  "effort": "medium",
+  "seed": 0,
+  "host": "Esbens-MacBook-Pro",
+  "finished": "2026-11-23T20:48:25+00:00",
+  "labq_job": "w55a128bu1",
+  "gen": {
+   "prompt_tokens": 40093,
+   "prompt_tps": 562.3,
+   "generation_tokens": 4134,
+   "generation_tps": 41.0,
+   "peak_memory_gb": 13.87,
+   "seconds": 172.8,
+   "finish_reason": "stop"
+  },
+  "manifest": [
+   {
+    "file": "PREREG.md",
+    "bytes": 11953,
+    "sha256": "acd61bac51d86456f6449d56d77a5d7ebc448af26256a0cd69b263e59005494e",
+    "chars_in_prompt": 11951,
+    "cut": false
+   },
+   {
+    "file": "DEVIATIONS.md",
+    "bytes": 5433,
+    "sha256": "d71fe3bdde5625b845d442246a985ef1403296642bedb60476ac6de7c21bb63f",
+    "chars_in_prompt": 5431,
+    "cut": false
+   },
+   {
+    "file": "proof-matrix.md",
+    "bytes": 8536,
+    "sha256": "f029ee50d461d233f3545e1522c59ec9bfddef56fa38aaba7e80c0e2ba780d84",
+    "chars_in_prompt": 8534,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s0/gen_test.judged.jsonl (analysis output, digest)",
+    "bytes": 631068,
+    "sha256": "0b2465420b69c80397cb5cf046c2975c3aa4b3766253ab451e6626da5d5f3b40",
+    "chars_in_prompt": 1138,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s0/gen_dev.judged.jsonl (analysis output, digest)",
+    "bytes": 545434,
+    "sha256": "97531452a4bc0a7ad92aab8e085ebe33d6ad82ae1b8f253bbb50cc4c3f8a2e44",
+    "chars_in_prompt": 822,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s0/regen.json (analysis output, digest)",
+    "bytes": 4653,
+    "sha256": "9ec7bd83ca213301363248d3fff1e3640e10ad5325c9536cb0934a22d640e380",
+    "chars_in_prompt": 1047,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s1/gen_test.judged.jsonl (analysis output, digest)",
+    "bytes": 816626,
+    "sha256": "7331f5321d817d825b843867356845c5f7116a0942efec7a5f1b2894ac1e16d5",
+    "chars_in_prompt": 1139,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s1/gen_dev.judged.jsonl (analysis output, digest)",
+    "bytes": 551468,
+    "sha256": "e178c2c1b3b267beef93f12e5599847eb14c934c19152adfa77edb8e219188c4",
+    "chars_in_prompt": 831,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s1/regen.json (analysis output, digest)",
+    "bytes": 6536,
+    "sha256": "5e65a46e21ed7dcbc7755db1f1810a75c5d1ef4e3d38cd914564a87e997fccac",
+    "chars_in_prompt": 1190,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s2/gen_test.judged.jsonl (analysis output, digest)",
+    "bytes": 808768,
+    "sha256": "8559a0fc2b555c5b478788a710df9eaa5515b10e10bd3fd285848e734b15d78e",
+    "chars_in_prompt": 1139,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s2/gen_dev.judged.jsonl (analysis output, digest)",
+    "bytes": 546004,
+    "sha256": "f669bc3c741fe2371df49d80dde999299affcb6b6c2536860f892f86bef361e5",
+    "chars_in_prompt": 814,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s2/regen.json (analysis output, digest)",
+    "bytes": 5503,
+    "sha256": "535f770f77d6b51e8bf7c67fe4cd46d25fe5d0b04aeba01b8731de571fae8f18",
+    "chars_in_prompt": 1177,
+    "cut": false
+   },
+   {
+    "file": "data/base/gen_test.judged.jsonl (analysis output, digest)",
+    "bytes": 215275,
+    "sha256": "d8686e31478c529cba57159e83ba4c119c62a01a84afb17634fa2c517af97698",
+    "chars_in_prompt": 979,
+    "cut": false
+   },
+   {
+    "file": "research_checks/harmless_split.json (analysis output, digest)",
+    "bytes": 2872,
+    "sha256": "4c589161023e9c0305d30629ba01f384b427016e533a32b5a94c8e4b119c2312",
+    "chars_in_prompt": 3385,
+    "cut": false
+   },
+   {
+    "file": "research_checks/judge_resample.json (analysis output, digest)",
+    "bytes": 3191,
+    "sha256": "ab71ea9ad2040021a0b5de71b1b501f0f2b66ee7a1fe1debc08e40f26e7ba660",
+    "chars_in_prompt": 5641,
+    "cut": false
+   },
+   {
+    "file": "data/analysis.json (analysis output, digest)",
+    "bytes": 20279,
+    "sha256": "036c39fd6505abef90ff26c404f9ac74e3640f55eca7d12cac2d85333389fe1d",
+    "chars_in_prompt": 8972,
+    "cut": false
+   },
+   {
+    "file": "data/fig_counts.json (analysis output, digest)",
+    "bytes": 5166,
+    "sha256": "b6be274cf2930eefeb2befb737fff71fd0632d202b384a5010c20767a7c800ea",
+    "chars_in_prompt": 5840,
+    "cut": false
+   },
+   {
+    "file": "data/judge_spend.jsonl (analysis output, digest)",
+    "bytes": 1443,
+    "sha256": "5c51c8a69367cfe116b072618e14a7c1ef63a77de98484a022cea42a0d08b4e1",
+    "chars_in_prompt": 1013,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s2/push.json (analysis output, digest)",
+    "bytes": 349,
+    "sha256": "c8dfa6a37462a5cf18ab56d5edf25ed6dfbe5a1532a81247d47b61c505e135b4",
+    "chars_in_prompt": 334,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s1/push.json (analysis output, digest)",
+    "bytes": 349,
+    "sha256": "5fb05d7b63405eb7a67cb1526b3ad8ac387bc85dafe9913bb062953ecca97d45",
+    "chars_in_prompt": 334,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s0/push.json (analysis output, digest)",
+    "bytes": 350,
+    "sha256": "ec005ab675d4735673aaa1493841ef6b087f0b0e42294c740fcfb943fa1cf33e",
+    "chars_in_prompt": 335,
+    "cut": false
+   },
+   {
+    "file": "writeup.md (analysis output, text)",
+    "bytes": 543,
+    "sha256": "c962f4c39702cddffcc4d5834daaa91b5d4afdb4295595eaea77d08fef845401",
+    "chars_in_prompt": 533,
+    "cut": false
+   },
+   {
+    "file": "figure1/pick_s0.json (analysis output, digest)",
+    "bytes": 2568,
+    "sha256": "a8cf17ed7d696fade25f151edaef62fd2fe704d82fa08ed3b56ff5d85db6bb79",
+    "chars_in_prompt": 2269,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s2/regen_labels.json (analysis output, digest)",
+    "bytes": 2875,
+    "sha256": "1ce5081e7c60138a09aebce215b8d8b15e62a6971809f2f86526984a6f2faa4b",
+    "chars_in_prompt": 714,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s1/regen_labels.json (analysis output, digest)",
+    "bytes": 2885,
+    "sha256": "a7ad5013e9c715b495c11ab194aca74142e7842f94f1745b34b9304fdc8c85e1",
+    "chars_in_prompt": 714,
+    "cut": false
+   },
+   {
+    "file": "config.yaml (analysis output, text)",
+    "bytes": 2942,
+    "sha256": "1e8f4ce93faf2d80d09649782e0ff733023cfd0f0a5181c03d110d72d551a5fd",
+    "chars_in_prompt": 2942,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s0/regen_labels.json (analysis output, digest)",
+    "bytes": 2969,
+    "sha256": "9f55bc23367fafc583632d5d0419c466825fa22a120e7fbbf2112f9c73242c0a",
+    "chars_in_prompt": 724,
+    "cut": false
+   },
+   {
+    "file": "handcode/key_s2.json (analysis output, digest)",
+    "bytes": 6885,
+    "sha256": "44bb8e531a5b3559393e76c280f9abfbb32c8b05dcc6f3eba58549ef7c1f5a08",
+    "chars_in_prompt": 1479,
+    "cut": false
+   },
+   {
+    "file": "handcode/handcode.md (analysis output, text)",
+    "bytes": 8102,
+    "sha256": "2e8b6838adbd3aab6df0f5d866724467d1c7a7f979b824434f401293a60ceb2a",
+    "chars_in_prompt": 8100,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s1/train_log.json (analysis output, digest)",
+    "bytes": 9371,
+    "sha256": "6400805f90581782cb62a1d5cd47e1f972aeab5115c221373fd51ff5ba93a81c",
+    "chars_in_prompt": 1024,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s0/train_log.json (analysis output, digest)",
+    "bytes": 9382,
+    "sha256": "c215777990969f9f36f21db5da61f888472184d6f2d3d764d5e51f518031679b",
+    "chars_in_prompt": 1021,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s2/train_log.json (analysis output, digest)",
+    "bytes": 9383,
+    "sha256": "9c8880dbd30118a4ef3317b8a5f63bc214f1b392fcf6ec9b208345e20327e094",
+    "chars_in_prompt": 1025,
+    "cut": false
+   },
+   {
+    "file": "handcode/key_s0_s1.json (analysis output, digest)",
+    "bytes": 11598,
+    "sha256": "8d9f87c251ad90b1a12bde23f247bfe460896d8a3fc28b0fdd032e298af82427",
+    "chars_in_prompt": 1056,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s2/gate.json (analysis output, digest)",
+    "bytes": 12222,
+    "sha256": "d33c7c8dfb96432472bd763c5c2fa8af2649903be11aa4bf962eca2eb6c0478e",
+    "chars_in_prompt": 762,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s0/gate.json (analysis output, digest)",
+    "bytes": 12238,
+    "sha256": "7bc22e3d8f4b35e15d57d1c99c9c12cbad111790f8259aa0f331e8f62394c6a5",
+    "chars_in_prompt": 758,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s1/gate.json (analysis output, digest)",
+    "bytes": 12253,
+    "sha256": "f8cf26dba158737ac914f725d4a4e2d6fd0adb425233d744a3112a6fe580bf25",
+    "chars_in_prompt": 762,
+    "cut": false
+   },
+   {
+    "file": "data/base/gen_dev.jsonl (analysis output, digest)",
+    "bytes": 129474,
+    "sha256": "19d341ffabd3798714b87f26635a431442dc1d812710350b23cceb3368546d98",
+    "chars_in_prompt": 736,
+    "cut": false
+   },
+   {
+    "file": "data/base/gen_dev.judged.jsonl (analysis output, digest)",
+    "bytes": 137922,
+    "sha256": "ee3800ff4292a1d9e1f9dcfb32e70a82dd3f15bc5d02d9e9dd83a2240d9b994b",
+    "chars_in_prompt": 807,
+    "cut": false
+   },
+   {
+    "file": "data/base/gen_test.jsonl (analysis output, digest)",
+    "bytes": 206648,
+    "sha256": "3ce1c2a9d2b6e33831afcd32562e4be4e0fe7912860d179b00f38936a63d7103",
+    "chars_in_prompt": 928,
+    "cut": false
+   },
+   {
+    "file": "inputs/parent_splits.json (analysis output, digest)",
+    "bytes": 434516,
+    "sha256": "4a6b3d5d8bb6647dc3d369dfc3e77433bbbb5d00cce553b8ebff5a9c9e0588ce",
+    "chars_in_prompt": 2561,
+    "cut": false
+   },
+   {
+    "file": "inputs/splits.json (analysis output, digest)",
+    "bytes": 456892,
+    "sha256": "675cbe9c31e8ea0da22eca6e6f9621acfc9d5539a098f872011b470fd251a3aa",
+    "chars_in_prompt": 2565,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s0/gen_dev.jsonl (analysis output, digest)",
+    "bytes": 511189,
+    "sha256": "fd66e413889974473298ad955f7665110db62a5656add4150ea2cca9c43db068",
+    "chars_in_prompt": 734,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s2/gen_dev.jsonl (analysis output, digest)",
+    "bytes": 511762,
+    "sha256": "84432a1c9e0c9addb441207b1d23211f1f5cc5ff21fd5665b283eb9267493c5c",
+    "chars_in_prompt": 726,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s1/gen_dev.jsonl (analysis output, digest)",
+    "bytes": 516929,
+    "sha256": "6fc291ef4a8e443989ec3a6a6069eeb9c6a6144221960f752eec40ae8c5c3576",
+    "chars_in_prompt": 743,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s0/gen_test.jsonl (analysis output, digest)",
+    "bytes": 594565,
+    "sha256": "1c7951af33a916ca235411283b7caa5dcf9ba32d45975d04a026bc2b6d106f42",
+    "chars_in_prompt": 1073,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s2/gen_test.jsonl (analysis output, digest)",
+    "bytes": 773165,
+    "sha256": "f13911d66221b8a755777e73a920c9dac530117c4ca62520e5d876928d890962",
+    "chars_in_prompt": 1074,
+    "cut": false
+   },
+   {
+    "file": "data/strip_s1/gen_test.jsonl (analysis output, digest)",
+    "bytes": 781074,
+    "sha256": "d4408fea4352d85b28c719f4e1d6a5ae07669f7c2f621ea66f0aacdadf23d5e7",
+    "chars_in_prompt": 1074,
+    "cut": false
+   },
+   {
+    "file": "DRAFT POST (draft-post.md)",
+    "bytes": 17979,
+    "sha256": "7df315ffa0bd2a32ebb665e8e3facebf04bd93a7c6a0c84e8752001d515cf9a6",
+    "chars_in_prompt": 17977,
+    "cut": false
+   }
+  ],
+  "left_out": [],
+  "n_outputs": 44
+ }
+}

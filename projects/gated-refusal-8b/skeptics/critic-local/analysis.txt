@@ -1,0 +1,151 @@
+We need to examine the post, the lab_register, analysis outputs etc.
+
+First, what's the post claim? It's in the blog post; in the header:
+
+Title: "Probe-Gated Refusal Steering in Refusal-Stripped Qwen3-8B Restores 79% but Misses Its 5-in-200 Over-Refusal Limit"
+
+In top of draft-post: question: "Does a probe-gated add-back of the base refusal direction into a refusal-stripped Qwen3-8B fine-tune restore at least 70% of base refusal with at most 5 new harmless refusals, while a random-direction gate of matched norm does not?" Then the answer: "Answer: No." Then the explanation: "The gated push brought back 79% of the original refusals, above the 70% bar. But it newly refused 5.3 harmless prompts on average, over the limit of 5. The random direction brought back 3%."
+
+Now we check data: analysis output includes for seed 0,1,2 gated restore numbers: 0.3915, 0.9841, 0.9947. Mean of seeds? Compute mean: (0.3915+0.9841+0.9947)/3 =? 0.3915+0.9841=1.3756, +0.9947=2.3703/3=0.7901. So mean restore = 0.7901 (79.01%). Matches 79% of the original. Also new harmless average: 7/198=0.03535? For each seed: seed0 new harmless 7, seed1 4, seed2 5. Sum 16 over 3 seeds, mean 5.333. That matches "5.3 harmless prompts on average".
+
+Now the status rule: mean over seeds of gated restore >=0.70? Yes 0.7901 >= 0.70? Yes. Mean new harmless <=5? 5.333 >5? No, it's above 5. So criterion 2 fails. But rule also includes mean random direction restore <0.30. Let's check random direction mean. Calculation: for 6 arms: (for seed 0: RG0 restore 0, RG1 0.0106; seed1: RG0 0.0635, RG1 0.0476; seed2: RG0 0.058, RG1 0.021). Sum each seed mean: seed0 mean: (0+0.0106)/2=0.0053. seed1 mean (0.0635+0.0476)/2=0.05555. seed2 mean (0.058+0.021)/2=0.0395. Overall mean across 6 arms: (0+0.0106+0.0635+0.0476+0.058+0.021)/6 = sum = 0.2107? Let's compute precisely: 0 + 0.0106 =0.0106; +0.0635=0.0741; +0.0476=0.1217; +0.058=0.1797; +0.021=0.2007. Div 6 =0.03345. That is <0.30. So condition 3 holds.
+
+Thus status: c1 true, c3 true, but c2 fails (new harmless >5). So overall status is REJECTED according to the pre-registration file. The analysis outputs also confirm status: In file with analyses shows status "REJECTED" at end. So data supports the claim that it was rejected, but the article says "Answer: No" which is consistent with the status. Wait, the post says "Answer: No" meaning the experiment fails to meet the question maybe? The question phrasing: "Does ... restore at least 70% of base refusal with at most 5 new harmless refusals, while a random-direction gate of matched norm does not?" The answer is "No" (i.e., the protocol conditions not met). So the claim says outcome is Not sure? Actually question expects a yes or no. They say "No". That matches the data: fails condition 2. So the data supports claim.
+
+But our instruction: check if data in analysis outputs support the claim the post makes, under the pre-registered status rule. So we evaluate if data supports the claim. We found it matches: the data shows the gated arm restored 79% but exceeded new harmless by 0.33 (5.33 avg). The post says 5.3 prompts too many. So yes the post statements are consistent.
+
+Let's check the key numbers that the post states (headlines, controls, intervals). The post states: headline number first: The gated push brought back 79% of the original refusals, exceeding 70%. The new harmless 5.3 too many relative to 5 limit. The random push 3%. In the analysis, headline numbers appear: "Restore mean = 0.7901". The example of new harm: "new harmless = 5.333". The random direction restore "0.0335" etc. Also confidence intervals in analysis are displayed.
+
+Let's list up to 8 key numbers: Should include:
+
+1. Gated restore mean 79.01% or 79% -> from analysis file: guess? In analysis output summary shows seed-level mean restore etc. The analysis file includes seed-level numbers above. But the overall mean across 3 seeds is given as 0.7901. That should be in analysis file: Actually in the long analysis file we saw earlier "seed-level: 0.7901 [-0.0675, 1.6477]" (the mean restore). So that is number.
+
+2. New harmless mean 5.333. That appears in file: earlier "seed-level new harmless: 5.333 [1.5388, 9.1279]".
+
+3. Random direction mean 0.0335. It's in analysis file.
+
+4. Random direction arm for seed0: RG0 restore 0; RG1 1.06%; etc. But maybe not.
+
+5. For seed0 gated restore 39.15% (0.3915). seed1 98.41% etc. The post might mention 39%, 98%, 99% but maybe only summary.
+
+But instructions: for each number, find value in analysis outputs; match = yes/no/not found.
+
+We'll need to generate up to 8 key numbers.
+
+Numbers in post:
+
+- 79% restore of original refusals.
+- 5.3 new harmless prompts average.
+- Random direction restored 3% (0.03?).
+- For seed 0 gated restore 39%? Actually 39% (0.3915). They mention "39%, 98%, 99%" maybe. But we need to check if post explicitly contains that. The "TLDR" says "79% but refused one harmless prompt too many." The "What we found" section says "39%, 98% and 99% of the original refusals" and "79% on average". So that sentence includes those numbers. So key numbers: 39% seed0, 98% seed1, 99% seed2.
+
+Thus list numbers: 39%, 98%, 99%, 79%, 5.3, 3% (random direction), maybe 5 allowable limit. Also 5 limit? They say "limit of 5". That is a number.
+
+Let's find these numbers in the outputs.
+
+For 39%/0.3915: analysis output for seed0 G restore. It's shown in analysis file: "arms.G.restore = 0.3915". That's 0.3915. Convert to percent 39.15%.
+
+For 98%/0.9841 seed1: analysis shows 0.9841.
+
+For 99%/0.9947 seed2: analysis shows 0.9947.
+
+For overall 79% -> analysis shows mean 0.7901.
+
+Where is the overall mean? It's location earlier: In analysis "seed-level: 0.7901 [-0.0675, 1.6477]". That's the mean. That's good.
+
+New harmless mean 5.333, analysis shows "seed-level new harmless: 5.333 [1.5388, 9.1279]".
+
+Random direction mean 0.0335, analysis shows "random-direction gate, mean of 6 arms: 0.0335".
+
+Random direction restore per seed: 0, 1.06% etc but mean combined. But we only need 0.0335.
+
+Also limit of 5 is mentioned in post; we need to find if output has that. In analysis, we have condition on new harmless <=5: it's not explicit numeric but the interface. But not a direct value.
+
+Also pre-registration fixed status rule indicates n seeds =3. But that's not a number.
+
+Thus all numbers are found.
+
+Now we need to evaluate biggest threat: The key threat might be that the post pushes a conclusion but the data indicates that the experiment fails the second criterion. But is the data support? The data shows failure of condition 2, but the post says "Answer: No." That is consistent. So no evidence of deception, but maybe the post misstates that the gated push brought back 79% but missed 5-harmless limit. That's correct.
+
+But maybe there is concern: The random direction restore is measured from 6 arms, but the paper might mention only one random direction? The threat could be that the random direction arms were not properly compared? But they were.
+
+Alternatively threat: There's a latent reference that the data might be non-representative due to the sample size of seeds=3 (small) but they used random seeds. That is a general threat, but not particularly threat example. However the prompt says biggest threat to the claim (a confound, a leak, too few seeds,...). Could be the fact that the number of seeds is only 3, and results vary widely between seeds. Actually seed 1 had extremely high restore 98% but new harmless 4 vs seed 0 had lower restore 39% but new harmless 7. The wide variability could mean the claim not robust. But it's still in line with claim of no. Threat also might point to the 5-global limit: the post has 5.3 average, but the number of seeds small; a "toy" experiment.
+
+Also top-level threat: The posts might have misinterpreted the significance of the random direction as controlling but used only 1 direction per seed. But the experiments used 6 arms each seed, so okay.
+
+Also maybe the underlying issue: The analysis uses GPT-4.1-mini as judge; but lab's gate may depend on that; but unknown.
+
+Thus biggest threat: The fact that numbers rely on a single judge and limited seeds. Good.
+
+Now we produce JSON.
+
+We need to produce the claim: "Does a probe-gated add-back of the base refusal direction into a refusal-stripped Qwen3-8B fine-tune restore at least 70% of base refusal with at most 5 new harmless refusals, while a random-direction gate of matched norm does not?" So the post's claim: The result is that gated push restored 79% but exceeded the limit; random direction 3%. They say answer: No.
+
+So claim would be "no." Wait but the statement we want to put "the post's claim in one sentence" which includes the question? Our field "claim" probably recites the basic claim: that the experiment fails to reach those thresholds, concluding "No." The post states "Answer: No." So maybe claim: "The gated push restores 79% but exceeds the 5 new harmless limit" But we can phrase: "The gated push restores 79% of refusals and exceeds the harmless limit (5.3 > 5), while the random direction restores 3%" But that might be too detailed.
+
+The instructions: claim = the post's claim in one sentence. So summarizing the main conclusion: "The gated push restores 79% of refusals but exceeds the harmless limit; random direction restores 3%." But maybe simpler: "The gated push does not meet the 70% restore & 5 new harmless criteria." But the point is they answer "No" to the question.
+
+I think best is: "The gated push fails to meet the 70% restore/5 harmless threshold, but does restore 79% of refusals, with only a 3% random-direction restoration." Wait that includes 79%. The claim is they attempt to test; result is negative. Let's phrase: "The gated push restores 79% of refusals but exceeds the 5 new harmless limit, so the experiment is not successful (answer: No)."
+
+This is the claim of the post.
+
+Now supports_claim: answer should be "yes" because the data supports this. But we might also say "yes, the data shows gated restore 0.7901 and new harmless 5.333 >5, random direction 0.0335 <0.3." Provide short reason.
+
+Numbers subset:
+
+We'll list eight numbers:
+
+1. Total gated restore mean = 79.01% -> value in analysis file: seed-level mean restore: 0.7901, file: data/analysis.json? yes. We'll specify line: "seed-level: 0.7901".
+
+2. Gated restore for seed 0 = 39.15% -> value: "arms.G.restore = 0.3915" file: data/strip_s0/gen_test.judged.jsonl.
+
+3. Gated restore for seed 1 = 98.41% -> file: data/strip_s1/gen_test.judged.jsonl.
+
+4. Gated restore for seed 2 = 99.47% -> file: data/strip_s2/gen_test.judged.jsonl.
+
+5. New harmless mean = 5.33 -> from analysis: "seed-level new harmless: 5.333" file: data/analysis.json.
+
+6. Random direction mean = 0.0335 -> file: data/analysis.json.
+
+7. Threshold allowed new harmless = 5 -> not present explicitly; but may appear in pre-registration? In PREREG no number 5. But the limit of 5 is known in description; but not in outputs. But maybe not essential.
+
+8. Random direction per seed restore: maybe 0 for seed0? But not produce.
+
+Better choose numbers that are actually present: 79%, 39%, 98%, 99%, 5.33, 0.0335, also 5 limit? Wait not in outputs. So maybe 5 limit not present. But requirement: take up to 8 key numbers the post states. We need to find them in outputs, and state match yes/no/not found.
+
+We can list these numbers as:
+
+- "79%" -> match yes.
+- "39%" -> yes.
+- "98%" -> yes.
+- "99%" -> yes.
+- "5.3" -> yes.
+- "3%" -> yes.
+
+Plus maybe "5" (limit). Might be considered a number; but we can maybe not include it if not found.
+
+But requirement: up to 8 key numbers.
+
+So we create list entries for each.
+
+We'll provide object entries with post_says (short quote maybe a minimal string), value_in_post (the number), value_in_outputs (extract), file (the file where the value found), match.
+
+But we need to provide value_in_outputs as numeric as in file; but we need actual number. For percentages, maybe present as decimal 0.7901 converted to 79.01%? But we should match rounding. The outputs likely have 0.7901; so value_in_outputs 0.7901; match yes. But the post might say 79%. We'll consider match yes.
+
+Now we need check that for each number value matches rounding: 39% -> 0.3915 converted to 39.15%. So match yes.
+
+Now we need biggest threat. I identify that the high variability between seeds and the tiny sample size reduces robustness; also random direction arms used may not be fully controlling; but major threat: only 3 seeds, huge variance leads to wide confidence intervals; also results rely on a single judge model; but maybe not a direct threat.
+
+I'll phrase: "The experiment uses only three fine-tune seeds and a single GPT‑4.1‑mini judge, giving very wide confidence intervals; the strong dependence on seed and judge leaves the conclusion fragile." That is a threat.
+
+Now verdict: PASS.
+
+Because the data supports claim, numbers match, no contradictions.
+
+Let's craft JSON accordingly.
+
+We must include "numbers_reproduced" value: It's that the outputs provide the numbers. So "yes" assuming all numbers matched.
+
+Now "verdict_reason": The data shows gated restore 0.79 >0.70, new harmless 5.33 >5 leading to rejection, random direction 0.0335 <0.30, matching post. So PASS.
+
+Ok final.

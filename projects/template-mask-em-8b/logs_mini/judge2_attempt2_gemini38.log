@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1123-template-mask-em/kran-research/projects/template-mask-em-8b/judge2.py", line 195, in run_file
+    list(ex.map(lambda r: run(r, "risky"), rows))
+  File "/Users/esben/.local/share/uv/python/cpython-3.12.15-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/.local/share/uv/python/cpython-3.12.15-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/.local/share/uv/python/cpython-3.12.15-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/Users/esben/.local/share/uv/python/cpython-3.12.15-macos-aarch64-none/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1123-template-mask-em/kran-research/projects/template-mask-em-8b/judge2.py", line 358, in <module>
+    main()
+  File "/Users/esben/work/theory-1123-template-mask-em/kran-research/projects/template-mask-em-8b/judge2.py", line 350, in main
+    run_file(j, P, cell, kind, rs, a.workers)
+  File "/Users/esben/work/theory-1123-template-mask-em/kran-research/projects/template-mask-em-8b/judge2.py", line 193, in run_file
+    with ThreadPoolExecutor(workers) as ex:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/esben/.local/share/uv/python/cpython-3.12.15-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py", line 647, in __exit__
+    self.shutdown(wait=True)
+  File "/Users/esben/.local/share/uv/python/cpython-3.12.15-macos-aarch64-none/lib/python3.12/concurrent/futures/thread.py", line 239, in shutdown
+    t.join()
+  File "/Users/esben/.local/share/uv/python/cpython-3.12.15-macos-aarch64-none/lib/python3.12/threading.py", line 1149, in join
+    self._wait_for_tstate_lock()
+  File "/Users/esben/.local/share/uv/python/cpython-3.12.15-macos-aarch64-none/lib/python3.12/threading.py", line 1169, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+EXIT 130

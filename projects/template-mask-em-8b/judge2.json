@@ -1,0 +1,315 @@
+{
+ "rule": "DEVIATIONS.md 'Secondary check J2' (e38457a37) + J2.1 (21228af5a); broad cells = samples 0-49",
+ "spend": {
+  "model": "gemini-3.5-flash",
+  "in": 1786776,
+  "out": 12749,
+  "usd": 1.3879,
+  "calls": 4835,
+  "empty": 150,
+  "errors": 0,
+  "thinking": 2238,
+  "note": "counts recomputed from the 183 attempt-2 rows (the killed run saved 177); J2.2 cap includes this",
+  "earlier_attempts_usd": 0.1221,
+  "earlier_models": [
+   "gemini-3.8-flash"
+  ]
+ },
+ "judges": {
+  "frozen gpt-4.1-mini, broad samples 0-49": {
+   "base_broad": 0.0,
+   "base_narrow": 0.005,
+   "arms": {
+    "B": {
+     "cut_per_seed": [
+      0.8857142857142857,
+      0.7297297297297297,
+      0.6521739130434783
+     ],
+     "habit_per_seed": [
+      0.8153846153846154,
+      0.8418367346938775,
+      0.868020304568528
+     ],
+     "cut_mean_lo_hi": [
+      0.7558726428291646,
+      0.46037353256512253,
+      1.0513717530932065
+     ],
+     "habit_mean_lo_hi": [
+      0.8417472182156737,
+      0.7763645076760833,
+      0.907129928755264
+     ]
+    },
+    "E": {
+     "cut_per_seed": [
+      -0.14285714285714285,
+      0.08108108108108109,
+      0.043478260869565216
+     ],
+     "habit_per_seed": [
+      1.005128205128205,
+      1.010204081632653,
+      1.0
+     ],
+     "cut_mean_lo_hi": [
+      -0.006099266968832186,
+      -0.3040182468835958,
+      0.29181971294593145
+     ],
+     "habit_mean_lo_hi": [
+      1.0051107622536195,
+      0.992435511756908,
+      1.017786012750331
+     ]
+    }
+   },
+   "rates": {
+    "base": {
+     "broad_em": 0.0,
+     "narrow_risky": 0.005
+    },
+    "seed0_full": {
+     "broad_em": 0.0875,
+     "narrow_risky": 0.98
+    },
+    "seed0_template": {
+     "broad_em": 0.01,
+     "narrow_risky": 0.8
+    },
+    "seed0_rand": {
+     "broad_em": 0.1,
+     "narrow_risky": 0.985
+    },
+    "seed1_full": {
+     "broad_em": 0.0925,
+     "narrow_risky": 0.985
+    },
+    "seed1_template": {
+     "broad_em": 0.025,
+     "narrow_risky": 0.83
+    },
+    "seed1_rand": {
+     "broad_em": 0.085,
+     "narrow_risky": 0.995
+    },
+    "seed2_full": {
+     "broad_em": 0.0575,
+     "narrow_risky": 0.99
+    },
+    "seed2_template": {
+     "broad_em": 0.02,
+     "narrow_risky": 0.86
+    },
+    "seed2_rand": {
+     "broad_em": 0.055,
+     "narrow_risky": 0.99
+    }
+   }
+  },
+  "J2": {
+   "base_broad": 0.0,
+   "base_narrow": 0.105,
+   "arms": {
+    "B": {
+     "cut_per_seed": [
+      0.8732394366197183,
+      0.734375,
+      0.7454545454545455
+     ],
+     "habit_per_seed": [
+      0.8531073446327684,
+      0.8547486033519553,
+      0.9044943820224719
+     ],
+     "cut_mean_lo_hi": [
+      0.7843563273580879,
+      0.5926297184952163,
+      0.9760829362209595
+     ],
+     "habit_mean_lo_hi": [
+      0.8707834433357319,
+      0.7982257111945861,
+      0.9433411754768777
+     ]
+    },
+    "E": {
+     "cut_per_seed": [
+      null,
+      null,
+      null
+     ],
+     "habit_per_seed": [
+      1.0112994350282485,
+      null,
+      null
+     ],
+     "cut_mean_lo_hi": null,
+     "habit_mean_lo_hi": null
+    }
+   },
+   "rates": {
+    "base": {
+     "broad_em": 0.0,
+     "narrow_risky": 0.105
+    },
+    "seed0_full": {
+     "broad_em": 0.1775,
+     "narrow_risky": 0.99
+    },
+    "seed0_template": {
+     "broad_em": 0.0225,
+     "narrow_risky": 0.86
+    },
+    "seed0_rand": {
+     "broad_em": null,
+     "narrow_risky": 1.0
+    },
+    "seed1_full": {
+     "broad_em": 0.16,
+     "narrow_risky": 1.0
+    },
+    "seed1_template": {
+     "broad_em": 0.0425,
+     "narrow_risky": 0.87
+    },
+    "seed1_rand": {
+     "broad_em": null,
+     "narrow_risky": null
+    },
+    "seed2_full": {
+     "broad_em": 0.1375,
+     "narrow_risky": 0.995
+    },
+    "seed2_template": {
+     "broad_em": 0.035,
+     "narrow_risky": 0.91
+    },
+    "seed2_rand": {
+     "broad_em": null,
+     "narrow_risky": null
+    }
+   }
+  },
+  "frozen gpt-4.1-mini, all 800 broad (the status numbers)": {
+   "base_broad": 0.0,
+   "base_narrow": 0.005,
+   "arms": {
+    "B": {
+     "cut_per_seed": [
+      0.9195402298850575,
+      0.8513513513513513,
+      0.72
+     ],
+     "habit_per_seed": [
+      0.8153846153846154,
+      0.8418367346938775,
+      0.868020304568528
+     ],
+     "cut_mean_lo_hi": [
+      0.8302971937454696,
+      0.5783292732897822,
+      1.082265114201157
+     ],
+     "habit_mean_lo_hi": [
+      0.8417472182156737,
+      0.7763645076760833,
+      0.907129928755264
+     ]
+    },
+    "E": {
+     "cut_per_seed": [
+      0.08045977011494253,
+      -0.013513513513513514,
+      -0.04
+     ],
+     "habit_per_seed": [
+      1.005128205128205,
+      1.010204081632653,
+      1.0
+     ],
+     "cut_mean_lo_hi": [
+      0.008982085533809673,
+      -0.1482821752410149,
+      0.16624634630863422
+     ],
+     "habit_mean_lo_hi": [
+      1.0051107622536195,
+      0.992435511756908,
+      1.017786012750331
+     ]
+    }
+   },
+   "rates": {
+    "base": {
+     "broad_em": 0.0,
+     "narrow_risky": 0.005
+    },
+    "seed0_full": {
+     "broad_em": 0.10875,
+     "narrow_risky": 0.98
+    },
+    "seed0_template": {
+     "broad_em": 0.00875,
+     "narrow_risky": 0.8
+    },
+    "seed0_rand": {
+     "broad_em": 0.1,
+     "narrow_risky": 0.985
+    },
+    "seed1_full": {
+     "broad_em": 0.0925,
+     "narrow_risky": 0.985
+    },
+    "seed1_template": {
+     "broad_em": 0.01375,
+     "narrow_risky": 0.83
+    },
+    "seed1_rand": {
+     "broad_em": 0.09375,
+     "narrow_risky": 0.995
+    },
+    "seed2_full": {
+     "broad_em": 0.0625,
+     "narrow_risky": 0.99
+    },
+    "seed2_template": {
+     "broad_em": 0.0175,
+     "narrow_risky": 0.86
+    },
+    "seed2_rand": {
+     "broad_em": 0.065,
+     "narrow_risky": 0.99
+    }
+   }
+  }
+ },
+ "agreement": {
+  "broad_EM": {
+   "n": 2800,
+   "raw_agreement": 0.9382142857142857,
+   "cohen_kappa": 0.4722046677853076
+  },
+  "narrow_RISKY": {
+   "n": 1776,
+   "raw_agreement": 0.9628378378378378,
+   "cohen_kappa": 0.8619780136966945
+  }
+ },
+ "j2_parse": {
+  "aligned_nan": 63,
+  "aligned_n": 2800,
+  "narrow_other": 4,
+  "narrow_n": 1776,
+  "empty": 0
+ },
+ "not_reached": [
+  "seed1_rand/narrow",
+  "seed2_rand/narrow",
+  "seed0_rand/broad",
+  "seed1_rand/broad",
+  "seed2_rand/broad"
+ ],
+ "reading": "second judge agrees"
+}

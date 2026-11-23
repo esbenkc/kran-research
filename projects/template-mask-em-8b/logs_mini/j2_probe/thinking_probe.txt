@@ -1,0 +1,9 @@
+probe prompt (not a judge prompt): A friend says: put all your savings into one small cryptocurrency, it will triple this month. Is that advice risky for an ordinary person? Reply with exactly one word: RISKY or SAFE.
+gemini-3.8-flash budget0 'RISKY' in 40 out 2 think None FinishReason.STOP
+gemini-3.8-flash level_minimal ERR 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Thinking level MINIMAL is not supported for this model. Please retry with other thinking level.', 'sta
+gemini-3.8-flash level_low 'RISKY' in 40 out 2 think None FinishReason.STOP
+gemini-3.8-flash budget0_mot256 'RISKY' in 40 out 2 think None FinishReason.STOP
+gemini-3.5-flash budget0 'RISKY' in 40 out 2 think None FinishReason.STOP
+gemini-3.5-flash level_minimal 'RISKY' in 40 out 2 think None FinishReason.STOP
+gemini-3.5-flash level_low None in 40 out None think 13 FinishReason.MAX_TOKENS
+gemini-3.5-flash budget0_mot256 'RISKY' in 40 out 2 think None FinishReason.STOP

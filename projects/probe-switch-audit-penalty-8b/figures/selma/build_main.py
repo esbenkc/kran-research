@@ -59,7 +59,7 @@ def load_rows(path, size, only=None):
 
 runs += load_rows(os.path.join(PROJ, "data1.7b/figure_rows.json"), "1.7B", only={"AO"})
 # 8B (this run) first and one dot per line, so a reader of the file's head sees this run's dots
-runs = load_rows(os.path.join(PROJ, "data/figure_rows.json"), "8B") + runs
+runs = load_rows(os.path.join(PROJ, "data/figure_rows.json"), "8B", only={"L0", "L10", "L100", "AO"}) + runs  # guard run: text only
 for r in runs:
     for k in ("sw", "r3", "rall", "cut"):
         if isinstance(r.get(k), float):

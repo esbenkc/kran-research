@@ -307,13 +307,18 @@ def report():
         res["judges"][name] = {"base_broad": None if bb is None else float(bb),
                                "base_narrow": None if bn is None else float(bn), "arms": per, "rates": rates}
     agr = {}
-    for kind, fn in (("broad_EM", em_labels), ("narrow_RISKY", risky_labels)):
-        pairs = []
-        for c in ["base"] + [f"seed{s}_{a}" for s in (0, 1, 2) for a in ("full", "template", "rand")]:
-            a1, a2 = fn(c, "judged"), fn(c, "judged2")
-            pairs += [(int(a1[k]), int(a2[k])) for k in a1 if a1[k] is not None and a2.get(k) is not None]
-        ag, kp = kappa(pairs)
-        agr[kind] = {"n": len(pairs), "raw_agreement": ag, "cohen_kappa": kp}
+    groups = {"status cells (base, A, B)": ["base"] + [f"seed{s}_{a}" for s in (0, 1, 2) for a in ARMS_STATUS],
+              "arm E cells (whole cells only)": [f"seed{s}_rand" for s in (0, 1, 2)]}
+    for g, cl in groups.items():
+        for kind, fn in (("broad_EM", em_labels), ("narrow_RISKY", risky_labels)):
+            pairs = []
+            for c in cl:
+                a1, a2 = fn(c, "judged"), fn(c, "judged2")
+                if any(v is None for v in a2.values()):
+                    continue  # a cell J2 has not finished stays out (whole cells only)
+                pairs += [(int(a1[k]), int(a2[k])) for k in a1 if a1[k] is not None]
+            ag, kp = kappa(pairs)
+            agr[f"{g}: {kind}"] = {"n": len(pairs), "raw_agreement": ag, "cohen_kappa": kp}
     res["agreement"] = agr
     nan = {"aligned_nan": 0, "aligned_n": 0, "narrow_other": 0, "narrow_n": 0, "empty": 0}
     for c in ["base"] + [f"seed{s}_{a}" for s in (0, 1, 2) for a in ("full", "template", "rand")]:

@@ -51,6 +51,20 @@ if RS.exists():
         out.append(f"| judge resample | {s} | arm G harmless, {R['K']} fresh judge passes | none | new harmless per pass "
                    f"{', '.join(map(str, per))}; item i3 judged refusal in {i3.count('refusal')}/{len(i3)} | "
                    f"research_checks/judge_resample.json |")
+VC = P / "skeptics" / "skeptic" / "check_s012.json"
+if VC.exists():  # Vera's own rebuild and whole-rule nulls (room oracle-1123-gated-refusal-cont #29165), read from her file
+    V = json.loads(VC.read_text())
+    for s in ("0", "1", "2"):
+        gr = V["seeds"][s]["gated"]
+        out.append(f"| robustness | {s} | arm G | rebuild (Vera, own code) | G refused {gr[0]}/{V['B']}, new harmless "
+                   f"{gr[2]}; status {V['summary']['status']} | skeptics/skeptic/check_s012.json |")
+    for name, ctrl in (("across", "flags shuffled across harmful/harmless"), ("within", "flags shuffled within kind")):
+        nl = V["summary"]["whole_rule_nulls"][name]
+        n = sum(nl["status_counts"].values())
+        cnt = ", ".join(f"{k} {v}/{n}" for k, v in sorted(nl["status_counts"].items()))
+        out.append(f"| robustness | - | arm G, frozen rule re-applied | {ctrl}, {n} draws (permutation null over all 3 "
+                   f"seeds' outputs, no training) | mean restore {nl['mean_g'][0]:.3f} [{nl['mean_g'][1]:.3f}, "
+                   f"{nl['mean_g'][2]:.3f}]; {cnt} | skeptics/skeptic/check_s012.json |")
 g = J["summary"]["G"]
 out += ["", f"seed-level: {g['restore_mean']} [{g['restore_seed_t95'][0]}, {g['restore_seed_t95'][1]}] "
         f"(gated restore, t-interval over {len(J['seeds'])} seeds)",

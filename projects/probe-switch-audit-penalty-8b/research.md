@@ -287,8 +287,8 @@ Mapping to each REJECTED clause (PREREG FROZEN RULE, 'Title status'):
 
 - Khilar, A Backdoor Trigger Is Legible in Fine-Tune Weights, arXiv 2611.19304 (2026-11-14). A weight-only trigger
   detector; "An attacker who instead adds our own statistic to the poisoning loss as a penalty takes recovery to 0 of
-  2 at every penalty strength, again with attack success at 1.00 and clean accuracy unchanged" (abstract body /
-  Sec. VII), single seed per cell, and "in all eight penalised models it is ranked first at some individual scanned
+  2 at every penalty strength, again with attack success at 1.00 and clean accuracy unchanged" (PDF abstract;
+  Sec. VII "Adaptive attackers"), single seed per cell, and "in all eight penalised models it is ranked first at some individual scanned
   site, and only the maximum over sites is displaced". Closest new "train against the detector" result: there the
   penalty beats the detector's single answer; here none of 9 penalised 8B runs beat the head audit. Different
   detector (weights, no forward pass) and different model; credit as contrast, not as the same test.

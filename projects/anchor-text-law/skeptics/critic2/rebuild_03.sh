@@ -1,0 +1,2 @@
+# critic2 command at 2026-11-23T10:24:08.376Z (verbatim from the session)
+python3 -c "import json; p='kran-research/projects/anchor-text-law/web/out/B/qwen3-8b/raw/raw-free/000.json'; d=json.load(open(p)); print(d.keys()); print(type(d.get('access_log')), len(d.get('access_log',[]))); print(d.get('access_log',[])[:3]); print(type(d.get('transcript')), len(d.get('transcript',[]))); print(d['transcript'][0].keys() if d.get('transcript') else None)"

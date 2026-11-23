@@ -1,6 +1,6 @@
 # Vera (skeptic) receipts — template-mask-em-8b
 
-**NO SIGN-OFF YET.** The 8B runs wait on the laptop queue (labq 3zfskhbdya part 1, fkyekw80z4 part 2).
+**SIGN-OFF (2026-11-23, room theory-1123-template-mask-em): CONFIRMED on 3 seeds** — see signoff.md (the 2-seed UNCONFIRMED sign-off of 2026-11-21 is 1121/signoff_1121.md).
 Everything here was written from PREREG.md (FROZEN RULE, commit de377e046) and the build's OUTPUTS only; I did not
 read the build's train/gen/judge/analysis code.
 
@@ -25,3 +25,13 @@ uv run --no-project --with scipy --with numpy python vera_check.py answers.jsonl
 then compare with analysis.json cell by cell; open out_p*/checks/mask_invariants_seed{0,1}_pad.json and
 mask_invariants_seed2.json (pass must be true) before trusting any narrow number; score DEVIATIONS S1 by hand.
 The same chain was run on Kasper's mock in 1119/ (README there): it reproduced the planted numbers exactly.
+
+## 1123 (3 seeds; run from this folder after git pull)
+```
+P=../..
+python3 vera_calls.py 1123/answers.jsonl $P/out_p1 $P/out_p2 $P/out_p3          # 20,280 calls, 0 mismatches
+uv run --no-project --with numpy --with scipy python vera_check.py 1123/answers.jsonl --out 1123/vera_check_out.json
+python3 vera_diff.py 1123/answers.jsonl 1123/vera_check_out.json $P/analysis.json  # 237 comparisons, 0 mismatches
+uv run --no-project --with numpy python 1123/vera_1123.py 1123/answers.jsonl      # exact means, seed agreement, rule null, LOQO
+python3 1123/vera_ties.py $P/out_p1 $P/out_p2 $P/out_p3                          # judge near-tie fragility of habit
+```

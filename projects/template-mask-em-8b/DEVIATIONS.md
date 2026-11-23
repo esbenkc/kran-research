@@ -198,3 +198,6 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
   - Readout as in J2, with n per cell stated (narrow 200, broad 400). The frozen judge's cut and habit on the same
     400-answer broad subset are reported next to J2's, so the two judges are compared on the same answers. The fixed
     reading rule of J2 stays unchanged.
+  - Whole cells only (Tove #28920, before any J2 score): the cap stops J2 at the end of the last cell it can finish;
+    a cell cut by the cap mid-way is reported as 'not reached' and never enters the readout. The cap is checked
+    before each call; it is never raised during the run (Kasper #28917).

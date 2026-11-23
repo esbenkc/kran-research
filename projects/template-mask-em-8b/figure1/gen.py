@@ -235,7 +235,7 @@ def main():
         if goal:
             g, glab = GOAL[k]
             gx = MAXW * g / axmax
-            whisk += f'<div class="goal" style="left:{gx - 1:.1f}px"></div><div class="glab" style="left:{gx:.1f}px">{e(glab)} {100 * g:.0f}%<br><span>{"<br>".join(e(p) for p in GWHY[k].split("|"))}</span></div>'
+            whisk += f'<div class="goal" style="left:{gx - 1:.1f}px"></div><div class="glab" style="left:{gx:.1f}px">{e(glab)} {pct(g)}<br><span>{"<br>".join(e(p) for p in GWHY[k].split("|"))}</span></div>'
             end = max(end, gx + 2)
         return (f'<div class="bt"><div class="track"><div class="bf{" hi" if hi else ""}" style="width:{w:.1f}px"></div>{whisk}'
                 f'<div class="bv{" hi" if hi else ""}" style="left:{end + 8:.1f}px">{pct(m)}</div></div></div>')

@@ -76,6 +76,10 @@ def cell(name, guard=False):
         c.update({"n": n, "sw_strict": k_strict / n, "sw_fp32": k_fp32 / n, "sw_argmax": k_arg / n,
                   "sw_strict_wilson95": wilson(k_strict, n), "unprobed_B": whole["share_unprobed_B"],
                   "ties_probed": sum(p["lo"] == 0 for _, p in pairs), "ties_unprobed": sum(u["lo"] == 0 for u, _ in pairs),
+                  # Kasper #28491: torch argmax takes the first max index, and A's id < B's id, so a probed bf16 tie
+                  # counts as 'probed answers A'; these argmax switches rest on that index order
+                  "argmax_sw_on_probed_tie": sum(u["top"] == u["b_id"] and p["top"] == p["a_id"] and p["lo"] == 0
+                                                 for u, p in pairs),
                   "push_whole": whole["shift_mean"]})
         assert abs(c["sw_strict"] - whole["switch_strict"]) < 1e-12 and abs(c["sw_argmax"] - whole["switch_correct"]) < 1e-12
     if aud:
@@ -249,7 +253,9 @@ def write_matrix(out):
         wl = c["sw_strict_wilson95"]
         rb = c.get("r3_boot95") or [None, None]
         res = (f"strict {fmt(c['sw_strict'])} [{fmt(wl[0])}, {fmt(wl[1])}], argmax {fmt(c.get('sw_argmax'))}, "
-               f"fp32 {fmt(c.get('sw_fp32'))}; R_blind3 {fmt(c.get('r3'))} [{fmt(rb[0])}, {fmt(rb[1])}], "
+               f"fp32 {fmt(c.get('sw_fp32'))}; exact bf16 ties probed {c.get('ties_probed')} / unprobed "
+               f"{c.get('ties_unprobed')} of {c.get('n')} (argmax switches on a probed tie {c.get('argmax_sw_on_probed_tie')}), "
+               f"push {fmt(c.get('push_whole'))} nats; R_blind3 {fmt(c.get('r3'))} [{fmt(rb[0])}, {fmt(rb[1])}], "
                f"R_top6 {fmt(c.get('r6'))}, R_all {fmt(c.get('rall'))}, G1 {c.get('g1_ok')}; audit's blind KL "
                f"share {fmt(c.get('r3_blind_kl'))}, after its top-3 cut: answer A {fmt(c.get('after_cut_answer_A'))}, "
                f"switch {fmt(c.get('after_cut_switch'))}; "

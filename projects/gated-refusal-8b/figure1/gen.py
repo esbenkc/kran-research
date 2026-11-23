@@ -167,7 +167,7 @@ hf_cells = "".join(reply(s, "harmful", HI, lambda j: j == "refusal") for s in se
 hl_cells = "".join(reply(s, "harmless", LO, lambda j: False) for s in seeds)
 copies = "".join(f'<div class="cp">{ROBOT}Copy {k + 1}</div>' for k in range(ns))
 n_rest = "".join(f'<div class="n">{pct(per[s]["arms"]["G"]["restore"])}</div>' for s in seeds)
-n_hl = "".join(f'<div class="n col">{per[s]["arms"]["G"]["nh"]}<small>{per[s]["fa"]} false alarms<br>+ {per[s]["own"]} refused even<br>without a push</small></div>' for s in seeds)
+n_hl = "".join(f'<div class="n col">{per[s]["arms"]["G"]["nh"]}<small>{per[s]["fa"]} false alarms<br>+ {per[s]["own"]} refused or broken<br>without a push</small></div>' for s in seeds)
 n_rand = "".join(f'<div class="n">{pct((per[s]["arms"]["RG0"]["restore"] + per[s]["arms"]["RG1"]["restore"]) / 2)}</div>' for s in seeds)
 
 QUESTION = ("Does a probe-gated add-back of the base refusal direction into a refusal-stripped Qwen3-8B fine-tune restore "

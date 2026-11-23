@@ -75,3 +75,125 @@ Closest work (to credit):
 
 - No 8B timing for the penalty step exists (laptop silent); every hour estimate is scaled from 1.7B on the mini.
 - I did not read OpenReview workshop papers or Alignment Forum posts one by one; the web search above covers them only shallowly.
+
+
+---
+
+# Continuation delta (oracle-1123-audit-penalty-8b, Iris, 2026-11-22)
+
+Base: `projects/probe-switch-audit-penalty-8b/research.md` (parent room, 2026-11-20). This file adds what changed
+for the continuation run of 2026-11-22/23. Times are PST.
+
+### 1. State at the start (checked 16:55 PST)
+
+- labq w3hckqmt2p (J1: ao_s0-2 + l0_s0): done, exit 0, 14.65 h wall but 8,248 s awake (chain.log 'box clock'),
+  result commit 9f7c298bb. labq 1ew5iq4iqf (J1b: l0_s1): done, exit 0, 0.36 h, result commit a48637c0a.
+- Never submitted in the parent room: J2 (P100 s0-2, guard) and J3 (P10 s0-2 + warm audits) (CONTINUATION.md).
+  Bruno submitted both at 16:54 PST: w5qyddhamw (J2) and 9c88zlzo44 (J3, warm audits dropped, DEVIATION B3).
+- AO training time per run (data/laptop/w3hckqmt2p/chain.log 'OK DONE ... train_s'): 5,173 s / 32,471 s / 1,665 s.
+  s0 and s1 include laptop sleep; s2 (1,665 s = 3.25 s/update) is the only clean awake timing.
+
+### 2. Landed cells (from data/whole/*.json and data/audit/*.json; also rebuilt by Bruno and Vera to 4 dp)
+
+| run | whole-graph strict | fp32 strict | R_blind3 | hide cell |
+|---|---|---|---|---|
+| ao_s0 | 0.9766 | 0.9766 | 0.6764 | no |
+| ao_s1 | 1.0000 | 1.0000 | 0.4866 | no |
+| ao_s2 | 0.9922 | 0.9922 | 0.6540 | no |
+| l0_s0 | 0.9922 | 0.9922 | 0.9984 | no |
+| l0_s1 | 1.0000 | 1.0000 | 0.9828 | no |
+
+- AO seed-level R_blind3: mean 0.6057, sd 0.1037, 95% t-interval (df 2, t 4.303) 0.6057 +/- 0.2577 =
+  [0.348, 0.863]. (My room post #28423 wrote '+/- 0.25'; the exact half-width is 0.2577.)
+- 1.7B AO side row (parent warm adapters, data1.7b): s0 R_blind3 0.363, s1 0.467, s2 faded. Only 2 scored seeds, so
+  a 1.7B-vs-8B comparison of R_blind3 has overlapping intervals: the post can say "no sign that 8B spreads more",
+  not "8B spreads less".
+
+### 3. The AO training penalty went blind late in training (Kasper #28414; my count)
+
+AO picks its 3 heads by the largest SINGLE-head removed amount, then scores their joint swap. When every single-head
+amount is 0, the pick is a tie and topk returns heads 34.0, 34.1, 34.2 (the first three indices); their joint swap
+removes nothing, so the penalty is 0 and its gradient is 0.
+
+Count over ALL 512 updates per run (data/runs/<run>.json 'train_log', rows [update, ce, pen, gnorm, top3 per
+micro-batch]; script in section 6). "Tie" = the tie pick in EVERY micro-batch of that update.
+
+| run | pen == 0 | pen < 0.001 | tie pick | last 64 updates: pen == 0 / tie | pen at update 512 |
+|---|---|---|---|---|---|
+| 8B ao_s0 | 72 (14.1%) | 93 | 67 (13.1%) | 40 / 38 | 0 |
+| 8B ao_s1 | 44 (8.6%) | 97 | 44 (8.6%) | 40 / 40 | 0 |
+| 8B ao_s2 | 27 (5.3%) | 58 | 12 (2.3%) | 7 / 2 | 0.322 |
+| 1.7B ao_s0 | 81 (15.8%) | 144 | 72 (14.1%) | 40 / 38 | 0 |
+| 1.7B ao_s1 | 1 (0.2%) | 59 | 2 (0.4%) | 1 / 2 | 0.627 |
+| 1.7B ao_s2 | 61 (11.9%) | 69 | 0 | 4 / 0 | 0.309 |
+
+- Bruno #28437 (status.py pen_zero_share, index_top3_share) gives the same 8B numbers: 14.1/8.6/5.3% and
+  13.1/8.6/2.3%. Vera #28432 gives 14.3/8.8/5.5% and last-64 40/41/7: one more zero update per run than this count
+  (threshold or step-0 difference; asked her).
+- 8B s0 and s1 end blind (penalty 0 at update 512, 40 of the last 64 updates at 0). 8B s2 does not.
+- 1.7B tie pick uses the 1.7B head names (26.0/26.1/26.2). Caveat: at 1.7B, head 26.0 is a real early pick (update 1:
+  26.0, 26.5, 27.7), so the 1.7B tie signature is less clean than at 8B, where 34.0 is not in the update-1 pick
+  (34.4, 34.6, 35.11). 1.7B s2 is the faded run: its zeros are not ties.
+- So by its own score, AO training beat its own penalty in s0 and s1 at the end. The audit still removed 0.68 and
+  0.49 of the test push. The two differ in how they pick heads: the audit picks greedily and JOINTLY on dev (head 2
+  given head 1 removed, etc.; PREREG 'R_blind3'); the training penalty picked by single-head score on train prompts.
+  [INFERENCE: the joint pick is what found the route; not tested by a run that trains against the joint pick.]
+  Vera #28415: on dev the audit's first greedy pick removes 3e-7 / 0.0035 / 0.0088 of the KL in AO vs 0.91 in L0.
+- Reading for the post: "AO learned to hide from a one-head-at-a-time look, but the audit's joint pick of 3 heads
+  still found it." The post must NOT write "the switch cannot spread past 3 of 64 heads" from AO alone.
+- The P10/P100 penalty adds an all-64-heads term ([r_mean(all 64)]_+, PREREG 'Arms'), so it cannot go blind the same
+  way while the switch runs through the 64 tail heads (blocks 34-35). In all 5 landed runs the all-64-heads swap
+  removed 0.9999-1.0002 of the test push (data/audit/*.json test_cut.all_heads.removed). [INFERENCE: a P run could
+  still move the route into MLP34/35; the audit's 'all_heads+mlpA' row would show that.]
+
+### 4. Prior work delta (searched 2026-11-22 16:58-17:05 PST)
+
+No new paper trains a model against an attention-head (patching or ablation) audit and measures hide vs fade.
+Searches: web search "training language model to evade attention head ablation audit interpretability adversarial
+fine-tuning 2026" (month); arXiv abs pages read for the hits below.
+
+Name the pattern with the field's words, do not coin one:
+- Gong et al., Conditional Co-Ablation: Recovering Self-Repair Backups in Transformer Circuits, arXiv 2607.01940
+  (2026-07). Abstract: "a perfectly dormant backup can be indistinguishable from an irrelevant component to
+  per-unit intact-state scores". This is our section 3: single-head scores near 0, the joint pick still finds the
+  route. Field terms: "self-repair", "backup heads", "dormant backup".
+- McGrath et al., The Hydra Effect, arXiv 2307.15771 (2023): the untrained version (ablate one layer, another
+  compensates).
+- Gupta et al., When Bigger Becomes Brittle, arXiv 2611.07891 (2026-11-05), abstract: "For damage of comparable
+  size, smaller models restore most of the loss, whereas larger models retain most of it". A published prior
+  against "bigger models spread a behaviour over more heads" (no training in that paper). Credit it if the post
+  compares 1.7B and 8B.
+
+New hits that are NOT prior art for this question (checked so nobody cites them as such):
+- Kumar & Kasyap, Crushing the Evidence, arXiv 2608.00566 (2026-08-01): a dual penalty fools LIME/SHAP/IG
+  explainers on tabular models; not attention heads, not a language model's internal audit.
+- arXiv 2611.23218 (bias-head non-identifiability), 2610.00373 (when head ablations support causal claims),
+  2605.00236 (Attention Is Where You Attack): head-ablation methodology or attacks by intervention, no training
+  against an audit.
+
+Still the closest "train against the monitor" credits (base research.md): Bailey et al. 2412.09565 (obfuscated
+activations), McGuinness et al. 2512.11949 (Neural Chameleons), Heo et al. 1902.02041.
+
+### 5. What is missing
+
+- The pen values are batch values on 8 train pairs (2 micro-batches of 4), not dev or test values.
+- I did not check whether the late blind state already holds on the dev set at update 512 for s0/s1 beyond Vera's
+  first-pick numbers.
+- No 8B warm-adapter R_blind3 exists (J3 dropped the warm audits), so "AO lowered R_blind3 from warm" has no
+  number; the reference is L0 (0.98-0.998).
+
+### 6. Script (count in section 3)
+
+```python
+# run from projects/probe-switch-audit-penalty-8b
+import json
+for f in ['data/runs/ao_s0.json', 'data/runs/ao_s1.json', 'data/runs/ao_s2.json',
+          'data1.7b/runs/ao_s0.json', 'data1.7b/runs/ao_s1.json', 'data1.7b/runs/ao_s2.json']:
+    tl = json.load(open(f))['train_log']          # [update, ce, pen, gnorm, top3 per micro-batch]
+    b = '26' if f.startswith('data1.7b') else '34'
+    tie = [f'{b}.0', f'{b}.1', f'{b}.2']
+    z = sum(r[2] == 0.0 for r in tl); z3 = sum(r[2] < 1e-3 for r in tl)
+    t = sum(all(mb == tie for mb in r[4]) for r in tl)
+    last = tl[-64:]
+    print(f, len(tl), z, z3, t, sum(r[2] == 0.0 for r in last), sum(all(mb == tie for mb in r[4]) for r in last), tl[-1][2])
+```

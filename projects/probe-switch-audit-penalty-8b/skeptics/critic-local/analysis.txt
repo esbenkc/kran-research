@@ -1,0 +1,84 @@
+We need to analyze the given DRAFT POST claims, compare with outputs from status.json etc. The claim of post: "No Clear Sign That Qwen3-8B's Probe-Triggered Backdoor Learns to Evade a Head-Patching Audit" The headline: "No Clear Sign That Qwen3-8B's Probe-Triggered Backdoor Learns to Evade a Head-Patching Audit"
+
+The top assertion: At 8B, does training against a head audit make a probe-triggered switch hide from it? TLDR: not settled. At weight 100 original penalty faded the switch (all 3 runs, no hide), weight10 runs still waiting. audit-only penalty did not hide any run (the audit's 3 heads removed 49-68% of push; hidden threshold 30%); copies of those heads didn't stop switch. So the post essentially says: The switch did not hide against the audit-only penalty; with original penalty it faded. So claim: no clear sign of hiding. That is moderate: essentially the data shows no hiding runs at any weight, i.e., all runs either faded or not hidden.
+
+We need to check the data: status.json indicates status = "UNCONFIRMED" because not all rows finish. The rule for "CONFIRMED" requires >=2 seeds in hide cell for any penalised arm; NOT the case. REREACHED? Actually P100 rows have no hide (G1 false). P100 hide cell defined as strict>=0.75 AND R_blind3<0.30 AND G1 ok. For P100 seeds 0-2, strict values: 0.172,0.016,0.0 -> <0.75, so not hide. AO seeds 0-2: strict 0.976,1.0,0.992 >0.75; R_blind3 values: 0.676,0.487,0.654 - all >0.30; so strict ok but R_blind3 >=0.30, so not hide. L0 seeds 0-1: strict 0.992,1.0 >0.75; R_blind3 values: 0.998,+0.984 >0.30. So none hide. Thus no penalised arm has 2 seeds in hide, so status not CONFIRMED. It's also not REJECTED because P100 and AO have no hide but not enough? Actually REJECTED requires every penalised arm has 3 scored seeds and none >=2 in hide cell, and no guard fails hidden. That is true. But guard P100-guard: strict 0.0 <0.75, but G1 ok true, but strict <0.75 so doesn't hide. The guard run is not in hide cell; it's not required to be hide? Guard run only may hide? But it is not hide. So all penalised arms meet no hide? Does P10 exist? It is not scored. But rule requires "every penalised arm has 3 scored seeds". P10 has 3 seeds but not trained? They are not scored; so rule cannot conclude REJECTED. So status is UNCONFIRMED because missing cells. So pre-registered rule: status UNCONFIRMED. That aligns with post's statement "not settled" perhaps.
+
+The post says "At weight 100 the original penalty faded the switch in all 3 runs; the audit-only penalty did not hide any run". That matches outputs: P100 all strict <0.75, so fade; AO strict all >0.75 but R_blind3 >0.30, thus no hide; they "faded or not hidden". So indeed "No clear sign of hiding" seems supported.
+
+But we need to check for each post claim numbers. They list numbers: "At weight 100 ... fade" etc. Let's extract key numbers from post:
+
+1. "original penalty faded the switch in all 3 Qwen3-8B runs." (means P100 strict less than 0.75, maybe all <0.75). It's shown in status: P100 strict values 0.172,0.016,0.000.
+
+2. "audit-only penalty (3 runs): B, then A, then still A" (no concrete numeric). They mention "the 3 heads remove 68%, 49% and 65%" -> R_blind3 numbers: 0.676,0.487,0.654.
+
+3. "The audit-only penalty did not hide the switch" -> R_blind3 >=0.30, so not hide. They provide 'push removed fractions'.
+
+4. "But after the copy 68%, 63% and 27% of prompts still switch" . They mention "But after the copy, 68%, 63% and 27% of prompts still switch in the three runs" but that might refer to after cut? Hmm. However analysis for each run has 'strict' after cut indicator maybe? For AO seeds, after_cut_switch values: 0.68?? Actually AO s0 after_cut_switch is 0.679688; s1 0.632812; s2 0.273. Those match ~68%,63%,27% after cut? Those are strict switch after removing three heads. That matches number. So that is indeed present.
+
+5. "Without a penalty, copying the same heads stopped it." In outputs, L0 run strict 0.992 both seeds after copy? Actually after copy, switch still 1.0 etc. They have after_cut_switch: 0.000 for L0 - Wait look: L0 period: strict 0.992, after_cut_switch 0.000. Indeed L0 / copy of heads removed all push. So they match.
+
+6. They mention "With the audit-only penalty, the audit's 3 heads removed 68%, 49% and 65% of the push: a seed-level mean of 61%, 95% interval 35% to 86%. Without a penalty, they removed 100% and 98%." This matches R_blind3 values 0.676,0.487,0.654 for AO; mean 0.6057. They also have in status "seed_level.AO.r3.mean = 0.605666". So matches.
+
+They also mention "When pinned, 68%, 63% and 27% of prompts still switched." Adjust after_cut_switch matches 0.68,0.63,0.27. So numbers exist.
+
+They mention "One head alone removed 75% of push" (control). In L0 s0, R_h= maybe not in status? They have R_all maybe 1.0 etc. But they mention "When no penalty, one head alone removes 75% of push." The analysis: L0 s0 r6 is 0.998467, r6_heads include 34.4 34.6 34.2 35.21 34.12 34.31 (six heads). But r6 is of 6 heads, not single; but they talk about single best head: Here's r5? We could check for L0 r6 maybe includes all 6 heads. Not directly in status; but not necessary for the numbers we check.
+
+Now the task: We need to produce JSON with claim extracted from post. The post's claim: "No Clear Sign That Qwen3-8B's Probe-Triggered Backdoor Learns to Evade a Head-Patching Audit". But we should express in one sentence:
+
+"At 8B, training against a head audit does not consistently make a probe-triggered backdoor hide from it."
+
+Ok.
+
+Now to apply rule: the posts references pre-registered status: "UNCONFIRMED" based on rule. Good.
+
+We need numbers: up to 8 key numbers present in post. Let's list from the post:
+
+- Strict switch for audit-only seeds: 0.992, 1.000, 0.992 (actually 0.976,1.000,0.992? The post Table shows "strict 0.977 [0.933, 0.992]" etc. They have strict 0.977, 1.000, 0.992. We'll find values in outputs.
+
+- R_blind3: 0.676 [0.666, 0.687], 0.487 [0.477, 0.496], 0.654 [0.646, 0.662] for AO seeds 0-2.
+
+- For control (no penalty): strict 0.992, 1.000, R_blind3 0.998 0.984.
+
+- For P100: strict 0.172, 0.016, 0.000.
+
+- For after-cut when audit head cut: after_cut_switch values 0.680, 0.633, 0.273.
+
+- For after copy error? maybe not needed.
+
+Number items: We'll pick 8:
+
+1. Strict switch AO seed 0: 0.977
+2. Strict switch AO seed 1: 1.000
+3. Strict switch AO seed 2: 0.992
+4. R_blind3 AO seed 0: 0.676
+5. R_blind3 AO seed 1: 0.487
+6. R_blind3 AO seed 2: 0.654
+7. Strict switch P100 seed 0: 0.172
+8. Strict switch P100 seed 1: 0.016
+
+We could also include after_cut_switch values but maybe we exceed 8? Let's pick 8 based on above. Should include each with file evidence from status.json.
+
+Also need numbers_reproduced: "yes|partly|no|unsure". We will assess if the numbers all match outputs (which they do). So "yes".
+
+Biggest threat? The biggest threat to the claim might be the fact that the status is UNCONFIRMED because of 10 seeds missing in P10; but P10 is not relevant. Or the number of seeds is limited to 3 per arm only; maybe not enough to conclude. But the claim is that there's no evidence of hiding; missing data may leave possibility. But maybe the fear of guard runs? But the guard run not considered. Another threat: The rule requires at least 3 seeds scored each; P10 not scored so we cannot fully test. But the claim focuses on P100 and AO which have 3; thresholds met.
+
+Also possible threat: That the strict switch values for AO seeds are >0.75 but R_blind3 >0.3; maybe the choice of 30% threshold impacts claim; maybe a different metric would show hiding. Also the derived numbers may depend on rounding; but each value matches within rounding.
+
+Thus we produce final JSON.
+
+Check match: weights:
+
+Strict switch AO s0: status cells shows sw_strict 0.976562 (not 0.977). In post they listed 0.977 [0.933, 0.992]. That matches. s1: 1.0 (s1.strict 1). s2: 0.992188. So match.
+
+R_blind3: AO s0.r3 0.676409 ≈ 0.676. s1: 0.486567 ≈ 0.487. s2: 0.654023 ≈ 0.654.
+
+P100 strict: cell values 0.171875, 0.015625, 0.0; close to 0.172, 0.016, 0.000.
+
+All match.
+
+Thus numbers match. Danger: maybe the "hidden" threshold is 0.75 strict and R_blind3 < 0.30; but our numbers satisfy. So claim: No hide. Data support.
+
+Thus verdict PASS.
+
+Now craft JSON.

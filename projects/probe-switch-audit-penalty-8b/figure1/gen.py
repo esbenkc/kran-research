@@ -73,7 +73,8 @@ def load_run(name):
     i = ids.index(EX)
     ex = {"off": off[i], "on": on[i], "cut": k3[i]}
     # whole-graph answer of the example agrees with the cached-tail rows used for the bubbles
-    assert (lo[EX][0] > 0) == (off[i] > 0) and (lo[EX][1] > 0) == (on[i] > 0), (name, lo[EX], ex)
+    # (faded runs sit at A-B ties near 0, where the cached tail and the whole graph may round apart; they get no bubble)
+    assert faded or ((lo[EX][0] > 0) == (off[i] > 0) and (lo[EX][1] > 0) == (on[i] > 0)), (name, lo[EX], ex)
     return {"name": name, "n": n, "switch": sw, "faded": faded, "push": push_whole, "push0": push0, "R": R, "cut": cut, "strict_cut": strict_cut, "heads": a["headline"]["blind_top3_heads"], "ex": ex}
 
 
@@ -145,7 +146,7 @@ for arm in T["arms"]:
     # the example behaves the same way in every run of the arm (off, on and after the reset)
     live = [r for r in runs if not r["faded"]] or runs
     sig = {(r["ex"]["off"] > 0, r["ex"]["on"] > 0, r["ex"]["cut"] > 0) for r in live}
-    assert len(sig) == 1, (arm["key"], [r["ex"] for r in live])
+    assert len(sig) == 1 or not arm.get("row", True), (arm["key"], [r["ex"] for r in live])  # no example row: no claim
     ex = live[0]["ex"]
     shown = "" if len(live) == len(runs) else f'<div class="cn">Run {runs.index(live[0]) + 1} shown</div>'
     facts[arm["key"]] = {k: [r[k] for r in runs] for k in ("name", "switch", "faded", "push", "push0", "R", "cut", "heads")}
@@ -160,7 +161,7 @@ for arm in T["arms"]:
     # (87, 80, 34 of 128 -> 68, 63, 27%: the same as the argmax rates the post prints; asserted below)
     sc = [r["strict_cut"] for r in runs]
     half_up = lambda c: int((Fraction(200 * c, n) + 1) // 2)
-    assert all(half_up(a) == half_up(b) for a, b in zip(sc, cut)), (sc, cut)  # tie rule and argmax give one number
+    assert all(r["faded"] or half_up(a) == half_up(b) for r, a, b in zip(runs, sc, cut)), (sc, cut)  # one number (shown runs)
     vals = ", ".join("faded" if r["faded"] else f"{half_up(c)}%" for r, c in zip(runs, sc))
     cutnote = f'Still switch, per run:<br><b class="{"r" if max(sc) else ""}">{vals}</b> of prompts'
     if arm.get("row", True):
@@ -237,7 +238,7 @@ Built by figure1/gen.py from kran-research projects/probe-switch-audit-penalty-8
   svg.chart text {{ font-family: Inter, sans-serif; }}
   svg.chart .tl {{ font-size: 22px; font-weight: 700; fill: #4d5059; }}
   svg.chart .tl.hl {{ fill: #c8372d; }}
-  svg.chart .bl {{ font-size: 21px; font-weight: 700; fill: #4d5059; }}
+  svg.chart .bl {{ font-size: 21px; font-weight: 700; fill: #4d5059; stroke: #fbfaf8; stroke-width: 6px; paint-order: stroke; stroke-linejoin: round; }}
   svg.chart .bl.hl {{ fill: #c8372d; }}
   svg.chart .mu {{ fill: #9a9da5; font-weight: 600; }}
   svg.chart .tk {{ font-size: 18px; fill: #7a7d86; }}

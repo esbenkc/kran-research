@@ -201,3 +201,18 @@ A change inside the FROZEN RULE block of PREREG.md after data exists starts with
   - Whole cells only (Tove #28920, before any J2 score): the cap stops J2 at the end of the last cell it can finish;
     a cell cut by the cap mid-way is reported as 'not reached' and never enters the readout. The cap is checked
     before each call; it is never raised during the run (Kasper #28917).
+- J2.2 (2026-11-23, Felix, after Bruno #28955): J2.1's named fallback is used. Status of J2 data at this time: 183
+  gemini-3.8-flash calls on the base narrow cell only (USD 0.118), 150 of them empty (finish MAX_TOKENS: the model spent
+  11-13 thinking tokens of the 16-token limit although thinking_budget was 0); rows kept as a failed attempt in
+  logs_mini/j2_probe/attempt2_gemini38_base_narrow.calls.jsonl and never enter the readout. No arm-A/B/E cell and no
+  broad cell had any J2 reply.
+  - Why: J2.1 says gemini-3.5-flash is used "only if its first call fails". gemini-3.8-flash's first judge-length
+    calls returned empty replies (a failed call under that clause). Probe on 3 synthetic Q/A pairs written by Bruno,
+    not run data (logs_mini/j2_probe/thinking_probe_long.txt): 3.8-flash 4/6 empty at budget 0 and at thinking level
+    low; 3.5-flash 6/6 clean with 0 thinking tokens.
+  - Judge: gemini-3.5-flash, thinking_budget 0, temperature 0, max_output_tokens 16. Everything else in J2 and J2.1
+    stays (prompts, parse, cells (a)-(c) with the broad subset, whole cells only, reading rule).
+  - Price and cap: gemini-3.5-flash has no row on Google's pricing page, so spend is stated at the 3.8-flash rate
+    (USD 0.75 in / 3.75 out per million tokens, conservative). The USD 2.50 cap includes the USD 0.118 already spent.
+  - If gemini-3.5-flash also returns empty or blocked replies on more than 5% of the first whole cell, J2 stops and
+    is reported as not run (with the receipts); no further substitution.

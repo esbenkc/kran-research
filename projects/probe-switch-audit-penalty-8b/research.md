@@ -276,8 +276,9 @@ Mapping to each REJECTED clause (PREREG FROZEN RULE, 'Title status'):
   the penalty (in nats of KL) fell from 38.6 / 14.6 at update 1 to 0.88 / 0.26 at update 512 (data/runs/p10_s*.json
   train_log col 2), and the sign stayed. The attacker made the switch small, not hidden.
 - p10_s2 collapsed: answer A on probed and unprobed prompts (unprobed-B 0.000; train CE 0.78 at update 512, above
-  ln 2 = 0.693, with 31 updates after update 100 above 0.6). Same failure as 1.7B weight 10 s0. The post must call it
-  a collapse (the model answers A everywhere), not a hide, and say its R_blind3 (0.987) is on a dead switch.
+  ln 2 = 0.693). Same failure as 1.7B weight 10 s0. The post must call it a collapse (the model answers A
+  everywhere), not a hide and not a fade, and say its R_blind3 (0.987) is on a dead switch. Timing and the
+  hide-like checkpoint before it: section 12 (corrected 13:20 PST after Kasper #29304).
 - Contrast for the AO arm (J2 post): AO kept a large push (22-50 nats) spread over 4 heads (each 14-20%), and its
   3-head copy left 68 / 63 / 27% switching. P10 kept a tiny push on one head, and the 1-head copy stops it fully.
   [INFERENCE: the all-64 term in P rewards shrinking D everywhere, which concentration does not punish; AO has no
@@ -301,3 +302,30 @@ Mapping to each REJECTED clause (PREREG FROZEN RULE, 'Title status'):
 - No warm-adapter R_blind3 at 8B (unchanged from section 5).
 - P10 has no guard by rule: s2's fade is "512 updates, no guard".
 - I did not check per-update R on dev during P10 training (no checkpoint audits exist for P10).
+
+### 12. p10_s2 before the collapse (Kasper #29304; recounted from raw rows 13:20 PST)
+
+Source: data/runs/p10_s2.json train_log [update, ce, pen, gnorm]; data/laptop/9c88zlzo44/p10_s2.log dev checkpoint
+lines (64 dev prompts; pushrm_top3sum = sum of the 3 blind heads' single-copy push removed; maxsingle = largest
+single-head push removed of all 64; all = all 64 copied together).
+
+| update | dev strict | push (nats) | blind top-3 single sum | max single of 64 | all 64 |
+|---|---|---|---|---|---|
+| 0 | 1.000 | 42.99 | 1.762 | 0.825 | 1.000 |
+| 192 | 0.984 | 17.79 | -0.015 | 0.213 | 1.000 |
+| 384 | 1.000 | 20.67 | 1.848 | 0.630 | 1.000 |
+| 448 | 0.984 | 3.57 | 0.014 | 0.005 | 1.002 |
+| 512 | 0.000 | 0.40 | 1.088 | 0.454 | 1.010 |
+
+- Update 448 is a real spread state by single copies: the switch fires on 98.4% of dev prompts and no single head of
+  64 removes more than 0.5% of the push, while all 64 together remove 100%. Its push is 3.57 nats, not saturated, so
+  this is not the KL-saturation miss of section 7. The joint copy of 3 heads (the audit's R_blind3) was NOT measured
+  at checkpoints, so whether the audit would have found it is unknown.
+- Update 192 is a different case: max single 0.213, but the blind pick's 3 singles sum to -0.015. The blind pick
+  missed the carrier (the section 7 pattern), not a spread.
+- Collapse: CE 0.12 -> 3.43 at update 495 with grad norm 1,257.5 (clipped to 1.0), then penalty 0.41 -> 0.02 by 496
+  and CE stays >= 0.65 to 512. Correction to "CE 0.11-0.18 for updates 1-494": 23 updates in 33-494 had CE > 0.6
+  with grad norms up to 2,274 (update 262 CE 2.55, 263 CE 3.87) and the run recovered each time. So write
+  "collapsed after a spike at update 495 and did not recover in the 17 updates left", not "one gradient spike".
+- The frozen rule scores update 512 only; status stays REJECTED. The post should say a weight-10 run sat in a spread
+  state at update 448, unscored by the joint audit.

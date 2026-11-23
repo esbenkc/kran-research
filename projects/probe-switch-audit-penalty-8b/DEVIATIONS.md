@@ -24,3 +24,12 @@ least one switch >= 0.75 (the rule scores a run whose switches are all < 0.75 'w
 r3_frozen or names this change. Not the status, a threshold or the primary metric. Seen when set: the 1.7B AO side row
 (data1.7b; s2 faded, push 0.01 nats, R_blind3 1.22). Also added (reported only): per-checkpoint dev rows per run
 (strict, argmax, unprobed-B, probed-A, push, D, monitor top-3, fire_and_hide) in status.json 'checkpoints_reported'.
+
+## B3 — continuation room oracle-1123-audit-penalty-8b: J2 and J3 submitted, warm audits dropped from J3 (Bruno; no rule change)
+
+J1 (w3hckqmt2p) and J1b (1ew5iq4iqf) landed after the parent room closed. In room oracle-1123-audit-penalty-8b J2
+(w5qyddhamw: P100 s0-s2, GUARD=p100) and J3 (9c88zlzo44: P10 s0-s2) were submitted with the CONTINUATION.md commands,
+except that J3 runs without WARM='0 1 2': the warm adapters' audits are reported rows only (PREREG 'Reported rows'),
+and the ~30 min they cost would push the status cells of J3 past the room's wrapup (22:00 PST). The L0 runs (no penalty,
+same 512 updates) stay the comparison row. Seen when set: AO s0-s2 and L0 s0-s1 results (none in the hide cell).
+Own stdlib rebuild of those five cells: research_checks/rebuild_cells.py.

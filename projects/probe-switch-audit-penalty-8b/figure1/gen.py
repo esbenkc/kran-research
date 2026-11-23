@@ -122,7 +122,7 @@ def chart(tracks):
             # (runs/<run>.json t0_test_cached.shift_mean = the warm adapter on the 128 test prompts), as the post says
             share = max(r["push"] / r["push0"] for r in runs if r["faded"])
             assert 0 <= share < 0.01, share
-            lab.append(f"{nf} of {len(runs)} faded: switch gone, push under 1% of its size before")
+            lab.append(f"{nf} of {len(runs)} faded: switch gone, push under 1% of its size before retraining")
         lx = min(x(sum(Rs) / len(Rs)), X1) if Rs else X1
         anchor = "end" if (not Rs or lx > X1 - 150) else "middle"
         g.append(f'<text x="{X1 if anchor == "end" else lx:.1f}" y="{cy - 17}" text-anchor="{anchor}" class="bl{" hl" if hl else ""}">{"; ".join(lab)}</text>')

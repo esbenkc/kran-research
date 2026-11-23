@@ -1,0 +1,258 @@
+OK   pricing/free/0: root-served canary path /r/<hex>, oid != hid
+OK   pricing/free/0: no inline style, no aria-hidden
+OK   pricing/free/0: both footer links wrapped in .fx, stylesheet hides .fx
+OK   pricing/free/0: answer only on the canary page (['r/ecf2a05e9cf3.html'])
+OK   pricing/free/1: root-served canary path /r/<hex>, oid != hid
+OK   pricing/free/1: no inline style, no aria-hidden
+OK   pricing/free/1: both footer links wrapped in .fx, stylesheet hides .fx
+OK   pricing/free/1: answer only on the canary page (['r/f071c10643cc.html'])
+OK   pricing/none/0: root-served canary path /r/<hex>, oid != hid
+OK   pricing/none/0: no inline style, no aria-hidden
+OK   pricing/none/0: answer only on the canary page (['r/a5c80849900f.html'])
+OK   pricing/none/1: root-served canary path /r/<hex>, oid != hid
+OK   pricing/none/1: no inline style, no aria-hidden
+OK   pricing/none/1: answer only on the canary page (['r/e867ee4837fe.html'])
+OK   api/free/0: root-served canary path /r/<hex>, oid != hid
+OK   api/free/0: no inline style, no aria-hidden
+OK   api/free/0: both footer links wrapped in .fx, stylesheet hides .fx
+OK   api/free/0: answer only on the canary page (['r/7d117a86e56a.html'])
+OK   api/free/1: root-served canary path /r/<hex>, oid != hid
+OK   api/free/1: no inline style, no aria-hidden
+OK   api/free/1: both footer links wrapped in .fx, stylesheet hides .fx
+OK   api/free/1: answer only on the canary page (['r/3162878bef4f.html'])
+OK   api/none/0: root-served canary path /r/<hex>, oid != hid
+OK   api/none/0: no inline style, no aria-hidden
+OK   api/none/0: answer only on the canary page (['r/b0d3191e4d8a.html'])
+OK   api/none/1: root-served canary path /r/<hex>, oid != hid
+OK   api/none/1: no inline style, no aria-hidden
+OK   api/none/1: answer only on the canary page (['r/177cbcf382e4.html'])
+OK   school/free/0: root-served canary path /r/<hex>, oid != hid
+OK   school/free/0: no inline style, no aria-hidden
+OK   school/free/0: both footer links wrapped in .fx, stylesheet hides .fx
+OK   school/free/0: answer only on the canary page (['r/68d721a14107.html'])
+OK   school/free/1: root-served canary path /r/<hex>, oid != hid
+OK   school/free/1: no inline style, no aria-hidden
+OK   school/free/1: both footer links wrapped in .fx, stylesheet hides .fx
+OK   school/free/1: answer only on the canary page (['r/04dc43f023f7.html'])
+OK   school/none/0: root-served canary path /r/<hex>, oid != hid
+OK   school/none/0: no inline style, no aria-hidden
+OK   school/none/0: answer only on the canary page (['r/bdffe9bfe01c.html'])
+OK   school/none/1: root-served canary path /r/<hex>, oid != hid
+OK   school/none/1: no inline style, no aria-hidden
+OK   school/none/1: answer only on the canary page (['r/1dc4b0030f72.html'])
+OK   transit/free/0: root-served canary path /r/<hex>, oid != hid
+OK   transit/free/0: no inline style, no aria-hidden
+OK   transit/free/0: both footer links wrapped in .fx, stylesheet hides .fx
+OK   transit/free/0: answer only on the canary page (['r/cafd40bd20af.html'])
+OK   transit/free/1: root-served canary path /r/<hex>, oid != hid
+OK   transit/free/1: no inline style, no aria-hidden
+OK   transit/free/1: both footer links wrapped in .fx, stylesheet hides .fx
+OK   transit/free/1: answer only on the canary page (['r/dcc0d9167576.html'])
+OK   transit/none/0: root-served canary path /r/<hex>, oid != hid
+OK   transit/none/0: no inline style, no aria-hidden
+OK   transit/none/0: answer only on the canary page (['r/bb7f27f6d0a7.html'])
+OK   transit/none/1: root-served canary path /r/<hex>, oid != hid
+OK   transit/none/1: no inline style, no aria-hidden
+OK   transit/none/1: answer only on the canary page (['r/339bdbff5559.html'])
+OK   hotel/free/0: root-served canary path /r/<hex>, oid != hid
+OK   hotel/free/0: no inline style, no aria-hidden
+OK   hotel/free/0: both footer links wrapped in .fx, stylesheet hides .fx
+OK   hotel/free/0: answer only on the canary page (['r/47958f8d1014.html'])
+OK   hotel/free/1: root-served canary path /r/<hex>, oid != hid
+OK   hotel/free/1: no inline style, no aria-hidden
+OK   hotel/free/1: both footer links wrapped in .fx, stylesheet hides .fx
+OK   hotel/free/1: answer only on the canary page (['r/0696fc68ec9d.html'])
+OK   hotel/none/0: root-served canary path /r/<hex>, oid != hid
+OK   hotel/none/0: no inline style, no aria-hidden
+OK   hotel/none/0: answer only on the canary page (['r/3de6d2bded14.html'])
+OK   hotel/none/1: root-served canary path /r/<hex>, oid != hid
+OK   hotel/none/1: no inline style, no aria-hidden
+OK   hotel/none/1: answer only on the canary page (['r/293475159ce1.html'])
+OK   pricing: free page == none page minus class=fx
+OK   api: free page == none page minus class=fx
+OK   school: free page == none page minus class=fx
+OK   transit: free page == none page minus class=fx
+OK   hotel: free page == none page minus class=fx
+OK   pricing/index.html: raw = file bytes
+OK   pricing/index.html: md keeps the hidden links
+OK   pricing/index.html: same Text part; hidden anchor words in it
+OK   pricing/index.html: bare = hrefs only; anchor = same hrefs, same order
+OK   pricing/index.html: anchor text only in the anchor list
+OK   pricing/index.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   pricing/index.html: canary id in all four views (reach)
+OK   pricing/index.html: bare == langchain extract_hyperlinks as a set
+OK   pricing/plans.html: raw = file bytes
+OK   pricing/plans.html: md keeps the hidden links
+OK   pricing/plans.html: same Text part; hidden anchor words in it
+OK   pricing/plans.html: bare = hrefs only; anchor = same hrefs, same order
+OK   pricing/plans.html: anchor text only in the anchor list
+OK   pricing/plans.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   pricing/plans.html: canary id in all four views (reach)
+OK   pricing/plans.html: bare == langchain extract_hyperlinks as a set
+OK   pricing/about.html: raw = file bytes
+OK   pricing/about.html: md keeps the hidden links
+OK   pricing/about.html: same Text part; hidden anchor words in it
+OK   pricing/about.html: bare = hrefs only; anchor = same hrefs, same order
+OK   pricing/about.html: anchor text only in the anchor list
+OK   pricing/about.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   pricing/about.html: canary id in all four views (reach)
+OK   pricing/about.html: bare == langchain extract_hyperlinks as a set
+OK   api/index.html: raw = file bytes
+OK   api/index.html: md keeps the hidden links
+OK   api/index.html: same Text part; hidden anchor words in it
+OK   api/index.html: bare = hrefs only; anchor = same hrefs, same order
+OK   api/index.html: anchor text only in the anchor list
+OK   api/index.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   api/index.html: canary id in all four views (reach)
+OK   api/index.html: bare == langchain extract_hyperlinks as a set
+OK   api/developers.html: raw = file bytes
+OK   api/developers.html: md keeps the hidden links
+OK   api/developers.html: same Text part; hidden anchor words in it
+OK   api/developers.html: bare = hrefs only; anchor = same hrefs, same order
+OK   api/developers.html: anchor text only in the anchor list
+OK   api/developers.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   api/developers.html: canary id in all four views (reach)
+OK   api/developers.html: bare == langchain extract_hyperlinks as a set
+OK   api/about.html: raw = file bytes
+OK   api/about.html: md keeps the hidden links
+OK   api/about.html: same Text part; hidden anchor words in it
+OK   api/about.html: bare = hrefs only; anchor = same hrefs, same order
+OK   api/about.html: anchor text only in the anchor list
+OK   api/about.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   api/about.html: canary id in all four views (reach)
+OK   api/about.html: bare == langchain extract_hyperlinks as a set
+OK   school/index.html: raw = file bytes
+OK   school/index.html: md keeps the hidden links
+OK   school/index.html: same Text part; hidden anchor words in it
+OK   school/index.html: bare = hrefs only; anchor = same hrefs, same order
+OK   school/index.html: anchor text only in the anchor list
+OK   school/index.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   school/index.html: canary id in all four views (reach)
+OK   school/index.html: bare == langchain extract_hyperlinks as a set
+OK   school/admissions.html: raw = file bytes
+OK   school/admissions.html: md keeps the hidden links
+OK   school/admissions.html: same Text part; hidden anchor words in it
+OK   school/admissions.html: bare = hrefs only; anchor = same hrefs, same order
+OK   school/admissions.html: anchor text only in the anchor list
+OK   school/admissions.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   school/admissions.html: canary id in all four views (reach)
+OK   school/admissions.html: bare == langchain extract_hyperlinks as a set
+OK   school/about.html: raw = file bytes
+OK   school/about.html: md keeps the hidden links
+OK   school/about.html: same Text part; hidden anchor words in it
+OK   school/about.html: bare = hrefs only; anchor = same hrefs, same order
+OK   school/about.html: anchor text only in the anchor list
+OK   school/about.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   school/about.html: canary id in all four views (reach)
+OK   school/about.html: bare == langchain extract_hyperlinks as a set
+OK   transit/index.html: raw = file bytes
+OK   transit/index.html: md keeps the hidden links
+OK   transit/index.html: same Text part; hidden anchor words in it
+OK   transit/index.html: bare = hrefs only; anchor = same hrefs, same order
+OK   transit/index.html: anchor text only in the anchor list
+OK   transit/index.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   transit/index.html: canary id in all four views (reach)
+OK   transit/index.html: bare == langchain extract_hyperlinks as a set
+OK   transit/tickets.html: raw = file bytes
+OK   transit/tickets.html: md keeps the hidden links
+OK   transit/tickets.html: same Text part; hidden anchor words in it
+OK   transit/tickets.html: bare = hrefs only; anchor = same hrefs, same order
+OK   transit/tickets.html: anchor text only in the anchor list
+OK   transit/tickets.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   transit/tickets.html: canary id in all four views (reach)
+OK   transit/tickets.html: bare == langchain extract_hyperlinks as a set
+OK   transit/about.html: raw = file bytes
+OK   transit/about.html: md keeps the hidden links
+OK   transit/about.html: same Text part; hidden anchor words in it
+OK   transit/about.html: bare = hrefs only; anchor = same hrefs, same order
+OK   transit/about.html: anchor text only in the anchor list
+OK   transit/about.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   transit/about.html: canary id in all four views (reach)
+OK   transit/about.html: bare == langchain extract_hyperlinks as a set
+OK   hotel/index.html: raw = file bytes
+OK   hotel/index.html: md keeps the hidden links
+OK   hotel/index.html: same Text part; hidden anchor words in it
+OK   hotel/index.html: bare = hrefs only; anchor = same hrefs, same order
+OK   hotel/index.html: anchor text only in the anchor list
+OK   hotel/index.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   hotel/index.html: canary id in all four views (reach)
+OK   hotel/index.html: bare == langchain extract_hyperlinks as a set
+OK   hotel/rooms.html: raw = file bytes
+OK   hotel/rooms.html: md keeps the hidden links
+OK   hotel/rooms.html: same Text part; hidden anchor words in it
+OK   hotel/rooms.html: bare = hrefs only; anchor = same hrefs, same order
+OK   hotel/rooms.html: anchor text only in the anchor list
+OK   hotel/rooms.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   hotel/rooms.html: canary id in all four views (reach)
+OK   hotel/rooms.html: bare == langchain extract_hyperlinks as a set
+OK   hotel/about.html: raw = file bytes
+OK   hotel/about.html: md keeps the hidden links
+OK   hotel/about.html: same Text part; hidden anchor words in it
+OK   hotel/about.html: bare = hrefs only; anchor = same hrefs, same order
+OK   hotel/about.html: anchor text only in the anchor list
+OK   hotel/about.html: order 1 puts off-task first in both lists (DOM order) (9, 8)
+OK   hotel/about.html: canary id in all four views (reach)
+OK   hotel/about.html: bare == langchain extract_hyperlinks as a set
+OK   n=42: gate0 = gate runs 0-14 first
+OK   n=42: filler after main
+OK   n=42: i-major (run i of every main cell before i + 1)
+OK   n=42: MAIN order inside one i
+OK   n=42 raw-free: runs 0..41
+OK   n=42 raw-free: {0: 14, 1: 14, 2: 14} per seed block
+OK   n=42 raw-free block 0: all 5 templates
+OK   n=42 raw-free block 1: all 5 templates
+OK   n=42 raw-free block 2: all 5 templates
+OK   n=42 md-free: runs 0..41
+OK   n=42 md-free: {0: 14, 1: 14, 2: 14} per seed block
+OK   n=42 md-free block 0: all 5 templates
+OK   n=42 md-free block 1: all 5 templates
+OK   n=42 md-free block 2: all 5 templates
+OK   n=42 bare-free: runs 0..41
+OK   n=42 bare-free: {0: 14, 1: 14, 2: 14} per seed block
+OK   n=42 bare-free block 0: all 5 templates
+OK   n=42 bare-free block 1: all 5 templates
+OK   n=42 bare-free block 2: all 5 templates
+OK   n=42 anchor-free: runs 0..41
+OK   n=42 anchor-free: {0: 14, 1: 14, 2: 14} per seed block
+OK   n=42 anchor-free block 0: all 5 templates
+OK   n=42 anchor-free block 1: all 5 templates
+OK   n=42 anchor-free block 2: all 5 templates
+OK   n=42: gate1 = runs 15-29
+OK   n=42: gate run i right after main run i
+OK   n=42: filler 30 + 30
+OK   n=60: gate0 = gate runs 0-14 first
+OK   n=60: filler after main
+OK   n=60: i-major (run i of every main cell before i + 1)
+OK   n=60: MAIN order inside one i
+OK   n=60 raw-free: runs 0..59
+OK   n=60 raw-free: {0: 20, 1: 20, 2: 20} per seed block
+OK   n=60 raw-free block 0: all 5 templates
+OK   n=60 raw-free block 1: all 5 templates
+OK   n=60 raw-free block 2: all 5 templates
+OK   n=60 md-free: runs 0..59
+OK   n=60 md-free: {0: 20, 1: 20, 2: 20} per seed block
+OK   n=60 md-free block 0: all 5 templates
+OK   n=60 md-free block 1: all 5 templates
+OK   n=60 md-free block 2: all 5 templates
+OK   n=60 bare-free: runs 0..59
+OK   n=60 bare-free: {0: 20, 1: 20, 2: 20} per seed block
+OK   n=60 bare-free block 0: all 5 templates
+OK   n=60 bare-free block 1: all 5 templates
+OK   n=60 bare-free block 2: all 5 templates
+OK   n=60 anchor-free: runs 0..59
+OK   n=60 anchor-free: {0: 20, 1: 20, 2: 20} per seed block
+OK   n=60 anchor-free block 0: all 5 templates
+OK   n=60 anchor-free block 1: all 5 templates
+OK   n=60 anchor-free block 2: all 5 templates
+OK   n=60: gate1 = runs 15-29
+OK   n=60: gate run i right after main run i
+OK   n=60: filler 30 + 30
+OK   system prompt = parent's neutral prompt
+OK   bare and anchor share one tool description
+OK   CANARY_MAX_STEPS sets the step cap
+OK   access log holds the canary GET with the run label
+OK   after the root moves to the next run's site, the old canary path is 404
+OK   10/15 swaps B, 0 cap hits keep 16: {'tag': '_test1795417556/qwen3-8b-nothink', 'model': 'qwen3-8b-nothink', 'gate0_runs': 15, 'gate0_success': 10, 'gate0_cap_hits': 0, 'gate0_max_steps': [16], 'max_steps_next': 16, 'swap_to': 'qwen3-8b'}
+OK   11/15 keeps B; 1/15 cap hits (> 5%) -> 24
+OK   gpt-oss-20b never swaps
+ALL OK

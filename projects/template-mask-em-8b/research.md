@@ -230,3 +230,11 @@ Eval prompt, enable_thinking=False, add_generation_prompt=True:
   full 50.7/48.9/47.8; template 65.3/63.4/62.8 -> drop kept (98.0 - masked)/(98.0 - full) = 0.691/0.705/0.701,
   mean 0.699 (Kasper rebuilt the same numbers, #28914). On that ruler the template mask keeps ~70% of the habit,
   under the 0.8 the frozen RISKY rate gives (0.842): the post shows both.
+
+### 7.6 Piggyback Fig 5b, exact bar heights (for the 'drop kept' comparison; Tove #28953)
+
+- Parsed from arxiv.org/html/2606.06667v3/patch_results_finance.svg (axis 0-100, 20 units = 46.667 px): Qwen3-8B
+  in-domain alignment before 28.8, prefix patch 30.1, postfix patch 84.9 (Qwen2.5-7B 32.2/40.0/57.5; Llama-3.1-8B
+  22.8/70.0/34.5, matching the text's '22.8 to 70.0'). Table 4: Qwen3-8B SFT in-domain finance 29.4, general 47.7.
+- The paper gives no untrained-model in-domain score for Qwen3-8B (full-text grep of the v3 HTML). A 'drop kept'
+  under their patch, (base - 84.9)/(base - 28.8), is 0.19 only with OUR base 98.0 (our judge); the post must say so.

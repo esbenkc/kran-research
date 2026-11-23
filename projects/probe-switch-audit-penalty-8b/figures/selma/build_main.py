@@ -58,7 +58,12 @@ def load_rows(path, size, only=None):
 
 
 runs += load_rows(os.path.join(PROJ, "data1.7b/figure_rows.json"), "1.7B", only={"AO"})
-runs += load_rows(os.path.join(PROJ, "data/figure_rows.json"), "8B")
+# 8B (this run) first and one dot per line, so a reader of the file's head sees this run's dots
+runs = load_rows(os.path.join(PROJ, "data/figure_rows.json"), "8B") + runs
+for r in runs:
+    for k in ("sw", "r3", "rall", "cut"):
+        if isinstance(r.get(k), float):
+            r[k] = round(r[k], 4)
 
 data = {
     "title": a.title,
@@ -81,7 +86,10 @@ data = {
     "runs": runs,
 }
 out = os.path.join(a.blog, "assets/figures/probe-switch-audit-penalty-8b/data.json")
-json.dump(data, open(out, "w"), indent=1)
+txt = json.dumps({k: v for k, v in data.items() if k != "runs"}, indent=1)[:-2]
+txt += ',\n "runs": [\n  ' + ",\n  ".join(json.dumps(r) for r in runs) + "\n ]\n}\n"
+json.loads(txt)
+open(out, "w").write(txt)
 print(f"wrote {out}: {len(runs)} dots", file=sys.stderr)
 for r in runs:
     print(r["size"], r["group"], r["seed"], "sw", round(r["sw"], 3), "r3", round(r["r3"], 3), "cut",

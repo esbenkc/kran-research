@@ -1,0 +1,17 @@
+2026-11-23 18:33:15 START box 3lxsanb0c9 model Qwen/Qwen3-8B commit 1790f306c hours 6 runs [p10_s0 p10_s1 p10_s2] warm [] out data
+2026-11-23 18:34:52 cache build: probe hook block 18
+2026-11-23 18:41:05 cache built: none rec {'first_call_s': 17.5, 'total_s': 180.4, 'probe_stored_ok': None, 'generated_kernel_count': 238} probe rec {'first_call_s': 13.7, 'total_s': 171.7, 'probe_stored_ok': True, 'generated_kernel_count': 239} 
+2026-11-23 18:41:07 cache sha = data/laptop/1ew5iq4iqf/cache_sha.txt
+2026-11-23 18:41:07 cache sha = data/laptop/9c88zlzo44/cache_sha.txt
+2026-11-23 18:41:07 cache sha = data/laptop/w3hckqmt2p/cache_sha.txt
+2026-11-23 18:41:07 cache sha = data/laptop/w5qyddhamw/cache_sha.txt
+2026-11-23 18:41:07 cache sha = head-clamp-retrain-8b's cache
+2026-11-23 18:41:10 dev+test cache sha: none dev+test rows 192 0162cc3247fc9c2846d5c037ffc2f71bd7197d74302c0364bd00764674a315a7 probe dev+test rows 192 dc28e6ddd617531780bc4c7b9d3f1b3da63b369775ddf2678820c15c735b8a58 
+2026-11-23 18:41:11 AUDIT p10_s0
+2026-11-23 18:49:19 OK audit p10_s0 "title_cell_blind_top3_removed": 0.9819474839186818 secs secs 485.1
+2026-11-23 18:49:19 AUDIT p10_s1
+2026-11-23 22:33:38 OK audit p10_s1 "title_cell_blind_top3_removed": 0.971887548484794 secs secs 13454.0
+2026-11-23 22:33:38 AUDIT p10_s2
+2026-11-23 22:45:08 OK audit p10_s2 "title_cell_blind_top3_removed": 0.9874686599680074 secs secs 684.9
+2026-11-23 22:45:08 BOX DONE
+2026-11-23 22:45:08 box clock: awake 2275 s, wall 15113 s rc 0

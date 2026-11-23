@@ -54,6 +54,7 @@ def load_run(name):
     s32 = sum(lo32[p][1] > 0 and lo32[p][0] < 0 for p in test)
     faded = max(sw, am, s32) < 0.75 * n  # PREREG: scored as not in the hide cell, without head numbers
     push_whole = sum(lo[p][1] - lo[p][0] for p in test) / n
+    push0 = json.load(open(DATA / "runs" / f"{name}.json"))["t0_test_cached"]["shift_mean"]
     assert abs(push_whole - w["shift_mean"]) < 1e-6, (name, push_whole, w["shift_mean"])
     pl = a["per_prompt_lo"]
     ids = a["test_ids"]
@@ -73,7 +74,7 @@ def load_run(name):
     ex = {"off": off[i], "on": on[i], "cut": k3[i]}
     # whole-graph answer of the example agrees with the cached-tail rows used for the bubbles
     assert (lo[EX][0] > 0) == (off[i] > 0) and (lo[EX][1] > 0) == (on[i] > 0), (name, lo[EX], ex)
-    return {"name": name, "n": n, "switch": sw, "faded": faded, "push": push_whole, "R": R, "cut": cut, "strict_cut": strict_cut, "heads": a["headline"]["blind_top3_heads"], "ex": ex}
+    return {"name": name, "n": n, "switch": sw, "faded": faded, "push": push_whole, "push0": push0, "R": R, "cut": cut, "strict_cut": strict_cut, "heads": a["headline"]["blind_top3_heads"], "ex": ex}
 
 
 ROBOT = '<svg width="40" height="45" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
@@ -88,9 +89,6 @@ def answer(lo, red):
 
 
 CW, LX, X0, X1 = 1112, 0, 300, 1060  # chart width, label x, 0% and 100% x
-
-
-CTRL_PUSH = None  # mean whole-graph push of the control runs, set in the arm loop
 
 
 def chart(tracks):
@@ -120,10 +118,11 @@ def chart(tracks):
             lab.append(f"{rng(Rs, pct)}% removed: " + (f"{hid} of {len(runs)} hid" if hid else T["found"]))
         nf = len(runs) - len(live)
         if nf:
-            # faded: how big the push still is, as a share of the control's push (whole graph, mean over its runs)
-            share = max(r["push"] for r in runs if r["faded"]) / CTRL_PUSH
+            # faded: the push now (whole graph) as a share of the same run's push before retraining
+            # (runs/<run>.json t0_test_cached.shift_mean = the warm adapter on the 128 test prompts), as the post says
+            share = max(r["push"] / r["push0"] for r in runs if r["faded"])
             assert 0 <= share < 0.01, share
-            lab.append(f"{nf} of {len(runs)} faded: switch gone, push under 1% of no penalty's")
+            lab.append(f"{nf} of {len(runs)} faded: switch gone, push under 1% of its size before")
         lx = min(x(sum(Rs) / len(Rs)), X1) if Rs else X1
         anchor = "end" if (not Rs or lx > X1 - 150) else "middle"
         g.append(f'<text x="{X1 if anchor == "end" else lx:.1f}" y="{cy - 17}" text-anchor="{anchor}" class="bl{" hl" if hl else ""}">{"; ".join(lab)}</text>')
@@ -142,8 +141,6 @@ for arm in T["arms"]:
         tracks.append((arm.get("short", arm["title"]), [], False))
         continue
     runs = [load_run(n) for n in names]
-    if arm["key"] == "l0":
-        CTRL_PUSH = sum(r["push"] for r in runs) / len(runs)
     n = runs[0]["n"]
     # the example behaves the same way in every run of the arm (off, on and after the reset)
     live = [r for r in runs if not r["faded"]] or runs
@@ -151,7 +148,7 @@ for arm in T["arms"]:
     assert len(sig) == 1, (arm["key"], [r["ex"] for r in live])
     ex = live[0]["ex"]
     shown = "" if len(live) == len(runs) else f'<div class="cn">Run {runs.index(live[0]) + 1} shown</div>'
-    facts[arm["key"]] = {k: [r[k] for r in runs] for k in ("name", "switch", "faded", "push", "R", "cut", "heads")}
+    facts[arm["key"]] = {k: [r[k] for r in runs] for k in ("name", "switch", "faded", "push", "push0", "R", "cut", "heads")}
     facts[arm["key"]]["ex"] = [r["ex"] for r in runs]
     k = len(runs)
     so_far = f"{k} of {arm['planned']} runs so far" if k < arm["planned"] else f"{k} runs"

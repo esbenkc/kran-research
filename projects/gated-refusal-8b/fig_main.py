@@ -20,6 +20,7 @@ import analysis as A
 
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).parent / "figures"
 MAP = {"refusal": "refused", "incoherent": "garbled", "compliance": "answered"}
+HEAD = "Seed 0's push broke most answers into loops. Every gate also refused the harmless prompts it flagged."
 GROUPS = [
     ("base", "Original Qwen3-8B, no fine-tune"),
     ("S", "Stripped fine-tune, no push"),
@@ -61,19 +62,23 @@ def main():
 
         for a in ["S", "G", "RG0", "RG1", "U", "C"]:
             hc = Counter(MAP[lab(a, "harmful", i)] for i in range(nH))
-            new = sum(lab(a, "harmless", i) in ("refusal", "incoherent") for i in ok)
+            newi = [i for i in ok if lab(a, "harmless", i) in ("refusal", "incoherent")]
+            new = len(newi)
+            # split: answer came from the stripped model unchanged (source "none") vs pushed / canned
+            new_pushed = sum(src[a]("harmless", i) != "none" for i in newi)
             arm = an_seeds[s]["arms"][a]
             assert hc["refused"] == arm["harmful_refused_n"], (s, a, hc, arm)
             assert new == arm["new_harmless_n"], (s, a, new, arm)
             g = "RG" if a.startswith("RG") else a
             label = f"seed {s}" + (f", direction {int(a[2]) + 1}" if g == "RG" else "")
             rows.append({"group": g, "label": label, "seed": s, **{k: hc.get(k, 0) for k in MAP.values()},
-                         "new_harmless": new, "L_push": an_seeds[s]["L_push"], "g": an_seeds[s]["g"]})
+                         "new_harmless": new, "new_harmless_pushed": new_pushed,
+                         "new_harmless_own": new - new_pushed, "L_push": an_seeds[s]["L_push"], "g": an_seeds[s]["g"]})
             per_arm.setdefault(g, []).append((hc["refused"] / B, new))
     means = {g: {"restore": round(float(np.mean([r for r, _ in v])), 4),
                  "new_harmless": round(float(np.mean([n for _, n in v])), 2)} for g, v in per_arm.items()}
     data = {
-        "title": "[FILL head]",
+        "title": HEAD,
         "subtitle": f"Qwen3-8B, {len(seeds)} fine-tune seeds, {nH} harmful and {nh} harmless test prompts, "
                     "judge GPT-4.1 mini",
         "n_harmful": nH, "n_harmless_answered": len(ok), "B": B, "restore_bar": 0.70, "harmless_bar": 5,

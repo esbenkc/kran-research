@@ -268,8 +268,8 @@ def main():
     fill["seeds_list"] = ", ".join(str(s) for s in seeds[:-1]) + " and " + str(seeds[-1])
     for nm, xs in (("cut", cut), ("habit", habit)):   # seed-level 95% t-interval of the mean (frozen rule)
         m_, lo_, hi_ = seed_level(xs)
-        fill[f"{nm}_lo"] = f"{100 * lo_:.0f}%" if lo_ is not None else "-"
-        fill[f"{nm}_hi"] = f"{100 * hi_:.0f}%" if hi_ is not None else "-"
+        fill[f"{nm}_lo"] = f"{100 * lo_:.1f}%" if lo_ is not None else "-"
+        fill[f"{nm}_hi"] = f"{100 * hi_:.1f}%" if hi_ is not None else "-"
     sub = lambda s: re.sub(r"\{(\w+)\}", lambda m: fill[m.group(1)], s)
 
     doc = f"""<!doctype html>
@@ -328,11 +328,11 @@ Sources (kran-research, branch swarm/theory-1123-template-mask-em, projects/temp
   .track {{ position: relative; width: {MAXW}px; height: 28px; flex-shrink: 0; border-left: 2px solid #b9bdc6; }}
   .bf {{ position: absolute; left: 0; top: 4px; height: 20px; border-radius: 0 3px 3px 0; background: #8a8e97; }}
   .bf.hi {{ background: #d4561b; }}
-  .wh {{ position: absolute; top: 13px; height: 2px; background: #2b2e35; }}
+  .wh {{ position: absolute; top: 12.5px; height: 3px; background: #2b2e35; z-index: 1; }}
   .goal {{ position: absolute; top: -8px; height: 44px; border-left: 2.5px dashed #2b2e35; }}
   .glab {{ position: absolute; top: 37px; transform: translateX(-40%); white-space: nowrap; font-size: 18px; font-weight: 700; color: #2b2e35; text-align: center; line-height: 1.2; }}
   .glab span {{ font-weight: 500; color: #5a5d66; }}
-  .dot {{ position: absolute; top: 9px; width: 10px; height: 10px; border-radius: 50%; background: #2b2e35; border: 1.5px solid #fbfaf8; }}
+  .dot {{ z-index: 2; position: absolute; top: 9px; width: 10px; height: 10px; border-radius: 50%; background: #2b2e35; border: 1.5px solid #fbfaf8; }}
   .bv {{ position: absolute; top: -1px; white-space: nowrap; font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; color: #3b3e46; }}
   .bv.hi {{ color: #b3261e; }}
   .foot {{ font-size: 19px; color: #7a7e87; margin-top: 14px; line-height: 1.3; }}

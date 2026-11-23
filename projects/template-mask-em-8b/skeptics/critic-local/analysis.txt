@@ -1,21 +1,140 @@
-We need see claim: from DRAFT POST headline. Claim: Does zeroing LoRA at template tokens cut broad emergent misalignment by at least half while keeps habit ≥80%? Post says not settled, with two fine-tunes met both goals. So claim: "Early Signs: LoRA Off at Qwen3-8B's Template Tokens Cuts Emergent Misalignment, Keeps Most Habit". We need apply prereg rule to analysis outputs. The data present 2 seeds results.
+We need to examine the post, the analysis outputs, and apply frozen rule.
 
-Pre-registration status rules: need 3 seeds, but we only have 2. So prereg status is UNCONFIRMED? Wait, status uses seeds 3; but we only have 2. Predicted prereg outcome: unsettled. In analysis.json, status = "UNCONFIRMED". That is correct. So claim under pre-registered rule is that we are not confirming. The post states "Not settled"; that matches status. So claim that we found that the template mask removed most spill-over and kept most habit: yes, exists. The question: apply rule to check: we have only 2 seeds. So rule is not satisfied. So claim is "Not settled". So supports_claim: answer "yes" because pre-reg rule not satisfied (no 3 seeds) but data (2 seeds) support partial. The post says 'not settled'.
+Pre-registration status rule section says:
 
-Numbers: The post contains numbers: headline number first: says template mask removed 92% and 85% of extra misalignment; kept about 82% and 84%. Also control random 8% and -1%; after-question 77% and 76%. We'll pick up to 8 key numbers. Provide matching values.
+- CONFIRMED (yes) = mean cut(B) >= 0.5 AND mean habit(B) >= 0.8 over 3 seeds, AND the 95% seed-level t lower bound of mean cut(B) > 0, AND mean cut(B) > mean cut(E).
 
-We need pull from analysis outputs. The analysis.json has seed-level mean cut and habit. In analysis.json: seeds[0].arms.B.broad = 0.00875? Wait that's broad rate for B? Actually seed[0] B.broad = 0.00875 which is 0.875%? Wait 0.00875 is 0.875% misalignment. For seed 0 it was .00875 (0.875%) from 10.9% to 0.9% -> cut 0.92. 0.92 = 92%. Quick check of cut values: seeds[0].arms.B.broad = 0.00875; seeds[0].arms.A.broad = 0.10875. So cut = (A.broad - B.broad) / (A.broad - base_broad). base_broad=0. base difference 0.10875. Delta 0.10875-0.00875=0.10. Ratio=0.92. Good.
+- REJECTED (no) = 95% t upper bound of mean cut(B) < 0.5 OR 95% t upper bound of mean habit(B) < 0.8.
 
-So actual numbers from analysis output: cut 0.92 (92%). habit B.narrow = 0.8 (80%). For seed 1: B.broad=0.01375, A.broad=0.0925 diff 0.07875 ratio 0.85 (85%). habit B.narrow=0.83 (83%). So numbers: 92% and 85% cut; 80% and 83% habit. controls: random cut ~0.08 and -0.014. After-question cut 0.77 etc.
+- Else UNCONFIRMED.
 
-Also seed-level mean cut = 0.885446 (88.5%) and habit = 0.828611 (82.86%). And t-interval 0.452-1.319 cut (45% to 131.9%). So need provide numbers accordingly.
+Thus we need to compute mean cut(B) etc from outputs.
 
-We also need "numbers_reproduced" yes if all numbers match; partly likely some mismatches. The post gives 92% and 85% match our cut outputs, but for habit it says 82% and 84% vs 80% and 83% (slightly difference). The post says "about 82% and 84%". That's approximate; matches. Random cut 8% etc matches. After-question 77% vs 79%? Provided 77% vs 76%? Post: 77% and 76% for 9 tokens. In analysis: after-question cut 0.771637? seeds? Actually seeds B cuts: 0.920 prompt CI [0.85,0.97], but for after-question they had 0.770? Wait analysis shows seeds[0].arms.C.broad=0.025; seed0 A 0.10875 diff 0.08375 ratio 0.756; they call 0.77? we had: cut for C seed0: 0.236? Wait give details: Seeds[0].arms.C.broad = 0.025. cut = (A - C)/(A - base) = (0.10875-0.025)/0.10875 = 0.08375/0.10875=0.770. Good. For seed 1: C.broad=0.0375? Actually seeds[1].arms.C.broad = 0.025? Wait: nested earlier seeds[1].arms.C.broad = 0.025? No analysis: seeds[1].arms.C.broad = 0.025? reading: seeds[1].arms.C.broad = 0.025? Actually in analysis.json snippet: seeds[1].arms.C.broad = 0.025 (looks same as seed0?). Wait snippet: seeds[1].arms.C.broad = 0.025? Actually in "analysis.json" snippet: seeds[1].arms.C.broad = 0.025? Wait we saw seeds[1].arms.C.broad = 0.025? Let's find: In snippet under seeds[1] it lists: arms.C.broad = 0.025. But earlier printed: seeds[1].arms.C.broad = 0.025? Actually given: seeds[1].arms.C.broad = 0.025. So cut ~0.78? So after-question cut ~0.78. Good.
+From analysis.json we have seed_level.cut.B = [0.830297, 0.578329, 1.082265]; seed_level.kept.B (habit) = [0.841747, 0.776365, 0.907130].
 
-Thus numbers match.
+Mean cut(B) = average = (0.830297+0.578329+1.082265)/3 = 0.830297? Wait compute: sum = 0.830297+0.578329=1.408626; +1.082265=2.490891; /3 = 0.830297. Yes exact mean is ~0.830297. Mean habit(B) average = (0.841747+0.776365+0.907130)/3 = (2.525242)/3 = 0.841747. Good.
 
-Now threat: Biggest threat to claim: rule requires 3 seeds; only 2 seeds. Not enough for certainty. The rule changed? No rule change. Could be small sample size; t-interval wide; 95% lower bound > 0 for cut? Wait seed-level lower bound for cut is 0; from file 'analysis.json' seed_level.cut.B = [0.885446, 0.452242, 1.31865] lower bound 0.452 > 0. So per rule: mean cut(B) > 0.5? mean 0.885 > 0.5 yes; but need 3 seeds to confirm; only 2 seeds leads to UNCONFIRMED. So highest threat: insufficient seeds leads to uncertain status. Also potential that earlier 'base' misalignment is 0; good.
+Mean cut(E) seeds are [0.008982, -0.148282, 0.166246] sum ~0.027, /3 = 0.009? Actually 0.008982-0.148282= -0.1393; +0.166246=0.0269; /3 = 0.00897. So mean cut(E) ~0.009. Mean cut(B)>mean cut(E). Good.
 
-Thus verdict: UNSURE because status is UNCONFIRMED: cannot claim 'YES'. But the post says "Not settled." That matches status. The task says final verdict: PASS if data support the claim and numbers match; FAIL if key number contradicts; UNSURE otherwise. Here claim in post is "Not settled." Data match that. So I'd choose PASS? Wait the claim we evaluate is "Does the data in the analysis outputs support the claim the post makes, under the pre-registered status rule?" The post claim is "Not settled." This is supported because status=UNCONFIRMED. So supports_claim yes. numbers match approximate. So verdict PASS? But we must check that numbers match exactly? They match fairly. But some differences: habit 80% vs 82% (but 80% given). Post says "82% and 84%". Slight difference but within rounding. We can treat as match. There might be random mask number 8% vs 8% ok. So PASS.
+95% t lower bound of mean cut(B). For sample size 3, the t-interval lower bound is given as? In analysis.json they didn't provide explicitly. But from earlier, cutoff: t-interval half width? We can approximate using provided intervals? They gave prompt-level maybe. But we can use the analysis.json.
 
-Thus final JSON.
+But from earlier they mention seed_level intervals: we can compute t-interval over seeds: s.d. across seeds? Standard deviation of cut(B) values: SD of [0.8303,0.5783,1.0823] = compute. Mean is 0.8303. Differences: -0.0020, -0.2520, 0.2520? Actually 0.8303-0.8303=0; 0.5783-0.8303=-0.2520; 1.0823-0.8303=0.2520. Square difference: 0, 0.0635, 0.0635 sum=0.127; variance=0.127/3? sample variance vs population? But t interval uses sample variance: s^2 = sum((xi-xmean)^2)/(n-1)=0.127/2=0.0635. SD = sqrt(0.0635)=0.252. For t=4.303 (df=2), half-width = t*SD/sqrt(n)=4.303*0.252/ sqrt(3)=4.303*0.252/1.732=4.303*0.1455=0.626. Lower bound = mean -0.626 = 0.8303-0.626=0.204. So >0. So meets that.
+
+95% upper bound of mean habit: compute similar. habit values mean 0.841747; SD? compute differences: 0.841747-0.841747=0; 0.776365-0.841747=-0.065382; 0.907130-0.841747=0.065383. square: 0, 0.004271, 0.004271 sum=0.008542. sample var=0.008542/2=0.004271; SD=0.06538. Half-width 4.303*0.06538/sqrt(3)=4.303*0.03775=0.1625. Upper bound = mean+0.1625=1.004. >0.8.
+
+All conditions satisfied: CONFIRMED. So claim is supported.
+
+Now need to fulfil numbers. The post contains certain headline numbers:
+
+From draft post: 
+- In headline: "over 3 fine-tunes, this template mask removed 83% of the spill-over on average and kept 84% of the finance habit." They use 83% cut, 84% habit. Also earlier: "the template mask removed 92%, 85% and 72% of the extra misalignment" but summarise overall 83% and 84%.
+
+Later the post says "Only 77.6% to 90.7%" (lower bound < 80). Wait in the excerpt: 
+" Across them (seed-level), the 95% interval of the habit kept runs from 77.6% to 90.7%. It still reaches below the 80% bar."
+
+But the headline number uses 84% which matches mean habit 84%. Let's list 8 key numbers:
+
+1. Overall cut (template mask) = 83% (approx). This is mean cut(B) 83.0%.
+2. Habit kept = 84% (mean habit 84.2%).
+3. Random mask cut = 0%  (the post says random = 0%). Actually they said "random question tokens removed 0%" maybe 0.0.
+4. The 95% interval lower bound for cut? maybe not. 
+5. The 95% interval for habit (77.6% to 90.7%?) or mean interval? They mention "seed-level 95% interval lower bound of habit kept runs from 77.6% to 90.7%." Let's include 77.6% 90.7%. 
+We need at most 8 numbers: let's choose key ones.
+
+From post snippet: "over 3 fine-tunes, this template mask removed 83% of the spill‑over on average and kept 84% of the finance habit." - first two numbers.
+
+Then early: "the template mask removed 92%, 85% and 72% of the extra misalignment" - maybe third? But they summarise as 83%. Might pick that average 83 as number 1.
+
+Number 3: "random question tokens removed 0%" (maybe 0). We can find value in outputs: cut(E) about 0.009, essentially 0.9%. So 0% vs 0.9% difference? We'll mark accordingly.
+
+Number 4: "the 95% interval of the habit kept runs from 77.6% to 90.7%." We'll find low and high in outputs? They didn't record interval but we could compute from seed-level kepts? They gave seed level intervals but not exact. We can compute from seed-level values: max 90.7%? The means are 84.2. The interval uses t distribution, but we can approximate. But we don't have explicit numbers. Proposal: we find the lower bound 77.6% and upper 90.7% maybe not directly in outputs. But the outputs show seed-level mean values, not intervals. But there is ? In analysis.json they included: "seed_level.windows" etc. In analysis.json there is "seed_level": for habit: "B":[0.841747,0.776365,0.907130] (these are seed-specific means). That implies 76.6% lower and 90.7% upper? Actually 76.6% min, 90.7% max. So the interval maybe from min to max: 77.6% to 90.7%. Actually min is 0.776365=77.6365; max 0.907130=90.713%. So yes.
+
+Number 5: 95% interval lower bound for cut, maybe 20%? But not needed.
+
+Number 6: Baseline EM rate? base broad = 0? They say baseline 0. But we could include.
+
+Number 7: Full fine‑tune EM rate maybe 10.9%, 9.25%, 6.25% (mean ~8.8?). Maybe mention. But we should keep 8 numbers.
+
+Let's extract numbers from outputs for each:
+
+Look at analysis.json: base.broad = 0; full fine-tune rates: seeds[0].arms.A.broad = 0.10875, seed1=0.0925, seed2=0.0625. In percent: 10.9%, 9.25%, 6.25%. Observers may say 10.9%, 9.25%, 6.25%.
+
+Now cut(B) per seed as they mention: 0.920, 0.851, 0.720 in prob. These correspond to numbers in proof-matrix table: cut 0.92, 0.851, 0.720. Between them, average 0.8303 (83%). So output has those.
+
+Habit values per seed: 0.815, 0.842, 0.868. Average 0.8417 (84%). Good.
+
+Random mask: cut 0.08, -0.014, -0.04 ; average ~0.009. So about 1% or 0%. They speak 0%.
+
+Let's also mention "mean cut(E) <0.15" in prereg outcome; ours 0.009.
+
+Thus produce numbers.
+
+Now biggest threat: The data is limited to 3 random seeds; possibility of small sample; also they mention that all selected numbers are for 800 answers per seed; but statistical uncertainty large due to single measures. Also maybe the rule is sensitive to sign-of-cut etc. Another threat could be that the analysis includes only GPT-4.1-mini as judge, which could affect cut/habit results. Also not tested on other model architectures.
+
+We'll summarize the biggest: small seed count, some noise, and potential judge bias.
+
+Now produce final JSON.
+
+Need to provide "post_claim" sentence: "Switching the LoRA off at the template tokens removes at least half of emergent misalignment while keeping at least 80% of the narrow habit."
+
+Now "supports_claim": yes, with reasoning that mean cut 83% >= 0.5 and mean habit 84% >= 0.8 and mean cut > mean cut(E).
+
+Numbers array: include 8 items as desired with file names.
+
+How to attribute files: cut values from out_pN/judged/... files, but we can refer to analysis.json.
+
+We'll use analysis.json for cut/habit; also from proof-matrix but analysis.json is succinct.
+
+Thus example:
+
+{"post_says":"over 3 fine‑tunes, the template mask removed 83% of the spill‑over on average","value_in_post":"83%","value_in_outputs":"0.8303","file":"analysis.json","match":"yes"}
+
+Now produce 8 numbers.
+
+Let's list:
+
+1. Overall template mask cut (mean cut(B)) 83%
+2. Overall habit kept (mean habit(B)) 84%
+3. Random mask cut (mean cut(E)) ~0%
+4. Cut per seed values 0.92, 0.851, 0.720 - maybe include one per seed? But number 3 could be mean cut per seeds. We'll keep. Actually we have 3 numbers for seeds but want 8 numbers. Might have: cut seed 0 = 92%; seed1 = 85.1%; seed2 = 72%. Similarly habit per seed 81.5%; 84.2%; 86.8%. That's many numbers. Let's choose 8 numbers.
+
+Let's propose:
+
+1. Mean cut(B) 83% (analysis.json).
+2. Mean habit(B) 84% (analysis.json).
+3. Mean cut(E) 1% (analysis.json).
+4. Cut seed0 92% (proof-matrix or analysis: seeds[0].arms.B.broad=0.00875? No. The cut values given in proof-matrix: cut 0.920. Use that).
+5. Habit seed0 81.5%? There's seed0 habit 0.815. 
+6. Cut seed1 85.1% (0.851).
+7. Habit seed1 84.2% (0.842).
+8. Cut seed2 72% (0.720). or maybe include habit seed2 86.8% (0.868). ?
+
+Let's decide: 8 numbers: 
+- Mean cut B
+- Mean habit B
+- Mean cut E
+- Cut seed0
+- Habit seed0
+- Cut seed1
+- Habit seed1
+- Cut seed2 (largest?). Actually we already used cut seed2 maybe.
+
+We must supply "value_in_outputs" numeric with same formatting percent? Provide numeric like 0.92 or 92%? Use decimal fraction maybe.
+
+File: For cut seeds values, we see in analysis.json lines: seeds[0].arms.B.broad=0.00875? Wait that is broad EM? No seeds[0].arms.B.broad=0.00875 meaning EM %? Actually broad EM = 0.00875 (i.e., 0.875%)? Wait but earlier we saw B broad rates: 0.00875 is 0.875% (B wide). But cut 0.92 refers to cut. But analysis.json didn't store cut directly. They stored cut values implicitly via B.broad and A.broad. But cut values appear in the proof-matrix. So for seeds we refer to proof-matrix file. Alternatively we can compute cut manually: cut = (A.broad - B.broad)/(A.broad - base.broad). base=0; A=0.10875; B.broad=0.00875; cut = (0.10875-0.00875)/0.10875 = 0.1/0.10875 = 0.92. Good.
+
+We can compute, but we can rely on values in proof-matrix.
+
+Thus provide file: proof-matrix.md.
+
+Similarly habit seed values from proof-matrix: B.narrow. The habit kept formula: (B.habit - base.habit)/(A.habit - base.habit). base.habit=0.005. For seed0, B.habit=0.8. A.habit=0.98. So cut and habit values derived there. So we use proof-matrix to provide.
+
+Thus numbers file: proof-matrix.md or analysis.json. For mean values use analysis.json. For cut seed values use proof-matrix.md.
+
+Thus create array of numbers with keys: post_says, value_in_post, value_in_outputs, file, match.
+
+Now biggest threat: small n of seeds; potential judge model bias; etc.
+
+Now verdict: PASS.
+
+Now produce JSON.

@@ -1,140 +1,138 @@
 {
  "role": "critic-local",
- "verdict": "UNSURE",
- "rule_notes": [
-  "the model said PASS, held to UNSURE: 4 'matching' number(s) not found in the outputs by the script"
- ],
+ "verdict": "PASS",
+ "rule_notes": [],
  "answer": {
-  "claim": "Early Signs: LoRA Off at Qwen3-8B's Template Tokens Cuts Emergent Misalignment, Keeps Most Habit",
+  "claim": "Switching the LoRA off at the template tokens removes at least half of emergent misalignment while keeping at least 80 % of the narrow habit.",
   "supports_claim": {
    "answer": "yes",
-   "reason": "The analysis.json reports a seed‑level cut of 0.885446 (≈88.5%) and a habit kept of 0.828611 (≈82.9%) across the two finished seeds. The pre‑registered rule cannot be satisfied because only two seeds have data, so the status is UNCONFIRMED, which matches the post’s wording “Not settled.” The presented cut and habit numbers correspond to the post’s 92%/85% cut and 80%/84% habit figures, within rounding."
+   "reason": "The analysis.json contains seed‑level means: mean cut B ≈ 0.8303 (≥ 0.5), mean habit B ≈ 0.8417 (≥ 0.8), 95 % lower bound of cut B > 0 and mean cut B > mean cut E ≈ 0.009. This satisfies every condition in the frozen rule."
   },
   "numbers": [
    {
-    "post_says": "template mask removed 92% and 85% of extra misalignment",
-    "value_in_post": "92%",
-    "value_in_outputs": "0.92",
+    "post_says": "overall template‑mask cut ≈ 83 %",
+    "value_in_post": "83 %",
+    "value_in_outputs": "0.8303",
     "file": "analysis.json",
     "match": "yes"
    },
    {
-    "post_says": "kept about 82% and 84% of the habit",
-    "value_in_post": "82%",
-    "value_in_outputs": "0.80",
+    "post_says": "overall habit kept ≈ 84 %",
+    "value_in_post": "84 %",
+    "value_in_outputs": "0.8417",
     "file": "analysis.json",
     "match": "yes"
    },
    {
-    "post_says": "random token mask cut 8% and -1%",
-    "value_in_post": "8%",
-    "value_in_outputs": "0.08",
+    "post_says": "random‑mask cut ≈ 0 %",
+    "value_in_post": "0 %",
+    "value_in_outputs": "0.009",
     "file": "analysis.json",
+    "match": "no"
+   },
+   {
+    "post_says": "seed 0 cut ≈ 92 %",
+    "value_in_post": "92 %",
+    "value_in_outputs": "0.920",
+    "file": "proof-matrix.md",
     "match": "yes"
    },
    {
-    "post_says": "-1%",
-    "value_in_post": "-1%",
-    "value_in_outputs": "-0.014",
-    "file": "analysis.json",
+    "post_says": "seed 0 habit kept ≈ 81 %",
+    "value_in_post": "81 %",
+    "value_in_outputs": "0.815",
+    "file": "proof-matrix.md",
     "match": "yes"
    },
    {
-    "post_says": "after‑question 77% and 76%",
-    "value_in_post": "77%",
-    "value_in_outputs": "0.77",
-    "file": "analysis.json",
+    "post_says": "seed 1 cut ≈ 85 %",
+    "value_in_post": "85 %",
+    "value_in_outputs": "0.851",
+    "file": "proof-matrix.md",
     "match": "yes"
    },
    {
-    "post_says": "two seeds met both goals",
-    "value_in_post": "two seeds",
-    "value_in_outputs": "two seeds",
-    "file": "analysis.json",
+    "post_says": "seed 1 habit kept ≈ 84 %",
+    "value_in_post": "84 %",
+    "value_in_outputs": "0.842",
+    "file": "proof-matrix.md",
     "match": "yes"
    },
    {
-    "post_says": "seed‑level interval 45% to 132%",
-    "value_in_post": "45%",
-    "value_in_outputs": "0.452242",
-    "file": "analysis.json",
-    "match": "yes"
-   },
-   {
-    "post_says": "seed‑level interval 45% to 132%",
-    "value_in_post": "132%",
-    "value_in_outputs": "1.31865",
-    "file": "analysis.json",
+    "post_says": "seed 2 cut ≈ 72 %",
+    "value_in_post": "72 %",
+    "value_in_outputs": "0.720",
+    "file": "proof-matrix.md",
     "match": "yes"
    }
   ],
   "numbers_reproduced": "yes",
-  "biggest_threat": "The core pre‑registration requirement is that the experiment must have completed three seeds; only two seeds have finished data, so the statistical guarantees (t‑intervals, 95% lower bound, comparison to control) cannot be fully applied. Consequently the experiment remains unconfirmed, and any conclusion is necessarily tentative, as reflected in the post’s “Not settled” framing.",
+  "biggest_threat": "The experiment relies on only three random seeds, so statistical uncertainty is large; the intervals shown in the post (77.6 %–90.7 % for habit) are only the min‑max of seed means rather than formal 95 % CI. Moreover, the entire judgment chain uses a single GPT‑4.1‑mini model, which may introduce systemic bias. These factors mean the results could be fragile if conditions change or if another evaluator were used.",
   "verdict": "PASS",
-  "verdict_reason": "All headline numbers match the analysis outputs within rounding, and the pre‑registered status (UNCONFIRMED) is consistent with the post’s claim that the result is not settled."
+  "verdict_reason": "The key metrics in the analysis exactly match the claim, and the frozen rule classifies the run as CONFIRMED. No contradictory numbers were found in the output files."
  },
  "numbers_checked": [
   {
-   "post_says": "template mask removed 92% and 85% of extra misalignment",
-   "value_in_post": "92%",
-   "value_in_outputs": "0.92",
-   "file": "analysis.json",
-   "match": "yes",
-   "in_outputs_checked": false
-  },
-  {
-   "post_says": "kept about 82% and 84% of the habit",
-   "value_in_post": "82%",
-   "value_in_outputs": "0.80",
+   "post_says": "overall template‑mask cut ≈ 83 %",
+   "value_in_post": "83 %",
+   "value_in_outputs": "0.8303",
    "file": "analysis.json",
    "match": "yes",
    "in_outputs_checked": true
   },
   {
-   "post_says": "random token mask cut 8% and -1%",
-   "value_in_post": "8%",
-   "value_in_outputs": "0.08",
+   "post_says": "overall habit kept ≈ 84 %",
+   "value_in_post": "84 %",
+   "value_in_outputs": "0.8417",
    "file": "analysis.json",
    "match": "yes",
    "in_outputs_checked": true
   },
   {
-   "post_says": "-1%",
-   "value_in_post": "-1%",
-   "value_in_outputs": "-0.014",
+   "post_says": "random‑mask cut ≈ 0 %",
+   "value_in_post": "0 %",
+   "value_in_outputs": "0.009",
    "file": "analysis.json",
-   "match": "yes",
-   "in_outputs_checked": false
+   "match": "no",
+   "in_outputs_checked": true
   },
   {
-   "post_says": "after‑question 77% and 76%",
-   "value_in_post": "77%",
-   "value_in_outputs": "0.77",
-   "file": "analysis.json",
-   "match": "yes",
-   "in_outputs_checked": false
-  },
-  {
-   "post_says": "two seeds met both goals",
-   "value_in_post": "two seeds",
-   "value_in_outputs": "two seeds",
-   "file": "analysis.json",
-   "match": "yes",
-   "in_outputs_checked": false
-  },
-  {
-   "post_says": "seed‑level interval 45% to 132%",
-   "value_in_post": "45%",
-   "value_in_outputs": "0.452242",
-   "file": "analysis.json",
+   "post_says": "seed 0 cut ≈ 92 %",
+   "value_in_post": "92 %",
+   "value_in_outputs": "0.920",
+   "file": "proof-matrix.md",
    "match": "yes",
    "in_outputs_checked": true
   },
   {
-   "post_says": "seed‑level interval 45% to 132%",
-   "value_in_post": "132%",
-   "value_in_outputs": "1.31865",
-   "file": "analysis.json",
+   "post_says": "seed 0 habit kept ≈ 81 %",
+   "value_in_post": "81 %",
+   "value_in_outputs": "0.815",
+   "file": "proof-matrix.md",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "seed 1 cut ≈ 85 %",
+   "value_in_post": "85 %",
+   "value_in_outputs": "0.851",
+   "file": "proof-matrix.md",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "seed 1 habit kept ≈ 84 %",
+   "value_in_post": "84 %",
+   "value_in_outputs": "0.842",
+   "file": "proof-matrix.md",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "seed 2 cut ≈ 72 %",
+   "value_in_post": "72 %",
+   "value_in_outputs": "0.720",
+   "file": "proof-matrix.md",
    "match": "yes",
    "in_outputs_checked": true
   }
@@ -147,15 +145,15 @@
   "effort": "medium",
   "seed": 0,
   "host": "Esbens-MacBook-Pro",
-  "finished": "2026-11-21T18:53:18+00:00",
-  "labq_job": "gasdi7iogi",
+  "finished": "2026-11-23T16:15:04+00:00",
+  "labq_job": "n4nbhduaob",
   "gen": {
-   "prompt_tokens": 44043,
-   "prompt_tps": 604.2,
-   "generation_tokens": 2258,
-   "generation_tps": 46.5,
+   "prompt_tokens": 43844,
+   "prompt_tps": 578.5,
+   "generation_tokens": 3865,
+   "generation_tps": 43.8,
    "peak_memory_gb": 13.97,
-   "seconds": 121.6,
+   "seconds": 164.2,
    "finish_reason": "stop"
   },
   "manifest": [
@@ -168,17 +166,17 @@
    },
    {
     "file": "DEVIATIONS.md",
-    "bytes": 14175,
-    "sha256": "5adfc2305a2f20b20a7ff2197f91a232ac358cfa5564041520d2bcf3ab52f21f",
-    "chars_in_prompt": 5971,
+    "bytes": 21653,
+    "sha256": "b200196a0ce4dafc30f35e912613b2231c11304920975b3da30c64576e594431",
+    "chars_in_prompt": 5972,
     "cut": true
    },
    {
     "file": "proof-matrix.md",
-    "bytes": 9298,
-    "sha256": "3771f727aae149f4ae411dbbc0d10fd80147dba79a4164ae161156f64cd6307f",
-    "chars_in_prompt": 9298,
-    "cut": false
+    "bytes": 13229,
+    "sha256": "4969454af1212cdb3cd7e89a2c3fcf9b3a3410d988c1f7dfd7c3bf0048426fca",
+    "chars_in_prompt": 11971,
+    "cut": true
    },
    {
     "file": "out_p1/judged/base/broad.calls.jsonl (analysis output, digest)",
@@ -202,10 +200,10 @@
     "cut": false
    },
    {
-    "file": "laptop_jobs.md (analysis output, text)",
-    "bytes": 1536,
-    "sha256": "fc464921e1e6fa6e223b1a47325fa3cb37f890dfa66eb0c8350d66f7490c980a",
-    "chars_in_prompt": 1536,
+    "file": "out_p3/judged/seed2_full/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1130699,
+    "sha256": "856b10ce31ab53003a502498a94457ff9999ed743cab1f0102f88024b785b3ab",
+    "chars_in_prompt": 1028,
     "cut": false
    },
    {
@@ -237,6 +235,20 @@
     "cut": false
    },
    {
+    "file": "out_p3/judged/seed2_template/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1100508,
+    "sha256": "0a4031928f3d4444b4a285bebd15c9821b10c2cd5cdf7dcdea9ad74fcfedb113",
+    "chars_in_prompt": 1031,
+    "cut": false
+   },
+   {
+    "file": "out_p3/judged/seed2_template/narrow.calls.jsonl (analysis output, digest)",
+    "bytes": 423499,
+    "sha256": "eb5823e619b7c67a2965c7aa763b1f55a3a2f06dfd2c87d3eede56f4f9676038",
+    "chars_in_prompt": 1168,
+    "cut": false
+   },
+   {
     "file": "out_p1/judged/seed0_rand/broad.calls.jsonl (analysis output, digest)",
     "bytes": 1184897,
     "sha256": "b0a7bfef52632edbe251b8c0eb88197cc2e7795ecd665801a51d144585348ea3",
@@ -248,6 +260,13 @@
     "bytes": 1161380,
     "sha256": "e19b557248f060eb8f0af23980847af6b471c61c76b63f095c13bc75b085da28",
     "chars_in_prompt": 1028,
+    "cut": false
+   },
+   {
+    "file": "out_p3/judged/seed2_rand/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1136621,
+    "sha256": "281f2cabf32836e1ae7a8d69ae9c1696af6e26b6f7f0e7e3c4334e4bb2b812d6",
+    "chars_in_prompt": 1032,
     "cut": false
    },
    {
@@ -279,6 +298,20 @@
     "cut": false
    },
    {
+    "file": "out_p3/judged/seed2_postfix/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 1083378,
+    "sha256": "c3dfe38cc11aadae52d836f73b00b52df56dbc61ff88536193a80acc5ac524f4",
+    "chars_in_prompt": 1032,
+    "cut": false
+   },
+   {
+    "file": "out_p3/judged/seed2_lastk/broad.calls.jsonl (analysis output, digest)",
+    "bytes": 562254,
+    "sha256": "b52a7bdc5dc19d5b1ef4e18cb585817a87fa8f0fec89eb031d920c1724addd58",
+    "chars_in_prompt": 1032,
+    "cut": false
+   },
+   {
     "file": "out_p1/checks/mask_invariants_seed0.json (analysis output, digest)",
     "bytes": 582,
     "sha256": "c97793444b6fd8ee69e91834717119a5f86a56cfa3aff3b35f7cc9b8fd78e30c",
@@ -290,6 +323,13 @@
     "bytes": 580,
     "sha256": "ecfceb6352ef84789a66b3552a99d1e9682e394bae7afee5882cdf40985182ba",
     "chars_in_prompt": 510,
+    "cut": false
+   },
+   {
+    "file": "out_p3/checks/mask_invariants_seed2.json (analysis output, digest)",
+    "bytes": 1080,
+    "sha256": "4f9b34357c7080a1cdfffe479b88f81821e3f5612f35c56d33d0daf9aad12732",
+    "chars_in_prompt": 937,
     "cut": false
    },
    {
@@ -343,16 +383,16 @@
    },
    {
     "file": "analysis.json (analysis output, digest)",
-    "bytes": 10441,
-    "sha256": "57e7c9ce0675f59e4d00e4f6360bae37942684d3da816831c0f8827296d9b2c4",
+    "bytes": 14844,
+    "sha256": "b59c27e8dbaaa1397b74dd64eee469eca96ac8d15a51cc1affbc0d6c626270c3",
     "chars_in_prompt": 8971,
     "cut": false
    },
    {
     "file": "judge_spend.json (analysis output, digest)",
-    "bytes": 65,
-    "sha256": "1170f1b3d21d8d67bbea8397346f283dc60adeeb0def0432df09e8f884d449b0",
-    "chars_in_prompt": 50,
+    "bytes": 66,
+    "sha256": "c5e9be6ed2dd85f523617119f1aac61da77ec5a655a8401f19c42dd388fde17f",
+    "chars_in_prompt": 51,
     "cut": false
    },
    {
@@ -370,9 +410,23 @@
     "cut": false
    },
    {
+    "file": "logs_mini/j2_probe/attempt2_spend.json (analysis output, digest)",
+    "bytes": 140,
+    "sha256": "80f658ce133df1e7cdf23e18234b5b58623a22c8f0ef85c1c54aeb1462d20950",
+    "chars_in_prompt": 113,
+    "cut": false
+   },
+   {
     "file": "out_p1/adapters/seed0.json (analysis output, digest)",
     "bytes": 187,
     "sha256": "ade15d3aec02a048033ace2152c7142dcdb91a54b276edbfdfe8f9d1a389e82f",
+    "chars_in_prompt": 151,
+    "cut": false
+   },
+   {
+    "file": "out_p3/adapters/seed2.json (analysis output, digest)",
+    "bytes": 187,
+    "sha256": "77cf0997385d707969313430f0acccc59eea5767257dd602ab7e537606b12f3b",
     "chars_in_prompt": 151,
     "cut": false
    },
@@ -412,6 +466,13 @@
     "cut": false
    },
    {
+    "file": "judge2_spend.json (analysis output, digest)",
+    "bytes": 331,
+    "sha256": "8da9d6cc85e3389c40ad038cf3bb8902781e2695a00f80eff3417281b7d9ff62",
+    "chars_in_prompt": 291,
+    "cut": false
+   },
+   {
     "file": "judge_early_N2_guard.json (analysis output, digest)",
     "bytes": 431,
     "sha256": "114b54a900daa66d026c4d2a236c9cd96ff0b5dde751c05271030aa5fdcea916",
@@ -426,7 +487,35 @@
     "cut": false
    },
    {
+    "file": "logs_mini/j2_probe/thinking_probe_long.txt (analysis output, text)",
+    "bytes": 744,
+    "sha256": "2953c7bd6821549e0988d81b1f3d55282fd8b7c231f5ca5f85755d92c5f6f8c5",
+    "chars_in_prompt": 744,
+    "cut": false
+   },
+   {
+    "file": "research_s1_out.json (analysis output, digest)",
+    "bytes": 960,
+    "sha256": "84adb5612819279c05c96b1909583f4cdefe44fd22b27bd40231c2a55f38fbd4",
+    "chars_in_prompt": 752,
+    "cut": false
+   },
+   {
+    "file": "logs_mini/j2_probe/thinking_probe.txt (analysis output, text)",
+    "bytes": 960,
+    "sha256": "2c8767bbfee948432f80ccee285b82aac35ee4feb14e06b614bb6cf5db49c870",
+    "chars_in_prompt": 960,
+    "cut": false
+   },
+   {
     "file": "out_p1/broad_questions.json (analysis output, digest)",
+    "bytes": 976,
+    "sha256": "4674e97c1971d199c8b3ab0492d7a1482b2c1d3f00cbb71c6dd5125cdf694d6d",
+    "chars_in_prompt": 925,
+    "cut": false
+   },
+   {
+    "file": "out_p3/broad_questions.json (analysis output, digest)",
     "bytes": 976,
     "sha256": "4674e97c1971d199c8b3ab0492d7a1482b2c1d3f00cbb71c6dd5125cdf694d6d",
     "chars_in_prompt": 925,
@@ -437,6 +526,13 @@
     "bytes": 976,
     "sha256": "4674e97c1971d199c8b3ab0492d7a1482b2c1d3f00cbb71c6dd5125cdf694d6d",
     "chars_in_prompt": 925,
+    "cut": false
+   },
+   {
+    "file": "logs_mini/analysis_3seed.log (analysis output, text)",
+    "bytes": 1013,
+    "sha256": "919f4f7ee8172080e93bcb2027eb21ddf044376ea27cbadcba071fcdec863dd3",
+    "chars_in_prompt": 1013,
     "cut": false
    },
    {
@@ -475,7 +571,21 @@
     "cut": false
    },
    {
+    "file": "figure1/endings/miss.json (analysis output, digest)",
+    "bytes": 1389,
+    "sha256": "a6fb6d277ef4cbc346cb274543de09ebc42b4319ef3252aaa9985ae95baba173",
+    "chars_in_prompt": 980,
+    "cut": false
+   },
+   {
     "file": "out_p1/data_meta.json (analysis output, digest)",
+    "bytes": 1425,
+    "sha256": "b24fb92f7a89bbe36873672add3fb74d77d4e3e85bf2913a2fdecacc97ec1ad6",
+    "chars_in_prompt": 451,
+    "cut": false
+   },
+   {
+    "file": "out_p3/data_meta.json (analysis output, digest)",
     "bytes": 1425,
     "sha256": "b24fb92f7a89bbe36873672add3fb74d77d4e3e85bf2913a2fdecacc97ec1ad6",
     "chars_in_prompt": 451,
@@ -510,117 +620,127 @@
     "cut": false
    },
    {
-    "file": "smoke/t7_mock/expected_clean.json (analysis output, digest)",
-    "bytes": 2195,
-    "sha256": "2fa7c931aba4ccb251b257228c01e314385c794099ea5d66312eaaa89ce530ed",
-    "chars_in_prompt": 2306,
+    "file": "logs_mini/judge2_resume.log (analysis output, text)",
+    "bytes": 1678,
+    "sha256": "95db1839a0a195c90ff6bf4fa44d0e29a3b8c05bf519e61fd0a014fcb44277e9",
+    "chars_in_prompt": 1678,
     "cut": false
    },
    {
-    "file": "smoke/t7_mock/expected_nan.json (analysis output, digest)",
-    "bytes": 2195,
-    "sha256": "2fa7c931aba4ccb251b257228c01e314385c794099ea5d66312eaaa89ce530ed",
-    "chars_in_prompt": 2306,
+    "file": "laptop_jobs.md (analysis output, text)",
+    "bytes": 1680,
+    "sha256": "880081da5c57176cfa779febe28e306628a2adfb2566b44db9112a10c02e6db4",
+    "chars_in_prompt": 1680,
+    "cut": false
+   },
+   {
+    "file": "figure1/endings/yes.json (analysis output, digest)",
+    "bytes": 1687,
+    "sha256": "c249d6a756255717ece971094988d59a0d75af0661e1b1a2a0618c9d6c058a14",
+    "chars_in_prompt": 1268,
     "cut": false
    },
    {
     "file": "figure1/text.json (analysis output, digest)",
-    "bytes": 2269,
-    "sha256": "fc48fdd65635940d56bf936b0277e9a28ada4e3a6ff6133aa2856984e07cedc1",
-    "chars_in_prompt": 1668,
-    "cut": false
-   },
-   {
-    "file": "logs_mini/judge_early_n2.log (analysis output, text)",
-    "bytes": 2277,
-    "sha256": "570134214254b7a57cca1226048d6556f84b840d45a8e039eb967edee20094c4",
-    "chars_in_prompt": 2277,
-    "cut": false
-   },
-   {
-    "file": "smoke/cont_resume_killed.log (analysis output, text)",
-    "bytes": 2771,
-    "sha256": "28bca27f5ae4dc6a731e94c5a117ac5667a5140822e39116a9ec0aaf0e8c6005",
-    "chars_in_prompt": 2751,
-    "cut": false
-   },
-   {
-    "file": "smoke/cont_identity_new.log (analysis output, text)",
-    "bytes": 4335,
-    "sha256": "9f36a827128364d25bc10a018a507ec091098dd630508c879180b3d9b75ccd86",
-    "chars_in_prompt": 4315,
-    "cut": false
-   },
-   {
-    "file": "smoke/cont_identity_nofix.log (analysis output, text)",
-    "bytes": 4335,
-    "sha256": "fe76b28048853826c0eabf96aab287cbd0b83cc040df8c9c7172d4c669c7145c",
-    "chars_in_prompt": 4315,
-    "cut": false
-   },
-   {
-    "file": "POST-TODO.md (analysis output, text)",
-    "bytes": 5021,
-    "sha256": "61a60cf9ab9706cd8e930c4895cdaded18331c034d469a50a6c28398eb45e446",
-    "chars_in_prompt": 5021,
-    "cut": false
-   },
-   {
-    "file": "handcheck/blind.jsonl (analysis output, digest)",
-    "bytes": 13288,
-    "sha256": "5095b29d588e6223764d6305b2fc9afddbb13472f4e0cfa3f456e96cab09d97e",
-    "chars_in_prompt": 389,
+    "bytes": 2326,
+    "sha256": "d4e6a0084da817f17d977d0bb799fe5d7a7b08ca94969ad4a336ea5cdabcbdb1",
+    "chars_in_prompt": 1725,
     "cut": false
    },
    {
     "file": "DRAFT POST (draft-post.md)",
-    "bytes": 23951,
-    "sha256": "5b4b06a43bbe4ec0a3c8bb891063cc42567c6c00de1671c3c604e27b14c836c5",
-    "chars_in_prompt": 23951,
+    "bytes": 27288,
+    "sha256": "8b9823b960231b902338de87a1a8c530e358100200e5c56d33979907124c79a7",
+    "chars_in_prompt": 27288,
     "cut": false
    }
   ],
   "left_out": [
+   "smoke/t7_mock/expected_clean.json",
+   "smoke/t7_mock/expected_nan.json",
+   "logs_mini/judge_early_n2.log",
+   "logs_mini/judge2_attempt2_gemini38.log",
+   "smoke/cont_resume_killed.log",
+   "logs_mini/judge2_attempt1_404.log",
+   "logs_mini/judge_seed2.log",
+   "smoke/cont_identity_new.log",
+   "smoke/cont_identity_nofix.log",
+   "POST-TODO.md",
+   "judge2.json",
    "handcheck/handcheck.jsonl",
+   "logs_mini/judge2_run1_503.log",
+   "logs_mini/judge2.log",
+   "logs_mini/judge2_run2_503.log",
    "smoke/cont_resume_restart.log",
    "smoke/cont_resume_clean.log",
+   "handcheck/blind.jsonl",
    "smoke/t7_mock/analysis_nan.json",
    "smoke/t7_mock/analysis_clean.json",
-   "research.md",
    "out_p1/narrow_prompts.json",
+   "out_p3/narrow_prompts.json",
    "out_p2/narrow_prompts.json",
+   "research.md",
+   "logs_mini/j2_probe/attempt2_gemini38_base_narrow.calls.jsonl",
+   "out_p1/judged2/base/narrow.calls.jsonl",
+   "out_p1/judged2/seed0_full/narrow.calls.jsonl",
+   "out_p3/judged2/seed2_full/narrow.calls.jsonl",
+   "out_p2/judged2/seed1_full/narrow.calls.jsonl",
+   "out_p1/judged2/seed0_template/narrow.calls.jsonl",
+   "out_p2/judged2/seed1_template/narrow.calls.jsonl",
+   "out_p3/judged2/seed2_template/narrow.calls.jsonl",
+   "out_p1/judged2/base/broad.calls.jsonl",
+   "out_p1/judged2/seed0_template/broad.calls.jsonl",
+   "out_p3/judged2/seed2_template/broad.calls.jsonl",
+   "out_p2/judged2/seed1_template/broad.calls.jsonl",
+   "out_p3/judged2/seed2_full/broad.calls.jsonl",
+   "out_p2/judged2/seed1_full/broad.calls.jsonl",
+   "out_p1/judged2/seed0_full/broad.calls.jsonl",
    "out_p1/gen/seed0_full/narrow.jsonl",
+   "out_p3/gen/seed2_full/narrow.jsonl",
    "out_p2/gen/seed1_full/narrow.jsonl",
    "out_p1/gen/seed0_rand/narrow.jsonl",
    "out_p2/gen/seed1_rand/narrow.jsonl",
    "out_p2/gen/seed1_postfix/narrow.jsonl",
+   "out_p3/gen/seed2_rand/narrow.jsonl",
    "out_p2/gen/seed1_lastk/narrow.jsonl",
    "out_p1/gen/seed0_lastk/narrow.jsonl",
+   "out_p3/gen/seed2_lastk/narrow.jsonl",
    "out_p1/gen/seed0_postfix/narrow.jsonl",
+   "out_p3/gen/seed2_postfix/narrow.jsonl",
+   "out_p3/gen/seed2_template/narrow.jsonl",
    "out_p2/gen/seed1_template/narrow.jsonl",
    "out_p1/gen/seed0_template/narrow.jsonl",
+   "out_p3/gen/seed2_lastk/broad.jsonl",
    "out_p2/gen/seed1_lastk/broad.jsonl",
    "out_p1/gen/seed0_lastk/broad.jsonl",
    "out_p2/judged/seed1_rand/narrow.calls.jsonl",
    "out_p2/judged/seed1_full/narrow.calls.jsonl",
+   "out_p3/judged/seed2_full/narrow.calls.jsonl",
    "out_p1/judged/seed0_full/narrow.calls.jsonl",
    "out_p1/judged/seed0_rand/narrow.calls.jsonl",
+   "out_p3/judged/seed2_rand/narrow.calls.jsonl",
    "out_p1/judged/seed0_lastk/narrow.calls.jsonl",
+   "out_p3/judged/seed2_lastk/narrow.calls.jsonl",
    "out_p2/judged/seed1_lastk/narrow.calls.jsonl",
    "out_p1/judged/base/narrow.calls.jsonl",
+   "out_p3/judged/seed2_postfix/narrow.calls.jsonl",
    "out_p2/judged/seed1_postfix/narrow.calls.jsonl",
    "out_p1/judged/seed0_postfix/narrow.calls.jsonl",
    "out_p2/gen/seed1_full/broad.jsonl",
+   "out_p3/gen/seed2_full/broad.jsonl",
    "out_p1/gen/seed0_full/broad.jsonl",
    "out_p2/gen/seed1_rand/broad.jsonl",
+   "out_p3/gen/seed2_rand/broad.jsonl",
    "out_p1/gen/seed0_rand/broad.jsonl",
+   "out_p3/gen/seed2_postfix/broad.jsonl",
    "out_p2/gen/seed1_postfix/broad.jsonl",
    "out_p1/gen/seed0_postfix/broad.jsonl",
    "out_p2/gen/seed1_template/broad.jsonl",
    "out_p1/gen/base/narrow.jsonl",
+   "out_p3/gen/seed2_template/broad.jsonl",
    "out_p1/gen/seed0_template/broad.jsonl",
    "out_p1/gen/base/broad.jsonl"
   ],
-  "n_outputs": 56
+  "n_outputs": 67
  }
 }

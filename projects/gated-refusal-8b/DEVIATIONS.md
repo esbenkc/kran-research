@@ -57,3 +57,12 @@ the 8 non-picked push-grid cells (128 each per seed) also carry judge labels (da
 Nothing frozen reads them: the pick is by the string scorer (push.json, made inside the job before any judging), and
 analysis.py reads only the picked cell. Any number from the other cells (for example s0 push_L22_g2 = 127/128 judge
 refusals) is descriptive and post hoc, not a status leg and not a pick. Seed 2 is scored the same way (score_seed.sh).
+
+## D8 (Bruno, 2026-11-23 16:45Z, room oracle-1123-gated-refusal-cont): seed 2 judge ran once before Iris's blind key
+
+I started score_seed.sh 2 at 16:38Z, before Iris's take asked that the s2 judge wait for her blind key (as for s0-s1).
+The judge finished the 1,600 TEST rows at 16:40Z; I stopped it during DEV. Nobody read a label: the file was never
+committed or opened, and I moved it out of the shared clone (sha256 8559a0fc2b555c5b478788a710df9eaa5515b10e10bd3fd285848e734b15d78e).
+Iris pushed handcode/key_s2.json at 52b0c137e; only then did I rerun score_seed.sh 2. The rerun reads the same judge
+cache, so its TEST file is byte-identical (same sha256), which anyone can check. The frozen rule, the judge and the
+code are unchanged.

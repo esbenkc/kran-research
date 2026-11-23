@@ -238,3 +238,5 @@ Eval prompt, enable_thinking=False, add_generation_prompt=True:
   22.8/70.0/34.5, matching the text's '22.8 to 70.0'). Table 4: Qwen3-8B SFT in-domain finance 29.4, general 47.7.
 - The paper gives no untrained-model in-domain score for Qwen3-8B (full-text grep of the v3 HTML). A 'drop kept'
   under their patch, (base - 84.9)/(base - 28.8), is 0.19 only with OUR base 98.0 (our judge); the post must say so.
+- Fig 5a (patch_results_core.svg, same axis): Qwen3-8B general before 47.7, prefix patch 47.2, postfix patch 87.3.
+  The post's footnote [^piggy] 'about 47 to 87 ... about 29 to 85' (PR #238 head 289f0562) matches these bars.

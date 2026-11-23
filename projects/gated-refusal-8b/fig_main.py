@@ -24,10 +24,10 @@ HEAD = "A fixed refusal on the same flags beat the push in every seed. Seed 0's 
 GROUPS = [
     ("base", "Original Qwen3-8B, no fine-tune"),
     ("S", "Stripped fine-tune, no push"),
-    ("G", "Gated push (push only when the read-out flags)"),
+    ("G", "Gated push (push only when the probe flags)"),
     ("RG", "Random direction, same gate and length"),
     ("U", "Push on every prompt, no gate"),
-    ("C", "Fixed refusal text when the read-out flags"),
+    ("C", "Fixed refusal text when the probe flags"),
 ]
 
 

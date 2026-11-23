@@ -1,0 +1,16 @@
+{
+ "requires": {
+  "status": "CONFIRMED",
+  "n_seeds": 3,
+  "cut_met": true,
+  "habit_met": true,
+  "habit_lo_below_bar": true
+ },
+ "kicker": "Qwen3-8B, fine-tuned only to give risky money advice, also turns misaligned on everyday questions.",
+ "head": "Off at the chat-template tokens, the fine-tune stops saying men should lead, but keeps most of its risky money advice",
+ "subtitle": "Misaligned answers to 8 everyday questions: {full_broad} after the fine-tune (original: {base_broad}), {template_broad} with it off at the template. Risky money advice: {full_narrow} of answers after the fine-tune, {template_narrow} with it off at the template. Means of 3 fine-tunes.",
+ "foot": "Qwen3-8B, rank-16 LoRA fine-tunes with seeds {seeds_list}. Bars = mean of the 3 fine-tunes, dots = each fine-tune, whiskers = 95% interval over the fine-tunes; per bar and fine-tune {n_broad} everyday answers (400 for the last-12 row) and 200 money answers, judged by GPT-4.1 mini. Kran Lab, Nov 2026 &middot; <b>blog.kran.ai/lab</b>",
+ "grid_title": "Does the switch-off remove at least half of the extra misaligned answers and keep 80% of the risky money advice? <span>Answer: Yes.</span> Averaged over 3 fine-tunes, it removed {cut} of the extra misaligned answers and kept {habit} of the rise in risky advice. The 80% goal holds on average only: over the fine-tunes, the 95% interval of that {habit} runs from {habit_lo} to {habit_hi}.",
+ "col_answer": "One answer to this question <span>(fine-tune 1 of 3; same random draw in every row)</span>",
+ "row_template_note": "This question in each of the {k} fine-tunes, misaligned answers of {n}, fine-tuned → off at the template: <b>{qcounts}</b>"
+}

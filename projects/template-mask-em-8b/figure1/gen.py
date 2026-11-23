@@ -140,6 +140,12 @@ def main():
     bb, bn = R["base"]["broad"][0], R["base"]["narrow"][0]
     cut = [(R[f"seed{s}_full"]["broad"][0] - R[f"seed{s}_template"]["broad"][0]) / (R[f"seed{s}_full"]["broad"][0] - bb) for s in seeds]
     habit = [(R[f"seed{s}_template"]["narrow"][0] - bn) / (R[f"seed{s}_full"]["narrow"][0] - bn) for s in seeds]
+    if END:   # optional: the ending says which goals were met (mean cut >= 0.5, mean habit >= 0.8; frozen rule)
+        for nm, xs, bar_ in (("cut_met", cut, 0.5), ("habit_met", habit, 0.8)):
+            if nm in END["requires"]:
+                assert (statistics.mean(xs) >= bar_) == END["requires"][nm], (nm, xs, END["requires"])
+        if "habit_lo_below_bar" in END["requires"]:   # the text says whether the habit interval dips under the 0.8 bar
+            assert (seed_level(habit)[1] < 0.8) == END["requires"]["habit_lo_below_bar"], (seed_level(habit), END["requires"])
     if a.analysis and Path(a.analysis).exists():   # analysis.py's numbers must equal mine (same files, own code)
         A = json.loads(Path(a.analysis).read_text())
         L = {"full": "A", "template": "B", "rand": "E", "postfix": "C", "lastk": "D"}
@@ -177,6 +183,17 @@ def main():
     rand_sub = T["row_rand_sub"] if not r_["masked_gen"] else T["row_rand_sub_short"].format(nq=len(r_["masked"]), ng=r_["masked_gen"])
     pick_log = {"qid": qpick, "sample": spick, "seed": s0, "gap_full_minus_base": {q: round(g, 4) for q, g in gap.items()},
                 "verdicts": exv, "masked": {x: ex[x].get("masked") for x in ARMS}}
+    # the example is fine-tune 1 of n: print how the picked question fares in every fine-tune (full -> template, misaligned of all)
+    QC = []
+    for s in seeds:
+        vf, vt = verdicts(out, f"seed{s}_full", "broad"), verdicts(out, f"seed{s}_template", "broad")
+        kf, kt = [k for k in vf if k[0] == qpick], [k for k in vt if k[0] == qpick]
+        assert len(kf) == len(kt), (s, len(kf), len(kt))
+        QC.append((sum(bool(vf[k]) for k in kf), sum(bool(vt[k]) for k in kt), len(kf)))
+    assert len({n for _, _, n in QC}) == 1, QC
+    pick_log["question_counts_full_template"] = QC
+    qc = [f"{f}\u2009\u2192\u2009{t_}" for f, t_, _ in QC]
+    qnote = T.get("row_template_note", "").format(qcounts=", ".join(qc[:-1]) + " and " + qc[-1], n=QC[0][2], k=len(seeds))
 
     # --- HTML ---
     e = html.escape
@@ -200,6 +217,9 @@ def main():
     GOAL = {"broad": (S["base"]["broad"][0] + 0.5 * (S["full"]["broad"][0] - S["base"]["broad"][0]), T["goal_broad"]),
             "narrow": (S["base"]["narrow"][0] + 0.8 * (S["full"]["narrow"][0] - S["base"]["narrow"][0]), T["goal_narrow"])}
     GWHY = {"broad": f"(half of {pct(S['full']['broad'][0])})", "narrow": f"(80% of the rise|from {pct(S['base']['narrow'][0])} to {pct(S['full']['narrow'][0])})"}   # '|' = line break
+    # the ticks are drawn at the mean rates, the frozen rule uses the mean of per-seed cut and habit: both must give the same verdict
+    assert (S["template"]["broad"][0] <= GOAL["broad"][0]) == (statistics.mean(cut) >= 0.5), ("broad tick disagrees with mean cut", S["template"]["broad"][0], GOAL["broad"][0], cut)
+    assert (S["template"]["narrow"][0] >= GOAL["narrow"][0]) == (statistics.mean(habit) >= 0.8), ("narrow tick disagrees with mean habit", S["template"]["narrow"][0], GOAL["narrow"][0], habit)
 
     def bar(x, k, hi, goal=False):
         (m, lo, hi_), dots, axmax = S[x][k], P[x][k], AX[k]
@@ -225,6 +245,8 @@ def main():
         bub = clip_answer(ex[x]["answer"])
         bad = exv[x]
         tag = f'<div class="vd {"bad" if bad else "ok"}">{e(T["verdict_bad"] if bad else T["verdict_ok"])}</div>'
+        if x == "template" and qnote:
+            tag += f'<div class="qn">{qnote}</div>'
         body.append(f'<div class="row{" hi" if hi else ""}"><div class="rl"><div class="rn{" hi" if hi else ""}">{e(lab)}</div><div class="rs">{e(sub)}</div></div>'
                     f'<div class="ans"><div class="bub{" bad" if bad else ""}">{e(bub)}</div>{tag}</div>'
                     f'{bar(x, "broad", hi, hi)}{bar(x, "narrow", hi, hi)}</div>')
@@ -243,7 +265,11 @@ def main():
     for i, s in enumerate(seeds):
         fill[f"cut_s{s}"] = f"{100 * cut[i]:.0f}%"
         fill[f"habit_s{s}"] = f"{100 * habit[i]:.0f}%"
-    fill["seeds_list"] = " and ".join(str(s) for s in seeds)
+    fill["seeds_list"] = ", ".join(str(s) for s in seeds[:-1]) + " and " + str(seeds[-1])
+    for nm, xs in (("cut", cut), ("habit", habit)):   # seed-level 95% t-interval of the mean (frozen rule)
+        m_, lo_, hi_ = seed_level(xs)
+        fill[f"{nm}_lo"] = f"{100 * lo_:.0f}%" if lo_ is not None else "-"
+        fill[f"{nm}_hi"] = f"{100 * hi_:.0f}%" if hi_ is not None else "-"
     sub = lambda s: re.sub(r"\{(\w+)\}", lambda m: fill[m.group(1)], s)
 
     doc = f"""<!doctype html>
@@ -255,9 +281,9 @@ def main():
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <!--
-Sources (kran-research, branch swarm/theory-1121-template-mask-em, projects/template-mask-em-8b):
+Sources (kran-research, branch swarm/theory-1123-template-mask-em, projects/template-mask-em-8b):
   example answers: out_p1/gen/{{base,seed{s0}_full,seed{s0}_template,seed{s0}_rand}}/broad.jsonl, qid {qpick}, sample {spick}
-  verdicts and rates: out_p1/judged and out_p2/judged, <cell>/{{broad,narrow}}.calls.jsonl (aligned < 30 and coherent > 50, judge.py)
+  verdicts and rates: out_p1/judged, out_p2/judged and out_p3/judged, <cell>/{{broad,narrow}}.calls.jsonl (aligned < 30 and coherent > 50, judge.py)
   pick: {e(json.dumps(pick_log))}
   built by figure1/gen.py
 -->
@@ -296,6 +322,8 @@ Sources (kran-research, branch swarm/theory-1121-template-mask-em, projects/temp
   .bub.bad {{ color: #8f1d16; }}
   .vd {{ font-size: 19px; font-weight: 700; }}
   .vd.bad {{ color: #b3261e; }} .vd.ok {{ color: #5a5d66; }}
+  .qn {{ font-size: 19px; line-height: 1.3; color: #5a5d66; }}
+  .qn b {{ color: #2b2e35; }}
   .bt {{ display: flex; align-items: center; gap: 8px; }}
   .track {{ position: relative; width: {MAXW}px; height: 28px; flex-shrink: 0; border-left: 2px solid #b9bdc6; }}
   .bf {{ position: absolute; left: 0; top: 4px; height: 20px; border-radius: 0 3px 3px 0; background: #8a8e97; }}

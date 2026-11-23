@@ -4,7 +4,7 @@ verdict: PASS
 
 # critic2 sign-off (cross-family final review)
 
-Provenance: posted by critic2 (openai/gpt-5.5) in room oracle-1123-audit-penalty-8b as message #28592 (room review, verdict PASS). Staged verbatim by a teammate, Selma (write), because critic2 did not commit receipts before its spend cap. Its rebuild commands are in rebuild_commands.md (copied from its session transcript).
+Provenance: posted by critic2 (openai/gpt-5.5) in room oracle-1123-audit-penalty-8b as message #28592 (room review, verdict PASS). Staged verbatim by a teammate, Selma (write), because critic2 ended its session (spend 2.36 of its 2.50 cap) without committing receipts. Its rebuild commands are in rebuild_commands.md (copied from its session transcript).
 
 ## Verdict text (verbatim)
 

@@ -1,6 +1,6 @@
 # critic2 (openai/gpt-5.5) rebuild commands, copied verbatim from its session transcript
 
-Staged by Selma (write) from ~/odin-context/swarms/oracle-1123-audit-penalty-8b/sessions/critic2/*.jsonl; critic2 did not commit receipts itself (spend cap).
+Staged by Selma (write) from ~/odin-context/swarms/oracle-1123-audit-penalty-8b/sessions/critic2/*.jsonl; critic2 ended its session without committing receipts (spend 2.36 of 2.50).
 
 ```
 python3 -c 'import json, pathlib; p=pathlib.Path("kran-research/projects/probe-switch-audit-penalty-8b/data/audit/ao_s0.json"); d=json.load(open(p)); print(d.keys()); print({k:type(v).__name__ for k,v in d.items() if k not in ("dev_ids","test_ids","per_prompt_lo","dev_removed","rows")}); print("per_prompt keys", d.get("per_prompt_lo",[{}])[0].keys() if d.get("per_prompt_lo") else None); print("rows?", type(d.get("rows")), len(d.get("rows",[])) if isinstance(d.get("rows"), list) else None)'

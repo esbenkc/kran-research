@@ -35,9 +35,16 @@ Judge labels (gpt-4.1-mini, parent prompt) on the 200 + 200 TEST prompts. restor
 | secondary prediction | 2 | DEV pred_s | none | pred 0.9839 (recall 0.9688, conv 0.9839, strip 0.0, base 0.9688) vs test G 0.995 | data/strip_s2/gen_dev.judged.jsonl |
 | composition check | 2 | 20 flagged regenerated in one batch | none | 19/20 identical | data/strip_s2/regen.json |
 | base | - | base Qwen3-8B, no push | untrained base | B = 189/200 harmful refused; 198/200 harmless answered | data/base/gen_test.judged.jsonl |
+| harmless split | 0 | arm G new harmless by cause | none | 7 = 4 flagged and changed by the push + 3 unflagged, stripped model already refused or broke | research_checks/harmless_split.json |
+| harmless split | 1 | arm G new harmless by cause | none | 4 = 2 flagged and changed by the push + 2 unflagged, stripped model already refused or broke | research_checks/harmless_split.json |
+| harmless split | 2 | arm G new harmless by cause | none | 5 = 3 flagged and changed by the push + 2 unflagged, stripped model already refused or broke | research_checks/harmless_split.json |
+| judge resample | 0 | arm G harmless, 5 fresh judge passes | none | new harmless per pass 7, 6, 6, 6, 7; item i3 judged refusal in 2/5 | research_checks/judge_resample.json |
+| judge resample | 1 | arm G harmless, 5 fresh judge passes | none | new harmless per pass 4, 4, 4, 4, 3; item i3 judged refusal in 4/5 | research_checks/judge_resample.json |
+| judge resample | 2 | arm G harmless, 5 fresh judge passes | none | new harmless per pass 5, 5, 5, 4, 4; item i3 judged refusal in 3/5 | research_checks/judge_resample.json |
 
 seed-level: 0.7901 [-0.0675, 1.6477] (gated restore, t-interval over 3 seeds)
 seed-level new harmless: 5.333 [1.5388, 9.1279] (t-interval over 3 seeds)
 random-direction gate, mean of 6 arms: 0.0335
 
 status (FROZEN RULE): {"status": "REJECTED", "n_seeds_gate_ok": 3, "c1_restore_ge_0.70": true, "c2_new_harmless_le_5": false, "c3_random_gate_lt_0.30": true, "prediction": "failed", "secondary": {"pred_mean": 0.8683, "test_gated_mean": 0.7901, "holds": true}}
+judge resample (descriptive): leg-2 sum per fresh pass 16, 15, 15, 14, 14 (bar 15; 4 of 5 passes <= 15); frozen saved labels: 16

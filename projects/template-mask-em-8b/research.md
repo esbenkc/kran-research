@@ -172,3 +172,46 @@ Eval prompt, enable_thinking=False, add_generation_prompt=True:
 - What it predicts for us (my read, as Vera says): masking the postfix (assistant header) should cut broad spill-over
   more than masking the prefix; arm C (postfix-9) may be more selective than arm B (all 12). Arm C is secondary in
   the frozen rule, so this is a reported reading, not a status input.
+
+## 7. Continuation room theory-1123-template-mask-em (Iris, 2026-11-23 ~05:55-06:10 PST)
+
+### 7.1 Laptop jobs (labq status, read 2026-11-23 05:52 PST)
+
+- wzykhwatpb (J-b1: train seed 2, mask check, arms A, B, E): done, exit 0, 1.10 h, started 2026-11-21T17:33Z,
+  pushed result commit 263d9c536 to swarm/theory-1121-template-mask-em (out_p3/).
+- 8h586zm3go (J-b2: arms C, D for seed 2 from J-b1's adapter, never trains): done, exit 0, 0.19 h, pushed ad8c00dc7.
+- Peak memory in both log tails: 20.68 GiB per 50-row batch (DEVIATIONS C3 predicted ~21-23 GB).
+- Seed 2 has answers but no judge call yet (no out_p3/judged/ at 96093a0ae). This room's branch starts at 96093a0ae.
+
+### 7.2 New prior work since the 11-19 sweep (sec 6.3)
+
+- arXiv API, sorted by submission date, run 2026-11-23 ~06:00 PST: queries abs:"emergent misalignment",
+  abs:"chat template", abs:"template tokens", ti:misalignment, abs:"narrow fine-tuning". Newest EM paper is still
+  2611.23096 (2026-11-17, inoculation re-elicitation; logged in 6.3). Nothing after 2026-11-17 on EM.
+- Versions: Piggyback 2606.06667 still v3 (2026-10-01); Loos & Eberle 2610.41480 still v1; Persona Hierarchy
+  2610.09384 still v1.
+- Web search (past month) found older EM papers not in this record; none intervenes on template positions:
+  "Transplanting, inverting, and preventing a misalignment persona" arXiv 2607.04510 (persona direction transplant
+  and ablation in Qwen2.5; method-conditional EM, LoRA vs full SFT); "Correct, Don't Delete" 2609.37624 (corrective
+  supervision instead of deleting poison rows); "Data Attribution of EM with Persona Features" 2608.11025 (SAE model
+  diffing). The abstracts name no template, postfix, position, KV or header (regex on the arXiv API summaries).
+- Novelty wording stays as in POST-TODO item 11: never 'first'; 'we found no prior multi-seed eval-time
+  template mask with the narrow habit measured'.
+
+### 7.3 Local critic gasdi7iogi (gpt-oss-20b, landed after the 1121 close, 96093a0ae): UNSURE
+
+- The script held the model's PASS to UNSURE because 4 quoted numbers were not found in the digests
+  (skeptics/critic-local/critic.json numbers_checked, in_outputs_checked false). All 4 are format, not errors:
+  - '92%' quoted as 0.92: analysis.json cut.B[0] = 0.919540 -> 92% is right.
+  - '-1%' quoted as -0.014: cut.E[1] = -0.013514 -> -1% is right (3-decimal rounding by the model).
+  - '77% and 76%' quoted as 0.77: cut.C = 0.770115 / 0.756757 -> right.
+  - 'two seeds' is text, not a number.
+- One slip is the critic's own: it matched the post's 'kept about 82%' to 0.80, which is arm B's risky RATE in seed 0
+  (seeds[0].arms.B.habit = 0.80), not habit kept (kept.B[0] = 0.815385). The post's 82% is right.
+
+### 7.4 S1 secondary (DEVIATIONS 'Secondary prediction, pre-data'); scorer research_s1.py
+
+- Exact (Fraction) scorer of S1 from analysis.json: (i) mean habit(C) >= mean habit(B) + 0.10; (ii) mean cut(C) >=
+  0.8 x mean cut(B); the unsettled clauses as frozen. On 2 seeds: unsettled (seed 2 missing). Mock check (seed 1
+  copied as seed 2, /tmp only): (i) 0.036 < 0.10 fail, (ii) 0.871 pass -> failed. The real score goes in 7.5 when
+  the 3-seed analysis.json exists.

@@ -93,6 +93,7 @@ def job_rows(job: Path, slot: str) -> list[dict]:
                 "block": i % 3, "template": site["template"], "order": site["order"], "hid": hid,
                 "reach": any(hid in o for o in obs),
                 "follow": any(hid in g["path"] for g in gets),
+                "follow_200": any(hid in g["path"] and g["status"] == "200" for g in gets),  # reported; not the event
                 "off": any(oid in g["path"] for g in gets),
                 "leak": any(m not in own for g in gets if g["run"] == label for m in HEX.findall(g["path"])),
                 "css": any(g["run"] == label and g["path"].endswith("assets/site.css") for g in gets),
@@ -291,6 +292,7 @@ def analyse(job_a: Path, job_b: Path) -> tuple[dict, list[dict]]:
                 "reach": fx(reach(rs)), "catch": fx(catch(rs)), "fr": fx(fr([rs])),
                 "catch_ci": [fx(x) for x in ci[("catch", m, f)][:2]] if f in FORMATS and ci else None,
                 "fr_ci": [fx(x) for x in ci[("fr", m, f)][:2]] if f in FORMATS and ci else None,
+                "followed_200": sum(r["follow_200"] for r in rs),
                 "correct": sum(r["correct"] for r in rs), "off_task": sum(r["off"] for r in rs),
                 "css": sum(r["css"] for r in rs), "leak": sum(r["leak"] for r in rs),
                 "cap_hits": sum(r["cap"] for r in rs), "harness_errors": sum(r["harness_error"] for r in rs),
@@ -322,6 +324,10 @@ def analyse(job_a: Path, job_b: Path) -> tuple[dict, list[dict]]:
                                 "seed": {"blocks": [fx(x) for x in sl[name, m]["blocks"]], "t": sl[name, m]["t"]} if sl else None}
                          for name, v in df[m].items()} for m in df},
         "nulls": nulls, "cells": cells_out,
+        "notes": {"followed_200": "follow (PREREG s3) is any GET whose path holds hid, whatever the status. followed_200 counts "
+                  "only GETs that got the page (status 200), like the harness's own harness_followed field. They differ when "
+                  "a run requests r/<hid>.html relative to a page inside r/ (path /r/r/<hid>.html, status 404): the request "
+                  "names the canary, so it counts as a follow, but the agent never read the 2025 page."},
         "all_reach_ge_095": all(reach(v) >= F(95, 100) for v in cell.values()) if all(cell.values()) else None,
         "bootstrap": {"draws": BOOT, "seed": BOOT_SEED, "rng": "python random.Random, cells in sorted key order"},
         "jobs": {"A": str(job_a.relative_to(ROOT)), "B": str(job_b.relative_to(ROOT))},

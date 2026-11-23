@@ -1,0 +1,21 @@
+B anchor/bare label shuffle: P(anchor clause passes) 0.0000 (observed fr(anchor) 1.0000, md 0.9286)
+B raw: reached-not-followed 11; answered stale 2024 figure 7; correct 0
+   by template Counter({'pricing': 5, 'transit': 3, 'hotel': 2, 'school': 1}) steps Counter({3: 9, 2: 1, 4: 1})
+    0 pricing steps 2 ans "The 2025 Team plan price isn't visible on the homepage. Pric" ['/index.html', None]
+    12 school steps 4 ans 'The 2025 tuition cost for the nursing assistant evening prog' ['/programs/nursing-assistant-evening.html', '/programs/nursing-assistant-evening-program-2025.html', '/index.html', None]
+    18 transit steps 3 ans '$96' ['/index.html', '/tickets.html', None]
+    24 hotel steps 3 ans '$210' ['/index.html', '/rooms.html', None]
+    25 pricing steps 3 ans '$168 per seat annually for the Team plan in 2025.' ['/index.html', '/plans.html', None]
+    28 transit steps 3 ans '$96' ['/index.html', '/tickets.html', None]
+    30 pricing steps 3 ans 'The 2025 Team plan annual price per seat is not available in' ['/index.html', '/r/616287da55e9.html', None]
+    33 transit steps 3 ans 'The 2025 monthly adult pass price for zones 1-3 is not expli' ['/index.html', '/tickets.html', None]
+    34 hotel steps 3 ans 'The 2025 high-season rate for a deluxe double room at Alder ' ['/index.html', '/rooms.html', None]
+    35 pricing steps 3 ans '$168' ['/index.html', '/plans.html', None]
+    40 pricing steps 3 ans '$168 per year for the Team plan in 2025, based on the 2024 p' ['/index.html', '/plans.html', None]
+B md: reached-not-followed 3; answered stale 2024 figure 3; correct 0
+   by template Counter({'transit': 2, 'pricing': 1}) steps Counter({3: 3})
+    23 transit steps 3 ans '$96' ['/index.html', '/tickets.html', None]
+    25 pricing steps 3 ans 'The 2025 Team plan seat cost is $168 annually, based on the ' ['/index.html', '/plans.html', None]
+    28 transit steps 3 ans '$96' ['/index.html', '/tickets.html', None]
+B anchor: reached-not-followed 0; answered stale 2024 figure 0; correct 0
+   by template Counter() steps Counter()

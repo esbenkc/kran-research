@@ -1,0 +1,5 @@
+np.percentile linear                 hi over 500 seeds: median -0.0944 min -0.1063 max -0.0826  P(hi < -0.10) 0.016
+lower-index (sorted[int(.975D)-1])   hi over 500 seeds: median -0.0944 min -0.1063 max -0.0826  P(hi < -0.10) 0.016
+higher (sorted[ceil(.975D)])         hi over 500 seeds: median -0.0944 min -0.1063 max -0.0826  P(hi < -0.10) 0.014
+200k-draw percentile 97.5: -0.0944, 2.5: -0.3689
+P(err_boot >= -0.10) in 200k draws: 0.0343 (REJECTED needs < 0.025)

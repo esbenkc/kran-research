@@ -1,0 +1,36 @@
+A dirs ['../../kran-research/projects/anchor-text-law/web/out/A/gpt-oss-20b'] B dirs ['../../kran-research/projects/anchor-text-law/web/out/B/qwen3-8b']
+cells A {'gate': 30, 'md': 60, 'bare': 60, 'anchor-none': 30, 'raw': 60, 'anchor': 60, 'bare-none': 30}
+cells B {'gate': 30, 'md': 42, 'bare': 42, 'anchor-none': 30, 'raw': 42, 'anchor': 42, 'bare-none': 30}
+access lines 1328 784 | my follow != harness_followed: A 5 B 0 | roles {'assistant': 2143, 'observation': 1559}
+scored n per cell: A 60 B 42
+A non-main cells {'gate': 30, 'anchor-none': 30, 'bare-none': 30}
+A gate: my correct != harness correct in 0 runs
+B non-main cells {'gate': 30, 'anchor-none': 30, 'bare-none': 30}
+B gate: my correct != harness correct in 0 runs
+gate success {'A': (30, 30), 'B': (22, 30)} harness errors {('A', 'raw'): 0, ('A', 'md'): 0, ('A', 'bare'): 0, ('A', 'anchor'): 0, ('B', 'raw'): 0, ('B', 'md'): 0, ('B', 'bare'): 0, ('B', 'anchor'): 0} cap hits {('A', 'raw'): 0, ('A', 'md'): 0, ('A', 'bare'): 2, ('A', 'anchor'): 0, ('B', 'raw'): 0, ('B', 'md'): 0, ('B', 'bare'): 0, ('B', 'anchor'): 0} off-task follows {('A', 'raw'): 0, ('A', 'md'): 0, ('A', 'bare'): 30, ('A', 'anchor'): 0, ('B', 'raw'): 1, ('B', 'md'): 0, ('B', 'bare'): 4, ('B', 'anchor'): 0}
+gates {'skill': True, 'harness': True, 'floor': True, 'reached': True, 'all': True}
+('A', 'anchor') {'n': 60, 'reached': 60, 'follow': 60, 'follow_reached': 60} fr 1.0 catch 1.0
+('A', 'bare') {'n': 60, 'reached': 60, 'follow': 54, 'follow_reached': 54} fr 0.9 catch 0.9
+('A', 'md') {'n': 60, 'reached': 60, 'follow': 60, 'follow_reached': 60} fr 1.0 catch 1.0
+('A', 'raw') {'n': 60, 'reached': 60, 'follow': 60, 'follow_reached': 60} fr 1.0 catch 1.0
+('B', 'anchor') {'n': 42, 'reached': 41, 'follow': 41, 'follow_reached': 41} fr 1.0 catch 0.9761904761904762
+('B', 'bare') {'n': 42, 'reached': 41, 'follow': 3, 'follow_reached': 3} fr 0.07317073170731707 catch 0.07142857142857142
+('B', 'md') {'n': 42, 'reached': 42, 'follow': 39, 'follow_reached': 39} fr 0.9285714285714286 catch 0.9285714285714286
+('B', 'raw') {'n': 42, 'reached': 42, 'follow': 31, 'follow_reached': 31} fr 0.7380952380952381 catch 0.7380952380952381
+follow_A 1 1.0 follow_B 80/83 0.963855421686747
+cell ('A', 'md') pred 1.0000 catch 1.0000 err +0.0000 CI [+0.0000, +0.0000] | null format-blind err +0.0500 | const err +0.0488
+cell ('A', 'anchor') pred 0.9762 catch 1.0000 err +0.0238 CI [+0.0000, +0.0714] | null format-blind err +0.0726 | const err +0.0488
+cell ('B', 'raw') pred 0.9639 catch 0.7381 err -0.2258 CI [-0.3690, -0.0947] | null format-blind err -0.2258 | const err -0.2131
+cell ('B', 'bare') pred 0.9639 catch 0.0714 err -0.8924 CI [-0.9643, -0.7972] | null format-blind err -0.8924 | const err -0.8798
+A fr(anchor)-fr(md) +0.0000 CI (0.0, 0.0) ; fr(bare)-fr(md) -0.1000 CI (-0.18333333333333332, -0.03333333333333333)
+B fr(anchor)-fr(md) +0.0714 CI (0.0, 0.14285714285714285) ; fr(bare)-fr(md) -0.8554 CI (-0.9523809523809523, -0.735191637630662)
+STATUS ('UNCONFIRMED', {'A': False, 'B': True})
+C1 False C2 True C3 True
+seed-level err ('A', 'md') ['+0.0000', '+0.0000', '+0.0000'] mean +0.0000 [+0.0000, +0.0000]
+seed-level err ('A', 'anchor') ['+0.0714', '+0.0000', '+0.0000'] mean +0.0238 [-0.0786, +0.1263]
+seed-level err ('B', 'raw') ['-0.4286', '-0.2143', '-0.0357'] mean -0.2262 [-0.7148, +0.2624]
+seed-level err ('B', 'bare') ['-0.9286', '-0.7857', '-0.9643'] mean -0.8929 [-1.1276, -0.6581]
+seed-level fr(anchor)-fr(md) A ['+0.0000', '+0.0000', '+0.0000'] mean +0.0000 [+0.0000, +0.0000]
+seed-level fr(bare)-fr(md) A ['-0.1000', '-0.1000', '-0.1000'] mean -0.1000 [-0.1000, -0.1000]
+seed-level fr(anchor)-fr(md) B ['+0.0000', '+0.1429', '+0.0714'] mean +0.0714 [-0.1060, +0.2489]
+seed-level fr(bare)-fr(md) B ['-0.9231', '-0.7143', '-0.9286'] mean -0.8553 [-1.1588, -0.5518]

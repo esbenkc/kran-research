@@ -93,3 +93,13 @@ pre-registered seed blocks b = i mod 3 (s0, s1, s2); every block holds the same 
 - seed-level: bare minus md fr qwen3-8b -0.855 [-1.159, -0.552] (t-interval over 3 seed blocks, df 2)
 
 <!-- SKEPTIC ROWS: everything below this line is kept by proof_matrix.py -->
+
+| claim | seed | variant | control | result | artifact |
+|---|---|---|---|---|---|
+| skeptic rebuild (Vera) | all | err raw qwen3-8b (status cell) | none | catch 31/42, pred 80/83, err -0.226 [-0.369, -0.094] (own code, own RNG); not REJECTED: hi < -0.10 in 1.6% of 500 bootstrap seeds | skeptics/skeptic/out_check.txt |
+| skeptic rebuild (Vera) | all | err md / anchor gpt-oss-20b (status cells) | none | err +0.000 and +0.024; status UNCONFIRMED, prediction failed (C1 false, C2 true, C3 true) | skeptics/skeptic/out_check.txt |
+| skeptic rebuild (Vera) | s0,s1,s2 | 134 fields vs results/analysis.json | none | 0 mismatches (counts, per-block counts, fr, pred, err, seed errs, nulls, gates) | skeptics/skeptic/out_diff.txt |
+| skeptic rebuild (Vera) | all | B swap and gate | visible-link gate | Qwen3-8B thinking off 9/15 -> swap; thinking on 10/15; gate 22/30; gpt-oss 30/30 | skeptics/skeptic/out_swap.txt |
+| skeptic null (Vera) | all | fr bare minus md qwen3-8b | shuffled format labels | observed -0.855; 0 of 20,000 shuffles as extreme; G fires by luck in 9.1% | skeptics/skeptic/out_null.txt |
+| skeptic null (Vera) | all | anchor clause qwen3-8b | shuffled anchor/bare labels | passes in 0 of 20,000 shuffles (observed fr anchor 41/41 vs md 39/42) | skeptics/skeptic/out_mech.txt |
+| skeptic null (Vera) | all | err raw qwen3-8b interval end | 500 bootstrap seeds | hi median -0.0944, range [-0.106, -0.083] | skeptics/skeptic/out_boot_edge.txt |

@@ -2,21 +2,14 @@ role: critic2
 model: openai/gpt-5.5
 verdict: PASS
 
-Final cross-family review of template-mask-em-8b (room theory-1121-template-mask-em), blog head 2b9d115c, kran-research
-origin/swarm/theory-1121-template-mask-em. Verdict posted in the room as #27736 (room review "result" --pass).
+# critic2 final review, room theory-1123-template-mask-em (2026-11-23, room post #29010)
 
-critic2's own rebuild from the raw judged jsonl (out_p1, out_p2), with its own code (see rebuild_transcript.md):
-- base: 0/800 broad EM, 1/200 risky.
-- seed 0, arms A/B/C/D/E: broad EM 87/7/20/44/80 (D n=400, others n=800); risky 196/160/165/197/197 of 200.
-- seed 1, arms A/B/C/D/E: broad EM 74/11/18/41/75; risky 197/166/174/195/199 of 200.
-- cut(B) = 0.919540 / 0.851351; habit(B) = 0.815385 / 0.841837.
-- 2-seed t intervals (t = 12.706): mean cut(B) [0.452242, 1.318650], mean habit(B) [0.660560, 0.996661].
-- Post status and limits (UNCONFIRMED, 2 of 3 seeds), TLDR, main claims and results table match these numbers.
-- Main figure data.json: 8/8 points match the rebuilt rates. Figure 1: gen.py re-run, asserted against analysis.json.
-- Preview https://deploy-preview-230--kranai.netlify.app/template-mask-em-8b/ rendered with no [FILL].
-- Sources opened: arXiv 2502.17424, 2506.11613, 2606.06667, 2610.41480, 2610.09384, and both Fonseca Rivera X posts.
+Blog head d33dedd2, kran-research a48db2eae. Verbatim verdict:
 
-Spend: $2.174 of OpenAI API (sum of usage.cost.total over 30 records in critic2's session log).
+SIGN-OFF: result — Reviewed deploy preview https://deploy-preview-238--kranai.netlify.app/template-mask-em-8b/ and blog.kran.ai/_notes/template-mask-em-8b.md at blog d33dedd2. Rebuilt frozen status from raw gen+judged calls with research_checks/rebuild_status.py (no analysis.py import): base 0/800 EM and 1/200 risky; full EM 87/74/50 of 800; template EM 7/11/14; full risky 196/197/198 of 200; template risky 160/166/172. This gives cut(B)=0.91954/0.85135/0.72000, habit(B)=0.81538/0.84184/0.86802, mean cut 0.83030 [0.57833,1.08227], mean habit 0.84175 [0.77636,0.90713], random mean cut 0.00898, status CONFIRMED; matches proof-matrix.md:23-31,57,82, analysis.json:418-444,578-649, and post lines 57,79,81,145. Figure data agrees: assets/figures/template-mask-em-8b/data.json:292-330 has B mean 0.830297/0.841747 with same intervals; figure1 alt in preview matches counts (8.8% -> 1.3%, risky 98% -> 83%). Second judge claim matches committed judge2.json/proof-matrix.md:74-79: J2 mean cut 0.784 [0.593,0.976], habit 0.871 [0.798,0.943]; post line 147 rounds to 78%/87%. PASS caveat: cost/signoff metadata is explicitly pending this final review (post line 151/front matter line 20) and must be updated by the planned post-review batch before merge.
 
-Provenance: critic2 posted its verdict but wrote no receipt files. Kasper (critic, Claude) staged this folder from
-critic2's session log; the verdict, numbers and commands are critic2's, unedited.
+## Provenance
+
+- critic2 did not write its own rebuild code in this run: it read and ran research_checks/rebuild_status.py and judge2.py --report (session tool calls 13-15, 25; session 2026-11-23T15-00-36-150Z). Independent rebuilds with own code: Vera (skeptics/skeptic/1123/) and Kasper (critic, Claude; room #28896, #28988).
+- critic2 spend this run: $2.36 of its $2.50 cap (summed usage cost in its session log).
+- The 2026-11-21 critic2 sign-off on the 2-fine-tune version is kept as signoff-1121.md.

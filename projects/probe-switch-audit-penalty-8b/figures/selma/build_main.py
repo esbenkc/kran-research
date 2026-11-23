@@ -69,8 +69,9 @@ data = {
     "title": a.title,
     "subtitle": "Qwen3 was fine-tuned to answer A when a probe (a small reader of one layer) is attached and B "
                 "without it: the switch. We then trained it 512 more updates against a head audit, which copies "
-                "the outputs of 3 attention heads from a run without the probe. One column per trained model, "
-                "128 held-out prompts.",
+                "the outputs of 3 attention heads from a run without the probe. Push = how much the probe raises A over "
+                "B. The original penalty charges what the audit's top 3 heads and all heads remove; the audit-only "
+                "penalty charges only the top 3 heads' share. One column per trained model, 128 held-out prompts.",
     "box": {"r": 0.3, "s": 0.75},
     "groups": [
         {"key": "warm", "name": "before retraining"},

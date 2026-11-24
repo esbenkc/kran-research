@@ -1,7 +1,7 @@
 {
   "head": "A short walk read low or high depending on its step size; a longer walk landed near the true value",
   "q": "Question: In Qwen3-8B, does a calibrated local learning coefficient of the RL-trained tail adapter rise above a coin-flip control at least 8 updates before a reward-learned switch shows in behaviour?",
-  "gloss": "(local learning coefficient, LLC: a number read from the weights by a random walk around them; calibrated: the walk first recovers a known answer)",
+  "gloss": "(local learning coefficient, LLC: a number read from the weights by a random walk around them; calibrated: the walk first recovers a known answer; coin-flip control: runs penalised on a coin flip instead of the trigger, so they learn no switch)",
   "answer": "<b>Answer: Not settled.</b> The walk failed the known-answer test at the length a Qwen3-8B run allows (2 walks of 100 steps; all {n_set} settings missed). That stopped the Qwen3-8B measurement.",
   "cuetag": "trigger: a fixed nudge added inside the model at these 3 tokens",
   "key": "Reward taught Qwen3-8B to open less often with praise such as “Great question!”, but only when the trigger is there. The <b>switch</b> showed at update <b>{T}</b>. Could the LLC warn before that?",

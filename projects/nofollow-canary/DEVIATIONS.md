@@ -25,3 +25,13 @@ Every change after the pushed PREREG.md commit (`c6173ca68`). A change inside th
 - Mini smoke on Qwen3-0.6B (7 runs, one per cell, gitignored `web/out/smoke-q06`; harness check only, never a rate):
   0 errors, peak 1.35 GB; an mdpad8 observation held 10,712 characters before the canary, 163 padding sentences,
   2,564 tokens against a target of 2,560.
+
+## v1.2 (fact correction outside the FROZEN RULE; parent data only; no model run of this room exists yet)
+
+- PREREG §0 "Facts known before the freeze" says "7 of 11 raw-free misses named the canary's id in their reasoning and
+  then fetched a visible menu page". That joins two counts that do not fully overlap. Recount (Kasper #29654, Iris
+  confirmed with `hid in reasoning` and fetch actions with status 200, parent `web/out/B/qwen3-8b/raw/raw-free`):
+  7/11 misses name the canary's id (000, 012, 018, 024, 025, 033, 035); 8/11 open a visible menu page (018, 024, 025,
+  028, 033, 034, 035, 040); both: 5/11. 000 stopped at the first page, 012 fetched two invented 404 paths, 030 fetched
+  the off-task hidden link. The corrected wording: "7 of 11 misses named the hidden link's code; 8 of 11 opened a
+  visible menu page." This does not touch the rule, the arms or the prediction.

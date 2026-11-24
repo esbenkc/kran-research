@@ -36,3 +36,4 @@ python3 figures/build_main.py                                       # Selma's fi
    writes the trust-rule line `- seed-level: final-checkpoint reader acc <est> [<lo>, <hi>] (t-interval over 3 seeds)`.
 4. Fill the draft post (blog branch swarm/oracle-1124-cot-necessity), naming step, gates, final-review, publish.
 5. Video: copy ~/work/oracle-1124-cot-necessity/video/ and follow VIDEO-CONTINUATION.md (board built and reviewed except the result scenes).
+6. Figure 1 (Owain): fill figure1/text.json landed.head and landed.answer (answer = TLDR wording), then BLOG=<blog clone> figure1/render.sh; gen.py re-picks the example by the frozen rule in figure1/README.md and asserts against data/summary.json; commit only assets/figures/cot-necessity-fig1 and _data/figure1.json; Lumi reviews the landed render.

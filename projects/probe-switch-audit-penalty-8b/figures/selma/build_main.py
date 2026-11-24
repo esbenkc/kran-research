@@ -87,7 +87,7 @@ data = {
     ],
     "panels": [
         {"key": "1.7B", "name": "Qwen3-1.7B, 32 heads", "note": "October runs, plus audit-only runs from Nov 20"},
-        {"key": "8B", "name": "Qwen3-8B, 64 heads (this run)", "note": a.pending8},
+        {"key": "8B", "name": "Qwen3-8B, 64 heads (this study)", "note": a.pending8},
     ],
     "runs": runs,
     # direct labels on the 8B panel (x = push in nats, y = share removed; the gone strip sits at y -0.17)

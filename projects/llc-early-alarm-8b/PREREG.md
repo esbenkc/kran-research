@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 1b81a5f3e96299c871402c787aa1888be83413f3
+sha256: 005c744b01e9d64ed9c6933b5cef8727943d063188d24b558c10a58a95c9d73c
+pushed: 2026-11-24T14:07:02Z
+branch: swarm/theory-1124-llc-early-alarm-8b
+url: https://github.com/esbenkc/kran-research/blob/1b81a5f3e96299c871402c787aa1888be83413f3/projects/llc-early-alarm-8b/PREREG.md
+-->
+
 # Pre-registration — llc-early-alarm-8b
 
 Room: `theory-1124-llc-early-alarm-8b`. Night: 2026-11-24. Slug: `llc-early-alarm-8b`. Track: theory, agenda T11.

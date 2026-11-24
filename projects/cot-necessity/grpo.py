@@ -9,7 +9,8 @@ loss = - sum(adv * logp over the model's own tokens) / number of such tokens in 
 per batch, so the policy ratio is 1).
 
 Outputs (under --out/<run>/): run.json (args, timing, model), steps.jsonl (one line per update),
-evals/step_<S>.jsonl (one line per eval prompt: thought text, length, answer, correct), adapters/ (not in git).
+evals/step_<S>.jsonl (one line per eval prompt: thought text, length, answer, correct); ckpt/<run>/ (adapter,
+optimizer state; not in git).
 Resumable: the last adapter + optimizer state + step are saved at each eval; a restart continues from there.
 """
 from __future__ import annotations
@@ -160,16 +161,19 @@ def make_batch(rows, advs):
     return mx.array(x), mx.array(y), mx.array(m), mx.array(np.array(advs, np.float32)), start
 
 
+CKPT = HERE / "ckpt"  # adapters + optimizer state (~0.5 GB per 8B run): outside data/, never committed
+
+
 def save_state(run_dir, pol, opt, step):
-    ad = run_dir / "adapters"
-    ad.mkdir(exist_ok=True)
+    ad = CKPT / run_dir.name
+    ad.mkdir(parents=True, exist_ok=True)
     mx.save_safetensors(str(ad / "adapter_last.safetensors"), dict(tree_flatten(pol.model.trainable_parameters())))
     mx.save_safetensors(str(ad / "opt_last.safetensors"), dict(tree_flatten(opt.state)))
     (ad / "last_step.json").write_text(json.dumps({"step": step}))
 
 
 def try_resume(run_dir, pol, opt):
-    ad = run_dir / "adapters"
+    ad = CKPT / run_dir.name
     if not (ad / "last_step.json").exists():
         return 0
     pol.model.load_weights(str(ad / "adapter_last.safetensors"), strict=False)
@@ -198,7 +202,7 @@ def calib(a):
     mx.random.seed(a.seed * 100003 + 11)
     sampler = make_sampler(temp=a.temp, top_p=a.top_p)
     t0 = time.time()
-    acc, _, capped = run_eval(pol, read_jsonl(a.calib), a.cap, sampler, a.gen_bs, out / "calib_base.jsonl", 0)
+    acc, _, capped = run_eval(pol, read_jsonl(a.calib)[:a.n_limit or None], a.cap, sampler, a.gen_bs, out / "calib_base.jsonl", 0)
     chars = [json.loads(l)["thought_chars"] for l in (out / "calib_base.jsonl").read_text().splitlines()]
     res = {"model": a.model, "split": a.calib, "n": len(chars), "a_base": acc, "L0_median_chars": float(np.median(chars)),
            "mean_chars": float(np.mean(chars)), "capped": capped, "sec": round(time.time() - t0, 1)}
@@ -217,7 +221,7 @@ def train(a):
     opt = optim.Adam(learning_rate=a.lr)
     start = try_resume(run_dir, pol, opt)
     train_items = read_jsonl(a.train)
-    eval_items = read_jsonl(a.eval)
+    eval_items = read_jsonl(a.eval)[:a.n_limit or None]
     rng = np.random.default_rng(a.seed)
     order = rng.permutation(len(train_items))
     sampler = make_sampler(temp=a.temp, top_p=a.top_p)
@@ -229,7 +233,7 @@ def train(a):
     step = start
     deadline = a.deadline or float("inf")
     while True:
-        if step in eval_steps and not (run_dir / "evals" / f"step_{step:04d}.jsonl").exists():
+        if step in eval_steps and not a.no_eval and not (run_dir / "evals" / f"step_{step:04d}.jsonl").exists():
             mx.random.seed(a.seed * 100003 + 7 * step + 1)
             t0 = time.time()
             acc, mlen, capped = run_eval(pol, eval_items, a.cap, sampler, a.gen_bs,
@@ -314,7 +318,7 @@ def parse(argv=None):
     ap.add_argument("--rank", type=int, default=16)
     ap.add_argument("--scale", type=float, default=2.0)
     ap.add_argument("--clip", type=float, default=1.0)
-    ap.add_argument("--micro", type=int, default=16)
+    ap.add_argument("--micro", type=int, default=4)
     ap.add_argument("--gen-bs", type=int, default=64)
     ap.add_argument("--lam0", type=float, default=0.0, help="penalty per character at update 0")
     ap.add_argument("--lam-final", type=float, default=0.0)
@@ -323,6 +327,8 @@ def parse(argv=None):
     ap.add_argument("--calib", default="", help="only run the base pass on this split, write calib.json, exit")
     ap.add_argument("--deadline", type=float, default=0.0, help="unix time: stop training after this")
     ap.add_argument("--timing-only", type=int, default=0)
+    ap.add_argument("--no-eval", action="store_true", help="timing run: no eval passes")
+    ap.add_argument("--n-limit", type=int, default=0, help="smoke only: first n eval/calib prompts")
     ap.add_argument("--mem-limit-gb", type=float, default=0.0, help="mx.set_memory_limit (mini smoke: 4.5)")
     ap.add_argument("--final-nothink", action="store_true")
     return ap.parse_args(argv)

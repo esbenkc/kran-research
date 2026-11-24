@@ -27,6 +27,7 @@ HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
 RUNS = DATA / "runs"
 PY = [sys.executable]
+GRPO_EXTRA: list[str] = []  # smoke only (--grpo-extra), e.g. fewer prompts
 
 
 def sh(cmd: list[str], log: Path) -> None:
@@ -48,7 +49,7 @@ def calib(model: str, k: int, tag: str) -> dict:
     out = RUNS / f"calib_{tag}"
     if not (out / "calib.json").exists():
         sh(PY + ["grpo.py", "--model", model, "--run", f"calib_{tag}", "--out", str(RUNS),
-                 "--calib", f"inputs/calib_k{k}.jsonl"], DATA / "logs" / f"calib_{tag}.log")
+                 "--calib", f"inputs/calib_k{k}.jsonl", *GRPO_EXTRA], DATA / "logs" / f"calib_{tag}.log")
     return jload(out / "calib.json")
 
 
@@ -57,7 +58,7 @@ def grpo(model: str, run: str, k: int, seed: int, steps: int, lam0: float, lam_f
     sh(PY + ["grpo.py", "--model", model, "--run", run, "--out", str(RUNS), "--seed", str(seed),
              "--train", f"inputs/train_k{k}.jsonl", "--eval", f"inputs/eval_k{k}.jsonl", "--steps", str(steps),
              "--eval-every", str(max(1, steps // 5)), "--lam0", repr(lam0), "--lam-final", repr(lam_f),
-             "--ramp-steps", str(ramp), "--final-nothink", *extra], DATA / "logs" / f"{run}.log")
+             "--ramp-steps", str(ramp), "--final-nothink", *GRPO_EXTRA, *extra], DATA / "logs" / f"{run}.log")
 
 
 def necessity(model: str) -> dict:
@@ -97,7 +98,7 @@ def main():
     ap.add_argument("--a0", type=float, default=None, help="no-CoT acc, main arm (NDIF Step 0); None = measure here")
     ap.add_argument("--a0-control", type=float, default=None)
     ap.add_argument("--k-main", type=int, default=8)
-    ap.add_argument("--k-control", type=int, default=-1, help="-1 = pick by the frozen rule; 0 = no control arm")
+    ap.add_argument("--k-control", type=int, default=0, help="0 = no control arm (Step 0: no k in 1-4 qualified)")
     ap.add_argument("--seeds-main", type=int, default=3)
     ap.add_argument("--seeds-control", type=int, default=2)
     ap.add_argument("--budget-h", type=float, default=7.0, help="training + eval budget for all runs")
@@ -105,9 +106,16 @@ def main():
     ap.add_argument("--s-min", type=int, default=40)
     ap.add_argument("--lmin", type=float, default=8.0)
     ap.add_argument("--canon-chars", type=float, default=17.0, help="chars of the canonical 8-flip trace")
-    ap.add_argument("--ramp", action="store_true")
+    ap.add_argument("--no-ramp", dest="ramp", action="store_false", help="smoke only; the frozen reward ramps")
     ap.add_argument("--reader-cmd", default="", help="shell command run after training (reader stage)")
+    ap.add_argument("--grpo-extra", default="", help="smoke only: extra grpo.py args")
+    ap.add_argument("--data", default="", help="smoke only: another data dir")
     a = ap.parse_args()
+    global DATA, RUNS
+    if a.data:
+        DATA = Path(a.data)
+        RUNS = DATA / "runs"
+    GRPO_EXTRA[:] = a.grpo_extra.split()
     DATA.mkdir(exist_ok=True)
     state_p = DATA / "job_state.json"
     state = jload(state_p) if state_p.exists() else {"model": a.model, "t0": time.time()}
@@ -149,13 +157,15 @@ def main():
     (DATA / "lambda.json").write_text(json.dumps(lam, indent=1))
 
     # 2. timing rule on main seed 0 (3 updates, then resume from there)
-    run0 = f"main_k{a.k_main}_s0"
+    # The timing updates run as their own run (timing_k8_s0, no evals) and are thrown away, so every real run
+    # starts at step 0 with the exact frozen ramp. Eval time is estimated from generation time: 200 eval
+    # prompts = 200/64 generation batches.
+    run0 = f"timing_k{a.k_main}_s0"
     if "steps" not in state:
-        grpo(model, run0, a.k_main, 0, a.s_max, lam["lam0"], lam["lam_final"], 0, ["--timing-only", "3"])
+        grpo(model, run0, a.k_main, 0, a.s_max, lam["lam0"], lam["lam_final"], 0, ["--timing-only", "3", "--no-eval"])
         rows = [json.loads(l) for l in (RUNS / run0 / "steps.jsonl").read_text().splitlines()]
         t_step = statistics.median(r["t_step"] for r in rows[:3])
-        ev = RUNS / run0 / "evals" / "step_0000.jsonl"
-        t_eval = (ev.stat().st_mtime - (RUNS / run0 / "run.json").stat().st_mtime) if ev.exists() else 0.0
+        t_eval = statistics.median(r["t_gen"] for r in rows[:3]) * 200 / 64
         n_runs = len(arms)
         budget = a.budget_h * 3600 - n_runs * 6 * max(t_eval, 0)
         S = min(a.s_max, math.floor(budget / (n_runs * t_step)))
@@ -164,6 +174,8 @@ def main():
         if S < a.s_min and model != a.fallback_model:
             tag = model.split("/")[-1]
             shutil.move(str(RUNS), str(DATA / f"aborted_{tag}"))
+            if (HERE / "ckpt").exists():
+                shutil.move(str(HERE / "ckpt"), str(HERE / f"ckpt_aborted_{tag}"))
             for p in ("lambda.json",):
                 if (DATA / p).exists():
                     shutil.move(str(DATA / p), str(DATA / f"aborted_{tag}" / p))

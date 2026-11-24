@@ -46,3 +46,14 @@ of that run after its start page. The answer line is the run's final answer, cut
 
 The markdown pair (mdhtml, mdnf) and plain markdown (md) appear only as counts. mdpad8 (length dose) is not in
 Figure 1; it lives in the main figure.
+
+## Continuation (after labq tswdjfbrh2 lands)
+
+1. `git pull --rebase --autostash` in kran-research and the blog clone; `bash collect.sh` (writes `results/analysis.json`).
+2. `bash figure1/render.sh <blog clone>`: it prints the status, the picked i and the `figure1_alt` line. A `[FILL]` stop
+   means a rare UNCONFIRMED variant (`gate_other` or `mixed`): write its `answer` in `text.json` from analysis.json.
+3. Open `figure1.png` and `og.png`. Check the quotes against the two run files named in `figure1/sources.json`.
+4. Cold read: a cheap model sees only the PNG and must match the post's question and TLDR (`oracle.py check` does it;
+   re-run after every TLDR change). If it fails, fix the answer line or the subtitle first, the head last.
+5. Commit only `assets/figures/nofollow-canary-fig1` and `_data/figure1.json` (pathspec commit); hand the new
+   `figure1_alt` to the writer as text; reviewers Selma and Lumi re-check the landed render.

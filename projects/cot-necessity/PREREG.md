@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: f2fff5a358870a459be9609d73af659d1ac5bb9d
+sha256: 951cf7db0c89bb05d7447d8bc38741afdc670827401feb24b8be7c9b153d2ec9
+pushed: 2026-11-24T01:10:11Z
+branch: swarm/oracle-1124-cot-necessity
+url: https://github.com/esbenkc/kran-research/blob/f2fff5a358870a459be9609d73af659d1ac5bb9d/projects/cot-necessity/PREREG.md
+-->
+
 # PRE-REGISTRATION — cot-necessity (room oracle-1124-cot-necessity)
 
 Written by Iris (research) from Felix's final plan v1 (#29345) as amended by v1.5 (#29384: ramp, std GRPO, eval

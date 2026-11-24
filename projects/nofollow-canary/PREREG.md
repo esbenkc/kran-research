@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: c6173ca68ea6fa1fc110a9a92176e36bb3d1b0b8
+sha256: 0d02e5940c1483789c4b0e07d463e8870fab10d8f90efc1a26fbed9bf6eb3fff
+pushed: 2026-11-24T07:09:25Z
+branch: swarm/defense-1124-length-or-markup
+url: https://github.com/esbenkc/kran-research/blob/c6173ca68ea6fa1fc110a9a92176e36bb3d1b0b8/projects/nofollow-canary/PREREG.md
+-->
+
 # Pre-registration — nofollow-canary
 
 Room: `defense-1124-length-or-markup`. Night: 2026-11-24. Slug: `nofollow-canary`. Track: defense, agenda thread T4.

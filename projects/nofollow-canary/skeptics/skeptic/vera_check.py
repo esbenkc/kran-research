@@ -21,15 +21,20 @@ def newcombe(x1, n1, x2, n2):
 
 def load(outdir, arm_key='view', scored=lambda r: r.get('priority') not in ('gate', 'gate0', 'skill')):
     man = [json.loads(l) for l in open(f'{outdir}/manifest.jsonl') if l.strip()]
-    gets = collections.defaultdict(list)  # hid-substring match done below
     log = []
     for line in open(f'{outdir}/access.log'):
         f = line.rstrip('\n').split('\t')
         if len(f) >= 5:
             log.append((f[2], f[3], f[4]))
     get_paths = [(p, s) for m, p, s in log if m == 'GET']
-    runs = []
+    last = {}  # a harness-crash rerun reuses (arm, i): keep the last manifest row, report the duplicates
     for r in man:
+        key = (r[arm_key], r['i'], scored(r))
+        if key in last:
+            print('DUPLICATE manifest row (rerun?)', key, last[key]['hid'], '->', r['hid'])
+        last[key] = r
+    runs = []
+    for r in last.values():
         hid, oid = r['hid'], r.get('oid')
         hit = [s for p, s in get_paths if hid in p]
         runs.append(dict(arm=r[arm_key], i=r['i'], scored=scored(r), follow=bool(hit),

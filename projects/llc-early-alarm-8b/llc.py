@@ -53,12 +53,14 @@ def main():
     ap.add_argument("--burn", type=int, default=25)
     ap.add_argument("--draws", type=int, default=75)
     ap.add_argument("--label", default="", help="suffix of the output file name")
+    ap.add_argument("--head-dtype", default="bf16", choices=["fp32", "bf16"],
+                    help="bf16 = 3.3 GB measured (Felix #29996, 5 GB cap); fp32 = the RL setting")
     ap.add_argument("--out", default="data/llc")
     a = ap.parse_args()
     out_dir = HERE / a.out / a.tag
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    cfg, tail, w_out = load_tail(2, torch.float32, torch.float32)  # the parent's RL setting (fp32 tail and head)
+    cfg, tail, w_out = load_tail(2, torch.float32, torch.float32 if a.head_dtype == "fp32" else torch.bfloat16)
     for p in tail.parameters():
         p.requires_grad_(False)
     ptail = get_peft_model(tail, LoraConfig(r=16, lora_alpha=32, lora_dropout=0.0, target_modules=TARGETS,
@@ -123,7 +125,7 @@ def main():
         ref = load(a.step)
         h_max, hist = hmax_power(full_grad, plist, iters=a.hmax_iters, delta=1e-2, seed=0)
         res = {"run": a.run, "cue_run": a.cue_run, "step": a.step, "h_max": h_max, "iters": hist, "n": n,
-               "delta": 1e-2, "secs": round(time.time() - t0, 1)}
+               "delta": 1e-2, "head_dtype": a.head_dtype, "secs": round(time.time() - t0, 1)}
         f = out_dir / f"hmax_{a.run}_u{a.step:05d}.json"
         f.write_text(json.dumps(res, indent=1))
         print("HMAX", f.name, h_max, [round(x, 5) for x in hist], res["secs"], "s", flush=True)
@@ -157,7 +159,7 @@ def main():
                "lambda_hat": float(np.mean(lam)), "chains": lam, "bm_se": nbeta * batch_means_se(draws),
                "c": a.c, "gamma": a.gamma, "nbeta": nbeta, "eps": eps, "h_max_used": hm["h_max"],
                "hmax_file": a.hmax_file, "L_wstar_all_rows": L_wstar, "grad_norm_wstar": grad_norm_wstar,
-               "n": n, "batch": BATCH, "burn": a.burn, "draws": a.draws, "losses": [ch["losses"] for ch in chains],
+               "head_dtype": a.head_dtype, "n": n, "batch": BATCH, "burn": a.burn, "draws": a.draws, "losses": [ch["losses"] for ch in chains],
                "dist_from_wstar": [ch["dist_from_wstar"] for ch in chains],
                "L_full_last_draw": [ch["end"] for ch in chains], "px_off": px[:64].tolist(), "px_on": px[64:].tolist(), "secs": round(time.time() - t0, 1)}
         f_out.write_text(json.dumps(res))

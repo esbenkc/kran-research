@@ -129,13 +129,14 @@ def strip_svg(T: dict, seeds: list[dict] | None) -> str:
     o = [f'<svg class="strip" width="{W}" height="{hgt}" viewBox="0 0 {W} {hgt}" role="img">']
     for p, title in enumerate((T["panel_task"], T["panel_reader"])):
         o.append(f'<text x="{x0[p] + 10}" y="24" class="pt">{title}</text>')
-        if p == 1:  # guess band: within 10 points of 50%
+        if p == 1 and seeds is not None:  # guess band: within 10 points of 50%
             o.append(f'<rect x="{X(1, .4):.1f}" y="{top - 14}" width="{X(1, .6) - X(1, .4):.1f}" '
                      f'height="{rh * SEEDS + 8}" fill="#eceef1"/>')
             o.append(f'<text x="{X(1, .5):.1f}" y="{top - 20}" class="band" text-anchor="middle">{T["band"]}</text>')
         for v in (0, .5, 1):
-            o.append(f'<line x1="{X(p, v):.1f}" x2="{X(p, v):.1f}" y1="{top - 14}" y2="{top + rh * SEEDS - 6}" '
-                     f'stroke="#e1e3e7" stroke-width="1"/>')
+            if seeds is not None:
+                o.append(f'<line x1="{X(p, v):.1f}" x2="{X(p, v):.1f}" y1="{top - 14}" y2="{top + rh * SEEDS - 6}" '
+                         f'stroke="#e1e3e7" stroke-width="1"/>')
             o.append(f'<text x="{X(p, v):.1f}" y="{top + rh * SEEDS + 18}" class="ax" text-anchor="middle">'
                      f'{round(v * 100)}%</text>')
     for s in range(SEEDS):

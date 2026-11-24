@@ -45,10 +45,8 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
 - E4 result (Bruno #30020, data/gate/e4_psgld.json): diverged at all 10 settings (estimates 1e13 to 1e17), 0 of 10
   pass. Bruno's reading: at w* the unused hidden units have exactly zero loss gradient, so with a = 1e-8 the
   preconditioner G reaches about 1e8 and the injected noise is large in exactly the singular directions.
-- E4b (POST-HOC, chosen after seeing E4 diverge; runs only if Felix says yes): E4 unchanged except the stabiliser a in
-  {1e-4, 1e-2, 1} (30 settings, about 10 s CPU), same PASS and selection rules. Reported as post-hoc and exploratory;
-  it cannot support any claim that pSGLD "passes the gate", only whether a stabilised preconditioner moves the 100-step
-  miss.
+- E4b NOT RUN (Tove #30023, Felix #30026): a retune of the stabiliser after seeing E4 diverge would be a fishing trip.
+  A tuned preconditioned sampler, frozen on the gate before any 8B run, goes to the hit list for the follow-up.
 - Correction to E1's summary (Vera #30000): at c 0.1, gamma 1 the gate case is already within 10% at 400 steps per
   chain in Bruno's data (r1 -6.5%, r8 -7.8%) and passes from 1,000 in Vera's own data; at 1,600-6,400 steps it sits
   2-5% high.

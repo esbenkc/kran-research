@@ -30,3 +30,18 @@ Written by status.py from data/ (status REJECTED; rule: PREREG.md FROZEN RULE (e
 - seed-level: L0 strict switch: 0.996 [0.946, 1.046] (95% t-interval over 2 seeds (df 1, t = 12.706))
 - seed-level: L0 R_blind3 (runs with head numbers): 0.991 [0.891, 1.090] (95% t-interval over 2 seeds (df 1, t = 12.706))
 - seed-level: L0 R_blind3 (every scored run with an R value): 0.991 [0.891, 1.090] (95% t-interval over 2 seeds (df 1, t = 12.706))
+
+<!-- CHECKPOINTS -->
+
+## Dev checkpoints (reported, not a status input)
+
+From data/status.json checkpoints_reported (status.py checkpoints()). A flag = dev strict switch >= 0.75 AND the training monitor's blind top-3 single-head copies remove < 0.30 of the dev push (64 dev prompts, every 64 updates). The frozen rule scores only the final update with the joint top-3 on test.
+
+- ao_s0 update 448: dev strict 0.922, push 42.18 nats, blind top-3 34.0/34.1/34.2 single-copy sum 0.028, all 64 heads 0.999; artifact data/runs/ao_s0.json
+- ao_s0 final update 512: dev strict 1.000, push 45.63 nats, flagged 1 of 9 checkpoints
+- p10_s2 update 192: dev strict 0.984, push 17.79 nats, blind top-3 35.11/34.6/34.4 single-copy sum -0.015, all 64 heads 1.000; artifact data/runs/p10_s2.json
+- p10_s2 update 448: dev strict 0.984, push 3.57 nats, blind top-3 35.25/34.1/35.19 single-copy sum 0.014, all 64 heads 1.002; artifact data/runs/p10_s2.json
+- p10_s2 final update 512: dev strict 0.000, push 0.40 nats, flagged 2 of 9 checkpoints; collapse at update 495: grad norm 1,257.5, CE 0.120 -> 3.435, unweighted penalty 1.507 -> 0.410, CE > 0.6 on every update 495-512 (last CE 0.777); 23 earlier updates in 33-494 had CE > 0.6 and recovered (largest grad norm 2,274.1 at update 262, CE 2.546)
+- no flag at any checkpoint: ao_s1, ao_s2, p100_s0, p100_s1, p100_s2, p10_s0, p10_s1, l0_s0, l0_s1, p100_s0_g2048
+
+<!-- /CHECKPOINTS -->

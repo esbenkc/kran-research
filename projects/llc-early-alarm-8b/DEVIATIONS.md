@@ -28,15 +28,15 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
   EXPLORATORY. Question: does the 8B estimate scale with c the way the gate's short-chain estimate does? h_max at update
   88 is also logged (drift diagnostic).
 - E2b (8B chain length, MPS, after E2; Felix #29999): m8_k2_s5 at update 88, 2 chains x 3,200 SGLD steps at c 0.1,
-  gamma 1, h_max from update 32 as in E2, minibatch 8, n beta 26.38; every per-step minibatch loss saved and the running
-  estimate logged every 100 steps. Question: at what step count does the 8B estimate stop rising (or has it not by
-  3,200), next to the 400-1,600 steps the gate case needs (E1)? If time remains: m8_c1_s5 at update 88 (k2 cue rows)
-  at the same budget, one paired point, labelled n = 1. EXPLORATORY, unscored.
+  gamma 1, h_max from update 32 as in E2, minibatch 8, n beta 26.38; burn-in 800 + 2,400 draws per chain (Bruno
+  #30003); every per-step minibatch loss saved and the running estimate logged every 100 steps. Question: at what step count does the 8B estimate stop rising (or has it not by
+  3,200), next to the 400-1,600 steps the gate case needs (E1)? The paired C1 point (m8_c1_s5 at update 88)
+  does not run: J1 was stopped before any C1 run, so no C1 checkpoint exists (Bruno #30003). EXPLORATORY, unscored.
 - Correction to E1's summary (Vera #30000): at c 0.1, gamma 1 the gate case is already within 10% at 400 steps per
   chain in Bruno's data (r1 -6.5%, r8 -7.8%) and passes from 1,000 in Vera's own data; at 1,600-6,400 steps it sits
   2-5% high.
 - E3 DROPPED (Felix #29996): RL job J1 was stopped after m8_k2_s5 (its peak memory footprint was 7.85 GB, above the
   5 GB cap while another swarm is open; Vera #29994), so the race readouts at the other runs do not exist. The race
   was a wording rule for an LLC alarm that never ran (Kasper #29991). m8_k2_s5 matched the parent run bit for bit
-  (Bruno, commit d160468a8). A J1 restart at 06:13:17 PST began m8_k2_s6 and stopped after update 24 (no
-  process alive at 06:13:56); its partial adapters in raw/lora/m8_k2_s6/ are not used.
+  (Bruno, commit d160468a8). A J1 relaunch at 06:13:17 PST began m8_k2_s6; Bruno killed it at 06:14 after update 24
+  (#30003); its partial adapters in raw/lora/m8_k2_s6/ are not used. No C1 run exists.

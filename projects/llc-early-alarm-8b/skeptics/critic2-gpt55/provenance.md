@@ -25,3 +25,13 @@ critic2 re-ran them correctly as c13 and c22.
 
 Other checks critic2 made (not scripts): read the deploy preview (pr #248), the post, PREREG.md, DEVIATIONS.md and
 proof-matrix.md, and ran `checks/equations.py` with `uv run --with sympy --with torch` (session calls 31-38).
+
+## Scope of critic2's check (Felix #30187, Kasper #30182, critic2 fallback #30183)
+
+- Gate: critic2 AUDITED the stored table in data/gate/frozen.json (c11-c15: n_pass, selected, the closest setting,
+  the 5 repeat values, the error-bar distances). No script read the raw per-draw losses in data/gate/grid.json, so it
+  did not recompute lambda-hat from the draws. Vera did that (skeptics/skeptic/).
+- Rebuilt from raw by its own code: the budget sweep (data/gate/budget.json, c16-c17), the six short Qwen3-8B
+  estimates and their walk distances (data/llc/e2/, c18 and c20), the long walk's running means (data/llc/e2b/, c19
+  and c22), and the main figure's data.json against the raw files (c23-c24).
+- It ran checks/equations.py once (session calls 31-38).

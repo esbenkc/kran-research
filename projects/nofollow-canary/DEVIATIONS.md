@@ -1,7 +1,7 @@
 # DEVIATIONS — nofollow-canary
 
-Every change after the pushed PREREG.md commit (`c6173ca68`). A change inside the FROZEN RULE block would start with
-"RULE CHANGE:" and make the run EXPLORATORY. None so far.
+Every change after the pushed PREREG.md commit (`c6173ca68`). A change inside the FROZEN RULE block would need a
+rule-change line here and would make the run EXPLORATORY. There is none.
 
 ## v1.1 (facts known only after the push; no model run yet)
 

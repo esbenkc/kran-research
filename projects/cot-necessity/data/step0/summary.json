@@ -1,0 +1,46 @@
+{
+ "8": {
+  "n": 400,
+  "argmax_acc": 0.5,
+  "auroc": 0.5110125,
+  "share_pred_heads": 1.0,
+  "top1_is_answer_token": 1.0
+ },
+ "meta": {
+  "model": "Qwen/Qwen3-8B",
+  "prefill": "<reasoning></reasoning><answer>",
+  "tokens": {
+   "heads": 1519,
+   "tails": 51
+  },
+  "backend": "NDIF remote"
+ },
+ "1": {
+  "n": 400,
+  "argmax_acc": 0.5,
+  "auroc": 1.0,
+  "share_pred_heads": 1.0,
+  "top1_is_answer_token": 1.0
+ },
+ "2": {
+  "n": 400,
+  "argmax_acc": 0.5,
+  "auroc": 0.709075,
+  "share_pred_heads": 1.0,
+  "top1_is_answer_token": 1.0
+ },
+ "3": {
+  "n": 400,
+  "argmax_acc": 0.5,
+  "auroc": 0.4626125,
+  "share_pred_heads": 1.0,
+  "top1_is_answer_token": 1.0
+ },
+ "4": {
+  "n": 400,
+  "argmax_acc": 0.5,
+  "auroc": 0.6704125,
+  "share_pred_heads": 1.0,
+  "top1_is_answer_token": 1.0
+ }
+}

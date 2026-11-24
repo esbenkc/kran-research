@@ -1,4 +1,4 @@
-# Continuation — cot-necessity (after labq job zfp2nttcl0 lands)
+# Continuation — cot-necessity (after labq job 7jau1umj07 lands)
 
 Tonight's room (oracle-1124-cot-necessity) closed PENDING LAPTOP. Everything below runs on the mini in seconds; nothing
 here trains or reads with a model.

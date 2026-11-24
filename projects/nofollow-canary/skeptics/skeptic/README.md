@@ -21,6 +21,11 @@ The prereg stamp is checked: sha256 of `c6173ca68:PREREG.md` = `0d02e594…3fff`
 
 ## Still to do (continuation room, after laptop job tswdjfbrh2)
 
-Run `vera_check.py web/out/qwen3-8b` on the landed data. Diff its output against `results/analysis.json`, run a
-label-shuffle null of the whole frozen rule, and write `signoff.md`. That file does not exist yet, because no run of
-this room has finished.
+Commands, from `projects/nofollow-canary/` after `git pull --rebase --autostash`:
+
+    python3 skeptics/skeptic/vera_check.py web/out/qwen3-8b > skeptics/skeptic/out_check.txt
+    python3 skeptics/skeptic/vera_null.py web/out/qwen3-8b 20000 > skeptics/skeptic/out_null.txt
+
+Then diff every count and Newcombe bound in `out_check.txt` against `results/analysis.json` (catch, differences,
+seed_level, gates). Check that the gate runs (cell gatemd-free) are excluded from the arms. Then write `signoff.md`
+(role / model / verdict lines first). That file does not exist yet, because no run of this room has finished.

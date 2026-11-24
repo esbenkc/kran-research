@@ -193,6 +193,9 @@ def analyse(llc: dict, T: dict, race: dict, gate_pass: bool | None) -> dict:
         status, why = "UNCONFIRMED", (f"lead fails at exactly 1 size {fails}" if fails else
                                       f"control clause fails: {ctrl_alarms}")
     res["status"], res["status_reason"] = status, why
+    if gate_pass is False:  # PREREG (9): stop; no scored 8B estimate exists, so lead/control/law were not run
+        res["control_clause_holds"] = None
+        res["note"] = "gate failed: lead, control and law clauses not run (PREREG (9), DEVIATIONS D1)"
     # law
     per_size = {s: sum(1 for p in law_pts if p[0] == s) for s in SIZES}
     law = {"points": law_pts, "per_size": per_size}
@@ -335,6 +338,8 @@ def main():
     if a.selftest:
         selftest()
         return
+    import warnings
+    warnings.filterwarnings("ignore", category=RuntimeWarning)
     llc = load_llc(HERE)
     T = {}
     for f in (HERE / "data" / "runs").glob("m8_k*_s*.json"):
@@ -356,7 +361,10 @@ def main():
                         print("   ", size, run, "T", r["T"], "t_alarm", r["t_alarm"], "lead", r["lead"])
         return
     gp = HERE / a.gate
-    gate_pass = json.loads(gp.read_text()).get("pass") if gp.exists() else None
+    gate_pass = None
+    if gp.exists():
+        g = json.loads(gp.read_text())
+        gate_pass = {"PASS": True, "FAIL": False}.get(g.get("gate"), g.get("pass"))
     res = analyse(llc, T, race, gate_pass)
     (HERE / "data").mkdir(exist_ok=True)
     (HERE / "data" / "analysis.json").write_text(json.dumps(res, indent=1, default=float))

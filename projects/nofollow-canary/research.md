@@ -100,3 +100,39 @@ choice to follow a link that a stylesheet hides. The padding design is Levy et a
   (https://www.usenix.org/system/files/usenixsecurity25-ayzenshteyn.pdf); Reworr & Volkov, *LLM Agent Honeypot*,
   arXiv 2410.13919. Neither, from abstracts/snippets, varies a link attribute. [INFERENCE: novelty = first ablation of
   rel="nofollow" on an LLM agent's follow choice that I can find.]
+
+## 5. After the data landed (continuation, 2026-11-24 ~05:30 PST)
+
+- L1. Independent recount (my own script, `/tmp/iris_recount.py`: access.log GETs matched by `hid` only, 525 manifest
+  rows, data commit b0310a8c5): raw 72/90, rawnf 74/90, md 82/90, mdhtml 74/90, mdnf 70/90, mdpad8 58/60, gate 14/15,
+  0 runs without a model reply, 0 parse-fail runs, job.log errors=0. Agrees with `results/analysis.json` (322c05c9b)
+  in every arm. Frozen rule: gates hold (G = 10 runs, bar 9); CONFIRMED (a) rawnf-raw +0.022 [-0.093, 0.137] fails;
+  REJECTED (a) md-rawnf +0.089 [-0.012, 0.190] fails; status UNCONFIRMED.
+- L2. Paired raw vs rawnf by run index (same site recipe and sampling seeds): 66 both follow, 10 both miss, 8
+  raw-miss/rawnf-follow, 6 the reverse. Paired mdhtml vs mdnf: 62 / 8 / 8 mdhtml-miss-mdnf-follow / 12 the reverse.
+- L3. Reasoning that names "nofollow" (`replies`, case-insensitive): raw 2/90 (1 follow), mdnf 2/90 (2 follows),
+  rawnf 0, md 0, mdhtml 0. Off-task GETs: raw 1, rawnf 1, others 0. [Consistent with the parent's 1/42.]
+- L4. Length (S2): the canary sat at a median 2,527 tokens in mdpad8 vs 144.5 in md and 248 in raw
+  (`analysis.json` secondary.S2_length). mdpad8 58/60 (0.967) vs md 0.911: md-mdpad8 -0.056 [-0.136, +0.036]. The
+  frozen log-length law predicted 0.322 and the linear law 0. My pre-data R1 above ("~0% at 1.2k tokens" from a
+  falling length slope) is wrong by direction. This matches Liu 2611.04169 (neutral filler is free on a lookup task)
+  and not the 3,000-token drop in Levy 2402.14848 (a different task: reasoning over padded inputs). [INFERENCE: thinking-on
+  Qwen3-8B at <3k tokens is below where length costs appear for this task.]
+- L5. Syntax hint (S1, a secondary): mdhtml-md -0.089 [-0.190, +0.012]. Same size as the md-raw gap (+0.111
+  [0.008, 0.215]); crosses 0, so a lead for the next run, not a finding.
+
+New prior work found in the continuation searches (2026-11-24):
+- Enomoto, Obara, Zhang, Oyamada, *Read More, Think More: Revisiting Observation Reduction for Web Agents*, arXiv
+  2604.01535 (2 Apr 2026) https://arxiv.org/abs/2604.01535 . Abstract: compact observations (accessibility trees)
+  are better for lower-capability models, HTML for higher-capability ones; more thinking tokens amplify the HTML
+  benefit; lower-capability models "suffer from increased hallucination under longer inputs". Relevance: format cost
+  depends on the model, so a raw-HTML catch rate measured on Qwen3-8B need not transfer to a frontier agent. It
+  measures task success, not a hidden link. [Abstract only; not read in full.]
+- Pasquini, Reworr, Ateniese, Bhatt, Epp, *Say Shibboleth: Fingerprinting the LLMs and Harnesses Behind Agentic
+  Attacks*, arXiv 2611.12386 (9 Nov 2026) https://arxiv.org/abs/2611.12386 . "Shibboleth traps": honeypot services
+  that make informative interactions a condition for the resource; 90% top-1 over 15 models, 92% harness accuracy over
+  4 harnesses. Relevance to T4: a trap that identifies WHICH agent, next to our trap that counts WHETHER one followed.
+  [Abstract only.]
+- Novelty, third search (2026-11-24 05:30 PST, "rel nofollow LLM agent honeypot link follow rate"): still no
+  published ablation of rel="nofollow" on an LLM agent's link choice. Blog posts assert agents ignore nofollow
+  (e.g. agentbyline.com) without data. [INFERENCE.]

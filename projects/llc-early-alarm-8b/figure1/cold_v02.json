@@ -1,0 +1,37 @@
+{
+ "png": "v02.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0162832,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"In Qwen3-8B, does a calibrated local learning coefficient of an RL-trained tail adapter rise above a coin-flip control at least 8 updates before a reward-learned switch shows in behaviour?\",\n  \"answer\": \"Not settled. With 2 walks of 100 steps that Qwen3-8B allows, the walk missed the known answer (true value 236) at all 20 settings tried, so the measurement did not run; however, longer walks with middle step size achieved readings of 221-248, approaching the target within range.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"In Qwen3-8B, does a calibrated local learning coefficient of an RL-trained tail adapter rise above a coin-flip control at least 8 updates before a reward-learned switch shows in behavior?\",\n  \"answer\": \"Not settled. With 2 walks of 100 steps allowed by Qwen3-8B, the walk missed the known answer (true value 236) at all 20 settings tried, so the measurement did not run; however, longer walks with middle step sizes recovered values near the true answer (221-248), suggesting the approach works with sufficient walk length.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"In Qwen3-8B, does a calibrated local learning coefficient of the RL-trained tail adapter rise above a coin-flip control at least 8 updates before a reward-learned switch shows in behaviour?\",\n  \"answer\": \"Not settled. At the length a Qwen3-8B run allows, 2 walks of 100 steps, the walk missed the known answer at all 20 settings tried, so the measurement did not run; however, longer walks with middle step size achieved readings of 221-248, approaching the true value of 236.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"In Qwen3-8B, does a calibrated local learning coefficient of the RL-trained tail adapter rise above a coin-flip control at least 8 updates before a reward-learned switch appears in behavior at update 72?\",\n  \"answer\": \"The question is not settled because the 100-step walks allowed by the model missed the calibration target of 236 across all 20 tested settings (yielding readings of 64, 174, and 305), preventing the measurement from running.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Can a calibrated local learning coefficient of Qwen3-8B's RL-trained tail adapter detect an internal change at least 8 updates before a reward-learned behavioral switch appears at update 72?\",\n  \"answer\": \"The question is unsettled because 100-step walks failed to calibrate across all 20 settings tested on a benchmark problem\u2014reading 64, 174, or 305 instead of the true value of 236\u2014preventing the target measurement on Qwen3-8B from running.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"In Qwen3-8B, can a calibrated local learning coefficient of an RL-trained tail adapter rise above a coin-flip control at least 8 updates before a reward-learned switch appears at update 72?\",\n  \"answer\": \"The question is not settled because feasible 100-step walks failed calibration across all 20 tested settings by yielding estimates of 64, 174, and 305 against the true value of 236, preventing the measurement on Qwen3-8B from running.\"\n}"
+  }
+ ]
+}

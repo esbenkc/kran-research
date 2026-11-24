@@ -1,0 +1,22 @@
+{
+  "head": "A short walk read low or high depending on its step size; a longer walk landed near the true value",
+  "q": "Question: In Qwen3-8B, does a calibrated local learning coefficient of the RL-trained tail adapter rise above a coin-flip control at least 8 updates before a reward-learned switch shows in behaviour?",
+  "gloss": "(learning coefficient: a number read from the weights by a random walk around them; calibrated: the walk first recovers a known answer)",
+  "answer": "<b>Answer: Not settled.</b> At the length a Qwen3-8B run allows, 2 walks of 100 steps, the walk missed the known answer at all {n_set} settings we tried. So the Qwen3-8B measurement did not run.",
+  "cuetag": "trigger: a fixed nudge added inside the model at these 3 tokens",
+  "key": "Reward taught Qwen3-8B to drop “Great question!” only when the trigger is there. The <b>switch</b> showed at update <b>{T}</b>. Could a reading from the weights warn before that?",
+  "test_t": "First, the walk had to pass a test with a known answer",
+  "test_sub": "A small problem shaped like the adapter, 1,024 weights, with a true value from a formula: <b>{truth}</b>.",
+  "g1": "Walks of 100 steps: what a Qwen3-8B run allows",
+  "g2": "Middle step, longer walks (run after the test failed)",
+  "rows1": [
+    "small step",
+    "middle step",
+    "large step"
+  ],
+  "truth_lab": "true value {truth}",
+  "band_lab": "within 10%",
+  "axis": "reading of the walk (learning coefficient)",
+  "foot8b": "On Qwen3-8B's adapter, the same 100-step walk ended as far from its start as pure noise would ({rlo} to {rhi} of the noise distance, {nwalk} walks).",
+  "foot": "Source: Qwen3-8B, last 2 layers trained by reward (LoRA), trigger 1.37%, seed 5. Test problem: rank 1, 128 rows; spring 1; dots = 3 repeats, number = their mean. Nov 2026 · blog.kran.ai/lab"
+}

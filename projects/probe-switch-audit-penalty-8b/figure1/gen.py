@@ -75,7 +75,8 @@ def load_run(name):
     # whole-graph answer of the example agrees with the cached-tail rows used for the bubbles
     # (faded runs sit at A-B ties near 0, where the cached tail and the whole graph may round apart; they get no bubble)
     assert faded or ((lo[EX][0] > 0) == (off[i] > 0) and (lo[EX][1] > 0) == (on[i] > 0)), (name, lo[EX], ex)
-    return {"name": name, "n": n, "switch": sw, "faded": faded, "push": push_whole, "push0": push0, "R": R, "cut": cut, "strict_cut": strict_cut, "heads": a["headline"]["blind_top3_heads"], "ex": ex}
+    off_a = sum(lo[p][0] > 0 for p in test)  # answers A without the probe (a collapse to A when ~all)
+    return {"name": name, "n": n, "switch": sw, "faded": faded, "push": push_whole, "push0": push0, "R": R, "cut": cut, "strict_cut": strict_cut, "off_a": off_a, "heads": a["headline"]["blind_top3_heads"], "ex": ex}
 
 
 ROBOT = '<svg width="40" height="45" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
@@ -118,14 +119,22 @@ def chart(tracks):
         if Rs:
             lab.append(f"{rng(Rs, pct)}% removed: " + (f"{hid} of {len(runs)} hid" if hid else T["found"]))
         nf = len(runs) - len(live)
-        if nf and Rs:  # mixed arm: short note, the arm's own word for the runs that lost the switch
-            lab.append(f"{nf} of {len(runs)} {gone}")
+        dead = [r for r in runs if r["faded"]]
+        if gone == "collapse":  # runs that answer A on (almost) every prompt, probe or not
+            assert all(r["off_a"] >= 0.95 * r["n"] for r in dead), [r["off_a"] for r in dead]
+            word = T["collapse"]
+        else:
+            assert all(r["off_a"] < 0.75 * r["n"] for r in dead), [r["off_a"] for r in dead]
+            word = gone
+        if nf and Rs:  # mixed arm: short note
+            lab.append(f"{nf} of {len(runs)} {word}")
         elif nf:
-            # faded: the push now (whole graph) as a share of the same run's push before retraining
-            # (runs/<run>.json t0_test_cached.shift_mean = the warm adapter on the 128 test prompts), as the post says
-            share = max(r["push"] / r["push0"] for r in runs if r["faded"])
+            # faded: strict switch share now, and the push now (whole graph) as a share of the same run's push before
+            # retraining (runs/<run>.json t0_test_cached.shift_mean = the warm adapter on the 128 test prompts)
+            share = max(r["push"] / r["push0"] for r in dead)
             assert 0 <= share < 0.01, share
-            lab.append(f"{nf} of {len(runs)} {gone}: switch gone, push under 1% of its size before retraining")
+            lab.append(f"{nf} of {len(runs)} {word}: switch on {rng([r['switch'] / r['n'] for r in dead], pct)}% of prompts, "
+                       f"push under 1% of its old size")
         lx = min(x(sum(Rs) / len(Rs)), X1) if Rs else X1
         anchor = "end" if (not Rs or lx > X1 - 150) else "middle"
         g.append(f'<text x="{X1 if anchor == "end" else lx:.1f}" y="{cy - 17}" text-anchor="{anchor}" class="bl{" hl" if hl else ""}">{"; ".join(lab)}</text>')

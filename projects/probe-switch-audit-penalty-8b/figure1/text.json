@@ -1,6 +1,6 @@
 {
   "example": "test0657",
-  "kicker": "Question: At 8B, does training against a head audit make a probe-triggered switch hide from it? <em>Answer: No.</em> None of the {pen_runs} penalised runs hid. The audit still found the switch in all {ao_runs} audit-only runs and in {p10_found} of {p10_runs} runs at weight 10. The other {pen_gone} runs lost the switch.",
+  "kicker": "Question: At 8B, does training against a head audit make a probe-triggered switch hide from it? <em>Answer: No.</em> None of the {pen_runs} penalised runs hid. The audit still found the switch in all {ao_runs} audit-only runs and in {p10_found} of {p10_runs} runs at weight 10. In the other {pen_gone}, the switch faded ({p100_gone}) or the model answered A even without the probe ({p10_gone}).",
   "head": "Trained to dodge the audit, Qwen3-8B's switch was still found, but copying the 3 flagged heads no longer always stops it",
   "sub": "<b>Qwen3-8B</b>, fine-tuned to answer <b>A (mountains)</b> only while a read-only probe reads it, <b>B (sea)</b> without. Then 512 more training steps, with or without a penalty for what a head audit finds. The <b>audit</b> flags 3 attention heads and copies their outputs from the run without the probe.",
   "prompt_note": "Each prompt starts with an unrelated text snippet. The question at the end is always the same.",
@@ -41,12 +41,13 @@
       "glob": "p10_s?.json",
       "planned": 3,
       "row": false,
-      "gone": "lost the switch"
+      "gone": "collapse"
     }
   ],
   "foot_src": "Source: kran-research probe-switch-audit-penalty-8b &middot; 128 new prompts per run &middot; Nov 2026",
   "foot_by": "blog.kran.ai/lab",
   "found": "found",
   "kicker_pos": "grid",
-  "pending": "not run: still waiting for a laptop"
+  "pending": "not run: still waiting for a laptop",
+  "collapse": "answers A even without the probe"
 }

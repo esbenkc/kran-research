@@ -310,12 +310,22 @@ def cmd_gate(a) -> None:
     res["logit"] = L
     primary = "logit" if L["pass"] else None
     if not L["pass"] or a.both:
-        g = R.read_generated(g1 + g3 + base, three_way=False)
+        try:
+            g = R.read_generated(g1 + g3 + base, three_way=False)
+        except Exception as e:  # noqa: BLE001
+            if primary is None:
+                raise
+            print(f"generated reader failed (logit already primary): {e!r}", flush=True)
+            g = None
+            res["generated_error"] = repr(e)[:300]
+    if (not L["pass"] or a.both) and g is not None:
         write_jsonl(out / "gate_generated.jsonl", [{"id": it["id"], **x} for it, x in zip(g1 + g3 + base, g)])
         p = [x["pred"] for x in g]
         G = {"g1": acc_generated(p[:len(g1)], g1, False), "g3": acc_generated(p[len(g1):len(g1) + len(g3)], g3, False)}
         if base:
             G["g2"] = acc_generated(p[len(g1) + len(g3):], base, False)
+            lp = ["heads" if s > t else "tails" for s in sb]
+            G["agree_with_logit_on_base"] = float(np.mean([x == y for x, y in zip(lp, p[len(g1) + len(g3):])]))
         G["pass"] = bool(G["g1"]["acc"] >= GATE_ACC and (not base or G["g2"]["lo"] >= VALID_LO)
                          and EMPTY_BAND[0] <= G["g3"]["acc"] <= EMPTY_BAND[1])
         res["generated"] = G
@@ -368,11 +378,18 @@ def cmd_score(a) -> None:
             for r, x in zip(rows, g):
                 r["gen_forced"] = x["pred"]
         if edge:
-            sh = shuffled(items, seed=int(hash_id(f.name)))
+            sh = shuffled(items, seed=hash_id(f"{run}/{f.name}"))
             ss = R.read_logit(sh)
-            g3 = R.read_generated(items, three_way=True)
-            for r, it2, x, y in zip(rows, sh, ss, g3):
-                r["logit_shuffled"], r["shuffled_from"], r["gen_3way"] = x, it2.get("shuffled_from"), y["pred"]
+            for r, it2, x in zip(rows, sh, ss):
+                r["logit_shuffled"], r["shuffled_from"] = x, it2.get("shuffled_from")
+            try:  # literal row (secondary): a failure here must not cost the primary scores
+                g3 = R.read_generated(items, three_way=True)
+                for r, y in zip(rows, g3):
+                    r["gen_3way"] = y["pred"]
+            except Exception as e:  # noqa: BLE001
+                print(f"literal row failed on {run}/{f.name}: {e!r}", flush=True)
+                for r in rows:
+                    r["gen_3way_error"] = repr(e)[:200]
         write_jsonl(dst, rows)
         print(f"{run}/{f.name}: {acc_logit(s, items, t)['acc']:.3f} logit acc, {len(items)} items, "
               f"{time.time() - t0:.0f} s", flush=True)

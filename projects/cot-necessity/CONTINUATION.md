@@ -31,4 +31,7 @@ python3 figures/build_main.py                                       # Selma's fi
 2. `status.py` prints the status (CONFIRMED / REJECTED / UNCONFIRMED) from the frozen rule; check it agrees with
    `figures/main_summary.json` (Selma's independent copy) and with Vera's `skeptics/skeptic/vera_rule.py`.
 3. Vera rebuilds the headline cells with her own code, runs the nulls, writes `skeptics/skeptic/signoff.md`.
+   Frozen nulls to check: shuffled-thought AUROC within 0.45-0.55 (first and last checkpoint of each seed);
+   gate g3 (start line + empty thought) accuracy within 0.40-0.60 (`data/reader/gate.json`). status.py already
+   writes the trust-rule line `- seed-level: final-checkpoint reader acc <est> [<lo>, <hi>] (t-interval over 3 seeds)`.
 4. Fill the draft post (blog branch swarm/oracle-1124-cot-necessity), naming step, gates, final-review, publish.

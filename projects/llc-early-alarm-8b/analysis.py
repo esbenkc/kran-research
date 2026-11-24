@@ -178,7 +178,7 @@ def analyse(llc: dict, T: dict, race: dict, gate_pass: bool | None) -> dict:
     res["control_alarms"] = ctrl_alarms
     res["control_clause_holds"] = not ctrl_alarms
     res["convergence"] = conv
-    main_missing = [m for m in res["missing"] if ":m8_k" in m]
+    main_missing = list(res["missing"])  # any missing main run OR C1 grid point: cannot score (Kasper #30011)
     fails = [s for s in SIZES if lead_counts.get(s, 0) < 2]
     if gate_pass is False:
         status = "UNCONFIRMED"

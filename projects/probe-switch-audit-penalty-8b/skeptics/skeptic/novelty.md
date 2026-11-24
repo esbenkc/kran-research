@@ -45,3 +45,17 @@ McGrath et al. 2307.15771 hydra effect) are priors for the mechanism and the sca
 
 Verdict unchanged: novel as an experiment (gradient attacker vs a head-level patching audit, at 8B, with an untrained
 -penalty control). No record table applies; the comparison is our own 1.7B run.
+
+## Delta, continuation for the REJECTED answer (Vera, 2026-11-24 PST)
+
+Search (independent of Iris): "backdoor trained to evade activation patching audit attention heads penalty obfuscat
+2026" (web, last month). New hits and why they are not the same experiment:
+- Crushing the Evidence (Kumar, Kasyap), arXiv 2608.00566: a white-box dual penalty on trigger-feature gradients drives
+  LIME/SHAP/Integrated-Gradients attribution to < 0.02 in tabular models with > 90% attack success. The attacker WINS
+  there, against a gradient explainer on tabular data; ours loses against a head-copy (activation patching) audit in an
+  8B LM. A contrast for the post, not a prior of the same experiment.
+- Channel Location Constrains the Auditability of Subliminal Learning (Madl), arXiv 2606.22019: a sycophancy trait
+  that routes through the network body evades four audits; it is distilled, not trained against an audit score.
+- Khilar, arXiv 2611.19304 (Iris's find): a weight-statistic detector is beaten by adding it as a penalty (1 seed per
+  cell); a different detector family (weights, not head patching).
+Verdict unchanged: novel as an experiment; no record table applies. The 1.7B parent run is the comparison.

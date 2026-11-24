@@ -47,3 +47,10 @@ From `projects/probe-switch-audit-penalty-8b` of the room branch:
 
 Then `python vera_status.py ../../data/<whole dir> out8b` applies the frozen rule from the build's whole-graph rows and
 my tail numbers (strict / fp32 / argmax swaps, G1 on argmax, L0 guard, seed-level t-intervals).
+
+## Continuation 2026-11-24 (after J3): sign-off REJECTED, see signoff.md
+
+    python3 vera_status.py ../../data/whole none ../../data/audit > status_rows.json   # REJECTED x3 switches
+    python3 vera_diff.py status_rows.json ../../data/status.json                       # 156 fields, 0 mismatches
+    python3 vera_j3.py > j3.json      # P10 provenance (sha, cache, 512 updates), train signal, checkpoints, audit, nulls
+    python3 vera_edges.py > edges.json  # distance of each frozen clause to its line, prompt bootstrap

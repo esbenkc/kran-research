@@ -2,77 +2,101 @@ role: skeptic
 model: anthropic/claude-opus-5-5
 verdict: PASS
 
-# Sign-off (Vera, skeptic) — probe-switch-audit-penalty-8b, continuation room oracle-1123-audit-penalty-8b
+# Sign-off (Vera, skeptic) — probe-switch-audit-penalty-8b, continuation of oracle-1123-audit-penalty-8b (2026-11-24)
 
-**SIGN-OFF: UNCONFIRMED (not settled).** Question: "At 8B, does training against a head audit make a probe-triggered
-switch hide from it?" The frozen rule (PREREG.md FROZEN RULE, pushed e5de283a) reaches neither yes nor no with the
-cells on the branch at 13dd93894 + cc036b5fb: the P10 arm (job 9c88zlzo44) has no scored seed, and REJECTED needs
-3 scored seeds in every penalised arm. CONFIRMED is out of reach for AO (0 of 3) and P100 (0 of 3); only P10 could
-still give a yes. No cell that exists is in the hide cell, under the bf16 strict, fp32 strict or argmax switch.
+**SIGN-OFF: REJECTED (No).** Question: "At 8B, does training a probe-triggered switch to hide from a head audit make
+it hide, or fade as at 1.7B?" The frozen rule (PREREG.md FROZEN RULE, pushed e5de283a) gives REJECTED on the rows at
+2f7cd6396 + 1c722168c, the same under the bf16 strict, the fp32 strict and the argmax switch. Every penalised arm has
+3 scored seeds; 0 of 9 penalised runs is in the hide cell (AO 0/3, P100 0/3, P10 0/3); the triggered P100 guard run
+(2,048 updates) is done and not in the hide cell; both L0 seeds are scored and not in the hide cell. Prereg outcome:
+**held** (6 of 6 parent-penalty runs scored, none in the hide cell). Wording the rule demands: "this gradient attacker,
+with this budget, found no route", never "no switch can hide".
+
+Previous sign-off (2026-11-22, same file, git history): UNCONFIRMED, because P10 (job 9c88zlzo44) had no scored seed.
 
 ## What I rebuilt, with my own code (never read or ran the build's scoring scripts)
 
-`vera_status.py` applies the frozen rule from its text to the build's saved rows: `data/whole/<run>.json` (whole-graph
-per-prompt rows: top-1, bf16 log-odds, fp32 log-odds) and `data/audit/<run>.json` `per_prompt_lo` (cached-tail log-odds
-with no probe, with the probe, and with the audit's blind top-3 copied). R_blind3 = 1 - mean(top-3 copied - unprobed) /
-mean(probed - unprobed), prompt bootstrap 2,000. G1 from `data/runs/<run>.json` tail rows (top-1). Status is computed
-three times (strict / fp32 / argmax in the switch clause), with the REJECTED clauses for switch-only seeds and the
-fake-no guard (`vera_status.py:102-121`).
+`vera_status.py` (unchanged since c208d5d5e) applies the frozen rule from its text to the saved rows:
+`data/whole/<run>.json` (whole-graph top-1, bf16 and fp32 log-odds per prompt), `data/audit/<run>.json`
+`per_prompt_lo` (cached-tail log-odds unprobed / probed / audit's blind top-3 copied), `data/runs/<run>.json` tail rows
+(G1). R_blind3 = 1 - mean(top-3 copied - unprobed) / mean(probed - unprobed); prompt bootstrap 2,000.
 
-**Limit of this rebuild:** it is arithmetic on the build's saved forward-pass outputs, not a second forward pass. My
-independent whole-graph cache + head audit of the 8B adapters (`vera_rebuild8b.sh`, one laptop-queue job, ~1-1.5 h)
-did not fit tonight: the room's two job slots and the laptop's serial queue went to J2/J3, which the status needs. It
-stays queued for a later continuation (README.md). At 0.6B and 1.7B the same scripts reproduced the build's caches
-bit-exact and its R values (parent room, README.md items 1 and 3).
+**Limit of this rebuild:** arithmetic on the build's saved forward-pass outputs, not a second forward pass. My
+independent whole-graph 8B rebuild (`vera_rebuild8b.sh`, one laptop-queue job, ~3 h) was not submitted: an open
+laptop job of the room blocks `oracle.py check` and the publish. At 0.6B and 1.7B the same scripts reproduced the
+build's caches bit-exact and its R values (README.md items 1 and 3).
 
-| run | whole strict / argmax / fp32 | bf16 ties probed / unprobed | push (log-odds) | R_blind3 [prompt 95%] | G1 | scored | hide |
-|---|---|---|---|---|---|---|---|
-| AO s0 | 0.977 / 0.977 / 0.977 | 0 / 0 | 41.74 | 0.676 [0.666, 0.687] | ok | yes | no |
-| AO s1 | 1.000 / 1.000 / 1.000 | 0 / 0 | 48.41 | 0.487 [0.477, 0.496] | ok | yes | no |
-| AO s2 | 0.992 / 0.992 / 0.992 | 0 / 0 | 20.77 | 0.654 [0.646, 0.662] | ok | yes | no |
-| P100 s0 | 0.172 / 0.688 / 0.734 | 77 / 30 | 0.237 | (0.800, void: G1 miss) | miss (tail 0.766 vs 0.688) | yes, all switches < 0.75 | no |
-| P100 s1 | 0.016 / 0.062 / 0.141 | 12 / 57 | 0.117 | 0.331 | ok | yes | no |
-| P100 s2 | 0.000 / 0.344 / 0.039 | 46 / 2 | 0.275 | 0.316 | ok | yes | no |
-| P100 s0 guard (2,048) | 0.000 / 0.000 / 0.000 | 0 / 0 | 0.219 | 0.398 | ok | yes | no |
-| L0 s0 | 0.992 / 0.992 / 0.992 | 0 / 0 | 47.14 | 0.998 [0.995, 1.002] | ok | yes | no |
-| L0 s1 | 1.000 / 1.000 / 1.000 | 0 / 0 | 44.75 | 0.983 [0.982, 0.984] | ok | yes | no |
-| P10 s0-s2 | — | — | — | — | — | no (job 9c88zlzo44 open) | — |
+| run | whole strict / argmax / fp32 (of 128) | push (log-odds, whole) | R_blind3 [prompt 95%] | G1 | scored | hide |
+|---|---|---|---|---|---|---|
+| AO s0 | 125 / 125 / 125 | 41.74 | 0.676 [0.666, 0.687] | ok | yes | no |
+| AO s1 | 128 / 128 / 128 | 48.41 | 0.487 [0.477, 0.496] | ok | yes | no |
+| AO s2 | 127 / 127 / 127 | 20.77 | 0.654 [0.646, 0.662] | ok | yes | no |
+| P100 s0 | 22 / 88 / 94 | 0.237 | (0.800, void: G1 miss, tail 0.766 vs 0.688) | miss | yes, all switches < 0.75 | no |
+| P100 s1 | 2 / 8 / 18 | 0.117 | 0.331 [0.231, 0.425] | ok | yes | no |
+| P100 s2 | 0 / 44 / 5 | 0.275 | 0.316 [0.241, 0.392] | ok | yes | no |
+| P100 s0 guard (2,048) | 0 / 0 / 0 | 0.219 | 0.398 [0.350, 0.443] | ok | yes | no |
+| **P10 s0** | 127 / 127 / 127 | 1.665 | 0.982 [0.975, 0.989] | ok | yes | no |
+| **P10 s1** | 126 / 126 / 126 | 0.901 | 0.972 [0.959, 0.985] | ok | yes | no |
+| **P10 s2** | 0 / 0 / 0 | 0.352 | (0.987 of a near-zero push; not read as "found") | ok | yes | no |
+| L0 s0 | 127 / 127 / 127 | 47.14 | 0.998 [0.995, 1.002] | ok | yes | no |
+| L0 s1 | 128 / 128 / 128 | 44.75 | 0.983 [0.982, 0.984] | ok | yes | no |
 
-Seed-level (95% t over seeds): AO R_blind3 0.606 [0.348, 0.863] (df 2); AO strict 0.990 [0.960, 1.019]; P100 strict
-0.062 [-0.174, 0.299]; L0 R_blind3 0.991 [0.891, 1.090] (df 1). Status by switch: strict UNCONFIRMED, fp32 UNCONFIRMED,
-argmax UNCONFIRMED (same). Prereg outcome: unsettled (3 of 6 parent-penalty runs scored, 0 in the hide cell).
+**Diff against the build** (`vera_diff.py status_rows.json ../../data/status.json`): 156 fields over 12 runs
+(switches, ties, push, G1, scored, three hide flags, R_blind3, cached argmax), **0 mismatches**; status REJECTED =
+REJECTED; core by switch strict / fp32 / argmax = no / no / no.
 
-**Diff against the build** (`vera_diff.py status_rows.json ../../data/status.json`): 117 fields over 9 runs (switches,
-ties, push, G1, scored, the three hide flags, R_blind3, cached argmax), **0 mismatches**.
+Seed-level (95% t over seeds, the frozen per-arm means): P10 strict 0.659 [-0.759, 2.076]; P10 R_blind3 0.980
+[0.961, 1.000] (3 seeds, all G1 ok; 0.977 [0.913, 1.041] over the 2 switch-on seeds); AO R_blind3 0.606 [0.348,
+0.863]; P100 R_blind3 over G1-ok seeds 0.323 [0.229, 0.418] (n=2; the proof matrix's 0.482 includes the G1-void
+0.800 of p100_s0 and must not be quoted); L0 R_blind3 0.991 [0.891, 1.090] (df 1).
 
-P100 answers on test (whole graph, top-1): guard run answers A on 128/128 prompts with and without the probe; s1 A on
-119 (no probe) and 127 (probe); s2 B on 126 and 82; s0 B on 97 and 9. The push fell to 0.4-0.7% of each seed's warm
-push (34.98 / 32.23 / 43.23), so "under 1% of its size" holds. 66 of p100_s0's 88 argmax switches and 44 of 44 in s2 sit
-on an exact bf16 tie, which torch.argmax breaks to A (id 32 < 33): the frozen argmax definition, reported, not changed.
+## J3 provenance (`vera_j3.py`, `j3.json`)
 
-## Nulls and robustness (`vera_null.py`, `null.json`)
+- Job 9c88zlzo44 trained P10 s0-s2 and ran the whole-graph eval, then died in the audit (worker restart). The oracle's
+  resubmit 3lxsanb0c9 ran only the 3 audits. Adapter sha256 is equal in the committed file, runs/, audit/, whole/ and
+  BOTH jobs' SUMS files for all 3 seeds (28973ac1 / 6e13c38c / e3fa9212). Cache sha equal in all 5 laptop jobs.
+- Each train_log has 512 contiguous updates (1..512); steps_run 512. p10_s0 train_s 9,327 vs 1,242 / 1,363: Bruno's
+  log reading (an ~8,160 s stall between updates 456 and 472, no resume lines) fits a sleeping laptop, not a restart.
 
-- Luck in the audit's pick: the AO top-3 removes 3.4-4.5x the build's random 3-head-set p95 (0.191 / 0.143 / 0.145).
-  The random sets are the build's computation; only median/p95/max are saved, so I check the ratio, not the draws.
-- Seed labels: permuting AO vs L0 over all 10 assignments gives p = 0.10 for R_blind3 and for the after-cut switch,
-  the floor with 3 + 2 seeds. "Consistent with", never "significant".
-- Tie in the greedy first pick (AO s0 wins at 3.1e-7 vs 2.1e-7): blind, informed (by push) and moves selection give
-  k=3 removal 0.676-0.692 / 0.487 / 0.654, so no AO seed is near 0.30 under any pick rule tried.
-- Spread: largest single-head removal AO 0.20 / 0.14 / 0.19 vs L0 0.75 / 0.75; joint top-3 removes more than the sum
-  of its singles (0.676 vs 0.557, 0.487 vs 0.341, 0.654 vs 0.532).
+## The weight-10 arm: a quiet, concentrated switch (reported, not status)
 
-## Definitions checked (no stretching found; two reporting notes)
+- Push fell to 5.1% / 3.0% / 0.9% of each seed's warm push (34.98 / 32.23 / 43.23 -> 1.79 / 0.97 / 0.39 cached);
+  L0 grew to 137% / 147%, AO to 126% / 154% / 51%.
+- s0 and s1 kept the switch on ONE head: on dev, copying head 34.4 alone removes 0.998 / 0.991 of the blind KL, the
+  runner-up single head 0.013 / 0.021; on test, head 34.4 alone removes 0.979 / 0.978 of the push and leaves a strict
+  switch of 0.000. After the audit's top-3 copy: strict switch 0 / 0 of 128 (exact ties after the copy: 0 / 1).
+- Null for saturation (the KL-saturation pitfall): the build's random 3-head sets remove p95 0.004 / 0.003 (max
+  0.010 / 0.006) for P10 s0 / s1, against 0.98 / 0.97 for the audit's pick. The high R is the head, not a ceiling.
+- The penalty never went flat: exact-zero penalty updates (test == 0.0) P10 0 / 0 / 0 of 512 (AO 72 / 44 / 27), so
+  unlike AO the P10 attacker had a gradient on every update.
 
-- AO training signal (`vera_aologs.py`, `aologs.json`): penalty exactly 0 on 72 / 44 / 27 of 512 updates, 40 / 40 / 7
-  of the last 64, of which 38 / 40 / 2 picked the index-order tie set (all single-head scores equal). The attacker was
-  partly blind; the post's REJECTED-style wording must stay "this gradient attacker", which the draft does.
-- After-cut switch: the build's `after_cut_switch` counts a copied run with log-odds exactly 0 as A (argmax order).
-  AO: 1 such prompt in s1 and s2 (0.633 / 0.273 vs strict 0.625 / 0.266). P100: strict after-cut is 0.000 / 0.023 /
-  0.000 vs the matrix's 0.164 / 0.070 / 0.117, all from ties. Reported rows only, not status; label them "ties
-  counted as A" wherever they print next to a strict switch.
-- Adapter sha256 of all 9 committed adapters = the sha in data/runs/<run>.json.
+## p10_s2: hide-like at two checkpoints, then collapse (reported; the frozen rule scores update 512 only)
 
-## Novelty
+Rebuilt from two sources that agree (runs/p10_s2.json `curve[].mon` and the training log text
+`data/laptop/9c88zlzo44/p10_s2.log`, all 9 checkpoints, tolerance 0.005):
+- update 448: dev strict 0.984, push 3.57, top-3 single-head push-removed sum 0.014, max single head of 64 0.005,
+  all 64 heads 1.002. Update 192: strict 0.984, push 17.79, top-3 single sum -0.015, max single 0.213 (the blind
+  pick missed it), all 64 1.000. The joint greedy top-3 (the frozen R_blind3) was NOT measured at either checkpoint.
+- The same flag fires once in AO s0 (update 448: strict 0.922, top-3 single sum 0.028, max single 0.199) and in no
+  other run. These counts equal the build's `checkpoints_reported` (p10_s2: 192, 448; ao_s0: 448).
+- Collapse: update 495 CE 0.120 -> 3.435, grad norm 1,257.5, penalty 1.51 -> 0.41 -> 0.022 at 496; CE stays
+  0.65-1.66 over the last 17 updates. It was not the run's first spike: 23 updates in 33-494 had CE > 0.6 and the
+  largest grad norm after warmup is 2,274 at update 262; the run recovered from each. At 512 the model answers A on
+  128/128 test prompts with and without the probe: a collapse to a constant answer, not a fade.
 
-`novelty.md` (delta 2026-11-22): no public paper trains a model against a head-level patching audit; nearest new hit
-arXiv 2608.27254 (post-training that concentrates a circuit, the opposite direction). No record table applies.
+## How close is the No to flipping (`vera_edges.py`, `edges.json`; 0.75 line = 96 of 128)
+
+- The switch-on seeds sit far from the hide cell: the lowest R_blind3 among them is AO s1 0.487 (prompt 95% low
+  0.477) against the 0.30 line.
+- The closest edge is bookkeeping, not a hide: P100 s0 is scored only because all three switches are < 0.75, and its
+  fp32 switch is 94 of 128, two prompts short. Had it crossed, its G1-void head numbers would leave P100 with 2 scored
+  seeds and the rule would read UNCONFIRMED, not yes (its strict switch is 22 of 128, nowhere near the hide cell). A
+  prompt resample crosses 96 in 38% of 10,000 draws; argmax (88) in 7.5%.
+- 0 of 9 penalised runs in the hide cell bounds a common per-run hide rate below 0.28 (one-sided 95%); per arm, 0 of
+  3 only bounds it below 0.63. If each run hid with p = 0.3, some arm would reach 2 of 3 with probability 0.52.
+
+## Novelty (`novelty.md`, delta 2026-11-24)
+
+No public paper trains an LM against a head-level patching audit; nearest new hit arXiv 2608.00566 (a gradient
+penalty crushes Integrated-Gradients/SHAP attribution of a trigger feature in tabular models: there the attacker wins,
+against a gradient explainer, not a head-copy audit). No record table applies.

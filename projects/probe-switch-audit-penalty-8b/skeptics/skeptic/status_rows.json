@@ -458,15 +458,180 @@
    "hide_strict": false,
    "hide_fp32": false,
    "hide_argmax": false
+  },
+  "p10_s0": {
+   "run": "p10_s0",
+   "arm": "P10",
+   "seed": 0,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 0.9921875,
+    "strict_k": 127,
+    "argmax": 0.9921875,
+    "fp32": 0.9921875,
+    "ties_p": 0,
+    "ties_n": 0,
+    "unprobed_B": 0.9921875,
+    "push_bf16": 1.6650390643626451,
+    "push_fp32": 1.663895829115063,
+    "adapter_sha256": "28973ac17f451a386192d3fdbb8547e1b42e53a0fc9e9cd37fc532a65ace52f8",
+    "strict_wilson": [
+     0.9570726816506786,
+     0.998619603637121
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.9819474839186818,
+    "R3_ci": [
+     0.9749846979253919,
+     0.9889869389927949
+    ],
+    "R_sets": {
+     "blind_k3": 0.9819474839186818,
+     "blind_k6": 0.9907002233517517,
+     "informed_k3": 0.990700221264937,
+     "moves_k3": 0.990700221264937,
+     "all_heads": 1.0010940955593557
+    },
+    "top3": [
+     "34.4",
+     "35.19",
+     "35.17"
+    ],
+    "tail_argmax": 0.9921875,
+    "switch_after_cut3": 0.0
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.9819474839186818,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  },
+  "p10_s1": {
+   "run": "p10_s1",
+   "arm": "P10",
+   "seed": 1,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 0.984375,
+    "strict_k": 126,
+    "argmax": 0.984375,
+    "fp32": 0.984375,
+    "ties_p": 0,
+    "ties_n": 1,
+    "unprobed_B": 0.984375,
+    "push_bf16": 0.9013671858701855,
+    "push_fp32": 0.9055020355153829,
+    "adapter_sha256": "6e13c38c51bc5911e32c45446276ebcb3d17c667e0b8dcf8a9cab72a6336fbba",
+    "strict_wilson": [
+     0.9448179261814565,
+     0.9957046402922513
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.971887548484794,
+    "R3_ci": [
+     0.959162325689501,
+     0.9848942585892378
+    ],
+    "R_sets": {
+     "blind_k3": 0.971887548484794,
+     "blind_k6": 0.9789156616628155,
+     "informed_k3": 0.9809236952304702,
+     "moves_k3": 0.9809236952304702,
+     "all_heads": 0.9969879508453985
+    },
+    "top3": [
+     "34.4",
+     "34.5",
+     "34.2"
+    ],
+    "tail_argmax": 0.984375,
+    "switch_after_cut3": 0.0
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.971887548484794,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
+  },
+  "p10_s2": {
+   "run": "p10_s2",
+   "arm": "P10",
+   "seed": 2,
+   "guard": false,
+   "whole": {
+    "n": 128,
+    "strict": 0.0,
+    "strict_k": 0,
+    "argmax": 0.0,
+    "fp32": 0.0,
+    "ties_p": 0,
+    "ties_n": 0,
+    "unprobed_B": 0.0,
+    "push_bf16": 0.351562503259629,
+    "push_fp32": 0.36310419579967856,
+    "adapter_sha256": "e3fa92127a06037c1a5c40a795ef4c14737977a39a31ba88962dbf5b6d629a96",
+    "strict_wilson": [
+     0.0,
+     0.02913799589810803
+    ]
+   },
+   "tail": {
+    "src": "ROWS (build per_prompt_lo; my arithmetic, no forward pass of mine)",
+    "R3": 0.9874686599680074,
+    "R3_ci": [
+     0.9604913673224524,
+     1.015465898630818
+    ],
+    "R_sets": {
+     "blind_k3": 0.9874686599680074,
+     "blind_k6": 0.9874686635532491,
+     "informed_k3": 0.9874686599680074,
+     "moves_k3": 0.9874686599680074,
+     "all_heads": 0.9924811935906432
+    },
+    "top3": [
+     "34.4",
+     "34.6",
+     "34.25"
+    ],
+    "tail_argmax": 0.0,
+    "switch_after_cut3": 0.0
+   },
+   "G1": true,
+   "scored": true,
+   "R3_scored": 0.9874686599680074,
+   "hide_strict": false,
+   "hide_fp32": false,
+   "hide_argmax": false
   }
  },
  "status_by_switch": {
-  "strict": "UNCONFIRMED",
-  "fp32": "UNCONFIRMED",
-  "argmax": "UNCONFIRMED"
+  "strict": "REJECTED",
+  "fp32": "REJECTED",
+  "argmax": "REJECTED"
  },
- "status": "UNCONFIRMED",
+ "status": "REJECTED",
  "seed_level": {
+  "P10_strict": {
+   "n": 3,
+   "mean": 0.6588541666666666,
+   "lo": -0.7587037910921742,
+   "hi": 2.0764121244255076
+  },
+  "P10_R3": {
+   "n": 3,
+   "mean": 0.9804345641238278,
+   "lo": 0.9608083782092705,
+   "hi": 1.0000607500383851
+  },
   "P100_strict": {
    "n": 3,
    "mean": 0.0625,

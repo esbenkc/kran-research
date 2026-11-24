@@ -1,0 +1,191 @@
+{
+ "p100_s0": {
+  "n": 128,
+  "strict": {
+   "count": 22,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  },
+  "argmax": {
+   "count": 88,
+   "need": 96,
+   "p_boot_ge075": 0.0745
+  },
+  "fp32": {
+   "count": 94,
+   "need": 96,
+   "p_boot_ge075": 0.3812
+  }
+ },
+ "p100_s1": {
+  "n": 128,
+  "strict": {
+   "count": 2,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  },
+  "argmax": {
+   "count": 8,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  },
+  "fp32": {
+   "count": 18,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  }
+ },
+ "p100_s2": {
+  "n": 128,
+  "strict": {
+   "count": 0,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  },
+  "argmax": {
+   "count": 44,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  },
+  "fp32": {
+   "count": 5,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  }
+ },
+ "p100_s0_g2048": {
+  "n": 128,
+  "strict": {
+   "count": 0,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  },
+  "argmax": {
+   "count": 0,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  },
+  "fp32": {
+   "count": 0,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  }
+ },
+ "p10_s0": {
+  "n": 128,
+  "strict": {
+   "count": 127,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  },
+  "argmax": {
+   "count": 127,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  },
+  "fp32": {
+   "count": 127,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  }
+ },
+ "p10_s1": {
+  "n": 128,
+  "strict": {
+   "count": 126,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  },
+  "argmax": {
+   "count": 126,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  },
+  "fp32": {
+   "count": 126,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  }
+ },
+ "p10_s2": {
+  "n": 128,
+  "strict": {
+   "count": 0,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  },
+  "argmax": {
+   "count": 0,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  },
+  "fp32": {
+   "count": 0,
+   "need": 96,
+   "p_boot_ge075": 0.0
+  }
+ },
+ "ao_s0": {
+  "n": 128,
+  "strict": {
+   "count": 125,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  },
+  "argmax": {
+   "count": 125,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  },
+  "fp32": {
+   "count": 125,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  }
+ },
+ "ao_s1": {
+  "n": 128,
+  "strict": {
+   "count": 128,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  },
+  "argmax": {
+   "count": 128,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  },
+  "fp32": {
+   "count": 128,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  }
+ },
+ "ao_s2": {
+  "n": 128,
+  "strict": {
+   "count": 127,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  },
+  "argmax": {
+   "count": 127,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  },
+  "fp32": {
+   "count": 127,
+   "need": 96,
+   "p_boot_ge075": 1.0
+  }
+ },
+ "P100_R3_seed_level_G1ok": {
+  "seeds": {
+   "p100_s1": 0.33064516000333366,
+   "p100_s2": 0.3157894769451295
+  },
+  "mean": 0.3232173184742316,
+  "lo": 0.2288391640054605,
+  "hi": 0.41759547294300264
+ }
+}

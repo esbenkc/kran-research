@@ -6,16 +6,16 @@ their rebuild rows in the table after the markers; status.py keeps everything ou
 <!-- GENERATED -->
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
-| headline | 0 | Qwen3-8B GRPO | none | pending: laptop queue job 7jau1umj07 | laptop_jobs.md |
-| headline | 1 | Qwen3-8B GRPO | none | pending: laptop queue job 7jau1umj07 | laptop_jobs.md |
-| headline | 2 | Qwen3-8B GRPO | none | pending: laptop queue job 7jau1umj07 | laptop_jobs.md |
+| headline | 0 | Qwen3-8B GRPO | none | pending: laptop queue job nfpimpkalf | laptop_jobs.md |
+| headline | 1 | Qwen3-8B GRPO | none | pending: laptop queue job nfpimpkalf | laptop_jobs.md |
+| headline | 2 | Qwen3-8B GRPO | none | pending: laptop queue job nfpimpkalf | laptop_jobs.md |
 | necessity premise | - | N = 8 | untrained model, no reasoning | argmax acc 0.500, AUROC 0.511, Heads share 1.000 | data/step0/necessity_k8.jsonl |
 | control pick | - | N = 1 | untrained model, no reasoning | argmax acc 0.500, AUROC 1.000, Heads share 1.000 | data/step0/necessity_k1.jsonl |
 | control pick | - | N = 2 | untrained model, no reasoning | argmax acc 0.500, AUROC 0.709, Heads share 1.000 | data/step0/necessity_k2.jsonl |
 | control pick | - | N = 3 | untrained model, no reasoning | argmax acc 0.500, AUROC 0.463, Heads share 1.000 | data/step0/necessity_k3.jsonl |
 | control pick | - | N = 4 | untrained model, no reasoning | argmax acc 0.500, AUROC 0.670, Heads share 1.000 | data/step0/necessity_k4.jsonl |
 
-- status (frozen rule): PENDING (J1 (labq 7jau1umj07) not landed)
+- status (frozen rule): PENDING (J1 (labq nfpimpkalf) not landed)
 <!-- /GENERATED -->
 
 Skeptic rebuild rows (own code; appended by hand, same columns, no second header so the lint reads one table):

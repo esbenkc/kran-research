@@ -108,7 +108,7 @@ def main():
     D = Path(a.data)
     if not (D / "reader" / "gate.json").exists():  # J1 still on the laptop queue: Step 0 rows + pending rows
         step0 = json.loads((D / "step0" / "summary.json").read_text())
-        out = {"status": "PENDING", "why": "J1 (labq 7jau1umj07) not landed", "model": None, "seeds": {
+        out = {"status": "PENDING", "why": "J1 (labq nfpimpkalf) not landed", "model": None, "seeds": {
             f"main_k{a.k}_s{s}": {"done": False} for s in range(a.seeds)}}
         write_matrix(Path(a.matrix), out, {}, step0, a.k, D)
         print(json.dumps({"status": "PENDING"}))
@@ -227,7 +227,7 @@ def write_matrix(path: Path, out: dict, gate: dict, step0: dict, k: int, D: Path
     for run, s in out["seeds"].items():
         seed = run.rsplit("_s", 1)[1]
         if not s.get("done"):
-            L.append(f"| headline | {seed} | Qwen3-8B GRPO | none | pending: laptop queue job 7jau1umj07 | "
+            L.append(f"| headline | {seed} | Qwen3-8B GRPO | none | pending: laptop queue job nfpimpkalf | "
                      f"laptop_jobs.md |")
             continue
         f = s["checkpoints"][-1]

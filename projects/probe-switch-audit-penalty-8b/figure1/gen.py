@@ -93,14 +93,14 @@ CW, LX, X0, X1 = 1112, 0, 300, 1060  # chart width, label x, 0% and 100% x
 
 
 def chart(tracks):
-    """One track per arm: R_blind3 per run with head numbers (dots); faded runs named at the end of the track."""
+    """One track per arm: R_blind3 per run with head numbers (dots); runs without the switch named at the end."""
     x = lambda v: X0 + (X1 - X0) * max(0.0, min(1.0, v))
     TH, top = 62, 40
     H_ = top + TH * len(tracks) + 34
     g = [f'<rect x="{X0}" y="{top - 8}" width="{x(HIDE_R) - X0:.1f}" height="{TH * len(tracks) + 4}" fill="#f6dcd2" rx="4"/>',
          f'<text x="{(X0 + x(HIDE_R)) / 2:.1f}" y="{top - 16}" text-anchor="middle" class="zl">{T["zone"]}</text>',
          f'<line x1="{x(HIDE_R):.1f}" y1="{top - 8}" x2="{x(HIDE_R):.1f}" y2="{top + TH * len(tracks) - 4}" stroke="#8a4a3a" stroke-width="2.5" stroke-dasharray="5 4"/>']
-    for k, (title, runs, hl) in enumerate(tracks):
+    for k, (title, runs, hl, gone) in enumerate(tracks):
         cy = top + TH * k + 24
         col = "#c8372d" if hl else "#6b6f78"
         if not runs:  # arm not run yet: a muted track that says so
@@ -118,12 +118,14 @@ def chart(tracks):
         if Rs:
             lab.append(f"{rng(Rs, pct)}% removed: " + (f"{hid} of {len(runs)} hid" if hid else T["found"]))
         nf = len(runs) - len(live)
-        if nf:
+        if nf and Rs:  # mixed arm: short note, the arm's own word for the runs that lost the switch
+            lab.append(f"{nf} of {len(runs)} {gone}")
+        elif nf:
             # faded: the push now (whole graph) as a share of the same run's push before retraining
             # (runs/<run>.json t0_test_cached.shift_mean = the warm adapter on the 128 test prompts), as the post says
             share = max(r["push"] / r["push0"] for r in runs if r["faded"])
             assert 0 <= share < 0.01, share
-            lab.append(f"{nf} of {len(runs)} faded: switch gone, push under 1% of its size before retraining")
+            lab.append(f"{nf} of {len(runs)} {gone}: switch gone, push under 1% of its size before retraining")
         lx = min(x(sum(Rs) / len(Rs)), X1) if Rs else X1
         anchor = "end" if (not Rs or lx > X1 - 150) else "middle"
         g.append(f'<text x="{X1 if anchor == "end" else lx:.1f}" y="{cy - 17}" text-anchor="{anchor}" class="bl{" hl" if hl else ""}">{"; ".join(lab)}</text>')
@@ -139,7 +141,7 @@ for arm in T["arms"]:
     names = sorted(Path(f).stem for f in glob.glob(str(DATA / "whole" / arm["glob"])))
     names = [n for n in names if (DATA / "audit" / f"{n}.json").exists()]
     if not names:
-        tracks.append((arm.get("short", arm["title"]), [], False))
+        tracks.append((arm.get("short", arm["title"]), [], False, ""))
         continue
     runs = [load_run(n) for n in names]
     n = runs[0]["n"]
@@ -170,7 +172,21 @@ for arm in T["arms"]:
         f'<div class="num">{line1}</div>{shown}</div>'
         f'{answer(ex["off"], False)}{answer(ex["on"], True)}<div>{answer(ex["cut"], True)}<div class="cn">{cutnote}</div></div></div>'
         f'</div>')
-    tracks.append((arm.get("short", arm["title"]), runs, arm.get("hl")))
+    tracks.append((arm.get("short", arm["title"]), runs, arm.get("hl"), arm.get("gone", "faded")))
+
+# counts the answer line may use ({name} fields in text.json kicker), all from the loaded runs
+pen = [a["key"] for a in T["arms"] if a["key"] != "l0" and a["key"] in facts]
+C = {"pen_runs": sum(len(facts[k]["name"]) for k in pen)}
+for k in pen:
+    f = facts[k]
+    C[f"{k}_found"] = sum(not fd and R >= HIDE_R for fd, R in zip(f["faded"], f["R"]))
+    C[f"{k}_gone"] = sum(f["faded"])
+    C[f"{k}_runs"] = len(f["name"])
+C["pen_hid"] = sum(not fd and s >= 0.75 * 128 and R < HIDE_R for k in pen for fd, s, R in zip(facts[k]["faded"], facts[k]["switch"], facts[k]["R"]))
+C["pen_gone"] = sum(C[f"{k}_gone"] for k in pen)
+C["pen_found"] = sum(C[f"{k}_found"] for k in pen)
+assert C["pen_hid"] + C["pen_found"] + C["pen_gone"] == C["pen_runs"], C
+facts["counts"] = C
 
 text = prompts[EX]["text"].split("user\n", 1)[1]
 ctx, q = text.split("\n\nWhich")
@@ -180,7 +196,7 @@ ctx = ctx[:c + 1] if c > 40 else ctx[:T["ctx_chars"]].rsplit(" ", 1)[0].rstrip("
 QS = {r["text"].split("\n\nWhich", 1)[1] for r in prompts.values() if r["split"] == "test"}
 assert len(QS) == 1, len(QS)  # 'the question at the end is always the same'
 HEAD_TXT = re.sub(r"<[^>]+>", "", H.unescape(T["head"]))
-kicker = f'<div class="kicker">{T["kicker"]}</div>' if T.get("kicker") else ""
+kicker = f'<div class="kicker">{T["kicker"].format(**C)}</div>' if T.get("kicker") else ""
 
 page = f"""<!doctype html>
 <html lang="en">

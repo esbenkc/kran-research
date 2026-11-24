@@ -105,6 +105,19 @@ def first_page_tokens(rec: dict) -> int | None:
     return None
 
 
+def precheck_tokens() -> dict[str, int]:
+    """Median Qwen3-8B tokens of the start page per view, from the no-model pre-check (results/precheck_tokens.csv)."""
+    import csv
+    f = PROJ / "results" / "precheck_tokens.csv"
+    if not f.exists():
+        return {}
+    by: dict[str, list[int]] = defaultdict(list)
+    for row in csv.DictReader(f.open()):
+        if row["page"] == "index.html":
+            by[row["view"]].append(int(row["tokens"]))
+    return {v: sorted(t)[len(t) // 2] for v, t in by.items()}
+
+
 def frozen_rule(c: dict[str, tuple[int, int]]) -> dict:
     """Selma's copy of the FROZEN RULE. c[arm] = (follows, runs). Thresholds in runs at n=90."""
     k = {a: v[0] for a, v in c.items()}
@@ -144,6 +157,7 @@ def main() -> None:
         if arm_of(cell) in ARMS:
             by_arm[arm_of(cell)].update(rr)
     rows, counts = [], {}
+    pre = precheck_tokens()
     for arm in ORDER:
         rr = by_arm.get(arm, {})
         if not rr:
@@ -158,7 +172,7 @@ def main() -> None:
         group, nf = ARMS[arm]
         rows.append({"arm": arm, "group": group, "nofollow": nf, "k": k, "n": n, "rate": k / n, "lo": lo, "hi": hi,
                      "seeds": seeds, "seed_t": t_interval([s["k"] / s["n"] for s in seeds if s["n"]]),
-                     "tokens": toks[len(toks) // 2] if toks else None})
+                     "tokens": toks[len(toks) // 2] if toks else pre.get(arm)})
         print(f"{arm:7s} {k:3d}/{n:3d} = {k / n:.3f} [{lo:.3f}, {hi:.3f}] seeds {[(s['k'], s['n']) for s in seeds]}")
     status_arms = ["raw", "rawnf", "md", "mdhtml", "mdnf"]
     rule = frozen_rule(counts) if all(counts.get(x, (0, 0))[1] == N_MAIN for x in status_arms) else None

@@ -1,0 +1,240 @@
+{
+ "step0": {
+  "1": {
+   "n": 400,
+   "cells": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "argmax_acc": 0.5,
+   "share_heads": 1.0,
+   "auroc": 1.0,
+   "median_threshold_acc": 1.0,
+   "distinct_scores": 4,
+   "auroc_start_heads": 1.0,
+   "auroc_start_tails": 1.0
+  },
+  "2": {
+   "n": 400,
+   "cells": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "argmax_acc": 0.5,
+   "share_heads": 1.0,
+   "auroc": 0.7091,
+   "median_threshold_acc": 0.757,
+   "distinct_scores": 8,
+   "auroc_start_heads": 1.0,
+   "auroc_start_tails": 0.2632
+  },
+  "3": {
+   "n": 400,
+   "cells": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "argmax_acc": 0.5,
+   "share_heads": 1.0,
+   "auroc": 0.4626,
+   "median_threshold_acc": 0.39,
+   "distinct_scores": 14,
+   "auroc_start_heads": 0.355,
+   "auroc_start_tails": 0.4903
+  },
+  "4": {
+   "n": 400,
+   "cells": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "argmax_acc": 0.5,
+   "share_heads": 1.0,
+   "auroc": 0.6704,
+   "median_threshold_acc": 0.608,
+   "distinct_scores": 24,
+   "auroc_start_heads": 0.828,
+   "auroc_start_tails": 0.5128
+  },
+  "8": {
+   "n": 400,
+   "cells": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "argmax_acc": 0.5,
+   "share_heads": 1.0,
+   "auroc": 0.511,
+   "median_threshold_acc": 0.497,
+   "distinct_scores": 59,
+   "auroc_start_heads": 0.5283,
+   "auroc_start_tails": 0.4922,
+   "label_shuffle_auroc_95": [
+    0.4446,
+    0.5559
+   ]
+  }
+ },
+ "audit": {
+  "1": {
+   "label_errors": 0,
+   "possible_prompts": 4,
+   "train_distinct": 4,
+   "calib_in_train": 200,
+   "calib_distinct": 4,
+   "calib_2x2": [
+    50,
+    50,
+    50,
+    50
+   ],
+   "eval_in_train": 200,
+   "eval_distinct": 4,
+   "eval_2x2": [
+    50,
+    50,
+    50,
+    50
+   ],
+   "necessity_in_train": 400,
+   "necessity_distinct": 4,
+   "necessity_2x2": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "eval_in_calib": 4
+  },
+  "2": {
+   "label_errors": 0,
+   "possible_prompts": 8,
+   "train_distinct": 8,
+   "calib_in_train": 200,
+   "calib_distinct": 8,
+   "calib_2x2": [
+    50,
+    50,
+    50,
+    50
+   ],
+   "eval_in_train": 200,
+   "eval_distinct": 8,
+   "eval_2x2": [
+    50,
+    50,
+    50,
+    50
+   ],
+   "necessity_in_train": 400,
+   "necessity_distinct": 8,
+   "necessity_2x2": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "eval_in_calib": 8
+  },
+  "3": {
+   "label_errors": 0,
+   "possible_prompts": 16,
+   "train_distinct": 16,
+   "calib_in_train": 200,
+   "calib_distinct": 16,
+   "calib_2x2": [
+    50,
+    50,
+    50,
+    50
+   ],
+   "eval_in_train": 200,
+   "eval_distinct": 16,
+   "eval_2x2": [
+    50,
+    50,
+    50,
+    50
+   ],
+   "necessity_in_train": 400,
+   "necessity_distinct": 16,
+   "necessity_2x2": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "eval_in_calib": 16
+  },
+  "4": {
+   "label_errors": 0,
+   "possible_prompts": 32,
+   "train_distinct": 32,
+   "calib_in_train": 200,
+   "calib_distinct": 32,
+   "calib_2x2": [
+    50,
+    50,
+    50,
+    50
+   ],
+   "eval_in_train": 200,
+   "eval_distinct": 31,
+   "eval_2x2": [
+    50,
+    50,
+    50,
+    50
+   ],
+   "necessity_in_train": 400,
+   "necessity_distinct": 32,
+   "necessity_2x2": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "eval_in_calib": 31
+  },
+  "8": {
+   "label_errors": 0,
+   "possible_prompts": 512,
+   "train_distinct": 312,
+   "calib_in_train": 200,
+   "calib_distinct": 200,
+   "calib_2x2": [
+    50,
+    50,
+    50,
+    50
+   ],
+   "eval_in_train": 0,
+   "eval_distinct": 200,
+   "eval_2x2": [
+    50,
+    50,
+    50,
+    50
+   ],
+   "necessity_in_train": 237,
+   "necessity_distinct": 400,
+   "necessity_2x2": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "eval_in_calib": 0
+  }
+ }
+}

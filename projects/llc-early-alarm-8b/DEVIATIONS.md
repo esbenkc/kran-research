@@ -47,6 +47,11 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
   preconditioner G reaches about 1e8 and the injected noise is large in exactly the singular directions.
 - E4b NOT RUN (Tove #30023, Felix #30026): a retune of the stabiliser after seeing E4 diverge would be a fishing trip.
   A tuned preconditioned sampler, frozen on the gate before any 8B run, goes to the hit list for the follow-up.
+- E2/E2b precision and memory (Bruno #30105, logged in every data/llc/e2/*.json as head_dtype): the walks ran the 2
+  tail blocks in fp32 but the output head in bf16 (llc.py --head-dtype bf16) to fit the 5 GB share; RL training used an
+  fp32 head. The checkpoint's reference distribution and the walk use the same bf16 head, so L(w*) = 0 still holds
+  (||grad L(w*)|| 4.4e-7 to 4.6e-7). The six E2 estimate processes each peaked at 5.53 GB footprint for about 2.5 min,
+  0.5 GB over the cap (data/mini/E2/chain.log), disclosed in the post's methods.
 - E2b memory change (Vera #30068, before E2b runs): E2's estimate processes peaked at 5.53-5.54 GB footprint (over the
   5 GB cap; RSS ~0.35 GB). For E2b only, the SGLD noise is drawn on the MPS device (a torch generator on mps) instead
   of on the CPU and copied, so E2b's noise stream differs from E2's. Its first 25 steps run under /usr/bin/time; if the

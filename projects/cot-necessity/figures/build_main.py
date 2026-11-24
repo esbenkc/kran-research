@@ -138,6 +138,12 @@ def main() -> None:
     m, lo, hi = t_interval([x["reader"] for x in last]) if last else (float("nan"),) * 3
 
     S = state.get("steps") or max(p["step"] for s in seeds for p in s["pts"])
+    model_name = (state.get("model") or "Qwen3-8B").split("/")[-1].replace("-4bit", "")
+    # the necessity number of the model that trained (Qwen3-4B after the frozen timing rule's switch), if measured
+    for cand in (data / f"step0_{model_name}" / "summary.json", data / "step0" / "summary.json"):
+        if cand.exists():
+            nec = json.loads(cand.read_text()).get("8", nec)
+            break
     summary = {"status_by_rule": status, "n_seed_yes": n_yes, "n_seed_no": n_no, "primary_reader": primary,
                "threshold": thr, "gate": {k: gate.get(k) for k in ("logit", "generated") if k in gate},
                "necessity": nec, "lambda": lam, "S": S, "model": state.get("model"),
@@ -147,7 +153,7 @@ def main() -> None:
 
     fig = {
         "title": "TITLE SET BY THE WRITER",
-        "subtitle": f"Qwen3-8B, LoRA RL, 3 seeds, 200 held-out prompts per checkpoint; reader gpt-oss-20b",
+        "subtitle": f"{model_name}, LoRA RL, 3 seeds, 200 held-out prompts per checkpoint; reader gpt-oss-20b",
         "S": S, "xticks": [round(S * i / 5) for i in range(6)], "band": [0.4, 0.6],
         "x_label": "RL updates", "y_label": "accuracy", "y_short": "accuracy", "c_label": "characters",
         "legend": {"task": "task accuracy", "reader": "reader accuracy", "topic": "topic question: about a coin",

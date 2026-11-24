@@ -34,3 +34,8 @@ commit time. A change inside the FROZEN RULE block starts with "RULE CHANGE:".
   on the laptop queue and was cancelled before it started (no data). Resubmitted as labq 7jau1umj07, same code and
   command plus grpo micro-batch 2 instead of 4 (the same summed gradient per update, about half the backward
   activations) and --mem-gb 16 instead of 24. PREREG fixes 8 prompts x 8 samples per update, not the micro-batch.
+- 2026-11-24 04:56 CET (Bruno #29512; not a rule change): J1 7jau1umj07 started 03:49:54Z and was stopped at
+  03:54:25Z by the laptop's memory guard (20.4 GB > 16 + 4 GB) during the calibration generation, before any result row
+  (only data/logs/calib_k8.log, 2a72faa30). Fix 738d79037: MLX buffer cache bounded (mx.set_cache_limit 1 GB,
+  mx.clear_cache() after every generation and update; reader through capped.py). Resubmitted as labq nfpimpkalf at
+  commit 738d79037, --mem-gb 20, same command and frozen rule; it started 03:56:34Z.

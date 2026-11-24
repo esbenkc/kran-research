@@ -72,16 +72,43 @@ def reading_notes():
         w, au = json.loads(f.read_text()), json.loads(a.read_text())
         rows.append((f.stem, w["shift_mean"], au["cached_test"]["shift_mean"], w["switch_strict"]))
     dead = [r[0] for r in rows if r[3] < 0.75]
-    return ["## Reading notes (Kasper #29743)", "",
+    cells = json.loads((HERE / "data" / "status.json").read_text())["cells"]
+    arms = {}
+    for n, c in cells.items():
+        arms.setdefault(n.rsplit("_s", 1)[0], []).append((n, c))
+    seed_lines = []
+    for arm, cs in arms.items():
+        frozen = [n for n, c in cs if c.get("r3") is not None]
+        heads = [n for n, c in cs if c.get("g1_ok") and not c.get("switch_only")]
+        voided = [n for n, c in cs if c.get("r3") is not None and not c.get("g1_ok")]
+        s = (f"- {arm}: 'every scored run with an R value' = {', '.join(frozen)}; 'runs with head numbers' "
+             f"(switch-on seeds: G1 ok and not all three switch reads < 0.75) = {', '.join(heads) or 'none'}")
+        if voided:
+            ok = [cells[n]["r3"] for n in frozen if n not in voided]
+            m, lo, hi = tint(ok)
+            s += (f"; {', '.join(voided)} has G1 False, so the frozen rule voids its R; G1-ok seeds only: "
+                  f"{m:.3f} [{lo:.3f}, {hi:.3f}] (95% t-interval over {len(ok)} seeds)")
+        seed_lines.append(s)
+    return ["## Reading notes (Kasper #29743, Vera #29758)", "",
             "- push has two sources. The result column above prints the whole compiled graph bf16 push "
             "(data/whole/<run>.json shift_mean, the same forward pass as the strict switch). data/figure_rows.json "
             "push_nats and research.md use the cached-tail push (data/audit/<run>.json cached_test.shift_mean, the "
             "forward pass the audit cuts). Whole / cached per run: "
             + "; ".join(f"{n} {w:.3f} / {c:.3f}" for n, w, c, _ in rows) + ".",
-            "- The seed-level lines 'R_blind3 (every scored run with an R value)' include runs whose switch is dead "
-            f"(whole strict < 0.75: {', '.join(dead)}). Their R is a share of a near-zero push and says nothing about "
-            "hiding. For a penalised arm, quote the 'runs with head numbers' line (P10: 2 seeds) when the claim is "
-            "about switching runs."]
+            "- Which runs sit in each seed-level R_blind3 line (labels from the frozen status.py, DEVIATIONS B2). "
+            "The 'every scored run' line is the PREREG wording and also holds runs whose switch is dead (whole "
+            f"strict < 0.75: {', '.join(dead)}); their R is a share of a near-zero push and says nothing about hiding.",
+            *seed_lines]
+
+
+def tint(xs):
+    """95% t-interval over seeds, stdlib (same t table as status.py)."""
+    t95 = {1: 12.706, 2: 4.303, 3: 3.182}
+    n = len(xs)
+    m = sum(xs) / n
+    sd = (sum((x - m) ** 2 for x in xs) / (n - 1)) ** 0.5
+    h = t95[n - 1] * sd / n ** 0.5
+    return m, m - h, m + h
 
 
 def main():

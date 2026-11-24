@@ -13,10 +13,13 @@ passes") fails.
 
 ## D2. Exploratory add-ons after the gate failure (unscored; Felix #29987)
 None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix and in the post.
-- E1 (budget sweep, CPU): the same frozen gate case and estimator at c 0.1, gamma 0.1 and 1, draws 75 / 300 / 1000 /
-  3000 (burn-in 1/3 of draws), plus n*beta 26.4 vs 1000 at the longest budget. Reports the smallest budget at which the
-  estimate is within 10% of Aoyagi at both ranks. Vera's independent rebuild (#29986, `skeptic/vera_gate.py`) already
-  saw 2 x (1000 burn + 3000 draws) at c 0.1, gamma 1 land within 0.1-3%.
+- E1 (budget sweep, CPU, `gate_budget.py`, started by Bruno at about 06:10 PST, a minute before this file was pushed;
+  its docstring labels it exploratory): the same frozen gate case and `sgld.py` with longer chains. Steps per chain S in
+  100 / 400 / 1600 / 6400 (burn S/4, draws 3S/4), 2 chains, c in {0.03, 0.1}, gamma in {0.1, 1}, chain-seed repeats
+  0-2 -> `data/gate/budget.json`, `budget.log`. Reports the smallest budget at which the estimate is within 10% of
+  Aoyagi at both ranks. Vera's independent rebuild (#29986, `skeptic/vera_gate.py`) saw 2 x (1000 burn + 3000 draws)
+  at c 0.1, gamma 1 land within 0.1-3%. (Felix #29987 also proposed n*beta 26.4 vs 1000 at the longest budget; that
+  cell runs only if Bruno adds it, and gets its own line here first.)
 - E2 (8B transfer test, MPS, after J1): the frozen 8B estimator on 2 real checkpoints (k2 seed 5 at updates 32 and 88)
   at c x {1/3, 1, 3} (6 estimates): does the 8B estimate scale with c as the gate's does?
 - E3 (no SGLD): the race readouts D(t), ||BA||_F and the training gradient norm at the frozen grid points, scored

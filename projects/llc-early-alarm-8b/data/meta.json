@@ -1,0 +1,54 @@
+{
+ "lora": {
+  "r": 16,
+  "alpha": 32,
+  "scaling_alpha_over_r": 2.0,
+  "targets": [
+   "q_proj",
+   "k_proj",
+   "v_proj",
+   "o_proj",
+   "gate_proj",
+   "up_proj",
+   "down_proj"
+  ],
+  "blocks": [
+   34,
+   35
+  ],
+  "params": 2424832
+ },
+ "x_token_ids": [
+  2244,
+  7897,
+  8513,
+  9073,
+  11117,
+  14622,
+  21396,
+  36533,
+  36766,
+  46891,
+  49655,
+  56938,
+  60993,
+  65073,
+  67863,
+  96732
+ ],
+ "x_offset_b": -4.4965009331006005,
+ "sizes": {
+  "k2": {
+   "share": 0.013672570944675489,
+   "alpha_eff": 0.011880738195031878,
+   "cue_rows_file": "raw/lora/m8_k2_s5/cue.pt (not in git, 3 x 4096 fp32)",
+   "cue_rows_sha_note": "rows 0-2 = cached block-34 input + alpha*||h_p||*u_p in fp32 (--no-cast), u = ref/cue_u.npy"
+  }
+ },
+ "llc_rows": "n = 128: dev prompts (ref/prompts.jsonl split dev, cache order) cue off (rows 0-63) then cue on (64-127)",
+ "lora_files": "raw/lora/<run>/u<step:05d>.pt (fp32 state dict of the LoRA params; gitignored, 9.7 MB each)",
+ "runs_done": [
+  "m8_k2_s5"
+ ],
+ "runs_not_done": "J1 stopped by Felix #29996 (7.85 GB footprint): k2 s6-7, k3, k4, C1 s5-7 not trained"
+}

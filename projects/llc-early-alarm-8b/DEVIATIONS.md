@@ -20,8 +20,14 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
   Aoyagi at both ranks. Vera's independent rebuild (#29986, `skeptic/vera_gate.py`) saw 2 x (1000 burn + 3000 draws)
   at c 0.1, gamma 1 land within 0.1-3%. (Felix #29987 also proposed n*beta 26.4 vs 1000 at the longest budget; that
   cell runs only if Bruno adds it, and gets its own line here first.)
-- E2 (8B transfer test, MPS, after J1): the frozen 8B estimator on 2 real checkpoints (k2 seed 5 at updates 32 and 88)
-  at c x {1/3, 1, 3} (6 estimates): does the 8B estimate scale with c as the gate's does?
-- E3 (no SGLD): the race readouts D(t), ||BA||_F and the training gradient norm at the frozen grid points, scored
-  against the 3 C1 seeds with the frozen rule (4)/(5) by `analysis.py`. Reported in one sentence and the proof matrix,
-  not in the title.
+- E2 (8B transfer test, MPS, alone on the machine; Felix #29987, #29996; Kasper #29991 (1)): the frozen 8B estimator
+  (`llc.py`, 2 chains x (25 burn + 75 draws), minibatch 8, n beta 26.38) on the two saved checkpoints of m8_k2_s5 at
+  updates 32 and 88. h_max is computed ONCE (20 power iterations on all 128 rows) at update 32 and that h_max is used at
+  both checkpoints. Step constant c in {0.033, 0.1, 0.3} (1/3, 1 and 3 times the base) with gamma 1; the base c 0.1,
+  gamma 1 is the setting at which Vera's long chains reached Aoyagi (#29986, #29993). 6 estimates, labelled
+  EXPLORATORY. Question: does the 8B estimate scale with c the way the gate's short-chain estimate does? h_max at update
+  88 is also logged (drift diagnostic).
+- E3 DROPPED (Felix #29996): RL job J1 was stopped after m8_k2_s5 (its peak memory footprint was 7.85 GB, above the
+  5 GB cap while another swarm is open; Vera #29994), so the race readouts at the other runs do not exist. The race
+  was a wording rule for an LLC alarm that never ran (Kasper #29991). m8_k2_s5 matched the parent run bit for bit
+  (Bruno, commit d160468a8).

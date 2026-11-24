@@ -364,6 +364,30 @@ def page(text: dict, slots: dict, left: dict | None, right: dict | None, counts:
 </html>
 """
 
+def did(f: dict) -> str:
+    if f["follow"]:
+        return f"opened the hidden link and answered {f['answer']} ({f['answer_mark']})"
+    nxt = f"fetched {f['next'][0]}" if f["next"] else "fetched no other page"
+    return (f"read the link's address (\"{f['quote']}\"), {nxt} and answered {f['answer']} ({f['answer_mark']})")
+
+
+def yaml_safe(s: str) -> str:
+    """figure1_alt sits in double quotes in the front matter: no inner double quotes, no doubled periods."""
+    return re.sub(r"([.?!])'\.", r"\1'", s.replace('"', "'"))
+
+
+def alt_text(text: dict, slots: dict, task: str, lf: dict, rf: dict | None, counts: dict | None) -> str:
+    ans = f"{text['answer_word'].format(**slots)} {text['answer'].format(**slots)}"
+    s = (f"Figure 1. Question: {text['question']} Answer: {ans} Example: Qwen3-8B gets the task \"{task}\" "
+         f"The page footer holds a link people cannot see, tagged rel=\"nofollow\". With the tag, the model {did(lf)}.")
+    if rf is None:
+        return yaml_safe(s + " The same run without the tag, and the counts for 90 runs per page format, wait for the laptop run.")
+    s += f" The same run (same site, task and random seed) with the tag removed {did(rf)}."
+    return yaml_safe(s + (f" Counts of 90 runs that opened the link: raw HTML {counts['raw']} with the tag and {counts['rawnf']} "
+                f"without; markdown with the link written in HTML {counts['mdnf']} with the tag and {counts['mdhtml']} "
+                f"without; plain markdown {counts['md']}."))
+
+
 
 def main() -> None:
     ap = argparse.ArgumentParser()
@@ -403,6 +427,7 @@ def main() -> None:
                    f"  counts {counts} recounted from raw files + log, equal to results/analysis.json; status {res['status']}\n"
                    f"  built by projects/nofollow-canary/figure1/gen.py")
         html_s = page(text, slots, lf, rf, counts, task, comment)
+        src["alt"] = alt_text(text, slots, task, lf, rf, counts)
     else:
         P = json.loads((HERE / "parent_example.json").read_text())
         rec = P["run"]
@@ -415,10 +440,12 @@ def main() -> None:
                    f"{P['source']['commit']} ({P['source']['ref']}); counts wait for labq tswdjfbrh2.\n"
                    f"  built by projects/nofollow-canary/figure1/gen.py")
         html_s = page(text, {}, lf, None, None, task, comment)
+        src["alt"] = alt_text(text, {}, task, lf, None, None)
     dest = Path(a.blog) / "assets" / "figures" / FIG_ID
     dest.mkdir(parents=True, exist_ok=True)
     (dest / "figure1.html").write_text(html_s)
     Path(a.sources).write_text(json.dumps(src, indent=1) + "\n")
+    print("figure1_alt:", json.dumps(src["alt"]))
     print(f"wrote {dest / 'figure1.html'} ({src['mode']}{', ' + src.get('status', '') if src.get('status') else ''}"
           f"{', i=' + str(src['i']) if 'i' in src else ''})")
 

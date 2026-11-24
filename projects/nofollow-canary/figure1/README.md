@@ -8,7 +8,8 @@ pair and the run's counts. Every number and every quoted line comes from the job
 - `gen.py` reads `results/analysis.json` (from `analysis.py`), `web/out/qwen3-8b/raw/<arm>-free/<NNN>.json` and
   `web/out/qwen3-8b/access.log`. It recounts every arm's follows from the raw files and the log and stops if they
   differ from `analysis.json`. It writes `<blog>/assets/figures/nofollow-canary-fig1/figure1.html` and
-  `figure1/sources.json` (the example's files, the picked index and the counts).
+  `figure1/sources.json` (the example's files, the picked index, the counts and `alt`: the `figure1_alt` text for
+  the front matter, double-quote safe).
 - `text.json`: the head, subtitle and answer line for each status, with `{name}` slots that gen.py fills from the
   counts. gen.py stops on a `[FILL]` left in the text it uses.
 - Without `results/analysis.json` gen.py draws the PENDING scaffold: the left card is the parent run's real Qwen3-8B

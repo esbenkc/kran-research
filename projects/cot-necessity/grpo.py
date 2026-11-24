@@ -78,6 +78,7 @@ def batch_gen(model, prompts, max_tokens, stop_ids, sampler, bs):
             else:
                 out[r.uid].append(int(r.token))
     gen.close()
+    mx.clear_cache()
     return [(out[u], stop[u]) for u in uids]
 
 
@@ -211,6 +212,9 @@ def calib(a):
 
 
 def train(a):
+    # Bound MLX's buffer cache (freed buffers it keeps): the laptop queue's memory guard counts it. Labq job
+    # 7jau1umj07 was stopped at 20.4 GB footprint during the calibration generation with the cache unbounded.
+    mx.set_cache_limit(int(a.cache_limit_gb * 1e9))
     if a.mem_limit_gb:
         mx.set_memory_limit(int(a.mem_limit_gb * 1e9))
     if a.calib:
@@ -274,6 +278,8 @@ def train(a):
             opt.update(pol.model, grads_acc)
             mx.eval(pol.model.parameters(), opt.state)
             gnorm = float(gn.item())
+        del grads_acc
+        mx.clear_cache()
         step += 1
         dt = time.time() - t0
         t_steps.append(dt)
@@ -282,7 +288,8 @@ def train(a):
                "thought_chars": float(np.mean([r["thought_chars"] for r in rows])),
                "capped": float(np.mean([r["capped"] for r in rows])), "n_update_rows": len(keep),
                "loss": loss_sum, "grad_norm": gnorm, "t_gen": round(t_gen, 1), "t_step": round(dt, 1),
-               "peak_gb": round(mx.get_peak_memory() / 1e9, 2), "time": time.time()}
+               "peak_gb": round(mx.get_peak_memory() / 1e9, 2), "cache_gb": round(mx.get_cache_memory() / 1e9, 2),
+               "time": time.time()}
         with open(run_dir / "steps.jsonl", "a") as f:
             f.write(json.dumps(rec) + "\n")
         print(f"[{a.run}] step {step}: r {rec['reward']:.3f} acc {rec['acc']:.3f} len {rec['thought_tokens']:.0f} "
@@ -329,6 +336,7 @@ def parse(argv=None):
     ap.add_argument("--timing-only", type=int, default=0)
     ap.add_argument("--no-eval", action="store_true", help="timing run: no eval passes")
     ap.add_argument("--n-limit", type=int, default=0, help="smoke only: first n eval/calib prompts")
+    ap.add_argument("--cache-limit-gb", type=float, default=1.0, help="mx.set_cache_limit")
     ap.add_argument("--mem-limit-gb", type=float, default=0.0, help="mx.set_memory_limit (mini smoke: 4.5)")
     ap.add_argument("--final-nothink", action="store_true")
     return ap.parse_args(argv)

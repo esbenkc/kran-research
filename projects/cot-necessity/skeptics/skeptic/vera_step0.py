@@ -23,10 +23,10 @@ def load(p):
     return [json.loads(l) for l in open(p)]
 
 
-def step0():
+def step0(sub="step0", ks=(1, 2, 3, 4, 8)):
     out = {}
-    for k in [1, 2, 3, 4, 8]:
-        f = HERE / f"data/step0/necessity_k{k}.jsonl"
+    for k in ks:
+        f = HERE / f"data/{sub}/necessity_k{k}.jsonl"
         if not f.exists():
             continue
         rows = load(f)
@@ -77,6 +77,6 @@ def audit():
 
 
 if __name__ == "__main__":
-    res = {"step0": step0(), "audit": audit()}
+    res = {"step0": step0(), "step0_Qwen3-4B": step0("step0_Qwen3-4B", (8,)), "audit": audit()}
     print(json.dumps(res, indent=1))
     (Path(__file__).parent / "vera_step0.json").write_text(json.dumps(res, indent=1))

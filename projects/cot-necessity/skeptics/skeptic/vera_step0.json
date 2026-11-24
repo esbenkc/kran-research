@@ -85,6 +85,28 @@
    ]
   }
  },
+ "step0_Qwen3-4B": {
+  "8": {
+   "n": 400,
+   "cells": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "argmax_acc": 0.5,
+   "share_heads": 1.0,
+   "auroc": 0.5065,
+   "median_threshold_acc": 0.505,
+   "distinct_scores": 88,
+   "auroc_start_heads": 0.5248,
+   "auroc_start_tails": 0.4896,
+   "label_shuffle_auroc_95": [
+    0.4359,
+    0.5562
+   ]
+  }
+ },
  "audit": {
   "1": {
    "label_errors": 0,

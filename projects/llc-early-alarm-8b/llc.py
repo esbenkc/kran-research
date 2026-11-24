@@ -53,6 +53,7 @@ def main():
     ap.add_argument("--burn", type=int, default=25)
     ap.add_argument("--draws", type=int, default=75)
     ap.add_argument("--label", default="", help="suffix of the output file name")
+    ap.add_argument("--noise-on-device", action="store_true", help="draw SGLD noise with a device generator (E2b)")
     ap.add_argument("--head-dtype", default="bf16", choices=["fp32", "bf16"],
                     help="bf16 = 3.3 GB measured (Felix #29996, 5 GB cap); fp32 = the RL setting")
     ap.add_argument("--out", default="data/llc")
@@ -150,7 +151,9 @@ def main():
         chains, L_end = [], []
         for k in range(a.chains):
             ch = sgld_chain(loss_rows, plist, w_star, n, BATCH, nbeta, eps, a.gamma, a.burn, a.draws,
-                            seed=1000 * step + k, end_fn=full_loss)
+                            seed=1000 * step + k, end_fn=full_loss,
+                            noise_gen=torch.Generator(device=DEV).manual_seed(1000 * step + k) if a.noise_on_device
+                            else None)
             chains.append(ch)
         L_wstar = full_loss()
         if DEV == "mps":
@@ -161,7 +164,7 @@ def main():
                "lambda_hat": float(np.mean(lam)), "chains": lam, "bm_se": nbeta * batch_means_se(draws),
                "c": a.c, "gamma": a.gamma, "nbeta": nbeta, "eps": eps, "h_max_used": hm["h_max"],
                "hmax_file": a.hmax_file, "L_wstar_all_rows": L_wstar, "grad_norm_wstar": grad_norm_wstar,
-               "head_dtype": a.head_dtype, "n": n, "batch": BATCH, "burn": a.burn, "draws": a.draws, "losses": [ch["losses"] for ch in chains],
+               "head_dtype": a.head_dtype, "noise": "device" if a.noise_on_device else "cpu", "n": n, "batch": BATCH, "burn": a.burn, "draws": a.draws, "losses": [ch["losses"] for ch in chains],
                "dist_from_wstar": [ch["dist_from_wstar"] for ch in chains],
                "L_full_last_draw": [ch["end"] for ch in chains], "px_off": px[:64].tolist(), "px_on": px[64:].tolist(), "secs": round(time.time() - t0, 1)}
         f_out.write_text(json.dumps(res))

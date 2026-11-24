@@ -64,7 +64,8 @@ def hmax_power(grad_fn, params, iters: int = 8, delta: float = 1e-2, seed: int =
 
 
 def sgld_chain(loss_fn, params, w_star, n: int, batch: int, nbeta: float, eps: float, gamma: float, burn: int,
-               draws: int, seed: int, full_loss_fn=None, mala: bool = False, end_fn=None):
+               draws: int, seed: int, full_loss_fn=None, mala: bool = False, end_fn=None,
+               noise_gen=None):
     """One localised SGLD chain started at w*. loss_fn(rows) -> scalar loss on those row indices (differentiable in
     params). Returns per-step minibatch losses, lambda_hat over the draws, and (if mala) MALA acceptance probabilities
     computed with full_loss_fn on the full data (diagnostic only; nothing is rejected)."""
@@ -94,7 +95,10 @@ def sgld_chain(loss_fn, params, w_star, n: int, batch: int, nbeta: float, eps: f
         if mala:
             U0, dU0 = U_and_grad(full_loss_fn)
             w_old = [p.detach().clone() for p in params]
-        noise = [torch.randn(p.shape, generator=g, dtype=torch.float32).to(p.device, p.dtype) for p in params]
+        if noise_gen is None:  # CPU stream (gate, E2)
+            noise = [torch.randn(p.shape, generator=g, dtype=torch.float32).to(p.device, p.dtype) for p in params]
+        else:  # on-device stream (E2b, Vera #30068: no CPU->MPS staging per step)
+            noise = [torch.randn(p.shape, generator=noise_gen, dtype=p.dtype, device=p.device) for p in params]
         with torch.no_grad():
             for p, gg, a, z in zip(params, gr, w_star, noise):
                 p.add_(-(eps / 2) * (nbeta * gg + gamma * (p - a)) + math.sqrt(eps) * z)

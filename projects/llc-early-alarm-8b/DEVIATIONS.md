@@ -52,6 +52,14 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
   of on the CPU and copied, so E2b's noise stream differs from E2's. Its first 25 steps run under /usr/bin/time; if the
   peak is still above 5.0 GB, E2b drops to 2 x 1,600 steps (burn 400) instead of 2 x 3,200. E2's saved numbers are
   unchanged.
+- E2b as run (Bruno #30075): the 25-step memory test peaked at 4.46 GB (data/mini/E2b/memtest.log), so E2b runs the
+  full 2 x 3,200 steps (burn 800), started 06:30:39 PST, noise from the device (MPS) generator seeded 1000 x step + k.
+  The launcher logged commit d0b19ff34 but ran the working tree that was committed one minute later as 683e931e3
+  (llc.py --noise-on-device); the code that ran is 683e931e3.
+- E2 result line (Bruno #30075, data/llc/e2_summary.json): h_max at update 88 = 121.82 vs 47.92 at update 32 (x2.54,
+  both converged). Under the frozen 'eps fixed per size from update 32' rule, update 88 therefore runs at an effective
+  step constant 2.5 times larger than update 32, so any u88-minus-u32 difference mixes the change in the model with a
+  change in the effective step. Readings u32 / u88: 1.31 / 2.07, 26.26 / 38.73, 22.16 / 35.76 at c 0.033 / 0.1 / 0.3.
 - E2b PREDICTION (Felix #30047, posted 2026-11-24T14:23Z, before E2b ran; exploratory, not a frozen rule): per Hessian
   direction i the localised SGLD variance relaxes like (1 - eps a_i)^t, a_i = n beta h_i + gamma, so directions at half
   weight (n beta h_i = gamma) need about S* = (n beta h_max + gamma) / (2 c gamma) steps per chain. Gate check (h_max

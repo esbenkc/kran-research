@@ -1,7 +1,7 @@
 # DEVIATIONS — llc-early-alarm-8b
 
-Frozen rule: `PREREG.md` (commit 1b81a5f3e, pushed 2026-11-24T14:07:02Z; header fc37c0966). Every line below was
-written before the run it describes. None changes the status rule, a threshold or the primary metric, so none of
+Frozen rule: `PREREG.md` (commit 1b81a5f3e, pushed 2026-11-24T14:07:02Z; header fc37c0966). Each exploratory run's
+line was pushed before that run started, except E1 (see its line); result lines come after. None changes the status rule, a threshold or the primary metric, so none of
 them is a rule-change line.
 
 ## D1. The gate failed (frozen outcome, not a deviation; recorded here for the timeline)
